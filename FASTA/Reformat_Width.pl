@@ -4,37 +4,28 @@
 
 use strict;
 use Getopt::Std;
-use Sys::Hostname;
-use vars qw($opt_i $opt_o);
+use vars qw($opt_w);
 
-getopts("i:o:");
+getopts("w:");
 my $usage = "usage: 
 $0 
-	-i <input fasta file>
-	-o <output fasta file>
+	-w Width
 
-	Reads in a FASTA file and assumes the first tokenizable string in the
-	defline is the identifier.  Everything after this identifier
-	is truncated.
-
+	This program will read in a FASTA file through STDIN and then
+	output the same FASTA file through STDOUT, except with the 
+	newly specified width.
 ";
 
-if(!defined($opt_i) || !defined($opt_o)){
+if(!(defined($opt_w))){
 	die $usage;
 }
 
-my $input_fasta=$opt_i;
-my $output_fasta=$opt_o;
-
 ###############################################################################
-
-open(IN_FASTA, "<$input_fasta") || die "Could not open $input_fasta\n";
-open(OUT_FASTA, ">$output_fasta") || die "Could not open $output_fasta\n";
 
 print STDERR "Processing FASTA file...\n";
 
 my ($defline, $prev_defline, $sequence);
-while(<IN_FASTA>){
+while(<STDIN>){
 	chomp;
 	
 	if(/^>/){
@@ -58,20 +49,16 @@ sub process_record{
 	my $defline = shift;
 	my $sequence = shift;
 
-	my @arr=split /\s+/, $defline;
-	print OUT_FASTA "$arr[0]\n";
-
-	$sequence=~s/\s+//g;
-
+	print STDOUT "$defline\n";
 	my $length=length($sequence);
-	my $width=80;
+	my $width=$opt_w;
 	my $pos=0;
 	do{
 		my $out_width=($width>$length)?$length:$width;
-		print OUT_FASTA substr($sequence, $pos, $width) . "\n";
+		print STDOUT substr($sequence, $pos, $width) . "\n";
 		$pos+=$width;
 		$length-=$width;
 	}while($length>0);
 }
 
-###############################################################################
+#------------------------------------------------------------------------------

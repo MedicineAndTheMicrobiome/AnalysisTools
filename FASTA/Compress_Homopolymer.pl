@@ -4,37 +4,23 @@
 
 use strict;
 use Getopt::Std;
-use Sys::Hostname;
-use vars qw($opt_i $opt_o);
+use vars qw($opt_m);
 
-getopts("i:o:");
 my $usage = "usage: 
 $0 
-	-i <input fasta file>
-	-o <output fasta file>
 
-	Reads in a FASTA file and assumes the first tokenizable string in the
-	defline is the identifier.  Everything after this identifier
-	is truncated.
-
+	This program will read in a FASTA file through STDIN and
+	output the new FASTA where the homopolymers have been compressed 
+	throught STDOUT.
+	
 ";
 
-if(!defined($opt_i) || !defined($opt_o)){
-	die $usage;
-}
-
-my $input_fasta=$opt_i;
-my $output_fasta=$opt_o;
-
 ###############################################################################
-
-open(IN_FASTA, "<$input_fasta") || die "Could not open $input_fasta\n";
-open(OUT_FASTA, ">$output_fasta") || die "Could not open $output_fasta\n";
 
 print STDERR "Processing FASTA file...\n";
 
 my ($defline, $prev_defline, $sequence);
-while(<IN_FASTA>){
+while(<STDIN>){
 	chomp;
 	
 	if(/^>/){
@@ -54,24 +40,34 @@ print STDERR "Completed.\n";
 
 ###############################################################################
 
+sub compress{
+	my $sequence=uc(shift);
+
+	while($sequence=~s/A{2,}?/A/g){};
+	while($sequence=~s/T{2,}?/T/g){};
+	while($sequence=~s/G{2,}?/G/g){};
+	while($sequence=~s/C{2,}?/C/g){};
+
+	return $sequence;
+}
+
 sub process_record{
 	my $defline = shift;
 	my $sequence = shift;
 
-	my @arr=split /\s+/, $defline;
-	print OUT_FASTA "$arr[0]\n";
+	print STDOUT "$defline\n";
 
-	$sequence=~s/\s+//g;
-
+	$sequence=compress($sequence);
+	
 	my $length=length($sequence);
 	my $width=80;
 	my $pos=0;
 	do{
 		my $out_width=($width>$length)?$length:$width;
-		print OUT_FASTA substr($sequence, $pos, $width) . "\n";
+		print STDOUT substr($sequence, $pos, $width) . "\n";
 		$pos+=$width;
 		$length-=$width;
 	}while($length>0);
 }
 
-###############################################################################
+#------------------------------------------------------------------------------
