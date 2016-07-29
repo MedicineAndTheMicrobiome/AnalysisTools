@@ -1,0 +1,52 @@
+cutadapt version 1.0
+Command line parameters: -b TAAGGCGA -b TATCCTCT SubsampleExample/BAL277040-PE-N701S503-1/F/3_qvtrim/qv_trimmed.fastq -o SubsampleExample/BAL277040-PE-N701S503-1/F/4_adapt/adapter_trimmed.fastq
+Maximum error rate: 10.00%
+   Processed reads: 4420
+     Trimmed reads: 3353 ( 75.9%)
+   Too short reads: 0 (  0.0% of processed reads)
+    Too long reads: 0 (  0.0% of processed reads)
+        Total time:      0.36 s
+     Time per read:      0.08 ms
+
+=== Adapter 1 ===
+
+Adapter 'TAAGGCGA', length 8, was trimmed 3301 times.
+9 times, it overlapped the 5' end of a read
+3292 times, it overlapped the 3' end or was within the read
+
+Histogram of adapter lengths (5')
+length	count
+3	5
+4	2
+5	2
+
+
+Histogram of adapter lengths (3' or within)
+length	count
+3	27
+4	14
+5	21
+6	11
+7	13
+8	3206
+
+=== Adapter 2 ===
+
+Adapter 'TATCCTCT', length 8, was trimmed 52 times.
+29 times, it overlapped the 5' end of a read
+23 times, it overlapped the 3' end or was within the read
+
+Histogram of adapter lengths (5')
+length	count
+3	10
+4	17
+5	2
+
+
+Histogram of adapter lengths (3' or within)
+length	count
+3	16
+4	3
+5	1
+8	3
+
