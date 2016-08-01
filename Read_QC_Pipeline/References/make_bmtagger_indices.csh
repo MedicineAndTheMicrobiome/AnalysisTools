@@ -1,5 +1,8 @@
 #!/bin/csh
 
+# You'll need to reformat the reference for host sequence removal by running it through srprism.
+# First concatanetate the individual fasta files together, then run mkindex.
+
 set reference = hs_ref_GRCh38.p2_allChr.fa
 set ref_root = $reference:r:t
 
