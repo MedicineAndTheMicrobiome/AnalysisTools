@@ -1,13 +1,32 @@
 #!/bin/csh
 
-# You'll need to reformat the reference for host sequence removal by running it through srprism.
-# First concatanetate the individual fasta files together, then run mkindex.
 
-set reference = hs_ref_GRCh38.p2_allChr.fa
-set ref_root = $reference:r:t
+set ref_root=hs_ref_all
+set tools_path=../Dependencies
 
-set tools_path = /usr/local/devel/DAS/users/kli/SVN/DAS/Read_QC_Pipeline/Dependencies
+#
+# 1. Concatenate references
+#
 
-#$tools_path/bmtools/bmtools/bmtagger/bmtool -d $reference -o $ref_root.bitmask
-$tools_path/bmtools/srprism mkindex -i $reference -o $ref_root.srprism
-#$tools_path/blast/ncbi-blast-2.2.30+/bin/makeblastdb -in $reference -dbtype nucl
+zcat source/hs_ref_GRCh38.p7_chr*fa.gz > $ref_root.fa
+
+#
+# 2. Create bitmask file
+#
+
+$tools_path/bmtools/bmtools/bmtagger/bmtool -d $ref_root.fa -o $ref_root.bitmask
+
+#
+# 3. Create srprism file
+#
+
+$tools_path/bmtools/srprism mkindex -i $ref_root.fa -o $ref_root.srprism
+
+#
+# 4. Create blast db file
+#
+
+$tools_path/blast/ncbi-blast-2.2.30+/bin/makeblastdb -in $ref_root.fa -dbtype nucl
+
+
+
