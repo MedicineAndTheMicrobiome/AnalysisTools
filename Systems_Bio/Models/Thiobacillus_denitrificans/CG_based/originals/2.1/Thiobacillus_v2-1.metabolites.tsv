@@ -1,0 +1,1043 @@
+Metabolite name	Metabolite description	Metabolite neutral formula	Metabolite charged formula	Metabolite charge	Metabolite Compartment	Metabolite KEGGID	Metabolite PubChemID	Metabolite CheBI ID	Metabolite Inchi String	Metabolite Smile
+h2o[c]	H2O_cytosolic			0	Cytosol					
+h2o[e]	H2O_extracellular			0	Extracellular					
+o2[c]	O2_cytosolic		o2[c]	0	Cytosol					
+o2[e]	O2_extracellular		o2[e]	0	Extracellular					
+pi[c]	Phosphate_cytosolic		pi[c]	0	Cytosol					
+pi[e]	Phosphate_extracellular		pi[e]	0	Extracellular					
+co2[c]	CO2_cytosolic		co2[c]	0	Cytosol					
+co2[e]	CO2_extracellular		co2[e]	0	Extracellular					
+nh4[c]	NH3_cytosolic			1	Cytosol					
+nh4[e]	NH3_extracellular			1	Extracellular					
+glc_D[c]	D-Glucose_cytosolic			0	Cytosol					
+glc_D[e]	D-Glucose_extracellular			0	Extracellular					
+mn2[c]	Mn2_cytosolic		mn2[c]	0	Cytosol					
+mn2[e]	Mn2_extracellular		mn2[e]	0	Extracellular					
+gly[c]	Glycine_cytosolic		gly[c]	0	Cytosol					
+gly[e]	Glycine_extracellular		gly[e]	0	Extracellular					
+zn2[c]	Zn2_cytosolic		zn2[c]	0	Cytosol					
+zn2[e]	Zn2_extracellular		zn2[e]	0	Extracellular					
+succ[c]	Succinate_cytosolic		succ[c]	0	Cytosol					
+succ[e]	Succinate_extracellular		succ[e]	0	Extracellular					
+so4[c]	Sulfate_cytosolic		so4[c]	0	Cytosol					
+so4[e]	Sulfate_extracellular		so4[e]	0	Extracellular					
+met_L[c]	L-Methionine_cytosolic			0	Cytosol					
+met_L[e]	L-Methionine_extracellular			0	Extracellular					
+ca2[c]	Ca2_cytosolic		ca2[c]	0	Cytosol					
+ca2[e]	Ca2_extracellular		ca2[e]	0	Extracellular					
+h[c]	H_cytosolic		h[c]	0	Cytosol					
+h[e]	H_extracellular		h[e]	0	Extracellular					
+urea[c]	Urea_cytosolic		urea[c]	0	Cytosol					
+urea[e]	Urea_extracellular		urea[e]	0	Extracellular					
+no2[c]	Nitrite_cytosolic		no2[c]	0	Cytosol					
+no2[e]	Nitrite_extracellular		no2[e]	0	Extracellular					
+cl[c]	Cl_cytosolic			0	Cytosol					
+cl[e]	Cl_extracellular			0	Extracellular					
+fum[c]	Fumarate_cytosolic		fum[c]	0	Cytosol					
+fum[e]	Fumarate_extracellular		fum[e]	0	Extracellular					
+cit[c]	Citrate_cytosolic		cit[c]	0	Cytosol					
+cit[e]	Citrate_extracellular		cit[e]	0	Extracellular					
+cobalt2[c]	Co2_cytosolic		cobalt2[c]	0	Cytosol					
+cobalt2[e]	Co2_extracellular		cobalt2[e]	0	Extracellular					
+malt[c]	Maltose_cytosolic		malt[c]	0	Cytosol					
+malt[e]	Maltose_extracellular		malt[e]	0	Extracellular					
+k[c]	K_cytosolic		k[c]	0	Cytosol					
+k[e]	K_extracellular		k[e]	0	Extracellular					
+no3[c]	Nitrate_cytosolic		no3[c]	0	Cytosol					
+no3[e]	Nitrate_extracellular		no3[e]	0	Extracellular					
+hdca[c]	Palmitate_cytosolic		hdca[c]	0	Cytosol					
+hdca[e]	Palmitate_extracellular		hdca[e]	0	Extracellular					
+mg2[c]	Mg_cytosolic		mg2[c]	0	Cytosol					
+mg2[e]	Mg_extracellular		mg2[e]	0	Extracellular					
+spmd[c]	Spermidine_cytosolic		spmd[c]	0	Cytosol					
+spmd[e]	Spermidine_extracellular		spmd[e]	0	Extracellular					
+thm[c]	Thiamin_cytosolic		thm[c]	0	Cytosol					
+thm[e]	Thiamin_extracellular		thm[e]	0	Extracellular					
+cbl2[c]	Vitamin-B12r_cytosolic		cbl2[c]	0	Cytosol					
+cbl2[e]	Vitamin-B12r_extracellular		cbl2[e]	0	Extracellular					
+cbl1[c]	Cbl_cytosolic		cbl1[c]	0	Cytosol					
+cbl1[e]	Cbl_extracellular		cbl1[e]	0	Extracellular					
+met_D[c]	D-Methionine_cytosolic		met_D[c]	0	Cytosol					
+met_D[e]	D-Methionine_extracellular		met_D[e]	0	Extracellular					
+na1[c]	Na_cytosolic		na1[c]	0	Cytosol					
+na1[e]	Na_extracellular		na1[e]	0	Extracellular					
+cgly[c]	Cys-Gly_cytosolic		cgly[c]	0	Cytosol					
+cgly[e]	Cys-Gly_extracellular		cgly[e]	0	Extracellular					
+ocdca[c]	ocdca_cytosolic		ocdca[c]	0	Cytosol					
+ocdca[e]	ocdca_extracellular		ocdca[e]	0	Extracellular					
+metox[c]	L-Methionine-S-oxide_cytosolic		metox[c]	0	Cytosol					
+metox[e]	L-Methionine-S-oxide_extracellular		metox[e]	0	Extracellular					
+VitaminB12[c]	Vitamin-B12_cytosolic			0	Cytosol					
+VitaminB12[e]	Vitamin-B12_extracellular			0	Extracellular					
+ferrich[c]	Ferrichrome_cytosolic		ferrich[c]	0	Cytosol					
+ferrich[e]	Ferrichrome_extracellular		ferrich[e]	0	Extracellular					
+ttdca[c]	Myristic-acid_cytosolic		ttdca[c]	0	Cytosol					
+ttdca[e]	Myristic-acid_extracellular		ttdca[e]	0	Extracellular					
+fe2[c]	Fe2_cytosolic		fe2[c]	0	Cytosol					
+fe2[e]	Fe2_extracellular		fe2[e]	0	Extracellular					
+fe3[c]	fe3_cytosolic		fe3[c]	0	Cytosol					
+fe3[e]	fe3_extracellular		fe3[e]	0	Extracellular					
+mobd[c]	Molybdate_cytosolic		mobd[c]	0	Cytosol					
+mobd[e]	Molybdate_extracellular		mobd[e]	0	Extracellular					
+metox_R[c]	L-methionine-R-oxide_cytosolic			0	Cytosol					
+metox_R[e]	L-methionine-R-oxide_extracellular			0	Extracellular					
+gly_gln_L[c]	Gly-Gln_cytosolic			0	Cytosol					
+gly_gln_L[e]	Gly-Gln_extracellular			0	Extracellular					
+gly_asn_L[c]	gly-asn-L_cytosolic			0	Cytosol					
+gly_asn_L[e]	gly-asn-L_extracellular			0	Extracellular					
+ala_L_Thr_L[c]	ala-L-Thr-L_cytosolic			0	Cytosol					
+ala_L_Thr_L[e]	ala-L-Thr-L_extracellular			0	Extracellular					
+ala_L_leu_L[c]	Ala-Leu_cytosolic		ala_L_leu_L[c]	0	Cytosol					
+ala_L_leu_L[e]	Ala-Leu_extracellular		ala_L_leu_L[e]	0	Extracellular					
+ala_L_his_L[c]	Ala-His_cytosolic			0	Cytosol					
+ala_L_his_L[e]	Ala-His_extracellular			0	Extracellular					
+L_alagly[c]	L-alanylglycine_cytosolic			0	Cytosol					
+L_alagly[e]	L-alanylglycine_extracellular			0	Extracellular					
+ala_L_glu_L[c]	ala-L-glu-L_cytosolic			0	Cytosol					
+ala_L_glu_L[e]	ala-L-glu-L_extracellular			0	Extracellular					
+ala_L_gln_L[c]	Ala-Gln_cytosolic			0	Cytosol					
+ala_L_gln_L[e]	Ala-Gln_extracellular			0	Extracellular					
+gly_pro_L[c]	gly-pro-L_cytosolic			0	Cytosol					
+gly_pro_L[e]	gly-pro-L_extracellular			0	Extracellular					
+gly_asp_L[c]	gly-asp-L_cytosolic			0	Cytosol					
+gly_asp_L[e]	gly-asp-L_extracellular			0	Extracellular					
+met_L_ala_L[c]	met-L-ala-L_cytosolic			0	Cytosol					
+met_L_ala_L[e]	met-L-ala-L_extracellular			0	Extracellular					
+gly_met_L[c]	Gly-Met_cytosolic			0	Cytosol					
+gly_met_L[e]	Gly-Met_extracellular			0	Extracellular					
+gly_glu_L[c]	gly-glu-L_cytosolic			0	Cytosol					
+gly_glu_L[e]	gly-glu-L_extracellular			0	Extracellular					
+ala_L_asp_L[c]	ala-L-asp-L_cytosolic			0	Cytosol					
+ala_L_asp_L[e]	ala-L-asp-L_extracellular			0	Extracellular					
+gly_cys_L[c]	Gly-Cys_cytosolic			0	Cytosol					
+gly_cys_L[e]	Gly-Cys_extracellular			0	Extracellular					
+gly_leu_L[c]	Gly-Leu_cytosolic		gly_leu_L[c]	0	Cytosol					
+gly_leu_L[e]	Gly-Leu_extracellular		gly_leu_L[e]	0	Extracellular					
+gly_phe_L[c]	Gly-Phe_cytosolic			0	Cytosol					
+gly_phe_L[e]	Gly-Phe_extracellular			0	Extracellular					
+Gly_Tyr[c]	Gly-Tyr_cytosolic			0	Cytosol					
+Gly_Tyr[e]	Gly-Tyr_extracellular			0	Extracellular					
+atp[c]	ATP_cytosolic		atp[c]	0	Cytosol					
+nad[c]	NAD_cytosolic		nad[c]	0	Cytosol					
+nadh[c]	NADH_cytosolic		nadh[c]	0	Cytosol					
+nadph[c]	NADPH_cytosolic		nadph[c]	0	Cytosol					
+nadp[c]	NADP_cytosolic		nadp[c]	0	Cytosol					
+adp[c]	ADP_cytosolic		adp[c]	0	Cytosol					
+coa[c]	CoA_cytosolic		coa[c]	0	Cytosol					
+ppi[c]	PPi_cytosolic		ppi[c]	0	Cytosol					
+udp[c]	UDP_cytosolic		udp[c]	0	Cytosol					
+fad[c]	FAD_cytosolic		fad[c]	0	Cytosol					
+pydx5p[c]	Pyridoxal-phosphate_cytosolic		pydx5p[c]	0	Cytosol					
+amet[c]	S-Adenosyl-L-methionine_cytosolic		amet[c]	0	Cytosol					
+amp[c]	AMP_cytosolic		amp[c]	0	Cytosol					
+ahcys[c]	S-Adenosyl-homocysteine_cytosolic		ahcys[c]	0	Cytosol					
+pyr[c]	Pyruvate_cytosolic		pyr[c]	0	Cytosol					
+accoa[c]	Acetyl-CoA_cytosolic		accoa[c]	0	Cytosol					
+glu_L[c]	L-Glutamate_cytosolic			0	Cytosol					
+akg[c]	2-Oxoglutarate_cytosolic		akg[c]	0	Cytosol					
+h2o2[c]	H2O2_cytosolic		h2o2[c]	0	Cytosol					
+udpg[c]	UDP-glucose_cytosolic		udpg[c]	0	Cytosol					
+pheme[c]	Heme_cytosolic		pheme[c]	0	Cytosol					
+ac[c]	Acetate_cytosolic		ac[c]	0	Cytosol					
+gdp[c]	GDP_cytosolic		gdp[c]	0	Cytosol					
+oaa[c]	Oxaloacetate_cytosolic		oaa[c]	0	Cytosol					
+ala_L[c]	L-Alanine_cytosolic		ala_L[c]	0	Cytosol					
+uacgam[c]	UDP-N-acetylglucosamine_cytosolic		uacgam[c]	0	Cytosol					
+gtp[c]	GTP_cytosolic		gtp[c]	0	Cytosol					
+lys_L[c]	L-Lysine_cytosolic			0	Cytosol					
+glx[c]	Glyoxalate_cytosolic		glx[c]	0	Cytosol					
+asp_L[c]	L-Aspartate_cytosolic			0	Cytosol					
+gthrd[c]	GSH_cytosolic		gthrd[c]	0	Cytosol					
+udpgal[c]	UDP-galactose_cytosolic		udpgal[c]	0	Cytosol					
+paps[c]	3-phosphoadenylylsulfate_cytosolic		paps[c]	0	Cytosol					
+pap[c]	Adenosine-3-5-bisphosphate_cytosolic		pap[c]	0	Cytosol					
+cmp[c]	CMP_cytosolic		cmp[c]	0	Cytosol					
+for[c]	Formate_cytosolic		for[c]	0	Cytosol					
+fmn[c]	FMN_cytosolic		fmn[c]	0	Cytosol					
+arg_L[c]	L-Arginine_cytosolic			0	Cytosol					
+ctp[c]	CTP_cytosolic		ctp[c]	0	Cytosol					
+gln_L[c]	L-Glutamine_cytosolic		gln_L[c]	0	Cytosol					
+ser_L[c]	L-Serine_cytosolic			0	Cytosol					
+thmpp[c]	TPP_cytosolic		thmpp[c]	0	Cytosol					
+pep[c]	Phosphoenolpyruvate_cytosolic		pep[c]	0	Cytosol					
+utp[c]	UTP_cytosolic		utp[c]	0	Cytosol					
+orn[c]	Ornithine_cytosolic			0	Cytosol					
+trp_L[c]	L-Tryptophan_cytosolic			0	Cytosol					
+phe_L[c]	L-Phenylalanine_cytosolic		phe_L[c]	0	Cytosol					
+itp[c]	ITP_cytosolic		itp[c]	0	Cytosol					
+tyr_L[c]	L-Tyrosine_cytosolic			0	Cytosol					
+malcoa[c]	Malonyl-CoA_cytosolic		malcoa[c]	0	Cytosol					
+acald[c]	Acetaldehyde_cytosolic		acald[c]	0	Cytosol					
+f6p[c]	D-fructose-6-phosphate_cytosolic			0	Cytosol					
+s[c]	S_cytosolic		s[c]	0	Cytosol					
+sucr[e]	Sucrose_extracellular		sucr[e]	0	Extracellular					
+succoa[c]	Succinyl-CoA_cytosolic		succoa[c]	0	Cytosol					
+g6p[c]	D-glucose-6-phosphate_cytosolic			0	Cytosol					
+glyc3p[c]	Glycerol-3-phosphate_cytosolic			0	Cytosol					
+so3[c]	Sulfite_cytosolic			0	Cytosol					
+fru[e]	D-Fructose_extracellular			0	Extracellular					
+gdpmann[c]	GDP-mannose_cytosolic		gdpmann[c]	0	Cytosol					
+cys_L[c]	L-Cysteine_cytosolic		cys_L[c]	0	Cytosol					
+ala_B[c]	beta-Alanine_cytosolic			0	Cytosol					
+ppcoa[c]	Propionyl-CoA_cytosolic		ppcoa[c]	0	Cytosol					
+thf[c]	Tetrahydrofolate_cytosolic		thf[c]	0	Cytosol					
+g1p[c]	Glucose-1-phosphate_cytosolic		g1p[c]	0	Cytosol					
+idp[c]	IDP_cytosolic		idp[c]	0	Cytosol					
+ump[c]	UMP_cytosolic		ump[c]	0	Cytosol					
+ura[c]	Uracil_cytosolic		ura[c]	0	Cytosol					
+anth[c]	Anthranilate_cytosolic		anth[c]	0	Cytosol					
+2obut[c]	2-Oxobutyrate_cytosolic		2obut[c]	0	Cytosol					
+dhap[c]	Glycerone-phosphate_cytosolic		dhap[c]	0	Cytosol					
+cdp[c]	CDP_cytosolic		cdp[c]	0	Cytosol					
+chol[c]	Choline_cytosolic		chol[c]	0	Cytosol					
+glyc[c]	Glycerol_cytosolic		glyc[c]	0	Cytosol					
+r5p[c]	ribose-5-phosphate_cytosolic			0	Cytosol					
+g3p[c]	Glyceraldehyde3-phosphate_cytosolic			0	Cytosol					
+prpp[c]	PRPP_cytosolic		prpp[c]	0	Cytosol					
+btn[c]	BIOT_cytosolic		btn[c]	0	Cytosol					
+leu_L[c]	L-Leucine_cytosolic		leu_L[c]	0	Cytosol					
+ficytc[c]	Cytochrome-c3_cytosolic			0	Cytosol					
+focytc[c]	Cytochrome-c2_cytosolic			0	Cytosol					
+gthox[c]	GSSH oxidized glutathione_cytosolic		gthox[c]	0	Cytosol					
+ipdp[c]	Isopentenyldiphosphate_cytosolic		ipdp[c]	0	Cytosol					
+imp[c]	IMP_cytosolic		imp[c]	0	Cytosol					
+datp[c]	dATP_cytosolic		datp[c]	0	Cytosol					
+ala_D[c]	D-Alanine_cytosolic		ala_D[c]	0	Cytosol					
+ptrc[c]	Putrescine_cytosolic		ptrc[c]	0	Cytosol					
+his_L[c]	L-Histidine_cytosolic		his_L[c]	0	Cytosol					
+inost[c]	L-Inositol_cytosolic			0	Cytosol					
+acgam[e]	N-Acetyl-D-glucosamine_extracellular		acgam[e]	0	Extracellular					
+3mob[c]	3-Methyl-2-oxobutanoate_cytosolic		3mob[c]	0	Cytosol					
+mlthf[c]	5-10-Methylenetetrahydrofolate_cytosolic		mlthf[c]	0	Cytosol					
+gmp[c]	GMP_cytosolic		gmp[c]	0	Cytosol					
+ade[c]	Adenine_cytosolic		ade[c]	0	Cytosol					
+pro_L[c]	L-Proline_cytosolic		pro_L[c]	0	Cytosol					
+mal_L[c]	L-Malate_cytosolic			0	Cytosol					
+asn_L[c]	L-Asparagine_cytosolic		asn_L[c]	0	Cytosol					
+pmtcoa[c]	Palmitoyl-CoA_cytosolic		pmtcoa[c]	0	Cytosol					
+hcys_L[c]	Homocysteine_cytosolic			0	Cytosol					
+4hbz[c]	4-Hydroxybenzoate_cytosolic		4hbz[c]	0	Cytosol					
+man[e]	D-Mannose_extracellular			0	Extracellular					
+glyclt[c]	Glycolate_cytosolic		glyclt[c]	0	Cytosol					
+ppa[c]	Propionate_cytosolic		ppa[c]	0	Cytosol					
+phpyr[c]	Phenylpyruvate_cytosolic		phpyr[c]	0	Cytosol					
+udpglcur[c]	UDPglucuronate_cytosolic		udpglcur[c]	0	Cytosol					
+hpyr[c]	Hydroxypyruvate_cytosolic		hpyr[c]	0	Cytosol					
+cbp[c]	Carbamoylphosphate_cytosolic		cbp[c]	0	Cytosol					
+5mta[c]	5-Methylthioadenosine_cytosolic		5mta[c]	0	Cytosol					
+thym[c]	Thymine_cytosolic		thym[c]	0	Cytosol					
+agm[c]	Agmatine_cytosolic		agm[c]	0	Cytosol					
+glycogen[c]	Glycogen_cytosolic		glycogen[c]	0	Cytosol					
+val_L[c]	L-Valine_cytosolic		val_L[c]	0	Cytosol					
+dha[c]	Glycerone_cytosolic		dha[c]	0	Cytosol					
+lac_L[c]	L-Lactate_cytosolic		lac_L[c]	0	Cytosol					
+thr_L[c]	L-Threonine_cytosolic		thr_L[c]	0	Cytosol					
+etha[c]	Aminoethanol_cytosolic		etha[c]	0	Cytosol					
+adocbl[c]	Calomide_cytosolic		adocbl[c]	0	Cytosol					
+3pg[c]	3-Phosphoglycerate_cytosolic			0	Cytosol					
+ru5p_D[c]	D-Ribulose5-phosphate_cytosolic		ru5p_D[c]	0	Cytosol					
+uacgala[c]	UDP-N-acetyl-D-galactosamine_cytosolic		uacgala[c]	0	Cytosol					
+dadp[c]	dADP_cytosolic		dadp[c]	0	Cytosol					
+adn[c]	Adenosine_cytosolic		adn[c]	0	Cytosol					
+thymd[c]	Thymidine_cytosolic		thymd[c]	0	Cytosol					
+glu_D[c]	D-Glutamate_cytosolic		glu_D[c]	0	Cytosol					
+glc_D_B[c]	beta-D-Glucose_cytosolic			0	Cytosol					
+aps[c]	APS_cytosolic		aps[c]	0	Cytosol					
+actp[c]	Acetylphosphate_cytosolic		actp[c]	0	Cytosol					
+xu5p_D[c]	D-Xylulose5-phosphate_cytosolic		xu5p_D[c]	0	Cytosol					
+4mop[c]	4MOP_cytosolic		4mop[c]	0	Cytosol					
+10fthf[c]	10-Formyltetrahydrofolate_cytosolic		10fthf[c]	0	Cytosol					
+dmpp[c]	DMAPP_cytosolic			0	Cytosol					
+13dpg[c]	1-3-Bisphospho-D-glycerate_cytosolic		13dpg[c]	0	Cytosol					
+dcmp[c]	dCMP_cytosolic		dcmp[c]	0	Cytosol					
+gua[c]	Guanine_cytosolic		gua[c]	0	Cytosol					
+lpam[c]	Lipoamide_cytosolic			0	Cytosol					
+chor[c]	Chorismate_cytosolic		chor[c]	0	Cytosol					
+nac[c]	Niacin_cytosolic		nac[c]	0	Cytosol					
+pphn[c]	Prephenate_cytosolic		pphn[c]	0	Cytosol					
+ribflv[c]	Riboflavin_cytosolic		ribflv[c]	0	Cytosol					
+lac_D[c]	D-Lactate_cytosolic		lac_D[c]	0	Cytosol					
+glyc_R[c]	Glycerate_cytosolic			0	Cytosol					
+arab_L[c]	L-Arabinose_cytosolic			0	Cytosol					
+hxan[c]	HYXN_cytosolic		hxan[c]	0	Cytosol					
+hom_L[c]	L-Homoserine_cytosolic		hom_L[c]	0	Cytosol					
+gcald[c]	Glycolaldehyde_cytosolic		gcald[c]	0	Cytosol					
+dhbpt[c]	Dihydrobiopterin_cytosolic		dhbpt[c]	0	Cytosol					
+thbpt[c]	Tetrahydrobiopterin_cytosolic		thbpt[c]	0	Cytosol					
+man6p[c]	D-mannose-6-phosphate_cytosolic		man6p[c]	0	Cytosol					
+e4p[c]	D-Erythrose4-phosphate_cytosolic		e4p[c]	0	Cytosol					
+s7p[c]	Sedoheptulose7-phosphate_cytosolic		s7p[c]	0	Cytosol					
+h2s[c]	H2S_cytosolic			0	Cytosol					
+dgtp[c]	dGTP_cytosolic		dgtp[c]	0	Cytosol					
+hco3[c]	H2CO3_cytosolic			0	Cytosol					
+ins[c]	Inosine_cytosolic		ins[c]	0	Cytosol					
+orot[c]	Orotate_cytosolic		orot[c]	0	Cytosol					
+uri[c]	Uridine_cytosolic		uri[c]	0	Cytosol					
+adprib[c]	ADPribose_cytosolic		adprib[c]	0	Cytosol					
+icit[c]	Isocitrate_cytosolic		icit[c]	0	Cytosol					
+tsul[c]	H2S2O3_cytosolic			0	Cytosol					
+gdpfuc[c]	GDP-L-fucose_cytosolic		gdpfuc[c]	0	Cytosol					
+citr_L[c]	Citrulline_cytosolic		citr_L[c]	0	Cytosol					
+gam[e]	GLUM_extracellular		gam[e]	0	Extracellular					
+dgsn[c]	Deoxyguanosine_cytosolic		dgsn[c]	0	Cytosol					
+dhor_S[c]	S-Dihydroorotate_cytosolic			0	Cytosol					
+grdp[c]	Geranyldiphosphate_cytosolic		grdp[c]	0	Cytosol					
+6pgc[c]	6-Phospho-D-gluconate_cytosolic		6pgc[c]	0	Cytosol					
+udcpp[c]	Undecaprenylphosphate_cytosolic			0	Cytosol					
+gam6p[c]	D-Glucosamine-phosphate_cytosolic		gam6p[c]	0	Cytosol					
+ggdp[c]	Geranylgeranyl-diphosphate_cytosolic		ggdp[c]	0	Cytosol					
+fdp[c]	D-fructose-1-6-bisphosphate_cytosolic			0	Cytosol					
+acgam6p[c]	N-Acetyl-D-glucosamine-6-phosphate_cytosolic		acgam6p[c]	0	Cytosol					
+damp[c]	dAMP_cytosolic		damp[c]	0	Cytosol					
+dgdp[c]	dGDP_cytosolic		dgdp[c]	0	Cytosol					
+dgmp[c]	dGMP_cytosolic		dgmp[c]	0	Cytosol					
+dtdp[c]	dTDP_cytosolic		dtdp[c]	0	Cytosol					
+dtmp[c]	dTMP_cytosolic		dtmp[c]	0	Cytosol					
+dump[c]	dUMP_cytosolic		dump[c]	0	Cytosol					
+xan[c]	XAN_cytosolic		xan[c]	0	Cytosol					
+gsn[c]	Guanosine_cytosolic		gsn[c]	0	Cytosol					
+mnl[e]	D-Mannitol_extracellular		mnl[e]	0	Extracellular					
+ile_L[c]	L-Isoleucine_cytosolic		ile_L[c]	0	Cytosol					
+stcoa[c]	strcoa_cytosolic		stcoa[c]	0	Cytosol					
+dhf[c]	Dihydrofolate_cytosolic		dhf[c]	0	Cytosol					
+acon_C[c]	cis-Aconitate_cytosolic			0	Cytosol					
+5aop[c]	5-Aminolevulinate_cytosolic		5aop[c]	0	Cytosol					
+acorn[c]	N-Acetylornithine_cytosolic		acorn[c]	0	Cytosol					
+cbasp[c]	N-Carbamoyl-L-aspartate_cytosolic		cbasp[c]	0	Cytosol					
+5mthf[c]	5-Methyltetrahydrofolate_cytosolic		5mthf[c]	0	Cytosol					
+aspsa[c]	L-Aspartate4-semialdehyde_cytosolic		aspsa[c]	0	Cytosol					
+methf[c]	5-10-Methenyltetrahydrofolate_cytosolic		methf[c]	0	Cytosol					
+gal1p[c]	D-Galactose-1-phosphate_cytosolic			0	Cytosol					
+s17bp[c]	Sedoheptulose-1-7-bisphosphate_cytosolic		s17bp[c]	0	Cytosol					
+frdp[c]	Farnesyldiphosphate_cytosolic		frdp[c]	0	Cytosol					
+thp2c[c]	delta1-Piperideine-6-L-carboxylate_cytosolic		thp2c[c]	0	Cytosol					
+nmn[c]	Nicotinamide-ribonucleotide_cytosolic		nmn[c]	0	Cytosol					
+dctp[c]	dCTP_cytosolic		dctp[c]	0	Cytosol					
+dttp[c]	TTP_cytosolic		dttp[c]	0	Cytosol					
+dutp[c]	dUTP_cytosolic		dutp[c]	0	Cytosol					
+indole[c]	indol_cytosolic		indole[c]	0	Cytosol					
+etoh[c]	Ethanol_cytosolic		etoh[c]	0	Cytosol					
+Cytidine[c]	Cytidine_cytosolic		Cytidine[c]	0	Cytosol					
+skm[c]	Shikimate_cytosolic		skm[c]	0	Cytosol					
+adpglc[c]	ADPglucose_cytosolic		adpglc[c]	0	Cytosol					
+CDP_glucose[c]	CDP-glucose_cytosolic			0	Cytosol					
+fol[c]	Folate_cytosolic		fol[c]	0	Cytosol					
+pant_R[c]	Pantoate_cytosolic			0	Cytosol					
+duri[c]	Deoxyuridine_cytosolic		duri[c]	0	Cytosol					
+no[c]	NO_cytosolic		no[c]	0	Cytosol					
+pppi[c]	Triphosphate_cytosolic		pppi[c]	0	Cytosol					
+mthgxl[c]	2-Oxopropanal_cytosolic		mthgxl[c]	0	Cytosol					
+dad_2[c]	Deoxyadenosine_cytosolic			0	Cytosol					
+tma[c]	CH33N_cytosolic		tma[c]	0	Cytosol					
+4abz[c]	ABEE_cytosolic		4abz[c]	0	Cytosol					
+camp[c]	cAMP_cytosolic		camp[c]	0	Cytosol					
+glyald[c]	D-Glyceraldehyde_cytosolic		glyald[c]	0	Cytosol					
+dhlam[c]	Dihydrolipoamide_cytosolic			0	Cytosol					
+dms[c]	Methyl-sulfide_cytosolic		dms[c]	0	Cytosol					
+acglu[c]	N-Acetyl-L-glutamate_cytosolic		acglu[c]	0	Cytosol					
+pdx5p[c]	Pyridoxine-phosphate_cytosolic		pdx5p[c]	0	Cytosol					
+ibcoa[c]	Isobutyryl-CoA_cytosolic		ibcoa[c]	0	Cytosol					
+2pg[c]	2-Phospho-D-glycerate_cytosolic		2pg[c]	0	Cytosol					
+man1p[c]	D-Mannose1-phosphate_cytosolic		man1p[c]	0	Cytosol					
+mnl1p[c]	D-mannitol-1-phosphate_cytosolic		mnl1p[c]	0	Cytosol					
+xmp[c]	XMP_cytosolic		xmp[c]	0	Cytosol					
+2ahbut[c]	2-Aceto-2-hydroxybutanoate_cytosolic			0	Cytosol					
+26dap_LL[c]	LL-2-6-Diaminopimelate_cytosolic		26dap_LL[c]	0	Cytosol					
+glucys[c]	gamma-Glutamylcysteine_cytosolic		glucys[c]	0	Cytosol					
+g3pc[c]	Glycerophosphocholine_cytosolic		g3pc[c]	0	Cytosol					
+3mop[c]	3MOP_cytosolic			0	Cytosol					
+2dr1p[c]	deoxyribose-1-phosphate_cytosolic		2dr1p[c]	0	Cytosol					
+26dap_M[c]	meso-2-6-Diaminopimelate_cytosolic			0	Cytosol					
+dtdp4d6dg[c]	dTDP-4-oxo-6-deoxy-D-glucose_cytosolic		dtdp4d6dg[c]	0	Cytosol					
+dtdp4d6dm[c]	dTDP-4-oxo-L-rhamnose_cytosolic		dtdp4d6dm[c]	0	Cytosol					
+tre6p[c]	Trehalose-6-phosphate_cytosolic		tre6p[c]	0	Cytosol					
+uamag[c]	UDP-N-acetylmuramoyl-L-alanyl-D-glutamate_cytosolic		uamag[c]	0	Cytosol					
+n2[c]	N2_cytosolic		n2[c]	0	Cytosol					
+o2s[c]	O2_cytosolic		o2s[c]	0	Cytosol					
+dcdp[c]	dCDP_cytosolic		dcdp[c]	0	Cytosol					
+sheme[c]	Siroheme_cytosolic		sheme[c]	0	Cytosol					
+sbt_D[e]	Sorbitol_extracellular		sbt_D[e]	0	Extracellular					
+CPD_659[c]	Pretyrosine_cytosolic			0	Cytosol					
+dtdpglu[c]	dTDPglucose_cytosolic		dtdpglu[c]	0	Cytosol					
+dnad[c]	Deamido-NAD_cytosolic		dnad[c]	0	Cytosol					
+histd[c]	L-Histidinol_cytosolic		histd[c]	0	Cytosol					
+pnto_R[c]	PAN_cytosolic			0	Cytosol					
+dcyt[c]	Deoxycytidine_cytosolic		dcyt[c]	0	Cytosol					
+dpcoa[c]	Dephospho-CoA_cytosolic		dpcoa[c]	0	Cytosol					
+n2o[c]	Nitrous-oxide_cytosolic		n2o[c]	0	Cytosol					
+alac_S[c]	ALCTT_cytosolic			0	Cytosol					
+chols[c]	Choline-sulfate_cytosolic		chols[c]	0	Cytosol					
+dhpt[c]	Dihydropteroate_cytosolic		dhpt[c]	0	Cytosol					
+ppbng[c]	Porphobilinogen_cytosolic		ppbng[c]	0	Cytosol					
+3dhq[c]	5-Dehydroquinate_cytosolic		3dhq[c]	0	Cytosol					
+2dhp[c]	2-Dehydropantoate_cytosolic		2dhp[c]	0	Cytosol					
+acser[c]	O-Acetyl-L-serine_cytosolic		acser[c]	0	Cytosol					
+2pglyc[c]	2-Phosphoglycolate_cytosolic		2pglyc[c]	0	Cytosol					
+alaala[c]	Ala-Ala_cytosolic		alaala[c]	0	Cytosol					
+pser_L[c]	phosphoserine_cytosolic		pser_L[c]	0	Cytosol					
+allphn[c]	Allophanate_cytosolic		allphn[c]	0	Cytosol					
+hmbil[c]	Hydroxymethylbilane_cytosolic		hmbil[c]	0	Cytosol					
+2mbcoa[c]	2-Methylbutyryl-CoA_cytosolic			0	Cytosol					
+dann[c]	7-8-Diaminononanoate_cytosolic		dann[c]	0	Cytosol					
+uamr[c]	UDP-MurNAc_cytosolic		uamr[c]	0	Cytosol					
+uppg3[c]	UroporphyrinogenIII_cytosolic		uppg3[c]	0	Cytosol					
+pmcoa[c]	Pimeloyl-CoA_cytosolic		pmcoa[c]	0	Cytosol					
+achms[c]	O-Acetyl-L-homoserine_cytosolic		achms[c]	0	Cytosol					
+pppg9[c]	ProtoporphyrinogenIX_cytosolic		pppg9[c]	0	Cytosol					
+thmmp[c]	Thiamine-phosphate_cytosolic		thmmp[c]	0	Cytosol					
+8aonn[c]	8-Amino-7-oxononanoate_cytosolic		8aonn[c]	0	Cytosol					
+f1p[c]	D-fructose-1-phosphate_cytosolic			0	Cytosol					
+sbt6p[c]	Sorbitol-6-phosphate_cytosolic		sbt6p[c]	0	Cytosol					
+tag6p_D[c]	D-Tagatose-6-phosphate_cytosolic		tag6p_D[c]	0	Cytosol					
+hisp[c]	L-histidinol-phosphate_cytosolic		hisp[c]	0	Cytosol					
+phom[c]	O-Phospho-L-homoserine_cytosolic		phom[c]	0	Cytosol					
+orot5p[c]	Orotidylic-acid_cytosolic		orot5p[c]	0	Cytosol					
+tmao[c]	CH33NO_cytosolic		tmao[c]	0	Cytosol					
+ara5p[c]	D-Arabinose5-phosphate_cytosolic		ara5p[c]	0	Cytosol					
+suchms[c]	O-Succinyl-L-homoserine_cytosolic		suchms[c]	0	Cytosol					
+4h2oglt[c]	4-Hydroxy-2-oxoglutarate_cytosolic			0	Cytosol					
+pan4p[c]	Phosphopantetheine_cytosolic		pan4p[c]	0	Cytosol					
+adhlam[c]	S-Acetyldihydrolipoamide_cytosolic			0	Cytosol					
+2h3opp[c]	Tartronate-semialdehyde_cytosolic		2h3opp[c]	0	Cytosol					
+glu5sa[c]	L-Glutamate5-semialdehyde_cytosolic		glu5sa[c]	0	Cytosol					
+psd5p[c]	Pseudouridine-5'-phosphate_cytosolic		psd5p[c]	0	Cytosol					
+sdhlam[c]	S-Succinyldihydrolipoamide_cytosolic			0	Cytosol					
+uacmam[c]	UDP-N-acetyl-D-mannosamine_cytosolic		uacmam[c]	0	Cytosol					
+g6p_B[c]	beta-D-Glucose-6-phosphate_cytosolic			0	Cytosol					
+mi1p_D[c]	Inositol-1-phosphate_cytosolic		mi1p_D[c]	0	Cytosol					
+34hpp[c]	p-hydroxyphenylpyruvate_cytosolic		34hpp[c]	0	Cytosol					
+rb15bp[c]	D-Ribulose-1-5-bisphosphate_cytosolic		rb15bp[c]	0	Cytosol					
+nicrnt[c]	Nicotinate-ribonucleotide_cytosolic		nicrnt[c]	0	Cytosol					
+kdo[c]	KDO_cytosolic		kdo[c]	0	Cytosol					
+uama[c]	UDP-N-acetylmuramoyl-L-alanine_cytosolic		uama[c]	0	Cytosol					
+CDP_4_dehydro_6_deoxy_D_glucose[c]	CDP-4-dehydro-6-deoxy-D-glucose_cytosolic			0	Cytosol					
+gdpddman[c]	GDP-4-dehydro-D-rhamnose_cytosolic		gdpddman[c]	0	Cytosol					
+gdpdp[c]	Guanosine-3'-5'-bisdiphosphate_cytosolic		gdpdp[c]	0	Cytosol					
+hexdp[c]	all-trans-Hexaprenyl-diphosphate_cytosolic		hexdp[c]	0	Cytosol					
+g3pe[c]	Glycerophosphoethanolamine_cytosolic		g3pe[c]	0	Cytosol					
+6pgl[c]	6-phospho-D-glucono-1-5-lactone_cytosolic		6pgl[c]	0	Cytosol					
+acg5sa[c]	2-Acetamido-5-oxopentanoate_cytosolic		acg5sa[c]	0	Cytosol					
+1pipdn2c[c]	delta1-Piperideine-2-carboxylate_cytosolic		1pipdn2c[c]	0	Cytosol					
+ap4a[c]	AppppA_cytosolic		ap4a[c]	0	Cytosol					
+imacp[c]	imidazole-acetol-phosphate_cytosolic		imacp[c]	0	Cytosol					
+5apru[c]	5-Amino-6-5-phosphoribosylaminouracil_cytosolic		5apru[c]	0	Cytosol					
+3psme[c]	5-O-1-Carboxyvinyl-3-phosphoshikimate_cytosolic		3psme[c]	0	Cytosol					
+4ahmmp[c]	Toxopyrimidine_cytosolic		4ahmmp[c]	0	Cytosol					
+unaga[c]	Undecaprenyl-diphospho-N-acetyl-glucosamine_cytosolic		unaga[c]	0	Cytosol					
+6hmhpt[c]	6-hydroxymethyl-dihydropterin_cytosolic		6hmhpt[c]	0	Cytosol					
+2cpr5p[c]	1-2-carboxyphenylamino-1-deoxyribulose-5-phosphate_cytosolic			0	Cytosol					
+25drapp[c]	2-5-Diamino-6-5'-phosphoribosylamino-4-pyrimidineone_cytosolic		25drapp[c]	0	Cytosol					
+dudp[c]	dUDP_cytosolic		dudp[c]	0	Cytosol					
+fadh2[c]	FADH2_cytosolic		fadh2[c]	0	Cytosol					
+cynt[c]	Cyanate_cytosolic		cynt[c]	0	Cytosol					
+seln[c]	Selenide_cytosolic		seln[c]	0	Cytosol					
+alltn[c]	Allantoin_cytosolic			0	Cytosol					
+Carbamate[c]	Carbamate_cytosolic		Carbamate[c]	0	Cytosol					
+15dap[c]	Cadaverine_cytosolic		15dap[c]	0	Cytosol					
+galt[e]	Dulcose_extracellular		galt[e]	0	Extracellular					
+xtsn[c]	Xanthosine_cytosolic		xtsn[c]	0	Cytosol					
+malttr[c]	Amylotriose_cytosolic		malttr[c]	0	Cytosol					
+fmnh2[c]	FMNH2_cytosolic		fmnh2[c]	0	Cytosol					
+aact[c]	Aminoacetone_cytosolic		aact[c]	0	Cytosol					
+dtbt[c]	Dethiobiotin_cytosolic		dtbt[c]	0	Cytosol					
+cbs_412[c]	L-Histidinal_cytosolic		cbs_412[c]	0	Cytosol					
+malthx[c]	Maltohexaose_cytosolic		malthx[c]	0	Cytosol					
+maltttr[c]	Maltotetraose_cytosolic		maltttr[c]	0	Cytosol					
+VitaminK1[c]	Vitamin-K1_cytosolic			0	Cytosol					
+ppp9[c]	Protoporphyrin_cytosolic		ppp9[c]	0	Cytosol					
+(R)_Allantoin[c]	R-Allantoin_cytosolic			0	Cytosol					
+pre2[c]	Precorrin-2_cytosolic		pre2[c]	0	Cytosol					
+3c3hmp[c]	2-Isopropylmalate_cytosolic		3c3hmp[c]	0	Cytosol					
+L_3_Cyanoalanine[c]	L-3-Cyanoalanine_cytosolic			0	Cytosol					
+suc6p[c]	6-Phosphosucrose_cytosolic			0	Cytosol					
+tdcoa[c]	Myristoyl-CoA_cytosolic		tdcoa[c]	0	Cytosol					
+2ippm[c]	2-Isopropylmaleate_cytosolic		2ippm[c]	0	Cytosol					
+3dhsk[c]	3-Dehydroshikimate_cytosolic		3dhsk[c]	0	Cytosol					
+ddca[c]	ddca_cytosolic		ddca[c]	0	Cytosol					
+prbatp[c]	Phosphoribosyl-ATP_cytosolic		prbatp[c]	0	Cytosol					
+prbamp[c]	Phosphoribosyl-AMP_cytosolic		prbamp[c]	0	Cytosol					
+ppap[c]	Propionyl-phosphate_cytosolic		ppap[c]	0	Cytosol					
+ivcoa[c]	Isovaleryl-CoA_cytosolic		ivcoa[c]	0	Cytosol					
+malt6p[c]	maltose-6-phosphate_cytosolic			0	Cytosol					
+4hglu[c]	4-Hydroxy-L-glutamate_cytosolic			0	Cytosol					
+4pasp[c]	4-Phospho-L-aspartate_cytosolic		4pasp[c]	0	Cytosol					
+pram[c]	5-Phosphoribosylamine_cytosolic		pram[c]	0	Cytosol					
+dmbzid[c]	Dimethylbenzimidazole_cytosolic		dmbzid[c]	0	Cytosol					
+rnam[c]	N-Ribosylnicotinamide_cytosolic		rnam[c]	0	Cytosol					
+skm5p[c]	3-phosphoshikimate_cytosolic		skm5p[c]	0	Cytosol					
+appl[c]	1-Aminopropan-2-ol_cytosolic			0	Cytosol					
+3php[c]	3-Phosphonooxypyruvate_cytosolic		3php[c]	0	Cytosol					
+6a2ohxnt[c]	2-Oxo-6-aminocaproate_cytosolic		6a2ohxnt[c]	0	Cytosol					
+cpppg3[c]	CoproporphyrinogenIII_cytosolic		cpppg3[c]	0	Cytosol					
+g3pg[c]	Glycerophosphoglycerol_cytosolic		g3pg[c]	0	Cytosol					
+glu5p[c]	L-Glutamyl-5-phosphate_cytosolic		glu5p[c]	0	Cytosol					
+dtdprmn[c]	dTDP-rhamnose_cytosolic		dtdprmn[c]	0	Cytosol					
+23dhdp[c]	Dihydrodipicolinate_cytosolic		23dhdp[c]	0	Cytosol					
+air[c]	AIR_cytosolic		air[c]	0	Cytosol					
+4per[c]	4-Phosphoerythronate_cytosolic		4per[c]	0	Cytosol					
+argsuc[c]	L-Argininosuccinate_cytosolic		argsuc[c]	0	Cytosol					
+Prephytoenediphosphate[c]	Prephytoene-diphosphate_cytosolic			0	Cytosol					
+lgt_S[c]	R-S-Lactoylglutathione_cytosolic			0	Cytosol					
+5fthf[c]	5-Formyltetrahydrofolate_cytosolic		5fthf[c]	0	Cytosol					
+4ppan[c]	4-phosphopantothenate_cytosolic		4ppan[c]	0	Cytosol					
+3ig3p[c]	Indoleglycerol-phosphate_cytosolic		3ig3p[c]	0	Cytosol					
+2aobut[c]	L-2-Amino-acetoacetate_cytosolic		2aobut[c]	0	Cytosol					
+udcpdp[c]	Bactoprenyl-diphosphate_cytosolic		udcpdp[c]	0	Cytosol					
+mi4p_D[c]	Inositol-4-phosphate_cytosolic		mi4p_D[c]	0	Cytosol					
+com[c]	CoM_cytosolic		com[c]	0	Cytosol					
+quln[c]	Quinolinate_cytosolic		quln[c]	0	Cytosol					
+glu1sa[c]	L-Glutamate1-semialdehyde_cytosolic		glu1sa[c]	0	Cytosol					
+tagdp_D[c]	D-Tagatose-1-6-biphosphate_cytosolic		tagdp_D[c]	0	Cytosol					
+dcamp[c]	Adenylosuccinate_cytosolic		dcamp[c]	0	Cytosol					
+gar[c]	GAR_cytosolic		gar[c]	0	Cytosol					
+L_2_Amino_6_oxopimelate[c]	L-2-Amino-6-oxopimelate_cytosolic			0	Cytosol					
+1pyr5c[c]	1-Pyrroline-5-carboxylate_cytosolic		1pyr5c[c]	0	Cytosol					
+thdp[c]	tetrahydrodipicolinate_cytosolic		thdp[c]	0	Cytosol					
+mi3p_D[c]	Inositol-3-phosphate_cytosolic		mi3p_D[c]	0	Cytosol					
+23dhmb[c]	2-3-Dihydroxy-isovalerate_cytosolic			0	Cytosol					
+L2aadp6sa[c]	2-Aminoadipate-6-semialdehyde_cytosolic		L2aadp6sa[c]	0	Cytosol					
+23dhmp[c]	2-3-Dihydroxy-3-methylvalerate_cytosolic			0	Cytosol					
+ckdo[c]	CMP-KDO_cytosolic		ckdo[c]	0	Cytosol					
+applp[c]	R-1-Aminopropan-2-yl-phosphate_cytosolic		applp[c]	0	Cytosol					
+acg5p[c]	n-acetylglutamyl-phosphate_cytosolic		acg5p[c]	0	Cytosol					
+hpglu[c]	Tetrahydropteroyltri-L-glutamate_cytosolic		hpglu[c]	0	Cytosol					
+octdp[c]	Farnesylfarnesylgeraniol_cytosolic		octdp[c]	0	Cytosol					
+33hmeoxobut[c]	2-Oxo-3-hydroxyisovalerate_cytosolic		33hmeoxobut[c]	0	Cytosol					
+5mdr1p[c]	methylthioribose-1-phosphate_cytosolic		5mdr1p[c]	0	Cytosol					
+hepdp[c]	all-trans-Heptaprenyl-diphosphate_cytosolic		hepdp[c]	0	Cytosol					
+pendp[c]	pendp_cytosolic		pendp[c]	0	Cytosol					
+3c4mop[c]	2-isopropyl-3-oxosuccinate_cytosolic		3c4mop[c]	0	Cytosol					
+acgam1p[c]	N-Acetyl-D-glucosamine1-phosphate_cytosolic			0	Cytosol					
+acmanap[c]	N-Acetylmannosamine-6-phosphate_cytosolic		acmanap[c]	0	Cytosol					
+pran[c]	N-5-phosphoribosyl-anthranilate_cytosolic		pran[c]	0	Cytosol					
+4mpetz[c]	4-Methyl-5-2-phosphoethyl-thiazole_cytosolic		4mpetz[c]	0	Cytosol					
+dmlz[c]	6-7-Dimethyl-8-1-D-ribityllumazine_cytosolic		dmlz[c]	0	Cytosol					
+4ppcys[c]	R-4'-Phosphopantothenoyl-L-cysteine_cytosolic		4ppcys[c]	0	Cytosol					
+fgam[c]	N-Formyl-GAR_cytosolic		fgam[c]	0	Cytosol					
+3c2hmp[c]	3-Isopropylmalate_cytosolic		3c2hmp[c]	0	Cytosol					
+sl26da[c]	N-Succinyl-L-2-6-diaminopimelate_cytosolic		sl26da[c]	0	Cytosol					
+amob[c]	S-Adenosyl-4-methylthio-2-oxobutanoate_cytosolic		amob[c]	0	Cytosol					
+5aprbu[c]	5-Amino-6-5-phosphoribitylaminouracil_cytosolic		5aprbu[c]	0	Cytosol					
+sl2a6o[c]	N-Succinyl-L-2-amino-6-oxopimelate_cytosolic		sl2a6o[c]	0	Cytosol					
+kdo8p[c]	3-Deoxy-D-manno-octulosonate8-phosphate_cytosolic		kdo8p[c]	0	Cytosol					
+mhpglu[c]	5-Methyltetrahydropteroyltri-L-glutamate_cytosolic		mhpglu[c]	0	Cytosol					
+gdptp[c]	Guanosine-5'-triphosphate-3'-diphosphate_cytosolic		gdptp[c]	0	Cytosol					
+4ampm[c]	4-Amino-5-phosphomethyl-2-methylpyrimidine_cytosolic		4ampm[c]	0	Cytosol					
+cob[c]	HTP_cytosolic		cob[c]	0	Cytosol					
+uaccg[c]	UDP-N-acetylglucosamine-enolpyruvate_cytosolic		uaccg[c]	0	Cytosol					
+fpram[c]	5'-Phosphoribosylformylglycinamidine_cytosolic		fpram[c]	0	Cytosol					
+u23ga[c]	UDP-2-3-bis3-hydroxytetradecanoylglucosamine_cytosolic		u23ga[c]	0	Cytosol					
+eig3p[c]	D-erythro-imidazol-glycerol-phosphate_cytosolic		eig3p[c]	0	Cytosol					
+aicar[c]	AICAR_cytosolic		aicar[c]	0	Cytosol					
+2dda7p[c]	DAHP_cytosolic		2dda7p[c]	0	Cytosol					
+uGgla[c]	UDPMurAcoyl-L-Ala-D-gamma-Glu-L-Lys-D-Ala-D-Ala_cytosolic		uGgla[c]	0	Cytosol					
+4r5au[c]	4-1-D-Ribitylamino-5-aminouracil_cytosolic		4r5au[c]	0	Cytosol					
+fprica[c]	FAICAR_cytosolic		fprica[c]	0	Cytosol					
+u3aga[c]	UDP-3-O-beta-hydroxymyristoyl-N-acetylglucosamine_cytosolic		u3aga[c]	0	Cytosol					
+5aizc[c]	5'-Phosphoribosyl-4-carboxy-5-aminoimidazole_cytosolic		5aizc[c]	0	Cytosol					
+2mahmp[c]	4-Amino-2-methyl-5-diphosphomethylpyrimidine_cytosolic		2mahmp[c]	0	Cytosol					
+5prdmbz[c]	alpha-Ribazole-5'-phosphate_cytosolic		5prdmbz[c]	0	Cytosol					
+6hmhptpp[c]	7-8-Dihydropterin-pyrophosphate_cytosolic		6hmhptpp[c]	0	Cytosol					
+25aics[c]	SAICAR_cytosolic			0	Cytosol					
+lipidX[c]	Lipid-X_cytosolic		lipidX[c]	0	Cytosol					
+CoM_S_S_CoB[c]	CoM-S-S-CoB_cytosolic			0	Cytosol					
+uaGgla[c]	MurAcoyl-L-Ala-D-gamma-Glu-L-Lys-D-Ala-D-Ala-diphospho-undecaprenol_cytosolic		uaGgla[c]	0	Cytosol					
+dhnpt[c]	Dihydroneopterin_cytosolic		dhnpt[c]	0	Cytosol					
+ugmd[c]	UDP-N-acetylmuramoyl-L-alanyl-D-gamma-glutamyl-meso-2-6-diaminopimelate_cytosolic		ugmd[c]	0	Cytosol					
+ugmda[c]	UDP-N-acetylmuramoyl-L-alanyl-D-glutamyl-6-carboxy-L-lysyl-D-alanyl-D-alanine_cytosolic		ugmda[c]	0	Cytosol					
+ahdt[c]	7-8-Dihydroneopterin-3'-triphosphate_cytosolic		ahdt[c]	0	Cytosol					
+prfp[c]	phosphoribosylformiminoaicar-phosphate_cytosolic		prfp[c]	0	Cytosol					
+prlp[c]	phosphoribulosylformimino-AICAR-phosphate_cytosolic		prlp[c]	0	Cytosol					
+lipidA[c]	Lipid-IVA_cytosolic		lipidA[c]	0	Cytosol					
+lipidAdisacch[c]	Lipid-A-disaccharide_cytosolic		lipidA[c]	0	Cytosol					
+2_Hydroxyethyl_ThPP[c]	2-Hydroxyethyl-ThPP_cytosolic			0	Cytosol					
+selnp[c]	Selenophosphate_cytosolic		selnp[c]	0	Cytosol					
+dad_5[c]	5'-Deoxyadenosine_cytosolic			0	Cytosol					
+oxasucc[c]	Oxalosuccinate_cytosolic		oxasucc[c]	0	Cytosol					
+3_Carboxy_1_hydroxypropyl_ThPP[c]	3-Carboxy-1-hydroxypropyl-ThPP_cytosolic			0	Cytosol					
+Phytoene[c]	Phytoene_cytosolic		Phytoene[c]	0	Cytosol					
+15_cis_Phytoene[c]	15-cis-Phytoene_cytosolic			0	Cytosol					
+gamma_Glutamyl_beta_cyanoalanine[c]	gamma-Glutamyl-beta-cyanoalanine_cytosolic			0	Cytosol					
+uppg1[c]	UroporphyrinogenI_cytosolic		uppg1[c]	0	Cytosol					
+cpppg1[c]	CoproporphyrinogenI_cytosolic		cpppg1[c]	0	Cytosol					
+cbi[c]	Cobinamide_cytosolic		cbi[c]	0	Cytosol					
+rdmbzi[c]	alpha-Ribazole_cytosolic		rdmbzi[c]	0	Cytosol					
+scl[c]	Sirohydrochlorin_cytosolic		scl[c]	0	Cytosol					
+3ophb[c]	3-Octaprenyl-4-hydroxybenzoate_cytosolic		3ophb[c]	0	Cytosol					
+2oph[c]	2-Octaprenylphenol_cytosolic		2oph[c]	0	Cytosol					
+2ohph[c]	2-Octaprenyl-6-hydroxyphenol_cytosolic		2ohph[c]	0	Cytosol					
+2omph[c]	2-Octaprenyl-6-methoxyphenol_cytosolic		2omph[c]	0	Cytosol					
+2ombz[c]	2-Octaprenyl-6-methoxy-1-4-benzoquinone_cytosolic		2ombz[c]	0	Cytosol					
+2ommb[c]	2-Octaprenyl-3-methyl-6-methoxy-1-4-benzoquinone_cytosolic		2ommb[c]	0	Cytosol					
+OCTAPRENYL_METHYL_OH_METHOXY_BENZQ[c]	2-Octaprenyl-3-methyl-5-hydroxy-6-methoxy-1-4-benzoquinone_cytosolic			0	Cytosol					
+iasp[c]	Iminoaspartate_cytosolic		iasp[c]	0	Cytosol					
+NicotinateD_ribonucleoside[c]	Nicotinate-D-ribonucleoside_cytosolic			0	Cytosol					
+uaaAgla[c]	Undecaprenyl-diphospho-N-acetylmuramoyl-N-acetylglucosamine-L-alanyl-D-glutamyl-L-lysyl-D-alanyl-D-alanine_cytosolic		uaaAgla[c]	0	Cytosol					
+uaaAgtla[c]	Undecaprenyl-diphospho-N-acetylmuramoyl-N-acetylglucosamine-L-alanyl-D-glutaminyl-L-lysyl-D-alanyl-D-alanine_cytosolic		uaaAgtla[c]	0	Cytosol					
+uaaGgla[c]	Undecaprenyl-diphospho-N-acetylmuramoyl-N-acetylglucosamine-L-alanyl-gamma-D-glutamyl-L-lysyl-D-alanyl-D-alanine_cytosolic		uaaGgla[c]	0	Cytosol					
+uaaGgtla[c]	Undecaprenyl-diphospho-N-acetylmuramoyl-N-acetylglucosamine-L-alanyl-D-isoglutaminyl-L-lysyl-D-alanyl-D-alanine_cytosolic		uaaGgtla[c]	0	Cytosol					
+uagmda[c]	Undecaprenyl-diphospho-N-acetylmuramoyl-L-alanyl-D-glutamyl-meso-2-6-diaminopimeloyl-D-alanyl-D-alanine_cytosolic		uagmda[c]	0	Cytosol					
+uaagmda[c]	Undecaprenyl-diphospho-N-acetylmuramoyl-N-acetylglucosamine-L-ala-D-glu-meso-2-6-diaminopimeloyl-D-ala-D-ala_cytosolic		uaagmda[c]	0	Cytosol					
+uaagtmda[c]	Undecaprenyl-diphospho-N-acetylmuramoyl-N-acetylglucosamine-L-alanyl-D-glutaminyl-meso-2-6-diaminopimeloyl-D-alanyl-D-alanine_cytosolic		uaagtmda[c]	0	Cytosol					
+btamp[c]	Biotinyl-5-AMP_cytosolic		btamp[c]	0	Cytosol					
+Formamidopyrimidinenucleosidetriphosphate[c]	Formamidopyrimidine-nucleoside-triphosphate_cytosolic			0	Cytosol					
+2_5_Diaminopyrimidinenucleosidetriphosphate[c]	2-5-Diaminopyrimidine-nucleoside-triphosphate_cytosolic			0	Cytosol					
+10_Formyl_THF_L_glutamate[c]	10-Formyl-THF-L-glutamate_cytosolic			0	Cytosol					
+sucglu[c]	N-Succinyl-L-glutamate_cytosolic		sucglu[c]	0	Cytosol					
+Propionyladenylate[c]	Propionyladenylate_cytosolic		Propionyladenylate[c]	0	Cytosol					
+u3hga[c]	UDP-3-O-beta-hydroxymyristoyl-D-glucosamine_cytosolic		u3hga[c]	0	Cytosol					
+kdolipid4[c]	KDO-lipid-IVA_cytosolic		kdolipid4[c]	0	Cytosol					
+kdo2lipid4[c]	kdo2-lipid-iva_cytosolic		kdo2lipid4[c]	0	Cytosol					
+lipa[c]	kdo2-lipid-a_cytosolic		lipa[c]	0	Cytosol					
+ohpb[c]	2-Oxo-3-hydroxy-4-phosphobutanoate_cytosolic		ohpb[c]	0	Cytosol					
+phthr[c]	4-Phosphonooxy-threonine_cytosolic		phthr[c]	0	Cytosol					
+4hthr[c]	4-Hydroxy-L-threonine_cytosolic		4hthr[c]	0	Cytosol					
+gamma_Glutamyl_3_aminopropiononitrile[c]	gamma-Glutamyl-3-aminopropiononitrile_cytosolic			0	Cytosol					
+2_5_Diamino_6_(5_triphosphoryl_3_4_trihydroxy_2_oxopentyl)_amino_4_oxopyrimidine[c]	2-5-Diamino-6-5'-triphosphoryl-3'-4'-trihydroxy-2'-oxopentyl-amino-4-oxopyrimidine_cytosolic			0	Cytosol					
+gam1p[c]	D-Glucosamine1-phosphate_cytosolic		gam1p[c]	0	Cytosol					
+kdo2lipid4L[c]	Lauroyl-KDO2-lipid-IVA_cytosolic		kdo2lipid4L[c]	0	Cytosol					
+galt1p[c]	Galactitol-1-phosphate_cytosolic		galt1p[c]	0	Cytosol					
+adphep_D_D[c]	ADP-D-glycero-D-manno-heptose_cytosolic			0	Cytosol					
+adphep_L[c]	ADP-L-glycero-D-manno-heptose_cytosolic		adphep_L[c]	0	Cytosol					
+4hthb[c]	4a-Hydroxytetrahydrobiopterin_cytosolic		4hthb[c]	0	Cytosol					
+co2dam[c]	CobIIyrinate-diamide_cytosolic		co2dam[c]	0	Cytosol					
+co1dam[c]	CobIyrinate-diamide_cytosolic		co1dam[c]	0	Cytosol					
+adcobdam[c]	Adenosyl-cobyrinate-diamide_cytosolic		adcobdam[c]	0	Cytosol					
+adcobhex[c]	Adenosylcobyric-acid_cytosolic		adcobhex[c]	0	Cytosol					
+adocbi[c]	Adenosyl-cobinamide_cytosolic		adocbi[c]	0	Cytosol					
+adocbip[c]	Adenosyl-cobinamide-phosphate_cytosolic		adocbip[c]	0	Cytosol					
+agdpcbi[c]	Adenosylcobinamide-GDP_cytosolic		agdpcbi[c]	0	Cytosol					
+amopbut_L[c]	2-Amino-3-oxo-4-phosphonooxybutyrate_cytosolic		amopbut_L[c]	0	Cytosol					
+gmhep7p[c]	D-Glycero-D-manno-heptose7-phosphate_cytosolic		gmhep7p[c]	0	Cytosol					
+gmhep1p[c]	D-Glycero-D-manno-heptose1-phosphate_cytosolic		gmhep1p[c]	0	Cytosol					
+thfglu[c]	THF-L-glutamate_cytosolic			0	Cytosol					
+dmso[c]	DMSO_cytosolic		dmso[c]	0	Cytosol					
+4adcho[c]	ADC_cytosolic		4adcho[c]	0	Cytosol					
+tcggrpp[c]	trans-trans-cis-Geranylgeranyl-diphosphate_cytosolic		tcggrpp[c]	0	Cytosol					
+2me4p[c]	2-C-methyl-D-erythritol4-phosphate_cytosolic		2me4p[c]	0	Cytosol					
+4c2me[c]	4-cytidine5-diphospho-2-C-methyl-D-erythritol_cytosolic		4c2me[c]	0	Cytosol					
+2p4c2me[c]	2-phospho-4-cytidine5-diphospho-2-C-methyl-D-erythritol_cytosolic		2p4c2me[c]	0	Cytosol					
+dxyl5p[c]	1-deoxy-D-xylulose5-phosphate_cytosolic		dxyl5p[c]	0	Cytosol					
+2mecdp[c]	2-C-methyl-D-erythritol2-4-cyclodiphosphate_cytosolic		2mecdp[c]	0	Cytosol					
+gmhep17bp[c]	D-Glycero-D-manno-heptose1-7-bisphosphate_cytosolic		gmhep17bp[c]	0	Cytosol					
+1_AMINO_PROPAN_2_ONE_3_PHOSPHATE[c]	3-Amino-2-oxopropyl-phosphate_cytosolic			0	Cytosol					
+h2mb4p[c]	1-Hydroxy-2-methyl-2-butenyl-4-diphosphate_cytosolic		h2mb4p[c]	0	Cytosol					
+5_Hydroxyisourate[c]	5-Hydroxyisourate_cytosolic			0	Cytosol					
+Methanophenazine[c]	Methanophenazine_cytosolic		Methanophenazine[c]	0	Cytosol					
+Dihydromethanophenazine[c]	Dihydromethanophenazine_cytosolic		Dihydromethanophenazine[c]	0	Cytosol					
+thrp[c]	L-Threonine-phosphate_cytosolic		thrp[c]	0	Cytosol					
+5_Hydroxy_2_oxo_4_ureido_2_5_dihydro_1H_imidazole_5_carboxylate[c]	5-Hydroxy-2-oxo-4-ureido-2-5-dihydro-1H-imidazole-5-carboxylate_cytosolic			0	Cytosol					
+Demethylphylloquinone[c]	Demethylphylloquinone_cytosolic		Demethylphylloquinone[c]	0	Cytosol					
+(R)_3_Hydroxy_3_methyl_2_oxopentanoate[c]	R-3-Hydroxy-3-methyl-2-oxopentanoate_cytosolic			0	Cytosol					
+db4p[c]	3-4-dihydroxy-2-butanone4-phosphate_cytosolic		db4p[c]	0	Cytosol					
+hemeO[c]	hemeO_cytosolic		hemeO[c]	0	Cytosol					
+Biomass[c]	Biomass_cytosolic		Biomass[c]	0	Cytosol					
+trdox[c]	trdox_cytosolic		trdox[c]	0	Cytosol					
+trdrd[c]	trdrd_cytosolic		trdrd[c]	0	Cytosol					
+fa1[c]	fa1_cytosolic		fa1[c]	0	Cytosol					
+fa11[c]	fa11_cytosolic		fa11[c]	0	Cytosol					
+fa11coa[c]	fa11coa_cytosolic		fa11coa[c]	0	Cytosol					
+fa12[c]	fa12_cytosolic		fa12[c]	0	Cytosol					
+fa12coa[c]	fa12coa_cytosolic		fa12coa[c]	0	Cytosol					
+fa1coa[c]	fa1coa_cytosolic		fa1coa[c]	0	Cytosol					
+fa3[c]	fa3_cytosolic		fa3[c]	0	Cytosol					
+fa3coa[c]	fa3coa_cytosolic		fa3coa[c]	0	Cytosol					
+fa4[c]	fa4_cytosolic		fa4[c]	0	Cytosol					
+fa4coa[c]	fa4coa_cytosolic		fa4coa[c]	0	Cytosol					
+fa6[c]	fa6_cytosolic		fa6[c]	0	Cytosol					
+fa6coa[c]	fa6coa_cytosolic		fa6coa[c]	0	Cytosol					
+butACP[c]	Butyryl-ACP_cytosolic		butACP[c]	0	Cytosol					
+2beACP[c]	But-2-enoyl-acyl-carrier-protein_cytosolic		2beACP[c]	0	Cytosol					
+myrsACP[c]	Myristoyl-ACP_cytosolic		myrsACP[c]	0	Cytosol					
+tmrs2eACP[c]	2E-Tetradecenoyl-acp_cytosolic		tmrs2eACP[c]	0	Cytosol					
+ddcaACP[c]	Dodecanoyl-ACP_cytosolic		ddcaACP[c]	0	Cytosol					
+2tddACP[c]	2E-Dodecenoyl-acp_cytosolic		2tddACP[c]	0	Cytosol					
+octACP[c]	Octanoyl-ACP_cytosolic		octACP[c]	0	Cytosol					
+2toceACP[c]	2E-Octenoyl-acp_cytosolic		2toceACP[c]	0	Cytosol					
+hexACP[c]	Hexanoyl-ACP_cytosolic		hexACP[c]	0	Cytosol					
+2theACP[c]	2E-Hexenoyl-acp_cytosolic		2theACP[c]	0	Cytosol					
+decACP[c]	Decanoyl-ACP_cytosolic		decACP[c]	0	Cytosol					
+2tdeACP[c]	2E-Decenoyl-acp_cytosolic		2tdeACP[c]	0	Cytosol					
+hedacp[c]	hexadecanoyl-acp_cytosolic		hedacp[c]	0	Cytosol					
+tpalm2eACP[c]	2E-Hexadecenoyl-acp_cytosolic		tpalm2eACP[c]	0	Cytosol					
+3hbACP[c]	R-3-Hydroxybutanoyl-acyl-carrier-protein_cytosolic		3hbACP[c]	0	Cytosol					
+3hhACP[c]	D-3-Hydroxyhexanoyl-acp_cytosolic		3hhACP[c]	0	Cytosol					
+3hddACP[c]	D-3-Hydroxydodecanoyl-acp_cytosolic		3hddACP[c]	0	Cytosol					
+3hpaACP[c]	R-3-hydroxypalmitoyl-acyl-carrierprotein_cytosolic		3hpaACP[c]	0	Cytosol					
+3hdeACP[c]	R-3-Hydroxydecanoyl-acyl-carrier-protein_cytosolic		3hdeACP[c]	0	Cytosol					
+3hocACP[c]	R-3-Hydroxyoctanoyl-acyl-carrier-protein_cytosolic		3hocACP[c]	0	Cytosol					
+3htdACP[c]	HMA_cytosolic		3htdACP[c]	0	Cytosol					
+3oxhdACP[c]	3-oxohexadecanoyl-acp_cytosolic		3oxhdACP[c]	0	Cytosol					
+3oxhACP[c]	3-Oxohexanoyl-acp_cytosolic		3oxhACP[c]	0	Cytosol					
+3oxdeACP[c]	3-oxodecanoyl-acp_cytosolic		3oxdeACP[c]	0	Cytosol					
+actACP[c]	Acetoacetyl-ACP_cytosolic		actACP[c]	0	Cytosol					
+3oxddACP[c]	3-oxododecanoyl-acp_cytosolic		3oxddACP[c]	0	Cytosol					
+3oxocACP[c]	3-oxooctanoyl-acp_cytosolic		3oxocACP[c]	0	Cytosol					
+3oxtdACP[c]	3-oxotetradecanoyl-acp_cytosolic		3oxtdACP[c]	0	Cytosol					
+malACP[c]	Malonyl-acyl-carrierprotein_cytosolic		malACP[c]	0	Cytosol					
+ACP[c]	ACP_cytosolic		ACP[c]	0	Cytosol					
+acACP[c]	Acetyl-ACP_cytosolic		acACP[c]	0	Cytosol					
+cbs_99[c]	2-methylbutyryl-ACP_cytosolic		cbs_99[c]	0	Cytosol					
+4_methyl_3_oxo_hexanoyl_ACP[c]	4-methyl-3-oxo-hexanoyl-ACP_cytosolic			0	Cytosol					
+4_methyl_3_hydroxy_hexanoyl_ACP[c]	4-methyl-3-hydroxy-hexanoyl-ACP_cytosolic			0	Cytosol					
+4_methyl_trans_hex_2_enoyl_ACP[c]	4-methyl-trans-hex-2-enoyl-ACP_cytosolic			0	Cytosol					
+4_methyl_hexanoyl_ACP[c]	4-methyl-hexanoyl-ACP_cytosolic			0	Cytosol					
+6_methyl_3_oxo_octanoyl_ACP[c]	6-methyl-3-oxo-octanoyl-ACP_cytosolic			0	Cytosol					
+6_methyl_3_hydroxy_octanoyl_ACP[c]	6-methyl-3-hydroxy-octanoyl-ACP_cytosolic			0	Cytosol					
+6_methyl_trans_oct_2_enoyl_ACP[c]	6-methyl-trans-oct-2-enoyl-ACP_cytosolic			0	Cytosol					
+6_methyl_octanoyl_ACP[c]	6-methyl-octanoyl-ACP_cytosolic			0	Cytosol					
+8_methyl_3_oxo_decanoyl_ACP[c]	8-methyl-3-oxo-decanoyl-ACP_cytosolic			0	Cytosol					
+8_methyl_3_hydroxy_decanoyl_ACP[c]	8-methyl-3-hydroxy-decanoyl-ACP_cytosolic			0	Cytosol					
+8_methyl_trans_dec_2_enoyl_ACP[c]	8-methyl-trans-dec-2-enoyl-ACP_cytosolic			0	Cytosol					
+8_methyl_decanoyl_ACP[c]	8-methyl-decanoyl-ACP_cytosolic			0	Cytosol					
+10_methyl_3_oxo_dodecanoyl_ACP[c]	10-methyl-3-oxo-dodecanoyl-ACP_cytosolic			0	Cytosol					
+10_methyl_3_hydroxy_dodecanoyl_ACP[c]	10-methyl-3-hydroxy-dodecanoyl-ACP_cytosolic			0	Cytosol					
+10_methyl_trans_dodec_2_enoyl_ACP[c]	10-methyl-trans-dodec-2-enoyl-ACP_cytosolic			0	Cytosol					
+10_methyl_dodecanoyl_ACP[c]	10-methyl-dodecanoyl-ACP_cytosolic			0	Cytosol					
+12_methyl_3_oxo_tetra_decanoyl_ACP[c]	12-methyl-3-oxo-tetra-decanoyl-ACP_cytosolic			0	Cytosol					
+12_methyl_3_hydroxy_tetra_decanoyl_ACP[c]	12-methyl-3-hydroxy-tetra-decanoyl-ACP_cytosolic			0	Cytosol					
+12_methyl_trans_tetra_dec_2_enoyl_ACP[c]	12-methyl-trans-tetra-dec-2-enoyl-ACP_cytosolic			0	Cytosol					
+12_methyl_tetra_decanoyl_ACP[c]	12-methyl-tetra-decanoyl-ACP_cytosolic			0	Cytosol					
+14_methyl_3_oxo_hexa_decanoyl_ACP[c]	14-methyl-3-oxo-hexa-decanoyl-ACP_cytosolic			0	Cytosol					
+14_methyl_3_hydroxy_hexa_decanoyl_ACP[c]	14-methyl-3-hydroxy-hexa-decanoyl-ACP_cytosolic			0	Cytosol					
+14_methyl_trans_hexa_dec_2_enoyl_ACP[c]	14-methyl-trans-hexa-dec-2-enoyl-ACP_cytosolic			0	Cytosol					
+14_methyl_hexa_decanoyl_ACP[c]	14-methyl-hexa-decanoyl-ACP_cytosolic			0	Cytosol					
+cbs_378[c]	isovaleryl-ACP_cytosolic		cbs_378[c]	0	Cytosol					
+5_methyl_3_oxo_hexanoyl_ACP[c]	5-methyl-3-oxo-hexanoyl-ACP_cytosolic			0	Cytosol					
+5_methyl_3_hydroxy_hexanoyl_ACP[c]	5-methyl-3-hydroxy-hexanoyl-ACP_cytosolic			0	Cytosol					
+5_methyl_trans_hex_2_enoyl_ACP[c]	5-methyl-trans-hex-2-enoyl-ACP_cytosolic			0	Cytosol					
+5_methyl_hexanoyl_ACP[c]	5-methyl-hexanoyl-ACP_cytosolic			0	Cytosol					
+7_methyl_3_oxo_octanoyl_ACP[c]	7-methyl-3-oxo-octanoyl-ACP_cytosolic			0	Cytosol					
+7_methyl_3_hydroxy_octanoyl_ACP[c]	7-methyl-3-hydroxy-octanoyl-ACP_cytosolic			0	Cytosol					
+7_methyl_trans_oct_2_enoyl_ACP[c]	7-methyl-trans-oct-2-enoyl-ACP_cytosolic			0	Cytosol					
+7_methyl_octanoyl_ACP[c]	7-methyl-octanoyl-ACP_cytosolic			0	Cytosol					
+9_methyl_3_oxo_decanoyl_ACP[c]	9-methyl-3-oxo-decanoyl-ACP_cytosolic			0	Cytosol					
+9_methyl_3_hydroxy_decanoyl_ACP[c]	9-methyl-3-hydroxy-decanoyl-ACP_cytosolic			0	Cytosol					
+9_methyl_trans_dec_2_enoyl_ACP[c]	9-methyl-trans-dec-2-enoyl-ACP_cytosolic			0	Cytosol					
+9_methyl_decanoyl_ACP[c]	9-methyl-decanoyl-ACP_cytosolic			0	Cytosol					
+11_methyl_3_oxo_dodecanoyl_ACP[c]	11-methyl-3-oxo-dodecanoyl-ACP_cytosolic			0	Cytosol					
+11_methyl_3_hydroxy_dodecanoyl_ACP[c]	11-methyl-3-hydroxy-dodecanoyl-ACP_cytosolic			0	Cytosol					
+11_methyl_trans_dodec_2_enoyl_ACP[c]	11-methyl-trans-dodec-2-enoyl-ACP_cytosolic			0	Cytosol					
+11_methyl_dodecanoyl_ACP[c]	11-methyl-dodecanoyl-ACP_cytosolic			0	Cytosol					
+13_methyl_3_oxo_tetra_decanoyl_ACP[c]	13-methyl-3-oxo-tetra-decanoyl-ACP_cytosolic			0	Cytosol					
+13_methyl_3_hydroxy_tetra_decanoyl_ACP[c]	13-methyl-3-hydroxy-tetra-decanoyl-ACP_cytosolic			0	Cytosol					
+13_methyl_trans_tetra_dec_2_enoyl_ACP[c]	13-methyl-trans-tetra-dec-2-enoyl-ACP_cytosolic			0	Cytosol					
+13_methyl_tetra_decanoyl_ACP[c]	13-methyl-tetra-decanoyl-ACP_cytosolic			0	Cytosol					
+15_methyl_3_oxo_hexa_decanoyl_ACP[c]	15-methyl-3-oxo-hexa-decanoyl-ACP_cytosolic			0	Cytosol					
+15_methyl_3_hydroxy_hexa_decanoyl_ACP[c]	15-methyl-3-hydroxy-hexa-decanoyl-ACP_cytosolic			0	Cytosol					
+15_methyl_trans_hexa_dec_2_enoyl_ACP[c]	15-methyl-trans-hexa-dec-2-enoyl-ACP_cytosolic			0	Cytosol					
+15_methyl_hexa_decanoyl_ACP[c]	15-methyl-hexa-decanoyl-ACP_cytosolic			0	Cytosol					
+cbs_374[c]	isobutyryl-ACP_cytosolic		cbs_374[c]	0	Cytosol					
+4_methyl_3_oxo_pentanoyl_ACP[c]	4-methyl-3-oxo-pentanoyl-ACP_cytosolic			0	Cytosol					
+4_methyl_3_hydroxy_pentanoyl_ACP[c]	4-methyl-3-hydroxy-pentanoyl-ACP_cytosolic			0	Cytosol					
+4_methyl_trans_pent_2_enoyl_ACP[c]	4-methyl-trans-pent-2-enoyl-ACP_cytosolic			0	Cytosol					
+4_methyl_pentanoyl_ACP[c]	4-methyl-pentanoyl-ACP_cytosolic			0	Cytosol					
+6_methyl_3_oxo_heptanoyl_ACP[c]	6-methyl-3-oxo-heptanoyl-ACP_cytosolic			0	Cytosol					
+6_methyl_3_hydroxy_heptanoyl_ACP[c]	6-methyl-3-hydroxy-heptanoyl-ACP_cytosolic			0	Cytosol					
+6_methyl_trans_hept_2_enoyl_ACP[c]	6-methyl-trans-hept-2-enoyl-ACP_cytosolic			0	Cytosol					
+6_methyl_heptanoyl_ACP[c]	6-methyl-heptanoyl-ACP_cytosolic			0	Cytosol					
+8_methyl_3_oxo_nonanoyl_ACP[c]	8-methyl-3-oxo-nonanoyl-ACP_cytosolic			0	Cytosol					
+8_methyl_3_hydroxy_nonanoyl_ACP[c]	8-methyl-3-hydroxy-nonanoyl-ACP_cytosolic			0	Cytosol					
+8_methyl_trans_non_2_enoyl_ACP[c]	8-methyl-trans-non-2-enoyl-ACP_cytosolic			0	Cytosol					
+8_methyl_nonanoyl_ACP[c]	8-methyl-nonanoyl-ACP_cytosolic			0	Cytosol					
+10_methyl_3_oxo_undecanoyl_ACP[c]	10-methyl-3-oxo-undecanoyl-ACP_cytosolic			0	Cytosol					
+10_methyl_3_hydroxy_undecanoyl_ACP[c]	10-methyl-3-hydroxy-undecanoyl-ACP_cytosolic			0	Cytosol					
+10_methyl_trans_undec_2_enoyl_ACP[c]	10-methyl-trans-undec-2-enoyl-ACP_cytosolic			0	Cytosol					
+10_methyl_undecanoyl_ACP[c]	10-methyl-undecanoyl-ACP_cytosolic			0	Cytosol					
+12_methyl_3_oxo_tridecanoyl_ACP[c]	12-methyl-3-oxo-tridecanoyl-ACP_cytosolic			0	Cytosol					
+12_methyl_3_hydroxy_tridecanoyl_ACP[c]	12-methyl-3-hydroxy-tridecanoyl-ACP_cytosolic			0	Cytosol					
+12_methyl_trans_tridec_2_enoyl_ACP[c]	12-methyl-trans-tridec-2-enoyl-ACP_cytosolic			0	Cytosol					
+12_methyl_tridecanoyl_ACP[c]	12-methyl-tridecanoyl-ACP_cytosolic			0	Cytosol					
+14_methyl_3_oxo_pentadecanoyl_ACP[c]	14-methyl-3-oxo-pentadecanoyl-ACP_cytosolic			0	Cytosol					
+14_methyl_3_hydroxy_pentadecanoyl_ACP[c]	14-methyl-3-hydroxy-pentadecanoyl-ACP_cytosolic			0	Cytosol					
+14_methyl_trans_pentadec_2_enoyl_ACP[c]	14-methyl-trans-pentadec-2-enoyl-ACP_cytosolic			0	Cytosol					
+14_methyl_pentadecanoyl_ACP[c]	14-methyl-pentadecanoyl-ACP_cytosolic			0	Cytosol					
+3_Oxooctodecanoyl_ACP[c]	3-Oxooctodecanoyl-ACP_cytosolic			0	Cytosol					
+3_Hydroxyoctodecanoyl_ACP[c]	3-Hydroxyoctodecanoyl-ACP_cytosolic			0	Cytosol					
+trans_Octodec_2_enoyl_ACP[c]	trans-Octodec-2-enoyl-ACP_cytosolic			0	Cytosol					
+Octodecanoyl_ACP[c]	Octodecanoyl-ACP_cytosolic			0	Cytosol					
+fdxrd[c]	Reducedferredoxin_cytosolic		fdxrd[c]	0	Cytosol					
+fdxox[c]	Oxidizedferredoxin_cytosolic		fdxox[c]	0	Cytosol					
+h2[c]	H2_cytosolic		h2[c]	0	Cytosol					
+octeACP[c]	Octadecenoyl-ACP_cytosolic		octeACP[c]	0	Cytosol					
+alpro[c]	S-Aminomethyldihydrolipoylprotein_cytosolic		alpro[c]	0	Cytosol					
+trnaglu[c]	tRNA-Glu_cytosolic		trnaglu[c]	0	Cytosol					
+lpro[c]	Lipoylprotein_cytosolic		lpro[c]	0	Cytosol					
+Proteindithiol[c]	Protein-dithiol_cytosolic			0	Cytosol					
+Larab[c]	Arabinan_cytosolic		Larab[c]	0	Cytosol					
+Proteindisulfide[c]	Protein-disulfide_cytosolic			0	Cytosol					
+dhlpro[c]	Dihydrolipolprotein_cytosolic		dhlpro[c]	0	Cytosol					
+glutrna[c]	L-Glutamyl-tRNA-Glu_cytosolic		glutrna[c]	0	Cytosol					
+apoACP[c]	apo-ACP_cytosolic		apoACP[c]	0	Cytosol					
+btn_co2[c]	Carboxybiotin-carboxyl-carrier-protein_cytosolic		btn_co2[c]	0	Cytosol					
+1agpe180[c]	L-2-Lysophosphatidylethanolamine_cytosolic		1agpe180[c]	0	Cytosol					
+btn_cbxl[c]	Holo-carboxylase_cytosolic		btn_cbxl[c]	0	Cytosol					
+Iminoglycine[c]	Iminoglycine_cytosolic		Iminoglycine[c]	0	Cytosol					
+hdcea[c]	hexadecenoate_cytosolic		hdcea[c]	0	Cytosol					
+hdcoa[c]	Hexadecenoyl-CoA_cytosolic		hdcoa[c]	0	Cytosol					
+hdeACP[c]	Hexadecenoyl-ACP_cytosolic		hdeACP[c]	0	Cytosol					
+ocdACP[c]	Octadecanoyl-ACP_cytosolic		ocdACP[c]	0	Cytosol					
+ocdcea[c]	octadecenoate_cytosolic		ocdcea[c]	0	Cytosol					
+odecoa[c]	Octadecenoyl-CoA_cytosolic		odecoa[c]	0	Cytosol					
+palmACP[c]	Palmitoyl-ACP_cytosolic		palmACP[c]	0	Cytosol					
+tdeACP[c]	Tetradecenoyl-ACP_cytosolic		tdeACP[c]	0	Cytosol					
+ttdcea[c]	tetradecenoate_cytosolic		ttdcea[c]	0	Cytosol					
+glycogenb[c]	glycogenn-1_cytosolic		glycogenb[c]	0	Cytosol					
+12dgr120[c]	1-2-Diacyl-sn-glycerol-didodecanoyl_cytosolic		12dgr120[c]	0	Cytosol					
+12dgr140[c]	1-2-Diacyl-sn-glycerol-ditetradecanoyl_cytosolic		12dgr140[c]	0	Cytosol					
+12dgr141[c]	1-2-Diacyl-sn-glycerol-ditetradec-7-enoyl_cytosolic		12dgr141[c]	0	Cytosol					
+12dgr160[c]	1-2-Diacyl-sn-glycerol-dihexadecanoyl_cytosolic		12dgr160[c]	0	Cytosol					
+12dgr161[c]	1-2-Diacyl-sn-glycerol-dihexadec-9-enoyl_cytosolic		12dgr161[c]	0	Cytosol					
+12dgr180[c]	1-2-Diacyl-sn-glycerol-dioctadecanoyl_cytosolic		12dgr180[c]	0	Cytosol					
+12dgr181[c]	1-2-Diacyl-sn-glycerol-dioctadec-11-enoyl_cytosolic		12dgr181[c]	0	Cytosol					
+1agpe120[c]	1-Acyl-sn-glycero-3-phosphoethanolamine-dodecanoyl_cytosolic		1agpe120[c]	0	Cytosol					
+1agpe140[c]	1-Acyl-sn-glycero-3-phosphoethanolamine-tetradecanoyl_cytosolic		1agpe140[c]	0	Cytosol					
+1agpe141[c]	1-Acyl-sn-glycero-3-phosphoethanolamine-tetradec-7-enoyl_cytosolic		1agpe141[c]	0	Cytosol					
+1agpe160[c]	1-Acyl-sn-glycero-3-phosphoethanolamine-hexadecanoyl_cytosolic		1agpe160[c]	0	Cytosol					
+1agpe161[c]	1-Acyl-sn-glycero-3-phosphoethanolamine-hexadec-9-enoyl_cytosolic		1agpe161[c]	0	Cytosol					
+1agpg120[c]	1-Acyl-sn-glycero-3-phosphoglycerol-dodecanoyl_cytosolic		1agpg120[c]	0	Cytosol					
+1agpg140[c]	1-Acyl-sn-glycero-3-phosphoglycerol-tetradecanoyl_cytosolic		1agpg140[c]	0	Cytosol					
+1agpg141[c]	1-Acyl-sn-glycero-3-phosphoglycerol-tetradec-7-enoyl_cytosolic		1agpg141[c]	0	Cytosol					
+1agpg160[c]	1-Acyl-sn-glycero-3-phosphoglycerol-hexadecanoyl_cytosolic		1agpg160[c]	0	Cytosol					
+1agpg161[c]	1-Acyl-sn-glycero-3-phosphoglycerol-hexadec-9-enoyl_cytosolic		1agpg161[c]	0	Cytosol					
+1agpg180[c]	1-Acyl-sn-glycero-3-phosphoglycerol-octadecanoyl_cytosolic		1agpg180[c]	0	Cytosol					
+1agpg181[c]	1-Acyl-sn-glycero-3-phosphoglycerol-octadec-11-enoyl_cytosolic		1agpg181[c]	0	Cytosol					
+1ddecg3p[c]	1-dodecanoyl-sn-glycerol-3-phosphate_cytosolic		1ddecg3p[c]	0	Cytosol					
+1hdec9eg3p[c]	1-hexadec-9-enoyl-sn-glycerol-3-phosphate_cytosolic		1hdec9eg3p[c]	0	Cytosol					
+1hdecg3p[c]	1-hexadecanoyl-sn-glycerol-3-phosphate_cytosolic		1hdecg3p[c]	0	Cytosol					
+1odec11eg3p[c]	1-octadec-11-enoyl-sn-glycerol-3-phosphate_cytosolic		1odec11eg3p[c]	0	Cytosol					
+1odecg3p[c]	1-octadecanoyl-sn-glycerol-3-phosphate_cytosolic		1odecg3p[c]	0	Cytosol					
+1tdec7eg3p[c]	1-tetradec-7-enoyl-sn-glycerol-3-phosphate_cytosolic		1tdec7eg3p[c]	0	Cytosol					
+1tdecg3p[c]	1-tetradecanoyl-sn-glycerol-3-phosphate_cytosolic		1tdecg3p[c]	0	Cytosol					
+2agpe120[c]	2-Acyl-sn-glycero-3-phosphoethanolamine-dodecanoyl_cytosolic		2agpe120[c]	0	Cytosol					
+2agpe140[c]	2-Acyl-sn-glycero-3-phosphoethanolamine-tetradecanoyl_cytosolic		2agpe140[c]	0	Cytosol					
+2agpe141[c]	2-Acyl-sn-glycero-3-phosphoethanolamine-tetradec-7-enoyl_cytosolic		2agpe141[c]	0	Cytosol					
+2agpe160[c]	2-Acyl-sn-glycero-3-phosphoethanolamine-n-C16-0_cytosolic		2agpe160[c]	0	Cytosol					
+2agpe161[c]	2-Acyl-sn-glycero-3-phosphoethanolamine-hexadec-9-enoyl_cytosolic		2agpe161[c]	0	Cytosol					
+2agpe180[c]	2-Acyl-sn-glycero-3-phosphoethanolamine-n-C18-0_cytosolic		2agpe180[c]	0	Cytosol					
+2agpe181[c]	2-Acyl-sn-glycero-3-phosphoethanolamine-octadec-11-enoyl_cytosolic		2agpe181[c]	0	Cytosol					
+2agpg120[c]	2-Acyl-sn-glycero-3-phosphoglycerol-dodecanoyl_cytosolic		2agpg120[c]	0	Cytosol					
+2agpg140[c]	2-Acyl-sn-glycero-3-phosphoglycerol-tetradecanoyl_cytosolic		2agpg140[c]	0	Cytosol					
+2agpg141[c]	2-Acyl-sn-glycero-3-phosphoglycerol-tetradec-7-enoyl_cytosolic		2agpg141[c]	0	Cytosol					
+2agpg160[c]	2-Acyl-sn-glycero-3-phosphoglycerol-hexadecanoyl_cytosolic		2agpg160[c]	0	Cytosol					
+2agpg161[c]	2-Acyl-sn-glycero-3-phosphoglycerol-hexadec-9-enoyl_cytosolic		2agpg161[c]	0	Cytosol					
+2agpg180[c]	2-Acyl-sn-glycero-3-phosphoglycerol-octadecanoyl_cytosolic		2agpg180[c]	0	Cytosol					
+2agpg181[c]	2-Acyl-sn-glycero-3-phosphoglycerol-octadec-11-enoyl_cytosolic		2agpg181[c]	0	Cytosol					
+2ddecg3p[c]	2-dodecanoyl-sn-glycerol-3-phosphate_cytosolic		2ddecg3p[c]	0	Cytosol					
+2dmmq8[c]	2-Demethylmenaquinone-8_cytosolic		2dmmq8[c]	0	Cytosol					
+2dmmql8[c]	2-Demethylmenaquinol-8_cytosolic		2dmmql8[c]	0	Cytosol					
+2hdec9eg3p[c]	2-hexadec-9-enoyl-sn-glycerol-3-phosphate_cytosolic		2hdec9eg3p[c]	0	Cytosol					
+2hdecg3p[c]	2-hexadecanoyl-sn-glycerol-3-phosphate_cytosolic		2hdecg3p[c]	0	Cytosol					
+2odec11eg3p[c]	2-octadec-11-enoyl-sn-glycerol-3-phosphate_cytosolic		2odec11eg3p[c]	0	Cytosol					
+2odecg3p[c]	2-octadecanoyl-sn-glycerol-3-phosphate_cytosolic		2odecg3p[c]	0	Cytosol					
+2tdec7eg3p[c]	2-tetradec-7-enoyl-sn-glycerol-3-phosphate_cytosolic		2tdec7eg3p[c]	0	Cytosol					
+2tdecg3p[c]	2-tetradecanoyl-sn-glycerol-3-phosphate_cytosolic		2tdecg3p[c]	0	Cytosol					
+4hba[c]	4-Hydroxy-benzylalcohol_cytosolic		4hba[c]	0	Cytosol					
+cdpdddecg[c]	CDP-1-2-didodecanoylglycerol_cytosolic		cdpdddecg[c]	0	Cytosol					
+cdpdhdec9eg[c]	CDP-1-2-dihexadec-9-enoylglycerol_cytosolic		cdpdhdec9eg[c]	0	Cytosol					
+cdpdhdecg[c]	CDP-1-2-dihexadecanoylglycerol_cytosolic		cdpdhdecg[c]	0	Cytosol					
+cdpdodec11eg[c]	CDP-1-2-dioctadec-11-enoylglycerol_cytosolic		cdpdodec11eg[c]	0	Cytosol					
+cdpdodecg[c]	CDP-1-2-dioctadecanoylglycerol_cytosolic		cdpdodecg[c]	0	Cytosol					
+cdpdtdec7eg[c]	CDP-1-2-ditetradec-7-enoylglycerol_cytosolic		cdpdtdec7eg[c]	0	Cytosol					
+cdpdtdecg[c]	CDP-1-2-ditetradecanoylglycerol_cytosolic		cdpdtdecg[c]	0	Cytosol					
+colipa[c]	core-oligosaccharide-lipid-A_cytosolic		colipa[c]	0	Cytosol					
+gagicolipa[c]	galactosyl-glucosyl-inner-core-oligosaccharide-lipid-A_cytosolic		gagicolipa[c]	0	Cytosol					
+ggagicolipa[c]	glucosyl-galactosyl-glucosyl-inner-core-oligosaccharide-lipid-A_cytosolic		ggagicolipa[c]	0	Cytosol					
+gggagicolipa[c]	glucosyl-glucosyl-galactosyl-glucosyl-inner-core-oligosaccharide-lipid-A_cytosolic		gggagicolipa[c]	0	Cytosol					
+gicolipa[c]	glucosyl-inner-core-oligosaccharide-lipid-A_cytosolic		gicolipa[c]	0	Cytosol					
+hhlipa[c]	heptosyl-heptosyl-kdo2-lipidA_cytosolic		hhlipa[c]	0	Cytosol					
+hlipa[c]	heptosyl-kdo2-lipidA_cytosolic		hlipa[c]	0	Cytosol					
+hphhlipa[c]	heptosyl-phospho-heptosyl-heptosyl-kdo2-lipidA_cytosolic		hphhlipa[c]	0	Cytosol					
+icolipa[c]	inner-core-oligosaccharide-lipid-A_cytosolic		icolipa[c]	0	Cytosol					
+kphphhlipa[c]	kdo-phospho-heptosyl-phospho-heptosyl-heptosyl-kdo2-lipidA_cytosolic		kphphhlipa[c]	0	Cytosol					
+malthp[c]	Maltoheptaose_cytosolic		malthp[c]	0	Cytosol					
+maltpt[c]	Maltopentaose_cytosolic		maltpt[c]	0	Cytosol					
+mql8[c]	Menaquinol-8_cytosolic		mql8[c]	0	Cytosol					
+mqn8[c]	Menaquinone-8_cytosolic		mqn8[c]	0	Cytosol					
+pa120[c]	1-2-didodecanoyl-sn-glycerol-3-phosphate_cytosolic		pa120[c]	0	Cytosol					
+pa140[c]	1-2-ditetradecanoyl-sn-glycerol-3-phosphate_cytosolic		pa140[c]	0	Cytosol					
+pa141[c]	1-2-ditetradec-7-enoyl-sn-glycerol-3-phosphate_cytosolic		pa141[c]	0	Cytosol					
+pa160[c]	1-2-dihexadecanoyl-sn-glycerol-3-phosphate_cytosolic		pa160[c]	0	Cytosol					
+pa161[c]	1-2-dihexadec-9-enoyl-sn-glycerol-3-phosphate_cytosolic		pa161[c]	0	Cytosol					
+pa180[c]	1-2-dioctadecanoyl-sn-glycerol-3-phosphate_cytosolic		pa180[c]	0	Cytosol					
+pa181[c]	1-2-dioctadec-11-enoyl-sn-glycerol-3-phosphate_cytosolic		pa181[c]	0	Cytosol					
+pe120[c]	phosphatidylethanolamine-didodecanoyl_cytosolic		pe120[c]	0	Cytosol					
+pe140[c]	phosphatidylethanolamine-ditetradecanoyl_cytosolic		pe140[c]	0	Cytosol					
+pe141[c]	phosphatidylethanolamine-ditetradec-7-enoyl_cytosolic		pe141[c]	0	Cytosol					
+pe160[c]	phosphatidylethanolamine-dihexadecanoyl_cytosolic		pe160[c]	0	Cytosol					
+pe161[c]	phosphatidylethanolamine-dihexadec-9enoyl_cytosolic		pe161[c]	0	Cytosol					
+pe180[c]	phosphatidylethanolamine-dioctadecanoyl_cytosolic		pe180[c]	0	Cytosol					
+pe181[c]	phosphatidylethanolamine-dioctadec-11-enoyl_cytosolic		pe181[c]	0	Cytosol					
+pg120[c]	Phosphatidylglycerol-didodecanoyl_cytosolic		pg120[c]	0	Cytosol					
+pg140[c]	Phosphatidylglycerol-ditetradecanoyl_cytosolic		pg140[c]	0	Cytosol					
+pg141[c]	Phosphatidylglycerol-ditetradec-7-enoyl_cytosolic		pg141[c]	0	Cytosol					
+pg160[c]	Phosphatidylglycerol-dihexadecanoyl_cytosolic		pg160[c]	0	Cytosol					
+pg161[c]	Phosphatidylglycerol-dihexadec-9-enoyl_cytosolic		pg161[c]	0	Cytosol					
+pg180[c]	Phosphatidylglycerol-dioctadecanoyl_cytosolic		pg180[c]	0	Cytosol					
+pg181[c]	Phosphatidylglycerol-dioctadec-11-enoyl_cytosolic		pg181[c]	0	Cytosol					
+pgp120[c]	Phosphatidylglycerophosphate-didodecanoyl_cytosolic		pgp120[c]	0	Cytosol					
+pgp140[c]	Phosphatidylglycerophosphate-ditetradecanoyl_cytosolic		pgp140[c]	0	Cytosol					
+pgp141[c]	Phosphatidylglycerophosphate-ditetradec-7-enoyl_cytosolic		pgp141[c]	0	Cytosol					
+pgp160[c]	Phosphatidylglycerophosphate-dihexadecanoyl_cytosolic		pgp160[c]	0	Cytosol					
+pgp161[c]	Phosphatidylglycerophosphate-dihexadec-9-enoyl_cytosolic		pgp161[c]	0	Cytosol					
+pgp180[c]	Phosphatidylglycerophosphate-dioctadecanoyl_cytosolic		pgp180[c]	0	Cytosol					
+pgp181[c]	Phosphatidylglycerophosphate-dioctadec-11-enoyl_cytosolic		pgp181[c]	0	Cytosol					
+phhlipa[c]	phospho-heptosyl-heptosyl-kdo2-lipidA_cytosolic		phhlipa[c]	0	Cytosol					
+phphhlipa[c]	phospho-heptosyl-phospho-heptosyl-heptosyl-kdo2-lipidA_cytosolic		phphhlipa[c]	0	Cytosol					
+ps120[c]	phosphatidylserine-didodecanoyl_cytosolic		ps120[c]	0	Cytosol					
+ps140[c]	phosphatidylserine-ditetradecanoyl_cytosolic		ps140[c]	0	Cytosol					
+ps141[c]	phosphatidylserine-ditetradec-7-enoyl_cytosolic		ps141[c]	0	Cytosol					
+ps160[c]	phosphatidylserine-dihexadecanoyl_cytosolic		ps160[c]	0	Cytosol					
+ps161[c]	phosphatidylserine-dihexadec-9-enoyl_cytosolic		ps161[c]	0	Cytosol					
+ps180[c]	phosphatidylserine-dioctadecanoyl_cytosolic		ps180[c]	0	Cytosol					
+ps181[c]	phosphatidylserine-dioctadec-11-enoyl_cytosolic		ps181[c]	0	Cytosol					
+q8[c]	Ubiquinone-8_cytosolic		q8[c]	0	Cytosol					
+q8h2[c]	Ubiquinol-8_cytosolic		q8h2[c]	0	Cytosol					
+Peptidoglycanpolymer(nsubunits)[c]	Peptidoglycan-polymer-n-subunits_cytosolic			0	Cytosol					
+Peptidoglycanpolymer(n_1subunits)[c]	Peptidoglycan-polymer-n-1-subunits_cytosolic			0	Cytosol					
+1_isoheptadecanoyl_sn_glycerol3_phosphate[c]	1-isoheptadecanoyl-sn-glycerol-3-phosphate_cytosolic			0	Cytosol					
+1_anteisoheptadecanoyl_sn_glycerol3_phosphate[c]	1-anteisoheptadecanoyl-sn-glycerol-3-phosphate_cytosolic			0	Cytosol					
+1_isotetradecanoyl_sn_glycerol3_phosphate[c]	1-isotetradecanoyl-sn-glycerol-3-phosphate_cytosolic			0	Cytosol					
+1_isopentadecanoyl_sn_glycerol3_phosphate[c]	1-isopentadecanoyl-sn-glycerol-3-phosphate_cytosolic			0	Cytosol					
+1_anteisopentadecanoyl_sn_glycerol3_phosphate[c]	1-anteisopentadecanoyl-sn-glycerol-3-phosphate_cytosolic			0	Cytosol					
+1_isohexadecanoyl_sn_glycerol3_phosphate[c]	1-isohexadecanoyl-sn-glycerol-3-phosphate_cytosolic			0	Cytosol					
+1_2_diisoheptadecanoyl_sn_glycerol3_phosphate[c]	1-2-diisoheptadecanoyl-sn-glycerol-3-phosphate_cytosolic			0	Cytosol					
+1_2_dianteisoheptadecanoyl_sn_glycerol3_phosphate[c]	1-2-dianteisoheptadecanoyl-sn-glycerol-3-phosphate_cytosolic			0	Cytosol					
+1_2_diisotetradecanoyl_sn_glycerol3_phosphate[c]	1-2-diisotetradecanoyl-sn-glycerol-3-phosphate_cytosolic			0	Cytosol					
+1_2_diisopentadecanoyl_sn_glycerol3_phosphate[c]	1-2-diisopentadecanoyl-sn-glycerol-3-phosphate_cytosolic			0	Cytosol					
+1_2_dianteisopentadecanoyl_sn_glycerol3_phosphate[c]	1-2-dianteisopentadecanoyl-sn-glycerol-3-phosphate_cytosolic			0	Cytosol					
+1_2_diisohexadecanoyl_sn_glycerol3_phosphate[c]	1-2-diisohexadecanoyl-sn-glycerol-3-phosphate_cytosolic			0	Cytosol					
+CDP_1_2_diisoheptadecanoylglycerol[c]	CDP-1-2-diisoheptadecanoylglycerol_cytosolic			0	Cytosol					
+CDP_1_2_dianteisoheptadecanoylglycerol[c]	CDP-1-2-dianteisoheptadecanoylglycerol_cytosolic			0	Cytosol					
+CDP_1_2_diisotetradecanoylglycerol[c]	CDP-1-2-diisotetradecanoylglycerol_cytosolic			0	Cytosol					
+CDP_1_2_diisopentadecanoylglycerol[c]	CDP-1-2-diisopentadecanoylglycerol_cytosolic			0	Cytosol					
+CDP_1_2_dianteisopentadecanoylglycerol[c]	CDP-1-2-dianteisopentadecanoylglycerol_cytosolic			0	Cytosol					
+CDP_1_2_diisohexadecanoylglycerol[c]	CDP-1-2-diisohexadecanoylglycerol_cytosolic			0	Cytosol					
+Diisoheptadecanoylphosphatidylserine[c]	Diisoheptadecanoylphosphatidylserine_cytosolic		Diisoheptadecanoylphosphatidylserine[c]	0	Cytosol					
+Dianteisoheptadecanoylphosphatidylserine[c]	Dianteisoheptadecanoylphosphatidylserine_cytosolic		Dianteisoheptadecanoylphosphatidylserine[c]	0	Cytosol					
+Diisotetradecanoylphosphatidylserine[c]	Diisotetradecanoylphosphatidylserine_cytosolic		Diisotetradecanoylphosphatidylserine[c]	0	Cytosol					
+Diisopentadecanoylphosphatidylserine[c]	Diisopentadecanoylphosphatidylserine_cytosolic		Diisopentadecanoylphosphatidylserine[c]	0	Cytosol					
+Dianteisopentadecanoylphosphatidylserine[c]	Dianteisopentadecanoylphosphatidylserine_cytosolic		Dianteisopentadecanoylphosphatidylserine[c]	0	Cytosol					
+Diisohexadecanoylphosphatidylserine[c]	Diisohexadecanoylphosphatidylserine_cytosolic		Diisohexadecanoylphosphatidylserine[c]	0	Cytosol					
+Diisoheptadecanoylphosphatidylethanolamine[c]	Diisoheptadecanoylphosphatidylethanolamine_cytosolic		Diisoheptadecanoylphosphatidylethanolamine[c]	0	Cytosol					
+Dianteisoheptadecanoylphosphatidylethanolamine[c]	Dianteisoheptadecanoylphosphatidylethanolamine_cytosolic		Dianteisoheptadecanoylphosphatidylethanolamine[c]	0	Cytosol					
+Diisotetradecanoylphosphatidylethanolamine[c]	Diisotetradecanoylphosphatidylethanolamine_cytosolic		Diisotetradecanoylphosphatidylethanolamine[c]	0	Cytosol					
+Diisopentadecanoylphosphatidylethanolamine[c]	Diisopentadecanoylphosphatidylethanolamine_cytosolic		Diisopentadecanoylphosphatidylethanolamine[c]	0	Cytosol					
+Dianteisopentadecanoylphosphatidylethanolamine[c]	Dianteisopentadecanoylphosphatidylethanolamine_cytosolic		Dianteisopentadecanoylphosphatidylethanolamine[c]	0	Cytosol					
+Diisohexadecanoylphosphatidylethanolamine[c]	Diisohexadecanoylphosphatidylethanolamine_cytosolic		Diisohexadecanoylphosphatidylethanolamine[c]	0	Cytosol					
+1_2_Diisoheptadecanoyl_sn_glycerol[c]	1-2-Diisoheptadecanoyl-sn-glycerol_cytosolic			0	Cytosol					
+1_2_Dianteisoheptadecanoyl_sn_glycerol[c]	1-2-Dianteisoheptadecanoyl-sn-glycerol_cytosolic			0	Cytosol					
+1_2_Diisotetradecanoyl_sn_glycerol[c]	1-2-Diisotetradecanoyl-sn-glycerol_cytosolic			0	Cytosol					
+1_2_Diisopentadecanoyl_sn_glycerol[c]	1-2-Diisopentadecanoyl-sn-glycerol_cytosolic			0	Cytosol					
+1_2_Dianteisopentadecanoyl_sn_glycerol[c]	1-2-Dianteisopentadecanoyl-sn-glycerol_cytosolic			0	Cytosol					
+1_2_Diisohexadecanoyl_sn_glycerol[c]	1-2-Diisohexadecanoyl-sn-glycerol_cytosolic			0	Cytosol					
+Diisoheptadecanoylphosphatidylglycerophosphate[c]	Diisoheptadecanoylphosphatidylglycerophosphate_cytosolic		Diisoheptadecanoylphosphatidylglycerophosphate[c]	0	Cytosol					
+Dianteisoheptadecanoylphosphatidylglycerophosphate[c]	Dianteisoheptadecanoylphosphatidylglycerophosphate_cytosolic		Dianteisoheptadecanoylphosphatidylglycerophosphate[c]	0	Cytosol					
+Diisotetradecanoylphosphatidylglycerophosphate[c]	Diisotetradecanoylphosphatidylglycerophosphate_cytosolic		Diisotetradecanoylphosphatidylglycerophosphate[c]	0	Cytosol					
+Diisopentadecanoylphosphatidylglycerophosphate[c]	Diisopentadecanoylphosphatidylglycerophosphate_cytosolic		Diisopentadecanoylphosphatidylglycerophosphate[c]	0	Cytosol					
+Dianteisopentadecanoylphosphatidylglycerophosphate[c]	Dianteisopentadecanoylphosphatidylglycerophosphate_cytosolic		Dianteisopentadecanoylphosphatidylglycerophosphate[c]	0	Cytosol					
+Diisohexadecanoylphosphatidylglycerophosphate[c]	Diisohexadecanoylphosphatidylglycerophosphate_cytosolic		Diisohexadecanoylphosphatidylglycerophosphate[c]	0	Cytosol					
+Diisoheptadecanoylphosphatidylglycerol[c]	Diisoheptadecanoylphosphatidylglycerol_cytosolic		Diisoheptadecanoylphosphatidylglycerol[c]	0	Cytosol					
+Dianteisoheptadecanoylphosphatidylglycerol[c]	Dianteisoheptadecanoylphosphatidylglycerol_cytosolic		Dianteisoheptadecanoylphosphatidylglycerol[c]	0	Cytosol					
+Diisotetradecanoylphosphatidylglycerol[c]	Diisotetradecanoylphosphatidylglycerol_cytosolic		Diisotetradecanoylphosphatidylglycerol[c]	0	Cytosol					
+Diisopentadecanoylphosphatidylglycerol[c]	Diisopentadecanoylphosphatidylglycerol_cytosolic		Diisopentadecanoylphosphatidylglycerol[c]	0	Cytosol					
+Dianteisopentadecanoylphosphatidylglycerol[c]	Dianteisopentadecanoylphosphatidylglycerol_cytosolic		Dianteisopentadecanoylphosphatidylglycerol[c]	0	Cytosol					
+Diisohexadecanoylphosphatidylglycerol[c]	Diisohexadecanoylphosphatidylglycerol_cytosolic		Diisohexadecanoylphosphatidylglycerol[c]	0	Cytosol					
+Palmitoyllipoteichoicacid(n=24)_linked_unsubstituted[c]	Palmitoyllipoteichoic-acid-n=24-linked-unsubstituted_cytosolic			0	Cytosol					
+Myristoyllipoteichoicacid(n=24)_linked_unsubstituted[c]	Myristoyllipoteichoic-acid-n=24-linked-unsubstituted_cytosolic			0	Cytosol					
+Stearoyllipoteichoicacid(n=24)_linked_unsubstituted[c]	Stearoyllipoteichoic-acid-n=24-linked-unsubstituted_cytosolic			0	Cytosol					
+Isoheptadecanoyllipoteichoicacid(n=24)_linked_unsubstituted[c]	Isoheptadecanoyllipoteichoic-acid-n=24-linked-unsubstituted_cytosolic			0	Cytosol					
+Anteisoheptadecanoyllipoteichoicacid(n=24)_linked_unsubstituted[c]	Anteisoheptadecanoyllipoteichoic-acid-n=24-linked-unsubstituted_cytosolic			0	Cytosol					
+Isotetradecanoyllipoteichoicacid(n=24)_linked_unsubstituted[c]	Isotetradecanoyllipoteichoic-acid-n=24-linked-unsubstituted_cytosolic			0	Cytosol					
+Isopentadecanoyllipoteichoicacid(n=24)_linked_unsubstituted[c]	Isopentadecanoyllipoteichoic-acid-n=24-linked-unsubstituted_cytosolic			0	Cytosol					
+Anteisopentadecanoyllipoteichoicacid(n=24)_linked_unsubstituted[c]	Anteisopentadecanoyllipoteichoic-acid-n=24-linked-unsubstituted_cytosolic			0	Cytosol					
+Isohexadecanoyllipoteichoicacid(n=24)_linked_unsubstituted[c]	Isohexadecanoyllipoteichoic-acid-n=24-linked-unsubstituted_cytosolic			0	Cytosol					
+Palmitoyllipoteichoicacid(n=24)_linked_N_acetyl_D_glucosamine[c]	Palmitoyllipoteichoic-acid-n=24-linked-N-acetyl-D-glucosamine_cytosolic			0	Cytosol					
+Myristoyllipoteichoicacid(n=24)_linked_N_acetyl_D_glucosamine[c]	Myristoyllipoteichoic-acid-n=24-linked-N-acetyl-D-glucosamine_cytosolic			0	Cytosol					
+Stearoyllipoteichoicacid(n=24)_linked_N_acetyl_D_glucosamine[c]	Stearoyllipoteichoic-acid-n=24-linked-N-acetyl-D-glucosamine_cytosolic			0	Cytosol					
+Isoheptadecanoyllipoteichoicacid(n=24)_linked_N_acetyl_D_glucosamine[c]	Isoheptadecanoyllipoteichoic-acid-n=24-linked-N-acetyl-D-glucosamine_cytosolic			0	Cytosol					
+Anteisoheptadecanoyllipoteichoicacid(n=24)_linked_N_acetyl_D_glucosamine[c]	Anteisoheptadecanoyllipoteichoic-acid-n=24-linked-N-acetyl-D-glucosamine_cytosolic			0	Cytosol					
+Isotetradecanoyllipoteichoicacid(n=24)_linked_N_acetyl_D_glucosamine[c]	Isotetradecanoyllipoteichoic-acid-n=24-linked-N-acetyl-D-glucosamine_cytosolic			0	Cytosol					
+Isopentadecanoyllipoteichoicacid(n=24)_linked_N_acetyl_D_glucosamine[c]	Isopentadecanoyllipoteichoic-acid-n=24-linked-N-acetyl-D-glucosamine_cytosolic			0	Cytosol					
+Anteisopentadecanoyllipoteichoicacid(n=24)_linked_N_acetyl_D_glucosamine[c]	Anteisopentadecanoyllipoteichoic-acid-n=24-linked-N-acetyl-D-glucosamine_cytosolic			0	Cytosol					
+Isohexadecanoyllipoteichoicacid(n=24)_linked_N_acetyl_D_glucosamine[c]	Isohexadecanoyllipoteichoic-acid-n=24-linked-N-acetyl-D-glucosamine_cytosolic			0	Cytosol					
+proteinsynth[c]	Protein-biosynthesis_cytosolic		proteinsynth[c]	0	Cytosol					
+dnarep[c]	DNA-replication_cytosolic		dnarep[c]	0	Cytosol					
+rnatrans[c]	RNA-transcription_cytosolic		rnatrans[c]	0	Cytosol					
+alatrna[c]	L-Alanyl-tRNA		alatrna[c]	0	Cytosol					
+leutrna[c]	L-Leucyl-tRNA		leutrna[c]	0	Cytosol					
+argtrna[c]	L-Arginyl-tRNA		argtrna[c]	0	Cytosol					
+glntrna[c]	Gln-tRNA(Gln)		glntrna[c]	0	Cytosol					
+glytrna[c]	Glycyl-tRNA(Gly)		glytrna[c]	0	Cytosol					
+mettrna[c]	L-Methionyl-tRNA		mettrna[c]	0	Cytosol					
+sertrna[c]	L-Seryl-tRNA(Ser)		sertrna[c]	0	Cytosol					
+valtrna[c]	L-Valyl-tRNA(Val)		valtrna[c]	0	Cytosol					
+protrna[c]	L-Prolyl-tRNA(Pro)		protrna[c]	0	Cytosol					
+tyrtrna[c]	L-Tyrosyl-tRNA(Tyr)		tyrtrna[c]	0	Cytosol					
+asptrna[c]	L-Aspartyl-tRNA(Asp)		asptrna[c]	0	Cytosol					
+histrna[c]	L-Histidyl-tRNA(His)		histrna[c]	0	Cytosol					
+thrtrna[c]	L-Threonyl-tRNA(Thr)		thrtrna[c]	0	Cytosol					
+cystrna[c]	L-Cysteinyl-tRNA(Cys)		cystrna[c]	0	Cytosol					
+iletrna[c]	L-Isoleucyl-tRNA(Ile)		iletrna[c]	0	Cytosol					
+asntrna[c]	Asn-tRNA(Asn)		asntrna[c]	0	Cytosol					
+phetrna[c]	L-Phenylalanyl-tRNA(Phe)		phetrna[c]	0	Cytosol					
+trptrna[c]	L-Tryptophanyl-tRNA(Trp)		trptrna[c]	0	Cytosol					
+lystrna[c]	L-Lysine-tRNA (Lys)		lystrna[c]	0	Cytosol					
+trnatyr[c]	tRNA(Tyr)		trnatyr[c]	0	Cytosol					
+trnaala[c]	tRNA(Ala)		trnaala[c]	0	Cytosol					
+trnaarg[c]	tRNA(Arg)		trnaarg[c]	0	Cytosol					
+trnaasn[c]	tRNA(Asn)		trnaasn[c]	0	Cytosol					
+trnaasp[c]	tRNA(Asp)		trnaasp[c]	0	Cytosol					
+trnacys[c]	tRNA(Cys)		trnacys[c]	0	Cytosol					
+trnagln[c]	tRNA(Gln)		trnagln[c]	0	Cytosol					
+trnagly[c]	tRNA(Gly)		trnagly[c]	0	Cytosol					
+trnahis[c]	tRNA(His)		trnahis[c]	0	Cytosol					
+trnaile[c]	tRNA(Ile)		trnaile[c]	0	Cytosol					
+trnaleu[c]	tRNA(Leu)		trnaleu[c]	0	Cytosol					
+trnalys[c]	tRNA(Lys)		trnalys[c]	0	Cytosol					
+trnamet[c]	tRNA(Met)		trnamet[c]	0	Cytosol					
+trnaphe[c]	tRNA(Phe)		trnaphe[c]	0	Cytosol					
+trnapro[c]	tRNA(Pro)		trnapro[c]	0	Cytosol					
+trnaser[c]	tRNA(Ser)		trnaser[c]	0	Cytosol					
+trnathr[c]	tRNA(Thr)		trnathr[c]	0	Cytosol					
+trnatrp[c]	tRNA(Trp)		trnatrp[c]	0	Cytosol					
+trnaval[c]	tRNA(Val)		trnaval[c]	0	Cytosol					
+ecoli_DNA[c]	"DNA, E coli"			0	Cytosol					
+ecoli_Protein[c]	"Protein, E coli"			0	Cytosol					
+ecoli_RNA[c]	"RNA, E coli"			0	Cytosol					
+ecoli_phospholipid[c]	"Phospholipids, E coli "			0	Cytosol					
+clpn_EC[c]	Cardiolipin (made from pg_EC)		clpn_EC[c]	0	Cytosol					
+pe_EC[c]	Phosphatidylethanolamine (made from ps_EC)		pe_EC[c]	0	Cytosol					
+pg_EC[c]	Phosphatidylglycerol (made from pgp_EC <- cdpdag_EC <- pa_EC)		pg_EC[c]	0	Cytosol					
+ps_EC[c]	phosphatidylserine (made from cdpdag_EC)		ps_EC[c]	0	Cytosol					
+pgp_EC[c]	Phosphatidylglycerophosphate (Ecoli)			0	Cytosol					
+cdpdag_EC[c]	CDPdiacylglycerol (E coli)		cdpdag_EC[c]	0	Cytosol					
+pa_EC[c]	phosphatidate  (E coli)			0	Cytosol					
+lps_EC[c]	"Lipopolysaccharides, E coli"		lps_EC[c]	0	Cytosol					
+cdpea[c]	CDPethanolamine		cdpea[c]	0	Cytosol					
+12dgr_EC[c]	"1,2-Diacylglycerol , E coli"			0	Cytosol					
+peptido_EC[c]	"Peptidoglycan subunit, E coli"		peptido_EC[c]	0	Cytosol					
+3amp[c]	3'-AMP_cytosolic		3amp[c]	0	Cytosol					
+pyrite[c]	pyrite FeS2			0	Cytosol					
+h2s[e]	Hydrogen sulfide (extracellular)			0	Extracellular					
+h2s[p]	Hydrogen sulfide (periplasm)			0	Extracellular					
+so3[p]	Sulfite (periplasm)			0	Extracellular					
+so4[p]	Sulfate (periplasm)		so4[p]	0	Extracellular					
+ametam[c]	S-Adenosylmethioninamine		ametam[c]	0	Cytosol					
+2kmb[c]	2-keto-4-methylthiobutyrate		2kmb[c]	0	Cytosol					
+dkmpp[c]	"2,3-diketo-5-methylthio-1-phosphopentane"		dkmpp[c]	0	Cytosol					
+5mdru1p[c]	5-Methylthio-5-deoxy-D-ribulose 1-phosphate		5mdru1p[c]	0	Cytosol					
+Tbd_0146_Tbd_0187_r[c]	c-type cytochrome (reduced)			0	Cytosol					
+Tbd_0146_Tbd_0187_o[c]	c-type cytochrome (oxidized)			0	Cytosol					
+u4[e]	uraninite (extracellular) 			0	Extracellular					
+u6[e]	hexavalent uranium (extracellular)			0	Extracellular					
+u4[p]	uraninite (periplasm) 			0	Extracellular					
+u6[p]	hexavalent uranium (periplasm)			0	Extracellular					
+tsul[e]	Thiosulfate (extracellular)			0	Extracellular					
+tttnt[e]	tetrathionate (extracellular)		tttnt[e]	0	Extracellular					
+s0[e]	sulfur (extracellular)			0	Extracellular					
+cns[e]	Thiocyanate (extracellular)			0	Extracellular					
+cos[e]	carbonyl sulfide (extracellular)			0	Extracellular					
+nh3[e]	Ammonia (extracellular)			0	Extracellular					
+Tbd_unknown_o[c]	c-type cytochrome (oxidized)			0	Cytosol					
+Tbd_unknown_r[c]	c-type cytochrome (reduced)			0	Cytosol					

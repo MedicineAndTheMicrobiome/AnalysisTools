@@ -1,0 +1,1161 @@
+abbreviation	name	equation	reversible	compartment	lowbnd	uppbnd	obj_coef	rule	subsystem
+Acetate_NAsymport	Acetate Sodium Symport	cpd00029[e] + cpd00971[e] <==> cpd00029[c] + cpd00971[c]	Reversible	"e, c"	-1000	1000	0		
+AMP-3P_Hydrolysis	Hydrolysis of AMP-3P	[c] : cpd00988 + cpd00001 --> cpd00018 + cpd00009	Irreversible	c	0	1000	0		
+ATPM	ATP maintenance requirement	[c] : cpd00002 + cpd00001 --> cpd00067 + cpd00009 + cpd00008	Irreversible	c	0.45	0.45	0		
+C120SN	Fatty acid biosynthesis (n-C12:0)	[c] : cpd11488 + (14) cpd00067 + (4) cpd11492 + (10) cpd00005 --> (4) cpd11493 + (4) cpd00011 + cpd11468 + (5) cpd00001 + (10) cpd00006	Irreversible	c	0	1000	0		
+C140SN	Fatty acid biosynthesis (n-C14:0)	[c] : cpd11488 + (17) cpd00067 + (5) cpd11492 + (12) cpd00005 --> (5) cpd11493 + (5) cpd00011 + (6) cpd00001 + cpd11466 + (12) cpd00006	Irreversible	c	0	1000	0		
+C141SN	Fatty acid biosynthesis (n-C14:1)	[c] : cpd11488 + (16) cpd00067 + (5) cpd11492 + (11) cpd00005 --> (5) cpd11493 + (5) cpd00011 + (6) cpd00001 + (11) cpd00006 + cpd15294	Irreversible	c	0	1000	0		
+C160SN	Fatty acid biosynthesis (n-C16:0)	[c] : cpd11488 + (20) cpd00067 + (6) cpd11492 + (14) cpd00005 --> (6) cpd11493 + (6) cpd00011 + (7) cpd00001 + (14) cpd00006 + cpd15277	Irreversible	c	0	1000	0		
+C161SN	Fatty acid biosynthesis (n-C16:1)	[c] : cpd11488 + (19) cpd00067 + (6) cpd11492 + (13) cpd00005 --> (6) cpd11493 + (6) cpd00011 + (7) cpd00001 + cpd15239 + (13) cpd00006	Irreversible	c	0	1000	0		
+C181SN	Fatty acid biosynthesis (n-C18:1)	[c] : cpd11488 + (22) cpd00067 + (7) cpd11492 + (15) cpd00005 --> (7) cpd11493 + (7) cpd00011 + (8) cpd00001 + (15) cpd00006 + cpd11825	Irreversible	c	0	1000	0		
+CLPNS_EC	Cardiolipin Synthase (E.coli)	[c] : (0.04) cpd15655 <==> (0.02) cpd15650 + cpd00100	Reversible	c	-1000	1000	0		
+DAGK_EC	Diacylglycerol kinase	[c] : (0.02) 12dgr_EC + cpd00002 --> cpd00008 + cpd00067 + (0.02) pa_EC	Irreversible	c	0	1000	0		
+DASYN_EC	CDP-Diacylglycerol synthetase (Ecoli)	[c] : cpd00052 + cpd00067 + (0.02) pa_EC <==> (0.02) cpd16066 + cpd00012	Reversible	c	-1000	1000	0		
+ecoli_biomass	ecoli_biomass	[c] : (0.00034) cpd15378 + (59.81) cpd00002 + (0.000345) cpd00010 + (0.00908) cpd15652 + (0.00104) ecoli_DNA + (0.00069) cpd00015 + (59.81) cpd00001 + (0.0022) cpd00004 + (0.0017) cpd00005 + (0.02614) cpd15654 + (0.00256) ecoli_phospholipid + (0.005088) ecoli_Protein + (0.03527) cpd00118 + (0.006566) ecoli_RNA + (0.00713) cpd00264 + (0.05) cpd00087 + (0.00034) cpd00056 + (0.003) cpd00026 --> (59.81) cpd00008 + (59.81) cpd00067 + (59.81) cpd00009	Irreversible	c	0	1000	1		
+ecoli_DNASyn	"DNA Synthesis, E coli"	[c] : (100) cpd00002 + (25) cpd00115 + (25) cpd00356 + (25) cpd00241 + (25) cpd00357 + (100) cpd00001 --> (100) cpd00008 + ecoli_DNA + (100) cpd00067 + (100) cpd00009 + (100) cpd00012	Irreversible	c	0	1000	0		
+ecoli_LipopolysaccharideSyn	"Lipopolysaccharide Synthesis, E coli"	[c] : (3) cpd03831 + (2) cpd00444 + (3) cpd02546 + cpd03587 + (2) cpd00026 --> (3) cpd00008 + (2) cpd00096 + (3) cpd00046 + (10) cpd00067 + cpd15652 + (2) cpd00014	Irreversible	c	0	1000	0		
+ecoli_PeptidoglycanSyn	"Peptidoglycan subunit synthesis, E coli"	[c] : cpd03495 --> cpd00067 + cpd15654 + cpd02229	Irreversible	c	0	1000	0		
+ecoli_phosholipidSyn	"Phospholipid Synthesis, E Coli"	[c] : (0.057) cpd15650 + (2) cpd00001 + (0.688) cpd15653 + (0.193) cpd15655 + (0.062) cpd15657 --> (0.5) cpd00009 + ecoli_phospholipid	Irreversible	c	0	1000	0		
+ecoli_ProtSyn	"Protein Synthesis, E coli"	[c] : (103) cpd11770 + (59) cpd12036 + (48) cpd12313 + (48) cpd12226 + (18) cpd12255 + (53) cpd12060 + (53) cpd12227 + (53) cpd12100 + (19) cpd12228 + (58) cpd12256 + (90) cpd12003 + (69) cpd15249 + (31) cpd12105 + (37) cpd12335 + (44) cpd12164 + (43) cpd12132 + (51) cpd12229 + (11) cpd12336 + (28) cpd12194 + (85) cpd12133 + (2000) cpd00038 + (2000) cpd00001 --> (2000) cpd00031 + (3001) cpd00067 + (2000) cpd00009 + ecoli_Protein + (103) cpd11906 + (59) cpd11907 + (48) cpd11908 + (48) cpd11909 + (18) cpd11910 + (53) cpd11911 + (53) cpd11912 + (53) cpd11913 + (19) cpd11914 + (58) cpd11915 + (90) cpd11916 + (69) cpd11917 + (31) cpd11918 + (37) cpd11919 + (44) cpd11920 + (43) cpd11921 + (51) cpd11922 + (11) cpd11923 + (28) cpd11751 + (85) cpd11924	Irreversible	c	0	1000	0		
+ecoli_RNASyn	"RNA Synthesis, E coli"	[c] : (126) cpd00002 + (20) cpd00052 + (32) cpd00038 + (100) cpd00001 + (22) cpd00062 --> (100) cpd00008 + (100) cpd00067 + (100) cpd00009 + (100) cpd00012 + ecoli_RNA	Irreversible	c	0	1000	0		
+Fe2_Oxidation	Fe(II) Oxidation via Fe(II) Oxidase (Yamanaka 1991)	cpd00007[c] + (4) cpd00067[c] + (4) cpd10515[e] --> (2) cpd00001[c] + (4) cpd10516[e]	Irreversible	"e, c"	0	1000	0		
+KAS15	b-ketoacyl synthase	[c] : cpd00022 + cpd00067 + cpd11492 --> cpd11488 + cpd00011 + cpd00010	Irreversible	c	0	1000	0		
+N2O_N2_ferri_ferro_cytochrome	Nitrous Oxide to Nitrogen via ferrocytochrome	[c] : (2) cpd00110 + (2) cpd00067 + cpd00659 --> cpd00001 + (2) cpd00109 + cpd00528	Irreversible	c	0	1000	0		
+Nitrogen_diffusion	Nitrogen Diffusion	cpd00528[e] <==> cpd00528[c]	Reversible	"e, c"	-1000	1000	0		
+NO_N2O_ferri_ferro_cytochrom	Nitric Oxide to Nitrous Oxide via ferrocytochome	[c] : (2) cpd00110 + (2) cpd00067 + (2) cpd00418 <==> cpd00001 + (2) cpd00109 + cpd00659	Reversible	c	-1000	1000	0		
+o2_to_h2o	Free Oxygen + H2 to water: O2 + (2)H2 ==> H2O	[c] : (2) cpd11640 + cpd00007 --> (2) cpd00001	Irreversible	c	0	0	0		
+PAPS_to_Sulfite	"PAPS to Sulfite, via reduced thioredoxin"	[c] : cpd11421 + cpd00044 --> cpd11420 + cpd00081 + cpd00988	Irreversible	c	0	1000	0		
+PASYN_EC	Phosphatidic acid synthase (Ecoli)	[c] : cpd00080 + (0.322) cpd15239 + (0.208) cpd11466 + (0.373) cpd11825 + (0.982) cpd15277 + (0.115) cpd15294 --> (2) cpd11493 + (0.02) pa_EC	Irreversible	c	0	1000	0		
+PEPT_EC	ethanolamine phosphotransferase (Ecoli)	[c] : cpd00046 + cpd00067 + (0.02) cpd15653 <==> (0.02) 12dgr_EC + cpd00444	Reversible	c	-1000	1000	0		
+PGPP_EC	Phosphatidylglycerol phosphate phosphatase (Ecoli)	[c] : cpd00001 + (0.02) pgp_EC --> (0.02) cpd15655 + cpd00009	Irreversible	c	0	1000	0		
+PGSA_EC	Phosphatidylglycerol synthase (Ecoli)	[c] : (0.02) cpd16066 + cpd00080 <==> cpd00046 + cpd00067 + (0.02) pgp_EC	Reversible	c	-1000	1000	0		
+PSD_EC	Phosphatidylserine decarboxylase (Ecoli)	[c] : cpd00067 + (0.02) cpd15657 --> cpd00011 + (0.02) cpd15653	Irreversible	c	0	1000	0		
+PSSA_EC	Phosphatidylserine syntase (Ecoli)	[c] : (0.02) cpd16066 + cpd00054 <==> cpd00046 + cpd00067 + (0.02) cpd15657	Reversible	c	-1000	1000	0		
+Pyrite_aerobic_diss	Pyrite (FeS2) Spontaneous Dissolution (aerobic)	[e] : pyrite + (2.9) cpd00007 + (0.6) cpd00001 --> cpd10515 + (0.4) cpd00074 + (1.6) cpd00048 + (1.2) cpd00067	Irreversible	e	0	1000	0		
+Pyrite_anaerobic_diss	Pyrite (FeS2) Spontaneous Dissolution (anaerobic)	[e] : pyrite + (8) cpd00001 + (14) cpd10516 --> (15) cpd10515 + (2) cpd00048 + (16) cpd00067	Irreversible	e	0	1000	0		
+rxn00001	Pyrophosphate phosphohydrolase	[c] : cpd00012 + cpd00001 --> (2) cpd00067 + (2) cpd00009	Irreversible	c	0	1000	0		
+rxn00002	Urea-1-carboxylate amidohydrolase	[c] : (3) cpd00067 + cpd00001 + cpd00742 --> (2) cpd00011 + (2) cpd00013	Irreversible	c	0	1000	0		
+rxn00006	hydrogen-peroxide hydrogen-peroxide oxidoreductase	[c] : (2) cpd00025 --> (2) cpd00001 + cpd00007	Irreversible	c	0	0	0		
+rxn00011	pyruvate thiamin diphosphate acetaldehydetransferase	[c] : cpd00067 + cpd00020 + cpd00056 --> cpd00011 + cpd03049	Irreversible	c	0	1000	0		
+rxn00014	Ferrocytochrome-c:hydrogen-peroxide oxidoreductase (EC 1.11.1.5)	[c] : cpd00025 + (2) cpd00067 + (2) cpd00110 <==> (2) cpd00001 + (2) cpd00109	Reversible	c	-1000	1000	0		
+rxn00018	D-Ribulose 1 5-bisphosphate carboxy-lyase dimerizing	[c] : cpd00001 + cpd00011 + cpd00871 <==> (2) cpd00067 + (2) cpd00169	Reversible	c	0	1000	0		
+rxn00029	5-Aminolevulinate hydro-lyaseadding 5-aminolevulinate and	[c] : (2) cpd00338 --> cpd00067 + (2) cpd00001 + cpd00689	Irreversible	c	0	1000	0		
+rxn00048	6 7-Dimethyl-8-1-D-ribityllumazine 6 7-dimethyl-8-1-D-ribityl	[c] : (2) cpd02656 --> cpd02882 + cpd00220	Irreversible	c	0	1000	0		
+rxn00058_Irreversible	Ferrocytochrome-c oxygen oxidoreductase Irreversible	[c] : (4) cpd00067 + cpd00007 + (4) cpd00110 --> (2) cpd00001 + (4) cpd00109	Irreversible	c	0	1000	0		
+rxn00060	Porphobilinogen ammonia-lyase polymerizing	[c] : cpd00001 + (4) cpd00689 --> (4) cpd00013 + cpd00755	Irreversible	c	0	1000	0		
+rxn00062	ATP phosphohydrolase protein-secreting	[c] : cpd00002 + cpd00001 --> cpd00067 + cpd00009 + cpd00008	Irreversible	c	0	1000	0		
+rxn00065	ATP pyrophosphate-lyase cyclizing	[c] : cpd00002 --> cpd00446 + cpd00012	Irreversible	c	0	1000	0		
+rxn00077	ATP NAD 2'-phosphotransferase	[c] : cpd00002 + cpd00003 <==> cpd00008 + cpd00006	Reversible	c	-1000	1000	0		
+rxn00083	NADPH:NAD+ oxidoreductase (B-specific)	[c] : cpd00003 + cpd00005 --> cpd00004 + cpd00006	Irreversible	c	-1000	1000	0		
+rxn00085_GLUSy	L-Glutamate NADP oxidoreductase transaminating	[c] : cpd00067 + cpd00053 + cpd00005 + cpd00024 --> (2) cpd00023 + cpd00006	Irreversible	c	0	1000	0		
+rxn00095	P1 P4-Bis5'-nucleosyl-tetraphosphate nucleotidebisphosphohydrolase	[c] : cpd00001 + cpd00924 --> (2) cpd00008	Irreversible	c	0	1000	0		
+rxn00097	ATP AMP phosphotransferase	[c] : cpd00002 + cpd00018 <==> (2) cpd00008	Reversible	c	-1000	1000	0		
+rxn00100	ATP dephospho-CoA 3'-phosphotransferase	[c] : cpd00002 + cpd00655 --> cpd00008 + cpd00010	Irreversible	c	0	1000	0		
+rxn00102	Carbonic acid hydro-lyase	[c] : cpd00067 + cpd00242 <==> cpd00001 + cpd00011	Reversible	c	-1000	1000	0		
+rxn00105	ATP nicotinamide-nucleotide adenylyltransferase	[c] : cpd00002 + cpd00355 <==> cpd00012 + cpd00003	Reversible	c	-1000	1000	0		
+rxn00117	ATP nucleoside-diphosphate phosphatransferase	[c] : cpd00002 + cpd00014 <==> cpd00008 + cpd00062	Reversible	c	-1000	1000	0		
+rxn00119_URIDK1	ATP nucleoside-phosphate phosphotransferase	[c] : cpd00002 + cpd00091 --> cpd00008 + cpd00014	Irreversible	c	0	1000	0		
+rxn00122	ATP FMN adenylyltransferase	[c] : cpd00002 + cpd00050 --> cpd00012 + cpd00015	Irreversible	c	0	1000	0		
+rxn00126	ATP L-methione S-adenosyltransferase	[c] : cpd00002 + cpd00001 + cpd00060 --> cpd00012 + cpd00009 + cpd00017	Irreversible	c	0	1000	0		
+rxn00132	Adenosine 5'-monophosphate phosphohydrolase	[c] : cpd00018 + cpd00001 --> cpd00067 + cpd00009 + cpd00182	Irreversible	c	0	1000	0		
+rxn00138	Deamino-NAD ammonia ligase AMP-forming	[c] : cpd00002 + cpd00013 + cpd00638 --> cpd00012 + cpd00018 + cpd00003	Irreversible	c	0	1000	0		
+rxn00141	S-Adenosyl-L-homocysteine hydrolase	[c] : cpd00001 + cpd00019 <==> cpd00135 + cpd00182	Reversible	c	-1000	1000	0		
+rxn00147	ATP pyruvate water phosphotransferase	[c] : cpd00002 + cpd00001 + cpd00020 --> cpd00067 + cpd00018 + cpd00009 + cpd00061	Irreversible	c	0	1000	0		
+rxn00148	ATP pyruvate O2-phosphotransferase	[c] : cpd00002 + cpd00020 <==> cpd00061 + cpd00008	Reversible	c	-1000	1000	0		
+rxn00151	ATP pyruvate orthophosphate phosphotransferase	[c] : cpd00002 + cpd00067 + cpd00009 + cpd00020 <==> cpd00012 + cpd00018 + cpd00061	Reversible	c	-1000	1000	0		
+rxn00161	S-Malate NADP oxidoreductaseoxaloacetate-decarboxylating	[c] : cpd00006 + cpd00130 --> cpd00020 + cpd00011 + cpd00005	Irreversible	c	0	1000	0		
+rxn00175	Acetate CoA ligase AMP-forming	[c] : cpd00002 + cpd00067 + cpd00010 + cpd00029 <==> cpd00012 + cpd00018 + cpd00022	Reversible	c	-1000	1000	0		
+rxn00179	ATP L-glutamate 5-phosphotransferase	[c] : cpd00002 + cpd00067 + cpd00023 <==> cpd00008 + cpd02097	Reversible	c	-1000	1000	0		
+rxn00187	L-Glutamate ammonia ligase ADP-forming	[c] : cpd00002 + cpd00023 + cpd00013 --> cpd00067 + cpd00009 + cpd00008 + cpd00053	Irreversible	c	0	1000	0		
+rxn00190	Deamido-NAD L-glutamine amido-ligase AMP-forming	[c] : cpd00002 + cpd00001 + cpd00053 + cpd00638 --> cpd00012 + cpd00018 + cpd00023 + cpd00003	Irreversible	c	0	1000	0		
+rxn00192	Acetyl-CoA L-glutamate N-acetyltransferase	[c] : cpd00023 + cpd00022 --> cpd00067 + cpd00010 + cpd00477	Irreversible	c	0	1000	0		
+rxn00193	L-Glutamate racemase	[c] : cpd00023 <==> cpd00186	Reversible	c	-1000	1000	0		
+rxn00199	Oxalosuccinate NADP oxidoreductase decarboxylating	[c] : cpd00067 + cpd03187 --> cpd00011 + cpd00024	Irreversible	c	0	1000	0		
+rxn00206	Superoxide superoxide oxidoreductase	[c] : (2) cpd00532 --> cpd00007 + cpd00025	Irreversible	c	0	1000	0		
+rxn00211	UDPglucose NAD oxidoreductase	[c] : cpd00001 + (2) cpd00003 + cpd00026 <==> (3) cpd00067 + (2) cpd00004 + cpd00144	Reversible	c	-1000	1000	0		
+rxn00212	UDPglucose pyrophosphohydrolase	[c] : cpd00001 + cpd00026 --> cpd00089 + cpd00091	Irreversible	c	0	1000	0		
+rxn00213	UTP alpha-D-glucose-1-phosphate uridylyltransferase	[c] : cpd00089 + cpd00062 <==> cpd00012 + cpd00026	Reversible	c	-1000	1000	0		
+rxn00214	UDPglucose 4-epimerase	[c] : cpd00026 <==> cpd00043	Reversible	c	-1000	1000	0		
+rxn00216	ATP D-glucose 6-phosphotransferase	[c] : cpd00002 + cpd00027 <==> cpd00079 + cpd00008	Reversible	c	-1000	1000	0		
+rxn00224	Protoporphyrin ferro-lyase	[c] : cpd01476 + cpd10515 <==> (2) cpd00067 + cpd00028	Reversible	c	-1000	1000	0		
+rxn00225	ATP acetate phosphotransferase	[c] : cpd00002 + cpd00067 + cpd00029 <==> cpd00008 + cpd00196	Reversible	c	-1000	1000	0		
+rxn00227	Acetyl phosphate phosphohydrolase	[c] : cpd00001 + cpd00196 --> (2) cpd00067 + cpd00009 + cpd00029	Irreversible	c	0	1000	0		
+rxn00237	ATP nucleoside-diphosphate phosphatransferase	[c] : cpd00002 + cpd00031 <==> cpd00008 + cpd00038	Reversible	c	-1000	1000	0		
+rxn00239	ATP dGMP phosphotransferase	[c] : cpd00002 + cpd00126 <==> cpd00008 + cpd00031	Reversible	c	-1000	1000	0		
+rxn00242	Guanosine-3' 5'-bisdiphosphate 3'-pyrophosphohydrolase	[c] : cpd00001 + cpd00905 --> cpd00012 + cpd00031	Irreversible	c	0	1000	0		
+rxn00250	Pyruvate carbon-dioxide ligase ADP-forming	[c] : cpd00002 + cpd00020 + cpd00242 <==> cpd00067 + cpd00009 + cpd00008 + cpd00032	Reversible	c	-1000	1000	0		
+rxn00251	Orthophosphate oxaloacetate carboxyl-lyase phosphorylating	[c] : (2) cpd00067 + cpd00009 + cpd00032 <==> cpd00001 + cpd00061 + cpd00011	Reversible	c	-1000	1000	0		
+rxn00256	Citrate oxaloacetate-lyase pro-3S-CH2COO- -> acetyl-CoA	[c] : cpd00001 + cpd00022 + cpd00032 --> cpd00067 + cpd00010 + cpd00137	Irreversible	c	0	1000	0		
+rxn00260	L-Aspartate 2-oxoglutarate aminotransferase	[c] : cpd00041 + cpd00024 <==> cpd00023 + cpd00032	Reversible	c	-1000	1000	0		
+rxn00262	L-Aspartic acid oxygen oxidoreductase deaminating	[c] : cpd00001 + cpd00007 + cpd00041 --> cpd00013 + cpd00025 + cpd00032	Irreversible	c	0	1000	0		
+rxn00269	Aminoacetic acid oxygen oxidoreductase deaminating	[c] : cpd00001 + cpd00007 + cpd00033 --> cpd00013 + cpd00040 + cpd00025	Irreversible	c	0	1000	0		
+rxn00272	L-Alanine glyoxylate aminotransferase	[c] : cpd00040 + cpd00035 <==> cpd00020 + cpd00033	Reversible	c	-1000	1000	0		
+rxn00274	Succinyl-CoA glycine C-succinyl-transferasedecarboxylating	[c] : cpd00022 + cpd00033 <==> cpd00010 + cpd02211	Reversible	c	-1000	1000	0		
+rxn00278_ALAD_L	L-Alanine NAD oxidoreductase deaminating	[c] : cpd00001 + cpd00003 + cpd00035 --> cpd00067 + cpd00020 + cpd00004 + cpd00013	Irreversible	c	0	1000	0		
+rxn00283	L-Alanine racemase	[c] : cpd00035 <==> cpd00117	Reversible	c	-1000	1000	0		
+rxn00285	Succinate CoA ligase ADP-forming	[c] : cpd00002 + cpd00010 + cpd00036 <==> cpd00009 + cpd00008 + cpd00078	Reversible	c	-1000	1000	0		
+rxn00288_SUCD1i	Succinate acceptor oxidoreductase	[c] : cpd00036 + cpd00015 --> cpd00982 + cpd00106	Irreversible	c	0	1000	0		
+rxn00291	N-succinyl-L-glutamate amidohydrolase	[c] : cpd00001 + cpd03525 <==> cpd00023 + cpd00036	Reversible	c	-1000	1000	0		
+rxn00292	UDP-N-acetyl-D-glucosamine 2-epimerase	[c] : cpd00001 + cpd00037 <==> cpd00014 + cpd00492	Reversible	c	-1000	1000	0		
+rxn00293	UTP N-acetyl-alpha-D-glucosamine-1-phosphate uridylyltransferase	[c] : cpd00062 + cpd02611 <==> cpd00012 + cpd00037	Reversible	c	-1000	1000	0		
+rxn00295	UDP-N-acetyl-D-glucosamine 4-epimerase	[c] : cpd00037 <==> cpd00175	Reversible	c	-1000	1000	0		
+rxn00297	UDP-N-acetyl-D-glucosamine 2-epimerase	[c] : cpd00037 <==> cpd00861	Reversible	c	-1000	1000	0		
+rxn00299	GTP 7 8-8 9-dihydrolase	[c] : cpd00001 + cpd00038 --> cpd00067 + cpd02978 + cpd00047	Irreversible	c	0	1000	0		
+rxn00300	GTP 7 8-8 9-dihydrolase pyrophosphate-forming	[c] : (3) cpd00001 + cpd00038 --> cpd00012 + cpd00067 + cpd00047 + cpd00957	Irreversible	c	0	1000	0		
+rxn00302	GTP 7 8-8 9-dihydrolase	[c] : cpd00001 + cpd00038 --> cpd03518	Irreversible	c	0	1000	0		
+rxn00303	ATP GTP 3'-pyrophosphotransferase	[c] : cpd00002 + cpd00038 <==> cpd00018 + cpd02740	Reversible	c	-1000	1000	0		
+rxn00313	meso-2 6-Diaminoheptanedioate carboxy-lyase	[c] : cpd00067 + cpd00516 --> cpd00011 + cpd00039	Irreversible	c	0	1000	0		
+rxn00322	L-Lysine carboxy-lyase	[c] : cpd00067 + cpd00039 --> cpd00011 + cpd01155	Irreversible	c	0	1000	0		
+rxn00333	S-2-Hydroxy-acid oxygen 2-oxidoreductase	[c] : cpd00007 + cpd00139 --> cpd00040 + cpd00025	Irreversible	c	0	1000	0		
+rxn00337	ATP L-aspartate 4-phosphotransferase	[c] : cpd00002 + cpd00067 + cpd00041 <==> cpd00008 + cpd01977	Reversible	c	-1000	1000	0		
+rxn00338	L-aspartate oxidase	[c] : cpd00007 + cpd00041 --> cpd00067 + cpd00025 + cpd03470	Irreversible	c	0	1000	0		
+rxn00346	L-Aspartate 1-carboxy-lyase	[c] : cpd00067 + cpd00041 --> cpd00011 + cpd00085	Irreversible	c	0	1000	0		
+rxn00350	glutathione hydralase periplasmic	[c] : cpd00001 + cpd00042 <==> cpd00023 + cpd01017	Reversible	c	-1000	1000	0		
+rxn00351	gamma-L-Glutamyl-L-cysteine glycine ligase ADP-forming	[c] : cpd00002 + cpd00033 + cpd00506 --> cpd00067 + cpd00009 + cpd00008 + cpd00042	Irreversible	c	0	1000	0		
+rxn00355	UTP alpha-D-hexose-1-phosphate uridylyltransferase	[c] : cpd00062 + cpd00348 <==> cpd00012 + cpd00043	Reversible	c	-1000	1000	0		
+rxn00361	ATP adenylylsulfate 3'-phosphotransferase	[c] : cpd00002 + cpd00193 <==> cpd00008 + cpd00044	Reversible	c	-1000	1000	0		
+rxn00363	Cytidine-5'-monophosphate phosphohydrolase	[c] : cpd00001 + cpd00046 --> cpd00067 + cpd00009 + cpd00367	Irreversible	c	0	1000	0		
+rxn00364	ATP CMP phosphotransferase	[c] : cpd00002 + cpd00046 <==> cpd00008 + cpd00096	Reversible	c	-1000	1000	0		
+rxn00379	ATP sulfate adenylyltransferase	[c] : cpd00002 + cpd00067 + cpd00048 <==> cpd00012 + cpd00193	Reversible	c	-1000	1000	0		
+rxn00392	ATP riboflavin 5'-phosphotransferase	[c] : cpd00002 + cpd00220 <==> cpd00008 + cpd00050	Reversible	c	-1000	1000	0		
+rxn00394	L-Arginine amidinohydrolase	[c] : cpd00001 + cpd00051 <==> cpd00073 + cpd00064	Reversible	c	-1000	1000	0		
+rxn00405	L-Arginine carboxy-lyase	[c] : cpd00067 + cpd00051 --> cpd00011 + cpd00152	Irreversible	c	0	1000	0		
+rxn00407	CTP aminohydrolase	[c] : cpd00067 + cpd00001 + cpd00052 --> cpd00013 + cpd00062	Irreversible	c	0	1000	0		
+rxn00409	ATP nucleoside-diphosphate phosphatransferase	[c] : cpd00002 + cpd00096 <==> cpd00008 + cpd00052	Reversible	c	-1000	1000	0		
+rxn00410	UTP ammonia ligaseADP-forming	[c] : cpd00002 + cpd00013 + cpd00062 <==> (2) cpd00067 + cpd00009 + cpd00008 + cpd00052	Reversible	c	-1000	1000	0		
+rxn00412	UTP ammonia ligaseADP-forming	[c] : cpd00002 + cpd00001 + cpd00053 + cpd00062 --> (2) cpd00067 + cpd00009 + cpd00008 + cpd00023 + cpd00052	Irreversible	c	0	1000	0		
+rxn00414	Carbon-dioxide L-glutamine amido-ligase ADP-forming	[c] : (2) cpd00002 + cpd00001 + cpd00053 + cpd00242 --> cpd00067 + cpd00009 + (2) cpd00008 + cpd00023 + cpd00146	Irreversible	c	0	1000	0		
+rxn00416	L-aspartate L-glutamine amido-ligase AMP-forming	[c] : cpd00002 + cpd00001 + cpd00053 + cpd00041 --> cpd00012 + cpd00018 + cpd00023 + cpd00132	Irreversible	c	0	1000	0		
+rxn00420	L-O-Phosphoserine phosphohydrolase	[c] : cpd00001 + cpd00738 --> cpd00067 + cpd00009 + cpd00054	Irreversible	c	0	1000	0		
+rxn00422	L-Serine pyruvate aminotransferase	[c] : cpd00020 + cpd00054 <==> cpd00035 + cpd00145	Reversible	c	-1000	1000	0		
+rxn00423_SERAT	serine O-acetyltransferase	[c] : cpd00022 + cpd00054 <==> cpd00010 + cpd00722	Reversible	c	-1000	1000	0		
+rxn00438	ATP thiamin-phosphate phosphotransferase	[c] : cpd00002 + cpd00793 <==> cpd00008 + cpd00056	Reversible	c	-1000	1000	0		
+rxn00440	ATP thiamin pyrophosphotransferase	[c] : cpd00002 + cpd00305 <==> cpd00018 + cpd00056	Reversible	c	-1000	1000	0		
+rxn00441	2-Oxoglutarate Thiamin diphosphate 2-oxidoreductasedecarboxylating	[c] : cpd00067 + cpd00056 + cpd00024 --> cpd00011 + cpd03189	Irreversible	c	0	1000	0		
+rxn00459	2-Phospho-D-glycerate hydro-lyase	[c] : cpd00482 <==> cpd00001 + cpd00061	Reversible	c	-1000	1000	0		
+rxn00461	Phosphoenolpyruvate UDP-N-acetyl-D-glucosamine	[c] : cpd00061 + cpd00037 <==> cpd00067 + cpd00009 + cpd02820	Reversible	c	-1000	1000	0		
+rxn00470	L-Ornithine carboxy-lyase	[c] : cpd00067 + cpd00064 --> cpd00011 + cpd00118	Irreversible	c	0	1000	0		
+rxn00474	L-Serine hydro-lyase adding indoleglycerol-phosphate	[c] : cpd00054 + cpd00359 <==> cpd00001 + cpd00065	Reversible	c	-1000	1000	0		
+rxn00493	L-Phenylalanine 2-oxoglutarate aminotransferase	[c] : cpd00024 + cpd00066 <==> cpd00023 + cpd00143	Reversible	c	-1000	1000	0		
+rxn00499	(S)-Lactate:NAD+ oxidoreductase (EC 1.1.1.27)	[c] : cpd00003 + cpd00159 <==> cpd00004 + cpd00020 + cpd00067	Reversible	c	-1000	1000	0		
+rxn00515	ATP nucleoside-diphosphate phosphatransferase	[c] : cpd00002 + cpd00090 <==> cpd00008 + cpd00068	Reversible	c	-1000	1000	0		
+rxn00527	L-Tyrosine 2-oxoglutarate aminotransferase	[c] : cpd00024 + cpd00069 <==> cpd00023 + cpd00868	Reversible	c	-1000	1000	0		
+rxn00543	Ethanol NAD oxidoreductase	[c] : cpd00003 + cpd00363 <==> cpd00067 + cpd00004 + cpd00071	Reversible	c	-1000	1000	0		
+rxn00545	ATP D-fructose-6-phosphate 1-phosphotransferase	[c] : cpd00002 + cpd00072 <==> cpd00008 + cpd00290	Reversible	c	-1000	1000	0		
+rxn00548	D-Fructose-6-phosphate D-erythrose-4-phosphate-lyase	[c] : cpd00067 + cpd00009 + cpd00072 <==> cpd00001 + cpd00236 + cpd00196	Reversible	c	-1000	1000	0		
+rxn00549	D-Fructose-1 6-bisphosphate 1-phosphohydrolase	[c] : cpd00001 + cpd00290 --> cpd00067 + cpd00009 + cpd00072	Irreversible	c	0	1000	0		
+rxn00555_GF6PTA	L-Glutamine D-fructose-6-phosphate aminotransferase hexose	[c] : cpd00072 + cpd00053 --> cpd00288 + cpd00023	Irreversible	c	0	1000	0		
+rxn00558	D-Glucose-6-phosphate ketol-isomerase	[c] : cpd00079 <==> cpd00072	Reversible	c	-1000	1000	0		
+rxn00567	Ferrocytochrome-c oxygen oxidoreductase	[c] : cpd00001 + cpd00109 + cpd00418 <==> (2) cpd00067 + cpd00075 + cpd00110	Reversible	c	-1000	1000	0		
+rxn00604_G6PDH	D-Glucose-6-phosphate NADP 1-oxoreductase	[c] : cpd00079 + cpd00006 --> cpd00067 + cpd00005 + cpd00911	Irreversible	c	0	1000	0		
+rxn00605	UDPglucose D-glucose-6-phosphate 1-alpha-D-glucosyltransferase	[c] : cpd00079 + cpd00026 <==> cpd00523 + cpd00014	Reversible	c	-1000	1000	0		
+rxn00611	sn-Glycerol-3-phosphate NAD 2-oxidoreductase	[c] : cpd00003 + cpd00080 <==> cpd00067 + cpd00095 + cpd00004	Reversible	c	-1000	1000	0		
+rxn00612	sn-Glycerol-3-phosphate NADP 2-oxidoreductase	[c] : cpd00080 + cpd00006 <==> cpd00067 + cpd00095 + cpd00005	Reversible	c	-1000	1000	0		
+rxn00640	GDP D-mannose-1-phosphate guanylyltransferase	[c] : cpd00031 + cpd00485 <==> cpd00067 + cpd00009 + cpd00083	Reversible	c	-1000	1000	0		
+rxn00649	O3-Acetyl-L-serine acetate-lyase adding hydrogen sulfide	[c] : cpd00239 + cpd00722 --> cpd00067 + cpd00084 + cpd00029	Irreversible	c	0	1000	0		
+rxn00650	membrane alanyl aminopeptidase	[c] : cpd00001 + cpd01017 <==> cpd00084 + cpd00033	Reversible	c	-1000	1000	0		
+rxn00669_ACCOAL	Propanoate CoA ligase ADP-forming	[c] : cpd00002 + cpd00010 + cpd00141 --> cpd00009 + cpd00008 + cpd00086	Irreversible	c	0	1000	0		
+rxn00675	Propinol adenylate CoA ligase AMP-forming	[c] : cpd00010 + cpd03560 --> cpd00018 + cpd00086	Irreversible	c	0	1000	0		
+rxn00686	5 6 7 8-Tetrahydrofolate NADP oxidoreductase	[c] : cpd00006 + cpd00087 <==> cpd00067 + cpd00005 + cpd00330	Reversible	c	-1000	1000	0		
+rxn00689	Tetrahydrofolate L-glutamate gamma-ligase ADP-forming	[c] : cpd00002 + cpd00023 + cpd00087 --> cpd00067 + cpd00009 + cpd00008 + cpd06227	Irreversible	c	0	1000	0		
+rxn00691	10-Formyltetrahydrofolate amidohydrolase	[c] : cpd00001 + cpd00201 --> cpd00067 + cpd00047 + cpd00087	Irreversible	c	0	1000	0		
+rxn00692_GHMT2	5 10-Methylenetetrahydrofolate glycine hydroxymethyltransferase	[c] : cpd00054 + cpd00087 --> cpd00001 + cpd00033 + cpd00125	Irreversible	c	0	1000	0		
+rxn00693	5-Methyltetrahydrofolate L-homocysteine S-methyltransferase	[c] : cpd00135 + cpd00345 <==> cpd00060 + cpd00087	Reversible	c	-1000	1000	0		
+rxn00695	ATP alpha-D-glucose-1-phosphate adenyltransferase	[c] : cpd00002 + cpd00089 <==> cpd00012 + cpd00387	Reversible	c	-1000	1000	0		
+rxn00702	CTP D-glucose-1-phosphate cytidylyltransferase	[c] : cpd00089 + cpd00052 <==> cpd00012 + cpd00390	Reversible	c	-1000	1000	0		
+rxn00704	alpha-D-Glucose 1-phosphate 1 6-phosphomutase	[c] : cpd00089 <==> cpd00079	Reversible	c	-1000	1000	0		
+rxn00707	ITP cytidine 5'-phosphotransferase	[c] : cpd00367 + cpd00068 <==> cpd00046 + cpd00090	Reversible	c	-1000	1000	0		
+rxn00708	Uridine 5'-monophosphate phosphohydrolase	[c] : cpd00001 + cpd00091 --> cpd00067 + cpd00009 + cpd00249	Irreversible	c	0	1000	0		
+rxn00710	Orotidine-5'-phosphate carboxy-lyase	[c] : cpd00067 + cpd00810 --> cpd00011 + cpd00091	Irreversible	c	0	1000	0		
+rxn00711	UMP pyrophosphate phosphoribosyltransferase	[c] : cpd00103 + cpd00092 --> cpd00012 + cpd00091	Irreversible	c	0	1000	0		
+rxn00726	Chorismate pyruvate-lyase amino-accepting	[c] : cpd00013 + cpd00216 --> cpd00067 + cpd00001 + cpd00020 + cpd00093	Irreversible	c	0	1000	0		
+rxn00727	Chorismate pyruvate-lyase amino-accepting	[c] : cpd00053 + cpd00216 --> cpd00067 + cpd00020 + cpd00023 + cpd00093	Irreversible	c	0	1000	0		
+rxn00737	L-threonine ammonia-lyase	[c] : cpd00161 --> cpd00013 + cpd00094	Irreversible	c	0	1000	0		
+rxn00745	Phosphoenolpyruvate glycerone phosphotransferase	[c] : cpd00061 + cpd00157 <==> cpd00020 + cpd00095	Reversible	c	-1000	1000	0		
+rxn00747	D-Glyceraldehyde-3-phosphate ketol-isomerase	[c] : cpd00102 <==> cpd00095	Reversible	c	-1000	1000	0		
+rxn00756	Choline sulfate sulfohydrolase	[c] : cpd00001 + cpd00681 --> cpd00067 + cpd00098 + cpd00048	Irreversible	c	0	1000	0		
+rxn00758	sn-Glycero-3-phosphocholine glycerophosphohydrolase	[c] : cpd00001 + cpd00507 <==> cpd00080 + cpd00098	Reversible	c	-1000	1000	0		
+rxn00763	Glycerol NAD oxidoreductase	[c] : cpd00003 + cpd00100 <==> cpd00067 + cpd00004 + cpd00448	Reversible	c	-1000	1000	0		
+rxn00770	ATP D-ribose-5-phosphate pyrophosphotransferase	[c] : cpd00002 + cpd00101 <==> cpd00018 + cpd00103	Reversible	c	-1000	1000	0		
+rxn00775	ADPribose ribophosphohydrolase	[c] : cpd00001 + cpd00251 --> cpd00018 + cpd00101	Irreversible	c	0	1000	0		
+rxn00776	Uracil hydro-lyase adding D-ribose 5-phosphate	[c] : cpd00092 + cpd00101 <==> cpd00001 + cpd00859	Reversible	c	-1000	1000	0		
+rxn00777	D-Ribose-5-phosphate ketol-isomerase	[c] : cpd00101 <==> cpd00171	Reversible	c	-1000	1000	0		
+rxn00781	D-Glyceraldehyde-3-phosphate NAD oxidoreductasephosphorylating	[c] : cpd00009 + cpd00102 + cpd00003 <==> cpd00004 + cpd00203	Reversible	c	-1000	1000	0		
+rxn00782	D-Glyceraldehyde-3-phosphate NADP oxidoreductasephosphorylating	[c] : cpd00005 + cpd00203 --> cpd00009 + cpd00102 + cpd00006	Irreversible	c	0	1000	0		
+rxn00785	D-Fructose 6-phosphate D-glyceraldehyde-3-phosphate glycolaldehyde	[c] : cpd00072 + cpd00102 <==> cpd00236 + cpd00198	Reversible	c	-1000	1000	0		
+rxn00786	D-Fructose-1 6-bisphosphate D-glyceraldehyde-3-phosphate-lyase	[c] : cpd00290 <==> cpd00095 + cpd00102	Reversible	c	-1000	1000	0		
+rxn00789	1-5-Phospho-D-ribosyl-ATP pyrophosphate phosphoribosyl-transferase	[c] : cpd00002 + cpd00103 --> cpd00012 + cpd01775	Irreversible	c	0	1000	0		
+rxn00790	5-Phosphoribosylamine pyrophosphate phosphoribosyltransferase	[c] : cpd00001 + cpd00053 + cpd00103 --> cpd00012 + cpd00023 + cpd01982	Irreversible	c	0	1000	0		
+rxn00791	N-5-Phospho-D-ribosylanthranilate pyrophosphate	[c] : cpd00103 + cpd00093 --> cpd00012 + cpd02642	Irreversible	c	0	1000	0		
+rxn00792_BACCL	Biotin CoA ligase AMP-forming	[c] : cpd00002 + cpd00067 + cpd00104 --> cpd00012 + cpd03517	Irreversible	c	0	1000	0		
+rxn00799	S-Malate hydro-lyase	[c] : cpd00130 <==> cpd00001 + cpd00106	Reversible	c	-1000	1000	0		
+rxn00800	N6-1 2-DicarboxyethylAMP AMP-lyase	[c] : cpd02375 <==> cpd00018 + cpd00106	Reversible	c	-1000	1000	0		
+rxn00802	N-L-Argininosuccinate arginie-lyase	[c] : cpd02152 <==> cpd00051 + cpd00106	Reversible	c	-1000	1000	0		
+rxn00806_LEUTAi	L-Leucine 2-oxoglutarate aminotransferase	[c] : cpd00023 + cpd00200 --> cpd00024 + cpd00107	Irreversible	c	0	1000	0		
+rxn00831	Inosine 5'-monophosphate phosphohydrolase	[c] : cpd00001 + cpd00114 --> cpd00067 + cpd00009 + cpd00246	Irreversible	c	0	1000	0		
+rxn00832	IMP 1 2-hydrolase decyclizing	[c] : cpd00001 + cpd00114 <==> cpd02884	Reversible	c	-1000	1000	0		
+rxn00834_IMPD	IMP NAD oxidoreductase	[c] : cpd00001 + cpd00003 + cpd00114 --> cpd00067 + cpd00004 + cpd00497	Irreversible	c	0	1000	0		
+rxn00836	IMP pyrophosphate phosphoribosyltransferase	[c] : cpd00103 + cpd00226 --> cpd00012 + cpd00114	Irreversible	c	0	1000	0		
+rxn00838	IMP L-aspartate ligase GDP-forming	[c] : cpd00114 + cpd00041 + cpd00038 --> (2) cpd00067 + cpd00009 + cpd00031 + cpd02375	Irreversible	c	0	1000	0		
+rxn00839	ATP nucleoside-diphosphate phosphatransferase	[c] : cpd00002 + cpd00177 <==> cpd00008 + cpd00115	Reversible	c	-1000	1000	0		
+rxn00849	D-Alanine 2-oxoglutarate aminotransferase	[c] : cpd00117 + cpd00024 <==> cpd00020 + cpd00186	Reversible	c	-1000	1000	0		
+rxn00851_ALAALA	D-AlanineD-Alanine ligase ADP-forming	[c] : cpd00002 + (2) cpd00117 <==> cpd00067 + cpd00009 + cpd00008 + cpd00731	Reversible	c	-1000	1000	0		
+rxn00863	L-Histidinal NAD oxidoreductase	[c] : cpd00001 + cpd00003 + cpd01324 <==> (2) cpd00067 + cpd00004 + cpd00119	Reversible	c	-1000	1000	0		
+rxn00881	myo-Inositol 1-phosphate phosphahydrolase	[c] : cpd00001 + cpd00867 --> cpd00067 + cpd00009 + cpd00121	Irreversible	c	0	1000	0		
+rxn00882	myo-Inositol 4-phosphate phosphahydrolase	[c] : cpd00001 + cpd02230 --> cpd00067 + cpd00009 + cpd00121	Irreversible	c	0	1000	0		
+rxn00883	1D-myo-Inositol 3-phosphate phosphahydrolase	[c] : cpd00001 + cpd02484 --> cpd00067 + cpd00009 + cpd00121	Irreversible	c	0	1000	0		
+rxn00898	2 3-Dihydroxy-3-methylbutanoate hydro-lyase	[c] : cpd02498 --> cpd00001 + cpd00123	Irreversible	c	0	1000	0		
+rxn00902	3-Carboxy-3-hydroxy-4-methylpentanoate 3-methyl-2-oxobutanoate-lyase	[c] : cpd00001 + cpd00123 + cpd00022 --> cpd00067 + cpd00010 + cpd01646	Irreversible	c	0	1000	0		
+rxn00903	L-Valine 2-oxoglutarate aminotransferase	[c] : cpd00024 + cpd00156 <==> cpd00023 + cpd00123	Reversible	c	-1000	1000	0		
+rxn00907	5 10-methylenetetrahydrofolate NADP oxidoreductase	[c] : cpd00006 + cpd00125 <==> cpd00005 + cpd00347	Reversible	c	-1000	1000	0		
+rxn00910	5-methyltetrahydrofolate NADP oxidoreductase	[c] : cpd00006 + cpd00345 <==> cpd00067 + cpd00005 + cpd00125	Reversible	c	-1000	1000	0		
+rxn00912_MOHMT	5 10-Methylenetetrahydrofolate 3-methyl-2-oxobutanoate	[c] : cpd00001 + cpd00123 + cpd00125 --> cpd00087 + cpd00712	Irreversible	c	0	1000	0		
+rxn00913	Guanosine 5'-monophosphate phosphohydrolase	[c] : cpd00001 + cpd00126 --> cpd00067 + cpd00009 + cpd00311	Irreversible	c	0	1000	0		
+rxn00915	GMP pyrophosphate phosphoribosyltransferase	[c] : cpd00103 + cpd00207 --> cpd00012 + cpd00126	Irreversible	c	0	1000	0		
+rxn00917	Xanthosine-5'-phosphate L-glutamine amido-ligase AMP-forming	[c] : cpd00002 + cpd00001 + cpd00053 + cpd00497 --> cpd00012 + cpd00067 + cpd00018 + cpd00023 + cpd00126	Irreversible	c	0	1000	0		
+rxn00929	L-Proline NAD 5-oxidoreductase	[c] : cpd00003 + cpd00129 <==> cpd00067 + cpd00004 + cpd02431	Reversible	c	-1000	1000	0		
+rxn00931	L-Proline NADP 5-oxidoreductase	[c] : cpd00006 + cpd00129 <==> cpd00067 + cpd02431 + cpd00005	Reversible	c	-1000	1000	0		
+rxn00947	Palmitate CoA ligase AMP-forming	[c] : cpd00002 + cpd00067 + cpd00010 + cpd00214 --> cpd00012 + cpd00018 + cpd00134	Irreversible	c	0	1000	0		
+rxn00952	O-Acetyl-L-homoserine acetate-lyase adding methanethiol	[c] : cpd00239 + cpd00790 --> cpd00067 + cpd00135 + cpd00029	Irreversible	c	0	1000	0		
+rxn00966	chorismate pyruvate-lyase 4-hydroxybenzoate-forming	[c] : cpd00216 --> cpd00020 + cpd00136	Irreversible	c	0	1000	0		
+rxn00973	citrate hydro-lyase	[c] : cpd00137 <==> cpd00260	Reversible	c	-1000	1000	0		
+rxn00974	citrate hydro-lyase	[c] : cpd00137 <==> cpd00001 + cpd00331	Reversible	c	-1000	1000	0		
+rxn00979_GCALDD	glycolaldehyde NAD oxidoreductase	[c] : cpd00001 + cpd00003 + cpd00229 --> (2) cpd00067 + cpd00004 + cpd00139	Irreversible	c	0	1000	0		
+rxn00980	2-Phosphoglycolate phosphohydrolase	[c] : cpd00001 + cpd00727 --> cpd00067 + cpd00009 + cpd00139	Irreversible	c	0	1000	0		
+rxn00985	ATP acetate phosphotransferase	[c] : cpd00002 + cpd00067 + cpd00141 <==> cpd00008 + cpd01844	Reversible	c	-1000	1000	0		
+rxn00986	Propanoate CoA ligase AMP-forming	[c] : cpd00012 + cpd03560 --> cpd00002 + cpd00067 + cpd00141	Irreversible	c	0	1000	0		
+rxn01000	Prephenate hydro-lyase decarboxylating	[c] : cpd00067 + cpd00219 --> cpd00001 + cpd00011 + cpd00143	Irreversible	c	0	1000	0		
+rxn01018	Carbamoyl-phosphate L-aspartate carbamoyltransferase	[c] : cpd00041 + cpd00146 --> (2) cpd00067 + cpd00009 + cpd00343	Irreversible	c	0	1000	0		
+rxn01019	Carbamoyl-phosphate L-ornithine carbamoyltransferase	[c] : cpd00064 + cpd00146 --> (2) cpd00067 + cpd00009 + cpd00274	Irreversible	c	0	1000	0		
+rxn01022	5'-Methylthioadenosine orthophosphate	[c] : cpd00067 + cpd00009 + cpd00147 <==> cpd00128 + cpd02574	Reversible	c	-1000	1000	0		
+rxn01057	lactateracemase (5.1.2.1)	[c] : cpd00159 <==> cpd00221	Reversible	c	-1000	1000	0		
+rxn01069	O-Phospho-L-homoserine phospho-lyase adding water	[c] : cpd00001 + cpd00809 --> cpd00067 + cpd00009 + cpd00161	Irreversible	c	0	1000	0		
+rxn01073	sn-Glycero-3-phosphoethanolamine glycerophosphohydrolase	[c] : cpd00001 + cpd00908 <==> cpd00080 + cpd00162	Reversible	c	-1000	1000	0		
+rxn01100	ATP 3-phospho-D-glycerate 1-phosphotransferase	[c] : cpd00002 + cpd00067 + cpd00169 <==> cpd00008 + cpd00203	Reversible	c	-1000	1000	0		
+rxn01101_PGCD	3-Phospho-D-glycerate NAD 2-oxidoreductase	[c] : cpd00003 + cpd00169 --> cpd00067 + cpd00004 + cpd02069	Irreversible	c	0	1000	0		
+rxn01102	ATP R-glycerate 3-phosphotransferase	[c] : cpd00002 + cpd00223 <==> cpd00008 + cpd00169	Reversible	c	-1000	1000	0		
+rxn01103	3-Phospho-D-glyceroyl phosphate phosphohydrolase	[c] : cpd00001 + cpd00203 --> (2) cpd00067 + cpd00009 + cpd00169	Irreversible	c	0	1000	0		
+rxn01106	2-Phospho-D-glycerate 2 3-phosphomutase	[c] : cpd00482 <==> cpd00169	Reversible	c	-1000	1000	0		
+rxn01111	ATP D-ribulose-5-phosphate 1-phosphotransferase	[c] : cpd00002 + cpd00171 <==> cpd00008 + cpd00871	Reversible	c	-1000	1000	0		
+rxn01115	6-Phospho-D-gluconate NADP 2-oxidoreductase decarboxylating	[c] : cpd00006 + cpd00284 --> cpd00171 + cpd00011 + cpd00005	Irreversible	c	0	1000	0		
+rxn01116	D-Ribulose-5-phosphate 3-epimerase	[c] : cpd00171 <==> cpd00198	Reversible	c	-1000	1000	0		
+rxn01117	D-Arabinose-5-phosphate ketol-isomerase	[c] : cpd00817 <==> cpd00171	Reversible	c	-1000	1000	0		
+rxn01127	ATP AMP phosphotransferase	[c] : cpd00002 + cpd00294 <==> cpd00008 + cpd00177	Reversible	c	-1000	1000	0		
+rxn01134	Maltose alpha-D-glucosylmutase	[c] : cpd00179 <==> cpd00794	Reversible	c	-1000	1000	0		
+rxn01145	Thymidylate 5'-phosphohydrolase	[c] : cpd00001 + cpd00298 --> cpd00067 + cpd00009 + cpd00184	Irreversible	c	0	1000	0		
+rxn01146	Thymidine orthophosphate deoxyribosyltransferase	[c] : cpd00067 + cpd00009 + cpd00184 <==> cpd00151 + cpd00509	Reversible	c	-1000	1000	0		
+rxn01169	ATP D-glucose 6-phosphotransferase	[c] : cpd00002 + cpd00190 <==> cpd00008 + cpd00863	Reversible	c	-1000	1000	0		
+rxn01187	D-Xylulose 5-phosphate D-glyceraldehyde-3-phosphate-lyase	[c] : cpd00067 + cpd00009 + cpd00198 --> cpd00001 + cpd00102 + cpd00196	Irreversible	c	0	1000	0		
+rxn01200	Sedoheptulose-7-phosphate D-glyceraldehyde-3-phosphate	[c] : cpd00102 + cpd00238 <==> cpd00101 + cpd00198	Reversible	c	-1000	1000	0		
+rxn01207	4-Methyl-2-oxopentanoate NAD oxidoreductase	[c] : cpd00003 + cpd00010 + cpd00200 <==> cpd00011 + cpd00004 + cpd01882	Reversible	c	-1000	1000	0		
+rxn01208	2-Oxo-4-methyl-3-carboxypentanoate decarboxylation	[c] : cpd00067 + cpd02605 --> cpd00011 + cpd00200	Irreversible	c	0	1000	0		
+rxn01210	10-Formyltetrahydrofolate L-glutamate ligase ADP-forming	[c] : cpd00002 + cpd00023 + cpd00201 --> cpd00067 + cpd00009 + cpd00008 + cpd03524	Irreversible	c	0	1000	0		
+rxn01211	5 10-Methenyltetrahydrofolate 5-hydrolasedecyclizing	[c] : cpd00001 + cpd00347 <==> cpd00067 + cpd00201	Reversible	c	-1000	1000	0		
+rxn01213	Dimethylallyl-diphosphate isopentenyl-diphosphate	[c] : cpd00113 + cpd00202 --> cpd00012 + cpd00283	Irreversible	c	0	1000	0		
+rxn01218	2'-Deoxycytidine 5'-monophosphate phosphohydrolase	[c] : cpd00001 + cpd00206 --> cpd00067 + cpd00009 + cpd00654	Irreversible	c	0	1000	0		
+rxn01219	ATP CMP phosphotransferase	[c] : cpd00002 + cpd00206 <==> cpd00008 + cpd00533	Reversible	c	-1000	1000	0		
+rxn01241	Dihydrolipoamide NAD oxidoreductase	[c] : cpd00003 + cpd00449 <==> cpd00067 + cpd00004 + cpd00213	Reversible	c	-1000	1000	0		
+rxn01255	5-O-1-Carboxyvinyl-3-phosphoshikimate phosphate-lyase	[c] : cpd00932 --> cpd00067 + cpd00009 + cpd00216	Irreversible	c	0	1000	0		
+rxn01256	Chorismate pyruvatemutase	[c] : cpd00216 --> cpd00219	Irreversible	c	0	1000	0		
+rxn01257_ADCS	chorismate L-glutamine aminotransferase	[c] : cpd00053 + cpd00216 --> cpd00023 + cpd08210	Irreversible	c	0	1000	0		
+rxn01265	Nicotinate D-ribonucleotide pyrophosphate phosphoribosyltransferase	[c] : cpd00012 + cpd00873 <==> cpd00067 + cpd00218 + cpd00103	Reversible	c	-1000	1000	0		
+rxn01268	Prephenate NAD oxidoreductasedecarboxylating	[c] : cpd00003 + cpd00219 --> cpd00011 + cpd00004 + cpd00868	Irreversible	c	0	1000	0		
+rxn01269	Prephenate NADP oxidoreductasedecarboxylating	[c] : cpd00006 + cpd00219 --> cpd00011 + cpd00005 + cpd00868	Irreversible	c	0	1000	0		
+rxn01270	L-Aspartate 2-oxoglutarate aminotransferase	[c] : cpd00032 + cpd00616 <==> cpd00041 + cpd00219	Reversible	c	-1000	1000	0		
+rxn01274	S-2-Hydroxyacylglutathione hydrolase	[c] : cpd00001 + cpd02182 --> cpd00067 + cpd00042 + cpd00221	Irreversible	c	0	1000	0		
+rxn01280	R-Glycerate NAD oxidoreductase	[c] : cpd00003 + cpd00223 <==> cpd00067 + cpd00004 + cpd00843	Reversible	c	-1000	1000	0		
+rxn01281	R-Glycerate NADP oxidoreductase	[c] : cpd00223 + cpd00006 <==> cpd00067 + cpd00005 + cpd00843	Reversible	c	-1000	1000	0		
+rxn01286	D-Glyceraldehyde NAD oxidoreductase	[c] : cpd00001 + cpd00003 + cpd00448 <==> (2) cpd00067 + cpd00004 + cpd00223	Reversible	c	-1000	1000	0		
+rxn01300	ATP:L-homoserine O-phosphotransferase	[c] : cpd00002 + cpd00227 --> cpd00008 + cpd00809	Irreversible	c	0	1000	0		
+rxn01301	L-Homoserine NAD oxidoreductase	[c] : cpd00003 + cpd00227 <==> cpd00067 + cpd00004 + cpd00346	Reversible	c	-1000	1000	0		
+rxn01302	L-Homoserine NADP oxidoreductase	[c] : cpd00006 + cpd00227 <==> cpd00067 + cpd00005 + cpd00346	Reversible	c	-1000	1000	0		
+rxn01304	Succinyl-CoA L-homoserine O-succinyltransferase	[c] : cpd00078 + cpd00227 --> cpd00010 + cpd00822	Irreversible	c	0	1000	0		
+rxn01313	NADH 6 7-dihydropteridine oxidoreductase	[c] : cpd00067 + cpd00004 + cpd00231 <==> cpd00003 + cpd00233	Reversible	c	-1000	1000	0		
+rxn01314	NADPH 6 7-dihydropteridine oxidoreductase	[c] : cpd00067 + cpd00005 + cpd00231 <==> cpd00006 + cpd00233	Reversible	c	-1000	1000	0		
+rxn01329	D-Mannose 6-phosphate 1 6-phosphomutase	[c] : cpd00235 <==> cpd00485	Reversible	c	-1000	1000	0		
+rxn01331	D-erythrose 4-phosphate NAD oxidoreductase	[c] : cpd00001 + cpd00003 + cpd00236 <==> (2) cpd00067 + cpd00004 + cpd02147	Reversible	c	-1000	1000	0		
+rxn01332	Phosphoenolpyruvate D-erythrose-4-phosphate	[c] : cpd00001 + cpd00061 + cpd00236 --> cpd00067 + cpd00009 + cpd02857	Irreversible	c	0	1000	0		
+rxn01333	Sedoheptulose-7-phosphate D-glyceraldehyde-3-phosphate	[c] : cpd00102 + cpd00238 <==> cpd00072 + cpd00236	Reversible	c	-1000	1000	0		
+rxn01334	Sedoheptulose 1 7-bisphosphate D-glyceraldehyde-3-phosphate-lyase	[c] : cpd00349 <==> cpd00095 + cpd00236	Reversible	c	-1000	1000	0		
+rxn01343	ATP Sedoheptulose 7-phosphate 1-phosphotransferase	[c] : cpd00002 + cpd00238 <==> cpd00008 + cpd00349	Reversible	c	-1000	1000	0		
+rxn01352	dGTP triphosphohydrolase	[c] : cpd00001 + cpd00241 <==> cpd00067 + cpd00421 + cpd00277	Reversible	c	-1000	1000	0		
+rxn01353	ATP nucleoside-diphosphate phosphatransferase	[c] : cpd00002 + cpd00295 <==> cpd00008 + cpd00241	Reversible	c	0	0	0		
+rxn01360	S-Dihydroorotate oxygen oxidoreductase	[c] : cpd00007 + cpd00282 --> cpd00025 + cpd00247	Irreversible	c	0	1000	0		
+rxn01362_ORPT	Orotidine-5'-phosphate pyrophosphate phosphoribosyltransferase	[c] : cpd00012 + cpd00810 <==> cpd00103 + cpd00247	Reversible	c	-1000	1000	0		
+rxn01387	Isocitrate NADP oxidoreductase decarboxylating	[c] : cpd00006 + cpd00260 <==> cpd00067 + cpd00005 + cpd03187	Reversible	c	-1000	1000	0		
+rxn01388	isocitrate hydro-lyase	[c] : cpd00260 <==> cpd00001 + cpd00331	Reversible	c	-1000	1000	0		
+rxn01434	L-Citrulline L-aspartate ligase AMP-forming	[c] : cpd00002 + cpd00041 + cpd00274 <==> cpd00012 + cpd00018 + cpd02152	Reversible	c	-1000	1000	0		
+rxn01444	ATP deoxyguanosine 5'-phosphotransferase	[c] : cpd00002 + cpd00277 <==> cpd00008 + cpd00296	Reversible	c	0	0	0		
+rxn01445	2'-Deoxyguanosine 5'-monophosphate phosphohydrolase	[c] : cpd00001 + cpd00296 --> cpd00067 + cpd00009 + cpd00277	Irreversible	c	0	1000	0		
+rxn01465	S-Dihydroorotate amidohydrolase	[c] : cpd00001 + cpd00282 <==> cpd00067 + cpd00343	Reversible	c	-1000	1000	0		
+rxn01466	Geranyl-diphosphate isopentenyl-diphosphate geranyltrans-transferase	[c] : cpd00113 + cpd00283 --> cpd00012 + cpd00350	Irreversible	c	0	1000	0		
+rxn01476	6-Phospho-D-glucono-1 5-lactone lactonohydrolase	[c] : cpd00001 + cpd00911 <==> cpd00067 + cpd00284	Reversible	c	-1000	1000	0		
+rxn01485	D-Glucosamine 1-phosphate 1 6-phosphomutase	[c] : cpd03671 <==> cpd00288	Reversible	c	-1000	1000	0		
+rxn01486	trans trans-Farnesyl-diphosphate isopentenyl-diphosphate	[c] : cpd00113 + cpd00350 --> cpd00012 + cpd00289	Irreversible	c	0	1000	0		
+rxn01489	Geranylgeranyl-diphosphate geranylgeranyl-diphosphate	[c] : (2) cpd00289 --> cpd00012 + cpd02168	Irreversible	c	0	1000	0		
+rxn01492	ATP:D-fructose-1-phosphate 6-phosphotransferase	[c] : cpd00002 + cpd00802 <==> cpd00008 + cpd00290	Reversible	c	0	0	0		
+rxn01507	2'-Deoxyadenosine 5'-monophosphate phosphohydrolase	[c] : cpd00001 + cpd00294 --> cpd00067 + cpd00009 + cpd00438	Irreversible	c	0	1000	0		
+rxn01508	ATP deoxyadenosine 5'-phosphotransferase	[c] : cpd00002 + cpd00438 <==> cpd00008 + cpd00294	Reversible	c	-1000	1000	0		
+rxn01509	ATP dGMP phosphotransferase	[c] : cpd00002 + cpd00296 <==> cpd00008 + cpd00295	Reversible	c	0	0	0		
+rxn01512	ATP nucleoside-diphosphate phosphatransferase	[c] : cpd00002 + cpd00297 <==> cpd00008 + cpd00357	Reversible	c	-1000	1000	0		
+rxn01513	ATP dTMP phosphotransferase	[c] : cpd00002 + cpd00298 <==> cpd00008 + cpd00297	Reversible	c	-1000	1000	0		
+rxn01517_URIDK2	ATP dTMP phosphotransferase	[c] : cpd00002 + cpd00299 --> cpd00008 + cpd00978	Irreversible	c	0	1000	0		
+rxn01519	dUTP nucleotidohydrolase	[c] : cpd00001 + cpd00358 --> cpd00012 + cpd00299	Irreversible	c	0	1000	0		
+rxn01520	5 10-Methylenetetrahydrofolate dUMP C-methyltransferase	[c] : cpd00299 + cpd00125 --> cpd00330 + cpd00298	Irreversible	c	0	1000	0		
+rxn01521	5'-nucleotidase dUMP	[c] : cpd00001 + cpd00299 --> cpd00067 + cpd00009 + cpd00412	Irreversible	c	0	1000	0		
+rxn01544	XMP pyrophosphate phosphoribosyltransferase	[c] : cpd00103 + cpd00309 --> cpd00012 + cpd00497	Irreversible	c	0	1000	0		
+rxn01575	L-Isoleucine 2-oxoglutarate aminotransferase	[c] : cpd00024 + cpd00322 <==> cpd00023 + cpd00508	Reversible	c	-1000	1000	0		
+rxn01602	Dihydrofolate NADP oxidoreductase	[c] : cpd00006 + cpd00330 <==> cpd00067 + cpd00005 + cpd00393	Reversible	c	-1000	1000	0		
+rxn01603	7 8-dihydropteroate L-glutamate ligase ADP-forming	[c] : cpd00002 + cpd00023 + cpd00683 --> cpd00067 + cpd00009 + cpd00008 + cpd00330	Irreversible	c	0	1000	0		
+rxn01629_G1SATi	S-4-Amino-5-oxopentanoate 4 5-aminomutase	[c] : cpd02345 --> cpd00338	Irreversible	c	0	1000	0		
+rxn01636	N2-Acetyl-L-ornithine L-glutamate N-acetyltransferase	[c] : cpd00023 + cpd00342 <==> cpd00064 + cpd00477	Reversible	c	-1000	1000	0		
+rxn01637	N2-Acetyl-L-ornithine 2-oxoglutarate aminotransferase	[c] : cpd00024 + cpd00342 <==> cpd00023 + cpd00918	Reversible	c	-1000	1000	0		
+rxn01643	L-Aspartate-4-semialdehyde NADP oxidoreductase phosphorylating	[c] : cpd00005 + cpd01977 --> cpd00009 + cpd00006 + cpd00346	Irreversible	c	0	1000	0		
+rxn01644	L-Aspartate-4-semialdehyde hydro-lyase adding pyruvate and	[c] : cpd00020 + cpd00346 --> cpd00067 + (2) cpd00001 + cpd02120	Irreversible	c	0	1000	0		
+rxn01653	5-Formyltetrahydrofolate cyclo-ligase ADP-forming	[c] : cpd00002 + cpd02197 --> cpd00009 + cpd00008 + cpd00347	Irreversible	c	0	1000	0		
+rxn01664	2-Aminoadipate 6-semialdehyde	[c] : cpd02522 --> cpd00067 + cpd00001 + cpd00352	Irreversible	c	0	1000	0		
+rxn01670	Nicotinamide ribonucleotide phosphohydrolase	[c] : cpd00001 + cpd00355 --> cpd00067 + cpd00009 + cpd02016	Irreversible	c	0	1000	0		
+rxn01672	dCTP aminohydrolase	[c] : cpd00067 + cpd00001 + cpd00356 --> cpd00013 + cpd00358	Irreversible	c	0	1000	0		
+rxn01673	ATP nucleoside-diphosphate phosphatransferase	[c] : cpd00002 + cpd00533 <==> cpd00008 + cpd00356	Reversible	c	-1000	1000	0		
+rxn01675	dTTP alpha-D-glucose-1-phosphate thymidylyltransferase	[c] : cpd00089 + cpd00357 <==> cpd00012 + cpd00626	Reversible	c	-1000	1000	0		
+rxn01678	ATP nucleoside-diphosphate phosphatransferase	[c] : cpd00002 + cpd00978 <==> cpd00008 + cpd00358	Reversible	c	-1000	1000	0		
+rxn01682	1S 2R-1-C-indol-3-ylglycerol 3-phosphate	[c] : cpd02210 <==> cpd00102 + cpd00359	Reversible	c	-1000	1000	0		
+rxn01739	ATP shikimate 3-phosphotransferase	[c] : cpd00002 + cpd00383 <==> cpd00008 + cpd02030	Reversible	c	-1000	1000	0		
+rxn01740	Shikimate NADP 5-oxidoreductase	[c] : cpd00006 + cpd00383 <==> cpd00067 + cpd00005 + cpd01716	Reversible	c	-1000	1000	0		
+rxn01750	CDPglucose 4 6-hydro-lyase	[c] : cpd00390 --> cpd00001 + cpd00897	Irreversible	c	0	1000	0		
+rxn01790_DPR	R-Pantoate NADP 2-oxidoreductase	[c] : cpd00067 + cpd00005 + cpd00712 --> cpd00006 + cpd00408	Irreversible	c	0	1000	0		
+rxn01791	R-Pantoate beta-alanine ligase AMP-forming	[c] : cpd00002 + cpd00085 + cpd00408 --> cpd00012 + cpd00018 + cpd00644	Irreversible	c	0	1000	0		
+rxn01834_LGTHL	R-S-Lactoylglutathione methylglyoxal-lyase isomerizing	[c] : cpd00042 + cpd00428 --> cpd02182	Irreversible	c	0	1000	0		
+rxn01870	D-Fructose 1-phosphate D-glyceraldehyde-3-phosphate-lyase	[c] : cpd00802 <==> cpd00095 + cpd00448	Reversible	c	-1000	1000	0		
+rxn01871	acetyl-CoA enzyme N6-dihydrolipoyllysine S-acetyltransferase	[c] : cpd00449 + cpd00022 <==> cpd00010 + cpd00836	Reversible	c	-1000	1000	0		
+rxn01872	succinyl-CoA enzyme N6-dihydrolipoyllysine S-succinyltransferase	[c] : cpd00449 + cpd00078 <==> cpd00010 + cpd00860	Reversible	c	-1000	1000	0		
+rxn01917	ATP N-acetyl-L-glutamate 5-phosphotransferase	[c] : cpd00002 + cpd00067 + cpd00477 <==> cpd00008 + cpd02552	Reversible	c	-1000	1000	0		
+rxn01961	Xanthosine 5'-phosphate phosphohydrolase	[c] : cpd00001 + cpd00497 --> cpd00067 + cpd00009 + cpd01217	Irreversible	c	0	1000	0		
+rxn01964_TRPS1	L-Serine hydro-lyase adding indoleglycerol-phosphate	[c] : cpd00054 + cpd02210 --> cpd00001 + cpd00102 + cpd00065	Irreversible	c	0	1000	0		
+rxn01973_SDPDS	N-Succinyl-LL-2 6-diaminoheptanedioate amidohydrolase	[c] : cpd00001 + cpd02698 --> cpd00036 + cpd00504	Irreversible	c	0	1000	0		
+rxn01974	LL-2 6-Diaminoheptanedioate 2-epimerase	[c] : cpd00504 <==> cpd00516	Reversible	c	-1000	1000	0		
+rxn01975	beta-D-Glucose-6-phosphate NADP 1-oxoreductase	[c] : cpd00006 + cpd00863 <==> cpd00067 + cpd00005 + cpd00911	Reversible	c	-1000	1000	0		
+rxn01977	alpha-D-Glucose 6-phosphate ketol-isomerase	[c] : cpd00079 <==> cpd00863	Reversible	c	-1000	1000	0		
+rxn01997	dTDPglucose 4 6-hydro-lyase	[c] : cpd00626 --> cpd00001 + cpd00521	Irreversible	c	0	1000	0		
+rxn02000	dTDP-4-dehydro-6-deoxy-D-glucose 3 5-epimerase	[c] : cpd00521 <==> cpd00522	Reversible	c	-1000	1000	0		
+rxn02003	dTDP-6-deoxy-L-mannose NADP 4-oxidoreductase	[c] : cpd02113 + cpd00006 <==> cpd00067 + cpd00005 + cpd00522	Reversible	c	-1000	1000	0		
+rxn02005	trehalose transport via PEP Pyr PTS	cpd00061[c] + cpd00794[e] <==> cpd00020[c] + cpd00523[c]	Reversible	"e, c"	0	0	0		
+rxn02008	UDP-N-acetylmuramoyl-L-alanine D-glutamate ligaseADP-forming	[c] : cpd00002 + cpd00890 + cpd00186 --> cpd00067 + cpd00009 + cpd00008 + cpd00525	Irreversible	c	0	1000	0		
+rxn02011	UDP-N-acetylmuramoyl-L-alanyl-D-glutamate meso-2 6-	[c] : cpd00002 + cpd00525 + cpd00516 --> cpd00067 + cpd00009 + cpd00008 + cpd02964	Irreversible	c	0	1000	0		
+rxn02056	S-Adenosyl-L-methionine uroporphyrin-III C-methyltransferase	[c] : (2) cpd00067 + cpd00557 <==> cpd10515 + cpd03426	Reversible	c	-1000	1000	0		
+rxn02155	ATP nicotinamide-nucleotide adenylyltransferase	[c] : cpd00002 + cpd00873 <==> cpd00012 + cpd00638	Reversible	c	-1000	1000	0		
+rxn02159	L-Histidinol NAD oxidoreductase	[c] : cpd00003 + cpd00641 <==> cpd00067 + cpd00004 + cpd01324	Reversible	c	-1000	1000	0		
+rxn02160	L-Histidinol-phosphate phosphohydrolase	[c] : cpd00001 + cpd00807 --> cpd00067 + cpd00009 + cpd00641	Irreversible	c	0	1000	0		
+rxn02175	ATP pantetheine-4'-phosphate adenylyltransferase	[c] : cpd00002 + cpd00834 <==> cpd00012 + cpd00655	Reversible	c	-1000	1000	0		
+rxn02185	2-Acetolactate pyruvate-lyase carboxylating	[c] : cpd00056 + cpd00668 <==> cpd00020 + cpd03049	Reversible	c	-1000	1000	0		
+rxn02186	2 3-Dihydroxy-3-methylbutanoate NADP oxidoreductase isomerizing	[c] : cpd00067 + cpd00005 + cpd00668 <==> cpd02498 + cpd00006	Reversible	c	-1000	1000	0		
+rxn02187	2-Acetolactate methylmutase	[c] : cpd00668 <==> cpd02569	Reversible	c	-1000	1000	0		
+rxn02200	2-Amino-4-hydroxy-6-hydroxymethyl-7 8-dihydropteridine 4-	[c] : cpd00954 + cpd00443 <==> cpd00001 + cpd00683	Reversible	c	-1000	1000	0		
+rxn02201	2-Amino-4-hydroxy-6-hydroxymethyl-7 8-dihydropteridine-	[c] : cpd02920 + cpd00443 --> cpd00012 + cpd00683	Irreversible	c	0	1000	0		
+rxn02212	2-Dehydro-3-deoxy-D-arabino-heptonate 7-phosphate phosphate-lyase	[c] : cpd02857 --> cpd00067 + cpd00009 + cpd00699	Irreversible	c	0	1000	0		
+rxn02213_DHQD1	3-Dehydroquinate hydro-lyase	[c] : cpd00699 <==> cpd00001 + cpd01716	Reversible	c	-1000	1000	0		
+rxn02264_UPP3S	Hydroxymethylbilane hydro-lyasecyclizing	[c] : cpd00755 --> cpd00001 + cpd00774	Irreversible	c	0	1000	0		
+rxn02269_OIVD3	S-3-methyl-2-oxopentanoate NAD 2-oxidoreductase	[c] : cpd00508 + cpd00003 + cpd00010 --> cpd00011 + cpd00004 + cpd00760	Irreversible	c	0	1000	0		
+rxn02277	7 8-Diaminononanoate carbon-dioxide cyclo-ligase	[c] : cpd00002 + cpd00011 + cpd00764 --> (3) cpd00067 + cpd00009 + cpd00008 + cpd01311	Irreversible	c	0	1000	0		
+rxn02285	UDP-N-acetylmuramate NADP oxidoreductase	[c] : cpd00067 + cpd00005 + cpd02820 --> cpd00006 + cpd00773	Irreversible	c	0	1000	0		
+rxn02286	UDP-N-acetylmuramate L-alanine ligase ADP-forming	[c] : cpd00002 + cpd00035 + cpd00773 --> cpd00067 + cpd00009 + cpd00008 + cpd00890	Irreversible	c	0	1000	0		
+rxn02287	S-Adenosyl-L-methionine uroporphyrin-III C-methyltransferase	[c] : (2) cpd00017 + cpd00774 <==> (2) cpd00067 + (2) cpd00019 + cpd01620	Reversible	c	-1000	1000	0		
+rxn02288_UPPDC1	Uroporphyrinogen-III carboxy-lyase	[c] : (4) cpd00067 + cpd00774 --> (4) cpd00011 + cpd02083	Irreversible	c	0	1000	0		
+rxn02297	6-Carboxyhexanoyl-CoA L-alanine C-carboxyhexanoyltransferase	[c] : cpd00067 + cpd00035 + cpd00782 --> cpd00011 + cpd00010 + cpd00800	Irreversible	c	0	1000	0		
+rxn02303_CPPPGO	Coproporphyrinogen oxygen oxidoreductasedecarboxylating	[c] : (2) cpd00067 + cpd00007 + cpd02083 --> (2) cpd00001 + cpd00791 + (2) cpd00011	Irreversible	c	0	1000	0		
+rxn02304	Protoporphyrinogen-IX oxygen oxidoreductase	[c] : (3) cpd00007 + (2) cpd00791 <==> (6) cpd00001 + (2) cpd01476	Reversible	c	-1000	1000	0		
+rxn02305_TMPPP	2-Methyl-4-amino-5-hydroxymethylpyrimidine-diphosphate 4-methyl-5-	[c] : cpd00067 + cpd02894 + cpd02654 --> cpd00012 + cpd00793	Irreversible	c	0	1000	0		
+rxn02312	S-Adenosyl-L-methionine 8-amino-7-oxononanoate aminotransferase	[c] : cpd00017 + cpd00800 <==> cpd02701 + cpd00764	Reversible	c	-1000	1000	0		
+rxn02314	ATP D-tagatose-6-phosphate 1-phosphotransferase	[c] : cpd00002 + cpd00805 <==> cpd00008 + cpd02371	Reversible	c	-1000	1000	0		
+rxn02320	5-Amino-2-oxopentanoate 2-oxoglutarate aminotransferase	[c] : cpd00024 + cpd00807 <==> cpd00023 + cpd00930	Reversible	c	-1000	1000	0		
+rxn02331	2-Dehydro-3-deoxy-D-octonate-8-phosphate	[c] : cpd00001 + cpd00061 + cpd00817 --> cpd00067 + cpd00009 + cpd02730	Irreversible	c	0	1000	0		
+rxn02339	4-Hydroxy-L-glutamate 2-oxoglutarate aminotransferase	[c] : cpd00024 + cpd01974 <==> cpd00023 + cpd00830	Reversible	c	-1000	1000	0		
+rxn02341	N-R-4'-Phosphopantothenoyl-L-cysteine carboxy-lyase	[c] : cpd00067 + cpd02666 --> cpd00834 + cpd00011	Irreversible	c	0	1000	0		
+rxn02342	2-alpha-Hydroxyethylthiamine diphosphate lipoamide	[c] : cpd00213 + cpd03049 <==> cpd00056 + cpd00836	Reversible	c	-1000	1000	0		
+rxn02373	L-Glutamate-5-semialdehyde NADP 5-oxidoreductase phosphorylationg	[c] : cpd00005 + cpd02097 --> cpd00009 + cpd00858 + cpd00006	Irreversible	c	0	1000	0		
+rxn02374_G5SADs	L-glutamate 5-semialdehyde dehydratase spontaneous	[c] : cpd00858 <==> cpd00067 + cpd00001 + cpd02431	Reversible	c	-1000	1000	0		
+rxn02376	3-Carboxy-1-hydroxypropyl-ThPP lipoamde	[c] : cpd00213 + cpd03189 <==> cpd00056 + cpd00860	Reversible	c	-1000	1000	0		
+rxn02380	beta-D-Glucose 6-phosphate ketol-isomerase	[c] : cpd00863 <==> cpd00072	Reversible	c	-1000	1000	0		
+rxn02400	Nicotinate D-ribonucleotide phosphohydrolase	[c] : cpd00001 + cpd00873 --> cpd00067 + cpd00009 + cpd03471	Irreversible	c	0	1000	0		
+rxn02402	Nicotinate-nucleotide pyrophosphate phosphoribosyltransferase	[c] : (2) cpd00067 + cpd00103 + cpd02333 --> cpd00012 + cpd00011 + cpd00873	Irreversible	c	0	1000	0		
+rxn02404	3-Deoxy-D-manno-octulosonate-8-phosphate 8-phosphohydrolase	[c] : cpd00001 + cpd02730 --> cpd00067 + cpd00009 + cpd00875	Irreversible	c	0	1000	0		
+rxn02405	CTP 3-deoxy-D-manno-octulosonate cytidylyltransferase	[c] : cpd00052 + cpd00875 --> cpd00012 + cpd02546	Irreversible	c	0	1000	0		
+rxn02465	N-Acetyl-L-glutamate-5-semialdehyde NADP 5-oxidoreductase	[c] : cpd02552 + cpd00005 --> cpd00009 + cpd00006 + cpd00918	Irreversible	c	0	1000	0		
+rxn02473	D-erythro-1-Imidazol-4-ylglycerol 3-phosphate hydro-lyase	[c] : cpd02843 --> cpd00001 + cpd00930	Irreversible	c	0	1000	0		
+rxn02474_APRAUR	5-amino-6-5-phosphoribitylaminouracil NADP 1'-oxidoreductase	[c] : cpd00067 + cpd00005 + cpd00931 --> cpd02720 + cpd00006	Irreversible	c	0	1000	0		
+rxn02475	2 5-Diamino-6-hydroxy-4-5-phosphoribosylamino-pyrimidine	[c] : cpd00067 + cpd00001 + cpd00957 --> cpd00013 + cpd00931	Irreversible	c	0	1000	0		
+rxn02476	Phosphoenolpyruvate 3-phosphoshikimate	[c] : cpd00061 + cpd02030 <==> cpd00067 + cpd00009 + cpd00932	Reversible	c	-1000	1000	0		
+rxn02484	ATP 4-amino-5-hydroxymethyl-2-methylpyrimidine 5-phosphotransferase	[c] : cpd00002 + cpd00939 <==> cpd00008 + cpd02775	Reversible	c	-1000	1000	0		
+rxn02503	ATP 2-amino-4-hydroxy-6-hydroxymethyl-7 8-dihydropteridine	[c] : cpd00002 + cpd00954 <==> cpd00018 + cpd02920	Reversible	c	-1000	1000	0		
+rxn02504	2-Amino-4-hydroxy-6-D-erythro-1 2 3-trihydroxypropyl-7 8-	[c] : cpd02961 <==> cpd00229 + cpd00954	Reversible	c	-1000	1000	0		
+rxn02507	1-2-Carboxyphenylamino-1-deoxy-D-ribulose-5-phosphate	[c] : cpd00067 + cpd00956 --> cpd00001 + cpd00011 + cpd02210	Irreversible	c	0	1000	0		
+rxn02508	N-5-Phospho-beta-D-ribosylanthranilate ketol-isomerase	[c] : cpd02642 <==> cpd00956	Reversible	c	-1000	1000	0		
+rxn02569	ATP selenide water phosphotransferase	[c] : cpd00002 + cpd00001 + cpd01078 <==> (2) cpd00067 + cpd00018 + cpd00009 + cpd03078	Reversible	c	-1000	1000	0		
+rxn02666	L-2-amino-3-oxobutanoate decarboxylation spontaneous	[c] : cpd00067 + cpd02211 --> cpd00011 + cpd01298	Irreversible	c	0	1000	0		
+rxn02774	S-Adenosyl-L-methionine uroporphyrin-III C-methyltransferase	[c] : cpd00003 + cpd01620 <==> cpd00067 + cpd00004 + cpd03426	Reversible	c	-1000	1000	0		
+rxn02789	2-Isopropylmalate hydro-lyase	[c] : cpd01646 <==> cpd00001 + cpd01710	Reversible	c	-1000	1000	0		
+rxn02791	5-Glutamyl-peptide amino-acid 5-glutamyltransferase	[c] : cpd00023 + cpd01651 <==> cpd00001 + cpd03407	Reversible	c	-1000	1000	0		
+rxn02792	5-Glutamyl-peptide amino-acid 5-glutamyltransferase	[c] : cpd00067 + cpd00023 + cpd01651 --> cpd00001 + cpd00011 + cpd03646	Irreversible	c	0	1000	0		
+rxn02811	3-Isopropylmalate hydro-lyase	[c] : cpd02693 <==> cpd00001 + cpd01710	Reversible	c	-1000	1000	0		
+rxn02834	Phosphoribosyl-ATP pyrophosphohydrolase	[c] : cpd00001 + cpd01775 --> cpd00012 + cpd01777	Irreversible	c	0	1000	0		
+rxn02835	1-5-phospho-D-ribosyl-AMP 1 6-hydrolase	[c] : cpd00001 + cpd01777 <==> cpd02979	Reversible	c	-1000	1000	0		
+rxn02895	5-Phospho-D-ribosylamine glycine ligase ADP-forming	[c] : cpd00002 + cpd00033 + cpd01982 --> cpd00067 + cpd00009 + cpd00008 + cpd02394	Irreversible	c	0	1000	0		
+rxn02897_NNDMBRT	Nicotinate-nucleotide dimethylbenzimidazole	[c] : cpd00873 + cpd01997 --> cpd00067 + cpd00218 + cpd02904	Irreversible	c	0	1000	0		
+rxn02914_PSERT	3-Phosphoserine 2-oxoglutarate aminotransferase	[c] : cpd00023 + cpd02069 --> cpd00024 + cpd00738	Irreversible	c	0	1000	0		
+rxn02916	6-Amino-2-oxohexanoate cyclation	[c] : cpd02074 --> cpd00067 + cpd00001 + cpd00922	Irreversible	c	0	1000	0		
+rxn02929_DHDPRy	2 3 4 5-Tetrahydrodipicolinate NADP oxidoreductase	[c] : cpd00067 + cpd00005 + cpd02120 --> cpd02465 + cpd00006	Irreversible	c	0	1000	0		
+rxn02937_PRAIS	2-Formamido-N1-5-phosphoribosylacetamidine cyclo-ligase	[c] : cpd00002 + cpd02826 --> cpd00067 + cpd00009 + cpd00008 + cpd02140	Irreversible	c	0	1000	0		
+rxn02938	1-5-Phospho-D-ribosyl-5-amino-4-imidazolecarboxylate carboxy-lyase	[c] : cpd00067 + cpd02893 --> cpd00011 + cpd02140	Irreversible	c	0	1000	0		
+rxn02945	prephytoene diphosphate geranylgeranyl-diphosphate	[c] : cpd02168 --> cpd00012 + cpd03211	Irreversible	c	0	1000	0		
+rxn02988	quinolinate synthase	[c] : cpd00095 + cpd03470 --> cpd00067 + (2) cpd00001 + cpd00009 + cpd02333	Irreversible	c	0	1000	0		
+rxn03004	10-Formyltetrahydrofolate 5'-phosphoribosylglycinamide	[c] : cpd00201 + cpd02394 <==> cpd00067 + cpd00087 + cpd02678	Reversible	c	-1000	1000	0		
+rxn03012	rxn03012	[c] : cpd02414 --> cpd00067 + cpd00001 + cpd02465	Irreversible	c	0	1000	0		
+rxn03031_THDPS	Succinyl-CoA 2 3 4 5-tetrahydropyridine-2 6-dicarboxylate	[c] : cpd00001 + cpd02465 + cpd00078 --> cpd00010 + cpd02724	Irreversible	c	0	1000	0		
+rxn03052	5-Methyltetrahydropteroyltri-L-glutamate L-homocysteine	[c] : cpd00135 + cpd02738 <==> cpd00060 + cpd02555	Reversible	c	-1000	1000	0		
+rxn03062_IPMD	3-Isopropylmalate NAD oxidoreductase	[c] : cpd00003 + cpd02693 --> cpd00067 + cpd00004 + cpd02605	Irreversible	c	0	1000	0		
+rxn03068	R-2 3-Dihydroxy-3-methylbutanoate NADP oxidoreductase	[c] : cpd02498 + cpd00006 <==> cpd00067 + cpd00005 + cpd02569	Reversible	c	-1000	1000	0		
+rxn03080	6 7-Dimethyl-8-1-D-ribityllumazine 6 7-dimethyl-8-1-D-ribityl	[c] : cpd02882 + cpd11225 <==> cpd00067 + (2) cpd00001 + cpd00009 + cpd02656	Reversible	c	-1000	1000	0		
+rxn03084	5'-Phosphoribosylformylglycinamide L-glutamine amido-ligase	[c] : cpd00002 + cpd00001 + cpd00053 + cpd02678 --> cpd00067 + cpd00009 + cpd00008 + cpd00023 + cpd02826	Irreversible	c	0	1000	0		
+rxn03087	N-Succinyl-L-2 6-diaminoheptanedioate 2-ocoglytarate	[c] : cpd00024 + cpd02698 <==> cpd00023 + cpd02724	Reversible	c	-1000	1000	0		
+rxn03108_PMPK	ATP 4-amino-2-methyl-5-phosphomethylpyrimidine phosphotransferase	[c] : cpd00002 + cpd02775 --> cpd00008 + cpd02894	Irreversible	c	0	1000	0		
+rxn03126	Coenzyme B coenzyme M methanophenazine oxidoreductase	[c] : cpd02935 + cpd08702 --> cpd08701 + cpd02817 + cpd02246	Irreversible	c	0	1000	0		
+rxn03130	UDP-2 3-bis3-hydroxytetradecanoylglucosamine diphosphatase	[c] : cpd00001 + cpd02835 --> cpd00091 + cpd02930	Irreversible	c	0	1000	0		
+rxn03135	Imidazole-glycerol-3-phosphate synthase	[c] : cpd00053 + cpd02991 --> cpd00067 + cpd00023 + cpd02851 + cpd02843	Irreversible	c	0	1000	0		
+rxn03136	1-5'-Phosphoribosyl-5-amino-4-N-succinocarboxamide-imidazole	[c] : cpd02921 <==> cpd02851 + cpd00106	Reversible	c	-1000	1000	0		
+rxn03137	10-Formyltetrahydrofolate 5'-phosphoribosyl-5-amino-4-	[c] : cpd00201 + cpd02851 <==> cpd00087 + cpd02884	Reversible	c	-1000	1000	0		
+rxn03146_UHGADA	UDP-3-O-acetylglucosamine deacetylase	[c] : cpd00001 + cpd02886 --> cpd03584 + cpd00029	Irreversible	c	0	1000	0		
+rxn03147	1-5-Phosphoribosyl-5-amino-4-carboxyimidazole L-aspartate ligase	[c] : cpd00002 + cpd00041 + cpd02893 --> (2) cpd00067 + cpd00009 + cpd00008 + cpd02921	Irreversible	c	0	1000	0		
+rxn03150	alpha-ribazole 5-phosphate phosphatase	[c] : cpd00001 + cpd02904 --> cpd00067 + cpd00009 + cpd03423	Irreversible	c	0	1000	0		
+rxn03159	UDP-2 3-bis3-hydroxytetradecanoyl-beta-D-glucosamine 2 3-bis-3-	[c] : cpd02835 + cpd02930 <==> cpd00014 + cpd03002	Reversible	c	-1000	1000	0		
+rxn03164	UDP-N-acetylmuramoyl-L-alanyl-D-glutamyl-meso-2 6-	[c] : cpd00002 + cpd00731 + cpd02964 --> cpd00067 + cpd00009 + cpd00008 + cpd02968	Irreversible	c	0	1000	0		
+rxn03167	2-Amino-4-hydroxy-6-erythro-1 2 3-trihydroxypropyl	[c] : (3) cpd00001 + cpd02978 --> (3) cpd00067 + (3) cpd00009 + cpd02961	Irreversible	c	0	1000	0		
+rxn03174	2-Amino-4-hydroxy-6-erythro-1 2 3-trihydroxypropyl	[c] : cpd03666 --> cpd00001 + cpd02978	Irreversible	c	0	1000	0		
+rxn03175	N-5'-Phospho-D-ribosylformimino-5-amino-1-	[c] : cpd02979 <==> cpd02991	Reversible	c	-1000	1000	0		
+rxn03181	ATP 2 3 2' 3'-tetrakis3-hydroxytetradecanoyl-D-glucosaminyl-beta-	[c] : cpd00002 + cpd03002 <==> cpd00008 + cpd02993	Reversible	c	-1000	1000	0		
+rxn03182	3-deoxy-D-manno-octulosonic acid transferase	[c] : cpd02546 + cpd02993 <==> cpd00046 + cpd03585	Reversible	c	-1000	1000	0		
+rxn03194	S-2-Aceto-2-hydroxybutanoate pyruvate-lyase carboxylating	[c] : cpd03049 + cpd00094 <==> cpd00056 + cpd00498	Reversible	c	-1000	1000	0		
+rxn03236	4a-hydroxytetrahydrobiopterin hydro-lyase	[c] : cpd03897 <==> cpd00001 + cpd00231	Reversible	c	-1000	1000	0		
+rxn03384	Uroporphyrinogen I carboxy-lyase	[c] : (4) cpd00067 + cpd03414 <==> (4) cpd00011 + cpd03416	Reversible	c	-1000	1000	0		
+rxn03393	Octaprenyl-hydroxybenzoate decarboxylase	[c] : cpd00067 + cpd03443 --> cpd00011 + cpd03444	Irreversible	c	0	1000	0		
+rxn03394	rxn03394	[c] : cpd00067 + cpd00007 + cpd00005 + cpd03444 --> cpd00001 + cpd00006 + cpd03445	Irreversible	c	0	1000	0		
+rxn03395_OHPHM	2-octaprenyl-6-hydroxyphenol methylase	[c] : cpd00017 + cpd03445 --> cpd00067 + cpd03446 + cpd00019	Irreversible	c	0	1000	0		
+rxn03397	UDP-L-rhamnose flavonol-3-O-D-glucoside L-rhamnosyltransferase	[c] : cpd00017 + cpd03447 --> cpd00067 + cpd00019 + cpd03448	Irreversible	c	0	1000	0		
+rxn03406	Undecaprenyl-diphospho-N-acetylmuramoyl-N-acetylglucosamine-	[c] : cpd00002 + cpd00013 + cpd03487 --> cpd00067 + cpd00009 + cpd00008 + cpd03488	Irreversible	c	0	1000	0		
+rxn03407	Undecaprenyl-diphospho-N-acetylmuramoyl-N-acetylglucosamine-	[c] : cpd00002 + cpd00013 + cpd03491 --> cpd00067 + cpd00009 + cpd00008 + cpd03492	Irreversible	c	0	1000	0		
+rxn03408	UDP-N-acetylglucosamine-N-acetylmuramyl-pentapeptidepyrophosphoryl-undecaprenol N-acetylglucosamine transferase	[c] : cpd03494 + cpd00037 <==> cpd00014 + cpd03495	Reversible	c	-1000	1000	0		
+rxn03409	Undecaprenyl-diphospho-N-acetylmuramoyl-N-acetylglucosamine-	[c] : cpd00002 + cpd00013 + cpd03495 --> cpd00067 + cpd00009 + cpd00008 + cpd03496	Irreversible	c	0	1000	0		
+rxn03419	Formamidopyrimidine nucleoside triphosphate 7 8-8 9-dihydrolase	[c] : cpd00001 + cpd03518 <==> cpd00067 + cpd00047 + cpd03519	Reversible	c	-1000	1000	0		
+rxn03421	GTP 7 8-8 9-dihydrolase	[c] : cpd03519 <==> cpd03666	Reversible	c	-1000	1000	0		
+rxn03435	R-2 3-Dihydroxy-3-methylpentanoate NADP oxidoreductase	[c] : cpd02535 + cpd00006 <==> cpd00067 + cpd00005 + cpd10162	Reversible	c	-1000	1000	0		
+rxn03436	S-2-Aceto-2-hydroxybutanoate NADP oxidoreductase isomerizing	[c] : cpd00498 <==> cpd10162	Reversible	c	-1000	1000	0		
+rxn03437	R-2 3-Dihydroxy-3-methylpentanoate hydro-lyase	[c] : cpd02535 --> cpd00001 + cpd00508	Irreversible	c	0	1000	0		
+rxn03439	3-deoxy-D-manno-octulosonic acid transferase	[c] : cpd02546 + cpd03585 <==> cpd00046 + cpd03586	Reversible	c	-1000	1000	0		
+rxn03445	O-Phospho-4-hydroxy-L-threonine 2-oxoglutarate aminotransferase	[c] : cpd00024 + cpd03607 <==> cpd00023 + cpd03606	Reversible	c	-1000	1000	0		
+rxn03446	O-Phospho-4-hydroxy-L-threonine phospho-lyase adding water	[c] : cpd00001 + cpd03607 --> cpd00067 + cpd00009 + cpd03608	Irreversible	c	0	1000	0		
+rxn03511	ADP-D-glycero-D-manno-heptose 6-epimerase	[c] : cpd03830 <==> cpd03831	Reversible	c	-1000	1000	0		
+rxn03535	ATP cobIyrinic acid-a c-diamide Cobeta-adenosyltransferase	[c] : cpd00002 + cpd03915 <==> cpd00421 + cpd03916	Reversible	c	-1000	1000	0		
+rxn03536	Adenosyl cobinamide kinase	[c] : cpd00002 + cpd03918 <==> cpd00067 + cpd00008 + cpd03919	Reversible	c	-1000	1000	0		
+rxn03537	Adenosyl cobinamide phosphate guanyltransferase	[c] : cpd00067 + cpd00038 + cpd03919 <==> cpd00012 + cpd03920	Reversible	c	-1000	1000	0		
+rxn03538	Adenosylcobalamin 5'-phosphate synthase	[c] : cpd03920 + cpd03423 <==> cpd00126 + cpd00166	Reversible	c	-1000	1000	0		
+rxn03540_ADCOBHEXS	adenosylcobyric acid synthase glutamine-hydrolysing	[c] : (4) cpd00002 + (4) cpd00001 + (4) cpd00053 + cpd03916 --> (4) cpd00067 + (4) cpd00009 + (4) cpd00008 + (4) cpd00023 + cpd03917	Irreversible	c	0	1000	0		
+rxn03638	Acetyl-CoA D-glucosamine-1-phosphate N-acetyltransferase	[c] : cpd00022 + cpd03671 --> cpd00067 + cpd00010 + cpd02611	Irreversible	c	0	1000	0		
+rxn03841	4-amino-4-deoxychorismate pyruvate-lyase	[c] : cpd08210 --> cpd00067 + cpd00020 + cpd00443	Irreversible	c	0	1000	0		
+rxn03843	Farnesyl diphosphate Isopentenyl diphosphate farnesyl transferase	[c] : cpd00113 + cpd00350 --> cpd00012 + cpd08211	Irreversible	c	0	1000	0		
+rxn03891	trans-hexaprenyltranstransferase	[c] : cpd00113 + cpd00906 --> cpd00012 + cpd02590	Irreversible	c	0	1000	0		
+rxn03892	PPTT	[c] : cpd00113 + cpd02591 --> cpd00012 + cpd00906	Irreversible	c	0	1000	0		
+rxn03893	Hydroxybenzoate octaprenyltransferase	[c] : cpd00136 + cpd02557 --> cpd00012 + cpd03443	Irreversible	c	0	1000	0		
+rxn03901	Undecaprenyl-diphosphate phosphohydrolase	[c] : cpd00001 + cpd02229 --> cpd00067 + cpd00009 + cpd00286	Irreversible	c	0	1000	0		
+rxn03903	UDPMurAcoyl-L-Ala-D-gamma-Glu-L-Lys-D-Ala-D-Ala undecaprenyl-	[c] : cpd00286 + cpd02862 <==> cpd00091 + cpd02948	Reversible	c	-1000	1000	0		
+rxn03904_PAPPT3	UDPMurAcoyl-L-Ala-D-gamma-Glu-L-Lys-D-Ala-D-Ala undecaprenyl-	[c] : cpd02968 + cpd00286 --> cpd03494 + cpd00091	Irreversible	c	0	1000	0		
+rxn03907	CTP 2-C-Methyl-D-erythritol 4-phosphate cytidylyltransferase	[c] : cpd00052 + cpd08286 <==> cpd00012 + cpd08287	Reversible	c	-1000	1000	0		
+rxn03908	ATP 4-Cytidine 5'-diphospho-2-C-methyl-D-erythritol	[c] : cpd00002 + cpd08287 <==> cpd00008 + cpd08288	Reversible	c	-1000	1000	0		
+rxn03909	1-Deoxy-D-xylulose-5-phosphate pyruvate-lyase carboxylating	[c] : cpd00067 + cpd00020 + cpd00102 --> cpd00011 + cpd08289	Irreversible	c	0	1000	0		
+rxn03910_MECDPS	2-Phospho-4-cytidine 5'-diphospho-2-C-methyl-D-erythritol	[c] : cpd08288 --> cpd00046 + cpd08301	Irreversible	c	0	1000	0		
+rxn03916	D-glycero-D-manno-hepose 1-phosphate adenyltransferase	[c] : cpd00002 + cpd04920 <==> cpd00012 + cpd03830	Reversible	c	-1000	1000	0		
+rxn03917	sedoheptulose 7-phosphate isomerase	[c] : cpd00238 <==> cpd04918	Reversible	c	-1000	1000	0		
+rxn03918	D-glycero-D-manno-heptose 7-phosphate kinase	[c] : cpd00002 + cpd04918 <==> cpd00008 + cpd08316	Reversible	c	-1000	1000	0		
+rxn03919	D-glycero-D-manno-heptose 1 7-bisphosphate phosphatase	[c] : cpd00001 + cpd08316 --> cpd00067 + cpd00009 + cpd04920	Irreversible	c	0	1000	0		
+rxn03933	UDP-N-acetylglucosamine-N-acetylmuramyl-pentapeptidepyrophosphoryl-undecaprenol N-acetylglucosamine transferase	[c] : cpd00037 + cpd02948 <==> cpd00014 + cpd03491	Reversible	c	-1000	1000	0		
+rxn03951_THPDH	NAD-dependent threonine 4-phosphate dehydrogenase	[c] : cpd00003 + cpd03607 --> cpd00067 + cpd00004 + cpd04539	Irreversible	c	0	1000	0		
+rxn03958	1-Deoxy-D-xylulose-5-phosphate isomeroreductase	[c] : cpd00006 + cpd08286 <==> cpd00067 + cpd00005 + cpd08289	Reversible	c	-1000	1000	0		
+rxn03962	GDP-L-fucose NADP 4-oxidoreductase 3 5-epimerizing	[c] : cpd00006 + cpd00272 <==> cpd00067 + cpd00005 + cpd00900	Reversible	c	-1000	1000	0		
+rxn03990_Irreversible	nitric oxide NADH2 oxygen oxidoreductase Irreversible	[c] : (2) cpd00007 + cpd00004 + (2) cpd00418 --> cpd00067 + cpd00003 + (2) cpd00209	Irreversible	c	0	1000	0		
+rxn03991_Irreversible	nitric oxide NADPH2 oxygen oxidoreductase Irreversible	[c] : (2) cpd00007 + cpd00005 + (2) cpd00418 --> cpd00067 + cpd00006 + (2) cpd00209	Irreversible	c	0	1000	0		
+rxn04070	pyridoxine 5'-phosphate synthase	[c] : cpd08449 + cpd08289 --> (2) cpd00067 + (2) cpd00001 + cpd00009 + cpd00478	Irreversible	c	0	1000	0		
+rxn04113	isopentenyl-diphosphate NADP oxidoreductase	[c] : cpd00067 + cpd00005 + cpd08615 --> cpd00001 + cpd00006 + cpd00113	Irreversible	c	0	1000	0		
+rxn04132	rxn04132	[c] : cpd00001 + cpd08625 --> cpd00011 + cpd01567	Irreversible	c	0	1000	0		
+rxn04133	rxn04133	[c] : cpd00001 + cpd08625 --> cpd00011 + cpd01092	Irreversible	c	0	1000	0		
+rxn04139	2-Octaprenyl-3-methyl-6-methoxy-1 4-benzoquinone NADPH2 oxygen	[c] : cpd00007 + cpd00005 + cpd03448 --> cpd00001 + cpd00006 + cpd03449	Irreversible	c	0	1000	0		
+rxn04308	di-trans poly-cis-Decaprenyl-diphosphate isopentenyl-diphosphate	[c] : (7) cpd00113 + cpd08211 --> (7) cpd00012 + cpd02229	Irreversible	c	0	1000	0		
+rxn04384	adenosylcobyric acid R-1-aminopropan-2-yl phosphate ligase	[c] : cpd00002 + cpd03917 + cpd02547 <==> (2) cpd00067 + cpd00009 + cpd00008 + cpd03919	Reversible	c	-1000	1000	0		
+rxn04385	L-threonine-O-3-phosphate carboxy-lyase	[c] : cpd00067 + cpd08928 --> cpd00011 + cpd02547	Irreversible	c	0	1000	0		
+rxn04413	rxn04413	[c] : cpd00038 + cpd03918 <==> cpd00067 + cpd00031 + cpd03919	Reversible	c	-1000	1000	0		
+rxn04456	rxn04456	[c] : cpd00067 + cpd09027 --> cpd00011 + cpd01092	Irreversible	c	0	1000	0		
+rxn04457	rxn04457	[c] : cpd00067 + cpd09027 --> cpd00011 + cpd01567	Irreversible	c	0	1000	0		
+rxn04674	rxn04674	[c] : cpd00017 + cpd09410 --> cpd00067 + cpd00019 + cpd01401	Irreversible	c	0	1000	0		
+rxn04704	coproporphyrinogen-III S-adenosyl-L-methionine	[c] : cpd02083 + (2) cpd00017 <==> cpd00791 + (2) cpd00011 + (2) cpd03091 + (2) cpd00060	Reversible	c	-1000	1000	0		
+rxn04783	glycinamide ribonucleotide transformylase	[c] : cpd00002 + cpd00047 + cpd02394 --> cpd00067 + cpd00009 + cpd00008 + cpd02678	Irreversible	c	0	1000	0		
+rxn04954	5-methyltetrahydrofolate NAD oxidoreductase	[c] : cpd00003 + cpd00345 <==> cpd00067 + cpd00004 + cpd00125	Reversible	c	-1000	1000	0		
+rxn04996	dimethyallyl diphosphate NADP oxidoreductase	[c] : cpd00067 + cpd00005 + cpd08615 --> cpd00001 + cpd00006 + cpd00202	Irreversible	c	0	1000	0		
+rxn05029	ATP cobinamide Cobeta-adenosyltransferase	[c] : cpd00002 + cpd03422 <==> cpd00421 + cpd03918	Reversible	c	-1000	1000	0		
+rxn05031	prephytoene diphosphate geranylgeranyl-diphosphate	[c] : cpd02168 --> cpd00012 + cpd03205	Irreversible	c	0	1000	0		
+rxn05039	pyrimidine phosphatase	[c] : cpd00001 + cpd02720 --> cpd00067 + cpd00009 + cpd02882	Irreversible	c	0	1000	0		
+rxn05040	3 4-Dihydroxy-2-butanone 4-phosphate synthase	[c] : cpd00171 --> cpd00067 + cpd00047 + cpd11225	Irreversible	c	0	1000	0		
+rxn05054	adenosylcobyric acid R-1-aminopropan-2-ol ligase ADP-forming	[c] : cpd00002 + cpd03917 + cpd02039 <==> cpd00067 + cpd00009 + cpd00008 + cpd03918	Reversible	c	-1000	1000	0		
+rxn05063	carbamate hydro-lyase	[c] : cpd00001 + cpd01015 --> cpd01101	Irreversible	c	0	1000	0		
+rxn05064	carbamate hydro-lyase	[c] : (2) cpd00067 + cpd01101 <==> cpd00011 + cpd00013	Reversible	c	-1000	1000	0		
+rxn05116	rxn05116	[c] : cpd00067 + cpd04539 --> cpd00011 + cpd08449	Irreversible	c	0	1000	0		
+rxn05144	rxn05144	[c] : cpd00171 + cpd00102 + cpd00053 --> (2) cpd00067 + (3) cpd00001 + cpd00009 + cpd00016 + cpd00023	Irreversible	c	0	1000	0		
+rxn05145_PIabc	Orthophosphate-ABC transport	cpd00002[c] + cpd00001[c] + cpd00009[e] --> cpd00067[c] + (2) cpd00009[c] + cpd00008[c]	Irreversible	"e, c"	0	1000	0		
+rxn05149	Manganese-ABC transport	cpd00002[c] + cpd00001[c] + cpd00030[e] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd00030[c]	Irreversible	"e, c"	0	1000	0		
+rxn05150	Zinc-ABC transport	cpd00002[c] + cpd00001[c] + cpd00034[e] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd00034[c]	Irreversible	"e, c"	0	1000	0		
+rxn05166	Cobalt-ABC transport	cpd00002[c] + cpd00001[c] + cpd00149[e] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd00149[c]	Irreversible	"e, c"	0	1000	0		
+rxn05175	Spermidine-ABC transport	cpd00002[c] + cpd00001[c] + cpd00264[e] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd00264[c]	Irreversible	"e, c"	0	1000	0		
+rxn05183	D-Methionine-ABC transport	cpd00002[c] + cpd00001[c] + cpd00637[e] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd00637[c]	Irreversible	"e, c"	0	1000	0		
+rxn05187	Vitamin ABC transport	cpd00002[c] + cpd00001[c] + cpd03424[e] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd03424[c]	Irreversible	"e, c"	0	1000	0		
+rxn05188	Ferrichrome ABC transport	cpd00002[c] + cpd00001[c] + cpd03724[e] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd03724[c]	Irreversible	"e, c"	0	1000	0		
+rxn05195	Fe3-ABC transport	cpd00002[c] + cpd00001[c] + cpd10516[e] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd10516[c]	Irreversible	"e, c"	0	1000	0		
+rxn05206	Potassium uptake	cpd00205[e] <==> cpd00205[c]	Reversible	"e, c"	0	0	0		
+rxn05219	L-Methionine ABC transport	cpd00002[c] + cpd00001[c] + cpd00060[e] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd00060[c]	Irreversible	"e, c"	0	1000	0		
+rxn05226_GLCpts	Glucose-phosphotransferase PTS system	cpd00061[c] + cpd00027[e] --> cpd00020[c] + cpd00079[c]	Irreversible	"e, c"	0	1000	0		
+rxn05229	NCAIR synthetase and NCAIR mutase	[c] : cpd00002 + cpd02140 + cpd00242 --> cpd00067 + cpd00009 + cpd00008 + cpd02893	Irreversible	c	0	1000	0		
+rxn05231	Ribonucleotide reductase ADP	[c] : cpd00008 + cpd11421 --> cpd00001 + cpd00177 + cpd11420	Irreversible	c	0	1000	0		
+rxn05232	Ribonucleotide reductase ATP	[c] : cpd00002 + cpd11421 --> cpd00001 + cpd00115 + cpd11420	Irreversible	c	0	1000	0		
+rxn05233	Ribonucleotide reductase GDP	[c] : cpd00031 + cpd11421 --> cpd00001 + cpd11420 + cpd00295	Irreversible	c	0	1000	0		
+rxn05234	Ribonucleotide reductase GTP	[c] : cpd00038 + cpd11421 --> cpd00001 + cpd11420 + cpd00241	Irreversible	c	0	1000	0		
+rxn05235	Ribonucleotide reductase CTP	[c] : cpd00052 + cpd11421 --> cpd00001 + cpd11420 + cpd00356	Irreversible	c	0	1000	0		
+rxn05236	Ribonucleotide reductase UTP	[c] : cpd00062 + cpd11421 --> cpd00001 + cpd11420 + cpd00358	Irreversible	c	0	1000	0		
+rxn05247	FACOAL140ISO	[c] : cpd00002 + cpd00067 + cpd00010 + cpd11430 --> cpd00012 + cpd00018 + cpd11435	Irreversible	c	0	1000	0		
+rxn05248	FACOAL150anteiso	[c] : cpd00002 + cpd00067 + cpd00010 + cpd11438 --> cpd00012 + cpd00018 + cpd11439	Irreversible	c	0	1000	0		
+rxn05249	FACOAL150ISO	[c] : cpd00002 + cpd00067 + cpd00010 + cpd11436 --> cpd00012 + cpd00018 + cpd11437	Irreversible	c	0	1000	0		
+rxn05250	FACOAL160ISO	[c] : cpd00002 + cpd00067 + cpd00010 + cpd11440 --> cpd00012 + cpd00018 + cpd11441	Irreversible	c	0	1000	0		
+rxn05251	FACOAL170anteiso	[c] : cpd00002 + cpd00067 + cpd00010 + cpd11433 --> cpd00012 + cpd00018 + cpd11434	Irreversible	c	0	1000	0		
+rxn05252	FACOAL170ISO	[c] : cpd00002 + cpd00067 + cpd00010 + cpd11431 --> cpd00012 + cpd00018 + cpd11432	Irreversible	c	0	1000	0		
+rxn05287	GGTT	[c] : cpd00113 + cpd00289 --> cpd00012 + cpd02591	Irreversible	c	0	1000	0		
+rxn05289_TRDR	TRDR	[c] : cpd00067 + cpd00005 + cpd11420 --> cpd00006 + cpd11421	Irreversible	c	0	1000	0		
+rxn05293	MECDPDH	[c] : cpd00067 + cpd00004 + cpd08301 --> cpd00001 + cpd00003 + cpd08615	Irreversible	c	0	1000	0		
+rxn05319_H2Ot5	H2Ot5	cpd00001[e] <==> cpd00001[c]	Reversible	"e, c"	-1000	1000	0		
+rxn05322	Butyryl-acyl-carrier protein malonyl-CoA	[c] : cpd00067 + cpd00004 + cpd11465 --> cpd00003 + cpd11464	Irreversible	c	0	1000	0		
+rxn05323	Tetradecanoyl-acyl-carrier protein malonyl-CoA	[c] : cpd00067 + cpd00004 + cpd11467 --> cpd00003 + cpd11466	Irreversible	c	0	1000	0		
+rxn05324	Dodecanoyl-acyl-carrier protein malonyl-CoA	[c] : cpd00067 + cpd00004 + cpd11469 --> cpd00003 + cpd11468	Irreversible	c	0	1000	0		
+rxn05325	Octanoyl-acyl-carrier protein malonyl-CoA	[c] : cpd00067 + cpd00004 + cpd11471 --> cpd00003 + cpd11470	Irreversible	c	0	1000	0		
+rxn05326	Hexanoyl-acyl-carrier protein malonyl-CoA	[c] : cpd00067 + cpd00004 + cpd11473 --> cpd00003 + cpd11472	Irreversible	c	0	1000	0		
+rxn05327	Decanoyl-acyl-carrier protein malonyl-CoA	[c] : cpd00067 + cpd00004 + cpd11475 --> cpd00003 + cpd11474	Irreversible	c	0	1000	0		
+rxn05328	Hexadecanoyl-acyl-carrier protein malonyl-CoA	[c] : cpd00067 + cpd00004 + cpd11477 --> cpd00003 + cpd11476	Irreversible	c	0	1000	0		
+rxn05329	3R-3-Hydroxybutanoyl-acyl-carrier-protein hydro-lyase	[c] : cpd11478 <==> cpd00001 + cpd11465	Reversible	c	-1000	1000	0		
+rxn05330	3R-3-Hydroxybutanoyl-acyl-carrier-protein hydro-lyase	[c] : cpd11479 <==> cpd00001 + cpd11473	Reversible	c	-1000	1000	0		
+rxn05331	3R-3-Hydroxybutanoyl-acyl-carrier-protein hydro-lyase	[c] : cpd11480 <==> cpd00001 + cpd11469	Reversible	c	-1000	1000	0		
+rxn05332	3R-3-Hydroxypalmitoyl-acyl-carrier-protein hydro-lyase	[c] : cpd11481 <==> cpd00001 + cpd11477	Reversible	c	-1000	1000	0		
+rxn05333	3R-3-Hydroxybutanoyl-acyl-carrier-protein hydro-lyase	[c] : cpd11482 <==> cpd00001 + cpd11475	Reversible	c	-1000	1000	0		
+rxn05334	3R-3-Hydroxybutanoyl-acyl-carrier-protein hydro-lyase	[c] : cpd11483 <==> cpd00001 + cpd11471	Reversible	c	-1000	1000	0		
+rxn05335	3R-3-Hydroxypalmitoyl-acyl-carrier-protein hydro-lyase	[c] : cpd11484 <==> cpd00001 + cpd11467	Reversible	c	-1000	1000	0		
+rxn05336_HHDR7	3R-3-Hydroxypalmitoyl-acyl-carrier-protein NADP oxidoreductase	[c] : cpd00067 + cpd00005 + cpd11485 --> cpd00006 + cpd11481	Irreversible	c	0	1000	0		
+rxn05337_HHYR2	3R-3-Hydroxyhexanoyl-acyl-carrier-protein NADP oxidoreductase	[c] : cpd00067 + cpd00005 + cpd11486 --> cpd00006 + cpd11479	Irreversible	c	0	1000	0		
+rxn05338_HDER4	3R-3-Hydroxydecanoyl-acyl-carrier-protein NADP oxidoreductase	[c] : cpd00067 + cpd11487 + cpd00005 --> cpd00006 + cpd11482	Irreversible	c	0	1000	0		
+rxn05339_HBUR1	3R-3-Hydroxybutanoyl-acyl-carrier protein NADP oxidoreductase	[c] : cpd00067 + cpd00005 + cpd11488 --> cpd00006 + cpd11478	Irreversible	c	0	1000	0		
+rxn05340_HDDR5	3R-3-Hydroxydodecanoyl-acyl-carrier-protein NADP oxidoreductase	[c] : cpd00067 + cpd00005 + cpd11489 --> cpd00006 + cpd11480	Irreversible	c	0	1000	0		
+rxn05341_HOCR3	3R-3-Hydroxyoctanoyl-acyl-carrier-protein NADP oxidoreductase	[c] : cpd00067 + cpd00005 + cpd11490 --> cpd00006 + cpd11483	Irreversible	c	0	1000	0		
+rxn05342_HTDR6	3R-3-Hydroxytetradecanoyl-acyl-carrier-protein NADP	[c] : cpd00067 + cpd00005 + cpd11491 --> cpd00006 + cpd11484	Irreversible	c	0	1000	0		
+rxn05343	Octanoyl-acyl-carrier protein malonyl-acyl-carrier-protein	[c] : cpd00067 + cpd11492 + cpd11470 --> cpd11493 + cpd00011 + cpd11487	Irreversible	c	0	1000	0		
+rxn05344	Tetradecanoyl-acyl-carrier protein malonyl-acyl-carrier-protein	[c] : cpd00067 + cpd11466 + cpd11492 --> cpd11493 + cpd00011 + cpd11485	Irreversible	c	0	1000	0		
+rxn05345	dodecanoyl-acyl-carrier-protein malonyl-acyl-carrier-protein	[c] : cpd00067 + cpd11492 + cpd11468 --> cpd11493 + cpd00011 + cpd11491	Irreversible	c	0	1000	0		
+rxn05346	butyryl-acyl-carrier protein malonyl-acyl-carrier-protein	[c] : cpd00067 + cpd11492 + cpd11464 --> cpd11493 + cpd00011 + cpd11486	Irreversible	c	0	1000	0		
+rxn05347	Acyl-acyl-carrier-protein malonyl-acyl-carrier-protein	[c] : cpd00067 + cpd11492 + cpd11494 --> cpd11493 + cpd00011 + cpd11488	Irreversible	c	0	1000	0		
+rxn05348	Decanoyl-acyl-carrier protein malonyl-acyl-carrier-protein	[c] : cpd00067 + cpd11492 + cpd11474 --> cpd11493 + cpd00011 + cpd11489	Irreversible	c	0	1000	0		
+rxn05349	acetyl-CoA acyl-carrier-protein S-acetyltransferase	[c] : cpd11493 + cpd00022 <==> cpd00010 + cpd11494	Reversible	c	-1000	1000	0		
+rxn05350	hexanoyl-acyl-carrier protein malonyl-acyl-carrier-protein	[c] : cpd00067 + cpd11492 + cpd11472 --> cpd11493 + cpd00011 + cpd11490	Irreversible	c	0	1000	0		
+rxn05358	2-methylbutanoyl-CoA acyl-carrier-protein transferase	[c] : cpd11493 + cpd00760 <==> cpd00010 + cpd11495	Reversible	c	-1000	1000	0		
+rxn05359	4-methyl-3-oxo-hexanoyl-ACP malonyl-acyl-carrier-protein C-acyltransferase decarboxylating	[c] : cpd00067 + cpd11492 + cpd11495 --> cpd11493 + cpd00011 + cpd11496	Irreversible	c	0	1000	0		
+rxn05360	4-methyl-3-oxo-hexanoyl-ACP NADP oxidoreductase	[c] : cpd00067 + cpd00005 + cpd11496 <==> cpd00006 + cpd11497	Reversible	c	-1000	1000	0		
+rxn05361	4-methyl-3-hydroxy-hexanoyl-ACP hydro-lyase	[c] : cpd11497 <==> cpd00001 + cpd11498	Reversible	c	-1000	1000	0		
+rxn05363	4-methyl-hexanoyl-ACP malonyl-acyl-carrier-protein C-acyltransferase decarboxylating	[c] : cpd00067 + cpd11492 + cpd11499 --> cpd11493 + cpd00011 + cpd11500	Irreversible	c	0	1000	0		
+rxn05364	6-methyl-3-oxo-octanoyl-ACP NADP oxidoreductase	[c] : cpd00067 + cpd00005 + cpd11500 <==> cpd00006 + cpd11501	Reversible	c	-1000	1000	0		
+rxn05365	6-methyl-3-hydroxy-octanoyl-ACP hydro-lyase	[c] : cpd11501 <==> cpd00001 + cpd11502	Reversible	c	-1000	1000	0		
+rxn05367	6-methyl-octanoyl-ACP malonyl-acyl-carrier-protein C-acyltransferase decarboxylating	[c] : cpd00067 + cpd11492 + cpd11503 --> cpd11493 + cpd00011 + cpd11504	Irreversible	c	0	1000	0		
+rxn05368	8-methyl-3-oxo-decanoyl-ACP NADP oxidoreductase	[c] : cpd00067 + cpd00005 + cpd11504 <==> cpd00006 + cpd11505	Reversible	c	-1000	1000	0		
+rxn05369	8-methyl-3-hydroxy-decanoyl-ACP hydro-lyase	[c] : cpd11505 <==> cpd00001 + cpd11506	Reversible	c	-1000	1000	0		
+rxn05371	8-methyl-decanoyl-ACP malonyl-acyl-carrier-protein C-acyltransferase decarboxylating	[c] : cpd00067 + cpd11492 + cpd11507 --> cpd11493 + cpd00011 + cpd11508	Irreversible	c	0	1000	0		
+rxn05372	10-methyl-3-oxo-dodecanoyl-ACP NADP oxidoreductase	[c] : cpd00067 + cpd00005 + cpd11508 <==> cpd00006 + cpd11509	Reversible	c	-1000	1000	0		
+rxn05373	10-methyl-3-hydroxy-dodecanoyl-ACP hydro-lyase	[c] : cpd11509 <==> cpd00001 + cpd11510	Reversible	c	-1000	1000	0		
+rxn05375	10-methyl-dodecanoyl-ACP malonyl-acyl-carrier-protein C-acyltransferase decarboxylating	[c] : cpd00067 + cpd11492 + cpd11511 --> cpd11493 + cpd00011 + cpd11512	Irreversible	c	0	1000	0		
+rxn05376	12-methyl-3-oxo-tetra-decanoyl-ACP NADP oxidoreductase	[c] : cpd00067 + cpd00005 + cpd11512 <==> cpd11513 + cpd00006	Reversible	c	-1000	1000	0		
+rxn05377	12-methyl-3-hydroxy-tetra-decanoyl-ACP hydro-lyase	[c] : cpd11513 <==> cpd00001 + cpd11514	Reversible	c	-1000	1000	0		
+rxn05379	12-methyl-tetra-decanoyl-ACP malonyl-acyl-carrier-protein C-acyltransferase decarboxylating	[c] : cpd00067 + cpd11492 + cpd11515 --> cpd11493 + cpd00011 + cpd11516	Irreversible	c	0	1000	0		
+rxn05380	14-methyl-3-oxo-hexa-decanoyl-ACP NADP oxidoreductase	[c] : cpd00067 + cpd00005 + cpd11516 <==> cpd00006 + cpd11517	Reversible	c	-1000	1000	0		
+rxn05381	14-methyl-3-hydroxy-hexa-decanoyl-ACP hydro-lyase	[c] : cpd11517 <==> cpd00001 + cpd11518	Reversible	c	-1000	1000	0		
+rxn05383	3-methylbutanoyl-CoA acyl-carrier-protein transferase	[c] : cpd11493 + cpd01882 <==> cpd00010 + cpd11520	Reversible	c	-1000	1000	0		
+rxn05384	3-methylbutanoyl-ACP malonyl-acyl-carrier-protein C-acyltransferase decarboxylating	[c] : cpd00067 + cpd11492 + cpd11520 --> cpd11493 + cpd00011 + cpd11521	Irreversible	c	0	1000	0		
+rxn05385	5-methyl-3-oxo-hexanoyl-ACP NADP oxidoreductase	[c] : cpd00067 + cpd00005 + cpd11521 <==> cpd00006 + cpd11522	Reversible	c	-1000	1000	0		
+rxn05386	5-methyl-3-hydroxy-hexanoyl-ACP hydro-lyase	[c] : cpd11522 <==> cpd00001 + cpd11523	Reversible	c	-1000	1000	0		
+rxn05388	5-methyl-hexanoyl-ACP malonyl-acyl-carrier-protein C-acyltransferase decarboxylating	[c] : cpd00067 + cpd11492 + cpd11524 --> cpd11493 + cpd00011 + cpd11525	Irreversible	c	0	1000	0		
+rxn05389	7-methyl-3-oxo-octanoyl-ACP NADP oxidoreductase	[c] : cpd00067 + cpd00005 + cpd11525 <==> cpd00006 + cpd11526	Reversible	c	-1000	1000	0		
+rxn05390	7-methyl-3-hydroxy-octanoyl-ACP hydro-lyase	[c] : cpd11526 <==> cpd00001 + cpd11527	Reversible	c	-1000	1000	0		
+rxn05392	7-methyl-octanoyl-ACP malonyl-acyl-carrier-protein C-acyltransferase decarboxylating	[c] : cpd00067 + cpd11492 + cpd11528 --> cpd11493 + cpd00011 + cpd11529	Irreversible	c	0	1000	0		
+rxn05393	9-methyl-3-oxo-decanoyl-ACP NADP oxidoreductase	[c] : cpd00067 + cpd00005 + cpd11529 <==> cpd00006 + cpd11530	Reversible	c	-1000	1000	0		
+rxn05394	9-methyl-3-hydroxy-decanoyl-ACP hydro-lyase	[c] : cpd11530 <==> cpd00001 + cpd11531	Reversible	c	-1000	1000	0		
+rxn05396	9-methyl-decanoyl-ACP malonyl-acyl-carrier-protein C-acyltransferase decarboxylating	[c] : cpd00067 + cpd11492 + cpd11532 --> cpd11493 + cpd00011 + cpd11533	Irreversible	c	0	1000	0		
+rxn05397	11-methyl-3-oxo-dodecanoyl-ACP NADP oxidoreductase	[c] : cpd00067 + cpd00005 + cpd11533 <==> cpd00006 + cpd11534	Reversible	c	-1000	1000	0		
+rxn05398	11-methyl-3-hydroxy-dodecanoyl-ACP hydro-lyase	[c] : cpd11534 <==> cpd00001 + cpd11535	Reversible	c	-1000	1000	0		
+rxn05400	11-methyl-dodecanoyl-ACP malonyl-acyl-carrier-protein C-acyltransferase decarboxylating	[c] : cpd00067 + cpd11492 + cpd11536 --> cpd11493 + cpd00011 + cpd11537	Irreversible	c	0	1000	0		
+rxn05401	13-methyl-3-oxo-tetra-decanoyl-ACP NADP oxidoreductase	[c] : cpd00067 + cpd00005 + cpd11537 <==> cpd00006 + cpd11538	Reversible	c	-1000	1000	0		
+rxn05402	13-methyl-3-hydroxy-tetra-decanoyl-ACP hydro-lyase	[c] : cpd11538 <==> cpd00001 + cpd11539	Reversible	c	-1000	1000	0		
+rxn05404	13-methyl-tetra-decanoyl-ACP malonyl-acyl-carrier-protein C-acyltransferase decarboxylating	[c] : cpd00067 + cpd11492 + cpd11540 --> cpd11493 + cpd00011 + cpd11541	Irreversible	c	0	1000	0		
+rxn05405	15-methyl-3-oxo-hexa-decanoyl-ACP NADP oxidoreductase	[c] : cpd00067 + cpd00005 + cpd11541 <==> cpd00006 + cpd11542	Reversible	c	-1000	1000	0		
+rxn05406	15-methyl-3-hydroxy-hexa-decanoyl-ACP hydro-lyase	[c] : cpd11542 <==> cpd00001 + cpd11543	Reversible	c	-1000	1000	0		
+rxn05408	2-methylpropionyl-CoA acyl-carrier-protein transferase	[c] : cpd11493 + cpd00481 <==> cpd00010 + cpd11545	Reversible	c	-1000	1000	0		
+rxn05409	2-methylpropionyl-ACP malonyl-acyl-carrier-protein C-acyltransferase decarboxylating	[c] : cpd00067 + cpd11492 + cpd11545 --> cpd11493 + cpd00011 + cpd11546	Irreversible	c	0	1000	0		
+rxn05410	4-methyl-3-oxo-pentanoyl-ACP NADP oxidoreductase	[c] : cpd00067 + cpd00005 + cpd11546 <==> cpd00006 + cpd11547	Reversible	c	-1000	1000	0		
+rxn05411	4-methyl-3-hydroxy-pentanoyl-ACP hydro-lyase	[c] : cpd11547 <==> cpd00001 + cpd11548	Reversible	c	-1000	1000	0		
+rxn05413	4-methyl-pentanoyl-ACP malonyl-acyl-carrier-protein C-acyltransferase decarboxylating	[c] : cpd00067 + cpd11492 + cpd11549 --> cpd11493 + cpd00011 + cpd11550	Irreversible	c	0	1000	0		
+rxn05414	6-methyl-3-oxo-heptanoyl-ACP NADP oxidoreductase	[c] : cpd00067 + cpd00005 + cpd11550 <==> cpd00006 + cpd11551	Reversible	c	-1000	1000	0		
+rxn05415	6-methyl-3-hydroxy-heptanoyl-ACP hydro-lyase	[c] : cpd11551 <==> cpd00001 + cpd11552	Reversible	c	-1000	1000	0		
+rxn05417	6-methyl-heptanoyl-ACP malonyl-acyl-carrier-protein C-acyltransferase decarboxylating	[c] : cpd00067 + cpd11492 + cpd11553 --> cpd11493 + cpd00011 + cpd11554	Irreversible	c	0	1000	0		
+rxn05418	8-methyl-3-oxo-nonanoyl-ACP NADP oxidoreductase	[c] : cpd00067 + cpd11554 + cpd00005 <==> cpd00006 + cpd11555	Reversible	c	-1000	1000	0		
+rxn05419	8-methyl-3-hydroxy-nonanoyl-ACP hydro-lyase	[c] : cpd11555 <==> cpd00001 + cpd11556	Reversible	c	-1000	1000	0		
+rxn05421	8-methyl-nonanoyl-ACP malonyl-acyl-carrier-protein C-acyltransferase decarboxylating	[c] : cpd00067 + cpd11492 + cpd11557 --> cpd11493 + cpd00011 + cpd11558	Irreversible	c	0	1000	0		
+rxn05422	10-methyl-3-oxo-undecanoyl-ACP NADP oxidoreductase	[c] : cpd00067 + cpd00005 + cpd11558 <==> cpd00006 + cpd11559	Reversible	c	-1000	1000	0		
+rxn05423	10-methyl-3-hydroxy-undecanoyl-ACP hydro-lyase	[c] : cpd11559 <==> cpd00001 + cpd11560	Reversible	c	-1000	1000	0		
+rxn05425	10-methyl-undecanoyl-ACP malonyl-acyl-carrier-protein C-acyltransferase decarboxylating	[c] : cpd00067 + cpd11492 + cpd11561 --> cpd11493 + cpd00011 + cpd11562	Irreversible	c	0	1000	0		
+rxn05426	12-methyl-3-oxo-tridecanoyl-ACP NADP oxidoreductase	[c] : cpd00067 + cpd00005 + cpd11562 <==> cpd00006 + cpd11563	Reversible	c	-1000	1000	0		
+rxn05427	12-methyl-3-hydroxy-tridecanoyl-ACP hydro-lyase	[c] : cpd11563 <==> cpd00001 + cpd11564	Reversible	c	-1000	1000	0		
+rxn05429	12-methyl-tridecanoyl-ACP malonyl-acyl-carrier-protein C-acyltransferase decarboxylating	[c] : cpd00067 + cpd11565 + cpd11492 --> cpd11493 + cpd00011 + cpd11566	Irreversible	c	0	1000	0		
+rxn05430	14-methyl-3-oxo-pentadecanoyl-ACP NADP oxidoreductase	[c] : cpd00067 + cpd00005 + cpd11566 <==> cpd00006 + cpd11567	Reversible	c	-1000	1000	0		
+rxn05431	14-methyl-3-hydroxy-pentadecanoyl-ACP hydro-lyase	[c] : cpd11567 <==> cpd00001 + cpd11568	Reversible	c	-1000	1000	0		
+rxn05433	4-methyl-trans-hex-2-enoyl-ACP NAD oxidoreductase A-specific	[c] : cpd00067 + cpd00004 + cpd11498 --> cpd00003 + cpd11499	Irreversible	c	0	1000	0		
+rxn05434	6-methyl-trans-oct-2-enoyl-ACP NAD oxidoreductase A-specific	[c] : cpd00067 + cpd00004 + cpd11502 --> cpd00003 + cpd11503	Irreversible	c	0	1000	0		
+rxn05435	8-methyl-trans-dec-2-enoyl-ACP NAD oxidoreductase A-specific	[c] : cpd00067 + cpd00004 + cpd11506 --> cpd00003 + cpd11507	Irreversible	c	0	1000	0		
+rxn05436	10-methyl-trans-dodec-2-enoyl-ACP NAD oxidoreductase A-specific	[c] : cpd00067 + cpd00004 + cpd11510 --> cpd00003 + cpd11511	Irreversible	c	0	1000	0		
+rxn05437	12-methyl-trans-tetra-dec-2-enoyl-ACP NAD oxidoreductase A-specific	[c] : cpd00067 + cpd00004 + cpd11514 --> cpd00003 + cpd11515	Irreversible	c	0	1000	0		
+rxn05438	14-methyl-trans-hexa-dec-2-enoyl-ACP NAD oxidoreductase A-specific	[c] : cpd00067 + cpd00004 + cpd11518 --> cpd00003 + cpd11519	Irreversible	c	0	1000	0		
+rxn05439	5-methyl-trans-hex-2-enoyl-ACP NAD oxidoreductase A-specific	[c] : cpd00067 + cpd00004 + cpd11523 --> cpd00003 + cpd11524	Irreversible	c	0	1000	0		
+rxn05440	7-methyl-trans-oct-2-enoyl-ACP NAD oxidoreductase A-specific	[c] : cpd00067 + cpd00004 + cpd11527 --> cpd00003 + cpd11528	Irreversible	c	0	1000	0		
+rxn05441	9-methyl-trans-dec-2-enoyl-ACP NAD oxidoreductase A-specific	[c] : cpd00067 + cpd00004 + cpd11531 --> cpd00003 + cpd11532	Irreversible	c	0	1000	0		
+rxn05442	11-methyl-trans-dodec-2-enoyl-ACP NAD oxidoreductase A-specific	[c] : cpd00067 + cpd00004 + cpd11535 --> cpd00003 + cpd11536	Irreversible	c	0	1000	0		
+rxn05443	13-methyl-trans-tetra-dec-2-enoyl-ACP NAD oxidoreductase A-specific	[c] : cpd00067 + cpd00004 + cpd11539 --> cpd00003 + cpd11540	Irreversible	c	0	1000	0		
+rxn05444	15-methyl-trans-hexa-dec-2-enoyl-ACP NAD oxidoreductase A-specific	[c] : cpd00067 + cpd00004 + cpd11543 --> cpd00003 + cpd11544	Irreversible	c	0	1000	0		
+rxn05445	4-methyl-trans-pent-2-enoyl-ACP NAD oxidoreductase A-specific	[c] : cpd00067 + cpd00004 + cpd11548 --> cpd00003 + cpd11549	Irreversible	c	0	1000	0		
+rxn05446	6-methyl-trans-hept-2-enoyl-ACP NAD oxidoreductase A-specific	[c] : cpd00067 + cpd00004 + cpd11552 --> cpd00003 + cpd11553	Irreversible	c	0	1000	0		
+rxn05447	8-methyl-trans-non-2-enoyl-ACP NAD oxidoreductase A-specific	[c] : cpd00067 + cpd00004 + cpd11556 --> cpd00003 + cpd11557	Irreversible	c	0	1000	0		
+rxn05448	10-methyl-trans-undec-2-enoyl-ACP NAD oxidoreductase A-specific	[c] : cpd00067 + cpd00004 + cpd11560 --> cpd00003 + cpd11561	Irreversible	c	0	1000	0		
+rxn05449	12-methyl-trans-tridec-2-enoyl-ACP NAD oxidoreductase A-specific	[c] : cpd00067 + cpd00004 + cpd11564 --> cpd00003 + cpd11565	Irreversible	c	0	1000	0		
+rxn05450	14-methyl-trans-pentadec-2-enoyl-ACP NAD oxidoreductase A-specific	[c] : cpd00067 + cpd00004 + cpd11568 --> cpd00003 + cpd11569	Irreversible	c	0	1000	0		
+rxn05451	12-methyl-tetra-decanoyl-ACP acyl-carrier-protein transferase	[c] : cpd00010 + cpd11515 <==> cpd11493 + cpd11439	Reversible	c	-1000	1000	0		
+rxn05452	14-methyl-hexa-decanoyl-ACP acyl-carrier-protein transferase	[c] : cpd00010 + cpd11519 <==> cpd11493 + cpd11434	Reversible	c	-1000	1000	0		
+rxn05453	13-methyl-tetra-decanoyl-ACP acyl-carrier-protein transferase	[c] : cpd00010 + cpd11540 <==> cpd11493 + cpd11437	Reversible	c	-1000	1000	0		
+rxn05454	15-methyl-hexa-decanoyl-ACP acyl-carrier-protein transferase	[c] : cpd00010 + cpd11544 <==> cpd11493 + cpd11432	Reversible	c	-1000	1000	0		
+rxn05455	12-methyl-tridecanoyl-ACP acyl-carrier-protein transferase	[c] : cpd00010 + cpd11565 <==> cpd11493 + cpd11435	Reversible	c	-1000	1000	0		
+rxn05456	14-methyl-pentadecanoyl-ACP acyl-carrier-protein transferase	[c] : cpd00010 + cpd11569 <==> cpd11493 + cpd11441	Reversible	c	-1000	1000	0		
+rxn05457	tetradecanoyl-ACP acyl-carrier-protein transferase	[c] : cpd00010 + cpd11466 <==> cpd11493 + cpd01695	Reversible	c	-1000	1000	0		
+rxn05458	hexadecanoyl-ACP acyl-carrier-protein transferase	[c] : cpd00010 + cpd11476 <==> cpd11493 + cpd00134	Reversible	c	-1000	1000	0		
+rxn05459	stearyl-ACP acyl-carrier-protein transferase	[c] : cpd00010 + cpd11573 <==> cpd11493 + cpd00327	Reversible	c	-1000	1000	0		
+rxn05460	3-Oxooctodecanoyl-ACP malonyl-acyl-carrier-protein C-acyltransferase decarboxylating	[c] : cpd00067 + cpd11492 + cpd11476 --> cpd11493 + cpd00011 + cpd11570	Irreversible	c	0	1000	0		
+rxn05461	3-Hydroxyoctodecanoyl-ACP NADP oxidoreductase	[c] : cpd00067 + cpd00005 + cpd11570 <==> cpd00006 + cpd11571	Reversible	c	-1000	1000	0		
+rxn05462	trans-Octodec-2-enoyl-ACP hydro-lyase	[c] : cpd11571 <==> cpd00001 + cpd11572	Reversible	c	-1000	1000	0		
+rxn05464	trans-Octodec-2-enoyl-ACP NAD oxidoreductase A-specific	[c] : cpd00067 + cpd00004 + cpd11572 --> cpd00003 + cpd11573	Irreversible	c	0	1000	0		
+rxn05465	malonyl-ACP acyl-carrier-protein transferase	[c] : cpd11493 + cpd00070 <==> cpd00010 + cpd11492	Reversible	c	-1000	1000	0		
+rxn05466	Ammonia transport via diffusion	cpd00013[e] <==> cpd00013[c]	Reversible	"e, c"	-1000	1000	0		
+rxn05467	CO2 transport via diffusion	cpd00011[e] <==> cpd00011[c]	Reversible	"e, c"	-1000	1000	0		
+rxn05468	O2 transport via diffusion	cpd00007[e] <==> cpd00007[c]	Reversible	"e, c"	-1000	1000	0		
+rxn05485	N-Acetyl-D-glucosamine transport via PEP Pyr PTS	cpd00061[c] + cpd00122[e] <==> cpd00020[c] + cpd00293[c]	Reversible	"e, c"	-1000	1000	0		
+rxn05513	calcium efflux via ABC system	cpd00002[c] + cpd00001[c] + cpd00063[c] --> cpd00067[c] + cpd00009[c] + cpd00063[e] + cpd00008[c]	Irreversible	"e, c"	0	1000	0		
+rxn05515	Cobalamin uptake in via ABC transport	cpd00002[c] + cpd00001[c] + cpd00423[e] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd00423[c]	Irreversible	"e, c"	0	1000	0		
+rxn05516	cadmium transport out via ABC system	cpd00002[c] + cpd00001[c] + cpd01012[c] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd01012[e]	Irreversible	"e, c"	0	1000	0		
+rxn05528	Copper export via ATPase	cpd00002[c] + cpd00001[c] + cpd00058[c] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd00058[e]	Irreversible	"e, c"	0	1000	0		
+rxn05533	Dipeptide transport via ABC system ala-asp	cpd00002[c] + cpd00001[c] + cpd11593[e] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd11593[c]	Irreversible	"e, c"	0	1000	0		
+rxn05534	Dipeptide transport via ABC system gly-glu	cpd00002[c] + cpd00001[c] + cpd11592[e] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd11592[c]	Irreversible	"e, c"	0	1000	0		
+rxn05535	Dipeptide transport via ABC system gly-met	cpd00002[c] + cpd00001[c] + cpd11591[e] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd11591[c]	Irreversible	"e, c"	0	1000	0		
+rxn05536	Dipeptide transport via ABC system met-ala	cpd00002[c] + cpd00001[c] + cpd11590[e] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd11590[c]	Irreversible	"e, c"	0	1000	0		
+rxn05537	Dipeptide transport via ABC system gly-asp	cpd00002[c] + cpd00001[c] + cpd11589[e] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd11589[c]	Irreversible	"e, c"	0	1000	0		
+rxn05538	Dipeptide transport via ABC system gly-pro-L	cpd00002[c] + cpd00001[c] + cpd11588[e] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd11588[c]	Irreversible	"e, c"	0	1000	0		
+rxn05539	Dipeptide transport via ABC system cgly	cpd00002[c] + cpd00001[c] + cpd01017[e] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd01017[c]	Irreversible	"e, c"	0	1000	0		
+rxn05540	Dipeptide transport via ABC system ala-gln	cpd00002[c] + cpd00001[c] + cpd11587[e] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd11587[c]	Irreversible	"e, c"	0	1000	0		
+rxn05541	Dipeptide transport via ABC system ala-glu	cpd00002[c] + cpd00001[c] + cpd11586[e] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd11586[c]	Irreversible	"e, c"	0	1000	0		
+rxn05542	Dipeptide transport via ABC system ala-gly	cpd00002[c] + cpd00001[c] + cpd11585[e] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd11585[c]	Irreversible	"e, c"	0	1000	0		
+rxn05543	Dipeptide transport via ABC system ala-his	cpd00002[c] + cpd00001[c] + cpd11584[e] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd11584[c]	Irreversible	"e, c"	0	1000	0		
+rxn05544	Dipeptide transport via ABC system ala-leu	cpd00002[c] + cpd00001[c] + cpd11583[e] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd11583[c]	Irreversible	"e, c"	0	1000	0		
+rxn05545	Dipeptide transport via ABC system ala-thr	cpd00002[c] + cpd00001[c] + cpd11582[e] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd11582[c]	Irreversible	"e, c"	0	1000	0		
+rxn05546	Dipeptide transport via ABC system gly-asn	cpd00002[c] + cpd00001[c] + cpd11581[e] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd11581[c]	Irreversible	"e, c"	0	1000	0		
+rxn05547	Dipeptide transport via ABC system gly-gln	cpd00002[c] + cpd00001[c] + cpd11580[e] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd11580[c]	Irreversible	"e, c"	0	1000	0		
+rxn05555	iron II transport via ABC system	cpd00002[c] + cpd00001[c] + cpd10515[e] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd10515[c]	Irreversible	"e, c"	0	1000	0		
+rxn05557	iron III dicitrate transport via ABC system	cpd00002[c] + cpd00001[c] + cpd10516[e] + (2) cpd00137[e] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd10516[c] + (2) cpd00137[c]	Irreversible	"e, c"	0	1000	0		
+rxn05560	D-fructose transport via PEP Pyr PTS	cpd00061[c] + cpd00082[e] <==> cpd00020[c] + cpd00802[c]	Reversible	"e, c"	0	1000	0		
+rxn05561_Irreversible	fumarate transport in/out via proton symport	cpd00067[e] + cpd00106[e] <==> cpd00067[c] + cpd00106[c]	Reversible	"e, c"	0	1000	0		
+rxn05567	Galactitol transport via PEP Pyr PTS	cpd00061[c] + cpd01171[e] <==> cpd00020[c] + cpd03752[c]	Reversible	"e, c"	-1000	1000	0		
+rxn05569	D-glucosamine transport via PEP Pyr PTS	cpd00061[c] + cpd00276[e] <==> cpd00020[c] + cpd00288[c]	Reversible	"e, c"	-1000	1000	0		
+rxn05596	potassium transport out via proton antiport	cpd00067[e] + cpd00205[c] <==> cpd00067[c] + cpd00205[e]	Reversible	"e, c"	-1000	1000	0		
+rxn05607	maltose transport via PEP Pyr PTS	cpd00061[c] + cpd00179[e] <==> cpd00020[c] + cpd01919[c]	Reversible	"e, c"	-1000	1000	0		
+rxn05610	D-mannose transport via PEP Pyr PTS	cpd00061[c] + cpd00138[e] <==> cpd00020[c] + cpd00235[c]	Reversible	"e, c"	-1000	1000	0		
+rxn05613	L-methionine S-oxide transport via ABC system	cpd00002[c] + cpd00001[c] + cpd01914[e] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd01914[c]	Irreversible	"e, c"	0	1000	0		
+rxn05614	L-methionine R-oxide transport via ABC system	cpd00002[c] + cpd00001[c] + cpd11576[e] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd11576[c]	Irreversible	"e, c"	0	1000	0		
+rxn05616_MGt5	magnesium transport in/out via permease no H	cpd00254[c] <==> cpd00254[e]	Reversible	"e, c"	-1000	1000	0		
+rxn05617	mannitol transport via PEP Pyr PTS	cpd00061[c] + cpd00314[e] <==> cpd00020[c] + cpd00491[c]	Reversible	"e, c"	-1000	1000	0		
+rxn05619	molybdate transport via ABC system	cpd00002[c] + cpd00001[c] + cpd11574[e] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd11574[c]	Irreversible	"e, c"	0	1000	0		
+rxn05625	nitrite transport in via proton symport	cpd00067[e] + cpd00075[e] <==> cpd00067[c] + cpd00075[c]	Reversible	"e, c"	-1000	1000	0		
+rxn05627	nitrate transport in via proton symport	cpd00067[e] + cpd00209[e] <==> cpd00067[c] + cpd00209[c]	Reversible	"e, c"	-1000	1000	0		
+rxn05651	sulfate transport in via proton symport	cpd00067[e] + cpd00048[e] <==> cpd00067[c] + cpd00048[c]	Reversible	"e, c"	0	0	0		
+rxn05654	succinate transporter in/out via proton symport	cpd00067[e] + cpd00036[e] <==> cpd00067[c] + cpd00036[c]	Reversible	"e, c"	0	1000	0		
+rxn05655	sucrose transport via PEP Pyr PTS	cpd00061[c] + cpd00076[e] <==> cpd00020[c] + cpd01693[c]	Reversible	"e, c"	-1000	1000	0		
+rxn05667	Urea transport via facilitate diffusion	cpd00073[e] <==> cpd00073[c]	Reversible	"e, c"	-1000	1000	0		
+rxn05733	cysteine synthase Thiosulfate	[c] : cpd11421 + cpd00268 + cpd00722 <==> cpd00084 + cpd11420 + cpd00029 + cpd00081	Reversible	c	-1000	1000	0		
+rxn05736	fatty-acid--CoA ligase tetradecanoate	[c] : cpd00002 + cpd00067 + cpd00010 + cpd03847 --> cpd00012 + cpd00018 + cpd01695	Irreversible	c	0	1000	0		
+rxn05740	cpd00155 phosphorylase	[c] : cpd00067 + cpd00009 + cpd00155 <==> cpd00089 + cpd15302	Reversible	c	-1000	1000	0		
+rxn05893_Irreversible	Ammonia:ferredoxin oxidoreductase	[c] : (8) cpd00067 + cpd00075 + (6) cpd11620 --> (2) cpd00001 + cpd00013 + (6) cpd11621	Irreversible	c	0	1000	0		
+rxn05894_Irreversible	ferredoxin-nitrate reductase NO3 to NO2	[c] : (2) cpd00067 + cpd00209 + (2) cpd11620 --> cpd00001 + cpd00075 + (2) cpd11621	Irreversible	c	0	1000	0		
+rxn05937	Ferredoxin NADP oxidoreductase	[c] : cpd00067 + cpd00006 + cpd11620 <==> cpd00005 + cpd11621	Reversible	c	-1000	1000	0		
+rxn05938	rxn05938	[c] : cpd00067 + cpd00011 + cpd00022 + cpd11620 <==> cpd00020 + cpd00010 + cpd11621	Reversible	c	-1000	1000	0		
+rxn05957	O-Succinyl-L-homoserine succinate-lyase adding cysteine	[c] : cpd00239 + cpd00822 <==> cpd00067 + cpd00036 + cpd00135	Reversible	c	-1000	1000	0		
+rxn06022	Acyl-carrier-protein 4'-pantetheine-phosphohydrolase	[c] : cpd00001 + cpd11493 <==> cpd12370 + cpd00834	Reversible	c	-1000	1000	0		
+rxn06023	CoA apo-acyl-carrier-protein pantetheinephosphotransferase	[c] : cpd12370 + cpd00010 <==> cpd11493 + cpd00045	Reversible	c	-1000	1000	0		
+rxn06075	2'-Deoxyuridine 5'-diphosphate oxidized-thioredoxin	[c] : cpd00014 + cpd11421 --> cpd00001 + cpd00978 + cpd11420	Irreversible	c	0	1000	0		
+rxn06076	2'-Deoxycytidine diphosphate oxidized-thioredoxin 2'-oxidoreductase	[c] : cpd11421 + cpd00096 --> cpd00001 + cpd11420 + cpd00533	Irreversible	c	0	1000	0		
+rxn06077_METSR-S1	L-methionine oxidized-thioredoxin S-oxidoreductase	[c] : cpd11421 + cpd01914 --> cpd00001 + cpd00060 + cpd11420	Irreversible	c	0	1000	0		
+rxn06078	O-Acetyl-L-homoserine acetate-lyase adding methanethiol	[c] : cpd11421 + cpd00268 + cpd00790 <==> cpd00135 + cpd11420 + cpd00029 + cpd00081	Reversible	c	-1000	1000	0		
+rxn06280	L-Tyrosine:tRNA(Tyr) ligase (AMP-forming)	[c] : cpd00002 + cpd00067 + cpd00069 + cpd11751 --> cpd00012 + cpd00018 + cpd12194	Irreversible	c	0	1000	0		
+rxn06300	L-Alanine:tRNA(Ala) ligase (AMP-forming)	[c] : cpd00002 + cpd00035 + cpd00067 + cpd11906 --> cpd00012 + cpd00018 + cpd11770	Irreversible	c	0	1000	0		
+rxn06377	glycine lipoylprotein oxidoreductase decarboxylating and	[c] : cpd00067 + cpd00033 + cpd12005 --> cpd00011 + cpd11830	Irreversible	c	0	1000	0		
+rxn06432	L-Arginine:tRNA(Arg) ligase (AMP-forming)	[c] : cpd00002 + cpd00051 + cpd00067 + cpd11907 --> cpd00012 + cpd00018 + cpd12036	Irreversible	c	0	1000	0		
+rxn06434	L-Asparagine:tRNA(Asn) ligase (AMP-forming)	[c] : cpd00002 + cpd00067 + cpd00132 + cpd11908 --> cpd00012 + cpd00018 + cpd12313	Irreversible	c	0	1000	0		
+rxn06435	L-Cysteine:tRNA(Cys) ligase (AMP-forming)	[c] : cpd00002 + cpd00067 + cpd00084 + cpd11910 --> cpd00012 + cpd00018 + cpd12255	Irreversible	c	0	1000	0		
+rxn06437	L-Glutamine:tRNA(Gln) ligase (AMP-forming)	[c] : cpd00002 + cpd00053 + cpd00067 + cpd11911 --> cpd00012 + cpd00018 + cpd12060	Irreversible	c	0	1000	0		
+rxn06438	Glycine:tRNA(Gly) ligase (AMP-forming)	[c] : cpd00002 + cpd00033 + cpd00067 + cpd11913 --> cpd00012 + cpd00018 + cpd12100	Irreversible	c	0	1000	0		
+rxn06439	L-Histidine:tRNA(His) ligase (AMP-forming)	[c] : cpd00002 + cpd00067 + cpd00119 + cpd11914 --> cpd00012 + cpd00018 + cpd12228	Irreversible	c	0	1000	0		
+rxn06440	L-Isoleucine:tRNA(Ile) ligase (AMP-forming)	[c] : cpd00002 + cpd00067 + cpd00322 + cpd11915 --> cpd00012 + cpd00018 + cpd12256	Irreversible	c	0	1000	0		
+rxn06441	L-Leucine:tRNA(Leu) ligase (AMP-forming)	[c] : cpd00002 + cpd00067 + cpd00107 + cpd11916 --> cpd00012 + cpd00018 + cpd12003	Irreversible	c	0	1000	0		
+rxn06443	L-Methionine:tRNAMet ligase (AMP-forming)	[c] : cpd00002 + cpd00060 + cpd00067 + cpd11918 --> cpd00012 + cpd00018 + cpd12105	Irreversible	c	0	1000	0		
+rxn06444	L-Phenylalanine:tRNA(Ala) ligase (AMP-forming)	[c] : cpd00002 + cpd00066 + cpd00067 + cpd11919 --> cpd00012 + cpd00018 + cpd12335	Irreversible	c	0	1000	0		
+rxn06445	L-Proline:tRNA(Pro) ligase (AMP-forming)	[c] : cpd00002 + cpd00067 + cpd00129 + cpd11920 --> cpd00012 + cpd00018 + cpd12164	Irreversible	c	0	1000	0		
+rxn06446	L-Serine:tRNA(Ser) ligase (AMP-forming)	[c] : cpd00002 + cpd00054 + cpd11921 --> cpd00012 + cpd00018 + cpd12132	Irreversible	c	0	1000	0		
+rxn06447	L-Threonine:tRNA(Thr) ligase (AMP-forming)	[c] : cpd00002 + cpd00161 + cpd11922 --> cpd00012 + cpd00018 + cpd12229	Irreversible	c	0	1000	0		
+rxn06448	L-Tryptophan -tRNA(Trp) ligase (AMP-forming)	[c] : cpd00002 + cpd00065 + cpd00067 + cpd11923 --> cpd00012 + cpd00018 + cpd12336	Irreversible	c	0	1000	0		
+rxn06449	L-Valine:tRNAVal ligase (AMP-forming)	[c] : cpd00002 + cpd00067 + cpd00156 + cpd11924 --> cpd00012 + cpd00018 + cpd12133	Irreversible	c	0	1000	0		
+rxn06493	dihydrolipoylprotein NAD oxidoreductase	[c] : cpd00003 + cpd12225 <==> cpd00067 + cpd00004 + cpd12005	Reversible	c	-1000	1000	0		
+rxn06526	NADPH protein-disulfide oxidoreductase	[c] : cpd00006 + cpd12072 <==> cpd00067 + cpd00005 + cpd12139	Reversible	c	-1000	1000	0		
+rxn06591_GLUTRR	L-glutamate-semialdehyde NADP	[c] : cpd00067 + cpd00005 + cpd12227 --> cpd02345 + cpd00006 + cpd11912	Irreversible	c	0	1000	0		
+rxn06600	S-aminomethyldihydrolipoylprotein 6S-tetrahydrofolate	[c] : cpd00087 + cpd11830 --> cpd00013 + cpd00125 + cpd12225	Irreversible	c	0	1000	0		
+rxn06672	biotin-carboxyl-carrier-protein carbon-dioxide ligase ADP-forming	[c] : cpd00002 + cpd00242 + cpd12848 <==> cpd00067 + cpd00009 + cpd00008 + cpd12543	Reversible	c	-1000	1000	0		
+rxn06673	Acetyl-CoA carbon-dioxide ligase ADP-forming	[c] : cpd00022 + cpd12543 <==> cpd00070 + cpd12848	Reversible	c	-1000	1000	0		
+rxn06723	UDP-3-O-3-hydroxymyristoylglucosamine acyltransferase	[c] : cpd11484 + cpd03584 --> cpd00067 + cpd11493 + cpd02835	Irreversible	c	0	1000	0		
+rxn06729_UAGAAT	R-3-Hydroxytetradecanoly-acyl-carrier-protein UDP-N-acetyl-	[c] : cpd00037 + cpd11484 <==> cpd11493 + cpd02886	Reversible	c	-1000	1000	0		
+rxn06848	Endotoxin Synthesis myristoyl transferase	[c] : cpd03736 + cpd11466 --> cpd11493 + cpd03587	Irreversible	c	0	1000	0		
+rxn06865	Endotoxin Synthesis lauroyl transferase	[c] : cpd11468 + cpd03586 --> cpd11493 + cpd03736	Irreversible	c	0	1000	0		
+rxn06936	L-Aspartate:tRNA(Asp) ligase (AMP-forming)	[c] : cpd00002 + cpd00041 + cpd00067 + cpd11909 --> cpd00012 + cpd00018 + cpd12226	Irreversible	c	0	1000	0		
+rxn06937	L-Glutamate tRNAGlu ligase AMP-forming	[c] : cpd00002 + cpd00067 + cpd00023 + cpd11912 --> cpd00012 + cpd00018 + cpd12227	Irreversible	c	0	1000	0		
+rxn07295	glycine oxidase	[c] : cpd00033 --> (3) cpd00067 + cpd14545	Irreversible	c	0	1000	0		
+rxn08040	UDP-N-acetylglucosamine undecaprenylphosphate N-acetylglucosamine -1-phosphate transferase	[c] : cpd00286 + cpd00037 <==> cpd00091 + cpd00946	Reversible	c	-1000	1000	0		
+rxn08126_AMALT1	Amylomaltase maltotriose	[c] : cpd00179 + cpd01262 --> cpd00027 + cpd01399	Irreversible	c	0	1000	0		
+rxn08127_AMALT2	Amylomaltase maltotetraose	[c] : cpd00179 + cpd01399 --> cpd00027 + cpd15495	Irreversible	c	0	1000	0		
+rxn08128_AMALT3	Amylomaltase maltopentaose	[c] : cpd00179 + cpd15495 --> cpd00027 + cpd01329	Irreversible	c	0	1000	0		
+rxn08129_AMALT4	Amylomaltase maltohexaose	[c] : cpd00179 + cpd01329 --> cpd00027 + cpd15494	Irreversible	c	0	1000	0		
+rxn08180	Biotin synthase	[c] : cpd00017 + cpd01311 + cpd00074 --> cpd00067 + cpd03091 + cpd00060 + cpd00104	Irreversible	c	0	1000	0		
+rxn08194	cobIalamin adenosyltransferase	[c] : cpd00002 + cpd00635 <==> cpd00421 + cpd00166	Reversible	c	-1000	1000	0		
+rxn08294	diacylglycerol kinase n-C12 0	[c] : cpd00002 + cpd15306 <==> cpd00008 + cpd15521	Reversible	c	-1000	1000	0		
+rxn08295	diacylglycerol kinase n-C14 0	[c] : cpd00002 + cpd15307 <==> cpd00008 + cpd15522	Reversible	c	-1000	1000	0		
+rxn08296	diacylglycerol kinase n-C14 1	[c] : cpd00002 + cpd15308 <==> cpd00008 + cpd15523	Reversible	c	-1000	1000	0		
+rxn08297	diacylglycerol kinase n-C16 0	[c] : cpd00002 + cpd15309 <==> cpd00008 + cpd15524	Reversible	c	-1000	1000	0		
+rxn08298	diacylglycerol kinase n-C16 1	[c] : cpd00002 + cpd15310 <==> cpd00008 + cpd15525	Reversible	c	-1000	1000	0		
+rxn08299	diacylglycerol kinase n-C18 0	[c] : cpd00002 + cpd15311 <==> cpd00008 + cpd15526	Reversible	c	-1000	1000	0		
+rxn08300	diacylglycerol kinase n-C18 1	[c] : cpd00002 + cpd15312 <==> cpd00008 + cpd15527	Reversible	c	-1000	1000	0		
+rxn08306	CDP-diacylglycerol synthetase n-C12 0	[c] : cpd00052 + cpd15521 <==> cpd00012 + cpd15417	Reversible	c	-1000	1000	0		
+rxn08307	CDP-diacylglycerol synthetase n-C14 0	[c] : cpd00052 + cpd15522 <==> cpd00012 + cpd15423	Reversible	c	-1000	1000	0		
+rxn08308	CDP-diacylglycerol synthetase n-C14 1	[c] : cpd00052 + cpd15523 <==> cpd00012 + cpd15422	Reversible	c	-1000	1000	0		
+rxn08309	CDP-diacylglycerol synthetase n-C16 0	[c] : cpd00052 + cpd15524 <==> cpd00012 + cpd15419	Reversible	c	-1000	1000	0		
+rxn08310	CDP-diacylglycerol synthetase n-C16 1	[c] : cpd00052 + cpd15525 <==> cpd00012 + cpd15418	Reversible	c	-1000	1000	0		
+rxn08311	CDP-diacylglycerol synthetase n-C18 0	[c] : cpd00052 + cpd15526 <==> cpd00012 + cpd15421	Reversible	c	-1000	1000	0		
+rxn08312	CDP-diacylglycerol synthetase n-C18 1	[c] : cpd00052 + cpd15527 <==> cpd00012 + cpd15420	Reversible	c	-1000	1000	0		
+rxn08335	dihydoorotic acid dehydrogenase quinone8	[c] : cpd15560 + cpd00282 --> cpd15561 + cpd00247	Irreversible	c	0	1000	0		
+rxn08336	dihydroorotic acid menaquinone-8	[c] : cpd15500 + cpd00282 --> cpd15499 + cpd00247	Irreversible	c	0	1000	0		
+rxn08352	1-hydroxy-2-methyl-2-E-butenyl 4-diphosphate reductase dmpp	[c] : cpd00067 + cpd00004 + cpd08615 --> cpd00001 + cpd00003 + cpd00202	Irreversible	c	0	1000	0		
+rxn08354	Dimethyl sulfoxide reductase Menaquinol 8	[c] : cpd15499 + cpd08021 <==> cpd00001 + cpd15500 + cpd00450	Reversible	c	-1000	1000	0		
+rxn08356	Dimethyl sulfoxide reductase Demethylmenaquinol 8	[c] : cpd15353 + cpd08021 <==> cpd00001 + cpd15352 + cpd00450	Reversible	c	-1000	1000	0		
+rxn08527	fumarate reductase	[c] : cpd15499 + cpd00106 <==> cpd15500 + cpd00036	Reversible	c	-1000	1000	0		
+rxn08528	fumarate reductase	[c] : cpd15353 + cpd00106 <==> cpd15352 + cpd00036	Reversible	c	-1000	1000	0		
+rxn08546	glycerol-3-phosphate acyltransferase C12 0	[c] : cpd00080 + cpd11468 --> cpd11493 + cpd15325	Irreversible	c	0	1000	0		
+rxn08547	glycerol-3-phosphate acyltransferase C14 0	[c] : cpd11466 + cpd00080 --> cpd11493 + cpd15331	Irreversible	c	0	1000	0		
+rxn08548	glycerol-3-phosphate acyltransferase C14 1	[c] : cpd00080 + cpd15294 --> cpd11493 + cpd15330	Irreversible	c	0	1000	0		
+rxn08549	glycerol-3-phosphate acyltransferase C16 0	[c] : cpd00080 + cpd15277 --> cpd11493 + cpd15327	Irreversible	c	0	1000	0		
+rxn08550	glycerol-3-phosphate acyltransferase C16 1	[c] : cpd00080 + cpd15239 --> cpd11493 + cpd15326	Irreversible	c	0	1000	0		
+rxn08551	glycerol-3-phosphate acyltransferase C18 0	[c] : cpd00080 + cpd15268 --> cpd11493 + cpd15329	Irreversible	c	0	1000	0		
+rxn08552	glycerol-3-phosphate acyltransferase C18 1	[c] : cpd00080 + cpd11825 --> cpd11493 + cpd15328	Irreversible	c	0	1000	0		
+rxn08583	galactosyltransferase I LPS core synthesis	[c] : cpd00026 + cpd15479 <==> cpd00014 + cpd15469	Reversible	c	-1000	1000	0		
+rxn08615	glycogen synthase ADPGlc	[c] : cpd00387 + cpd15302 <==> cpd00008 + cpd00155	Reversible	c	-1000	1000	0		
+rxn08618	glucosyltransferase I LPS core synthesis	[c] : cpd15489 + cpd00026 <==> cpd00014 + cpd15479	Reversible	c	-1000	1000	0		
+rxn08619	glucosyltransferase II LPS core synthesis	[c] : cpd00026 + cpd15469 <==> cpd00014 + cpd15475	Reversible	c	-1000	1000	0		
+rxn08620	glucosyltransferase III LPS core synthesis	[c] : cpd00026 + cpd15475 <==> cpd15477 + cpd00014	Reversible	c	-1000	1000	0		
+rxn08655	Glycolate oxidase	[c] : cpd00139 + cpd15560 <==> cpd00040 + cpd15561	Reversible	c	-1000	1000	0		
+rxn08656	Glycolate oxidase	[c] : cpd15500 + cpd00139 --> cpd15499 + cpd00040	Irreversible	c	0	1000	0		
+rxn08657	Glycolate oxidase	[c] : cpd15352 + cpd00139 --> cpd15353 + cpd00040	Irreversible	c	0	1000	0		
+rxn08669	Glycerophosphodiester phosphodiesterase Glycerophosphoglycerol	[c] : cpd00001 + cpd02090 <==> cpd00080 + cpd00100	Reversible	c	-1000	1000	0		
+rxn08707	Heme O synthase	[c] : cpd00001 + cpd00028 + cpd00350 <==> cpd00012 + cpd11313	Reversible	c	-1000	1000	0		
+rxn08708	LPS heptose kinase I LPS core synthesis	[c] : cpd00002 + cpd15484 <==> cpd00008 + cpd15549	Reversible	c	-1000	1000	0		
+rxn08709	LPS heptose kinase II LPS core synthesis	[c] : cpd00002 + cpd15488 <==> cpd00008 + cpd15550	Reversible	c	-1000	1000	0		
+rxn08710	heptosyltransferase I LPS core synthesis	[c] : cpd03587 + cpd03831 <==> cpd00008 + cpd15485	Reversible	c	-1000	1000	0		
+rxn08711	heptosyltransferase II LPS core synthesis	[c] : cpd03831 + cpd15485 <==> cpd00008 + cpd15484	Reversible	c	-1000	1000	0		
+rxn08712	heptosyltransferase III LPS core synthesis	[c] : cpd03831 + cpd15549 <==> cpd00008 + cpd15488	Reversible	c	-1000	1000	0		
+rxn08713	heptosyltransferase IV LPS core synthesis	[c] : cpd03831 + cpd15477 <==> cpd00008 + cpd15432	Reversible	c	-1000	1000	0		
+rxn08756	1-hydroxy-2-methyl-2-E-butenyl 4-diphosphate reductase ipdp	[c] : cpd00067 + cpd00004 + cpd08615 --> cpd00001 + cpd00003 + cpd00113	Irreversible	c	0	1000	0		
+rxn08796	Lysophospholipase L1 2-acylglycerophosphotidate n-C12 0 periplasm	[c] : cpd00001 + cpd15325 <==> cpd00067 + cpd00080 + cpd01741	Reversible	c	-1000	1000	0		
+rxn08797	Lysophospholipase L1 2-acylglycerophosphotidate n-C14 0 periplasm	[c] : cpd00001 + cpd15331 <==> cpd00067 + cpd00080 + cpd03847	Reversible	c	-1000	1000	0		
+rxn08798	Lysophospholipase L1 2-acylglycerophosphotidate n-C14 1 periplasm	[c] : cpd00001 + cpd15330 <==> cpd00067 + cpd00080 + cpd15298	Reversible	c	-1000	1000	0		
+rxn08799	Lysophospholipase L1 2-acylglycerophosphotidate n-C16 0 periplasm	[c] : cpd00001 + cpd15327 <==> cpd00067 + cpd00080 + cpd00214	Reversible	c	-1000	1000	0		
+rxn08800	Lysophospholipase L1 2-acylglycerophosphotidate n-C16 1 periplasm	[c] : cpd00001 + cpd15326 <==> cpd00067 + cpd00080 + cpd15237	Reversible	c	-1000	1000	0		
+rxn08801	Lysophospholipase L1 2-acylglycerophosphotidate n-C18 0 periplasm	[c] : cpd00001 + cpd15329 <==> cpd00067 + cpd00080 + cpd01080	Reversible	c	-1000	1000	0		
+rxn08802	Lysophospholipase L1 2-acylglycerophosphotidate n-C18 1 periplasm	[c] : cpd00001 + cpd15328 <==> cpd00067 + cpd00080 + cpd15269	Reversible	c	-1000	1000	0		
+rxn08803	Lysophospholipase L1 2-acylglycerophosphoethanolamine n-C12 0 periplasm	[c] : cpd00001 + cpd15313 <==> cpd00067 + cpd01741 + cpd00908	Reversible	c	-1000	1000	0		
+rxn08804	Lysophospholipase L1 2-acylglycerophosphoethanolamine n-C14 0 periplasm	[c] : cpd00001 + cpd15314 <==> cpd00067 + cpd03847 + cpd00908	Reversible	c	-1000	1000	0		
+rxn08805	Lysophospholipase L1 2-acylglycerophosphoethanolamine n-C14 1 periplasm	[c] : cpd00001 + cpd15315 <==> cpd00067 + cpd15298 + cpd00908	Reversible	c	-1000	1000	0		
+rxn08806	Lysophospholipase L1 2-acylglycerophosphoethanolamine n-C16 0 periplasm	[c] : cpd00001 + cpd15316 <==> cpd00067 + cpd00214 + cpd00908	Reversible	c	-1000	1000	0		
+rxn08807	Lysophospholipase L1 2-acylglycerophosphoethanolamine n-C16 1 periplasm	[c] : cpd00001 + cpd15317 <==> cpd00067 + cpd15237 + cpd00908	Reversible	c	-1000	1000	0		
+rxn08808	Lysophospholipase L1 2-acylglycerophosphoethanolamine n-C18 0 periplasm	[c] : cpd00067 + cpd00001 + cpd12547 --> cpd01080 + cpd00908	Irreversible	c	0	1000	0		
+rxn08809	Lysophospholipase L1 2-acylglycerophosphoethanolamine n-C18 1 periplasm	[c] : cpd00001 + cpd12547 <==> cpd00067 + cpd15269 + cpd00908	Reversible	c	-1000	1000	0		
+rxn08810	Lysophospholipase L1 2-acylglycerophosphoglycerol n-C12 0 periplasm	[c] : cpd00001 + cpd15318 <==> cpd00067 + cpd01741 + cpd02090	Reversible	c	-1000	1000	0		
+rxn08811	Lysophospholipase L1 2-acylglycerophosphoglycerol n-C14 0 periplasm	[c] : cpd00001 + cpd15319 <==> cpd00067 + cpd02090 + cpd03847	Reversible	c	-1000	1000	0		
+rxn08812	Lysophospholipase L1 2-acylglycerophosphoglycerol n-C14 1 periplasm	[c] : cpd00001 + cpd15320 <==> cpd00067 + cpd15298 + cpd02090	Reversible	c	-1000	1000	0		
+rxn08813	Lysophospholipase L1 2-acylglycerophosphoglycerol n-C16 0 periplasm	[c] : cpd00001 + cpd15321 <==> cpd00067 + cpd00214 + cpd02090	Reversible	c	-1000	1000	0		
+rxn08814	Lysophospholipase L1 2-acylglycerophosphoglycerol n-C16 1 periplasm	[c] : cpd00001 + cpd15322 <==> cpd00067 + cpd02090 + cpd15237	Reversible	c	-1000	1000	0		
+rxn08815	Lysophospholipase L1 2-acylglycerophosphoglycerol n-C18 0 periplasm	[c] : cpd00001 + cpd15323 <==> cpd00067 + cpd01080 + cpd02090	Reversible	c	-1000	1000	0		
+rxn08816	Lysophospholipase L1 2-acylglycerophosphoglycerol n-C18 1 periplasm	[c] : cpd00001 + cpd15324 <==> cpd00067 + cpd02090 + cpd15269	Reversible	c	-1000	1000	0		
+rxn08817	Lysophospholipase L2 2-acylglycerophosphotidate n-C12 0	[c] : cpd00001 + cpd15350 <==> cpd00067 + cpd00080 + cpd01741	Reversible	c	-1000	1000	0		
+rxn08818	Lysophospholipase L2 2-acylglycerophosphotidate n-C14 0	[c] : cpd00001 + cpd15363 <==> cpd00067 + cpd00080 + cpd03847	Reversible	c	-1000	1000	0		
+rxn08819	Lysophospholipase L2 2-acylglycerophosphotidate n-C14 1	[c] : cpd00001 + cpd15362 <==> cpd00067 + cpd00080 + cpd15298	Reversible	c	-1000	1000	0		
+rxn08820	Lysophospholipase L2 2-acylglycerophosphotidate n-C16 0	[c] : cpd00001 + cpd15355 <==> cpd00067 + cpd00080 + cpd00214	Reversible	c	-1000	1000	0		
+rxn08821	Lysophospholipase L2 2-acylglycerophosphotidate n-C16 1	[c] : cpd00001 + cpd15354 <==> cpd00067 + cpd00080 + cpd15237	Reversible	c	-1000	1000	0		
+rxn08822	Lysophospholipase L2 2-acylglycerophosphotidate n-C18 0	[c] : cpd00001 + cpd15358 <==> cpd00067 + cpd00080 + cpd01080	Reversible	c	-1000	1000	0		
+rxn08823	Lysophospholipase L2 2-acylglycerophosphotidate n-C18 1	[c] : cpd00001 + cpd15357 <==> cpd00067 + cpd00080 + cpd15269	Reversible	c	-1000	1000	0		
+rxn08838	Lysophospholipase L2 2-acylglycerophosphoethanolamine n-C12 0	[c] : cpd00001 + cpd15336 <==> cpd00067 + cpd01741 + cpd00908	Reversible	c	-1000	1000	0		
+rxn08839	Lysophospholipase L2 2-acylglycerophosphoethanolamine n-C14 0	[c] : cpd00001 + cpd15337 <==> cpd00067 + cpd03847 + cpd00908	Reversible	c	-1000	1000	0		
+rxn08840	Lysophospholipase L2 2-acylglycerophosphoethanolamine n-C14 1	[c] : cpd00001 + cpd15338 <==> cpd00067 + cpd15298 + cpd00908	Reversible	c	-1000	1000	0		
+rxn08841	Lysophospholipase L2 2-acylglycerophosphoethanolamine n-C16 0	[c] : cpd00001 + cpd15339 <==> cpd00067 + cpd00214 + cpd00908	Reversible	c	-1000	1000	0		
+rxn08842	Lysophospholipase L2 2-acylglycerophosphoethanolamine n-C16 1	[c] : cpd00001 + cpd15340 <==> cpd00067 + cpd15237 + cpd00908	Reversible	c	-1000	1000	0		
+rxn08843	Lysophospholipase L2 2-acylglycerophosphoethanolamine n-C18 0	[c] : cpd00001 + cpd15341 <==> cpd00067 + cpd01080 + cpd00908	Reversible	c	-1000	1000	0		
+rxn08844	Lysophospholipase L2 2-acylglycerophosphoethanolamine n-C18 1	[c] : cpd00001 + cpd15342 <==> cpd00067 + cpd15269 + cpd00908	Reversible	c	-1000	1000	0		
+rxn08845	Lysophospholipase L2 2-acylglycerophosphoglycerol n-C12 0	[c] : cpd00001 + cpd15343 <==> cpd00067 + cpd01741 + cpd02090	Reversible	c	-1000	1000	0		
+rxn08846	Lysophospholipase L2 2-acylglycerophosphoglycerol n-C14 0	[c] : cpd00001 + cpd15344 <==> cpd00067 + cpd02090 + cpd03847	Reversible	c	-1000	1000	0		
+rxn08847	Lysophospholipase L2 2-acylglycerophosphoglycerol n-C14 1	[c] : cpd00001 + cpd15345 <==> cpd00067 + cpd15298 + cpd02090	Reversible	c	-1000	1000	0		
+rxn08848	Lysophospholipase L2 2-acylglycerophosphoglycerol n-C16 0	[c] : cpd00001 + cpd15346 <==> cpd00067 + cpd00214 + cpd02090	Reversible	c	-1000	1000	0		
+rxn08849	Lysophospholipase L2 2-acylglycerophosphoglycerol n-C16 1	[c] : cpd00001 + cpd15347 <==> cpd00067 + cpd02090 + cpd15237	Reversible	c	-1000	1000	0		
+rxn08850	Lysophospholipase L2 2-acylglycerophosphoglycerol n-C18 0	[c] : cpd00001 + cpd15348 <==> cpd00067 + cpd01080 + cpd02090	Reversible	c	-1000	1000	0		
+rxn08851	Lysophospholipase L2 2-acylglycerophosphoglycerol n-C18 1	[c] : cpd00001 + cpd15349 <==> cpd00067 + cpd02090 + cpd15269	Reversible	c	-1000	1000	0		
+rxn08857	Lysyl-tRNA synthetase	[c] : cpd00002 + cpd00039 + cpd00067 + cpd11917 --> cpd00012 + cpd00018 + cpd15249	Irreversible	c	0	1000	0		
+rxn08954	3-deoxy-D-manno-octulosonic acid transferase III LPS core biosynthesis	[c] : cpd15550 + cpd02546 <==> cpd00046 + cpd15492	Reversible	c	-1000	1000	0		
+rxn08967	Nitrous-oxide (N2O) diffusion	cpd00659[e] <==> cpd00659[c]	Reversible	"e, c"	-1000	1000	0		
+rxn08971	NADH dehydrogenase menaquinone-8 & 0 protons	[c] : cpd00067 + cpd15500 + cpd00004 --> cpd15499 + cpd00003	Irreversible	c	0	1000	0		
+rxn08975	NADH dehydrogenase ubiquinone-8	[c] : cpd00006 + cpd15561 --> cpd00067 + cpd00005 + cpd15560	Irreversible	c	0	0	0		
+rxn08976	NADH dehydrogenase demethylmenaquinone-8 & 0 protons	[c] : cpd00067 + cpd15352 + cpd00004 --> cpd15353 + cpd00003	Irreversible	c	0	1000	0		
+rxn09101	phosphatidylglycerol phosphate phosphatase n-C14 0	[c] : cpd00001 + cpd15542 --> cpd00067 + cpd00009 + cpd15535	Irreversible	c	0	1000	0		
+rxn09102	phosphatidylglycerol phosphate phosphatase n-C14 0	[c] : cpd00001 + cpd15543 --> cpd00067 + cpd00009 + cpd15536	Irreversible	c	0	1000	0		
+rxn09103	phosphatidylglycerol phosphate phosphatase n-C14 1	[c] : cpd00001 + cpd15544 --> cpd00067 + cpd00009 + cpd15537	Irreversible	c	0	1000	0		
+rxn09104	phosphatidylglycerol phosphate phosphatase n-C16 0	[c] : cpd00001 + cpd15545 --> cpd00067 + cpd00009 + cpd15538	Irreversible	c	0	1000	0		
+rxn09105	phosphatidylglycerol phosphate phosphatase n-C16 1	[c] : cpd00001 + cpd15546 --> cpd00067 + cpd00009 + cpd15539	Irreversible	c	0	1000	0		
+rxn09106	phosphatidylglycerol phosphate phosphatase n-C18 0	[c] : cpd00001 + cpd15547 --> cpd00067 + cpd00009 + cpd15540	Irreversible	c	0	1000	0		
+rxn09107	phosphatidylglycerol phosphate phosphatase n-C18 1	[c] : cpd00001 + cpd15548 --> cpd00067 + cpd00009 + cpd15541	Irreversible	c	0	1000	0		
+rxn09123	Phospholipase A1 phosphatidate n-C12 0 periplasm	[c] : cpd00001 + cpd15521 <==> cpd00067 + cpd01741 + cpd15350	Reversible	c	-1000	1000	0		
+rxn09124	Phospholipase A1 phosphatidate n-C14 0 periplasm	[c] : cpd00001 + cpd15522 <==> cpd00067 + cpd03847 + cpd15363	Reversible	c	-1000	1000	0		
+rxn09125	Phospholipase A1 phosphatidate n-C14 1 periplasm	[c] : cpd00001 + cpd15523 <==> cpd00067 + cpd15298 + cpd15362	Reversible	c	-1000	1000	0		
+rxn09126	Phospholipase A1 phosphatidate n-C16 0 periplasm	[c] : cpd00001 + cpd15524 <==> cpd00067 + cpd15355 + cpd00214	Reversible	c	-1000	1000	0		
+rxn09127	Phospholipase A1 phosphatidate n-C16 1 periplasm	[c] : cpd00001 + cpd15525 <==> cpd00067 + cpd15237 + cpd15354	Reversible	c	-1000	1000	0		
+rxn09128	Phospholipase A1 phosphatidate n-C18 0 periplasm	[c] : cpd00001 + cpd15526 <==> cpd00067 + cpd01080 + cpd15358	Reversible	c	-1000	1000	0		
+rxn09129	Phospholipase A1 phosphatidate n-C18 1 periplasm	[c] : cpd00001 + cpd15527 <==> cpd00067 + cpd15269 + cpd15357	Reversible	c	-1000	1000	0		
+rxn09130	Phospholipase A1 phosphatidylethanolamine n-C12 0 periplasm	[c] : cpd00001 + cpd15528 <==> cpd00067 + cpd01741 + cpd15336	Reversible	c	-1000	1000	0		
+rxn09131	Phospholipase A1 phosphatidylethanolamine n-C14 0 periplasm	[c] : cpd00001 + cpd15529 <==> cpd00067 + cpd03847 + cpd15337	Reversible	c	-1000	1000	0		
+rxn09132	Phospholipase A1 phosphatidylethanolamine n-C14 1 periplasm	[c] : cpd00001 + cpd15530 <==> cpd00067 + cpd15298 + cpd15338	Reversible	c	-1000	1000	0		
+rxn09133	Phospholipase A1 phosphatidylethanolamine n-C16 0 periplasm	[c] : cpd00001 + cpd15531 <==> cpd00067 + cpd00214 + cpd15339	Reversible	c	-1000	1000	0		
+rxn09134	Phospholipase A1 phosphatidylethanolamine n-C16 1 periplasm	[c] : cpd00001 + cpd15532 <==> cpd00067 + cpd15237 + cpd15340	Reversible	c	-1000	1000	0		
+rxn09135	Phospholipase A1 phosphatidylethanolamine n-C18 0 periplasm	[c] : cpd00001 + cpd15533 <==> cpd00067 + cpd01080 + cpd15341	Reversible	c	-1000	1000	0		
+rxn09136	Phospholipase A1 phosphatidylethanolamine n-C18 1 periplasm	[c] : cpd00001 + cpd15534 <==> cpd00067 + cpd15269 + cpd15342	Reversible	c	-1000	1000	0		
+rxn09137	Phospholipase A1 phosphatidylglycerol n-C12 0 periplasm	[c] : cpd00001 + cpd15535 <==> cpd00067 + cpd01741 + cpd15343	Reversible	c	-1000	1000	0		
+rxn09138	Phospholipase A1 phosphatidylglycerol n-C14 0 periplasm	[c] : cpd00001 + cpd15536 <==> cpd00067 + cpd03847 + cpd15344	Reversible	c	-1000	1000	0		
+rxn09139	Phospholipase A1 phosphatidylglycerol n-C14 1 periplasm	[c] : cpd00001 + cpd15537 <==> cpd00067 + cpd15298 + cpd15345	Reversible	c	-1000	1000	0		
+rxn09140	Phospholipase A1 phosphatidylglycerol n-C16 0 periplasm	[c] : cpd00001 + cpd15538 <==> cpd00067 + cpd00214 + cpd15346	Reversible	c	-1000	1000	0		
+rxn09141	Phospholipase A1 phosphatidylglycerol n-C16 1 periplasm	[c] : cpd00001 + cpd15539 <==> cpd00067 + cpd15237 + cpd15347	Reversible	c	-1000	1000	0		
+rxn09142	Phospholipase A1 phosphatidylglycerol n-C18 0 periplasm	[c] : cpd00001 + cpd15540 <==> cpd00067 + cpd01080 + cpd15348	Reversible	c	-1000	1000	0		
+rxn09143	Phospholipase A1 phosphatidylglycerol n-C18 1 periplasm	[c] : cpd00001 + cpd15541 <==> cpd00067 + cpd15269 + cpd15349	Reversible	c	-1000	1000	0		
+rxn09144	Phospholipase A2 phosphatidate n-C12 0 periplasm	[c] : cpd00001 + cpd15521 <==> cpd00067 + cpd15325 + cpd01741	Reversible	c	-1000	1000	0		
+rxn09145	Phospholipase A2 phosphatidate n-C14 0 periplasm	[c] : cpd00001 + cpd15522 <==> cpd00067 + cpd03847 + cpd15331	Reversible	c	-1000	1000	0		
+rxn09146	Phospholipase A2 phosphatidate n-C14 1 periplasm	[c] : cpd00001 + cpd15523 <==> cpd00067 + cpd15298 + cpd15330	Reversible	c	-1000	1000	0		
+rxn09147	Phospholipase A2 phosphatidate n-C16 0 periplasm	[c] : cpd00001 + cpd15524 <==> cpd00067 + cpd00214 + cpd15327	Reversible	c	-1000	1000	0		
+rxn09148	Phospholipase A2 phosphatidate n-C16 1 periplasm	[c] : cpd00001 + cpd15525 <==> cpd00067 + cpd15237 + cpd15326	Reversible	c	-1000	1000	0		
+rxn09149	Phospholipase A2 phosphatidate n-C18 0 periplasm	[c] : cpd00001 + cpd15526 <==> cpd00067 + cpd01080 + cpd15329	Reversible	c	-1000	1000	0		
+rxn09150	Phospholipase A2 phosphatidate n-C18 1 periplasm	[c] : cpd00001 + cpd15527 <==> cpd00067 + cpd15269 + cpd15328	Reversible	c	-1000	1000	0		
+rxn09151	Phospholipase A2 phosphatidylethanolamine n-C12 0 periplasm	[c] : cpd00001 + cpd15528 <==> cpd00067 + cpd01741 + cpd15313	Reversible	c	-1000	1000	0		
+rxn09152	Phospholipase A2 phosphatidylethanolamine n-C14 0 periplasm	[c] : cpd00001 + cpd15529 <==> cpd00067 + cpd03847 + cpd15314	Reversible	c	-1000	1000	0		
+rxn09153	Phospholipase A2 phosphatidylethanolamine n-C14 1 periplasm	[c] : cpd00001 + cpd15530 <==> cpd00067 + cpd15298 + cpd15315	Reversible	c	-1000	1000	0		
+rxn09154	Phospholipase A2 phosphatidylethanolamine n-C16 0 periplasm	[c] : cpd00001 + cpd15531 <==> cpd00067 + cpd00214 + cpd15316	Reversible	c	-1000	1000	0		
+rxn09155	Phospholipase A2 phosphatidylethanolamine n-C16 1 periplasm	[c] : cpd00001 + cpd15532 <==> cpd00067 + cpd15237 + cpd15317	Reversible	c	-1000	1000	0		
+rxn09156	Phospholipase A2 phosphatidylethanolamine n-C18 0 periplasm	[c] : cpd00001 + cpd15533 <==> (3) cpd00067 + cpd01080 + cpd12547	Reversible	c	-1000	1000	0		
+rxn09157	Phospholipase A2 phosphatidylethanolamine n-C18 1 periplasm	[c] : cpd00001 + cpd15534 <==> cpd00067 + cpd12547 + cpd15269	Reversible	c	-1000	1000	0		
+rxn09158	Phospholipase A2 phosphatidylglycerol n-C12 0 periplasm	[c] : cpd00001 + cpd15535 <==> cpd00067 + cpd01741 + cpd15318	Reversible	c	-1000	1000	0		
+rxn09159	Phospholipase A2 phosphatidylglycerol n-C14 0 periplasm	[c] : cpd00001 + cpd15536 <==> cpd00067 + cpd03847 + cpd15319	Reversible	c	-1000	1000	0		
+rxn09160	Phospholipase A2 phosphatidylglycerol n-C14 1 periplasm	[c] : cpd00001 + cpd15537 <==> cpd00067 + cpd15320 + cpd15298	Reversible	c	-1000	1000	0		
+rxn09161	Phospholipase A2 phosphatidylglycerol n-C16 0 periplasm	[c] : cpd00001 + cpd15538 <==> cpd00067 + cpd00214 + cpd15321	Reversible	c	-1000	1000	0		
+rxn09162	Phospholipase A2 phosphatidylglycerol n-C16 1 periplasm	[c] : cpd00001 + cpd15539 <==> cpd00067 + cpd15322 + cpd15237	Reversible	c	-1000	1000	0		
+rxn09163	Phospholipase A2 phosphatidylglycerol n-C18 0 periplasm	[c] : cpd00001 + cpd15540 <==> cpd00067 + cpd01080 + cpd15323	Reversible	c	-1000	1000	0		
+rxn09164	Phospholipase A2 phosphatidylglycerol n-C18 1 periplasm	[c] : cpd00001 + cpd15541 <==> cpd00067 + cpd15269 + cpd15324	Reversible	c	-1000	1000	0		
+rxn09177	phosphopantothenate-cysteine ligase	[c] : cpd00084 + cpd02201 + cpd00052 --> cpd00012 + cpd00046 + cpd02666	Irreversible	c	0	1000	0		
+rxn09197	Phosphatidylserine decarboxylase n-C12 0	[c] : (2) cpd00067 + cpd15552 <==> cpd00011 + cpd15528	Reversible	c	-1000	1000	0		
+rxn09198	Phosphatidylserine decarboxylase n-C14 0	[c] : (2) cpd00067 + cpd15553 <==> cpd00011 + cpd15529	Reversible	c	-1000	1000	0		
+rxn09199	Phosphatidylserine decarboxylase n-C14 1	[c] : (2) cpd00067 + cpd15554 <==> cpd00011 + cpd15530	Reversible	c	-1000	1000	0		
+rxn09200	Phosphatidylserine decarboxylase n-C16 0	[c] : (2) cpd00067 + cpd15555 <==> cpd00011 + cpd15531	Reversible	c	-1000	1000	0		
+rxn09201	Phosphatidylserine decarboxylase n-C16 1	[c] : (2) cpd00067 + cpd15556 <==> cpd00011 + cpd15532	Reversible	c	-1000	1000	0		
+rxn09202	Phosphatidylserine decarboxylase n-C18 0	[c] : (2) cpd00067 + cpd15557 <==> cpd00011 + cpd15533	Reversible	c	-1000	1000	0		
+rxn09203	Phosphatidylserine decarboxylase n-C18 1	[c] : (2) cpd00067 + cpd15558 <==> cpd00011 + cpd15534	Reversible	c	-1000	1000	0		
+rxn09205	Phosphatidylserine syntase n-C12 0	[c] : cpd15417 + cpd00054 --> cpd00067 + cpd00046 + cpd15552	Irreversible	c	0	1000	0		
+rxn09206	Phosphatidylserine syntase n-C14 0	[c] : cpd00054 + cpd15423 --> cpd00067 + cpd00046 + cpd15553	Irreversible	c	0	1000	0		
+rxn09207	Phosphatidylserine syntase n-C14 1	[c] : cpd00054 + cpd15422 --> cpd00067 + cpd00046 + cpd15554	Irreversible	c	0	1000	0		
+rxn09208	Phosphatidylserine syntase n-C16 0	[c] : cpd00054 + cpd15419 --> cpd00067 + cpd00046 + cpd15555	Irreversible	c	0	1000	0		
+rxn09209	Phosphatidylserine syntase n-C16 1	[c] : cpd00054 + cpd15418 --> cpd00067 + cpd00046 + cpd15556	Irreversible	c	0	1000	0		
+rxn09210	Phosphatidylserine syntase n-C18 0	[c] : cpd00054 + cpd15421 --> cpd00067 + cpd00046 + cpd15557	Irreversible	c	0	1000	0		
+rxn09211	Phosphatidylserine syntase n-C18 1	[c] : cpd00054 + cpd15420 --> cpd00067 + cpd00046 + cpd15558	Irreversible	c	0	1000	0		
+rxn09225	rhamnosyltransferase I LPS core biosynthesis	[c] : cpd15492 + cpd02113 <==> cpd15489 + cpd00297	Reversible	c	-1000	1000	0		
+rxn09272	succinate dehydrogenase irreversible	[c] : cpd00036 + cpd15560 <==> cpd15561 + cpd00106	Reversible	c	-1000	1000	0		
+rxn09296	hydrogen peroxide reductase thioredoxin	[c] : cpd00025 + cpd11421 --> (2) cpd00001 + cpd11420	Irreversible	c	0	1000	0		
+rxn09310	thiazole phosphate synthesis	[c] : cpd00002 + cpd00084 + cpd00069 + cpd08289 --> cpd00012 + cpd00018 + cpd00001 + cpd00011 + cpd00035 + cpd15378 + cpd02654	Irreversible	c	0	1000	0		
+rxn09313	Trimethylamine N-oxide reductase menaquinol 8	[c] : cpd00067 + cpd00811 + cpd15499 <==> cpd00001 + cpd00441 + cpd15500	Reversible	c	-1000	1000	0		
+rxn09315	Trimethylamine N-oxide reductase demethylmenaquinol 8	[c] : cpd00067 + cpd00811 + cpd15353 <==> cpd00001 + cpd00441 + cpd15352	Reversible	c	-1000	1000	0		
+rxn09448	fatty-acid--CoA ligase octadecenoate	[c] : cpd00002 + cpd00067 + cpd00010 + cpd15269 --> cpd00012 + cpd00018 + cpd15274	Irreversible	c	0	1000	0		
+rxn09449	fatty-acid--CoA ligase octadecanoate	[c] : cpd00002 + cpd00067 + cpd00010 + cpd01080 --> cpd00012 + cpd00018 + cpd00327	Irreversible	c	0	1000	0		
+rxn09450	fatty-acid--CoA ligase hexadecenoate peroxisomal	[c] : cpd00002 + cpd00067 + cpd00010 + cpd15237 --> cpd00012 + cpd00018 + cpd15238	Irreversible	c	0	1000	0		
+rxn09562	guanylate kinase GMP dATP	[c] : cpd00115 + cpd00126 <==> cpd00177 + cpd00031	Reversible	c	-1000	1000	0		
+rxn09657	Thiamine transport in via proton symport	cpd00067[e] + cpd00305[e] --> cpd00067[c] + cpd00305[c]	Irreversible	"e, c"	0	1000	0		
+rxn09988	alpha-N-arabinofuranosidase	[c] : (2) cpd00001 + cpd12115 <==> (3) cpd00224	Reversible	c	-1000	1000	0		
+rxn09997	4-amino-5-hydroxymethyl-2-methylpyrimidine synthetase	[c] : cpd00001 + cpd02140 <==> (2) cpd00067 + cpd00009 + (0.5) cpd00007 + cpd00229 + cpd00939	Reversible	c	-1000	0	0		
+rxn08131	4-amino-2-methyl-5-phosphomethylpyrimidine synthetase	[c] : cpd00001 + cpd00003 + cpd02140 <==> cpd00004 + (2) cpd00047 + (4) cpd00067 + cpd02775	Irreversible	c	0	1000	0		
+rxn10042_ATPS4	ATP synthase four protons for one ATP	cpd00009[c] + cpd00008[c] + (4) cpd00067[e] --> cpd00002[c] + (3) cpd00067[c] + cpd00001[c]	Irreversible	"e, c"	0	1000	0		
+rxn10043	cytochrome-c oxidase H/e- = 2	(6) cpd00067[c] + (0.5) cpd00007[c] + (2) cpd00110[c] <==> cpd00001[c] + (4) cpd00067[e] + (2) cpd00109[c]	Reversible	"e, c"	0	1000	0		
+rxn10052	adenylate kinase Inorganic triphosphate	[c] : cpd00067 + cpd00018 + cpd00421 <==> cpd00012 + cpd00008	Reversible	c	-1000	1000	0		
+rxn10060	NAD kinase dTTP	[c] : cpd00003 + cpd00357 <==> cpd00297 + cpd00006	Reversible	c	-1000	1000	0		
+rxn10094	S-adenosylmethione 2-demethylmenaquinone methyltransferase	[c] : cpd15352 + cpd00017 --> cpd00067 + cpd15500 + cpd00019	Irreversible	c	0	1000	0		
+rxn10113	cytochrome oxidase bo3 ubiquinol-8 2.5 protons	(2.5) cpd00067[c] + (0.5) cpd00007[c] + cpd15561[c] --> cpd00001[c] + (2.5) cpd00067[e] + cpd15560[c]	Irreversible	"e, c"	0	1000	0		
+rxn10117	Hydrogenase Demethylmenaquinone-8 2 protons	(2) cpd00067[c] + cpd15352[c] + cpd11640[c] --> cpd15353[c] + (2) cpd00067[e]	Irreversible	"e, c"	0	1000	0		
+rxn10118	hydrogenase ubiquinone-8 2 protons	(2) cpd00067[c] + cpd11640[c] + cpd15560[c] --> (2) cpd00067[e] + cpd15561[c]	Irreversible	"e, c"	0	1000	0		
+rxn10119	Hydrogenase menaquinone8 2 protons	(2) cpd00067[c] + cpd15500[c] + cpd11640[c] --> cpd15499[c] + (2) cpd00067[e]	Irreversible	"e, c"	0	1000	0		
+rxn10120	Nitrate reductase Ubiquinol-8	(2) cpd00067[c] + cpd15561[c] + cpd00209[c] --> cpd00001[c] + (2) cpd00067[e] + cpd00075[c] + cpd15560[c]	Irreversible	"e, c"	0	1000	0		
+rxn10121	Nitrate reductase Menaquinol-8	(2) cpd00067[c] + cpd15499[c] + cpd00209[c] --> cpd00001[c] + cpd15500[c] + (2) cpd00067[e] + cpd00075[c]	Irreversible	"e, c"	0	1000	0		
+rxn10122	NADH dehydrogenase ubiquinone-8 & 3.5 protons	(4) cpd00067[c] + cpd00004[c] + cpd15560[c] <==> (4) cpd00067[e] + cpd00003[c] + cpd15561[c]	Reversible	"e, c"	-1000	1000	0		
+rxn10125	NAD(P) transhydrogenase	(2) cpd00067[e] + cpd00004[c] + cpd00006[c] --> (2) cpd00067[c] + cpd00003[c] + cpd00005[c]	Irreversible	"e, c"	0	1000	0		
+rxn10126	succinate dehyrdogenase	[c] : cpd15560 + cpd00982 --> cpd15561 + cpd00015	Irreversible	c	0	1000	0		
+rxn10147	Cob1alamin transport via ABC system	cpd00002[c] + cpd00001[c] + cpd00635[e] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd00635[c]	Irreversible	"e, c"	0	1000	0		
+rxn10161	Octadecanoate transport via proton symport	cpd00067[e] + cpd01080[e] <==> cpd00067[c] + cpd01080[c]	Reversible	"e, c"	0	1000	0		
+rxn10162	Hexadecanoate transport via proton symport	cpd00067[e] + cpd00214[e] <==> cpd00067[c] + cpd00214[c]	Reversible	"e, c"	0	1000	0		
+rxn10163	Tetradecanoate transport via proton symport	cpd00067[e] + cpd03847[e] <==> cpd00067[c] + cpd03847[c]	Reversible	"e, c"	0	1000	0		
+rxn10175	Fructose transport via PEP Pyr PTS f6p generating	cpd00061[c] + cpd00082[e] <==> cpd00020[c] + cpd00072[c]	Reversible	"e, c"	0	0	0		
+rxn10183	N-acetyl-D-mannosamine transport via PTS	cpd00061[c] + cpd00492[e] <==> cpd00020[c] + cpd02612[c]	Reversible	"e, c"	-1000	1000	0		
+rxn10184	D-sorbitol transport via PEP Pyr PTS	cpd00061[c] + cpd00588[e] <==> cpd00020[c] + cpd00804[c]	Reversible	"e, c"	-1000	1000	0		
+rxn10199	Peptidoglycan subunit synthesis	[c] : cpd03495 + cpd15666 <==> cpd02229 + cpd15665	Reversible	c	-1000	1000	0		
+rxn10202	palmitoyl-glycerol-3-phosphate O-acyltransferase	[c] : cpd00080 + cpd00134 --> cpd00010 + cpd15327	Irreversible	c	0	1000	0		
+rxn10203	myristoyl-glycerol-3-phosphate O-acyltransferase	[c] : cpd00080 + cpd01695 --> cpd00010 + cpd15331	Irreversible	c	0	1000	0		
+rxn10204	stearoyl-glycerol-3-phosphate O-acyltransferase	[c] : cpd00080 + cpd00327 --> cpd00010 + cpd15329	Irreversible	c	0	1000	0		
+rxn10205	isoheptadecanoyl-glycerol-3-phosphate O-acyltransferase	[c] : cpd00080 + cpd11432 --> cpd00010 + cpd15671	Irreversible	c	0	1000	0		
+rxn10206	anteisoheptadecanoyl-glycerol-3-phosphate O-acyltransferase	[c] : cpd00080 + cpd11434 --> cpd00010 + cpd15672	Irreversible	c	0	1000	0		
+rxn10207	isotetradecanoyl-glycerol-3-phosphate O-acyltransferase	[c] : cpd00080 + cpd11435 --> cpd00010 + cpd15673	Irreversible	c	0	1000	0		
+rxn10208	isopentadecanoyl-glycerol-3-phosphate O-acyltransferase	[c] : cpd00080 + cpd11437 --> cpd00010 + cpd15674	Irreversible	c	0	1000	0		
+rxn10209	anteisopentadecanoyl-glycerol-3-phosphate O-acyltransferase	[c] : cpd00080 + cpd11439 --> cpd00010 + cpd15675	Irreversible	c	0	1000	0		
+rxn10210	isohexadecanoyl-glycerol-3-phosphate O-acyltransferase	[c] : cpd00080 + cpd11441 --> cpd00010 + cpd15676	Irreversible	c	0	1000	0		
+rxn10214	isoheptadecanoyl-1-acylglycerol-3-phosphate O-acyltransferase	[c] : cpd11432 + cpd15671 --> cpd00010 + cpd15677	Irreversible	c	0	1000	0		
+rxn10215	anteisoheptadecanoyl-1-acylglycerol-3-phosphate O-acyltransferase	[c] : cpd15672 + cpd11434 --> cpd00010 + cpd15678	Irreversible	c	0	1000	0		
+rxn10220	isoheptadecanoyl-phosphatidate cytidylyltransferase	[c] : cpd15677 + cpd00052 <==> cpd00012 + cpd15683	Reversible	c	-1000	1000	0		
+rxn10221	anteisoheptadecanoyl-phosphatidate cytidylyltransferase	[c] : cpd15678 + cpd00052 <==> cpd00012 + cpd15684	Reversible	c	-1000	1000	0		
+rxn10222	isotetradecanoyl-phosphatidate cytidylyltransferase	[c] : cpd00052 + cpd15679 <==> cpd00012 + cpd15685	Reversible	c	-1000	1000	0		
+rxn10223	isopentadecanoyl-phosphatidate cytidylyltransferase	[c] : cpd00052 + cpd15680 <==> cpd00012 + cpd15686	Reversible	c	-1000	1000	0		
+rxn10224	anteisopentadecanoyl-phosphatidate cytidylyltransferase	[c] : cpd00052 + cpd15681 <==> cpd00012 + cpd15687	Reversible	c	-1000	1000	0		
+rxn10225	isohexadecanoyl-phosphatidate cytidylyltransferase	[c] : cpd00052 + cpd15682 <==> cpd00012 + cpd15688	Reversible	c	-1000	1000	0		
+rxn10226	isoheptadecanoyl-CDPdiacylglycerol-serine O-phosphatidyltransferase	[c] : cpd15683 + cpd00054 --> cpd00067 + cpd00046 + cpd15689	Irreversible	c	0	1000	0		
+rxn10227	anteisoheptadecanoyl-CDPdiacylglycerol-serine O-phosphatidyltransferase	[c] : cpd15684 + cpd00054 --> cpd00067 + cpd00046 + cpd15690	Irreversible	c	0	1000	0		
+rxn10228	isotetradecanoyl-CDPdiacylglycerol-serine O-phosphatidyltransferase	[c] : cpd00054 + cpd15685 --> cpd00067 + cpd00046 + cpd15691	Irreversible	c	0	1000	0		
+rxn10229	isopentadecanoyl-CDPdiacylglycerol-serine O-phosphatidyltransferase	[c] : cpd00054 + cpd15686 --> cpd00067 + cpd00046 + cpd15692	Irreversible	c	0	1000	0		
+rxn10230	anteisopentadecanoyl-CDPdiacylglycerol-serine O-phosphatidyltransferase	[c] : cpd00054 + cpd15687 --> cpd00067 + cpd00046 + cpd15693	Irreversible	c	0	1000	0		
+rxn10231	isohexadecanoyl-CDPdiacylglycerol-serine O-phosphatidyltransferase	[c] : cpd00054 + cpd15688 --> cpd00067 + cpd00046 + cpd15694	Irreversible	c	0	1000	0		
+rxn10232	isoheptadecanoyl-phosphatidylserine decarboxylase	[c] : (2) cpd00067 + cpd15689 <==> cpd00011 + cpd15695	Reversible	c	-1000	1000	0		
+rxn10233	anteisoheptadecanoyl-phosphatidylserine decarboxylase	[c] : (2) cpd00067 + cpd15690 <==> cpd00011 + cpd15696	Reversible	c	-1000	1000	0		
+rxn10234	isotetradecanoyl-phosphatidylserine decarboxylase	[c] : (2) cpd00067 + cpd15691 <==> cpd00011 + cpd15697	Reversible	c	-1000	1000	0		
+rxn10235	isopentadecanoyl-phosphatidylserine decarboxylase	[c] : (2) cpd00067 + cpd15692 <==> cpd00011 + cpd15698	Reversible	c	-1000	1000	0		
+rxn10236	anteisopentadecanoyl-phosphatidylserine decarboxylase	[c] : (2) cpd00067 + cpd15693 <==> cpd00011 + cpd15699	Reversible	c	-1000	1000	0		
+rxn10237	isohexadecanoyl-phosphatidylserine decarboxylase	[c] : (2) cpd00067 + cpd15694 <==> cpd00011 + cpd15700	Reversible	c	-1000	1000	0		
+rxn10253	isoheptadecanoyl-Diacylglycerol kinase	[c] : cpd00002 + cpd15701 <==> cpd00008 + cpd15677	Reversible	c	-1000	1000	0		
+rxn10254	anteisoheptadecanoyl-Diacylglycerol kinase	[c] : cpd00002 + cpd15702 <==> cpd00008 + cpd15678	Reversible	c	-1000	1000	0		
+rxn10255	isotetradecanoyl-Diacylglycerol kinase	[c] : cpd00002 + cpd15703 <==> cpd00008 + cpd15679	Reversible	c	-1000	1000	0		
+rxn10256	isopentadecanoyl-Diacylglycerol kinase	[c] : cpd00002 + cpd15704 <==> cpd00008 + cpd15680	Reversible	c	-1000	1000	0		
+rxn10257	anteisopentadecanoyl-Diacylglycerol kinase	[c] : cpd00002 + cpd15705 <==> cpd00008 + cpd15681	Reversible	c	-1000	1000	0		
+rxn10258	isohexadecanoyl-Diacylglycerol kinase	[c] : cpd00002 + cpd15706 <==> cpd00008 + cpd15682	Reversible	c	-1000	1000	0		
+rxn10259	isoheptadecanoyl-CDPdiacylglycerol sn-glycerol-3-phosphate 3-phosphatidyltransferase	[c] : cpd00080 + cpd15683 <==> cpd00046 + cpd15716	Reversible	c	-1000	1000	0		
+rxn10260	anteisoheptadecanoyl-CDPdiacylglycerol sn-glycerol-3-phosphate 3-phosphatidyltransferase	[c] : cpd15684 + cpd00080 <==> cpd15717 + cpd00046	Reversible	c	-1000	1000	0		
+rxn10265	isoheptadecanoyl-Phosphatidylglycerophosphate phosphohydrolase	[c] : cpd00001 + cpd15716 --> cpd00067 + cpd00009 + cpd15722	Irreversible	c	0	1000	0		
+rxn10266	anteisoheptadecanoyl-Phosphatidylglycerophosphate phosphohydrolase	[c] : cpd00001 + cpd15717 --> cpd00067 + cpd00009 + cpd15723	Irreversible	c	0	1000	0		
+rxn10267	isotetradecanoyl-Phosphatidylglycerophosphate phosphohydrolase	[c] : cpd00001 + cpd15718 --> cpd00067 + cpd00009 + cpd15724	Irreversible	c	0	1000	0		
+rxn10268	isopentadecanoyl-Phosphatidylglycerophosphate phosphohydrolase	[c] : cpd00001 + cpd15719 --> cpd00067 + cpd00009 + cpd15725	Irreversible	c	0	1000	0		
+rxn10269	anteisopentadecanoyl-Phosphatidylglycerophosphate phosphohydrolase	[c] : cpd00001 + cpd15720 --> cpd00067 + cpd00009 + cpd15726	Irreversible	c	0	1000	0		
+rxn10270	isohexadecanoyl-Phosphatidylglycerophosphate phosphohydrolase	[c] : cpd00001 + cpd15721 --> cpd00067 + cpd00009 + cpd15727	Irreversible	c	0	1000	0		
+rxn10307	palmitoyl-lipoteichoic acid synthesis n=24 linked N-acetylglucosamine substituted	[c] : (24) cpd00037 + cpd15746 <==> (24) cpd00014 + cpd15764	Reversible	c	-1000	1000	0		
+rxn10308	myristoyl-lipoteichoic acid synthesis n=24 linked N-acetylglucosamine substituted	[c] : (24) cpd00037 + cpd15747 <==> (24) cpd00014 + cpd15765	Reversible	c	-1000	1000	0		
+rxn10309	stearoyl-lipoteichoic acid synthesis n=24 linked N-acetylglucosamine substituted	[c] : (24) cpd00037 + cpd15748 <==> (24) cpd00014 + cpd15766	Reversible	c	-1000	1000	0		
+rxn10310	isoheptadecanoyl-lipoteichoic acid synthesis n=24 linked N-acetylglucosamine substituted	[c] : (24) cpd00037 + cpd15749 <==> (24) cpd00014 + cpd15767	Reversible	c	-1000	1000	0		
+rxn10311	anteisoheptadecanoyl-lipoteichoic acid synthesis n=24 linked N-acetylglucosamine substituted	[c] : (24) cpd00037 + cpd15750 <==> (24) cpd00014 + cpd15768	Reversible	c	-1000	1000	0		
+rxn10312	isotetradecanoyl-lipoteichoic acid synthesis n=24 linked N-acetylglucosamine substituted	[c] : (24) cpd00037 + cpd15751 <==> (24) cpd00014 + cpd15769	Reversible	c	-1000	1000	0		
+rxn10313	isopentadecanoyl-lipoteichoic acid synthesis n=24 linked N-acetylglucosamine substituted	[c] : (24) cpd00037 + cpd15752 <==> (24) cpd00014 + cpd15770	Reversible	c	-1000	1000	0		
+rxn10314	anteisopentadecanoyl-lipoteichoic acid synthesis n=24 linked N-acetylglucosamine substituted	[c] : (24) cpd00037 + cpd15753 <==> (24) cpd00014 + cpd15771	Reversible	c	-1000	1000	0		
+rxn10315	isohexadecanoyl-lipoteichoic acid synthesis n=24 linked N-acetylglucosamine substituted	[c] : (24) cpd00037 + cpd15754 <==> (24) cpd00014 + cpd15772	Reversible	c	-1000	1000	0		
+rxn10343	Mercury Hg2 ABC transporter	cpd00002[c] + cpd00001[c] + cpd00531[c] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd00531[e]	Irreversible	"e, c"	0	1000	0		
+rxn10344	Lead Pb2 ABC transporter	cpd00002[c] + cpd00001[c] + cpd04097[c] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd04097[e]	Irreversible	"e, c"	0	1000	0		
+rxn10447	calcium transport via ABC system	cpd00002[c] + cpd00001[c] + cpd00063[e] --> cpd00067[c] + cpd00009[c] + cpd00063[c] + cpd00008[c]	Irreversible	"e, c"	0	1000	0		
+rxn10473	chlorideion transport out via diffusion	cpd00099[e] <==> cpd00099[c]	Reversible	"e, c"	-1000	1000	0		
+rxn10481	Copper transport via ABC system	cpd00002[c] + cpd00001[c] + cpd00058[e] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd00058[c]	Irreversible	"e, c"	0	1000	0		
+rxn10537	glycine reversible transport via sodium symport	cpd00971[e] + cpd00033[e] <==> cpd00033[c] + cpd00971[c]	Reversible	"e, c"	-1000	1000	0		
+rxn10542	Hydrogen (H2) diffusion	cpd11640[e] <==> cpd11640[c]	Reversible	"e, c"	-1000	1000	0		
+rxn10571	magnesium transport via ABC system	cpd00002[c] + cpd00001[c] + cpd00254[e] --> cpd00067[c] + cpd00009[c] + cpd00008[c] + cpd00254[c]	Irreversible	"e, c"	0	1000	0		
+rxn10806	cytochrome oxidase bd menaquinol-8 2 protons	(2) cpd00067[c] + cpd15499[c] + (0.5) cpd00007[c] --> cpd00001[c] + cpd15500[c] + (2) cpd00067[e]	Irreversible	"e, c"	0	1000	0		
+rxn10828	Nitric-oxide (NO) diffusion	cpd00418[e] <==> cpd00418[c]	Reversible	"e, c"	-1000	1000	0		
+rxn11650	cobIIyrinic acid-a c-diamide FMN oxidoreductase	[c] : (2) cpd03914 + cpd01270 <==> (2) cpd00067 + cpd00050 + (2) cpd03915	Reversible	c	-1000	1000	0		
+rxn11934	AMP sulfite FAD oxidoreductase	[c] : cpd00018 + cpd00015 + cpd00081 <==> cpd00982 + cpd00193	Reversible	c	0	1000	0		
+rxn11944	Methyltransferase	[c] : cpd00067 + cpd00019 + cpd02738 <==> cpd00017 + cpd02555	Reversible	c	-1000	1000	0		
+rxn11946	3-demethylubiquinone-9 3-o-methyltransferase	[c] : cpd00017 + cpd03449 <==> cpd15560 + cpd00019	Reversible	c	-1000	1000	0		
+rxn12008	rxn12008	[c] : cpd00113 + cpd02590 --> cpd00012 + cpd02557	Irreversible	c	0	1000	0		
+rxn12224	2-octaprenyl-6-methoxyphenol hydroxylase	[c] : cpd00007 + cpd03446 --> cpd00001 + cpd03447	Irreversible	c	0	1000	0		
+rxn12510	ATP pantothenate 4'-phosphotransferase	[c] : cpd00002 + cpd00644 <==> cpd00008 + cpd02201	Reversible	c	-1000	1000	0		
+rxn12512	R-4'-Phosphopantothenate L-cysteine ligase	[c] : cpd00002 + cpd00084 + cpd02201 --> cpd00012 + cpd00018 + cpd02666	Irreversible	c	0	1000	0		
+rxn12633	aminopeptidase	[c] : cpd00001 + cpd11593 <==> cpd00041 + cpd00035	Reversible	c	-1000	1000	0		
+rxn12634	aminopeptidase	[c] : cpd00001 + cpd11592 <==> cpd00023 + cpd00033	Reversible	c	-1000	1000	0		
+rxn12635	aminopeptidase	[c] : cpd00001 + cpd11591 <==> cpd00033 + cpd00060	Reversible	c	-1000	1000	0		
+rxn12636	aminopeptidase	[c] : cpd00067 + cpd00001 + cpd11590 <==> cpd00060 + cpd00035	Reversible	c	-1000	1000	0		
+rxn12637	aminopeptidase	[c] : cpd00001 + cpd11589 <==> cpd00033 + cpd00041	Reversible	c	-1000	1000	0		
+rxn12638	aminopeptidase	[c] : cpd00001 + cpd11588 --> cpd00067 + cpd00033 + cpd00129	Irreversible	c	0	1000	0		
+rxn12639	aminopeptidase	[c] : cpd00001 + cpd11587 <==> cpd00053 + cpd00035	Reversible	c	-1000	1000	0		
+rxn12640	aminopeptidase	[c] : cpd00001 + cpd11586 <==> cpd00023 + cpd00035	Reversible	c	-1000	1000	0		
+rxn12641	aminopeptidase	[c] : cpd00001 + cpd11585 <==> cpd00033 + cpd00035	Reversible	c	-1000	1000	0		
+rxn12642	aminopeptidase	[c] : cpd00001 + cpd11584 <==> cpd00035 + cpd00119	Reversible	c	-1000	1000	0		
+rxn12643	aminopeptidase	[c] : cpd00001 + cpd11583 <==> cpd00035 + cpd00107	Reversible	c	-1000	1000	0		
+rxn12644	aminopeptidase	[c] : cpd00001 + cpd11582 <==> cpd00035 + cpd00161	Reversible	c	-1000	1000	0		
+rxn12645	aminopeptidase	[c] : cpd00001 + cpd11581 <==> cpd00033 + cpd00132	Reversible	c	-1000	1000	0		
+rxn12646	aminopeptidase	[c] : cpd00001 + cpd11580 <==> cpd00053 + cpd00033	Reversible	c	-1000	1000	0		
+rxn12844	Gly-Cys aminopeptidase	[c] : cpd00001 + cpd15603 <==> cpd00084 + cpd00033	Reversible	c	-1000	1000	0		
+rxn12845	Gly-Leu aminopeptidase	[c] : cpd00001 + cpd15604 <==> cpd00033 + cpd00107	Reversible	c	-1000	1000	0		
+rxn12846	Gly-Phe aminopeptidase	[c] : cpd00001 + cpd15605 <==> cpd00033 + cpd00066	Reversible	c	-1000	1000	0		
+rxn12847	Gly-Try aminopeptidase	[c] : cpd00001 + cpd15606 <==> cpd00033 + cpd00069	Reversible	c	-1000	1000	0		
+rxn12848	Gly-Cys ABC transporters	cpd00002[c] + cpd00001[c] + cpd15603[e] --> cpd00009[c] + cpd00008[c] + cpd15603[c]	Irreversible	"e, c"	0	1000	0		
+rxn12849	Gly-Leu ABC transporters	cpd00002[c] + cpd00001[c] + cpd15604[e] --> cpd00009[c] + cpd00008[c] + cpd15604[c]	Irreversible	"e, c"	0	1000	0		
+rxn12850	Gly-Phe ABC transporters	cpd00002[c] + cpd00001[c] + cpd15605[e] --> cpd00009[c] + cpd00008[c] + cpd15605[c]	Irreversible	"e, c"	0	1000	0		
+rxn12851	Gly-Try ABC transporters	cpd00002[c] + cpd00001[c] + cpd15606[e] --> cpd00009[c] + cpd00008[c] + cpd15606[c]	Irreversible	"e, c"	0	1000	0		
+rxn13782	Protein biosynthesis	[c] :  --> cpd17041	Irreversible	c	0	1000	0		
+rxn13783	DNA replication	[c] :  --> cpd17042	Irreversible	c	0	1000	0		
+rxn13784	RNA transcription	[c] :  --> cpd17043	Irreversible	c	0	1000	0		
+Sulfite_Reduction	Sulfite reduction via NADPH	[c] : cpd00081 + (3) cpd00005 + (3) cpd00067 --> cpd00239 + (3) cpd00006 + (3) cpd00001	Irreversible	c	0	1000	0		
+Thiosulfate_cytochromc_redox	Thiosulfate Cytochrome c Redox	cpd00268[e] + (5) cpd00001[e] + (8) cpd00109[c] <==> (2) cpd00048[e] + (8) cpd00110[c] + (10) cpd00067[e]	Reversible	"e, c"	-1000	1000	0		
+h2st	h2s transport	cpd00239[e] <==> cpd00239[p]	Reversible	"e, p"	-1000	1000	0		
+Sulfide_cytochromc_redox	Sulfide Cytochrome c Redox	cpd00239[p] + (3) cpd00001[c] + (4) cpd00109[c] <==> cpd00081[p] + (4) cpd00110[c] + (7) cpd00067[c]	Reversible	"c, p"	-1000	1000	0		
+tsulo	sulfate oxidase (SOX)	cpd00109[c] + cpd00081[p] --> cpd00110[c] + cpd00048[p]	Irreversible	"p, c"	0	1000	0		
+so3exp	so3exp	cpd00081[p] <==> cpd00081[c]	Reversible	"c, p"	-1000	1000	0		
+so3tp	so3 transport	cpd00081[e] <==> cpd00081[p]	Reversible	"e, p"	-1000	1000	0		
+so4ex	so4exchange	cpd00067[e] + cpd00048[e] <==> cpd00067[c] + cpd00048[p]	Reversible	"e, p, c"	-1000	1000	0		
+so4exc	so4exchangec	cpd00048[p] <==> cpd00048[c]	Reversible	"c, p"	-1000	1000	0		
+rxn00205	Glutathione:hydrogen-peroxide oxidoreductase (EC 1.11.1.9)	[c] : cpd00025 + (2) cpd00042 <==> (2) cpd00001 + cpd00111	Reversible	c	0	0	0		
+rxn00086	glutathione:NADP+ oxidoreductase (EC 1.8.1.7)	[c] : cpd00006 + (2) cpd00042 <==> cpd00005 + cpd00067 + cpd00111	Reversible	c	0	0	0		
+SPMS	spermidine synthase	[c] : cpd00837 + cpd00118 --> cpd00147 + cpd00067 + cpd00264	Irreversible	c	0	1000	0		
+ADMDC	Adenosylmethionine decarboxylase	[c] : cpd00017 + cpd00067 <==> cpd00837 + cpd00011	Reversible	c	-1000	1000	0		
+UNK3	2-keto-4-methylthiobutyrate transamination	[c] : cpd00869 + cpd00023 --> cpd00024 + cpd00060	Irreversible	c	0	1000	0		
+DKMPPD2	"2,3-diketo-5-methylthio-1-phosphopentane degradation reaction"	[c] : cpd11295 + (3) cpd00001 --> cpd00869 + cpd00047 + (6) cpd00067 + cpd00009	Irreversible	c	0	1000	0		
+MDRPD	5-Methylthio-5-deoxy-D-ribulose 1-phosphate dehydratase	[c] : cpd02791 --> cpd11295 + cpd00001	Irreversible	c	0	1000	0		
+MTRI	5-methylthioribose-1-phosphate isomerase	[c] : cpd02574 <==> cpd02791	Reversible	c	-1000	1000	0		
+AGMT	agmatinase	[c] : cpd00152 + cpd00001 --> cpd00118 + cpd00073	Irreversible	c	0	1000	0		
+ADPT	adenine phosphoribosyltransferase	[c] : cpd00128 + cpd00103 --> cpd00018 + cpd00012	Irreversible	c	0	1000	0		
+rxn10826	H2CO3 Transport (added based on homology to Uniprot V4XZT1 BicA)	cpd00242[e] <==> cpd00242[c]	Reversible	"e, c"	-1000	1000	0		
+u4no3	u4 oxidation coupled to no3 reduction	[c] : Tbd_0146_Tbd_0187_r + cpd00109 --> cpd00110 + Tbd_0146_Tbd_0187_o	Irreversible	c	0	1000	0		
+u4 oxidation	u4 oxidation	Tbd_0146_Tbd_0187_o[c] + u4[e] --> u6[e] + Tbd_0146_Tbd_0187_r[c]	Irreversible	"e, c"	0	1000	0		
+u4t	U4+ transport	u4[e] + cpd00002[c] <==> u4[p] + cpd00008[c]	Irreversible	"e, p, c"	0	1000	0		
+UivCYT	U(IV) oxidation	(2) cpd00109[c] + u4[p] --> (2) cpd00110[c] + u6[p]	Irreversible	"p, c"	0	1000	0		
+u6t	U6+ transport	u6[p] + cpd00002[c] + cpd00067[c] <==> u6[e] + cpd00008[c] + cpd00067[e] + cpd00009[c]	Irreversible	"e, c, p"	0	1000	0		
+tttntR	tetrathionate reductase	(2) cpd00109[c] + (2) cpd00268[e] <==> (2) cpd00110[c] + cpd01414[e]	Reversible	"e, c"	-1000	1000	0		
+S0_oxy	elemental sulfur oxidation	(2) cpd00109[c] + cpd00074[e] --> (2) cpd00110[c] + cpd00048[e]	Irreversible	"e, c"	0	1000	0		
+rxn04031	Thiocyanate aminohydrolase	[e] : cpd00001 + (2) cpd00067 + cpd01211 --> cpd00013 + cpd04536	Irreversible	e	0	1000	0		
+cos_ca	Carbonic anhydrase	[e] : (2) cpd00001 + (2) cpd04536 --> (2) cpd00239 + (2) cpd00011	Irreversible	e	0	1000	0		
+fe2 oxidation	fe2 oxidation	Tbd_unknown_o[c] + cpd10515[e] --> cpd10516[e] + Tbd_unknown_r[c]	Irreversible	"e, c"	0	1000	0		
+fe2no3	fe2 oxidation coupled to no3 reduction	[c] : Tbd_unknown_r + cpd00109 --> cpd00110 + Tbd_unknown_o	Irreversible	c	0	1000	0		
+CYOR2u8	cytochrome-c reductase (ubiquinol8: 2 protons translocated)	(2) cpd00110[c] + cpd15560[c] + (2) cpd00067[e] --> (2) cpd00109[c] + cpd15561[c]	Reversible	"e, c"	-1000	1000	0		
+rxn05117	L-aspartate:NADP+ oxidoreductase (deaminating)	[c] : cpd00006 + cpd00041 --> cpd00005 + (2) cpd00067 + cpd03470	Irreversible	c	0	1000	0		
+rxn05119	L-aspartate:NAD+ oxidoreductase (deaminating);  ASPO2;  L-aspartateoxidase	[c] : cpd00003 + cpd00041 --> cpd00004 + (2) cpd00067 + cpd03470	Irreversible	c	0	1000	0		
+EX_cpd00067	EX H+	[e] : cpd00067 <==> 	Reversible	e	-1000	1000	0		
+EX_cpd00001	EX Water (H2O)	[e] : cpd00001 <==> 	Reversible	e	-1000	1000	0		
+EX_O2	EX Oxygen (O2)	[e] : cpd00007 <==> 	Reversible	e	-1000	1000	0		
+EX_CO2	EX Carbon Dioxide (CO2)	[e] : cpd00011 <==> 	Reversible	e	-1000	1000	0		
+EX_Hydrogen_H2	EX Hydrogen (H2)	[e] : cpd11640 <==> 	Reversible	e	0	1000	0		
+EX_cpd00009	EX Phosphate (pi)	[e] : cpd00009 <==> 	Reversible	e	-1000	1000	0		
+EX_Nitrate	EX Nitrate (NO3)	[e] : cpd00209 <==> 	Reversible	e	-1000	1000	0		
+EX_Nitrite	EX Nitrite (NO2)	[e] : cpd00075 <==> 	Reversible	e	-1000	1000	0		
+EX_cpd00418	EX Nitric oxide (NO)	[e] : cpd00418 <==> 	Reversible	e	0	1000	0		
+EX_cpd00659	EX Nitrous oxide (N2O)	[e] : cpd00659 <==> 	Reversible	e	0	1000	0		
+EX_Nitrogen	EX Nitrogen (N2)	[e] : cpd00528 <==> 	Reversible	e	-1000	1000	0		
+EX_NH3	EX Ammonium (NH4+)	[e] : cpd00013 <==> 	Reversible	e	-1000	1000	0		
+EX_cpd00073	EX Urea (CH4N2O)	[e] : cpd00073 <==> 	Reversible	e	0	1000	0		
+EX_tcynt	EX Thiocynate (SCN-)	[e] : cpd01211 <==> 	Reversible	e	0	1000	0		
+EX_tttnt	EX Tetrathionate (S4O6(2-))	[e] : cpd01414 <==> 	Reversible	e	0	1000	0		
+EX_Hydrogen_sulfide	EX Hydrogen sulfide (H2S)	[e] : cpd00239 <==> 	Reversible	e	-1000	1000	0		
+EX_so3	EX Sulfite (SO3-)	[e] : cpd00081 <==> 	Reversible	e	0	1000	0		
+EX_Sulfate	EX Sulfate (SO4 (2-))	[e] : cpd00048 <==> 	Reversible	e	-1000	1000	0		
+EX_tsul	EX Thiosulfate (H2S2O3)	[e] : cpd00268 <==> 	Reversible	e	-1000	1000	0		
+EX_s	EX Sulfur (S)	[e] : cpd00074 <==> 	Reversible	e	0	1000	0		
+EX_Pyrite_FeS2	EX Pyrite (FeS2)	[e] : pyrite <==> 	Reversible	e	-1000	1000	0		
+EX_hco3	EX Bicarbonate (HCO3-)	[e] : cpd00242 <==> 	Reversible	e	0	1000	0		
+EX_Acetate	EX Acetate	[e] : cpd00029 <==> 	Reversible	e	-1000	1000	0		
+EX_cpd00137	EX Citrate	[e] : cpd00137 <==> 	Reversible	e	0	1000	0		
+EX_cpd00036	EX Succinate	[e] : cpd00036 <==> 	Reversible	e	0	1000	0		
+EX_cpd00106	EX Fumarate	[e] : cpd00106 <==> 	Reversible	e	0	1000	0		
+EX_glucose	EX D-Glucose	[e] : cpd00027 <==> 	Reversible	e	0	1000	0		
+EX_cpd15302	EX Glycogen(n-1)	[e] : cpd15302 <==> 	Reversible	e	0	1000	0		
+EX_u4	EX Uranium IV (U4+)	[e] : u4 <==> 	Reversible	e	0	1000	0		
+EX_u6	EX Uranium VI (U6+)	[e] : u6 <==> 	Reversible	e	0	1000	0		
+EX_Fe2	EX Iron(2+)  (Fe2+)	[e] : cpd10515 <==> 	Reversible	e	-1000	1000	0		
+EX_fe3	EX Iron(3+)  (Fe3+)	[e] : cpd10516 <==> 	Reversible	e	-1000	1000	0		
+EX_cpd03724	EX Ferrichrome	[e] : cpd03724 <==> 	Reversible	e	0	1000	0		
+EX_cpd01012	EX Cadmium (Cd2+)	[e] : cpd01012 <==> 	Reversible	e	0	1000	0		
+EX_cpd00063	EX Calcium (Ca2+)	[e] : cpd00063 <==> 	Reversible	e	-1000	1000	0		
+EX_cpd00149	EX Cobalt (Co2+)	[e] : cpd00149 <==> 	Reversible	e	-1000	1000	0		
+EX_cpd00058	EX Copper (Cu2+)	[e] : cpd00058 <==> 	Reversible	e	-1000	1000	0		
+EX_cpd04097	EX Lead (Pb2+)	[e] : cpd04097 <==> 	Reversible	e	0	1000	0		
+EX_cpd00254	EX Magnesium (Mg2+)	[e] : cpd00254 <==> 	Reversible	e	-1000	1000	0		
+EX_cpd00030	EX Manganese (Mn2+)	[e] : cpd00030 <==> 	Reversible	e	-1000	1000	0		
+EX_cpd00531	EX Mercury (Hg2+)	[e] : cpd00531 <==> 	Reversible	e	0	1000	0		
+EX_cpd11574	EX Molybdate (MoO4 (2-))	[e] : cpd11574 <==> 	Reversible	e	0	1000	0		
+EX_cpd00205	EX Potassium (K+)	[e] : cpd00205 <==> 	Reversible	e	-1000	1000	0		
+EX_cpd00971	EX Sodium (Na+)	[e] : cpd00971 <==> 	Reversible	e	-1000	1000	0		
+EX_cpd00034	EX Zinc (Zn2+)	[e] : cpd00034 <==> 	Reversible	e	-1000	1000	0		
+EX_cpd00099	EX Chlorine (Cl-)	[e] : cpd00099 <==> 	Reversible	e	-1000	1000	0		
+EX_cpd00076	EX Sucrose	[e] : cpd00076 <==> 	Reversible	e	0	1000	0		
+EX_cpd00082	EX D-Fructose	[e] : cpd00082 <==> 	Reversible	e	0	1000	0		
+EX_cpd01171	EX Dulcose	[e] : cpd01171 <==> 	Reversible	e	0	1000	0		
+EX_cpd00794	EX Trehalose (TRHL)	[e] : cpd00794 <==> 	Reversible	e	0	1000	0		
+EX_cpd00588	EX Sorbitol	[e] : cpd00588 <==> 	Reversible	e	0	1000	0		
+EX_cpd00138	EX D-Mannose	[e] : cpd00138 <==> 	Reversible	e	0	1000	0		
+EX_cpd00179	EX Maltose	[e] : cpd00179 <==> 	Reversible	e	0	1000	0		
+EX_cpd00314	EX D-Mannitol	[e] : cpd00314 <==> 	Reversible	e	0	1000	0		
+EX_cpd03847	EX Myristic acid (C14H28O2)	[e] : cpd03847 <==> 	Reversible	e	0	1000	0		
+EX_cpd00214	EX Palmitate (C16H32O2)	[e] : cpd00214 <==> 	Reversible	e	0	1000	0		
+EX_cpd01080	"EX Stearate, ocdca (C18H36O2) "	[e] : cpd01080 <==> 	Reversible	e	0	1000	0		
+EX_Thiamin	EX Vitamin B1 (Thiamin)	[e] : cpd00305 <==> 	Reversible	e	0	1000	0		
+EX_cpd00635	EX Vitamin B12s (Cob(I)alamin)	[e] : cpd00635 <==> 	Reversible	e	0	1000	0		
+EX_cpd00423	EX Vitamin B12r (Cob(II)alamin)	[e] : cpd00423 <==> 	Reversible	e	0	1000	0		
+EX_cpd03424	EX Vitamin B12 (Cob(III)alamin)	[e] : cpd03424 <==> 	Reversible	e	0	1000	0		
+EX_cpd11587	EX Ala-Gln	[e] : cpd11587 <==> 	Reversible	e	0	1000	0		
+EX_cpd11584	EX Ala-His	[e] : cpd11584 <==> 	Reversible	e	0	1000	0		
+EX_cpd11593	EX Ala-L-Asp-L	[e] : cpd11593 <==> 	Reversible	e	0	1000	0		
+EX_cpd11583	EX Ala-Leu	[e] : cpd11583 <==> 	Reversible	e	0	1000	0		
+EX_cpd11586	EX Ala-L-Glu-L	[e] : cpd11586 <==> 	Reversible	e	0	1000	0		
+EX_cpd11582	EX Ala-L-Thr-L	[e] : cpd11582 <==> 	Reversible	e	0	1000	0		
+EX_cpd01017	EX Cys-Gly	[e] : cpd01017 <==> 	Reversible	e	0	1000	0		
+EX_cpd00637	EX D-Methionine	[e] : cpd00637 <==> 	Reversible	e	0	1000	0		
+EX_cpd00276	EX GLUM (D-Glucosamine)	[e] : cpd00276 <==> 	Reversible	e	0	1000	0		
+EX_cpd11581	EX Gly-Asn-L	[e] : cpd11581 <==> 	Reversible	e	0	1000	0		
+EX_cpd11589	EX Gly-Asp-L	[e] : cpd11589 <==> 	Reversible	e	0	1000	0		
+EX_cpd00033	EX Glycine	[e] : cpd00033 <==> 	Reversible	e	0	1000	0		
+EX_cpd15603	EX Gly-Cys	[e] : cpd15603 <==> 	Reversible	e	0	1000	0		
+EX_cpd11580	EX Gly-Gln	[e] : cpd11580 <==> 	Reversible	e	0	1000	0		
+EX_cpd11592	EX Gly-Glu-L	[e] : cpd11592 <==> 	Reversible	e	0	1000	0		
+EX_cpd15604	EX Gly-Leu	[e] : cpd15604 <==> 	Reversible	e	0	1000	0		
+EX_cpd11591	EX Gly-Met	[e] : cpd11591 <==> 	Reversible	e	0	1000	0		
+EX_cpd15605	EX Gly-Phe	[e] : cpd15605 <==> 	Reversible	e	0	1000	0		
+EX_cpd11588	EX Gly-Pro-L	[e] : cpd11588 <==> 	Reversible	e	0	1000	0		
+EX_cpd15606	EX Gly-Tyr	[e] : cpd15606 <==> 	Reversible	e	0	1000	0		
+EX_cpd11585	EX L-Alanylglycine	[e] : cpd11585 <==> 	Reversible	e	0	1000	0		
+EX_cpd00060	EX L-Methionine	[e] : cpd00060 <==> 	Reversible	e	0	1000	0		
+EX_cpd11576	EX L-Methionine R-oxide	[e] : cpd11576 <==> 	Reversible	e	0	1000	0		
+EX_cpd01914	EX L-Methionine S-oxide	[e] : cpd01914 <==> 	Reversible	e	0	1000	0		
+EX_cpd11590	EX Met-L-Ala-L	[e] : cpd11590 <==> 	Reversible	e	0	1000	0		
+EX_cpd00122	EX N-Acetyl-D-Glucosamine	[e] : cpd00122 <==> 	Reversible	e	0	1000	0		
+EX_cpd00492	EX N-Acetyl-D-mannosamine	[e] : cpd00492 <==> 	Reversible	e	0	1000	0		
+EX_Spermidine	EX Spermidine	[e] : cpd00264 <==> 	Reversible	e	0	1000	0		

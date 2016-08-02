@@ -1,0 +1,833 @@
+abbreviation	name	equation	reversible	compartment	lowbnd	uppbnd	obj_coef	rule	subsystem
+ALATA_L	L-alanine transaminase	[c] : akg + ala-L <==> glu-L + pyr	Reversible	c	-1000	1000	0		Alanine and Aspartate Metabolism
+ASNN	L-asparaginase	[c] : asn-L + h2o --> asp-L + nh4	Irreversible	c	0	1000	0		Alanine and Aspartate Metabolism
+ASNS1	asparagine synthase (glutamine-hydrolysing)	[c] : asp-L + atp + gln-L + h2o --> amp + asn-L + glu-L + h + ppi	Irreversible	c	0	1000	0		Alanine and Aspartate Metabolism
+ASPT	L-aspartase	[c] : asp-L --> fum + nh4	Irreversible	c	0	1000	0		Alanine and Aspartate Metabolism
+ASPTRS	Aspartyl-tRNA synthetase	[c] : asp-L + atp + trnaasp --> amp + asptrna + ppi	Irreversible	c	0	1000	0		Alanine and Aspartate Metabolism
+DAAD	D-Amino acid dehydrogenase	[c] : ala-D + fad + h2o --> fadh2 + nh4 + pyr	Irreversible	c	0	1000	0		Alanine and Aspartate Metabolism
+ALARi	alanine racemase (irreversible)	[c] : ala-L --> ala-D	Irreversible	c	0	1000	0		Alanine Metabolism
+ALATRS	Alanyl-tRNA synthetase	[c] : ala-L + atp + trnaala --> alatrna + amp + ppi	Irreversible	c	0	1000	0		Alanine Metabolism
+A5PISO	arabinose-5-phosphate isomerase	[c] : ru5p-D <==> ara5p	Reversible	c	-1000	1000	0		Alternate Carbon Metabolism
+AB6PGH	Arbutin 6-phosphate glucohydrolase	[c] : arbt6p + h2o --> g6p + hqn	Irreversible	c	0	1000	0		Alternate Carbon Metabolism
+ACALDi	acetaldehyde dehydrogenase (acetylating)	[c] : acald + coa + nad --> accoa + h + nadh	Irreversible	c	0	1000	0		Alternate Carbon Metabolism
+ACCOAL	acetate-CoA ligase (ADP-forming)	[c] : atp + coa + ppa --> adp + pi + ppcoa	Irreversible	c	0	1000	0		Alternate Carbon Metabolism
+ALCD19	alcohol dehydrogenase (glycerol)	[c] : glyald + h + nadh <==> glyc + nad	Reversible	c	-1000	1000	0		Alternate Carbon Metabolism
+ALCD2x	alcohol dehydrogenase (ethanol: NAD)	[c] : etoh + nad <==> acald + h + nadh	Reversible	c	-1000	1000	0		Alternate Carbon Metabolism
+AMALT1	Amylomaltase (maltotriose)	[c] : malt + malttr --> glc-D + maltttr	Irreversible	c	0	1000	0		Alternate Carbon Metabolism
+AMALT2	Amylomaltase (maltotetraose)	[c] : malt + maltttr --> glc-D + maltpt	Irreversible	c	0	1000	0		Alternate Carbon Metabolism
+AMALT3	Amylomaltase (maltopentaose)	[c] : malt + maltpt --> glc-D + malthx	Irreversible	c	0	1000	0		Alternate Carbon Metabolism
+AMALT4	Amylomaltase (maltohexaose)	[c] : malt + malthx --> glc-D + malthp	Irreversible	c	0	1000	0		Alternate Carbon Metabolism
+DD6PGA	2-dehydro-3-deoxy-6-phosphogalactonate aldolase	[c] : 2dh3dgal6p --> g3p + pyr	Irreversible	c	0	1000	0		Alternate Carbon Metabolism
+FCLPA	L-fuculose 1-phosphate aldolase	[c] : fc1p <==> dhap + lald-L	Reversible	c	-1000	1000	0		Alternate Carbon Metabolism
+GALCTND	galactonate dehydratase	[c] : galctn-D --> 2dh3dgal + h2o	Irreversible	c	0	1000	0		Alternate Carbon Metabolism
+GALU	UTP-glucose-1-phosphate uridylyltransferase	[c] : g1p + h + utp <==> ppi + udpg	Reversible	c	-1000	1000	0		Alternate Carbon Metabolism
+GLCRAL	5-dehydro-4-deoxyglucarate aldolase	[c] : 5d4dglcr --> 2h3opp + pyr	Irreversible	c	0	1000	0		Alternate Carbon Metabolism
+GLYCTO2	Glycolate oxidase	[c] : glyclt + ubq8 --> glx + ubq8h2	Irreversible	c	0	1000	0		Alternate Carbon Metabolism
+GLYCTO3	Glycolate oxidase	[c] : glyclt + mqn8 --> glx + mql8	Irreversible	c	0	1000	0		Alternate Carbon Metabolism
+GLYCTO4	Glycolate oxidase	[c] : 2dmmq8 + glyclt --> 2dmmql8 + glx	Irreversible	c	0	1000	0		Alternate Carbon Metabolism
+GNK	gluconokinase	[c] : atp + glcn-D --> 6pgc + adp + h	Irreversible	c	0	1000	0		Alternate Carbon Metabolism
+HOXVA	4-hydroxy-2-oxovalerate aldolase	[c] : 4h2oxv --> acald + pyr	Irreversible	c	0	1000	0		Alternate Carbon Metabolism
+HPYRRx	hydroxypyruvate reductase	[c] : h + hpyr + nadh --> glyc-R + nad	Irreversible	c	0	1000	0		Alternate Carbon Metabolism
+HPYRRy	hydroxypyruvate reductase	[c] : h + hpyr + nadph --> glyc-R + nadp	Irreversible	c	0	1000	0		Alternate Carbon Metabolism
+HXAD	Hexosaminidase	[c] : chitob + h2o --> (2) acgam	Irreversible	c	0	1000	0		Alternate Carbon Metabolism
+LACZ	lactase	[c] : h2o + lcts --> gal + glc-D	Irreversible	c	0	1000	0		Alternate Carbon Metabolism
+LCAD	lactaldehyde dehydrogenase	[c] : h2o + lald-L + nad <==> (2) h + lac-L + nadh	Reversible	c	-1000	1000	0		Alternate Carbon Metabolism
+MICITH	2-methylisocitrate hydratase	[c] : 2mcacn + h2o --> micit	Irreversible	c	0	1000	0		Alternate Carbon Metabolism
+MLTP1	Maltodextrin phosphorylase (maltopentaose)	[c] : maltpt + pi <==> g1p + maltttr	Reversible	c	-1000	1000	0		Alternate Carbon Metabolism
+MLTP2	Maltodextrin phosphorylase (maltohexaose)	[c] : malthx + pi <==> g1p + maltpt	Reversible	c	-1000	1000	0		Alternate Carbon Metabolism
+MLTP3	Maltodextrin phosphorylase (maltoheptaose)	[c] : malthp + pi <==> g1p + malthx	Reversible	c	-1000	1000	0		Alternate Carbon Metabolism
+MME	methylmalonyl-CoA epimerase	[c] : mmcoa-R <==> mmcoa-S	Reversible	c	-1000	1000	0		Alternate Carbon Metabolism
+MMM	methylmalonyl-CoA mutase	[c] : mmcoa-R --> succoa	Irreversible	c	0	1000	0		Alternate Carbon Metabolism
+MMM2	Methylmalonyl-CoA mutase	[c] : succoa --> mmcoa-R	Irreversible	c	0	1000	0		Alternate Carbon Metabolism
+PGLYCP	phosphoglycolate phosphatase	[c] : 2pglyc + h2o --> glyclt + pi	Irreversible	c	0	1000	0		Alternate Carbon Metabolism
+PGMT	phosphoglucomutase	[c] : g1p <==> g6p	Reversible	c	-1000	1000	0		Alternate Carbon Metabolism
+PMANM	phosphomannomutase	[c] : man1p <==> man6p	Reversible	c	-1000	1000	0		Alternate Carbon Metabolism
+PPCSCT	Propanoyl-CoA: succinate CoA-transferase	[c] : ppcoa + succ --> ppa + succoa	Irreversible	c	0	1000	0		Alternate Carbon Metabolism
+PTA2	Phosphate acetyltransferase	[c] : pi + ppcoa --> coa + ppap	Irreversible	c	0	1000	0		Alternate Carbon Metabolism
+TRE6PP	trehalose-phosphatase	[c] : h2o + tre6p --> pi + tre	Irreversible	c	0	1000	0		Alternate Carbon Metabolism
+TRE6PS	alpha,alpha-trehalose-phosphate synthase (UDP-forming)	[c] : g6p + udpg --> h + tre6p + udp	Irreversible	c	0	1000	0		Alternate Carbon Metabolism
+ACGK	acetylglutamate kinase	[c] : acglu + atp --> acg5p + adp	Irreversible	c	0	1000	0		Amino Acid Metabolism
+ACOTA	acetylornithine transaminase	[c] : acorn + akg <==> acg5sa + glu-L	Reversible	c	-1000	1000	0		Amino Acid Metabolism
+ADCL	4-aminobenzoate synthase	[c] : 4adcho --> 4abz + h + pyr	Irreversible	c	0	1000	0		Amino Acid Metabolism
+ADCS	4-amino-4-deoxychorismate synthase	[c] : chor + gln-L --> 4adcho + glu-L	Irreversible	c	0	1000	0		Amino Acid Metabolism
+AGPR	N-acetyl-g-glutamyl-phosphate reductase	[c] : acg5sa + nadp + pi <==> acg5p + h + nadph	Reversible	c	-1000	1000	0		Amino Acid Metabolism
+AHC	adenosylhomocysteinase	[c] : ahcys + h2o <==> adn + hcys-L	Reversible	c	-1000	1000	0		Amino Acid Metabolism
+ANPRT	anthranilate phosphoribosyltransferase	[c] : anth + prpp --> ppi + pran	Irreversible	c	0	1000	0		Amino Acid Metabolism
+ANS1	anthranilate synthase	[c] : chor + gln-L --> anth + glu-L + h + pyr	Irreversible	c	0	1000	0		Amino Acid Metabolism
+ARGTRS	Arginyl-tRNA synthetase	[c] : arg-L + atp + trnaarg --> amp + argtrna + ppi	Irreversible	c	0	1000	0		Amino Acid Metabolism
+ASPK	aspartate kinase	[c] : asp-L + atp <==> 4pasp + adp	Reversible	c	-1000	1000	0		Amino Acid Metabolism
+ASPTA1	aspartate transaminase	[c] : akg + asp-L <==> glu-L + oaa	Reversible	c	-1000	1000	0		Amino Acid Metabolism
+ATPPRT	ATP phosphoribosyltransferase	[c] : atp + prpp --> ppi + prbatp	Irreversible	c	0	1000	0		Amino Acid Metabolism
+CHORM	chorismate mutase	[c] : chor --> pphn	Irreversible	c	0	1000	0		Amino Acid Metabolism
+CRET	creatininase	[c] : crtn + h2o --> creat	Irreversible	c	0	1000	0		Amino Acid Metabolism
+DHAD1	dihydroxy-acid dehydratase (2,3-dihydroxy-3-methylbutanoate)	[c] : 23dhmb --> 3mob + h2o	Irreversible	c	0	1000	0		Amino Acid Metabolism
+DHAD2	Dihydroxy-acid dehydratase (2,3-dihydroxy-3-methylpentanoate)	[c] : 23dhmp --> 3mop + h2o	Irreversible	c	0	1000	0		Amino Acid Metabolism
+G5SD	glutamate-5-semialdehyde dehydrogenase	[c] : glu5p + h + nadph --> glu5sa + nadp + pi	Irreversible	c	0	1000	0		Amino Acid Metabolism
+GLNTRS	Glutaminyl-tRNA synthetase	[c] : atp + gln-L + trnagln --> amp + glntrna + ppi	Irreversible	c	0	1000	0		Amino Acid Metabolism
+GLU5K	glutamate 5-kinase	[c] : atp + glu-L --> adp + glu5p	Irreversible	c	0	1000	0		Amino Acid Metabolism
+GLUR	glutamate racemase	[c] : glu-D <==> glu-L	Reversible	c	-1000	1000	0		Amino Acid Metabolism
+GLUTRR	glutamyl-tRNA reductase	[c] : glutrna + h + nadph --> glu1sa + nadp + trnaglu	Irreversible	c	0	1000	0		Amino Acid Metabolism
+HISTD	histidinol dehydrogenase	[c] : h2o + histd + (2) nad --> (3) h + his-L + (2) nadh	Irreversible	c	0	1000	0		Amino Acid Metabolism
+HISTP	histidinol-phosphatase	[c] : h2o + hisp --> histd + pi	Irreversible	c	0	1000	0		Amino Acid Metabolism
+HSAT	Acetyl-CoA:L-homoserine O-acetyltransferase	[c] : accoa + hom-L <==> achms + coa	Reversible	c	-1000	1000	0		Amino Acid Metabolism
+HSDy	homoserine dehydrogenase (NADPH)	[c] : hom-L + nadp <==> aspsa + h + nadph	Reversible	c	-1000	1000	0		Amino Acid Metabolism
+HSTPT	histidinol-phosphate transaminase	[c] : glu-L + imacp --> akg + h + hisp	Irreversible	c	0	1000	0		Amino Acid Metabolism
+IG3PS	Imidazole-glycerol-3-phosphate synthase	[c] : gln-L + prlp --> aicar + eig3p + glu-L + (2) h	Irreversible	c	0	1000	0		Amino Acid Metabolism
+IGPDH	imidazoleglycerol-phosphate dehydratase	[c] : eig3p + h --> h2o + imacp	Irreversible	c	0	1000	0		Amino Acid Metabolism
+IGPS	indole-3-glycerol-phosphate synthase	[c] : 2cpr5p + h --> 3ig3p + co2 + h2o	Irreversible	c	0	1000	0		Amino Acid Metabolism
+IPMD	3-isopropylmalate dehydrogenase	[c] : 3c2hmp + nad --> 3c4mop + h + nadh	Irreversible	c	0	1000	0		Amino Acid Metabolism
+IPPS	2-isopropylmalate synthase	[c] : 3mob + accoa + h2o --> 3c3hmp + coa + h	Irreversible	c	0	1000	0		Amino Acid Metabolism
+KARA1	ketol-acid reductoisomerase (2,3-dihydroxy-3-methylbutanoate)	[c] : 23dhmb + nadp <==> alac-S + h + nadph	Reversible	c	-1000	1000	0		Amino Acid Metabolism
+KARA2	ketol-acid reductoisomerase (2-Acetolactate)	[c] : 2ahbut + h + nadph <==> 23dhmp + nadp	Reversible	c	-1000	1000	0		Amino Acid Metabolism
+METACH	O-Acetyl-L-homoserine acetate-lyase (adding methanethiol)	[c] : achms + h2s <==> ac + hcys-L	Reversible	c	-1000	1000	0		Amino Acid Metabolism
+METSR-S1	L-methionine-S-oxide reductase (trdrd)	[c] : metox + trdrd --> h2o + met-L + trdox	Irreversible	c	0	1000	0		Amino Acid Metabolism
+METSR-S2	L-methionine S-oxide reductase (H2O2)	[c] : h2o2 + met-L --> h2o + metox	Irreversible	c	0	1000	0		Amino Acid Metabolism
+NTRIRx	nitrite reductase (NADH)	[c] : (4) h + (3) nadh + no2 --> h2o + (3) nad + nh4oh	Irreversible	c	0	1000	0		Amino Acid Metabolism
+NTRIRy	nitrite reductase (NADPH)	[c] : (4) h + (3) nadph + no2 --> h2o + (3) nadp + nh4oh	Irreversible	c	0	1000	0		Amino Acid Metabolism
+OCBT	ornithine carbamoyltransferase	[c] : cbp + orn-L <==> citr-L + h + pi	Reversible	c	-1000	1000	0		Amino Acid Metabolism
+OMCDC	2-Oxo-4-methyl-3-carboxypentanoate decarboxylation	[c] : 3c4mop + h --> 4mop + co2	Irreversible	c	0	1000	0		Amino Acid Metabolism
+ORNTAC	ornithine transacetylase	[c] : acorn + glu-L <==> acglu + orn-L	Reversible	c	-1000	1000	0		Amino Acid Metabolism
+P5CRy	pyrroline-5-carboxylate reductase	[c] : 1pyr5c + (2) h + nadph --> nadp + pro-L	Irreversible	c	0	1000	0		Amino Acid Metabolism
+PAPSR	phosphoadenylyl-sulfate reductase (thioredoxin)	[c] : paps + trdrd --> (2) h + pap + so3 + trdox	Irreversible	c	0	1000	0		Amino Acid Metabolism
+PPND	prephenate dehydrogenase	[c] : nad + pphn --> 34hpp + co2 + nadh	Irreversible	c	0	1000	0		Amino Acid Metabolism
+PPNDH	prephenate dehydratase	[c] : h + pphn --> co2 + h2o + phpyr	Irreversible	c	0	1000	0		Amino Acid Metabolism
+PRAI	phosphoribosylanthranilate isomerase	[c] : pran <==> 2cpr5p	Reversible	c	-1000	1000	0		Amino Acid Metabolism
+PRAMPC	phosphoribosyl-AMP cyclohydrolase	[c] : h + h2o + prbamp --> prfp	Irreversible	c	0	1000	0		Amino Acid Metabolism
+PRATPP	phosphoribosyl-ATP pyrophosphatase	[c] : h2o + prbatp --> h + ppi + prbamp	Irreversible	c	0	1000	0		Amino Acid Metabolism
+PRMICI	1-(5-phosphoribosyl)-5-[(5-phosphoribosylamino)methylideneamino)imidazole-4-carboxamide isomerase	[c] : prfp <==> prlp	Reversible	c	-1000	1000	0		Amino Acid Metabolism
+SACCD2	saccharopine dehydrogenase (NAD, L-lysine forming)	[c] : Lsacchrp + h2o + nad <==> akg + h + lys-L + nadh	Reversible	c	-1000	1000	0		Amino Acid Metabolism
+SDPTA	succinyldiaminopimelate transaminase	[c] : akg + sl26da <==> glu-L + sl2a6o	Reversible	c	-1000	1000	0		Amino Acid Metabolism
+SERAT	serine O-acetyltransferase	[c] : accoa + ser-L <==> acser + coa	Reversible	c	-1000	1000	0		Amino Acid Metabolism
+SHSL1	O-succinylhomoserine lyase (L-cysteine)	[c] : cys-L + suchms --> cysth-L + h + succ	Irreversible	c	0	1000	0		Amino Acid Metabolism
+THRLAD	L-allo-threonine aldolase	[c] : thr-LA --> acald + gly	Irreversible	c	0	1000	0		Amino Acid Metabolism
+THRS	threonine synthase	[c] : h2o + phom --> pi + thr-L	Irreversible	c	0	1000	0		Amino Acid Metabolism
+TRPS1	tryptophan synthase (indoleglycerol phosphate)	[c] : 3ig3p + ser-L --> g3p + h2o + trp-L	Irreversible	c	0	1000	0		Amino Acid Metabolism
+TRPTRS	Tryptophanyl-tRNA synthetase	[c] : atp + trnatrp + trp-L --> amp + ppi + trptrna	Irreversible	c	0	1000	0		Amino Acid Metabolism
+TYRTRS	Tyrosyl-tRNA synthetase	[c] : atp + trnatyr + tyr-L --> amp + ppi + tyrtrna	Irreversible	c	0	1000	0		Amino Acid Metabolism
+ALAD_L	L-alanine dehydrogenase	[c] : ala-L + h2o + nad --> h + nadh + nh4 + pyr	Irreversible	c	0	1000	0		Amino acids and related molecules
+ARGN	arginase	[c] : arg-L + h2o --> orn-L + urea	Irreversible	c	0	1000	0		Amino acids and related molecules
+CYSTGL	cystathionine g-lyase	[c] : cysth-L + h2o --> 2obut + cys-L + nh4	Irreversible	c	0	1000	0		Amino acids and related molecules
+DAAOP	D-alanyl-aminopeptidase	[e] : alaala + h2o --> (2) ala-D	Irreversible	e	0	1000	0		Amino acids and related molecules
+FMETDF	formylmethionine deformylase	[c] : fmet + h2o --> for + met-L	Irreversible	c	0	1000	0		Amino acids and related molecules
+GGTAe2	gamma-glutamyltransferase	[e] : gthrd + h2o --> cgly + glu-L	Irreversible	e	0	1000	0		Amino acids and related molecules
+LYSAM	lysine 2,3-aminomutase	[c] : lys-L <==> 36dahx	Reversible	c	-1000	1000	0		Amino acids and related molecules
+MMSAD2	methylmalonate-semialdehyde dehydrogenase (propanol)	[c] : coa + nad + ppal --> h + nadh + ppcoa	Irreversible	c	0	1000	0		Amino acids and related molecules
+MMSAD3	methylmalonate-semialdehyde dehydrogenase (malonic semialdehyde)	[c] : coa + msa + nad --> accoa + co2 + nadh	Irreversible	c	0	1000	0		Amino acids and related molecules
+MMSDHir	methylmalonate-semialdehyde dehydrogenase (acylating)	[c] : coa + mmalsa-S + nad --> co2 + nadh + ppcoa	Irreversible	c	0	1000	0		Amino acids and related molecules
+MTRI	5-methylthioribose-1-phosphate isomerase	[c] : 5mdr1p <==> 5mdru1p	Reversible	c	-1000	1000	0		Amino acids and related molecules
+PGCDr	phosphoglycerate dehydrogenase	[c] : 3pg + nad <==> 3php + h + nadh	Reversible	c	-1000	1000	0		Amino acids and related molecules
+UREA2	urease	[c] : (2) h + h2o + urea --> co2 + (2) nh4	Irreversible	c	0	1000	0		Amino acids and related molecules
+ICL	Isocitrate lyase	[c] : icit --> glx + succ	Irreversible	c	0	1000	0		Anaplerotic reactions
+MALS	malate synthase	[c] : accoa + glx + h2o --> coa + h + mal-L	Irreversible	c	0	1000	0		Anaplerotic reactions
+ME2	malic enzyme (NADP)	[c] : mal-L + nadp --> co2 + nadph + pyr	Irreversible	c	0	1000	0		Anaplerotic reactions
+PPA	inorganic diphosphatase	[c] : h2o + ppi --> h + (2) pi	Irreversible	c	0	1000	0		Anaplerotic reactions
+PPC	phosphoenolpyruvate carboxylase	[c] : co2 + h2o + pep --> h + oaa + pi	Irreversible	c	0	1000	0		Anaplerotic reactions
+ABTA	4-aminobutyrate transaminase	[c] : 4abut + akg --> glu-L + sucsal	Irreversible	c	0	1000	0		Arginine and Proline Metabolism
+ACGS	N-acetylglutamate synthase	[c] : accoa + glu-L --> acglu + coa + h	Irreversible	c	0	1000	0		Arginine and Proline Metabolism
+ADMDC	Adenosylmethionine decarboxylase	[c] : amet + h <==> ametam + co2	Reversible	c	-1000	1000	0		Arginine and Proline Metabolism
+AGMT	agmatinase	[c] : agm + h2o --> ptrc + urea	Irreversible	c	0	1000	0		Arginine and Proline Metabolism
+ARGDC	arginine decarboxylase	[c] : arg-L + h --> agm + co2	Irreversible	c	0	1000	0		Arginine and Proline Metabolism
+ARGSL	argininosuccinate lyase	[c] : argsuc <==> arg-L + fum	Reversible	c	-1000	1000	0		Arginine and Proline Metabolism
+ARGSS	argininosuccinate synthase	[c] : asp-L + atp + citr-L --> amp + argsuc + h + ppi	Irreversible	c	0	1000	0		Arginine and Proline Metabolism
+CBPS	carbamoyl-phosphate synthase (glutamine-hydrolysing)	[c] : (2) atp + gln-L + h2o + hco3 --> (2) adp + cbp + glu-L + (2) h + pi	Irreversible	c	0	1000	0		Arginine and Proline Metabolism
+DKMPPD2	2,3-diketo-5-methylthio-1-phosphopentane degradation reaction	[c] : dkmpp + (3) h2o --> 2kmb + for + (6) h + pi	Irreversible	c	0	1000	0		Arginine and Proline Metabolism
+G5SADs	L-glutamate 5-semialdehyde dehydratase (spontaneous)	[c] : glu5sa <==> 1pyr5c + h + h2o	Reversible	c	-1000	1000	0		Arginine and Proline Metabolism
+GGLUGABDH	gammaglutamyl-gamma-aminobutyraldehyde dehydrogenase	[c] : ggluaba + h2o + nadp --> ggluabt + (2) h + nadph	Irreversible	c	0	1000	0		Arginine and Proline Metabolism
+GGLUGABH	gammaglutamyl-gamma-aminobutyrate hydrolase	[c] : ggluabt + h2o --> 4abut + glu-L	Irreversible	c	0	1000	0		Arginine and Proline Metabolism
+GGLUPTO	gammaglutamyl putrescine oxidase	[c] : ggluptrc + h2o + o2 --> ggluaba + h2o2 + nh4	Irreversible	c	0	1000	0		Arginine and Proline Metabolism
+GGLUPTS	gammaglutamyl putrescine synthetase	[c] : atp + glu-L + ptrc --> adp + ggluptrc + h + pi	Irreversible	c	0	1000	0		Arginine and Proline Metabolism
+MDRPD	5-Methylthio-5-deoxy-D-ribulose 1-phosphate dehydratase	[c] : 5mdru1p --> dkmpp + h2o	Irreversible	c	0	1000	0		Arginine and Proline Metabolism
+MTRK	5-methylthioribose kinase	[c] : 5mtr + atp --> 5mdr1p + adp + h	Irreversible	c	0	1000	0		Arginine and Proline Metabolism
+P5CD	1-pyrroline-5-carboxylate dehydrogenase	[c] : 1pyr5c + (2) h2o + nad --> glu-L + h + nadh	Irreversible	c	0	1000	0		Arginine and Proline Metabolism
+PRO1z	proline oxidase	[c] : fad + pro-L --> 1pyr5c + fadh2 + h	Irreversible	c	0	1000	0		Arginine and Proline Metabolism
+SPMS	spermidine synthase	[c] : ametam + ptrc --> 5mta + h + spmd	Irreversible	c	0	1000	0		Arginine and Proline Metabolism
+SSALy	succinate-semialdehyde dehydrogenase (NADP)	[c] : h2o + nadp + sucsal --> (2) h + nadph + succ	Irreversible	c	0	1000	0		Arginine and Proline Metabolism
+UNK3	2-keto-4-methylthiobutyrate transamination	[c] : 2kmb + glu-L --> akg + met-L	Irreversible	c	0	1000	0		Arginine and Proline Metabolism
+3HOPCD	3-hydroxypimeloyl-CoA dehydrogenase	[c] : 3hpimcoa + nad <==> 3opimcoa + h + nadh	Reversible	c	-1000	1000	0		Aromatic Compound degradation
+4HBTE	4-hydroxybenzoyl-CoA thioesterase	[c] : 4hbcoa + h2o <==> 4hbz + coa + h	Reversible	c	-1000	1000	0		Aromatic Compound degradation
+4HBZR	4-hydroxybenzoylCoA reducatse	[c] : 4hbcoa + fdxr-4:2 + (2) h --> benzcoa + fdxo-4:2 + h2o	Irreversible	c	0	1000	0		Aromatic Compound degradation
+BCOALIG	benzoate CoA ligase	[c] : atp + bz + coa <==> amp + benzcoa + ppi	Reversible	c	-1000	1000	0		Aromatic Compound degradation
+BCR	benzoylCoA reductase	[c] : (2) atp + benzcoa + (2) h2o + nadh <==> (2) adp + ch15deccoa + h + nad + (2) pi	Reversible	c	-1000	1000	0		Aromatic Compound degradation
+BZSCD	benzylsuccinyl-CoA dehydrogenase	[c] : bzsuccoa + fad <==> fadh2 + phitcoa	Reversible	c	-1000	1000	0		Aromatic Compound degradation
+BZSCT	benzylsuccinate CoA-transferase	[c] : bzsucc + succoa <==> bzsuccoa + succ	Reversible	c	-1000	1000	0		Aromatic Compound degradation
+CHDCCH	Cyclohexa-1,5-dienecarbonyl-CoA hydro-lyase	[c] : ch15deccoa + h2o <==> 6hch1eccoa	Reversible	c	-1000	1000	0		Aromatic Compound degradation
+GCOAD	glutaryl-CoA dehydrogenase	[c] : glutcoa + nadp --> b2coa + co2 + nadph	Irreversible	c	0	1000	0		Aromatic Compound degradation
+HOCCD	6-hydroxycyclohex-1-ene-1-carbonyl CoA dehydrogenase	[c] : 6hch1eccoa + nad <==> 6occhcoa + h + nadh	Reversible	c	-1000	1000	0		Aromatic Compound degradation
+OCHCCH	6-oxo-cyclohex-1-ene-carbonyl-CoA hydrolase	[c] : 6occhcoa + (2) h2o <==> 3hpimcoa + h	Reversible	c	-1000	1000	0		Aromatic Compound degradation
+OGCOAAT	oxopimelylcoa:glutarylcoa acyltransferase	[c] : 3opimcoa + coa <==> accoa + glutcoa	Reversible	c	-1000	1000	0		Aromatic Compound degradation
+PACCOAL	phenylacetate-CoA ligase	[c] : atp + coa + pheac --> amp + phaccoa + ppi	Irreversible	c	0	1000	0		Aromatic Compound degradation
+ASNTRS	Asparaginyl-tRNA synthetase	[c] : asn-L + atp + trnaasn --> amp + asntrna + ppi	Irreversible	c	0	1000	0		Asparagine Metabolism
+4CHOAHL	4-Carboxy-4-hydroxy-2-oxoadipate hydrolase	[c] : 4chccm + h2o <==> 4choa	Reversible	c	-1000	1000	0		Benzoate Degradation
+4CHSDH	4-carboxy-2-hydroxymuconate-6-semialdehyde dehydrogenase	[c] : 4chms + h2o + nadp <==> 4chccm + (2) h + nadph	Reversible	c	-1000	1000	0		Benzoate Degradation
+4HMOGA	4-hydroxy-4-methyl-2-oxoglutarate aldolase	[c] : 4choa <==> oaa + pyr	Reversible	c	-1000	1000	0		Benzoate Degradation
+APYRH	3-Fumarylpyruvate acylhydrolase	[c] : 3fpyr + h2o --> fum + h + pyr	Irreversible	c	0	1000	0		Benzoate Degradation
+CMCI	3-carboxy-cis,cis-muconate cycloisomerase	[c] : 2c25dho <==> 3cmuc + h	Reversible	c	-1000	1000	0		Benzoate Degradation
+HBZ3MO	4-hydroxybenzoate 3-monooxygenase	[c] : 4hbz + h + nadph + o2 --> 34dhbz + h2o + nadp	Irreversible	c	0	1000	0		Benzoate Degradation
+PC45DO	protocatechuate 4,5-oxidoreductase	[c] : 34dhbz + o2 <==> 4chms + h	Reversible	c	-1000	1000	0		Benzoate Degradation
+CDPGD	CDP-glucose 4,6-dehydratase	[c] : cdpglc <==> cdpddg + h2o	Reversible	c	-1000	1000	0		Carbohydrate Metabolism
+GLXCBL	glyoxalate carboligase	[c] : (2) glx + h --> 2h3opp + co2	Irreversible	c	0	1000	0		Carbohydrate Metabolism
+GLYCK	glycerate kinase	[c] : atp + glyc-R --> 3pg + adp + h	Irreversible	c	0	1000	0		Carbohydrate Metabolism
+PRKIN	Phosphoribulokinase	[c] : atp + ru5p-D --> adp + h + rb15bp	Irreversible	c	0	1000	0		Carbohydrate Metabolism
+SBDH	L-sorbosone dehydrogenase	[c] : nadp + sbt6p --> h + nadph + srb1p	Irreversible	c	0	1000	0		Carbohydrate Metabolism
+TRES	Trehalose synthase	[c] : malt <==> tre	Reversible	c	-1000	1000	0		Carbohydrate Metabolism
+BG(CELLB)	beta-glucosidase (cellobiose)	[e] : cellb + h2o --> (2) glc-D	Irreversible	e	0	1000	0		Carbohydrates and related molecuels
+ACKr	acetate kinase	[c] : ac + atp <==> actp + adp	Reversible	c	-1000	1000	0		Carbohydrates and related molecules
+ACS2	acetyl-CoA synthase (propionate)	[c] : atp + coa + ppa --> amp + ppcoa + ppi	Irreversible	c	0	1000	0		Carbohydrates and related molecules
+FRUK	fructokinase	[c] : atp + fru --> adp + f6p + h	Irreversible	c	0	1000	0		Carbohydrates and related molecules
+GALCTD	galactarate dehydratase	[c] : galctr-D --> 5d4dglcr + h2o	Irreversible	c	0	1000	0		Carbohydrates and related molecules
+GBEZY	1,4-alpha-glucan branching enzyme	[c] : 14glun --> glycogen	Irreversible	c	0	1000	0		Carbohydrates and related molecules
+ME1x_D	D-malate dehydrogenase (NAD)	[c] : mal-D + nad --> co2 + nadh + pyr	Irreversible	c	0	1000	0		Carbohydrates and related molecules
+MNNH	D-mannonate hydrolyase	[c] : mana --> 2ddglcn + h2o	Irreversible	c	0	1000	0		Carbohydrates and related molecules
+OCOAT1r	3-oxoacid CoA-transferase (Succinyl-CoA: acetoacetate)	[c] : acac + succoa <==> aacoa + succ	Reversible	c	-1000	1000	0		Carbohydrates and related molecules
+PBUTT	phosphate butyryltransferase	[c] : btcoa + pi <==> butpi + coa	Reversible	c	-1000	1000	0		Carbohydrates and related molecules
+PPAK	Propionate kinase	[c] : adp + ppap <==> atp + ppa	Reversible	c	-1000	1000	0		Carbohydrates and related molecules
+PPCOAC	Propionyl-CoA carboxylase	[c] : atp + hco3 + ppcoa --> adp + h + mmcoa-S + pi	Irreversible	c	0	1000	0		Carbohydrates and related molecules
+SUCD1	succinate dehydrogenase	[c] : fad + succ <==> fadh2 + fum	Reversible	c	-1000	1000	0		Carbohydrates and related molecules
+AACPS3	acyl-[acyl-carrier-protein] synthetase  (n-C16:0)	[c] : ACP + atp + hdca --> amp + palmACP + ppi	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+AGMHE	ADP-D-glycero-D-manno-heptose epimerase	[c] : adphep-D,D --> adphep-L,D	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+ALAALA	D-alanine-D-alanine ligase (reversible)	[c] : (2) ala-D + atp <==> adp + alaala + h + pi	Reversible	c	-1000	1000	0		Cell Envelope Biosynthesis
+DAGK_EC	Diacylglycerol kinase	[c] : (0.02) 12dgr_EC + atp --> adp + h + (0.02) pa_EC	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+EDTXS1	Endotoxin Synthesis (lauroyl transferase)	[c] : ddcaACP + kdo2lipid4 --> ACP + kdo2lipid4L	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+EDTXS2	Endotoxin Synthesis (myristoyl transferase)	[c] : kdo2lipid4L + myrsACP --> ACP + lipa	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+ETHAAL	ethanolamine ammonia-lyase	[c] : etha --> acald + nh4	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+G1PACT	glucosamine-1-phosphate N-acetyltransferase	[c] : accoa + gam1p --> acgam1p + coa + h	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+G1PTMT	glucose-1-phosphate thymidylyltransferase	[c] : dttp + g1p + h --> dtdpglc + ppi	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+GDMANE	GDP-4-dehydro-6-deoxy-D-mannose epimerase	[c] : gdpddm <==> gdpofuc	Reversible	c	-1000	1000	0		Cell Envelope Biosynthesis
+GDPMD	GDPmannose 4,6-dehydratase	[c] : gdpman --> gdpddm + h2o	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+GF6PTA	glutamine-fructose-6-phosphate transaminase	[c] : f6p + gln-L --> gam6p + glu-L	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+GMHEPAT	D-glycero-D-manno-hepose 1-phosphate adenyltransferase	[c] : atp + gmh1p + h --> adphep-D,D + ppi	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+GMHEPK	D-glycero-D-manno-heptose 7-phosphate kinase	[c] : atp + gmh7p --> adp + gmh17bp + h	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+GMHEPPA	D-glycero-D-manno-heptose 1,7-bisphosphate phosphatase	[c] : gmh17bp + h2o --> gmh1p + pi	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+GOFUCR	GDP-4-oxo-L-fucose reductase	[c] : gdpofuc + h + nadph --> gdpfuc + nadp	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+KDOPP	3-deoxy-manno-octulosonate-8-phosphatase	[c] : h2o + kdo8p --> kdo + pi	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+LPADSS	Lipid A disaccaride synthase	[c] : lipidX + u23ga --> h + lipidAds + udp	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+LPSSYN_EC	Lipopolysaccharide synthesis (Ecoli)	[c] : (3) adphep-L,D + (2) cdpea + (3) ckdo + lipa + (2) udpg --> (3) adp + (2) cdp + (3) cmp + (10) h + lps_EC + (2) udp	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+MAN1PT2	mannose-1-phosphate guanylyltransferase (GDP)	[c] : gdp + h + man1p --> gdpman + pi	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+MI1PP	myo-inositol 1-phosphatase	[c] : h2o + mi1p-D --> inost + pi	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+MOAT	3-deoxy-D-manno-octulosonic acid transferase	[c] : ckdo + lipidA --> cmp + h + kdolipid4	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+MOAT2	3-deoxy-D-manno-octulosonic acid transferase	[c] : ckdo + kdolipid4 --> cmp + h + kdo2lipid4	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+PAPPT3	phospho-N-acetylmuramoyl-pentapeptide-transferase (meso-2,6-diaminopimelate)	[c] : udcpp + ugmda --> uagmda + ump	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+PEPT_EC	ethanolamine phosphotransferase	[c] : cmp + h + (0.02) pe_EC <==> (0.02) 12dgr_EC + cdpea	Reversible	c	-1000	1000	0		Cell Envelope Biosynthesis
+PGAMT	phosphoglucosamine mutase	[c] : gam1p <==> gam6p	Reversible	c	-1000	1000	0		Cell Envelope Biosynthesis
+PPTGS	Peptidoglycan subunit synthesis	[c] : uaagmda --> h + peptido_EC + udcpdp	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+S7PI	sedoheptulose 7-phosphate isomerase	[c] : s7p <==> gmh7p	Reversible	c	-1000	1000	0		Cell Envelope Biosynthesis
+TDPDRE	dTDP-4-dehydrorhamnose 3,5-epimerase	[c] : dtdpddg <==> dtdpddm	Reversible	c	-1000	1000	0		Cell Envelope Biosynthesis
+TDPDRR	dTDP-4-dehydrorhamnose reductase	[c] : dtdp6dm + nadp <==> dtdpddm + h + nadph	Reversible	c	-1000	1000	0		Cell Envelope Biosynthesis
+TDPGDH	dTDPglucose 4,6-dehydratase	[c] : dtdpglc --> dtdpddg + h2o	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+TDSK	Tetraacyldisaccharide 4'kinase	[c] : atp + lipidAds --> adp + h + lipidA	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+U23GAAT	UDP-3-O-(3-hydroxymyristoyl)glucosamine acyltransferase	[c] : 3htdACP + u3hga --> ACP + h + u23ga	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+UAAGDS	UDP-N-acetylmuramoyl-L-alanyl-D-glutamyl-meso-2,6-diaminopimelate synthetase	[c] : 26dap-M + atp + uamag --> adp + h + pi + ugmd	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+UACMAMO	UDP-N-acetyl-D-mannosamine oxidoreductase	[c] : h2o + (2) nad + uacmam --> (3) h + (2) nadh + uacmamu	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+UAGAAT	UDP-N-acetylglucosamine acyltransferase	[c] : 3htdACP + uacgam <==> ACP + u3aga	Reversible	c	-1000	1000	0		Cell Envelope Biosynthesis
+UAGDP	UDP-N-acetylglucosamine diphosphorylase	[c] : acgam1p + h + utp --> ppi + uacgam	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+UAGPT3	UDP-N-acetylglucosamine-N-acetylmuramyl-(pentapeptide)pyrophosphoryl-undecaprenol N-acetylglucosamine transferase	[c] : uacgam + uagmda --> h + uaagmda + udp	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+UAMAS	UDP-N-acetylmuramoyl-L-alanine synthetase	[c] : ala-L + atp + uamr --> adp + h + pi + uama	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+UAPGR	UDP-N-acetylenolpyruvoylglucosamine reductase	[c] : h + nadph + uaccg --> nadp + uamr	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+UDCPDP	undecaprenyl-diphosphatase	[c] : h2o + udcpdp --> h + pi + udcpp	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+UGMDDS	UDP-N-acetylmuramoyl-L-alanyl-D-glutamyl-meso-2,6-diaminopimeloyl-D-alanyl-D-alanine synthetase	[c] : alaala + atp + ugmd --> adp + h + pi + ugmda	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+UHGADA	UDP-3-0-acyl N-acetylglucosamine deacetylase	[c] : h2o + u3aga --> ac + u3hga	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+USHD	UDP-sugar hydrolase	[c] : h2o + u23ga --> (2) h + lipidX + ump	Irreversible	c	0	1000	0		Cell Envelope Biosynthesis
+AACOR2	3-hydroxyacyl-CoA dehydrogenase (acetoacetyl-CoA)	[c] : aacoa + h + nadph <==> 3hbacoa + nadp	Reversible	c	-1000	1000	0		Central Metabolism
+ACOAH	acetyl-CoA hydrolase	[c] : accoa + h2o --> ac + coa + h	Irreversible	c	0	1000	0		Central Metabolism
+ACTPASE	acylphosphatase	[c] : actp + h2o --> ac + h + pi	Irreversible	c	0	1000	0		Central Metabolism
+ENO	enolase	[c] : 2pg <==> h2o + pep	Reversible	c	-1000	1000	0		Central Metabolism
+FDH	formate dehydrogenase	[c] : for + nad --> co2 + nadh	Irreversible	c	0	1000	0		Central Metabolism
+G3PD1	glycerol-3-phosphate dehydrogenase (NAD)	[c] : glyc3p + nad <==> dhap + h + nadh	Reversible	c	-1000	1000	0		Central Metabolism
+G3PD2	glycerol-3-phosphate dehydrogenase (NADP)	[c] : glyc3p + nadp <==> dhap + h + nadph	Reversible	c	-1000	1000	0		Central Metabolism
+G3PD4	glycerol-3-phosphate dehydrogenase (menaquinone 7)	[c] : glyc3p + mqn7 --> dhap + mql7	Irreversible	c	0	1000	0		Central Metabolism
+GLYD	glycerate dehydrogenase	[c] : h + hpyr + nadh <==> glyc-R + nad	Reversible	c	-1000	1000	0		Central Metabolism
+GLYK	glycerol kinase	[c] : atp + glyc --> adp + glyc3p + h	Irreversible	c	0	1000	0		Central Metabolism
+HGR	mercury(II) reductase	[c] : hg2 + nadph <==> h + hg0 + nadp	Reversible	c	-1000	1000	0		Central Metabolism
+MAN6PI	mannose-6-phosphate isomerase	[c] : man6p <==> f6p	Reversible	c	-1000	1000	0		Central Metabolism
+PFK	phosphofructokinase	[c] : atp + f6p --> adp + fdp + h	Irreversible	c	0	1000	0		Central Metabolism
+PGI	glucose-6-phosphate isomerase	[c] : g6p <==> f6p	Reversible	c	-1000	1000	0		Central Metabolism
+PGM	phosphoglycerate mutase	[c] : 3pg <==> 2pg	Reversible	c	-1000	1000	0		Central Metabolism
+PPDK	pyruvate phosphate dikinase	[c] : atp + pi + pyr --> amp + h + pep + ppi	Irreversible	c	0	1000	0		Central Metabolism
+PPN13D	1,3-propanediol dehydrogenase	[c] : 13ppd + nad <==> 3hppnl + h + nadh	Reversible	c	-1000	1000	0		Central Metabolism
+SUCOAS	succinyl-CoA synthetase (ADP-forming)	[c] : atp + coa + succ <==> adp + pi + succoa	Reversible	c	-1000	1000	0		Central Metabolism
+ACONT	aconitase	[c] : cit <==> icit	Reversible	c	-1000	1000	0		Citrate Cycle (TCA)
+AKGD	2-oxoglutarate dehydrogenase	[c] : akg + coa + nad --> co2 + nadh + succoa	Irreversible	c	0	1000	0		Citrate Cycle (TCA)
+CITL	Citrate lyase	[c] : cit --> ac + oaa	Irreversible	c	0	1000	0		Citrate Cycle (TCA)
+CS	citrate synthase	[c] : accoa + h2o + oaa --> cit + coa + h	Irreversible	c	0	1000	0		Citrate Cycle (TCA)
+FUM	fumarase	[c] : fum + h2o <==> mal-L	Reversible	c	-1000	1000	0		Citrate Cycle (TCA)
+ICDHy	isocitrate dehydrogenase (NADP)	[c] : icit + nadp <==> akg + co2 + nadph	Reversible	c	-1000	1000	0		Citrate Cycle (TCA)
+MDH	malate dehydrogenase	[c] : mal-L + nad <==> h + nadh + oaa	Reversible	c	-1000	1000	0		Citrate Cycle (TCA)
+SUCD1i	succinate dehydrogenase	[c] : fad + succ --> fadh2 + fum	Irreversible	c	0	1000	0		Citrate Cycle (TCA)
+FTHFD	formyltetrahydrofolate deformylase	[c] : 10fthf + h2o --> for + h + thf	Irreversible	c	0	1000	0		Coenzymes and prosthetic groups
+ACPS1	acyl-carrier protein synthase	[c] : apoACP + coa --> ACP + h + pap	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+ALATA_D2	D-alanine transaminase	[c] : ala-D + pydx5p --> pyam5p + pyr	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+ALATA_L2	alanine transaminase	[c] : ala-L + pydx5p --> pyam5p + pyr	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+AMAOT	adenosylmethionine-8-amino-7-oxononanoate transaminase	[c] : 8aonn + amet <==> amob + dann	Reversible	c	-1000	1000	0		Cofactor and Prosthetic Group Biosynthesis
+AMPMS	4-amino-2-methyl-5-phosphomethylpyrimidine synthetase	[c] : air + h2o --> 4ampm + (2) for + (4) h	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+APRAUR	5-amino-6-(5-phosphoribosylamino)uracil reductase	[c] : 5apru + h + nadph --> 5aprbu + nadp	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+ASP1DC	aspartate 1-decarboxylase	[c] : asp-L + h --> ala-B + co2	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+ASPO3	L-aspartate oxidase	[c] : asp-L + ubq8 --> h + iasp + ubq8h2	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+ASPO4	L-aspartate oxidase	[c] : asp-L + mqn8 --> h + iasp + mql8	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+ASPO5	L-aspartate oxidase	[c] : asp-L + fum --> h + iasp + succ	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+ASPO6	L-aspartate oxidase	[c] : asp-L + o2 --> h + h2o2 + iasp	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+BACCL	biotin-[acetyl-CoA-carboxylase] ligase	[c] : atp + btn + h --> btamp + ppi	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+BTS2	biotin synthase (ala-L producing)	[c] : cys-L + dtbt <==> ala-L + btn + (2) h	Reversible	c	-1000	1000	0		Cofactor and Prosthetic Group Biosynthesis
+CBIAT	Cobinamide adenyltransferase	[c] : atp + cbi + h2o <==> adcoba + pi + ppi	Reversible	c	-1000	1000	0		Cofactor and Prosthetic Group Biosynthesis
+CBLAT	cob(I)alamin adenosyltransferase	[c] : atp + cbl1 + h2o <==> cobamcoa + pi + ppi	Reversible	c	-1000	1000	0		Cofactor and Prosthetic Group Biosynthesis
+CDPMEK	4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase	[c] : 4c2me + atp --> 2p4c2me + adp + h	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+CHRPL	chorismate pyruvate lyase	[c] : chor --> 4hbz + pyr	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+CPPPGO	coproporphyrinogen oxidase	[c] : cpppg3 + (2) h + o2 --> (2) co2 + (2) h2o + pppg9	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+CPPPGOAN	Oxygen Independent coproporphyrinogen-III oxidase	[c] : (2) amet + cpppg3 + (2) fdxo-4:2 + (2) nadph --> (2) co2 + (2) dad-5 + (2) fdxr-4:2 + (2) h + (2) met-L + (2) nadp + pppg9	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+DHFS	dihydrofolate synthase	[c] : atp + dhpt + glu-L --> adp + dhf + h + pi	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+DHPPDA2	diaminohydroxyphosphoribosylaminopyrimidine deaminase	[c] : 25dhpp + h + h2o --> 5apru + nh4	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+DHPS3	dihydropteroate synthase	[c] : 2ahhmd + 4abz --> dhpt + ppi	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+DMPPS	1-hydroxy-2-methyl-2-(E)-butenyl 4-diphosphate reductase (dmpp)	[c] : h + h2mb4p + nadh --> dmpp + h2o + nad	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+DMQMT	3-Dimethylubiquinonol 3-methyltransferase	[c] : 2omhmbl + amet --> ahcys + h + ubq8h2	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+DNMPPA	Dihydroneopterin monophosphate dephosphorylase	[c] : dhpmp + h2o --> dhnpt + pi	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+DNTPPA	Dihydroneopterin triphosphate pyrophosphatase	[c] : ahdt + h2o --> dhpmp + h + ppi	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+DPR	2-dehydropantoate 2-reductase	[c] : 2dhp + h + nadph --> nadp + pant-R	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+DXPRI	1-deoxy-D-xylulose-5-phosphate reductoisomerase	[c] : dxyl5p + h + nadph <==> 2me4p + nadp	Reversible	c	-1000	1000	0		Cofactor and Prosthetic Group Biosynthesis
+DXPS	1-deoxy-D-xylulose 5-phosphate synthase	[c] : g3p + h + pyr --> co2 + dxyl5p	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+E4PD	Erythrose 4-phosphate dehydrogenase	[c] : e4p + h2o + nad <==> 4per + (2) h + nadh	Reversible	c	-1000	1000	0		Cofactor and Prosthetic Group Biosynthesis
+FCLT	Heme B synthesis reaction	[c] : fe2 + ppp9 --> h + pheme	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+FMNAT	FMN adenylyltransferase	[c] : atp + fmn + h --> fad + ppi	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+G1SATi	glutamate-1-semialdehyde aminotransferase	[c] : glu1sa --> 5aop	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+GLUCYSL	glutamate-cysteine ligase	[c] : atp + cys-L + glu-L --> adp + glucys + h + pi	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+GTHRD	glutathione-disulfide reductase	[c] : (2) gthrd + nadp <==> gthox + h + nadph	Reversible	c	-1000	1000	0		Cofactor and Prosthetic Group Biosynthesis
+GTHS	glutathione synthase	[c] : atp + glucys + gly --> adp + gthrd + h + pi	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+GTPCI	GTP cyclohydrolase I	[c] : gtp + h2o --> ahdt + for + h	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+HBZOPT	4-hydroxybenzoate octaprenyltransferase	[c] : 4hbz + octdp --> 3ophb + ppi	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+HETZK	hydroxyethylthiazole kinase	[c] : 4mhetz + atp --> 4mpetz + adp + h	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+HMBS	hydroxymethylbilane synthase	[c] : h2o + (4) ppbng --> hmbil + (4) nh4	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+HTHBPD	4a-hydroxytetrahydrobiopterin dehydratase	[c] : 5678thh --> 78dhp + h2o	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+IPDPS	1-hydroxy-2-methyl-2-(E)-butenyl 4-diphosphate reductase (ipdp)	[c] : h + h2mb4p + nadh --> h2o + ipdp + nad	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+MECDPS	2-C-methyl-D-erythritol 2,4-cyclodiphosphate synthase	[c] : 2p4c2me --> 2mecdp + cmp	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+MEPCT	2-C-methyl-D-erythritol 4-phosphate cytidylyltransferase	[c] : 2me4p + ctp + h --> 4c2me + ppi	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+MOHMT	3-methyl-2-oxobutanoate hydroxymethyltransferase	[c] : 3mob + h2o + mlthf --> 2dhp + thf	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+NADDP	NAD diphosphatase	[c] : h2o + nad --> amp + (2) h + nmn	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+NADK	NAD kinase	[c] : atp + nad --> adp + h + nadp	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+NADS1	NAD synthase (nh4)	[c] : atp + dnad + nh4 --> amp + h + nad + ppi	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+NAMNPP	nicotinic acid mononucleotide pyrophosphorylase	[c] : atp + h2o + nac + prpp --> adp + nicrnt + pi + ppi	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+NMNAT	nicotinamide-nucleotide adenylyltransferase	[c] : atp + h + nmn --> nad + ppi	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+NNAT	nicotinate-nucleotide adenylyltransferase	[c] : atp + h + nicrnt --> dnad + ppi	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+NNDPR	nicotinate-nucleotide diphosphorylase (carboxylating)	[c] : (2) h + prpp + quln --> co2 + nicrnt + ppi	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+OCTDPS	Octaprenyl pyrophosphate synthase	[c] : frdp + (5) ipdp --> octdp + (5) ppi	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+OHPBAT	O-Phospho-4-hydroxy-L-threonine:2-oxoglutarate aminotransferase	[c] : glu-L + ohpb <==> akg + phthr	Reversible	c	-1000	1000	0		Cofactor and Prosthetic Group Biosynthesis
+OHPHM	R04988	[c] : 2ohph + amet --> 2omph + ahcys + h	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+OMBZLM	2-Octaprenyl-6-methoxy-benzoquinol methylase	[c] : 2ombzl + amet --> 2ommbl + ahcys + h	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+OMMBLHX	2-Octaprenyl-3-methyl-6-methoxy-1,4-benzoquinol hydroxylase	[c] : 2ommbl + (0.5) o2 --> 2omhmbl	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+OMPHHX	2-octaprenyl-6-methoxyphenol hydroxylase	[c] : 2omph + (0.5) o2 --> 2ombzl	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+OPHBDC	3-octaprenyl-4-hydroxybenzoate carboxy-lyase	[c] : 3ophb + h --> 2oph + co2	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+OPHHX	2-Octaprenylphenol hydroxylase	[c] : 2oph + (0.5) o2 --> 2ohph	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+PANTS	pantothenate synthase	[c] : ala-B + atp + pant-R --> amp + h + pnto-R + ppi	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+PDX5PO	pyridoxine 5'-phosphate oxidase	[c] : o2 + pdx5p <==> h + h2o2 + pydx5p	Reversible	c	-1000	1000	0		Cofactor and Prosthetic Group Biosynthesis
+PDX5PS	Pyridoxine 5'-phosphate synthase	[c] : dxyl5p + nad + phthr --> co2 + h + (2) h2o + nadh + pdx5p + pi	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+PERD	Erythronate 4-phosphate (4per) dehydrogenase	[c] : 4per + nad <==> h + nadh + ohpb	Reversible	c	-1000	1000	0		Cofactor and Prosthetic Group Biosynthesis
+PMDPHT	pyrimidine phosphatase	[c] : 5aprbu + h2o --> 4r5au + pi	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+PNTK	pantothenate kinase	[c] : atp + pnto-R --> 4ppan + adp + h	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+PPCDC	phosphopantothenoylcysteine decarboxylase	[c] : 4ppcys + h --> co2 + pan4p	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+PPNCL2	phosphopantothenate-cysteine ligase	[c] : 4ppan + ctp + cys-L --> 4ppcys + cmp + h + ppi	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+PPPGO	protoporphyrinogen oxidase	[c] : (1.5) o2 + pppg9 --> (3) h2o + ppp9	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+PSERT	phosphoserine transaminase	[c] : 3php + glu-L --> akg + pser-L	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+PTPATi	pantetheine-phosphate adenylyltransferase	[c] : atp + h + pan4p --> dpcoa + ppi	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+PYAM5PO	pyridoxamine-phosphate oxidase	[c] : h2o + o2 + pyam5p --> h2o2 + nh4 + pydx5p	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+QULNS	quinolinate synthase	[c] : dhap + iasp --> (2) h2o + pi + quln	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+RBFK	riboflavin kinase	[c] : atp + ribflv --> adp + fmn + h	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+THZPSN	thiazole phosphate synthesis	[c] : atp + cys-L + dxyl5p + tyr-L --> 4hba + 4mpetz + ala-L + amp + co2 + h + h2o + ppi	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+TMPKr	thiamine-phosphate kinase	[c] : atp + thmmp <==> adp + thmpp	Reversible	c	-1000	1000	0		Cofactor and Prosthetic Group Biosynthesis
+TMPPP	thiamine-phosphate diphosphorylase	[c] : 2mahmp + 4mpetz + h --> ppi + thmmp	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+UDCPDPS	Undecaprenyl diphosphate synthase	[c] : frdp + (8) ipdp --> (8) ppi + udcpdp	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+UPPDC1	uroporphyrinogen decarboxylase (uroporphyrinogen III)	[c] : (4) h + uppg3 --> (4) co2 + cpppg3	Irreversible	c	0	1000	0		Cofactor and Prosthetic Group Biosynthesis
+CYSS	cysteine synthase	[c] : acser + h2s --> ac + cys-L	Irreversible	c	0	1000	0		Cysteine Metabolism
+CYSTRS	Cysteinyl-tRNA synthetase	[c] : atp + cys-L + trnacys --> amp + cystrna + ppi	Irreversible	c	0	1000	0		Cysteine Metabolism
+SADT2	sulfate adenylyltransferase	[c] : atp + gtp + h2o + so4 --> aps + gdp + pi + ppi	Irreversible	c	0	1000	0		Cysteine Metabolism
+SULR	sulfite reductase (NADPH2)	[c] : (3) h2o + h2s + (3) nadp <==> (4) h + (3) nadph + so3	Reversible	c	-1000	1000	0		Cysteine Metabolism
+TRPAS1	Tryptophanase (L-cysteine)	[c] : cys-L + h2o --> h + h2s + nh4 + pyr	Irreversible	c	0	1000	0		Cysteine Metabolism
+TRPAS2	Tryptophanase (L-tryptophan)	[c] : h2o + trp-L <==> indole + nh4 + pyr	Reversible	c	-1000	1000	0		Cysteine Metabolism
+CYOR2u8	cytochrome-c reductase (ubiquinol8: 2 protons translocated)	(2) ficytcc[c] + ubq8h2[c] --> (2) focytcc[c] + (2) h[e] + ubq8[c]	Irreversible	c,e	0	1000	0		Energy Metabolism
+HDH	hydrogen dehydrogenase	[c] : h2 + nad <==> h + nadh	Reversible	c	-1000	1000	0		Energy Metabolism
+HDH4	hydrogen dehydrogenase menquinone (2 H+)	(2) h[c] + h2[e] + mqn7[c] --> (2) h[e] + mql7[c]	Irreversible	c,e	0	1000	0		Energy Metabolism
+IQNLOR	isoquinoline 1-oxidoreductase	[c] : (2) ficytcc + h2o + iqnl <==> (2) focytcc + (2) h + iqnln	Reversible	c	-1000	1000	0		Energy Metabolism
+HBUR1	(3R)-3-Hydroxybutanoyl-[acyl-carrier protein]:NADP+ oxidoreductase	[c] : actACP + h + nadph --> 3hbACP + nadp	Irreversible	c	0	1000	0		Fatty Acid  Biosynthesis
+HDDR5	3R)-3-Hydroxydodecanoyl-[acyl-carrier-protein]:NADP+ oxidoreductase	[c] : 3oxddACP + h + nadph --> 3hddACP + nadp	Irreversible	c	0	1000	0		Fatty Acid  Biosynthesis
+HDER4	(3R)-3-Hydroxydecanoyl-[acyl-carrier-protein]:NADP+ oxidoreductase	[c] : 3oxdeACP + h + nadph --> 3hdeACP + nadp	Irreversible	c	0	1000	0		Fatty Acid  Biosynthesis
+HHDR7	(3R)-3-Hydroxypalmitoyl-[acyl-carrier-protein]:NADP+ oxidoreductase	[c] : 3oxhdACP + h + nadph --> 3hpaACP + nadp	Irreversible	c	0	1000	0		Fatty Acid  Biosynthesis
+HHYR2	(3R)-3-Hydroxyhexanoyl-[acyl-carrier-protein]:NADP+ oxidoreductase	[c] : 3oxhACP + h + nadph --> 3hhACP + nadp	Irreversible	c	0	1000	0		Fatty Acid  Biosynthesis
+HOCR3	(3R)-3-Hydroxyoctanoyl-[acyl-carrier-protein]:NADP+ oxidoreductase	[c] : 3oxocACP + h + nadph --> 3hocACP + nadp	Irreversible	c	0	1000	0		Fatty Acid  Biosynthesis
+HODR8	(3R)-3-Hydroxyoctadecanoyl-[acyl-carrier-protein]:NADP+ oxidoreductase	[c] : 3oxocdacp + h + nadph --> 3hocdacp + nadp	Irreversible	c	0	1000	0		Fatty Acid  Biosynthesis
+HTDR6	3R)-3-Hydroxytetradecanoyl-[acyl-carrier-protein]:NADP+ oxidoreductase	[c] : 3oxtdACP + h + nadph --> 3htdACP + nadp	Irreversible	c	0	1000	0		Fatty Acid  Biosynthesis
+ACACT8r	acetyl-CoA C-acyltransferase (3-Oxoadipyl-CoA)	[c] : coa + oxadpcoa <==> accoa + succoa	Reversible	c	-1000	1000	0		Fatty Acid Degradation
+HACD1	3-hydroxyacyl-CoA dehydrogenase (acetoacetyl-CoA)	[c] : aacoa + h + nadh <==> 3hbycoa + nad	Reversible	c	-1000	1000	0		Fatty Acid Degradation
+HBUTD	3-hydroxybutyrate dehydrogenase	[c] : 3hbut-R + nad <==> acac + h + nadh	Reversible	c	-1000	1000	0		Fatty Acid Degradation
+DHNPA	dihydroneopterin aldolase	[c] : dhnpt --> 2ahhmp + gcald	Irreversible	c	0	1000	0		Folate Metabolism
+GCALDD	Glycolaldehyde dehydrogenase	[c] : gcald + h2o + nad --> glyclt + (2) h + nadh	Irreversible	c	0	1000	0		Folate Metabolism
+GLYCL	glycine cleavage system	[c] : gly + nad + thf --> co2 + mlthf + nadh + nh4	Irreversible	c	0	1000	0		Folate Metabolism
+MTHFR2	5,10-methylenetetrahydrofolate reductase (NADH)	[c] : (2) h + mlthf + nadh --> 5mthf + nad	Irreversible	c	0	1000	0		Folate Metabolism
+GLUN	glutaminase	[c] : gln-L + h2o --> glu-L + nh4	Irreversible	c	0	1000	0		Glutamate Metabolism
+GLUSy	glutamate synthase (NADPH)	[c] : akg + gln-L + h + nadph --> (2) glu-L + nadp	Irreversible	c	0	1000	0		Glutamate Metabolism
+GLUTRS	Glutamyl-tRNA synthetase	[c] : atp + glu-L + trnaglu --> amp + glutrna + ppi	Irreversible	c	0	1000	0		Glutamate Metabolism
+GLNS	glutamine synthetase	[c] : atp + glu-L + nh4 --> adp + gln-L + h + pi	Irreversible	c	0	1000	0		Glutamine Metabolism
+FGLUTH	S-Formylglutathione hydrolase	[c] : fglut-S + h2o --> for + gthrd + h	Irreversible	c	0	1000	0		Glutathione Metabolism
+GHMT2	glycine hydroxymethyltransferase	[c] : ser-L + thf --> gly + h2o + mlthf	Irreversible	c	0	1000	0		Glycine and Serine Metabolism
+GLYTRS	Glycyl-tRNA synthetase	[c] : atp + gly + trnagly --> amp + glytrna + ppi	Irreversible	c	0	1000	0		Glycine and Serine Metabolism
+PGCD	phosphoglycerate dehydrogenase	[c] : 3pg + nad --> 3php + h + nadh	Irreversible	c	0	1000	0		Glycine and Serine Metabolism
+PSP_L	phosphoserine phosphatase (L-serine)	[c] : h2o + pser-L --> pi + ser-L	Irreversible	c	0	1000	0		Glycine and Serine Metabolism
+SERD_L	L-serine deaminase	[c] : ser-L --> nh4 + pyr	Irreversible	c	0	1000	0		Glycine and Serine Metabolism
+SERTRS	Seryl-tRNA synthetase	[c] : atp + ser-L + trnaser --> amp + ppi + sertrna	Irreversible	c	0	1000	0		Glycine and Serine Metabolism
+ACYP	acylphosphatase	[c] : 13dpg + h2o --> 3pg + h + pi	Irreversible	c	0	1000	0		Glycolysis/Gluconeogenesis
+FBA	fructose-bisphosphate aldolase	[c] : fdp <==> dhap + g3p	Reversible	c	-1000	1000	0		Glycolysis/Gluconeogenesis
+FBP	fructose-bisphosphatase	[c] : fdp + h2o --> f6p + pi	Irreversible	c	0	1000	0		Glycolysis/Gluconeogenesis
+GAPD	glyceraldehyde-3-phosphate dehydrogenase (NAD)	[c] : g3p + nad + pi <==> 13dpg + h + nadh	Reversible	c	-1000	1000	0		Glycolysis/Gluconeogenesis
+GLCP	glycogen phosphorylase	[c] : glycogen + pi --> g1p	Irreversible	c	0	1000	0		Glycolysis/Gluconeogenesis
+GLCS1	glycogen synthase (ADPGlc)	[c] : adpglc --> adp + glycogen + h	Irreversible	c	0	1000	0		Glycolysis/Gluconeogenesis
+GLGC	glucose-1-phosphate adenylyltransferase	[c] : atp + g1p + h --> adpglc + ppi	Irreversible	c	0	1000	0		Glycolysis/Gluconeogenesis
+PDH	pyruvate dehydrogenase	[c] : coa + nad + pyr --> accoa + co2 + nadh	Irreversible	c	0	1000	0		Glycolysis/Gluconeogenesis
+PGK	phosphoglycerate kinase	[c] : 13dpg + adp <==> 3pg + atp	Reversible	c	-1000	1000	0		Glycolysis/Gluconeogenesis
+PPS	phosphoenolpyruvate synthase	[c] : atp + h2o + pyr --> amp + (2) h + pep + pi	Irreversible	c	0	1000	0		Glycolysis/Gluconeogenesis
+PYK	pyruvate kinase	[c] : adp + h + pep --> atp + pyr	Irreversible	c	0	1000	0		Glycolysis/Gluconeogenesis
+TPI	triose-phosphate isomerase	[c] : dhap <==> g3p	Reversible	c	-1000	1000	0		Glycolysis/Gluconeogenesis
+GLYCLTDx	Glycolate dehydrogenase (NAD)	[c] : glx + h + nadh --> glyclt + nad	Irreversible	c	0	1000	0		Glyoxylate Metabolism
+GLYCLTDy	Glycolate dehydrogenase (NADP)	[c] : glx + h + nadph --> glyclt + nadp	Irreversible	c	0	1000	0		Glyoxylate Metabolism
+HOXPRx	2-hydroxy-3-oxopropionate reductase (NAD)	[c] : glyc-R + nad <==> 2h3opp + h + nadh	Reversible	c	-1000	1000	0		Glyoxylate Metabolism
+TARTRDH	tartrate dehydrogenase	[c] : nad + tartr-L <==> h + nadh + oxglyc	Reversible	c	-1000	1000	0		Glyoxylate Metabolism
+TARTRDH2	tartrate dehydrogenase	[c] : nad + tartr-M <==> h + nadh + oxglyc	Reversible	c	-1000	1000	0		Glyoxylate Metabolism
+HISTRS	Histidyl-tRNA synthetase	[c] : atp + his-L + trnahis --> amp + histrna + ppi	Irreversible	c	0	1000	0		Histidine Metabolism
+PRPPS	phosphoribosylpyrophosphate synthetase	[c] : atp + r5p <==> amp + h + prpp	Reversible	c	-1000	1000	0		Histidine Metabolism
+AMAA	N-acetylmuramoyl-L-alanine amidase	[c] : acmama + h2o --> acmam + ala-L	Irreversible	c	0	1000	0		Lipid & Cell Wall Metabolism
+ARA4NT	4-amino-4-deoxy-L-arabinose transferase	[c] : (2) ara4n-L + (2) h + lipa --> ara4n-lipa + (2) h2o	Irreversible	c	0	1000	0		Lipid & Cell Wall Metabolism
+CDPDSP	CDPdiacylglycerol-serine O-phosphatidyltransferase	[c] : cdpdag + ser-L --> cmp + h + ps	Irreversible	c	0	1000	0		Lipid & Cell Wall Metabolism
+KDOPS	2-dehydro-3-deoxy-phosphooctonate aldolase	[c] : ara5p + h2o + pep --> kdo8p + pi	Irreversible	c	0	1000	0		Lipid & Cell Wall Metabolism
+UAG2E	UDP-N-acetylglucosamine 2-epimerase	[c] : uacgam <==> uacmam	Reversible	c	-1000	1000	0		Lipid & Cell Wall Metabolism
+UAG2EMA	UDP-N-acetyl-D-glucosamine 2-epimerase (Hydrolysis)	[c] : h2o + uacgam <==> acmana + h + udp	Reversible	c	-1000	1000	0		Lipid & Cell Wall Metabolism
+UAGCVT	UDP-N-acetylglucosamine 1-carboxyvinyltransferase	[c] : pep + uacgam --> pi + uaccg	Irreversible	c	0	1000	0		Lipid & Cell Wall Metabolism
+UAMAGS	UDP-N-acetylmuramoyl-L-alanyl-D-glutamate synthetase	[c] : atp + glu-D + uama --> adp + h + pi + uamag	Irreversible	c	0	1000	0		Lipid & Cell Wall Metabolism
+UDPG4E	UDPglucose 4-epimerase	[c] : udpg <==> udpgal	Reversible	c	-1000	1000	0		Lipid & Cell Wall Metabolism
+UDPGD	UDPglucose 6-dehydrogenase	[c] : h2o + (2) nad + udpg <==> (3) h + (2) nadh + udpglcur	Reversible	c	-1000	1000	0		Lipid & Cell Wall Metabolism
+ACACT10rr	acetyl-CoA C-acyltransferase (2-Methyl-3-acetoacetyl-CoA)	[c] : 2maacoa + coa <==> accoa + ppcoa	Reversible	c	-1000	1000	0		Lipids
+ACACT2r	acetyl-CoA C-acyltransferase (butanoyl-CoA)	[c] : accoa + btcoa <==> 3ohcoa + coa	Reversible	c	-1000	1000	0		Lipids
+ACACT3r	acetyl-CoA C-acyltransferase (hexanoyl-CoA)	[c] : accoa + hxcoa <==> 3oocoa + coa	Reversible	c	-1000	1000	0		Lipids
+ACACT4r	acetyl-CoA C-acyltransferase (octanoyl-CoA)	[c] : accoa + occoa <==> 3odcoa + coa	Reversible	c	-1000	1000	0		Lipids
+ACACT5r	acetyl-CoA C-acyltransferase (decanoyl-CoA)	[c] : accoa + dccoa <==> 3oddcoa + coa	Reversible	c	-1000	1000	0		Lipids
+ACACT6r	acetyl-CoA C-acyltransferase (dodecanoyl-CoA)	[c] : accoa + ddcoa <==> 3otdcoa + coa	Reversible	c	-1000	1000	0		Lipids
+ACACT7r	acetyl-CoA C-acyltransferase (tetradecanoyl-CoA)	[c] : accoa + tdcoa <==> 3ohdcoa + coa	Reversible	c	-1000	1000	0		Lipids
+ACOAD1	acyl-CoA dehydrogenase (butanoyl-CoA)	[c] : b2coa + h + nadh <==> btcoa + nad	Reversible	c	-1000	1000	0		Lipids
+ACOAD19	acyl-CoA dehydrogenase (isobutyryl-CoA)	[c] : (2) ibcoa + o2 --> (2) 2mp2coa + (2) h2o	Irreversible	c	0	1000	0		Lipids
+ACOAD2	acyl-CoA dehydrogenase (hexanoyl-CoA)	[c] : h + hx2coa + nadh <==> hxcoa + nad	Reversible	c	-1000	1000	0		Lipids
+ACOAD20	acyl-CoA dehydrogenase (2-methylbutnoyl-CoA)	[c] : (2) 2mbcoa + o2 --> (2) 2mb2coa + (2) h2o	Irreversible	c	0	1000	0		Lipids
+ACOAD3	acyl-CoA dehydrogenase (octanoyl-CoA)	[c] : nad + occoa <==> h + nadh + oc2coa	Reversible	c	-1000	1000	0		Lipids
+ACOAD4	acyl-CoA dehydrogenase (decanoyl-CoA)	[c] : dccoa + nad <==> dc2coa + h + nadh	Reversible	c	-1000	1000	0		Lipids
+ACOAD5	acyl-CoA dehydrogenase (dodecanoyl-CoA)	[c] : ddcoa + nad <==> h + nadh + trans-dd2coa	Reversible	c	-1000	1000	0		Lipids
+ACOAD6	acyl-CoA dehydrogenase (tetradecanoyl-CoA)	[c] : nad + tdcoa <==> h + nadh + td2coa	Reversible	c	-1000	1000	0		Lipids
+ACOAD7	acyl-CoA dehydrogenase (hexadecanoyl-CoA)	[c] : nad + pmtcoa <==> h + hdd2coa + nadh	Reversible	c	-1000	1000	0		Lipids
+ECOAH1	3-hydroxyacyl-CoA dehydratase (3-hydroxybutanoyl-CoA)	[c] : 3hbycoa <==> b2coa + h2o	Reversible	c	-1000	1000	0		Lipids
+ECOAH2	3-hydroxyacyl-CoA dehydratase (3-hydroxyhexanoyl-CoA)	[c] : 3hhcoa <==> h2o + hx2coa	Reversible	c	-1000	1000	0		Lipids
+ECOAH3	3-hydroxyacyl-CoA dehydratase (3-hydroxyoctanoyl-CoA)	[c] : 3hocoa <==> h2o + oc2coa	Reversible	c	-1000	1000	0		Lipids
+ECOAH4	3-hydroxyacyl-CoA dehydratase (3-hydroxydecanoyl-CoA)	[c] : 3hdcoa <==> dc2coa + h2o	Reversible	c	-1000	1000	0		Lipids
+ECOAH5	3-hydroxyacyl-CoA dehydratase (3-hydroxydodecanoyl-CoA)	[c] : 3hddcoa <==> h2o + trans-dd2coa	Reversible	c	-1000	1000	0		Lipids
+ECOAH6	3-hydroxyacyl-CoA dehydratase (3-hydroxytetradecanoyl-CoA)	[c] : 3htdcoa <==> h2o + td2coa	Reversible	c	-1000	1000	0		Lipids
+ECOAH7	3-hydroxyacyl-CoA dehydratase (3-hydroxyhexadecanoyl-CoA)	[c] : 3hhdcoa <==> h2o + hdd2coa	Reversible	c	-1000	1000	0		Lipids
+FACOAL140(ISO)	fatty-acid--CoA ligase (Iso-C14:0)	[c] : atp + coa + fa1 <==> amp + fa1coa + ppi	Reversible	c	-1000	1000	0		Lipids
+FACOAL150(anteiso)	fatty-acid--CoA ligase (anteiso-C15:0)	[c] : atp + coa + fa4 <==> amp + fa4coa + ppi	Reversible	c	-1000	1000	0		Lipids
+FACOAL150(ISO)	fatty-acid--CoA ligase (Iso-C15:0)	[c] : atp + coa + fa3 <==> amp + fa3coa + ppi	Reversible	c	-1000	1000	0		Lipids
+FACOAL160	fatty-acid--CoA ligase (hexadecanoate)	[c] : atp + coa + hdca <==> amp + pmtcoa + ppi	Reversible	c	-1000	1000	0		Lipids
+FACOAL160(ISO)	fatty-acid--CoA ligase (Iso-C16:0)	[c] : atp + coa + fa6 <==> amp + fa6coa + ppi	Reversible	c	-1000	1000	0		Lipids
+FACOAL161	fatty-acid--CoA ligase (hexadecenoate)	[c] : atp + coa + hdcea <==> amp + hdcoa + ppi	Reversible	c	-1000	1000	0		Lipids
+FACOAL161(ISO)	fatty-acid--CoA ligase (Iso-C16:1)	[c] : atp + coa + fa5 <==> amp + fa5coa + ppi	Reversible	c	-1000	1000	0		Lipids
+FACOAL170(anteiso)	fatty-acid--CoA ligase (anteiso-C17:0)	[c] : atp + coa + fa12 <==> amp + fa12coa + ppi	Reversible	c	-1000	1000	0		Lipids
+FACOAL170(ISO)	fatty-acid--CoA ligase (Iso-C17:0)	[c] : atp + coa + fa11 <==> amp + fa11coa + ppi	Reversible	c	-1000	1000	0		Lipids
+FACOAL171(anteiso)	fatty-acid--CoA ligase (anteiso-C17:1)	[c] : atp + coa + fa10 <==> amp + fa10coa + ppi	Reversible	c	-1000	1000	0		Lipids
+FACOAL171(ISO)	fatty-acid--CoA ligase (Iso-C17:1)	[c] : atp + coa + fa9 <==> amp + fa9coa + ppi	Reversible	c	-1000	1000	0		Lipids
+FACOAL180	fatty-acid--CoA ligase (octadecanoate)	[c] : atp + coa + ocdca <==> amp + ppi + strcoa	Reversible	c	-1000	1000	0		Lipids
+FACOAL181	fatty-acid--CoA ligase (octadecenoate)	[c] : atp + coa + ocdcea <==> amp + odecoa + ppi	Reversible	c	-1000	1000	0		Lipids
+HACD2	3-hydroxyacyl-CoA dehydrogenase (3-oxohexanoyl-CoA)	[c] : 3ohcoa + h + nadh <==> 3hhcoa + nad	Reversible	c	-1000	1000	0		Lipids
+HACD3	3-hydroxyacyl-CoA dehydrogenase (3-oxooctanoyl-CoA)	[c] : 3oocoa + h + nadh <==> 3hocoa + nad	Reversible	c	-1000	1000	0		Lipids
+HACD4	3-hydroxyacyl-CoA dehydrogenase (3-oxodecanoyl-CoA)	[c] : 3odcoa + h + nadh <==> 3hdcoa + nad	Reversible	c	-1000	1000	0		Lipids
+HACD5	3-hydroxyacyl-CoA dehydrogenase (3-oxododecanoyl-CoA)	[c] : 3oddcoa + h + nadh <==> 3hddcoa + nad	Reversible	c	-1000	1000	0		Lipids
+HACD6	3-hydroxyacyl-CoA dehydrogenase (3-oxotetradecanoyl-CoA)	[c] : 3otdcoa + h + nadh <==> 3htdcoa + nad	Reversible	c	-1000	1000	0		Lipids
+HACD7	3-hydroxyacyl-CoA dehydrogenase (3-oxohexadecanoyl-CoA)	[c] : 3ohdcoa + h + nadh <==> 3hhdcoa + nad	Reversible	c	-1000	1000	0		Lipids
+HACD8	3-hydroxyacyl-CoA dehydrogenase (2-Methylacetoacetyl-CoA)	[c] : 3hmbcoa + nad <==> 2maacoa + h + nadh	Reversible	c	-1000	1000	0		Lipids
+HACOADr	3-hydroxyacyl-CoA dehydrogenase	[c] : 3hmp + nad --> h + mmalsa-S + nadh	Irreversible	c	0	1000	0		Lipids
+HMGL	hydroxymethylglutaryl-CoA lyase	[c] : hmgcoa --> acac + accoa	Irreversible	c	0	1000	0		Lipids
+DNASYN_Eco	DNA replication, E. coli	[c] : (100) atp + (25) datp + (25) dctp + (25) dgtp + (25) dttp + (100) h2o --> (100) adp + dna_Eco + (100) h + (100) pi + (100) ppi	Irreversible	c	0	1000	0		Macromolecule Synthesis
+PLIPSYN_Eco	Phospholipid synthesis reaction, E. coli	[c] : (0.057) clpn_EC + (2) h2o + (0.688) pe_EC + (0.193) pg_EC + (0.062) ps_EC --> (0.5) pi + plipid_Eco	Irreversible	c	0	1000	0		Macromolecule Synthesis
+PROTSYN_Eco	Protein synthesis, E. coli	[c] : (103) alatrna + (59) argtrna + (48) asntrna + (48) asptrna + (18) cystrna + (53) glntrna + (53) glutrna + (53) glytrna + (2000) gtp + (2000) h2o + (19) histrna + (58) iletrna + (90) leutrna + (69) lystrna + (31) mettrna + (37) phetrna + (44) protrna + (43) sertrna + (51) thrtrna + (11) trptrna + (28) tyrtrna + (85) valtrna --> (2000) gdp + (3001) h + (2000) pi + protein_Eco + (103) trnaala + (59) trnaarg + (48) trnaasn + (48) trnaasp + (18) trnacys + (53) trnagln + (53) trnaglu + (53) trnagly + (19) trnahis + (58) trnaile + (90) trnaleu + (69) trnalys + (31) trnamet + (37) trnaphe + (44) trnapro + (43) trnaser + (51) trnathr + (11) trnatrp + (28) trnatyr + (85) trnaval	Irreversible	c	0	1000	0		Macromolecule Synthesis
+RNASYN_Eco	RNA replication, E. coli	[c] : (126) atp + (20) ctp + (32) gtp + (100) h2o + (22) utp --> (100) adp + (100) h + (100) pi + (100) ppi + rna_Eco	Irreversible	c	0	1000	0		Macromolecule Synthesis
+HEMEOS	Heme O synthase	[c] : frdp + h2o + pheme --> h + hemeO + ppi	Irreversible	c	0	1000	0		Membrane bioenergetics
+ACACT1r	acetyl-CoA C-acetyltransferase	[c] : (2) accoa <==> aacoa + coa	Reversible	c	-1000	1000	0		Membrane Lipid Metabolism
+ACCOAC	acetyl-CoA carboxylase	[c] : accoa + atp + hco3 --> adp + h + malcoa + pi	Irreversible	c	0	1000	0		Membrane Lipid Metabolism
+ACOAD8	acyl-CoA dehydrogenase (isovaleryl-CoA)	[c] : ivcoa + nad --> 3mb2coa + h + nadh	Irreversible	c	0	1000	0		Membrane Lipid Metabolism
+ACOATA	Acetyl-CoA ACP transacylase	[c] : ACP + accoa <==> acACP + coa	Reversible	c	-1000	1000	0		Membrane Lipid Metabolism
+C120SN	Fatty acid biosynthesis (n-C12:0)	[c] : actACP + (14) h + (4) malACP + (10) nadph --> (4) ACP + (4) co2 + ddcaACP + (5) h2o + (10) nadp	Irreversible	c	0	1000	0		Membrane Lipid Metabolism
+C140SN	Fatty acid biosynthesis (n-C14:0)	[c] : actACP + (17) h + (5) malACP + (12) nadph --> (5) ACP + (5) co2 + (6) h2o + myrsACP + (12) nadp	Irreversible	c	0	1000	0		Membrane Lipid Metabolism
+C141SN	Fatty acid biosynthesis (n-C14:1)	[c] : actACP + (16) h + (5) malACP + (11) nadph --> (5) ACP + (5) co2 + (6) h2o + (11) nadp + tdeACP	Irreversible	c	0	1000	0		Membrane Lipid Metabolism
+C160SN	Fatty acid biosynthesis (n-C16:0)	[c] : actACP + (20) h + (6) malACP + (14) nadph --> (6) ACP + (6) co2 + (7) h2o + (14) nadp + palmACP	Irreversible	c	0	1000	0		Membrane Lipid Metabolism
+C161SN	Fatty acid biosynthesis (n-C16:1)	[c] : actACP + (19) h + (6) malACP + (13) nadph --> (6) ACP + (6) co2 + (7) h2o + hdeACP + (13) nadp	Irreversible	c	0	1000	0		Membrane Lipid Metabolism
+C181SN	Fatty acid biosynthesis (n-C18:1)	[c] : actACP + (22) h + (7) malACP + (15) nadph --> (7) ACP + (7) co2 + (8) h2o + (15) nadp + octeACP	Irreversible	c	0	1000	0		Membrane Lipid Metabolism
+CLPNS_EC	Cardiolipin Synthase (E.coli)	[c] : (0.04) pg_EC <==> (0.02) clpn_EC + glyc	Reversible	c	-1000	1000	0		Membrane Lipid Metabolism
+DASYN_EC	CDP-Diacylglycerol synthetase (Ecoli)	[c] : ctp + h + (0.02) pa_EC <==> (0.02) cdpdag_EC + ppi	Reversible	c	-1000	1000	0		Membrane Lipid Metabolism
+KAS15	b-ketoacyl synthase	[c] : accoa + h + malACP --> actACP + co2 + coa	Irreversible	c	0	1000	0		Membrane Lipid Metabolism
+KAS16	3-hydroxy-myristoyl-ACP synthesis	[c] : ddcaACP + (2) h + malACP + nadph --> 3htdACP + ACP + co2 + nadp	Irreversible	c	0	1000	0		Membrane Lipid Metabolism
+MCOATA	Malonyl-CoA-ACP transacylase	[c] : ACP + malcoa <==> coa + malACP	Reversible	c	-1000	1000	0		Membrane Lipid Metabolism
+PASYN_EC	Phosphatidic acid synthase (Ecoli)	[c] : glyc3p + (0.322) hdeACP + (0.208) myrsACP + (0.373) octeACP + (0.982) palmACP + (0.115) tdeACP --> (2) ACP + (0.02) pa_EC	Irreversible	c	0	1000	0		Membrane Lipid Metabolism
+PGPP_EC	Phosphatidylglycerol phosphate phosphatase (Ecoli)	[c] : h2o + (0.02) pgp_EC --> (0.02) pg_EC + pi	Irreversible	c	0	1000	0		Membrane Lipid Metabolism
+PGSA_EC	Phosphatidylglycerol synthase (Ecoli)	[c] : (0.02) cdpdag_EC + glyc3p <==> cmp + h + (0.02) pgp_EC	Reversible	c	-1000	1000	0		Membrane Lipid Metabolism
+PSD_EC	Phosphatidylserine decarboxylase (Ecoli)	[c] : h + (0.02) ps_EC --> co2 + (0.02) pe_EC	Irreversible	c	0	1000	0		Membrane Lipid Metabolism
+PSSA_EC	Phosphatidylserine syntase (Ecoli)	[c] : (0.02) cdpdag_EC + ser-L <==> cmp + h + (0.02) ps_EC	Reversible	c	-1000	1000	0		Membrane Lipid Metabolism
+AHCYSNS	adenosylhomocysteine nucleosidase	[c] : ahcys + h2o --> ade + rhcys	Irreversible	c	0	1000	0		Methionine Metabolism
+CYSTL	cystathionine b-lyase	[c] : cysth-L + h2o --> hcys-L + nh4 + pyr	Irreversible	c	0	1000	0		Methionine Metabolism
+DHPTDC	4,5-dihydroxy-2,3-pentanedione cyclization (spontaneous)	[c] : dhptd --> h2o + hmfurn	Irreversible	c	0	1000	0		Methionine Metabolism
+METAT	methionine adenosyltransferase	[c] : atp + h2o + met-L --> amet + pi + ppi	Irreversible	c	0	1000	0		Methionine Metabolism
+METS	methionine synthase	[c] : 5mthf + hcys-L --> h + met-L + thf	Irreversible	c	0	1000	0		Methionine Metabolism
+METTRS	Methionyl-tRNA synthetase	[c] : atp + met-L + trnamet --> amp + mettrna + ppi	Irreversible	c	0	1000	0		Methionine Metabolism
+RHCCE	S-ribosylhomocysteine cleavage enzyme	[c] : rhcys --> dhptd + hcys-L	Irreversible	c	0	1000	0		Methionine Metabolism
+GLYOX	hydroxyacylglutathione hydrolase	[c] : h2o + lgt-S --> gthrd + h + lac-D	Irreversible	c	0	1000	0		Methylglyoxal Metabolism
+LGTHL	lactoylglutathione lyase	[c] : gthrd + mthgxl --> lgt-S	Irreversible	c	0	1000	0		Methylglyoxal Metabolism
+ALLTAH	allantoicase	[c] : alltt + h2o --> urdglyc + urea	Irreversible	c	0	1000	0		Nitrogen
+CYNTAH	Cyanate aminohydrolase	[c] : cynt + (3) h + hco3 --> (2) co2 + nh4	Irreversible	c	0	1000	0		Nitrogen
+DDGALK	2-dehydro-3-deoxygalactonokinase	[c] : 2dh3dgal + atp --> 2dh3dgal6p + adp + h	Irreversible	c	0	1000	0		Nitrogen
+NH4OHD	NH4OH dissociation	[c] : h + nh4oh <==> h2o + nh4	Reversible	c	-1000	1000	0		Nitrogen Metabolism
+AICART	phosphoribosylaminoimidazolecarboxamide formyltransferase	[c] : 10fthf + aicar <==> fprica + thf	Reversible	c	-1000	1000	0		Nucleotide Metabolism
+ASPCT	aspartate carbamoyltransferase	[c] : asp-L + cbp --> cbasp + h + pi	Irreversible	c	0	1000	0		Nucleotide Metabolism
+CSND	Cytosine deaminase	[c] : csn + h + h2o --> nh4 + ura	Irreversible	c	0	1000	0		Nucleotide Metabolism
+DGTPH	dGTPase	[c] : dgtp + h2o --> dgsn + pppi	Irreversible	c	0	1000	0		Nucleotide Metabolism
+DTMPK	dTMP kinase	[c] : atp + dtmp <==> adp + dtdp	Reversible	c	-1000	1000	0		Nucleotide Metabolism
+IMPC	IMP cyclohydrolase	[c] : h2o + imp <==> fprica	Reversible	c	-1000	1000	0		Nucleotide Metabolism
+IMPD	IMP dehydrogenase	[c] : h2o + imp + nad --> h + nadh + xmp	Irreversible	c	0	1000	0		Nucleotide Metabolism
+ITPASE	dITP pyrophosphatase	[c] : ditp + h2o --> dimp + ppi	Irreversible	c	0	1000	0		Nucleotide Metabolism
+MCSNAH1r	5-Methylcytosine aminohydrolase	[c] : 5mcsn + h + h2o <==> nh4 + thym	Reversible	c	-1000	1000	0		Nucleotide Metabolism
+MTAP	5'-methylthioadenosine phosphorylase	[c] : 5mta + pi --> 5mdr1p + ade	Irreversible	c	0	1000	0		Nucleotide Metabolism
+OMPDC	orotidine-5'-phosphate decarboxylase	[c] : h + orot5p --> co2 + ump	Irreversible	c	0	1000	0		Nucleotide Metabolism
+PRASCS	phosphoribosylaminoimidazolesuccinocarboxamide synthase	[c] : 5aizc + asp-L + atp <==> 25aics + adp + h + pi	Reversible	c	-1000	1000	0		Nucleotide Metabolism
+URIDK1	uridylate kinase (UMP)	[c] : atp + ump --> adp + udp	Irreversible	c	0	1000	0		Nucleotide Metabolism
+URIDK2	uridylate kinase (dUMP)	[c] : atp + dump --> adp + dudp	Irreversible	c	0	1000	0		Nucleotide Metabolism
+XTPASE	XTP pyrophosphatase	[c] : h2o + xtp --> h + ppi + xmp	Irreversible	c	0	1000	0		Nucleotide Metabolism
+ADA	Adenosine deaminase	[c] : adn + h + h2o --> ins + nh4	Irreversible	c	0	1000	0		Nucleotide Salvage Pathways
+ADD	adenine deaminase	[c] : ade + h + h2o --> hxan + nh4	Irreversible	c	0	1000	0		Nucleotide Salvage Pathways
+ADK1	adenylate kinase	[c] : amp + atp <==> (2) adp	Reversible	c	-1000	1000	0		Nucleotide Salvage Pathways
+ADK3	guanylate kinase (aMP:gTP)	[c] : amp + gtp <==> adp + gdp	Reversible	c	-1000	1000	0		Nucleotide Salvage Pathways
+ADK4	adentylate kinase (ITP)	[c] : amp + itp <==> adp + idp	Reversible	c	-1000	1000	0		Nucleotide Salvage Pathways
+ADNK1	adenosine kinase	[c] : adn + atp --> adp + amp + h	Irreversible	c	0	1000	0		Nucleotide Salvage Pathways
+ADPT	adenine phosphoribosyltransferase	[c] : ade + prpp --> amp + ppi	Irreversible	c	0	1000	0		Nucleotide Salvage Pathways
+AMPN	AMP nucleosidase	[c] : amp + h2o --> ade + r5p	Irreversible	c	0	1000	0		Nucleotide Salvage Pathways
+AP4AH	bis(5'-nucleosyl)-tetraphosphatase	[c] : ap4a + h2o --> (2) adp + (2) h	Irreversible	c	0	1000	0		Nucleotide Salvage Pathways
+AP5AH	Ap5A hydrolase	[c] : ap5a + h2o --> adp + atp + (2) h	Irreversible	c	0	1000	0		Nucleotide Salvage Pathways
+CYTK1	cytidylate kinase (CMP)	[c] : atp + cmp <==> adp + cdp	Reversible	c	-1000	1000	0		Nucleotide Salvage Pathways
+CYTK2	cytidylate kinase (dCMP)	[c] : atp + dcmp <==> adp + dcdp	Reversible	c	-1000	1000	0		Nucleotide Salvage Pathways
+DADA	Deoxyadenosine deaminase	[c] : dad-2 + h + h2o --> din + nh4	Irreversible	c	0	1000	0		Nucleotide Salvage Pathways
+DADK	deoxyadenylate kinase	[c] : atp + damp <==> adp + dadp	Reversible	c	-1000	1000	0		Nucleotide Salvage Pathways
+DCTPD	dCTP deaminase	[c] : dctp + h + h2o --> dutp + nh4	Irreversible	c	0	1000	0		Nucleotide Salvage Pathways
+DGK1	deoxyguanylate kinase (dGMP:ATP)	[c] : atp + dgmp <==> adp + dgdp	Reversible	c	-1000	1000	0		Nucleotide Salvage Pathways
+DURIK1	deoxyuridine kinase (ATP:Deoxyuridine)	[c] : atp + duri --> adp + dump + h	Irreversible	c	0	1000	0		Nucleotide Salvage Pathways
+DUTPDP	dUTP diphosphatase	[c] : dutp + h2o --> dump + h + ppi	Irreversible	c	0	1000	0		Nucleotide Salvage Pathways
+GK1	guanylate kinase (GMP:ATP)	[c] : atp + gmp <==> adp + gdp	Reversible	c	-1000	1000	0		Nucleotide Salvage Pathways
+GP4GH	Gp4G hydrolase	[c] : gp4g + h2o --> (2) gdp + (2) h	Irreversible	c	0	1000	0		Nucleotide Salvage Pathways
+GUAD	guanine deaminase	[c] : gua + h + h2o --> nh4 + xan	Irreversible	c	0	1000	0		Nucleotide Salvage Pathways
+NDPK1	nucleoside-diphosphate kinase (ATP:GDP)	[c] : atp + gdp <==> adp + gtp	Reversible	c	-1000	1000	0		Nucleotide Salvage Pathways
+NDPK2	nucleoside-diphosphate kinase (ATP:UDP)	[c] : atp + udp <==> adp + utp	Reversible	c	-1000	1000	0		Nucleotide Salvage Pathways
+NDPK3	nucleoside-diphosphate kinase (ATP:CDP)	[c] : atp + cdp <==> adp + ctp	Reversible	c	-1000	1000	0		Nucleotide Salvage Pathways
+NDPK4	nucleoside-diphosphate kinase (ATP:dTDP)	[c] : atp + dtdp <==> adp + dttp	Reversible	c	-1000	1000	0		Nucleotide Salvage Pathways
+NDPK5	nucleoside-diphosphate kinase (ATP:dGDP)	[c] : atp + dgdp <==> adp + dgtp	Reversible	c	-1000	1000	0		Nucleotide Salvage Pathways
+NDPK6	nucleoside-diphosphate kinase (ATP:dUDP)	[c] : atp + dudp <==> adp + dutp	Reversible	c	-1000	1000	0		Nucleotide Salvage Pathways
+NDPK7	nucleoside-diphosphate kinase (ATP:dCDP)	[c] : atp + dcdp <==> adp + dctp	Reversible	c	-1000	1000	0		Nucleotide Salvage Pathways
+NDPK8	nucleoside-diphosphate kinase (ATP:dADP)	[c] : atp + dadp <==> adp + datp	Reversible	c	-1000	1000	0		Nucleotide Salvage Pathways
+RNDR1	ribonucleoside-diphosphate reductase (ADP)	[c] : adp + trdrd --> dadp + h2o + trdox	Irreversible	c	0	1000	0		Nucleotide Salvage Pathways
+RNDR2	ribonucleoside-diphosphate reductase (GDP)	[c] : gdp + trdrd --> dgdp + h2o + trdox	Irreversible	c	0	1000	0		Nucleotide Salvage Pathways
+RNDR3	ribonucleoside-diphosphate reductase (CDP)	[c] : cdp + trdrd --> dcdp + h2o + trdox	Irreversible	c	0	1000	0		Nucleotide Salvage Pathways
+RNDR4	ribonucleoside-diphosphate reductase (UDP)	[c] : trdrd + udp --> dudp + h2o + trdox	Irreversible	c	0	1000	0		Nucleotide Salvage Pathways
+RNTR1	ribonucleoside-triphosphate reductase (ATP)	[c] : atp + trdrd --> datp + h2o + trdox	Irreversible	c	0	1000	0		Nucleotide Salvage Pathways
+RNTR2	ribonucleoside-triphosphate reductase (GTP)	[c] : gtp + trdrd --> dgtp + h2o + trdox	Irreversible	c	0	1000	0		Nucleotide Salvage Pathways
+RNTR3	ribonucleoside-triphosphate reductase (CTP)	[c] : ctp + trdrd --> dctp + h2o + trdox	Irreversible	c	0	1000	0		Nucleotide Salvage Pathways
+RNTR4	ribonucleoside-triphosphate reductase (UTP)	[c] : trdrd + utp --> dutp + h2o + trdox	Irreversible	c	0	1000	0		Nucleotide Salvage Pathways
+TMDK1	thymidine kinase (ATP:thymidine)	[c] : atp + thymd --> adp + dtmp + h	Irreversible	c	0	1000	0		Nucleotide Salvage Pathways
+TMDS	thymidylate synthase	[c] : dump + mlthf --> dhf + dtmp	Irreversible	c	0	1000	0		Nucleotide Salvage Pathways
+UMPK	UMP kinase	[c] : atp + ump <==> adp + udp	Reversible	c	-1000	1000	0		Nucleotide Salvage Pathways
+AIRC1	phosphoribosylaminoimidazole carboxylase (ATP-dependent)	[c] : air + atp + co2 + h2o --> 5aizc + adp + (2) h + pi	Irreversible	c	0	1000	0		Nucleotides and nucleic acids
+DURIPP	purine-nucleoside phosphatase (deoxyuridine)	[c] : duri + pi <==> 2dr1p + ura	Reversible	c	-1000	1000	0		Nucleotides and nucleic acids
+GMPR	GMP reductase	[c] : gmp + (2) h + nadph --> imp + nadp + nh4	Irreversible	c	0	1000	0		Nucleotides and nucleic acids
+PYNP1r	pyrimidine-nucleoside phosphorylase (cytosine)	[c] : csn + r1p <==> cytd + pi	Reversible	c	-1000	1000	0		Nucleotides and nucleic acids
+PYNP2	pyrimidine-nucleoside phosphorylase (uracil)	[c] : pi + uri <==> r1p + ura	Reversible	c	-1000	1000	0		Nucleotides and nucleic acids
+TMDPP	thymidine phosphorylase	[c] : pi + thymd <==> 2dr1p + thym	Reversible	c	-1000	1000	0		Nucleotides and nucleic acids
+UPPRT	uracil phosphoribosyltransferase	[c] : prpp + ura --> ppi + ump	Irreversible	c	0	1000	0		Nucleotides and nucleic acids
+AMINOX9	amine oxidase (copper-containing )	[c] : h2o + met-L + o2 --> 4met2obut + h2o2 + nh4	Irreversible	c	0	1000	0		Other
+APSPT	adenosine 5'-phosphosulfate reductase;	[c] : aps + trdrd <==> amp + (2) h + so3 + trdox	Reversible	c	-1000	1000	0		Other
+CLPNS	cardiolipin synthetase	[c] : cdpdag + pgly --> cdlp + cmp + h	Irreversible	c	0	1000	0		Other
+CYCPO	cytochrome-c peroxidase	[c] : (2) focytcc + (2) h + h2o2 --> (2) ficytcc + (2) h2o	Irreversible	c	0	1000	0		Other
+DMATT	dimethylallyltranstransferase	[c] : dmpp + ipdp --> grdp + ppi	Irreversible	c	0	1000	0		Other
+FMETTRS	Methionyl-tRNA formyltransferase	[c] : 10fthf + mettrna --> fmettrna + thf	Irreversible	c	0	1000	0		Other
+GLUADT	glutaminyl-tRNA synthase (glutamine-hydrolysing)	[c] : atp + gln-L + glutrna + h2o --> adp + glntrna + glu-L + h + pi	Irreversible	c	0	1000	0		Other
+GRTT	geranyltranstransferase	[c] : grdp + ipdp --> frdp + ppi	Irreversible	c	0	1000	0		Other
+GTHP	glutathione peridoxase	[c] : (2) gthrd + h2o2 <==> gthox + (2) h2o	Reversible	c	-1000	1000	0		Other
+GTPDPK	GTP diphosphokinase	[c] : atp + gtp --> amp + gdptp + h	Irreversible	c	0	1000	0		Other
+NPPDO	2-nitropropane dioxygenase	[c] : (2) n2ppn + o2 --> (2) acetone + (2) h + (2) no2	Irreversible	c	0	1000	0		Other
+PPACH	phosphonoacetate hydrolase	[c] : h2o + ppac --> ac + pi	Irreversible	c	0	1000	0		Other
+PPIK	polyphosphate kinase	[c] : atp + ppi --> adp + pppi	Irreversible	c	0	1000	0		Other
+PYRZAM	Pyrazinamidase	[c] : h2o + malm --> male + nh4	Irreversible	c	0	1000	0		Other
+ATPS4r	ATP synthase (four protons for one ATP)	adp[c] + (4) h[e] + pi[c] <==> atp[c] + (3) h[c] + h2o[c]	Reversible	c,e	-1000	1000	0		Oxidative Phosphorylation
+CYTBD	cytochrome oxidase bd (ubiquinol-8: 2 protons)	(2) h[c] + (0.5) o2[c] + ubq8h2[c] --> (2) h[e] + h2o[c] + ubq8[c]	Irreversible	c,e	0	1000	0		Oxidative Phosphorylation
+G3PD5	glycerol-3-phosphate dehydrogenase (ubiquinone-8)	[c] : glyc3p + ubq8 --> dhap + ubq8h2	Irreversible	c	0	1000	0		Oxidative Phosphorylation
+NADH2u8	NADH dehydrogenase (Ubiquinone-8 & 2 protons)	(3) h[c] + nadh[c] + ubq8[c] --> (2) h[e] + nad[c] + ubq8h2[c]	Irreversible	c,e	0	1000	0		Oxidative Phosphorylation
+NADH7	NADH dehydrogenase (menaquinone-8 & 2 protons)	(3) h[c] + mqn8[c] + nadh[c] --> (2) h[e] + mql8[c] + nad[c]	Irreversible	c,e	0	1000	0		Oxidative Phosphorylation
+NADH8	NADH dehydrogenase (demethylmenaquinone-8 & 2.8 protons)	2dmmq8[c] + (3.8) h[c] + nadh[c] --> 2dmmql8[c] + (2.8) h[e] + nad[c]	Irreversible	c,e	0	1000	0		Oxidative Phosphorylation
+NADPH12	Quinone oxidoreductase	[c] : h + nadph + ubq8 --> nadp + ubq8h2	Irreversible	c	0	1000	0		Oxidative Phosphorylation
+NO3R1	Nitrate reductase (Ubiquinol-8)	(2) h[c] + no3[c] + ubq8h2[c] --> (2) h[e] + h2o[c] + no2[c] + ubq8[c]	Irreversible	c,e	0	1000	0		Oxidative Phosphorylation
+NO3R2	Nitrate reductase (Menaquinol-8)	(2) h[c] + mql8[c] + no3[c] --> (2) h[e] + h2o[c] + mqn8[c] + no2[c]	Irreversible	c,e	0	1000	0		Oxidative Phosphorylation
+SUCD4	succinate dehyrdogenase	[c] : fadh2 + ubq8 <==> fad + ubq8h2	Reversible	c	-1000	1000	0		Oxidative Phosphorylation
+THD2	NAD(P) transhydrogenase	(2) h[e] + nadh[c] + nadp[c] --> (2) h[c] + nad[c] + nadph[c]	Irreversible	c,e	0	1000	0		Oxidative Phosphorylation
+THD5	NAD transhydrogenase	[c] : nad + nadph --> nadh + nadp	Irreversible	c	0	1000	0		Oxidative Phosphorylation
+TRDR	thioredoxin reductase (NADPH)	[c] : h + nadph + trdox --> nadp + trdrd	Irreversible	c	0	1000	0		Oxidative Phosphorylation
+EDA	2-dehydro-3-deoxy-phosphogluconate aldolase	[c] : 2ddg6p --> g3p + pyr	Irreversible	c	0	1000	0		Pentose Phosphate Pathway
+G6PDH	glucose 6-phosphate dehydrogenase	[c] : g6p + nadp --> 6pgl + h + nadph	Irreversible	c	0	1000	0		Pentose Phosphate Pathway
+G6PDHy	glucose 6-phosphate dehydrogenase	[c] : g6p + nadp <==> 6pgl + h + nadph	Reversible	c	-1000	1000	0		Pentose Phosphate Pathway
+PGDH	phosphogluconate dehydrogenase	[c] : 6pgc + nadp --> co2 + nadph + ru5p-D	Irreversible	c	0	1000	0		Pentose Phosphate Pathway
+PGDHY	phosphogluconate dehydratase	[c] : 6pgc --> 2ddg6p + h2o	Irreversible	c	0	1000	0		Pentose Phosphate Pathway
+RPE	ribulose 5-phosphate 3-epimerase	[c] : ru5p-D <==> xu5p-D	Reversible	c	-1000	1000	0		Pentose Phosphate Pathway
+RPI	ribose-5-phosphate isomerase	[c] : r5p <==> ru5p-D	Reversible	c	-1000	1000	0		Pentose Phosphate Pathway
+TAL	transaldolase	[c] : g3p + s7p <==> e4p + f6p	Reversible	c	-1000	1000	0		Pentose Phosphate Pathway
+TKT1	transketolase	[c] : r5p + xu5p-D <==> g3p + s7p	Reversible	c	-1000	1000	0		Pentose Phosphate Pathway
+TKT2	transketolase	[c] : e4p + xu5p-D <==> f6p + g3p	Reversible	c	-1000	1000	0		Pentose Phosphate Pathway
+EPPP	exopolyphosphatase	[c] : h2o + polypi --> h + pi	Irreversible	c	0	1000	0		Phosphate and sulfur
+FDMO1	FMN-dependent monooxygenase (ethanesulfonate)	[c] : eths + fmnRD + o2 --> acald + fmn + h + h2o + so3	Irreversible	c	0	1000	0		Phosphate and sulfur
+FDMO2	FMN-dependent monooxygenase (butanesulfonate)	[c] : buts + fmnRD + o2 --> btal + fmn + h + h2o + so3	Irreversible	c	0	1000	0		Phosphate and sulfur
+FDMO3	FMN-dependent monooxygenase (hexanesulfonate)	[c] : fmnRD + hexs + o2 --> fmn + h + h2o + hxal + so3	Irreversible	c	0	1000	0		Phosphate and sulfur
+FDMO5	FMN-dependent monooxygenase (sulfoacetate)	[c] : fmnRD + o2 + sula --> fmn + glx + h + h2o + so3	Irreversible	c	0	1000	0		Phosphate and sulfur
+FDMO6	FMN-dependent monooxygenase (isethionate)	[c] : fmnRD + istnt + o2 --> fmn + gcald + h + h2o + so3	Irreversible	c	0	1000	0		Phosphate and sulfur
+PROTRS	Prolyl-tRNA synthetase	[c] : atp + pro-L + trnapro --> amp + ppi + protrna	Irreversible	c	0	1000	0		Proline Metabolism
+ADSL1r	adenylsuccinate lyase	[c] : dcamp <==> amp + fum	Reversible	c	-1000	1000	0		Purine and Pyrimidine Biosynthesis
+ADSL2r	adenylosuccinate lyase	[c] : 25aics <==> aicar + fum	Reversible	c	-1000	1000	0		Purine and Pyrimidine Biosynthesis
+ADSS	adenylosuccinate synthetase	[c] : asp-L + gtp + imp --> dcamp + gdp + (2) h + pi	Irreversible	c	0	1000	0		Purine and Pyrimidine Biosynthesis
+CTPS2	CTP synthase (glutamine)	[c] : atp + gln-L + h2o + utp --> adp + ctp + glu-L + (2) h + pi	Irreversible	c	0	1000	0		Purine and Pyrimidine Biosynthesis
+DHORD2	dihydoorotic acid dehydrogenase (quinone8)	[c] : dhor-S + ubq8 --> orot + ubq8h2	Irreversible	c	0	1000	0		Purine and Pyrimidine Biosynthesis
+DHORD5	dihydroorotic acid (menaquinone-8)	[c] : dhor-S + mqn8 --> mql8 + orot	Irreversible	c	0	1000	0		Purine and Pyrimidine Biosynthesis
+DHORTS	dihydroorotase	[c] : dhor-S + h2o <==> cbasp + h	Reversible	c	-1000	1000	0		Purine and Pyrimidine Biosynthesis
+GARFT	phosphoribosylglycinamide formyltransferase	[c] : 10fthf + gar <==> fgam + h + thf	Reversible	c	-1000	1000	0		Purine and Pyrimidine Biosynthesis
+GART	Phosphoribosylglycinamide formyltransferase 2	[c] : atp + for + gar --> adp + fgam + h + pi	Irreversible	c	0	1000	0		Purine and Pyrimidine Biosynthesis
+GLUPRT	glutamine phosphoribosyldiphosphate amidotransferase	[c] : gln-L + h2o + prpp --> glu-L + ppi + pram	Irreversible	c	0	1000	0		Purine and Pyrimidine Biosynthesis
+GMPS2	GMP synthase (glutamine-hydrolysing)	[c] : atp + gln-L + h2o + xmp --> amp + glu-L + gmp + (2) h + ppi	Irreversible	c	0	1000	0		Purine and Pyrimidine Biosynthesis
+ORPT	orotate phosphoribosyltransferase	[c] : orot5p + ppi <==> orot + prpp	Reversible	c	-1000	1000	0		Purine and Pyrimidine Biosynthesis
+PRAGS	phosphoribosylglycinamide synthetase	[c] : atp + gly + pram --> adp + gar + h + pi	Irreversible	c	0	1000	0		Purine and Pyrimidine Biosynthesis
+PRAIS	phosphoribosylaminoimidazole synthetase	[c] : atp + fpram --> adp + air + h + pi	Irreversible	c	0	1000	0		Purine and Pyrimidine Biosynthesis
+PRFGS	phosphoribosylformylglycinamidine synthase	[c] : atp + fgam + gln-L + h2o --> adp + fpram + glu-L + (2) h + pi	Irreversible	c	0	1000	0		Purine and Pyrimidine Biosynthesis
+ACS	acetyl-CoA synthetase	[c] : ac + atp + coa --> accoa + amp + ppi	Irreversible	c	0	1000	0		Pyruvate Metabolism
+DAPAL	2,3-Diaminopropionate ammonia-lyase	[c] : 23dap + h2o <==> (2) nh4 + pyr	Reversible	c	-1000	1000	0		Pyruvate Metabolism
+PTAr	phosphotransacetylase	[c] : accoa + pi <==> actp + coa	Reversible	c	-1000	1000	0		Pyruvate Metabolism
+DMOCT	3-deoxy-manno-octulosonate cytidylyltransferase	[c] : ctp + kdo --> ckdo + ppi	Irreversible	c	0	1000	0		Riboflavin Metabolism
+ASAD	aspartate-semialdehyde dehydrogenase	[c] : aspsa + nadp + pi <==> 4pasp + h + nadph	Reversible	c	-1000	1000	0		Threonine and Lysine Metabolism
+DAPDC	diaminopimelate decarboxylase	[c] : 26dap-M + h --> co2 + lys-L	Irreversible	c	0	1000	0		Threonine and Lysine Metabolism
+DAPE	diaminopimelate epimerase	[c] : 26dap-LL <==> 26dap-M	Reversible	c	-1000	1000	0		Threonine and Lysine Metabolism
+DHDPRy	dihydrodipicolinate reductase (NADPH)	[c] : 23dhdp + h + nadph --> nadp + thdp	Irreversible	c	0	1000	0		Threonine and Lysine Metabolism
+DHDPS	dihydrodipicolinate synthase	[c] : aspsa + pyr --> 23dhdp + h + (2) h2o	Irreversible	c	0	1000	0		Threonine and Lysine Metabolism
+HSK	homoserine kinase	[c] : atp + hom-L --> adp + h + phom	Irreversible	c	0	1000	0		Threonine and Lysine Metabolism
+LYSTRS	Lysyl-tRNA synthetase	[c] : atp + lys-L + trnalys --> amp + lystrna + ppi	Irreversible	c	0	1000	0		Threonine and Lysine Metabolism
+P6CDH	Piperidine-6-carboxylate dehydrogenase	[c] : 1ppr6p + (2) h2o + nad --> 2aadp + h + nadh	Irreversible	c	0	1000	0		Threonine and Lysine Metabolism
+SDPDS	succinyl-diaminopimelate desuccinylase	[c] : h2o + sl26da --> 26dap-LL + succ	Irreversible	c	0	1000	0		Threonine and Lysine Metabolism
+THDPS	tetrahydropicolinate succinylase	[c] : h2o + succoa + thdp --> coa + sl2a6o	Irreversible	c	0	1000	0		Threonine and Lysine Metabolism
+THRA	threonine aldolase	[c] : thr-L <==> acald + gly	Reversible	c	-1000	1000	0		Threonine and Lysine Metabolism
+THRTRS	Threonyl-tRNA synthetase	[c] : atp + thr-L + trnathr --> amp + ppi + thrtrna	Irreversible	c	0	1000	0		Threonine and Lysine Metabolism
+ARBabc	L-arabinose transport via ABC system	arab-L[e] + atp[c] + h2o[c] --> adp[c] + arab-L[c] + h[c] + pi[c]	Irreversible	c,e	0	1000	0		Transport
+ARGabc	L-arginine transport via ABC system	arg-L[e] + atp[c] + h2o[c] --> adp[c] + arg-L[c] + h[c] + pi[c]	Irreversible	c,e	0	1000	0		Transport
+ATPS4	ATP synthase (four protons for one ATP)	adp[c] + (4) h[e] + pi[c] --> atp[c] + (3) h[c] + h2o[c]	Irreversible	c,e	0	1000	0		Transport
+BZt6	benzoate transport in/out via proton symport	bz[e] + h[e] <==> bz[c] + h[c]	Reversible	c,e	-1000	1000	0		Transport
+CA2abc1	calcium efflux  via ABC system	atp[c] + ca2[c] + h2o[c] --> adp[c] + ca2[e] + h[c] + pi[c]	Irreversible	c,e	0	1000	0		Transport
+CD2abc1	cadmium transport out via ABC system	atp[c] + cd2[c] + h2o[c] --> adp[c] + cd2[e] + h[c] + pi[c]	Irreversible	c,e	0	1000	0		Transport
+CD2abc2	cadmium transport in via ABC system	atp[c] + cd2[e] + h2o[c] --> adp[c] + cd2[c] + h[c] + pi[c]	Irreversible	c,e	0	1000	0		Transport
+CD2t4	cadminum transport out via antiport	cd2[c] + h[e] + k[e] --> cd2[e] + h[c] + k[c]	Irreversible	c,e	0	1000	0		Transport
+CITt7	Citrate transport via succinate antiport	cit[e] + succ[c] --> cit[c] + succ[e]	Irreversible	c,e	0	1000	0		Transport
+COBALTt4	cobalt transport out via proton antiporter	cobalt2[c] + h[e] + k[e] --> cobalt2[e] + h[c] + k[c]	Irreversible	c,e	0	1000	0		Transport
+COBALTt5	cobalt transport in/out via permease (no H+)	cobalt2[c] <==> cobalt2[e]	Reversible	c,e	-1000	1000	0		Transport
+CRO4t6	chromate transport in/out via proton symport	cro4[e] + h[e] <==> cro4[c] + h[c]	Reversible	c,e	-1000	1000	0		Transport
+Cuabc	Copper transport via ABC system	atp[c] + cu2[e] + h2o[c] --> adp[c] + cu2[c] + h[c] + pi[c]	Irreversible	c,e	0	1000	0		Transport
+Cut1	Copper export via ATPase	atp[c] + cu2[c] + h2o[c] --> adp[c] + cu2[e] + h[c] + pi[c]	Irreversible	c,e	0	1000	0		Transport
+DDGLCNt2	2-dehydro-3-deoxy-D-gluconate transport via proton symport, reversible	2ddglcn[e] + h[e] <==> 2ddglcn[c] + h[c]	Reversible	c,e	-1000	1000	0		Transport
+FE2abc	iron (II) transport via ABC system	atp[c] + fe2[e] + h2o[c] --> adp[c] + fe2[c] + h[c] + pi[c]	Irreversible	c,e	0	1000	0		Transport
+FE3abc	iron (III) transport via ABC system	atp[c] + fe3[e] + h2o[c] --> adp[c] + fe3[c] + h[c] + pi[c]	Irreversible	c,e	0	1000	0		Transport
+FERCYT	Fe (III) Reductase: G sulfurreducens	fe3[e] + focytcc[c] --> fe2[e] + ficytcc[c]	Irreversible	c,e	0	1000	0		Transport
+FRUabc	D-fructose transport via ABC system	atp[c] + fru[e] + h2o[c] --> adp[c] + fru[c] + h[c] + pi[c]	Irreversible	c,e	0	1000	0		Transport
+GLCabc	D-glucose transport via ABC system	atp[c] + glc-D[e] + h2o[c] --> adp[c] + glc-D[c] + h[c] + pi[c]	Irreversible	c,e	0	1000	0		Transport
+GLCpts	D-glucose transport via PEP:Pyr PTS	glc-D[e] + pep[c] --> g6p[c] + pyr[c]	Irreversible	c,e	0	1000	0		Transport
+GLYCLTt2r	glycolate transport via proton symport, reversible	glyclt[e] + h[e] <==> glyclt[c] + h[c]	Reversible	c,e	-1000	1000	0		Transport
+ILEabc	L-isoleucine transport via ABC system	atp[c] + h2o[c] + ile-L[e] --> adp[c] + h[c] + ile-L[c] + pi[c]	Irreversible	c,e	0	1000	0		Transport
+Kt6	potassium transport in/out via proton symport	h[e] + k[e] <==> h[c] + k[c]	Reversible	c,e	-1000	1000	0		Transport
+L-LACt2	L-lactate reversible transport via proton symport	h[e] + lac-L[e] <==> h[c] + lac-L[c]	Reversible	c,e	-1000	1000	0		Transport
+LEUabc	L-leucine transport via ABC system	atp[c] + h2o[c] + leu-L[e] --> adp[c] + h[c] + leu-L[c] + pi[c]	Irreversible	c,e	0	1000	0		Transport
+MG2abc	magnesium transport via ABC system	atp[c] + h2o[c] + mg2[e] --> adp[c] + h[c] + mg2[c] + pi[c]	Irreversible	c,e	0	1000	0		Transport
+MGt5	magnesium transport in/out via permease (no H+)	mg2[c] <==> mg2[e]	Reversible	c,e	-1000	1000	0		Transport
+MNabc	manganese transport via ABC system	atp[c] + h2o[c] + mn2[e] --> adp[c] + h[c] + mn2[c] + pi[c]	Irreversible	c,e	0	1000	0		Transport
+NH4t3	ammonium transport out via K+ antiport	k[c] + nh4[e] --> k[e] + nh4[c]	Irreversible	c,e	0	1000	0		Transport
+NIabc	nickel transport via ABC system	atp[c] + h2o[c] + ni2[e] --> adp[c] + h[c] + ni2[c] + pi[c]	Irreversible	c,e	0	1000	0		Transport
+NIt5	nickel transport in/out via permease (no H+)	ni2[c] <==> ni2[e]	Reversible	c,e	-1000	1000	0		Transport
+NO2t3	nitrite transport out via proton antiport	h[e] + no2[c] --> h[c] + no2[e]	Irreversible	c,e	0	1000	0		Transport
+NO3abc	nitrate transport via ABC system	atp[c] + h2o[c] + no3[e] --> adp[c] + h[c] + no3[c] + pi[c]	Irreversible	c,e	0	1000	0		Transport
+O2t	O2 transport in via diffusion	o2[e] <==> o2[c]	Reversible	c,e	-1000	1000	0		Transport
+PIt6	phosphate transport in/out via proton symporter	h[e] + pi[e] <==> h[c] + pi[c]	Reversible	c,e	-1000	1000	0		Transport
+PPA_1	inorganic diphosphatase (one proton translocation)	h2o[c] + ppi[c] --> h[e] + (2) pi[c]	Irreversible	c,e	0	1000	0		Transport
+PPAt6	propionate transport in/out via proton symport	h[e] + ppa[e] <==> h[c] + ppa[c]	Reversible	c,e	-1000	1000	0		Transport
+PROt5	L-proline:Na+ symporter	na1[e] + pro-L[e] <==> na1[c] + pro-L[c]	Reversible	c,e	-1000	1000	0		Transport
+RIBabc	D-ribose transport via ABC system	atp[c] + h2o[c] + rib-D[e] --> adp[c] + h[c] + pi[c] + rib-D[c]	Irreversible	c,e	0	1000	0		Transport
+SULabc	sulfate transport via ABC system	atp[c] + h2o[c] + so4[e] --> adp[c] + h[c] + pi[c] + so4[c]	Irreversible	c,e	0	1000	0		Transport
+TSULabc	thiosulfate transport via ABC system	atp[c] + h2o[c] + tsul[e] --> adp[c] + h[c] + pi[c] + tsul[c]	Irreversible	c,e	0	1000	0		Transport
+URAt6	uracil transport in/out via proton symport	h[e] + ura[e] <==> h[c] + ura[c]	Reversible	c,e	-1000	1000	0		Transport
+VALabc	L-valine transport via ABC system	atp[c] + h2o[c] + val-L[e] --> adp[c] + h[c] + pi[c] + val-L[c]	Irreversible	c,e	0	1000	0		Transport
+ZN2abc2	zinc transport in via ABC system	atp[c] + h2o[c] + zn2[e] --> adp[c] + h[c] + pi[c] + zn2[c]	Irreversible	c,e	0	1000	0		Transport
+ZN2t4	zinc transport out via antiport	h[e] + k[e] + zn2[c] --> h[c] + k[c] + zn2[e]	Irreversible	c,e	0	1000	0		Transport
+ACt6	acetate transport in/out via proton symport	ac[e] + h[e] <==> ac[c] + h[c]	Reversible	c,e	-1000	1000	0		Transport, Extracellular
+ASPt2	L-aspartate transport in via proton symport	asp-L[e] + h[e] --> asp-L[c] + h[c]	Irreversible	c,e	0	1000	0		Transport, Extracellular
+BUTSabc	butanesulfonate transport via ABC system	atp[c] + buts[e] + h2o[c] --> adp[c] + buts[c] + h[c] + pi[c]	Irreversible	c,e	0	1000	0		Transport, Extracellular
+CO2t	CO2 transport out via diffusion	co2[e] <==> co2[c]	Reversible	c,e	-1000	1000	0		Transport, Extracellular
+ETHSabc	ethanesulfonate transport via ABC system	atp[c] + eths[e] + h2o[c] --> adp[c] + eths[c] + h[c] + pi[c]	Irreversible	c,e	0	1000	0		Transport, Extracellular
+ETOHt1	ethanol transport in/out via diffusion	etoh[e] <==> etoh[c]	Reversible	c,e	-1000	1000	0		Transport, Extracellular
+FUMt6_na	fumarate transport in/out via sodium symport	fum[e] + na1[e] <==> fum[c] + na1[c]	Reversible	c,e	-1000	1000	0		Transport, Extracellular
+GLNabc	L-glutamine transport via ABC system	atp[c] + gln-L[e] + h2o[c] --> adp[c] + gln-L[c] + h[c] + pi[c]	Irreversible	c,e	0	1000	0		Transport, Extracellular
+GLUt6	L-glutamate transport in/out via proton symporter	glu-L[e] + h[e] <==> glu-L[c] + h[c]	Reversible	c,e	-1000	1000	0		Transport, Extracellular
+GLYC3Pabc	sn-Glycerol 3-phosphate transport via ABC system	atp[c] + glyc3p[e] + h2o[c] --> adp[c] + glyc3p[c] + h[c] + pi[c]	Irreversible	c,e	0	1000	0		Transport, Extracellular
+H2Ot5	H2O transport via diffusion	h2o[e] <==> h2o[c]	Reversible	c,e	-1000	1000	0		Transport, Extracellular
+HEXSabc	hexanesulfonate transport via ABC system	atp[c] + h2o[c] + hexs[e] --> adp[c] + h[c] + hexs[c] + pi[c]	Irreversible	c,e	0	1000	0		Transport, Extracellular
+HOMt	Homoserine efflux	h[e] + hom-L[c] --> h[c] + hom-L[e]	Irreversible	c,e	0	1000	0		Transport, Extracellular
+ISTNTabc	Isethionate transport via ABC system	atp[c] + h2o[c] + istnt[e] --> adp[c] + h[c] + istnt[c] + pi[c]	Irreversible	c,e	0	1000	0		Transport, Extracellular
+MALt6_na	malate/sodium symporter	mal-L[e] + na1[e] <==> mal-L[c] + na1[c]	Reversible	c,e	-1000	1000	0		Transport, Extracellular
+METabc	L-methionine transport via ABC system	atp[c] + h2o[c] + met-L[e] --> adp[c] + h[c] + met-L[c] + pi[c]	Irreversible	c,e	0	1000	0		Transport, Extracellular
+METDabc	D-methionine transport via ABC system	atp[c] + h2o[c] + met-D[e] --> adp[c] + h[c] + met-D[c] + pi[c]	Irreversible	c,e	0	1000	0		Transport, Extracellular
+MOBDabc	molybdate transport via ABC system	atp[c] + h2o[c] + mobd[e] --> adp[c] + h[c] + mobd[c] + pi[c]	Irreversible	c,e	0	1000	0		Transport, Extracellular
+MOPSabc	MOPS transport via ABC system	atp[c] + h2o[c] + mops[e] --> adp[c] + h[c] + mops[c] + pi[c]	Irreversible	c,e	0	1000	0		Transport, Extracellular
+NAt3_2	sodium proton antiporter (H:NA is 2)	(2) h[e] + na1[c] --> (2) h[c] + na1[e]	Irreversible	c,e	0	1000	0		Transport, Extracellular
+NH4t	ammonium transport via diffusion	nh4[e] <==> nh4[c]	Reversible	c,e	-1000	1000	0		Transport, Extracellular
+NO3t7	nitrate transport in via nitrite antiport	no2[c] + no3[e] --> no2[e] + no3[c]	Irreversible	c,e	0	1000	0		Transport, Extracellular
+OROTt2_2	orotate transport via sodium symport	na1[e] + orot[e] <==> na1[c] + orot[c]	Reversible	c,e	-1000	1000	0		Transport, Extracellular
+PIabc	phosphate transport via ABC system	atp[c] + h2o[c] + pi[e] --> adp[c] + h[c] + (2) pi[c]	Irreversible	c,e	0	1000	0		Transport, Extracellular
+PPNabc	phosphonate transport via ABC system	atp[c] + h2o[c] + ppn[e] --> adp[c] + h[c] + pi[c] + ppn[c]	Irreversible	c,e	0	1000	0		Transport, Extracellular
+PTRCabc	putrescine transport via ABC system	atp[c] + h2o[c] + ptrc[e] --> adp[c] + h[c] + pi[c] + ptrc[c]	Irreversible	c,e	0	1000	0		Transport, Extracellular
+PYRt2	pyruvate reversible transport via proton symport	h[e] + pyr[e] <==> h[c] + pyr[c]	Reversible	c,e	-1000	1000	0		Transport, Extracellular
+SPMDabc	spermidine transport via ABC system	atp[c] + h2o[c] + spmd[e] --> adp[c] + h[c] + pi[c] + spmd[c]	Irreversible	c,e	0	1000	0		Transport, Extracellular
+SUCCt6_na	succinate transporter in/out via sodium symport	na1[e] + succ[e] <==> na1[c] + succ[c]	Reversible	c,e	-1000	1000	0		Transport, Extracellular
+SUCFUMtdc	dicarboyxlic acid transporter (succinate:fumarate)	fum[e] + succ[c] <==> fum[c] + succ[e]	Reversible	c,e	-1000	1000	0		Transport, Extracellular
+SULAabc	sulfoacetate transport via ABC system	atp[c] + h2o[c] + sula[e] --> adp[c] + h[c] + pi[c] + sula[c]	Irreversible	c,e	0	1000	0		Transport, Extracellular
+CHORS	chorismate synthase	[c] : 3psme --> chor + pi	Irreversible	c	0	1000	0		Tyrosine, Tryptophan, and Phenylalanine Metabolism
+DAHPS	3-deoxy-D-arabino-heptulosonate 7-phosphate synthetase	[c] : e4p + h2o + pep --> 2dda7p + pi	Irreversible	c	0	1000	0		Tyrosine, Tryptophan, and Phenylalanine Metabolism
+DHQD1	3-dehydroquinate dehydratase	[c] : 3dhq <==> 3dhsk + h2o	Reversible	c	-1000	1000	0		Tyrosine, Tryptophan, and Phenylalanine Metabolism
+DHQS	3-dehydroquinate synthase	[c] : 2dda7p --> 3dhq + pi	Irreversible	c	0	1000	0		Tyrosine, Tryptophan, and Phenylalanine Metabolism
+PHETA1	phenylalanine transaminase	[c] : akg + phe-L <==> glu-L + phpyr	Reversible	c	-1000	1000	0		Tyrosine, Tryptophan, and Phenylalanine Metabolism
+PHETRS	Phenylalanyl-tRNA synthetase	[c] : atp + phe-L + trnaphe --> amp + phetrna + ppi	Irreversible	c	0	1000	0		Tyrosine, Tryptophan, and Phenylalanine Metabolism
+PSCVT	3-phosphoshikimate 1-carboxyvinyltransferase	[c] : pep + skm5p <==> 3psme + pi	Reversible	c	-1000	1000	0		Tyrosine, Tryptophan, and Phenylalanine Metabolism
+SHK3D	shikimate dehydrogenase	[c] : 3dhsk + h + nadph <==> nadp + skm	Reversible	c	-1000	1000	0		Tyrosine, Tryptophan, and Phenylalanine Metabolism
+SHKK	shikimate kinase	[c] : atp + skm --> adp + h + skm5p	Irreversible	c	0	1000	0		Tyrosine, Tryptophan, and Phenylalanine Metabolism
+TYRTA	tyrosine transaminase	[c] : akg + tyr-L <==> 34hpp + glu-L	Reversible	c	-1000	1000	0		Tyrosine, Tryptophan, and Phenylalanine Metabolism
+ATPM	ATP maintenance requirment	[c] : atp + h2o --> adp + h + pi	Irreversible	c	0.45	0.45	0		Unassigned
+HCO3E	carbonate dehydratase (HCO3 equilibration reaction)	[c] : co2 + h2o <==> h + hco3	Reversible	c	-1000	1000	0		Unassigned
+L-LACD2	L-Lactate dehydrogenase (ubiquinone)	[c] : lac-L + ubq8 --> pyr + ubq8h2	Irreversible	c	0	1000	0		Unassigned
+L-LACD3	L-Lactate dehydrogenase (menaquinone)	[c] : lac-L + mqn8 --> mql8 + pyr	Irreversible	c	0	1000	0		Unassigned
+SELNPS	Selenophosphate synthase	[c] : atp + h2o + seln --> amp + pi + selnp	Irreversible	c	0	1000	0		Unassigned
+SOD	superoxide dismutase	[c] : (2) h + (2) o2_neg --> h2o2 + o2	Irreversible	c	0	1000	0		Unassigned
+OIVD1	2-oxoisovalerate dehydrogenase (acylating; 4-methyl-2-oxopentaoate)	[c] : 4mop + coa + nad <==> co2 + ivcoa + nadh	Reversible	c	-1000	1000	0		Valine, Leucine, and Isoleucine Degradation
+OIVD2	2-oxoisovalerate dehydrogenase (acylating; 3-methyl-2-oxobutanoate)	[c] : 3mob + coa + nad --> co2 + ibcoa + nadh	Irreversible	c	0	1000	0		Valine, Leucine, and Isoleucine Degradation
+OIVD3	2-oxoisovalerate dehydrogenase (acylating; 3-methyl-2-oxopentanoate)	[c] : 3mop + coa + nad --> 2mbcoa + co2 + nadh	Irreversible	c	0	1000	0		Valine, Leucine, and Isoleucine Degradation
+ACHBS	2-aceto-2-hydroxybutanoate synthase	[c] : 2obut + h + pyr --> 2ahbut + co2	Irreversible	c	0	1000	0		Valine, Leucine, and Isoleucine Metabolism
+ACLS	acetolactate synthase (Also catalyzes ACHBS)	[c] : h + (2) pyr --> alac-S + co2	Irreversible	c	0	1000	0		Valine, Leucine, and Isoleucine Metabolism
+ILETA	isoleucine transaminase	[c] : akg + ile-L <==> 3mop + glu-L	Reversible	c	-1000	1000	0		Valine, Leucine, and Isoleucine Metabolism
+ILETRS	Isoleucyl-tRNA synthetase	[c] : atp + ile-L + trnaile --> amp + iletrna + ppi	Irreversible	c	0	1000	0		Valine, Leucine, and Isoleucine Metabolism
+IPPMIa	3-isopropylmalate dehydratase	[c] : 3c2hmp <==> 2ippm + h2o	Reversible	c	-1000	1000	0		Valine, Leucine, and Isoleucine Metabolism
+IPPMIb	2-isopropylmalate hydratase	[c] : 2ippm + h2o <==> 3c3hmp	Reversible	c	-1000	1000	0		Valine, Leucine, and Isoleucine Metabolism
+LEUTAi	leucine transaminase (irreversible)	[c] : 4mop + glu-L --> akg + leu-L	Irreversible	c	0	1000	0		Valine, Leucine, and Isoleucine Metabolism
+LEUTRS	Leucyl-tRNA synthetase	[c] : atp + leu-L + trnaleu --> amp + leutrna + ppi	Irreversible	c	0	1000	0		Valine, Leucine, and Isoleucine Metabolism
+THRD_L	L-threonine deaminase	[c] : thr-L --> 2obut + nh4	Irreversible	c	0	1000	0		Valine, Leucine, and Isoleucine Metabolism
+VALTA	valine transaminase	[c] : akg + val-L <==> 3mob + glu-L	Reversible	c	-1000	1000	0		Valine, Leucine, and Isoleucine Metabolism
+VALTRS	Valyl-tRNA synthetase	[c] : atp + trnaval + val-L --> amp + ppi + valtrna	Irreversible	c	0	1000	0		Valine, Leucine, and Isoleucine Metabolism
+ACBIPGT	Adenosyl cobainamide GTP transferase	[c] : adcobap + gtp + h --> adgcoba + ppi	Irreversible	c	0	1000	0		Vitamins & Cofactor Biosynthesis
+ADCOBAK	Adenosyl cobinamide kinase	[c] : adcoba + atp --> adcobap + adp + h	Irreversible	c	0	1000	0		Vitamins & Cofactor Biosynthesis
+ADCOBAS	adenosylcobinamide-phosphate synthase	[c] : 1ap2ol + adcobhex --> adcoba + h2o	Irreversible	c	0	1000	0		Vitamins & Cofactor Biosynthesis
+ADCOBHEXS	adenosylcobyric acid synthase	[c] : adcobdam + (4) atp + (4) gln-L + (4) h2o --> adcobhex + (4) adp + (4) glu-L + (4) h + (4) pi	Irreversible	c	0	1000	0		Vitamins & Cofactor Biosynthesis
+ADCPS2	adenosylcobinamide-phosphate synthase	[c] : 1ap2olp + adcobhex + atp --> adcobap + adp + h + pi	Irreversible	c	0	1000	0		Vitamins & Cofactor Biosynthesis
+CO2DAMR	cob(II)yrinic acid a,c-diamide reductase	[c] : (2) co2dam + nadh --> (2) co1dam + h + nad	Irreversible	c	0	1000	0		Vitamins & Cofactor Biosynthesis
+COBPS	cobalamin-5'-phosphate synthase	[c] : adgcoba + rdmbzi --> cobamcoa + gmp + h	Irreversible	c	0	1000	0		Vitamins & Cofactor Biosynthesis
+CYRDAAT	cob(I)yrinic acid a,c-diamide adenosyltransferase	[c] : atp + co1dam + h --> adcobdam + pppi	Irreversible	c	0	1000	0		Vitamins & Cofactor Biosynthesis
+CYRDAS	Cob(II)yrinate a,c-diamide synthase (glutamine-hydrolysing)	[c] : (4) atp + (2) cobrnt + (4) gln-L + (2) h2o --> (4) adp + (2) co2dam + (4) glu-L + (2) h + (2) ppi	Irreversible	c	0	1000	0		Vitamins & Cofactor Biosynthesis
+DB4PS	3,4-Dihydroxy-2-butanone-4-phosphate synthase	[c] : ru5p-D --> db4p + for + h	Irreversible	c	0	1000	0		Vitamins & Cofactor Biosynthesis
+DHFOR2	dihydrofolate reductase	[c] : dhf + nadp <==> fol + nadph	Reversible	c	-1000	1000	0		Vitamins & Cofactor Biosynthesis
+DHFOR3	dihydrofolate reductase	[c] : fol + h + (2) nadph <==> (2) nadp + thf	Reversible	c	-1000	1000	0		Vitamins & Cofactor Biosynthesis
+DHFR	dihydrofolate reductase	[c] : dhf + h + nadph <==> nadp + thf	Reversible	c	-1000	1000	0		Vitamins & Cofactor Biosynthesis
+DPCOAK	dephospho-CoA kinase	[c] : atp + dpcoa --> adp + coa + h	Irreversible	c	0	1000	0		Vitamins & Cofactor Biosynthesis
+GTPCII	GTP cyclohydrolase II	[c] : gtp + (3) h2o --> 25dhpp + for + (2) h + ppi	Irreversible	c	0	1000	0		Vitamins & Cofactor Biosynthesis
+HMPK1	hydroxymethylpyrimidine kinase (ATP)	[c] : 4ahmmp + atp --> 4ampm + adp + h	Irreversible	c	0	1000	0		Vitamins & Cofactor Biosynthesis
+HMPK2	hydroxymethylpyrimidine kinase (CTP)	[c] : 4ahmmp + ctp --> 4ampm + cdp + h	Irreversible	c	0	1000	0		Vitamins & Cofactor Biosynthesis
+HMPK3	hydroxymethylpyrimidine kinase (UTP)	[c] : 4ahmmp + utp --> 4ampm + h + udp	Irreversible	c	0	1000	0		Vitamins & Cofactor Biosynthesis
+HMPK4	hydroxymethylpyrimidine kinase (GTP)	[c] : 4ahmmp + gtp --> 4ampm + gdp + h	Irreversible	c	0	1000	0		Vitamins & Cofactor Biosynthesis
+HPPK	2-amino-4-hydroxy-6-hydroxymethyldihydropteridine diphosphokinase	[c] : 2ahhmp + atp --> 2ahhmd + amp + h	Irreversible	c	0	1000	0		Vitamins & Cofactor Biosynthesis
+MECDPDH	2C-methyl-D-erythritol 2,4 cyclodiphosphate dehydratase	[c] : 2mecdp + nadh --> h2mb4p + h2o + nad	Irreversible	c	0	1000	0		Vitamins & Cofactor Biosynthesis
+MTHFC	methenyltetrahydrofolate cyclohydrolase	[c] : h2o + methf <==> 10fthf + h	Reversible	c	-1000	1000	0		Vitamins & Cofactor Biosynthesis
+MTHFD	methylenetetrahydrofolate dehydrogenase (NADP)	[c] : mlthf + nadp <==> methf + nadph	Reversible	c	-1000	1000	0		Vitamins & Cofactor Biosynthesis
+NNAM	nicotinamidase	[c] : h2o + ncam --> nac + nh4	Irreversible	c	0	1000	0		Vitamins & Cofactor Biosynthesis
+NNDMBRT	nicotinate-nucleotide-dimethylbenzimidazole phosphoribosyltransferase	[c] : dmbzid + nicrnt --> 5prdmbz + h + nac	Irreversible	c	0	1000	0		Vitamins & Cofactor Biosynthesis
+NNDMBRT2	nicotinate-nucleotide-dimethylbenzimidazole phosphoribosyltransferase	[c] : ribflv --> dmbzid + unknown1	Irreversible	c	0	1000	0		Vitamins & Cofactor Biosynthesis
+PMPK	phosphomethylpyrimidine kinase	[c] : 4ampm + atp --> 2mahmp + adp	Irreversible	c	0	1000	0		Vitamins & Cofactor Biosynthesis
+PNTEH	Hydrolase Class ( RXN R02973)	[c] : h2o + ptth --> cysam + pnto-R	Irreversible	c	0	1000	0		Vitamins & Cofactor Biosynthesis
+PPBNGS	porphobilinogen synthase	[c] : (2) 5aop --> h + (2) h2o + ppbng	Irreversible	c	0	1000	0		Vitamins & Cofactor Biosynthesis
+RBFSa	riboflavin synthase	[c] : 4r5au + db4p --> dmlz + (2) h2o + pi	Irreversible	c	0	1000	0		Vitamins & Cofactor Biosynthesis
+RBFSb	riboflavin synthase	[c] : (2) dmlz --> 4r5au + ribflv	Irreversible	c	0	1000	0		Vitamins & Cofactor Biosynthesis
+RBZP	alpha-ribazole-5-phosphatase	[c] : 5prdmbz + h2o --> pi + rdmbzi	Irreversible	c	0	1000	0		Vitamins & Cofactor Biosynthesis
+SHCHCC	sirohydrochlorin cobaltochelatase	[c] : cobalt2 + (0.5) nad + shcl --> copre2 + (2.5) h + (0.5) nadh	Irreversible	c	0	1000	0		Vitamins & Cofactor Biosynthesis
+THPDH	NAD-dependent threonine 4-phosphate dehydrogenase	[c] : nad + phthr --> amopbut-L + h + nadh	Irreversible	c	0	1000	0		Vitamins & Cofactor Biosynthesis
+UPP3MT	uroporphyrinogen methyltransferase	[c] : (2) amet + uppg3 --> (2) ahcys + (2) h + shcl	Irreversible	c	0	1000	0		Vitamins & Cofactor Biosynthesis
+UPP3S	uroporphyrinogen-III synthase	[c] : hmbil --> h2o + uppg3	Irreversible	c	0	1000	0		Vitamins & Cofactor Biosynthesis
+EX_2ddglcn(e)	2-Dehydro-3-deoxy-D-gluconate exchange	[e] : 2ddglcn <==>	Reversible	e	0	1000	0		
+EX_ac(e)	Acetate exchange	[e] : ac <==>	Reversible	e	-1000	1000	0		
+EX_ala-D(e)	D-Alanine exchange	[e] : ala-D <==>	Reversible	e	0	1000	0		
+EX_alaala(e)	D-Alanyl-D-alanine exchange	[e] : alaala <==>	Reversible	e	0	1000	0		
+EX_arab-L(e)	L-Arabinose exchange	[e] : arab-L <==>	Reversible	e	0	1000	0		
+EX_arg-L(e)	L-Arginine exchange	[e] : arg-L <==>	Reversible	e	0	1000	0		
+EX_asp-L(e)	L-Aspartate exchange	[e] : asp-L <==>	Reversible	e	0	1000	0		
+EX_buts(e)	butanesulfonate exchange	[e] : buts <==>	Reversible	e	0	1000	0		
+EX_bz(e)	Benzoate exchange	[e] : bz <==>	Reversible	e	0	1000	0		
+EX_ca2(e)	Calcium exchange	[e] : ca2 <==>	Reversible	e	-1000	1000	0		
+EX_cd2(e)	Cadmium exchange	[e] : cd2 <==>	Reversible	e	-1000	1000	0		
+EX_cellb(e)	cellobiose exchange	[e] : cellb <==>	Reversible	e	0	1000	0		
+EX_cgly(e)	Cys-Gly exchange	[e] : cgly <==>	Reversible	e	0	1000	0		
+EX_cit(e)	Citrate exchange	[e] : cit <==>	Reversible	e	0	1000	0		
+EX_co2(e)	CO2 exchange	[e] : co2 <==>	Reversible	e	-1000	1000	0		
+EX_cobalt2(e)	Co2+ exchange	[e] : cobalt2 <==>	Reversible	e	-1000	1000	0		
+EX_cro4(e)	chromate exchange	[e] : cro4 <==>	Reversible	e	-1000	1000	0		
+EX_cu2(e)	Cu2+ exchange	[e] : cu2 <==>	Reversible	e	-1000	1000	0		
+EX_eths(e)	ethanesulfonate exchange	[e] : eths <==>	Reversible	e	-1000	1000	0		
+EX_etoh(e)	Ethanol exchange	[e] : etoh <==>	Reversible	e	0	1000	0		
+EX_fe2(e)	Fe2+ exchange	[e] : fe2 <==>	Reversible	e	-1000	1000	0		
+EX_fe3(e)	Fe3+ exchange	[e] : fe3 <==>	Reversible	e	-1000	1000	0		
+EX_fru(e)	D-Fructose exchange	[e] : fru <==>	Reversible	e	0	1000	0		
+EX_fum(e)	Fumarate exchange	[e] : fum <==>	Reversible	e	0	1000	0		
+EX_glc(e)	D-Glucose exchange	[e] : glc-D <==>	Reversible	e	0	1000	0		
+EX_gln-L(e)	L-Glutamine exchange	[e] : gln-L <==>	Reversible	e	0	1000	0		
+EX_glu-L(e)	L-Glutamate exchange	[e] : glu-L <==>	Reversible	e	0	1000	0		
+EX_glyc3p(e)	sn-Glycerol 3-phosphate exchange	[e] : glyc3p <==>	Reversible	e	0	1000	0		
+EX_glyclt(e)	Glycolate exchange	[e] : glyclt <==>	Reversible	e	0	1000	0		
+EX_gthrd(e)	Reduced glutathione exchange	[e] : gthrd <==>	Reversible	e	0	1000	0		
+EX_h(e)	H+ exchange	[e] : h <==>	Reversible	e	-1000	1000	0		
+EX_h2(e)	H2 exchange	[e] : h2 <==>	Reversible	e	-1000	1000	0		
+EX_h2o(e)	H2O exchange	[e] : h2o <==>	Reversible	e	-1000	1000	0		
+EX_hexs(e)	hexanesulfonate exchange	[e] : hexs <==>	Reversible	e	-1000	1000	0		
+EX_hom-L(e)	L-Homoserine exchange	[e] : hom-L <==>	Reversible	e	-1000	1000	0		
+EX_ile-L(e)	L-Isoleucine exchange	[e] : ile-L <==>	Reversible	e	0	1000	0		
+EX_istnt(e)	Isethionate exchange	[e] : istnt <==>	Reversible	e	-1000	1000	0		
+EX_k(e)	K+ exchange	[e] : k <==>	Reversible	e	-1000	1000	0		
+EX_lac-L(e)	L-Lactate exchange	[e] : lac-L <==>	Reversible	e	0	1000	0		
+EX_leu-L(e)	L-Leucine exchange	[e] : leu-L <==>	Reversible	e	0	1000	0		
+EX_mal-L(e)	L-Malate exchange	[e] : mal-L <==>	Reversible	e	0	1000	0		
+EX_met-D(e)	D-Methionine exchange	[e] : met-D <==>	Reversible	e	-1000	1000	0		
+EX_met-L(e)	L-Methionine exchange	[e] : met-L <==>	Reversible	e	0	1000	0		
+EX_mg2(e)	Mg exchange	[e] : mg2 <==>	Reversible	e	-1000	1000	0		
+EX_mn2(e)	Mn2+ exchange	[e] : mn2 <==>	Reversible	e	-1000	1000	0		
+EX_mobd(e)	Molybdate exchange	[e] : mobd <==>	Reversible	e	-1000	1000	0		
+EX_mops(e)	MOPS exchange	[e] : mops <==>	Reversible	e	-1000	1000	0		
+EX_na1(e)	Sodium exchange	[e] : na1 <==>	Reversible	e	-1000	1000	0		
+EX_nh4(e)	Ammonium exchange	[e] : nh4 <==>	Reversible	e	-1000	1000	0		
+EX_ni2(e)	Ni2+ exchange	[e] : ni2 <==>	Reversible	e	-1000	1000	0		
+EX_no2(e)	Nitrite exchange	[e] : no2 <==>	Reversible	e	-1000	1000	0		
+EX_no3(e)	Nitrate exchange	[e] : no3 <==>	Reversible	e	-1000	1000	0		
+EX_o2(e)	O2 exchange	[e] : o2 <==>	Reversible	e	0	1000	0		
+EX_orot(e)	Orotate exchange	[e] : orot <==>	Reversible	e	0	1000	0		
+EX_pi(e)	Phosphate exchange	[e] : pi <==>	Reversible	e	-1000	1000	0		
+EX_ppa(e)	Propionate exchange	[e] : ppa <==>	Reversible	e	0	1000	0		
+EX_ppn(e)	Phosphonate exchange	[e] : ppn <==>	Reversible	e	-1000	1000	0		
+EX_pro-L(e)	L-Proline exchange	[e] : pro-L <==>	Reversible	e	0	1000	0		
+EX_ptrc(e)	Putrescine exchange	[e] : ptrc <==>	Reversible	e	0	1000	0		
+EX_pyr(e)	Pyruvate exchange	[e] : pyr <==>	Reversible	e	0	1000	0		
+EX_rib-D(e)	D-Ribose exchange	[e] : rib-D <==>	Reversible	e	-1000	1000	0		
+EX_so4(e)	Sulfate exchange	[e] : so4 <==>	Reversible	e	-1000	1000	0		
+EX_spmd(e)	Spermidine exchange	[e] : spmd <==>	Reversible	e	0	1000	0		
+EX_succ(e)	Succinate exchange	[e] : succ <==>	Reversible	e	0	1000	0		
+EX_sula(e)	Sulfoacetate exchange	[e] : sula <==>	Reversible	e	-1000	1000	0		
+EX_tsul(e)	Thiosulfate exchange	[e] : tsul <==>	Reversible	e	-1000	1000	0		
+EX_ura(e)	Uracil exchange	[e] : ura <==>	Reversible	e	0	1000	0		
+EX_val-L(e)	L-Valine exchange	[e] : val-L <==>	Reversible	e	0	1000	0		
+EX_zn2(e)	Zinc exchange	[e] : zn2 <==>	Reversible	e	-1000	1000	0		
+BIO_Rfer3	R.ferrireducens Biomass Equation	[c] : (0.00034) 4hba + (59.81) atp + (0.000345) coa + (0.00104) dna_Eco + (0.00069) fad + (0.1598) glycogen + (59.81) h2o + (0.00908) lps_EC + (0.0022) nadh + (0.0017) nadph + (0.02614) peptido_EC + (0.00256) plipid_Eco + (0.005088) protein_Eco + (0.03527) ptrc + (0.006566) rna_Eco + (0.00713) spmd + (0.05) thf + (0.00034) thmpp + (0.003) udpg --> (59.81) adp + (59.81) h + (59.81) pi	Irreversible	c	0	1000	1		

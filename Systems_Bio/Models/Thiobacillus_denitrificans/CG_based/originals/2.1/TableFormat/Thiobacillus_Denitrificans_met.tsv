@@ -1,0 +1,988 @@
+abbreviation	name	compartment
+cpd00001	H2O	c, e
+cpd00002	ATP	c
+cpd00003	NAD	c
+cpd00004	NADH	c
+cpd00005	NADPH	c
+cpd00006	NADP	c
+cpd00007	O2	c, e
+cpd00008	ADP	c
+cpd00009	Phosphate	c, e
+cpd00010	CoA	c
+cpd00011	CO2	c, e
+cpd00012	PPi	c
+cpd00013	NH3	c, e
+cpd00014	UDP	c
+cpd00015	FAD	c
+cpd00016	Pyridoxal-phosphate	c
+cpd00017	S-Adenosyl-L-methionine	c
+cpd00018	AMP	c
+cpd00019	S-Adenosyl-homocysteine	c
+cpd00020	Pyruvate	c
+cpd00022	Acetyl-CoA	c
+cpd00023	L-Glutamate	c
+cpd00024	2-Oxoglutarate	c
+cpd00025	H2O2	c
+cpd00026	UDP-glucose	c
+cpd00027	D-Glucose	c, e
+cpd00028	Heme	c
+cpd00029	Acetate	c
+cpd00030	Mn2	c, e
+cpd00031	GDP	c
+cpd00032	Oxaloacetate	c
+cpd00033	Glycine	c, e
+cpd00034	Zn2	c, e
+cpd00035	L-Alanine	c
+cpd00036	Succinate	c, e
+cpd00037	UDP-N-acetylglucosamine	c
+cpd00038	GTP	c
+cpd00039	L-Lysine	c
+cpd00040	Glyoxalate	c
+cpd00041	L-Aspartate	c
+cpd00042	GSH	c
+cpd00043	UDP-galactose	c
+cpd00044	3-phosphoadenylylsulfate	c
+cpd00045	Adenosine-3-5-bisphosphate	c
+cpd00046	CMP	c
+cpd00047	Formate	c
+cpd00048	Sulfate	c, e
+cpd00050	FMN	c
+cpd00051	L-Arginine	c
+cpd00052	CTP	c
+cpd00053	L-Glutamine	c
+cpd00054	L-Serine	c
+cpd00056	TPP	c
+cpd00058	Cu2, Cu2	e, c
+cpd00060	L-Methionine	c, e
+cpd00061	Phosphoenolpyruvate	c
+cpd00062	UTP	c
+cpd00063	Ca2	c, e
+cpd00064	Ornithine	c
+cpd00065	L-Tryptophan	c
+cpd00066	L-Phenylalanine	c
+cpd00067	H	c, e
+cpd00068	ITP	c
+cpd00069	L-Tyrosine	c
+cpd00070	Malonyl-CoA	c
+cpd00071	Acetaldehyde	c
+cpd00072	D-fructose-6-phosphate	c
+cpd00073	Urea	c, e
+cpd00074	S	c
+cpd00075	Nitrite	c, e
+cpd00076	Sucrose	e
+cpd00078	Succinyl-CoA	c
+cpd00079	D-glucose-6-phosphate	c
+cpd00080	Glycerol-3-phosphate	c
+cpd00081	Sulfite	c
+cpd00082	D-Fructose	e
+cpd00083	GDP-mannose	c
+cpd00084	L-Cysteine	c
+cpd00085	beta-Alanine	c
+cpd00086	Propionyl-CoA	c
+cpd00087	Tetrahydrofolate	c
+cpd00089	Glucose-1-phosphate	c
+cpd00090	IDP	c
+cpd00091	UMP	c
+cpd00092	Uracil	c
+cpd00093	Anthranilate	c
+cpd00094	2-Oxobutyrate	c
+cpd00095	Glycerone-phosphate	c
+cpd00096	CDP	c
+cpd00098	Choline	c
+cpd00099	Cl	c, e
+cpd00100	Glycerol	c
+cpd00101	ribose-5-phosphate	c
+cpd00102	Glyceraldehyde3-phosphate	c
+cpd00103	PRPP	c
+cpd00104	BIOT	c
+cpd00106	Fumarate	c, e
+cpd00107	L-Leucine	c
+cpd00109	Cytochrome-c3	c
+cpd00110	Cytochrome-c2	c
+cpd00111	GSSH oxidized glutathione	c
+cpd00113	Isopentenyldiphosphate	c
+cpd00114	IMP	c
+cpd00115	dATP	c
+cpd00117	D-Alanine	c
+cpd00118	Putrescine	c
+cpd00119	L-Histidine	c
+cpd00121	L-Inositol	c
+cpd00122	N-Acetyl-D-glucosamine	e
+cpd00123	3-Methyl-2-oxobutanoate	c
+cpd00125	5-10-Methylenetetrahydrofolate	c
+cpd00126	GMP	c
+cpd00128	Adenine	c
+cpd00129	L-Proline	c
+cpd00130	L-Malate	c
+cpd00132	L-Asparagine	c
+cpd00134	Palmitoyl-CoA	c
+cpd00135	Homocysteine	c
+cpd00136	4-Hydroxybenzoate	c
+cpd00137	Citrate	c, e
+cpd00138	D-Mannose	e
+cpd00139	Glycolate	c
+cpd00141	Propionate	c
+cpd00143	Phenylpyruvate	c
+cpd00144	UDPglucuronate	c
+cpd00145	Hydroxypyruvate	c
+cpd00146	Carbamoylphosphate	c
+cpd00147	5-Methylthioadenosine	c
+cpd00149	Co2	c, e
+cpd00151	Thymine	c
+cpd00152	Agmatine	c
+cpd00155	Glycogen	c
+cpd00156	L-Valine	c
+cpd00157	Glycerone	c
+cpd00159	L-Lactate	c
+cpd00161	L-Threonine	c
+cpd00162	Aminoethanol	c
+cpd00166	Calomide	c
+cpd00169	3-Phosphoglycerate	c
+cpd00171	D-Ribulose5-phosphate	c
+cpd00175	UDP-N-acetyl-D-galactosamine	c
+cpd00177	dADP	c
+cpd00179	Maltose	c, e
+cpd00182	Adenosine	c
+cpd00184	Thymidine	c
+cpd00186	D-Glutamate	c
+cpd00190	beta-D-Glucose	c
+cpd00193	APS	c
+cpd00196	Acetylphosphate	c
+cpd00198	D-Xylulose5-phosphate	c
+cpd00200	4MOP	c
+cpd00201	10-Formyltetrahydrofolate	c
+cpd00202	DMAPP	c
+cpd00203	1-3-Bisphospho-D-glycerate	c
+cpd00205	K	c, e
+cpd00206	dCMP	c
+cpd00207	Guanine	c
+cpd00209	Nitrate	c, e
+cpd00213	Lipoamide	c
+cpd00214	Palmitate	c, e
+cpd00216	Chorismate	c
+cpd00218	Niacin	c
+cpd00219	Prephenate	c
+cpd00220	Riboflavin	c
+cpd00221	D-Lactate	c
+cpd00223	Glycerate	c
+cpd00224	L-Arabinose	c
+cpd00226	HYXN	c
+cpd00227	L-Homoserine	c
+cpd00229	Glycolaldehyde	c
+cpd00231	Dihydrobiopterin	c
+cpd00233	Tetrahydrobiopterin	c
+cpd00235	D-mannose-6-phosphate	c
+cpd00236	D-Erythrose4-phosphate	c
+cpd00238	Sedoheptulose7-phosphate	c
+cpd00239	H2S	c
+cpd00241	dGTP	c
+cpd00242	H2CO3	c
+cpd00246	Inosine	c
+cpd00247	Orotate	c
+cpd00249	Uridine	c
+cpd00251	ADPribose	c
+cpd00254	Mg	c, e
+cpd00260	Isocitrate	c
+cpd00264	Spermidine	c, e
+cpd00268	H2S2O3	c
+cpd00272	GDP-L-fucose	c
+cpd00274	Citrulline	c
+cpd00276	GLUM	e
+cpd00277	Deoxyguanosine	c
+cpd00282	S-Dihydroorotate	c
+cpd00283	Geranyldiphosphate	c
+cpd00284	6-Phospho-D-gluconate	c
+cpd00286	Undecaprenylphosphate	c
+cpd00288	D-Glucosamine-phosphate	c
+cpd00289	Geranylgeranyl-diphosphate	c
+cpd00290	D-fructose-1-6-bisphosphate	c
+cpd00293	N-Acetyl-D-glucosamine-6-phosphate	c
+cpd00294	dAMP	c
+cpd00295	dGDP	c
+cpd00296	dGMP	c
+cpd00297	dTDP	c
+cpd00298	dTMP	c
+cpd00299	dUMP	c
+cpd00305	Thiamin	c, e
+cpd00309	XAN	c
+cpd00311	Guanosine	c
+cpd00314	D-Mannitol	e
+cpd00322	L-Isoleucine	c
+cpd00327	strcoa	c
+cpd00330	Dihydrofolate	c
+cpd00331	cis-Aconitate	c
+cpd00338	5-Aminolevulinate	c
+cpd00342	N-Acetylornithine	c
+cpd00343	N-Carbamoyl-L-aspartate	c
+cpd00345	5-Methyltetrahydrofolate	c
+cpd00346	L-Aspartate4-semialdehyde	c
+cpd00347	5-10-Methenyltetrahydrofolate	c
+cpd00348	D-Galactose-1-phosphate	c
+cpd00349	Sedoheptulose-1-7-bisphosphate	c
+cpd00350	Farnesyldiphosphate	c
+cpd00352	delta1-Piperideine-6-L-carboxylate	c
+cpd00355	Nicotinamide-ribonucleotide	c
+cpd00356	dCTP	c
+cpd00357	TTP	c
+cpd00358	dUTP	c
+cpd00359	indol	c
+cpd00363	Ethanol	c
+cpd00367	Cytidine	c
+cpd00383	Shikimate	c
+cpd00387	ADPglucose	c
+cpd00390	CDP-glucose	c
+cpd00393	Folate	c
+cpd00408	Pantoate	c
+cpd00412	Deoxyuridine	c
+cpd00418	NO	c
+cpd00421	Triphosphate	c
+cpd00423	Vitamin-B12r	c, e
+cpd00428	2-Oxopropanal	c
+cpd00438	Deoxyadenosine	c
+cpd00441	CH33N	c
+cpd00443	ABEE	c
+cpd00446	cAMP	c
+cpd00448	D-Glyceraldehyde	c
+cpd00449	Dihydrolipoamide	c
+cpd00450	Methyl-sulfide	c
+cpd00477	N-Acetyl-L-glutamate	c
+cpd00478	Pyridoxine-phosphate	c
+cpd00481	Isobutyryl-CoA	c
+cpd00482	2-Phospho-D-glycerate	c
+cpd00485	D-Mannose1-phosphate	c
+cpd00491	D-mannitol-1-phosphate	c
+cpd00492	N-Acetyl-D-mannosamine	e, c
+cpd00497	XMP	c
+cpd00498	2-Aceto-2-hydroxybutanoate	c
+cpd00504	LL-2-6-Diaminopimelate	c
+cpd00506	gamma-Glutamylcysteine	c
+cpd00507	Glycerophosphocholine	c
+cpd00508	3MOP	c
+cpd00509	deoxyribose-1-phosphate	c
+cpd00516	meso-2-6-Diaminopimelate	c
+cpd00521	dTDP-4-oxo-6-deoxy-D-glucose	c
+cpd00522	dTDP-4-oxo-L-rhamnose	c
+cpd00523	Trehalose-6-phosphate	c
+cpd00525	UDP-N-acetylmuramoyl-L-alanyl-D-glutamate	c
+cpd00528	N2	c
+cpd00531	Hg2	e, c
+cpd00532	O2	c
+cpd00533	dCDP	c
+cpd00557	Siroheme	c
+cpd00588	Sorbitol	e
+cpd00616	Pretyrosine	c
+cpd00626	dTDPglucose	c
+cpd00635	Cbl	c, e
+cpd00637	D-Methionine	c, e
+cpd00638	Deamido-NAD	c
+cpd00641	L-Histidinol	c
+cpd00644	PAN	c
+cpd00654	Deoxycytidine	c
+cpd00655	Dephospho-CoA	c
+cpd00659	Nitrous-oxide	c
+cpd00668	ALCTT	c
+cpd00681	Choline-sulfate	c
+cpd00683	Dihydropteroate	c
+cpd00689	Porphobilinogen	c
+cpd00699	5-Dehydroquinate	c
+cpd00712	2-Dehydropantoate	c
+cpd00722	O-Acetyl-L-serine	c
+cpd00727	2-Phosphoglycolate	c
+cpd00731	Ala-Ala	c
+cpd00738	phosphoserine	c
+cpd00742	Allophanate	c
+cpd00755	Hydroxymethylbilane	c
+cpd00760	2-Methylbutyryl-CoA	c
+cpd00764	7-8-Diaminononanoate	c
+cpd00773	UDP-MurNAc	c
+cpd00774	UroporphyrinogenIII	c
+cpd00782	Pimeloyl-CoA	c
+cpd00790	O-Acetyl-L-homoserine	c
+cpd00791	ProtoporphyrinogenIX	c
+cpd00793	Thiamine-phosphate	c
+cpd00794	TRHL, TRHL	e, c
+cpd00800	8-Amino-7-oxononanoate	c
+cpd00802	D-fructose-1-phosphate	c
+cpd00804	Sorbitol-6-phosphate	c
+cpd00805	D-Tagatose-6-phosphate	c
+cpd00807	L-histidinol-phosphate	c
+cpd00809	O-Phospho-L-homoserine	c
+cpd00810	Orotidylic-acid	c
+cpd00811	CH33NO	c
+cpd00817	D-Arabinose5-phosphate	c
+cpd00822	O-Succinyl-L-homoserine	c
+cpd00830	4-Hydroxy-2-oxoglutarate	c
+cpd00834	Phosphopantetheine	c
+cpd00836	S-Acetyldihydrolipoamide	c
+cpd00843	Tartronate-semialdehyde	c
+cpd00858	L-Glutamate5-semialdehyde	c
+cpd00859	Pseudouridine-5'-phosphate	c
+cpd00860	S-Succinyldihydrolipoamide	c
+cpd00861	UDP-N-acetyl-D-mannosamine	c
+cpd00863	beta-D-Glucose-6-phosphate	c
+cpd00867	Inositol-1-phosphate	c
+cpd00868	p-hydroxyphenylpyruvate	c
+cpd00871	D-Ribulose-1-5-bisphosphate	c
+cpd00873	Nicotinate-ribonucleotide	c
+cpd00875	KDO	c
+cpd00890	UDP-N-acetylmuramoyl-L-alanine	c
+cpd00897	CDP-4-dehydro-6-deoxy-D-glucose	c
+cpd00900	GDP-4-dehydro-D-rhamnose	c
+cpd00905	Guanosine-3'-5'-bisdiphosphate	c
+cpd00906	all-trans-Hexaprenyl-diphosphate	c
+cpd00908	Glycerophosphoethanolamine	c
+cpd00911	6-phospho-D-glucono-1-5-lactone	c
+cpd00918	2-Acetamido-5-oxopentanoate	c
+cpd00922	delta1-Piperideine-2-carboxylate	c
+cpd00924	AppppA	c
+cpd00930	imidazole-acetol-phosphate	c
+cpd00931	5-Amino-6-5-phosphoribosylaminouracil	c
+cpd00932	5-O-1-Carboxyvinyl-3-phosphoshikimate	c
+cpd00939	Toxopyrimidine	c
+cpd00946	Undecaprenyl-diphospho-N-acetyl-glucosamine	c
+cpd00954	6-hydroxymethyl-dihydropterin	c
+cpd00956	1-2-carboxyphenylamino-1-deoxyribulose-5-phosphate	c
+cpd00957	2-5-Diamino-6-5'-phosphoribosylamino-4-pyrimidineone	c
+cpd00971	Na	c, e
+cpd00978	dUDP	c
+cpd00982	FADH2	c
+cpd01012	Cd2	e, c
+cpd01015	Cyanate	c
+cpd01017	Cys-Gly	c, e
+cpd01078	Selenide	c
+cpd01080	ocdca	c, e
+cpd01092	Allantoin	c
+cpd01101	Carbamate	c
+cpd01155	Cadaverine	c
+cpd01171	Dulcose	e
+cpd01217	Xanthosine	c
+cpd01262	Amylotriose	c
+cpd01270	FMNH2	c
+cpd01298	Aminoacetone	c
+cpd01311	Dethiobiotin	c
+cpd01324	L-Histidinal	c
+cpd01329	Maltohexaose	c
+cpd01399	Maltotetraose	c
+cpd01401	Vitamin-K1	c
+cpd01476	Protoporphyrin	c
+cpd01567	R-Allantoin	c
+cpd01620	Precorrin-2	c
+cpd01646	2-Isopropylmalate	c
+cpd01651	L-3-Cyanoalanine	c
+cpd01693	6-Phosphosucrose	c
+cpd01695	Myristoyl-CoA	c
+cpd01710	2-Isopropylmaleate	c
+cpd01716	3-Dehydroshikimate	c
+cpd01741	ddca	c
+cpd01775	Phosphoribosyl-ATP	c
+cpd01777	Phosphoribosyl-AMP	c
+cpd01844	Propionyl-phosphate	c
+cpd01882	Isovaleryl-CoA	c
+cpd01914	L-Methionine-S-oxide	c, e
+cpd01919	maltose-6-phosphate	c
+cpd01974	4-Hydroxy-L-glutamate	c
+cpd01977	4-Phospho-L-aspartate	c
+cpd01982	5-Phosphoribosylamine	c
+cpd01997	Dimethylbenzimidazole	c
+cpd02016	N-Ribosylnicotinamide	c
+cpd02030	3-phosphoshikimate	c
+cpd02039	1-Aminopropan-2-ol	c
+cpd02069	3-Phosphonooxypyruvate	c
+cpd02074	2-Oxo-6-aminocaproate	c
+cpd02083	CoproporphyrinogenIII	c
+cpd02090	Glycerophosphoglycerol	c
+cpd02097	L-Glutamyl-5-phosphate	c
+cpd02113	dTDP-rhamnose	c
+cpd02120	Dihydrodipicolinate	c
+cpd02140	AIR	c
+cpd02147	4-Phosphoerythronate	c
+cpd02152	L-Argininosuccinate	c
+cpd02168	Prephytoene-diphosphate	c
+cpd02182	R-S-Lactoylglutathione	c
+cpd02197	5-Formyltetrahydrofolate	c
+cpd02201	4-phosphopantothenate	c
+cpd02210	Indoleglycerol-phosphate	c
+cpd02211	L-2-Amino-acetoacetate	c
+cpd02229	Bactoprenyl-diphosphate	c
+cpd02230	Inositol-4-phosphate	c
+cpd02246	CoM	c
+cpd02333	Quinolinate	c
+cpd02345	L-Glutamate1-semialdehyde	c
+cpd02371	D-Tagatose-1-6-biphosphate	c
+cpd02375	Adenylosuccinate	c
+cpd02394	GAR	c
+cpd02414	L-2-Amino-6-oxopimelate	c
+cpd02431	1-Pyrroline-5-carboxylate	c
+cpd02465	tetrahydrodipicolinate	c
+cpd02484	Inositol-3-phosphate	c
+cpd02498	2-3-Dihydroxy-isovalerate	c
+cpd02522	2-Aminoadipate-6-semialdehyde	c
+cpd02535	2-3-Dihydroxy-3-methylvalerate	c
+cpd02546	CMP-KDO	c
+cpd02547	R-1-Aminopropan-2-yl-phosphate	c
+cpd02552	n-acetylglutamyl-phosphate	c
+cpd02555	Tetrahydropteroyltri-L-glutamate	c
+cpd02557	Farnesylfarnesylgeraniol	c
+cpd02569	2-Oxo-3-hydroxyisovalerate	c
+cpd02574	methylthioribose-1-phosphate	c
+cpd02590	all-trans-Heptaprenyl-diphosphate	c
+cpd02591	pendp	c
+cpd02605	2-isopropyl-3-oxosuccinate	c
+cpd02611	N-Acetyl-D-glucosamine1-phosphate	c
+cpd02612	N-Acetylmannosamine-6-phosphate	c
+cpd02642	N-5-phosphoribosyl-anthranilate	c
+cpd02654	4-Methyl-5-2-phosphoethyl-thiazole	c
+cpd02656	6-7-Dimethyl-8-1-D-ribityllumazine	c
+cpd02666	R-4'-Phosphopantothenoyl-L-cysteine	c
+cpd02678	N-Formyl-GAR	c
+cpd02693	3-Isopropylmalate	c
+cpd02698	N-Succinyl-L-2-6-diaminopimelate	c
+cpd02701	S-Adenosyl-4-methylthio-2-oxobutanoate	c
+cpd02720	5-Amino-6-5-phosphoribitylaminouracil	c
+cpd02724	N-Succinyl-L-2-amino-6-oxopimelate	c
+cpd02730	3-Deoxy-D-manno-octulosonate8-phosphate	c
+cpd02738	5-Methyltetrahydropteroyltri-L-glutamate	c
+cpd02740	Guanosine-5'-triphosphate-3'-diphosphate	c
+cpd02775	4-Amino-5-phosphomethyl-2-methylpyrimidine	c
+cpd02817	HTP	c
+cpd02820	UDP-N-acetylglucosamine-enolpyruvate	c
+cpd02826	5'-Phosphoribosylformylglycinamidine	c
+cpd02835	UDP-2-3-bis3-hydroxytetradecanoylglucosamine	c
+cpd02843	D-erythro-imidazol-glycerol-phosphate	c
+cpd02851	AICAR	c
+cpd02857	DAHP	c
+cpd02862	UDPMurAcoyl-L-Ala-D-gamma-Glu-L-Lys-D-Ala-D-Ala	c
+cpd02882	4-1-D-Ribitylamino-5-aminouracil	c
+cpd02884	FAICAR	c
+cpd02886	UDP-3-O-beta-hydroxymyristoyl-N-acetylglucosamine	c
+cpd02893	5'-Phosphoribosyl-4-carboxy-5-aminoimidazole	c
+cpd02894	4-Amino-2-methyl-5-diphosphomethylpyrimidine	c
+cpd02904	alpha-Ribazole-5'-phosphate	c
+cpd02920	7-8-Dihydropterin-pyrophosphate	c
+cpd02921	SAICAR	c
+cpd02930	Lipid-X	c
+cpd02935	CoM-S-S-CoB	c
+cpd02948	MurAcoyl-L-Ala-D-gamma-Glu-L-Lys-D-Ala-D-Ala-diphospho-undecaprenol	c
+cpd02961	Dihydroneopterin	c
+cpd02964	UDP-N-acetylmuramoyl-L-alanyl-D-gamma-glutamyl-meso-2-6-diaminopimelate	c
+cpd02968	UDP-N-acetylmuramoyl-L-alanyl-D-glutamyl-6-carboxy-L-lysyl-D-alanyl-D-alanine	c
+cpd02978	7-8-Dihydroneopterin-3'-triphosphate	c
+cpd02979	phosphoribosylformiminoaicar-phosphate	c
+cpd02991	phosphoribulosylformimino-AICAR-phosphate	c
+cpd02993	Lipid-IVA	c
+cpd03002	Lipid-A-disaccharide	c
+cpd03049	2-Hydroxyethyl-ThPP	c
+cpd03078	Selenophosphate	c
+cpd03091	5'-Deoxyadenosine	c
+cpd03187	Oxalosuccinate	c
+cpd03189	3-Carboxy-1-hydroxypropyl-ThPP	c
+cpd03205	Phytoene	c
+cpd03211	15-cis-Phytoene	c
+cpd03407	gamma-Glutamyl-beta-cyanoalanine	c
+cpd03414	UroporphyrinogenI	c
+cpd03416	CoproporphyrinogenI	c
+cpd03422	Cobinamide	c
+cpd03423	alpha-Ribazole	c
+cpd03424	Vitamin-B12	c, e
+cpd03426	Sirohydrochlorin	c
+cpd03443	3-Octaprenyl-4-hydroxybenzoate	c
+cpd03444	2-Octaprenylphenol	c
+cpd03445	2-Octaprenyl-6-hydroxyphenol	c
+cpd03446	2-Octaprenyl-6-methoxyphenol	c
+cpd03447	2-Octaprenyl-6-methoxy-1-4-benzoquinone	c
+cpd03448	2-Octaprenyl-3-methyl-6-methoxy-1-4-benzoquinone	c
+cpd03449	2-Octaprenyl-3-methyl-5-hydroxy-6-methoxy-1-4-benzoquinone	c
+cpd03470	Iminoaspartate	c
+cpd03471	Nicotinate-D-ribonucleoside	c
+cpd03487	Undecaprenyl-diphospho-N-acetylmuramoyl-N-acetylglucosamine-L-alanyl-D-glutamyl-L-lysyl-D-alanyl-D-alanine	c
+cpd03488	Undecaprenyl-diphospho-N-acetylmuramoyl-N-acetylglucosamine-L-alanyl-D-glutaminyl-L-lysyl-D-alanyl-D-alanine	c
+cpd03491	Undecaprenyl-diphospho-N-acetylmuramoyl-N-acetylglucosamine-L-alanyl-gamma-D-glutamyl-L-lysyl-D-alanyl-D-alanine	c
+cpd03492	Undecaprenyl-diphospho-N-acetylmuramoyl-N-acetylglucosamine-L-alanyl-D-isoglutaminyl-L-lysyl-D-alanyl-D-alanine	c
+cpd03494	Undecaprenyl-diphospho-N-acetylmuramoyl-L-alanyl-D-glutamyl-meso-2-6-diaminopimeloyl-D-alanyl-D-alanine	c
+cpd03495	Undecaprenyl-diphospho-N-acetylmuramoyl-N-acetylglucosamine-L-ala-D-glu-meso-2-6-diaminopimeloyl-D-ala-D-ala	c
+cpd03496	Undecaprenyl-diphospho-N-acetylmuramoyl-N-acetylglucosamine-L-alanyl-D-glutaminyl-meso-2-6-diaminopimeloyl-D-alanyl-D-alanine	c
+cpd03517	Biotinyl-5-AMP	c
+cpd03518	Formamidopyrimidine-nucleoside-triphosphate	c
+cpd03519	2-5-Diaminopyrimidine-nucleoside-triphosphate	c
+cpd03524	10-Formyl-THF-L-glutamate	c
+cpd03525	N-Succinyl-L-glutamate	c
+cpd03560	Propionyladenylate	c
+cpd03584	UDP-3-O-beta-hydroxymyristoyl-D-glucosamine	c
+cpd03585	KDO-lipid-IVA	c
+cpd03586	kdo2-lipid-iva	c
+cpd03587	kdo2-lipid-a	c
+cpd03606	2-Oxo-3-hydroxy-4-phosphobutanoate	c
+cpd03607	4-Phosphonooxy-threonine	c
+cpd03608	4-Hydroxy-L-threonine	c
+cpd03646	gamma-Glutamyl-3-aminopropiononitrile	c
+cpd03666	2-5-Diamino-6-5'-triphosphoryl-3'-4'-trihydroxy-2'-oxopentyl-amino-4-oxopyrimidine	c
+cpd03671	D-Glucosamine1-phosphate	c
+cpd03724	Ferrichrome	c, e
+cpd03736	Lauroyl-KDO2-lipid-IVA	c
+cpd03752	Galactitol-1-phosphate	c
+cpd03830	ADP-D-glycero-D-manno-heptose	c
+cpd03831	ADP-L-glycero-D-manno-heptose	c
+cpd03847	Myristic-acid	c, e
+cpd03897	4a-Hydroxytetrahydrobiopterin	c
+cpd03914	CobIIyrinate-diamide	c
+cpd03915	CobIyrinate-diamide	c
+cpd03916	Adenosyl-cobyrinate-diamide	c
+cpd03917	Adenosylcobyric-acid	c
+cpd03918	Adenosyl-cobinamide	c
+cpd03919	Adenosyl-cobinamide-phosphate	c
+cpd03920	Adenosylcobinamide-GDP	c
+cpd04097	Pb	e, c
+cpd04539	2-Amino-3-oxo-4-phosphonooxybutyrate	c
+cpd04918	D-Glycero-D-manno-heptose7-phosphate	c
+cpd04920	D-Glycero-D-manno-heptose1-phosphate	c
+cpd06227	THF-L-glutamate	c
+cpd08021	DMSO	c
+cpd08210	ADC	c
+cpd08211	trans-trans-cis-Geranylgeranyl-diphosphate	c
+cpd08286	2-C-methyl-D-erythritol4-phosphate	c
+cpd08287	4-cytidine5-diphospho-2-C-methyl-D-erythritol	c
+cpd08288	2-phospho-4-cytidine5-diphospho-2-C-methyl-D-erythritol	c
+cpd08289	1-deoxy-D-xylulose5-phosphate	c
+cpd08301	2-C-methyl-D-erythritol2-4-cyclodiphosphate	c
+cpd08316	D-Glycero-D-manno-heptose1-7-bisphosphate	c
+cpd08449	3-Amino-2-oxopropyl-phosphate	c
+cpd08615	1-Hydroxy-2-methyl-2-butenyl-4-diphosphate	c
+cpd08625	5-Hydroxyisourate	c
+cpd08701	Methanophenazine	c
+cpd08702	Dihydromethanophenazine	c
+cpd08928	L-Threonine-phosphate	c
+cpd09027	5-Hydroxy-2-oxo-4-ureido-2-5-dihydro-1H-imidazole-5-carboxylate	c
+cpd09410	Demethylphylloquinone	c
+cpd10162	R-3-Hydroxy-3-methyl-2-oxopentanoate	c
+cpd10515	Fe2	c, e
+cpd10516	Fe3	c, e
+cpd11225	3-4-dihydroxy-2-butanone4-phosphate	c
+cpd11313	hemeO	c
+cpd11416	Biomass	c
+cpd11420	trdox	c
+cpd11421	trdrd	c
+cpd11430	fa1	c
+cpd11431	fa11	c
+cpd11432	fa11coa	c
+cpd11433	fa12	c
+cpd11434	fa12coa	c
+cpd11435	fa1coa	c
+cpd11436	fa3	c
+cpd11437	fa3coa	c
+cpd11438	fa4	c
+cpd11439	fa4coa	c
+cpd11440	fa6	c
+cpd11441	fa6coa	c
+cpd11464	Butyryl-ACP	c
+cpd11465	But-2-enoyl-acyl-carrier-protein	c
+cpd11466	Myristoyl-ACP	c
+cpd11467	2E-Tetradecenoyl-acp	c
+cpd11468	Dodecanoyl-ACP	c
+cpd11469	2E-Dodecenoyl-acp	c
+cpd11470	Octanoyl-ACP	c
+cpd11471	2E-Octenoyl-acp	c
+cpd11472	Hexanoyl-ACP	c
+cpd11473	2E-Hexenoyl-acp	c
+cpd11474	Decanoyl-ACP	c
+cpd11475	2E-Decenoyl-acp	c
+cpd11476	hexadecanoyl-acp	c
+cpd11477	2E-Hexadecenoyl-acp	c
+cpd11478	R-3-Hydroxybutanoyl-acyl-carrier-protein	c
+cpd11479	D-3-Hydroxyhexanoyl-acp	c
+cpd11480	D-3-Hydroxydodecanoyl-acp	c
+cpd11481	R-3-hydroxypalmitoyl-acyl-carrierprotein	c
+cpd11482	R-3-Hydroxydecanoyl-acyl-carrier-protein	c
+cpd11483	R-3-Hydroxyoctanoyl-acyl-carrier-protein	c
+cpd11484	HMA	c
+cpd11485	3-oxohexadecanoyl-acp	c
+cpd11486	3-Oxohexanoyl-acp	c
+cpd11487	3-oxodecanoyl-acp	c
+cpd11488	Acetoacetyl-ACP	c
+cpd11489	3-oxododecanoyl-acp	c
+cpd11490	3-oxooctanoyl-acp	c
+cpd11491	3-oxotetradecanoyl-acp	c
+cpd11492	Malonyl-acyl-carrierprotein	c
+cpd11493	ACP	c
+cpd11494	Acetyl-ACP	c
+cpd11495	2-methylbutyryl-ACP	c
+cpd11496	4-methyl-3-oxo-hexanoyl-ACP	c
+cpd11497	4-methyl-3-hydroxy-hexanoyl-ACP	c
+cpd11498	4-methyl-trans-hex-2-enoyl-ACP	c
+cpd11499	4-methyl-hexanoyl-ACP	c
+cpd11500	6-methyl-3-oxo-octanoyl-ACP	c
+cpd11501	6-methyl-3-hydroxy-octanoyl-ACP	c
+cpd11502	6-methyl-trans-oct-2-enoyl-ACP	c
+cpd11503	6-methyl-octanoyl-ACP	c
+cpd11504	8-methyl-3-oxo-decanoyl-ACP	c
+cpd11505	8-methyl-3-hydroxy-decanoyl-ACP	c
+cpd11506	8-methyl-trans-dec-2-enoyl-ACP	c
+cpd11507	8-methyl-decanoyl-ACP	c
+cpd11508	10-methyl-3-oxo-dodecanoyl-ACP	c
+cpd11509	10-methyl-3-hydroxy-dodecanoyl-ACP	c
+cpd11510	10-methyl-trans-dodec-2-enoyl-ACP	c
+cpd11511	10-methyl-dodecanoyl-ACP	c
+cpd11512	12-methyl-3-oxo-tetra-decanoyl-ACP	c
+cpd11513	12-methyl-3-hydroxy-tetra-decanoyl-ACP	c
+cpd11514	12-methyl-trans-tetra-dec-2-enoyl-ACP	c
+cpd11515	12-methyl-tetra-decanoyl-ACP	c
+cpd11516	14-methyl-3-oxo-hexa-decanoyl-ACP	c
+cpd11517	14-methyl-3-hydroxy-hexa-decanoyl-ACP	c
+cpd11518	14-methyl-trans-hexa-dec-2-enoyl-ACP	c
+cpd11519	14-methyl-hexa-decanoyl-ACP	c
+cpd11520	isovaleryl-ACP	c
+cpd11521	5-methyl-3-oxo-hexanoyl-ACP	c
+cpd11522	5-methyl-3-hydroxy-hexanoyl-ACP	c
+cpd11523	5-methyl-trans-hex-2-enoyl-ACP	c
+cpd11524	5-methyl-hexanoyl-ACP	c
+cpd11525	7-methyl-3-oxo-octanoyl-ACP	c
+cpd11526	7-methyl-3-hydroxy-octanoyl-ACP	c
+cpd11527	7-methyl-trans-oct-2-enoyl-ACP	c
+cpd11528	7-methyl-octanoyl-ACP	c
+cpd11529	9-methyl-3-oxo-decanoyl-ACP	c
+cpd11530	9-methyl-3-hydroxy-decanoyl-ACP	c
+cpd11531	9-methyl-trans-dec-2-enoyl-ACP	c
+cpd11532	9-methyl-decanoyl-ACP	c
+cpd11533	11-methyl-3-oxo-dodecanoyl-ACP	c
+cpd11534	11-methyl-3-hydroxy-dodecanoyl-ACP	c
+cpd11535	11-methyl-trans-dodec-2-enoyl-ACP	c
+cpd11536	11-methyl-dodecanoyl-ACP	c
+cpd11537	13-methyl-3-oxo-tetra-decanoyl-ACP	c
+cpd11538	13-methyl-3-hydroxy-tetra-decanoyl-ACP	c
+cpd11539	13-methyl-trans-tetra-dec-2-enoyl-ACP	c
+cpd11540	13-methyl-tetra-decanoyl-ACP	c
+cpd11541	15-methyl-3-oxo-hexa-decanoyl-ACP	c
+cpd11542	15-methyl-3-hydroxy-hexa-decanoyl-ACP	c
+cpd11543	15-methyl-trans-hexa-dec-2-enoyl-ACP	c
+cpd11544	15-methyl-hexa-decanoyl-ACP	c
+cpd11545	isobutyryl-ACP	c
+cpd11546	4-methyl-3-oxo-pentanoyl-ACP	c
+cpd11547	4-methyl-3-hydroxy-pentanoyl-ACP	c
+cpd11548	4-methyl-trans-pent-2-enoyl-ACP	c
+cpd11549	4-methyl-pentanoyl-ACP	c
+cpd11550	6-methyl-3-oxo-heptanoyl-ACP	c
+cpd11551	6-methyl-3-hydroxy-heptanoyl-ACP	c
+cpd11552	6-methyl-trans-hept-2-enoyl-ACP	c
+cpd11553	6-methyl-heptanoyl-ACP	c
+cpd11554	8-methyl-3-oxo-nonanoyl-ACP	c
+cpd11555	8-methyl-3-hydroxy-nonanoyl-ACP	c
+cpd11556	8-methyl-trans-non-2-enoyl-ACP	c
+cpd11557	8-methyl-nonanoyl-ACP	c
+cpd11558	10-methyl-3-oxo-undecanoyl-ACP	c
+cpd11559	10-methyl-3-hydroxy-undecanoyl-ACP	c
+cpd11560	10-methyl-trans-undec-2-enoyl-ACP	c
+cpd11561	10-methyl-undecanoyl-ACP	c
+cpd11562	12-methyl-3-oxo-tridecanoyl-ACP	c
+cpd11563	12-methyl-3-hydroxy-tridecanoyl-ACP	c
+cpd11564	12-methyl-trans-tridec-2-enoyl-ACP	c
+cpd11565	12-methyl-tridecanoyl-ACP	c
+cpd11566	14-methyl-3-oxo-pentadecanoyl-ACP	c
+cpd11567	14-methyl-3-hydroxy-pentadecanoyl-ACP	c
+cpd11568	14-methyl-trans-pentadec-2-enoyl-ACP	c
+cpd11569	14-methyl-pentadecanoyl-ACP	c
+cpd11570	3-Oxooctodecanoyl-ACP	c
+cpd11571	3-Hydroxyoctodecanoyl-ACP	c
+cpd11572	trans-Octodec-2-enoyl-ACP	c
+cpd11573	Octodecanoyl-ACP	c
+cpd11574	Molybdate, Molybdate	c, e
+cpd11576	L-methionine-R-oxide	c, e
+cpd11580	Gly-Gln	c, e
+cpd11581	gly-asn-L	c, e
+cpd11582	ala-L-Thr-L	c, e
+cpd11583	Ala-Leu	c, e
+cpd11584	Ala-His	c, e
+cpd11585	L-alanylglycine	c, e
+cpd11586	ala-L-glu-L	c, e
+cpd11587	Ala-Gln	c, e
+cpd11588	gly-pro-L	c, e
+cpd11589	gly-asp-L	c, e
+cpd11590	met-L-ala-L	c, e
+cpd11591	Gly-Met	c, e
+cpd11592	gly-glu-L	c, e
+cpd11593	ala-L-asp-L	c, e
+cpd11620	Reducedferredoxin	c
+cpd11621	Oxidizedferredoxin	c
+cpd11640	H2	c
+cpd11825	Octadecenoyl-ACP	c
+cpd11830	S-Aminomethyldihydrolipoylprotein	c
+cpd11912	tRNA-Glu	c
+cpd12005	Lipoylprotein	c
+cpd12072	Protein-dithiol	c
+cpd12115	Arabinan	c
+cpd12139	Protein-disulfide	c
+cpd12225	Dihydrolipolprotein	c
+cpd12227	L-Glutamyl-tRNA-Glu	c
+cpd12370	apo-ACP	c
+cpd12543	Carboxybiotin-carboxyl-carrier-protein	c
+cpd12547	L-2-Lysophosphatidylethanolamine	c
+cpd12848	Holo-carboxylase	c
+cpd14545	Iminoglycine	c
+cpd15237	hexadecenoate	c
+cpd15238	Hexadecenoyl-CoA	c
+cpd15239	Hexadecenoyl-ACP	c
+cpd15268	Octadecanoyl-ACP	c
+cpd15269	octadecenoate	c
+cpd15274	Octadecenoyl-CoA	c
+cpd15277	Palmitoyl-ACP	c
+cpd15294	Tetradecenoyl-ACP	c
+cpd15298	tetradecenoate	c
+cpd15302	glycogenn-1	c
+cpd15306	1-2-Diacyl-sn-glycerol-didodecanoyl	c
+cpd15307	1-2-Diacyl-sn-glycerol-ditetradecanoyl	c
+cpd15308	1-2-Diacyl-sn-glycerol-ditetradec-7-enoyl	c
+cpd15309	1-2-Diacyl-sn-glycerol-dihexadecanoyl	c
+cpd15310	1-2-Diacyl-sn-glycerol-dihexadec-9-enoyl	c
+cpd15311	1-2-Diacyl-sn-glycerol-dioctadecanoyl	c
+cpd15312	1-2-Diacyl-sn-glycerol-dioctadec-11-enoyl	c
+cpd15313	1-Acyl-sn-glycero-3-phosphoethanolamine-dodecanoyl	c
+cpd15314	1-Acyl-sn-glycero-3-phosphoethanolamine-tetradecanoyl	c
+cpd15315	1-Acyl-sn-glycero-3-phosphoethanolamine-tetradec-7-enoyl	c
+cpd15316	1-Acyl-sn-glycero-3-phosphoethanolamine-hexadecanoyl	c
+cpd15317	1-Acyl-sn-glycero-3-phosphoethanolamine-hexadec-9-enoyl	c
+cpd15318	1-Acyl-sn-glycero-3-phosphoglycerol-dodecanoyl	c
+cpd15319	1-Acyl-sn-glycero-3-phosphoglycerol-tetradecanoyl	c
+cpd15320	1-Acyl-sn-glycero-3-phosphoglycerol-tetradec-7-enoyl	c
+cpd15321	1-Acyl-sn-glycero-3-phosphoglycerol-hexadecanoyl	c
+cpd15322	1-Acyl-sn-glycero-3-phosphoglycerol-hexadec-9-enoyl	c
+cpd15323	1-Acyl-sn-glycero-3-phosphoglycerol-octadecanoyl	c
+cpd15324	1-Acyl-sn-glycero-3-phosphoglycerol-octadec-11-enoyl	c
+cpd15325	1-dodecanoyl-sn-glycerol-3-phosphate	c
+cpd15326	1-hexadec-9-enoyl-sn-glycerol-3-phosphate	c
+cpd15327	1-hexadecanoyl-sn-glycerol-3-phosphate	c
+cpd15328	1-octadec-11-enoyl-sn-glycerol-3-phosphate	c
+cpd15329	1-octadecanoyl-sn-glycerol-3-phosphate	c
+cpd15330	1-tetradec-7-enoyl-sn-glycerol-3-phosphate	c
+cpd15331	1-tetradecanoyl-sn-glycerol-3-phosphate	c
+cpd15336	2-Acyl-sn-glycero-3-phosphoethanolamine-dodecanoyl	c
+cpd15337	2-Acyl-sn-glycero-3-phosphoethanolamine-tetradecanoyl	c
+cpd15338	2-Acyl-sn-glycero-3-phosphoethanolamine-tetradec-7-enoyl	c
+cpd15339	2-Acyl-sn-glycero-3-phosphoethanolamine-n-C16-0	c
+cpd15340	2-Acyl-sn-glycero-3-phosphoethanolamine-hexadec-9-enoyl	c
+cpd15341	2-Acyl-sn-glycero-3-phosphoethanolamine-n-C18-0	c
+cpd15342	2-Acyl-sn-glycero-3-phosphoethanolamine-octadec-11-enoyl	c
+cpd15343	2-Acyl-sn-glycero-3-phosphoglycerol-dodecanoyl	c
+cpd15344	2-Acyl-sn-glycero-3-phosphoglycerol-tetradecanoyl	c
+cpd15345	2-Acyl-sn-glycero-3-phosphoglycerol-tetradec-7-enoyl	c
+cpd15346	2-Acyl-sn-glycero-3-phosphoglycerol-hexadecanoyl	c
+cpd15347	2-Acyl-sn-glycero-3-phosphoglycerol-hexadec-9-enoyl	c
+cpd15348	2-Acyl-sn-glycero-3-phosphoglycerol-octadecanoyl	c
+cpd15349	2-Acyl-sn-glycero-3-phosphoglycerol-octadec-11-enoyl	c
+cpd15350	2-dodecanoyl-sn-glycerol-3-phosphate	c
+cpd15352	2-Demethylmenaquinone-8	c
+cpd15353	2-Demethylmenaquinol-8	c
+cpd15354	2-hexadec-9-enoyl-sn-glycerol-3-phosphate	c
+cpd15355	2-hexadecanoyl-sn-glycerol-3-phosphate	c
+cpd15357	2-octadec-11-enoyl-sn-glycerol-3-phosphate	c
+cpd15358	2-octadecanoyl-sn-glycerol-3-phosphate	c
+cpd15362	2-tetradec-7-enoyl-sn-glycerol-3-phosphate	c
+cpd15363	2-tetradecanoyl-sn-glycerol-3-phosphate	c
+cpd15378	4-Hydroxy-benzylalcohol	c
+cpd15417	CDP-1-2-didodecanoylglycerol	c
+cpd15418	CDP-1-2-dihexadec-9-enoylglycerol	c
+cpd15419	CDP-1-2-dihexadecanoylglycerol	c
+cpd15420	CDP-1-2-dioctadec-11-enoylglycerol	c
+cpd15421	CDP-1-2-dioctadecanoylglycerol	c
+cpd15422	CDP-1-2-ditetradec-7-enoylglycerol	c
+cpd15423	CDP-1-2-ditetradecanoylglycerol	c
+cpd15432	core-oligosaccharide-lipid-A	c
+cpd15469	galactosyl-glucosyl-inner-core-oligosaccharide-lipid-A	c
+cpd15475	glucosyl-galactosyl-glucosyl-inner-core-oligosaccharide-lipid-A	c
+cpd15477	glucosyl-glucosyl-galactosyl-glucosyl-inner-core-oligosaccharide-lipid-A	c
+cpd15479	glucosyl-inner-core-oligosaccharide-lipid-A	c
+cpd15484	heptosyl-heptosyl-kdo2-lipidA	c
+cpd15485	heptosyl-kdo2-lipidA	c
+cpd15488	heptosyl-phospho-heptosyl-heptosyl-kdo2-lipidA	c
+cpd15489	inner-core-oligosaccharide-lipid-A	c
+cpd15492	kdo-phospho-heptosyl-phospho-heptosyl-heptosyl-kdo2-lipidA	c
+cpd15494	Maltoheptaose	c
+cpd15495	Maltopentaose	c
+cpd15499	Menaquinol-8	c
+cpd15500	Menaquinone-8	c
+cpd15521	1-2-didodecanoyl-sn-glycerol-3-phosphate	c
+cpd15522	1-2-ditetradecanoyl-sn-glycerol-3-phosphate	c
+cpd15523	1-2-ditetradec-7-enoyl-sn-glycerol-3-phosphate	c
+cpd15524	1-2-dihexadecanoyl-sn-glycerol-3-phosphate	c
+cpd15525	1-2-dihexadec-9-enoyl-sn-glycerol-3-phosphate	c
+cpd15526	1-2-dioctadecanoyl-sn-glycerol-3-phosphate	c
+cpd15527	1-2-dioctadec-11-enoyl-sn-glycerol-3-phosphate	c
+cpd15528	phosphatidylethanolamine-didodecanoyl	c
+cpd15529	phosphatidylethanolamine-ditetradecanoyl	c
+cpd15530	phosphatidylethanolamine-ditetradec-7-enoyl	c
+cpd15531	phosphatidylethanolamine-dihexadecanoyl	c
+cpd15532	phosphatidylethanolamine-dihexadec-9enoyl	c
+cpd15533	phosphatidylethanolamine-dioctadecanoyl	c
+cpd15534	phosphatidylethanolamine-dioctadec-11-enoyl	c
+cpd15535	Phosphatidylglycerol-didodecanoyl	c
+cpd15536	Phosphatidylglycerol-ditetradecanoyl	c
+cpd15537	Phosphatidylglycerol-ditetradec-7-enoyl	c
+cpd15538	Phosphatidylglycerol-dihexadecanoyl	c
+cpd15539	Phosphatidylglycerol-dihexadec-9-enoyl	c
+cpd15540	Phosphatidylglycerol-dioctadecanoyl	c
+cpd15541	Phosphatidylglycerol-dioctadec-11-enoyl	c
+cpd15542	Phosphatidylglycerophosphate-didodecanoyl	c
+cpd15543	Phosphatidylglycerophosphate-ditetradecanoyl	c
+cpd15544	Phosphatidylglycerophosphate-ditetradec-7-enoyl	c
+cpd15545	Phosphatidylglycerophosphate-dihexadecanoyl	c
+cpd15546	Phosphatidylglycerophosphate-dihexadec-9-enoyl	c
+cpd15547	Phosphatidylglycerophosphate-dioctadecanoyl	c
+cpd15548	Phosphatidylglycerophosphate-dioctadec-11-enoyl	c
+cpd15549	phospho-heptosyl-heptosyl-kdo2-lipidA	c
+cpd15550	phospho-heptosyl-phospho-heptosyl-heptosyl-kdo2-lipidA	c
+cpd15552	phosphatidylserine-didodecanoyl	c
+cpd15553	phosphatidylserine-ditetradecanoyl	c
+cpd15554	phosphatidylserine-ditetradec-7-enoyl	c
+cpd15555	phosphatidylserine-dihexadecanoyl	c
+cpd15556	phosphatidylserine-dihexadec-9-enoyl	c
+cpd15557	phosphatidylserine-dioctadecanoyl	c
+cpd15558	phosphatidylserine-dioctadec-11-enoyl	c
+cpd15560	Ubiquinone-8	c
+cpd15561	Ubiquinol-8	c
+cpd15603	Gly-Cys	c, e
+cpd15604	Gly-Leu	c, e
+cpd15605	Gly-Phe	c, e
+cpd15606	Gly-Tyr	c, e
+cpd15665	Peptidoglycan-polymer-n-subunits	c
+cpd15666	Peptidoglycan-polymer-n-1-subunits	c
+cpd15671	1-isoheptadecanoyl-sn-glycerol-3-phosphate	c
+cpd15672	1-anteisoheptadecanoyl-sn-glycerol-3-phosphate	c
+cpd15673	1-isotetradecanoyl-sn-glycerol-3-phosphate	c
+cpd15674	1-isopentadecanoyl-sn-glycerol-3-phosphate	c
+cpd15675	1-anteisopentadecanoyl-sn-glycerol-3-phosphate	c
+cpd15676	1-isohexadecanoyl-sn-glycerol-3-phosphate	c
+cpd15677	1-2-diisoheptadecanoyl-sn-glycerol-3-phosphate	c
+cpd15678	1-2-dianteisoheptadecanoyl-sn-glycerol-3-phosphate	c
+cpd15679	1-2-diisotetradecanoyl-sn-glycerol-3-phosphate	c
+cpd15680	1-2-diisopentadecanoyl-sn-glycerol-3-phosphate	c
+cpd15681	1-2-dianteisopentadecanoyl-sn-glycerol-3-phosphate	c
+cpd15682	1-2-diisohexadecanoyl-sn-glycerol-3-phosphate	c
+cpd15683	CDP-1-2-diisoheptadecanoylglycerol	c
+cpd15684	CDP-1-2-dianteisoheptadecanoylglycerol	c
+cpd15685	CDP-1-2-diisotetradecanoylglycerol	c
+cpd15686	CDP-1-2-diisopentadecanoylglycerol	c
+cpd15687	CDP-1-2-dianteisopentadecanoylglycerol	c
+cpd15688	CDP-1-2-diisohexadecanoylglycerol	c
+cpd15689	Diisoheptadecanoylphosphatidylserine	c
+cpd15690	Dianteisoheptadecanoylphosphatidylserine	c
+cpd15691	Diisotetradecanoylphosphatidylserine	c
+cpd15692	Diisopentadecanoylphosphatidylserine	c
+cpd15693	Dianteisopentadecanoylphosphatidylserine	c
+cpd15694	Diisohexadecanoylphosphatidylserine	c
+cpd15695	Diisoheptadecanoylphosphatidylethanolamine	c
+cpd15696	Dianteisoheptadecanoylphosphatidylethanolamine	c
+cpd15697	Diisotetradecanoylphosphatidylethanolamine	c
+cpd15698	Diisopentadecanoylphosphatidylethanolamine	c
+cpd15699	Dianteisopentadecanoylphosphatidylethanolamine	c
+cpd15700	Diisohexadecanoylphosphatidylethanolamine	c
+cpd15701	1-2-Diisoheptadecanoyl-sn-glycerol	c
+cpd15702	1-2-Dianteisoheptadecanoyl-sn-glycerol	c
+cpd15703	1-2-Diisotetradecanoyl-sn-glycerol	c
+cpd15704	1-2-Diisopentadecanoyl-sn-glycerol	c
+cpd15705	1-2-Dianteisopentadecanoyl-sn-glycerol	c
+cpd15706	1-2-Diisohexadecanoyl-sn-glycerol	c
+cpd15716	Diisoheptadecanoylphosphatidylglycerophosphate	c
+cpd15717	Dianteisoheptadecanoylphosphatidylglycerophosphate	c
+cpd15718	Diisotetradecanoylphosphatidylglycerophosphate	c
+cpd15719	Diisopentadecanoylphosphatidylglycerophosphate	c
+cpd15720	Dianteisopentadecanoylphosphatidylglycerophosphate	c
+cpd15721	Diisohexadecanoylphosphatidylglycerophosphate	c
+cpd15722	Diisoheptadecanoylphosphatidylglycerol	c
+cpd15723	Dianteisoheptadecanoylphosphatidylglycerol	c
+cpd15724	Diisotetradecanoylphosphatidylglycerol	c
+cpd15725	Diisopentadecanoylphosphatidylglycerol	c
+cpd15726	Dianteisopentadecanoylphosphatidylglycerol	c
+cpd15727	Diisohexadecanoylphosphatidylglycerol	c
+cpd15746	Palmitoyllipoteichoic-acid-n=24-linked-unsubstituted	c
+cpd15747	Myristoyllipoteichoic-acid-n=24-linked-unsubstituted	c
+cpd15748	Stearoyllipoteichoic-acid-n=24-linked-unsubstituted	c
+cpd15749	Isoheptadecanoyllipoteichoic-acid-n=24-linked-unsubstituted	c
+cpd15750	Anteisoheptadecanoyllipoteichoic-acid-n=24-linked-unsubstituted	c
+cpd15751	Isotetradecanoyllipoteichoic-acid-n=24-linked-unsubstituted	c
+cpd15752	Isopentadecanoyllipoteichoic-acid-n=24-linked-unsubstituted	c
+cpd15753	Anteisopentadecanoyllipoteichoic-acid-n=24-linked-unsubstituted	c
+cpd15754	Isohexadecanoyllipoteichoic-acid-n=24-linked-unsubstituted	c
+cpd15764	Palmitoyllipoteichoic-acid-n=24-linked-N-acetyl-D-glucosamine	c
+cpd15765	Myristoyllipoteichoic-acid-n=24-linked-N-acetyl-D-glucosamine	c
+cpd15766	Stearoyllipoteichoic-acid-n=24-linked-N-acetyl-D-glucosamine	c
+cpd15767	Isoheptadecanoyllipoteichoic-acid-n=24-linked-N-acetyl-D-glucosamine	c
+cpd15768	Anteisoheptadecanoyllipoteichoic-acid-n=24-linked-N-acetyl-D-glucosamine	c
+cpd15769	Isotetradecanoyllipoteichoic-acid-n=24-linked-N-acetyl-D-glucosamine	c
+cpd15770	Isopentadecanoyllipoteichoic-acid-n=24-linked-N-acetyl-D-glucosamine	c
+cpd15771	Anteisopentadecanoyllipoteichoic-acid-n=24-linked-N-acetyl-D-glucosamine	c
+cpd15772	Isohexadecanoyllipoteichoic-acid-n=24-linked-N-acetyl-D-glucosamine	c
+cpd17041	Protein-biosynthesis	c
+cpd17042	DNA-replication	c
+cpd17043	RNA-transcription	c
+cpd11770	L-Alanyl-tRNA	c
+cpd12003	L-Leucyl-tRNA	c
+cpd12036	L-Arginyl-tRNA	c
+cpd12060	Gln-tRNA(Gln)	c
+cpd12100	Glycyl-tRNA(Gly)	c
+cpd12105	L-Methionyl-tRNA	c
+cpd12132	L-Seryl-tRNA(Ser)	c
+cpd12133	L-Valyl-tRNA(Val)	c
+cpd12164	L-Prolyl-tRNA(Pro)	c
+cpd12194	L-Tyrosyl-tRNA(Tyr)	c
+cpd12226	L-Aspartyl-tRNA(Asp)	c
+cpd12228	L-Histidyl-tRNA(His)	c
+cpd12229	L-Threonyl-tRNA(Thr)	c
+cpd12255	L-Cysteinyl-tRNA(Cys)	c
+cpd12256	L-Isoleucyl-tRNA(Ile)	c
+cpd12313	Asn-tRNA(Asn)	c
+cpd12335	L-Phenylalanyl-tRNA(Phe)	c
+cpd12336	L-Tryptophanyl-tRNA(Trp)	c
+cpd15249	L-Lysine-tRNA (Lys)	c
+cpd11751	tRNA(Tyr)	c
+cpd11906	tRNA(Ala)	c
+cpd11907	tRNA(Arg)	c
+cpd11908	tRNA(Asn)	c
+cpd11909	tRNA(Asp)	c
+cpd11910	tRNA(Cys)	c
+cpd11911	tRNA(Gln)	c
+cpd11913	tRNA(Gly)	c
+cpd11914	tRNA(His)	c
+cpd11915	tRNA(Ile)	c
+cpd11916	tRNA(Leu)	c
+cpd11917	tRNA(Lys)	c
+cpd11918	tRNA(Met)	c
+cpd11919	tRNA(Phe)	c
+cpd11920	tRNA(Pro)	c
+cpd11921	tRNA(Ser)	c
+cpd11922	tRNA(Thr)	c
+cpd11923	tRNA(Trp)	c
+cpd11924	tRNA(Val)	c
+ecoli_DNA	DNA, E coli	c
+ecoli_Protein	Protein, E coli	c
+ecoli_RNA	RNA, E coli	c
+ecoli_phospholipid	Phospholipids, E coli 	c
+clpn_EC	Cardiolipin (made from pg_EC)	c
+pe_EC	Phosphatidylethanolamine (made from ps_EC)	c
+pg_EC	Phosphatidylglycerol (made from pgp_EC <- cdpdag_EC <- pa_EC)	c
+ps_EC	phosphatidylserine (made from cdpdag_EC)	c
+pgp_EC	Phosphatidylglycerophosphate (Ecoli)	c
+cdpdag_EC	CDPdiacylglycerol (E coli)	c
+pa_EC	phosphatidate  (E coli)	c
+lps_EC	Lipopolysaccharides, E coli	c
+cpd00444	CDPethanolamine	c
+12dgr_EC	1,2-Diacylglycerol , E coli	c
+peptido_EC	Peptidoglycan subunit, E coli	c
+cpd00988	3'-AMP	c
+pyrite	pyrite FeS2	e
+u4	Uranium IV	e
+u6	Uranium VI	e
+Tbd_0146_Tbd_0187_r	Thiobacillus Electron Carrier Reduced	c
+Tbd_0146_Tbd_0187_o	Thiobacillus Electron Carrier Oxidized	c
+Tbd_unknown_o	Thiobacillus Electron Carrier Oxidized	c
+Tbd_unknown_r	Thiobacillus Electron Carrier Reduced	c
+cpd00837	S-Adenosylmethioninamine (ametam)	c
+cpd00869	4-methylthio 2-oxobutyrate (2kmb)	c
+cpd01211	Thiocyanate (tcynt)	c
+cpd01414	Tetrathionate (tttnt)	c
+cpd02791	Methylthioribulose-1-phosphate (5mdru1p)	c
+cpd04536	Carbonyl sulfide	c
+cpd11295	2,3-diketo5-methylthio-1-phosphopentane (dkmpp)	c
+cpd15650	Cardiolipin, E. coli (clpn_EC)	c
+cpd15652	Lipopolysaccharide, E. coli (lps_EC)	c
+cpd15653	Phosphatidylethanolamine, E. coli (pe_EC)	c
+cpd15654	Peptidoglycan subunit, E. coli (peptido_EC)	c
+cpd15655	Phospatidylglycerol, E. coli (pg_EC)	c
+cpd15657	Phosphatidylserine, E. coli (ps_EC)	c
+cpd16066	CDPdiacylglycerol, E. coli (cdpdag_EC)	c

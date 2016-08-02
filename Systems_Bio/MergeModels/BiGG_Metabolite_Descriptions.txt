@@ -1,0 +1,2998 @@
+10fthf	10-Formyltetrahydrofolate
+10fthf5glu	10-formyltetrahydrofolate-[Glu](5)
+10fthf6glu	10-formyltetrahydrofolate-[Glu](6)
+10fthf7glu	10-formyltetrahydrofolate-[Glu](7)
+11-cis-retfa	fatty acid 11-cis-retinol
+11docrtsl	11-Deoxycortisol
+11docrtstrn	11-Deoxycorticosterone
+12dgr120	"1,2-Diacyl-sn-glycerol (didodecanoyl, n-C12:0)"
+12dgr140	"1,2-Diacyl-sn-glycerol (ditetradecanoyl, n-C14:0)"
+12dgr141	"1,2-Diacyl-sn-glycerol (ditetradec-7-enoyl, n-C14:1)"
+12dgr160	"1,2-Diacyl-sn-glycerol (dihexadecanoyl, n-C16:0)"
+12dgr161	"1,2-Diacyl-sn-glycerol (dihexadec-9-enoyl, n-C16:1)"
+12dgr180	"1,2-Diacyl-sn-glycerol (dioctadecanoyl, n-C18:0)"
+12dgr181	"1,2-Diacyl-sn-glycerol (dioctadec-11-enoyl, n-C18:1)"
+12dgr_EC	"1,2-Diacylglycerol  (E.coli)"
+12dgr_HP	"1,2-Diacylglycerol Hp specific"
+12dgr_SA	"1,2-Daicylglycerol (Saureus)"
+12dgr_SC	"1,2-Diacylglycerol, yeast-specific"
+12harachd	12 hydroxy arachidonic acid
+12HPET	"12-Hydroperoxyeicosa-5,8,10,14-tetraenoate"
+12ppd-R	"(R)-Propane-1,2-diol"
+12ppd-S	"(S)-Propane-1,2-diol"
+12RHPET	12R-Hydroperoxyeicosatetraenoate
+13BDglcn	"1,3-beta-D-Glucan"
+13-cis-oretn	13-cis-oxo-retinoic acid
+13-cis-retn	13-cis-retinoate
+13-cis-retnglc	13-cis-retinoyl glucuronide
+13dampp	"1,3-Diaminopropane"
+13dpg	3-Phospho-D-glyceroyl phosphate
+13ppd	"Propane-1,3-diol"
+14glucan	"1,4-alpha-D-glucan"
+14glun	"(1,4-alpha-D-Glucosyl)n"
+15dap	"1,5-Diaminopentane"
+15HPET	15-Hydroperoxyeicosatetraenoic acid
+17ahprgnlone	17alpha-Hydroxypregnenolone
+17ahprgstrn	17alpha-Hydroxyprogesterone
+18harachd	18 hydroxy arachidonic acid
+1a2425thvitd2	"1-alpha,24R,25-Trihydroxyvitamin D2"
+1a2425thvitd3	"1-alpha,24R,25-Trihydroxyvitamin D3"
+1a25dhvitd2	"1-alpha,25-Dihydroxyvitamin D2"
+1a25dhvitd3	"1-alpha,25-Dihydroxyvitamin D3"
+1ag3p_SC	1-Acyl-sn-glycerol 3-phosphate
+1agly3p_SC	"1-Acyl-glycerone 3-phosphate, yeast-specific"
+1agpe120	1-Acyl-sn-glycero-3-phosphoethanolamine (n-C12:0)
+1agpe140	1-Acyl-sn-glycero-3-phosphoethanolamine (n-C14:0)
+1agpe141	1-Acyl-sn-glycero-3-phosphoethanolamine (n-C14:1)
+1agpe160	1-Acyl-sn-glycero-3-phosphoethanolamine (n-C16:0)
+1agpe161	1-Acyl-sn-glycero-3-phosphoethanolamine (n-C16:1)
+1agpe180	1-Acyl-sn-glycero-3-phosphoethanolamine (n-C18:0)
+1agpe181	1-Acyl-sn-glycero-3-phosphoethanolamine (n-C18:1)
+1agpg120	1-Acyl-sn-glycero-3-phosphoglycerol (n-C12:0)
+1agpg140	1-Acyl-sn-glycero-3-phosphoglycerol (n-C14:0)
+1agpg141	1-Acyl-sn-glycero-3-phosphoglycerol (n-C14:1)
+1agpg160	1-Acyl-sn-glycero-3-phosphoglycerol (n-C16:0)
+1agpg161	1-Acyl-sn-glycero-3-phosphoglycerol (n-C16:1)
+1agpg180	1-Acyl-sn-glycero-3-phosphoglycerol (n-C18:0)
+1agpg181	1-Acyl-sn-glycero-3-phosphoglycerol (n-C18:1)
+1ap2ol	1-Aminopropan-2-ol
+1ap2olp	D-1-Aminopropan-2-ol O-phosphate
+1ddecg3p	1-dodecanoyl-sn-glycerol 3-phosphate
+1Dgali	1-alpha-D-Galactosyl-myo-inositol
+1glyc_hs	1 acyl phosphoglycerol
+1hdec9eg3p	1-hexadec-9-enoyl-sn-glycerol 3-phosphate
+1hdecg3p	1-hexadecanoyl-sn-glycerol 3-phosphate
+1mncam	1-Methylnicotinamide
+1mpyr	1-Methylpyrrolinium
+1msg3p	1-Acyl-sn-glycerol 3-phosphate (branched C19:0)
+1odec11eg3p	1-octadec-11-enoyl-sn-glycerol 3-phosphate
+1odecg3p	1-octadecanoyl-sn-glycerol 3-phosphate
+1p2cbxl	1-Pyrroline-2-carboxylate
+1p3h5c	L-1-Pyrroline-3-hydroxy-5-carboxylate
+1pipdn2c	delta1-Piperideine-2-carboxylate
+1ppr6p	1-Piperideine 6-carboxylate
+1pyr5c	1-Pyrroline-5-carboxylate
+1tdec7eg3p	1-tetradec-7-enoyl-sn-glycerol 3-phosphate
+1tdecg3p	1-tetradecanoyl-sn-glycerol 3-phosphate
+20ahchsterol	20alpha-hydroxy cholesterol
+23camp	"2',3'-Cyclic AMP"
+23ccmp	"2',3'-Cyclic CMP"
+23cgmp	"2',3'-Cyclic GMP"
+23cump	"2',3'-Cyclic UMP"
+23dap	"2,3-Diaminopropionate"
+23dappa	"2,3-diaminopropionate"
+23ddhb	"2,3-Dihydro-2,3-dihydroxybenzoate"
+23dhb	"2,3-Dihydroxybenzoate"
+23dhba	"(2,3-Dihydroxybenzoyl)adenylate"
+23dhba [deleted 07/14/2004  09:51:42 AM]	"(2,3-Dihydroxybenzoyl)adenylate"
+23dhbzs	"2,3-dihydroxybenzoylserine"
+23dhdp	"2,3-Dihydrodipicolinate"
+23dhmb	"(R)-2,3-Dihydroxy-3-methylbutanoate"
+23dhmp	"(R)-2,3-Dihydroxy-3-methylpentanoate"
+23doguln	"2,3-Dioxo-L-gulonate"
+23dpg	"2,3-Disphospho-D-glycerate"
+2425dhvitd2	"24R,25-Dihyoxyvitamin D2"
+2425dhvitd3	"24R,25-Dihydroxyvitamin D3"
+24dab	"L-2,4-Diaminobutanoate"
+24nph	"2,4 dihydroxy nitrophenol"
+25aics	(S)-2-[5-Amino-1-(5-phospho-D-ribosyl)imidazole-4-carboxamido]succinate
+25dhpp	"2,5-Diamino-6-hydroxy-4-(5'-phosphoribosylamino)-pyrimidine"
+25dkglcn	"2,5-diketo-D-gluconate"
+25drapp	"2,5-Diamino-6-(ribosylamino)-4-(3H)-pyrimidinone 5'-phosphate"
+25dthpp	"2,5-diamino-6-ribitylamino-4(3H)-pyrimidinone 5'-phosphate"
+25hvitd2	25-Hydroxyvitamin D2
+25hvitd3	25-Hydroxyvitamin D3
+26dap-LL	"LL-2,6-Diaminoheptanedioate"
+26dap-M	"meso-2,6-Diaminoheptanedioate"
+2a3pp	2-Amino-3-phosphonopropanoate
+2aadp	L-2-Aminoadipate
+2agpe120	2-Acyl-sn-glycero-3-phosphoethanolamine (n-C12:0)
+2agpe140	2-Acyl-sn-glycero-3-phosphoethanolamine (n-C14:0)
+2agpe141	2-Acyl-sn-glycero-3-phosphoethanolamine (n-C14:1)
+2agpe160	2-Acyl-sn-glycero-3-phosphoethanolamine (n-C16:0)
+2agpe161	2-Acyl-sn-glycero-3-phosphoethanolamine (n-C16:1)
+2agpe180	2-Acyl-sn-glycero-3-phosphoethanolamine (n-C18:0)
+2agpe181	2-Acyl-sn-glycero-3-phosphoethanolamine (n-C18:1)
+2agpg120	2-Acyl-sn-glycero-3-phosphoglycerol (n-C12:0)
+2agpg140	2-Acyl-sn-glycero-3-phosphoglycerol (n-C14:0)
+2agpg141	2-Acyl-sn-glycero-3-phosphoglycerol (n-C14:1)
+2agpg160	2-Acyl-sn-glycero-3-phosphoglycerol (n-C16:0)
+2agpg161	2-Acyl-sn-glycero-3-phosphoglycerol (n-C16:1)
+2agpg180	2-Acyl-sn-glycero-3-phosphoglycerol (n-C18:0)
+2agpg181	2-Acyl-sn-glycero-3-phosphoglycerol (n-C18:1)
+2ahbut	(S)-2-Aceto-2-hydroxybutanoate
+2ahhmd	"2-Amino-4-hydroxy-6-hydroxymethyl-7,8-dihydropteridine diphosphate"
+2ahhmp	"2-Amino-4-hydroxy-6-hydroxymethyl-7,8-dihydropteridine"
+2amac	2-Aminoacrylate
+2ameph	(2-Aminoethyl)phosphonate
+2amsa	2-Aminomalonate semialdehyde
+2aobut	L-2-Amino-3-oxobutanoate
+2c23dh56dhoxin	"2-Carboxy-2,3-dihydro-5,6-dihydroxyindole"
+2c25dho	"2-Carboxy-2,5-dihydro-5-oxofuran-2-acetate"
+2coum	cis-2-Hydroxy cinnamate
+2cpr5p	1-(2-Carboxyphenylamino)-1-deoxy-D-ribulose 5-phosphate
+2dda7p	2-Dehydro-3-deoxy-D-arabino-heptonate 7-phosphate
+2ddecg3p	2-dodecanoyl-sn-glycerol 3-phosphate
+2ddg6p	2-Dehydro-3-deoxy-D-gluconate 6-phosphate
+2ddglcn	2-Dehydro-3-deoxy-D-gluconate
+2dglcn	2-Deoxy-D-gluconate
+2dh3dgal	2-Dehydro-3-deoxy-D-galactonate
+2dh3dgal6p	2-Dehydro-3-deoxy-D-galactonate 6-phosphate
+2dhglcn	2-Dehydro-D-gluconate
+2dhguln	2-Dehydro-L-gulonate
+2dhp	2-Dehydropantoate
+2dhphaccoa	"1,2-Dihydroxy-1,2-dihydrophenylacetyl-CoA"
+2dmmq6	2-Demethylmenaquinone 6
+2dmmq8	2-Demethylmenaquinone 8
+2dmmql8	2-Demethylmenaquinol 8
+2dp6mep	2-Decaprenyl-6-methoxyphenol
+2dp6mobq	"2-Decaprenyl-6-methoxy-1,4-benzoquinone"
+2dp6mobq_me	"2-Decaprenyl-3-methyl-6-methoxy-1,4-benzoquinone"
+2dpmhobq	"2-Decaprenyl-3-methyl-5-hydroxy-6-methoxy-1,4-benzoquinone"
+2dr1p	2-Deoxy-D-ribose 1-phosphate
+2dr5p	2-Deoxy-D-ribose 5-phosphate
+2h3opp	2-Hydroxy-3-oxopropanoate
+2h3oppan	2-Hydroxy-3-oxopropanoate
+2hb	2-Hydroxybutyrate
+2hchd	"2-Hydroxy-cis-hex-2,4-dienoate"
+2hdec9eg3p	2-hexadec-9-enoyl-sn-glycerol 3-phosphate
+2hdecg3p	2-hexadecanoyl-sn-glycerol 3-phosphate
+2hhxdal	2-Hydroxy-hexadecanal
+2hmc	2-Hydroxymuconate
+2hmcnsad	2-Hydroxymuconate semialdehyde
+2hymeph	2-(Hydroxymethyl)phenol
+2hyoxplac	2-Hydroxyphenylacetate
+2ins	2-Inosose
+2ippm	2-Isopropylmaleate
+2kmb	2-keto-4-methylthiobutyrate
+2maacoa	2-Methyl-3-acetoacetyl-CoA
+2mahmp	2-Methyl-4-amino-5-hydroxymethylpyrimidine diphosphate
+2mb2coa	trans-2-Methylbut-2-enoyl-CoA
+2mbcoa	2-Methylbutanoyl-CoA
+2mbdhl	S-(2-Methylbutanoyl)-dihydrolipoamide
+2mcacn	cis-2-Methylaconitate
+2mcit	2-Methylcitrate
+2me4p	2-C-methyl-D-erythritol 4-phosphate
+2mecdp	"2-C-methyl-D-erythritol 2,4-cyclodiphosphate"
+2mop	2-Methyl-3-oxopropanoate
+2mp2coa	2-Methylprop-2-enoyl-CoA
+2mpdhl	S-(2-Methylpropanoyl)-dihydrolipoamide
+2obut	2-Oxobutanoate
+2odec11eg3p	2-octadec-11-enoyl-sn-glycerol 3-phosphate
+2odecg3p	2-octadecanoyl-sn-glycerol 3-phosphate
+2ohph	2-Octaprenyl-6-hydroxyphenol
+2ohph_5	2-Octaprenyl-6-hydroxyphenol (5 repeating units)
+2ombz	"2-Octaprenyl-6-methoxy-1,4-benzoquinone"
+2ombzl	"2-Octaprenyl-6-methoxy-1,4-benzoquinol"
+2ombzl_5	"2-Octaprenyl-6-methoxy-1,4-benzoquinol (5 repeating units)"
+2omcm	2-oxo-5-methyl-cis-muconate
+2omhmbl	"2-Octaprenyl-3-methyl-5-hydroxy-6-methoxy-1,4-benzoquinol"
+2omhmbl_5	"2-Octaprenyl-3-methyl-5-hydroxy-6-methoxy-1,4-benzoquinol (5 repeating units)"
+2ommb	"2-Octaprenyl-3-methyl-6-methoxy-1,4-benzoquinone"
+2ommbl	"2-Octaprenyl-3-methyl-6-methoxy- 1,4-benzoquinol"
+2ommbl_5	"2-Octaprenyl3-methyl-6-methoxy-1,4-benzoquinol (5 repeating units)"
+2omph	2-Octaprenyl-6-methoxyphenol
+2omph_5	2-Octaprenyl-6-methoxyphenol (5 repeating units)
+2ood	2-oxooctanedioic acid
+2oph	2-Octaprenylphenol
+2oph_5	2-Octaprenylphenol (5 repeating units)
+2oxoadp	2-Oxoadipate
+2p4c2me	2-phospho-4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol
+2pg	D-Glycerate 2-phosphate
+2pglyc	2-Phosphoglycolate
+2plac-L	2-phospho-L-lactate
+2ppoh	2-Propanol
+2saa	2-sulfoacetaldehyde
+2shchc	"2-Succinyl-6-hydroxy-2,4-cyclohexadiene-1-carboxylate"
+2tcc	2-(sulfomethyl)thiazolidine-4-carboxylic acid
+2tdec7eg3p	2-tetradec-7-enoyl-sn-glycerol 3-phosphate
+2tdecg3p	2-tetradecanoyl-sn-glycerol 3-phosphate
+2tpr3dpcoa	2'-(5''-triphosphoribosyl)-3'-dephospho-CoA
+34dhbald	"3,4-dihydroxybenzaldehyde"
+34dhbz	"3,4-Dihydroxybenzoate"
+34dhcinm	"3,4-Dihydroxy-trans-cinnamate"
+34dhmald	"3,4-Dihydroxymandelaldehyde"
+34dhoxmand	"3,4-Dihydroxymandelate"
+34dhoxpeg	"3,4-Dihydroxyphenylethyleneglycol"
+34dhpac	"3,4-Dihydroxyphenylacetaldehyde"
+34dhpha	"3,4-Dihydroxyphenylacetate"
+34dhphe	"3,4-Dihydroxy-L-phenylalanine"
+34hpl	3-(4-Hydroxyphenyl)lactate
+34hpp	3-(4-Hydroxyphenyl)pyruvate
+35ccmp	"3',5'-Cyclic CMP"
+35cdamp	"3',5'-Cyclic dAMP"
+35cgmp	"3',5'-Cyclic GMP"
+35cimp	"3',5'-Cyclic IMP"
+35diotyr	"3,5-Diiodo-L-tyrosine"
+36dahx	"(3S)-3,6-Diaminohexanoate"
+3aib-D	D-3-Amino-isobutanoate
+3aib	L-3-Amino-isobutanoate
+3amp	3'-AMP
+3AStmyn	"3""-Adenylylstreptomycin"
+3AStrmyn	3''-Adenylylspectinomycin
+3c2hmp	3-Carboxy-2-hydroxy-4-methylpentanoate
+3c3hmp	3-Carboxy-3-hydroxy-4-methylpentanoate
+3c4mop	3-Carboxy-4-methyl-2-oxopentanoate
+3cmp	3'-cmp
+3cmuc	"3-Carboxy-cis,cis-muconate"
+3ddgc	3-Dehydro-2-deoxy-D-gluconate
+3dhguln	3-Dehydro-L-gulonate
+3dhgulnp	3-keto-L-gulonate-6-phosphate
+3dhq	3-Dehydroquinate
+3dhsk	3-Dehydroshikimate
+3dpdhb	"3-Decaprenyl-4,5-dihdydroxybenzoate"
+3dpdhb_me	3-Decaprenyl-4-hydroxy-5-methoxybenzoate
+3dphb	3-Decaprenyl-4-hydroxybenzoate
+3dsphgn	3-Dehydrosphinganine
+3fpyr	3-Fumarylpyruvate
+3g12dgr_SA2	"3-D-Glucosyl-1,2-diacylglycerol"
+3gmp	3'-GMP
+3h26dm5coa	"3-Hydroxy-2,6-dimethyl-5-methylene-heptanoyl-CoA"
+3haACP	(3R)-3-Hydroxyacyl-[acyl-carrier protein]
+3hacoa	(S)-3-Hydroxyacyl-CoA
+3hadpcoa	(3S)-3-Hydroxyadipyl-CoA
+3hanthrn	3-Hydroxyanthranilate
+3hbacoa	(R)-3-Hydroxybutanoyl-CoA
+3hbACP	(3R)-3-Hydroxybutanoyl-[acyl-carrier protein]
+3hbcoa-R	(R)-3-Hydroxybutanoyl-CoA
+3hbcoa	(S)-3-Hydroxybutanoyl-CoA
+3hbut-R	(R)-3-Hydroxybutanoate
+3hbycoa	(S)-3-Hydroxybutyryl-CoA
+3hcddec5eACP	(R)-3-hydroxy-cis-dodec-5-enoyl-[acyl-carrier protein]
+3hcdgggp	CDP-2-O-(3'-hydroxy)geranyl-3-O-geranyl-sn-glycerol
+3hcinnm	3-hydroxycinnamic acid
+3hcmrs7eACP	(R)-3-hydroxy-cis-myristol-7-eoyl-[acyl-carrier protein]
+3hcpalm9eACP	(R)-3-hydroxy-cis-palm-9-eoyl-[acyl-carrier protein]
+3hcvac11eACP	(R)-3-hydroxy-cis-vacc-11-enoyl-[acyl-carrier protein]
+3hdcoa	(S)-3-Hydroxydecanoyl-CoA
+3hddACP	(R)-3-Hydroxydodecanoyl-[acyl-carrier protein]
+3hddcoa	(S)-3-Hydroxydodecanoyl-CoA
+3hddecACP	(R)-3-Hydroxydodecanoyl-[acyl-carrier protein]
+3hdeACP	(3R)-3-Hydroxydecanoyl-[acyl-carrier protein]
+3hdecACP	(R)-3-Hydroxydecanoyl-[acyl-carrier protein]
+3hdgggp	2-O-(3'-hydroxy)geranyl-3-O-geranyl-sn-glycerol
+3hdgggps	2-O-(3'-hydroxy)geranyl-3-O-geranyl-sn-glyceroserine
+3hdggpg	2-O-(3'-hydroxy)geranyl-3-O-geranyl-sn-glycerol-1-phospho-3'-sn-glycerol
+3hdggpgp	2-O-(3'-hydroxy)geranyl-3-O-geranyl-sn-glycerol-1-phospho-3'-sn-glycerol phosphate
+3hdggpi	2-O-(3'hydroxy)geranyl-3-O-geranyl-sn-glycero-1-phospho-myo-inositol
+3hdpgpe	2-O-(3'-hydroxy)phytanyl-3-O-phytanyl-sn-glycero-l-phosphoethanolamine
+3hdpgpg	2-O-(3'-hydroxy)phytanyl-3-O-phytanyl-sn-glycerol-1-phospho-3'-sn-glycerol
+3hdpgpi	2-O-(3'-hydroxyl)phytanyl-3-O-phytanyl-sn-glycero-1-phospho-myo-inositol
+3hdpgps	2-O-(3'-hydroxy)phytanyl-3-O-phytanyl-sn-glycero-l-phosphoserine
+3hfrdp	3-hydroxy-farnesyl diphosphate
+3hggdp	3-hydroxy-geranylgeranyl diphosphate
+3hgrdp	3-hydroxy-geranyl diphsophate
+3hhACP	(R)-3-Hydroxyhexanoyl-[acp]
+3hhcoa	(S)-3-Hydroxyhexanoyl-CoA
+3hhdcoa	(S)-3-Hydroxyhexadecanoyl-CoA
+3hhexACP	(R)-3-Hydroxyhexanoyl-[acyl-carrier protein]
+3hibutcoa	(S)-3-Hydroxyisobutyryl-CoA
+3hmbcoa	(S)-3-Hydroxy-2-methylbutyryl-CoA
+3hmp	3-Hydroxy-2-methylpropanoate
+3hmrsACP	(R)-3-Hydroxytetradecanoyl-[acyl-carrier protein]
+3hocACP	(R)-3-Hydroxyoctanoyl-[acyl-carrier protein]
+3hocdacp	(3R)-3-Hydroxyoctadecanoyl-[acyl-carrier protein]
+3hocoa	(S)-3-Hydroxyoctanoyl-CoA
+3hoctaACP	(R)-3-Hydroxyoctadecanoyl-[acyl-carrier protein]
+3hoctACP	(R)-3-Hydroxyoctanoyl-[acyl-carrier protein]
+3hodcoa	(S)-3-Hydroxyoctadecanoyl-CoA
+3hpaACP	(3R)-3-Hydroxypalmitoyl-[acyl-carrier protein]
+3hpalmACP	R-3-hydroxypalmitoyl-[acyl-carrier protein]
+3hpcoa	3-Hydroxypropionyl-CoA
+3hpimcoa	3-Hydroxypimelyl-CoA
+3hpp	3-Hydroxypropanoate
+3hppnl	3-Hydroxypropanal
+3hpppn	3-(3-hydroxy-phenyl)propionate
+3htdACP	(3R)-3-Hydroxytetradecanoyl-[acyl-carrier protein]
+3htdcoa	(S)-3-Hydroxytetradecanoyl-CoA
+3htmelys	"3-Hydroxy-N6,N6,N6-trimethyl-L-lysine"
+3hxccoa	(S)-3-Hydroxyhexacosyl-CoA
+3hxkynam	3-Hydroxykynurenamine
+3ig3p	C'-(3-Indolyl)-glycerol 3-phosphate
+3ityr-L	3-Iodo-L-tyrosine
+3m4hpga	3-Methoxy-4-hydroxyphenylglycolaldehyde
+3mb2coa	3-Methylbut-2-enoyl-CoA
+3mbdhl	S-(3-Methylbutanoyl)-dihydrolipoamide
+3mbzalc	3-methylbenzyl alcohol
+3mbzald	3-Methylbenzaldehyde
+3mcat	3-Methylcatechol
+3mgcoa	3-Methylglutaconyl-CoA
+3mlda	3-Methylimidazoleacetic acid
+3mldz	3-Methylimidazole acetaldehyde
+3mob	3-Methyl-2-oxobutanoate
+3mop	(S)-3-Methyl-2-oxopentanoate
+3mox4hoxm	3-Methoxy-4-hydroxymandelate
+3mox4hpac	3-Methoxy-4-hydroxyphenylacetaldehyde
+3moxtyr	3-Methoxytyramine
+3oacoa	3-Oxoacyl-CoA
+3ocddec5eACP	3-oxo-cis-dodec-5-enoyl-[acyl-carrier protein]
+3ocmrs7eACP	3-oxo-cis-myristol-7-eoyl-[acyl-carrier protein]
+3ocpalm9eACP	3-oxo-cis-palm-9-eoyl-[acyl-carrier protein]
+3ocvac11eACP	3-oxo-cis-vacc-11-enoyl-[acyl-carrier protein]
+3odcoa	3-Oxodecanoyl-CoA
+3oddcoa	3-Oxododecanoyl-CoA
+3oddecACP	3-Oxododecanoyl-[acyl-carrier protein]
+3odecACP	3-Oxodecanoyl-[acyl-carrier protein]
+3ohcoa	3-Oxohexanoyl-CoA
+3ohdcoa	3-Oxohexadecanoyl-CoA
+3ohexACP	3-Oxohexanoyl-[acyl-carrier protein]
+3ohodcoa	3-Oxooctadecanoyl-CoA
+3ohxccoa	3-Oxohexacosyl-CoA
+3omrsACP	3-Oxotetradecanoyl-[acyl-carrier protein]
+3oocoa	3-Oxooctanoyl-CoA
+3ooctACP	3-Oxooctanoyl-[acyl-carrier protein]
+3ooctdACP	3-Oxooctadecanoyl-[acyl-carrier protein]
+3oodcoa	3-Oxooctadecanoyl-CoA
+3opalmACP	3-Oxohexadecanoyl-[acyl-carrier protein]
+3ophb	3-Octaprenyl-4-hydroxybenzoate
+3ophb_5	3-Hexaprenyl-4-hydroxybenzoate
+3opimcoa	3-Oxopimeloyl-CoA
+3otdcoa	3-Oxotetradecanoyl-CoA
+3oxddACP	3-Oxododecanoyl-[acyl-carrier protein]
+3oxdeACP	3-Oxodecanoyl-[acyl-carrier protein]
+3oxhACP	3-Oxohexanoyl-[acyl-carrier protein]
+3oxhdACP	3-Oxohexadecanoyl-[acp]
+3oxoadp	3-Oxoadipate
+3oxocACP	3-Oxooctanoyl-[acyl-carrier protein]
+3oxocdacp	3-Oxooctadecanoyl-[acp]
+3oxtdACP	3-Oxotetradecanoyl-[acyl-carrier protein]
+3padsel	3'-Phosphoadenylylselenate
+3pg	3-Phospho-D-glycerate
+3php	3-Phosphohydroxypyruvate
+3pop	3-Phosphonopyruvate
+3psme	5-O-(1-Carboxyvinyl)-3-phosphoshikimate
+3sala	3-Sulfino-L-alanine
+3snpyr	3-Sulfinopyruvate
+3spyr	3-Sulfopyruvate
+3uib	3-Ureidoisobutyrate
+3ump	3'-UMP
+42A3HP24DB	"4-(2-Amino-3-hydroxyphenyl)-2,4-dioxobutanoate"
+44mctr	"4,4-dimethylcholesta-8,14,24-trienol"
+44mzym	"4,4-dimethylzymosterol"
+46dhoxquin	"4,6-Dihydroxyquinoline"
+48dhoxquin	"4,8-Dihydroxyquinoline"
+4aabutn	4-Acetamidobutanoate
+4abut	4-Aminobutanoate
+4abutn	4-Aminobutanal
+4abz	4-Aminobenzoate
+4adcho	4-amino-4-deoxychorismate
+4ahmmp	4-Amino-5-hydroxymethyl-2-methylpyrimidine
+4ampm	4-Amino-2-methyl-5-phosphomethylpyrimidine
+4aphdob	"4-(2-Aminophenyl)-2,4-dioxobutanoate"
+4c2me	4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol
+4chccm	"4-Carboxy-2-hydroxy-cis,cis-muconate"
+4chms	4-Carboxy-2-hydroxymuconate semialdehyde
+4choa	4-Carboxy-4-hydroxy-2-oxoadipate
+4cmcoa	4-Coumaroyl-CoA
+4cml	4-Carboxymuconolactone
+4fumacac	4-Fumarylacetoacetate
+4gudbd	4-Guanidinobutanamide
+4gudbutn	4-Guanidinobutanoate
+4h2oglt	4-Hydroxy-2-oxoglutarate
+4h2opntn	4-Hydroxy-2-oxopentanoate
+4h2oxov	4-Hydroxy-2-oxovalerate
+4h2oxv	4-Hydroxy-2-oxovalerate
+4hba	4-Hydroxy-benzyl alcohol
+4hbald	4-Hydroxybenzaldehyde
+4hbcoa	4-Hydroxybenzoyl-CoA
+4hbz	4-Hydroxybenzoate
+4hbzACP	4-hydroxybenzoyl ACP
+4hbzcoa	4-hydroxybenoyl-CoA
+4hdebrisoquine	4 hydroxy debrisoquine
+4hglusa	L-4-Hydroxyglutamate semialdehyde
+4hoxoh	4-Hydroxy-2-oxohexanoic acid
+4hoxpacd	4-Hydroxyphenylacetaldehyde
+4hphac	4-Hydroxyphenylacetate
+4hpro-LT	trans-4-Hydroxy-L-proline
+4hthr	4-Hydroxy-L-threonine
+4izp	4-Imidazolone-5-propanoate
+4kfbp	"4-ketofructose 1,6-bisphosphate"
+4mbzalc	4-methylbenzyl alcohol
+4mbzald	p-methylbenzaldehyde
+4mcat	4-Methylcatechol
+4met2obut	4-Methylthio-2-oxobutanoate
+4mhetz	4-Methyl-5-(2-hydroxyethyl)-thiazole
+4mlacac	4-Maleylacetoacetate
+4mop	4-Methyl-2-oxopentanoate
+4mpetz	4-Methyl-5-(2-phosphoethyl)-thiazole
+4mptnl	4-Methylpentanal
+4mtolbutamide	4 hydroxy tolbutamide
+4mzym	4-methylzymosterol
+4mzym_int1	4-Methylzymosterol intermediate 1
+4mzym_int2	4-Methylzymosterol intermediate 2
+4nph	4-Nitrophenol
+4nphsf	4-Nitrophenyl sulfate
+4pasp	4-Phospho-L-aspartate
+4per	4-Phospho-D-erythronate
+4ppan	D-4'-Phosphopantothenate
+4ppcys	N-((R)-4-Phosphopantothenoyl)-L-cysteine
+4pyrdx	4-Pyridoxate
+4r5au	4-(1-D-Ribitylamino)-5-aminouracil
+4tmeabut	4-Trimethylammoniobutanal
+4tmeabutn	4-Trimethylammoniobutanoate
+5678thh	"(6R)-6-(L-erythro-1,2-Dihydroxypropyl)-5,6,7,8-tetrahydro-4a-hydroypterin"
+56dihindlcrbxlt	"5,6-Dihydroxyindole-2-carboxylate"
+56dthm	"5,6-Dihydrothymine"
+56dura	"5,6-dihydrouracil"
+5a2opntn	5-Amino-2-oxopentanoate
+5adtststerone	5alpha-Dihydrotestosterone
+5adtststeroneglc	5alpha-Dihydrotestosterone glucuronide
+5adtststerones	5alpha-Dihydrotestosterone sulfate
+5aizc	5-amino-1-(5-phospho-D-ribosyl)imidazole-4-carboxylate
+5aop	5-Amino-4-oxopentanoate
+5apentam	5-Aminopentanamide
+5aprbu	5-Amino-6-(5'-phosphoribitylamino)uracil
+5apru	5-Amino-6-(5'-phosphoribosylamino)uracil
+5aptn	5-Aminopentanoate
+5caiz	5-phosphoribosyl-5-carboxyaminoimidazole
+5d4dglcr	5-Dehydro-4-deoxy-D-glucarate
+5dglcn	5-Dehydro-D-gluconate
+5dh4dglc	5-Dehydro-4-deoxy-D-glucarate
+5dhf	pentaglutamyl folate (DHF)
+5dpmev	(R)-5-Diphosphomevalonate
+5drib	5'-deoxyribose
+5forthf	5-Formiminotetrahydrofolate
+5fthf	5-Formyltetrahydrofolate
+5g2oxpt	5-Guanidino-2-oxopentanoate
+5hbzid	5-hydroxybenzimidazole
+5homeprazole	5 hydroxy omeprazole
+5hoxindact	5-Hydroxyindoleacetaldehyde
+5hoxindoa	5-Hydroxyindoleacetate
+5hoxnfkyn	5-Hydroxy-N-formylkynurenine
+5HPET	"5-Hydroperoxy-6-trans-8,11,14-cis-eicosatetraenoate"
+5htrp	5-Hydroxy-L-tryptophan
+5hxkyn	5-Hydroxykynurenine
+5hxkynam	5-Hydroxykynurenamine
+5mcsn	5-Methylcytosine
+5mdr1p	5-Methylthio-5-deoxy-D-ribose 1-phosphate
+5mdru1p	5-Methylthio-5-deoxy-D-ribulose 1-phosphate
+5moxact	5-Methoxyindoleacetate
+5mta	5-Methylthioadenosine
+5mthf	5-Methyltetrahydrofolate
+5mthglu	5-Methyltetrahydropteroyltri-L-glutamate
+5mtr	5-Methylthio-D-ribose
+5odhf2a	"5-Oxo-4,5-dihydrofuran-2-acetate"
+5oxpro	5-Oxoproline
+5pmev	(R)-5-Phosphomevalonate
+5pr5hbz	N1-(5-Phospho-alpha-D-ribosyl)-5-hydroxybenzimidazole
+5prdmbz	"N1-(5-Phospho-alpha-D-ribosyl)-5,6-dimethylbenzimidazole"
+5thf	pentaglutamyl folate (THF)
+6a2ohxnt	6-Amino-2-oxohexanoate
+6ax	6-Aminohexanoate
+6ax6ax	N-(6-Aminohexanoyl)-6-aminohexanoate
+6dg	D-Gal-alpha-1->6D-Glucose
+6dhf	haxglutamyl folate (DHF)
+6hch1eccoa	6-Hydroxycyclohex-1-enecarbonyl-CoA
+6hmhpt	6-hydroxymethyl dihydropterin
+6hmhptpp	6-hydroxymethyl-dihydropterin pyrophosphate
+6hnac	6-Hydroxynicotinate
+6hoxmelatn	6-Hydroxymelatonin
+6htststerone	6 beta hydroxy testosterone
+6occhcoa	6-oxocyclohex-1-ene-1-carboxyl-CoA
+6p2dhglcn	6-Phospho-2-dehydro-D-gluconate
+6pgc	6-Phospho-D-gluconate
+6pgl	"6-phospho-D-glucono-1,5-lactone"
+6pthp	"6-Pyruvoyl-5,6,7,8-tetrahydropterin"
+6thf	hexaglutamyl folate  (THF)
+78dhp	"(6R)-6-(L-erythro-1,2-Dihydroxypropyl)-7,8-dihydro-6H-pterin"
+7dhchsterol	7-Dehydrocholesterol
+7dhf	heptaglutamyl folate (DHF)
+7mhp	7-mercaptoheptanoic acid
+7mht	7-mercaptoheptanoylthreonine
+7ohp	7-oxoheptanoic acid
+7thf	heptaglutamyl folate (THF)
+8aonn	8-Amino-7-oxononanoate
+9-cis-retfa	fatty acid 9-cis-retinol
+aa	acrylamide
+aacald	Aminoacetaldehyde
+aacoa	Acetoacetyl-CoA
+aact	Aminoacetone
+abt	L-Arabinitol
+Ac1PIM1	acyl phosphatidylinositol mannoside (tuberculosis)
+Ac1PIM2	acyl phosphatidylinositol mannoside di-mannose (tuberculosis)
+Ac1PIM3	acyl phosphatidylinositol mannoside tri-mannose (tuberculosis)
+Ac1PIM4	acyl phosphatidylinositol mannoside tetra-mannose (tuberculosis)
+Ac2PIM2	di-acyl phosphatidylinositol mannoside di-mannose (tuberculosis)
+acac	Acetoacetate
+ac	Acetate
+acACP	Acetyl-ACP
+acald	Acetaldehyde
+acanth	N-Acetylanthranilate
+accoa	Acetyl-CoA
+acetol	Acetol
+acetone	Acetone
+acg5p	N-Acetyl-L-glutamyl 5-phosphate
+acg5sa	N-Acetyl-L-glutamate 5-semialdehyde
+acgagbside_hs	alpha GalNAc globoside (homo sapiens)
+acgal1p	N-Acetyl-D-galactosamine 1-phosphate
+acgalfuc12gal14acglcgalgluside_hs	(Gal)2 (GalNAc)1 (Glc)1 (GlcNAc)1 (LFuc)1 (Cer)1
+acgalfucgalacgalfuc12gal14acglcgalgluside_hs	Type IIIA glycolipid
+acgalfucgalacgalfucgalacglcgal14acglcgalgluside_hs	Type IIIAb
+acgalfucgalacglcgal14acglcgalgluside_hs	(Gal)3 (GalNAc)1 (Glc)1 (GlcNAc)2 (LFuc)1 (Cer)1
+acgalfucgalacglcgalgluside_hs	Type IA glycolipid
+acgal	N-Acetyl-D-galactosamine
+acgam1p	N-Acetyl-D-glucosamine 1-phosphate
+acgam6p	N-Acetyl-D-glucosamine 6-phosphate
+acgam	N-Acetyl-D-glucosamine
+acgbgbside_hs	beta GalNAc globoside (homo sapiens)
+acglc13galacglcgal14acglcgalgluside_hs	nLc7Cer
+acglc-D	6-Acetyl-D-glucose
+acglcgal14acglcgalgluside_hs	nLc5Cer
+acglcgalacglcgal14acglcgalgluside_hs	(Gal)3 (Glc)1 (GlcNAc)3 (Cer)1
+acglcgalgbside_hs	GlcNAc-Gal globoside (homo sapiens)
+acglcgalgluside_hs	(Gal)1 (Glc)1 (GlcNAc)1 (Cer)1
+acglu	N-Acetyl-L-glutamate
+acgpail_hs	N-Acetyl-D-glucosaminylphosphatidylinositol
+ach	Acetylcholine
+achms	O-Acetyl-L-homoserine
+acmalt	Acetyl-maltose
+acmama	N-Acetyl-D-muramoyl-L-alanine
+acmam	N-Acetyl-D-muramoate
+acmana	N-Acetyl-D-mannosamine
+acmanap	N-Acetyl-D-mannosamine 6-phosphate
+acmum6p	N-acetylmuramate 6-phosphate
+acmum	N-Acetylmuramate
+acn13acngalgbside_hs	"sialyl (1,3) sialyl (2,6) galactosylgloboside (homo sapiens)"
+acn23acngalgbside_hs	"sialyl (2,3) sialyl (2,6) galactosylgloboside (homo sapiens)"
+acnacngal14acglcgalgluside_hs	"3',8'-LD1"
+acnacngalgbside_hs	disialyl galactosylgloboside (homo sapiens)
+acnam	N-Acetylneuraminate
+acnamp	N-Acetylneuraminate 9-phosphate
+acngal14acglcgalgluside_hs	Sialyl-3-paragloboside
+acngalacglcgal14acglcgalgluside_hs	VI3NeuAc-nLc6Cer
+acngalacglcgalgluside_hs	(Gal)3 (Glc)1 (GlcNAc)1 (Cer)1
+acngalgbside_hs	sialyl galactosylgloboside (homo sapiens)
+acoa	Acyl-CoA
+acolipa	4-Amino-4-deoxy-L-arabinose modified core oligosaccharide lipid A
+acon-C	cis-Aconitate
+aconm	E-3-carboxy-2-pentenedioate 6-methyl ester
+acon-T	trans-Aconitate
+acorn	N2-Acetyl-L-ornithine
+ACP	acyl carrier protein
+acrn	O-Acetylcarnitine
+acryl	Acrylate
+acser	O-Acetyl-L-serine
+actACP	Acetoacetyl-ACP
+actn-R	(R)-Acetoin
+actp	Acetyl phosphate
+acybut	gamma-Amino-gamma-cyanobutanoate
+acysbmn	acetyl-cystine-bimane
+ad	acetamide
+adcoba	Adenosyl cobinamide
+adcobap	Adenosyl cobinamide phosphate
+adcobdam	Adenosyl cobyrinate diamide
+adcobhex	adenosyl-cobyric acid
+ade	Adenine
+adfdOX	Oxidized adrenal ferredoxin
+adfdRD	Reduced adrenal ferredoxin
+adgcoba	Adenosine-GDP-cobinamide
+adhap_hs	acyl-dihydroxyacetone phosphate
+adhlam	S-Acetyldihydrolipoamide
+adn	Adenosine
+adocbi	Adenosyl cobinamide
+adocbip	Adenosyl cobinamide phosphate
+adocbl	Adenosylcobalamin
+adocblhbi	Adenosylcobalamin-HBI
+adp	ADP
+adpglc	ADPglucose
+adphep7p-LD	ADP-L-glycero-D-manno-heptose-7-phosphate
+"adphep-D,D"	ADP-D-glycero-D-manno-heptose
+adphep-DD	ADP-D-glycero-D-manno-heptose
+"adphep-L,D"	ADP-L-glycero-D-manno-heptose
+adphep-LD	ADP-L-glycero-D-manno-heptose
+adpman	ADPmannose
+adprbp	ADPribose 2'-phosphate
+adprib	ADPribose
+adrn	adrenic acid
+adrncoa	adrenyl coenzyme A
+adrncrn	Adrenyl carnitine
+adrnl	Adrenaline
+adsel	Adenylylselenate
+aflatoxin	aflatoxin B1
+agalfragund	arabinofuranose-galactofuranosyl(30)-rhamanosyl-N-acetylglucosamyl-undecaprenyl diphosphate (M tb)
+agdpcbi	Adenosine-GDP-cobinamide
+agdpgpi	N-Acetyl-D-glucosaminyl archaetidylinositol
+agm	Agmatine
+agpc_EC	acyl-glycerophosphocholine
+agpe_EC	acyl-glycerophosphoethanolamine  (E.coli)
+agpg_EC	acyl-glycerophosphoglycerol  (E.coli)
+ag	silver
+ahandrostan	3alpha-Hydroxy-5beta-androstan-17-one
+ahandrostanglc	Etiocholan-3alpha-ol-17-one 3-glucuronide
+ahcys	S-Adenosyl-L-homocysteine
+ahdt	"2-Amino-4-hydroxy-6-(erythro-1,2,3-trihydroxypropyl)dihydropteridine triphosphate"
+aicar	5-Amino-1-(5-Phospho-D-ribosyl)imidazole-4-carboxamide
+air	5-amino-1-(5-phospho-D-ribosyl)imidazole
+ak2gchol_hs	1-alkyl 2-acylglycerol 3-phosphocholine
+ak2g_hs	1-alkyl 2-acylglycerol
+ak2gpe_hs	1-alkyl 2-acylglycerol 3-phosphoethanolamine
+ak2gp_hs	1-alkyl 2-acylglycerol 3-phosphate
+ak2lgchol_hs	1-alkyl 2-lysoglycerol 3-phosphocholine
+akdhap_hs	1-alkyldihydroxyacetone phosphate
+akg	2-Oxoglutarate
+akgp_hs	1-alkylglycerol 3-phosphate (homo sapiens)
+alaala	D-Alanyl-D-alanine
+ala-B	beta-Alanine
+alac-S	(S)-2-Acetolactate
+ala-D	D-Alanine
+ala-L	L-Alanine
+alatrna	L-Alanyl-tRNA(Ala)
+aldstrn	Aldosterone
+alkylR1oh	hydroxy alkyl chain
+all6p	D-Allose 6-phosphate
+all-D	D-Allose
+allphn	Allophanate
+alltn	Allantoin
+alltt	Allantoate
+allul6p	Allulose 6-phosphate
+alpa_hs	lysophosphatidic acid (homo sapiens)
+alpam	S-aminomethyldihydrolipoamide
+alpp	applipoprotein
+alpro	S-Aminomethyldihydrolipoylprotein
+altrn	D-Altronate
+am6sa	2-Aminomuconate 6-semialdehyde
+ametam	S-Adenosylmethioninamine
+amet	S-Adenosyl-L-methionine
+amob	S-Adenosyl-4-methylthio-2-oxobutanoate
+amopbut-L	2-Amino-3-oxo-4-phosphonooxybutyrate
+amp	AMP
+amuco	2-Aminomuconate
+andrstandn	androstanedione
+andrstndn	Androstenedione
+andrstrn	Androsterone
+andrstrnglc	androsterone glucuronide
+anhgm3p	N-Acetyl-D-glucosamine(anhydrous)N-Acetylmuramyl-tripeptide
+anhgm4p	N-Acetyl-D-glucosamine(anhydrous)N-Acetylmuramyl-tetrapeptide
+anhgm	N-Acetyl-D-glucosamine(anhydrous)N-Acetylmuramic acid
+anhm	"1,6-anhydrous-N-Acetylmuramate"
+anhm3p	"1,6-anhydrous-N-Acetylmuramyl-tripeptide"
+anhm4p	"1,6-anhydrous-N-Acetylmuramyl-tetrapeptide"
+anth	Anthranilate
+antipyrene	antipyrene
+ap4a	"P1,P4-Bis(5'-adenosyl) tetraphosphate"
+ap4g	"P1-(5'-adenosyl),P4-(5'-guanosyl) tetraphosphate"
+ap5a	"P1,P5-Bis(5'-adenosyl) pentaphosphate"
+apep	Nalpha-Acetylpeptide
+apg120	acyl phosphatidylglycerol (n-C12:0)
+apg140	acyl phosphatidylglycerol (n-C14:0)
+apg141	acyl phosphatidylglycerol (n-C14:1)
+apg160	acyl phosphatidylglycerol (n-C16:0)
+apg161	acyl phosphatidylglycerol (n-C16:1)
+apg180	acyl phosphatidylglycerol (n-C18:0)
+apg181	acyl phosphatidylglycerol (n-C18:1)
+apg_EC	acyl phosphatidylglycerol (E.coli)
+apnnox	alpha-Pinene-oxide
+apoACP	apoprotein [acyl carrier protein]
+apoC	Apocarboxlase (no lys residue)
+apoC-Lys	Apocarboxylase (Lys residue)
+apoC-Lys_btn	Holocarboxylase (biotin covalent bound to Lys residue of apoC)
+appl	1-Aminopropan-2-ol
+applp	D-1-Aminopropan-2-ol O-phosphate
+appnn	(+)-alpha-Pinene
+aprgstrn	20alpha-Hydroxyprogesterone
+aproa	3-Aminopropanal
+aprop	alpha-Aminopropiononitrile
+aprut	N-Acetylputrescine
+aps	Adenosine 5'-phosphosulfate
+aqcobal	Aquacob(III)alamin
+ara4n-L	4-amino-4-deoxy-L-arabinose
+ara4n-lipa	L-ara4N modified KDO2 Lipid A
+ara5p	D-Arabinose 5-phosphate
+arab-D	D-Arabinose
+arabinanagalfragund	arabinan-arabinofuranose-galactofuranosyl(30)-rhamanosyl-N-acetylglucosamyl-undecaprenyl diphosphate (M tb)
+arabinan	arabinan complex (Mtb)
+arab-L	L-Arabinose
+arachACP	eicosanoyl-ACP (n-C20:0)
+arach	Arachidic acid
+arachcoa	arachidyl coenzyme A
+arachcrn	arachidyl carnitine
+arachd	arachidonic acid
+arachdcoa	C20:4-CoA
+arachdcrn	C20:4 carnitine
+aragund	O-acetyl-rhamanosyl-N-acetylglucosamyl-undecaprenyl diphosphate
+arbt6p	Arbutin 6-phosphate
+arbtn	aerobactin minus Fe3
+arbtn-fe3	Aerobactin
+arg-D	D-Arginine
+arg-L	L-Arginine
+argsuc	N(omega)-(L-Arginino)succinate
+argtrna	L-Arginyl-tRNA(Arg)
+arpp	5-phosphoarabinose pyrophosphate
+ascb6p	L-ascorbate-6-phosphate
+ascb-L	L-Ascorbate
+asn-L	L-Asparagine
+asntrna	L-Asparaginyl-tRNA(Asn)
+Asn-X-Ser/Thr	protein-linked asparagine residue (N-glycosylation site)
+aso3	arsenite
+aso4	arsenate
+asp-D	D-Aspartate
+asp-L	L-Aspartate
+aspsa	L-Aspartate 4-semialdehyde
+asptrna	L-Aspartyl-tRNA(Asp)
+athr-L	L-Allo-threonine
+atp	ATP
+atrz	Atrazine
+avite1	alpha-Tocopherol
+avite2	alpha-Tocotrienol
+b124tc	"But-1-ene-1,2,4-tricarboxylate"
+b2coa	Crotonoyl-CoA
+bamppald	beta-Aminopropion aldehyde
+bbtcoa	gamma-butyrobetainyl-CoA
+bdg2hc	cis-beta-D-Glucosyl-2-hydroxycinnamate
+benzcoa	Benzoyl-CoA
+betald	Betaine aldehyde
+bglycogen	branching glycogen
+bgly	N-Benzoylglycine
+bhb	(R)-3-Hydroxybutanoate
+bildglcur	Bilirubin beta-diglucuronide
+bilglcur	Bilirubin monoglucuronide
+bilirub	Bilirubin
+biliverd	Biliverdin
+biocyt	Biocytin
+bmn	bimane
+bmnmsh	bimane conjugated mycothiol (mtb)
+Brfap	4-(B-D-ribofuranosyl)aminobenzene 5'-phosphate
+btal	Butanal
+btamp	Biotinyl-5'-AMP
+btcoa	Butanoyl-CoA
+btn	Biotin
+btnso	d-biotin d-sulfoxide
+but2eACP	But-2-enoyl-[acyl-carrier protein]
+butACP	Butyryl-ACP (n-C4:0ACP)
+but	Butyrate (n-C4:0)
+butpi	Butanoyl phosphate
+buts	butanesulfonate
+butso3	butanesulfonate
+bvite	beta-tocopherol
+bz12diol	"cis-1,2-Dihydroxycyclohexa-3,5-diene-1-carboxylate"
+bzal	Benzaldehyde
+bzalc	Benzyl alcohol
+bz	Benzoate
+bzsucc	Benzylsuccinate
+bzsuccoa	Benzylsuccinyl-CoA
+C04051	C04051
+C100mclPHA	C10:0-Medium-chain length Polyhydroxyalkanoate.
+C120mclPHA	C12:0-Medium-chain length Polyhydroxyalkanoate.
+C121mclPHA	C12:1-Medium-chain length Polyhydroxyalkanoate.
+C140mclPHA	C14:0-Medium-chain length Polyhydroxyalkanoate.
+C141mclPHA	C14:1-Medium-chain length Polyhydroxyalkanoate.
+c190cACP	19 carbon cyclopropane-ACP
+c226coa	cervonyl coenzyme A
+c226crn	cervonyl carnitine
+c2m26dcoa	"cis-2-Methyl-5-isopropylhexa-2,5-dienoyl-CoA"
+C60mclPHA	C6:0-Medium-chain length Polyhydroxyalkanoate
+C80mclPHA	C8:0-Medium-chain length Polyhydroxyalkanoate.
+ca2	Calcium
+caffcoa	Caffeoyl-CoA
+cala	N-Carbamoyl-beta-alanine
+camp	cAMP
+caphis	2-(3-Carboxy-3-aminopropyl)-L-histidine
+carn	L-Carnosine
+caro	beta-Carotene
+carveol	(E)-carveol
+catechol	Catechol
+cbasp	N-Carbamoyl-L-aspartate
+cbi	Cobinamide
+cbl1	Cob(I)alamin
+cbl1hbi	Cob(I)alamin-HBI
+cbl2	Cob(II)alamin
+cbp	Carbamoyl phosphate
+cca_d3	Calcitroic acid (D3)
+CCbuttc	"cis,cis-Butadiene-1,2,4-tricarboxylate"
+cchoxod	"2-Hydroxy-6-keto-2,4-heptadienoate"
+ccmuac	"cis,cis-Muconate"
+cd2	Cadmium
+cddec5eACP	cis-dodec-5-enoyl-[acyl-carrier protein] (n-C12:1)
+cdec3eACP	cis-dec-3-enoyl-[acyl-carrier protein] (n-C10:1)
+cdgggp	"CDP-2,3-digeranylgeranyl-sn-glycerol"
+cdlp	Cardiolipin
+cdpc16c19g	"cdp diacylglycerol (C16:0, C19:0)"
+cdpc19c19g	"cdp diacylglycerol (C19:0, C19:0)"
+cdp	CDP
+cdpchol	CDPcholine
+cdpdag	CDPdiacylglycerol
+cdpdag_EC	CDPdiacylglycerol (E coli)
+cdpdag_HP	CDP-Diacylglycerol Hp specific
+cdpdag_hs	CDP diacylglycerol (homo sapiens)
+cdpdag_SA	CDPdiacylglycerol (Saureus)
+cdpdag_SC	"CDPdiacylglycerol, yeast-specific"
+cdpdddecg	"CDP-1,2-didodecanoylglycerol"
+cdpddg	CDP-4-dehydro-6-deoxy-D-glucose
+cdpdhdec9eg	"CDP-1,2-dihexadec-9-enoylglycerol"
+cdpdhdecg	"CDP-1,2-dihexadecanoylglycerol"
+cdpdodec11eg	"CDP-1,2-dioctadec-11-enoylglycerol"
+cdpdodecg	"CDP-1,2-dioctadecanoylglycerol"
+cdpdtdec7eg	"CDP-1,2-ditetradec-7-enoylglycerol"
+cdpdtdecg	"CDP-1,2-ditetradecanoylglycerol"
+cdpea	CDPethanolamine
+cdpg	"Cyclic 2,3-bisphospho-D-glycerate"
+cdpglc	CDPglucose
+cdpglyc	CDPglycerol
+cechddd	"cis-3-(3-carboxyethyl)-3,5-cyclohexadiene-1,2-diol"
+cellb	cellobiose
+cenchddd	"cis-3-(3-carboxyethenyl)-3,5-cyclohexadiene-1,2-diol"
+cer1_24	Ceramide-1 (Sphinganine:n-C24:0)
+cer1_26	Ceramide-1 (Sphinganine:n-C26:0)
+cer2_24	Ceramide-2 (Phytosphingosine:n-C24:0)
+cer2'_24	Ceramide-2' (Sphinganine:n-C24:0OH)
+cer2_26	Ceramide-2 (Phytosphingosine:n-C26:0)
+cer2'_26	Ceramide-2' (Sphinganine:n-C26:0OH)
+cer3_24	Ceramide-3 (Phytosphingosine:n-C24:0OH)
+cer3_26	Ceramide-3 (Phytosphingosine:n-C26:0OH)
+cgly	Cys-Gly
+ch15deccoa	"Cyclohexa-1,5-dienecarbonyl-CoA"
+ch4	methane
+ch4s	Methanethiol
+chexccoa	carboxy hexacosanoyl-CoA
+chitin	Chitin (monomer)
+chito2pdol_L	"N,N'-Diacetylchitobiosyldiphosphodolichol, human liver homolog"
+chito2pdol_U	"N,N'-Diacetylchitobiosyldiphosphodolichol, human uterine homolog"
+chitob	Chitobiose
+chitos	Chitosan
+chlstol	"Cholesta-7,24-dien-3beta-ol"
+cholate	Cholate
+chol	Choline
+cholcoa	Choloyl-CoA
+cholcoads	"3alpha,7alpha,12alpha-Trihydroxy-5beta-cholest-24-enoyl-CoA"
+cholcoaone	"3alpha,7alpha,12alpha-Trihydroxy-5beta-24-oxocholestanoyl-CoA"
+cholcoar	"3alpha,7alpha,12alpha-Trihydroxy-5beta-cholestanoyl-CoA"
+cholcoas	"3alpha,7alpha,12alpha-Trihydroxy-5beta-cholestanoyl-CoA(S)"
+cholp	Choline phosphate
+chols	Choline sulfate
+chor	chorismate
+chpd	"2-Hydroxy-2,4-pentadienoate"
+chsterol	Cholesterol
+chsterols	cholesterol sulfate
+chtn	chitin
+cigam	cys-1D-myo-inositol 2-deoxy-D-glucopyranoside
+cinnm	trans-Cinnamate
+cit	Citrate
+citmcoa-L	L-Citramalyl-CoA
+Cit-Mg	Citrate-Mg
+citr-L	L-Citrulline
+ckdo	CMP-3-deoxy-D-manno-octulosonate
+cl	Chloride
+clpn120	"cardiolipin (tetradodecanoyl, n-C12:0)"
+clpn140	"cardiolipin (tetratetradecanoyl, n-C14:0)"
+clpn141	"cardiolipin (tetratetradec-7-enoyl, n-C14:1)"
+clpn160190	"cardiolipin (dihexadecanoyl, dimethylstearoyl)"
+clpn160	"cardiolipin (tetrahexadecanoyl, n-C16:0)"
+clpn161	"cardiolipin (tetrahexadec-9-enoyl, n-C16:1)"
+clpn180	"cardiolipin (tetraoctadecanoyl, n-C18:0)"
+clpn181	"cardiolipin (tetraoctadec-11-enoyl, n-C18:1)"
+clpnd	clupanodonic acid
+clpndcoa	clupanodonyl CoA
+clpndcrn	clupanodonyl carnitine
+clpn_EC	Cardiolipin (Ecoli)
+clpn_HP	Cardiolipin (Hpylori)
+clpn_hs	cardiolipin (homo sapiens)
+clpn_SA	Cardiolipin (Saureus)
+clpn_SC	"Cardiolipin, yeast-specific"
+cmaphis	2-[3-Carboxy-3-(methylammonio)propyl]-L-histidine
+cmcbtt	"carboxymycobactin T (R=8 carbon, final carbon is carboxyl group)"
+cmp2amep	CMP-2-aminoethylphosphonate
+cmpacna	CMP-N-acetylneuraminate
+cmp	CMP
+cmpkdo	CMP-3-deoxy-D-manno-octulosonate
+cmpntm2amep	CMP-N-trimethyl-2-aminoethylphosphonate
+cmusa	2-Amino-3-carboxymuconate semialdehyde
+co1dam	"Cob(I)yrinate a,c diamide"
+co2	CO2
+co2dam	"Cob(II)yrinate a,c diamide"
+coa	Coenzyme A
+cobalt2	Co2+
+cobamcoa	Cobamide coenzyme
+cob	coenzyme b
+cobrnt	Cobyrinate
+cobya	Cobyrinate
+co	Carbon monoxide
+codhpre6	cobalt-dihydro-precorrin 6
+coke	cocaine
+colipa	core oligosaccharide lipid A
+com	coenzyme m
+confrl	Coniferol
+conialdh	Coniferyl aldehyde
+copre2	cobalt-precorrin 2
+copre3	cobalt-precorrin 3
+copre4	cobalt-precorrin 4
+copre5	cobalt-precorrin 5
+copre6	cobalt-precorrin 6
+copre8	cobalt-precorrin 8
+core2	Core 2
+core3	Core 3
+core4	Core 4
+core5	Core 5
+core6	Core 6
+core7	Core 7
+core8	Core 8
+core_lps_hp	core_lps_hp
+cortsn	Cortisone
+coucoa	p-coumaroyl-CoA
+coumarin	coumarin
+cpe160	"cyclopropane phosphatidylethanolamine (dihexadec-9,10-cyclo-anoyl, n-C16:0 cyclo)"
+cpe180	"cyclopropane phosphatidylethanolamine (dioctadec-11,12-cyclo-anoyl, n-C18:0 cyclo)"
+cpg160	"cyclopropane phosphatidylglycerol (dihexadec-9,10-cyclo-anoyl, n-C16:0 cyclo)"
+cpg180	"cyclopropane phosphatidylglycerol (dioctadec-11,12-cyclo-anoyl, n-C18:0 cyclo)"
+cpgn	coprogen
+cpgn-un	coprogen unloaded (no Fe(III))
+cpppg1	Coproporphyrinogen I
+cpppg3	Coproporphyrinogen III
+creat	Creatine
+crm_hs	ceramide (homo sapiens)
+crmp_hs	Ceramide 1-phosphate
+crncoa	L-Carnitinyl-CoA
+crnDcoa	D-carnitinyl-CoA
+crn-D	D-Carnitine
+crn	L-Carnitine
+cro4	chromate
+crtn	Creatinine
+crtsl	Cortisol
+crtstrn	Corticosterone
+crvnc	"cervonic acid, C22:6 n-3"
+"cs_a,b,e_pre1"	"chondroitin sulfate A (GalNAc4S-GlcA), B (IdoA2S-GalNAc4S), and E (GalNAc4,6diS-GlcA), precursor 1"
+"cs_a,b_pre2"	"chondroitin sulfate A (GalNAc4S-GlcA) and B (IdoA2S-GalNAc4S), precursor 2"
+"cs_a,b_pre3"	"chondroitin sulfate A (GalNAc4S-GlcA) and B (IdoA2S-GalNAc4S), precursor 3"
+cs_a	"chondroitin sulfate A (GalNAc4S-GlcA), free chain"
+cs_a_deg1	"chondroitin sulfate A (GalNAc4S-GlcA), degradation product 1"
+cs_a_deg2	"chondroitin sulfate A (GalNAc4S-GlcA), degradation product 2"
+cs_a_deg3	"chondroitin sulfate A (GalNAc4S-GlcA), degradation product 3"
+cs_a_deg4	"chondroitin sulfate A (GalNAc4S-GlcA), degradation product 4"
+cs_a_deg5	"chondroitin sulfate A (GalNAc4S-GlcA), degradation product 5"
+cs_b	"chondroitin sulfate B / dermatan sulfate (IdoA2S-GalNAc4S), free chain"
+cs_b_deg1	"chondroitin sulfate B / dermatan sulfate (IdoA2S-GalNAc4S), degradation product 1"
+cs_b_deg2	"chondroitin sulfate B / dermatan sulfate (IdoA2S-GalNAc4S), degradation product 2"
+cs_b_deg3	"chondroitin sulfate B / dermatan sulfate (IdoA2S-GalNAc4S), degradation product 3"
+cs_b_pre4	"chondroitin sulfate B (IdoA2S-GalNAc4S), precursor 4"
+cs_b_pre5	"chondroitin sulfate B (IdoA2S-GalNAc4s), precursor 5"
+cs_c	"chondroitin sulfate C (GalNAc6S-GlcA), free chain"
+cs_c_deg1	"chondroitin sulfate C (GalNAc6S-GlcA), degradation product 1"
+cs_c_deg2	"chondroitin sulfate C (GalNAc6S-GlcA), degradation product 2"
+cs_c_deg3	"chondroitin sulfate C (GalNAc6S-GlcA), degradation product 3"
+cs_c_deg4	"chondroitin sulfate C (GalNAc6S-GlcA), degradation product 4"
+cs_c_deg5	"chondroitin sulfate C (GalNAc6S-GlcA), degradation product 5"
+"cs_c,d,e_pre1"	"chondroitin sulfate C (GalNAc6S-GlcA) and D (GlcNAc6S-GlcA2S), precursor 1"
+cs_c_pre2	"chondroitin sulfate C (GalNAc6S-GlcA), precursor 2"
+cs_c_pre3	"chondroitin sulfate C (GalNAc6S-GlcA), precursor 3"
+cs_d	"chondroitin sulfate D (GlcNAc6S-GlcA2S), free chain"
+cs_d_deg1	"chondroitin sulfate D (GlcNAc6S-GlcA2S), degradation product 1"
+cs_d_deg2	"chondroitin sulfate D (GlcNAc6S-GlcA2S), degradation product 2"
+cs_d_deg3	"chondroitin sulfate D (GlcNAc6S-GlcA2S), degradation product 3"
+cs_d_deg4	"chondroitin sulfate D (GlcNAc6S-GlcA2S), degradation product 4"
+cs_d_deg5	"chondroitin sulfate D (GlcNAc6S-GlcA2S), degradation product 5"
+cs_d_deg6	"chondroitin sulfate D (GlcNAc6S-GlcA2S), degradation product 6"
+cs_d_pre2	chondroitin sulfate D (GlcNAc6S-GlcA2S) precursor 2
+cs_d_pre3	"chondroitin sulfate D (GlcNAc6S-GlcA2S), precursor 3"
+cs_d_pre4	"chondroitin sulfate D (GlcNAc6S-GlcA2S), precursor 4"
+cs_d_pre5	"chondroitin sulfate D (GlcNAc6S-GlcA2S), precursor 5"
+cs_e	"chondroitin sulfate E (GalNAc4,6diS-GlcA), free chain"
+cs_e_deg1	"chondroitin sulfate E (GalNAc4,6diS-GlcA), degradation product 1"
+cs_e_deg2	"chondroitin sulfate E (GalNAc4,6diS-GlcA), degradation product 2"
+cs_e_deg3	"chondroitin sulfate E (GalNAc4,6diS-GlcA), degradation product 3"
+cs_e_deg4	"chondroitin sulfate E (GalNAc4,6diS-GlcA), degradation product 4"
+cs_e_deg5	"chondroitin sulfate E (GalNAc4,6diS-GlcA), degradation product 5"
+cs_e_deg6	"chondroitin sulfate E (GalNAc4,6diS-GlcA), degradation product 6"
+cs_e_deg7	"chondroitin sulfate E (GalNAc4,6diS-GlcA), degradation product 7"
+cs_e_pre2	"chondroitin sulfate E (GalNAc4,6diS-GlcA), precursor 2"
+cs_e_pre3	"chondroitin sulfate E (GalNAc4,6diS-GlcA), precursor 3"
+cs_e_pre4	"chondroitin sulfate E (GalNAc4,6diS-GlcA), precursor 4"
+cs_e_pre5a	"chondroitin sulfate E (GalNAc4,6diS-GlcA), precursor 5a"
+cs_e_pre5b	"chondroitin sulfate E (GalNAc4,6diS-GlcA), precursor 5b"
+"cs,hs_linkage"	chondroitin sulfate/heparan sulfate linkage region (GlcA-(Gal)2-Xyl-L-Ser (protein))
+csn	Cytosine
+cspg_a	chondroitin sulfate A (GalNAc4S-GlcA) proteoglycan
+cspg_b	chondroitin sulfate B / dermatan sulfate (IdoA2S-GalNAc4S) proteoglycan
+cspg_c	chondroitin sulfate C (GalNAc6S-GlcA) proteoglycan
+cspg_d	chondroitin sulfate D (GlcNAc6S-GlcA2S) proteoglycan
+cspg_e	"chondroitin sulfate E (GalNAc4,6diS-GlcA) proteoglycan"
+cs_pre	chondroitin sulfate precursor (GalNAc-GlcA-(Gal)2-Xyl-L-Ser (protein))
+ctbtcoa	crotonobetainyl-CoA
+ctbt	crotonobetaine
+ctp	CTP
+cu2	Cu2+
+cu	Cu+
+cyan	Hydrogen cyanide
+cynt	Cyanate
+cysam	Cysteamine
+cys-D	D-Cysteine
+cys-L	L-Cysteine
+cysth-L	L-Cystathionine
+cyst-L	L-Cystathionine
+cystrna	L-Cysteinyl-tRNA(Cys)
+cytcc	Cytochrome c
+cytd	Cytidine
+dad-2	Deoxyadenosine
+dad-5	5'-Deoxyadenosine
+dadp	dADP
+dag_hs	diacylglycerol (homo sapiens)
+dagpy_SC	"diacylglycerol pyrophosphate, yeast-specific"
+dak2gpe_hs	1-alkenyl 2-acylglycerol 3-phosphoethanolamine plasmalogen (homo sapiens)
+damp	dAMP
+dann	"7,8-Diaminononanoate"
+Dara14lac	"D-Arabinono-1,4-lactone"
+datp	dATP
+db4p	"3,4-dihydroxy-2-butanone 4-phosphate"
+dc2coa	trans-Dec-2-enoyl-CoA
+dcaACP	Decanoyl-ACP (n-C10:0ACP)
+dcacoa	Decanoyl-CoA (n-C10:0CoA)
+dca	Decanoate (n-C10:0)
+dcamp	"N6-(1,2-Dicarboxyethyl)-AMP"
+dccoa	Decanoyl-CoA (C10:0CoA)
+dcdp	dCDP
+dcholcoa	chenodeoxycholoyl coenzyme a
+dcmp	dCMP
+dcsptn1coa	"docosa-4,7,10,13,16-pentaenoyl coenzyme A"
+dcsptn1crn	"docosa-4,7,10,13,16-pentaenoyl carnitine"
+dcsptn1	"docosa-4,7,10,13,16-pentaenoic acid (n-6)"
+dctp	dCTP
+dcyt	Deoxycytidine
+dd2coa	trans-Dodec-2-enoyl-CoA
+dd3coa	3-dodecenoyl CoA
+ddcaACP	Dodecanoyl-ACP (n-C12:0ACP)
+ddcacoa	Dodecanoyl-CoA (n-C12:0CoA)
+ddca	Dodecanoate (n-C12:0)
+ddcoa	Dodecanoyl-CoA (n-C12:0CoA)
+ddhrb	"7,8-didemethyl-8-hydroxy-5-deazariboflavin"
+ddsmsterol	7-Dehydrodesmosterol
+debrisoquine	debrisoquine
+decda_tb	decaprenylphosphoryl-beta-D-arabinofuranose
+decdman1p_tb	"(E,E,E,E,E,E,E,Z,Z) decaprenyl mannose phosphate"
+decdp	all trans Decaprenyl diphosphate
+decdpa_tb	decaprenylphosphoryl-beta-D-5-phosphoarabinofuranose
+decdpr_tb	decaprenylphosphoryl-beta-D-5-phosphoribose
+decdp_tb	"(E,E,E,E,E,E,E,Z,Z) Decaprenyl diphosphate"
+decdr_tb	decaprenylphosphoryl-beta-D-5-ribose
+decd_tb	"(E,E,E,E,E,E,E,Z,Z) decaprenyl phosphate"
+dedoldp_L	"Dehydrodolichol diphosphate, human liver homolog"
+dedoldp_U	"Dehydrodolichol diphosphate, human uterine homolog"
+dedol_L	"Dehydrodolichol, human liver homolog"
+dedolp_L	"Dehydrodolichol phosphate, human liver homolog"
+dedolp_U	"Dehydrodolichol phosphate, human uterine homolog"
+dedol_U	"Dehydrodolichol, human uterine homolog"
+dem2emgacpail_prot_hs	"deacylated-(phosphoethanolaminyl-dimannosyl),(phosphoethanolaminyl)-mannosyl-glucosaminyl-acylphosphatidylinositol"
+dgal6p	D-Galactose 6-phosphate
+dgchol	Chenodeoxyglycocholate
+dgcholcoa	Chenodeoxyglycocholoyl-CoA
+dgdcg_SA2	Diglucosyl-diacylglycerol (SA) 2
+dgdcg_SA	Diglucosyl-diacylglycerol (SA)
+DGDG_SA	Diglucosyl Diglyceride (SA)
+dgdp	dGDP
+dgggp	digeranylgeranylglyceryl phosphate
+dgggps	"2,3-di-O-geranylgeranyl-sn-glyceroserine"
+dggpg	"2,3-di-O-geranyl-sn-glycerol-1-phospho-3'-sn-glycerol"
+dggpgp	"2,3-di-O-geranyl-sn-glycerol-1-phospho-3'-sn-glycerol phosphate"
+dggpi	"2,3-di-O-geranyl-sn-glycero-1-phospho-myo-inositol"
+dgmp	dGMP
+dgpi_prot_hs	deacylated-glycophosphatidylinositol (GPI)-anchored protein
+dgsn	Deoxyguanosine
+dgtp	dGTP
+dh3mchc	"1,2-Dihydroxy-3-methylcyclohexa-3,5-dienecarboxylate"
+dh4mchc	"cis-1,2-Dihydroxy-4-methylcyclohexa-3,5-diene-1-carboxylate"
+dha	Dihydroxyacetone
+dhadr	"7,8-dihydropterin-6-ylmethyl-1-(4-aminophenyl)-1-deoxy-D-ribitol"
+dhadrdpr	"7,8-dihydropterin-6-ylmethyl-1-(4-aminophenyl)-1-deoxy-5-[1-A-D-ribofuranosyl 5'-diphosphate]-D-ribitol"
+dhadrp	"7,8-dihydropterin-6-ylmethyl-1-(4-aminophenyl)-1-deoxy-D-ribitol 5'-phosphate"
+dhadrpr	"7,8-dihydropterin-6-ylmethyl-1-(4-aminophenyl)-1-deoxy-5-[1-A-D-ribofuranosyl 5'-phosphate]-D-ribitol"
+dhadrtpr	"7,8-dihydropterin-6-ylmethyl-1-(4-aminophenyl)-1-deoxy-5-[1-A-D-ribofuranosyl 5'-triphosphate]-D-ribitol"
+dhap	Dihydroxyacetone phosphate
+dhbpt	"6,7-Dihydrobiopterin"
+dhcholestanate	"3alpha,7alpha-Dihydroxy-5beta-cholestanate"
+dhcholestancoa	"3alpha,7alpha-Dihydroxy-5beta-cholestanoyl-CoA"
+dhcholoylcoa	"3alpha,7alpha-Dihydroxy-5beta-cholest-24-enoyl-CoA"
+dhcinnm	"2,3-dihydroxicinnamic acid"
+dhcrm_hs	dihydroceramide (homo sapiens)
+dhdascb	Dehydroascorbate
+dhea	Dehydroepiandrosterone
+dheas	Dehydroepiandrosterone sulfate
+dhf	"7,8-Dihydrofolate"
+dhlam	Dihydrolipoamide
+dhlpro	Dihydrolipolprotein
+dhmptp	dihydromonapterin-triphosphate
+dhna	"1,4-Dihydroxy-2-naphthoate"
+dhnpt	Dihydroneopterin
+dhocholoylcoa	"3alpha,7alpha,12alpha,26-Tetrahydroxy-5beta-cholestane"
+dhor-S	(S)-Dihydroorotate
+dhp23cp	"7,8-dihydronepterin 2' :3'-cyclicphosphate"
+dhpmp	Dihydroneopterin monophosphate
+dhpppn	"3-(2,3-Dihydroxyphenyl)propanoate"
+dhptd	"4,5-dihydroxy-2,3-pentanedione"
+dhpt	Dihydropteroate
+dhpyr	"2,5-Dihydroxypyridine"
+dhrfap	"7,8-dihydropterin-6-ylmethyl-4-(B-D-ribofuranosyl) aminobenzene 5'-phosphate"
+didp	dIDP
+digalsgalside_hs	Digalactosylceramidesulfate
+digalside_hs	Digalactosylceramide
+dimp	dIMP
+din	Deoxyinosine
+ditp	dITP
+dkdofp	"4,5-diketo-6-deoxyfructose 1-phosphate"
+dkfp	6-deoxy-5-ketofructose 1-phosphate
+dkmp	6-deoxy-5-ketomannitol 1-phosphate
+dkmpp	"2,3-diketo-5-methylthio-1-phosphopentane"
+dlnlcgcoa	dihomo-gamma-linolenyl coenzyme A
+dlnlcgcrn	dihomo-gamma-linolenyl carnitine
+dlnlcg	dihomo-gamma-linolenic acid (n-6)
+dma	dimethylamine
+dmantipyrine	demethylated antipyrine
+dmarach	di-methyl arachic acid
+dmbhn	di-methyl behenic acid
+dmbzid	"5,6-Dimethylbenzimidazole"
+dmgly	"N,N-Dimethylglycine"
+dmh2mpt	"didemethylated 7,8-dihydromethanopterin"
+dmhptcoa	"2,6 dimethylheptanoyl-CoA"
+dmhptcrn	"2,6 dimethylheptanoyl carnitine"
+dmlgnc	dimethyl lignoceric acid
+dmlz	"6,7-Dimethyl-8-(1-D-ribityl)lumazine"
+dmnoncoa	"4,8 dimethylnonanoyl-CoA"
+dmnoncrn	"4,8 dimethylnonanoyl carnitine"
+dmpp	Dimethylallyl diphosphate
+dms	Dimethyl sulfide
+dmso	Dimethyl sulfoxide
+dna5mtc	DNA 5-methylcytosine
+dnad	Deamino-NAD+
+dna	DNA
+dna_Eco	"DNA, Escherichia coli"
+dohau	"3,7-dideoxy-D-threo-hepto-2-amino-6-ulosonate"
+dohdu	"3,7-dideoxy-D-threo-hepto-2,6-diulosonate"
+doldp_L	"Dolichol diphosphate, human liver homolog"
+doldp_U	"Dolichol diphosphate, human uterine homolog"
+dolglcp_L	"Dolichyl beta-D-glucosyl phosphate, human liver homolog"
+dolglcp_U	"Dolichyl beta-D-glucosyl phosphate, human uterine homolog"
+dolichol	Dolichol
+dolichol_L	"Dolichol, human liver homolog"
+dolichol_U	"Dolichol, human uterine homolog"
+dolmanp	Dolichyl phosphate D-mannose
+dolmanp_L	"Dolichyl phosphate D-mannose, human liver homolog"
+dolmanp_U	"Dolichyl phosphate D-mannose, human uterine homolog"
+dolp	Dolichol phosphate
+dolp_L	"Dolichol phosphate, human liver homolog"
+dolp_U	"Dolichol phosphate, human uterine homolog"
+dopa	Dopamine
+dopaqn	Dopaquinone
+dopasf	Dopamine 3-O-sulfate
+dpcoa	Dephospho-CoA
+dpgpe	"2,3-O-phytanyl-sn-glycero-1-phosphoethanolamine"
+dpgpg	"2,3-di-O-phytanyl-sn-glycerol-1-phospho-3'-sn-glycerol"
+dpgpi	"2,3-O-phytanyl-sn-glycero-1-phospho-myo-inositol"
+dpgps	"2,3-O-phytanyl-sn-glycero-1-phosphoserine"
+drib	Deoxyribose
+dsbaox	periplasmic protein disulfide isomerase I (oxidized)
+dsbard	periplasmic protein disulfide isomerase I (reduced)
+dsbcox	protein disulfide isomerase II (oxidized)
+dsbcrd	protein disulfide isomerase II (reduced)
+dsbdox	fused thiol:disulfide interchange protein (oxidized)
+dsbdrd	fused thiol:disulfide interchange protein (reduced)
+dsbgox	periplasmic disulfide isomerase/thiol-disulphide oxidase (oxidized)
+dsbgrd	periplasmic disulfide isomerase/thiol-disulphide oxidase (reduced)
+dscl	dihydrosirohydrochlorin
+dsmsterol	Desmosterol
+dsT_antigen	disialyl-T antigen
+dtbt	Dethiobiotin
+dtdp4aaddg	"dTDP-4-acetamido-4,6-dideoxy-D-galactose"
+dtdp4addg	"dTDP-4-amino-4,6-dideoxy-D-galactose"
+dtdp4d6dg	dTDP-4-dehydro-6-deoxy-D-glucose
+dtdp4d6dm	dTDP-4-dehydro-6-deoxy-L-mannose
+dtdp6dm	dTDP-6-deoxy-L-mannose
+dtdpddg	dTDP-4-dehydro-6-deoxy-D-glucose
+dtdpddm	dTDP-4-dehydro-6-deoxy-L-mannose
+dtdp	dTDP
+dtdpglc	dTDPglucose
+dtdpglu	dTDPglucose
+dtdprmn	dTDP-L-rhamnose
+dtmp	dTMP
+dtt	Dithiothreitol
+dttOX	Oxidized dithiothreitol
+dttp	dTTP
+dudp	dUDP
+dump	dUMP
+duri	Deoxyuridine
+dutp	dUTP
+dxtrn	"phosphorylase-limit dextrin (glycogenin-1,6{4[1,4-Glc], 4[1,4-Glc]})"
+dxyl	1-deoxy-D-xylulose
+dxyl5p	1-deoxy-D-xylulose 5-phosphate
+e4hglu	L-erythro-4-Hydroxyglutamate
+e4p	D-Erythrose 4-phosphate
+eaflatoxin	"8,9 epxoy aflatoxin B1"
+eandrstrn	epiandrosterone
+ebastine	ebastine
+ebastineoh	hydroxylated ebastine
+eca2und	(enterobacterial common antigen)x2 undecaprenyl-diphosphate
+eca3und	(enterobacterial common antigen)x3 undecaprenyl-diphosphate
+eca4colipa	(enterobacterial common antigen)x4 core oligosaccharide lipid A
+eca4und	(enterobacterial common antigen)x4 undecaprenyl-diphosphate
+eca_EC	Enterobacterial common antigen polysaccharide (Ecoli)
+ecgon	ecgonine
+ecoli_DNA	"DNA, E coli"
+ecoli_phospholipid	"Phospholipids, E coli "
+ecoli_Protein	"Protein, E coli"
+ecoli_RNA	"RNA, E coli"
+egme	ecgonine methyl ester
+eicostetcoa	eicosatetranoyl coenzyme A
+eicostetcrn	Eicosatetranoyl carnitine
+eicostet	eicosatetranoic acid
+eig3p	D-erythro-1-(Imidazol-4-yl)glycerol 3-phosphate
+elaidcrn	Elaidic carnitine
+elaid	elaidic acid
+em2emgacpail_hs	"(phosphoethanolaminyl-dimannosyl),(phosphoethanolaminyl)-mannosyl-glucosaminyl-acylphosphatidylinositol (H7)"
+em2emgacpail_prot_hs	"(phosphoethanolaminyl-dimannosyl),(phosphoethanolaminyl)-mannosyl-glucosaminyl-acylphosphatidylinositol"
+em3gacpail_hs	phosphoethanolaminyl-trimannosyl-glucosaminyl-acylphosphatidylinositol (H6')
+emem2gacpail_hs	"(phosphoethanolaminyl-mannosyl),(phosphoethanolaminyl)-dimannosyl-glucosaminyl-acylphosphatidylinositol (H7')"
+emgacpail_hs	phosphoethanolaminyl-mannosyl-glucosylaminyl-acylphosphatidylinositol (H5)
+enlipa	phosphoethanolamine KDO(2)-lipid (A)
+enter	Enterochelin
+epist	episterol
+epm	Epimelibiose
+ergst	Ergosterol
+ergtetrol	"Ergosta-5,7,22,24,(28)-tetraen-3beta-ol"
+ergtrol	"ergosta-5,7,24(28)-trienol"
+eryth	L-Erythrulose
+estradiol	Estradiol
+estradiolglc	estradiol glucuronide
+estriol	estriol
+estriolglc	16-Glucuronide-estriol
+estrone	Estrone
+estroneglc	estrone glucuronide
+estrones	Estrone 3-sulfate
+etfox	Electron transfer flavoprotein oxidized
+etfrd	Electron transfer flavoprotein reduced
+etha	Ethanolamine
+ethamp	Ethanolamine phosphate
+eths	ethanesulfonate
+ethso3	ethanesulfonate
+etoh	Ethanol
+f1a	F1alpha
+f1p	D-Fructose 1-phosphate
+f26bp	"D-Fructose 2,6-bisphosphate"
+f390a	coenzyme F390 (adenosine)
+f390g	coenzyme F390 (guanosine)
+f420-0	coenzyme ferredoxin 420-0
+f420-1	coenzyme ferredoxin 420-1
+f420-2	coenzyme ferredoxin 420-2 (oxidized)
+f420-2h2	coenzyme ferredoxin 420-2 (reduced)
+f420-3	coenzyme ferredoxin 420-3
+f420-4	coenzyme ferredoxin 420-4
+f420-5	coenzyme ferredoxin 420-5
+f420-6	coenzyme ferredoxin 420-6
+f420-7	coenzyme ferredoxin 420-7
+f430	coenzyme F430
+f430p1	coenzyme F390 precursor 1
+f430p2	coenzyme F430 precursor 2
+f430p3	coenzyme f430 precursor 3
+f5hoxkyn	Formyl-5-hydroxykynurenamine
+f6p-B	beta-D-Fructose 6-phosphate
+f6p	D-Fructose 6-phosphate
+fa10coa	Anteiso-C17:1 CoA
+fa10	Fatty acid (Anteiso-C17:1)
+fa11coa	Iso-C17:0 CoA
+fa11	Fatty acid (Iso-C17:0)
+fa12coa	Anteiso-C17:0 CoA
+fa12	Fatty acid (Anteiso-C17:0)
+fa19a	Fatty Acid (Anteiso-C19:0)
+fa1coa	Iso-C14:0 CoA
+fa1	Fatty acid (Iso-C14:0)
+fa20n	Fatty Acid (C20:0)
+fa3coa	Iso-C15:0 CoA
+fa3	Fatty acid (Iso-C15:0)
+fa4coa	Anteiso-C15:0 CoA
+fa4	Fatty acid (Anteiso-C15:0)
+fa5coa	Iso-C16:1 CoA
+fa5	Fatty acid (Iso-C16:1)
+fa6coa	Iso-C16:0 CoA
+fa6	Fatty acid (iso-C16:0)
+fa9coa	Iso-C17:1 CoA
+fa9	Fatty acid (Iso-C17:1)
+fad	Flavin adenine dinucleotide oxidized
+fadh2	Flavin adenine dinucleotide reduced
+fald	Formaldehyde
+fc1p	L-Fuculose 1-phosphate
+fcl-L	L-fuculose
+fcmcbtt	"iron(III) chelated carboxymycobactin T (R=8 carbon, final carbon is carboxyl group)"
+fdox	ferredoxin (oxidized) 2[4Fe-4S]
+fdp	"D-Fructose 1,6-bisphosphate"
+fdred	ferredoxin (reduced) 2[4Fe-4S]
+fdxo-4:2	ferrodoxin (oxidized form 4:2)
+fdxox	Oxidized ferredoxin
+fdxr-4:2	ferrodoxin (reduced form 4:2)
+fdxrd	Reduced ferredoxin
+fe2	Fe2+
+fe3dcit	Fe(III)dicitrate
+fe3dhbzs	"ferric 2,3-dihydroxybenzoylserine"
+fe3	Fe3+
+fe3hox	Fe(III)hydroxamate
+fe3hox-un	"Fe(III)hydoxamate, unloaded"
+fecost	fecosterol
+fecrm	Ferrichrome
+fecrm-un	Ferrichrome minus Fe(III)
+feenter	Fe-enterobactin
+feoxam	ferroxamine
+feoxam-un	ferroxamine minus Fe(3)
+fer	Ferulate
+ferulcoa	Feruloyl-CoA
+fgam	N2-Formyl-N1-(5-phospho-D-ribosyl)glycinamide
+fglut-S	S-Formylglutathione
+ficytcc553	Ferricytochrome c-553
+ficytcc	Ferricytochrome c
+ficytc	Ferricytochrome c
+ficytC	Ferricytochrome c
+fldox	flavodoxin (oxidized) - obsolete
+fldrd	flavodoxin (reduced) - obsolete
+fmcbtt	Iron(II) mycobactin T
+fmet	N-Formyl-L-methionine
+fmettrna	N-Formylmethionyl-tRNA
+fmn	FMN
+fmnh2	Reduced FMN
+fmnRD	flavin mononucleotide reduced
+fn2m2masn	"N4-{N-Acetyl-beta-D-glucosaminyl-(1,2)-alpha-D-mannosyl-(1,3)-[N-acetyl-beta-D-glucosaminyl-(1,2)-alpha-D-mannosyl-(1,6)]-beta-D-mannosyl-(1,4)-N-acetyl-beta-D-glucosaminyl-(1,4)-[alpha-L-fucosyl-(1,6)]-N-acetyl-beta-D-glucosaminyl}asparagine"
+fna5moxam	Formyl-N-acetyl-5-methoxykynurenamine
+focytcc553	Ferrocytochrome c-553
+focytcc	Ferrocytochrome c
+focytc	Ferrocytochrome c
+focytC	Ferrocytochrome C
+fol	Folate
+forcoa	Formyl-CoA
+for	Formate
+forglu	N-Formimidoyl-L-glutamate
+formcoa	Formyl-CoA
+formh4spt	formyltetrahydrosarcinapterin
+formmfr(b)	formylmethanofuran b
+fpram	2-(Formamido)-N1-(5-phospho-D-ribosyl)acetamidine
+fprica	5-Formamido-1-(5-phospho-D-ribosyl)imidazole-4-carboxamide
+frdp	Farnesyl diphosphate
+frmd	Formamide
+frrppdima	fucose rhamnose rhamnose phenol phthiocerol dimycocerosate (Mtb)
+fru	D-Fructose
+frulys	fructoselysine
+frulysp	fructoselysine Phosphate
+fruur	D-Fructuronate
+fuc12gal14acglcgalgluside_hs	Type IIH glycolipid
+fuc132galacglcgal14acglcgalgluside_hs	V3Fuc-nLc6Cer
+fuc13galacglcgal14acglcgalgluside_hs	III3Fuc-nLc6Cer
+fuc14galacglcgalgluside_hs	Lea glycolipid
+fuc1p-L	L-Fucose 1-phosphate
+fucacgalfucgalacglcgalgluside_hs	(Gal)2 (GalNAc)1 (Glc)1 (GlcNAc)1 (LFuc)2 (Cer)1
+fucacngal14acglcgalgluside_hs	"IV3-a-NeuAc,III3-a-Fuc-nLc4Cer"
+fucacngalacglcgalgluside_hs	"IV3-a-Neu5Ac,III4-a-Fuc-Lc4Cer"
+fucfuc12gal14acglcgalgluside_hs	Ley glycolipid
+fucfuc132galacglcgal14acglcgalgluside_hs	"V3Fuc,III3Fuc-nLc6Cer"
+fucfucfucgalacglc13galacglcgal14acglcgalgluside_hs	(Gal)4 (Glc)1 (GlcNAc)3 (LFuc)3 (Cer)1
+fucfucfucgalacglcgal14acglcgalgluside_hs	(Gal)3 (Glc)1 (GlcNAc)2 (LFuc)3 (Cer)1
+fucfucgalacglc13galacglcgal14acglcgalgluside_hs	(Gal)4 (Glc)1 (GlcNAc)3 (LFuc)2 (Cer)1
+fucfucgalacglcgal14acglcgalgluside_hs	(Gal)3 (Glc)1 (GlcNAc)2 (LFuc)2 (Cer)1
+fucfucgalacglcgalacglcgal14acglcgalgluside_hs	(Gal)4 (Glc)1 (GlcNAc)3 (LFuc)2 (Cer)1
+fucfucgalacglcgalgluside_hs	Leb glycolipid
+fucgal14acglcgalgluside_hs	Lacto-N-fucopentaosyl III ceramide
+fucgalacgalfuc12gal14acglcgalgluside_hs	Type IIIH glycolipid
+fucgalacgalfucgalacglcgal14acglcgalgluside_hs	(Gal)4 (GalNAc)1 (Glc)1 (GlcNAc)2 (LFuc)2 (Cer)1
+fucgalacglc13galacglcgal14acglcgalgluside_hs	(Gal)4 (Glc)1 (GlcNAc)3 (LFuc)1 (Cer)1
+fucgalacglcgal14acglcgalgluside_hs	VI2Fuc-nLc6
+fucgalacglcgalgluside_hs	Type IH glycolipid
+fucgalfucgalacglcgalgluside_hs	(Gal)3 (Glc)1 (GlcNAc)1 (LFuc)2 (Cer)1
+fucgalgbside_hs	fucosyl galactosylgloboside (homo sapiens)
+fuc-L	L-Fucose
+fum	Fumarate
+g1m6masnB1	glucosyl-(alpha-D-mannosyl)6-beta-D-mannosyl-diacetylchitobiosyl-L-asparagine (protein)
+g1m7masnB	"glucosyl-(alpha-D-mannosyl)7-beta-D-mannosyl-diacetylchitobiosyl-L-asparagine, isoform B (protein)"
+g1m7masnC	"glucosyl-(alpha-D-mannosyl)7-beta-D-mannosyl-diacetylchitobiosyl-L-asparagine, isoform C (protein)"
+g1m8masn	(alpha-D-Glucosyl)-(alpha-D-mannosyl)8-beta-D-mannosyl-diacetylchitobiosyl-L-asparagine (protein)
+g1m8mpdol_L	"alpha-D-Glucosyl-(alpha-D-mannosyl)8-beta-D-mannosyl-diacetylchitobiosyldiphosphodolichol, human liver homolog"
+g1m8mpdol_U	"alpha-D-Glucosyl-(alpha-D-mannosyl)8-beta-D-mannosyl-diacetylchitobiosyldiphosphodolichol, human uterine homolog"
+g1p	D-Glucose 1-phosphate
+g2m8masn	(alpha-D-Glucosyl)2-(alpha-D-mannosyl)8-beta-D-mannosyl-diacetylchitobiosyl-L-asparagine (protein)
+g2m8mpdol_L	"(alpha-D-Glucosyl)2-(alpha-D-mannosyl)8-beta-D-mannosyl-diacetylchitobiosyldiphosphodolichol, human liver homolog"
+g2m8mpdol_U	"(alpha-D-Glucosyl)2-(alpha-D-mannosyl)8-beta-D-mannosyl-diacetylchitobiosyldiphosphodolichol, human uterine homolog"
+g3m8masn	(alpha-D-Glucosyl)3-(alpha-D-mannosyl)8-beta-D-mannosyl-diacetylchitobiosyl-L-asparagine (protein)
+g3m8mpdol_L	"(alpha-D-Glucosyl)3-(alpha-D-mannosyl)8-beta-D-mannosyl-diacetylchitobiosyldiphosphodolichol, human liver homolog"
+g3m8mpdol_U	"(alpha-D-Glucosyl)3-(alpha-D-mannosyl)8-beta-D-mannosyl-diacetylchitobiosyldiphosphodolichol, human uterine homolog"
+g3pc	sn-Glycero-3-phosphocholine
+g3pe	sn-Glycero-3-phosphoethanolamine
+g3pg	Glycerophosphoglycerol
+g3p	Glyceraldehyde 3-phosphate
+g3pi	sn-Glycero-3-phospho-1-inositol
+g3ps	Glycerophosphoserine
+g6p-B	beta-D-glucose 6-phosphate
+g6p	D-Glucose 6-phosphate
+ga1_hs	GA1 (homo sapiens)
+ga2_hs	GA2 (homo sapiens)
+gacpail_hs	glucosaminyl-acylphosphatidylinositol
+ga	Gallic acid
+gagicolipa	galactosyl-glucosyl-inner core oligosaccharide lipid A
+gal14acglcgalgluside_hs	Lactoneotetraosylceramide
+gal1p	alpha-D-Galactose 1-phosphate
+galacgalfuc12gal14acglcgalgluside_hs	(Gal)3 (GalNAc)1 (Glc)1 (GlcNAc)1 (LFuc)1 (Cer)1
+galacgalfucgalacglcgal14acglcgalgluside_hs	(Gal)4 (GalNAc)1 (Glc)1 (GlcNAc)2 (LFuc)1 (Cer)1
+galacglc13galacglcgal14acglcgalgluside_hs	nLc8Cer
+galacglcgal14acglcgalgluside_hs	i-antigen
+galacglcgalacglcgal14acglcgalgluside_hs	I-antigen
+galacglcgalgbside_hs	Gal-GlcNAc-Gal globoside (homo sapiens)
+galacglcgalgluside_hs	Lc4Cer
+gal-bD	beta D-Galactose
+galct-D	D-Galactarate
+galctn-D	D-Galactonate
+galctn-L	L-Galactonate
+galctr-D	D-Galactarate
+gal	D-Galactose
+galfragund	galactofuranosyl(30)-rhamanosyl-N-acetylglucosamyl-undecaprenyl diphosphate (M tb)
+galfuc12gal14acglcgalgluside_hs	(Gal)3 (Glc)1 (GlcNAc)1 (LFuc)1 (Cer)1
+galfucgalacglcgal14acglcgalgluside_hs	(Gal)4 (Glc)1 (GlcNAc)2 (LFuc)1 (Cer)1
+galfucgalacglcgalgluside_hs	Type IB glycolipid
+galgalfucfucgalacglcgalacglcgal14acglcgalgluside_hs	(Gal)6 (Glc)1 (GlcNAc)3 (LFuc)2 (Cer)1
+galgalgalthcrm_hs	Gal-Gal-Gal-Gal-Gal-Glc-Cer (homo sapiens)
+galgalthcrm_hs	Gal-Gal-Gal-Gal-Glc-Cer (homo sapiens)
+galgbside_hs	galactosylgloboside (homo sapiens)
+galgluside_hs	galactosyl glucosyl ceramide
+galside_hs	galactocerebroside (homo sapiens)
+galt1p	Galactitol 1-phosphate
+galt	Galactitol
+galthcrm_hs	Gal-Gal-Gal-Glc-Cer (homo sapiens)
+galur	D-Galacturonate
+gam1p	D-Glucosamine 1-phosphate
+gam6p	D-Glucosamine 6-phosphate
+gam	D-Glucosamine
+garagund	glucosyl-O-acetyl-rhamanosyl-N-acetylglucosamyl-undecaprenyl diphosphate
+gar	N1-(5-Phospho-D-ribosyl)glycinamide
+gbbtn	gamma-butyrobetaine
+gbside_hs	globoside (homo sapiens)
+gcald	Glycolaldehyde
+gchola	glycocholate
+gd1a_hs	GD1a (homo sapiens)
+gd1alpha_hs	GD1a (homo sapiens)
+gd1b2_hs	GD1beta (homo sapiens)
+gd1b_hs	GD1b (homo sapiens)
+gd1c_hs	GD1c (homo sapiens)
+gd2_hs	GD2 (homo sapiens)
+gd3_hs	GD3 (homo sapiens)
+gdbtal	4-Guanidinobutanal
+gdchola	glycochenodeoxycholate
+gdpddman	GDP-4-dehydro-6-deoxy-D-mannose
+gdpddm	GDP-4-dehydro-6-deoxy-D-mannose
+gdpfuc	GDP-L-fucose
+gdp	GDP
+gdpgpi	glucosaminyl archaetidyl-myo-inositol
+gdpman	GDP-D-mannose
+gdpmann	GDP-D-mannose
+gdpofuc	GDP-4-oxo-L-fucose
+gdptp	Guanosine 3'-diphosphate 5'-triphosphate
+gfgaragund	galactofuranosyl-glucosyl-O-acetyl-rhamanosyl-N-acetylglucosamyl-undecaprenyl diphosphate
+gg4abut	gamma-glutamyl-gamma aminobutyric acid
+ggagicolipa	glucosyl-galactosyl-glucosyl-inner core oligosaccharide lipid A
+ggbutal	gamma-glutamyl-gamma-butyraldehyde
+ggdp	Geranylgeranyl diphosphate
+gggagicolipa	glucosyl-glucosyl-galactosyl-glucosyl-inner core oligosaccharide lipid A
+gggp	(S)-3-O-geranylgeranylglyceryl phosphate
+ggl	Galactosylglycerol
+ggluaba	gammaglutamyl-gamma-aminobutyraldehyde
+ggluabt	gammaglutamyl-gamma-aminobutyrate
+ggluptrc	gammaglutamyl putrescine
+ggn	"primed glycogenin (glycogenin-8[1,4-Glc])"
+ggptrc	gamma-glutamyl-putrescine
+gicolipa	glucosyl-inner core oligosaccharide lipid A
+glac	"D-glucurono-6,3-lactone"
+glc1man	"glucose-1,3-mannose oligosaccharide"
+glc2man	"(2)[glucose-1,3]-mannose oligosaccharide"
+glc3man	"glucose-1,2-(2)[glucose-1,3]-mannose oligosaccharide"
+glc-D	D-Glucose
+glcn-D	D-Gluconate
+glcn	D-Gluconate
+glcp_SA	Glucosyl Phosphoglycerol (SA)
+glcr	D-Glucarate
+glcur1p	D-Glucuronate 1-phosphate
+glcur	D-Glucuronate
+gln-L	L-Glutamine
+glntrna	L-Glutaminyl-tRNA(Gln)
+glp	Glycylpeptide
+glu1sa	L-Glutamate 1-semialdehyde
+glu5p	L-Glutamate 5-phosphate
+glu5sa	L-Glutamate 5-semialdehyde
+gluala	5-L-Glutamyl-L-alanine
+glucys	gamma-L-Glutamyl-L-cysteine
+glu-D	D-Glutamate
+glu-L	L-Glutamate
+gluside_hs	glucocerebroside (homo sapiens)
+glutar	Glutarate
+glutcoa	Glutaryl-CoA
+glutrna(gln)	L-Glutamyl-tRNA(Gln)
+glutrna	L-Glutamyl-tRNA(Glu)
+glx	Glyoxylate
+glyald	D-Glyceraldehyde
+glyb	Glycine betaine
+glyc1p	Glycerol 1-phosphate
+glyc2p	Glycerol 2-phosphate
+glyc3p	Glycerol 3-phosphate
+glyc	Glycerol
+glyclt	Glycolate
+glycogen	glycogen
+glyc-R	(R)-Glycerate
+glyc-S	(S)-Glycerate
+gly	Glycine
+glygn1	"glycogen, structure 1 (glycogenin-11[1,4-Glc])"
+glygn2	"glycogen, structure 2 (glycogenin-1,6-{7[1,4-Glc], 4[1,4-Glc]})"
+glygn3	"glycogen, structure 3 (glycogenin-7[1,4-Glc])"
+glygn4	"glycogen, structure 4 (glycogenin-1,6-{2[1,4-Glc], [1,4-Glc]})"
+glygn5	"glycogen, structure 5 (glycogenin-2[1,4-Glc])"
+glytrna	Glycyl-tRNA(Gly)
+gm1a_hs	GM1alpha (homo sapiens)
+gm1b_hs	GM1b (homo sapiens)
+gm1_hs	ganglioside GM1 (homo sapiens)
+gm2a_hs	GM2alpha (homo sapiens)
+gm2_hs	ganglioside GM2 (homo sapiens)
+gm3_hs	ganglioside GM3 (homo sapiens)
+gmh17bp	"D-Glycero-D-manno-heptose 1,7-bisphosphate"
+gmh1p	D-Glycero-D-manno-heptose 1-phosphate
+gmh7p	D-Glycero-D-manno-heptose 7-phosphate
+gmhep17bp	"D-Glycero-D-manno-heptose 1,7-bisphosphate"
+gmhep1p	D-Glycero-D-manno-heptose 1-phosphate
+gmhep7p	D-Glycero-D-manno-heptose 7-phosphate
+gmp	GMP
+gncore1	"GlcNAc-alpha-1,4-Core 1"
+gncore2	"GlcNAc-alpha-1,4-Core 2"
+gp1calpha_hs	GP1c alpha  (homo sapiens)
+gp1c_hs	GP1c (homo sapiens)
+gp4g	"P1,P4-Bis(5'-guanosyl) tetraphosphate"
+gpail_hs	D-glucosaminylphosphatidylinositol
+gpi_hs	glycophosphatidylinositol (GPI) anchor precursor (3-(phosphoethanolaminyl-mannosyl)-glucosaminyl-acylphosphatidylinositol) (H8)
+gpi_prot_hs	glycophosphatidylinositol (GPI)-anchored protein
+gpi_sig	glycophosphatidylinositol (GPI) signal sequence (C-terminal peptide)
+gq1balpha_hs	GQ1balpha (homo sapiens)
+gq1b_hs	GQ1b (homo sapiens)
+gq1c_hs	GQ1c (homo sapiens)
+grdp	Geranyl diphosphate
+grxox	glutaredoxin (oxidized)
+grxrd	glutaredoxin (reduced)
+gsn	Guanosine
+gt1a_hs	GT1a (homo sapiens)
+gt1alpha_hs	GT1aalpha (homo sapiens)
+gt1b_hs	GT1b (homo sapiens)
+gt1c_hs	GT1c (homo sapiens)
+gt2_hs	GT2 (homo sapiens)
+gt3_hs	GT3 (homo sapiens)
+gtca1	"glycerol teichoic acid (n=25), unlinked, unsubstituted"
+gtca2	"glycerol teichoic acid (n=25), unlinked, D-ala substituted"
+gtca3	"glycerol teichoic acid (n=25), unlinked, glucose substituted"
+gthox	Oxidized glutathione
+gthrd	Reduced glutathione
+gtp	GTP
+gtspmd	Glutathionylspermidine
+gua	Guanine
+gudac	Guanidinoacetate
+gullac	"L-Gulono-1,4-lactone"
+guln	L-Gulonate
+h2acon-C	cis-(homo)2aconitate
+h2co3	carbonic acid
+h2	H2
+h2mb4p	1-hydroxy-2-methyl-2-(E)-butenyl 4-diphosphate
+h2mpt	"7,8-dihydromethanopterin"
+h2o2	Hydrogen peroxide
+h2o	H2O
+h2s	Hydrogen sulfide
+h3acon-C	cis-(homo)3aconitate
+h4mpt	"5,6,7,8-tetrahydromethanopterin"
+h4spt	tetrahydrosarcinapterin
+hacolipa	hepta-acylated core oligosaccharide lipid A (E. coli)
+hacon-C	cis-homoaconitate
+hacon-T	trans-homoaconitate
+ha_deg1	hyaluronan degradation product 1
+ha	hyaluronan
+halipa	hepta-acylated KDO(2)-lipid (A)
+ha_pre1	"hyaluronan biosynthesis, precursor 1"
+harab-D	hexa arabinofuranoside
+hatrz	Hydroxyatrazine
+hcit	"2-Hydroxybutane-1,2,4-tricarboxylate"
+hco3	Bicarbonate
+hcoumarin	hydroxy coumarin
+hcys-L	L-Homocysteine
+hdca	Hexadecanoate (n-C16:0)
+hdcea	Hexadecenoate (n-C16:1)
+hdcecrn	Hexadecenoyl carnitine
+hdcoa	Hexadecenoyl-CoA (n-C16:1CoA)
+hdd2coa	trans-Hexadec-2-enoyl-CoA
+hdd2crn	trans-Hexadec-2-enoyl carnitine
+hdeACP	cis-hexadec-9-enoyl-[acyl-carrier protein] (n-C16:1)
+hemeA_#1	Heme A
+hemeO	Heme O
+hepdp	all-trans-Heptaprenyl diphosphate
+hestratriol	"4,17 dihydroxy estradiol"
+hexACP	Hexanoyl-ACP (n-C6:0ACP)
+hexccoa	Hexacosanoyl-CoA (n-C26:0CoA)
+hexccrn	hexacosanoyl carnitine
+hexc	hexacosanoate (n-C26:0)
+hexdp	all-trans-Hexaprenyl diphosphate
+hexs	hexanesulfonate
+hg0	Mercury (uncharged)
+hg2	Hg2+
+hgbam	"Hydrogenobyrinate a,c diamide"
+hgbyr	Hydrogenobyrinate
+hgentis	Homogentisate
+h	H+
+hhlipa	heptosyl-heptosyl-kdo2-lipidA
+hicit	Homoisocitrate
+his-L	L-Histidine
+hisp	L-Histidinol phosphate
+hista	Histamine
+histd	L-Histidinol
+histrna	L-Histidyl-tRNA(His)
+hkndd	"2-Hydroxy-6-oxonona-2,4-diene-1,9-dioate"
+hkntd	2-hydroxy-6-ketononatrienedioate
+hlipa	heptosyl-kdo2-lipidA
+hLkynr	3-Hydroxy-L-kynurenine
+hmbil	Hydroxymethylbilane
+hmccm	"2-Hydroxy-5-methyl-cis,cis-muconate"
+hmccms	"2-Hydroxy-5-methyl-cis,cis-muconic semialdehyde"
+hmfurn	4-hydroxy-5-methyl-3(2H)-furanone
+hmgcoa	Hydroxymethylglutaryl-CoA
+hmgth	hydroxymethylglutathione
+hmocta	hexa-methyl octacosanoate
+hmtria	"hexa-methyl triacontanoic acid (C30:0, plus 6 methyl branches)"
+hnifedipine	hydroxy nifedipine
+hom-L	L-Homoserine
+homoval	Homovanillate
+homtta	"10 hydroxy octa-methyl tetracontatricosanoic acid (C34:0, 8 methyl-branched carbons, 1 hydroxylated carbon)"
+hpdcacoa	heptadecanoyl coa
+hpdcacrn	heptadecanoyl carnitine
+hpdca	heptadecanoate
+hpglu	Tetrahydropteroyltri-L-glutamate
+hphaccoa	4-Hydroxyphenylacetyl-CoA
+hphhlipa	heptosyl-phospho-heptosyl-heptosyl-kdo2-lipidA
+hpmdtria	hepta-methyl dotriacontanoic acid (7 methyl branches)
+hpmtria	"hepta-methyl triacontanoic acid (C30:0, plus 7 methyl branches)"
+hpyr	Hydroxypyruvate
+hqn	Hydroquinone
+hretn	4 hydroxy retinoic acid
+hs_deg10	"heparan sulfate, degradation product 10"
+hs_deg11	"heparan sulfate, degradation product 11"
+hs_deg12	"heparan sulfate, degradation product 12"
+hs_deg13	"heparan sulfate, degradation product 13"
+hs_deg14	"heparan sulfate, degradation product 14"
+hs_deg15	"heparan sulfate, degradation product 15"
+hs_deg16	"heparan sulfate, degradation product 16"
+hs_deg17	"heparan sulfate, degradation product 17"
+hs_deg18	"heparan sulfate, degradation product 18"
+hs_deg19	"heparan sulfate, degradation product 19"
+hs_deg1	"heparan sulfate, degradation product 1"
+hs_deg20	"heparan sulfate, degradation product 20"
+hs_deg21	"heparan sulfate, degradation product 21"
+hs_deg22	"heparan sulfate, degradation product 22"
+hs_deg23	"heparan sulfate, degradation product 23"
+hs_deg24	"heparan sulfate, degradation product 24"
+hs_deg25	"heparan sulfate, degradation product 25"
+hs_deg2	"heparan sulfate, degradation product 2"
+hs_deg3	"heparan sulfate, degradation product 3"
+hs_deg4	"heparan sulfate, degradation product 4"
+hs_deg5	"heparan sulfate, degradation product 5"
+hs_deg6	"heparan sulfate, degradation product 6"
+hs_deg7	"heparan sulfate, degradation product 7"
+hs_deg8	"heparan sulfate, degradation product 8"
+hs_deg9	"heparan sulfate, degradation product 9"
+hsfd	heterodisulfide
+hs	"heparan sulfate, free chain"
+hspg	heparan sulfate proteoglycan
+hspmd	sym-Homospermidine
+hs_pre10	"heparan sulfate, precursor 10"
+hs_pre11	"heparan sulfate, precursor 11"
+hs_pre12	"heparan sulfate, precursor 12"
+hs_pre13	"heparan sulfate, precursor 13"
+hs_pre14	"heparan sulfate, precursor 14"
+hs_pre15	"heparan sulfate, precursor 15"
+hs_pre1	"heparan sulfate, precursor 1"
+hs_pre2	"heparan sulfate, precursor 2"
+hs_pre3	"heparan sulfate, precursor 3"
+hs_pre4	"heparan sulfate, precursor 4"
+hs_pre5	"heparan sulfate, precursor 5"
+hs_pre6	"heparan sulfate, precursor 6"
+hs_pre7	"heparan sulfate, precursor 7"
+hs_pre8	"heparan sulfate, precursor 8"
+hs_pre9	"heparan sulfate, precursor 9"
+htaxol	hydroxylated taxol
+hx2coa	trans-Hex-2-enoyl-CoA
+hxa	Hexanoate (n-C6:0)
+hxal	hexanal
+hxan	Hypoxanthine
+hxc2coa	trans-Hexacos-2-enoyl-CoA
+hxcoa	Hexanoyl-CoA (n-C6:0CoA)
+hxdcal	Hexadecanal
+hyptaur	Hypotaurine
+iacgam	1D-myo-inositol 2-Acetamido-2-deoxy-D-glucopyranoside
+iad	Indole-3-acetamide
+iasp	Iminoaspartate
+ibcoa	Isobutyryl-CoA
+ichor	Isochorismate
+icit	Isocitrate
+icolipa	inner core oligosaccharide lipid A (E coli)
+id3acald	Indole-3-acetaldehyde
+idon-L	L-Idonate
+idour	L-Iduronate
+idp	IDP
+igam	1D-myo-inositol 2-deoxy-D-glucopyranoside
+ihcit-T	threo-isohomocitrate
+i	Iodide
+ile-L	L-Isoleucine
+iletrna	L-Isoleucyl-tRNA(Ile)
+im4ac	Imidazole-4-acetate
+im4act	Imidazole-4-acetaldehyde
+imacp	3-(Imidazol-4-yl)-2-oxopropyl phosphate
+imp	IMP
+ind3ac	Indole-3-acetate
+ind3acnl	Indole-3-acetonitrile
+indaccoa	S-2-(indol-3-yl)acetyl-CoA
+indole	Indole
+indpyr	Indolepyruvate
+inost	myo-Inositol
+ins	Inosine
+iodine	Iodine
+ipc124_SC	"Inositol phosphorylceramide, ceramide-1 (24C), yeast-specific"
+ipc126_SC	"Inositol phosphorylceramide, ceramide-1 (26C), yeast-specific"
+ipc224_SC	"Inositol phosphorylceramide, ceramide-2 (24C), yeast-specific"
+ipc226_SC	"Inositol phosphorylceramide, ceramide-2 (26C), yeast-specific"
+ipc324_SC	"Inositol phosphorylceramide, ceramide-3 (24C), yeast-specific"
+ipc326_SC	"Inositol phosphorylceramide, ceramide-3 (26C), yeast-specific"
+ipdp	Isopentenyl diphosphate
+iqnl	Isoquinoline
+iqnln	Isoquinolin-1(2H)-one
+isetac	Isethionic acid
+istnt	Isethionate
+itaccoa	Itaconyl-CoA
+itacon	Itaconate
+itp	ITP
+ivcoa	Isovaleryl-CoA
+kdn	2-keto-3-deoxy-D-glycero-D-galactononic acid
+kdnp	2-keto-3-deoxy-D-glycero-D-galactononic acid 9-phosphate
+kdo2lipid4	KDO(2)-lipid IV(A)
+kdo2lipid4L	KDO(2)-lipid IV(A) with laurate
+kdo2lipid4p	KDO(2)-lipid IV(A) with palmitoleoyl
+kdo	3-Deoxy-D-manno-2-octulosonate
+kdo8p	3-Deoxy-D-manno-octulosonate 8-phosphate
+kdolipid4_HP	KDO-lipid IV(A)_HP
+kdolipid4	KDO-lipid IV(A)
+kmeroacidACP	keto meroacid ACP
+kmeroacidcyc1ACP	cyclopropanated keto-meroacid ACP (1 cyclopropane ring)
+kmeroacidcyc2ACP	cyclopropanated keto-meroacid ACP (2 cyclopropane rings)
+kmeroacidcyc2AMP	cyclopropanated keto-meroacid AMP (2 cyclopropane rings)
+kmycolate	keto mycolate (2 cyclopropanated rings)
+kphphhlipa	kdo-phospho-heptosyl-phospho-heptosyl-heptosyl-kdo2-lipidA
+k	potassium
+ksi_deg10	"keratan sulfate I, degradation product 10"
+ksi_deg11	"keratan sulfate I, degradation product 11"
+ksi_deg12	"keratan sulfate I, degradation product 12"
+ksi_deg13	"keratan sulfate I, degradation product 13"
+ksi_deg14	"keratan sulfate I, degradation product 14"
+ksi_deg15	"keratan sulfate I, degradation product 15"
+ksi_deg16	"keratan sulfate I, degradation product 16"
+ksi_deg17	"keratan sulfate I, degradation product 17"
+ksi_deg18	"keratan sulfate I, degradation product 18"
+ksi_deg19	"keratan sulfate I, degradation product 19"
+ksi_deg1	"keratan sulfate I, degradation product 1"
+ksi_deg20	"keratan sulfate I, degradation product 20"
+ksi_deg21	"keratan sulfate I, degradation product 21"
+ksi_deg22	"keratan sulfate I, degradation product 22"
+ksi_deg23	"keratan sulfate I, degradation product 23"
+ksi_deg24	"keratan sulfate I, degradation product 24"
+ksi_deg25	"keratan sulfate I, degradation product 25"
+ksi_deg26	"keratan sulfate I, degradation product 26"
+ksi_deg27	"keratan sulfate I, degradation product 27"
+ksi_deg28	"keratan sulfate I, degradation product 28"
+ksi_deg29	"keratan sulfate I, degradation product 29"
+ksi_deg2	"keratan sulfate I, degradation product 2"
+ksi_deg30	"keratan sulfate I, degradation product 30"
+ksi_deg31	"keratan sulfate I, degradation product 31"
+ksi_deg32	"keratan sulfate I, degradation product 32"
+ksi_deg33	"keratan sulfate I, degradation product 33"
+ksi_deg34	"keratan sulfate I, degradation product 34"
+ksi_deg35	"keratan sulfate I, degradation product 35"
+ksi_deg36	"keratan sulfate I, degradation product 36"
+ksi_deg37	"keratan sulfate I, degradation product 37"
+ksi_deg38	"keratan sulfate I, degradation product 38"
+ksi_deg39	"keratan sulfate I, degradation product 39"
+ksi_deg3	"keratan sulfate I, degradation product 3"
+ksi_deg40	"keratan sulfate I, degradation product 40"
+ksi_deg41	"keratan sulfate I, degradation product 41"
+ksi_deg4	"keratan sulfate I, degradation product 4"
+ksi_deg5	"keratan sulfate I, degradation product 5"
+ksi_deg6	"keratan sulfate I, degradation product 6"
+ksi_deg7	"keratan sulfate I, degradation product 7"
+ksi_deg8	"keratan sulfate I, degradation product 8"
+ksi_deg9	"keratan sulfate I, degradation product 9"
+ksii_core2_deg1	"keratan sulfate II (core 2-linked), degradation product 1"
+ksii_core2_deg2	"keratan sulfate II (core 2-linked), degradation product 2"
+ksii_core2_deg3	"keratan sulfate II (core 2-linked), degradation product 3"
+ksii_core2_deg4	"keratan sulfate II (core 2-linked), degradation product 4"
+ksii_core2_deg5	"keratan sulfate II (core 2-linked), degradation product 5"
+ksii_core2_deg6	"keratan sulfate II (core 2-linked), degradation product 6"
+ksii_core2_deg7	"keratan sulfate II (core 2-linked), degradation product 7"
+ksii_core2_deg8	"keratan sulfate II (core 2-linked), degradation product 8"
+ksii_core2_deg9	"keratan sulfate II (core 2-linked), degradation product 9"
+ksii_core2	keratan sulfate II (core 2-linked)
+ksii_core2_pre10	"keratan sulfate II biosynthesis, precursor 10"
+ksii_core2_pre1	"keratan sulfate II biosynthesis, precursor 1"
+ksii_core2_pre2	"keratan sulfate II biosynthesis, precursor 2"
+ksii_core2_pre3	"keratan sulfate II biosynthesis, precursor 3"
+ksii_core2_pre4	"keratan sulfate II biosynthesis, precursor 4"
+ksii_core2_pre5	"keratan sulfate II biosynthesis, precursor 5"
+ksii_core2_pre6	"keratan sulfate II biosynthesis, precursor 6"
+ksii_core2_pre7	"keratan sulfate II biosynthesis, precursor 7"
+ksii_core2_pre8	"keratan sulfate II biosynthesis, precursor 8"
+ksii_core2_pre9	"keratan sulfate II biosynthesis, precursor 9"
+ksii_core4_deg1	"keratan sulfate II (core 4-linked), degradation product 1"
+ksii_core4_deg2	"keratan sulfate II (core 4-linked), degradation product 2"
+ksii_core4_deg3	"keratan sulfate II (core 4-linked), degradation product 3"
+ksii_core4_deg4	"keratan sulfate II (core 4-linked), degradation product 4"
+ksii_core4	keratan sulfate II (core 4-linked)
+ksii_core4_pre10	"keratan sulfate II biosynthesis, precursor 10"
+ksii_core4_pre1	"keratan sulfate II biosynthesis, precursor 1"
+ksii_core4_pre2	"keratan sulfate II boisynthesis, precursor 2"
+ksii_core4_pre3	"keratan sulfate II biosynthesis, precursor 3"
+ksii_core4_pre4	"keratan sulfate II biosynthesis, precursor 4"
+ksii_core4_pre5	"keratan sulfate II biosynthesis, precursor 5"
+ksii_core4_pre6	"keratan sulfate II biosynthesis, precursor 6"
+ksii_core4_pre7	"keratan sulfate II biosynthesis, precursor 7"
+ksii_core4_pre8	"keratan sulfate II biosynthesis, precursor 8"
+ksii_core4_pre9	"keratan sulfate II biosynthesis, precursor 9"
+ksi	keratan sulfate I
+ksi_pre10	"keratan sulfate I biosynthesis, precursor 10"
+ksi_pre11	"keratan sulfate I biosynthesis, precursor 11"
+ksi_pre12	"keratan sulfate I biosynthesis, precursor 12"
+ksi_pre13	"keratan sulfate I biosynthesis, precursor 13"
+ksi_pre14	"keratan sulfate I biosynthesis, precursor 14"
+ksi_pre15	"keratan sulfate I biosynthesis, precursor 15"
+ksi_pre16	"keratan sulfate I biosynthesis, precursor 16"
+ksi_pre17	"keratan sulfate I biosynthesis, precursor 17"
+ksi_pre18	"keratan sulfate I biosynthesis, precursor 18"
+ksi_pre19	"keratan sulfate I biosynthesis, precursor 19"
+ksi_pre1	"keratan sulfate I biosynthesis, precursor 1"
+ksi_pre20	"keratan sulfate I biosynthesis, precursor 20"
+ksi_pre21	"keratan sulfate I biosynthesis, precursor 21"
+ksi_pre22	"keratan sulfate I biosynthesis, precursor 22"
+ksi_pre23	"keratan sulfate I biosynthesis, precursor 23"
+ksi_pre24	"keratan sulfate I biosynthesis, precursor 24"
+ksi_pre25	"keratan sulfate I biosynthesis, precursor 25"
+ksi_pre26	"keratan sulfate I biosynthesis, precursor 26"
+ksi_pre27	"keratan sulfate I biosynthesis, precursor 27"
+ksi_pre28	"keratan sulfate I biosynthesis, precursor 28"
+ksi_pre29	"keratan sulfate I biosynthesis, precursor 29"
+ksi_pre2	"keratan sulfate I biosynthesis, precursor 2"
+ksi_pre30	"keratan sulfate I biosynthesis, precursor 30"
+ksi_pre31	"keratan sulfate I biosynthesis, precursor 31"
+ksi_pre32	"keratan sulfate I biosynthesis, precursor 32"
+ksi_pre33	"keratan sulfate I biosynthesis, precursor 33"
+ksi_pre34	"keratan sulfate I biosynthesis, precursor 34"
+ksi_pre35	"keratan sulfate I biosynthesis, precursor 35"
+ksi_pre36	"keratan sulfate I biosynthesis, precursor 36"
+ksi_pre3	"keratan sulfate I biosynthesis, precursor 3"
+ksi_pre4	"keratan sulfate I biosynthesis, precursor 4"
+ksi_pre5	"keratan sulfate I biosynthesis, precursor 5"
+ksi_pre6	"keratan sulfate I biosynthesis, precursor 6"
+ksi_pre7	"keratan sulfate I biosynthesis, precursor 7"
+ksi_pre8	"keratan sulfate I biosynthesis, precursor 8"
+ksi_pre9	"keratan sulfate I biosynthesis, precursor 9"
+kynate	4-Hydroxy-2-quinolinecarboxylic acid
+L2aadp6sa	L-2-Aminoadipate 6-semialdehyde
+L2aadp	L-2-Aminoadipate
+l2fn2m2masn	"{[galactosyl-(1,4)-N-Acetyl-glucosaminyl-(1,2)-mannosyl-(1,3)-],[N-acetyl-glucosaminyl-(1,2)-mannosyl-(1,6)-]mannosyl-(1,4)-N-acetyl-glucosaminyl-(1,4)-[fucosyl-(1,6)]-N-acetyl-glucosaminyl}asparagine"
+l2n2m2mn	"de-Fuc, reducing GlcNAc removed, de-Sia form of PA6 (w/o peptide linkage)"
+l2xser	(Gal)2-Xyl-L-Ser (protein)
+lac6p	Lactose-6-phosphate
+lac-D	D-Lactate
+lac-L	L-Lactate
+LalaDglu	L-alanine-D-glutamate
+LalaDgluMdapDala	"L-alanine-D-glutamate-meso-2,6-diaminoheptanedioate-D-alanine"
+LalaDgluMdap	"L-alanine-D-glutamate-meso-2,6-diaminoheptanedioate"
+LalaLglu	L-alanine-L-glutamate
+lald-D	D-Lactaldehyde
+lald-L	L-Lactaldehyde
+lanost	Lanosterol
+lcts	Lactose
+Lcystin	L-Cystine
+Lcyst	L-Cysteate
+L-dpchrm	L-Dopachrome
+leuktrA4	Leukotriene A4
+leuktrB4	Leukotriene B4
+leuktrB4wcooh	w-carboxy leukotriene B4
+leuktrB4woh	w-hydroxyl leukotriene B4
+leuktrC4	Leukotriene C4
+leuktrD4	Leukotriene D4
+leuktrE4	leukotriene E4
+leuktrF4	leukotriene F4
+leu-L	L-Leucine
+leutrna	L-Leucyl-tRNA(Leu)
+Lfmkynr	L-Formylkynurenine
+lgnccoa	lignocericyl coenzyme A
+lgnccrn	lignoceryl carnitine
+lgnc	lignoceric acid
+lgt-S	(R)-S-Lactoylglutathione
+limnen	Limonene
+lipa_cold	cold adapted KDO(2)-lipid (A)
+lipa	KDO(2)-lipid (A)
+lipidA	"2,3,2'3'-Tetrakis(beta-hydroxymyristoyl)-D-glucosaminyl-1,6-beta-D-glucosamine 1,4'-bisphosphate"
+lipidAds	Lipid A Disaccharide
+lipidA_HP	lipidA_HP
+lipidX	"2,3-Bis(3-hydroxytetradecanoyl)-beta-D-glucosaminyl 1-phosphate"
+lipidX_HP	lipidX_HP
+lipoate	Lipoate
+Lkynr	L-Kynurenine
+lneldcACP	linoelaidic acid ACP (all trans)
+lneldccoa	linoelaidyl coenzyme A
+lneldccrn	Linoelaidyl carnitine
+lneldc	linoelaidic acid (all trans C18:2)
+lnlcACP	linoleic acid ACP (all cis)
+lnlccoa	linoleic coenzyme A
+lnlccrn	Linoleyl carnitine
+lnlc	linoleic acid (all cis C18:2) n-6
+lnlnca	"alpha-Linolenic acid, C18:3, n-3"
+lnlncacoa	alpha-Linolenoyl-CoA
+lnlncacrn	alpha-linolenyl carnitine
+lnlncgcoa	gamma-linolenoyl-CoA
+lnlncgcrn	gamma-linolenyl carnitine
+lnlncg	gamma-linolenic acid
+lpam	Lipoamide
+lpchol_hs	lysophosphatidylcholine (homo sapiens)
+Lpipecol	L-Pipecolate
+lppg	lactyl-(2)-diphospho-(5')-guanosine
+lpp	lipoprotein
+lpro	Lipoylprotein
+lps_EC	lipopolysaccharide (Ecoli)
+lps_HP	Lipopolysacharide Hp specific
+Lsacchrp	L-Saccharopine
+lthstrl	5alpha-Cholest-7-en-3beta-ol
+lum3	Lumisterol 3
+lxser	Gal-Xyl-L-Ser (protein)
+lys-D	D-Lysine
+lys-L	L-Lysine
+lystrna	L-Lysine-tRNA (Lys)
+lyx-L	L-Lyxose
+lyxnt	L-lyxonate
+m1macchitppdol	alpha-D-mannosyl-beta-D-mannosyl-diacylchitobiosyldiphosphodolichol
+m1mpdol_L	"alpha-D-mannosyl-beta-D-mannosyl-diacylchitobiosyldiphosphodolichol, human liver homolog"
+m1mpdol_U	"alpha-D-mannosyl-beta-D-mannosyl-diacylchitobiosyldiphosphodolichol, human uterine homolog"
+m1ocdca	methyl octadecanoate
+m2emgacpail_hs	"(dimannosyl),(phosphoethanolaminyl)-mannosyl-glucosylaminyl-acylphosphatidylinositol (H6)"
+m2gacpail_hs	dimannosyl-glucosaminyl-acylphosphatidylinositol (H3)
+m2macchitppdol	(alpha-D-mannosyl)2-beta-D-mannosyl-diacetylchitobiosyldiphosphodolichol
+m2mn	(alpha-D-mannosyl)2-beta-D-mannosyl-N-acetylglucosamine
+m2mpdol_L	"(alpha-D-mannosyl)2-beta-D-mannosyl-diacetylchitobiosyldiphosphodolichol, human liver homolog"
+m2mpdol_U	"(alpha-D-mannosyl)2-beta-D-mannosyl-diacetylchitobiosyldiphosphodolichol, human uterine homolog"
+m3emgacpail_hs	"(trimannosyl),(phosphoethanolaminyl)-mannosyl-glucosaminyl-acylphosphatidylinositol (M4C)"
+m3gacpail_hs	trimannosyl-glucosaminyl-acylphosphatidylinositol (H4)
+m3hdp	methyl-3-hydroxyl diphosphate
+m3macchitppdol	(alpha-D-mannosyl)3-beta-D-mannosyl-diacetylchitodiphosphodolichol
+m3mpdol_L	"(alpha-D-mannosyl)3-beta-D-mannosyl-diacetylchitodiphosphodolichol, human liver homolog"
+m3mpdol_U	"(alpha-D-mannosyl)3-beta-D-mannosyl-diacetylchitodiphosphodolichol, human uterine homolog"
+m4macchitppdol	(alpha-D-Mannosyl)4-beta-D-mannosyl-diacetylchitobiosyldiphosphodolichol
+m4masn	(alpha-D-mannosyl)4-beta-D-mannosyl-diacetylchitobiosyl-L-asparagine (protein)
+m4mpdol_L	"(alpha-D-Mannosyl)4-beta-D-mannosyl-diacetylchitobiosyldiphosphodolichol, human liver homolog"
+m4mpdol_U	"(alpha-D-Mannosyl)4-beta-D-mannosyl-diacetylchitobiosyldiphosphodolichol, human uterine homolog"
+m5masnB1	(alpha-D-mannosyl)5-beta-D-mannosyl-diacetylchitobiosyl-L-asparagine (protein)
+m5masnB2	(alpha-D-mannosyl)5-beta-D-mannosyl-diacetylchitobiosyl-L-asparagine (protein)
+m5masnC	(alpha-D-mannosyl)5-beta-D-mannosyl-diacetylchitobiosyl-L-asparagine (protein)
+m5mpdol_L	"(alpha-D-Mannosyl)5-beta-D-mannosyl-diacetylchitobiosyldiphosphodolichol, human liver homolog"
+m5mpdol_U	"(alpha-D-Mannosyl)5-beta-D-mannosyl-diacetylchitobiosyldiphosphodolichol, human uterine homolog"
+m6masnA	(alpha-D-mannosyl)6-beta-D-mannosyl-diacetylchitobiosyl-L-asparagine (protein)
+m6masnB1	(alpha-D-mannosyl)6-beta-D-mannosyl-diacetylchitobiosyl-L-asparagine (protein)
+m6masnB2	(alpha-D-mannosyl)6-beta-D-mannosyl-diacetylchitobiosyl-L-asparagine (protein)
+m6masnC	(alpha-D-mannosyl)6-beta-D-mannosyl-diacetylchitobiosyl-L-asparagine (protein)
+m6mpdol_L	"(alpha-D-Mannosyl)6-beta-D-mannosyl-diacetylchitobiosyldiphosphodolichol, human liver homolog"
+m6mpdol_U	"(alpha-D-Mannosyl)6-beta-D-mannosyl-diacetylchitobiosyldiphosphodolichol, human uterine homolog"
+m7masnA	"(alpha-D-mannosyl)7-beta-D-mannosyl-diacetylchitobiosyl-L-asparagine, isoform A (protein)"
+m7masnB	"(alpha-D-mannosyl)7-beta-D-mannosyl-diacetylchitobiosyl-L-asparagine, isoform B (protein)"
+m7masnC	"(alpha-D-mannosyl)7-beta-D-mannosyl-diacetylchitobiosyl-L-asparagine, isoform C (protein)"
+m7mpdol_L	"(alpha-D-Mannosyl)7-beta-D-mannosyl-diacetylchitobiosyldiphosphodolichol, human liver homolog"
+m7mpdol_U	"(alpha-D-Mannosyl)7-beta-D-mannosyl-diacetylchitobiosyldiphosphodolichol, human uterine homolog"
+m8masn	(alpha-D-mannosyl)8-beta-D-mannosyl-diacetylchitobiosyl-L-asparagine (protein)
+m8mpdol_L	"(alpha-D-Mannosyl)8-beta-D-mannosyl-diacetylchitobiosyldiphosphodolichol, human liver homolog"
+m8mpdol_U	"(alpha-D-Mannosyl)8-beta-D-mannosyl-diacetylchitobiosyldiphosphodolichol, human uterine homolog"
+macchitppdol	beta-D-Mannosyldiacetylchitobiosyldiphosphodolichol
+mag_hs	monoacylglycerol 2 (homo sapiens)
+malACP	Malonyl-[acyl-carrier protein]
+malcoa	Malonyl-CoA
+mal-D	D-Malate
+male	Maleate
+mal-L	L-Malate
+malm	Maleamate
+malt6p	Maltose 6'-phosphate
+malthp	Maltoheptaose
+malthx	Maltohexaose
+malt	Maltose
+maltpt	Maltopentaose
+malttr	Maltotriose
+maltttr	Maltotetraose
+man1p	D-Mannose 1-phosphate
+man6p	D-Mannose 6-phosphate
+man6pglyc	2(alpha-D-Mannosyl-6-phosphate)-D-glycerate
+mana	D-Mannonate
+man	D-Mannose
+manglyc	2(alpha-D-Mannosyl)-D-glycerate
+mannan	Mannan
+marach	methyl arachidic acid
+mbhn	methyl behenic acid
+mcbts	mycobactin S
+mcbtt	mycobactin T
+mclPHAg	Medium-chain length Polyhydroxyalkanoate growing.
+mclPHA	Medium-chain length Polyhydroxyalkanoate (Total)
+mcom	methylcoenzyme m
+melanin	Melanin
+melatn	Melatonin
+melib	Melibiose
+melt	melibiitol
+mem2emgacpail_hs	"({[(mannosyl),(phosphoethanolaminyl)]-dimannosyl},{phosphoethanolaminyl})-mannosyl-glucosaminyl-acylphosphatidylinositol (M4B)"
+mem2emgacpail_prot_hs	"({[(mannosyl),(phosphoethanolaminyl)]-dimannosyl},{phosphoethanolaminyl})-mannosyl-glucosaminyl-acylphosphatidylinositol-Protein (M4B)"
+m(em)3gacpail_hs	mannosyl-3-(phosphoethanolaminyl-mannosyl)-glucosaminyl-acylphosphatidylinositol (M4A)
+m(em)3gacpail_prot_hs	mannosyl-3-(phosphoethanolaminyl-mannosyl)-glucosaminyl-acylphosphatidylinositol-Protein (M4A)
+memgacpail_hs	"(mannosyl),(phosphoethanolaminyl)-mannosyl-glucosylaminyl-acylphosphatidylinositol (B)"
+menylh4spt	methenyl-tetrahydrosarcinapterin
+meoh	Methanol
+mepi	Metanephrine
+mercplac	3-Mercaptolactate
+mercplaccys	3-mercaptolactate-cysteine disulfide
+mercppyr	Mercaptopyruvate
+meroacidACP	alpha meroacid ACP
+meroacidcyc1ACP	cyclopropanated alpha meroacid ACP (1 cyclopropane ring)
+meroacidcyc2ACP	cyclopropanated alpha meroacid ACP (2 cyclopropane rings)
+meroacidcyc2AMP	cyclopropanated alpha meroacid AMP (2 cyclopropane rings)
+mescoa	Mesaconyl-CoA
+mescon	Mesaconate
+met-D	D-Methionine
+methf	"5,10-Methenyltetrahydrofolate"
+met-L	L-Methionine
+metox	L-Methionine S-oxide
+metsox-R-L	L-methionine-R-sulfoxide
+metsox-S-L	L-Methionine Sulfoxide
+mettrna	L-Methionyl-tRNA (Met)
+mev-R	(R)-Mevalonate
+mfr(b)	methanofuran b
+mfrrppdima	phenolic glycolipid (Mtb)
+mg2	magnesium
+mgacpail_hs	mannosyl-glucosaminyl-acylphosphatidylinositiol (H2)
+mh4spt	N5-methyl-tetrahydrosarcinapterin
+mharab-D	mannose capped hexa arabinofuranoside
+mhista	N-Methylhistamine
+mhpglu	5-Methyltetrahydropteroyltri-L-glutamate
+mi13456p	"1D-myo-Inositol 1,3,4,5,6-pentakisphosphate"
+mi1345p	"1D-myo-Inositol 1,3,4,5-tetrakisphosphate"
+mi1346p	"1D-myo-Inositol 1,3,4,6-tetrakisphosphate"
+mi134p	"1D-myo-Inositol 1,3,4-trisphosphate"
+mi13p	"1D-myo-Inositol 1,3-bisphosphate"
+mi1456p	"1D-myo-Inositol 1,4,5,6-tetrakisphosphate"
+mi145p	"1D-myo-Inositol 1,4,5-trisphosphate"
+mi14p	"1D-myo-Inositol 1,4-bisphosphate"
+mi1p-D	1D-myo-Inositol 1-phosphate
+mi3456p	"1D-myo-Inositol 3,4,5,6-tetrakisphosphate"
+mi34p	"1D-myo-Inositol 3,4-bisphosphate"
+mi3p-D	1D-myo-Inositol 3-phosphate
+mi4p-D	1D-myo-Inositol 4-phosphate
+micit	methylisocitrate
+minohp	myo-Inositol hexakisphosphate
+mip2c124_SC	"mannose-(inositol-P)2-ceramide, ceramide-1 (24C), yeast-specific"
+mip2c126_SC	"mannose-(inositol-P)2-ceramide, ceramide-1 (26C), yeast-specific"
+mip2c224_SC	"mannose-(inositol-P)2-ceramide, ceramide-2 (24C), yeast-specific"
+mip2c226_SC	"mannose-(inositol-P)2-ceramide, ceramide-2 (26C), yeast-specific"
+mip2c324_SC	"mannose-(inositol-P)2-ceramide, ceramide-3 (24C), yeast-specific"
+mip2c326_SC	"mannose-(inositol-P)2-ceramide, ceramide-3 (26C), yeast-specific"
+mipc124_SC	"mannose-inositol phosphorylceramide, ceramide-1 (24C), yeast-specific"
+mipc126_SC	"mannose-inositol phosphorylceramide, ceramide-1 (26C), yeast-specific"
+mipc224_SC	"mannose-inositol phosphorylceramide, ceramide-2 (24C), yeast-specific"
+mipc226_SC	"mannose-inositol phosphorylceramide, ceramide-2 (26C), yeast-specific"
+mipc324_SC	"mannose-inositol phosphorylceramide, ceramide-3 (24C), yeast-specific"
+mipc326_SC	"mannose-inositol phosphorylceramide, ceramide-3 (26C)"
+mkmeroacidACP	methyl hydroxy keto meroacid ACP (1 cyclopropane ring)
+mkmeroacidcyc1ACP	cyclopropanated methyl hydroxy keto meroacid ACP (1 cyclopropane ring)
+mkmeroacidcyc1AMP	cyclopropanated methyl hydroxy keto meroacid AMP (1 cyclopropane ring)
+mkmycolate	keto mycolate (1 cyclopropanated rings)
+mleneh4spt	"N5,N10-methylene-5,6,7,8-tetrahydromethanopterin"
+mlthf	"5,10-Methylenetetrahydrofolate"
+mmalsa-S	(S)-Methylmalonate semialdehyde
+mma	Methylamine
+mmcoa-R	(R)-Methylmalonyl-CoA
+mmcoa-S	(S)-Methylmalonyl-CoA
+mmeroacidACP	methoxy meroacid ACP
+mmeroacidcyc1ACP	cyclopropanated methoxy-meroacid ACP (1 cyclopropane ring)
+mmeroacidcyc2ACP	cyclopropanated methoxy-meroacid ACP (2 cyclopropane rings)
+mmeroacidcyc2AMP	cyclopropanated methoxy-meroacid AMP (2 cyclopropane rings)
+mmet	S-Methyl-L-methionine
+mmh2mpt	"monomethylated 7,8-dihydromethanoterin"
+mmmeroacidACP	methyl hydroxy methoxy meroacid ACP
+mmmeroacidcyc1ACP	cyclopropanated methyl hydroxy methoxy meroacid ACP (1 cyclopropane ring)
+mmmeroacidcyc1AMP	cyclopropanated methyl hydroxy methoxy meroacid AMP (1 cyclopropane ring)
+mmmycolate	methoxy mycolate (1 cyclopropanated ring)
+mmtsa	(S)-Methylmalonate semialdehyde
+mmycolate	methoxy mycolate (2 cyclopropanated rings)
+mn2	Mn2+
+mn	"beta-1,4-mannose-N-acetylglucosamine"
+mndn	menadione
+mnl1p	D-Mannitol 1-phosphate
+mnl	D-Mannitol
+mobd	Molybdate
+mocdca	10-methylstearic acid
+mops	MOPS
+motre	maltooligosyltrehalose
+mpdol_L	"beta-D-Mannosyldiacetylchitobiosyldiphosphodolichol, human liver homolog"
+mpdol_U	"beta-D-Mannosyldiacetylchitobiosyldiphosphodolichol, human uterine homolog"
+mphenh2	methanophenazine (reduced)
+mphen	methanophenazine (oxidized)
+mppp9	Magnesium protoporphyrin
+mql6	Menaquinol 6
+mql7	Menaquinol 7
+mql8	Menaquinol 8
+mqn6	Menaquinone 6
+mqn7	Menaquinone 7
+mqn8	Menaquinone 8
+msa	Malonate semialdehyde
+mshfald	mycothiol conjugated methanol
+mshfaldox	mycothiol conjugated aldehyde
+msh	mycothiol (reduced)
+mso3	methanesulfonate
+mssg	mycothiol (oxidized - dimer)
+mstrACP	10methyl stearyoyl-ACP
+mthgxl	Methylglyoxal
+m-tol	m-toluate
+mucl	mucolactone
+murein3p3p	"two linked disacharide tripeptide murein units (uncrosslinked, middle of chain)"
+murein3px3p	"two disacharide linked murein units, tripeptide crosslinked tripeptide (A2pm->A2pm) (middle of chain)"
+murein3px4p	"two disacharide linked murein units, tripeptide crosslinked tetrapeptide (A2pm->D-ala) (middle of chain)"
+murein4p3p	"two linked disacharide tetrapeptide and tripeptide murein units (uncrosslinked, middle of chain)"
+murein4p4p	"two linked disacharide tetrapeptide murein units (uncrosslinked, middle of chain)"
+murein4px4p4p	"three disacharide linked murein units (tetrapeptide crosslinked tetrapeptide (A2pm->D-ala), one uncrosslinked tetrapaptide) (middle of chain)"
+murein4px4p	"two disacharide linked murein units, tetrapeptide corsslinked tetrapeptide (A2pm->D-ala) (middle of chain)"
+murein4px4px4p	three disacharide linked murein units (tetrapeptide crosslinked tetrapeptide (A2pm->D-ala) & tetrapeptide corsslinked tetrapeptide (A2pm->D-ala)) (middle of chain)
+murein5p3p	"two linked disacharide pentapeptide and tripeptide murein units (uncrosslinked, middle of chain)"
+murein5p4p	"two linked disacharide pentapeptide and tetrapeptide murein units (uncrosslinked, middle of chain)"
+murein5p5p5p	"three linked disacharide pentapeptide murein units (uncrosslinked, middle of chain)"
+murein5p5p	"two linked disacharide pentapeptide murein units (uncrosslinked, middle of chain)"
+murein5px3p	"two disacharide linked murein units, pentapeptide corsslinked tripeptide (A2pm->A2pm) (middle of chain)"
+murein5px4p	"two disacharide linked murein units, pentapeptide crosslinked tetrapeptide (A2pm->D-ala) (middle of chain)"
+murein5px4px4p	three disacharide linked murein units (pentapeptide crosslinked tetrapeptide (A2pm->D-ala) tetrapeptide corsslinked tetrapeptide (A2pm->D-ala)) (middle of chain)
+m-xyl	m-Xylene
+mycolate	mycolate  (2 cyclopropanated rings)
+myrsACP	Myristoyl-ACP (n-C14:0ACP)
+N1aspmd	N1-Acetylspermidine
+N1sprm	N1-Acetylspermine
+n2m2masn	((N-acetyl-D-glucosaminyl)2-(alpha-D-mannosyl)2-beta-D-mannosyl-diacetylchitobiosyl)-L-asparagine (protein)
+n2m2mn	"de-Fuc, reducing GlcNAc removed, de-Sia, de-Gal form of PA6 (w/o peptide linkage)"
+n2m2nmasn	"N-Acetyl-beta-D-glucosaminyl-1,2-alpha-D-mannosyl-1,3-(N-acetyl-beta-D-glucosaminyl-1,2-alpha-D-mannosyl-1,6)-(N-acetyl-beta-D-glucosaminyl-1,4)-beta-D-mannosyl-1,4-N-acetyl-beta-D-glucosaminyl-R"
+n2m2nm	n2m2nmasn (w/o peptide linkage)
+n2m2nmn	reducing GlcNAc removed form of n2m2nmasn (w/o peptide)
+n2	nitrogen
+n2o	Nitrous oxide
+n2ppn	2-Nitropropane
+n3m2masn	((N-acetyl-D-glucosaminyl)3-(alpha-D-mannosyl)2-beta-D-mannosyl-diacetylchitobiosyl)-L-asparagine (protein)
+n4abutn	N4-Acetylaminobutanal
+n4m2masn	((N-acetyl-D-glucosaminyl)4-(alpha-D-mannosyl)2-beta-D-mannosyl-diacetylchitobiosyl)-L-asparagine (protein)
+n5m2masn	((N-acetyl-D-glucosaminyl)5-(alpha-D-mannosyl)2-beta-D-mannosyl-diacetylchitobiosyl)-L-asparagine (protein)
+n6all26d	"N6-Acetyl-LL-2,6-diaminoheptanedioate"
+n8aspmd	N8-Acetylspermidine
+na1	Sodium
+nabl	N-epsilon-acetyl-beta-lysine
+Nacasp	N-Acetyl-L-aspartate
+nac	Nicotinate
+Nacsertn	N-Acetylserotonin
+nadh	Nicotinamide adenine dinucleotide - reduced
+nad	Nicotinamide adenine dinucleotide
+nadph	Nicotinamide adenine dinucleotide phosphate - reduced
+nadp	Nicotinamide adenine dinucleotide phosphate
+naglc2p_L	"N-Acetyl-D-glucosaminyldiphosphodolichol, human liver homolog"
+naglc2p_U	"N-Acetyl-D-glucosaminyldiphosphodolichol, human uterine homolog"
+nal2a6o	N-Acetyl-L-2-amino-6-oxopimelate
+ncam	Nicotinamide
+Ndmelys	"Protein N6,N6-dimethyl-L-lysine"
+nfmalm	N-Formyl maleamic acid
+Nforglu	N-Formyl-L-glutamate
+nformanth	N-Formylanthranilate
+nh3	Ammonia
+nh4	Ammonium
+nh4oh	Ammonium hydroxide
+ni2	nickel
+nicrns	Nicotinate D-ribonucleoside
+nicrnt	Nicotinate D-ribonucleotide
+nifedipine	nifedipine
+nm2masn	(N-acetyl-D-glucosaminyl-(alpha-D-mannosyl)2-beta-D-mannosyl-diacetylchitobiosyl)-L-asparagine (protein)
+nm4masn	(N-acetyl-D-glucosaminyl-(alpha-D-mannosyl)4-beta-D-mannosyl-diacetylchitobiosyl)-L-asparagine (protein)
+Nmelys	Histone N6-methyl-L-lysine
+nmn	NMN
+nmptrc	N-Methylputrescine
+nmthsrtn	N-Methylserotonin
+Nmtrp	N-Methyltryptophan
+no2	Nitrite
+no3	Nitrate
+no	Nitric oxide
+nop	D-Nopaline
+normete-L	L-Normetanephrine
+NPmehis	N(pai)-Methyl-L-histidine
+npthl	Naphthalene
+nrpphr	Norepinephrine
+nrpphrsf	Sulfate derivative of norepinephrine
+nrvnccoa	nervonyl coenzyme A
+nrvnccrn	Nervonyl carnitine
+nrvnc	nervonic acid
+ntm2amep	N-Trimethyl-2-aminoethylphosphonate
+Ntmelys	"Protein N6,N6,N6-trimethyl-L-lysine"
+nwharg	N-(omega)-Hydroxyarginine
+o16a2und	(O16 antigen)x2 undecaprenyl diphosphate
+o16a3und	(O16 antigen)x3 undecaprenyl diphosphate
+o16a4colipa	(O16 antigen)x4 core oligosaccharide lipid A
+o16a4und	(O16 antigen)x4 undecaprenyl diphosphate
+o16aund	O16 antigen undecaprenyl diphosphate
+o2_neg	Superoxide
+o2	O2
+o2s	Superoxide anion
+oaa	Oxaloacetate
+oagd3_hs	9-O-Acetylated GD3 (homo sapiens)
+oagt3_hs	9-O-Acetylated GT3 (homo sapiens)
+oc2coa	trans-Oct-2-enoyl-CoA
+oca	4-oxalcitromalate
+ocACP	Octanoyl-ACP (n-C8:0ACP)
+occoa	Octanoyl-CoA (n-C8:0CoA)
+ocdcaACP	Octadecanoyl-ACP (n-C18:0ACP)
+ocdca	octadecanoate (n-C18:0)
+ocdcea	octadecenoate (n-C18:1)
+ocdcyaACP	Octadecynoyl-ACP (n-C18:2ACP)
+ocdcya	octadecadienoate (n-C18:2)
+ocdycacoa	Octadecynoyl-CoA (n-C18:2CoA)
+octa	octanoate (n-C8:0)
+octdp_5	all-trans-Octaprenyl diphosphate (5 repeating units)
+octdp	all-trans-Octaprenyl diphosphate
+octeACP	cis-octadec-11-enoyl-[acyl-carrier protein] (n-C18:1)
+octp	Octopine
+od2coa	trans-Octadec-2-enoyl-CoA
+odecoa	Octadecenoyl-CoA (n-C18:1CoA)
+odecrn	octadecenoyl carnitine
+oh1	hydroxide ion
+ohepa	2-oxoheptanedioic acid
+ohexa	2-oxohexanedioic acid
+ohpb	2-Oxo-3-hydroxy-4-phosphobutanoate
+omaenol	"4-Carboxy-2-hydroxyhexa-2,4-dienedioate"
+omaketo	4-oxalomesaconate (keto form)
+omdtria	octa-methyl dotriacontanoic acid (C32:0 with 7 methyl branches)
+omeprazole	omeprazole
+omtta	"octa-methyl tetracontatricosanoic acid (C34:0, 8 methyl-branched carbons)"
+onpthl	naphthalene epoxide
+op4en	2-Oxopent-4-enoate
+oretn	4-oxo-retonoic acid
+orn-D	D-Ornithine
+orn-L	L-Ornithine
+orn	Ornithine
+orot5p	Orotidine 5'-phosphate
+orot	Orotate
+oxadpcoa	3-Oxoadipyl-CoA
+oxag	Oxaloglutarate
+oxalc	4-oxalocrotonate
+oxalcoa	Oxalyl-CoA
+oxam	Oxamate
+oxa	Oxalate
+oxglyc	Oxaloglycolate
+oxoarg-L	2-Oxoarginine
+oxptn	5-Oxopentanoate
+oxur	Oxalureate
+pa120	"1,2-didodecanoyl-sn-glycerol 3-phosphate"
+pa140	"1,2-ditetradecanoyl-sn-glycerol 3-phosphate"
+pa141	"1,2-ditetradec-7-enoyl-sn-glycerol 3-phosphate"
+pa160	"1,2-dihexadecanoyl-sn-glycerol 3-phosphate"
+pa160190	"1,2-sn-glycerol 3-phosphate"
+pa161	"1,2-dihexadec-9-enoyl-sn-glycerol 3-phosphate"
+pa180	"1,2-dioctadecanoyl-sn-glycerol 3-phosphate"
+pa181	"1,2-dioctadec-11-enoyl-sn-glycerol 3-phosphate"
+pa190190	"1,2-sn-glycerol 3-phosphate"
+pacald	Phenylacetaldehyde
+pac	Phenylacetic acid
+pad	2-Phenylacetamide
+pa_EC	phosphatidate  (E.coli)
+paf_hs	1-alkyl 2-acteylglycerol 3-phosphocholine (homo sapiens)
+pa_Hp	Phosphatidic acid Hp specific
+pa_hs	phosphatidic acid (homo sapiens)
+pail345p_hs	"phosphatidylinositol-3,4,5-trisphosphate (Homo sapiens)"
+pail34p_hs	"phosphatidylinositol-3,4-bisphosphate (Homo sapiens)"
+pail35p_hs	"phosphatidylinositol-3,5-bisphosphate (Homo sapiens)"
+pail3p_hs	1-Phosphatidyl-1D-myo-inositol 3-phosphate (Homo sapiens)
+pail45p_hs	"phosphatidylinositol 4,5-bisphosphate (Homo sapiens)"
+pail4p_hs	1-Phosphatidyl-1D-myo-inositol 4-phosphate (Homo sapiens)
+pail5p_hs	1-Phosphatidyl-1D-myo-inositol 5-phosphate (Homo sapiens)
+pail_hs	phosphatidylinositol (homo sapiens)
+pala_SA2	Phosphatidylalanine_SA2
+pala_SA	Phosphatidylananine_SA
+palmACP	Palmitoyl-ACP (n-C16:0ACP)
+pan4p	Pantetheine 4'-phosphate
+pant-R	(R)-Pantoate
+pap	"Adenosine 3',5'-bisphosphate"
+paps	3'-Phosphoadenylyl sulfate
+pa_SA	phosphatidate (Saureus)
+pa_SC	"Phosphatidate, yeast-specific"
+pat	penta-acyl trehalose
+pc_EC	Phosphatidylcholine (E.coli)
+pchol_hs	Phosphatidylcholine (homo sapiens)
+pcollg5hlys	Procollagen 5-hydroxy-L-lysine
+pcollglys	Procollagen L-lysine
+pcreat	Phosphocreatine
+pcrn	propionyl-carnitine
+pc_SC	"Phosphatidylcholine, yeast-specific"
+pd3	Previtamin D3
+pdima	phthiocerol dimycocerosate A (Mtb)
+pdx5p	Pyridoxine 5'-phosphate
+pe120	"phosphatidylethanolamine (didodecanoyl, n-C12:0)"
+pe140	"phosphatidylethanolamine (ditetradecanoyl, n-C14:0)"
+pe141	"phosphatidylethanolamine (ditetradec-7-enoyl, n-C14:1)"
+pe160	"phosphatidylethanolamine (dihexadecanoyl, n-C16:0)"
+pe161	"phosphatidylethanolamine (dihexadec-9enoyl, n-C16:1)"
+pe180	"phosphatidylethanolamine (dioctadecanoyl, n-C18:0)"
+pe181	"phosphatidylethanolamine (dioctadec-11-enoyl, n-C18:1)"
+peamn	Phenethylamine
+pecgoncoa	Pseudoecgonyl-CoA
+pecgon	pseudoecgonine
+pe_EC	Phosphatidylethanolamine (ecoli)
+pe_HP	Phosphatidylethanolamine Hp specific
+pe_hs	phosphatidylethanolamine (homo sapiens)
+pentso3	pentanesulfonate
+pepd	peptide
+peplys	Peptidyl-L-lysine
+pep	Phosphoenolpyruvate
+pepslys	peptide sans lysine
+peptido_EC	Peptidoglycan subunit of Escherichia coli
+peptido_kt	Peptidoglycan subunit of P.putida KT2440
+peptido_TB1	peptidoglycan subunit (for Mycobacterium tuberculosis)
+peptido_TB2	peptidoglycan subunit (for Mycobacterium tuberculosis)
+peracd	Perillic acid
+perillyl	Perillyl alcohol
+pe_SA	Phosphatidylethanolamine (Saureus)
+pe_SC	"phosphatidylethanolamine, yeast-specific"
+pg120	"Phosphatidylglycerol (didodecanoyl, n-C12:0)"
+pg140	"Phosphatidylglycerol (ditetradecanoyl, n-C14:0)"
+pg141	"Phosphatidylglycerol (ditetradec-7-enoyl, n-C14:1)"
+pg160190	"Phosphatidylglycerol (hexadecanoyl, methylstearoyl)"
+pg160	"Phosphatidylglycerol (dihexadecanoyl, n-C16:0)"
+pg161	"Phosphatidylglycerol (dihexadec-9-enoyl, n-C16:1)"
+pg180	"Phosphatidylglycerol (dioctadecanoyl, n-C18:0)"
+pg181	"Phosphatidylglycerol (dioctadec-11-enoyl, n-C18:1)"
+pg190	"Phosphatidylglycerol (dimethylstearoyl, C19:0)"
+pg_EC	Phosphatidylglycerol (Ecoli)
+pg_HP	Phosphatidylglycerol Hp specific
+pglyc_hs	phosphatidylglycerol (homo sapiens)
+pgly	Phosphatidylglycerol
+pgly_SA2	Phosphatidylglycine_SA2
+pgly_SA	Phosphatidylglycine_SA
+pgp120	"Phosphatidylglycerophosphate (didodecanoyl, n-C12:0)"
+pgp140	"Phosphatidylglycerophosphate (ditetradecanoyl, n-C14:0)"
+pgp141	"Phosphatidylglycerophosphate (ditetradec-7-enoyl, n-C14:1)"
+pgp160190	"Phosphatidylglycerophosphate (hexadecanoyl, tuberculostearoyl, C16:0, C19:0)"
+pgp160	"Phosphatidylglycerophosphate (dihexadecanoyl, n-C16:0)"
+pgp161	"Phosphatidylglycerophosphate (dihexadec-9-enoyl, n-C16:1)"
+pgp180	"Phosphatidylglycerophosphate (dioctadecanoyl, n-C18:0)"
+pgp181	"Phosphatidylglycerophosphate (dioctadec-11-enoyl, n-C18:1)"
+pgp190	"Phosphatidylglycerophosphate (dituberculostearoyl, C19:0)"
+pgp_EC	Phosphatidylglycerophosphate (Ecoli)
+pgp_HP	Phosphatidylglycerol phosphate Hp specific
+pgp_hs	phosphatidyl glycerol phosphate (homo sapiens)
+pgp_SA	Phosphatidylglycerophosphate (Saureus)
+pgp_SC	"Phosphatidylglycerophosphate, yeast-specific"
+pg_SA	Phosphatidylglycerol (Saureus)
+pg_SC	"Phosphatidylglycerol, yeast-specific"
+phaccoa	Phenylacetyl-CoA
+phdcaACP	phenol palmitic acid ACP
+phdcacoa	phenol palmitic coenzyme A
+phdca	phenol palmitic acid
+pheacgln	alpha-N-Phenylacetyl-L-glutamine
+pheac	Phenylacetate
+phe-L	L-Phenylalanine
+pheme	Protoheme
+phetrna	L-Phenylalanyl-tRNA(Phe)
+phhlipa	phospho-heptosyl-heptosyl-kdo2-lipidA
+phitcoa	E-Phenylitaconyl-CoA
+phom	O-Phospho-L-homoserine
+phphhlipa	phospho-heptosyl-phospho-heptosyl-heptosyl-kdo2-lipidA
+phpyr	Phenylpyruvate
+phthclh2	phthiocol (reduced)
+phthcl	phthiocol (oxidized)
+phthdl	phthiodolone
+phthiocerol	phthiocerol A
+phthr	O-Phospho-4-hydroxy-L-threonine
+phyQ	Phylloquinone
+phyt2ohcoa	2-Hydroxyphytanoyl-CoA
+phytcoa	phytanyl coa
+phyt	phytanic acid
+PIM1	phosphatidylinositol mannoside (tuberculosis)
+PIM2	phosphatidylinositol mannoside di-mannose (tuberculosis)
+PIM3	phosphatidylinositol mannoside tri-mannose (tuberculosis)
+PIM4	phosphatidylinositol mannoside tetra-mannose (tuberculosis)
+PIM5	phosphatidylinositol mannoside penta-mannose (tuberculosis)
+PIM6	phosphatidylinositol mannoside hexa-mannose (tuberculosis)
+pime	Pimelate
+pi	Phosphate
+pleu_SA2	Phosphatidylleucine_SA2
+pleu_SA	Phosphatidylleucine_SA
+plipid_Eco	"Phospholipid, E. coli"
+plys_SA2	Phosphatidyllysine_SA2
+plys_SA	Phosphatidyllysine_SA
+pmcoa	Pimeloyl-CoA
+pmhexc	penta-methyl hexacosanoate
+pmocta	penta-methyl octacosanoate
+pmtcoa	Palmitoyl-CoA (n-C16:0CoA)
+pmtcrn	L-Palmitoylcarnitine
+pnto-R	(R)-Pantothenate
+polypi	Polyphosphate
+ppac	Phosphonoacetate
+ppal	Propanal
+ppap	Propanoyl phosphate
+ppa	Propionate (n-C3:0)
+ppbng	Porphobilinogen
+ppcoa	Propanoyl-CoA
+ppdima	phenol phthiocerol dimycocerosate (Mtb)
+ppgpp	"Guanosine 3',5'-bis(diphosphate)"
+pphn	Prephenate
+pphthdl	phenolic phthiodiolone
+pphthiocerol	phenolphtiocerol
+ppi	Diphosphate
+ppmi12346p	5-Diphosphoinositol pentakisphosphate
+ppmi1346p	Diphosphoinositol tetrakisphosphate
+ppn	Phosphonate
+ppp9	Protoporphyrin
+pppg9	Protoporphyrinogen IX
+pppi	Inorganic triphosphate
+pppn	Phenylpropanoate
+pprdn	Piperideine
+ppt	Phosphonate
+pqqh2	Reduced pyrroloquinoline-quinone
+pqq	Pyrroloquinoline-quinone
+pram	5-Phospho-beta-D-ribosylamine
+pran	N-(5-Phospho-D-ribosyl)anthranilate
+prbamp	1-(5-Phosphoribosyl)-AMP
+prbatp	1-(5-Phosphoribosyl)-ATP
+pre2	dihydrosirohydrochlorin
+pre3a	Precorrin 3 A
+pre3b	Precorrin 3B
+pre4	Precorrin 4
+pre5	Precorrin 5
+pre6a	Precorrin 6A
+pre6b	Precorrin 6B
+pre8	Precorrin 8
+prephthACP	phthiocerol precursor bound ACP
+prephthcoa	phthiocerol precursor bound coenzyme A
+prephth	phthiocerol precursor
+prepphthACP	phenolic phthiocerol precursor bound ACP
+prepphth	phenolic phthiocerol precursor
+pre_prot	glycophosphatidylinositol (GPI)-anchored protein precursor
+prfp	1-(5-Phosphoribosyl)-5-[(5-phosphoribosylamino)methylideneamino]imidazole-4-carboxamide
+prgnlone	Pregnenolone
+prgnlones	pregnenolone sulfate
+prgstrn	Progesterone
+pristanal	pristanal
+pristcoa	pristanoyl coa
+prist	pristanic acid
+prlp	5-[(5-phospho-1-deoxyribulos-1-ylamino)methylideneamino]-1-(5-phosphoribosyl)imidazole-4-carboxamide
+pro-D	D-Proline
+progly	L-Prolinylglycine
+pro-L	L-Proline
+prostg1	"(13E)-11alpha-Hydroxy-9,15-dioxoprost-13-enoate"
+prostgd2	Prostaglandin D2
+prostge1	Prostaglandin E1
+prostge2	Prostaglandin E2
+prostgf2	Prostaglandin F2alpha
+prostgh2	Prostaglandin H2
+prostgi2	Prostaglandin I2
+protein_Eco	"Protein, Escherichia coli"
+protrna	L-Prolyl-tRNA(Pro)
+prpncoa	Propenoyl-CoA
+prpp	5-Phospho-alpha-D-ribose 1-diphosphate
+ps120	"phosphatidylserine (didodecanoyl, n-C12:0)"
+ps140	"phosphatidylserine (ditetradecanoyl, n-C14:0)"
+ps141	"phosphatidylserine (ditetradec-7-enoyl, n-C14:1)"
+ps160	"phosphatidylserine (dihexadecanoyl, n-C16:0)"
+ps161	"phosphatidylserine (dihexadec-9-enoyl, n-C16:1)"
+ps180	"phosphatidylserine (dioctadecanoyl, n-C18:0)"
+ps181	"phosphatidylserine (dioctadec-11-enoyl, n-C18:1)"
+psclys	psicoselysine
+psd5p	Pseudouridine 5'-phosphate
+ps_EC	phosphatidylserine (Ecoli)
+pser-D	D-O-Phosphoserine
+pser-L	O-Phospho-L-serine
+ps_HP	Phosphatidylserine Hp specific
+ps_hs	phosphatidylserine (homo sapiens)
+psph1p	Phytosphingosine 1-phosphate
+psphings	Phytosphingosine
+ps	Phosphatidylserine
+ps_SA	phosphatidylserine (Saureus)
+ps_SC	"phosphatidylserine, yeast-specific"
+ptal	pentanal
+ptcys	N-Pantothenoylcysteine
+ptd134bp_SC	"phosphatidyl-1D-myo-inositol 3,4-bisphosphate, yeast-specific"
+ptd145bp_SC	"1-Phosphatidyl-D-myo-inositol 4,5-bisphosphate, yeast-specific"
+ptd1ino160190	"phosphatidyl 1D myo inositol (C16:0, C19:0)"
+ptd1ino160	phosphatidyl 1D myo inositol
+ptd1ino_SC	"phosphatidyl-1D-myo-inositol, yeast-specific"
+ptd2meeta_SC	Phosphatidyl-N-dimethylethanolamine
+ptd3ino_SC	"phosphatidyl-1D-myo-3-inositol, yeast-specific"
+ptd4ino_SC	"phosphatidyl-1D-myo-4-inositol, yeast specific"
+ptdcacoa	pentadecanoyl Coenzyme A
+ptdcacrn	pendtadenoyl carnitine
+ptdca	pentadecanoate
+ptdmeeta_SC	"Phosphatidyl-N-methylethanolamine, yeast-specific"
+p-tol	p-toluate
+ptp	triaminopyrimidine triphosphate
+ptrc	Putrescine
+ptth	Pantetheine
+p-xyl	p-methyltoluene
+pyam5p	Pyridoxamine 5'-phosphate
+pydam	Pyridoxamine
+pydx5p	Pyridoxal 5'-phosphate
+pydxn	Pyridoxine
+pydx	Pyridoxal
+pylald	Perillyl aldehyde
+pyr	Pyruvate
+q10h2	Ubiquinol-10
+q10	Ubiquinone-10
+q6h2	Ubiquinol-6
+q6	Ubiquinone-6
+q8h2	Ubiquinol-8
+q8	Ubiquinone-8
+qh2	Ubiquinol
+q	Ubiquinone
+quin-kt	Quinate
+quln	Quinolinate
+r15bp	"D-Ribose 1,5-bisphosphate"
+R1coa_hs	R group 1 Coenzyme A homo sapiens
+r1p	alpha-D-Ribose 1-phosphate
+R2coa_hs	R group 2 Coenzyme A homo sapiens
+R3coa_hs	R group 3 Coenzyme A homo sapiens
+R-3hcddec5ecoa	(R)-Hydroxydodecanoyl-5-en-CoA
+R-3hcmrs7ecoa	(R)-3-hydroxy-cis-myristol-7-eoyl-CoA
+R-3hdcoa	(R)-Hydroxydecanoyl-CoA
+R-3hddcoa	(R)-3-Hydroxydodecanoyl-CoA
+R-3hhcoa	(R)-Hydroxyhexanoyl-CoA
+R-3hmrscoa	(R)-3-hydroxytetradecanoyl-coa
+R-3hocoa	(R)-Hydroxyoctanoyl-CoA
+R4coa_hs	R group 4 Coenzyme A homo sapiens
+R5coa_hs	R group 5 Coenzyme A homo sapiens
+r5hbzi	N1-(alpha-D-ribosyl)-5-hydroxybenzimidazole
+r5p	alpha-D-Ribose 5-phosphate
+R6coa_hs	R group 6 Coenzyme A homo sapiens
+raffin	Raffinose
+ragund	rhamanosyl-N-acetylglucosamyl-undecaprenyl diphosphate
+rb15bp	"D-Ribulose 1,5-bisphosphate"
+rbflvrd	Reduced riboflavin
+rbl-D	D-Ribulose
+rbl-L	L-Ribulose
+rbrdxOX	Oxidized rubredoxin
+rbrdxRD	Reduced rubredoxin
+rbt	Ribitol
+rdmbzi	"N1-(alpha-D-ribosyl)-5,6-dimethylbenzimidazole"
+retfa	fatty acid retinol
+retinal-11-cis	cis-11-retinal
+retinal-cis-13	cis-13-retinal
+retinal-cis-9	cis-9-retinal
+retinal	Retinal
+retinol-9-cis	9-cis-retinol
+retinol-cis-11	cis-11-retinol
+retinol-cis-13	cis-13-retinol
+retinol	Retinol
+retncoa	retinoyl CoA
+retnglc	retinoyl glucuronide
+retn	Retinoate
+retpalm [deleted 10/09/2005  06:18:49 PM]	Retinyl palminate
+Rh2cit	(R)-(homo)2citrate
+Rh3cit	(R)-(homo)3citrate
+rhcys	S-Ribosyl-L-homocysteine
+rib-D	D-Ribose
+ribflv	Riboflavin
+rml1p	L-Rhamnulose 1-phosphate
+rml	L-Rhamnulose
+rmn	L-Rhamnose
+rmyc	mycolate compounds (all)
+rna_Eco	"RNA, Escherichia coli"
+rnam	N-Ribosylnicotinamide
+rppdima	rhamnose phenol phthiocerol dimycocerosate (Mtb)
+rrppdima	rhamnose rhamnose phenol phthiocerol dimycocerosate (Mtb)
+Rtotal2coa	R total 2 coenzyme A
+Rtotal2crn	R total 2 carnitine
+Rtotal2	R total 2 position
+Rtotal3coa	R total 3 Coenzyme A
+Rtotal3crn	R total 3 carnitine
+Rtotal3	R total 3 position
+Rtotalcoa	R total Coenzyme A
+Rtotalcrn	R total carnitine
+Rtotal	R total
+ru5p-D	D-Ribulose 5-phosphate
+ru5p-L	L-Ribulose 5-phosphate
+s17bp	"Sedoheptulose 1,7-bisphosphate"
+S2hglut	(S)-2-Hydroxyglutarate
+s2l2fn2m2masn	PA6
+s2l2n2m2masn	de-Fuc form of PA6
+s2l2n2m2m	de-Fuc form of PA6 (w/o peptide linkage)
+s2l2n2m2mn	"de-Fuc, reducing GlcNAc removed form of PA6 (w/o peptide linkage)"
+s7p	Sedoheptulose 7-phosphate
+saccrp-L	L-Saccharopine
+SA_FREE_FA	SA Free Fatty Acids
+salc6p	Salicin 6-phosphate
+salcn	Salicin
+salc	Salicylate
+sarcs	Sarcosine
+sbt6p	D-Sorbitol 6-phosphate
+sbt-D	D-Sorbitol
+sbt-L	L-Sorbitol
+sbzcoa	O-Succinylbenzoyl-CoA
+scl2	sirohydrochlorin 2
+scl	sirohydrochlorin
+scys-L	S-Sulfo-L-cysteine
+sdhlam	S-Succinyldihydrolipoamide
+seahcys	Se-Adenosylselenohomocysteine
+seasmet	Se-Adenosylselenomethionine
+sec	sulfoethylcysteine
+sectrna	L-Selenocysteinyl-tRNA(Sec)
+selcys	Selenocysteine
+selcyst	Selenocystathionine
+selhcys	Selenohomocysteine
+selmeth	Selenomethionine
+selnp	Selenophosphate
+seln	Selenide
+sel	Selenate
+seramp	L-seryl-AMP
+ser-D	D-Serine
+Ser-Gly/Ala-X-Gly	protein-linked serine residue (glycosaminoglycan attachment site)
+ser-L	L-Serine
+Ser/Thr	protein-linked serine or threonine residue (O-glycosylation site)
+sertrna	L-Seryl-tRNA(Ser)
+sertrna(sec)	L-Seryl-tRNA(Sec)
+sf430a	"15,17-seco-F430-17-acid"
+Sfglutth	S-Formylglutathione
+sgalside_hs	sulfatide galactocerebroside (homo sapiens)
+S-gtrdhdlp	S-Glutaryldihydrolipoamide
+Shcit	S-homocitrate
+shcl	dihydrosirohydrochlorin
+sheme	Siroheme
+skm5p	Shikimate 5-phosphate
+skm	Shikimate
+sl1	sulfonated tetra-acyl trehalose
+sl26da	"N-Succinyl-LL-2,6-diaminoheptanedioate"
+sl2a6o	N-Succinyl-2-L-amino-6-oxoheptanedioate
+sl-L	L-sulfolactate
+slp-L	L-sulfolactyl phosphate
+so2	sulfur dioxide
+so3	Sulfite
+so4	Sulfate
+spc_hs	sphingosylphosphorylcholine (homo sapiens)
+sph1p	Sphinganine 1-phosphate
+sphgn	Sphinganine
+sphings	Sphingosine
+sphmyln_hs	sphingomyelin (homo sapiens)
+sphs1p	Sphingosine 1-phosphate
+spmd	Spermidine
+sprm	Spermine
+Sptmyn	Spectinomycin
+sql	Squalene
+srb1p	Sorbose 1-phosphate
+srb-L	L-Sorbose
+srtn	Serotonin
+ssaltpp	Succinate semialdehyde-thiamin diphosphate anion
+Ssq23epx	"(S)-Squalene-2,3-epoxide"
+s	Sulfur
+sT_antigen	sialyl-T antigen
+stcoa	Stearoyl-CoA (n-C18:0CoA)
+stcrn	stearoylcarnitine
+Stmyn	Streptomycin
+sTn_antigen	sialyl-Tn antigen
+strch1	"starch, structure 1 (1,6-{7[1,4-Glc], 4[1,4-Glc]})"
+strch2	"starch, structure 2 (1,6-{2[1,4-Glc], [1,4-Glc]})"
+strcoa	Stearyl-CoA (n-C18:0CoA)
+strdnccoa	stearidonyl coenzyme A
+strdnccrn	stearidonyl carnitine
+strdnc	"stearidonic acid C18:4, n-3"
+suc6p	Sucrose 6-phosphate
+sucarg	N2-Succinyl-L-arginine
+sucbz	o-Succinylbenzoate
+succoa	Succinyl-CoA
+succ	Succinate
+sucglu	N2-Succinyl-L-glutamate
+sucgsa	N2-Succinyl-L-glutamate 5-semialdehyde
+suchms	O-Succinyl-L-homoserine
+sucorn	N2-Succinyl-L-ornithine
+sucr	Sucrose
+sucsal	Succinic semialdehyde
+sula	Sulfoacetate
+sulfac	sulfoacetate
+t2m26dcoa	"trans-2-Methyl-5-isopropylhexa-2,5-dienoyl-CoA"
+t3c11vaceACP	trans-3-cis-11-vacceoyl-[acyl-carrier protein]
+t3c5ddeceACP	trans-3-cis-5-dodecenoyl-[acyl-carrier protein]
+t3c7mrseACP	trans-3-cis-7-myristoleoyl-[acyl-carrier protein]
+t3c9palmeACP	trans-3-cis-9-palmitoleoyl-[acyl-carrier protein]
+T4hcinnm	trans-4-Hydroxycinnamate
+tag1p-D	D-Tagatose 1-phosphate
+tag6p-D	D-Tagatose 6-phosphate
+tagat-D	D-Tagatose
+tagdp-D	"D-Tagatose 1,6-biphosphate"
+tag_hs	triacylglycerol (homo sapiens)
+tagur	D-Tagaturonate
+tamhexc	tetra-methyl hexacosanoate
+tamlgnc	tri-methyl lignoceric acid
+tamocta	tetra-methyl octacosanoate
+T_antigen	T antigen (core 1)
+tarab-D	tetra-arabinofuranoside
+tartr-L	L-tartrate
+tartr-M	meso-Tartaric acid
+tat	tetra-acyl trehalose
+taur	Taurine
+taxol	paclitaxel
+tcam	"minor teichoic acid (acetylgalactosamine glucose phosphate, n=30)"
+tchola	taurocholic acid
+tcynt	Thiocyanate
+td2coa	trans-Tetradec-2-enoyl-CoA
+tdchola	taurochenodeoxycholate
+tdcoa	Tetradecanoyl-CoA (n-C14:0CoA)
+tddec2eACP	trans-Dodec-2-enoyl-[acyl-carrier protein]
+tdeACP	cis-tetradec-7-enoyl-[acyl-carrier protein] (n-C14:1)
+tdec2eACP	trans-Dec-2-enoyl-[acyl-carrier protein]
+tdecoa	Tetradecenoyl-CoA (n-C14:1CoA)
+tdm1	trehalose dimycolate (alpha mycolate + methoxymycolate)
+tdm2	trehalose dimycolate (alpha mycolate + methoxymycolate)
+tdm3	trehalose dimycolate (alpha mycolate + ketomycolate)
+tdm4	trehalose dimycolate (alpha mycolate + methoxymycolate)
+tethex3coa	tetracosahexaenoyl coenzyme A
+tethex3	"tetracosahexaenoic acid, n-3"
+tetpent3coa	"tetracosapentaenoyl coenzyme A, n-3"
+tetpent3crn	tetracosapentaenoyl carnitine
+tetpent3	"tetracosapentaenoic acid, n-3"
+tetpent6coa	"tetracosapentaenoyl coenzyme A, n-6"
+tetpent6crn	tetracosapentaenoyl carnitine
+tetpent6	"tetracosapentaenoic acid, n-6"
+tettet6coa	tetracosatetraenoyl coenzyme A
+tettet6crn	Tetracosatetraenoyl carnitine
+tettet6	tetracosatetraenoic acid n-6
+tglp	N-Tetradecanoylglycylpeptide
+thbpt4acam	Tetrahydrobiopterin-4a-carbinolamine
+thbpt	Tetrahydrobiopterin
+thcholoylcoa	"3alpha,7alpha,24-Trihydroxy-5beta-cholestanoyl-CoA"
+thcholst	"3alpha,7alpha,12alpha-Trihydroxy-5beta-cholestan-26-al"
+thcholstoic	"3alpha,7alpha,12alpha-Trihydroxy-5beta-cholestanoate"
+thcrm_hs	trihexosyl ceramide (homo sapiens)
+thcys	Thiocysteine
+thdp	"2,3,4,5-Tetrahydrodipicolinate"
+thex2eACP	trans-Hex-2-enoyl-[acyl-carrier protein]
+thf	"5,6,7,8-Tetrahydrofolate"
+thfglu	Tetrahydrofolyl-[Glu](2)
+thglu	Tetrahydropteroyltri-L-glutamate
+thmmp	Thiamin monophosphate
+thmpp	Thiamine diphosphate
+thm	Thiamin
+thmtp	Thiamin triphosphate
+thp2c	"2,3,4,5-Tetrahydropyridine-2-carboxylate"
+thr-LA	L-Allo-threonine
+thr-L	L-Threonine
+thrnt	L-Threonate
+thrp	L-Threonine O-3-phosphate
+thrtrna	L-Threonyl-tRNA(Thr)
+thymd	Thymidine
+thym	Thymine
+thyox-L	L-Thyroxine
+tih2cit	(-)threo-iso(homo)2citrate
+tih3cit	(-)threo-iso(homo)3citrate
+tmao	Trimethylamine N-oxide
+tma	trimethylamine
+tmbhn	tri-methyl behenic acid
+tmha1	tetramycolyl hexaarabinoside (tdm1 + tdm2 +tre) (Mtb)
+tmha2	tetramycolyl hexaarabinoside (tdm1 + tdm3 + tre) (Mtb)
+tmha3	tetramycolyl hexaarabinoside (tdm1 + tdm4 + tre) (Mtb)
+tmha4	tetramycolyl hexaarabinoside (tdm2 + tdm3 + tre) (Mtb)
+tmha5	tetramycolyl hexaarabinoside (tdm2 + tdm4 + tre) (Mtb)
+tmha6	tetramycolyl hexaarabinoside (tdm3 + tdm4 + tre) (Mtb)
+tmhexc	tri-methyl hexacosanoate
+tmlgnc	tri-methyl lignoceric acid
+tmlys	"N6,N6,N6-Trimethyl-L-lysine"
+tmndnccoa	timnodonyl coenzyme A
+tmndnccrn	Timnodonyl carnitine
+tmndnc	"timnodonic acid C20:5, n-3"
+tmrs2eACP	trans-Tetradec-2-enoyl-[acyl-carrier protein]
+Tn_antigen	Tn antigen
+toct2eACP	trans-Oct-2-enoyl-[acyl-carrier protein]
+toctd2eACP	trans-octadec-2-enoyl-[acyl-carrier protein]
+tolbutamide	tolbutamide
+tol	Toluene
+tpalm2eACP	trans-Hexadec-2-enoyl-[acyl-carrier protein]
+trans-dd2coa	trans-Dodec-2-enoyl-CoA
+trdox	Oxidized thioredoxin
+trdrd	Reduced thioredoxin
+tre6p	"alpha,alpha'-Trehalose 6-phosphate"
+tres	trehalose 2 sulfate
+tre	Trehalose
+triat	tri-acyl trehalose
+triglyc_SC	"triglyceride, yeast-specific"
+triodthysuf	Triiodothyronine sulfate
+triodthy	Triiodothyronine
+trnaala	tRNA(Ala)
+trnaarg	tRNA(Arg)
+trnaasn	tRNA(Asn)
+trnaasp	tRNA(Asp)
+trnacys	tRNA(Cys)
+trnagln	tRNA(Gln)
+trnaglu	tRNA (Glu)
+trnagly	tRNA(Gly)
+trnahis	tRNA(His)
+trnaile	tRNA(Ile)
+trnaleu	tRNA(Leu)
+trnalys	tRNA(Lys)
+trnamet	tRNA(Met)
+trnaphe	tRNA(Phe)
+trnapro	tRNA(Pro)
+trnasecys	tRNA(SeCys)
+trnaser	tRNA(Ser)
+trnathr	tRNA(Thr)
+trnatrp	tRNA(Trp)
+trnatyr	tRNA(Tyr)
+trnaval	tRNA(Val)
+trp-L	L-Tryptophan
+trptrna	L-Tryptophanyl-tRNA(Trp)
+trypta	Tryptamine
+ts3	Tachysterol 3
+tststeroneglc	testosterone glucuronide
+tststerones	testosterone sulfate
+tststerone	Testosterone
+tsul	Thiosulfate
+ttccoa	tetracosanoyl-CoA  (n-C24:0CoA)
+ttc-ggdp	"trans,trans,cis-Geranylgeranyl diphosphate"
+ttc	tetracosanoate (n-C24:0)
+ttdca	tetradecanoate (n-C14:0)
+ttdcea	tetradecenoate (n-C14:1)
+ttdcrn	tetradecanoyl carnitine
+tungs	tungstate
+txa2	Thromboxane A2
+tymsf	Tyramine O-sulfate
+tym	Tyramine
+Tyr-ggn	Tyr-194 of apo-glycogenin protein (primer for glycogen synthesis)
+tyr-L	L-Tyrosine
+tyrp	Phosphotyrosine
+tyrtrna	L-Tyrosyl-tRNA(Tyr)
+u23ga_HP	UDP-2(3-hydroxyoctadecanoyl)-3(3-hydroxypalmetoyl)glucosamine
+u23ga	"UDP-2,3-bis(3-hydroxytetradecanoyl)glucosamine"
+u2ga_HP	u2ga_HP
+u2hga_HP	UDP-2-hydroxyoctadecanoyl-D-glucosamine
+u3aga_HP	UDP-3-O-(3-hydroxypalmetoyl)-N-acetylglucosamine
+u3aga	UDP-3-O-(3-hydroxytetradecanoyl)-N-acetylglucosamine
+u3hga_HP	UDP-3-O(3-hydroxypalmetoyl)-D-glucosamine
+u3hga	UDP-3-O-(3-hydroxytetradecanoyl)-D-glucosamine
+uaaAgla	Undecaprenyl-diphospho-N-acetylmuramoyl-(N-acetylglucosamine)-L-alanyl-D-glutamyl-L-lysyl-D-alanyl-D-alanine
+uaaAgtla	Undecaprenyl-diphospho-N-acetylmuramoyl-(N-acetylglucosamine)-L-alanyl-D-glutaminyl-L-lysyl-D-alanyl-D-alanine
+uaaGgla	Undecaprenyl-diphospho-N-acetylmuramoyl-(N-acetylglucosamine)-L-alanyl-gamma-D-glutamyl-L-lysyl-D-alanyl-D-alanine
+uaaGgtla	Undecaprenyl-diphospho-N-acetylmuramoyl-(N-acetylglucosamine)-L-alanyl-D-isoglutaminyl-L-lysyl-D-alanyl-D-alanine
+uaAgla	Undecaprenyl-diphospho-N-acetylmuramoyl-L-alanyl-D-glutamyl-L-lysyl-D-alanyl-D-alanine
+uaagmda	"Undecaprenyl-diphospho-N-acetylmuramoyl-(N-acetylglucosamine)-L-ala-D-glu-meso-2,6-diaminopimeloyl-D-ala-D-ala"
+uaagtmda	"Undecaprenyl-diphospho-N-acetylmuramoyl-(N-acetylglucosamine)-L-alanyl-D-glutaminyl-meso-2,6-diaminopimeloyl-D-alanyl-D-alanine"
+uaccg	UDP-N-acetyl-3-O-(1-carboxyvinyl)-D-glucosamine
+uacgam	UDP-N-acetyl-D-glucosamine
+uacmam	UDP-N-acetyl-D-mannosamine
+uacmamu	UDP-N-acetyl-D-mannosaminouronate
+uaGgla	Undecaprenyl-diphospho-N-acetylmuramoyl-L-alanyl-gamma-D-glutamyl-L-lysyl-D-alanyl-D-alanine
+uAgla	UDP-N-acetylmuramoyl-L-alanyl-D-glutamyl-L-lysyl-D-alanyl-D-alanine
+uAgl	UDP-N-acetylmuramoyl-L-alanyl-D-glutamyl-L-lysine
+uagmda	"Undecaprenyl-diphospho-N-acetylmuramoyl-L-alanyl-D-glutamyl-meso-2,6-diaminopimeloyl-D-alanyl-D-alanine"
+uamag	UDP-N-acetylmuramoyl-L-alanyl-D-glutamate
+uama	UDP-N-acetylmuramoyl-L-alanine
+uamr	UDP-N-acetylmuramate
+ubq8h2	Ubiquinol-8
+ubq8	Ubiquinone-8
+udcpdp	Undecaprenyl diphosphate
+udcpp	Undecaprenyl phosphate
+udcp	Undecaprenol
+udpacgal	UDP-N-acetyl-D-galactosamine
+udpgalfur	"UDP-D-galacto-1,4-furanose"
+udpgal	UDPgalactose
+udpglcur	UDP-D-glucuronate
+udpg	UDPglucose
+udpLa4fn	uridine 5''-diphospho-{beta}-4-deoxy-4-formamido-L-arabinose
+udpLa4n	uridine 5''-diphospho-{beta}-4-deoxy-4-amino-L-arabinose
+udpLa4o	UDP-4-keto-pyranose
+udp	UDP
+udpxyl	UDP-D-xylose
+ugagmda	"Undecaprenyl-diphospho-N-glycolylmuramoyl-(N-acetylglucosamine)-L-ala-D-glu-meso-2,6-diaminopimeloyl-D-ala-D-ala"
+ugam	UDP-glucosamine
+ugggmda	"Undecaprenyl-diphospho-N-glycolylmuramoyl-L-alanyl-D-glutamyl-meso-2,6-diaminopimeloyl-D-alanyl-D-alanine"
+uGgla	UDP-N-acetylmuramoyl-L-alanyl-gamma-D-glutamyl-L-lysyl-D-alanyl-D-alanine
+uGgl	UDP-N-acetylmuramoyl-L-alanyl-gamma-D-glutamyl-L-lysine
+uggmda	"UDP-N-glycolylmuramoyl-L-alanyl-D-glutamyl-meso-2,6-diaminopimeloyl-D-alanyl-D-alanine"
+uggmd	"UDP-N-glycolylmuramoyl-L-alanyl-D-gamma-glutamyl-meso-2,6-diaminopimelate"
+ugmag	UDP-N-glycolylmuramoyl-L-alanyl-D-glutamate
+ugma	UDP-N-glycolylmuramoyl-L-alanine
+ugmda	"UDP-N-acetylmuramoyl-L-alanyl-D-glutamyl-meso-2,6-diaminopimeloyl-D-alanyl-D-alanine"
+ugmd	"UDP-N-acetylmuramoyl-L-alanyl-D-gamma-glutamyl-meso-2,6-diaminopimelate"
+ugmr	UDP-N-glycolylmuramate
+uLa4fn	undecaprenyl phosphate-4-amino-4-formyl-L-arabinose
+uLa4n	undecaprenyl phosphate-4-amino-4-deoxy-L-arabinose
+um4p	"UDP-N-acetylmuramoyl-L-alanyl-D-gamma-glutamyl-meso-2,6-diaminopimelate-D-alanine"
+ump	UMP
+unagamuf	"Undecaprenyl-diphospho N-acetylglucosamine-N-acetylmannosaminuronate-N-acetamido-4,6-dideoxy-D-galactose"
+unagamu	Undecaprenyl-diphospho-N-acetylglucosamine-N-acetylmannosaminuronate
+unaga	Undecaprenyl diphospho N-acetyl-glucosamine
+unknown1	Unknown Product
+unknown_cbl1deg	unknown degradation product of cbl1 for adocbl-HBI synthesis
+unknown_rbfdeg	unknown riboflavin degradation product
+uppg1	Uroporphyrinogen I
+uppg3	Uroporphyrinogen III
+urate	Urate
+ura	Uracil
+urcan	Urocanate
+urdglyc	(-)-Ureidoglycolate
+urea	Urea
+uri	Uridine
+utp	UTP
+vacccoa	vaccenyl coenzyme A
+vacccrn	Vaccenyl carnitine
+vacc	vaccenic acid
+val-L	L-Valine
+valtrna	L-Valyl-tRNA(Val)
+vanln	Vanillin
+vanlt	Vanillate
+vitd2	Vitamin D2
+vitd3	Vitamin D3
+wharachd	w-hydroxyl arachidonic acid
+whddca	omega hydroxy dodecanoate (n-C12:0)
+whhdca	omega hydroxy hexadecanoate (n-C16:0)
+whtststerone	w hydroxy testosterone
+whttdca	omega hydroxy tetradecanoate (n-C14:0)
+xan	Xanthine
+xdp	XDP
+xmp	Xanthosine 5'-phosphate
+xol24oh	24-Hydroxycholesterol
+xol25oh	25-Hydroxycholesterol
+xol27oh	27-Hydroxycholesterol
+xol7a	7 alpha-Hydroxycholesterol
+xol7ah2	"3alpha,7alpha-Dihydroxy-5beta-cholestane"
+xol7ah2al	"3alpha,7alpha-Dihydroxy-5beta-cholestan-26-al"
+xol7ah3	"3alpha,7alpha,26-Trihydroxy-5beta-cholestane"
+xol7ah	7alpha-Hydroxy-5beta-cholestan-3-one
+xol7aone	7alpha-Hydroxycholest-4-en-3-one
+xoldiolone	"7alpha,12alpha-Dihydroxycholest-4-en-3-one"
+xoldioloneh	"7alpha,12alpha-Dihydroxy-5beta-cholestan-3-one"
+xolest2_hs	cholesterol ester (from FULLR2)
+xolest_hs	cholesterol ester
+xoltetrol	"3alpha,7alpha,12alpha,26-Tetrahydroxy-5beta-cholestane"
+xoltri24	"7-alpha,24(S)-Dihydroxycholesterol"
+xoltri25	"7-alpha,25-Dihydroxycholesterol"
+xoltri27	"7-alpha,27-Dihydroxycholesterol"
+xoltriol	"3alpha,7alpha,12alpha-Trihydroxy-5beta-cholestane"
+xser	Xyl-L-Ser (protein)
+xtp	XTP
+xtsn	Xanthosine
+xu1p-D	D-Xylulose 1-phosphate
+xu5p-D	D-Xylulose 5-phosphate
+xu5p-L	L-Xylulose 5-phosphate
+xyl-D	D-Xylose
+xylnt	L-Xylonate
+xylt	Xylitol
+xylu-D	D-Xylulose
+xylu-L	L-Xylulose
+yvite	gamma-Tocopherol
+zn2	Zinc
+zym_int1	zymosterol intermediate 1
+zym_int2	zymosterol intermediate 2
+zymstnl	Zymostenol
+zymst	zymosterol
+gly-gln-L	gly-gln-L
+gly-pro-L	gly-pro-L
+gly-asp-L	gly-asp-L
+Gly-Tyr	Gly-Tyr
+gly-phe-L	gly-phe-L
+ala-L-leu-L	ala-L-leu-L
+met-L-ala-L	met-L-ala-L
+gly-leu-L	gly-leu-L
+ala-L-gln-L	ala-L-gln-L
+L-alagly	L-alagly
+ala-L-Thr-L	ala-L-Thr-L
+ala-L-his-L	ala-L-his-L
+gly-glu-L	gly-glu-L
+ala-L-glu-L	ala-L-glu-L
+gly-asn-L	gly-asn-L
+gly-cys-L	gly-cys-L
+gly-met-L	gly-met-L
+ala-L-asp-L	ala-L-asp-L
+Pb	Pb2+;  Pb;  Lead
+metox-R	L-methionine R-oxide
+ferrich	Ferrichrome
+VitaminB12	Vitamin B12; Cob(III)alamin; Cobalamin (III)
+VitaminB12a	Vitamin B12a; Hydroxocobalamin

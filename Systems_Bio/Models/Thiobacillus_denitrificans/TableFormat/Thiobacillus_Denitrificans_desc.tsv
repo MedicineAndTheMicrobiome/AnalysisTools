@@ -1,0 +1,2 @@
+name	id	description	compartment	abbreviation	Nmetabolites	Nreactions	Ngenes	Nnnz
+Seed292415_3_SEED_model_RhFeMatched	Seed292415_3_RhFeMatched	Seed292415.3 with extra E. coli reactions to match Rhodoferax Ferrireducens	c, e	[c], [e]	1060	1160	0	4724
