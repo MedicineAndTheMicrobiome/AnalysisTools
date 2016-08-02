@@ -1,0 +1,293 @@
+#!/usr/bin/env perl
+
+use strict;
+use Getopt::Std;
+use FileHandle;
+use vars qw ($opt_a $opt_o $opt_h);
+
+getopts("a:o:h");
+
+my $usage = "
+	usage:
+	$0
+	-a <uniref alignments info (query_id, perc_comp, uniref_id, ... ) >
+	-o <output file>
+	[-h (suppress header flag)]
+
+	This script will read in a uniref alignment info file and generate a
+	best guess of the annotation for each read at various cutoffs.  The
+	lower the cutoff, the more of the low identity annotation will be
+	included when choosing the best non-null feature. 
+
+	Input columns:
+
+	1.) Read ID
+	2.) Percent Composite Identity
+	3.) UniRef ID
+	4.) Description
+	5.) Length
+	6.) Taxa ID
+	7.) PFam IDs
+	8.) TIGRFam IDs
+	9.) GO Process
+	10.) GO Function
+	11.) EC
+
+	Output selects the best non-null results across the annotations:
+
+	1.) Read ID
+	2.) Percent Composite Identity
+	3.) Length
+	4.) Description
+	5.) PFam IDs
+	6.) TIGRFam IDs
+	7.) GO Process
+	8.) GO Function
+	9.) EC
+
+";
+
+###############################################################################
+
+if(!defined($opt_a) || !defined($opt_o)){
+	die $usage;
+}
+
+my $alignments_file=$opt_a;
+my $output_file=$opt_o;
+my $suppress_header=($opt_h eq "1");
+
+###############################################################################
+
+my @cutoffs=(.45, .60, .75, .90);
+my $num_cutoffs=$#cutoffs+1;
+my %fh_hash;
+
+foreach my $cutoff(@cutoffs){
+	my $ext=sprintf("%.2f", $cutoff);
+	$ext=~s/^0\.//;
+	my $fname="$output_file\.$ext\.tsv";
+	$fh_hash{$cutoff}=FileHandle->new;
+	$fh_hash{$cutoff}->open(">$fname");
+	if(!$fh_hash{$cutoff}){
+		die "Could not open $fname.\n";
+	}
+}
+
+if(!$suppress_header){
+	print STDERR "Header being written.\n";
+	my $fields_str;
+	$fields_str=join "\t", (
+		"ReadID",
+		"PercCompID",
+		"Length",
+		"Description",
+		"PFamIDs",
+		"TIGRFamIDs",
+		"GOProcIDs",
+		"GOFuncIDs",
+		"ECIDs"	
+	);
+
+	foreach my $cutoff(@cutoffs){
+		print {$fh_hash{$cutoff}} "# $fields_str\n";
+	}
+}else{
+	print STDERR "Header for output file has been suppressed.\n";
+}
+
+###############################################################################
+# Input column definition
+
+my $ID_COL=0;
+my $PERC_ID_COL=1;
+my $UNIRER_COL=2;
+my $DESC_COL=3;
+my $TAXA_COL=4;
+my $LEN_COL=5;
+my $PFAM_COL=6;
+my $TIGRFAM_COL=7;
+my $GO_PROC_COL=8;
+my $GO_FUNC_COL=9;
+my $EC_COL=10;
+
+###############################################################################
+
+sub print_rec{
+	my $recs=shift;
+	foreach my $rec(@{$recs}){
+		my $rec_str=join ",", @{$rec};
+		print "$rec_str\n";
+	}
+}
+
+sub get_perc_ids{
+	my $recs=shift;
+	my @perc_ids;
+
+	foreach my $rec(@{$recs}){
+		push @perc_ids, ${$rec}[$PERC_ID_COL];
+        }
+	return(\@perc_ids);
+}
+		
+sub get_best_function{
+	my $rec_ref=shift;
+
+	my ( $best_perc_id, $best_len, $best_desc, 
+		$best_pfam, $best_tigrfam, 
+		$best_go_proc, $best_go_func, $best_ec)=
+		(0,"","","","","","","");
+
+	# These records are already assumed to be sorted by increasing order
+	foreach my $rec(@{$rec_ref}){
+		
+		my ($perc_id, $len, $desc, $pfam, $tigrfam, $go_proc, $go_func, $ec)=(
+			${$rec}[$PERC_ID_COL],
+			${$rec}[$LEN_COL],
+			${$rec}[$DESC_COL],
+			${$rec}[$PFAM_COL],
+			${$rec}[$TIGRFAM_COL],
+			${$rec}[$GO_PROC_COL],
+			${$rec}[$GO_FUNC_COL],
+			${$rec}[$EC_COL]
+		);
+
+		# If there is a better hit, overwrite the old hit.
+		if($perc_id >= $best_perc_id){
+			$best_perc_id=$perc_id;
+			if($desc ne ""){
+
+				if($best_desc eq ""){
+					$best_desc=$desc;
+				}elsif(!($desc=~/Uncharacterized protein/ ||
+				   $desc=~/Putative uncharacterized protein/)){
+					$best_desc=$desc;	
+				}else{
+					# Ignore
+				}
+			}
+			if($len ne ""){ $best_len=$len; }
+			if($pfam ne ""){ $best_pfam=$pfam; }
+			if($tigrfam ne ""){ $best_tigrfam=$tigrfam; }
+			if($go_proc ne ""){ $best_go_proc=$go_proc; }
+			if($go_func ne ""){ $best_go_func=$go_func; }
+			if($ec ne ""){ $best_ec=$ec; }
+		}
+	}	
+
+	return(($best_perc_id, $best_len, $best_desc,
+                $best_pfam, $best_tigrfam,
+                $best_go_proc, $best_go_func, $best_ec));
+	
+}
+
+sub randomize{
+	my $arr_ref=shift;
+	my @rnd_idx;
+	my @rnd_val;
+	my $num_rec=$#{$arr_ref}+1;
+	
+	for(my $i=0; $i<$num_rec; $i++){
+		push @rnd_idx, rand;
+	}
+
+	my @sort_ix=sort {$rnd_idx[$a] <=> $rnd_idx[$b]} 0..$#{$arr_ref};
+
+	for(my $i=0; $i<$num_rec; $i++){
+		push @rnd_val, ${$arr_ref}[$sort_ix[$i]];
+	}
+	
+	return(\@rnd_val);
+}
+
+sub process_records{
+
+	my $rec_arr_ref=shift;
+
+	if($#{$rec_arr_ref}==-1){
+		# Skip if record is empty.
+		return;
+	}
+	
+	my $read_id=${${$rec_arr_ref}[0]}[$ID_COL];
+
+	#print "Before RND:\n";
+	#print_rec($rec_arr_ref);
+
+	# Randomize so ties will be in random order
+	$rec_arr_ref=randomize($rec_arr_ref);
+
+	#print "After RND:\n";
+	#print_rec($rec_arr_ref);
+	
+	my @perc_id_ref=@{get_perc_ids($rec_arr_ref)};
+
+	# Sort in ascending order, so best is seen last
+	my @sort_ix=sort {$perc_id_ref[$a] <=> $perc_id_ref[$b]} 0..$#perc_id_ref;
+
+	# Apply sort
+	my @sorted_records;
+	for(my $i=0; $i<=$#sort_ix; $i++){
+		push @sorted_records, ${$rec_arr_ref}[$sort_ix[$i]];
+	}
+
+	#print "Sorted:\n";
+	#print_rec(\@sorted_records);
+	#print "------------------------------\n";
+
+	# Generate groups of records based on cutoffs
+	my %grouped_hash;
+	for(my $i=0; $i<=$#sort_ix; $i++){
+		my $rec_ref=$sorted_records[$i];
+		my $perc_id=${$rec_ref}[$PERC_ID_COL];
+
+		foreach my $cutoff(@cutoffs){
+			if($perc_id >= $cutoff){
+				push @{$grouped_hash{$cutoff}}, $rec_ref;
+			}
+		}
+	}
+
+	# Analyse each group
+	foreach my $cutoff(@cutoffs){
+		#print "Group at $cutoff:\n";
+		#print_rec($grouped_hash{$cutoff});
+		my @best=get_best_function($grouped_hash{$cutoff});
+
+		my $best_str=join "\t", @best;
+		print {$fh_hash{$cutoff}} "$read_id\t$best_str\n";
+	}
+
+}
+
+###############################################################################
+# Process alignments file
+
+
+open(FH, "<$alignments_file") || die "Could not open $alignments_file\n";
+
+my @records=();
+my $last_rec="";
+while(<FH>){
+	chomp;
+
+	my @fields=split "\t", $_;
+	
+	if(($fields[$ID_COL] ne $last_rec)){
+		process_records(\@records);
+		@records=();
+	}
+
+	push @records, \@fields;
+
+	$last_rec=$fields[$ID_COL];
+}
+process_records(\@records);
+
+close(FH);
+
+###############################################################################
+
+print STDERR "Done.\n";
+

@@ -1,0 +1,1856 @@
+>Feature ref|NC_007901.1|
+1791	1	gene
+			locus_tag	Rfer_4246
+			db_xref	GeneID:3959995
+1791	1	CDS
+			product	type II secretion system protein E
+			transl_table	11
+			protein_id	ref|YP_515931.1||gnl|REF_jgi|Rfer_4246
+			db_xref	InterPro:IPR001482
+			db_xref	InterPro:IPR001687
+3113	1803	gene
+			locus_tag	Rfer_4247
+			db_xref	GeneID:3959996
+3113	1803	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515932.1||gnl|REF_jgi|Rfer_4247
+3644	3123	gene
+			locus_tag	Rfer_4248
+			db_xref	GeneID:3959997
+3644	3123	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515933.1||gnl|REF_jgi|Rfer_4248
+5098	3647	gene
+			locus_tag	Rfer_4249
+			db_xref	GeneID:3959998
+5098	3647	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515934.1||gnl|REF_jgi|Rfer_4249
+5593	5114	gene
+			locus_tag	Rfer_4250
+			db_xref	GeneID:3959999
+5593	5114	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515935.1||gnl|REF_jgi|Rfer_4250
+6730	5603	gene
+			locus_tag	Rfer_4251
+			db_xref	GeneID:3960000
+6730	5603	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515936.1||gnl|REF_jgi|Rfer_4251
+8049	6727	gene
+			locus_tag	Rfer_4252
+			db_xref	GeneID:3960001
+8049	6727	CDS
+			product	conjugation TrbI-like protein
+			transl_table	11
+			protein_id	ref|YP_515937.1||gnl|REF_jgi|Rfer_4252
+			db_xref	InterPro:IPR005498
+8912	8100	gene
+			locus_tag	Rfer_4253
+			db_xref	GeneID:3959828
+8912	8100	CDS
+			product	conjugal transfer protein TrbG/VirB9/CagX
+			transl_table	11
+			protein_id	ref|YP_515938.1||gnl|REF_jgi|Rfer_4253
+			db_xref	InterPro:IPR010258
+9655	8912	gene
+			locus_tag	Rfer_4254
+			db_xref	GeneID:3959829
+9655	8912	CDS
+			product	Type IV secretory pathway component VirB8-like
+			transl_table	11
+			protein_id	ref|YP_515939.1||gnl|REF_jgi|Rfer_4254
+11943	9877	gene
+			locus_tag	Rfer_4255
+			db_xref	GeneID:3959830
+11943	9877	CDS
+			product	AAA ATPase, central region
+			transl_table	11
+			protein_id	ref|YP_515940.1||gnl|REF_jgi|Rfer_4255
+			db_xref	InterPro:IPR000629
+			db_xref	InterPro:IPR001687
+			db_xref	InterPro:IPR003593
+			db_xref	InterPro:IPR003959
+			db_xref	InterPro:IPR003960
+			db_xref	InterPro:IPR011704
+12350	11943	gene
+			locus_tag	Rfer_4256
+			db_xref	GeneID:3959831
+12350	11943	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515941.1||gnl|REF_jgi|Rfer_4256
+12843	12496	gene
+			locus_tag	Rfer_4257
+			db_xref	GeneID:3959832
+12843	12496	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515942.1||gnl|REF_jgi|Rfer_4257
+14875	12974	gene
+			locus_tag	Rfer_4258
+			db_xref	GeneID:3959833
+14875	12974	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515943.1||gnl|REF_jgi|Rfer_4258
+15657	14893	gene
+			locus_tag	Rfer_4259
+			db_xref	GeneID:3959834
+15657	14893	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515944.1||gnl|REF_jgi|Rfer_4259
+18189	15694	gene
+			locus_tag	Rfer_4260
+			db_xref	GeneID:3959835
+18189	15694	CDS
+			product	Type IV secretory pathway VirB4 components-like
+			transl_table	11
+			protein_id	ref|YP_515945.1||gnl|REF_jgi|Rfer_4260
+18488	18183	gene
+			locus_tag	Rfer_4261
+			db_xref	GeneID:3959836
+18488	18183	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515946.1||gnl|REF_jgi|Rfer_4261
+18867	18499	gene
+			locus_tag	Rfer_4262
+			db_xref	GeneID:3959837
+18867	18499	CDS
+			product	conjugal transfer protein TrbC
+			transl_table	11
+			protein_id	ref|YP_515947.1||gnl|REF_jgi|Rfer_4262
+19863	18868	gene
+			locus_tag	Rfer_4263
+			db_xref	GeneID:3959838
+19863	18868	CDS
+			product	type II secretion system protein E
+			transl_table	11
+			protein_id	ref|YP_515948.1||gnl|REF_jgi|Rfer_4263
+			db_xref	InterPro:IPR001482
+20564	19935	gene
+			locus_tag	Rfer_4264
+			db_xref	GeneID:3959839
+20564	19935	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515949.1||gnl|REF_jgi|Rfer_4264
+21202	20573	gene
+			locus_tag	Rfer_4265
+			db_xref	GeneID:3959840
+21202	20573	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515950.1||gnl|REF_jgi|Rfer_4265
+23084	21195	gene
+			locus_tag	Rfer_4266
+			db_xref	GeneID:3959841
+23084	21195	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515951.1||gnl|REF_jgi|Rfer_4266
+25021	23093	gene
+			locus_tag	Rfer_4267
+			db_xref	GeneID:3959842
+25021	23093	CDS
+			product	relaxase
+			transl_table	11
+			protein_id	ref|YP_515952.1||gnl|REF_jgi|Rfer_4267
+			db_xref	InterPro:IPR011119
+25696	25127	gene
+			locus_tag	Rfer_4268
+			db_xref	GeneID:3959843
+25696	25127	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515953.1||gnl|REF_jgi|Rfer_4268
+25970	25686	gene
+			locus_tag	Rfer_4269
+			db_xref	GeneID:3959844
+25970	25686	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515954.1||gnl|REF_jgi|Rfer_4269
+26443	27141	gene
+			locus_tag	Rfer_4270
+			db_xref	GeneID:3959845
+26443	27141	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515955.1||gnl|REF_jgi|Rfer_4270
+28269	27235	gene
+			locus_tag	Rfer_4271
+			db_xref	GeneID:3959846
+28269	27235	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515956.1||gnl|REF_jgi|Rfer_4271
+28818	28279	gene
+			locus_tag	Rfer_4272
+			db_xref	GeneID:3959847
+28818	28279	CDS
+			product	outer membrane lipoprotein
+			transl_table	11
+			protein_id	ref|YP_515957.1||gnl|REF_jgi|Rfer_4272
+30907	29054	gene
+			locus_tag	Rfer_4273
+			db_xref	GeneID:3959809
+30907	29054	CDS
+			product	von Willebrand factor, type A
+			transl_table	11
+			protein_id	ref|YP_515958.1||gnl|REF_jgi|Rfer_4273
+			db_xref	InterPro:IPR002035
+32022	30916	gene
+			locus_tag	Rfer_4274
+			db_xref	GeneID:3959810
+32022	30916	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515959.1||gnl|REF_jgi|Rfer_4274
+			db_xref	InterPro:IPR002202
+33019	32645	gene
+			locus_tag	Rfer_4275
+			db_xref	GeneID:3959811
+33019	32645	CDS
+			product	single-strand binding protein/primosomal replication protein n
+			transl_table	11
+			protein_id	ref|YP_515960.1||gnl|REF_jgi|Rfer_4275
+			db_xref	InterPro:IPR000424
+			db_xref	InterPro:IPR010913
+34111	33026	gene
+			locus_tag	Rfer_4276
+			db_xref	GeneID:3959812
+34111	33026	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515961.1||gnl|REF_jgi|Rfer_4276
+34868	34152	gene
+			locus_tag	Rfer_4277
+			db_xref	GeneID:3959813
+34868	34152	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515962.1||gnl|REF_jgi|Rfer_4277
+35770	34865	gene
+			locus_tag	Rfer_4278
+			db_xref	GeneID:3959814
+35770	34865	CDS
+			product	ATPase
+			transl_table	11
+			protein_id	ref|YP_515963.1||gnl|REF_jgi|Rfer_4278
+			db_xref	InterPro:IPR011704
+36578	35772	gene
+			locus_tag	Rfer_4279
+			db_xref	GeneID:3959815
+36578	35772	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515964.1||gnl|REF_jgi|Rfer_4279
+			db_xref	InterPro:IPR000583
+37411	38232	gene
+			locus_tag	Rfer_4280
+			db_xref	GeneID:3959816
+37411	38232	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515965.1||gnl|REF_jgi|Rfer_4280
+38333	40153	gene
+			locus_tag	Rfer_4281
+			db_xref	GeneID:3959817
+38333	40153	CDS
+			product	UvrD/REP helicase
+			transl_table	11
+			protein_id	ref|YP_515966.1||gnl|REF_jgi|Rfer_4281
+			db_xref	InterPro:IPR000212
+40992	40150	gene
+			locus_tag	Rfer_4282
+			db_xref	GeneID:3959818
+40992	40150	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515967.1||gnl|REF_jgi|Rfer_4282
+41372	40992	gene
+			locus_tag	Rfer_4283
+			db_xref	GeneID:3959819
+41372	40992	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515968.1||gnl|REF_jgi|Rfer_4283
+			db_xref	InterPro:IPR000276
+42421	41369	gene
+			locus_tag	Rfer_4284
+			db_xref	GeneID:3959820
+42421	41369	CDS
+			product	parB-like partition proteins
+			transl_table	11
+			protein_id	ref|YP_515969.1||gnl|REF_jgi|Rfer_4284
+			db_xref	InterPro:IPR004437
+43107	42418	gene
+			locus_tag	Rfer_4285
+			db_xref	GeneID:3959821
+43107	42418	CDS
+			product	chromosome partitioning ATPase protein-like
+			transl_table	11
+			protein_id	ref|YP_515970.1||gnl|REF_jgi|Rfer_4285
+45664	44702	gene
+			locus_tag	Rfer_4286
+			db_xref	GeneID:3959822
+45664	44702	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515971.1||gnl|REF_jgi|Rfer_4286
+46561	45755	gene
+			locus_tag	Rfer_4287
+			db_xref	GeneID:3959823
+46561	45755	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515972.1||gnl|REF_jgi|Rfer_4287
+46964	47899	gene
+			locus_tag	Rfer_4288
+			db_xref	GeneID:3959824
+46964	47899	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515973.1||gnl|REF_jgi|Rfer_4288
+			db_xref	InterPro:IPR001252
+49184	47883	gene
+			locus_tag	Rfer_4289
+			db_xref	GeneID:3959825
+49184	47883	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515974.1||gnl|REF_jgi|Rfer_4289
+49705	49322	gene
+			locus_tag	Rfer_4290
+			db_xref	GeneID:3959826
+49705	49322	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515975.1||gnl|REF_jgi|Rfer_4290
+49994	50422	gene
+			locus_tag	Rfer_4291
+			pseudo
+			db_xref	GeneID:3959827
+52911	50599	gene
+			locus_tag	Rfer_4292
+			db_xref	GeneID:3959886
+52911	50599	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515976.1||gnl|REF_jgi|Rfer_4292
+			db_xref	InterPro:IPR003439
+53473	53159	gene
+			locus_tag	Rfer_4293
+			db_xref	GeneID:3959887
+53473	53159	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515977.1||gnl|REF_jgi|Rfer_4293
+54591	53614	gene
+			locus_tag	Rfer_4294
+			db_xref	GeneID:3959888
+54591	53614	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515978.1||gnl|REF_jgi|Rfer_4294
+61549	56369	gene
+			locus_tag	Rfer_4295
+			db_xref	GeneID:3959889
+61549	56369	CDS
+			product	helicase-like
+			transl_table	11
+			protein_id	ref|YP_515979.1||gnl|REF_jgi|Rfer_4295
+			db_xref	InterPro:IPR000051
+			db_xref	InterPro:IPR001650
+			db_xref	InterPro:IPR002296
+62530	63036	gene
+			locus_tag	Rfer_4296
+			db_xref	GeneID:3959890
+62530	63036	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515980.1||gnl|REF_jgi|Rfer_4296
+64077	63298	gene
+			locus_tag	Rfer_4297
+			db_xref	GeneID:3959891
+64077	63298	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515981.1||gnl|REF_jgi|Rfer_4297
+64302	65669	gene
+			locus_tag	Rfer_4298
+			db_xref	GeneID:3959892
+64302	65669	CDS
+			product	DNA repair protein RadA
+			transl_table	11
+			protein_id	ref|YP_515982.1||gnl|REF_jgi|Rfer_4298
+			note	Sms; stabilizes the strand-invasion intermediate during the DNA repair; involved in recombination of donor DNA and plays an important role in DNA damage repair after exposure to mutagenic agents
+			db_xref	InterPro:IPR001553
+			db_xref	InterPro:IPR001984
+			db_xref	InterPro:IPR003593
+			db_xref	InterPro:IPR004504
+66470	65685	gene
+			locus_tag	Rfer_4299
+			db_xref	GeneID:3959893
+66470	65685	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515983.1||gnl|REF_jgi|Rfer_4299
+66970	66731	gene
+			locus_tag	Rfer_4300
+			db_xref	GeneID:3959894
+66970	66731	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515984.1||gnl|REF_jgi|Rfer_4300
+67007	67480	gene
+			locus_tag	Rfer_4301
+			db_xref	GeneID:3959895
+67007	67480	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515985.1||gnl|REF_jgi|Rfer_4301
+67477	67860	gene
+			locus_tag	Rfer_4302
+			db_xref	GeneID:3959896
+67477	67860	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515986.1||gnl|REF_jgi|Rfer_4302
+67970	68641	gene
+			locus_tag	Rfer_4303
+			db_xref	GeneID:3959897
+67970	68641	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515987.1||gnl|REF_jgi|Rfer_4303
+68619	68849	gene
+			locus_tag	Rfer_4304
+			db_xref	GeneID:3959898
+68619	68849	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515988.1||gnl|REF_jgi|Rfer_4304
+69272	70363	gene
+			locus_tag	Rfer_4305
+			db_xref	GeneID:3959899
+69272	70363	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515989.1||gnl|REF_jgi|Rfer_4305
+70522	70902	gene
+			locus_tag	Rfer_4306
+			db_xref	GeneID:3959900
+70522	70902	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515990.1||gnl|REF_jgi|Rfer_4306
+71371	73266	gene
+			locus_tag	Rfer_4307
+			db_xref	GeneID:3959901
+71371	73266	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515991.1||gnl|REF_jgi|Rfer_4307
+73274	73561	gene
+			locus_tag	Rfer_4308
+			db_xref	GeneID:3959902
+73274	73561	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515992.1||gnl|REF_jgi|Rfer_4308
+73770	73976	gene
+			locus_tag	Rfer_4309
+			db_xref	GeneID:3959903
+73770	73976	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515993.1||gnl|REF_jgi|Rfer_4309
+73982	74239	gene
+			locus_tag	Rfer_4310
+			db_xref	GeneID:3959904
+73982	74239	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515994.1||gnl|REF_jgi|Rfer_4310
+74356	75492	gene
+			locus_tag	Rfer_4311
+			db_xref	GeneID:3959905
+74356	75492	CDS
+			product	DNA polymerase III, beta subunit
+			EC_number	2.7.7.7
+			transl_table	11
+			protein_id	ref|YP_515995.1||gnl|REF_jgi|Rfer_4311
+			db_xref	InterPro:IPR001001
+77245	76220	gene
+			locus_tag	Rfer_4312
+			db_xref	GeneID:3959848
+77245	76220	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515996.1||gnl|REF_jgi|Rfer_4312
+77463	78539	gene
+			locus_tag	Rfer_4313
+			db_xref	GeneID:3959849
+77463	78539	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515997.1||gnl|REF_jgi|Rfer_4313
+			db_xref	InterPro:IPR002114
+78601	79884	gene
+			locus_tag	Rfer_4314
+			db_xref	GeneID:3959850
+78601	79884	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515998.1||gnl|REF_jgi|Rfer_4314
+79956	80411	gene
+			locus_tag	Rfer_4315
+			db_xref	GeneID:3959851
+79956	80411	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_515999.1||gnl|REF_jgi|Rfer_4315
+80426	80959	gene
+			locus_tag	Rfer_4316
+			db_xref	GeneID:3959852
+80426	80959	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516000.1||gnl|REF_jgi|Rfer_4316
+81205	81600	gene
+			locus_tag	Rfer_4317
+			db_xref	GeneID:3959853
+81205	81600	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516001.1||gnl|REF_jgi|Rfer_4317
+81621	82913	gene
+			locus_tag	Rfer_4318
+			db_xref	GeneID:3959854
+81621	82913	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516002.1||gnl|REF_jgi|Rfer_4318
+83034	83981	gene
+			locus_tag	Rfer_4319
+			db_xref	GeneID:3959855
+83034	83981	CDS
+			product	DNA/RNA non-specific endonuclease
+			transl_table	11
+			protein_id	ref|YP_516003.1||gnl|REF_jgi|Rfer_4319
+			db_xref	InterPro:IPR001604
+83968	84255	gene
+			locus_tag	Rfer_4320
+			db_xref	GeneID:3959856
+83968	84255	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516004.1||gnl|REF_jgi|Rfer_4320
+84348	85040	gene
+			locus_tag	Rfer_4321
+			db_xref	GeneID:3959857
+84348	85040	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516005.1||gnl|REF_jgi|Rfer_4321
+86184	85138	gene
+			locus_tag	Rfer_4322
+			db_xref	GeneID:3959858
+86184	85138	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516006.1||gnl|REF_jgi|Rfer_4322
+87078	86275	gene
+			locus_tag	Rfer_4323
+			db_xref	GeneID:3959859
+87078	86275	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516007.1||gnl|REF_jgi|Rfer_4323
+87740	87333	gene
+			locus_tag	Rfer_4324
+			db_xref	GeneID:3959860
+87740	87333	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516008.1||gnl|REF_jgi|Rfer_4324
+87858	88163	gene
+			locus_tag	Rfer_4325
+			db_xref	GeneID:3959861
+87858	88163	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516009.1||gnl|REF_jgi|Rfer_4325
+88427	88140	gene
+			locus_tag	Rfer_4326
+			db_xref	GeneID:3959862
+88427	88140	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516010.1||gnl|REF_jgi|Rfer_4326
+88990	92502	gene
+			locus_tag	Rfer_4327
+			db_xref	GeneID:3959863
+88990	92502	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516011.1||gnl|REF_jgi|Rfer_4327
+			db_xref	InterPro:IPR002052
+			db_xref	REBASE:RfeDORF4327P
+93786	92545	gene
+			locus_tag	Rfer_4328
+			db_xref	GeneID:3959864
+93786	92545	CDS
+			product	phage integrase
+			transl_table	11
+			protein_id	ref|YP_516012.1||gnl|REF_jgi|Rfer_4328
+			db_xref	InterPro:IPR002104
+94127	93783	gene
+			locus_tag	Rfer_4329
+			db_xref	GeneID:3959865
+94127	93783	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516013.1||gnl|REF_jgi|Rfer_4329
+94801	95265	gene
+			locus_tag	Rfer_4330
+			db_xref	GeneID:3959866
+94801	95265	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516014.1||gnl|REF_jgi|Rfer_4330
+95258	95554	gene
+			locus_tag	Rfer_4331
+			db_xref	GeneID:3959925
+95258	95554	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516015.1||gnl|REF_jgi|Rfer_4331
+			db_xref	InterPro:IPR010718
+95673	95945	gene
+			locus_tag	Rfer_4332
+			db_xref	GeneID:3959926
+95673	95945	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516016.1||gnl|REF_jgi|Rfer_4332
+96011	96949	gene
+			locus_tag	Rfer_4333
+			db_xref	GeneID:3959927
+96011	96949	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516017.1||gnl|REF_jgi|Rfer_4333
+97067	98863	gene
+			locus_tag	Rfer_4334
+			db_xref	GeneID:3959928
+97067	98863	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516018.1||gnl|REF_jgi|Rfer_4334
+99469	99086	gene
+			locus_tag	Rfer_4335
+			db_xref	GeneID:3959929
+99469	99086	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516019.1||gnl|REF_jgi|Rfer_4335
+99566	100738	gene
+			locus_tag	Rfer_4336
+			db_xref	GeneID:3959930
+99566	100738	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516020.1||gnl|REF_jgi|Rfer_4336
+100841	101740	gene
+			locus_tag	Rfer_4337
+			db_xref	GeneID:3959931
+100841	101740	CDS
+			product	methyltransferase type 11
+			transl_table	11
+			protein_id	ref|YP_516021.1||gnl|REF_jgi|Rfer_4337
+			db_xref	InterPro:IPR013216
+102436	101801	gene
+			locus_tag	Rfer_4338
+			db_xref	GeneID:3959932
+102436	101801	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516022.1||gnl|REF_jgi|Rfer_4338
+			db_xref	InterPro:IPR005358
+103698	102457	gene
+			locus_tag	Rfer_4339
+			db_xref	GeneID:3959933
+103698	102457	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516023.1||gnl|REF_jgi|Rfer_4339
+104090	104752	gene
+			locus_tag	Rfer_4340
+			db_xref	GeneID:3959934
+104090	104752	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516024.1||gnl|REF_jgi|Rfer_4340
+106386	105088	gene
+			locus_tag	Rfer_4341
+			db_xref	GeneID:3959935
+106386	105088	CDS
+			product	DNA-directed DNA polymerase
+			EC_number	2.7.7.7
+			transl_table	11
+			protein_id	ref|YP_516025.1||gnl|REF_jgi|Rfer_4341
+			db_xref	InterPro:IPR001126
+106833	106393	gene
+			locus_tag	Rfer_4342
+			db_xref	GeneID:3959936
+106833	106393	CDS
+			product	putative prophage repressor
+			transl_table	11
+			protein_id	ref|YP_516026.1||gnl|REF_jgi|Rfer_4342
+			db_xref	InterPro:IPR006197
+			db_xref	InterPro:IPR006198
+106926	107291	gene
+			locus_tag	Rfer_4343
+			db_xref	GeneID:3959937
+106926	107291	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516027.1||gnl|REF_jgi|Rfer_4343
+107296	107943	gene
+			locus_tag	Rfer_4344
+			db_xref	GeneID:3959938
+107296	107943	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516028.1||gnl|REF_jgi|Rfer_4344
+			db_xref	InterPro:IPR003738
+108460	109533	gene
+			locus_tag	Rfer_4345
+			db_xref	GeneID:3959939
+108460	109533	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516029.1||gnl|REF_jgi|Rfer_4345
+109560	109991	gene
+			locus_tag	Rfer_4346
+			db_xref	GeneID:3959940
+109560	109991	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516030.1||gnl|REF_jgi|Rfer_4346
+109994	110746	gene
+			locus_tag	Rfer_4347
+			db_xref	GeneID:3959941
+109994	110746	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516031.1||gnl|REF_jgi|Rfer_4347
+112200	111367	gene
+			locus_tag	Rfer_4348
+			db_xref	GeneID:3959942
+112200	111367	CDS
+			product	CRISPR-associated Cas1 family protein
+			transl_table	11
+			protein_id	ref|YP_516032.1||gnl|REF_jgi|Rfer_4348
+			db_xref	InterPro:IPR002729
+112822	112280	gene
+			locus_tag	Rfer_4349
+			db_xref	GeneID:3959943
+112822	112280	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516033.1||gnl|REF_jgi|Rfer_4349
+			db_xref	InterPro:IPR003006
+113490	112810	gene
+			locus_tag	Rfer_4350
+			db_xref	GeneID:3959944
+113490	112810	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516034.1||gnl|REF_jgi|Rfer_4350
+114610	113492	gene
+			locus_tag	Rfer_4351
+			db_xref	GeneID:3959867
+114610	113492	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516035.1||gnl|REF_jgi|Rfer_4351
+114690	115358	gene
+			locus_tag	Rfer_4352
+			db_xref	GeneID:3959868
+114690	115358	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516036.1||gnl|REF_jgi|Rfer_4352
+115481	116182	gene
+			locus_tag	Rfer_4353
+			db_xref	GeneID:3959869
+115481	116182	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516037.1||gnl|REF_jgi|Rfer_4353
+116184	118625	gene
+			locus_tag	Rfer_4354
+			db_xref	GeneID:3959870
+116184	118625	CDS
+			product	DEAD/DEAH box helicase-like
+			transl_table	11
+			protein_id	ref|YP_516038.1||gnl|REF_jgi|Rfer_4354
+			db_xref	InterPro:IPR002016
+			db_xref	InterPro:IPR011545
+118658	119269	gene
+			locus_tag	Rfer_4355
+			db_xref	GeneID:3959871
+118658	119269	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516039.1||gnl|REF_jgi|Rfer_4355
+120860	119343	gene
+			locus_tag	Rfer_4356
+			db_xref	GeneID:3959872
+120860	119343	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516040.1||gnl|REF_jgi|Rfer_4356
+121369	121902	gene
+			locus_tag	Rfer_4357
+			db_xref	GeneID:3959873
+121369	121902	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516041.1||gnl|REF_jgi|Rfer_4357
+123726	122104	gene
+			locus_tag	Rfer_4358
+			db_xref	GeneID:3959874
+123726	122104	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516042.1||gnl|REF_jgi|Rfer_4358
+124761	123865	gene
+			locus_tag	Rfer_4359
+			db_xref	GeneID:3959875
+124761	123865	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516043.1||gnl|REF_jgi|Rfer_4359
+125391	124864	gene
+			locus_tag	Rfer_4360
+			db_xref	GeneID:3959876
+125391	124864	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516044.1||gnl|REF_jgi|Rfer_4360
+126975	125746	gene
+			locus_tag	Rfer_4361
+			db_xref	GeneID:3959877
+126975	125746	CDS
+			product	ATP dependent DNA ligase
+			transl_table	11
+			protein_id	ref|YP_516045.1||gnl|REF_jgi|Rfer_4361
+			db_xref	InterPro:IPR012310
+128556	126994	gene
+			locus_tag	Rfer_4362
+			db_xref	GeneID:3959878
+128556	126994	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516046.1||gnl|REF_jgi|Rfer_4362
+			db_xref	InterPro:IPR000051
+			db_xref	InterPro:IPR002296
+130270	129083	gene
+			locus_tag	Rfer_4363
+			db_xref	GeneID:3959879
+130270	129083	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516047.1||gnl|REF_jgi|Rfer_4363
+131094	130390	gene
+			locus_tag	Rfer_4364
+			db_xref	GeneID:3959880
+131094	130390	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516048.1||gnl|REF_jgi|Rfer_4364
+132018	131293	gene
+			locus_tag	Rfer_4365
+			db_xref	GeneID:3959881
+132018	131293	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516049.1||gnl|REF_jgi|Rfer_4365
+132621	132097	gene
+			locus_tag	Rfer_4366
+			db_xref	GeneID:3959882
+132621	132097	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516050.1||gnl|REF_jgi|Rfer_4366
+133736	133029	gene
+			locus_tag	Rfer_4367
+			db_xref	GeneID:3959883
+133736	133029	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516051.1||gnl|REF_jgi|Rfer_4367
+134728	133883	gene
+			locus_tag	Rfer_4368
+			db_xref	GeneID:3959884
+134728	133883	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516052.1||gnl|REF_jgi|Rfer_4368
+135675	135151	gene
+			locus_tag	Rfer_4369
+			db_xref	GeneID:3959885
+135675	135151	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516053.1||gnl|REF_jgi|Rfer_4369
+137546	135792	gene
+			locus_tag	Rfer_4370
+			db_xref	GeneID:3959906
+137546	135792	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516054.1||gnl|REF_jgi|Rfer_4370
+137970	137665	gene
+			locus_tag	Rfer_4371
+			db_xref	GeneID:3959907
+137970	137665	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516055.1||gnl|REF_jgi|Rfer_4371
+138512	138249	gene
+			locus_tag	Rfer_4372
+			db_xref	GeneID:3959908
+138512	138249	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516056.1||gnl|REF_jgi|Rfer_4372
+138931	138566	gene
+			locus_tag	Rfer_4373
+			db_xref	GeneID:3959909
+138931	138566	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516057.1||gnl|REF_jgi|Rfer_4373
+140463	139123	gene
+			locus_tag	Rfer_4374
+			db_xref	GeneID:3959910
+140463	139123	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516058.1||gnl|REF_jgi|Rfer_4374
+			db_xref	InterPro:IPR001000
+140969	140460	gene
+			locus_tag	Rfer_4375
+			db_xref	GeneID:3959911
+140969	140460	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516059.1||gnl|REF_jgi|Rfer_4375
+141982	141113	gene
+			locus_tag	Rfer_4376
+			db_xref	GeneID:3959912
+141982	141113	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516060.1||gnl|REF_jgi|Rfer_4376
+142534	142462	gene
+			locus_tag	Rfer_R0060
+			note	tRNA-Ile1
+			db_xref	GeneID:3959913
+142534	142462	tRNA
+			product	tRNA-Ile
+143130	142639	gene
+			locus_tag	Rfer_4377
+			db_xref	GeneID:3959914
+143130	142639	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516061.1||gnl|REF_jgi|Rfer_4377
+143238	143516	gene
+			locus_tag	Rfer_4378
+			db_xref	GeneID:3959915
+143238	143516	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516062.1||gnl|REF_jgi|Rfer_4378
+144132	143560	gene
+			locus_tag	Rfer_4379
+			db_xref	GeneID:3959916
+144132	143560	CDS
+			product	ERCC4
+			transl_table	11
+			protein_id	ref|YP_516063.1||gnl|REF_jgi|Rfer_4379
+			db_xref	InterPro:IPR006166
+145702	144560	gene
+			locus_tag	Rfer_4380
+			db_xref	GeneID:3959917
+145702	144560	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516064.1||gnl|REF_jgi|Rfer_4380
+147485	145716	gene
+			locus_tag	Rfer_4381
+			db_xref	GeneID:3959918
+147485	145716	CDS
+			product	ankyrin
+			transl_table	11
+			protein_id	ref|YP_516065.1||gnl|REF_jgi|Rfer_4381
+			db_xref	InterPro:IPR002110
+147936	147688	gene
+			locus_tag	Rfer_4382
+			db_xref	GeneID:3959919
+147936	147688	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516066.1||gnl|REF_jgi|Rfer_4382
+149041	147998	gene
+			locus_tag	Rfer_4383
+			db_xref	GeneID:3959920
+149041	147998	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516067.1||gnl|REF_jgi|Rfer_4383
+149537	149055	gene
+			locus_tag	Rfer_4384
+			db_xref	GeneID:3959921
+149537	149055	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516068.1||gnl|REF_jgi|Rfer_4384
+150192	149599	gene
+			locus_tag	Rfer_4385
+			db_xref	GeneID:3959922
+150192	149599	CDS
+			product	thymidine kinase
+			EC_number	2.7.1.21
+			transl_table	11
+			protein_id	ref|YP_516069.1||gnl|REF_jgi|Rfer_4385
+			note	catalyzes the formation of thymidine 5'-phosphate from thymidine
+			db_xref	InterPro:IPR001267
+150718	150927	gene
+			locus_tag	Rfer_4386
+			db_xref	GeneID:3959923
+150718	150927	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516070.1||gnl|REF_jgi|Rfer_4386
+151078	153234	gene
+			locus_tag	Rfer_4387
+			db_xref	GeneID:3959924
+151078	153234	CDS
+			product	diguanylate cyclase/phosphodiesterase
+			transl_table	11
+			protein_id	ref|YP_516071.1||gnl|REF_jgi|Rfer_4387
+			db_xref	InterPro:IPR000014
+			db_xref	InterPro:IPR000160
+			db_xref	InterPro:IPR000276
+			db_xref	InterPro:IPR000700
+			db_xref	InterPro:IPR001610
+			db_xref	InterPro:IPR001633
+153955	153374	gene
+			locus_tag	Rfer_4388
+			db_xref	GeneID:3960002
+153955	153374	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516072.1||gnl|REF_jgi|Rfer_4388
+154743	153952	gene
+			locus_tag	Rfer_4389
+			db_xref	GeneID:3960003
+154743	153952	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516073.1||gnl|REF_jgi|Rfer_4389
+155263	154745	gene
+			locus_tag	Rfer_4390
+			db_xref	GeneID:3960004
+155263	154745	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516074.1||gnl|REF_jgi|Rfer_4390
+156188	155283	gene
+			locus_tag	Rfer_4391
+			db_xref	GeneID:3960005
+156188	155283	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516075.1||gnl|REF_jgi|Rfer_4391
+159377	156228	gene
+			locus_tag	Rfer_4392
+			db_xref	GeneID:3960006
+159377	156228	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516076.1||gnl|REF_jgi|Rfer_4392
+159942	159397	gene
+			locus_tag	Rfer_4393
+			db_xref	GeneID:3960007
+159942	159397	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516077.1||gnl|REF_jgi|Rfer_4393
+			db_xref	InterPro:IPR002173
+160436	159939	gene
+			locus_tag	Rfer_4394
+			db_xref	GeneID:3960008
+160436	159939	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516078.1||gnl|REF_jgi|Rfer_4394
+161294	160647	gene
+			locus_tag	Rfer_4395
+			db_xref	GeneID:3960009
+161294	160647	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516079.1||gnl|REF_jgi|Rfer_4395
+162160	161336	gene
+			locus_tag	Rfer_4396
+			db_xref	GeneID:3960010
+162160	161336	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516080.1||gnl|REF_jgi|Rfer_4396
+162567	162190	gene
+			locus_tag	Rfer_4397
+			db_xref	GeneID:3960011
+162567	162190	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516081.1||gnl|REF_jgi|Rfer_4397
+163576	162641	gene
+			locus_tag	Rfer_4398
+			db_xref	GeneID:3960012
+163576	162641	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516082.1||gnl|REF_jgi|Rfer_4398
+164833	163577	gene
+			locus_tag	Rfer_4399
+			db_xref	GeneID:3960013
+164833	163577	CDS
+			product	type II secretion system protein
+			transl_table	11
+			protein_id	ref|YP_516083.1||gnl|REF_jgi|Rfer_4399
+			db_xref	InterPro:IPR001992
+166557	164830	gene
+			locus_tag	Rfer_4400
+			db_xref	GeneID:3960014
+166557	164830	CDS
+			product	type II secretion system protein E
+			transl_table	11
+			protein_id	ref|YP_516084.1||gnl|REF_jgi|Rfer_4400
+			db_xref	InterPro:IPR001482
+167258	166554	gene
+			locus_tag	Rfer_4401
+			db_xref	GeneID:3960015
+167258	166554	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516085.1||gnl|REF_jgi|Rfer_4401
+169119	167251	gene
+			locus_tag	Rfer_4402
+			db_xref	GeneID:3960016
+169119	167251	CDS
+			product	type II and III secretion system protein
+			transl_table	11
+			protein_id	ref|YP_516086.1||gnl|REF_jgi|Rfer_4402
+			db_xref	InterPro:IPR004846
+170647	169220	gene
+			locus_tag	Rfer_4403
+			db_xref	GeneID:3960017
+170647	169220	CDS
+			product	Type II secretory pathway component PulD-like
+			transl_table	11
+			protein_id	ref|YP_516087.1||gnl|REF_jgi|Rfer_4403
+172194	171208	gene
+			locus_tag	Rfer_4404
+			db_xref	GeneID:3960018
+172194	171208	CDS
+			product	response regulator receiver domain-containing protein
+			transl_table	11
+			protein_id	ref|YP_516088.1||gnl|REF_jgi|Rfer_4404
+			db_xref	InterPro:IPR001789
+173319	172522	gene
+			locus_tag	Rfer_4405
+			db_xref	GeneID:3960019
+173319	172522	CDS
+			product	UBA/THIF-type NAD/FAD binding fold
+			transl_table	11
+			protein_id	ref|YP_516089.1||gnl|REF_jgi|Rfer_4405
+			db_xref	InterPro:IPR000594
+173945	173316	gene
+			locus_tag	Rfer_4406
+			db_xref	GeneID:3960020
+173945	173316	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516090.1||gnl|REF_jgi|Rfer_4406
+174861	174136	gene
+			locus_tag	Rfer_4407
+			db_xref	GeneID:3960040
+174861	174136	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516091.1||gnl|REF_jgi|Rfer_4407
+175920	174871	gene
+			locus_tag	Rfer_4408
+			db_xref	GeneID:3960041
+175920	174871	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516092.1||gnl|REF_jgi|Rfer_4408
+176345	175920	gene
+			locus_tag	Rfer_4409
+			db_xref	GeneID:3960042
+176345	175920	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516093.1||gnl|REF_jgi|Rfer_4409
+176881	176372	gene
+			locus_tag	Rfer_4410
+			db_xref	GeneID:3960043
+176881	176372	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516094.1||gnl|REF_jgi|Rfer_4410
+177462	176995	gene
+			locus_tag	Rfer_4411
+			db_xref	GeneID:3960044
+177462	176995	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516095.1||gnl|REF_jgi|Rfer_4411
+179232	177490	gene
+			locus_tag	Rfer_4412
+			db_xref	GeneID:3960045
+179232	177490	CDS
+			product	parB-like partition proteins
+			transl_table	11
+			protein_id	ref|YP_516096.1||gnl|REF_jgi|Rfer_4412
+			db_xref	InterPro:IPR002197
+			db_xref	InterPro:IPR003115
+			db_xref	InterPro:IPR004437
+181178	179481	gene
+			locus_tag	Rfer_4413
+			db_xref	GeneID:3960046
+181178	179481	CDS
+			product	response regulator receiver sensor signal transduction histidine kinase
+			transl_table	11
+			protein_id	ref|YP_516097.1||gnl|REF_jgi|Rfer_4413
+			db_xref	InterPro:IPR001789
+			db_xref	InterPro:IPR003594
+			db_xref	InterPro:IPR003661
+			db_xref	InterPro:IPR004358
+			db_xref	InterPro:IPR005467
+182695	181175	gene
+			locus_tag	Rfer_4414
+			db_xref	GeneID:3960047
+182695	181175	CDS
+			product	periplasmic sensor signal transduction histidine kinase
+			transl_table	11
+			protein_id	ref|YP_516098.1||gnl|REF_jgi|Rfer_4414
+			db_xref	InterPro:IPR003594
+			db_xref	InterPro:IPR003661
+			db_xref	InterPro:IPR004358
+			db_xref	InterPro:IPR005467
+182922	183443	gene
+			locus_tag	Rfer_4415
+			db_xref	GeneID:3960048
+182922	183443	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516099.1||gnl|REF_jgi|Rfer_4415
+183767	183489	gene
+			locus_tag	Rfer_4416
+			db_xref	GeneID:3960049
+183767	183489	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516100.1||gnl|REF_jgi|Rfer_4416
+184369	184118	gene
+			locus_tag	Rfer_4417
+			db_xref	GeneID:3960050
+184369	184118	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516101.1||gnl|REF_jgi|Rfer_4417
+184936	184685	gene
+			locus_tag	Rfer_4418
+			db_xref	GeneID:3960051
+184936	184685	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516102.1||gnl|REF_jgi|Rfer_4418
+185735	185232	gene
+			locus_tag	Rfer_4419
+			db_xref	GeneID:3960052
+185735	185232	CDS
+			product	GCN5-related N-acetyltransferase
+			transl_table	11
+			protein_id	ref|YP_516103.1||gnl|REF_jgi|Rfer_4419
+			db_xref	InterPro:IPR000182
+186867	186523	gene
+			locus_tag	Rfer_4420
+			db_xref	GeneID:3960053
+186867	186523	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516104.1||gnl|REF_jgi|Rfer_4420
+187422	187180	gene
+			locus_tag	Rfer_4421
+			db_xref	GeneID:3960054
+187422	187180	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516105.1||gnl|REF_jgi|Rfer_4421
+187882	187439	gene
+			locus_tag	Rfer_4422
+			db_xref	GeneID:3960055
+187882	187439	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516106.1||gnl|REF_jgi|Rfer_4422
+188362	187892	gene
+			locus_tag	Rfer_4423
+			db_xref	GeneID:3960056
+188362	187892	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516107.1||gnl|REF_jgi|Rfer_4423
+188871	188584	gene
+			locus_tag	Rfer_4424
+			db_xref	GeneID:3960057
+188871	188584	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516108.1||gnl|REF_jgi|Rfer_4424
+191103	188890	gene
+			locus_tag	Rfer_4425
+			db_xref	GeneID:3960058
+191103	188890	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516109.1||gnl|REF_jgi|Rfer_4425
+191802	191329	gene
+			locus_tag	Rfer_4426
+			db_xref	GeneID:3960059
+191802	191329	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516110.1||gnl|REF_jgi|Rfer_4426
+192187	191825	gene
+			locus_tag	Rfer_4427
+			db_xref	GeneID:3960021
+192187	191825	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516111.1||gnl|REF_jgi|Rfer_4427
+195408	193054	gene
+			locus_tag	Rfer_4428
+			db_xref	GeneID:3960022
+195408	193054	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516112.1||gnl|REF_jgi|Rfer_4428
+195647	195423	gene
+			locus_tag	Rfer_4429
+			db_xref	GeneID:3960023
+195647	195423	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516113.1||gnl|REF_jgi|Rfer_4429
+198313	195650	gene
+			locus_tag	Rfer_4430
+			db_xref	GeneID:3960024
+198313	195650	CDS
+			product	XRE family transcriptional regulator
+			transl_table	11
+			protein_id	ref|YP_516114.1||gnl|REF_jgi|Rfer_4430
+			db_xref	InterPro:IPR001387
+199121	198792	gene
+			locus_tag	Rfer_4431
+			db_xref	GeneID:3960025
+199121	198792	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516115.1||gnl|REF_jgi|Rfer_4431
+199416	199150	gene
+			locus_tag	Rfer_4432
+			db_xref	GeneID:3960026
+199416	199150	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516116.1||gnl|REF_jgi|Rfer_4432
+199782	199429	gene
+			locus_tag	Rfer_4433
+			db_xref	GeneID:3960027
+199782	199429	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516117.1||gnl|REF_jgi|Rfer_4433
+200174	199794	gene
+			locus_tag	Rfer_4434
+			db_xref	GeneID:3960028
+200174	199794	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516118.1||gnl|REF_jgi|Rfer_4434
+200598	200359	gene
+			locus_tag	Rfer_4435
+			db_xref	GeneID:3960029
+200598	200359	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516119.1||gnl|REF_jgi|Rfer_4435
+201030	200608	gene
+			locus_tag	Rfer_4436
+			db_xref	GeneID:3960030
+201030	200608	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516120.1||gnl|REF_jgi|Rfer_4436
+202354	201014	gene
+			locus_tag	Rfer_4437
+			db_xref	GeneID:3960031
+202354	201014	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516121.1||gnl|REF_jgi|Rfer_4437
+202693	202448	gene
+			locus_tag	Rfer_4438
+			db_xref	GeneID:3960032
+202693	202448	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516122.1||gnl|REF_jgi|Rfer_4438
+202951	202703	gene
+			locus_tag	Rfer_4439
+			db_xref	GeneID:3960033
+202951	202703	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516123.1||gnl|REF_jgi|Rfer_4439
+203297	202983	gene
+			locus_tag	Rfer_4440
+			db_xref	GeneID:3960034
+203297	202983	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516124.1||gnl|REF_jgi|Rfer_4440
+203903	203307	gene
+			locus_tag	Rfer_4441
+			db_xref	GeneID:3960035
+203903	203307	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516125.1||gnl|REF_jgi|Rfer_4441
+204236	203916	gene
+			locus_tag	Rfer_4442
+			db_xref	GeneID:3960036
+204236	203916	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516126.1||gnl|REF_jgi|Rfer_4442
+204647	204246	gene
+			locus_tag	Rfer_4443
+			db_xref	GeneID:3960037
+204647	204246	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516127.1||gnl|REF_jgi|Rfer_4443
+205100	204657	gene
+			locus_tag	Rfer_4444
+			db_xref	GeneID:3960038
+205100	204657	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516128.1||gnl|REF_jgi|Rfer_4444
+205435	205109	gene
+			locus_tag	Rfer_4445
+			db_xref	GeneID:3960039
+205435	205109	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516129.1||gnl|REF_jgi|Rfer_4445
+206694	205912	gene
+			locus_tag	Rfer_4446
+			db_xref	GeneID:3959945
+206694	205912	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516130.1||gnl|REF_jgi|Rfer_4446
+207005	206706	gene
+			locus_tag	Rfer_4447
+			db_xref	GeneID:3959946
+207005	206706	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516131.1||gnl|REF_jgi|Rfer_4447
+207790	207515	gene
+			locus_tag	Rfer_4448
+			db_xref	GeneID:3959947
+207790	207515	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516132.1||gnl|REF_jgi|Rfer_4448
+208062	207787	gene
+			locus_tag	Rfer_4449
+			db_xref	GeneID:3959948
+208062	207787	CDS
+			product	XRE family plasmid maintenance system antidote protein
+			transl_table	11
+			protein_id	ref|YP_516133.1||gnl|REF_jgi|Rfer_4449
+			db_xref	InterPro:IPR001387
+208350	208072	gene
+			locus_tag	Rfer_4450
+			db_xref	GeneID:3959949
+208350	208072	CDS
+			product	plasmid maintenance system killer
+			transl_table	11
+			protein_id	ref|YP_516134.1||gnl|REF_jgi|Rfer_4450
+			db_xref	InterPro:IPR007711
+209071	208382	gene
+			locus_tag	Rfer_4451
+			db_xref	GeneID:3959950
+209071	208382	CDS
+			product	phage integrase
+			transl_table	11
+			protein_id	ref|YP_516135.1||gnl|REF_jgi|Rfer_4451
+			db_xref	InterPro:IPR002104
+210000	209761	gene
+			locus_tag	Rfer_4452
+			db_xref	GeneID:3959951
+210000	209761	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516136.1||gnl|REF_jgi|Rfer_4452
+210538	210008	gene
+			locus_tag	Rfer_4453
+			db_xref	GeneID:3959952
+210538	210008	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516137.1||gnl|REF_jgi|Rfer_4453
+210878	210588	gene
+			locus_tag	Rfer_4454
+			db_xref	GeneID:3959953
+210878	210588	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516138.1||gnl|REF_jgi|Rfer_4454
+211540	210875	gene
+			locus_tag	Rfer_4455
+			db_xref	GeneID:3959954
+211540	210875	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516139.1||gnl|REF_jgi|Rfer_4455
+212212	211928	gene
+			locus_tag	Rfer_4456
+			db_xref	GeneID:3959955
+212212	211928	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516140.1||gnl|REF_jgi|Rfer_4456
+212976	212209	gene
+			locus_tag	Rfer_4457
+			db_xref	GeneID:3959956
+212976	212209	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516141.1||gnl|REF_jgi|Rfer_4457
+213355	213035	gene
+			locus_tag	Rfer_4458
+			db_xref	GeneID:3959957
+213355	213035	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516142.1||gnl|REF_jgi|Rfer_4458
+213761	213345	gene
+			locus_tag	Rfer_4459
+			db_xref	GeneID:3959958
+213761	213345	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516143.1||gnl|REF_jgi|Rfer_4459
+214760	214389	gene
+			locus_tag	Rfer_4460
+			db_xref	GeneID:3959959
+214760	214389	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516144.1||gnl|REF_jgi|Rfer_4460
+215493	215200	gene
+			locus_tag	Rfer_4461
+			db_xref	GeneID:3959960
+215493	215200	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516145.1||gnl|REF_jgi|Rfer_4461
+216478	216140	gene
+			locus_tag	Rfer_4462
+			db_xref	GeneID:3959961
+216478	216140	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516146.1||gnl|REF_jgi|Rfer_4462
+217554	216907	gene
+			locus_tag	Rfer_4463
+			db_xref	GeneID:3959962
+217554	216907	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516147.1||gnl|REF_jgi|Rfer_4463
+218104	218517	gene
+			locus_tag	Rfer_4464
+			db_xref	GeneID:3959963
+218104	218517	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516148.1||gnl|REF_jgi|Rfer_4464
+218514	219023	gene
+			locus_tag	Rfer_4465
+			db_xref	GeneID:3959964
+218514	219023	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516149.1||gnl|REF_jgi|Rfer_4465
+219027	219458	gene
+			locus_tag	Rfer_4466
+			db_xref	GeneID:3959965
+219027	219458	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516150.1||gnl|REF_jgi|Rfer_4466
+219455	221203	gene
+			locus_tag	Rfer_4467
+			db_xref	GeneID:3959966
+219455	221203	CDS
+			product	SNF2-related
+			transl_table	11
+			protein_id	ref|YP_516151.1||gnl|REF_jgi|Rfer_4467
+			db_xref	InterPro:IPR000330
+			db_xref	InterPro:IPR001650
+			db_xref	InterPro:IPR011545
+221200	221715	gene
+			locus_tag	Rfer_4468
+			db_xref	GeneID:3959967
+221200	221715	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516152.1||gnl|REF_jgi|Rfer_4468
+221753	223687	gene
+			locus_tag	Rfer_4469
+			db_xref	GeneID:3959968
+221753	223687	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516153.1||gnl|REF_jgi|Rfer_4469
+223684	223983	gene
+			locus_tag	Rfer_4470
+			db_xref	GeneID:3959969
+223684	223983	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516154.1||gnl|REF_jgi|Rfer_4470
+224123	227479	gene
+			locus_tag	Rfer_4471
+			db_xref	GeneID:3959970
+224123	227479	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516155.1||gnl|REF_jgi|Rfer_4471
+227485	228531	gene
+			locus_tag	Rfer_4472
+			db_xref	GeneID:3959971
+227485	228531	CDS
+			product	phage Gp37Gp68
+			transl_table	11
+			protein_id	ref|YP_516156.1||gnl|REF_jgi|Rfer_4472
+			db_xref	InterPro:IPR011101
+228563	229528	gene
+			locus_tag	Rfer_4473
+			db_xref	GeneID:3959972
+228563	229528	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516157.1||gnl|REF_jgi|Rfer_4473
+229547	230008	gene
+			locus_tag	Rfer_4474
+			db_xref	GeneID:3959973
+229547	230008	CDS
+			product	membrane-bound metal-dependent hydrolase
+			transl_table	11
+			protein_id	ref|YP_516158.1||gnl|REF_jgi|Rfer_4474
+			db_xref	InterPro:IPR007404
+230067	230789	gene
+			locus_tag	Rfer_4475
+			db_xref	GeneID:3959974
+230067	230789	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516159.1||gnl|REF_jgi|Rfer_4475
+230891	234598	gene
+			locus_tag	Rfer_4476
+			db_xref	GeneID:3959975
+230891	234598	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516160.1||gnl|REF_jgi|Rfer_4476
+234585	235250	gene
+			locus_tag	Rfer_4477
+			db_xref	GeneID:3959976
+234585	235250	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516161.1||gnl|REF_jgi|Rfer_4477
+235247	236488	gene
+			locus_tag	Rfer_4478
+			db_xref	GeneID:3959977
+235247	236488	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516162.1||gnl|REF_jgi|Rfer_4478
+236569	237285	gene
+			locus_tag	Rfer_4479
+			db_xref	GeneID:3959978
+236569	237285	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516163.1||gnl|REF_jgi|Rfer_4479
+237342	237575	gene
+			locus_tag	Rfer_4480
+			pseudo
+			db_xref	GeneID:3959979
+237606	238856	gene
+			locus_tag	Rfer_4481
+			db_xref	GeneID:3959980
+237606	238856	CDS
+			product	DNA methylase N-4/N-6
+			transl_table	11
+			protein_id	ref|YP_516164.1||gnl|REF_jgi|Rfer_4481
+			db_xref	InterPro:IPR001091
+			db_xref	InterPro:IPR002295
+			db_xref	InterPro:IPR002941
+238990	239436	gene
+			locus_tag	Rfer_4482
+			db_xref	GeneID:3959981
+238990	239436	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516165.1||gnl|REF_jgi|Rfer_4482
+239438	240118	gene
+			locus_tag	Rfer_4483
+			db_xref	GeneID:3959982
+239438	240118	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516166.1||gnl|REF_jgi|Rfer_4483
+240422	241171	gene
+			locus_tag	Rfer_4484
+			db_xref	GeneID:3959983
+240422	241171	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516167.1||gnl|REF_jgi|Rfer_4484
+241912	241319	gene
+			locus_tag	Rfer_4485
+			db_xref	GeneID:3959984
+241912	241319	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516168.1||gnl|REF_jgi|Rfer_4485
+243761	242157	gene
+			locus_tag	Rfer_4486
+			db_xref	GeneID:3959985
+243761	242157	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516169.1||gnl|REF_jgi|Rfer_4486
+246851	247960	gene
+			locus_tag	Rfer_4487
+			db_xref	GeneID:3959986
+246851	247960	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516170.1||gnl|REF_jgi|Rfer_4487
+248829	249575	gene
+			locus_tag	Rfer_4488
+			db_xref	GeneID:3959987
+248829	249575	CDS
+			product	lytic transglycosylase, catalytic
+			transl_table	11
+			protein_id	ref|YP_516171.1||gnl|REF_jgi|Rfer_4488
+			db_xref	InterPro:IPR008258
+249632	250843	gene
+			locus_tag	Rfer_4489
+			db_xref	GeneID:3959988
+249632	250843	CDS
+			product	conjugal transfer protein TraB
+			transl_table	11
+			protein_id	ref|YP_516172.1||gnl|REF_jgi|Rfer_4489
+251144	252202	gene
+			locus_tag	Rfer_4490
+			db_xref	GeneID:3959989
+251144	252202	CDS
+			product	allergen V5/Tpx-1-like protein
+			transl_table	11
+			protein_id	ref|YP_516173.1||gnl|REF_jgi|Rfer_4490
+			db_xref	InterPro:IPR002155
+252832	252311	gene
+			locus_tag	Rfer_4491
+			db_xref	GeneID:3959990
+252832	252311	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516174.1||gnl|REF_jgi|Rfer_4491
+254463	252892	gene
+			locus_tag	Rfer_4492
+			db_xref	GeneID:3959991
+254463	252892	CDS
+			product	methylation
+			transl_table	11
+			protein_id	ref|YP_516175.1||gnl|REF_jgi|Rfer_4492
+			db_xref	InterPro:IPR001120
+			db_xref	InterPro:IPR012902
+255713	254487	gene
+			locus_tag	Rfer_4493
+			db_xref	GeneID:3959992
+255713	254487	CDS
+			product	type II secretion system protein E
+			transl_table	11
+			protein_id	ref|YP_516176.1||gnl|REF_jgi|Rfer_4493
+			db_xref	InterPro:IPR001482
+			db_xref	InterPro:IPR001687
+256328	255756	gene
+			locus_tag	Rfer_4494
+			db_xref	GeneID:3959993
+256328	255756	CDS
+			product	methylation
+			transl_table	11
+			protein_id	ref|YP_516177.1||gnl|REF_jgi|Rfer_4494
+			db_xref	InterPro:IPR001120
+			db_xref	InterPro:IPR012902
+257445	256390	gene
+			locus_tag	Rfer_4495
+			db_xref	GeneID:3959994
+257445	256390	CDS
+			product	hypothetical protein
+			transl_table	11
+			protein_id	ref|YP_516178.1||gnl|REF_jgi|Rfer_4495
+

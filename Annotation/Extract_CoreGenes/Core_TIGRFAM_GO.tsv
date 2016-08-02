@@ -1,0 +1,110 @@
+TIGR00152	dephospho-CoA kinase	83	Biosynthesis of cofactors, prosthet	Pantothenate and coenzyme A
+TIGR00362	chromosomal replication initiator protein Dna	132	DNA metabolism	DNA replication, recombination, and repair
+TIGR02397	DNA polymerase III, subunit gamma and tau	132	DNA metabolism	DNA replication, recombination, and repair
+TIGR00575	DNA ligase, NAD-dependent	132	DNA metabolism	DNA replication, recombination, and repair
+TIGR00631	excinuclease ABC subunit B	132	DNA metabolism	DNA replication, recombination, and repair
+TIGR00663	DNA polymerase III, beta subunit	132	DNA metabolism	DNA replication, recombination, and repair
+TIGR01391	DNA primase	132	DNA metabolism	DNA replication, recombination, and repair
+TIGR01059	DNA gyrase, B subunit	132	DNA metabolism	DNA replication, recombination, and repair
+TIGR01063	DNA gyrase, A subunit	132	DNA metabolism	DNA replication, recombination, and repair
+TIGR02012	protein RecA	132	DNA metabolism	DNA replication, recombination, and repair
+PF00162	phosphoglycerate kinase	116	Energy metabolism	Glycolysis/gluconeogenesis
+TIGR00064	signal recognition particle-docking protein F	97	Protein fate	Protein and peptide secretion and trafficking
+TIGR00115	trigger factor	95	Protein fate	Protein folding and stabilization
+TIGR02350	chaperone protein DnaK	95	Protein fate	Protein folding and stabilization
+TIGR00959	signal recognition particle protein	97	Protein fate	Protein and peptide secretion and trafficking
+TIGR00963	preprotein translocase, SecA subunit	97	Protein fate	Protein and peptide secretion and trafficking
+TIGR00964	preprotein translocase, SecE subunit	97	Protein fate	Protein and peptide secretion and trafficking
+TIGR00967	preprotein translocase, SecY subunit	97	Protein fate	Protein and peptide secretion and trafficking
+TIGR00810	preprotein translocase, SecG subunit	97	Protein fate	Protein and peptide secretion and trafficking
+PF01025	co-chaperone GrpE	95	Protein fate	Protein folding and stabilization
+TIGR00001	ribosomal protein L35	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+TIGR00002	ribosomal protein S16	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+TIGR00009	ribosomal protein L28	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+TIGR00012	ribosomal protein L29	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+TIGR00019	peptide chain release factor 1	169	Protein synthesis	Translation factors
+TIGR00029	ribosomal protein S20	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+TIGR00043	rRNA maturation RNase YbeY	136	Protein synthesis	Other
+TIGR00059	ribosomal protein L17	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+TIGR00060	ribosomal protein L18	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+TIGR00061	ribosomal protein L21	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+TIGR00062	ribosomal protein L27	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+TIGR00389	glycine--tRNA ligase	137	Protein synthesis	tRNA aminoacylation
+TIGR00392	isoleucine--tRNA ligase	137	Protein synthesis	tRNA aminoacylation
+TIGR00396	leucine--tRNA ligase	137	Protein synthesis	tRNA aminoacylation
+TIGR00408	proline--tRNA ligase	137	Protein synthesis	tRNA aminoacylation
+TIGR00409	proline--tRNA ligase	137	Protein synthesis	tRNA aminoacylation
+TIGR00414	serine--tRNA ligase	137	Protein synthesis	tRNA aminoacylation
+TIGR00418	threonine--tRNA ligase	137	Protein synthesis	tRNA aminoacylation
+TIGR00420	tRNA (5-methylaminomethyl-2-thiouridylate)-me	168	Protein synthesis	tRNA and rRNA base modification
+TIGR00344	alanine--tRNA ligase	137	Protein synthesis	tRNA aminoacylation
+TIGR00234	tyrosine--tRNA ligase	137	Protein synthesis	tRNA aminoacylation
+TIGR00165	ribosomal protein S18	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+TIGR00166	ribosomal protein S6	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+TIGR00168	translation initiation factor IF-3	169	Protein synthesis	Translation factors
+TIGR00116	translation elongation factor Ts	169	Protein synthesis	Translation factors
+TIGR00158	ribosomal protein L9	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+PF00281	ribosomal protein L5	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+TIGR00086	SsrA-binding protein	136	Protein synthesis	Other
+TIGR00952	ribosomal protein S15	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+TIGR00981	ribosomal protein S12	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+TIGR01009	ribosomal protein S3	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+TIGR01011	ribosomal protein S2	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+TIGR01017	ribosomal protein S4	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+TIGR01021	ribosomal protein S5	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+TIGR00855	ribosomal protein L7/L12	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+TIGR00755	ribosomal RNA small subunit methyltransferase	168	Protein synthesis	tRNA and rRNA base modification
+TIGR00487	translation initiation factor IF-2	169	Protein synthesis	Translation factors
+TIGR00496	ribosome recycling factor	169	Protein synthesis	Translation factors
+TIGR00422	valine--tRNA ligase	137	Protein synthesis	tRNA aminoacylation
+TIGR00435	cysteine--tRNA ligase	137	Protein synthesis	tRNA aminoacylation
+TIGR00436	GTP-binding protein Era	136	Protein synthesis	Other
+TIGR00442	histidine--tRNA ligase	137	Protein synthesis	tRNA aminoacylation
+TIGR00459	aspartate--tRNA ligase	137	Protein synthesis	tRNA aminoacylation
+TIGR00460	methionyl-tRNA formyltransferase	137	Protein synthesis	tRNA aminoacylation
+TIGR00468	phenylalanine--tRNA ligase, alpha subunit	137	Protein synthesis	tRNA aminoacylation
+TIGR00471	phenylalanine--tRNA ligase, beta subunit	137	Protein synthesis	tRNA aminoacylation
+TIGR00472	phenylalanine--tRNA ligase, beta subunit	137	Protein synthesis	tRNA aminoacylation
+TIGR02729	Obg family GTPase CgtA	136	Protein synthesis	Other
+TIGR01164	ribosomal protein L16	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+TIGR01169	ribosomal protein L1	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+TIGR01171	ribosomal protein L2	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+TIGR01024	ribosomal protein L19	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+TIGR01029	ribosomal protein S7	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+TIGR01030	ribosomal protein L34	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+TIGR01031	ribosomal protein L32	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+TIGR01032	ribosomal protein L20	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+TIGR01044	ribosomal protein L22	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+TIGR01049	ribosomal protein S10	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+TIGR01050	ribosomal protein S19	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+TIGR01066	ribosomal protein L13	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+TIGR01067	ribosomal protein L14	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+TIGR01071	ribosomal protein L15	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+TIGR01079	ribosomal protein L24	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+TIGR00388	glycine--tRNA ligase, alpha subunit	137	Protein synthesis	tRNA aminoacylation
+PF00276	ribosomal protein L23	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+PF00297	ribosomal protein L3	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+PF00347	ribosomal protein L6	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+PF00366	ribosomal protein S17	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+PF00380	ribosomal protein S9	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+PF00410	ribosomal protein S8	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+PF00411	ribosomal protein S11	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+PF00416	ribosomal protein S13p/S18e	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+PF00466	ribosomal protein L10	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+PF00573	ribosomal protein L4/L1 family	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+PF00750	arginine--tRNA ligase	137	Protein synthesis	tRNA aminoacylation
+TIGR03723	tRNA threonylcarbamoyl adenosine modification	168	Protein synthesis	tRNA and rRNA base modification
+TIGR02432	tRNA(Ile)-lysidine synthetase	168	Protein synthesis	tRNA and rRNA base modification
+TIGR03594	ribosome-associated GTPase EngA	136	Protein synthesis	Other
+TIGR01632	ribosomal protein L11	158	Protein synthesis	Ribosomal proteins: synthesis and modificatio
+TIGR00337	CTP synthase	126	Purines, pyrimidines, nucleosides, 	Pyrimidine ribonucleotide biosynthesis
+TIGR03263	guanylate kinase	124	Purines, pyrimidines, nucleosides, 	Nucleotide and nucleoside interconversions
+TIGR02386	DNA-directed RNA polymerase, beta' subunit	135	Transcription	DNA-dependent RNA polymerase
+TIGR00082	ribosome-binding factor A	166	Transcription	RNA processing
+TIGR02191	ribonuclease III	166	Transcription	RNA processing
+TIGR00922	transcription termination/antitermination fac	165	Transcription	Transcription factors
+TIGR02027	DNA-directed RNA polymerase, alpha subunit	135	Transcription	DNA-dependent RNA polymerase
+TIGR02013	DNA-directed RNA polymerase, beta subunit	135	Transcription	DNA-dependent RNA polymerase
+TIGR01953	transcription termination factor NusA	165	Transcription	Transcription factors
+TIGR01393	elongation factor 4	157	Unknown function	General
+TIGR00092	GTP-binding protein YchF	157	Unknown function	General

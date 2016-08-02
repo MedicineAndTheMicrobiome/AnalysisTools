@@ -1,0 +1,150 @@
+Remaining
+Phytoene dehydrogenase
+Phytoene desaturase
+Phytoene synthase
+Squalene/phytoene synthase
+Lycopene cyclase
+Phytoene dehydrogenase-like oxidoreductase
+Phytoene/squalene synthetase
+Beta-carotene hydroxylase
+Phytoene desaturase family protein
+Light-independent protochlorophyllide reductase subunit B
+Photosystem I chlorophyll a apoprotein
+Hydroxymethylbilane synthase
+Beta-carotene ketolase
+Zeaxanthin glucosyl transferase
+Lycopene beta cyclase
+Photosystem I P700 chlorophyll a apoprotein A1
+Lycopene cyclase domain protein
+Photosystem I P700 chlorophyll a apoprotein A2
+Lycopene cyclase domain-containing protein
+Putative chlorophyll synthesis pathway protein BchC
+Beta-carotene 15,15'-monooxygenase
+Phytoene dehydrogenase-related protein
+Chlorophyll synthesis pathway protein BchC
+Putative phytoene dehydrogenase
+Zeaxanthin Glucosyl Transferase
+Photopigment and puc expression activator
+Candidate phytoene dehydrogenase (Phytoene desaturase)
+Chlorophyllide reductase iron protein subunit X
+Squalene/phytoene synthase family protein
+Carotene biosynthesis associated membrane protein
+Light-independent protochlorophyllide reductase iron-sulfur ATP-binding protein
+Photosystem I P700 chlorophyll a apoprotein
+2-vinyl bacteriochlorophyllide hydratase
+Phytoene synthase family protein, putative
+Light-independent protochlorophyllide reductase subunit N
+Putative phytoene dehydrogenase protein
+Putative bacteriochlorophyll 4-vinyl reductase
+Chlorophyllase
+Beta-carotene 15,15-monooxygenase
+Putative phytoene desaturase
+Zeta-phytoene desaturase
+Lycopene cyclase protein
+Bacteriochlorophyll/chlorophyll synthetase
+Candidate Lycopene cyclase
+Phytoene dehydrogenase family protein
+Photosystem II CP47 chlorophyll apoprotein
+MFS transporter, BCD family, chlorophyll transporter
+Phytoene desaturase, neurosporene or lycopene producing
+Related to Phytoene synthase
+Carotene isomerase
+Diapophytoene dehydrogenase
+2-desacetyl-2-hydroxyethyl bacteriochlorophyllide A dehydrogenase
+Carotene hydroxylase
+Phytoene dehydrogenase (Phytoene desaturase)
+Lycopene beta and epsilon cyclase
+Beta,beta-carotene 9',10'-dioxygenase
+Phytoene dehydrogenase, putative
+Lycopene cyclase family protein
+Putative phytoene synthase
+Photosystem II CP43 chlorophyll apoprotein
+Putative phytoene synthase (Terpenoid synthase)
+Candidate zeaxanthin b-glucosyltransferase, Glycosyltransferase Family 1
+Chlorophyllide reductase subunit Z
+Putative lycopene cyclase
+Zeta-carotene desaturase
+Zeaxanthin epoxidase
+Chlorophyll synthase, ChlG
+Allophycocyanin alpha-B subunit apoprotein
+Light-indepedent protochlorophyllide oxidoreductase ChlL subunit
+P700 chlorophyll a-apoprotein A2
+Probable phytoene dehydrogenase
+Putative phytoene dehydrogenase family protein
+Phytoene synthase, CrtB
+Similarity to bacteriochlorophyll c synthase bchK - Chlorobium tepidum
+Zeaxanthin glucosyltransferase
+9,9'-di-cis-zeta-carotene desaturase
+Similar to beta-carotene 15
+Photosystem II chlorophyll-binding protein CP47
+Putative beta-carotene ketolase
+Putative phytoene dehydrogenase and related proteins putative membrane protein
+Putative squalene phytoene synthase protein
+Carotene 7,8-desaturase
+Photosystem I P700 chlorophyll A apoprotein A1
+3-hydoroxyethyl bacteriochlorophyllide a dehydrogenase BchC
+Bacteriochlorophyllide reductase Z subunit
+Phytoene synthase;Squalene/phytoene synthase
+Putative lycopene beta cyclase
+Phytoene desaturase, neurosporene or lycopene producing / 4,4'-diapolycopene oxidase
+Putative bifunctional phytoene synthase/phytoene dehydrogenase
+Phytoene dehydrogenase crtI
+Putative Chlorophyllase-1
+Light-dependent protochlorophyllide reductase
+OSJNBa0061C08.6 protein;Photosystem I P700 chlorophyll a apoprotein A1, putative, expressed
+Protochlorophyllide reductase BchB subunit
+Bacteriochlorophyllide reductase iron protein subunit BchX
+Carotene 7,8-desaturase (Zeta-carotene desaturase)-like protein
+Diapolycopene oxygenase CrtP
+Putative FAD dependent oxidoreductase, putative phytoene dehydrogenase
+Allophycocyanin beta chain
+Allophycocyanin, beta subunit
+CpcD/allophycocyanin linker domain protein
+Phycocyanin
+Phycocyanin, beta subunit
+Protochlorophyllid reductase
+Bacteriochlorophyll synthase BchG
+Beta-carotene 15,15'-monooxygenase, Brp/Blh family protein
+Putative bacteriochlorophyll synthase, 34 kDa subunit
+Phytoene synthase CrtB
+Diapolycopene oxygenase
+Phytoene dehydrogenase CrtI
+Chlorophyll synthesis pathway, bchC
+Candidate phytoene synthase
+Proto-chlorophyllide reductase 57 kD subunit
+Phytoene synthase protein
+Beta-carotene hydroxylase crtZ
+3-vinyl bacteriochlorophyllide hydratase
+Beta-carotene hydroxylase;Fatty acid desaturase
+Photosystem I P700 chlorophyll a apoprotein A2, putative
+Phytoene synthase crtB
+Putative phytoene/squalene synthetase
+Brp/Blh family beta-carotene 15,15'-monooxygenase
+Putative Protochlorophyllide reductase
+4,4'-diapolycopene oxidase
+Phycocyanobilin lyase subunit alpha
+Phytoene dehydrogenase (Phytone desaturase)
+Phytoene desaturase, bacterial type
+Chlorophyllase multi-domain protein
+Lycopene beta-cyclase
+Lycopene cyclase, beta and epsilon
+Phytoene synthase-like protein
+Phytoene synthetase
+Putative activator of photopigment and puc with BLUF domain protein
+Zeaxanthin glucosyl transferase, putative
+4, 4'-diapolycopene-dialdehyde dehydrogenase
+Gamma-carotene desaturase
+Light-indepedent protochlorophyllide reductase
+Lycopene cyclase domain
+Phytoene dehydrogenase-like protein
+Betacarotene desaturase
+Candidate beta-carotene ketolase (Beta-carotene oxygenase)
+CrtY lycopene cyclase
+Phytoene dehydrogenase protein-like protein
+Putative phytoene dehydrogenase (Phytoene desaturase)
+Similar to 15,15' beta carotene dioxygenase
+Similar to Phytoene dehydrogenase (Phytoene desaturase)
+Photochlorophyllide reductase subunit N
+Phycocyanin alpha phycocyanobilin lyase related protein
+Phytoene desaturase, neurosporene or lycopene producing/4,4'-diapolycopene oxidase
+Squalene/phytoene synthase HpnD
