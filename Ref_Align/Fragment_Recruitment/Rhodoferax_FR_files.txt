@@ -1,0 +1,4 @@
+Rifle 2 Metagenomics	metagenomics/rifle2.Rhodoferax.genome.m8blast.out.pos	red
+Rifle 3 Metagenomics	metagenomics/rifle3.Rhodoferax.genome.m8blast.out.pos	blue
+Rifle 2 Transcriptomics	transcriptomics/rifle2.Rhodoferax.genome.m8blast.out.pos	green
+Rifle 3 Transcriptomics	transcriptomics/rifle3.Rhodoferax.genome.m8blast.out.pos	purple
