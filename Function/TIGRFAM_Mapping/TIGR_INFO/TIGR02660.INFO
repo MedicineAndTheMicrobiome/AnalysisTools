@@ -1,0 +1,23 @@
+ID  nifV_homocitr
+AC  TIGR02660
+DE  homocitrate synthase
+AU  Haft DH
+TC  462.90 462.90
+NC  400.20 400.20
+AL  clustalw
+IT  equivalog
+EN  homocitrate synthase NifV
+GS  nifV
+EC  2.3.3.14
+TP  TIGRFAMs
+CC  This family consists of the NifV clade of homocitrate synthases, most of which are found in operons for nitrogen fixation. Members are closely homologous to enzymes that include  2-isopropylmalate synthase, (R)-citramalate synthase, and  homocitrate synthases associated with other processes. The homocitrate made by this enzyme becomes a part of the iron-molybdenum cofactor of nitrogenase.
+RN  [1]
+RM  9294461
+RT  Purification of the Azotobacter vinelandii nifV-encoded homocitrate synthase.
+RA  Zheng L, White RH, Dean DR.
+RL  J Bacteriol. 1997 Sep;179(18):5963-6.
+RN  [2]
+RM  12661
+RT  Molecular cloning and complementation analysis of nifV gene from Frankia EuIK1 strain.
+RA  Oh CJ, Kim HB, An CS.
+RL  Mol Cells. 2003 Feb 28;15(1):27-33.

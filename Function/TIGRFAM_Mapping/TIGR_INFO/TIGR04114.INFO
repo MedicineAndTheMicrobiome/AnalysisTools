@@ -1,0 +1,16 @@
+ID  tSAM_targ_Cxxx
+AC  TIGR04114
+DE  modification target Cys-rich repeat
+AU  Haft DH
+TC  20.00 13.50
+NC  16.00 13.30
+AL  manual
+IT  repeat
+EN  modification target Cys-rich repeat
+TP  TIGRFAMs
+CC  This HMM describes a cysteine-rich repeat found in a number of bacterial putative radical-SAM modified natural product precursors. A substantial fraction of members of this family have been missed during gene-finding. A true hit to the model must exceed both TC on the whole and trusted cutoff 2 for at least one domain, to avoid false-positives from African swine fever virus proteins.
+RN  [1]
+RM  PMID:21478363 
+RT  Biological systems discovery in silico: radical S-adenosylmethionine protein families and their target peptides for posttranslational modification. 
+RA  Haft DH, Basu MK 
+RL  J Bacteriol. 2011 Jun;193(11):2745-55.

@@ -1,0 +1,17 @@
+ID  PPOX_MSMEG_5819
+AC  TIGR04023
+DE  PPOX class probable F420-dependent enzyme, MSMEG_5819 family
+AU  Haft DH
+TC  85.60 85.60
+NC  61.50 61.50
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  PPOX class probable F420-dependent enzyme, MSMEG_5819 family
+EC  1.-.-.-
+TP  TIGRFAMs
+CC  A Genome Properties metabolic reconstruction for F420 biosynthesis shows that slightly over 10 percent of all prokaryotes with fully sequenced genomes, including about two thirds of the Actinomycetales, make F420. This subfamily within the PPOX family occurs in at least 19 distinct species of F420 producers and is likely to bind F420 rather than FMN.
+RN  [1]
+RM  PMID:20675471 
+RT  Unexpected abundance of coenzyme F(420)-dependent enzymes in Mycobacterium tuberculosis and other actinobacteria. 
+RA  Selengut JD, Haft DH 
+RL  J Bacteriol. 2010 Nov;192(21):5788-98.

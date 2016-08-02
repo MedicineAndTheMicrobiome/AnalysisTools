@@ -1,0 +1,11 @@
+ID  PepT-like
+AC  TIGR01883
+DE  peptidase T-like protein
+AU  Selengut J
+TC  274.25 274.25
+NC  174.05 174.05
+AL  clustalw
+IT  hypoth_equivalog
+EN  peptidase T-like protein
+TP  TIGRFAMs
+CC  This model represents a clade of enzymes closely related to Peptidase T, an aminotripeptidase found in bacteria.  This clade consists of gram positive bacteria of which several additionally contain a Peptidase T gene.

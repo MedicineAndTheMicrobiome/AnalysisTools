@@ -1,0 +1,15 @@
+ID  CPSaseIIsmall
+AC  TIGR01368
+DE  carbamoyl-phosphate synthase, small subunit
+AU  Haft DH
+TC  307.35 307.35
+NC  133.55 133.55
+AL  clustalw_manual
+IT  equivalog_domain
+EN  carbamoyl-phosphate synthase, small subunit
+GS  carA
+EC  6.3.5.5
+TP  TIGRFAMs
+CC  This HMM represents the whole of the small chain of the glutamine-dependent form (EC 6.3.5.5) of carbamoyl phosphate synthase, CPSase II. The C-terminal domain has glutamine amidotransferase activity. Note that the sequence from the mammalian urea cycle form has lost the active site Cys, resulting in an ammonia-dependent form, CPSase I (EC 6.3.4.16). CPSases of pyrimidine biosynthesis, arginine biosynthesis, and the urea cycle may be encoded by one or by several genes, depending on the species.
+DR  EXCEPTION; SP|P31327; EC 6.3.4.16 (no GATase activity)
+DR  HAMAP; MF_01209; 131 of 131

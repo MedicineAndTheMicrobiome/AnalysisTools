@@ -1,0 +1,11 @@
+ID  RPE4
+AC  TIGR03777
+DE  rickettsial palindromic element RPE4 domain
+AU  Haft DH
+TC  23.95 23.95
+NC  22.90 22.90
+AL  muscle_manual
+IT  domain
+EN  Rickettsial palindromic element RPE4 domain
+TP  TIGRFAMs
+CC  This HMM describes protein translations of a family, RPE4, of Rickettsia palindromic elements (RPE). The elements spread within a genome as selfish genetic elements, inserting into genes additional coding region that does not disrupt the reading frame. This model finds RPE-encoded regions in several Rickettsial species and, so far, no where else.

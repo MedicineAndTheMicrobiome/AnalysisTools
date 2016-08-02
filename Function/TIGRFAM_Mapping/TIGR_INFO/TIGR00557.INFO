@@ -1,0 +1,18 @@
+ID  pdxA
+AC  TIGR00557
+DE  4-hydroxythreonine-4-phosphate dehydrogenase PdxA
+AU  Haft DH
+TC  290.35 290.35
+NC  252.75 252.75
+AL  muscle_manual
+IT  equivalog
+EN  4-hydroxythreonine-4-phosphate dehydrogenase
+GS  pdxA
+EC  1.1.1.262
+TP  TIGRFAMs
+CC  This HMM represents PdxA, an NAD+-dependent 4-hydroxythreonine 4-phosphate dehydrogenase (EC 1.1.1.262) active in pyridoxal phosphate biosynthesis.
+RM  99239931
+RT  Vitamin B6 biosynthesis: formation of pyridoxine 5'-phosphate from 4-(phosphohydroxy)-L-threonine and 1-deoxy-D-xylulose-5-phosphate by PdxA and PdxJ protein.
+RA  Laber B, Maurer W, Scharf S, Stepusin K, Schmidt FS
+RL  FEBS Lett 1999 Apr 16;449(1):45-8
+DR  HAMAP; MF_00536; 96 of 101

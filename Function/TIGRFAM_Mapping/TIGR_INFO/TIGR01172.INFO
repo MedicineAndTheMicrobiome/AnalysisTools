@@ -1,0 +1,13 @@
+ID  cysE
+AC  TIGR01172
+DE  serine O-acetyltransferase
+AU  Dodson RJ
+TC  210.65 210.65
+NC  134.40 134.40
+AL  clustalw
+IT  equivalog
+EN  serine O-acetyltransferase
+GS  cysE
+EC  2.3.1.30
+TP  TIGRFAMs
+CC  Cysteine biosynthesis

@@ -1,0 +1,18 @@
+ID  circ_KaiB
+AC  TIGR02654
+DE  circadian clock protein KaiB
+AU  Haft DH
+TC  145.30 145.30
+NC  125.05 125.05
+AL  clustalw
+IT  equivalog
+EN  circadian clock protein KaiB
+GS  kaiB
+TP  TIGRFAMs
+CC  Members of this protein family are the circadian clock protein KaiB of Cyanobacteria, encoded in the circadian clock gene cluster kaiABC. KaiB has homologs of unknown function in some Archaea and Proteobacteria, and has paralogs of unknown function in some Cyanobacteria. KaiB forms homodimers, homotetramers, and multimeric complexes with KaiA and/or KaiC.
+RN  [1]
+RM  15716274
+RT  Tetrameric architecture of the circadian clock protein KaiB. A novel interface for intermolecular interactions and its impact on the circadian rhythm.
+RA  Hitomi K, Oyama T, Han S, Arvai AS, Getzoff ED.
+RL  J Biol Chem. 2005 May 13;280(19):19127-35.
+DR  HAMAP; MF_01835; 23 of 23

@@ -1,0 +1,28 @@
+ID  TIGR00089
+AC  TIGR00089
+DE  radical SAM methylthiotransferase, MiaB/RimO family
+AU  Richardson DL, Anolik RT, Haft DH
+TC  251.00 251.00
+NC  185.40 185.40
+AL  clustalw
+IT  subfamily
+EN  radical SAM methylthiotransferase, MiaB/RimO family
+EC  2.1.1.- 2.8.1.-
+TP  TIGRFAMs
+CC  This subfamily contains the tRNA-i(6)A37 modification enzyme, MiaB (TIGR01574).  The phylogenetic tree indicates 4 distinct clades, one of which corresponds to MiaB.  The other three clades are modelled by hypothetical equivalogs (TIGR01125, TIGR01579 and TIGR01578).  Together, the four models hit every sequence hit by the subfamily model without any overlap between them.
+CC  This subfamily is aparrently a part of a larger superfamily of enzymes utilizing both a 4Fe4S cluster and S-adenosyl methionine  (SAM) to initiate radical reactions.  MiaB acts on a particular isoprenylated Adenine base of certain tRNAs causing thiolation at an aromatic carbon, and probably also transferring a methyl grouyp from SAM to the thiol.  The particular substrate of the three other clades is unknown but may be very closely related.
+RN  [1]
+RM  PMID: 10572129 
+RT  Identification of the miaB gene, involved in methylthiolation of isopentenylated A37 derivatives in the tRNA of Salmonella typhimurium and Escherichia coli.
+RA  Esberg B, Leung HC, Tsui HC, Bjork GR, Winkler ME.
+RL  J Bacteriol. 1999 Dec;181(23):7256-65.
+RN  [2]
+RM  PMID: 11882645 
+RT  Enzymatic modification of tRNAs: MiaB is an iron-sulfur protein.
+RA  Pierrel F, Bjork GR, Fontecave M, Atta M.
+RL  J Biol Chem. 2002 Apr 19;277(16):13367-70.
+RN  [3]
+RM  PMID: 11313137
+RT  TRAM, a predicted RNA-binding domain, common to tRNA uracil methylation and adenine thiolation enzymes.
+RA  Anantharaman V, Koonin EV, Aravind L.
+RL  FEMS Microbiol Lett. 2001 Apr 13;197(2):215-21.

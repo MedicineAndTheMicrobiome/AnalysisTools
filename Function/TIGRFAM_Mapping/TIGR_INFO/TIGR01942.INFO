@@ -1,0 +1,28 @@
+ID  pcnB
+AC  TIGR01942
+DE  poly(A) polymerase
+AU  Nelson WE
+TC  305.65 305.65
+NC  202.80 202.80
+AL  clustalw_manual
+IT  subfamily
+EN  poly(A) polymerase
+GS  pcnB
+EC  2.7.7.19
+TP  TIGRFAMs
+CC  This model describes the pcnB family of poly(A) polymerases (also known as plasmid copy number protein). These enzymes sequentially add adenosine nucleotides to the 3' end of RNAs, targeting them for degradation by the cell [1] [2]. This was originally described for anti-sense RNAs, but was later demonstrated for mRNAs as well [3]. Members of this family are as yet limited to the  gamma- and beta-proteobacteria, with putative members in the Chlamydiacae and spirochetes. This family has homology to tRNA nucleotidyltransferase (cca).
+RN  [1]
+RM  PMID:7688127
+RT  The Escherichia coli pcnB gene promotes adenylylation of antisense RNAI of ColE1-type plasmids in vivo and degradation of RNAI decay intermediates.
+RA  Xu F, Lin-Chao S, Cohen SN
+RL  Proc Natl Acad Sci U S A. 1993 Jul 15;90(14):6756-60.
+RN  [2]
+RM  PMID:7523833
+RT  PcnB is required for the rapid degradation of RNAI, the antisense RNA that controls the copy number of ColE1-related plasmids.
+RA  He L, Soderbom F, Wagner EG, Binnie U, Binns N, Masters M.
+RL  Mol Microbiol. 1993 Sep;9(6):1131-42.
+RN  [3]
+RM  PMID: 7534403
+RT  Polyadenylylation helps regulate mRNA decay in Escherichia coli.
+RA  O'Hara EB, Chekanova JA, Ingle CA, Kushner ZR, Peters E, Kushner SR.
+RL  Proc Natl Acad Sci U S A. 1995 Mar 14;92(6):1807-11.

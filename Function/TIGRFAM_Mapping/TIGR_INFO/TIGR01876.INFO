@@ -1,0 +1,18 @@
+ID  cas_Cas5d
+AC  TIGR01876
+DE  CRISPR-associated protein Cas5, subtype I-C/DVULG
+AU  Haft DH, Sunshine J
+TC  85.00 85.00
+NC  65.00 65.00
+AL  clustalw
+IT  exception
+EN  CRISPR-associated protein Cas5, subtype I-C/DVULG
+GS  cas5c
+TP  TIGRFAMs
+CC  CRISPR is a term for Clustered, Regularly Interspaced Short Palidromic Repeats. A number of protein families appear only in association with these repeats and are designated Cas (CRISPR-Associated) proteins. This small Cas family is represented by CT1134 of Chlorobium tepidum. This family belongs to a set of several Cas protein families, one each for a number of different CRISPR/Cas subtypes, that share a region of N-terminal sequence similarity modeled by TIGR02593. This family represents the Dvulg subtype of CRISPR/Cas locus.
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=2003
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=57300
+RN  [1]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005

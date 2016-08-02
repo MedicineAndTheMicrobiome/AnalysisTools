@@ -1,0 +1,19 @@
+ID  ABC_MetN
+AC  TIGR02314
+DE  D-methionine ABC transporter, ATP-binding protein
+AU  Haft DH
+TC  499.70 499.70
+NC  424.85 424.85
+AL  clustalw
+IT  equivalog
+EN  D-methionine ABC transporter, ATP-binding protein
+GS  metN
+EC  3.6.3.-
+TP  TIGRFAMs
+CC  Members of this family are the ATP-binding protein of the D-methionine ABC transporter complex. Known members belong to the Proteobacteria.
+RN  [1]
+RM  12169620
+RT  The metD D-methionine transporter locus of Escherichia coli is an ABC transporter gene cluster.
+RA  Gal J, Szvetnik A, Schnell R, Kalman M.
+RL  J Bacteriol. 2002 Sep;184(17):4930-2.
+DR  HAMAP; MF_01719; 33 of 258

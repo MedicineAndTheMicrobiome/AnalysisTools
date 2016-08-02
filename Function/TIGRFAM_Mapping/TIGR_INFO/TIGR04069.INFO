@@ -1,0 +1,16 @@
+ID  ocin_ACP_rel
+AC  TIGR04069
+DE  peptide maturation system acyl carrier-related protein
+AU  Haft DH
+TC  70.00 70.00
+NC  50.00 50.00
+AL  muscle
+IT  hypoth_equivalog
+EN  peptide maturation system acyl carrier-related protein
+TP  TIGRFAMs
+CC  Both PSI-BLAST and large numbers of noise-level HMM hits show a relationship between this family and the phosphopantetheine attachment site domain modeled by PF00550. That domain includes acyl carrier proteins (ACP) and features an essentially invariant serine residue that is the attachment site for the phosphopantetheine prosthetic group. In this family, the corresponding residue is not Ser and is not conserved.  Members are found in genomic contexts associated with a small Cys-rich peptide and a radical SAM protein we predict modifies the peptide.
+RN  [1]
+RM  PMID:21478363 
+RT  Biological systems discovery in silico: radical S-adenosylmethionine protein families and their target peptides for posttranslational modification. 
+RA  Haft DH, Basu MK 
+RL  J Bacteriol. 2011 Jun;193(11):2745-55.

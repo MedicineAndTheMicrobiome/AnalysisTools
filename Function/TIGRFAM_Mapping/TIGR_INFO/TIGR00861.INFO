@@ -1,0 +1,17 @@
+ID  MIP
+AC  TIGR00861
+DE  MIP family channel proteins
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  171.25 171.25
+NC  123.00 123.00
+AL  clustalw_manual
+IT  subfamily
+EN  MIP family channel proteins
+TP  TIGRFAMs
+CC  1.A.8 The Major Intrinsic Protein (MIP) Family
+CC  The MIP family is large and diverse, possessing over 100 members that all form transmembrane channels. These channel proteins function in water, small
+CC  carbohydrate (e.g., glycerol), urea, NH3, CO2 and possibly ion transport by an energy independent mechanism. They are found ubiquitously in bacteria, archaea
+CC  and eukaryotes. The MIP family contains two major groups of channels: aquaporins and glycerol facilitators.
+CC  The known aquaporins cluster loosely together as do the known glycerol facilitators. MIP family proteins are believed to form aqueous pores that selectively allow passive transport of their solute(s) across the membrane with minimal apparent recognition. Aquaporins selectively transport water (but not glycerol) while glycerol facilitators selectively transport glycerol but not water. Some aquaporins can transport NH3 and CO2. Glycerol facilitators function as solute nonspecific channels, and may transport glycerol, dihydroxyacetone, propanediol, urea and other small neutral molecules in physiologically important
+CC  processes. Some members of the family, including the yeast FPS protein (TC #1.A.8.5.1) and tobacco NtTIPA may transport both water and small solutes.
+DR  HAMAP; MF_01146; 26 of 27

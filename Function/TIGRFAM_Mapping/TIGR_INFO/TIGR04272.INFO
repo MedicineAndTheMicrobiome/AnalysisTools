@@ -1,0 +1,11 @@
+ID  cxxc_cxxc_Mbark
+AC  TIGR04272
+DE  CxxC-x17-CxxC domain
+AU  Haft DH
+TC  36.00 36.00
+NC  24.00 24.00
+AL  muscle_manual
+IT  domain
+EN  CxxC-x17-CxxC domain
+TP  TIGRFAMs
+CC  This domain, with a pair of CXXC motifs separated by 17 amino acids, is a candidate zinc finger domain based on these motifs. Some proteins have two copies of the domain, while others are fused to another probable zinc-binding domain, described by Pfam model PF13451.

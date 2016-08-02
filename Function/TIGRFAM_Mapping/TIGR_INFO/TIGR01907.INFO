@@ -1,0 +1,29 @@
+ID  casE_Cse3
+AC  TIGR01907
+DE  CRISPR-associated protein Cas6/Cse3/CasE, subtype I-E/ECOLI
+AU  Haft DH
+TC  45.20 45.20
+NC  40.50 40.50
+AL  clustalw_manual
+IT  equivalog
+EN  CRISPR-associated protein Cas6/Cse3/CasE, subtype I-E/ECOLI
+GS  cas6e
+TP  TIGRFAMs
+CC  CRISPR is a term for Clustered, Regularly Interspaced Short Palidromic Repeats. A number of protein families appear only in association with these repeats and are designated Cas (CRISPR-Associated) proteins. This HMM family, represented by CT1974 from Chlorobium tepidum, is found in the Ecoli subtype of CRISPR/Cas regions and is designated Cse3 (CRISPR/Cas Subtype Ecoli protein 3).
+CC  The representative of this family from Thermus thermophilus HB8 (TTHB192) has been crystallized [2] and found to have a structure consisting of two domains with opposing parallel beta-sheets known as a beta-sheet platform.  This structure is similar to those found in the Sex-lethal protein and poly(A)-binding protein.  This structure is consistent with an RNA-binding function.
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=2003
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=57302
+RN  [1]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005
+RN  [2]
+RM  PMID:18703739
+RT  Small CRISPR RNAs guide antiviral defense in prokaryotes.
+RA  Brouns SJ, Jore MM, Lundgren M, Westra ER, Slijkhuis RJ, Snijders AP, Dickman MJ, Makarova KS, Koonin EV, van der Oost J
+RL  Science. 2008 Aug 15;321(5891):960-4.
+RN  [3]
+RM  PMID: 16672237 
+RT  Crystal structure of hypothetical protein TTHB192 from Thermus thermophilus HB8 reveals a new protein family with an RNA recognition motif-like domain. 
+RA  Ebihara A, Yao M, Masui R, Tanaka I, Yokoyama S, Kuramitsu S 
+RL  Protein Sci. 2006 Jun;15(6):1494-9. Epub 2006 May 2.

@@ -1,0 +1,11 @@
+ID  glyco_TIGR04182
+AC  TIGR04182
+DE  glycosyltransferase, TIGR04182 family
+AU  Haft DH
+TC  325.00 325.00
+NC  275.00 275.00
+AL  muscle_manual
+IT  equivalog
+EN  glycosyltransferase, TIGR04182 family
+TP  TIGRFAMs
+CC  Members of this family are glycosyltransferases restricted to the archaea. All but two members are from species with the PGF-CTERM/archaeosortase A system, a proposed maturation system for exported, glycosylated proteins as are found often in S-layers.

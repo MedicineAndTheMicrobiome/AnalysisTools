@@ -1,0 +1,14 @@
+ID  3a0107s03
+AC  TIGR00975
+DE  phosphate ABC transporter, phosphate-binding protein PstS
+AU  Haft DH, Loftus BJ
+TC  205.00 205.00
+NC  171.90 171.90
+AL  clustalw_manual
+IT  equivalog
+EN  phosphate ABC transporter, phosphate-binding protein
+GS  pstS
+TR  3.A.1
+TP  TIGRFAMs
+CC  This family represents one type of (periplasmic, in Gram-negative bacteria) phosphate-binding protein found in phosphate ABC (ATP-binding cassette) transporters. This protein is accompanied, generally in the same operon, by an ATP binding protein and (usually) two permease proteins.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/3_A_1.html

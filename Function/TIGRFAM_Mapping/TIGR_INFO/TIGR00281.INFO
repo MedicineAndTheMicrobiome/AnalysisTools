@@ -1,0 +1,23 @@
+ID  TIGR00281
+AC  TIGR00281
+DE  segregation and condensation protein B
+AU  Haft DH, Dodson RJ
+TC  89.20 89.20
+NC  65.10 65.10
+AL  clustalw
+IT  equivalog
+EN  segregation and condensation protein B
+GS  scpB
+TP  TIGRFAMs
+CC  Shown to be required for chromosome segregation and condensation in B. subtilis. [1]
+[1]
+RM  12100548
+RT  Discovery of two novel families of proteins that are proposed to interact with prokaryotic SMC proteins, and characterization of the Bacillus subtilis family members ScpA and ScpB.
+RL  Mol Microbiol. 2002 Jul;45(1):59-71.
+RA  Soppa J, Kobayashi K, Noirot-Gros MF, Oesterhelt D, Ehrlich SD, Dervyn E, Ogasawara N, Moriya S.
+[2]
+RM  12897137
+RT  A prokaryotic condensin/cohesin-like complex can actively compact chromosomes from a single position on the nucleoid and binds to DNA as a ring-like structure.
+RL  Mol Cell Biol. 2003 Aug;23(16):5638-50.
+RA  Volkov A, Mascarenhas J, Andrei-Selmer C, Ulrich HD, Graumann PL. 
+DR  HAMAP; MF_01804; 94 of 94

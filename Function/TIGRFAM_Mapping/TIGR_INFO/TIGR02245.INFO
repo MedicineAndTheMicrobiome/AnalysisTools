@@ -1,0 +1,26 @@
+ID  HAD_IIID1
+AC  TIGR02245
+DE  HAD hydrolase, family IIID
+AU  Selengut J
+TC  192.25 192.25
+NC  130.25 130.25
+AL  clustalw
+IT  hypoth_equivalog
+EN  HAD-superfamily subfamily IIID hydrolase, TIGR02245
+TP  TIGRFAMs
+CC  This family of sequences appears to belong to the Haloacid Dehalogenase (HAD) superfamily of enzymes by virtue of the presence of three catalytic domains [1], in this case: LLVLD(ILV)D(YH)T, I(VMG)IWS, and (DN)(VC)K(PA)Lx{15-17}T(IL)(MH)(FV)DD(IL)(GRS)(RK)N.  Since this family has no large "cap" domain [2] between motifs 1 and 2 or between 2 and 3, it is formally a "class III" HAD [3].
+RN  [1]
+RM  PMID: 7966317
+RT  Computer analysis of bacterial haloacid dehalogenases defines a large superfamily of hydrolases with diverse specificity. Application of an iterative approach to database search.
+RA  Koonin EV, Tatusov RL.
+RL  J Mol Biol 1994 Nov 18;244(1):125-32
+RN  [2]
+RM  PMID: 10956028
+RT  The crystal structure of bacillus cereus phosphonoacetaldehyde hydrolase: insight into catalysis of phosphorus bond cleavage and catalytic diversification within the HAD enzyme superfamily.
+RA  Morais MC, Zhang W, Baker AS, Zhang G, Dunaway-Mariano D, Allen KN.
+RL Biochemistry 2000 Aug 29;39(34):10385-96
+RN  [3]
+RM  PMID: 11601995
+RT  MDP-1 is a new and distinct member of the haloacid dehalogenase family of aspartate-dependent phosphohydrolases.
+RA  Selengut, JD
+RL  Biochemistry 2001 Oct 23;40(42):12704-11

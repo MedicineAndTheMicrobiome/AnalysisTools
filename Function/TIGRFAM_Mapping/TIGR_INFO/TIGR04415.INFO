@@ -1,0 +1,21 @@
+ID  O_hepto_targRPT
+AC  TIGR04415
+DE  autotransporter passenger strand-loop-strand repeat
+AU  Haft DH
+TC  30.00 20.00
+NC  20.00 16.00
+AL  muscle_manual
+IT  repeat
+EN  autotransporter passenger strand-loop-strand repeat
+TP  TIGRFAMs
+CC  This model describes two tandem copies of a strand-loop-strand repeat that occurs often in type V secretion system (T5SS). These repeats usually occur in the passenger domain of the classical monomeric autotransporter. Proteins with this repeat often are encoded next to a member of family TIGR04414, the Aah/TibC family O-heptosyltransferase, and may be glycosylated in regions with this repeat.
+RN  [1]
+RM  PMID:11953358 
+RT  Functional substitution of the TibC protein of enterotoxigenic Escherichia coli strains for the autotransporter adhesin heptosyltransferase of the AIDA system. 
+RA  Moormann C, Benz I, Schmidt MA 
+RL  Infect Immun. 2002 May;70(5):2264-70.
+RN  [2]
+RM  PMID:22221153 
+RT  N for AsN - O for strOcture? A strand-loop-strand motif for prokaryotic O-glycosylation. 
+RA  Otzen D 
+RL  Mol Microbiol. 2012 Mar;83(5):879-83.

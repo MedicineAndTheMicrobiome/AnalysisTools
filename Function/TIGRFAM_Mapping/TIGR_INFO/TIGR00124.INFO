@@ -1,0 +1,13 @@
+ID  cit_ly_ligase
+AC  TIGR00124
+DE  [citrate (pro-3S)-lyase] ligase
+AU  Haft DH
+TC  262.10 262.10
+NC  183.85 183.85
+AL  clustalw
+IT  equivalog
+EN  [citrate (pro-3S)-lyase] ligase
+GS  citC
+EC  6.2.1.22
+TP  TIGRFAMs
+CC  ATP is cleaved to AMP and pyrophosphate during the reaction. The carboxyl end is homologous to a number of cytidyltransferases that also release pyrophosphate.

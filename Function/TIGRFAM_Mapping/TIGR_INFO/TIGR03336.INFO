@@ -1,0 +1,18 @@
+ID  IOR_alpha
+AC  TIGR03336
+DE  indolepyruvate ferredoxin oxidoreductase, alpha subunit
+AU  Haft DH
+TC  650.90 650.90
+NC  343.55 343.55
+AL  muscle_manual
+IT  equivalog
+EN  indolepyruvate ferredoxin oxidoreductase, alpha subunit
+GS  iorA
+EC  1.2.7.8
+TP  TIGRFAMs
+CC  Indolepyruvate ferredoxin oxidoreductase (IOR) is an alpha 2/beta 2 tetramer related to ketoacid oxidoreductases for pyruvate (1.2.7.1, POR), 2-ketoglutarate (1.2.7.3, KOR), and 2-oxoisovalerate (1.2.7.7, VOR). These multi-subunit enzymes typically are found in anaerobes and are inactiviated by oxygen. IOR in Pyrococcus acts in fermentation of all three aromatic amino acids, following removal of the amino group by transamination. In Methanococcus maripaludis, by contrast, IOR acts in the opposite direction, in pathways of amino acid biosynthesis from phenylacetate, indoleacetate, and p-hydroxyphenylacetate. In M. maripaludis and many other species, iorA and iorB are found next to an apparent phenylacetate-CoA ligase.
+RN  [1]
+RM  PMID: 15262931
+RT  Two biosynthetic pathways for aromatic amino acids in the archaeon Methanococcus maripaludis.
+RA  Porat I, Waters BW, Teng Q, Whitman WB
+RL  J Bacteriol. 2004 Aug;186(15):4940-50.

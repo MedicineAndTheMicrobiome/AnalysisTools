@@ -1,0 +1,16 @@
+ID  hemN_rel
+AC  TIGR00539
+DE  putative oxygen-independent coproporphyrinogen III oxidase
+AU  Haft DH
+TC  205.40 205.40
+NC  179.65 179.65
+AL  clustalw
+IT  hypoth_equivalog
+EN  putative oxygen-independent coproporphyrinogen III oxidase
+EC  1.3.99.22
+TP  TIGRFAMs
+CC  Experimentally determined examples of oxygen-independent coproporphyrinogen III oxidase, an enzyme that replaces HemF function under anaerobic conditions, belong to a family of proteins described by the HMM hemN. This HMM, hemN_rel, models a closely related protein, shorter at the amino end and lacking the region containing the motif PYRT[SC]YP found in members of the hemN family. Several species, including E. coli, Helicobacter pylori, Aquifex aeolicus, and Chlamydia trachomatis, have members of both this family and the E. coli hemN family. The member of this family from Bacillus subtilis was shown to complement an hemF/hemN double mutant of Salmonella typimurium and to prevent accumulation of coproporphyrinogen III under anaerobic conditions, but the exact role of this protein is still uncertain. It is found in a number of species that do not synthesize heme de novo.
+RM  96303504
+RT  Characterization of Bacillus subtilis hemN.
+RA  Homuth G, Heinemann M, Zuber U, Schumann W
+RL  Microbiology 1996 Jul;142 ( Pt 7):1641-9

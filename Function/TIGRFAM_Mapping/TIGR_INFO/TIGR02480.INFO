@@ -1,0 +1,12 @@
+ID  fliN
+AC  TIGR02480
+DE  flagellar motor switch protein FliN
+AU  Haft DH
+TC  84.05 84.05
+NC  58.35 58.35
+AL  clustalw
+IT  equivalog_domain
+EN  flagellar motor switch protein FliN
+GS  fliN
+TP  TIGRFAMs
+CC  Proteins that consist largely of the domain described by this HMM for this protein family can be designated flagellar motor switch protein FliN. Longer proteins in which this region is a C-terminal domain typically are designated FliY. More distantly related sequences, outside the scope of this family, are associated with type III secretion and include the surface presentation of antigens protein SpaO required or invasion of host cells by Salmonella enterica.

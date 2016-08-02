@@ -1,0 +1,17 @@
+ID  SCM_PqqD_rel
+AC  TIGR04248
+DE  SynChlorMet cassette protein ScmD
+AU  Haft DH
+TC  100.00 100.00
+NC  80.00 80.00
+AL  muscle_manual
+IT  equivalog
+EN  SynChlorMet cassette protein ScmD
+GS  scmD
+TP  TIGRFAMs
+CC  A biosynthesis cassette found in Syntrophobacter fumaroxidans MPOB, Chlorobium limicola DSM 245, Methanocella paludicola SANAE, and delta proteobacterium NaphS2 contains two PqqE-like radical SAM/SPASM domain proteins, a PqqD homolog, and a conserved hypothetical protein. These components suggest modification of a ribosomally produced peptide precursor, but the precursor has not been identified. Members of this family are the PqqD-like protein.
+RN  [1]
+RM  PMID:20737074 
+RT  Interaction of PqqE and PqqD in the pyrroloquinoline quinone (PQQ) biosynthetic pathway links PqqD to the radical SAM superfamily. 
+RA  Wecksler SR, Stoll S, Iavarone AT, Imsand EM, Tran H, Britt RD, Klinman JP 
+RL  Chem Commun (Camb). 2010 Oct 7;46(37):7031-3.

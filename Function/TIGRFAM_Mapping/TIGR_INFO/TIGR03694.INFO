@@ -1,0 +1,22 @@
+ID  exosort_acyl
+AC  TIGR03694
+DE  N-acyl amino acid synthase, PEP-CTERM/exosortase system-associated
+AU  Haft DH
+TC  111.95 111.95
+NC  52.80 52.80
+AL  muscle_manual
+IT  subfamily
+EN  N-acyl amino acid synthase, PEP-CTERM/exosortase system-associated
+EC  2.3.1.-
+TP  TIGRFAMs
+CC  Members of this protein family are restricted to bacterial species with the PEP-CTERM/exosortase system predicted to act in exopolysaccharide-associated protein targeting. PSI-BLAST and CDD reveal relationships to the acyltransferase family that includes N-acyl-L-homoserine lactone synthetase, and recent work shows long-chain N-acyl amino acid biosynthesis activity. Several members of this family may be found in a single genome. These acyltransferases may produce a quorum signalling molecule or may contribute to chemical modifications in exopolysaccharide and biofilm structural material production.
+RN  [1]
+RM  PMID:21840974 
+RT  Long-chain N-acyl amino acid synthases are linked to the putative PEP-CTERM/exosortase protein-sorting system in Gram-negative bacteria. 
+RA  Craig JW, Cherry MA, Brady SF 
+RL  J Bacteriol. 2011 Oct;193(20):5707-15. Epub 2011 Aug 12.
+RN  [2]
+RM  PMID: 16930487
+RT  Exopolysaccharide-associated protein sorting in environmental organisms: the PEP-CTERM/EpsH system. Application of a novel phylogenetic profiling heuristic.
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD
+RL  BMC Biol. 2006 Aug 24;4:29.

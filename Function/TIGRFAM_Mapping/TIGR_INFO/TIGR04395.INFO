@@ -1,0 +1,18 @@
+ID  cutC_activ_rSAM
+AC  TIGR04395
+DE  choline TMA-lyase-activating enzyme
+AU  Haft DH
+TC  360.00 360.00
+NC  345.00 345.00
+AL  muscle
+IT  equivalog
+EN  choline TMA-lyase-activating enzyme
+GS  cutD
+EC  1.97.-.-
+TP  TIGRFAMs
+CC  Members of this family are CutD, a radical enzyme that serves as an activase for choline TMA-lyase, CutC. CutC is a glycyl radical enzyme related to pyruvate formate-lyase, and this enzyme, CutD, is related to pyruvate formate-lyase activase.
+RN  [1]
+RM  PMID:23151509 
+RT  Microbial conversion of choline to trimethylamine requires a glycyl radical enzyme.
+RA  Craciun S, Balskus EP 
+RL  Proc Natl Acad Sci U S A. 2012 Nov 14.

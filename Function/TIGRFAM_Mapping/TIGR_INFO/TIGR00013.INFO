@@ -1,0 +1,24 @@
+ID  taut
+AC  TIGR00013
+DE  4-oxalocrotonate tautomerase family enzyme
+AU  Dodson RJ, Richardson DL
+TC  56.90 56.90
+NC  31.50 31.50
+AL  msa_tigr
+IT  subfamily
+EN  4-oxalocrotonate tautomerase family enzyme
+GS  dmpI
+EC  5.3.2.-
+TP  TIGRFAMs
+CC  4-oxalocrotonate tautomerase is a homohexamer in which each monomer is very small, at about 62 amino acids. Pro-1 of the mature protein serves as a general base. The enzyme functions in meta-cleavage pathways of aromatic hydrocarbon catabolism. Because several Arg residues located near the active site in the crystal structure of Pseudomonas putida are not conserved among all members of this family, because the literature describes a general role in the isomerization of beta,gamma-unsaturated enones to their alpha,beta-isomers, and because of the presence of fairly distantly related paralogs in Campylobacter jejuni, the family is regarded as not necessarily uniform in function.
+DR  EXPERIMENAL; SP|Q01468; Pseudomonas putida
+RN  [1]
+RM  12051677
+RT  The 4-oxalocrotonate tautomerase family of enzymes: how nature makes new enzymes using a beta-alpha-beta structural motif.
+RA  Whitman CP.
+RL  Arch Biochem Biophys 2002 Jun 1;402(1):1-13
+RN  [2]
+RM  11329265
+RT  The structural basis for the perturbed pKa of the catalytic base in 4-oxalocrotonate tautomerase: kinetic and structural effects of mutations of Phe-50.
+RA  Czerwinski RM, Harris TK, Massiah MA, Mildvan AS, Whitman CP.
+RL  Biochemistry 2001 Feb 20;40(7):1984-95

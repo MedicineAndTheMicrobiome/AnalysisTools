@@ -1,0 +1,17 @@
+ID  chaper_lep
+AC  TIGR04464
+DE  LipL41-expression chaperone Lep
+AU  Haft DH
+TC  60.00 60.00
+NC  33.00 25.00
+AL  muscle_manual
+IT  equivalog
+EN  LipL41-expression chaperone Lep
+GS  lep
+TP  TIGRFAMs
+CC  Members of this protein family are Lep, an outer membrane lipoprotein LipL41-binding protein that appears to function as a chaperone important to its expression. LipL41 is the third most abundant lipoprotein in the pathogen Leptospira interrogans, but is found in saprophytic Leptospira species as well and is not essential for virulence.
+RN  [1]
+RM  PMID:23690405 
+RT  Leptospiral Outer Membrane Protein LipL41 Is Not Essential for Acute Leptospirosis but Requires a Small Chaperone Protein, Lep, for Stable Expression. 
+RA  King AM, Bartpho T, Sermswan RW, Bulach DM, Eshghi A, Picardeau M, Adler B, Murray GL 
+RL  Infect Immun. 2013 Aug;81(8):2768-76.

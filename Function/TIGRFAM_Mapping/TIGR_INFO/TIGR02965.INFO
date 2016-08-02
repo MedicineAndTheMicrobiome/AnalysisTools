@@ -1,0 +1,13 @@
+ID  xanthine_xdhB
+AC  TIGR02965
+DE  xanthine dehydrogenase, molybdopterin binding subunit
+AU  Haft DH
+TC  849.50 849.50
+NC  691.00 691.00
+AL  muscle
+IT  equivalog
+EN  xanthine dehydrogenase, molybdopterin binding subunit
+GS  xdhB
+EC  1.17.1.4
+TP  TIGRFAMs
+CC  Members of the protein family are the molybdopterin-containing large subunit (or, in, eukaryotes, the molybdopterin-binding domain) of xanthine dehydrogenase, and enzyme that reduces the purine pool by catabolizing xanthine to urate. This model is based primarily on bacterial sequences; it does not manage to include all eukaryotic xanthine dehydrogenases and thereby discriminate them from the closely related enzyme aldehyde dehydrogenase.

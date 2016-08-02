@@ -1,0 +1,11 @@
+ID  phage_P_loop
+AC  TIGR01618
+DE  phage nucleotide-binding protein
+AU  Haft DH, Fouts DE, Sunshine J
+TC  138.75 138.75
+NC  46.65 46.65
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  phage nucleotide-binding protein
+TP  TIGRFAMs
+CC  This HMM represents an uncharacterized family of proteins from a number of phage of Gram-positive bacteria.   This protein contains a P-loop motif, G/A-X-X-G-X-G-K-T near its amino end. The function of this protein is unknown.

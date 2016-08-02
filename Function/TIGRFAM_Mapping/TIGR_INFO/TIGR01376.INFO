@@ -1,0 +1,17 @@
+ID  POMP_repeat
+AC  TIGR01376
+DE  chlamydial polymorphic outer membrane protein repeat
+AU  Haft DH
+TC  15.00 15.00
+NC  12.10 12.10
+AL  clustalw_manual
+IT  repeat
+EN  Chlamydial polymorphic outer membrane protein repeat
+TP  TIGRFAMs
+CC  This HMM represents a repeat region of about 27 residues that appears from twice to over twenty times in Chlamydial polymorphic outer membrane proteins (POMP). Characteristic motifs in the repeat are FXXN and GGAI. Except for a few apparently truncated examples, Chlamydial proteins have this repeat region if and only if they also have the autotransporter beta-domain (PF03797) at the C-terminus, with Phe as the C-terminal residue.
+CC  This repeat is observed, but is very rare, outside the Chlamydias.
+RM  10587946
+RT  Computational analysis of the polymorphic membrane protein superfamily of Chlamydia trachomatis and Chlamydia pneumoniae.
+RA  Grimwood J, Stephens RS.
+RL  Microb Comp Genomics 1999;4(3):187-201
+DR  PFAM; PF02415

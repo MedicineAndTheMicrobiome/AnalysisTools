@@ -1,0 +1,18 @@
+ID  arch_NMN_Atrans
+AC  TIGR01527
+DE  nicotinamide-nucleotide adenylyltransferase
+AU  Haft DH
+TC  181.20 181.20
+NC  73.45 73.45
+AL  clustalw
+IT  equivalog
+EN  nicotinamide-nucleotide adenylyltransferase
+EC  2.7.7.1
+TP  TIGRFAMs
+CC  This HMM describes a family of archaeal proteins with the activity of the NAD salvage biosynthesis enzyme nicotinamide-nucleotide adenylyltransferase (EC 2.7.7.1). In some cases, the enzyme was tested and found also to have the activity of nicotinate-nucleotide adenylyltransferase (EC 2.7.7.18), an enzyme of NAD de novo biosynthesis, although with a higher Km.
+CC  In some archaeal species, a lower-scoring paralog, uncharacterized with respect to activity, is also present. These score between trusted and noise cutoffs.
+RM  9401030
+RT  Characterization of nicotinamide mononucleotide adenylyltransferase from thermophilic archaea.
+RA  Raffaelli N, Pisani FM, Lorenzi T, Emanuelli M, Amici A, Ruggieri S, Magni G.
+RL  J Bacteriol. 1997 Dec;179(24):7718-23.
+DR  HAMAP; MF_00243; 33 of 36

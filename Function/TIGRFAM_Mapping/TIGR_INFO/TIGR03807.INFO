@@ -1,0 +1,11 @@
+ID  RR_fam_repeat
+AC  TIGR03807
+DE  putative cofactor-binding repeat
+AU  Haft DH
+TC  15.75 15.75
+NC  14.80 14.80
+AL  manual
+IT  repeat
+EN  putative cofactor-binding repeat
+TP  TIGRFAMs
+CC  This model describes a small repeat found in a family of proteins that crosses the plasma membrane by twin-arginine translation, which usually signifies the presence of a bound cofactor. This repeat shows similarity to the beta-helical repeat, in which three beta-strands per repeat wind once per repeat around in a right-handed helical stack of parallel beta structure.

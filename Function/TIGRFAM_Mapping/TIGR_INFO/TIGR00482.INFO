@@ -1,0 +1,14 @@
+ID  TIGR00482
+AC  TIGR00482
+DE  nicotinate (nicotinamide) nucleotide adenylyltransferase
+AU  Haft DH
+TC  112.45 112.45
+NC  63.85 63.85
+AL  clustalw_manual
+IT  equivalog
+EN  nicotinate (nicotinamide) nucleotide adenylyltransferase
+GS  nadD
+EC  2.7.7.18
+TP  TIGRFAMs
+CC  This HMM represents the predominant bacterial/eukaryotic adenylyltransferase for nicotinamide-nucleotide, its deamido form nicotinate nucleotide, or both. The first activity, nicotinamide-nucleotide adenylyltransferase (EC 2.7.7.1), synthesizes NAD by the salvage pathway, while the second, nicotinate-nucleotide adenylyltransferase (EC 2.7.7.18) synthesizes the immediate precursor of NAD by the de novo pathway. In E. coli, NadD activity is biased toward the de novo pathway while salvage activity is channeled through the multifunctional NadR protein, but this division of labor may be exceptional. The given name of this model, nicotinate (nicotinamide) nucleotide adenylyltransferase, reflects the lack of absolute specificity with respect to substrate amidation state in most species.
+DR  HAMAP; MF_00244; 278 of 287

@@ -1,0 +1,18 @@
+ID  methano_MtrB
+AC  TIGR04166
+DE  tetrahydromethanopterin S-methyltransferase, subunit B
+AU  Haft DH
+TC  50.00 50.00
+NC  35.00 35.00
+AL  muscle_manual
+IT  equivalog
+EN  tetrahydromethanopterin S-methyltransferase, subunit B
+GS  mtrB
+EC  2.1.1.86
+TP  TIGRFAMs
+CC  Members of this protein family are the MtrB protein of the tetrahydromethanopterin S-methyltransferase complex. This system is universal in archaeal methanogens.
+RN  [1]
+RM  PMID:7737157 
+RT  The energy conserving N5-methyltetrahydromethanopterin:coenzyme M methyltransferase complex from Methanobacterium thermoautotrophicum is composed of eight different subunits. 
+RA  Harms U, Weiss DS, Gartner P, Linder D, Thauer RK 
+RL  Eur J Biochem. 1995 Mar 15;228(3):640-8.

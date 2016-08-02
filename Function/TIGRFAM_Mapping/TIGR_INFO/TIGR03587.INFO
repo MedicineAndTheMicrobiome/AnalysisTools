@@ -1,0 +1,16 @@
+ID  Pse_Me-ase
+AC  TIGR03587
+DE  pseudaminic acid biosynthesis-associated methylase
+AU  Selengut J
+TC  112.05 112.05
+NC  111.80 111.80
+AL  muscle
+IT  hypoth_equivalog
+EN  pseudaminic acid biosynthesis-associated methylase
+TP  TIGRFAMs
+CC  Members of this small clade are methyltransferases of the PF08241 family and are observed  within operons for the biosynthesis of pseudaminic acid, a component of exopolysaccharide and flagellin glycosyl modifications [1].   Notable among these genomes is Pseudomonas fluorescens PfO-1.  Possibly one of the two hydroxyl groups of pseudaminic acid, at positions 4 and 8 is converted to a methoxy group by this enzyme
+RN  [1]
+RM  PMID:16684771 
+RT  Functional characterization of the flagellar glycosylation locus in Campylobacter jejuni 81-176 using a focused metabolomics approach. 
+RA  McNally DJ, Hui JP, Aubry AJ, Mui KK, Guerry P, Brisson JR, Logan SM, Soo EC 
+RL  J Biol Chem. 2006 Jul 7;281(27):18489-98. Epub 2006 May 9.

@@ -1,0 +1,17 @@
+ID  frhD
+AC  TIGR00130
+DE  coenzyme F420-reducing hydrogenase, FrhD protein
+AU  Richardson DL, Haft DH
+TC  134.95 134.95
+NC  134.85 134.85
+AL  muscle_manual
+IT  equivalog
+EN  coenzyme F420-reducing hydrogenase delta subunit (putative coenzyme F420 hydrogenase processing subunit).
+GS  frhD
+TP  TIGRFAMs
+CC  FrhD is not part of the active FRH heterotrimer, but is probably a protease required for maturation. Alternative name: 8-hydroxy-5-deazaflavin (F420) reducing hydrogenase (FRH) subunit delta.
+RN  [1]
+RM  PMID:2207102
+RT  Cloning, sequence determination, and expression of the genes encoding the subunits of the nickel-containing 8-hydroxy-5-deazaflavin reducing hydrogenase from Methanobacterium thermoautotrophicum delta H.
+RA  Alex LA, Reeve JN, Orme-Johnson WH, Walsh CT
+RL  Biochemistry. 1990 Aug 7;29(31):7237-44.

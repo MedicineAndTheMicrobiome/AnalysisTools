@@ -1,0 +1,12 @@
+ID  target_ACGX
+AC  TIGR04341
+DE  ACGX-repeat peptide
+AU  Haft DH
+TC  28.00 28.00
+NC  24.00 24.00
+AL  muscle_manual
+IT  subfamily
+EN  ACGX-repeat peptide
+GS  acgA
+TP  TIGRFAMs
+CC  Members of this family  average 75 amino acids in length and average six instances of the motif ACGX, where X is A, S, or T. Members are proposed target sequences for modification by adjacent radical SAM/SPASM domain proteins (family TIGR04340). Cys residues adjacent to Gly residues are common as proposed sites for modification by radical SAM enzymes.

@@ -1,0 +1,16 @@
+ID  isopep_sspB_C2
+AC  TIGR04228
+DE  adhesin isopeptide-forming adherence domain
+AU  Haft DH
+TC  36.00 34.00
+NC  25.00 25.00
+AL  muscle_manual
+IT  domain
+EN  adhesin isopeptide-forming domain, sspB-C2 type
+TP  TIGRFAMs
+CC  This domain has a conserved Lys (position 3 in seed alignment) and Asn at 177 that form an intramolecular isopeptide bond. The Asp (or Glu) at position 59
+RN  [1]
+RM  PMID:20138058 
+RT  Two intramolecular isopeptide bonds are identified in the crystal structure of the Streptococcus gordonii SspB C-terminal domain. 
+RA  Forsgren N, Lamont RJ, Persson K 
+RL  J Mol Biol. 2010 Apr 2;397(3):740-51.

@@ -1,0 +1,11 @@
+ID  2A0309
+AC  TIGR00912
+DE  spore germination protein (amino acid permease)
+AU  Loftus BJ
+TC  139.55 139.55
+NC  102.75 102.75
+AL  clustalw_manual
+IT  subfamily
+EN  spore germination protein (amino acid permease)
+TP  TIGRFAMs
+CC  This model describes spore germination protein GerKB and paralogs from Bacillus subtilis, Clostridium tetani, and other known or predicted endospore-forming members of the Firmicutes (low-GC Gram positive bacteria). Members show some similarity to amino acid permeases.

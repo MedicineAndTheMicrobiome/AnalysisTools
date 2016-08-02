@@ -1,0 +1,11 @@
+ID  small_Trp_rich
+AC  TIGR04438
+DE  small Trp-rich protein
+AU  Haft DH
+TC  36.00 36.00
+NC  28.00 25.00
+AL  muscle
+IT  hypoth_equivalog
+EN  small Trp-rich protein
+TP  TIGRFAMs
+CC  Members of this bacterial protein family average 80 residues in length, and average nearly 6 Trp residues (two of which are invariant) in the first 45, which are strongly hydrophobic. Past this region, the protein is highly charged, with large numbers of Lys, Arg, Asp, and Glu residues. Members usually are divergently transcribed from a gene encoding a c-type cytochrome.

@@ -1,0 +1,28 @@
+ID  16S_RimM
+AC  TIGR02273
+DE  16S rRNA processing protein RimM
+AU  Haft DH
+TC  66.20 66.20
+NC  60.55 60.55
+AL  clustalw_manual
+IT  equivalog
+EN  16S rRNA processing protein RimM
+GS  rimM
+TP  TIGRFAMs
+CC  This family consists of the bacterial protein RimM (YfjA, 21K), a 30S ribosomal subunit-binding protein implicated in 16S ribsomal RNA processing. It has been partially characterized in Escherichia coli, is found with other translation-associated genes such as trmD. It is broadly distributed among bacteria, including some minimal genomes such the aphid endosymbiont Buchnera aphidicola. The protein contains a PRC-barrel domain that it shares with other protein families (PF05239) and a unique domain (PF01782). This model describes the full-length protein. A member from Arabidopsis (plant) has additional N-terminal sequence likely to represent a chloroplast transit peptide.
+RN  [1]
+RM  9422595
+RT  RimM and RbfA are essential for efficient processing of 16S rRNA in Escherichia coli.
+RA  Bylund GO, Wipemo LC, Lundberg LA, Wikstrom PM.
+RL  J Bacteriol. 1998 Jan;180(1):73-82.
+RN  [2]
+RT  The PRC-barrel: a widespread, conserved domain shared by photosynthetic reaction center subunits and proteins of RNA metabolism.
+RA  Anantharaman V, Aravind L.
+RL  Genome Biol. 2002 Oct 14;3(11):RESEARCH0061.
+DR  PFAM; PF01782; 16S rRNA processing protein RimM
+DR  PFAM; PF05239; PRC-barrel domain
+RN  [3]
+RT  A novel ribosome-associated protein is important for efficient translation in Escherichia coli.
+RA  Bylund GO, Persson BC, Lundberg LA, Wikstrom PM.
+RL  J Bacteriol. 1997 Jul;179(14):4567-74.
+DR  HAMAP; MF_00014; 532 of 548

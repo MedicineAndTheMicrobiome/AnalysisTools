@@ -1,0 +1,13 @@
+ID  rpiB
+AC  TIGR01120
+DE  ribose 5-phosphate isomerase B
+AU  Dodson RJ
+TC  138.65 138.65
+NC  135.75 135.75
+AL  clustalw
+IT  equivalog
+EN  ribose 5-phosphate isomerase B
+GS  rpiB
+EC  5.3.1.6
+TP  TIGRFAMs
+CC  Involved in the non-oxidative branch of the pentose phospate pathway.

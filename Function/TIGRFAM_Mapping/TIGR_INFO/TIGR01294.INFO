@@ -1,0 +1,13 @@
+ID  P_lamban
+AC  TIGR01294
+DE  phospholamban
+AU  Haft DH, Paulsen IT
+TC  72.85 72.85
+NC  72.80 72.80
+AL  clustalw
+IT  equivalog
+EN  phospholamban
+GS  pln
+TR  8.A.11
+TP  TIGRFAMs
+CC  This HMM represents the short (52 residue) transmembrane phosphoprotein phospholamban. Phospholamban, in its unphosphorylated form, inhibits SERCA2, the cardiac sarcoplasmic reticulum Ca-ATPase.

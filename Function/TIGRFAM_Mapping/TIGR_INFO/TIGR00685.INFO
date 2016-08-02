@@ -1,0 +1,39 @@
+ID  T6PP
+AC  TIGR00685
+DE  trehalose-phosphatase
+AU  Selengut J, Loftus BJ, Haft DH
+TC  68.05 68.05
+NC  33.40 33.40
+AL  pima
+IT  equivalog
+EN  trehalose-phosphatase
+GS  otsB
+EC  3.1.3.12
+TP  TIGRFAMs
+CC  Trehalose, a neutral disaccharide of two glucose residues, is an important osmolyte for dessication and/or salt tolerance in a number of prokaryotic and eukaryotic species, including E. coli, Saccharomyces cerevisiae, and Arabidopsis thaliana. Many bacteria also utilize trehalose in the synthesis of trehalolipids, specialized cell wall constituents believed to be involved in the uptake of hydrophobic substances.  Trehalose dimycolate (TDM, cord factor) and related substances are important constituents of the mycobacterial waxy coat and responsible for various clinically important immunological interactions with host organism [5].
+CC  This enzyme, trehalose-phosphatase, removes a phosphate group in the final step of trehalose biosynthesis. The trehalose-phosphatase from Saccharomyces cerevisiae is fused to the synthase.
+CC  At least 18 distinct sequences from Arabidopsis have been identified, roughly half of these are of the fungal type, with a fused synthase and half are like the bacterial members having only the phosphatase domain.  It has been suggested [3,4] that trehalose is being used in Arabidopsis as a regulatory molecule in development and possibly other processes.
+DR  SWISSPROT;  P31678
+RN  [1]
+RM  94320793
+RN  [2]
+RM  93185647
+DR  ECOCYC; EG11752; otsB
+DR  EXPERIMENTAL; EGAD|10272|EC1897; Escherichia coli
+DR  EXPERIMENTAL; EGAD|51588|YDR074W; Saccharomyces cerevisiae
+DR  EXPERIMENTAL; GP|2944180|gb|AAC39370.1||AF007779; Arabidopsis thaliana
+RN [3]
+RM PMID: 11701378
+RT An unexpected plethora of trehalose biosynthesis genes in Arabidopsis thaliana.
+RA Leyman B, Van Dijck P, Thevelein JM.
+RL Trends Plant Sci 2001 Nov;6(11):510-3
+RN [4]
+RM PMID: 11851922
+RT Trehalose-6-phosphate synthase 1, which catalyses the first step in trehalose synthesis, is essential for Arabidopsis embryo maturation.
+RA Eastmond PJ, van Dijken AJ, Spielman M, Kerr A, Tissier AF, Dickinson HG, Jones JD, Smeekens SC, Graham IA.
+RL Plant J 2002 Jan;29(2):225-35
+RN [5]
+RM PMID: 11838897
+RT Immunological properties of trehalose dimycolate (cord factor) and other mycolic acid-containing glycolipids--a review.
+RA Ryll R, Kumazawa Y, Yano I.
+RL Microbiol Immunol 2001;45(12):801-11

@@ -1,0 +1,17 @@
+ID  T7_EssB
+AC  TIGR03926
+DE  type VII secretion protein EssB
+AU  Haft DH
+TC  229.75 229.75
+NC  140.10 140.10
+AL  muscle_manual
+IT  equivalog
+EN  type VII secretion protein EssB
+GS  essB
+TP  TIGRFAMs
+CC  Members of this family are associated with type VII secretion of WXG100 family targets in the Firmicutes, but not in the Actinobacteria. This protein is designated YukC in Bacillus subtilis and EssB is Staphylococcus aureus.
+RN  [1]
+RM  PMID:18554323 
+RT  EsaC substrate for the ESAT-6 secretion pathway and its role in persistent infections of Staphylococcus aureus. 
+RA  Burts ML, DeDent AC, Missiakas DM 
+RL  Mol Microbiol. 2008 Aug;69(3):736-46. Epub 2008 Jun 28.

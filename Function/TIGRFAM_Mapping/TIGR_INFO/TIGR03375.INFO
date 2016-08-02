@@ -1,0 +1,11 @@
+ID  type_I_sec_LssB
+AC  TIGR03375
+DE  type I secretion system ATPase
+AU  Haft DH
+TC  693.10 693.10
+NC  586.85 586.85
+AL  muscle_manual
+IT  subfamily
+EN  type I secretion system ATPase, LssB family
+TP  TIGRFAMs
+CC  Type I protein secretion is a system in some Gram-negative bacteria to export proteins (often proteases) across both inner and outer membranes to the extracellular medium. This is one of three proteins of the type I secretion apparatus. Targeted proteins are not cleaved at the N-terminus, but rather carry signals located toward the extreme C-terminus to direct type I secretion. This model is related to models TIGR01842 and TIGR01846, and to bacteriocin ABC transporters that cleave their substrates during export.

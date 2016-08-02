@@ -1,0 +1,12 @@
+ID  TIGR01177
+AC  TIGR01177
+DE  putative methyltransferase, TIGR01177 family
+AU  Haft DH
+TC  316.55 316.55
+NC  137.45 137.45
+AL  clustalw
+IT  hypoth_equivalog
+EN  putative methyltransferase, TIGR01177 family
+TP  TIGRFAMs
+CC  This family of probable methyltransferases is found exclusively in the Archaea.
+DR  PFAM; PF01170; Uncharacterized protein family UPF0020

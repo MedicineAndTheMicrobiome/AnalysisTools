@@ -1,0 +1,11 @@
+ID  CxxCH_TIGR02603
+AC  TIGR02603
+DE  putative heme-binding domain
+AU  Haft DH
+TC  68.15 68.15
+NC  39.45 39.45
+AL  clustalw_manual
+IT  domain
+EN  putative heme-binding domain, Pirellula/Verrucomicrobium type
+TP  TIGRFAMs
+CC  This model represents a domain limited to very few species but expanded into large paralogous families in some species that conain it. We find it in over 20 copies each in Pirellula sp. strain 1 (phylum Planctomycetes) and Verrucomicrobium spinosum DSM 4136 (phylum Verrucomicrobia), and no matches above trusted cutoff an any other species so far. This domain, about 140 amino acids long, contains an absolutely conserved motif CxxCH, the cytochrome c family heme-binding site signature (PS00190).

@@ -1,0 +1,12 @@
+ID  PorB_KorB
+AC  TIGR02177
+DE  2-oxoacid:acceptor oxidoreductase, beta subunit, pyruvate/2-ketoisovalerate family
+AU  Haft DH
+TC  261.90 261.90
+NC  258.85 258.85
+AL  clustalw_manual
+IT  subfamily
+EN  2-oxoacid:acceptor oxidoreductase, beta subunit, pyruvate/2-ketoisovalerate family
+TP  TIGRFAMs
+CC  A number of anaerobic and microaerophilic species lack pyruvate dehydrogenase and have instead a four subunit, oxygen-sensitive pyruvate oxidoreductase, with either ferredoxins or flavodoxins used as the acceptor.
+CC  Several related four-subunit enzymes may exist in the same species. This model describes a subfamily of beta subunits, representing mostly pyruvate and 2-ketoisovalerate specific enzymes.

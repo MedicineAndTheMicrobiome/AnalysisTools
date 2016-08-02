@@ -1,0 +1,12 @@
+ID  mobB
+AC  TIGR00176
+DE  molybdopterin-guanine dinucleotide biosynthesis protein B
+AU  Haft DH
+TC  76.20 76.20
+NC  33.25 33.25
+AL  clustalw_manual
+IT  equivalog
+EN  molybdopterin-guanine dinucleotide biosynthesis protein MobB
+GS  mobB
+TP  TIGRFAMs
+CC  This molybdenum cofactor biosynthesis enzyme is similar to the urease accessory protein UreG and to the hydrogenase accessory protein HypB, both GTP hydrolases involved in loading nickel into the metallocenters of their respective target enzymes.

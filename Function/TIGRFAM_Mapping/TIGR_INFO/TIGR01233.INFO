@@ -1,0 +1,14 @@
+ID  lacG
+AC  TIGR01233
+DE  6-phospho-beta-galactosidase
+AU  Haft DH, Dodson RJ
+TC  561.20 561.20
+NC  439.50 439.50
+AL  clustalw
+IT  equivalog
+EN  6-phospho-beta-galactosidase
+GS  lacG
+EC  3.2.1.85
+TP  TIGRFAMs
+CC  This enzyme is part of the tagatose-6-phosphate pathway of galactose-6-phosphate degradation.
+DR  HAMAP; MF_01574; 41 of 41

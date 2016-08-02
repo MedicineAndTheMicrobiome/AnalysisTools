@@ -1,0 +1,13 @@
+ID  LLM_duo_CE1759
+AC  TIGR04037
+DE  LLM-partnered FMN reductase, CE1759 family
+AU  Haft DH
+TC  175.90 175.90
+NC  169.95 169.95
+AL  muscle_manual
+IT  subfamily
+EN  LLM-partnered FMN reductase, CE1759 family
+EC  1.-.-.-
+TP  TIGRFAMs
+CC  This family represents a distinct clade within PF03358. That family includes enzymes such as the NADH-dependent FMN reductase MsuE. Members of the present family regularly co-occur in genomes, typically as gene pairs, with members of TIGR04036, a probable FMN-dependent member of the bacterial luciferase-like monooxygenase (LLM) family. At least one member, RF|YP_001509627.1 from Frankia sp. EAN1pec, is fused to the LLM protein. The function of these gene pairs is unknown.
+DR  PFAM; PF03358; FMN_red; NADPH-dependent FMN reductase

@@ -1,0 +1,13 @@
+ID  PYST-B
+AC  TIGR01597
+DE  Plasmodium yoelii subtelomeric family PYST-B
+AU  Selengut J
+TC  175.50 175.50
+NC  97.65 97.65
+AL  clustalw
+IT  paralog
+EN  Plasmodium yoelii subtelomeric family PYST-B
+TP  TIGRFAMs
+CC  This model represents a paralogous family of Plasmodium yoelii genes preferentially located in the subtelomeric regions of the chromosomes [1].  There are no obvious homologs to these genes in any other organism.
+RN  [1]
+RL  TIGR, unpublished data

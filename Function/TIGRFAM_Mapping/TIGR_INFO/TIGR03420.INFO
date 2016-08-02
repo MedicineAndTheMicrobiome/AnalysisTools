@@ -1,0 +1,17 @@
+ID  DnaA_homol_Hda
+AC  TIGR03420
+DE  DnaA regulatory inactivator Hda
+AU  Haft DH
+TC  194.80 194.80
+NC  128.10 128.10
+AL  muscle_manual
+IT  equivalog
+EN  DnaA regulatory inactivator Hda
+GS  hda
+TP  TIGRFAMs
+CC  Members of this protein family are Hda (Homologous to DnaA). These proteins are about half the length of DnaA and homologous over length of Hda. In the model species Escherichia coli, the initiation of DNA replication requires DnaA bound to ATP rather than ADP; Hda helps facilitate the conversion of DnaA-ATP to DnaA-ADP.
+RN  [1]
+RM  16882985
+RT  Hda-mediated inactivation of the DnaA protein and dnaA gene autoregulation act in concert to ensure homeostatic maintenance of the Escherichia coli chromosome.
+RA  Riber L, Olsson JA, Jensen RB, Skovgaard O, Dasgupta S, Marinus MG, Løbner-Olesen A.
+RL  Genes Dev. 2006 Aug 1;20(15):2121-34

@@ -1,0 +1,16 @@
+ID  seadorna_VP11
+AC  TIGR04230
+DE  seadornavirus VP11 protein
+AU  Haft DH
+TC  75.00 75.00
+NC  25.00 25.00
+AL  muscle_manual
+IT  equivalog
+EN  seadornavirus VP11 protein
+TP  TIGRFAMs
+CC  This protein family occurs in the seadornavirus virus group, with designations VP11 in Banna virus, and VP12 in Kadipiro virus and Liao ning virus. The function has not been assigned.
+RN  [1]
+RM  PMID:10811934 
+RT  Complete sequence determination and genetic analysis of Banna virus and Kadipiro virus: proposal for assignment to a new genus (Seadornavirus) within the family Reoviridae. 
+RA  Attoui H, Billoir F, Biagini P, de Micco P, de Lamballerie X 
+RL  J Gen Virol. 2000 Jun;81(Pt 6):1507-15.

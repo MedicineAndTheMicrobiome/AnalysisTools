@@ -1,0 +1,17 @@
+ID  V_PPase
+AC  TIGR01104
+DE  V-type H(+)-translocating pyrophosphatase
+AU  Ujwal ML, Haft DH, Paulsen IT
+TC  651.90 651.90
+NC  283.60 283.60
+AL  clustalw
+IT  equivalog
+EN  vacuolar-type H(+)-translocating pyrophosphatase
+EC  3.6.1.1
+TP  TIGRFAMs
+CC  This model describes proton pyrophosphatases from eukaryotes (predominantly plants), archaea and bacteria. It is an integral membrane protein and is suggested to have about 15 membrane spanning domains. Proton translocating inorganic pyrophosphatase, like H(+)-ATPase, acidifies the vacuoles and is pivotal to the vacuolar secondary active transport systems in plants.
+RM  10556526
+RT  A thermostable vacuolar-type membrane pyrophosphatase from the archaeon Pyrobaculum aerophilum: implications for the origins of pyrophosphate-energized pumps.
+RA  Drozdowicz YM, Lu YP, Patel V, Fitz-Gibbon S, Miller JH, Rea PA.
+RL  FEBS Lett 1999 Nov 5;460(3):505-12
+DR  HAMAP; MF_01130; 22 of 31

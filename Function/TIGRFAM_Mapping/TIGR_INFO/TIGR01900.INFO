@@ -1,0 +1,20 @@
+ID  dapE-gram_pos
+AC  TIGR01900
+DE  succinyl-diaminopimelate desuccinylase
+AU  Selengut J
+TC  304.20 304.20
+NC  199.95 199.95
+AL  clustalw
+IT  equivalog
+EN  succinyl-diaminopimelate desuccinylase
+GS  dapE
+EC  3.5.1.18
+TP  TIGRFAMs
+CC  This model represents a clade of succinyl-diaminopimelate desuccinylases from actinobacteria (high-GC gram positives), delta-proteobacteria and aquificales and is based on the characterization of the enzyme from Corynebacterium glutamicum [1].  
+CC  This enzyme is involved in the biosynthesis of lysine, and is related to the enzyme acetylornithine deacetylase and other amidases and peptidases found within PF01546.
+CC  Other sequences included in the seed of this model were assessed to confirm that 1) the related genes DapC (succinyl-diaminopimelate transaminase) and DapD (2,3,4,5-tetrahydropyridine-2,6-dicarboxylate N-succinyltransferase) are also found in the genome, 2) each is found only once in those genomes, 3) the lysine biosynthesis pathway is complete and 4) the direct (TIGR03540 or TIGR03542) or acetylated (GenProp0787) aminotransferase pathways are absent in thes genomes.  Additionally, a number of the seed members are observed adjacent to either DapC or DapD (often as a divergon with a putative promoter site between them.
+RN  [1]
+RM  PMID: 7881553
+RT  Analysis of different DNA fragments of Corynebacterium glutamicum complementing dapE of Escherichia coli.
+RA  Wehrmann A, Eggeling L, Sahm H.
+RL  Microbiology 1994 Dec;140 ( Pt 12):3349-56

@@ -1,0 +1,11 @@
+ID  NRPS_term_dom
+AC  TIGR02353
+DE  non-ribosomal peptide synthetase terminal domain of unknown function
+AU  Selengut J
+TC  423.10 423.10
+NC  97.80 97.80
+AL  clustalw
+IT  hypoth_equivalog_domain
+EN  non-ribosomal peptide synthetase terminal domain of unknown function
+TP  TIGRFAMs
+CC  This domain is found exclusively in non-ribosomal peptide synthetases and always as the final domain in the polypeptide.  This domain is roughly 700 amino acids in size and is found in polypeptides roughly twice that size.

@@ -1,0 +1,23 @@
+ID  protease_degS
+AC  TIGR02038
+DE  periplasmic serine peptidase DegS
+AU  Haft DH
+TC  422.95 422.95
+NC  291.85 291.85
+AL  clustalw
+IT  equivalog
+EN  periplasmic serine pepetdase DegS
+GS  degS
+EC  3.4.21.-
+TP  TIGRFAMs
+CC  This family consists of the periplasmic serine protease DegS (HhoB), a shorter paralog of protease DO (HtrA, DegP) and DegQ (HhoA). It is found in E. coli and several other Proteobacteria of the gamma subdivision. It contains a trypsin domain and a single copy of PDZ domain (in contrast to DegP with two copies). A critical role of this DegS is to sense stress in the periplasm and partially degrade an inhibitor of sigma(E).
+RN  [1]
+RM  11442831
+RT  degS (hhoB) is an essential Escherichia coli gene whose indispensable function is to provide sigma (E) activity.
+RA  Alba BM, Zhong HJ, Pelayo JC, Gross CA.
+RL  Mol Microbiol. 2001 Jun;40(6):1323-33.
+RN  [2]
+RM  12679025
+RT  A stress sensor for the bacterial periplasm.
+RA  Young JC, Hartl FU.
+RL  Cell. 2003 Apr 4;113(1):1-2.

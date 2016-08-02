@@ -1,0 +1,11 @@
+ID  B_ant_repeat
+AC  TIGR01451
+DE  conserved repeat domain
+AU  Haft DH
+TC  16.60 16.60
+NC  15.70 15.70
+AL  manual
+IT  domain
+EN  conserved repeat domain
+TP  TIGRFAMs
+CC  This model represents the conserved region of about 53 amino acids shared between regions, usually repeated, of proteins from a small number of phylogenetically distant prokaryotes. Examples include a 132-residue region found repeated in three of the five longest proteins of Bacillus anthracis, a 131-residue repeat in a cell wall-anchored protein of Enterococcus faecalis, and a 120-residue repeat in Methanobacterium thermoautotrophicum.  A similar region is found in some Chlamydial outer membrane proteins.

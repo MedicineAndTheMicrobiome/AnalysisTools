@@ -1,0 +1,18 @@
+ID  trimeth_pyl
+AC  TIGR02369
+DE  trimethylamine:corrinoid methyltransferase
+AU  Haft DH
+TC  575.35 575.35
+NC  290.15 290.15
+AL  clustalw
+IT  equivalog
+EN  trimethylamine:corrinoid methyltransferase
+GS  mttB
+EC  2.1.1.250
+TP  TIGRFAMs
+CC  This model represents a distinct subfamily of PF06253. All members here are trimethylamine:corrinoid methyltransferases that contain a critical pyrrolysine residue incorporated during translation via a special tRNA for a TAG (amber) codon. Known members so far are from the genus Methanosarcina. It is one of a suite of three non-homologous enzymes with a critical UAG-encoded pyrrolysine residue in these species (along with dimethylamine methyltransferase and monomethylamine methyltransferase). It demethylates trimethylamine, leaving dimethylamine, and methylates the prosthetic group of its small cognate corrinoid protein, MttC. The methyl group is then transferred by methylcorrinoid:coenzyme M methyltransferase to coenzyme M.  Note that the pyrrolysine residue is variously translated as K or X, or as a stop codon that truncates the sequence.
+DR  PFAM; PF06253; MTTB
+RM  10762254
+RT  The trimethylamine methyltransferase gene and multiple dimethylamine methyltransferase genes of Methanosarcina barkeri contain in-frame and read-through amber codons.
+RA  Paul L, Ferguson DJ Jr, Krzycki JA.
+RL  J Bacteriol. 2000 May;182(9):2520-9.

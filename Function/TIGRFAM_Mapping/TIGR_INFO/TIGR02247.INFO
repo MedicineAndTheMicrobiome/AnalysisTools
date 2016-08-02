@@ -1,0 +1,22 @@
+ID  HAD-1A3-hyp
+AC  TIGR02247
+DE  epoxide hydrolase N-terminal domain-like phosphatase
+AU  Selengut J
+TC  125.40 125.40
+NC  69.85 69.85
+AL  clustalw
+IT  subfamily_domain
+EN  epoxide hydrolase N-terminal domain-like phosphatase
+TP  TIGRFAMs
+CC  This HMM represents a small clade of sequences including C. elegans and mammalian sequences as well as a small number of bacteria.  In eukaryotes, this domain exists as an N-terminal fusion to the soluble epoxide hydrolase enzyme and has recently been shown to be an active phosphatase, although the nature of the biological substrate is unclear [1].
+CC  These appear to be members of the haloacid dehalogenase (HAD) superfamily of aspartate-nucleophile hydrolases by general homology and the conservation of all of the recognized catalytic motifs [2] (although the first motif is unusual in the replacement of the more common aspartate with glycine...).  The variable domain is found in between motifs 1 and 2, indicating membership in subfamily I and phylogeny and prediction of the alpha helical nature of the variable domain (by PSI-PRED) indicate membership in subfamily IA.
+RN  [1]
+RL  Proc Natl Acad Sci U S A. 2003 Feb 18;100(4):1552-7. 
+RT  The N-terminal domain of mammalian soluble epoxide hydrolase is a phosphatase.
+RA  Cronin A, Mowbray S, Durk H, Homburg S, Fleming I, Fisslthaler B, Oesch F, Arand M.
+RM  PMID: 12574508
+RN  [2]
+RM  PMID: 7966317
+RT  Computer analysis of bacterial haloacid dehalogenases defines a large superfamily of hydrolases with diverse specificity. Application of an iterative approach to database search.
+RA  Koonin EV, Tatusov RL.
+RL  J Mol Biol 1994 Nov 18;244(1):125-32

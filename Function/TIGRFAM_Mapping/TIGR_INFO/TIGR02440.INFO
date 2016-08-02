@@ -1,0 +1,19 @@
+ID  FadJ
+AC  TIGR02440
+DE  fatty oxidation complex, alpha subunit FadJ
+AU  Rosovitz MJ, Haft DH
+TC  968.45 968.45
+NC  723.00 723.00
+AL  clustalw
+IT  equivalog
+EN  fatty oxidation complex, alpha subunit FadJ
+GS  fadJ
+EC  4.2.1.17 1.1.1.35 5.1.2.3
+TP  TIGRFAMs
+CC  Members represent alpha subunit of multifunctional enzyme complex of the fatty acid degradation cycle. Plays a minor role in aerobic beta-oxidation of fatty acids. FadJI complex is necessary for anaerobic growth on short-chain acids with nitrate as an electron acceptor. Activities include: enoyl-CoA hydratase (EC 4.2.1.17),3-hydroxyacyl-CoA dehydrogenase (EC 1.1.1.35), 3-hydroxybutyryl-CoA epimerase (EC 5.1.2.3). A representative is E. coli FadJ (aka YfcX) (SP:P77399). This model excludes the FadB of TIGR02437 equivalog hmm.
+RN  [1]
+RM  12535077
+RT  A new Escherichia coli metabolic competency: growth on fatty acids by a novel anaerobic beta-oxidation pathway.
+RA  Campbell JW, Morgan-Kiss RM, Cronan JE Jr.
+RL  Mol Microbiol. 2003 Feb;47(3):793-805.
+DR  HAMAP; MF_01617; 52 of 54

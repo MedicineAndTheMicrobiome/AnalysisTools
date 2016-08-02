@@ -1,0 +1,11 @@
+ID  DivI1A_domain
+AC  TIGR03544
+DE  DivIVA domain
+AU  Haft DH
+TC  22.00 22.00
+NC  20.65 20.65
+AL  muscle_manual
+IT  domain
+EN  DivIVA domain
+TP  TIGRFAMs
+CC  This HMM describes a domain found in Bacillus subtilis cell division initiation protein DivIVA, and homologs, toward the N-terminus. It is also found as a repeated domain in certain other proteins, including family TIGR03543.

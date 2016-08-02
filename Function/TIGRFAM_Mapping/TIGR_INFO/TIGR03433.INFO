@@ -1,0 +1,12 @@
+ID  padR_acidobact
+AC  TIGR03433
+DE  transcriptional regulator, Acidobacterial, PadR-family
+AU  Haft DH
+TC  101.80 101.80
+NC  99.30 99.30
+AL  muscle_manual
+IT  paralog
+EN  transcriptional regulator, Acidobacterial, PadR-family
+TP  TIGRFAMs
+CC  Members of this protein family are putative transcriptional regulators of the PadR family, as found in species of the Acidobacteria. This family of proteins has expanded greatly in this lineage, and where it regularly is found in the vicinity of a putative transporter protein
+DR  PFAM; PF03551; PadR; transcriptional regulator, PadR family

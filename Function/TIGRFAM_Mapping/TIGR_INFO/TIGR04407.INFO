@@ -1,0 +1,12 @@
+ID  LptF_YjgP
+AC  TIGR04407
+DE  LPS export ABC transporter permease LptF
+AU  Haft DH
+TC  230.00 230.00
+NC  170.00 170.00
+AL  muscle_manual
+IT  equivalog
+EN  LPS export ABC transporter permease LptF
+GS  lptF
+TP  TIGRFAMs
+CC  Members of this family are LptF, one of homologous, two tandem-encoded permease genes of an export ATP transporter for lipopolysaccharide (LPS) assembly in most Gram-negative bacteria. The other permease subunit is LptG (TIGR04408).

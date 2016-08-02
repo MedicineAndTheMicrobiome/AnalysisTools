@@ -1,0 +1,18 @@
+ID  F420_cofG
+AC  TIGR03550
+DE  7,8-didemethyl-8-hydroxy-5-deazariboflavin synthase, CofG subunit
+AU  Haft DH
+TC  213.35 213.35
+NC  106.85 106.85
+AL  muscle_manual
+IT  equivalog_domain
+EN  7,8-didemethyl-8-hydroxy-5-deazariboflavin synthase, CofG subunit
+GS  cofG
+EC  2.5.1.77
+TP  TIGRFAMs
+CC  This model represents either a subunit or a domain, depending on whether or not the genes are fused, of a bifunctional protein that completes the synthesis of 7,8-didemethyl-8-hydroxy-5-deazariboflavin, or FO. FO is the chromophore of coenzyme F(420), involved in methanogenesis in methanogenic archaea but found in certain other lineages as well. The chromophore also occurs as a cofactor in DNA photolyases in Cyanobacteria.
+RN  [1]
+RM  PMID:14593448
+RT  Identification of the 7,8-didemethyl-8-hydroxy-5-deazariboflavin synthase required for coenzyme F(420) biosynthesis.
+RA  Graham DE, Xu H, White RH
+RL  Arch Microbiol. 2003 Dec;180(6):455-64. Epub 2003 Oct 31.

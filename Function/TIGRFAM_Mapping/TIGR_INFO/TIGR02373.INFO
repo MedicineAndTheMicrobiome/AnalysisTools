@@ -1,0 +1,17 @@
+ID  photo_yellow
+AC  TIGR02373
+DE  photoactive yellow protein
+AU  Haft DH
+TC  143.05 143.05
+NC  41.70 41.70
+AL  clustalw
+IT  equivalog
+EN  photoactive yellow protein
+GS  pyp
+TP  TIGRFAMs
+CC  Members of this family are photoactive yellow protein, a cytosolic, 14-kDa light-sensing protein which has a 4-hydroxycinnamyl (p-coumaric acid) chromophore covalently linked to a Cys residue. The enzyme 4-coumarate--CoA ligase as described by TIGR02372 is required for its biosynthesis.  The modified Cys is in a PAS (PF00989) domain, frequently found in signal transducing proteins. Members are known in alpha and gamma Proteobacteria that include Rhodobacter capsulatus, Halorhodospira halophila, Rhodospirillum centenum, etc.
+DR  PFAM; PF00989; PAS domain
+RM  7756254
+RT  1.4 A structure of photoactive yellow protein, a cytosolic photoreceptor: unusual fold, active site, and chromophore.
+RA  Borgstahl GE, Williams DR, Getzoff ED.
+RL  Biochemistry. 1995 May 16;34(19):6278-87.

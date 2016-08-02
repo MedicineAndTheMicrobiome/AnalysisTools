@@ -1,0 +1,11 @@
+ID  ocin_ThiF_like
+AC  TIGR03693
+DE  putative thiazole-containing bacteriocin maturation protein
+AU  Haft DH
+TC  561.90 561.90
+NC  142.30 142.30
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  putative thiazole-containing bacteriocin maturation protein
+TP  TIGRFAMs
+CC  Members of this protein family are found in a three-gene operon in Bacillus anthracis and related Bacillus species, where the other two genes are clearly identified with maturation of a putative thiazole-containing bacteriocin precursor. While there is no detectable pairwise sequence similarity between members of this family and the proposed cyclodehydratases such as SagC of Streptococcus pyogenes (see family TIGR03603), both families show similarity through PSI-BLAST to ThiF, a protein involved in biosynthesis of the thiazole moiety for thiamine biosynthesis. This family, therefore, may contribute to cyclodehydratase function in heterocycle-containing bacteriocin biosyntheses. In Bacillus licheniformis ATCC 14580, the bacteriocin precursor gene is adjacent to the gene for this protein.

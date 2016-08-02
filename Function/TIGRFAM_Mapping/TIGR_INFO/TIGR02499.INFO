@@ -1,0 +1,13 @@
+ID  HrpE_YscL_not
+AC  TIGR02499
+DE  type III secretion apparatus protein, HrpE/YscL family
+AU  Haft DH
+TC  78.70 78.70
+NC  75.10 75.10
+AL  clustalw_manual
+IT  equivalog
+EN  type III secretion apparatus protein, HrpE/YscL family
+TP  TIGRFAMs
+CC  This model is related to Pfam model PF06188, but is broader. PF06188 describes HrpE-like proteins, components of bacterial type III secretion systems primarily in bacteria that infect plants. This model includes also the homologous proteins of animal pathogens, such as YscL of Yersinia pestis. This model excludes the related protein FliH of the bacterial flagellar apparatus (see PF02108)
+DR  PFAM; PF06188; HrpE protein
+DR  PFAMl PF02108; Flagellar assembly protein FliH

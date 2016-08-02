@@ -1,0 +1,17 @@
+ID  gshA_ferroox
+AC  TIGR02049
+DE  glutamate--cysteine ligase
+AU  Haft DH
+TC  293.90 293.90
+NC  206.50 206.50
+AL  clustalw
+IT  equivalog
+EN  glutamate--cysteine ligase, T. ferrooxidans family
+GS  gshA
+EC  6.3.2.2
+TP  TIGRFAMs
+CC  This family consists of a rare family of glutamate--cysteine ligases, demonstrated first in Thiobacillus ferrooxidans and present in a few other Proteobacteria. It is the first of two enzymes for glutathione biosynthesis. It is also called gamma-glutamylcysteine synthetase.
+RM  8828222
+RT  The gene for gamma-glutamylcysteine synthetase from Thiobacillus ferrooxidans has low homology to its Escherichia coli equivalent and is linked to the gene for citrate synthase.
+RA  Powles R, Deane S, Rawlings D.
+RL  Microbiology. 1996 Sep;142 ( Pt 9):2543-8.

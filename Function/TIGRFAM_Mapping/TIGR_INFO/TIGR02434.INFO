@@ -1,0 +1,18 @@
+ID  CobF
+AC  TIGR02434
+DE  precorrin-6A synthase (deacetylating)
+AU  Selengut J
+TC  195.80 195.80
+NC  119.45 119.45
+AL  clustalw
+IT  equivalog
+EN  precorrin-6A synthase (deacetylating)
+GS  cobF
+EC  2.1.1.152
+TP  TIGRFAMs
+CC  In the aerobic cobalamin biosythesis pathway, four enzymes are involved in the conversion of precorrin-3A to precorrin-6A. The first of the four steps is carried out by EC 1.14.13.83, precorrin-3B synthase (CobG), yielding precorrin-3B as the product.  This is followed by three methylation reactions, which introduce a methyl group at C-17 (CobJ; EC 2.1.1.131), C-11 (CobM; EC 2.1.1.133) and C-1 (CobF; EC 2.1.1.152) of the macrocycle, giving rise to precorrin-4, precorrin-5 and precorrin-6A, respectively [1].
+CC  This model identifies CobF in High GC gram positive, alphaproteobacteria and pseudomonas-related species.
+RN  [1]
+RT  Biosynthesis of the corrin macrocycle of coenzyme B12 in Pseudomonas denitrificans.
+RA  Debussche L, Thibaut D, Cameron B, Crouzet J, Blanche F.
+RL  J Bacteriol. 1993 Nov;175(22):7430-40.

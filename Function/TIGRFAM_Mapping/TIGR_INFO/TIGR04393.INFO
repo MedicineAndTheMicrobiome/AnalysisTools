@@ -1,0 +1,11 @@
+ID  rpt_T5SS_PEPC
+AC  TIGR04393
+DE  T5SS/PEP-CTERM-associated repeat
+AU  Haft DH
+TC  23.00 23.00
+NC  20.00 20.00
+AL  muscle_manual
+IT  repeat
+EN  T5SS/PEP-CTERM-associated repeat
+TP  TIGRFAMs
+CC  This HMM describes a repeat about 50 amino acids in length, appearing sometimes more than ten times in tandem in a single protein. Most proteins with this repeat have a C-terminal autotransporter domain (TIGR01414, PF03797) and/or an N-terminal type V secretion system signal peptide (PF13018), while others instead have a C-terminal PEP-CTERM domain (TIGR02595).

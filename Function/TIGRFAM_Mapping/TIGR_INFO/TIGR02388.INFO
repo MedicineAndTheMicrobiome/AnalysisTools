@@ -1,0 +1,17 @@
+ID  rpoC2_cyan
+AC  TIGR02388
+DE  DNA-directed RNA polymerase, beta'' subunit
+AU  Haft DH
+TC  467.40 467.40
+NC  461.75 461.75
+AL  clustalw_manual
+IT  equivalog
+EN  DNA-directed RNA polymerase, beta'' subunit
+EC  2.7.7.6
+TP  TIGRFAMs
+CC  The family consists of the product of the rpoC2 gene, a subunit of DNA-directed RNA polymerase of cyanobacteria and chloroplasts. RpoC2 corresponds largely to the C-terminal region of the RpoC (the beta' subunit) of other bacteria. Members of this family are designated beta'' in chloroplasts/plastids, and beta' (confusingly) in Cyanobacteria, where RpoC1 is called beta' in chloroplasts/plastids and gamma in Cyanobacteria. We prefer to name this family beta'', after its organellar members, to emphasize that this RpoC1 and RpoC2 together replace RpoC in other bacteria.
+RM  2495268
+RT  Cyanobacterial RNA polymerase genes rpoC1 and rpoC2 correspond to rpoC of Escherichia coli.
+RA  Xie WQ, Jager K, Potts M.
+RL  J Bacteriol. 1989 Apr;171(4):1967-73.
+DR  HAMAP; MF_01324; 145 of 150

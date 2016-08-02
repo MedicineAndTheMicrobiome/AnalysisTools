@@ -1,0 +1,16 @@
+ID  HtrL_YibB
+AC  TIGR02192
+DE  protein YibB
+AU  Haft DH
+TC  264.90 264.90
+NC  109.05 109.05
+AL  clustalw
+IT  hypoth_equivalog
+EN  protein YibB
+TP  TIGRFAMs
+CC  The protein from this rare, uncharacterized protein family is designated HtrL or YibB in E. coli, where its gene is found in a region of LPS core biosynthesis genes. Homologs are found in Shigella flexneri, Campylobacter jejuni, and Caenorhabditis elegans only. The htrL gene may represent an insertion to the LPS core biosynthesis region, rather than an LPS biosynthetic protein.
+RN  [1]
+RM  PMID:8157607
+RT  Molecular analysis of the rfaD gene, for heptose synthesis, and the rfaF gene, for heptose transfer, in lipopolysaccharide synthesis in Salmonella typhimurium.
+RA  Sirisena DM, MacLachlan PR, Liu SL, Hessel A, Sanderson KE.
+RL  J Bacteriol. 1994 Apr;176(8):2379-85.

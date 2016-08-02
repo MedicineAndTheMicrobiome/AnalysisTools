@@ -1,0 +1,13 @@
+ID  addB_Gpos
+AC  TIGR02773
+DE  helicase-exonuclease AddAB, AddB subunit
+AU  Haft DH
+TC  903.70 903.70
+NC  453.50 453.50
+AL  clustalw
+IT  equivalog
+EN  helicase-exonuclease AddAB, AddB subunit
+GS  addB
+EC  3.1.-.- 3.6.4.12
+TP  TIGRFAMs
+CC  DNA repair is accomplished by several different systems in prokaryotes. Recombinational repair of double-stranded DNA breaks involves the RecBCD pathway in some lineages, and AddAB (also called RexAB) in other. The AddA protein is conserved between the firmicutes and the alphaproteobacteria, while the partner protein is not. Nevertheless, the partner is designated AddB in both systems. This model describes the AddB protein as found Bacillus subtilis and related species. Although the RexB protein of Streptococcus and Lactococcus is considered to be orthologous, functionally equivalent, and merely named differently, all members of this protein family have a P-loop nucleotide binding motif GxxGxGK[ST] at the N-terminus, unlike RexB proteins, and a CxxCxxxxxC motif at the C-terminus, both of which may be relevant to function.

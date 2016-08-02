@@ -1,0 +1,23 @@
+ID  fruct_sucro_rep
+AC  TIGR02417
+DE  D-fructose-responsive transcription factor
+AU  Haft DH
+TC  389.55 389.55
+NC  205.15 205.15
+AL  clustalw
+IT  subfamily
+EN  D-fructose-responsive transcription factor
+TP  TIGRFAMs
+CC  Members of this family belong the lacI helix-turn-helix family (PF00356) of DNA-binding transcriptional regulators. All members are from the proteobacteria. Characterized members act as positive and negative transcriptional regulators of fructose and sucrose transport and metabolism. Sucrose is a disaccharide composed of fructose and glucose; D-fructose-1-phosphate rather than an intact sucrose moiety has been shown to act as the inducer.
+DR  PFAM; PF00356; LacI
+DR  PFAM; PF00532; Peripla_BP_1
+RN  [1]
+RM  8412665
+RT  Molecular analysis of two ScrR repressors and of a ScrR-FruR hybrid repressor for sucrose and D-fructose specific regulons from enteric bacteria.
+RA  Jahreis K, Lengeler JW.
+RL  Mol Microbiol. 1993 Jul;9(1):195-209.
+RN  [2]
+RM  1805309
+RT  Sequence and evolution of the FruR protein of Salmonella typhimurium: a pleiotropic transcriptional regulatory protein possessing both activator and repressor functions which is homologous to the periplasmic ribose-binding protein.
+RA  Vartak NB, Reizer J, Reizer A, Gripp JT, Groisman EA, Wu LF, Tomich JM, Saier MH Jr.
+RL  Res Microbiol. 1991 Nov-Dec;142(9):951-63.

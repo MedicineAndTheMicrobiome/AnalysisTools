@@ -1,0 +1,18 @@
+ID  QoxD
+AC  TIGR02901
+DE  cytochrome aa3 quinol oxidase, subunit IV
+AU  Selengut J
+TC  85.60 85.60
+NC  61.90 61.90
+AL  muscle
+IT  equivalog
+EN  cytochrome aa3 quinol oxidase, subunit IV
+GS  qoxD
+EC  1.10.3.-
+TP  TIGRFAMs
+CC  This family (QoxD) encodes subunit IV of the aa3-type quinone oxidase, one of several bacterial terminal oxidases [1].  This complex couples oxidation of reduced quinones with the reduction of molecular oxygen to water and the pumping of protons to form a proton gradient utilized for ATP production.  aa3-type oxidases contain two heme a cofactors as well as copper atoms in the active site.
+RN  [1]
+RM  PMID: 7575098
+RT  Properties of the menaquinol oxidase (Qox) and of qox deletion mutants of Bacillus subtilis.
+RA  Lemma E, Simon J, Schagger H, Kroger A.
+RL  Arch Microbiol. 1995 Jun;163(6):432-8.

@@ -1,0 +1,13 @@
+ID  adk
+AC  TIGR01351
+DE  adenylate kinase
+AU  DeBoy RT, Haft DH
+TC  168.00 168.00
+NC  157.10 157.10
+AL  clustalw
+IT  subfamily
+EN  adenylate kinase
+EC  2.7.4.-
+TP  TIGRFAMs
+CC  Adenylate kinase (EC 2.7.4.3) converts ATP + AMP to ADP + ADP, that is, uses ATP as a phosphate donor for AMP. Most members of this family are known or believed to be adenylate kinase. However, some members accept other nucleotide triphosphates as donors, may be unable to use ATP, and may fail to complement adenylate kinase mutants. An example of a nucleoside-triphosphate--adenylate kinase (EC 2.7.4.10) is SP|Q9UIJ7, a GTP:AMP phosphotransferase. This family is designated subfamily rather than equivalog for this reason.
+DR  HAMAP; MF_00235; 444 of 487

@@ -1,0 +1,13 @@
+ID  PIA_icaB
+AC  TIGR03933
+DE  intercellular adhesin biosynthesis polysaccharide N-deacetylase
+AU  Haft DH
+TC  248.35 248.35
+NC  200.10 200.10
+AL  muscle_manual
+IT  equivalog
+EN  intercellular adhesin biosynthesis polysaccharide N-deacetylase
+GS  icaB
+EC  3.5.1.-
+TP  TIGRFAMs
+CC  A common motif in bacterial biosynthesis of polysaccharide for export is modification that follows polymerization. This HMM describes a subfamily of polysaccharide N-deacetylases that acts on poly-beta-1,6-N-acetyl-D-glyscosamine as produced by Staphylococcus epidermidis and S. aureus. The end product in these species is designated polysaccharide intercellular adhesin (PIA), and this gene designated icaB (intercellular adhesion protein B).

@@ -1,0 +1,17 @@
+ID  xylF
+AC  TIGR02634
+DE  D-xylose ABC transporter, D-xylose-binding protein
+AU  Haft DH
+TC  389.55 389.55
+NC  232.05 232.05
+AL  clustalw
+IT  equivalog
+EN  D-xylose ABC transporter, substrate-binding protein
+GS  xylF
+TP  TIGRFAMs
+CC  Members of this family are periplasmic (when in Gram-negative bacteria) binding proteins for D-xylose import by a high-affinity ATP-binding cassette (ABC) transporter.
+RN  [1]
+RM  9657999
+RT  The D-xylose-binding protein, XylF, from Thermoanaerobacter ethanolicus 39E: cloning, molecular analysis, and expression of the structural gene.
+RA  Erbeznik M, Strobel HJ, Dawson KA, Jones CR.
+RL  J Bacteriol. 1998 Jul;180(14):3570-7.

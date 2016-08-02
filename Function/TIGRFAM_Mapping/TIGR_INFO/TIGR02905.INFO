@@ -1,0 +1,17 @@
+ID  spore_yutH
+AC  TIGR02905
+DE  spore coat protein YutH
+AU  Haft DH
+TC  215.05 215.05
+NC  79.55 79.55
+AL  muscle
+IT  equivalog
+EN  spore coat protein YutH
+GS  yutH
+TP  TIGRFAMs
+CC  Members of this family are homologs of the Bacillus subtilis spore coat protein CotS. Members of this family, designated YutH, are found only in the family Bacillaceae from among the endospore-forming members of the Firmicutes branch of the Bacteria.
+RN  [1]
+RM  PMID: 15231775
+RT  Dynamic patterns of subcellular protein localization during spore coat morphogenesis in Bacillus subtilis.
+RA  van Ooij C, Eichenberger P, Losick R
+RL  J Bacteriol. 2004 Jul;186(14):4441-8.

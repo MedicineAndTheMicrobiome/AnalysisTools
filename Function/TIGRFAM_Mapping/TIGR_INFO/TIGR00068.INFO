@@ -1,0 +1,15 @@
+ID  glyox_I
+AC  TIGR00068
+DE  lactoylglutathione lyase
+AU  Richardson DL
+TC  122.45 122.45
+NC  61.30 61.30
+AL  msa_tigr
+IT  equivalog
+EN  lactoylglutathione lyase
+GS  gloA
+EC  4.4.1.5
+TP  TIGRFAMs
+CC  Lactoylglutathione lyase is also known as aldoketomutase and glyoxalase I.
+CC  Glyoxylase I is a homodimer in many species. In some eukaryotes, including yeasts and plants, the orthologous protein carries a tandem duplication, is twice as long, and hits this HMM twice.
+DR  PROSITE; PDOC00720;

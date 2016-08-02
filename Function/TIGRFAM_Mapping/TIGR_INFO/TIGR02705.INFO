@@ -1,0 +1,25 @@
+ID  nudix_YtkD
+AC  TIGR02705
+DE  nucleoside triphosphatase YtkD
+AU  Haft DH
+TC  154.40 154.40
+NC  59.90 59.90
+AL  clustalw
+IT  equivalog
+EN  nucleoside triphosphatase YtkD
+GS  ytkD
+EC  3.6.1.-
+TP  TIGRFAMs
+CC  The functional assignment to the proteins of this family is contentious. Reference [2] challenges the findings of reference [1], both in interpretation and in enzyme assay results. This protein belongs to the nudix family and shares some sequence identity with E. coli MutT but appears not to be functionally interchangeable with it.
+DR  PFAM; PF00293; NUDIX; hydrolase, NUDIX family 
+DR  SWISSPROT; O35013; Bacillus subtilis
+RN  [1]
+RM  15576788
+RT  Gene ytkD of Bacillus subtilis encodes an atypical nucleoside triphosphatase member of the Nudix hydrolase superfamily.
+RA  Xu W, Jones CR, Dunn CA, Bessman MJ.
+RL  J Bacteriol. 2004 Dec;186(24):8380-4.
+RN  [2]
+RM  14761999
+RT  The ytkD (mutTA) gene of Bacillus subtilis encodes a functional antimutator 8-Oxo-(dGTP/GTP)ase and is under dual control of sigma A and sigma F RNA polymerases.
+RA  Ramirez MI, Castellanos-Juarez FX, Yasbin RE, Pedraza-Reyes M.
+RL  J Bacteriol. 2004 Feb;186(4):1050-9.

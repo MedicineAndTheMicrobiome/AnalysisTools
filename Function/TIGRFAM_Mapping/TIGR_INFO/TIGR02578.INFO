@@ -1,0 +1,18 @@
+ID  cas_TM1811_Csm1
+AC  TIGR02578
+DE  CRISPR-associated protein Cas10/Csm1, subtype III-A/MTUBE
+AU  Haft DH
+TC  171.65 171.65
+NC  59.20 59.20
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  CRISPR-associated protein Cas10/Csm1, subtype III-A/MTUBE
+GS  cas10
+TP  TIGRFAMs
+CC  The family is designated Csm2, for CRISPR/Cas Subtype Mtube Protein 2. A typical example is TM1811 from Thermotoga maritima. CRISPR are Clustered Regularly Interspaced Short Palindromic Repeats. This protein family belongs to a conserved gene cluster regularly found near CRISPR repeats.
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=2003
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=57305
+RN  [1]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005

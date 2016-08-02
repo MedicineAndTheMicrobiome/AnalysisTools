@@ -1,0 +1,19 @@
+ID  meth_trns_rumB
+AC  TIGR02085
+DE  23S rRNA (uracil-5-)-methyltransferase RumB
+AU  Haft DH
+TC  429.50 429.50
+NC  204.95 204.95
+AL  clustalw
+IT  equivalog
+EN  23S rRNA (uracil-5-)-methyltransferase RumB
+GS  rumB
+EC  2.1.1.189
+TP  TIGRFAMs
+CC  This family consists of RNA methyltransferases designated RumB, formerly YbjF. Members act on 23S rRNA U747 and the equivalent  position in other proteobacterial species. This family is homologous to the other 23S rRNA methyltransferase RumA and to the tRNA methyltransferase TrmA.
+RM  12907714
+RT  Identifying the methyltransferases for m(5)U747 and m(5)U1939 in 23S rRNA using MALDI mass spectrometry.
+RA  Madsen CT, Mengel-Jorgensen J, Kirpekar F, Douthwaite S.
+RL  Nucleic Acids Res. 2003 Aug 15;31(16):4738-46.
+DR  EXPERIMENTAL; SP|P75817; Escherichia coli
+DR  HAMAP; MF_01012; 54 of 55

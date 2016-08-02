@@ -1,0 +1,17 @@
+ID  phe_am_lyase
+AC  TIGR01226
+DE  phenylalanine ammonia-lyase
+AU  Haft DH
+TC  519.15 519.15
+NC  301.90 301.90
+AL  clustalw_manual
+IT  equivalog
+EN  phenylalanine ammonia-lyase
+EC  4.3.1.24
+TP  TIGRFAMs
+CC  Members of this subfamily of MIO prosthetic group enzymes are phenylalanine ammonia-lyases. They are found, so far, in plants and fungi. From phenylalanine, this enzyme yields cinnaminic acid, a precursor of many important plant compounds. This protein shows extensive homology to histidine ammonia-lyase, the first enzyme of a histidine degradation pathway. Note that members of this family from plant species that synthesize taxol are actually phenylalanine aminomutase, and are covered by exception model TIGR04473.
+RN  [1]
+RM  PMID:20577998 
+RT  Probing the active site of MIO-dependent aminomutases, key catalysts in the biosynthesis of beta-amino acids incorporated in secondary metabolites. 
+RA  Cooke HA, Bruner SD 
+RL  Biopolymers. 2010 Sep;93(9):802-10. doi: 10.1002/bip.21500.

@@ -1,0 +1,11 @@
+ID  SUF_scaf_2
+AC  TIGR01994
+DE  SUF system FeS assembly protein, NifU family
+AU  Haft DH
+TC  92.50 92.50
+NC  79.80 79.80
+AL  clustalw
+IT  equivalog
+EN  SUF system FeS assembly protein, NifU family
+TP  TIGRFAMs
+CC  Three iron-sulfur cluster assembly systems are known so far. ISC is broadly distributed while NIF tends to be associated with nitrogenase in nitrogen-fixing bacteria. The most recently described is SUF, believed to be important to maintain the function during aerobic stress of enzymes with labile Fe-S clusters. It is fairly widely distributed. This family represents one of two different proteins proposed to act as a scaffold on which the Fe-S cluster is built and from which it is transferred.

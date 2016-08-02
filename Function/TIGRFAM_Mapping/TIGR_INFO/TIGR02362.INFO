@@ -1,0 +1,12 @@
+ID  dhaK1b
+AC  TIGR02362
+DE  probable dihydroxyacetone kinase DhaK1b subunit
+AU  Haft DH
+TC  413.25 413.25
+NC  409.20 409.20
+AL  clustalw
+IT  equivalog
+EN  probable dihydroxyacetone kinase DhaK1b subunit
+GS  dhaK2
+TP  TIGRFAMs
+CC  Two types of dihydroxyacetone kinase (glycerone kinase) are described. In yeast and a few bacteria, e.g. Citrobacter freundii, the enzyme is a single chain that uses ATP as phosphoryl donor and is designated EC 2.7.1.29. By contract, E. coli and many other bacterial species have a multisubunit form with a phosphoprotein donor related to PTS transport proteins. This family represents a protein, unique to the Firmicutes (low GC Gram-positives), that appears to be a divergent second copy of the K subunit of that complex; its gene is always found in operons with the other three proteins of the complex.

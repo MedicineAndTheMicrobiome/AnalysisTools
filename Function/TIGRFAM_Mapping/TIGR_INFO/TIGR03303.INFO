@@ -1,0 +1,15 @@
+ID  OM_YaeT
+AC  TIGR03303
+DE  outer membrane protein assembly complex, YaeT protein
+AU  Haft DH
+TC  297.15 297.15
+NC  192.15 192.15
+AL  muscle_manual
+IT  equivalog
+EN  outer membrane protein assembly complex, YaeT protein
+GS  yaeT
+TP  TIGRFAMs
+CC  Members of this protein family are the YaeT protein of the YaeT/YfiO complex for assembling proteins into the outer membrane of Gram-negative bacteria. This protein is similar in sequence and function to a non-essential paralog, YtfM, that is also in the Omp85 family. Members of this family typically have five tandem copies of the surface antigen variable number repeat (PF07244), followed by an outer membrane beta-barrel domain (PF01103), while the YtfM family typically has a single PF07244 repeat.
+DR  PFAM; PF07244; Surface antigen variable number repeat
+DR  PFAM; PF01103; outer membrane protein, OMP85 family
+DR  HAMAP; MF_01430; 34 of 35

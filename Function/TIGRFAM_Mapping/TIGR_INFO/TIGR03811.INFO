@@ -1,0 +1,18 @@
+ID  tyr_de_CO2_Ent
+AC  TIGR03811
+DE  tyrosine decarboxylase
+AU  Haft DH
+TC  905.30 905.30
+NC  599.00 599.00
+AL  muscle_manual
+IT  equivalog
+EN  tyrosine decarboxylase, Enterococcus type
+GS  tdc
+EC  4.1.1.25
+TP  TIGRFAMs
+CC  This model represents tyrosine decarboxylases in the family of the Enterococcus faecalis enzyme Tdc. These enzymes often are encoded next to tyrosine/tyramine antiporter, together comprising a system in which tyrosine decarboxylation can protect against exposure to acid conditions. This clade differs from the archaeal tyrosine decarboxylases associated with methanofuran biosynthesis.
+RN  [1]
+RM  PMID:12089039
+RT  Identification of the Enterococcus faecalis tyrosine decarboxylase operon involved in tyramine production.
+RA  Connil N, Le Breton Y, Dousset X, Auffray Y, Rince A, Prevost H
+RL  Appl Environ Microbiol. 2002 Jul;68(7):3537-44.

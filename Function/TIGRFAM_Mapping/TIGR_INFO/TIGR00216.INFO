@@ -1,0 +1,25 @@
+ID  ispH_lytB
+AC  TIGR00216
+DE  4-hydroxy-3-methylbut-2-enyl diphosphate reductase
+AU  Loftus BJ, Haft DH
+TC  187.85 187.85
+NC  103.60 103.60
+AL  clustalw
+IT  equivalog
+EN  (E)-4-hydroxy-3-methyl-but-2-enyl pyrophosphate reductase (IPP and DMAPP forming)
+GS  ispH
+EC  1.17.1.2
+TP  TIGRFAMs
+CC  The IspH protein (previously designated LytB) has now been recognized as the last enzyme in the biosynthesis of isopentenyl diphosphate (IPP) and dimethylallyl diphosphate (DMAPP).
+CC  Escherichia coli LytB protein had been found to regulate the activity of RelA (guanosine 3',5'-bispyrophosphate synthetase I), which in turn controls the level of a regulatory metabolite. It is involved in penicillin tolerance and the stringent response.
+RN  [1]
+RM  PMID: 11818558
+RT  Studies on the nonmevalonate terpene biosynthetic pathway: metabolic role of IspH (LytB) protein.
+RA  Rohdich F, Hecht S, Gartner K, Adam P, Krieger C, Amslinger S, Arigoni D, Bacher A, Eisenreich W.
+RL  Proc Natl Acad Sci U S A. 2002 Feb 5;99(3):1158-63.
+DR  ECOCYC; EG11081; lytB;
+DR  PFAM; PF02401; LYTB
+DR  InterPro; IPR003451; LytB
+RM  98196746
+RM  98079441
+DR  HAMAP; MF_00191; 291 of 300

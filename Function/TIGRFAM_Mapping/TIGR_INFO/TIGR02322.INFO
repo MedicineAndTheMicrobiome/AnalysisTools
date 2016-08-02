@@ -1,0 +1,18 @@
+ID  phosphon_PhnN
+AC  TIGR02322
+DE  phosphonate metabolism protein/1,5-bisphosphokinase (PRPP-forming) PhnN
+AU  Haft DH
+TC  156.00 156.00
+NC  73.35 73.35
+AL  clustalw
+IT  equivalog
+EN  phosphonate metabolism protein/1,5-bisphosphokinase (PRPP-forming) PhnN
+GS  phnN
+TP  TIGRFAMs
+CC  Members of this family resemble PhnN of phosphonate utilization operons, where different such operons confer the ability to use somewhat different profiles of C-P bond-containing compounds (see PMID:15231805), including phosphites as well as phosphonates. PhnN in E. coli shows considerable homology to guanylate kinases (EC 2.7.4.8), and has actually been shown to act as a ribose 1,5-bisphosphokinase (PRPP forming). This suggests an analogous kinase reaction for phosphonate metabolism, converting 5-phosphoalpha-1-(methylphosphono)ribose to methylphosphono-PRPP.
+RN  [1]
+RM  PMID: 12700258
+RT  Escherichia coli phnN, encoding ribose 1,5-bisphosphokinase activity (phosphoribosyl diphosphate forming): dual role in phosphonate degradation and NAD biosynthesis pathways.
+RA  Hove-Jensen B, Rosenkrantz TJ, Haldimann A, Wanner BL.
+RL  J Bacteriol. 2003 May;185(9):2793-801.
+DR  HAMAP; MF_00703; 4 of 55

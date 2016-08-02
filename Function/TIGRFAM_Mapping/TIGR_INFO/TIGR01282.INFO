@@ -1,0 +1,15 @@
+ID  nifD
+AC  TIGR01282
+DE  nitrogenase molybdenum-iron protein alpha chain
+AU  Haft DH
+TC  653.55 653.55
+NC  503.05 503.05
+AL  clustalw_manual
+IT  equivalog
+EN  nitrogenase molybdenum-iron protein alpha chain
+GS  nifD
+EC  1.18.6.1
+TP  TIGRFAMs
+CC  Nitrogenase consists of alpha (NifD) and beta (NifK) subunits of the molybdenum-iron protein and an ATP-binding iron-sulfur protein (NifH). This HMM describes a large clade of NifD proteins, but excludes a lineage that contains putative NifD and NifD homologs from species with vanadium-dependent nitrogenases.
+DR  EXPERIMENTAL; SP|P00467; Clostridium pasteurianum; includes X-ray structure.
+DR  EXPERIMENTAL; SP:P07328; Azotobacter vinelandii; includes X-ray structure.

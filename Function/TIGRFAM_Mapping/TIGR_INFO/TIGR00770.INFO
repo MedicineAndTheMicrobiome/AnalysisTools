@@ -1,0 +1,13 @@
+ID  Dcu
+AC  TIGR00770
+DE  transporter, anaerobic C4-dicarboxylate uptake (Dcu) family
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  331.35 331.35
+NC  248.70 248.70
+AL  clustalw_manual
+IT  subfamily
+EN  anaerobic c4-dicarboxylate membrane transporter family protein
+TR  2.A.13
+TP  TIGRFAMs
+CC  These proteins are members of th C4-Dicarboxylate Uptake (Dcu) Family (TC 2.A.13).  Most proteins in this family have 12 GES predicted transmembrane regions; however one member has 10 experimentally determined transmembrane regions with both the N- and C-termini localized to the periplasm.  The two Escherichia coli proteins, DcuA and DcuB, transport aspartate, malate, fumarate and succinate, and function as antiporters with any two of these substrates. Since DcuA is encoded in an operon with the gene for aspartase, and DcuB is encoded in an operon with the gene for fumarase, their physiological functions may be to catalyze aspartate:fumarate and fumarate:malate exchange during the anaerobic utilization of aspartate and fumarate, respectively.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_13.html

@@ -1,0 +1,15 @@
+ID  recD
+AC  TIGR01447
+DE  exodeoxyribonuclease V, alpha subunit
+AU  Haft DH
+TC  310.15 310.15
+NC  268.80 268.80
+AL  clustalw
+IT  equivalog
+EN  exodeoxyribonuclease V, alpha subunit
+GS  recD
+EC  3.1.11.5
+TP  TIGRFAMs
+CC  This family describes the exodeoxyribonuclease V alpha subunit, RecD. RecD is part of a RecBCD complex. A related family in the Gram-positive bacteria separates in a phylogenetic tree, has an additional N-terminal extension of about 200 residues, and is not supported as a member of a RecBCD complex by neighboring genes. The related family is consequently described by a different model.
+DR  EXPERIMENTAL; GP|3063663; Neisseria gonorrhoeae
+DR  EXPERIMENTAL; SP|P04993; Escherichia coli

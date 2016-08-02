@@ -1,0 +1,16 @@
+ID  sms
+AC  TIGR00416
+DE  DNA repair protein RadA
+AU  Loftus BJ
+TC  403.05 403.05
+NC  297.40 297.40
+AL  clustalw
+IT  equivalog
+EN  DNA repair protein RadA
+GS  radA
+TP  TIGRFAMs
+CC  The gene protuct codes for a probable ATP-dependent protease involved in both DNA repair and degradation of proteins, peptides, glycopeptides. Also known as sms. Residues 11-28 of the SEED alignment contain a putative Zn binding domain. Residues 110-117 of the seed contain a putative  ATP binding site both documented in Haemophilus (SP:P45266) and in Listeria monocytogenes (SP:Q48761) . for E.coli see ( J. BACTERIOL. 178:5045-5048(1996)).
+DR  ECOCYC; EG11296; 
+DR  Swissprot; P24554;
+DR  Swissprot; Q48761;
+RL  J. BACTERIOL. 178:5045-5048(1996)

@@ -1,0 +1,16 @@
+ID  LcrR
+AC  TIGR02572
+DE  type III secretion system regulator LcrR
+AU  Selengut J
+TC  139.50 139.50
+NC  36.70 36.70
+AL  clustalw
+IT  equivalog
+EN  type III secretion system regulator LcrR
+TP  TIGRFAMs
+CC  This protein is found in type III secretion operons and has been characterized in Yersinia as a regulator of the Low-Calcium Respone (LCR) [1].
+RN  [1]
+RM  PMID: 1695896
+RT  lcrR, a low-Ca2(+)-response locus with dual Ca2(+)-dependent functions in Yersinia pestis.
+RA  Barve SS, Straley SC.
+RL  J Bacteriol. 1990 Aug;172(8):4661-71.

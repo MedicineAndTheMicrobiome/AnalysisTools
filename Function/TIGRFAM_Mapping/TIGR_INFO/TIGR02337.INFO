@@ -1,0 +1,12 @@
+ID  HpaR
+AC  TIGR02337
+DE  homoprotocatechuate degradation operon regulator, HpaR
+AU  Selengut J
+TC  121.20 121.20
+NC  88.55 88.55
+AL  clustalw
+IT  equivalog
+EN  homoprotocatechuate degradation operon regulator, HpaR
+GS  hpaR
+TP  TIGRFAMs
+CC  This Helix-Turn-Helix transcriptional regulator is a member of the MarR family (PF01047) and is found in association with operons for the degradation of 4-hydroxyphenylacetic acid via homoprotocatechuate.

@@ -1,0 +1,11 @@
+ID  rSAM_link_UDG
+AC  TIGR03916
+DE  putative DNA modification/repair radical SAM protein
+AU  Haft DH
+TC  343.50 343.50
+NC  327.85 327.85
+AL  muscle_manual
+IT  hypoth_equivalog_domain
+EN  putative DNA modification/repair radical SAM protein
+TP  TIGRFAMs
+CC  This uncharacterized protein of about 400 amino acids in length contains a radical SAM protein in the N-terminal half. Members are present in about twenty percent of prokaryotic genomes, always paired with a member of the conserved hypothetical protein TIGR03915. Roughly forty percent of the members of that family exist as fusions with a uracil-DNA glycosylase-like region, TIGR03914. In DNA, uracil results from deamidation of cytosine, forming U/G mismatches that lead to mutation, and so uracil-DNA glycosylase is a DNA repair enzyme. This indirect connection, and the recurring role or radical SAM protein in modification chemistries, suggest that this protein may act in DNA modification, repair, or both.

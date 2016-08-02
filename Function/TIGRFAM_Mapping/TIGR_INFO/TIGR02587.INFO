@@ -1,0 +1,12 @@
+ID  TIGR02587
+AC  TIGR02587
+DE  putative integral membrane protein TIGR02587
+AU  Haft DH
+TC  183.70 183.70
+NC  89.80 89.80
+AL  clustalw
+IT  hypoth_equivalog
+EN  putative integral membrane protein TIGR02587
+TP  TIGRFAMs
+CC  Members of this family are found in Nostoc sp. PCC 7120, Agrobacterium tumefaciens, Sinorhizobium meliloti, and Gloeobacter violaceus in a conserved two-gene neighborhood. This family, as defined, includes some members of COG4711 but is narrower and strictly bacterial. Members appear to span the membrane seven times.
+DR  COG; COG4711

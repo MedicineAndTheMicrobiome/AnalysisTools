@@ -1,0 +1,17 @@
+ID  thiH
+AC  TIGR02351
+DE  thiazole biosynthesis protein ThiH
+AU  Haft DH
+TC  377.80 377.80
+NC  165.85 165.85
+AL  clustalw_manual
+IT  equivalog
+EN  thiazole biosynthesis protein ThiH
+GS  thiH
+TP  TIGRFAMs
+CC  Members this protein family are the ThiH protein of thiamine biosynthesis, a homolog of the BioB protein of biotin biosynthesis. Genes for the this protein generally are found in operons with other thiamin biosynthesis genes.
+RN  [1]
+RM  14757766
+RT  Thiamine biosynthesis in Escherichia coli: in vitro reconstitution of the thiazole synthase activity.
+RA  Leonardi R, Roach PL.
+RL  J Biol Chem. 2004 Apr 23;279(17):17054-62.

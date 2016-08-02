@@ -1,0 +1,11 @@
+ID  anti_SigH_actin
+AC  TIGR02949
+DE  anti-sigma factor, TIGR02949 family
+AU  Selengut J
+TC  61.15 61.15
+NC  40.70 40.70
+AL  muscle
+IT  hypoth_equivalog
+EN  anti-sigma factor, TIGR02949 family
+TP  TIGRFAMs
+CC  This group of anti-sigma factors are associated in an apparent operon with a family of sigma-70 family sigma factors (TIGR02947).  They and appear by homology, tree building, bidirectional best hits and one-to-a-genome distribution, to represent a conserved family.  This family is restricted to the Actinobacteria.

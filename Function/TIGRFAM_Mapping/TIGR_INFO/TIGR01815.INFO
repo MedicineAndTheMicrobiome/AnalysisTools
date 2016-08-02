@@ -1,0 +1,12 @@
+ID  TrpE-clade3
+AC  TIGR01815
+DE  anthranilate synthase
+AU  Selengut J
+TC  739.15 739.15
+NC  432.45 432.45
+AL  clustalw
+IT  equivalog
+EN  anthranilate synthase, alpha proteobacterial clade
+EC  4.1.3.27
+TP  TIGRFAMs
+CC  This model represents a small clade of anthranilate synthases from alpha proteobacteria and Nostoc (a cyanobacterium).  This enzyme is the first step in the pathway for the biosynthesis of tryprophan from chorismate.

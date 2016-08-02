@@ -1,0 +1,11 @@
+ID  cognate_SipW
+AC  TIGR04088
+DE  SipW-cognate class signal peptide
+AU  Haft DH
+TC  19.00 19.00
+NC  16.00 16.00
+AL  manual
+IT  domain
+EN  SipW-cognate class signal peptide
+TP  TIGRFAMs
+CC  This HMM describes a protein N-terminal domain found regularly in proteins encoded near a variant form of signal peptidase I such as the SipW protein of Bacillus subtilis. Many though not all members are homologs of camelysin (a casein-cleaving metalloprotease) and TasA (CotN), a metalloprotease that is secreted, along with extracellular polysaccharide (EPS), to be the major protein constituent of the Bacillus subtilis biofilm matrix. Sequencing from several known TasA/CotN proteins shows the cleavage location to be near the center of the alignment and typical of type I signal peptidases, with small residues at -3 and -1. This domain, therefore, appears to be a special subclass of signal peptide.

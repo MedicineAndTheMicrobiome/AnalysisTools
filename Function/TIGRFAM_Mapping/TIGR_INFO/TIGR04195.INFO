@@ -1,0 +1,18 @@
+ID  S_glycosyl_SunS
+AC  TIGR04195
+DE  peptide S-glycosyltransferase, SunS family
+AU  Haft DH
+TC  350.00 350.00
+NC  250.00 250.00
+AL  muscle_manual
+IT  equivalog
+EN  peptide S-glycosyltransferase, SunS family
+GS  sunS
+EC  2.4.1.-
+TP  TIGRFAMs
+CC  Members of this family include SunS, the S-glycosyltransferase that transfers a sugar (substrate is variable in reconstitution assays) onto the precursor of the glycopeptide sublancin, which once was thought to be a lantibiotic.
+RN  [1]
+RM  PMID:21196935 
+RT  Sublancin is not a lantibiotic but an S-linked glycopeptide. 
+RA  Oman TJ, Boettcher JM, Wang H, Okalibe XN, van der Donk WA 
+RL  Nat Chem Biol. 2011 Feb;7(2):78-80.

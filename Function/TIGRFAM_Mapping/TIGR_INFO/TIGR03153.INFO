@@ -1,0 +1,23 @@
+ID  cytochr_NrfH
+AC  TIGR03153
+DE  cytochrome c nitrite reductase, small subunit
+AU  Haft DH
+TC  134.20 134.20
+NC  75.30 75.30
+AL  muscle
+IT  equivalog
+EN  cytochrome c nitrite reductase, small subunit
+GS  nrfH
+EC  1.7.2.2
+TP  TIGRFAMs
+CC  Members of this protein family are NrfH, a tetraheme cytochrome c. NrfH is the cytochrome c nitrite reductase small subunit, and forms a heterodimer with NrfA, the catalytic subunit. While NrfA can act as a monomer, NrfH can bind to and anchor NrfA in the membrane and enables electron transfer to NrfA from quinones.
+RN  [1]
+RM  PMID: 11722563
+RT  The tetraheme cytochrome c NrfH is required to anchor the cytochrome c nitrite reductase (NrfA) in the membrane of Wolinella succinogenes.
+RA  Simon J, Pisa R, Stein T, Eichler R, Klimmek O, Gross R
+RL  Eur J Biochem. 2001 Nov;268(22):5776-82.
+RN  [2]
+RM  PMID: 10672190
+RT  A NapC/NirT-type cytochrome c (NrfH) is the mediator between the quinone pool and the cytochrome c nitrite reductase of Wolinella succinogenes.
+RA  Simon J, Gross R, Einsle O, Kroneck PM, Kroger A, Klimmek O
+RL  Mol Microbiol. 2000 Feb;35(3):686-96.

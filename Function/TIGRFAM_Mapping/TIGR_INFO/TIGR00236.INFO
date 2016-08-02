@@ -1,0 +1,15 @@
+ID  wecB
+AC  TIGR00236
+DE  UDP-N-acetylglucosamine 2-epimerase
+AU  Haft DH
+TC  210.15 210.15
+NC  69.95 69.95
+AL  clustalw_manual
+IT  equivalog
+EN  UDP-N-acetylglucosamine 2-epimerase
+EC  5.1.3.14
+TP  TIGRFAMs
+CC  This cytosolic enzyme converts UDP-N-acetyl-D-glucosamine to UDP-N-acetyl-D-mannosamine. In E. coli, this is the first step in the pathway of enterobacterial common antigen biosynthesis.
+CC  Members of this orthology group have many gene symbols, often reflecting the overall activity of the pathway and/or operon that includes it. Symbols include epsC (exopolysaccharide C) in Burkholderia solanacerum, cap8P (type 8 capsule P) in Staphylococcus aureus, and nfrC in an older designation based on the effects of deletion on phage N4 adsorption. 
+CC  Epimerase activity was also demonstrated in a bifunctional rat enzyme, for which the N-terminal domain appears to be orthologous. The set of proteins found above the suggested cutoff includes E. coli WecB in one of two deeply branched clusters and the rat UDP-N-acetylglucosamine 2-epimerase domain in the other.
+DR  ECOCYC; EG11451; wecB

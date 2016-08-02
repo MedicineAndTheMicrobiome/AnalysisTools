@@ -1,0 +1,23 @@
+ID  TIGR00043
+AC  TIGR00043
+DE  probable rRNA maturation factor YbeY
+AU  Richardson DL, Haft DH
+TC  42.05 42.05
+NC  38.05 38.05
+AL  clustalw_manual
+IT  equivalog
+EN  probable rRNA maturation factor YbeY
+GS  ybeY
+TP  TIGRFAMs
+CC  This metalloprotein family is represented by a single  member sequence only in nearly every bacterium. Crystallography demonstrated metal-binding activity, possibly to nickel. It is a predicted to be a metallohydrolase, and more recently it was shown that mutants have a ribosomal RNA processing defect.
+DR  HAMAP; MF_00009; 511 of 518
+RN  [1]
+RM  PMID:20807199 
+RT  Role of Escherichia coli YbeY, a highly conserved protein, in rRNA processing. 
+RA  Davies BW, Kohrer C, Jacob AI, Simmons LA, Zhu J, Aleman LM, Rajbhandary UL, Walker GC 
+RL  Mol Microbiol. 2010 Oct;78(2):506-18.
+RN  [2]
+RM  PMID:16511207
+RT  The ybeY protein from Escherichia coli is a metalloprotein.
+RA  Zhan C, Fedorov EV, Shi W, Ramagopal UA, Thirumuruhan R, Manjasetty BA, Almo SC, Fiser A, Chance MR, Fedorov AA
+RL  Acta Crystallogr Sect F Struct Biol Cryst Commun. 2005 Nov 1;61(Pt 11):959-63. Epub 2005 Oct 20.

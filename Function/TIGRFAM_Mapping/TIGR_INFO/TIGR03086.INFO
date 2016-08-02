@@ -1,0 +1,11 @@
+ID  TIGR03086
+AC  TIGR03086
+DE  TIGR03086 family protein
+AU  Haft DH
+TC  83.00 83.00
+NC  56.75 56.75
+AL  clustalw
+IT  hypoth_equivalog
+EN  TIGR03086 family protein
+TP  TIGRFAMs
+CC  This family, like Pfam family PF07398 and TIGRFAMs family TIGR030834, belongs to the larger set of probable enzymes defined in family TIGR03083. Members are found primarily in the Actinobacteria (Mycobacterium, Streptomyces, etc.).  The family is uncharacterized.

@@ -1,0 +1,13 @@
+ID  thr_lead_pep
+AC  TIGR02077
+DE  thr operon leader peptide
+AU  Haft DH
+TC  22.95 22.95
+NC  20.95 20.95
+AL  clustalw_manual
+IT  equivalog
+EN  thr operon leader peptide
+GS  thrL
+TP  TIGRFAMs
+CC  This family consists of examples of the threonine biosynthesis (thr) operon leader peptide, also called the thr operon attenuator. The small gene for this peptide is often missed in genome annotation. It should be looked for in genomes of the proteobacteria, immediately upstream of genes for threonine biosynthesis, typically aspartokinase I/homoserine dehydrogenase, homoserine kinase, and threonine synthase. Transcription of the rest of the Thr operon is attenuated (mostly turned off) unless the ribosome pauses during a stretch of the leader sequence rich in both Ile (made from Thr) and in Thr itself because of the scarcity of  those amino acids at the time. The leader peptide itself, once made, may have no role other than to be degraded. Similar systems exist for some other amino acid biosynthetic operons, such as Trp.
+DR  HAMAP; MF_01907; 23 of 23

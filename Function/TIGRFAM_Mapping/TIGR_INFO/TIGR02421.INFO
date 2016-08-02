@@ -1,0 +1,11 @@
+ID  QEGLA
+AC  TIGR02421
+DE  conserved hypothetical protein
+AU  Haft DH
+TC  338.65 338.65
+NC  158.35 158.35
+AL  clustalw
+IT  hypoth_equivalog
+EN  conserved hypothetical protein
+TP  TIGRFAMs
+CC  Members of this family include a possible metal-binding motif HEXXXH and, nearby, a perfectly conserved motif QEGLA. All members belong to the Proteobacteria, including Agrobacterium tumefaciens and several species of Vibrio and Pseudomonas, and are found in only one copy per chromosome (Vibrio vulnificus, with two chromosomes, has two). The function is unknown.

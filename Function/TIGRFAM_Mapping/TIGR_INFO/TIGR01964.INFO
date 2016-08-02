@@ -1,0 +1,15 @@
+ID  chpXY
+AC  TIGR01964
+DE  CO2 hydration protein
+AU  Haft DH
+TC  293.70 293.70
+NC  266.75 266.75
+AL  clustalw
+IT  subfamily
+EN  CO2 hydration protein
+TP  TIGRFAMs
+CC  This small family of proteins includes paralogs ChpX and ChpY in Synechococcus sp. PCC7942 and other cyanobacteria, associated with distinct NAD(P)H dehydrogenase complexes. These proteins collectively enable light-dependent CO2 hydration and CO2 uptake; loss of both blocks growth at low CO2 concentrations.
+RM  11985719
+RT  Novel gene products associated with NdhD3/D4-containing NDH-1 complexes are involved in photosynthetic CO2 hydration in the cyanobacterium, Synechococcus sp. PCC7942.
+RA  Maeda S, Badger MR, Price GD.
+RL  Mol Microbiol. 2002 Jan;43(2):425-35.

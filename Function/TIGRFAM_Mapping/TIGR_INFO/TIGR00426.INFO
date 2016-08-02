@@ -1,0 +1,14 @@
+ID  TIGR00426
+AC  TIGR00426
+DE  competence protein ComEA helix-hairpin-helix repeat region
+AU  Loftus BJ, Haft DH
+TC  53.10 53.10
+NC  34.50 34.50
+AL  clustalw
+IT  subfamily_domain
+EN  competence protein ComEA helix-hairpin-helix repeat region
+TP  TIGRFAMs
+CC  Members of the subfamily recognized by this model include competence protein ComEA and closely related proteins from a number of species that exhibit competence for transformation by exongenous DNA, including Streptococcus pneumoniae, Bacillus subtilis, Neisseria meningitidis, and Haemophilus influenzae. This model represents a region of two tandem copies of a helix-hairpin-helix domain (PF00633), each about 30 residues in length. Limited sequence similarity can be found among some members of this family N-terminal to the region covered by this model.
+DR  Swissprot; P39694; 
+DR  PFAM; PF00633; Helix-hairpin-helix motif
+RM  98241533

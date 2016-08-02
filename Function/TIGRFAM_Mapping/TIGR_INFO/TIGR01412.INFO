@@ -1,0 +1,15 @@
+ID  tat_substr_1
+AC  TIGR01412
+DE  Tat-translocated enzyme
+AU  Haft DH
+TC  428.00 428.00
+NC  138.20 138.20
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  Tat-translocated enzyme
+TP  TIGRFAMs
+CC  This HMM represents a small family of proteins with a typical Tat (twin-arginine translocation) signal sequence, suggesting that the family is exported in a folded state, perhaps with a bound redox cofactor. Members of this family show homology to Dyp, a dye-decolorizing peroxidase from Geotrichum candidum that lacks any typical heme-binding site.
+RM  10742277
+RT  Efficient heterologous expression in Aspergillus oryzae of a unique dye-decolorizing peroxidase, DyP, of Geotrichum candidum Dec 1.
+RA  Sugano Y, Nakano R, Sasaki K, Shoda M.
+RL  Appl Environ Microbiol 2000 Apr;66(4):1754-8

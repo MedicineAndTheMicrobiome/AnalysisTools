@@ -1,0 +1,12 @@
+ID  arch_L6P
+AC  TIGR03653
+DE  archaeal ribosomal protein L6P
+AU  Haft DH
+TC  185.40 185.40
+NC  183.35 183.35
+AL  clustalw_manual
+IT  equivalog
+EN  archaeal ribosomal protein L6P
+GS  rpl6p
+TP  TIGRFAMs
+CC  Members of this protein family are the archaeal ribosomal protein L6P. The top-scoring proteins not selected by this model are eukaryotic cytosolic ribosomal protein L9. Bacterial ribosomal protein L6 scores lower and is described by a distinct model.

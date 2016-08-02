@@ -1,0 +1,27 @@
+ID  Sigma_B
+AC  TIGR02941
+DE  RNA polymerase sigma-B factor
+AU  Selengut J
+TC  315.00 315.00
+NC  258.90 258.90
+AL  muscle
+IT  equivalog
+EN  RNA polymerase sigma-B factor
+GS  sigB
+TP  TIGRFAMs
+CC  This sigma factor is restricted to certain lineages of the order Bacillales including Staphylococcus [1], Listeria [2] and Bacillus [3].
+RN  [1]
+RM  PMID: 16644280
+RT  The sigma(B) regulon in Staphylococcus aureus and its regulation.
+RA  Pane-Farre J, Jonas B, Forstner K, Engelmann S, Hecker M.
+RL  Int J Med Microbiol. 2006 Apr 25; [Epub ahead of print]
+RN  [2]
+RM  PMID: 15528669
+RT  sigmaB-dependent gene induction and expression in Listeria monocytogenes during osmotic and acid stress conditions simulating the intestinal environment.
+RA  Sue D, Fink D, Wiedmann M, Boor KJ.
+RL  Microbiology. 2004 Nov;150(Pt 11):3843-55. 
+RN  [3]
+RM  PMID: 14702299
+RT  The alternative sigma factor sigmaB of Bacillus cereus: response to stress and role in heat adaptation.
+RA  van Schaik W, Tempelaars MH, Wouters JA, de Vos WM, Abee T.
+RL  J Bacteriol. 2004 Jan;186(2):316-25.

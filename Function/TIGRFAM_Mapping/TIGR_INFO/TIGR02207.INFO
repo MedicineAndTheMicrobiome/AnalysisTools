@@ -1,0 +1,17 @@
+ID  lipid_A_htrB
+AC  TIGR02207
+DE  lipid A biosynthesis lauroyl (or palmitoleoyl) acyltransferase
+AU  Haft DH
+TC  297.80 297.80
+NC  248.25 248.25
+AL  clustalw_manual
+IT  subfamily
+EN  lipid A biosynthesis lauroyl (or palmitoleoyl) acyltransferase
+GS  lpxL
+EC  2.3.1.-
+TP  TIGRFAMs
+CC  This model represents a narrow clade of acyltransferases, nearly all of which transfer a lauroyl group to KDO2-lipid IV-A, a lipid A precursor; these proteins are termed lipid A biosynthesis lauroyl acyltransferase, HtrB. An exception is a closely related paralog of E. coli HtrB, LpxP, which acts in cold shock conditions by transferring a palmitoleoyl rather than lauroyl group to the lipid A precursor. Members of this family are homologous to the family of acyltransferases responsible for the next step in lipid A biosynthesis.
+RM  11830594
+RT  An Escherichia coli mutant lacking the cold shock-induced palmitoleoyltransferase of lipid A biosynthesis: absence of unsaturated acyl chains and antibiotic hypersensitivity at 12 degrees C.
+RA  Vorachek-Warren MK, Carty SM, Lin S, Cotter RJ, Raetz CR.
+RL  J Biol Chem. 2002 Apr 19;277(16):14186-93

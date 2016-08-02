@@ -1,0 +1,15 @@
+ID  glmL_fam
+AC  TIGR01319
+DE  conserved hypothetical protein
+AU  Haft DH
+TC  204.05 204.05
+NC  50.65 50.65
+AL  clustalw
+IT  subfamily
+EN  conserved hypothetical protein
+TP  TIGRFAMs
+CC  This small family includes, so far, an uncharacterized protein from E. coli O157:H7 and GlmL from Clostridium tetanomorphum and Clostridium cochlearium. GlmL is located between the genes for the two subunits, epsilon (GlmE) and sigma (GlmS), of the coenzyme-B12-dependent glutamate mutase (methylaspartate mutase), the first enzyme in a pathway of glutamate fermentation. Members shows significant sequence similarity to the hydantoinase branch of the hydantoinase/oxoprolinase family (PF01968).
+RM  7880251
+RT  Characterization of the coenzyme-B12-dependent glutamate mutase from Clostridium cochlearium produced in Escherichia coli.
+RA  Zelder O, Beatrix B, Leutbecher U, Buckel W.
+RL  Eur J Biochem 1994 Dec 1;226(2):577-85RM  7880251

@@ -1,0 +1,11 @@
+ID  Na_symport_sm
+AC  TIGR03647
+DE  putative solute:sodium symporter small subunit
+AU  Haft DH
+TC  26.05 26.05
+NC  19.45 19.45
+AL  muscle_manual
+IT  subfamily_domain
+EN  putative solute:sodium symporter small subunit
+TP  TIGRFAMs
+CC  Members of this family are highly hydrophobic bacterial proteins of about 90 amino acids in length. Members usually are found immediately upstream (sometimes fused to) a member of the  solute:sodium symporter family, and therefore are a putative sodium:solute symporter small subunit. Members tend to be found in aquatic species, especially those from marine or other high salt environments.

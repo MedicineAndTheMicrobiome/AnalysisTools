@@ -1,0 +1,17 @@
+ID  hutG_amidohyd
+AC  TIGR02017
+DE  N-formylglutamate deformylase
+AU  Haft DH
+TC  278.75 278.75
+NC  127.20 127.20
+AL  clustalw
+IT  equivalog
+EN  N-formylglutamate amidohydrolase
+GS  hutG
+EC  3.5.1.68
+TP  TIGRFAMs
+CC  In some species, histidine is converted to via urocanate and then formimino-L-glutamate to glutamate in four steps, where the fourth step is conversion of N-formimino-L-glutamate to L-glutamate and formamide. In others, that pathway from formimino-L-glutamate may differ, with the next enzyme being formiminoglutamate hydrolase (HutF) yielding N-formyl-L-glutamate. This HMM represents the enzyme  N-formylglutamate deformylase, also called N-formylglutamate amidohydrolase, which then produces glutamate.
+RM  2842309
+RT  Organization and multiple regulation of histidine utilization genes in Pseudomonas putida.
+RA  Hu L, Phillips AT.
+RL  J Bacteriol. 1988 Sep;170(9):4272-9.

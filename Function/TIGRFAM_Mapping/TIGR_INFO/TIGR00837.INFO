@@ -1,0 +1,14 @@
+ID  araaP
+AC  TIGR00837
+DE  aromatic amino acid transport protein
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  350.00 350.00
+NC  272.15 272.15
+AL  clustalw_manual
+IT  subfamily
+EN  aromatic amino acid transport protein
+TR  2.A.42.1
+TP  TIGRFAMs
+CC  The Hydroxy/Aromatic Amino Acid Permease (HAAAP) Family- tyrosine/tryptophan subfamily (TC 2.A.42.1)
+CC  The HAAAP family includes well characterized aromatic amino acid:H+ symport permeases and hydroxy amino acid permeases. This subfamily is specific for
+CC  aromatic amino acid transporters and includes the tyrosine permease, TyrP, of E. coli, and the tryptophan transporters TnaB and Mtr of E. coli.

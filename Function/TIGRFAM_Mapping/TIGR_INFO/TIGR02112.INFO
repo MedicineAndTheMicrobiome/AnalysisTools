@@ -1,0 +1,15 @@
+ID  cyd_oper_ybgE
+AC  TIGR02112
+DE  cyd operon protein YbgE
+AU  Haft DH
+TC  89.55 89.55
+NC  45.45 45.45
+AL  clustalw
+IT  equivalog
+EN  cyd operon protein YbgE
+TP  TIGRFAMs
+CC  This HMM describes a small protein of unknown function, about  100 amino acids in length, essentially always found in an operon with CydAB, subunits of the cytochrome d terminal oxidase. It appears to be an integral membrane protein. It is found so far only in the Proteobacteria.
+RM  9068659
+RT  Characterization of the tol-pal and cyd region of Escherichia coli K-12: transcript analysis and identification of two new proteins encoded by the cyd operon.
+RA  Muller MM, Webster RE.
+RL  J Bacteriol. 1997 Mar; 179(6): 2077-80.

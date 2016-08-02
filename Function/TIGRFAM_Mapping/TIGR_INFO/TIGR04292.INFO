@@ -1,0 +1,11 @@
+ID  heavy_Cys_GCP
+AC  TIGR04292
+DE  heavy-Cys/GCP-CTERM domain protein
+AU  Haft DH
+TC  200.00 200.00
+NC  90.00 90.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  heavy-Cys/GCP-CTERM domain protein
+TP  TIGRFAMs
+CC  Members of this protein family are restricted to the Pyrococcus and Thermococcus genera of the archaea. Member proteins have a C-terminal, Cys-containing predicted surface anchor domain, where the Cys may be the site of cleavage and lipid attachment (see domain TIGR04288). Members also contain a region crowded with 10 invariant Cys in 60 residues (see domain TIGR04289), possible ligands to some redox cofactor.

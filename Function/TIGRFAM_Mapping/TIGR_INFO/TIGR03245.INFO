@@ -1,0 +1,18 @@
+ID  arg_AOST_alph
+AC  TIGR03245
+DE  arginine/ornithine succinyltransferase, alpha subunit
+AU  Haft DH
+TC  458.80 458.80
+NC  387.70 387.70
+AL  muscle
+IT  equivalog
+EN  arginine/ornithine succinyltransferase, alpha subunit
+GS  aruF
+EC  2.3.1.109
+TP  TIGRFAMs
+CC  In some bacteria, including Pseudomonas aeruginosa, the astB gene (arginine N-succinyltransferase) is replaced by tandem paralogs that form a heterodimer. This heterodimer from P. aeruginosa is characterized as arginine and ornithine N-2 succinyltransferase (AOST). Members of this protein family represent the less widespread paralog, designated AruI, or arginine/ornithine succinyltransferase, alpha subunit.
+RN  [1]
+RM  PMID: 9393691
+RT  Cloning and characterization of the aru genes encoding enzymes of the catabolic arginine succinyltransferase pathway in Pseudomonas aeruginosa.
+RA  Itoh Y
+RL  J Bacteriol. 1997 Dec;179(23):7280-90.

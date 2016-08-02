@@ -1,0 +1,17 @@
+ID  nifL_nitrog
+AC  TIGR02938
+DE  nitrogen fixation negative regulator NifL
+AU  Haft DH
+TC  242.45 242.45
+NC  160.20 160.20
+AL  clustalw
+IT  equivalog
+EN  nitrogen fixation negative regulator NifL
+GS  nifL
+TP  TIGRFAMs
+CC  NifL is a modulator of the nitrogen fixation positive regulator protein NifA, and is therefore a negative regulator. It binds NifA. NifA and NifL are encoded by adjacent genes.
+RN  [1]
+RM  PMID: 16417511
+RT  Role of the central region of NifL in conformational switches that regulate nitrogen fixation.
+RA  Little R, Martinez-Argudo I, Dixon R
+RL  Biochem Soc Trans. 2006 Feb;34(Pt 1):162-4.

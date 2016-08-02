@@ -1,0 +1,18 @@
+ID  polynuc_phos
+AC  TIGR03591
+DE  polyribonucleotide nucleotidyltransferase
+AU  Haft DH
+TC  525.05 525.05
+NC  344.60 344.60
+AL  clustalw_manual
+IT  equivalog
+EN  polyribonucleotide nucleotidyltransferase
+GS  pnp
+EC  2.7.7.8
+TP  TIGRFAMs
+CC  Members of this protein family are polyribonucleotide nucleotidyltransferase, also called polynucleotide phosphorylase. Some members have been shown also to have additional functions as guanosine pentaphosphate synthetase and as poly(A) polymerase (see model TIGR02696 for an exception clade, within this family).
+RN  [1]
+RM  PMID:17965156
+RT  Kinetics of polynucleotide phosphorylase: comparison of enzymes from Streptomyces and Escherichia coli and effects of nucleoside diphosphates.
+RA  Chang SA, Cozad M, Mackie GA, Jones GH
+RL  J Bacteriol. 2008 Jan;190(1):98-106.

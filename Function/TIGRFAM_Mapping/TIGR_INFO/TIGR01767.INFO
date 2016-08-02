@@ -1,0 +1,14 @@
+ID  MTRK
+AC  TIGR01767
+DE  S-methyl-5-thioribose kinase
+AU  Selengut J
+TC  241.65 241.65
+NC  64.15 64.15
+AL  clustalw
+IT  equivalog
+EN  S-methyl-5-thioribose kinase
+GS  mtnK
+EC  2.7.1.100
+TP  TIGRFAMs
+CC  This enzyme, S-methyl-5-thioribose kinase (MtnK) is involved in the methionine salvage pathway in certain bacteria.
+DR  HAMAP; MF_01683; 29 of 30

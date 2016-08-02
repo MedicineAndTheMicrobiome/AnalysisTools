@@ -1,0 +1,13 @@
+ID  S21p
+AC  TIGR00030
+DE  ribosomal protein S21
+AU  Haft DH
+TC  28.95 28.95
+NC  24.50 24.50
+AL  clustalw
+IT  equivalog
+EN  ribosomal protein S21
+GS  rpsU
+TP  TIGRFAMs
+CC  This HMM describes bacterial ribosomal protein S21 and most mitochondrial and chloroplast equivalents.
+DR  HAMAP; MF_00358; 468 of 474

@@ -1,0 +1,16 @@
+ID  ectoine_ehuA
+AC  TIGR03005
+DE  ectoine/hydroxyectoine ABC transporter, ATP-binding protein EhuA
+AU  Haft DH
+TC  345.40 345.40
+NC  345.20 345.20
+AL  muscle
+IT  equivalog
+EN  ectoine/hydroxyectoine ABC transporter, ATP-binding protein
+GS  ehuA
+TP  TIGRFAMs
+CC  Members of this family are the ATP-binding protein of a conserved four gene ABC transporter operon found next to ectoine unilization operons and ectoine biosynthesis operons. Ectoine is a compatible solute that protects enzymes from high osmolarity. It is released by some species in response to hypoosmotic shock, and it is taken up by a number of bacteria as a compatible solute or for consumption. This family shows strong sequence similiarity to a number of amino acid ABC transporter ATP-binding proteins.
+RM  PMID: 15687193
+RT  Ectoine-induced proteins in Sinorhizobium meliloti include an Ectoine ABC-type transporter involved in osmoprotection and ectoine catabolism.
+RA  Jebbar M, Sohn-Bosser L, Bremer E, Bernard T, Blanco C
+RL  J Bacteriol. 2005 Feb;187(4):1293-304.

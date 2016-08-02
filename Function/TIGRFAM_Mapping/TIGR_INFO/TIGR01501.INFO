@@ -1,0 +1,14 @@
+ID  MthylAspMutase
+AC  TIGR01501
+DE  methylaspartate mutase, S subunit
+AU  Haft DH
+TC  135.80 135.80
+NC  66.75 66.75
+AL  clustalw
+IT  equivalog
+EN  methylaspartate mutase, S subunit
+GS  mamA
+EC  5.4.99.1
+TP  TIGRFAMs
+CC  This HMM represents the S (sigma) subunit of methylaspartate mutase (glutamate mutase), a cobalamin-dependent enzyme that catalyzes the first step in a pathway of glutamate fermentation.
+DR  HAMAP; MF_00526; 13 of 13

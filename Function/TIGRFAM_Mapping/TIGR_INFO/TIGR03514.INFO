@@ -1,0 +1,16 @@
+ID  GldB_lipo
+AC  TIGR03514
+DE  gliding motility-associated lipoprotein GldB
+AU  Selengut J
+TC  317.20 317.20
+NC  302.35 302.35
+AL  muscle
+IT  equivalog
+EN  gliding motility-associated lipoprotein GldB
+GS  gldB
+TP  TIGRFAMs
+CC  RN  [1]
+CC  RM  PMID:10648514 
+CC  RT  Cloning and characterization of the Flavobacterium johnsoniae gliding-motility genes gldB and gldC. 
+CC  RA  Hunnicutt DW, McBride MJ 
+CC  RL  J Bacteriol. 2000 Feb;182(4):911-8.

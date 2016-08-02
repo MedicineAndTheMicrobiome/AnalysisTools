@@ -1,0 +1,14 @@
+ID  pyrH_arch
+AC  TIGR02076
+DE  putative uridylate kinase
+AU  Haft DH
+TC  158.05 158.05
+NC  114.50 114.50
+AL  clustalw
+IT  hypoth_equivalog
+EN  uridylate kinase, putative
+GS  pyrH
+EC  2.7.4.-
+TP  TIGRFAMs
+CC  This family consists of the archaeal and spirochete proteins  most closely related to bacterial uridylate kinases (TIGR02075), an enzyme involved in pyrimidine biosynthesis. Members are likely, but not known, to be functionally equivalent to their bacterial counterparts. However, substantial sequence differences suggest that regulatory mechanisms may be different; the bacterial form is allosterically regulated by GTP.
+DR  HAMAP; MF_01220; 46 of 538

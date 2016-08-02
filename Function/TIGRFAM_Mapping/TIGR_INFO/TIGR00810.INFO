@@ -1,0 +1,27 @@
+ID  secG
+AC  TIGR00810
+DE  preprotein translocase, SecG subunit
+AU  Haft DH
+TC  30.85 30.85
+NC  27.80 27.80
+AL  muscle_manual
+IT  equivalog
+EN  protein translocase, SecG subunit
+GS  secG
+TP  TIGRFAMs
+CC  This family of proteins forms a complex with SecY and SecE. SecA then recruits the SecYEG complex to form an active protein translocation channel.
+RN  [1]
+RM  PMID:10698927
+RT  SecYEG assembles into a tetramer to form the active protein translocation channel.
+RA  Manting EH, van Der Does C, Remigy H, Engel A, Driessen AJ
+RL  EMBO J. 2000 Mar 1;19(5):852-61.
+RN  [2]
+RM  PMID:10074070
+RT  Functional identification of the product of the Bacillus subtilis yvaL gene as a SecG homologue.
+RA  van Wely KH, Swaving J, Broekhuizen CP, Rose M, Quax WJ, Driessen AJ
+RL  J Bacteriol. 1999 Mar;181(6):1786-92.
+RN  [3]
+RM  PMID:10954595
+RT  Re-annotating the Mycoplasma pneumoniae genome sequence: adding value, function and reading frames.
+RA  Dandekar T, Huynen M, Regula JT, Ueberle B, Zimmermann CU, Andrade MA, Doerks T, Sanchez-Pulido L, Snel B, Suyama M, Yuan YP, Herrmann R, Bork P
+RL  Nucleic Acids Res. 2000 Sep 1;28(17):3278-88.

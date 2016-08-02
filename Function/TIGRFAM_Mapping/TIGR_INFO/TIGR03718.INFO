@@ -1,0 +1,21 @@
+ID  R_switched_Alx
+AC  TIGR03718
+DE  integral membrane protein, TerC family
+AU  Haft DH
+TC  246.40 246.40
+NC  149.25 149.25
+AL  muscle_manual
+IT  subfamily
+EN  integral membrane protein, TerC family
+TP  TIGRFAMs
+CC  Rfam model RF00080 describes a structured RNA element called the yybP-ykoY leader, or SraF, which may precede one or several genes in a genome. Members of this highly hydrophobic protein family often are preceded by a yybP-ykoY leader, which may serve as a riboswitch. From the larger group of TerC homologs (PF03741), this subfamily contains TerC itself from Alcaligenes sp. plasmid IncHI2 pMER610 and from Proteus mirabilis. It also contains the alkaline-inducible E. coli protein Alx, which unlike the two TerC examples is preceded by a yybP-ykoY leader.
+RN  [1]
+RM  PMID:3049247
+RT  The nucleotide sequence of a plasmid determinant for resistance to tellurium anions.
+RA  Jobling MG, Ritchie DA
+RL  Gene. 1988 Jun 30;66(2):245-58.
+RN  [2]
+RM  PMID:12724390
+RT  An inducible tellurite-resistance operon in Proteus mirabilis.
+RA  Toptchieva A, Sisson G, Bryden LJ, Taylor DE, Hoffman PS
+RL  Microbiology. 2003 May;149(Pt 5):1285-95.

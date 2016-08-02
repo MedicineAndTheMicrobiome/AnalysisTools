@@ -1,0 +1,18 @@
+ID  spore_0_A
+AC  TIGR02875
+DE  sporulation transcription factor Spo0A
+AU  Haft DH
+TC  200.00 195.00
+NC  180.00 180.00
+AL  clustalw
+IT  equivalog
+EN  sporulation transcription factor Spo0A
+GS  spo0A
+TP  TIGRFAMs
+CC  Spo0A, the stage 0 sporulation protein A, is a transcription factor critical for the initiation of sporulation. It contains a response regulator receiver domain (PF00072). In Bacillus subtilis, it works together with response regulator Spo0F and the phosphotransferase Spo0B, both of which are missing from at least some sporulating species and thus not part of the endospore forming bacteria minimal gene set. Spo0A, however, is universal among endospore-forming species.
+DR  PFAM; PF00072; Response_reg
+RN  [1]
+RM  16420367
+RT  Phosphorylation and functional analysis of the sporulation initiation factor Spo0A from Clostridium botulinum.
+RA  Worner K, Szurmant H, Chiang C, Hoch JA.
+RL  Mol Microbiol. 2006 Feb;59(3):1000-12.

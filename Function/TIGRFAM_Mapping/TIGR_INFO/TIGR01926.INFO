@@ -1,0 +1,11 @@
+ID  peroxid_rel
+AC  TIGR01926
+DE  uncharacterized peroxidase-related enzyme
+AU  Haft DH
+TC  81.80 81.80
+NC  55.60 55.60
+AL  clustalw
+IT  subfamily
+EN  uncharacterized peroxidase-related enzyme
+TP  TIGRFAMs
+CC  This protein family with length of about 200 amino acids. One member, from Myxococcus xanthus, is a selenoprotein, with an otherwise conserved Cys replaced by Sec. This family is drawn narrowly enough to suggest that These proteins contain a domain described by TIGR00778, with a CxxCxxxHxxxxxxxG motif. Some members of that family are known to act as peroxidases or correlate with resistance to oxidative stress.

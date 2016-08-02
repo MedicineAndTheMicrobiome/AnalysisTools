@@ -1,0 +1,12 @@
+ID  GRASP_SAV_5884
+AC  TIGR04187
+DE  ATP-grasp ribosomal peptide maturase, SAV_5884 family
+AU  Haft DH
+TC  350.00 350.00
+NC  325.00 325.00
+AL  muscle_manual
+IT  subfamily
+EN  ATP-grasp ribosomal peptide maturase, SAV_5884 family
+GS  tgmB
+TP  TIGRFAMs
+CC  Members of this protein family are ATP-grasp ligase family enzymes that regularly occur in a contexts with a methyltransferase and a putative ribosomally translated post-translationally modified peptide precursor. Because of this conserved gene neighborhood and close sequence similarity to ATP-grasp enzymes from microviridin/marinostatin biosynthesis cassettes, this enzyme is suggested also to serve as a peptide maturase.

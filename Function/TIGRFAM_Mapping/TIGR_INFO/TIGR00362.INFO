@@ -1,0 +1,22 @@
+ID  DnaA
+AC  TIGR00362
+DE  chromosomal replication initiator protein DnaA
+AU  Loftus BJ, Haft DH
+TC  343.90 343.90
+NC  184.65 184.65
+AL  clustalw
+IT  equivalog
+EN  chromosomal replication initiator protein DnaA
+GS  dnaA
+TP  TIGRFAMs
+CC  DnaA is involved in DNA biosynthesis; initiation of chromosome replication and can also be transcription regulator. The C-terminal of the family hits the pfam bacterial DnaA (bac_dnaA) domain family. For a review, see Kaguni (2006).
+RN  [1]
+RM  PMID:16753031
+RT  DnaA: controlling the initiation of bacterial DNA replication and more.
+RA  Kaguni JM
+RL  Annu Rev Microbiol. 2006;60:351-75.
+DR  PFAM; PF00308; bac_dnaA;
+DR  PROSITE; PDOC00771;
+DR  ECOCYC; EG10235; dnaA;
+DR  SWISSPROT; P03004; 
+DR  HAMAP; MF_00377; 410 of 419

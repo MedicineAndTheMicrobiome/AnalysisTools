@@ -1,0 +1,16 @@
+ID  pantocin_A_pre
+AC  TIGR04310
+DE  pantocin A family RiPP
+AU  Haft DH
+TC  35.00 35.00
+NC  22.00 21.00
+AL  manual
+IT  subfamily
+EN  pantocin A family RiPP
+TP  TIGRFAMs
+CC  Members of this family are ribosomally-synthesized and posttranslationally-modified peptide (RiPP) precursors about 30 amino acids in length encoded in the vicinity of PaaA and PaaB homologs. Members include PaaP from Pantoea agglomerans, whose central tripeptide EEN appears to be the source of the mature product, pantocin A. Note, however, that the corresponding residues in Photobacterium sp. SKA34 and Photobacterium asymbiotica are EEK rather than EEN. This family, therefore, resembles the PQQ precursor PqqA as a peptide precursor of an extremely small mature product.
+RN  [1]
+RM  PMID:21789243 
+RT  Metabolic versatility and antibacterial metabolite biosynthesis are distinguishing genomic features of the fire blight antagonist Pantoea vagans C9-1. 
+RA  Smits TH, Rezzonico F, Kamber T, Blom J, Goesmann A, Ishimaru CA, Frey JE, Stockwell VO, Duffy B 
+RL  PLoS One. 2011;6(7):e22247.

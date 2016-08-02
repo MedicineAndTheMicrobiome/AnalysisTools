@@ -1,0 +1,22 @@
+ID  FeS_nifS
+AC  TIGR03402
+DE  cysteine desulfurase NifS
+AU  Haft DH
+TC  530.75 530.75
+NC  445.25 445.25
+AL  muscle_manual
+IT  equivalog
+EN  cysteine desulfurase NifS
+GS  nifS
+EC  2.8.1.7
+TP  TIGRFAMs
+CC  Members of this protein family are NifS, one of several related families of cysteine desulfurase involved in iron-sulfur (FeS) cluster biosynthesis. NifS is part of the NIF system, usually associated with other nif genes involved in nitrogenase expression and nitrogen fixation. The protein family is given a fairly broad interpretation here. It includes a clade nearly always found in extended nitrogen fixation genomic regions, plus a second clade more closely related to the first than to IscS and also part of NifS-like/NifU-like systems. This model does not extend to a more distantly clade found in the epsilon proteobacteria such as Helicobacter pylori, also named NifS in the literature, built instead in TIGR03403.
+RN  [1]
+RM  PMID: 10639125
+RT  NifS-directed assembly of a transient [2Fe-2S] cluster within the NifU protein.
+RA  Yuvaniyama P, Agar JN, Cash VL, Johnson MK, Dean DR
+RL  Proc Natl Acad Sci U S A. 2000 Jan 18;97(2):599-604.RN  [2]
+RM  PMID: 15667274
+RT  NifU and NifS are required for the maturation of nitrogenase and cannot replace the function of isc-gene products in Azotobacter vinelandii.
+RA  Johnson DC, Dos Santos PC, Dean DR
+RL  Biochem Soc Trans. 2005 Feb;33(Pt 1):90-3.

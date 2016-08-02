@@ -1,0 +1,17 @@
+ID  type_III_SycN
+AC  TIGR02503
+DE  type III secretion chaperone SycN
+AU  Haft DH
+TC  84.55 84.55
+NC  37.05 37.05
+AL  clustalw_manual
+IT  equivalog
+EN  type III secretion chaperone SycN
+GS  sycN
+TP  TIGRFAMs
+CC  Members of this protein family are part of the machinery of bacterial type III secretion in a number of bacteria that target animal cells. In the well-studied system from Yersinia, a complex of this protein (SycN) and YscB (PF07329) acts as a chaperone for the export of YopN (PMID:10094626). YopN then acts to control effector protein secretion, in response to calcium levels, so that secretion occurs only after contact with the targeted eukaryotic cell.
+RN  [1]
+RM  10094626
+RT  A complex composed of SycN and YscB functions as a specific chaperone for YopN in Yersinia pestis.
+RA  Day JB, Plano GV.
+RL  Mol Microbiol. 1998 Nov;30(4):777-88.

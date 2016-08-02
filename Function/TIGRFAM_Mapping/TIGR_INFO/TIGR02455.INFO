@@ -1,0 +1,16 @@
+ID  TreS_stutzeri
+AC  TIGR02455
+DE  trehalose synthase
+AU  Haft DH
+TC  719.40 719.40
+NC  163.40 163.40
+AL  clustalw
+IT  equivalog
+EN  trehalose synthase, Pseudomonas stutzeri type
+GS  treS
+EC  5.4.99.16
+TP  TIGRFAMs
+CC  Trehalose synthase catalyzes a one-step conversion of maltose to trehalose. This is an alternative to the OtsAB and TreYZ pathways. This family includes a characterized example from Pseudomonas stutzeri plus very closely related sequences from other Pseudomonads. Cutoff scores are set to find a more distantly related sequence from Desulfovibrio vulgaris, likely to be functionally equivalent, between trusted and noise limits.
+RM  15654636
+RT  Cloning and expression of a trehalose synthase from Pseudomonas stutzeri CJ38 in Escherichia coli for the production trehalose.
+RA  Lee JH, Lee KH, Kim CG, Lee SY, Kim GJ, Park YH, Chung SO.

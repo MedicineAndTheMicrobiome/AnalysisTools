@@ -1,0 +1,16 @@
+ID  thermosome_arch
+AC  TIGR02339
+DE  thermosome, various subunits, archaeal
+AU  Haft DH
+TC  671.10 671.10
+NC  539.80 539.80
+AL  clustalw_manual
+IT  subfamily
+EN  thermosome, various subunits, archaeal
+TP  TIGRFAMs
+CC  Thermosome is the name given to the archaeal rather than eukaryotic form of the group II chaperonin (counterpart to the group I chaperonin, GroEL/GroES, in bacterial), a torroidal, ATP-dependent molecular chaperone that assists in the folding or refolding of nascent or denatured proteins. Various homologous subunits, one to five per archaeal genome, may be designated alpha, beta, etc., but phylogenetic analysis does not show distinct alpha subunit and beta subunit lineages traceable to ancient paralogs.
+RN  [1]
+RM  12796498
+RT  Coexistence of group I and group II chaperonins in the archaeon Methanosarcina mazei.
+RA  Klunker D, Haas B, Hirtreiter A, Figueiredo L, Naylor DJ, Pfeifer G, Muller V, Deppenmeier U, Gottschalk G, Hartl FU, Hayer-Hartl M.
+RL  J Biol Chem. 2003 Aug 29;278(35):33256-67.

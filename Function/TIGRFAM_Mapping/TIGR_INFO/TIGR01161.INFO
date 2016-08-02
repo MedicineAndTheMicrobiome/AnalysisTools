@@ -1,0 +1,19 @@
+ID  purK
+AC  TIGR01161
+DE  phosphoribosylaminoimidazole carboxylase, ATPase subunit
+AU  Haft DH
+TC  318.40 318.40
+NC  197.10 197.10
+AL  clustalw
+IT  equivalog_domain
+EN  phosphoribosylaminoimidazole carboxylase, PurK protein
+GS  purK
+EC  4.1.1.21
+TP  TIGRFAMs
+CC  Phosphoribosylaminoimidazole carboxylase is a fusion protein in plants and fungi, but consists of two non-interacting proteins in bacteria, PurK and PurE. This model represents PurK, N5-carboxyaminoimidazole ribonucleotide synthetase, which hydrolyzes ATP and converts AIR to N5-CAIR. PurE converts N5-CAIR to CAIR. In the presence of high concentrations of bicarbonate, PurE is reported able to convert AIR to CAIR directly and without ATP.
+DR  SWISSPROT; P09029; PURK_ECOLI
+DR  ECOCYC; EG10796; purK
+RM  10569930
+RT  Three-dimensional structure of N5-carboxyaminoimidazole ribonucleotide synthetase: a member of the ATP grasp protein superfamily.
+RA  Thoden JB, Kappock TJ, Stubbe J, Holden HM
+RL  Biochemistry 1999 Nov 23;38(47):15480-92

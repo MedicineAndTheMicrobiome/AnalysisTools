@@ -1,0 +1,23 @@
+ID  lpxK
+AC  TIGR00682
+DE  tetraacyldisaccharide 4'-kinase
+AU  Haft DH
+TC  91.95 91.95
+NC  72.90 72.90
+AL  clustalw
+IT  equivalog
+EN  tetraacyldisaccharide 4'-kinase
+GS  lpxK
+EC  2.7.1.130
+TP  TIGRFAMs
+CC  Also called lipid-A 4'-kinase. This essential gene encodes an enzyme in the pathway of lipid A biosynthesis in Gram-negative organisms.  A single copy of this protein is found in Gram-negative bacteria. PSI-BLAST converges on this set of apparent orthologs without identifying any other homologs.
+DR  InterPro; IPR003758
+DR  PFAM; PF02606
+DR  EXPERIMENTAL; EGAD|6890|EC0915; Escherichia coli
+DR  ECOCYC; EG11409; lpxK
+RN  [1]
+RM  98241618
+RT  Accumulation of a lipid A precursor lacking the 4'-phosphate following inactivation of the Escherichia coli lpxK gene.
+RA  Garrett TA, Que NL, Raetz CR
+RL  J Biol Chem 1998 May 15;273(20):12457-65
+DR  HAMAP; MF_00409; 250 of 263

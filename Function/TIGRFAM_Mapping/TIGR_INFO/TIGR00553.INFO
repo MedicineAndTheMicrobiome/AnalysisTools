@@ -1,0 +1,13 @@
+ID  pabB
+AC  TIGR00553
+DE  aminodeoxychorismate synthase, component I
+AU  Selengut J, Haft DH
+TC  328.40 328.40
+NC  327.20 327.20
+IT  equivalog
+EN  aminodeoxychorismate synthase, component I, bacterial clade
+GS  pabB
+EC  2.6.1.85
+TP  TIGRFAMs
+CC  Members of this family, aminodeoxychorismate synthase, component I (PabB), were designated para-aminobenzoate synthase component I until it was recognized that PabC, a lyase, completes the pathway of PABA synthesis. This family is closely related to anthranilate synthase component I (trpE), and both act on chorismate. The clade of PabB enzymes represented by this model includes sequences from Gram-positive and alpha and gamma Proteobacteria as well as Chlorobium, Nostoc, Fusobacterium and Arabidopsis.  A closely related clade of fungal PabB enzymes is identified by TIGR01823, while another bacterial clade of potential PabB enzymes is more closely related to TrpE (TIGR01824).
+DR  ECOCYC; EG10683; pabB;

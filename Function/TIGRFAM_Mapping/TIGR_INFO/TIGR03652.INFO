@@ -1,0 +1,17 @@
+ID  FeS_repair_RIC
+AC  TIGR03652
+DE  iron-sulfur cluster repair di-iron protein
+AU  Haft DH
+TC  204.70 204.70
+NC  99.10 99.10
+AL  clustalw_manual
+IT  equivalog
+EN  iron-sulfur cluster repair di-iron protein
+GS  ric
+TP  TIGRFAMs
+CC  Members of this protein family, designated variously as YftE, NorA, DrnN, and NipC, are di-iron proteins involved in the repair of iron-sulfur clusters. Previously assigned names reflect pleiotropic effects of damage from NO or other oxidative stress when this protein is mutated. The suggested name now is RIC, for Repair of Iron Centers.
+RN  [1]
+RM  PMID:18203837
+RT  Widespread distribution in pathogenic bacteria of di-iron proteins that repair oxidative and nitrosative damage to iron-sulfur centers.
+RA  Overton TW, Justino MC, Li Y, Baptista JM, Melo AM, Cole JA, Saraiva LM
+RL  J Bacteriol. 2008 Mar;190(6):2004-13.

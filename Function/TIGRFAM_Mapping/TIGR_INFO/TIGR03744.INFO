@@ -1,0 +1,11 @@
+ID  traC_PFL_4706
+AC  TIGR03744
+DE  conjugative transfer ATPase, PFL_4706 family
+AU  Haft DH
+TC  520.60 520.60
+NC  450.10 450.10
+AL  muscle_manual
+IT  equivalog
+EN  conjugative transfer ATPase, PFL_4706 family
+TP  TIGRFAMs
+CC  Members of this protein family are predicted ATP-binding proteins apparently associated with DNA conjugal transfer. Members are found both in plasmids and in bacterial chromosomal regions that appear to derive from integrative elements such as conjugative transposons. More distant homologs, outside the scope of this family, include type IV secretion/conjugal transfer proteins such as TraC, VirB4 and TrsE. The granularity of this protein family definition is chosen so as to represent one distinctive clade and act as a marker through which to define and recognize the class of mobile element it serves.

@@ -1,0 +1,18 @@
+ID  BioC
+AC  TIGR02072
+DE  malonyl-acyl carrier protein O-methyltransferase BioC
+AU  Selengut J, Haft DH
+TC  184.95 184.95
+NC  134.85 134.85
+AL  clustalw
+IT  equivalog
+EN  malonyl-acyl carrier protein O-methyltransferase BioC
+GS  bioC
+EC  2.1.1.-
+TP  TIGRFAMs
+CC  This enzyme, which is found in biotin biosynthetic gene clusters in proteobacteria, firmicutes, green-sulfur bacteria, fusobacterium and bacteroides, carries out an enzymatic step prior to the formation of pimeloyl-CoA, namely O-methylation of the malonyl group preferentially while on acyl carrier protein.  The enzyme is recognizable as a methyltransferase by homology.
+RN  [1]
+RM  PMID:22965231 
+RT  The BioC O-methyltransferase catalyzes methyl esterification of malonyl-acyl carrier protein, an essential step in biotin synthesis. 
+RA  Lin S, Cronan JE 
+RL  J Biol Chem. 2012 Oct 26;287(44):37010-20.

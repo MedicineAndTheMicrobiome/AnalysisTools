@@ -1,0 +1,11 @@
+ID  TIGR00295
+AC  TIGR00295
+DE  TIGR00295 family protein
+AU  Haft DH
+TC  172.35 172.35
+NC  87.15 87.15
+AL  clustalw
+IT  hypoth_equivalog
+EN  TIGR00295 family protein
+TP  TIGRFAMs
+CC  This set of orthologs is narrowly defined, comprising proteins found in three Archaea but not in Pyrococcus horikoshii. The closest homologs are other archaeal proteins that appear to be represent distinct orthologous clusters.

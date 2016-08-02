@@ -1,0 +1,16 @@
+ID  rlpA
+AC  TIGR00413
+DE  rare lipoprotein A
+AU  Loftus BJ
+TC  82.15 82.15
+NC  38.55 38.55
+AL  clustalw
+IT  subfamily
+EN  rare lipoprotein A
+GS  rlpA
+TP  TIGRFAMs
+CC  This is a family of prokaryotic proteins with unknown function. Lipoprotein annotation based on the presence of consensus lipoprotein signal sequence. Included in this family is the E. coli putative lipoprotein rlpA.
+DR  Swissprot; P10100;
+DR  ECOCYC; EG10854; 
+DR  PROSITE; PDOC00013;
+RL  J. BACTERIOL. 169:5692-5699(1987)

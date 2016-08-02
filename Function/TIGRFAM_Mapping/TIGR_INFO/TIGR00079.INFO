@@ -1,0 +1,18 @@
+ID  pept_deformyl
+AC  TIGR00079
+DE  peptide deformylase
+AU  Haft DH
+TC  103.95 103.95
+NC  74.15 74.15
+AL  clustalw
+IT  equivalog
+EN  peptide deformylase
+GS  def
+EC  3.5.1.88
+TP  TIGRFAMs
+CC  Peptide deformylase (EC 3.5.1.88), also called polypeptide deformylase, is a metalloenzyme that uses water to release formate from the N-terminal formyl-L-methionine of bacterial and chloroplast peptides. This enzyme should not be confused with formylmethionine deformylase (EC 3.5.1.31) which is active on free N-formyl methionine and has been reported from rat intestine.
+RM  97272005
+RT  Structure-function relationships within the peptide deformylase family. Evidence for a conserved architecture of the active site involving three conserved motifs and a metal ion.
+RA  Meinnel T, Lazennec C, Villoing S, Blanquet S
+RL  J Mol Biol 1997 Apr 4;267(3):749-61 
+DR  HAMAP; MF_00163; 323 of 332

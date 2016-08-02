@@ -1,0 +1,17 @@
+ID  T7SS_EccE
+AC  TIGR03923
+DE  type VII secretion protein EccE
+AU  Haft DH
+TC  108.00 108.00
+NC  42.15 42.15
+AL  muscle_manual
+IT  equivalog_domain
+EN  type VII secretion protein EccE
+GS  eccE
+TP  TIGRFAMs
+CC  This model represents the transmembrane protein EccB of the actinobacterial flavor of type VII secretion systems. Species such as Mycobacterium tuberculosis have several instances of this system per genome, designated EccE1, EccE2, etc. This model represents a conserved core region, and many members have 200 or more additional C-terminal residues.
+RN  [1]
+RM  PMID:19876390
+RT  Systematic genetic nomenclature for type VII secretion systems.
+RA  Bitter W, Houben EN, Bottai D, Brodin P, Brown EJ, Cox JS, Derbyshire K, Fortune SM, Gao LY, Liu J, Gey van Pittius NC, Pym AS, Rubin EJ, Sherman DR, Cole ST, Brosch R
+RL  PLoS Pathog. 2009 Oct;5(10):e1000507. Epub 2009 Oct 30.

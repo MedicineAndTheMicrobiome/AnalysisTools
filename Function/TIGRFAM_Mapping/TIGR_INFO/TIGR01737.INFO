@@ -1,0 +1,14 @@
+ID  FGAM_synth_I
+AC  TIGR01737
+DE  phosphoribosylformylglycinamidine synthase I
+AU  Haft DH
+TC  177.80 177.80
+NC  151.80 151.80
+AL  clustalw
+IT  equivalog
+EN  phosphoribosylformylglycinamidine synthase I
+GS  purQ
+EC  6.3.5.3
+TP  TIGRFAMs
+CC  In some species, phosphoribosylformylglycinamidine synthase is composed of a single polypeptide chain. This HMM describes the PurQ protein of Bacillus subtilis (where PurL, PurQ, and PurS are required for phosphoribosylformylglycinamidine synthase activity) and functionally equivalent proteins from other bacteria and archaea.
+DR  HAMAP; MF_00421; 142 of 143

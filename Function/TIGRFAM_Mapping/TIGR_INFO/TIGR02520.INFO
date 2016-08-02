@@ -1,0 +1,16 @@
+ID  pilus_B_mal_scr
+AC  TIGR02520
+DE  type IVB pilus formation outer membrane protein, R64 PilN family
+AU  Haft DH
+TC  287.65 287.65
+NC  119.10 119.10
+AL  clustalw_manual
+IT  equivalog
+EN  type IVB pilus formation outer membrane protein, R64 PilN family
+TP  TIGRFAMs
+CC  Several related protein families encode outer membrane pore proteins for type II secretion, type III secretion, and type IV pilus formation. This protein family appears to encode a secretin for pilus formation, although it is quite different from PilQ. Members include the PilN lipoprotein of the plasmid R64 thin pilus, a type IV pilus. Scoring between the trusted and noise cutoffs are examples of bundle-forming pilus B (bfpB).
+RN  [1]
+RM  9171405
+RT  The plasmid R64 thin pilus identified as a type IV pilus.
+RA  Kim SR, Komano T.
+RL  J Bacteriol. 1997 Jun;179(11):3594-603.

@@ -1,0 +1,27 @@
+ID  DNA_YbaB_EbfC
+AC  TIGR00103
+DE  DNA-binding protein, YbaB/EbfC family
+AU  Anolik RT, Richardson DL, Haft DH
+TC  49.45 49.45
+NC  47.85 47.85
+AL  clustalw
+IT  equivalog
+EN  DNA-binding protein, YbaB/EbfC family
+TP  TIGRFAMs
+CC  The function of this protein is unknown, but it has been expressed and crystallized. Its gene nearly always occurs next to recR and/or dnaX. It is restricted to Bacteria and the plant Arabidopsis. The plant form contains an additional N-terminal region that may serve as a transit peptide and shows a close relationship to the cyanobacterial member, suggesting that it is a chloroplast protein. Members of this family are found in a single copy per bacterial genome, but are broadly distributed. A member is present even in the minimal gene complement of Mycoplasm genitalium.
+RN  [1]
+RM  PMID:19594923
+RT  DNA-binding by Haemophilus influenzae and Escherichia coli YbaB, members of a widely-distributed bacterial protein family.
+RA  Cooley AE, Riley SP, Kral K, Miller MC, DeMoll E, Fried MG, Stevenson B
+RL  BMC Microbiol. 2009 Jul 13;9:137.
+RN  [2]
+RM  PMID: 12486730
+RT  Crystal structure of YbaB from Haemophilus influenzae (HI0442), a protein of unknown function coexpressed with the recombinational DNA repair protein RecR.
+RA  Lim K, Tempczyk A, Parsons JF, Bonander N, Toedt J, Kelman Z, Howard A, Eisenstein E, Herzberg O
+RL  Proteins. 2003 Feb 1;50(2):375-9.
+RN  [3]
+RM  PMID:16740939
+RT  Borrelia burgdorferi EbfC, a novel, chromosomally encoded protein, binds specific DNA sequences adjacent to erp loci on the spirochete's resident cp32 prophages.
+RA  Babb K, Bykowski T, Riley SP, Miller MC, Demoll E, Stevenson B
+RL  J Bacteriol. 2006 Jun;188(12):4331-9.
+DR  HAMAP; MF_00274; 377 of 383

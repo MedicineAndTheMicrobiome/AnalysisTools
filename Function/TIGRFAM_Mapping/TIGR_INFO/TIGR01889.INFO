@@ -1,0 +1,11 @@
+ID  Staph_reg_Sar
+AC  TIGR01889
+DE  staphylococcal accessory regulator family
+AU  Haft DH, Gill S
+TC  62.60 62.60
+NC  51.75 51.75
+AL  clustalw
+IT  paralog_domain
+EN  staphylococcal accessory regulator family
+TP  TIGRFAMs
+CC  This HMM represents a family of transcriptional regulatory proteins in Staphylococcus aureus and Staphylococcus epidermidis. Some members contain two tandem copies of this region. This family is related to the MarR transcriptional regulator family described by Pfam HMM PF01047.

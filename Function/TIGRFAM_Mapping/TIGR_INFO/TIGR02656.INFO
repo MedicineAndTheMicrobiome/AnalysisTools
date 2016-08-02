@@ -1,0 +1,23 @@
+ID  cyanin_plasto
+AC  TIGR02656
+DE  plastocyanin
+AU  Haft DH
+TC  87.85 87.85
+NC  60.15 60.15
+AL  clustalw_manual
+IT  equivalog
+EN  plastocyanin
+GS  petE
+TP  TIGRFAMs
+CC  Members of this family are plastocyanin, a blue copper protein  related to pseudoazurin, halocyanin, amicyanin, etc. This protein, located in the thylakoid luman, performs electron transport to photosystem I in Cyanobacteria and chloroplasts.
+RN  [1]
+RM  15357880
+RT  Functionally specified protein signatures distinctive for each of the different blue copper proteins.
+RA  Giri AV, Anishetty S, Gautam P.
+RL  BMC Bioinformatics. 2004 Sep 9;5:127.
+RN  [2]
+RM  12773541
+RT  Plastocyanin is indispensable for photosynthetic electron flow in Arabidopsis thaliana.
+RA  Weigel M, Varotto C, Pesaresi P, Finazzi G, Rappaport F, Salamini F, Leister D.
+RL  J Biol Chem. 2003 Aug 15;278(33):31286-9.
+DR  HAMAP; MF_00566; 9 of 10

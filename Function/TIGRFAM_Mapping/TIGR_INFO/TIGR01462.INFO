@@ -1,0 +1,14 @@
+ID  greA
+AC  TIGR01462
+DE  transcription elongation factor GreA
+AU  Haft DH
+TC  139.00 139.00
+NC  130.65 130.65
+AL  clustalw_manual
+IT  subfamily_domain
+EN  transcription elongation factor GreA
+GS  greA
+TP  TIGRFAMs
+CC  The GreA and GreB transcription elongation factors enable to continuation of RNA transcription past template-encoded arresting sites. Among the Proteobacteria, distinct clades of GreA and GreB are found. GreA differs functionally in that it releases smaller oligonucleotides. Because members of the family outside the Proteobacteria resemble GreA more closely than GreB, the GreB clade (TIGR01461) forms a plausible outgroup and the remainder of the GreA/B family, included in this model, is designated GreA.
+CC  In the Chlamydias and some spirochetes, the region described by this HMM is found as the C-terminal region of a much larger protein.
+DR  HAMAP; MF_00105; 206 of 229

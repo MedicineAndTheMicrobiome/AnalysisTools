@@ -1,0 +1,11 @@
+ID  RPT_S_cricet
+AC  TIGR04203
+DE  Streptococcal surface-anchored protein repeat, S. criceti family
+AU  Haft DH
+TC  60.00 35.00
+NC  33.00 33.00
+AL  manual
+IT  repeat
+EN  Streptococcal surface-anchored protein repeat, S. criceti family
+TP  TIGRFAMs
+CC  This HMM describes a repeat sequence that occurs primarily LPXTG-anchored Streptococcus surface proteins, although it does occur elsewhere. It can comprise a major fraction of the length of repeat proteins taht exceed 2000 in length.

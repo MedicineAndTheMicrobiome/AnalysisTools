@@ -1,0 +1,18 @@
+ID  taxol_Phe_23mut
+AC  TIGR04473
+DE  phenylalanine aminomutase (L-beta-phenylalanine forming)
+AU  Haft DH
+TC  1250.00 1250.00
+NC  850.00 850.00
+AL  muscle
+IT  exception
+EN  phenylalanine aminomutase (L-beta-phenylalanine forming)
+GS  pam
+EC  5.4.3.10
+TP  TIGRFAMs
+CC  Members of this family are the phenylalanine aminomutase known from taxol biosynthesis. This enzyme has the MIO prosthetic group (4-methylideneimidazole-5-one), derived from an Ala-Ser-Gly motif. Other MIO enzymes include Phe, Tyr, and His ammonia-lyases. This model serves as an exception to overrule assignments by equivalog model TIGR01226 for phenylalanine ammonia-lyase.
+RN  [1]
+RM  PMID:15494399 
+RT  Cloning, heterologous expression, and characterization of a phenylalanine aminomutase involved in Taxol biosynthesis. 
+RA  Walker KD, Klettke K, Akiyama T, Croteau R 
+RL  J Biol Chem. 2004 Dec 24;279(52):53947-54.

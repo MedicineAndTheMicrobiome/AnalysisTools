@@ -1,0 +1,16 @@
+ID  sel_bind_Methan
+AC  TIGR03884
+DE  selenium-binding protein
+AU  Haft DH
+TC  44.65 44.65
+NC  44.45 44.45
+AL  muscle_manual
+IT  equivalog
+EN  selenium-binding protein
+TP  TIGRFAMs
+CC  This model describes a homopentameric selenium-binding protein with a suggested role in selenium transport and delivery to selenophosphate synthase, the SelD protein. This protein family is closely related to PF01906, but is shorter because of several deleted regions. It is restricted to the archaeal genus Methanococcus.
+RN  [1]
+RM  18650445
+RT  Solution NMR structure of selenium-binding protein from Methanococcus vannielii.
+RA  Suzuki M, Lee DY, Inyamah N, Stadtman TC, Tjandra N
+RL  J Biol Chem. 2008 Sep 19;283(38):25936-43.

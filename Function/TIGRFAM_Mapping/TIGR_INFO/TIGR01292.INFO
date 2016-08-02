@@ -1,0 +1,14 @@
+ID  TRX_reduct
+AC  TIGR01292
+DE  thioredoxin-disulfide reductase
+AU  Haft DH
+TC  343.45 343.45
+NC  285.50 285.50
+AL  clustalw_manual
+IT  equivalog
+EN  thioredoxin-disulfide reductase
+GS  trxB
+EC  1.8.1.9
+TP  TIGRFAMs
+CC  This HMM describes thioredoxin-disulfide reductase, a member of the pyridine nucleotide-disulphide oxidoreductases (PFAM:PF00070).
+DR  PFAM; pyr_redox; Pyridine nucleotide-disulphide oxidoreductase

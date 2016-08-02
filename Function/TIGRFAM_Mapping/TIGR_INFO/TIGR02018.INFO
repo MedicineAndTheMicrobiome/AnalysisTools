@@ -1,0 +1,12 @@
+ID  his_ut_repres
+AC  TIGR02018
+DE  histidine utilization repressor
+AU  Haft DH
+TC  253.20 253.20
+NC  159.85 159.85
+AL  clustalw
+IT  equivalog
+EN  histidine utilization repressor, proteobacterial
+GS  hutC
+TP  TIGRFAMs
+CC  This HMM represents a proteobacterial histidine utilization repressor. It is usually found clustered with the enzymes HutUHIG so that it can regulate its own expression as well. A number of species have several paralogs and may fine-tune the regulation according to levels of degradation intermediates such as urocanate. This family belongs to the larger GntR family of transcriptional regulators.

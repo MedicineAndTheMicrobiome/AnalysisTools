@@ -1,0 +1,17 @@
+ID  GMP_PMI
+AC  TIGR01479
+DE  mannose-1-phosphate guanylyltransferase/mannose-6-phosphate isomerase
+AU  Haft DH
+TC  372.95 372.95
+NC  209.40 209.40
+AL  clustalw_manual
+IT  equivalog
+EN  mannose-1-phosphate guanylyltransferase/mannose-6-phosphate isomerase
+EC  5.3.1.8 2.7.7.13
+TP  TIGRFAMs
+CC  This enzyme is known to be bifunctional, as both mannose-6-phosphate isomerase (EC 5.3.1.8) (PMI) and mannose-1-phosphate guanylyltransferase (EC 2.7.7.22) in Pseudomonas aeruginosa, Xanthomonas campestris, and Gluconacetobacter xylinus. The literature on the enzyme from E. coli attributes mannose-6-phosphate isomerase activity to an adjacent gene, but the present sequence has not been shown to lack the activity. The PMI domain is C-terminal.
+DR  PFAM; PF01050; MannoseP_isomer
+DR  PFAM; PF00483; NTP_transferase
+DR  EXPERIMENTAL; OMNI|NTL03PA03551; Pseudomonas aeruginosa
+DR  EXPERIMENTAL; SP:P29956; Xanthomonas campestris
+DR  EXPERIMENTAL; GP|2569943; Gluconacetobacter xylinus

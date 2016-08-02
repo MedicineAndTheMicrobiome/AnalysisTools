@@ -1,0 +1,18 @@
+ID  addA_Gpos
+AC  TIGR02785
+DE  helicase-exonuclease AddAB, AddA subunit
+AU  Haft DH
+TC  707.65 707.65
+NC  379.80 379.80
+AL  clustalw_manual
+IT  equivalog
+EN  helicase-exonuclease AddAB, AddA subunit, Firmicutes type
+GS  addA
+EC  3.1.-.- 3.6.4.12
+TP  TIGRFAMs
+CC  AddAB, also called RexAB, substitutes for RecBCD in several bacterial lineages. These DNA recombination proteins act before synapse and are particularly important for DNA repair of double-stranded breaks by homologous recombination. The term AddAB is used broadly, with AddA homologous between the Firmicutes (as modeled here) and the alphaproteobacteria, while the partner AddB proteins show no strong homology across the two groups of species.
+RN  [1]
+RM  15547262
+RT  The recombination genes addAB are not restricted to gram-positive bacteria: genetic analysis of the recombination initiation enzymes RecF and AddAB in Rhizobium etli.
+RA  Zuniga-Castillo J, Romero D, Martinez-Salazar JM.
+RL  J Bacteriol. 2004 Dec;186(23):7905-13.

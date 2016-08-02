@@ -1,0 +1,12 @@
+ID  nifN
+AC  TIGR01285
+DE  nitrogenase molybdenum-iron cofactor biosynthesis protein NifN
+AU  Haft DH
+TC  326.80 326.80
+NC  325.30 325.30
+AL  clustalw_manual
+IT  equivalog
+EN  nitrogenase molybdenum-iron cofactor biosynthesis protein NifN
+GS  nifN
+TP  TIGRFAMs
+CC  This protein forms a complex with NifE, and appears as a NifEN in some species. NifEN is a required for producing the molybdenum-iron cofactor of molybdenum-requiring nitrogenases. NifN is closely related to the nitrogenase  molybdenum-iron protein beta chain NifK. This model describes most examples of NifN but excludes some cases, such as the putative NifN of Chlorobium tepidum, for which a separate model may be created.

@@ -1,0 +1,20 @@
+ID  PS_decarb
+AC  TIGR00163
+DE  phosphatidylserine decarboxylase
+AU  Haft DH
+TC  111.75 111.75
+NC  53.25 53.25
+AL  clustalw
+IT  equivalog
+EN  phosphatidylserine decarboxylase precursor
+GS  psd
+EC  4.1.1.65
+TP  TIGRFAMs
+CC  Phosphatidylserine decarboxylase is synthesized as a single chain precursor. Generation of the pyruvoyl active site from a Ser is coupled to cleavage of a Gly-Ser bond between the larger (beta) and smaller (alpha chains). It is an integral membrane protein. A closely related family, possibly also active as phosphatidylserine decarboxylase, falls under model TIGR00164.
+RM  98036105
+RT  Phosphatidylserine decarboxylase.
+RA  Voelker DR
+RL  Biochim Biophys Acta 1997 Sep 4;1348(1-2):236-44 
+DR  InterPro; IPR003817; PS_Dcarbxylase
+DR  PFAM; PF02666; PS_Dcarbxylase
+DR  HAMAP; MF_00663; 22 of 23

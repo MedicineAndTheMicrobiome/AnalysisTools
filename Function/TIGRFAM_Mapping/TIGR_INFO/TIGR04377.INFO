@@ -1,0 +1,18 @@
+ID  myo_inos_iolD
+AC  TIGR04377
+DE  3,5/4-trihydroxycyclohexa-1,2-dione hydrolase
+AU  Haft DH
+TC  715.00 715.00
+NC  695.00 695.00
+AL  muscle_manual
+IT  equivalog
+EN  3,5/4-trihydroxycyclohexa-1,2-dione hydrolase
+GS  iolD
+EC  3.7.1.-
+TP  TIGRFAMs
+CC  Members of this protein family, 3,5/4-trihydroxycyclohexa-1,2-dione hydrolase (iolD), represent one of eight enzymes in a pathway converting myo-inositol to acetyl-CoA. IolD hydrolyzes the cyclic molecule 3D-(3,5/4)-trihydroxycyclohexane-1,2-dione to yield 5-deoxy-D-glucuronic acid. TPP is a cofactor.
+RN  [1]
+RM  PMID:18310071 
+RT  myo-Inositol catabolism in Bacillus subtilis. 
+RA  Yoshida K, Yamaguchi M, Morinaga T, Kinehara M, Ikeuchi M, Ashida H, Fujita Y 
+RL  J Biol Chem. 2008 Apr 18;283(16):10415-24.

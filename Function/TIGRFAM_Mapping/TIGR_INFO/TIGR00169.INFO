@@ -1,0 +1,19 @@
+ID  leuB
+AC  TIGR00169
+DE  3-isopropylmalate dehydrogenase
+AU  Haft DH
+TC  353.20 353.20
+NC  253.75 253.75
+AL  clustalw_manual
+IT  equivalog
+EN  3-isopropylmalate dehydrogenase
+GS  leuB
+EC  1.1.1.85
+TP  TIGRFAMs
+CC  Several NAD- or NADP-dependent dehydrogenases, including 3-isopropylmalate dehydrogenase, tartrate dehydrogenase, and the dimeric forms of isocitrate dehydrogenase, share a nucleotide binding domain unrelated to that of lactate dehydrogenase and its homologs. These enzymes dehydrogenate their substates at a H-C-OH site adjacent to a H-C-COOH site; the latter carbon, now adjacent to a carbonyl group, readily decarboxylates.
+CC  Among these decarboxylating dehydrogenases of hydroxyacids, overall sequence homology indicates evolutionary history rather than actual substrate or cofactor specifity, which may be toggled experimentally by replacement of just a few amino acids. 3-isopropylmalate dehydrogenase is an NAD-dependent enzyme and should have a sequence resembling HGSAPDI around residue 340. The subtrate binding loop should include a sequence resembling E[KQR]X(0,1)LLXXR around residue 115. Other contacts of importance are known from crystallography but not detailed here.
+CC  This HMM will not find all isopropylmalate dehydrogenases; the enzyme from Sulfolobus sp. strain 7 is more similar to mitochondrial NAD-dependent isocitrate dehydrogenases than to other known isopropylmalate dehydrogenases and was omitted to improve the specificity of the model. It scores below the cutoff and below some enzymes known not to be isopropylmalate dehydrogenase.
+DR  PROSITE; PDOC00389;
+RM  97250497
+RT  Protein engineering reveals ancient adaptive replacements in isocitrate dehydrogenase.
+DR  HAMAP; MF_01033; 218 of 219

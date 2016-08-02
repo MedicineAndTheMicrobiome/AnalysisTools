@@ -1,0 +1,17 @@
+ID  PseH
+AC  TIGR03585
+DE  pseudaminic acid biosynthesis N-acetyl transferase
+AU  Selengut J
+TC  93.10 93.10
+NC  81.60 81.60
+AL  muscle
+IT  hypoth_equivalog
+EN  pseudaminic acid biosynthesis N-acetyl transferase
+GS  pseH
+TP  TIGRFAMs
+CC  Sequences in this family are members of the PF00583 (GNAT) superfamily of acetyltransferases and are proposed to perform a N-acetylation step in the process of pseudaminic acid biosynthesis in Campylobacter species [1].  This gene is commonly observed in apparent operons with other genes responsible for the biosynthesis of pseudaminic acid and as a component of flagellar and exopolysaccharide biosynthesis loci.  Significantly, many genomes containing other components of this pathway lack this gene, indicating that some other N-acetyl transferases may be incolved and/or the step is optional, resulting in a non-acetylated pseudaminic acid variant sugar.
+RN  [1]
+RM  PMID:16684771 
+RT  Functional characterization of the flagellar glycosylation locus in Campylobacter jejuni 81-176 using a focused metabolomics approach. 
+RA  McNally DJ, Hui JP, Aubry AJ, Mui KK, Guerry P, Brisson JR, Logan SM, Soo EC 
+RL  J Biol Chem. 2006 Jul 7;281(27):18489-98. Epub 2006 May 9.

@@ -1,0 +1,13 @@
+ID  CycNucDiestase
+AC  TIGR01390
+DE  2',3'-cyclic-nucleotide 2'-phosphodiesterase
+AU  Beanan M
+TC  883.00 883.00
+NC  412.80 412.80
+AL  clustalw
+IT  equivalog
+EN  2',3'-cyclic-nucleotide 2'-phosphodiesterase
+GS  cpdB
+EC  3.1.4.16
+TP  TIGRFAMs
+CC  2',3'-cyclic-nucleotide 2'-phosphodiesterase is a bifunctional enzyme localized to the periplasm of Gram-negative bacteria.  2',3'-cyclic-nucleotide 2'-phosphodiesters are intermediates formed during the hydrolysis of RNA by the ribonuclease I, which is also found to the periplasm, and other enzymes of the RNAse T2 family. Bacteria are unable to transport 2',3'-cyclic-nucleotides into the cytoplasm.   2',3'-cyclic-nucleotide 2'-phosphodiesterase contains 2 active sites which catalyze the reactions that convert the 2',3'-cyclic-nucleotide into a 3'-nucleotide, which is then converted into nucleic acid and phosphate.  Both final products can be transported into the cytoplasm.  Thus, it has been suggested that 2',3'-cyclic-nucleotide 2'-phosphodiesterase has a 'scavenging' function.  Experimental evidence indicates that 2',3'-cyclic-nucleotide 2'-phosphodiesterase enables Yersinia enterocolitica O:8 to grow on 2'3'-cAMP as a sole source of carbon and energy (PMID:11160814).

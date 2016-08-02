@@ -1,0 +1,15 @@
+ID  rgy
+AC  TIGR01054
+DE  reverse gyrase
+AU  Ujwal ML, Haft DH
+TC  471.70 471.70
+NC  469.70 469.70
+AL  clustalw_manual
+IT  equivalog
+EN  reverse gyrase
+GS  rgy
+EC  3.6.4.12 5.99.1.3
+TP  TIGRFAMs
+CC  This model describes reverse gyrase, found in both archaeal and bacterial thermophiles. This enzyme, a fusion of a type I topoisomerase domain and a helicase domain, introduces positive supercoiling to increase the melting temperature of DNA double strands.
+CC  Generally, these gyrases are encoded as a single polypeptide. An exception was found in Methanopyrus kandleri, where enzyme is split within the topoisomerase domain, yielding a heterodimer of gene products designated RgyB and RgyA.
+DR  HAMAP; MF_01125; 19 of 19

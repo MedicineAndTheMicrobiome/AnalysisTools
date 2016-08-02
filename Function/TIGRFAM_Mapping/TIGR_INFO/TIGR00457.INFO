@@ -1,0 +1,14 @@
+ID  asnS
+AC  TIGR00457
+DE  asparagine--tRNA ligase
+AU  Haft DH
+TC  342.60 342.60
+NC  307.25 307.25
+AL  clustalw
+IT  equivalog
+EN  asparaginyl-tRNA synthetase
+GS  asnS
+EC  6.1.1.22
+TP  TIGRFAMs
+CC  In a multiple sequence alignment of representative asparaginyl-tRNA synthetases (asnS), archaeal/eukaryotic type aspartyl-tRNA synthetases (aspS_arch), and bacterial type aspartyl-tRNA synthetases (aspS_bact), there is a striking similarity between asnS and aspS_arch in gap pattern and in sequence, and a striking divergence of aspS_bact. Consequently, a separate model was built for each of the three groups. This HMM, asnS, represents asparaginyl-tRNA synthetases from the three domains of life. Some species lack this enzyme and charge tRNA(asn) by misacylation with Asp, followed by transamidation of Asp to Asn.
+DR  HAMAP; MF_00534; 228 of 232

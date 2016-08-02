@@ -1,0 +1,11 @@
+ID  rSAM_w_lipo
+AC  TIGR04133
+DE  radical SAM enzyme, rSAM/lipoprotein system
+AU  Haft DH
+TC  425.00 425.00
+NC  375.00 375.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  radical SAM enzyme, rSAM/lipoprotein system
+TP  TIGRFAMs
+CC  Members of this protein family are radical SAM enzymes with an additional 4Fe4S cluster-binding C-terminal domain (TIGR04085) shared with PqqE and many other peptide and protein-modifying radical SAM enzymes. All members occur in the context of a predicted lipoprotein that usually is encoded by an adjacent gene.

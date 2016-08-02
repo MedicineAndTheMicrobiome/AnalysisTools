@@ -1,0 +1,15 @@
+ID  lp_hng_hel_AbrB
+AC  TIGR01439
+DE  transcriptional regulator, AbrB family
+AU  Haft DH
+TC  28.30 28.30
+NC  26.15 26.15
+AL  clustalw_manual
+IT  domain
+EN  looped-hinge helix DNA binding domain, AbrB family
+TP  TIGRFAMs
+CC  This DNA-binding domain family includes AbrB, a transition state regulator in Bacillus subtilis, whose DNA-binding domain structure in solution was determined by NMR. The domain binds DNA as a dimer in what is termed a looped-hinge helix fold. Some members of the family have two copies of the domain in tandem. The domain is found usually at the N-terminus of a small protein. This model excludes members of family TIGR02609.
+RM  11101897
+RT  Novel DNA binding domain and genetic regulation model of Bacillus subtilis transition state regulator abrB.
+RA  Vaughn JL, Feher V, Naylor S, Strauch MA, Cavanagh J.
+RL  Nat Struct Biol 2000 Dec;7(12):1139-46

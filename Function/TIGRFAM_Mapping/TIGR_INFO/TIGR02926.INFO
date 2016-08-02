@@ -1,0 +1,13 @@
+ID  AhaH
+AC  TIGR02926
+DE  ATP synthase archaeal, H subunit
+AU  Selengut J
+TC  48.50 48.50
+NC  38.75 38.75
+AL  muscle
+IT  equivalog
+EN  ATP synthase archaeal, H subunit
+GS  ahaH
+EC  3.6.3.14
+TP  TIGRFAMs
+CC  he A1/A0 ATP synthase is homologous to the V-type (V1/V0, vacuolar) ATPase, but functions in the ATP synthetic direction as does the F1/F0 ATPase of bacteria.  The hydrophilic A1 "stalk" complex (AhaABCDEFG) [1] is the site of ATP generation and is coupled to the membrane-embedded proton translocating A0 complex.  It is unclear precisely where AhaH fits into these complexes.

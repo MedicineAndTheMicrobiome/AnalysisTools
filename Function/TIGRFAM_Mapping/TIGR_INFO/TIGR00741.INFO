@@ -1,0 +1,23 @@
+ID  yfiA
+AC  TIGR00741
+DE  ribosomal subunit interface protein
+AU  Haft DH
+TC  40.90 40.90
+NC  29.50 29.50
+AL  clustalw_manual
+IT  equivalog_domain
+EN  ribosomal subunit interface protein
+GS  raiA
+TP  TIGRFAMs
+CC  This model includes a small protein encoded by one of two genes, both downstream of the gene rpoN for sigma 54, whose deletion leads to increased expression from sigma 54-dependent promoters. It also includes the N-terminal half of a light-repressed protein LtrA of Synechococcus PCC 7002 and the N-terminal region (after removal of the transit peptide) of a larger plastid-specific ribosomal protein of spinach.
+CC  The member of this family from E. coli is now recognized as a protein at the interace between ribosomal large and small subunits, with about 1/3 as many copies per cell as the number of ribosomes.
+RN  [1]
+RM  20006236
+RT  A protein residing at the subunit interface of the bacterial ribosome.
+RA  Agafonov DE, Kolb VA, Nazimov IV, Spirin AS
+RL  Proc Natl Acad Sci U S A 1999 Oct 26;96(22):12345-9
+RN  [2]
+RM  90158124
+RT  Mutations in genes downstream of the rpoN gene (encoding sigma 54) of Klebsiella pneumoniae affect expression from sigma 54-dependent promoters.
+RA  Merrick MJ, Coppard JR
+RL  Mol Microbiol 1989 Dec;3(12):1765-75

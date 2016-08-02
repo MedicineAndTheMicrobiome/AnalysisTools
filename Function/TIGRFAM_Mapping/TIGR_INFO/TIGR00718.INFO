@@ -1,0 +1,15 @@
+ID  sda_alpha
+AC  TIGR00718
+DE  L-serine dehydratase, iron-sulfur-dependent, alpha subunit
+AU  Haft DH
+TC  243.20 243.20
+NC  201.50 201.50
+AL  clustalw
+IT  equivalog
+EN  L-serine dehydratase, iron-sulfur-dependent, alpha subunit
+GS  sdaAA
+EC  4.3.1.17
+TP  TIGRFAMs
+CC  This enzyme is also called serine deaminase. L-serine dehydratase converts serine into pyruvate in the gluconeogenesis pathway from serine.  This model describes the alpha chain of an iron-sulfur-dependent L-serine dehydratase, found in Bacillus subtilis. A fairly deep split in a UPGMA tree separates members of this family of alpha chains from the homologous region of single chain forms such as found in Escherichia coli. This family of enzymes is not homologous to the pyridoxal phosphate-dependent threonine deaminases and eukaryotic serine deaminases.
+DR  EXPERIMENTAL; EGAD|154938|165375; Peptostreptococcus asaccharolyticus
+RM  97386436

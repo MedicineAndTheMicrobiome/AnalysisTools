@@ -1,0 +1,11 @@
+ID  TIGR00725
+AC  TIGR00725
+DE  TIGR00725 family protein
+AU  Haft DH
+TC  106.90 106.90
+NC  37.50 37.50
+IT  hypoth_equivalog
+EN  TIGR00725 family protein
+TP  TIGRFAMs
+CC  This model represents one branch of a subfamily of uncharacterized proteins. Both PSI-BLAST and weak hits by this HMM show a low level of similarity and suggest an evolutionary relationship of the subfamily to the DprA/Smf family of DNA-processing proteins involved in chromosomal transformation with foreign DNA. Both Aquifex aeolicus and Mycobacterium leprae have one member in each of two branches of this subfamily, suggesting the branches may have distinct functions. This family is one of several families within the scope of PFAM model PF03641, several members of which are annotated as lysine decarboxylases. That larger family, and the branch described by this model, have a well-conserved motif PGGXGTXXE.
+DR  PFAM; PF03641; Lysine_decarbox

@@ -1,0 +1,12 @@
+ID  aIF-2beta
+AC  TIGR00311
+DE  putative translation initiation factor aIF-2, beta subunit
+AU  Haft DH
+TC  137.65 137.65
+NC  73.10 73.10
+AL  clustalw
+IT  hypoth_equivalog
+EN  translation initiation factor aIF-2, beta subunit, putative
+TP  TIGRFAMs
+CC  The trusted cutoff is set high enough to select only archaeal members. The suggested cutoff is set to include most eukaryotic members but largely exclude the related eIF-5.
+DR  HAMAP; MF_00232; 20 of 35

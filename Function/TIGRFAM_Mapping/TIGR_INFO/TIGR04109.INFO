@@ -1,0 +1,13 @@
+ID  heme_ox_HugZ
+AC  TIGR04109
+DE  heme oxygenase, HugZ family
+AU  Haft DH
+TC  240.00 240.00
+NC  180.00 180.00
+AL  muscle
+IT  equivalog
+EN  heme oxygenase, HugZ family
+GS  hugZ
+EC  1.14.99.3
+TP  TIGRFAMs
+CC  Members of this protein family are HugZ, a class of heme oxygenase that belongs to the PPOX family (PF01243) and lacks homology to the HmuO family (PF01126). Characterized members of this family include HP0318 from Helicobacter pylori and CJ1613c from Campylobacter jejuni. This enzyme releases iron during the conversion of heme to biliverdin.

@@ -1,0 +1,18 @@
+ID  F420_G6P_DH
+AC  TIGR03554
+DE  glucose-6-phosphate dehydrogenase (coenzyme-F420)
+AU  Haft DH
+TC  420.00 420.00
+NC  240.00 240.00
+AL  muscle_manual
+IT  equivalog
+EN  glucose-6-phosphate dehydrogenase (coenzyme-F420)
+GS  fgd
+EC  1.1.98.2
+TP  TIGRFAMs
+CC  This family consists of the F420-dependent glucose-6-phosphate dehydrogenase of Mycobacterium and Nocardia. It shows homology to several other F420-dependent enzymes rather than to the NAD or NADP-dependent glucose-6-phosphate dehydrogenases.
+RN  [1]
+RM  PMID:9555906
+RT  Molecular analysis of the gene encoding F420-dependent glucose-6-phosphate dehydrogenase from Mycobacterium smegmatis.
+RA  Purwantini E, Daniels L
+RL  J Bacteriol. 1998 Apr;180(8):2212-9.

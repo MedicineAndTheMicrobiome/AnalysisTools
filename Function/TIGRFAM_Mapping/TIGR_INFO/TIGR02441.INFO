@@ -1,0 +1,27 @@
+ID  fa_ox_alpha_mit
+AC  TIGR02441
+DE  fatty acid oxidation complex, alpha subunit, mitochondrial
+AU  Rosovitz MJ, Haft DH
+TC  964.65 964.65
+NC  771.75 771.75
+AL  clustalw
+IT  equivalog
+EN  fatty acid oxidation complex, alpha subunit, mitochondrial
+EC  4.2.1.17 1.1.1.35
+TP  TIGRFAMs
+CC  Members represent alpha subunit of mitochondrial multifunctional fatty acid degradation enzyme complex. Subunit activities include: enoyl-CoA hydratase (EC 4.2.1.17) & 3-hydroxyacyl-CoA dehydrogenase (EC 1.1.1.35). Some characterization in human (SP:P40939), pig (SP:Q29554), and rat (SP:Q64428). The beta subunit has activity: acetyl-CoA C-acyltransferase (EC 2.3.1.16).
+RN  [1]
+RM  8135828
+RT  Structural analysis of cDNAs for subunits of human mitochondrial fatty acid beta-oxidation trifunctional protein.
+RA  Kamijo T, Aoyama T, Komiyama A, Hashimoto T.
+RL  Biochem Biophys Res Commun. 1994 Mar 15;199(2):818-25.
+RN  [2]
+RM  7881821
+RT  The large subunit of the pig heart mitochondrial membrane-bound beta-oxidation complex is a long-chain enoyl-CoA hydratase: 3-hydroxyacyl-CoA dehydrogenase bifunctional enzyme.
+RA  Yang SY.
+RL  Comp Biochem Physiol B Biochem Mol Biol. 1994 Dec;109(4):557-66.
+RN  [3]
+RM  8253773
+RT  Molecular cloning of the cDNAs for the subunits of rat mitochondrial fatty acid beta-oxidation multienzyme complex. Structural and functional relationships to other mitochondrial and peroxisomal beta-oxidation enzymes.
+RA  Kamijo T, Aoyama T, Miyazaki J, Hashimoto T.
+RL  J Biol Chem. 1993 Dec 15;268(35):26452-60.

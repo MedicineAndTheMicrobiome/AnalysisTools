@@ -1,0 +1,11 @@
+ID  CDC48
+AC  TIGR01243
+DE  AAA family ATPase, CDC48 subfamily
+AU  Haft DH
+TC  802.65 802.65
+NC  727.30 727.30
+AL  clustalw_manual
+IT  subfamily
+EN  AAA family ATPase, CDC48 subfamily
+TP  TIGRFAMs
+CC  This subfamily of the AAA family ATPases includes two members each from three archaeal species. It also includes yeast CDC48 (cell division control protein 48) and the human ortholog, transitional endoplasmic reticulum ATPase (valosin-containing protein). These proteins in eukaryotes are involved in the budding and transfer of membrane from the transitional endoplasmic reticulum to the Golgi apparatus.

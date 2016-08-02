@@ -1,0 +1,16 @@
+ID  PS_antenn_a_b
+AC  TIGR03041
+DE  chlorophyll a/b binding light-harvesting protein
+AU  Haft DH
+TC  335.00 335.00
+NC  318.80 318.80
+AL  muscle
+IT  subfamily
+EN  chlorophyll a/b binding light-harvesting protein
+TP  TIGRFAMs
+CC  This model represents a family of proteins from the Cyanobacteria, closely homologous to and yet distinct from PbsC, a chlorophyll a antenna protein of photosystem II. Members are not univerally present in Cyanobacteria, while the family has several members per genome in Prochlorococcus marinus, with seven members in a strain adapted to low light conditions. These antenna proteins may deliver light energy to photosystem I and/or photosystem II.
+RN  [1]
+RM  PMID: 8986795
+RT  Independent evolution of the prochlorophyte and green plant chlorophyll a/b light-harvesting proteins.
+RA  La Roche J, van der Staay GW, Partensky F, Ducret A, Aebersold R, Li R, Golden SS, Hiller RG, Wrench PM, Larkum AW, Green BR
+RL  Proc Natl Acad Sci U S A. 1996 Dec 24;93(26):15244-8.

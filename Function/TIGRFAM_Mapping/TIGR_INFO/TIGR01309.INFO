@@ -1,0 +1,13 @@
+ID  L30P_arch
+AC  TIGR01309
+DE  ribosomal protein L30P
+AU  Haft DH
+TC  150.05 150.05
+NC  91.65 91.65
+AL  clustalw_manual
+IT  equivalog
+EN  50S ribosomal protein L30P, archaeal
+GS  rpmD
+TP  TIGRFAMs
+CC  This HMM represents the archaeal ribosomal protein similar to longer (~ 250 residue) eukaryotic 60S ribosomal protein L7 and to the much shorter (~ 60 residue) bacterial 50S ribosomal protein L30. Protein naming follows the SwissProt designation as L30P, while the gene symbol rpmD follows TIGR usage.
+DR  HAMAP; MF_01371; 48 of 535

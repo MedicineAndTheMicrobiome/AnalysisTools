@@ -1,0 +1,35 @@
+ID  MTAP
+AC  TIGR01694
+DE  methylthioadenosine phosphorylase
+AU  Selengut J
+TC  274.85 274.85
+NC  229.80 229.80
+AL  clustalw
+IT  equivalog
+EN  5'-deoxy-5'-methylthioadenosine phosphorylase
+GS  mtnP
+EC  2.4.2.28
+TP  TIGRFAMs
+CC  This model represents the methylthioadenosine phosphorylase found in metazoa, cyanobacteria and a limited number of archaea such as Sulfolobus, Aeropyrum, Pyrobaculum, Pyrococcus, and Thermoplasma.  This enzyme is responsible for the first step in the methionine salvage pathway after the transfer of the amino acid moiety from S-adenosylmethionine.  
+CC  The enzyme from human is well-characterized including a crystal structure [1,2].  A misleading characterization is found for a Sulfolobus solfataricus enzyme [3] which is called a MTAP.  In fact, as uncovered by the genome sequence of S. solfataricus, there are at least two nucleotide phosphorylases and the one found in the MTAP clade is not the one annotated as such.  The sequence in this clade has not been isolated but is likely to be the authentic SsMTAP as it displays all of the conserved active site residues found in the human enzyme [2].  This explains the finding that the characterized enzyme has greater efficiency towards the purines inosine, guanosine and adenosine over MTA.  In fact, this mis-naming of this enzyme has been carried forward to several publications including a crystal stucture [4].
+CC  In between the trusted and noise cutoffs are: 1) several archaeal sequences which appear to contain several residues characteristic of phosphorylases which act on guanosine or inosine (according to the crystal structure of MTAP and alignments).  In any case, these residues are not conserved.  2) sequences from Mycobacterium tuberculosis and Streptomyces coelicolor which have better, although not perfect retention of the active site residues, but considering the general observation that bacteria utilize the MTA/SAH nucleotidase enzyme and a kinase to do this reaction, these have been excluded pending stronger evidence of their function, and 3) a sequence from Drosophila which appears to be a recent divergence (long branch in neighbor-joining trees) and lacks some of the conserved active site residues.
+RN  [1]
+RM  PMID: 8687427
+RT  Purification and characterization of recombinant human 5'-methylthioadenosine phosphorylase: definite identification of coding cDNA.
+RA  Ragione F.D., Takabayashi K., Mastropietro S., Mercurio C., Oliva A., Russo G.L., Pietra V.D., Borriello A., Nobori T., Carson D.A., Zappia V.
+RL  Bioch. Biop. Res. Comm. 223:514-519 (1996)
+RN  [2]
+RM  PMID: 10404592
+RT  The structure of human 5'-deoxy-5'-methylthioadenosine phosphorylase at 1.7 A resolution provides insights into substrate binding and catalysis.
+RA  Appleby TC, Erion MD, Ealick SE.
+RL  Structure Fold Des. 1999 Jun 15;7(6):629-41.
+RN  [3]
+RM  PMID: 7929153
+RT  Purification and characterization of extremely thermophilic and thermostable 5'-methylthioadenosine phosphorylase from the archaeon Sulfolobus solfataricus. Purine nucleoside phosphorylase activity and evidence for intersubunit disulfide bonds.
+RA  Cacciapuoti G, Porcelli M, Bertoldo C, De Rosa M, Zappia V.
+RL  J Biol Chem. 1994 Oct 7;269(40):24762-9.
+RN  [4]
+RM  PMID: 11489901
+RT  Three-dimensional structure of a hyperthermophilic 5'-deoxy-5'-methylthioadenosine phosphorylase from Sulfolobus solfataricus.
+RA  Appleby TC, Mathews II, Porcelli M, Cacciapuoti G, Ealick SE.
+RL  J Biol Chem. 2001 Oct 19;276(42):39232-42.

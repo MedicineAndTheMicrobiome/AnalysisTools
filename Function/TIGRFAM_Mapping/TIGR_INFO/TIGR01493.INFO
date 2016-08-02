@@ -1,0 +1,29 @@
+ID  HAD-SF-IA-v2
+AC  TIGR01493
+DE  HAD hydrolase, family IA, variant 2
+AU  Selengut J
+TC  39.00 39.00
+NC  26.10 26.10
+AL  clustalw
+IT  subfamily
+EN  Haloacid dehalogenase superfamily, subfamily IA, variant 2 with 3rd motif like haloacid dehalogenase
+TP  TIGRFAMs
+CC  This HMM represents part of one structural subfamily of the Haloacid Dehalogenase (HAD) superfamily of aspartate-nucleophile hydrolases.  The superfamily is defined by the presence of three short catalytic motifs [1].  The subfamilies are defined [2] based on the location and the observed or predicted fold of a so-called 'capping domain' [3], or the absence of such a domain.  Subfamily I consists of sequences in which the capping domain is found in between the first and second catalytic motifs.  Subfamily II consists of sequences in which the capping domain is found between the second and third motifs.  Subfamily III sequences have no capping domain in either of these positions.  
+CC  The Subfamily IA and IB capping domains are predicted by PSI-PRED to consist of an alpha helical bundle.  Subfamily I encompasses such a wide region of sequence space (the sequences are highly divergent) that modelling it with a single HMM is impossible, resulting in an overly broad description which allows in many unrelated sequences.  Subfamily IA and IB are separated based on an aparrent phylogenetic bifurcation.  Subfamily IA is still too broad to model, but cannot be further subdivided into large chunks based on phylogenetic trees.  Of the three motifs defining the HAD superfamily, the third has three variant forms [2]: (1) hhhhsDxxx(x)D, (2) hhhhssxxx(x)D and (3) hhhhDDxxx(x)s where _s_ refers to a small amino acid and _h_ to a hydrophobic one.  All three of these variants are found in subfamily IA.  Individual HMMs were made based on seeds exhibiting only one of the variants each.  Variant 2 (this model) is distinctive of the type II haloacid dehalogenases, and nearly all of the sequences are also part of the HAD, type II equivalog model (TIGR01428).  These three variant models were created with the knowledge that there will be overlap among them - this is by design and serves the purpose of eliminating the overlap with models of more distantly related HAD subfamilies caused by an overly broad single model.
+RN [1]
+RM PMID: 7966317
+RT Computer analysis of bacterial haloacid dehalogenases defines a large superfamily of hydrolases with diverse specificity. Application of an iterative approac
+h to database search.
+RA Koonin EV, Tatusov RL.
+RL J Mol Biol 1994 Nov 18;244(1):125-32
+RN [2]
+RM PMID: 11601995
+RT MDP-1 is a new and distinct member of the haloacid dehalogenase family of aspartate-dependent phosphohydrolases.
+RA Selengut, JD
+RL Biochemistry 2001 Oct 23;40(42):12704-11
+RN [3]
+RM PMID: 10956028
+RT The crystal structure of bacillus cereus phosphonoacetaldehyde hydrolase: insight into catalysis of phosphorus bond cleavage and catalytic diversification wi
+thin the HAD enzyme superfamily.
+RA Morais MC, Zhang W, Baker AS, Zhang G, Dunaway-Mariano D, Allen KN.
+RL Biochemistry 2000 Aug 29;39(34):10385-96

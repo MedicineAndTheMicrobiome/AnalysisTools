@@ -1,0 +1,13 @@
+ID  EF-G
+AC  TIGR00484
+DE  translation elongation factor G
+AU  Haft DH
+TC  659.40 659.40
+NC  215.15 215.15
+AL  clustalw
+IT  equivalog
+EN  translation elongation factor EF-G
+GS  fusA
+TP  TIGRFAMs
+CC  After peptide bond formation, this elongation factor of bacteria and organelles catalyzes the translocation of the tRNA-mRNA complex, with its attached nascent polypeptide chain, from the A-site to the P-site of the ribosome. Every completed bacterial genome has at least one copy, but some species have additional EF-G-like proteins. The closest homolog to canonical (e.g. E. coli) EF-G in the spirochetes clusters as if it is derived from mitochondrial forms, while a more distant second copy is also present. Synechocystis PCC6803 has a few proteins more closely related to EF-G than to any other characterized protein. Two of these resemble E. coli EF-G more closely than does the best match from the spirochetes; it may be that both function as authentic EF-G.
+DR  HAMAP; MF_00054; 559 of 618

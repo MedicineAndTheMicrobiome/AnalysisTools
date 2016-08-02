@@ -1,0 +1,11 @@
+ID  chap_CCT_zeta
+AC  TIGR02347
+DE  T-complex protein 1, zeta subunit
+AU  Haft DH
+TC  587.15 587.15
+NC  422.40 422.40
+AL  clustalw
+IT  equivalog
+EN  T-complex protein 1, zeta subunit
+TP  TIGRFAMs
+CC  Members of this family, all eukaryotic, are part of the group II chaperonin complex called CCT (chaperonin containing TCP-1) or TRiC. The archaeal equivalent group II chaperonin is often called the thermosome. Both are somewhat related to the group I chaperonin of bacterial, GroEL/GroES. This family consists exclusively of the CCT zeta chain (part of a paralogous family) from animals, plants, fungi, and other eukaryotes.

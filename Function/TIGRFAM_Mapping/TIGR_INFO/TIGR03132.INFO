@@ -1,0 +1,18 @@
+ID  malonate_mdcB
+AC  TIGR03132
+DE  triphosphoribosyl-dephospho-CoA synthase MdcB
+AU  Haft DH
+TC  282.35 282.35
+NC  279.65 279.65
+AL  muscle
+IT  equivalog
+EN  triphosphoribosyl-dephospho-CoA synthase MdcB
+GS  mdcB
+EC  2.4.2.52
+TP  TIGRFAMs
+CC  This protein acts in cofactor biosynthesis, preparing the coenzyme A derivative that becomes attached to the malonate decarboxylase acyl carrier protein (or delta subunit). The closely related protein CitG of citrate lyase produces the same molecule, but the two families are nonetheless readily separated.
+RN  [1]
+RM  PMID: 11052675
+RT  Biosynthesis of triphosphoribosyl-dephospho-coenzyme A, the precursor of the prosthetic group of malonate decarboxylase.
+RA  Hoenke S, Wild MR, Dimroth P
+RL  Biochemistry. 2000 Oct 31;39(43):13223-32.

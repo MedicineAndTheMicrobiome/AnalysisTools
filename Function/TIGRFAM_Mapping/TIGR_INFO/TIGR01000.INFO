@@ -1,0 +1,12 @@
+ID  bacteriocin_acc
+AC  TIGR01000
+DE  bacteriocin secretion accessory protein
+AU  Loftus BJ
+TC  258.85 258.85
+NC  225.50 225.50
+AL  clustalw_manual
+IT  subfamily
+EN  bacteriocin secretion accessory protein
+GS  mesE
+TP  TIGRFAMs
+CC  This family represents an accessory protein that works with the bacteriocin maturation and ABC transport secretion protein described by TIGR01193.

@@ -1,0 +1,18 @@
+ID  ygeW
+AC  TIGR03316
+DE  knotted carbamoyltransferase YgeW
+AU  Haft DH
+TC  500.00 500.00
+NC  300.00 300.00
+AL  muscle
+IT  equivalog
+EN  knotted carbamoyltransferase YgeW
+GS  ygeW
+EC  2.1.3.-
+TP  TIGRFAMs
+CC  Members of this protein family include the ygeW gene product of Escherichia coli. The function is unknown. Members show homology to ornithine carbamoyltransferase (TIGR00658) and aspartate carbamoyltransferase (carbamoyltransferase), and therefore may belong to the carbamoyltransferases in function. Members often are found in a large, conserved genomic region associated with selenium-dependent molybdenum hydroxylases.
+RN  [1]
+RM  PMID:21557323 
+RT  The ygeW encoded protein from Escherichia coli is a knotted ancestral catabolic transcarbamylase. 
+RA  Li Y, Jin Z, Yu X, Allewell NM, Tuchman M, Shi D 
+RL  Proteins. 2011 Jul;79(7):2327-34. doi: 10.1002/prot.23043.

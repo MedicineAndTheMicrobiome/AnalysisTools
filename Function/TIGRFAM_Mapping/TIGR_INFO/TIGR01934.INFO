@@ -1,0 +1,25 @@
+ID  MenG_MenH_UbiE
+AC  TIGR01934
+DE  ubiquinone/menaquinone biosynthesis methyltransferase
+AU  Selengut J
+TC  158.35 158.35
+NC  112.50 112.50
+AL  clustalw
+IT  subfamily
+EN  ubiquinone/menaquinone biosynthesis methyltransferases
+EC  2.1.1.-
+TP  TIGRFAMs
+CC  This model represents a family of methyltransferases involved in the biosynthesis of menaquinone and ubiqinone.  Some members such as the UbiE enzyme from E. coli [1] are believed to act in both pathways, while others may act in only the menaquinone pathway.  These methyltransferases are members of the UbiE/CoQ family of methyltransferases (PF01209) which also contains ubiquinone methyltransferases and other methyltransferases.
+CC  Members of this clade include a wide distribution of bacteria and eukaryotes, but no archaea.  An outgroup for this clade is provided by the phosphatidylethanolamine methyltransferase (EC 2.1.1.17) from Rhodobacter sphaeroides [2].
+CC  Note that a number of non-orthologous genes which are members of PF03737 have been erroneously annotated as MenG methyltransferases.
+RN  [1]
+RM  PMID: 9045837
+RT  A C-methyltransferase involved in both ubiquinone and menaquinone biosynthesis: isolation and identification of the Escherichia coli ubiE gene.
+RA  Lee PT, Hsu AY, Ha HT, Clarke CF.
+RL  J Bacteriol. 1997 Mar;179(5):1748-54. 
+RN  [2]
+RM  PMID: 8340421
+RT  Isolation and functional expression in Escherichia coli of a gene encoding phosphatidylethanolamine methyltransferase (EC 2.1.1.17) from Rhodobacter sphaeroides.
+RA  Arondel V, Benning C, Somerville CR.
+RL  J Biol Chem. 1993 Jul 25;268(21):16002-8.
+DR  HAMAP; MF_01813; 269 of 275

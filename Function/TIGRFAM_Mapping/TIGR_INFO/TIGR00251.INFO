@@ -1,0 +1,13 @@
+ID  TIGR00251
+AC  TIGR00251
+DE  TIGR00251 family protein
+AU  Loftus BJ
+TC  53.50 53.50
+NC  33.50 33.50
+AL  clustalw
+IT  hypoth_equivalog
+EN  TIGR00251 family protein
+TP  TIGRFAMs
+DR  SwissProt; P52060;
+DR  ECOCYC; EG12981; 
+DR  HAMAP; MF_00634; 77 of 124

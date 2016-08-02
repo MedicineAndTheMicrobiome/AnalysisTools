@@ -1,0 +1,14 @@
+ID  mevDPdecarb
+AC  TIGR01240
+DE  diphosphomevalonate decarboxylase
+AU  Haft DH
+TC  171.35 171.35
+NC  93.05 93.05
+AL  clustalw_manual
+IT  equivalog
+EN  diphosphomevalonate decarboxylase
+GS  mvaD
+EC  4.1.1.33
+TP  TIGRFAMs
+CC  This enzyme catalyzes the last step in the synthesis of isopentenyl diphosphate (IPP) in the mevalonate pathway.
+CC  Alternate names: mevalonate diphosphate decarboxylase; pyrophosphomevalonate decarboxylase

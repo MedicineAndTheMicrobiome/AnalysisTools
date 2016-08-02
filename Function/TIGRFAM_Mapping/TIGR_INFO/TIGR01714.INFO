@@ -1,0 +1,15 @@
+ID  phage_rep_org_N
+AC  TIGR01714
+DE  phage replisome organizer, putative, N-terminal region
+AU  Haft DH
+TC  49.80 49.80
+NC  49.50 49.50
+AL  clustalw_manual
+IT  hypoth_equivalog_domain
+EN  phage replisome organizer, putative, N-terminal region
+TP  TIGRFAMs
+CC  This HMM represents the N-terminal domain of a small family of phage proteins. The protein contains a region of low-complexity sequence that reflects DNA direct repeats able to function as an origin of phage replication. The region covered by this model is N-terminal to the low-complexity region.
+RM  10223975
+RT  Molecular characterization of a phage-encoded resistance system in Lactococcus lactis.
+RA  McGrath S, Seegers JF, Fitzgerald GF, van Sinderen D.
+RL  Appl Environ Microbiol 1999 May;65(5):1891-9

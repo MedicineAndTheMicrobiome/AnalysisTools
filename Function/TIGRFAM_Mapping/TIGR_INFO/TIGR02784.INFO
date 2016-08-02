@@ -1,0 +1,17 @@
+ID  addA_alphas
+AC  TIGR02784
+DE  double-strand break repair helicase AddA
+AU  Haft DH
+TC  860.75 860.75
+NC  357.85 357.85
+AL  clustalw_manual
+IT  equivalog
+EN  double-strand break repair helicase AddA, alphaproteobacterial type
+GS  addA
+TP  TIGRFAMs
+CC  AddAB, also called RexAB, substitutes for RecBCD in several bacterial lineages. These DNA recombination proteins act before synapse and are particularly important for DNA repair  of double-stranded breaks by homologous recombination. The term AddAB is used broadly, with AddA homologous between the alphaproteobacteria (as modeled here) and the  Firmicutes, while the partner AddB proteins show no strong homology across the two groups of species.
+RN  [1]
+RM  15547262
+RT  The recombination genes addAB are not restricted to gram-positive bacteria: genetic analysis of the recombination initiation enzymes RecF and AddAB in Rhizobium etli.
+RA  Zuniga-Castillo J, Romero D, Martinez-Salazar JM.
+RL  J Bacteriol. 2004 Dec;186(23):7905-13.

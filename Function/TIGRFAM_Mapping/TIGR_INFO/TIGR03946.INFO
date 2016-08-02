@@ -1,0 +1,23 @@
+ID  viomycin_VioC
+AC  TIGR03946
+DE  arginine beta-hydroxylase, Fe(II)/alpha-ketoglutarate-dependent
+AU  Haft DH
+TC  418.60 418.60
+NC  216.15 216.15
+AL  muscle
+IT  equivalog
+EN  arginine beta-hydroxylase, Fe(II)/alpha-ketoglutarate-dependent
+GS  vioC
+EC  1.14.-.-
+TP  TIGRFAMs
+CC  Members of this protein family are L-arginine beta-hydroxylase, members of a broader family of enzymes dependent on Fe(II), alpha-ketoglutarate, and molecular oxygen. Enzymes in the broader family but excluded by this model include clavaminate synthase, taurine dioxygenase, and prolyl-4-hydroxylase.
+RN  [1]
+RM  PMID:19490124
+RT  Structural basis for the erythro-stereospecificity of the L-arginine oxygenase VioC in viomycin biosynthesis.
+RA  Helmetag V, Samel SA, Thomas MG, Marahiel MA, Essen LO
+RL  FEBS J. 2009 Jul;276(13):3669-82. Epub 2009 May 26.
+RN  [2]
+RM  PMID:17967013
+RT  CD and MCD of CytC3 and taurine dioxygenase: role of the facial triad in alpha-KG-dependent oxygenases.
+RA  Neidig ML, Brown CD, Light KM, Fujimori DG, Nolan EM, Price JC, Barr EW, Bollinger JM Jr, Krebs C, Walsh CT, Solomon EI
+RL  J Am Chem Soc. 2007 Nov 21;129(46):14224-31. Epub 2007 Oct 30.

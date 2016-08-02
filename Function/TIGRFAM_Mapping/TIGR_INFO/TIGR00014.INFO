@@ -1,0 +1,19 @@
+ID  arsC
+AC  TIGR00014
+DE  arsenate reductase (glutaredoxin)
+AU  Haft DH, Dodson RJ, Richardson DL
+TC  106.05 106.05
+NC  61.55 61.55
+AL  clustalw_manual
+IT  equivalog
+EN  arsenate reductase (glutaredoxin)
+GS  arsC
+EC  1.20.4.1
+TP  TIGRFAMs
+CC  This HMM describes a distinct clade, including ArsC itself, of the broader ArsC family described by Pfam PF03960. This clade is almost completely restricted to the Proteobacteria. 
+CC  An anion-translocating ATPase has been identified as the product of the arsenical resistance operon of resistance plasmid R773. When expressed in Escherichia coli this ATP-driven oxyanion pump catalyses extrusion of the oxyanions arsenite, antimonite and arsenate. The pump is
+CC  composed of two polypeptides, the products of the arsA and arsB genes. The pump alone produces resistance to arsenite and antimonite. This protein, ArsC, catalyzes the reduction of arsenate to arsenite, and thus extends resistance to include arsenate.
+DR  Medline; 1704144;
+RA  Rosen, BP 
+RT  The plasmid-encoded arsenical resistance pump: an anion-translocating ATPase. 
+RL  Res Microbiol 141(3):336-341.

@@ -1,0 +1,15 @@
+ID  pepcterm_polyde
+AC  TIGR03006
+DE  polysaccharide deacetylase family protein, PEP-CTERM locus subfamily
+AU  Haft DH
+TC  276.20 276.20
+NC  147.10 147.10
+AL  muscle
+IT  subfamily
+EN  polysaccharide deacetylase family protein, PEP-CTERM locus subfamily
+TP  TIGRFAMs
+CC  Members of this protein family belong to the family of polysaccharide deacetylases (PF01522). All are found in species that encode the PEP-CTERM/exosortase system predicted to act in protein sorting in a number of Gram-negative bacteria, and are found near the epsH homolog that is the putative exosortase gene. The highest scoring homologs below the trusted cutoff for this model are found in several species of Methanosarcina, an archaeal genus.
+RN  [1]
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD
+RT  Exopolysaccharide-associated protein sorting in environmental organisms by the PEP-CTERM/EpsH system: application of a novel phylogenetic profiling heuristic.
+RL  BMC Biol., in press, 2006

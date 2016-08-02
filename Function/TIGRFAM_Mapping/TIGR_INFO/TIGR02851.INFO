@@ -1,0 +1,24 @@
+ID  spore_V_T
+AC  TIGR02851
+DE  stage V sporulation protein T
+AU  Haft DH
+TC  235.90 235.90
+NC  71.65 71.65
+AL  clustalw
+IT  equivalog
+EN  stage V sporulation protein T
+GS  spoVT
+TP  TIGRFAMs
+CC  Members of this protein family are the stage V sporulation protein T (SpoVT), a protein of the sporulation/germination program in Bacillus subtilis and related species. The amino-terminal 50 amino acids are nearly perfectly conserved across all endospore-forming bacteria. SpoVT is a DNA-binding transcriptional regulator related to AbrB (See PFAM model PF04014).
+DR  SWISSPROT; P37554; Bacillus subtilis
+DR  PFAM; PF04014; SpoVT_AbrB
+RN  [1]
+RM  8755877
+RT  A compartmentalized regulator of developmental gene expression in Bacillus subtilis.
+RA  Bagyan I, Hobot J, Cutting S.
+RL  J Bacteriol. 1996 Aug;178(15):4500-7.
+RN  [2]
+RM  16159768
+RT  Independent and interchangeable multimerization domains of the AbrB, Abh, and SpoVT global regulatory proteins.
+RA  Yao F, Strauch MA.
+RL  J Bacteriol. 2005 Sep;187(18):6354-62.

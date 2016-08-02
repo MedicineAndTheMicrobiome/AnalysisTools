@@ -1,0 +1,19 @@
+ID  cobT_DBIPRT
+AC  TIGR03160
+DE  nicotinate-nucleotide--dimethylbenzimidazole phosphoribosyltransferase
+AU  Haft DH
+TC  319.30 319.30
+NC  137.65 137.65
+AL  muscle_manual
+IT  equivalog
+EN  nicotinate-nucleotide--dimethylbenzimidazole phosphoribosyltransferase
+GS  cobT
+EC  2.4.2.21
+TP  TIGRFAMs
+CC  Members of this family are nicotinate-nucleotide--dimethylbenzimidazole phosphoribosyltransferase, an enzyme of cobalamin biosynthesis.
+DR  PFAM; PF02277; DBI_PRT; Phosphoribosyltransferase
+RN  [1]
+RM  PMID: 11441022
+RT  Structural investigation of the biosynthesis of alternative lower ligands for cobamides by nicotinate mononucleotide: 5,6-dimethylbenzimidazole phosphoribosyltransferase from Salmonella enterica.
+RA  Cheong CG, Escalante-Semerena JC, Rayment I
+RL  J Biol Chem. 2001 Oct 5;276(40):37612-20. Epub 2001 Jul 5.

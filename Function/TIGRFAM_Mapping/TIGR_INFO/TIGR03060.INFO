@@ -1,0 +1,22 @@
+ID  PS_II_psb29
+AC  TIGR03060
+DE  photosystem II biogenesis protein Psp29
+AU  Haft DH
+TC  139.30 139.30
+NC  92.10 92.10
+AL  muscle
+IT  equivalog
+EN  photosystem II biogenesis protein Psp29
+GS  psb29
+TP  TIGRFAMs
+CC  Psp29, originally designated sll1414 in Synechocystis 6803, is found universally in Cyanobacteria and in Arabidopsis. It was isolated and partially sequenced from purified photosystem II (PS II) in Synechocystis. While its function is unknown, mutant studies show an impairment in photosystem II biogenesis and/or stability, rather than in PS II core function.
+RN  [1]
+RM  PMID: 12069591
+RT  Proteomic analysis of a highly active photosystem II preparation from the cyanobacterium Synechocystis sp. PCC 6803 reveals the presence of novel polypeptides.
+RA  Kashino Y, Lauber WM, Carroll JA, Wang Q, Whitmarsh J, Satoh K, Pakrasi HB
+RL  Biochemistry. 2002 Jun 25;41(25):8004-12.
+RN  [2]
+RM  PMID: 16155179
+RT  Psb29, a conserved 22-kD protein, functions in the biogenesis of Photosystem II complexes in Synechocystis and Arabidopsis.
+RA  Keren N, Ohkawa H, Welsh EA, Liberton M, Pakrasi HB
+RL  Plant Cell. 2005 Oct;17(10):2768-81.

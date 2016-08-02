@@ -1,0 +1,13 @@
+ID  HAD-SF-IB
+AC  TIGR01488
+DE  HAD phosphoserine phosphatase-like hydrolase, family IB
+AU  Selengut J
+TC  45.00 45.00
+NC  45.00 45.00
+AL  clustalw_manual
+IT  subfamily
+EN  Haloacid Dehalogenase superfamily, subfamily IB, phosphoserine phosphatase-like
+TP  TIGRFAMs
+CC  This HMM represents a subfamily of the Haloacid Dehalogenase superfamily of aspartate-nucleophile hydrolases.  Subfamily IA, B, C and D are distinguished from the rest of the superfamily by the presence of a variable domain between the first and second conserved catalytic motifs.  In subfamilies IA and IB, this domain consists of an alpha-helical bundle.  It was necessary to model these two subfamilies separately, breaking them at a an apparent phylogenetic bifurcation, so that the resulting model(s) are not so broadly defined that members of subfamily III (which lack the variable domain) are included.
+CC  Subfamily IA includes the enzyme phosphoserine phosphatase (TIGR00338) as well as three hypothetical equivalogs.  Many members of these hypothetical equivalogs have been annotated as PSPase-like or PSPase-family proteins.  In particular, the hypothetical equivalog which appears to be most closely related to PSPase contains only Archaea (while TIGR00338 contains only eukaryotes and bacteria) of which some are annotated as PSPases.  Although this is a reasonable conjecture, none of these sequences has sufficient evidence for this assignment.  If such should be found, this model should be retired while the PSPase model should be broadened to include these sequences.
+DR  HAMAP; MF_01680; 16 of 17

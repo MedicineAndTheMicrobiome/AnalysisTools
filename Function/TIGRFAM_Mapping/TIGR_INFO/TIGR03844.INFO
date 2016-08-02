@@ -1,0 +1,17 @@
+ID  cysteate_syn
+AC  TIGR03844
+DE  cysteate synthase
+AU  Haft DH
+TC  324.90 324.90
+NC  215.80 215.80
+AL  muscle_manual
+IT  equivalog
+EN  cysteate synthase
+EC  2.5.1.76
+TP  TIGRFAMs
+CC  Members of this family are cysteate synthase, an enzyme of alternate pathway to sulfopyruvate, a precursor of coenzyme M.
+RN  [1]
+RM  PMID:19761441
+RT  Convergent evolution of coenzyme M biosynthesis in the Methanosarcinales: cysteate synthase evolved from an ancestral threonine synthase.
+RA  Graham DE, Taylor SM, Wolf RZ, Namboori SC
+RL  Biochem J. 2009 Sep 17.

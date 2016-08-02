@@ -1,0 +1,14 @@
+ID  rpoC_TIGR
+AC  TIGR02386
+DE  DNA-directed RNA polymerase, beta' subunit
+AU  Haft DH
+TC  963.50 963.50
+NC  919.30 919.30
+AL  clustalw_manual
+IT  equivalog
+EN  DNA-directed RNA polymerase, beta' subunit, predominant form
+GS  rpoC
+EC  2.7.7.6
+TP  TIGRFAMs
+CC  Bacteria have a single DNA-directed RNA polymerase, with required subunits that include alpha, beta, and beta-prime. This model describes the predominant architecture of the beta-prime subunit in most bacteria. This model excludes from among the bacterial mostly sequences from the cyanobacteria, where RpoC is replaced by two tandem genes homologous to it but also encoding an additional domain.
+DR  HAMAP; MF_01322; 548 of 579

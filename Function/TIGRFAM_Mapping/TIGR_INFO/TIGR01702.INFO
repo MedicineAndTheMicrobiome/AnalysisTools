@@ -1,0 +1,32 @@
+ID  CO_DH_cata
+AC  TIGR01702
+DE  carbon-monoxide dehydrogenase, catalytic subunit
+AU  Haft DH
+TC  478.00 478.00
+NC  210.55 210.55
+AL  clustalw
+IT  equivalog
+EN  carbon-monoxide dehydrogenase, catalytic subunit
+GS  cooS
+EC  1.2.99.2
+TP  TIGRFAMs
+CC  This HMM represents the carbon-monoxide dehydrogenase catalytic subunit. This protein is related to prismane (also called hybrid cluster protein), a complex whose activity is not yet fully described; the two share similar sets of ligands to unusual metal-containing clusters.
+DR  EXPERIMENTAL; SP|P27989; Clostridium thermoaceticum
+DR  EXPERIMENTAL; SP|P31896; Rhodospirillum rubrum
+DR  EXPERIMENTAL; GP|15826756; Carboxydothermus hydrogenoformans
+DR  EXPERIMENTAL; GP|19915158; Methanosarcina acetivorans str. C2A
+RN  [1]
+RM  PMID:1748656 
+RT  The primary structure of the subunits of carbon monoxide dehydrogenase/acetyl-CoA synthase from Clostridium thermoaceticum. 
+RA  Morton TA, Runquist JA, Ragsdale SW, Shanmugasundaram T, Wood HG, Ljungdahl LG 
+RL  J Biol Chem. 1991 Dec 15;266(35):23824-8.
+RN  [2]
+RM  PMID:1644755 
+RT  Genetic and physiological characterization of the Rhodospirillum rubrum carbon monoxide dehydrogenase system. 
+RA  Kerby RL, Hong SS, Ensign SA, Coppoc LJ, Ludden PW, Roberts GP 
+RL  J Bacteriol. 1992 Aug;174(16):5284-94. 
+RN  [3]
+RM  PMID:11509720 
+RT  Crystal structure of a carbon monoxide dehydrogenase reveals a [Ni-4Fe-5S] cluster. 
+RA  Dobbek H, Svetlitchnyi V, Gremer L, Huber R, Meyer O 
+RL  Science. 2001 Aug 17;293(5533):1281-5.

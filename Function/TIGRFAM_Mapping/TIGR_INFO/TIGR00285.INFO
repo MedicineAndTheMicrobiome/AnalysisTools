@@ -1,0 +1,24 @@
+ID  TIGR00285
+AC  TIGR00285
+DE  DNA-binding protein Alba
+AU  Haft DH, Dodson RJ
+TC  88.25 88.25
+NC  26.25 26.25
+AL  clustalw
+IT  equivalog
+EN  DNA-binding protein Alba
+GS  albA
+TP  TIGRFAMs
+CC  Alba has been shown to bind DNA and affect DNA supercoiling in a temperature dependent manner. It is regulated by acetylation (alba = acetylation lowers binding affinity) by the Sir2 protein. Alba is proposed to play a role in establishment or maintenace of chromatin architecture and thereby in transcription repression.  
+CC  This protein appears so far only in the Archaea, but may be universal there. There is a single member in three of the first four completed archaeal genomes, and a second copy in A. fulgidus. In Sulfolobus shibatae there is a tandem second copy that is poorly conserved and scores below the trusted cutoff; all other members of the family are conserved at greater than 50 % pairwise identity.
+[1]
+RM  10869069 
+RT  An abundant DNA binding protein from the hyperthermophilic archaeon Sulfolobus shibatae affects DNA supercoiling in a temperature-dependent fashion.
+RL  J Bacteriol. 2000 Jul;182(14):3929-33.
+RA  Xue H, Guo R, Wen Y, Liu D, Huang L.
+[2]
+RM  11935028
+RT  The interaction of Alba, a conserved archaeal chromatin protein, with Sir2 and its regulation by acetylation.
+RL  Science. 2002 Apr 5;296(5565):148-51.
+RA  Bell SD, Botting CH, Wardleworth BN, Jackson SP, White MF.
+DR  HAMAP; MF_01122; 29 of 33

@@ -1,0 +1,15 @@
+ID  ispF
+AC  TIGR00151
+DE  2-C-methyl-D-erythritol 2,4-cyclodiphosphate synthase
+AU  Haft DH, Richardson DL
+TC  116.45 116.45
+NC  42.35 42.35
+AL  clustalw_manual
+IT  equivalog_domain
+EN  2-C-methyl-D-erythritol 2,4-cyclodiphosphate synthase
+GS  ispF
+EC  4.6.1.12
+TP  TIGRFAMs
+CC  Members of this protein family are 2C-methyl-D-erythritol 2,4-cyclodiphosphate synthase, the IspF protein of the deoxyxylulose (non-mevalonate) pathway of IPP biosynthesis. This protein occurs as an IspDF bifunctional fusion protein in about 20 percent of bacterial genomes.
+DR  SWISS-PROT; P36663; annotated E. coli entry
+DR  HAMAP; MF_01520; 79 of 79

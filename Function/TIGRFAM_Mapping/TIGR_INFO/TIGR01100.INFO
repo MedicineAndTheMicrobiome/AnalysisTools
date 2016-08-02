@@ -1,0 +1,17 @@
+ID  V_ATP_synt_C
+AC  TIGR01100
+DE  V-type ATPase, C subunit
+AU  Ujwal ML, Paulsen IT
+TC  61.45 61.45
+NC  44.15 44.15
+AL  clustalw
+IT  equivalog
+EN  vacuolar ATP synthase 16 kDa proteolipid subunit
+EC  3.6.3.14
+TP  TIGRFAMs
+CC  This model describes the vacuolar ATP synthase 16 kDa proteolipid subunit in eukaryotes and includes members from diverse groups e.g., fungi, plants, parasites etc.
+CC  The principal role V-ATPases are the acidification of intracellular compartments of eukaryotic cells.
+RT  Identification and characterization of the gene encoding a second proteolipid subunit of human vacuolar H(+)-ATPase
+RA  Nishigori H., Yamada S., Tomura H., Fernald A.A., le Beau M.M., Takeuchi T., Takeda J.
+RL  Genomics 50:222-228(1998). 
+(ATP6F).

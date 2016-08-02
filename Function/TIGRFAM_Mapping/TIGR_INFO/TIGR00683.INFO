@@ -1,0 +1,24 @@
+ID  nanA
+AC  TIGR00683
+DE  N-acetylneuraminate lyase
+AU  Haft DH
+TC  382.00 382.00
+NC  154.10 154.10
+IT  equivalog
+EN  N-acetylneuraminate lyase
+GS  nanA
+EC  4.1.3.3
+TP  TIGRFAMs
+CC  N-acetylneuraminate lyase is also known as N-acetylneuraminic acid aldolase, sialic acid aldolase, or sialate lyase. It is an intracellular enzyme. The structure of this homotetrameric enzyme related to dihydrodipicolinate synthase is known. In Clostridium tertium, the enzyme appears to be in an operon with a secreted sialidase that releases sialic acid from host sialoglycoconjugates. In several E. coli strains, however, this enzyme is responsible for N-acetyl-D-neuraminic acid synthesis for capsule production by condensing N-acetyl-D-mannosamine and pyruvate.
+RN  [1]
+RM  98205111
+RT  Expression in Escherichia coli of the putative N-acetylneuraminate lyase gene (nanA) from Haemophilus influenzae: overproduction, purification, and crystallization.
+RA  Lilley GG, Barbosa JA, Pearce LA
+RL  Protein Expr Purif 1998 Apr;12(3):295-304
+RN  [2]
+RM  99054726
+DR  EXPERIMENTAL; EGAD|29522|EC3225; Escherichia coli
+DR  EXPERIMENTAL; EGAD|27817|HI0142; Haemophilus influenzae
+DR  EXPERIMENTAL; EGAD|150412|160512; Trichomonas vaginalis
+DR  OUTGROUP; EGAD|14906|EC2478; dihydrodipicolinate synthase
+DR  HAMAP; MF_01237; 30 of 49

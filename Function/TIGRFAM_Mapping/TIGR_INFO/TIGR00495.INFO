@@ -1,0 +1,11 @@
+ID  crvDNA_42K
+AC  TIGR00495
+DE  DNA-binding protein, 42 kDa
+AU  Haft DH
+TC  430.05 430.05
+NC  215.85 215.85
+AL  clustalw
+IT  hypoth_equivalog
+EN  42K curved DNA binding protein
+TP  TIGRFAMs
+CC  Proteins identified by this HMM have been identified in a number of species as a nuclear (but not nucleolar) protein with a cell cycle dependence. Various names given to members of this family have included cell cycle protein p38-2G4, DNA-binding protein GBP16, and proliferation-associated protein 1. This protein is closely related to methionine aminopeptidase, a cobolt-binding protein.

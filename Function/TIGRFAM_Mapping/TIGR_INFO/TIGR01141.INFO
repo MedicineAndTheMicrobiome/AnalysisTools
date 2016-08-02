@@ -1,0 +1,17 @@
+ID  hisC
+AC  TIGR01141
+DE  histidinol-phosphate transaminase
+AU  Haft DH
+TC  276.55 276.55
+NC  200.85 200.85
+AL  clustalw_manual
+IT  equivalog
+EN  histidinol-phosphate aminotransferase
+GS  hisC
+EC  2.6.1.9
+TP  TIGRFAMs
+CC  Alternate names: histidinol-phosphate transaminase; imidazole acetol-phosphate transaminase
+CC  Histidinol-phosphate aminotransferase is a pyridoxal-phosphate dependent enzyme.
+DR  PROSITE; PDOC00518
+DR  PFAM; PF00222; Aminotransferases class-II
+DR  HAMAP; MF_01513; 17 of 24

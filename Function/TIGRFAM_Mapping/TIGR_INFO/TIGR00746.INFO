@@ -1,0 +1,20 @@
+ID  arcC
+AC  TIGR00746
+DE  carbamate kinase
+AU  Haft DH, Loftus BJ
+TC  358.25 358.25
+NC  41.85 41.85
+AL  clustalw_manual
+IT  equivalog
+EN  carbamate kinase
+GS  arcC
+EC  2.7.2.2
+TP  TIGRFAMs
+CC  In most species, carbamate kinase works in arginine catabolism and consumes carbamoyl phosphate to convert ADP into ATP. In the pathway in Pyrococcus furiosus, the enzyme acts instead to generate carbamoyl phosphate.
+CC  The seed alignment for this model includes experimentally confirmed examples from a set of phylogenetically distinct species. In a neighbor-joining tree constructed from an alignment of candidate carbamate kinases and several acetylglutamate kinases, the latter group forms a clear outgroup which roots the tree of carbamate kinase-like proteins. This analysis suggests that in E. coli, the ArcC paralog YqeA may be a second isozyme, while the paralog YahI branches as an outlier and is less likely to be an authentic carbamate kinase. The homolog from Mycoplasma pneumoniae likewise branches outside the set containing known carbamate kinases and also scores below the trusted cutoff.
+DR  EXPERIMENTAL; GP|2764613|emb|CAA04684.1||AJ001330; Lactobacillus sake
+DR  EXPERIMENTAL; EGAD|43354|45784; Halobacterium salinarium
+DR  EXPERIMENTAL; EGAD|9324|9129; Pseudomonas aeruginosa
+DR  EXPERIMENTAL; GP|4102922|gb|AAD13336.1||AF017784; Giardia intestinalis
+DR  EXPERIMENTAL; GP|3687419|emb|CAA76780.1||Y17554; Bacillus licheniformis
+RM  99278397

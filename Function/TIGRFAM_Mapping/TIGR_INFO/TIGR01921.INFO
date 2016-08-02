@@ -1,0 +1,17 @@
+ID  DAP-DH
+AC  TIGR01921
+DE  diaminopimelate dehydrogenase
+AU  Selengut J
+TC  180.60 180.60
+NC  87.80 87.80
+AL  clustalw
+IT  equivalog
+EN  diaminopimelate dehydrogenase
+EC  1.4.1.16
+TP  TIGRFAMs
+CC  This model represents the diaminopimelate dehydrogenase enzyme which provides an alternate (shortcut) route of lysine buiosynthesis in Corynebacterium, Bacterioides, Porphyromonas and scattered other species.  The enzyme from Corynebacterium glutamicum has been crystallized and characterized [1].
+RN  [1]
+RM  PMID: 8885833
+RT  Three-dimensional structure of meso-diaminopimelic acid dehydrogenase from Corynebacterium glutamicum.
+RA  Scapin G, Reddy SG, Blanchard JS.
+RL  Biochemistry. 1996 Oct 22;35(42):13540-51.

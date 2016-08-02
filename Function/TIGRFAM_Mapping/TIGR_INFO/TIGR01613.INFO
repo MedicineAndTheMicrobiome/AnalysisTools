@@ -1,0 +1,11 @@
+ID  primase_Cterm
+AC  TIGR01613
+DE  phage/plasmid primase, P4 family, C-terminal domain
+AU  Haft DH, Fouts DE
+TC  108.70 108.70
+NC  99.35 99.35
+AL  clustalw_manual
+IT  subfamily_domain
+EN  phage/plasmid primase, P4 family, C-terminal domain
+TP  TIGRFAMs
+CC  This HMM represents a clade within a larger family of proteins from viruses of bacteria and animals. Members of this family are found in phage and plasmids of bacteria and archaea only. The model describes a domain of about 300 residues, found generally toward the protein C-terminus.

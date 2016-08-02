@@ -1,0 +1,14 @@
+ID  proB
+AC  TIGR01027
+DE  glutamate 5-kinase
+AU  Haft DH, Dodson RJ
+TC  186.00 186.00
+NC  170.15 170.15
+AL  clustalw
+IT  equivalog_domain
+EN  glutamate 5-kinase
+GS  proB
+EC  2.7.2.11
+TP  TIGRFAMs
+CC  Bacterial ProB proteins hit the full length of this model, but the ProB-like domain of  delta 1-pyrroline-5-carboxylate synthetase does not hit the C-terminal 100 residues of this model. The noise cutoff is set low enough to hit delta 1-pyrroline-5-carboxylate synthetase and other partial matches to this family.
+DR  HAMAP; MF_00456; 315 of 318

@@ -1,0 +1,15 @@
+ID  arg_catab_astE
+AC  TIGR03242
+DE  succinylglutamate desuccinylase
+AU  Haft DH
+TC  305.65 305.65
+NC  46.20 46.20
+AL  muscle
+IT  equivalog
+EN  succinylglutamate desuccinylase
+GS  astE
+EC  3.5.1.96
+TP  TIGRFAMs
+CC  Members of this protein family are succinylglutamate desuccinylase, the fifth and final enzyme of the arginine succinyltransferase (AST) pathway for arginine catabolism. This model excludes the related protein aspartoacylase.
+DR  PF04952; AstE_AspA; Succinylglutamate desuccinylase / Aspartoacylase family
+DR  HAMAP; MF_00767; 66 of 73

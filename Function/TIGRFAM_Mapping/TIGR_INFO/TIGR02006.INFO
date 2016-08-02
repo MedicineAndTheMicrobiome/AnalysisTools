@@ -1,0 +1,24 @@
+ID  IscS
+AC  TIGR02006
+DE  cysteine desulfurase IscS
+AU  Haft DH
+TC  643.20 643.20
+NC  621.90 621.90
+AL  clustalw
+IT  equivalog
+EN  cysteine desulfurase IscS
+GS  iscS
+EC  2.8.1.7
+TP  TIGRFAMs
+CC  This HMM represents IscS, one of several cysteine desulfurases from a larger protein family designated (misleadingly, in this case) class V aminotransferases. IscS is one of at least 6 enzymes characteristic of the IscSUA-hscAB-fsx system of iron-sulfur cluster assembly. Scoring almost as well as proteobacterial sequences included in the model are mitochondrial cysteine desulfurases, apparently from an analogous system in eukaryotes. The sulfur, taken from cysteine, may be used in other systems as well, such as tRNA base modification and biosynthesis of other cofactors.
+RN  [1]
+RM  14978044
+RT  Substitutions in an active site loop of Escherichia coli IscS result in specific defects in Fe-S cluster and thionucleoside biosynthesis in vivo.
+RA  Lauhon CT, Skovran E, Urbina HD, Downs DM, Vickery LE.
+RL  J Biol Chem. 2004 May 7;279(19):19551-8.
+RN  [2]
+RM  PMID: 16387657
+RT  Mechanistic insights into sulfur relay by multiple sulfur mediators involved in thiouridine biosynthesis at tRNA wobble positions.                                                                                                                                      
+RA  Ikeuchi Y, Shigi N, Kato J, Nishimura A, Suzuki T
+RL  Mol Cell. 2006 Jan 6;21(1):97-108.
+DR  HAMAP; MF_00331; 93 of 104

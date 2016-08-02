@@ -1,0 +1,13 @@
+ID  hyp_Hser_kinase
+AC  TIGR02535
+DE  proposed homoserine kinase
+AU  Selengut J
+TC  446.30 446.30
+NC  387.10 387.10
+AL  clustalw
+IT  hypoth_equivalog
+EN  proposed homoserine kinase
+TP  TIGRFAMs
+CC  The genes in this family are largely adjacent to genes involved in the biosynthesis of threonine (aspartate kinase, homoserine dehydrogenase and threonine synthase) in genomes which are lacking any other known homoserine kinase, and in which the presence of a homoserine kinase would indicate a complete pathway for the biosynthesis of threonine.  These genes are a member of the (now subfamily, formerly equivalog) TIGR00306 model describing the archaeal form of 2,3-bisphosphoglycerate-independent phosphoglycerate mutase.  All of these are members of a superfamily (PF01676) of metalloenzyme also including phosphopentomutase alkaline phosphatases and sulfatases. 
+CC  The proposal that this family encodes a kinase is based on analogy to phosphomutases which are intramolecular phosphotransferases. A mutase active site could evolve to bring together homoserine and a phosphate donor such as phosphoenolpyruvate resulting in a kinase activity.
+DR  HAMAP; MF_01402; 8 of 47

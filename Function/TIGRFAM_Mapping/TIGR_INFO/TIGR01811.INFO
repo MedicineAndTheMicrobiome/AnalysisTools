@@ -1,0 +1,13 @@
+ID  sdhA_Bsu
+AC  TIGR01811
+DE  succinate dehydrogenase or fumarate reductase, flavoprotein subunit
+AU  Haft DH
+TC  541.35 541.35
+NC  452.65 452.65
+AL  clustalw_manual
+IT  subfamily
+EN  succinate dehydrogenase or fumarate reductase, flavoprotein subunit, Bacillus subtilis subgroup
+GS  sdhA
+EC  1.3.99.1
+TP  TIGRFAMs
+CC  This HMM represents the succinate dehydrogenase flavoprotein subunit as found in the low-GC Gram-positive bacteria and a few other lineages. This enzyme may act in a complete or partial TCA cycle, or act in the opposite direction as fumarate reductase. In some but not all species, succinate dehydrogenase and fumarate reductase may be encoded as separate isozymes.

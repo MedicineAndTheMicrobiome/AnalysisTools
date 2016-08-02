@@ -1,0 +1,22 @@
+ID  OM_YfiO
+AC  TIGR03302
+DE  outer membrane assembly lipoprotein YfiO
+AU  Haft DH
+TC  81.40 81.40
+NC  69.00 69.00
+AL  muscle_manual
+IT  subfamily
+EN  outer membrane assembly lipoprotein YfiO
+GS  yfiO
+TP  TIGRFAMs
+CC  Members of this protein family include YfiO, a near-essential protein of the outer membrane, part of a complex involved in protein insertion into the bacterial outer membrane. Many proteins in this family are annotated as ComL, based on the involvement of this protein in natural transformation with exogenous DNA in Neisseria gonorrhoeae. This protein family shows sequence similarity to, but is distinct from, the tol-pal system protein YbgF (TIGR02795).
+RN  [1]
+RM  PMID: 16824102
+RT  YfiO stabilizes the YaeT complex and is essential for outer membrane protein assembly in Escherichia coli.
+RA  Malinverni JC, Werner J, Kim S, Sklar JG, Kahne D, Misra R, Silhavy TJ
+RL  Mol Microbiol. 2006 Jul;61(1):151-64.
+RN  [2]
+RM  PMID: 8830266
+RT  A novel peptidoglycan-linked lipoprotein (ComL) that functions in natural transformation competence of Neisseria gonorrhoeae.
+RA  Fussenegger M, Facius D, Meier J, Meyer TF
+RL  Mol Microbiol. 1996 Mar;19(5):1095-105.

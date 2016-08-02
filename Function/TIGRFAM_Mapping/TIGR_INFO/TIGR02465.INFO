@@ -1,0 +1,16 @@
+ID  chlorocat_1_2
+AC  TIGR02465
+DE  chlorocatechol 1,2-dioxygenase
+AU  Haft DH
+TC  359.25 359.25
+NC  257.05 257.05
+AL  clustalw
+IT  equivalog
+EN  chlorocatechol 1,2-dioxygenase
+TP  TIGRFAMs
+CC  Members of this protein family are chlorocatechol 1,2-dioxygenase. This protein is closely related to catechol 1,2-dioxygenase, TIGR02439, EC 1.13.11.1. Note that annotated database entries have appeared for the present protein family with the EC number that refers to that of family TIGR02439. This protein acts in pathways of the biodegradation of chlorinated aromatic compounds.
+DR  EXPERIMENTAL; PDB|1S9A_A; Rhodococcus opacus
+RM  9495745
+RT  Evolutionary relationship between chlorocatechol catabolic enzymes from Rhodococcus opacus 1CP and their counterparts in proteobacteria: sequence divergence and functional convergence.
+RA  Eulberg D, Kourbatova EM, Golovleva LA, Schlomann M.
+RL  J Bacteriol. 1998 Mar;180(5):1082-94.

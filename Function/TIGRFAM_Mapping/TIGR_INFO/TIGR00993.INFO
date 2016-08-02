@@ -1,0 +1,16 @@
+ID  3a0901s04IAP86
+AC  TIGR00993
+DE  chloroplast protein import component Toc86/159, G and M domains
+AU  Haft DH, Loftus BJ
+TC  660.70 660.70
+NC  204.75 204.75
+AL  clustalw_manual
+IT  subfamily_domain
+EN  chloroplast protein import component Toc86/159, G and M domains
+TR  3.A.9
+TP  TIGRFAMs
+CC  The long precursor of the 86K protein originally described is proposed to have three domains. The N-terminal A-domain is acidic, repetitive, weakly conserved, readily removed by proteolysis during chloroplast isolation, and not required for protein translocation. The other domains are designated G (GTPase) and M (membrane anchor); this family includes most of the G domain and all of M.
+RM  10712545
+RT  Initial binding of preproteins involving the Toc159 receptor can be bypassed during protein import into chloroplasts.
+RA  Chen K, Chen X, Schnell DJ
+RL  Plant Physiol 2000 Mar;122(3):813-22

@@ -1,0 +1,12 @@
+ID  birA_repr_reg
+AC  TIGR00122
+DE  biotin operon repressor
+AU  Haft DH
+TC  70.00 70.00
+NC  39.75 39.75
+AL  clustalw_manual
+IT  equivalog_domain
+EN  BirA biotin operon repressor domain
+TP  TIGRFAMs
+CC  This model represents the amino-terminal helix-turn-helix repressor region of the biotin--acetyl-CoA-carboxylase ligase/biotin operon repressor bifunctional protein BirA. In many species, the biotin--acetyl-CoA-carboxylase ligase ortholog lacks this DNA-binding repressor region and therefore is not equivalent to the well-characterized BirA of E. coli.
+CC  This HMM may recognize some other putative repressor proteins, such as DnrO of Streptomyces peucetius with scores below the noise cutoff but with significance shown by low E-value.

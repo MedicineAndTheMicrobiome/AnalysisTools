@@ -1,0 +1,11 @@
+ID  VCBS_repeat
+AC  TIGR01965
+DE  VCBS repeat
+AU  Haft DH
+TC  15.50 15.50
+NC  13.65 13.65
+AL  clustalw_manual
+IT  repeat
+EN  VCBS repeat
+TP  TIGRFAMs
+CC  This domain of about 100 residues is found multiple (up to 35) copies in long proteins from several species of Vibrio, Colwellia, Bradyrhizobium, and Shewanella (hence the name VCBS) and in smaller copy numbers in proteins from several other bacteria. The large protein size and repeat copy numbers, species distribution, and suggested activities of several member proteins suggests a role for this domain in adhesion.

@@ -1,0 +1,17 @@
+ID  one_C_dehyd_A
+AC  TIGR03121
+DE  formylmethanofuran dehydrogenase subunit A
+AU  Haft DH
+TC  392.75 392.75
+NC  69.30 69.30
+AL  muscle
+IT  equivalog
+EN  formylmethanofuran dehydrogenase subunit A
+EC  1.2.99.5
+TP  TIGRFAMs
+CC  Members of this largely archaeal protein family are subunit A of the formylmethanofuran dehydrogenase. Nomenclature in some bacteria may reflect inclusion of the formyltransferase described by TIGR03119 as part of the complex, and therefore call this protein formyltransferase/hydrolase complex Fhc subunit A. Note that this model does not distinguish tungsten (FwdA) from molybdenum-containing (FmdA) forms of this enzyme; a single gene from this family is expressed constitutively in Methanobacterium thermoautotrophicum, which has both tungsten and molybdenum forms and may work interchangeably.
+RN  [1]
+RM  PMID: 8954165
+RT  The molybdenum formylmethanofuran dehydrogenase operon and the tungsten formylmethanofuran dehydrogenase operon from Methanobacterium thermoautotrophicum. Structures and transcriptional regulation.
+RA  Hochheimer A, Linder D, Thauer RK, Hedderich R
+RL  Eur J Biochem. 1996 Nov 15;242(1):156-62.

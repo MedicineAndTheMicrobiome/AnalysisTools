@@ -1,0 +1,12 @@
+ID  yscR
+AC  TIGR01102
+DE  type III secretion apparatus protein, YscR/HrcR family
+AU  Ujwal ML, Haft DH, Paulsen IT
+TC  208.60 208.60
+NC  195.80 195.80
+AL  clustalw
+IT  equivalog
+EN  type III secretion apparatus protein, YscR/HrcR family
+GS  epaP
+TP  TIGRFAMs
+CC  This model identifies the generic virulence translocation proteins in bacteria. It derives its name:'Yop' from Yersinia enterocolitica species, where this virulence protein was identified. In bacterial pathogenesis, Yop effector proteins are translocated into the eukaryotic cells.

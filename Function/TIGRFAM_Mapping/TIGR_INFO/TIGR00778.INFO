@@ -1,0 +1,19 @@
+ID  ahpD_dom
+AC  TIGR00778
+DE  alkylhydroperoxidase AhpD family core domain
+AU  Haft DH
+TC  27.80 27.80
+NC  13.30 13.30
+AL  clustalw_manual
+IT  domain
+EN  alkylhydroperoxidase AhpD family core domain
+TP  TIGRFAMs
+CC  This HMM represents a 51-residue core region of homology among a family of mostly uncharacterized proteins of 110 to 227 amino acids.
+CC  Most members of this family contain the motif EXXXXXX[SA]XXXXXC[VIL]XCXXXH.
+CC  Members of the family include the alkylhydroperoxidase AhpD of Mycobacterium tuberculosis, a macrophage infectivity potentiator peptide of Legionella pneumophila, and an uncharacterized peptide in the tetrachloroethene reductive dehalogenase operon of Dehalospirillum multivorans. We suggest that many peptides containing this domain may have alkylhydroperoxidase or related antioxidant activity.
+AL  clustalw_manual
+RN  [1]
+RT  The AhpC and AhpD Antioxidant Defense System of Mycobacterium tuberculosis.
+RA  Hillas PJ, del Alba FS, Oyarzabal J, Wilks A, Ortiz De Montellano PR
+RL  J Biol Chem 2000 Jun 16;275(25):18801-18809
+DR  HAMAP; MF_01676; 46 of 48

@@ -1,0 +1,14 @@
+ID  gly_red_sel_B
+AC  TIGR01917
+DE  glycine reductase, selenoprotein B
+AU  Haft DH
+TC  602.20 602.20
+NC  580.00 580.00
+AL  clustalw
+IT  equivalog
+EN  glycine reductase, selenoprotein B
+GS  grdB
+EC  1.21.4.2
+TP  TIGRFAMs
+CC  Glycine reductase is a complex with two selenoprotein subunits, A and B.  This HMM represents the glycine reductase selenoprotein B. Closely related to it, but excluded from this model, are selenoprotein B subunits of betaine reductase and sarcosine reductase. All contain selenocysteine incorporated during translation at a specific UGA codon.
+DR  SP:P52217; Clostridium litorale glycine reductase complex selenoprotein B

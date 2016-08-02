@@ -1,0 +1,36 @@
+ID  dprA
+AC  TIGR00732
+DE  DNA protecting protein DprA
+AU  Haft DH, Sullivan S
+TC  191.15 191.15
+NC  113.15 113.15
+AL  clustalw_manual
+IT  equivalog
+EN  DNA protecting protein DprA
+GS  dprA
+TP  TIGRFAMs
+CC  Disruption of this gene in both Haemophilus influenzae and Helicobacter pylori drastically reduces the efficiency of transformation with exogenous DNA, but with different levels of effect on chromosomal (linear) and plasmid (circular) DNA [1][2]. This difference suggests the DprA is not active in recombination, and it has been shown not to affect DNA binding, leaving the intermediate step in natural transformation, DNA processing. In Strep. pneumoniae, inactivation of dprA had no effect on the uptake of DNA [3]. All of these data indicated that DprA is required at a later stage in transformation.  Subsequently DprA and RecA were both shown in S. pneumoniae to be required to protect incoming ssDNA from immediate degradation. [4].   Role of DprA in non-transformable species is not known. The gene symbol smf was assigned in E. coli, but without assignment of function.
+DR  InterPro; IPR003488
+DR  EXPERIMENTAL; EGAD|27998|HI0985; Haemophilus influenzae
+DR  EXPERIMENTAL; EGAD|89630|HP0333; Helicobacter pylori
+DR  ECOCYC; EG11604; smf
+RN  [1]
+RM  95286507
+RT  DNA sequence and characterization of Haemophilus influenzae dprA+, a gene required for chromosomal but not plasmid DNA transformation.
+RA  Karudapuram S, Zhao X, Barcak GJ
+RL  J Bacteriol 1995 Jun;177(11):3235-40
+RN  [2]
+RM  99412254
+RT  HP0333, a member of the dprA family, is involved in natural transformation in Helicobacter pylori.
+RA  Ando T, Israel DA, Kusugami K, Blaser MJ
+RL  J Bacteriol 1999 Sep;181(18):5572-80
+RN  [3]
+RM  12123453
+RT  Uptake of transforming DNA in Gram-positive bacteria: a view from Streptococcus pneumoniae.
+RA  Berge M, Moscoso M, Prudhomme M, Martin B, Claverys JP
+RL  Mol Microbiol. 2002 Jul;45(2):411-21
+RN  [4]
+RM  14617176
+RT  Transformation of Streptococcus pneumoniae relies on DprA- and RecA-dependent protection of incoming DNA single strands.
+RA  Berge M, Mortier-Barriere I, Martin B, Claverys JP
+RL  Mol Microbiol. 2003 Oct;50(2):527-36

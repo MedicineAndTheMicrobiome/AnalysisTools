@@ -1,0 +1,17 @@
+ID  MTHFS_bact
+AC  TIGR02727
+DE  5-formyltetrahydrofolate cyclo-ligase
+AU  Haft DH
+TC  84.90 84.90
+NC  50.25 50.25
+AL  manual
+IT  equivalog
+EN  5,10-methenyltetrahydrofolate synthetase
+EC  6.3.3.2
+TP  TIGRFAMs
+CC  This enzyme, 5,10-methenyltetrahydrofolate synthetase, is also called 5-formyltetrahydrofolate cycloligase. Function of bacterial proteins in this family was inferred originally from the known activity of eukaryotic homologs. Recently, activity was shown explicitly for the member from Mycoplasma pneumonia. Members of this family from alpha- and gamma-proteobacteria, designated ygfA, are often found in an operon with 6S structural RNA, and show a similar pattern of high expression during stationary phase. The function may be to deplete folate to slow 1-carbon biosynthetic metabolism.
+RN  [1]
+RM  16104022
+RT  Structural and functional characterization of a 5,10-methenyltetrahydrofolate synthetase from Mycoplasma pneumoniae (GI: 13508087).
+RA  Chen S, Yakunin AF, Proudfoot M, Kim R, Kim SH.
+RL  Proteins. 2005 Nov 1;61(2):433-43.

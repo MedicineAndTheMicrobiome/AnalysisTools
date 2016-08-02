@@ -1,0 +1,12 @@
+ID  PedC_BrcD
+AC  TIGR01295
+DE  putative bacteriocin transport accessory protein
+AU  Haft DH, Paulsen IT
+TC  92.90 92.90
+NC  29.15 29.15
+AL  clustalw
+IT  subfamily
+EN  bacteriocin transport accessory protein, putative
+TR  8.A.12
+TP  TIGRFAMs
+CC  This HMM describes a small family of proteins believed to aid in the export of various class II bacteriocins, which are ribosomally-synthesized, non-lantibiotic bacterial peptide antibiotics. Members of this family are found in operons for pediocin PA-1 from Pediococcus acidilactici and brochocin-C from Brochothrix campestris.

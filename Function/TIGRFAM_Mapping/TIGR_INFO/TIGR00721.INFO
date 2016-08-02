@@ -1,0 +1,19 @@
+ID  tfx
+AC  TIGR00721
+DE  DNA-binding protein, Tfx family
+AU  Haft DH
+TC  60.25 60.25
+NC  45.40 45.40
+AL  clustalw
+IT  subfamily
+EN  DNA-binding protein, Tfx family
+TP  TIGRFAMs
+CC  PSI-BLAST starting with one member of this family converges with significant hits only to other members of the family, which is restricted to the Archaea. Homology is strongest in the helix-turn-helix-containing N-terminal region.
+CC  Tfx from Methanobacterium thermoautotrophicum is associated with the operon for molybdenum formyl-methanofuran dehydrogenase and binds a DNA sequence near its promoter.
+AL  clustalw
+DR  SWISSPROT; P56811
+RM  99157570
+RT  The DNA binding protein Tfx from Methanobacterium thermoautotrophicum: structure, DNA binding properties and transcriptional regulation.
+RA  Hochheimer A, Hedderich R, Thauer RK
+RL  Mol Microbiol 1999 Jan;31(2):641-50
+DR  HAMAP; MF_00620; 10 of 10

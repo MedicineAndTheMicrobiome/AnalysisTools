@@ -1,0 +1,29 @@
+ID  flav_wrbA
+AC  TIGR01755
+DE  NAD(P)H:quinone oxidoreductase, type IV
+AU  Haft DH
+TC  132.50 132.50
+NC  121.15 121.15
+AL  clustalw
+IT  equivalog
+EN  NAD(P)H:quinone oxidoreductase, type IV
+GS  wrbA
+EC  1.6.5.2
+TP  TIGRFAMs
+CC  This HMM represents a protein, WrbA, related to and slightly larger than flavodoxin. It was just shown, in E. coli and Archaeoglobus fulgidus (and previously for some eukaryotic homologs) to act as fourth type of NAD(P)H:quinone oxidoreductase. In E. coli, this protein was earlier reported to be produced during stationary phase, bind to the trp repressor, and make trp operon repression more efficient. WrbA does not interact with the trp operator by itself. Members are found in species in which homologs of the E. coli trp operon repressor TrpR (SP:P03032) are not detected.
+RN  [1]
+RM  PMID: 16672604
+RT  WrbA from Escherichia coli and Archaeoglobus fulgidus is an NAD(P)H:quinone oxidoreductase.
+RA  Patridge EV, Ferry JG
+RL  J Bacteriol. 2006 May;188(10):3498-506.
+RN  [2]
+RM  PMID: 9694845
+RT  Biochemical characterization of WrbA, founding member of a new family of multimeric flavodoxin-like proteins.
+RA  Grandori R, Khalifah P, Boice JA, Fairman R, Giovanielli K, Carey J
+RL  J Biol Chem. 1998 Aug 14;273(33):20960-6.
+RN  [3]
+RM  8516330
+RT  A stationary-phase protein of Escherichia coli that affects the mode of association between the trp repressor protein and operator-bearing DNA.
+RA  Yang W, Ni L, Somerville RL
+RL  Proc Natl Acad Sci U S A 1993 Jun 15;90(12):5796-800
+DR  HAMAP; MF_01017; 83 of 85

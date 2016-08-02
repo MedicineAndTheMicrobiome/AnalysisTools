@@ -1,0 +1,18 @@
+ID  FeS_syn_CsdE
+AC  TIGR03391
+DE  cysteine desulfurase, sulfur acceptor subunit CsdE
+AU  Haft DH
+TC  136.40 136.40
+NC  136.15 136.15
+AL  muscle_manual
+IT  equivalog
+EN  cysteine desulfurase, sulfur acceptor subunit CsdE
+GS  csdE
+EC  2.8.1.7
+TP  TIGRFAMs
+CC  Members of this protein family are CsdE, formerly called YgdK. This protein, found as a paralog to SufE in Escherichia coli, Yersinia pestis, Photorhabdus luminescens, and related species, works together and physically interacts with CsdA (a paralog of SufS). CsdA has cysteine desulfurase activity that is enhanced by this protein (CsdE), in which Cys-61 (numbered as in E. coli) is a sulfur acceptor site. This gene pair, although involved in FeS cluster biosynthesis, is not found next to other such genes as are its paralogs from the Suf or Isc systems.
+RN  [1]
+RM  PMID: 15901727
+RT  Analysis of the heteromeric CsdA-CsdE cysteine desulfurase, assisting Fe-S cluster biogenesis in Escherichia coli.
+RA  Loiseau L, Ollagnier-de Choudens S, Lascoux D, Forest E, Fontecave M, Barras F
+RL  J Biol Chem. 2005 Jul 22;280(29):26760-9.

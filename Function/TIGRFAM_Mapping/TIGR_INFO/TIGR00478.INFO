@@ -1,0 +1,30 @@
+ID  tly
+AC  TIGR00478
+DE  TlyA family rRNA methyltransferase/putative hemolysin
+AU  Loftus BJ, Haft DH
+TC  185.80 185.80
+NC  118.60 118.60
+AL  clustalw_manual
+IT  subfamily
+EN  TlyA family rRNA methyltransferase/putative hemolysin
+TP  TIGRFAMs
+CC  Members of this family include TlyA from Mycobacterium tuberculosis, an rRNA methylase whose modifications are necessary to confer sensitivity to ribosome-targeting antibiotics capreomycin and viomycin. Homology supports identification as a methyltransferase. However, a parallel literature persists in calling some members hemolysins. Hemolysins are exotoxins that attack blood cell membranes and cause cell rupture, often by forming a pore in the membrane. A recent study (2013) on SCO1782 from Streptomyces coelicolor shows hemolysin activity as earlier described for a homolog from the spirochete Serpula (Treponema) hyodysenteriae and one from Mycobacterium tuberculosis.
+DR  EGAD:20008, SP:Q06803, (UI: 92112315), EGAD:128425
+RN  [1]
+RM  PMID:22779429 
+RT  Capreomycin susceptibility is increased by TlyA-directed 2'-O-methylation on both ribosomal subunits. 
+RA  Monshupanee T, Johansen SK, Dahlberg AE, Douthwaite S 
+RL  Mol Microbiol. 2012 Sep;85(6):1194-203.
+RN  [2]
+RM  PMID: 1730486
+RT  Cloning and expression of a Serpula (Treponema) hyodysenteriae hemolysin gene.
+RA  Muir S, Koopman MB, Libby SJ, Joens LA, Heffron F, Kusters JG
+RL  Infect Immun. 1992 Feb;60(2):529-35.
+RN  [3]
+RM  PMID: 9611795
+RT  Characterization of a haemolysin from Mycobacterium tuberculosis with homology to a virulence factor of Serpulina hyodysenteriae.
+RA  Wren BW, Stabler RA, Das SS, Butcher PD, Mangan JA, Clarke JD, Casali N, Parish T, Stoker NG
+RL  Microbiology. 1998 May;144 ( Pt 5):1205-11.
+Mycobacterium tuberculosis with homology to a virulence factor of Serpulina hyodysenteriae.
+RA  Wren BW, Stabler RA, Das SS, Butcher PD, Mangan JA, Clarke JD, Casali N, Parish T, Stoker NG
+RL  Microbiology. 1998 May;144 ( Pt 5):1205-11.

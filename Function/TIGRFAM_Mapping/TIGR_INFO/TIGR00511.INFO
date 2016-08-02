@@ -1,0 +1,22 @@
+ID  ribulose_e2b2
+AC  TIGR00511
+DE  ribose-1,5-bisphosphate isomerase, e2b2 family
+AU  Haft DH
+TC  314.10 314.10
+NC  246.10 246.10
+AL  muscle
+IT  equivalog
+EN  ribose-1,5-bisphosphate isomerase, e2b2 family
+EC  5.3.1.-
+TP  TIGRFAMs
+CC  The delineation of this family was based originally, in part, on a discussion and neighbor-joining phylogenetic study by Kyrpides and Woese of archaeal and other proteins homologous to the alpha, beta, and delta subunits of eukaryotic initiation factor 2B (eIF-2B), a five-subunit molecule that catalyzes GTP recycling for eIF-2. Recently, Sato, et al. assigned the function ribulose-1,5 bisphosphate isomerase.
+RN  [1]
+RM  98188271
+RT  Archaeal translation initiation revisited: the initiation factor 2 and eukaryotic initiation factor 2B alpha-beta-delta subunit families.
+RA  Kyrpides NC, Woese CR
+RL  Proc Natl Acad Sci U S A 1998 Mar 31;95(7):3726-30
+RN  [2]
+RM  PMID: 17303759
+RT  Archaeal type III RuBisCOs function in a pathway for AMP metabolism.
+RA  Sato T, Atomi H, Imanaka T
+RL  Science. 2007 Feb 16;315(5814):1003-6.

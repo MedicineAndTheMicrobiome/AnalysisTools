@@ -1,0 +1,15 @@
+ID  IpaC_SipC
+AC  TIGR02101
+DE  type III secretion target, IpaC/SipC family
+AU  Haft DH
+TC  130.75 130.75
+NC  95.10 95.10
+AL  clustalw
+IT  subfamily
+EN  type III secretion target, IpaC/SipC family
+TP  TIGRFAMs
+CC  This HMM represents a family of proteins associated with bacterial type III secretion systems, which are injection machines for virulence factors into host cell cytoplasm. Characterized members of this protein family are known to be secreted and are described as invasins, including IpaC from Shigella flexneri (SP:P18012) and SipC from Salmonella typhimurium (GB:AAA75170.1). Members may be referred to as invasins, pathogenicity island effectors, and cell invasion proteins.
+RM  7608068
+RT  Homologs of the Shigella IpaB and IpaC invasins are required for Salmonella typhimurium entry into cultured epithelial cells.
+RA  Kaniga K, Tucker S, Trollinger D, Galan JE.
+RL  J Bacteriol. 1995 Jul; 177(14): 3965-71.

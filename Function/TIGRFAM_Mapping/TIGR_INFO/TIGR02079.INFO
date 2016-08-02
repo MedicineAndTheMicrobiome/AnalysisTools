@@ -1,0 +1,13 @@
+ID  THD1
+AC  TIGR02079
+DE  threonine dehydratase
+AU  Selengut J
+TC  440.55 440.55
+NC  373.55 373.55
+AL  clustalw
+IT  equivalog
+EN  threonine dehydratase
+GS  ilvA
+EC  4.3.1.19
+TP  TIGRFAMs
+CC  This HMM represents threonine dehydratase, the first step in the pathway converting threonine into isoleucine.  At least two other clades of biosynthetic threonine dehydratases have been charcterized by HMM models (TIGR01124 and TIGR01127).  Those sequences described by this model are exclusively found in species containg the rest of the isoleucine pathway and which are generally lacking in members of the those other two clades of threonine dehydratases.  Members of this clade are also often gene clustered with other elements of the isoleucine pathway.

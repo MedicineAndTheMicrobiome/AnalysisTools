@@ -1,0 +1,11 @@
+ID  tspaseT_teng_N
+AC  TIGR01765
+DE  transposase, putative, N-terminal domain
+AU  Haft DH
+TC  47.25 47.25
+NC  19.10 19.10
+AL  manual
+IT  subfamily_domain
+EN  transposase, putative, N-terminal domain
+TP  TIGRFAMs
+CC  This HMM represents the N-terminal region of a family of putative transposases found in the largest copy number in Thermoanaerobacter tengcongensis. The three homologs in Bacillus anthracis are each split into two ORFs and this HMM represents the upstream ORF.

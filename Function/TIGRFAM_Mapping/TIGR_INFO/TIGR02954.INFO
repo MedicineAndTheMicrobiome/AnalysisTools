@@ -1,0 +1,11 @@
+ID  Sig70_famx3
+AC  TIGR02954
+DE  RNA polymerase sigma-70 factor, TIGR02954 family
+AU  Selengut J
+TC  188.50 188.50
+NC  158.05 158.05
+AL  muscle
+IT  hypoth_equivalog
+EN  RNA polymerase sigma-70 factor, TIGR02954 family
+TP  TIGRFAMs
+CC  This group of sigma factors are members of the sigma-70 family (TIGR02937).  They and appear by homology, tree building, bidirectional best hits and one-to-a-genome distribution, to represent a conserved family.  This family is found in certain Bacillus and Clostridium species.

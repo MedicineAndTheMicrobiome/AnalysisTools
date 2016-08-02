@@ -1,0 +1,23 @@
+ID  poly_P_kin
+AC  TIGR03705
+DE  polyphosphate kinase 1
+AU  Haft DH
+TC  465.85 465.85
+NC  241.75 241.75
+AL  muscle_manual
+IT  equivalog
+EN  polyphosphate kinase 1
+GS  ppk1
+EC  2.7.4.1
+TP  TIGRFAMs
+CC  Members of this protein family are the enzyme polyphosphate kinase 1 (PPK1). This family is found in many prokaryotes and also in Dictyostelium. Sequences in the seed alignment were taken from prokaryotic consecutive two-gene pairs in which the other gene encodes an exopolyphosphatase. It synthesizes polyphosphate from the terminal phosphate of ATP but not GTP, in contrast to PPK2.
+RN  [1]
+RM  PMID:2164013
+RT  Polyphosphate kinase from Escherichia coli. Purification and demonstration of a phosphoenzyme intermediate.
+RA  Ahn K, Kornberg A
+RL  J Biol Chem. 1990 Jul 15;265(20):11734-9.
+RN  [2]
+RM  PMID:15520374
+RT  Inorganic polyphosphate in the origin and survival of species.
+RA  Brown MR, Kornberg A
+RL  Proc Natl Acad Sci U S A. 2004 Nov 16;101(46):16085-7.

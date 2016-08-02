@@ -1,0 +1,11 @@
+ID  put_DNA_pack
+AC  TIGR01560
+DE  uncharacterized phage protein (possible DNA packaging)
+AU  Haft DH
+TC  26.35 26.35
+NC  26.00 26.00
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  uncharacterized phage protein (possible DNA packaging)
+TP  TIGRFAMs
+CC  This HMM describes a small (~ 100 amino acids) protein found in phage and in putative prophage regions of a number of bacterial genomes. Members have been annotated in some cases as a possible DNA packaging protein, but the source of this annotation was not traced during construction of this model.

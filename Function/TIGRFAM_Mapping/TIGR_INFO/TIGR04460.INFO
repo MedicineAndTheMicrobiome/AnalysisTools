@@ -1,0 +1,17 @@
+ID  endura_MppR
+AC  TIGR04460
+DE  enduracididine biosynthesis enzyme MppR
+AU  Haft DH
+TC  380.00 380.00
+NC  240.00 240.00
+AL  muscle_manual
+IT  equivalog
+EN  enduracididine biosynthesis enzyme MppR
+GS  mppR
+TP  TIGRFAMs
+CC  Members of this family are MppR, one of three enzymes involved in synthesizing enduracididine, a non-proteinogenic amino acid used in non-ribosomal peptide synthases to make natural products such as enduracidin from Streptomyces fungicidicus ATCC 21013. MppR is belongs to the acetoacetate decarboxylase-like superfamily. MppR catalyzes an aldol condensation and a dehydration, not a decarboxylation.
+RN  [1]
+RM  PMID:23758195 
+RT  Structural and Functional Characterization of MppR, an Enduracididine Biosynthetic Enzyme from Streptomyces hygroscopicus: Functional Diversity in the Acetoacetate Decarboxylase-like Superfamily. 
+RA  Burroughs AM, Hoppe RW, Goebel NC, Sayyed BH, Voegtline TJ, Schwabacher AW, Zabriskie TM, Silvaggi NR 
+RL  Biochemistry. 2013 Jul 2;52(26):4492-506. doi: 10.1021/bi400397k.

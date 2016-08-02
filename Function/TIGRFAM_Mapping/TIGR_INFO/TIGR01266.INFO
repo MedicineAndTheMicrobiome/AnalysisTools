@@ -1,0 +1,13 @@
+ID  fum_ac_acetase
+AC  TIGR01266
+DE  fumarylacetoacetase
+AU  Haft DH
+TC  375.30 375.30
+NC  137.60 137.60
+AL  clustalw_manual
+IT  equivalog
+EN  fumarylacetoacetase
+GS  fahA
+EC  3.7.1.2
+TP  TIGRFAMs
+CC  This enzyme catalyzes the final step in the breakdown of tyrosine or phenylalanine to fumarate and acetoacetate.

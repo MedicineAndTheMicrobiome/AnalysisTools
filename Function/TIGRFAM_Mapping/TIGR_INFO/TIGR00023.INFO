@@ -1,0 +1,26 @@
+ID  TIGR00023
+AC  TIGR00023
+DE  acyl-phosphate glycerol 3-phosphate acyltransferase
+AU  Haft DH
+TC  137.20 137.20
+NC  62.40 62.40
+AL  clustalw
+IT  equivalog
+EN  acyl-phosphate glycerol 3-phosphate acyltransferase
+GS  plsY
+EC  2.3.1.-
+TP  TIGRFAMs
+CC  This HMM represents the full length of acylphosphate:glycerol 3-phosphate acyltransferase, and integral membrane protein about 200 amino acids in length, called PlsY in Streptococcus pneumoniae, YneS in Bacillus subtilis, and YgiH in E. coli. It is found in a single copy in a large number of bacteria, including the Mycoplasmas but not Mycobacteria or spirochetes, for example. Its partner is PlsX (see TIGR00182), and the pair can replace PlsB for synthesizing 1-acylglycerol-3-phosphate.
+RN  [1]
+RM  PMID:17308305
+RT  Topology and active site of PlsY: the bacterial acylphosphate:glycerol-3-phosphate acyltransferase.
+RA  Lu YJ, Zhang F, Grimes KD, Lee RE, Rock CO
+RL  J Biol Chem. 2007 Apr 13;282(15):11339-46. Epub 2007 Feb 16.
+RN  [2]
+RM  PMID:17645809
+RT  Involvement of the YneS/YgiH and PlsX proteins in phospholipid biosynthesis in both Bacillus subtilis and Escherichia coli.
+RA  Yoshimura M, Oshima T, Ogasawara N
+RL  BMC Microbiol. 2007 Jul 24;7:69.
+DR  InterPro; IPR003811; DUF205
+DR  PFAM; PF02660; DUF205
+DR  HAMAP; MF_01043; 351 of 377

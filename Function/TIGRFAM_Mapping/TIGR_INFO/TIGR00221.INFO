@@ -1,0 +1,14 @@
+ID  nagA
+AC  TIGR00221
+DE  N-acetylglucosamine-6-phosphate deacetylase
+AU  Loftus BJ
+TC  225.65 225.65
+NC  167.20 167.20
+AL  clustalw
+IT  equivalog
+EN  N-acetylglucosamine-6-phosphate deacetylase
+GS  nagA
+EC  3.5.1.25
+TP  TIGRFAMs
+DR  ECOCYC; EG10632;
+DR  Swissprot; P15300;

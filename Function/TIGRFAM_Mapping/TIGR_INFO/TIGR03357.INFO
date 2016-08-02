@@ -1,0 +1,18 @@
+ID  VI_zyme
+AC  TIGR03357
+DE  type VI secretion system lysozyme-like protein
+AU  Haft DH
+TC  53.20 53.20
+NC  50.60 50.60
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  type VI secretion system lysozyme-like protein
+TP  TIGRFAMs
+CC  The description for PFAM family PF04965 cites acidic lysozyme activity for some phage-encoded members. This family represents a different subgroup of the proteins from PF04965, where all members are associated with bacterial type VI secretion system genomic contexts.
+DR  PFAM; PF04965; GPW / gp25 family
+RN  [1]
+RM  PMID: 16763151
+RT  A virulence locus of Pseudomonas aeruginosa encodes a protein secretion apparatus.
+RA  Mougous JD, Cuff ME, Raunser S, Shen A, Zhou M, Gifford CA, Goodman AL, Joachimiak G, Ordonez CL, Lory S, Walz T, Joachimiak A,
+Mekalanos JJ
+RL  Science. 2006 Jun 9;312(5779):1526-30.

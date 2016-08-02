@@ -1,0 +1,15 @@
+ID  RNA_3prim_cycl
+AC  TIGR03399
+DE  RNA 3'-phosphate cyclase
+AU  Haft DH
+TC  250.05 250.05
+NC  146.10 146.10
+AL  muscle_manual
+IT  equivalog
+EN  RNA 3'-phosphate cyclase
+GS  rtcA
+EC  6.5.1.4
+TP  TIGRFAMs
+CC  Members of this protein family are RNA 3'-phosphate cyclase (6.5.1.4), an enzyme whose function is conserved from E. coli to human. The modification this enzyme performs enables certain RNA ligations to occur, although the full biological roll for this enzyme is not fully described. This model separates this enzyme from a related protein, present only in eukaryotes, localized to the nucleolus, and involved in ribosomal modification.
+DR  PFAM; PF05189; RTC_insert
+DR  PFAM; PF01137; RTC

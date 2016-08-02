@@ -1,0 +1,12 @@
+ID  Bac_Flav_CT_K
+AC  TIGR03781
+DE  Bacteroides conjugative transposon TraK protein
+AU  Haft DH
+TC  152.45 152.45
+NC  103.85 103.85
+AL  muscle_manual
+IT  equivalog
+EN  Bacteroides conjugative transposon TraK protein
+GS  traK
+TP  TIGRFAMs
+CC  Members of this protein family are designated TraK and are found in a proposed transfer region of a class of conjugative transposon found in the Bacteroides lineage. PSI-BLAST reveals a distant relationship to proteins TrbF and VirB8 in Proteobacterial conjugal transfer systems.

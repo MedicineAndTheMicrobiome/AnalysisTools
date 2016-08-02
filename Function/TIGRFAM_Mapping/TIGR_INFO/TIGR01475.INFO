@@ -1,0 +1,12 @@
+ID  ubiA_other
+AC  TIGR01475
+DE  putative 4-hydroxybenzoate polyprenyltransferase
+AU  Haft DH
+TC  180.80 180.80
+NC  148.10 148.10
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  putative 4-hydroxybenzoate polyprenyltransferase
+EC  2.5.1.-
+TP  TIGRFAMs
+CC  A fairly deep split separates this polyprenyltransferase subfamily from the set of mitochondrial and proteobacterial 4-hydroxybenzoate polyprenyltransferases, described in TIGR01474. Protoheme IX farnesyltransferase (heme O synthase) (TIGR01473) is more distantly related. Because no species appears to have both this protein and a member of TIGR01474, it is likely that this HMM represents 4-hydroxybenzoate polyprenyltransferase, a critical enzyme of ubiquinone biosynthesis, in the Archaea, Gram-positive bacteria,  Aquifex aeolicus, the Chlamydias, etc.

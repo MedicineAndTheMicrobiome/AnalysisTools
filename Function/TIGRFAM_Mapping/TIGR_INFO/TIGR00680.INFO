@@ -1,0 +1,16 @@
+ID  kdpA
+AC  TIGR00680
+DE  K+-transporting ATPase, A subunit
+AU  Loftus BJ, Haft DH
+TC  387.70 387.70
+NC  356.05 356.05
+IT  equivalog
+EN  K+-transporting ATPase, KdpA
+GS  kdpA
+EC  3.6.3.12
+TR  3.A.3.-
+TP  TIGRFAMs
+CC  Kdp is a high affinity ATP-driven K+ transport system in Escherichia coli. It is composed of three membrane-bound subunits, KdpA, KdpB and KdpC and one small peptide, KdpF.  KdpA is the K+-transporting subunit of this complex. During assembly of the complex, KdpA and KdpC bind to each other.  This interaction is thought to stabilize the complex [medline:9858692]. Data indicates that KdpC might connect the KdpA, the K+-transporting subunit, to KdpB, the ATP-hydrolyzing (energy providing) subunit [medline:9858692].
+DR  SWISSPROT; P03959; Q9R6X2
+DR  ECOCYC; EG10513; kdpA
+DR  HAMAP; MF_00275; 129 of 134

@@ -1,0 +1,16 @@
+ID  PS_II_S4
+AC  TIGR03069
+DE  photosystem II S4 domain protein
+AU  Haft DH
+TC  201.55 201.55
+NC  201.35 201.35
+AL  muscle
+IT  equivalog
+EN  photosystem II S4 domain protein
+TP  TIGRFAMs
+CC  Members of this protein family are about 265 residues long and each contains an S4 RNA-binding domain of about 48 residues. The member from the Cyanobacterium, Synechocystis sp. PCC 6803, was detected as a novel polypeptide in a highly purified preparation of active photosystem II (Kashino, et al., 2002). The phylogenetic distribution, including Cyanobacteria and Arabidopsis, supports a role in photosystem II, although the high bit score cutoffs for this model reflect similar sequences in non-photosynthetic organisms such as Carboxydothermus hydrogenoformans, a Gram-positive bacterium.
+RN  [1]
+RM  PMID: 12069591
+RT  Proteomic analysis of a highly active photosystem II preparation from the cyanobacterium Synechocystis sp. PCC 6803 reveals the presence of novel polypeptides.
+RA  Kashino Y, Lauber WM, Carroll JA, Wang Q, Whitmarsh J, Satoh K, Pakrasi HB
+RL  Biochemistry. 2002 Jun 25;41(25):8004-12.

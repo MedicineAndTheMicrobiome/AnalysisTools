@@ -1,0 +1,18 @@
+ID  actino_HemFlav
+AC  TIGR03966
+DE  heme/flavin dehydrogenase, mycofactocin system
+AU  Haft DH
+TC  470.85 470.85
+NC  470.65 470.65
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  heme/flavin dehydrogenase, mycofactocin system
+GS  mftD
+EC  1.-.-.-
+TP  TIGRFAMs
+CC  Members of this protein family possess an N-terminal heme-binding domain and C-terminal flavodehydrogenase domain, and share homology to yeast flavocytochrome b2, to E. coli  L-lactate dehydrogenase [cytochrome], to (S)-mandelate dehydrogenase, etc. This enzyme appears only in the context of the mycofactocin system. Interestingly, it is absent from the four species detected so far with mycofactocin but without an F420 biosynthesis system.
+RN  [1]
+RM  PMID:21223593 
+RT  Bioinformatic evidence for a widely distributed, ribosomally produced electron carrier precursor, its maturation proteins, and its nicotinoprotein redox partners. 
+RA  Haft DH 
+RL  BMC Genomics. 2011 Jan 11;12(1):21.

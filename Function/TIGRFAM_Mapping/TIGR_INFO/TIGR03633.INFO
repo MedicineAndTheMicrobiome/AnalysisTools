@@ -1,0 +1,13 @@
+ID  arc_protsome_A
+AC  TIGR03633
+DE  proteasome endopeptidase complex, archaeal, alpha subunit
+AU  Haft DH
+TC  287.35 287.35
+NC  276.45 276.45
+AL  muscle_manual
+IT  equivalog
+EN  proteasome endopeptidase complex, archaeal, alpha subunit
+GS  psmA
+EC  3.4.25.1
+TP  TIGRFAMs
+CC  This protein family describes the archaeal proteasome alpha subunit, homologous to both the beta subunit and to the alpha and beta subunits of eukaryotic proteasome subunits. This family is universal in the first 29 complete archaeal genomes but occasionally is duplicated.

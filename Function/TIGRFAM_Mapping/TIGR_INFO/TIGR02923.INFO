@@ -1,0 +1,19 @@
+ID  AhaC
+AC  TIGR02923
+DE  ATP synthase A1, C subunit
+AU  Selengut J
+TC  240.50 240.50
+NC  169.00 169.00
+AL  muscle
+IT  equivalog
+EN  ATP synthase A1, C subunit
+GS  ahaC
+EC  3.6.3.14
+TP  TIGRFAMs
+CC  The A1/A0 ATP synthase is homologous to the V-type (V1/V0, vacuolar) ATPase, but functions in the ATP synthetic direction as does the F1/F0 ATPase of bacteria.  The C subunit is part of the hydrophilic A1 "stalk" complex (AhaABCDEFG) [1] which is the site of ATP generation and is coupled to the membrane-embedded proton translocating A0 complex.
+RN  [1]
+RM  PMID: 8702544
+RT  Subunit structure and organization of the genes of the A1A0 ATPase from the Archaeon Methanosarcina mazei Go1
+RA  Wilms R, Freiberg C, Wegerle E, Meier I, Mayer F, Muller V
+RL  J Biol Chem. 1996 Aug 2;271(31):18843-52.
+DR  HAMAP; MF_00314; 17 of 23

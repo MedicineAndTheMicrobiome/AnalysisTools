@@ -1,0 +1,17 @@
+ID  spore_V_B
+AC  TIGR02900
+DE  stage V sporulation protein B
+AU  Haft DH
+TC  372.30 372.30
+NC  255.35 255.35
+AL  muscle
+IT  equivalog
+EN  stage V sporulation protein B
+GS  spoVB
+TP  TIGRFAMs
+CC  SpoVB is the stage V sporulation protein B of the bacterial endopore formation program in Bacillus subtilis and various other Firmcutes. It is nearly universal among endospore-formers. Paralogs with rather high sequence similarity to SpoVB exist, including YkvU in B. subtilis and a number of proteins in the genus Clostridium. Member sequences for the seed alignment and cutoff scores for the resulting HMM were chosen to select those proteins, no more than one to a genome, closest to B. subtilis SpoVB in a neighbor joining tree.
+RN  [1]
+RM  PMID: 1744050
+RT  Cloning, characterization, and expression of the spoVB gene of Bacillus subtilis.
+RA  Popham DL, Stragier P
+RL  J Bacteriol. 1991 Dec;173(24):7942-9.

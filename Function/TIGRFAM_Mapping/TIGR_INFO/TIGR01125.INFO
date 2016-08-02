@@ -1,0 +1,23 @@
+ID  TIGR01125
+AC  TIGR01125
+DE  ribosomal protein S12 methylthiotransferase RimO
+AU  Haft DH, Selengut J
+TC  356.95 356.95
+NC  332.15 332.15
+AL  clustalw
+IT  equivalog
+EN  ribosomal protein S12 methylthiotransferase RimO
+GS  rimO
+EC  2.1.1.- 2.8.1.-
+TP  TIGRFAMs
+CC  Members of this protein are the methylthiotransferase RimO, which modifies a conserved Asp residue in ribosomal protein S12. This clade of radical SAM family proteins is closely related to the tRNA modification bifunctional enzyme MiaB (see TIGR01574), and it catalyzes the same two types of reactions: a radical-mechanism sulfur insertion, and a methylation of the inserted sulfur. This clade spans alpha and gamma proteobacteria, cyano bacteria, Deinococcus, Porphyromonas, Aquifex, Helicobacter, Campylobacter, Thermotoga, Chlamydia, Streptococcus coelicolor and Clostridium, but does not include most other gram positive bacteria, archaea or eukaryotes.
+RN  [1]
+RM  PMID:19736993 
+RT  Characterization of RimO, a new member of the methylthiotransferase subclass of the radical SAM superfamily. 
+RA  Lee KH, Saleh L, Anton BP, Madinger CL, Benner JS, Iwig DF, Roberts RJ, Krebs C, Booker SJ 
+RL  Biochemistry. 2009 Oct 27;48(42):10162-74. 
+RN  [2]
+RM  PMID:20007320 
+RT  Post-translational modification of ribosomal proteins: structural and functional characterization of RimO from Thermotoga maritima, a radical-SAM methylthiotransferase.
+RA  Arragain S, Garcia-Serres R, Blondin G, Douki T, Clemancey M, Latour JM, Forouhar F, Neely H, Montelione GT, Hunt JF, Mulliez E, Fontecave M, Atta M 
+RL  J Biol Chem. 2009 Dec 9.

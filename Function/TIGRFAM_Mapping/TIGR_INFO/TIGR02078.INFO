@@ -1,0 +1,12 @@
+ID  AspKin_pair
+AC  TIGR02078
+DE  putative Pyrococcus aspartate kinase subunit
+AU  Haft DH
+TC  242.40 242.40
+NC  167.10 167.10
+AL  clustalw
+IT  subfamily
+EN  Pyrococcus aspartate kinase subunit, putative
+EC  2.7.2.4
+TP  TIGRFAMs
+CC  This family consists of proteins restricted to and found as paralogous pairs (typically close together) in species of Pyrococcus, a hyperthermophilic archaeal genus. Members are always found close to other genes of threonine biosynthesis and appear to represent the Pyrococcal form of aspartate kinase. Alignment to aspartokinase III from E. coli shows that 300 N-terminal and 20 C-terminal amino acids are homologous, but the form in Pyrococcus lacks ~ 100 amino acids in between.

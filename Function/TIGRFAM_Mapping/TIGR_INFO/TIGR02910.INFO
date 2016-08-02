@@ -1,0 +1,28 @@
+ID  sulfite_red_A
+AC  TIGR02910
+DE  sulfite reductase, subunit A
+AU  Haft DH
+TC  323.15 323.15
+NC  223.60 223.60
+AL  muscle
+IT  equivalog
+EN  sulfite reductase, subunit A
+GS  asrA
+EC  1.8.-.-
+TP  TIGRFAMs
+CC  Members of this protein family include the A subunit, one of three subunits, of the anaerobic sulfite reductase of Salmonella, and close homologs from various Clostridum species, where the three-gene neighborhood is preserved. Two such gene clusters are found in Clostridium perfringens, but it may be that these sets of genes correspond to the distinct assimilatory and dissimilatory forms as seen in Clostridium pasteurianum. Note that any one of these enzymes may have secondary substates such as NH2OH, SeO3(2-), and SO3(2-). Heterologous expression of the anaerobic sulfite reductase of Salmonella confers on Escherichia coli the ability to produce hydrogen sulfide gas from sulfite.
+RN  [1]
+RM  PMID: 1704886
+RT  Sequence analysis and expression of the Salmonella typhimurium asr operon encoding production of hydrogen sulfide from sulfite.
+RA  Huang CJ, Barrett EL
+RL  J Bacteriol. 1991 Feb;173(4):1544-53.
+RN  [2]
+RM  PMID: 667738
+RT  Stable isotope fractionation by Clostridium pasteurianum. 2. Regulation of sulfite reductases by sulfur amino acids and their influence on sulfur isotope fractionation during SO32- and SO42- reduction.
+RA  Laishley EJ, Krouse HR
+RL  Can J Microbiol. 1978 Jun;24(6):716-24.
+RN  [3]
+RM  PMID: 6742957
+RT  Purification and characterization of an inducible dissimilatory type sulfite reductase from Clostridium pasteurianum.
+RA  Harrison G, Curle C, Laishley EJ
+RL  Arch Microbiol. 1984 May;138(1):72-8.

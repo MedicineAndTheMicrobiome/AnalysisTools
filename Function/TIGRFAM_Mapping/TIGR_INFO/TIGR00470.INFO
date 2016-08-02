@@ -1,0 +1,18 @@
+ID  sepS
+AC  TIGR00470
+DE  O-phosphoserine--tRNA ligase
+AU  Haft DH
+TC  380.65 380.65
+NC  307.85 307.85
+AL  clustalw
+IT  equivalog
+EN  O-phosphoserine--tRNA ligase
+GS  sepS
+EC  6.1.1.27
+TP  TIGRFAMs
+CC  This family of archaeal proteins resembles known phenylalanyl-tRNA synthetase alpha chains. Recently, it was shown to act in a proposed pathway of tRNA(Cys) indirect aminoacylation, resulting in Cys biosynthesis from O-phosphoserine, in certain archaea. It charges tRNA(Cys) with O-phosphoserine. The pscS gene product converts the phosphoserine to Cys.
+RN  [1]
+RM  15790858
+RT  RNA-dependent cysteine biosynthesis in archaea.
+RA  Sauerwald A, Zhu W, Major TA, Roy H, Palioura S, Jahn D, Whitman WB, Yates JR 3rd, Ibba M, Soll D.
+RL  Science. 2005 Mar 25;307(5717):1969-72.

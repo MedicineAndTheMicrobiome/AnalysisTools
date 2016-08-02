@@ -1,0 +1,16 @@
+ID  ABC_ABC_ChvD
+AC  TIGR03719
+DE  ATP-binding cassette protein, ChvD family
+AU  Haft DH
+TC  806.75 806.75
+NC  591.30 591.30
+AL  muscle_manual
+IT  subfamily
+EN  ATP-binding cassette protein, ChvD family
+TP  TIGRFAMs
+CC  Members of this protein family have two copies of the ABC transporter ATP-binding cassette, but are found outside the common ABC transporter operon structure that features integral membrane permease proteins and substrate-binding proteins encoded next to the ATP-binding cassette (ABC domain) protein. The member protein ChvD from Agrobacterium tumefaciens was identified as both a candidate to interact with VirB8, based on yeast two-hybrid analysis, and as an apparent regulator of VirG. The general function of this protein family is unknown.
+RN  [1]
+RM  PMID:11344138
+RT  ChvD, a chromosomally encoded ATP-binding cassette transporter-homologous protein involved in regulation of virulence gene expression in Agrobacterium tumefaciens.
+RA  Liu Z, Jacobs M, Schaff DA, McCullen CA, Binns AN
+RL  J Bacteriol. 2001 Jun;183(11):3310-7.

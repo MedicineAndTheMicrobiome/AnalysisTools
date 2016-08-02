@@ -1,0 +1,19 @@
+ID  FliI_clade2
+AC  TIGR03497
+DE  flagellar protein export ATPase FliI
+AU  Selengut J
+TC  629.80 629.80
+NC  627.50 627.50
+AL  muscle
+IT  equivalog
+EN  flagellar protein export ATPase FliI
+GS  fliI
+EC  3.6.3.14
+TP  TIGRFAMs
+CC  Members of this protein family are the FliI protein of bacterial flagellum systems. This protein acts to drive protein export for flagellar biosynthesis. The most closely related family is the YscN family of bacterial type III secretion systems.  This model represents one (of three) segment of the FliI family tree.  These have been modeled separately in order to exclude the type III secretion ATPases more effectively.
+DR  TIGRFAMS; TIGR01026; fliI_yscN
+DR  PFAM; PF00006; ATP-synt_ab
+RM  12813095
+RT  The ATPase FliI can interact with the type III flagellar protein export apparatus in the absence of its regulator, FliH.
+RA  Minamino T, Gonzalez-Pedrajo B, Kihara M, Namba K, Macnab RM.
+RL  J Bacteriol. 2003 Jul;185(13):3983-8.

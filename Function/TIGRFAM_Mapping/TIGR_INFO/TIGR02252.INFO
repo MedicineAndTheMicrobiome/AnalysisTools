@@ -1,0 +1,34 @@
+ID  DREG-2
+AC  TIGR02252
+DE  HAD hydrolase, REG-2-like, family IA
+AU  Selengut J
+TC  155.20 155.20
+NC  120.15 120.15
+AL  clustalw
+IT  subfamily
+EN  REG-2-like, HAD superfamily (subfamily IA) hydrolase
+TP  TIGRFAMs
+CC  This family of proteins includes uncharacterized sequences from eukaryotes, cyanobacteria and Leptospira as well as the DREG-2 protein from Drosophila melanogaster which has been identified as a rhythmically (diurnally) regulated gene [1].
+CC  This family is a member of the Haloacid Dehalogenase (HAD) superfamily of aspartate-nucleophile hydrolases.  The superfamily is defined by the presence of three short catalytic motifs [2].  The subfamilies are defined [3] based on the location and the observed or predicted fold of a so-called 'capping domain' [4], or the absence of such a domain.  This family is a member of subfamily 1A in which the cap domain consists of a predicted alpha helical bundle  found in between the first and second catalytic motifs.  A distinctive feature of this family is a conserved tandem pair of tryptophan residues in the cap domain.  The most divergent sequences included within the scope of this model are from plants and have "FW" at this position instead.
+CC  Most likely, these sequences, like the vast majority of HAD sequences, represent phosphatase enzymes.
+RN  [1]
+RL  Curr Biol. 1995 Dec 1;5(12):1424-36.
+RT  Extent and character of circadian gene expression in Drosophila melanogaster: identification of twenty oscillating mRNAs in the fly head.
+RA  Van Gelder RN, Bae H, Palazzolo MJ, Krasnow MA.
+RM  PMID: 8749395
+RN  [2]
+RM  PMID: 7966317
+RT  Computer analysis of bacterial haloacid dehalogenases defines a large superfamily of hydrolases with diverse specificity. Application of an iterative approach to database search.
+RA  Koonin EV, Tatusov RL.
+RL  J Mol Biol 1994 Nov 18;244(1):125-32
+RN  [2]
+RM  PMID: 11601995
+RT  MDP-1 is a new and distinct member of the haloacid dehalogenase family of aspartate-dependent phosphohydrolases.
+RA  Selengut, JD
+RL  Biochemistry 2001 Oct 23;40(42):12704-11
+RN  [3]
+RM  PMID: 10956028
+RT  The crystal structure of bacillus cereus phosphonoacetaldehyde hydrolase: insight into catalysis of phosphorus bond cleavage and catalytic diversification wi
+thin the HAD enzyme superfamily.
+RA  Morais MC, Zhang W, Baker AS, Zhang G, Dunaway-Mariano D, Allen KN.
+RL  Biochemistry 2000 Aug 29;39(34):10385-96

@@ -1,0 +1,12 @@
+ID  PPK2_rel_1
+AC  TIGR03709
+DE  polyphosphate:nucleotide phosphotransferase, PPK2 family
+AU  Haft DH
+TC  247.20 247.20
+NC  240.85 240.85
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  polyphosphate:nucleotide phosphotransferase, PPK2 family
+EC  2.7.4.-
+TP  TIGRFAMs
+CC  Members of this protein family belong to the polyphosphate kinase 2 (PPK2) family, which is not related in sequence to PPK1. While PPK1 tends to act in the biosynthesis of polyphosphate, or poly(P), members of the PPK2 family tend to use the terminal phosphate of poly(P) to regenerate ATP or GTP from the corresponding nucleoside diphosphate, or ADP from AMP  as is the case with polyphosphate:AMP phosphotransferase (PAP). Members of this protein family most likely transfer the terminal phosphate between poly(P) and some nucleotide, but it is not clear which.

@@ -1,0 +1,17 @@
+ID  VI_chp_1
+AC  TIGR03347
+DE  type VI secretion protein, VC_A0111 family
+AU  Haft DH
+TC  143.30 143.30
+NC  113.85 113.85
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  type VI secretion protein, VC_A0111 family
+TP  TIGRFAMs
+CC  Work by Mougous, et al. (2006), describes IAHP-related loci as a type VI secretion system (PMID:16763151). This protein family is associated with type VI secretion loci, although not treated explicitly by Mougous, et al.
+RN  [1]
+RM  PMID: 16763151
+RT  A virulence locus of Pseudomonas aeruginosa encodes a protein secretion apparatus.
+RA  Mougous JD, Cuff ME, Raunser S, Shen A, Zhou M, Gifford CA, Goodman AL, Joachimiak G, Ordonez CL, Lory S, Walz T, Joachimiak A,
+Mekalanos JJ
+RL  Science. 2006 Jun 9;312(5779):1526-30.

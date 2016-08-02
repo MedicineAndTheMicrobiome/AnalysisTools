@@ -1,0 +1,12 @@
+ID  PtsS_plasma
+AC  TIGR04505
+DE  phosphate ABC transporter substrate-binding protein
+AU  Haft DH
+TC  175.00 175.00
+NC  125.00 125.00
+AL  muscle_manual
+IT  equivalog
+EN  phosphate ABC transporter substrate-binding protein
+GS  ptsS
+TP  TIGRFAMs
+CC  Members of this family are the substrate-binding protein of the phosphate ABC transporter as found in Mollicutes genera such as Mycoplasma, Mesoplasma, and Spiroplasma. The most similar sequences outside this family are PtsS in family TIGR02136, but sequence architecture differs considerably. Members of this family are never lipoproteins.

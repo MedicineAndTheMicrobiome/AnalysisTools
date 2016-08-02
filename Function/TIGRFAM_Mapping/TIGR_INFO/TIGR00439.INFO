@@ -1,0 +1,27 @@
+ID  ftsX
+AC  TIGR00439
+DE  putative protein insertion permease FtsX
+AU  Loftus BJ, Haft DH
+TC  402.25 402.25
+NC  234.60 234.60
+AL  clustalw
+IT  equivalog
+EN  putative protein insertion permease FtsX
+GS  ftsX
+TR  3.A.5
+TP  TIGRFAMs
+CC  FtsX is an integral membrane protein encoded in the same operon as signal recognition particle docking protein FtsY and FtsE. It belongs to a family of predicted permeases and may play a role in the insertion of proteins required for potassium transport, cell division, and other activities. FtsE is a  hydrophilic nucleotide-binding protein that associates with the inner membrane by means of association with FtsX.
+DR  Swissprot; P10122; 
+DR  ECOCYC; EG10345; 
+RN  [1]
+RM  14729705
+RT  A predicted ABC transporter, FtsEX, is needed for cell division in Escherichia coli.
+RA  Schmidt KL, Peterson ND, Kustusch RJ, Wissel MC, Graham B, Phillips GJ, Weiss DS.
+RN  [2]
+RM  99157600
+RT  Molecular characterization of Escherichia coli FtsE and FtsX.
+RA  de Leeuw E, Graham B, Phillips GJ, ten Hagen-Jongman CM, Oudega B, Luirink J
+RL  Mol Microbiol 1999 Feb;31(3):983-93
+DR  PFAM; PF02687
+DR  InterPro; IPR003838
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/3_A_5.html

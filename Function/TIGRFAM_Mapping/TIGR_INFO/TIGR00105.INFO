@@ -1,0 +1,24 @@
+ID  L31
+AC  TIGR00105
+DE  ribosomal protein L31
+AU  Anolik RT, Richardson DL
+TC  38.35 38.35
+NC  25.35 25.35
+AL  clustalw
+IT  equivalog
+EN  ribosomal protein L31
+GS  rpmE
+TP  TIGRFAMs
+CC  This family consists exclusively of bacterial (and organellar) 50S ribosomal protein L31. In some species, such as Bacillus subtilis, this protein exists in two forms (RpmE and YtiA), one of which (RpmE) contains a pair of motifs, CXC and CXXC, for binding zinc.
+DR  PROSITE; PS01143
+RN  [1]
+RM  PMID:15049826
+RT  Zinc is a key factor in controlling alternation of two types of L31 protein in the Bacillus subtilis ribosome.
+RA  Nanamiya H, Akanuma G, Natori Y, Murayama R, Kosono S, Kudo T, Kobayashi K, Ogasawara N, Park SM, Ochi K, Kawamura F
+RL  Mol Microbiol. 2004 Apr;52(1):273-83.
+RN  [2]
+RM  PMID:22196016 
+RT  Characterization of Zn(II)-responsive ribosomal proteins YkgM and L31 in E. coli. 
+RA  Hensley MP, Gunasekera TS, Easton JA, Sigdel TK, Sugarbaker SA, Klingbeil L, Breece RM, Tierney DL, Crowder MW 
+RL  J Inorg Biochem. 2012 Jun;111:164-72.
+DR  HAMAP; MF_00502; 197 of 197

@@ -1,0 +1,18 @@
+ID  AhpF
+AC  TIGR03140
+DE  alkyl hydroperoxide reductase subunit F
+AU  Selengut J
+TC  502.90 502.90
+NC  400.10 400.10
+AL  muscle
+IT  equivalog
+EN  alkyl hydroperoxide reductase subunit F
+GS  ahpF
+EC  1.8.1.-
+TP  TIGRFAMs
+CC  This enzyme is the partner of the peroxiredoxin (alkyl hydroperoxide reductase) AhpC which contains the peroxide-reactive cysteine.  AhpF contains the reductant (NAD(P)H) binding domain (PF00070) and presumably acts to resolve the disulfide which forms after oxidation of the active site cysteine in AphC [1].  This proteins contains two paired conserved cysteine motifs, CxxCP and CxHCDGP.
+RN  [1]
+RM  PMID: 10482511 
+RT  Role of the alkyl hydroperoxide reductase (ahpCF) gene in oxidative stress defense of the obligate Anaerobe bacteroides fragilis. 
+RA  Rocha ER, Smith CJ 
+RL  J Bacteriol. 1999 Sep;181(18):5701-10.

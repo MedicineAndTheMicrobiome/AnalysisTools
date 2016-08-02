@@ -1,0 +1,37 @@
+ID  pelota
+AC  TIGR00111
+DE  mRNA surveillance protein pelota
+AU  Haft DH, Anolik RT, Richardson DL
+TC  177.65 177.65
+NC  128.20 128.20
+AL  clustalw
+IT  equivalog
+EN  mRNA surveillance protein pelota
+TP  TIGRFAMs
+CC  This model describes the Drosophila protein Pelota, the budding yeast protein DOM34 which it can replace, and a set of closely related archaeal proteins. Members contain a proposed RNA binding motif. The meiotic defect in pelota mutants may be a complex result of a protein translation defect, as suggested in yeast by ribosomal protein RPS30A being a multicopy suppressor and by an altered polyribosome profile in DOM34 mutants rescued by RPS30A. This family is homologous to a family of peptide chain release factors. Pelota is proposed to act in protein translation.
+DR  SGD; L0000517; FLYBASE; FBgn0011207; 
+RN  [1]
+RM  PMID:20876129 
+RT  Structural basis for mRNA surveillance by archaeal Pelota and GTP-bound EF1alpha complex. 
+RA  Kobayashi K, Kikuno I, Kuroha K, Saito K, Ito K, Ishitani R, Inada T, Nureki O 
+RL  Proc Natl Acad Sci U S A. 2010 Oct 12;107(41):17575-9.
+RN  [2]
+RM  PMID: 7588080
+RT  The pelota locus encodes a protein required for meiotic cell division: an analysis of G2/M arrest in Drosophila spermatogenesis.
+RA  Eberhart CG, Wasserman SA.
+RL  Development 1995 Oct;121(10):3477-86
+RN  [3]
+RM  8900058
+RT  An archaebacterial homolog of pelota, a meiotic cell division protein in eukaryotes.
+RA  Ragan MA, Logsdon JM Jr, Sensen CW, Charlebois RL, Doolittle WF.
+RL  FEMS Microbiol Lett 1996 Nov 1;144(2-3):151-5
+RN  [4]
+RM  9584085
+RT  Yeast dom34 mutants are defective in multiple developmental pathways and exhibit decreased levels of polyribosomes.
+RA  Davis L, Engebrecht J.
+RL  Genetics 1998 May;149(1):45-56
+RN  [5]
+RM  7518079
+RT  A novel RNA-binding motif in omnipotent suppressors of translation termination, ribosomal proteins and a ribosome modification enzyme?
+RL  Nucleic Acids Res 1994 Jun 11;22(11):2166-7
+RA  Koonin EV, Bork P, Sander C.

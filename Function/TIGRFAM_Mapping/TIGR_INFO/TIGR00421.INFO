@@ -1,0 +1,16 @@
+ID  ubiX_pad
+AC  TIGR00421
+DE  polyprenyl P-hydroxybenzoate and phenylacrylic acid decarboxylases
+AU  Loftus BJ, Haft DH
+TC  108.90 108.90
+NC  69.30 69.30
+AL  clustalw
+IT  subfamily
+EN  polyprenyl P-hydroxybenzoate and phenylacrylic acid decarboxylases
+EC  4.1.1.-
+TP  TIGRFAMs
+CC  In E.coli, the protein UbiX (3-octaprenyl-4-hydroxybenzoate carboxy-lyase) has been shown to be involved in the third step of ubiquinone biosynthesis. It catalyzes the reaction [3-octaprenyl-4-hydroxybenzoate = 2-octaprenylphenol + CO2]. The knockout of the homologous protein in yeast confers sensitivity to phenylacrylic acid. Members are not restricted to ubiquinone-synthesizing species. This family represents a distinct clade within the flavoprotein family of Pfam model PF02441.
+DR  Swissprot; P33751;
+DR  Swissprot; P09550;
+DR  PFAM; PF02441 
+DR  InterPro; IPR003382

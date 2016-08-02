@@ -1,0 +1,18 @@
+ID  5C_CHO_kinase
+AC  TIGR01315
+DE  FGGY-family pentulose kinase
+AU  Haft DH
+TC  408.70 408.70
+NC  236.20 236.20
+AL  clustalw
+IT  subfamily
+EN  FGGY-family pentulose kinase
+EC  2.7.1.-
+TP  TIGRFAMs
+CC  This HMM represents a subfamily of the FGGY family of carbohydrate kinases. This subfamily is closely related to  a set of ribulose kinases, and many members are designated ribitol kinase. However, the member from Klebsiella pneumoniae, from a ribitol catabolism operon, accepts D-ribulose and to a lesser extent D-arabinitol and ribitol (PMID:9639934 and JW Lengeler, personal communication); its annotation in GenBank as ribitol kinase is imprecise and may have affected public annotation of related proteins.
+RM  PMID:9639934
+RT  Genes for D-arabinitol and ribitol catabolism from Klebsiella pneumoniae.
+RA  Heuel H, Shakeri-Garakani A, Turgut S, Lengeler JW
+RL  Microbiology 1998 Jun;144 ( Pt 6):1631-9
+DR  EXPERT; Lengeler@biologie.Uni-Osnabrueck.DE
+DR  EXPERIMENTAL; GP|2905643; D-ribulose kinase; Klebsiella pneumoniae

@@ -1,0 +1,16 @@
+ID  leuC
+AC  TIGR00170
+DE  3-isopropylmalate dehydratase, large subunit
+AU  Haft DH
+TC  560.25 560.25
+NC  226.80 226.80
+AL  clustalw
+IT  equivalog_domain
+EN  3-isopropylmalate dehydratase, large subunit
+GS  leuC
+EC  4.2.1.33
+TP  TIGRFAMs
+CC  Members of this family are 3-isopropylmalate dehydratase, large subunit, or the large subunit domain of single-chain forms. Homoaconitase, aconitase, and 3-isopropylmalate dehydratase have similar overall structures. All are dehydratases (EC 4.2.1.-) and bind a Fe-4S iron-sulfur cluster.  3-isopropylmalate dehydratase is split into large (leuC) and small (leuD) chains in eubacteria.
+CC  Several pairs of archaeal proteins resemble the leuC and leuD pair in length and sequence but even more closely resemble the respective domains of homoaconitase, and their identity is uncertain. These homologs are now described by a separate model of subfamily (rather than equivalog) homology type, and the priors and cutoffs for this model have been changed to focus this equivalog family more narrowly.
+DR  PROSITE; PDOC00423;
+DR  HAMAP; MF_01026; 355 of 360

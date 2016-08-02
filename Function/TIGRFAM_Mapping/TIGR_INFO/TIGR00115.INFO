@@ -1,0 +1,28 @@
+ID  tig
+AC  TIGR00115
+DE  trigger factor
+AU  Anolik RT, Richardson DL, Haft DH
+TC  180.20 180.20
+NC  154.50 154.50
+AL  muscle_manual
+IT  equivalog
+EN  trigger factor
+GS  tig
+EC  5.2.1.8
+TP  TIGRFAMs
+CC  Trigger factor is a ribosome-associated molecular chaperone and is the first chaperone to interact with nascent polypeptide. Trigger factor can bind at the same time as the signal recognition particle (SRP), but is excluded by the SRP receptor (FtsY). The central domain of trigger factor has peptidyl-prolyl cis/trans isomerase activity. This protein is found in a single copy in virtually every bacterial genome.
+RN  [1]
+RM  PMID:15837180
+RT  A cradle for new proteins: trigger factor at the ribosome.
+RA  Maier T, Ferbitz L, Deuerling E, Ban N
+RL  Curr Opin Struct Biol. 2005 Apr;15(2):204-12.
+RN  [2]
+RM  PMID:15175291
+RT  Functional dissection of Escherichia coli trigger factor: unraveling the function of individual domains.
+RA  Kramer G, Rutkowska A, Wegrzyn RD, Patzelt H, Kurz TA, Merz F, Rauch T, Vorderwulbecke S, Deuerling E, Bukau B
+RL  J Bacteriol. 2004 Jun;186(12):3777-84.
+DR  PROSITE; PS00453; FKBP_PPIASE_1
+DR  PROSITE; PS00454; FKBP_PPIASE_2 
+DR  PROSITE; PS50059; FKBP_PPIASE_3 
+DR  PROSITE; PDOC00426
+DR  HAMAP; MF_00303; 489 of 514

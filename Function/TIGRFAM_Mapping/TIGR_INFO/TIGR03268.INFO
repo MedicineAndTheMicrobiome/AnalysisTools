@@ -1,0 +1,17 @@
+ID  methan_mark_3
+AC  TIGR03268
+DE  putative methanogenesis marker protein 3
+AU  Haft DH
+TC  234.45 234.45
+NC  231.80 231.80
+AL  muscle
+IT  hypoth_equivalog
+EN  putative methanogenesis marker protein 3
+TP  TIGRFAMs
+CC  A single member of this protein family is found in each of the first ten complete genome sequences of archaeal methanogens, and nowhere else. This protein family was detected by the method of partial phylogenetic profiling (see Haft, et al., 2006). The functions of proteins in this family are unknown, but their role is likely one essential to methanogenesis.
+RN  [1]
+RM  PMID:22070167 
+RT  ProPhylo: partial phylogenetic profiling to guide protein family construction and assignment of biological process. 
+RA  Basu MK, Selengut JD, Haft DH 
+RL  BMC Bioinformatics. 2011 Nov 9;12:434.
+DR  HAMAP; MF_01089; 5 of 5

@@ -1,0 +1,17 @@
+ID  nickel_nikA
+AC  TIGR02294
+DE  nickel ABC transporter, nickel/metallophore periplasmic binding protein
+AU  Haft DH
+TC  393.00 393.00
+NC  282.20 282.20
+AL  clustalw
+IT  equivalog
+EN  nickel ABC transporter, nickel/metallophore periplasmic binding protein
+GS  nikA
+TP  TIGRFAMs
+CC  Members of this family are periplasmic nickel-binding proteins of nickel ABC transporters.  Most appear to be lipoproteins. This protein was previously (circa 2003) thought to mediate binding to nickel through water molecules, but is now thought to involve a chelating organic molecule, perhaps butane-1,2,4-tricarboxylate, acting as a metallophore.
+RN  [1]
+RM  PMID:18759453 
+RT  Structural characterization of a putative endogenous metal chelator in the periplasmic nickel transporter NikA. 
+RA  Cherrier MV, Cavazza C, Bochot C, Lemaire D, Fontecilla-Camps JC 
+RL  Biochemistry. 2008 Sep 23;47(38):9937-43. Epub 2008 Aug 30.

@@ -1,0 +1,16 @@
+ID  HTH_TypR
+AC  TIGR04381
+DE  TyrR family helix-turn-helix domain
+AU  Haft DH
+TC  30.00 30.00
+NC  28.00 28.00
+AL  muscle_manual
+IT  domain
+EN  TyrR family helix-turn-helix domain
+TP  TIGRFAMs
+CC  This model describes the C-terminal DNA-binding helix-turn-helix domain of several regulators of aromatic amino acid metabolism. Examples include TyrR in Escherichia coli and PhhR in Pseudomonas putida. Most members of this family have a sigma-54 interaction domain.
+RN  [1]
+RM  PMID:11344327 
+RT  Solution structure of the DNA-binding domain of the TyrR protein of Haemophilus influenzae. 
+RA  Wang Y, Zhao S, Somerville RL, Jardetzky O 
+RL  Protein Sci. 2001 Mar;10(3):592-8.

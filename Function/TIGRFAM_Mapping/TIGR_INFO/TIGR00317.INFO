@@ -1,0 +1,18 @@
+ID  cobS
+AC  TIGR00317
+DE  cobalamin 5'-phosphate synthase
+AU  Loftus BJ
+TC  110.00 110.00
+NC  87.10 87.10
+AL  clustalw
+IT  equivalog
+EN  cobalamin 5'-phosphate synthase/cobalamin synthase
+GS  cobS
+EC  2.7.8.26
+TP  TIGRFAMs
+CC  cobS is involved with  cobalamin biosynthesis in part III of colbalmin biosynthesis. The enzyme catyalzes the reactions adenosylcobinamide-GDP + alpha-ribazole-5'-P = adenosylcobalamin-5'-phosphate + GMP and adenosylcobinamide-GDP + alpha-ribazole = adenosylcobalamin + GMP. The protein product is associated with a large complex of proteins and is induced by cobinamide.
+DR  ECOCYC; EG12150; cobS;
+DR  SWISSPROT; Q05602;
+RM  93273696
+RT  Characterization of the cobalamin (vitamin B12) biosynthetic genes of Salmonella typhimurium.
+DR  HAMAP; MF_00719; 118 of 150

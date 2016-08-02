@@ -1,0 +1,11 @@
+ID  gmx_TIGR02266
+AC  TIGR02266
+DE  Myxococcus xanthus paralogous domain TIGR02266
+AU  Haft DH
+TC  68.70 68.70
+NC  54.30 54.30
+AL  clustalw_manual
+IT  paralog_domain
+EN  Myxococcus xanthus paralogous domain TIGR02266
+TP  TIGRFAMs
+CC  This domain is related to Type IV pilus assembly protein PilZ (Pfam model PF07238). It is found in at least 12 copies in Myxococcus xanthus DK 1622.

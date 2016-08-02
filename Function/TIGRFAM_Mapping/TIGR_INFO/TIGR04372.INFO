@@ -1,0 +1,11 @@
+ID  glycosyl_04372
+AC  TIGR04372
+DE  putative glycosyltransferase, TIGR04372 family
+AU  Haft DH
+TC  45.00 45.00
+NC  40.00 40.00
+AL  muscle_manual
+IT  domain
+EN  putative glycosyltransferase, TIGR04372 family
+TP  TIGRFAMs
+CC  This domain occurs in proteins of various lengths, in contexts that include O-antigen biosynthesis regions of various Leptospira species. Below-cutoff scores to this HMM, and PSI-BLAST analysis, suggest distant sequence similarity to family 9 glycosyltransferases (PF01075), including ADP-heptose:LPS heptosyltransferase (RfaF), an enzyme involved in LPS inner core region biosynthesis.

@@ -1,0 +1,18 @@
+ID  benzo_boxC
+AC  TIGR03222
+DE  benzoyl-CoA-dihydrodiol lyase
+AU  Haft DH
+TC  712.30 712.30
+NC  228.25 228.25
+AL  muscle
+IT  equivalog
+EN  benzoyl-CoA-dihydrodiol lyase
+GS  boxC
+EC  4.1.2.44
+TP  TIGRFAMs
+CC  In the presence of O2, the benzoyl-CoA oxygenase/reductase BoxBA BoxAB converts benzoyl-CoA to 2,3-dihydro-2,3-dihydroxybenzoyl-CoA. Members of this family, BoxC, homologous to  enoyl-CoA hydratases/isomerases, hydrolyze this compound to 3,4-dehydroadipyl-CoA semialdehyde + HCOOH.
+RN  [1]
+RM  PMID: 15916608
+RT  Aerobic benzoyl-CoA catabolic pathway in Azoarcus evansii: studies on the non-oxygenolytic ring cleavage enzyme.
+RA  Gescher J, Eisenreich W, Worth J, Bacher A, Fuchs G
+RL  Mol Microbiol. 2005 Jun;56(6):1586-600.

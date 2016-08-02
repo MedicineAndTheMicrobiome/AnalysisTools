@@ -1,0 +1,19 @@
+ID  fabZ
+AC  TIGR01750
+DE  beta-hydroxyacyl-(acyl-carrier-protein) dehydratase FabZ
+AU  Haft DH
+TC  155.15 155.15
+NC  125.15 125.15
+AL  clustalw
+IT  equivalog
+EN  beta-hydroxyacyl-[acyl carrier protein] dehydratase FabZ
+GS  fabZ
+EC  4.2.1.-
+TP  TIGRFAMs
+CC  This enzyme, FabZ, shows overlapping substrate specificity with FabA with regard to chain length in fatty acid biosynthesis. FabZ works preferentially on shorter chains and is often designated (3R)-hydroxymyristoyl-[acyl carrier protein] dehydratase, although its actual specificity is broader. Unlike FabA, FabZ does not function as an isomerase and cannot initiate unsaturated fatty acid biosynthesis. However, only FabZ can act during the elongation of unsaturated fatty acid chains.
+RN  [1]
+RM  8910376
+RT  Roles of the FabA and FabZ beta-hydroxyacyl-acyl carrier protein dehydratases in Escherichia coli fatty acid biosynthesis.
+RA  Heath RJ, Rock CO.
+RL  J Biol Chem 1996 Nov 1;271(44):27795-801
+DR  HAMAP; MF_00406; 410 of 423

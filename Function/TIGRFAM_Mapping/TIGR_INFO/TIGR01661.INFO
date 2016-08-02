@@ -1,0 +1,22 @@
+ID  ELAV_HUD_SF
+AC  TIGR01661
+DE  ELAV/HuD family splicing factor
+AU  Selengut J
+TC  279.10 279.10
+NC  212.05 212.05
+AL  clustalw
+IT  subfamily
+EN  ELAV/HuD family splicing factor
+TP  TIGRFAMs
+CC  This model describes the ELAV/HuD subfamily of splicing factors found in metazoa.  HuD stands for the human paraneoplastic encephalomyelitis antigen D of which there are 4 variants in human [1].  ELAV stnds for the Drosophila Embryonic lethal abnormal visual protein [2].  ELAV-like splicing factors are also known in human as HuB (ELAV-like protein 2), HuC (ELAV-like protein 3, Paraneoplastic cerebellar degeneration-associated antigen) and HuR (ELAV-like protein 1).  These genes are most closely related to the sex-lethal subfamily of splicing factors found in Dipteran insects (TIGR01659).
+CC  These proteins contain 3 RNA-recognition motifs (rrm: PF00076).
+RN  [1]
+RM  PMID: 1655278
+RT  HuD, a Paraneoplastic Encephalomyelitis Antigen, Contains RNA-binding Domains and Is Homologous to Elav and Sex-lethal 
+RA  A. Szabo , J. Dalmau , G. Manley , M. Rosenfeld , E. Wong , J. Henson , J. B. Posner , and H. M. Furneaux
+RL  Cell 67:325-333(1991).
+RN  [2]
+RM  PMID: 3144044
+RT  The elav gene product of Drosophila, required in neurons, has three RNP consensus motifs.
+RA  Robinow S., Campos A.R., Yao K.-M., White K.
+RL  Science 242:1570-1572(1988).

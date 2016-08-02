@@ -1,0 +1,16 @@
+ID  hypD
+AC  TIGR00075
+DE  hydrogenase expression/formation protein HypD
+AU  Haft DH
+TC  192.80 192.80
+NC  28.85 28.85
+AL  msa_tigr
+IT  equivalog
+EN  hydrogenase expression/formation protein HypD
+GS  hypD
+TP  TIGRFAMs
+CC  HypD is involved in the hyp operon which is needed for the activity of the three hydrogenase isoenzymes in Escherichia coli. HypD is one of the genes needed for formation of these enzymes. This protein has been found in gram-negative and  gram-positive bacteria and Archaea.
+RM  1849603
+RT  Molecular characterization of an operon (hyp) necessary for the activity of the three hydrogenase isoenzymes in Escherichia coli.
+RA  Lutz S, Jacobi A, Schlensog V, Bohm R, Sawers G, Bock A.
+RL  Mol Microbiol 1991 Jan;5(1):123-35

@@ -1,0 +1,22 @@
+ID  PC_PLC
+AC  TIGR03396
+DE  phospholipase C, phosphocholine-specific
+AU  Haft DH
+TC  580.25 580.25
+NC  465.55 465.55
+AL  muscle_manual
+IT  equivalog
+EN  phospholipase C, phosphocholine-specific, Pseudomonas-type
+EC  3.1.4.3
+TP  TIGRFAMs
+CC  Members of this protein family are bacterial, phosphatidylcholine-hydrolyzing phospholipase C enzymes, with a characteristic domain architecture as found in hemolytyic (PlcH) and nonhemolytic (PlcN) secreted enzymes of Pseudomonas aeruginosa. PlcH hydrolyzes phosphatidylcholine to diacylglycerol and phosphocholine, but unlike PlcN can also hydrolyze sphingomyelin to ceramide ((N-acylsphingosine)) and phosphocholine. Members of this family share the twin-arginine signal sequence for Sec-independent transport across the plasma membrane. PlcH is secreted as a heterodimer with a small chaperone, PlcR, encoded immediately downstream.
+RN  [1]
+RM  PMID: 12410824
+RT  A novel class of microbial phosphocholine-specific phospholipases C.
+RA  Stonehouse MJ, Cota-Gomez A, Parker SK, Martin WE, Hankin JA, Murphy RC, Chen W, Lim KB, Hackett M, Vasil AI, Vasil ML
+RL  Mol Microbiol. 2002 Nov;46(3):661-76.
+RN  [2]
+RM  PMID: 10523590
+RT  Cloning and characterization of a nonhemolytic phospholipase C gene from Burkholderia pseudomallei.
+RA  Korbsrisate S, Suwanasai N, Leelaporn A, Ezaki T, Kawamura Y, Sarasombath S
+RL  J Clin Microbiol. 1999 Nov;37(11):3742-5.

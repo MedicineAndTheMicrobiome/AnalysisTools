@@ -1,0 +1,22 @@
+ID  hflK
+AC  TIGR01933
+DE  HflK protein
+AU  Haft DH
+TC  159.40 159.40
+NC  133.10 133.10
+AL  clustalw_manual
+IT  equivalog
+EN  HflK protein
+GS  hflK
+TP  TIGRFAMs
+CC  HflK and HflC are paralogs encoded by tandem genes in Proteobacteria, spirochetes, and some other bacterial lineages.  The HflKC complex is anchored in the membrane and exposed to the periplasm. The complex is not active as a protease, but rather binds to and appears to modulate the ATP-dependent protease FtsH. The overall function of HflKC is not fully described.//Regulation of FtsH by HflKC appears to be negative (PMID:8947034,PMID:96367) [SS 8/27/03]
+RN  [1]
+RM  9792691
+RT  Translocation, folding, and stability of the HflKC complex with signal anchor topogenic sequences.
+RA  Kihara A, Ito K.
+RL  J Biol Chem. 1998 Nov 6;273(45):29770-5.
+RN  [2]
+RM  10512625
+RT  Self-processing of FtsH and its implication for the cleavage specificity of this protease.
+RA  Akiyama Y.
+RL  Biochemistry. 1999 Sep 7;38(36):11693-9.

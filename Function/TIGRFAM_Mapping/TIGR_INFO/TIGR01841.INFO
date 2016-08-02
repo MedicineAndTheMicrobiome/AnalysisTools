@@ -1,0 +1,21 @@
+ID  phasin
+AC  TIGR01841
+DE  phasin family protein
+AU  Haft DH
+TC  30.20 30.20
+NC  27.25 27.25
+AL  manual
+IT  subfamily_domain
+EN  phasin family protein
+TP  TIGRFAMs
+CC  This HMM describes a family of small proteins found associated with inclusions in bacterial cells. Most associate with polyhydroxyalkanoate (PHA) inclusions, the most common of which consist of polyhydroxybutyrate (PHB). These are designated granule-associate proteins or phasins; the member from Rhodospirillum rubrum is an activator of polyhydroxybutyrate (PHB) degradation. However, the member from Magnetospirillum sp. AMB-1 is called a magnetic particle membrane-specific GTPase.
+RN  [1]
+RM  15060050
+RT  Unraveling the function of the Rhodospirillum rubrum activator of polyhydroxybutyrate (PHB) degradation: the activator is a PHB-granule-bound protein (phasin).
+RA  Handrick R, Reinhardt S, Schultheiss D, Reichart T, Schuler D, Jendrossek V, Jendrossek D.
+RL  J Bacteriol. 2004 Apr;186(8):2466-75. 
+RN  [2]
+RM  11557762
+RT  A magnetosome-specific GTPase from the magnetic bacterium Magnetospirillum magneticum AMB-1.
+RA  Okamura Y, Takeyama H, Matsunaga T.
+RL  J Biol Chem 2001 Dec 21;276(51):48183-8

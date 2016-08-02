@@ -1,0 +1,15 @@
+ID  ICE_VC0181
+AC  TIGR02256
+DE  conserved hypothetical protein
+AU  Haft DH
+TC  127.60 127.60
+NC  34.55 34.55
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  integrative and conjugative element protein, VC0181 family
+TP  TIGRFAMs
+CC  This uncharacterized protein is found in several Proteobacteria, among them Rhizobium sp. NGR234, Vibrio cholerae, Myxococcus xanthus, and E. coli strain ECOR31. In the latter, it is part of an integrative and conjugative element that is readily induced to excise and circularize.
+RM  14731283
+RT  A novel integrative and conjugative element (ICE) of Escherichia coli: the putative progenitor of the Yersinia high-pathogenicity island.
+RA  Schubert S, Dufke S, Sorsa J, Heesemann J.
+RL  Mol Microbiol. 2004 Feb;51(3):837-48.

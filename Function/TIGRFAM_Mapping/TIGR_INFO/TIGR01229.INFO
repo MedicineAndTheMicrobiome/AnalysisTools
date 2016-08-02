@@ -1,0 +1,17 @@
+ID  rocF_arginase
+AC  TIGR01229
+DE  arginase
+AU  Haft DH
+TC  227.60 227.60
+NC  108.90 108.90
+AL  clustalw_manual
+IT  equivalog
+EN  arginase
+GS  rocF
+EC  3.5.3.1
+TP  TIGRFAMs
+CC  This model helps resolve arginases from known and putative agmatinases, formiminoglutamases, and other related proteins of unknown specifity. The pathway from arginine to the polyamine putrescine may procede by hydrolysis to remove urea (arginase) followed by decarboxylation (ornithine decarboxylase), or by decarboxylation first (arginine decarboxylase) followed by removal of urea (agmatinase).
+RM  10931887
+RT  Phylogeny of related functions: the case of polyamine biosynthetic enzymes.
+RA  Sekowska A, Danchin A, Risler JL
+RL  Microbiology 2000 Aug;146 ( Pt 8):1815-28

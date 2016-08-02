@@ -1,0 +1,15 @@
+ID  lactococcin_972
+AC  TIGR01653
+DE  bacteriocin, lactococcin 972 family
+AU  Haft DH
+TC  32.10 32.10
+NC  30.15 30.15
+AL  manual
+IT  subfamily
+EN  bacteriocin, lactococcin 972 family
+TP  TIGRFAMs
+CC  This HMM represents bacteriocins related to lactococcin 972. Members tend to be found in association with a seven transmembrane putative immunity protein.
+RM  10589723
+RT  Synthesis of lactococcin 972, a bacteriocin produced by Lactococcus lactis IPLA 972, depends on the expression of a plasmid-encoded bicistronic operon.
+RA  Martinez B, Fernandez M, Suarez JE, Rodriguez A.
+RL  Microbiology 1999 Nov;145 ( Pt 11):3155-61

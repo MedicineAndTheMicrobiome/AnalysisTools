@@ -1,0 +1,20 @@
+ID  RNaseT
+AC  TIGR01298
+DE  ribonuclease T
+AU  Haft DH
+TC  246.20 246.20
+NC  60.20 60.20
+AL  clustalw
+IT  equivalog
+EN  ribonuclease T
+GS  rnt
+EC  3.1.13.-
+TP  TIGRFAMs
+CC  This HMM describes ribonuclease T, an enzyme found so far only
+CC  in gamma-subdivision Proteobacteria such as Escherichia coli and Xylella fastidiosa. Ribonuclease T is homologous to the DNA polymerase III alpha chain. It can liberate AMP from the common C-C-A terminus of uncharged tRNA. It appears also to be involved in RNA maturation. It also acts as a 3' to 5' single-strand DNA-specific exonuclease; it is distinctive for its ability to remove residues near a double-stranded stem.  Ribonuclease T is a high copy suppressor in E. coli of a uv-repair defect caused by deletion of three other single-stranded DNA exonucleases.
+RN  [1]
+RM  9857048
+RT  Identification of a potent DNase activity associated with RNase T of Escherichia coli.
+RA  Viswanathan M, Dower KW, Lovett ST.
+RL  J Biol Chem 1998 Dec 25;273(52):35126-31
+DR  HAMAP; MF_00157; 80 of 81

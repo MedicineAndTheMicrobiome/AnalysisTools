@@ -1,0 +1,12 @@
+ID  dipeptidaselike
+AC  TIGR01887
+DE  putative dipeptidase
+AU  Selengut J
+TC  207.95 207.95
+NC  192.05 192.05
+AL  clustalw
+IT  subfamily
+EN  dipeptidase, putative
+EC  3.4.13.-
+TP  TIGRFAMs
+CC  This model represents a clade of probable zinc dipeptidases, closely related to the characterized non-specific dipeptidase, PepV.  Many enzymes in this clade have been given names including the terms "Xaa-His" and "carnosinase" due to the early mis-characterization of the Lactobacillus delbrueckii PepV enzyme.  These names are likely too specific.

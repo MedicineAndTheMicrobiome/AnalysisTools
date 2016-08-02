@@ -1,0 +1,17 @@
+ID  octaheme_Shew
+AC  TIGR04315
+DE  octaheme c-type cytochrome, tetrathionate reductase family
+AU  Haft DH
+TC  375.00 375.00
+NC  325.00 325.00
+AL  muscle_manual
+IT  subfamily
+EN  octaheme c-type cytochrome, tetrathionate reductase family
+EC  1.-.-.-
+TP  TIGRFAMs
+CC  Members of this protein family bind heme covalently and contain eight (at least) CXXCH heme-binding motifs. A characterized member is the respiratory enzyme octaheme tetrathionate reductase from Shewanella.
+RN  [1]
+RM  PMID:15361860 
+RT  Octaheme tetrathionate reductase is a respiratory enzyme with novel heme ligation. 
+RA  Mowat CG, Rothery E, Miles CS, McIver L, Doherty MK, Drewette K, Taylor P, Walkinshaw MD, Chapman SK, Reid GA 
+RL  Nat Struct Mol Biol. 2004 Oct;11(10):1023-4.

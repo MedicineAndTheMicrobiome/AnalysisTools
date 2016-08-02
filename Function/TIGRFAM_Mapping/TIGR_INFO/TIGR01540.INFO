@@ -1,0 +1,16 @@
+ID  portal_PBSX
+AC  TIGR01540
+DE  phage portal protein, PBSX family
+AU  Haft DH, Fouts DE
+TC  166.05 166.05
+NC  102.35 102.35
+AL  clustalw_manual
+IT  equivalog
+EN  phage portal protein, PBSX family
+TP  TIGRFAMs
+CC  This HMM represents one of several distantly related families of phage portal protein. This protein forms a hole, or portal, that enables DNA passage during packaging and ejection.  It also forms the junction between the phage head (capsid) and the tail proteins. It functions as a dodecamer of a single polypeptide of average mol. wt. of 40-90 KDa.
+CC  This family shows clear homology to TIGR01537. The alignment for this group was trimmed of poorly alignable N-terminal sequence of about 50 residues and of C-terminal regions present in some but not all members of up 180 residues.
+RN  [1]
+RA  Casjens S, Hendrix R
+RT  Control Mechanisms in dsDNA Bacteriophage Assembly
+RL  p. 15-91. In R. Calendar (ed.), The Bacteriophages. Plenum Press, New York and London, 1988

@@ -1,0 +1,27 @@
+ID  PurU
+AC  TIGR00655
+DE  formyltetrahydrofolate deformylase
+AU  Haft DH
+TC  285.95 285.95
+NC  170.60 170.60
+AL  clustalw
+IT  equivalog
+EN  formyltetrahydrofolate deformylase
+GS  purU
+EC  3.5.1.10
+TP  TIGRFAMs
+CC  This HMM describes formyltetrahydrofolate deformylases. The enzyme is a homohexamer. Sequences from a related enzyme formyl tetrahydrofolate-specific enzyme, phosphoribosylglycinamide formyltransferase, serve as an outgroup for phylogenetic analysis. Putative members of this family, scoring below the trusted cutoff, include a sequence from Rhodobacter capsulatus that lacks an otherwise conserved C-terminal region.
+DR  PFAM; PF00551; formyl_transf
+RN  [1]
+RM  95173107
+RT  Formyltetrahydrofolate hydrolase, a regulatory enzyme that functions to balance pools of tetrahydrofolate and one-carbon tetrahydrofolate adducts in Escherichia coli.
+RA  Nagy PL, Marolewski A, Benkovic SJ, Zalkin H
+RL  J Bacteriol 1995 Mar;177(5):1292-8
+RN  [2]
+RM  94042872
+RT  purU, a source of formate for purT-dependent phosphoribosyl-N-formylglycinamide synthesis.
+RA  Nagy PL, McCorkle GM, Zalkin H
+RL  J Bacteriol 1993 Nov;175(21):7066-73
+DR  SWISSPROT; P37051; PURU_ECOLI;
+DR  OUTGROUP; EGAD|18449|EC2500;
+DR  EXPERIMENTAL; EGAD|15350|EC1232;

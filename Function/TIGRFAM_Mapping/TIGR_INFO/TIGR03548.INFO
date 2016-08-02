@@ -1,0 +1,16 @@
+ID  mutarot_permut
+AC  TIGR03548
+DE  cyclically-permuted mutarotase family protein
+AU  Haft DH
+TC  243.20 243.20
+NC  172.30 172.30
+AL  muscle_manual
+IT  subfamily
+EN  cyclically-permuted mutarotase family protein
+TP  TIGRFAMs
+CC  Members of this protein family show essentially full-length homology, cyclically permuted, to YjhT from Escherichia coli. YjhT was shown to act as a mutarotase for sialic acid, and by this ability to be able to act as a virulence factor. Members of the YjhT family (TIGR03547) and this cyclically-permuted family have multiple repeats of the beta-propeller-forming Kelch repeat.
+RN  [1]
+RM  PMID:18063573
+RT  Sialic Acid Mutarotation Is Catalyzed by the Escherichia coli {beta}-Propeller Protein YjhT.
+RA  Severi E, Muller A, Potts JR, Leech A, Williamson D, Wilson KS, Thomas GH
+RL  J Biol Chem. 2008 Feb 22;283(8):4841-9.

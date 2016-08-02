@@ -1,0 +1,14 @@
+ID  thiocyan_alph
+AC  TIGR03887
+DE  thiocyanate hydrolase, gamma subunit
+AU  Haft DH
+TC  291.45 291.45
+NC  291.05 291.05
+AL  muscle
+IT  equivalog
+EN  thiocyanate hydrolase, gamma subunit
+GS  scnC
+EC  3.5.5.8
+TP  TIGRFAMs
+CC  Members of this family are the gamma subunit of thiocyanate hydrolase. This family is closely related to the nitrile hydratase, alpha subunit (TIGR01323).
+DR  CHAR; CH_109203

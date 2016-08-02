@@ -1,0 +1,21 @@
+ID  thiE
+AC  TIGR00693
+DE  thiamine-phosphate diphosphorylase
+AU  Loftus BJ, Haft DH
+TC  145.10 145.10
+NC  60.35 60.35
+AL  clustalw_manual
+IT  equivalog_domain
+EN  thiamine-phosphate diphosphorylase
+GS  thiE
+EC  2.5.1.3
+TP  TIGRFAMs
+CC  This model represents the thiamine-phosphate pyrophosphorylase, ThiE, of a number of bacteria, and N-terminal domains of bifunctional thiamine proteins of Saccharomyces cerevisiae and Schizosaccharomyces pombe, in which the C-terminal domain corresponds to the bacterial hydroxyethylthiazole kinase (EC 2.7.1.50), ThiM.
+CC  This model includes ThiE from Bacillus subtilis but excludes its paralog, the regulatory protein TenI (SP:P25053), and neighbors of TenI.
+DR  SWISSPROT; P30137
+DR  ECOCYC; EG11586; thiE
+RM  98363648
+DR  EXPERIMENTAL; GP|2746079|gb|AAC31298.1||AF015310; Brassica napus
+DR  EXPERIMENTAL; EGAD|56426|YPL214C; Saccharomyces cerevisiae
+DR  EXPERIMENTAL; EGAD|10927|EC3993; Escherichia coli
+DR  HAMAP; MF_01327; 11 of 11

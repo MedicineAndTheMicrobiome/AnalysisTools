@@ -1,0 +1,20 @@
+ID  oxido_YhdH
+AC  TIGR02823
+DE  putative quinone oxidoreductase, YhdH/YhfP family
+AU  Haft DH
+TC  297.25 297.25
+NC  146.90 146.90
+AL  clustalw_manual
+IT  subfamily
+EN  putative quinone oxidoreductase, YhdH/YhfP family
+TP  TIGRFAMs
+CC  This model represents a subfamily of PF00107 as defined by Pfam, a superfamily in which some members are zinc-binding medium-chain alcohol dehydrogenases while others are quinone oxidoreductases with no bound zinc. This subfamily includes proteins studied crystallographically for insight into function: YhdH from Escherichia coli and YhfP from Bacillus subtilis. Members bind NADPH or NAD, but not zinc.
+RN  [1]
+RM  15388933
+RT  Structure of Escherichia coli YhdH, a putative quinone oxidoreductase.
+RA  Sulzenbacher G, Roig-Zamboni V, Pagot F, Grisel S, Salomoni A, Valencia C, Campanacci V, Vincentelli R, Tegoni M, Eklund H, Cambillau C.
+RL  Acta Crystallogr D Biol Crystallogr. 2004 Oct;60(Pt 10):1855-62.
+RN  [2]
+RT  The crystal structure of hypothetical protein yhfP from Bacillus subtilis
+RA  Min, T.,  Gorman, J.,  Shapiro, L.
+RL  unpublished

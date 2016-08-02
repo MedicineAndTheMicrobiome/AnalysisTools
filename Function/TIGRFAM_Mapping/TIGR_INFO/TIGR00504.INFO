@@ -1,0 +1,14 @@
+ID  pyro_pdase
+AC  TIGR00504
+DE  pyroglutamyl-peptidase I
+AU  Haft DH
+TC  201.75 201.75
+NC  113.65 113.65
+AL  clustalw
+IT  equivalog
+EN  pyroglutamyl-peptidase I
+GS  pcp
+EC  3.4.19.3
+TP  TIGRFAMs
+CC  Alternate names include pyroglutamate aminopeptidase, pyrrolidone-carboxylate peptidase, and 5-oxoprolyl-peptidase. It removes pyroglutamate (pyrrolidone-carboxylate, a modified glutamine) that can otherwise block hydrolysis of a polypeptide at the amino end, and so can be extremely useful in the biochemical studies of proteins. The biological role in the various species in which it is found is not fully understood. The enzyme appears to be a homodimer. It does not closely resemble any other peptidases.
+DR  HAMAP; MF_00417; 97 of 102

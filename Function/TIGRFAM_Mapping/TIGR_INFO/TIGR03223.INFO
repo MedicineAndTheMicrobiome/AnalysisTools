@@ -1,0 +1,11 @@
+ID  Phn_opern_protn
+AC  TIGR03223
+DE  putative phosphonate metabolism protein
+AU  Selengut J, Dodson R
+TC  248.95 248.95
+NC  238.40 238.40
+AL  muscle
+IT  hypoth_equivalog
+EN  putative phosphonate metabolism protein
+TP  TIGRFAMs
+CC  This family of proteins is observed in the vicinity of other caharacterized genes involved in the catabolism of phosphonates via the3 C-P lyase system (GenProp0232), its function is unknown.  These proteins are members of the somewhat broader PF06299 model "Protein of unknown function (DUF1045)" which contains proteins found in a different genomic context as well.

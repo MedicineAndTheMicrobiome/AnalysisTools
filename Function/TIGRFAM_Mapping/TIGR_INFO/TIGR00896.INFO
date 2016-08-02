@@ -1,0 +1,12 @@
+ID  CynX
+AC  TIGR00896
+DE  cyanate transporter
+AU  Loftus BJ
+TC  406.00 406.00
+NC  303.50 303.50
+AL  clustalw_manual
+IT  subfamily
+EN  cyanate transporter
+TR  2.A.1.17.1
+TP  TIGRFAMs
+CC  This family of proteins is involved in active transport of cyanate. The cyanate transporter in E.Coli is used to transport cyanate into the cell so it can be metabolized into ammonia and bicarbonate. This process is used to overcome the toxicity of environmental cyanate.

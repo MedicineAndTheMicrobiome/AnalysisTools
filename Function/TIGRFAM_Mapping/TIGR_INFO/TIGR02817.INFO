@@ -1,0 +1,13 @@
+ID  adh_fam_1
+AC  TIGR02817
+DE  zinc-binding alcohol dehydrogenase family protein
+AU  Haft DH
+TC  284.05 284.05
+NC  222.75 222.75
+AL  clustalw_manual
+IT  subfamily
+EN  zinc-binding alcohol dehydrogenase family protein
+TP  TIGRFAMs
+CC  Members of this model form a distinct subset of the larger family of oxidoreductases that includes zinc-binding alcohol dehydrogenases and NADPH:quinone reductases (PF00107). While some current members of this family carry designations as putative alginate lyase, it seems no sequence with a direct characterization as such is detected by this model.
+DR  PFAM; PF00107; ADH_zinc_N; oxidoreductase, zinc-binding dehydrogenase family
+DR  COGS; COG0604; NADPH:quinone reductase and related Zn-dependent oxidoreductases

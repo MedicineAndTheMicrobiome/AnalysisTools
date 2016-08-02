@@ -1,0 +1,12 @@
+ID  GlyGly_RbtA
+AC  TIGR04212
+DE  rhombotarget A
+AU  Haft DH
+TC  295.00 150.00
+NC  210.00 60.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  Acinetobacter rhombotarget A
+GS  rbtA
+TP  TIGRFAMs
+CC  Members of this protein family are found, so far, exclusively in the genus Acinetobacter. Members average just over 600 amino acids in length, including a 22-amino acid C-terminal putative protein sorting recognition sequence, GlyGly-CTERM (TIGR03501). The GlyGly-CTERM signal always co-occurs with a subfamily of the rhomboid family intramembrane serine proteases called rhombosortase (TIGR03902). Members occur paired with a second rhombosortase target, with which it also shares an N-terminal motif CSLREA. This protein is designated Acinetobacter rhombotarget A (rbtA).

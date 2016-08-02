@@ -1,0 +1,13 @@
+ID  exbB2
+AC  TIGR02805
+DE  tonB-system energizer ExbB
+AU  Haft DH
+TC  135.35 135.35
+NC  86.45 86.45
+AL  clustalw_manual
+IT  equivalog
+EN  tonB-system energizer ExbB, group 2
+GS  exbB
+TR  2.C.1
+TP  TIGRFAMs
+CC  Members of this protein family appear to be the ExbB protein of an ExbBD proton-transporting membrane complex that, by means of TonB, energizes transport by TonB-dependent receptors. Note that this family represents one of at least two distinct groups TolQ homologs designated ExbB - see also TIGR02797. Each group associates with a distinct group of ExbD proteins, and a single species may have two ExbB/ExbD/TonB systems.

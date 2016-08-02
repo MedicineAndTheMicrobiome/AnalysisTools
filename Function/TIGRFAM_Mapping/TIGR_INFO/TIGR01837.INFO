@@ -1,0 +1,11 @@
+ID  PHA_granule_1
+AC  TIGR01837
+DE  poly(hydroxyalkanoate) granule-associated protein
+AU  Haft DH
+TC  94.70 94.70
+NC  40.15 40.15
+AL  clustalw_manual
+IT  subfamily_domain
+EN  poly(hydroxyalkanoate) granule-associated protein
+TP  TIGRFAMs
+CC  This HMM describes a domain found in some proteins associated with polyhydroxyalkanoate (PHA) granules in a subset of species that have PHA inclusion granules. Included are two tandem proteins of Pseudomonas oleovorans, PhaI and PhaF, and their homologs in related species. PhaF proteins have a low-complexity C-terminal region with repeats similar to AAAKP.

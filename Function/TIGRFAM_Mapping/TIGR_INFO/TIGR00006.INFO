@@ -1,0 +1,29 @@
+ID  TIGR00006
+AC  TIGR00006
+DE  16S rRNA (cytosine(1402)-N(4))-methyltransferase
+AU  Richardson DL, Haft DH
+TC  154.30 154.30
+NC  114.95 114.95
+AL  clustalw
+IT  equivalog
+EN  16S rRNA (cytosine(1402)-N(4))-methyltransferase
+GS  rsmH
+EC  2.1.1.199
+TP  TIGRFAMs
+CC  This HMM describes RsmH, a 16S rRNA methyltransferase. Previously, this gene was designated MraW, known to be essential in E. coli and widely conserved in bacteria.
+RN  [1]
+RM  PMID:22561317 
+RT  Crystal and solution structures of methyltransferase RsmH provide basis for methylation of C1402 in 16S rRNA. 
+RA  Wei Y, Zhang H, Gao ZQ, Wang WJ, Shtykova EV, Xu JH, Liu QS, Dong YH 
+RL  J Struct Biol. 2012 Jul;179(1):29-40. Epub 2012 Apr 27.
+RN  [2]
+RM  PMID:10572301 
+RT  mraW, an essential gene at the dcw cluster of Escherichia coli codes for a cytoplasmic protein with methyltransferase activity. 
+RA  Carrion M, Gomez MJ, Merchante-Schubert R, Dongarra S, Ayala JA 
+RL  Biochimie. 1999 Aug-Sep;81(8-9):879-88. 
+RN  [2]
+RM  PMID:4563986 
+RT  Cell wall peptidoglycan mutants of Escherichia coli K-12: existence of two clusters of genes, mra and mrb, for cell wall peptidoglycan biosynthesis. 
+RA  Miyakawa T, Matsuzawa H, Matsuhashi M, Sugino Y 
+RL  J Bacteriol. 1972 Nov;112(2):950-8.
+DR  HAMAP; MF_01007; 272 of 272

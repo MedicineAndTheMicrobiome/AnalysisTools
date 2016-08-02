@@ -1,0 +1,16 @@
+ID  F420_CPS_4043
+AC  TIGR03842
+DE  F420-dependent oxidoreductase, CPS_4043 family
+AU  Haft DH
+TC  295.45 295.45
+NC  295.10 295.10
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  F420-dependent oxidoreductase, CPS_4043 family
+TP  TIGRFAMs
+CC  This HMM represents a family of putative F420-dependent oxidoreductases, fairly closely related to 5,10-methylenetetrahydromethanopterin reductase (mer, TIGR03555), both within the bacterial luciferase-like monoxygenase (LLM) family. A fairly deep split (to about 40 % sequence identity) in the present family separates a strictly Actinobacterial clade from an alpha/beta/gamma-proteobacterial clade, in which the member is often the only apparent F420-dependent LLM family member. The specific function, and whether Actinobacterial and Proteobacterial clades differ in function, are unknown.
+RN  [1]
+RM  PMID:20675471 
+RT  Unexpected abundance of coenzyme F(420)-dependent enzymes in Mycobacterium tuberculosis and other actinobacteria. 
+RA  Selengut JD, Haft DH 
+RL  J Bacteriol. 2010 Nov;192(21):5788-98.

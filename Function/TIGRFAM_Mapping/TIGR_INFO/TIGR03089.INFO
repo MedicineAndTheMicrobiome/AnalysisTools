@@ -1,0 +1,11 @@
+ID  TIGR03089
+AC  TIGR03089
+DE  TIGR03089 family protein
+AU  Haft DH
+TC  157.55 157.55
+NC  65.85 65.85
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  TIGR03089 family protein
+TP  TIGRFAMs
+CC  This protein family is found, so far, only in the Actinobacteria (Streptomyces, Mycobacterium, Corynebacterium, Nocardia, Propionibacterium, etc.) and never more than one to a genome. Members show twilight-level sequence similarity to family of AMP-binding enzymes described by Pfam model PF00501.

@@ -1,0 +1,18 @@
+ID  pseudo_Pus10arc
+AC  TIGR01213
+DE  tRNA pseudouridine(54/55) synthase
+AU  Haft DH
+TC  239.55 239.55
+NC  81.20 81.20
+AL  clustalw
+IT  equivalog
+EN  tRNA pseudouridine(54/55) synthase
+EC  5.4.99.25
+TP  TIGRFAMs
+CC  Members of this family show twilight-zone similarity to several predicted RNA pseudouridine synthases. All trusted members of this family are archaeal. Several eukaryotic homologs lack N-terminal homology including two CXXC motifs.
+DR  COGS; COG1258
+RN  [1]
+RM  PMID:21628430 
+RT  Pseudouridine formation in archaeal RNAs: The case of Haloferax volcanii. 
+RA  Blaby IK, Majumder M, Chatterjee K, Jana S, Grosjean H, de Crecy-Lagard V, Gupta R 
+RL  RNA. 2011 Jul;17(7):1367-80.

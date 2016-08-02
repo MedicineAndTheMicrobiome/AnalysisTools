@@ -1,0 +1,13 @@
+ID  ICDH_alpha
+AC  TIGR02924
+DE  isocitrate dehydrogenase
+AU  Selengut J
+TC  561.35 561.35
+NC  403.25 403.25
+AL  muscle
+IT  equivalog
+EN  isocitrate dehydrogenase
+GS  icd
+EC  1.1.1.-
+TP  TIGRFAMs
+CC  This family of mainly alphaproteobacterial enzymes is a member of the isocitrate/isopropylmalate dehydrogenase superfamily described by PF00180.  Every member of the seed of this model appears to have a TCA cycle lacking only a determined isocitrate dehydrogenase.  The precise identity of the cofactor (NADH -- 1.1.1.41 vs. NADPH -- 1.1.1.42) is unclear.

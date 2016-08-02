@@ -1,0 +1,11 @@
+ID  MXAN_0977_Heme2
+AC  TIGR04039
+DE  di-heme enzyme, MXAN_0977 family
+AU  Haft DH
+TC  362.85 362.85
+NC  361.95 361.95
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  di-heme enzyme, MXAN_0977 family
+TP  TIGRFAMs
+CC  This HMM describes a subfamily of di-heme proteins related to the di-heme cytochrome c peroxidase and to MauG (methylamine utilization G), an enzyme that performs a tryptophan tryptophylquinone modification to the methylamine dehydrogenase light chain.

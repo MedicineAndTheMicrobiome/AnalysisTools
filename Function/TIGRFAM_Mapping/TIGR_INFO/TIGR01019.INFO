@@ -1,0 +1,16 @@
+ID  sucCoAalpha
+AC  TIGR01019
+DE  succinate-CoA ligase, alpha subunit
+AU  Haft DH
+TC  353.20 353.20
+NC  165.45 165.45
+AL  clustalw
+IT  subfamily
+EN  succinyl-CoA synthetase, alpha subunit
+GS  sucD
+EC  6.2.1.-
+TP  TIGRFAMs
+CC  This model describes succinyl-CoA synthetase alpha subunits but does not discriminate between GTP-specific and ATP-specific reactions. The model is designated as subfamily rather than equivalog for that reason.
+CC  ATP citrate lyases appear to form an outgroup.
+DR  COGS; COG0074
+DR  OUTGROUP; EGAD|63655|66543; ATP citrate lyase

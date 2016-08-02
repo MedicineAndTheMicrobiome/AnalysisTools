@@ -1,0 +1,18 @@
+ID  BchM-ChlM
+AC  TIGR02021
+DE  magnesium protoporphyrin O-methyltransferase
+AU  Selengut J
+TC  158.90 158.90
+NC  86.00 86.00
+AL  clustalw
+IT  equivalog
+EN  magnesium protoporphyrin O-methyltransferase
+GS  bchM
+EC  2.1.1.11
+TP  TIGRFAMs
+CC  This HMM represents the S-adenosylmethionine-dependent O-methyltransferase responsible for methylation of magnesium protoporphyrin IX.  This step is essentiasl for the biosynthesis of both chlorophyll and bacteriochlorophyll.  This model encompasses two closely related clades, from cyanobacteria (and plants) where it is called ChlM and other photosynthetic bacteria where it is known as BchM.
+RN  [1]
+RM  PMID: 8071204
+RT  Heterologous expression of the bchM gene product from Rhodobacter capsulatus and demonstration that it encodes S-adenosyl-L-methionine:Mg-protoporphyrin IX methyltransferase.
+RA  Bollivar DW, Jiang ZY, Bauer CE, Beale SI.
+RL  J Bacteriol. 1994 Sep;176(17):5290-6.

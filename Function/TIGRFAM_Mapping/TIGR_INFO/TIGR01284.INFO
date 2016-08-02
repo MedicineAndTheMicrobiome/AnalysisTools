@@ -1,0 +1,12 @@
+ID  alt_nitrog_alph
+AC  TIGR01284
+DE  nitrogenase alpha chain
+AU  Haft DH
+TC  512.80 512.80
+NC  392.75 392.75
+AL  clustalw_manual
+IT  subfamily
+EN  nitrogenase alpha chain
+EC  1.18.6.1
+TP  TIGRFAMs
+CC  This model represents the alpha chains of various forms of the nitrogen-fixing enzyme nitrogenase: vanadium-iron, iron-iron, and molybdenum-iron. Most examples of NifD, the molybdenum-iron type nitrogenase alpha chain, are excluded from this model and described instead by equivalog model TIGR01282. It appears by phylogenetic and UPGMA trees that this model represents a distinct clade of NifD homologs, in which arose several molybdenum-independent forms.

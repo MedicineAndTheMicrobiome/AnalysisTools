@@ -1,0 +1,12 @@
+ID  acon_putative
+AC  TIGR01342
+DE  putative aconitate hydratase
+AU  Haft DH
+TC  719.15 719.15
+NC  440.55 440.55
+AL  clustalw
+IT  hypoth_equivalog
+EN  aconitate hydratase, putative, Aquifex type
+EC  4.2.1.3
+TP  TIGRFAMs
+CC  This model represents a small family of proteins homologous (and likely functionally equivalent to) aconitase 1. Members are found, so far in the anaerobe Clostridium acetobutylicum, in the microaerophilic, early-branching bacterium Aquifex aeolicus, and in the halophilic archaeon Halobacterium sp. NRC-1. No member is experimentally characterized.

@@ -1,0 +1,11 @@
+ID  penta_MxKDx
+AC  TIGR02953
+DE  pentapeptide MXKDX repeat protein
+AU  Haft DH
+TC  41.00 41.00
+NC  24.05 24.05
+AL  muscle_manual
+IT  subfamily
+EN  pentapeptide MXKDX repeat protein
+TP  TIGRFAMs
+CC  Members of this protein family are small bacterial proteins, each with an N-terminal signal sequence followed by up to 11 imperfect repeats of a pentapeptide. The pentapeptide repeat usually follows the form Met-Xaa-Lys-Asp-Xaa.

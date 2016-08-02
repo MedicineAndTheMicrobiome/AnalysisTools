@@ -1,0 +1,16 @@
+ID  sbcd
+AC  TIGR00619
+DE  exonuclease SbcCD, D subunit
+AU  Loftus BJ, Eisen JA
+TC  77.65 77.65
+NC  67.25 67.25
+IT  subfamily
+EN  exonuclease SbcD
+GS  sbcD
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are double-stranded DNA exonuclease (as part of a complex with SbcC homologs).  This complex functions in the initiation of recombination and recombinational repair and is particularly important in regulating the stability of DNA sections that can form secondary structures.
+CC  This family is likely homologous to the MRE11 family.
+CC  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  EGAD; 9310;
+DR  SWISSPROT; P13457;
+RM  90045931;

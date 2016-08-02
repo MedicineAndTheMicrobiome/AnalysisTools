@@ -1,0 +1,23 @@
+ID  type_IV_pilW
+AC  TIGR02521
+DE  type IV pilus biogenesis/stability protein PilW
+AU  Haft DH
+TC  154.00 154.00
+NC  97.25 97.25
+AL  manual
+IT  equivalog
+EN  type IV pilus biogenesis/stability protein PilW
+GS  pilF
+TP  TIGRFAMs
+CC  Members of this family are designated PilF in ref [1] (PMID:8973346) and PilW in ref [2] (PMID:15612916). This outer membrane protein is required both for pilus stability and for pilus function such as adherence to human cells. Members of this family contain copies of the TPR (tetratricopeptide repeat) domain.
+DR  PFAM; PF00515; TPR Domain
+RN  [1]
+RM  8973346
+RT  Identification of a gene, pilF, required for type 4 fimbrial biogenesis and twitching motility in Pseudomonas aeruginosa.
+RA  Watson AA, Alm RA, Mattick JS.
+RL  Gene. 1996 Nov 21;180(1-2):49-56.
+RN  [2]
+RM  15612916
+RT  Type IV pilus biogenesis in Neisseria meningitidis: PilW is involved in a step occurring after pilus assembly, essential for fibre stability and function.
+RA  Carbonnelle E, Helaine S, Prouvensier L, Nassif X, Pelicic V.
+RL  Mol Microbiol. 2005 Jan;55(1):54-64.

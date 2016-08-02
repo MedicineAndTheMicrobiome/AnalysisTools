@@ -1,0 +1,13 @@
+ID  V_ATPase_subD
+AC  TIGR00309
+DE  V-type ATPase, D subunit
+AU  Haft DH
+TC  72.25 72.25
+NC  60.25 60.25
+AL  clustalw
+IT  subfamily
+EN  H(+)-transporting ATP synthase, vacuolar type, subunit D
+EC  3.6.3.14
+TP  TIGRFAMs
+CC  Although this ATPase can run backwards, using a proton gradient to synthesize ATP, the primary biological role is to acidify some compartment, such as yeast vacuole (a lysosomal homolog) or the interior of a prokaryote.
+DR  HAMAP; MF_00271; 63 of 63

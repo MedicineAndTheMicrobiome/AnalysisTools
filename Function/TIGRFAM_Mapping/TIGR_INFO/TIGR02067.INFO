@@ -1,0 +1,24 @@
+ID  his_9_HisN
+AC  TIGR02067
+DE  histidinol-phosphatase
+AU  Haft DH
+TC  275.15 275.15
+NC  190.95 190.95
+AL  clustalw_manual
+IT  equivalog
+EN  histidinol-phosphatase, inositol monophosphatase family
+GS  hisN
+EC  3.1.3.15
+TP  TIGRFAMs
+CC  This subfamily belongs to the inositol monophosphatase family (PF00459). The members of this family consist of no more than one per species and are found only in species in which histidine is synthesized de novo but no histidinol phosphatase can be found in either of the two described families (TIGR01261, TIGR01856). In at least one species, the member of this family is found near known histidine biosynthesis genes. The role as histidinol-phosphatase wsa first proven in Corynebacterium glutamicum.
+DR  PFAM; PF00459; inositol monophosphatase family
+RN  [1]
+RM  PMID: 15347579
+RT  Genome Properties: a system for the investigation of prokaryotic genetic content for microbiology, genome annotation and comparative genomics.
+RA  Haft DH, Selengut JD, Brinkac LM, Zafar N, White O
+RL  Bioinformatics. 2005 Feb 1;21(3):293-306.
+RN  [2]
+RM  PMID: 16901339
+RT  Random mutagenesis in Corynebacterium glutamicum ATCC 13032 using an IS6100-based transposon vector identified the last unknown gene in the histidine biosynthesis pathway.
+RA  Mormann S, Lomker A, Ruckert C, Gaigalat L, Tauch A, Puhler A, Kalinowski J
+RL  BMC Genomics. 2006 Aug 10;7:205.

@@ -1,0 +1,23 @@
+ID  ubiA_proteo
+AC  TIGR01474
+DE  4-hydroxybenzoate polyprenyl transferase
+AU  Haft DH
+TC  275.45 275.45
+NC  160.95 160.95
+AL  clustalw_manual
+IT  equivalog
+EN  4-hydroxybenzoate polyprenyl transferase, proteobacterial
+GS  ubiA
+EC  2.5.1.-
+TP  TIGRFAMs
+CC  This model represents a family of integral membrane proteins that condenses para-hydroxybenzoate with any of several polyprenyldiphosphates. Heterologous expression studies suggest that for, many but not all members, the activity seen (e.g. octaprenyltransferase in E. coli) reflects available host isoprenyl pools rather than enzyme specificity.
+CC  A fairly deep split by both clustering (UPGMA) and phylogenetics (NJ tree) separates this group (mostly Proteobacterial and mitochondrial), with several characterized members, from another group (mostly archaeal and Gram-positive bacterial) lacking characterized members.
+DR  EXPERIMENTAL; SP:P32378; p-hydroxybenzoate:polyprenyl transferase; Saccharomyces cerevisiae
+DR  EXPERIMENTAL; SP:P26601; 4-hydroxybenzoate octaprenyltransferase; Escherichia coli; ubiA
+DR  EXPERIMENTAL; SP|O52366; 4-hydroxybenzoate octaprenyltransferase; Providencia stuartii; aarE
+RN  [1]
+RM  11092853
+RT  Phenotypes of fission yeast defective in ubiquinone production due to disruption of the gene for p-hydroxybenzoate polyprenyl diphosphate transferase.
+RA  Uchida N, Suzuki K, Saiki R, Kainou T, Tanaka K, Matsuda H, Kawamukai M.
+RL  J Bacteriol 2000 Dec;182(24):6933-9
+DR  HAMAP; MF_01635; 160 of 167

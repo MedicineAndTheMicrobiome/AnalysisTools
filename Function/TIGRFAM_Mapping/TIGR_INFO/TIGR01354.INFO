@@ -1,0 +1,17 @@
+ID  cyt_deam_tetra
+AC  TIGR01354
+DE  cytidine deaminase
+AU  Haft DH
+TC  113.65 113.65
+NC  70.95 70.95
+AL  clustalw_manual
+IT  equivalog
+EN  cytidine deaminase, homotetrameric
+GS  cdd
+EC  3.5.4.5
+TP  TIGRFAMs
+CC  This small, homotetrameric zinc metalloprotein is found in humans and most bacteria. A related, homodimeric form with a much larger subunit is found in E. coli and in Arabidopsis. Both types may act on deoxycytidine as well as cytidine.
+RM  10493793
+RT  Cytidine deaminases from B. subtilis and E. coli: compensating effects of changing zinc coordination and quaternary structure.
+RA  Carlow DC, Carter CW Jr, Mejlhede N, Neuhard J, Wolfenden R.
+RL  Biochemistry 1999 Sep 21;38(38):12258-65

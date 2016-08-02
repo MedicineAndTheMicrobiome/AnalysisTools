@@ -1,0 +1,13 @@
+ID  tolR
+AC  TIGR02801
+DE  protein TolR
+AU  Haft DH
+TC  127.30 127.30
+NC  121.75 121.75
+AL  clustalw_manual
+IT  equivalog
+EN  TolR protein
+GS  tolR
+TR  2.C.1.2
+TP  TIGRFAMs
+CC  The model describes the inner membrane protein TolR, part of the TolR/TolQ complex that transduces energy from the proton-motive force, through TolA, to an outer membrane complex made up of TolB and Pal (peptidoglycan-associated lipoprotein). The complex is required to maintain outer membrane integrity, and defects may cause a defect in the import of some organic compounds in addition to the resulting morphologic. While several gene pairs homologous to talR and tolQ may be found in a single genome, but the scope of this model is set to favor finding only bone fide TolR, supported by operon structure as well as by score.

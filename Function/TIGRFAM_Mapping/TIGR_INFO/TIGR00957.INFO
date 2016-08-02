@@ -1,0 +1,16 @@
+ID  MRP_assoc_pro
+AC  TIGR00957
+DE  multi drug resistance-associated protein (MRP)
+AU  Ujwal ML, Loftus BJ, Paulsen IT
+TC  1470.00 1470.00
+NC  1470.00 1470.00
+AL  clustalw_manual
+IT  equivalog
+EN  multi drug resistance-associated protein (MRP)
+TR  3.A.01
+TP  TIGRFAMs
+CC  This model describes multi drug resistance-associated protein (MRP) in eukaryotes. The multidrug resistance-associated protein is an integral membrane protein that causes multidrug resistance when overexpressed in mammalian cells. It belongs to ABC transporter superfamily. The protein topology and function was experimentally demonstrated by epitope tagging and immunofluorescence. Insertion of tags in the critical regions associated with drug efflux, abrogated its function. The C-terminal domain seem to highly conserved.
+RM  93088080
+RT  Overexpression of a transporter gene in a multidrug-resistant human lung cancer cell line
+RA  Cole S.P.C., Bhardwaj G., Gerlach J.H., Mackie J.E., Grant C.E., Almquist K.C., Stewart A.J., Kurz E.U., Duncan A.M.V., Deeley R.G.
+RL  Science 258:1650-1654(1992).

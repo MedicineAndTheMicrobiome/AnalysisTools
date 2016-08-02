@@ -1,0 +1,11 @@
+ID  rimK_rel_E_lig
+AC  TIGR02291
+DE  alpha-L-glutamate ligase homolog
+AU  Haft DH
+TC  314.20 314.20
+NC  160.10 160.10
+AL  clustalw
+IT  hypoth_equivalog
+EN  alpha-L-glutamate ligase-related protein
+TP  TIGRFAMs
+CC  Members of this protein family contain a region of homology to the RimK family of alpha-L-glutamate ligases (TIGR00768), various members of which modify the Glu-Glu C-terminus of ribosomal protein S6, or tetrahydromethanopterin, or a form of coenzyme F420 derivative. Members of this family are found so far in various Vibrio and Pseudomonas species and some other gamma and beta Proteobacteria. The function is unknown.

@@ -1,0 +1,12 @@
+ID  TIGR00289
+AC  TIGR00289
+DE  TIGR00289 family protein
+AU  Haft DH
+TC  249.50 249.50
+NC  126.35 126.35
+AL  clustalw
+IT  hypoth_equivalog
+EN  TIGR00289 family protein
+TP  TIGRFAMs
+CC  Homologous proteins related to MJ0570 of Methanococcus jannaschii include both the apparent orthologs found by this model above the trusted cutoff, the much longer protein YLR143W from Saccharomyces cerevisiae, and second homologous proteins from Archaeoglobus fulgidus and Pyrococcus horikoshii that appear to represent a second orthologous group.
+DR  PDB; 1RU8; Crystal Structure Of The Putative N-Type Atp Pyrophosphatase From Pyrococcus Furiosus

@@ -1,0 +1,17 @@
+ID  xanthine_xdhC
+AC  TIGR02964
+DE  xanthine dehydrogenase accessory protein XdhC
+AU  Haft DH
+TC  161.60 161.60
+NC  152.75 152.75
+AL  muscle
+IT  equivalog
+EN  xanthine dehydrogenase accessory protein XdhC
+GS  xdhC
+TP  TIGRFAMs
+CC  Members of this protein family are the accessory protein XdhC for insertion of the molybdenum cofactor into the xanthine dehydrogenase large chain, XdhB, in bacteria. This protein is not part of the mature xanthine dehydrogenase. Xanthine dehydrogenase is an enzyme for purine catabolism, from other purines to xanthine to urate to further breakdown products.
+RN  [1]
+RM  PMID: 16597619
+RT  Rhodobacter capsulatus XdhC Is Involved in Molybdenum Cofactor Binding and Insertion into Xanthine Dehydrogenase.
+RA  Neumann M, Schulte M, Junemann N, Stocklein W, Leimkuhler S
+RL  J Biol Chem. 2006 Jun 9;281(23):15701-8. Epub 2006 Apr 5.

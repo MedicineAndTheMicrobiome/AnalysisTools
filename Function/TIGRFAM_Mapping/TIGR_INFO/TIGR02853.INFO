@@ -1,0 +1,23 @@
+ID  spore_dpaA
+AC  TIGR02853
+DE  dipicolinic acid synthetase, A subunit
+AU  Haft DH
+TC  319.65 319.65
+NC  98.70 98.70
+AL  clustalw
+IT  equivalog
+EN  dipicolinic acid synthetase, A subunit
+GS  dpaA
+TP  TIGRFAMs
+CC  This predicted Rossman fold-containing protein is the A subunit of dipicolinic acid synthetase as found in most, though not all, endospore-forming low-GC Gram-positive bacteria; it is absent in Clostridium. The B subunit is represented by TIGR02852. This protein is also known as SpoVFA.
+DR  PFAM; PF01488; Shikimate_DH
+RN  [1]
+RM  8345520
+RT  Cloning, DNA sequence, functional analysis and transcriptional regulation of the genes encoding dipicolinic acid synthetase required for sporulation in Bacillus subtilis.
+RA  Daniel RA, Errington J.
+RL  J Mol Biol. 1993 Jul 20;232(2):468-83.
+RN  [2]
+RM  8098035
+RT  Organization and nucleotide sequence of the Bacillus subtilis diaminopimelate operon, a cluster of genes encoding the first three enzymes of diaminopimelate synthesis and dipicolinate synthase.
+RA  Chen NY, Jiang SQ, Klein DA, Paulus H.
+RL  J Biol Chem. 1993 May 5;268(13):9448-65.

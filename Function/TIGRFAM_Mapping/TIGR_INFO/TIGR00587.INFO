@@ -1,0 +1,13 @@
+ID  nfo
+AC  TIGR00587
+DE  apurinic endonuclease (APN1)
+AU  Loftus BJ, Eisen JA
+TC  129.65 129.65
+NC  112.50 112.50
+IT  subfamily
+EN  apurinic endonuclease (APN1)
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are 5' AP endonculeases that are used in base excision repair and the repair of abasic sites in DNA.This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  EGAD; 54020;
+DR  SWISSPROT; P22936;
+DR  HAMAP; MF_00152; 167 of 170

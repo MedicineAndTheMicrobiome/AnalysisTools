@@ -1,0 +1,13 @@
+ID  benzo_1_2_benA
+AC  TIGR03229
+DE  benzoate 1,2-dioxygenase, large subunit
+AU  Haft DH
+TC  780.95 780.95
+NC  566.10 566.10
+AL  muscle
+IT  equivalog
+EN  benzoate 1,2-dioxygenase, large subunit
+GS  benA
+EC  1.14.12.10
+TP  TIGRFAMs
+CC  Benzoate 1,2-dioxygenase (EC 1.14.12.10) belongs to the larger family of aromatic ring-hydroxylating dioxygenases. Members of this family all act on benzoate, but may have additional activities on various benozate analogs. This model describes the large subunit. Between the trusted and noise cutoffs are similar enzymes, likely to act on benzoate but perhaps best identified according to some other activity, such as 2-chlorobenzoate 1,2-dioxygenase (1.14.12.13).

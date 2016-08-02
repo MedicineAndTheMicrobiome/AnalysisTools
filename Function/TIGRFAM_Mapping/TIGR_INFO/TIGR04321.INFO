@@ -1,0 +1,11 @@
+ID  spiroSPASM
+AC  TIGR04321
+DE  spiro-SPASM protein
+AU  Haft DH
+TC  250.00 250.00
+NC  125.00 125.00
+AL  muscle_manual
+IT  subfamily
+EN  spiro-SPASM protein
+TP  TIGRFAMs
+CC  This three-domain protein is restricted to the spirochetes and widely distributed (excepting Borrelia). It has a conserved C-terminal SPASM domain, a 4Fe-4S binding domain shared by a number of peptide-modifying and heme-modifying radical SAM proteins. It has a central radical SAM domain, although half the members have lost the signature 4Fe-4S-binding Cys residues, fail to register with the radical SAM domain definition of Pfam model PF04055, and must be considered pseudo-SAM proteins. PSI-BLAST shows a relationship between the N-terminal domain and various predicted glycosyltransferases (e.g. Bacillus subtilis SpsF) and cytidyltransferases. In some Treponema species, this protein appears to split into two tandem genes.

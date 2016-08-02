@@ -1,0 +1,18 @@
+ID  mraY
+AC  TIGR00445
+DE  phospho-N-acetylmuramoyl-pentapeptide-transferase
+AU  Loftus BJ
+TC  192.05 192.05
+NC  169.50 169.50
+AL  clustalw
+IT  equivalog
+EN  phospho-N-acetylmuramoyl-pentapeptide-transferase
+GS  mraY
+EC  2.7.8.13
+TP  TIGRFAMs
+CC  Involved in peptidoglycan biosynthesis, the enzyme catalyzes the first of the lipid cycle reactions. Also known as Muramoyl-Pentapeptide Transferase (murX).
+DR  Swissprot; P15876; 
+DR  ECOCYC; EG10604; 
+DR  PFAM; PF00953; 
+DR  Genpept; GP|2149894|U94706;
+DR  HAMAP; MF_00038; 488 of 497

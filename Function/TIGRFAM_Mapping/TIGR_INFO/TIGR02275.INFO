@@ -1,0 +1,13 @@
+ID  DHB_AMP_lig
+AC  TIGR02275
+DE  (2,3-dihydroxybenzoyl)adenylate synthase
+AU  Haft DH
+TC  723.55 723.55
+NC  373.45 373.45
+AL  clustalw_manual
+IT  equivalog
+EN  2,3-dihydroxybenzoate-AMP ligase
+EC  2.7.7.58
+TP  TIGRFAMs
+CC  Proteins in this family belong to the AMP-binding enzyme family (PF00501). Members activate 2,3-dihydroxybenzoate (DHB) by ligation of AMP from ATP with the release of pyrophosphate; many are involved in synthesis of siderophores such as enterobactin, vibriobactin, vulnibactin, etc. The most closely related proteine believed to differ in function activates salicylate rather than DHB.
+DR  PFAM; PF00501; AMP-binding enzyme

@@ -1,0 +1,24 @@
+ID  degP_htrA_DO
+AC  TIGR02037
+DE  peptidase Do
+AU  Haft DH
+TC  416.20 416.20
+NC  365.80 365.80
+AL  clustalw
+IT  subfamily
+EN  periplasmic serine protease, Do/DeqQ family
+EC  3.4.21.-
+TP  TIGRFAMs
+CC  This family consists of a set proteins various designated DegP, heat shock protein HtrA, and protease DO. The ortholog in Pseudomonas aeruginosa is designated MucD and is found in an operon that controls mucoid phenotype. This family also includes the DegQ (HhoA) paralog in E. coli which can rescue a DegP mutant, but not the smaller DegS paralog, which cannot. Members of this family are located in the periplasm and have separable functions as both protease and chaperone. Members have a trypsin domain and two copies of a PDZ domain. This protein protects bacteria from thermal and other stresses and may be important for the survival of bacterial pathogens.// The chaperone function is dominant at low temperatures, whereas the proteolytic activity is turned on at elevated temperatures. [2]
+DR  PFAM; PF00089; trypsin
+DR  PFAM; PF00595; PDZ domain
+RN  [1]
+RM  PMID: 11919638
+RT  Crystal structure of DegP (HtrA) reveals a new protease-chaperone machine.
+RA  Krojer T, Garrido-Franco M, Huber R, Ehrmann M, Clausen T.
+RL  Nature. 2002 Mar 28;416(6879):455-9.
+RN  [2]
+RM  PMID: 12458220
+RT  Crystal structure of the protease domain of a heat-shock protein HtrA from Thermotoga maritima.
+AU  Kim DY, Kim DR, Ha SC, Lokanath NK, Lee CJ, Hwang HY, Kim KK
+RL  J Biol Chem 2003 Feb 21;278(8):6543-51. Epub 2002 Nov 27.

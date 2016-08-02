@@ -1,0 +1,18 @@
+ID  deacetyl_PgaB
+AC  TIGR03938
+DE  poly-beta-1,6-N-acetyl-D-glucosamine N-deacetylase PgaB
+AU  Haft DH
+TC  321.90 321.90
+NC  168.65 168.65
+AL  muscle_manual
+IT  equivalog
+EN  poly-beta-1,6-N-acetyl-D-glucosamine N-deacetylase PgaB
+GS  pgaB
+EC  3.5.1.-
+TP  TIGRFAMs
+CC  Two well-characterized systems produce polysaccharide based on N-acetyl-D-glucosamine in straight chains with beta-1,6 linkages. These are encoded by the icaADBC operon in Staphylococcus species, where the system is designated polysaccharide intercellular adhesin (PIA), and the pgaABCD operon in Gram-negative bacteria such as E. coli. Both systems include a putative polysaccharide deacetylase. The PgaB protein, described here, contains an additional domain lacking from its Gram-positive counterpart IcaB (TIGR03933). Deacetylation by this protein appears necessary to allow export through the porin PgaA
+RN  [1]
+RM  PMID:18359807 
+RT  Roles of pgaABCD genes in synthesis, modification, and export of the Escherichia coli biofilm adhesin poly-beta-1,6-N-acetyl-D-glucosamine. 
+RA  Itoh Y, Rice JD, Goller C, Pannuri A, Taylor J, Meisner J, Beveridge TJ, Preston JF 3rd, Romeo T 
+RL  J Bacteriol. 2008 May;190(10):3670-80. Epub 2008 Mar 21.

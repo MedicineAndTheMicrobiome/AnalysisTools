@@ -1,0 +1,17 @@
+ID  yfcE
+AC  TIGR00040
+DE  phosphodiesterase, MJ0936 family
+AU  Haft DH, Richardson DL
+TC  56.25 56.25
+NC  40.05 40.05
+AL  clustalw
+IT  subfamily
+EN  phosphoesterase, MJ0936 family
+EC  3.1.-.-
+TP  TIGRFAMs
+CC  Members of this largely uncharacterized family share a motif approximating DXH(X25)GDXXD(X25)GNHD as found in several phosphoesterases, including the nucleases SbcD and Mre11, and a family of uncharacterized archaeal putative phosphoesterases described by TIGR00024. In this family, the His residue in GNHD portion of the motif is not conserved. The member MJ0936, one of two from Methanococcus jannaschii, was shown (PMID:15128743) to act on model phosphodiesterase substrates; a divalent cation was required.
+DR  PROSITE; PDOC00976;
+RM  15128743
+RT  Structural and functional characterization of a novel phosphodiesterase from Methanococcus jannaschii.
+RA  Chen S, Yakunin AF, Kuznetsova E, Busso D, Pufan R, Proudfoot M, Kim R, Kim SH.
+RL  J Biol Chem. 2004 May 5 [Epub ahead of print]

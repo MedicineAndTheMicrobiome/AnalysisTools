@@ -1,0 +1,16 @@
+ID  UrcA_uranyl
+AC  TIGR04433
+DE  UrcA family protein
+AU  Haft DH
+TC  25.00 24.00
+NC  23.00 23.00
+AL  muscle_manual
+IT  subfamily
+EN  UrcA family protein
+TP  TIGRFAMs
+CC  Members of this family feature an N-terminal signal sequence, small size, and two invariant Cys residues, 10-20 residues apart. One member of this family, UrcA from the aerobic bacterium Caulobacter crescentus, is expressed so highly in response to uranium, but not other heavy metals, that a genetically engineered strain expressing green fluorescent protein in place of UrcA serves as a biodetector for micromolar uranyl ion. Caulobacter crescentus tolerates high levels of U(VI) exposure by mineralizing the uranium. UrcA and its homologs may participate in such a process.
+RN  [1]
+RM  PMID:17905881 
+RT  Caulobacter crescentus as a whole-cell uranium biosensor. 
+RA  Hillson NJ, Hu P, Andersen GL, Shapiro L 
+RL  Appl Environ Microbiol. 2007 Dec;73(23):7615-21.

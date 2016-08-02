@@ -1,0 +1,13 @@
+ID  vnfK_nitrog
+AC  TIGR02932
+DE  V-containing nitrogenase, beta subunit
+AU  Haft DH
+TC  873.95 873.95
+NC  821.85 821.85
+AL  muscle
+IT  equivalog
+EN  V-containing nitrogenase, beta subunit
+GS  vnfK
+EC  1.18.6.1
+TP  TIGRFAMs
+CC  Nitrogenase is the enzyme of biological nitrogen fixation. The most wide-spread and most efficient nitrogenase contains a molybdenum cofactor. This protein family, VnfK, represents the beta subunit of the vanadium (V)-containing alternative nitrogenase. It is homologous to NifK and AnfK, of the molybdenum-containing and the iron (Fe)-only types, respectively.

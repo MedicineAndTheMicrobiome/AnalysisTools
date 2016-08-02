@@ -1,0 +1,17 @@
+ID  sulfur_SfnB
+AC  TIGR04022
+DE  sulfur acquisition oxidoreductase, SfnB family
+AU  Haft DH
+TC  430.90 430.90
+NC  399.35 399.35
+AL  muscle_manual
+IT  equivalog
+EN  sulfur acquisition oxidoreductase, SfnB family
+EC  1.-.-.-
+TP  TIGRFAMs
+CC  Members of this protein family belong to the greater family of acyl-CoA dehydrogenases. This family includes the sulfate starvation induced protein SfnB of Pseudomonas putida strain DS1, which is both encoded nearby to and phylogenetically closely correlated with the dimethyl sulphone monooxygenase SfnG. This family shows considerable sequence similarity to the Rhodococcus dibenzothiophene desulfurization enzyme DszC, although that enzyme falls outside of the scope of this family.
+RN  [1]
+RM  PMID:17768252
+RT  Transcriptional regulation of the sulfate-starvation-induced gene sfnA by a sigma54-dependent activator of Pseudomonas putida.
+RA  Habe H, Kouzuma A, Endoh T, Omori T, Yamane H, Nojiri H
+RL  Microbiology. 2007 Sep;153(Pt 9):3091-8.

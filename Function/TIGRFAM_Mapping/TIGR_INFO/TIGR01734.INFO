@@ -1,0 +1,19 @@
+ID  D-ala-DACP-lig
+AC  TIGR01734
+DE  D-alanine--poly(phosphoribitol) ligase, subunit 1
+AU  Selengut J
+TC  559.85 559.85
+NC  487.60 487.60
+AL  clustalw
+IT  equivalog
+EN  D-alanine--poly(phosphoribitol) ligase, subunit 1
+GS  dltA
+EC  6.1.1.13
+TP  TIGRFAMs
+CC  This model represents the enzyme (also called D-alanine-D-alanyl carrier protein ligase) which activates D-alanine as an adenylate via the reaction D-ala + ATP -> D-ala-AMP + PPi, and further catalyzes the condensation of the amino acid adenylate with the D-alanyl carrier protein (D-ala-ACP).  The D-alanine is then further transferred to teichoic acid in the biosynthesis of lipoteichoic acid (LTA) and wall teichoic acid (WTA) in gram positive bacteria, both polysacchatides [1].
+RN  [1]
+RM  PMID: 7797557 
+RT  Incorporation of D-alanine into lipoteichoic acid and wall teichoic acid in Bacillus subtilis. Identification of genes and regulation.
+RA  Perego M, Glaser P, Minutello A, Strauch MA, Leopold K, Fischer W.
+RL  J Biol Chem 1995 Jun 30;270(26):15598-606
+DR  HAMAP; MF_00593; 53 of 53

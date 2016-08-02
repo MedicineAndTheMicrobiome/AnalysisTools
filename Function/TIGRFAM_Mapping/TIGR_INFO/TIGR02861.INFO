@@ -1,0 +1,18 @@
+ID  SASP_H
+AC  TIGR02861
+DE  small acid-soluble spore protein, H-type
+AU  Haft DH
+TC  47.90 47.90
+NC  29.35 29.35
+AL  clustalw
+IT  subfamily
+EN  small acid-soluble spore protein, H-type
+TP  TIGRFAMs
+CC  This model is derived from PF08141 but has been expanded to include in the seed corresponding proteins from three species of Clostridium. Members of this family should occur only in endospore-forming bacteria, typically with two members per genome, but may be absent from the genomes of some endospore-forming bacteria. SspH (previously designated YfjU) was shown to be expressed specifically in spores of Bacillus subtilis.
+DR  PFAM; PF08141; SspH
+RN  [1]
+RM  9852018
+RT  New small, acid-soluble proteins unique to spores of Bacillus subtilis: identification of the coding genes and regulation and function of two of these genes.
+RA  Bagyan I, Setlow B, Setlow P.
+RL  J Bacteriol. 1998 Dec;180(24):6704-12.
+DR  HAMAP; MF_00667; 27 of 27

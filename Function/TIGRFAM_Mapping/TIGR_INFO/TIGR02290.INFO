@@ -1,0 +1,12 @@
+ID  M3_fam_3
+AC  TIGR02290
+DE  oligoendopeptidase, pepF/M3 family
+AU  Haft DH
+TC  561.70 561.70
+NC  410.40 410.40
+AL  clustalw
+IT  subfamily
+EN  oligoendopeptidase, pepF/M3 family
+EC  3.4.24.-
+TP  TIGRFAMs
+CC  The M3 family of metallopeptidases contains several distinct clades. Oligoendopeptidase F as characterized in Lactococcus, the functionally equivalent oligoendopeptidase B of group B Streptococcus, and closely related sequences are described by TIGR00181. The present family is quite similar but forms a distinct clade, and a number of species have one member of each. A greater sequence difference separates members of TIGR02289, probable oligoendopeptidases of the M3 family that probably should not be designated PepF.

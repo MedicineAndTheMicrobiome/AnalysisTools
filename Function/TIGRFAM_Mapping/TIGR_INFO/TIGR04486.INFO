@@ -1,0 +1,17 @@
+ID  thiosulf_SoxB
+AC  TIGR04486
+DE  thiosulfohydrolase SoxB
+AU  Haft DH
+TC  550.00 550.00
+NC  375.00 375.00
+AL  muscle_manual
+IT  equivalog
+EN  thiosulfohydrolase SoxB
+GS  soxB
+TP  TIGRFAMs
+CC  SoxB, a di-manganese(II) enzyme, works with SoxYZ and the c-type cytochrome SoxXA in oxidation of thiosulfate to sulfate.
+RN  [1]
+RM  PMID:19535341 
+RT  Mechanism for the hydrolysis of a sulfur-sulfur bond based on the crystal structure of the thiosulfohydrolase SoxB. 
+RA  Sauve V, Roversi P, Leath KJ, Garman EF, Antrobus R, Lea SM, Berks BC 
+RL  J Biol Chem. 2009 Aug 7;284(32):21707-18. doi: 10.1074/jbc.M109.002709.

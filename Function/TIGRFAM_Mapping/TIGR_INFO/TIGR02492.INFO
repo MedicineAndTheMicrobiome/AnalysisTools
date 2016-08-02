@@ -1,0 +1,12 @@
+ID  flgK_ends
+AC  TIGR02492
+DE  flagellar hook-associated protein FlgK
+AU  Haft DH
+TC  170.75 170.75
+NC  121.30 121.30
+AL  clustalw_manual
+IT  equivalog
+EN  flagellar hook-associated protein FlgK
+GS  flgK
+TP  TIGRFAMs
+CC  The flagellar hook-associated protein FlgK of bacterial flagella has conserved N- and C-terminal domains. The central region is highly variable in length and sequence, and often contains substantial runs of low-complexity sequence. This model is built from an alignment of FlgK sequences with the central region excised. Note that several other proteins of the flagellar apparatus also are homologous in the N- and C-terminal regions to FlgK, but are excluded from this model.

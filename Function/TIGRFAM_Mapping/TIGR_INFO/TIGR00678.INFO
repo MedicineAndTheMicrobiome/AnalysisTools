@@ -1,0 +1,19 @@
+ID  holB
+AC  TIGR00678
+DE  DNA polymerase III, delta' subunit
+AU  Haft DH, Loftus BJ
+TC  180.60 180.60
+NC  161.00 161.00
+AL  clustalw_manual
+IT  equivalog_domain
+EN  DNA polymerase III, delta' subunit
+GS  holB
+EC  2.7.7.7
+TP  TIGRFAMs
+CC  This model describes the N-terminal half of the delta' subunit of DNA polymerase III. Delta' is homologous to the gamma and tau subunits, which form an outgroup for phylogenetic comparison. The gamma/tau branch of the tree is much more tighly conserved than the delta' branch, and some members of that branch score more highly against this model than some proteins classisified as delta'. The noise cutoff is set to detect weakly scoring delta' subunits rather than to exclude gamma/tau subunits.
+CC  At position 126-127 of the seed alignment, this family lacks the HM motif of gamma/tau; at 132 it has a near-invariant A vs. an invariant F in gamma/tau.
+DR  EXPERIMETNAL; GB|AAF98347.2; Streptococcus pyogenes
+DR  EXPERIMENTAL; PIR|D70432; Aquifex aeolicus
+DR  EXPERIMENTAL; EGAD|20293|EC1099; Escherichia coli
+DR  OUTGROUP; PIR|A70460; DnaX; Aquifex aeolicus
+DR  OUTGROUP; SP|P06710; DnaX; Escherichia coli

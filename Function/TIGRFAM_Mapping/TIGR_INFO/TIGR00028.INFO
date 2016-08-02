@@ -1,0 +1,12 @@
+ID  Mtu_PIN_fam
+AC  TIGR00028
+DE  toxin-antitoxin system PIN domain toxin
+AU  Haft DH
+TC  73.60 73.60
+NC  73.45 73.45
+AL  clustalw
+IT  subfamily
+EN  toxin-antitoxin system PIN domain toxin
+TP  TIGRFAMs
+CC  Members of this protein consist almost entirely of a PIN (PilT N terminus) domain (see Pfam PF01850). This family was originally defined a set of twelve closely related paralogs found in Mycobacterium tuberculosis, but additional members are found now Synechococcus sp. WH8102, etc. Inspection of genomic regions suggests these represent toxin components of toxin-antitoxin regions, potentially important to creating dormant persister cells.
+DR  PFAM; PF01850; PIN domain

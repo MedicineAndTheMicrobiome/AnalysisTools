@@ -1,0 +1,11 @@
+ID  Fibro_Slime
+AC  TIGR02148
+DE  fibro-slime domain
+AU  Haft DH
+TC  45.00 45.00
+NC  23.05 23.05
+AL  clustalw_manual
+IT  domain
+EN  fibro-slime domain
+TP  TIGRFAMs
+CC  This HMM represents a conserved region of about 90 amino acids, shared in at least 4 distinct large putative proteins from the slime mold Dictyostelium discoideum and 10 proteins from the rumen bacterium Fibrobacter succinogenes, and in no other species so far. We propose here the name fibro-slime domain

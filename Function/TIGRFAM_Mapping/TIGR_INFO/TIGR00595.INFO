@@ -1,0 +1,15 @@
+ID  priA
+AC  TIGR00595
+DE  primosomal protein N'
+AU  Loftus BJ, Eisen JA
+TC  230.35 230.35
+NC  95.85 95.85
+IT  equivalog
+EN  primosomal protein N'
+GS  priA
+EC  3.6.1.-
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are components of the primosome which is involved in replication, repair, and recombination.This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  EGAD; 19358;
+RM  90280426;
+DR  SWISSPROT; P17888;

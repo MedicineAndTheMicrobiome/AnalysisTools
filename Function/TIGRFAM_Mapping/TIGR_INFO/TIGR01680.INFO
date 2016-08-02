@@ -1,0 +1,23 @@
+ID  Veg_Stor_Prot
+AC  TIGR01680
+DE  vegetative storage protein
+AU  Selengut J
+TC  375.80 375.80
+NC  375.60 375.60
+AL  clustalw
+IT  equivalog
+EN  vegetative storage protein
+TP  TIGRFAMs
+CC  The proteins represented by this model are close relatives of the plant acid phosphatases (TIGR01675), are limited to members of the Phaseoleae including Glycine max (soybean) and Phaseolus vulgaris (kidney bean).  These proteins are highly expressed in the leaves of repeatedly depodded plants [1].  VSP differs most strinkingly from the acid phosphatases in the lack of the conserved nucleophilic aspartate residue in the N-terminus, thus, they should be inactive as phosphatases.   This issue was confused by the publication in 1992 of an article claiming activity for the Glycine max VSP [2].  In 1994 this assertion was refuted by the separation of the activity from the VSP [3].
+RN  [1]
+RA  Wittenbach, V.A.
+RL  Plant Physiol 1982; 70:1544-1548
+RN  [2]
+RM  PMID: 1639823 
+RT  The soybean vegetative storage proteins VSP alpha and VSP beta are acid phosphatases active on polyphosphates.
+RA  DeWald DB, Mason HS, Mullet JE.
+RL  J Biol Chem 1992 Aug 5;267(22):15958-64
+RN  [3]
+RT  Purification of the Major Soybean Leaf Acid Phosphatase That Is Increased by Seed-Pod Removal
+RA  P. E. Staswick, C. Papa, J. F. Huang and Y. Rhee 
+RL  PLANT PHYSIOLOGY , Vol 104, Issue 1 49-57

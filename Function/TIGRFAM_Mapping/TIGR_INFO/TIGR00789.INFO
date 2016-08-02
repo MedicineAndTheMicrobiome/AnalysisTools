@@ -1,0 +1,11 @@
+ID  flhB_rel
+AC  TIGR00789
+DE  FlhB domain protein
+AU  Haft DH, Dodson RJ
+TC  117.35 117.35
+NC  79.00 79.00
+AL  clustalw
+IT  hypoth_equivalog_domain
+EN  flhB C-terminus-related protein
+TP  TIGRFAMs
+CC  This HMM describes a short protein (80-93 residues) homologous to the C-terminus of the flagellar biosynthetic protein FlhB. It is found so far only in species that also have FlhB. In a phylogenetic tree based on alignment of both this family and the homologous region of FlhB and its homologs, the members of this family form a monophyletic set.

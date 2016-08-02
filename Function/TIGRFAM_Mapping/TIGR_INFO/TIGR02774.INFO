@@ -1,0 +1,12 @@
+ID  rexB_recomb
+AC  TIGR02774
+DE  ATP-dependent nuclease subunit B
+AU  Haft DH
+TC  718.35 718.35
+NC  523.55 523.55
+AL  clustalw
+IT  equivalog
+EN  ATP-dependent nuclease subunit B
+GS  rexB
+TP  TIGRFAMs
+CC  DNA repair is accomplished by several different systems in prokaryotes. Recombinational repair of double-stranded DNA breaks involves the RecBCD pathway in some lineages, and AddAB  (also called RecAB) in other. The AddA protein is conserved between the firmicutes and the alphaproteobacteria, while the partner protein is not. The partner may be designated AddB, as in Bacillus and in alphaproteobacteria, or RexB as in Streptococcus and Lactococcus.  Note, however, that RexB proteins lack an N-terminal GxxGxGK[ST] ATP-binding motif found in Bacillus subtilis and related species, and this difference may be important; this model represents specifically RexB proteins as found in Streptococcus and Lactococcus.

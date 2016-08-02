@@ -1,0 +1,18 @@
+ID  BchF
+AC  TIGR02020
+DE  2-vinyl bacteriochlorophyllide hydratase
+AU  Selengut J
+TC  101.35 101.35
+NC  101.05 101.05
+AL  clustalw
+IT  equivalog
+EN  2-vinyl bacteriochlorophyllide hydratase
+GS  bchF
+EC  4.2.1.-
+TP  TIGRFAMs
+CC  This HMM represents the enzyme responsible for the first step in the modification of the ring A vinyl group of chlorophyllide a which (in part) distinguishes chlorophyll from bacteriochlorophyll [1].  This enzyme is aparrently absent from cyanobacteria (which do not use bacteriochlorophyll).
+RN  [1]
+RM  PMID: 8385667
+RT  bchFNBH bacteriochlorophyll synthesis genes of Rhodobacter capsulatus and identification of the third subunit of light-independent protochlorophyllide reductase in bacteria and plants.
+RA  Burke DH, Alberti M, Hearst JE.
+RL  J Bacteriol. 1993 Apr;175(8):2414-22.

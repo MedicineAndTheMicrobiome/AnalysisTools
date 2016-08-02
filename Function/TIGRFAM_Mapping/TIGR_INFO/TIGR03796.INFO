@@ -1,0 +1,11 @@
+ID  NHLM_micro_ABC1
+AC  TIGR03796
+DE  NHLM bacteriocin system ABC transporter, peptidase/ATP-binding protein
+AU  Haft DH
+TC  853.30 853.30
+NC  691.90 691.90
+AL  muscle_manual
+IT  equivalog
+EN  NHLM bacteriocin system ABC transporter, peptidase/ATP-binding protein
+TP  TIGRFAMs
+CC  This protein describes a multidomain ABC transporter subunit that is one of three protein families associated with some regularity with a distinctive family of putative bacteriocins. It includes a bacteriocin-processing peptidase domain at the N-terminus. Model TIGR03793 describes a conserved propeptide region for this bacteriocin family, unusual because it shows obvious homology a region of the enzyme nitrile hydratase up to the classic Gly-Gly cleavage motif. This family is therefore predicted to be a subunit of a bacteriocin processing and export system characteristic to this system that we designate NHLM, Nitrile Hydratase Leader Microcin.

@@ -1,0 +1,22 @@
+ID  fliM_switch
+AC  TIGR01397
+DE  flagellar motor switch protein FliM
+AU  Haft DH
+TC  219.60 219.60
+NC  49.65 49.65
+AL  clustalw_manual
+IT  equivalog
+EN  flagellar motor switch protein FliM
+GS  fliM
+TP  TIGRFAMs
+CC  Members of this family are the flagellar motor switch protein FliM. The family excludes FliM homologs that lack an N-terminal region critical to interaction with phosphorylated CheY. One set lacking this N-terminal region is found in Rhizobium meliloti, in which the direction of flagellar rotation is not reversible (i.e. the FliM homolog does not act to reverse the motor direction), and in related species. Another is found in Buchnera, an obligate intracellular endosymbiont with genes for many of the components of the flagellar apparatus, but not, apparently, for flagellin iself.
+RN  [1]
+RM  11325943
+RT  The N terminus of FliM is essential to promote flagellar rotation in Rhodobacter sphaeroides.
+RA  Poggio S, Osorio A, Corkidi G, Dreyfus G, Camarena L
+RL  J Bacteriol 2001 May;183(10):3142-8
+RN  [2]
+RM  9335288
+RT  Three genes of a motility operon and their role in flagellar rotary speed variation in Rhizobium meliloti.
+RA  Platzer J, Sterr W, Hausmann M, Schmitt R.
+RL  J Bacteriol 1997 Oct;179(20):6391-9

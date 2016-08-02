@@ -1,0 +1,13 @@
+ID  MPGP_rel
+AC  TIGR02463
+DE  mannosyl-3-phosphoglycerate phosphatase homolog
+AU  Haft DH
+TC  282.00 282.00
+NC  184.75 184.75
+AL  clustalw
+IT  hypoth_equivalog
+EN  mannosyl-3-phosphoglycerate phosphatase-related protein
+EC  3.1.3.-
+TP  TIGRFAMs
+CC  This family consists of members of the HAD superfamily, subfamily IIB. All members are closely related to mannosyl-3-phosphoglycerate phosphatase, the second enzyme in a two-step pathway for biosynthesis of mannosylglycerate, a compatible solute present in some thermophiles and in Dehalococcoides ethenogenes. However, members of this family are separable in a neighbor-joining tree constructed from a multiple sequence alignment and are found only in mesophiles that lack the companion mannosyl-3-phosphoglycerate synthase (TIGR02460). Members of this family are like to act on a compound related to yet distinct from mannosyl-3-phosphoglycerate.
+DR  HAMAP; MF_00617; 14 of 19

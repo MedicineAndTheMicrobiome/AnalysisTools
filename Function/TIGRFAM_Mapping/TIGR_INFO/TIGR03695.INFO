@@ -1,0 +1,18 @@
+ID  menH_SHCHC
+AC  TIGR03695
+DE  2-succinyl-6-hydroxy-2,4-cyclohexadiene-1-carboxylate synthase
+AU  Haft DH
+TC  208.55 208.55
+NC  127.95 127.95
+AL  muscle_manual
+IT  equivalog
+EN  2-succinyl-6-hydroxy-2,4-cyclohexadiene-1-carboxylate synthase
+GS  menH
+EC  4.2.99.20
+TP  TIGRFAMs
+CC  This protein catalyzes the formation of SHCHC, or (1 R,6 R)-2-succinyl-6-hydroxy-2,4-cyclohexadiene-1-carboxylate, by elmination of pyruvate from 2-succinyl-5-enolpyruvyl-6-hydroxy-3-cyclohexene-1-carboxylate (SEPHCHC). Note that SHCHC synthase activity previously was attributed to MenD, which in fact is SEPHCHC synthase.
+RN  [1]
+RM  PMID:18284213
+RT  Identification and characterization of (1R,6R)-2-succinyl-6-hydroxy-2,4-cyclohexadiene-1-carboxylate synthase in the menaquinone biosynthesis of Escherichia coli.
+RA  Jiang M, Chen X, Guo ZF, Cao Y, Chen M, Guo Z
+RL  Biochemistry. 2008 Mar 18;47(11):3426-34.

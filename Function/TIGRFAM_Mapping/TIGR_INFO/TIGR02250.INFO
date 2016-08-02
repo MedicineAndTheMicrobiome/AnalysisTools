@@ -1,0 +1,34 @@
+ID  FCP1_euk
+AC  TIGR02250
+DE  FCP1-like phosphatase, phosphatase domain
+AU  Selengut J
+TC  135.25 135.25
+NC  102.30 102.30
+AL  clustalw
+IT  subfamily_domain
+EN  FCP1-like phosphatase, phosphatase domain
+EC  3.1.3.16
+TP  TIGRFAMs
+CC  This model represents the phosphatase domain of the human
+CC  RNA polymerase II subunit A C-terminal domain phosphatase (FCP1, [1]) and closely related phosphatases from eukaryotes including plants, fungi [2] and slime mold.  This domain is a member of the haloacid dehalogenase (HAD) superfamily by virtue of a conserved set of three catalytic motifs [3] and a conserved fold as predicted by PSIPRED.  The third motif in this family is distinctive (hhhhDDppphW).  This domain is classified as a "Class III" HAD, since there is no large "cap" domain found between motifs 1 and 2 or motifs 2 and 3 [4].
+CC  This domain is related to domains found in the human NLI interacting factor-like phosphatases, and together both are detected by the Pfam model PF03031.
+RN  [1]
+RL  Biochemistry. 2004 Jun 8;43(22):7111-20.
+RT  An encephalitozoon cuniculi ortholog of the RNA polymerase II carboxyl-terminal domain (CTD) serine phosphatase Fcp1.
+RA  Hausmann S, Schwer B, Shuman S.
+RM  PMID: 15170348
+RN  [2]
+RL  J Biol Chem. 2004 Mar 19;279(12):10892-900. Epub 2003 Dec 29.
+RT  Schizosaccharomyces pombe carboxyl-terminal domain (CTD) phosphatase Fcp1: distributive mechanism, minimal CTD substrate, and active site mapping.
+RA  Hausmann S, Erdjument-Bromage H, Shuman S.
+RM  PMID: 14701811
+RN  [3]
+RM  PMID: 7966317
+RT  Computer analysis of bacterial haloacid dehalogenases defines a large superfamily of hydrolases with diverse specificity. Application of an iterative approach to database search.
+RA  Koonin EV, Tatusov RL.
+RL  J Mol Biol 1994 Nov 18;244(1):125-32
+RN  [4]
+RM  PMID: 11601995
+RT  MDP-1 is a new and distinct member of the haloacid dehalogenase family of aspartate-dependent phosphohydrolases.
+RA  Selengut, JD
+RL  Biochemistry 2001 Oct 23;40(42):12704-11

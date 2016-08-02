@@ -1,0 +1,12 @@
+ID  NifU_clost
+AC  TIGR03419
+DE  FeS cluster assembly scaffold protein NifU
+AU  Haft DH
+TC  187.90 187.90
+NC  181.15 181.15
+AL  muscle_manual
+IT  equivalog
+EN  FeS cluster assembly scaffold protein NifU, Clostridium type
+GS  nifU
+TP  TIGRFAMs
+CC  NifU and NifS form a pair of iron-sulfur (FeS) cluster biosynthesis proteins much simpler than the ISC and SUF systems. Members of this protein family are a distinct group of NifU-like proteins, found always to a NifS-like protein and restricted to species that lack a SUF system. Typically, NIF systems service a smaller number of FeS-containing proteins than do ISC or SUF. Members of this particular branch typically are found, almost half the time, near the mnmA gene, involved in the carboxymethylaminomethyl modification of U34 in some tRNAs (see GenProp0704). While other NifU proteins are associated with nitrogen fixation, this family is not.

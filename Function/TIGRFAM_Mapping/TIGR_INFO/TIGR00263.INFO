@@ -1,0 +1,17 @@
+ID  trpB
+AC  TIGR00263
+DE  tryptophan synthase, beta subunit
+AU  Loftus BJ
+TC  392.45 392.45
+NC  220.75 220.75
+AL  clustalw
+IT  equivalog
+EN  tryptophan synthase, beta subunit
+GS  trpB
+EC  4.2.1.20
+TP  TIGRFAMs
+CC  Tryptophan synthase catalyzes the last step in  the biosynthesis of  tryptophan. the beta chain contains the functional domain for or the synthesis of tryptophan from indole and  serine. The enzyme requires pyridoxal-phosphate as a cofactor. The pyridoxal-P attachment site is contained within the conserved region [LIVM]-x-H-x-G-[STA]-H-K-x-N] [K is the pyridoxal-P attachment site]  which is present between residues 90-100 of the model.
+DR  Swissprot; P00932; 
+DR  ECOCYC; EG11025; 
+DR  PROSITE; PS00168; 
+DR  HAMAP; MF_00133; 288 of 315

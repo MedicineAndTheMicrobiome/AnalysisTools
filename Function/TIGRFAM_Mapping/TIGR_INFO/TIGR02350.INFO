@@ -1,0 +1,14 @@
+ID  prok_dnaK
+AC  TIGR02350
+DE  chaperone protein DnaK
+AU  Haft DH
+TC  822.55 822.55
+NC  641.45 641.45
+AL  clustalw_manual
+IT  equivalog
+EN  chaperone protein DnaK
+GS  dnaK
+TP  TIGRFAMs
+CC  Members of this family are the chaperone DnaK, of the DnaK-DnaJ-GrpE chaperone system. All members of the seed alignment were taken from completely sequenced bacterial or archaeal genomes and (except for Mycoplasma sequence) found clustered with other genes of this systems. This model excludes DnaK homologs that are not DnaK itself, such as the heat shock cognate protein HscA (TIGR01991). However, it is not designed to distinguish among DnaK paralogs in eukaryotes. Note that a number of dnaK genes have shadow ORFs in the same reverse (relative to dnaK) reading frame, a few of which have been assigned glutamate dehydrogenase activity. The significance of this observation is unclear; lengths of such shadow ORFs are highly variable as if the presumptive protein product is not conserved.
+DR  PFAM; PF00012;
+DR  HAMAP; MF_00332; 565 of 584

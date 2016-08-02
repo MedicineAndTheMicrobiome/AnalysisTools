@@ -1,0 +1,17 @@
+ID  no_iron_rSAM
+AC  TIGR04419
+DE  HemN-related non-iron pseudo-SAM protein PsgB
+AU  Haft DH
+TC  300.00 300.00
+NC  200.00 200.00
+AL  muscle_manual
+IT  equivalog
+EN  HemN-related non-iron pseudo-SAM protein PsgB
+GS  psgB
+TP  TIGRFAMs
+CC  Members of this protein family are related to radical SAM enzymes HemN (oxygen-independent coproporphyrinogen III oxidase) and HutW (a putative heme utilization enzyme) but lack the signature CxxxCxxC motif for 4Fe-4S binding. Members occur exclusively in Borrelia, which appears to live without iron, as the only radical SAM enzyme homolog in any Borrelia genome. We designate this enzyme PsgB (Pseudo-SAM, Genus Borrelia).
+RN  [1]
+RM  PMID:10834845 
+RT  Lack of a role for iron in the Lyme disease pathogen. 
+RA  Posey JE, Gherardini FC 
+RL  Science. 2000 Jun 2;288(5471):1651-3.

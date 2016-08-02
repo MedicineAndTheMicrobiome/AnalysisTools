@@ -1,0 +1,11 @@
+ID  am_tr_V_EF2568
+AC  TIGR01977
+DE  cysteine desulfurase family protein
+AU  Haft DH
+TC  377.00 377.00
+NC  339.00 339.00
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  cysteine desulfurase family protein
+TP  TIGRFAMs
+CC  This HMM describes a subfamily of probable pyridoxal phosphate-dependent enzymes in the aminotransferase class V family. Related families contain members active as cysteine desulfurases, selenocysteine lyases, or both. The members of this family form a distinct clade and all are shorter at the N-terminus. The function of this subfamily is unknown.

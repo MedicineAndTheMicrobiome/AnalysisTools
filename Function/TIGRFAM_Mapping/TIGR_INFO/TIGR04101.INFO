@@ -1,0 +1,11 @@
+ID  CCGSCS
+AC  TIGR04101
+DE  CCGSCS motif protein
+AU  Haft DH
+TC  28.00 27.50
+NC  22.00 22.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  CCGSCS motif protein
+TP  TIGRFAMs
+CC  This protein family, with average protein length about 58 residues, occurs in several marine bacteria, such as Shewanella benthica KT99, Marinobacter sp. ELB17, and Photobacterium profundum 3TCK. The striking feature is a C-terminal motif CCGSCS, which (perhaps coincidentally) resembles conserved core motif [LC]CGSC shared by two methanobactin precursors (see TIGR04071). There is no detectable conserved gene region for these proteins.

@@ -1,0 +1,12 @@
+ID  CytB-hydogenase
+AC  TIGR02125
+DE  Ni/Fe-hydrogenase, b-type cytochrome subunit
+AU  Selengut J
+TC  121.50 121.50
+NC  73.95 73.95
+AL  clustalw
+IT  equivalog
+EN  Ni/Fe-hydrogenase, b-type cytochrome subunit
+GS  cybH
+TP  TIGRFAMs
+CC  This model describes a family of cytochrome b proteins which appear to be specific for nickel-iron hydrogenase complexes.  Every genome which contains a member of this family posesses a Ni/Fe hydrogenase according to Genome Properties (GenProp0177), and most are gene clustered with other hydrogenase components.  Some Ni/Fe hydrogenase-containing species lack a member of this family but contain other CytB homologs (PF01292) which may substitute for it.

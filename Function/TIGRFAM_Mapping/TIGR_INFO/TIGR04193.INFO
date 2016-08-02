@@ -1,0 +1,12 @@
+ID  SPASM_w_grasp
+AC  TIGR04193
+DE  SPASM domain peptide maturase, grasp-with-spasm system
+AU  Haft DH
+TC  175.00 175.00
+NC  125.00 125.00
+AL  muscle_manual
+IT  equivalog
+EN  SPASM domain peptide maturase, grasp-with-spasm system
+GS  gwsS
+TP  TIGRFAMs
+CC  A 4Fe-4S-binding C-terminal domain is shared by radical SAM maturases for Subtilosin A (S), PQQ (P), Anaerobic sulfatases (AS), and mycofactocin (M), hence SPASM. Radical SAM proteins with SPASM tend to be peptide maturases. All members of this family, like some members of the quasi-rSAM family TIGR04105, lack the 4Fe-4S cluster of the radical SAM domain (PF04055) in the N-terminal region. Members of this family occur with an ATP-GRASP family protein, known as a possible maturase from microviridin biosynthetic clusters. Systems occur in Microscilla marina ATCC 23134, Kordia algicida OT-1, Sphingobacterium spiritivorum ATCC 33300, etc.

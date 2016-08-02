@@ -1,0 +1,16 @@
+ID  TIGR00145
+AC  TIGR00145
+DE  FTR1 family protein
+AU  Richardson DL
+TC  303.80 303.80
+NC  43.60 43.60
+AL  clustalw
+IT  subfamily
+EN  FTR1 family protein
+TP  TIGRFAMs
+CC  A characterized member from yeast acts as oxidase-coupled high affinity iron transporter. Note that the apparent member from E. coli K12-MG1655 has a frameshift by homology with member sequences from other species.
+DR  SWISSPROT; P40088; FTR1_YEAST
+RM  8599111
+RT  A permease-oxidase complex involved in high-affinity iron uptake in yeast.
+RA  Stearman R, Yuan DS, Yamaguchi-Iwai Y, Klausner RD, Dancis A.
+RL  Science. 1996 Mar 15;271(5255):1552-7.

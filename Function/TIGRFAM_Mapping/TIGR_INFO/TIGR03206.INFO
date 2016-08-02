@@ -1,0 +1,18 @@
+ID  benzo_BadH
+AC  TIGR03206
+DE  2-hydroxycyclohexanecarboxyl-CoA dehydrogenase
+AU  Haft DH
+TC  431.20 431.20
+NC  347.25 347.25
+AL  muscle
+IT  equivalog
+EN  2-hydroxycyclohexanecarboxyl-CoA dehydrogenase
+GS  badH
+EC  1.1.1.-
+TP  TIGRFAMs
+CC  Members of this protein family are the enzyme 2-hydroxycyclohexanecarboxyl-CoA dehydrogenase. The enzymatic properties were confirmed experimentally in Rhodopseudomonas palustris; the enzyme is homotetrameric, and not sensitive to oxygen. This enzyme is part of proposed pathway for degradation of benzoyl-CoA to 3-hydroxypimeloyl-CoA that differs from the analogous in Thauera aromatica. It also may occur in degradation of the non-aromatic compound cyclohexane-1-carboxylate.
+RN  [1]
+RM  PMID: 10781543
+RT  2-Hydroxycyclohexanecarboxyl coenzyme A dehydrogenase, an enzyme characteristic of the anaerobic benzoate degradation pathway used by Rhodopseudomonas palustris.
+RA  Pelletier DA, Harwood CS
+RL  J Bacteriol. 2000 May;182(10):2753-60.

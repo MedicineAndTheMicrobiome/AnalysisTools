@@ -1,0 +1,13 @@
+ID  ogt
+AC  TIGR00589
+DE  methylated-DNA--[protein]-cysteine S-methyltransferase
+AU  Loftus BJ, Eisen JA
+TC  46.40 46.40
+NC  42.95 42.95
+IT  superfamily
+EN  O-6-methylguanine DNA methyltransferase
+EC  2.1.1.63
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are involved alkyl-DNA transferases which remove alkyl groups from DNA as part of alkylation DNA repair.  Some of the proteins in this family are also transcription regulators and have a distinct transcription regulatory domain. This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  SWISSPROT; P06134;
+DR  HAMAP; MF_00772; 16 of 16

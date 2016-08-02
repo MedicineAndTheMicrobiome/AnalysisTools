@@ -1,0 +1,15 @@
+ID  fliE
+AC  TIGR00205
+DE  flagellar hook-basal body complex protein FliE
+AU  Loftus BJ
+TC  48.10 48.10
+NC  33.00 33.00
+AL  clustalw
+IT  equivalog
+EN  flagellar hook-basal body complex protein FliE
+GS  fliE
+TP  TIGRFAMs
+CC  fliE is a component of the flagellar hook-basal body complex located possibly at (MS-ring)-rod junction.
+DR  SWISSPROT; P25797 
+DR  ECOCYC; EG11346
+DR  HAMAP; MF_00724; 76 of 94

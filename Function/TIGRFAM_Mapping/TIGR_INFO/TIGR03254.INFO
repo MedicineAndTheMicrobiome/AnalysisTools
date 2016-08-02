@@ -1,0 +1,23 @@
+ID  oxalate_oxc
+AC  TIGR03254
+DE  oxalyl-CoA decarboxylase
+AU  Haft DH
+TC  739.40 739.40
+NC  649.80 649.80
+AL  muscle
+IT  equivalog
+EN  oxalyl-CoA decarboxylase
+GS  oxc
+EC  4.1.1.8
+TP  TIGRFAMs
+CC  In a number of bacteria, including Oxalobacter formigenes from the human gut, a two-gene operon of oxc (oxalyl-CoA decarboxylase) and frc (formyl-CoA transferase) encodes a system for degrading and therefore detoxifying oxalate. Members of this family are the thiamine pyrophosphate (TPP)-containing enzyme oxalyl-CoA decarboxylase.
+RN  [1]
+RM  PMID: 16517636
+RT  Transcriptional and functional analysis of oxalyl-coenzyme A (CoA) decarboxylase and formyl-CoA transferase genes from Lactobacillus acidophilus.
+RA  Azcarate-Peril MA, Bruno-Barcena JM, Hassan HM, Klaenhammer TR
+RL  Appl Environ Microbiol. 2006 Mar;72(3):1891-9.
+RN  [2]
+RM  PMID: 15345383
+RT  Characterization and heterologous expression of the oxalyl coenzyme A decarboxylase gene from Bifidobacterium lactis.
+RA  Federici F, Vitali B, Gotti R, Pasca MR, Gobbi S, Peck AB, Brigidi P
+RL  Appl Environ Microbiol. 2004 Sep;70(9):5066-73.

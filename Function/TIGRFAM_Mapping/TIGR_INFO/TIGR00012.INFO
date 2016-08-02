@@ -1,0 +1,14 @@
+ID  L29
+AC  TIGR00012
+DE  ribosomal protein L29
+AU  Dodson RJ, Richardson DL, Haft DH
+TC  22.60 22.60
+NC  21.75 21.75
+AL  clustalw_manual
+IT  equivalog
+EN  ribosomal protein L29
+GS  rpmC
+TP  TIGRFAMs
+CC  This HMM describes a ribosomal large subunit protein,
+CC  called L29 in prokaryotic (50S) large subunits and L35 in eukaryotic (60S) large subunits.
+DR  HAMAP; MF_00374; 506 of 514

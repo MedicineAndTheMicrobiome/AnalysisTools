@@ -1,0 +1,21 @@
+ID  rSAM_yydG
+AC  TIGR04078
+DE  peptide modification radical SAM enzyme, YydG family
+AU  Haft DH
+TC  300.00 300.00
+NC  220.00 220.00
+AL  muscle_manual
+IT  equivalog
+EN  peptide modification radical SAM enzyme, YydG family
+TP  TIGRFAMs
+CC  Members of this radical SAM protein family for peptide modification occur only in the context of members of family TIGR04077, which average about 50 amino acids in length. In Bacillus subtilis, this protein (YydG) appears to act on its cognate target peptide (YydF) prior to its export, and result in the creation of a signaling molecule that induces the LiaRS two-component system.
+RN  [1]
+RM  PMID:17921301 
+RT  The yydFGHIJ operon of Bacillus subtilis encodes a peptide that induces the LiaRS two-component system. 
+RA  Butcher BG, Lin YP, Helmann JD 
+RL  J Bacteriol. 2007 Dec;189(23):8616-25. Epub 2007 Oct 5.
+RN  [2]
+RM  PMID:21478363 
+RT  Biological systems discovery in silico: radical S-adenosylmethionine protein families and their target peptides for posttranslational modification. 
+RA  Haft DH, Basu MK 
+RL  J Bacteriol. 2011 Jun;193(11):2745-55.

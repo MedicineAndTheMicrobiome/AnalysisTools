@@ -1,0 +1,25 @@
+ID  clostrip
+AC  TIGR02806
+DE  clostripain
+AU  Haft DH
+TC  436.25 436.25
+NC  60.25 60.25
+AL  clustalw
+IT  equivalog
+EN  clostripain
+GS  cloSI
+EC  3.4.22.8
+TP  TIGRFAMs
+CC  Clostripain is a cysteine protease characterized from Clostridium histolyticum, and also known from Clostridium perfringens. It is a heterodimer processed from a single precursor polypeptide, specific for Arg-|-Xaa peptide bonds. The older term alpha-clostripain refers to the most active, most reduced form, rather than to the product of one of several different genes. Clostripain belongs to the peptidase family C11, or clostripain family (see PF03415).
+RN  [1]
+RM  762145
+RT  alpha-Clostripain. Chemical characterization, activity, and thiol content of the highly active form of clostripain.
+RA  Gilles AM, Imhoff JM, Keil B.
+RL  J Biol Chem. 1979 Mar 10;254(5):1462-8.
+RN  [2]
+RM  11976286
+RT  Proteome and transcriptome analysis of the virulence genes regulated by the VirR/VirS system in Clostridium perfringens.
+RA  Shimizu T, Shima K, Yoshino K, Yonezawa K, Shimizu T, Hayashi H.
+RL  J Bacteriol. 2002 May;184(10):2587-94.
+DR  PFAM; PF03415; Peptidase_C11; Clostripain family
+DR  SWISSPROT; P09870; Clostridium histolyticum

@@ -1,0 +1,24 @@
+ID  PEPCase_arch
+AC  TIGR02751
+DE  phosphoenolpyruvate carboxylase
+AU  Haft DH
+TC  146.05 146.05
+NC  145.20 145.20
+AL  clustalw_manual
+IT  equivalog
+EN  phosphoenolpyruvate carboxylase, archaeal type
+GS  ppcA
+EC  4.1.1.31
+TP  TIGRFAMs
+CC  This family is the archaeal-type phosphoenolpyruvate carboxylase, although not every host species is archaeal. These sequences bear little resemblance to the bacterial/eukaryotic type. The members from Sulfolobus solfataricus and Methanothermobacter thermautotrophicus were verified experimentally, while the activity is known to be present in a number of other archaea.
+RN  [1]
+RM  15516590
+RT  Identification and functional verification of archaeal-type phosphoenolpyruvate carboxylase, a missing link in archaeal central carbohydrate metabolism.
+RA  Ettema TJ, Makarova KS, Jellema GL, Gierman HJ, Koonin EV, Huynen MA, de Vos WM, van der Oost J.
+RL  J Bacteriol. 2004 Nov;186(22):7754-62.
+RN  [2]
+RM  15262949
+RT  The phosphoenolpyruvate carboxylase from Methanothermobacter thermautotrophicus has a novel structure.
+RA  Patel HM, Kraszewski JL, Mukhopadhyay B.
+RL  J Bacteriol. 2004 Aug;186(15):5129-37.
+DR  HAMAP; MF_01904; 27 of 27

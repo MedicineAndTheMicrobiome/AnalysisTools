@@ -1,0 +1,17 @@
+ID  tol_pal_ybgF
+AC  TIGR02795
+DE  tol-pal system protein YbgF
+AU  Haft DH
+TC  90.10 90.10
+NC  77.10 77.10
+AL  clustalw_manual
+IT  equivalog
+EN  tol-pal system protein YbgF
+GS  ygbF
+TP  TIGRFAMs
+CC  Members of this protein family are the product of one of seven genes regularly clustered in operons to encode the proteins of the tol-pal system, which is critical for maintaining the integrity of the bacterial outer membrane. The gene for this periplasmic protein has been designated orf2 and ybgF. All members of the seed alignment were from unique tol-pal gene regions from completed bacterial genomes. The architecture of this protein is a signal sequence, a low-complexity region usually rich in Asn and Gln, a well-conserved region with tandem repeats that resemble the tetratricopeptide (TPR) repeat, involved in protein-protein interaction.
+RN  [1]
+RM  16207916
+RT  Tol-Pal proteins are critical cell envelope components of Erwinia chrysanthemi affecting cell morphology and virulence.
+RA  Dubuisson JF, Vianney A, Hugouvieux-Cotte-Pattat N, Lazzaroni JC.
+RL  Microbiology. 2005 Oct;151(Pt 10):3337-47.

@@ -1,0 +1,21 @@
+ID  pdxJ
+AC  TIGR00559
+DE  pyridoxine 5'-phosphate synthase
+AU  Haft DH
+TC  192.75 192.75
+NC  154.25 154.25
+AL  clustalw
+IT  equivalog
+EN  pyridoxine 5'-phosphate synthase
+GS  pdxJ
+EC  2.6.99.2
+TP  TIGRFAMs
+CC  PdxJ is required in the biosynthesis of pyridoxine (vitamin B6), a precursor to the enzyme cofactor pyridoxal phosphate. ECOCYC describes the predicted reaction equation as 1-amino-propan-2-one-3-phosphate + deoxyxylulose-5-phosphate = pyridoxine-5'-phosphate. The product of that reaction is oxidized by PdxH to pyridoxal 5'-phosphate.
+AL  clustalw
+DR  SWISS-PROT; P24223; PDXJ_ECOLI; annotation and links to references
+DR  ECOCYC; EG10693; pdxJ;
+RM  99239931
+RT  Vitamin B6 biosynthesis: formation of pyridoxine 5'-phosphate from 4-(phosphohydroxy)-L-threonine and 1-deoxy-D-xylulose-5-phosphate by PdxA and PdxJ protein.
+RA  Laber B, Maurer W, Scharf S, Stepusin K, Schmidt FS
+RL  FEBS Lett 1999 Apr 16;449(1):45-8
+DR  HAMAP; MF_00279; 166 of 198

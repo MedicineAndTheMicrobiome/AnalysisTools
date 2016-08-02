@@ -1,0 +1,14 @@
+ID  Rieske_proteo
+AC  TIGR01416
+DE  ubiquinol-cytochrome c reductase, iron-sulfur subunit
+AU  Haft DH
+TC  97.40 97.40
+NC  77.90 77.90
+AL  clustalw_manual
+IT  equivalog
+EN  ubiquinol-cytochrome c reductase, iron-sulfur subunit
+GS  petA
+EC  1.10.2.2
+TP  TIGRFAMs
+CC  This model represents the Proteobacterial and mitochondrial type of the Rieske [2Fe-2S] iron-sulfur as found in ubiquinol-cytochrome c reductase. The model excludes the Rieske iron-sulfur protein as found in the cytochrome b6-f complex of the Cyanobacteria and chloroplasts.
+CC  Most members of this family have a recognizable twin-arginine translocation (tat) signal sequence (DeltaPh-dependent translocation in chloroplast) for transport across the membrane with the 2Fe-2S group already bound. These signal sequences include a motif resembling RRxFLK before the transmembrane helix.

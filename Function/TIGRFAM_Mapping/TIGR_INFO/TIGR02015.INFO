@@ -1,0 +1,23 @@
+ID  BchY
+AC  TIGR02015
+DE  chlorophyllide reductase subunit Y
+AU  Selengut J
+TC  425.15 425.15
+NC  250.15 250.15
+AL  clustalw
+IT  equivalog
+EN  chlorophyllide reductase subunit Y
+GS  bchY
+EC  1.18.1.-
+TP  TIGRFAMs
+CC  This HMM represents the Y subunit of the three-subunit enzyme, (bacterio)chlorophyllide reductase [1,2].  This enzyme is responsible for the reduction of the chlorin B-ring and is closely related to the protochlorophyllide reductase complex which reduces the D-ring.  Both of these complexes in turn are homologous to nitrogenase.
+RN  [1]
+RM  PMID: 10648776
+RT  DNA sequence analysis of the photosynthesis region of Rhodobacter sphaeroides 2.4.1.
+RA  Choudhary M, Kaplan S.
+RL  Nucleic Acids Res. 2000 Feb 15;28(4):862-7.
+RN  [2]
+RM  PMID: 8468299
+RT  The Rhodobacter capsulatus chlorin reductase-encoding locus, bchA, consists of three genes, bchX, bchY, and bchZ.
+RA  Burke DH, Alberti M, Hearst JE.
+RL  J Bacteriol. 1993 Apr;175(8):2407-13.

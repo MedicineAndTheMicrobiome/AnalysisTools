@@ -1,0 +1,13 @@
+ID  PQQ_syn_pqqE
+AC  TIGR02109
+DE  coenzyme PQQ biosynthesis enzyme PqqE
+AU  Haft DH
+TC  381.35 381.35
+NC  174.15 174.15
+AL  clustalw
+IT  equivalog
+EN  coenzyme PQQ biosynthesis enzyme PqqE
+GS  pqqE
+TP  TIGRFAMs
+CC  This HMM describes coenzyme PQQ biosynthesis protein E, a prototypical peptide-cyclizing radical SAM enzyme. It links a Tyr to a Glu as the first step in the biosynthesis of pyrrolo-quinoline-quinone (coenzyme PQQ) from the precursor peptide PqqA. PQQ is required for some glucose dehydrogenases and alcohol dehydrogenases.
+DR  HAMAP; MF_00660; 29 of 29

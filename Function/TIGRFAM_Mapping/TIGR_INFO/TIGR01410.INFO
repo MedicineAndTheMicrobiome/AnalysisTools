@@ -1,0 +1,15 @@
+ID  tatB
+AC  TIGR01410
+DE  twin arginine-targeting protein translocase TatB
+AU  Haft DH
+TC  56.50 56.50
+NC  46.70 46.70
+AL  clustalw_manual
+IT  equivalog
+EN  twin arginine-targeting protein translocase TatB
+GS  tatB
+TR  2.A.64
+TP  TIGRFAMs
+CC  This HMM represents the TatB protein of a Sec-independent system for transporting folded proteins, often with a bound redox cofactor, across the bacterial inner membrane. TatC is the multiple membrane spanning component. TatB, like the related TatA/E proteins, appears to span the membrane one time. The tat system recognizes proteins with an elongated signal sequence containing a conserved R-R in a motif approximated by RRxFLK N-terminal to the transmembrane helix. TIGRFAMs model TIGR01409 describes this twin-Arg signal sequence. A similar system, termed Delta-pH-dependent transport, operates on chloroplast-encoded proteins.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_64.html
+DR  HAMAP; MF_00237; 163 of 168

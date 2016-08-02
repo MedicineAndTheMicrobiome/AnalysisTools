@@ -1,0 +1,23 @@
+ID  fadh2
+AC  TIGR00676
+DE  methylenetetrahydrofolate reductase [NAD(P)H]
+AU  Loftus BJ, Haft DH
+TC  293.70 293.70
+NC  289.85 289.85
+AL  clustalw_manual
+IT  equivalog
+EN  5,10-methylenetetrahydrofolate reductase, prokaryotic form
+GS  metF
+EC  1.5.1.20
+TP  TIGRFAMs
+CC  The enzyme activities methylenetetrahydrofolate reductase (EC 1.5.1.20) and  5,10-methylenetetrahydrofolate reductase (FADH) (EC 1.7.99.5) differ in that 1.5.1.20 (assigned in many eukaryotes) is defined to use NADP+ as an acceptor, while 1.7.99.5 (assigned in many bacteria) is flexible with respect to the acceptor; both convert 5-methyltetrahydrofolate to 5,10-methylenetetrahydrofolate. From a larger set of proteins assigned as 1.5.1.20 and 1.7.99.5, this model describes the subset of proteins found in bacteria, and currently designated 1.7.99.5.
+CC  This protein is an FAD-containing flavoprotein.
+RN  [1]
+RM  99215588
+RT  The structure and properties of methylenetetrahydrofolate reductase from Escherichia coli suggest how folate ameliorates human hyperhomocysteinemia.
+RA  Guenther BD, Sheppard CA, Tran P, Rozen R, Matthews RG, Ludwig ML
+RL  Nat Struct Biol 1999 Apr;6(4):359-65
+DR  ECOCYC; EG10585; metF
+DR  EXPERIMENTAL; EGAD|20689|EC3941; Escherichia coli
+DR  OUTGROUP; EGAD|145028|154652; Schizosaccharomyces pombe
+DR  OUTGROUP; EGAD|4286|4234; Homo sapiens

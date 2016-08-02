@@ -1,0 +1,27 @@
+ID  bfr
+AC  TIGR00754
+DE  bacterioferritin
+AU  Haft DH
+TC  125.55 125.55
+NC  56.80 56.80
+AL  clustalw
+IT  equivalog
+EN  bacterioferritin
+GS  bfr
+TP  TIGRFAMs
+CC  Bacterioferritin, predominantly an iron-storage protein restricted to Bacteria, has also been designated cytochrome b1 and cytochrome b-557.
+CC  Bacterioferritin is a homomultimer most species. In Neisseria gonorrhoeae, Synechocystis PCC6803, Magnetospirillum magnetotacticum, and Pseudomonas aeruginosa, two types of subunit are found in a heteromultimeric complex, with each species having one member of each type. At present, both types of subunit are including in this single model.
+DR  EXPERIMENTAL; EGAD|98244|106256; Neisseria gonorrhoeae; subunit b
+DR  EXPERIMENTAL; EGAD|97939|105946; Neisseria gonorrhoeae; subunit a
+DR  OUTGROUP; EGAD|8114|EC1905; ferritin
+DR  OUTGROUP; EGAD|165296|TM1128; ferritin
+RN  [1]
+RM  99049314
+RT  Structure of a monoclinic crystal from of cyctochrome b1 (Bacterioferritin) from E. coli.
+RA  Dautant A, Meyer JB, Yariv J, Precigoux G, Sweet RM, Kalb AJ, Frolow F
+RL  Acta Crystallogr D Biol Crystallogr 1998 Jan 1;54 ( Pt 1):16-24
+RN  [2]
+RM  98072426
+RT  Evidence for two types of subunits in the bacterioferritin of Magnetospirillum magnetotacticum.
+RA  Bertani LE, Huang JS, Weir BA, Kirschvink JL
+RL  Gene 1997 Nov 12;201(1-2):31-6

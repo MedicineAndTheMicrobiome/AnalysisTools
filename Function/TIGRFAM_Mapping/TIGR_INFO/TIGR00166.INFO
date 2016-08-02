@@ -1,0 +1,17 @@
+ID  S6
+AC  TIGR00166
+DE  ribosomal protein S6
+AU  Haft DH
+TC  42.90 42.90
+NC  20.50 20.50
+AL  clustalw_manual
+IT  equivalog
+EN  ribosomal protein S6
+GS  rpsF
+TP  TIGRFAMs
+CC  The ribosomal protein S6 ortholog family, including yeast MRP17, shows more than two-fold length variation from 95 residues in Bacillus subtilis to 215 in Mycoplasma pneumoniae. This length variation comes primarily from poorly conserved C-terminal extensions that are particularly long in the Mycoplasmas.
+CC  MRP17 protein is a component of the small ribosomal subunit in mitochondria, and is shown here to be an ortholog of S6.
+DR  PROSITE; PDOC00805; RIBOSOMAL_S6
+DR  PFAM; PF01250; Ribosomal_S6
+DR  ECOCYC; EG10905; rpsF
+DR  HAMAP; MF_00360; 488 of 502

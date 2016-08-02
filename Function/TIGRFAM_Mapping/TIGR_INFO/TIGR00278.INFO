@@ -1,0 +1,18 @@
+ID  TIGR00278
+AC  TIGR00278
+DE  putative membrane protein insertion efficiency factor
+AU  Haft DH
+TC  57.25 57.25
+NC  44.50 44.50
+AL  clustalw
+IT  equivalog
+EN  putative membrane protein insertion efficiency factor
+GS  yidD
+TP  TIGRFAMs
+CC  This HMM describes a family, YidD, of small, non-essential proteins now suggested to improve YidC-dependent inner membrane protein insertion. A related protein is found in the temperature phage HP1 of Haemophilus influenzae. Annotation of some members of this family as hemolysins appears to represent propagation from an unpublished GenBank submission, L36462, attributed to Aeromonas hydrophila but a close match to E. coli.
+RN  [1]
+RM  PMID:21803992 
+RT  Role for Escherichia coli YidD in membrane protein insertion. 
+RA  Yu Z, Laven M, Klepsch M, de Gier JW, Bitter W, van Ulsen P, Luirink J 
+RL  J Bacteriol. 2011 Oct;193(19):5242-51.
+DR  HAMAP; MF_00386; 369 of 379

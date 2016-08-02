@@ -1,0 +1,17 @@
+ID  exbB
+AC  TIGR02797
+DE  tonB-system energizer ExbB
+AU  Haft DH
+TC  206.20 206.20
+NC  194.55 194.55
+AL  clustalw_manual
+IT  equivalog
+EN  tonB-system energizer ExbB
+GS  exbB
+TP  TIGRFAMs
+CC  This model describes ExbB proteins, part of the MotA/TolQ/ExbB protein family. The paired proteins MotA and MotB, TolQ and TolR, and ExbB and ExbD harness the proton-motive force to drive the flagellar motor, energize the Tol-Pal system, or energize TonB, respectively. Tol-Pal and TonB are both active at the outer membrane. Genomes may have many different TonB-dependent receptors, of which many of those characterized are involved in siderophore transport across the outer membrane.
+RN  [1]
+RM  12896813
+RT  Molecular modeling of the bacterial outer membrane receptor energizer, ExbBD/TonB, based on homology with the flagellar motor, MotAB.
+RA  Zhai YF, Heijne W, Saier MH Jr.
+RL  Biochim Biophys Acta. 2003 Aug 7;1614(2):201-10.

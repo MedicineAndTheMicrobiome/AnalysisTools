@@ -1,0 +1,13 @@
+ID  mycothiol_MshD
+AC  TIGR03448
+DE  mycothiol synthase
+AU  Haft DH
+TC  163.10 163.10
+NC  55.90 55.90
+AL  muscle_manual
+IT  equivalog
+EN  mycothiol synthase
+GS  mshD
+EC  2.3.1.189
+TP  TIGRFAMs
+CC  Members of this family are MshD, the acetyltransferase that catalyzes the final step of mycothiol biosynthesis in various members of the Actinomyctes, Mycothiol replaces glutathione in these species.

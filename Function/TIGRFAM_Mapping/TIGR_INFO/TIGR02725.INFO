@@ -1,0 +1,16 @@
+ID  phenyl_P_gamma
+AC  TIGR02725
+DE  phenylphosphate carboxylase, gamma subunit
+AU  Haft DH
+TC  135.55 135.55
+NC  56.45 56.45
+AL  clustalw
+IT  equivalog
+EN  phenylphosphate carboxylase, gamma subunit
+GS  ppcG
+TP  TIGRFAMs
+CC  Members of this protein family are the gamma subunit of phenylphosphate carboxylase. Phenol (methyl-benzene) is converted to phenylphosphate, then para-carboxylated by this four-subunit enzyme, with the release of phosphate, to 4-hydroxybenzoate. The enzyme contains neither biotin nor thiamin pyrophosphate. The gamma subunit has no known homologs.
+RM  15231788
+RT  Phenylphosphate carboxylase: a new C-C lyase involved in anaerobic phenol metabolism in Thauera aromatica.
+RA  Schuhle K, Fuchs G.
+RL  J Bacteriol. 2004 Jul;186(14):4556-67.

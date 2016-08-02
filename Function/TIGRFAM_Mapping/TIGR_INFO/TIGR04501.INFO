@@ -1,0 +1,12 @@
+ID  microcomp_PduB
+AC  TIGR04501
+DE  microcompartment protein PduB
+AU  Haft DH
+TC  310.00 310.00
+NC  250.00 250.00
+AL  muscle_manual
+IT  equivalog
+EN  microcompartment protein PduB
+GS  pduB
+TP  TIGRFAMs
+CC  Members of this family are PduB, a protein of bacterial microcompartments for coenzyme B(12)-dependent utilization of 1,2-propanediol (hence pdu) or glycerol. The most closely related protein in ethanolamine utilization microcompartments is EutL (TIGR04502).

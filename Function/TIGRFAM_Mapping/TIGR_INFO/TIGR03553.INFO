@@ -1,0 +1,27 @@
+ID  F420_FbiB_CTERM
+AC  TIGR03553
+DE  F420 biosynthesis protein FbiB, C-terminal domain
+AU  Haft DH
+TC  249.55 249.55
+NC  77.75 77.75
+AL  muscle_manual
+IT  equivalog_domain
+EN  F420 biosynthesis protein FbiB, C-terminal domain
+GS  fbiB
+TP  TIGRFAMs
+CC  Coenzyme F420 differs between the Archaea and the Actinobacteria, where the numbers of glutamate residues attached are 2 (Archaea) or 5-6 (Mycobacterium). The enzyme in the Archaea is homologous to the N-terminal domain of FbiB from Mycobacterium bovis, and is responsible for glutamate ligation. Therefore it seems likely that the C-terminal domain of FbiB, modeled by this HMM, is involved in additional glutamate ligation.
+RN  [1]
+RM  PMID:18260642
+RT  Identification and Characterization of the 2-Phospho-l-lactate Guanylyltransferase Involved in Coenzyme F420 Biosynthesis.
+RA  Grochowski LL, Xu H, White RH
+RL  Biochemistry. 2008 Feb 9
+RN  [2]
+RM  PMID:11717263
+RT  Use of transposon Tn5367 mutagenesis and a nitroimidazopyran-based selection system to demonstrate a requirement for fbiA and fbiB in coenzyme F(420) biosynthesis by Mycobacterium bovis BCG.
+RA  Choi KP, Bair TB, Bae YM, Daniels L
+RL  J Bacteriol. 2001 Dec;183(24):7058-66.
+RN  [3]
+RM  PMID:15215601
+RT  Identification and cloning of the gene involved in the final step of chlortetracycline biosynthesis in Streptomyces aureofaciens.
+RA  Nakano T, Miyake K, Endo H, Dairi T, Mizukami T, Katsumata R
+RL  Biosci Biotechnol Biochem. 2004 Jun;68(6):1345-52.

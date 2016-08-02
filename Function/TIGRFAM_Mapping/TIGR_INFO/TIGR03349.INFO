@@ -1,0 +1,16 @@
+ID  IV_VI_DotU
+AC  TIGR03349
+DE  type IV/VI secretion system protein, DotU family
+AU  Haft DH
+TC  89.95 89.95
+NC  51.40 51.40
+AL  muscle_manual
+IT  subfamily_domain
+EN  type IV / VI secretion system protein, DotU family
+TP  TIGRFAMs
+CC  At least two families of proteins, often encoded by adjacent genes, show sequence similarity due to homology between type IV secretion systems and type VI secretion systems. One is the IcmF family (TIGR03348). The other is the family described by this model. Members include DotU from the Legionella pneumophila type IV secretion system. Many of the members of this protein family from type VI secretion systems have an additional C-terminal domain with OmpA/MotB homology.
+RN  [1]
+RM  PMID: 16763151
+RT  A virulence locus of Pseudomonas aeruginosa encodes a protein secretion apparatus.
+RA  Mougous JD, Cuff ME, Raunser S, Shen A, Zhou M, Gifford CA, Goodman AL, Joachimiak G, Ordonez CL, Lory S, Walz T, Joachimiak A, Mekalanos JJ
+RL  Science. 2006 Jun 9;312(5779):1526-30.

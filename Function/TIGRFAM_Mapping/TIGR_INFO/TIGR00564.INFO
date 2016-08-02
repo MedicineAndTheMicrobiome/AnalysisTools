@@ -1,0 +1,18 @@
+ID  trpE_most
+AC  TIGR00564
+DE  anthranilate synthase component I
+AU  Selengut J, Haft DH
+TC  517.70 517.70
+NC  516.20 516.20
+AL  clustalw
+IT  equivalog
+EN  anthranilate synthase component I, non-proteobacterial lineages
+GS  trpE
+EC  4.1.3.27
+TP  TIGRFAMs
+CC  This enzyme resembles some other chorismate-binding enzymes, including para-aminobenzoate synthase (pabB) and isochorismate synthase. There is a fairly deep split between two sets, seen in the 
+CC  pattern of gaps as well as in amino acid sequence differences.  Archaeal enzymes have been excluded from this model (and are now found in TIGR01820) as have a clade of enzymes which constitute a TrpE 
+CC  paralog which may have PabB activity (TIGR01824).  This allows the B. subtilus paralog which has been shown to have PabB activity to score below trusted to this model.  This model contains sequences 
+CC  from gram-positive bacteria, certain proteobacteria, cyanobacteria, plants, fungi and assorted other bacteria.
+CC  A second family of TrpE enzymes is modelled by TIGR00565.  The breaking of the TrpE family into these diverse models allows for the separation of the models for the related enzyme, PabB.
+DR  PFAM; PF00425; chorismate_bind

@@ -1,0 +1,17 @@
+ID  haoB_nitrify
+AC  TIGR04392
+DE  hydroxylamine oxidation protein HaoB
+AU  Haft DH
+TC  200.00 200.00
+NC  30.00 30.00
+AL  muscle_manual
+IT  equivalog
+EN  hydroxylamine oxidation protein HaoB
+GS  haoB
+TP  TIGRFAMs
+CC  Members of this family occur as the HaoB (hydroxylamine oxidation B) protein encoded next to the homotrimeric HaoA, hydroxylamine oxidoreductase, a protein with eight heme groups. It appears all species with this enzyme are nitrifying bacteria.
+RN  [1]
+RM  PMID:21682764 
+RT  Model of the molecular basis for hydroxylamine oxidation and nitrous oxide production in methanotrophic bacteria. 
+RA  Campbell MA, Nyerges G, Kozlowski JA, Poret-Peterson AT, Stein LY, Klotz MG 
+RL  FEMS Microbiol Lett. 2011 Sep;322(1):82-9.

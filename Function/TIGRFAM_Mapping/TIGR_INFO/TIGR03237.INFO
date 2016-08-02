@@ -1,0 +1,22 @@
+ID  dnd_assoc_2
+AC  TIGR03237
+DE  DNA phosphorothioation-dependent restriction protein DptH
+AU  Haft DH
+TC  620.65 620.65
+NC  423.35 423.35
+AL  clustalw
+IT  equivalog
+EN  DNA phosphorothioation-dependent restriction protein DptH
+GS  dptH
+TP  TIGRFAMs
+CC  A DNA sulfur modification (phosphorothioation) system, dnd (degradation during electrophoresis), is sparsely and sporadically distributed among the bacteria. This protein is one member of a three-gene restriction enzyme cassette that depends on DNA phosphorothioation.
+RN  [1]
+RM  PMID:20627870 
+RT  A novel host-specific restriction system associated with DNA backbone S-modification in Salmonella. 
+RA  Xu T, Yao F, Zhou X, Deng Z, You D 
+RL  Nucleic Acids Res. 2010 Nov 1;38(20):7133-41.
+RN  [2]
+RM  PMID:22070167 
+RT  ProPhylo: partial phylogenetic profiling to guide protein family construction and assignment of biological process. 
+RA  Basu MK, Selengut JD, Haft DH 
+RL  BMC Bioinformatics. 2011 Nov 9;12:434.

@@ -1,0 +1,14 @@
+ID  recQ_fam
+AC  TIGR00614
+DE  ATP-dependent DNA helicase, RecQ family
+AU  Loftus BJ, Eisen JA
+TC  219.80 219.80
+NC  182.00 182.00
+IT  subfamily
+EN  ATP-dependent DNA helicase, RecQ family
+EC  3.6.4.12
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are 3'-5' DNA-DNA helicases.  These proteins are used for recombination, recombinational repair, and possibly maintenance of chromosome stability.
+CC  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  SWISSPROT; P15043;
+RM  87115164;

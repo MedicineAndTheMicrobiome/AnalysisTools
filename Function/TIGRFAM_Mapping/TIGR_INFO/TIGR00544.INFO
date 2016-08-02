@@ -1,0 +1,15 @@
+ID  lgt
+AC  TIGR00544
+DE  prolipoprotein diacylglyceryl transferase
+AU  Haft DH
+TC  118.90 118.90
+NC  76.80 76.80
+IT  equivalog
+EN  prolipoprotein diacylglyceryl transferase
+GS  lgt
+EC  2.4.99.-
+TP  TIGRFAMs
+CC  The conversion of lipoprotein precursors into lipoproteins consists of three steps. First, the enzyme described by this model transfers a diacylglyceryl moiety from phosphatidylglycerol to the side chain of a Cys that will become the new N-terminus. Second, the signal peptide is removed by signal peptidase II. Finally, the free amino group of the new N-terminal Cys is acylated by apolipoprotein N-acyltransferase.
+DR  SWISSPROT; P37149; LGT_ECOLI
+DR  ECOCYC; EG12128; lgt
+DR  HAMAP; MF_01147; 383 of 390

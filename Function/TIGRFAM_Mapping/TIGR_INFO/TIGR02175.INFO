@@ -1,0 +1,17 @@
+ID  PorC_KorC
+AC  TIGR02175
+DE  2-oxoacid:acceptor oxidoreductase, gamma subunit, pyruvate/2-ketoisovalerate family
+AU  Haft DH
+TC  81.10 81.10
+NC  72.40 72.40
+AL  clustalw_manual
+IT  subfamily
+EN  2-oxoacid:acceptor oxidoreductase, gamma subunit, pyruvate/2-ketoisovalerate family
+TP  TIGRFAMs
+CC  A number of anaerobic and microaerophilic species lack pyruvate dehydrogenase and have instead a four subunit, oxygen-sensitive pyruvate oxidoreductase, with either ferredoxins or flavodoxins (H. pylori) used as the acceptor.
+CC  Several related four-subunit enzymes may exist in the same species. This model describes the gamma subunit. In Pyrococcus furious, enzymes active on pyruvate and 2-ketoisovalerate share a common gamma subunit.
+RM  8550425
+RT  Molecular and phylogenetic characterization of pyruvate and 2-ketoisovalerate ferredoxin oxidoreductases from Pyrococcus furiosus and pyruvate ferredoxin oxidoreductase from Thermotoga maritima.
+RA  Kletzin A, Adams MW.
+RL  J Bacteriol. 1996 Jan;178(1):248-57.
+DR  PFAM; PF01558

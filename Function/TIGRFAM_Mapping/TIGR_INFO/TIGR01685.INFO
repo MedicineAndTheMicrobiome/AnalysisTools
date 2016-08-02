@@ -1,0 +1,22 @@
+ID  MDP-1
+AC  TIGR01685
+DE  magnesium-dependent phosphatase-1
+AU  Selengut J
+TC  53.75 53.75
+NC  36.15 36.15
+AL  clustalw
+IT  equivalog
+EN  magnesium-dependent phosphatase-1
+GS  MDP-1
+TP  TIGRFAMs
+CC  This model represents two closely related clades of sequences from eukaryotes and archaea.  The mouse enzyme has been characterized as a phosphatase and has been positively identified as a member of the haloacid dehalogenase (HAD) superfamily by site-directed mutagenesis of the active site residues [1,2].
+RN  [1]
+RM  PMID: 11601995
+RT  MDP-1 is a new and distinct member of the haloacid dehalogenase family of aspartate-dependent phosphohydrolases.
+RA  Selengut, JD
+RL  Biochemistry 2001 Oct 23;40(42):12704-11
+RN  [2]
+RM  PMID: 10889041 
+RT  MDP-1: A novel eukaryotic magnesium-dependent phosphatase.
+RA  Selengut JD, Levine RL.
+RL  Biochemistry. 2000 Jul 18;39(28):8315-24.

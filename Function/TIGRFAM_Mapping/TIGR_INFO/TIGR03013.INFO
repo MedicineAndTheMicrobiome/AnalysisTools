@@ -1,0 +1,20 @@
+ID  EpsB_2
+AC  TIGR03013
+DE  sugar transferase, PEP-CTERM system associated
+AU  Selengut J
+TC  393.35 393.35
+NC  373.10 373.10
+AL  muscle
+IT  subfamily
+EN  sugar transferase, PEP-CTERM system associated
+TP  TIGRFAMs
+CC  Members of this protein family belong to the family of bacterial sugar transferases (PF02397).  Nearly all are found in species that encode the PEP-CTERM/exosortase system predicted to act in protein sorting in a number of Gram-negative bacteria (notable exceptions appear to include Magnetococcus sp. MC-1 and Myxococcus xanthus DK 1622 ).  These genes are generally found near one or more of the PrsK, PrsR or PrsT genes that have been related to the PEP-CTERM system by phylogenetic profiling methods [1].  The nature of the sugar transferase reaction catalyzed by members of this clade is unknown and may conceivably be variable with respect to substrate by species.  These proteins are homologs of the EpsB protein found in Methylobacillus sp. strain 12S [2], which is also associated with a PEP-CTERM system, but of a distinct type.  A name which appears attached to a number of genes (by transitive annotation) in this family is "undecaprenyl-phosphate galactose phosphotransferase", which comes from relatively distant characterized enterobacterial homologs, and is considerably more specific than warranted from the currently available evidence.
+RN  [1]
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD
+RT  Exopolysaccharide-associated protein sorting in environmental organisms by the PEP-CTERM/EpsH system: application of a novel phylogenetic profiling heuristic.
+RL  BMC Biol., in press, 2006
+RN  [2]
+RM  12624205
+RA  Yoshida T, Ayabe Y, Yasunaga M, Usami Y, Habe H, Nojiri H, Omori T
+RT  Genes involved in the synthesis of the exopolysaccharide methanolan by the obligate methylotroph Methylobacillus sp strain 12S.
+RL  Microbiology. 2003 Feb;149(Pt 2):431-44.

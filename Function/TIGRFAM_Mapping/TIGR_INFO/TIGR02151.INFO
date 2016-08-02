@@ -1,0 +1,21 @@
+ID  IPP_isom_2
+AC  TIGR02151
+DE  isopentenyl-diphosphate delta-isomerase, type 2
+AU  Haft DH
+TC  281.30 281.30
+NC  153.70 153.70
+AL  clustalw_manual
+IT  equivalog
+EN  isopentenyl-diphosphate delta-isomerase, type 2
+GS  fni
+EC  5.3.3.2
+TP  TIGRFAMs
+CC  Isopentenyl-diphosphate delta-isomerase (IPP isomerase) interconverts isopentenyl diphosphate and dimethylallyl diphosphate. This HMM represents the type 2 enzyme. FMN, NADPH, and Mg2+ are required by this form, which lacks homology to the type 1 enzyme (TIGR02150). IPP is precursor to many compounds, including enzyme cofactors, sterols, and isoprenoids.
+DR  EXPERIMENTAL; SP|P58052; Staphylococcus aureus
+DR  EXPERIMENTAL; SP|Q9KWG2; Streptomyces sp. CL190
+DR  EXPERIMENTAL; SP|O26154; Methanobacterium thermoautotrophicum
+RM  14745175
+RT  Bacillus subtilis ypgA gene is fni, a nonessential gene encoding type 2 isopentenyl diphosphate isomerase.
+RA  Takagi M, Kaneda K, Shimizu T, Hayakawa Y, Seto H, Kuzuyama T.
+RL  Biosci Biotechnol Biochem. 2004 Jan;68(1):132-7.
+DR  HAMAP; MF_00354; 127 of 127

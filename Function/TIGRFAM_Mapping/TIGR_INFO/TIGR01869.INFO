@@ -1,0 +1,23 @@
+ID  casC_Cse4
+AC  TIGR01869
+DE  CRISPR-associated protein Cas7/Cse4/CasC, subtype I-E/ECOLI
+AU  Haft DH
+TC  178.05 178.05
+NC  140.50 140.50
+AL  clustalw_manual
+IT  exception
+EN  CRISPR-associated protein Cas7/Cse4/CasC, subtype I-E/ECOLI
+GS  cas7e
+TP  TIGRFAMs
+CC  CRISPR is a term for Clustered, Regularly Interspaced Short Palidromic Repeats. A number of protein families appear only in association with these repeats and are designated Cas (CRISPR-Associated) proteins.  This family is represented by CT1975 of Chlorobium tepidum and is part of the Ecoli subtype of CRISPR/Cas locis. It is designated Cse4, for CRISPR/Cas Subtype Ecoli protein 4.
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=2003
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=57302
+RN  [1]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005
+RN  [2]
+RM  PMID:18703739
+RT  Small CRISPR RNAs guide antiviral defense in prokaryotes.
+RA  Brouns SJ, Jore MM, Lundgren M, Westra ER, Slijkhuis RJ, Snijders AP, Dickman MJ, Makarova KS, Koonin EV, van der Oost J
+RL  Science. 2008 Aug 15;321(5891):960-4.

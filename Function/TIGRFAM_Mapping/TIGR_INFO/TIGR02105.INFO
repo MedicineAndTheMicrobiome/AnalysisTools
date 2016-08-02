@@ -1,0 +1,17 @@
+ID  III_needle
+AC  TIGR02105
+DE  type III secretion apparatus needle protein
+AU  Haft DH
+TC  41.70 41.70
+NC  28.25 28.25
+AL  clustalw_manual
+IT  equivalog
+EN  type III secretion apparatus needle protein
+GS  eprI
+TP  TIGRFAMs
+CC  Type III secretion systems translocate proteins, usually virulence factors, out across both inner and outer membranes of certain Gram-negative bacteria and further across the plasma membrane and into the cytoplasm of the host cell. This protein, termed YscF in Yersinia, and EscF, PscF, EprI, etc. in other systems, forms the needle of the injection apparatus.
+RM  14580388
+RT  Genetic analysis of the formation of the Ysc-Yop translocation pore in macrophages by Yersinia enterocolitica: role of LcrV, YscF and YopN.
+RA  Marenne MN, Journet L, Mota LJ, Cornelis GR.
+RL  Microb Pathog. 2003 Dec; 35(6): 243-58.
+DR  EXPERIMENTAL; SP|Q01247; Yersinia enterocolitica plasmid pYV

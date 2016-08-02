@@ -1,0 +1,12 @@
+ID  PBP_1c
+AC  TIGR02073
+DE  penicillin-binding protein 1C
+AU  Haft DH
+TC  494.20 494.20
+NC  407.25 407.25
+AL  clustalw_manual
+IT  equivalog
+EN  penicillin-binding protein 1C
+GS  pbpC
+TP  TIGRFAMs
+CC  This subfamily of the penicillin binding proteins includes the  member from E. coli designated penicillin-binding protein 1C. Members have both transglycosylase and transpeptidase domains and are involved in forming cross-links in the late stages of peptidoglycan biosynthesis. All members of this subfamily are presumed to have the same basic function.

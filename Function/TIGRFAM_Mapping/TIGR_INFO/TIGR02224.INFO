@@ -1,0 +1,19 @@
+ID  recomb_XerC
+AC  TIGR02224
+DE  tyrosine recombinase XerC
+AU  Haft DH
+TC  335.15 335.15
+NC  316.75 316.75
+AL  clustalw_manual
+IT  equivalog
+EN  tyrosine recombinase XerC
+GS  xerC
+TP  TIGRFAMs
+CC  The phage integrase family describes a number of recombinases with tyrosine active sites that transiently bind covalently to DNA. Many are associated with mobile DNA elements, including phage, transposons, and phase variation loci. This model represents XerC, one of two closely related chromosomal proteins along with XerD (TIGR02225). XerC and XerD are site-specific recombinases which help resolve chromosome dimers to monomers for cell division after DNA replication. In species with a large chromosome and homologs of XerC on other replicons, the chomosomal copy was preferred for building this model. This model does not detect all XerC, as some apparent XerC examples score in the gray zone between trusted (450) and noise (410) cutoffs, along with some XerD examples. XerC and XerD interact with cell division protein FtsK.
+DR  PFAM; PF00589; Phage integrase family
+DR  PFAM; PF02899; Phage integrase, N-terminal SAM-like domain
+RM  12823825
+RT  Species specificity in the activation of Xer recombination at dif by FtsK.
+RA  Yates J, Aroyo M, Sherratt DJ, Barre FX.
+RL  Mol Microbiol. 2003 Jul;49(1):241-9.
+DR  HAMAP; MF_01808; 124 of 155

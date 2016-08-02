@@ -1,0 +1,25 @@
+ID  one_C_fhcD
+AC  TIGR03119
+DE  formylmethanofuran--tetrahydromethanopterin N-formyltransferase
+AU  Haft DH
+TC  292.60 292.60
+NC  94.05 94.05
+AL  muscle
+IT  equivalog
+EN  formylmethanofuran--tetrahydromethanopterin N-formyltransferase
+GS  fhcD
+EC  2.3.1.101
+TP  TIGRFAMs
+CC  Members of this protein family are the FhcD protein of tetrahydromethanopterin (H4MPT)-dependent C-1 carrier metabolism. In the archaea, FhcD is designated formylmethanofuran--tetrahydromethanopterin N-formyltransferase, while in bacteria it is commonly designated as formyltransferase/hydrolase complex subunit D. FhcD is essential for one-carbon metabolism in at least three groups of prokaryotes: methanogenic archaea, sulfate-reducing archaea, and methylotrophic bacteria.
+DR  PFAM; PF01913; Formylmethanofuran--tetrahydromethanopterin formyltransferase, distal lobe
+RN  [1]
+RM  PMID: 16466742
+RT  The structure of formylmethanofuran: tetrahydromethanopterin formyltransferase in complex with its coenzymes.
+RA  Acharya P, Warkentin E, Ermler U, Thauer RK, Shima S
+RL  J Mol Biol. 2006 Mar 31;357(3):870-9. Epub 2006 Jan 23.
+RN  [2]
+RM  PMID: 16011764
+RT  Development and application of polymerase chain reaction primers based on fhcD for environmental detection of methanopterin-linked C1-metabolism in bacteria.
+RA  Kalyuzhnaya MG, Nercessian O, Lidstrom ME, Chistoserdova L
+RL  Environ Microbiol. 2005 Aug;7(8):1269-74.
+DR  HAMAP; MF_00579; 13 of 13

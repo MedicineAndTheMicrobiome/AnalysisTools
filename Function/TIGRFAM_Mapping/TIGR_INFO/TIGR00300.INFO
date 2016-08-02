@@ -1,0 +1,12 @@
+ID  TIGR00300
+AC  TIGR00300
+DE  TIGR00300 family protein
+AU  Loftus BJ
+TC  410.80 410.80
+NC  229.50 229.50
+AL  clustalw
+IT  hypoth_equivalog
+EN  TIGR00300 family protein
+TP  TIGRFAMs
+CC  All members of the family come from genome projects. A partial length search brings in two plant lysine-ketoglutarate reductase/saccharopine dehydrogenase bifunctional enzymes hitting the N-terminal region of the family.
+DR  PDB; 3C2Q; Crystal Structure Of Conserved Putative LorSDH PROTEIN From Methanococcus Maripaludis S2

@@ -1,0 +1,11 @@
+ID  ADOP
+AC  TIGR03434
+DE  acidobacterial duplicated orphan permease
+AU  Haft DH
+TC  622.30 622.30
+NC  303.15 303.15
+AL  muscle_manual
+IT  paralog
+EN  Acidobacterial duplicated orphan permease
+TP  TIGRFAMs
+CC  Members of this protein family are found, so far, only in three species of Acidobacteria, namely Acidobacteria bacterium Ellin345, Acidobacterium capsulatum ATCC 51196, and Solibacter usitatus Ellin6076, where they form large paralogous families. Each protein contains two copies of a domain called the efflux ABC transporter permease protein (PF02687). However, unlike other members of that family (including LolC, FtsX, and MacB), genes for these proteins are essentially never found fused or adjacent to ABC transporter ATP-binding protein (PF00005) genes. We name this family ADOP, for Acidobacterial Duplicated Orphan Permease, to reflect the restricted lineage, internal duplication, lack of associated ATP-binding cassette proteins, and permease homology. The function is unknown.

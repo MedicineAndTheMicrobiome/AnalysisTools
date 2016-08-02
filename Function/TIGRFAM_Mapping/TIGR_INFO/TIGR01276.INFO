@@ -1,0 +1,17 @@
+ID  thiB
+AC  TIGR01276
+DE  thiamin/thiamin pyrophosphate ABC transporter, thiamin/thiamin pyrophospate-binding protein
+AU  Haft DH
+TC  317.15 317.15
+NC  268.75 268.75
+AL  clustalw
+IT  equivalog
+EN  thiamine ABC transporter, periplasmic binding protein
+GS  thiB
+TR  3.A.01
+TP  TIGRFAMs
+CC  This model finds the thiamine (and thiamine pyrophosphate) ABC transporter periplasmic binding protein ThiB in proteobacteria. Completed genomes having this protein (E. coli, Vibrio cholera, Haemophilus influenzae) also have the permease ThiP, described by TIGRFAMs equivalog model TIGR01253.
+RM  98204886
+RT  thiBPQ encodes an ABC transporter required for transport of thiamine and thiamine pyrophosphate in Salmonella typhimurium.
+RA  Webb E, Claas K, Downs D.
+RL  J Biol Chem 1998 Apr 10;273(15):8946-50

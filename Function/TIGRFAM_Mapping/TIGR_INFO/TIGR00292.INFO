@@ -1,0 +1,13 @@
+ID  TIGR00292
+AC  TIGR00292
+DE  thiazole biosynthesis enzyme
+AU  Loftus BJ
+TC  148.30 148.30
+NC  114.85 114.85
+AL  clustalw
+IT  equivalog
+EN  thiazole biosynthesis enzyme
+TP  TIGRFAMs
+CC  This enzyme is involved in the biosynthesis of the thiamine precursor thiazole, and is repressed by thiamine. This family includes c-thi1, a Citrus gene induced during natural and ethylene induced fruit maturation and is highly homologous to plant and yeast thi genes involved in thiamine biosynthesis.
+DR  SWISSPROT; Q38709; Alnus glutinosa
+DR  HAMAP; MF_00304; 27 of 27

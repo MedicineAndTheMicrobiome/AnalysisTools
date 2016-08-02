@@ -1,0 +1,28 @@
+ID  salvage_TenA
+AC  TIGR04306
+DE  thiaminase II
+AU  Haft DH
+TC  130.00 130.00
+NC  120.00 120.00
+AL  muscle_manual
+IT  equivalog
+EN  thiaminase II
+GS  tenA
+EC  3.5.99.2
+TP  TIGRFAMs
+CC  The TenA protein of Bacillus subtilis and Staphylococcus aurues, and the C-terminal region of trifunctional protein Thi20p from Saccharomyces cerevisiae, perform cleavages on thiamine and related compounds to produce 4-amino-5-hydroxymethyl-2-methylpyrimidine (HMP), a substrate a salvage pathway for thiamine biosynthesis. The gene symbol tenA, for Transcription ENhancement A, reflects a misleading early characterization as a regulatory protein. This family is related to PqqC from the PQQ biosynthesis system (see TIGR02111), heme oxygenase (PF01126), and CADD (Chlamydia protein Associating with Death Domains), a putative folate metabolism enzyme (see TIGR04305).
+RN  [1]
+RM  PMID:18028398 
+RT  Involvement of thiaminase II encoded by the THI20 gene in thiamin salvage of Saccharomyces cerevisiae. 
+RA  Onozuka M, Konno H, Kawasaki Y, Akaji K, Nosaka K 
+RL  FEMS Yeast Res. 2008 Mar;8(2):266-75. 
+RN  [2]
+RM  PMID:21206023 
+RT  Purification, crystallization and preliminary X-ray diffraction analysis of the thiaminase type II from Staphylococcus aureus. 
+RA  Begum A, Drebes J, Perbandt M, Wrenger C, Betzel C 
+RL  Acta Crystallogr Sect F Struct Biol Cryst Commun. 2011 Jan 1;67(Pt 1):51-3.
+RN  [3]
+RM  PMID:15709744 
+RT  Structural characterization of the regulatory proteins TenA and TenI from Bacillus subtilis and identification of TenA as a thiaminase II. 
+RA  Toms AV, Haas AL, Park JH, Begley TP, Ealick SE 
+RL  Biochemistry. 2005 Feb 22;44(7):2319-29.

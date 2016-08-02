@@ -1,0 +1,17 @@
+ID  mutS1
+AC  TIGR01070
+DE  DNA mismatch repair protein MutS
+AU  Durkin S
+TC  641.70 641.70
+NC  502.95 502.95
+AL  clustalw
+IT  equivalog
+EN  DNA mismatch repair protein MutS
+GS  mutS
+TP  TIGRFAMs
+RN  [1]
+RM  98391755
+RT  A phylogenomic study of the MutS family of proteins.
+RA  Eisen JA;
+RL  Nucleic Acids Res 1998;26:4291-4300.
+DR  HAMAP; MF_00096; 451 of 461

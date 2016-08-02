@@ -1,0 +1,17 @@
+ID  hycI
+AC  TIGR00142
+DE  hydrogenase maturation peptidase HycI
+AU  Richardson DL
+TC  119.10 119.10
+NC  91.15 91.15
+AL  clustalw
+IT  equivalog
+EN  hydrogenase maturation protease HycI
+GS  hycI
+EC  3.4.23.-
+TP  TIGRFAMs
+CC  Hydrogenase maturation protease is a protease that is involved in the C-terminal processing of HycE,the large subunit of hydrogenase 3 from E.Coli. This protein seems to be found in E.Coli and in Archaea.
+RM  95154339
+RT  Characterisation of a protease from Escherichia coli involved in hydrogenase maturation.
+RA  Rossmann R, Maier T, Lottspeich F, Bock A
+RL  Eur J Biochem 1995 Jan 15;227(1-2):545-50

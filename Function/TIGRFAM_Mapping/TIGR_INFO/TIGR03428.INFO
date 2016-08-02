@@ -1,0 +1,11 @@
+ID  ureacarb_perm
+AC  TIGR03428
+DE  permease, urea carboxylase system
+AU  Haft DH
+TC  740.45 740.45
+NC  315.00 315.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  permease, urea carboxylase system
+TP  TIGRFAMs
+CC  A number of bacteria obtain nitrogen by biotin- and ATP-dependent urea degradation system distinct from urease. The two characterized proteins of this system are the enzymes urea carboxylase and allophanate hydrolase, but other, uncharacterized proteins co-occur as genes encoded nearby in multiple organisms. This family includes predicted permeases of the amino acid permease family, likely to transport either urea or a compound from which urea is derived. It is found so far only Actinobacteria, whereas a number of other species with the urea carboxylase have an adjacent ABC transporter operon.

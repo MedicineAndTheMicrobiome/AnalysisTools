@@ -1,0 +1,23 @@
+ID  OH-pyruv-isom
+AC  TIGR03234
+DE  hydroxypyruvate isomerase
+AU  Selengut J
+TC  353.45 353.45
+NC  349.15 349.15
+AL  muscle
+IT  equivalog
+EN  hydroxypyruvate isomerase
+GS  hyi
+EC  5.3.1.22
+TP  TIGRFAMs
+CC  This enzyme interconverts tartronate semi-aldehyde (TSA, aka 2-hydroxy 3-oxopropionate) and hydroxypyruvate.  The E. coli enzyme has been characterized [1] and found to be specific for TSA, contain no cofactors, and have a rather high Km for hydroxypyruvate of 12.5 mM.  The gene is ofter found in association with glyoxalate carboligase (which produces TSA), but has been shown to have no effect on growth on glyoxalate when knocked out [2].  This is consistent with the fact that the gene for tartronate semialdehyde reductase (glxR) is also associated and may have primary responsibility for the catabolism of TSA.
+RN  [1]
+RM  PMID: 10561547 
+RT  Biochemical evidence that Escherichia coli hyi (orf b0508, gip) gene encodes hydroxypyruvate isomerase. 
+RA  Ashiuchi M, Misono H 
+RL  Biochim Biophys Acta. 1999 Nov 16;1435(1-2):153-9. 
+RN  [2]
+RM  PMID: 8440684 
+RT  Molecular cloning, DNA sequencing, and biochemical analyses of Escherichia coli glyoxylate carboligase. An enzyme of the acetohydroxy acid synthase-pyruvate oxidase family. 
+RA  Chang YY, Wang AY, Cronan JE Jr 
+RL  J Biol Chem. 1993 Feb 25;268(6):3911-9.

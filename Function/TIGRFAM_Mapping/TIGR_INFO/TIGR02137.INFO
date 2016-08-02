@@ -1,0 +1,30 @@
+ID  HSK-PSP
+AC  TIGR02137
+DE  phosphoserine phosphatase/homoserine phosphotransferase bifunctional protein
+AU  Selengut J
+TC  223.40 223.40
+NC  77.65 77.65
+AL  clustalw
+IT  equivalog
+EN  phosphoserine phosphatase/homoserine phosphotransferase bifunctional protein
+GS  thrH
+EC  3.1.3.3
+TP  TIGRFAMs
+CC  This protein is has been characterized as both a phosphoserine phosphatase and a phosphoserine:homoserine phosphotransferase [1].  In Pseudomonas aeruginosa, where the characterization was done, a second phosphoserine phosphatase (SerB) and a second homoserine kinase (thrB) are found, but in Fibrobacter succinogenes neither are present.  
+CC  This enzyme is a member of the haloacid dehalogenase (HAD) superfamily, specifically part of subfamily IB by virtue of the presence of an alpha helical domain in between motifs I and II of the HAD domain [2,3].  The closest homologs to this family are monofunctional phosphoserine phosphatases (TIGR00338).
+RN  [1]
+RM  PMID: 14699121
+RT  The thrH gene product of pseudomonas aeruginosa is a dual activity enzyme with a novel phosphoserine:homoserine phosphotransferase activity
+RA  Singh SK, Yang K, Subramanian K, Huynh T, Zhang X, Phillips MA, Zhang H
+RL  J Biol Chem. 2003 Dec 29 [Epub ahead of print]
+RN [2]
+RM PMID: 7966317
+RT Computer analysis of bacterial haloacid dehalogenases defines a large superfamily of hydrolases with diverse specificity. Application of an iterative approac
+h to database search.
+RA Koonin EV, Tatusov RL.
+RL J Mol Biol 1994 Nov 18;244(1):125-32
+RN [3]
+RM PMID: 11601995
+RT MDP-1 is a new and distinct member of the haloacid dehalogenase family of aspartate-dependent phosphohydrolases.
+RA Selengut, JD
+RL Biochemistry 2001 Oct 23;40(42):12704-11

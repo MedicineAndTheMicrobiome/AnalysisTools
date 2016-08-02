@@ -1,0 +1,14 @@
+ID  pol2
+AC  TIGR00592
+DE  DNA polymerase (pol2)
+AU  Loftus BJ, Eisen JA
+TC  239.95 239.95
+NC  195.60 195.60
+IT  superfamily
+EN  DNA polymerase (pol2)
+EC  2.7.7.7
+TP  TIGRFAMs
+CC  All proteins in this superfamily for which functions are known are DNA polymerases.
+CC  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  EGAD; 95936;
+RM  88234507;

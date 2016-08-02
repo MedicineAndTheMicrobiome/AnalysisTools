@@ -1,0 +1,24 @@
+ID  trp_2_3_diox
+AC  TIGR03036
+DE  tryptophan 2,3-dioxygenase
+AU  Haft DH
+TC  390.70 390.70
+NC  118.90 118.90
+AL  muscle
+IT  equivalog
+EN  tryptophan 2,3-dioxygenase
+GS  kynA
+EC  1.13.11.11
+TP  TIGRFAMs
+CC  Members of this family are tryptophan 2,3-dioxygenase, as confirmed by several experimental characterizations, and by conserved operon structure for many of the other members. This enzyme represents the first of a two-step degradation to L-kynurenine, and a three-step pathway (via kynurenine) to anthranilate plus alanine.
+DR  PFAM; PF03301; Tryptophan 2,3-dioxygenase
+RN  [1]
+RM  PMID: 14592712
+RT  Aerobic tryptophan degradation pathway in bacteria: novel kynurenine formamidase.
+RA  Kurnasov O, Jablonski L, Polanuyer B, Dorrestein P, Begley T, Osterman A
+RL  FEMS Microbiol Lett. 2003 Oct 24;227(2):219-27.
+RN  [2]
+RM  PMID: 15066027
+RT  The Pseudomonas siderophore quinolobactin is synthesized from xanthurenic acid, an intermediate of the kynurenine pathway.
+RA  Matthijs S, Baysse C, Koedam N, Tehrani KA, Verheyden L, Budzikiewicz H, Schafer M, Hoorelbeke B, Meyer JM, De Greve H, Cornelis P
+RL  Mol Microbiol. 2004 Apr;52(2):371-84.

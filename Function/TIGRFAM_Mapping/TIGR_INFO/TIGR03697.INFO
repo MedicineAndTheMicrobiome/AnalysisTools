@@ -1,0 +1,22 @@
+ID  NtcA_cyano
+AC  TIGR03697
+DE  global nitrogen regulator NtcA
+AU  Haft DH
+TC  244.95 244.95
+NC  227.45 227.45
+AL  muscle_manual
+IT  equivalog
+EN  global nitrogen regulator NtcA, cyanobacterial
+GS  ntcA
+TP  TIGRFAMs
+CC  Members of this protein family, found in the cyanobacteria, are the global nitrogen regulator NtcA. This DNA-binding transcriptional regulator is required for expressing many different ammonia-repressible genes. The consensus NtcA-binding site is G T A N(8)T A C.
+RN  [1]
+RM  PMID:8366058
+RT  General distribution of the nitrogen control gene ntcA in cyanobacteria.
+RA  Frias JE, Merida A, Herrero A, Martin-Nieto J, Flores E
+RL  J Bacteriol. 1993 Sep;175(17):5710-3.
+RN  [2]
+RM  PMID:18805988
+RT  Role of two NtcA-binding sites in the complex ntcA gene promoter of the heterocyst-forming cyanobacterium Anabaena sp. strain PCC 7120.
+RA  Olmedo-Verd E, Valladares A, Flores E, Herrero A, Muro-Pastor AM
+RL  J Bacteriol. 2008 Nov;190(22):7584-90.

@@ -1,0 +1,12 @@
+ID  yjhG_yagF
+AC  TIGR03432
+DE  putative dehydratase, YjhG/YagF family
+AU  Haft DH
+TC  808.15 808.15
+NC  486.05 486.05
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  putative dehydratase, YjhG/YagF family
+TP  TIGRFAMs
+CC  This homolog of dihydroxy-acid dehydratases has an odd, sparse  distribution. Members are found in two Acidobacteria, two Planctomycetes, Bacillus clausii KSM-K16, and (in two copies each) in strains K12-MG1655 and W3110 of Escherichia coli. The local context is not well conserved, but a few members are adjacent to homologs of the gluconate:H+ symporter (see TIGR00791).
+DR  PFAM; PF00920; Dehydratase family

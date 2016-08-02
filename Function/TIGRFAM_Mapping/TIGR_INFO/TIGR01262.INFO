@@ -1,0 +1,19 @@
+ID  maiA
+AC  TIGR01262
+DE  maleylacetoacetate isomerase
+AU  Haft DH
+TC  171.05 171.05
+NC  104.00 104.00
+AL  clustalw_manual
+IT  equivalog
+EN  maleylacetoacetate isomerase
+GS  maiA
+EC  5.2.1.2
+TP  TIGRFAMs
+CC  Maleylacetoacetate isomerase is an enzyme of tyrosine and phenylalanine catabolism. It requires glutathione and belongs by homology to the zeta family of glutathione S-transferases. The enzyme (EC 5.2.1.2) is described as active also on maleylpyruvate, and the example from a Ralstonia sp. catabolic plasmid is described as a maleylpyruvate isomerase involved in gentisate catabolism.
+RM  9417084
+RT  Characterization of a fungal maleylacetoacetate isomerase gene and identification of its human homologue.
+RA  Fernandez-Canon JM, Penalva MA.
+RL  J Biol Chem 1998 Jan 2;273(1):329-37
+DR  EXPERIMENTAL; SP|O43123; Aspergillus nidulans
+DR  EXPERIMENTAL; SP|O43708; Homo sapiens

@@ -1,0 +1,11 @@
+ID  methano_modCys
+AC  TIGR04165
+DE  Cys-rich peptide, TIGR04165 family
+AU  Haft DH
+TC  60.00 60.00
+NC  50.00 40.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  Cys-rich peptide, TIGR04165 family
+TP  TIGRFAMs
+CC  Members of this small peptide family occur strictly in a subset of archaeal methanogens. Members have four invariant Cys residues in two Cys-Xaa-Xaa-Cys-Gly motifs and may have other Cys residues as well. At least two members occur next to family TIGR04083 radical SAM enzymes predicted to act in peptide or protein modification.

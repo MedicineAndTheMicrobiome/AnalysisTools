@@ -1,0 +1,23 @@
+ID  TIGR00007
+AC  TIGR00007
+DE  1-(5-phosphoribosyl)-5-[(5-phosphoribosylamino)methylideneamino]imidazole-4-carboxamide isomerase
+AU  Richardson DL, Haft DH
+TC  228.95 228.95
+NC  163.05 163.05
+AL  clustalw
+IT  equivalog
+EN  phosphoribosylformimino-5-aminoimidazole carboxamide ribotide isomerase
+GS  hisA
+EC  5.3.1.16
+TP  TIGRFAMs
+CC  This protein family consists of HisA, phosphoribosylformimino-5-aminoimidazole carboxamide ribotide isomerase, the enzyme catalyzing the fourth step in histidine biosynthesis. It is closely related to the enzyme HisF for the sixth step.
+CC  Examples of this enzyme in Actinobacteria have been found to be bifunctional, also possessing phosphoribosylanthranilate isomerase activity [1]; the trusted cutoff here has now been raised to 275.0 to exclude the bifunctional group, now represented by model TIGR01919. HisA from Lactococcus lactis was reported to be inactive (MEDLINE:93322317).
+DR  ECOCYC; EG10444; hisA
+DR  EXPERIMENTAL; SP|P05325; Methanococcus voltae
+DR  EXPERIMENTAL; GB|AAC75085.1; Escherichia coli
+RN  [1]
+RM  PMID: 12634849
+RT  Occurrence of a putative ancient-like isomerase involved in histidine and tryptophan biosynthesis.
+RA  Baroma-Gomez F., Hodgson, DA
+RL  EMBO Rep. 2003 Mar; 4(3): 296-300
+DR  HAMAP; MF_01014; 382 of 447

@@ -1,0 +1,15 @@
+ID  lnt
+AC  TIGR00546
+DE  apolipoprotein N-acyltransferase
+AU  Haft DH
+TC  132.90 132.90
+NC  87.05 87.05
+AL  clustalw
+IT  equivalog
+EN  apolipoprotein N-acyltransferase
+GS  lnt
+EC  2.3.1.-
+TP  TIGRFAMs
+CC  This enzyme transfers the acyl group to lipoproteins in the  lgt/lsp/lnt system which is found broadly in bacteria but not in archaea.  This model represents one component of the "lipoprotein lgt/lsp/lnt system" genome property.
+DR  ECOCYC; EG10168; lnt
+DR  HAMAP; MF_01148; 78 of 80

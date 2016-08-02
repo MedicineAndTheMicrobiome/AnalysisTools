@@ -1,0 +1,20 @@
+ID  bioD
+AC  TIGR00347
+DE  dethiobiotin synthase
+AU  Loftus BJ
+TC  83.30 83.30
+NC  56.05 56.05
+AL  clustalw
+IT  equivalog
+EN  dethiobiotin synthase
+GS  bioD
+EC  6.3.3.3
+TP  TIGRFAMs
+CC  Dethiobiotin synthase is involved in biotin biosynthesis and catalyses the reaction (CO2 + 7,8-diaminononanoate + ATP = dethiobiotin + phosphate + ADP). The enzyme binds ATP (see motif in first 12 residues of the SEED alignment) and requires magnesium as a co-factor.
+DR  SWISSPROT; P13000;
+DR  ECOCYC; EG10120; bioD;
+RM  97270412
+RT  Active site mutants of Escherichia coli dethiobiotin synthetase: effects of mutations on enzyme catalytic and structural properties.
+RA  Yang G, Sandalova T, Lohman K, Lindqvist Y, Rendina AR
+RL  Biochemistry 1997 Apr 22;36(16):4751-60 
+DR  HAMAP; MF_00336; 181 of 183

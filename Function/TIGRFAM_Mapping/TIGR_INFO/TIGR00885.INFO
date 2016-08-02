@@ -1,0 +1,17 @@
+ID  fucP
+AC  TIGR00885
+DE  L-fucose:H+ symporter permease
+AU  Ujwal ML, Loftus BJ, Paulsen IT
+TC  280.40 280.40
+NC  264.85 264.85
+AL  clustalw_manual
+IT  equivalog
+EN  L-fucose:H+ symporter permease
+GS  fucP
+TR  2.A.1.7.1
+TP  TIGRFAMs
+CC  This family describes the L-fucose permease in bacteria. L-fucose(6-deoxy-L-galactose) is a monosaccharide found in glycoproteins and cell wall polysaccharides. L-fucose is used in bacteria through an inducible pathway mediated by atleast four enzymes: a permease, isomerase, kinase and an aldolase which are encoded by fucP, fucI, fucK, fucA respectively. The fuc genes belong to a regulon comprising of four linked operons: fucO, fucA, fucPIK and fucR. The positive regulator is encoded by fucR, whose protein responds to fuculose-1-phosphate, which acts as an effector.
+RM  7783647
+RT  Topological analyses of the L-fucose-H+ symport protein, FucP, from Escherichia coli.
+RA  Gunn FJ, Tate CG, Sansom CE, Henderson PJ
+RL  Mol Microbiol 1995 Feb;15(4):771-83

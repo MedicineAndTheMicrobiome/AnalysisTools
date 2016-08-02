@@ -1,0 +1,15 @@
+ID  zwf
+AC  TIGR00871
+DE  glucose-6-phosphate dehydrogenase
+AU  Haft DH
+TC  400.60 400.60
+NC  195.70 195.70
+AL  clustalw
+IT  equivalog
+EN  glucose-6-phosphate 1-dehydrogenase
+GS  zwf
+EC  1.1.1.49
+TP  TIGRFAMs
+CC  This enzyme (EC 1.1.1.49) acts on glucose 6-phospate and reduces NADP(+). An alternate name appearing in the literature for the human enzyme, based on a slower activity with beta-D-glucose, is glucose 1-dehydrogenase (EC 1.1.1.47), but that name more properly describes a subfamily of the short chain dehydrogenases/reductases family.
+CC  This is a well-studied enzyme family, with sequences available from well over 50 species. The trusted cutoff is set above the score for the Drosophila melanogaster CG7140 gene product, a homolog of unknown function. G6PD homologs from the bacteria Aquifex aeolicus and Helicobacter pylori lack several motifs well conserved most other members, were omitted from the seed alignment, and score well below the trusted cutoff.
+DR  EXPERIMENTAL; EGAD|23035|23799; Leuconostoc mesenteroides

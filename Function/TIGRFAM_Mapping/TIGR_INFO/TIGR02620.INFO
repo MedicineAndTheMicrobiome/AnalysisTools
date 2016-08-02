@@ -1,0 +1,12 @@
+ID  cas_VVA1548
+AC  TIGR02620
+DE  putative CRISPR-associated protein, VVA1548 family
+AU  Haft DH
+TC  46.35 46.35
+NC  19.70 19.70
+AL  clustalw
+IT  hypoth_equivalog_domain
+EN  putative CRISPR-associated protein, VVA1548 family
+GS  csx16
+TP  TIGRFAMs
+CC  This model represents a conserved domain of about 95 amino acids exclusively in species with CRISPR (Clustered Regularly Interspaced Short Palidromic Repeats). In all bacterial species with members so far (Vibrio vulnificus YJ016, Mannheimia succiniciproducens MBEL55E, and Nitrosomonas europaea ATCC 19718) and but not in the archaeon Methanothermobacter thermautotrophicus str. Delta H, the gene for this protein is in the midst of a cluster of Cas protein gene near CRISPR repeats.

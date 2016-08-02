@@ -1,0 +1,13 @@
+ID  myo_inos_iolG
+AC  TIGR04380
+DE  inositol 2-dehydrogenase
+AU  Haft DH
+TC  355.00 355.00
+NC  330.00 330.00
+AL  muscle_manual
+IT  equivalog
+EN  inositol 2-dehydrogenase
+GS  iolG
+EC  1.1.1.18
+TP  TIGRFAMs
+CC  All members of the seed alignment for this model are known or predicted inositol 2-dehydrogenase sequences co-clustered with other enzymes for catabolism of myo-inositol or closely related compounds. Inositol 2-dehydrogenase catalyzes the first step in inositol catabolism. Members of this family may vary somewhat in their ranges of acceptable substrates and some may act on analogs to myo-inositol rather than myo-inositol per se.

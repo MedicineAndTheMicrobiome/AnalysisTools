@@ -1,0 +1,13 @@
+ID  greB
+AC  TIGR01461
+DE  transcription elongation factor GreB
+AU  Haft DH
+TC  171.05 171.05
+NC  140.40 140.40
+AL  clustalw
+IT  equivalog
+EN  transcription elongation factor GreB
+GS  greB
+TP  TIGRFAMs
+CC  The GreA and GreB transcription elongation factors enable to continuation of RNA transcription past template-encoded arresting sites. Among the Proteobacteria, distinct clades of GreA and GreB are found. GreB differs functionally in that it releases larger oligonucleotides. This HMM describes proteobacterial GreB.
+DR  HAMAP; MF_00105; 20 of 229

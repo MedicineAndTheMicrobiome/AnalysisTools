@@ -1,0 +1,15 @@
+ID  FliA_WhiG
+AC  TIGR02479
+DE  RNA polymerase sigma factor, FliA/WhiG family
+AU  Haft DH
+TC  189.60 189.60
+NC  153.20 153.20
+AL  clustalw
+IT  subfamily
+EN  RNA polymerase sigma factor, FliA/WhiG family
+TP  TIGRFAMs
+CC  Most members of this family are the flagellar operon sigma factor FliA, controlling transcription of bacterial flagellar genes by RNA polymerase. An exception is the sigma factor WhiG in the genus Streptomyces, involved in the production of sporulating aerial mycelium.
+RM  2507166
+RT  The developmental fate of S. coelicolor hyphae depends upon a gene product homologous with the motility sigma factor of B. subtilis.
+RA  Chater KF, Bruton CJ, Plaskitt KA, Buttner MJ, Mendez C, Helmann JD.
+RL  Cell. 1989 Oct 6;59(1):133-43.

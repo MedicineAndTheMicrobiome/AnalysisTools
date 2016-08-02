@@ -1,0 +1,23 @@
+ID  cdhD
+AC  TIGR00381
+DE  CO dehydrogenase/acetyl-CoA synthase, delta subunit
+AU  Loftus BJ
+TC  252.90 252.90
+NC  197.55 197.55
+AL  clustalw
+IT  equivalog
+EN  CO dehydrogenase/acetyl-CoA synthase, delta subunit
+GS  cdhD
+EC  1.2.99.2
+TP  TIGRFAMs
+CC  This is the small subunit of a heterodimer which catalyzes the reaction CO + H2O + Acceptor = CO2 + Reduced acceptor and is involved in the synthesis of acetyl-CoA from CO2 and H2.
+RN  [1]
+RM  96134964
+RT  Characterization of the cdhD and cdhE genes encoding subunits of the corrinoid/iron-sulfur enzyme of the CO dehydrogenase complex from Methanosarcina thermophila.
+RA  Maupin-Furlow J, Ferry JG
+RL  J Bacteriol 1996 Jan;178(2):340-6
+RN  [2]
+RT  Cloning and expression of the gene cluster encoding key proteins involved in acetyl-CoA synthesis in Clostridium thermoaceticum: CO dehydrogenase, the corrinoid/Fe-S protein, and methyltransferase.
+RA  Roberts DL, James-Hagstrom JE, Garvin DK, Gorst CM, Runquist JA, Baur JR, Haase FC, Ragsdale SW
+RL  Proc Natl Acad Sci U S A 1989 Jan;86(1):32-6
+DR  HAMAP; MF_01135; 9 of 9

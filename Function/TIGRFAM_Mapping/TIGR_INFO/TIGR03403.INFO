@@ -1,0 +1,18 @@
+ID  nifS_epsilon
+AC  TIGR03403
+DE  cysteine desulfurase, NifS family
+AU  Haft DH
+TC  587.70 587.70
+NC  446.30 446.30
+AL  muscle_manual
+IT  equivalog
+EN  cysteine desulfurase, NifS family, epsilon proteobacteria type
+GS  nifS
+EC  2.8.1.7
+TP  TIGRFAMs
+CC  Members of this family are the NifS-like cysteine desulfurase of the epsilon division of the Proteobacteria, similar to the NifS protein of nitrogen-fixing bacteria. Like NifS, and unlike IscS, this protein is found as part of a system of just two proteins, a cysteine desulfurase and a scaffold, for iron-sulfur cluster biosynthesis. This protein is called NifS by Olsen, et al. (PMID:11123951), so we use this designation.
+RN  [1]
+RM  PMID: 11123951
+RT  Characterization of the NifU and NifS Fe-S cluster formation proteins essential for viability in Helicobacter pylori.
+RA  Olson JW, Agar JN, Johnson MK, Maier RJ
+RL  Biochemistry. 2000 Dec 26;39(51):16213-9.

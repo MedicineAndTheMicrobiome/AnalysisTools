@@ -1,0 +1,12 @@
+ID  P_lya_rel_AroB
+AC  TIGR04425
+DE  putative sugar phosphate phospholyase (cyclizing)
+AU  Haft DH
+TC  400.00 400.00
+NC  340.00 340.00
+AL  muscle_manual
+IT  subfamily
+EN  putative sugar phosphate phospholyase (cyclizing)
+EC  4.2.3.-
+TP  TIGRFAMs
+CC  Members of this family tend to be found in O-antigen biosynthesis regions. Members frequently are misidentified as the closely related 3-dehydroquinate synthase, AroB (see family TIGR01357), the phospholyase that converts 3-deoxy-D-arabino-hept-2-ulosonate 7-phosphate to 3-dehydroquinate  during chorismate biosynthesis. Most bacteria with this enzyme have a true AroB in a chorismate biosynthesis gene cluster.

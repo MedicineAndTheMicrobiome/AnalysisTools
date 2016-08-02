@@ -1,0 +1,16 @@
+ID  lanti_SCO0268
+AC  TIGR04451
+DE  lantipeptide, SCO0268 family
+AU  Haft DH
+TC  40.00 40.00
+NC  25.00 22.00
+AL  muscle
+IT  equivalog
+EN  lantipeptide, SCO0268 family
+TP  TIGRFAMs
+CC  Members of this family are putative lantipeptide (most likely lantibiotic) precursors, about 53 amino acids long, found in a lantibiotic-type biosynthetic cluster in several species of Streptomyces (S. coelicolor, S. griseoflavus, S. ambofaciens, etc.). This family is described in AntiSMASH as Streptomyces PEQAXS motif lantipeptide precursor.
+RN  [1]
+RM  PMID:21672958 
+RT  antiSMASH: rapid identification, annotation and analysis of secondary metabolite biosynthesis gene clusters in bacterial and fungal genome sequences. 
+RA  Medema MH, Blin K, Cimermancic P, de Jager V, Zakrzewski P, Fischbach MA, Weber T, Takano E, Breitling R 
+RL  Nucleic Acids Res. 2011 Jul;39(Web Server issue):W339-46.

@@ -1,0 +1,17 @@
+ID  spore_III_AC
+AC  TIGR02848
+DE  stage III sporulation protein AC
+AU  Haft DH
+TC  56.65 56.65
+NC  37.60 37.60
+AL  clustalw
+IT  equivalog
+EN  stage III sporulation protein AC
+GS  spoIIIAC
+TP  TIGRFAMs
+CC  Members of this protein family are designated SpoIIIAC, part of the spoIIIA operon of sporulation genes whose mutant phenotype is linked to sporulation stage III.  Members of this family are encoded by the genome of a species if and only if that species is capable of endospore formation, as in Bacillus subtilis. The molecular function of this small, probable integral membrane protein is unknown.
+RM  16311624
+RT  Life in Hot Carbon Monoxide: The Complete Genome Sequence of Carboxydothermus hydrogenoformans Z-2901.
+RA  Wu M, Ren Q, Durkin AS, Daugherty SC, Brinkac LM, Dodson RJ, Madupu R, Sullivan SA, Kolonay JF, Nelson WC, Tallon LJ, Jones KM, Ulrich LE,
+Gonzalez JM, Zhulin IB, Robb FT, Eisen JA.
+RL  2005 Nov 25;1(5):e65

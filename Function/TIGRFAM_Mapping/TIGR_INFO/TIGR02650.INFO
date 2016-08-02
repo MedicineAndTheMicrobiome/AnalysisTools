@@ -1,0 +1,19 @@
+ID  RNase_Z_T_toga
+AC  TIGR02650
+DE  ribonuclease Z, Thermotoga type
+AU  Haft DH
+TC  507.05 507.05
+NC  92.35 92.35
+AL  clustalw
+IT  equivalog
+EN  ribonuclease Z, Thermotoga type
+GS  rnz
+EC  3.1.26.11
+TP  TIGRFAMs
+CC  Members of this protein family are ribonuclease Z as found in the genus Thermotoga, where the enzyme cleaves after the CCA, in contrast to the activities characterized for other enzymes also designated ribonuclease Z. In other systems, cleavage occurs 5-prime to the location of the CCA sequence, and CCA is added subsequently. A species may lack ribonuclease Z if all tRNA genes encode the CCA sequence, or if the CCA is exposed by exonuclease activity rather than endonuclease activity. Note that members of this sequence family differ considerably from the majority of RNase Z sequences.
+DR  PFAM; PF00753; metallo-beta-lactamase superfamily
+RN  [1]
+RM  15701599
+RT  Crystal structure of the tRNA 3' processing endoribonuclease tRNase Z from Thermotoga maritima.
+RA  Ishii R, Minagawa A, Takaku H, Takagi M, Nashimoto M, Yokoyama S.
+RL  J Biol Chem. 2005 Apr 8;280(14):14138-44.

@@ -1,0 +1,16 @@
+ID  Firmicu_CTERM
+AC  TIGR04145
+DE  Firmicu-CTERM domain
+AU  Haft DH
+TC  35.00 35.00
+NC  25.00 25.00
+AL  muscle_manual
+IT  hypoth_equivalog_domain
+EN  Firmicu-CTERM domain
+TP  TIGRFAMs
+CC  This C-terminal domain is found only in the Firmicutes, where its presence is sporadically distributed. Proteins with this domain are most conserved in the C-terminal region, where the pattern of ending with a transmembrane domain resembles both the LPXTG (sortase target) and PEP-CTERM (exosortase target) domain structures. However, members occur exclusively in the presence of an exosortase-like protein XrtG (TIGR03110), a putative glycosyltransferase (TIGR03111), and a 6-pyruvoyl tetrahydropterin synthase-related protein (TIGR03112).
+RN  [1]
+RM  PMID:22037399 
+RT  Archaeosortases and exosortases are widely distributed systems linking membrane transit with posttranslational modification. 
+RA  Haft DH, Payne SH, Selengut JD 
+RL  J Bacteriol. 2012 Jan;194(1):36-48. Epub 2011 Oct 28.

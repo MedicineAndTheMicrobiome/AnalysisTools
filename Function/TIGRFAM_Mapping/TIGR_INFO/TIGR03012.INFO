@@ -1,0 +1,22 @@
+ID  sulf_tusD_dsrE
+AC  TIGR03012
+DE  sulfur relay protein TusD/DsrE
+AU  Haft DH
+TC  89.25 89.25
+NC  57.15 57.15
+AL  muscle
+IT  hypoth_equivalog
+EN  sulfur relay protein TusD/DsrE
+GS  tusD
+TP  TIGRFAMs
+CC  The three proteins TusB, TusC, and TusD form a heterohexamer responsible for a sulfur relay reaction. In large numbers of proteobacterial species, this complex acts on a Cys-derived persulfide moiety, delivered by the cysteine desulfurase IscS to TusA, then to TusBCD. The activated sulfur group is then transferred to TusE (DsrC), then by MnmA (TrmU) for modification of an anticodon nucleotide in tRNAs for Glu, Lys, and Gln. The sulfur relay complex TusBCD is also found, under the designation DsrEFH, in phototrophic and chemotrophic sulfur bacteria, such as Chromatium vinosum. In these organisms, it seems the primary purpose is related to sulfur flux, such as oxidation from sulfide to molecular sulfur to sulfate.
+RN  [1]
+RM  PMID: 16387657
+RT  Mechanistic insights into sulfur relay by multiple sulfur mediators involved in thiouridine biosynthesis at tRNA wobble positions.
+RA  Ikeuchi Y, Shigi N, Kato J, Nishimura A, Suzuki T
+RL  Mol Cell. 2006 Jan 6;21(1):97-108.
+RN  [2]
+RM  PMID: 9695921
+RT  Sirohaem sulfite reductase and other proteins encoded by genes at the dsr locus of Chromatium vinosum are involved in the oxidation of intracellular sulfur.
+RA  Pott AS, Dahl C
+RL  Microbiology. 1998 Jul;144 ( Pt 7):1881-94.

@@ -1,0 +1,24 @@
+ID  P_butyryltrans
+AC  TIGR02706
+DE  phosphate butyryltransferase
+AU  Haft DH
+TC  410.50 410.50
+NC  339.40 339.40
+AL  clustalw
+IT  equivalog
+EN  phosphate butyryltransferase
+GS  ptb
+EC  2.3.1.19
+TP  TIGRFAMs
+CC  Members of this family are phosphate butyryltransferase, also called phosphotransbutyrylase. In general, this enzyme is found in butyrate-producing anaerobic bacteria, encoded next to the gene for butyrate kinase. Together, these two enzymes represent what may be the less common of two pathways for butyrate production from butyryl-CoA. The alternative is transfer of the CoA group to acetate by butyryl-CoA:acetate CoA transferase. Cutoffs for this model are set such that the homolog from Thermotoga maritima, whose activity on butyryl-CoA is only 30 % of its activity with acetyl-CoA, scores in the zone between trusted and noice cutoffs.
+DR  PFAM; PF01515; PTA_PTB; Phosphate acetyl/butyryl transferase
+RN  [1]
+RM  15028695
+RT  Restricted distribution of the butyrate kinase pathway among butyrate-producing bacteria from the human colon.
+RA  Louis P, Duncan SH, McCrae SI, Millar J, Jackson MS, Flint HJ.
+RL  J Bacteriol. 2004 Apr;186(7):2099-106.
+RN  [2]
+RM  10074080
+RT  Purification and characterization of two extremely thermostable enzymes, phosphate acetyltransferase and acetate kinase, from the hyperthermophilic eubacterium Thermotoga maritima.
+RA  Bock AK, Glasemacher J, Schmidt R, Schonheit P.
+RL  J Bacteriol. 1999 Mar;181(6):1861-7.

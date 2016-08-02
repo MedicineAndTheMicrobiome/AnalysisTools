@@ -1,0 +1,20 @@
+ID  redox_disulf_1
+AC  TIGR00411
+DE  redox-active disulfide protein 1
+AU  Haft DH
+TC  92.75 92.75
+NC  64.70 64.70
+IT  hypoth_equivalog
+EN  small redox-active disulfide protein 1
+TP  TIGRFAMs
+CC  This protein is homologous to a family of proteins that includes thioredoxins, glutaredoxins, protein-disulfide isomerases, and others, some of which have several such domains. The sequence of this protein at the redox-active disufide site, CPYC, matches glutaredoxins rather than thioredoxins, although its overall sequence seems closer to thioredoxins. It is suggested to be a ribonucleotide-reducing system component distinct from thioredoxin or glutaredoxin.
+RN  [1]
+RM  92268099
+RT  The purification, characterization, and primary structure of a small redox protein from Methanobacterium thermoautotrophicum, an archaebacterium.
+RA  McFarlan SC, Terrell CA, Hogenkamp HP. 
+RL  J Biol Chem 1992 May 25;267(15):10561-9
+RN  [2]
+RM  20290854
+RT  A thioredoxin from the hyperthermophilic archaeon Methanococcus jannaschii has a glutaredoxin-like fold but thioredoxin-like activities.
+RA  Lee DY, Ahn BY, Kim KS
+RL  Biochemistry. 2000 Jun 6;39(22):6652-9

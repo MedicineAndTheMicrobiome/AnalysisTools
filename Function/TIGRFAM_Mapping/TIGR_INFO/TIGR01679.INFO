@@ -1,0 +1,12 @@
+ID  bact_FAD_ox
+AC  TIGR01679
+DE  FAD-linked oxidoreductase
+AU  Haft DH
+TC  292.25 292.25
+NC  290.20 290.20
+AL  clustalw
+IT  subfamily
+EN  FAD-linked oxidoreductase
+TP  TIGRFAMs
+CC  This HMM represents a family of bacterial oxidoreductases with covalently linked FAD, closely related to two different eukaryotic oxidases, L-gulonolactone oxidase (EC 1.1.3.8) from rat and D-arabinono-1,4-lactone oxidase (EC 1.1.3.37) from Saccharomyces cerevisiae.
+DR  PROSITE; PS00862; OX2_COVAL_FAD

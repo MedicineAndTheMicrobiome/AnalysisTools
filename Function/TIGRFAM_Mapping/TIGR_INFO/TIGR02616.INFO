@@ -1,0 +1,18 @@
+ID  tnaC_leader
+AC  TIGR02616
+DE  tryptophanase leader peptide
+AU  Haft DH
+TC  23.55 23.55
+NC  23.35 23.35
+AL  clustalw
+IT  equivalog
+EN  tryptophanase leader peptide
+GS  tnaC
+TP  TIGRFAMs
+CC  Members of this family are the apparent leader peptides of tryptophanase operons in Esherichia coli, Vibrio cholerae, Photobacterium profundum, Haemophilus influenzae type b, and related species. All members of the seed alignment are examples ORFs upstream of tryptophanase, with a start codon, a conserved single Trp residue, and several other conserved residues. It is suggested (Konan KV and Yanofsky C) that the nascent peptide interacts with the ribosome once (if) the ribosome reaches the stop codon. Note that this model describes a much broader set (and shorter protein region) than Pfam model PF08053.
+RN  [1]
+RM  9045840
+RT  Regulation of the Escherichia coli tna operon: nascent leader peptide control at the tnaC stop codon.
+RA  Konan KV, Yanofsky C.
+RL  J Bacteriol. 1997 Mar;179(5):1774-9.
+DR  PFAM; PF08053; Tryptophanese operon leader peptide

@@ -1,0 +1,16 @@
+ID  methan_mark_13
+AC  TIGR03282
+DE  putative methanogenesis marker 13 metalloprotein
+AU  Haft DH
+TC  268.40 268.40
+NC  263.90 263.90
+AL  muscle
+IT  hypoth_equivalog
+EN  putative methanogenesis marker 13 metalloprotein
+TP  TIGRFAMs
+CC  Members of this protein family, to date, are found in a completed prokaryotic genome if and only if the species is one of the archaeal methanogens. The exact function is unknown, but likely is linked to methanogenesis or a process closely connected to it. This metal cluster-binding family is related to nitrogenase structural protein NifD and accessory protein NifE, among others.
+RN  [1]
+RM  PMID:22070167 
+RT  ProPhylo: partial phylogenetic profiling to guide protein family construction and assignment of biological process. 
+RA  Basu MK, Selengut JD, Haft DH 
+RL  BMC Bioinformatics. 2011 Nov 9;12:434.

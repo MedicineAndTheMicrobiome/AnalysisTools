@@ -1,0 +1,17 @@
+ID  selenium_YedF
+AC  TIGR03527
+DE  selenium metabolism protein YedF
+AU  Haft DH
+TC  110.00 110.00
+NC  105.00 105.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  selenium metabolism protein YedF
+GS  yedF
+TP  TIGRFAMs
+CC  Members of this protein family are about 200 amino acids in size, and include the uncharacterized YedF protein of Escherichia coli. This family shares an N-terminal domain, modeled by PF01206, with the sulfurtransferase TusA (also called SirA). The C-terminal domain includes a typical redox-active disulfide motif, CGXC. This protein family found only among those genomes that also carry the selenium donor protein SelD, and its connection to selenium metabolism is indicated by the method of partial phylogenetic profiling [1] vs. SelD. Its gene typically is found next to selD. Members of this family are found even when selenocysteine and selenouridine biosynthesis pathways are, except for SelD, completely absent, as in Enterococcus faecalis. Its role in selenium metabolism is unclear, but may include either detoxification or a role in labile selenoprotein biosynthesis.
+RN  [1]
+RM  PMID: 16930487
+RT  Exopolysaccharide-associated protein sorting in environmental organisms: the PEP-CTERM/EpsH system. Application of a novel phylogenetic profiling heuristic.
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD
+RL  BMC Biol. 2006 Aug 24;4:29.

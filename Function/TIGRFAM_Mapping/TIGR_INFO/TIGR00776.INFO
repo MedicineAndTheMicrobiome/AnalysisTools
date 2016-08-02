@@ -1,0 +1,18 @@
+ID  RhaT
+AC  TIGR00776
+DE  RhaT L-rhamnose-proton symporter family protein
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  319.60 319.60
+NC  294.10 294.10
+AL  clustalw_manual
+IT  superfamily
+EN  RhaT L-rhamnose-proton symporter family protein
+TR  2.A.7
+TP  TIGRFAMs
+CC  These proteins are members of the L-Rhamnose Symporter (RhaT) Family (TC 2.A.7).  This family includes two characterized members, both of which function as L-rhamnose:H+ symporters and have 10 GES predicted transmembrane domains.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_7.html
+RM  1551902
+RT  Mapping, cloning, expression, and sequencing of the rhaT gene, which encodes a novel L-rhamnose-H+ transport protein in Salmonella typhimurium and Escherichia coli.
+RA  Tate CG, Muiry JA and Henderson PJ 
+RL  J. Biol. Chem., Vol. 267, 6923-6932, 1992
+DR  HAMAP; MF_01532; 28 of 30

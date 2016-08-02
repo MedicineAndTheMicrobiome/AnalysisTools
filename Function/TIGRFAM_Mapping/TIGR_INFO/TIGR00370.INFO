@@ -1,0 +1,15 @@
+ID  TIGR00370
+AC  TIGR00370
+DE  sensor histidine kinase inhibitor, KipI family
+AU  Haft DH, Loftus BJ
+TC  145.55 145.55
+NC  74.75 74.75
+AL  clustalw
+IT  hypoth_equivalog
+EN  sensor histidine kinase inhibitor, KipI family
+TP  TIGRFAMs
+RN  [1]
+RM  PMID:9334321 
+RT  A novel histidine kinase inhibitor regulating development in Bacillus subtilis. 
+RA  Wang L, Grau R, Perego M, Hoch JA 
+RL  Genes Dev. 1997 Oct 1;11(19):2569-79.

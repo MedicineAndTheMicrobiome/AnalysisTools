@@ -1,0 +1,11 @@
+ID  Phn_aa_oxid
+AC  TIGR03329
+DE  putative aminophosphonate oxidoreductase
+AU  Selengut J
+TC  632.80 632.80
+NC  501.95 501.95
+AL  muscle
+IT  hypoth_equivalog
+EN  putative aminophosphonate oxidoreductase
+TP  TIGRFAMs
+CC  This clade of sequences are members of the PF01266 family of FAD-dependent oxidoreductases.  Characterized proteins within this family include glycerol-3-phosphate dehydrogenase (1.1.99.5), sarcosine oxidase beta subunit (1.5.3.1) and a number of deaminating amino acid oxidases (1.4.-.-). These genes have been consistently observed in a genomic context including genes for the import and catabolism of 2-aminoethylphosphonate (AEP).  If the substrate of this oxidoreductase is AEP itself, then it is probably acting in the manner of a deaminating oxidase, resulting in the same product (phosphonoacetaldehyde) as the transaminase PhnW (TIGR02326), but releasing ammonia instead of coupling to pyruvate:alanine.  Alternatively, it is reasonable to suppose that the various ABC cassette transporters which are also associated with these loci allow the import of phosphonates closely related to AEP which may not be substrates for PhnW.

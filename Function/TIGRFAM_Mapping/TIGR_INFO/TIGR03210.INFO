@@ -1,0 +1,18 @@
+ID  badI
+AC  TIGR03210
+DE  2-ketocyclohexanecarboxyl-CoA hydrolase
+AU  Haft DH
+TC  467.60 467.60
+NC  352.35 352.35
+AL  muscle
+IT  equivalog
+EN  2-ketocyclohexanecarboxyl-CoA hydrolase
+GS  badI
+EC  3.7.-.-
+TP  TIGRFAMs
+CC  Members of this protein family are 2-ketocyclohexanecarboxyl-CoA hydrolase, a ring-opening enzyme that acts in catabolism of molecules such as benzoyl-CoA and cyclohexane carboxylate. It converts -ketocyclohexanecarboxyl-CoA to pimelyl-CoA. It is not sensitive to oxygen.
+RN  [1]
+RM  PMID: 9573182
+RT  2-Ketocyclohexanecarboxyl coenzyme A hydrolase, the ring cleavage enzyme required for anaerobic benzoate degradation by Rhodopseudomonas palustris.
+RA  Pelletier DA, Harwood CS
+RL  J Bacteriol. 1998 May;180(9):2330-6.

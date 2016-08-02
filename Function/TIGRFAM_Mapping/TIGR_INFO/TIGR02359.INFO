@@ -1,0 +1,16 @@
+ID  thiW
+AC  TIGR02359
+DE  thiW protein
+AU  Haft DH
+TC  84.35 84.35
+NC  33.75 33.75
+AL  clustalw
+IT  hypoth_equivalog
+EN  thiW protein
+GS  thiW
+TP  TIGRFAMs
+CC  Levels of thiamine pyrophosphate (TPP) or thiamine regulate transcription or translation of a number of thiamine biosynthesis, salvage, or transport genes in a wide range of prokaryotes. The mechanism involves direct binding, with no protein involved,to a structural element called THI found in the untranslated upstream region of thiamine metabolism gene operons. This element is called a riboswitch and is seen also for other metabolites such as FMN and glycine. This protein family consists of proteins identified in operons controlled by the THI riboswitch and designated ThiW. The hydrophobic nature of this protein and reconstructed metabolic background suggests that this protein acts in transport of a thiazole precursor of thiamine.
+RM  12376536
+RT  Comparative genomics of thiamin biosynthesis in procaryotes. New genes and regulatory mechanisms.
+RA  Rodionov DA, Vitreschak AG, Mironov AA, Gelfand MS.
+RL  J Biol Chem. 2002 Dec 13;277(50):48949-59.

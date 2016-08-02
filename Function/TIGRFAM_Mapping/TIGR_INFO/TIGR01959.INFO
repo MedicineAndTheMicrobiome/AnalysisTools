@@ -1,0 +1,13 @@
+ID  nuoF_fam
+AC  TIGR01959
+DE  NADH oxidoreductase (quinone), F subunit
+AU  Haft DH
+TC  558.65 558.65
+NC  537.80 537.80
+AL  clustalw_manual
+IT  equivalog
+EN  NADH-quinone oxidoreductase, F subunit
+GS  nuoF
+EC  1.6.99.5
+TP  TIGRFAMs
+CC  This HMM describes the F chain of complexes that resemble  NADH-quinone oxidoreductases. The electron acceptor is a quinone, ubiquinone, in mitochondria and most bacteria, including Escherichia coli, where the recommended gene symbol is nuoF. This family does not have any members in chloroplast or cyanobacteria, where the quinone may be plastoquinone and NADH may be replaced by NADPH, nor in Methanosarcina, where NADH is replaced by F420H2.

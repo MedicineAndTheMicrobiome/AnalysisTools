@@ -1,0 +1,14 @@
+ID  rad18
+AC  TIGR00599
+DE  DNA repair protein rad18
+AU  Loftus BJ, Eisen JA
+TC  175.05 175.05
+NC  89.60 89.60
+IT  equivalog
+EN  DNA repair protein rad18
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are involved in nucleotide excision repair.
+CC  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  EGAD; 51206;
+DR  SWISSPROT; P10862;
+RM  89232745;

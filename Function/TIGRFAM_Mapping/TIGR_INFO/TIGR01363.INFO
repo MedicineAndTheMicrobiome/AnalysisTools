@@ -1,0 +1,15 @@
+ID  strep_his_triad
+AC  TIGR01363
+DE  streptococcal histidine triad protein
+AU  Haft DH
+TC  33.00 33.00
+NC  25.00 25.00
+AL  clustalw
+IT  subfamily_domain
+EN  streptococcal histidine triad protein
+TP  TIGRFAMs
+CC  This HMM represents the N-terminal half of a family of Streptococcal proteins that contain a signal peptide and then up to five repeats of a region that includes a His-X-X-His-X-His (histidine triad) motif. Three repeats are found in the seed alignment. Additional copies in more poorly conserved regions can be detected because this is a fragment-mode HMM. Members of this family from Streptococcus pneumoniae are suggested to cleave human C3, and the member PhpA has been shown in vaccine studies to be a protective antigen in  mice.
+RM  11349048
+RT  Recombinant PhpA protein, a unique histidine motif-containing protein from Streptococcus pneumoniae, protects mice against intranasal pneumococcal challenge.
+RA  Zhang Y, Masi AW, Barniak V, Mountzouros K, Hostetter MK, Green BA
+RL  Infect Immun 2001 Jun;69(6):3827-36

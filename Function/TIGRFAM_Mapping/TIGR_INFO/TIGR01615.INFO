@@ -1,0 +1,12 @@
+ID  A_thal_3542
+AC  TIGR01615
+DE  uncharacterized plant-specific domain TIGR01615
+AU  Haft DH, Segal N
+TC  80.05 80.05
+NC  29.80 29.80
+AL  clustalw_manual
+IT  domain
+EN  uncharacterized plant-specific domain TIGR01615
+TP  TIGRFAMs
+CC  This HMM represents a domain found toward the C-terminus
+CC  of a number of uncharacterized plant proteins. The domain is strongly conserved (greater than 30 % sequence identity between most pairs of members) but flanked by highly divergent regions including stretches of low-complexity sequence.

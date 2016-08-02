@@ -1,0 +1,22 @@
+ID  TIGR00766
+AC  TIGR00766
+DE  inner membrane protein YhjD
+AU  Haft DH
+TC  213.65 213.65
+NC  63.00 63.00
+AL  clustalw
+IT  equivalog
+EN  inner membrane protein YhjD
+GS  yhjD
+TP  TIGRFAMs
+CC  This family, including YhjD in E. coli, is a conserved inner membrane protein homologous YihY, which in turn was incorrectly assigned to be ribonuclease BN. This, any suggestion this family is similar to ribonucleases should be removed.
+RN  [1]
+RM  PMID:21556145 
+RT  Ribosome-dependent ATPase interacts with conserved membrane protein in Escherichia coli to modulate protein synthesis and oxidative phosphorylation. 
+RA  Babu M, Aoki H, Chowdhury WQ, Gagarinova A, Graham C, Phanse S, Laliberte B, Sunba N, Jessulat M, Golshani A, Emili A, Greenblatt JF, Ganoza MC 
+RL  PLoS One. 2011 Apr 27;6(4):e18510.
+RN  [2]
+RM  PMID:15764599 
+RT  The RNase Z homologue encoded by Escherichia coli elaC gene is RNase BN. 
+RA  Ezraty B, Dahlgren B, Deutscher MP 
+RL  J Biol Chem. 2005 Apr 29;280(17):16542-5.

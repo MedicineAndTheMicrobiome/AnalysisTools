@@ -1,0 +1,21 @@
+ID  EpsL
+AC  TIGR03014
+DE  exopolysaccharide biosynthesis operon protein EpsL
+AU  Selengut J
+TC  309.60 309.60
+NC  210.75 210.75
+AL  muscle
+IT  hypoth_equivalog
+EN  exopolysaccharide biosynthesis operon protein EpsL
+GS  epsL
+TP  TIGRFAMs
+CC  The epsL gene is described as a component of the methanolan exopolysaccharide biosynthesis operon in Methylobacillus sp strain 12S [1], although no other information regarding its possible function is suggested.  Homologs of this gene are found in several other exopolysaccharide operons in a small number of species.  These operons contain a subset of the methanolan operon genes by homology and synteny, including the epsH gene which is proposed to act as an "exosortase" directing proteins with a C-terminal tag (PEP-CTERM) to the exopolysaccharide layer [2].  Each of the genomes in which these genes and epsL are found also encode genes with these C-terminal tags.
+RN  [1]
+RM  12624205
+RA  Yoshida T, Ayabe Y, Yasunaga M, Usami Y, Habe H, Nojiri H, Omori T
+RT  Genes involved in the synthesis of the exopolysaccharide methanolan by the obligate methylotroph Methylobacillus sp strain 12S.
+RL  Microbiology. 2003 Feb;149(Pt 2):431-44.
+RN  [2]
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD
+RT  Exopolysaccharide-associated protein sorting in environmental organisms by the PEP-CTERM/EpsH system: application of a novel phylogenetic profiling heuristic.
+RL  BMC Biol., in press, 2006

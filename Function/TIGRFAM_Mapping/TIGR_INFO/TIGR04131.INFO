@@ -1,0 +1,11 @@
+ID  Bac_Flav_CTERM
+AC  TIGR04131
+DE  gliding motility-associated C-terminal domain
+AU  Haft DH
+TC  35.00 35.00
+NC  27.00 27.00
+AL  muscle_manual
+IT  domain
+EN  gliding motility-associated C-terminal domain
+TP  TIGRFAMs
+CC  This HMM describes a protein homology domain unique to, and greatly expanded in, the Bacteriodetes. Species in this lineage include several, such as Cytophaga hutchinsonii and Flavobacterium johnsoniae, that exhibit a poorly understood rapid gliding phenotype. Several members of this protein family are found in operons with other genes whose loss leads to a loss a this motility. Proteins with this domain frequently pair with members of family TIGR03519, whether one such pair or many occur in a genome. More than 30 members may occur in one genome.

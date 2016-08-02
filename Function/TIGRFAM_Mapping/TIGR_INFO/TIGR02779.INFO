@@ -1,0 +1,18 @@
+ID  NHEJ_ligase_lig
+AC  TIGR02779
+DE  DNA ligase D, ligase domain
+AU  Haft DH
+TC  227.75 227.75
+NC  206.40 206.40
+AL  clustalw_manual
+IT  equivalog_domain
+EN  DNA ligase D, ligase domain
+GS  ligD
+EC  6.5.1.1
+TP  TIGRFAMs
+CC  DNA repair of double-stranded breaks by non-homologous end joining (NHEJ) is accomplished by a two-protein system that is present in a minority of prokaryotes. One component is the Ku protein (see TIGR02772), which binds DNA ends. The other is a DNA ligase, a protein that is a multidomain polypeptide in most of those bacteria that have NHEJ, a permuted polypeptide in Mycobacterium tuberculosis and a few other species, and the product of tandem genes in some other bacteria. This model represents the ligase domain.
+RN  [1]
+RM  16046407
+RT  Essential constituents of the 3'-phosphoesterase domain of bacterial DNA ligase D, a nonhomologous end-joining enzyme.
+RA  Zhu H, Wang LK, Shuman S.
+RL  J Biol Chem. 2005 Oct 7;280(40):33707-15.

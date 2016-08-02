@@ -1,0 +1,15 @@
+ID  RNase_Z
+AC  TIGR02651
+DE  ribonuclease Z
+AU  Haft DH
+TC  292.95 292.95
+NC  147.90 147.90
+AL  clustalw_manual
+IT  equivalog
+EN  ribonuclease Z
+GS  rnz
+EC  3.1.26.11
+TP  TIGRFAMs
+CC  Processing of the 3-prime end of tRNA precursors may be the result of endonuclease or exonuclease activity, and differs in different species. Member of this family are ribonuclease Z, a tRNA 3-prime endonuclease that processes tRNAs to prepare for addition of CCA. In species where all tRNA sequences already have the CCA tail, such as E. coli, the need for such an enzyme is unclear. Protein similar to the E. coli enzyme, matched by TIGRFAMs HMM TIGR02649, are designated ribonuclease BN.
+DR  TIGRFAMS; TIGR02649; exception; ribonuclease BN
+DR  HAMAP; MF_01818; 185 of 209

@@ -1,0 +1,15 @@
+ID  MYXO-CTERM
+AC  TIGR03901
+DE  MYXO-CTERM domain
+AU  Haft DH
+TC  25.50 25.50
+NC  15.00 15.00
+AL  muscle_manual
+IT  domain
+EN  MYXO-CTERM domain
+TP  TIGRFAMs
+CC  This model describes MYXO-CTERM, a C-terminal putative protein sorting domain, analogous to LPXTG (TIGR01167) and PEP-CTERM (TIGR02595). It is restricted to the Myxococcales, a division of the Deltaproteobacteria, with over 60 members occurring in Plesiocystis pacifica SIR-1. An example protein is TraA, involved in outer membrane exchange (lipids and proteins) through which one strain of Myxococcus can repair a mobility defect in another. The trusted cutoff for this model is set artificially high to avoid false positives, and consequently only about half of all members are recognized.
+RN  [1]
+RT  Cell Contact–Dependent Outer Membrane Exchange in Myxobacteria: Genetic Determinants and Mechanism
+RA  Pathak DT, Wei1 X, Bucuvalas A, Haft DH, Gerloff D, Wall D
+RL  PLoS Genet 2012 8(4): e1002626

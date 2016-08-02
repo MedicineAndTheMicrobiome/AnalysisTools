@@ -1,0 +1,18 @@
+ID  mycothiol_MshC
+AC  TIGR03447
+DE  cysteine--1-D-myo-inosityl 2-amino-2-deoxy-alpha-D-glucopyranoside ligase
+AU  Haft DH
+TC  485.10 485.10
+NC  427.15 427.15
+AL  muscle_manual
+IT  equivalog
+EN  cysteine--1-D-myo-inosityl 2-amino-2-deoxy-alpha-D-glucopyranoside ligase
+GS  mshC
+EC  6.3.1.13
+TP  TIGRFAMs
+CC  Members of this protein family are MshC, l-cysteine:1-D-myo-inosityl 2-amino-2-deoxy-alpha-D-glucopyranoside ligase, an enzyme that uses ATP to ligate a Cys residue to a mycothiol precursor molecule, in the second to last step in mycothiol biosynthesis. This enzyme shows considerable homology to Cys--tRNA ligases, and many instances are misannotated as such. Mycothiol is found in Mycobacterium tuberculosis, Corynebacterium glutamicum, Streptomyces coelicolor, and various other members of the Actinobacteria. Mycothiol is an analog to glutathione.
+RN  [1]
+RM  PMID:16674910
+RT  A coupled spectrophotometric assay for l-cysteine:1-D-myo-inosityl 2-amino-2-deoxy-alpha-D-glucopyranoside ligase and its application for inhibitor screening.
+RA  Newton GL, Ta P, Sareen D, Fahey RC
+RL  Anal Biochem. 2006 Jun 15;353(2):167-73.

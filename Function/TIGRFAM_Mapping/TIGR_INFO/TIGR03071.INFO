@@ -1,0 +1,11 @@
+ID  couple_hipA
+AC  TIGR03071
+DE  HipA N-terminal domain
+AU  Haft DH
+TC  27.80 27.80
+NC  20.35 20.35
+AL  muscle
+IT  domain
+EN  HipA N-terminal domain
+TP  TIGRFAMs
+CC  Although Pfam models PF07805 and PF07804 currently are called HipA-like N-terminal domain and HipA-like C-terminal domain, respectively, those models hit the central and C-terminal regions of E. coli HipA but not the N-terminal region. This model hits the N-terminal region of HipA and its homologs, and also identifies proteins that lack match regions for PF07804 and PF07805.

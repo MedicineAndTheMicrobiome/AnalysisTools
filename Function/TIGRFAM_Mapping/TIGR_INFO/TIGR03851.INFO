@@ -1,0 +1,17 @@
+ID  chitin_NgcE
+AC  TIGR03851
+DE  carbohydrate ABC transporter, N-acetylglucosamine/diacetylchitobiose-binding protein
+AU  Haft DH
+TC  399.65 399.65
+NC  312.05 312.05
+AL  muscle_manual
+IT  equivalog
+EN  carbohydrate ABC transporter, N-acetylglucosamine/diacetylchitobiose-binding protein
+GS  ngcE
+TP  TIGRFAMs
+CC  Members of this protein family are the substrate-binding protein, a lipid-anchored protein of Gram-positive bacteria in all examples found so far, that include NgcE of the chitin-degrader, Streptomyces olivaceoviridis, and close homologs from other species likely to share the same function. NgcE binds both N-acetylglucosamine and the chitin dimer, N,N'-diacetylchitobiose.
+RN  [1]
+RM  PMID:16428842
+RT  An enzyme-linked immunosorbent assay (ELISA) to determine the specificity of the sugar-binding protein NgcE, a component of the ABC transporter for N-acetylglucosamine in Streptomyces olivaceoviridis.
+RA  Saito A, Kaku H, Minami E, Fujii T, Ando A, Nagata Y, Schrempf H, Miyashita K
+RL  Biosci Biotechnol Biochem. 2006 Jan;70(1):237-42.

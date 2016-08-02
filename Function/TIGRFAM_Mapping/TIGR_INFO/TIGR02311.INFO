@@ -1,0 +1,14 @@
+ID  HpaI
+AC  TIGR02311
+DE  2,4-dihydroxyhept-2-ene-1,7-dioic acid aldolase
+AU  Selengut J
+TC  368.80 368.80
+NC  360.35 360.35
+AL  clustalw
+IT  equivalog
+EN  2,4-dihydroxyhept-2-ene-1,7-dioic acid aldolase
+GS  hpaI
+EC  4.1.2.-
+TP  TIGRFAMs
+CC  This model represents the aldolase which performs the final step unique to the 4-hydroxyphenylacetic acid catabolism pathway in which 2,4-dihydroxyhept-2-ene-1,7-dioic acid is split into pyruvate and succinate-semialdehyde.  The gene for enzyme is generally found adjacent to other genes for this pathway organized into an operon.
+DR  HAMAP; MF_01292; 14 of 15

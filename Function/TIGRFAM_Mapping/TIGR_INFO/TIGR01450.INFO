@@ -1,0 +1,13 @@
+ID  recC
+AC  TIGR01450
+DE  exodeoxyribonuclease V, gamma subunit
+AU  Haft DH
+TC  582.90 582.90
+NC  341.95 341.95
+AL  clustalw
+IT  equivalog
+EN  exodeoxyribonuclease V, gamma subunit
+GS  recC
+EC  3.1.11.5
+TP  TIGRFAMs
+CC  This HMM describes the gamma subunit of exodeoxyribonuclease V. Species containing this protein should also have the alpha (TIGR01447) and beta (TIGR00609) subunits. Candidates from Borrelia and from the Chlamydias differ dramatically and score between trusted and noise cutoffs.

@@ -1,0 +1,15 @@
+ID  dnl1
+AC  TIGR00574
+DE  DNA ligase I, ATP-dependent (dnl1)
+AU  Loftus BJ, Eisen JA
+TC  217.80 217.80
+NC  171.15 171.15
+IT  superfamily
+EN  DNA ligase I, ATP-dependent (dnl1)
+EC  6.5.1.1
+TP  TIGRFAMs
+CC  All proteins in this family with known functions are ATP-dependent DNA ligases. Functions include DNA repair, DNA replication, and DNA recombination (or any process requiring ligation of two single-stranded DNA sections). This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  EGAD; 51433;
+DR  SWISSPROT; P04819;
+RM  86093646;
+DR  HAMAP; MF_00407; 39 of 39

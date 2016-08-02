@@ -1,0 +1,13 @@
+ID  PS_decarb_rel
+AC  TIGR00164
+DE  phosphatidylserine decarboxylase homolog
+AU  Haft DH
+TC  144.75 144.75
+NC  56.85 56.85
+AL  clustalw
+IT  hypoth_equivalog
+EN  phosphatidylserine decarboxylase precursor-related protein
+TP  TIGRFAMs
+CC  Phosphatidylserine decarboxylase is synthesized as a single chain precursor. Generation of the pyruvoyl active site from a Ser is coupled to cleavage of a Gly-Ser bond between the larger (beta) and smaller (alpha chains). It is an integral membrane protein. This protein has many regions of homology to known phosphatidylserine decarboxylases, including the Gly-Ser motif for chain cleavage and active site generation, but has a shorter amino end and a number of deletions along the length of the alignment to the phosphatidylserine decarboxylases.
+CC  It is unclear whether this protein is a form of phosphatidylserine decarboxylase or is a related enzyme. It is found in Neisseria gonorrhoeae, Mycobacterium tuberculosis, and several archaeal species, all of which lack known phosphatidylserine decarboxylase.
+DR  HAMAP; MF_00664; 152 of 153

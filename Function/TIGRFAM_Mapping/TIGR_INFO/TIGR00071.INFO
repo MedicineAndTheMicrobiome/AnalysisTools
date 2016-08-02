@@ -1,0 +1,15 @@
+ID  hisT_truA
+AC  TIGR00071
+DE  tRNA pseudouridine(38-40) synthase
+AU  Haft DH
+TC  142.85 142.85
+NC  31.35 31.35
+AL  msa_tigr_manual
+IT  equivalog
+EN  tRNA pseudouridine(38-40) synthase
+GS  truA
+EC  5.4.99.12
+TP  TIGRFAMs
+CC  Members of this family are the tRNA modification enzyme TruA, tRNA pseudouridine(38-40) synthase. In a few species (e.g. Bacillus anthracis), TruA is represented by two paralogs.
+AL  msa / seaview
+DR  HAMAP; MF_00171; 414 of 436

@@ -1,0 +1,27 @@
+ID  IsdC
+AC  TIGR03656
+DE  heme uptake protein IsdC
+AU  Selengut J
+TC  155.85 155.85
+NC  153.85 153.85
+AL  muscle
+IT  equivalog
+EN  heme uptake protein IsdC
+GS  isdC
+TP  TIGRFAMs
+CC  Isd proteins are iron-regulated surface proteins found in Bacillus, Staphylococcus and Listeria species and are responsible for heme scavenging from hemoproteins [1].  The IsdC protein consists of an N-terminal hydrophobic signal sequence, a central NEAT (NEAr Transporter, PF05031) domain which confers the ability to bind heme [2] and a C-terminal SrtB processing signal which targets the protein to the cell wall [3].  IsdC is believed to make a direct contact with, and transfer heme to, the heme-binding component (IsdE) of an ABC transporter in the cytoplasmic membrane, and to receive heme from other NEAT-containing heme-binding proteins also localized in the cell wall.
+RN  [1]
+RM  PMID:18676371
+RT  Demonstration of the iron-regulated surface determinant heme transfer pathway in Staphylococcus aureus.
+RA  Muryoi N, Tiedemann MT, Pluym M, Cheung J, Heinrichs DE, Stillman MJ
+RL  J Biol Chem. 2008 Aug 1.
+RN  [2]
+RM  PMID:18715872
+RT  The IsdC protein from staphylococcus aureus uses a flexible binding pocket to capture heme.
+RA  Villareal VA, Pilpa RM, Robson SA, Fadeev EA, Clubb RT
+RL  J Biol Chem. 2008 Aug 20.
+RN  [3]
+RM  PMID:17012401
+RT  Surface protein IsdC and Sortase B are required for heme-iron scavenging of Bacillus anthracis.
+RA  Maresso AW, Chapa TJ, Schneewind O
+RL  J Bacteriol. 2006 Dec;188(23):8145-52. Epub 2006 Sep 29.

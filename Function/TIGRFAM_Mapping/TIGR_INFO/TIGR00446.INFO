@@ -1,0 +1,16 @@
+ID  nop2p
+AC  TIGR00446
+DE  NOL1/NOP2/sun family putative RNA methylase
+AU  Loftus BJ
+TC  210.45 210.45
+NC  190.20 190.20
+AL  clustalw
+IT  subfamily_domain
+EN  NOL1/NOP2/sun family putative RNA methylase
+EC  2.1.1.-
+TP  TIGRFAMs
+DR  Prosite; PDOC00888;
+DR  Swissprot; P40991;
+DR  Swissprot; P46087; 
+RM  Medline; 92093618;
+DR  HAMAP; MF_01579; 38 of 39

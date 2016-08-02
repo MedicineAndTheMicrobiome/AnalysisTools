@@ -1,0 +1,17 @@
+ID  PQQ_PqqD
+AC  TIGR03859
+DE  coenzyme PQQ biosynthesis protein PqqD
+AU  Haft DH
+TC  46.00 46.00
+NC  45.00 45.00
+AL  muscle_manual
+IT  equivalog
+EN  coenzyme PQQ biosynthesis protein PqqD
+GS  pqqD
+TP  TIGRFAMs
+CC  This model identifies PqqD, a protein involved in the final steps of the biosynthesis of pyrroloquinoline quinone, coenzyme PQQ.
+RN  [1]
+RM  PMID:17223081
+RT  Factors required for the catalytic reaction of PqqC/D which produces pyrroloquinoline quinone.
+RA  Toyama H, Nishibayashi E, Saeki M, Adachi O, Matsushita K
+RL  Biochem Biophys Res Commun. 2007 Mar 2;354(1):290-5. Epub 2007 Jan 8.

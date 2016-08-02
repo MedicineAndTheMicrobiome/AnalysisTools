@@ -1,0 +1,17 @@
+ID  ABC_perm_GldF
+AC  TIGR03518
+DE  gliding motility-associated ABC transporter permease protein GldF
+AU  Selengut J
+TC  288.50 288.50
+NC  252.50 252.50
+AL  muscle
+IT  equivalog
+EN  gliding motility-associated ABC transporter permease protein GldF
+GS  gldF
+TP  TIGRFAMs
+CC  Members of this protein family are exclusive to the Bacteroidetes phylum (previously Cytophaga-Flavobacteria-Bacteroides). GldF is believed to be a ABC transporter permease protein (along with ATP-binding subunit, GldA and a sunstrate-binding subunit, GldG) and is linked to a type of rapid surface gliding motility found in certain Bacteroidetes, such as Flavobacterium johnsoniae and Cytophaga hutchinsonii. Knockouts of GldF abolish the gliding phenotype [1].  Gliding motility appears closely linked to chitin utilization in the model species Flavobacterium johnsoniae. Bacteroidetes with members of this protein family appear to have all of the genes associated with gliding motility.
+RN  [1]
+RM  PMID:11948149 
+RT  Mutations in Flavobacterium johnsoniae gldF and gldG disrupt gliding motility and interfere with membrane localization of GldA. 
+RA  Hunnicutt DW, Kempf MJ, McBride MJ 
+RL  J Bacteriol. 2002 May;184(9):2370-8.

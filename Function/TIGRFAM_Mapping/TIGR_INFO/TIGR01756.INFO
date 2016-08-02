@@ -1,0 +1,17 @@
+ID  LDH_protist
+AC  TIGR01756
+DE  lactate dehydrogenase
+AU  Selengut J
+TC  486.25 486.25
+NC  486.05 486.05
+AL  clustalw
+IT  equivalog
+EN  lactate dehydrogenase
+EC  1.1.1.27
+TP  TIGRFAMs
+CC  This model represents a family of protist lactate dehydrogenases which have aparrently evolved  from a recent protist malate dehydrogenase ancestor [1].  Lactate dehydrogenase converts the hydroxyl at C-2 of lactate to a carbonyl in the product, pyruvate.  The preference of this enzyme for NAD or NADP has not been determined.  A critical residue in malate dehydrogenase, arginine-91 (T. vaginalis numbering) has been mutated to a leucine, eliminating the positive charge which complemeted the carboxylate in malate which is absent in lactate.  Several other more subtle changes are proposed to make the active site smaller to accomadate the less bulky lactate molecule.
+RN  [1]
+RM  PMID: 10339579
+RT  Convergent evolution of Trichomonas vaginalis lactate dehydrogenase from malate dehydrogenase.
+RA  Wu G, Fiser A, ter Kuile B, Sali A, Muller M.
+RL  Proc Natl Acad Sci U S A 1999 May 25;96(11):6285-90

@@ -1,0 +1,13 @@
+ID  HAD-SF-IIB
+AC  TIGR01484
+DE  HAD hydrolase, family IIB
+AU  Selengut J
+TC  41.80 41.80
+NC  36.50 36.50
+AL  clustalw_manual
+IT  subfamily
+EN  HAD-superfamily hydrolase, subfamily IIB
+TP  TIGRFAMs
+CC  This subfamily falls within the Haloacid Dehalogenase (HAD) superfamily of aspartate-nucleophile hydrolases.  The Class II subfamilies are characterized by a domain that is located between the second and third conserved catalytic motifs of the superfamily domain.  The IIB subfamily is distinguished from the IIA subfamily (TIGR01460) by homology and the predicted secondary structure of this domain by PSI-PRED.  The IIB subfamily's Class II domain has the following predicted structure: Helix-Sheet-Sheet-(Helix or Sheet)-Helix-Sheet-(variable)-Helix-Sheet-Sheet.
+CC  The IIB subfamily consists of Trehalose-6-phosphatase (TIGR00685), plant and cyanobacterial Sucrose-phosphatase and a closely related group of bacterial and archaeal sequences, eukaryotic phosphomannomutase (PF03332), a large subfamily ("Cof-like hydrolases", TIGR00099) containing many closely related bacterial sequences, a hypothetical equivalog containing the E. coli YedP protein, as well as two small clusters containing OMNI|TC0379 and OMNI|SA2196 whose relationship to the other groups is unclear.
+DR  HAMAP; MF_01847; 32 of 33

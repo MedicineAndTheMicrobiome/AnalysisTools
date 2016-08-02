@@ -1,0 +1,17 @@
+ID  speE
+AC  TIGR00417
+DE  spermidine synthase
+AU  Loftus BJ
+TC  249.55 249.55
+NC  147.40 147.40
+AL  clustalw
+IT  equivalog
+EN  spermidine synthase
+GS  speE
+EC  2.5.1.16
+TP  TIGRFAMs
+CC  the SpeE subunit of spermidine synthase catalysesthe reaction (putrescine + S-adenosylmethioninamine = spermidine + 5'-methylthioadenosine) and is involved in polyamine biosynthesis and in the biosynthesis of spermidine from arganine. The region between residues 77 and 120 of the seed alignment is thought to be involved in binding to decarboxylated SAM.
+DR  Swissprot; P09158;
+DR  ECOCYC; EG10963; 
+DR  Swissprot; Q64674;
+DR  HAMAP; MF_00198; 78 of 119

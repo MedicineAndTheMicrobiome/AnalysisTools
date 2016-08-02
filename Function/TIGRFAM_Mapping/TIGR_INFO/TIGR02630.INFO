@@ -1,0 +1,14 @@
+ID  xylose_isom_A
+AC  TIGR02630
+DE  xylose isomerase
+AU  Haft DH
+TC  533.25 533.25
+NC  164.10 164.10
+AL  clustalw
+IT  equivalog
+EN  xylose isomerase
+GS  xylA
+EC  5.3.1.5
+TP  TIGRFAMs
+CC  Members of this family are the enzyme xylose isomerase (5.3.1.5), which interconverts D-xylose and D-xylulose.
+DR  HAMAP; MF_00455; 121 of 146

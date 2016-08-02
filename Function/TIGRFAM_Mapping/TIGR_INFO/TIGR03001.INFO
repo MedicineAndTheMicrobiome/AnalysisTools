@@ -1,0 +1,11 @@
+ID  Sig-70_gmx1
+AC  TIGR03001
+DE  RNA polymerase sigma-70 factor, Myxococcales family 1
+AU  Selengut J, Haft DH
+TC  154.60 154.60
+NC  76.80 76.80
+AL  muscle
+IT  subfamily
+EN  RNA polymerase sigma-70 factor, Myxococcales family 1
+TP  TIGRFAMs
+CC  This group of sigma factors are members of the sigma-70 family (TIGR02937) and are found in multiple copies in the order Myxococcales. This model supercedes TIGR02233, which has now been retired.

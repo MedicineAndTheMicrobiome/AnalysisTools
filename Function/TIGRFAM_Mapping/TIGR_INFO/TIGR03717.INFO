@@ -1,0 +1,16 @@
+ID  R_switched_YjbE
+AC  TIGR03717
+DE  integral membrane protein, YjbE family
+AU  Haft DH
+TC  134.80 134.80
+NC  108.90 108.90
+AL  muscle_manual
+IT  subfamily
+EN  integral membrane protein, YjbE family
+TP  TIGRFAMs
+CC  Rfam model RF00080 describes a structured RNA element called the yybP-ykoY leader, or SraF, which may precede one or several genes in a genome. Members of this highly hydrophobic protein family commonly are preceded by a yybP-ykoY leader, which may serve as a riboswitch. From the larger group of TerC homologs (PF03741), this subfamily contains protein YjbE from Bacillus subtilis. A transport function is proposed.
+RN  [1]
+RM  PMID:15096624
+RT  New RNA motifs suggest an expanded scope for riboswitches in bacterial genetic control.
+RA  Barrick JE, Corbino KA, Winkler WC, Nahvi A, Mandal M, Collins J, Lee M, Roth A, Sudarsan N, Jona I, Wickiser JK, Breaker RR
+RL  Proc Nat

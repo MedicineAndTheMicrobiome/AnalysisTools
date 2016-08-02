@@ -1,0 +1,22 @@
+ID  spore_ysxE
+AC  TIGR02904
+DE  spore coat protein YsxE
+AU  Haft DH
+TC  263.55 263.55
+NC  122.45 122.45
+AL  muscle
+IT  equivalog
+EN  spore coat protein YsxE
+GS  ysxE
+TP  TIGRFAMs
+CC  Members of this family are homologs of the Bacillus subtilis spore coat protein CotS. Members of this family, designated YsxE, are found only in the family Bacillaceae, from among the endospore-forming members of the Firmicutes branch of the Bacteria. As a rule, the ysxE gene is found immediately downstream of spoVID, a gene necessary for spore coat assembly. The protein has been shown to be part of the spore coat.
+RN  [1]
+RM  PMID: 8449878
+RT  Cloning and characterization of a gene required for assembly of the Bacillus subtilis spore coat.
+RA  Beall B, Driks A, Losick R, Moran CP Jr
+RL  J Bacteriol. 1993 Mar;175(6):1705-16.
+RN  [2]
+RM  PMID: 16371471
+RT  The Bacillus subtilis spore coat provides "eat resistance" during phagocytic predation by the protozoan Tetrahymena thermophila.
+RA  Klobutcher LA, Ragkousi K, Setlow P
+RL  Proc Natl Acad Sci U S A. 2006 Jan 3;103(1):165-70. Epub 2005 Dec 21.

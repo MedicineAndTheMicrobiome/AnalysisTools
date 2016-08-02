@@ -1,0 +1,23 @@
+ID  lip_kinase_YegS
+AC  TIGR03702
+DE  lipid kinase YegS
+AU  Haft DH
+TC  387.45 387.45
+NC  197.50 197.50
+AL  muscle_manual
+IT  equivalog
+EN  lipid kinase YegS
+GS  yegS
+EC  2.7.1.-
+TP  TIGRFAMs
+CC  Members of this protein family are designated YegS, an apparent lipid kinase family in the Proteobacteria. Bakali, et al. report phosphatidylglycerol kinase activity for the member from Escherichia coli, but refrain from calling that activity synonymous with its biological role. Note that a broader, subfamily-type model (TIGR00147), includes this family but also multiple paralogs in some species and varied functions.
+RN  [1]
+RM  PMID:17351295
+RT  Crystal structure of YegS, a homologue to the mammalian diacylglycerol kinases, reveals a novel regulatory metal binding site.
+RA  Bakali HM, Herman MD, Johnson KA, Kelly AA, Wieslander A, Hallberg BM, Nordlund P
+RL  J Biol Chem. 2007 Jul 6;282(27):19644-52. Epub 2007 Mar 11.
+RN  [2]
+RM  PMID:17393457
+RT  Characterization of Salmonella typhimurium YegS, a putative lipid kinase homologous to eukaryotic sphingosine and diacylglycerol kinases.
+RA  Nichols CE, Lamb HK, Lockyer M, Charles IG, Pyne S, Hawkins AR, Stammers DK
+RL  Proteins. 2007 Jul 1;68(1):13-25.

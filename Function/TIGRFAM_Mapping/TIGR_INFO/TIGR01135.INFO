@@ -1,0 +1,15 @@
+ID  glmS
+AC  TIGR01135
+DE  glutamine-fructose-6-phosphate transaminase (isomerizing)
+AU  Haft DH
+TC  418.05 418.05
+NC  302.90 302.90
+AL  clustalw_manual
+IT  equivalog
+EN  glucosamine--fructose-6-phosphate aminotransferase (isomerizing)
+GS  glmS
+EC  2.6.1.16
+TP  TIGRFAMs
+CC  The member from Methanococcus jannaschii contains an intein.
+DR  ECOCYC; EG10382; glmS
+DR  HAMAP; MF_00164; 148 of 150

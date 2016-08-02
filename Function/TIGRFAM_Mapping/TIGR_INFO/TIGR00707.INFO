@@ -1,0 +1,27 @@
+ID  argD
+AC  TIGR00707
+DE  transaminase, acetylornithine/succinylornithine family
+AU  Haft DH
+TC  410.05 410.05
+NC  397.55 397.55
+IT  subfamily
+EN  transaminase, acetylornithine/succinylornithine family
+GS  argD
+TP  TIGRFAMs
+CC  This family of proteins, for which ornithine aminotransferases form an outgroup, consists mostly of proteins designated acetylornithine aminotransferase. However, the two very closely related members from E. coli are assigned different enzymatic activities. One is acetylornithine aminotransferase (EC 2.6.1.11), ArgD, an enzyme of arginine biosynthesis, while another is succinylornithine aminotransferase, an enzyme of the arginine succinyltransferase pathway, an ammonia-generating pathway of arginine catabolism (See MEDLINE:98361920).
+CC  Members of this family may also act on ornithine, like ornithine aminotransferase (EC 2.6.1.13) (see MEDLINE:90337349) and on succinyldiaminopimelate, like N-succinyldiaminopmelate-aminotransferase (EC 2.6.1.17, DapC, an enzyme of lysine biosynthesis) (see MEDLINE:99175097)
+DR  PROSITE; PDOC00519; Aminotransferases class-III pyridoxal-phosphate attachment site
+DR  PFAM; PF00202; Aminotransferases class-III pyridoxal-phosphate
+DR  OUTGROUP; EGAD|21835|BS4028; ornithine aminotransferase, B. subtilis
+DR  OUTGROUP; EGAD|54736|YLR438W; ornithine aminotransferase, yeast
+DR  EXPERIMENTAL; EGAD|55794|YOL140W; Saccharomyces cerevisiae
+DR  EXPERIMENTAL; EGAD|13014|EC3359; Escherichia coli
+DR  EC; 2.6.1.11; acetylornithine aminotransferase
+DR  EC; 2.6.1.-; succinylornithine aminotransferase
+RN  [1]
+RM  98361920
+RN  [2]
+RM  90337349
+RN  [3]
+RM  99175097
+DR  HAMAP; MF_01173; 15 of 15

@@ -1,0 +1,31 @@
+ID  YSIRK_signal
+AC  TIGR01168
+DE  gram-positive signal peptide, YSIRK family
+AU  Haft DH
+TC  20.20 20.20
+NC  19.35 19.35
+AL  manual
+IT  domain
+EN  Gram-positive signal peptide, YSIRK family
+TP  TIGRFAMs
+CC  Many surface proteins found in Streptococcus, Staphylococcus, and related lineages share apparently homologous signal sequences. A motif resembling [YF]SIRKxxxGxxS[VIA] appears at the start of the transmembrane domain. The GxxS motif appears perfectly conserved, suggesting a specific function and not just homology.  There is a strong correlation between proteins carrying this region at the N-terminus and those carrying the Gram-positive anchor domain with the LPXTG sortase processing site at the C-terminus.
+RN  [1]
+RM  PMID: 11463916
+RT  Complete genome sequence of a virulent isolate of Streptococcus pneumoniae.
+RA  Tettelin H, Nelson KE, Paulsen IT, Eisen JA, Read TD, Peterson S, Heidelberg J, DeBoy RT, Haft DH, Dodson RJ, Durkin AS, Gwinn M, Kolonay JF, Nelson WC, Peterson JD, Umayam LA, White O, Salzberg SL, Lewis MR, Radune D, Holtzapple E, Khouri H, Wolf AM, Utterback TR, Hansen CL, McDonald LA, Feldblyum TV, Angiuoli S, Dickinson T, Hickey EK, Holt IE, Loftus BJ, Yang F, Smith HO, Venter JC, Dougherty BA, Morrison DA, Hollingshead SK, Fraser CM
+RL  Science. 2001 Jul 20;293(5529):498-506.
+RN  [2]
+RM  PMID: 12700270
+RT  The YSIRK-G/S motif of staphylococcal protein A and its role in efficiency of signal peptide processing.
+RA  Bae T, Schneewind O
+RL  J Bacteriol. 2003 May;185(9):2910-9.
+RN  [3]
+RM  PMID:16929299
+RT  Signal sequence directs localized secretion of bacterial surface proteins.
+RA  Carlsson F, Stalhammar-Carlemalm M, Flardh K, Sandin C, Carlemalm E, Lindahl G
+RL  Nature. 2006 Aug 24;442(7105):943-6.
+RN  [4]
+RM  PMID:18800056
+RT  Signal peptides direct surface proteins to two distinct envelope locations of Staphylococcus aureus.
+RA  DeDent A, Bae T, Missiakas DM, Schneewind O
+RL  EMBO J. 2008 Oct 22;27(20):2656-68.

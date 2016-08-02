@@ -1,0 +1,11 @@
+ID  sam_1_link_chp
+AC  TIGR03936
+DE  radical SAM-linked protein
+AU  Haft DH
+TC  71.90 71.90
+NC  65.20 65.20
+AL  muscle_manual
+IT  hypoth_equivalog_domain
+EN  radical SAM-linked protein
+TP  TIGRFAMs
+CC  This HMM describes an uncharacterized protein encoded adjacent to, or as a fusion protein with, an uncharacterized radical SAM protein.

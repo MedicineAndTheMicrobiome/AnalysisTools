@@ -1,0 +1,17 @@
+ID  RhaS
+AC  TIGR02637
+DE  rhamnose ABC transporter, rhamnose-binding protein
+AU  Selengut J
+TC  342.25 342.25
+NC  279.70 279.70
+AL  clustalw
+IT  equivalog
+EN  rhamnose ABC transporter, rhamnose-binding protein
+GS  rhaS
+TP  TIGRFAMs
+CC  This sugar-binding component of ABC transporter complexes is found in rhamnose catabolism operon contexts.  Mutation of this gene in Rhizobium leguminosarum [1] abolishes rhamnose transport and prevents growth on rhamnose as a carbon source.
+RN  [1]
+RM  PMID: 15576793
+RT  A genetic locus necessary for rhamnose uptake and catabolism in Rhizobium leguminosarum bv. trifolii.
+RA  Richardson JS, Hynes MF, Oresnik IJ.
+RL  J Bacteriol. 2004 Dec;186(24):8433-42.

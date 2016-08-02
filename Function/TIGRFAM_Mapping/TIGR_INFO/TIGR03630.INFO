@@ -1,0 +1,12 @@
+ID  arch_S17P
+AC  TIGR03630
+DE  archaeal ribosomal protein S17P
+AU  Haft DH
+TC  105.00 105.00
+NC  90.00 90.00
+AL  muscle_manual
+IT  equivalog
+EN  archaeal ribosomal protein S17P
+TP  TIGRFAMs
+CC  This model describes exclusively the archaeal ribosomal protein S17P. It excludes the homologous ribosomal protein S17 from bacteria, and is not intended for use on eukaryotic sequences, where some instances of ribosomal proteins S11 score above the trusted cutoff.
+DR  PFAM; PF00366; Ribosomal_S17

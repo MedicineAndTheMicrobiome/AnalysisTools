@@ -1,0 +1,13 @@
+ID  nickel_nikC
+AC  TIGR02790
+DE  nickel ABC transporter, permease subunit NikC
+AU  Haft DH
+TC  358.45 358.45
+NC  348.25 348.25
+AL  clustalw_manual
+IT  equivalog
+EN  nickel ABC transporter, permease subunit NikC
+GS  nikC
+EC  3.6.3.24
+TP  TIGRFAMs
+CC  This family consists of the NikC family of nickel ABC transporter permeases. Operons that contain this protein also contain a homologous permease subunit NikB. Nickel is used in cells as part of urease or certain hydrogenases or superoxide dismutases.

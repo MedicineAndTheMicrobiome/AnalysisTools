@@ -1,0 +1,18 @@
+ID  agmatine_aguB
+AC  TIGR03381
+DE  N-carbamoylputrescine amidase
+AU  Haft DH, Harkins DM
+TC  410.25 410.25
+NC  304.05 304.05
+AL  muscle_manual
+IT  equivalog
+EN  N-carbamoylputrescine amidase
+GS  aguB
+EC  3.5.1.53
+TP  TIGRFAMs
+CC  Members of this family are N-carbamoylputrescine amidase (3.5.1.53). Bacterial genes are designated AguB. The AguAB pathway replaces SpeB for conversion of agmatine to putrescine in two steps rather than one.
+RN  [1]
+RM  PMID: 12634339
+RT  Identification of the putrescine biosynthetic genes in Pseudomonas aeruginosa and characterization of agmatine deiminase and N-carbamoylputrescine amidohydrolase of the arginine decarboxylase pathway.
+RA  Nakada Y, Itoh Y
+RL  Microbiology. 2003 Mar;149(Pt 3):707-14.

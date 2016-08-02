@@ -1,0 +1,20 @@
+ID  putres_am_tran
+AC  TIGR03372
+DE  putrescine aminotransferase
+AU  Haft DH
+TC  658.65 658.65
+NC  467.15 467.15
+AL  muscle_manual
+IT  equivalog
+EN  putrescine aminotransferase
+GS  ygjG
+EC  2.6.1.82
+TP  TIGRFAMs
+CC  Members of this family are putrescine aminotransferase, as found in Escherichia coli, Erwinia carotovora subsp. atroseptica, and closely related species. This pyridoxal phosphate enzyme, as characterized in E. coli, can act also on cadaverine and, more weakly, spermidine.
+DR  SWISSPROT; P42588; Escherichia coli
+DR  ECOGENE; EG12718; ygjG
+RN  [1]
+RM  PMID: 12617754
+RT  Molecular cloning and characterization of Escherichia coli K12 ygjG gene.
+RA  Samsonova NN, Smirnov SV, Altman IB, Ptitsyn LR
+RL  BMC Microbiol. 2003 Jan 31;3(1):2.

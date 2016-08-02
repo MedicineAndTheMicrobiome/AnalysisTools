@@ -1,0 +1,11 @@
+ID  L23_arch
+AC  TIGR03636
+DE  archaeal ribosomal protein L23
+AU  Haft DH
+TC  94.95 94.95
+NC  91.60 91.60
+AL  muscle_manual
+IT  equivalog
+EN  archaeal ribosomal protein L23
+TP  TIGRFAMs
+CC  This model describes the archaeal ribosomal protein L23P and rigorously excludes the bacterial counterpart L23. In order to capture every known instance of archaeal L23P, the trusted cutoff is set lower than a few of the highest scoring eukaryotic cytosolic ribosomal counterparts.

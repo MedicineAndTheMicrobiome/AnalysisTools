@@ -1,0 +1,11 @@
+ID  TIGR04141
+AC  TIGR04141
+DE  sporadically distributed protein, TIGR04141 family
+AU  Haft DH
+TC  35.00 35.00
+NC  25.00 25.00
+AL  muscle_manual
+IT  subfamily
+EN  sporadically distributed protein, TIGR04141 family
+TP  TIGRFAMs
+CC  This HMM describes a sporadically distributed conserved hypothetical protein in which complete members average over 500 amino acids in length, although matching sequences frequently are truncated or broken into tandem ORFs. Regular co-clustering with known markers of mobility (integrases, transposases, phage proteins, restriction enzymes, etc.) suggests this family also is part of the mobilome. The function is unknown.

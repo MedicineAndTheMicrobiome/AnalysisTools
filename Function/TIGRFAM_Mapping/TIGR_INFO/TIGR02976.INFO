@@ -1,0 +1,23 @@
+ID  phageshock_pspB
+AC  TIGR02976
+DE  phage shock protein B
+AU  Haft DH
+TC  51.70 51.70
+NC  32.35 32.35
+AL  muscle_manual
+IT  equivalog
+EN  phage shock protein B
+GS  pspB
+TP  TIGRFAMs
+CC  This model describes the PspB protein of the psp (phage shock protein) operon, as found in Escherichia coli and many related species. Expression of a phage protein called secretin protein IV, and a number of other stresses including ethanol, heat shock, and defects in protein secretion trigger sigma-54-dependent expression of the phage shock regulon. PspB is both a regulator and an effector protein of the phage shock response.
+DR  PFAM; PF06667; PspB
+RN  [1]
+RM  PMID: 15485810
+RT  Identification of a new member of the phage shock protein response in Escherichia coli, the phage shock protein G (PspG).
+RA  Lloyd LJ, Jones SE, Jovanovic G, Gyaneshwar P, Rolfe MD, Thompson A, Hinton JC, Buck M
+RL  J Biol Chem. 2004 Dec 31;279(53):55707-14. Epub 2004 Oct 13.
+RN  [2]
+RM  PMID: 16468999
+RT  PspB and PspC of Yersinia enterocolitica are dual function proteins: regulators and effectors of the phage-shock-protein response.
+RA  Maxson ME, Darwin AJ
+RL  Mol Microbiol. 2006 Mar;59(5):1610-23.

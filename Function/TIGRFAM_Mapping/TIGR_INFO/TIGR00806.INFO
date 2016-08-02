@@ -1,0 +1,15 @@
+ID  rfc
+AC  TIGR00806
+DE  reduced folate carrier
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  227.40 227.40
+NC  217.40 217.40
+AL  clustalw_manual
+IT  equivalog
+EN  RFC reduced folate carrier
+GS  rfc
+TP  TIGRFAMs
+CC  The Reduced Folate Carrier (RFC) Family (TC 2.A.48)
+CC  Members of the RFC family mediate the uptake of folate, reduce
+CC  folate, derivatives of reduced folate and the drug, methotrexate.
+CC  Proteins of the RFC family are so-far restricted to animals.  RFC proteins  possess 12 putative transmembrane a-helical spanners (TMSs) and evidence for a 12 TMS topology has been published for the human RFC. The RFC transporters appear to transport reduced folate by an energy-dependent, pH-dependent, Na+-independent mechanism. Folate:H+ symport, folate:OH- antiport and folate:anion antiport mechanisms have been proposed, but the energetic mechanism is not well defined.

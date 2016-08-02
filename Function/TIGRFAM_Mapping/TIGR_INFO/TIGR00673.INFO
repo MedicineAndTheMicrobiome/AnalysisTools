@@ -1,0 +1,20 @@
+ID  cynS
+AC  TIGR00673
+DE  cyanase
+AU  Loftus BJ, Haft DH
+TC  113.30 113.30
+NC  81.05 81.05
+AL  clustalw
+IT  equivalog
+EN  cyanase
+GS  cynS
+EC  4.2.1.104
+TP  TIGRFAMs
+CC  Alternate names include cyanate C-N-lyase, cyanate hydratase, and cyanate hydrolase.
+DR  InterPro; IPR003712
+DR  SWISSPROT; P00816; Q59948
+DR  ECOCYC; EG10175; cynS
+DR  EXPERIMENTAL; EGAD|15722|EC0340; Escherichia coli
+DR  EXPERIMENTAL; EGAD|49352|slr0899; Synechocystis PCC6803
+RM  97440122
+DR  HAMAP; MF_00535; 53 of 54

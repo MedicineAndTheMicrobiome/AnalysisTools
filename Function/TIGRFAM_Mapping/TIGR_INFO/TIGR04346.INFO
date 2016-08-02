@@ -1,0 +1,21 @@
+ID  DotA_TraY
+AC  TIGR04346
+DE  conjugal transfer/type IV secretion protein DotA/TraY
+AU  Haft DH
+TC  100.00 100.00
+NC  40.00 40.00
+AL  muscle_manual
+IT  subfamily
+EN  conjugal transfer/type IV secretion protein DotA/TraY
+TP  TIGRFAMs
+CC  Members of this protein family include transfer protein TraY of IncI1 plasmid R64 and DotA (defect in organelle trafficking A) of Legionella pneumophila.
+RN  [1]
+RM  PMID:11927981 
+RT  Sequence polymorphism of dotA and mip alleles mediating invasion and intracellular replication of Legionella pneumophila. 
+RA  Bumbaugh AC, McGraw EA, Page KL, Selander RK, Whittam TS 
+RL  Curr Microbiol. 2002 May;44(5):314-22.
+RN  [2]
+RM  PMID:10760136 
+RT  The transfer region of IncI1 plasmid R64: similarities between R64 tra and legionella icm/dot genes. 
+RA  Komano T, Yoshida T, Narahara K, Furuya N 
+RL  Mol Microbiol. 2000 Mar;35(6):1348-59.

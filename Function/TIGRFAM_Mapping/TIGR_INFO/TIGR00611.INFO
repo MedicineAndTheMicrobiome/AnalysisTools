@@ -1,0 +1,13 @@
+ID  recf
+AC  TIGR00611
+DE  DNA replication and repair protein RecF
+AU  Loftus BJ, Eisen JA
+TC  159.45 159.45
+NC  154.15 154.15
+IT  subfamily
+EN  recF protein
+GS  recF
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are DNA binding proteins that assist the filamentation of RecA onto DNA for the initiation of recombination or recombinational repair.  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  SWISSPROT; P05651;
+DR  HAMAP; MF_00365; 313 of 317

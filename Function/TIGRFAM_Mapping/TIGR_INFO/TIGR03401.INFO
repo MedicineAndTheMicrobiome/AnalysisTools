@@ -1,0 +1,17 @@
+ID  cyanamide_fam
+AC  TIGR03401
+DE  HD domain protein, cyanamide hydratase family
+AU  Haft DH
+TC  109.85 109.85
+NC  78.85 78.85
+AL  muscle_manual
+IT  subfamily
+EN  HD domain protein, cyanamide hydratase family
+EC  4.2.1.-
+TP  TIGRFAMs
+CC  Members of this protein family are known, so far, in the Ascomycota, a branch of the Fungi, and contain an HD domain (PF01966), found typically in various metal-dependent phosphohydrolases. The only characterized member of this family, from the soil fungus Myrothecium verrucaria, is cyanamide hydratase (EC 4.2.1.69), a zinc-containing homohexamer that adds water to the fertilizer cyanamide (NCNH2), a nitrile compound, to produce urea (NH2-CO-NH2). Homologs are likely to be nitrile hydratases.
+RN  [1]
+RM  PMID: 2034671
+RT  Isolation and properties of a nitrile hydratase from the soil fungus Myrothecium verrucaria that is highly specific for the fertilizer cyanamide and cloning of its gene.
+RA  Maier-Greiner UH, Obermaier-Skrobranek BM, Estermaier LM, Kammerloher W, Freund C, Wulfing C, Burkert UI, Matern DH, Breuer M, Eulitz M, et al.
+RL  Proc Natl Acad Sci U S A. 1991 May 15;88(10):4260-4.

@@ -1,0 +1,12 @@
+ID  3a0106s02
+AC  TIGR00969
+DE  sulfate ABC transporter, permease protein
+AU  Loftus BJ, Haft DH
+TC  240.00 240.00
+NC  204.85 204.85
+AL  clustalw_manual
+IT  subfamily
+EN  sulfate ABC transporter, permease protein
+TR  3.A.1
+TP  TIGRFAMs
+CC  This model describes a subfamily of both CysT and CysW, paralogous and generally tandemly encoded permease proteins of the sulfate ABC transporter.

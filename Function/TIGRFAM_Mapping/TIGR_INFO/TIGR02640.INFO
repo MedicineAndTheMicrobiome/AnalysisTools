@@ -1,0 +1,13 @@
+ID  gas_vesic_GvpN
+AC  TIGR02640
+DE  gas vesicle protein GvpN
+AU  Haft DH
+TC  266.80 266.80
+NC  80.85 80.85
+AL  clustalw
+IT  equivalog
+EN  gas vesicle protein GvpN
+GS  gvpN
+TP  TIGRFAMs
+CC  Members of this family are the GvpN protein associated with the production of gas vesicles produced in some prokaryotes to give cells buoyancy. This family belongs to a larger family of ATPases (PF07728).
+DR  PFAM; PF07728; AAA_5; ATPase family associated with various cellular activities (AAA)

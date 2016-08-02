@@ -1,0 +1,16 @@
+ID  OpcA
+AC  TIGR00534
+DE  glucose-6-phosphate dehydrogenase assembly protein OpcA
+AU  Haft DH
+TC  256.25 256.25
+NC  93.75 93.75
+IT  equivalog
+EN  glucose-6-phosphate dehydrogenase assembly protein OpcA
+GS  opcA
+TP  TIGRFAMs
+CC  The opcA gene is found immediately downstream of zwf, the glucose-6-phosphate dehydrogenase (G6PDH) gene, in a number of species, including Mycobacterium tuberculosis, Streptomyces coelicolor, Nostoc punctiforme, and Synechococcus sp. PCC 7942. In the latter, disruption of opcA was shown to block assembly of G6PDH into active oligomeric forms.
+RN  [1]
+RM  PMID:9639925
+RT  Multiple oligomeric forms of glucose-6-phosphate dehydrogenase in cyanobacteria and the role of OpcA in the assembly process.
+RA  Sundaram S, Karakaya H, Scanlan DJ, Mann NH
+RL  Microbiology 1998 Jun;144 ( Pt 6):1549-56

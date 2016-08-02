@@ -1,0 +1,17 @@
+ID  assembly_YfgL
+AC  TIGR03300
+DE  outer membrane assembly lipoprotein YfgL
+AU  Haft DH
+TC  285.20 285.20
+NC  249.65 249.65
+AL  muscle_manual
+IT  equivalog
+EN  outer membrane assembly lipoprotein YfgL
+GS  yfgL
+TP  TIGRFAMs
+CC  Members of this protein family are YfgL, a lipoprotein component of a complex that acts protein insertion into the bacterial outer membrane. Other members of this complex are NlpB, YfiO, and YaeT. This protein contains multiple copies of a repeat that, in other contexts, are associated with binding of the coenzyme PQQ.
+RN  [1]
+RM  PMID: 17015657
+RT  Differential effects of yfgL mutation on Escherichia coli outer membrane proteins and lipopolysaccharide.
+RA  Charlson ES, Werner JN, Misra R
+RL  J Bacteriol. 2006 Oct;188(20):7186-94.

@@ -1,0 +1,22 @@
+ID  cellulose_yhjU
+AC  TIGR03368
+DE  cellulose synthase operon protein YhjU
+AU  Haft DH
+TC  410.20 410.20
+NC  208.50 208.50
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  cellulose synthase operon protein YhjU
+GS  yhjU
+TP  TIGRFAMs
+CC  This protein was identified by the partial phylogenetic profiling algorithm (PMID:16930487) as part of the system for cellulose biosynthesis in bacteria, and in fact is found in cellulose biosynthesis gene regions. The protein was designated YhjU in Salmonella enteritidis, where disruption of its gene disrupts cellulose biosynthesis and biofilm formation (PMID:11929533).
+RN  [1]
+RM  PMID: 11929533
+RT  Genetic analysis of Salmonella enteritidis biofilm formation: critical role of cellulose.
+RA  Solano C, Garcia B, Valle J, Berasain C, Ghigo JM, Gamazo C, Lasa I
+RL  Mol Microbiol. 2002 Feb;43(3):793-808.
+RN  [2]
+RM  PMID: 16930487
+RT  Exopolysaccharide-associated protein sorting in environmental organisms: the PEP-CTERM/EpsH system. Application of a novel phylogenetic profiling heuristic.
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD
+RL  BMC Biol. 2006 Aug 24;4:29.

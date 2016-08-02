@@ -1,0 +1,18 @@
+ID  D_pro_red_PrdA
+AC  TIGR04480
+DE  D-proline reductase (dithiol), PrdA proprotein
+AU  Haft DH
+TC  700.00 700.00
+NC  350.00 350.00
+AL  muscle_manual
+IT  equivalog
+EN  D-proline reductase (dithiol), PrdA proprotein
+GS  prdA
+EC  1.21.4.1
+TP  TIGRFAMs
+CC  Members of this family are the PrdA proprotein. The polypeptide undergoes an autocatalytic cleavage that creates two subunits, one with a Cys-derived pyruvoyl motiety critical for activity. The D-proline reductase complex also contains a subunit derived from the prdB gene. The complex acts on D-proline, which may be supplied from L-proline by an active proline racemase encoded nearby.
+RN  [1]
+RM  PMID:23222730 
+RT  Proline-dependent regulation of Clostridium difficile Stickland metabolism. 
+RA  Bouillaut L, Self WT, Sonenshein AL 
+RL  J Bacteriol. 2013 Feb;195(4):844-54. doi: 10.1128/JB.01492-12.

@@ -1,0 +1,17 @@
+ID  trehalose_TreZ
+AC  TIGR02402
+DE  malto-oligosyltrehalose trehalohydrolase
+AU  Haft DH
+TC  538.80 538.80
+NC  226.70 226.70
+AL  clustalw_manual
+IT  equivalog
+EN  malto-oligosyltrehalose trehalohydrolase
+GS  treZ
+EC  3.2.1.141
+TP  TIGRFAMs
+CC  Members of this family are the trehalose biosynthetic enzyme malto-oligosyltrehalose trehalohydrolase, formally known as 4-alpha-D-{(1->4)-alpha-D-glucano}trehalose trehalohydrolase (EC 3.2.1.141). It is the TreZ protein of the TreYZ pathway for trehalose biosynthesis, and alternative to the OtsAB system.
+RM  10926520
+RT  Crystal structure of glycosyltrehalose trehalohydrolase from the hyperthermophilic archaeum Sulfolobus solfataricus.
+RA  Feese MD, Kato Y, Tamada T, Kato M, Komeda T, Miura Y, Hirose M, Hondo K, Kobayashi K, Kuroki R.
+RL  J Mol Biol. 2000 Aug 11;301(2):451-64.

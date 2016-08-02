@@ -1,0 +1,23 @@
+ID  GSH_gloB
+AC  TIGR03413
+DE  hydroxyacylglutathione hydrolase
+AU  Haft DH
+TC  200.80 200.80
+NC  133.00 133.00
+AL  muscle_manual
+IT  equivalog
+EN  hydroxyacylglutathione hydrolase
+GS  gloB
+EC  3.1.2.6
+TP  TIGRFAMs
+CC  Members of this protein family are hydroxyacylglutathione hydrolase, a detoxification enzyme known as glyoxalase II. It follows lactoylglutathione lyase, or glyoxalase I, and acts to remove the toxic metabolite methylglyoxal and related compounds. This protein belongs to the broader metallo-beta-lactamase family (PF00753).
+RN  [1]
+RM  PMID: 17196158
+RT  Escherichia coli glyoxalase II is a binuclear zinc-dependent metalloenzyme.
+RA  O'Young J, Sukdeo N, Honek JF
+RL  Arch Biochem Biophys. 2007 Mar 1;459(1):20-6.
+RN  [2]
+RM  PMID: 10882093
+RT  Detection and characterisation of the genes encoding glyoxalase I and II from Neisseria meningitidis.
+RA  Kizil G, Wilks K, Wells D, Ala'Aldeen DA
+RL  J Med Microbiol. 2000 Jul;49(7):669-73.

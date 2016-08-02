@@ -1,0 +1,12 @@
+ID  SoxR
+AC  TIGR01950
+DE  redox-sensitive transcriptional activator SoxR
+AU  Haft DH
+TC  116.90 116.90
+NC  85.30 85.30
+AL  clustalw
+IT  equivalog
+EN  redox-sensitive transcriptional activator SoxR
+GS  soxR
+TP  TIGRFAMs
+CC  SoxR is a MerR-family homodimeric transcription factor with a 2Fe-2S cluster in each monomer. The motif CIGCGCxxxxxC is conserved. Oxidation of the iron-sulfur cluster activates SoxR. The physiological role in E. coli is response to oxidative stress. It is activated by superoxide, singlet oxygen, nitric oxide (NO), and hydrogen peroxide. In E. coli, SoxR increases expression of transcription factor SoxS; different downstream targets may exist in other species.

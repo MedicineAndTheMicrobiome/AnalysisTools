@@ -1,0 +1,16 @@
+ID  ser_adhes_Nterm
+AC  TIGR04224
+DE  serine-rich repeat adhesion glycoprotein
+AU  Haft DH
+TC  25.00 25.00
+NC  23.00 15.00
+AL  muscle_manual
+IT  equivalog_domain
+EN  serine-rich repeat adhesion glycoprotein AST domain
+TP  TIGRFAMs
+CC  This HMM describes a definitive conserved N-terminal domain shared by Streptococcal serine-rich adhesion glycoproteins. These highly repetitive proteins may exceed 4000 amino acids in length, consisting largely of long regions in which every second amino acid is Ser. Members of this family, if sequenced completely and assigned the correct start site, begin with a KxYKxGKxW motif region (see TIGR03715) and end with an LPXTG motif region (see TIGR01167). Members are exported by the accessory secretory system (SecA2 and SecY2). They are highly variable among the Streptococci and may help determine host ranges for pathogenesis.
+RN  [1]
+RM  PMID:20562303 
+RT  Transport of preproteins by the accessory Sec system requires a specific domain adjacent to the signal peptide. 
+RA  Bensing BA, Sullam PM 
+RL  J Bacteriol. 2010 Aug;192(16):4223-32.

@@ -1,0 +1,11 @@
+ID  stabl_TIGR02574
+AC  TIGR02574
+DE  putative addiction module component, TIGR02574 family
+AU  Haft DH
+TC  31.90 31.90
+NC  25.70 25.70
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  putative addiction module component, TIGR02574 family
+TP  TIGRFAMs
+CC  Members of this family are bacterial proteins, typically are about 75 amino acids long, always found as part of a pair (at least) of two small genes. The other in the pair always belongs to a subfamily of the larger family PF05016 (although not necessarily scoring above the designated cutoff), which contains plasmid stabilization proteins. It is likely that this protein and its PF05016 member partner comprise some form of addiction module, although these gene pairs usually are found on the bacterial main chromosome.

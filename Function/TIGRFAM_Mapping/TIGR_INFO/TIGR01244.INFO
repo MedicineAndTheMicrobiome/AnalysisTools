@@ -1,0 +1,11 @@
+ID  TIGR01244
+AC  TIGR01244
+DE  TIGR01244 family protein
+AU  Haft DH
+TC  85.85 85.85
+NC  31.30 31.30
+AL  clustalw
+IT  hypoth_equivalog
+EN  TIGR01244 family protein
+TP  TIGRFAMs
+CC  No member of this family is characterized. The member from Xylella fastidiosa is a longer protein with an N-terminal region described by this HMM, followed by a metallo-beta-lactamase family domain and an additional C-terminal region. Members scoring above the trusted cutoff are limited to the proteobacteria.

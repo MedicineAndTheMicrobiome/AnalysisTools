@@ -1,0 +1,18 @@
+ID  endura_MppQ
+AC  TIGR04461
+DE  enduracididine biosynthesis enzyme MppQ
+AU  Haft DH
+TC  540.00 540.00
+NC  400.00 400.00
+AL  muscle_manual
+IT  equivalog
+EN  enduracididine biosynthesis enzyme MppQ
+GS  mppQ
+EC  2.-.-.-
+TP  TIGRFAMs
+CC  Members of this family are MppQ, one of three enzymes involved in synthesizing enduracididine, a non-proteinogenic amino acid used in non-ribosomal peptide synthases to make natural products such as enduracidin from Streptomyces fungicidicus ATCC 21013. MppQ is a PLP-dependent enzyme, predicted by homology to be an aminotransferase.
+RN  [1]
+RM  PMID:23758195 
+RT  Structural and Functional Characterization of MppR, an Enduracididine Biosynthetic Enzyme from Streptomyces hygroscopicus: Functional Diversity in the Acetoacetate Decarboxylase-like Superfamily. 
+RA  Burroughs AM, Hoppe RW, Goebel NC, Sayyed BH, Voegtline TJ, Schwabacher AW, Zabriskie TM, Silvaggi NR 
+RL  Biochemistry. 2013 Jul 2;52(26):4492-506. doi: 10.1021/bi400397k.

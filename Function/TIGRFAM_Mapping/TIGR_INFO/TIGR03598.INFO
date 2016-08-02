@@ -1,0 +1,17 @@
+ID  GTPase_YsxC
+AC  TIGR03598
+DE  ribosome biogenesis GTP-binding protein YsxC
+AU  Haft DH
+TC  124.45 124.45
+NC  102.80 102.80
+AL  muscle_manual
+IT  equivalog
+EN  ribosome biogenesis GTP-binding protein YsxC/EngB
+GS  ysxC
+TP  TIGRFAMs
+CC  Members of this protein family are a GTPase associated with ribosome biogenesis, typified by YsxC from Bacillus subutilis. The family is widely but not universally distributed among bacteria. Members commonly are called EngB based on homology to EngA, one of several other GTPases of ribosome biogenesis. Cutoffs as set find essentially all bacterial members, but also identify large numbers of eukaryotic (probably organellar) sequences. This protein is found in about 80 percent of bacterial genomes.
+RN  [1]
+RM  PMID:17981968
+RT  Interactions of an essential Bacillus subtilis GTPase, YsxC, with ribosomes.
+RA  Wicker-Planquart C, Foucher AE, Louwagie M, Britton RA, Jault JM
+RL  J Bacteriol. 2008 Jan;190(2):681-90.

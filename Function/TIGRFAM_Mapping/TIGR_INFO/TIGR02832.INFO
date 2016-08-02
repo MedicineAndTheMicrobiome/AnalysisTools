@@ -1,0 +1,23 @@
+ID  spo_yunB
+AC  TIGR02832
+DE  sporulation protein YunB
+AU  Haft DH
+TC  111.90 111.90
+NC  72.40 72.40
+AL  muscle
+IT  equivalog
+EN  sporulation protein YunB
+GS  yunB
+TP  TIGRFAMs
+CC  A comparative genome analysis of all sequenced genomes of shows a number of proteins conserved strictly among the endospore-forming subset of the Firmicutes. Mutation of this sigma E-regulated gene, designated yunB, has been shown to cause a sporulation defect.
+RN  [1]
+RM  16311624
+RT  Life in Hot Carbon Monoxide: The Complete Genome Sequence of Carboxydothermus hydrogenoformans Z-2901.
+RA  Wu M, Ren Q, Durkin AS, Daugherty SC, Brinkac LM, Dodson RJ, Madupu R, Sullivan SA, Kolonay JF, Nelson WC, Tallon LJ, Jones KM, Ulrich LE,
+Gonzalez JM, Zhulin IB, Robb FT, Eisen JA.
+RL  2005 Nov 25;1(5):e65
+RN  [2]
+RM  12662922
+RT  The sigmaE regulon and the identification of additional sporulation genes in Bacillus subtilis.
+RA  Eichenberger P, Jensen ST, Conlon EM, van Ooij C, Silvaggi J, Gonzalez-Pastor JE, Fujita M, Ben-Yehuda S, Stragier P, Liu JS, Losick R.
+RL  J Mol Biol. 2003 Apr 11;327(5):945-72.

@@ -1,0 +1,12 @@
+ID  incFII_RepA
+AC  TIGR03474
+DE  incFII family plasmid replication initiator RepA
+AU  Haft DH
+TC  446.90 446.90
+NC  58.15 58.15
+AL  muscle
+IT  equivalog
+EN  incFII family plasmid replication initiator RepA
+GS  repA
+TP  TIGRFAMs
+CC  Members of this protein are the plasmid replication initiator RepA of incFII (plasmid incompatibility group F-II) plasmids. R1 and R100 are plasmids in this group. Immediately upstream of repA is found tap, a leader peptide of about 24 amino acids, often not assigned as a gene in annotated plasmid sequences. Note that other, non-homologous plasmid replication proteins share the gene symbol (repA) and similar names (plasmid replication protein RepA).

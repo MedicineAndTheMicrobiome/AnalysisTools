@@ -1,0 +1,15 @@
+ID  gentisate_1_2
+AC  TIGR02272
+DE  gentisate 1,2-dioxygenase
+AU  Haft DH
+TC  442.10 442.10
+NC  225.95 225.95
+AL  clustalw_manual
+IT  equivalog
+EN  gentisate 1,2-dioxygenase
+GS  gtdA
+EC  1.13.11.4
+TP  TIGRFAMs
+CC  This family consists of gentisate 1,2-dioxygenases. This ring-opening enzyme acts in salicylate degradation that goes via gentisate rather than via catechol. It converts gentisate to maleylpyruvate. Some putative gentisate 1,2-dioxygenases are excluded by a relatively high trusted cutoff score because they are too closely related to known examples of 1-hydroxy-2-naphthoate dioxygenase. Therefore some homologs may be bona fide gentisate 1,2-dioxygenases even if they score below the given cutoffs.
+DR  EXPERIMENTAL; GB|BAA23262.1; Nocardioides sp.
+DR  EXPERIMENTAL; GB|AAD49427.1; Pseudomonas alcaligenes

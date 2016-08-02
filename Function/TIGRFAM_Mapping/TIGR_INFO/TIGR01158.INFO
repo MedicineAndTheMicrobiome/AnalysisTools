@@ -1,0 +1,22 @@
+ID  SUI1_rel
+AC  TIGR01158
+DE  putative translation initiation factor SUI1
+AU  Haft DH
+TC  111.65 111.65
+NC  64.25 64.25
+AL  clustalw
+IT  hypoth_equivalog
+EN  translation initation factor SUI1, putative, prokaryotic
+GS  yciH
+TP  TIGRFAMs
+CC  This family of archaeal and bacterial proteins is homologous to the eukaryotic translation intiation factor SUI1 involved in directing the ribosome to the proper start site of translation by functioning in concert with eIF-2 and the initiator tRNA-Met.
+RN  [1]
+RM  10497266
+RT  A phylogenetic approach to target selection for structural genomics: solution structure of YciH.
+RA  Cort JR, Koonin EV, Bash PA, Kennedy MA
+RL  Nucleic Acids Res 1999 Oct 15;27(20):4018-27
+RN  [2]
+RT  Universally conserved translation initiation factors.
+RA  Kyrpides NC, Woese CR
+RL  Proc Natl Acad Sci U S A 1998 Jan 6;95(1):224-8
+DR  HAMAP; MF_00604; 31 of 35

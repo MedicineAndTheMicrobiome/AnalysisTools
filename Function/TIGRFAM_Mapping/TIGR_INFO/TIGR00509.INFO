@@ -1,0 +1,14 @@
+ID  bisC_fam
+AC  TIGR00509
+DE  molybdopterin guanine dinucleotide-containing S/N-oxide reductases
+AU  Haft DH
+TC  1017.55 1017.55
+NC  232.15 232.15
+IT  subfamily
+EN  molybdopterin guanine dinucleotide-containing S/N-oxide reductases
+TP  TIGRFAMs
+CC  This enzyme family shares sequence similarity and a requirement for a molydenum cofactor as the only prosthetic group. The form of the cofactor is a single molybdenum atom coordinated by two molybdopterin guanine dinucleotide molecules. Members of the family include biotin sulfoxide reductase, dimethylsulfoxide reductase, and trimethylamine-N-oxide reductase, although a single member may show all those activities and related activities; it may not be possible to resolve the primary function for members of this family by sequence comparison alone. A number of similar molybdoproteins in which the N-terminal region contains a CXXXC motif and may bind an iron-sulfur cluster are excluded from this set, including formate dehydrogenases and nitrate reductases. Also excluded is the A chain of a heteromeric, anaerobic DMSO reductase, which also contains the CXXXC motif.
+RM  97166177
+RT  Biotin sulfoxide reductase. Heterologous expression and characterization of a functional molybdopterin guanine dinucleotide-containing enzyme.
+RA  Pollock VV, Barber MJ
+RL  J Biol Chem 1997 Feb 7;272(6):3355-62

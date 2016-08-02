@@ -1,0 +1,11 @@
+ID  casT3_TIGR04423
+AC  TIGR04423
+DE  CRISPR type III-associated protein, TIGR04423 family
+AU  Haft DH
+TC  40.00 40.00
+NC  25.00 25.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  CRISPR type III-associated protein, TIGR04423 family
+TP  TIGRFAMs
+CC  Members of this protein family occur only in species with CRISPR systems, in the context of type III systems that resemble type III-A (MTUBE) and III-B (the RAMP module). It occurs in several species of Prevotella, Helicobacter, Campylobacter, and Bacteroides.

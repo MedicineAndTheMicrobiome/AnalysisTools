@@ -1,0 +1,16 @@
+ID  CXXX_rpt_assoc
+AC  TIGR04116
+DE  CXXX repeat peptide modification system protein
+AU  Haft DH
+TC  50.00 50.00
+NC  27.00 27.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  CXXX repeat peptide modification system protein
+TP  TIGRFAMs
+CC  Members of this protein family occur strictly in the presence of a peptide modification radical SAM enzyme described by model TIGR04115 and some small peptide in which, for a stretch, every fourth amino acid is Cys. Cysteine residues usually are flanked by residues with sterically small side chains, as with many radical SAM-modified peptides. Many of the latter are recognized by model TIGR04114.
+RN  [1]
+RM  PMID:21478363 
+RT  Biological systems discovery in silico: radical S-adenosylmethionine protein families and their target peptides for posttranslational modification. 
+RA  Haft DH, Basu MK 
+RL  J Bacteriol. 2011 Jun;193(11):2745-55.

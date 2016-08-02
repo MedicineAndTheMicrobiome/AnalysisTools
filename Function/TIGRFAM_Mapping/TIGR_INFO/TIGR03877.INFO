@@ -1,0 +1,11 @@
+ID  thermo_KaiC_1
+AC  TIGR03877
+DE  KaiC domain protein, Ph0284 family
+AU  Haft DH
+TC  307.25 307.25
+NC  303.45 303.45
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  KaiC domain protein, Ph0284 family
+TP  TIGRFAMs
+CC  Members of this family contain a single copy of the KaiC domain (PF06745) that occurs in two copies of the circadian clock protein kinase KaiC itself. Members occur primarily in thermophilic archaea and in Thermotoga.

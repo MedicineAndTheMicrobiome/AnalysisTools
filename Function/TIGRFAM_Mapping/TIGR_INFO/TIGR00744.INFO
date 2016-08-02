@@ -1,0 +1,15 @@
+ID  ROK_glcA_fam
+AC  TIGR00744
+DE  ROK family protein (putative glucokinase)
+AU  Haft DH
+TC  260.35 260.35
+NC  178.90 178.90
+AL  msa_ncbi
+IT  subfamily
+EN  ROK family protein (putative glucokinase)
+TP  TIGRFAMs
+CC  This HMM models one branch of the ROK superfamily of proteins. The three members of the seed alignment for this HMM all have experimental evidence for activity as glucokinase, but the set of related proteins is crowded with paralogs of different or unknown function. Proteins scoring above the trusted_cutoff will show strong similarity to at least one known glucokinase and may be designated as putative glucokinases. However, definitive identification of glucokinases should be done only with extreme caution.
+RM  95039896
+RT  Evolutionary relationships between sugar kinases and transcriptional repressors in bacteria.
+RA  Titgemeyer F, Reizer J, Reizer A, Saier MH Jr
+RL  Microbiology 1994 Sep;140 ( Pt 9):2349-54

@@ -1,0 +1,11 @@
+ID  tail_tube
+AC  TIGR01611
+DE  phage major tail tube protein
+AU  Haft DH, Fouts DE, Sunshine J
+TC  102.75 102.75
+NC  33.95 33.95
+AL  clustalw
+IT  equivalog
+EN  phage contractile tail tube protein, P2 family
+TP  TIGRFAMs
+CC  The tails of some phage are contractile. This HMM represents the tail tube, or tail core, protein of the contractile tail of phage P2, and homologous proteins from additional phage.

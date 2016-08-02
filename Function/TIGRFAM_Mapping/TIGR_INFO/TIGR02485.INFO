@@ -1,0 +1,17 @@
+ID  CobZ_N-term
+AC  TIGR02485
+DE  precorrin 3B synthase CobZ
+AU  Selengut J
+TC  372.55 372.55
+NC  180.55 180.55
+AL  clustalw
+IT  hypoth_equivalog
+EN  precorrin 3B synthase CobZ
+GS  cobZ
+TP  TIGRFAMs
+CC  CobZ is essential for cobalamin biosynthesis (by knockout of the R. capsulatus gene [1]) and is complemented by the characterized precorrin 3B synthase CobG.  The enzyme has been shown to contain flavin, heme and Fe-S cluster cofactors and is believed to require dioxygen as a substrate.  This model identifies the N-terminal portion of the R. capsulatus gene which, in other species exists as a separate protein.  The C-terminal portion is homologous to the 2-component signal transduction system protein CitB (TIGR02484).
+RN  [1]
+RM  PMID: 15525640
+RT  Identification and characterization of a novel vitamin B12 (cobalamin) biosynthetic enzyme (CobZ) from Rhodobacter capsulatus, containing flavin, heme, and Fe-S cofactors.
+RA  McGoldrick HM, Roessner CA, Raux E, Lawrence AD, McLean KJ, Munro AW, Santabarbara S, Rigby SE, Heathcote P, Scott AI, Warren MJ.
+RL  J Biol Chem. 2005 Jan 14;280(2):1086-94. Epub 2004 Nov 03.

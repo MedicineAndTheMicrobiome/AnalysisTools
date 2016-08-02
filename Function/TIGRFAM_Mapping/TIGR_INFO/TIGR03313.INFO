@@ -1,0 +1,21 @@
+ID  Se_sel_red_Mo
+AC  TIGR03313
+DE  probable selenate reductase, molybdenum-binding subunit
+AU  Haft DH
+TC  1101.90 1101.90
+NC  526.50 526.50
+AL  muscle
+IT  hypoth_equivalog
+EN  probable selenate reductase, molybdenum-binding subunit
+TP  TIGRFAMs
+CC  Our comparative genomics suggests this protein family to be a subunit of a selenium-dependent molybdenum hydroxylase, although the substrate is not specified.  This protein is suggested by Bebien, et al., to be the molybdenum-binding subunit of a molydbopterin-containing selenate reductase.  Xi, et al, however, show that mutation of this gene in E. coli conferred sensitivity to adenine, suggesting a defect in purine interconversion. This finding, plus homology of nearby genes in a 23-gene purine catabolism region in E. coli to xanthine dehydrogase subunits suggests xanthine dehydrogenase activity.
+RN  [1]
+RM  PMID: 12480890
+RT  Involvement of a putative molybdenum enzyme in the reduction of selenate by Escherichia coli.
+RA  Bebien M, Kirsch J, Mejean V, Vermeglio A
+RL  Microbiology. 2002 Dec;148(Pt 12):3865-72.
+RN  [2]
+RM  PMID: 10986234
+RT  Purine catabolism in Escherichia coli and function of xanthine dehydrogenase in purine salvage.
+RA  Xi H, Schneider BL, Reitzer L
+RL  J Bacteriol. 2000 Oct;182(19):5332-41.

@@ -1,0 +1,12 @@
+ID  V_ATP_synt_F
+AC  TIGR01101
+DE  V-type ATPase, F subunit
+AU  Ujwal ML, Paulsen IT
+TC  90.25 90.25
+NC  57.55 57.55
+AL  clustalw
+IT  equivalog
+EN  vacuolar ATP synthase F subunit
+EC  3.6.3.14
+TP  TIGRFAMs
+CC  This model describes the vacuolar ATP synthase F subunit (14 kDa subunit) in eukaryotes. In some archaeal species this protein subunit is referred as G subunit

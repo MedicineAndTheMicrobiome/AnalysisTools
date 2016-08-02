@@ -1,0 +1,18 @@
+ID  phageshock_pspC
+AC  TIGR02978
+DE  phage shock protein C
+AU  Haft DH
+TC  104.00 104.00
+NC  71.35 71.35
+AL  muscle
+IT  equivalog
+EN  phage shock protein C
+GS  pspC
+TP  TIGRFAMs
+CC  All members of this protein family are the phage shock protein PspC. These proteins contain a PspC domain, as do other members of the larger family of proteins described by Pfam model PF04024. The phage shock regulon is restricted to the Proteobacteria and somewhat sparsely distributed there. It is expressed, under positive control of a sigma-54-dependent transcription factor, PspF, which binds and is modulated by PspA. Stresses that induce the psp regulon include phage secretin overexpression, ethanol, heat shock, and protein export defects.
+DR  PFAM; PF04024; PspC domain
+RN  [1]
+RM  PMID: 16468999
+RT  PspB and PspC of Yersinia enterocolitica are dual function proteins: regulators and effectors of the phage-shock-protein response.
+RA  Maxson ME, Darwin AJ
+RL  Mol Microbiol. 2006 Mar;59(5):1610-23.

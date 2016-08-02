@@ -1,0 +1,12 @@
+ID  WPE_wolbac
+AC  TIGR02697
+DE  Wolbachia palindromic element domain
+AU  Haft DH
+TC  27.55 27.55
+NC  27.30 27.30
+AL  clustalw_manual
+IT  domain
+EN  Wolbachia palindromic element (WPE) domain
+TP  TIGRFAMs
+CC  This domain conceptually resembles TIGR01045, the Rickettsial palindromic element (RPE) domain. In both cases, a protein-coding palindromic element spreads through a genome, inserting usually in protein-coding regions. The additional protein coding sequence is thought to allow function of the host protein because of location in surface-exposed regions of  the protein structure. Note that this model appears to work better in fragment mode.
+DR  HAMAP; MF_02005; 1 of 47

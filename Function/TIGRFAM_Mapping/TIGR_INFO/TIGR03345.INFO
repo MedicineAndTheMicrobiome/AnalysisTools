@@ -1,0 +1,17 @@
+ID  VI_ClpV1
+AC  TIGR03345
+DE  type VI secretion ATPase, ClpV1 family
+AU  Haft DH
+TC  884.95 884.95
+NC  881.25 881.25
+AL  muscle_manual
+IT  equivalog
+EN  type VI secretion ATPase, ClpV1 family
+GS  clpV
+TP  TIGRFAMs
+CC  Members of this protein family are homologs of ClpB, an ATPase associated with chaperone-related functions. These ClpB homologs, designated ClpV1, are a key component of the bacterial pathogenicity-associated type VI secretion system.
+RN  [1]
+RM  PMID: 16763151
+RT  A virulence locus of Pseudomonas aeruginosa encodes a protein secretion apparatus.
+RA  Mougous JD, Cuff ME, Raunser S, Shen A, Zhou M, Gifford CA, Goodman AL, Joachimiak G, Ordonez CL, Lory S, Walz T, Joachimiak A, Mekalanos JJ
+RL  Science. 2006 Jun 9;312(5779):1526-30.

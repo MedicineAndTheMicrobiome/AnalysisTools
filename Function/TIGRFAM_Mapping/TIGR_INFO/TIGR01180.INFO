@@ -1,0 +1,11 @@
+ID  aman2_put
+AC  TIGR01180
+DE  putative alpha-1,2-mannosidase
+AU  Haft DH, Wu D
+TC  249.55 249.55
+NC  168.70 168.70
+AL  clustalw
+IT  subfamily
+EN  alpha-1,2-mannosidase, putative
+TP  TIGRFAMs
+CC  The identification of members of this family as putative alpha-1,2-mannosidases is based on an unpublished characterization of the aman2 gene in Bacillus sp. M-90 by Maruyama,Y., Nakajima,M. and Nakajima,T. (Genbank accession BAA76709, pid g4587313).  Most members of this family appear to have signal sequences. Members from the dental pathogen Porphyromonas gingivalis have been described as immunoreactive with periodontitis patient serum.

@@ -1,0 +1,18 @@
+ID  gln_synth_III
+AC  TIGR03105
+DE  glutamine synthetase, type III
+AU  Haft DH
+TC  469.60 469.60
+NC  446.30 446.30
+AL  muscle
+IT  equivalog
+EN  glutamine synthetase, type III
+GS  glnT
+EC  6.3.1.2
+TP  TIGRFAMs
+CC  This family consists of the type III isozyme of glutamine synthetase, originally described in Rhizobium meliloti, where types I and II also occur.
+RN  [1]
+RM  PMID: 8093245
+RT  Isolation and characterization of a novel glutamine synthetase from Rhizobium meliloti.
+RA  Shatters RG, Liu Y, Kahn ML
+RL  J Biol Chem. 1993 Jan 5;268(1):469-75.

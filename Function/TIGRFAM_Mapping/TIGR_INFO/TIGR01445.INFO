@@ -1,0 +1,13 @@
+ID  intein_Nterm
+AC  TIGR01445
+DE  intein N-terminal splicing region
+AU  Haft DH
+TC  24.50 24.50
+NC  8.55 8.55
+AL  manual
+IT  domain
+EN  intein N-terminal splicing region
+TP  TIGRFAMs
+CC  This model is based on interated search results, starting with a curated collection of intein N-terminal splicing regions from InBase, the New England Biolabs Intein Database, as presented on its web site. It is designed to recognize inteins but not the related region of the sonic hedgehog protein.
+DR  URL; http://www.neb.com/inteins/int_motifs_splice.html
+DR  HAMAP; MF_01509; 2 of 38

@@ -1,0 +1,19 @@
+ID  XPRTase
+AC  TIGR01744
+DE  xanthine phosphoribosyltransferase
+AU  Haft DH
+TC  164.45 164.45
+NC  78.20 78.20
+AL  clustalw_manual
+IT  equivalog
+EN  xanthine phosphoribosyltransferase
+GS  xpt
+EC  2.4.2.22
+TP  TIGRFAMs
+CC  This HMM represent a xanthine-specific phosphoribosyltransferase of Bacillus subtilis and closely related proteins from other species, mostly from other Gram-positive bacteria. The adjacent gene is a xanthine transporter; B. subtilis can import xanthine for the purine salvage pathway or for catabolism to obtain nitrogen.
+RM  9098051
+RT  Xanthine metabolism in Bacillus subtilis: characterization of the xpt-pbuX operon and evidence for purine- and nitrogen-controlled expression of genes involved in xanthine salvage and catabolism.
+RA  Christiansen LC, Schou S, Nygaard P, Saxild HH.
+RL  J Bacteriol 1997 Apr;179(8):2540-50
+DR  EXPERIMENTAL; SP|P42085; Bacillus subtilis
+DR  HAMAP; MF_01184; 124 of 125

@@ -1,0 +1,12 @@
+ID  FlhA
+AC  TIGR01398
+DE  flagellar biosynthesis protein FlhA
+AU  Haft DH
+TC  772.10 772.10
+NC  660.90 660.90
+AL  clustalw
+IT  equivalog
+EN  flagellar biosynthesis protein FlhA
+GS  flhA
+TP  TIGRFAMs
+CC  This HMM describes flagellar biosynthesis protein FlhA, one of a large number of genes associated with the biosynthesis of functional bacterial flagella. Homologs of many such proteins, including FlhA, function in type III protein secretion systems. A separate model describes InvA (Salmonella enterica), LcrD (Yersinia enterocolitica), HrcV (Xanthomonas), etc., all of which score below the noise cutoff for this model.

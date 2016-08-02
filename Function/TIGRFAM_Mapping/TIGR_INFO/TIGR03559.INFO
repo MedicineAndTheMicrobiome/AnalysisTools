@@ -1,0 +1,16 @@
+ID  F420_Rv3520c
+AC  TIGR03559
+DE  probable F420-dependent oxidoreductase, Rv3520c family
+AU  Haft DH
+TC  335.00 335.00
+NC  221.10 221.10
+AL  muscle_manual
+IT  subfamily
+EN  probable F420-dependent oxidoreductase, Rv3520c family
+TP  TIGRFAMs
+CC  Members of this protein family are predicted to be oxidoreductases dependent on coenzyme F420. The family includes a single member in Mycobacterium tuberculosis (Rv3520c/MT3621) but four in Mycobacterium smegmatis. Prediction that this family is F420-dependent is based primarily on Partial Phylogenetic Profiling vs. F420 biosynthesis.
+RN  [1]
+RM  PMID:20675471 
+RT  Unexpected abundance of coenzyme F(420)-dependent enzymes in Mycobacterium tuberculosis and other actinobacteria. 
+RA  Selengut JD, Haft DH 
+RL  J Bacteriol. 2010 Nov;192(21):5788-98.

@@ -1,0 +1,12 @@
+ID  violacein_E
+AC  TIGR03650
+DE  violacein biosynthesis enzyme VioE
+AU  Haft DH
+TC  177.05 177.05
+NC  173.45 173.45
+AL  muscle_manual
+IT  equivalog
+EN  violacein biosynthesis enzyme VioE
+GS  vioE
+TP  TIGRFAMs
+CC  This enzyme catalyzes the third step in violacein biosynthesis from a pair of Trp residues, as in Chromobacterium violaceum, but the first step that distinguishes that pathway from staurosporine (an indolocarbazole antibiotic) biosynthesis.

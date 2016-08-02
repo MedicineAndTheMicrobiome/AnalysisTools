@@ -1,0 +1,14 @@
+ID  eno
+AC  TIGR01060
+DE  phosphopyruvate hydratase
+AU  Haft DH
+TC  443.85 443.85
+NC  215.00 215.00
+AL  clustalw_manual
+IT  equivalog
+EN  phosphopyruvate hydratase
+GS  eno
+EC  4.2.1.11
+TP  TIGRFAMs
+CC  Alternate name: enolase
+DR  HAMAP; MF_00318; 568 of 581

@@ -1,0 +1,17 @@
+ID  seadorna_RNAP
+AC  TIGR04234
+DE  RNA-directed RNA polymerase
+AU  Haft DH
+TC  150.00 150.00
+NC  35.00 35.00
+AL  muscle_manual
+IT  equivalog
+EN  seadornavirus RNA-directed RNA polymerase
+EC  2.7.7.48
+TP  TIGRFAMs
+CC  Members of this protein family are the seadornavirus VP1 protein, the RNA-directed RNA polymerase.
+RN  [1]
+RM  PMID:10811934 
+RT  Complete sequence determination and genetic analysis of Banna virus and Kadipiro virus: proposal for assignment to a new genus (Seadornavirus) within the family Reoviridae. 
+RA  Attoui H, Billoir F, Biagini P, de Micco P, de Lamballerie X 
+RL  J Gen Virol. 2000 Jun;81(Pt 6):1507-15.

@@ -1,0 +1,16 @@
+ID  adm_rel
+AC  TIGR01431
+DE  adenosine deaminase-related growth factor
+AU  Haft DH
+TC  315.00 315.00
+NC  139.50 139.50
+AL  clustalw_manual
+IT  subfamily
+EN  adenosine deaminase-related growth factor
+TP  TIGRFAMs
+CC  Members of this family have been described as secreted proteins with growth factor activity and regions of adenosine deaminase homology in insects, mollusks, and vertebrates.
+DR  PFAM; PF00962; A_deaminase
+RM  10903440
+RT  A family of genes with growth factor and adenosine deaminase similarity are preferentially expressed in the salivary glands of Glossina m. morsitans.
+RA  Li S, Aksoy S.
+RL  Gene 2000 Jul 11;252(1-2):83-93

@@ -1,0 +1,17 @@
+ID  urea_carbox
+AC  TIGR02712
+DE  urea carboxylase
+AU  Haft DH
+TC  1303.85 1303.85
+NC  655.90 655.90
+AL  clustalw
+IT  equivalog
+EN  urea carboxylase
+GS  uca
+EC  6.3.4.6
+TP  TIGRFAMs
+CC  Members of this family are ATP-dependent urea carboxylase, including characterized members from Oleomonas sagaranensis (alpha class Proteobacterium) and yeasts such as Saccharomyces cerevisiae. The allophanate hydrolase domain of the yeast enzyme is not included in this model and is represented by an adjacent gene in Oleomonas sagaranensis. The fusion of urea carboxylase and allophanate hydrolase is designated urea amidolyase. The enzyme from Oleomonas sagaranensis was shown to be highly active on acetamide and formamide as well as urea.
+RM  15090492
+RT  Enzymatic characterization of a prokaryotic urea carboxylase.
+RA  Kanamori T, Kanou N, Atomi H, Imanaka T.
+RL  J Bacteriol. 2004 May;186(9):2532-9.

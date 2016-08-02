@@ -1,0 +1,11 @@
+ID  F420-0_ABCperm
+AC  TIGR03869
+DE  proposed F420-0 ABC transporter, permease protein
+AU  Selengut J
+TC  437.35 437.35
+NC  437.05 437.05
+AL  muscle
+IT  hypoth_equivalog
+EN  proposed F420-0 ABC transporter, permease protein
+TP  TIGRFAMs
+CC  his small clade of ABC-type transporter permease protein components is found as a three gene cassette along with a periplasmic substrate-binding protein (TIGR03868) and an ATPase (TIGR03873).  The organisms containing this cassette are all Actinobacteria and all contain numerous genes requiring the coenzyme F420.  This model was defined based on five such organisms, four of which are lacking all F420 biosynthetic capability save the final side-chain polyglutamate attachment step (via the gene cofE: TIGR01916).  In Jonesia denitrificans DSM 20603 and marine actinobacterium PHSC20C1 this cassette is in an apparent operon with the cofE gene and, in PHSC20C1, also with an F420-dependent glucose-6-phosphate dehydrogenase (TIGR03554).  Based on these observations we propose that this permease protein is a component of a F420-0 (that is, F420 lacking only the polyglutamate tail) transporter.

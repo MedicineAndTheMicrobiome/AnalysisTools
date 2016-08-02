@@ -1,0 +1,23 @@
+ID  benzo_boxA
+AC  TIGR03224
+DE  benzoyl-CoA oxygenase/reductase, BoxA protein
+AU  Haft DH
+TC  459.20 459.20
+NC  260.80 260.80
+AL  muscle
+IT  equivalog
+EN  benzoyl-CoA oxygenase/reductase, BoxA protein
+GS  boxA
+EC  1.14.12.21
+TP  TIGRFAMs
+CC  Members of this protein family are BoxA, the A component of the BoxAB benzoyl-CoA oxygenase/reductase. This oxygen-requiring enzyme acts in an aerobic pathway of benzoate catabolism via coenzyme A ligation. BoxA is a homodimeric iron-sulphur-flavoprotein and acts as an NADPH-dependent reductase for BoxB.
+RN  [1]
+RM  PMID: 15458418
+RT  New enzymes involved in aerobic benzoate metabolism in Azoarcus evansii.
+RA  Zaar A, Gescher J, Eisenreich W, Bacher A, Fuchs G
+RL  Mol Microbiol. 2004 Oct;54(1):223-38.
+RN  [2]
+RM  PMID: 15916608
+RT  Aerobic benzoyl-CoA catabolic pathway in Azoarcus evansii: studies on the non-oxygenolytic ring cleavage enzyme.
+RA  Gescher J, Eisenreich W, Worth J, Bacher A, Fuchs G
+RL  Mol Microbiol. 2005 Jun;56(6):1586-600.

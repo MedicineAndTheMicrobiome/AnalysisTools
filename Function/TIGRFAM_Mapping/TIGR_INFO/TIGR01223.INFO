@@ -1,0 +1,16 @@
+ID  Pmev_kin_anim
+AC  TIGR01223
+DE  phosphomevalonate kinase
+AU  Haft DH
+TC  188.15 188.15
+NC  31.35 31.35
+AL  clustalw_manual
+IT  equivalog
+EN  phosphomevalonate kinase, animal type
+EC  2.7.4.2
+TP  TIGRFAMs
+CC  This enzyme is part of the mevalonate pathway, one of two alternative pathways for the biosynthesis of IPP. In an example of nonorthologous gene displacement, two different types of phosphomevalonate kinase are found. One is this type, found in animals. The other is the ERG8 type, found in plants and fungi (TIGR01219) and in Gram-positive bacteria (TIGR01220).
+RM  11243736
+RT  Nonorthologous gene displacement of phosphomevalonate kinase.
+RA  Houten SM, Waterham HR.
+RL  Mol Genet Metab 2001 Mar;72(3):273-6

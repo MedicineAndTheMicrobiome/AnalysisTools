@@ -1,0 +1,17 @@
+ID  GRASP_targ
+AC  TIGR04186
+DE  putative ATP-grasp target RiPP
+AU  Haft DH
+TC  25.00 25.00
+NC  21.00 21.00
+AL  manual
+IT  domain
+EN  putative ATP-grasp target RiPP
+GS  tgmA
+TP  TIGRFAMs
+CC  A RiPP is a ribosomally produced, post-translationally modified peptide. This family regularly occurs next to ATP-grasp enzymes related to those of microviridin maturation and next to a methyltransferase.
+RN  [1]
+RM  PMID:20023723 
+RT  Amidoligases with ATP-grasp, glutamine synthetase-like and acetyltransferase-like domains: synthesis of novel metabolites and peptide modifications of proteins. 
+RA  Iyer LM, Abhiman S, Maxwell Burroughs A, Aravind L 
+RL  Mol Biosyst. 2009 Dec;5(12):1636-60. doi: 10.1039/b917682a.

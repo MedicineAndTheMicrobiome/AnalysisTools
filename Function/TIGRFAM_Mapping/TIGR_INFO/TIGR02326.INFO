@@ -1,0 +1,14 @@
+ID  transamin_PhnW
+AC  TIGR02326
+DE  2-aminoethylphosphonate--pyruvate transaminase
+AU  Haft DH
+TC  400.80 400.80
+NC  339.35 339.35
+AL  clustalw
+IT  equivalog
+EN  2-aminoethylphosphonate--pyruvate transaminase
+GS  phnW
+EC  2.6.1.37
+TP  TIGRFAMs
+CC  Members of this family are 2-aminoethylphosphonate--pyruvate transaminase. This enzyme acts on the most common type of naturally occurring phosphonate. It interconverts 2-aminoethylphosphonate plus pyruvate with 2-phosphonoacetaldehyde plus alanine. The enzyme phosphonoacetaldehyde hydrolase (EC 3.11.1.1), usually encoded by an adjacent gene, then cleaves the C-P bond of phosphonoacetaldehyde, adding water to yield acetaldehyde plus inorganic phosphate. Species with this pathway generally have an identified phosphonate ABC transporter but do not also have the multisubunit C-P lysase complex as found in Escherichia coli.
+DR  HAMAP; MF_01376; 56 of 56

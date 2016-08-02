@@ -1,0 +1,19 @@
+ID  flgA_cterm
+AC  TIGR03170
+DE  flagella basal body P-ring formation protein FlgA
+AU  Haft DH
+TC  54.65 54.65
+NC  45.75 45.75
+AL  muscle
+IT  equivalog_domain
+EN  flagella basal body P-ring formation protein FlgA
+GS  flgA
+TP  TIGRFAMs
+CC  This model describes a conserved C-terminal region of the flagellar basal body P-ring formation protein FlgA. This sequence region contains a SAF domain, now described by Pfam model PF08666.
+DR; PFAM; PF08666; SAF domain
+DR  SWISSPROT; SP|P40131; Salmonella typhimurium
+RN  [1]
+RM  PMID: 8200538
+RT  Sequence analysis of the flgA gene and its adjacent region in Salmonella typhimurium, and identification of another flagellar gene, flgN.
+RA  Kutsukake K, Okada T, Yokoseki T, Iino T
+RL  Gene. 1994 May 27;143(1):49-54.

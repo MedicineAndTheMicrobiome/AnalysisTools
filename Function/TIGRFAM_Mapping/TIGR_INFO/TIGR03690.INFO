@@ -1,0 +1,23 @@
+ID  20S_bact_beta
+AC  TIGR03690
+DE  proteasome, beta subunit
+AU  Haft DH
+TC  191.90 191.90
+NC  118.05 118.05
+AL  muscle_manual
+IT  equivalog
+EN  proteasome, beta subunit, bacterial type
+GS  prcB
+EC  3.4.25.1
+TP  TIGRFAMs
+CC  Members of this family are the beta subunit of the 20S proteasome as found in Actinobacteria such as Mycobacterium, Rhodococcus, and Streptomyces. In Streptomyces, maturation during proteasome assembly was shown to remove a 53-amino acid propeptide. Most of the length of the propeptide is not included in this model.
+RN  [1]
+RM  PMID:9765579
+RT  The 20S proteasome of Streptomyces coelicolor.
+RA  Nagy I, Tamura T, Vanderleyden J, Baumeister W, De Mot R
+RL  J Bacteriol. 1998 Oct;180(20):5448-53.
+RN  [2]
+RM  PMID:16468985
+RT  Mycobacterium tuberculosis prcBA genes encode a gated proteasome with broad oligopeptide specificity.
+RA  Lin G, Hu G, Tsu C, Kunes YZ, Li H, Dick L, Parsons T, Li P, Chen Z, Zwickl P, Weich N, Nathan C
+RL  Mol Microbiol. 2006 Mar;59(5):1405-16.

@@ -1,0 +1,23 @@
+ID  oxalate_frc
+AC  TIGR03253
+DE  formyl-CoA transferase
+AU  Haft DH
+TC  504.20 504.20
+NC  371.30 371.30
+AL  clustalw
+IT  equivalog
+EN  formyl-CoA transferase
+GS  frc
+EC  2.8.3.16
+TP  TIGRFAMs
+CC  This enzyme, formyl-CoA transferase, transfers coenzyme A from formyl-CoA to oxalate. It forms a pathway, together with oxalyl-CoA decarboxylase, for oxalate degradation; decarboxylation by the latter gene regenerates formyl-CoA. The two enzymes typically are encoded by a two-gene operon.
+RN  [1]
+RM  PMID: 16517636
+RT  Transcriptional and functional analysis of oxalyl-coenzyme A (CoA) decarboxylase and formyl-CoA transferase genes from Lactobacillus acidophilus.
+RA  Azcarate-Peril MA, Bruno-Barcena JM, Hassan HM, Klaenhammer TR
+RL  Appl Environ Microbiol. 2006 Mar;72(3):1891-9.
+RN  [2]
+RM  PMID: 12844490
+RT  The crystal structure of the Escherichia coli YfdW gene product reveals a new fold of two interlaced rings identifying a wide family of CoA transferases.
+RA  Gruez A, Roig-Zamboni V, Valencia C, Campanacci V, Cambillau C
+RL  J Biol Chem. 2003 Sep 5;278(36):34582-6. Epub 2003 Jul 3.

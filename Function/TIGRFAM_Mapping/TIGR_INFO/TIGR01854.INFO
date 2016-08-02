@@ -1,0 +1,18 @@
+ID  lipid_A_lpxH
+AC  TIGR01854
+DE  UDP-2,3-diacylglucosamine diphosphatase
+AU  Haft DH
+TC  190.35 190.35
+NC  94.55 94.55
+AL  clustalw
+IT  equivalog
+EN  UDP-2,3-diacylglucosamine diphosphatase
+GS  lpxH
+EC  3.6.1.54
+TP  TIGRFAMs
+CC  This HMM represents LpxH, UDP-2,3-diacylglucosamine hydrolase, and essential enzyme in E. coli that catalyzes the fourth step in lipid A biosynthesis. Note that Pseudomonas aeruginosa has both a member of this family that shares this function and a more distant homolog, designated LpxH2, that does not. Many species that produce lipid A lack an lpxH gene in this family; some of those species have an lpxH2 gene instead, although for which the function is unknown.
+RM  12000771
+RT  Accumulation of the lipid A precursor UDP-2,3-diacylglucosamine in an Escherichia coli mutant lacking the lpxH gene.
+RA  Babinski KJ, Kanjilal SJ, Raetz CR.
+RL  J Biol Chem 2002 Jul 19;277(29):25947-56
+DR  HAMAP; MF_00575; 107 of 110

@@ -1,0 +1,16 @@
+ID  TIGR00302
+AC  TIGR00302
+DE  phosphoribosylformylglycinamidine synthase, purS protein
+AU  Haft DH, Loftus BJ
+TC  39.00 39.00
+NC  37.50 37.50
+AL  clustalw
+IT  equivalog
+EN  phosphoribosylformylglycinamidine synthase, purS protein
+GS  purS
+TP  TIGRFAMs
+CC  In species such as Bacillus subtilis in which FGAM synthetase is split into two ORFs purL and purQ, this small protein, previously called yexA, is required for FGAM synthetase activity. Although the article does not make it clear whether this is a subunit or an accessory protein, it is encoded as part of the operon, which suggests stochiometric amounts, = subunit.
+RM  10784038
+RT  The yexA gene product is required for phosphoribosylformylglycinamidine synthetase activity in Bacillus subtilis.
+RA  Saxild HH, Nygaard P.
+RL  Microbiology 2000 Apr;146 ( Pt 4):807-14

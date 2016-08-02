@@ -1,0 +1,55 @@
+ID  ATPase-IB1_Cu
+AC  TIGR01511
+DE  copper-translocating P-type ATPase
+AU  Selengut J
+TC  397.00 397.00
+NC  389.45 389.45
+AL  clustalw
+IT  equivalog
+EN  copper-(or silver)-translocating P-type ATPase
+EC  3.6.3.4
+TR  3.A.3.5.-
+TP  TIGRFAMs
+CC  This model describes the P-type ATPase primarily responsible for translocating copper ions accross biological membranes.  These transporters are found in prokaryotes and eukaryotes.  This model encompasses those species which pump copper ions out of cells or organelles (efflux pumps such as CopA of Escherichia coli [1]) as well as those which pump the ion into cells or organelles either for the purpose of supporting life in extremely low-copper environments (for example CopA of Enterococcus hirae [2]) or for the specific delivery of copper to a biological complex for which it is a necessary component (for example FixI of Bradyrhizobium japonicum, or CtaA and PacS of Synechocystis [3]).  The substrate specificity of these transporters may, to a varying degree, include silver ions (for example, CopA from Archaeoglobus fulgidus [4]).
+CC  Copper transporters from this family are well known as the genes which are mutated in two human disorders of copper metabolism, Wilson's and Menkes' diseases [5].
+CC  The sequences contributing to the seed of this model are all experimentally characterized.
+CC  The copper P-type ATPases have been characterized as Type IB based on a phylogenetic analysis which combines the copper-translocating ATPases with the cadmium-translocating species [6].  This HMM and that describing the cadmium-ATPases (TIGR01512) are well separated, and thus we further type the copper-ATPases as IB1 (and the cadmium-ATPases as IB2).
+CC  Several sequences which have not been characterized experimentally fall just below the cutoffs for both of these models (SP|Q9CCL1 from Mycobacterium leprae, GP|13816263 from Sulfolobus solfataricus, OMNI|NTL01CJ01098 from Campylobacter jejuni, OMNI|NTL01HS01687 from Halobacterium sp., GP|6899169 from Ureaplasma urealyticum and OMNI|HP1503  from Helicobacter pylori).
+CC  Accession PIR|A29576 from Enterococcus faecalis scores very high against this model, but yet is annotated as an "H+/K+ exchanging ATPase".  BLAST of this sequence does not hit anything else annotated in this way.  This error may come from the characterization paper published in 1987 [7].
+CC  Accession GP|7415611 from Saccharomyces cerevisiae appears to be mis-annotated as a cadmium resistance protein.
+CC  Accession OMNI|NTL01HS00542 from Halobacterium which scores above trusted for this model is annotated as "molybdenum-binding protein" although no evidence can be found for this classification.
+RN [1]
+RM PMID: 10639134
+RT CopA: An Escherichia coli Cu(I)-translocating P-type ATPase.
+RA Rensing C, Fan B, Sharma R, Mitra B, Rosen BP.
+RL Proc Natl Acad Sci U S A. 2000 Jan 18;97(2):652-6.
+RN [2]
+RM PMID: 8048974
+RT Primary structure of two P-type ATPases involved in copper homeostasis in Enterococcus hirae.
+RA Odermatt A, Suter H, Krapf R, Solioz M.
+RL J Biol Chem. 1993 Jun 15;268(17):12775-9.
+RN [3]
+RM PMID: 11264284
+RT Two Menkes-type atpases supply copper for photosynthesis in Synechocystis PCC 6803.
+RA Tottey S, Rich PR, Rondet SA, Robinson NJ.
+RL J Biol Chem. 2001 Jun 8;276(23):19999-20004.
+RN [4]
+RM PMID: 11756450
+RT Characterization of a thermophilic P-type Ag+/Cu+-ATPase from the extremophile Archaeoglobus fulgidus.
+RA Mandal AK, Cheung WD, Arguello JM.
+RL J Biol Chem. 2002 Mar 1;277(9):7201-8.
+RN [5]
+RM PMID: 8091505
+RT Wilson disease and Menkes disease: new handles on heavy-metal transport.
+RA Bull PC, Cox DW.
+RL Trends Genet 1994 Jul;10(7):246-52
+RN [6]
+RM PMID:9419228
+RT Evolution of Substrate Specificities in the P-type ATPase Superfamily.
+RA Axelsen KB, Palmgren, MG.
+RL J Mol Evol. 1998 Jan; 46(1): 84-101.
+RN [7]
+RM PMID: 2953719
+RT Cloning of the K+-ATPase of Streptococcus faecalis. Structural and evolutionary implications of its homology to the KdpB-protein of Escherichia coli.
+RA Solioz M, Mathews S, Furst P.
+RL J Biol Chem. 1987 May 25;262(15):7358-62.

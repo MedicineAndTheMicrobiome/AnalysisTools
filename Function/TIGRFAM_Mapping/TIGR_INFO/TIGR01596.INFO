@@ -1,0 +1,27 @@
+ID  cas3_HD
+AC  TIGR01596
+DE  CRISPR-associated endonuclease Cas3-HD
+AU  Haft DH
+TC  43.45 43.45
+NC  42.80 42.80
+AL  muscle_manual
+IT  equivalog_domain
+EN  CRISPR-associated endonuclease Cas3-HD
+EC  3.1.-.-
+TP  TIGRFAMs
+CC  CRISPR/Cas systems are widespread, mobile systems for host defense against invasive elements such as phage. In these systems, Cas3 designates one of the core proteins shared widely by multiple types of CRISPR/Cas system. This HMM represents an HD-like endonuclease that occurs either separately or as the N-terminal region of Cas3, the helicase-containing CRISPR-associated protein.
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=2003
+RN  [1]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005
+RN  [2]
+RM  11952905
+RT  Identification of genes that are associated with DNA repeats in prokaryotes.
+RA  Jansen R, Embden JD, Gaastra W, Schouls LM.
+RL  Mol Microbiol 2002 Mar;43(6):1565-75
+RN  [3]
+RM  PMID:19174159
+RT  Characterization of the endonuclease SSO2001 from Sulfolobus solfataricus P2.
+RA  Han D, Krauss G
+RL  FEBS Lett. 2009 Feb 18;583(4):771-6. Epub 2009 Jan 25.

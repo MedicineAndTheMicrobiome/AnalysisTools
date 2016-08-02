@@ -1,0 +1,16 @@
+ID  AbiV_defense
+AC  TIGR04498
+DE  abortive infection protein, AbiV family
+AU  Haft DH
+TC  27.00 26.00
+NC  23.00 23.00
+AL  muscle_manual
+IT  subfamily
+EN  abortive infection protein, AbiV family
+TP  TIGRFAMs
+CC  This family includes AbiV (abortive infection system V) from Lactococcus lactis, a phage resistance protein that causes certain phage infections to fail to lead to successful phage replication. Abortive infection mechanisms differ greatly. AbiV interacts directly with the protein SaV in phage p2 and blocks translation of phage proteins.
+RN  [1]
+RM  PMID:20851990 
+RT  Lactococcal abortive infection protein AbiV interacts directly with the phage protein SaV and prevents translation of phage proteins. 
+RA  Haaber J, Samson JE, Labrie SJ, Campanacci V, Cambillau C, Moineau S, Hammer K 
+RL  Appl Environ Microbiol. 2010 Nov;76(21):7085-92. doi: 10.1128/AEM.00093-10.

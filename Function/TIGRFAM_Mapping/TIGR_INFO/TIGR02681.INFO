@@ -1,0 +1,19 @@
+ID  phage_pRha
+AC  TIGR02681
+DE  phage regulatory protein, Rha family
+AU  Haft DH
+TC  45.95 45.95
+NC  37.20 37.20
+AL  clustalw_manual
+IT  subfamily
+EN  phage regulatory protein, rha family
+TP  TIGRFAMs
+CC  Members of this protein family are found in temperate phage and bacterial prophage regions. Members include the product of the rha gene of the lambdoid phage phi-80, a late operon gene. The presence of this gene interferes with infection of bacterial strains that lack integration host factor (IHF), which regulates the rha gene. It is suggested that pRha is a phage regulatory protein.
+RN  [1]
+RM  7768817
+RT  Identification of related genes in phages phi 80 and P22 whose products are inhibitory for phage growth in Escherichia coli IHF mutants.
+RL  J Bacteriol. 1995 Jun;177(11):3185-90.
+RN  [2]
+RT  The generalized transducing Salmonella bacteriophage ES18: complete genome sequence and DNA packaging strategy.
+RA  Casjens SR, Gilcrease EB, Winn-Stapley DA, Schicklmaier P, Schmieger H, Pedulla ML, Ford ME, Houtz JM, Hatfull GF, Hendrix RW.
+RL  J Bacteriol. 2005 Feb;187(3):1091-104.

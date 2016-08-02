@@ -1,0 +1,24 @@
+ID  pyridox_kin
+AC  TIGR00687
+DE  pyridoxal kinase
+AU  Haft DH, Loftus BJ
+TC  144.50 144.50
+NC  73.45 73.45
+AL  clustalw
+IT  equivalog
+EN  pyridoxal kinase
+EC  2.7.1.35
+TP  TIGRFAMs
+CC  E. coli has an enzyme PdxK that acts in vitro as a  pyridoxine/pyridoxal/pyridoxamine kinase, but mutants lacking PdxK activity retain a specific pyridoxal kinase, PdxY. PdxY acts in the salvage pathway of pyridoxal 5'-phosphate biosynthesis. Mammalian forms of pyridoxal kinase are more similar to PdxY than to PdxK. The PdxK isozyme is omitted from the seed alignment but scores above the trusted cutoff.
+CC  ThiD and related proteins form an outgroup.
+AL  clustalW
+RN  [1]
+RM  98196726
+RN  [2]
+RM  96291683
+DR  EXPERIMENTAL; EGAD|91884|EC1636; pdxY
+DR  EXPERIMENTAL; EGAD|30575|EC2418; pdxK
+DR  EXPERIMENTAL; GP|2773404|gb|AAB96794.1||AF041255
+DR  OUTGROUP; EGAD|21177|BS3795
+DR  OUTGROUP; EGAD|89357|HP0844
+DR  HAMAP; MF_01639; 57 of 58

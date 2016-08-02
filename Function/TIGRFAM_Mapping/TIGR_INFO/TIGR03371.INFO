@@ -1,0 +1,23 @@
+ID  cellulose_yhjQ
+AC  TIGR03371
+DE  cellulose synthase operon protein YhjQ
+AU  Haft DH
+TC  157.85 157.85
+NC  104.25 104.25
+AL  muscle_manual
+IT  equivalog
+EN  cellulose synthase operon protein YhjQ
+GS  yhjQ
+TP  TIGRFAMs
+CC  Members of this family are the YhjQ protein, found immediately upsteam of bacterial cellulose synthase (bcs) genes in a broad range of bacteria, including both copies of the bcs locus in Klebsiella pneumoniae. In several species it is seen clearly as part of the bcs operon. It is identified as a probable component of the bacterial cellulose metabolic process not only by gene location, but also by partial phylogenetic profiling, or Haft-Selengut algorithm (PMID:16930487), based on a bacterial cellulose biosynthesis genome property profile. Cellulose plays an important role in biofilm formation and structural integrity in some bacteria. Mutants in yhjQ in Escherichia coli, show altered morphology an growth, but the function of YhjQ has not yet been determined.
+DR  PFAM; PF01656; CobQ/CobB/MinD/ParA nucleotide binding domain
+RN  [1]
+RM  PMID: 12382054
+RT  The effect of a disrupted yhjQ gene on cellular morphology and cell growth in Escherichia coli.
+RA  Kim MK, Park SR, Cho SJ, Lim WJ, Ryu SK, An CL, Hong SY, Park YW, Kahng GG, Kim JH, Kim H, Yun HD
+RL  Appl Microbiol Biotechnol. 2002 Oct;60(1-2):134-8.
+RN  [2]
+RM  PMID: 16930487
+RT  Exopolysaccharide-associated protein sorting in environmental organisms: the PEP-CTERM/EpsH system. Application of a novel phylogenetic profiling heuristic.
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD
+RL  BMC Biol. 2006 Aug 24;4:29.

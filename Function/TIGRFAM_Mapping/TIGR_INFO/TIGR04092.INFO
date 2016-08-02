@@ -1,0 +1,17 @@
+ID  LTA_DltD
+AC  TIGR04092
+DE  D-alanyl-lipoteichoic acid biosynthesis protein DltD
+AU  Haft DH
+TC  150.00 150.00
+NC  125.00 125.00
+AL  muscle_manual
+IT  equivalog
+EN  D-alanyl-lipoteichoic acid biosynthesis protein DltD
+GS  dltD
+TP  TIGRFAMs
+CC  Members of this protein family are DltD, part of the DltABCD system widely distributed in the Firmicutes for D-alanylation of lipoteichoic acids. The most common form of LTA, as in Staphylococcus aureus, has a backbone of polyglycerolphosphate.
+RN  [1]
+RM  PMID:17434999 
+RT  Functional analysis of D-alanylation of lipoteichoic acid in the probiotic strain Lactobacillus rhamnosus GG. 
+RA  Perea Velez M, Verhoeven TL, Draing C, Von Aulock S, Pfitzenmaier M, Geyer A, Lambrichts I, Grangette C, Pot B, Vanderleyden J, De Keersmaecker SC 
+RL  Appl Environ Microbiol. 2007 Jun;73(11):3595-604. Epub 2007 Apr 13.

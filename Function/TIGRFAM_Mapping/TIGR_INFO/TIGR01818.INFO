@@ -1,0 +1,12 @@
+ID  ntrC
+AC  TIGR01818
+DE  nitrogen regulation protein NR(I)
+AU  Haft DH
+TC  558.60 558.60
+NC  484.60 484.60
+AL  clustalw_manual
+IT  equivalog
+EN  nitrogen regulation protein NR(I)
+GS  ntrC
+TP  TIGRFAMs
+CC  This HMM represents NtrC, a DNA-binding response regulator that is phosphorylated by NtrB and interacts with sigma-54. NtrC usually controls the expression of glutamine synthase, GlnA, and may be called GlnL, GlnG, etc.

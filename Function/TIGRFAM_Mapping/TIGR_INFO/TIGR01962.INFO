@@ -1,0 +1,14 @@
+ID  NuoD
+AC  TIGR01962
+DE  NADH dehydrogenase (quinone), D subunit
+AU  Haft DH
+TC  459.35 459.35
+NC  458.35 458.35
+AL  clustalw_manual
+IT  equivalog_domain
+EN  NADH dehydrogenase I, D subunit
+GS  nuoD
+EC  1.6.99.5
+TP  TIGRFAMs
+CC  This model recognizes specificially the D subunit of NADH dehydrogenase I complex. It excludes the related chain of NAD(P)H-quinone oxidoreductases from chloroplast and Synechocystis, where the quinone may be plastoquinone rather than ubiquinone. This subunit often appears as a C/D fusion.
+DR  HAMAP; MF_01359; 94 of 116

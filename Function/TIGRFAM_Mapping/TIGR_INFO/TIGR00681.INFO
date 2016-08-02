@@ -1,0 +1,19 @@
+ID  kdpC
+AC  TIGR00681
+DE  K+-transporting ATPase, C subunit
+AU  Loftus BJ, Haft DH
+TC  152.55 152.55
+NC  83.65 83.65
+AL  clustalw
+IT  equivalog
+EN  K+-transporting ATPase, C subunit
+GS  kdpC
+EC  3.6.3.12
+TP  TIGRFAMs
+CC  This chain has a single predicted transmembrane region near the amino end. It is part of a K+-transport ATPase that contains two other membrane-bound subunits,  KdpA and KdpB, and a small subunit KdpF. KdpA is the K+-translocating subunit, KdpB the ATP-hydrolyzing subunit. During assembly of the complex, KdpA and KdpC bind to each other. This interaction is thought to stabilize the complex [MEDLINE:9858692].  Data indicates that KdpC might connect the KdpA, the K+-transporting subunit, to KdpB, the ATP-hydrolyzing (energy providing) subunit [MEDLINE:9858692].
+DR  InterPro; IPR003820
+DR  PFAM; PF02669
+DR  SWISSPROT; P03961
+DR  ECOCYC; EG10515; kdpC
+RM  99077600
+DR  HAMAP; MF_00276; 129 of 140

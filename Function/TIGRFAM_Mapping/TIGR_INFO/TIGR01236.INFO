@@ -1,0 +1,13 @@
+ID  D1pyr5carbox1
+AC  TIGR01236
+DE  1-pyrroline-5-carboxylate dehydrogenase
+AU  Haft DH, Dodson RJ
+TC  613.60 613.60
+NC  458.25 458.25
+AL  clustalw
+IT  equivalog
+EN  delta-1-pyrroline-5-carboxylate dehydrogenase, group 1
+GS  pruA
+EC  1.2.1.88
+TP  TIGRFAMs
+CC  This model represents one of two related branches of delta-1-pyrroline-5-carboxylate dehydrogenase. The two branches are not as closely related to each other as some aldehyde dehydrogenases are to this branch, and separate models are built for this reason. The enzyme is the second of two in the degradation of proline to glutamate.

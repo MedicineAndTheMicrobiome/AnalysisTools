@@ -1,0 +1,11 @@
+ID  chap_CCT_epsi
+AC  TIGR02343
+DE  T-complex protein 1, epsilon subunit
+AU  Haft DH
+TC  710.50 710.50
+NC  516.70 516.70
+AL  clustalw
+IT  equivalog
+EN  T-complex protein 1, epsilon subunit
+TP  TIGRFAMs
+CC  Members of this family, all eukaryotic, are part of the group II chaperonin complex called CCT (chaperonin containing TCP-1) or TRiC. The archaeal equivalent group II chaperonin is often called the thermosome. Both are somewhat related to the group I chaperonin of bacterial, GroEL/GroES. This family consists exclusively of the CCT epsilon chain (part of a paralogous family) from animals, plants, fungi, and other eukaryotes.

@@ -1,0 +1,15 @@
+ID  urease_gam
+AC  TIGR00193
+DE  urease, gamma subunit
+AU  Haft DH
+TC  82.30 82.30
+NC  31.45 31.45
+AL  clustalw
+IT  equivalog_domain
+EN  urease, gamma subunit
+GS  ureA
+EC  3.5.1.5
+TP  TIGRFAMs
+CC  In a number of species, including B.subtilis, Synechocystis, and Haemophilus influenzae, urease subunits beta and gamma are encoded as separate polypeptides. In Helicobacter pylori UreA and in the fission yeast Schizosaccharomyces pombe, beta subunit-like sequence follows gamma subunit-like sequence in a single chain; the fission yeast protein contains additional C-terminal regions.
+CC  Nomenclature for the various subunits of urease in Helicobacter differs from nomenclature in most other species.
+DR  HAMAP; MF_01955; 16 of 16

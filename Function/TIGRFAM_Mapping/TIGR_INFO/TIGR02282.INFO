@@ -1,0 +1,14 @@
+ID  MltB
+AC  TIGR02282
+DE  lytic murein transglycosylase B
+AU  Haft DH
+TC  281.40 281.40
+NC  222.40 222.40
+AL  clustalw_manual
+IT  equivalog
+EN  lytic murein transglycosylase B
+GS  mltB
+EC  2.4.-.-
+TP  TIGRFAMs
+CC  This family consists of lytic murein transglycosylases (murein hydrolases) in the family of MltB, which is a membrane-bound lipoprotein in Escherichia coli. The N-terminal lipoprotein modification motif is conserved in about half the members of this family. The term Slt35 describes a naturally occurring soluble fragment of MltB. Members of this family never contain the putative peptidoglycan binding domain described by Pfam model PF01471, which is associated with several classes of bacterial cell wall lytic enzymes.
+DR  EXPERIMENTAL; SP:P41052; Escherichia coli

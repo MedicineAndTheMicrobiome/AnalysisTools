@@ -1,0 +1,16 @@
+ID  lanti_perm_MutG
+AC  TIGR03733
+DE  lantibiotic protection ABC transporter permease subunit, MutG family
+AU  Haft DH
+TC  117.20 117.20
+NC  79.10 79.10
+AL  muscle_manual
+IT  subfamily
+EN  lantibiotic protection ABC transporter permease subunit, MutG family
+TP  TIGRFAMs
+CC  Model TIGR03731 represents the family of all lantibiotics related to gallidermin, including epidermin, mutatin, and nisin. This protein family is largely restricted to gallidermin-family lantibiotic cassettes, but also include orphan transporter cassettes in species that lack candidate lantibiotic precursor and synthetase genes. In most species, this subunit is paralogous to an adjacent gene modeled separate by TIGR03732, while in some species only one subunit is found.
+RN  [1]
+RM  PMID:9770275
+RT  Producer self-protection against the lantibiotic epidermin by the ABC transporter EpiFEG of Staphylococcus epidermidis Tu3298.
+RA  Otto M, Peschel A, Gotz F
+RL  FEMS Microbiol Lett. 1998 Sep 15;166(2):203-11.

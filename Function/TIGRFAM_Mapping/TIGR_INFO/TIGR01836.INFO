@@ -1,0 +1,16 @@
+ID  PHA_synth_III_C
+AC  TIGR01836
+DE  poly(R)-hydroxyalkanoic acid synthase, class III, PhaC subunit
+AU  Haft DH
+TC  365.30 365.30
+NC  174.75 174.75
+AL  clustalw_manual
+IT  subfamily
+EN  poly(R)-hydroxyalkanoic acid synthase, class III, PhaC subunit
+GS  phaC
+TP  TIGRFAMs
+CC  This HMM represents the PhaC subunit of a heterodimeric form of polyhydroxyalkanoic acid (PHA) synthase. Excepting the PhaC of Bacillus megaterium (which needs PhaR), all members require PhaE (TIGR01834) for activity and are designated class III. This enzyme builds ester polymers for carbon and energy storage that accumulate in inclusions, and both this enzyme and the depolymerase associate with the inclusions. Class III enzymes polymerize short-chain-length hydroxyalkanoates.
+RM  11418564
+RT  PhaC and PhaR are required for polyhydroxyalkanoic acid synthase activity in Bacillus megaterium.
+RA  McCool GJ, Cannon MC.
+RL  J Bacteriol 2001 Jul;183(14):4235-43

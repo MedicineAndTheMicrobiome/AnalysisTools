@@ -1,0 +1,16 @@
+ID  non_repeat_PQQ
+AC  TIGR03606
+DE  dehydrogenase, PQQ-dependent, s-GDH family
+AU  Haft DH
+TC  434.55 434.55
+NC  198.30 198.30
+AL  muscle_manual
+IT  subfamily
+EN  dehydrogenase, PQQ-dependent, s-GDH family
+TP  TIGRFAMs
+CC  PQQ, or pyrroloquinoline-quinone, serves as a cofactor for a number of sugar and alcohol dehydrogenases in a limited number of bacterial species. Most characterized PQQ-dependent enzymes have multiple repeats of a sequence region described by PF01011 (PQQ enzyme repeat), but this protein family in unusual in lacking that repeat. Below the noise cutoff are related proteins mostly from species that lack PQQ biosynthesis.
+RN  [1]
+RM  PMID:10366508
+RT  The 1.7 A crystal structure of the apo form of the soluble quinoprotein glucose dehydrogenase from Acinetobacter calcoaceticus reveals a novel internal conserved sequence repeat.
+RA  Oubrie A, Rozeboom HJ, Kalk KH, Duine JA, Dijkstra BW
+RL  J Mol Biol. 1999 Jun 4;289(2):319-33.

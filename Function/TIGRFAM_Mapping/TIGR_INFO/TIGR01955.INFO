@@ -1,0 +1,27 @@
+ID  RfaH
+AC  TIGR01955
+DE  transcription elongation factor/antiterminator RfaH
+AU  Selengut J, Haft DH
+TC  144.50 144.50
+NC  93.25 93.25
+AL  clustalw
+IT  equivalog
+EN  transcription elongation factor/antiterminator RfaH
+GS  rfaH
+TP  TIGRFAMs
+CC  This model represents the transcription elongation factor/antiterminator, RfaH [1].  This protein is most closely related to the transcriptional termination/antitermination protein NusG (TIGR00922) and contains the KOW motif (PF00467) [2].  This protein appears to be limited to the gamma proteobacteria.  In E. coli, this gene appears to control the expression of haemolysin, sex factor and lipopolysaccharide genes.
+RN  [1]
+RM  PMID:20132437 
+RT  Functional regions of the N-terminal domain of the antiterminator RfaH. 
+RA  Belogurov GA, Sevostyanova A, Svetlov V, Artsimovitch I 
+RL  Mol Microbiol. 2010 Apr;76(2):286-301.
+RN  [2]
+RM  PMID: 1584020
+RT  Escherichia coli HlyT protein, a transcriptional activator of haemolysin synthesis and secretion, is encoded by the rfaH (sfrB) locus required for expression of sex factor and lipopolysaccharide genes.
+RA  Bailey MJ, Koronakis V, Schmoll T, Hughes C.
+RL  Mol Microbiol. 1992 Apr;6(8):1003-12. 
+RN  [3]
+RM  PMID: 8987397
+RT  KOW: a novel motif linking a bacterial transcription factor with ribosomal proteins.
+RA  Kyrpides NC, Woese CR, Ouzounis CA.
+RL  Trends Biochem Sci. 1996 Nov;21(11):425-6.

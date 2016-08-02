@@ -1,0 +1,11 @@
+ID  dnd_restrict_1
+AC  TIGR04095
+DE  DNA phosphorothioation system restriction enzyme
+AU  Haft DH
+TC  600.00 600.00
+NC  550.00 550.00
+AL  muscle_manual
+IT  equivalog_domain
+EN  DNA phosphorothioation system restriction enzyme
+TP  TIGRFAMs
+CC  The DNA phosphorothioate modification system dnd (DNA instability during electrophoresis) recently has been shown to provide a modification essential to a restriction system. This protein family was detected by Partial Phylogenetic Profiling as linked to dnd, and its members usually are clustered with the dndABCDE genes.

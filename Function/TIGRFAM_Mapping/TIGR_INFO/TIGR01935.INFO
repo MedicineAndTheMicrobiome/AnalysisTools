@@ -1,0 +1,28 @@
+ID  NOT-MenG
+AC  TIGR01935
+DE  RraA family
+AU  Selengut J
+TC  123.80 123.80
+NC  78.35 78.35
+AL  clustalw
+IT  subfamily
+EN  RraA famliy
+TP  TIGRFAMs
+CC  The E. coli member of this family has been characterized as a regulator of RNase E [1] and its crystal structure has been analyzed [2].
+CC  This model was initially classified as a "hypothetical equivalog" expressing the tentative hypothesis that all members might have the same function as the E. coli enzyme.  Considering the second clade of enterobacterial sequences within this family, that appears to be less tenable.  The function of these sequences outside of the narrow RraA equivalog model (TIGR02998) remains obscure.  All of these were initially annotated as MenG, AKA S-adenosylmethionine: 2-demethylmenaquinone methyltransferase (EC 2.1.-.-).  See the references characterizing this as a case of transitive annotation error [2,3] in the case of the E. coli protein.
+RN  [1]
+RM  PMID: 13678585
+RT  RraA. a protein inhibitor of RNase E activity that globally modulates RNA abundance in E. coli.
+RA  Lee K, Zhan X, Gao J, Qiu J, Feng Y, Meganathan R, Cohen SN, Georgiou G.
+RL  Cell. 2003 Sep 5;114(5):623-34.
+RN  [2]
+RM  PMID: 14499605
+RT  The X-ray structure of Escherichia coli RraA (MenG), A protein inhibitor of RNA processing.
+RA  Monzingo AF, Gao J, Qiu J, Georgiou G, Robertus JD.
+RL  J Mol Biol. 2003 Oct 3;332(5):1015-24.
+RN  [3]
+RM  PMID: 12837779
+RT  Crystal structure of a putative methyltransferase from Mycobacterium tuberculosis: misannotation of a genome clarified by protein structural analysis.
+RA  Johnston JM, Arcus VL, Morton CJ, Parker MW, Baker EN.
+RL  J Bacteriol. 2003 Jul;185(14):4057-65.
+DR  HAMAP; MF_00471; 126 of 128

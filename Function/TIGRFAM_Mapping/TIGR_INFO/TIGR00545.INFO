@@ -1,0 +1,17 @@
+ID  lipoyltrans
+AC  TIGR00545
+DE  lipoyltransferase and lipoate-protein ligase
+AU  Haft DH
+TC  201.85 201.85
+NC  117.10 117.10
+AL  clustalw_manual
+IT  subfamily
+EN  lipoyltransferase and lipoate-protein ligase
+TP  TIGRFAMs
+CC  One member of this group of proteins is bovine lipoyltransferase, which transfers the lipoyl group from lipoyl-AMP to the specific Lys of lipoate-dependent enzymes. However, it does not first activate lipoic acid with ATP to create lipoyl-AMP and pyrophosphate. Another member of this group,  lipoate-protein ligase A from E. coli, catalyzes both the activation and the transfer of lipoate. Homology between the two is full-length, except for the bovine mitochondrial targeting signal, but is strongest toward the N-terminus.
+AL  ClustalW_manual
+RM  98070355
+RT  Cloning and expression of a cDNA encoding bovine lipoyltransferase.
+RA  Fujiwara K, Okamura-Ikeda K, Motokawa Y
+RL  J Biol Chem 1997 Dec 19;272(51):31974-8
+DR  HAMAP; MF_01602; 37 of 38

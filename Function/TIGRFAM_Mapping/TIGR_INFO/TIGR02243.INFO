@@ -1,0 +1,11 @@
+ID  TIGR02243
+AC  TIGR02243
+DE  putative baseplate assembly protein
+AU  Haft DH
+TC  155.80 155.80
+NC  88.05 88.05
+AL  clustalw_manual
+IT  equivalog
+EN  putative baseplate assembly protein
+TP  TIGRFAMs
+CC  This family consists of a large, conserved hypothetical protein in phage tail-like regions of at least six bacterial genomes: Gloeobacter violaceus PCC 7421, Geobacter sulfurreducens PCA, Streptomyces coelicolor A3(2), Streptomyces avermitilis MA-4680, Mesorhizobium loti, and Myxococcus xanthus. The C-terminal region is identified by the broader model PF04865 as related to baseplate protein J from phage P2, but that relationship is not observed directly.

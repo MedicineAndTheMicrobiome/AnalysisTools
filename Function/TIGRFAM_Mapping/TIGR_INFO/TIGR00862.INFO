@@ -1,0 +1,14 @@
+ID  O-ClC
+AC  TIGR00862
+DE  intracellular chloride channel protein
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  358.95 358.95
+NC  237.80 237.80
+AL  clustalw_manual
+IT  subfamily
+EN  intracellular chloride channel protein
+TP  TIGRFAMs
+CC  The Organellar Chloride Channel (O-ClC) Family (TC 1.A.12)
+CC  Proteins of the O-ClC family are voltage-sensitive chloride channels found in intracellular membranes but not the plasma membranes of animal cells. They are
+CC  found in human nuclear membranes, and the bovine protein targets to the microsomes, but not the plasma membrane, when expressed in Xenopus laevis oocytes.
+CC  These proteins are thought to function in the regulation of the membrane potential and in transepithelial ion absorption and secretion in the kidney.

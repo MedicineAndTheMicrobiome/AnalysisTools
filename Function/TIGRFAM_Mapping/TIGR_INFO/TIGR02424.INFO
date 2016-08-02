@@ -1,0 +1,17 @@
+ID  TF_pcaQ
+AC  TIGR02424
+DE  pca operon transcription factor PcaQ
+AU  Haft DH
+TC  303.80 303.80
+NC  302.40 302.40
+AL  clustalw
+IT  equivalog
+EN  pca operon transcription factor PcaQ
+GS  pcaQ
+TP  TIGRFAMs
+CC  Members of this family are LysR-family transcription factors associated with operons for catabolism of protocatechuate. Members occur only in Proteobacteria.
+RN  [1]
+RM  15006791
+RT  Diverse organization of genes of the beta-ketoadipate pathway in members of the marine Roseobacter lineage.
+RA  Buchan A, Neidle EL, Moran MA.
+RL  Appl Environ Microbiol. 2004 Mar;70(3):1658-68.

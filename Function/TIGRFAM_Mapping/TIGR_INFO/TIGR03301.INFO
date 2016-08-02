@@ -1,0 +1,22 @@
+ID  PhnW-AepZ
+AC  TIGR03301
+DE  2-aminoethylphosphonate aminotransferase
+AU  Selengut J
+TC  360.80 360.80
+NC  290.05 290.05
+AL  muscle
+IT  subfamily
+EN  2-aminoethylphosphonate aminotransferase
+EC  2.6.1.-
+TP  TIGRFAMs
+CC  This family includes a number of 2-aminoethylphosphonate aminotransferases, some of which are indicated to operate in the catabolism of 2-aminoethylphosphonate (AEP) and others which are involved in the biosynthesis of the same compound.  The catabolic enzyme (PhnW, [1]) is known to use pyruvate:alanine as the transfer partner and is modeled by the equivalog-level HMM (TIGR02326).  The PhnW family is apparently a branch of a larger tree including genes (AepZ) adjacent to others responsible for the biosynthesis of phosphonoacetaldehyde [2].  The identity of the transfer partner  is unknown for these enzymes and considering the reversed flux compared to PhnW, it may very well be different.
+RN  [1]
+RM  PMID: 12107130 
+RT  The 2-aminoethylphosphonate-specific transaminase of the 2-aminoethylphosphonate degradation pathway. 
+RA  Kim AD, Baker AS, Dunaway-Mariano D, Metcalf WW, Wanner BL, Martin BM 
+RL  J Bacteriol. 2002 Aug;184(15):4134-40. 
+RN  [2]
+RM  PMID: 11035722 
+RT  Bacteroides fragilis NCTC9343 produces at least three distinct capsular polysaccharides: cloning, characterization, and reassignment of polysaccharide B and C biosynthesis loci. 
+RA  Coyne MJ, Kalka-Moll W, Tzianabos AO, Kasper DL, Comstock LE 
+RL  Infect Immun. 2000 Nov;68(11):6176-81.

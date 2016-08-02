@@ -1,0 +1,17 @@
+ID  NosD_copper_fam
+AC  TIGR04247
+DE  nitrous oxide reductase family maturation protein NosD
+AU  Haft DH
+TC  300.00 300.00
+NC  290.00 290.00
+AL  muscle_manual
+IT  subfamily
+EN  nitrous oxide reductase family maturation protein NosD
+GS  nosD
+TP  TIGRFAMs
+CC  Members of this family include NosD, a repetitive periplasmic protein required for the maturation of the copper-containing enzyme nitrous-oxide reductase. NosD appears to be part of a complex with NosF (an ABC transporter family ATP-binding protein) and NosY (a six-helix transmembrane protein in the ABC-2 permease family). However, NosDFY-like complexes appear to occur also in species whose copper requiring enzymes are something other than nitrous-oxide reductase.
+RN  [1]
+RM  PMID:12533464 
+RT  Requirements for Cu(A) and Cu-S center assembly of nitrous oxide reductase deduced from complete periplasmic enzyme maturation in the nondenitrifier Pseudomonas putida. 
+RA  Wunsch P, Herb M, Wieland H, Schiek UM, Zumft WG 
+RL  J Bacteriol. 2003 Feb;185(3):887-96.

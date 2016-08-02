@@ -1,0 +1,22 @@
+ID  235kDa-fam
+AC  TIGR01612
+DE  rhoptry protein
+AU  Selengut J
+TC  1615.85 1615.85
+NC  1508.80 1508.80
+AL  clustalw
+IT  paralog
+EN  reticulocyte binding/rhoptry protein
+TP  TIGRFAMs
+CC  This model represents a group of paralogous families in plasmodium species alternately annotated as reticulocyte binding protein, 235-kDa family protein and rhoptry protein.  Rhoptry protein is localized on the cell surface and is extremely large (although apparently lacking in repeat structure) and is important for the process of invasion of the RBCs by the parasite [1,2].
+CC  These proteins are found in P. falciparum, P. vivax and P. yoelii.
+RN  [1]
+RM  PMID: 11551627
+RT  The 235 kDa rhoptry protein of Plasmodium (yoelii) yoelii: function at the junction.
+RA  Khan SM, Jarra W, Preiser PR.
+RL  Mol Biochem Parasitol 2001 Sep 28;117(1):1-10
+RN  [2]
+RM  PMID: 10637585 
+RT  Malaria multigene families: the price of chronicity.
+RA  Snounou G, Jarra W, Preiser PR.
+RL  Parasitol Today 2000 Jan;16(1):28-30

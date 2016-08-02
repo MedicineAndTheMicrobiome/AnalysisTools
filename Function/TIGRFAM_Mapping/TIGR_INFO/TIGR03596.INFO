@@ -1,0 +1,17 @@
+ID  GTPase_YlqF
+AC  TIGR03596
+DE  ribosome biogenesis GTP-binding protein YlqF
+AU  Haft DH
+TC  208.20 208.20
+NC  207.25 207.25
+AL  muscle_manual
+IT  equivalog
+EN  ribosome biogenesis GTP-binding protein YlqF
+GS  ylqF
+TP  TIGRFAMs
+CC  Members of this protein family are GTP-binding proteins involved in ribosome biogenesis, including the essential YlqF protein of Bacillus subtilis, which is an essential protein. They are related to Era, EngA, and other GTPases of ribosome biogenesis, but are circularly permuted. This family is not universal, and is not present in Escherichia coli, and so is not as well studied as some other GTPases. This model is built for bacterial members.
+RN  [1]
+RM  PMID:17613524
+RT  Isolation and characterization of a dominant negative mutant of Bacillus subtilis GTP-binding protein, YlqF, essential for biogenesis and maintenance of the 50 S ribosomal subunit.
+RA  Matsuo Y, Oshima T, Loh PC, Morimoto T, Ogasawara N
+RL  J Biol Chem. 2007 Aug 31;282(35):25270-7.

@@ -1,0 +1,27 @@
+ID  FlgM_jcvi
+AC  TIGR03824
+DE  flagellar biosynthesis anti-sigma factor FlgM
+AU  Selengut J
+TC  40.75 40.75
+NC  37.45 37.45
+AL  muscle
+IT  equivalog
+EN  flagellar biosynthesis anti-sigma factor FlgM
+GS  flgM
+TP  TIGRFAMs
+CC  FlgM interacts with and inhibits the alternative sigma factor sigma(28) FliA [1,2,3].  The C-terminus of FlgM contains the sigma(28)-binding domain [1].
+RN  [1]
+RM  PMID:19383707 
+RT  Functional characterization of FlgM in the regulation of flagellar synthesis and motility in Yersinia pseudotuberculosis. 
+RA  Ding L, Wang Y, Hu Y, Atkinson S, Williams P, Chen S 
+RL  Microbiology. 2009 Jun;155(Pt 6):1890-900. Epub 2009 Apr 21. 
+RN  [2]
+RM  PMID:19136588 
+RT  Flagellar biogenesis of Xanthomonas campestris requires the alternative sigma factors RpoN2 and FliA and is temporally regulated by FlhA, FlhB, and FlgM. 
+RA  Yang TC, Leu YW, Chang-Chien HC, Hu RM 
+RL  J Bacteriol. 2009 Apr;191(7):2266-75. Epub 2009 Jan 9. 
+RN  [3]
+RM  PMID:17537210 
+RT  Cellular levels and activity of the flagellar sigma factor FliA of Escherichia coli are controlled by FlgM-modulated proteolysis. 
+RA  Barembruch C, Hengge R 
+RL  Mol Microbiol. 2007 Jul;65(1):76-89. Epub 2007 May 30.

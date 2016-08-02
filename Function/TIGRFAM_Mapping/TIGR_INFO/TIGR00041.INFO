@@ -1,0 +1,13 @@
+ID  DTMP_kinase
+AC  TIGR00041
+DE  dTMP kinase
+AU  Richardson DL
+TC  83.25 83.25
+NC  76.70 76.70
+AL  msa_tigr
+IT  equivalog
+EN  dTMP kinase
+GS  tmk
+EC  2.7.4.9
+TP  TIGRFAMs
+CC  Function: phosphorylation of DTMP to form DTDP in both de novo and salvage pathways of DTTP synthesis. Catalytic activity: ATP + thymidine 5'-phosphate = ADP + thymidine 5'-diphosphate.

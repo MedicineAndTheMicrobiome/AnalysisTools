@@ -1,0 +1,12 @@
+ID  cbiO
+AC  TIGR01166
+DE  cobalt ABC transporter, ATP-binding protein
+AU  Ujwal ML, Paulsen IT
+TC  211.80 211.80
+NC  195.65 195.65
+AL  clustalw
+IT  subfamily
+EN  cobalt transport protein ATP-binding subunit
+TP  TIGRFAMs
+CC  This model describes the ATP binding subunit of the multisubunit cobalt transporter in bacteria and its equivalents in archaea. The model is restricted to ATP subunit that is a part of the cobalt transporter, which belongs to the ABC transporter superfamily (ATP Binding Cassette). The model excludes ATP binding subunit that are associated with other transporters belonging to ABC transporter superfamily. This superfamily includes two groups, one which catalyze the uptake of small molecules, including ions from the external milieu and the other group which is engaged in the efflux of small molecular weight compounds and ions from within the cell. Energy derived from the hydrolysis of ATP drive the both the process of uptake and efflux.
+DR  HAMAP; MF_01710; 14 of 204

@@ -1,0 +1,24 @@
+ID  ABALDH
+AC  TIGR03374
+DE  1-pyrroline dehydrogenase
+AU  Haft DH
+TC  909.30 909.30
+NC  475.65 475.65
+AL  muscle_manual
+IT  equivalog
+EN  1-pyrroline dehydrogenase
+GS  ydcW
+EC  1.2.1.19
+TP  TIGRFAMs
+CC  Members of this protein family are 1-pyrroline dehydrogenase (1.5.1.35), also called gamma-aminobutyraldehyde dehydrogenase. This enzyme can follow putrescine transaminase (EC 2.6.1.82) for a two-step conversion of putrescine to gamma-aminobutyric acid (GABA). The member from Escherichia coli is characterized as a homotetramer that binds one NADH per momomer. This enzyme belongs to the medium-chain aldehyde dehydrogenases, and is quite similar in sequence to the betaine aldehyde dehydrogenase (EC 1.2.1.8) family.
+DR  BRENDA; 1.5.1.35
+RN  [1]
+RM  PMID: 16023116
+RT  Identification of Escherichia coli K12 YdcW protein as a gamma-aminobutyraldehyde dehydrogenase.
+RA  Samsonova NN, Smirnov SV, Novikova AE, Ptitsyn LR
+RL  FEBS Lett. 2005 Aug 1;579(19):4107-12.
+RN  [2]
+RM  PMID: 15381418
+RT  Crystal structure and kinetics identify Escherichia coli YdcW gene product as a medium-chain aldehyde dehydrogenase.
+RA  Gruez A, Roig-Zamboni V, Grisel S, Salomoni A, Valencia C, Campanacci V, Tegoni M, Cambillau C
+RL  J Mol Biol. 2004 Oct 8;343(1):29-41.

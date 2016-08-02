@@ -1,0 +1,29 @@
+ID  AcsF
+AC  TIGR02029
+DE  magnesium-protoporphyrin IX monomethyl ester aerobic oxidative cyclase
+AU  Selengut J
+TC  192.50 192.50
+NC  120.55 120.55
+AL  clustalw
+IT  equivalog
+EN  magnesium-protoporphyrin IX monomethyl ester aerobic oxidative cyclase
+GS  acsF
+EC  1.14.13.81
+TP  TIGRFAMs
+CC  This HMM respresents the oxidative cyclase responsible for forming the distinctive E-ring of the chlorin ring system under aerobic conditions [1].  This enzyme is believed to utilize a binuclear iron center and molecular oxygen.  There are two isoforms of this enzyme in some plants and cyanobacterai which are differentially regulated based on the levels of copper and oxygen [2,3].  This step is essential in the biosynthesis of both bacteriochlorophyll and chlorophyll under aerobic conditions (a separate enzyme, BchE, acts under anaerobic conditions).  This enzyme is found in plants, cyanobacteria and other photosynthetic bacteria.
+RN  [1]
+RM  PMID: 11790744
+RT  Rubrivivax gelatinosus acsF (previously orf358) codes for a conserved, putative binuclear-iron-cluster-containing protein involved in aerobic oxidative cyclization of Mg-protoporphyrin IX monomethylester.
+RA  Pinta V, Picaud M, Reiss-Husson F, Astier C.
+RL  J Bacteriol. 2002 Feb;184(3):746-53. 
+RN  [2]
+RM  PMID: 10811605
+RT  The Crd1 gene encodes a putative di-iron enzyme required for photosystem I accumulation in copper deficiency and hypoxia in Chlamydomonas reinhardtii.
+RA  Moseley J, Quinn J, Eriksson M, Merchant S.
+RL  EMBO J. 2000 May 15;19(10):2139-51. 
+RN  [3]
+RM  PMID: 11910013
+RT  Reciprocal expression of two candidate di-iron enzymes affecting photosystem I and light-harvesting complex accumulation.
+RA  Moseley JL, Page MD, Alder NP, Eriksson M, Quinn J, Soto F, Theg SM, Hippler M, Merchant S.
+RL  Plant Cell. 2002 Mar;14(3):673-88.
+DR  HAMAP; MF_01840; 35 of 35

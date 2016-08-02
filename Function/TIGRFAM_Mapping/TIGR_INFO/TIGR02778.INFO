@@ -1,0 +1,12 @@
+ID  ligD_pol
+AC  TIGR02778
+DE  DNA ligase D, polymerase domain
+AU  Haft DH
+TC  214.70 214.70
+NC  122.65 122.65
+AL  clustalw
+IT  equivalog_domain
+EN  DNA ligase D, polymerase domain
+GS  ligD
+TP  TIGRFAMs
+CC  DNA repair of double-stranded breaks by non-homologous end joining (NHEJ) is accomplished by a two-protein system that is present in a minority of prokaryotes. One component is the Ku protein (see TIGR02772), which binds DNA ends. The other is a DNA ligase, a protein that is a multidomain polypeptide in most of those bacteria that have NHEJ, a permuted polypeptide in Mycobacterium tuberculosis and a few other species, and the product of tandem genes in some other bacteria. This model represents the polymerase domain.

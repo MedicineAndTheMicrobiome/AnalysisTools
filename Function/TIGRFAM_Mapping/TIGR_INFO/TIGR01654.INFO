@@ -1,0 +1,15 @@
+ID  bact_immun_7tm
+AC  TIGR01654
+DE  bacteriocin-associated integral membrane protein
+AU  Haft DH
+TC  189.35 189.35
+NC  176.55 176.55
+AL  clustalw
+IT  subfamily
+EN  bacteriocin-associated integral membrane (putative immunity) protein
+TP  TIGRFAMs
+CC  This HMM represents a family of integral membrane proteins, most of which are about 650 residues in size and predicted to span the membrane seven times. Nearly half of the members of this family are found in association with a member of the lactococcin 972 family of bacteriocins (TIGR01653). Others may be associated with uncharacterized proteins that may also act as bacteriocins. Although this protein is suggested to be an immunity protein, and the bacteriocin is suggested to be exported by a Sec-dependent process, the role of this protein is unclear.
+RM  10589723
+RT  Synthesis of lactococcin 972, a bacteriocin produced by Lactococcus lactis IPLA 972, depends on the expression of a plasmid-encoded bicistronic operon.
+RA  Martinez B, Fernandez M, Suarez JE, Rodriguez A.
+RL  Microbiology 1999 Nov;145 ( Pt 11):3155-61

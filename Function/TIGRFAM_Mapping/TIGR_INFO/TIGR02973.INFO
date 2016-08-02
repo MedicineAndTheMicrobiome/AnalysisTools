@@ -1,0 +1,17 @@
+ID  nitrate_rd_NapE
+AC  TIGR02973
+DE  periplasmic nitrate reductase, NapE protein
+AU  Haft DH
+TC  68.80 68.80
+NC  66.75 66.75
+AL  clustalw
+IT  equivalog
+EN  periplasmic nitrate reductase, NapE protein
+GS  napE
+TP  TIGRFAMs
+CC  NapE, homologous to TorE (TIGR02972), is a membrane protein of unknown function that is part of the periplasmic nitrate reductase system; it may be part of the enzyme complex. The periplasmic nitrate reductase allows for nitrate respiration in anaerobic conditions.
+RN  [1]
+RM  PMID: 14663073
+RT  The Bradyrhizobium japonicum napEDABC genes encoding the periplasmic nitrate reductase are essential for nitrate respiration.
+RA  Delgado MJ, Bonnard N, Tresierra-Ayala A, Bedmar EJ, Muller P
+RL  Microbiology. 2003 Dec;149(Pt 12):3395-403.

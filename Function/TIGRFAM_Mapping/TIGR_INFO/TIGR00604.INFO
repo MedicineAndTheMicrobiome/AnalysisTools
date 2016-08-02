@@ -1,0 +1,14 @@
+ID  rad3
+AC  TIGR00604
+DE  DNA repair helicase (rad3)
+AU  Loftus BJ, Eisen JA
+TC  246.95 246.95
+NC  201.80 201.80
+IT  subfamily
+EN  DNA repair helicase (rad3)
+EC  3.6.4.-
+TP  TIGRFAMs
+CC  All proteins in this family for which funcitons are known are DNA-DNA helicases that funciton in the initiation of transcription and nucleotide excision repair as part of the TFIIH complex. This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  EGAD; 52316;
+DR  SWISSPROT; P06839;
+RM  85215619;

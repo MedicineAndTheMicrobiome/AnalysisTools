@@ -1,0 +1,22 @@
+ID  spore_sigI
+AC  TIGR02895
+DE  RNA polymerase sigma-I factor
+AU  Haft DH
+TC  185.00 185.00
+NC  81.55 81.55
+AL  muscle_manual
+IT  equivalog
+EN  RNA polymerase sigma-I factor
+GS  sigI
+TP  TIGRFAMs
+CC  Members of this sigma factor protein family are strictly limited to endospore-forming species in the Firmicutes lineage of bacteria, but are not universally present among such species. Sigma-I was shown to be induced by heat shock (PMID:11157964) in Bacillus subtilis and is suggested by its phylogenetic profile to be connected to the program of sporulation (PMID:16311624).
+RN  [1]
+RM  11157964
+RT  Putative sigma factor SigI (YkoZ) of Bacillus subtilis is induced by heat shock.
+RA  Zuber U, Drzewiecki K, Hecker M.
+RL  J Bacteriol. 2001 Feb;183(4):1472-5.
+RN  [2]
+RM  16311624
+RT  Life in Hot Carbon Monoxide: The Complete Genome Sequence of Carboxydothermus hydrogenoformans Z-2901.
+RA  Wu M, Ren Q, Durkin AS, Daugherty SC, Brinkac LM, Dodson RJ, Madupu R, Sullivan SA, Kolonay JF, Nelson WC, Tallon LJ, Jones KM, Ulrich LE, Gonzalez JM, Zhulin IB, Robb FT, Eisen JA.
+RL  PLoS Genet. 2005 Nov 25;1(5):e65

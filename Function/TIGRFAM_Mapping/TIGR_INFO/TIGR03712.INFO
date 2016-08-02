@@ -1,0 +1,17 @@
+ID  acc_sec_asp2
+AC  TIGR03712
+DE  accessory Sec system protein Asp2
+AU  Haft DH
+TC  210.75 210.75
+NC  210.45 210.45
+AL  muscle_manual
+IT  equivalog
+EN  accessory Sec system protein Asp2
+GS  asp2
+TP  TIGRFAMs
+CC  This protein is designated Asp2 because, along with SecY2, SecA2, and other proteins it is part of the accessory secretory protein system. The system is involved in the export of serine-rich glycoproteins important for virulence in a number of Gram-positive species, including Streptococcus gordonii and Staphylococcus aureus. This protein family is assigned to transport rather than glycosylation function, but the specific molecular role is unknown.
+RN  [1]
+RM  PMID:18621893
+RT  Characterization of the accessory Sec system of Staphylococcus aureus.
+RA  Siboo IR, Chaffin DO, Rubens CE, Sullam PM
+RL  J Bacteriol. 2008 Sep;190(18):6188-96.

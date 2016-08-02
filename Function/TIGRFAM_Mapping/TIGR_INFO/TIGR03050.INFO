@@ -1,0 +1,12 @@
+ID  PS_I_psaK_plant
+AC  TIGR03050
+DE  photosystem I reaction center PsaK
+AU  Haft DH
+TC  105.30 105.30
+NC  50.50 50.50
+AL  muscle
+IT  equivalog
+EN  photosystem I reaction center PsaK, plant form
+GS  psaK
+TP  TIGRFAMs
+CC  This protein family is based on a model that separates the photosystem I PsaK subunit of chloroplasts from chloroplast PsaG protein and from Cyanobacterial PsaK, both of which show sequence similarity.

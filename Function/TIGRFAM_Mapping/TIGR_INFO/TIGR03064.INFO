@@ -1,0 +1,13 @@
+ID  sortase_srtB
+AC  TIGR03064
+DE  sortase, SrtB family
+AU  Haft DH
+TC  153.75 153.75
+NC  65.00 65.00
+AL  muscle_manual
+IT  equivalog
+EN  sortase, SrtB family
+GS  srtB
+EC  3.4.22.71
+TP  TIGRFAMs
+CC  Members of this transpeptidase family are, in most cases, designated sortase B, product of the srtB gene. This protein shows only distant similarity to the sortase A family, for which there may be several members in a single bacterial genome. Typical SrtB substrate motifs include NAKTN, NPKSS, etc, and otherwise resemble the LPXTG sorting signals recognized by sortase A proteins.

@@ -1,0 +1,12 @@
+ID  HpnM
+AC  TIGR03481
+DE  hopanoid biosynthesis associated membrane protein HpnM
+AU  Selengut J
+TC  160.10 160.10
+NC  128.75 128.75
+AL  muscle
+IT  hypoth_equivalog
+EN  hopanoid biosynthesis associated membrane protein HpnM
+GS  hpnM
+TP  TIGRFAMs
+CC  The genomes containing members of this family share the machinery for the biosynthesis of hopanoid lipids.  Furthermore, the genes of this family are usually located proximal to other components of this biological process.  The proteins are members of the PF05494 family of putative transporters known as "toluene tolerance protein Ttg2D", although it is unlikely that the members included here have anything to do with toluene per-se.

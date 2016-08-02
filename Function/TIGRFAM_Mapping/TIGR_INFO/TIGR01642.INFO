@@ -1,0 +1,12 @@
+ID  U2AF_lg
+AC  TIGR01642
+DE  U2 snRNP auxilliary factor, large subunit, splicing factor
+AU  Selengut J
+TC  310.30 310.30
+NC  187.30 187.30
+AL  clustalw
+IT  subfamily
+EN  U2 snRNP auxilliary factor, large subunit, splicing factor
+TP  TIGRFAMs
+CC  These splicing factors consist of an N-terminal arginine-rich low complexity domain followed by three tandem RNA recognition motifs (PF00076).  The well-characterized members of this family are auxilliary components of the U2 small nuclear ribonuclearprotein splicing factor (U2AF).  These proteins are closely related to the CC1-like subfamily of splicing factors (TIGR01622).
+CC  Members of this subfamily are found in plants, metazoa and fungi.

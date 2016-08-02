@@ -1,0 +1,16 @@
+ID  expor_sig_YdyF
+AC  TIGR04077
+DE  exported signaling peptide, YydF/SAG_2028 family
+AU  Haft DH
+TC  35.00 35.00
+NC  25.00 25.00
+AL  clustalw_manual
+IT  subfamily
+EN  exported signaling peptide, YydF/SAG_2028 family
+TP  TIGRFAMs
+CC  This family describes a rare family of small proteins, about 50 residues in length, that includes YydF from Bacillus subtilis and SAG_2028 from Streptococcus agalactiae 2603V/R. Mutational analysis and genomic context show that members of this family likely are modified by a (variably present) radical SAM enzyme, are exported by an ABC transporter, and serve as signaling peptide. The member from Bacillus subtilis induces the LiaRS two-component system.
+RN  [1]
+RM  PMID:17921301 
+RT  The yydFGHIJ operon of Bacillus subtilis encodes a peptide that induces the LiaRS two-component system. 
+RA  Butcher BG, Lin YP, Helmann JD 
+RL  J Bacteriol. 2007 Dec;189(23):8616-25. Epub 2007 Oct 5.

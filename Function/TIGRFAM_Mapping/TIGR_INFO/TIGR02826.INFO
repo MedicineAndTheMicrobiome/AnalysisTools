@@ -1,0 +1,19 @@
+ID  RNR_activ_nrdG3
+AC  TIGR02826
+DE  anaerobic ribonucleoside-triphosphate reductase activating protein
+AU  Haft DH
+TC  151.70 151.70
+NC  77.35 77.35
+AL  clustalw
+IT  equivalog
+EN  anaerobic ribonucleoside-triphosphate reductase activating protein
+GS  nrdG
+EC  1.97.1.-
+TP  TIGRFAMs
+CC  Members of this family represent a set of radical SAM enzymes related to, yet architecturally different from, the activating protein for the glycine radical-containing, oxygen-sensitive ribonucleoside-triphosphate reductase (RNR) as described in model TIGR02491. Members of this family are found paired with members of a similarly divergent set of anaerobic ribonucleoside-triphosphate reductases. Identification of this protein as an RNR activitating protein is partly from pairing with a candidate RNR. It is further supported by our finding that upstream of these operons are examples of a conserved regulatory element (described Rodionov and Gelfand) that is found in nearly all bacteria and that occurs specifically upstream of operons for all three classes of RNR genes.
+DR  TIGRFAMs; TIGR02491; anaerobic ribonucleoside-triphosphate reductase activating protein.
+RN  [1]
+RM  15949864
+RT  Identification of a bacterial regulatory system for ribonucleotide reductases by phylogenetic profiling.
+RA  Rodionov DA, Gelfand MS.
+RL  Trends Genet. 2005 Jul;21(7):385-9.

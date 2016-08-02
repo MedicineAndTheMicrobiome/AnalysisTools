@@ -1,0 +1,17 @@
+ID  ppisom_GldI
+AC  TIGR03516
+DE  peptidyl-prolyl isomerase, gliding motility-associated
+AU  Selengut J
+TC  157.60 157.60
+NC  101.20 101.20
+AL  muscle
+IT  equivalog
+EN  peptidyl-prolyl isomerase, gliding motility-associated
+GS  gldI
+TP  TIGRFAMs
+CC  Members of this protein family are exclusive to the Bacteroidetes phylum (previously Cytophaga-Flavobacteria-Bacteroides). GldI is a FKBP-type peptidyl-prolyl cis-trans isomerase (PF00254) linked to a type of rapid surface gliding motility found in certain Bacteroidetes, such as Flavobacterium johnsoniae and Cytophaga hutchinsonii. Knockout of this gene abolishes the gliding phenotype [1].  Gliding motility appears closely linked to chitin utilization in the model species Flavobacterium johnsoniae. This family is only found in  Bacteroidetes containing the suite of genes proposed to confer the gliding motility phenotype.
+RN  [1]
+RM  PMID:15060031 
+RT  GldI is a lipoprotein that is required for Flavobacterium johnsoniae gliding motility and chitin utilization. 
+RA  McBride MJ, Braun TF 
+RL  J Bacteriol. 2004 Apr;186(8):2295-302.

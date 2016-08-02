@@ -1,0 +1,13 @@
+ID  2A0112
+AC  TIGR00891
+DE  MFS transporter, sialate:H+ symporter (SHS) family
+AU  Loftus BJ
+TC  552.90 552.90
+NC  226.85 226.85
+AL  clustalw_manual
+IT  subfamily
+EN  putative sialic acid transporter
+TR  2.A.1.12
+TP  TIGRFAMs
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_1.html
+DR  HAMAP; MF_01238; 6 of 9

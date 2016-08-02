@@ -1,0 +1,17 @@
+ID  ABC_choXWV_ATP
+AC  TIGR03415
+DE  choline ABC transporter, ATP-binding protein
+AU  Haft DH
+TC  483.75 483.75
+NC  428.45 428.45
+AL  muscle_manual
+IT  equivalog
+EN  choline ABC transporter, ATP-binding protein
+GS  choV
+TP  TIGRFAMs
+CC  Members of this protein family are the ATP-binding subunit of a three-protein transporter. This family belongs, more broadly, to the family of proline and glycine-betaine transporters, but members have been identified by direct characterization and by bioinformatic means as choline transporters. Many species have several closely-related members of this family, probably with variable abilities to act additionally on related quaternary amines.
+RN  [1]
+RM  PMID:15342567
+RT  The Sinorhizobium meliloti ABC transporter Cho is highly specific for choline and expressed in bacteroids from Medicago sativa nodules.
+RA  Dupont L, Garcia I, Poggi MC, Alloing G, Mandon K, Le Rudulier D.
+RL  J Bacteriol. 2004 Sep;186(18):5988-96.

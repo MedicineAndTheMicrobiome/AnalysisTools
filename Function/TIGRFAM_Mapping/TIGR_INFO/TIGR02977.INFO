@@ -1,0 +1,18 @@
+ID  phageshock_pspA
+AC  TIGR02977
+DE  phage shock protein A
+AU  Haft DH
+TC  242.95 242.95
+NC  170.25 170.25
+AL  muscle
+IT  equivalog
+EN  phage shock protein A
+GS  pspA
+TP  TIGRFAMs
+CC  Members of this family are the phage shock protein PspA, from the phage shock operon. This is a narrower family than the set of PspA and its homologs, sometimes several in a genome, as described by PFAM model PF04012. PspA appears to maintain the protonmotive force under stress conditions that include overexpression of certain phage secretins, heat shock, ethanol, and protein export defects.
+DR  PFAM; PF04012; PspA/IM30 family
+RN  [1]
+RM  PMID: 8598199
+RT  Involvement of stress protein PspA (phage shock protein A) of Escherichia coli in maintenance of the protonmotive force under stress conditions.
+RA  Kleerebezem M, Crielaard W, Tommassen J
+RL  EMBO J. 1996 Jan 2;15(1):162-71.

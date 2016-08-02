@@ -1,0 +1,12 @@
+ID  RPI_actino
+AC  TIGR02133
+DE  ribose 5-phosphate isomerase
+AU  Selengut J
+TC  168.20 168.20
+NC  163.40 163.40
+AL  clustalw
+IT  hypoth_equivalog
+EN  ribose 5-phosphate isomerase
+EC  5.3.1.6
+TP  TIGRFAMs
+CC  This family is a member of the RpiB/LacA/LacB subfamily (TIGR00689) but lies outside the RpiB equivalog (TIGR01120) which is also a member of that subfamily.  Ribose 5-phosphate isomerase is an essential enzyme of the pentose phosphate pathway; a pathway that appears to be present in the actinobacteria.  The only candidates for ribose 5-phosphate isomerase in the Actinobacteria are members of this family.

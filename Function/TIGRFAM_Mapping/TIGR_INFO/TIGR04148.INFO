@@ -1,0 +1,16 @@
+ID  GG_samocin_CFB
+AC  TIGR04148
+DE  radical SAM peptide maturase, GG-Bacteroidales family
+AU  Haft DH
+TC  300.00 300.00
+NC  240.00 240.00
+AL  muscle_manual
+IT  equivalog
+EN  radical SAM peptide maturase, GG-Bacteroidales family
+TP  TIGRFAMs
+CC  Members of this protein family are radical SAM enzymes (PF04055) with the additional C-terminal region (TIGR04085) that is frequently a marker of peptide modification. Many members of this family are found in the vicinity of one or several ORFs encoding short polypeptides with a Gly-Gly motif (common for bacteriocin leader peptide cleavage), followed by a Cys-rich patch and then poorly conserved sequences.
+RN  [1]
+RM  PMID:21478363 
+RT  Biological systems discovery in silico: radical S-adenosylmethionine protein families and their target peptides for posttranslational modification. 
+RA  Haft DH, Basu MK 
+RL  J Bacteriol. 2011 Jun;193(11):2745-55.

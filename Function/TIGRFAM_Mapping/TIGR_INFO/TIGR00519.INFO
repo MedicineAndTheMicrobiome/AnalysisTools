@@ -1,0 +1,14 @@
+ID  asnASE_I
+AC  TIGR00519
+DE  L-asparaginase, type I
+AU  Haft DH
+TC  260.50 260.50
+NC  190.10 190.10
+IT  subfamily
+EN  L-asparaginase, type I
+EC  3.5.1.1
+TP  TIGRFAMs
+CC  Two related families of asparaginase are designated type I and type II according to the terminology in E. coli, which has both: L-asparaginase I is a low-affinity enzyme found in the cytoplasm, while L-asparaginase II is a high-affinity secreted enzyme synthesized with a cleavable signal sequence. This model describes L-asparaginases related to type I of E. coli. Archaeal putative asparaginases are of this type but contain an extra ~ 80 residues in a conserved N-terminal region. These archaeal homologs are included in this model.
+DR  PFAM; PF00710; Asparaginase
+DR  PROSITE; PDOC0013; Asparaginase / glutaminase active sites signatures
+DR  HAMAP; MF_00586; 29 of 29

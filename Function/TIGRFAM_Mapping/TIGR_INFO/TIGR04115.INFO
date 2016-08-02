@@ -1,0 +1,16 @@
+ID  rSAM_Cxxx_rpt
+AC  TIGR04115
+DE  radical SAM peptide maturase, CXXX-repeat target family
+AU  Haft DH
+TC  350.00 350.00
+NC  200.00 200.00
+AL  muscle_manual
+IT  equivalog_domain
+EN  radical SAM peptide maturase, CXXX-repeat target family
+TP  TIGRFAMs
+CC  Members of this radical SAM domain protein are predicted peptide maturases, similar to PqqE, AlbA, the mycofactocin radical SAM maturase, and many others that share the peptide modification radical SAM protein C-terminal additional 4Fe4S-binding domain (TIGR04085). Members co-occur with a protein of unknown function that may be a chaperone or immunity protein and with a peptide that may have twelve or more cysteines occurring regularly spaced every fourth residue. These Cys residues tend to be flanked by residues with small side chains that provide minimal steric hindrance to crosslink formation by the radical SAM enzyme as in the subtilosin A system.
+RN  [1]
+RM  PMID:21478363 
+RT  Biological systems discovery in silico: radical S-adenosylmethionine protein families and their target peptides for posttranslational modification. 
+RA  Haft DH, Basu MK 
+RL  J Bacteriol. 2011 Jun;193(11):2745-55.

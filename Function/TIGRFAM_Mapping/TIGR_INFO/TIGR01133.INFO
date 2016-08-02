@@ -1,0 +1,17 @@
+ID  murG
+AC  TIGR01133
+DE  undecaprenyldiphospho-muramoylpentapeptide beta-N-acetylglucosaminyltransferase
+AU  Dodson RJ
+TC  250.25 250.25
+NC  219.85 219.85
+AL  clustalw
+IT  equivalog
+EN  undecaprenyldiphospho-muramoylpentapeptide beta-N-acetylglucosaminyltransferase
+GS  murG
+EC  2.4.1.227
+TP  TIGRFAMs
+CC  RM  8449890
+CC  RT  The final step of peptidoglycan subunit assembly in Escherichia coli occurs in the cytoplasm.
+CC  RA  Bupp K, van Heijenoort J.
+CC  RL  J Bacteriol 1993 Mar;175(6):1841-3
+DR  HAMAP; MF_00033; 432 of 506

@@ -1,0 +1,11 @@
+ID  TOMM_nitrile_2
+AC  TIGR04351
+DE  putative TOMM peptide
+AU  Haft DH
+TC  65.00 65.00
+NC  60.00 60.00
+AL  muscle_manual
+IT  subfamily
+EN  putative TOMM peptide
+TP  TIGRFAMs
+CC  Members of this family of short peptides average about 110 amino acids in length, with greatest variability in the last thirty. The conserved region resembles the alpha subunit of nitrile hydratase, as with the NHLP leader peptide domain (TIGR03793), and members usually are found near a cyclodehydratase (maturase) enzyme, marking these as like thiazole/oxazole-modified microcins (TOMM), but these precursor forms lack the GlyGly cleavage motif that marks the clear end of a leader peptide region. Genomes with this system include Streptomyces clavuligerus ATCC 27064, Verrucosispora maris AB-18-032, and Kitasatospora setae KM-6054.

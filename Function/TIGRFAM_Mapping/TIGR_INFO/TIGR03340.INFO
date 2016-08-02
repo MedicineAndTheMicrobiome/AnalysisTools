@@ -1,0 +1,11 @@
+ID  phn_DUF6
+AC  TIGR03340
+DE  phosphonate utilization associated putative membrane protein
+AU  Selengut J
+TC  288.15 288.15
+NC  199.35 199.35
+AL  muscle
+IT  hypoth_equivalog
+EN  phosphonate utilization associated putative membrane protein
+TP  TIGRFAMs
+CC  This family of hydrophobic proteins has some homology to families of integral membrane proteins such as (PF00892) and may be a permease.  It occurs in the vicinity of various types  of operons for the catabolism of phosphonates in Vibrio, Pseudomonas, Polaromonas and Thiomicrospira.

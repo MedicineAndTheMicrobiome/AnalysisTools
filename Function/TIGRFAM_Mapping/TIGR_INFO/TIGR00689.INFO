@@ -1,0 +1,19 @@
+ID  rpiB_lacA_lacB
+AC  TIGR00689
+DE  sugar-phosphate isomerase, RpiB/LacA/LacB family
+AU  Haft DH, Loftus BJ
+TC  88.30 88.30
+NC  53.00 53.00
+AL  clustalw_manual
+IT  subfamily
+EN  sugar-phosphate isomerase, RpiB/LacA/LacB family
+EC  5.3.1.-
+TP  TIGRFAMs
+CC  Proteins of known function in this family act as sugar (pentose and/or hexose)-phosphate isomerases, including the LacA and LacB subunits of  galactose-6-phosphate isomerases from Gram-positive bacteria and RpiB. RpiB is the second ribose phosphate isomerase of E. coli. It lacks homology to RpiA, its inducer is unknown (but is not ribose), and it can be replaced by the homologous galactose-6-phosphate isomerase of Streptococcus mutans, all of which suggests that the ribose phosphate isomerase activity of RpiB is a secondary function.  On the other hand, there appear to be a significant number of species which contain rpiB, lack rpiA and seem to require rpi activity in order to complete the pentose phosphate pathway.
+DR  InterPro; IPR003500
+DR  PFAM; PF02502
+RM  96165253
+RT  Ribose catabolism of Escherichia coli: characterization of the rpiB gene encoding ribose phosphate isomerase B and of the rpiR gene, which is involved in regulation of rpiB expression.
+RA  Sorensen KI, Hove-Jensen B
+RL  J Bacteriol 1996 Feb;178(4):1003-11
+DR  HAMAP; MF_01556; 46 of 46

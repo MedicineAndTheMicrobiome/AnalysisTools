@@ -1,0 +1,17 @@
+ID  blh_monoox
+AC  TIGR03753
+DE  beta-carotene 15,15'-monooxygenase, Brp/Blh family
+AU  Haft DH
+TC  95.25 95.25
+NC  58.05 58.05
+AL  muscle_manual
+IT  subfamily
+EN  beta-carotene 15,15'-monooxygenase, Brp/Blh family
+EC  1.14.99.36
+TP  TIGRFAMs
+CC  This integral membrane protein family includes Brp (bacterio-opsin related protein) and Blh (Brp-like protein). Bacteriorhodopsin is a light-driven proton pump with a covalently bound retinal cofactor that appears to be derived beta-carotene. Blh has been shown to cleave beta-carotene to product two all-trans retinal molecules. Mammalian enzymes with similar enzymatic function are not multiple membrane spanning proteins and are not homologous.
+RN  [1]
+RM  PMID:19366683
+RT  In vitro characterization of a recombinant Blh protein from an uncultured marine bacterium as a beta-carotene 15,15-prime C-dioxygenase.
+RA  Kim YS, Kim NH, Yeom SJ, Kim SW, Oh DK
+RL  J Biol Chem. 2009 Apr 14.

@@ -1,0 +1,14 @@
+ID  rplS_bact
+AC  TIGR01024
+DE  ribosomal protein L19
+AU  Haft DH
+TC  90.70 90.70
+NC  38.20 38.20
+AL  clustalw_manual
+IT  equivalog
+EN  ribosomal protein L19, bacterial type
+GS  rplS
+TP  TIGRFAMs
+CC  This model describes bacterial ribosomoal protein L19 and its chloroplast equivalent. Putative mitochondrial L19 are found in several species (but not Saccharomyces cerevisiae) and score between trusted and noise cutoffs.
+DR  COGS; COG0335
+DR  HAMAP; MF_00402; 541 of 549

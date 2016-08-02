@@ -1,0 +1,15 @@
+ID  ftsA
+AC  TIGR01174
+DE  cell division protein FtsA
+AU  Haft DH
+TC  175.85 175.85
+NC  74.00 74.00
+AL  clustalw
+IT  equivalog
+EN  cell division protein FtsA
+GS  ftsA
+TP  TIGRFAMs
+CC  This bacterial cell division protein interacts with FtsZ, the bacterial homolog of tubulin. It is an ATP-binding protein and shows structural similarities to actin and heat shock cognate protein 70.
+DR  COGS; COG0849
+DR  PFAM; PF02491
+DR  EXPERIMENTAL; EGAD|165829; Thermotoga maritima

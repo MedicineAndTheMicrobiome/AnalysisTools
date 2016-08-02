@@ -1,0 +1,12 @@
+ID  rSAM_Clo7bot
+AC  TIGR04334
+DE  radical SAM/SPASM domain Clo7bot peptide maturase
+AU  Haft DH
+TC  600.00 600.00
+NC  500.00 500.00
+AL  muscle_manual
+IT  equivalog
+EN  radical SAM/SPASM domain Clo7bot peptide maturase
+GS  ctpM
+TP  TIGRFAMs
+CC  In multiple strains of Clostridium botulinum, this single radical SAM domain protein occurs next to a tandem array of seven homologous Cys-rich small peptides (see TIGR04333). Because this radical SAM enzyme contains the SPASM domain, associated with peptide modification, it is proposed to modify all seven C. botulinum targets, hence the name Clo7bot for this system. Suggested gene symbol is ctpM (Clostridial Tandem Peptide Maturase).

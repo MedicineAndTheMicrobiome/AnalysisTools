@@ -1,0 +1,12 @@
+ID  SpoChoClust_3
+AC  TIGR04436
+DE  putative 2OG-Fe(II) oxygenase
+AU  Haft DH
+TC  200.00 200.00
+NC  65.00 65.00
+AL  muscle_manual
+IT  subfamily
+EN  putative 2OG-Fe(II) oxygenase
+EC  1.-.-.-
+TP  TIGRFAMs
+CC  This family, related to streptomycin biosynthesis protein StrG and to phytanoyl-CoA dioxygenase, belongs to the 2-oxoglutarate and Fe(II)-dependent oxygenase clan, which includes not just dioxygenases such as phytanoyl-CoA dioxygenase PhyH, but also some chlorinating enzymes involved in natural product biosynthesis. Members of this family occur so far only in O-antigen biosynthesis regions of select Leptospira, and include an ~80 residue additional C-terminal region shared by no other proteins.

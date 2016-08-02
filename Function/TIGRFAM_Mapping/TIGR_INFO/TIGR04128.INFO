@@ -1,0 +1,17 @@
+ID  exoso_Fjoh_1448
+AC  TIGR04128
+DE  exosortase family protein XrtF
+AU  Haft DH
+TC  90.00 90.00
+NC  70.00 70.00
+AL  muscle_manual
+IT  equivalog
+EN  exosortase family protein XrtF
+GS  xrtF
+TP  TIGRFAMs
+CC  Members of this protein family are exosortase-related proteins found always in association with a member of family TIGR04127, a small, hydrophobic, uncharacterized protein limited to the Bacteriodetes. Exosortases are proposed transpeptidases with a cysteine active site (3.4.22.-), but usually are associated with specific C-terminal target motifs (PEP-CTERM, PEF-CTERM, PGF-CTERM, etc).
+RN  [1]
+RM  PMID:22037399 
+RT  Archaeosortases and exosortases are widely distributed systems linking membrane transit with posttranslational modification. 
+RA  Haft DH, Payne SH, Selengut JD 
+RL  J Bacteriol. 2012 Jan;194(1):36-48. Epub 2011 Oct 28.

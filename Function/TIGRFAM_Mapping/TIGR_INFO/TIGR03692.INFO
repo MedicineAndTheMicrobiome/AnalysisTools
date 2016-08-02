@@ -1,0 +1,23 @@
+ID  ATP_dep_HslV
+AC  TIGR03692
+DE  ATP-dependent protease HslVU, peptidase subunit
+AU  Haft DH
+TC  157.75 157.75
+NC  94.90 94.90
+AL  clustalw_manual
+IT  equivalog
+EN  ATP-dependent protease HslVU, peptidase subunit
+GS  hslV
+EC  3.4.25.2
+TP  TIGRFAMs
+CC  The ATP-dependent protease HslVU, a complex of hexameric HslU active as a protein-unfolding ATPase and dodecameric HslV, the catalytic threonine protease.
+RN  [1]
+RM  PMID:15849200
+RT  Role of the GYVG pore motif of HslU ATPase in protein unfolding and translocation for degradation by HslV peptidase.
+RA  Park E, Rho YM, Koh OJ, Ahn SW, Seong IS, Song JJ, Bang O, Seol JH, Wang J, Eom SH, Chung CH
+RL  J Biol Chem. 2005 Jun 17;280(24):22892-8. Epub 2005 Apr 22.
+RN  [2]
+RM  PMID:12446803
+RT  Eubacterial HslV and HslU subunits homologs in primordial eukaryotes.
+RA  Couvreur B, Wattiez R, Bollen A, Falmagne P, Le Ray D, Dujardin JC
+RL  Mol Biol Evol. 2002 Dec;19(12):2110-7.

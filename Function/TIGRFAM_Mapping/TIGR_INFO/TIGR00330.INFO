@@ -1,0 +1,21 @@
+ID  glpX
+AC  TIGR00330
+DE  fructose-1,6-bisphosphatase, class II
+AU  Haft DH, Loftus BJ
+TC  259.30 259.30
+NC  213.35 213.35
+AL  clustalw
+IT  equivalog
+EN  fructose-1,6-bisphosphatase, class II
+GS  glpX
+EC  3.1.3.11
+TP  TIGRFAMs
+CC  This model represents GlpX, one of three classes of bacterial fructose-1,6-bisphosphatases. This form is homodimeric and Mn2+-dependent, and only very distantly related to the class I fructose-1,6-bisphosphatase, the product of the fbp gene, which is homotetrameric and Mg2+-dependent. A third class is found as one of two types in Bacillus subtilis.
+CC  In E. coli, GlpX is found in the glpFKX operon together with a glycerol update protein and glycerol kinase.
+DR  ECOGENE; EG11517; glpX;
+RM  10986273
+RT  Purification and characterization of glpX-encoded fructose 1, 6-bisphosphatase, a new enzyme of the glycerol 3-phosphate regulon of Escherichia coli.
+RA  Donahue JL, Bownas JL, Niehaus WG, Larson TJ.
+RL  J Bacteriol 2000 Oct;182(19):5624-7
+DR  EXPERIMENTAL; OMNI|NTL01EC03831; Escherichia coli
+DR  EXPERIMENTAL; GP|1753218; Synechocystis sp. PCC 6803

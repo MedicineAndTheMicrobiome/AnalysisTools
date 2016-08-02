@@ -1,0 +1,19 @@
+ID  LolD_lipo_ex
+AC  TIGR02211
+DE  lipoprotein releasing system, ATP-binding protein
+AU  Haft DH
+TC  307.75 307.75
+NC  284.45 284.45
+AL  clustalw_manual
+IT  equivalog
+EN  lipoprotein releasing system, ATP-binding protein
+GS  lolD
+EC  3.6.3.-
+TP  TIGRFAMs
+CC  This model represents LolD, a member of the ABC transporter family (PF00005). LolD is involved in localization of lipoproteins in some bacteria. It works with a transmembrane protein LolC, which in some species is a paralogous pair LolC and LolE. Depending on whether the residue immediately following the new, modified N-terminal Cys residue, the nascent lipoprotein may be carried further by LolA and LolB to the outer membrane, or remain at the inner membrane. The top scoring proteins excluded by this model include homologs from the archaeal genus Methanosarcina.
+DR  PF00005; ABC_tran
+RM  12823819
+RT  A mutation in the membrane subunit of an ABC transporter LolCDE complex causing outer membrane localization of lipoproteins against their inner membrane-specific signals.
+RA  Narita S, Kanamaru K, Matsuyama S, Tokuda H.
+RL  Mol Microbiol. 2003 Jul;49(1):167-77.
+DR  HAMAP; MF_01708; 96 of 186

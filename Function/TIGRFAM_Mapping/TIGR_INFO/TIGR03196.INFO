@@ -1,0 +1,18 @@
+ID  pucD
+AC  TIGR03196
+DE  xanthine dehydrogenase D subunit
+AU  Selengut J
+TC  783.65 783.65
+NC  665.15 665.15
+AL  muscle
+IT  equivalog
+EN  xanthine dehydrogenase D subunit
+GS  pucD
+EC  1.17.1.4
+TP  TIGRFAMs
+CC  This gene has been characterized in B. subtilis [1] as the molybdopterin binding-subunit of xanthine dehydrogenase (pucD), acting in conjunction with pucC, the FAD-binding subunit and pucE, the FeS-binding subunit.  The more common XDH complex (GenProp0640) includes the xdhB gene which is related to pucD.  It appears that most of the relatives of pucD outside of this narrow clade are involved in other processes as they are found in unrelated genomic contexts, contain the more common XDH complex and/or do not appear to process purines to allantoin.
+RN  [1]
+RM  PMID: 11344136 
+RT  Functional analysis of 14 genes that constitute the purine catabolic pathway in Bacillus subtilis and evidence for a novel regulon controlled by the PucR transcription activator. 
+RA  Schultz AC, Nygaard P, Saxild HH 
+RL  J Bacteriol. 2001 Jun;183(11):3293-302.

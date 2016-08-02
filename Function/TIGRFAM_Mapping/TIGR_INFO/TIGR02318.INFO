@@ -1,0 +1,12 @@
+ID  phosphono_phnM
+AC  TIGR02318
+DE  phosphonate metabolism protein PhnM
+AU  Haft DH
+TC  390.55 390.55
+NC  113.95 113.95
+AL  clustalw
+IT  equivalog
+EN  phosphonate metabolism protein PhnM
+GS  phnM
+TP  TIGRFAMs
+CC  This family consists of proteins from in the PhnM family. PhnM is a a protein associated with phosphonate utilization in a number of bacterial species. In Pseudomonas stutzeri WM88, a protein that is part of a system for the oxidation of phosphites (another form of reduced phosphorous compound) scores between trusted and noise cutoffs.

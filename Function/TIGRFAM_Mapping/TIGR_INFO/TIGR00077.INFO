@@ -1,0 +1,15 @@
+ID  lspA
+AC  TIGR00077
+DE  signal peptidase II
+AU  Richardson DL
+TC  73.95 73.95
+NC  67.15 67.15
+AL  clustalw_manual
+IT  equivalog
+EN  lipoprotein signal peptidase
+GS  lspA
+EC  3.4.23.36
+TP  TIGRFAMs
+CC  Alternate name: lipoprotein signal peptidase
+DR  none
+DR  HAMAP; MF_00161; 280 of 292

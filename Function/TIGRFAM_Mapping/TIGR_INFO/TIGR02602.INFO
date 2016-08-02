@@ -1,0 +1,23 @@
+ID  8TM_EpsH
+AC  TIGR02602
+DE  exosortase
+AU  Haft DH
+TC  105.55 105.55
+NC  53.70 53.70
+AL  clustalw
+IT  subfamily
+EN  exosortase
+GS  xrt
+EC  3.4.22.-
+TP  TIGRFAMs
+CC  This family is designated exosortase, and it is the predicted protein-sorting transpeptidase for the PEP-CTERM protein-sorting signal of many biofilm-producing Gram-negative bacteria. This system is analogous to the sortase/LPXTG system found mostly in Gram-positive bacteria. Members of this family are integral membrane proteins with eight predicted transmembrane helices in common, and with a triad of invariant residues that matches the catalytic triad of sortases. Some members of this family have long trailing sequences past the region described by this model, which in other species is a separate protein EpsI. This model does not include the region of the first predicted transmembrane region. The only partially characterized member is EpsH of Methylobacillus sp. 12S, part of a locus associated with biosynthesis of the exopolysaccharide methanolan but itself not involved in polysaccharide biosynthesis.
+RN  [1]
+RM  PMID: 16930487
+RT  Exopolysaccharide-associated protein sorting in environmental organisms: the PEP-CTERM/EpsH system. Application of a novel phylogenetic profiling heuristic.
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD
+RL  BMC Biol. 2006 Aug 24;4(1):29.
+RN  [2]
+RM  12624205
+RT  Genes involved in the synthesis of the exopolysaccharide methanolan by the obligate methylotroph Methylobacillus sp strain 12S.
+RA  Yoshida T, Ayabe Y, Yasunaga M, Usami Y, Habe H, Nojiri H, Omori T.
+RL  Microbiology. 2003 Feb;149(Pt 2):431-44.

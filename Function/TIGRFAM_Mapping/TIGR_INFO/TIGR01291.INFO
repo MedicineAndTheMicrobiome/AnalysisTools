@@ -1,0 +1,16 @@
+ID  nodJ
+AC  TIGR01291
+DE  ABC-2 type transporter, NodJ family
+AU  Haft DH
+TC  206.65 206.65
+NC  79.45 79.45
+AL  clustalw
+IT  subfamily
+EN  ABC-2 type transporter, NodJ family
+TR  3.A.01
+TP  TIGRFAMs
+CC  Nearly all members of this subfamily are NodJ which, together with NodI (TIGR01288), acts to export a variety of modified carbohydrate molecules as signals to plant hosts to establish root nodules. The seed alignment includes a highly divergent member from Azorhizobium caulinodans that is, nonetheless, associated with nodulation. This HMM is designated as subfamily in part because not all sequences derived from the last common ancestral sequence of Rhizobium sp. and Azorhizobium caulinodans NodJ are necessarily nodulation proteins.
+HMM Accession
+Genes hitting
+family
+DR  PFAM; PF01061; ABC-2 type transporter

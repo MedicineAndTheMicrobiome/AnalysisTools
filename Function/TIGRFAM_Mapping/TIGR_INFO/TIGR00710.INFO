@@ -1,0 +1,17 @@
+ID  efflux_Bcr_CflA
+AC  TIGR00710
+DE  drug resistance transporter, Bcr/CflA subfamily
+AU  Haft DH
+TC  200.90 200.90
+NC  188.55 188.55
+IT  subfamily
+EN  drug resistance transporter, Bcr/CflA subfamily
+TR  2.A.01
+TP  TIGRFAMs
+CC  This subfamily of drug efflux proteins, a part of the major faciliator family, is predicted to have 12 membrane-spanning regions. Members with known activity include Bcr (bicyclomycin resistance protein) in E. coli, Flor (chloramphenicol and florfenicol resistance) in Salmonella typhimurium DT104, and CmlA (chloramphenicol resistance) in Pseudomonas sp. plasmid R1033.
+DR  SWISSPROT; P28246
+DR  PFAM; PF00083; sugar_tr
+RM  93252267
+RT  Cloning and sequence analysis of an Escherichia coli gene conferring bicyclomycin resistance.
+RA  Bentley J, Hyatt LS, Ainley K, Parish JH, Herbert RB, White GR
+RL  Gene 1993 May 15;127(1):117-20

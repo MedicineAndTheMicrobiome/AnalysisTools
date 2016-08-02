@@ -1,0 +1,17 @@
+ID  antisig_RsrA
+AC  TIGR03988
+DE  mycothiol system anti-sigma-R factor
+AU  Haft DH
+TC  62.50 62.50
+NC  46.30 46.30
+AL  muscle_manual
+IT  equivalog
+EN  mycothiol system anti-sigma-R factor
+GS  rsrA
+TP  TIGRFAMs
+CC  Members of this family are the anti-sigma-R factor RsrA, which contains a CXXC motif as a thiol-disulphide redox switch. It interacts with sigma-R. It regulates and is regulated by the mycothiol system, which occurs in many actinomycetes.
+RN  [1]
+RM  PMID:18430082
+RT  Mycothiol regulates and is regulated by a thiol-specific antisigma factor RsrA and sigma(R) in Streptomyces coelicolor.
+RA  Park JH, Roe JH
+RL  Mol Microbiol. 2008 May;68(4):861-70.

@@ -1,0 +1,16 @@
+ID  BCCP
+AC  TIGR00531
+DE  acetyl-CoA carboxylase, biotin carboxyl carrier protein
+AU  Haft DH
+TC  115.20 115.20
+NC  92.85 92.85
+IT  equivalog
+EN  acetyl-CoA carboxylase, biotin carboxyl carrier protein
+GS  accB
+TP  TIGRFAMs
+CC  This model is designed to identify biotin carboxyl carrier protein as a peptide of acetyl-CoA carboxylase. Scoring below the trusted cutoff is a related protein encoded in a region associated with polyketide synthesis in the prokaryote Saccharopolyspora hirsuta, and a reported chloroplast-encoded biotin carboxyl carrier protein that may be highly derived from the last common ancestral sequence. Scoring below the noise cutoff are biotin carboxyl carrier domains of other enzymes such as pyruvate carboxylase.
+CC  The gene name is accB or fabE.
+RM  96363677
+RT  Structure of the biotinyl domain of acetyl-coenzyme A carboxylase determined by MAD phasing.
+RA  Athappilly FK, Hendrickson WA
+RL  Structure 1995 Dec 15;3(12):1407-19

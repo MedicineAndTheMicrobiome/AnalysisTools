@@ -1,0 +1,27 @@
+ID  arch_bud32
+AC  TIGR03724
+DE  Kae1-associated kinase Bud32
+AU  Haft DH
+TC  64.40 64.40
+NC  61.20 61.20
+AL  muscle_manual
+IT  equivalog_domain
+EN  Kae1-associated kinase Bud32
+EC  2.7.-.-
+TP  TIGRFAMs
+CC  Members of this protein family are the Bud32 protein associated with Kae1 (kinase-associated endopeptidase 1) in the Archaea. In many Archaeal genomes, Kae1 and Bud32 are fused. The complex is homologous to the Kae1 and Bud32 subunits of the eukaryotic KEOPS complex, an apparently ancient protein kinase-containing molecular machine.
+RN  [1]
+RM  PMID:19143597
+RT  The universal Kae1 protein and the associated Bud32 kinase (PRPK), a mysterious protein couple probably essential for genome maintenance in Archaea and Eukarya.
+RA  Hecker A, Graille M, Madec E, Gadelle D, Le Cam E, van Tilbergh H, Forterre P
+RL  Biochem Soc Trans. 2009 Feb;37(Pt 1):29-35.
+RN  [2]
+RM  PMID:19172740
+RT  Structure of the archaeal Kae1/Bud32 fusion protein MJ1130: a model for the eukaryotic EKC/KEOPS subcomplex.
+RA  Hecker A, Lopreiato R, Graille M, Collinet B, Forterre P, Libri D, van Tilbeurgh H
+RL  EMBO J. 2008 Sep 3;27(17):2340-51.
+RN  [3]
+RM  PMID:18951093
+RT  Atomic structure of the KEOPS complex: an ancient protein kinase-containing molecular machine.
+RA  Mao DY, Neculai D, Downey M, Orlicky S, Haffani YZ, Ceccarelli DF, Ho JS, Szilard RK, Zhang W, Ho CS, Wan L, Fares C, Rumpel S, Kurinov I, Arrowsmith CH, Durocher D, Sicheri F
+RL  Mol Cell. 2008 Oct 24;32(2):259-75.

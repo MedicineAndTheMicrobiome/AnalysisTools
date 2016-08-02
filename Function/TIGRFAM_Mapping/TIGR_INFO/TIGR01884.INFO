@@ -1,0 +1,22 @@
+ID  cas_HTH
+AC  TIGR01884
+DE  CRISPR locus-related DNA-binding protein
+AU  Haft DH
+TC  60.20 60.20
+NC  42.05 42.05
+AL  clustalw_manual
+IT  subfamily
+EN  CRISPR locus-related DNA-binding protein
+TP  TIGRFAMs
+CC  Most but not all examples of this family are associated with CRISPR loci, a combination of DNA repeats and characteristic proteins encoded near the repeat cluster. The C-terminal region of this protein is homologous to DNA-binding helix-turn-helix domains with predicted transcriptional regulatory activity.
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=2003
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=57306
+RN  [1]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005
+RN  [2]
+RM  11788711
+RT  A DNA repair system specific for thermophilic Archaea and bacteria predicted by genomic context analysis.
+RA  Makarova KS, Aravind L, Grishin NV, Rogozin IB, Koonin EV.
+RL  Nucleic Acids Res. 2002 Jan 15;30(2):482-96

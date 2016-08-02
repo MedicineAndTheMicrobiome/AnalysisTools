@@ -1,0 +1,13 @@
+ID  glycerol3P_GlpA
+AC  TIGR03377
+DE  glycerol-3-phosphate dehydrogenase, anaerobic, A subunit
+AU  Haft DH
+TC  552.80 552.80
+NC  485.30 485.30
+AL  muscle_manual
+IT  equivalog
+EN  glycerol-3-phosphate dehydrogenase, anaerobic, A subunit
+GS  glpA
+EC  1.1.5.3
+TP  TIGRFAMs
+CC  Members of this protein family are the A subunit, product of the glpA gene, of a three-subunit, membrane-anchored, FAD-dependent anaerobic glycerol-3-phosphate dehydrogenase.

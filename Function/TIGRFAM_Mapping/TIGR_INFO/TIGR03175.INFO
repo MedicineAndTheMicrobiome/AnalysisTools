@@ -1,0 +1,18 @@
+ID  AllD
+AC  TIGR03175
+DE  ureidoglycolate dehydrogenase
+AU  Selengut J
+TC  496.20 496.20
+NC  410.60 410.60
+AL  muscle
+IT  equivalog
+EN  ureidoglycolate dehydrogenase
+GS  allD
+EC  1.1.1.154
+TP  TIGRFAMs
+CC  This enzyme converts ureidoglycolate to oxalureate in the non-urea-forming catabolism of allantoin (GenProp0687).  The pathway has been characterized in E. coli [1] and is observed in the genomes of Entercoccus faecalis and Bacillus licheniformis.
+RN  [1]
+RM  PMID: 10601204
+RT  Genetic analysis of a chromosomal region containing genes required for assimilation of allantoin nitrogen and linked glyoxylate metabolism in Escherichia coli.
+RA  Cusa E, Obradors N, Baldoma L, Badia J, Aguilar J
+RL  J Bacteriol. 1999 Dec;181(24):7479-84.

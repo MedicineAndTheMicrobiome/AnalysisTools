@@ -1,0 +1,14 @@
+ID  trio_M42_hydro
+AC  TIGR03106
+DE  hydrolase, peptidase M42 family
+AU  Haft DH
+TC  397.75 397.75
+NC  397.55 397.55
+AL  muscle
+IT  hypoth_equivalog
+EN  hydrolase, peptidase M42 family
+TP  TIGRFAMs
+CC  This HMM describes a subfamily of MEROPS peptidase family M42, a glutamyl aminopeptidase family that also includes the cellulase CelM from Clostridium thermocellum and deblocking aminopeptidases that can remove acylated amino acids. Members of this family occur in a three gene cassette with an amidotransferase (TIGR03104)in the asparagine synthase (glutamine-hydrolyzing) family, and a probable acetyltransferase (TIGR03103) in the GNAT family.
+DR  INTERPRO; IPR008007; Peptidase M42
+DR  PFAM; PF05343; Peptidase_M42; M42 glutamyl aminopeptidase
+DR  MEROPS; M42

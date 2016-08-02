@@ -1,0 +1,18 @@
+ID  PTS-II-BC-sucr
+AC  TIGR01996
+DE  PTS system, sucrose-specific IIBC component
+AU  Selengut J
+TC  559.30 559.30
+NC  548.00 548.00
+AL  clustalw
+IT  equivalog_domain
+EN  PTS system, sucrose-specific IIBC component
+EC  2.7.1.69
+TP  TIGRFAMs
+CC  This HMM represents the fused enzyme II B and C components of the sucrose-specific PTS sugar transporter system [1].  Sucrose is converted to sucrose-6-phosphate in the process of translocation into the cell.  Some of these transporters lack their own IIA domains and instead use the glucose IIA protein (IIAglc or Crr).  The exceptions to this rule are Staphylococci, Streptococci, Lactococci, Lactobacilli, etc. which contain their own A domain as a C-terminal fusion.
+CC  This family is closely related to the trehalose transporting PTS IIBC enzymes and the B and C domains of each are described by subfamily-domain level TIGRFAMs models (TIGR00826 and TIGR00852, respectively).
+RN  [1]
+RM  PMID: 10937490
+RT  Analysis of a catabolic operon for sucrose transport and metabolism in Clostridium acetobutylicum ATCC 824.
+RA  Tangney M, Mitchell WJ.
+RL  J Mol Microbiol Biotechnol. 2000 Jan;2(1):71-80.

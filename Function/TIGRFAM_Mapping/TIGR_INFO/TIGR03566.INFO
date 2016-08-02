@@ -1,0 +1,18 @@
+ID  FMN_reduc_MsuE
+AC  TIGR03566
+DE  FMN reductase
+AU  Haft DH
+TC  212.50 212.50
+NC  119.50 119.50
+AL  muscle_manual
+IT  equivalog
+EN  FMN reductase, MsuE subfamily
+GS  msuE
+EC  1.5.1.-
+TP  TIGRFAMs
+CC  Members of this protein family use NAD(P)H to reduce FMN and regenerate FMNH2. Members include the NADH-dependent enzyme MsuE from Pseudomonas aeruginosa, which serves as a partner to an FMNH2-dependent alkanesulfonate monooxygenase. The NADP-dependent enzyme from E. coli is outside the scope of this model.
+RN  [1]
+RM  PMID:10049377
+RT  A novel reduced flavin mononucleotide-dependent methanesulfonate sulfonatase encoded by the sulfur-regulated msu operon of Pseudomonas aeruginosa.
+RA  Kertesz MA, Schmidt-Larbig K, Wuest T
+RL  J Bacteriol. 1999 Mar;181(5):1464-73.

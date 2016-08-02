@@ -1,0 +1,17 @@
+ID  AmmeMemoSam_B
+AC  TIGR04336
+DE  AmmeMemoRadiSam system protein B
+AU  Haft DH
+TC  26.00 26.00
+NC  20.00 20.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  AmmeMemoRadiSam system protein B
+GS  amrB
+TP  TIGRFAMs
+CC  Members of this protein family belong to the same domain family as the mammalian protein Memo (Mediator of ErbB2-driven cell MOtility). Members of the present family occur as part of a three gene system with an uncharacterized radical SAM enzyme and a homolog of the mammalian protein AMMECR1, a mammalian protein named for AMME - Alport syndrome, Mental Retardation, Midface hypoplasia, and Elliptocytosis. Memo in humans has protein-protein interaction activity with binding of phosphorylated Try, but members of this family may be active as enzymes, as suggested by homology to a class of nonheme iron dioxygenases.
+RN  [1]
+RM  PMID:18045866 
+RT  Memo is homologous to nonheme iron dioxygenases and binds an ErbB2-derived phosphopeptide in its vestigial active site. 
+RA  Qiu C, Lienhard S, Hynes NE, Badache A, Leahy DJ 
+RL  J Biol Chem. 2008 Feb 1;283(5):2734-40.

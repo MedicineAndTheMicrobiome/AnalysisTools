@@ -1,0 +1,13 @@
+ID  TIGR00659
+AC  TIGR00659
+DE  TIGR00659 family protein
+AU  Haft DH
+TC  249.70 249.70
+NC  174.15 174.15
+IT  hypoth_equivalog
+EN  TIGR00659 family protein
+TP  TIGRFAMs
+CC  Members of this small but broadly distibuted (Gram-positive, Gram-negative, and Archaeal) family appear to have multiple transmembrane segments. The function is unknown. A homolog, LrgB of Staphylococcus aureus, in the same small superfamily but in an outgroup to this subfamily, is regulated by LytSR and is suggested to act as a murein hydrolase. Of the three paralogous proteins in B. subtilis, one is a full length member of this family, one lacks the C-terminal 60 residues and has an additional 128 N-terminal residues but branches within the family in a phylogenetic tree, and one is closely related to LrgB and part of the outgroup.
+DR  OUTGROUP; EGAD|107753|BS2884;
+DR  OUTGROUP; GP|1575026|gb|AAC44840.1||U52961; Staphylococcus aureus LrgB;
+RM  96422016

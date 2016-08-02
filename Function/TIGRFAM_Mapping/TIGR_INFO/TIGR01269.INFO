@@ -1,0 +1,12 @@
+ID  Tyr_3_monoox
+AC  TIGR01269
+DE  tyrosine 3-monooxygenase
+AU  Haft DH
+TC  654.65 654.65
+NC  566.90 566.90
+AL  clustalw_manual
+IT  equivalog
+EN  tyrosine 3-monooxygenase, tetrameric
+EC  1.14.16.2
+TP  TIGRFAMs
+CC  This HMM describes tyrosine 3-monooxygenase, a member of the family of tetrameric, biopterin-dependent aromatic amino acid hydroxylases found in metazoans. It is closely related to tetrameric phenylalanine-4-hydroxylase and tryptophan 5-monooxygenase, and more distantly related to the monomeric phenylalanine-4-hydroxylase found in some Gram-negative bacteria.

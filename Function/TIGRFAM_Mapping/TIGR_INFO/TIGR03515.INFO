@@ -1,0 +1,17 @@
+ID  GldC
+AC  TIGR03515
+DE  gliding motility-associated protein GldC
+AU  Selengut J
+TC  102.15 102.15
+NC  57.50 57.50
+AL  manual
+IT  equivalog
+EN  gliding motility-associated protein GldC
+GS  gldC
+TP  TIGRFAMs
+CC  Members of this protein family are exclusive to the Bacteroidetes phylum (previously Cytophaga-Flavobacteria-Bacteroides). GldC is a protein linked to a type of rapid surface gliding motility found in certain Bacteroidetes, such as Flavobacterium johnsoniae and Cytophaga hutchinsonii. Knockouts of GldC do not abolish the gliding phenotype but do impair it.  Gliding motility appears closely linked to chitin utilization in the model species Flavobacterium johnsoniae. Bacteroidetes with members of this protein family appear to have all of the genes associated with gliding motility.
+RN  [1]
+RM  PMID:10648514 
+RT  Cloning and characterization of the Flavobacterium johnsoniae gliding-motility genes gldB and gldC. 
+RA  Hunnicutt DW, McBride MJ 
+RL  J Bacteriol. 2000 Feb;182(4):911-8.

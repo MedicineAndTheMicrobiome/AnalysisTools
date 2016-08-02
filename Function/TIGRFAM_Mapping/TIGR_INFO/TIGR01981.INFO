@@ -1,0 +1,12 @@
+ID  sufD
+AC  TIGR01981
+DE  FeS assembly protein SufD
+AU  Haft DH
+TC  222.00 221.50
+NC  215.00 215.00
+AL  unknown
+IT  equivalog
+EN  FeS assembly protein SufD
+GS  sufD
+TP  TIGRFAMs
+CC  This protein, SufD, forms a cytosolic complex SufBCD. This complex enhances the cysteine desulfurase of SufSE. The system, together with SufA, is believed to act in iron-sulfur cluster formation during oxidative stress. SufB and SufD are homologous. Note that SufC belongs to the family of ABC transporter ATP binding proteins, so this protein, encoded by an adjacent gene, has often been annotated as a transporter component.

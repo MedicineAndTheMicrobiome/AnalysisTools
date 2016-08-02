@@ -1,0 +1,20 @@
+ID  relax_trwC
+AC  TIGR02686
+DE  conjugative relaxase domain
+AU  Haft DH
+TC  145.50 145.50
+NC  34.30 34.30
+AL  clustalw
+IT  domain
+EN  conjugative relaxase domain, TrwC/TraI family
+TP  TIGRFAMs
+CC  This domain is in the N-terminal (relaxase) region of TrwC, a relaxase-helicase that acts in plasmid R388 conjugation. The relaxase domain has DNA cleavage and strand transfer activities. Plasmid transfer protein TraI is also a member of this domain family. Members of this family on bacterial chromosomes typically are found near other genes typical of conjugative plasmids and appear to mark integrated plasmids.
+RN  [1]
+RM  10653694
+RT  Two active-site tyrosyl residues of protein TrwC act sequentially at the origin of transfer during plasmid R388 conjugation.
+RA  Grandoso G, Avila P, Cayon A, Hernando MA, Llosa M, de la Cruz F.
+RN  [2]
+RM  12837798
+RT  A bacterial TrwC relaxase domain contains a thermally stable alpha-helical core.
+RA  Arrondo JL, Echabe I, Iloro I, Hernando MA, de la Cruz F, Goni FM.
+RL  J Bacteriol. 2003 Jul;185(14):4226-32.

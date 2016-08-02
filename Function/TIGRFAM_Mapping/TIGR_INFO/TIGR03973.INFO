@@ -1,0 +1,18 @@
+ID  six_Cys_in_45
+AC  TIGR03973
+DE  six-cysteine peptide SCIFF
+AU  Haft DH
+TC  50.00 50.00
+NC  35.00 35.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  six-cysteine peptide SCIFF
+GS  scfA
+TP  TIGRFAMs
+CC  Members of this protein family are essentially universal in the class Clostidia and therefore highly abundant in the human gut microbiome. This short peptide is designated SCIFF, for Six Cysteines in Forty-Five residues. It is a presumed ribosomal natural product precursor, always found associated with a yet-uncharacterized radical SAM protein, family TIGR03974, that resembles other peptide modification radical SAM enzymes and is designated SCIFF radical SAM maturase.
+RN  [1]
+RM  PMID:21478363 
+RT  Biological systems discovery in silico: radical S-adenosylmethionine protein families and their target peptides for posttranslational mo
+dification. 
+RA  Haft DH, Basu MK 
+RL  J Bacteriol. 2011 Jun;193(11):2745-55.

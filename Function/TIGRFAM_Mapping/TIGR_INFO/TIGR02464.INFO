@@ -1,0 +1,11 @@
+ID  ribofla_fusion
+AC  TIGR02464
+DE  conserved hypothetical protein
+AU  Haft DH
+TC  73.70 73.70
+NC  47.20 47.20
+AL  clustalw
+IT  subfamily_domain
+EN  conserved hypothetical protein, ribA/ribD-fused
+TP  TIGRFAMs
+CC  This model describes a sequence region that occurs in at least three different polypeptide contexts. It is found fused to GTP cyclohydrolase II, the RibA of riboflavin biosynthesis (TIGR00505), as in Vibrio vulnificus.  It is found fused to riboflavin biosynthesis protein RibD (TIGR00326) in rice and Arabidopsis. It occurs as a standalone protein in a number of bacterial species in varied contexts, including single gene operons and bacteriophage genomes. The member from E. coli currently is named YbiA. The function(s) of members of this family is unknown.

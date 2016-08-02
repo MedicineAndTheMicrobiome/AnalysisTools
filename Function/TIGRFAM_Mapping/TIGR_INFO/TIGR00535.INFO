@@ -1,0 +1,14 @@
+ID  SAM_DCase
+AC  TIGR00535
+DE  S-adenosylmethionine decarboxylase proenzyme
+AU  Haft DH
+TC  233.15 233.15
+NC  127.30 127.30
+AL  clustalw
+IT  equivalog
+EN  S-adenosylmethionine decarboxylase proenzyme, eukaryotic form
+EC  4.1.1.50
+TP  TIGRFAMs
+CC  This enzyme is a key regulatory enzyme of the polyamine synthetic pathway.
+CC  This protein is a pyruvoyl-dependent enzyme. The proenzyme is cleaved at a Ser residue that becomes a pyruvoyl group active site.
+DR  PROSITE; PDOC01038; S-adenosylmethionine decarboxylase signature;

@@ -1,0 +1,11 @@
+ID  staph_tand_hypo
+AC  TIGR01741
+DE  conserved hypothetical protein
+AU  Haft DH
+TC  82.05 82.05
+NC  79.85 79.85
+AL  clustalw_manual
+IT  subfamily
+EN  conserved hypothetical protein
+TP  TIGRFAMs
+CC  This HMM represents a tandem array of 10 proteins in Staphylococcus aureus and the C-terminal region of one protein each in Bacillus subtilis and Bacillus halodurans.

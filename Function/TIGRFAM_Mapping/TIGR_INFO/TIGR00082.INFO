@@ -1,0 +1,23 @@
+ID  rbfA
+AC  TIGR00082
+DE  ribosome-binding factor A
+AU  Richardson DL
+TC  51.15 51.15
+NC  40.60 40.60
+AL  msa_tigr
+IT  equivalog
+EN  ribosome-binding factor A
+GS  rbfA
+TP  TIGRFAMs
+CC  Associates with free 30S ribosomal subunits (but not with 30S subunits that are part of 70S ribosomes or polysomes).  Essential for efficient processing of 16S rRNA. May interact with the 5'terminal helix region of 16S rRNA. Mutants lacking rbfA have a cold-sensitive phenotype.
+RN  [1]
+RT  Suppression of a cold-sensitive mutation in 16S rRNA by overexpression of a novel ribosome-binding factor, RbfA.
+RA  Dammel CS, Noller HF
+RL  Genes Dev 1995 Mar 1;9(5):626-37
+RN  [2]
+RM  98083058
+RT  RimM and RbfA are essential for efficient processing of 16S rRNA in Escherichia coli.
+RA  Bylund GO, Wipemo LC, Lundberg LA, Wikstrom PM
+RL  J Bacteriol 1998 Jan;180(1):73-82
+DR  Genes Dev 1995 Mar 1;9(5):626-637
+DR  HAMAP; MF_00003; 492 of 510

@@ -1,0 +1,17 @@
+ID  PS_II_psbV2
+AC  TIGR03046
+DE  photosystem II cytochrome PsbV2
+AU  Haft DH
+TC  148.35 148.35
+NC  147.95 147.95
+AL  muscle
+IT  equivalog
+EN  photosystem II cytochrome PsbV2
+GS  psbV2
+TP  TIGRFAMs
+CC  Members of this protein family are PsbV2, a protein closely related cytochrome c-550 (PsbV), a protein important to the water-splitting and oxygen-evolving activity of photosystem II. Mutant studies in Thermosynechococcus elongatus showed PsbV2 can partially replace PsbV, from which it appears to have arisen first by duplication, then by intergenic recombination with a different gene.
+RN  [1]
+RM  PMID: 11427679
+RT  Functional analysis of psbV and a novel c-type cytochrome gene psbV2 of the thermophilic cyanobacterium Thermosynechococcus elongatus strain BP-1.
+RA  Katoh H, Itoh S, Shen JR, Ikeuchi M
+RL  Plant Cell Physiol. 2001 Jun;42(6):599-607.

@@ -1,0 +1,11 @@
+ID  rep_II_X
+AC  TIGR01629
+DE  phage/plasmid replication protein, gene II/X family
+AU  Haft DH
+TC  29.00 29.00
+NC  21.00 21.00
+AL  clustalw_manual
+IT  subfamily
+EN  phage/plasmid replication protein, gene II/X family
+TP  TIGRFAMs
+CC  This HMM represents a family of phage and plasmid replication proteins. In bacteriophage IKe and related phage, the full-length protein is designated gene II protein. A much shorter protein of unknown function, translated from a conserved in-frame alternative initiator, is designated gene X protein. Members of this family also include plasmid replication proteins. This model is built as a fragment model to better detect translations from alternate intiators and other fragments relative to full length gene II protein.

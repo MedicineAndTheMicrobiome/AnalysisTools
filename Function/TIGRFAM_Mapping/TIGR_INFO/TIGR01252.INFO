@@ -1,0 +1,13 @@
+ID  acetolac_decarb
+AC  TIGR01252
+DE  alpha-acetolactate decarboxylase
+AU  Haft DH
+TC  180.65 180.65
+NC  80.80 80.80
+AL  clustalw
+IT  equivalog
+EN  alpha-acetolactate decarboxylase
+GS  budA
+EC  4.1.1.5
+TP  TIGRFAMs
+CC  Puruvate can be fermented to 2,3-butanediol. It is first converted to alpha-acetolactate by alpha-acetolactate synthase, then decarboxylated to acetoin by this enzyme. Acetoin can be reduced in some species to 2,3-butanediol by acetoin reductase.

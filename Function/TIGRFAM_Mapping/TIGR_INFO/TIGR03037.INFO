@@ -1,0 +1,19 @@
+ID  anthran_nbaC
+AC  TIGR03037
+DE  3-hydroxyanthranilate 3,4-dioxygenase
+AU  Haft DH
+TC  145.95 145.95
+NC  57.60 57.60
+AL  muscle
+IT  equivalog
+EN  3-hydroxyanthranilate 3,4-dioxygenase
+GS  nbaC
+EC  1.13.11.6
+TP  TIGRFAMs
+CC  Members of this protein family, from both bacteria and eukaryotes, are the enzyme 3-hydroxyanthranilate 3,4-dioxygenase. This enzyme acts on the tryptophan metabolite 3-hydroxyanthranilate and produces 2-amino-3-carboxymuconate semialdehyde, which can rearrange spontaneously to quinolinic acid and feed into nicotinamide biosynthesis, or undergo further enzymatic degradation.
+RN  [1]
+RM  PMID: 12620844
+RT  Prokaryotic homologs of the eukaryotic 3-hydroxyanthranilate 3,4-dioxygenase and 2-amino-3-carboxymuconate-6-semialdehyde decarboxylase in the 2-nitrobenzoate degradation pathway of Pseudomonas fluorescens strain KU-7.
+RA  Muraki T, Taki M, Hasegawa Y, Iwaki H, Lau PC
+RL  Appl Environ Microbiol. 2003 Mar;69(3):1564-72.
+DR  HAMAP; MF_00825; 15 of 15

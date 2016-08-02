@@ -1,0 +1,17 @@
+ID  GTPase_YqeH
+AC  TIGR03597
+DE  ribosome biogenesis GTPase YqeH
+AU  Haft DH
+TC  297.40 297.40
+NC  262.90 262.90
+AL  muscle_manual
+IT  equivalog
+EN  ribosome biogenesis GTPase YqeH
+GS  yqeH
+TP  TIGRFAMs
+CC  This family describes YqeH, a member of a larger family of GTPases involved in ribosome biogenesis. Like YqlF, it shows a cyclical permutation relative to GTPases EngA (in which the GTPase domain is duplicated), Era, and others. Members of this protein family are found in a relatively small number of bacterial species, including Bacillus subtilis but not Escherichia coli.
+RN  [1]
+RM  PMID:17895579
+RT  The GTP-binding protein YqeH participates in biogenesis of the 30S ribosome subunit in Bacillus subtilis.
+RA  Loh PC, Morimoto T, Matsuo Y, Oshima T, Ogasawara N
+RL  Genes Genet Syst. 2007 Aug;82(4):281-9.

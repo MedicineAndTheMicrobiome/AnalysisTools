@@ -1,0 +1,25 @@
+ID  TIGR00091
+AC  TIGR00091
+DE  tRNA (guanine-N(7)-)-methyltransferase
+AU  Haft DH
+TC  112.65 112.65
+NC  82.65 82.65
+AL  clustalw_manual
+IT  equivalog
+EN  tRNA (guanine-N(7)-)-methyltransferase
+GS  trmB
+EC  2.1.1.33
+TP  TIGRFAMs
+CC  This predicted S-adenosylmethionine-dependent methyltransferase is found in a single copy in most Bacteria. It is also found, with a short amino-terminal extension in eukaryotes. Its function is unknown.
+CC  In E. coli, this protein flanks the DNA repair protein MutY, also called micA.
+RN  [1]
+RM  12403464
+RT  Two proteins that form a complex are required for 7-methylguanosine modification of yeast tRNA.
+RA  Alexandrov A, Martzen MR, Phizicky EM.
+RL  RNA. 2002 Oct;8(10):1253-66.
+RN  [2]
+RM  12730187
+RT  The yggH gene of Escherichia coli encodes a tRNA (m7G46) methyltransferase.
+RA  De Bie LG, Roovers M, Oudjama Y, Wattiez R, Tricot C, Stalon V, Droogmans L, Bujnicki JM.
+RL  J Bacteriol. 2003 May;185(10):3238-43.
+DR  HAMAP; MF_01057; 346 of 404

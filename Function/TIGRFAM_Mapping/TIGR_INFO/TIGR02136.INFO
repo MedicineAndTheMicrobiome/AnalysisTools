@@ -1,0 +1,12 @@
+ID  ptsS_2
+AC  TIGR02136
+DE  phosphate binding protein
+AU  Haft DH
+TC  206.60 206.60
+NC  148.80 148.80
+AL  clustalw
+IT  subfamily
+EN  phosphate binding protein
+GS  pstS
+TP  TIGRFAMs
+CC  Members of this family are phosphate-binding proteins. Most are found in phosphate ABC-transporter operons, but some are found in phosphate regulatory operons. This HMM separates members of the current family from the phosphate ABC transporter phosphate binding protein described by TIGRFAMs model TIGR00975.

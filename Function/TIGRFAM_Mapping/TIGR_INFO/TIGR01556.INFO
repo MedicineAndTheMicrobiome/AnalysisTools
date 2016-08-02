@@ -1,0 +1,20 @@
+ID  rhamnosyltran
+AC  TIGR01556
+DE  rhamnosyltransferase
+AU  Brinkac L
+TC  200.55 200.55
+NC  191.50 191.50
+AL  clustalw
+IT  subfamily
+EN  L-rhamnosyltransferase
+EC  2.4.1.-
+TP  TIGRFAMs
+CC  This HMM subfamily is comprised of gamma proteobacteria whose proteins function as L-rhamnosyltransferases in the synthesis of their respective surface polysaccharides.
+CC  Rhamnolipids are glycolipids containing mono- or di- L-rhamnose molecules. Rhamnolipid synthesis occurs by sequential glycosyltransferase reactions involving two distinct rhamnosyltransferase enzymes. In P.aeruginosa, the synthesis of mono-rhamnolipids is catalyzed by rhamnosyltransferase 1, and proceeds by a glycosyltransfer reaction catalyzed by rhamnosyltransferase 2 to yield di-rhamnolipids [1].
+RN [1]
+RM 11359576
+RT Cloning and functional characterization of the Pseudomonas aeruginosa rhlC gene that encodes rhamnosyltransferase 2, an enzyme responsible for di-rhamnolipid biosynthesis.
+RA Rahim R, Ochsner UA, Olvera C, Graninger M, Messner P, Lam JS, Soberon-Chavez G.
+RL Mol Microbiol. 2001 May;40(3):708-18.
+DR PFAM; PF00535; Glycosyl transferase
+DR EXPERIMENTAL; OMNI|NTL03PA01131; Pseudomonas aeruginosa; Cloning and functional characterization of the Pseudomonas aeruginosa rhlC gene that encodes rhamnosyltransferase 2, an enzyme responsible for di-rhamnolipid biosynthesis.

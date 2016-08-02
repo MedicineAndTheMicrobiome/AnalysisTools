@@ -1,0 +1,11 @@
+ID  marine_trans_1
+AC  TIGR03644
+DE  probable ammonium transporter, marine subtype
+AU  Haft DH
+TC  514.00 514.00
+NC  481.90 481.90
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  probable ammonium transporter, marine subtype
+TP  TIGRFAMs
+CC  Members of this protein family are well conserved subclass of putative ammonimum transporters, belonging to the much broader set of ammonium/methylammonium transporter described by TIGR00836. Species with this transporter tend to be marine bacteria. Partial phylogenetic profiling (PPP) picks a member of this protein family as the single best-scoring protein vs. a reference profile for the marine environment Genome Property for a large number of different query genomes. This finding by PPP suggests that this transporter family represents an important adaptation to the marine environment.

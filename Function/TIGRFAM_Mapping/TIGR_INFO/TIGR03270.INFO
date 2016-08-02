@@ -1,0 +1,11 @@
+ID  methan_mark_4
+AC  TIGR03270
+DE  putative methanogen marker protein 4
+AU  Haft DH
+TC  190.00 190.00
+NC  185.00 185.00
+AL  muscle
+IT  hypoth_equivalog
+EN  putative methanogen marker protein 4
+TP  TIGRFAMs
+CC  Members of this protein family, to date, are found in a completed prokaryotic genome if and only if the species is one of the archaeal methanogens. The exact function is unknown, but likely is linked to methanogenesis or a process closely linked to it. Some members have been suggested to be a methyltransferase, based on the proximity of its gene to genes of the multi-subunit complex, N5-methyl-tetrahydromethanopterin--coenzyme M methyltransferase. That context is not conserved, however. The family shows similarity to various phosphate acyltranferases.

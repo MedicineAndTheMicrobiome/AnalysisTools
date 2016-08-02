@@ -1,0 +1,15 @@
+ID  3a0501s07
+AC  TIGR00966
+DE  protein-export membrane protein SecF
+AU  Loftus BJ, Haft DH
+TC  164.90 164.90
+NC  81.10 81.10
+AL  clustalw_manual
+IT  equivalog_domain
+EN  protein-export membrane protein SecF
+GS  secF
+TR  2.A.6.4
+TP  TIGRFAMs
+CC  This bacterial protein is always found with the homologous protein-export membrane protein SecD. In numerous lineages, this protein occurs as a SecDF fusion protein.
+DR  Interpro; IPR003335
+DR  PFAM; PF02355

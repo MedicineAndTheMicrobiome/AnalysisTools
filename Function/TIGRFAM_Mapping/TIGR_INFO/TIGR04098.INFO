@@ -1,0 +1,11 @@
+ID  biosyn_clust_1
+AC  TIGR04098
+DE  biosynthesis cluster domain
+AU  Haft DH
+TC  100.00 100.00
+NC  35.00 35.00
+AL  muscle_manual
+IT  domain
+EN  biosynthesis cluster domain
+TP  TIGRFAMs
+CC  Radical SAM family TIGR04043 is a marker for a widespread eight-gene probable biosynthetic cluster of unknown function. This protein family describes a domain that occurs as an additional protein for some of those clusters, but also as the N-terminal domain of large, multidomain polyketide synthases and in other contexts.

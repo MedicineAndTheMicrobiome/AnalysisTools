@@ -1,0 +1,14 @@
+ID  S18
+AC  TIGR00165
+DE  ribosomal protein S18
+AU  Haft DH
+TC  38.75 38.75
+NC  17.85 17.85
+AL  clustalw_manual
+IT  equivalog
+EN  ribosomal protein S18
+GS  rpsR
+TP  TIGRFAMs
+CC  This ribosomal small subunit protein is found in all eubacteria so far, as well as in chloroplasts. YER050C from Saccharomyces cerevisiae and a related protein from Caenorhabditis elegans appear to be homologous and may represent mitochondrial forms. The trusted cutoff is set high enough that these two candidate S18 proteins are not categorized automatically.
+DR  PROSITE; PDOC00056; RIBOSOMAL_S18
+DR  HAMAP; MF_00270; 691 of 708

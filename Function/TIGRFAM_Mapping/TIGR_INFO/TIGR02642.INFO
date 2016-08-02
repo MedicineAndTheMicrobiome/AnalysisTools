@@ -1,0 +1,11 @@
+ID  phage_xxxx
+AC  TIGR02642
+DE  uncharacterized phage protein
+AU  Haft DH
+TC  101.40 101.40
+NC  30.80 30.80
+AL  clustalw
+IT  hypoth_equivalog
+EN  uncharacterized phage protein
+TP  TIGRFAMs
+CC  This uncharacterized protein is found in prophage regions of Shewanella oneidensis MR-1, Vibrio vulnificus YJ016, Yersinia pseudotuberculosis IP 32953, and Aeromonas hydrophila ATCC7966. It appears to have regions of sequence similarity to phage lambda antitermination protein Q.

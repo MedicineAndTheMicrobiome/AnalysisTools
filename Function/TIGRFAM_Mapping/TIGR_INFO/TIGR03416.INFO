@@ -1,0 +1,16 @@
+ID  ABC_choXWV_perm
+AC  TIGR03416
+DE  choline ABC transporter, permease protein
+AU  Haft DH
+TC  363.00 363.00
+NC  353.05 353.05
+AL  muscle_manual
+IT  equivalog
+EN  choline ABC transporter, permease protein
+GS  choW
+TP  TIGRFAMs
+RN  [1]
+RM  PMID:15342567
+RT  The Sinorhizobium meliloti ABC transporter Cho is highly specific for choline and expressed in bacteroids from Medicago sativa nodules.
+RA  Dupont L, Garcia I, Poggi MC, Alloing G, Mandon K, Le Rudulier D.
+RL  J Bacteriol. 2004 Sep;186(18):5988-96.

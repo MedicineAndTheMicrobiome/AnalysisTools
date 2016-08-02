@@ -1,0 +1,27 @@
+ID  osq_cycl
+AC  TIGR03463
+DE  2,3-oxidosqualene cyclase
+AU  Selengut J
+TC  851.00 851.00
+NC  850.75 850.75
+AL  muscle
+IT  subfamily
+EN  2,3-oxidosqualene cyclase
+EC  5.4.99.8
+TP  TIGRFAMs
+CC  This model identifies 2,3-oxidosqualene cyclases from Stigmatella aurantiaca which produces cycloartenol [1], and Gemmata obscuriglobus [2] and Methylococcus capsulatus [3] which each produce the closely related sterol, lanosterol.
+RN  [1]
+RM  PMID:12519197 
+RT  Steroid biosynthesis in prokaryotes: identification of myxobacterial steroids and cloning of the first bacterial 2,3(S)-oxidosqualene cyclase from the myxobacterium Stigmatella aurantiaca. 
+RA  Bode HB, Zeggel B, Silakowski B, Wenzel SC, Reichenbach H, Muller R 
+RL  Mol Microbiol. 2003 Jan;47(2):471-81.
+RN  [2]
+RM  PMID:17567593 
+RT  Lanosterol Biosynthesis in the Prokaryote Methylococcus capsulatus: Insight into the Evolution of Sterol Biosynthesis. 
+RA  Lamb DC, Jackson CJ, Warrilow AG, Manning NJ, Kelly DE, Kelly SL 
+RL  Mol Biol Evol. 2007 Jun 13 
+RN  [3]
+RM  PMID:6780348 
+RT  Non-specific lanosterol and hopanoid biosynthesis be a cell-free system from the bacterium Methylococcus capsulatus. 
+RA  Rohmer M, Bouvier P, Ourisson G 
+RL  Eur J Biochem. 1980 Dec;112(3):557-60.

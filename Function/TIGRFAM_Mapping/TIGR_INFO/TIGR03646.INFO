@@ -1,0 +1,11 @@
+ID  YtoQ_fam
+AC  TIGR03646
+DE  YtoQ family protein
+AU  Haft DH
+TC  155.35 155.35
+NC  59.95 59.95
+AL  muscle_manual
+IT  subfamily
+EN  YtoQ family protein
+TP  TIGRFAMs
+CC  Members of this family are uncharacterized proteins, including YtoQ from Bacillus subtilis. This family shows some sequence similarity to a family of nucleoside 2-deoxyribosyltransferases (COG3613 as iterated through CDD), but sufficiently remote that PSI-BLAST starting from YtoQ and exploring outwards does not discover the relationship.

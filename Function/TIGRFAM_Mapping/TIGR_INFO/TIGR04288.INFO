@@ -1,0 +1,11 @@
+ID  CGP_CTERM
+AC  TIGR04288
+DE  CGP-CTERM domain
+AU  Haft DH
+TC  18.00 18.00
+NC  16.00 15.00
+AL  manual
+IT  domain
+EN  CGP-CTERM domain
+TP  TIGRFAMs
+CC  This domain has an essentially invariant motif, Cys-Gly-Pro, followed by a highly hydrophobic transmembrane domain, always at the protein C-terminus. It occurs, so far, strictly in the family Thermococcaceae (includes Thermococcus and Pyrococcus) within the Euryarchaeota. It occurs in ten proteins per genome on average, and proteins with the domain may lack similarity elsewhere. The presumed sorting/processing protein, for which this domain contains the recognition sequence, is unknown, but it is unlikely to be a member of the exosortase/archaeosortase family. The Cys residue suggests a lipid modification. Upstream, from this domain, most member proteins have an extremely Thr-rich sequence, suggesting archaeal surface protein O-linked glycosylation.

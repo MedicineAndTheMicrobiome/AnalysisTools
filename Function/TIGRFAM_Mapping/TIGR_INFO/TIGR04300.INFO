@@ -1,0 +1,12 @@
+ID  exosort_XrtM
+AC  TIGR04300
+DE  exosortase family protein XrtM
+AU  Haft DH
+TC  125.00 125.00
+NC  70.00 70.00
+AL  muscle_manual
+IT  exception
+EN  exosortase family protein XrtM
+GS  xrtM
+TP  TIGRFAMs
+CC  Members of this family, part of the larger exosortase/archaeosortase family, are known from five related cassettes of genes in Methylomonas methanica MC09, a gammaproteobacterial methanotroph. Each xrtM gene occurs near a large YD repeat (see TIGR01643) protein of 1500-2500 residues and a small, uncharacterized protein of about 200 residues. No PEP-CTERM-like recognition sequence has been identified, so this protein is designated as exosortase family, but not necessarily a functional exosortase.

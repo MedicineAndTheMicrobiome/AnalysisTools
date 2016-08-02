@@ -1,0 +1,11 @@
+ID  recD_rel
+AC  TIGR01448
+DE  helicase, RecD/TraA family
+AU  Haft DH
+TC  539.20 539.20
+NC  218.40 218.40
+AL  clustalw
+IT  hypoth_equivalog
+EN  helicase, putative, RecD/TraA family
+TP  TIGRFAMs
+CC  This model describes a family similar to RecD, the exodeoxyribonuclease V alpha chain of TIGR01447. Members of this family, however, are not found in a context of RecB and RecC and are longer by about 200 amino acids at the amino end. Chlamydia muridarum has both a member of this family and a RecD.

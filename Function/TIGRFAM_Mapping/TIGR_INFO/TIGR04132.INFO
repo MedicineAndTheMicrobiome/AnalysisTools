@@ -1,0 +1,12 @@
+ID  intra_fol_E_lig
+AC  TIGR04132
+DE  putative folate metabolism gamma-glutamate ligase
+AU  Haft DH
+TC  350.00 350.00
+NC  250.00 250.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  putative folate metabolism gamma-glutamate ligase
+EC  6.3.2.-
+TP  TIGRFAMs
+CC  This protein family is related to CofE, a gamma-glutamyl ligase of coenzyme F420 biosynthesis. However, it occurs in a different gamma-glutamyl ligase context, polyglutamylated tetrahydrofolate biosynthesis-like regions in two widely separated lineages that both occur as intracellular bacteria - Chlamydia and Wolbachia.

@@ -1,0 +1,18 @@
+ID  HAD-SF-IA-hyp1
+AC  TIGR01548
+DE  HAD hydrolase, TIGR01548 family
+AU  Selengut J
+TC  140.20 140.20
+NC  79.85 79.85
+AL  clustalw
+IT  hypoth_equivalog
+EN  haloacid dehalogenase superfamily, subfamily IA hydrolase, TIGR01548
+TP  TIGRFAMs
+CC  This HMM represents a small and phylogenetically curious clade of sequences.  Sequences are found from Halobacterium (an archaeon), Nostoc and Synechococcus (cyanobacteria) and Phytophthora (a stramenophile eukaryote).  These appear to be members of the haloacid dehalogenase (HAD) superfamily of aspartate-nucleophile hydrolases by general homology and the conservation of all of the recognized catalytic motifs [1].  The variable domain is found in between motifs 1 and 2, indicating membership in subfamily I and phylogeny and prediction of the alpha helical nature of the variable domain (by PSI-PRED) indicate membership in subfamily IA.
+CC  All but the Halobacterium sequence currently found are annotated as "Imidazoleglycerol-phosphate dehydratase", however, the source of the annotation could not be traced and significant homology could not be found between any of these sequences and known IGPD's.
+RN  [1]
+RM  PMID: 7966317
+RT  Computer analysis of bacterial haloacid dehalogenases defines a large superfamily of hydrolases with diverse specificity. Application of an iterative approac
+h to database search.
+RA  Koonin EV, Tatusov RL.
+RL  J Mol Biol 1994 Nov 18;244(1):125-32

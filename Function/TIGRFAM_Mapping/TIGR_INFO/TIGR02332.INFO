@@ -1,0 +1,18 @@
+ID  HpaX
+AC  TIGR02332
+DE  4-hydroxyphenylacetate permease
+AU  Selengut J, Haft DH
+TC  615.40 615.40
+NC  527.90 527.90
+AL  clustalw
+IT  equivalog
+EN  4-hydroxyphenylacetate permease
+GS  hpaX
+TR  2.A.1.14.9
+TP  TIGRFAMs
+CC  This protein is a part of the Major Facilitator Superfamily (Pfam family PF07690). Member of this family are found in a number of proteobacterial genomes, but only in the context of   having genes for 4-hydroxyphenylacetate (4-HPA) degradation. The protein is characterized by Prieto, et al. (PMID:9315705) as 4-hydroxyphenylacetate permease in E. coli, where 3-HPA and 3,4-dihydroxyphenylacetate are shown to competitively inhibit 4-HPA transport and therefore also interact specificially.
+RN  [1]
+RM  9315705
+RT  Identification of the 4-hydroxyphenylacetate transport gene of Escherichia coli W: construction of a highly sensitive cellular biosensor.
+RA  Prieto MA, Garcia JL.
+RL  FEBS Lett. 1997 Sep 8;414(2):293-7.

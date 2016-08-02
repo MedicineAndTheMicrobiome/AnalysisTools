@@ -1,0 +1,23 @@
+ID  L_rham_iso_rhiz
+AC  TIGR02629
+DE  L-rhamnose catabolism isomerase
+AU  Haft DH
+TC  646.75 646.75
+NC  416.75 416.75
+AL  clustalw
+IT  equivalog
+EN  L-rhamnose catabolism isomerase, Pseudomonas stutzeri subtype
+GS  rhaI
+EC  5.3.1.-
+TP  TIGRFAMs
+CC  Members of this family are isomerases in the pathway of L-rhamnose catabolism as found in Pseudomonas stutzeri and in a number of the Rhizobiales. This family differs from the L-rhamnose isomerases of Escherichia coli (see TIGR01748). This enzyme catalyzes the isomerization step in rhamnose catabolism. Genetic evidence in Rhizobium leguminosarum bv. trifolii suggests phosphorylation occurs first, then isomerization of the the phosphorylated sugar, but characterization of the recombinant enzyme from Pseudomonas 	stutzeri does show L-rhamnose isomerase activity. The name given is deliberately vague because the relative order of phosphorylation and isomerization is unclear.
+RN  [1]
+RM  15184124
+RT  Cloning, nucleotide sequence, and overexpression of the L-rhamnose isomerase gene from Pseudomonas stutzeri in Escherichia coli.
+RA  Leang K, Takada G, Ishimura A, Okita M, Izumori K.
+RL  Appl Environ Microbiol. 2004 Jun;70(6):3298-304.
+RN  [2]
+RM  15576793
+RT  A genetic locus necessary for rhamnose uptake and catabolism in Rhizobium leguminosarum bv. trifolii.
+RA  Richardson JS, Hynes MF, Oresnik IJ.
+RL  J Bacteriol. 2004 Dec;186(24):8433-42.

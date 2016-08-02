@@ -1,0 +1,12 @@
+ID  therm_gnt_kin
+AC  TIGR01313
+DE  carbohydrate kinase, thermoresistant glucokinase family
+AU  Haft DH
+TC  113.75 113.75
+NC  53.30 53.30
+AL  clustalw
+IT  subfamily
+EN  carbohydrate kinase, thermoresistant glucokinase family
+EC  2.7.1.-
+TP  TIGRFAMs
+CC  This HMM represents a subfamily of proteins that includes thermoresistant and thermosensitve isozymes of gluconate kinase (gluconokinase) in E. coli and other related proteins; members of this family are often named by similarity to the thermostable isozyme. These proteins show homology to shikimate kinases and adenylate kinases but not to gluconate kinases from the FGGY family of carbohydrate kinases.

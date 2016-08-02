@@ -1,0 +1,11 @@
+ID  pre_pil_HX9DG
+AC  TIGR04294
+DE  prepilin-type processing-associated H-X9-DG domain
+AU  Haft DH
+TC  16.00 16.00
+NC  10.00 10.00
+AL  muscle_manual
+IT  domain
+EN  prepilin-type processing-associated H-X9-DG domain
+TP  TIGRFAMs
+CC  This model describes a region of ~16 residues found typically about 30 residues away from the C-terminus of large numbers of proteins in the Planctomycetes, Lentisphaerae, and Verrucomicrobia, on proteins with a prepilin-type N-terminal cleavage/methylation domain (see TIGR02532). The motif H-X(9)-D-G is nearly invariant. Single genomes may encode over 200 such proteins.

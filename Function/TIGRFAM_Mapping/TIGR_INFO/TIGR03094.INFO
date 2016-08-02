@@ -1,0 +1,26 @@
+ID  sulfo_cyanin
+AC  TIGR03094
+DE  sulfocyanin
+AU  Haft DH
+TC  168.40 168.40
+NC  58.85 58.85
+AL  muscle
+IT  equivalog
+EN  sulfocyanin
+TP  TIGRFAMs
+CC  Members of this family are blue-copper redox proteins designated sulfocyanin, from the archaeal genera Sulfolobus, Ferroplasma, and Picrophilus. The most closely related proteins characterized as functionally different are the rustacyanins.
+RN  [1]
+RM  PMID: 12530544
+RT  The archaeal respiratory supercomplex SoxM from S. acidocaldarius combines features of quinole and cytochrome c oxidases.
+RA  Komorowski L, Verheyen W, Schafer G
+RL  Biol Chem. 2002 Nov;383(11):1791-9.
+RN  [2]
+RM  PMID: 16339958
+RT  Analysis of differential protein expression during growth states of Ferroplasma strains and insights into electron transport for iron oxidation.
+RA  Dopson M, Baker-Austin C, Bond PL
+RL  Microbiology. 2005 Dec;151(Pt 12):4127-37.
+RN  [3]
+RM  PMID: 15357880
+RT  Functionally specified protein signatures distinctive for each of the different blue copper proteins.
+RA  Giri AV, Anishetty S, Gautam P
+RL  BMC Bioinformatics. 2004 Sep 9;5:127.

@@ -1,0 +1,27 @@
+ID  TrbJ_Ti
+AC  TIGR02780
+DE  P-type conjugative transfer protein TrbJ
+AU  Selengut J
+TC  100.55 100.55
+NC  26.90 26.90
+AL  muscle
+IT  equivalog
+EN  P-type conjugative transfer protein TrbJ
+GS  trbJ
+TP  TIGRFAMs
+CC  The TrbJ protein is found in the trb locus of Agrobacterium Ti plasmids where it is involved in the type IV secretion system for plasmid conjugative transfer [1,2].  TrbJ is a homolog of the F-type TraE protein (which is believed to be an inner membrane pore-forming protein, TIGR02761) as well as the vir system VirB5 protein [3].
+RN  [1]
+RM  PMID: 8763953
+RT  The tra region of the nopaline-type Ti plasmid is a chimera with elements related to the transfer systems of RSF1010, RP4, and F.
+RA  Farrand SK, Hwang I, Cook DM.
+RL  J Bacteriol. 1996 Jul;178(14):4233-47.
+RN  [2]
+RM  PMID: 10438776
+RA  Li PL, Hwang I, Miyagi H, True H, Farrand SK.
+RT  Essential components of the Ti plasmid trb system, a type IV macromolecular transporter.
+RL  J Bacteriol. 1999 Aug;181(16):5033-41.
+RN  [3]
+RM  PMID: 12855161
+RT  F factor conjugation is a true type IV secretion system.
+RA  Lawley TD, Klimke WA, Gubbins MJ, Frost LS.
+RL  FEMS Microbiol Lett. 2003 Jul 15;224(1):1-15.

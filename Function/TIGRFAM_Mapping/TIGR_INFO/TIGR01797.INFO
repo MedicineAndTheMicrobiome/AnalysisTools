@@ -1,0 +1,12 @@
+ID  CM_P_1
+AC  TIGR01797
+DE  chorismate mutase
+AU  Selengut J
+TC  73.70 73.70
+NC  72.45 72.45
+AL  clustalw
+IT  equivalog_domain
+EN  chorismate mutase domain of proteobacterial P-protein, clade 1
+EC  5.4.99.5
+TP  TIGRFAMs
+CC  This model represents the chorismate mutase domain of the gamma and beta proteobacterial "P-protein" which contains an N-terminal chorismate mutase domain and a C-terminal prephenate dehydratase domain.

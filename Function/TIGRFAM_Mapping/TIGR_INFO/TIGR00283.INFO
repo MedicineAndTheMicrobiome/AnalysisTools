@@ -1,0 +1,19 @@
+ID  arch_pth2
+AC  TIGR00283
+DE  peptidyl-tRNA hydrolase
+AU  Haft DH
+TC  82.00 82.00
+NC  47.65 47.65
+AL  clustalw
+IT  equivalog
+EN  peptidyl-tRNA hydrolase
+GS  pth2
+EC  3.1.1.29
+TP  TIGRFAMs
+CC  This model describes an archaeal/eukaryotic form of peptidyl-tRNA hydrolase. Most bacterial forms are described by TIGR00447.
+RN  [1]
+RM  PMID:16251366
+RT  Solution structure of Archaeglobus fulgidis peptidyl-tRNA hydrolase (Pth2) provides evidence for an extensive conserved family of Pth2 enzymes in archea, bacteria, and eukaryotes.
+RA  Powers R, Mirkovic N, Goldsmith-Fischman S, Acton TB, Chiang Y, Huang YJ, Ma L, Rajan PK, Cort JR, Kennedy MA, Liu J, Rost B, Honig B, Murray D, Montelione GT
+RL  Protein Sci. 2005 Nov;14(11):2849-61.
+DR  HAMAP; MF_00628; 30 of 30

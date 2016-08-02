@@ -1,0 +1,12 @@
+ID  aEF-2
+AC  TIGR00490
+DE  translation elongation factor aEF-2
+AU  Haft DH
+TC  738.45 738.45
+NC  346.65 346.65
+AL  clustalw
+IT  equivalog
+EN  translation elongation factor aEF-2
+TP  TIGRFAMs
+CC  This model represents archaeal elongation factor 2, a protein more similar to eukaryotic EF-2 than to bacterial EF-G, both in sequence similarity and in sharing with eukaryotes the property of having a diphthamide (modified His) residue at a conserved position. The diphthamide can be ADP-ribosylated by diphtheria toxin in the presence of NAD.
+DR  HAMAP; MF_00054; 44 of 618

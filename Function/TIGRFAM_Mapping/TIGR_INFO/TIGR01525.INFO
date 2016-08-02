@@ -1,0 +1,13 @@
+ID  ATPase-IB_hvy
+AC  TIGR01525
+DE  heavy metal translocating P-type ATPase
+AU  Selengut J
+TC  346.25 346.25
+NC  329.80 329.80
+AL  clustalw
+IT  subfamily
+EN  heavy metal translocating P-type ATPase
+EC  3.6.3.-
+TR  3.A.3.-.-
+TP  TIGRFAMs
+CC  This HMM encompasses two equivalog models for the copper and cadmium-type heavy metal transporting P-type ATPases (TIGR01511 and TIGR01512) as well as those species which score ambiguously between both models.  For more comments and references, see the files on TIGR01511 and 01512.

@@ -1,0 +1,20 @@
+ID  PabB-clade2
+AC  TIGR01824
+DE  aminodeoxychorismate synthase, component I
+AU  Selengut J
+TC  408.55 408.55
+NC  389.30 389.30
+AL  clustalw
+IT  equivalog
+EN  aminodeoxychorismate synthase, component I, clade 2
+GS  pabB
+EC  2.6.1.85
+TP  TIGRFAMs
+CC  This clade of sequences is more closely related to TrpE (anthranilate synthase, TIGR00564/TIGR01820/TIGR00565) than to the better characterized group of PabB enzymes (TIGR00553/TIGR01823).  This clade includes one characterized enzyme from Lactococcus [1] and the conserved function across the clade is supported by these pieces of evidence: 1) all genomes with a member in this clade also have a separate TrpE gene, 2) none of these genomes contain an aparrent PabB from any of the other PabB clades, 3) none of these sequences are found in a region of the genome in association with other Trp biosynthesis genes, 4) all of these genomes aparrently contain most if not all of the steps of the folate biosynthetic pathway (for which PABA is a precursor).
+CC  Many of the sequences hit by this model are annotated as TrpE enzymes, however, we believe that all members of this clade are, in fact, PabB.
+CC  The sequences from Bacillus halodurans and subtilus which score below the trusted cutoff for this model are also likely to be PabB enzymes, but are too closely related to TrpE to be separated at this time.
+RN  [1]
+RM  PMID: 8409921
+RT  Cloning, nucleotide sequence and expression in Streptomyces lividans and Escherichia coli of pabB from Lactococcus lactis subsp. lactis NCDO 496.
+RA  Arhin FF, Vining LC.
+RL  J Gen Microbiol 1993 Aug;139 ( Pt 8):1785-93

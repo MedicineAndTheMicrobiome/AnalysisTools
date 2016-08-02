@@ -1,0 +1,13 @@
+ID  pullul_strch
+AC  TIGR02103
+DE  alpha-1,6-glucosidases, pullulanase-type
+AU  Haft DH
+TC  697.60 697.60
+NC  384.05 384.05
+AL  clustalw
+IT  subfamily_domain
+EN  alpha-1,6-glucosidases, pullulanase-type
+GS  pulA
+EC  3.2.1.41
+TP  TIGRFAMs
+CC  Members of this protein family include secreted (or membrane-anchored) pullulanases of Gram-negative bacteria and pullulanase-type starch debranching enzymes of plants. Both enzymes hydrolyze alpha-1,6 glycosidic linkages. Pullulan is an unusual, industrially important polysaccharide in which short alpha-1,4 chains (maltotriose) are connected in alpha-1,6 linkages. Enzymes that cleave alpha-1,6 linkages in pullulan and release maltotriose are called pullulanases although pullulan itself may not be the natural substrate. This family is closely homologous to, but architecturally different from, the Gram-positive pullulanases of Gram-positive bacteria (TIGR02102).

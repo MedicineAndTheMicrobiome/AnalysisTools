@@ -1,0 +1,20 @@
+ID  ispD
+AC  TIGR00453
+DE  2-C-methyl-D-erythritol 4-phosphate cytidylyltransferase
+AU  Haft DH, Loftus BJ, Nelson WE
+TC  181.30 181.30
+NC  87.20 87.20
+AL  clustalw
+IT  equivalog_domain
+EN  2-C-methyl-D-erythritol 4-phosphate cytidylyltransferase
+GS  ispD
+EC  2.7.7.60
+TP  TIGRFAMs
+CC  Members of this protein family are 2-C-methyl-D-erythritol 4-phosphate cytidylyltransferase, the IspD protein of the deoxyxylulose pathway of IPP biosynthesis. In about twenty percent of bacterial genomes, this protein occurs as IspDF, a bifunctional fusion protein.
+DR  Swissprot; Q06755;
+DR  Blocks; UPF0007;
+DR  EXCEPTION; EGAD|18524; CDP-ribitol pyrophosphorylase; Haemophilus influenzae
+DR  OUTGROUP; OMNI|MT1046; UDP-N-acetylglucosamine pyrophosphorylase; Mycobacterium tuberculosis
+DR  OUTGROUP; OMNI|CC2304; UDP-N-acetylglucosamine pyrophosphorylase; Caulobacter crescentus
+DR  EXPERIMENTAL; SP:ISPD_ECOLI; Escherichia coli
+DR  HAMAP; MF_01520; 70 of 79

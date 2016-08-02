@@ -1,0 +1,13 @@
+ID  HpaH
+AC  TIGR02312
+DE  2-oxo-hepta-3-ene-1,7-dioic acid hydratase
+AU  Selengut J
+TC  351.50 351.50
+NC  311.45 311.45
+AL  clustalw
+IT  equivalog
+EN  2-oxo-hepta-3-ene-1,7-dioic acid hydratase
+GS  hpaH
+EC  4.2.-.-
+TP  TIGRFAMs
+CC  This model represents the enzyme which hydrates the double bond of 2-oxo-hepta-3-ene-1,7-dioic acid to form 4-hydroxy-2-oxo-heptane-1,7-dioic acid in the catabolism of 4-hydroxyphenylacetic acid.  The gene for this enzyme is generally found adjacent to other genes of this pathway in an apparent operon.

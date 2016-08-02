@@ -1,0 +1,19 @@
+ID  QH_beta
+AC  TIGR03907
+DE  quinohemoprotein amine dehydrogenase, beta subunit
+AU  Haft DH
+TC  223.20 223.20
+NC  222.95 222.95
+AL  muscle_manual
+IT  equivalog
+EN  quinohemoprotein amine dehydrogenase, beta subunit
+GS  peaD
+EC  1.-.-.-
+TP  TIGRFAMs
+CC  Quinohemoprotein amine dehydrogenase is a three subunit enzyme with both a heme group and a cysteine
+CC  tryptophylquinone group derived by post-translational modification of the gamma subunit. This model describes the beta subunit. This enzyme catalyzes oxidative deamination of primary aliphatic and aromatic amines (PMID:10346915).
+RN  [1]
+RM  PMID:11704672 
+RT  Crystal structure of quinohemoprotein amine dehydrogenase from Pseudomonas putida. Identification of a novel quinone cofactor encaged by multiple thioether cross-bridges. 
+RA  Satoh A, Kim JK, Miyahara I, Devreese B, Vandenberghe I, Hacisalihoglu A, Okajima T, Kuroda S, Adachi O, Duine JA, Van Beeumen J, Tanizawa K, Hirotsu K 
+RL  J Biol Chem. 2002 Jan 25;277(4):2830-4.

@@ -1,0 +1,22 @@
+ID  VI_chp_2
+AC  TIGR03355
+DE  type VI secretion protein, EvpB/VC_A0108 family
+AU  Haft DH
+TC  271.50 271.50
+NC  110.15 110.15
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  type VI secretion protein, EvpB/VC_A0108 family
+TP  TIGRFAMs
+CC  Work by Mougous, et al. (2006), describes IAHP-related loci as a type VI secretion system (PMID:16763151). This protein family is associated with type VI secretion loci, although not treated explicitly by Mougous, et al.
+RN  [1]
+RM  PMID: 15228535
+RT  Use of proteomics to identify novel virulence determinants that are required for Edwardsiella tarda pathogenesis.
+RA  Rao PS, Yamada Y, Tan YP, Leung KY
+RL  Mol Microbiol. 2004 Jul;53(2):573-86.
+RN  [2]
+RM  PMID: 16763151
+RT  A virulence locus of Pseudomonas aeruginosa encodes a protein secretion apparatus.
+RA  Mougous JD, Cuff ME, Raunser S, Shen A, Zhou M, Gifford CA, Goodman AL, Joachimiak G, Ordonez CL, Lory S, Walz T, Joachimiak A,
+Mekalanos JJ
+RL  Science. 2006 Jun 9;312(5779):1526-30.

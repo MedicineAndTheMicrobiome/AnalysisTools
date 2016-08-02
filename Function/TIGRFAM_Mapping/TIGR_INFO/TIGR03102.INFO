@@ -1,0 +1,11 @@
+ID  halo_cynanin
+AC  TIGR03102
+DE  halocyanin domain
+AU  Haft DH
+TC  93.80 93.80
+NC  78.40 78.40
+AL  muscle_manual
+IT  subfamily_domain
+EN  halocyanin domain
+TP  TIGRFAMs
+CC  Halocyanins are blue (type I) copper redox proteins found in halophilic archaea such as Natronobacterium pharaonis. This model represents a domain duplicated in some halocyanins, while appearing once in others. This domain includes the characteristic copper ligand residues. This family does not include plastocyanins, and does not include certain divergent paralogs of halocyanin.

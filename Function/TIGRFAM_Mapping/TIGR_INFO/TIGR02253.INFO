@@ -1,0 +1,17 @@
+ID  CTE7
+AC  TIGR02253
+DE  HAD hydrolase, TIGR02253 family
+AU  Selengut J
+TC  169.75 169.75
+NC  148.70 148.70
+AL  clustalw
+IT  subfamily
+EN  HAD superfamily (subfamily IA) hydrolase, TIGR02253
+TP  TIGRFAMs
+CC  This family of sequences from archaea and metazoans includes the human uncharacterized protein CTE7.  Pyrococcus species appear to have three different forms of this enzyme, so it is unclear whether all members of this family have the same function.
+CC  This family is a member of the haloacid dehalogenase (HAD) superfamily of hydrolases which are characterized by three conserved sequence motifs [1].  By virtue of an alpha helical domain in-between the first and second conserved motif, this family is a member of subfamily IA (TIGR01549).
+RN  [1]
+RM  PMID: 7966317
+RT  Computer analysis of bacterial haloacid dehalogenases defines a large superfamily of hydrolases with diverse specificity. Application of an iterative approach to database search.
+RA  Koonin EV, Tatusov RL.
+RL  J Mol Biol 1994 Nov 18;244(1):125-32

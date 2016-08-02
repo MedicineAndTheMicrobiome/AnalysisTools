@@ -1,0 +1,17 @@
+ID  caa3_CtaG
+AC  TIGR02737
+DE  cytochrome c oxidase assembly factor CtaG
+AU  Haft DH
+TC  279.35 279.35
+NC  92.60 92.60
+AL  clustalw
+IT  equivalog
+EN  cytochrome c oxidase assembly factor CtaG
+GS  ctaG
+TP  TIGRFAMs
+CC  Members of this family are the CtaG protein required for assembly of active cytochrome c oxidase of the caa3 type, as in Bacillus subtilis.
+RN  [1]
+RM  14766920
+RT  CtaG is required for formation of active cytochrome c oxidase in Bacillus subtilis.
+RA  Bengtsson J, von Wachenfeldt C, Winstedt L, Nygaard P, Hederstedt L.
+RL  Microbiology. 2004 Feb;150(Pt 2):415-25.

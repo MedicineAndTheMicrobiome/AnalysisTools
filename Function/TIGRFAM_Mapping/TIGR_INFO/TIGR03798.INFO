@@ -1,0 +1,21 @@
+ID  ocin_TIGR03798
+AC  TIGR03798
+DE  nif11-like leader peptide domain
+AU  Haft DH
+TC  32.30 32.30
+NC  29.70 29.70
+AL  muscle_manual
+IT  subfamily
+EN  nif11-like leader peptide domain
+TP  TIGRFAMs
+CC  This model describes a conserved, fairly long (about 65 residue) leader peptide region for a family of putative ribosomal natural products (RNP) of small size. Members of the seed alignment (most sequences scoring better than 54 bits to the HMMER 2 model) tend to have the Gly-Gly motif as the last two residues of the matched region. This is a cleavage site for a combination processing/export ABC transporter with a peptidase domain. Members include the prochlorosins, lantipeptides from Prochlorococcus.
+RN  [1]
+RM  PMID:20500830 
+RT  Expansion of ribosomally produced natural products: a nitrile hydratase- and Nif11-related precursor family. 
+RA  Haft DH, Basu MK, Mitchell DA 
+RL  BMC Biol. 2010 May 25;8:70.
+RN  [2]
+RM  PMID:22574919 
+RT  Structural characterization of four prochlorosins: a novel class of lantipeptides produced by planktonic marine cyanobacteria. 
+RA  Tang W, van der Donk WA 
+RL  Biochemistry. 2012 May 29;51(21):4271-9. Epub 2012 May 17.

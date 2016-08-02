@@ -1,0 +1,17 @@
+ID  tatC
+AC  TIGR00945
+DE  twin arginine-targeting protein translocase TatC
+AU  Loftus BJ, Selengut J
+TC  132.70 132.70
+NC  92.55 92.55
+AL  clustalw_manual
+IT  equivalog
+EN  Twin arginine targeting (Tat) protein translocase TatC
+GS  tatC
+TP  TIGRFAMs
+CC  This model represents the TatC translocase component of the Sec-independent protein translocation system.  This system is responsible for translocation of folded proteins, often with bound cofactors across the periplasmic membrane [1].  A related model (TIGR01912) represents the archaeal clade of this family.  TatC is often found in a gene cluster with the two other components of the system, TatA/E (TIGR01411) and TatB (TIGR01410).  A model also exists for the Twin-arginine signal sequence (TIGR01409).
+RN  [1]
+RM  PMID: 12634324 
+RT  Moving folded proteins across the bacterial cell membrane.
+RA  Palmer T, Berks BC.
+RL  Microbiology. 2003 Mar;149(Pt 3):547-56.

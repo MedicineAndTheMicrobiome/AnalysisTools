@@ -1,0 +1,16 @@
+ID  dCO2ase_PEP1
+AC  TIGR03099
+DE  pyridoxal-dependent decarboxylase, exosortase A system-associated
+AU  Selengut J
+TC  478.45 478.45
+NC  416.10 416.10
+AL  muscle
+IT  hypoth_equivalog
+EN  pyridoxal-dependent decarboxylase, exosortase A system-associated
+TP  TIGRFAMs
+CC  The sequences in this family contain the pyridoxal binding domain (PF02784) and C-terminal sheet domain (PF00278) of a family of Pyridoxal-dependent decarboxylases.  Characterized enzymes in this family decarboxylate substrates such as ornithine, diaminopimelate and arginine.  The genes of the family modeled here, with the exception of those observed in certain Burkholderia species, are all found in the context of exopolysaccharide biosynthesis loci containing the exosortase/PEP-CTERM protein sorting system [1].  More specifically, these are characteristic of the type 1 exosortase system represented by the Genome Property GenProp0652.  The substrate of these enzymes may be a precursor of the carrier or linker which is hypothesized to release the PEP-CTERM protein from the exosortase enzyme.  These enzymes are apparently most closely related to the diaminopimelate decarboxylase modeled by TIGR01048 which may suggest a similarity (or identity) of substrate.
+RN  [1]
+RM  PMID: 16930487
+RT  Exopolysaccharide-associated protein sorting in environmental organisms: the PEP-CTERM/EpsH system. Application of a novel phylogenetic profiling heuristic.
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD
+RL  BMC Biol. 2006 Aug 24;4(1):29.

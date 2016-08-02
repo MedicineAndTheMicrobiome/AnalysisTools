@@ -1,0 +1,14 @@
+ID  menE
+AC  TIGR01923
+DE  O-succinylbenzoate-CoA ligase
+AU  Sunshine J
+TC  330.15 330.15
+NC  313.95 313.95
+AL  clustalw
+IT  equivalog
+EN  O-succinylbenzoate-CoA ligase
+GS  menE
+EC  6.2.1.26
+TP  TIGRFAMs
+CC  This model represents an enzyme, O-succinylbenzoate-CoA ligase, which is involved in the fourth step of the menaquinone biosynthesis pathway.  O-succinylbenzoate-CoA ligase, together with menB - naphtoate synthase, take 2-succinylbenzoate and convert it into 1,4-di-hydroxy-2- naphtoate.
+DR  HAMAP; MF_00731; 34 of 34

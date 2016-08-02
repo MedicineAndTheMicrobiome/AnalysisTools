@@ -1,0 +1,17 @@
+ID  sphingomy
+AC  TIGR03395
+DE  sphingomyelin phosphodiesterase
+AU  Haft DH
+TC  248.20 248.20
+NC  178.80 178.80
+AL  muscle_manual
+IT  equivalog
+EN  sphingomyelin phosphodiesterase
+GS  sph
+EC  3.1.4.12
+TP  TIGRFAMs
+CC  Members of this family are bacterial proteins that act as  sphingomyelin phosphodiesterase (EC 3.1.4.12), also called sphingomyelinase. Some members of this family have been shown to act as hemolysins.
+RM  PMID: 2163985
+RT  Molecular analysis of a sphingomyelinase C gene from Leptospira interrogans serovar hardjo.
+RA  Segers RP, van der Drift A, de Nijs A, Corcione P, van der Zeijst BA, Gaastra W
+RL  Infect Immun. 1990 Jul;58(7):2177-85.

@@ -1,0 +1,18 @@
+ID  psbA
+AC  TIGR01151
+DE  photosystem II q(b) protein
+AU  Ujwal ML, Paulsen IT
+TC  596.05 596.05
+NC  223.20 223.20
+AL  clustalw
+IT  equivalog
+EN  photosystem II, DI subunit (also called Q(B))
+GS  psbA
+EC  1.10.3.9
+TP  TIGRFAMs
+CC  This model describes the Photosystem II, DI subunit (also called Q(B)) in bacterial and its equivalents in chloroplast of algae and higher plants. Photosystem II is many ways functionally equivalent to bacterial reaction center. At the core of Photosystem II are several light harvesting cofactors including plastoquinones, pheophytins, phyloquinones etc. These cofactors are intimately associated with the polypeptides, which principally including subunits DI, DII, Cyt.b, Cyt.f and iron-sulphur protein. Together they participate in the electron transfer reactions that lead to the net production of the reducting equivalents in the form of NADPH, which are used for reduction of CO2 to carbohydrates(C6H1206). Phosystem II operates during oxygenic photosynthesis and principal electron donor is H2O. Although no structural data is presently available, a huge body of literature exits that describes function using a variety of biochemical and biophysical techniques.
+RM  10903370
+RT  Phylogeny of Ultra-Rapidly Evolving Dinoflagellate Chloroplast Genes: A Possible Common Origin for Sporozoan and Dinoflagellal Plastids
+RA  Zhang,Z., Green,B.R. and Cavalier-Smith,T
+RL  J. Mol. Evol. 51 (1), 26-40 (2000)
+DR  HAMAP; MF_01379; 216 of 227

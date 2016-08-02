@@ -1,0 +1,21 @@
+ID  cobD
+AC  TIGR00380
+DE  cobalamin biosynthesis protein CobD
+AU  Loftus BJ
+TC  165.90 165.90
+NC  148.20 148.20
+AL  clustalw
+IT  equivalog
+EN  cobalamin biosynthesis protein CobD
+GS  cobD
+EC  6.3.1.10
+TP  TIGRFAMs
+CC  This protein is involved in cobalamin (vitamin B12) biosynthesis and porphyrin biosynthesis. It converts cobyric acid to cobinamide by the addition of aminopropanol on the F carboxylic group. It is part of the cob operon.
+RN  [1]
+RM  96146525
+RT  Salmonella typhimurium cobalamin (vitamin B12) biosynthetic genes: functional studies in S. typhimurium and Escherichia coli.
+RN  [2]
+RM  95362677
+RT  Identification and sequence analysis of genes involved in late steps in cobalamin (vitamin B12) synthesis in Rhodobacter capsulatus.
+DR  SWISSPROT; Q05600;
+DR  HAMAP; MF_00024; 47 of 48

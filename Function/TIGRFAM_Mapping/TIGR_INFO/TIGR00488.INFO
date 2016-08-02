@@ -1,0 +1,14 @@
+ID  TIGR00488
+AC  TIGR00488
+DE  putative HD superfamily hydrolase
+AU  Anolik RT, Richardson DL, Haft DH
+TC  70.15 70.15
+NC  62.00 62.00
+AL  clustalw
+IT  hypoth_equivalog
+EN  putative HD superfamily hydrolase of NAD metabolism
+TP  TIGRFAMs
+CC  The function of this protein family is unknown. Members of this family of uncharacterized proteins from the Mycoplasmas are longer at the amino end, fused to a region of nicotinamide nucleotide adenylyltransferase, an NAD salvage biosynthesis enzyme. Members are putative metal-dependent phosphohydrolases  for NAD metabolism.
+DR  PDB; 2O08; Crystal Structure Of A Putative Hd Superfamily Hydrolase (Np_242193.1) From Bacillus Halodurans
+DR  PDB; 3CCG; Crystal Structure Of Predicted Hd Superfamily Hydrolase Involved In Nad Metabolism (Np_347894.1) From Clostridium Acetobutylicum At 1.50 A Resolution
+DR  PDB; 2OGI;  Crystal Structure Of A Putative Metal Dependent Phosphohydrolase (Np_688652.1) From Streptococcus Agalactiae 2603 At 1.85 A Resolution

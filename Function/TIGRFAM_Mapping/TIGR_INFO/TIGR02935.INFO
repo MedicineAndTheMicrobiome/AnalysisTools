@@ -1,0 +1,11 @@
+ID  TIGR02935
+AC  TIGR02935
+DE  probable nitrogen fixation protein
+AU  Haft DH
+TC  132.05 132.05
+NC  52.25 52.25
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  probable nitrogen fixation protein
+TP  TIGRFAMs
+CC  Members of this protein family, called DUF269 by Pfam model PF03270, are strictly limited to nitrogen-fixing species, although not universal among them. The gene typically is found next to the nifX gene (see TIGRFAMs model TIGR02663).

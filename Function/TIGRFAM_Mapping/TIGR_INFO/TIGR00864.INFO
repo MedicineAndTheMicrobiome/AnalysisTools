@@ -1,0 +1,16 @@
+ID  PCC
+AC  TIGR00864
+DE  polycystin cation channel protein
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  1861.40 1861.40
+NC  1077.10 1077.10
+AL  clustalw
+IT  subfamily_domain
+EN  polycystin cation channel protein
+GS  PCC
+TR  1.A.5
+TP  TIGRFAMs
+CC  The Polycystin Cation Channel (PCC) Family (TC 1.A.5)
+CC  Polycystin is a huge protein of 4303aas. Its repeated leucine-rich (LRR) segment is found in many proteins. It contains 16 polycystic kidney disease (PKD) domains, one LDL-receptor class A domain, one C-type lectin family domain, and 16-18 putative TMSs in positions between residues 2200 and 4100.
+CC  Polycystin-L has been shown to be a cation (Na+, K+ and Ca2+) channel that is activated by Ca2+. Two members of the PCC family (polycystin 1 and 2) are mutated in autosomal dominant polycystic kidney disease, and polycystin-L is deleted in mice with renal and retinal defects.
+CC  Note: this model is restricted to the amino half because a full-length model is incompatible with the HMM software package.

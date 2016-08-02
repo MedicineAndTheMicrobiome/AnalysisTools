@@ -1,0 +1,13 @@
+ID  rpmJ_bact
+AC  TIGR01022
+DE  ribosomal protein L36
+AU  Haft DH
+TC  22.70 22.70
+NC  21.85 21.85
+AL  clustalw
+IT  equivalog
+EN  ribosomal protein L36, bacterial type
+GS  rpmJ
+TP  TIGRFAMs
+CC  Proteins found by this model occur exclusively in bacteria and organelles.
+DR  HAMAP; MF_00251; 654 of 678

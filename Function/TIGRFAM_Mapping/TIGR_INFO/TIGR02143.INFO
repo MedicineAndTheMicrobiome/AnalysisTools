@@ -1,0 +1,15 @@
+ID  trmA_only
+AC  TIGR02143
+DE  tRNA (uracil(54)-C(5))-methyltransferase
+AU  Haft DH, Pfam
+TC  334.65 334.65
+NC  165.40 165.40
+AL  unknown
+IT  equivalog
+EN  tRNA (uracil(54)-C(5))-methyltransferase
+GS  trmA
+EC  2.1.1.35
+TP  TIGRFAMs
+CC  This family consists exclusively of proteins believed to act as tRNA (uracil-5-)-methyltransferase. All members of far are proteobacterial. The seed alignment was taken directly from PF05958 in Pfam 12.0, but higher cutoffs are used to select only functionally equivalent proteins. Homologous proteins excluded by the higher cutoff scores of this model include other uracil methyltransferases, such as RumA, active on rRNA.
+DR  PFAM; PF05958
+DR  HAMAP; MF_01011; 104 of 108

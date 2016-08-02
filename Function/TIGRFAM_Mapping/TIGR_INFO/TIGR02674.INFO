@@ -1,0 +1,18 @@
+ID  cas_cyan_RAMP_2
+AC  TIGR02674
+DE  CRISPR-associated RAMP protein, Csx10 family
+AU  Haft DH
+TC  177.30 177.30
+NC  74.55 74.55
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  CRISPR-associated RAMP protein, Csx10 family
+GS  csx10
+TP  TIGRFAMs
+CC  CRISPR is a widespread repeat family in prokaryotes. At least 45 different protein families occur in prokaryotes only when these repeats are present. This family, a minor CRISPR-associated protein family, seems largely restricted to the Cyanobacteria. It belongs to the RAMP superfamily ( PF03787).
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=2003
+DR  PFAM; PF03787; CRISPR-associated RAMP protein
+RN  [1]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005

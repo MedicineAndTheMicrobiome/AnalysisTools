@@ -1,0 +1,13 @@
+ID  pyruv_carbox
+AC  TIGR01235
+DE  pyruvate carboxylase
+AU  Haft DH, Dodson RJ
+TC  1114.45 1114.45
+NC  617.10 617.10
+AL  clustalw
+IT  equivalog
+EN  pyruvate carboxylase
+GS  pyc
+EC  6.4.1.1
+TP  TIGRFAMs
+CC  This enzyme plays a role in gluconeogensis but not glycolysis.

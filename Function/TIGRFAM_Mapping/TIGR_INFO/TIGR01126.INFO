@@ -1,0 +1,11 @@
+ID  pdi_dom
+AC  TIGR01126
+DE  protein disulfide-isomerase domain
+AU  Haft DH
+TC  107.20 107.20
+NC  81.45 81.45
+AL  clustalw_manual
+IT  equivalog_domain
+EN  protein disulfide-isomerase domain
+TP  TIGRFAMs
+CC  This HMM describes a domain of eukaryotic protein disulfide isomerases, generally found in two copies. The high cutoff for total score reflects the expectation of finding both copies. The domain is similar to thioredoxin but the redox-active disulfide region motif is APWCGHCK.

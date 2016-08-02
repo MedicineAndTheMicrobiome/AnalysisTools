@@ -1,0 +1,17 @@
+ID  maf
+AC  TIGR00172
+DE  septum formation protein Maf
+AU  Richardson DL
+TC  117.15 117.15
+NC  85.65 85.65
+AL  clustalw
+IT  equivalog
+EN  MAF protein
+GS  maf
+TP  TIGRFAMs
+CC  This nonessential gene causes inhibition of septation when overexpressed. A member of the family is found in the Archaeon Pyrococcus horikoshii and another in the round worm Caenorhabditis elegans.
+RM  93259962
+RT  Amplification of the Bacillus subtilis maf gene results in arrested septum formation.
+RA  Butler YX, Abhayawardhane Y, Stewart GC 
+RL  J Bacteriol 1993 May;175(10):3139-45 
+DR  HAMAP; MF_00528; 400 of 424

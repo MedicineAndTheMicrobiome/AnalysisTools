@@ -1,0 +1,13 @@
+ID  group_II_RT_mat
+AC  TIGR04416
+DE  group II intron reverse transcriptase/maturase
+AU  Haft DH
+TC  300.00 300.00
+NC  180.00 180.00
+AL  muscle_manual
+IT  equivalog
+EN  group II intron reverse transcriptase/maturase
+GS  ltrA
+EC  2.7.7.49
+TP  TIGRFAMs
+CC  Members of this protein family are multifunctional proteins encoded in most examples of bacterial group II introns. These group II introns are mobile selfish genetic elements, often with multiple highly identical copies per genome. Member proteins have an N-terminal reverse transcriptase (RNA-directed DNA polymerase) domain (PF00078) followed by an RNA-binding maturase domain (PF08388). Some members of this family may have an additional C-terminal DNA endonuclease domain that this model does not cover. A region of the group II intron ribozyme structure should be detectable nearby on the genome by Rfam model RF00029.

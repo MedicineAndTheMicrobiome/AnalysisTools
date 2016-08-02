@@ -1,0 +1,13 @@
+ID  type_I_hlyD
+AC  TIGR01843
+DE  type I secretion membrane fusion protein, HlyD family
+AU  Haft DH
+TC  208.65 208.65
+NC  136.75 136.75
+AL  clustalw
+IT  subfamily
+EN  type I secretion membrane fusion protein, HlyD family
+TR  8.A.1
+TP  TIGRFAMs
+CC  Type I secretion is an ABC transport process that exports proteins, without cleavage of any signal sequence, from the cytosol to extracellular medium across both inner and outer membranes. The secretion signal is found in the C-terminus of the transported protein. This HMM represents the adaptor protein between the ATP-binding cassette (ABC) protein of the inner membrane and the outer membrane protein, and is called the membrane fusion protein. This model selects a subfamily closely related to HlyD; it is defined narrowly and excludes, for example, colicin V secretion protein CvaA and multidrug efflux proteins.
+DR  URL; http://tcdb.ucsd.edu/tcdb/tcfamilybrowse.php?tcname=8.A.1

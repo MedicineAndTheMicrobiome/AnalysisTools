@@ -1,0 +1,12 @@
+ID  TIGR00161
+AC  TIGR00161
+DE  TIGR00161 family protein
+AU  Haft DH
+TC  199.25 199.25
+NC  117.35 117.35
+AL  clustalw
+IT  hypoth_equivalog
+EN  TIGR00161 family protein
+TP  TIGRFAMs
+CC  This HMM represents one out of two closely related ortholgous sets of proteins that, so far, are found only in the Archaea.
+CC  This ortholog set includes MJ0106 from Methanococcus jannaschii and AF1251 from Archaeoglobus fulgidus, but not MJ1210 or AF0525.

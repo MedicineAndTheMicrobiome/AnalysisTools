@@ -1,0 +1,12 @@
+ID  Phn_Fe-ADH
+AC  TIGR03405
+DE  phosphonate metabolism-associated iron-containing alcohol dehydrogenase
+AU  Selengut J
+TC  423.70 423.70
+NC  256.10 256.10
+AL  muscle
+IT  hypoth_equivalog
+EN  phosphonate metabolism-associated iron-containing alcohol dehydrogenase
+TP  TIGRFAMs
+CC  This small clade of iron-containing alcohol dehydrogenases of the PF00465 family is found in genomic contexts indicating a role in the metabolism of phosphonates.  In Delftia acidovorans SPH-1, the gene ZP_01580650.1 is adjacent to and running in the same direction as ZP_01580649.1 encoding the enzyme phosphonatase (PhnX, TIGR01422).  Upstream are also found genes encoding components of a phosphonate ABC transport complex.  In Ralstonia eutropha H16 and Verminephrobacter eiseniae EF01-2 the dehydrogenase is followed by a homolog of the PhnB gene, a putative phosphonate-specific MFS-type transporter.  In Azoarcus BH72 the gene is preceded by Phosphoenolpyruvate phosphomutase (aepX) and a putative phosphonopyruvate decarboxylase (aepY), two genes involved in the biosynthesis of phosphonoacetaldehyde (Pald).  Ususally these two are accompanied by a specific transaminase, AepZ, which converts Pald to 2-aminoethylphosphonate (2-AEP).
+CC  2-hydroxyethylphosphonate (2-HEP), the presumed product of the reaction of Pald with an alcohol dehydrogenase, is a biologically novel but reasonable analog of 2-AEP and may be a constituent of as-yet undescribed natural products.  In the case of Azoarcus, downstream of the dehydrogenase is a CDP-glycerol:glycerophosphate transferase homolog that may indicate the existence of a pathway for 2-HEP-derived phosphonolipid biosynthesis.

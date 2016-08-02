@@ -1,0 +1,11 @@
+ID  FlgEFG_subfam
+AC  TIGR03506
+DE  flagellar hook-basal body protein
+AU  Selengut J
+TC  70.25 70.25
+NC  66.90 66.90
+AL  muscle
+IT  subfamily
+EN  flagellar hook-basal body protein
+TP  TIGRFAMs
+CC  This model encompasses three closely related flagellar proteins usually denoted FlgE, FlgF and FlgG.  The names have often been mis-assigned, however.  Three equivalog HMMs, TIGR02489, TIGR02490 and TIGR02488, respectively, separate the individual forms into three genome-context consistent groups.  The major differences between these genes are architectural, with variable central sections between relatively conserved N- and C-terminal domains.  More distantly related are two other flagellar apparatus familis, FlgC (TIGR01395) which consists of little else but the N-and C-terminal domains and FlgK (TIGR02492) with a substantial but different central domain.

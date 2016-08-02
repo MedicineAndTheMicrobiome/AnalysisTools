@@ -1,0 +1,17 @@
+ID  LPS_export_lptB
+AC  TIGR04406
+DE  LPS export ABC transporter ATP-binding protein
+AU  Haft DH
+TC  240.00 240.00
+NC  200.00 200.00
+AL  muscle_manual
+IT  equivalog
+EN  LPS export ABC transporter ATP-binding protein
+GS  lptB
+TP  TIGRFAMs
+CC  Members of this fmaily are LptB, the ATP-binding cassette protein of an ABC transporter involved in lipopolysaccharide export.
+RN  [1]
+RM  PMID:23292770 
+RT  The Escherichia coli Lpt transenvelope protein complex for lipopolysaccharide export is assembled via conserved structurally homologous domains.
+RA  Villa R, Martorana AM, Okuda S, Gourlay LJ, Nardini M, Sperandeo P, Deho G, Bolognesi M, Kahne D, Polissi A 
+RL  J Bacteriol. 2013 Jan 4.

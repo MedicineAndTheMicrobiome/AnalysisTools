@@ -1,0 +1,26 @@
+ID  ATPase-IIC_X-K
+AC  TIGR01106
+DE  Na,H/K antiporter P-type ATPase, alpha subunit
+AU  Ujwal ML, Haft DH, Paulsen IT, Selengut J
+TC  946.10 946.10
+NC  648.80 648.80
+AL  clustalw
+IT  subfamily
+EN  sodium or proton efflux -- potassium uptake antiporter, P-type ATPase, alpha subunit
+EC  3.6.3.-
+TR  3.A.3.1
+TP  TIGRFAMs
+CC  This model describes the P-type ATPases responsible for the exchange of either protons or sodium ions for potassium ions across the plasma membranes of eukaryotes.  Unlike most other P-type ATPases, members of this subfamily require a beta subunit for activity.
+CC  This model encompasses eukaryotes and consists of two functional types, a Na/K antiporter found widely distributed in eukaryotes and a H/K antiporter found only in vertebrates [1].
+CC  The Na+ or H+/K+ antiporter P-type ATPases have been characterized as Type IIC based on a published phylogenetic analysis [2].
+CC  Sequences from Blastocladiella emersonii (GP|6636502, GP|6636502 and PIR|T43025), C. elegans (GP|2315419, GP|6671808 and PIR|T31763) and Drosophila melanogaster (GP|7291424) score below trusted cutoff, apparently due to long branch length (excessive divergence from the last common ancestor) as evidenced by a phylogenetic tree.  Experimental evidence is needed to determine whether these sequences represent ATPases with conserved function.  Aside from fragments, other sequences between trusted and noise appear to be bacterial ATPases of unclear lineage, but most likely calcium pumps.
+RN  [1]
+RM  PMID: 11355008
+RT  P-type ATPase diversity and evolution: the origins of ouabain sensitivity and subunit assembly.
+RA  Takeyasu K, Okamura H, Yasuhara JC, Ogita Y, Yoshimura SH.
+RL  Cell Mol Biol (Noisy-le-grand). 2001 Mar;47(2):325-33.
+RN  [2]
+RM  PMID:9419228
+RT  Evolution of Substrate Specificities in the P-type ATPase Superfamily.
+RA  Axelsen KB, Palmgren, MG.
+RL  J Mol Evol. 1998 Jan; 46(1): 84-101.

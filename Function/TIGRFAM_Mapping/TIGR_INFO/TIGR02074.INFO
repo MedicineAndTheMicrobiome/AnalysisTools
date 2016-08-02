@@ -1,0 +1,11 @@
+ID  PBP_1a_fam
+AC  TIGR02074
+DE  penicillin-binding protein, 1A family
+AU  Haft DH
+TC  508.75 508.75
+NC  506.70 506.70
+AL  clustalw_manual
+IT  subfamily
+EN  penicillin-binding protein, 1A family
+TP  TIGRFAMs
+CC  Bacterial that synthesize a cell wall of peptidoglycan (murein) generally have several transglycosylases and transpeptidases for the task. This family consists of bifunctional transglycosylase/transpeptidase penicillin-binding proteins (PBP). In the Proteobacteria, this family includes PBP 1A but not the paralogous PBP 1B (TIGR02071). This family also includes related proteins, often designated PBP 1A, from other bacterial lineages.

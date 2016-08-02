@@ -1,0 +1,11 @@
+ID  acc_ester
+AC  TIGR03729
+DE  putative phosphoesterase
+AU  Haft DH
+TC  148.25 148.25
+NC  103.05 103.05
+AL  muscle_manual
+IT  subfamily
+EN  putative phosphoesterase
+TP  TIGRFAMs
+CC  Members of this protein family belong to the larger family PF00149 (calcineurin-like phosphoesterase), a family largely defined by small motifs of metal-chelating residues. The subfamily in this model shows a good but imperfect co-occurrence in species with domain TIGR03715 that defines a novel class of signal peptide typical of the accessory secretory system.

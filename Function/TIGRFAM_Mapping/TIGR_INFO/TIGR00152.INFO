@@ -1,0 +1,14 @@
+ID  TIGR00152
+AC  TIGR00152
+DE  dephospho-CoA kinase
+AU  Loftus BJ, Haft DH
+TC  65.55 65.55
+NC  62.35 62.35
+AL  clustalw
+IT  equivalog
+EN  dephospho-CoA kinase
+GS  coaE
+EC  2.7.1.24
+TP  TIGRFAMs
+CC  This model produces scores in the range of 0-25 bits against adenylate, guanylate, uridine, and thymidylate kinases.
+DR  HAMAP; MF_00376; 256 of 257

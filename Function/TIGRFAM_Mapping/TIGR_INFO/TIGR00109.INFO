@@ -1,0 +1,26 @@
+ID  hemH
+AC  TIGR00109
+DE  ferrochelatase
+AU  Anolik RT, Richardson DL
+TC  124.60 124.60
+NC  114.20 114.20
+AL  clustalw
+IT  equivalog
+EN  ferrochelatase
+GS  hemH
+EC  4.99.1.1
+TP  TIGRFAMs
+CC  Human ferrochelatase, found at the mitochondrial inner membrane inner surface, was shown in an active recombinant form to be a homodimer. This contrasts to an earlier finding by gel filtration that overexpressed E. coli ferrochelatase runs as a monomer.
+DR  PROSITE; PDOC00462;
+DR  PROSITE; PS00534; FERROCHELATASE
+RN  [1]
+RM  10561552
+RT  Human ferrochelatase: crystallization, characterization of the [2Fe-2S] cluster and determination that the enzyme is a homodimer.
+RA  Burden AE, Wu C, Dailey TA, Busch JL, Dhawan IK, Rose JP, Wang B, Dailey HA
+RL  Biochim Biophys Acta 1999 Nov 16;1435(1-2):191-197
+RN  [2]
+RM  94334300
+RT  Overproduction, purification, and characterization of ferrochelatase from Escherichia coli.
+RA  Miyamoto K, Kanaya S, Morikawa K, Inokuchi H
+RL  J Biochem (Tokyo) 1994 Mar;115(3):545-51 
+DR  HAMAP; MF_00323; 290 of 295

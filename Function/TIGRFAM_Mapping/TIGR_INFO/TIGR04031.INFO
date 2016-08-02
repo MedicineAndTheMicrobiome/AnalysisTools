@@ -1,0 +1,11 @@
+ID  Htur_1727_fam
+AC  TIGR04031
+DE  rSAM-partnered protein, Htur_1727 family
+AU  Haft DH
+TC  57.20 57.20
+NC  56.65 56.65
+AL  muscle_manual
+IT  subfamily
+EN  rSAM-partnered protein, Htur_1727 family
+TP  TIGRFAMs
+CC  Members of this protein family show homology to the putative PaaH (or PaaB) subunit of the phenylacetate-CoA oxygenase complex. However, all members are found in the Halobacteriales in the vicinity of a radical SAM protein homologous to the PqqE protein of pyroquinoline quinone (PQQ) biosynthesis. Members are well-conserved to about residue 75, but then become low-complexity and hypervariable.

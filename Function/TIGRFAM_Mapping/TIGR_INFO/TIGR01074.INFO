@@ -1,0 +1,13 @@
+ID  rep
+AC  TIGR01074
+DE  ATP-dependent DNA helicase Rep
+AU  Durkin S
+TC  951.45 951.45
+NC  770.95 770.95
+AL  clustalw
+IT  equivalog
+EN  ATP-dependent DNA helicase Rep
+GS  rep
+EC  3.6.4.12
+TP  TIGRFAMs
+CC  Designed to identify rep members of the uvrD/rep subfamily.

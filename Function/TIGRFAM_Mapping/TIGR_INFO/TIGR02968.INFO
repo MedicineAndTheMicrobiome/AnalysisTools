@@ -1,0 +1,17 @@
+ID  succ_dehyd_anc
+AC  TIGR02968
+DE  succinate dehydrogenase, hydrophobic membrane anchor protein
+AU  Haft DH
+TC  41.80 41.80
+NC  39.30 39.30
+AL  muscle
+IT  equivalog
+EN  succinate dehydrogenase, hydrophobic membrane anchor protein
+GS  sdhD
+TP  TIGRFAMs
+CC  In E. coli and many other bacteria, two small, hydrophobic, mutually homologous subunits of succinate dehydrogenase, a TCA cycle enzyme, are SdhC and SdhD. This family is the SdhD, the hydrophobic membrane anchor protein. SdhC is apocytochrome b558, which also plays a role in anchoring the complex.
+RN  [1]
+RM  PMID: 8637872
+RT  Genes encoding the same three subunits of respiratory complex II are present in the mitochondrial DNA of two phylogenetically distant eukaryotes.
+RA  Burger G, Lang BF, Reith M, Gray MW
+RL  Proc Natl Acad Sci U S A. 1996 Mar 19;93(6):2328-32.

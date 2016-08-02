@@ -1,0 +1,13 @@
+ID  rpsJ_bact
+AC  TIGR01049
+DE  ribosomal protein S10
+AU  Haft DH, Ujwal ML
+TC  72.75 72.75
+NC  70.00 70.00
+AL  clustalw_manual
+IT  equivalog
+EN  ribosomal protein S10, bacterial/organelle
+GS  rpsJ
+TP  TIGRFAMs
+CC  This HMM describes bacterial 30S ribosomal protein S10. In species that have a transcription antitermination complex, or N utilization substance, with NusA, NusB, NusG, and NusE, this ribosomal protein is responsible for NusE activity. Included in the family are one member each from Saccharomyces cerevisiae and Schizosaccharomyces pombe. These proteins lack an N-terminal mitochondrial transit peptide but contain additional sequence C-terminal to the ribosomal S10 protein region.
+DR  HAMAP; MF_00508; 534 of 587

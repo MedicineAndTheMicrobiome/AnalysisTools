@@ -1,0 +1,13 @@
+ID  murF
+AC  TIGR01143
+DE  UDP-N-acetylmuramoyl-tripeptide--D-alanyl-D-alanine ligase
+AU  Dodson RJ, Haft DH
+TC  288.60 288.60
+NC  233.90 233.90
+AL  clustalw
+IT  subfamily
+EN  UDP-N-acetylmuramoyl-tripeptide--D-alanyl-D-alanine ligase
+GS  murF
+EC  6.3.2.10
+TP  TIGRFAMs
+CC  This family consists of the strictly bacterial MurF gene of peptidoglycan biosynthesis. This enzyme is almost always UDP-N-acetylmuramoylalanyl-D-glutamyl-2,6-diaminopimelate--D-alanyl-D-alanyl ligase, but in a few species, MurE adds lysine rather than diaminopimelate. This enzyme acts on the product from MurE activity, and so is also subfamily rather than equivalog. Staphylococcus aureus is an example of species in this MurF protein would differ.

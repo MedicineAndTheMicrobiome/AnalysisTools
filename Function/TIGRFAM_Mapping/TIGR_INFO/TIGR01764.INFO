@@ -1,0 +1,11 @@
+ID  excise
+AC  TIGR01764
+DE  DNA binding domain, excisionase family
+AU  Haft DH
+TC  28.80 28.80
+NC  22.50 22.50
+AL  manual
+IT  domain
+EN  DNA binding domain, excisionase family
+TP  TIGRFAMs
+CC  An excisionase, or Xis protein, is a small protein that binds and promotes excisive recombination; it is not enzymatically active. This HMM represents a number of putative excisionases and related proteins from temperate phage, plasmids, and transposons, as well as DNA binding domains of other proteins, such as a DNA modification methylase. This HMM identifies mostly small proteins and N-terminal regions of large proteins, but some proteins appear to have two copies. This domain appears similar, in both sequence and predicted secondary structure (PSIPRED) to the MerR family of transcriptional regulators (PF00376).

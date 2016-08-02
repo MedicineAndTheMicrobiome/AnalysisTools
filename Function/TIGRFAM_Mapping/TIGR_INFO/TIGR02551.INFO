@@ -1,0 +1,27 @@
+ID  SpaO_YscQ
+AC  TIGR02551
+DE  type III secretion apparatus protein, YscQ/HrcQ family
+AU  Selengut J
+TC  100.80 100.80
+NC  79.00 79.00
+AL  clustalw
+IT  equivalog
+EN  type III secretion system apparatus protein YscQ/HrcQ
+GS  epaO
+TP  TIGRFAMs
+CC  Genes in this family are found in type III secretion operons.  The gene (YscQ) in Yersinia is essential for YOPs secretion [1], while SpaO in Shigella is involved in the Surface Presentation of Antigens apparatus found on the virulence plasmid [2], and HrcQ is involved in the Harpin secretory system in organisms like Pseudomonas syringae [3].
+RN  [1]
+RM  PMID: 8169210
+RT  The lcrB (yscN/U) gene cluster of Yersinia pseudotuberculosis is involved in Yop secretion and shows high homology to the spa gene clusters of Shigella flexneri and Salmonella typhimurium.
+RA  Bergman T, Erickson K, Galyov E, Persson C, Wolf-Watz H.
+RL  J Bacteriol. 1994 May;176(9):2619-26.
+RN  [2]
+RM  PMID: 8404849
+RT  Cognate gene clusters govern invasion of host epithelial cells by Salmonella typhimurium and Shigella flexneri.
+RA  Groisman EA, Ochman H.
+RL  EMBO J. 1993 Oct;12(10):3779-87.
+RN  [3]
+RM  PMID: 9721292
+RT  Negative regulation of hrp genes in Pseudomonas syringae by HrpV.
+RA  Preston G, Deng WL, Huang HC, Collmer A.
+RL  J Bacteriol. 1998 Sep;180(17):4532-7.

@@ -1,0 +1,29 @@
+ID  IscA
+AC  TIGR02011
+DE  iron-sulfur cluster assembly protein IscA
+AU  Selengut J
+TC  150.60 150.60
+NC  133.30 133.30
+AL  clustalw
+IT  equivalog
+EN  iron-sulfur cluster assembly protein IscA
+GS  iscA
+TP  TIGRFAMs
+CC  This HMM represents the IscA component of the ISC system for iron-sulfur cluster assembly.  The ISC system consists of IscRASU, HscAB and an Isc-specific ferredoxin [1].  IscA previously was believed to act as a scaffold [3] and now is seen as an iron donor protein.
+CC  This clade is limited to the proteobacteria.
+RN  [1]
+RM  PMID: 11432781
+RT  Genetic analysis of the isc operon in Escherichia coli involved in the biogenesis of cellular iron-sulfur proteins.
+RA  Tokumoto U, Takahashi Y.
+RL  J Biochem (Tokyo). 2001 Jul;130(1):63-71.
+RN  [2]
+RM  PMID: 16877383
+RT  Interplay of IscA and IscU in biogenesis of iron-sulfur clusters.
+RA  Yang J, Bitoun JP, Ding H
+RL  J Biol Chem. 2006 Sep 22;281(38):27956-63.
+RN  [3]
+RM  PMID: 11319236
+RT  Iron-sulfur cluster assembly: characterization of IscA and evidence for a specific and functional complex with ferredoxin.
+RA  Ollagnier-de-Choudens S, Mattioli T, Takahashi Y, Fontecave M.
+RL  J Biol Chem. 2001 Jun 22;276(25):22604-7. Epub 2001 Apr 23.
+DR  HAMAP; MF_01429; 29 of 30

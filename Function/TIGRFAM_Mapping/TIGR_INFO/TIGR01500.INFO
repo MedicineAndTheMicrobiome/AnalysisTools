@@ -1,0 +1,16 @@
+ID  sepiapter_red
+AC  TIGR01500
+DE  sepiapterin reductase
+AU  Haft DH
+TC  206.55 206.55
+NC  116.60 116.60
+AL  clustalw
+IT  equivalog
+EN  sepiapterin reductase
+EC  1.1.1.153
+TP  TIGRFAMs
+CC  This HMM describes sepiapterin reductase, a member of the short chain dehydrogenase/reductase family. The enzyme catalyzes the last step in the biosynthesis of tetrahydrobiopterin. A similar enzyme in Bacillus cereus was isolated for its ability to convert benzil to (S)-benzoin, a property sepiapterin reductase also shares. Cutoff scores for this model are set such that benzil reductase scores between trusted and noise cutoffs.
+RM  11796169
+RT  The enzymes with benzil reductase activity conserved from bacteria to mammals.
+RA  Maruyama R, Nishizawa M, Itoi Y, Ito S, Inoue M.
+RL  J Biotechnol 2002 Mar 28;94(2):157-69

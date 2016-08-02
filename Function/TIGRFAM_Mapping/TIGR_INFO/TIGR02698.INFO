@@ -1,0 +1,16 @@
+ID  CopY_TcrY
+AC  TIGR02698
+DE  copper transport repressor, CopY/TcrY family
+AU  Haft DH
+TC  121.95 121.95
+NC  112.15 112.15
+AL  clustalw
+IT  equivalog
+EN  copper transport repressor, CopY/TcrY family
+TP  TIGRFAMs
+CC  This family includes metal-fist type transcriptional repressors of copper transport systems such as copYZAB of Enterococcus hirae and tcrYAZB (transferble copper resistance) of an Enterocuccus faecium plasmid. High levels of copper can displace zinc and prevent binding by the repressor, activating efflux by copper resistance transporters. The most closely related proteins excluded by this model are antibiotic resistance regulators including the methicillin resistance regulatory protein MecI.
+DR  PFAM; PF03965; Pencillinase_R; transcriptional regulator, BlaI/MecI/CopY family
+RM  16151212
+RT  The tcrB gene is part of the tcrYAZB operon conferring copper resistance in Enterococcus faecium and Enterococcus faecalis.
+RA  Hasman H.
+RL  Microbiology. 2005 Sep;151(Pt 9):3019-25.

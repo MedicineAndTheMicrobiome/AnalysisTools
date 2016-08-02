@@ -1,0 +1,13 @@
+ID  pcaJ_scoB_fam
+AC  TIGR02428
+DE  3-oxoacid CoA-transferase, B subunit
+AU  Haft DH
+TC  243.55 243.55
+NC  77.05 77.05
+AL  clustalw
+IT  subfamily
+EN  3-oxoacid CoA-transferase, B subunit
+EC  2.8.3.-
+TP  TIGRFAMs
+CC  Various members of this family are characterized as the B subunits of succinyl-CoA:3-ketoacid-CoA transferase (EC 2.8.3.5), beta-ketoadipate:succinyl-CoA transferase (EC 2.8.3.6), acetyl-CoA:acetoacetate CoA transferase (EC 2.8.3.8), and butyrate-acetoacetate CoA-transferase (EC 2.8.3.9).  This represents a very distinct clade with strong sequence conservation within the larger family defined by Pfam model PF01144. The A subunit represents a different clade in PF01144.
+DR  PFAM; PF01144; CoA_trans

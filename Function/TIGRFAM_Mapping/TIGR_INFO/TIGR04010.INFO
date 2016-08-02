@@ -1,0 +1,17 @@
+ID  WcaD
+AC  TIGR04010
+DE  putative colanic acid polymerase WcaD
+AU  Selengut J
+TC  589.65 589.65
+NC  485.65 485.65
+AL  muscle
+IT  equivalog
+EN  putative colanic acid polymerase WcaD
+GS  wcaD
+TP  TIGRFAMs
+CC  This membrane protein is believed to function as the colanic acid repeating unit polymerase (in an analagous fashion to wzy proteins in O-antigen polymerization).
+RN  [1]
+RM  PMID:8759852 
+RT  Organization of the Escherichia coli K-12 gene cluster responsible for production of the extracellular polysaccharide colanic acid. 
+RA  Stevenson G, Andrianopoulos K, Hobbs M, Reeves PR 
+RL  J Bacteriol. 1996 Aug;178(16):4885-93.

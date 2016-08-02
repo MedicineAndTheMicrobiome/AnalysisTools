@@ -1,0 +1,14 @@
+ID  proS_fam_I
+AC  TIGR00408
+DE  proline--tRNA ligase
+AU  Haft DH
+TC  437.00 437.00
+NC  251.35 251.35
+AL  clustalw_manual
+IT  equivalog
+EN  prolyl-tRNA synthetase, family I
+GS  proS
+EC  6.1.1.15
+TP  TIGRFAMs
+CC  Prolyl-tRNA synthetase is a class II tRNA synthetase and is recognized by pfam HMM tRNA-synt_2b, which recognizes tRNA synthetases for Gly, His, Ser, and Pro. The prolyl-tRNA synthetases are divided into two widely divergent families. This family includes the archaeal enzyme, the Pro-specific domain of a human multifunctional tRNA ligase, and the enzyme from the spirochete Borrelia burgdorferi. The other family includes enzymes from Escherichia coli, Bacillus subtilis, Synechocystis PCC6803, and one of the two prolyL-tRNA synthetases of Saccharomyces cerevisiae.
+DR  HAMAP; MF_01571; 112 of 114

@@ -1,0 +1,12 @@
+ID  doc_partner
+AC  TIGR02609
+DE  putative addiction module antidote
+AU  Haft DH
+TC  55.90 55.90
+NC  41.80 41.80
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  putative addiction module antidote
+TP  TIGRFAMs
+CC  Members of this protein family are putative addiction module antidote proteins that appear recurringly in two-gene operons with members of the Doc (death-on-curing) family TIGR01550. Members of this family contain a SpoVT/AbrB-like domain (PF04014). Note that the gene pairs with a member of this family tend to be found on bacterial chromosomes, not on plasmids.
+DR  PFAM; PF04014; SpoVT / AbrB like domain

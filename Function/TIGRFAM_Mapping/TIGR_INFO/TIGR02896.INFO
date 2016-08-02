@@ -1,0 +1,12 @@
+ID  spore_III_AF
+AC  TIGR02896
+DE  stage III sporulation protein AF
+AU  Haft DH
+TC  61.30 61.30
+NC  39.20 39.20
+AL  muscle
+IT  equivalog
+EN  stage III sporulation protein AF
+GS  spoIIIAF
+TP  TIGRFAMs
+CC  This family represents the stage III sporulation protein AF of the bacterial endospore formation program, which exists in some but not all members of the Firmicutes (formerly called low-GC Gram-positives). The C-terminal region of this protein is poorly conserved, so only the N-terminal region, which includes two predicted transmembrane domains, is included in the seed alignment.

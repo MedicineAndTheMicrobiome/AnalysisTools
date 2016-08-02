@@ -1,0 +1,17 @@
+ID  fdxN_nitrog
+AC  TIGR02936
+DE  ferredoxin III, nif-specific
+AU  Haft DH
+TC  80.55 80.55
+NC  61.25 61.25
+AL  muscle_manual
+IT  equivalog
+EN  ferredoxin III, nif-specific
+GS  fdxB
+TP  TIGRFAMs
+CC  Members of this family are homodimeric ferredoxins from nitrogen fixation regions of many nitrogen-fixing bacteria. As characterized in Rhodobacter capsulatus, these proteins are homodimeric, with two 4Fe-4S clusters bound per monomer. Although nif-specific, this protein family is not usiveral, as other nitrogenase systems may substitute flavodoxins, or different types of ferredoxin.
+RN  [1]
+RM  PMID: 8387524
+RT  Purification and characterization of a novel dimeric ferredoxin (FdIII) from Rhodobacter capsulatus.
+RA  Jouanneau Y, Meyer C, Gaillard J, Forest E, Gagnon J
+RL  J Biol Chem. 1993 May 15;268(14):10636-44.

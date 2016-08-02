@@ -1,0 +1,17 @@
+ID  pssA
+AC  TIGR00473
+DE  CDP-diacylglycerol-serine O-phosphatidyltransferase
+AU  Loftus BJ
+TC  107.00 107.00
+NC  84.00 84.00
+AL  clustalw
+IT  equivalog
+EN  CDP-diacylglycerol--serine O-phosphatidyltransferase
+GS  pssA
+EC  2.7.8.8
+TP  TIGRFAMs
+CC  This enzyme, CDP-diacylglycerol--serine O-phosphatidyltransferase, is involved in phospholipid biosynthesis catalyzing the reaction CDP-diacylglycerol + L-serine = CMP + L-1-phosphatidylserine. Members of this family do not bear any significant sequence similarity to the corresponding E.coli protein.
+RM  Medline; 97405891; 
+DR  Swissprot; P39823 
+DR  PROSITE; PDOC00321;
+DR  EGAD; 52167;

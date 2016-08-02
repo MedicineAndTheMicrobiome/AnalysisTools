@@ -1,0 +1,21 @@
+ID  acid_CoA_mut_N
+AC  TIGR00641
+DE  methylmalonyl-CoA mutase N-terminal domain
+AU  Haft DH
+TC  303.80 303.80
+NC  136.05 136.05
+IT  subfamily_domain
+EN  methylmalonyl-CoA mutase N-terminal domain
+EC  5.4.99.-
+TP  TIGRFAMs
+CC  Methylmalonyl-CoA mutase (EC 5.4.99.2) catalyzes a reversible isomerization between L-methylmalonyl-CoA and succinyl-CoA. The enzyme uses an adenosylcobalamin cofactor. It may be a homodimer, as in mitochondrion, or a heterodimer with partially homologous beta chain that does not bind the adenosylcobalamin cofactor, as in Propionibacterium freudenreichii. The most similar archaeal sequences are separate chains, such as AF2215 abd AF2219 of Archaeoglobus fulgidus, that correspond roughly to the first 500 and last 130 residues, respectively of known methylmalonyl-CoA mutases. This HMM describes the N-terminal domain subfamily. In a neighbor-joining tree, AF2215 branches with a bacterial isobutyryl-CoA mutase, which is also the same length. Scoring between the noise and trusted cutoffs are the non-catalytic, partially homologous beta chains from certain heterodimeric examples of 5.4.99.2.
+DR  ECOCYC; EG11444; sbm;
+RN  [1]
+RM  97386818
+RT  Structure-based perspectives on B12-dependent enzymes.
+RA  Ludwig ML, Matthews RG
+RL  Annu Rev Biochem 1997;66:269-313
+RN  [2]
+RM  98165841
+RN  [3]
+RM  97022083

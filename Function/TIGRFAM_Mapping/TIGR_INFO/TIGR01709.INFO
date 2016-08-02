@@ -1,0 +1,12 @@
+ID  typeII_sec_gspL
+AC  TIGR01709
+DE  type II secretion system protein L
+AU  Haft DH
+TC  168.05 168.05
+NC  54.70 54.70
+AL  clustalw_manual
+IT  equivalog
+EN  type II secretion system protein L
+GS  gspL
+TP  TIGRFAMs
+CC  This HMM represents GspL, protein L of the main terminal branch of the general secretion pathway, also called type II secretion. It transports folded proteins across the bacterial outer membrane and is widely distributed in Gram-negative pathogens.

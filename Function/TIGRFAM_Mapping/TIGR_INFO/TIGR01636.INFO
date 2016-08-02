@@ -1,0 +1,15 @@
+ID  phage_rinA
+AC  TIGR01636
+DE  phage transcriptional regulator, RinA family
+AU  Haft DH
+TC  31.90 31.90
+NC  31.80 31.80
+AL  clustalw_manual
+IT  subfamily
+EN  phage transcriptional activator, RinA family
+TP  TIGRFAMs
+CC  This HMM represents a family of phage proteins, including RinA, a transcriptional activator in staphylococcal phage phi 11. This family shows similarity to ArpU, a phage-related putative autolysin regulator, and to some sporulation-specific sigma factors.
+RM  8432703
+RT  Cloning, sequencing, and genetic characterization of regulatory genes, rinA and rinB, required for the activation of staphylococcal phage phi 11 int expression.
+RA  Ye ZH, Lee CY.
+RL  J Bacteriol 1993 Feb;175(4):1095-102

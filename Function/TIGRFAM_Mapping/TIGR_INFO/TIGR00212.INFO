@@ -1,0 +1,15 @@
+ID  hemC
+AC  TIGR00212
+DE  hydroxymethylbilane synthase
+AU  Haft DH
+TC  164.00 164.00
+NC  127.10 127.10
+AL  clustalw
+IT  equivalog
+EN  hydroxymethylbilane synthase
+GS  hemC
+EC  2.5.1.61
+TP  TIGRFAMs
+CC  Alternate name hydroxymethylbilane synthase
+CC  Biosynthesis of cofactors, prosthetic groups, and carriers: Heme and porphyrin
+DR  HAMAP; MF_00260; 309 of 313

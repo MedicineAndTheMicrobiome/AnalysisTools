@@ -1,0 +1,18 @@
+ID  ECA_wecA
+AC  TIGR02380
+DE  undecaprenyl-phosphate alpha-N-acetylglucosaminyl 1-phosphatetransferase
+AU  Haft DH
+TC  326.05 326.05
+NC  191.90 191.90
+AL  clustalw
+IT  equivalog
+EN  undecaprenyl-phosphate alpha-N-acetylglucosaminyl 1-phosphatetransferase
+GS  wecA
+EC  2.7.8.33
+TP  TIGRFAMs
+CC  Members of this family are the WecA enzyme of enterobacterial common antigen biosynthesis, undecaprenyl-phosphate alpha-N-acetylglucosaminyl 1-phosphatetransferase. This family represents one narrow clade, and closely related sequences outside this clade may represent enzymes that catalyze the same specific reaction, but in the context of different pathways. A His-rich motif in a cytosolic loop of this integral membrane protein, shown critical to enzymatic activity for WecA (see ref [1]) is variously present or absent in the clade that includes Bacillus subtilis TagO teichoic acid biosynthesis enzyme, which may catalyze the same reaction as WecA.
+RN  [1]
+RM  11700352
+RT  Conserved amino acid residues found in a predicted cytosolic domain of the lipopolysaccharide biosynthetic protein WecA are implicated in the recognition of UDP-N-acetylglucosamine.
+RA  Amer AO, Valvano MA.
+RL  Microbiology. 2001 Nov;147(Pt 11):3015-25.

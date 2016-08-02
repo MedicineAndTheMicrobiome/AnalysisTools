@@ -1,0 +1,24 @@
+ID  xylA_Arthro
+AC  TIGR02631
+DE  xylose isomerase
+AU  Haft DH
+TC  447.00 447.00
+NC  150.55 150.55
+AL  clustalw
+IT  equivalog
+EN  xylose isomerase, Arthrobacter type
+GS  xylA
+EC  5.3.1.5
+TP  TIGRFAMs
+CC  This model describes a D-xylose isomerase that is also active as a D-glucose isomerase. It is tetrameric and dependent on a divalent cation Mg2+, Co2+ or Mn2+ as characterized in Arthrobacter. Members of this family differ substantially from  the D-xylose isomerases of family TIGR02630.
+RN  [1]
+RM  1854339
+RT  D-Xylose (D-glucose) isomerase from Arthrobacter strain N.R.R.L. B3728. Gene cloning, sequence and expression.
+RA  Loviny-Anderton T, Shaw PC, Shin MK, Hartley BS.
+RL  Biochem J. 1991 Jul 1;277 ( Pt 1):263-71.
+RN  [2]
+RM  1854338
+RT  D-Xylose (D-glucose) isomerase from Arthrobacter strain N.R.R.L. B3728. Purification and properties.
+RA  Smith CA, Rangarajan M, Hartley BS.
+RL  Biochem J. 1991 Jul 1;277 ( Pt 1):255-61.
+DR  HAMAP; MF_00455; 20 of 146

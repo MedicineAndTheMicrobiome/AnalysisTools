@@ -1,0 +1,15 @@
+ID  Ehrlichia_rpt
+AC  TIGR02202
+DE  Ehrlichia chaffeensis immunodominant surface protein repeat
+AU  Haft DH
+TC  80.00 35.00
+NC  40.00 30.00
+AL  clustalw
+IT  paralog_domain
+EN  Ehrlichia chaffeensis immunodominant surface protein repeat
+TP  TIGRFAMs
+CC  This HMM represents 77 residues of an 80 amino acid (240 nucleotide) tandem repeat, found in a variable number of copies in an immunodominant outer membrane protein of Ehrlichia chaffeensis, a tick-borne obligate intracellular pathogen.
+RM  12496165
+RT  Molecular heterogeneity of Ehrlichia chaffeensis isolates determined by sequence analysis of the 28-kilodalton outer membrane protein genes and other regions of the genome.
+RA  Cheng C, Paddock CD, Reddy Ganta R.
+RL  Infect Immun. 2003 Jan;71(1):187-95.

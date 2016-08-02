@@ -1,0 +1,17 @@
+ID  gcvT
+AC  TIGR00528
+DE  glycine cleavage system T protein
+AU  Haft DH
+TC  235.85 235.85
+NC  176.05 176.05
+AL  clustalw
+IT  equivalog
+EN  glycine cleavage system T protein
+GS  gcvT
+EC  2.1.2.10
+TP  TIGRFAMs
+CC  The glycine cleavage system T protein (GcvT) is also known as aminomethyltransferase (EC 2.1.2.10). It works with the H protein (GcvH), the P protein (GcvP), and lipoamide dehydrogenase.
+CC  The reported sequence of the member from Aquifex aeolicus starts about 50 residues downstream of the start of other members of the family (perhaps in error); it scores below the trusted cutoff.
+CC  Eukaryotic forms are mitochondrial and have an N-terminal transit peptide.
+AL  clustalw
+DR  HAMAP; MF_00259; 214 of 217

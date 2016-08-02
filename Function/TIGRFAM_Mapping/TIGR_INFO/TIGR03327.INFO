@@ -1,0 +1,17 @@
+ID  AMP_phos
+AC  TIGR03327
+DE  AMP phosphorylase
+AU  Haft DH
+TC  535.00 535.00
+NC  516.45 516.45
+AL  muscle
+IT  equivalog
+EN  AMP phosphorylase
+EC  2.4.-.-
+TP  TIGRFAMs
+CC  This enzyme family is found, so far, strictly in the Archaea, and only in those with a type III Rubisco enzyme. Most of the members previously were annotated as thymidine phosphorylase, or DeoA. The AMP metabolized by this enzyme may be produced by ADP-dependent sugar kinases.
+RN  [1]
+RM  PMID: 17303759
+RT  Archaeal type III RuBisCOs function in a pathway for AMP metabolism.
+RA  Sato T, Atomi H, Imanaka T
+RL  Science. 2007 Feb 16;315(5814):1003-6.

@@ -1,0 +1,17 @@
+ID  CGA_synth_rel
+AC  TIGR04469
+DE  CGA synthase-related protein
+AU  Haft DH
+TC  150.00 150.00
+NC  50.00 50.00
+AL  muscle_manual
+IT  equivalog
+EN  CGA synthase-related protein
+GS  blsF
+TP  TIGRFAMs
+CC  Members of this family are related to cytosylglucuronate (CGA) synthase (TIGR04466), and found in the same clusters as CGA synthase and CGA decarboxylase. These clusters produce peptidyl nucleoside antibiotics with a pyranoside core moiety, found in a number of Streptomyces species. Removal of the S. griseochromogenes member of this family, BlsF, from a heterologous expression system caused an increase, not blockage, of blasticidin S.
+RN  [1]
+RM  PMID:23377931 
+RT  Streptomyces lividans blasticidin S deaminase and its application in engineering a blasticidin S-producing strain for ease of genetic manipulation. 
+RA  Li L, Wu J, Deng Z, Zabriskie TM, He X 
+RL  Appl Environ Microbiol. 2013 Apr;79(7):2349-57. doi: 10.1128/AEM.03254-12.

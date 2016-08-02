@@ -1,0 +1,17 @@
+ID  GABAtrnsam
+AC  TIGR00700
+DE  4-aminobutyrate transaminase
+AU  Haft DH
+TC  506.65 506.65
+NC  317.80 317.80
+AL  clustalw
+IT  equivalog
+EN  4-aminobutyrate aminotransferase, prokaryotic type
+GS  gabT
+EC  2.6.1.19
+TP  TIGRFAMs
+CC  This enzyme is a class III pyridoxal-phosphate-dependent aminotransferase. This model describes known bacterial examples of the enzyme. The best archaeal matches are presumed but not trusted to have the equivalent function. The degree of sequence difference between this set and known eukaryotic (mitochondrial) examples is greater than the distance to some proteins known to have different functions, and so separate models are built for prokaryotic and eukaryotic sets.
+CC  E. coli has two isozymes.
+CC  Alternate names include GABA transaminase, gamma-amino-N-butyrate transaminase, and beta-alanine--oxoglutarate aminotransferase.
+DR  PROSITE; PDOC00519; Aminotransferases class-III pyridoxal-phosphate attachment site
+DR  PFAM; PF00202; Aminotransferases class-III pyridoxal-phosphate

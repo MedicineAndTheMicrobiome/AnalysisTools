@@ -1,0 +1,18 @@
+ID  benzo_boxB
+AC  TIGR03225
+DE  benzoyl-CoA oxygenase, B subunit
+AU  Haft DH
+TC  499.10 499.10
+NC  219.65 219.65
+AL  muscle
+IT  equivalog
+EN  benzoyl-CoA oxygenase, B subunit
+GS  boxB
+EC  1.14.12.21
+TP  TIGRFAMs
+CC  Members of this protein family are BoxB, the B subunit of benzoyl-CoA oxygenase. This oxygen-requiring enzyme acts in an aerobic pathway of benzoate catabolism via coenzyme A ligation.
+RN  [1]
+RM  PMID: 15916608
+RT  Aerobic benzoyl-CoA catabolic pathway in Azoarcus evansii: studies on the non-oxygenolytic ring cleavage enzyme.
+RA  Gescher J, Eisenreich W, Worth J, Bacher A, Fuchs G
+RL  Mol Microbiol. 2005 Jun;56(6):1586-600.

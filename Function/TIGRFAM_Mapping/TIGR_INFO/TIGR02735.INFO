@@ -1,0 +1,14 @@
+ID  purC_vibrio
+AC  TIGR02735
+DE  phosphoribosylaminoimidazole-succinocarboxamide synthase
+AU  Haft DH
+TC  394.20 394.20
+NC  265.40 265.40
+AL  clustalw
+IT  equivalog
+EN  phosphoribosylaminoimidazole-succinocarboxamide synthase, Vibrio type
+GS  purC
+EC  6.3.2.6
+TP  TIGRFAMs
+CC  Members of this protein family appear to represent a novel form of phosphoribosylaminoimidazole-succinocarboxamide synthase (SAICAR synthetase), significantly different in sequence and gap pattern from a form (see TIGR00081) shared by a broad range of bacteria and eukaryotes. Members of this family are found within the gammaproteobacteria in the genera Vibrio, Shewanella, and Colwellia, and also (reported as a fragment) in the primitive eukarote Guillardia theta.
+DR  HAMAP; MF_00137; 5 of 333

@@ -1,0 +1,18 @@
+ID  hisA-trpF
+AC  TIGR01919
+DE  bifunctional HisA/TrpF protein
+AU  Selengut J
+TC  306.45 306.45
+NC  235.40 235.40
+AL  clustalw
+IT  equivalog
+EN  1-(5-phosphoribosyl)-5-[(5-phosphoribosylamino)methylideneamino] imidazole-4-carboxamide isomerase/N-(5'phosphoribosyl)anthranilate isomerase
+EC  5.3.1.16 5.3.1.24
+TP  TIGRFAMs
+CC  This model represents a bifunctional protein posessing both hisA (1-(5-phosphoribosyl)-5-[(5-phosphoribosylamino)methylideneamino] imidazole-4-carboxamide isomerase) and trpF (N-(5'phosphoribosyl)anthranilate isomerase) activities [1].  Thus, it is involved in both the histidine and tryptophan biosynthetic pathways.  Enzymes with this property have been described only in the Actinobacteria (High-GC gram-positive).  The enzyme is closely related to the monofunctional HisA proteins (TIGR00007) and in Actinobacteria, the classical monofunctional TrpF is generally absent.
+RN  [1]
+RM  PMID: 12634849
+RT  Occurrence of a putative ancient-like isomerase involved in histidine and tryptophan biosynthesis.
+RA  Baroma-Gomez F., Hodgson, DA
+RL  EMBO Rep. 2003 Mar; 4(3): 296-300
+DR  HAMAP; MF_01014; 32 of 447

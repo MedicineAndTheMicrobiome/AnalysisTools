@@ -1,0 +1,13 @@
+ID  GroEL
+AC  TIGR02348
+DE  chaperonin GroL
+AU  Haft DH
+TC  582.10 582.10
+NC  306.80 306.80
+AL  clustalw
+IT  equivalog
+EN  chaperonin GroL
+GS  groL
+TP  TIGRFAMs
+CC  This family consists of GroEL, the larger subunit of the GroEL/GroES cytosolic chaperonin. It is found in bacteria, organelles derived from bacteria, and occasionally in the Archaea. The bacterial GroEL/GroES group I chaperonin is replaced a group II chaperonin, usually called the thermosome in the Archaeota and CCT (chaperone-containing TCP) in the Eukaryota. GroEL, thermosome subunits, and CCT subunits all fall under the scope of Pfam model PF00118.
+DR  HAMAP; MF_00600; 808 of 844

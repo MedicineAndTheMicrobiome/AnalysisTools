@@ -1,0 +1,19 @@
+ID  yjbN
+AC  TIGR00742
+DE  tRNA dihydrouridine synthase A
+AU  Haft DH
+TC  397.20 397.20
+NC  118.35 118.35
+AL  clustalw
+IT  subfamily
+EN  tRNA dihydrouridine synthase A
+GS  dusA
+EC  1.-.-.-
+TP  TIGRFAMs
+CC  This model represents one branch of COG0042 (Predicted TIM-barrel enzymes, possibly dehydrogenases, nifR3 family). It represents a distinct subset by a set of shared unique motifs, a conserved pattern of insertions/deletions relative to other nifR3 homologs, and by subclustering based on cross-genome bidirectional best hits. Members are found in species as diverse as the proteobacteria, a spirochete, a cyanobacterium, and Deinococcus radiodurans. NifR3 itself, a protein of unknown function associated with nitrogen regulation in Rhodobacter capsulatus, is not a member of this branch.
+CC  Members of this family show a distant relationship to alpha/beta (TIM) barrel enzymes such as dihydroorotate dehydrogenase and glycolate oxidase.
+RN  [1]
+RM  PMID: 12003496 
+RT  A conserved family of Saccharomyces cerevisiae synthases effects dihydrouridine modification of tRNA.
+RA  Xing F, Martzen MR, Phizicky EM.
+RL  RNA. 2002 Mar;8(3):370-81.

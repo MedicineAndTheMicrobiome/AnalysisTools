@@ -1,0 +1,17 @@
+ID  GldA_ABC_ATP
+AC  TIGR03522
+DE  gliding motility-associated ABC transporter ATP-binding subunit GldA
+AU  Selengut J
+TC  402.60 402.60
+NC  362.20 362.20
+AL  muscle
+IT  equivalog
+EN  gliding motility-associated ABC transporter ATP-binding subunit GldA
+GS  gldA
+TP  TIGRFAMs
+CC  Members of this protein family are exclusive to the Bacteroidetes phylum (previously Cytophaga-Flavobacteria-Bacteroides). GldA is an ABC transporter ATP-binding protein (PF00005) linked to a type of rapid surface gliding motility found in certain Bacteroidetes, such as Flavobacterium johnsoniae and Cytophaga hutchinsonii. Knockouts of GldA abolish the gliding phenotype [1].  Gliding motility appears closely linked to chitin utilization in the model species Flavobacterium johnsoniae. Bacteroidetes with members of this protein family appear to have all of the genes associated with gliding motility.
+RN  [1]
+RM  PMID:9342376 
+RT  Cloning and characterization of the Flavobacterium johnsoniae (Cytophaga johnsonae) gliding motility gene, gldA. 
+RA  Agarwal S, Hunnicutt DW, McBride MJ 
+RL  Proc Natl Acad Sci U S A. 1997 Oct 28;94(22):12139-44.

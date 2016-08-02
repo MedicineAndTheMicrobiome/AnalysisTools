@@ -1,0 +1,12 @@
+ID  bchO_mg_che_rel
+AC  TIGR03056
+DE  putative magnesium chelatase accessory protein
+AU  Haft DH
+TC  172.55 172.55
+NC  172.30 172.30
+AL  muscle
+IT  hypoth_equivalog
+EN  putative magnesium chelatase accessory protein
+TP  TIGRFAMs
+CC  Members of this family belong to the alpha/beta fold family hydrolases (PFAM model PF00561). Members are found in bacterial genomes if and only if they encoded for anoxygenic photosynthetic systems similar to that of Rhodobacter capsulatus and other alpha-Proteobacteria. Members often are encoded in the same operon as subunits of the protoporphyrin IX magnesium chelatase, and were once designated BchO. No literature supports a role as an actual subunit of magnesium chelatase, but an accessory role is possible, as suggested by placement by its probable hydrolase activity.
+DR  PFAM; PF00561; hydrolase, alpha/beta fold family

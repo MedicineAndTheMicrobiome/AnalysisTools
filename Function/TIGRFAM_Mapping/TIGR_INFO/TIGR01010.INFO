@@ -1,0 +1,16 @@
+ID  BexC_CtrB_KpsE
+AC  TIGR01010
+DE  polysaccharide export inner-membrane protein, BexC/CtrB/KpsE family
+AU  Dodson RJ
+TC  437.50 437.50
+NC  147.15 147.15
+AL  clustalw
+IT  subfamily
+EN  polysaccharide export inner-membrane protein, BexC/CtrB/KpsE family
+TR  8.A.4
+TP  TIGRFAMs
+CC  This family contains gamma proteobacterial proteins involved in capsule polysaccharide export.
+RM  2082145
+RT  The bex locus in encapsulated Haemophilus influenzae: a      chromosomal region involved in capsule polysaccharide        export.
+RA  Kroll JS, Loynds B, Brophy LN, Moxon ER.
+RL  Mol Microbiol 1990 Nov;4(11):1853-62

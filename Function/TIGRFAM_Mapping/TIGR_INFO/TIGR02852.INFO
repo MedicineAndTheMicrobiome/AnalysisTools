@@ -1,0 +1,23 @@
+ID  spore_dpaB
+AC  TIGR02852
+DE  dipicolinic acid synthetase, B subunit
+AU  Haft DH
+TC  229.00 229.00
+NC  102.20 102.20
+AL  clustalw
+IT  equivalog
+EN  dipicolinic acid synthetase, B subunit
+GS  dpaB
+TP  TIGRFAMs
+CC  Members of this family represent the B subunit of dipicolinic acid synthetase, an enzyme that synthesizes a small molecule that appears to confer heat stability to bacterial endospores such as those of Bacillus subtilis. The A and B subunits are together in what was originally designated the spoVF locus for stage V of endospore formation.
+DR  PFAM; PF02441; Flavoprotein
+RN  [1]
+RM  8345520
+RT  Cloning, DNA sequence, functional analysis and transcriptional regulation of the genes encoding dipicolinic acid synthetase required for sporulation in Bacillus subtilis.
+RA  Daniel RA, Errington J.
+RL  J Mol Biol. 1993 Jul 20;232(2):468-83.
+RN  [2]
+RM  8098035
+RT  Organization and nucleotide sequence of the Bacillus subtilis diaminopimelate operon, a cluster of genes encoding the first three enzymes of diaminopimelate synthesis and dipicolinate synthase.
+RA  Chen NY, Jiang SQ, Klein DA, Paulus H.
+RL  J Biol Chem. 1993 May 5;268(13):9448-65.

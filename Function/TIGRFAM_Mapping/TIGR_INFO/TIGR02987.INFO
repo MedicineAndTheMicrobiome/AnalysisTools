@@ -1,0 +1,17 @@
+ID  met_A_Alw26
+AC  TIGR02987
+DE  type II restriction m6 adenine DNA methyltransferase, Alw26I/Eco31I/Esp3I family
+AU  Haft DH
+TC  353.50 353.50
+NC  116.10 116.10
+AL  clustalw_manual
+IT  subfamily_domain
+EN  type II restriction m6 adenine DNA methyltransferase, Alw26I/Eco31I/Esp3I family
+EC  2.1.1.72
+TP  TIGRFAMs
+CC  Members of this family are the m6-adenine DNA methyltransferase protein, or domain of a fusion protein that also carries m5 cytosine methyltransferase activity, of type II restriction systems of the Alw26I/Eco31I/Esp3I family. A methyltransferase of this family is alway accompanied by a  type II restriction endonuclease from the Alw26I/Eco31I/Esp3I family (TIGR02986) and by an adenine-specific modification methyltransferase. Members of this family are unusual in that regions of similarity to homologs outside this family are circularly permuted.
+RN  [1]
+RM  PMID: 12172806
+RT  Evolutionary relationship of Alw26I, Eco31I and Esp3I, restriction endonucleases that recognise overlapping sequences.
+RA  Bitinaite J, Mitkaite G, Dauksaite V, Jakubauskas A, Timinskas A, Vaisvila R, Lubys A, Janulaitis A
+RL  Mol Genet Genomics. 2002 Jul;267(5):664-72. Epub 2002 Jun 19.

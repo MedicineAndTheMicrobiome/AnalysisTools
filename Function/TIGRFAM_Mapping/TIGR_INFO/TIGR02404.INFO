@@ -1,0 +1,12 @@
+ID  trehalos_R_Bsub
+AC  TIGR02404
+DE  trehalose operon repressor
+AU  Haft DH
+TC  211.95 211.95
+NC  180.25 180.25
+AL  clustalw
+IT  equivalog
+EN  trehalose operon repressor, B. subtilis-type
+GS  treR
+TP  TIGRFAMs
+CC  This family consists of repressors of the GntR family typically associated with trehalose utilization operons. Trehalose is imported as trehalose-6-phosphate and then hydrolyzed by alpha,alpha-phosphotrehalase to glucose and glucose-6-P. This family includes repressors mostly from Gram-positive lineages and does not include the TreR from E. coli.

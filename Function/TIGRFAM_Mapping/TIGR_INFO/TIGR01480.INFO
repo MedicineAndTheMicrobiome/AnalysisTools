@@ -1,0 +1,11 @@
+ID  copper_res_A
+AC  TIGR01480
+DE  copper-resistance protein, CopA family
+AU  Haft DH
+TC  478.95 478.95
+NC  291.40 291.40
+AL  clustalw
+IT  subfamily
+EN  copper-resistance protein, CopA family
+TP  TIGRFAMs
+CC  This HMM represents the CopA copper resistance protein family. CopA is related to laccase (benzenediol:oxygen oxidoreductase) and L-ascorbate oxidase, both copper-containing enzymes. Most members have a typical TAT (twin-arginine translocation) signal sequence with an Arg-Arg pair. Twin-arginine translocation is observed for a large number of periplasmic proteins that cross the inner membrane with metal-containing cofactors already bound. The combination of copper-binding sites and TAT translocation motif suggests a mechansism of resistance by packaging and export.

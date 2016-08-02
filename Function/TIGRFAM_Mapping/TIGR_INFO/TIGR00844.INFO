@@ -1,0 +1,15 @@
+ID  c_cpa1
+AC  TIGR00844
+DE  sodium/hydrogen antiporter
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  1236.05 1236.05
+NC  574.90 574.90
+AL  clustalw_manual
+IT  equivalog
+EN  na(+)/h(+) antiporter
+TP  TIGRFAMs
+CC  The Monovalent Cation:Proton Antiporter-1 (CPA1) Family (TC 2.A.36)
+CC  The CPA1 family is a large family of proteins derived from Gram-positive and Gram-negative bacteria, blue green bacteria, yeast, plants and animals.
+CC  Transporters from eukaryotes have been functionally characterized, and all of these catalyze Na+:H+ exchange. Their primary physiological functions may be in
+CC  (1) cytoplasmic pH regulation, extruding the H+ generated during metabolism, and (2) salt tolerance (in plants), due to Na+ uptake into vacuoles.
+CC  This Hmm is specific for the fungal members of this family.

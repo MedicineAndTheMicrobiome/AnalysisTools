@@ -1,0 +1,17 @@
+ID  phnA
+AC  TIGR00686
+DE  putative alkylphosphonate utilization operon protein PhnA
+AU  Haft DH
+TC  80.20 80.20
+NC  43.55 43.55
+AL  clustalw
+IT  hypoth_equivalog
+EN  alkylphosphonate utilization operon protein PhnA
+TP  TIGRFAMs
+CC  The protein family includes an uncharacterized member designated phnA in Escherichia coli, part of a large operon associated with alkylphosphonate uptake and carbon-phosphorus bond cleavage. This protein is not related to the characterized phosphonoacetate hydrolase designated PhnA by Kulakova, et al. (2001, 1997).
+DR  ECOCYC; EG10711; phnA
+RN  [1]
+RM  2155230
+RT  Molecular biology of carbon-phosphorus bond cleavage. Cloning and sequencing of the phn (psiD) genes involved in alkylphosphonate uptake and C-P lyase activity in Escherichia coli B.
+RA  Chen CM, Ye QZ, Zhu ZM, Wanner BL, Walsh CT.
+RL  J Biol Chem. 1990 Mar 15;265(8):4461-71.

@@ -1,0 +1,11 @@
+ID  phage_XkdX
+AC  TIGR01669
+DE  phage uncharacterized protein, XkdX family
+AU  Haft DH, Sunshine J, Fouts DE
+TC  28.20 28.20
+NC  27.90 27.90
+AL  clustalw_manual
+IT  equivalog
+EN  phage uncharacterized protein, XkdX family
+TP  TIGRFAMs
+CC  This HMM represents a family of small (about 50 amino acid) phage proteins, found in at least 12 different phage and prophage regions of Gram-positive bacteria. In a number of these phage, the gene for this protein is found near the holin and endolysin genes.

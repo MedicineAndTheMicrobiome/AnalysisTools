@@ -1,0 +1,18 @@
+ID  fghA_ester_D
+AC  TIGR02821
+DE  S-formylglutathione hydrolase
+AU  Haft DH
+TC  281.70 281.70
+NC  131.95 131.95
+AL  clustalw
+IT  equivalog
+EN  S-formylglutathione hydrolase
+GS  fghA
+EC  3.1.2.12
+TP  TIGRFAMs
+CC  This model describes a protein family from bacteria, yeast, and human, with a conserved critical role in formaldehyde detoxification as S-formylglutathione hydrolase (EC 3.1.2.12). Members in eukaryotes such as the human protein are better known as esterase D (EC 3.1.1.1), an enzyme with broad specificity, although S-formylglutathione hydrolase has now been demonstrated as well.
+RN  [1]
+RM  8892832
+RT  S-formylglutathione hydrolase of Paracoccus denitrificans is homologous to human esterase D: a universal pathway for formaldehyde detoxification?
+RA  Harms N, Ras J, Reijnders WN, van Spanning RJ, Stouthamer AH.
+RL  J Bacteriol. 1996 Nov;178(21):6296-9.

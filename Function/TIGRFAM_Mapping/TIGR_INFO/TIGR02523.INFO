@@ -1,0 +1,16 @@
+ID  type_IV_pilV
+AC  TIGR02523
+DE  type IV pilus modification protein PilV
+AU  Haft DH
+TC  52.20 52.20
+NC  44.30 44.30
+AL  clustalw_manual
+IT  equivalog
+EN  type IV pilus modification protein PilV
+GS  pilV
+TP  TIGRFAMs
+CC  Pilus systems categorized as type IV pilins differ greatly from one another, with some showing greater similarty to type II or type III secretion systems than to each other. Members of this protein family represent the PilV protein of type IV pilus systems as found in Pseudomonas aeruginosa PAO1, Pseudomonas syringae DC3000, Neisseria meningitidis MC58, Xylella fastidiosa 9a5c, etc.
+RM  15249686
+RT  Unique modifications with phosphocholine and phosphoethanolamine define alternate antigenic forms of Neisseria gonorrhoeae type IV pili.
+RA  Hegge FT, Hitchen PG, Aas FE, Kristiansen H, Lovold C, Egge-Jacobsen W, Panico M, Leong WY, Bull V, Virji M, Morris HR, Dell A, Koomey M.
+RL  Proc Natl Acad Sci U S A. 2004 Jul 20;101(29):10798-803.

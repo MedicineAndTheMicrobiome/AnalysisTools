@@ -1,0 +1,13 @@
+ID  citMHS
+AC  TIGR00784
+DE  citrate transporter
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  259.70 259.70
+NC  232.90 232.90
+AL  clustalw_manual
+IT  subfamily
+EN  citrate transporter, CitMHS family
+TR  2.A.11
+TP  TIGRFAMs
+CC  This family includes two characterized citrate/proton symporters from Bacillus subtilis. CitM transports citrate complexed to Mg2+, while the CitH apparently transports citrate without Mg2+. The family also includes uncharacterized transporters, including a third paralog in Bacillus subtilis.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_11.html

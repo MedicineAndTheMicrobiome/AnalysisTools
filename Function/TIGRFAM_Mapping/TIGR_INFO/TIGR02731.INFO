@@ -1,0 +1,13 @@
+ID  phytoene_desat
+AC  TIGR02731
+DE  phytoene desaturase
+AU  Haft DH
+TC  569.40 569.40
+NC  357.05 357.05
+AL  clustalw_manual
+IT  equivalog
+EN  phytoene desaturase
+GS  pds
+EC  1.14.99.-
+TP  TIGRFAMs
+CC  Plants and cyanobacteria (and, supposedly, Chlorobium tepidum) have a conserved pathway from two molecules geranylgeranyl-PP to one of all-trans-lycopene. Members of this family are the enzyme pytoene desaturase (also called phytoene dehydrogenase). This model does not include the region of the chloroplast transit peptide in plants. A closely related family, excluded by this model, is zeta-carotene desaturase, another enzyme in the same pathway.

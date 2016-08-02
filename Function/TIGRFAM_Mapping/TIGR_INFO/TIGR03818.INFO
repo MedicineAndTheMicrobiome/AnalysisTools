@@ -1,0 +1,19 @@
+ID  MotA1
+AC  TIGR03818
+DE  flagellar motor stator protein MotA
+AU  Selengut J
+TC  303.80 303.80
+NC  277.10 277.10
+AL  muscle
+IT  equivalog
+EN  flagellar motor stator protein MotA
+GS  motA
+TR  1.A.30.1
+TP  TIGRFAMs
+CC  The MotA protein, along with its partner MotB, comprise the stator complex of the bacterial flagellar motor.  MotAB span the cytoplasmic membrane and undergo conformational changes powered by the translocation of protons.  These conformational changes in turn are communicated to the rotor assembly, producing torque [1].
+CC  This model represents one family of MotA proteins which are often not identified by the "transporter, MotA/TolQ/ExbB proton channel family" model, PF01618.
+RN  [1]
+RM  PMID:19683537 
+RT  Role of a Conserved Prolyl Residue (Pro173) of MotA in the Mechanochemical Reaction Cycle of the Proton-Driven Flagellar Motor of Salmonella. 
+RA  Nakamura S, Morimoto YV, Kami-Ike N, Minamino T, Namba K 
+RL  J Mol Biol. 2009 Aug 14.

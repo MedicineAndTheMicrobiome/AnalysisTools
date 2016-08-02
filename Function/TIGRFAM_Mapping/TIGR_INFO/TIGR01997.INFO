@@ -1,0 +1,12 @@
+ID  sufA_proteo
+AC  TIGR01997
+DE  FeS assembly scaffold SufA
+AU  Haft DH
+TC  136.20 136.20
+NC  133.80 133.80
+AL  clustalw
+IT  equivalog
+EN  FeS assembly scaffold SufA
+GS  sufA
+TP  TIGRFAMs
+CC  This HMM represents the SufA protein of the SUF system of iron-sulfur cluster biosynthesis. This system performs FeS biosynthesis even during oxidative stress and tends to be absent in obligate anaerobic and microaerophilic bacteria.

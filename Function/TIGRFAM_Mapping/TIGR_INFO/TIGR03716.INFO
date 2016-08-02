@@ -1,0 +1,16 @@
+ID  R_switched_YkoY
+AC  TIGR03716
+DE  integral membrane protein, YkoY family
+AU  Haft DH
+TC  138.50 138.50
+NC  123.65 123.65
+AL  muscle_manual
+IT  subfamily
+EN  integral membrane protein, YkoY family
+TP  TIGRFAMs
+CC  Rfam model RF00080 describes a structured RNA element called the yybP-ykoY leader, or SraF, which may precede one or several genes in a genome. Members of this highly hydrophobic protein family often are preceded by a yybP-ykoY leader, which may serve as a riboswitch. From the larger group of TerC homologs (PF03741), this subfamily contains proteins YceF and YkoY from Bacillus subtilis. A transport function is proposed.
+RN  [1]
+RM  PMID:15096624
+RT  New RNA motifs suggest an expanded scope for riboswitches in bacterial genetic control.
+RA  Barrick JE, Corbino KA, Winkler WC, Nahvi A, Mandal M, Collins J, Lee M, Roth A, Sudarsan N, Jona I, Wickiser JK, Breaker RR
+RL  Proc Natl Acad Sci U S A. 2004 Apr 27;101(17):6421-6.

@@ -1,0 +1,12 @@
+ID  lycopene_cycl
+AC  TIGR01789
+DE  lycopene cyclase
+AU  Selengut J
+TC  215.20 215.20
+NC  100.40 100.40
+AL  clustalw
+IT  equivalog
+EN  lycopene cyclase
+GS  crtY
+TP  TIGRFAMs
+CC  This model represents a family of bacterial lycopene cyclases catalyzing the transformation of lycopene to carotene.  These enzymes are found in a limited spectrum of alpha and gamma proteobacteria as well as Flavobacterium.

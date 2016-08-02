@@ -1,0 +1,18 @@
+ID  endA
+AC  TIGR00324
+DE  tRNA-intron endonuclease
+AU  Loftus BJ
+TC  59.60 59.60
+NC  47.60 47.60
+AL  clustalw
+IT  equivalog
+EN  tRNA-intron endonuclease
+GS  endA
+EC  3.1.27.9
+TP  TIGRFAMs
+CC  The enzyme catalyses the endonucleolytic cleavage of pre tRNA at the 5' and 3' splice sites to release the intron and produces two half tRNA molecules bearing  5' hydroxyl and 2', 3'-cyclic phosphate termini. The genes are homologous in Eucarya and Archea. The two yeast genes have been functionally studied (see MEDLINE; 97344075) and are two subunits of a heterotetramer enzyme in yeast the other two subunits of which have no known homologs.
+RM  97344075
+RT  Properties of H. volcanii tRNA intron endonuclease reveal a relationship between the archaeal and eucaryal tRNA intron processing systems.
+RA  Kleman-Leyer K, Armbruster DW, Daniels CJ
+RL  Cell 1997 Jun 13;89(6):839-47
+DR  HAMAP; MF_01834; 9 of 12

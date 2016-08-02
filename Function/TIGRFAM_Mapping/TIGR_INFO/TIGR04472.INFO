@@ -1,0 +1,11 @@
+ID  reg_rSAM_mob
+AC  TIGR04472
+DE  mobile rSAM pair MarR family regulator
+AU  Haft DH
+TC  240.00 240.00
+NC  200.00 200.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  mobile rSAM pair MarR family regulator
+TP  TIGRFAMs
+CC  A number of human microbiome species from both the Firmicutes and the spirochete genus Treponema share a gene cassette encoding a pair of radical SAM enzymes and, in most cases, this MarR family transcriptional regulator as well. Sequence identity can exceed 96 percent, suggesting recent lateral transfer. These observations suggest the cassette confers resistance to a toxic compound such as an antibiotic.

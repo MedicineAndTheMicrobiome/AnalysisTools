@@ -1,0 +1,16 @@
+ID  P2X
+AC  TIGR00863
+DE  cation transporter protein
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  288.00 288.00
+NC  260.40 260.40
+AL  clustalw_manual
+IT  subfamily
+EN  cation transporter protein
+GS  P2X
+TP  TIGRFAMs
+CC  ATP-gated Cation Channel (ACC) Family (TC 1.A.7)
+CC  Members of the ACC family (also called P2X receptors) respond to ATP, a functional neurotransmitter released by exocytosis from many types of neurons.
+CC  These channels, which function at neuron-neuron and neuron-smooth muscle junctions, may play roles in the control of blood pressure and pain sensation. They may also function in lymphocyte and platelet
+CC  physiology.  They are found only in animals.
+CC  ACC channels are probably hetero- or homomultimers and transport small monovalent cations (Me+). Some also transport Ca2+; a few also transport small metabolites.

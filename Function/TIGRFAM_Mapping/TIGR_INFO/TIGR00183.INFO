@@ -1,0 +1,14 @@
+ID  prok_nadp_idh
+AC  TIGR00183
+DE  isocitrate dehydrogenase, NADP-dependent
+AU  Haft DH
+TC  567.30 567.30
+NC  219.05 219.05
+AL  clustalw
+IT  equivalog
+EN  isocitrate dehydrogenase, NADP-dependent, prokaryotic type
+GS  icd
+EC  1.1.1.42
+TP  TIGRFAMs
+CC  Several NAD- or NADP-dependent dehydrogenases, including 3-isopropylmalate dehydrogenase, tartrate dehydrogenase, and the multimeric forms of isocitrate dehydrogenase, share a nucleotide binding domain unrelated to that of lactate dehydrogenase and its homologs. These enzymes dehydrogenate their substates at a H-C-OH site adjacent to a H-C-COOH site; 
+CC  Prokaryotic NADP-dependent isocitrate dehydrogenases resemble their NAD-dependent counterparts and 3-isopropylmalate dehydrogenase (an NAD-dependent enzyme) more closely than they resemble eukaryotic NADP-dependent isocitrate dehydrogenases.

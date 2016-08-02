@@ -1,0 +1,14 @@
+ID  cyt_b559_beta
+AC  TIGR01333
+DE  cytochrome b559, beta subunit
+AU  Haft DH
+TC  61.15 61.15
+NC  35.95 35.95
+AL  clustalw
+IT  equivalog
+EN  cytochrome b559, beta subunit
+GS  psbF
+TP  TIGRFAMs
+CC  This HMM describes the beta subunit of cytochrome b559, about 40 residues in length. It is homologous to the N-terminal half of the alpha subunit, a protein of about 83 residues. Cytochrome b559 is associated with photosystem II.
+DR  PFAM; PF00283; cytochr_b559
+DR  HAMAP; MF_00643; 186 of 187

@@ -1,0 +1,15 @@
+ID  ruvC
+AC  TIGR00228
+DE  crossover junction endodeoxyribonuclease RuvC
+AU  Loftus BJ
+TC  100.65 100.65
+NC  47.50 47.50
+AL  clustalw
+IT  equivalog
+EN  crossover junction endodeoxyribonuclease RuvC
+GS  ruvC
+EC  3.1.22.4
+TP  TIGRFAMs
+CC  Endonuclease that resolves Holliday junction intermediates in genetic recombination. The active form of the protein is a dimer. Structure studies reveals that the catalytic center, comprised of four acidic residues, lies at the bottom of a cleft that fits a DNA duplex. The model hits a single Synechocystis PCC6803 protein at a score of 30, below the trusted cutoff, that appears orthologous and may act as authentic RuvC.
+DR  ECOCYC; EG10925; ruvC;
+DR  HAMAP; MF_00034; 375 of 393

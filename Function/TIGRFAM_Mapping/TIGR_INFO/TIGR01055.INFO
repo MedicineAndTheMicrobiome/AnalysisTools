@@ -1,0 +1,14 @@
+ID  parE_Gneg
+AC  TIGR01055
+DE  DNA topoisomerase IV, B subunit
+AU  Haft DH
+TC  723.35 723.35
+NC  680.20 680.20
+AL  clustalw
+IT  equivalog
+EN  DNA topoisomerase IV, B subunit, proteobacterial
+GS  parE
+EC  5.99.1.-
+TP  TIGRFAMs
+CC  Operationally, topoisomerase IV is a type II topoisomerase required for the decatenation of chromosome segregation. Not every bacterium has both a topo II and a topo IV. The topo IV families of the Gram-positive bacteria and the Gram-negative bacteria appear not to represent a single clade among the type II topoisomerases, and are represented by separate models for this reason.
+CC  This protein is active as an alpha(2)beta(2) heterotetramer.

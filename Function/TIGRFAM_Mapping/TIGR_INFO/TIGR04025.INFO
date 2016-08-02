@@ -1,0 +1,12 @@
+ID  PPOX_FMN_DR2398
+AC  TIGR04025
+DE  pyridoxamine 5'-phosphate oxidase, FMN-binding family
+AU  Haft DH
+TC  170.00 170.00
+NC  154.40 154.40
+AL  muscle_manual
+IT  subfamily
+EN  PPOX class probable FMN-dependent enzyme, DR_2398 family
+EC  1.-.-.-
+TP  TIGRFAMs
+CC  Members of the PPOX family (see PF01243) may contain either FMN or F420 as cofactor. This subfamily consists of proteins mostly from species that lack the capability to synthesize F420, and therefore most likely all bind FMN.

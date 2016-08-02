@@ -1,0 +1,18 @@
+ID  rSAM_HutW
+AC  TIGR04107
+DE  putative heme utilization radical SAM enzyme HutW
+AU  Haft DH
+TC  400.00 400.00
+NC  275.00 275.00
+AL  muscle_manual
+IT  equivalog
+EN  putative heme utilization radical SAM enzyme HutW
+GS  hutW
+TR  hutW
+TP  TIGRFAMs
+CC  HutW is a radical SAM enzyme closely related to HemN, the heme biosynthetic oxygen-independent coproporphyrinogen oxidase. It belongs to operons associated with heme uptake and utilization in Vibrio cholerae and related species, but neither it not HutX has been shown to be needed, as is HutZ, for heme utilization. HutW failed to complement a Salmonella enterica hemN mutant (PMID:15205415), suggesting a related but distinct activity. Some members of this family are fused to hutX.
+RN  [1]
+RM  PMID:15205415 
+RT  HutZ is required for efficient heme utilization in Vibrio cholerae. 
+RA  Wyckoff EE, Schmitt M, Wilks A, Payne SM 
+RL  J Bacteriol. 2004 Jul;186(13):4142-51.

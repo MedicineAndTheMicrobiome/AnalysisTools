@@ -1,0 +1,21 @@
+ID  trp
+AC  TIGR00870
+DE  transient-receptor-potential calcium channel protein
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  498.75 498.75
+NC  352.75 352.75
+AL  clustalw_manual
+IT  subfamily
+EN  transient-receptor-potential calcium channel protein
+GS  trp
+TP  TIGRFAMs
+CC  The Transient Receptor Potential Ca2+ Channel (TRP-CC) Family (TC. 1.A.4)
+CC  The TRP-CC family has also been called the store-operated calcium channel (SOC) family. The prototypical members include the Drosophila retinal proteins
+CC  TRP and TRPL (Montell and Rubin, 1989; Hardie and Minke, 1993). SOC members of the family mediate the entry of extracellular Ca2+ into cells in response
+CC  to depletion of intracellular Ca2+ stores (Clapham, 1996) and agonist stimulated production of inositol-1,4,5 trisphosphate (IP3). One member of the TRP-CC
+CC  family, mammalian Htrp3, has been shown to form a tight complex with the IP3 receptor (TC #1.A.3.2.1). This interaction is apparently required for IP3 to
+CC  stimulate Ca2+ release via Htrp3. The vanilloid receptor subtype 1 (VR1), which is the receptor for capsaicin (the ?hot? ingredient in chili peppers) and serves
+CC  as a heat-activated ion channel in the pain pathway (Caterina et al., 1997), is also a member of this family. The stretch-inhibitable non-selective cation channel
+CC  (SIC) is identical to the vanilloid receptor throughout all of its first 700 residues, but it exhibits a different sequence in its last 100 residues. VR1 and SIC
+CC  transport monovalent cations as well as Ca2+. VR1 is about 10x more permeable to Ca2+ than to monovalent ions. Ca2+ overload probably causes cell death
+CC  after chronic exposure to capsaicin. (McCleskey and Gold, 1999).

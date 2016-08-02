@@ -1,0 +1,16 @@
+ID  UMP_CMP_kin_fam
+AC  TIGR01359
+DE  UMP-CMP kinase family
+AU  DeBoy RT, Haft DH
+TC  207.60 207.60
+NC  202.00 202.00
+AL  clustalw_manual
+IT  subfamily
+EN  UMP-CMP kinase family
+EC  2.7.4.-
+TP  TIGRFAMs
+CC  This subfamily of the adenylate kinase superfamily contains examples of UMP-CMP kinase, as well as others proteins with unknown specificity, some currently designated adenylate kinase. All known members are eukaryotic.
+RM  11306702
+RT  Phosphorylation of uridine and cytidine nucleoside analogs by two human uridine-cytidine kinases.
+RA  Van Rompay AR, Norda A, Linden K, Johansson M, Karlsson A.
+RL  Mol Pharmacol 2001 May;59(5):1181-6

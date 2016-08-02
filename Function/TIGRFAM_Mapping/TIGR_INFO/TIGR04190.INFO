@@ -1,0 +1,11 @@
+ID  B12_SAM_Ta0216
+AC  TIGR04190
+DE  B12-binding domain/radical SAM domain protein, Ta0216 family
+AU  Haft DH
+TC  500.00 500.00
+NC  300.00 300.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  B12-binding domain/radical SAM domain protein, Ta0216 family
+TP  TIGRFAMs
+CC  Members of this family are enzymes with an N-terminal B12-binding domain and central radical SAM domain. Families TIGR03975, TIGR04013 and TIGR04014 exhibit a similar architecture, which may be associated with lipid metabolism.

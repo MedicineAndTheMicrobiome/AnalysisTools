@@ -1,0 +1,11 @@
+ID  PEFG-CTERM
+AC  TIGR04296
+DE  PEFG-CTERM domain
+AU  Haft DH
+TC  25.00 25.00
+NC  24.00 20.00
+AL  muscle_manual
+IT  domain
+EN  PEFG-CTERM domain
+TP  TIGRFAMs
+CC  This putative protein sorting/processing domain occurs about ten times per genome in members of the Thaumarchaeota. Its putative handling protein, a member of the archaeosortase/exosortase protein family, is exceptional in having a Ser rather than Cys at the putative active site. The highly conserved motif resembles the PEF-CTERM protein sorting domain of family TIGR03024, but membership does not overlap.

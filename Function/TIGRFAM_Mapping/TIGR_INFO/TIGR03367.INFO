@@ -1,0 +1,17 @@
+ID  queuosine_QueD
+AC  TIGR03367
+DE  queuosine biosynthesis protein QueD
+AU  Haft DH
+TC  89.25 89.25
+NC  76.90 76.90
+AL  muscle_manual
+IT  equivalog
+EN  queuosine biosynthesis protein QueD
+GS  queD
+TP  TIGRFAMs
+CC  Members of this protein family, closely related to eukaryotic 6-pyruvoyl tetrahydrobiopterin synthase enzymes, are the QueD protein of queuosine biosynthesis. Queuosine is a hypermodified base in the wobble position of tRNAs for Tyr, His, Asp, and Asn in many species.  This modification, although widespread, appears not to be important for viability. The queuosine precursor made by this enzyme may be converted instead to archeaosine as in some Archaea.
+RN  [1]
+RM  PMID: 14660578
+RT  Identification of four genes necessary for biosynthesis of the modified nucleoside queuosine.
+RA  Reader JS, Metzgar D, Schimmel P, de Crecy-Lagard V
+RL  J Biol Chem. 2004 Feb 20;279(8):6280-5.

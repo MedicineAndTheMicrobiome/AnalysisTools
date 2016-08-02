@@ -1,0 +1,12 @@
+ID  Na_symport_lg
+AC  TIGR03648
+DE  probable sodium:solute symporter, VC_2705 subfamily
+AU  Haft DH
+TC  320.75 320.75
+NC  255.25 255.25
+AL  muscle_manual
+IT  subfamily
+EN  probable sodium:solute symporter, VC_2705 subfamily
+TR  2.A.21
+TP  TIGRFAMs
+CC  This family belongs to a larger family of transporters of the sodium:solute symporter superfamily, TC 2.A.21. Members of this strictly bacterial protein subfamily are found almost invariably immediately downstream from a member of family TIGR03647. Occasionally, the two genes are fused.

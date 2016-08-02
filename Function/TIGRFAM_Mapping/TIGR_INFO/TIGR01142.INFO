@@ -1,0 +1,15 @@
+ID  purT
+AC  TIGR01142
+DE  phosphoribosylglycinamide formyltransferase 2
+AU  Haft DH
+TC  502.15 502.15
+NC  268.35 268.35
+AL  clustalw
+IT  equivalog
+EN  phosphoribosylglycinamide formyltransferase 2
+GS  purT
+EC  2.1.2.-
+TP  TIGRFAMs
+CC  This enzyme is an alternative to PurN (TIGR00639)
+DR  COGS; COG0027
+DR  HAMAP; MF_01643; 175 of 184

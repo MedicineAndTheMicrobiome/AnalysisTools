@@ -1,0 +1,16 @@
+ID  Dyp_perox_fam
+AC  TIGR01413
+DE  Dyp-type peroxidase family
+AU  Haft DH
+TC  100.50 100.50
+NC  78.95 78.95
+AL  clustalw_manual
+IT  superfamily
+EN  Dyp-type peroxidase family
+TP  TIGRFAMs
+CC  A defined member of this superfamily is Dyp, a dye-decolorizing peroxidase that lacks a typical heme-binding region. A distinct, uncharacterized branch (TIGR01412) of this superfamily has a typical twin-arginine
+CC  dependent signal sequence characteristic of exported proteins with bound redox cofactors.
+RM  10742277
+RT  Efficient heterologous expression in Aspergillus oryzae of a unique dye-decolorizing peroxidase, DyP, of Geotrichum candidum Dec 1.
+RA  Sugano Y, Nakano R, Sasaki K, Shoda M.
+RL  Appl Environ Microbiol 2000 Apr;66(4):1754-8

@@ -1,0 +1,18 @@
+ID  cas_CXXC_CXXC
+AC  TIGR01908
+DE  CRISPR-associated protein Cas8a1/Cst1, subtype I-B/TNEAP
+AU  Haft DH
+TC  19.40 19.40
+NC  16.85 16.85
+AL  manual
+IT  hypoth_equivalog_domain
+EN  CRISPR-associated protein Cas8a1/Cst1, subtype I-B/TNEAP
+GS  cas8a1
+TP  TIGRFAMs
+CC  CRISPR is a term for Clustered, Regularly Interspaced Short Palidromic Repeats. A number of protein families appear only in association with these repeats and are designated Cas (CRISPR-Associated) proteins. This (revised) HMM describes a conserved region from an otherwise highly divergent protein found in the Tneap subtype of CRISPR/Cas regions. This Cys-rich region features two motifs of CXXC.
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=2003
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=57304
+RN  [1]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005

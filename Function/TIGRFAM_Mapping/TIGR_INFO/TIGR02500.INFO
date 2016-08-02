@@ -1,0 +1,16 @@
+ID  type_III_yscD
+AC  TIGR02500
+DE  type III secretion apparatus protein, YscD/HrpQ family
+AU  Haft DH
+TC  86.00 86.00
+NC  56.85 56.85
+AL  clustalw_manual
+IT  equivalog
+EN  type III secretion apparatus protein, YscD/HrpQ family
+TP  TIGRFAMs
+CC  This family represents a conserved protein of bacterial type III secretion systems. Gene symbols are variable from species to species. Members are designated YscD in Yersinia, HrpQ in Pseudomonas syringae, and EscD in enteropathogenic Escherichia coli. In the Chlamydiae, this model describes the C-terminal 400 residues of a longer protein.
+RN  [1]
+RM  12704110
+RT  Use of the Galleria mellonella caterpillar as a model host to study the role of the type III secretion system in Pseudomonas aeruginosa pathogenesis.
+RA  Miyata S, Casey M, Frank DW, Ausubel FM, Drenkard E.
+RL  Infect Immun. 2003 May;71(5):2404-13.

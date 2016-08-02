@@ -1,0 +1,11 @@
+ID  spoVD_pbp
+AC  TIGR02214
+DE  stage V sporulation protein D
+AU  Haft DH
+TC  688.00 688.00
+NC  590.65 590.65
+AL  clustalw_manual
+IT  equivalog
+EN  stage V sporulation protein D
+TP  TIGRFAMs
+CC  This HMM describes the spoVD subfamily of homologs of the cell division protein FtsI, a penicillin binding protein. This subfamily is restricted to Bacillus subtilis and related Gram-positive species with known or suspected endospore formation capability. In these species, the functional equivalent of FtsI is desginated PBP-2B, a paralog of spoVD.

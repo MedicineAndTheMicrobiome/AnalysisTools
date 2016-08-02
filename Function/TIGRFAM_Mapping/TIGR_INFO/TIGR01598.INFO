@@ -1,0 +1,16 @@
+ID  holin_phiLC3
+AC  TIGR01598
+DE  holin, phage phi LC3 family
+AU  Haft DH, Fouts DE
+TC  39.70 39.70
+NC  26.80 26.80
+AL  clustalw_manual
+IT  equivalog
+EN  holin, phage phi LC3 family
+TP  TIGRFAMs
+CC  Phage proteins for bacterial lysis typically include a membrane-disrupting protein, or holin, and one or more cell wall degrading enzymes that reach the cell wall because of holin action. Holins are found in a large number of mutually non-homologous families.
+DR  EXPERIMENTAL; GP|530797; phage phi LC3
+RM  7922887
+RT  Cloning, molecular characterization, and expression of the genes encoding the lytic functions of lactococcal bacteriophage phi LC3: a dual lysis system of modular design.
+RA  Birkeland NK.
+RL  Can J Microbiol 1994 Aug;40(8):658-65

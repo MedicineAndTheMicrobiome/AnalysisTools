@@ -1,0 +1,12 @@
+ID  PhnT2
+AC  TIGR03265
+DE  putative 2-aminoethylphosphonate ABC transporter, ATP-binding protein
+AU  Selengut J
+TC  457.70 457.70
+NC  436.65 436.65
+AL  muscle
+IT  equivalog
+EN  putative 2-aminoethylphosphonate ABC transporter, ATP-binding protein
+TR  3.A.1.11.-
+TP  TIGRFAMs
+CC  This ABC transporter ATP-binding protein is found in a number of genomes in operon-like contexts strongly suggesting a substrate specificity for 2-aminoethylphosphonate (2-AEP).  The characterized PhnSTUV system is absent in the genomes in which this system is found. These genomes encode systems for the catabolism of 2-AEP, making the need for a 2-AEP-specific transporter likely.

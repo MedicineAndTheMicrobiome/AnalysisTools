@@ -1,0 +1,12 @@
+ID  NDH_I_L
+AC  TIGR01974
+DE  proton-translocating NADH-quinone oxidoreductase, chain L
+AU  Haft DH
+TC  407.50 407.50
+NC  392.00 392.00
+AL  clustalw_manual
+IT  subfamily
+EN  proton-translocating NADH-quinone oxidoreductase, chain L
+EC  1.6.-.-
+TP  TIGRFAMs
+CC  This HMM describes the 12th (based on E. coli) structural gene, L, of bacterial NADH dehydrogenase I, as well as chain 5 of the corresponding mitochondrial complex I and subunit 5 (or F) of the chloroplast NAD(P)H-plastoquinone dehydrogenase complex.

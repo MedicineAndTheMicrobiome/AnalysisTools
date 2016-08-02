@@ -1,0 +1,15 @@
+ID  tnaA_trp_ase
+AC  TIGR02617
+DE  tryptophanase
+AU  Haft DH
+TC  825.80 825.80
+NC  571.05 571.05
+AL  clustalw
+IT  equivalog
+EN  tryptophanase, leader peptide-associated
+GS  tnaA
+EC  4.1.99.1
+TP  TIGRFAMs
+CC  Members of this family belong to the beta-eliminating lyase family (PF01212) and act as tryptophanase (L-tryptophan indole-lyase). The tryptophanases of this family, as a rule, are found with a tryptophanase leader peptide (TnaC) encoded upstream. Both tryptophanases (4.1.99.1) and tyrosine phenol-lyases (EC 4.1.99.2) are found between trusted and noise cutoffs, but this model captures nearly all tryptophanases for which the leader peptide gene tnaC can be found upstream.
+DR  PFAM; PF01212; beta-eliminating lyase family
+DR  HAMAP; MF_00544; 20 of 39

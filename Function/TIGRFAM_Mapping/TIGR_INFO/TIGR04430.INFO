@@ -1,0 +1,17 @@
+ID  OM_asym_MlaD
+AC  TIGR04430
+DE  outer membrane lipid asymmetry maintenance protein MlaD
+AU  Haft DH
+TC  135.00 135.00
+NC  120.00 120.00
+AL  muscle_manual
+IT  equivalog
+EN  outer membrane lipid asymmetry maintenance protein MlaD
+GS  mlaD
+TP  TIGRFAMs
+CC  Members of this protein family are the MlaD (maintenance of Lipid Asymmetry D) protein of an ABC transport system that seems to remove phospholipid from the outer leaflet of the Gram-negative bacterial outer membrane (OM), leaving only lipopolysaccharide in the outer leaflet. The Mla locus has long been associated with toluene tolerance, consistent with the proposed role in retrograde transport of phospholipid and therefore with maintaining the integrity of the OM as a protective barrier.
+RN  [1]
+RM  PMID:19383799 
+RT  An ABC transport system that maintains lipid asymmetry in the gram-negative outer membrane. 
+RA  Malinverni JC, Silhavy TJ 
+RL  Proc Natl Acad Sci U S A. 2009 May 12;106(19):8009-14.

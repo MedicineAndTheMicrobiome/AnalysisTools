@@ -1,0 +1,15 @@
+ID  gp16_SPP1
+AC  TIGR01563
+DE  putative phage head-tail adaptor
+AU  Haft DH
+TC  20.60 20.60
+NC  20.00 20.00
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  phage head-tail adaptor, putative, SPP1 family
+TP  TIGRFAMs
+CC  This family describes a small protein of about 100 amino acids found in bacteriophage and in bacterial prophage regions. Examples include gp9 of phage HK022 and gp16 of phage SPP1. This minor structural protein is suggested to be a head-tail adaptor protein (although the source of this annotation was not traced during construction of this model).
+RM  10860721
+RT  Genomic sequences of bacteriophages HK97 and HK022: pervasive genetic mosaicism in the lambdoid bacteriophages.
+RA  Juhala RJ, Ford ME, Duda RL, Youlton A, Hatfull GF, Hendrix RW.
+RL  J Mol Biol 2000 May 26;299(1):27-51

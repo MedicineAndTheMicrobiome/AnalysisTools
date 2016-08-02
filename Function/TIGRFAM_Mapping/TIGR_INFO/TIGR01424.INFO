@@ -1,0 +1,13 @@
+ID  gluta_reduc_2
+AC  TIGR01424
+DE  glutathione-disulfide reductase
+AU  Haft DH
+TC  606.05 606.05
+NC  494.95 494.95
+AL  clustalw_manual
+IT  equivalog
+EN  glutathione-disulfide reductase, plant
+GS  gor
+EC  1.8.1.7
+TP  TIGRFAMs
+CC  The tripeptide glutathione is an important reductant, e.g., for maintaining the cellular thiol/disulfide status and for protecting against reactive oxygen species such as hydrogen peroxide. Glutathione-disulfide reductase regenerates reduced glutathione from oxidized glutathione (glutathione disulfide) + NADPH. This HMM represents one of two closely related subfamilies of glutathione-disulfide reductase. Both are closely related to trypanothione reductase, and separate models are built so each of the three can describe proteins with conserved function. This model describes glutathione-disulfide reductases of plants and some bacteria, including cyanobacteria.

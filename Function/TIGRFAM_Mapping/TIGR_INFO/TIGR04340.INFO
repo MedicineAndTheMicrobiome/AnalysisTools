@@ -1,0 +1,12 @@
+ID  rSAM_ACGX
+AC  TIGR04340
+DE  radical SAM/SPASM domain protein, ACGX system
+AU  Haft DH
+TC  400.00 400.00
+NC  300.00 300.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  radical SAM/SPASM domain protein, ACGX system
+GS  acgM
+TP  TIGRFAMs
+CC  Members of this protein family are radical SAM/SPASM domain proteins likely to be involved in the modification of small, Cys-rich peptides.  Members of the family of proposed target sequences, TIGR04341, average 75 amino acids in length and average six instances of the motif ACGX, where X is A, S, or T.

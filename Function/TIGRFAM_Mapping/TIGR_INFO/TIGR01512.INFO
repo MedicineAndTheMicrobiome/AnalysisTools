@@ -1,0 +1,22 @@
+ID  ATPase-IB2_Cd
+AC  TIGR01512
+DE  cadmium-translocating P-type ATPase
+AU  Selengut J
+TC  313.50 313.50
+NC  304.30 304.30
+AL  clustalw
+IT  equivalog
+EN  heavy metal-(Cd/Co/Hg/Pb/Zn)-translocating P-type ATPase
+GS  cadA
+EC  3.6.3.3
+TR  3.A.3.6.-
+TP  TIGRFAMs
+CC  This model describes the P-type ATPase primarily responsible for translocating cadmium ions (and other closely-related divalent heavy metals such as cobalt, mercury, lead and zinc) across biological membranes.  These transporters are found in prokaryotes and plants. 
+CC  Experimentally characterized members of the seed alignment include: SP|P37617 from E. coli, SP|Q10866 from Mycobacterium tuberculosis and SP|Q59998 from Synechocystis PCC6803.
+CC  The cadmium P-type ATPases have been characterized as Type IB based on a phylogenetic analysis which combines the copper-translocating ATPases with the cadmium-translocating species [1].  This HMM and that describing the copper-ATPases (TIGR01511) are well separated, and thus we further type the copper-ATPases as IB1 and the cadmium-ATPases as IB2.
+CC  Several sequences which have not been characterized experimentally fall just below trusted cutoff for both of these models (SP|Q9CCL1 from Mycobacterium leprae, GP|13816263 from Sulfolobus solfataricus, OMNI|NTL01CJ01098 from Campylobacter jejuni, OMNI|NTL01HS01687 from Halobacterium sp., GP|6899169 from Ureaplasma urealyticum and OMNI|HP1503 from Helicobacter pylori).
+RN [1]
+RM PMID:9419228
+RT Evolution of Substrate Specificities in the P-type ATPase Superfamily.
+RA Axelsen KB, Palmgren, MG.
+RL J Mol Evol. 1998 Jan; 46(1): 84-101.

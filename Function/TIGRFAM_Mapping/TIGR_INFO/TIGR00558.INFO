@@ -1,0 +1,21 @@
+ID  pdxH
+AC  TIGR00558
+DE  pyridoxamine 5'-phosphate oxidase
+AU  Haft DH
+TC  150.10 150.10
+NC  128.85 128.85
+AL  muscle_manual
+IT  equivalog
+EN  pyridoxamine-phosphate oxidase
+GS  pdxH
+EC  1.4.3.5
+TP  TIGRFAMs
+CC  This HMM is similar to Pyridox_oxidase from PFAM but is designed to find only true pyridoxamine-phosphate oxidase and to ignore the related protein PhzG involved in phenazine biosynthesis. This protein from E. coli was characterized as a homodimer with two FMN per dimer.
+DR  PFAM; PF01243; Pyridox_oxidase
+DR  PROSITE; PDOC00815; Pyridoxamine 5'-phosphate oxidase signature
+DR  SWISS-PROT; P28225; PDXH_ECOLI;
+RM  98359888
+RT  Expression, purification, and characterization of recombinant Escherichia coli pyridoxine 5'-phosphate oxidase.
+RA  Di Salvo M, Yang E, Zhao G, Winkler ME, Schirch V
+RL  Protein Expr Purif 1998 Aug;13(3):349-56
+DR  HAMAP; MF_01629; 255 of 271

@@ -1,0 +1,12 @@
+ID  RND_mfp
+AC  TIGR01730
+DE  efflux transporter, RND family, MFP subunit
+AU  Haft DH
+TC  94.90 94.90
+NC  84.65 84.65
+AL  clustalw_manual
+IT  subfamily
+EN  RND family efflux transporter, MFP subunit
+TP  TIGRFAMs
+CC  This HMM represents the MFP (membrane fusion protein) component of the RND family of transporters. RND refers to Resistance, Nodulation, and cell Division. It is, in part, a subfamily of PF00529 (Pfam release 7.5) but hits substantial numbers of proteins missed by that HMM.  The related HlyD secretion protein, for which PF00529 is named, is outside the scope of this model. Attributed functions imply outward transport. These functions include nodulation, acriflavin resistance, heavy metal efflux, and multidrug resistance proteins. Most members of this family are found in Gram-negative bacteria. The proposed function of MFP proteins is to bring the inner and outer membranes together and enable transport to the outside of the outer membrane. Note, however, that a few members of this family are found in Gram-positive bacteria, where there is no outer membrane.
+DR  HAMAP; MF_01544; 13 of 29

@@ -1,0 +1,19 @@
+ID  PTS-II-BC-nag
+AC  TIGR01998
+DE  PTS system, N-acetylglucosamine-specific IIBC component
+AU  Selengut J
+TC  553.20 553.20
+NC  510.15 510.15
+AL  clustalw
+IT  equivalog_domain
+EN  PTS system, N-acetylglucosamine-specific IIBC component
+GS  nagE
+EC  2.7.1.69
+TR  4.A.1.1.2
+TP  TIGRFAMs
+CC  This HMM represents the combined B and C domains of the PTS transport system enzyme II specific for N-acetylglucosamine transport [1].  Many of the genes in this family also include an A domain as part of the same polypeptide and thus should be given the name "PTS system, N-acetylglucosamine-specific IIABC component".  This family is most closely related to the glucose-specific PTS enzymes.
+RN  [1]
+RM  PMID: 3284790 
+                              Nucleotide sequences of the Escherichia coli nagE and nagB genes: the structural genes for the N-acetylglucosamine transport protein of the bacterial phosphoenolpyruvate: sugar phosphotransferase system and for glucosamine-6-phosphate deaminase.
+RA  Rogers MJ, Ohgi T, Plumbridge J, Soll D.
+RL  Gene. 1988;62(2):197-207.

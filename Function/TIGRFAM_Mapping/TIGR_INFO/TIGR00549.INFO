@@ -1,0 +1,26 @@
+ID  mevalon_kin
+AC  TIGR00549
+DE  mevalonate kinase
+AU  Selengut J, Haft DH
+TC  163.05 163.05
+NC  139.40 139.40
+AL  clustalw
+IT  equivalog
+EN  mevalonate kinase
+GS  mvk
+EC  2.7.1.36
+TP  TIGRFAMs
+CC  This model represents mevalonate kinase, the third step in the mevalonate pathway of isopentanyl pyrophosphate (IPP) biosynthesis [1].  IPP is a common intermediate for a number of pathways including cholesterol biosynthesis.  This model covers enzymes from eukaryotes, archaea and bacteria.
+CC  The related enzyme from the same pathway, phosphmevalonate kinase, serves as an outgroup for this clade.
+CC  Paracoccus exhibits two genes within the phosphomevalonate/mevalonate kinase family, one of which falls between trusted and noise cutoffs of this model.  The degree of divergence is high, but if the trees created from this model are correct, the proper names of these genes have been swapped [2].
+RN  [1]
+RM  PMID: 10497066
+RT  Overexpression, purification, and characterization of the thermostable mevalonate kinase from Methanococcus jannaschii.
+RA  Huang KX, Scott AI, Bennett GN.
+RL  Protein Expr Purif. 1999 Oct;17(1):33-40. 
+RN  [2]
+RM  PMID: 12384294
+RT  Genetics of isoprenoid biosynthesis in Paracoccus zeaxanthinifaciens.
+RA  Humbelin M, Thomas A, Lin J, Li J, Jore J, Berry A.
+RL  Gene. 2002 Sep 4;297(1-2):129-39. 
+DR  HAMAP; MF_00217; 8 of 8

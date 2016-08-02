@@ -1,0 +1,23 @@
+ID  allophanate_hyd
+AC  TIGR02713
+DE  allophanate hydrolase
+AU  Haft DH
+TC  511.05 511.05
+NC  274.55 274.55
+AL  clustalw
+IT  equivalog
+EN  allophanate hydrolase
+GS  atzF
+EC  3.5.1.54
+TP  TIGRFAMs
+CC  Allophanate hydrolase catalyzes the second reaction in an ATP-dependent two-step degradation of urea to ammonia and C02, following the action of the biotin-containing urea carboxylase. The yeast enzyme, a fusion of allophanate hydrolase to urea carboxylase, is designated urea amidolyase.
+RN  [1]
+RM  15901697
+RT  Purification and characterization of allophanate hydrolase (AtzF) from Pseudomonas sp. strain ADP.
+RA  Shapir N, Sadowsky MJ, Wackett LP.'
+RL  J Bacteriol. 2005 Jun;187(11):3731-8.
+RN  [2]
+RM  15090492
+RT  Enzymatic characterization of a prokaryotic urea carboxylase.
+RA  Kanamori T, Kanou N, Atomi H, Imanaka T.
+RL  J Bacteriol. 2004 May;186(9):2532-9.

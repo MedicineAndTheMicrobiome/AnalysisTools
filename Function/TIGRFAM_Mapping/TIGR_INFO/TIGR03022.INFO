@@ -1,0 +1,24 @@
+ID  WbaP_sugtrans
+AC  TIGR03022
+DE  undecaprenyl-phosphate galactose phosphotransferase WbaP
+AU  Selengut J
+TC  403.00 403.00
+NC  308.55 308.55
+AL  muscle
+IT  subfamily
+EN  Undecaprenyl-phosphate galactose phosphotransferase, WbaP
+GS  wbaP
+EC  2.7.8.6
+TP  TIGRFAMs
+CC  The WbaP (formerly RfbP) protein has been characterized [1,2] as the first enzyme in O-antigen biosynthesis in Salmonella typhimurium.  The enzyme transfers galactose from UDP-galactose to a polyprenyl carrier (utilizing the highly conserved C-terminal sugar transferase domain, PF02397) a reaction which takes place at the cytoplasmic face of the inner membrane.  The N-terminal hydrophobic domain is then believed to facilitate the "flippase" function of transferring the liposaccharide unit from the cytoplasmic face to the periplasmic face of the inner membrane.  
+CC  This model includes the enterobacterial enzymes, where the function is presumed to be identical to the S. typhimurium enzyme as well as a somewhat broader group which are likely to catalyze the same or highly similar reactions based on a phylogenetic tree-building analysis of the broader sugar transferase family.  Most of these genes are found within large operons dedicated to the production of complex exopolysaccharides such as the enterobacterial O-antigen.  The most likely heterogeneity would be in the precise nature of the sugar molecule transferred.
+RN  [1]
+RM  PMID: 8626328 
+RT  C-terminal half of Salmonella enterica WbaP (RfbP) is the galactosyl-1-phosphate transferase domain catalyzing the first step of O-antigen synthesis. 
+RA  Wang L, Liu D, Reeves PR 
+RL  J Bacteriol. 1996 May;178(9):2598-604. 
+RN  [2]
+RM  PMID: 12324313
+RT  Functional expression of enterobacterial O-polysaccharide biosynthesis enzymes in Bacillus subtilis.
+RA  Schaffer C, Wugeditsch T, Messner P, Whitfield C.
+RL  Appl Environ Microbiol. 2002 Oct;68(10):4722-30.

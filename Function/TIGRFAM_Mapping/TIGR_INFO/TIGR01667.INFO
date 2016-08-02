@@ -1,0 +1,22 @@
+ID  YCCS_YHJK
+AC  TIGR01667
+DE  integral membrane protein, YccS/YhfK family
+AU  Selengut J
+TC  467.80 467.80
+NC  302.50 302.50
+AL  clustalw
+IT  subfamily
+EN  integral membrane protein, YccS/YhfK family
+TP  TIGRFAMs
+CC  This model represents two clades of putative transmembrane proteins including the E. coli YccS and YhfK proteins.  The YccS hypothetical equivalog (TIGR01666) is found in beta and gamma proteobacteria, while the smaller YhfK group is only found in E. coli, Salmonella and Yersinia.  
+CC  TMHMM [1,2] on the 19 hits to this model shows a consensus of 11 transmembrane helices separated into two clusters, an N-terminal cluster of 6 and a central cluster of 5.  This would indicate two non-membrane domains one on each side of the membrane
+RN  [1]
+RM  PMID: 11448883
+RT  Evaluation of methods for the prediction of membrane spanning regions.
+RA  S. Moller, M.D.R. Croning, R. Apweiler.
+RL  Bioinformatics, 17(7):646-653, July 2001. 
+RN  [2]
+RM  PMID: 11152613
+RT  Predicting transmembrane protein topology with a hidden Markov model: Application to complete genomes.
+RA  A. Krogh, B. Larsson, G. von Heijne, and E. L. L. Sonnhammer.
+RL  Journal of Molecular Biology, 305(3):567-580

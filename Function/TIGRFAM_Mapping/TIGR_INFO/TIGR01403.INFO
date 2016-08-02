@@ -1,0 +1,13 @@
+ID  fliQ_rel_III
+AC  TIGR01403
+DE  type III secretion protein, HrpO family
+AU  Haft DH
+TC  76.50 76.50
+NC  73.40 73.40
+AL  clustalw
+IT  subfamily
+EN  type III secretion protein, HrpO family
+TP  TIGRFAMs
+CC  This HMM represents one of several families of proteins related to bacterial flagellar biosynthesis proteins and involved in bacterial type III protein secretion systems. This family is homologous to, but distinguished from, flagellar biosynthetic protein FliQ. This model may not identify all type III secretion system FliQ homologs.
+DR  OUTGROUP; SP:P54701; FliQ; Salmonella choleraesuis
+DR  OUTGROUP; SP:P35535; FliQ; Bacillus subtilis

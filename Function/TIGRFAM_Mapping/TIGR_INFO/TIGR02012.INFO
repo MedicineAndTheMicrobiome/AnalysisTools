@@ -1,0 +1,13 @@
+ID  tigrfam_recA
+AC  TIGR02012
+DE  protein RecA
+AU  Nelson WE
+TC  325.30 325.30
+NC  122.35 122.35
+AL  clustalw_manual
+IT  equivalog
+EN  protein RecA
+GS  recA
+TP  TIGRFAMs
+CC  This model describes orthologs of the recA protein. RecA promotes hybridization of homolgous regions of DNA. A segment of ssDNA can be hybridized to another ssDNA region, or to a dsDNA region. ATP is hydrolyzed in the process. Part of the SOS respones, it is regulated by LexA via autocatalytic cleavage.
+DR  HAMAP; MF_00268; 482 of 504

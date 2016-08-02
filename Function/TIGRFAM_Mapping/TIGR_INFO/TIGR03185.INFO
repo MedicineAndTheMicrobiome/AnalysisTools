@@ -1,0 +1,22 @@
+ID  DNA_S_dndD
+AC  TIGR03185
+DE  DNA sulfur modification protein DndD
+AU  Haft DH
+TC  245.85 245.85
+NC  38.50 38.50
+AL  muscle
+IT  equivalog
+EN  DNA sulfur modification protein DndD
+GS  dndD
+TP  TIGRFAMs
+CC  This model describes the DndB protein encoded by an operon associated with a sulfur-containing modification to DNA. The operon is sporadically distributed in bacteria, much like some restriction enzyme operons. DndD is described as a putative ATPase. The small number of examples known so far include species from among the Firmicutes, Actinomycetes, Proteobacteria, and Cyanobacteria.
+RN  [1]
+RM  PMID: 16102010
+RT  A novel DNA modification by sulphur.
+RA  Zhou X, He X, Liang J, Li A, Xu T, Kieser T, Helmann JD, Deng Z
+RL  Mol Microbiol. 2005 Sep;57(5):1428-38.
+RN  [2]
+RM  PMID:22070167 
+RT  ProPhylo: partial phylogenetic profiling to guide protein family construction and assignment of biological process. 
+RA  Basu MK, Selengut JD, Haft DH 
+RL  BMC Bioinformatics. 2011 Nov 9;12:434.

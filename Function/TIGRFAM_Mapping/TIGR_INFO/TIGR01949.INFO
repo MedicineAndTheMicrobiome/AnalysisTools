@@ -1,0 +1,16 @@
+ID  AroFGH_arch
+AC  TIGR01949
+DE  predicted phospho-2-dehydro-3-deoxyheptonate aldolase
+AU  Selengut J
+TC  299.45 299.45
+NC  243.40 243.40
+AL  clustalw
+IT  hypoth_equivalog
+EN  predicted phospho-2-dehydro-3-deoxyheptonate aldolase
+EC  4.2.1.-
+TP  TIGRFAMs
+CC  This HMM represents a clade of sequences related to fructose-bisphosphate aldolase (class I, included within PF01791). The members of this clade appear to be phospho-2-dehydro-3-deoxyheptonate aldolases.  This enzyme is the first step of the chorismate biosynthesis pathway.  Evidence for this assignment is based on gene clustering and phylogenetic profiling.
+CC  A group of species lack members of the three other types of  phospho-2-dehydro-3-deoxyheptonate aldolase (represented by TIGR00034, TIGR01358 and TIGR01361), and also aparrently lack the well-known forms of step 2 (3-dehydroquinate synthase), but contain all other steps of the pathway: Desulfovibrio, Aquifex, Archaeoglobus, Halobacterium,  Methanopyrus, Methanococcus and Methanobacterium.  The clade of sequences represented here is limited strictly to this group of organisms.
+CC  In Desulfovibrio, Aquifex, Archaeoglobus, Halobacterium and Methanosarcina the genes found by this model are clustered with other genes from the chorismate, phenylalanine, tyrosine and tryptophan biosynthesis pathways.  
+CC  In addition, these genes in Desulfovibrio, Archaeoglobus, Halobacterium, Methanosarcina and Methanopyrus are adjacent to a gene which hits PF01959 which also has the property of having members only in those species which lack steps 1 and 2.  
+CC  Together these two genes appear to perform the synthesis of 3-dehydroquinate.  It is presumed that the substrates and the chemical transformations involved are identical, but this has not yet been proven experimentally.

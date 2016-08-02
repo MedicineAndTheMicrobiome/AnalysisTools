@@ -1,0 +1,15 @@
+ID  RGG_Cterm
+AC  TIGR01716
+DE  transcriptional activator, Rgg/GadR/MutR family, C-terminal domain
+AU  Haft DH
+TC  36.90 36.90
+NC  35.35 35.35
+AL  clustalw_manual
+IT  subfamily_domain
+EN  transcriptional activator, Rgg/GadR/MutR family, C-terminal domain
+TP  TIGRFAMs
+CC  This HMM describes the whole, except for a 60 residue N-terminal helix-turn-helix DNA-binding domain (PFAM PF01381) of the family of proteins related to the transcriptional regulator Rgg, also called RopB. Rgg is required for secretion of several proteins, including a cysteine proteinase associated with virulence. GadR (GP|2352485) is a positive regulator of a glutamate-dependent acid resistance mechanism. MutR is a transcriptional activator for mutacin biosynthesis genes in Streptococcus mutans. This family appears restricted to the low-GC Gram-positive bacteria, including at least eight members in Lactococcus lactis.
+RN  [1]
+RM  11159974
+RN  [2]
+RM  9484886

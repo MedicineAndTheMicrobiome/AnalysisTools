@@ -1,0 +1,18 @@
+ID  CoxB
+AC  TIGR02866
+DE  cytochrome c oxidase, subunit II
+AU  Selengut J
+TC  147.70 147.70
+NC  144.30 144.30
+AL  manual
+IT  equivalog
+EN  cytochrome c oxidase, subunit II
+GS  coxB
+EC  1.9.3.1
+TP  TIGRFAMs
+CC  Cytochrome c oxidase is the terminal electron acceptor of mitochondria (and one of several possible acceptors in prokaryotes) in the electron transport chain of aerobic respiration.  The enzyme couples the oxidation of reduced cytochrome c with the reduction of molecular oxygen to water.  This process results in the pumping of four protons  across the membrane which are used in the proton gradient powered synthesis of ATP.  The oxidase contains two heme a cofactors and three copper atoms as well as other bound ions [1].
+RN  [1]
+RM  PMID: 9380672
+RT  Structure at 2.7 A resolution of the Paracoccus denitrificans two-subunit cytochrome c oxidase complexed with an antibody FV fragment.
+RA  Ostermeier C, Harrenga A, Ermler U, Michel H.
+RL  Proc Natl Acad Sci U S A. 1997 Sep 30;94(20):10547-53.

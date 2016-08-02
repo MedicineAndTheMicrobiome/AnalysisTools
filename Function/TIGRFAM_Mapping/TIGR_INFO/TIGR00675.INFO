@@ -1,0 +1,15 @@
+ID  dcm
+AC  TIGR00675
+DE  DNA (cytosine-5-)-methyltransferase
+AU  Loftus BJ, Eisen JA
+TC  100.65 100.65
+NC  94.90 94.90
+IT  superfamily
+EN  DNA-methyltransferase (dcm)
+GS  dcm
+EC  2.1.1.37
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are DNA-cytosine methyltransferases.  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  EGAD; 9623;
+RM  87146340;
+DR  SWISSPROT; P05101;

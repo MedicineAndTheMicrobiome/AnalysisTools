@@ -1,0 +1,17 @@
+ID  DMSO_dmsB
+AC  TIGR02951
+DE  dimethylsulfoxide reductase, chain B
+AU  Haft DH
+TC  214.10 214.10
+NC  149.95 149.95
+AL  muscle
+IT  equivalog
+EN  DMSO reductase, iron-sulfur subunit
+GS  dmsB
+TP  TIGRFAMs
+CC  This family consists of the iron-sulfur subunit, or chain B, of an enzyme called the anaerobic dimethyl sulfoxide reductase. Chains A and B are catalytic, while chain C is a membrane anchor.
+RN  [1]
+RM  PMID: 3062312
+RT  Nucleotide sequence of the dmsABC operon encoding the anaerobic dimethylsulphoxide reductase of Escherichia coli.
+RA  Bilous PT, Cole ST, Anderson WF, Weiner JH
+RL  Mol Microbiol. 1988 Nov;2(6):785-95.

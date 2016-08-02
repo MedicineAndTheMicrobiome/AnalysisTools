@@ -1,0 +1,14 @@
+ID  glut_syn
+AC  TIGR01380
+DE  glutathione synthase
+AU  Beanan M
+TC  299.05 299.05
+NC  112.05 112.05
+AL  clustalw
+IT  equivalog
+EN  glutathione synthetase, prokaryotic
+GS  gshB
+EC  6.3.2.3
+TP  TIGRFAMs
+CC  This model was built using glutathione synthetases found in Gram-negative bacteria.  This gene does not appear to be present in genomes of Gram-positive bacteria. Glutathione synthetase has an ATP-binding domain in the COOH terminus and catalyzes the second step in the glutathione biosynthesis pathway:  ATP + gamma-L-glutamyl-L-cysteine + glycine = ADP + phosphate + glutathione. Glutathione is a tripeptide that functions as a reductant in many cellular reactions.
+DR  HAMAP; MF_00162; 51 of 51

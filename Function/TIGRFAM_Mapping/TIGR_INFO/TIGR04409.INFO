@@ -1,0 +1,13 @@
+ID  LptC_YrbK
+AC  TIGR04409
+DE  LPS export ABC transporter periplasmic protein LptC
+AU  Haft DH
+TC  38.00 38.00
+NC  37.50 37.50
+AL  muscle_manual
+IT  equivalog
+EN  LPS export ABC transporter periplasmic protein LptC
+GS  lptC
+TP  TIGRFAMs
+CC  Members of this family are LptC, a periplasmic protein tethered to the inner membrane in the lipopolysaccharide (LPS)exporter transenvelope complex (Lpt), which is responsible for conducting LPS to the outer leaflet of the outer membrane in most Gram-negative bacteria. LptC is homologous to LptA, another member of the transenvelope complex. Genes lptC and lptA are often adjacent.
+DR  ECOGENE; EG12806

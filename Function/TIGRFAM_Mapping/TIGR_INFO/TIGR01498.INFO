@@ -1,0 +1,15 @@
+ID  folK
+AC  TIGR01498
+DE  2-amino-4-hydroxy-6-hydroxymethyldihydropteridine diphosphokinase
+AU  Haft DH
+TC  54.10 54.10
+NC  32.60 32.60
+AL  clustalw_manual
+IT  equivalog
+EN  2-amino-4-hydroxy-6-hydroxymethyldihydropteridine diphosphokinase
+GS  folK
+EC  2.7.6.3
+TP  TIGRFAMs
+CC  This HMM describes the folate biosynthesis enzyme 2-amino-4-hydroxy-6-hydroxymethyldihydropteridine pyrophosphokinase. Alternate names include 6-hydroxymethyl-7,8-dihydropterin diphosphokinase and 7,8-dihydro-6-hydroxymethylpterin pyrophosphokinase (HPPK). The extreme C-terminal region, of typically eight to thirty residues, is not included in the model. This enzyme may be found as a fusion protein with other enzymes of folate biosynthesis.
+DR  PFAM; PF01288
+DR  INTERPRO; IPR000550

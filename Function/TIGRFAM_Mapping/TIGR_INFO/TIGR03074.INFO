@@ -1,0 +1,13 @@
+ID  PQQ_membr_DH
+AC  TIGR03074
+DE  membrane-bound PQQ-dependent dehydrogenase, glucose/quinate/shikimate family
+AU  Haft DH
+TC  832.65 832.65
+NC  552.25 552.25
+AL  muscle
+IT  subfamily
+EN  membrane-bound PQQ-dependent dehydrogenase, glucose/quinate/shikimate family
+EC  1.1.-.-
+TP  TIGRFAMs
+CC  This protein family has a phylogenetic distribution very similar to that coenzyme PQQ biosynthesis enzymes, as shown by partial phylogenetic profiling. Members of this family have several predicted transmembrane helices in the N-terminal region, and include the quinoprotein glucose dehydrogenase (EC 1.1.5.2) of Escherichia coli and the quinate/shikimate dehydrogenase of Acinetobacter sp. ADP1 (EC 1.1.99.25). Sequences closely related except for the absense of the N-terminal hydrophobic region, scoring in the gray zone between the trusted and noise cutoffs, include PQQ-dependent glycerol (EC 1.1.99.22) and and other polyol (sugar alcohol) dehydrogenases.
+DR  PFAM; PF01011; PQQ enzyme repeat

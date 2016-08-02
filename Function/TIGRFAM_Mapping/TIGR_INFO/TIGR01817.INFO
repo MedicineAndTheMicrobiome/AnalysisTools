@@ -1,0 +1,12 @@
+ID  nifA
+AC  TIGR01817
+DE  Nif-specific regulatory protein
+AU  Haft DH
+TC  528.85 528.85
+NC  421.00 421.00
+AL  clustalw
+IT  equivalog
+EN  Nif-specific regulatory protein
+GS  nifA
+TP  TIGRFAMs
+CC  This HMM represents NifA, a DNA-binding regulatory protein for nitrogen fixation. The model produces scores between the trusted and noise cutoffs for a well-described NifA homolog in Aquifex aeolicus (which lacks nitrogenase), for transcriptional activators of alternative nitrogenases (VFe or FeFe instead of MoFe), and truncated forms.

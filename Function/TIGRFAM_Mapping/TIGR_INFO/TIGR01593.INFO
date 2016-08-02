@@ -1,0 +1,15 @@
+ID  holin_tox_secr
+AC  TIGR01593
+DE  toxin secretion/phage lysis holin
+AU  Haft DH, Fouts DE
+TC  40.20 40.20
+NC  38.30 38.30
+AL  clustalw_manual
+IT  subfamily
+EN  toxin secretion/phage lysis holin
+TP  TIGRFAMs
+CC  This HMM describes one of the many mutally dissimilar families of holins, phage proteins that act together with lytic enzymes in bacterial lysis. This family includes, besides phage holins, the protein TcdE/UtxA involved in toxin secretion in Clostridium difficile and related species.
+RM  11444771
+RT  Evidence for holin function of tcdE gene in the pathogenicity of Clostridium difficile
+RA  Tan KS, Wee BY, Song KP.
+RL  J Med Microbiol 2001 Jul;50(7):613-9

@@ -1,0 +1,13 @@
+ID  cbiN
+AC  TIGR01165
+DE  cobalt transport protein
+AU  Ujwal ML, Paulsen IT
+TC  104.85 104.85
+NC  32.25 32.25
+AL  clustalw
+IT  subfamily
+EN  cobalt transport protein
+GS  cbiN
+TP  TIGRFAMs
+CC  This model describes the cobalt transporter in bacteria and its equivalents in archaea. It principally functions in the ion uptake mechanism. It is a multisubunit transporter with two integral membrane proteins and two closely associated cytoplasmic subunits. This transporter belongs to the ABC transporter superfamily (ATP stands for ATP Binding Cassette). This superfamily includes two groups, one which catalyze the uptake of small molecules, including ions from the external milieu and the other group which is engaged in the efflux of small molecular weight compounds and ions from within the cell. Energy derived from the hydrolysis of ATP drive the both the process of uptake and efflux.
+DR  HAMAP; MF_00330; 20 of 21

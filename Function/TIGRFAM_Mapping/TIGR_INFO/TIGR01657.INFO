@@ -1,0 +1,16 @@
+ID  P-ATPase-V
+AC  TIGR01657
+DE  P-type ATPase of unknown pump specificity (type V)
+AU  Selengut J
+TC  618.25 618.25
+NC  405.80 405.80
+AL  clustalw
+IT  hypoth_equivalog
+EN  P-type ATPase of unknown pump specificity (type V)
+TP  TIGRFAMs
+CC  These P-type ATPases form a distinct clade but the substrate of their pumping activity has yet to be determined.  This clade has been designated type V in [1].
+RN  [1]
+RM  PMID: 9419228
+RT  Evolution of substrate specificities in the P-type ATPase superfamily.
+RA  Axelsen KB, Palmgren MG.
+RL  J Mol Evol 1998 Jan;46(1):84-101

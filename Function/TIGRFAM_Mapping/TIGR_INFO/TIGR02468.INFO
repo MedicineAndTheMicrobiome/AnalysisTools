@@ -1,0 +1,16 @@
+ID  sucrsPsyn_pln
+AC  TIGR02468
+DE  sucrose phosphate synthase
+AU  Haft DH
+TC  1143.95 1143.95
+NC  592.80 592.80
+AL  clustalw
+IT  equivalog
+EN  sucrose phosphate synthase/possible sucrose phosphate phosphatase, plant
+EC  2.4.1.14
+TP  TIGRFAMs
+CC  Members of this family are sucrose-phosphate synthases of plants. This enzyme is known to exist in multigene families in several species of both monocots and dicots. The N-terminal domain is the glucosyltransferase domain. Members of this family also have a variable linker region and a C-terminal domain that resembles sucrose phosphate phosphatase (SPP) (EC 3.1.3.24) (see TIGR01485), the next and final enzyme of sucrose biosynthesis. The SPP-like domain likely serves a binding and not a catalytic function, as the reported SPP is always encoded by a distinct protein.
+RM  15247374
+RT  Evolution and function of the sucrose-phosphate synthase gene families in wheat and other grasses.
+RA  Castleden CK, Aoki N, Gillespie VJ, MacRae EA, Quick WP, Buchner P, Foyer CH, Furbank RT, Lunn JE.
+RL  Plant Physiol. 2004 Jul;135(3):1753-64.

@@ -1,0 +1,14 @@
+ID  3a0801s03tim44
+AC  TIGR00984
+DE  mitochondrial import inner membrane, translocase subunit
+AU  Loftus BJ
+TC  552.35 552.35
+NC  466.05 466.05
+AL  clustalw_manual
+IT  subfamily
+EN  mitochondrial import inner membrane, translocase subunit
+TR  3.A.8
+TP  TIGRFAMs
+CC  The mitochondrial protein translocase (MPT) family, which brings nuclearly encoded preproteins into mitochondria, is very complex with 19 currently identified protein constituents.These proteins include several chaperone proteins, four proteins of the outer membrane 
+CC  translocase (Tom) import receptor, five proteins of the Tom channel complex, five proteins of the inner membrane translocase (Tim) and three "motor" proteins. This family is specific for the Tim proteins.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/3_A_8.html

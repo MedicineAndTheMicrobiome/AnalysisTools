@@ -1,0 +1,23 @@
+ID  PaaC-3OHAcCoADH
+AC  TIGR02279
+DE  3-hydroxyacyl-CoA dehydrogenase PaaC
+AU  Selengut J
+TC  669.40 669.40
+NC  593.65 593.65
+AL  clustalw
+IT  equivalog
+EN  3-hydroxyacyl-CoA dehydrogenase PaaC
+GS  paaC
+EC  1.1.1.-
+TP  TIGRFAMs
+CC  This 3-hydroxyacyl-CoA dehydrogenase is involved in the degradation of phenylacetic acid, presumably in steps following the opening of the phenyl ring [1].  The sequences included in this model are all found in aparrent operons with other related genes such as paaA, paaB, paaD, paaE, paaF and paaN [2].  Some genomes contain these other genes without an apparent paaC in the same operon - possibly in these cases a different dehydrogenase involved in fatty acid degradation may fill in the needed activity.  This enzyme has domains which are members of the PF02737 and PF00725 families.
+RN  [1]
+RM  PMID: 9748275
+RT  Catabolism of phenylacetic acid in Escherichia coli. Characterization of a new aerobic hybrid pathway.
+RA  Ferrandez A, Minambres B, Garcia B, Olivera ER, Luengo JM, Garcia JL, Diaz E.
+RL  J Biol Chem. 1998 Oct 2;273(40):25974-86.
+RN  [2]
+RM  PMID: 11260461
+RT  The phenylacetyl-CoA catabolon: a complex catabolic unit with broad biotechnological applications.
+RA  Luengo JM, Garcia JL, Olivera ER.
+RL  Mol Microbiol. 2001 Mar;39(6):1434-42.

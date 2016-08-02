@@ -1,0 +1,18 @@
+ID  biphenyl_bphD
+AC  TIGR03343
+DE  2-hydroxy-6-oxo-6-phenylhexa-2,4-dienoate hydrolase
+AU  Haft DH
+TC  462.15 462.15
+NC  425.45 425.45
+AL  muscle_manual
+IT  equivalog
+EN  2-hydroxy-6-oxo-6-phenylhexa-2,4-dienoate hydrolase
+GS  bphD
+EC  3.7.1.-
+TP  TIGRFAMs
+CC  Members of this family are 2-hydroxy-6-oxo-6-phenylhexa-2,4-dienoate hydrolase, or HOPD hydrolase, the BphD protein of biphenyl degradation. BphD acts on the product of ring meta-cleavage by BphC. Many species carrying bphC and bphD are capable of degrading polychlorinated biphenyls as well as biphenyl itself.
+RN  [1]
+RM  PMID: 9073078
+RT  The bphDEF meta-cleavage pathway genes involved in biphenyl/polychlorinated biphenyl degradation are located on a linear plasmid and separated from the initial bphACB genes in Rhodococcus sp. strain RHA1.
+RA  Masai E, Sugiyama K, Iwashita N, Shimizu S, Hauschild JE, Hatta T, Kimbara K, Yano K, Fukuda M
+RL  Gene. 1997 Mar 10;187(1):141-9.

@@ -1,0 +1,15 @@
+ID  VirB4_CagE
+AC  TIGR00929
+DE  type IV secretion/conjugal transfer ATPase, VirB4 family
+AU  Durkin S, Haft DH
+TC  643.10 643.10
+NC  293.55 293.55
+AL  clustalw_manual
+IT  subfamily
+EN  type IV secretion/conjugal transfer ATPase, VirB4 family
+TP  TIGRFAMs
+CC  Type IV secretion systems are found in Gram-negative pathogens. They export proteins, DNA, or complexes in different systems and are related to plasmid conjugation systems. This model represents related ATPases that include VirB4 in Agrobacterium tumefaciens (DNA export) CagE in Helicobacter pylori (protein export) and plasmid TraB (conjugation).
+RM  20381412
+RT  Bacterial type IV secretion: conjugation systems adapted to deliver effector molecules to host cells.
+RA  Christie PJ, Vogel JP
+RL  Trends Microbiol 2000 Aug;8(8):354-60

@@ -1,0 +1,12 @@
+ID  comF
+AC  TIGR00201
+DE  comF family protein
+AU  Loftus BJ
+TC  233.55 233.55
+NC  66.40 66.40
+AL  clustalw
+IT  subfamily
+EN  comF family protein
+TP  TIGRFAMs
+CC  This protein is found in species that do (Bacillus subtilis, Haemophilus influenzae) or do not (E. coli, Borrelia burgdorferi) have described systems for natural transformation with exogenous DNA.  It is involved in competence for transformation in Bacillus subtilis.
+DR  SP; P31773;

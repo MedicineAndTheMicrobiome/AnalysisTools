@@ -1,0 +1,13 @@
+ID  dass
+AC  TIGR00785
+DE  transporter, divalent anion:Na+ symporter (DASS) family
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  198.60 198.60
+NC  115.75 115.75
+AL  clustalw_manual
+IT  subfamily
+EN  anion transporter
+TR  2.A.47
+TP  TIGRFAMs
+CC  The Divalent Anion:Na+ Symporter (DASS) Family (TC 2.A.47)
+CC  Functionally characterized proteins of the DASS family transport (1) organic di- and tricarboxylates of the Krebs Cycle as well as dicarboxylate amino acid, (2) inorganic sulfate and (3) phosphate. The animal NaDC-1 cotransport 3 Na+ with each dicarboxylate. Protonated tricarboxylates are also cotransported with 3Na+.

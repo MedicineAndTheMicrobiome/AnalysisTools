@@ -1,0 +1,11 @@
+ID  trio_amidotrans
+AC  TIGR03104
+DE  asparagine synthase family amidotransferase
+AU  Haft DH
+TC  570.10 570.10
+NC  413.30 413.30
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  asparagine synthase family amidotransferase
+TP  TIGRFAMs
+CC  Members of this protein family are closely related to several isoforms of asparagine synthetase (glutamine amidotransferase) and typically have been given this name in genome annotation to date.  Each is part of a conserved three-gene cassette sparsely distributed across at least twenty different species known so far, including alpha, beta, and gamma Proteobacteria, Mycobacterium, and Prosthecochloris, which is a member of the Chlorobi. The other two members of the cassette are a probable protease and a member of the GNAT family of acetyltransferases.

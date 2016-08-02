@@ -1,0 +1,19 @@
+ID  ENaC
+AC  TIGR00859
+DE  sodium channel transporter
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  428.00 428.00
+NC  413.40 413.40
+AL  clustalw_manual
+IT  subfamily
+EN  sodium channel transporter
+GS  ENaC
+TP  TIGRFAMs
+CC  The Epithelial Na+ Channel (ENaC) Family (TC 1.A.06)
+CC  The ENaC family consists of sodium channels from animals and has no recognizable homologues in other eukaryotes or bacteria. The vertebrate ENaC proteins from epithelial cells cluster tightly together on the phylogenetic tree: voltage-insensitive ENaC homologues are also found in the brain. Eleven sequenced C. elegans proteins, including the degenerins, are distantly related to the vertebrate proteins as well as to each other. At least some of
+CC  these proteins form part of a mechano-transducing complex for touch sensitivity. Other members of the ENaC family, the acid-sensing ion channels, ASIC1-3,
+CC  are homo- or hetero-oligomeric neuronal H+-gated channels that mediate pain sensation in response to tissue acidosis. The homologous Helix aspersa
+CC  (FMRF-amide)-activated Na+ channel is the first peptide neurotransmitter-gated ionotropic receptor to be sequenced.
+CC  Mammalian ENaC is important for the maintenance of Na+ balance and the regulation of blood pressure. Three homologous ENaC subunits, a, b and g, have
+CC  been shown to assemble to form the highly Na+-selective channel.
+CC  This Hmm is designed from the vertebrate members of the ENaC family.

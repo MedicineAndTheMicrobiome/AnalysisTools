@@ -1,0 +1,13 @@
+ID  rpsD_arch
+AC  TIGR01018
+DE  ribosomal protein S4
+AU  Durkin S, Haft DH
+TC  82.25 82.25
+NC  78.10 78.10
+AL  clustalw
+IT  equivalog
+EN  ribosomal protein S4(archaeal type)/S9(eukaryote cytosolic type)
+GS  rpsD
+TP  TIGRFAMs
+CC  This model finds eukaryotic ribosomal protein S9 as well as archaeal ribosomal protein S4.
+DR  HAMAP; MF_01306; 48 of 834

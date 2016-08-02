@@ -1,0 +1,11 @@
+ID  SASP_gamma
+AC  TIGR01442
+DE  small, acid-soluble spore protein, gamma-type
+AU  Haft DH
+TC  30.65 30.65
+NC  28.65 28.65
+AL  clustalw_manual
+IT  subfamily
+EN  small, acid-soluble spore protein, gamma-type
+TP  TIGRFAMs
+CC  This HMM represents a family of small, glutamine and asparagine-rich peptides that store amino acids in the spores of Bacillus subtilis and related bacteria. Most members of the family have two copies of the spore protease (GPR) cleavage motif, typically EFASE in this family, separating three low-complexity repeats.

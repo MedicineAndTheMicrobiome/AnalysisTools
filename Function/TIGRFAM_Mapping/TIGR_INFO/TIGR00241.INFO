@@ -1,0 +1,12 @@
+ID  CoA_E_activ
+AC  TIGR00241
+DE  putative CoA-substrate-specific enzyme activase
+AU  Haft DH
+TC  125.40 125.40
+NC  107.95 107.95
+AL  clustalw
+IT  domain
+EN  CoA-substrate-specific enzyme activase, putative
+TP  TIGRFAMs
+CC  This domain is found in a set of closely related proteins including the (R)-2-hydroxyglutaryl-CoA dehydratase activase of Acidaminococcus fermentans, in longer proteins from M. jannaschii and M. thermoautotrophicum that share an additional N-terminal domain, in a protein described as a subunit of the benzoyl-CoA reductase of Rhodopseudomonas palustris, and in two repeats of an uncharacterized protein of Aquifex aeolicus.
+CC  This domain may be involved in generating or regenerating the active sites of enzymes related to (R)-2-hydroxyglutaryl-CoA dehydratase and benzoyl-CoA reductase.

@@ -1,0 +1,14 @@
+ID  PS_II_psbM
+AC  TIGR03038
+DE  photosystem II reaction center protein PsbM
+AU  Haft DH
+TC  35.05 35.05
+NC  35.00 35.00
+AL  manual
+IT  equivalog
+EN  photosystem II reaction center protein PsbM
+GS  psbM
+TP  TIGRFAMs
+CC  Members of this protein family are the photosystem II reaction center M protein, product of the psbM gene, in Cyanobacteria and their derived organelles in plants. This model resembles Pfam model PF05151 but has cutoffs set to avoid false-positive matches to similar (not necessarily homologous) sequences in species that are not photosynthetic.
+DR  PFAM; PF05151; Photosystem II reaction centre M protein (PsbM)
+DR  HAMAP; MF_00438; 130 of 131

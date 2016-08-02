@@ -1,0 +1,14 @@
+ID  lysS_bact
+AC  TIGR00499
+DE  lysine--tRNA ligase
+AU  Haft DH
+TC  427.60 427.60
+NC  334.35 334.35
+AL  clustalw_manual
+IT  equivalog
+EN  lysyl-tRNA synthetase, eukaryotic and non-spirochete bacterial
+GS  lysS
+EC  6.1.1.6
+TP  TIGRFAMs
+CC  This model represents the lysyl-tRNA synthetases that are class II amino-acyl tRNA synthetases. It includes all eukaryotic and most bacterial examples of the enzyme, but not archaeal or spirochete forms.
+DR  HAMAP; MF_00252; 290 of 294

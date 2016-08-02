@@ -1,0 +1,22 @@
+ID  COQ6
+AC  TIGR01989
+DE  ubiquinone biosynthesis monooxygenase COQ6
+AU  Selengut J
+TC  489.30 489.30
+NC  353.90 353.90
+AL  clustalw
+IT  equivalog
+EN  ubiquinone biosynthesis monooxygenase COQ6
+EC  1.14.13.-
+TP  TIGRFAMs
+CC  This model represents the monooxygenase responsible for the 4-hydroxylateion of the phenol ring in the aerobic biosynthesis of ubiquinone [1,2]
+RN  [1]
+RM  PMID: 11583838
+RT  Ubiquinone biosynthesis in microorganisms.
+RA  Meganathan R.
+RL  FEMS Microbiol Lett. 2001 Sep 25;203(2):131-9.
+RN  [2]
+RM  PMID: 12721307
+RT  The Saccharomyces cerevisiae COQ6 gene encodes a mitochondrial flavin-dependent monooxygenase required for coenzyme Q biosynthesis.
+RA  Gin P, Hsu AY, Rothman SC, Jonassen T, Lee PT, Tzagoloff A, Clarke CF.
+RL  J Biol Chem. 2003 Jul 11;278(28):25308-16. Epub 2003 Apr 29.

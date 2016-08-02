@@ -1,0 +1,17 @@
+ID  GldN
+AC  TIGR03523
+DE  gliding motility associated protein GldN
+AU  Selengut J
+TC  85.90 85.90
+NC  84.70 84.70
+AL  muscle
+IT  subfamily
+EN  gliding motility associated protien GldN
+GS  gldN
+TP  TIGRFAMs
+CC  Members of this protein family are exclusive to the Bacteroidetes phylum (previously Cytophaga-Flavobacteria-Bacteroides). GldN is a protein linked to a type of rapid surface gliding motility found in certain Bacteroidetes, such as Flavobacterium johnsoniae and Cytophaga hutchinsonii. Knockouts of GldN abolish the gliding phenotype [1].  Gliding motility appears closely linked to chitin utilization in the model species Flavobacterium johnsoniae. Bacteroidetes with members of this protein also include those which are not believed to express the gliding phenotype, such as Prevotella intermedia and Porphyromonas gingivales.
+RN  [1]
+RM  PMID:16199564 
+RT  Flavobacterium johnsoniae gliding motility genes identified by mariner mutagenesis. 
+RA  Braun TF, Khubbar MK, Saffarini DA, McBride MJ 
+RL  J Bacteriol. 2005 Oct;187(20):6943-52.

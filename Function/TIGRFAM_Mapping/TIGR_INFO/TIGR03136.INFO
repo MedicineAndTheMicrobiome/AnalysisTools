@@ -1,0 +1,17 @@
+ID  malonate_biotin
+AC  TIGR03136
+DE  Na+-transporting malonate decarboxylase, carboxybiotin decarboxylase subunit
+AU  Haft DH
+TC  596.90 596.90
+NC  537.90 537.90
+AL  muscle
+IT  equivalog
+EN  Na+-transporting malonate decarboxylase, carboxybiotin decarboxylase subunit
+GS  madB
+TP  TIGRFAMs
+CC  Malonate decarboxylase can be a soluble enzyme, or a sodium ion-translocating with additional membrane-bound components. Members of this protein family are integral membrane proteins required to couple decarboxylation to sodium ion export. This family belongs to a broader family, TIGR01109 of sodium ion-translocating decarboxylase beta subunits.
+RN  [1]
+RM  PMID: 9128730
+RT  Sequence of a gene cluster from Malonomonas rubra encoding components of the malonate decarboxylase Na+ pump and evidence for their function.
+RA  Berg M, Hilbi H, Dimroth P
+RL  Eur J Biochem. 1997 Apr 1;245(1):103-15.

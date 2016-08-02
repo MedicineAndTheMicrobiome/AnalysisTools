@@ -1,0 +1,16 @@
+ID  SasC_Mrp_aggreg
+AC  TIGR04263
+DE  SasC/Mrp/FmtB intercellular aggregation domain
+AU  Haft DH
+TC  60.00 60.00
+NC  40.00 40.00
+AL  muscle_manual
+IT  subfamily_domain
+EN  SasC/Mrp/FmtB intercellular aggregation domain
+TP  TIGRFAMs
+CC  This domain, about 375 amino acids long on average, occurs only in Staphylococcus and Streptococcus. It occurs as a non-repetitive N-terminal domain of LPXTG-anchored surface proteins, including SasC,  Mrp, and FmtB. This region in SasC was shown to be involved in cell aggregation and biofilm formation, which may explain the methicillin resistance seen for Mrp and FmtB.
+RN  [1]
+RM  PMID:19851500 
+RT  Molecular characterization of a novel Staphylococcus aureus surface protein (SasC) involved in cell aggregation and biofilm accumulation. 
+RA  Schroeder K, Jularic M, Horsburgh SM, Hirschhausen N, Neumann C, Bertling A, Schulte A, Foster S, Kehrel BE, Peters G, Heilmann C 
+RL  PLoS One. 2009 Oct 23;4(10):e7567.

@@ -1,0 +1,16 @@
+ID  streptolysinS
+AC  TIGR03602
+DE  bacteriocin protoxin, streptolysin S family
+AU  Haft DH
+TC  39.95 39.95
+NC  17.80 17.80
+AL  muscle_manual
+IT  subfamily
+EN  bacteriocin protoxin, streptolysin S family
+TP  TIGRFAMs
+CC  Members of this family are bacteriocin precursors. These small, ribosomally produced polypeptide precursors are extensively processed post-translationally. This family belongs to a class of heterocycle-containing bacteriocins, including streptolysin S from Streptococcus pyogenes, and related bacteriocins from Streptococcus iniae and Clostridium botulinum. Streptolysin S is hemolytic. Bacteriocin genes in general are small and highly diverse, with odd sequence composition, and are easily missed by many gene-finding programs.
+RN  [1]
+RM  PMID:18375757
+RT  Discovery of a widely distributed toxin biosynthetic gene cluster.
+RA  Lee SW, Mitchell DA, Markley AL, Hensler ME, Gonzalez D, Wohlrab A, Dorrestein PC, Nizet V, Dixon JE
+RL  Proc Natl Acad Sci U S A. 2008 Apr 15;105(15):5879-84.

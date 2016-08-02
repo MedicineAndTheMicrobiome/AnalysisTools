@@ -1,0 +1,13 @@
+ID  rad23
+AC  TIGR00601
+DE  UV excision repair protein Rad23
+AU  Loftus BJ, Eisen JA
+TC  207.30 207.30
+NC  129.10 129.10
+IT  equivalog
+EN  UV excision repair protein Rad23
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are components of a multiprotein complex used for targeting nucleotide excision repair to specific parts of the genome.  In humans, Rad23 complexes with the XPC protein.  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  EGAD; 52098;
+DR  SWISSPROT; P32628;
+RM  94067136;

@@ -1,0 +1,12 @@
+ID  FlgB
+AC  TIGR01396
+DE  flagellar basal-body rod protein FlgB
+AU  Haft DH
+TC  59.05 59.05
+NC  34.95 34.95
+AL  clustalw_manual
+IT  equivalog
+EN  flagellar basal-body rod protein FlgB
+GS  flgB
+TP  TIGRFAMs
+CC  This HMM represents FlgB, one of several components of bacterial flagella that share a domain described by Pfam HMM PF00460. FlgB is part of the basal body.

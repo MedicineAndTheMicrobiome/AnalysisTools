@@ -1,0 +1,34 @@
+ID  modB_ABC
+AC  TIGR02141
+DE  molybdate ABC transporter, permease protein
+AU  Selengut J, Haft DH
+TC  182.60 182.60
+NC  181.85 181.85
+AL  clustalw
+IT  equivalog
+EN  molybdate ABC transporter, permease protein
+GS  modB
+TR  3.A.1.8.1
+TP  TIGRFAMs
+CC  This HMM describes the permease protein, ModB, of the molybdate ABC transporter. This system has been characterized in E. coli [1], Staphylococcus carnosus [2] Rhodobacter capsulatus [3] and Azotobacter vinlandii [4].
+CC  Molybdate is chemically similar to sulfate, thiosulfate, and selenate. These related substrates, and sometimes molybdate itself, can be transported by the homologous sulfate receptor. Some apparent molybdenum transport operons include a permease related to this ModB, although less similar than some sulfate permease proteins and not included in this model.
+RN  [1]
+RM  PMID: 7665460
+RT  Genetic analysis of the modABCD (molybdate transport) operon of Escherichia coli.
+RA  Maupin-Furlow JA, Rosentel JK, Lee JH, Deppenmeier U, Gunsalus RP, Shanmugam KT.
+RL  J Bacteriol 1995 Sep;177(17):4851-6
+RN  [2]
+RM  PMID: 10415172
+RT  Characterization of the molybdate transport system ModABC of Staphylococcus carnosus.
+RA  Neubauer H, Pantel I, Lindgren PE, Gotz F.
+RL  Arch Microbiol 1999 Aug;172(2):109-15
+RN  [3]
+RM  PMID: 8491722
+RT  Characterization of Rhodobacter capsulatus genes encoding a molybdenum transport system and putative molybdenum-pterin-binding proteins.
+RA  Wang G, Angermuller S, Klipp W.
+RL  J Bacteriol 1993 May;175(10):3031-42
+RN  [4]
+RM  PMID: 7665518
+RT  Mutational analysis of genes of the mod locus involved in molybdenum transport, homeostasis, and processing in Azotobacter vinelandii.
+RA  Mouncey NJ, Mitchenall LA, Pau RN.
+RL  J Bacteriol 1995 Sep;177(18):5294-302.

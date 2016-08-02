@@ -1,0 +1,12 @@
+ID  prc
+AC  TIGR00225
+DE  C-terminal processing peptidase
+AU  Loftus BJ
+TC  218.60 218.60
+NC  98.15 98.15
+AL  clustalw
+IT  subfamily
+EN  C-terminal peptidase (prc)
+EC  3.4.21.-
+TP  TIGRFAMs
+CC  A C-terminal peptidase with different substrates in different species including processing of D1 protein of the photosystem II reaction center in higher plants and cleavage of a peptide of 11 residues from the precursor form of penicillin-binding protein in E.coli E.coli and H influenza have the most distal branch of the tree and their proteins have an N-terminal 200 amino acids that show no homology to other proteins in the database.

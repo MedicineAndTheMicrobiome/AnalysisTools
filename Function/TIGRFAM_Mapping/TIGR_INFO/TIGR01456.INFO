@@ -1,0 +1,18 @@
+ID  CECR5
+AC  TIGR01456
+DE  HAD hydrolase, TIGR01456 family
+AU  Selengut J
+TC  139.25 139.25
+NC  110.80 110.80
+AL  clustalw
+IT  hypoth_equivalog
+EN  HAD-superfamily class IIA hydrolase, TIGR01456, CECR5
+TP  TIGRFAMs
+CC  This hypothetical equivalog is a member of the Class IIA subfamily of the haloacid dehalogenase superfamily of aspartate-nucleophile hydrolases.  The sequences modelled by this equivalog are all eukaryotes.
+CC  One sequence (GP|13344995) is called "Cat Eye Syndrome critical region protein 5" (CECR5) [1].  This gene has been cloned from a pericentromere region of human chromosome 22 believed to be the location of the gene or genes responsible for Cat Eye Syndrome.  This is one of a number of candidate genes.
+CC  The Schizosaccharomyces pombe sequence (EGAD|138276) is annotated as "phosphatidyl synthase," however this is due entirely to a C-terminal region of the protein (outside the region of similarity of this HMM) which is highly homologous to a family of CDP-alcohol phosphatidyltransferases. (Thus, the annotation of GP|4226073 from C. elegans as similar to phosphatidyl synthase, is a mistake as this gene does not contain the C-terminal portion).  The physical connection of the phosphatidyl synthase and the HAD-superfamily hydrolase domain in S. pombe may, however, be an important clue to the substrate for the hydrolases in this equivalog.
+RN [1]
+RM PMID: 11381032
+RT Analysis of the cat eye syndrome critical region in humans and the region of conserved synteny in mice: a search for candidate genes at or near the human chromosome 22 pericentromere.
+RA Footz TK, Brinkman-Mills P, Banting GS, Maier SA, Riazi MA, Bridgland L, Hu S, Birren B, Minoshima S, Shimizu N, Pan H, Nguyen T, Fang F, Fu Y, Ray L, Wu H, Shaull S, Phan S, Yao Z, Chen F, Huan A, Hu P, Wang Q, Loh P, Qi S, Roe BA, McDermid HE.
+RL Genome Res 2001 Jun;11(6):1053-70

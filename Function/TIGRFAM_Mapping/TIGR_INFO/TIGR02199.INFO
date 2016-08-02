@@ -1,0 +1,18 @@
+ID  rfaE_dom_II
+AC  TIGR02199
+DE  bifunctional protein RfaE, domain II
+AU  Haft DH
+TC  181.50 181.50
+NC  91.55 91.55
+AL  clustalw_manual
+IT  equivalog_domain
+EN  rfaE bifunctional protein, domain II
+GS  rfaE2
+EC  2.7.7.-
+TP  TIGRFAMs
+CC  RfaE is a protein involved in the biosynthesis of ADP-L-glycero-D-manno-heptose, a precursor for LPS inner core biosynthesis. RfaE is a bifunctional protein in E. coli, and separate proteins in some other genome. Domain I (TIGR02198) is suggested to act in D-glycero-D-manno-heptose 1-phosphate biosynthesis, while domain II (this family) adds ADP to yield ADP-D-glycero-D-manno-heptose.
+RM  10629197
+RT  The rfaE gene from Escherichia coli encodes a bifunctional protein involved in biosynthesis of the lipopolysaccharide core precursor ADP-L-glycero-D-manno-heptose.
+RA  Valvano MA, Marolda CL, Bittner M, Glaskin-Clay M, Simon TL, Klena JD.
+RL  J Bacteriol. 2000 Jan;182(2):488-97.
+DR  HAMAP; MF_01603; 145 of 148

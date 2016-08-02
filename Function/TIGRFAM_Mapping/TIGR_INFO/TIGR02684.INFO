@@ -1,0 +1,13 @@
+ID  dnstrm_HI1420
+AC  TIGR02684
+DE  probable addiction module antidote protein
+AU  Haft DH
+TC  53.70 53.70
+NC  37.10 37.10
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  probable addiction module antidote protein
+TP  TIGRFAMs
+CC  Members of this strictly bacterial protein family are small, at roughly 100 amino acids. The gene is almost invariably the downstream member of a gene pair. It is a predicted DNA-binding protein from a clade within Pfam helix-turn-helix family PF01381. These
+CC  gene pairs, when found on the bacterial chromosome, are located often with prophage regions, but also both in integrated plasmid regions and in housekeeping gene regions.  Analysis suggests that the gene pair may serve as an addiction module.
+DR  PFAM; PF01381; HTH_3; Helix-turn-helix

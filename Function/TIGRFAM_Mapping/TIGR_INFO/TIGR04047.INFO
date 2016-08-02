@@ -1,0 +1,11 @@
+ID  MSMEG_0565_glyc
+AC  TIGR04047
+DE  glycosyltransferase, MSMEG_0565 family
+AU  Haft DH
+TC  259.85 259.85
+NC  257.25 257.25
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  glycosyltransferase, MSMEG_0565 family
+TP  TIGRFAMs
+CC  A conserved gene cluster found sporadically from Actinobacteria to Proteobacteria to Cyanobacteria features a radical SAM protein, an N-acetyltransferase, an oxidoreductase, and two additional proteins whose functional classes are unclear. The metabolic role of the cluster is probably biosynthetic. This glycosyltransferase, named from member MSMEG_0565 from Mycobacterium smegmatis, occurs in most but not all instances of the cluster.

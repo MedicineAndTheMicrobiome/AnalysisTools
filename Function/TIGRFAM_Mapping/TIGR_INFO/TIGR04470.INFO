@@ -1,0 +1,11 @@
+ID  rSAM_mob_pairB
+AC  TIGR04470
+DE  radical SAM mobile pair protein B
+AU  Haft DH
+TC  410.00 410.00
+NC  375.00 375.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  radical SAM mobile pair protein B
+TP  TIGRFAMs
+CC  Members of this family are the downstream member (B) of a pair of tandem-encoded radical SAM enzymes. Most of these radical SAM gene pairs have an additional upstream regulatory gene in the MarR family. Examples of high sequence identity (over 96 percent) from cassettes in several Treponema species of the oral cavity to those in multiple Firmicutes in the gut microbiome suggest recent lateral gene transfer, as might be expected for antibiotic resistance genes. The function is unknown.

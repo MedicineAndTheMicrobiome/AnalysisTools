@@ -1,0 +1,14 @@
+ID  4_coum_CoA_lig
+AC  TIGR02372
+DE  4-coumarate--CoA ligase
+AU  Haft DH
+TC  334.70 334.70
+NC  137.80 137.80
+AL  clustalw
+IT  equivalog
+EN  4-coumarate--CoA ligase, photoactive yellow protein activation family
+GS  pcl
+EC  6.2.1.12
+TP  TIGRFAMs
+CC  This model represents the 4-coumarate--CoA ligase associated with biosynthesis of the 4-hydroxy cinnamyl (also called 4-coumaroyl) chromophore covalently linked to a Cys residue in photoactive yellow protein of Rhodobacter spp. and  	
+CC  Ectothiorhodospira halophila. This enzyme is designated 6.2.1.12 and therefore joins a number of plant enzymes linked to lignin biosynthesis and given similar names.

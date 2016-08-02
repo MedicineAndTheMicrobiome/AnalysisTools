@@ -1,0 +1,16 @@
+ID  Cxxx_AC3_0185
+AC  TIGR04118
+DE  modification target Cys-rich peptide, AC3_0185 family
+AU  Haft DH
+TC  35.00 35.00
+NC  25.00 25.00
+AL  muscle_manual
+IT  subfamily
+EN  modification target Cys-rich peptide, AC3_0185 family
+TP  TIGRFAMs
+CC  Radical SAM enzyme family TIGR04115 is paired with a number of short peptides with multiple tandem repeats of Cys-Xaa-Xaa-Xaa (see TIGR04114). This family represent a peptide family with a TIGR04114-like region, although the repeat region is relatively short in this group.
+RN  [1]
+RM  PMID:21478363 
+RT  Biological systems discovery in silico: radical S-adenosylmethionine protein families and their target peptides for posttranslational modification. 
+RA  Haft DH, Basu MK 
+RL  J Bacteriol. 2011 Jun;193(11):2745-55.

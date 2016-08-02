@@ -1,0 +1,15 @@
+ID  aa-his-dipept
+AC  TIGR01893
+DE  Xaa-His dipeptidase
+AU  Selengut J
+TC  343.75 343.75
+NC  185.15 185.15
+AL  clustalw
+IT  subfamily
+EN  Xaa-His dipeptidase
+GS  pepD
+EC  3.4.13.20
+TP  TIGRFAMs
+CC  This model represents a clade of dipeptidase enzymes, many of which are specific for carnosine (beta-alanyl-histidine). This enzymes is found broadly in bacteria and at least one archaeon (Methanosarcina).  In most species there is only one sequence hitting this model, while Bacteroides thetaiotaomicron, Chlorobium tepidum and Clostridium perfringens have two each and Fusobacterium nucleatum has three.  These may indicate that there is a broader substrate range than just carnosine in these (and other) species.
+CC  8/19/03 GO terms added [SS]
+IUBMB name is Xaa-His dipeptidase  [SS 3/1/05]

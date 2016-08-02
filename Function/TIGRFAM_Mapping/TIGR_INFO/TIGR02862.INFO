@@ -1,0 +1,17 @@
+ID  spore_BofA
+AC  TIGR02862
+DE  pro-sigmaK processing inhibitor BofA
+AU  Haft DH
+TC  53.35 53.35
+NC  34.00 34.00
+AL  clustalw
+IT  subfamily
+EN  pro-sigmaK processing inhibitor BofA
+GS  bofA
+TP  TIGRFAMs
+CC  Members of this protein family are found only in endospore-forming bacteria, such as Bacillus subtilis and Clostridium tetani. Among such bacteria, it appears only Symbiobacterium thermophilum lacks a member of this family. The protein, designated BofA, is an integral membrane protein that regulates the proteolytic activation of the RNA polymerase sigma factor K.
+RN  [1]
+RM  11959848
+RT  A sporulation membrane protein tethers the pro-sigmaK processing enzyme to its inhibitor and dictates its subcellular localization.
+RA  Rudner DZ, Losick R.
+RL  Genes Dev. 2002 Apr 15;16(8):1007-18.

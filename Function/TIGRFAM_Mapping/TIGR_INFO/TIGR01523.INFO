@@ -1,0 +1,30 @@
+ID  ATPase-IID_K-Na
+AC  TIGR01523
+DE  potassium/sodium efflux P-type ATPase, fungal-type
+AU  Selengut J
+TC  645.05 645.05
+NC  306.45 306.45
+AL  clustalw
+IT  equivalog
+EN  potassium and/or sodium efflux P-type ATPase, fungal-type
+EC  3.6.3.-
+TR  3.A.3.9.-
+TP  TIGRFAMs
+CC  Initially described as a calcium efflux ATPase [1], more recent work has shown that the S. pombe CTA3 gene is in fact a potassium ion efflux pump [2].  This HMM describes the clade of fungal P-type ATPases responsible for potassium and sodium efflux.  The degree to which these pumps show preference for sodium or potassium varies.
+CC  This group of ATPases has been classified by phylogentic analysis as type IID [3].
+CC  The Leishmania sequence (GP|3192903), which falls between trusted and noise in this model, may very well turn out to be an active potassium pump.
+RN  [1]
+RM  PMID: 1323458 
+RT  An intracellular ATP-dependent calcium pump within the yeast Schizosaccharomyces pombe, encoded by the gene cta3.
+RA  Halachmi D, Ghislain M, Eilam Y.
+RL  Eur J Biochem. 1992 Aug 1;207(3):1003-8.
+RN  [3]
+RM  PMID:9419228
+RT  Evolution of Substrate Specificities in the P-type ATPase Superfamily.
+RA  Axelsen KB, Palmgren, MG.
+RL  J Mol Evol. 1998 Jan; 46(1): 84-101.
+RN  [2]
+RM  PMID: 11932440 
+RT  Potassium- or sodium-efflux ATPase, a key enzyme in the evolution of fungi.
+RA  Benito B, Garciadeblas B, Rodriguez-Navarro A.
+RL  Microbiology. 2002 Apr;148(Pt 4):933-41.

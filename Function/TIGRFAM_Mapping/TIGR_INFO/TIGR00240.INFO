@@ -1,0 +1,15 @@
+ID  ATCase_reg
+AC  TIGR00240
+DE  aspartate carbamoyltransferase, regulatory subunit
+AU  Haft DH
+TC  148.55 148.55
+NC  68.10 68.10
+AL  clustalw
+IT  equivalog
+EN  aspartate carbamoyltransferase, regulatory subunit
+GS  pyrI
+EC  2.1.3.2
+TP  TIGRFAMs
+CC  The presence of this regulatory subunit allows feedback inhibition by CTP on aspartate carbamoyltransferase, the first step in the synthesis of CTP from aspartate. In many species, this regulatory subunit is not present. In Thermotoga maritima, the catalytic and regulatory subunits are encoded by a fused gene and the regulatory region has enough sequence differences to score below the trusted cutoff.
+DR  EC 2.1.3.2
+DR  HAMAP; MF_00002; 109 of 115

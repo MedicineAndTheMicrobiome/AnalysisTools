@@ -1,0 +1,16 @@
+ID  heterocyst_DevB
+AC  TIGR02971
+DE  ABC exporter membrane fusion protein, DevB family
+AU  Haft DH
+TC  129.00 129.00
+NC  110.15 110.15
+AL  muscle
+IT  subfamily
+EN  ABC exporter membrane fusion protein, DevB family
+TP  TIGRFAMs
+CC  Members of this protein family are found mostly in the Cyanobacteria, but also in the Planctomycetes. DevB from Anabaena sp. strain PCC 7120 is partially characterized as a membrane fusion protein of the DevBCA ABC exporter, probably a glycolipid exporter, required for heterocyst formation. Most Cyanobacteria have one member only, but Nostoc sp. PCC 7120 has seven members.
+RN  [1]
+RM  PMID: 9570404
+RT  The DevBCA exporter is essential for envelope formation in heterocysts of the cyanobacterium Anabaena sp. strain PCC 7120.
+RA  Fiedler G, Arnold M, Hannus S, Maldener I
+RL  Mol Microbiol. 1998 Mar;27(6):1193-202.

@@ -1,0 +1,22 @@
+ID  neela_ferrous
+AC  TIGR00332
+DE  desulfoferrodoxin ferrous iron-binding domain
+AU  Haft DH
+TC  61.90 61.90
+NC  36.75 36.75
+AL  clustalw
+IT  domain
+EN  desulfoferrodoxin ferrous iron-binding domain
+TP  TIGRFAMs
+CC  This domain comprises essentially the full length of neelaredoxin, a monomeric, blue, non-heme iron protein of Desulfovibrio gigas said to bind two iron atoms per monomer with identical spectral properties. Neelaredoxin was shown recently to have significant superoxide dismutase activity. This domain is also found (in a form in which the distance between the motifs H[HWYF]IXW and CN[IL]HGXW is somewhat shorter) as the C-terminal domain of desulfoferrodoxin, which is said to bind a single ferrous iron atom.
+CC  The N-terminal domain of desulfoferrodoxin is described in a separate HMM, dfx_rbo (TIGR00320).
+RN  [1]
+RM  95094820
+RT  A blue non-heme iron protein from Desulfovibrio gigas.
+RA  Chen L, Sharma P, Le Gall J, Mariano AM, Teixeira M, Xavier AV
+RL  Eur J Biochem 1994 Dec 1;226(2):613-8 
+RN  [2]
+RM  99115446
+RT  Desulfovibrio gigas neelaredoxin. A novel superoxide dismutase integrated in a putative oxygen sensory operon of an anaerobe.
+RA   Silva G, Oliveira S, Gomes CM, Pacheco I, Liu MY, Xavier AV, Teixeira M, Legall J, Rodrigues-pousada C
+RL  Eur J Biochem 1999 Jan;259(1-2):235-43 

@@ -1,0 +1,11 @@
+ID  PCisTranLspir
+AC  TIGR04142
+DE  putative peptidyl-prolyl cis-trans isomerase, LIC12922 family
+AU  Haft DH
+TC  250.00 250.00
+NC  75.00 75.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  putative peptidyl-prolyl cis-trans isomerase, LIC12922 family
+TP  TIGRFAMs
+CC  Members of this protein family have a known crystal structure (3NRK) showing similarity to the peptidyl-prolyl cis-trans isomerase SurA. Members are found in Leptospira species next to an uncharacterized radical SAM enzyme and a cytidylyltransferase family protein.

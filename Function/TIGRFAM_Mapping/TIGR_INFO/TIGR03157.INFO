@@ -1,0 +1,12 @@
+ID  cas_Csc2
+AC  TIGR03157
+DE  CRISPR type I-D/CYANO-associated protein Csc2
+AU  Haft DH
+TC  38.00 38.00
+NC  37.60 37.60
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  CRISPR type I-D/CYANO-associated protein Csc2
+GS  csc2
+TP  TIGRFAMs
+CC  CRISPR (Clustered Regularly Interspaced Short Palindromic Repeats) is a widespread family of prokaryotic direct repeats with spacers of unique sequence between consecutive repeats. This protein family is a CRISPR-associated (Cas) family strictly associated with the Cyano subtype of CRISPR/Cas locus, found in several species of Cyanobacteria and several archaeal species. This family is designated Csc2 for CRISPR/Cas Subtype Cyano protein 2, as it is often the second gene upstream of the core cas genes, cas3-cas4-cas1-cas2.

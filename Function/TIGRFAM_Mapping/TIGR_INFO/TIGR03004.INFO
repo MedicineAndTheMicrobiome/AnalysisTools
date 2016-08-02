@@ -1,0 +1,16 @@
+ID  ectoine_ehuC
+AC  TIGR03004
+DE  ectoine/hydroxyectoine ABC transporter, permease protein EhuC
+AU  Haft DH
+TC  196.95 196.95
+NC  185.45 185.45
+AL  muscle
+IT  equivalog
+EN  ectoine/hydroxyectoine ABC transporter, permease protein EhuC
+GS  ehuC
+TP  TIGRFAMs
+CC  Members of this family are presumed to act as permease subunits of ectoine ABC transporters. Operons containing this gene also contain the other genes of the ABC transporter and typically are found next to either ectoine utilization or ectoine biosynthesis operons. Permease subunits EhuC and EhuD are homologous.
+RM  PMID: 15687193
+RT  Ectoine-induced proteins in Sinorhizobium meliloti include an Ectoine ABC-type transporter involved in osmoprotection and ectoine catabolism.
+RA  Jebbar M, Sohn-Bosser L, Bremer E, Bernard T, Blanco C
+RL  J Bacteriol. 2005 Feb;187(4):1293-304.

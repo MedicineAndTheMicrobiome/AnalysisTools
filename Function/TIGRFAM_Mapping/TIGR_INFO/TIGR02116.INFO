@@ -1,0 +1,15 @@
+ID  toxin_Txe_YoeB
+AC  TIGR02116
+DE  addiction module toxin, Txe/YoeB family
+AU  Haft DH
+TC  51.80 51.80
+NC  41.60 41.60
+AL  clustalw_manual
+IT  equivalog
+EN  toxin-antitoxin system, toxin component, Txe/YoeB family
+TP  TIGRFAMs
+CC  The Axe-Txe pair in Enterococcus faecium and the homologous YefM-YoeB pair in Escherichia coli have been shown to act as an antitoxin-toxin pair. This HMM describes the toxin component. Nearly every example found is next to an identifiable antitoxin, as indicated by match to HMMs TIGR01552 and/or PF02604.
+RM  12603745
+RT  Axe-Txe, a broad-spectrum proteic toxin-antitoxin system specified by a multidrug-resistant, clinical isolate of Enterococcus faecium.
+RA  Grady R, Hayes F.
+RL  Mol Microbiol. 2003 Mar; 47(5): 1419-32.

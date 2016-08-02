@@ -1,0 +1,12 @@
+ID  bact_S13
+AC  TIGR03631
+DE  30S ribosomal protein S13
+AU  Haft DH
+TC  130.45 130.45
+NC  88.35 88.35
+AL  muscle_manual
+IT  equivalog
+EN  30S ribosomal protein S13
+GS  rpsM
+TP  TIGRFAMs
+CC  This model describes bacterial ribosomal protein S13, to the exclusion of the homologous archaeal S13P and eukaryotic ribosomal protein S18. This model identifies some (but not all) instances of chloroplast and mitochondrial S13, which is of bacterial type.

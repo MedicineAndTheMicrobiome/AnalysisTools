@@ -1,0 +1,18 @@
+ID  one_C_dehyd_C
+AC  TIGR03122
+DE  formylmethanofuran dehydrogenase subunit C
+AU  Haft DH
+TC  130.65 130.65
+NC  125.60 125.60
+AL  muscle
+IT  equivalog
+EN  formylmethanofuran dehydrogenase subunit C
+EC  1.2.99.5
+TP  TIGRFAMs
+CC  Members of this largely archaeal protein family are subunit C of the formylmethanofuran dehydrogenase. Nomenclature in some bacteria may reflect inclusion of the formyltransferase described by TIGR03119 as part of the complex, and therefore call this protein formyltransferase/hydrolase complex Fhc subunit C. Note that this model does not distinguish tungsten (FwdC) from molybdenum-containing (FmdC) forms of this enzyme.
+DR  PFAM; PF01493; GXGXG; GXGXG motif
+RN  [1]
+RM  PMID: 8954165
+RT  The molybdenum formylmethanofuran dehydrogenase operon and the tungsten formylmethanofuran dehydrogenase operon from Methanobacterium thermoautotrophicum. Structures and transcriptional regulation.
+RA  Hochheimer A, Linder D, Thauer RK, Hedderich R
+RL  Eur J Biochem. 1996 Nov 15;242(1):156-62.

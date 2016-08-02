@@ -1,0 +1,11 @@
+ID  integrase_gron
+AC  TIGR02249
+DE  integron integrase
+AU  Haft DH
+TC  265.00 265.00
+NC  260.00 260.00
+AL  clustalw_manual
+IT  subfamily
+EN  integron integrase
+TP  TIGRFAMs
+CC  Members of this family are integrases associated with integrons (and super-integrons), which are systems for incorporating and expressing cassettes of laterally transferred DNA. Incorporation occurs at an attI site. A super-integron, as in Vibrio sp., may include over 100 cassettes. This family belongs to the phage integrase family (PF00589) that also includes recombinases XerC (TIGR02224) and XerD (TIGR02225), which are bacterial housekeeping proteins. Within this family of integron integrases, some are designated by class, e.g. IntI4, a class 4 integron integrase from Vibrio cholerae N16961.

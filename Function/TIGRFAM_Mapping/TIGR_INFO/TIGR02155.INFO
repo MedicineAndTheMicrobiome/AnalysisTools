@@ -1,0 +1,32 @@
+ID  PA_CoA_ligase
+AC  TIGR02155
+DE  phenylacetate-CoA ligase
+AU  Brinkac L
+TC  646.30 646.30
+NC  597.50 597.50
+AL  clustalw_manual
+IT  equivalog
+EN  phenylacetate-CoA ligase
+GS  paaF
+EC  6.2.1.30
+TP  TIGRFAMs
+CC  Phenylacetate-CoA ligase (PA-CoA ligase) catalyzes the first step in aromatic catabolism of phenylacetic acid (PA) into phenylacetyl-CoA (PA-CoA) [1]. Often located in a conserved gene cluster with enzymes involved in phenylacetic acid activation (paaG/H/I/J), phenylacetate-CoA ligase has been found among the proteobacteria as well as in gram positive prokaryotes [2]. In the B-subclass proteobacterium Azoarcus evansii, phenylacetate-CoA ligase has been shown to be induced under aerobic and anaerobic growth conditions. It remains unclear however, whether this induction is due to the same enzyme or to another isoenzyme restricted to specific anaerobic growth conditions [3].
+RN  [1]
+RM  PMID: 9748275
+RT  Catabolism of phenylacetic acid in Escherichia coli. Characterization of a new aerobic hybrid pathway.
+RA  Ferrandez A, Minambres B, Garcia B, Olivera ER, Luengo JM, Garcia JL, Diaz E.
+RL  J Biol Chem. 1998 Oct 2;273(40):25974-86.
+RN  [2]
+RM  PMID: 11260461
+RT  The phenylacetyl-CoA catabolon: a complex catabolic unit with broad biotechnological applications.
+RA  Luengo JM, Garcia JL, Olivera ER.
+RL  Mol Microbiol. 2001 Mar;39(6):1434-42.
+RN  [3]
+RM  PMID: 10629172
+RT  Biochemical and molecular characterization of phenylacetate-coenzyme A ligase, an enzyme catalyzing the first step in aerobic metabolism of phenylacetic acid in Azoarcus evansii.
+RA  El-Said Mohamed M.
+RL  J Bacteriol. 2000 Jan;182(2):286-94.
+DR  PFAM; PF00501; AMP-binding protein
+DR  EXPERIMENTAL; SP|P76085; Escherichia coli; specific activity dependent on the presence of ATP, CoA, and PA; in vivo formation of PA-CoA; mutagenesis.
+DR  EXPERIMENTAL; GP|6715111; Azoarcus evansii; specific activity measured in PA-grown cells; in vivo formation of PA-CoA; molecular and catalytic properties determined.
+DR  OUTGROUP; OMNI|NTL01MT01493; Methanobacterium thermoautotrophicum; coenzyme F390 synthetase I

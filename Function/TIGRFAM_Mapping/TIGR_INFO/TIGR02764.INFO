@@ -1,0 +1,22 @@
+ID  spore_ybaN_pdaB
+AC  TIGR02764
+DE  polysaccharide deacetylase family sporulation protein PdaB
+AU  Haft DH
+TC  237.40 237.40
+NC  195.15 195.15
+AL  clustalw
+IT  equivalog
+EN  polysaccharide deacetylase family sporulation protein PdaB
+GS  pdaB
+TP  TIGRFAMs
+CC  This model describes the YbaN protein family, also called PdaB and SpoVIE, of Gram-positive bacteria. Although ybaN null mutants have only a mild sporulation defect, ybaN/ytrI double mutants show drastically reducted sporulation efficiencies. This synthetic defect suggests the role of this sigmaE-controlled gene in sporulation had been masked by functional redundancy. Members of this family are homologous to a characterized polysaccharide deacetylase; the exact function this protein family is unknown.
+RN  [1]
+RM  15547282
+RT  Unmasking novel sporulation genes in Bacillus subtilis.
+RA  Silvaggi JM, Popham DL, Driks A, Eichenberger P, Losick R.
+RL  J Bacteriol. 2004 Dec;186(23):8089-95.
+RN  [2]
+RM  15598884
+RT  Characterization of a polysaccharide deacetylase gene homologue (pdaB) on sporulation of Bacillus subtilis.
+RA  Fukushima T, Tanabe T, Yamamoto H, Hosoya S, Sato T, Yoshikawa H, Sekiguchi J.
+RL  J Biochem (Tokyo). 2004 Sep;136(3):283-91.

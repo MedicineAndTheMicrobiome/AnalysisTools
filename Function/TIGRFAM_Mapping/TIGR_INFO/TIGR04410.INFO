@@ -1,0 +1,11 @@
+ID  Spiro_T2SS_lipo
+AC  TIGR04410
+DE  type II secretion system-associated lipoprotein
+AU  Haft DH
+TC  50.00 50.00
+NC  30.00 30.00
+AL  muscle_manual
+IT  equivalog
+EN  type II secretion system-associated lipoprotein
+TP  TIGRFAMs
+CC  Members of this family occur only in spirochetes (Leptospira, Leptonema, Turneriella), as part of a type II secretion system (T2SS) cassette. Properly extended gene models always include an N-terminal signal sequence ending with a Cys residue, suggesting this small protein (about 100 amino acids) is a lipoprotein.

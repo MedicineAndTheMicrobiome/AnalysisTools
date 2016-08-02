@@ -1,0 +1,12 @@
+ID  S_layer_MJ
+AC  TIGR01564
+DE  S-layer protein
+AU  Haft DH
+TC  25.00 25.00
+NC  20.00 20.00
+AL  clustalw_manual
+IT  subfamily
+EN  S-layer protein, MJ0822 family
+TP  TIGRFAMs
+CC  This HMM represents one of several families of proteins associated with the formation of prokaryotic S-layers. Members of this family are found in archaeal species, including Pyrococcus horikoshii (split into two tandem reading frames),  Methanococcus jannaschii, and related species. Some local similarity can be found to other S-layer protein families.
+DR  SWISSPROT; Q58232; annotated entry from Methanococcus jannaschii.

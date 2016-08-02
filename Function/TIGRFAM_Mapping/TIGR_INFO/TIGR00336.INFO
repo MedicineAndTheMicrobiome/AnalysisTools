@@ -1,0 +1,18 @@
+ID  pyrE
+AC  TIGR00336
+DE  orotate phosphoribosyltransferase
+AU  Loftus BJ
+TC  106.80 106.80
+NC  69.65 69.65
+AL  clustalw
+IT  equivalog_domain
+EN  orotate phosphoribosyltransferase
+GS  pyrE
+EC  2.4.2.10
+TP  TIGRFAMs
+CC  Orotate phosphoribosyltransferase (OPRTase) is involved in the biosynthesis of pyrimidine nucleotides. Alpha-D-ribosyldiphosphate 5-phosphate (PRPP) and orotate are utilized to form pyrophosphate and orotidine 5'-monophosphate (OMP) in the presence of divalent cations, preferably Mg2+.
+CC  In a number of eukaryotes, this protein is fused to a domain that catalyses the reaction (EC 4.1.1.23). The combined activity of EC 2.4.2.10 and EC 4.1.1.23 is termed uridine 5'-monophosphate synthase.
+CC  The conserved Lys (K) residue at position 101 of the seed alignment has been proposed as the active site for the enzyme.
+DR  PROSITE; PDOC00096;
+DR  ECOCYC; EG10808; pyrE;
+DR  HAMAP; MF_01208; 248 of 300

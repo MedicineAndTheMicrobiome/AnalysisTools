@@ -1,0 +1,17 @@
+ID  Ald_deCOase
+AC  TIGR04059
+DE  long-chain fatty aldehyde decarbonylase
+AU  Selengut J
+TC  222.65 222.65
+NC  144.45 144.45
+AL  manual
+IT  equivalog
+EN  long-chain fatty aldehyde decarbonylase
+EC  4.1.99.5
+TP  TIGRFAMs
+CC  This cyanobacterial family of fatty aldehyde decarbonylases acts on mainly C16 and C18 substrates to form hydrocarbons and carbon monoxide [1].  Note that the corresponding EC number (4.1.99.5) dating from 1989 refers to a nonorthologous Pisum sativum enzyme that acts on C18 and longer chains and attaches the overly narrow narrow name octadecanal decarbonylase.
+RN  [1]
+RM  PMID:20671186 
+RT  Microbial biosynthesis of alkanes. 
+RA  Schirmer A, Rude MA, Li X, Popova E, del Cardayre SB 
+RL  Science. 2010 Jul 30;329(5991):559-62.

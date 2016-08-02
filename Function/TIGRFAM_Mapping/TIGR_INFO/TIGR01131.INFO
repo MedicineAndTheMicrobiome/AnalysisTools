@@ -1,0 +1,15 @@
+ID  ATP_synt_6_or_A
+AC  TIGR01131
+DE  ATP synthase F0, A subunit
+AU  Ujwal ML, Paulsen IT
+TC  102.60 102.60
+NC  90.90 90.90
+AL  clustalw_manual
+IT  equivalog
+EN  ATP synthase subunit 6 (eukaryotes),also subunit A (prokaryotes)
+GS  atpB
+EC  3.6.3.14
+TP  TIGRFAMs
+CC  Bacterial forms should be designated ATP synthase, F0 subunit A; eukaryotic (chloroplast and mitochondrial) forms should be designated ATP synthase, F0 subunit 6.
+CC  The F1/F0 ATP synthase is a multisubunit, membrane associated enzyme found in bacteria and mitochondria and chloroplast. This enzyme is principally involved in the synthesis of ATP from ADP and inorganic phosphate by coupling the energy derived from the proton electrochemical gradient across the biological membrane. A brief description of this multisubunit enzyme complex: F1 and F0 represent two major clusters of subunits. Individual subunits in each of these clusters are named differently in prokaryotes and in organelles e.g., mitochondria and chloroplast. The bacterial equivalent of subunit 6 is named subunit 'A'. It has been shown that proton is conducted though this subunit. Typically, deprotonation and reprotonation of the acidic amino acid side-chains are implicated in the process.
+DR  HAMAP; MF_01393; 78 of 81

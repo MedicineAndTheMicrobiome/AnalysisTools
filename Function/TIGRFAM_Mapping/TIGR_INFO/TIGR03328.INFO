@@ -1,0 +1,19 @@
+ID  salvage_mtnB
+AC  TIGR03328
+DE  methylthioribulose-1-phosphate dehydratase
+AU  Haft DH
+TC  137.05 137.05
+NC  128.75 128.75
+AL  muscle_manual
+IT  equivalog
+EN  methylthioribulose-1-phosphate dehydratase
+GS  mtnB
+EC  4.2.-.-
+TP  TIGRFAMs
+CC  Members of this family are the methylthioribulose-1-phosphate dehydratase of the methionine salvage pathway. This pathway allows methylthioadenosine, left over from polyamine biosynthesis, to be recycled to methionine.
+RN  [1]
+RM  PMID: 15102328
+RT  Bacterial variations on the methionine salvage pathway.
+RA  Sekowska A, Denervaud V, Ashida H, Michoud K, Haas D, Yokota A, Danchin A
+RL  BMC Microbiol. 2004 Mar 4;4:9.
+DR  HAMAP; MF_01678; 1 of 164

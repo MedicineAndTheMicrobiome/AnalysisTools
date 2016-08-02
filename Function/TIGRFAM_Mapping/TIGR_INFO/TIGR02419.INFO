@@ -1,0 +1,11 @@
+ID  C4_traR_proteo
+AC  TIGR02419
+DE  phage/conjugal plasmid C-4 type zinc finger protein, TraR family
+AU  Haft DH
+TC  59.70 59.70
+NC  46.50 46.50
+AL  clustalw_manual
+IT  subfamily
+EN  phage/conjugal plasmid C-4 type zinc finger protein, TraR family
+TP  TIGRFAMs
+CC  Members of this family are putative C4-type zinc finger proteins found almost exclusively in prophage regions, actual phage, or conjugal transfer regions of the Proteobactia. This small protein (about 70 amino acids) appears homologous to but is smaller than DksA (DnaK suppressor protein), found to be critical for regulating transcription of ribosomal RNA.

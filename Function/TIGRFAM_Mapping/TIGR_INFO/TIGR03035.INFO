@@ -1,0 +1,23 @@
+ID  trp_arylform
+AC  TIGR03035
+DE  arylformamidase
+AU  Haft DH
+TC  223.05 223.05
+NC  179.75 179.75
+AL  muscle
+IT  equivalog
+EN  arylformamidase
+GS  kynB
+EC  3.5.1.9
+TP  TIGRFAMs
+CC  One of several pathways of tryptophan degradation is as follows: tryptophan 2,3-dioxygenase (1.13.11.11) uses 02 to convert Trp to L-formylkynurenine. Arylformamidase (3.5.1.9) hydrolyzes the product to L-kynurenine and formate. Kynureninase (3.7.1.3) hydrolyzes L-kynurenine to anthranilate plus alanine. Members of the seed alignment for this model are bacterial predicted metal-dependent hydrolases. All are supported as arylformamidase (3.5.1.9) by an operon structure in which kynureninase and/or tryptophan 2,3-dioxygenase genes are adjacent. The members from Bacillus cereus, Pseudomonas aeruginosa and Ralstonia metallidurans were characterized. An example from Pseudomonas fluorescens is given the gene symbol qbsH instead of kynB because of its role in quinolobactin biosynthesis, which begins with tryptophan. All members of this family should be arylformamidase (3.5.1.9).
+RN  [1]
+RM  PMID: 14592712
+RT  Aerobic tryptophan degradation pathway in bacteria: novel kynurenine formamidase.
+RA  Kurnasov O, Jablonski L, Polanuyer B, Dorrestein P, Begley T, Osterman A
+RL  FEMS Microbiol Lett. 2003 Oct 24;227(2):219-27.
+RN  [2]
+RM  PMID: 15066027
+RT  The Pseudomonas siderophore quinolobactin is synthesized from xanthurenic acid, an intermediate of the kynurenine pathway.
+RA  Matthijs S, Baysse C, Koedam N, Tehrani KA, Verheyden L, Budzikiewicz H, Schafer M, Hoorelbeke B, Meyer JM, De Greve H, Cornelis P
+RL  Mol Microbiol. 2004 Apr;52(2):371-84.

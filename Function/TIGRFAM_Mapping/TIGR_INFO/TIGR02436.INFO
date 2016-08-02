@@ -1,0 +1,21 @@
+ID  TIGR02436
+AC  TIGR02436
+DE  four helix bundle protein
+AU  Haft DH
+TC  24.00 24.00
+NC  23.30 23.30
+AL  clustalw
+IT  subfamily
+EN  four helix bundle protein
+TP  TIGRFAMs
+CC  This family describes a protein of unknown function whose structure is a bundle of four long alpha helices. Some of the first members of this family were found encoded in the (atypically large) intervening sequence (IVS) of Leptospira 23S RNA, a region often present in the rRNA gene and removed during rRNA processing without re-ligation. However, this location is not conserved, and naming this protein as a 23S RNA protein is both confusing and inaccurate.
+RN  [1]
+RM  PMID:16948161 
+RT  Crystal structure of the conserved hypothetical cytosolic protein Xcc0516 from Xanthomonas campestris reveals a novel quaternary structure assembled by five four-helix bundles. 
+RA  Lin LY, Ching CL, Chin KH, Chou SH, Chan NL 
+RL  Proteins. 2006 Nov 15;65(3):783-6.
+RN  [2]
+RM  PMID:8341711 
+RT  Intervening sequence with conserved open reading frame in eubacterial 23S rRNA genes. 
+RA  Ralph D, McClelland M 
+RL  Proc Natl Acad Sci U S A. 1993 Jul 15;90(14):6864-8.

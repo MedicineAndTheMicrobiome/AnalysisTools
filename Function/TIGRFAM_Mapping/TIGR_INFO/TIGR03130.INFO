@@ -1,0 +1,13 @@
+ID  malonate_delta
+AC  TIGR03130
+DE  malonate decarboxylase acyl carrier protein
+AU  Haft DH
+TC  84.10 84.10
+NC  48.75 48.75
+AL  muscle
+IT  equivalog
+EN  malonate decarboxylase acyl carrier protein
+GS  mdcC
+TP  TIGRFAMs
+CC  Members of this protein family are the acyl carrier protein, also called the delta subunit, of malonate decarboxylase. This subunit has the same covalently bound prosthetic group, derived from and similar to coenzyme A, as does citrate lyase, although this protein and the acyl carrier protein of citrate lyase do not show significant sequence similarity. Both malonyl and acetyl groups are transferred to the prosthetic group for catalysis.
+DR  HAMAP; MF_00710; 20 of 20

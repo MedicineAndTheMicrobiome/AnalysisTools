@@ -1,0 +1,11 @@
+ID  RR_plus_rpt_1
+AC  TIGR03808
+DE  twin-arg-translocated uncharacterized repeat protein
+AU  Haft DH
+TC  120.00 120.00
+NC  90.00 90.00
+AL  muscle_manual
+IT  equivalog
+EN  twin-arg-translocated uncharacterized repeat protein
+TP  TIGRFAMs
+CC  Members of this protein family have a Sec-independent twin-arginine tranlocation (TAT) signal sequence, which enables tranfer of proteins folded around prosthetic groups to cross the plasma membrane. These proteins have four copies of a repeat of about 23 amino acids that resembles the beta-helix repeat. Beta-helix refers to a structural motif in which successive beta strands wind around to stack parallel in a right-handed helix, as in AlgG and related enzymes of carbohydrate metabolism. The twin-arginine motif suggests that members of this protein family bind some unknown cofactor.

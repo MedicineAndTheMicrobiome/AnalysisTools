@@ -1,0 +1,11 @@
+ID  pqiA_fam
+AC  TIGR00155
+DE  integral membrane protein, PqiA family
+AU  Richardson DL, Haft DH
+TC  260.35 260.35
+NC  214.55 214.55
+AL  clustalw
+IT  subfamily
+EN  integral membrane protein, PqiA family
+TP  TIGRFAMs
+CC  This family consists of uncharacterized predicted integral membrane proteins found, so far, only in the Proteobacteria. Of two members in E. coli, one is induced by paraquat and is designated PqiA, paraquat-inducible protein A.

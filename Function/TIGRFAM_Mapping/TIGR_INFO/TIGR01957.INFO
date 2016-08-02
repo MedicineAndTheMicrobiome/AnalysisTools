@@ -1,0 +1,12 @@
+ID  nuoB_fam
+AC  TIGR01957
+DE  NADH-quinone oxidoreductase, B subunit
+AU  Haft DH
+TC  142.70 142.70
+NC  136.65 136.65
+AL  clustalw_manual
+IT  subfamily
+EN  NADH-quinone oxidoreductase, B subunit
+TP  TIGRFAMs
+CC  This HMM describes the B chain of complexes that resemble  NADH-quinone oxidoreductases. The electron acceptor is a quinone, ubiquinone, in mitochondria and most bacteria, including Escherichia coli, where the recommended gene symbol is nuoB. The quinone is plastoquinone in Synechocystis (where the chain is designated K) and in chloroplast, where NADH may be replaced by NADPH. In the methanogenic archaeal genus Methanosarcina, NADH is replaced by F420H2.
+DR  HAMAP; MF_01359; 5 of 116

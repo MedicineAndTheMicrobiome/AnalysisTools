@@ -1,0 +1,12 @@
+ID  flavin_revert
+AC  TIGR03885
+DE  probable non-F420 flavinoid oxidoreductase
+AU  Haft DH
+TC  398.70 398.70
+NC  369.35 369.35
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  probable non-F420 flavinoid oxidoreductase
+EC  1.-.-.-
+TP  TIGRFAMs
+CC  This model represents a clade of proteins within the larger subfamily TIGR03557. The parent model includes the F420-dependent glucose-6-phosphate dehydrogenase (TIGR03554) and many other proteins. Excepting the members of this family, all members of TIGR03557 occur in species capable of synthesizing coenzyme F420. All members of the seed alignment for this model are from species that lack F420 biosynthesis. It is suggested that members of this family bind FMN, or FO, or a novel flavinoid cofactor, but not F420 per se.

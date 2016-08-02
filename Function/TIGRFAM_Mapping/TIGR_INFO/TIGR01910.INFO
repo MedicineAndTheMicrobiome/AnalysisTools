@@ -1,0 +1,12 @@
+ID  DapE-ArgE
+AC  TIGR01910
+DE  peptidase, ArgE/DapE family
+AU  Selengut J
+TC  217.60 217.60
+NC  214.70 214.70
+AL  clustalw
+IT  subfamily
+EN  acetylornithine deacetylase or succinyl-diaminopimelate desuccinylase
+EC  3.4.-.-
+TP  TIGRFAMs
+CC  This group of sequences contains annotations for both acetylornithine deacetylase and succinyl-diaminopimelate desuccinylase, but does not contain any members with experimental characterization.  Bacillus, Staphylococcus and Sulfolobus species contain multiple hits to this subfamily and each may have a separate activity.  Determining which is which must await further laboratory research.

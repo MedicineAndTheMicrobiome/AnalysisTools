@@ -1,0 +1,11 @@
+ID  Bac_Flav_fam_1
+AC  TIGR03519
+DE  Bacteroidetes-specific putative membrane protein
+AU  Haft DH, Selengut J
+TC  90.55 90.55
+NC  73.05 73.05
+AL  muscle_manual
+IT  subfamily
+EN  Bacteroidetes-specific putative membrane protein
+TP  TIGRFAMs
+CC  This HMM describes a protein family unique to, and greatly expanded in, the Bacteriodetes. Species in this lineage include several, such as Cytophaga hutchinsonii and Flavobacterium johnsoniae, that exhibit a poorly understood rapid gliding phenotype. Several members of this protein family are found in operons with other genes whose loss leads to a loss a this motility.

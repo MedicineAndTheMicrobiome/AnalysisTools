@@ -1,0 +1,21 @@
+ID  gatA
+AC  TIGR00132
+DE  aspartyl/glutamyl-tRNA(Asn/Gln) amidotransferase, A subunit
+AU  Haft DH
+TC  481.10 481.10
+NC  399.35 399.35
+AL  clustalw
+IT  equivalog
+EN  aspartyl/glutamyl-tRNA(Asn/Gln) amidotransferase, A subunit
+GS  gatA
+EC  6.3.5.-
+TP  TIGRFAMs
+CC  In many species, Gln--tRNA ligase is missing. tRNA(Gln) is misacylated with Glu after which a heterotrimeric amidotransferase converts Glu to Gln. This HMM represents the amidase chain of that heterotrimer, encoded by the gatA gene.
+CC  In the Archaea, Asn--tRNA ligase is also missing. This amidase subunit may also function in the conversion of Asp-tRNA(Asn) to Asn-tRNA(Asn), presumably with a different recognition unit to replace gatB. Both Methanococcus jannaschii and Methanobacterium thermoautotrophicum have both authentic gatB and a gatB-related gene, but only one gene like gatA.
+CC  It has been shown that gatA can be expressed only when gatC is also expressed. In most species expressing the amidotransferase, the gatC ortholog is about 90 residues in length, but in Mycoplasma genitalium and Mycoplasma pneumoniae the gatC equivalent is as the C-terminal domain of a much longer protein. Not surprisingly, the Mycoplasmas also represent the most atypical lineage of gatA orthology.
+CC  This orthology group is more narrowly defined here than in Proc Natl Acad Aci USA 94, 11819-11826 (1997). In particular, a Rhodococcus homolog found in association with nitrile hydratase genes and described as an enantiomer-selective amidase active on several 2-aryl propionamides, is excluded here. It is likely, however, that the amidase subunit GatA is not exclusively a part of the Glu-tRNA(Gln) amidotransferase heterotrimer and restricted to that function in all species.
+RM  98004482
+RT  Glu-tRNAGln amidotransferase: a novel heterotrimeric enzyme required for correct decoding of glutamine codons during translation.
+RA  Curnow AW, Hong Kw, Yuan R, Kim Si, Martins O, Winkler W, Henkin TM, Soll D
+RL  Proc Natl Acad Sci U S A 1997 Oct 28;94(22):11819-26
+DR  HAMAP; MF_00120; 407 of 409

@@ -1,0 +1,18 @@
+ID  rhombo_GlpG
+AC  TIGR04239
+DE  rhomboid family protease GlpG
+AU  Haft DH
+TC  250.00 250.00
+NC  220.00 220.00
+AL  muscle_manual
+IT  equivalog
+EN  rhomboid family protease GlpG
+GS  glpG
+EC  3.4.21.105
+TP  TIGRFAMs
+CC  GlpG in E. coli is a rhomboid family intramembrane serine protease that has been extensively characterized as a proxy for rhomboid family proteases in animals. It efficiently cleaves eukaryote-derived model substrates. This multiple membrane-spanning protein excludes inappropriate substrates from access to its cleavage site, and shows activity against truncated versions, but not full-length versions, of the E. coli multidrug transporter MdfA. This finding suggests a housekeeping function in removing faulty proteins. In contrast, several eukaryotic rhomboid family proteases release peptide hormones for signaling functions, and the Shewanella and Vibrio protein rhombosortase appears to be part of a protein-sorting system, cleaving a C-terminal anchoring helix domain.
+RN  [1]
+RM  PMID:19919105 
+RT  Cleavage of a multispanning membrane protein by an intramembrane serine protease. 
+RA  Erez E, Bibi E 
+RL  Biochemistry. 2009 Dec 29;48(51):12314-22.

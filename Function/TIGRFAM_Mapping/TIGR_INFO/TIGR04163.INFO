@@ -1,0 +1,12 @@
+ID  rSAM_cobopep
+AC  TIGR04163
+DE  peptide-modifying radical SAM enzyme CbpB
+AU  Haft DH
+TC  375.00 375.00
+NC  250.00 250.00
+AL  muscle_manual
+IT  equivalog
+EN  peptide-modifying radical SAM enzyme CbpB
+GS  cbpB
+TP  TIGRFAMs
+CC  Members of this family are radical SAM enzymes that modify a short peptide encoded by an upstream gene. A role in metal chelation is suggested.

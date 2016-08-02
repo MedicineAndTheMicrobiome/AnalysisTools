@@ -1,0 +1,15 @@
+ID  pimt
+AC  TIGR00080
+DE  protein-L-isoaspartate O-methyltransferase
+AU  Haft DH
+TC  159.05 159.05
+NC  79.20 79.20
+AL  clustalw
+IT  equivalog
+EN  protein-L-isoaspartate(D-aspartate) O-methyltransferase
+GS  pcm
+EC  2.1.1.77
+TP  TIGRFAMs
+CC  This is an all-kingdom (but not all species) full-length ortholog enzyme for repairing aging proteins.
+CC  Among the prokaryotes, the gene name is pcm. Among eukaryotes, pimt.
+DR  HAMAP; MF_00090; 217 of 235

@@ -1,0 +1,15 @@
+ID  DnaD_dom
+AC  TIGR01446
+DE  DnaD domain protein
+AU  Haft DH
+TC  24.95 24.95
+NC  23.50 23.50
+AL  clustalw_manual
+IT  domain
+EN  DnaD and phage-associated domain
+TP  TIGRFAMs
+CC  This HMM represents the conserved domain of DnaD, part of Bacillus subtilis replication restart primosome, and of a number of phage-associated proteins. Members, both chromosomal or phage-associated, are found in the Bacillus/Clostridium group of Gram-positive bacteria.
+RM  11679082
+RT  DnaB, DnaD and DnaI proteins are components of the Bacillus subtilis replication restart primosome.
+RA  Bruand C, Farache M, McGovern S, Ehrlich SD, Polard P.
+RL  Mol Microbiol 2001 Oct;42(1):245-55

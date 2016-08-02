@@ -1,0 +1,14 @@
+ID  hutG
+AC  TIGR01227
+DE  formimidoylglutamase
+AU  Haft DH, Dodson RJ
+TC  229.15 229.15
+NC  151.70 151.70
+AL  clustalw_manual
+IT  equivalog
+EN  formimidoylglutamase
+GS  hutG
+EC  3.5.3.8
+TP  TIGRFAMs
+CC  Formiminoglutamase, the fourth enzyme of histidine degradation, is similar to arginases and agmatinases. It is often encoded near other enzymes of the histidine degredation pathway: histidine ammonia-lyase, urocanate hydratase, and imidazolonepropionase.
+DR  HAMAP; MF_00737; 62 of 74

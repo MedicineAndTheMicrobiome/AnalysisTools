@@ -1,0 +1,16 @@
+ID  pta
+AC  TIGR00651
+DE  phosphate acetyltransferase
+AU  Loftus BJ
+TC  311.20 311.20
+NC  205.40 205.40
+IT  equivalog
+EN  phosphate acetyltransferase
+GS  pta
+EC  2.3.1.8
+TP  TIGRFAMs
+CC  Alternate name: phosphotransacetylase
+CC  Model contains a gene from E.coli coding for ethanolamine utilization protein (euti) and also contains similarity to malate oxidoreductases
+DR  EGAD; 30391;
+DR  PFAM; PTA_PTB;
+DR  SWISSPROT; P39184;

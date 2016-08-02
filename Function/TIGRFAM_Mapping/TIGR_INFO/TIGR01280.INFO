@@ -1,0 +1,14 @@
+ID  xseB
+AC  TIGR01280
+DE  exodeoxyribonuclease VII, small subunit
+AU  Durkin S
+TC  61.75 61.75
+NC  35.60 35.60
+AL  clustalw
+IT  equivalog
+EN  exodeoxyribonuclease VII, small subunit
+GS  xseB
+EC  3.1.11.6
+TP  TIGRFAMs
+CC  This protein is the small subunit for exodeoxyribonuclease VII. Exodeoxyribonuclease VII is made of a complex of four small subunits to one large subunit. The complex degrades single-stranded DNA into large acid-insoluble oligonucleotides. These nucleotides are then degraded further into acid-soluble oligonucleotides.
+DR  HAMAP; MF_00337; 259 of 290

@@ -1,0 +1,16 @@
+ID  selen_ocin
+AC  TIGR04081
+DE  radical SAM modification target peptide, selenobiotic family
+AU  Haft DH
+TC  32.00 32.00
+NC  28.00 28.00
+AL  muscle_manual
+IT  subfamily
+EN  radical SAM modification target peptide, selenobiotic family
+TP  TIGRFAMs
+CC  Members of this protein family are small peptides found in the vicinity of a peptide modification-type radical SAM protein family. Multiple members of this protein family occur in species with a selenocysteine incorporation systems and have a TGA stop codon at position that aligns with cysteine residues from other homologs. This finding strongly suggests that GSU_1558 and similar members of the family are selenopeptides. The selenocysteine insertion sequence (SECIS) finder bSECISearch finds two homologous SECIS elements for two TGA codons in the extension of GSU_1558. Meanwhile, the pairing with the radical SAM enzyme suggests additional modification.
+RN  [1]
+RM  PMID:21478363 
+RT  Biological systems discovery in silico: radical S-adenosylmethionine protein families and their target peptides for posttranslational modification. 
+RA  Haft DH, Basu MK 
+RL  J Bacteriol. 2011 Jun;193(11):2745-55.

@@ -1,0 +1,14 @@
+ID  gpx7
+AC  TIGR02540
+DE  putative glutathione peroxidase Gpx7
+AU  Haft DH
+TC  207.30 207.30
+NC  180.70 180.70
+AL  clustalw
+IT  equivalog
+EN  putative glutathione peroxidase Gpx7
+EC  1.11.1.9
+TP  TIGRFAMs
+CC  This model represents one of several families of known and probable glutathione peroxidases. This family is restricted to animals and designated GPX7.
+DR  PFAM; PF00255; GSHPx
+DR  SP; Q99LJ6; GPX7_MOUSE; annotated entry

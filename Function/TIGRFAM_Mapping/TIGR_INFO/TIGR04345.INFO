@@ -1,0 +1,16 @@
+ID  ovoA_Cterm
+AC  TIGR04345
+DE  putative 4-mercaptohistidine N1-methyltranferase
+AU  Haft DH
+TC  170.00 170.00
+NC  155.00 155.00
+AL  muscle_manual
+IT  equivalog_domain
+EN  putative 4-mercaptohistidine N1-methyltranferase
+TP  TIGRFAMs
+CC  Ovothiol A is N1-methyl-4-mercaptohistidine. In the absence of S-adenosylmethione, a methyl donor, the intermediate produced is 4-mercaptohistidine. In both Erwinia tasmaniensis and Trypanosoma cruzi, a protein occurs with 5-histidylcysteine sulfoxide synthase activity, but these two enzymes and most homologs share an additional C-terminal methyltransferase domain. Thus OvoA may be a bifunctional enzyme with 5-histidylcysteine sulfoxide synthase and 4-mercaptohistidine N1-methyltranferase activity. This model describes C-terminal putative 4-mercaptohistidine N1-methyltranferase domain.
+RN  [1]
+RM  PMID:21247153 
+RT  Identification and characterization of the first ovothiol biosynthetic enzyme. 
+RA  Braunshausen A, Seebeck FP 
+RL  J Am Chem Soc. 2011 Feb 16;133(6):1757-9.

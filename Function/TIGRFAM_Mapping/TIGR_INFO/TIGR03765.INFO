@@ -1,0 +1,11 @@
+ID  ICE_PFL_4695
+AC  TIGR03765
+DE  integrating conjugative element protein, PFL_4695 family
+AU  Haft DH
+TC  59.75 59.75
+NC  47.45 47.45
+AL  muscle_manual
+IT  subfamily_domain
+EN  integrating conjugative element protein, PFL_4695 family
+TP  TIGRFAMs
+CC  This model describes a protein family exemplified by PFL_4695 of Pseudomonas fluorescens Pf-5. Full-length proteins in this family show some architectural variety, but this model represents a conserved domain. Most or all member proteins belong to laterally transferred chromosomal islands called integrative conjugative elements, or ICE.

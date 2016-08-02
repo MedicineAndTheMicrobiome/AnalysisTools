@@ -1,0 +1,11 @@
+ID  lp_
+AC  TIGR02722
+DE  uncharacterized lipoprotein
+AU  Haft DH
+TC  110.55 110.55
+NC  76.85 76.85
+AL  clustalw
+IT  hypoth_equivalog
+EN  uncharacterized proteobacterial lipoprotein
+TP  TIGRFAMs
+CC  Members of this protein family are restricted to the Proteobacteria, and all are predicted lipoproteins. In genomes that contain the thiK gene for the salvage enzyme thiamin kinase, the member of this family is encoded nearby.

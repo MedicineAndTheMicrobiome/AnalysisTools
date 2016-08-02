@@ -1,0 +1,11 @@
+ID  TIGR03905_4_Cys
+AC  TIGR03905
+DE  uncharacterized protein TIGR03905
+AU  Haft DH
+TC  67.70 67.70
+NC  47.30 47.30
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  uncharacterized protein TIGR03905
+TP  TIGRFAMs
+CC  This HMM describes a family of conserved hypothetical proteins of small size, typically ~85 residues, with four invariant Cys residues. This small protein is distantly homologous to a C-terminal domain found in proteins identified by N-terminal homology as ribonucleotide reductases. The rare and sporadic distribution of this protein family falls mostly within the subset of bacterial genomes containing the uncharacterized radical SAM protein modeled by TIGR03904.

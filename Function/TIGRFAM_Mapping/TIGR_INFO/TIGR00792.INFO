@@ -1,0 +1,14 @@
+ID  gph
+AC  TIGR00792
+DE  sugar (Glycoside-Pentoside-Hexuronide) transporter
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  231.35 231.35
+NC  219.90 219.90
+AL  clustalw_manual
+IT  subfamily_domain
+EN  sugar (Glycoside-Pentoside-Hexuronide) transporter
+GS  gph
+TR  2.A.02
+TP  TIGRFAMs
+CC  The Glycoside-Pentoside-Hexuronide (GPH):Cation Symporter Family (TC 2.A.2)
+CC  GPH:cation symporters catalyze uptake of sugars in symport with a monovalent cation (H+ or Na+). Members of this family includes transporters for melibiose, lactose, raffinose, glucuronides, pentosides and isoprimeverose. Mutants of two groups of these symporters (the melibiose permeases of enteric bacteria, and the lactose permease of Streptococcus thermophilus) have been isolated in which altered cation specificity is observed or in which sugar transport is uncoupled from cation symport (i.e., uniport is catalyzed). The various members of the family can use Na+, H+ or Li, Na+ or Li+, H+ or Li+, or only H+ as the symported cation. All of these proteins possess twelve putative transmembrane a-helical spanners.

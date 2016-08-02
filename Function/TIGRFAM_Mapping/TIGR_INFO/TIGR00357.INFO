@@ -1,0 +1,20 @@
+ID  TIGR00357
+AC  TIGR00357
+DE  methionine-R-sulfoxide reductase
+AU  Loftus BJ, Sullivan SA, Haft DH
+TC  113.05 113.05
+NC  84.20 84.20
+AL  clustalw
+IT  equivalog_domain
+EN  methionine-R-sulfoxide reductase
+GS  msrB
+EC  1.8.4.-
+TP  TIGRFAMs
+CC  This HMM describes a domain found in PilB, a protein important for pilin expression, N-terminal to a domain coextensive to with the known peptide methionine sulfoxide reductase (MsrA), a protein repair enzyme, of E. coli. Among the early completed genomes, this module is found if and only if MsrA is also found, whether N-terminal to MsrA (as for Helicobacter pylori), C-terminal (as for Treponema pallidum), or in a separate polypeptide. Although the function of this region is not clear, an auxiliary function to MsrA is suggested.
+RM  96353931
+RT  Peptide methionine sulfoxide reductase contributes to the maintenance of adhesins in three major pathogens.
+RA  Wizemann TM, Moskovitz J, Pearce BJ, Cundell D, Arvidson CG, So M, Weissbach H, Brot N, Masure HR
+RL  Proc Natl Acad Sci U S A 1996 Jul 23;93(15):7985-90
+RM  99128332
+DR  SP:P14930, SP:P45213
+DR  HAMAP; MF_01400; 117 of 118

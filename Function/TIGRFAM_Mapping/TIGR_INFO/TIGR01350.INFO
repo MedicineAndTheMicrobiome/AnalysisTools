@@ -1,0 +1,20 @@
+ID  lipoamide_DH
+AC  TIGR01350
+DE  dihydrolipoyl dehydrogenase
+AU  Haft DH
+TC  408.80 408.80
+NC  400.75 400.75
+AL  clustalw_manual
+IT  equivalog
+EN  dihydrolipoamide dehydrogenase
+GS  lpdA
+EC  1.8.1.4
+TP  TIGRFAMs
+CC  This HMM describes dihydrolipoamide dehydrogenase, a flavoprotein that acts in a number of ways. It is the E3 component of dehydrogenase complexes for pyruvate, 2-oxoglutarate, 2-oxoisovalerate, and acetoin. It can also serve as the L protein of the glycine cleavage system. This family includes a few members known to have distinct functions (ferric leghemoglobin reductase and NADH:ferredoxin oxidoreductase) but that may be predicted by homology to act as dihydrolipoamide dehydrogenase as well.
+CC  The motif GGXCXXXGCXP near the N-terminus contains a redox-active disulfide.
+DR  EXPERIMENTAL; SP|Q04829; Halobacterium volcanii
+DR  EXPERIMENTAL; SP|P00391; Escherichia coli
+DR  EXPERIMENTAL; SP:P11959; Bacillus stearothermophilus
+DR  EXPERIMENTAL; SP|P31023; Pisum sativum
+DR  EXCEPTION; GP:546360; ferric leghemoglobin reductase; Glycine max
+DR  EXCEPTION; GP:5823556; ferric leghemoglobin reductase; Vigna unguiculata

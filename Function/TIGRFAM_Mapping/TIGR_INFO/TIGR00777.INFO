@@ -1,0 +1,17 @@
+ID  ahpD
+AC  TIGR00777
+DE  alkylhydroperoxidase, AhpD family
+AU  Haft DH, Dodson RJ
+TC  191.95 191.95
+NC  94.80 94.80
+IT  subfamily
+EN  alkylhydroperoxidase, AhpD family
+GS  ahpD
+EC  1.11.1.15
+TP  TIGRFAMs
+CC  Members of this family are alkylhydroperoxidases, which catalyze the reduction of peroxides to their corresponding alcohols via oxidation of cysteine residues. In these alkylhydroperoxidases, the cysteines are located in a conserved -CXXC- motif located towards the COOH terminus.  In Mycobacterium tuberculosis, two non-homologous alkylhydroperoxidases, AhpD and AhpC, are found in the same operon.
+RN  [1]
+RT  The AhpC and AhpD Antioxidant Defense System of Mycobacterium tuberculosis.
+RA  Hillas PJ, del Alba FS, Oyarzabal J, Wilks A, Ortiz De Montellano PR
+RL  J Biol Chem 2000 Jun 16;275(25):18801-18809
+DR  HAMAP; MF_01676; 41 of 48

@@ -1,0 +1,18 @@
+ID  glu_aminopep
+AC  TIGR03107
+DE  glutamyl aminopeptidase
+AU  Haft DH
+TC  469.70 469.70
+NC  469.50 469.50
+AL  muscle
+IT  equivalog
+EN  glutamyl aminopeptidase
+GS  pepA
+EC  3.4.11.7
+TP  TIGRFAMs
+CC  This model represents the M42.001 clade within MEROPS family M42. M42 includes glutamyl aminopeptidase as in the present model, deblocking aminopeptidases as from Pyrococcus horikoshii and related species, and endo-1,4-beta-glucanase (cellulase M) as from Clostridium thermocellum. The current family includes
+RN  [1]
+RM  PMID: 8535515
+RT  A non-essential glutamyl aminopeptidase is required for optimal growth of Lactococcus lactis MG1363 in milk.
+RA  l'Anson KJ, Movahedi S, Griffin HG, Gasson MJ, Mulholland F
+RL  Microbiology. 1995 Nov;141 ( Pt 11):2873-81.

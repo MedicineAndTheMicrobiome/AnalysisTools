@@ -1,0 +1,17 @@
+ID  catechol_proteo
+AC  TIGR02439
+DE  catechol 1,2-dioxygenase
+AU  Haft DH
+TC  392.00 392.00
+NC  192.45 192.45
+AL  clustalw
+IT  equivalog
+EN  catechol 1,2-dioxygenase, proteobacterial
+GS  catA
+EC  1.13.11.1
+TP  TIGRFAMs
+CC  Members of this family known so far are catechol 1,2-dioxygenases of the Proteobacteria. They are distinct from catechol 1,2-dioxygenases and chlorocatechol 1,2-dioxygenases of the Actinobacteria, which are quite similar to each other and resolved by separate models.  This enzyme catalyzes intradiol cleavage in which catechol + O2 becomes cis,cis-muconate. Catechol is an intermediate in the catabolism of many different aromatic compounds, as is the alternative intermediate protocatechuate. In Acinetobacter lwoffii, two isozymes are present with abilities, differing somewhat, to act on catechol analogs 3-methylcatechol, 4-methylcatechol, 4-methoxycatechol, and 4-chlorocatechol.
+RM  9260969
+RT  Cloning and characterization of two catA genes in Acinetobacter lwoffii K24.
+RA  Kim SI, Leem SH, Choi JS, Chung YH, Kim S, Park YM, Park YK, Lee YN, Ha KS.
+RL  J Bacteriol. 1997 Aug;179(16):5226-31.

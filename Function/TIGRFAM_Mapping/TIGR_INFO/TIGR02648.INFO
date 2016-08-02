@@ -1,0 +1,15 @@
+ID  rep_term_tus
+AC  TIGR02648
+DE  DNA replication terminus site-binding protein
+AU  Haft DH
+TC  178.30 178.30
+NC  57.70 57.70
+AL  clustalw
+IT  equivalog
+EN  DNA replication terminus site-binding protein
+GS  tus
+TP  TIGRFAMs
+CC  Members of this protein family are found on the main chromosomes of a number of the Gammaproteobacteria; this model excludes related plasmid proteins, which score between trusted and noise cutoffs. This protein, DNA replication terminus site-binding protein, binds specific DNA sites near the replication terminus to arrest the DNA replication fork.
+DR  SWISSPROT; P16525; annotated entry (E. coli)
+DR  PFAM; PF05472; Ter; DNA replication terminus site-binding protein (Ter protein)
+DR  HAMAP; MF_00483; 26 of 27

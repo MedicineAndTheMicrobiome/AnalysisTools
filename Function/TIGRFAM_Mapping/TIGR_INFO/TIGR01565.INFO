@@ -1,0 +1,15 @@
+ID  homeo_ZF_HD
+AC  TIGR01565
+DE  homeobox domain, ZF-HD class
+AU  Haft DH, Segal N
+TC  57.45 57.45
+NC  34.00 34.00
+AL  clustalw_manual
+IT  subfamily_domain
+EN  homeobox domain, ZF-HD class
+TP  TIGRFAMs
+CC  This HMM represents a class of homoebox domain that differs substantially from the typical homoebox domain described in Pfam HMM PF00046. It is found in both C4 and C3 plants.
+RM  11289511
+RT  Characterization of a novel class of plant homeodomain proteins that bind to the C4 phosphoenolpyruvate carboxylase gene of Flaveria trinervia.
+RA  Windhovel A, Hein I, Dabrowa R, Stockhaus J.
+RL  Plant Mol Biol 2001 Jan;45(2):201-14

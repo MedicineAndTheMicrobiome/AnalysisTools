@@ -1,0 +1,18 @@
+ID  SASP_sspL
+AC  TIGR03093
+DE  small, acid-soluble spore protein L
+AU  Haft DH
+TC  51.85 51.85
+NC  26.65 26.65
+AL  muscle
+IT  equivalog
+EN  small, acid-soluble spore protein L
+GS  sspL
+TP  TIGRFAMs
+CC  This protein family is restricted to a subset of endospore-forming bacteria such as Bacillus
+CC  subtilis, all of which are in the Firmicutes (low-GC Gram-positive) lineage. It is a minor SASP (small, acid-soluble spore protein) designated SspL.
+RN  [1]
+RM  PMID: 9852018
+RT  New small, acid-soluble proteins unique to spores of Bacillus subtilis: identification of the coding genes and regulation and function of two of these genes.
+RA  Bagyan I, Setlow B, Setlow P
+RL  J Bacteriol. 1998 Dec;180(24):6704-12.

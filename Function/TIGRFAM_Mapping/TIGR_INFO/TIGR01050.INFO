@@ -1,0 +1,14 @@
+ID  rpsS_bact
+AC  TIGR01050
+DE  ribosomal protein S19
+AU  Haft DH, Ujwal ML
+TC  89.35 89.35
+NC  84.95 84.95
+AL  clustalw_manual
+IT  equivalog
+EN  ribosomal protein S19, bacterial/organelle
+GS  rpsS
+TP  TIGRFAMs
+CC  The homologous protein of the eukaryotic cytosol and of
+CC  the Archaea may be designated S15 or S19.
+DR  HAMAP; MF_00531; 676 of 757

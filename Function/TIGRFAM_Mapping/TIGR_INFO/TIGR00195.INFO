@@ -1,0 +1,13 @@
+ID  exoDNase_III
+AC  TIGR00195
+DE  exodeoxyribonuclease III
+AU  Loftus BJ
+TC  182.55 182.55
+NC  83.20 83.20
+AL  clustalw
+IT  equivalog
+EN  exodeoxyribonuclease III
+GS  xth
+EC  3.1.11.2
+TP  TIGRFAMs
+CC  The model brings in reverse transcriptases at scores below 50, model also contains eukaryotic apurinic/apyrimidinic endonucleases which group in the same family

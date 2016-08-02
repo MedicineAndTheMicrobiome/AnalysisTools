@@ -1,0 +1,14 @@
+ID  cobA_cysG_Cterm
+AC  TIGR01469
+DE  uroporphyrinogen-III C-methyltransferase
+AU  Haft DH
+TC  185.00 185.00
+NC  184.25 184.25
+AL  clustalw_manual
+IT  equivalog_domain
+EN  uroporphyrin-III C-methyltransferase
+GS  cobA
+EC  2.1.1.107
+TP  TIGRFAMs
+CC  This HMM represents enzymes, or enzyme domains, with  uroporphyrin-III C-methyltransferase activity. This enzyme catalyzes the first step committed to the biosynthesis of either siroheme or cobalamin (vitamin B12) rather than protoheme (heme). Cobalamin contains cobalt while siroheme contains iron. Siroheme is a cofactor for nitrite and sulfite reductases and therefore plays a role in cysteine biosynthesis; many members of this family are CysG, siroheme synthase, with an additional N-terminal domain and with additional oxidation and iron insertion activities.
+DR  HAMAP; MF_01646; 105 of 106

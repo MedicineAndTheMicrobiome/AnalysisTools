@@ -1,0 +1,13 @@
+ID  bioA
+AC  TIGR00508
+DE  adenosylmethionine-8-amino-7-oxononanoate transaminase
+AU  Haft DH
+TC  405.00 405.00
+NC  395.00 395.00
+AL  muscle_manual
+IT  equivalog
+EN  adenosylmethionine-8-amino-7-oxononanoate transaminase
+GS  bioA
+EC  2.6.1.62
+TP  TIGRFAMs
+CC  All members of the seed alignment have been demonstrated experimentally to act as EC 2.6.1.62, an enzyme in the biotin biosynthetic pathway. Alternate names include 7,8-diaminopelargonic acid aminotransferase,  DAPA aminotransferase, and adenosylmethionine-8-amino-7-oxononanoate aminotransferase. The gene symbol is bioA in E. coli and BIO3 in S. cerevisiae.

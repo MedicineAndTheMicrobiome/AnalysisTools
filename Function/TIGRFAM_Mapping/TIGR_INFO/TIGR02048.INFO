@@ -1,0 +1,18 @@
+ID  gshA_cyano
+AC  TIGR02048
+DE  putative glutamate--cysteine ligase
+AU  Haft DH
+TC  249.05 249.05
+NC  72.70 72.70
+AL  clustalw
+IT  equivalog
+EN  glutamate--cysteine ligase, cyanobacterial, putative
+GS  gshA
+EC  6.3.2.2
+TP  TIGRFAMs
+CC  This family consists of proteins believed (see Copley SD, Dhillon JK, 2002) to be the glutamate--cysteine ligases of several cyanobacteria, which are known to make glutathione.
+RN  [1]
+RM  12049666
+RT  Lateral gene transfer and parallel evolution in the history of glutathione biosynthesis genes.
+RA  Copley SD, Dhillon JK.
+RL  Genome Biol. 2002;3(5):research0025. Epub 2002 Apr 29.

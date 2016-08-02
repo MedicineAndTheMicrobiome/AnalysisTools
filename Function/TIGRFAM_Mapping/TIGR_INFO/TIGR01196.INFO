@@ -1,0 +1,14 @@
+ID  edd
+AC  TIGR01196
+DE  phosphogluconate dehydratase
+AU  Haft DH
+TC  708.25 708.25
+NC  349.50 349.50
+AL  clustalw
+IT  equivalog
+EN  6-phosphogluconate dehydratase
+GS  edd
+EC  4.2.1.12
+TP  TIGRFAMs
+CC  A close homolog, designated MocB (mannityl opine catabolism), is found in a mannopine catabolism region of a plasmid of Agrobacterium tumefaciens. However, it is not essential for mannopine catabolism, branches within the cluster of 6-phosphogluconate dehydratases (with a short branch length) in a tree rooted by the presence of other dehydyatases. It may represent an authentic 6-phosphogluconate dehydratase, redundant with the chromosomal copy shown to exist in plasmid-cured strains. This HMM includes mocB above the trusted cutoff, although the designation is somewhat tenuous.
+RM  8655509

@@ -1,0 +1,17 @@
+ID  pyrrolys_PylD
+AC  TIGR03911
+DE  pyrrolysine biosynthesis protein PylD
+AU  Haft DH
+TC  150.05 150.05
+NC  148.85 148.85
+AL  muscle
+IT  equivalog
+EN  pyrrolysine biosynthesis protein PylD
+GS  pylD
+TP  TIGRFAMs
+CC  This protein is PylD, part of a three-gene cassette that is sufficient to direct the biosynthesis of pyrrolysine, the twenty-second amino acid, incorporated in some species at a UAG canonical stop codon.
+RN  [1]
+RM  PMID:17204561
+RT  A natural genetic code expansion cassette enables transmissible biosynthesis and genetic encoding of pyrrolysine.
+RA  Longstaff DG, Larue RC, Faust JE, Mahapatra A, Zhang L, Green-Church KB, Krzycki JA
+RL  Proc Natl Acad Sci U S A. 2007 Jan 16;104(3):1021-6.

@@ -1,0 +1,19 @@
+ID  spore_SleB
+AC  TIGR02869
+DE  spore cortex-lytic enzyme
+AU  Haft DH
+TC  236.50 236.50
+NC  197.25 197.25
+AL  muscle
+IT  equivalog
+EN  spore cortex-lytic enzyme
+GS  sleB
+TP  TIGRFAMs
+CC  Members of this protein family are the spore cortex-lytic enzyme SleB from Bacillus subtilis and other Gram-positive, endospore-forming bacterial species. This protein is stored in an inactive form in the spore and activated during germination.
+DR  PFAM; PF07486; Hydrolase_2; Cell Wall Hydrolase
+DR  PFAM; PF01471; PG_binding_1; Putative peptidoglycan binding domain
+RN  [1]
+RM  8830707
+RT  A gene (sleB) encoding a spore cortex-lytic enzyme from Bacillus subtilis and response of the enzyme to L-alanine-mediated germination.
+RA  Moriyama R, Hattori A, Miyata S, Kudoh S, Makino S.
+RL  J Bacteriol. 1996 Oct;178(20):6059-63.

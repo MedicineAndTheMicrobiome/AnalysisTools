@@ -1,0 +1,14 @@
+ID  secE_bact
+AC  TIGR00964
+DE  preprotein translocase, SecE subunit
+AU  Loftus BJ, Haft DH
+TC  27.55 27.55
+NC  25.65 25.65
+AL  clustalw_manual
+IT  equivalog
+EN  preprotein translocase, SecE subunit, bacterial
+GS  secE
+TR  3.A.5
+TP  TIGRFAMs
+CC  This HMM represents exclusively the bacterial (and some organellar) SecE protein. SecE is part of the core heterotrimer, SecYEG, of the Sec preprotein translocase system. Other components are the ATPase SecA, a cytosolic chaperone SecB, and an accessory complex of SecDF and YajC.
+DR  URL; http://tcdb.ucsd.edu/tcdb/tcfamilybrowse.php?tcname=3.A.5

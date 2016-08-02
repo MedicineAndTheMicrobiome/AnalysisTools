@@ -1,0 +1,13 @@
+ID  topA_arch
+AC  TIGR01057
+DE  DNA topoisomerase I
+AU  Ujwal ML, Haft DH
+TC  458.00 458.00
+NC  314.20 314.20
+AL  clustalw_manual
+IT  equivalog
+EN  DNA topoisomerase I, archaeal
+GS  topA
+EC  5.99.1.2
+TP  TIGRFAMs
+CC  This model describes topoisomerase I from archaea. These enzymes are involved in the control of DNA topology. DNA topoisomerase I belongs to the type I topoisomerases, which are ATP-independent.

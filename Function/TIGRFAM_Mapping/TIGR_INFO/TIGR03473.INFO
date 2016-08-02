@@ -1,0 +1,22 @@
+ID  HpnK
+AC  TIGR03473
+DE  hopanoid biosynthesis associated protein HpnK
+AU  Selengut J
+TC  232.60 232.60
+NC  190.85 190.85
+AL  muscle
+IT  hypoth_equivalog
+EN  hopanoid biosynthesis associated protein HpnK
+GS  hpnK
+TP  TIGRFAMs
+CC  The sequences represented by this model are members of the PF04794 "YdjC-like" family of uncharacterized proteins.  The member of this clade from Acidithiobacillus ferrooxidans ATCC 23270 (AFE_0976) is found in the same locus as squalene-hopene cyclase (SHC, TIGR01507) and other genes associated with the biosynthesis of hopanoid natural products.  Similarly, in Ralstonia eutropha JMP134 (Reut_B4902) this gene is adjacent to HpnAB, IspH and HpnH (TIGR03470), although SHC itself is elsewhere in the genome.  Notably, this gene (here named HpnK) and three others form a conserved set (HpnIJKL) which occur in a subset of all genomes containing the SHC enzyme.  This relationship was discerned using the method of partial phylogenetic profiling [1].  This group includes Zymomonas mobilis, the organism where the initial hopanoid biosynthesis locus was described consisting of the genes HpnA-E and SHC (HpnF) [2].  Continuing past SHC are found a phosphorylase enzyme (ZMO0873, i.e. HpnG, TIGR03468) and a radical SAM enzyme (ZMO0874), HpnH.  Although discontinuous in Z. mobilis, we continue the gene symbol sequence with HpnIJKL.
+RN  [1]
+RM  PMID:16930487 
+RT  Exopolysaccharide-associated protein sorting in environmental organisms: the PEP-CTERM/EpsH system. Application of a novel phylogenetic profiling heuristic. 
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD 
+RL  BMC Biol. 2006 Aug 24;4:29. 
+RN  [2]
+RM  PMID:9714766
+RT  Cloning of conserved genes from Zymomonas mobilis and Bradyrhizobium japonicum that function in the biosynthesis of hopanoid lipids.
+RA  Perzl M, Reipen IG, Schmitz S, Poralla K, Sahm H, Sprenger GA, Kannenberg EL
+RL  Biochim Biophys Acta. 1998 Jul 31;1393(1):108-18.

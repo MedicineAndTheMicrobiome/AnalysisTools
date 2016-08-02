@@ -1,0 +1,19 @@
+ID  corA
+AC  TIGR00383
+DE  magnesium and cobalt transport protein CorA
+AU  Loftus BJ
+TC  200.75 200.75
+NC  127.55 127.55
+AL  clustalw
+IT  equivalog
+EN  magnesium Mg(2+) and cobalt Co(2+) transport protein (corA)
+GS  corA
+TR  9.A.17
+TP  TIGRFAMs
+CC  The article in Microb Comp Genomics 1998;3(3):151-69 (Medline:98448512) discusses this family and suggests that some members may have functions other than Mg2+ transport.
+RM  98448512
+RT  The CorA magnesium transporter gene family.
+RA  Kehres DG, Lawyer CH, Maguire ME
+RL  Microb Comp Genomics 1998;3(3):151-69
+DR  ECOCYC; EG11463; corA
+DR  SWISSPROT; P27841;

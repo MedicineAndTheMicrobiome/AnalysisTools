@@ -1,0 +1,11 @@
+ID  xxxLxxG_by_4
+AC  TIGR03057
+DE  X-X-X-Leu-X-X-Gly heptad repeats
+AU  Haft DH
+TC  18.60 18.60
+NC  13.35 13.35
+AL  manual
+IT  repeat
+EN  X-X-X-Leu-X-X-Gly heptad repeats
+TP  TIGRFAMs
+CC  This model represents a 28-column alignment, comprising four tandem sets of seven residues each, in which the fourth residue tends to be Leu and the seventh tends to be Gly in each set. This heptad periodicity, corresponding to two turns of an alpha helix, suggests alpha-helical structure; in many proteins this 28-region model hits many times in tandem. Arrangement of these sequences on a helical wheel would show a strict alternation of Leu and Gly residues on one side of the helix, that is, an extremely bulky side chain alternating with the virtual absence of one. This suggests an extended zippering of one alpha helix to another, analogous to the shorter leucine zippers found in many dimerizing transcription factors. Proteins in which these heptad repeats occur often have higher order repeats of a unit comprised of several heptads.

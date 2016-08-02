@@ -1,0 +1,17 @@
+ID  spo_II_M
+AC  TIGR02831
+DE  stage II sporulation protein M
+AU  Haft DH
+TC  100.20 100.20
+NC  65.90 65.90
+AL  muscle_manual
+IT  equivalog
+EN  stage II sporulation protein M
+GS  spoIIM
+TP  TIGRFAMs
+CC  A comparative genome analysis of all sequenced genomes of shows a number of proteins conserved strictly among the endospore-forming subset of the Firmicutes. This predicted integral membrane protein is designated stage II sporulation protein M.
+RM  16311624
+RT  Life in Hot Carbon Monoxide: The Complete Genome Sequence of Carboxydothermus hydrogenoformans Z-2901.
+RA  Wu M, Ren Q, Durkin AS, Daugherty SC, Brinkac LM, Dodson RJ, Madupu R, Sullivan SA, Kolonay JF, Nelson WC, Tallon LJ, Jones KM, Ulrich LE,
+Gonzalez JM, Zhulin IB, Robb FT, Eisen JA.
+RL  2005 Nov 25;1(5):e65

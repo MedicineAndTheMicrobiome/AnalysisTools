@@ -1,0 +1,17 @@
+ID  ArgArg_F420
+AC  TIGR04465
+DE  TAT-translocated F420-dependent dehydrogenase, FGD2 family
+AU  Haft DH
+TC  470.00 470.00
+NC  280.00 280.00
+AL  muscle_manual
+IT  equivalog
+EN  TAT-translocated F420-dependent dehydrogenase, FGD2 family
+EC  1.-.-.-
+TP  TIGRFAMs
+CC  Members of this family are F420-binding enzymes with a proven functional N-terminal twin-arginine translocation (TAT) signal. Members are homologous to the cytosolic F420-dependent glucose-6-phosphate dehydrogenase but do not share the same function.
+RN  [1]
+RM  PMID:23110042 
+RT  Tat-dependent translocation of an F420-binding protein of Mycobacterium tuberculosis. 
+RA  Bashiri G, Perkowski EF, Turner AP, Feltcher ME, Braunstein M, Baker EN 
+RL  PLoS One. 2012;7(10):e45003. doi: 10.1371/journal.pone.0045003.

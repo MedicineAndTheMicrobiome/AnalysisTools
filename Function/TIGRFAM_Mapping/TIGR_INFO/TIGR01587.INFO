@@ -1,0 +1,29 @@
+ID  cas3_core
+AC  TIGR01587
+DE  CRISPR-associated helicase Cas3
+AU  Haft DH
+TC  102.45 102.45
+NC  93.10 93.10
+AL  clustalw_manual
+IT  equivalog_domain
+EN  CRISPR-associated helicase Cas3
+GS  cas3
+TP  TIGRFAMs
+CC  This HMM represents the highly conserved core region of an alignment of Cas3, a protein found in association with CRISPR repeat elements in a broad range of bacteria and archaea. Cas3 appears to be a helicase, with regions found by PF00270 (DEAD/DEAH box helicase) and PF00271 (Helicase conserved C-terminal domain). Some but not all members have an N-terminal HD domain region (PF01966) that is not included within this model.
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=2003
+DR  PFAM; PF00270; DEAD/DEAH box helicase
+DR  PFAM; PF00271; Helicase conserved C-terminal domain
+RN  [1]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005
+RN  [2]
+RM  11952905
+RT  Identification of genes that are associated with DNA repeats in prokaryotes.
+RA  Jansen R, Embden JD, Gaastra W, Schouls LM.
+RL  Mol Microbiol 2002 Mar;43(6):1565-75
+RN  [3]
+RM  11788711
+RT  A DNA repair system specific for thermophilic Archaea and bacteria predicted by genomic context analysis.
+RA  Makarova KS, Aravind L, Grishin NV, Rogozin IB, Koonin EV.
+RL  Nucleic Acids Res. 2002 Jan 15;30(2):482-96.

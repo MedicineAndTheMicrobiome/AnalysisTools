@@ -1,0 +1,14 @@
+ID  malate_syn_A
+AC  TIGR01344
+DE  malate synthase A
+AU  Haft DH
+TC  594.50 594.50
+NC  122.10 122.10
+AL  clustalw
+IT  equivalog
+EN  malate synthase A
+GS  aceB
+EC  2.3.3.9
+TP  TIGRFAMs
+CC  This HMM represents plant malate synthase and one of two bacterial forms, designated malate synthase A. The distantly related malate synthase G is described by a separate model. This enzyme and isocitrate lyase are the two characteristic enzymes of the glyoxylate shunt. The shunt enables the cell to use acetyl-CoA to generate increased levels of TCA cycle intermediates for biosynthetic pathways such as gluconeogenesis.
+DR  PFAM; PF01274; Malate synthase

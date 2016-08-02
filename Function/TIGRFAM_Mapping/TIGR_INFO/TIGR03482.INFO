@@ -1,0 +1,16 @@
+ID  DMSO_red_II_cha
+AC  TIGR03482
+DE  DMSO reductase family type II enzyme chaperone
+AU  Haft DH
+TC  152.30 152.30
+NC  83.30 83.30
+AL  muscle_manual
+IT  subfamily
+EN  DMSO reductase family type II enzyme chaperone
+TP  TIGRFAMs
+CC  Type II members of the DMSO reductase family are heterotrimeric proteins with bis(molybdopterin guanine dinucleotide)Mo, iron-sulfur, and heme b prosthetic groups bound by the alpha, beta, and gamma subunits respectively. Members of this protein family are not part of the mature protein, although they are the product of a fourth clustered gene. Proteins in this family are interpreted as a chaperone, analogous to NarJ of nitrate reductases.
+RN  [3]
+RM  PMID:12067345
+RT  Molecular analysis of dimethyl sulphide dehydrogenase from Rhodovulum sulfidophilum: its place in the dimethyl sulphoxide reductase family of microbial molybdopterin-containing enzymes.
+RA  McDevitt CA, Hugenholtz P, Hanson GR, McEwan AG
+RL  Mol Microbiol. 2002 Jun;44(6):1575-87.

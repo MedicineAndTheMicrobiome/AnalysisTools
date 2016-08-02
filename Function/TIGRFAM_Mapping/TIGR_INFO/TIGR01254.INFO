@@ -1,0 +1,11 @@
+ID  sfuA
+AC  TIGR01254
+DE  ABC transporter periplasmic binding protein, thiB subfamily
+AU  Ujwal ML, Paulsen IT
+TC  93.40 93.40
+NC  76.00 76.00
+AL  clustalw
+IT  subfamily
+EN  ABC transporter periplasmic binding protein, thiB subfamily
+TP  TIGRFAMs
+CC  The model describes thiamine ABC transporter, periplasmic protein in bacteria and archae. The protein belongs to the larger ABC transport system. It consists of at least three components: the thiamine binding periplasmic protein; an inner membrane permease; an ATP-binding subunit. It has been experimentally demonstrated that the mutants in the various steps in the de novo synthesis of the thiamine and the biologically active form, namely thiamine pyrophosphate can be exogenously supplemented with thiamine, thiamine monophosphate (TMP) or thiamine pyrophosphate (TPP).

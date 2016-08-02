@@ -1,0 +1,18 @@
+ID  MenG_heptapren
+AC  TIGR02752
+DE  demethylmenaquinone methyltransferase
+AU  Haft DH
+TC  419.85 419.85
+NC  409.30 409.30
+AL  clustalw
+IT  equivalog
+EN  demethylmenaquinone methyltransferase
+GS  menG
+EC  2.1.1.163
+TP  TIGRFAMs
+CC  MenG is a generic term for a methyltransferase that catalyzes the last step in menaquinone biosynthesis; the exact enzymatic activity differs for different MenG because the menaquinone differ in their prenoid side chains in different species. Members of this MenG protein family are 2-heptaprenyl-1,4-naphthoquinone methyltransferase, and are found together in operons with the two subunits of the heptaprenyl diphosphate synthase in Bacillus subtilis and related species.
+RM  9139683
+RT  Identification of a novel gene cluster participating in menaquinone (vitamin K2) biosynthesis. Cloning and sequence determination of the 2-heptaprenyl-1,4-naphthoquinone methyltransferase gene of Bacillus stearothermophilus.
+RA  Koike-Takeshita A, Koyama T, Ogura K.
+RL  J Biol Chem. 1997 May 9;272(19):12380-3.
+DR  HAMAP; MF_01813; 19 of 275

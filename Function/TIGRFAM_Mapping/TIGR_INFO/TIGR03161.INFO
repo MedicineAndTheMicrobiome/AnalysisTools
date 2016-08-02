@@ -1,0 +1,18 @@
+ID  ribazole_CobZ
+AC  TIGR03161
+DE  alpha-ribazole phosphatase CobZ
+AU  Haft DH
+TC  152.50 152.50
+NC  84.00 84.00
+AL  clustalw
+IT  equivalog
+EN  alpha-ribazole phosphatase CobZ
+GS  cobZ
+EC  3.1.3.73
+TP  TIGRFAMs
+CC  Sequences in the seed alignment were the experimentally characterized CobZ of the methanogenic archaeon Methanosarcina mazei, and other archaeal proteins found similarly next to or very near to other cobalamin biosynthesis genes. CobZ replaces the alpha-ribazole-phosphate phosphatase (EC 3.1.3.73) called CobC in analogous bacterial pathways for cobalamin biosynthesis under anaerobic conditions.
+RN  [1]
+RM  PMID: 16547066
+RT  The cobZ gene of Methanosarcina mazei Go1 encodes the nonorthologous replacement of the alpha-ribazole-5'-phosphate phosphatase (CobC) enzyme of Salmonella enterica.
+RA  Zayas CL, Woodson JD, Escalante-Semerena JC
+RL  J Bacteriol. 2006 Apr;188(7):2740-3.

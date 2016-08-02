@@ -1,0 +1,12 @@
+ID  puhA
+AC  TIGR01150
+DE  photosynthetic reaction center H subunit
+AU  Ujwal ML, Paulsen IT
+TC  240.40 240.40
+NC  118.30 118.30
+AL  clustalw
+IT  equivalog
+EN  photosynthetic reaction center, subunit H, bacterial
+GS  puhA
+TP  TIGRFAMs
+CC  This model describes the photosynthetic reaction center H subunit in non-oxygenic photosynthetic bacteria. The reaction center is an  integral membrane pigment-protein that carries out light-driven electron transfer reactions. At the core of reaction center is a collection light-harvesting cofactors and closely associated polypeptides. The core protein complex is made of L, M and H subunits. The common cofactors include bacterichlorophyll, bacteriopheophytins, ubiquinone and no-heme ferrous iron. The net result of electron tranfer reactions is the establishment of proton electrochemical gradient and production of reducing equivalents in the form of NADH. Ultimately, the process results in the reduction of C02 to carbohydrates(C6H12O6) In non-oxygenic organisms, the electron donor is an organic acid rather than water. Much of our current functional understanding of photosynthesis comes from the structural determination and spectroscopic studies on the reaction center of Rhodobacter sphaeroides.

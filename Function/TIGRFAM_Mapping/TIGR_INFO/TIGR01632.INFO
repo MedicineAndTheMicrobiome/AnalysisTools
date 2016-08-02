@@ -1,0 +1,18 @@
+ID  L11_bact
+AC  TIGR01632
+DE  ribosomal protein L11
+AU  Haft DH
+TC  141.85 141.85
+NC  135.90 135.90
+AL  clustalw_manual
+IT  equivalog
+EN  50S ribosomal protein L11
+GS  rplK
+TP  TIGRFAMs
+CC  This HMM represents bacterial, chloroplast, and most mitochondrial forms of 50S ribosomal protein L11.
+DR  EXPERIMENTAL; GP|15823668; Triticum aestivum; mitochondrial
+RM  11459176
+RT  Characterization of a wheat cDNA encoding mitochondrial ribosomal protein L11: qualitative and quantitative tissue-specific differences in its expression.
+RA  Handa H, Kobayashi-Uehara A, Murayama S.
+RL  Mol Genet Genomics 2001 Jun;265(4):569-75
+DR  HAMAP; MF_00736; 540 of 590

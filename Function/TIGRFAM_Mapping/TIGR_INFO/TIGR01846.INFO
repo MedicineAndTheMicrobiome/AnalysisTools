@@ -1,0 +1,11 @@
+ID  type_I_sec_HlyB
+AC  TIGR01846
+DE  type I secretion system ATPase
+AU  Haft DH
+TC  725.55 725.55
+NC  505.70 505.70
+AL  clustalw_manual
+IT  subfamily
+EN  type I secretion system ABC transporter, HlyB family
+TP  TIGRFAMs
+CC  Type I protein secretion is a system in some Gram-negative bacteria to export proteins (often proteases) across both inner and outer membranes to the extracellular medium. This is one of three proteins of the type I secretion apparatus. Targeted proteins are not cleaved at the N-terminus, but rather carry signals located toward the extreme C-terminus to direct type I secretion.

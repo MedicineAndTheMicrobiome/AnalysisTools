@@ -1,0 +1,11 @@
+ID  phn_lysR
+AC  TIGR03339
+DE  aminoethylphosphonate catabolism associated LysR family transcriptional regulator
+AU  Selengut J
+TC  341.10 341.10
+NC  238.95 238.95
+AL  muscle
+IT  subfamily
+EN  aminoethylphosphonate catabolism associated LysR family transcriptional regulator
+TP  TIGRFAMs
+CC  This group of sequences represents a number of related clades with numerous examples of members adjacent to operons for the degradation of 2-aminoethylphosphonate (AEP) in Pseudomonas, Ralstonia, Bordetella and Burkholderia species.  These are transcriptional regulators of the LysR family which contain a helix-turn-helix (HTH) domain (PF00126) and a periplasmic substrate-binding protein-like domain (PF03466).

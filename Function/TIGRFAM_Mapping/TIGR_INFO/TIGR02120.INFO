@@ -1,0 +1,13 @@
+ID  GspF
+AC  TIGR02120
+DE  type II secretion system protein F
+AU  Selengut J
+TC  424.00 424.00
+NC  395.55 395.55
+AL  clustalw
+IT  equivalog
+EN  type II secretion system protein F
+GS  gspF
+TR  3.A.15.-.-
+TP  TIGRFAMs
+CC  This membrane protein is a component of the terminal branch complex of the general secretion pathway (GSP), also known as the"Type II" secretion pathway.  The GSP transports proteins (generally virulence-associated cell wall hydrolases) across the outer membrase of the bacterial cell. Transport across the inner membrane is often, but not exclusively handled by the Sec system.  This model was constructed from the broader subfamily model, PF00482 which includes components of pilin complexes (PilC) as well as other related genes.  GspF is nearly always gene clustered with other GSP subunits.  Some genes from Xylella and Xanthomonas strains score below the trusted cutoff due to excessive divergence from the family such that a sequence from Deinococcus which does not appear to be GspF scores higher.

@@ -1,0 +1,24 @@
+ID  RNase_Y
+AC  TIGR03319
+DE  ribonuclease Y
+AU  Haft DH
+TC  454.35 454.35
+NC  251.35 251.35
+AL  muscle_manual
+IT  equivalog
+EN  ribonuclease Y
+GS  rny
+EC  3.1.-.-
+TP  TIGRFAMs
+CC  Members of this family are RNase Y, an endoribonuclease. The member from Bacillus subtilis, YmdA, has been shown to be involved in turnover of yitJ riboswitch.
+RN  [1]
+RM  PMID:19779461 
+RT  RNase Y, a novel endoribonuclease, initiates riboswitch turnover in Bacillus subtilis. 
+RA  Shahbabian K, Jamalli A, Zig L, Putzer H 
+RL  EMBO J. 2009 Nov 18;28(22):3523-33.
+RN  [2]
+RM  PMID:17951247 
+RT  Phosphodiesterase activity of CvfA is required for virulence in Staphylococcus aureus. 
+RA  Nagata M, Kaito C, Sekimizu K 
+RL  J Biol Chem. 2008 Jan 25;283(4):2176-84.
+DR  HAMAP; MF_00335; 160 of 215

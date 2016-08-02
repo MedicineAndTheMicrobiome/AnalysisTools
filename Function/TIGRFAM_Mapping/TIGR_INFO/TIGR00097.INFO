@@ -1,0 +1,18 @@
+ID  HMP-P_kinase
+AC  TIGR00097
+DE  hydroxymethylpyrimidine kinase/phosphomethylpyrimidine kinase
+AU  Haft DH, Richardson DL, Anolik RT
+TC  204.95 204.95
+NC  79.35 79.35
+AL  clustalw_manual
+IT  equivalog_domain
+EN  hydroxymethylpyrimidine kinase/phosphomethylpyrimidine kinase
+GS  thiD
+EC  2.7.1.49 2.7.4.7
+TP  TIGRFAMs
+CC  This HMM represents a bifunctional enzyme, phosphomethylpyrimidine kinase (EC 2.7.4.7)/Hydroxymethylpyrimidine kinase (EC 2.7.1.49), the ThiD/J protein of thiamine biosynthesis. The protein is commonly observed within operons containing other thiamine biosynthesis genes. Numerous examples are fusion proteins with other thiamine-biosynthetic domains. Saccaromyces has three recent paralogs, two of which are isofunctional and score above the trusted cutoff. The third shows a longer branch length in a phylogenetic tree and scores below the trusted cutoff, as do putative second copies in a number of species.
+RN  [1]
+RM  PMID:10075431 
+RT  Cloning and characterization of the thiD/J gene of Escherichia coli encoding a thiamin-synthesizing bifunctional enzyme, hydroxymethylpyrimidine kinase/phosphomethylpyrimidine kinase. 
+RA  Mizote T, Tsuda M, Smith DD, Nakayama H, Nakazawa T 
+RL  Microbiology. 1999 Feb;145 ( Pt 2):495-501.

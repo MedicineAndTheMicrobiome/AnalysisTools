@@ -1,0 +1,13 @@
+ID  trehalose_OtsA
+AC  TIGR02400
+DE  alpha,alpha-trehalose-phosphate synthase (UDP-forming)
+AU  Haft DH
+TC  564.85 564.85
+NC  428.70 428.70
+AL  clustalw_manual
+IT  equivalog
+EN  alpha,alpha-trehalose-phosphate synthase [UDP-forming]
+GS  otsA
+EC  2.4.1.15
+TP  TIGRFAMs
+CC  This enzyme catalyzes the key, penultimate step in biosynthesis of trehalose, a compatible solute made as an osmoprotectant in some species in all three domains of life. The gene symbol OtsA stands for osmotically regulated trehalose synthesis A. Trehalose helps protect against both osmotic and thermal stresses, and is made from two glucose subunits. This model excludes glucosylglycerol-phosphate synthase, an enzyme of an analogous osmoprotectant system in many cyanobacterial strains.  This model does not identify archaeal examples, as they are more divergent than glucosylglycerol-phosphate synthase. Sequences that score in the gray zone between the trusted and noise cutoffs include a number of yeast multidomain proteins in which the N-terminal domain may be functionally equivalent to this family. The gray zone also includes the OtsA of Cornyebacterium glutamicum (and related species), shown to be responsible for synthesis of only trace amounts of trehalose while the majority is synthesized by the TreYZ pathway; the significance of OtsA in this species is unclear (see Wolf, et al., PMID:12890033).

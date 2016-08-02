@@ -1,0 +1,18 @@
+ID  arg_catab_AOST
+AC  TIGR03243
+DE  arginine and ornithine succinyltransferase subunits
+AU  Haft DH
+TC  284.35 284.35
+NC  99.90 99.90
+AL  muscle
+IT  subfamily
+EN  arginine and ornithine succinyltransferase subunits
+EC  2.3.1.-
+TP  TIGRFAMs
+CC  In many bacteria, the sole member of this protein family is arginine N-succinyltransferase (EC 2.3.1.109), the AstA protein of the arginine succinyltransferase (ast) pathway. However, in Pseudomonas aeruginosa and several other species, a tandem gene pair encodes alpha and beta subunits of a heterodimer that is designated arginine and ornithine succinyltransferase (AOST).
+RN  [1]
+RM  PMID: 9393691
+RT  Cloning and characterization of the aru genes encoding enzymes of the catabolic arginine succinyltransferase pathway in Pseudomonas aeruginosa.
+RA  Itoh Y
+RL  J Bacteriol. 1997 Dec;179(23):7280-90.
+DR  HAMAP; MF_01171; 26 of 27

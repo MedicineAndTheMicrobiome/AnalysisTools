@@ -1,0 +1,11 @@
+ID  exo_TIGR04073
+AC  TIGR04073
+DE  putative exosortase-associated protein, TIGR04073 family
+AU  Haft DH
+TC  50.00 50.00
+NC  40.00 40.00
+AL  muscle_manual
+IT  subfamily
+EN  putative exosortase-associated protein, TIGR04073 family
+TP  TIGRFAMs
+CC  Members of this protein family are found in beta, gamma, and delta proteobacteria, and in the verrucomicrobia. Twenty-two of twenty-four species encountered contain the PEP-CTERM/exosortase system for modulating extracellular polysaccharide biosynthesis production, suggesting a role in protein sorting. The N-terminal signal sequence is divergent and not included in the model. PSI-BLAST and HMM searches suggest a distant sequence relationship between a region of this protein of about 100 amino acids and a corresponding region of the very large eukaryotic protein  vps13, associated with vacuolar protein sorting in yeast.

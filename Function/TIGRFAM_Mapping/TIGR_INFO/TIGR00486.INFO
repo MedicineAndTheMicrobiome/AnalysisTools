@@ -1,0 +1,21 @@
+ID  YbgI_SA1388
+AC  TIGR00486
+DE  dinuclear metal center protein, YbgI/SA1388 family
+AU  Anolik RT, Richardson DL, Haft DH
+TC  130.55 130.55
+NC  107.15 107.15
+AL  clustalw
+IT  hypoth_equivalog
+EN  dinuclear metal center protein, YbgI/SA1388 family
+TP  TIGRFAMs
+CC  The characterization of this family of uncharacterized proteins as orthologous is tentative. Members are found in all three domains of life. Several members (from Bacillus subtilis, Listeria monocytogenes, and Mycobacterium tuberculosis - all classified as Firmicutes within the Eubacteria) share a long insert relative to other members.
+RN  [1]
+RM  PMID:14519207
+RT  Crystal structure of Escherichia coli protein ybgI, a toroidal structure with a dinuclear metal site.
+RA  Ladner JE, Obmolova G, Teplyakov A, Howard AJ, Khil PP, Camerini-Otero RD, Gilliland GL
+RL  BMC Struct Biol. 2003 Sep 30;3:7.
+RN  [2]
+RM  PMID:17187687
+RT  Structure of a conserved hypothetical protein SA1388 from S. aureus reveals a capped hexameric toroid with two PII domain lids and a dinuclear metal center.
+RA  Saikatendu KS, Zhang X, Kinch L, Leybourne M, Grishin NV, Zhang H
+RL  BMC Struct Biol. 2006 Dec 23;6:27.

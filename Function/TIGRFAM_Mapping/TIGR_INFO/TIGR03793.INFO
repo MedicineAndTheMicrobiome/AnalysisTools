@@ -1,0 +1,16 @@
+ID  TOMM_pelo
+AC  TIGR03793
+DE  NHLP leader peptide domain
+AU  Haft DH
+TC  50.90 50.90
+NC  43.40 43.40
+AL  muscle
+IT  domain
+EN  NHLP leader peptide domain
+TP  TIGRFAMs
+CC  This HMM represents a domain that is conserved among a large number of putative ribosomal natural products (RNP) precursor, including the thiazole/oxazole-modified microcins (TOMMs). As a leader peptide domain, likely to be removed from the mature product, this domain is unusual in several ways. First, it is longer than most previously described RNP leader peptides. Second, most of the domain is homologous to nitrile hydratase alpha subunits. Finally, it appears that this domain correlates with a specific family of cleavage/export proteins while members undergo modifications by different classes of peptide maturase, including cyclodehydratases, lantibiotic synthases, radical SAM peptide maturases. This family is expanded especially in Pelotomaculum thermopropionicum SI.
+RN  [1]
+RM  PMID:20500830 
+RT  Expansion of ribosomally produced natural products: a nitrile hydratase- and Nif11-related precursor family. 
+RA  Haft DH, Basu MK, Mitchell DA 
+RL  BMC Biol. 2010 May 25;8:70.

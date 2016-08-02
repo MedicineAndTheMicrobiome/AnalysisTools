@@ -1,0 +1,18 @@
+ID  urea_ABC_UrtA
+AC  TIGR03407
+DE  urea ABC transporter, urea binding protein
+AU  Haft DH
+TC  492.75 492.75
+NC  378.35 378.35
+AL  muscle_manual
+IT  exception
+EN  urea ABC transporter, urea binding protein
+GS  urtA
+TR  3.A.1
+TP  TIGRFAMs
+CC  Members of this protein family are ABC transporter substrate-binding proteins associated with urea transport and metabolism. This protein is found in a conserved five-gene transport operon typically found adjacent to urease genes. It was shown in Cyanobacteria that disruption leads to the loss of high-affinity urea transport activity. Members of this protein family tend to have the twin-arginine signal for Sec-independent transport across the plasma membrane.
+RN  [1]
+RM  PMID: 11929526
+RT  An ABC-type, high-affinity urea permease identified in cyanobacteria.
+RA  Valladares A, Montesinos ML, Herrero A, Flores E
+RL  Mol Microbiol. 2002 Feb;43(3):703-15.

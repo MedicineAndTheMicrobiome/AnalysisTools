@@ -1,0 +1,12 @@
+ID  archaeo_artF
+AC  TIGR04293
+DE  archaeosortase family protein ArtF
+AU  Haft DH
+TC  150.00 150.00
+NC  45.00 45.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  archaeosortase family protein ArtF
+GS  artF
+TP  TIGRFAMs
+CC  Members of this protein family, ArtF, belong to the archaeosortase/exosortase family, in which many members associate with specific protein C-terminal putative protein sorting domains (exosortase A with PEP-CTERM, archaeosortase A with PGF-CTERM, etc.). This subgroup is observed in Thermococcus gammatolerans EJ3 and Thermococcus sp. AM4, but the gene neighborhood is not conserved. The cognate sequence to ArtF is unknown, but should not be ICGP-CTERM (model TIGR04288), found also in many Pyrococcus species that lack any archaeosortase family member.

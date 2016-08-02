@@ -1,0 +1,11 @@
+ID  cyanosort_assoc
+AC  TIGR04153
+DE  cyanosortase-associated protein
+AU  Haft DH
+TC  100.00 80.00
+NC  25.00 25.00
+AL  muscle_manual
+IT  subfamily
+EN  cyanosortase-associated protein
+TP  TIGRFAMs
+CC  Members of this protein family are found exclusively in the Cyanobacteria, usually next to and in at least one case fused to a protein that is a strictly cyanobacterial version of exosortase (TIGR03763).

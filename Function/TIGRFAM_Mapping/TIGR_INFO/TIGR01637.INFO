@@ -1,0 +1,11 @@
+ID  phage_arpU
+AC  TIGR01637
+DE  phage transcriptional regulator, ArpU family
+AU  Haft DH, Fouts DE, Sunshine J
+TC  43.10 43.10
+NC  35.30 35.30
+AL  clustalw_manual
+IT  subfamily
+EN  phage transcriptional regulator, ArpU family
+TP  TIGRFAMs
+CC  This HMM represents a family of phage proteins, including ArpU, called a putative autolysin regulatory protein. ArpU was described as a regulator of cellular muramidase-2 of Enterococcus hirae but appears to have been cloned from a prophage. This family appears related to the RinA family of bacteriophage transcriptional activators and to some sporulation-specific sigma factors. We propose that this is a phage transcriptional activator family.

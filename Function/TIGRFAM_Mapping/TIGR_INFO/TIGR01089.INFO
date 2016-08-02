@@ -1,0 +1,18 @@
+ID  fucI
+AC  TIGR01089
+DE  L-fucose isomerase
+AU  Dodson RJ
+TC  850.00 850.00
+NC  399.90 399.90
+AL  clustalw
+IT  equivalog
+EN  L-fucose isomerase
+GS  fucI
+EC  5.3.1.25
+TP  TIGRFAMs
+CC  This enzyme catalyzes the first step in fucose metabolism, and has been characterized in Escherichia coli and Bacteroides thetaiotaomicron.
+RM  2664711 
+RT  The nucleotide sequence of Escherichia coli genes for        L-fucose dissimilation.
+RA  Lu Z, Lin EC.
+RL  Nucleic Acids Res 1989 Jun 26;17(12):4883-4
+DR  HAMAP; MF_01254; 30 of 31

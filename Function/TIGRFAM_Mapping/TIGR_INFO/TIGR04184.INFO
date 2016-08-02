@@ -1,0 +1,16 @@
+ID  ATPgraspMvdD
+AC  TIGR04184
+DE  ATP-grasp ribosomal peptide maturase, MvdD family
+AU  Haft DH
+TC  475.00 475.00
+NC  450.00 450.00
+AL  muscle_manual
+IT  equivalog
+EN  ATP-grasp ribosomal peptide maturase, MvdD family
+TP  TIGRFAMs
+CC  The pair of ATP-grasp proteins MvdD and MvdC (microviridin D and C), as well as an acetyltransferase, produce microviridin K, an example of a RiPP (ribosomally synthesized and posttranslationally modified peptide). Microviridins are peptidase inhibitors.
+RN  [1]
+RM  PMID:19035375 
+RT  Post-translational modification in microviridin biosynthesis. 
+RA  Philmus B, Christiansen G, Yoshida WY, Hemscheidt TK 
+RL  Chembiochem. 2008 Dec 15;9(18):3066-73.

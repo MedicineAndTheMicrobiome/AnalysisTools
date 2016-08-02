@@ -1,0 +1,16 @@
+ID  purC
+AC  TIGR00081
+DE  phosphoribosylaminoimidazolesuccinocarboxamide synthase
+AU  Haft DH
+TC  189.90 189.90
+NC  36.90 36.90
+AL  msa_tigr
+IT  equivalog
+EN  phosphoribosylaminoimidazole-succinocarboxamide synthase
+GS  purC
+EC  6.3.2.6
+TP  TIGRFAMs
+CC  Alternate name: SAICAR synthetase
+CC  purine de novo biosynthesis. E.coli example noted as homotrimer.
+CC  Check length. Longer versions may be multifunctional enzymes.
+DR  HAMAP; MF_00137; 291 of 333

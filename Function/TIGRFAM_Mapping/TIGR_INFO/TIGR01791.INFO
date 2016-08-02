@@ -1,0 +1,12 @@
+ID  CM_archaeal
+AC  TIGR01791
+DE  chorismate mutase
+AU  Selengut J
+TC  66.95 66.95
+NC  63.75 63.75
+AL  clustalw
+IT  equivalog_domain
+EN  chorismate mutase, archaeal type
+EC  5.4.99.5
+TP  TIGRFAMs
+CC  This model represents a clade of archaeal chorismate mutases.  Chorismate mutase catalyzes the conversion of chorismate into prephenate which is subsequently converted into either phenylalanine or tyrosine.  In Sulfolobus this gene is found as a fusion with prephenate dehydrogenase (although the non-TIGR annotation contains a typographical error indicating it as a dehydratase OMNI|NTL02SS0274) which is the next enzyme in the tyrosine biosynthesis pathway.  The Archaeoglobus gene contains an N-terminal prephenate dehydrogenase domain and a C-terminal prephenate dehydratase domain followed by a regulatory amino acid-binding ACT domain.  The Thermoplasma volcanium gene is adjacent to prephenate dehydratase.

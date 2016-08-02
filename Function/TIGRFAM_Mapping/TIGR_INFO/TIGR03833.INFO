@@ -1,0 +1,11 @@
+ID  TIGR03833
+AC  TIGR03833
+DE  conserved hypothetical protein
+AU  Haft DH
+TC  63.40 63.40
+NC  32.10 32.10
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  conserved hypothetical protein
+TP  TIGRFAMs
+CC  A pair of adjacent genes, ablAB (acetyl-beta-lysine biosynthesis) encodes lysine 2,3-aminomutase and beta-lysine acetyltransferase in methanogenic archaea. Homologous pairs, possibly with identical function, occur in a wide range of species, including Bacillus subtilis. This model describes a conserved hypothetical protein, small in size, with a phylogenetic distribution moderately well correlated to that of the acetyltransferase family. This protein family is also described as DUF2196 and COG4895. The function is unknown.

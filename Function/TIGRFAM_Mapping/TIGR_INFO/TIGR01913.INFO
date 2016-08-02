@@ -1,0 +1,12 @@
+ID  bet_lambda
+AC  TIGR01913
+DE  phage recombination protein Bet
+AU  Haft DH
+TC  76.95 76.95
+NC  56.55 56.55
+AL  clustalw_manual
+IT  equivalog
+EN  phage recombination protein Bet
+GS  bet
+TP  TIGRFAMs
+CC  This HMM represents the phage recombination protein Bet from a number of phage, including phage lambda. All members of this family are found in phage genomes or in putative prophage regions of bacterial genomes.

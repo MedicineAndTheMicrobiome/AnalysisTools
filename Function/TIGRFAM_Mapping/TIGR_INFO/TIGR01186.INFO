@@ -1,0 +1,12 @@
+ID  proV
+AC  TIGR01186
+DE  glycine betaine/L-proline transport ATP binding subunit
+AU  Ujwal ML, Paulsen IT
+TC  326.60 326.60
+NC  315.80 315.80
+AL  clustalw
+IT  subfamily
+EN  glycine betaine/L-proline transport ATP binding subunit
+GS  proV
+TP  TIGRFAMs
+CC  This model describes the glycine betaine/L-proline ATP binding subunit in bacteria and its equivalents in archaea. This transport system belong to the larger ATP-Binding Cassette (ABC) transporter superfamily. The characteristic feature of these transporter is the obligatory coupling of ATP hydrolysis to substrate translocation. The minimal configuration of bacterial ABC transport system: an ATPase or ATP binding subunit; An integral membrane protein; a hydrophilic polypetpide, which likely functions as substrate binding protein. Functionally, this transport system is involved in osmoregulation. Under conditions of stress, the organism recruits these transport system to accumulate glycine betaine and other solutes which offer osmo-protection. It has been demonstrated that glycine betaine uptake is accompanied by symport with sodium ions. The locus has been named variously as proU or opuA. A gene library from L.lactis functionally complements an E.coli proU mutant. The comlementing locus is similar to a opuA locus in B.sutlis. This clarifies the differences in nomenclature.

@@ -1,0 +1,13 @@
+ID  FtsH_fam
+AC  TIGR01241
+DE  ATP-dependent metallopeptidase HflB
+AU  Haft DH
+TC  468.20 468.20
+NC  304.75 304.75
+AL  clustalw_manual
+IT  subfamily
+EN  ATP-dependent metalloprotease FtsH
+GS  hflB
+EC  3.4.24.-
+TP  TIGRFAMs
+CC  HflB(FtsH) is a pleiotropic protein required for correct cell division in bacteria. It has ATP-dependent zinc metalloprotease activity. It was formerly designated cell division protein FtsH.

@@ -1,0 +1,13 @@
+ID  allantoinase
+AC  TIGR03178
+DE  allantoinase
+AU  Selengut J
+TC  357.85 357.85
+NC  305.20 305.20
+AL  clustalw
+IT  equivalog
+EN  allantoinase
+GS  allB
+EC  3.5.2.5
+TP  TIGRFAMs
+CC  This enzyme carries out the first step in the degradation of allantoin, a ring-opening hydrolysis.  The seed members of this model are all in the vicinity of other genes involved in the processes of xanthine/urate/allantoin catabolism.  Although not included in the seed, many eukaryotic homologs of this family are included above the trusted cutoff.  Below the noise cutoff are related hydantoinases.

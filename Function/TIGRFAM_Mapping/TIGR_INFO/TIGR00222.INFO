@@ -1,0 +1,20 @@
+ID  panB
+AC  TIGR00222
+DE  3-methyl-2-oxobutanoate hydroxymethyltransferase
+AU  Loftus BJ
+TC  207.55 207.55
+NC  96.90 96.90
+AL  clustalw
+IT  equivalog
+EN  3-methyl-2-oxobutanoate hydroxymethyltransferase
+GS  panB
+EC  2.1.2.11
+TP  TIGRFAMs
+CC  Members of this family are 3-methyl-2-oxobutanoate hydroxymethyltransferase, the first enzyme of the pantothenate biosynthesis pathway. An alternate name is ketopantoate hydroxymethyltransferase.
+RN  [1]
+RM  93209959
+RT  Cloning and sequencing of the Escherichia coli panB gene, which encodes ketopantoate hydroxymethyltransferase, and overexpression of the enzyme.
+RA  Jones CE, Brook JM, Buck D, Abell C, Smith AG.
+RL  J Bacteriol. 1993 Apr;175(7):2125-30.
+DR  ECOCYC; EG11675; panB
+DR  HAMAP; MF_00156; 403 of 405

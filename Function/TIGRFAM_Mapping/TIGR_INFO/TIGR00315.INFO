@@ -1,0 +1,18 @@
+ID  cdhB
+AC  TIGR00315
+DE  CO dehydrogenase/acetyl-CoA synthase complex, epsilon subunit
+AU  Haft DH
+TC  101.20 101.20
+NC  56.40 56.40
+AL  clustalw
+IT  equivalog
+EN  CO dehydrogenase/acetyl-CoA synthase complex, epsilon subunit
+GS  cdhB
+EC  1.2.99.2
+TP  TIGRFAMs
+CC  Nomenclature follows the description for Methanosarcina thermophila. The complex is also found in Archaeoglobus fulgidus, not considered a methanogen, but is otherwise generally associated with methanogenesis.
+RM  97113446
+RT  Analysis of the CO dehydrogenase/acetyl-coenzyme A synthase operon of Methanosarcina thermophila.
+RA  Maupin-Furlow JA, Ferry JG
+RL  J Bacteriol 1996 Dec;178(23):6849-56
+DR  HAMAP; MF_01134; 12 of 12

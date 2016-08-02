@@ -1,0 +1,18 @@
+ID  mycothiol_MshA
+AC  TIGR03449
+DE  D-inositol-3-phosphate glycosyltransferase
+AU  Haft DH
+TC  462.50 462.50
+NC  386.10 386.10
+AL  muscle_manual
+IT  equivalog
+EN  D-inositol-3-phosphate glycosyltransferase
+GS  mshA
+EC  2.4.1.250
+TP  TIGRFAMs
+CC  Members of this protein family, found exclusively in the Actinobacteria, are MshA, the glycosyltransferase of mycothiol biosynthesis. Mycothiol replaces glutathione in these species.
+RN  [1]
+RM  PMID:16940050
+RT  Biochemistry of the initial steps of mycothiol biosynthesis.
+RA  Newton GL, Ta P, Bzymek KP, Fahey RC
+RL  J Biol Chem. 2006 Nov 10;281(45):33910-20.

@@ -1,0 +1,11 @@
+ID  RelB_DinJ
+AC  TIGR02384
+DE  addiction module antitoxin, RelB/DinJ family
+AU  Haft DH
+TC  45.65 45.65
+NC  33.45 33.45
+AL  clustalw_manual
+IT  subfamily
+EN  addiction module antitoxin, RelB/DinJ family
+TP  TIGRFAMs
+CC  Plasmids may be maintained stably in bacterial populations through the action of addiction modules, in which a toxin and antidote are encoded in a cassette on the plasmid. In any daughter cell that lacks the plasmid, the toxin persists and is lethal after the antidote protein is depleted. Toxin/antitoxin pairs are also found on main chromosomes, and likely represent selfish DNA. Sequences in the seed for this alignment all were found adjacent to toxin genes. The resulting model appears to describe a narrower set of proteins than Pfam model PF04221, although many in the scope of this model are not obviously paired with toxin proteins. Several toxin/antitoxin pairs may occur in a single species.

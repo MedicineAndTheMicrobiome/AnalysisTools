@@ -1,0 +1,13 @@
+ID  nth
+AC  TIGR01083
+DE  endonuclease III
+AU  Durkin S
+TC  211.70 211.70
+NC  144.65 144.65
+AL  clustalw
+IT  equivalog
+EN  endonuclease III
+GS  nth
+EC  4.2.99.18
+TP  TIGRFAMs
+CC  This equivalog HMM identifes nth members of the PF00730 superfamily (HhH-GPD: Helix-hairpin-helix and Gly/Pro rich loop followed by a conserved aspartate). The major members of the superfamily are nth and mutY.

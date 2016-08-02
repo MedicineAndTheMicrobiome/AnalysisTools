@@ -1,0 +1,12 @@
+ID  accC
+AC  TIGR00514
+DE  acetyl-CoA carboxylase, biotin carboxylase subunit
+AU  Haft DH
+TC  626.50 626.50
+NC  550.45 550.45
+IT  equivalog
+EN  acetyl-CoA carboxylase, biotin carboxylase subunit
+GS  accC
+EC  6.3.4.14
+TP  TIGRFAMs
+CC  This model represents the biotin carboxylase subunit found usually as a component of acetyl-CoA carboxylase. Acetyl-CoA carboxylase is designated EC 6.4.1.2 and this component, biotin carboxylase, has its own designation, EC 6.3.4.14. Homologous domains are found in eukaryotic forms of acetyl-CoA carboxylase and in a number of other carboxylases (e.g. pyruvate carboxylase), but seed members and trusted cutoff are selected so as to exclude these. In some systems, the biotin carboxyl carrier protein and this protein (biotin carboxylase) may be shared by different carboxyltransferases. However, this model is not intended to identify the biotin carboxylase domain of propionyl-coA carboxylase. The model should hit the full length of proteins, except for chloroplast transit peptides in plants. If it hits a domain only of a longer protein, there may be a problem with the identification.

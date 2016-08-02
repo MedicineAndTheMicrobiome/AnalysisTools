@@ -1,0 +1,19 @@
+ID  DapF
+AC  TIGR00652
+DE  diaminopimelate epimerase
+AU  Haft DH
+TC  114.65 114.65
+NC  32.00 32.00
+IT  equivalog
+EN  diaminopimelate epimerase
+GS  dapF
+EC  5.1.1.7
+TP  TIGRFAMs
+DR  ECOCYC; EG10209; dapF;
+DR  EXPERIMENTAL; EGAD|18131|EC3809;
+DR  EXPERIMENTAL; EGAD|27917|HI0750;
+RM  99211890
+RT  Chemical mechanism of Haemophilus influenzae diaminopimelate epimerase.
+RA  Koo CW, Blanchard JS
+RL  Biochemistry 1999 Apr 6;38(14):4416-22
+DR  HAMAP; MF_00197; 278 of 282

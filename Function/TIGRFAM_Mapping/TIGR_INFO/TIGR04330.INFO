@@ -1,0 +1,11 @@
+ID  cas_Cpf1
+AC  TIGR04330
+DE  CRISPR-associated protein Cpf1, subtype PREFRAN
+AU  Haft DH
+TC  300.00 300.00
+NC  30.00 30.00
+AL  muscle_manual
+IT  equivalog
+EN  CRISPR-associated protein Cpf1, subtype PREFRAN
+TP  TIGRFAMs
+CC  This family is the long protein of a novel CRISPR subtype, PREFRAN, which is most common in Prevotella and Francisella, although widely distributed. The PREFRAN type has Cas1, Cas2, and Cas4, but lacks the helicase Cas3 and endonuclease Cas3-HD.

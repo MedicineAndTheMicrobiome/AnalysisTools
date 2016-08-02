@@ -1,0 +1,15 @@
+ID  cobB
+AC  TIGR00379
+DE  cobyrinic acid a,c-diamide synthase
+AU  Loftus BJ
+TC  261.40 261.40
+NC  152.40 152.40
+AL  clustalw
+IT  equivalog
+EN  cobyrinic acid a,c-diamide synthase
+GS  cobB
+EC  6.3.1.-
+TP  TIGRFAMs
+CC  This HMM describes cobyrinic acid a,c-diamide synthase, the cobB (cbiA in Salmonella) protein of cobalamin biosynthesis. It is responsible for the amidation of carboxylic groups at positions A and C of either cobyrinic acid or hydrogenobrynic acid. NH(2) groups are provided by glutamine and one molecule of ATP hydrogenolyzed for each amidation.
+DR  SWISSPROT; P21632;
+DR  HAMAP; MF_00027; 53 of 53

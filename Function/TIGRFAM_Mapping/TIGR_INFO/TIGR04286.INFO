@@ -1,0 +1,11 @@
+ID  MSEP-CTERM
+AC  TIGR04286
+DE  MSEP-CTERM protein
+AU  Haft DH
+TC  150.00 150.00
+NC  80.00 80.00
+AL  muscle_manual
+IT  equivalog
+EN  MSEP-CTERM protein
+TP  TIGRFAMs
+CC  Members of this protein family average over 900 residues in length and appear to have multiple membrane-spanning helices in the N-terminal half. The extreme C-terminal region consists of a motif with consensus sequence MSEP, then a transmembrane alpha helix, then a short region with several basic residues. This region, hereby dubbed MSEP-CTERM, resembles other putative sorting signals associated with the archaeosortase/exosortase protein family (see TIGR04178). Genes for all members of this family are found next to a gene for exosortase K.

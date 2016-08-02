@@ -1,0 +1,12 @@
+ID  PrmC_rel_meth
+AC  TIGR03704
+DE  putative protein-(glutamine-N5) methyltransferase, unknown substrate-specific
+AU  Haft DH
+TC  248.80 248.80
+NC  205.80 205.80
+AL  muscle_manual
+IT  equivalog
+EN  putative protein-(glutamine-N5) methyltransferase, unknown substrate-specific
+EC  2.1.1.-
+TP  TIGRFAMs
+CC  This protein family is closely related to two different families of protein-(glutamine-N5) methyltransferase. The first is PrmB, which modifies ribosomal protein L3 in some bacteria. The second is PrmC (HemK), which modifies peptide chain release factors 1 and 2 in most bacteria and also in eukaryotes. The glutamine side chain-binding motif NPPY shared by PrmB and PrmC is N[VAT]PY in this family. The protein substrate is unknown.

@@ -1,0 +1,23 @@
+ID  PaaN_2
+AC  TIGR02288
+DE  phenylacetic acid degradation protein paaN
+AU  Selengut J
+TC  578.75 578.75
+NC  271.80 271.80
+AL  clustalw
+IT  equivalog
+EN  phenylacetic acid degradation protein paaN
+GS  paaN
+TP  TIGRFAMs
+CC  This enzyme is proposed to act in the ring-opening step of phenylacetic acid degradation [1] which follows ligation of the acid with coenzyme A (by PaaF) and hydroxylation by a multicomponent non-heme iron hydroxylase complex (PaaGHIJK).  Gene symbols have been standardized in [2].  This enzyme is related to aldehyde dehydrogenases and has a domain which is a member of the PF00171 family.
+CC  This family includes sequences from Burkholderia, Bordetella, Streptomyces.  Other PaaN enzymes are represented by a separate model, TIGR02278.
+RN  [1]
+RM  PMID: 11260461
+RT  The phenylacetyl-CoA catabolon: a complex catabolic unit with broad biotechnological applications.
+RA  Luengo JM, Garcia JL, Olivera ER.
+RL  Mol Microbiol. 2001 Mar;39(6):1434-42.
+RN  [2]
+RM  PMID: 10766858 
+RT  Transcriptional regulation of the divergent paa catabolic operons for phenylacetic acid degradation in Escherichia coli.
+RA  Ferrandez A, Garcia JL, Diaz E.
+RL  J Biol Chem. 2000 Apr 21;275(16):12214-22.

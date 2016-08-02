@@ -1,0 +1,12 @@
+ID  aconitase_mito
+AC  TIGR01340
+DE  aconitate hydratase, mitochondrial
+AU  Haft DH
+TC  825.35 825.35
+NC  558.15 558.15
+AL  clustalw
+IT  equivalog
+EN  aconitate hydratase, mitochondrial
+EC  4.2.1.3
+TP  TIGRFAMs
+CC  This HMM represents mitochondrial forms of the TCA cycle enzyme aconitate hydratase, also known as aconitase and citrate hydro-lyase.

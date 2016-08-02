@@ -1,0 +1,23 @@
+ID  rSAM_Cfr
+AC  TIGR04432
+DE  23S rRNA (adenine(2503)-C(8))-methyltransferase Cfr
+AU  Haft DH
+TC  550.00 550.00
+NC  450.00 450.00
+AL  muscle_manual
+IT  equivalog
+EN  23S rRNA (adenine(2503)-C(8))-methyltransferase Cfr
+GS  cfr
+EC  2.1.1.224
+TP  TIGRFAMs
+CC  This model identifies Cfr, a 23S rRNA methyltransferase, EC 2.1.1.224, responsible for a transmissible form of chloramphenicol/florfenicol resistance. It is closely related to RlmN (see TIGR00048), an adenine C2-methyltransferase that acts at the same site where Cfr acts as a C8-methyltransferase
+RN  [1]
+RM  PMID:16091044 
+RT  A new mechanism for chloramphenicol, florfenicol and clindamycin resistance: methylation of 23S ribosomal RNA at A2503. 
+RA  Kehrenberg C, Schwarz S, Jacobsen L, Hansen LH, Vester B 
+RL  Mol Microbiol. 2005 Aug;57(4):1064-73.
+RN  [2]
+RM  PMID:16801432 
+RT  The Cfr rRNA methyltransferase confers resistance to Phenicols, Lincosamides, Oxazolidinones, Pleuromutilins, and Streptogramin A antibiotics. 
+RA  Long KS, Poehlsgaard J, Kehrenberg C, Schwarz S, Vester B 
+RL  Antimicrob Agents Chemother. 2006 Jul;50(7):2500-5.

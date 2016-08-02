@@ -1,0 +1,16 @@
+ID  thiL
+AC  TIGR01379
+DE  thiamine-phosphate kinase
+AU  Haft DH
+TC  184.15 184.15
+NC  113.70 113.70
+AL  clustalw_manual
+IT  equivalog
+EN  thiamine-phosphate kinase
+GS  thiL
+EC  2.7.4.16
+TP  TIGRFAMs
+CC  This HMM describes thiamine-monophosphate kinase, an enzyme that converts thiamine monophosphate into thiamine pyrophosphate (TPP, coenzyme B1), an enzyme cofactor. Thiamine monophosphate may be derived from de novo synthesis or from unphosphorylated thiamine, known as vitamin B1.
+CC  Proteins scoring between the trusted and noise cutoff for this model include short forms from the Thermoplasmas (which lack the N-terminal region) and a highly derived form from Campylobacter jejuni.  Eukaryotes lack this enzyme, and add pyrophosphate from ATP to unphosphorylated thiamine in a single step.
+DR  EXPERIMENTAL; SP:P77785; Escherichia coli
+DR  OUTGROUP; OMNI|NTL01MT00202; hydrogenase expression/formation protein HypE

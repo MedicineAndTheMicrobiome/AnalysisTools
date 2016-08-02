@@ -1,0 +1,13 @@
+ID  rnd
+AC  TIGR01388
+DE  ribonuclease D
+AU  Haft DH
+TC  298.95 298.95
+NC  138.75 138.75
+AL  clustalw
+IT  equivalog
+EN  ribonuclease D
+GS  rnd
+EC  3.1.13.5
+TP  TIGRFAMs
+CC  This model describes ribonuclease D, a 3'-exonuclease shown to act on tRNA both in vitro and when overexpressed in vivo. Trusted members of this family are restricted to the Proteobacteria; Aquifex, Mycobacterial, and eukaryotic homologs are not full-length homologs. Ribonuclease D is not essential in E. coli and is deleterious when overexpressed. Its precise biological role is still unknown.

@@ -1,0 +1,12 @@
+ID  DNA_lig_bact
+AC  TIGR04120
+DE  DNA ligase, ATP-dependent, PP_1105 family
+AU  Haft DH
+TC  400.00 400.00
+NC  340.00 340.00
+AL  muscle_manual
+IT  equivalog
+EN  DNA ligase, ATP-dependent, PP_1105 family
+EC  6.5.1.1
+TP  TIGRFAMs
+CC  This HMM describes a family of ATP-dependent DNA ligases present in about 12 % of prokaryotic genomes. It occurs as part of a four-gene system with an exonuclease, a helicase and a phosphoesterase, with all four genes clustered or at least the first two and last two paired. This family resembles DNA ligase I (see TIGR00574 and PF01068), and its presumed function may be in DNA repair, replication, or recombination.

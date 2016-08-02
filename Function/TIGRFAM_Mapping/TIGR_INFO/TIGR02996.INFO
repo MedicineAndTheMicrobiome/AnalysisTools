@@ -1,0 +1,11 @@
+ID  rpt_mate_G_obs
+AC  TIGR02996
+DE  repeat-companion domain TIGR02996
+AU  Haft DH
+TC  29.05 29.05
+NC  20.40 20.40
+AL  muscle_manual
+IT  domain
+EN  repeat-companion domain TIGR02996
+TP  TIGRFAMs
+CC  This model describes an abundant paralogous domain of Gemmata obscuriglobus UQM 2246, a member of the Planctomycetes. The domain also occurs, although rarely, in Myxococcus xanthus DK 1622 and related species. Most member proteins have extensive repeats similar to the leucine-rich repeat, or another repeat class or region of low-complexity sequence.  This domain is not repeated, and in Gemmata is usually found at the protein N-terminus.

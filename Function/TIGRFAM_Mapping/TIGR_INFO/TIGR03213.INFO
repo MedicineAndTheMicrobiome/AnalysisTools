@@ -1,0 +1,13 @@
+ID  23dbph12diox
+AC  TIGR03213
+DE  2,3-dihydroxybiphenyl 1,2-dioxygenase
+AU  Haft DH
+TC  366.45 366.45
+NC  154.40 154.40
+AL  muscle
+IT  equivalog
+EN  2,3-dihydroxybiphenyl 1,2-dioxygenase
+GS  bphC
+EC  1.13.11.39
+TP  TIGRFAMs
+CC  Members of this protein family all have activity as 2,3-dihydroxybiphenyl 1,2-dioxygenase, the third enzyme of a pathway for biphenyl degradation. Many of the extradiol ring-cleaving dioxygenases, to which these proteins belong, act on a range of related substrates. Note that some members of this family may be found operons for toluene or naphthalene degradation, where other activities of the same enzyme may be more significant; the trusted cutoff for this model is set relatively high to exclude most such instances.

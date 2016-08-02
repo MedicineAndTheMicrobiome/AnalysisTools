@@ -1,0 +1,12 @@
+ID  6PF1K_euk
+AC  TIGR02478
+DE  6-phosphofructokinase
+AU  Haft DH
+TC  708.40 708.40
+NC  357.30 357.30
+AL  clustalw
+IT  equivalog
+EN  6-phosphofructokinase, eukaryotic type
+EC  2.7.1.11
+TP  TIGRFAMs
+CC  Members of this family are eukaryotic (with one exception) ATP-dependent 6-phosphofructokinases (EC 2.7.1.11) in which two tandem copies of the phosphofructokinase are found. Members are found, often including several isozymes, in animals and fungi and in the bacterium  Propionibacterium acnes KPA171202 (a human skin commensal).

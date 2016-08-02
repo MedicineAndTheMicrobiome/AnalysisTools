@@ -1,0 +1,17 @@
+ID  acc_sec_Y2
+AC  TIGR02920
+DE  accessory Sec system translocase SecY2
+AU  Haft DH
+TC  249.60 249.60
+NC  222.55 222.55
+AL  muscle
+IT  equivalog
+EN  accessory Sec system translocase SecY2
+GS  secY2
+TP  TIGRFAMs
+CC  Members of this family are restricted to the Firmicutes lineage (low-GC Gram-positive bacteria) and appear to be paralogous to, and much more divergent than, the preprotein translocase SecY. Members include the SecY2 protein of the accessory Sec system in Streptococcus gordonii, involved in export of the highly glycosylated platelet-binding protein GspB.
+RN  [1]
+RM  PMID:15901716
+RT  Two additional components of the accessory sec system mediating export of the Streptococcus gordonii platelet-binding protein GspB.
+RA  Takamatsu D, Bensing BA, Sullam PM
+RL  J Bacteriol. 2005 Jun;187(11):3878-83.

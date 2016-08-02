@@ -1,0 +1,12 @@
+ID  TonB-hemin
+AC  TIGR01785
+DE  TonB-dependent heme/hemoglobin receptor family protein
+AU  Selengut J
+TC  316.85 316.85
+NC  251.65 251.65
+AL  clustalw
+IT  subfamily
+EN  TonB-dependent heme/hemoglobin receptor family protein
+TR  1.B.14
+TP  TIGRFAMs
+CC  This model represents the TonB-dependent outer membrane heme/hemoglobin receptor/transporter found in bacteria which live in contact with animals (which contain hemoglobin or other heme-bearing globins) or legumes (which contain leghemoglobin).  Some species having hits to this model such as Nostoc, Caulobacter and Chlorobium do not have an obvious source of hemoglobin-like proteins in their biological niche and so the possibility exists that they act on some other substance.

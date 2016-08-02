@@ -1,0 +1,14 @@
+ID  anfG_nitrog
+AC  TIGR02929
+DE  Fe-only nitrogenase, delta subunit
+AU  Haft DH
+TC  124.70 124.70
+NC  124.50 124.50
+AL  muscle
+IT  equivalog
+EN  Fe-only nitrogenase, delta subunit
+GS  anfG
+EC  1.18.6.1
+TP  TIGRFAMs
+CC  Nitrogenase, also called dinitrogenase, is the enzyme of biological nitrogen fixation. The most wide-spread and most efficient nitrogenase contains a molybdenum cofactor. This protein family, AnfG, represents the delta subunit of the Fe-only alternative nitrogenase. It is homologous to VnfG, the delta subunit of the V-containing (vanadium) nitrogenase.
+DR  PFAM; PF03139; AnfG_VnfG

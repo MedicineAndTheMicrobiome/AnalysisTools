@@ -1,0 +1,11 @@
+ID  cztR_silR_copR
+AC  TIGR01387
+DE  heavy metal response regulator
+AU  Haft DH
+TC  279.20 279.20
+NC  266.00 266.00
+AL  clustalw
+IT  subfamily
+EN  heavy metal response regulator
+TP  TIGRFAMs
+CC  Members of this family contain a response regulator receiver domain (Pfam:PF00072) and an associated transcriptional regulatory region (Pfam:PF00486). This group is separated phylogenetically from related proteins with similar architecture and contains a number of proteins associated with heavy metal resistance efflux systems  for copper, silver, cadmium, and/or zinc. Most members encoded by genes adjacent to genes for encoding a member of the heavy metal sensor histidine kinase family (TIGRFAMs:TIGR01386), its partner in the two-component response regulator system.

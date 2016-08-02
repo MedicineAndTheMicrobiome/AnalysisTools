@@ -1,0 +1,15 @@
+ID  rpsE_bact
+AC  TIGR01021
+DE  ribosomal protein S5
+AU  Durkin S, Haft DH
+TC  164.05 164.05
+NC  119.35 119.35
+AL  clustalw
+IT  equivalog
+EN  ribosomal protein S5, bacterial/organelle type
+GS  rpsE
+TP  TIGRFAMs
+CC  This model finds chloroplast ribosomal protein S5 as well as bacterial ribosomal protein S5. A candidate mitochondrial form (Saccharomyces cerevisiae YBR251W and its homolog) differs substantially and is not included in this model.
+DR  EXPERIMENTAL; EGAD|12973|EC3303; Eschericia coli
+DR  OUTGROUP; EGAD|44645|MJ0475; archaeal
+DR  HAMAP; MF_01307; 519 of 571

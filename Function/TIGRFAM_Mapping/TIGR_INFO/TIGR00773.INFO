@@ -1,0 +1,16 @@
+ID  NhaA
+AC  TIGR00773
+DE  Na+/H+ antiporter NhaA
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  254.00 254.00
+NC  220.55 220.55
+AL  clustalw_manual
+IT  equivalog
+EN  Na+/H+ antiporter NhaA
+GS  nhaA
+TR  2.A.33
+TP  TIGRFAMs
+CC  These proteins are members of the NhaA Na+:H+ Antiporter (NhaA) Family (TC. 2.A.33).  The Escherichia coli NhaA protein probably functions in the regulation of the internal pH when the external pH is alkaline. It also uses the H+ gradient to expel Na+ from the cell. Its activity is highly pH dependent. Only the E. coli protein is functionally and structurally well characterized.
+DR  InterPro; IPR000676
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_33.html
+DR  HAMAP; MF_01844; 242 of 254

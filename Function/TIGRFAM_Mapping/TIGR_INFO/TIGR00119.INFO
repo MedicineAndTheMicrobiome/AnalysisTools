@@ -1,0 +1,15 @@
+ID  acolac_sm
+AC  TIGR00119
+DE  acetolactate synthase, small subunit
+AU  Haft DH
+TC  56.90 56.90
+NC  38.20 38.20
+AL  clustalw
+IT  equivalog
+EN  acetolactate synthase, small subunit
+GS  ilvN
+EC  2.2.1.6
+TP  TIGRFAMs
+CC  Acetolactate synthase is a heterodimeric thiamine pyrophosphate enzyme with large and small subunits. One of the three isozymes in E. coli K12 contains a frameshift in the large subunit gene and is not expressed.
+CC  acetohydroxyacid synthase is a synonym.
+DR  PROSITE: PDOC00166;

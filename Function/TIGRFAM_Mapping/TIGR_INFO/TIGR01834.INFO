@@ -1,0 +1,12 @@
+ID  PHA_synth_III_E
+AC  TIGR01834
+DE  poly(R)-hydroxyalkanoic acid synthase, class III, PhaE subunit
+AU  Haft DH
+TC  154.95 154.95
+NC  74.30 74.30
+AL  clustalw_manual
+IT  subfamily
+EN  poly(R)-hydroxyalkanoic acid synthase, class III, PhaE subunit
+GS  phaE
+TP  TIGRFAMs
+CC  This HMM represents the PhaE subunit of the heterodimeric class (class III) of polymerase for poly(R)-hydroxyalkanoic acids (PHAs), carbon and energy storage polymers of many bacteria. The most common PHA is polyhydroxybutyrate but about 150 different constituent hydroxyalkanoic acids (HAs) have been identified in various species. This model must be designated subfamily to indicate the heterogeneity of PHAs.

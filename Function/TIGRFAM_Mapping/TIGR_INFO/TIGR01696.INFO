@@ -1,0 +1,14 @@
+ID  deoB
+AC  TIGR01696
+DE  phosphopentomutase
+AU  Daugherty S
+TC  341.20 341.20
+NC  241.75 241.75
+AL  clustalw_manual
+IT  equivalog
+EN  phosphopentomutase
+GS  deoB
+EC  5.4.2.7
+TP  TIGRFAMs
+CC  This protein is involved in the purine and pyrimidine salvage pathway. It catalyzes the conversion of D-ribose 1-phosphate to D-ribose 5-phosphate and the conversion of 2-deoxy-D-ribose 1-phosphate to 2-deoxy-D-ribose 5-phosphate. The seed members of this protein are characterized deoB proteins from E.Coli(SP:P07651) and Bacillus (SP:P46353). This HMM matches PF01676 for Metalloenzyme superfamily.
+DR  HAMAP; MF_00740; 175 of 178

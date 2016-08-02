@@ -1,0 +1,21 @@
+ID  lpxC
+AC  TIGR00325
+DE  UDP-3-O-[3-hydroxymyristoyl] N-acetylglucosamine deacetylase
+AU  Loftus BJ, Haft DH
+TC  187.25 187.25
+NC  155.00 155.00
+AL  clustalw
+IT  equivalog
+EN  UDP-3-0-acyl N-acetylglucosamine deacetylase
+GS  lpxC
+EC  3.5.1.-
+TP  TIGRFAMs
+CC  UDP-3-O-(R-3-hydroxymyristoyl)-GlcNAc deacetylase from E. coli , LpxC, was previously designated EnvA. This enzyme is involved in lipid-A precursor biosynthesis. It is essential for cell viability.
+DR  ECOCYC; EG10265; lpxC
+DR  SWISSPROT; P07652 
+RN  [1]
+RM  99152380
+RT  UDP-3-O-(R-3-hydroxymyristoyl)-N-acetylglucosamine deacetylase of Escherichia coli is a zinc metalloenzyme.
+RA  Jackman JE, Raetz CR, Fierke CA
+RL  Biochemistry 1999 Feb 9;38(6):1902-11
+DR  HAMAP; MF_00388; 197 of 201

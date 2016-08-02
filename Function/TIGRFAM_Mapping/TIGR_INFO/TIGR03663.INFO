@@ -1,0 +1,11 @@
+ID  TIGR03663
+AC  TIGR03663
+DE  TIGR03663 family protein
+AU  Haft DH
+TC  126.25 126.25
+NC  84.25 84.25
+AL  muscle_manual
+IT  subfamily
+EN  TIGR03663 family protein
+TP  TIGRFAMs
+CC  Members of this protein family, uncommon and rather sporadically distributed, are found almost always in the same genomes as members of family TIGR03662, and frequently as a nearby gene. Members show some N-terminal sequence similarity with Pfam family PF02366, dolichyl-phosphate-mannose-protein mannosyltransferase. The few invariant residues in this family, found toward the N-terminus, include a dipeptide DE, a tripeptide HGP, and two different Arg residues. Up to three members may be found in a genome. The function is unknown.

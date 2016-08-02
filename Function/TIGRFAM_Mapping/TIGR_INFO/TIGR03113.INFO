@@ -1,0 +1,17 @@
+ID  exosortase_2
+AC  TIGR03113
+DE  exosortase B
+AU  Haft DH
+TC  275.00 275.00
+NC  240.00 240.00
+AL  muscle
+IT  hypoth_equivalog
+EN  exosortase B
+GS  xrtB
+TP  TIGRFAMs
+CC  The predicted protein-sorting transpeptidase that we call exosortase (see TIGR02602) has distinct subclasses that associated with different types of exopolysaccharide production loci. We designate this relatively uncommon proteobacterial type to be type 2. We propose the gene symbol xrtB. Most species encountered so far with xrtB also contain xrtA (TIGR03109).
+RN  [1]
+RM  PMID: 16930487
+RT  Exopolysaccharide-associated protein sorting in environmental organisms: the PEP-CTERM/EpsH system. Application of a novel phylogenetic profiling heuristic.
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD
+RL  BMC Biol. 2006 Aug 24;4:29.

@@ -1,0 +1,18 @@
+ID  SAM_DCase_Bsu
+AC  TIGR03330
+DE  S-adenosylmethionine decarboxylase proenzyme
+AU  Haft DH
+TC  75.65 75.65
+NC  70.45 70.45
+AL  muscle_manual
+IT  equivalog
+EN  S-adenosylmethionine decarboxylase proenzyme, Bacillus form
+GS  speD
+EC  4.1.1.50
+TP  TIGRFAMs
+CC  Members of this protein family are the single chain precursor of the two chains of the mature S-adenosylmethionine decarboxylase as found in Methanocaldococcus jannaschii, Bacillus subtilis, and a wide range of other species. It differs substantially in architecture from the form as found in Escherichia coli, and lacks any extended homology to the eukaryotic form (TIGR00535).
+RN  [1]
+RM  PMID: 11073910
+RT  S-Adenosylmethionine decarboxylase from the archaeon Methanococcus jannaschii: identification of a novel family of pyruvoyl enzymes.
+RA  Kim AD, Graham DE, Seeholzer SH, Markham GD
+RL  J Bacteriol. 2000 Dec;182(23):6667-72.

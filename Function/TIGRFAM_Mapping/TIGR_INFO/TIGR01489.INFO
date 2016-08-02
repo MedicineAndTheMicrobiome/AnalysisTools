@@ -1,0 +1,29 @@
+ID  DKMTPPase-SF
+AC  TIGR01489
+DE  2,3-diketo-5-methylthio-1-phosphopentane phosphatase
+AU  Selengut J
+TC  81.55 81.55
+NC  63.00 63.00
+AL  clustalw_manual
+IT  subfamily
+EN  2,3-diketo-5-methylthio-1-phosphopentane phosphatase
+TP  TIGRFAMs
+CC  This phosphatase is a member of the IB subfamily (TIGR01488) of the haloacid dehalogenase (HAD) superfamily of aspartate-nucleophile hydrolases.  With the exception of OMNI|NTL01BS01361 from B. subtilis and GP|15024582 from Clostridium acetabutylicum, the members of this group are all eukaryotic, spanning metazoa, plants and fungi.
+CC  The B. subtilus gene (YkrX, renamed MtnX) is part of an operon for the conversion of methylthioribose (MTR) to methionine. It works with the enolase MtnW, a RuBisCO homolog. The combination of MtnW and MtnX achieves the same overall reaction as the enolase-phosphatase MtnC. The function of MtnX was shown by Ashida, et al. (2003) to be 2,3-diketo-5-methylthio-1-phosphopentane phosphatase, rather than 2,3-diketo-5-methylthio-1-phosphopentane phosphatase as proposed earlier. See the Genome Property for methionine salvage for more details. In eukaryotes, methionine salvage from methylthioadenosine also occurs. It seems reasonable that members of this family in eukaryotes fulfill a similar role as in Bacillus. A more specific, equivalog-level model is TIGR03333.
+CC  Note that SP|P53981 from S. cerevisiae, a member of this family, is annotated as a "probable membrane protein" due to a predicted transmembrane helix.  The region in question contains the second of the three conserved HAD superfamily catalytic motifs and thus, considering the fold of the HAD catalytic domain, is unlikely to be a transmembrane region in fact.
+RN  [1]
+RM  PMID: 14551435
+RT  A functional link between RuBisCO-like protein of Bacillus and photosynthetic RuBisCO.
+RA  Ashida H, Saito Y, Kojima C, Kobayashi K, Ogasawara N, Yokota A
+RL  Science. 2003 Oct 10;302(5643):286-90.
+RN  [2]
+RM  PMID: 12022921
+RT  The methionine salvage pathway in Bacillus subtilis.
+RA  Sekowska A, Danchin A.
+RL  BMC Microbiol. 2002 Apr 25;2(1):8.
+RN  [3]
+RM  PMID: 3906034
+RT  The metabolism of 5'-methylthioadenosine and 5-methylthioribose 1-phosphate in Saccharomyces cerevisiae.
+RA  Marchitto KS, Ferro AJ.
+RL  J Gen Microbiol. 1985 Sep;131 ( Pt 9):2153-64
+DR  HAMAP; MF_01680; 15 of 17

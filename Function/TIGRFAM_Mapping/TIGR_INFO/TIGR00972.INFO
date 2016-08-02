@@ -1,0 +1,16 @@
+ID  3a0107s01c2
+AC  TIGR00972
+DE  phosphate ABC transporter, ATP-binding protein
+AU  Haft DH, Loftus BJ
+TC  343.20 343.20
+NC  302.00 302.00
+AL  clustalw_manual
+IT  equivalog
+EN  phosphate ABC transporter, ATP-binding protein
+GS  pstB
+EC  3.6.3.27
+TR  3.A.1.7.1
+TP  TIGRFAMs
+CC  This HMM represents the ATP-binding protein of a family of ABC transporters for inorganic phosphate. In the model species Escherichia coli, a constitutive transporter for inorganic phosphate, with low affinity, is also present. The high affinity transporter that includes this polypeptide is induced when extracellular phosphate concentrations are low. The proteins most similar to the members of this family but not included appear to be amino acid transporters.
+DR  URL; http://tcdb.ucsd.edu/tcdb/transporter.php?tc=3.A.1.7.1
+DR  HAMAP; MF_01702; 363 of 375

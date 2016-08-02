@@ -1,0 +1,18 @@
+ID  indol_phenyl_DC
+AC  TIGR03394
+DE  indolepyruvate/phenylpyruvate decarboxylase
+AU  Haft DH
+TC  554.50 554.50
+NC  464.60 464.60
+AL  muscle_manual
+IT  equivalog
+EN  indolepyruvate/phenylpyruvate decarboxylase, Azospirillum family
+GS  ipdC
+EC  4.1.1.74 4.1.1.43
+TP  TIGRFAMs
+CC  A family of closely related, thiamine pyrophosphate-dependent enzymes includes indolepyruvate decarboxylase (EC 4.1.1.74), phenylpyruvate decarboxylase (EC 4.1.1.43), pyruvate decarboxylase (EC 4.1.1.1), branched-chain alpha-ketoacid decarboxylase, etc.. Members of this group of homologs may overlap in specificity. This model represents a clade that includes a Azospirillum brasilense member active as both phenylpyruvate decarboxylase and indolepyruvate decarboxylase.
+RN  [1]
+RM  PMID: 17403037
+RT  The crystal structure of phenylpyruvate decarboxylase from Azospirillum brasilense at 1.5 A resolution.
+RA  Versees W, Spaepen S, Vanderleyden J, Steyaert J
+RL  FEBS J. 2007 May;274(9):2363-75.

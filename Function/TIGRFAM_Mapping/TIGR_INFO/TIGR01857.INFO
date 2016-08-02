@@ -1,0 +1,12 @@
+ID  FGAM-synthase
+AC  TIGR01857
+DE  phosphoribosylformylglycinamidine synthase
+AU  Selengut J
+TC  1057.05 1057.05
+NC  797.80 797.80
+AL  clustalw
+IT  equivalog
+EN  phosphoribosylformylglycinamidine synthase, clade II
+EC  6.3.5.3
+TP  TIGRFAMs
+CC  This HMM represents a single-molecule form of phosphoribosylformylglycinamidine synthase, also called FGAM synthase, an enzyme of purine de novo biosynthesis.  This model represents a second clade of these enzymes found in Clostridia, Bifidobacteria and Streptococcus species.  This enzyme performs the fourth step in IMP biosynthesis (the precursor of all purines) from PRPP.

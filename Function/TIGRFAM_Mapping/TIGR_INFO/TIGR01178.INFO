@@ -1,0 +1,15 @@
+ID  ade
+AC  TIGR01178
+DE  adenine deaminase
+AU  Haft DH
+TC  472.50 472.50
+NC  185.00 185.00
+AL  clustalw
+IT  equivalog
+EN  adenine deaminase
+GS  ade
+EC  3.5.4.2
+TP  TIGRFAMs
+CC  The family described by this model includes an experimentally characterized adenine deaminase of Bacillus subtilis. It also include a member from Methanobacterium thermoautotrophicum, in which adenine deaminase activity has been detected.
+DR  COGS; COG1001
+DR  HAMAP; MF_01518; 89 of 118

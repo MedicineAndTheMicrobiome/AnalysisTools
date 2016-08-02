@@ -1,0 +1,19 @@
+ID  T_phosphoryl
+AC  TIGR02643
+DE  thymidine phosphorylase
+AU  Haft DH
+TC  570.70 570.70
+NC  471.85 471.85
+AL  clustalw
+IT  equivalog
+EN  thymidine phosphorylase
+GS  deoA
+EC  2.4.2.4
+TP  TIGRFAMs
+CC  Thymidine phosphorylase (alternate name: pyrimidine phosphorylase), EC 2.4.2.4, is the designation for the enzyme of E. coli and other Proteobacteria involved in (deoxy)nucleotide degradation. It often occurs in an operon with a deoxyribose-phosphate aldolase, phosphopentomutase and a purine nucleoside phosphorylase. In many other lineages, the corresponding enzyme is designated pyrimidine-nucleoside phosphorylase (EC 2.4.2.2); the naming convention imposed by this model represents standard literature practice.
+RN  [1]
+RM  1322661
+RT  Substrate specificity of Escherichia coli thymidine phosphorylase for pyrimidine nucleosides with anti-human immunodeficiency virus activity.
+RA  Schinazi RF, Peck A, Sommadossi JP.
+RL  Biochem Pharmacol. 1992 Jul 22;44(2):199-204.
+DR  HAMAP; MF_01628; 65 of 67

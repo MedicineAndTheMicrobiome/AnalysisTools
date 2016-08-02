@@ -1,0 +1,15 @@
+ID  argH
+AC  TIGR00838
+DE  argininosuccinate lyase
+AU  Haft DH
+TC  279.50 279.50
+NC  135.55 135.55
+AL  clustalw_manual
+IT  equivalog
+EN  argininosuccinate lyase
+GS  argH
+EC  4.3.2.1
+TP  TIGRFAMs
+CC  This model describes argininosuccinate lyase, but may include examples of avian delta crystallins, in which argininosuccinate lyase activity may or may not be present and the biological role is to provide the optically clear cellular protein of the eye lens.
+AL  clustalw_manual
+DR  HAMAP; MF_00006; 421 of 430

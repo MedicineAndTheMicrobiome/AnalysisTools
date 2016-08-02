@@ -1,0 +1,12 @@
+ID  marine_sort_HK
+AC  TIGR03785
+DE  proteobacterial dedicated sortase system histidine kinase
+AU  Haft DH
+TC  612.20 612.20
+NC  437.90 437.90
+AL  muscle_manual
+IT  equivalog
+EN  proteobacterial dedicated sortase system histidine kinase
+GS  pdsS
+TP  TIGRFAMs
+CC  This histidine kinase protein is paired with an adjacent response regulator (TIGR03787) gene. It co-occurs with a variant sortase enzyme (TIGR03784), usually in the same gene neighborhood, in proteobacterial species most of which are marine, and with an LPXTG motif-containing sortase target conserved protein (TIGR03788). Sortases and LPXTG proteins are far more common in Gram-positive bacteria, where sortase systems mediate attachment to the cell wall or cross-linking of pilin structures. We give this predicted sensor histidine kinase the gene symbol psdS, for Proteobacterial Dedicated Sortase system Sensor histidine kinase.

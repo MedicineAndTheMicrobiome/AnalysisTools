@@ -1,0 +1,17 @@
+ID  LigD_PE_dom
+AC  TIGR02777
+DE  DNA ligase D, 3'-phosphoesterase domain
+AU  Haft DH
+TC  144.00 144.00
+NC  65.70 65.70
+AL  clustalw_manual
+IT  equivalog_domain
+EN  DNA ligase D, 3'-phosphoesterase domain
+GS  ligD
+TP  TIGRFAMs
+CC  Most sequences in this family are the 3'-phosphoesterase domain of a multidomain, multifunctional DNA ligase, LigD, involved, along with bacterial Ku protein, in non-homologous end joining, the less common of two general mechanisms of repairing double-stranded breaks in DNA sequences. LigD is variable in architecture, as it lacks this domain in Bacillus subtilis, is permuted in Mycobacterium tuberculosis, and occasionally is encoded by tandem ORFs rather than as a multifuntional protein. In a few species (Dehalococcoides ethenogenes and the archaeal genus Methanosarcina), sequences corresponding to the ligase and polymerase domains of LigD are not found, and the role of this protein is unclear.
+RN  [1]
+RM  16046407
+RT  Essential constituents of the 3'-phosphoesterase domain of bacterial DNA ligase D, a nonhomologous end-joining enzyme.
+RA  Zhu H, Wang LK, Shuman S.
+RL  J Biol Chem. 2005 Oct 7;280(40):33707-15.

@@ -1,0 +1,16 @@
+ID  srtB_target
+AC  TIGR03063
+DE  sortase B cell surface sorting signal
+AU  Haft DH
+TC  18.15 18.15
+NC  17.60 17.60
+AL  muscle_manual
+IT  domain
+EN  sortase B cell surface sorting signal
+TP  TIGRFAMs
+CC  Two different classes of sorting signal, both analogous to the sortase A signal LPXTG, may be recognized by the sortase SrtB. These are given as NXZTN and NPKXZ. Proteins sorted by this class of sortase are less common than the sortase A and LPXTG system. This model describes a number of cell surface protein C-terminal regions from Gram-positive bacteria that appear to be sortase B (SrtB) sorting signals.
+RN  [1]
+RM  PMID: 16247833
+RT  Identification of substrates of the Listeria monocytogenes sortases A and B by a non-gel proteomic analysis.
+RA  Pucciarelli MG, Calvo E, Sabet C, Bierne H, Cossart P, Garcia-del Portillo F
+RL  Proteomics. 2005 Dec;5(18):4808-17.

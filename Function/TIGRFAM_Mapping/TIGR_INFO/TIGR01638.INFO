@@ -1,0 +1,11 @@
+ID  Atha_cystat_rel
+AC  TIGR01638
+DE  Arabidopsis thaliana cystatin-related protein
+AU  Haft DH
+TC  32.05 32.05
+NC  32.05 32.05
+AL  clustalw_manual
+IT  paralog_domain
+EN  Arabidopsis thaliana cystatin-related protein
+TP  TIGRFAMs
+CC  This HMM represents a family similar in sequence and probably homologous to a large family of cysteine proteinase inhibitors, or cystatins, as described by Pfam HMM PF00031. Cystatins may help plants resist attack by insects.

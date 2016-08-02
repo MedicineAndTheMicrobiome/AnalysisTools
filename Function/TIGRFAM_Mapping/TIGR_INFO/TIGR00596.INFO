@@ -1,0 +1,14 @@
+ID  rad1
+AC  TIGR00596
+DE  DNA repair protein (rad1)
+AU  Loftus BJ, Eisen JA
+TC  806.65 806.65
+NC  346.10 346.10
+IT  subfamily
+EN  DNA repair protein (rad1)
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are components in a multiprotein endonuclease complex (usually made up of Rad1 and Rad10 homologs).  This complex is used primarily for nucleotide excision repair but also for some aspects of recombinational repair in some species. Most Archaeal species also have homologs of these genes, but the function of these Archaeal genes is not known, so we have set our cutoff to only pick up the eukaryotic genes.
+CC  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford Universit
+DR  EGAD; 56235;
+DR  SWISSPROT; P06777;
+RM  87172766;

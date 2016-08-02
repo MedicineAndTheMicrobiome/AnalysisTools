@@ -1,0 +1,11 @@
+ID  thiaz-red
+AC  TIGR01761
+DE  thiazolinyl imide reductase
+AU  Selengut J
+TC  188.80 188.80
+NC  78.40 78.40
+AL  clustalw
+IT  subfamily
+EN  thiazolinyl imide reductase
+TP  TIGRFAMs
+CC  This reductase is found associated with gene clusters for the biosynthesis of various non-ribosomal peptide derived natural products in which cysteine is cyclized to a thiazoline ring containing an imide double bond.  Examples include yersiniabactin (irp3/YbtU, GP|21959262) and pyochelin (PchG, GP|4325022).

@@ -1,0 +1,17 @@
+ID  OMP_YaiO_dom
+AC  TIGR04390
+DE  outer membrane protein, YaiO family
+AU  Haft DH
+TC  32.00 32.00
+NC  31.50 22.00
+AL  muscle_manual
+IT  domain
+EN  outer membrane protein, YaiO family
+GS  yaiO
+TP  TIGRFAMs
+CC  Members of this family share a domain of bacterial outer membrane beta barrel, up to the protein C-terminal residue (usually Phe or Trp). The member YaiO was shown experimentally to be localized to the outer membrane.
+RN  [1]
+RM  PMID:16522795 
+RT  New Escherichia coli outer membrane proteins identified through prediction and experimental verification. 
+RA  Marani P, Wagner S, Baars L, Genevaux P, de Gier JW, Nilsson I, Casadio R, von Heijne G 
+RL  Protein Sci. 2006 Apr;15(4):884-9.

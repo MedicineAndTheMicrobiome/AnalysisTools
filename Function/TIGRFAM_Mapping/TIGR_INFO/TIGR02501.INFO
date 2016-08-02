@@ -1,0 +1,11 @@
+ID  type_III_yscE
+AC  TIGR02501
+DE  type III secretion system protein, YseE family
+AU  Haft DH
+TC  38.25 38.25
+NC  32.70 32.70
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  type III secretion system protein, YseE family
+TP  TIGRFAMs
+CC  Members of this family are found exclusively in type III secretion appparatus gene clusters in bacteria. Those bacteria with a protein from this family tend to target animal cells,  as does Yersinia pestis. This protein is small (about 70 amino acids) and not well characterized.

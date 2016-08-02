@@ -1,0 +1,14 @@
+ID  S7_S5_E_A
+AC  TIGR01028
+DE  ribosomal protein S7
+AU  Haft DH
+TC  200.00 200.00
+NC  95.00 95.00
+AL  clustalw
+IT  equivalog
+EN  ribosomal protein S7(archaeal)/S5(eukaryotic)
+GS  rpsG
+TP  TIGRFAMs
+CC  This HMM describes the members from the eukaryotic cytosol and the Archaea of the family that includes ribosomal protein S7 of bacteria and S5 of eukaryotes. A separate model describes bacterial and organellar S7.
+DR  COGS; COG0049
+DR  HAMAP; MF_00480; 41 of 796

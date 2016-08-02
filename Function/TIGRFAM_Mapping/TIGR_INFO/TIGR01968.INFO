@@ -1,0 +1,12 @@
+ID  minD_bact
+AC  TIGR01968
+DE  septum site-determining protein MinD
+AU  Haft DH
+TC  212.90 212.90
+NC  200.95 200.95
+AL  clustalw_manual
+IT  equivalog
+EN  septum site-determining protein MinD
+GS  minD
+TP  TIGRFAMs
+CC  This HMM describes the bacterial and chloroplast form of MinD, a multifunctional cell division protein that guides correct placement of the septum. The homologous archaeal MinD proteins, with many archaeal genomes having two or more forms, are described by a separate model.

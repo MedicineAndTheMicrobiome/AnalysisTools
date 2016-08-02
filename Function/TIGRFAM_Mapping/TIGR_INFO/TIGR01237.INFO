@@ -1,0 +1,14 @@
+ID  D1pyr5carbox2
+AC  TIGR01237
+DE  putative delta-1-pyrroline-5-carboxylate dehydrogenase
+AU  Haft DH, Dodson RJ
+TC  659.65 659.65
+NC  443.00 443.00
+AL  clustalw
+IT  equivalog
+EN  delta-1-pyrroline-5-carboxylate dehydrogenase, group 2, putative
+GS  pruA
+EC  1.2.1.88
+TP  TIGRFAMs
+CC  This enzyme is the second of two in the degradation of proline to glutamate. This model represents one of several related branches of delta-1-pyrroline-5-carboxylate dehydrogenase. Members of this branch may be associated with proline dehydrogenase (the other enzyme of the pathway from proline to glutamate) but have not been demonstrated experimentally. The branches are not as closely related to each other as some distinct aldehyde dehydrogenases are to some; separate models were built to let each model describe a set of equivalogs.
+DR  HAMAP; MF_00733; 34 of 34

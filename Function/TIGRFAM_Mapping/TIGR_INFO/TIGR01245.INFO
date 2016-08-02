@@ -1,0 +1,15 @@
+ID  trpD
+AC  TIGR01245
+DE  anthranilate phosphoribosyltransferase
+AU  Haft DH
+TC  199.05 199.05
+NC  133.10 133.10
+AL  clustalw_manual
+IT  equivalog_domain
+EN  anthranilate phosphoribosyltransferase
+GS  trpD
+EC  2.4.2.18
+TP  TIGRFAMs
+CC  In many widely different species, including E. coli, Thermotoga maritima, and Archaeoglobus fulgidus, this enzymatic domain (anthranilate phosphoribosyltransferase) is found C-terminal to glutamine amidotransferase; the fusion protein is designated anthranilate synthase component II (EC 4.1.3.27)
+DR  COGS; COG0547
+DR  HAMAP; MF_00211; 391 of 398

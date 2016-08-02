@@ -1,0 +1,14 @@
+ID  cyt_kin_arch
+AC  TIGR02173
+DE  putative cytidylate kinase
+AU  Haft DH
+TC  102.10 102.10
+NC  77.65 77.65
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  cytidylate kinase, putative
+GS  cmk
+EC  2.7.4.14
+TP  TIGRFAMs
+CC  Proteins in this family are believed to be cytidylate kinase. Members of this family are found in the archaea and in spirochaetes, and differ considerably from the common bacterial form of cytidylate kinase described by TIGR00017.
+DR  HAMAP; MF_00239; 45 of 45

@@ -1,0 +1,15 @@
+ID  MJ0042_CXXC
+AC  TIGR02098
+DE  MJ0042 family finger-like domain
+AU  Haft DH
+TC  20.90 20.90
+NC  19.70 19.70
+AL  clustalw
+IT  domain
+EN  MJ0042 family finger-like domain
+TP  TIGRFAMs
+CC  This domain contains a CXXCX(19)CXXC motif suggestive of both zinc fingers and thioredoxin, usually found at the N-terminus of prokaryotic proteins. One partially characterized gene, agmX, is among a large set in Myxococcus whose interruption affects adventurous gliding motility.
+RM  12828649
+RT  Identification of genes required for adventurous gliding motility in Myxococcus xanthus with the transposable element mariner.
+RA  Youderian P, Burke N, White DJ, Hartzell PL.
+RL  Mol Microbiol. ; 49(2): 555-70.

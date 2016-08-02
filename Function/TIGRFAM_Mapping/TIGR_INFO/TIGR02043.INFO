@@ -1,0 +1,22 @@
+ID  ZntR
+AC  TIGR02043
+DE  Zn(II)-responsive transcriptional regulator
+AU  Selengut J
+TC  167.95 167.95
+NC  121.70 121.70
+AL  clustalw
+IT  equivalog
+EN  Zn(II)-responsive transcriptional regulator
+GS  zntR
+TP  TIGRFAMs
+CC  This HMM represents the zinc and cadmium (II) responsive transcriptional activator of the gamma proteobacterial zinc efflux system [1].  This protein is a member of the MerR family of transcriptional activators (PF00376) and contains a distinctive pattern of cysteine residues in its metal binding loop, Cys-Cys-X(8-9)-Cys, as well as a conserved and critical cysteine at the N-terminal end of the dimerization helix [1].
+RN  [1]
+RM  PMID: 10048032
+RT  ZntR is a Zn(II)-responsive MerR-like transcriptional regulator of zntA in Escherichia coli.
+RA  Brocklehurst KR, Hobman JL, Lawley B, Blank L, Marshall SJ, Brown NL, Morby AP.
+RL  Mol Microbiol. 1999 Feb;31(3):893-902. 
+RN  [2]
+RM  PMID: 12958362
+RT  Molecular basis of metal-ion selectivity and zeptomolar sensitivity by CueR.
+RA  Changela A, Chen K, Xue Y, Holschen J, Outten CE, O'Halloran TV, Mondragon A.
+RL  Science. 2003 Sep 5;301(5638):1383-7.

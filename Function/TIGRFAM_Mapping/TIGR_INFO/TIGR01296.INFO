@@ -1,0 +1,13 @@
+ID  asd_B
+AC  TIGR01296
+DE  aspartate-semialdehyde dehydrogenase
+AU  Haft DH
+TC  324.20 324.20
+NC  259.15 259.15
+AL  clustalw
+IT  equivalog
+EN  aspartate-semialdehyde dehydrogenase (peptidoglycan organisms)
+GS  asd
+EC  1.2.1.11
+TP  TIGRFAMs
+CC  Two closely related families of aspartate-semialdehyde dehydrogenase are found. They differ by a deep split in phylogenetic and percent identity trees and in gap patterns. This model represents a branch more closely related to the USG-1 protein than to the other aspartate-semialdehyde dehydrogenases represented in model TIGR00978.

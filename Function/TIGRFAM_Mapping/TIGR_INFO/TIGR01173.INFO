@@ -1,0 +1,14 @@
+ID  glmU
+AC  TIGR01173
+DE  UDP-N-acetylglucosamine diphosphorylase/glucosamine-1-phosphate N-acetyltransferase
+AU  Dodson RJ
+TC  366.85 366.85
+NC  204.85 204.85
+AL  clustalw
+IT  equivalog
+EN  UDP-N-acetylglucosamine diphosphorylase/glucosamine-1-phosphate N-acetyltransferase
+GS  glmU
+EC  2.7.7.23 2.3.1.157
+TP  TIGRFAMs
+CC  This protein is a bifunctional enzyme, GlmU, which catalyzes last two reactions in the four-step pathway of UDP-N-acetylglucosamine biosynthesis from fructose-6-phosphate. Its reaction product is required from peptidoglycan biosynthesis, LPS biosynthesis in species with LPS, and certain other processes.
+DR  HAMAP; MF_01631; 430 of 440

@@ -1,0 +1,12 @@
+ID  oxido_grp_1
+AC  TIGR03558
+DE  luciferase family oxidoreductase, group 1
+AU  Haft DH
+TC  166.95 166.95
+NC  127.85 127.85
+AL  muscle_manual
+IT  subfamily
+EN  luciferase family oxidoreductase, group 1
+EC  1.-.-.-
+TP  TIGRFAMs
+CC  The Pfam domain family PF00296 is named for luciferase-like monooxygenases, but the family also contains several coenzyme F420-dependent enzymes. This protein family represents a well-resolved clade within family PF00296 and shows no restriction to coenzyme F420-positive species, unlike some other clades within PF00296.

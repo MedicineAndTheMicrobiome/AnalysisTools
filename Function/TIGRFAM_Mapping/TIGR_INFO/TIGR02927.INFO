@@ -1,0 +1,13 @@
+ID  SucB_Actino
+AC  TIGR02927
+DE  2-oxoglutarate dehydrogenase, E2 component, dihydrolipoamide succinyltransferase
+AU  Selengut J
+TC  423.45 423.45
+NC  379.50 379.50
+AL  muscle
+IT  equivalog
+EN  2-oxoglutarate dehydrogenase, E2 component, dihydrolipoamide succinyltransferase
+GS  sucB
+EC  2.3.1.61
+TP  TIGRFAMs
+CC  This model represents an Actinobacterial clade of E2 enzyme, a component of the 2-oxoglutarate dehydrogenase complex involved in the TCA cycle.  These proteins have multiple domains including the catalytic domain (PF00198), one or two biotin  domains (PF00364) and an E3-component binding domain (PF02817).

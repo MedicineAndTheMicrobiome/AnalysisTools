@@ -1,0 +1,18 @@
+ID  pimA
+AC  TIGR03205
+DE  dicarboxylate--CoA ligase PimA
+AU  Haft DH
+TC  705.60 705.60
+NC  469.35 469.35
+AL  muscle
+IT  equivalog
+EN  dicarboxylate--CoA ligase PimA
+GS  pimA
+EC  6.2.1.23
+TP  TIGRFAMs
+CC  PimA, a member of a large family of acyl-CoA ligases, is found in a characteristic operon pimFABCDE for the metabolism of pimelate and related compounds. It is found, so far, in Bradyrhizobium japonicum and several strains of Rhodopseudomonas palustris. PimA from R. palustris was shown to be active as a CoA ligase for C(7) to C(14) dicarboxylates and fatty acids.
+RN  [1]
+RM  PMID: 15758219
+RT  The pimFABCDE operon from Rhodopseudomonas palustris mediates dicarboxylic acid degradation and participates in anaerobic benzoate degradation.
+RA  Harrison FH, Harwood CS
+RL  Microbiology. 2005 Mar;151(Pt 3):727-36.

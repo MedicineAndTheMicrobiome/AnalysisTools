@@ -1,0 +1,11 @@
+ID  eut_PduT
+AC  TIGR02526
+DE  PduT-like ethanolamine utilization protein
+AU  Selengut J
+TC  250.30 250.30
+NC  175.15 175.15
+AL  clustalw
+IT  hypoth_equivalog
+EN  PduT-like ethanolamine utilization protein
+TP  TIGRFAMs
+CC  This gene shows up in ethanolamine utilization operons in which a proteinaceous coat organelle is also encoded.  It is closely related to the PduT protein in propane-diol operons with the same structure.

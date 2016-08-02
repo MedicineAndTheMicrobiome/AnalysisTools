@@ -1,0 +1,13 @@
+ID  nifK
+AC  TIGR01286
+DE  nitrogenase molybdenum-iron protein beta chain
+AU  Haft DH
+TC  427.30 427.30
+NC  414.50 414.50
+AL  clustalw_manual
+IT  equivalog
+EN  nitrogenase molybdenum-iron protein beta chain
+GS  nifK
+EC  1.18.6.1
+TP  TIGRFAMs
+CC  This HMM represents the majority of known sequences of the nitrogenase molybdenum-iron protein beta subunit. A distinct clade in a phylogenetic tree contains molybdenum-iron, vanadium-iron, and iron-iron forms of nitrogenase beta subunit and is excluded from this model. Nitrogenase, also called dinitrogenase, is responsible for nitrogen fixation. Note: the trusted cutoff score has recently been lowered to include an additional family in which the beta subunit is shorter by about 50 amino acids at the N-terminus. In species with the shorter form of the beta subunit, the alpha subunit has a novel insert of similar length.

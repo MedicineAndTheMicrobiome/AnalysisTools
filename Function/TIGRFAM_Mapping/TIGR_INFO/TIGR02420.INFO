@@ -1,0 +1,22 @@
+ID  dksA
+AC  TIGR02420
+DE  RNA polymerase-binding protein DksA
+AU  Haft DH
+TC  115.50 115.50
+NC  53.70 53.70
+AL  clustalw_manual
+IT  equivalog
+EN  RNA polymerase-binding protein DksA
+GS  dksA
+TP  TIGRFAMs
+CC  The HMM that is the basis for this family describes a small, pleiotropic protein, DksA (DnaK suppressor A), originally named as a multicopy suppressor of temperature sensitivity of dnaKJ mutants. DksA mutants are defective in quorum sensing, virulence, etc. DksA is now understood to bind RNA polymerase directly and modulate its response to small molecules to control the level of transcription of rRNA. Nearly all members of this family are in the Proteobacteria. Whether the closest homologs outside the Proteobacteria function equivalently is unknown. The low value set for the noise cutoff allows identification of possible DksA proteins from outside the proteobacteria. TIGR02419 describes a closely related family of short sequences usually found in prophage regions of proteobacterial genomes or in known phage.
+RN  [1]
+RM  15294157
+RT  DksA: a critical component of the transcription initiation machinery that potentiates the regulation of rRNA promoters by ppGpp and the initiating NTP.
+RA   Paul BJ, Barker MM, Ross W, Schneider DA, Webb C, Foster JW, Gourse RL.
+RL  Cell. 2004 Aug 6;118(3):311-22.
+RN  [2]
+RM  11160083
+RT  Inhibition of quorum sensing by a Pseudomonas aeruginosa dksA homologue.
+RA  Branny P, Pearson JP, Pesci EC, Kohler T, Iglewski BH, Van Delden C.
+RL  J Bacteriol. 2001 Mar;183(5):1531-9.

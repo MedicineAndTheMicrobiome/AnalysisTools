@@ -1,0 +1,15 @@
+ID  rmlC
+AC  TIGR01221
+DE  dTDP-4-dehydrorhamnose 3,5-epimerase
+AU  Haft DH
+TC  155.75 155.75
+NC  83.20 83.20
+AL  clustalw_manual
+IT  equivalog
+EN  dTDP-4-dehydrorhamnose 3,5-epimerase
+GS  rfbC
+EC  5.1.3.13
+TP  TIGRFAMs
+CC  This enzyme participates in the biosynthesis of dTDP-L-rhamnose, often as a precursor to LPS O-antigen
+DR  PFAM; PF00908; dTDP_sugar_isom
+DR  COGS; COG1898

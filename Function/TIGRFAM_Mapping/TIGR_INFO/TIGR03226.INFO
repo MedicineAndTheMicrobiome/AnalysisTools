@@ -1,0 +1,18 @@
+ID  PhnU
+AC  TIGR03226
+DE  2-aminoethylphosphonate ABC transporter, permease protein
+AU  Selengut J, Dodson R
+TC  283.45 283.45
+NC  214.05 214.05
+AL  muscle
+IT  equivalog
+EN  2-aminoethylphosphonate ABC transporter, permease protein
+GS  phnU
+TR  3.A.1.11.5
+TP  TIGRFAMs
+CC  This ABC transporter permease (membrane-spanning) component is found in a region of the salmonella typhimurium LT2 genome [1] responsible for the catabolism of 2-aminoethylphosphonate via the phnWX pathway (GenProp0238).
+RN  [1]
+RM  PMID: 7592415 
+RT  Molecular cloning, mapping, and regulation of Pho regulon genes for phosphonate breakdown by the phosphonatase pathway of Salmonella typhimurium LT2. 
+RA  Jiang W, Metcalf WW, Lee KS, Wanner BL 
+RL  J Bacteriol. 1995 Nov;177(22):6411-21.

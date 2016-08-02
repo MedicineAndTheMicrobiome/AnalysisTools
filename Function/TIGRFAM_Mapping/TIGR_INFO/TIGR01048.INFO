@@ -1,0 +1,13 @@
+ID  lysA
+AC  TIGR01048
+DE  diaminopimelate decarboxylase
+AU  Haft DH
+TC  297.90 297.90
+NC  227.60 227.60
+AL  clustalw_manual
+IT  equivalog
+EN  diaminopimelate decarboxylase
+GS  lysA
+EC  4.1.1.20
+TP  TIGRFAMs
+CC  This family consists of diaminopimelate decarboxylase, an enzyme which catalyzes the conversion of diaminopimelic acid into lysine during the last step of lysine biosynthesis.

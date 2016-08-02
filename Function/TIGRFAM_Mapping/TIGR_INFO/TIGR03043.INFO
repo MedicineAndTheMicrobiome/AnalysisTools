@@ -1,0 +1,18 @@
+ID  PS_II_psbZ
+AC  TIGR03043
+DE  photosystem II core protein PsbZ
+AU  Haft DH
+TC  39.95 39.95
+NC  32.60 32.60
+AL  muscle
+IT  equivalog
+EN  photosystem II core protein PsbZ
+GS  psbZ
+TP  TIGRFAMs
+CC  PsbZ is a core protein of photosystem II in thylakoid-containing Cyanobacteria and plant chloroplasts. The  original Chlamydomonas gene symbol, ycf9, is a synonym. PsbZ controls the interaction of the reaction center core with the light-harvesting antenna.
+RN  [1]
+RM  PMID: 11402165
+RT  The chloroplast gene ycf9 encodes a photosystem II (PSII) core subunit, PsbZ, that participates in PSII supramolecular architecture.
+RA  Swiatek M, Kuras R, Sokolenko A, Higgs D, Olive J, Cinque G, Muller B, Eichacker LA, Stern DB, Bassi R, Herrmann RG, Wollman FA
+RL  Plant Cell. 2001 Jun;13(6):1347-67.
+DR  HAMAP; MF_00644; 91 of 95

@@ -1,0 +1,22 @@
+ID  mycothiol_INO1
+AC  TIGR03450
+DE  inositol 1-phosphate synthase
+AU  Haft DH
+TC  638.00 638.00
+NC  582.40 582.40
+AL  muscle_manual
+IT  equivalog
+EN  inositol 1-phosphate synthase, Actinobacterial type
+EC  5.5.1.-
+TP  TIGRFAMs
+CC  This enzyme, inositol 1-phosphate synthase as found in Actinobacteria, produces an essential precursor for several different products, including mycothiol, which is a glutathione analog, and phosphatidylinositol, which is a phospholipid.
+RN  [1]
+RM  PMID:10448034
+RT  Identification of the INO1 gene of Mycobacterium tuberculosis H37Rv reveals a novel class of inositol-1-phosphate synthase enzyme.
+RA  Bachhawat N, Mande SC
+RL  J Mol Biol. 1999 Aug 20;291(3):531-6.
+RN  [2]
+RM  PMID:12005437
+RT  Crystal structure of inositol 1-phosphate synthase from Mycobacterium tuberculosis, a key enzyme in phosphatidylinositol synthesis.
+RA  Norman RA, McAlister MS, Murray-Rust J, Movahedzadeh F, Stoker NG, McDonald NQ
+RL  Structure. 2002 Mar;10(3):393-402.

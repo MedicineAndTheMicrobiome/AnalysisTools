@@ -1,0 +1,11 @@
+ID  T_den_put_tspse
+AC  TIGR01784
+DE  conserved hypothetical protein
+AU  Haft DH
+TC  52.10 52.10
+NC  28.70 28.70
+AL  clustalw_manual
+IT  subfamily
+EN  conserved hypothetical protein (putative transposase or invertase)
+TP  TIGRFAMs
+CC  Several lines of evidence suggest that members of this family (loaded as a fragment mode model to find part-length matches) are associated with transposition, inversion, or recombination. Members are found in small numbers of genomes, but in large copy numbers in many of those species, including over 30 full length and fragmentary members in Treponema denticola. The strongest similarities are usually within rather than between species. PSI-BLAST shows similarity to proteins designated as possible transposases, DNA invertases (resolvases), and recombinases. In the oral pathogenic spirochete Treponema denticola, full-length members are often found near transporters or other membrane proteins. This family includes members of the putative transposase family PF04754.

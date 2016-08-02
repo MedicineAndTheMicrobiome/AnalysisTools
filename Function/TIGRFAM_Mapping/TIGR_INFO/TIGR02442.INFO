@@ -1,0 +1,13 @@
+ID  Cob-chelat-sub
+AC  TIGR02442
+DE  cobaltochelatase subunit
+AU  Selengut J
+TC  779.45 779.45
+NC  737.90 737.90
+AL  clustalw
+IT  hypoth_equivalog
+EN  cobaltochelatase subunit
+EC  6.6.1.2
+TP  TIGRFAMs
+CC  Cobaltochelatase is responsible for the insertion of cobalt into the corrin ring of coenzyme B12 during its biosynthesis.  Two versions have been well described. CbiK/CbiX is a monomeric, anaerobic version which acts early in the biosynthesis (PF06180). CobNST is a trimeric, ATP-dependent, aerobic version which acts late in the biosynthesis (TIGR02257/TIGR01650/TIGR01651).
+CC  A number of genomes (actinobacteria, cyanobacteria, betaproteobacteria and pseudomonads) which apparently biosynthesize B12, encode a cobN gene but are demonstrably lacking cobS and cobT.  These genomes do, however contain a homolog (modelled here) of the magnesium chelatase subunits BchI/BchD family.  Aside from the cyanobacteria (which have a separate magnesium chelatase trimer), these species do not make chlorins, so do not have any use for a magnesium chelatase.  Furthermore, in nearly all cases the members of this family are proximal to either CobN itself or other genes involved in cobalt transport or B12 biosynthesis.

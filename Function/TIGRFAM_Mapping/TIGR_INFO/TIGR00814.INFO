@@ -1,0 +1,15 @@
+ID  stp
+AC  TIGR00814
+DE  serine transporter
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  525.80 525.80
+NC  312.80 312.80
+AL  clustalw_manual
+IT  subfamily
+EN  serine transporter
+GS  stp
+TR  2.A.42.2
+TP  TIGRFAMs
+CC  The Hydroxy/Aromatic Amino Acid Permease (HAAAP) Family- serine/threonine subfamily (TC 2.A.42.2)
+CC  The HAAAP family includes well characterized aromatic amino acid:H+ symport permeases and hydroxy amino acid permeases. This subfamily is specific for hydroxy amino acid transporters and includes the serine permease, SdaC, of E. coli, and the threonine permease, TdcC, of E. coli.//added GO terms, none avaialbelf or ser/thr specifically [SS 2/6/05]
+DR  HAMAP; MF_01583; 22 of 24

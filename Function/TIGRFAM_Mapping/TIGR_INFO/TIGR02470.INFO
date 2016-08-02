@@ -1,0 +1,23 @@
+ID  sucr_synth
+AC  TIGR02470
+DE  sucrose synthase
+AU  Haft DH
+TC  810.40 810.40
+NC  348.60 348.60
+AL  clustalw
+IT  equivalog
+EN  sucrose synthase
+EC  2.4.1.13
+TP  TIGRFAMs
+CC  This model represents sucrose synthase, an enzyme that, despite its name, generally uses rather produces sucrose. Sucrose plus UDP (or ADP) becomes D-fructose plus UDP-glucose (or ADP-glucose), which is then available for cell wall (or starch) biosynthesis. The enzyme is homologous to sucrose phosphate synthase, which catalyzes the penultimate step in sucrose synthesis. Sucrose synthase is found, so far, exclusively in plants and cyanobacteria.
+RN  [1]
+RM  11950997
+RT  Evolution of sucrose synthesis.
+RA  Lunn JE.
+RL  Plant Physiol. 2002 Apr;128(4):1490-500.
+RN  [2]
+RM  12062401
+RT  Sucrose metabolism: Anabaena sucrose-phosphate synthase and sucrose-phosphate phosphatase define minimal functional domains shuffled during evolution.
+RA  Cumino A, Curatti L, Giarrocco L, Salerno GL.
+RL  FEBS Lett. 2002 Apr 24;517(1-3):19-23.
+DR  EXPERIMENTAL; GB|CAA09297.1; Anabaena sp. PCC 7119

@@ -1,0 +1,23 @@
+ID  cad
+AC  TIGR00779
+DE  cadmium resistance transporter family protein
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  181.65 181.65
+NC  124.25 124.25
+AL  clustalw_manual
+IT  subfamily
+EN  cadmium resistance transporter (or sequestration) family protein
+TR  2.A.77
+TP  TIGRFAMs
+CC  These proteins are members of the Cadmium Resistance (CadD) Family (TC 2.A.77).  To date, this family of proteins has only been found in Gram-positive bacteria.  The CadD family includes several closely related Staphylococcal proteins reported to function in cadmium resistance. Members are predicted to span the membrane five times; the mechanism of resistance is believed to be export but has also been suggested to be binding and sequestration in the membrane. Closely related but outside the scope of this model is another staphylococcal protein that has been reported to possibly function in quaternary ammonium ion export. Still more distant are other members of the broader LysE family (see Vrljic. et al, PMID:10943564).
+DR  URL;  http://saier-144-164.ucsd.edu/tcdb/index.php?Submit=Lookup&tc=2.A.77
+RN  [1]
+RM  7068540
+RT  Cadmium and manganese transport in Staphylococcus aureus membrane vesicles.
+RA  Perry RD, Silver S.
+RL  J Bacteriol. 1982 May;150(2):973-6.
+RN  [2]
+RM  10943564
+RT  The LysE superfamily: topology of the lysine exporter LysE of Corynebacterium glutamicum, a paradyme for a novel superfamily of transmembrane solute translocators.
+RA  Vrljic M, Garg J, Bellmann A, Wachi S, Freudl R, Malecki MJ, Sahm H, Kozina VJ, Eggeling L, Saier MH Jr, Eggeling L, Saier MH Jr.
+RL  J Mol Microbiol Biotechnol. 1999 Nov;1(2):327-36.

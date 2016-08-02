@@ -1,0 +1,11 @@
+ID  oligo_HPY
+AC  TIGR01727
+DE  oligopeptide/dipeptide ABC transporter, ATP-binding protein, C-terminal domain
+AU  Haft DH
+TC  37.60 37.60
+NC  33.30 33.30
+AL  clustalw_manual
+IT  subfamily_domain
+EN  oligopeptide/dipeptide ABC transporter, ATP-binding protein, C-terminal domain
+TP  TIGRFAMs
+CC  This HMM represents a domain found in the C-terminal regions of oligopeptide ABC transporter ATP binding proteins, immediately following the ATP-binding domain (PF00005). All characterized members appear able to be involved in the transport of oligopeptides or dipeptides.  Some are important for sporulation or antibiotic resistance. Some dipeptide transporters also act on the heme precursor delta-aminolevulinic acid.

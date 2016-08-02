@@ -1,0 +1,14 @@
+ID  recN
+AC  TIGR00634
+DE  DNA repair protein RecN
+AU  Loftus BJ, Eisen JA
+TC  407.85 407.85
+NC  207.65 207.65
+IT  equivalog
+EN  DNA repair protein RecN
+GS  recN
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are ATP binding proteins involved in the initiation of recombination and recombinational repair.
+DR  EGAD; 7996;
+DR  SWISSPROT; P05824;
+RM  87259985.

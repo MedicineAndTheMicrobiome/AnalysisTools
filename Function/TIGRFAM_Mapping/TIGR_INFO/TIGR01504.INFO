@@ -1,0 +1,15 @@
+ID  glyox_carbo_lig
+AC  TIGR01504
+DE  glyoxylate carboligase
+AU  Haft DH
+TC  711.20 711.20
+NC  589.15 589.15
+AL  clustalw
+IT  equivalog
+EN  glyoxylate carboligase
+GS  gcl
+EC  4.1.1.47
+TP  TIGRFAMs
+CC  Glyoxylate carboligase, also called tartronate-semialdehyde synthase, releases CO2 while synthesizing a single molecule of tartronate semialdehyde from two molecules of glyoxylate. It is a thiamine pyrophosphate-dependent enzyme, closely related in sequence to the large subunit of acetolactate synthase. In the D-glycerate pathway, part of allantoin degradation in the Enterobacteriaceae, tartronate semialdehyde is converted to D-glycerate and then 3-phosphoglycerate, a product of glycolysis and entry point in the general metabolism.
+DR  EXPERIMENTAL; SP|P30146; Escherichia coli
+DR  OUTGROUP; SP|P42463; acetolactate synthase large subunit

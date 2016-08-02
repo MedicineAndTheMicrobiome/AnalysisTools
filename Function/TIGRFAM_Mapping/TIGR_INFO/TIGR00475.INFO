@@ -1,0 +1,16 @@
+ID  selB
+AC  TIGR00475
+DE  selenocysteine-specific translation elongation factor
+AU  Haft DH
+TC  242.25 242.25
+NC  229.00 229.00
+AL  clustalw
+IT  equivalog
+EN  selenocysteine-specific elongation factor SelB
+GS  selB
+TP  TIGRFAMs
+CC  In prokaryotes, the incorporation of selenocysteine as the 21st amino acid, encoded by TGA, requires several elements: SelC is the tRNA itself, SelD acts as a donor of reduced selenium, SelA modifies a serine residue on SelC into selenocysteine, and SelB is a selenocysteine-specific translation elongation factor. 3-prime or 5-prime non-coding elements of mRNA have been found as probable structures for directing selenocysteine incorporation. This HMM describes the elongation factor SelB, a close homolog rf EF-Tu. It may function by replacing EF-Tu. A C-terminal domain not found in EF-Tu is in all SelB sequences in the seed alignment except that from Methanococcus jannaschii. This model does not find an equivalent protein for eukaryotes.
+RM  12486046
+RT  Inactivation of the selB gene in Methanococcus maripaludis: effect on synthesis of selenoproteins and their sulfur-containing homologs.
+RA  Rother M, Mathes I, Lottspeich F, Bock A.
+RL  J Bacteriol. 2003 Jan;185(1):107-14.

@@ -1,0 +1,31 @@
+ID  CysD
+AC  TIGR02039
+DE  sulfate adenylyltransferase, small subunit
+AU  Brinkac L
+TC  396.60 396.60
+NC  213.25 213.25
+AL  clustalw
+IT  subfamily
+EN  sulfate adenylyltransferase, small subunit
+GS  cysD
+EC  2.7.7.4
+TP  TIGRFAMs
+CC  Metabolic assimilation of sulfur from inorganic sulfate, requires sulfate activation by coupling to a nucleoside, for the production of high-energy nucleoside phosphosulfates. This pathway appears to be similar in all prokaryotic organisms. Activation is first achieved through sulfation of sulfate with ATP by sulfate adenylyltransferase (ATP sulfurylase) to produce 5'-phosphosulfate (APS), coupled by GTP hydrolysis. Subsequently, APS is phosphorylated by an APS kinase to produce 3'-phosphoadenosine-5'-phosphosulfate (PAPS) [1].
+CC  In Escherichia coli, ATP sulfurylase is a heterodimer composed of two subunits encoded by cysD and cysN, with APS kinase encoded by cysC. These genes are located in a unidirectionally transcribed gene cluster, and have been shown to be required for the synthesis of sulfur-containing amino acids [1]. Homologous to this E.coli activation pathway are nodPQH gene products found among members of the Rhizobiaceae family. These gene products have been shown to exhibit ATP sulfurase and APS kinase activity, yet are involved in Nod factor sulfation, and sulfation of other macromolecules [2].
+RN [1]
+RM 2828368
+RT The sulfate activation locus of Escherichia coli K12: cloning, genetic, and enzymatic characterization.
+RA Leyh TS, Taylor JC, Markham GD.
+RJ J Biol Chem. 1988 Feb 15;263(5):2409-16.
+RN [2]
+RM 12676676
+RT Identification of a third sulfate activation system in Sinorhizobium sp. strain BR816: the CysDN sulfate activation complex.
+RA Snoeck C, Verreth C, Hernandez-Lucas I, Martinez-Romero E,Vanderleyden J.
+RL Appl Environ Microbiol. 2003 Apr;69(4):2006-14.
+DR EXPERIMENTAL; SP|P21156; Escherichia coli; correlation of enzymatic activity, complementation patterns, and polypeptides associated with subclones of cloned DNA.
+DR EXPERIMENTAL; SP|P52995; Rhizobium tropici; site-directed mutagenesis demonstrated inability to synthesize sulfated Nod factors by high-pressure liquid chromatography and thin-layer chromatography assays.
+DR EXPERIMENTAL; GP|5911360; Sinorhizobium meliloti; mutanogenesis measuring growth characteristics and Nod factor sulfation.
+DR EXPERIMETNAL; SP|P28603; Azospirillum brasilense; deletion and mutational analysis.
+DR PFAM; PF01507; Phosphoadenosine phosphosulfate reductase family
+DR OURGROUP; GP|22553030; Physcomitrella patens; phosphoadenosine-phosphosulphate reductase
+DR  HAMAP; MF_00064; 145 of 151

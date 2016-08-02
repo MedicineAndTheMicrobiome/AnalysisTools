@@ -1,0 +1,12 @@
+ID  T2SS_GspM_XcpZ
+AC  TIGR04412
+DE  type II secretion system protein M
+AU  Haft DH
+TC  60.00 60.00
+NC  36.00 36.00
+AL  muscle_manual
+IT  equivalog
+EN  type II secretion system protein M, XcpZ-type
+GS  gspM
+TP  TIGRFAMs
+CC  Members of this family are a variant form of the type II secretion system (T2SS) protein M, GspM, as found in several species of Pseudomonas. Members, including XcpZ, are short relative to most members of Pfam family PF04612 (as of release 26.0) and are not recognized by that HMM.

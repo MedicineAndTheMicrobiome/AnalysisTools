@@ -1,0 +1,16 @@
+ID  osmo_induc_OsmC
+AC  TIGR03562
+DE  peroxiredoxin, OsmC subfamily
+AU  Haft DH
+TC  85.80 85.80
+NC  84.80 84.80
+AL  muscle_manual
+IT  subfamily
+EN  peroxiredoxin, OsmC subfamily
+TP  TIGRFAMs
+CC  Pfam model PF02566, OsmC-like protein, contains several deeply split clades of homologous proteins. The clade modeled here includes the protein OsmC, or osmotically induced protein C. The member from Thermus thermophilus was shown to have hydroperoxide peroxidase activity. In many species, this protein is induced by stress and helps resist oxidative stress.
+RN  [1]
+RM  PMID:18084893
+RT  Peroxiredoxins in bacterial antioxidant defense.
+RA  Dubbs JM, Mongkolsuk S
+RL  Subcell Biochem. 2007;44:143-93.

@@ -1,0 +1,17 @@
+ID  surface_SprA
+AC  TIGR04189
+DE  cell surface protein SprA
+AU  Haft DH
+TC  200.00 200.00
+NC  30.00 30.00
+AL  muscle_manual
+IT  equivalog
+EN  cell surface protein SprA
+GS  sprA
+TP  TIGRFAMs
+CC  SprA is a cell surface protein widely distributed in the Bacteroidetes lineage. In Flavobacterium johnsoniae, a species that shows gliding motility, mutation disrupts gliding.
+RN  [1]
+RM  PMID:17644580 
+RT  Flavobacterium johnsoniae SprA is a cell surface protein involved in gliding motility. 
+RA  Nelson SS, Glocka PP, Agarwal S, Grimm DP, McBride MJ 
+RL  J Bacteriol. 2007 Oct;189(19):7145-50. Epub 2007 Jul 20.

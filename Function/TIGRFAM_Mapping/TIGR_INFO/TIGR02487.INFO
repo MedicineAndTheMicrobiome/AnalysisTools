@@ -1,0 +1,28 @@
+ID  NrdD
+AC  TIGR02487
+DE  anaerobic ribonucleoside-triphosphate reductase
+AU  Selengut J
+TC  326.35 326.35
+NC  261.75 261.75
+AL  clustalw
+IT  equivalog
+EN  anaerobic ribonucleoside-triphosphate reductase
+GS  nrdD
+EC  1.17.4.2
+TP  TIGRFAMs
+CC  This model represents the oxygen-sensitive (anaerobic, class III) ribonucleotide reductase.  The mechanism of the enzyme involves a glycine-centered radical [1], a C-terminal zinc binding site [2], and a set of conserved active site cysteines and asparagines [3].  This enzyme requires an activating component, NrdG, a radical-SAM domain containing enzyme (TIGR02491).  Together the two form an alpha-2/beta-2 heterodimer.
+RN  [1]
+RM  PMID: 10066165
+RT  A glycyl radical site in the crystal structure of a class III ribonucleotide reductase.
+RA  Logan DT, Andersson J, Sjoberg BM, Nordlund P.
+RL  Science. 1999 Mar 5;283(5407):1499-504.
+RN  [2]
+RM  PMID: 12655046
+RT  A metal-binding site in the catalytic subunit of anaerobic ribonucleotide reductase.
+RA  Logan DT, Mulliez E, Larsson KM, Bodevin S, Atta M, Garnaud PE, Sjoberg BM, Fontecave M.
+RL  Proc Natl Acad Sci U S A. 2003 Apr 1;100(7):3826-31. Epub 2003 Mar 24.
+RN  [3]
+RM  PMID: 11526118
+RT  Two active site asparagines are essential for the reaction mechanism of the class III anaerobic ribonucleotide reductase from bacteriophage T4.
+RA  Andersson J, Bodevin S, Westman M, Sahlin M, Sjoberg BM.
+RL  J Biol Chem. 2001 Nov 2;276(44):40457-63. Epub 2001 Aug 28.

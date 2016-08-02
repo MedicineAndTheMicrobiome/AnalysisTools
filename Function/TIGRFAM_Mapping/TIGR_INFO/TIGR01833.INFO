@@ -1,0 +1,12 @@
+ID  HMG-CoA-S_euk
+AC  TIGR01833
+DE  hydroxymethylglutaryl-CoA synthase
+AU  Selengut J
+TC  286.20 286.20
+NC  233.65 233.65
+AL  clustalw
+IT  equivalog
+EN  3-hydroxy-3-methylglutaryl-CoA-synthase, eukaryotic clade
+EC  2.3.3.10
+TP  TIGRFAMs
+CC  Hydroxymethylglutaryl(HMG)-CoA synthase is the first step of isopentenyl pyrophosphate (IPP) biosynthesis via the mevalonate pathway.  This pathway is found mainly in eukaryotes, but also in archaea and some bacteria.  This model is specific for eukaryotes.

@@ -1,0 +1,24 @@
+ID  LysS_fung_arch
+AC  TIGR02146
+DE  homocitrate synthase
+AU  Selengut J
+TC  413.55 413.55
+NC  400.45 400.45
+AL  clustalw
+IT  hypoth_equivalog
+EN  homocitrate synthase
+GS  lysS
+EC  2.3.3.14
+TP  TIGRFAMs
+CC  This model includes the yeast LYS21 gene which carries out the first step of the alpha-aminoadipate (AAA) lysine biosynthesis pathway.  A related pathway is found in Thermus thermophilus [1].  This enzyme is closely related to 2-isopropylmalate synthase (LeuA) and citramalate synthase (CimA), both of which are present in the euryarchaeota.  Some archaea have a separate homocitrate synthase (AksA) which also synthesizes longer homocitrate analogs [2].
+RN  [1]
+RM  PMID: 10613839
+RT  A prokaryotic gene cluster involved in synthesis of lysine through the amino adipate pathway: a key to the evolution of amino acid biosynthesis
+RA  Nishida H, Nishiyama M, Kobashi N, Kosuge T, Hoshino T, Yamane H
+RL  Genome Res. 1999 Dec;9(12):1175-83
+RN  [2]
+RM  PMID: 9665716
+RT  Alpha-keto acid chain elongation reactions involved in the biosynthesis of coenzyme B (7-mercaptoheptanoyl threonine phosphate) in methanogenic Archaea.
+RA  Howell DM, Harich K, Xu H, White RH.
+RL  Biochemistry. 1998 Jul 14;37(28):10108-17.
+DR  HAMAP; MF_01025; 4 of 96

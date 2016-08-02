@@ -1,0 +1,14 @@
+ID  monomer_idh
+AC  TIGR00178
+DE  isocitrate dehydrogenase, NADP-dependent
+AU  Haft DH
+TC  950.00 950.00
+NC  100.00 100.00
+AL  clustalw
+IT  equivalog
+EN  isocitrate dehydrogenase, NADP-dependent, monomeric type
+EC  1.1.1.42
+TP  TIGRFAMs
+CC  The monomeric type of isocitrate dehydrogenase has been found so far in a small number of species, including Azotobacter vinelandii, Corynebacterium glutamicum, Rhodomicrobium vannielii, and Neisseria meningitidis. It is NADP-specific.
+RM  95138041; 
+RL  J Bacteriol 1995 Feb;177(3):774-782

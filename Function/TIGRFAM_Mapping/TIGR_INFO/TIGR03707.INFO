@@ -1,0 +1,18 @@
+ID  PPK2_P_aer
+AC  TIGR03707
+DE  polyphosphate kinase 2
+AU  Haft DH
+TC  301.80 301.80
+NC  248.45 248.45
+AL  muscle_manual
+IT  equivalog
+EN  polyphosphate kinase 2, PA0141 family
+GS  ppk2
+EC  2.7.4.1
+TP  TIGRFAMs
+CC  Members of this protein family are designated polyphosphate kinase 2 (PPK2) after the characterized protein in Pseudomonas aeruginosa. This family comprises one of three well-separated clades in the larger family described by Pfam model PF03976.  PA0141 from this family has been shown capable of operating in reverse, with GDP preferred (over ADP) as a substrate, producing GTP (or ATP) by transfer of a phosphate residue from polyphosphate. Most species with a member of this family also encode a polyphosphate kinase 1 (PPK1).
+RN  [1]
+RM  PMID:12482933
+RT  Polyphosphate kinase (PPK2), a potent, polyphosphate-driven generator of GTP.
+RA  Ishige K, Zhang H, Kornberg A
+RL  Proc Natl Acad Sci U S A. 2002 Dec 24;99(26):16684-8.

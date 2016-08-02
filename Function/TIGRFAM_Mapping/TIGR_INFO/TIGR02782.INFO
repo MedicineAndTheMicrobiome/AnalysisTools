@@ -1,0 +1,27 @@
+ID  TrbB_P
+AC  TIGR02782
+DE  P-type conjugative transfer ATPase TrbB
+AU  Selengut J
+TC  304.55 304.55
+NC  248.80 248.80
+AL  muscle
+IT  equivalog
+EN  P-type conjugative transfer ATPase TrbB
+GS  trbB
+TP  TIGRFAMs
+CC  The TrbB protein is found in the trb locus of Agrobacterium Ti plasmids where it is involved in the type IV secretion system for plasmid conjugative transfer [1].  TrbB is a homolog of the vir system VirB11 ATPase [2], and the Flp pilus sytem ATPase TadA [3].
+RN  [1]
+RM  PMID: 8763953
+RT  The tra region of the nopaline-type Ti plasmid is a chimera with elements related to the transfer systems of RSF1010, RP4, and F.
+RA  Farrand SK, Hwang I, Cook DM.
+RL  J Bacteriol. 1996 Jul;178(14):4233-47.
+RN  [2]
+RM  PMID: 15554962
+RT  Energetic components VirD4, VirB11 and VirB4 mediate early DNA transfer reactions required for bacterial type IV secretion.
+RA  Atmakuri K, Cascales E, Christie PJ.
+RL  Mol Microbiol. 2004 Dec;54(5):1199-211.
+RN  [3]
+RM  PMID: 11566992
+RT  Nonspecific adherence and fibril biogenesis by Actinobacillus actinomycetemcomitans: TadA protein is an ATPase.
+RA  Bhattacharjee MK, Kachlany SC, Fine DH, Figurski DH.
+RL  J Bacteriol. 2001 Oct;183(20):5927-36.

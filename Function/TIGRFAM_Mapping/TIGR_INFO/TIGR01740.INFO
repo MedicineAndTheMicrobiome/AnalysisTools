@@ -1,0 +1,14 @@
+ID  pyrF
+AC  TIGR01740
+DE  orotidine 5'-phosphate decarboxylase
+AU  Haft DH
+TC  92.30 92.30
+NC  75.10 75.10
+AL  clustalw_manual
+IT  equivalog_domain
+EN  orotidine 5'-phosphate decarboxylase, subfamily 1
+GS  pyrF
+EC  4.1.1.23
+TP  TIGRFAMs
+CC  This model represents orotidine 5'-monophosphate decarboxylase, the PyrF protein of pyrimidine nucleotide biosynthesis. In many eukaryotes, the region hit by this model is part of a multifunctional protein.
+DR  HAMAP; MF_01200; 292 of 294

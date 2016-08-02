@@ -1,0 +1,17 @@
+ID  nramp
+AC  TIGR01197
+DE  metal ion transporter, metal ion (Mn2+/Fe2+) transporter (Nramp) family
+AU  Ujwal ML, Haft DH, Paulsen IT
+TC  272.50 272.50
+NC  45.50 45.50
+AL  clustalw
+IT  subfamily
+EN  NRAMP (natural resistance-associated macrophage protein) metal ion transporters
+TR  2.A.55
+TP  TIGRFAMs
+CC  This model describes the Nramp metal ion transporter family.  Historically, in mammals these proteins have been functionally characterized as proteins involved in the host pathogen resistance, hence the name - NRAMP. At least two isoforms Nramp1 and Nramp2 have been identified. However the exact mechanism of pathogen resistance was unclear, until it was demonstrated by expression cloning and electrophysiological techniques that this protein was a metal ion transporter. It was also independently demonstrated that a microcytic anemia (mk) locus in mouse, encodes a metal ion transporter (DCT1 or Nramp2). The transporter has a broad range of substrate specificity that include Fe+2, Zn+2, Mn+2, Co+2, Cd+2, Cu+2, Ni+2 and Pb+2. The uptake of these metal ions is coupled to proton symport. Metal ions are essential cofactors in a number of biological process including, oxidative phosphorylation, gene regulation and metal ion homeostasis. Nramp1 could confer resistance to infection in one of the two ways. (1) The uptake of Fe+2 can produce toxic hydroxyl radicals via Fenton reaction killing the pathogens in phagosomes or (2) Deplete the metal ion pools in the phagosome and deprive the pathogens of metal ions, which is critical for its survival.
+RM  11027260
+RT Saccharomyces cerevisiae expresses three functionally distinct homologues of the nramp family of metal transporters.
+RA  Portnoy ME, Liu XF, Culotta VC
+RL  Mol Cell Biol 2000 Nov;20(21):7893-902
+DR  HAMAP; MF_00221; 80 of 82

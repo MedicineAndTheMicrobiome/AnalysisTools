@@ -1,0 +1,14 @@
+ID  met_syn_B12ind
+AC  TIGR01371
+DE  5-methyltetrahydropteroyltriglutamate--homocysteine S-methyltransferase
+AU  Haft DH
+TC  929.95 929.95
+NC  322.10 322.10
+AL  clustalw
+IT  equivalog
+EN  5-methyltetrahydropteroyltriglutamate--homocysteine S-methyltransferase
+GS  metE
+EC  2.1.1.14
+TP  TIGRFAMs
+CC  This HMM describes the cobalamin-independent methionine synthase. A family of uncharacterized archaeal proteins is homologous to the C-terminal region of this family. That family is excluded from this model but, along with this family, belongs to Pfam HMM PF01717.
+DR  HAMAP; MF_00172; 192 of 195

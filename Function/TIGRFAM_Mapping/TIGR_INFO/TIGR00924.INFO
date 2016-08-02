@@ -1,0 +1,13 @@
+ID  yjdL_sub1_fam
+AC  TIGR00924
+DE  amino acid/peptide transporter (Peptide:H+ symporter)
+AU  Ujwal ML, Loftus BJ, Paulsen IT
+TC  130.20 130.20
+NC  122.20 122.20
+AL  clustalw_manual
+IT  subfamily
+EN  amino acid/peptide transporter (Peptide:H+ symporter), bacterial
+TR  2.A.17
+TP  TIGRFAMs
+CC  The model describes proton-dependent oligopeptide transporters in bacteria. This model is restricted in its range in recognizing bacterial proton-dependent oligopeptide transporters, although they are found in yeast, plants and animals. They function by proton symport in a 1:1 stoichiometry, which is variable in different species. All of them are predicted to contain 12 transmembrane domains, for which limited experimental evidence exists.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_17.html

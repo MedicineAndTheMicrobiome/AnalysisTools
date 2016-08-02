@@ -1,0 +1,11 @@
+ID  Chlor_Arch_YYY
+AC  TIGR03662
+DE  chlor_Arch_YYY domain
+AU  Haft DH
+TC  300.25 300.25
+NC  232.60 232.60
+AL  muscle_manual
+IT  subfamily_domain
+EN  Chlor_Arch_YYY domain
+TP  TIGRFAMs
+CC  Members of this highly hydrophobic probable integral membrane family belong to two classes. In one, a single copy of the region modeled by this HMM represents essentially the full length of a strongly hydrophobic protein of about 700 to 900 residues (variable because of long inserts in some). The domain architecture of the other class consists of an additional N-terminal region, two copies of the region represented by this model, and three to four repeats of TPR, or tetratricopeptide repeat. The unusual species range includes several Archaea, several Chloroflexi, and Clostridium phytofermentans. An unusual motif YYYxG is present, and we suggest the name Chlor_Arch_YYY protein. The function is unknown.

@@ -1,0 +1,16 @@
+ID  HI0074
+AC  TIGR01987
+DE  nucleotidyltransferase substrate binding protein, HI0074 family
+AU  Haft DH
+TC  55.80 55.80
+NC  42.20 42.20
+AL  clustalw
+IT  subfamily
+EN  nucleotidyltransferase substrate binding protein, HI0074 family
+TP  TIGRFAMs
+CC  The member of this family from Haemophilus influenzae, HI0074, has been shown by crystal structure to resemble nucleotidyltransferase substrate binding proteins. It forms a complex with HI0073, encoded by the adjacent gene and containing a nucleotidyltransferase nucleotide binding domain (PF01909).
+RN  [1]
+RM  12486719
+RT  The HI0073/HI0074 protein pair from Haemophilus influenzae is a member of a new nucleotidyltransferase family: structure, sequence analyses, and solution studies.
+RA  Lehmann C, Lim K, Chalamasetty VR, Krajewski W, Melamud E, Galkin A, Howard A, Kelman Z, Reddy PT, Murzin AG, Herzberg O.
+RL  Proteins. 2003 Feb 1;50(2):249-60.

@@ -1,0 +1,19 @@
+ID  true_RNase_BN
+AC  TIGR02649
+DE  ribonuclease BN
+AU  Haft DH
+TC  563.70 563.70
+NC  416.45 416.45
+AL  clustalw
+IT  exception
+EN  ribonuclease BN
+GS  rbn
+EC  3.1.-.-
+TP  TIGRFAMs
+CC  Members of this protein family are ribonuclease BN of Escherichia coli K-12 and closely related proteins believed to be equivalent in function. Note that E. coli appears to lack RNase Z per se, and this protein of E. coli appears orthologous to (but not functionally equivalent to) RNase Z of Bacillus subtilis and various other species. Meanwhile, the yihY gene product of E. coli previously was incorrectly identified as RNase BN.
+RN  [1]
+RM  15764599
+RT  The RNase Z homologue encoded by Escherichia coli elaC gene is RNase BN.
+RA  Ezraty B, Dahlgren B, Deutscher MP.
+RL  J Biol Chem. 2005 Apr 29;280(17):16542-5.
+DR  HAMAP; MF_01818; 15 of 209

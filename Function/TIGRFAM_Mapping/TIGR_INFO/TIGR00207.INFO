@@ -1,0 +1,14 @@
+ID  fliG
+AC  TIGR00207
+DE  flagellar motor switch protein FliG
+AU  Loftus BJ
+TC  226.70 226.70
+NC  159.70 159.70
+AL  clustalw
+IT  equivalog
+EN  flagellar motor switch protein FliG
+GS  fliG
+TP  TIGRFAMs
+CC  The fliG protein along with fliM and fliN interact to form the switch complex of the bacterial flagellar motor located at the base of the basal body. This complex interacts with chemotaxis proteins (eg CHEY). In addition the complex interacts with other components of the motor that determine the direction of flagellar rotation.  The model contains putative members of the fliG family at scores of less than 100 from Agrobacterium radiobacter and Sinorhizobium meliloti as well as fliG-like genes from treponema pallidum and Borrelia burgdorferi. That is why the suggested cutoff is set at 20 but was set at 100 to construct the family.
+DR  SWISSPROT; P23448 
+DR  SWISSPROT; P15933

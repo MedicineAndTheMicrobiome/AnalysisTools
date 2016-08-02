@@ -1,0 +1,13 @@
+ID  intein_Cterm
+AC  TIGR01443
+DE  intein C-terminal splicing region
+AU  Haft DH
+TC  15.60 14.80
+NC  14.00 12.00
+AL  clustalw_manual
+IT  domain
+EN  intein C-terminal splicing region
+TP  TIGRFAMs
+CC  This HMM represents the well-conserved C-terminal region of a large number of inteins. It is based on interated search results, starting with a curated collection of intein N-terminal splicing regions from InBase, the New England Biolabs Intein Database, as presented on its web site. Inteins are regions encoded within proteins from which they remove themselves after translation in a self-splicing reaction, leaving the remainder of the coding region to form a complete, functional protein as if the intein were never there. Proteins with inteins include RecA, GyrA, ribonucleotide reductase, and others. Most inteins have a central region with putative endonuclease activity.
+DR  URL; http://www.neb.com/neb/inteins.html; InBase, The New England Biolabs Intein Database
+DR  HAMAP; MF_01509; 2 of 38

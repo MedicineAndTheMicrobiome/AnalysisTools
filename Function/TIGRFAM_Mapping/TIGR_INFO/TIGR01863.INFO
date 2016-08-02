@@ -1,0 +1,18 @@
+ID  cas_Csd1
+AC  TIGR01863
+DE  CRISPR-associated protein Cas8c/Csd1, subtype I-C/DVULG
+AU  Haft DH
+TC  218.65 218.65
+NC  156.95 156.95
+AL  clustalw_manual
+IT  equivalog
+EN  CRISPR-associated protein Cas8c/Csd1, subtype I-C/DVULG
+GS  cas8c
+TP  TIGRFAMs
+CC  CRISPR loci appear to be mobile elements with a wide host range. This HMM represents a protein that tends to be found near CRISPR repeats of the DVULG subtype of CRISPR/Cas locus. We designate this family Csd1 (CRISPR/Cas Subtype DVULG protein 1). The species range for this subtype, so far, is exclusively bacterial and mesophilic, although CRISPR loci in general are particularly common among archaea and thermophilic bacteria. In a few species (Xanthomonas axonopodis pv. citri str. 306 and Streptococcus mutans UA159), homology to this protein family is split across two tandem genes; the trusted cutoff to this family is set low enough to capture at least the longer of the two.
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=2003
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=57300
+RN  [1]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005

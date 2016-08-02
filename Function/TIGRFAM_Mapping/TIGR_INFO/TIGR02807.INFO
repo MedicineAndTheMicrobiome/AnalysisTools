@@ -1,0 +1,12 @@
+ID  cas6_var
+AC  TIGR02807
+DE  CRISPR-associated protein Cas6, subtype MYXAN
+AU  Haft DH
+TC  98.85 98.85
+NC  53.75 53.75
+AL  clustalw_manual
+IT  equivalog
+EN  CRISPR-associated protein Cas6, subtype MYXAN
+GS  cas6
+TP  TIGRFAMs
+CC  Members of this protein family resemble the Cas6 proteins described by TIGR01877 in having a C-terminal motif GXGXXXXXGXG, where the single X of each GXG is hydrophobic and the spacer XXXXX has at least one Lys or Arg. Examples are found in cas gene operons of CRISPR regions in Anabaena variabilis ATCC 29413,  Leptospira interrogans, Gemmata obscuriglobus UQM 2246, and twice in Myxococcus xanthus DK 1622. Oddly, an orphan member is found in Thiobacillus denitrificans ATCC 25259, whose genome does not seem to contain other evidence of CRISPR repeats or cas genes.

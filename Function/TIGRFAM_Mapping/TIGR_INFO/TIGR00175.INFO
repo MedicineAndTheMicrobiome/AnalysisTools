@@ -1,0 +1,15 @@
+ID  mito_nad_idh
+AC  TIGR00175
+DE  isocitrate dehydrogenase, NAD-dependent
+AU  Haft DH
+TC  432.40 432.40
+NC  323.75 323.75
+AL  clustalw
+IT  equivalog
+EN  isocitrate dehydrogenase, NAD-dependent, mitochondrial type
+EC  1.1.1.41
+TP  TIGRFAMs
+CC  Several NAD- or NADP-dependent dehydrogenases, including 3-isopropylmalate dehydrogenase, tartrate dehydrogenase, and the multimeric forms of isocitrate dehydrogenase, share a nucleotide binding domain unrelated to that of lactate dehydrogenase and its homologs. These enzymes dehydrogenate their substates at a H-C-OH site adjacent to a H-C-COOH site; the latter carbon, now adjacent to a carbonyl group, readily decarboxylates.
+CC  Mitochondrial NAD-dependent isocitrate dehydrogenases (IDH) resemble prokaryotic NADP-dependent IDH and 3-isopropylmalate dehydrogenase (an NAD-dependent enzyme) more closely than they resemble eukaryotic NADP-dependent IDH.
+CC  The mitochondrial NAD-dependent isocitrate dehydrogenase is believed to be an alpha(2)-beta-gamma heterotetramer. All subunits are homologous and found by this model.
+CC  The NADP-dependent IDH of Thermus aquaticus thermophilus strain HB8 resembles these NAD-dependent IDH, except for the residues involved in cofactor specificity, much more closely than it resembles other prokaryotic NADP-dependent IDH, including that of Thermus aquaticus strain YT1.

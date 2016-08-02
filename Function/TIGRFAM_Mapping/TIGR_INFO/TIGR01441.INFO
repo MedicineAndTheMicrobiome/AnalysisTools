@@ -1,0 +1,14 @@
+ID  GPR
+AC  TIGR01441
+DE  GPR endopeptidase
+AU  Haft DH
+TC  238.00 238.00
+NC  100.00 100.00
+AL  clustalw
+IT  equivalog
+EN  GPR endopeptidase
+GS  gpr
+EC  3.4.24.78
+TP  TIGRFAMs
+CC  This HMM describes a tetrameric protease that makes the rate-limiting first cut in the small, acid-soluble spore proteins (SASP) of Bacillus subtilis and related species. The enzyme lacks clear homology to other known proteases. It processes its own amino end before becoming active to cleave SASPs.
+DR  HAMAP; MF_00626; 19 of 19

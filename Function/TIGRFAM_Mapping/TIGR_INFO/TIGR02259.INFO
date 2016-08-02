@@ -1,0 +1,13 @@
+ID  benz_CoA_red_A
+AC  TIGR02259
+DE  benzoyl-CoA reductase, subunit A
+AU  Haft DH
+TC  578.00 578.00
+NC  168.45 168.45
+AL  clustalw
+IT  equivalog
+EN  benzoyl-CoA reductase, bcr type, subunit A
+GS  bcrA
+EC  1.3.7.8
+TP  TIGRFAMs
+CC  This HMM describes A, or gamma, subunit of the bcr type of benzoyl-CoA reductase, a 4-subunit enzyme. Many aromatic compounds are metabolized by way of benzoyl-CoA. This family shows strong sequence similarity to the 2-hydroxyglutaryl-CoA dehydratase alpha chain and to subunits of different types of benzoyl-CoA reductase (such as the bzd type).

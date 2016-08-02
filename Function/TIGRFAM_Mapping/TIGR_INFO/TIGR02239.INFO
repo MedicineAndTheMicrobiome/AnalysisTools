@@ -1,0 +1,11 @@
+ID  recomb_RAD51
+AC  TIGR02239
+DE  DNA repair protein RAD51
+AU  Haft DH
+TC  478.05 478.05
+NC  457.10 457.10
+AL  clustalw
+IT  equivalog
+EN  DNA repair protein RAD51
+TP  TIGRFAMs
+CC  This eukaryotic sequence family consists of RAD51, a protein involved in DNA homologous recombination and repair. It is similar in sequence the exclusively meiotic recombinase DMC1 (TIGR02238), to archaeal  families RadA (TIGR02236) and RadB (TIGR02237), and to bacterial RecA (TIGR02012).

@@ -1,0 +1,17 @@
+ID  spore_yqfC
+AC  TIGR02856
+DE  sporulation protein YqfC
+AU  Haft DH
+TC  77.80 77.80
+NC  29.70 29.70
+AL  clustalw
+IT  equivalog
+EN  sporulation protein YqfC
+GS  yqfC
+TP  TIGRFAMs
+CC  This small protein, designated YqfC in Bacillus subtilis, is both restricted to and universal in sporulating species of the Firmcutes, such as Bacillus subtilis and Clostridium perfringens. It is part of the sigma(E)-controlled regulon, and its mutation leads to a sporulation defect.
+RN  [1]
+RM  12662922
+RT  The sigmaE regulon and the identification of additional sporulation genes in Bacillus subtilis.
+RA  Eichenberger P, Jensen ST, Conlon EM, van Ooij C, Silvaggi J, Gonzalez-Pastor JE, Fujita M, Ben-Yehuda S, Stragier P, Liu JS, Losick R.
+RL  J Mol Biol. 2003 Apr 11;327(5):945-72.

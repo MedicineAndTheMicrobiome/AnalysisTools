@@ -1,0 +1,11 @@
+ID  MSMEG_0570_fam
+AC  TIGR04042
+DE  MSMEG_0570 family protein
+AU  Haft DH
+TC  79.85 79.85
+NC  39.95 39.95
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  MSMEG_0570 family protein
+TP  TIGRFAMs
+CC  This small protein, about 90 residues long, has no detectable homologs outside the set included about trusted cutoff for this HMM. Member proteins serve as markers for an eight-gene region whose overall function is unknown. One member of the cluster is a radical SAM protein with some similarity to enzymes of cofactor biosynthesis, another a glycosyltransferase, several hydrolases or oxidoreductases, and several unknown.

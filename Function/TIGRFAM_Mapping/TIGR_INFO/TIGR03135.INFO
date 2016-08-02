@@ -1,0 +1,18 @@
+ID  malonate_mdcG
+AC  TIGR03135
+DE  malonate decarboxylase holo-[acyl-carrier-protein] synthase
+AU  Haft DH
+TC  99.70 99.70
+NC  81.40 81.40
+AL  muscle_manual
+IT  equivalog
+EN  malonate decarboxylase holo-[acyl-carrier-protein] synthase
+GS  mdcG
+EC  2.7.7.66
+TP  TIGRFAMs
+CC  Malonate decarboxylase, like citrate lyase, has a unique acyl carrier protein subunit with a prosthetic group derived from, and distinct from, coenzyme A. Members of this protein family are the phosphoribosyl-dephospho-CoA transferase specific to the malonate decarboxylase system. This enzyme can also be designated holo-ACP synthase (2.7.7.61). The corresponding component of the citrate lyase system, CitX, shows little or no sequence similarity to this family.
+RN  [1]
+RM  PMID: 11052675
+RT  Biosynthesis of triphosphoribosyl-dephospho-coenzyme A, the precursor of the prosthetic group of malonate decarboxylase.
+RA  Hoenke S, Wild MR, Dimroth P
+RL  Biochemistry. 2000 Oct 31;39(43):13223-32.

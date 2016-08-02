@@ -1,0 +1,33 @@
+ID  Obg_CgtA
+AC  TIGR02729
+DE  Obg family GTPase CgtA
+AU  Haft DH
+TC  280.25 280.25
+NC  111.00 111.00
+AL  muscle_manual
+IT  equivalog
+EN  Obg family GTPase CgtA
+GS  cgtA
+TP  TIGRFAMs
+CC  This model describes a univeral, mostly one-gene-per-genome GTP-binding protein that associates with ribosomal subunits and appears to play a role in ribosomal RNA maturation. This GTPase, related to the nucleolar protein Obg, is designated CgtA in bacteria. Mutations in this gene are pleiotropic, but it appears that effects on cellular functions such as chromosome partition may be secondary to the effect on ribosome structure. Recent work done in Vibrio cholerae shows an essential role in the stringent response, in which RelA-dependent ability to synthesize the alarmone ppGpp is required for deletion of this GTPase to be lethal.
+DR  PFAM; PF01018; GTP1_OBG
+RN  [1]
+RM  15836769
+RT  The GTP binding protein Obg homolog ObgE is involved in ribosome maturation.
+RA  Sato A, Kobayashi G, Hayashi H, Yoshida H, Wada A, Maeda M, Hiraga S, Takeyasu K, Wada C.
+RL  Genes Cells. 2005 May;10(5):393-408.
+RN  [2]
+RM  15554976
+RT  The Caulobacter crescentus GTPase CgtAC is required for progression through the cell cycle and for maintaining 50S ribosomal subunit levels.
+RA  Datta K, Skidmore JM, Pu K, Maddock JR.
+RL  Mol Microbiol. 2004 Dec;54(5):1379-92.
+RN  [3]
+RM  PMID:17360576
+RT  Regulation of the stringent response is the essential function of the conserved bacterial G protein CgtA in Vibrio cholerae.
+RA  Raskin DM, Judson N, Mekalanos JJ
+RL  Proc Natl Acad Sci U S A. 2007 Mar 13;104(11):4636-41.
+RN  [4]
+RM  PMID:16980477
+RT  The Escherichia coli GTPase CgtAE is involved in late steps of large ribosome assembly.
+RA  Jiang M, Datta K, Walker A, Strahler J, Bagamasbad P, Andrews PC, Maddock JR
+RL  J Bacteriol. 2006 Oct;188(19):6757-70.

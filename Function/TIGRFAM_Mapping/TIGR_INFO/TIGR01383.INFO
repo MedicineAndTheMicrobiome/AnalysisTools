@@ -1,0 +1,15 @@
+ID  not_thiJ
+AC  TIGR01383
+DE  DJ-1 family protein
+AU  Haft DH
+TC  131.25 131.25
+NC  127.15 127.15
+AL  clustalw_manual
+IT  subfamily
+EN  DJ-1 family protein
+TP  TIGRFAMs
+CC  This HMM represents the DJ-1 clade of the so-called ThiJ/PfpI family of proteins. PfpI, represented by a distinct model, is a putative intracellular cysteine protease. DJ-1 is described as an oncogene that acts cooperatively with H-Ras. Many members of the DJ-1 clade are annotated (apparently incorrectly) as ThiJ, a protein of thiamine biosynthesis. However, published reports of ThiJ activity and identification of a ThiJ/ThiD bifunctional protein describe an unrelated locus mapping near ThiM, rather than the DJ-1 homolog of E. coli. The ThiJ designation for this family may be spurious; the cited paper PMID:8885414 refers to a locus near thiD and thiM in E. coli, unlike the gene represented here. Current public annotation reflects ThiJ/ThiD bifunctional activity, apparently a property of ThiD and not of this locus.
+RM  9070310
+RT  DJ-1, a novel oncogene which transforms mouse NIH3T3 cells in cooperation with ras.
+RA  Nagakubo D, Taira T, Kitaura H, Ikeda M, Tamai K, Iguchi-Ariga SM, Ariga H.
+RL  Biochem Biophys Res Commun. 1997 Feb 13;231(2):509-13.

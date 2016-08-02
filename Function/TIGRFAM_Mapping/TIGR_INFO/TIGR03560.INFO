@@ -1,0 +1,16 @@
+ID  F420_Rv1855c
+AC  TIGR03560
+DE  probable F420-dependent oxidoreductase, Rv1855c family
+AU  Haft DH
+TC  231.40 231.40
+NC  231.00 231.00
+AL  muscle_manual
+IT  subfamily
+EN  probable F420-dependent oxidoreductase, Rv1855c family
+TP  TIGRFAMs
+CC  Coenzyme F420 has a limited phylogenetic distribution, including methanogenic archaea, Mycobacterium tuberculosis and related species, Colwellia psychrerythraea 34H, Rhodopseudomonas palustris HaA2, and others. Partial phylogenetic profiling identifies protein subfamilies, within the larger family called luciferase-like monooxygenanases (PF00296), that appear only in F420-positive genomes and are likely to be F420-dependent. This model describes one such subfamily, exemplified by Rv1855c from Mycobacterium tuberculosis.
+RN  [1]
+RM  PMID:20675471 
+RT  Unexpected abundance of coenzyme F(420)-dependent enzymes in Mycobacterium tuberculosis and other actinobacteria. 
+RA  Selengut JD, Haft DH 
+RL  J Bacteriol. 2010 Nov;192(21):5788-98.

@@ -1,0 +1,15 @@
+ID  mscL
+AC  TIGR00220
+DE  large conductance mechanosensitive channel protein
+AU  Loftus BJ
+TC  71.00 71.00
+NC  43.30 43.30
+AL  clustalw
+IT  equivalog
+EN  large conductance mechanosensitive channel protein
+GS  mscL
+TP  TIGRFAMs
+CC  Protein encodes a channel which opens in response to a membrane stretch force. Probably serves as an osmotic gauge. Carboxy terminus tends to be more divergent across species with a high degree of sequence conservation found at the N-terminus.
+DR  ECOCYC; EG11180; mscL;
+RM  97045088
+DR  HAMAP; MF_00115; 260 of 262

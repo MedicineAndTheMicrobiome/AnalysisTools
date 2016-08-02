@@ -1,0 +1,18 @@
+ID  cyt_deam_dimer
+AC  TIGR01355
+DE  cytidine deaminase
+AU  Haft DH
+TC  275.00 275.00
+NC  90.25 90.25
+AL  clustalw_manual
+IT  equivalog
+EN  cytidine deaminase, homodimeric
+GS  cdd
+EC  3.5.4.5
+TP  TIGRFAMs
+CC  This homodimeric zinc metalloprotein is found in Arabidopis and some Proteobacteria. A related, homotetrameric form with a much smaller subunit is found most bacteria and in animals. Both types may act on deoxycytidine as well as cytidine.
+RM  10493793
+RT  Cytidine deaminases from B. subtilis and E. coli: compensating effects of changing zinc coordination and quaternary structure.
+RA  Carlow DC, Carter CW Jr, Mejlhede N, Neuhard J, Wolfenden R.
+RL  Biochemistry 1999 Sep 21;38(38):12258-65
+DR  HAMAP; MF_01558; 49 of 71

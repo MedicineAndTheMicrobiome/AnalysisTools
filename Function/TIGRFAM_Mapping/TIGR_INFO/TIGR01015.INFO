@@ -1,0 +1,14 @@
+ID  hmgA
+AC  TIGR01015
+DE  homogentisate 1,2-dioxygenase
+AU  Ujwal ML, Haft DH
+TC  510.75 510.75
+NC  61.60 61.60
+AL  clustalw
+IT  equivalog
+EN  homogentisate 1,2-dioxygenase
+GS  hmgA
+EC  1.13.11.5
+TP  TIGRFAMs
+CC  Missing in human disease alkaptonuria.
+DR  HAMAP; MF_00334; 57 of 58

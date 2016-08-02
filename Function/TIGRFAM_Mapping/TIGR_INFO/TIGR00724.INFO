@@ -1,0 +1,14 @@
+ID  urea_amlyse_rel
+AC  TIGR00724
+DE  biotin-dependent carboxylase uncharacterized domain
+AU  Haft DH
+TC  230.20 230.20
+NC  153.15 153.15
+AL  clustalw
+IT  domain
+EN  biotin-dependent carboxylase uncharacterized domain
+TP  TIGRFAMs
+CC  Urea amidolyase of Saccharomyces cerevisiae is a 1835 amino acid protein with an amidase domain, a biotin/lipoyl cofactor attachment domain, a carbamoyl-phosphate synthase L chain-like domain, and uncharacterized regions. It has both urea carboxylase and allophanate hydrolase activities. This HMM models a domain that represents uncharacterized prokaryotic proteins of about 300 amino acids, regions of prokaryotic urea carboxylase and of the urea carboxylase region of yeast urea amidolyase, and regions of other biotin-containing proteins.
+RN  [1]
+RM  82239410
+DR  SWISSPROT; P32528; DUR1_YEAST

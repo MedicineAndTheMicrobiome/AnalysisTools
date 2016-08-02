@@ -1,0 +1,17 @@
+ID  ars_reduc_gluta
+AC  TIGR02689
+DE  arsenate reductase, glutathione/glutaredoxin type
+AU  Haft DH
+TC  157.60 157.60
+NC  113.80 113.80
+AL  clustalw
+IT  equivalog
+EN  arsenate reductase, glutathione/glutaredoxin type
+GS  arsC
+EC  1.20.4.1
+TP  TIGRFAMs
+CC  Members of this protein family represent a novel form of arsenate reductase, using glutathione and glutaredoxin rather than thioredoxin for reducing equivalents as do some homologous arsenate reductases. An example of this type is Synechocystis sp. strain PCC 6803 slr0946, and of latter type (excluded from this model) is Staphylococcus aureus plasmid pI258 ArsC. Both are among the subset of arsenate reductases that belong the the low-molecular-weight protein-tyrosine phosphatase superfamily.
+RM  14617642
+RT  An arsenate reductase from Synechocystis sp. strain PCC 6803 exhibits a novel combination of catalytic characteristics.
+RA  Li R, Haile JD, Kennelly PJ.
+RL  J Bacteriol. 2003 Dec;185(23):6780-9.

@@ -1,0 +1,19 @@
+ID  pepN_proteo
+AC  TIGR02414
+DE  aminopeptidase N
+AU  Haft DH
+TC  718.20 718.20
+NC  403.85 403.85
+AL  clustalw
+IT  equivalog
+EN  aminopeptidase N, Escherichia coli type
+GS  pepN
+EC  3.4.11.2
+TP  TIGRFAMs
+CC  The M1 family of zinc metallopeptidases contains a number of distinct, well-separated clades of proteins with aminopeptidase activity. Several are designated aminopeptidase N, EC 3.4.11.2, after the Escherichia coli enzyme, suggesting a similar activity profile (see SP|P04825 for a description of catalytic activity). This family consists of all aminopeptidases closely related to E. coli PepN and presumed to have similar (not identical) function. Nearly all are found in Proteobacteria, but members are found also in Cyanobacteria, plants, and apicomplexan parasites. This family differs greatly in sequence from the family of aminopeptidases typified by Streptomyces lividans PepN (TIGR02412), from the membrane bound aminopeptidase N family in animals, etc.
+DR  SWISSPROT; P04825; Escherichia coli
+DR  PFAM; PF01433; Peptidase family M1
+RM  14663077
+RT  PepN is the major aminopeptidase in Escherichia coli: insights on substrate specificity and role during sodium-salicylate-induced stress.
+RA  Chandu D, Nandi D.
+RL  Microbiology. 2003 Dec;149(Pt 12):3437-47.

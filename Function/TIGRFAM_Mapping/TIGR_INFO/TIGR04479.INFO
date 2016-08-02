@@ -1,0 +1,23 @@
+ID  bcpD_PhpK_rSAM
+AC  TIGR04479
+DE  radical SAM P-methyltransferase, PhpK family
+AU  Haft DH
+TC  600.00 600.00
+NC  400.00 400.00
+AL  muscle_manual
+IT  subfamily
+EN  radical SAM P-methyltransferase, PhpK family
+GS  phpK
+EC  2.1.-.-
+TP  TIGRFAMs
+CC  Characterized members of this family are B12-binding domain/radical SAM domain enzymes that use methylcobalamin as a methyl donor to methylate a phosphorous atom during the biosynthesis of natural products such as bialaphos and phosalacine. These syntheses create an extremely rare C-P-C bond. All members of the seed alignment derive from genomic regions that include a non-ribosomal peptide synthase. Note that a single organism, Pelosinus fermentans JBW45 from Cr(VI)-contaminated groundwater, has eight additional homologs of unknown function that score between trusted and noise cutoffs of this model.
+RN  [1]
+RM  PMID:21950770 
+RT  In vitro phosphinate methylation by PhpK from Kitasatospora phosalacinea. 
+RA  Werner WJ, Allen KD, Hu K, Helms GL, Chen BS, Wang SC 
+RL  Biochemistry. 2011 Oct 25;50(42):8986-8. doi: 10.1021/bi201220r.
+RN  [2]
+RM  PMID:7789803 
+RT  Sequence of a P-methyltransferase-encoding gene isolated from a bialaphos-producing Streptomyces hygroscopicus. 
+RA  Hidaka T, Hidaka M, Kuzuyama T, Seto H 
+RL  Gene. 1995 May 26;158(1):149-50.

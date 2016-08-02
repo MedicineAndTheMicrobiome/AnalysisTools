@@ -1,0 +1,16 @@
+ID  crypt_chrom_pln
+AC  TIGR02766
+DE  cryptochrome, plant family
+AU  Haft DH
+TC  603.85 603.85
+NC  596.60 596.60
+AL  clustalw
+IT  subfamily
+EN  cryptochrome, plant family
+TP  TIGRFAMs
+CC  At least five major families of cryptochomes and photolyases share FAD cofactor binding, sequence homology, and the ability to react to short wavelengths of visible light. Photolysases are responsible for light-dependent DNA repair by removal of two types of uv-induced DNA dimerizations. Cryptochromes have other functions, often regulatory and often largely unknown, which may include circadian clock entrainment and control of development. Members of this subfamily are known so far only in plants; they may show some photolyase activity in vitro but appear mostly to be regulatory proteins that respond to blue light.
+RN  [1]
+RM  11884681
+RT  Cryptochrome light signals control development to suppress auxin sensitivity in the moss Physcomitrella patens.
+RA  Imaizumi T, Kadota A, Hasebe M, Wada M.
+RL  Plant Cell. 2002 Feb;14(2):373-86.

@@ -1,0 +1,18 @@
+ID  RNR_anaer_Bdell
+AC  TIGR02827
+DE  anaerobic ribonucleoside-triphosphate reductase
+AU  Haft DH
+TC  568.30 568.30
+NC  197.75 197.75
+AL  muscle
+IT  equivalog
+EN  anaerobic ribonucleoside-triphosphate reductase
+GS  nrdD
+EC  1.17.4.2
+TP  TIGRFAMs
+CC  Members of this family belong to the class III anaerobic ribonucleoside-triphosphate reductases (RNR). These glycine-radical-containing enzymes are oxygen-sensitive and operate under anaerobic conditions. The genes for this family are pair with genes for an acitivating protein that creates a glycine radical. Members of this family, though related, fall outside the scope of TIGR02487, a functionally equivalent protein set; no genome has members in both familes. Identification as RNR is supported by gene pairing with the activating protein, lack of other anaerobic RNR, and presence of an upstream regulatory element strongly conserved upstream of most RNR operons.
+RN  [1]
+RM  15949864
+RT  Identification of a bacterial regulatory system for ribonucleotide reductases by phylogenetic profiling.
+RA  Rodionov DA, Gelfand MS.
+RL  Trends Genet. 2005 Jul;21(7):385-9.

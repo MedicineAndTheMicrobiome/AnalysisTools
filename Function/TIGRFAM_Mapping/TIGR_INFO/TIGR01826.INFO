@@ -1,0 +1,11 @@
+ID  CofD_related
+AC  TIGR01826
+DE  conserved hypothetical protein
+AU  Haft DH
+TC  196.00 196.00
+NC  60.75 60.75
+AL  clustalw
+IT  subfamily
+EN  conserved hypothetical protein, cofD-related
+TP  TIGRFAMs
+CC  This HMM represents a subfamily of conserved hypothetical proteins that forms a sister group to the family of CofD, (TIGR01819), LPPG:Fo 2-phospho-L-lactate transferase, an enzyme of cytochrome F420 biosynthesis. Both this family and TIGR01819 are within the scope of the Pfam HMM PF01933.

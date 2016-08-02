@@ -1,0 +1,14 @@
+ID  vnfG_nitrog
+AC  TIGR02930
+DE  V-containing nitrogenase, delta subunit
+AU  Haft DH
+TC  141.70 141.70
+NC  122.35 122.35
+AL  muscle
+IT  equivalog
+EN  V-containing nitrogenase, delta subunit
+GS  vnfG
+EC  1.18.6.1
+TP  TIGRFAMs
+CC  Nitrogenase is the enzyme of biological nitrogen fixation. The most wide-spread and most efficient nitrogenase contains a molybdenum cofactor. This protein family, VnfG, represents the delta subunit of the V-containing (vanadium) alternative nitrogenase. It is homologous to AnfG, the delta subunit of the Fe-only nitrogenase.
+DR  PFAM; PF03139; AnfG_VnfG

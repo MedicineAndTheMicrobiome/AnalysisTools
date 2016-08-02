@@ -1,0 +1,18 @@
+ID  poly_gGlu_PgsB
+AC  TIGR04012
+DE  poly-gamma-glutamate synthase PgsB
+AU  Haft DH
+TC  222.70 222.70
+NC  116.35 116.35
+AL  muscle_manual
+IT  equivalog
+EN  poly-gamma-glutamate synthase PgsB/CapB
+GS  pgsB
+EC  6.3.2.-
+TP  TIGRFAMs
+CC  Of four genes commonly found to be involved in biosynthesis and export of poly-gamma-glutamate, pgsB(capB) and pgsC(capC) are found to be involved in the synthesis per se. Members of this family are designated PgsB, a nomeclature that covers both cases in which the poly-gamma-glutamate is secreted and those in which it is retained to form capsular material.PgsB has been shown to have poly-gamma-glutamate activity by itself but is bound tightly by PgsC (TIGR04011).
+RN  [1]
+RM  PMID:16689787
+RT  Poly-gamma-glutamate in bacteria.
+RA  Candela T, Fouet A
+RL  Mol Microbiol. 2006 Jun;60(5):1091-8.

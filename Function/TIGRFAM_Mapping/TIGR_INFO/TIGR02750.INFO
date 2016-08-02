@@ -1,0 +1,27 @@
+ID  TraN_Ftype
+AC  TIGR02750
+DE  type-F conjugative transfer system mating-pair stabilization protein TraN
+AU  Selengut J
+TC  422.45 422.45
+NC  247.45 247.45
+AL  clustalw
+IT  equivalog
+EN  type-F conjugative transfer system mating-pair stabilization protein TraN
+GS  traN
+TP  TIGRFAMs
+CC  TraN is a large cysteine-rich outer membrane protein involved in the mating-pair stabilization (adhesin) component of the F-type conjugative plamid transfer system.  TraN is believed to interact with the core type IV secretion system apparatus through the TraV protein [1,2,3].
+RN  [1]
+RM  PMID: 1593622
+RA  Maneewannakul S, Kathir P, Ippen-Ihler K.
+RT  Characterization of the F plasmid mating aggregation gene traN and of a new F transfer region locus trbE.
+RL  J Mol Biol. 1992 May 20;225(2):299-311.
+RN  [2]
+RM  PMID: 12855161
+RA  Lawley TD, Klimke WA, Gubbins MJ, Frost LS.
+RT  F factor conjugation is a true type IV secretion system.
+RL   FEMS Microbiol Lett. 2003 Jul 15;224(1):1-15.
+RN  [3]
+RM  PMID: 16138100
+RA  Frost LS, Leplae R, Summers AO, Toussaint A.
+RT  Mobile genetic elements: the agents of open source evolution.
+RL  Nat Rev Microbiol. 2005 Sep;3(9):722-32.

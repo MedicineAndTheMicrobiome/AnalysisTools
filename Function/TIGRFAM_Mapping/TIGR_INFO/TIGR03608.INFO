@@ -1,0 +1,11 @@
+ID  L_ocin_972_ABC
+AC  TIGR03608
+DE  putative bacteriocin export ABC transporter, lactococcin 972 group
+AU  Haft DH
+TC  254.85 254.85
+NC  225.80 225.80
+AL  muscle_manual
+IT  subfamily
+EN  putative bacteriocin export ABC transporter, lactococcin 972 group
+TP  TIGRFAMs
+CC  A gene pair with a fairly wide distribution consists of a polypeptide related to the lactococcin 972 (see TIGR01653) and multiple-membrane-spanning putative immunity protein (see TIGR01654). This model represents a small clade within the ABC transporters that regularly are found adjacent to these bacteriocin system gene pairs and are likely serve as export proteins.

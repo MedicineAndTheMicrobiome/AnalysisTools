@@ -1,0 +1,16 @@
+ID  thia_cytX
+AC  TIGR02358
+DE  putative hydroxymethylpyrimidine transporter CytX
+AU  Haft DH
+TC  309.85 309.85
+NC  170.55 170.55
+AL  clustalw
+IT  hypoth_equivalog
+EN  putative hydroxymethylpyrimidine transporter CytX
+GS  cytX
+TP  TIGRFAMs
+CC  On the basis of a phylogenomic study of thiamine biosythetic, salvage, and transporter genes and a highly conserved RNA element THI, this protein family has been identified as a probable transporter of hydroxymethylpyrimidine (HMP), the phosphorylated (by ThiD) form of which gets joined (by ThiE) to hydroxyethylthiazole phosphate to make thiamine phosphate.
+RM  12376536
+RT  Comparative genomics of thiamin biosynthesis in procaryotes. New genes and regulatory mechanisms.
+RA  Rodionov DA, Vitreschak AG, Mironov AA, Gelfand MS.
+RL  J Biol Chem. 2002 Dec 13;277(50):48949-59.

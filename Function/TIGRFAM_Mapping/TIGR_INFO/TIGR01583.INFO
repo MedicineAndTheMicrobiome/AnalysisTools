@@ -1,0 +1,18 @@
+ID  formate-DH-gamm
+AC  TIGR01583
+DE  formate dehydrogenase, gamma subunit
+AU  Selengut J
+TC  115.85 115.85
+NC  56.10 56.10
+AL  clustalw
+IT  equivalog
+EN  formate dehydrogenase, gamma subunit
+EC  1.2.1.2
+TP  TIGRFAMs
+CC  This model represents the gamma chain of the gamma proteobacteria (and Aquifex aolicus) formate dehydrogenase.  This subunit is integral to the cytoplasmic membrane, consisting of 4 transmembrane helices, and receives electrons from the beta subunit.  The entire E. coli formate dehydrogenase N (nitrate-inducible form) has been crystallized [1].  The gamma subunit contains two cytochromes, heme b(P) and heme b(C) near the periplasmic and cytoplasmic sides of the membrane respectively.  The electron acceptor quinone binds at the cytoplasmic heme histidine ligand.
+CC  NiFe-hydrogenase and thiosulfate reductase contain homologous gamma subunits, and these can be found scoring in the noise of this model.
+RN  [1]
+RM  PMID: 11884747
+RT  Molecular basis of proton motive force generation: structure of formate dehydrogenase-N.
+RA  Jormakka M, Tornroth S, Byrne B, Iwata S.
+RL  Science. 2002 Mar 8;295(5561):1863-8.

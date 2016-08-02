@@ -1,0 +1,18 @@
+ID  Arch_glmU
+AC  TIGR03992
+DE  UDP-N-acetylglucosamine diphosphorylase/glucosamine-1-phosphate N-acetyltransferase
+AU  Selengut J
+TC  292.10 292.10
+NC  286.15 286.15
+AL  muscle
+IT  subfamily
+EN  UDP-N-acetylglucosamine diphosphorylase/glucosamine-1-phosphate N-acetyltransferase
+GS  glmU
+EC  2.7.7.23 2.3.1.157
+TP  TIGRFAMs
+CC  The MJ_1101 protein from Methanococcus jannaschii has been characterized as the GlmU enzyme catalyzing the final two steps of UDP-GlcNAc biosynthesis [1].  Many of the genes identified by this model are in proximity to the GlmS and GlmM genes and are also presumed to be GlmU.  However, some archaeal genomes contain multiple closely-related homologs from this family and it is not clear what the substrate specificity is for each of them.
+RN  [1]
+RM  PMID:18263721
+RT  Acetamido sugar biosynthesis in the Euryarchaea.
+RA  Namboori SC, Graham DE
+RL  J Bacteriol. 2008 Apr;190(8):2987-96. Epub 2008 Feb 8.

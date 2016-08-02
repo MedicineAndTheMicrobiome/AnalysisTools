@@ -1,0 +1,15 @@
+ID  MsbA_rel
+AC  TIGR02204
+DE  ABC transporter, permease/ATP-binding protein
+AU  Haft DH
+TC  780.40 780.40
+NC  598.10 598.10
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  ABC transporter, permease/ATP-binding protein
+TP  TIGRFAMs
+CC  This protein is related to a Proteobacterial ATP transporter that exports lipid A and to eukaryotic P-glycoproteins.
+RM  12859648
+RT  Isolation and characterization of a transposon mutant of Pseudomonas aeruginosa affecting uptake of dibenzothiophene in n-tetradecane.
+RA  Noda K, Watanabe K, Maruhashi K.
+RL  Lett Appl Microbiol. 2003;37(2):95-9.

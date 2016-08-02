@@ -1,0 +1,19 @@
+ID  TIGR00452
+AC  TIGR00452
+DE  tRNA (mo5U34)-methyltransferase
+AU  Loftus BJ, Haft DH
+TC  275.00 275.00
+NC  150.00 150.00
+AL  clustalw
+IT  equivalog
+EN  tRNA (mo5U34)-methyltransferase
+GS  cmoB
+EC  2.1.1.-
+TP  TIGRFAMs
+CC  This model describes CmoB, the enzyme tRNA (mo5U34)-methyltransferase involved in tRNA wobble base modification.
+RN  [1]
+RM  PMID:15383682 
+RT  The modified wobble nucleoside uridine-5-oxyacetic acid in tRNAPro(cmo5UGG) promotes reading of all four proline codons in vivo. 
+RA  Nasvall SJ, Chen P, Bjork GR 
+RL  RNA. 2004 Oct;10(10):1662-73. 
+DR  HAMAP; MF_01590; 103 of 124

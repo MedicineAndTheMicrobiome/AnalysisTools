@@ -1,0 +1,16 @@
+ID  PyrG
+AC  TIGR00337
+DE  CTP synthase
+AU  Loftus BJ
+TC  462.75 462.75
+NC  289.55 289.55
+AL  clustalw
+IT  equivalog
+EN  CTP synthase
+GS  pyrG
+EC  6.3.4.2
+TP  TIGRFAMs
+CC  CTP synthase is involved in  pyrimidine ribonucleotide/ribonucleoside metabolism. The enzyme catalyzes the reaction L-glutamine + H2O + UTP + ATP = CTP + phosphate + ADP + L-glutamate. The enzyme exists as a dimer of identical chains that aggregates as a tetramer. This gene has been found circa 500 bp 5' upstream of enolase in both beta (Nitrosomonas europaea) and gamma (E.coli) subdivisions of proteobacterium (FEMS Microbiol Lett 1998 Aug 1;165(1):153-7).
+DR  ECOCYC; EG10810; pyrG;
+DR  PROSITE; PDOC00405;
+DR  HAMAP; MF_01227; 345 of 347

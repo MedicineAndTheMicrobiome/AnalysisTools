@@ -1,0 +1,21 @@
+ID  type_III_yopR
+AC  TIGR02509
+DE  type III secretion effector, YopR family
+AU  Haft DH
+TC  114.00 114.00
+NC  55.25 55.25
+AL  clustalw
+IT  equivalog
+EN  type III secretion effector, YopR family
+TP  TIGRFAMs
+CC  Members of this family are type III secretion system effectors, named differently in different species and designated YopR (Yersinia outer protein R), encoded by the YscH (Yersinia secretion H) gene. This Yops protein is unusual in that it is released to extracellularly rather than injected directly into the target cell as are most Yops.
+RN  [1]
+RM  10209737
+RT  Type III machines of pathogenic yersiniae secrete virulence factors into the extracellular milieu.
+RA  Lee VT, Schneewind O.
+RL  Mol Microbiol. 1999 Mar;31(6):1619-29.
+RN  [2]
+RM  8709853
+RT  Mutational analysis of the Yersinia enterocolitica virC operon: characterization of yscE, F, G, I, J, K required for Yop secretion and yscH encoding YopR.
+RA  Allaoui A, Schulte R, Cornelis GR.
+RL  Mol Microbiol. 1995 Oct;18(2):343-55.

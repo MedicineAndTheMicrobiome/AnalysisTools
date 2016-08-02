@@ -1,0 +1,19 @@
+ID  salvage_mtnW
+AC  TIGR03332
+DE  2,3-diketo-5-methylthiopentyl-1-phosphate enolase
+AU  Haft DH
+TC  513.60 513.60
+NC  359.20 359.20
+AL  muscle
+IT  equivalog
+EN  2,3-diketo-5-methylthiopentyl-1-phosphate enolase
+GS  mtnW
+EC  5.3.2.-
+TP  TIGRFAMs
+CC  Members of this family are the methionine salvage pathway enzyme 2,3-diketo-5-methylthiopentyl-1-phosphate enolase, a homolog of RuBisCO. This protein family seems restricted to Bacillus subtilis and close relatives, where two separate proteins carry the enolase and phosphatase activities that in other species occur in a single protein, MtnC (TIGR01691).
+RN  [1]
+RM  PMID: 14551435
+RT  A functional link between RuBisCO-like protein of Bacillus and photosynthetic RuBisCO.
+RA  Ashida H, Saito Y, Kojima C, Kobayashi K, Ogasawara N, Yokota A
+RL  Science. 2003 Oct 10;302(5643):286-90.
+DR  HAMAP; MF_01679; 6 of 17

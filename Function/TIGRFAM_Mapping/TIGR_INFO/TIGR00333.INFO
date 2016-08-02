@@ -1,0 +1,18 @@
+ID  nrdI
+AC  TIGR00333
+DE  nrdI protein
+AU  Loftus BJ
+TC  74.65 74.65
+NC  53.60 53.60
+AL  clustalw
+IT  equivalog
+EN  ribonucleoside-diphosphate reductase 2, operon protein nrdI
+GS  nrdI
+TP  TIGRFAMs
+CC  Ribonucleotide reductases (RNRs) are enzymes that provide the precursors of DNA synthesis. The three characterized classes of RNRs differ by their metal cofactor and their stable organic radical. The exact function of nrdI within the ribonucleotide reductases has not yet been fully characterised.
+DR  ECOCYC; EG13287; nrdI 
+RM  98136125
+RT  The manganese-containing ribonucleotide reductase of Corynebacterium ammoniagenes is a class Ib enzyme.
+RA  Fieschi F, Torrents E, Toulokhonova L, Jordan A, Hellman U, Barbe J, Gibert I, Karlsson M, Sjoberg BM
+RL  J Biol Chem 1998 Feb 20;273(8):4329-37 
+DR  HAMAP; MF_00128; 109 of 110

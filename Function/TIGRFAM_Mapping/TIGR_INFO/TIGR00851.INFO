@@ -1,0 +1,17 @@
+ID  mtlA
+AC  TIGR00851
+DE  PTS system, mannitol-specific IIC component
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  468.40 468.40
+NC  398.55 398.55
+AL  clustalw_manual
+IT  subfamily
+EN  PTS system, mannitol-specific IIC component
+GS  mtlA
+EC  2.7.1.69
+TR  4.A.2
+TP  TIGRFAMs
+CC  Bacterial PTS transporters transport and concomitantly phosphorylate their sugar substrates, and typically consist of multiple subunits or protein domains. The Fru family is a large and complex family which includes several sequenced fructose and mannitol-specific permeases as well as several putative PTS permeases of unknown specificities.The Fru family PTS systems typically have 3 domains, IIA, IIB and IIC, which may be found as 1 or more proteins. The fructose and mannitol transporters form separate phylogenetic clusters in this family. This family is specific for the IIC domain of the mannitol PTS transporters.
+DR  URL;  http://www-biology.ucsd.edu/~msaier/transport/4_A_2.html
+DR  Interpro; IPR003352
+PF  PFAM; PF02378

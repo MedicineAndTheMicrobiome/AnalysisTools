@@ -1,0 +1,13 @@
+ID  Shik-DH-AROM
+AC  TIGR01809
+DE  shikimate-5-dehydrogenase
+AU  Selengut J
+TC  196.00 196.00
+NC  173.40 173.40
+AL  clustalw
+IT  equivalog_domain
+EN  shikimate-5-dehydrogenase, fungal AROM-type
+GS  aroE
+EC  1.1.1.25
+TP  TIGRFAMs
+CC  This model represents a clade of shikimate-5-dehydrogenases found in Corynebacterium, Mycobacteria and fungi.  The fungal sequences are pentafunctional proteins known as AroM which contain the central five seven steps in the chorismate biosynthesis pathway.  The Corynebacterium and Mycobacterial sequences represent the sole shikimate-5-dehydrogenases in species which otherwise have every enzyme of the chorismate biosynthesis pathway.

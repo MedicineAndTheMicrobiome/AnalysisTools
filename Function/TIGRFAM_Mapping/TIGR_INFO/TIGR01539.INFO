@@ -1,0 +1,11 @@
+ID  portal_lambda
+AC  TIGR01539
+DE  phage portal protein, lambda family
+AU  Fouts DE, Haft DH
+TC  172.70 172.70
+NC  108.85 108.85
+AL  clustalw_manual
+IT  equivalog
+EN  phage portal protein, lambda family
+TP  TIGRFAMs
+CC  This HMM represents one of several distantly related families of phage portal protein. This protein forms a hole, or portal, that enables DNA passage during packaging and ejection.  It also forms the junction between the phage head (capsid) and the tail proteins. It functions as a dodecamer of a single polypeptide of average mol. wt. of 40-90 KDa.

@@ -1,0 +1,17 @@
+ID  folB
+AC  TIGR00525
+DE  dihydroneopterin aldolase
+AU  Haft DH
+TC  72.15 72.15
+NC  23.40 23.40
+AL  clustalw_manual
+IT  equivalog
+EN  dihydroneopterin aldolase
+GS  folB
+EC  4.1.2.25
+TP  TIGRFAMs
+CC  This model describes a bacterial dihydroneopterin aldolase, shown to form homo-octamers in E. coli. The equivalent activity is catalyzed by domains of larger folate biosynthesis proteins in other systems. The closely related parologous enzyme in E. coli, dihydroneopterin triphosphate epimerase, which is also homo-octameric, and dihydroneopterin aldolase domains of larger proteins, score below the trusted cutoff but may score well above the noise cutoff.
+RM  98316300
+RT  Biosynthesis of pteridines in Escherichia coli. Structural and mechanistic similarity of dihydroneopterin-triphosphate epimerase and dihydroneopterin aldolase.
+RA  Haussmann C, Rohdich F, Schmidt E, Bacher A, Richter G
+RL  J Biol Chem 1998 Jul 10;273(28):17418-24

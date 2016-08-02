@@ -1,0 +1,18 @@
+ID  nadC
+AC  TIGR00078
+DE  nicotinate-nucleotide diphosphorylase (carboxylating)
+AU  Richardson DL, Haft DH
+TC  198.40 198.40
+NC  150.90 150.90
+AL  clustalw_manual
+IT  equivalog
+EN  nicotinate-nucleotide pyrophosphorylase
+GS  nadC
+EC  2.4.2.19
+TP  TIGRFAMs
+CC  Synonym: quinolinate phosphoribosyltransferase (decarboxylating)
+RM  93123167
+RT  The Salmonella typhimurium nadC gene: sequence determination by use of Mud-P22 and purification of quinolinate phosphoribosyltransferase.
+RA  Hughes KT, Dessen A, Gray JP, Grubmeyer C
+RL  J Bacteriol 1993 Jan;175(2):479-86 
+DR  ECOCYC; EG11546; nadC.

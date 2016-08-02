@@ -1,0 +1,12 @@
+ID  glyco_TIGR04440
+AC  TIGR04440
+DE  glycosyltransferase domain
+AU  Haft DH
+TC  70.00 70.00
+NC  68.00 68.00
+AL  muscle_manual
+IT  domain
+EN  glycosyltransferase domain
+EC  2.-.-.-
+TP  TIGRFAMs
+CC  This model describes a putative glycotransferase domain, related to the group 2 family glycosyltransferases of PF00535.

@@ -1,0 +1,19 @@
+ID  TTQ_MADH_Lt
+AC  TIGR02659
+DE  methylamine dehydrogenase (amicyanin) light chain
+AU  Haft DH
+TC  196.85 196.85
+NC  85.80 85.80
+AL  manual
+IT  equivalog
+EN  methylamine dehydrogenase (amicyanin) light chain
+GS  mauA
+EC  1.4.9.1
+TP  TIGRFAMs
+CC  This family consists of the light chain of methylamine dehydrogenase light chain, a periplasmic enzyme.  This subunit contains a tryptophan tryptophylquinone (TTQ) prothetic group derived from Trp-114 and Trp-165 of the precursor, numbered according to the sequence from Paracoccus denitrificans. The enzyme forms a complex with the type I blue copper protein amicyanin and cytochrome. Electron transfer procedes from TQQ to the copper and then to the heme group of the cytochrome.
+RN  [1]
+RM  15734739
+RT  Active site aspartate residues are critical for tryptophan tryptophylquinone biogenesis in methylamine dehydrogenase.
+RA  Jones LH, Pearson AR, Tang Y, Wilmot CM, Davidson VL.
+RL  J Biol Chem. 2005 Apr 29;280(17):17392-6.
+DR  PFAM; PF02975; Me-amine-dh_L

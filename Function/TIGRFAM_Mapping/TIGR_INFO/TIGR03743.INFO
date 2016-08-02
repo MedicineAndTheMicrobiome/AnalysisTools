@@ -1,0 +1,17 @@
+ID  SXT_TraD
+AC  TIGR03743
+DE  conjugative coupling factor TraD, SXT/TOL subfamily
+AU  Haft DH
+TC  366.00 366.00
+NC  240.45 240.45
+AL  muscle_manual
+IT  subfamily
+EN  conjugative coupling factor TraD, SXT/TOL subfamily
+GS  traD
+TP  TIGRFAMs
+CC  Members of this protein family are the putative conjugative coupling factor, TraD (or TraG), rather distantly related to the well-characterized TraD of the F plasmid. Members are associated with conjugative-transposon-like mobile genetic elements of the class that includes SXT, an antibiotic resistance transfer element in some Vibrio cholerae strains.
+RN  [1]
+RM  PMID:12107144
+RT  Genomic and functional analyses of SXT, an integrating antibiotic resistance gene transfer element derived from Vibrio cholerae.
+RA  Beaber JW, Hochhut B, Waldor MK
+RL  J Bacteriol. 2002 Aug;184(15):4259-69.

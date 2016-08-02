@@ -1,0 +1,26 @@
+ID  HMG_CoA_syn_Arc
+AC  TIGR00748
+DE  putative hydroxymethylglutaryl-CoA synthase
+AU  Selengut J, Haft DH
+TC  353.35 353.35
+NC  353.15 353.15
+AL  clustalw
+IT  equivalog
+EN  hydroxymethylglutaryl-CoA synthase, putative
+EC  2.3.3.10
+TP  TIGRFAMs
+CC  This family of archaeal proteins shows considerable homology and identical active site residues to the bacterial hydroxymethylglutaryl-CoA synthase (HMG-CoA synthase, modeled by TIGR01835) which is the second step in the mevalonate pathway of IPP biosynthesis [1].  
+CC  An enzyme from Pseudomonas fluorescens involved in the biosynthesis of the polyketide diacetyl-phloroglucinol is more closely related, but lacks the active site residues [2].
+CC  In each of the genomes containing a member of this family there is no other recognized HMG-CoA synthase, although other elements of the mevalonate pathway are in evidence.  The only archaeon currently sequenced which lacks a homolog in this pathway is Halobacterium, which _does_ contain a separate HMG-CoA synthase.
+CC  Thus, although there is no experimental evidence supporting this name, the bioinformatics-based conclusion appears to be sound.
+RN  [1]
+RM  PMID: 12107122
+RT  Enterococcus faecalis 3-hydroxy-3-methylglutaryl coenzyme A synthase, an enzyme of isopentenyl diphosphate biosynthesis.
+RA  Sutherlin A, Hedl M, Sanchez-Neri B, Burgner JW 2nd, Stauffacher CV, Rodwell VW.
+RL  J Bacteriol. 2002 Aug;184(15):4065-70. 
+RN  [2]
+RM  PMID: 10322017
+RT  Identification and characterization of a gene cluster for synthesis of the polyketide antibiotic 2,4-diacetylphloroglucinol from Pseudomonas fluorescens Q2-87.
+RA  Bangera MG, Thomashow LS.
+RL  J Bacteriol. 1999 May;181(10):3155-63.
+DR  HAMAP; MF_01409; 30 of 30

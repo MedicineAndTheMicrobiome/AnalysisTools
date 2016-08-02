@@ -1,0 +1,16 @@
+ID  cas_cyan_RAMP
+AC  TIGR02581
+DE  CRISPR-associated RAMP protein, SSO1426 family
+AU  Haft DH
+TC  108.05 108.05
+NC  89.40 89.40
+AL  clustalw
+IT  hypoth_equivalog
+EN  CRISPR-associated RAMP protein, SSO1426 family
+TP  TIGRFAMs
+CC  Members of this CRISPR-associated (cas) gene family are found in the RAMP-2 subtype of CRISPR/cas locus and designated TM1809 family.
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=2003
+RN  [1]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005

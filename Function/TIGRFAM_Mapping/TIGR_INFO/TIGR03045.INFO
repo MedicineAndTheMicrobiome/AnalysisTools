@@ -1,0 +1,17 @@
+ID  PS_II_C550
+AC  TIGR03045
+DE  cytochrome c-550
+AU  Haft DH
+TC  177.75 177.75
+NC  145.80 145.80
+AL  muscle_manual
+IT  equivalog
+EN  cytochrome c-550
+GS  psbV
+TP  TIGRFAMs
+CC  Members of this protein family are cytochrome c-550, the PsbV extrinsic protein of photosystem II, from both Cyanobacteria and chloroplasts. A paralog to this protein, PsbV2, is found in some species in addition to PsbV itself.
+RN  [1]
+RM  PMID: 11427679
+RT  Functional analysis of psbV and a novel c-type cytochrome gene psbV2 of the thermophilic cyanobacterium Thermosynechococcus elongatus strain BP-1.
+RA  Katoh H, Itoh S, Shen JR, Ikeuchi M
+RL  Plant Cell Physiol. 2001 Jun;42(6):599-607.

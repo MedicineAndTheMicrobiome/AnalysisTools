@@ -1,0 +1,17 @@
+ID  recomb_radA
+AC  TIGR02236
+DE  DNA repair and recombination protein RadA
+AU  Haft DH
+TC  361.15 361.15
+NC  355.60 355.60
+AL  clustalw
+IT  equivalog
+EN  DNA repair and recombination protein RadA
+GS  radA
+TP  TIGRFAMs
+CC  This family consists exclusively of archaeal RadA protein, a homolog of bacterial RecA (TIGR02012), eukaryotic RAD51 (TIGR02239), and archaeal RadB (TIGR02237). This protein is involved in DNA repair and recombination. The member from Pyrococcus horikoshii contains an intein.
+RM  11713300
+RT  RadA protein from Archaeoglobus fulgidus forms rings, nucleoprotein filaments and catalyses homologous recombination.
+RA  McIlwraith MJ, Hall DR, Stasiak AZ, Stasiak A, Wigley DB, West SC.
+RL  Nucleic Acids Res. 2001 Nov 15;29(22):4509-17.
+DR  HAMAP; MF_00348; 36 of 36

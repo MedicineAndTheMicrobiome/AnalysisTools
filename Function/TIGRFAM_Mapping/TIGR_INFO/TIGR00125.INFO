@@ -1,0 +1,12 @@
+ID  cyt_tran_rel
+AC  TIGR00125
+DE  cytidyltransferase-like domain
+AU  Haft DH
+TC  27.70 27.70
+NC  27.50 27.50
+AL  clustalw
+IT  domain
+EN  cytidyltransferase-like domain
+TP  TIGRFAMs
+CC  Protein families that contain at least one copy of this domain include citrate lyase ligase, pantoate-beta-alanine ligase, glycerol-3-phosphate cytidyltransferase, ADP-heptose synthase, phosphocholine cytidylyltransferase, lipopolysaccharide core biosynthesis protein KdtB, the bifunctional protein NadR, and a number whose function is unknown. Many of these proteins are known to use CTP or ATP and release pyrophosphate.
+DR  HAMAP; MF_01603; 146 of 148

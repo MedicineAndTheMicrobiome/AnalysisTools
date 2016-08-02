@@ -1,0 +1,24 @@
+ID  UbiG
+AC  TIGR01983
+DE  3-demethylubiquinone-9 3-O-methyltransferase
+AU  Selengut J
+TC  102.95 102.95
+NC  77.30 77.30
+AL  clustalw
+IT  equivalog
+EN  ubiquinone biosynthesis O-methyltransferase
+GS  ubiG
+EC  2.1.1.64
+TP  TIGRFAMs
+CC  This model represents an O-methyltransferase believed to act at two points in the ubiquinone biosynthetic pathway in bacteria (UbiG) and fungi (COQ3) [1,2].  A separate methylase (MenG/UbiE) catalyzes the single C-methylation step.  The most commonly used names for genes in this family do not indicate whether this gene is an O-methyl, or C-methyl transferase.
+RN  [1]
+RM  PMID: 11583838
+RT  Ubiquinone biosynthesis in microorganisms.
+RA  Meganathan R.
+RL  FEMS Microbiol Lett. 2001 Sep 25;203(2):131-9. 
+RN  [2]
+RM  PMID: 10419476
+RT  Yeast and rat Coq3 and Escherichia coli UbiG polypeptides catalyze both O-methyltransferase steps in coenzyme Q biosynthesis.
+RA  Poon WW, Barkovich RJ, Hsu AY, Frankel A, Lee PT, Shepherd JN, Myles DC, Clarke CF.
+RL  J Biol Chem. 1999 Jul 30;274(31):21665-72.
+DR  HAMAP; MF_00472; 168 of 172

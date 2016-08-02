@@ -1,0 +1,18 @@
+ID  FGAM_synt
+AC  TIGR01735
+DE  phosphoribosylformylglycinamidine synthase
+AU  Haft DH
+TC  1123.05 1123.05
+NC  634.50 634.50
+AL  clustalw_manual
+IT  equivalog
+EN  phosphoribosylformylglycinamidine synthase, single chain form
+GS  purL
+EC  6.3.5.3
+TP  TIGRFAMs
+CC  This HMM represents a single-molecule form of phosphoribosylformylglycinamidine synthase, also called FGAM synthase, an enzyme of purine de novo biosynthesis. This form is found mostly in eukaryotes and Proteobacteria. In Bacillus subtilis PurL (FGAM synthase II) and PurQ (FGAM synthase I), homologous to different parts of this model, perform the equivalent function; the unrelated small protein PurS is also required and may be a third subunit.
+RM  2531746
+RT  The organization of the purL gene encoding 5'-phosphoribosylformylglycinamide amidotransferase of Escherichia coli
+RA  Sampei G, Mizobuchi K.
+RL  J Biol Chem 1989 Dec 15;264(35):21230-8
+DR  HAMAP; MF_00419; 57 of 57

@@ -1,0 +1,17 @@
+ID  HpnR_B12_rSAM
+AC  TIGR04367
+DE  hopanoid C-3 methylase HpnR
+AU  Haft DH
+TC  650.00 650.00
+NC  350.00 350.00
+AL  muscle_manual
+IT  equivalog
+EN  hopanoid C-3 methylase HpnR
+GS  hpnR
+TP  TIGRFAMs
+CC  Members of this are family are a B12-binding domain/radical SAM domain protein required for 3-methylhopanoid production. Activity was confirmed by mutant phenotype by disrupting this gene in Methylococcus capsulatus strain Bath. This protein family should only occur in genomes that encode a squalene-hopene cyclase (see TIGR01507).
+RN  [1]
+RM  PMID:22826256 
+RT  Discovery, taxonomic distribution, and phenotypic characterization of a gene required for 3-methylhopanoid production. 
+RA  Welander PV, Summons RE 
+RL  Proc Natl Acad Sci U S A. 2012 Aug 7;109(32):12905-10. Epub 2012 Jul 23.

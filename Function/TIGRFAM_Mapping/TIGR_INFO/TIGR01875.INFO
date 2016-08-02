@@ -1,0 +1,15 @@
+ID  cas_MJ0381
+AC  TIGR01875
+DE  CRISPR-associated autoregulator DevR family
+AU  Haft DH
+TC  67.30 67.30
+NC  43.10 43.10
+AL  manual
+IT  subfamily
+EN  CRISPR-associated autoregulator DevR family
+TP  TIGRFAMs
+CC  CRISPR is a term for Clustered Regularly Interspaced Short Palidromic Repeats. A number of protein families appear only in association with these repeats and are designated Cas (CRISPR associated) proteins.  This HMM represents one such family, represented by MJ0381 of Methanococcus jannaschii. This family includes the DevR protein of Myxococcus xanthus, a protein whose expression appears to regulated through a number of means, including both location and autorepression; DevR mutants are incapable of fruiting body development.
+RM  7693658
+RT  devRS, an autoregulated and essential genetic locus for fruiting body development in Myxococcus xanthus.
+RA  Thony-Meyer L, Kaiser D.
+RL  J Bacteriol 1993 Nov;175(22):7450-62

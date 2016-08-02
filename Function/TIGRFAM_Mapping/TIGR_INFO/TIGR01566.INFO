@@ -1,0 +1,11 @@
+ID  ZF_HD_prot_N
+AC  TIGR01566
+DE  ZF-HD homeobox protein Cys/His-rich dimerization domain
+AU  Haft DH, Segal N
+TC  51.10 51.10
+NC  41.65 41.65
+AL  clustalw_manual
+IT  domain
+EN  ZF-HD homeobox protein Cys/His-rich dimerization domain
+TP  TIGRFAMs
+CC  This HMM describes a 54-residue domain found in the N-terminal region of plant proteins, the vast majority of which contain a ZF-HD class homeobox domain toward the C-terminus. The region between the two domains typically is rich in low complexity sequence. The companion ZF-HD homeobox domain is described in model TIGR01565.

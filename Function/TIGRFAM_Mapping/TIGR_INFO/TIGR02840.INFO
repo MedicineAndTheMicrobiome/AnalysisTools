@@ -1,0 +1,18 @@
+ID  spore_YtaF
+AC  TIGR02840
+DE  putative sporulation protein YtaF
+AU  Haft DH
+TC  149.60 149.60
+NC  71.20 71.20
+AL  muscle
+IT  equivalog
+EN  putative sporulation protein YtaF
+GS  ytaF
+TP  TIGRFAMs
+CC  This protein family was identified, at the time of the publication of the Carboxydothermus hydrogenoformans genome, as having a phylogenetic profile that exactly matches the subset of the Firmicutes capable of forming endospores. The species include Bacillus anthracis, Clostridium tetani, Thermoanaerobacter tengcongensis, Geobacillus kaustophilus, etc. This protein, previously named YtaF, is therefore a putative sporulation protein.
+RN  [1]
+RM  16311624
+RT  Life in Hot Carbon Monoxide: The Complete Genome Sequence of Carboxydothermus hydrogenoformans Z-2901.
+RA  Wu M, Ren Q, Durkin AS, Daugherty SC, Brinkac LM, Dodson RJ, Madupu R, Sullivan SA, Kolonay JF, Nelson WC, Tallon LJ, Jones KM, Ulrich LE,
+Gonzalez JM, Zhulin IB, Robb FT, Eisen JA.
+RL  2005 Nov 25;1(5):e65

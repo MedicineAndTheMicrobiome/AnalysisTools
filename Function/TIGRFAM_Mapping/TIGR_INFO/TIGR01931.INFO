@@ -1,0 +1,13 @@
+ID  cysJ
+AC  TIGR01931
+DE  sulfite reductase [NADPH] flavoprotein, alpha-component
+AU  Haft DH
+TC  668.15 668.15
+NC  425.10 425.10
+AL  clustalw_manual
+IT  equivalog
+EN  sulfite reductase [NADPH] flavoprotein, alpha-component
+EC  1.8.1.2
+TP  TIGRFAMs
+CC  This model describes an NADPH-dependent sulfite reductase flavoprotein subunit. Most members of this family are found in Cys biosynthesis gene clusters. The closest homologs below the trusted cutoff are designated as subunits nitrate reductase.
+DR  HAMAP; MF_01541; 55 of 56

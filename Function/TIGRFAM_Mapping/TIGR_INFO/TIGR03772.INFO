@@ -1,0 +1,11 @@
+ID  anch_rpt_subst
+AC  TIGR03772
+DE  anchored repeat ABC transporter, substrate-binding protein
+AU  Haft DH
+TC  350.45 350.45
+NC  238.25 238.25
+AL  muscle_manual
+IT  equivalog
+EN  anchored repeat ABC transporter, substrate-binding protein
+TP  TIGRFAMs
+CC  Members of this protein family are ABC transporter permease subunits as identified by PF00950, but additionally contain the Actinobacterial insert domain described by TIGR03769. Some homologs (lacking the insert) have been described as transporters of manganese or of chelated iron. Members of this family typically are found along with an ATP-binding cassette protein, a permease, and an LPXTG-anchored protein with two or three copies of the TIGR03769 insert that occurs just once in this protein family.

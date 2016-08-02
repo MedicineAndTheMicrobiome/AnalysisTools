@@ -1,0 +1,17 @@
+ID  cas_devS
+AC  TIGR02586
+DE  CRISPR-associated protein Cas5/DevS, subtype MYXAN
+AU  Haft DH
+TC  111.50 111.50
+NC  58.30 58.30
+AL  clustalw
+IT  exception
+EN  CRISPR-associated protein Cas5/DevS, subtype MYXAN
+GS  cas5
+TP  TIGRFAMs
+CC  This model represents DevS of Myxococcus xanthus and related proteins of Leptospira interrogans and Gemmata obscuriglobus. This protein is encoded in a cluster of CRISPR-associated (cas) genes, and in the special case of Myxococcus xanthus has taken on a role in the control of fruiting body development. CRISPRs are clustered, regularly interspaced short palidromic repeats. This protein family is related to models TIGR01868, TIGR01895, and TIGR01876.
+RN  [1]
+RM  16292354
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005

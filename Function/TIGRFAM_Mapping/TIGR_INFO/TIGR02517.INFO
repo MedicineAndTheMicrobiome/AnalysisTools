@@ -1,0 +1,15 @@
+ID  type_II_gspD
+AC  TIGR02517
+DE  type II secretion system protein D
+AU  Haft DH
+TC  351.35 351.35
+NC  231.85 231.85
+AL  clustalw_manual
+IT  equivalog
+EN  type II secretion system protein D
+GS  gspD
+TP  TIGRFAMs
+CC  In Gram-negative bacteria, proteins that have first crossed the inner member by Sec-dependent protein transport can be exported across the outer membrane by type II secretion, also called the main terminal branch of the general secretion pathway. Members of this family are general secretion pathway protein D. In Yersinia enterocolitica, a second member of this family is part of a novel second type II secretion system specifically associated with virulence (See PMID:12654803). This family is closely homologous to the type IV pilus outer membrane secretin PilQ (TIGR02515) and to the type III secretion system pore YscC/HrcC (TIGR02516).
+RN  [1]
+RM  12654803
+RT  Novel virulence-associated type II secretion system unique to high-pathogenicity Yersinia enterocolitica.

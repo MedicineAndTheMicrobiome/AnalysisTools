@@ -1,0 +1,12 @@
+ID  gvpC_cyan_rpt
+AC  TIGR02641
+DE  gas vesicle protein GvpC repeat
+AU  Haft DH
+TC  18.80 18.80
+NC  18.65 18.65
+AL  manual
+IT  equivalog_domain
+EN  gas vesicle protein GvpC repeat
+GS  gvpC
+TP  TIGRFAMs
+CC  This model describes a 33-amino acid repeated domain in bacterial versions of the gas vesicle protein GvpC, a structural protein less abundant than GvpA.

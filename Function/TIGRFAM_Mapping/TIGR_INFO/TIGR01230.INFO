@@ -1,0 +1,21 @@
+ID  agmatinase
+AC  TIGR01230
+DE  agmatinase
+AU  Haft DH
+TC  174.30 174.30
+NC  141.00 141.00
+AL  clustalw_manual
+IT  equivalog
+EN  agmatinase
+GS  speB
+EC  3.5.3.11
+TP  TIGRFAMs
+CC  Members of this family include known and predicted examples of agmatinase (agmatine ureohydrolase). The seed includes members of archaea, for which no definitive agmatinase sequence has yet been made available. However, archaeal sequences are phylogenetically close to the experimentally verified B. subtilis sequence. One species of Halobacterium has been demonstrated in vitro to produce agmatine from arginine, but no putrescine from ornithine, suggesting that arginine decarboxylase and agmatinase, rather than arginase and ornithine decarboxylase, lead from Arg to polyamine biosynthesis.
+CC  Note: a history of early misannotation of members of this family is detailed in PUBMED:10931887.
+DR  EXPERIMENTAL; EGAD|47504; Synechocystis PCC6803
+DR  EXPERIMENTAL; GP|10184435; Neisseria gonorrhoeae
+RM  10931887
+RT  Phylogeny of related functions: the case of polyamine biosynthetic enzymes.
+RA  Sekowska A, Danchin A, Risler JL
+RL  Microbiology 2000 Aug;146 ( Pt 8):1815-28
+DR  HAMAP; MF_01418; 33 of 34

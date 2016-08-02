@@ -1,0 +1,21 @@
+ID  hemK_rel_arch
+AC  TIGR00537
+DE  putative methylase
+AU  Haft DH
+TC  87.00 87.00
+NC  78.10 78.10
+AL  clustalw
+IT  hypoth_equivalog
+EN  HemK-related putative methylase
+TP  TIGRFAMs
+CC  The gene hemK from E. coli was found to contribute to heme biosynthesis and originally suggested to be protoporphyrinogen oxidase (Medline 95189105). Functional analysis of the nearest homolog in Saccharomyces cerevisiae, YNL063w, finds it is not protoporphyrinogen oxidase and sequence analysis suggests that HemK homologs have S-adenosyl-methionine-dependent methyltransferase activity (Medline 99237242). Homologs are found, usually in a single copy, in nearly all completed genomes, but varying somewhat in apparent domain architecture. This model represents an archaeal and eukaryotic protein family that lacks an N-terminal domain found in HemK and its eubacterial homologs. It is found in a single copy in the first six completed archaeal and eukaryotic genomes.
+RN  [1]
+RM  99237242
+RT  Functional analysis of the hemK gene product involvement in protoporphyrinogen oxidase activity in yeast.
+RA  Le Guen L, Santos R, Camadro JM
+RL  FEMS Microbiol Lett 1999 Apr 1;173(1):175-82
+RN  [2]
+RM  95189105
+RT  Cloning and sequencing of a previously unidentified gene that is involved in the biosynthesis of heme in Escherichia coli.
+RA  Nakayashiki T, Nishimura K, Inokuchi H
+RL  Gene 1995 Feb 3;153(1):67-70

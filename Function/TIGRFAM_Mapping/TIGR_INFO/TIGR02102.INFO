@@ -1,0 +1,11 @@
+ID  pullulan_Gpos
+AC  TIGR02102
+DE  pullulanase, extracellular
+AU  Haft DH
+TC  1042.25 1042.25
+NC  487.75 487.75
+AL  clustalw
+IT  equivalog_domain
+EN  pullulanase, extracellular, Gram-positive
+TP  TIGRFAMs
+CC  Pullulan is an unusual, industrially important polysaccharide in which short alpha-1,4 chains (maltotriose) are connected in alpha-1,6 linkages. Enzymes that cleave alpha-1,6 linkages in pullulan and release maltotriose are called pullulanases although pullulan itself may not be the natural substrate. In contrast, a glycogen debranching enzyme such GlgX, homologous to this family, can release glucose at alpha,1-6 linkages from glycogen first subjected to limit degradation by phosphorylase. Characterized members of this family include a surface-located pullulanase from  Streptococcus pneumoniae (PMID:11083842) and an extracellular bifunctional amylase/pullulanase with C-terminal pullulanase activity (PMID:8798645).

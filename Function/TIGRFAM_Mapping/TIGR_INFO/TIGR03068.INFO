@@ -1,0 +1,16 @@
+ID  srtB_sig_NPQTN
+AC  TIGR03068
+DE  sortase B signal domain, NPQTN class
+AU  Haft DH
+TC  24.50 24.50
+NC  23.50 23.50
+AL  manual
+IT  domain
+EN  sortase B signal domain, NPQTN class
+TP  TIGRFAMs
+CC  This model represents one of the boutique (rare) sortase signals, recognized by sortase B (SrtB) rather than by the housekeeping-type SrtA class sortase. This sequence, beginning NPQTN, shows little similarity to several other SrtB substrates.
+RN  [1]
+RM  PMID: 14762051
+RT  Effect of srtA and srtB gene expression on the virulence of Staphylococcus aureus in animal models of infection.
+RA  Weiss WJ, Lenoy E, Murphy T, Tardio L, Burgio P, Projan SJ, Schneewind O, Alksne L
+RL  J Antimicrob Chemother. 2004 Mar;53(3):480-6. Epub 2004 Feb 4.

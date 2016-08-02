@@ -1,0 +1,13 @@
+ID  wecD_rffC
+AC  TIGR02382
+DE  TDP-D-fucosamine acetyltransferase
+AU  Haft DH
+TC  195.10 195.10
+NC  95.10 95.10
+AL  clustalw
+IT  equivalog
+EN  TDP-D-fucosamine acetyltransferase
+GS  wecD
+TP  TIGRFAMs
+CC  This model represents the WecD protein (Formerly RffC)  for the biosynthesis of enterobacterial common antigen (ECA), an outer leaflet, outer membrane glycolipid with a trisaccharide repeat unit. WecD is a member of the GNAT family of acetytransferases (PF00583).
+DR  PFAM; PF00583; acetyltransferase, GNAT family

@@ -1,0 +1,12 @@
+ID  sigma70-ECF
+AC  TIGR02937
+DE  RNA polymerase sigma factor, sigma-70 family
+AU  Selengut J
+TC  42.90 42.90
+NC  34.20 34.20
+AL  muscle
+IT  superfamily
+EN  RNA polymerase sigma factor, sigma-70 family
+TP  TIGRFAMs
+CC  This model encompasses all varieties of the sigma-70 type sigma factors including the ECF subfamily.  A number of sigma factors have names with a different number than 70 (i.e. sigma-38), but in fact, all except for the Sigma-54 family (TIGR02395) are included within this family.
+CC  Several PFAM models hit segments of these sequences including Sigma-70 region 2 (PF04542) and Sigma-70, region 4 (PF04545), but not always above their respective trusted cutoffs.

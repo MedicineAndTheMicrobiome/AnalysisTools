@@ -1,0 +1,16 @@
+ID  acc_Sec_SLAP
+AC  TIGR04399
+DE  accessory Sec system S-layer assembly protein
+AU  Haft DH
+TC  250.00 250.00
+NC  200.00 200.00
+AL  muscle_manual
+IT  equivalog
+EN  accessory Sec system S-layer assembly protein
+TP  TIGRFAMs
+CC  Members of this family, designated S-layer assembly protein (SlaP), occur next to a Bacillus anthracis-type accessory Sec system SecA2. . Members have two tandem copies of a duplicated domain (TIGR04398) that may also occur in other contexts. SlaP is found both free in the cytoplasm and membrane-associated. SecA2 and SlaP appear to work together to modify Sec for efficient S-layer secretion.
+RN  [1]
+RM  PMID:22609926 
+RT  Secretion genes as determinants of Bacillus anthracis chain length. 
+RA  Nguyen-Mau SM, Oh SY, Kern VJ, Missiakas DM, Schneewind O 
+RL  J Bacteriol. 2012 Aug;194(15):3841-50. doi: 10.1128/JB.00384-12.

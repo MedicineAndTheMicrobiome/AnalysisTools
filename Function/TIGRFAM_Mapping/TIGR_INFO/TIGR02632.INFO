@@ -1,0 +1,17 @@
+ID  RhaD_aldol-ADH
+AC  TIGR02632
+DE  rhamnulose-1-phosphate aldolase/alcohol dehydrogenase
+AU  Selengut J
+TC  567.75 567.75
+NC  502.35 502.35
+AL  clustalw
+IT  equivalog
+EN  rhamnulose-1-phosphate aldolase/alcohol dehydrogenase
+GS  rhaD
+EC  4.1.2.19 1.1.1.1
+TP  TIGRFAMs
+RN  [1]
+RM  PMID: 15576793
+RT  A genetic locus necessary for rhamnose uptake and catabolism in Rhizobium leguminosarum bv. trifolii.
+RA  Richardson JS, Hynes MF, Oresnik IJ
+RL  J Bacteriol. 2004 Dec;186(24):8433-42.

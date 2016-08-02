@@ -1,0 +1,11 @@
+ID  HAF_rpt
+AC  TIGR02913
+DE  probable extracellular repeat, HAF family
+AU  Haft DH
+TC  22.65 22.65
+NC  20.25 20.25
+AL  muscle
+IT  repeat
+EN  probable extracellular repeat, HAF family
+TP  TIGRFAMs
+CC  The HMM for this family detects a homology domain of about 40 amino acids. Member proteins always have a least two tandem copies and as many as seven. The spacing between repeats as defined here usually is four residues exactly. This repeat is named for a tripeptide motif HAF found in most members. Some members proteins are found in species with no outer membrane (archaea and Gram-positive bacteria) while others have C-terminal autotransporter domains that suggest that the repeat region is transported across the outer membrane. This domain seems likely to be an extracellular protein repeat.

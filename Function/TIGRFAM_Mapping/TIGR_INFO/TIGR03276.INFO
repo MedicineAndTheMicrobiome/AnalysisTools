@@ -1,0 +1,11 @@
+ID  Phn-HD
+AC  TIGR03276
+DE  phosphonate degradation operons associated HDIG domain protein
+AU  Selengut J
+TC  214.60 214.60
+NC  195.05 195.05
+AL  muscle
+IT  hypoth_equivalog
+EN  phosphonate degradation operons associated HDIG domain protein
+TP  TIGRFAMs
+CC  This small clade of proteins are found adjacent to other genes implicated in the catabolism of phosphonates.  They are members of the TIGR00277 domain family and contain a series of five invariant histidines (the domain in general has only four).

@@ -1,0 +1,17 @@
+ID  ygfZ_signature
+AC  TIGR03317
+DE  folate-binding protein YgfZ
+AU  Haft DH
+TC  34.40 34.40
+NC  33.25 33.25
+AL  clustalw
+IT  signature
+EN  folate-binding protein YgfZ
+GS  ygfZ
+TP  TIGRFAMs
+CC  YgfZ is a protein from Escherichia coli, homologous to the glycine cleavage system T protein, or aminomethyltransferase, GcvT (TIGR00528). Homologs of YgfZ other than members of the GcvT family share a well-conserved signature region that includes the motif, KGCYxGQE. Elsewhere, sequence diverge and length variation are substantial. Members of this family are mostly bacterial, largely absent from the Firmicutes and otherwise usually present. A few eukaryotic examples are found among the Apicomplexa, and a few archaeal sequences are found. Two functions implicated for this folate-binding protein are RNA modification (a function likely to be conserved) and replication initiation (a function likely to be highly variable). Many members of this family are, at the time of construction of this model, misnamed as the glycine cleavage system T protein.
+RN  [1]
+RM  PMID: 16359333
+RT  Involvement of the Escherichia coli folate-binding protein YgfZ in RNA modification and regulation of chromosomal replication initiation.
+RA  Ote T, Hashimoto M, Ikeuchi Y, Su'etsugu M, Suzuki T, Katayama T, Kato J
+RL  Mol Microbiol. 2006 Jan;59(1):265-75.

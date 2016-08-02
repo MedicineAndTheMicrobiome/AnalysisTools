@@ -1,0 +1,13 @@
+ID  CbiQ_TIGR
+AC  TIGR02454
+DE  cobalt ABC transporter, permease protein CbiQ
+AU  Selengut J
+TC  111.80 111.80
+NC  105.15 105.15
+AL  clustalw
+IT  equivalog
+EN  cobalt ABC transporter, permease protein CbiQ
+GS  cbiQ
+TR  3.A.1.18.1
+TP  TIGRFAMs
+CC  This model represents the permease component of the cobalt-specific ABC transporter.  This model finds permeases which are generally next to the other subunits of the complex (CbiN and CbiO) or the cobalamin biosynthesis protein CbiM which is a transmembrane protein which likely interacts with the complex in some manner.  In genomes which possess all of these subunits the ATPase is most likely running in the direction of import (for the biosynthesis of coenzyme B12).  In other genomes, this subunit may be involved in the export of cobalt and/or other closely related heavy metals.

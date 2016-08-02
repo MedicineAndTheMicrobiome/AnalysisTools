@@ -1,0 +1,13 @@
+ID  2A0305
+AC  TIGR00908
+DE  ethanolamine permease
+AU  Selengut J, Loftus BJ
+TC  381.75 381.75
+NC  318.65 318.65
+AL  clustalw
+IT  equivalog
+EN  ethanolamine permease
+GS  eat
+TR  2.A.3.-.-
+TP  TIGRFAMs
+CC  The three genes used as the seed for this model (from Burkholderia pseudomallei, Pseudomonas aeruginosa and Clostridium acetobutylicum are all adjacent to genes for the catabolism of ethanolamine.  Most if not all of the hits to this model have a similar arrangement of genes.  This group is a member of the Amino Acid-Polyamine-Organocation (APC) Superfamily.

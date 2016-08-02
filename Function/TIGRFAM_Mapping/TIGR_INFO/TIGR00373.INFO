@@ -1,0 +1,23 @@
+ID  TIGR00373
+AC  TIGR00373
+DE  transcription factor E
+AU  Haft DH, Loftus BJ
+TC  149.50 149.50
+NC  61.70 61.70
+AL  clustalw
+IT  equivalog
+EN  transcription factor E
+GS  tfe
+TP  TIGRFAMs
+CC  This family of proteins is, so far, restricted to archaeal genomes. The family appears to be distantly related to the N-terminal region of the eukaryotic transcription initiation factor IIE alpha chain.
+RN  [1]
+RM  PMID:13679366 
+RT  An extended winged helix domain in general transcription factor E/IIE alpha. 
+RA  Meinhart A, Blobel J, Cramer P 
+RL  J Biol Chem. 2003 Nov 28;278(48):48267-74.
+RN  [2]
+RM  PMID:17921145 
+RT  Transcription factor E is a part of transcription elongation complexes. 
+RA  Grunberg S, Bartlett MS, Naji S, Thomm M 
+RL  J Biol Chem. 2007 Dec 7;282(49):35482-90.
+DR  HAMAP; MF_01909; 18 of 45

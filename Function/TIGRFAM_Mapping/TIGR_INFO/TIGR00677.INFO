@@ -1,0 +1,16 @@
+ID  fadh2_euk
+AC  TIGR00677
+DE  methylenetetrahydrofolate reductase
+AU  Loftus BJ, Haft DH
+TC  310.05 310.05
+NC  301.80 301.80
+AL  clustalw
+IT  equivalog
+EN  methylenetetrahydrofolate reductase, eukaryotic type
+EC  1.5.1.20
+TP  TIGRFAMs
+CC  The enzyme activities methylenetetrahydrofolate reductase (EC 1.5.1.20) and  5,10-methylenetetrahydrofolate reductase (FADH) (EC 1.7.99.5) differ in that 1.5.1.20 (assigned in many eukaryotes) is defined to use NADP+ as an acceptor, while 1.7.99.5 (assigned in many bacteria) is flexible with respect to the acceptor; both convert 5-methyltetrahydrofolate to 5,10-methylenetetrahydrofolate. From a larger set of proteins assigned as 1.5.1.20 and 1.7.99.5, this model describes the subset of proteins found in eukaryotes and designated 1.5.1.20.
+CC  This protein is an FAD-containing flavoprotein.
+DR  OUTGROUP; EGAD|20689|EC3941; Escherichia coli
+DR  EXPERIMENTAL; EGAD|4286|4234; Homo sapiens
+DR  EXPERIMENTAL; GP|5911425|gb|AAD55787.1|AF181966_1|AF181966

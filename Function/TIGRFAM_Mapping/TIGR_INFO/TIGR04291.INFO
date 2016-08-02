@@ -1,0 +1,13 @@
+ID  arsen_driv_ArsA
+AC  TIGR04291
+DE  arsenical pump-driving ATPase
+AU  Haft DH
+TC  650.00 650.00
+NC  525.00 525.00
+AL  muscle_manual
+IT  equivalog
+EN  arsenical pump-driving ATPase
+GS  arsA
+EC  3.6.1.-
+TP  TIGRFAMs
+CC  The broader family (TIGR00345) to which the current family belongs consists of transport-energizing ATPases, including to TRC40/GET3 family involved in post-translational insertion of protein C-terminal transmembrane anchors into membranes from the cyotosolic face. This family, however, is restricted to ATPases that energize pumps that export arsenite (or antimonite).

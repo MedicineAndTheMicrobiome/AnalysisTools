@@ -1,0 +1,18 @@
+ID  isoAsp_dipep
+AC  TIGR01975
+DE  beta-aspartyl peptidase
+AU  Haft DH
+TC  331.25 331.25
+NC  101.80 101.80
+AL  clustalw
+IT  equivalog
+EN  isoaspartyl dipeptidase IadA
+GS  iadA
+EC  3.4.19.5
+TP  TIGRFAMs
+CC  The L-isoaspartyl derivative of Asp arises non-enzymatically over time as a form of protein damage. In this isomerization, the connectivity of the polypeptide changes to pass through the beta-carboxyl of the side chain. Much but not all of this damage can be repaired by protein-L-isoaspartate (D-aspartate) O-methyltransferase. This HMM describes the isoaspartyl dipeptidase IadA, apparently one of two such enzymes in E. coli, an enzyme that degrades isoaspartyl dipeptides and may unblock degradation of proteins that cannot be repaired. This model also describes closely related proteins from other species (e.g. Clostridium perfringens, Thermoanaerobacter tengcongensis) that we assume to be equivalent in function. This family shows homology to dihydroorotases.
+DR  EXPERIMENTAL; SP|P39377; Escherichia coli
+RM  7876157
+RT  Purification and characterization of an isoaspartyl dipeptidase from Escherichia coli.
+RA  Gary JD, Clarke S.
+RL  J Biol Chem. 1995 Feb 24;270(8):4076-87.

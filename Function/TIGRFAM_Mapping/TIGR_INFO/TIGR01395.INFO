@@ -1,0 +1,12 @@
+ID  FlgC
+AC  TIGR01395
+DE  flagellar basal-body rod protein FlgC
+AU  Haft DH
+TC  102.10 102.10
+NC  66.55 66.55
+AL  clustalw_manual
+IT  equivalog
+EN  flagellar basal-body rod protein FlgC
+GS  flgC
+TP  TIGRFAMs
+CC  This HMM represents FlgC, one of several components of bacterial flagella that share a domain described by Pfam HMM PF00460. FlgC is part of the basal body.

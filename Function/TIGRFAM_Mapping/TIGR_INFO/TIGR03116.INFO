@@ -1,0 +1,12 @@
+ID  cas_csf3
+AC  TIGR03116
+DE  CRISPR type AFERR-associated protein Csf3
+AU  Haft DH
+TC  210.15 210.15
+NC  17.20 17.20
+AL  muscle
+IT  hypoth_equivalog
+EN  CRISPR type AFERR-associated protein Csf3
+GS  csf3
+TP  TIGRFAMs
+CC  Members of this family show up near CRISPR repeats in Acidithiobacillus ferrooxidans ATCC 23270, Azoarcus sp. EbN1, and Rhodoferax ferrireducens DSM 15236. In the latter two species, the CRISPR/cas locus is found on a plasmid. This family is one of several characteristic of a type of CRISPR-associated (cas) gene cluster we designate Aferr after A. ferrooxidans, where it is both chromosomal and the only type of cas gene cluster found. The gene is designated csf3 (CRISPR/cas Subtype as in A. ferrooxidans protein 3), as it lies third closest to the repeats.

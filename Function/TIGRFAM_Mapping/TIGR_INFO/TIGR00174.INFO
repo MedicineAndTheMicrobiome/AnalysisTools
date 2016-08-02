@@ -1,0 +1,15 @@
+ID  miaA
+AC  TIGR00174
+DE  tRNA dimethylallyltransferase
+AU  Haft DH
+TC  148.65 148.65
+NC  112.65 112.65
+AL  clustalw
+IT  equivalog
+EN  tRNA dimethylallyltransferase
+GS  miaA
+EC  2.5.1.75
+TP  TIGRFAMs
+CC  Alternate names include delta(2)-isopentenylpyrophosphate transferase, IPP transferase, 2-methylthio-N6-isopentyladenosine tRNA modification enzyme.
+CC  Catalyzes the first step in the modification of an adenosine near the anticodon to 2-methylthio-N6-isopentyladenosine. Understanding of substrate specificity has changed.
+DR  HAMAP; MF_00185; 318 of 323

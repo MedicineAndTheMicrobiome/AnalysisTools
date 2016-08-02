@@ -1,0 +1,13 @@
+ID  salicylate_mono
+AC  TIGR03219
+DE  salicylate 1-monooxygenase
+AU  Haft DH
+TC  446.35 446.35
+NC  353.45 353.45
+AL  muscle
+IT  equivalog
+EN  salicylate 1-monooxygenase
+GS  salA
+EC  1.14.13.1
+TP  TIGRFAMs
+CC  Members of this protein family are salicylate 1-monooxygenase, also called salicylate hydroxylase. This enzyme converts salicylate to catechol, which is a common intermediate in the degradation of a number of aromatic compounds (phenol, toluene, benzoate, etc.). The gene for this protein may occur in catechol degradation genes, such as those of the meta-cleavage pathway.

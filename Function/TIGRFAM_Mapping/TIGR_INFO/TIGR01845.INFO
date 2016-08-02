@@ -1,0 +1,12 @@
+ID  outer_NodT
+AC  TIGR01845
+DE  efflux transporter, outer membrane factor (OMF) lipoprotein, NodT family
+AU  Haft DH
+TC  210.05 210.05
+NC  179.60 179.60
+AL  clustalw
+IT  subfamily
+EN  efflux transporter, outer membrane factor (OMF) lipoprotein, NodT family
+TR  1.B.17.3
+TP  TIGRFAMs
+CC  Members of this HMM comprise a subfamily of the Outer Membrane Factor (TCDB 1.B.17) porins.  OMF proteins operate in conjunction with a primary transporter of the RND, MFS, ABC, or PET systems, and a MFP (membrane fusion protein) to tranport substrates across membranes. The complex thus formed allows transport (export) of various solutes (heavy metal cations; drugs, oligosaccharides, proteins, etc.) across the two envelopes of the Gram-negative bacterial cell envelope in a single energy-coupled step. Current data suggest that the OMF (and not the MFP) is largely responsible for the formation of both the trans-outer membrane and trans-periplasmic channels. The roles played by the MFP have yet to be determined.

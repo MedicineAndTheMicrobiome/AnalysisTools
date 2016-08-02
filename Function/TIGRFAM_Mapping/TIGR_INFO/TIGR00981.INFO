@@ -1,0 +1,13 @@
+ID  rpsL_bact
+AC  TIGR00981
+DE  ribosomal protein S12
+AU  Haft DH
+TC  112.95 112.95
+NC  96.10 96.10
+AL  clustalw_manual
+IT  equivalog
+EN  ribosomal protein S12, bacterial/organelle
+GS  rpsL
+TP  TIGRFAMs
+CC  This HMM recognizes ribosomal protein S12 of Bacteria, mitochondria, and chloroplasts. The homologous ribosomal proteins of Archaea and Eukarya, termed S23 in Eukarya and S12 or S23 in Archaea, score below the trusted cutoff.
+DR  HAMAP; MF_00403; 670 of 726

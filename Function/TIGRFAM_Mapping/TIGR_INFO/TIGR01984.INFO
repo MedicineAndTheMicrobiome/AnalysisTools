@@ -1,0 +1,18 @@
+ID  UbiH
+AC  TIGR01984
+DE  2-polyprenyl-6-methoxyphenol 4-hydroxylase
+AU  Selengut J
+TC  392.20 392.20
+NC  355.40 355.40
+AL  clustalw
+IT  equivalog
+EN  2-polyprenyl-6-methoxyphenol 4-hydroxylase
+GS  ubiH
+EC  1.14.13.-
+TP  TIGRFAMs
+CC  This HMM represents the FAD-dependent monoxygenase responsible for the second hydroxylation step in the aerobic ubiquinone bioynthetic pathway.  The scope of this model is limited to the proteobacteria.  This family is closely related to the UbiF hydroxylase which catalyzes the final hydroxylation step.  The enzyme has also been named VisB due to a mutant VISible light sensitive phenotype.
+RN  [1]
+RM  PMID: 11583838
+RT  Ubiquinone biosynthesis in microorganisms.
+RA  Meganathan R.
+RL  FEMS Microbiol Lett. 2001 Sep 25;203(2):131-9.

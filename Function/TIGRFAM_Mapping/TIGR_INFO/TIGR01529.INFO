@@ -1,0 +1,13 @@
+ID  argR_whole
+AC  TIGR01529
+DE  arginine repressor
+AU  Haft DH
+TC  130.45 130.45
+NC  67.20 67.20
+AL  clustalw_manual
+IT  equivalog
+EN  arginine repressor
+GS  argR
+TP  TIGRFAMs
+CC  This HMM includes most members of the arginine-responsive transcriptional regulator family ArgR. This hexameric protein binds DNA at its amino end to repress arginine biosyntheis or activate arginine catabolism. Some species have several ArgR paralogs. In a neighbor-joining tree, some of these paralogous sequences show long branches and differ significantly in an otherwise well-conserved C-terminal region motif GT[VIL][AC]GDDT. These paralogs are excluded from the seed and score in the gray zone of this model, between trusted and noise cutoffs.
+DR  HAMAP; MF_00173; 169 of 192

@@ -1,0 +1,16 @@
+ID  pyridox_MJ0158
+AC  TIGR03576
+DE  pyridoxal phosphate enzyme, MJ0158 family
+AU  Haft DH
+TC  304.45 304.45
+NC  96.10 96.10
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  pyridoxal phosphate enzyme, MJ0158 family
+TP  TIGRFAMs
+CC  Members of this archaeal protein family are pyridoxal phosphate enzymes of unknown function. Sequence similarity to SelA, a bacterial enzyme of selenocysteine biosynthesis, has led to some members being misannotated as functionally equivalent, but selenocysteine is made on tRNA in Archaea by a two-step process that does not involve a SelA homolog.
+RN  [1]
+RM  PMID:16201757
+RT  Structural and functional investigation of a putative archaeal selenocysteine synthase.
+RA  Kaiser JT, Gromadski K, Rother M, Engelhardt H, Rodnina MV, Wahl MC
+RL  Biochemistry. 2005 Oct 11;44(40):13315-27.

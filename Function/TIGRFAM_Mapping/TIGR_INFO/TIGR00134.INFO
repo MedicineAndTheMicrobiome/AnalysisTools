@@ -1,0 +1,21 @@
+ID  gatE_arch
+AC  TIGR00134
+DE  glutamyl-tRNA(Gln) amidotransferase, subunit E
+AU  Haft DH
+TC  319.55 319.55
+NC  223.40 223.40
+AL  clustalw
+IT  equivalog
+EN  glutamyl-tRNA(Gln) amidotransferase, subunit E
+GS  gatE
+EC  6.3.5.-
+TP  TIGRFAMs
+CC  This peptide is found only in the Archaea. It is paralogous to the gatB-encoded subunit of Glu-tRNA(Gln) amidotransferase. The GatABC system operates in many bacteria to convert Glu-tRNA(Gln) into Gln-tRNA(Gln). However, the homologous system in archaea instead converts Asp-tRNA(Asn) to Asn-tRNA(Asn). Glu-tRNA(Gln) is converted to Gln-tRNA(Gln) by a heterodimeric amidotransferase of GatE (this protein) and GatD.
+CC  The Archaea have an Asp-tRNA(Asn) amidotransferase instead of an Asp--tRNA ligase, but the genes have not been identified. It is likely that this protein replaces gatB in Asp-tRNA(Asn) amidotransferase but that both enzymes share gatA.
+DR  PROSITE; PDOC00948;
+DR  PFAM; PF01162; PET112 family, C terminal region
+RM  10993083
+RT  Domain-specific recruitment of amide amino acids for protein synthesis.
+RA  Tumbula DL, Becker HD, Chang WZ, Soll D.
+RL  Nature. 2000 Sep 7;407(6800):106-10.
+DR  HAMAP; MF_00588; 29 of 29

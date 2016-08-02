@@ -1,0 +1,17 @@
+ID  phenyl_P_alpha
+AC  TIGR02723
+DE  phenylphosphate carboxylase, alpha subunit
+AU  Haft DH
+TC  564.60 564.60
+NC  244.30 244.30
+AL  clustalw
+IT  equivalog
+EN  phenylphosphate carboxylase, alpha subunit
+GS  ppcA
+EC  4.1.1.-
+TP  TIGRFAMs
+CC  Members of this protein family are the alpha subunit of phenylphosphate carboxylase. Phenol (methyl-benzene) is converted to phenylphosphate, then para-carboxylated by this four-subunit enzyme, with the release of phosphate, to 4-hydroxybenzoate. The enzyme contains neither biotin nor thiamin pyrophosphate. This alpha subunit is homologous to the beta subunit and, more broadly, to UbiD family decarboxylases.
+RM  15231788
+RT  Phenylphosphate carboxylase: a new C-C lyase involved in anaerobic phenol metabolism in Thauera aromatica.
+RA  Schuhle K, Fuchs G.
+RL  J Bacteriol. 2004 Jul;186(14):4556-67.

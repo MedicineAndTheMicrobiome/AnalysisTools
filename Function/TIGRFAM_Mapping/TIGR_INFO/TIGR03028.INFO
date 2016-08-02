@@ -1,0 +1,28 @@
+ID  EpsE
+AC  TIGR03028
+DE  polysaccharide export protein EpsE
+AU  Selengut J
+TC  262.65 262.65
+NC  166.90 166.90
+AL  muscle
+IT  equivalog
+EN  polysaccharide export protein EpsE
+GS  epsE
+TP  TIGRFAMs
+CC  Sequences in this family of proteins are members of a polysaccharide export protein family (PF02563) which includes the wza [1] protein from E.coli.  This family of proteins are homologous to the EpsE protein of the methanolan biosynthesis operon of Methylobacillus species strain 12S [2].  The distribution of this protein appears to be restricted to a subset of exopolysaccharide operons containing a syntenic grouping of genes including a variant of the EpsH exosortase protein [2].  Exosortase has been proposed to be involved in the targetting and processing of proteins containing the PEP-CTERM domain to the exopolysaccharide layer [3].
+RN   [1]
+RM   96326333
+RT   Organization of the Escherichia coli K-12 gene cluster
+RT   responsible for production of the extracellular
+RT   polysaccharide colanic acid.
+RA   Stevenson G, Andrianopoulos K, Hobbs M, Reeves PR;
+RL   J Bacteriol 1996;178:4885-4893.
+RN  [2]
+RM  12624205
+RA  Yoshida T, Ayabe Y, Yasunaga M, Usami Y, Habe H, Nojiri H, Omori T
+RT  Genes involved in the synthesis of the exopolysaccharide methanolan by the obligate methylotroph Methylobacillus sp strain 12S.
+RL  Microbiology. 2003 Feb;149(Pt 2):431-44.
+RN  [3]
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD
+RT  Exopolysaccharide-associated protein sorting in environmental organisms by the PEP-CTERM/EpsH system: application of a novel phylogenetic profiling heuristic.
+RL  BMC Biol., in press, 2006

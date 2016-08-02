@@ -1,0 +1,11 @@
+ID  eut_hyp
+AC  TIGR02536
+DE  ethanolamine utilization protein
+AU  Selengut J
+TC  152.60 152.60
+NC  54.25 54.25
+AL  clustalw
+IT  hypoth_equivalog
+EN  ethanolamine utilization protein
+TP  TIGRFAMs
+CC  This family of proteins is found in operons for the polyhedral organelle-based degradation of ethanolamine.  This family is not found in proteobacterial species which otherwise have the same suite of genes in the eut operon.  Proteobacteria have two genes that are not found in non-proteobacteria which may complement this genes function, a phosphotransacetylase (PF01515) and the EutJ protein (TIGR02529) of unknown function.

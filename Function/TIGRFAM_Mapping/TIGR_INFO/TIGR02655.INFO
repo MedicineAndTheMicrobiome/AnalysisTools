@@ -1,0 +1,20 @@
+ID  circ_KaiC
+AC  TIGR02655
+DE  circadian clock protein KaiC
+AU  Haft DH
+TC  546.25 546.25
+NC  364.05 364.05
+AL  clustalw
+IT  equivalog
+EN  circadian clock protein KaiC
+GS  kaiC
+EC  2.7.11.1
+TP  TIGRFAMs
+CC  Members of this family are the circadian clock protein KaiC, part of the kaiABC operon that controls circadian rhythm. It may be universal in Cyanobacteria. Each member has two copies of the KaiC domain (Pfam model PF06745), which is also found in other proteins. KaiC performs autophosphorylation and acts as its own transcriptional repressor.
+DR  PFAM; PF06745; KaiC
+RN  [1]
+RM  15347812
+RT  Role of KaiC phosphorylation in the circadian clock system of Synechococcus elongatus PCC 7942.
+RA  Nishiwaki T, Satomi Y, Nakajima M, Lee C, Kiyohara R, Kageyama H, Kitayama Y, Temamoto M, Yamaguchi A, Hijikata A, Go M, Iwasaki H, Takao T, Kondo T.
+RL  Proc Natl Acad Sci U S A. 2004 Sep 21;101(38):13927-32.
+DR  HAMAP; MF_01836; 13 of 13

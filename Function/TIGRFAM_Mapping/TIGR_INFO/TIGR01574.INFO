@@ -1,0 +1,36 @@
+ID  miaB-methiolase
+AC  TIGR01574
+DE  tRNA-i(6)A37 thiotransferase enzyme MiaB
+AU  Selengut J
+TC  355.30 355.30
+NC  349.15 349.15
+AL  clustalw
+IT  equivalog
+EN  tRNA-N(6)-(isopentenyl)adenosine-37 thiotransferase enzyme MiaB
+GS  miaB
+EC  2.-.-.-
+TP  TIGRFAMs
+CC  This model represents homologs of the MiaB enzyme responsible for the modification of the isopentenylated adenine-37 base of most bacterial and eukaryotic tRNAs that read codons beginning with uracil (all except tRNA(I,V) Ser).  Adenine-37 is next to the anticodon on the 3' side in these tRNA's, and lack of modification at this site leads to an increased spontaneous mutation frequency.  Isopentenylated A-37 is modified by methylthiolation at position 2, either by MiaB alone or in concert with a separate methylase yet to be discovered (MiaC?) [1].
+CC  MiaB contains a 4Fe-4S cluster which is labile under oxidizing conditions [2].  Additionally, the sequence is homologous (via PSI-BLAST searches) to the biotin synthetase, BioB, which utilizes both an iron-sulfur cluster and S-adenosym methionine (SAM) to generate a radical which is responsible for initiating the insertion of sulfur into the substrate [3].  It is reasonable to surmise that the methyl group of SAM becomes the methyl group of the product, but this has not been shown, and the possibility of a separate methylase exists.
+CC  This equivalog is a member of a subfamily (TIGR00089) which contains several other hypothetical equivalogs which are all probably enzymes with similar function acting on different substrates.  These enzymes contain a TRAM domain (PF01938, [3]) which is believed to be responsible for binding to tRNAs.
+CC  Hits to this model span all major groups of bacteria and eukaryotes, but not archaea, which are known to lack this particular tRNA modification.  The enzyme from Thermotoga maritima has been cloned, expressed, spectroscopically characterized and shown to complement the E. coli MiaB enzyme [4].
+RN  [1]
+RM  PMID: 10572129 
+RT  Identification of the miaB gene, involved in methylthiolation of isopentenylated A37 derivatives in the tRNA of Salmonella typhimurium and Escherichia coli.
+RA  Esberg B, Leung HC, Tsui HC, Bjork GR, Winkler ME.
+RL  J Bacteriol. 1999 Dec;181(23):7256-65.
+RN  [2]
+RM  PMID: 11882645 
+RT  Enzymatic modification of tRNAs: MiaB is an iron-sulfur protein.
+RA  Pierrel F, Bjork GR, Fontecave M, Atta M.
+RL  J Biol Chem. 2002 Apr 19;277(16):13367-70.
+RN  [3]
+RM  PMID: 11313137
+RT  TRAM, a predicted RNA-binding domain, common to tRNA uracil methylation and adenine thiolation enzymes.
+RA  Anantharaman V, Koonin EV, Aravind L.
+RL  FEMS Microbiol Lett. 2001 Apr 13;197(2):215-21.
+RN  [4]
+RM  PMID: 12766153 
+RT  MiaB protein from thermotoga maritima: characterization of an extremely thermophilic tRNA-methylthiotransferaseI.
+RA  Pierrel F, Hernandez HL, Johnson MK, Fontecave M, Atta M.
+RL  J Biol Chem. 2003 May 24 [Epub ahead of print]

@@ -1,0 +1,16 @@
+ID  VI_minor_4
+AC  TIGR03373
+DE  type VI secretion-associated protein, BMA_A0400 family
+AU  Haft DH
+TC  41.20 41.20
+NC  33.70 33.70
+AL  muscle_manual
+IT  hypoth_equivalog_domain
+EN  type VI secretion-associated protein, BMA_A0400 family
+TP  TIGRFAMs
+CC  Members of this protein family are found exclusively, although not universally, in bacterial species that possess a type VI secretion system. Genes are found in type VI secretion-associated gene clusters. The specific function is unknown. This model represents the rather well-conserved amino-terminal domain of a protein family in which carboxy-terminal regions, when present, show little conservation.
+RN  [1]
+RM  PMID: 16432199
+RT  Identification of a conserved bacterial protein secretion system in Vibrio cholerae using the Dictyostelium host model system.
+RA  Pukatzki S, Ma AT, Sturtevant D, Krastins B, Sarracino D, Nelson WC, Heidelberg JF, Mekalanos JJ
+RL  Proc Natl Acad Sci U S A. 2006 Jan 31;103(5):1528-33.

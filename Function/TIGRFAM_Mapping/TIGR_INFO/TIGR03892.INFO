@@ -1,0 +1,31 @@
+ID  thiopep_precurs
+AC  TIGR03892
+DE  thiazolylpeptide-type bacteriocin precursor
+AU  Haft DH
+TC  25.00 25.00
+NC  21.35 20.75
+AL  muscle_manual
+IT  subfamily
+EN  thiazolylpeptide-type bacteriocin precursor
+TP  TIGRFAMs
+CC  Members of this protein family are the precursors of a family of small bacteriocins (i.e. microcins) with thiopeptide type modifications, a highly modified subclass of heterocycle-containing peptide antibiotics. Members tend to be found clustered in genomes with proteins recognized by TIGR03891 and proteins/domains annotated as lantibiotic dehydratase (PF04737, PF04738), and with a cyclodehydratase/docking protein fusion protein characteristic of heterocycle formation. The seed alignment includes both an N-terminal leader peptide region and a C-terminal low-complexity region consisting mostly of Cys and Ser residues. Members with known function block translation by inhibiting translation factor activity.
+RN  [1]
+RM  PMID:19196969 
+RT  Thirteen posttranslational modifications convert a 14-residue peptide into the antibiotic thiocillin. 
+RA  Wieland Brown LC, Acker MG, Clardy J, Walsh CT, Fischbach MA 
+RL  Proc Natl Acad Sci U S A. 2009 Feb 24;106(8):2549-53.
+RN  [2]
+RM  PMID:19246004
+RT  Thiopeptide biosynthesis featuring ribosomally synthesized precursor peptides and conserved posttranslational modifications.
+RA  Liao R, Duan L, Lei C, Pan H, Ding Y, Zhang Q, Chen D, Shen B, Yu Y, Liu W
+RL  Chem Biol. 2009 Feb 27;16(2):141-7.
+RN  [3]
+RM  PMID:19265401
+RT  Thiostrepton biosynthesis: prototype for a new family of bacteriocins.
+RA  Kelly WL, Pan L, Li C
+RL  J Am Chem Soc. 2009 Apr 1;131(12):4327-34.
+RN  [4]
+RM  PMID:18406324 
+RT  Translational regulation via L11: molecular switches on the ribosome turned on and off by thiostrepton and micrococcin. 
+RA  Harms JM, Wilson DN, Schluenzen F, Connell SR, Stachelhaus T, Zaborowska Z, Spahn CM, Fucini P 
+RL  Mol Cell. 2008 Apr 11;30(1):26-38.

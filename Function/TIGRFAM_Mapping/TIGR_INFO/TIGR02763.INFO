@@ -1,0 +1,16 @@
+ID  chlamy_scaf
+AC  TIGR02763
+DE  scaffolding protein
+AU  Haft DH
+TC  104.95 104.95
+NC  41.40 41.40
+AL  clustalw
+IT  equivalog
+EN  chlamydiaphage internal scaffolding protein
+TP  TIGRFAMs
+CC  Members of this protein family are encoded by genes in chlamydiaphage such as Chp2, viruses with around eight genes that infect obligately intracellular bacterial pathogens of the genus Chlamydia. This protein, initially designated VP3 (as if a structural protein of mature viral particles), is displaced from procapsids as DNA is packaged, and therefore is described as a scafolding protein.
+RN  [1]
+RM  15516569
+RT  Chlamydiaphage Chp2, a skeleton in the phiX174 closet: scaffolding protein and procapsid identification.
+RA  Clarke IN, Cutcliffe LT, Everson JS, Garner SA, Lambden PR, Pead PJ, Pickett MA, Brentlinger KL, Fane BA.
+RL  J Bacteriol. 2004 Nov;186(22):7571-4.

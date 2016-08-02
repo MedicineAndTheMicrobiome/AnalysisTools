@@ -1,0 +1,11 @@
+ID  TIGR02118
+AC  TIGR02118
+DE  conserved hypothetical protein
+AU  Haft DH
+TC  30.50 30.50
+NC  30.30 30.30
+AL  clustalw
+IT  subfamily
+EN  conserved hypothetical protein
+TP  TIGRFAMs
+CC  This HMM represents a small family of proteins of unknown function, each about 105 amino acids in length. Conserved sites in the multiple alignment include a pair of aromatic residues, a histidine, and an aspartate.

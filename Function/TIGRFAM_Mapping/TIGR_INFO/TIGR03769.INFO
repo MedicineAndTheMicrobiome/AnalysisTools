@@ -1,0 +1,11 @@
+ID  P_ac_wall_RPT
+AC  TIGR03769
+DE  actinobacterial surface-anchored protein domain
+AU  Haft DH
+TC  30.90 30.90
+NC  23.35 23.35
+AL  muscle_manual
+IT  domain
+EN  actinobacterial surface-anchored protein domain
+TP  TIGRFAMs
+CC  This HMM describes a repeat domain that one to three times in Actinobacterial proteins, some of which have LPXTG-type sortase recognition motifs for covalent attachment to the Gram-positive cell wall. Where it occurs with duplication in an LPXTG-anchored protein, it tends to be adjacent to the substrate-binding protein of the gene trio of an ABC transporter system, where that substrate-binding protein has a single copy of this same domain. This arrangement suggests a substrate-binding relay system, with the LPXTG protein acting as a substrate receptor.

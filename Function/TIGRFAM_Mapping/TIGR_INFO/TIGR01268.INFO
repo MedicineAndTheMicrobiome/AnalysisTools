@@ -1,0 +1,17 @@
+ID  Phe4hydrox_tetr
+AC  TIGR01268
+DE  phenylalanine-4-hydroxylase
+AU  Haft DH
+TC  704.80 704.80
+NC  674.95 674.95
+AL  clustalw_manual
+IT  equivalog
+EN  phenylalanine-4-hydroxylase, tetrameric form
+EC  1.14.16.1
+TP  TIGRFAMs
+CC  This HMM describes the larger, tetrameric form of phenylalanine-4-hydroxylase, as found in metazoans. The enzyme irreversibly converts phenylalanine to tryosine and is known to be the rate-limiting step in phenylalanine catabolism in some systems. It is closely related to metazoan tyrosine 3-monooxygenase and  tryptophan 5-monoxygenase, and more distantly to monomeric phenylalanine-4-hydroxylases of some Gram-negative bacteria.
+CC  The member of this family from Drosophila has been described as having both phenylalanine-4-hydroxylase and tryptophan 5-monoxygenase activity (PMID:1371286). However, a Drosophila member of the tryptophan 5-monoxygenase clade has subsequently been discovered.
+DR  EXPERIMENTAL; GP|4150981; Geodia cydonium (sponge)
+DR  EXPERIMENTAL; SP:P00439; Homo sapiens
+DR  OUTGROUP; SP:P17290; tryptophan 5-monoxygenase; rabbit
+DR  OUTGROUP; SP:P24529; tyrosine 3-monooxygenase; mouse

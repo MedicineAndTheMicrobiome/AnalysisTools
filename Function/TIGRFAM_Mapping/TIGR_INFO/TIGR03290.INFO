@@ -1,0 +1,13 @@
+ID  CoB_CoM_SS_C
+AC  TIGR03290
+DE  CoB--CoM heterodisulfide reductase, subunit C
+AU  Haft DH
+TC  160.00 160.00
+NC  125.00 125.00
+AL  muscle
+IT  equivalog
+EN  CoB--CoM heterodisulfide reductase, subunit C
+GS  hdrC
+EC  1.8.98.1
+TP  TIGRFAMs
+CC  The last step in methanogenesis leaves two coenzymes of methanogenesis, CoM and CoB, linked by a disulfide bond. Members of this protein family are the C subunit of the enzyme that reduces the heterodisulfide to CoB-SH and CoM-SH. Similar enzyme complex subunits are found in various other species, but likely act on a different substrate.

@@ -1,0 +1,33 @@
+ID  NrdJ_Z
+AC  TIGR02504
+DE  ribonucleoside-diphosphate reductase, adenosylcobalamin-dependent
+AU  Selengut J
+TC  399.95 399.95
+NC  398.35 398.35
+AL  clustalw
+IT  equivalog
+EN  ribonucleoside-diphosphate reductase, adenosylcobalamin-dependent
+EC  1.17.4.1
+TP  TIGRFAMs
+CC  This model represents a group of adenosylcobalamin(B12)-dependent ribonucleotide reductases (Class II RNRs) related to the characterized species from Pyrococcus [1], Thermoplasma [2], Corynebacterium [3] and Deinococcus [3].  RNR's are responsible for the conversion of the ribose sugar of RNA into the deoxyribose sugar of DNA.  This is the rate-limiting step of DNA biosynthesis.
+CC  This model identifies genes in a wide range of deeply branching bacteria.  All are structurally related to the class I (non-heme iron dependent) RNRs.  In most species this gene is known as NrdJ, while in mycobacteria it is called NrdZ.
+RN  [1]
+RM  PMID: 9012808
+RT  Ribonucleotide reductase in the archaeon Pyrococcus furiosus: a critical enzyme in the evolution of DNA genomes?
+RA  Riera J, Robb FT, Weiss R, Fontecave M.
+RL  Proc Natl Acad Sci U S A. 1997 Jan 21;94(2):475-8.
+RN  [2]
+RM  PMID: 8990160
+RT  The B12-dependent ribonucleotide reductase from the archaebacterium Thermoplasma acidophila: an evolutionary solution to the ribonucleotide reductase conundrum.
+RA  Tauer A, Benner SA.
+RL  Proc Natl Acad Sci U S A. 1997 Jan 7;94(1):53-8.
+RN  [3]
+RM  PMID: 6986368
+RT  The purification and characterization of an adenosylcobalamin-dependent ribonucleoside diphosphate reductase from Corynebacterium nephridii.
+RA  Tsai PK, Hogenkamp HP.
+RL  J Biol Chem. 1980 Feb 25;255(4):1273-8.
+RN  [4]
+RM  PMID: 9391052
+RT  B12-dependent ribonucleotide reductases from deeply rooted eubacteria are structurally related to the aerobic enzyme from Escherichia coli.
+RA  Jordan A, Torrents E, Jeanthon C, Eliasson R, Hellman U, Wernstedt C, Barbe J, Gibert I, Reichard P.
+RL  Proc Natl Acad Sci U S A. 1997 Dec 9;94(25):13487-92.

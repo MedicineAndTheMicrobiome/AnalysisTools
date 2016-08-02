@@ -1,0 +1,16 @@
+ID  tungstate_WtpA
+AC  TIGR03730
+DE  tungstate ABC transporter binding protein WtpA
+AU  Haft DH
+TC  242.75 242.75
+NC  94.50 94.50
+AL  muscle_manual
+IT  equivalog
+EN  tungstate ABC transporter binding protein WtpA
+TP  TIGRFAMs
+CC  Members of this protein family are tungstate (and, more weakly, molybdate) binding proteins of tungstate(/molybdate) ABC transporters, as first characterized in Pyrococcus furiosus. Model seed members and cutoffs, pending experimental evidence for more distant homologs, were chosen such that this model identifies select archaeal proteins, excluding weaker archaeal and all bacterial homologs. Note that this family is homologous to molybdate transporters, and that at least one other family of tungstate transporter binding protein, TupA, also exists.
+RN  [1]
+RM  PMID:16952940
+RT  Tungsten transport protein A (WtpA) in Pyrococcus furiosus: the first member of a new class of tungstate and molybdate transporters.
+RA  Bevers LE, Hagedoorn PL, Krijger GC, Hagen WR
+RL  J Bacteriol. 2006 Sep;188(18):6498-505.

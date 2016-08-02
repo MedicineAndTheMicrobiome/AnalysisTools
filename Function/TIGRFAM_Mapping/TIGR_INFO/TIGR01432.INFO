@@ -1,0 +1,21 @@
+ID  QOXA
+AC  TIGR01432
+DE  cytochrome aa3 quinol oxidase, subunit II
+AU  Selengut J
+TC  240.95 240.95
+NC  204.55 204.55
+AL  clustalw
+IT  equivalog
+EN  cytochrome aa3 quinol oxidase, subunit II
+GS  qoxA
+EC  1.10.3.-
+TP  TIGRFAMs
+CC  This enzyme catalyzes the oxidation of quinol with the concomitant reduction of molecular oxygen to water.  This acts as the terminal electron acceptor in the respiratory chain.  This subunit contains two transmembrane helices and a large external domain responsible for the binding and oxidation of quinol.  QuoX is (presently) only found in gram positive bacteria of the Bacillus/Staphylococcus group.  Like CyoA, the ubiquinol oxidase found in proteobacteria, the residues responsible for the ligation of Cu(a) and cytochrome c (found in the related cyt. c oxidases) are absent.  Unlike CyoA, QoxA is in complex with a subunit I which contains cytochromes a similar to the cyt. c oxidases (as opposed to cytochromes b).
+RN [1]
+RM 1316894
+RT Molecular cloning, sequencing, and physiological characterization of the qox operon from Bacillus subtilis encoding the aa3-600 quinol oxidase
+RA Santana M, Kunst F, Hullo MF, Rapoport G, Danchin A, Glaser P
+RL J Biol Chem 1992 May 25;267(15):10225-31
+DR EXPERIMENTAL; SP|P34957; Bacillus subtilis caa3-600
+DR PROSITE; PR02790; COX2_TM; partial hit; score = 2.55
+DR OUTGROUP; EGAD 20044; Escherichia coli CyoA

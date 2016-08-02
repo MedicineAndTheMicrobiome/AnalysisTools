@@ -1,0 +1,22 @@
+ID  arsC_related
+AC  TIGR01617
+DE  transcriptional regulator, Spx/MgsR family
+AU  Haft DH
+TC  75.05 75.05
+NC  57.50 57.50
+AL  clustalw_manual
+IT  subfamily
+EN  transcriptional regulator, Spx/MgsR family
+TP  TIGRFAMs
+CC  This HMM represents a portion of the proteins within the larger set covered by Pfam model PF03960. That larger family includes a glutaredoxin-dependent arsenate reductase (TIGR00014). Characterized members of this family include Spx and MgsR from Bacillus subtili. Spx is a global regulator for response to thiol-specific oxidative stress. It interacts with RNA polymerase. MgsR (modulator of the general stress response, also called YqgZ) provides a second level of regulation for more than a third of the proteins in the B. subtilis general stress regulon controlled by Sigma-B.
+DR  HAMAP; MF_01132; 34 of 34
+RN  [1]
+RM  PMID:18687074
+RT  Activation of transcription initiation by Spx: formation of transcription complex and identification of a Cis-acting element required for transcriptional activation.
+RA  Reyes DY, Zuber P
+RL  Mol Microbiol. 2008 Aug;69(3):765-79.
+RN  [2]
+RM  PMID:18643936
+RT  The Spx paralogue MgsR (YqgZ) controls a subregulon within the general stress response of Bacillus subtilis.
+RA  Reder A, Hoper D, Weinberg C, Gerth U, Fraunholz M, Hecker M
+RL  Mol Microbiol. 2008 Sep;69(5):1104-20. Epub 2008 Jul 14.

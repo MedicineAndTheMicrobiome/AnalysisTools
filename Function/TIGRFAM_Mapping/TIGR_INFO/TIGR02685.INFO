@@ -1,0 +1,16 @@
+ID  pter_reduc_Leis
+AC  TIGR02685
+DE  pteridine reductase
+AU  Haft DH
+TC  321.70 321.70
+NC  199.55 199.55
+AL  clustalw
+IT  equivalog
+EN  pteridine reductase
+EC  1.5.1.33
+TP  TIGRFAMs
+CC  Pteridine reductase is an enzyme used by trypanosomatids (including Trypanosoma cruzi and Leishmania major) to obtain reduced pteridines by salvage rather than biosynthetic pathways. Enzymes in T. cruzi described as pteridine reductase 1 (PTR1) and pteridine reductase 2 (PTR2) have different activity profiles. PTR1 is more active with with fully oxidized biopterin and folate than with reduced forms, while PTR2 reduces dihydrobiopterin and dihydrofolate but not oxidized pteridines. T. cruzi PTR1 and PTR2 are more similar to each other in sequence than either is to the pteridine reductase of Leishmania major, and all are included in this family.
+RM  16168672
+RT  Crystal structure of Trypanosoma cruzi pteridine reductase 2 in complex with a substrate and an inhibitor.
+RA  Schormann N, Pal B, Senkovich O, Carson M, Howard A, Smith C, Delucas L, Chattopadhyay D.
+RL  J Struct Biol. 2005 Oct;152(1):64-75.

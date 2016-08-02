@@ -1,0 +1,11 @@
+ID  TIGR00284
+AC  TIGR00284
+DE  dihydropteroate synthase-related protein
+AU  Haft DH
+TC  256.65 256.65
+NC  102.60 102.60
+AL  clustalw
+IT  hypoth_equivalog
+EN  dihydropteroate synthase-related protein
+TP  TIGRFAMs
+CC  This protein has been found so far only in the Archaea, and in particular in those archaea that lack a bacterial-type dihydropteroate synthase. The central region of this protein shows considerable homology to the amino-terminal half of dihydropteroate synthases, while the carboxyl-terminal region shows homology to the small, uncharacterized protein slr0651 of Synechocystis PCC6803.

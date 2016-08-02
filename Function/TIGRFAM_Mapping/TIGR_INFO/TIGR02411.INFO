@@ -1,0 +1,23 @@
+ID  leuko_A4_hydro
+AC  TIGR02411
+DE  leukotriene A-4 hydrolase/aminopeptidase
+AU  Haft DH
+TC  761.70 761.70
+NC  526.00 526.00
+AL  clustalw
+IT  equivalog
+EN  leukotriene A-4 hydrolase/aminopeptidase
+EC  3.3.2.6 3.4.11.-
+TP  TIGRFAMs
+CC  Members of this family represent a distinctive subset within the zinc metallopeptidase family M1 (PF01433). The majority of the members of PF01433 are aminopeptidases, but the sequences in this family for which the function is known are leukotriene A-4 hydrolase. A dual epoxide hydrolase and aminopeptidase activity at the same active site is indicated. The physiological substrate for aminopeptidase activity is not known.
+DR  PFAM; PF01433; Peptidase family M1
+RN  [1]
+RM  15339917
+RT  Leukotriene A4 hydrolase/aminopeptidase, the gatekeeper of chemotactic leukotriene B4 biosynthesis.
+RA  Haeggstrom JZ.
+RL  J Biol Chem. 2004 Dec 3;279(49):50639-42.
+RN  [2]
+RM  11601994
+RT  Saccharomyces cerevisiae leukotriene A4 hydrolase: formation of leukotriene B4 and identification of catalytic residues.
+RA  Kull F, Ohlson E, Lind B, Haeggstrom JZ.
+RL  Biochemistry. 2001 Oct 23;40(42):12695-703.

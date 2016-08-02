@@ -1,0 +1,13 @@
+ID  nitrile_beta
+AC  TIGR03888
+DE  nitrile hydratase, beta subunit
+AU  Haft DH
+TC  152.20 152.20
+NC  136.35 136.35
+AL  muscle_manual
+IT  equivalog
+EN  nitrile hydratase, beta subunit
+GS  nthB
+EC  4.2.1.84
+TP  TIGRFAMs
+CC  Members of this protein family are the beta subunit of nitrile hydratase. The alpha subunit is represented by model TIGR01323. While nitrile hydratase is given the specific EC number 4.2.1.84, nitriles are a class of compounds, and one genome may carry more than one nitrile hydratase. The enzyme occurs in both non-heme iron and non-corrin cobalt forms.

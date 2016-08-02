@@ -1,0 +1,16 @@
+ID  torC
+AC  TIGR02162
+DE  trimethylamine-N-oxide reductase c-type cytochrome TorC
+AU  Haft DH
+TC  478.20 478.20
+NC  372.15 372.15
+AL  clustalw
+IT  equivalog
+EN  trimethylamine-N-oxide reductase c-type cytochrome TorC
+GS  torC
+TP  TIGRFAMs
+CC  This family includes consists of TorC, a pentahemic c-type cytochrome subunit of periplasmic reductases for trimethylamine-N-oxide (TMAO). The N-terminal half is closely related to tetrahemic NapC (or NirT) subunits of periplasmic nitrate (or nitrite) reductases; some species have both TMAO and nitrate reductase complexes.
+RM  11056172
+RT  Electron transfer and binding of the c-type cytochrome TorC to the trimethylamine N-oxide reductase in Escherichia coli.
+RA  Gon S, Giudici-Orticoni MT, Mejean V, Iobbi-Nivol C.
+RL  J Biol Chem. 2001 Apr 13;276(15):11545-51.

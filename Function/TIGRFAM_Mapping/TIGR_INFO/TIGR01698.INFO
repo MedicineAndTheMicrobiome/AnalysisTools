@@ -1,0 +1,14 @@
+ID  PUNP
+AC  TIGR01698
+DE  purine nucleotide phosphorylase
+AU  Selengut J
+TC  302.60 302.60
+NC  294.55 294.55
+AL  clustalw
+IT  equivalog
+EN  purine nucleotide phosphorylase
+EC  2.4.2.1
+TP  TIGRFAMs
+CC  This clade of purine nucleotide phosphorylases has not been experimentally characterized but is assigned based on strong sequence homology.  Closely related clades act on inosine and 
+CC  guanosine (PNPH, TIGR01700), and xanthosine, inosine and guanosine (XAPA, TIGR01699) neither of these will act on adenosine.  A more distantly related clade (MTAP, TIGR01694) acts on 
+CC  methylthioadenosine.

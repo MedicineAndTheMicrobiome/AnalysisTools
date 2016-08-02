@@ -1,0 +1,18 @@
+ID  wcaK
+AC  TIGR04006
+DE  colanic acid biosynthesis pyruvyl transferase WcaK
+AU  Selengut J
+TC  727.10 727.10
+NC  726.90 726.90
+AL  muscle
+IT  equivalog
+EN  colanic acid biosynthesis pyruvyl transferase WcaK
+GS  wcaK
+EC  2.-.-.-
+TP  TIGRFAMs
+CC  This gene is the pyruvyl transferase involved in the biosynthesis of colanic acid, an exopolysaccharide expressed in Enterobacteraceae species [1].
+RN  [1]
+RM  PMID:8759852 
+RT  Organization of the Escherichia coli K-12 gene cluster responsible for production of the extracellular polysaccharide colanic acid. 
+RA  Stevenson G, Andrianopoulos K, Hobbs M, Reeves PR 
+RL  J Bacteriol. 1996 Aug;178(16):4885-93.

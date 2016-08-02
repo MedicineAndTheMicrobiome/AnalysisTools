@@ -1,0 +1,14 @@
+ID  pyrH_bact
+AC  TIGR02075
+DE  UMP kinase
+AU  Haft DH
+TC  243.90 243.90
+NC  124.70 124.70
+AL  clustalw_manual
+IT  equivalog
+EN  uridylate kinase
+GS  pyrH
+EC  2.7.4.22
+TP  TIGRFAMs
+CC  This protein, also called UMP kinase, converts UMP to UDP by adding a phosphate from ATP. It is the first step in pyrimidine biosynthesis. GTP is an allosteric activator. In a large fraction of all bacterial genomes, the gene tends to be located immediately downstream of elongation factor Ts and upstream of ribosome recycling factor. A related protein family, believed to be equivalent in function and found in the archaea and in spirochetes, is described by a separate model, TIGR02076.
+DR  HAMAP; MF_01220; 492 of 538

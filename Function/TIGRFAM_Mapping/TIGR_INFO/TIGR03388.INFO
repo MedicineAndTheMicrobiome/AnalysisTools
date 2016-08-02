@@ -1,0 +1,12 @@
+ID  ascorbase
+AC  TIGR03388
+DE  L-ascorbate oxidase
+AU  Haft DH
+TC  614.80 614.80
+NC  402.50 402.50
+AL  muscle_manual
+IT  equivalog
+EN  L-ascorbate oxidase, plant type
+EC  1.10.3.3
+TP  TIGRFAMs
+CC  Members of this protein family are the copper-containing enzyme L-ascorbate oxidase (EC 1.10.3.3), also called ascorbase. This family is found in flowering plants, and shows greater sequence similarity to a family of laccases (EC 1.10.3.2) from plants than to other known ascorbate oxidases.

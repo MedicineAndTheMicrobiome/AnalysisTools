@@ -1,0 +1,14 @@
+ID  rpa1
+AC  TIGR00617
+DE  replication factor-a protein 1 (rpa1)
+AU  Loftus BJ, Eisen JA
+TC  334.20 334.20
+NC  271.45 271.45
+IT  subfamily
+EN  replication factor-a protein 1 (rpa1)
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are part of a multiprotein complex made up of homologs of RPA1, RPA2 and RPA3 that bind ssDNA and function in the recognition of DNA damage for nucleotide excision repair
+CC  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  EGAD; 50596;
+DR  SWISSPROT; P22336;
+RM  91357474;

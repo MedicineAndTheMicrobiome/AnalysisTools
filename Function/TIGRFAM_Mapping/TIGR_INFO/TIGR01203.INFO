@@ -1,0 +1,18 @@
+ID  HGPRTase
+AC  TIGR01203
+DE  hypoxanthine phosphoribosyltransferase
+AU  Haft DH
+TC  150.00 150.00
+NC  62.10 62.10
+AL  clustalw
+IT  equivalog
+EN  hypoxanthine phosphoribosyltransferase
+GS  hpt
+EC  2.4.2.8
+TP  TIGRFAMs
+CC  Alternate name: hypoxanthine-guanine phosphoribosyltransferase.
+CC  Sequence differences as small as a single residue can affect whether members of this family act on hypoxanthine and guanine or hypoxanthine only. The designation of this model as equivalog reflects hypoxanthine specificity and does not reflect whether or not guanine can replace hypoxanthine.
+RM  9521670
+A single amino acid substitution in the human and a bacterial hypoxanthine phosphoribosyltransferase modulates specificity for the binding of guanine.
+RA  Lee CC, Craig SP, Eakin AE
+RL  Biochemistry 1998 Mar 10;37(10):3491-8

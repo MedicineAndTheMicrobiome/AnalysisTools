@@ -1,0 +1,13 @@
+ID  TIGR00252
+AC  TIGR00252
+DE  TIGR00252 family protein
+AU  Loftus BJ, Haft DH
+TC  69.05 69.05
+NC  57.40 57.40
+AL  clustalw
+IT  hypoth_equivalog
+EN  TIGR00252 family protein
+TP  TIGRFAMs
+CC  the scores for Mycobacterium tuberculosis and Treponema pallidum are low considering the alignment
+DR  SP:P45465
+DR  HAMAP; MF_00048; 258 of 374

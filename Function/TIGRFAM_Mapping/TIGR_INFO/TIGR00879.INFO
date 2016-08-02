@@ -1,0 +1,13 @@
+ID  SP
+AC  TIGR00879
+DE  MFS transporter, sugar porter (SP) family
+AU  Loftus BJ
+TC  237.80 237.80
+NC  205.35 205.35
+AL  clustalw_manual
+IT  subfamily
+EN  MFS transporter, sugar porter (SP) family
+TR  2.A.1
+TP  TIGRFAMs
+CC  This HMM represent the sugar porter subfamily of the major facilitator superfamily (PF00083)
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_1.html

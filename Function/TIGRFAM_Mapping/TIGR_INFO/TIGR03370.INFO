@@ -1,0 +1,21 @@
+ID  VPLPA-CTERM
+AC  TIGR03370
+DE  VPLPA-CTERM protein sorting domain
+AU  Haft DH
+TC  25.35 25.35
+NC  17.60 17.60
+AL  muscle_manual
+IT  subfamily_domain
+EN  VPLPA-CTERM protein sorting domain
+TP  TIGRFAMs
+CC  A probable protein export sorting signal, PEP-CTERM, was described by Haft, et al. (PMID:16930487). It is predicted to interact with a putative transpeptidase we designate exosortase. This model describes a variant with conserved motif VPLPA, rather than VPEP. It appears to be the recognition sequences for exosortase D (TIGR04152). This variant is found prominently in two members of the Rhodobacterales, namely Jannaschia sp. CCS1 and Roseobacter denitrificans OCh 114. One interesting member protein has a full-length duplication and therefore two copies of this putative sorting domain.
+RN  [1]
+RM  PMID:22037399 
+RT  Archaeosortases and exosortases are widely distributed systems linking membrane transit with posttranslational modification. 
+RA  Haft DH, Payne SH, Selengut JD 
+RL  J Bacteriol. 2012 Jan;194(1):36-48. Epub 2011 Oct 28.
+RN  [2]
+RM  PMID: 16930487
+RT  Exopolysaccharide-associated protein sorting in environmental organisms: the PEP-CTERM/EpsH system. Application of a novel phylogenetic profiling heuristic.
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD
+RL  BMC Biol. 2006 Aug 24;4:29.

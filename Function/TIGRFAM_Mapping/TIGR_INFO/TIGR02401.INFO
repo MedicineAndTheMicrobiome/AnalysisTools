@@ -1,0 +1,17 @@
+ID  trehalose_TreY
+AC  TIGR02401
+DE  malto-oligosyltrehalose synthase
+AU  Haft DH
+TC  498.65 498.65
+NC  380.65 380.65
+AL  clustalw_manual
+IT  equivalog
+EN  malto-oligosyltrehalose synthase
+GS  treY
+EC  5.4.99.15
+TP  TIGRFAMs
+CC  This enzyme, formally named (1->4)-alpha-D-glucan 1-alpha-D-glucosylmutase, is the TreY enzyme of the TreYZ pathway of trehalose biosynthesis, an alternative to the OtsAB pathway. Trehalose may be incorporated into more complex compounds but is best known as compatible solute. It is one of the most effective osmoprotectants, and unlike the various betaines does not require nitrogen for its synthesis.
+RM  8611744
+RT  Purification and properties of a novel enzyme, maltooligosyl trehalose synthase, from Arthrobacter sp. Q36.
+RA  Nakada T, Maruta K, Tsusaki K, Kubota M, Chaen H, Sugimoto T, Kurimoto M, Tsujisaka Y.
+RL  Biosci Biotechnol Biochem. 1995 Dec;59(12):2210-4.

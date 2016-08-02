@@ -1,0 +1,13 @@
+ID  anfK_nitrog
+AC  TIGR02931
+DE  Fe-only nitrogenase, beta subunit
+AU  Haft DH
+TC  853.85 853.85
+NC  853.75 853.75
+AL  muscle
+IT  equivalog
+EN  Fe-only nitrogenase, beta subunit
+GS  anfK
+EC  1.18.6.1
+TP  TIGRFAMs
+CC  Nitrogenase is the enzyme of biological nitrogen fixation. The most wide-spread and most efficient nitrogenase contains a molybdenum cofactor. This protein family, AnfK, represents the beta subunit of the iron-only alternative nitrogenase. It is homologous to NifK and VnfK, of the molybdenum-containing and the vanadium (V)-containing types, respectively.

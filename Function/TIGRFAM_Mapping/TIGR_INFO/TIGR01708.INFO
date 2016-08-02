@@ -1,0 +1,12 @@
+ID  typeII_sec_gspH
+AC  TIGR01708
+DE  type II secretion system protein H
+AU  Haft DH
+TC  45.95 45.95
+NC  44.00 44.00
+AL  clustalw_manual
+IT  equivalog
+EN  type II secretion system protein H
+GS  gspH
+TP  TIGRFAMs
+CC  This HMM represents GspH, protein H of the main terminal branch of the general secretion pathway, also called type II secretion. It transports folded proteins across the bacterial outer membrane and is widely distributed in Gram-negative pathogens.

@@ -1,0 +1,18 @@
+ID  methan_mark_2
+AC  TIGR03267
+DE  putative methanogenesis marker protein 2
+AU  Haft DH
+TC  365.00 365.00
+NC  335.00 335.00
+AL  muscle
+IT  hypoth_equivalog
+EN  putative methanogenesis marker protein 2
+TP  TIGRFAMs
+CC  A single member of this protein family is found in each of the first ten complete genome sequences of archaeal methanogens, and nowhere else. Sequence similarity to various bacterial proteins is reflected in Pfam models PF00586 and PF02769, AIR synthase related protein N-terminal and C-terminal domains, respectively. The functions of proteins in this family are unknown, but their role is likely one essential to methanogenesis.
+DR  PFAM; PF00586; AIRS
+DR  PFAM; PF02769; AIRS_C
+RN  [1]
+RM  PMID:22070167 
+RT  ProPhylo: partial phylogenetic profiling to guide protein family construction and assignment of biological process. 
+RA  Basu MK, Selengut JD, Haft DH 
+RL  BMC Bioinformatics. 2011 Nov 9;12:434.

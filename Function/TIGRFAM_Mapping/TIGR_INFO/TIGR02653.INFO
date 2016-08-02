@@ -1,0 +1,11 @@
+ID  Lon_rel_chp
+AC  TIGR02653
+DE  conserved hypothetical protein
+AU  Haft DH
+TC  628.25 628.25
+NC  278.65 278.65
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  conserved hypothetical protein
+TP  TIGRFAMs
+CC  This model describes a protein family of unknown function, about 690 residues in length, in which some members show C-terminal sequence similarity to Pfam model PF05362, which is the Lon protease C-terminal proteolytic domain, from MEROPS family S16. However, the annotated catalytic sites of E. coli Lon protease are not conserved in members of this family. Members have a motif GP[RK][GS]TGKS, similar to the ATP-binding P-loop motif GxxGxGK[ST].

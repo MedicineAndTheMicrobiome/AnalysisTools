@@ -1,0 +1,17 @@
+ID  TMAO_TorT
+AC  TIGR02955
+DE  TMAO reductase system periplasmic protein TorT
+AU  Haft DH
+TC  310.00 310.00
+NC  107.05 107.05
+AL  muscle
+IT  equivalog
+EN  TMAO reductase system periplasmic protein TorT
+GS  torT
+TP  TIGRFAMs
+CC  Members of this family are the periplasmic protein TorT which, together with the the TorS/TorR histidine kinase/response regulator system, regulates expression of the torCAD operon for trimethylamine N-oxide reductase (TMAO reductase). It appears to bind an inducer for TMAO reductase, and shows homology to a periplasmic D-ribose binding protein.
+RN  [1]
+RM  PMID: 8576063
+RT  The periplasmic TorT protein is required for trimethylamine N-oxide reductase gene induction in Escherichia coli.
+RA  Jourlin C, Simon G, Pommier J, Chippaux M, Mejean V
+RL  J Bacteriol. 1996 Feb;178(4):1219-23.

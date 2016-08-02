@@ -1,0 +1,13 @@
+ID  PabB-fungal
+AC  TIGR01823
+DE  aminodeoxychorismate synthase
+AU  Selengut J
+TC  442.55 442.55
+NC  433.10 433.10
+AL  clustalw
+IT  equivalog
+EN  aminodeoxychorismate synthase, fungal clade
+GS  pabB
+EC  2.6.1.85
+TP  TIGRFAMs
+CC  This model represents the fungal clade of a para-aminobenzoate synthesis enzyme, aminodeoxychorismate synthase, which acts on chorismate in a pathway that yields PABA, a precursor of folate.

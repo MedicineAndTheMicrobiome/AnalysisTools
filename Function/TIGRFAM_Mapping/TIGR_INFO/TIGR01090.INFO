@@ -1,0 +1,14 @@
+ID  apt
+AC  TIGR01090
+DE  adenine phosphoribosyltransferase
+AU  Haft DH
+TC  185.85 185.85
+NC  68.80 68.80
+AL  clustalw
+IT  equivalog
+EN  adenine phosphoribosyltransferase
+GS  apt
+EC  2.4.2.7
+TP  TIGRFAMs
+CC  A phylogenetic analysis suggested omitting the bi-directional best hit homologs from the spirochetes from the seed for this HMM and making only tentative predictions of adenine phosphoribosyltransferase function for this lineage. The trusted cutoff score is made high for this reason. Most proteins scoring between the trusted and noise cutoffs are likely to act as adenine phosphotransferase.
+DR  HAMAP; MF_00004; 405 of 474

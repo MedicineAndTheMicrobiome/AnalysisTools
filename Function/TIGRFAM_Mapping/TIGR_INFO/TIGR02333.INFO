@@ -1,0 +1,18 @@
+ID  2met_isocit_dHY
+AC  TIGR02333
+DE  2-methylisocitrate dehydratase, Fe/S-dependent
+AU  Haft DH
+TC  1419.85 1419.85
+NC  1137.30 1137.30
+AL  clustalw
+IT  equivalog
+EN  2-methylisocitrate dehydratase, Fe/S-dependent
+GS  acnD
+EC  4.2.1.99
+TP  TIGRFAMs
+CC  Members of this family appear in an operon for the degradation of propionyl-CoA via 2-methylcitrate. This family is homologous to aconitases A and B and appears to act the part as 2-methylisocitrate dehydratase, the enzyme after PrpD and before PrpB. In Escherichia coli, which lacks a member of this family, 2-methylisocitrate dehydratase activity was traced to aconitase B (TIGR00117) (PMID:12473114).
+RN  [1]
+RM  14702315
+RT  The acnD genes of Shewenella oneidensis and Vibrio cholerae encode a new Fe/S-dependent 2-methylcitrate dehydratase enzyme that requires prpF function in vivo.
+RA  Grimek TL, Escalante-Semerena JC.
+RL  J Bacteriol. 2004 Jan;186(2):454-62.

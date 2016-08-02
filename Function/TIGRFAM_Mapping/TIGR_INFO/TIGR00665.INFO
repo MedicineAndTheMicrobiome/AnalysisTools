@@ -1,0 +1,17 @@
+ID  DnaB
+AC  TIGR00665
+DE  replicative DNA helicase
+AU  Haft DH
+TC  385.25 385.25
+NC  248.10 248.10
+AL  muscle_manual
+IT  equivalog
+EN  replicative DNA helicase
+GS  dnaB
+EC  3.6.4.12
+TP  TIGRFAMs
+CC  This HMM describes the helicase DnaB, a homohexameric protein required for DNA replication. The homohexamer can form a ring around a single strand of DNA near a replication fork. An intein of > 400 residues is found at a conserved location in DnaB of Synechocystis PCC6803, Rhodothermus marinus (both experimentally confirmed), and Mycobacterium tuberculosis. The intein removes itself by a self-splicing reaction. The seed alignment contains inteins so that the model built from the seed alignment will model a low cost at common intein insertion sites.
+DR  PFAM; PF00772; DnaB
+DR  EXPERIMENTAL; EGAD|5615|EC4052
+DR  EXPERIMENTAL; GP|4416322|gb|AAD20314.1||AF106032; Bacillus stearothermophilus
+DR  ECOCYC; EG10236; dnaB;

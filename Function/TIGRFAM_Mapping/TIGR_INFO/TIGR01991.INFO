@@ -1,0 +1,13 @@
+ID  HscA
+AC  TIGR01991
+DE  Fe-S protein assembly chaperone HscA
+AU  Haft DH
+TC  708.55 708.55
+NC  668.45 668.45
+AL  clustalw
+IT  equivalog
+EN  Fe-S protein assembly chaperone HscA
+GS  hscA
+TP  TIGRFAMs
+CC  The Heat Shock Cognate proteins HscA and HscB act together as chaperones. HscA resembles DnaK but belongs in a separate clade. The apparent function is to aid assembly of iron-sulfur cluster proteins. Homologs from Buchnera and Wolbachia are clearly in the same clade but are highly derived and score lower than some examples of DnaK.
+DR  HAMAP; MF_00679; 117 of 126

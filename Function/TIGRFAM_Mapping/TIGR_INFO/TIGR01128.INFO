@@ -1,0 +1,26 @@
+ID  holA
+AC  TIGR01128
+DE  DNA polymerase III, delta subunit
+AU  Durkin S, Haft DH
+TC  94.95 94.95
+NC  65.15 65.15
+AL  clustalw
+IT  equivalog
+EN  DNA polymerase III, delta subunit
+GS  holA
+EC  2.7.7.7
+TP  TIGRFAMs
+CC  DNA polymerase III delta (holA) and delta prime (holB) subunits are distinct proteins encoded by separate genes. The delta prime subunit (holB) exhibits sequence homology to the tau and gamma subunits (dnaX), but the delta subunit (holA) does not demonstrate this same homology with dnaX.
+CC  The delta, delta prime, gamma, chi and psi subunits form the 
+CC  gamma complex subassembly of DNA polymerase III holoenzyme, which couples ATP to assemble the ring-shaped beta
+CC  subunit around DNA forming a DNA sliding clamp.
+RN  [1]
+RM  8505303
+RT  DNA polymerase III accessory proteins. I. holA and holB encoding delta and delta'.
+RA  Dong Z, Onrust R, Skangalis M, O'Donnell M
+RL  J Biol Chem 1993 Jun 5;268(16):11758-65
+RN  [2]
+RM  8505304
+RT  DNA polymerase III accessory proteins. II. Characterization of delta and delta'.
+RA  Onrust R, O'Donnell M
+RL  J Biol Chem 1993 Jun 5;268(16):11766-72

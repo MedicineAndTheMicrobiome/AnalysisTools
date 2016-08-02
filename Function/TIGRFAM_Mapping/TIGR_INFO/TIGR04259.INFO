@@ -1,0 +1,12 @@
+ID  oxa_formateAnti
+AC  TIGR04259
+DE  oxalate/formate antiporter
+AU  Haft DH
+TC  335.00 335.00
+NC  290.00 290.00
+AL  muscle_manual
+IT  equivalog
+EN  oxalate/formate antiporter
+GS  oxlT
+TP  TIGRFAMs
+CC  This model represents a subgroup of the more broadly defined model TIGR00890, which in turn belongs to the Major Facilitator transporter family. Seed members for this family include the known oxalate/formate antiporter of Oxalobacter formigenes, as well as transporter subunits co-clustered with the two genes of a system that decarboxylates oxalate into formate. In many of these cassettes, two subunits are found rather than one, suggesting the antiporter is sometimes homodimeric, sometimes heterodimeric.

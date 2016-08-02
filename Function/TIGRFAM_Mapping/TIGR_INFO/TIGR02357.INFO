@@ -1,0 +1,15 @@
+ID  thia_yuaJ
+AC  TIGR02357
+DE  putative proton-coupled thiamine transporter YuaJ
+AU  Haft DH
+TC  108.45 108.45
+NC  61.35 61.35
+AL  clustalw
+IT  hypoth_equivalog
+EN  putative proton-coupled thiamine transporter YuaJ
+TP  TIGRFAMs
+CC  Members of this protein family have been assigned as thiamine transporters by a phylogenomic analysis of families of genes regulated by the THI element, a broadly conserved RNA secondary structure element through which thiamine pyrophosphate (TPP) levels can regulate transcription of many genes related to thiamine transport, salvage, and de novo biosynthesis. Species with this protein always lack the ThiBPQ ABC transporter. In some species (e.g. Steptococcus mutans and Streptoccus pyogenes), yuaJ is the only THI-regulated gene. Evidence from Bacillus cereus indicates thiamine uptake is coupled to proton translocation.
+RM  12376536
+RT  Comparative genomics of thiamin biosynthesis in procaryotes. New genes and regulatory mechanisms.
+RA  Rodionov DA, Vitreschak AG, Mironov AA, Gelfand MS.
+RL  J Biol Chem. 2002 Dec 13;277(50):48949-59.

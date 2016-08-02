@@ -1,0 +1,13 @@
+ID  pcrA
+AC  TIGR01073
+DE  ATP-dependent DNA helicase PcrA
+AU  Durkin S
+TC  911.20 911.20
+NC  822.15 822.15
+AL  clustalw
+IT  equivalog
+EN  ATP-dependent DNA helicase PcrA
+GS  pcrA
+EC  3.6.4.12
+TP  TIGRFAMs
+CC  Designed to identify pcrA members of the uvrD/rep subfamily.

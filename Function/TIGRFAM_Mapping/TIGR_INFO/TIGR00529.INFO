@@ -1,0 +1,11 @@
+ID  AF0261
+AC  TIGR00529
+DE  integral membrane protein, TIGR00529 family
+AU  Haft DH
+TC  378.40 378.40
+NC  108.15 108.15
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  integral membrane protein, TIGR00529 family
+TP  TIGRFAMs
+CC  This protein is predicted to have 10 transmembrane regions. Members of this family are found so far in the Archaea (Archaeoglobus fulgidus and Pyrococcus horikoshii) and in a bacterial thermophile, Thermotoga maritima. In Pyrococcus, the gene is located between nadA and nadB, two components of an enzyme involved in de novo synthesis of NAD. By PSI-BLAST, this family shows similarity (but not necessarily homology) to gluconate permease and other transport proteins.

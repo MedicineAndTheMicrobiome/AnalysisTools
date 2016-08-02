@@ -1,0 +1,16 @@
+ID  hypF
+AC  TIGR00143
+DE  carbamoyltransferase HypF
+AU  Haft DH, Richardson DL
+TC  466.10 466.10
+NC  359.80 359.80
+AL  clustalw
+IT  equivalog
+EN  [NiFe] hydrogenase maturation protein HypF
+GS  hypF
+TP  TIGRFAMs
+CC  A previously described regulatory effect of HypF mutatation is attributable to loss of activity of a regulatory hydrogenase. A zinc finger-like region CXXCX(18)CXXCX(24)CXXCX(18)CXXC region further supported the regulatory hypothesis. However, more recent work (PUBMED:11375153) shows the direct effect is on the activity of expressed hydrogenases with nickel/iron centers, rather than on expression.
+RM  11375153
+RT  Transposon mutagenesis in purple sulfur photosynthetic bacteria: identification of hypF, encoding a protein capable of processing [NiFe] hydrogenases in alpha, beta, and gamma subdivisions of the proteobacteria.
+RA  Fodor B, Rakhely G, Kovacs AT, Kovacs KL.
+RL  Appl Environ Microbiol 2001 Jun;67(6):2476-83

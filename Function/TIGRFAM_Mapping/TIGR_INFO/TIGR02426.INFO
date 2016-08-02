@@ -1,0 +1,18 @@
+ID  protocat_pcaB
+AC  TIGR02426
+DE  3-carboxy-cis,cis-muconate cycloisomerase
+AU  Haft DH
+TC  355.75 355.75
+NC  298.30 298.30
+AL  clustalw
+IT  equivalog
+EN  3-carboxy-cis,cis-muconate cycloisomerase
+GS  pcaB
+EC  5.5.1.2
+TP  TIGRFAMs
+CC  Members of this family are 3-carboxy-cis,cis-muconate cycloisomerase, the enzyme the catalyzes the second step in the protocatechuate degradation to beta-ketoadipate and then to succinyl-CoA and acetyl-CoA. 4-hydroxybenzoate, 3-hydroxybenzoate, and vanillate all can be converted in one step to protocatechuate. All members of the seed alignment for this model were chosen from within protocatechuate degradation operons of at least three genes of the pathway, from genomes with the complete pathway through beta-ketoadipate.
+RN  [1]
+RM  15006791
+RT  Diverse organization of genes of the beta-ketoadipate pathway in members of the marine Roseobacter lineage.
+RA  Buchan A, Neidle EL, Moran MA.
+RL  Appl Environ Microbiol. 2004 Mar;70(3):1658-68.

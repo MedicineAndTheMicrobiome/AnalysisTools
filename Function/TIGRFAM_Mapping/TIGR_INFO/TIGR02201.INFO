@@ -1,0 +1,13 @@
+ID  heptsyl_trn_III
+AC  TIGR02201
+DE  putative lipopolysaccharide heptosyltransferase III
+AU  Haft DH
+TC  170.20 170.20
+NC  148.85 148.85
+AL  clustalw
+IT  equivalog
+EN  lipopolysaccharide heptosyltransferase III, putative
+GS  rfaQ
+EC  2.4.1.-
+TP  TIGRFAMs
+CC  This family consists of examples of the putative ADP-heptose:LPS heptosyltransferase III, an enzyme of LPS inner core region biosynthesis. LPS, composed of lipid A, a core region, and O antigen, is found in the outer membrane of Gram-negative bacteria. This enzyme may be less widely distributed than heptosyltransferases I and II.

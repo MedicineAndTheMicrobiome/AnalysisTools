@@ -1,0 +1,18 @@
+ID  spore_cwlD
+AC  TIGR02883
+DE  N-acetylmuramoyl-L-alanine amidase CwlD
+AU  Haft DH
+TC  221.55 221.55
+NC  142.10 142.10
+AL  unknown
+IT  equivalog
+EN  N-acetylmuramoyl-L-alanine amidase CwlD
+GS  cwlD
+EC  3.5.1.28
+TP  TIGRFAMs
+CC  Members of this protein family are the CwlD family of N-acetylmuramoyl-L-alanine amidase. This family has been called the germination-specific N-acetylmuramoyl-L-alanine amidase. CwlD is required, along with the putative deactylase PdaA, to make muramic delta-lactam, a novel peptidoglycan constituent found only in spores. CwlD mutants show a germination defect.
+RN  [1]
+RM  14679227
+RT  Production of muramic delta-lactam in Bacillus subtilis spore peptidoglycan.
+RA  Gilmore ME, Bandyopadhyay D, Dean AM, Linnstaedt SD, Popham DL.
+RL  J Bacteriol. 2004 Jan;186(1):80-9.

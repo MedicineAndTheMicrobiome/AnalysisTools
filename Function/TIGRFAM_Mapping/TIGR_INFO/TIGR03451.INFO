@@ -1,0 +1,17 @@
+ID  mycoS_dep_FDH
+AC  TIGR03451
+DE  S-(hydroxymethyl)mycothiol dehydrogenase
+AU  Haft DH
+TC  512.90 512.90
+NC  512.15 512.15
+AL  muscle_manual
+IT  equivalog
+EN  S-(hydroxymethyl)mycothiol dehydrogenase
+EC  1.1.1.306
+TP  TIGRFAMs
+CC  Members of this protein family are mycothiol-dependent formaldehyde dehydrogenase (EC 1.2.1.66). This protein is found, so far, only in the Actinobacteria (Mycobacterium sp., Streptomyces sp., Corynebacterium sp., and related species), where mycothione replaces glutathione.
+RN  [1]
+RM  PMID:9202149
+RT  Mycothiol, 1-O-(2'-[N-acetyl-L-cysteinyl]amido-2'-deoxy-alpha-D-glucopyranosyl)-D- myo-inositol, is the factor of NAD/factor-dependent formaldehyde dehydrogenase.
+RA  Misset-Smits M, van Ophem PW, Sakuda S, Duine JA
+RL  FEBS Lett. 1997 Jun 9;409(2):221-2.

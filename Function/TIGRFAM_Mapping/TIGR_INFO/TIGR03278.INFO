@@ -1,0 +1,16 @@
+ID  methan_mark_10
+AC  TIGR03278
+DE  methanogenesis marker radical SAM protein
+AU  Haft DH
+TC  350.00 350.00
+NC  250.00 250.00
+AL  muscle
+IT  equivalog
+EN  methanogenesis marker radical SAM protein
+TP  TIGRFAMs
+CC  Members of this protein family, to date, are found in a completed prokaryotic genome if and only if the species is one of the archaeal methanogens. It is a radical SAM enzyme by homology. The exact function is unknown, but likely is linked to methanogenesis. In most genomes, the member of this family is encoded by a gene next to, and divergently transcribed from, the methyl coenzyme M reductase operon.
+RN  [1]
+RM  PMID:22070167 
+RT  ProPhylo: partial phylogenetic profiling to guide protein family construction and assignment of biological process. 
+RA  Basu MK, Selengut JD, Haft DH 
+RL  BMC Bioinformatics. 2011 Nov 9;12:434.

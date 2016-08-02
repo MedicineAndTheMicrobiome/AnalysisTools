@@ -1,0 +1,29 @@
+ID  SF-CC1
+AC  TIGR01622
+DE  splicing factor, CC1-like family
+AU  Selengut J
+TC  231.65 231.65
+NC  167.00 167.00
+AL  clustalw
+IT  subfamily
+EN  splicing factor, CC1-like family
+TP  TIGRFAMs
+CC  This model represents a subfamily of RNA splicing factors including the Pad-1 protein (N. crassa), CAPER (M. musculus) and CC1.3 (H.sapiens).  These proteins are characterized by  an N-terminal arginine-rich, low complexity domain followed by three (or in the case of 4 H. sapiens paralogs, two) RNA recognition domains (rrm: PF00706).  These splicing factors are closely related to the U2AF splicing factor family (TIGR01642).
+CC  A homologous gene from Plasmodium falciparum was identified in the course of the analysis of that genome at TIGR [4] and was included in the seed.
+RN  [1]
+RM  PMID: 9578630
+RT  Repeat-induced point mutations in Pad-1, a putative RNA splicing factor from Neurospora crassa, confer dominant lethal effects on ascus development.
+RA  Kuldau GA, Raju NB, Glass NL.
+RL  Fungal Genet Biol 1998 Mar;23(2):169-80
+RN  [2]
+RM  PMID: 11704680
+RT  Molecular cloning and characterization of CAPER, a novel coactivator of activating protein-1 and estrogen receptors.
+RA  Jung DJ, Na SY, Na DS, Lee JW.
+RL  J Biol Chem 2002 Jan 11;277(2):1229-34
+RN  [3]
+RM  PMID: 8227358
+RT  Novel nuclear autoantigen with splicing factor motifs identified with antibody from hepatocellular carcinoma.
+RA  Imai H, Chan EK, Kiyosawa K, Fu XD, Tan EM.
+RL  J Clin Invest 1993 Nov;92(5):2419-26
+RN  [4]
+RL  TIGR, unpublished data

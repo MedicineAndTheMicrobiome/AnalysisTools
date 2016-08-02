@@ -1,0 +1,13 @@
+ID  RK_trnsloc_Pase
+AC  TIGR04400
+DE  Arg-Lys translocation region protein phosphatase
+AU  Haft DH
+TC  200.00 200.00
+NC  50.00 50.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  Arg-Lys translocation region protein phosphatase
+GS  rktP
+EC  3.1.3.-
+TP  TIGRFAMs
+CC  The Sec-independent protein export system TAT, or twin-arginine translocation, is unusual in Leptospira, with Lys replacing Arg in the second position of the twin-Arg motif. This protein, restricted to Leptospira and showing distant homology to the phosphoserine phosphatases RsbU and SpoIIE, is always encoded immediately downstream of the tatC gene and appears to be part of the variant TAT system. It lacks a TAT signal itself, and so is more likely to be part of the Sec-independent translocation machinery than to be a substrate. The suggested symbol is rktP, for RK-Translocation Phosphatase.

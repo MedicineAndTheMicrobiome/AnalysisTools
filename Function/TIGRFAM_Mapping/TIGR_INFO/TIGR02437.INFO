@@ -1,0 +1,19 @@
+ID  FadB
+AC  TIGR02437
+DE  fatty oxidation complex, alpha subunit FadB
+AU  Rosovitz MJ, Haft DH
+TC  933.55 933.55
+NC  726.70 726.70
+AL  clustalw
+IT  equivalog
+EN  fatty oxidation complex, alpha subunit FadB
+GS  fadB
+EC  4.2.1.17 5.3.3.8 1.1.1.35 5.1.2.3
+TP  TIGRFAMs
+CC  Members represent alpha subunit of multifunctional enzyme complex of the fatty acid degradation cycle. Activities include: enoyl-CoA hydratase (EC 4.2.1.17), dodecenoyl-CoA delta-isomerase activity (EC 5.3.3.8), 3-hydroxyacyl-CoA dehydrogenase (EC 1.1.1.35), 3-hydroxybutyryl-CoA epimerase (EC 5.1.2.3). A representative is E. coli FadB (SP:P21177). This model excludes the FadJ family represented by SP:P77399.
+RN  [1]
+RM  1699931
+RT  Primary sequence of the Escherichia coli fadBA operon, encoding the fatty acid-oxidizing multienzyme complex, indicates a high degree of homology to eucaryotic enzymes.
+RA  DiRusso CC.
+RL  J Bacteriol. 1990 Nov;172(11):6459-68.
+DR  HAMAP; MF_01621; 78 of 80

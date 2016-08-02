@@ -1,0 +1,16 @@
+ID  spore_gerQ
+AC  TIGR02728
+DE  spore coat protein GerQ
+AU  Haft DH
+TC  88.95 88.95
+NC  41.75 41.75
+AL  clustalw
+IT  equivalog
+EN  spore coat protein GerQ
+GS  gerQ
+TP  TIGRFAMs
+CC  Members of this protein family are the spore coat protein GerQ of endospore-forming Firmicutes (low GC Gram-positive bacteria). This protein is cross-linked by a spore coat-associated transglutaminase.
+RM  15317760
+RT  Transglutaminase-mediated cross-linking of GerQ in the coats of Bacillus subtilis spores.
+RA  Ragkousi K, Setlow P.
+RL  J Bacteriol. 2004 Sep;186(17):5567-75.

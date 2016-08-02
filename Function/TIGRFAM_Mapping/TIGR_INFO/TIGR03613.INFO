@@ -1,0 +1,17 @@
+ID  RutR
+AC  TIGR03613
+DE  pyrimidine utilization regulatory protein R
+AU  Selengut J
+TC  368.00 368.00
+NC  362.00 362.00
+AL  muscle
+IT  equivalog
+EN  pyrimidine utilization regulatory protein R
+GS  rutR
+TP  TIGRFAMs
+CC  This protein is observed in operons extremely similar to that characterized in E. coli K-12 [1] responsible for the import and catabolism of pyrimidines, primarily uracil.  This protein is a member of the TetR family of transcriptional regulators defined by the N-teminal model PF00440 and the C-terminal model PF08362 (YcdC-like protein, C-terminal region).
+RN  [1]
+RM  PMID:16540542 
+RT  A previously undescribed pathway for pyrimidine catabolism. 
+RA  Loh KD, Gyaneshwar P, Markenscoff Papadimitriou E, Fong R, Kim KS, Parales R, Zhou Z, Inwood W, Kustu S 
+RL  Proc Natl Acad Sci U S A. 2006 Mar 28;103(13):5114-9. Epub 2006 Mar 15.

@@ -1,0 +1,12 @@
+ID  nitrile_sll0784
+AC  TIGR04048
+DE  putative nitrilase, sll0784 family
+AU  Haft DH
+TC  502.60 502.60
+NC  371.20 371.20
+AL  muscle_manual
+IT  equivalog_domain
+EN  putative nitrilase, sll0784 family
+EC  3.5.5.-
+TP  TIGRFAMs
+CC  This family represents a subfamily of a C-N bond-cleaving hydrolases (see PF00795). Members occur as part of a cluster of genes in a probable biosynthetic cluster that contains a radical SAM protein, an N-acetyltransferase, a flavoprotein, several proteins of unknown function, and usually a glycosyltransferase. Members are closely related to a characterized aliphatic nitrilase from Rhodopseudomonas rhodochrous J1, for which an active site Cys was found at position 165.

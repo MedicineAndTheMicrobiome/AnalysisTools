@@ -1,0 +1,18 @@
+ID  rpsA
+AC  TIGR00717
+DE  ribosomal protein S1
+AU  Haft DH
+TC  577.00 577.00
+NC  255.60 255.60
+AL  clustalw
+IT  equivalog
+EN  ribosomal protein S1
+GS  rpsA
+TP  TIGRFAMs
+CC  This HMM describes ribosomal protein S1, RpsA. This protein is found in most bacterial genomes in a single copy, but is not present in the Mycoplasmas. It is heterogeneous with respect to the number of repeats of the S1 RNA binding domain described by PFAM HMM PF00575: six repeats in E. coli and most other bacteria, four in Bacillus subtilis and some other species.
+CC  rpsA is an essential gene in E. coli but not in B. subtilis. It is associated with the cytidylate kinase gene cmk in many species, and fused to it in Treponema pallidum.
+CC  RpsA is proposed (Medline:97323001) to assist in mRNA degradation.
+CC  This model provides trusted hits to most long form (6 repeat) examples of RpsA. Among homologs with only four repeats are some to which other (perhaps secondary) functions have been assigned.
+DR  PFAM; PF00575; S1 RNA binding domain
+RN  [1]
+RM  97323001

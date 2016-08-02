@@ -1,0 +1,14 @@
+ID  mfd
+AC  TIGR00580
+DE  transcription-repair coupling factor
+AU  Loftus BJ, Eisen JA
+TC  819.85 819.85
+NC  533.00 533.00
+IT  equivalog
+EN  transcription-repair coupling factor (mfd)
+GS  mfd
+EC  3.6.1.-
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are DNA-dependent ATPases that function in the process of transcription-coupled DNA repair in which the repair of the transcribed strand of actively transcribed genes is repaired at a higher rate than the repair of non-transcribed regions of the genome and than the non-transcribed strand of the same gene.  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).  This family is closely related to the RecG and UvrB families.
+DR  SWISSPROT; P30958;
+RM  93219833;

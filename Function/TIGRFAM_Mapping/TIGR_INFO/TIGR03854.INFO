@@ -1,0 +1,16 @@
+ID  F420_MSMEG_3544
+AC  TIGR03854
+DE  probable F420-dependent oxidoreductase, MSMEG_3544 family
+AU  Haft DH
+TC  295.60 295.60
+NC  156.60 156.60
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  probable F420-dependent oxidoreductase, MSMEG_3544 family
+TP  TIGRFAMs
+CC  Coenzyme F420 has a limited phylogenetic distribution, including methanogenic archaea, Mycobacterium tuberculosis and related species, Colwellia psychrerythraea 34H, Rhodopseudomonas palustris HaA2, and others. Partial phylogenetic profiling identifies protein subfamilies, within the larger family called luciferase-like monooxygenanases (PF00296), that appear only in F420-positive genomes and are likely to be F420-dependent. This model describes a small family, closely related to other such families in the putative F420-binding region, exemplified by MSMEG_3544 in Mycobacterium smegmatis.
+RN  [1]
+RM  PMID:20675471 
+RT  Unexpected abundance of coenzyme F(420)-dependent enzymes in Mycobacterium tuberculosis and other actinobacteria. 
+RA  Selengut JD, Haft DH 
+RL  J Bacteriol. 2010 Nov;192(21):5788-98

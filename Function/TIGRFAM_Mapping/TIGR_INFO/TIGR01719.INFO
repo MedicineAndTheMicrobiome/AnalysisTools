@@ -1,0 +1,22 @@
+ID  euk_UDPppase
+AC  TIGR01719
+DE  uridine phosphorylase
+AU  Selengut J
+TC  249.95 249.95
+NC  125.50 125.50
+AL  clustalw
+IT  equivalog
+EN  uridine phosphorylase
+EC  2.4.2.3
+TP  TIGRFAMs
+CC  This model represents a clade of mainly eucaryotic uridine phosphorylases.  Genes from human [1] and mouse [2] have been characterized.  This enzyme is a member of the PHP/UDP subfamily (PF01048) and is closely related to the bacterial uridine (TIGR01718) and inosine (TIGR00107) phosphorylase equivalogs.  In addition to the eukaryotes, a gene from Mycobacterium leprae is included in this equivalog and may have resulted from lateral gene transfer.
+RN  [1]
+RM  PMID: 7488099
+RT  Cloning and expression of human uridine phosphorylase
+RA  Watanabe S.-I., Uchida T.
+RL  Biochem. Biophys. Res. Commun. 216:265-272(1995).
+RN  [1]
+RM  PMID: 7744869
+RT  Purification, cloning, and expression of murine uridine phosphorylase.
+RA  Watanabe S.-I., Hino A., Wada K., Eliason J.F., Uchida T.
+RL  J. Biol. Chem. 270:12191-12196(1995).

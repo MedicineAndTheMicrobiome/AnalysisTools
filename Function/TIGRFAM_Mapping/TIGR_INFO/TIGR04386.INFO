@@ -1,0 +1,11 @@
+ID  ThiC_like_1
+AC  TIGR04386
+DE  ThiC-like protein 1
+AU  Haft DH
+TC  700.00 700.00
+NC  675.00 675.00
+AL  muscle_manual
+IT  exception
+EN  ThiC-like protein 1
+TP  TIGRFAMs
+CC  Members of this protein family closely resemble ThiC, an enzyme that performs a complex rearrangement during thiamin biosynthesis, but instead occur as one of two adjacent additional paralogs to bona fide ThiC, in a conserved gene neighborhood with a pair of B12 binding domain/radical SAM domain proteins. Members of the ThiC family are non-canonical radical SAM enzymes, using a C-terminal Cys-rich motif to ligand a 4Fe-4S cluster that cleaves S-adenosylmethionine (SAM), but that sequence region does not belong to PF04055.

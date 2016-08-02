@@ -1,0 +1,14 @@
+ID  TIGR00368
+AC  TIGR00368
+DE  Mg chelatase-like protein
+AU  Loftus BJ
+TC  362.40 362.40
+NC  271.70 271.70
+AL  clustalw
+IT  hypoth_equivalog
+EN  Mg chelatase-related protein
+TP  TIGRFAMs
+CC  The N-terminal end matches very strongly a pfam Mg_chelatase domain.
+DR  PFAM; PF01078; Mg_chelatase;
+DR  ECOCYC; EG11260; yifB;
+DR  EGAD:15290, SP:P22787

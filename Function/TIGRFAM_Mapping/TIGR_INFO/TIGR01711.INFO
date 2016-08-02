@@ -1,0 +1,13 @@
+ID  gspJ
+AC  TIGR01711
+DE  type II secretion system protein J
+AU  Haft DH
+TC  64.85 64.85
+NC  29.65 29.65
+AL  clustalw_manual
+IT  equivalog
+EN  type II secretion system protein J
+GS  gspJ
+TP  TIGRFAMs
+CC  This HMM represents GspJ, one of two proteins highly conserved at their N-termini and described by PF02501 but easily separable phylogenetically. The other is GspI.
+CC  Both GspI and GspJ are proteins of the type II secretion pathway, or main terminal branch of the general secretion pathway. This pathway carries proteins across the outer membrane. Note that proteins of type II secretion are cryptic in E. coli K-12 - present but not yet demonstrated to act on any target.

@@ -1,0 +1,13 @@
+ID  g_glut_trans
+AC  TIGR00066
+DE  gamma-glutamyltransferase
+AU  Haft DH
+TC  357.85 357.85
+NC  182.70 182.70
+AL  clustalw_manual
+IT  equivalog
+EN  gamma-glutamyltranspeptidase
+GS  ggt
+EC  2.3.2.2
+TP  TIGRFAMs
+CC  Also called gamma-glutamyltranspeptidase (ggt). Some members of this family  have antibiotic synthesis or resistance activities. In the case of a cephalosporin acylase from Pseudomonas sp., the enzyme was shown to retain some gamma-glutamyltranspeptidase activity.  Other, more distantly related proteins have ggt-related activities and score below the trusted cutoff.

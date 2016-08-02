@@ -1,0 +1,11 @@
+ID  cyano_PEP
+AC  TIGR04155
+DE  PEP-CTERM protein sorting domain, cyanobacterial subclass
+AU  Haft DH
+TC  21.60 20.00
+NC  18.75 17.50
+AL  muscle_manual
+IT  subfamily_domain
+EN  PEP-CTERM protein sorting domain, cyanobacterial subclass
+TP  TIGRFAMs
+CC  This domain model describes a subclass with family TIGR02595 of PEP-CTERM protein sorting signals associated with bacterial exosortases. This subclass is restricted to Cyanobacteria, including the genera Cyanothece, Nostoc, Trichodesmium, Lyngbya, Arthospira, etc. This PEP-CTERM subclass features strongly conserved residues within the transmembrane region, including a Gx4GxG motif. Model TIGR03763 describes a corresponding cyanobacterial form of exosortase found in most species with this domain.

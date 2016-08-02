@@ -1,0 +1,14 @@
+ID  AcOrn-deacetyl
+AC  TIGR01892
+DE  acetylornithine deacetylase (ArgE)
+AU  Selengut J
+TC  297.70 297.70
+NC  239.80 239.80
+AL  clustalw
+IT  equivalog
+EN  acetylornithine deacetylase (ArgE)
+GS  argE
+EC  3.5.1.16
+TP  TIGRFAMs
+CC  This model represents a clade of acetylornithine deacetylases from proteobacteria.  This enzyme is the final step of the "acetylated" ornithine biosynthesis pathway.  The enzyme is closely related to dapE, succinyl-diaminopimelate desuccinylase, and outside of this clade annotation is very inaccurate as to which function should be ascribed to genes.
+DR  HAMAP; MF_01108; 36 of 37

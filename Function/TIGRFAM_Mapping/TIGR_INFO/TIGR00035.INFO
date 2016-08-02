@@ -1,0 +1,14 @@
+ID  asp_race
+AC  TIGR00035
+DE  aspartate racemase
+AU  Haft DH
+TC  93.10 93.10
+NC  88.70 88.70
+AL  clustalw
+IT  subfamily
+EN  aspartate racemase
+EC  5.1.1.13
+TP  TIGRFAMs
+CC  Asparate racemases and some close homologs of unknown function are related to the more common glutamate racemases, but form a distinct evolutionary branch. This HMM identifies members of the aspartate racemase-related subset of amino acid racemases.
+CC  Suggest hmmls for identification of probable aspartate racemases, hmmsw for general homologs.
+DR  EC 5.1.1.13

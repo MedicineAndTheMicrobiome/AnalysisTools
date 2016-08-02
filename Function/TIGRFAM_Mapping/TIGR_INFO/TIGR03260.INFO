@@ -1,0 +1,17 @@
+ID  met_CoM_red_D
+AC  TIGR03260
+DE  methyl-coenzyme M reductase operon protein D
+AU  Haft DH
+TC  100.00 100.00
+NC  50.00 50.00
+AL  muscle
+IT  equivalog
+EN  methyl-coenzyme M reductase operon protein D
+GS  mcrD
+TP  TIGRFAMs
+CC  Members of this protein family are protein D, a non-structural  protein, of the operon for methyl coenzyme M reductase, also called coenzyme-B sulfoethylthiotransferase (EC 2.8.4.1). That enzyme, with alpha, beta, and gamma subunits, catalyzes the last step in methanogenesis; it has several modified sites, so accessory proteins are expected. Several methanogens have encode two such enzymes, designated I and II; this model does not separate the isozymes. Proteins in this family are expressed at much lower levels than the methyl-coenzyme M reductase itself and  associate and have been shown to form at least transient associations. The precise function is unknown.
+RN  [1]
+RM  PMID: 8268197
+RT  Association of the mcrD gene product with methyl coenzyme M reductase in Methanococcus vannielii.
+RA  Stroup D, Reeve JN
+RL  Biochim Biophys Acta. 1993 Dec 8;1203(2):175-83.

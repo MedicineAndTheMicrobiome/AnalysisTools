@@ -1,0 +1,17 @@
+ID  rSAM_desII
+AC  TIGR04426
+DE  TDP-4-amino-4,6-dideoxy-D-glucose deaminase
+AU  Haft DH
+TC  450.00 450.00
+NC  80.00 80.00
+AL  muscle_manual
+IT  equivalog
+EN  TDP-4-amino-4,6-dideoxy-D-glucose deaminase
+GS  desII
+TP  TIGRFAMs
+CC  Members of this protein family, including DesII, are radical SAM enzymes that deaminate TDP-4-amino-4,6-dideoxy-D-glucose to TDP-3-keto-4,6-dideoxy-D-glucose. This is the fourth step of the six step  pathway in Streptomyces venezuelae for synthesizing D-desosamine, or 3-(dimethylamino)-3,4,6-trideoxyglucose, a precursor for many macrolide antibiotics.
+RN  [1]
+RM  PMID:19746907 
+RT  Characterization and mechanistic studies of DesII: a radical S-adenosyl-L-methionine enzyme involved in the biosynthesis of TDP-D-desosamine. 
+RA  Szu PH, Ruszczycky MW, Choi SH, Yan F, Liu HW 
+RL  J Am Chem Soc. 2009 Oct 7;131(39):14030-42.

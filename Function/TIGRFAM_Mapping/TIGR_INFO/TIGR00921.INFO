@@ -1,0 +1,17 @@
+ID  2A067
+AC  TIGR00921
+DE  efflux transporter, putative, hydrophobe/amphiphile efflux-3 (HAE3) family
+AU  Loftus BJ, Haft DH
+TC  351.90 351.90
+NC  206.35 206.35
+AL  clustalw_manual
+IT  subfamily
+EN  The (Largely Archaeal Putative) Hydrophobe/Amphiphile Efflux-3 (HAE3) Family
+TR  2.A.6
+TP  TIGRFAMs
+CC  Characterized members of the RND superfamily all probably catalyze substrate efflux via an H+ antiport mechanism. These proteins are found ubiquitously in bacteria, archaea and eukaryotes. They fall into seven phylogenetic families, this family (2.A.6.7) consists of uncharacterised putative transporters, largely in the Archaea.
+DR  URL; http://tcdb.ucsd.edu/tcdb/tcfamilybrowse.php?tcname=2.A.6
+RM  10941792
+RT  The RND permease superfamily: an ancient, ubiquitous and diverse family that includes human disease and development proteins.
+RA  Tseng TT, Gratwick KS, Kollman J, Park D, Nies DH, Goffeau A, Saier MH Jr.
+RL  J Mol Microbiol Biotechnol. 1999 Aug;1(1):107-25.

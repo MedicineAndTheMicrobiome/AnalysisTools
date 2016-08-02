@@ -1,0 +1,16 @@
+ID  purM
+AC  TIGR00878
+DE  phosphoribosylformylglycinamidine cyclo-ligase
+AU  Haft DH
+TC  236.35 236.35
+NC  139.05 139.05
+AL  clustalw_manual
+IT  equivalog_domain
+EN  phosphoribosylaminoimidazole synthetase
+GS  purM
+EC  6.3.3.1
+TP  TIGRFAMs
+CC  Alternate name: phosphoribosylformylglycinamidine cyclo-ligase; AIRS; AIR synthase
+CC  This enzyme is found as a homodimeric monofunctional protein in prokaryotes and as part of a larger, multifunctional protein, sometimes with two copies of this enzyme in tandem, in eukaryotes.
+DR; EXPERIMENTAL; EGAD|24860|EC2499; Escherichia coli
+DR  HAMAP; MF_00741; 323 of 326

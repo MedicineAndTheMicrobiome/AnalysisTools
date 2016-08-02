@@ -1,0 +1,18 @@
+ID  ChlG
+AC  TIGR02056
+DE  chlorophyll synthase ChlG
+AU  Selengut J
+TC  436.45 436.45
+NC  381.25 381.25
+AL  clustalw
+IT  equivalog
+EN  chlorophyll synthase, ChlG
+GS  chlG
+EC  2.5.1.62
+TP  TIGRFAMs
+CC  This HMM represents the strictly cyanobacterial and plant-specific chlorophyll synthase ChlG.  ChlG is the enzyme (esterase) which attaches the side chain moiety onto chlorophyllide a.  Both geranylgeranyl and phytyl pyrophosphates are substrates to varying degrees in enzymes from different sources [1].  Thus, ChlG may act as the final or penultimate step in chlorophyll biosynthesis (along with the geranylgeranyl reductase, ChlP).
+RN  [1]
+RM  PMID: 12828371
+RT  Biosynthesis of chlorophylls from protoporphyrin IX.
+RA  Willows RD.
+RL  Nat Prod Rep. 2003 Jun;20(3):327-41.

@@ -1,0 +1,22 @@
+ID  hlyIII
+AC  TIGR01065
+DE  channel protein, hemolysin III family
+AU  Haft DH
+TC  172.20 172.20
+NC  28.05 28.05
+AL  clustalw
+IT  subfamily
+EN  channel protein, hemolysin III family
+TP  TIGRFAMs
+CC  This family includes proteins from pathogenic and non-pathogenic bacteria, Homo sapiens and Drosophila. In Bacillus cereus, a pathogen, it has been show to function as a channel-forming cytolysin. The human protein is expressed preferentially in mature macrophages, consistent with a role cytolytic role.
+RN  [1]
+DR  EXPERIMENTAL; EGAD|38000|39576; Bacillus cereus hemolysisn III
+RM  97071728
+RT  Mechanism of action of hemolysin III from Bacillus cereus.
+RA  Baida GE, Kuzmin NP
+RL  Biochim Biophys Acta 1996 Oct 23;1284(2):122-4
+RN  [2]
+RM  96106867
+RT  Molecular cloning of a novel macrophage maturation-associated transcript encoding a protein with several potential transmembrane domains.
+RA  Rehli M, Krause SW, Schwarzfischer L, Kreutz M, Andreesen R
+RL  Biochem. Biophys. Res. Commun. 217 (2), 661-667 (1995)

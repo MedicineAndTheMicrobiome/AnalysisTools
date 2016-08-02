@@ -1,0 +1,25 @@
+ID  crypto_DASH
+AC  TIGR02765
+DE  cryptochrome, DASH family
+AU  Haft DH
+TC  317.05 317.05
+NC  267.50 267.50
+AL  clustalw
+IT  subfamily
+EN  cryptochrome, DASH family
+TP  TIGRFAMs
+CC  Photolyases and cryptochromes are related flavoproteins. Photolyases harness the energy of blue light to repair DNA damage by removing pyrimidine dimers. Cryptochromes do not repair DNA and are presumed to act instead in some other (possibly unknown) process such as entraining circadian rhythms. This model describes the cryptochrome DASH subfamily, one of at least five major subfamilies, which is found in plants, animals, marine bacteria, etc. Members of this family bind both folate and FAD. They may show weak photolyase activity in vitro but have not been shown to affect DNA repair in vivo. Rather, DASH family cryptochromes have been shown to bind RNA (Vibrio cholerae VC1814), or DNA, and seem likely to act in light-responsive regulatory processes.
+RN  [1]
+RM  15147276
+RT  Identification of cryptochrome DASH from vertebrates.
+RA  Daiyasu H, Ishikawa T, Kuma K, Iwai S, Todo T, Toh H.
+RL  Genes Cells. 2004 May;9(5):479-95.
+RN  [2]
+RT  Purification and characterization of three members of the photolyase/cryptochrome family glue-light photoreceptors from Vibrio cholerae.
+RA  Worthington EN, Kavakli IH, Berrocal-Tito G, Bondo BE, Sancar A.
+RL  J Biol Chem. 2003 Oct 3;278(40):39143-54.
+RN  [3]
+RM  10871367
+RT  Bacterial cryptochrome and photolyase: characterization of two photolyase-like genes of Synechocystis sp. PCC6803.
+RA  Hitomi K, Okamoto K, Daiyasu H, Miyashita H, Iwai S, Toh H, Ishiura M, Todo T.
+RL  Nucleic Acids Res. 2000 Jun 15;28(12):2353-62.

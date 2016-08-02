@@ -1,0 +1,14 @@
+ID  panD
+AC  TIGR00223
+DE  aspartate 1-decarboxylase
+AU  Loftus BJ
+TC  106.00 106.00
+NC  83.70 83.70
+AL  clustalw
+IT  equivalog
+EN  L-aspartate-alpha-decarboxylase
+GS  panD
+EC  4.1.1.11
+TP  TIGRFAMs
+CC  Members of this family are aspartate 1-decarboxylase, the enzyme that makes beta-alanine and C02 from aspartate. Beta-alanine is then used to make the vitamin pantothenate, from which coenzyme A is made. Aspartate 1-decarboxylase is synthesized as a proenzyme, then cleaved to an alpha (C-terminal) and beta (N-terminal) subunit with a pyruvoyl group.
+DR  HAMAP; MF_00446; 266 of 276

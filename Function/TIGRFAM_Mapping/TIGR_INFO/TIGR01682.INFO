@@ -1,0 +1,15 @@
+ID  moaD
+AC  TIGR01682
+DE  molybdopterin converting factor, subunit 1
+AU  Haft DH
+TC  66.15 66.15
+NC  57.65 57.65
+AL  clustalw_manual
+IT  equivalog
+EN  molybdopterin converting factor, subunit 1, non-archaeal
+GS  moaD
+TP  TIGRFAMs
+CC  This HMM describes MoaD. It excludes archaeal homologs, since many Archaea have two MoaD-like proteins, suggesting two different functions. The Pfam HMM PF02597 describes both the thiamine biosynthesis protein ThiS and this protein, MoaD, a subunit (together with MoaE, Pfam:PF02391) of the molybdopterin converting factor. Both ThiS and MoaD are involved in sulfur transfer reactions. Distribution of this family appears limited to species that also have a member of PF02391, but a number of Archaea have two different members, suggesting functionally distinct subtypes.
+CC  The C-terminal Gly-Gly of this model is critical to function.
+DR  EXPERIMENTAL; SP|P30748; Escherichia coli
+DR  EXPERIMENTAL; SP|O96033; Homo sapiens

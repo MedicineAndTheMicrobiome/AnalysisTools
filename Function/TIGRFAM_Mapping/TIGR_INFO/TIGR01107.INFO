@@ -1,0 +1,12 @@
+ID  Na_K_ATPase_bet
+AC  TIGR01107
+DE  Na+/K+ ATPase, beta subunit
+AU  Ujwal ML, Paulsen IT
+TC  189.35 189.35
+NC  187.10 187.10
+AL  clustalw
+IT  equivalog
+EN  Sodium Potassium ATPase beta subunit
+EC  3.6.3.9
+TP  TIGRFAMs
+CC  This model describes the Na+/K+ ATPase beta subunit in eukaryotes. Na+/K+ ATPase(also called Sodium-Potassium pump) is intimately associated with the plasma membrane. It couples the energy released by the hydrolysis of ATP to extrude 3 Na+ ions, with the concomitant uptake of 2K+ ions, against their ionic gradients.

@@ -1,0 +1,16 @@
+ID  PGF_CTERM
+AC  TIGR04126
+DE  PGF-CTERM archaeal protein-sorting signal
+AU  Haft DH
+TC  24.50 24.50
+NC  22.50 22.50
+AL  manual
+IT  domain
+EN  PGF-CTERM archaeal protein-sorting signal
+TP  TIGRFAMs
+CC  This HMM describes a strictly archaeal putative protein-sorting motif, PGF-CTERM. It is the (predicted) recognition sequence for an exosortase homolog, archaeosortase (TIGR04125). In some archaea, up to fifty proteins have this domain as their C-terminal region, usually preceded by a Thr-rich region likely to be heavily glycosylated. The removal of this sorting signal may be associated with a C-terminal prenyl group modification in the halobacterial major cell surface glycoprotein, an S-layer protein.
+RN  [1]
+RM  PMID:22037399 
+RT  Archaeosortases and exosortases are widely distributed systems linking membrane transit with posttranslational modification. 
+RA  Haft DH, Payne SH, Selengut JD 
+RL  J Bacteriol. 2012 Jan;194(1):36-48.

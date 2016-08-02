@@ -1,0 +1,23 @@
+ID  dak_ATP
+AC  TIGR02361
+DE  dihydroxyacetone kinase
+AU  Haft DH
+TC  574.95 574.95
+NC  448.75 448.75
+AL  clustalw
+IT  equivalog
+EN  dihydroxyacetone kinase, ATP-dependent
+GS  dhaK
+EC  2.7.1.29
+TP  TIGRFAMs
+CC  This family consists of examples of the form of dihydroxyacetone kinase (also called glycerone kinase) that uses ATP (2.7.1.29) as the phosphate donor, rather than a phosphoprotein as in E. coli. This form is composed of a single chain with separable domains homologous to the K and L subunits of the E. coli enzyme, and is found in yeasts and other eukaryotes and in some bacteria, including Citrobacter freundii. The member from tomato has been shown to phosphorylate dihydroxyacetone, 3,4-dihydroxy-2-butanone, and some other aldoses and ketoses (PMID:11985845).
+RN  [1]
+RM  12966101
+RT  Crystal structure of the Citrobacter freundii dihydroxyacetone kinase reveals an eight-stranded alpha-helical barrel ATP-binding domain.
+RA  Siebold C, Arnold I, Garcia-Alles LF, Baumann U, Erni B.
+RL  J Biol Chem. 2003 Nov 28;278(48):48236-44.
+RN  [2]
+RM  11985845
+RT  A tomato enzyme catalyzing the phosphorylation of 3,4-dihydroxy-2-butanone.
+RA  Herz S, Kis K, Bacher A, Rohdich F.
+RL  Phytochemistry. 2002 May;60(1):3-11.

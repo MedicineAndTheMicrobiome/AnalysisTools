@@ -1,0 +1,14 @@
+ID  3a0801s05tom22
+AC  TIGR00986
+DE  mitochondrial import receptor subunit
+AU  Loftus BJ
+TC  193.20 193.20
+NC  134.95 134.95
+AL  clustalw_manual
+IT  subfamily
+EN  mitochondrial import receptor subunit Tom22
+TR  3.A.8
+TP  TIGRFAMs
+CC  The mitochondrial protein translocase (MPT) family, which brings nuclearly encoded preproteins into mitochondria, is very complex with 19 currently identified protein constituents.These proteins include several chaperone proteins, four proteins of the outer membrane 
+CC  translocase (Tom) import receptor, five proteins of the Tom channel complex, five proteins of the inner membrane translocase (Tim) and three "motor" proteins. This family is specific for the Tom22 proteins.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/3_A_8.html

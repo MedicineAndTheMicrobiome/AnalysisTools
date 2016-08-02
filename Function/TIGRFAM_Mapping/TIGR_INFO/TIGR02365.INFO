@@ -1,0 +1,13 @@
+ID  dha_L_ycgS
+AC  TIGR02365
+DE  dihydroxyacetone kinase, L subunit
+AU  Haft DH
+TC  138.30 138.30
+NC  136.20 136.20
+AL  clustalw
+IT  equivalog
+EN  dihydroxyacetone kinase, phosphoprotein-dependent, L subunit
+GS  dhaL
+EC  2.7.-.-
+TP  TIGRFAMs
+CC  Two types of dihydroxyacetone kinase (glycerone kinase) are described. In yeast and a few bacteria, e.g. Citrobacter freundii, the enzyme is a single chain that uses ATP as phosphoryl donor and is designated EC 2.7.1.29. By contract, E. coli and many other bacterial species have a multisubunit form (EC 2.7.1.-) with a phosphoprotein donor related to PTS transport proteins. This family represents the subunit homologous to the E. coli YcgS subunit.

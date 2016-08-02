@@ -1,0 +1,13 @@
+ID  rpsS_arch
+AC  TIGR01025
+DE  ribosomal protein S19
+AU  Haft DH
+TC  139.00 139.00
+NC  72.65 72.65
+AL  clustalw
+IT  equivalog
+EN  ribosomal protein S19(archaeal)/S15(eukaryotic)
+GS  rpsS
+TP  TIGRFAMs
+CC  This HMM represents eukaryotic ribosomal protein S15 and its archaeal equivalent. It excludes bacterial and organellar ribosomal protein S19. The nomenclature for the archaeal members is unresolved and given variously as S19 (after the more distant bacterial homologs) or S15.
+DR  HAMAP; MF_00531; 52 of 757

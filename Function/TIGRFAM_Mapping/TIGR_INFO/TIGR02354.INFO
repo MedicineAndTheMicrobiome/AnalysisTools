@@ -1,0 +1,13 @@
+ID  thiF_fam2
+AC  TIGR02354
+DE  thiamine biosynthesis protein ThiF
+AU  Haft DH
+TC  152.20 152.20
+NC  114.60 114.60
+AL  clustalw
+IT  equivalog
+EN  thiamine biosynthesis protein ThiF, family 2
+GS  thiF
+TP  TIGRFAMs
+CC  Members of the HesA/MoeB/ThiF family of proteins (PF00899) include a number of members encoded in the midst of thiamine biosynthetic operons. This mix of known and putative ThiF proteins shows a deep split in phylogenetic trees, with one the E. coli ThiF and the E. coli MoeB proteins seemingly more closely related than E. coli ThiF and Campylobacter (for example) ThiF. This model represents the divergent clade of putative ThiF proteins such found in Campylobacter.
+DR  PFAM; PF00899; ThiF/MoeB/HesA family

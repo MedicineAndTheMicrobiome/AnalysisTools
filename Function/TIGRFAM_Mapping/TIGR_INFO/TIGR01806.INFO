@@ -1,0 +1,22 @@
+ID  CM_mono2
+AC  TIGR01806
+DE  putative chorismate mutase
+AU  Selengut J
+TC  74.15 74.15
+NC  53.60 53.60
+AL  clustalw
+IT  equivalog
+EN  chorismate mutase, putative
+EC  5.4.99.5
+TP  TIGRFAMs
+CC  This model represents a clade of probable chorismate mutases from alpha, beta and gamma proteobacteria as well as Mycobacterium tuberculosis and a clade of nematodes.  Although the most likely function for the enzymes represented by this model is as a chorismate mutase, in no species are these enzymes the sole chorismate mutase in the genome.  Also, in no case are these enzymes located in a region of the genome proximal to any other enzymes involved in chorismate pathways.  Although the Pantoea enzyme has been shown to complement a CM-free mutant of E. coli [1], this was also shown to be the case with isochorismate-pyruvate lyase which only has a secondary (non-physiologically relevant) chorismate mutase activity [2].  This enzyme is believed to be a homodimer and be localized to the periplasm.
+RN  [1]
+RM  PMID: 8335631
+RT  The aroQ-encoded monofunctional chorismate mutase (CM-F) protein is a periplasmic enzyme in Erwinia herbicola.
+RA  Xia T, Song J, Zhao G, Aldrich H, Jensen RA.
+RL  J Bacteriol 1993 Aug;175(15):4729-37
+RN  [2]
+RM  PMID: 11937513
+RT  Salicylate biosynthesis in Pseudomonas aeruginosa. Purification and characterization of PchB, a novel bifunctional enzyme displaying isochorismate pyruvate-lyase and chorismate mutase activities.
+RA  Gaille C, Kast P, Haas D.
+RL  J Biol Chem. 2002 Jun 14;277(24):21768-75.

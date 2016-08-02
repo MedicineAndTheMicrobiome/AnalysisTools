@@ -1,0 +1,16 @@
+ID  rib_alpha
+AC  TIGR02331
+DE  Rib/alpha/Esp surface antigen repeat
+AU  Haft DH
+TC  35.25 35.25
+NC  24.05 24.05
+AL  clustalw
+IT  repeat
+EN  Rib/alpha/Esp surface antigen repeat
+TP  TIGRFAMs
+CC  Sequences in this family are tandem repeats of about 79 amino acids, present in up to 14 copies in a protein and highly identical, even at the DNA level, within each protein. Sequences with these repeats are found in the Rib and alpha surface antigens of group B Streptococcus, Esp of Enterococcus faecalis, and related proteins of Lactobacillus. The repeat lacks Cys residues. Most members of this protein family also have the cell wall anchor motif LPXTG shared by many staphyloccal and streptococcal surface antigens.
+RN  [1]
+RM  8702550
+RT  Identification of a family of streptococcal surface proteins with extremely repetitive structure.
+RA  Wastfelt M, Stalhammar-Carlemalm M, Delisse AM, Cabezon T, Lindahl G.
+RL  J Biol Chem. 1996 Aug 2;271(31):18892-7.

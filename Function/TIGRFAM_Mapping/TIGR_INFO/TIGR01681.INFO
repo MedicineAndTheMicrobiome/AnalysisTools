@@ -1,0 +1,22 @@
+ID  HAD-SF-IIIC
+AC  TIGR01681
+DE  HAD phosphatase, family IIIC
+AU  Selengut J
+TC  35.75 35.75
+NC  34.70 34.70
+AL  clustalw_manual
+IT  subfamily_domain
+EN  HAD-superfamily phosphatase, subfamily IIIC
+TP  TIGRFAMs
+CC  This model represents the IIIC subfamily of the Haloacid Dehalogenase (HAD) superfamily of aspartate nucleophile hydrolases.  Subfamily III (also including IIIA - TIGR01662 and IIIB - PF03767) contains sequences which do not contain either of the insert domains (between the 1st and 2nd conserved catalytic motifs, subfamily I - TIGR01493, TIGR01509, TIGR01549, TIGR01488, TIGR01494, TIGR01658, TIGR01544 and TIGR01545, or between the 2nd and 3rd, subfamily II - TIGR01460 and TIGR01484).  Subfamily IIIC contains five relatively distantly related clades: a family of viral proteins (TIGR01684), a family of eukaryotic proteins called MDP-1 and a family of archaeal proteins most closely related to MDP-1 (TIGR01685), a family of bacteria including the Streptomyces FkbH protein (TIGR01686), and a small clade including the Pasteurella BcbF and EcbF proteins.  The overall lack of species overlap among these clades may indicate a conserved function, but the degree of divergence between the clades and the differences in archetecture outside of the domain in some clades warns against such a conclusion.
+CC  No member of this subfamily is characterized with respect to function, however the MDP-1 protein [1] is a characterized phosphatase.  All of the characterized enzymes within subfamily III are phosphatases, and all of the active site residues characteristic of HAD-superfamily phosphatases [2] are present in subfamily IIIC.
+RN  [1]
+RM  PMID: 11601995
+RT  MDP-1 is a new and distinct member of the haloacid dehalogenase family of aspartate-dependent phosphohydrolases.
+RA  Selengut, JD
+RL  Biochemistry 2001 Oct 23;40(42):12704-11
+RN  [2]
+RM  PMID: 7966317
+RT  Computer analysis of bacterial haloacid dehalogenases defines a large superfamily of hydrolases with diverse specificity. Application of an iterative approach to database search.
+RA  Koonin EV, Tatusov RL.
+RL  J Mol Biol 1994 Nov 18;244(1):125-32

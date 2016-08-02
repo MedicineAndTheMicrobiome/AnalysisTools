@@ -1,0 +1,11 @@
+ID  /NonD
+AC  TIGR00976
+DE  hydrolase CocE/NonD family protein
+AU  Haft DH
+TC  66.30 66.30
+NC  62.65 62.65
+AL  clustalw_manual
+IT  subfamily
+EN  putative hydrolase, CocE/NonD family
+TP  TIGRFAMs
+CC  This model represents a protein subfamily that includes the cocaine esterase CocE, several glutaryl-7-ACA acylases, and the putative diester hydrolase NonD of Streptomyces griseus (all hydrolases). This family shows extensive, low-level similarity to a family of xaa-pro dipeptidyl-peptidases, and local similarity by PSI-BLAST to many other hydrolases.

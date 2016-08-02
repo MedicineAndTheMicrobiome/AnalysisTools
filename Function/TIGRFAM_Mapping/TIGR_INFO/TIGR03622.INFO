@@ -1,0 +1,12 @@
+ID  urea_t_UrtB_arc
+AC  TIGR03622
+DE  urea ABC transporter, permease protein UrtB
+AU  Haft DH
+TC  374.25 374.25
+NC  292.65 292.65
+AL  muscle_manual
+IT  equivalog
+EN  urea ABC transporter, permease protein UrtB
+GS  urtB
+TP  TIGRFAMs
+CC  Members of this protein family are ABC transporter permease subunits restricted to the Archaea. Several lines of evidence suggest this protein is functionally analogous, as well as homologous, to the UrtB subunit of the Corynebacterium glutamicum urea transporter. All members of the operon show sequence similarity to urea transport subunits, the gene is located near the urease structural subunits in two of three species, and partial phylogenetic profiling identifies this permease subunit as closely matching the profile of urea utilization.

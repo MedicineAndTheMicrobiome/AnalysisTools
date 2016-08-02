@@ -1,0 +1,24 @@
+ID  PTS-II-BC-glcB
+AC  TIGR02002
+DE  PTS system, glucose-specific IIBC component
+AU  Selengut J
+TC  591.80 591.80
+NC  585.35 585.35
+AL  clustalw
+IT  equivalog_domain
+EN  PTS system, glucose-specific IIBC component
+GS  ptsG
+EC  2.7.1.69
+TR  4.A.1.1.1
+TP  TIGRFAMs
+CC  This HMM represents the combined B and C domains of the PTS transport system enzyme II specific for glucose transport [1].  Many of the genes in this family also include an A domain as part of the same polypeptide and thus should be given the name "PTS system, glucose-specific IIABC component" while the B. subtilus enzyme also contains an enzyme III domain which appears to act independently of the enzyme II domains [2].  This family is most closely related to the N-acetylglucosamine-specific PTS enzymes (TIGR01998).
+RN  [1]
+RM  PMID: 3023349
+RT  Glucose-permease of the bacterial phosphotransferase system. Gene cloning, overproduction, and amino acid sequence of enzyme IIGlc.
+RA  Erni B, Zanolari B.
+RL  J Biol Chem. 1986 Dec 15;261(35):16398-403. 
+RN  [1]
+RM  PMID: 2120236
+RT  The glucose permease of Bacillus subtilis is a single polypeptide chain that functions to energize the sucrose permease.
+RA  Sutrina SL, Reddy P, Saier MH Jr, Reizer J.
+RL  J Biol Chem. 1990 Oct 25;265(30):18581-9.

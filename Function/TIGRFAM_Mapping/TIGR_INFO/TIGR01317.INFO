@@ -1,0 +1,13 @@
+ID  GOGAT_sm_gam
+AC  TIGR01317
+DE  glutamate synthase, NADH/NADPH, small subunit
+AU  Haft DH
+TC  447.70 447.70
+NC  370.15 370.15
+AL  clustalw_manual
+IT  subfamily_domain
+EN  glutamate synthases, NADH/NADPH, small subunit
+GS  gltD
+EC  1.4.1.-
+TP  TIGRFAMs
+CC  This HMM represents one of three built for the NADPH-dependent or NADH-dependent glutamate synthase (EC 1.4.1.13 and 1.4.1.14, respectively) small subunit or homologous region.  TIGR01316 describes a family in several archaeal and deeply branched bacterial lineages of a homotetrameric form for which there is no large subunit. Another model describes glutamate synthase small subunit from gamma and some alpha subdivision Proteobacteria plus paralogs of unknown function. This model describes the small subunit, or homologous region of longer forms proteins, of eukaryotes, Gram-positive bacteria, cyanobacteria, and some other lineages. All members with known function participate in NADH or NADPH-dependent reactions to interconvert between glutamine plus 2-oxoglutarate and two molecules of glutamate.

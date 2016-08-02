@@ -1,0 +1,18 @@
+ID  gluP
+AC  TIGR01272
+DE  glucose/galactose transporter WARNING
+AU  Ujwal ML, Paulsen IT
+TC  202.55 202.55
+NC  197.15 197.15
+AL  clustalw
+IT  subfamily
+EN  glucose/galactose transporter
+GS  gluP
+TR  2.A.01
+TP  TIGRFAMs
+CC  This model describes the glucose/galactose transporter in bacteria. This belongs to the larger facilitator superfamily.
+CC  Disruption of the loci leads to the total loss of glucose or galactose uptake in E.coli. Putative transporters in other bacterial species were isolated by functional complementation, which restored it functional activity.
+RM  9168605
+RT  Brucella abortus strain 2308 putative glucose and galactose transporter gene: cloning and characterization
+RA  Essenberg RC, Candler C, Nida SK
+RL  Microbiology, 5: 1549-1555 (1997)

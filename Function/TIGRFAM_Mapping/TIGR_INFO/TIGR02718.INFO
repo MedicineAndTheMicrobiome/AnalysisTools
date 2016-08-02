@@ -1,0 +1,16 @@
+ID  sider_RhtX_FptX
+AC  TIGR02718
+DE  siderophore transporter, RhtX/FptX family
+AU  Haft DH
+TC  356.15 356.15
+NC  217.80 217.80
+AL  clustalw
+IT  subfamily
+EN  siderophore transporter, RhtX/FptX family
+TP  TIGRFAMs
+CC  RhtX from Sinorhizobium meliloti 2011 and FptX from Pseudomonas aeruginosa appear to be single polypeptide transporters, from the major facilitator family (see PF07690) for import of siderophores as a means to import iron. This function was suggested by proximity to siderophore biosynthesis genes and then confirmed by study of knockout and heterologous expression phenotypes.
+DR  PFAM; PF07690; MFS_1; transporter, major facilitator family
+RM  15126460
+RT  Identification of rhtX and fptX, novel genes encoding proteins that show homology and function in the utilization of the siderophores rhizobactin 1021 by Sinorhizobium meliloti and pyochelin by Pseudomonas aeruginosa, respectively.
+RA  Cuiv PO, Clarke P, Lynch D, O'Connell M.
+RL  J Bacteriol. 2004 May;186(10):2996-3005.

@@ -1,0 +1,11 @@
+ID  holin_LLH
+AC  TIGR01673
+DE  phage holin, LL-H family
+AU  Haft DH
+TC  34.75 34.75
+NC  34.65 34.65
+AL  clustalw_manual
+IT  equivalog
+EN  phage holin, LL-H family
+TP  TIGRFAMs
+CC  This HMM represents a putative phage holin from a number of phage and prophage regions of Gram-positive bacteria. Like other holins, it is small (about 100 amino acids) with stretches of hydrophobic sequence and is encoded adjacent to lytic enzymes.

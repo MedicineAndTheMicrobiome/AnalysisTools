@@ -1,0 +1,18 @@
+ID  menA_cyano-plnt
+AC  TIGR02235
+DE  1,4-dihydroxy-2-naphthoate phytyltransferase
+AU  Selengut J
+TC  225.00 225.00
+NC  155.10 155.10
+AL  clustalw
+IT  equivalog
+EN  1,4-dihydroxy-2-naphthoate phytyltransferase
+GS  menA
+EC  2.5.1.-
+TP  TIGRFAMs
+CC  This family of phytyltransferases, found in plants and cyanobacteria, are involved in the biosythesis of phylloquinone (Vitamin K1).  Phylloquinone is a critical component of photosystem I [1].  The closely related MenA enzyme from bacteria transfers a prenyl group (which only differs in the saturation of the isoprenyl groups) in the biosynthesis of menaquinone.  Activity towards both substrates in certain organisms should be considered a possibility.
+RN  [1]
+RM  PMID: 3130097
+RT  Functional role of vitamin K in photosystem I of the cyanobacterium Synechocystis 6803.
+RA  Biggins J, Mathis P.
+RL  Biochemistry. 1988 Mar 8;27(5):1494-500.

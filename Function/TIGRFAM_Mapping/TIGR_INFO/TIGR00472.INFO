@@ -1,0 +1,14 @@
+ID  pheT_bact
+AC  TIGR00472
+DE  phenylalanine--tRNA ligase, beta subunit
+AU  Haft DH
+TC  402.65 402.65
+NC  302.80 302.80
+AL  clustalw_manual
+IT  equivalog
+EN  phenylalanyl-tRNA synthetase, beta subunit, non-spirochete bacterial
+GS  pheT
+EC  6.1.1.20
+TP  TIGRFAMs
+CC  Every known example of the phenylalanyl-tRNA synthetase, except the monomeric form of mitochondrial, is an alpha 2 beta 2 heterotetramer. The beta subunits break into two subfamilies that are considerably different in sequence, length, and pattern of gaps. This HMM represents the subfamily that includes the beta subunit from Bacteria other than spirochetes, as well as a chloroplast-encoded form from Porphyra purpurea. The chloroplast-derived sequence is considerably shorter at the amino end, however, so this HMM was built in fragment mode
+DR  HAMAP; MF_00283; 261 of 266

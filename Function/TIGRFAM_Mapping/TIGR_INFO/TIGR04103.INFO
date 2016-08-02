@@ -1,0 +1,11 @@
+ID  rSAM_nif11_3
+AC  TIGR04103
+DE  nif11-class peptide radical SAM maturase 3
+AU  Haft DH
+TC  725.00 725.00
+NC  675.00 675.00
+AL  muscle_manual
+IT  equivalog
+EN  nif11-class peptide radical SAM maturase 3
+TP  TIGRFAMs
+CC  Members of this protein family are peptide-modifying radical SAM enzymes, with a C-terminal additional 4Fe-4S cluster binding domain like many other peptide-modifying radical SAM enzymes. This form occurs primarily in the genera Cyanothece and Nostoc.

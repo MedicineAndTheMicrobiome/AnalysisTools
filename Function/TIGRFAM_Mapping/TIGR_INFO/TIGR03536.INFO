@@ -1,0 +1,13 @@
+ID  DapD_gpp
+AC  TIGR03536
+DE  2,3,4,5-tetrahydropyridine-2,6-dicarboxylate N-succinyltransferase
+AU  Selengut J
+TC  518.45 518.45
+NC  445.05 445.05
+AL  muscle
+IT  equivalog
+EN  2,3,4,5-tetrahydropyridine-2,6-dicarboxylate N-succinyltransferase
+GS  dapD
+EC  2.3.1.117
+TP  TIGRFAMs
+CC  2,3,4,5-tetrahydropyridine-2,6-dicarboxylate N-succinyltransferase (DapD) is involved in the succinylated branch of the "lysine biosynthesis via diaminopimelate (DAP)" pathway (GenProp0125).  This model represents a clade of DapD sequences most closely related to the actinobacterial DapD family represented by the TIGR03535 model.  All of the genes evaluated for the seed of this model are found in genomes where the downstream desuccinylase is present, but known DapD genes are absent.  Additionally, many of the genes identified by this model are found proximal to genes involved in this lysine biosynthesis pathway.

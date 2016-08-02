@@ -1,0 +1,14 @@
+ID  dnaG
+AC  TIGR01391
+DE  DNA primase
+AU  Haft DH
+TC  283.60 283.60
+NC  111.30 111.30
+AL  clustalw_manual
+IT  equivalog_domain
+EN  DNA primase, catalytic core
+GS  dnaG
+EC  2.7.7.-
+TP  TIGRFAMs
+CC  Members of this family are DNA primase, a ubiquitous bacteria protein. Most members of this family contain nearly two hundred additional residues C-terminal to the region represented here, but conservation between species is poor and the C-terminal region was not included in the seed alignment.
+CC  This protein contains a CHC2 zinc finger (Pfam:PF01807) and a Toprim domain (Pfam:PF01751).

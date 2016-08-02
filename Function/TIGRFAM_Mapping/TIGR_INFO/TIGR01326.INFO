@@ -1,0 +1,12 @@
+ID  OAH_OAS_sulfhy
+AC  TIGR01326
+DE  O-acetylhomoserine aminocarboxypropyltransferase/cysteine synthase
+AU  Haft DH
+TC  495.10 495.10
+NC  483.05 483.05
+AL  clustalw_manual
+IT  subfamily
+EN  OAH/OAS sulfhydrylase
+TP  TIGRFAMs
+CC  This HMM describes a distinct clade of the Cys/Met metabolism pyridoxal phosphate-dependent enzyme superfamily. Members include examples of OAH/OAS sulfhydrylase, an enzyme with activity both as O-acetylhomoserine (OAH) sulfhydrylase (EC 2.5.1.49) and O-acetylserine (OAS) sulphydrylase (EC 2.5.1.47). An alternate name for OAH sulfhydrylase is homocysteine synthase. This HMM is designated subfamily because it may or may not have both activities.
+DR  PROSITE; PDOC00677; Cys/Met metabolism enzymes pyridoxal-phosphate attachment site

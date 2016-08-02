@@ -1,0 +1,14 @@
+ID  murD
+AC  TIGR01087
+DE  UDP-N-acetylmuramoylalanine--D-glutamate ligase
+AU  Haft DH, Dodson RJ
+TC  211.95 211.95
+NC  194.40 194.40
+AL  clustalw
+IT  equivalog
+EN  UDP-N-acetylmuramoylalanine--D-glutamate ligase
+GS  murD
+EC  6.3.2.9
+TP  TIGRFAMs
+DR  COG; COG0771
+DR  HAMAP; MF_00639; 372 of 374

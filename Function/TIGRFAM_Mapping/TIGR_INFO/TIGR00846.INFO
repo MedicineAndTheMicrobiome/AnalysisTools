@@ -1,0 +1,15 @@
+ID  caca2
+AC  TIGR00846
+DE  calcium/proton exchanger
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  317.45 317.45
+NC  188.25 188.25
+AL  clustalw_manual
+IT  superfamily
+EN  calcium/proton exchanger
+GS  chaA
+TP  TIGRFAMs
+CC  The Ca2+:Cation Antiporter (CaCA) Family (TC 2.A.19)
+CC  Proteins of the CaCA family are found ubiquitously, having been identified in animals, plants, yeast, archaea and widely divergent bacteria.
+CC  All of the characterized animal proteins catalyze Ca2+:Na+ exchange although some also transport K+. The NCX1 plasma membrane protein exchanges 3 Na+ for 1 Ca2+. The E. coli ChaA protein catalyzes Ca2+:H+ antiport but may also catalyze Na+:H+ antiport. All remaining well-characterized members of the family catalyze Ca2+:H+ exchange.
+CC  This Hmm is generated from the calcium ion/proton exchangers of the CacA family.

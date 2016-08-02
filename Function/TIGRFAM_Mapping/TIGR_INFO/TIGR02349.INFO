@@ -1,0 +1,13 @@
+ID  DnaJ_bact
+AC  TIGR02349
+DE  chaperone protein DnaJ
+AU  Haft DH
+TC  377.20 377.20
+NC  277.65 277.65
+AL  clustalw_manual
+IT  equivalog
+EN  chaperone protein DnaJ
+GS  dnaJ
+TP  TIGRFAMs
+CC  This model represents bacterial forms of DnaJ, part of the DnaK-DnaJ-GrpE chaperone system. The three components typically are encoded by consecutive genes. DnaJ homologs occur in many genomes, typically not near DnaK and GrpE-like genes; most such genes are not included by this family. Eukaryotic (mitochondrial and chloroplast) forms are not included in the scope of this family.
+DR  HAMAP; MF_01152; 429 of 453

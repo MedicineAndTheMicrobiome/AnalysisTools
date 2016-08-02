@@ -1,0 +1,16 @@
+ID  pyrD_sub2
+AC  TIGR01036
+DE  dihydroorotate dehydrogenase (fumarate)
+AU  Ujwal ML, Haft DH
+TC  200.00 200.00
+NC  200.00 200.00
+AL  clustalw
+IT  equivalog
+EN  dihydroorotate dehydrogenase, subfamily 2
+GS  pyrD
+EC  1.3.98.1
+TP  TIGRFAMs
+CC  This model describes enzyme protein dihydroorotate dehydrogenase exclusively for subfamily 2. It includes members from bacteria, yeast, plants etc.
+CC  The subfamilies 1 and 2 share extensive homology, particularly toward the C-terminus. This subfamily has a longer N-terminal region.
+DR  COGS; COG0167
+DR  HAMAP; MF_00225; 260 of 263

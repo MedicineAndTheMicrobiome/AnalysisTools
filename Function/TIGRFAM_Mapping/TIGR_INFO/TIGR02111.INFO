@@ -1,0 +1,15 @@
+ID  PQQ_syn_pqqC
+AC  TIGR02111
+DE  coenzyme PQQ biosynthesis protein C
+AU  Haft DH
+TC  240.00 240.00
+NC  70.00 70.00
+AL  clustalw
+IT  equivalog
+EN  coenzyme PQQ biosynthesis protein C
+GS  pqqC
+EC  1.3.3.11
+TP  TIGRFAMs
+CC  This model describes the coenzyme PQQ (pyrrolo-quinoline-quinone) biosynthesis protein PqqC.In contrast to the broader model PF05312, this model does not include related proteins likely to be functionally distinct from PqqC, such as homologs found in the Chlamydias.
+DR  PFAM; PF05312; related but broader model.
+DR  HAMAP; MF_00654; 32 of 34

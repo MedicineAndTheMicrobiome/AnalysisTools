@@ -1,0 +1,15 @@
+ID  glyQ
+AC  TIGR00388
+DE  glycine--tRNA ligase, alpha subunit
+AU  Haft DH
+TC  361.45 361.45
+NC  191.45 191.45
+AL  clustalw
+IT  equivalog_domain
+EN  glycyl-tRNA synthetase, tetrameric type, alpha subunit
+GS  glyQ
+EC  6.1.1.14
+TP  TIGRFAMs
+CC  This tetrameric form of glycyl-tRNA synthetase (2 alpha, 2 beta) is found in the majority of completed eubacterial genomes, with the two genes fused in a few species. A substantially different homodimeric form (not recognized by this model) replaces this form in the Archaea, animals, yeasts, and some eubacteria.
+DR  EC 6.1.1.14
+DR  HAMAP; MF_00254; 246 of 248

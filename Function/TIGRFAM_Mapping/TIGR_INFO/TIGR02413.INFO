@@ -1,0 +1,11 @@
+ID  Bac_small_yrzI
+AC  TIGR02413
+DE  Bacillus tandem small hypothetical protein
+AU  Haft DH
+TC  47.05 47.05
+NC  22.40 22.40
+AL  clustalw_manual
+IT  paralog
+EN  Bacillus tandem small hypothetical protein
+TP  TIGRFAMs
+CC  Members of this family are very small proteins, about 47 residues each, in the genus Bacillus. Single members are found in Bacillus subtilis and Bacillus halodurans, but arrays of six in tandem in Bacillus cereus and Bacillus anthracis. An EIxxE motif present in most members of this family resembles cleavage sites by the germination protease GPR in a number small, acid-soluble spore proteins (SASP). A role in sporulation is possible.

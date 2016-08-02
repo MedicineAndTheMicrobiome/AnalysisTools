@@ -1,0 +1,18 @@
+ID  serS_MJ
+AC  TIGR00415
+DE  serine--tRNA ligase
+AU  Haft DH
+TC  489.55 489.55
+NC  166.60 166.60
+AL  clustalw
+IT  equivalog
+EN  seryl-tRNA synthetase, Methanococcus jannaschii family
+GS  serS
+EC  6.1.1.11
+TP  TIGRFAMs
+CC  The seryl-tRNA synthetases from a few of the Archaea, represented by this model, are very different from the set of mutually more closely related seryl-tRNA synthetases from Eubacteria, Eukaryotes, and other Archaea. Although distantly homologous, the present set differs enough not to be recognized by the pfam HMM tRNA-synt_2b that recognizes the remainder of seryl-tRNA synthetases among oither class II amino-acyl tRNA synthetases.
+RM  99069316
+RL  J Bacteriol 1998 Dec;180(24):6446-9; 
+RT  Sequence divergence of seryl-tRNA synthetases in archaea.; 
+RA  Kim Hs, Vothknecht UC, Hedderich R, Celic I, Soll D; 
+DR  HAMAP; MF_01278; 4 of 7

@@ -1,0 +1,14 @@
+ID  rmlD
+AC  TIGR01214
+DE  dTDP-4-dehydrorhamnose reductase
+AU  Haft DH
+TC  224.05 224.05
+NC  125.30 125.30
+AL  clustalw_manual
+IT  equivalog
+EN  dTDP-4-dehydrorhamnose reductase
+GS  rfbD
+EC  1.1.1.133
+TP  TIGRFAMs
+CC  This enzyme catalyzes the last of 4 steps in making dTDP-rhamnose, a precursor of LPS core antigen, O-antigen, etc.
+DR  COGS; COG1091

@@ -1,0 +1,16 @@
+ID  IMPACT_YIGZ
+AC  TIGR00257
+DE  uncharacterized protein, YigZ family
+AU  Haft DH
+TC  167.95 167.95
+NC  117.35 117.35
+AL  clustalw
+IT  hypoth_equivalog
+EN  uncharacterized protein, YigZ family
+TP  TIGRFAMs
+CC  This uncharacterized protein family includes YigZ, which has been crystallized, from E. coli. YigZ is homologous to the protein product of the mouse IMPACT gene. Crystallography shows a two-domain stucture, and the C-terminal domain is suggested to bind nucleic acids. The function is unknown. Note that the ortholog from E. coli was shown fused to the pepQ gene in GenBank entry X54687. This caused occasional misidentification of this protein as pepQ; this family is found in a number of species that lack pepQ.
+RN  [1]
+RM  PMID:15103642
+RT  Crystal structure of YIGZ, a conserved hypothetical protein from Escherichia coli k12 with a novel fold.
+RA  Park F, Gajiwala K, Eroshkina G, Furlong E, He D, Batiyenko Y, Romero R, Christopher J, Badger J, Hendle J, Lin J, Peat T, Buchanan S
+RL  Proteins. 2004 May 15;55(3):775-7.

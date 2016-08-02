@@ -1,0 +1,13 @@
+ID  3a0901s06TIC22
+AC  TIGR00995
+DE  chloroplast protein import component, Tic22 family
+AU  Loftus BJ
+TC  413.15 413.15
+NC  284.40 284.40
+AL  clustalw_manual
+IT  subfamily
+EN  chloroplast protein import component, Tic22 family
+TR  3.A.9
+TP  TIGRFAMs
+CC  Two families of proteins are involved in the chloroplast envelope import appartus.They are the  three proteins of the outer membrane (TOC) and four proteins in the inner membrane (TIC). This family is specific for the Tic22 protein.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/3_A_9.html

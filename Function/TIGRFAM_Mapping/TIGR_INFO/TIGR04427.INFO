@@ -1,0 +1,17 @@
+ID  PLP_DesI
+AC  TIGR04427
+DE  dTDP-4-dehydro-6-deoxyglucose aminotransferase
+AU  Haft DH
+TC  650.00 650.00
+NC  580.00 580.00
+AL  muscle
+IT  equivalog
+EN  dTDP-4-dehydro-6-deoxyglucose aminotransferase
+EC  2.-.-.-
+TP  TIGRFAMs
+CC  Members of this family are pyridoxal phosphate-dependent aminotransferases that convert TDP-4-keto-6-deoxy-D-glucose to the 4-amino sugar form, TDP-4-amino-4,6-dideoxy-D-glucose. In Streptomyces venezuelae, this enzyme is designated DesI, catalyzing the third of six steps in the biosynthesis of TDP-D-desosamine, a component of a number of different macrolide antibiotics made by that organism. Related proteins, scoring below the trusted cutoff, include sugar aminotranferases in O-antigen biosynthesis regions.
+RN  [1]
+RM  PMID:17630700 
+RT  Molecular architecture of DesI: a key enzyme in the biosynthesis of desosamine. 
+RA  Burgie ES, Holden HM 
+RL  Biochemistry. 2007 Aug 7;46(31):8999-9006.

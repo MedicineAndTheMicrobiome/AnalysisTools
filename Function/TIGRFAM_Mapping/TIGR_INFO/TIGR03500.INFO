@@ -1,0 +1,12 @@
+ID  FliO_TIGR
+AC  TIGR03500
+DE  flagellar biosynthetic protein FliO
+AU  Selengut J
+TC  55.25 55.25
+NC  51.60 51.60
+AL  muscle
+IT  equivalog
+EN  flagellar biosynthetic protein FliO
+GS  fliO
+TP  TIGRFAMs
+CC  This short protein found in flagellar biosynthesis operons contains a highly hydrophobic N-terminal sequence followed generally by two basic amino acids. This region is reminiscent of but distinct from the twin-arginine translocation signal sequence.  Some instances of this gene have been names "FliZ" but phylogenetic tree building supports a single FliO family.

@@ -1,0 +1,13 @@
+ID  L3_bact
+AC  TIGR03625
+DE  50S ribosomal protein L3
+AU  Haft DH
+TC  142.90 142.90
+NC  107.40 107.40
+AL  muscle_manual
+IT  equivalog
+EN  50S ribosomal protein L3, bacterial
+GS  rplC
+TP  TIGRFAMs
+CC  This model describes bacterial (and mitochondrial and chloroplast) class of ribosomal protein L3. A separate model describes the archaeal form, where both belong to Pfam family PF00297. The name is phrased to meet the needs of bacterial genome annotation. Organellar forms typically will have transit peptides, N-terminal to the region modeled here.
+DR  PFAM; PF00297

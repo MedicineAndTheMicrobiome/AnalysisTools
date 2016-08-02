@@ -1,0 +1,16 @@
+ID  rpoE
+AC  TIGR00448
+DE  DNA-directed RNA polymerase
+AU  Loftus BJ
+TC  124.20 124.20
+NC  107.75 107.75
+AL  clustalw
+IT  equivalog
+EN  DNA-directed RNA polymerase (rpoE), archaeal and eukaryotic form
+GS  rpoE
+EC  2.7.7.6
+TP  TIGRFAMs
+CC  This family seems to be confined to the archea and eukaryotic taxa and are quite dissimilar to E.coli rpoE.
+DR  EGAD;54050, 
+DR  P35718; 
+DR  EGAD;106638

@@ -1,0 +1,14 @@
+ID  efp
+AC  TIGR00038
+DE  translation elongation factor P
+AU  Haft DH, Richardson DL
+TC  185.80 185.80
+NC  136.65 136.65
+AL  clustalw
+IT  equivalog
+EN  translation elongation factor P
+GS  efp
+TP  TIGRFAMs
+CC  function: involved in peptide bond synthesis. stimulate efficient translation and peptide-bond synthesis on native or reconstituted 70S ribosomes in vitro. probably functions indirectly by altering the affinity of the ribosome for aminoacyl-tRNA, thus increasing their reactivity as acceptors for peptidyl transferase (by similarity). The trusted cutoff of this model is set high enough to exclude members of TIGR02178, an EFP-like protein of certain Gammaproteobacteria.
+DR  PROSITE; PDOC00981; 
+DR  HAMAP; MF_00141; 485 of 498

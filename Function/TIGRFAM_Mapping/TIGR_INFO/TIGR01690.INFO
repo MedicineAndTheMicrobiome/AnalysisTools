@@ -1,0 +1,11 @@
+ID  ICE_RAQPRD
+AC  TIGR01690
+DE  integrative conjugative element protein, RAQPRD family
+AU  Haft DH
+TC  60.85 60.85
+NC  24.00 24.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  integrative conjugative element protein, RAQPRD family
+TP  TIGRFAMs
+CC  This HMM represents a small family of proteins about 100 amino acids in length, including a predicted signal sequence and a perfectly conserved motif RAQPRD towards the C-terminus. Members are found in the Pseudomonas putida TOL plasmid pWW0 and in cryptic plasmid regions of Salmonella enterica subsp. enterica serovar Typhi and Pseudomonas syringae DC3000. The function is unknown.

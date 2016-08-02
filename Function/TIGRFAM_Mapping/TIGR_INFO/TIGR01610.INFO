@@ -1,0 +1,11 @@
+ID  phage_O_Nterm
+AC  TIGR01610
+DE  phage replication protein O, N-terminal domain
+AU  Haft DH, Fouts DE, Sunshine J
+TC  45.50 45.50
+NC  30.75 30.75
+AL  clustalw_manual
+IT  equivalog_domain
+EN  phage replication protein O, N-terminal domain
+TP  TIGRFAMs
+CC  This HMM represents the N-terminal region of the phage lambda replication protein O and homologous regions of other phage proteins.

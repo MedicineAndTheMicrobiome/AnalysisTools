@@ -1,0 +1,19 @@
+ID  rhom_GG_sort
+AC  TIGR03902
+DE  rhombosortase
+AU  Haft DH
+TC  84.00 84.00
+NC  78.00 78.00
+AL  muscle_manual
+IT  equivalog
+EN  rhomboid family GlyGly-CTERM serine protease
+GS  rrtA
+EC  3.4.21.-
+TP  TIGRFAMs
+CC  This model describes a rhomboid-like intramembrane serine protease. Its species distribution closely matches model TIGR03501, GlyGly-CTERM, which describes a protein targeting domain analogous to LPXTG and PEP-CTERM. In a number of species (Ralstonia eutropha ,R. metallidurans, R. solanacearum, Marinobacter aquaeolei, etc) with just one GlyGly-CTERM protein (i.e., a dedicated system), the rhombosortase and GlyGly-CTERM genes are adjacent.
+DR  PFAM; PF01694; peptidase, S54 (rhomboid) family
+RN  [1]
+RM  PMID:22194940 
+RT  GlyGly-CTERM and rhombosortase: a C-terminal protein processing signal in a many-to-one pairing with a rhomboid family intramembrane serine protease. 
+RA  Haft DH, Varghese N 
+RL  PLoS One. 2011;6(12):e28886.

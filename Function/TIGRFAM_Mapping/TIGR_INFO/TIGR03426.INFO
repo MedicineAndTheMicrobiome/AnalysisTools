@@ -1,0 +1,12 @@
+ID  shape_MreD
+AC  TIGR03426
+DE  rod shape-determining protein MreD
+AU  Haft DH
+TC  34.85 34.85
+NC  27.15 27.15
+AL  muscle_manual
+IT  equivalog
+EN  rod shape-determining protein MreD
+GS  mreD
+TP  TIGRFAMs
+CC  Members of this protein family are the MreD protein of bacterial cell shape determination. Most rod-shaped bacteria depend on MreB and RodA to achieve either a rod shape or some other non-spherical morphology such as coil or stalk formation. MreD is encoded in an operon with MreB, and often with RodA and PBP-2 as well. It is highly hydrophobic (therefore somewhat low-complexity) and highly divergent, and therefore sometimes tricky to discover by homology, but this model finds most examples.

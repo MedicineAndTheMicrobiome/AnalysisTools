@@ -1,0 +1,17 @@
+ID  phageshock_pspF
+AC  TIGR02974
+DE  psp operon transcriptional activator
+AU  Haft DH
+TC  443.55 443.55
+NC  339.45 339.45
+AL  muscle
+IT  equivalog
+EN  psp operon transcriptional activator PspF
+GS  pspF
+TP  TIGRFAMs
+CC  Members of this protein family are PspF, the sigma-54-dependent transcriptional activator of the phage shock protein (psp) operon, in Escherichia coli and numerous other species. The psp operon is induced by a number of stress conditions, including heat shock, ethanol, and filamentous phage infection.  Changed com_name to adhere to TIGR role notes conventions. 09/15/06 - DMH
+RN  [1]
+RM  PMID: 15485810
+RT  Identification of a new member of the phage shock protein response in Escherichia coli, the phage shock protein G (PspG).
+RA  Lloyd LJ, Jones SE, Jovanovic G, Gyaneshwar P, Rolfe MD, Thompson A, Hinton JC, Buck M
+RL  J Biol Chem. 2004 Dec 31;279(53):55707-14. Epub 2004 Oct 13.

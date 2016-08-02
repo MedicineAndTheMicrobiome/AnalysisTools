@@ -1,0 +1,11 @@
+ID  TIGR03491
+AC  TIGR03491
+DE  putative RecB family nuclease, TM0106 family
+AU  Haft DH
+TC  97.45 97.45
+NC  40.05 40.05
+AL  muscle_manual
+IT  subfamily_domain
+EN  RecB family nuclease, putative, TM0106 family
+TP  TIGRFAMs
+CC  Members of this uncharacterized protein family are found broadly but sporadically among bacteria. The N-terminal region is homologous to the Cas4 protein of CRISPR systems, although this protein family shows no signs of association with CRISPR repeats.

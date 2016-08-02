@@ -1,0 +1,14 @@
+ID  leuS_arch
+AC  TIGR00395
+DE  leucine--tRNA ligase
+AU  Haft DH
+TC  648.50 648.50
+NC  373.75 373.75
+AL  clustalw_manual
+IT  equivalog
+EN  leucyl-tRNA synthetase, archaeal and cytosolic family
+GS  leuS
+EC  6.1.1.4
+TP  TIGRFAMs
+CC  The leucyl-tRNA synthetases belong to two families so broadly different that they are represented by separate models. This model includes both archaeal and cytosolic eukaryotic leucyl-tRNA synthetases; the eubacterial and mitochondrial forms differ so substantially that some other tRNA ligases score higher by this model than does any eubacterial LeuS.
+DR  HAMAP; MF_00049; 29 of 550

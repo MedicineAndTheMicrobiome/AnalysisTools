@@ -1,0 +1,11 @@
+ID  various_sel_PB
+AC  TIGR01918
+DE  selenoprotein B, glycine/betaine/sarcosine/D-proline reductase family
+AU  Haft DH
+TC  65.45 65.45
+NC  37.10 37.10
+AL  clustalw
+IT  subfamily
+EN  selenoprotein B, glycine/betaine/sarcosine/D-proline reductase family
+TP  TIGRFAMs
+CC  This HMM represents selenoprotein B of glycine reductase, sarcosine reductase, betaine reductase, D-proline reductase, and perhaps others. This model is built in fragment mode to assist in recognizing fragmentary translations. All members are expected to contain an internal TGA codon, encoding selenocysteine, which may be misinterpreted as a stop codon.

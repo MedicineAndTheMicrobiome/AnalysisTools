@@ -1,0 +1,11 @@
+ID  GeoRSP_rSAM
+AC  TIGR04303
+DE  GeoRSP system radical SAM/SPASM protein
+AU  Haft DH
+TC  400.00 400.00
+NC  225.00 225.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  GeoRSP system radical SAM/SPASM protein
+TP  TIGRFAMs
+CC  Members of this family are radical SAM/SPASM domain proteins from a cassette restricted to the genus Geobacter. Genes always found adjacent include a non-radical SAM protein with a closely related SPASM domain and a short stretch of N-terminal homology as well to this family, and also a PqqD-like protein. The three-gene cassette is designated GeoRSP for the genus Geobacter, this radical SAM protein, the SPASM domain protein, and the PqqD family protein.

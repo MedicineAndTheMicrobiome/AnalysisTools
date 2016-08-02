@@ -1,0 +1,12 @@
+ID  rSAM_GlyRichRpt
+AC  TIGR04261
+DE  radical SAM/SPASM domain protein, GRRM system
+AU  Haft DH
+TC  310.00 310.00
+NC  275.00 275.00
+AL  muscle_manual
+IT  subfamily
+EN  radical SAM/SPASM domain protein, GRRM system
+GS  grrM
+TP  TIGRFAMs
+CC  Members of this protein family are radical SAM/SPASM domain proteins (see PF04055 and TIGR04085) related to anaeroboic sulfatase maturating enzymes and the peptide modification enzyme PqqE. Members are found primarily in Cyanobacteria adjacent to a short protein, ~150 residues, in which the last ~60 residues tends to be repetitive and highly glycine-rich (see TIGR04260). The arrangement suggests modifications to the repetitive C-terminal region by this radical SAM domain enzyme, but the purpose of this system on the whole is unknown.

@@ -1,0 +1,16 @@
+ID  nupC
+AC  TIGR00804
+DE  nucleoside transporter, NupC family
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  442.00 442.00
+NC  200.80 200.80
+AL  clustalw_manual
+IT  subfamily
+EN  nucleoside transporter
+TR  2.A.41
+TP  TIGRFAMs
+CC  The Concentrative Nucleoside Transporter (CNT) Family (TC 2.A.41)
+CC  Members of the CNT family mediate nucleoside uptake. In bacteria they are energized by H+ symport, but in mammals they are energized by Na+
+CC  symport. The different transporters exhibit differing specificities for nucleosides. The E. coli NupC permease transports all nucleosides (both ribo- and deoxyribonucleosides) except hypoxanthine and guanine nucleosides.  The B. subtilis NupC is specific for pyrimidine nucleosides (cytidine and uridine and the corresponding deoxyribonucleosides).
+CC  The mammalian permease members of the CNT family also exhibit differing specificities. Thus, rats possess at least two NupC homologues, one specific for both purine and pyrimidine nucleosides and one specific for purine nucleosides. At least three paralogues have been characterized from humans.
+CC  One human homologue(CNT1) transports pyrimidine nucleosides and adenosine, but deoxyadenosine and guanosine are poor substrates of this permease. Another (CNT2) is selective for purine nucleosides. Alteration of just a few amino acyl residues in TMSs 7 and 8 interconverts their specificities.

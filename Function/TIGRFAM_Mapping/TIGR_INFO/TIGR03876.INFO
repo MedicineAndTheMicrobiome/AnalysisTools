@@ -1,0 +1,12 @@
+ID  cas_csaX
+AC  TIGR03876
+DE  CRISPR type I-A/APERN-associated protein CsaX
+AU  Haft DH
+TC  222.50 222.50
+NC  222.10 222.10
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  CRISPR type I-A/APERN-associated protein CsaX
+GS  csaX
+TP  TIGRFAMs
+CC  This family comprises a minor CRISPR-associated protein family. It occurs only in the context of the (strictly archaeal) Apern subtype of CRISPR/Cas system, and is further restricted to the Sulfolobales, including Metallosphaera sedula DSM 5348 and multiple species of the genus Sulfolobus.

@@ -1,0 +1,17 @@
+ID  MerD
+AC  TIGR02054
+DE  mercuric resistence transcriptional repressor protein MerD
+AU  Selengut J
+TC  103.65 103.65
+NC  69.95 69.95
+AL  clustalw
+IT  equivalog
+EN  mercuric resistence transcriptional repressor protein MerD
+GS  merD
+TP  TIGRFAMs
+CC  This HMM represents a transcriptional repressor protein of the MerR family (PF00376) whose expression is regulated by the mercury-sensitive transcriptional activator, MerR.  MerD has been shown to repress the transcription of the mer operon [1].
+RN  [1]
+RM  PMID: 1917975
+RT  Purification and functional characterization of MerD. A coregulator of the mercury resistance operon in gram-negative bacteria.
+RA  Mukhopadhyay D, Yu HR, Nucifora G, Misra TK.
+RL  J Biol Chem. 1991 Oct 5;266(28):18538-42.

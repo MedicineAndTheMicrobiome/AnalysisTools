@@ -1,0 +1,20 @@
+ID  lipid_A_lpxD
+AC  TIGR01853
+DE  UDP-3-O-[3-hydroxymyristoyl] glucosamine N-acyltransferase LpxD
+AU  Haft DH
+TC  242.50 242.50
+NC  112.45 112.45
+AL  clustalw_manual
+IT  equivalog
+EN  UDP-3-O-[3-hydroxymyristoyl] glucosamine N-acyltransferase LpxD
+GS  lpxD
+EC  2.3.1.191
+TP  TIGRFAMs
+CC  This HMM describes LpxD, an enzyme for the biosynthesis of lipid A, a component oflipopolysaccharide (LPS) in the outer membrane outer leaflet of most Gram-negative bacteria. Some differences are found between lipid A of different species. This protein represents the third step from UDP-N-acetyl-D-glucosamine. The group added at this step generally is 14:0(3-OH) (myristate) but may vary; in Aquifex it appears to be 16:0(3-OH) (palmitate).
+DR  URL; http://www.genome.ad.jp/dbget-bin/show_pathway?MAP00540+2.3.1.129
+RN  [1]
+RM  10753930
+RT  Characterization of a novel lipid A containing D-galacturonic acid that replaces phosphate residues. The structure of the lipid A of the lipopolysaccharide from the hyperthermophilic bacterium Aquifex pyrophilus.
+RA  Plotz BM, Lindner B, Stetter KO, Holst O
+RL  J Biol Chem 2000 Apr 14;275(15):11222-8
+DR  HAMAP; MF_00523; 261 of 262

@@ -1,0 +1,12 @@
+ID  matur_matur
+AC  TIGR03853
+DE  putative metal-binding protein
+AU  Haft DH
+TC  65.70 65.70
+NC  31.20 31.20
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  probable metal-binding protein
+TP  TIGRFAMs
+CC  This model describes a family of small cytosolic proteins, about 80 amino acids in length, in which the eight invariant residues include three His residues and two Cys residues. Two pairs of these invariant residues occur in motifs HxH (where x is A or G) and CxH, both of which suggest metal-binding activity. 
+CC  This protein family was identified by searching with a phylogenetic profile based on an anaerobic sulfatase-maturase enzyme, which contains multiple 4Fe-4S clusters. The linkages by phylogenetic profiling and by iron-sulfur cluster-related motifs together suggest this protein may be an accessory protein to certain maturases in sulfatase/maturase systems.

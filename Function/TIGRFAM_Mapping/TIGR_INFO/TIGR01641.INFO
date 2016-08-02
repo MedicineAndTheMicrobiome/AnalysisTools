@@ -1,0 +1,11 @@
+ID  phageSPP1_gp7
+AC  TIGR01641
+DE  phage head morphogenesis protein, SPP1 gp7 family
+AU  Haft DH
+TC  39.65 39.65
+NC  34.00 34.00
+AL  manual
+IT  domain
+EN  phage putative head morphogenesis protein, SPP1 gp7 family
+TP  TIGRFAMs
+CC  This fragment-mode HMM describes a region of about 110 amino acids found exclusively in phage-related proteins, internally or toward the C-terminus. One member, gp7 of phage SPP1, appears involved in head morphogenesis.

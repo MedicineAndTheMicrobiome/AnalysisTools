@@ -1,0 +1,14 @@
+ID  mutt
+AC  TIGR00586
+DE  mutator mutT protein
+AU  Loftus BJ, Eisen JA
+TC  97.90 97.90
+NC  43.80 43.80
+IT  subfamily
+EN  mutator mutT protein
+EC  3.6.1.-
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are involved in repairing oxidative damage to dGTP (they are 8-oxo-dGTPases). This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).  Lowering the threshold picks up members of MutT superfamily well.
+DR  EGAD; 16514;
+DR  SWISSPROT; P08337;
+RM  87201091;

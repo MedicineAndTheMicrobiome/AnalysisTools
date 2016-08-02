@@ -1,0 +1,18 @@
+ID  sodN
+AC  TIGR02753
+DE  superoxide dismutase, Ni
+AU  Haft DH
+TC  90.00 90.00
+NC  50.90 50.90
+AL  clustalw_manual
+IT  equivalog
+EN  superoxide dismutase, Ni
+GS  sodN
+EC  1.15.1.1
+TP  TIGRFAMs
+CC  This superoxide dismutase uses nickel, rather than iron, manganese, copper, or zinc. Its gene is always accompanied by a gene for a required protease.
+RN  [1]
+RM  15516600
+RT  In vivo production of active nickel superoxide dismutase from Prochlorococcus marinus MIT9313 is dependent on its cognate peptidase.
+RA  Eitinger T.
+RL  J Bacteriol. 2004 Nov;186(22):7821-5.

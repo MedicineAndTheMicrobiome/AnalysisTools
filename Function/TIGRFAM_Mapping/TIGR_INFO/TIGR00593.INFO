@@ -1,0 +1,17 @@
+ID  pola
+AC  TIGR00593
+DE  DNA polymerase I
+AU  Loftus BJ, Eisen JA
+TC  600.00 600.00
+NC  438.90 438.90
+IT  equivalog
+EN  DNA polymerase I
+GS  polA
+EC  2.7.7.7
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are DNA polymerases
+CC  Many also have an exonuclease motif.
+CC  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  EGAD; 23009;
+DR  SWISSPROT; P00582;
+RM  82120160;

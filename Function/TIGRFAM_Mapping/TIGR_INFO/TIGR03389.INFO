@@ -1,0 +1,12 @@
+ID  laccase
+AC  TIGR03389
+DE  laccase
+AU  Haft DH
+TC  558.90 558.90
+NC  368.45 368.45
+AL  muscle_manual
+IT  equivalog
+EN  laccase, plant
+EC  1.10.3.2
+TP  TIGRFAMs
+CC  Members of this protein family include the copper-containing enzyme laccase (EC 1.10.3.2), often several from a single plant species, and additional, uncharacterized, closely related plant proteins termed laccase-like multicopper oxidases. This protein family shows considerable sequence similarity to the  L-ascorbate oxidase (EC 1.10.3.3) family. Laccases are enzymes of rather broad specificity, and classification of all proteins scoring about the trusted cutoff of this model as laccases may be appropriate.

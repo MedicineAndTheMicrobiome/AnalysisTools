@@ -1,0 +1,11 @@
+ID  SigH_actino
+AC  TIGR02947
+DE  RNA polymerase sigma-70 factor, TIGR02947 family
+AU  Selengut J
+TC  251.55 251.55
+NC  200.15 200.15
+AL  muscle
+IT  hypoth_equivalog
+EN  RNA polymerase sigma-70 factor, TIGR02947 family
+TP  TIGRFAMs
+CC  This group of sigma factors are members of the sigma-70 family (TIGR02937).  They and appear by homology, tree building, bidirectional best hits and (with the exception of a paralog in Thermobifida fusca YX) one-to-a-genome distribution, to represent a conserved family.  This family is restricted to the Actinobacteria and each gene examined is followed by an anti-sigma factor in an apparent operon.

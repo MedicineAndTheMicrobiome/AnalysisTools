@@ -1,0 +1,11 @@
+ID  STEVOR
+AC  TIGR01478
+DE  variant surface antigen, stevor family
+AU  Haft DH, Berriman M
+TC  166.65 166.65
+NC  57.35 57.35
+AL  clustalw_manual
+IT  paralog
+EN  variant surface antigen, stevor family
+TP  TIGRFAMs
+CC  This HMM represents the stevor branch of the rifin/stevor family (PF02009) of predicted variant surface antigens as found in Plasmodium falciparum. This model is based on a set of stevor sequences kindly provided by Matt Berriman from the Sanger Center. This is a global model and assesses a penalty for incomplete sequence. Additional fragmentary sequences may be found with the fragment model and a cutoff of 8 bits.

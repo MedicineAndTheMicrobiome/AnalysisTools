@@ -1,0 +1,11 @@
+ID  RIFIN
+AC  TIGR01477
+DE  variant surface antigen, rifin family
+AU  Haft DH, Berriman M
+TC  176.95 176.95
+NC  54.30 54.30
+AL  clustalw_manual
+IT  paralog
+EN  variant surface antigen, rifin family
+TP  TIGRFAMs
+CC  This HMM represents the rifin branch of the rifin/stevor family (PF02009) of predicted variant surface antigens as found in Plasmodium falciparum. This model is based on a set of rifin sequences kindly provided by Matt Berriman from the Sanger Center. This is a global model and assesses a penalty for incomplete sequence. Additional fragmentary sequences may be found with the fragment model and a cutoff of 20 bits.

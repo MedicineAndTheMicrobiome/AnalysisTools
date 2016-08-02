@@ -1,0 +1,17 @@
+ID  PpsR-CrtJ
+AC  TIGR02040
+DE  transcriptional regulator PpsR
+AU  Selengut J
+TC  275.40 275.40
+NC  149.05 149.05
+AL  clustalw
+IT  equivalog
+EN  transcriptional regulator PpsR
+GS  ppsR
+TP  TIGRFAMs
+CC  This HMM represents the transcriptional regulator PpsR which is strictly associated with photosynthetic proteobacteria and found in photosynthetic operons.  PpsR has been reported to be a repressor [1].  These proteins contain a Helix-Turn_Helix motif of the "fis" type (PF02954).
+RN  [1]
+RM  PMID: 10735869
+RT  Domain structure, oligomeric state, and mutational analysis of PpsR, the Rhodobacter sphaeroides repressor of photosystem gene expression.
+RA  Gomelsky M, Horne IM, Lee HJ, Pemberton JM, McEwan AG, Kaplan S.
+RL  J Bacteriol. 2000 Apr;182(8):2253-61.

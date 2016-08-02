@@ -1,0 +1,19 @@
+ID  antidote_HigA
+AC  TIGR02607
+DE  addiction module antidote protein, HigA family
+AU  Haft DH
+TC  47.70 47.70
+NC  40.00 40.00
+AL  clustalw_manual
+IT  equivalog
+EN  addiction module antidote protein, HigA family
+GS  higA
+TP  TIGRFAMs
+CC  Members of this family form a distinct clade within the larger family HTH_3 of helix-turn-helix proteins, described by Pfam model PF01381. Members of this clade are strictly bacterial and nearly always shorter than 110 amino acids. This family includes the characterized member HigA, without which the killer protein HigB cannot be cloned. The hig (host inhibition of growth) system is noted to be unusual in that killer protein is uncoded by the upstream member of the gene pair.
+DR  PFAM; PF01381; HTH_3; Helix-turn-helix
+DR  COGS; COG3093; Plasmid maintenance system antidote protein
+RN  [1]
+RM  11322821
+RT  Specific protein-DNA and protein-protein interaction in the hig gene system, a plasmid-borne proteic killer gene system of plasmid Rts1.
+RA  Tian QB, Ohnishi M, Murata T, Nakayama K, Terawaki Y, Hayashi T.
+RL  Plasmid. 2001 Mar;45(2):63-74.

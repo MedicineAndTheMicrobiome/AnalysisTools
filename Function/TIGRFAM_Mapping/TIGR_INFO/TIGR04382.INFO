@@ -1,0 +1,13 @@
+ID  myo_inos_iolC_N
+AC  TIGR04382
+DE  5-dehydro-2-deoxygluconokinase
+AU  Haft DH
+TC  300.00 300.00
+NC  270.00 270.00
+AL  muscle_manual
+IT  equivalog_domain
+EN  5-dehydro-2-deoxygluconokinase
+GS  iolC
+EC  2.7.1.92
+TP  TIGRFAMs
+CC  All members of the seed alignment for this model are translated from the iolC gene of known or putative inositol catabolism operons. Members with characterized function are 5-dehydro-2-deoxygluconokinase, the enzyme catalyzing the fifth step in degradation from myo-inositol or closely related compounds. Note that many members of this family are fusion proteins with an additional C-terminal domain, of unknown function, described by Pfam model PF09863.

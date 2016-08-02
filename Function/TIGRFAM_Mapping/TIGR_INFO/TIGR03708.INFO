@@ -1,0 +1,18 @@
+ID  poly_P_AMP_trns
+AC  TIGR03708
+DE  polyphosphate:AMP phosphotransferase
+AU  Haft DH
+TC  547.65 547.65
+NC  459.10 459.10
+AL  muscle_manual
+IT  equivalog
+EN  polyphosphate:AMP phosphotransferase
+GS  pap
+EC  2.7.4.-
+TP  TIGRFAMs
+CC  Members of this protein family contain a domain duplication. The characterized member from Acinetobacter johnsonii is polyphosphate:AMP phosphotransferase (PAP), which can transfer the terminal phosphate from poly(P) to AMP, yielding ADP. In the opposite direction, this enzyme can synthesize poly(P). Each domain of this protein family is homologous to polyphosphate kinase, an enzyme that can run in the forward direction to extend a polyphosphate chain with a new terminal phosphate from ATP, or in reverse to make ATP (or GTP) from ADP (or GDP).
+RN  [1]
+RM  PMID:15262957
+RT  Polyphosphate synthetic activity of polyphosphate:AMP phosphotransferase in Acinetobacter johnsonii 210A.
+RA  Itoh H, Shiba T
+RL  J Bacteriol. 2004 Aug;186(15):5178-81.

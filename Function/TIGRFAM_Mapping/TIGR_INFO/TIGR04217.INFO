@@ -1,0 +1,18 @@
+ID  archae_ser_T
+AC  TIGR04217
+DE  archaetidylserine synthase
+AU  Haft DH
+TC  200.00 200.00
+NC  155.00 155.00
+AL  muscle_manual
+IT  exception
+EN  archaetidylserine synthase
+EC  2.7.8.-
+TP  TIGRFAMs
+CC  The activity CDP-2,3-di-O-geranylgeranyl-sn-glycerol:L-serine
+CC  O-archaetidyltransferase (archaetidylserine synthase) was demonstrated experimentally in Methanothermobacter thermautotrophicus. Members represent an exception within the broader family (TIGR00473) of CDP-diacylglycerol-serine O-phosphatidyltransferases.
+RN  [1]
+RM  PMID:12562787 
+RT  CDP-2,3-Di-O-geranylgeranyl-sn-glycerol:L-serine O-archaetidyltransferase (archaetidylserine synthase) in the methanogenic archaeon Methanothermobacter thermautotrophicus. 
+RA  Morii H, Koga Y 
+RL  J Bacteriol. 2003 Feb;185(4):1181-9.

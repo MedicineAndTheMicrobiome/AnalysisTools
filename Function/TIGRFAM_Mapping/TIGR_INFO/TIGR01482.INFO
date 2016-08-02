@@ -1,0 +1,15 @@
+ID  SPP-subfamily
+AC  TIGR01482
+DE  sucrose-phosphate phosphatase subfamily
+AU  Selengut J
+TC  107.15 107.15
+NC  104.00 104.00
+AL  clustalw
+IT  subfamily
+EN  sucrose-phosphate phosphatase subfamily
+EC  3.1.3.-
+TP  TIGRFAMs
+CC  This HMM includes both the members of the SPP equivalog
+CC  model (TIGR01485), encompassing plants and cyanobacteria, as well as those archaeal sequences which are the closest relatives (TIGR01487). It remains to be shown whether these archaeal sequences
+CC  catalyze the same reaction as SPP.
+DR  HAMAP; MF_01419; 24 of 28

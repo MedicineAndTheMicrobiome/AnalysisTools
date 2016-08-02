@@ -1,0 +1,17 @@
+ID  PTS-II-ABC-beta
+AC  TIGR01995
+DE  PTS system, beta-glucoside-specific IIABC component
+AU  Selengut J
+TC  614.70 614.70
+NC  606.25 606.25
+AL  clustalw
+IT  subfamily
+EN  PTS system, beta-glucoside-specific IIABC component
+EC  2.7.1.69
+TP  TIGRFAMs
+CC  This HMM represents a family of PTS enzyme II proteins in which all three domains are found in the same polypeptide chain and which appear to have a broad specificity for beta-glucosides including salicin (beta-D-glucose-1-salicylate) and arbutin (Hydroquinone-O-beta-D-glucopyranoside) [1].  These are distinct from the closely related sucrose-specific and trehalose-specific PTS transporters.
+RN  [1]
+RM  PMID: 7883710
+RT  New beta-glucoside (bgl) genes in Bacillus subtilis: the bglP gene product has both transport and regulatory functions similar to those of BglF, its Escherichia coli homolog.
+RA  Le Coq D, Lindner C, Kruger S, Steinmetz M, Stulke J.
+RL  J Bacteriol. 1995 Mar;177(6):1527-35.

@@ -1,0 +1,17 @@
+ID  malQ
+AC  TIGR00217
+DE  4-alpha-glucanotransferase
+AU  Loftus BJ
+TC  205.65 205.65
+NC  155.40 155.40
+AL  clustalw
+IT  equivalog
+EN  4-alpha-glucanotransferase
+GS  malQ
+EC  2.4.1.25
+TP  TIGRFAMs
+CC  This enzyme is known as amylomaltase and disproportionating enzyme.
+DR  ECOCYC; EG10561;
+DR  Swissprot; P15977;
+DR  InterPro; IPR003385; 4A_glucanotrans
+DR  PFAM; PF02446; 4A_glucanotrans

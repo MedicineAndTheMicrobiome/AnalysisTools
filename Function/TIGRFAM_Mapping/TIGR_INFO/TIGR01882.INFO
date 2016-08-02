@@ -1,0 +1,14 @@
+ID  peptidase-T
+AC  TIGR01882
+DE  peptidase T
+AU  Selengut J
+TC  285.75 285.75
+NC  212.95 212.95
+AL  clustalw
+IT  equivalog
+EN  peptidase T
+GS  pepT
+EC  3.4.11.-
+TP  TIGRFAMs
+CC  This model represents a tripeptide aminopeptidase known as Peptidase T, which has a substrate preference for hydrophobic peptides.
+DR  HAMAP; MF_00550; 112 of 114

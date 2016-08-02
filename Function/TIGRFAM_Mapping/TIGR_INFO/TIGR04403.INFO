@@ -1,0 +1,17 @@
+ID  rSAM_skfB
+AC  TIGR04403
+DE  sporulation killing factor system radical SAM maturase
+AU  Haft DH
+TC  300.00 300.00
+NC  200.00 200.00
+AL  muscle
+IT  equivalog
+EN  sporulation killing factor system radical SAM maturase
+GS  skfB
+TP  TIGRFAMs
+CC  Members of this family are a radical SAM enzyme of post-translational modification of ribosomally translated peptides. In Bacillus subtilis, the enzyme SkfB creates a sactipeptide (sulfur-to-alpha-carbon) crosslink of Cys-4 to Met-12 of the mature form of sporulation killing factor (SkfA). In Paenibacillus larvae subsp. larvae B-3650, the Met is replaced by Leu, so the modification must be different. SkfB has 2 4Fe-4S clusters, one in its radical SAM domain (PF04055) and one in a region that somewhat resembles the SPASM domain (TIGR04085).
+RN  [1]
+RM  PMID:23282011 
+RT  Two [4Fe-4S] Clusters Containing Radical SAM Enzyme SkfB Catalyze Thioether Bond Formation during the Maturation of the Sporulation Killing Factor. 
+RA  Fluhe L, Burghaus O, Wieckowski BM, Giessen TW, Linne U, Marahiel MA 
+RL  J Am Chem Soc. 2013 Jan 23;135(3):959-62. doi: 10.1021/ja310542g.

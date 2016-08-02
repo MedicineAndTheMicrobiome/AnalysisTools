@@ -1,0 +1,18 @@
+ID  GNAT_ablB
+AC  TIGR03827
+DE  putative beta-lysine N-acetyltransferase
+AU  Haft DH
+TC  205.10 205.10
+NC  107.00 107.00
+AL  muscle_manual
+IT  equivalog
+EN  putative beta-lysine N-acetyltransferase
+GS  ablB
+EC  2.3.1.-
+TP  TIGRFAMs
+CC  Members of this protein family are GNAT family acetyltransferases, based on a seed alignment in which every member is associated with a lysine 2,3-aminomutase family protein, usually as the adjacent gene. This family includes AblB, the enzyme beta-lysine acetyltransferase that completes the two-step synthesis of the osmolyte (compatible solute) N-epsilon-acetyl-beta-lysine; all members of the family may have this function. Note that N-epsilon-acetyl-beta-lysine has been observed only in methanogenic archaea (e.g. Methanosarcina) but that this model, paired with TIGR03820, suggests a much broader distribution.
+RN  [1]
+RM  PMID:14532061
+RT  Lysine-2,3-aminomutase and beta-lysine acetyltransferase genes of methanogenic archaea are salt induced and are essential for the biosynthesis of Nepsilon-acetyl-beta-lysine and growth at high salinity.
+RA  Pfluger K, Baumann S, Gottschalk G, Lin W, Santos H, Muller V
+RL  Appl Environ Microbiol. 2003 Oct;69(10):6047-55.

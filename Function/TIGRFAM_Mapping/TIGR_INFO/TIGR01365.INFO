@@ -1,0 +1,14 @@
+ID  serC_2
+AC  TIGR01365
+DE  phosphoserine aminotransferase
+AU  Haft DH
+TC  448.20 448.20
+NC  85.20 85.20
+AL  clustalw
+IT  equivalog
+EN  phosphoserine aminotransferase, Methanosarcina type
+EC  2.6.1.52
+TP  TIGRFAMs
+CC  This HMM represents a variant form of the serine biosynthesis enzyme phosphoserine aminotransferase, as found in a small number of distantly related species, including Caulobacter crescentus, Mesorhizobium loti, and the archaeon Methanosarcina barkeri.
+DR  EXPERIMENTAL; SP:P52878; Methanosarcina barkeri
+DR  HAMAP; MF_00160; 3 of 138

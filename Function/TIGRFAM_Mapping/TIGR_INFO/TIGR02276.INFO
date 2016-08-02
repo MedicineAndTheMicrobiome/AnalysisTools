@@ -1,0 +1,14 @@
+ID  beta_rpt_yvtn
+AC  TIGR02276
+DE  40-residue YVTN family beta-propeller repeat
+AU  Haft DH
+TC  27.85 27.85
+NC  20.50 20.50
+AL  manual
+IT  repeat
+EN  40-residue YVTN family beta-propeller repeat
+TP  TIGRFAMs
+CC  This repeat of about 40 amino acids is found in up to 14 copies per protein. Archaea Methanosarcina mazei and Methanosarcina acetivorans each have over 10 genes that encode tandem copies of this repeat, which is also found in other species. PSIPRED predicts with high confidence that each 40-residue repeats contains four beta strands. This model overlaps somewhat with the NHL repeat (Pfam PF01436) and also shows sequence similarity to the WD domain, G-beta repeat (Pfam PF00400).
+DR  PFAM; PF01436; NHL repeat
+DR  PFAM; PF00400; WD domain, G-beta repeat
+DR  PDB; 1L0Q_A.0; YVTN beta-propeller structure

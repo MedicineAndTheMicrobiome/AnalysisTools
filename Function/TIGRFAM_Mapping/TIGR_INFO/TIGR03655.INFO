@@ -1,0 +1,16 @@
+ID  anti_R_Lar
+AC  TIGR03655
+DE  restriction alleviation protein, Lar family
+AU  Haft DH
+TC  39.60 39.60
+NC  37.00 37.00
+AL  muscle_manual
+IT  subfamily
+EN  restriction alleviation protein, Lar family
+TP  TIGRFAMs
+CC  Restriction alleviation proteins provide a countermeasure to host cell restriction enzyme defense against foreign DNA such as phage or plasmids. This family consists of homologs to the phage antirestriction protein Lar, and most members belong to phage genomes or prophage regions of bacterial genomes.
+RN  [1]
+RM  PMID:7476171
+RT  Restriction alleviation and modification enhancement by the Rac prophage of Escherichia coli K-12.
+RA  King G, Murray NE
+RL  Mol Microbiol. 1995 May;16(4):769-77.

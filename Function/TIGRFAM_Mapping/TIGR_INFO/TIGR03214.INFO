@@ -1,0 +1,11 @@
+ID  ura-cupin
+AC  TIGR03214
+DE  putative allantoin catabolism protein
+AU  Selengut J
+TC  297.15 297.15
+NC  230.90 230.90
+AL  muscle
+IT  hypoth_equivalog
+EN  putative allantoin catabolism protein
+TP  TIGRFAMs
+CC  This model represents a protein containing a tandem arrangement of cupin domains (N-terminal part of PF07883 and C-terminal more distantly related to PF00190).  This protein is found in the vicinity of genes involved in the catabolism of allantoin, a breakdown product of urate and sometimes of urate iteslf.  The distribution of pathway components in the genomes in which this family is observed suggests that the function is linked to the allantoate catabolism to glyoxylate pathway (GenProp0686) since it is sometimes found in genomes lacking any elements of the xanthine-to-allantoin pathways (e.g. in Enterococcus faecalis).

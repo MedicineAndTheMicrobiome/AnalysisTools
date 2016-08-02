@@ -1,0 +1,12 @@
+ID  S8e
+AC  TIGR00307
+DE  ribosomal protein S8.e
+AU  Haft DH
+TC  78.25 78.25
+NC  73.80 73.80
+AL  clustalw
+IT  equivalog
+EN  ribosomal protein S8.e
+TP  TIGRFAMs
+CC  Archaeal and eukaryotic ribosomal protein S8. This model could easily have been split into two models, one for eukaryotic S8 and one for archaeal S8; eukaryotic forms invariably have in insert of about 80 residues that archaeal forms of S8 do not.
+DR  HAMAP; MF_00029; 40 of 44

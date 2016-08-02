@@ -1,0 +1,15 @@
+ID  D_ala_D_alaTIGR
+AC  TIGR01205
+DE  D-alanine--D-alanine ligase
+AU  Haft DH
+TC  245.65 245.65
+NC  95.55 95.55
+AL  clustalw
+IT  subfamily
+EN  D-alanine--D-alanine ligase
+EC  6.3.2.4
+TP  TIGRFAMs
+CC  This model describes D-Ala--D-Ala ligase, an enzyme that makes a required precursor of the bacterial cell wall. It also describes some closely related proteins responsible for resistance to glycopeptide antibiotics such as vancomycin. The mechanism of glyopeptide antibiotic resistance involves the production of D-alanine-D-lactate (VanA and VanB families) or D-alanine-D-serine (VanC). The seed alignment contains only chromosomally encoded D-ala--D-ala ligases,
+CC  but a number of antibiotic resistance proteins score above the trusted cutoff of this model.
+Changes in small numbers of amino acids, as demonstrated crystallographically, can alter specificity.
+DR  HAMAP; MF_00047; 436 of 456

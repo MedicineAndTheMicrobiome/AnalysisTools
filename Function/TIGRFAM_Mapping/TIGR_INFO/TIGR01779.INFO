@@ -1,0 +1,19 @@
+ID  TonB-B12
+AC  TIGR01779
+DE  TonB-dependent vitamin B12 receptor
+AU  Selengut J
+TC  599.70 599.70
+NC  295.65 295.65
+AL  clustalw_manual
+IT  equivalog
+EN  TonB-dependent vitamin B12 receptor
+GS  btuB
+TR  1.B.14.3
+TP  TIGRFAMs
+CC  This model represents the TonB-dependent outer membrane receptor found in gamma proteobacteria responsible for translocating the cobalt-containing vitamin B12 (cobalamin) [1].
+RN  [1]
+RM  PMID: 3882670
+RT  Nucleotide sequence of the gene for the vitamin B12 receptor protein in the outer membrane of Escherichia coli.
+RA  Heller K, Kadner RJ.
+RL  J Bacteriol 1985 Mar;161(3):904-8
+DR  HAMAP; MF_01531; 30 of 35

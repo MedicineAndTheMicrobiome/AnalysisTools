@@ -1,0 +1,16 @@
+ID  phage_P2_V
+AC  TIGR01644
+DE  phage baseplate assembly protein V
+AU  Haft DH, Fouts DE
+TC  46.75 46.75
+NC  36.05 36.05
+AL  clustalw_manual
+IT  subfamily
+EN  phage baseplate assembly protein V
+TP  TIGRFAMs
+CC  This HMM describes a family of phage (and bacteriocin) proteins related to the phage P2 V gene product, which forms the small spike at the tip of the tail. Homologs in general are annotated as baseplate assembly protein V. At least one member is encoded within a region of Pectobacterium carotovorum (Erwinia carotovora) described as a bacteriocin, a phage tail-derived module able to kill bacteria closely related to the host strain.
+DR  EXPERIMENTAL; SP:P31340; phage P2; small spike at tip of tail
+RM  7483254
+RT  Bacteriophage P2: genes involved in baseplate assembly.
+RA  Haggard-Ljungquist E, Jacobsen E, Rishovd S, Six EW, Nilssen O, Sunshine MG, Lindqvist BH, Kim KJ, Barreiro V, Koonin EV, et al.
+RL  Virology 1995 Oct 20;213(1):109-21

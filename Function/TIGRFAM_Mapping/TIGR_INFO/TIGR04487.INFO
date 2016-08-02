@@ -1,0 +1,16 @@
+ID  SoxY_para_1
+AC  TIGR04487
+DE  SoxY-related AACIE arm protein
+AU  Haft DH
+TC  172.00 172.00
+NC  162.00 162.00
+AL  muscle_manual
+IT  exception
+EN  SoxY-related AACIE arm protein
+TP  TIGRFAMs
+CC  Members of this family are paralogs to the authentic thiosulfate oxidation system protein SoxY. True SoxY end with the sequence GGCG(G), the swinging arm in which the Cys residue covalently binds the inorganic sulfur moiety. In this family, members end with a different swinging arm sequence, [AS]AC[IVT]E. The few species with a member of this family always have authentic SoxY.
+RN  [1]
+RM  PMID:17522046 
+RT  The SoxYZ complex carries sulfur cycle intermediates on a peptide swinging arm. 
+RA  Sauve V, Bruno S, Berks BC, Hemmings AM 
+RL  J Biol Chem. 2007 Aug 10;282(32):23194-204. Epub 2007 May 23.

@@ -1,0 +1,20 @@
+ID  napF
+AC  TIGR00402
+DE  ferredoxin-type protein NapF
+AU  Loftus BJ, Haft DH
+TC  102.20 102.20
+NC  59.85 59.85
+AL  clustalw_manual
+IT  equivalog
+EN  ferredoxin-type protein NapF
+GS  napF
+TP  TIGRFAMs
+CC  The gene codes for a ferredoxin-type cytosolic protein, NapF, of the periplasmic nitrate reductase system, as in Escherichia coli. NapF interacts with the catalytic subunit, NapA, and may be an accessory protein for NapA maturation.
+RN  [1]
+RM  PMID:17074894
+RT  The NapF protein of the Escherichia coli periplasmic nitrate reductase system: demonstration of a cytoplasmic location and interaction with the catalytic subunit, NapA.
+RA  Nilavongse A, Brondijk TH, Overton TW, Richardson DJ, Leach ER, Cole JA
+RL  Microbiology. 2006 Nov;152(Pt 11):3227-37.
+DR  Swissprot; P0AAL0
+DR  ECOCYC; EG12068;  
+DR  PROSITE; PDOC00176;

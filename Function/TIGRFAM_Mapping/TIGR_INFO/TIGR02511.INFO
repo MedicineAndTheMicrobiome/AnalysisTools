@@ -1,0 +1,16 @@
+ID  type_III_tyeA
+AC  TIGR02511
+DE  type III secretion effector delivery regulator, TyeA family
+AU  Haft DH
+TC  25.90 25.90
+NC  25.60 25.60
+AL  clustalw_manual
+IT  equivalog_domain
+EN  type III secretion effector delivery regulator, TyeA family
+TP  TIGRFAMs
+CC  Members of this family include both small proteins, about 90 amino acids, in which this model covers the whole, and longer proteins of about 360 residues which match in the C-terminal region. The longer proteins (HrpJ) have N-terminal regions that match Pfam model PF07201. Members of this family belong to bacterial type III secretion systems, and include TyeA from the well-studied Yersinia systems. TyeA appears involved in calcium-responsive regulation of the delivery of type III effectors.
+RN  [1]
+RM  12614462
+RT  TyeA of Yersinia pseudotuberculosis is involved in regulation of Yop expression and is required for polarized translocation of Yop effectors.
+RA  Sundberg L, Forsberg A.
+RL  Cell Microbiol. 2003 Mar;5(3):187-202.

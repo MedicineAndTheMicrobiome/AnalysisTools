@@ -1,0 +1,12 @@
+ID  dnd_rel_methyl
+AC  TIGR04096
+DE  DNA phosphorothioation-associated putative methyltransferase
+AU  Haft DH
+TC  150.00 150.00
+NC  75.00 75.00
+AL  muscle_manual
+IT  subfamily
+EN  DNA phosphorothioation-associated putative methyltransferase
+EC  2.-.-.-
+TP  TIGRFAMs
+CC  Members of this protein family show distant local sequence similarity to a number of S-adenosyl-methionine-dependent methyltransferases. The family is identified by Partial Phylogenetic Profiling as closely tied to the DNA phosphorothioation system (dnd), and members are found adjacent to dnd genes in at least 13 species (Streptomyces lividans TK24, Shewanella frigidimarina NCIMB 400, Mycobacterium abscessus ATCC 19977, Nostoc punctiforme PCC 73102, Vibrio fischeri MJ11, etc.). The DNA phosphorothioation enables a novel form of restriction enzyme activity. Most members of this family appear in species with the DNA phosphorothioation system.

@@ -1,0 +1,20 @@
+ID  XAPA
+AC  TIGR01699
+DE  xanthosine phosphorylase
+AU  Selengut J
+TC  370.90 370.90
+NC  294.40 294.40
+AL  clustalw
+IT  equivalog
+EN  xanthosine phosphorylase
+GS  xapA
+EC  2.4.2.1
+TP  TIGRFAMs
+CC  This model represents a small clade of purine nucleotide phosphorylases found in certain gamma proteobacteria.  The gene is part of an operon for the degradation of xanthosine and is 
+CC  induced by xanthosine [1].  The enzyme is also capable of acting on inosine and guanosine (but not adenosine) in a manner similar to those other phosphorylases to which it is closely related 
+CC  (TIGR01698, TIGR01700).
+RN  [1]
+RM  PMID: 7559336
+RT  Identification and characterization of genes (xapA, xapB, and xapR) involved in xanthosine catabolism in Escherichia coli.
+RA  Seeger C, Poulsen C, Dandanell G.
+RL  J Bacteriol. 1995 Oct;177(19):5506-16.

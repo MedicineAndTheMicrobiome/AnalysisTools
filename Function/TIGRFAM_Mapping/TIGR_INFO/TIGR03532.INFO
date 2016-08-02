@@ -1,0 +1,19 @@
+ID  DapD_Ac
+AC  TIGR03532
+DE  2,3,4,5-tetrahydropyridine-2,6-dicarboxylate N-acetyltransferase
+AU  Selengut J
+TC  231.75 231.75
+NC  182.20 182.20
+AL  muscle
+IT  equivalog
+EN  2,3,4,5-tetrahydropyridine-2,6-dicarboxylate N-acetyltransferase
+GS  dapD
+EC  2.3.1.89
+TP  TIGRFAMs
+CC  This enzyme is part of the diaminopimelate pathway of lysine biosynthesis.
+CC  Alternate name: tetrahydrodipicolinate N-acetyltransferase.  Note that IUBMB lists this alternate name as the accepted name.  Unfortunately, the related succinyl transferase acting on the same substrate (EC:2.3.1.117, TIGR00695) uses the opposite standard.  We have decided to give these two enzymes names which more clearly indicated that they act on the same substrate.
+RN  [1]
+RA  Chatterjee, S.P. and White, P.J.
+RT  Activities and regulation of the enzymes of lysine biosynthesis in a
+lysine-excreting strain of Bacillus megaterium.
+RL  J. Gen. Microbiol. 128 (1982) 1073-1081.

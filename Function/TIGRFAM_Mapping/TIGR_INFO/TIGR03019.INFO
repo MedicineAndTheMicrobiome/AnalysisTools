@@ -1,0 +1,12 @@
+ID  pepcterm_femAB
+AC  TIGR03019
+DE  FemAB-related protein, PEP-CTERM system-associated
+AU  Haft DH
+TC  260.35 260.35
+NC  180.80 180.80
+AL  muscle
+IT  hypoth_equivalog
+EN  FemAB-related protein, PEP-CTERM system-associated
+TP  TIGRFAMs
+CC  Members of this protein family are found always as part of extended exopolysaccharide biosynthesis loci in bacteria. In nearly every case, these loci contain determinants for the processing of the PEP-CTERM proposed C-terminal protein sorting signal. This family shows remote, local sequence similarity to the FemAB protein family (see PF02388), whose members
+DR  PF02388; FemAB

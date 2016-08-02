@@ -1,0 +1,12 @@
+ID  lucif_BA3436
+AC  TIGR03571
+DE  luciferase-type oxidoreductase, BA3436 family
+AU  Haft DH
+TC  303.90 303.90
+NC  135.60 135.60
+AL  muscle_manual
+IT  subfamily
+EN  luciferase-type oxidoreductase, BA3436 family
+EC  1.-.-.-
+TP  TIGRFAMs
+CC  This family is a distinct subgroup among members of the luciferase monooxygenase domain family. The larger family contains both FMN-binding enzymes (luciferase, alkane monooxygenase) and F420-binding enzymes (methylenetetrahydromethanopterin reductase, secondary alcohol dehydrogenase, glucose-6-phosphate dehydrogenase). Although some members of the domain family bind coenzyme F420 rather than FMN, members of this family are from species that lack the genes for F420 biosynthesis. A crystal structure, but not function, is known (but unpublished) for the member from Bacillus cereus, PDB|2B81.

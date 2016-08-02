@@ -1,0 +1,13 @@
+ID  potA
+AC  TIGR01187
+DE  polyamine ABC transporter, ATP-binding protein
+AU  Ujwal ML, Paulsen IT
+TC  355.60 355.60
+NC  349.95 349.95
+AL  clustalw
+IT  subfamily
+EN  spermidine/putrescine ABC transporter ATP-binding subunit
+EC  3.6.3.31
+TP  TIGRFAMs
+CC  This model describes spermidine/putrescine ABC transporter, ATP binding subunit in bacteria and its equivalents in archaea. This transport system belong to the larger ATP-Binding Cassette (ABC) transporter superfamily. The characteristic feature of these transporter is the obligatory coupling of ATP hydrolysis to substrate translocation. The minimal configuration of bacterial ABC transport system: an ATPase or ATP binding subunit; An integral membrane protein; a hydrophilic polypetpide, which likely functions as substrate binding protein. Polyamines like spermidine and putrescine play vital role in cell proliferation, differentiation, and ion homeostasis. The concentration of polyamines within the cell are regulated by biosynthesis, degradation and transport (uptake and efflux included).
+DR  HAMAP; MF_01726; 93 of 157

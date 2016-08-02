@@ -1,0 +1,12 @@
+ID  eIF-6
+AC  TIGR00323
+DE  putative translation initiation factor eIF-6
+AU  Haft DH
+TC  137.75 137.75
+NC  123.30 123.30
+AL  clustalw
+IT  hypoth_equivalog
+EN  translation initiation factor eIF-6, putative
+TP  TIGRFAMs
+CC  This HMM finds translation initiation factor eIF-6 of eukaryotes, which is a ribosome dissociation factor. It also finds a set of apparent archaeal orthologs, slightly shorter proteins not yet shown to act as initiation factors; these probably should be designated as translation initiation factor aIF-6, putative.
+DR  HAMAP; MF_00032; 38 of 39

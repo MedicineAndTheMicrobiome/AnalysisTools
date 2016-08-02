@@ -1,0 +1,25 @@
+ID  uppS
+AC  TIGR00055
+DE  di-trans,poly-cis-decaprenylcistransferase
+AU  Richardson DL, Haft DH
+TC  109.55 109.55
+NC  25.10 25.10
+AL  msa_tigr
+IT  equivalog
+EN  undecaprenyl diphosphate synthase
+GS  uppS
+EC  2.5.1.31
+TP  TIGRFAMs
+CC  This enzyme builds undecaprenyl diphosphate, a molecule that in bacteria is used a carrier in synthesizing cell wall components.
+CC  Alternate name: undecaprenyl pyrophosphate synthetase. Activity has been demonstrated experimentally for members of this family from Micrococcus luteus, E. coli, Haemophilus influenzae, and Streptococcus pneumoniae.
+RN  [1]
+RM  98344035
+RT  Molecular cloning, expression, and purification of undecaprenyl diphosphate synthase. No sequence similarity between E- and Z-prenyl diphosphate synthases.
+RA  Shimizu N, Koyama T, Ogura K
+RL  J Biol Chem 1998 Jul 31;273(31):19476-81
+RN  [2]
+RM  99102211 
+RT  Use of genomics to identify bacterial undecaprenyl pyrophosphate synthetase: cloning, expression, and characterization of the essential uppS gene.
+RA  Apfel CM, Takacs B, Fountoulakis M, Stieger M, Keck W
+RL  J Bacteriol 1999 Jan;181(2):483-92
+DR  HAMAP; MF_01139; 186 of 187

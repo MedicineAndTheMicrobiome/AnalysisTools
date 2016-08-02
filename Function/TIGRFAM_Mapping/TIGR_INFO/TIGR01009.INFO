@@ -1,0 +1,14 @@
+ID  rpsC_bact
+AC  TIGR01009
+DE  ribosomal protein S3
+AU  Haft DH
+TC  114.50 114.50
+NC  87.40 87.40
+AL  clustalw_manual
+IT  equivalog
+EN  ribosomal protein S3, bacterial type
+GS  rpsC
+TP  TIGRFAMs
+CC  This model describes the bacterial type of ribosomal protein S3. Chloroplast and mitochondrial forms have large, variable inserts between conserved N-terminal and C-terminal domains. This model recognizes all bacterial forms and many chloroplast forms above the trusted cutoff score.
+CC  TIGRFAMs model TIGR01008 describes S3 of the eukaryotic cytosol and of the archaea.
+DR  HAMAP; MF_01309; 668 of 718

@@ -1,0 +1,16 @@
+ID  decahem_SO
+AC  TIGR03508
+DE  decaheme c-type cytochrome, DmsE family
+AU  Haft DH
+TC  192.20 192.20
+NC  98.60 98.60
+AL  muscle_manual
+IT  subfamily
+EN  decaheme c-type cytochrome, DmsE family
+TP  TIGRFAMs
+CC  Members of this family are small, decaheme c-type cytochromes, related DmsE of Shewanella oneidensis MR-1, which has been shown to be part of an anaerobic dimethyl sulfoxide reductase.
+RN  [1]
+RM  PMID:16537430
+RT  Extracellular respiration of dimethyl sulfoxide by Shewanella oneidensis strain MR-1.
+RA  Gralnick JA, Vali H, Lies DP, Newman DK
+RL  Proc Natl Acad Sci U S A. 2006 Mar 21;103(12):4669-74.

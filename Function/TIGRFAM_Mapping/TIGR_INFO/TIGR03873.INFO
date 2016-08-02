@@ -1,0 +1,11 @@
+ID  F420-0_ABC_ATP
+AC  TIGR03873
+DE  proposed F420-0 ABC transporter, ATP-binding protein
+AU  Selengut J
+TC  372.40 372.40
+NC  372.20 372.20
+AL  muscle
+IT  hypoth_equivalog
+EN  proposed F420-0 ABC transporter, ATP-binding protein
+TP  TIGRFAMs
+CC  This small clade of ABC-type transporter ATP-binding protein components is found as a three gene cassette along with a periplasmic substrate-binding protein (TIGR03868) and a permease (TIGR03869).  The organisms containing this cassette are all Actinobacteria and all contain numerous genes requiring the coenzyme F420.  This model was defined based on five such organisms, four of which are lacking all F420 biosynthetic capability save the final side-chain polyglutamate attachment step (via the gene cofE: TIGR01916).  In Jonesia denitrificans DSM 20603 and marine actinobacterium PHSC20C1 this cassette is in an apparent operon with the cofE gene and, in PHSC20C1, also with a F420-dependent glucose-6-phosphate dehydrogenase (TIGR03554).  Based on these observations we propose that this ATP-binding protein is a component of an F420-0 (that is, F420 lacking only the polyglutamate tail) transporter.

@@ -1,0 +1,23 @@
+ID  LAT_fam
+AC  TIGR03251
+DE  L-lysine 6-transaminase
+AU  Haft DH
+TC  520.80 520.80
+NC  271.50 271.50
+AL  muscle
+IT  equivalog
+EN  L-lysine 6-transaminase
+GS  lat
+EC  2.6.1.36
+TP  TIGRFAMs
+CC  Characterized members of this protein family are L-lysine 6-transaminase, also called lysine epsilon-aminotransferase (LAT). The immediate product of the reaction of this enzyme on lysine, 2-aminoadipate 6-semialdehyde, becomes 1-piperideine 6-carboxylate, or P6C. This product may be converted subsequently to pipecolate or alpha-aminoadipate, lysine catabolites that may be precursors of certain seconary metabolites.
+RN  [1]
+RM  PMID: 12005058
+RT  Biotransformation of L-lysine to L-pipecolic acid catalyzed by L-lysine 6-aminotransferase and pyrroline-5-carboxylate reductase.
+RA  Fujii T, Mukaihara M, Agematu H, Tsunekawa H
+RL  Biosci Biotechnol Biochem. 2002 Mar;66(3):622-7.
+RN  [2]
+RM  PMID: 9355735
+RT  Delta-1-piperideine-6-carboxylate dehydrogenase, a new enzyme that forms alpha-aminoadipate in Streptomyces clavuligerus and other cephamycin C-producing actinomycetes.
+RA  de La Fuente JL, Rumbero A, Martin JF, Liras P
+RL  Biochem J. 1997 Oct 1;327 ( Pt 1):59-64.

@@ -1,0 +1,14 @@
+ID  rpiA
+AC  TIGR00021
+DE  ribose 5-phosphate isomerase A
+AU  Haft DH
+TC  126.40 126.40
+NC  56.35 56.35
+AL  clustalw
+IT  equivalog
+EN  ribose 5-phosphate isomerase
+GS  rpiA
+EC  5.3.1.6
+TP  TIGRFAMs
+CC  This HMM describes ribose 5-phosphate isomerase, an enzyme of the non-oxidative branch of the pentose phosphate pathway.
+DR  HAMAP; MF_00170; 305 of 309

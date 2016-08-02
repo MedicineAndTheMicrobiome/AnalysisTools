@@ -1,0 +1,22 @@
+ID  ccoG_rdxA_fixG
+AC  TIGR02745
+DE  cytochrome c oxidase accessory protein CcoG
+AU  Haft DH
+TC  316.70 316.70
+NC  171.70 171.70
+AL  clustalw_manual
+IT  equivalog
+EN  cytochrome c oxidase accessory protein FixG
+GS  ccoG
+TP  TIGRFAMs
+CC  Member of this ferredoxin-like protein family are found exclusively in species with an operon encoding the cbb3 type of cytochrome c oxidase (cco-cbb3), and near the cco-cbb3 operon in about half the cases. The cco-cbb3 is found in a variety of proteobacteria and almost nowhere else, and is associated with oxygen use under microaerobic conditions. Some (but not all) of these proteobacteria are also nitrogen-fixing, hence the gene symbol fixG. FixG was shown essential for functional cco-cbb3 expression in Bradyrhizobium japonicum.
+RN  [1]
+RM  8661920
+RT  The Bradyrhizobium japonicum fixGHIS genes are required for the formation of the high-affinity cbb3-type cytochrome oxidase.
+RA  Preisig O, Zufferey R, Hennecke H.
+RL  Arch Microbiol. 1996 May;165(5):297-305.
+RN  [2]
+RM  1400197
+RT  Rhodobacter sphaeroides rdxA, a homolog of Rhizobium meliloti fixG, encodes a membrane protein which may bind cytoplasmic [4Fe-4S] clusters.
+RA  Neidle EL, Kaplan S.
+RL  J Bacteriol. 1992 Oct;174(20):6444-54.

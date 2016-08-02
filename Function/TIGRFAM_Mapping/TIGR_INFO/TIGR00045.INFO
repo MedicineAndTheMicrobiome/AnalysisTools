@@ -1,0 +1,17 @@
+ID  TIGR00045
+AC  TIGR00045
+DE  glycerate kinase
+AU  Haft DH, Richardson DL
+TC  168.45 168.45
+NC  152.85 152.85
+AL  msa_tigr
+IT  subfamily
+EN  glycerate kinase
+EC  2.7.1.31
+TP  TIGRFAMs
+CC  The only characterized member of this family so far is the glycerate kinase GlxK (EC 2.7.1.31) of E. coli. This enzyme acts after glyoxylate carboligase and 2-hydroxy-3-oxopropionate reductase (tartronate semialdehyde reductase) in the conversion of glyoxylate to 3-phosphoglycerate (the D-glycerate pathway) as a part of allantoin degradation.
+RM  10601204
+RT  Genetic analysis of a chromosomal region containing genes required for assimilation of allantoin nitrogen and linked glyoxylate metabolism in Escherichia coli.
+RA  Cusa E, Obradors N, Baldoma L, Badia J, Aguilar J.
+RL  J Bacteriol 1999 Dec;181(24):7479-84
+DR  EXPERIMENTAL; SP:P77364; glycerate kinase GlxK; E. coli

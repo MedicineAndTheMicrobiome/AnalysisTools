@@ -1,0 +1,17 @@
+ID  ectoine_ThpD
+AC  TIGR02408
+DE  ectoine hydroxylase
+AU  Haft DH
+TC  336.50 336.50
+NC  209.45 209.45
+AL  clustalw
+IT  equivalog
+EN  ectoine hydroxylase
+GS  thpD
+EC  1.-.-.-
+TP  TIGRFAMs
+CC  Both ectoine and hydroxyectoine are compatible solvents that serve as protectants against osmotic and thermal stresses. A number of genomes synthesize ectoine. This enzyme allows conversion of ectoine to hydroxyectoine, which may be more effective for some purposes, and is found in a subset of ectoine-producing organisms.
+RM  15128576
+RT  Functional expression of the ectoine hydroxylase gene (thpD) from Streptomyces chrysomallus in Halomonas elongata.
+RA  Prabhu J, Schauwecker F, Grammel N, Keller U, Bernhard M.
+RL  Appl Environ Microbiol. 2004 May;70(5):3130-2.

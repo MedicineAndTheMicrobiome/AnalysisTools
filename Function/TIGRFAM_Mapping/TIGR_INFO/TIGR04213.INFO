@@ -1,0 +1,11 @@
+ID  PGF_pre_PGF
+AC  TIGR04213
+DE  PGF-pre-PGF domain
+AU  Haft DH
+TC  28.00 28.00
+NC  22.00 22.00
+AL  muscle_manual
+IT  domain
+EN  PGF-pre-PGF domain
+TP  TIGRFAMs
+CC  This domain occurs in archaeal species. Most domains in this family end with a motif PGF, after which the member sequences change in character to low-complexity sequence (usually Thr-rich) for about 40 residues. The low complexity region usually is followed by a PGF-CTERM domain (TIGR04126), which we suggest is the recognition sequence for archaeosortase A (TIGR04125), a putative protein-sorting transpeptidase. The similarity between the PGF motif in this domain and in the PGF-CTERM domain is highly suggestive.

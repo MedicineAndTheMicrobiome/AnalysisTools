@@ -1,0 +1,12 @@
+ID  archaeo_artE
+AC  TIGR04124
+DE  archaeosortase family protein ArtE
+AU  Haft DH
+TC  95.00 95.00
+NC  65.00 65.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  archaeosortase family protein ArtE
+GS  artE
+TP  TIGRFAMs
+CC  This protein family is related to the predicted protein-sorting transpeptidase Exosortase (EpsH), with the Cys, Arg, and His putative active site residues preserved, but it is strictly archaeal and is not associated with any known PEP-CTERM-like target sequence. The immediate gene neighborhood in most genomes suggests RNA (methylase, cyclase) and cofactor (thiamine pyrophosphate) metabolism. The function is unknown. It is designated archaeosortase family protein ArtE.

@@ -1,0 +1,14 @@
+ID  modC_ABC
+AC  TIGR02142
+DE  molybdate ABC transporter, ATP-binding protein
+AU  Haft DH
+TC  285.05 285.05
+NC  241.10 241.10
+AL  clustalw_manual
+IT  equivalog
+EN  molybdenum ABC transporter, ATP-binding protein
+GS  modC
+EC  3.6.3.29
+TP  TIGRFAMs
+CC  This HMM represents the ATP-binding cassette (ABC) protein of the three subunit molybdate ABC transporter. The three proteins of this complex are homologous to proteins of the sulfate ABC transporter. Molybdenum may be used in nitrogenases of nitrogen-fixing bacteria and in molybdopterin cofactors. In some cases, molybdate may be transported by a sulfate transporter rather than by a specific molybdate transporter.
+DR  HAMAP; MF_01705; 72 of 73

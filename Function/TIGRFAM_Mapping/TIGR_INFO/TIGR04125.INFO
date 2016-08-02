@@ -1,0 +1,18 @@
+ID  exosort_PGF_TRM
+AC  TIGR04125
+DE  archaeosortase A
+AU  Haft DH
+TC  75.00 75.00
+NC  60.00 60.00
+AL  muscle_manual
+IT  equivalog
+EN  archaeosortase A, PGF-CTERM-specific
+GS  artA
+EC  3.4.22.-
+TP  TIGRFAMs
+CC  This family is an archaeal variant of the (normally bacterial) putative protein-sorting integral membrane protein exosortase, hence archaeosortase. In species a member of this family, its PGF-CTERM cognate sequence (TIGR04126) occurs at the C-termini of from two to over fifty proteins per genome. Those target proteins may not share homology to each other in regions N-terminal to the PGF-CTERM region.
+RN  [1]
+RM  PMID:22037399 
+RT  Archaeosortases and exosortases are widely distributed systems linking membrane transit with posttranslational modification. 
+RA  Haft DH, Payne SH, Selengut JD 
+RL  J Bacteriol. 2012 Jan;194(1):36-48.

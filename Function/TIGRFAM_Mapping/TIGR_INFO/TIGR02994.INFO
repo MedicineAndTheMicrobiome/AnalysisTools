@@ -1,0 +1,17 @@
+ID  ectoine_eutE
+AC  TIGR02994
+DE  ectoine utilization protein EutE
+AU  Haft DH
+TC  402.70 402.70
+NC  330.65 330.65
+AL  muscle
+IT  equivalog
+EN  ectoine utilization protein EutE
+GS  eutE
+TP  TIGRFAMs
+CC  Members of this family, part of the succinylglutamate desuccinylase / aspartoacylase family (PF04952), belong to ectoine utilization operons, as found in Sinorhizobium meliloti 1021 (where it the operon is known to be induced by ectoine), Mesorhizobium loti, Silicibacter pomeroyi, Agrobacterium tumefaciens, and Pseudomonas putida.
+DR  PFAM; PF04952; Succinylglutamate desuccinylase / Aspartoacylase familyRN  [1]
+RM  PMID: 15687193
+RT  Ectoine-induced proteins in Sinorhizobium meliloti include an Ectoine ABC-type transporter involved in osmoprotection and ectoine catabolism.
+RA  Jebbar M, Sohn-Bosser L, Bremer E, Bernard T, Blanco C
+RL  J Bacteriol. 2005 Feb;187(4):1293-304.

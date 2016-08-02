@@ -1,0 +1,11 @@
+ID  DHAK_reg
+AC  TIGR02366
+DE  probable dihydroxyacetone kinase regulator
+AU  Haft DH
+TC  129.00 129.00
+NC  82.05 82.05
+AL  clustalw
+IT  hypoth_equivalog
+EN  probable dihydroxyacetone kinase regulator
+TP  TIGRFAMs
+CC  The seed alignment for this family was built from a set of closely related uncharacterized proteins associated with operons for the type of bacterial dihydroxyacetone kinase that transfers PEP-derived phosphate from a phosphoprotein, as in phosphotransferase system transport, rather than from ATP. Members have a TetR transcriptional regulator domain (PF00440) at the N-terminus and sequence homology throughout.

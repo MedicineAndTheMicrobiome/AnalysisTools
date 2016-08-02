@@ -1,0 +1,11 @@
+ID  flg_new
+AC  TIGR02530
+DE  flagellar operon protein
+AU  Haft DH
+TC  83.20 83.20
+NC  47.75 47.75
+AL  clustalw
+IT  hypoth_equivalog
+EN  flagellar operon protein
+TP  TIGRFAMs
+CC  Members of this family are found in a subset of bacterial flagellar operons, generally between genes designated flgD and flgE, in species as diverse as Bacillus halodurans and various other Firmicutes, Geobacter sulfurreducens, and Bdellovibrio bacteriovorus. The specific molecular function is unknown.

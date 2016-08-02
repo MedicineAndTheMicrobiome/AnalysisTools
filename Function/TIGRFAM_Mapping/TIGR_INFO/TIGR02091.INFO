@@ -1,0 +1,14 @@
+ID  glgC
+AC  TIGR02091
+DE  glucose-1-phosphate adenylyltransferase
+AU  Haft DH
+TC  424.90 424.90
+NC  343.55 343.55
+AL  clustalw_manual
+IT  equivalog
+EN  glucose-1-phosphate adenylyltransferase
+GS  glgC
+EC  2.7.7.27
+TP  TIGRFAMs
+CC  This enzyme, glucose-1-phosphate adenylyltransferase, is also called ADP-glucose pyrophosphorylase. The plant form is an alpha2,beta2 heterodimer, allosterically regulated in plants. Both subunits are homologous and included in this model. In bacteria, both homomeric forms of GlgC and more active heterodimers of GlgC and GlgD have been described. This model describes the GlgC subunit only. This enzyme appears in variants of glycogen synthesis pathways that use ADP-glucose, rather than UDP-glucose as in animals.
+DR  HAMAP; MF_00624; 186 of 195

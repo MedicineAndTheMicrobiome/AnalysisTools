@@ -1,0 +1,11 @@
+ID  IMP_DH_rel_1
+AC  TIGR01303
+DE  IMP dehydrogenase family protein
+AU  Haft DH
+TC  562.75 562.75
+NC  527.65 527.65
+AL  clustalw
+IT  hypoth_equivalog
+EN  IMP dehydrogenase family protein
+TP  TIGRFAMs
+CC  This HMM represents a family of proteins, often annotated as a putative IMP dehydrogenase, related to IMP dehydrogenase and GMP reductase and restricted to the high GC Gram-positive bacteria. All species in which a member is found so far (Corynebacterium glutamicum, Mycobacterium tuberculosis, Streptomyces coelicolor, etc.) also have IMP dehydrogenase as described by TIGRFAMs entry TIGR01302.

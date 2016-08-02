@@ -1,0 +1,12 @@
+ID  thioredoxin
+AC  TIGR01068
+DE  thioredoxin
+AU  Haft DH
+TC  96.80 96.80
+NC  75.70 75.70
+AL  clustalw_manual
+IT  equivalog
+EN  thioredoxin
+GS  trxA
+TP  TIGRFAMs
+CC  Several proteins, such as protein disulfide isomerase, have two or more copies of a domain closely related to thioredoxin. This model is designed to recognize authentic thioredoxin, a small protein that should be hit exactly once by this HMM. Any protein that hits once with a score greater than the second (per domain) trusted cutoff may be taken as thioredoxin.

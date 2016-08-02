@@ -1,0 +1,13 @@
+ID  primase_sml
+AC  TIGR00335
+DE  putative DNA primase, eukaryotic-type, small subunit
+AU  Haft DH
+TC  143.50 143.50
+NC  81.10 81.10
+AL  clustalw_manual
+IT  equivalog
+EN  DNA primase, eukaryotic-type, small subunit, putative
+TP  TIGRFAMs
+CC  Archaeal members differ substantially from eukaryotic members and should be considered putative pending experimental evidence. The protein is universal and single copy among completed archaeal and eukarotic genomes to date. DNA primase creates RNA primers needed for DNA replication.
+CC  This HMM is named putative because the assignment is putative for archaeal proteins. Eukaryotic proteins scoring above the trusted cutoff can be considered authentic.
+DR  HAMAP; MF_00700; 32 of 38

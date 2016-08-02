@@ -1,0 +1,13 @@
+ID  CPA3_mnhG_phaG
+AC  TIGR01300
+DE  monovalent cation/proton antiporter, MnhG/PhaG subunit
+AU  Haft DH, Paulsen IT, Saier MH
+TC  63.10 63.10
+NC  32.95 32.95
+AL  clustalw_manual
+IT  subfamily
+EN  monovalent cation/proton antiporter, MnhG/PhaG subunit
+TR  2.A.63
+TP  TIGRFAMs
+CC  This HMM represents a subfamily of small, transmembrane proteins believed to be components of Na+/H+ and K+/H+ antiporters. Members, including proteins designated MnhG from Staphylococcus aureus and PhaG from Rhizobium meliloti, show some similarity to chain L of the NADH dehydrogenase I, which also translocates protons.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_63.html

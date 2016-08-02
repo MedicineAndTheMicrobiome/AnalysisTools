@@ -1,0 +1,16 @@
+ID  type_III_yscP
+AC  TIGR02514
+DE  type III secretion system needle length determinant
+AU  Haft DH
+TC  76.50 76.50
+NC  35.70 35.70
+AL  clustalw
+IT  equivalog_domain
+EN  type III secretion system needle length determinant
+TP  TIGRFAMs
+CC  Members of this family include YscP of the Yersinia type III secretion system and equivalent proteins in other animal pathogen bacterial type III secretion systems. The model describes the conserved C-terminal region. N-terminal regions are poorly conserved and variable in length with some low-complexity sequence.
+RN  [1]
+RM  14657497
+RT  The needle length of bacterial injectisomes is determined by a molecular ruler.
+RA  Journet L, Agrain C, Broz P, Cornelis GR.
+RL  Science. 2003 Dec 5;302(5651):1757-60.

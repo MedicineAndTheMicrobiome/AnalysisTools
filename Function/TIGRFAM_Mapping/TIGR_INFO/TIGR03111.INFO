@@ -1,0 +1,16 @@
+ID  glyc2_xrt_Gpos1
+AC  TIGR03111
+DE  putative glycosyltransferase, exosortase G-associated
+AU  Haft DH
+TC  363.95 363.95
+NC  235.70 235.70
+AL  muscle
+IT  hypoth_equivalog
+EN  putative glycosyltransferase, exosortase G-associated
+TP  TIGRFAMs
+CC  Members of this protein family are probable glycosyltransferases of family 2, whose genes are near those for the exosortase homolog XrtG (TIGR03110), which is restricted to Gram-positive bacteria. Other genes in the conserved gene neighborhood include a 6-pyruvoyl tetrahydropterin synthase homolog (TIGR03112) and an uncharacterized intergral membrane protein (TIGR03766).
+RN  [1]
+RM  PMID:22037399 
+RT  Archaeosortases and exosortases are widely distributed systems linking membrane transit with posttranslational modification. 
+RA  Haft DH, Payne SH, Selengut JD 
+RL  J Bacteriol. 2012 Jan;194(1):36-48. Epub 2011 Oct 28.

@@ -1,0 +1,17 @@
+ID  dimeth_PyL
+AC  TIGR02368
+DE  dimethylamine:corrinoid methyltransferase
+AU  Haft DH
+TC  369.10 369.10
+NC  369.00 369.00
+AL  clustalw
+IT  equivalog
+EN  dimethylamine:corrinoid methyltransferase
+GS  mtbB
+EC  2.1.1.249
+TP  TIGRFAMs
+CC  This family consists of dimethylamine methyltransferases from the genus Methanosarcina. It is found in three nearly identical copies in each of M. acetivorans, M. barkeri, and M. Mazei. It is one of a suite of three non-homologous enzymes with a critical UAG-encoded pyrrolysine residue in these species (along with trimethylamine methyltransferase and monomethylamine methyltransferase). It demethylates dimethylamine, leaving monomethylamine, and methylates the prosthetic group of the small corrinoid protein MtbC. The methyl group is then transferred by methylcorrinoid:coenzyme M methyltransferase to coenzyme M.  Note that the pyrrolysine residue is variously translated as K or X, or as a stop codon that truncates the sequence.
+RM  10852929
+RT  Reconstitution of dimethylamine:coenzyme M methyl transfer with a discrete corrinoid protein and two methyltransferases purified from Methanosarcina barkeri.
+RA  Ferguson DJ Jr, Gorlatova N, Grahame DA, Krzycki JA.
+RL  J Biol Chem. 2000 Sep 15;275(37):29053-60.

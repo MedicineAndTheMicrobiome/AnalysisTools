@@ -1,0 +1,15 @@
+ID  metA
+AC  TIGR01001
+DE  homoserine O-succinyltransferase
+AU  Haft DH
+TC  315.40 315.40
+NC  23.40 23.40
+AL  clustalw
+IT  equivalog
+EN  homoserine O-succinyltransferase
+GS  metA
+EC  2.3.1.46
+TP  TIGRFAMs
+CC  The apparent equivalog from Bacillus subtilis is broken into two tandem reading frames.
+DR  ECOCYC; EG10581; metA
+DR  HAMAP; MF_00295; 123 of 126

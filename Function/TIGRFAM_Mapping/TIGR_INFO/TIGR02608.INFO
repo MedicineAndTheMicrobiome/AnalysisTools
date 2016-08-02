@@ -1,0 +1,11 @@
+ID  delta_60_rpt
+AC  TIGR02608
+DE  delta-60 repeat domain
+AU  Haft DH
+TC  76.50 14.00
+NC  67.00 8.00
+AL  clustalw_manual
+IT  domain
+EN  delta-60 repeat domain
+TP  TIGRFAMs
+CC  This domain occurs in tandem repeats, as many as 13, in proteins from Bdellovibrio bacteriovorus, Azotobacter vinelandii, Geobacter sulfurreducens, Pirellula sp. 1, Myxococcus xanthus, and others, many of which are Deltaproteobacteria.  The periodicity of the repeat ranges from about 57 to 61 amino acids, and a core region of about 54 is represented by this model and seed alignment.

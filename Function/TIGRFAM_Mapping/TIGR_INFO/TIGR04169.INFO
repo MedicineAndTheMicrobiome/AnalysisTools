@@ -1,0 +1,11 @@
+ID  perox_w_seleSAM
+AC  TIGR04169
+DE  alkylhydroperoxidase/carboxymuconolactone decarboxylase family protein
+AU  Haft DH
+TC  120.00 120.00
+NC  95.00 95.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  alkylhydroperoxidase/carboxymuconolactone decarboxylase family protein
+TP  TIGRFAMs
+CC  Members of this family are usually annotated as putative  carboxymuconolactone decarboxylases, are related also to alkylhydroperoxidase AhpD, and contain a peroxidase-like Cys-X-X-Cys putative redox-active disulfide. All members occur in genomes with a radical SAM protein of family TIGR04167, which occasionally are selenoproteins.

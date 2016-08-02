@@ -1,0 +1,13 @@
+ID  L37a
+AC  TIGR00280
+DE  ribosomal protein L37a
+AU  Haft DH
+TC  95.80 95.80
+NC  65.70 65.70
+AL  clustalw
+IT  equivalog
+EN  ribosomal protein L37a
+GS  rpl37A
+TP  TIGRFAMs
+CC  This HMM finds eukaryotic ribosomal protein L37a and its archaeal orthologs. The nomeclature is tricky because eukaryotes have proteins called both L37 and L37a.
+DR  HAMAP; MF_00327; 17 of 26

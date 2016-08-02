@@ -1,0 +1,14 @@
+ID  guanyl_kin
+AC  TIGR03263
+DE  guanylate kinase
+AU  Haft DH
+TC  160.45 160.45
+NC  132.60 132.60
+AL  muscle
+IT  equivalog
+EN  guanylate kinase
+GS  gmk
+EC  2.7.4.8
+TP  TIGRFAMs
+CC  Members of this family are the enzyme guanylate kinase, also called GMP kinase. This enzyme transfers a phosphate from ATP to GMP, yielding ADP and GDP.
+DR  PFAM; PF00625; Guanylate kinase

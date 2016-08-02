@@ -1,0 +1,18 @@
+ID  PFLA
+AC  TIGR02493
+DE  pyruvate formate-lyase 1-activating enzyme
+AU  Selengut J
+TC  231.75 231.75
+NC  203.45 203.45
+AL  clustalw
+IT  equivalog
+EN  pyruvate formate-lyase 1-activating enzyme
+GS  pflA
+EC  1.97.1.4
+TP  TIGRFAMs
+CC  An iron-sulfur protein with a radical-SAM domain (PF04055). A single glycine residue in EC 2.3.1.54, formate C-acetyltransferase (formate-pyruvate lyase), is oxidized to the corresponding radical by transfer of H from its CH2 to AdoMet with concomitant cleavage of the latter. The reaction requires Fe2+. The first stage is reduction of the AdoMet to give methionine and the 5'-deoxyadenosin-5-yl radical, which then abstracts a hydrogen radical from the glycine residue [1].
+RN  [1]
+RM  PMID: 8175649
+RT  Adenosylmethionine-dependent synthesis of the glycyl radical in pyruvate formate-lyase by abstraction of the glycine C-2 pro-S hydrogen atom. Studies of [2H]glycine-substituted enzyme and peptides homologous to the glycine 734 site.
+RA  Frey M, Rothe M, Wagner AF, Knappe J.
+RL  J Biol Chem. 1994 Apr 29;269(17):12432-7.

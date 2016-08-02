@@ -1,0 +1,12 @@
+ID  Nterm_to_SelD
+AC  TIGR03169
+DE  pyridine nucleotide-disulfide oxidoreductase family protein
+AU  Haft DH
+TC  310.00 310.00
+NC  300.00 300.00
+AL  muscle_manual
+IT  hypoth_equivalog_domain
+EN  pyridine nucleotide-disulfide oxidoreductase family protein
+TP  TIGRFAMs
+CC  Members of this protein family include N-terminal sequence regions of (probable) bifunctional proteins whose C-terminal sequences are SelD, or selenide,water dikinase, the selenium donor protein necessary for selenium incorporation into protein (as selenocysteine), tRNA (as 2-selenouridine), or both. However, some members of this family occur in species that do not show selenium incorporation, and the function of this protein family is unknown.
+DR  PFAM; PF00070; pyridine nucleotide-disulphide oxidoreductase

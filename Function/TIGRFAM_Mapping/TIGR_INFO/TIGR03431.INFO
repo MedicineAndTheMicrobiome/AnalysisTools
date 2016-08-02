@@ -1,0 +1,24 @@
+ID  PhnD
+AC  TIGR03431
+DE  phosphonate ABC transporter, periplasmic phosphonate binding protein
+AU  Selengut J
+TC  261.10 261.10
+NC  230.15 230.15
+AL  muscle
+IT  equivalog
+EN  phosphonate ABC transporter, periplasmic phosphonate binding protein
+GS  phnD
+TR  3.A.1.9.1
+TP  TIGRFAMs
+CC  This model is a subset of the broader subfamily of phosphate/phosphonate binding protein ABC transporter components, TIGR01098.  In this model all members of the seed have support from genomic context for association with pathways for the metabolims of phosphonates, particularly the C-P lyase system, GenProp0232.  This model includes the characterized phnD gene from E. coli [1,2].
+CC  Note that this model does not identify all phnD-subfamily genes with evident phosphonate context, but all sequences above the trusted context may be inferred to bind phosphonate compounds even in the absence of such context.  Furthermore, there is ample evidence to suggest that many other members of the TIGR01098 subfamily have a different primary function.
+RN  [1]
+RM  PMID:2155230 
+RT  Molecular biology of carbon-phosphorus bond cleavage. Cloning and sequencing of the phn (psiD) genes involved in alkylphosphonate uptake and C-P lyase activity in Escherichia coli B. 
+RA  Chen CM, Ye QZ, Zhu ZM, Wanner BL, Walsh CT 
+RL  J Biol Chem. 1990 Mar 15;265(8):4461-71. 
+RN  [2]
+RM  PMID:16751609 
+RT  Identification of cognate ligands for the Escherichia coli phnD protein product and engineering of a reagentless fluorescent biosensor for phosphonates. 
+RA  Rizk SS , Cuneo MJ , Hellinga HW 
+RL  Protein Sci. 2006 Jul;15(7):1745-51. Epub 2006 Jun 2.

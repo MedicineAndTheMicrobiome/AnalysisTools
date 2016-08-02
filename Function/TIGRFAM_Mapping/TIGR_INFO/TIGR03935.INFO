@@ -1,0 +1,18 @@
+ID  fragilysin
+AC  TIGR03935
+DE  fragilysin
+AU  Haft DH
+TC  190.70 190.70
+NC  190.60 190.60
+AL  muscle_manual
+IT  equivalog
+EN  fragilysin
+GS  bft
+EC  3.4.24.74
+TP  TIGRFAMs
+CC  Members of this family are fragilysin, the Bacteroides fragilis enterotoxin. This enzyme is a Zn metalloprotease. Three distinct subtypes included in this family all are produced by enterotoxigenic (by definition) strains of Bacteroides fragilis.
+RN  [1]
+RM  PMID:10612750 
+RT  A new subtype of the metalloprotease toxin gene and the incidence of the three bft subtypes among Bacteroides fragilis isolates in Japan. 
+RA  Kato N, Liu CX, Kato H, Watanabe K, Tanaka Y, Yamamoto T, Suzuki K, Ueno K 
+RL  FEMS Microbiol Lett. 2000 Jan 1;182(1):171-6.

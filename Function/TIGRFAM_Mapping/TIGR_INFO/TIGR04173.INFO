@@ -1,0 +1,16 @@
+ID  PIP_CTERM
+AC  TIGR04173
+DE  PIP-CTERM protein sorting domain
+AU  Haft DH
+TC  30.00 30.00
+NC  25.00 25.00
+AL  muscle_manual
+IT  subfamily_domain
+EN  PIP-CTERM protein sorting domain
+TP  TIGRFAMs
+CC  Proteins closely related to MJ_1469.1 from Methanocaldococcus jannaschii DSM 2661 are designated archaeosortase D (ArtD). ArtD appears to be a dedicated protein-sorting enzyme with a single target, a PKD domain (PF00801) repeat protein encoded by adjacent gene. This model describes the  C-terminal putative protein-sorting region structurally similar to PEP-CTERM (TIGR02602) and found only on these methanogen PKD domain proteins.
+RN  [1]
+RM  PMID:22037399 
+RT  Archaeosortases and exosortases are widely distributed systems linking membrane transit with posttranslational modification. 
+RA  Haft DH, Payne SH, Selengut JD 
+RL  J Bacteriol. 2012 Jan;194(1):36-48.

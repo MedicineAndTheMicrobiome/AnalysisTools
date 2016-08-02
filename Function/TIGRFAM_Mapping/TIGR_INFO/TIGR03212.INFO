@@ -1,0 +1,16 @@
+ID  uraD_N-term-dom
+AC  TIGR03212
+DE  putative urate catabolism protein
+AU  Selengut J
+TC  424.60 424.60
+NC  391.60 391.60
+AL  muscle
+IT  hypoth_equivalog_domain
+EN  putative urate catabolism protein
+TP  TIGRFAMs
+CC  This model represents a protein that is predominantly found just upstream of the UraD protein (OHCU decarboxylase) and in a number of instances as a N-terminal fusion with it. UraD itself catalyzes the last step in the catabolism of urate to allantoate [1].  The function of this protein is presently unknown.  It shows homology with the PF01522 polysaccharide deacetylase domain family.
+RN  [1]
+RM  PMID: 16462750 
+RT  Completing the uric acid degradation pathway through phylogenetic comparison of whole genomes. 
+RA  Ramazzina I, Folli C, Secchi A, Berni R, Percudani R 
+RL  Nat Chem Biol. 2006 Mar;2(3):144-8. Epub 2006 Feb 5.

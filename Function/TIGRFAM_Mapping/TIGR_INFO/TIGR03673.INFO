@@ -1,0 +1,17 @@
+ID  rpl14p_arch
+AC  TIGR03673
+DE  50S ribosomal protein L14P
+AU  Selengut J
+TC  191.45 191.45
+NC  191.20 191.20
+AL  muscle
+IT  equivalog
+EN  50S ribosomal protein L14P
+GS  rpl14p
+TP  TIGRFAMs
+CC  Part of the 50S ribosomal subunit. Forms a cluster with proteins L3 and L24e, part of which may contact the 16S rRNA in 2 intersubunit bridges.
+RN  [1]
+RM  PMID:17599351 
+RT  Structure of the base of the L7/L12 stalk of the Haloarcula marismortui large ribosomal subunit: analysis of L11 movements. 
+RA  Kavran JM, Steitz TA 
+RL  J Mol Biol. 2007 Aug 24;371(4):1047-59. Epub 2007 Jun 4.

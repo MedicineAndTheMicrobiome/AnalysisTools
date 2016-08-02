@@ -1,0 +1,11 @@
+ID  aro_clust_Mycop
+AC  TIGR04313
+DE  aromatic cluster surface protein
+AU  Haft DH
+TC  40.00 28.00
+NC  28.50 26.00
+AL  muscle_manual
+IT  subfamily
+EN  aromatic cluster surface protein
+TP  TIGRFAMs
+CC  Members of this family are absolutely restricted to the Mollicutes (Mycoplasma and Ureaplasma). All have a signal peptide, usually of the lipoprotein type, suggesting surface expression. Most members have lengths of about 280 residues but some members have a nearly full-length duplication. The mostly nearly invariant residue, a Trp,is part of a strongly conserved 9-residue motif, [ND]-W-[LY]-[WF]-X-[LF]-X-N-[LI], where X usually is hydrophobic. Because the hydrophobic six-residue core of this motif almost always contains three to four aromatic residues, we name this family aromatic cluster surface protein. Multiple paralogs may occur in a given Mycoplasma, usually clustered on the genome.

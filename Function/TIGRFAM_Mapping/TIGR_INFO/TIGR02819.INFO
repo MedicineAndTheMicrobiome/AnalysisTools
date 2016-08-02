@@ -1,0 +1,13 @@
+ID  fdhA_non_GSH
+AC  TIGR02819
+DE  formaldehyde dehydrogenase, glutathione-independent
+AU  Haft DH
+TC  636.95 636.95
+NC  425.15 425.15
+AL  clustalw
+IT  equivalog
+EN  formaldehyde dehydrogenase, glutathione-independent
+GS  fdhA
+EC  1.2.1.46
+TP  TIGRFAMs
+CC  Members of this family represent a distinct clade within the larger family of zinc-dependent dehydrogenases of medium chain alcohols, a family that also includes the so-called glutathione-dependent formaldehyde dehydrogenase. Members of this protein family have a tightly bound NAD that can act as a true cofactor, rather than a cosubstrate in dehydrogenase reactions, in dismutase reactions for some aldehydes. The name given to this family, however, is  formaldehyde dehydrogenase, glutathione-independent.

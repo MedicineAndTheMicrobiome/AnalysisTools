@@ -1,0 +1,11 @@
+ID  TIGR00374
+AC  TIGR00374
+DE  TIGR00374 family protein
+AU  Haft DH
+TC  43.20 43.20
+NC  33.60 33.60
+AL  clustalw
+IT  superfamily
+EN  conserved hypothetical protein
+TP  TIGRFAMs
+CC  This HMM is built on a superfamily of proteins in the Archaea and in Aquifex aeolicus. The authenticity of homology can be seen in the presence of motifs in the alignment that include residues relatively rare among these sequences, even though the alignment includes long regions of low-complexity hydrophobic sequences. One apparent fusion protein contains a Glycos_transf_2 region in the N-terminal half of the protein and a region homologous to this superfamily in the C-terminal region.

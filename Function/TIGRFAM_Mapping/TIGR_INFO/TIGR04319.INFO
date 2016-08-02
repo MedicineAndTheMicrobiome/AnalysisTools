@@ -1,0 +1,11 @@
+ID  SerAla_Lrha_rpt
+AC  TIGR04319
+DE  surface protein repeat Ser-Ala-175
+AU  Haft DH
+TC  120.00 70.00
+NC  100.00 50.00
+AL  muscle_manual
+IT  repeat
+EN  surface protein repeat Ser-Ala-175
+TP  TIGRFAMs
+CC  This serine and alanine-rich surface protein repeat, about 175 amino acids long, occurs up to nine times in surface proteins of some Lactobacillus strains, particularly in Lactobacillus rhamnosus. Members proteins have the N-terminal variant signal sequence described by TIGR03715 and C-terminal LPXTG signals for surface attachment by sortase.

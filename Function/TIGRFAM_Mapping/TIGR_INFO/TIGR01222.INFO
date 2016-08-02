@@ -1,0 +1,14 @@
+ID  minC
+AC  TIGR01222
+DE  septum site-determining protein MinC
+AU  Haft DH
+TC  95.25 95.25
+NC  67.35 67.35
+AL  clustalw_manual
+IT  equivalog
+EN  septum site-determining protein MinC
+GS  minC
+TP  TIGRFAMs
+CC  The minC protein assists in correct placement of the septum for cell division by inhibiting septum formation at other sites. Homologs from Deinocoocus, Synechocystis PCC 6803, and Helicobacter pylori do not hit the full length of the model and score between the trusted and noise cutoffs.
+DR  COGS; COG0850
+DR  HAMAP; MF_00267; 158 of 166

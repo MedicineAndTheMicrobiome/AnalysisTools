@@ -1,0 +1,17 @@
+ID  VI_IcmF
+AC  TIGR03348
+DE  type VI secretion protein IcmF
+AU  Haft DH
+TC  388.15 388.15
+NC  382.05 382.05
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  type VI secretion protein IcmF
+GS  icmF
+TP  TIGRFAMs
+CC  Members of this protein family are IcmF homologs and tend to be associated with type VI secretion systems.
+RN  [1]
+RM  PMID: 16763151
+RT  A virulence locus of Pseudomonas aeruginosa encodes a protein secretion apparatus.
+RA  Mougous JD, Cuff ME, Raunser S, Shen A, Zhou M, Gifford CA, Goodman AL, Joachimiak G, Ordonez CL, Lory S, Walz T, Joachimiak A, Mekalanos JJ
+RL  Science. 2006 Jun 9;312(5779):1526-30.

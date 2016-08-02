@@ -1,0 +1,19 @@
+ID  reco
+AC  TIGR00613
+DE  DNA repair protein RecO
+AU  Loftus BJ, Eisen JA, Haft DH
+TC  48.70 48.70
+NC  40.30 40.30
+AL  clustalw_manual
+IT  equivalog
+EN  DNA repair protein RecO
+GS  recO
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are DNA binding proteins that are involved in the initiation of recombination or recombinational repair.
+DR  PFAM; PF02565; DNA repair protein RecO
+DR  SWISSPROT; P15027;
+RM  89291705
+RT  Molecular analysis of the Escherichia coli recO gene.
+RA  Morrison PT, Lovett ST, Gilson LE, Kolodner R.
+RL  J Bacteriol. 1989 Jul;171(7):3641-9.
+DR  HAMAP; MF_00201; 289 of 291

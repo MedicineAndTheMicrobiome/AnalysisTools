@@ -1,0 +1,16 @@
+ID  circ_ocin_uber
+AC  TIGR03651
+DE  circular bacteriocin, circularin A/uberolysin family
+AU  Haft DH
+TC  30.70 30.70
+NC  24.85 24.85
+AL  muscle_manual
+IT  subfamily
+EN  circular bacteriocin, circularin A/uberolysin family
+TP  TIGRFAMs
+CC  Circular bacteriocins are antibiotic proteins made by ribosomal translation of a precursor molecular, followed by cleavage and circularization. Members of this subclass of the circular bacteriocins include circularin A from Clostridium beijerinckii, bacteriocin AS-48 from Enterococcus faecalis,  uberolysin from Streptococcus uberis, and carnocyclin A from Carnobacterium maltaromaticum. The mature circularized peptides average about 70 amino acids in size.
+RN  [1]
+RM  PMID:18034824
+RT  Genetic features of circular bacteriocins produced by Gram-positive bacteria.
+RA  Maqueda M, Sanchez-Hidalgo M, Fernandez M, Montalban-Lopez M, Valdivia E, Martinez-Bueno M
+RL  FEMS Microbiol Rev. 2008 Jan;32(1):2-22. Epub 2007 Nov 20.

@@ -1,0 +1,15 @@
+ID  DRP1
+AC  TIGR01159
+DE  density-regulated protein DRP1
+AU  Haft DH
+TC  118.15 118.15
+NC  46.20 46.20
+AL  clustalw
+IT  subfamily
+EN  density-regulated protein DRP1
+TP  TIGRFAMs
+CC  This protein family shows weak but suggestive similarity to translation initiation factor SUI1 and its prokaryotic homologs.
+RM  9628587
+RT  drp, a novel protein expressed at high cell density but not during growth arrest.
+RA  Deyo JE, Chiao PJ, Tainsky MA
+RL  DNA Cell Biol 1998 May;17(5):437-47

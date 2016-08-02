@@ -1,0 +1,12 @@
+ID  IPMI_arch
+AC  TIGR02086
+DE  3-isopropylmalate dehydratase, large subunit
+AU  Selengut J
+TC  410.15 410.15
+NC  399.05 399.05
+AL  clustalw
+IT  subfamily
+EN  3-isopropylmalate dehydratase, large subunit
+TP  TIGRFAMs
+CC  This subfamily is a subset of the larger HacA family (Homoaconitate hydratase family, TIGR01343) and is most closely related to the 3-isopropylmalate dehydratase, large subunits which form TIGR00170.  This subfamily includes the members of TIGR01343 which are gene clustered with other genes of leucine biosynthesis.  The rest of the subfamily includes mainly archaeal species which exhibit two hits to this model.  In these cases it is possible that one or the other of the hits does not have a 3-isopropylmalate dehydratase activity but rather one of the other related aconitase-like activities.
+DR  HAMAP; MF_01027; 60 of 61

@@ -1,0 +1,14 @@
+ID  argC
+AC  TIGR01850
+DE  N-acetyl-gamma-glutamyl-phosphate reductase
+AU  Haft DH
+TC  233.60 233.60
+NC  171.85 171.85
+AL  clustalw_manual
+IT  equivalog
+EN  N-acetyl-gamma-glutamyl-phosphate reductase, common form
+GS  argC
+EC  1.2.1.38
+TP  TIGRFAMs
+CC  This HMM represents the more common of two related families of N-acetyl-gamma-glutamyl-phosphate reductase, an enzyme catalyzing the third step or Arg biosynthesis from Glu. The two families differ by phylogeny, similarity clustering, and the gap architecture in a multiple sequence alignment. Bacterial members of this family tend to be found within Arg biosynthesis operons.
+DR  HAMAP; MF_00150; 270 of 272

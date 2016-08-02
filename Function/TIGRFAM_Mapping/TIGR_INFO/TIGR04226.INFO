@@ -1,0 +1,20 @@
+ID  RrgB_K2N_iso_D2
+AC  TIGR04226
+DE  fimbrial isopeptide formation D2 domain
+AU  Haft DH
+TC  30.00 30.00
+NC  28.00 20.00
+AL  muscle_manual
+IT  domain
+EN  fimbrial isopeptide formation D2 domain
+TP  TIGRFAMs
+CC  The Streptococcus Pneumoniae pilus backbone protein, RrgB, has three tandem domains with Lys-to-Asn isopeptide bonds, but these three regions are extremely divergent in sequence. This model represents the homology domain family of the D2 domain. It occurs just once in many surface proteins but up to twenty times in some pilin subunit proteins. Three of every four members have the typical Gram-positive C-terminal motif, LPXTG, although in many cases this motif may be involved in pilin subunit cross-linking rather than cell wall attachment. Proteins with this domain include fimbrial proteins with lectin-like adhesion functions, and the majority of characterized members are involved in surface adhesion to host structures.
+RN  [1]
+RM  PMID:20559564 
+RT  Supramolecular organization of the repetitive backbone unit of the Streptococcus pneumoniae pilus. 
+RA  Spraggon G, Koesema E, Scarselli M, Malito E, Biagini M, Norais N, Emolo C, Barocchi MA, Giusti F, Hilleringmann M, Rappuoli R, Lesley S, Covacci A, Masignani V, Ferlenghi I 
+RL  PLoS One. 2010 Jun 15;5(6):e10919.RN  [2]
+RM  PMID:2900829 
+RT  Cloning and nucleotide sequence of a gene for Actinomyces naeslundii WVU45 type 2 fimbriae. 
+RA  Yeung MK, Cisar JO 
+RL  J Bacteriol. 1988 Sep;170(9):3803-9.

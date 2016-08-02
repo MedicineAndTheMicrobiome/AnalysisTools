@@ -1,0 +1,11 @@
+ID  trp_oprn_chp
+AC  TIGR02234
+DE  membrane protein, TIGR02234 family
+AU  Haft DH
+TC  71.15 71.15
+NC  23.35 23.35
+AL  clustalw
+IT  hypoth_equivalog
+EN  trp region conserved hypothetical membrane protein
+TP  TIGRFAMs
+CC  Members of this family are predicted transmembrane proteins with four membrane-spanning helices. Members are found in the Actinobacteria (Mycobacterium, Corynebacterium, Streptomyces), always associated with genes for tryptophan biosynthesis.

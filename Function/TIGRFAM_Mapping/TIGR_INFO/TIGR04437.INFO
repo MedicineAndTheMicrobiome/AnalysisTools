@@ -1,0 +1,18 @@
+ID  WaaZ_KDO_III
+AC  TIGR04437
+DE  3-deoxy-D-manno-oct-2-ulosonate III transferase WaaZ
+AU  Haft DH
+TC  200.00 200.00
+NC  40.00 40.00
+AL  muscle_manual
+IT  equivalog
+EN  Kdo-III transferase WaaZ
+GS  waaZ
+EC  2.4.1.-
+TP  TIGRFAMs
+CC  Members of this family are WaaZ, or Kdo-III transferase. This enzyme, present in some strains of E. coli and its allies but not others, performs a non-stoichiometric addition of a third 3-deoxy-D-manno-oct-2-ulosonic acid (KDO-III) onto some fraction of KDO-II in the lipopolysaccharide (LPS) inner core.
+RN  [1]
+RM  PMID:22021036 
+RT  Molecular basis of lipopolysaccharide heterogeneity in Escherichia coli: envelope stress-responsive regulators control the incorporation of glycoforms with a third 3-deoxy-alpha-D-manno-oct-2-ulosonic acid and rhamnose. 
+RA  Klein G, Lindner B, Brade H, Raina S 
+RL  J Biol Chem. 2011 Dec 16;286(50):42787-807.

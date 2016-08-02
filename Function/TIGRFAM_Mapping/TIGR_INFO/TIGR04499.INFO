@@ -1,0 +1,16 @@
+ID  abortive_AbiA
+AC  TIGR04499
+DE  abortive infection protein, AbiA family
+AU  Haft DH
+TC  250.00 250.00
+NC  150.00 150.00
+AL  muscle_manual
+IT  subfamily
+EN  abortive infection protein, AbiA family
+TP  TIGRFAMs
+CC  Members of this protein family average about 650 amino acids in length, with an N-terminal region related to reverse transcriptases. The only characterized member is AbiA, with reported activity as an abortive infection protein for phage defense in Lactococcus lactis and (heterologously) in Streptococcus thermophilus.
+RN  [1]
+RM  PMID:12450864 
+RT  AbiA, a lactococcal abortive infection mechanism functioning in Streptococcus thermophilus. 
+RA  Tangney M, Fitzgerald GF 
+RL  Appl Environ Microbiol. 2002 Dec;68(12):6388-91.

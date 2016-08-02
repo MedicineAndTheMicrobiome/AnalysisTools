@@ -1,0 +1,18 @@
+ID  dltC
+AC  TIGR01688
+DE  D-alanine--poly(phosphoribitol) ligase, subunit 2
+AU  Daugherty S
+TC  52.35 52.35
+NC  35.10 35.10
+AL  clustalw
+IT  equivalog
+EN  D-alanine--poly(phosphoribitol) ligase, subunit 2
+GS  dltC
+EC  6.1.1.13
+TP  TIGRFAMs
+CC  This protein is part of the teichoic acid operon in gram-positive organisms. Gram positive organisms incorporate teichoic acid in their cell walls, and in the fatty acid residues of the glycolipid component of the outer layer of the cytoplasmic membrane. This gene, dltC, encodes the alanyl carrier protein.
+RM  PMID:7797557
+RT   Incorporation of D-alanine into lipoteichoic acid and wall teichoic acid in Bacillus subtilis. Identification of genes and regulation.
+RA  Perego M, Glaser P, Minutello A, Strauch MA, Leopold K, Fischer W.
+RL   Biol Chem 1995 Jun 30;270(26):15598-606
+DR  HAMAP; MF_00565; 74 of 74

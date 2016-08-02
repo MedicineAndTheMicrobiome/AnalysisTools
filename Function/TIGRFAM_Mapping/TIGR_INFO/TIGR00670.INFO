@@ -1,0 +1,28 @@
+ID  asp_carb_tr
+AC  TIGR00670
+DE  aspartate carbamoyltransferase
+AU  Haft DH
+TC  236.95 236.95
+NC  186.45 186.45
+AL  clustalw
+IT  equivalog
+EN  aspartate carbamoyltransferase
+GS  pyrB
+EC  2.1.3.2
+TP  TIGRFAMs
+CC  Aspartate transcarbamylase (ATCase) is an alternate name.
+CC  PyrB encodes the catalytic chain of aspartate carbamoyltransferase, an enzyme of pyrimidine biosynthesis, which organizes into trimers. In some species, including E. coli and the Archaea but excluding Bacillus subtilis, a regulatory subunit PyrI is also present in an allosterically regulated hexameric holoenzyme. Several molecular weight classes of ATCase are described in MEDLINE:96303527 and often vary within taxa. PyrB and PyrI are fused in Thermotoga maritima.
+CC  Ornithine carbamoyltransferases are in the same superfamily and form an outgroup.
+AL  Clustalw
+DR  PFAM; PF00185; OTCace; superfamily HMM
+DR  PFAM; PF01948; PyrI; regulatory partner HMM
+DR  ECOCYC; EG10805; pyrB
+DR  EXPERIMENTAL; EGAD|16102|BS1550
+DR  EXPERIMENTAL; EGAD|13385|EC4245
+DR  EXPERIMENTAL; EGAD|124709|TM1642
+DR  OUTGROUP; EGAD|104419|AF1255; ornithine carbamoyltransferase
+RM  96303527
+RT  A reappraisal of the diversity and class distribution of aspartate transcarbamoylases in gram-negative bacteria.
+RA  Kenny MJ, McPhail D, Shepherdson M
+RL  Microbiology 1996 Jul;142 ( Pt 7):1873-9
+DR  HAMAP; MF_00001; 502 of 510

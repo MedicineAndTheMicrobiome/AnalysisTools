@@ -1,0 +1,23 @@
+ID  cas_Csa5
+AC  TIGR01878
+DE  CRISPR type I-A/APERN-associated protein Csa5
+AU  Haft DH, Sunshine J
+TC  53.35 53.35
+NC  22.85 22.85
+AL  clustalw
+IT  hypoth_equivalog
+EN  CRISPR type I-A/APERN-associated protein Csa5
+GS  csa5
+TP  TIGRFAMs
+CC  CRISPR is a term for Clustered, Regularly Interspaced Short Palidromic Repeats. A number of protein families appear only in association with these repeats and are designated Cas (CRISPR-Associated) proteins.  This HMM represents a minor family of Cas protein found in the (all archaeal) APERN subtype of CRISPR/Cas locus, so the family is designated Csa5, for CRISPR/Cas Subtype Protein 5.
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=2003
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=57306
+RN  [1]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005
+RN  [2]
+RM  11788711
+RT  A DNA repair system specific for thermophilic Archaea and bacteria predicted by genomic context analysis.
+RA  Makarova KS, Aravind L, Grishin NV, Rogozin IB, Koonin EV.
+RL  Nucleic Acids Res. 2002 Jan 15;30(2):482-96

@@ -1,0 +1,16 @@
+ID  eps_transp_fam
+AC  TIGR01005
+DE  exopolysaccharide transport protein family
+AU  Ujwal ML, Loftus BJ, Paulsen IT
+TC  411.70 411.70
+NC  322.75 322.75
+AL  clustalw_manual
+IT  subfamily
+EN  exopolysaccharide transport protein family
+TR  8.A.03
+TP  TIGRFAMs
+CC  The model describes the exopolysaccharide transport protein family in bacteria. The transport protein is part of a large genetic locus which is associated with exopolysaccharide (EPS) biosynthesis. Detailed molecular characterization and gene fusion analysis revealed atleast seven gene products are involved in the overall regulation, which among other things, include exopolysaccharide biosynthesis, property of conferring virulence and exopolysaccharide export.
+RM  7476194
+RT  Molecular characterization of the eps gene cluster of Pseudomonas solanacearum and its transcriptional regulation at a single promoter.
+RA  Huang J, Schell M.
+RL  Mol Microbiol 1995 Jun;16(5):977-89

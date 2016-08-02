@@ -1,0 +1,18 @@
+ID  lacA
+AC  TIGR01118
+DE  galactose-6-phosphate isomerase, LacA subunit
+AU  Dodson RJ, Selengut J
+TC  181.10 181.10
+NC  172.55 172.55
+AL  clustalw
+IT  equivalog
+EN  galactose-6-phosphate isomerase, LacA subunit
+GS  lacA
+EC  5.3.1.26
+TP  TIGRFAMs
+CC  This family contains members from low GC gram-positive bacteria. Galactose-6-phosphate isomerase is involved in lactose catabolism by the tagatose-6-phosphate pathway.
+RM  1901863
+RT  Molecular cloning, characterization, and nucleotide sequence of the tagatose 6-phosphate pathway gene cluster of the lactose operon of Lactococcus lactis.
+RA  van Rooijen RJ, van Schalkwijk S, de Vos WM.
+RL  J Biol Chem 1991 Apr 15;266(11):7176-81
+DR  HAMAP; MF_01555; 39 of 40

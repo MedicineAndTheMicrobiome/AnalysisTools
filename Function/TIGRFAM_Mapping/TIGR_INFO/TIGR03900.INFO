@@ -1,0 +1,12 @@
+ID  prc_long_Delta
+AC  TIGR03900
+DE  putative carboxyl-terminal-processing protease, deltaproteobacterial
+AU  Haft DH
+TC  660.95 660.95
+NC  660.65 660.65
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  putative carboxyl-terminal-processing protease, deltaproteobacterial
+EC  3.4.21.-
+TP  TIGRFAMs
+CC  This model describes a multidomain protein of about 1070 residues, restricted to the order Myxococcales in the Deltaproteobacteria. Members contain a PDZ domain (PF00595), an S41 family peptidase domain (PF03572), and an SH3 domain (PF06347). A core region of this family, including PDZ and S41 regions, is described by TIGR00225, C-terminal processing peptidase, which recognizes the Prc protease. The species distribution of this family approximates that of largely Deltaproteobacterial C-terminal putative protein-sorting domain, TIGR03901, analogous to LPXTG and PEP-CTERM, but the co-occurrence may reflect shared restriction to the Myxococcales rather than a substrate/target relationship.

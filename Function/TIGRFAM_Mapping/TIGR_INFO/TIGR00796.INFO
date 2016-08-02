@@ -1,0 +1,15 @@
+ID  livcs
+AC  TIGR00796
+DE  branched-chain amino acid transport system II carrier protein
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  243.40 243.40
+NC  218.95 218.95
+AL  clustalw_manual
+IT  equivalog
+EN  branched-chain amino acid uptake carrier
+GS  brnQ
+TR  2.A.26
+TP  TIGRFAMs
+CC  The Branched Chain Amino Acid:Cation Symporter (LIVCS) Family (TC 2.A.26)
+CC  Characterized members of this family transport all three of the branched chain aliphatic amino acids (leucine (L), isoleucine (I) and valine (V)). They function by a Na+ or H+ symport mechanism and display 12 putative
+CC  transmembrane helical spanners.

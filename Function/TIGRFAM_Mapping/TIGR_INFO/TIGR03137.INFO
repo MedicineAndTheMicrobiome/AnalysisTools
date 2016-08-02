@@ -1,0 +1,19 @@
+ID  AhpC
+AC  TIGR03137
+DE  peroxiredoxin
+AU  Selengut J
+TC  272.00 272.00
+NC  208.15 208.15
+AL  muscle
+IT  equivalog
+EN  peroxiredoxin
+GS  ahpC
+EC  1.11.1.15
+TP  TIGRFAMs
+CC  This peroxiredoxin (AhpC, alkylhydroperoxide reductase subunit C) is one subunit of a two-subunit complex with subunit F(TIGR03140).  Usually these are found as an apparent operon.  The gene has been characterized in Bacteroides fragilis [1] where it is important in oxidative stress defense.
+CC  This gene contains two invariant cysteine residues, one near the N-terminus and one near the C-terminus, each followed immediately by a proline residue.
+RN  [1]
+RM  PMID: 10482511 
+RT  Role of the alkyl hydroperoxide reductase (ahpCF) gene in oxidative stress defense of the obligate Anaerobe bacteroides fragilis. 
+RA  Rocha ER, Smith CJ 
+RL  J Bacteriol. 1999 Sep;181(18):5701-10.

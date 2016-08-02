@@ -1,0 +1,13 @@
+ID  DEAH_box_HrpB
+AC  TIGR01970
+DE  ATP-dependent helicase HrpB
+AU  Haft DH
+TC  546.15 546.15
+NC  400.30 400.30
+AL  clustalw_manual
+IT  equivalog
+EN  ATP-dependent helicase HrpB
+GS  hrpB
+EC  3.6.4.-
+TP  TIGRFAMs
+CC  This HMM represents HrpB, one of two related but uncharacterized DEAH-box ATP-dependent helicases in many Proteobacteria, but also in a few species of other lineages. The member from Rhizobium meliloti has been designated HelO. HrpB is typically about 800 residues in length, while its paralog HrpA (TIGR01967), also uncharacterized, is about 1300 amino acids long. Related characterized eukarotic proteins are RNA helicases associated with pre-mRNA processing.

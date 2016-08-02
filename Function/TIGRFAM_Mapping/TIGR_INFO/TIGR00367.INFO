@@ -1,0 +1,16 @@
+ID  TIGR00367
+AC  TIGR00367
+DE  K+-dependent Na+/Ca+ exchanger homolog
+AU  Loftus BJ
+TC  179.65 179.65
+NC  150.30 150.30
+AL  clustalw
+IT  hypoth_equivalog
+EN  K+-dependent Na+/Ca+ exchanger related-protein
+TP  TIGRFAMs
+CC  This HMM models a family of bacterial and archaeal proteins that is homologous, except for lacking a central region of ~ 250 amino acids and an N-terminal region of > 100 residues, to a functionally proven potassium-dependent sodium-calcium exchanger of the rat.
+RM  98129830
+RT  Molecular cloning of a novel potassium-dependent sodium-calcium exchanger from rat brain.
+RA  Tsoi M, Rhee KH, Bungard D, Li XF, Lee SL, Auer RN, Lytton J
+RL  J Biol Chem 1998 Feb 13;273(7):4155-62
+DR  EGAD:151001, EGAD:159812

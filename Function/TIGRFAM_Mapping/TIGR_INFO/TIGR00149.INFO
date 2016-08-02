@@ -1,0 +1,16 @@
+ID  TIGR00149_YjbQ
+AC  TIGR00149
+DE  secondary thiamine-phosphate synthase enzyme
+AU  Loftus BJ, Haft DH
+TC  67.75 67.75
+NC  48.95 48.95
+AL  clustalw
+IT  hypoth_equivalog
+EN  secondary thiamine-phosphate synthase enzyme
+TP  TIGRFAMs
+CC  Members of this protein family have been studied extensively by crystallography. Members from several different species have been shown to have sufficient thiamin phosphate synthase activity (EC 2.5.1.3) to complement thiE mutants. However, it is presumed that this is a secondary activity, and the primary function of this enzyme remains unknown.
+RN  [1]
+RM  PMID:18178222
+RT  Sensitive genome-wide screen for low secondary enzymatic activities: the YjbQ family shows thiamin phosphate synthase activity.
+RA  Morett E, Saab-Rincon G, Olvera L, Olvera M, Flores H, Grande R
+RL  J Mol Biol. 2008 Feb 22;376(3):839-53. Epub 2007 Dec 15.

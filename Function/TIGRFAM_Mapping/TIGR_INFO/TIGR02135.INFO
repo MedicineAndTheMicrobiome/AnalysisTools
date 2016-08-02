@@ -1,0 +1,12 @@
+ID  phoU_full
+AC  TIGR02135
+DE  phosphate transport system regulatory protein PhoU
+AU  Haft DH
+TC  130.25 130.25
+NC  119.05 119.05
+AL  clustalw_manual
+IT  equivalog
+EN  phosphate transport system regulatory protein PhoU
+GS  phoU
+TP  TIGRFAMs
+CC  This HMM describes PhoU, a regulatory protein of unknown mechanism for high-affinity phosphate ABC transporter systems. The protein consists of two copies of the domain described by Pfam model PF01895. Deletion of PhoU activates constitutive expression of the phosphate ABC transporter and allows phosphate transport, but causes a growth defect and so likely has some second function.

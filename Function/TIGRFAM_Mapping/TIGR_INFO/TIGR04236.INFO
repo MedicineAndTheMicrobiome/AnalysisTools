@@ -1,0 +1,17 @@
+ID  seadorna_VP2
+AC  TIGR04236
+DE  seadornavirus VP2 protein
+AU  Haft DH
+TC  125.00 125.00
+NC  22.00 22.00
+AL  muscle
+IT  equivalog
+EN  seadornavirus VP2 protein
+GS  VP2
+TP  TIGRFAMs
+CC  This protein family occurs in the seadornavirus virus group, with the designation VP2 in Banna virus, Kadipiro virus, and Liao ning virus.
+RN  [1]
+RM  PMID:10811934 
+RT  Complete sequence determination and genetic analysis of Banna virus and Kadipiro virus: proposal for assignment to a new genus (Seadornavirus) within the family Reoviridae. 
+RA  Attoui H, Billoir F, Biagini P, de Micco P, de Lamballerie X 
+RL  J Gen Virol. 2000 Jun;81(Pt 6):1507-15.

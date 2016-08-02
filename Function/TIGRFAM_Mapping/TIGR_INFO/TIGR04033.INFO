@@ -1,0 +1,16 @@
+ID  export_SdpB
+AC  TIGR04033
+DE  antimicrobial peptide system protein, SdpB family
+AU  Haft DH
+TC  178.40 178.40
+NC  77.60 77.60
+AL  muscle_manual
+IT  subfamily
+EN  antimicrobial peptide system protein, SdpB family
+TP  TIGRFAMs
+CC  Members of this protein family resemble SdpB (Sporulation Delaying Protein B), an integral membrane protein associated with production of the cannibalism peptide SdpC in Bacillus subtilis. Similar proteins are found in Myxococcus xanthus.
+RN  [1]
+RM  PMID:12817086 
+RT  Cannibalism by sporulating bacteria. 
+RA  Gonzalez-Pastor JE, Hobbs EC, Losick R 
+RL  Science. 2003 Jul 25;301(5632):510-3. Epub 2003 Jun 19.

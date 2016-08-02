@@ -1,0 +1,23 @@
+ID  rubisco_III
+AC  TIGR03326
+DE  ribulose bisphosphate carboxylase, type III
+AU  Haft DH
+TC  497.45 497.45
+NC  497.05 497.05
+AL  muscle_manual
+IT  equivalog
+EN  ribulose bisphosphate carboxylase, type III
+GS  rbcL
+EC  4.1.1.39
+TP  TIGRFAMs
+CC  Members of this protein family are the archaeal, single chain, type III form of ribulose bisphosphate carboxylase, or RuBisCO. Members act is a three-step pathway for conversion of the sugar moiety of AMP to two molecules of 3-phosphoglycerate. Many of these species use ADP-dependent sugar kinases, which form AMP, for glycolysis.
+RN  [1]
+RM  PMID: 12730164
+RT  Synthesis of catalytically active form III ribulose 1,5-bisphosphate carboxylase/oxygenase in archaea.
+RA  Finn MW, Tabita FR
+RL  J Bacteriol. 2003 May;185(10):3049-59.
+RN  [2]
+RM  PMID: 17303759
+RT  Archaeal type III RuBisCOs function in a pathway for AMP metabolism.
+RA  Sato T, Atomi H, Imanaka T
+RL  Science. 2007 Feb 16;315(5814):1003-6.

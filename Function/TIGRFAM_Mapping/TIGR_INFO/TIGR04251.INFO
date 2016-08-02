@@ -1,0 +1,12 @@
+ID  SCM_rSAM_ScmF
+AC  TIGR04251
+DE  SynChlorMet cassette radical SAM/SPASM protein ScmF
+AU  Haft DH
+TC  400.00 400.00
+NC  200.00 200.00
+AL  muscle_manual
+IT  equivalog
+EN  SynChlorMet cassette radical SAM/SPASM protein ScmF
+GS  scmF
+TP  TIGRFAMs
+CC  A biosynthesis cassette found in Syntrophobacter fumaroxidans MPOB, Chlorobium limicola DSM 245, Methanocella paludicola SANAE, and delta proteobacterium NaphS2 contains two PqqE-like radical SAM/SPASM domain proteins, a PqqD homolog, and a conserved hypothetical protein. These components suggest modification of a ribosomally produced peptide precursor, but the precursor has not been identified. Of the two PqqE homologs of the cassette, this family is the more distant in sequence.

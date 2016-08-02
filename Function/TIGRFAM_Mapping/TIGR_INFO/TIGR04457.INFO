@@ -1,0 +1,17 @@
+ID  lipo_LenA_lepto
+AC  TIGR04457
+DE  lipoprotein LenA
+AU  Haft DH
+TC  50.00 50.00
+NC  25.00 25.00
+AL  muscle_manual
+IT  equivalog
+EN  lipoprotein LenA
+GS  lenA
+TP  TIGRFAMs
+CC  Members of this family are LenA (Leptospira Endostatin-like protein A), found in pathogenic and intermediate species of Leptospira but not in saprophytes. LenA binds plasminogen, laminin, and complement regulator factor H. Behavior during outer membrane solubilization by low concentrations of Triton X-114 and conservation in all family members of an apparent lipoprotein signal sequence, with invariant Cys residue, strongly suggest that LenA is a lipoprotein. Just outside this family is a full-length homolog found in another spirochete, Turneriella parva DSM 21527.
+RN  [1]
+RM  PMID:20160016 
+RT  Leptospiral endostatin-like protein A is a bacterial cell surface receptor for human plasminogen. 
+RA  Verma A, Brissette CA, Bowman AA, Shah ST, Zipfel PF, Stevenson B 
+RL  Infect Immun. 2010 May;78(5):2053-9. doi: 10.1128/IAI.01282-09.

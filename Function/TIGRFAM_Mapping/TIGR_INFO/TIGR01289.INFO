@@ -1,0 +1,13 @@
+ID  LPOR
+AC  TIGR01289
+DE  light-dependent protochlorophyllide reductase
+AU  Haft DH
+TC  331.35 331.35
+NC  133.60 133.60
+AL  clustalw
+IT  equivalog
+EN  light-dependent protochlorophyllide reductase
+EC  1.3.1.33
+TP  TIGRFAMs
+CC  This HMM represents the light-dependent, NADPH-dependent form of protochlorophyllide reductase. It belongs to the short chain alcohol dehydrogenase family, in contrast to the nitrogenase-related light-independent form.
+DR;  PF00106; adh_short;

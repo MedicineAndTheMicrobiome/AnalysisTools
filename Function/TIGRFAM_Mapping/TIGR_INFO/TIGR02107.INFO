@@ -1,0 +1,17 @@
+ID  PQQ_syn_pqqA
+AC  TIGR02107
+DE  coenzyme PQQ precursor peptide PqqA
+AU  Haft DH
+TC  20.00 20.00
+NC  19.00 16.00
+AL  clustalw
+IT  equivalog
+EN  coenzyme PQQ precursor peptide PqqA
+GS  pqqA
+TP  TIGRFAMs
+CC  This HMM describes a very small protein, coenzyme PQQ biosynthesis protein A, which is smaller than 25 amino acids in many species. It is proposed to serve as a peptide precursor of coenzyme pyrrolo-quinoline-quinone (PQQ), with Glu and Tyr of a conserved motif Glu-Xxx-Xxx-Xxx-Tyr becoming part of the product.
+RM  9467911
+RT  pqqA is not required for biosynthesis of pyrroloquinoline quinone in Methylobacterium extorquens AM1.
+RA  Toyama H, Lidstrom ME.
+TL  Microbiology. 1998 Jan; 144 ( Pt 1): 183-91.
+DR  HAMAP; MF_00656; 28 of 28

@@ -1,0 +1,13 @@
+ID  cyc_hxne_CoA_dh
+AC  TIGR03207
+DE  cyclohexanecarboxyl-CoA dehydrogenase
+AU  Haft DH
+TC  575.35 575.35
+NC  278.45 278.45
+AL  muscle
+IT  equivalog
+EN  cyclohexanecarboxyl-CoA dehydrogenase
+GS  aliB
+EC  1.1.1.-
+TP  TIGRFAMs
+CC  Cyclohex-1-ene-1carboxyl-CoA is an intermediate in the anaerobic degradation of benzoyl-CoA derived from varioius aromatic compounds, in Rhodopseudomonas palustris but not Thauera aromatica. The aliphatic compound cyclohexanecarboxylate, can be converted to the same intermediate in two steps. The first step is its ligation to coenzyme A. The second is the action of this enzyme, cyclohexanecarboxyl-CoA dehydrogenase.

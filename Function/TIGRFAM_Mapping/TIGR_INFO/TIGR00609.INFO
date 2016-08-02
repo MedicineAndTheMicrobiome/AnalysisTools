@@ -1,0 +1,15 @@
+ID  recB
+AC  TIGR00609
+DE  exodeoxyribonuclease V, beta subunit
+AU  Haft DH, Loftus BJ, Eisen JA
+TC  696.05 696.05
+NC  432.10 432.10
+AL  clustalw
+IT  equivalog
+EN  exodeoxyribonuclease V, beta subunit
+GS  recB
+EC  3.1.11.5
+TP  TIGRFAMs
+CC  The RecBCD holoenzyme is a multifunctional nuclease with potent ATP-dependent exodeoxyribonuclease activity. Ejection of RecD, as occurs at chi recombinational hotspots, cripples exonuclease activity in favor of recombinagenic helicase activity.
+CC  All proteins in this family for which functions are known are DNA-DNA helicases that are used as part of an exonuclease-helicase complex (made up of RecBCD homologs) that function to generate substrates for the initiation of recombination and recombinational repair. This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+RM  87066729

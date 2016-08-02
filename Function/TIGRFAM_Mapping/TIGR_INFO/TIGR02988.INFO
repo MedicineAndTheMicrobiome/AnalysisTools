@@ -1,0 +1,13 @@
+ID  YaaA_near_RecF
+AC  TIGR02988
+DE  S4 domain protein YaaA
+AU  Haft DH
+TC  84.75 84.75
+NC  82.75 82.75
+AL  muscle
+IT  hypoth_equivalog
+EN  S4 domain protein YaaA
+GS  yaaA
+TP  TIGRFAMs
+CC  This small protein has a single S4 domain (PF01479), as do bacterial ribosomal protein S4, some pseudouridine synthases, tyrosyl-tRNA synthetases. The S4 domain may bind RNA.  Members of this protein family are found almost exclusively in the Firmicutes, and almost invariably just a few nucleotides upstream of the gene for the DNA replication and repair protein RecF. The few members of this family that are not near recF are found instead near dnaA and/or dnaN, the usual neighbors of recF, near the origin of replication. The conserved location suggests a possible role in replication in the Firmicutes lineage.
+DR  PFAM; S4 domain

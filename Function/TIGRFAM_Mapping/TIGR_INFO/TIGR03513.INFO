@@ -1,0 +1,17 @@
+ID  GldL_gliding
+AC  TIGR03513
+DE  gliding motility-associated protein GldL
+AU  Haft DH
+TC  68.30 68.30
+NC  51.80 51.80
+AL  muscle_manual
+IT  subfamily
+EN  gliding motility-associated protein GldL
+GS  gldL
+TP  TIGRFAMs
+CC  This protein family, GldL, is named for the member from Flavobacterium johnsoniae, which is required for a type of rapid gliding motility found in certain members of the Bacteriodetes. However, members are found also in several members of the Bacteriodetes that appear not to be motile
+RN  [1]
+RM  PMID:16199564
+RT  Flavobacterium johnsoniae gliding motility genes identified by mariner mutagenesis.
+RA  Braun TF, Khubbar MK, Saffarini DA, McBride MJ
+RL  J Bacteriol. 2005 Oct;187(20):6943-52.

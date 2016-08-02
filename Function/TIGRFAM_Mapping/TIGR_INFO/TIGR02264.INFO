@@ -1,0 +1,11 @@
+ID  gmx_para_CXXCG
+AC  TIGR02264
+DE  Myxococcus xanthus double-CXXCG motif paralogous family
+AU  Haft DH
+TC  100.15 100.15
+NC  99.80 99.80
+AL  clustalw
+IT  paralog
+EN  Myxococcus xanthus double-CXXCG motif paralogous family
+TP  TIGRFAMs
+CC  This family consists of at least 10 paralogous proteins from Myxococcus xanthus that lack detectable sequence similarity to any other protein family. An imperfectly conserved CXXCG motif, a probable binding site, appears twice in the multiple sequence alignment.

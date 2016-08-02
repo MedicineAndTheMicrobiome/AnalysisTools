@@ -1,0 +1,11 @@
+ID  CxxCx5CxxC_targ
+AC  TIGR04139
+DE  putative peptide modification target, TIGR04139 family
+AU  Haft DH
+TC  40.00 40.00
+NC  30.00 30.00
+AL  muscle_manual
+IT  subfamily
+EN  putative peptide modification target, TIGR04139 family
+TP  TIGRFAMs
+CC  This HMM describes a rare family of small putative polypeptides, including three encoded in tandem in Sphingobacterium spiritivorum ATCC 33300, in the vicinity of a TIGR04085 protein. This pairing is conserved in Chryseobacterium gleum ATCC 35910, Kordia algicida OT-1, and other species. TIGR04085 describes a C-terminal additional 4Fe4S-binding domain in PqqE and other radical SAM enzymes that seems to be a marker for peptide modification, and the family modeled here is a candidate modified peptide precursor.

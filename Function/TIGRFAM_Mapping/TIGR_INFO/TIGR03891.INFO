@@ -1,0 +1,21 @@
+ID  thiopep_ocin
+AC  TIGR03891
+DE  thiopeptide-type bacteriocin biosynthesis domain
+AU  Haft DH
+TC  48.45 48.45
+NC  38.00 38.00
+AL  muscle_manual
+IT  subfamily_domain
+EN  thiopeptide-type bacteriocin biosynthesis domain
+TP  TIGRFAMs
+CC  This domain occurs within longer proteins that contain lantibiotic dehydratase domains (see PF04737 and PF04738), and as single-domain proteins in bacteriocin biosynthesis genomic contexts. Three named genes in this family, SioK in Streptomyces sioyaensis, TsrD in Streptomyces laurentii, and NosD in Streptomyces actuosus, all occur in regions associated with thiopeptide biosynthesis.
+RN  [1]
+RM  PMID:19246004
+RT  Thiopeptide biosynthesis featuring ribosomally synthesized precursor peptides and conserved posttranslational modifications.
+RA  Liao R, Duan L, Lei C, Pan H, Ding Y, Zhang Q, Chen D, Shen B, Yu Y, Liu W
+RL  Chem Biol. 2009 Feb 27;16(2):141-7.
+RN  [2]
+RM  PMID:19265401
+RT  Thiostrepton biosynthesis: prototype for a new family of bacteriocins.
+RA  Kelly WL, Pan L, Li C
+RL  J Am Chem Soc. 2009 Apr 1;131(12):4327-34.

@@ -1,0 +1,16 @@
+ID  LPXTG_anchor
+AC  TIGR01167
+DE  LPXTG cell wall anchor domain
+AU  Haft DH
+TC  15.90 15.90
+NC  15.70 15.70
+AL  manual
+IT  domain
+EN  LPXTG-motif cell wall anchor domain
+TP  TIGRFAMs
+CC  This model describes the LPXTG motif-containing region found at the C-terminus of many surface proteins of Streptococcus and Streptomyces species. Cleavage between the Thr and Gly by sortase or a related enzyme leads to covalent anchoring at the new C-terminal Thr to the cell wall.  Hits that do not lie at the C-terminus or are not found in Gram-positive bacteria are probably false-positive.
+CC  A common feature of this proteins containing this domain appears to be a high proportion of charged and zwitterionic residues immediatedly upstream of the LPXTG motif. This model differs from other descriptions of the LPXTG region by including a portion of that upstream charged region.
+RM  10754567
+RT  Sortase: the surface protein anchoring transpeptidase and the LPXTG motif.
+RA  Novick RP
+RL  Trends Microbiol 2000 Apr;8(4):148-51

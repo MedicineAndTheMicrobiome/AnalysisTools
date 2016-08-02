@@ -1,0 +1,17 @@
+ID  salt_tol_Pase
+AC  TIGR02399
+DE  glucosylglycerol 3-phosphatase
+AU  Haft DH
+TC  365.50 365.50
+NC  140.75 140.75
+AL  clustalw
+IT  equivalog
+EN  glucosylglycerol 3-phosphatase
+GS  stpA
+EC  3.1.3.69
+TP  TIGRFAMs
+CC  Proteins in this family are glucosylglycerol-phosphate phosphatase, with the gene symbol stpA (Salt Tolerance Protein A). A motif characteristic of acid phosphatases is found, but otherwise this family shows little sequence similarity to other phosphatases. This enzyme acts on the glucosylglycerol phosphate, product of glucosylglycerol phosphate synthase and immediate precursor of the osmoprotectant glucosylglycerol.
+RM  9045835
+RT  The stpA gene from Synechocystis sp. strain PCC 6803 encodes the glucosylglycerol-phosphate phosphatase involved in cyanobacterial osmotic response to salt shock.
+RA  Hagemann M, Schoor A, Jeanjean R, Zuther E, Joset F.
+RL  J Bacteriol. 1997 Mar;179(5):1727-33.

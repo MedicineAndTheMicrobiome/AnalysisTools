@@ -1,0 +1,11 @@
+ID  VI_minor_1
+AC  TIGR03360
+DE  type VI secretion-associated protein, VC_A0118 family
+AU  Haft DH
+TC  124.20 124.20
+NC  26.15 26.15
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  type VI secretion-associated protein, VC_A0118 family
+TP  TIGRFAMs
+CC  Members of this protein family, including VC_A0118 from Vibrio cholerae El Tor N16961, are restricted to a subset of bacteria with the type VI secretion system, and are encoded among the type VI-associated pathogenicity islands. However, many species with type VI secretion lack a member of this family. This lack suggests that members of this family may be targets rather than components of the type VI secretion system.

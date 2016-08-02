@@ -1,0 +1,12 @@
+ID  TIGR00247
+AC  TIGR00247
+DE  conserved hypothetical protein, YceG family
+AU  Loftus BJ, Haft DH
+TC  103.40 103.40
+NC  93.65 93.65
+AL  clustalw
+IT  hypoth_equivalog
+EN  conserved hypothetical protein, YceG family
+TP  TIGRFAMs
+CC  This uncharacterized protein family, found in three of four microbial genomes, virtually always once per genome, includes YceG from Escherichia coli. This protein is encoded next to PabC, 4-amino-4-deoxychorismate lyase, in E. coli and numerous other proteobacteria, but that proximity is not conserved in other lineages. Numerous members of this family have been misannotated as aminodeoxychorismate lyase, apparently because of promiximty to PabC.
+DR  SP:P44720

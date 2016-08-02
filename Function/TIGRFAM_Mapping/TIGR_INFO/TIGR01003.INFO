@@ -1,0 +1,11 @@
+ID  PTS_HPr_family
+AC  TIGR01003
+DE  phosphocarrier, HPr family
+AU  Durkin S, Haft DH
+TC  47.90 47.90
+NC  31.40 31.40
+AL  clustalw_manual
+IT  subfamily
+EN  Phosphotransferase System HPr (HPr) Family
+TP  TIGRFAMs
+CC  The HPr family are bacterial proteins (or domains of proteins) which function in phosphoryl transfer system (PTS) systems. They include energy-coupling components which catalyze sugar uptake via a group translocation mechanism. The functions of most of these proteins are not known, but they presumably function in PTS-related regulatory capacities. All seed members are stand-alone HPr proteins, although the model also recognizes HPr domains of PTS fusion proteins. This family includes the related NPr protein.

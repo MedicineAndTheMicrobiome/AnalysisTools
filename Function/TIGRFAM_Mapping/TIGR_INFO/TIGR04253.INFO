@@ -1,0 +1,17 @@
+ID  mesacon_CoA_iso
+AC  TIGR04253
+DE  mesaconyl-CoA isomerase
+AU  Haft DH
+TC  725.00 725.00
+NC  625.00 625.00
+AL  muscle_manual
+IT  equivalog
+EN  mesaconyl-CoA isomerase
+EC  5.-.-.-
+TP  TIGRFAMs
+CC  Members of this protein family belong by homology to the family of CoA transferases. However, the characterized member from Chloroflexus aurantiacus appears to perform an intramolecular transfer, making it an isomerase. The enzyme converts mesaconyl-C1-CoA to mesaconyl-C4-CoA as part of the bicyclic 3-hydroxyproprionate pathway for carbon fixation.
+RN  [1]
+RM  PMID:19955419 
+RT  Identifying the missing steps of the autotrophic 3-hydroxypropionate CO2 fixation cycle in Chloroflexus aurantiacus. 
+RA  Zarzycki J, Brecht V, Muller M, Fuchs G 
+RL  Proc Natl Acad Sci U S A. 2009 Dec 15;106(50):21317-22.

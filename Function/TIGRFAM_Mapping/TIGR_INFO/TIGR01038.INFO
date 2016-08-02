@@ -1,0 +1,14 @@
+ID  L22_arch
+AC  TIGR01038
+DE  ribosomal protein L22
+AU  Ujwal ML, Haft DH
+TC  79.85 79.85
+NC  77.95 77.95
+AL  clustalw
+IT  equivalog
+EN  ribosomal protein L22(archaeal)/L17(eukaryotic/archaeal)
+GS  rplV
+TP  TIGRFAMs
+CC  This model describes the ribosomal protein of the eukaryotic cytosol and of the Archaea, variously designated as L17, L22, and L23. The corresponding bacterial homolog, described by a separate model, is designated L22.
+DR  COG; COG0217
+DR  HAMAP; MF_01331; 50 of 734

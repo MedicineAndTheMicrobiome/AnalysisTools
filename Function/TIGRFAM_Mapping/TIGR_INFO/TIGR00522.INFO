@@ -1,0 +1,18 @@
+ID  dph5
+AC  TIGR00522
+DE  diphthine synthase
+AU  Haft DH
+TC  114.30 114.30
+NC  113.75 113.75
+IT  equivalog
+EN  diphthine synthase
+GS  dph5
+EC  2.1.1.98
+TP  TIGRFAMs
+CC  Alternate name: diphthamide biosynthesis S-adenosylmethionine-dependent methyltransferase.
+CC  This protein participates in the modification of a specific His of elongation factor 2 of eukarotes and Archaea to diphthamide. The protein was characterized in Saccharomyces cerevisiae and designated DPH5.
+RM  92375071
+RT  DPH5, a methyltransferase gene required for diphthamide biosynthesis in Saccharomyces cerevisiae.
+RA  Mattheakis LC, Shen WH, Collier RJ
+RL  Mol Cell Biol 1992 Sep;12(9):4026-37
+DR  HAMAP; MF_01084; 32 of 38

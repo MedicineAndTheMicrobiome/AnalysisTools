@@ -1,0 +1,16 @@
+ID  toxin_SdpC
+AC  TIGR04032
+DE  antimicrobial peptide, SdpC family
+AU  Haft DH
+TC  99.20 99.20
+NC  37.15 37.15
+AL  muscle_manual
+IT  subfamily
+EN  antimicrobial peptide, SdpC family
+TP  TIGRFAMs
+CC  This protein family contains the antimicrobial peptide SdpC, used in cannibalistic killing by Bacillus subtilis, and related sequences in species as distant as Myxococcus xanthus from the Deltaproteobacteria. A conserved gene neighborhood includes proteins associated with immunity.
+RN  [1]
+RM  PMID:12817086 
+RT  Cannibalism by sporulating bacteria. 
+RA  Gonzalez-Pastor JE, Hobbs EC, Losick R 
+RL  Science. 2003 Jul 25;301(5632):510-3. Epub 2003 Jun 19.

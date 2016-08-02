@@ -1,0 +1,16 @@
+ID  pilus_cpaD
+AC  TIGR02522
+DE  pilus (Caulobacter type) biogenesis lipoprotein CpaD
+AU  Haft DH
+TC  94.45 94.45
+NC  48.55 48.55
+AL  clustalw_manual
+IT  subfamily
+EN  pilus (Caulobacter type) biogenesis lipoprotein CpaD
+GS  cpaD
+TP  TIGRFAMs
+CC  This family consists of a pilus biogenesis protein, CpaD, from Caulobacter, and homologs in other bacteria, including three in the root nodule bacterium Bradyrhizobium japonicum. The molecular function is not known.
+RM  10880436
+RT  Identification and cell cycle control of a novel pilus system in Caulobacter crescentus.
+RA  Skerker JM, Shapiro L.
+RL  EMBO J. 2000 Jul 3;19(13):3223-34.

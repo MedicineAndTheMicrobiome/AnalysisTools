@@ -1,0 +1,18 @@
+ID  hrcA
+AC  TIGR00331
+DE  heat-inducible transcription repressor HrcA
+AU  Haft DH
+TC  197.20 197.20
+NC  119.75 119.75
+AL  clustalw
+IT  equivalog
+EN  heat shock gene repressor HrcA
+GS  hrcA
+TP  TIGRFAMs
+CC  HrcA represses the class I heat shock operons groE and dnaK; overproduction prevents induction of these operons by heat shock while deletion allows constitutive expression even at low temperatures.
+CC  In Bacillus subtilis, hrcA is the first gene of the dnaK operon and so is itself a heat shock gene.
+RM  96165263
+RT  hrcA, the first gene of the Bacillus subtilis dnaK operon encodes a negative regulator of class I heat shock genes.
+RA  Schulz A, Schumann W
+RL  J Bacteriol 1996 Feb;178(4):1088-93 
+DR  HAMAP; MF_00081; 252 of 260

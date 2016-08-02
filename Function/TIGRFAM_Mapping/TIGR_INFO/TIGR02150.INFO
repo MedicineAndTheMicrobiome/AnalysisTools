@@ -1,0 +1,17 @@
+ID  IPP_isom_1
+AC  TIGR02150
+DE  isopentenyl-diphosphate delta-isomerase
+AU  Haft DH
+TC  105.80 105.80
+NC  59.45 59.45
+AL  clustalw_manual
+IT  equivalog
+EN  isopentenyl-diphosphate delta-isomerase, type 1
+GS  idi
+EC  5.3.3.2
+TP  TIGRFAMs
+CC  This HMM represents type 1 of two non-homologous families of the enzyme isopentenyl-diphosphate delta-isomerase (IPP isomerase). IPP is an essential building block for many compounds, including enzyme cofactors, sterols, and prenyl groups. This inzyme interconverts isopentenyl diphosphate and dimethylallyl diphosphate.
+DR  EXPERIMENTAL; SP|Q46822; Escherichia coli
+DR  EXPERIMENTAL; SP|Q39472; Clarkia breweri
+DR  EXPERIMENTAL; SP|P15496; Saccharomyces cerevisiae
+DR  HAMAP; MF_00202; 61 of 65

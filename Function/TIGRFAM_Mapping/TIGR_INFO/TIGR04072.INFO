@@ -1,0 +1,16 @@
+ID  rSAM_ladder_B12
+AC  TIGR04072
+DE  lipid biosynthesis B12-binding/radical SAM protein
+AU  Haft DH
+TC  180.00 180.00
+NC  170.00 170.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  lipid biosynthesis B12-binding/radical SAM protein
+TP  TIGRFAMs
+CC  Members of this protein family occur in conserved genomic contexts highly suggestive of lipid biosynthesis, including an island shared between Kuenenia stuttgartiensis, which produces ladderanes, and Desulfotalea psychrophila, which produces a different kind of unusual polyunsaturated hydrocarbon.
+RN  [1]
+RM  PMID:19220888 
+RT  A comparative genomics study of genetic products potentially encoding ladderane lipid biosynthesis. 
+RA  Rattray JE, Strous M, Op den Camp HJ, Schouten S, Jetten MS, Damste JS 
+RL  Biol Direct. 2009 Feb 16;4:8.

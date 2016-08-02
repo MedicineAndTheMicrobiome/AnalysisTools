@@ -1,0 +1,13 @@
+ID  zeta_caro_desat
+AC  TIGR02732
+DE  9,9'-di-cis-zeta-carotene desaturase
+AU  Haft DH
+TC  622.15 622.15
+NC  344.15 344.15
+AL  clustalw
+IT  equivalog
+EN  9,9'-di-cis-zeta-carotene desaturase
+GS  zds
+EC  1.3.5.6
+TP  TIGRFAMs
+CC  Carotene 7,8-desaturase, also called zeta-carotene desaturase, catalyzes multiple steps in the pathway from geranylgeranyl-PP to all-trans-lycopene in plants and cyanobacteria. A similar enzyme and pathway is found in the green sulfur bacterium Chlorobium tepidum.

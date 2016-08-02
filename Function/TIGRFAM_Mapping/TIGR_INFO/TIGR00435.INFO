@@ -1,0 +1,16 @@
+ID  cysS
+AC  TIGR00435
+DE  cysteine--tRNA ligase
+AU  Haft DH
+TC  340.00 340.00
+NC  266.85 266.85
+AL  clustalw_manual
+IT  equivalog
+EN  cysteinyl-tRNA synthetase
+GS  cysS
+EC  6.1.1.16
+TP  TIGRFAMs
+CC  This HMM finds the cysteinyl-tRNA synthetase from most but not from all species. The enzyme from one archaeal species, Archaeoglobus fulgidus, is found but the equivalent enzymes from some other Archaea, including Methanococcus jannaschii, are not found, although biochemical evidence suggests that tRNA(Cys) in these species are charged directly with Cys rather than through a misacylation and correction pathway as for tRNA(Gln).
+RL  Nucleic Acids Symp Ser 1997;(37):305-6. Aminoacyl-tRNA synthesis in Archaea. RA  Ibba M, Celic I, Curnow A, Kim H, Pelaschier J, Tumbula D, Vothknecht U, Woese C, Soll D. 
+RM  Medline; 98247213
+DR  HAMAP; MF_00041; 522 of 530

@@ -1,0 +1,13 @@
+ID  rplV_bact
+AC  TIGR01044
+DE  ribosomal protein L22
+AU  Ujwal ML, Haft DH
+TC  73.65 73.65
+NC  66.75 66.75
+AL  clustalw
+IT  equivalog
+EN  ribosomal protein L22, bacterial type
+GS  rplV
+TP  TIGRFAMs
+CC  This model decribes bacterial and chloroplast ribosomal protein L22.
+DR  HAMAP; MF_01331; 666 of 734

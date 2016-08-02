@@ -1,0 +1,15 @@
+ID  xth
+AC  TIGR00633
+DE  exodeoxyribonuclease III (xth)
+AU  Loftus BJ, Eisen JA
+TC  99.05 99.05
+NC  82.15 82.15
+IT  subfamily
+EN  exodeoxyribonuclease III (xth)
+EC  3.1.11.2
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are 5' AP endonucleases that funciton in base excision repair and the repair of abasic sites in DNA.
+CC  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  EGAD; 27876;
+DR  SWISSPROT; P44318;
+RM  92051291;

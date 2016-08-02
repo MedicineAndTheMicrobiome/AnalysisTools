@@ -1,0 +1,15 @@
+ID  sensory_box
+AC  TIGR00229
+DE  PAS domain S-box protein
+AU  Haft DH
+TC  22.90 22.90
+NC  22.10 22.10
+AL  clustalw
+IT  domain
+EN  PAS domain S-box
+TP  TIGRFAMs
+CC  The PAS domain was previously described. This sensory box, or S-box domain occupies the central portion of the PAS domain but is more widely distributed.  It is often tandemly repeated. Known prosthetic groups bound in the S-box domain include heme in the oxygen sensor FixL, FAD in the redox potential sensor NifL, and a 4-hydroxycinnamyl chromophore in photoactive yellow protein. Proteins containing the domain often contain other regulatory domains such as response regulator or sensor histidine kinase domains. Other S-box proteins include phytochromes and the aryl hydrocarbon receptor nuclear translocator.
+RL  Trends Biochem Sci 1997 Sep;22(9):331-333;  
+RM  97446881; 
+RA  Zhulin IB, Taylor BL, Dixon R; 
+RT  PAS domain S-boxes in Archaea, Bacteria and sensors for oxygen and redox.

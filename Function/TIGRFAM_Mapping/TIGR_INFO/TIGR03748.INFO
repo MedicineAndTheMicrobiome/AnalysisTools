@@ -1,0 +1,16 @@
+ID  conj_PilL
+AC  TIGR03748
+DE  integrating conjugative element protein PilL, PFGI-1 class
+AU  Haft DH
+TC  64.15 64.15
+NC  48.45 48.45
+AL  muscle_manual
+IT  hypoth_equivalog_domain
+EN  conjugative transfer region protein, TIGR03748 family
+TP  TIGRFAMs
+CC  This HMM describes the conserved N-terminal region of a variable length protein family associated with laterally transfered regions flanked by markers of conjugative plasmid integration and/or transposition. Most members of the family have the lipoprotein signal peptide motif. A member of the family from a pathogenicity island in Salmonella enterica serovar Dublin strain was designated PilL for nomenclature consistency with a neighboring gene for the pilin structural protein PilS. However, the species distribution of this protein family tracks much better with markers of conjugal transfer than with markers of PilS-like pilin structure.
+RN  [1]
+RM  PMID:14580391
+RT  Salmonella enterica serovar Dublin strains which are Vi antigen-positive use type IVB pili for bacterial self-association and human intestinal cell entry.
+RA  Morris C, Tam CK, Wallis TS, Jones PW, Hackett J
+RL  Microb Pathog. 2003 Dec;35(6):279-84.

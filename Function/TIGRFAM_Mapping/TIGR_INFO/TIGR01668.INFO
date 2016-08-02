@@ -1,0 +1,19 @@
+ID  YqeG_hyp_ppase
+AC  TIGR01668
+DE  HAD phosphatase, family IIIA
+AU  Selengut J
+TC  89.10 89.10
+NC  56.35 56.35
+AL  clustalw
+IT  hypoth_equivalog
+EN  HAD superfamily (subfamily IIIA) phosphatase, TIGR01668
+GS  yqeG
+EC  3.1.3.-
+TP  TIGRFAMs
+CC  This family of hypothetical proteins is a member of the IIIA subfamily of the haloacid dehalogenase (HAD) superfamily of hydrolases.  All characterized members of this subfamily (TIGR01662) and most characterized members of the HAD superfamily are phosphatases.  HAD superfamily phosphatases contain active site residues in several conserved catalytic motifs [1], all of which are found conserved here.
+CC  This family consists of sequences from fungi, plants, cyanobacteria, gram-positive bacteria and Deinococcus.  There is presently no characterization of any sequence in this family.
+RN [1]
+RM PMID: 7966317
+RT Computer analysis of bacterial haloacid dehalogenases defines a large superfamily of hydrolases with diverse specificity. Application of an iterative approach to database search.
+RA Koonin EV, Tatusov RL.
+RL J Mol Biol 1994 Nov 18;244(1):125-32

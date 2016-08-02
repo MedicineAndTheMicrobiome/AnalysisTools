@@ -1,0 +1,16 @@
+ID  SipD_IpaD_SspD
+AC  TIGR02553
+DE  type III effector protein IpaD/SipD/SspD
+AU  Selengut J
+TC  219.25 219.25
+NC  75.90 75.90
+AL  clustalw
+IT  equivalog
+EN  type III effector protein IpaD/SipD/SspD
+TP  TIGRFAMs
+CC  These proteins are found within type III secretion operons and have been shown to be secreted by that system [1].
+RN  [1]
+RM  PMID: 8748032
+RT  Salmonella typhimurium secreted invasion determinants are homologous to Shigella Ipa proteins.
+RA  Hueck CJ, Hantman MJ, Bajaj V, Johnston C, Lee CA, Miller SI.
+RL  Mol Microbiol. 1995 Nov;18(3):479-90.

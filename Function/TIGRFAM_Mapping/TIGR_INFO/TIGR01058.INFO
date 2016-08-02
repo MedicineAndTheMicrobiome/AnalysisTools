@@ -1,0 +1,13 @@
+ID  parE_Gpos
+AC  TIGR01058
+DE  DNA topoisomerase IV, B subunit
+AU  Haft DH
+TC  899.95 899.95
+NC  885.65 885.65
+AL  clustalw
+IT  equivalog
+EN  DNA topoisomerase IV, B subunit, Gram-positive
+GS  parE
+EC  5.99.1.-
+TP  TIGRFAMs
+CC  Operationally, topoisomerase IV is a type II topoisomerase required for the decatenation step of chromosome segregation. Not every bacterium has both a topo II and a topo IV. The topo IV families of the Gram-positive bacteria and the Gram-negative bacteria appear not to represent a single clade among the type II topoisomerases, and are represented by separate models for this reason.

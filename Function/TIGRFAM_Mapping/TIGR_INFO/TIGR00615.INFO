@@ -1,0 +1,25 @@
+ID  recR
+AC  TIGR00615
+DE  recombination protein RecR
+AU  Loftus BJ, Eisen JA, Haft DH
+TC  162.55 162.55
+NC  113.30 113.30
+IT  equivalog
+EN  recombination protein RecR
+GS  recR
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are involved in the initiation of recombination and recombinational repair. RecF is also required.
+CC  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  ECOCYC; EG10834; recR
+DR  PROSITE; PDOC01004; describes N-terminal putative C4 zinc finger region
+DR  EGAD; 19714;
+DR  SWISSPROT; P12727;
+RN  [1]
+RM  91008983
+RN  [2]
+RM  98028573
+RT  Recombinational DNA repair: the RecF and RecR proteins limit the extension of RecA filaments beyond single-strand DNA gaps.
+RN  [3]
+RM  97268635
+RT  recF and recR are required for the resumption of replication at DNA replication forks in Escherichia coli.
+DR  HAMAP; MF_00017; 468 of 476

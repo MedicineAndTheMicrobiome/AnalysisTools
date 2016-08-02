@@ -1,0 +1,18 @@
+ID  D_amino_aminoT
+AC  TIGR01121
+DE  D-amino-acid transaminase
+AU  Haft DH
+TC  277.45 277.45
+NC  155.80 155.80
+AL  clustalw
+IT  equivalog
+EN  D-amino acid aminotransferase
+GS  dat
+EC  2.6.1.21
+TP  TIGRFAMs
+CC  This enzyme is a homodimer. The pyridoxal phosphate attachment site is the Lys at position 146 of the seed alignment, in the motif Cys-Asp-Ile-Lys-Ser-Leu-Asn.
+CC  Specificity is broad for various D-amino acids, and differs among members of the family; the family is designated equivalog, but with this caveat attached.
+RM  89123327
+RT  Thermostable D-amino acid aminotransferase from a thermophilic Bacillus species. Purification, characterization, and active site sequence determination.
+RA  Tanizawa K, Masu Y, Asano S, Tanaka H, Soda K
+RL  J Biol Chem 1989 Feb 15;264(5):2445-9

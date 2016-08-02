@@ -1,0 +1,13 @@
+ID  nadB
+AC  TIGR00551
+DE  L-aspartate oxidase
+AU  Haft DH
+TC  452.75 452.75
+NC  425.60 425.60
+IT  equivalog
+EN  L-aspartate oxidase
+GS  nadB
+EC  1.4.3.16
+TP  TIGRFAMs
+CC  L-aspartate oxidase is the B protein, NadB, of the quinolinate synthetase complex. Quinolinate synthetase makes a precursor of the pyridine nucleotide portion of NAD. This model identifies proteins that cluster as L-aspartate oxidase (a flavoprotein difficult to separate from the set of closely related flavoprotein subunits of succinate dehydrogenase and fumarate reductase) by both UPGMA and neighbor-joining trees. The most distant protein accepted as an L-aspartate oxidase (NadB), that from Pyrococcus horikoshii, not only clusters with other NadB but is just one gene away from NadA.
+DR  PFAM; PF00890; FAD_binding_2

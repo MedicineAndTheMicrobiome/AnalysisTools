@@ -1,0 +1,11 @@
+ID  Lepto_8Cys
+AC  TIGR04453
+DE  Cys-rich protein, LA_1312 family
+AU  Haft DH
+TC  34.00 33.00
+NC  25.00 25.00
+AL  muscle_manual
+IT  subfamily
+EN  Cys-rich protein, LA_1312 family
+TP  TIGRFAMs
+CC  Members of this protein family occur, so far, exclusively in the genus Leptospira. Members, although small (about 90 amino acids), have a predicted signal peptide followed by a region with eight invariant Cys residues. Some members have an additional Cys in the signal peptide region that suggests handling as a lipoprotein, but this Cys is not well conserved.

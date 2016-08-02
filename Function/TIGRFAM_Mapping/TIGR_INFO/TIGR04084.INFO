@@ -1,0 +1,16 @@
+ID  rSAM_AF0577
+AC  TIGR04084
+DE  putative peptide-modifying radical SAM enzyme, AF0577 family
+AU  Haft DH
+TC  225.00 225.00
+NC  175.00 175.00
+AL  muscle_manual
+IT  subfamily
+EN  putative peptide-modifying radical SAM enzyme, AF0577 family
+TP  TIGRFAMs
+CC  This radical SAM family contains a C-terminal region motif CXXCX5CX3C that is found in PqqE and other radical SAM enzymes that act on peptide substrates. Members of this family are found primarily in the Archaea, but also several eukaryotes (Trichomonas vaginalis G3, Entamoeba dispar SAW760, Giardia intestinalis ATCC 50581, etc.). The function is unknown.
+RN  [1]
+RM  PMID:20218986 
+RT  Anaerobic sulfatase-maturating enzyme--a mechanistic link with glycyl radical-activating enzymes? 
+RA  Benjdia A, Subramanian S, Leprince J, Vaudry H, Johnson MK, Berteau O 
+RL  FEBS J. 2010 Apr;277(8):1906-20.

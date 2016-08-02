@@ -1,0 +1,18 @@
+ID  F390_ftsA
+AC  TIGR03335
+DE  coenzyme F390 synthetase
+AU  Haft DH
+TC  458.70 458.70
+NC  458.45 458.45
+AL  muscle
+IT  equivalog
+EN  coenzyme F390 synthetase
+GS  ftsA
+EC  2.7.7.-
+TP  TIGRFAMs
+CC  This enzyme, characterized in Methanobacterium thermoautotrophicum and found in several other methanogens, modifies coenzyme F420 by ligation of AMP (or GMP) from ATP (or GTP). On F420, it activates an aromatic hydroxyl group, which is unusual chemistry for an adenylyltransferase. This enzyme name has been attached to numbers of uncharacterized genes likely to instead act as phenylacetate CoA ligase, based on proximity to predicted indolepyruvate ferredoxin oxidoreductase (1.2.7.8) genes. The enzyme acts during transient exposure of the organism to oxygen.
+RN  [1]
+RM  PMID: 8550473
+RT  Coenzyme F390 synthetase from Methanobacterium thermoautotrophicum Marburg belongs to the superfamily of adenylate-forming enzymes.
+RA  Vermeij P, van der Steen RJ, Keltjens JT, Vogels GD, Leisinger T
+RL  J Bacteriol. 1996 Jan;178(2):505-10.

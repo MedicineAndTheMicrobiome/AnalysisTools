@@ -1,0 +1,23 @@
+ID  B4_12hDH
+AC  TIGR02825
+DE  leukotriene B4 12-hydroxydehydrogenase/15-oxo-prostaglandin 13-reductase
+AU  Haft DH
+TC  579.85 579.85
+NC  314.35 314.35
+AL  clustalw
+IT  equivalog
+EN  leukotriene B4 12-hydroxydehydrogenase/15-oxo-prostaglandin 13-reductase
+EC  1.3.1.74 1.3.1.48
+TP  TIGRFAMs
+CC  Leukotriene B4 12-hydroxydehydrogenase is an NADP-dependent enzyme of arachidonic acid metabolism, responsible for converting leukotriene B4 to the much less active metabolite 12-oxo-leukotriene B4. The BRENDA database lists leukotriene B4 12-hydroxydehydrogenase as one of the synonyms of 2-alkenal reductase (EC 1.3.1.74), while 1.3.1.48 is 15-oxoprostaglandin 13-reductase.
+RN  [1]
+RM  15007077
+RT  Structural basis of leukotriene B4 12-hydroxydehydrogenase/15-Oxo-prostaglandin 13-reductase catalytic mechanism and a possible Src homology 3 domain binding loop.
+RA  Hori T, Yokomizo T, Ago H, Sugahara M, Ueno G, Yamamoto M, Kumasaka T, Shimizu T, Miyano M.
+RL  J Biol Chem. 2004 May 21;279(21):22615-23.
+RN  [2]
+RM  8576264
+RT  cDNA cloning, expression, and mutagenesis study of leukotriene B4 12-hydroxydehydrogenase.
+RA  Yokomizo T, Ogawa Y, Uozumi N, Kume K, Izumi T, Shimizu T.
+RL  J Biol Chem. 1996 Feb 2;271(5):2844-50.
+DR  BRRENDA; 1.3.1.74; 2-alkenal reductase

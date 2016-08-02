@@ -1,0 +1,23 @@
+ID  rSAM_MIA_synth
+AC  TIGR04158
+DE  3-methyl-2-indolic acid synthase
+AU  Haft DH
+TC  400.00 400.00
+NC  260.00 260.00
+AL  muscle
+IT  equivalog
+EN  3-methyl-2-indolic acid synthase
+GS  nocL
+EC  4.1.-.-
+TP  TIGRFAMs
+CC  Members are a radical SAM enzyme that converts L-Trp to 3-methyl-2-indolic acid synthase through a complex rearrangement. This enzyme is closest to ThiH, which also does a complex rearrangement, among other characterized radical SAM enzymes.
+RN  [1]
+RM  PMID:21454624 
+RT  Characterization of NocL involved in thiopeptide nocathiacin I biosynthesis: A [4Fe-4S] cluster and the catalysis of a radical S-adenosylmethionine enzyme.
+RA  Zhang Q, Chen D, Lin J, Liao R, Tong W, Xu Z, Liu W 
+RL  J Biol Chem. 2011 Mar 29.
+RN  [2]
+RM  PMID:21240261 
+RT  Radical-mediated enzymatic carbon chain fragmentation-recombination. 
+RA  Zhang Q, Li Y, Chen D, Yu Y, Duan L, Shen B, Liu W 
+RL  Nat Chem Biol. 2011 Mar;7(3):154-60. doi: 10.1038/nchembio.512.

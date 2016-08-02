@@ -1,0 +1,20 @@
+ID  dGTP_triPase
+AC  TIGR01353
+DE  putative dGTPase
+AU  Haft DH
+TC  152.35 152.35
+NC  116.90 116.90
+AL  clustalw_manual
+IT  subfamily
+EN  deoxyguanosinetriphosphate triphosphohydrolase, putative
+GS  dgt
+EC  3.1.5.1
+TP  TIGRFAMs
+CC  dGTP triphosphohydrolase (dgt) releases inorganic triphosphate, an unusual activity reaction product, from GTP. Its activity has been called limited to the Enterobacteriaceae, although homologous sequences are detected elsewhere. This finding casts doubt on whether the activity is shared in other species. In several of these other species, the homologous gene is found in an apparent operon with dnaG, the DNA primase gene. The enzyme from E. coli was shown to bind coopertatively to single stranded DNA. The biological role of dgt is unknown.
+DR  EXPERIMENTAL; SP|P15723; Escherichia coli
+DR  EXPERIMENTAL; SP|Q59827; Shigella boydii
+RM  9422594
+RT  Characterization of the dnaG locus in Mycobacterium smegmatis reveals linkage of DNA replication and cell division.
+RA  Klann AG, Belanger AE, Abanes-De Mello A, Lee JY, Hatfull GF.
+RL  J Bacteriol 1998 Jan;180(1):65-72
+DR  HAMAP; MF_01213; 6 of 6

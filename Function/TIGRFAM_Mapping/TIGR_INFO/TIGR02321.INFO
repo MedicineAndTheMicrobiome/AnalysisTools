@@ -1,0 +1,16 @@
+ID  Pphn_pyruv_hyd
+AC  TIGR02321
+DE  phosphonopyruvate hydrolase
+AU  Haft DH
+TC  374.40 374.40
+NC  258.45 258.45
+AL  clustalw
+IT  equivalog
+EN  phosphonopyruvate hydrolase
+TP  TIGRFAMs
+CC  This family consists of phosphonopyruvate hydrolase, an enzyme closely related to phosphoenolpyruvate phosphomutase. It cleaves the direct C-P bond of phosphonopyruvate. The characterized example is from Variovorax sp. Pal2.
+RN  [1]
+RM  12697754
+RT  The purification and characterization of phosphonopyruvate hydrolase, a novel carbon-phosphorus bond cleavage enzyme from Variovorax sp Pal2.
+RA  Kulakova AN, Wisdom GB, Kulakov LA, Quinn JP.
+RL   J Biol Chem. 2003 Jun 27;278(26):23426-31.

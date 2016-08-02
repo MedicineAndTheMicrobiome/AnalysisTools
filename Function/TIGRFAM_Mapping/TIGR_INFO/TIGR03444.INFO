@@ -1,0 +1,18 @@
+ID  EgtA_Cys_ligase
+AC  TIGR03444
+DE  ergothioneine biosynthesis glutamate--cysteine ligase EgtA
+AU  Haft DH
+TC  370.80 370.80
+NC  278.85 278.85
+AL  muscle_manual
+IT  equivalog
+EN  ergothioneine biosynthesis glutamate--cysteine ligase EgtA
+GS  egtA
+EC  6.3.2.2
+TP  TIGRFAMs
+CC  Members of this bacterial protein family, EgtA, resemble the glutamate--cysteine ligase of the two-step pathway for glutathione (GSH) biosynthesis, but instead are involved in the biosynthesis of the histidine-derived thiol, ergothioneine (EGT). Successful in vitro reconstitution of EGT biosynthesis using EgtBCDE and gamma-L-glutamyl-L-cysteine suggests that this enzyme is a bone fide glutamate--cysteine ligase.
+RN  [1]
+RM  PMID:20420449 
+RT  In vitro reconstitution of Mycobacterial ergothioneine biosynthesis. 
+RA  Seebeck FP 
+RL  J Am Chem Soc. 2010 May 19;132(19):6632-3.

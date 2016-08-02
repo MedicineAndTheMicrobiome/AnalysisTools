@@ -1,0 +1,11 @@
+ID  CpaE_hom_Actino
+AC  TIGR03815
+DE  helicase/secretion neighborhood CpaE-like protein
+AU  Haft DH
+TC  154.45 154.45
+NC  135.10 135.10
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  helicase/secretion neighborhood CpaE-like protein
+TP  TIGRFAMs
+CC  Members of this protein family belong to the MinD/ParA family of P-loop NTPases, and in particular show homology to the CpaE family of pilus assembly proteins (see PMID:12370432). Nearly all members are found, not only in a gene context consistent with pilus biogenesis or a pilus-like secretion apparatus, but also near a DEAD/DEAH-box helicase, suggesting an involvement in DNA transfer activity. The model describes a clade restricted to the Actinobacteria.

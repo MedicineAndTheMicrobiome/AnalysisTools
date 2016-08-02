@@ -1,0 +1,13 @@
+ID  yeiP
+AC  TIGR02178
+DE  elongation factor P-like protein YeiP
+AU  Haft DH
+TC  264.05 264.05
+NC  199.65 199.65
+AL  clustalw
+IT  hypoth_equivalog
+EN  elongation factor P-like protein YeiP
+GS  yeiP
+TP  TIGRFAMs
+CC  This HMM represents the family of Escherichia coli protein YeiP, a close homolog of elongation factor P (TIGR00038) and probably itself a translation factor. Member of this family are found only in some Gammaproteobacteria, including E. coli and Vibrio cholerae.
+DR  HAMAP; MF_00646; 46 of 47

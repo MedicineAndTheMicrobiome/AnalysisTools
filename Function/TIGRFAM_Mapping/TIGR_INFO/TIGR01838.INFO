@@ -1,0 +1,16 @@
+ID  PHA_synth_I
+AC  TIGR01838
+DE  poly(R)-hydroxyalkanoic acid synthase, class I
+AU  Haft DH
+TC  622.65 622.65
+NC  532.45 532.45
+AL  clustalw_manual
+IT  subfamily
+EN  poly(R)-hydroxyalkanoic acid synthase, class I
+GS  phaC
+TP  TIGRFAMs
+CC  This HMM represents the class I subfamily of poly(R)-hydroxyalkanoate synthases, which polymerizes hydroxyacyl-CoAs with three to five carbons in the hydroxyacyl backbone into aliphatic esters termed poly(R)-hydroxyalkanoic acids. These polymers accumulate as carbon and energy storage inclusions in many species and can amount to 90 percent of the dry weight of cell.
+RM  11418564
+RT  PhaC and PhaR are required for polyhydroxyalkanoic acid synthase activity in Bacillus megaterium.
+RA  McCool GJ, Cannon MC.
+RL  J Bacteriol 2001 Jul;183(14):4235-43

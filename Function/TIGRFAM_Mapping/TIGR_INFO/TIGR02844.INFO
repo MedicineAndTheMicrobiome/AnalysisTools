@@ -1,0 +1,17 @@
+ID  spore_III_D
+AC  TIGR02844
+DE  sporulation transcriptional regulator SpoIIID
+AU  Haft DH
+TC  111.50 111.50
+NC  66.70 66.70
+AL  clustalw
+IT  equivalog
+EN  sporulation transcriptional regulator SpoIIID
+GS  spoIIID
+TP  TIGRFAMs
+CC  Members of this protein are the transcriptional regulator SpoIIID, or stage III sporulation protein D. It is present in genomes if and only if the species is capable of endospore formation as occurs in the model species Bacillus subtilis. SpoIIID is a DNA binding protein that, in B. subtilis, downregulates many genes but also turns on ten genes.
+RN  [1]
+RM  15383836
+RT  The program of gene transcription for a single differentiating cell type during sporulation in Bacillus subtilis.
+RA  Eichenberger P, Fujita M, Jensen ST, Conlon EM, Rudner DZ, Wang ST, Ferguson C, Haga K, Sato T, Liu JS, Losick R.
+RL  PLoS Biol. 2004 Oct;2(10):e328.

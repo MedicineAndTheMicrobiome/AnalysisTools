@@ -1,0 +1,14 @@
+ID  PYST-C1
+AC  TIGR01601
+DE  Plasmodium yoelii subtelomeric domain PYST-C1
+AU  Selengut J
+TC  54.75 54.75
+NC  25.35 25.35
+AL  clustalw
+IT  paralog
+EN  Plasmodium yoelii subtelomeric domain PYST-C1
+TP  TIGRFAMs
+CC  This model represents the N-terminal domain of a paralogous family of Plasmodium yoelii genes preferentially located in the subtelomeric regions of the chromosomes [1].  There are no obvious homologs to these genes in any other organism.
+CC  The C-terminal portions of the genes which contain this domain are divergent and some contain other yoelii-specific paralogous domains such as PYST-C2 (TIGR01604).
+RN  [1]
+RL  TIGR, unpublished data

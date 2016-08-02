@@ -1,0 +1,21 @@
+ID  Se_ygfK
+AC  TIGR03315
+DE  putative selenate reductase, YgfK subunit
+AU  Haft DH
+TC  835.30 835.30
+NC  354.45 354.45
+AL  muscle
+IT  equivalog
+EN  putative selenate reductase, YgfK subunit
+GS  ygfK
+TP  TIGRFAMs
+CC  Members of this protein family are YgfK, predicted to be one subunit of a three-subunit, molybdopterin-containing selenate reductase. This enzyme is found, typically, in genomic regions associated with xanthine dehydrogenase homologs predicted to belong to the selenium-dependent molybdenum hydroxylases (SDMH). Therefore, the selenate reductase is suggested to play a role in furnishing selenide for SelD, the selenophosphate synthase.
+RN  [1]
+RM  PMID: 12480890
+RT  Involvement of a putative molybdenum enzyme in the reduction of selenate by Escherichia coli.
+RA  Bebien M, Kirsch J, Mejean V, Vermeglio A
+RL  Microbiology. 2002 Dec;148(Pt 12):3865-72.
+RN  [2]
+RT  Orphan SelD proteins and selenium-dependent molybdenum hydroxylases.
+RA  Haft DH, Self WT
+RL  Biology Direct 2008, 3:4

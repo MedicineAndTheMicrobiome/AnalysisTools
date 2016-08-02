@@ -1,0 +1,19 @@
+ID  purO_arch
+AC  TIGR01922
+DE  IMP cyclohydrolase
+AU  Selengut J
+TC  158.35 158.35
+NC  47.80 47.80
+AL  clustalw
+IT  equivalog
+EN  IMP cyclohydrolase
+GS  purO
+EC  3.5.4.10
+TP  TIGRFAMs
+CC  This model represents IMP cyclohydrolase, the final step in the biosynthesis of inosine monophosphate (IMP) in archaea [1].  In bacteria this step is catalyzed by a bifunctional enzyme (purH).
+RN  [1]
+RM  PMID: 11844782
+RT  New class of IMP cyclohydrolases in Methanococcus jannaschii.
+RA  Graupner M, Xu H, White RH.
+RL  J Bacteriol. 2002 Mar;184(5):1471-3.
+DR  HAMAP; MF_00705; 19 of 19

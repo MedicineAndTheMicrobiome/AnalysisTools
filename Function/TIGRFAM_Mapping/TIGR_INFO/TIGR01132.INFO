@@ -1,0 +1,18 @@
+ID  pgm
+AC  TIGR01132
+DE  phosphoglucomutase, alpha-D-glucose phosphate-specific
+AU  Haft DH
+TC  778.05 778.05
+NC  155.35 155.35
+AL  clustalw
+IT  equivalog
+EN  phosphoglucomutase, alpha-D-glucose phosphate-specific
+GS  pgm
+EC  5.4.2.2
+TP  TIGRFAMs
+CC  This enzyme interconverts alpha-D-glucose-1-P and alpha-D-glucose-6-P.
+DR  COGS; COG0033
+RM  97479217
+RT  Studies on recombinant Acetobacter xylinum alpha-phosphoglucomutase.
+RA  Kvam C, Olsvik ES, McKinley-McKee J, Saether O
+RL  Biochem J 1997 Aug 15;326 ( Pt 1):197-203

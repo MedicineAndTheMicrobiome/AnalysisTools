@@ -1,0 +1,12 @@
+ID  pepcterm_ChnLen
+AC  TIGR03007
+DE  polysaccharide chain length determinant protein, PEP-CTERM locus subfamily
+AU  Haft DH
+TC  278.85 278.85
+NC  184.85 184.85
+AL  muscle
+IT  subfamily
+EN  polysaccharide chain length determinant protein, PEP-CTERM locus subfamily
+TP  TIGRFAMs
+CC  Members of this protein family belong to the family of polysaccharide chain length determinant proteins (PF02706). All are found in species that encode the PEP-CTERM/exosortase system predicted to act in protein sorting in a number of Gram-negative bacteria, and are found near the epsH homolog that is the putative exosortase gene.
+DR  PFAM; Wzz; Chain length determinant protein

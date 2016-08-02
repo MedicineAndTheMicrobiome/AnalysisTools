@@ -1,0 +1,16 @@
+ID  recomb_DMC1
+AC  TIGR02238
+DE  meiotic recombinase Dmc1
+AU  Haft DH
+TC  447.70 447.70
+NC  443.55 443.55
+AL  clustalw
+IT  equivalog
+EN  meiotic recombinase Dmc1
+GS  DMC1
+TP  TIGRFAMs
+CC  This model describes DMC1, a subfamily of a larger family of DNA repair and recombination proteins. It is eukaryotic only and most closely related to eukaryotic RAD51. It also resembles archaeal RadA (TIGR02236) and RadB (TIGR02237) and bacterial RecA (TIGR02012). It has been characterized for human as a recombinase active only in meiosis.
+RM  15164066
+RT  Human meiotic recombinase Dmc1 promotes ATP-dependent homologous DNA strand exchange.
+RA  Sehorn MG, Sigurdsson S, Bussen W, Unger VM, Sung P.
+RL  Nature. 2004 May 27;429(6990):433-7

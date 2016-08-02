@@ -1,0 +1,17 @@
+ID  rSAM_NirJ2
+AC  TIGR04055
+DE  putative heme d1 biosynthesis radical SAM protein NirJ2
+AU  Haft DH
+TC  438.05 438.05
+NC  418.35 418.35
+AL  muscle_manual
+IT  equivalog
+EN  putative heme d1 biosynthesis radical SAM protein NirJ2
+GS  nirJ2
+TP  TIGRFAMs
+CC  Members of this radical SAM protein subfamily, designated NirJ2, occur in genomic contexts with a paralog NirJ1 and with other nitrite reductase operon genes associated with heme d1 biosynthesis, as in Heliobacillus mobilis and Heliophilum fasciatum. NirJ2 is presumed by bioinformatics analysis (Xiong, et al.) to be a heme d1 biosynthesis protein by context.
+RN  [1]
+RM  PMID:17906152 
+RT  Insight into the haem d1 biosynthesis pathway in heliobacteria through bioinformatics analysis. 
+RA  Xiong J, Bauer CE, Pancholy A 
+RL  Microbiology. 2007 Oct;153(Pt 10):3548-62.

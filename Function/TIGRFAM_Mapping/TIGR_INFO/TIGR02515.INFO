@@ -1,0 +1,20 @@
+ID  IV_pilus_PilQ
+AC  TIGR02515
+DE  type IV pilus secretin PilQ
+AU  Haft DH
+TC  284.35 284.35
+NC  202.40 202.40
+AL  clustalw
+IT  subfamily
+EN  type IV pilus secretin (or competence protein) PilQ
+GS  pilQ
+TP  TIGRFAMs
+CC  A number of proteins homologous to PilQ are involved in type IV pilus formation, competence for transformation, type III secretion, and type II secretion (also called the main terminal branch of the general secretion pathway). Members of this family include PilQ itself, which is a component of the type IV pilus structure, from a number of species. In Haemophilus influenzae, the member of this family is associated with competence for transformation with exogenous DNA rather than with formation of a type IV pilus; the surface structure required for competence may be considered an unusual, incomplete type IV pilus structure.
+DR  PFAM; PF07660; STN
+DR  PFAM; PF03958; Secretin_N
+DR  PFAM; PF00263; Secretin_C
+RN  [1]
+RM  14729699
+RT  A mutant form of the Neisseria gonorrhoeae pilus secretin protein PilQ allows increased entry of heme and antimicrobial compounds.
+RA  Chen CJ, Tobiason DM, Thomas CE, Shafer WM, Seifert HS, Sparling PF.
+RL  J Bacteriol. 2004 Feb;186(3):730-9.

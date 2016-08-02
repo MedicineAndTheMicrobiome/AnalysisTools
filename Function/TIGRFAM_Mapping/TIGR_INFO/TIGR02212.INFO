@@ -1,0 +1,17 @@
+ID  lolCE
+AC  TIGR02212
+DE  lipoprotein releasing system, transmembrane protein, LolC/E family
+AU  Haft DH
+TC  362.45 362.45
+NC  242.10 242.10
+AL  clustalw_manual
+IT  subfamily
+EN  lipoprotein releasing system, transmembrane protein, LolC/E family
+TR  3.A.1.125
+TP  TIGRFAMs
+CC  This HMM describes the LolC protein, and its paralog LolE found in some species. These proteins are homologous to permease proteins of ABC transporters. In some species, two paralogs occur, designated LolC and LolE. In others, a single form is found and tends to be designated LolC.
+DR  PFAM; PF02687; FtsX
+RM  12823819
+RT  A mutation in the membrane subunit of an ABC transporter LolCDE complex causing outer membrane localization of lipoproteins against their inner membrane-specific signals.
+RA  Narita S, Kanamaru K, Matsuyama S, Tokuda H.
+RL  Mol Microbiol. 2003 Jul;49(1):167-77.

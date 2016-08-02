@@ -1,0 +1,21 @@
+ID  OMP_MtrB_PioB
+AC  TIGR03509
+DE  decaheme-associated outer membrane protein, MtrB/PioB family
+AU  Haft DH
+TC  240.05 240.05
+NC  165.60 165.60
+AL  muscle_manual
+IT  subfamily
+EN  decaheme-associated outer membrane protein, MtrB/PioB family
+TP  TIGRFAMs
+CC  Members of this protein family are integral proteins of the bacterial outer membrane, associated with multiheme c-type cytochromes involved in electron transfer. The MtrB protein of Shewanella oneidensis MR-1 (SO1776) has been shown to form a complex with 1:1:1 stochiometry with the small, periplasmic decaheme cytochrome MtrA and large, surface-exposed decaheme cytochrome MtrC.
+RN  [1]
+RM  PMID:17675441
+RT  Characterization of protein-protein interactions involved in iron reduction by Shewanella oneidensis MR-1.
+RA  Ross DE, Ruebush SS, Brantley SL, Hartshorne RS, Clarke TA, Richardson DJ, Tien M
+RL  Appl Environ Microbiol. 2007 Sep;73(18):5797-808.
+RN  [2]
+RM  PMID:17189359
+RT  The pio operon is essential for phototrophic Fe(II) oxidation in Rhodopseudomonas palustris TIE-1.
+RA  Jiao Y, Newman DK
+RL  J Bacteriol. 2007 Mar;189(5):1765-73.

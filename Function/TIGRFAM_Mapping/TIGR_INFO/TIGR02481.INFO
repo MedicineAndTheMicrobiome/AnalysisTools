@@ -1,0 +1,12 @@
+ID  hemeryth_dom
+AC  TIGR02481
+DE  hemerythrin-like metal-binding domain
+AU  Haft DH
+TC  51.75 51.75
+NC  43.55 43.55
+AL  clustalw
+IT  domain
+EN  hemerythrin-like metal-binding domain
+TP  TIGRFAMs
+CC  This model describes both members of the hemerythrin (TIGR00058) family of marine invertebrates and a broader collection of bacterial and archaeal homologs. Many of the latter group are multidomain proteins with signal-transducing domains such as the GGDEF diguanylate cyclase domain (TIGR00254, PF00990) and methyl-accepting chemotaxis protein signaling domain (PF00015). Most hemerythrins are oxygen-carriers with a bound non-heme iron, but at least one example is a cadmium-binding protein, apparently with a role in sequestering toxic metals rather than in binding oxygen. Patterns of conserved residues suggest that all prokaryotic instances of this domain bind iron or another heavy metal, but the exact function is unknown. Not surprisingly, the prokaryote with the most instances of this domain is Magnetococcus sp. MC-1, a magnetotactic bacterium.
+DR  HAMAP; MF_00556; 10 of 10

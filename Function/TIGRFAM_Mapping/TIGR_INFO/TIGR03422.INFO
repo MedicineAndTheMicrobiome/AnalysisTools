@@ -1,0 +1,11 @@
+ID  mito_frataxin
+AC  TIGR03422
+DE  frataxin
+AU  Haft DH
+TC  94.00 94.00
+NC  80.90 80.90
+AL  muscle_manual
+IT  exception
+EN  frataxin
+TP  TIGRFAMs
+CC  Frataxin is a mitochondrial protein, mutation of which leads to the disease Friedreich's ataxia. Its orthologs are widely distributed in the bacteria, associated with the ISC system for iron-sulfur cluster assembly, and designated CyaY. This exception-type model allows those examples of frataxin per se that score above the trusted cutoff to the CyaY equivalog-type model (TIGR03421) to be named appropriately.

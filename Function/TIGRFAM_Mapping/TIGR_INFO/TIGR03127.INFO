@@ -1,0 +1,13 @@
+ID  RuMP_HxlB
+AC  TIGR03127
+DE  6-phospho 3-hexuloisomerase
+AU  Haft DH
+TC  192.05 192.05
+NC  101.95 101.95
+AL  muscle
+IT  equivalog_domain
+EN  6-phospho 3-hexuloisomerase
+GS  hxlB
+EC  5.3.-.-
+TP  TIGRFAMs
+CC  Members of this protein family are 6-phospho 3-hexuloisomerase (PHI), or the PHI domain of a fusion protein. This enzyme is part of the ribulose monophosphate (RuMP) pathway, which in one direction removes the toxic metabolite formaldehyde by assimilation into fructose-6-phosphate. In the other direction, in species lacking a complete pentose phosphate pathway, the RuMP pathway yields ribulose-5-phosphate, necessary for nucleotide biosynthesis, at the cost of also yielding formaldehyde. These latter species tend usually have a formaldehyde-activating enzyme to attach formaldehyde to the C1 carrier tetrahydromethanopterin.

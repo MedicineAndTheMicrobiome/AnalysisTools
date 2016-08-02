@@ -1,0 +1,11 @@
+ID  SigX4
+AC  TIGR02957
+DE  RNA polymerase sigma-70 factor, TIGR02957 family
+AU  Selengut J
+TC  323.25 323.25
+NC  319.40 319.40
+AL  muscle
+IT  subfamily
+EN  RNA polymerase sigma-70 factor, TIGR02957 family
+TP  TIGRFAMs
+CC  This group of sigma factors are members of the sigma-70 family (TIGR02937).  They and appear by homology, tree building and bidirectional best hits, to represent a conserved family.  This family is found in a limited number of bacterial lineages.  This family includes apparent paralogous expansion in Streptomyces coelicolor A3(2), and multiple copies in Mycobacterium smegmatis MC2, Streptomyces avermitilis MA-4680 and Nocardia farcinica IFM10152.

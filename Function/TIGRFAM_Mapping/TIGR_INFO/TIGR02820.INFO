@@ -1,0 +1,19 @@
+ID  formald_GSH
+AC  TIGR02820
+DE  S-(hydroxymethyl)glutathione synthase
+AU  Haft DH
+TC  234.55 234.55
+NC  135.65 135.65
+AL  clustalw
+IT  equivalog
+EN  S-(hydroxymethyl)glutathione synthase
+GS  gfa
+EC  4.4.1.22
+TP  TIGRFAMs
+CC  The formation of S-(hydroxymethyl)glutathione synthase from glutathione and formaldehyde occurs naturally, but this enzyme speeds its formation in some species as part of a pathway of formaldehyde detoxification.
+RN  [1]
+RM  11741920
+RT  A glutathione-dependent formaldehyde-activating enzyme (Gfa) from Paracoccus denitrificans detected and purified via two-dimensional proton exchange NMR spectroscopy.
+RA  Goenrich M, Bartoschek S, Hagemeier CH, Griesinger C, Vorholt JA.
+RL  J Biol Chem. 2002 Feb 1;277(5):3069-72.
+DR  HAMAP; MF_00723; 13 of 13

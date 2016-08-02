@@ -1,0 +1,11 @@
+ID  pepcterm_hypo_1
+AC  TIGR03016
+DE  uncharacterized protein, PEP-CTERM system associated
+AU  Haft DH
+TC  90.85 90.85
+NC  30.00 30.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  uncharacterized protein, PEP-CTERM system associated
+TP  TIGRFAMs
+CC  Members of this protein family are found predominantly in exopolysaccharide biosynthesis operons marked by the presence of the EpsH-family putative exosortase and presence in the genome of the PEP-CTERM protein sorting signal. Members of this family may be distantly related to the EpsL family modeled in TIGR03014.

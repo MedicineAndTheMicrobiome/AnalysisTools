@@ -1,0 +1,11 @@
+ID  exp_by_SipW_III
+AC  TIGR04089
+DE  alternate signal-mediated exported protein, RER_14450 family
+AU  Haft DH
+TC  60.00 60.00
+NC  25.00 25.00
+AL  muscle_manual
+IT  subfamily
+EN  alternate signal-mediated exported protein, RER_14450 family
+TP  TIGRFAMs
+CC  Members of this Actinobacterial protein family contain the cognate signal peptide domain, modeled by TIGR04088, for the variant SipW form of the signal peptidase I family. The remainder of this protein, however, differs from families such as Peptidase_M73 (PF12389) and YqxM (TIGR04087) that share the same signal peptide domain. Some additional homologs to this family lack full-length homology and are excluded by the trusted cutoff as set. The two known targets for export by the SipW signal peptidase in Bacillus subtilis act in producing biofilm matrix material.

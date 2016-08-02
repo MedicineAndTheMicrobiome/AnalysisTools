@@ -1,0 +1,12 @@
+ID  drrA
+AC  TIGR01188
+DE  daunorubicin resistance ABC transporter, ATP-binding protein
+AU  Ujwal ML, Paulsen IT
+TC  312.45 312.45
+NC  305.30 305.30
+AL  clustalw
+IT  subfamily
+EN  daunorubicin resistance ABC transporter ATP-binding subunit
+TR  3.A.1.105
+TP  TIGRFAMs
+CC  This model describes daunorubicin resistance ABC transporter, ATP binding subunit in bacteria and archaea. This model is restricted in its scope to preferentially recognize the ATP binding subunit associated with effux of the drug, daunorubicin. This transport system belong to the larger ATP-Binding Cassette (ABC) transporter superfamily. The characteristic feature of these transporter is the obligatory coupling of ATP hydrolysis to substrate translocation. The minimal configuration of bacterial ABC transport system: an ATPase or ATP binding subunit; An integral membrane protein; a hydrophilic polypetpide, which likely functions as substrate binding protein. In eukaryotes proteins of similar function include p-gyco proteins, multidrug resistance protein etc.

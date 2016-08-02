@@ -1,0 +1,14 @@
+ID  nifH
+AC  TIGR01287
+DE  nitrogenase iron protein
+AU  Haft DH
+TC  394.35 394.35
+NC  261.05 261.05
+AL  clustalw_manual
+IT  equivalog
+EN  nitrogenase iron protein
+GS  nifH
+EC  1.18.6.1
+TP  TIGRFAMs
+CC  This HMM describes nitrogenase (EC 1.18.6.1) iron protein, also called nitrogenase reductase or nitrogenase component II. This model includes molybdenum-iron nitrogenase reductase (nifH), vanadium-iron nitrogenase reductase (vnfH), and iron-iron nitrogenase reductase (anfH). The model excludes the homologous protein from the light-independent protochlorophyllide reductase.
+DR  HAMAP; MF_00533; 66 of 70

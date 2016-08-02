@@ -1,0 +1,16 @@
+ID  tesB
+AC  TIGR00189
+DE  acyl-CoA thioesterase II
+AU  Richardson DL
+TC  292.85 292.85
+NC  45.30 45.30
+AL  clustalw
+IT  equivalog
+EN  acyl-CoA thioesterase II
+GS  tesB
+EC  3.1.2.-
+TP  TIGRFAMs
+CC  Function: hydrolyzes a broad range of acyl-CoA thioesters. 
+CC  Physiological function is not known. 
+CC  Subunit: homotetramer.
+DR  none

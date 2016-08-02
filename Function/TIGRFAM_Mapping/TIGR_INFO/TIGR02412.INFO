@@ -1,0 +1,17 @@
+ID  pepN_strep_liv
+AC  TIGR02412
+DE  aminopeptidase N
+AU  Haft DH
+TC  591.20 591.20
+NC  412.75 412.75
+AL  clustalw
+IT  equivalog
+EN  aminopeptidase N, Streptomyces lividans type
+GS  pepN
+EC  3.4.11.2
+TP  TIGRFAMs
+CC  This family is a subset of the members of the zinc metallopeptidase family M1 (PF01433), with a single member characterized in Streptomyces lividans 66 and designated aminopeptidase N. The spectrum of activity may differ somewhat from the aminopeptidase N clade of E. coli and most other Proteobacteria, well separated phylogenetically within the M1 family. The M1 family also includes leukotriene A-4 hydrolase/aminopeptidase (with a bifunctional active site).
+RM  7909302
+RT  The aminopeptidase N-encoding pepN gene of Streptomyces lividans 66.
+RA  Butler MJ, Aphale JS, Binnie C, DiZonno MA, Krygsman P, Soltes GA, Walczyk E, Malek LT.
+RL  Gene. 1994 Apr 8;141(1):115-9.

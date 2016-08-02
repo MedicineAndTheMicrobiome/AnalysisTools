@@ -1,0 +1,17 @@
+ID  hypC_hupF
+AC  TIGR00074
+DE  hydrogenase assembly chaperone HypC/HupF
+AU  Haft DH
+TC  48.00 48.00
+NC  39.50 39.50
+AL  clustalw_manual
+IT  equivalog
+EN  hydrogenase assembly chaperone HypC/HupF
+GS  hypC
+TP  TIGRFAMs
+CC  See Medline:98153179 for function. This protein is suggested by act as a chaperone for a hydrogenase large subunit, holding the precursor form before metallocenter nickel incorporation.     
+CC  [SS 12/31/03] More recently proposed additional function is to shuttle the iron atom that has been liganded at the HypC/HypD complex to the precursor of the large hydrogenase (HycE) subunit. PMID:12441107.  Added metallochaperone and protein mod GO terms.
+RM  98153179
+RT  Interaction of the hydrogenase accessory protein HypC with HycE, the large subunit of Escherichia coli hydrogenase 3 during enzyme maturation.
+RA  Drapal N, Bock A
+RL  Biochemistry 1998 Mar 3;37(9):2941-8

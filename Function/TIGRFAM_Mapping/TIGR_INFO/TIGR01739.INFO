@@ -1,0 +1,11 @@
+ID  tegu_FGAM_synt
+AC  TIGR01739
+DE  herpesvirus tegument protein/v-FGAM-synthase
+AU  Haft DH
+TC  716.10 716.10
+NC  544.65 544.65
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  herpesvirus tegument protein/v-FGAM-synthase
+TP  TIGRFAMs
+CC  This HMM describes a family of large proteins of herpesvirues. The protein is described variably as tegument protein or phosphoribosylformylglycinamidine synthase (FGAM-synthase). Most of the length of the protein shows homology to eukaryotic FGAM-synthase. Functional characterizations were not verified during construction of this model.

@@ -1,0 +1,17 @@
+ID  TIGR03172
+AC  TIGR03172
+DE  putative selenium-dependent hydroxylase accessory protein YqeC
+AU  Haft DH
+TC  73.05 73.05
+NC  33.35 33.35
+AL  muscle
+IT  equivalog
+EN  probable selenium-dependent hydroxylase accessory protein YqeC
+GS  yqeC
+TP  TIGRFAMs
+CC  This uncharacterized protein family includes YqeC from Escherichia coli. A phylogenetic profiling analysis shows correlation with SelD, the selenium donor protein, even in species where SelD contributes to neither selenocysteine nor selenouridine biosynthesis. Instead, this family, and families TIGR03309 and TIGR03310 appear to mark selenium-dependent molybdenum hydroxylase maturation systems.
+RN  [1]
+RM  PMID:18289380
+RT  Orphan SelD proteins and selenium-dependent molybdenum hydroxylases.
+RA  Haft DH, Self WT
+RL  Biol Direct. 2008 Feb 20;3:4.

@@ -1,0 +1,25 @@
+ID  trmD
+AC  TIGR00088
+DE  tRNA (guanine(37)-N(1))-methyltransferase
+AU  Haft DH
+TC  195.00 195.00
+NC  29.35 29.35
+AL  msa_tigr
+IT  equivalog
+EN  tRNA (guanine-N1)-methyltransferase
+GS  trmD
+EC  2.1.1.228
+TP  TIGRFAMs
+CC  This model is specfic for the tRNA modification enzyme tRNA (guanine-N1)-methyltransferase (trmD). This enzyme methylates guanosime-37 in a number of tRNAs.The enzyme's catalytic activity is as follows: 
+CC  S-adenosyl-L-methionine + tRNA = S-adenosyl-L-homocysteine + tRNA containing N1-methylguanine.
+RN  [1]
+RM  6337136 
+RT  Purification and characterization of transfer RNA           (guanine-1)methyltransferase from Escherichia coli.
+RA  Hjalmarsson KJ, Bystrom AS, Bjork GR.
+RL  J Biol Chem 1983 Jan 25;258(2):1343-51
+RN  [2]
+RM  15060037
+RT  Characterization of Streptococcus pneumoniae TrmD, a tRNA methyltransferase essential for growth.
+RA  O'Dwyer K, Watts JM, Biswas S, Ambrad J, Barber M, Brule H, Petit C, Holmes DJ, Zalacain M, Holmes WM.
+RL  J Bacteriol. 2004 Apr;186(8):2346-54.
+DR  HAMAP; MF_00605; 453 of 462

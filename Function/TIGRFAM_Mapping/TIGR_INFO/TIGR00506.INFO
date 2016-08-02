@@ -1,0 +1,15 @@
+ID  ribB
+AC  TIGR00506
+DE  3,4-dihydroxy-2-butanone-4-phosphate synthase
+AU  Anolik RT, Richardson DL
+TC  177.45 177.45
+NC  102.10 102.10
+AL  clustalw
+IT  equivalog_domain
+EN  3,4-dihydroxy-2-butanone 4-phosphate synthase
+GS  ribB
+EC  4.1.99.12
+TP  TIGRFAMs
+CC  Several members of the family are bifunctional, involving both ribA and ribB function. In these cases, ribA tends to be on the C-terminal end of the protein and ribB tends to be on the N-terminal.
+DR  ECOCYC; RIBB
+DR  HAMAP; MF_01283; 45 of 46

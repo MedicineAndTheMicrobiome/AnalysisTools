@@ -1,0 +1,16 @@
+ID  sex-lethal
+AC  TIGR01659
+DE  sex-lethal family splicing factor
+AU  Selengut J
+TC  486.20 486.20
+NC  217.10 217.10
+AL  clustalw
+IT  subfamily
+EN  sex-lethal family splicing factor
+TP  TIGRFAMs
+CC  This model describes the sex-lethal family of splicing factors found in Dipteran insects.  The sex-lethal phenotype, however, may be limited to the Melanogasters and closely related species [1].  In Drosophila the protein acts as an inhibitor of splicing.  This subfamily is most closely related to the ELAV/HUD subfamily of splicing factors (TIGR01661).
+RN  [1]
+RM  PMID: 10648226
+RT  Structure, function and evolution of sex-determining systems in Dipteran insects.
+RA  Schutt C, Nothiger R.
+RL  Development 2000 Feb;127(4):667-77

@@ -1,0 +1,12 @@
+ID  hyp_HI0043
+AC  TIGR01620
+DE  TIGR01620 family protein
+AU  Sunshine J, Selengut J
+TC  166.00 166.00
+NC  89.75 89.75
+AL  clustalw
+IT  hypoth_equivalog
+EN  TIGR01620 family protein
+TP  TIGRFAMs
+CC  This model includes putative membrane proteins from alpha and gamma proteobacteria, each making up their own clade. The two clades have less than 25% identity between them. We could not find support for the assignment to the sequence from Brucella (OMNI|NTL01BM0951) of being a GTP-binding protein.
+DR  HAMAP; MF_01085; 59 of 60

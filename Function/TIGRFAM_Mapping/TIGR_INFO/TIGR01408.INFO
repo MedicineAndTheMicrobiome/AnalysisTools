@@ -1,0 +1,11 @@
+ID  Ube1
+AC  TIGR01408
+DE  ubiquitin-activating enzyme E1
+AU  Haft DH
+TC  750.05 750.05
+NC  494.30 494.30
+AL  clustalw
+IT  subfamily
+EN  ubiquitin-activating enzyme E1
+TP  TIGRFAMs
+CC  This HMM represents the full length, over a thousand amino acids, of a multicopy family of eukaryotic proteins, many of which are designated ubiquitin-activating enzyme E1. Members have two copies of the ThiF family domain (PF00899), a repeat found in ubiquitin-activating proteins (PF02134), and other regions.

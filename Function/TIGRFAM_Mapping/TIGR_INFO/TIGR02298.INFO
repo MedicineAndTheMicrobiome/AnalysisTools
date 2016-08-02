@@ -1,0 +1,18 @@
+ID  HpaD_Fe
+AC  TIGR02298
+DE  3,4-dihydroxyphenylacetate 2,3-dioxygenase
+AU  Selengut J
+TC  315.95 315.95
+NC  127.90 127.90
+AL  clustalw
+IT  equivalog
+EN  3,4-dihydroxyphenylacetate 2,3-dioxygenase
+GS  hpaD
+EC  1.13.11.15
+TP  TIGRFAMs
+CC  This enzyme catalyzes the ring-opening step in the degradation of 4-hydroxyphenylacetate [1].
+RN  [1]
+RM  PMID: 2261999
+RT  Subcloning and nucleotide sequence of the 3,4-dihydroxyphenylacetate (homoprotocatechuate) 2,3-dioxygenase gene from Escherichia coli C.
+RA  Roper DI, Cooper RA.
+RL  FEBS Lett. 1990 Nov 26;275(1-2):53-7.

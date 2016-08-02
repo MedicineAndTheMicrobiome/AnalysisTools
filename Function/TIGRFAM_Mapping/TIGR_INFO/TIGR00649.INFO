@@ -1,0 +1,21 @@
+ID  MG423
+AC  TIGR00649
+DE  beta-CASP ribonuclease, RNase J family
+AU  Loftus BJ, Haft DH
+TC  584.50 584.50
+NC  278.50 278.50
+IT  subfamily
+EN  beta-CASP ribonuclease, RNase J family
+EC  3.1.-.-
+TP  TIGRFAMs
+CC  This family of metalloenzymes includes RNase J1 and RNase J2, involved in mRNA degradation in a wide range of organism.
+RN  [1]
+RM  PMID:15831787 
+RT  Ribonucleases J1 and J2: two novel endoribonucleases in B.subtilis with functional homology to E.coli RNase E. 
+RA  Even S, Pellegrini O, Zig L, Labas V, Vinh J, Brechemmier-Baey D, Putzer H 
+RL  Nucleic Acids Res. 2005 Apr 14;33(7):2141-52.
+RN  [2]
+RM  PMID:23403287 
+RT  Emergence of the beta-CASP ribonucleases: highly conserved and ubiquitous metallo-enzymes involved in messenger RNA maturation and degradation. 
+RA  Dominski Z, Carpousis AJ, Clouet-d'Orval B 
+RL  Biochim Biophys Acta. 2013 Jun-Jul;1829(6-7):532-51.

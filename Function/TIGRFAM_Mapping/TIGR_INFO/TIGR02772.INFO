@@ -1,0 +1,12 @@
+ID  Ku_bact
+AC  TIGR02772
+DE  Ku protein
+AU  Haft DH
+TC  204.30 204.30
+NC  89.95 89.95
+AL  clustalw
+IT  equivalog
+EN  Ku protein, prokaryotic
+TP  TIGRFAMs
+CC  Members of this protein family are Ku proteins of non-homologous end joining (NHEJ) DNA repair in bacteria and in at least one member of the archaea (Archaeoglobus fulgidus). Most members are encoded by a gene adjacent to the gene for the DNA ligase that completes the repair. The NHEJ system is broadly but rather sparsely distributed, being present in about one fifth of the first 250 completed prokarytotic genomes. A few species (e.g. Archaeoglobus fulgidus and Bradyrhizobium japonicum) have multiple copies that appear to represent recent paralogous family expansion.
+DR  PFAM; PF02735; Ku70/Ku80 beta-barrel domain

@@ -1,0 +1,12 @@
+ID  microcomp_EutL
+AC  TIGR04502
+DE  microcompartment protein EutL
+AU  Haft DH
+TC  300.00 300.00
+NC  250.00 250.00
+AL  muscle_manual
+IT  equivalog
+EN  microcompartment protein EutL
+GS  eutL
+TP  TIGRFAMs
+CC  Members of this family are EutL, a protein of bacterial microcompartments for ethanolamine utilization (eut). The most closely related protein in microcompartments for utilization of 1,2-propanediol (hence pdu) or glycerol is PduB (TIGR04501).

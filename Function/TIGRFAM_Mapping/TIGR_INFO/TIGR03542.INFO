@@ -1,0 +1,22 @@
+ID  DAPAT_plant
+AC  TIGR03542
+DE  LL-diaminopimelate aminotransferase
+AU  Selengut J
+TC  364.70 364.70
+NC  246.55 246.55
+AL  muscle
+IT  equivalog
+EN  LL-diaminopimelate aminotransferase
+EC  2.6.1.83
+TP  TIGRFAMs
+CC  This clade of the PF00155 superfamily of aminotransferases includes several which are adjacent to elements of the lysine biosynthesis via diaminopimelate pathway (GenProp0125).  This clade includes characterized species in plants and Chlamydia [1, 2].  Every member of this clade is from a genome which possesses most of the lysine biosynthesis pathway but lacks any of the known succinylases, desuccinylases, acetylases or deacetylases typical of the acylated versions of this pathway nor do they have the direct, NADPH-dependent enzyme (ddh).
+RN  [1]
+RM  PMID:17583737 
+RT  Crystal structure of LL-diaminopimelate aminotransferase from Arabidopsis thaliana: a recently discovered enzyme in the biosynthesis of L-lysine by plants and Chlamydia. 
+RA  Watanabe N, Cherney MM, van Belkum MJ, Marcus SL, Flegel MD, Clay MD, Deyholos MK, Vederas JC, James MN 
+RL  J Mol Biol. 2007 Aug 17;371(3):685-702. Epub 2007 May 26. 
+RN  [2]
+RM  PMID:17093042 
+RT  L,L-diaminopimelate aminotransferase, a trans-kingdom enzyme shared by Chlamydia and plants for synthesis of diaminopimelate/lysine. 
+RA  McCoy AJ, Adams NE, Hudson AO, Gilvarg C, Leustek T, Maurelli AT 
+RL  Proc Natl Acad Sci U S A. 2006 Nov 21;103(47):17909-14. Epub 2006 Nov 8.

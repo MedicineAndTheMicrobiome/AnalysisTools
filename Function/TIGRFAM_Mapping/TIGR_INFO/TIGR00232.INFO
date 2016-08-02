@@ -1,0 +1,13 @@
+ID  tktlase_bact
+AC  TIGR00232
+DE  transketolase
+AU  Haft DH, Richardson DL
+TC  682.25 682.25
+NC  621.15 621.15
+AL  clustalw
+IT  equivalog
+EN  transketolase, bacterial and yeast
+GS  tkt
+EC  2.2.1.1
+TP  TIGRFAMs
+CC  This HMM is designed to capture orthologs of bacterial transketolases. The group includes two from the yeast Saccharomyces cerevisiae but excludes dihydroxyactetone synthases (formaldehyde transketolases) from various yeasts and the even more distant mammalian transketolases. Among the family of thiamine diphosphate-dependent enzymes that includes transketolases, dihydroxyacetone synthases, pyruvate dehydrogenase E1-beta subunits, and deoxyxylulose-5-phosphate synthases, mammalian and bacterial transketolases seem not to be orthologous.

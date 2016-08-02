@@ -1,0 +1,14 @@
+ID  malonate_madL
+AC  TIGR00807
+DE  malonate transporter, MadL subunit
+AU  Paulsen IT, Saier MH, Loftus BJ, Haft DH
+TC  113.45 113.45
+NC  37.35 37.35
+AL  clustalw_manual
+IT  equivalog
+EN  malonate transporter, MadL subunit
+GS  madL
+TR  2.A.70
+TP  TIGRFAMs
+CC  The MSS family includes the monobasic malonate:Na+ symporter of Malonomonas rubra. It consists of two integral membrane proteins, MadL and MadM. The transporter is believed to catalyze the electroneutral reversible uptake of H+-malonate with one Na+, and both subunits have been shown to be essential for activity.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_70.html

@@ -1,0 +1,25 @@
+ID  undec_PP_bacA
+AC  TIGR00753
+DE  undecaprenyl-diphosphatase UppP
+AU  Loftus BJ, Haft DH
+TC  217.50 217.50
+NC  107.90 107.90
+AL  clustalw_manual
+IT  equivalog
+EN  undecaprenyl-diphosphatase UppP
+GS  uppP
+EC  3.6.1.27
+TP  TIGRFAMs
+CC  This is a family of small, highly hydrophobic proteins. Overexpression of this protein in Escherichia coli is associated with bacitracin resistance, and the protein was originally proposed to be an undecaprenol kinase and called bacA. It is now known to be an undecaprenyl pyrophosphate phosphatase (EC 3.6.1.27) and is renamed UppP.
+DR  InterPro; IPR003824
+RN  [1]
+RM  PMID:15138271
+RT  The bacA gene of Escherichia coli encodes an undecaprenyl pyrophosphate phosphatase activity.
+RA  El Ghachi M, Bouhss A, Blanot D, Mengin-Lecreulx D
+RL  J Biol Chem. 2004 Jul 16;279(29):30106-13.
+RN  [2]
+RM  PMID: 8389741 
+RT  Amplification of the bacA gene confers bacitracin resistance to Escherichia coli.
+RA  Cain BD, Norton PJ, Eubanks W, Nick HS, Allen CM
+RL  J Bacteriol 1993 Jun;175(12):3784-9
+DR  HAMAP; MF_01006; 348 of 485

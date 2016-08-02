@@ -1,0 +1,17 @@
+ID  panK_bact
+AC  TIGR00554
+DE  pantothenate kinase
+AU  Haft DH
+TC  306.20 306.20
+NC  185.70 185.70
+IT  equivalog
+EN  pantothenate kinase, bacterial type
+GS  coaA
+EC  2.7.1.33
+TP  TIGRFAMs
+CC  Shown to be a homodimer in E. coli. This enzyme catalyzes the rate-limiting step in the biosynthesis of coenzyme A. It is very well conserved from E. coli to B. subtilis, but differs considerably from known eukaryotic forms, described in a separate model.
+RM  95014575
+RT  Kinetics and regulation of pantothenate kinase from Escherichia coli.
+RA  Song WJ, Jackowski S
+RL  J Biol Chem 1994 Oct 28;269(43):27051-8
+DR  HAMAP; MF_00215; 158 of 161

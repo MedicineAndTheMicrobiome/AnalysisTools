@@ -1,0 +1,13 @@
+ID  nickel_nikD
+AC  TIGR02770
+DE  nickel import ATP-binding protein NikD
+AU  Haft DH
+TC  318.70 318.70
+NC  304.10 304.10
+AL  clustalw
+IT  equivalog
+EN  nickel import ATP-binding protein NikD
+GS  nikD
+TP  TIGRFAMs
+CC  This family represents the NikD subunit of a multisubunit nickel import ABC transporter complex. Nickel, once imported, may be used in urease and in certain classes of hydrogenase and superoxide dismutase. NikD and NikE are homologous.
+DR  HAMAP; MF_01711; 15 of 16

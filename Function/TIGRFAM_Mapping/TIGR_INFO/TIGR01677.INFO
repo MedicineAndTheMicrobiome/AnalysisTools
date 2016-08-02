@@ -1,0 +1,12 @@
+ID  pln_FAD_oxido
+AC  TIGR01677
+DE  plant-specific FAD-dependent oxidoreductase
+AU  Haft DH
+TC  383.10 383.10
+NC  151.85 151.85
+AL  clustalw
+IT  subfamily
+EN  plant-specific FAD-dependent oxidoreductase
+EC  1.-.-.-
+TP  TIGRFAMs
+CC  This HMM represents an uncharacterized plant-specific family of FAD-dependent oxidoreductases. At least seven distinct members are found in Arabidopsis thaliana. The family shows considerable sequence similarity to three different enzymes of ascorbic acid biosynthesis: L-galactono-1,4-lactone dehydrogenase (EC 1.3.2.3) from higher plants, D-arabinono-1,4-lactone oxidase (EC 1.1.3.37 from Saccharomyces cerevisiae, and L-gulonolactone oxidase (EC 1.1.3.8) from mouse, as well as to a bacterial sorbitol oxidase. The class of compound acted on by members of this family is unknown.

@@ -1,0 +1,14 @@
+ID  asd_EA
+AC  TIGR00978
+DE  aspartate-semialdehyde dehydrogenase
+AU  Haft DH
+TC  301.20 301.20
+NC  201.30 201.30
+AL  clustalw
+IT  equivalog
+EN  aspartate-semialdehyde dehydrogenase (non-peptidoglycan organisms)
+GS  asd
+EC  1.2.1.11
+TP  TIGRFAMs
+CC  Two closely related families of aspartate-semialdehyde dehydrogenase are found. They differ by a deep split in phylogenetic and percent identity trees and in gap patterns. Separate models are built for the two types in order to exclude the USG-1 protein, found in several species, which is specifically related to the Bacillus subtilis type of aspartate-semialdehyde dehydrogenase. Members of this type are found primarily in organisms that lack peptidoglycan.
+DR  EXPERIMENTAL; EGAD|21487|22107; Leptospira borgpetersenii

@@ -1,0 +1,14 @@
+ID  matE
+AC  TIGR00797
+DE  MATE efflux family protein
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  147.40 147.40
+NC  123.20 123.20
+AL  clustalw_manual
+IT  subfamily
+EN  putative efflux protein, MATE family
+TR  2.A.66.1
+TP  TIGRFAMs
+CC  The Multi Antimicrobial Extrusion (MATE) Family (TC 2.A.66)
+CC  The MATE family consists of probable efflux proteins including a functionally characterized multi drug efflux system from Vibrio parahaemolyticus, a putative ethionine resistance protein of Saccharomyces cerevisiae, and the functionally uncharacterized DNA damage-inducible protein F (DinF) of E. coli. These proteins have 12 probable TMS.
+DR  HAMAP; MF_00400; 33 of 34

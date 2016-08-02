@@ -1,0 +1,11 @@
+ID  XXXCH_domain
+AC  TIGR04358
+DE  XXXCH domain
+AU  Haft DH
+TC  40.00 40.00
+NC  30.00 30.00
+AL  muscle_manual
+IT  subfamily_domain
+EN  XXXCH domain
+TP  TIGRFAMs
+CC  Members of this family show C-terminal sequence similarity, perhaps indicating distant homology, to cytochrome c-prime (see Pfam family PF01322). However, the motif CxxCH is replaced by xxxCH. Genes for this protein occur in a sporadically distributed genome context, largely in deltaProteobacteria, in which an ATP-grasp family glutamate ligase homolog and a CofD (LPPG:FO 2-phospho-L-lactate transferase) homolog suggest a novel biosynthesis.

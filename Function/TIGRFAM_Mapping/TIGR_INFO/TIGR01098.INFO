@@ -1,0 +1,35 @@
+ID  3A0109s03R
+AC  TIGR01098
+DE  phosphate/phosphite/phosphonate ABC transporter, periplasmic binding protein
+AU  Haft DH, Loftus BJ
+TC  112.05 112.05
+NC  84.30 84.30
+AL  clustalw_manual
+IT  subfamily
+EN  phosphate/phosphite/phosphonate ABC transporter, periplasmic binding protein
+GS  phnD
+TR  3.A.1
+TP  TIGRFAMs
+CC  Phosphonates are a varied class of phosphorus-containing organic compound in which a direct C-P bond is found, rather than a C-O-P linkage of the phosphorus through an oxygen atom. They may be toxic but also may be used as sources of phosphorus and energy by various bacteria. Phosphonate utilization systems typically are encoded in 14 or more genes, including a three gene ABC transporter. This family includes the periplasmic binding protein component of ABC transporters for phosphonates [1] as well as other, related binding components for closely related substances such as phosphate [2] and phosphite [3].  A number of members of this family are found in genomic contexts with components of selenium metabolic processes suggestive of a role in selenate or other selenium-compound transport.
+CC  A subset of this model in which nearly all members exhibit genomic context with elements of phosphonate metabolism, particularly the C-P lyase system (GenProp0232, [4]) has been built (TIGR03431) as an equivalog.  Nevertheless, there are members of this subfamily (TIGR01098) which show up sporadically on a phylogenetic tree that also show phosphonate context and are most likely competent to transport phosphonates.
+DR  URL; http://tcdb.ucsd.edu/tcdb/tcfamilybrowse.php?tcname=3.A.1
+RN  [1]
+RM  PMID:16751609 
+RT  Identification of cognate ligands for the Escherichia coli phnD protein product and engineering of a reagentless fluorescent biosensor for phosphonates. 
+RA  Rizk SS, Cuneo MJ, Hellinga HW 
+RL  Protein Sci. 2006 Jul;15(7):1745-51. Epub 2006 Jun 2. 
+RN  [2]
+RM  17074913
+RT  The Phn system of Mycobacterium smegmatis: a second high-affinity ABC-transporter for phosphate. 
+RA  Gebhard S, Tran SL, Cook GM 
+RL  Microbiology. 2006 Nov;152(Pt 11):3453-65. 
+RN  [3]
+RM  PMID:15317793 
+RT  The htx and ptx operons of Pseudomonas stutzeri WM88 are new members of the pho regulon. 
+RA  White AK, Metcalf WW 
+RL  J Bacteriol. 2004 Sep;186(17):5876-82. 
+RN  [4]
+RM  PMID:8335257 
+RT  Evidence for a fourteen-gene, phnC to phnP locus for phosphonate metabolism in Escherichia coli. 
+RA  Metcalf WW, Wanner BL 
+RL  Gene. 1993 Jul 15;129(1):27-32.

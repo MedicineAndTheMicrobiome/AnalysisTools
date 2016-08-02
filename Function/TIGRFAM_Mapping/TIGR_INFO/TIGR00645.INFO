@@ -1,0 +1,11 @@
+ID  HI0507
+AC  TIGR00645
+DE  TIGR00645 family protein
+AU  Haft DH
+TC  144.40 144.40
+NC  34.85 34.85
+IT  hypoth_equivalog
+EN  TIGR00645 family protein
+TP  TIGRFAMs
+CC  This conserved hypothetical protein with four predicted transmembrane regions is found in E. coli, Haemophilus influenzae, and Helicobacter pylori, among completed genomes. A similar protein from Aquifex aeolicus appears to share a central region of homology and a similar overall arrangement of hydrophobic stretches, and forms a bidirectional best hit with several members of the seed alignment. However, it is uncertain whether the observed similarity represents full-length homology and/or equivalent function, and so it is excluded from the seed and scores below the trusted cutoff.
+DR  HAMAP; MF_00143; 61 of 62

@@ -1,0 +1,13 @@
+ID  TIGR00273
+AC  TIGR00273
+DE  iron-sulfur cluster-binding protein
+AU  Loftus BJ, Haft DH
+TC  444.80 444.80
+NC  254.85 254.85
+AL  clustalw
+IT  equivalog
+EN  iron-sulfur cluster-binding protein
+TP  TIGRFAMs
+CC  Members of this family have a perfect 4Fe-4S binding motif C-x(2)-C-x(2)-C-x(3)-CP followed by either a perfect or imperfect (the first Cys replaced by Ser) second copy.  Members probably bind two 4fe-4S iron-sulfur clusters.
+DR  SWISSPROT; P77536;
+DR  PROSITE; PDOC00176; 4Fe-4S ferredoxins, iron-sulfur binding region signature

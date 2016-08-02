@@ -1,0 +1,12 @@
+ID  cas_csx12
+AC  TIGR03031
+DE  CRISPR-associated protein Cas9/Csx12, subtype II-B/NMENI
+AU  Haft DH
+TC  399.40 399.40
+NC  399.00 399.00
+AL  muscle
+IT  hypoth_equivalog
+EN  CRISPR-associated protein Cas9/Csx12, subtype II-B/NMENI
+GS  cas9
+TP  TIGRFAMs
+CC  Members of this family of CRISPR-associated (cas) protein are found, so far, in CRISPR/cas loci in Wolinella succinogenes DSM 1740, Legionella pneumophila str. Paris, and Francisella tularensis, where the last probably is an example of a degenerate CRISPR locus, having neither repeats nor a functional Cas1. The characteristic repeat length is 37 base pairs and period is about 72. One region of this large protein shows sequence similarity to PFAM model PF01844, HNH endonuclease.

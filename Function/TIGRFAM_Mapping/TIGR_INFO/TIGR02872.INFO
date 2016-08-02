@@ -1,0 +1,17 @@
+ID  spore_ytvI
+AC  TIGR02872
+DE  sporulation integral membrane protein YtvI
+AU  Haft DH
+TC  198.15 198.15
+NC  147.55 147.55
+AL  muscle
+IT  equivalog
+EN  sporulation integral membrane protein YtvI
+GS  ytvI
+TP  TIGRFAMs
+CC  Three lines of evidence show this protein to be involved in sporulation. First, it is under control of a sporulation-specific sigma factor, sigma-E. Second, mutation leads to a sporulation defect. Third, it if found in exactly those genomes whose bacteria are capable of sporulation, except for being absent in Clostridium acetobutylicum ATCC824. This protein has extensive hydrophobic regions and is likely an integral membrane protein.
+RN  [1]
+RM  12662922
+RT  The sigmaE regulon and the identification of additional sporulation genes in Bacillus subtilis.
+RA  Eichenberger P, Jensen ST, Conlon EM, van Ooij C, Silvaggi J, Gonzalez-Pastor JE, Fujita M, Ben-Yehuda S, Stragier P, Liu JS, Losick R.
+RL  J Mol Biol. 2003 Apr 11;327(5):945-72.

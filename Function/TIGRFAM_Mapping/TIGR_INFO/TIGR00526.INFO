@@ -1,0 +1,21 @@
+ID  folB_dom
+AC  TIGR00526
+DE  FolB domain
+AU  Haft DH
+TC  45.05 45.05
+NC  35.65 35.65
+AL  clustalw
+IT  domain
+EN  FolB domain
+TP  TIGRFAMs
+CC  Two paralogous genes of E. coli, folB (dihydroneopterin aldolase) and folX (d-erythro-7,8-dihydroneopterin triphosphate epimerase) are homologous to each other and homo-octameric. In Pneumocystis carinii, a multifunctional enzyme of folate synthesis has an N-terminal region active as dihydroneopterin aldolase. This region consists of two tandem sequences each homologous to folB and forms tetramers.
+RN  [1]
+RM  98316300
+RT  Biosynthesis of pteridines in Escherichia coli. Structural and mechanistic similarity of dihydroneopterin-triphosphate epimerase and dihydroneopterin aldolase.
+RA  Haussmann C, Rohdich F, Schmidt E, Bacher A, Richter G
+RL  J Biol Chem 1998 Jul 10;273(28):17418-24
+RN  [2]
+RM  98376447
+RT  Single amino acid substitutions disrupt tetramer formation in the dihydroneopterin aldolase enzyme of Pneumocystis carinii.
+RA  Thomas MC, Ballantine SP, Bethell SS, Bains S, Kellam P, Delves CJ
+RL  Biochemistry 1998 Aug 18;37(33):11629-36

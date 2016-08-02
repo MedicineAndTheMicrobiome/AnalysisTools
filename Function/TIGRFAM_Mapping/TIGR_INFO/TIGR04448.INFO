@@ -1,0 +1,17 @@
+ID  creatininase
+AC  TIGR04448
+DE  creatininase
+AU  Haft DH
+TC  235.00 235.00
+NC  215.00 215.00
+AL  muscle_manual
+IT  equivalog
+EN  creatininase
+EC  3.5.2.10
+TP  TIGRFAMs
+CC  Members of this family are creatininase (EC 3.5.2.10), an  amidohydrolase that interconverts creatinine + H(2)O with creatine. It should not be confused with creatinase (EC 3.5.3.3), which hydrolyzes creatine to sarcosine plus urea.
+RN  [1]
+RM  PMID:9563845 
+RT  Gene cluster for creatinine degradation in Arthrobacter sp. TE1826. 
+RA  Nishiya Y, Toda A, Imanaka T 
+RL  Mol Gen Genet. 1998 Mar;257(5):581-6.

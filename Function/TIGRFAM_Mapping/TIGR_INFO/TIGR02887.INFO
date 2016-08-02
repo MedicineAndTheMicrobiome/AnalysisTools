@@ -1,0 +1,11 @@
+ID  spore_ger_x_C
+AC  TIGR02887
+DE  germination protein, Ger(x)C family
+AU  Haft DH
+TC  163.25 163.25
+NC  119.15 119.15
+AL  muscle
+IT  subfamily
+EN  germination protein, Ger(x)C family
+TP  TIGRFAMs
+CC  Members of this protein family are restricted to endospore-forming members of the Firmicutes lineage of bacteria, including the genera Bacillus, Clostridium, Thermoanaerobacter, Carboxydothermus, etc. Members are nearly all predicted lipoproteins and belong to probable transport operons, some of which have been characterized as crucial to germination in response to alanine. Members typically have been gene symbols gerKC, gerAC, gerYC, etc.

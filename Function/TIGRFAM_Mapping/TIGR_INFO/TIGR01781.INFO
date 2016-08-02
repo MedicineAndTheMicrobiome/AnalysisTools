@@ -1,0 +1,11 @@
+ID  Trep_dent_lipo
+AC  TIGR01781
+DE  Treponema denticola clustered lipoprotein
+AU  Haft DH
+TC  294.45 294.45
+NC  294.40 294.40
+AL  clustalw
+IT  paralog
+EN  Treponema denticola clustered lipoprotein
+TP  TIGRFAMs
+CC  This HMM represents a family of six predicted lipoproteins from a region of about 20 tandemly arranged genes in the Treponema denticola genome. Two other neighboring genes share the lipoprotein signal peptide region but do not show more extensive homology. The function of this locus is unknown.

@@ -1,0 +1,14 @@
+ID  4HPPD
+AC  TIGR01263
+DE  4-hydroxyphenylpyruvate dioxygenase
+AU  Haft DH
+TC  277.00 277.00
+NC  93.60 93.60
+AL  clustalw_manual
+IT  equivalog
+EN  4-hydroxyphenylpyruvate dioxygenase
+GS  hppD
+EC  1.13.11.27
+TP  TIGRFAMs
+CC  This protein oxidizes 4-hydroxyphenylpyruvate, a tyrosine and phenylalanine catabolite, to homogentisate. Homogentisate can undergo a further non-enzymatic oxidation and polymerization into brown pigments that protect some bacterial species from light. A similar process occurs spontaneously in blood and is hemolytic (see PMID:8000039). In some bacterial species, this enzyme has been studied as a hemolysin.
+DR  EXPERIMENTAL; EGAD|22485; Streptomyces avermitilis

@@ -1,0 +1,22 @@
+ID  glyc_debranch
+AC  TIGR01531
+DE  glycogen debranching enzyme
+AU  Durkin S
+TC  1399.55 1399.55
+NC  574.95 574.95
+AL  clustalw
+IT  equivalog
+EN  glycogen debranching enzymye
+GS  GDE
+TP  TIGRFAMs
+CC  glycogen debranching enzyme possesses two different catalytic activities; oligo-1,4-->1,4-glucantransferase (EC 2.4.1.25) and amylo-1,6-glucosidase (EC 3.2.1.33). Site directed mutagenesis studies in S. cerevisiae [1] indicate that the transferase and glucosidase activities are independent and located in different regions of the polypeptide chain. Proteins in this model belong to the larger alpha-amylase family. The model covers eukaryotic proteins with a seed composed of human, nematode and yeast sequences. Yeast seed sequence is well characterized. The model is quite rigorous; either query sequence yields large bit score or it fails to hit the model altogether. There doesn't appear to be any middle ground.
+RN  [1]
+RM  PMID: 11375985
+RT  Identification of the catalytic residues of bifunctional glycogen debranching enzyme.
+RA  Nakayama A, Yamamoto K, Tabata S
+RL  J Biol Chem 2001 Aug 3;276(31):28824-8
+RN  [2]
+RM  PMID: 8136030
+RT  Starch- and glycogen-debranching and branching enzymes: prediction of structural features of the catalytic (beta/alpha)8-barrel domain and evolutionary relationship to other amylolytic enzymes
+RA  Jespersen HM, MacGregor EA, Henrissat B, Sierks MR, Svensson B
+RL  J Protein Chem 1993 Dec;12(6):791-805

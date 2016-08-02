@@ -1,0 +1,11 @@
+ID  sarcinarray
+AC  TIGR04209
+DE  sarcinarray family protein
+AU  Haft DH
+TC  45.00 45.00
+NC  40.00 25.00
+AL  muscle_manual
+IT  subfamily
+EN  sarcinarray family protein
+TP  TIGRFAMs
+CC  Members of this protein family are exclusive to archaea, probably all of which have S-layer surface protein arrays. All member proteins have an N-terminal signal sequence. The majority of known members belong to codirectional tandem arrays in the genus Methanosarcina (nine in M. barkeri str. Fusaro). Nearly all members have an additional 50 residues, (trimmed from the seed alignment for this HMM), consisting of low-complexity sequence rich in E,N,Q,T,S, and P, followed by a variant (PAF) form of the PGF-CTERM putative archaeal surface glycoprotein sorting signal. The coined name, sarcinarray family protein, evokes the predicted archaeal surface layer localization, the taxonomic bias of known members, and the tandem organization of most members.

@@ -1,0 +1,17 @@
+ID  spare_glycyl
+AC  TIGR04365
+DE  autonomous glycyl radical cofactor GrcA
+AU  Haft DH
+TC  170.00 170.00
+NC  160.00 160.00
+AL  clustalw_manual
+IT  equivalog
+EN  autonomous glycyl radical cofactor GrcA
+GS  grcA
+TP  TIGRFAMs
+CC  This small protein, previously designated YfiD in E. coli, is closely homologous to pyruvate formate_lyase (PFL) in a region surrounding the stable glycyl radical that is prepared by the action of pyruvate formate-lyase activase, a radical SAM enzyme. When damage at the site of this radical breaks the main chain of PFL, this protein acts as a spare part that reintroduces the needed stable glycyl radical. Cutoffs for this model are set to exclude a set of closely related phage proteins that appear to have a corresponding function.
+RN  [1]
+RM  PMID:11444864 
+RT  YfiD of Escherichia coli and Y06I of bacteriophage T4 as autonomous glycyl radical cofactors reconstituting the catalytic center of oxygen-fragmented pyruvate formate-lyase. 
+RA  Wagner AF, Schultz S, Bomke J, Pils T, Lehmann WD, Knappe J 
+RL  Biochem Biophys Res Commun. 2001 Jul 13;285(2):456-62.

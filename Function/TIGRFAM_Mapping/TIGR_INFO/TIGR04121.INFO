@@ -1,0 +1,12 @@
+ID  DEXH_lig_assoc
+AC  TIGR04121
+DE  DEXH box helicase, DNA ligase-associated
+AU  Haft DH
+TC  850.00 850.00
+NC  750.00 750.00
+AL  muscle_manual
+IT  equivalog
+EN  DEXH box helicase, DNA ligase-associated
+EC  3.6.4.-
+TP  TIGRFAMs
+CC  Members of this protein family are DEAD/DEAH box helicases found associated with a bacterial ATP-dependent DNA ligase, part of a four-gene system that occurs in about 12 % of prokaryotic reference genomes. The actual motif in this family is DE[VILW]H.

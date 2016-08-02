@@ -1,0 +1,14 @@
+ID  cobI_cbiL
+AC  TIGR01467
+DE  precorrin-2 C(20)-methyltransferase
+AU  Haft DH
+TC  163.25 163.25
+NC  84.75 84.75
+AL  clustalw
+IT  equivalog
+EN  precorrin-2 C(20)-methyltransferase
+GS  cobI
+EC  2.1.1.130
+TP  TIGRFAMs
+CC  This HMM represents precorrin-2 C(20)-methyltransferase, one of several closely related S-adenosylmethionine-dependent methyltransferases involved in cobalamin (vitamin B12) biosynthesis.
+DR  EXPERIMENTAL; SP|P21639; Pseudomonas denitrificans

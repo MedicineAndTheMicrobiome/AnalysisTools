@@ -1,0 +1,15 @@
+ID  fuculo_kin_coli
+AC  TIGR02628
+DE  L-fuculokinase
+AU  Haft DH
+TC  470.90 470.90
+NC  296.85 296.85
+AL  clustalw
+IT  equivalog
+EN  L-fuculokinase
+GS  fucK
+EC  2.7.1.51
+TP  TIGRFAMs
+CC  Members of this family are L-fuculokinase, from the clade that includes the L-fuculokinase of Escherichia coli. This enzyme catalyzes the second step in fucose catabolism. This family belongs to FGGY family of carbohydrate kinases (PF02782, PF00370). It is encoded by the kinase (K) gene of the fucose (fuc) operon.
+DR  PFAM; PF00370; FGGY family of carbohydrate kinases, N-terminal domain
+DR  PFAM; PF02782; FGGY family of carbohydrate kinases, C-terminal domain

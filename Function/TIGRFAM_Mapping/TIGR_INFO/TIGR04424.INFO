@@ -1,0 +1,16 @@
+ID  metallo_McbB
+AC  TIGR04424
+DE  McbB family protein
+AU  Haft DH
+TC  65.00 65.00
+NC  25.00 25.00
+AL  muscle
+IT  subfamily
+EN  McbB family protein
+TP  TIGRFAMs
+CC  This family includes the partially characterized zinc metalloprotein McbB, part of the maturase system for microcin B17, a thiazole/oxazole-modified microcin (TOMM). Other members of this family belong to very different gene neighborhoods. The Cys residues that act as zinc ligands are conserved in most members, but for rare members are jointly absent.
+RN  [1]
+RM  PMID:11123948 
+RT  The McbB component of microcin B17 synthetase is a zinc metalloprotein. 
+RA  Zamble DB, McClure CP, Penner-Hahn JE, Walsh CT 
+RL  Biochemistry. 2000 Dec 26;39(51):16190-9.

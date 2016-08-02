@@ -1,0 +1,19 @@
+ID  arcA
+AC  TIGR01078
+DE  arginine deiminase
+AU  Dodson RJ
+TC  489.10 489.10
+NC  433.20 433.20
+AL  clustalw
+IT  equivalog
+EN  arginine deiminase
+GS  arcA
+EC  3.5.3.6
+TP  TIGRFAMs
+CC  Arginine deiminase is the first enzyme of the arginine deiminase pathway of arginine degradation.
+RM  9393705
+RT  The arginine deiminase pathway in Rhizobium etli: DNA        sequence analysis and functional study of the arcABC
+    genes.
+RA  D'Hooghe I, Vander Wauven C, Michiels J, Tricot C, de        Wilde P, Vanderleyden J, Stalon V
+RL  J Bacteriol 1997 Dec;179(23):7403-9
+DR  HAMAP; MF_00242; 94 of 98

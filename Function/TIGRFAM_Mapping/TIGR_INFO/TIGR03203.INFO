@@ -1,0 +1,18 @@
+ID  pimD_small
+AC  TIGR03203
+DE  pimeloyl-CoA dehydrogenase, small subunit
+AU  Haft DH
+TC  652.70 652.70
+NC  436.20 436.20
+AL  muscle
+IT  equivalog
+EN  pimeloyl-CoA dehydrogenase, small subunit
+GS  pimD
+EC  1.3.1.62
+TP  TIGRFAMs
+CC  Members of this protein family are the PimD proteins of species such as Rhodopseudomonas palustris, Bradyrhizobium japonicum. The pimFABCDE operon encodes proteins for the metabolism of straight chain dicarboxylates of seven to fourteen carbons. Especially relevant is pimeloyl-CoA, basis of the gene symbol, as it is a catabolite of benzoyl-CoA degradation, which occurs in Rhodopseudomonas palustris.
+RN  [1]
+RM  PMID: 15758219
+RT  The pimFABCDE operon from Rhodopseudomonas palustris mediates dicarboxylic acid degradation and participates in anaerobic benzoate degradation.
+RA  Harrison FH, Harwood CS
+RL  Microbiology. 2005 Mar;151(Pt 3):727-36.

@@ -1,0 +1,14 @@
+ID  valS
+AC  TIGR00422
+DE  valine--tRNA ligase
+AU  Haft DH
+TC  612.10 612.10
+NC  581.35 581.35
+AL  clustalw
+IT  equivalog
+EN  valyl-tRNA synthetase
+GS  valS
+EC  6.1.1.9
+TP  TIGRFAMs
+CC  The valyl-tRNA synthetase (ValS) is a class I amino acyl-tRNA ligase and is particularly closely related to the isoleucyl tRNA synthetase.
+DR  HAMAP; MF_02005; 35 of 47

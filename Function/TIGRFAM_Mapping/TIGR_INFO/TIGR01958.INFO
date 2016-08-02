@@ -1,0 +1,12 @@
+ID  nuoE_fam
+AC  TIGR01958
+DE  NADH-quinone oxidoreductase, E subunit
+AU  Haft DH
+TC  142.40 142.40
+NC  137.80 137.80
+AL  clustalw_manual
+IT  subfamily
+EN  NADH-quinone oxidoreductase, E subunit
+GS  nuoE
+TP  TIGRFAMs
+CC  This HMM describes the E chain of complexes that resemble  NADH-quinone oxidoreductases. The electron acceptor is a quinone, ubiquinone, in mitochondria and most bacteria, including Escherichia coli, where the recommended gene symbol is nuoB. This model does not identify proteins from chloroplast and cyanobacteria.

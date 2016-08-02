@@ -1,0 +1,16 @@
+ID  RutB
+AC  TIGR03614
+DE  pyrimidine utilization protein B
+AU  Selengut J
+TC  377.95 377.95
+NC  255.05 255.05
+AL  muscle
+IT  equivalog
+EN  pyrimidine utilization protein B
+GS  rutB
+TP  TIGRFAMs
+CC  RN  [1]
+CC  RM  PMID:16540542 
+CC  RT  A previously undescribed pathway for pyrimidine catabolism. 
+CC  RA  Loh KD, Gyaneshwar P, Markenscoff Papadimitriou E, Fong R, Kim KS, Parales R, Zhou Z, Inwood W, Kustu S 
+CC  RL  Proc Natl Acad Sci U S A. 2006 Mar 28;103(13):5114-9. Epub 2006 Mar 15.

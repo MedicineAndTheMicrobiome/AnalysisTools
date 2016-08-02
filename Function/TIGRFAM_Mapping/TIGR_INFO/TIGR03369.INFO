@@ -1,0 +1,22 @@
+ID  cellulose_bcsE
+AC  TIGR03369
+DE  cellulose biosynthesis protein BcsE
+AU  Haft DH
+TC  244.65 244.65
+NC  121.30 121.30
+AL  muscle_manual
+IT  equivalog
+EN  cellulose biosynthesis protein BcsE
+GS  bcsE
+TP  TIGRFAMs
+CC  This protein, called BcsE (bacterial cellulose synthase E) or YhjS, is required for cellulose biosynthesis in Salmonella enteritidis. Its role is this process across multiple bacterial species is implied by the partial phylogenetic profiling algorithm. Members are found in the vicinity of other cellulose biosynthesis genes. The model does not include a much less well-conserved N-terminal region about 150 amino acids in length for most members. Solano, et al. suggest this protein acts as a protease.
+RN  [1]
+RM  PMID: 11929533
+RT  Genetic analysis of Salmonella enteritidis biofilm formation: critical role of cellulose.
+RA  Solano C, Garcia B, Valle J, Berasain C, Ghigo JM, Gamazo C, Lasa I
+RL  Mol Microbiol. 2002 Feb;43(3):793-808.
+RN  [2]
+RM  PMID: 16930487
+RT  Exopolysaccharide-associated protein sorting in environmental organisms: the PEP-CTERM/EpsH system. Application of a novel phylogenetic profiling heuristic.
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD
+RL  BMC Biol. 2006 Aug 24;4:29.

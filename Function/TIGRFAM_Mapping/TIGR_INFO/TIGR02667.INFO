@@ -1,0 +1,17 @@
+ID  moaB_proteo
+AC  TIGR02667
+DE  molybdenum cofactor biosynthesis protein B
+AU  Haft DH
+TC  222.40 222.40
+NC  177.50 177.50
+AL  clustalw
+IT  equivalog
+EN  molybdenum cofactor biosynthesis protein B, proteobacterial
+GS  moaB
+TP  TIGRFAMs
+CC  This model represents the MoaB protein molybdopterin biosynthesis regions in Proteobacteria. This crystallized but incompletely characterized protein is thought to be involved in, though not required for, early steps in molybdopterin biosynthesis. It may bind a molybdopterin precursor. A distinctive conserved motif PCN near the C-terminus helps distinguish this clade from other homologs, including sets of proteins designated MogA.
+RN  [1]
+RM  15269205
+RT  The crystal structure of Escherichia coli MoaB suggests a probable role in molybdenum cofactor synthesis.
+RA  Sanishvili R, Beasley S, Skarina T, Glesne D, Joachimiak A, Edwards A, Savchenko A.
+RL  J Biol Chem. 2004 Oct 1;279(40):42139-46.

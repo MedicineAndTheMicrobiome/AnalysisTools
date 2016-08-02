@@ -1,0 +1,23 @@
+ID  aat
+AC  TIGR00667
+DE  leucyl/phenylalanyl-tRNA--protein transferase
+AU  Haft DH, Loftus BJ
+TC  143.55 143.55
+NC  66.55 66.55
+AL  clustalw
+IT  equivalog
+EN  leucyl/phenylalanyl-tRNA--protein transferase
+GS  aat
+EC  2.3.2.6
+TP  TIGRFAMs
+CC  The N-terminal residue controls the biological half-life of many proteins via the  N-end rule pathway. This enzyme transfers a Leu or Phe to the amino end of certain proteins to enable degradation.
+RN  [1]
+RM  93322314
+RT  The N-end rule in Escherichia coli: cloning and analysis of the leucyl, phenylalanyl-tRNA-protein transferase gene aat.
+RA  Shrader TE, Tobias JW, Varshavsky A
+RL  J Bacteriol 1993 Jul;175(14):4364-74
+RN  [2]
+RM  95386512
+DR  ECOCYC; EG11112; aat
+DR  EXPERIMENTAL; EGAD|20052|EC0885; Escherichia coli
+DR  HAMAP; MF_00688; 213 of 216

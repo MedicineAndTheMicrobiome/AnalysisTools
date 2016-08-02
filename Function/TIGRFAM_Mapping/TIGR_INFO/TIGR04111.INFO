@@ -1,0 +1,11 @@
+ID  BcepMu_gp16
+AC  TIGR04111
+DE  phage-associated protein, BcepMu gp16 family
+AU  Haft DH
+TC  34.00 34.00
+NC  31.00 31.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  phage-associated protein, BcepMu gp16 family
+TP  TIGRFAMs
+CC  Members of this protein family occur in Burkholderia phage BcepMu, Pseudomonas phage B3, and Burkholderia phage KS10, and many bacterial putative prophage regions. The member from Burkholderia phage BcepMu is named gp16. Homology suggests DNA-binding activity.

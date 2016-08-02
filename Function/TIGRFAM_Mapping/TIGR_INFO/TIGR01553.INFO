@@ -1,0 +1,26 @@
+ID  formate-DH-alph
+AC  TIGR01553
+DE  formate dehydrogenase-N alpha subunit
+AU  Selengut J
+TC  814.20 814.20
+NC  572.60 572.60
+AL  clustalw
+IT  equivalog
+EN  formate dehydrogenase-N alpha subunit
+GS  fdnG
+EC  1.1.5.6
+TP  TIGRFAMs
+CC  This HMM describes a subset of formate dehydrogenase alpha chains found mainly in proteobacteria but also in Aquifex.  The alpha chain contains domains for molybdopterin dinucleotide binding and molybdopterin oxidoreductase (PF01568 and PF00384, respectively).  The holo-enzyme also contains beta and gamma subunits of 32 and 20 kDa.
+CC  The enzyme catalyzes the oxidation of formate (produced from pyruvate during anaerobic growth) to carbon dioxide with the concomitant release of two electrons and two protons.  The electrons are utilized mainly in the nitrate respiration by nitrate reductase [1].
+CC  In E. coli and Salmonella, there are two forms of the formate dehydrogenase, one induced by nitrate which is strictly anaerobic (fdn), and one incuced during the transition from aerobic to anaerobic growth (fdo).  This subunit is one of only three proteins in E. coli which contain selenocysteine [2].
+CC  This model is well-defined, with a large, unpopulated trusted/noise gap.
+RN  [1]
+RM  PMID: 3045516
+RT  Nitrate respiration in relation to facultative metabolism in enterobacteria.
+RA  Stewart V.
+RL  Microbiol Rev. 1988 Jun;52(2):190-232. Review.
+RN  [2]
+RM  PMID: 1834669
+RT  Nitrate-inducible formate dehydrogenase in Escherichia coli K-12. I. Nucleotide sequence of the fdnGHI operon and evidence that opal (UGA) encodes selenocysteine.
+RA  Berg BL, Li J, Heider J, Stewart V.
+RL  J Biol Chem. 1991 Nov 25;266(33):22380-5.

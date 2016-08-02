@@ -1,0 +1,11 @@
+ID  napH_
+AC  TIGR02163
+DE  ferredoxin-type protein, NapH/MauN family
+AU  Haft DH
+TC  213.05 213.05
+NC  104.70 104.70
+AL  clustalw
+IT  subfamily
+EN  ferredoxin-type protein, NapH/MauN family
+TP  TIGRFAMs
+CC  Most members of this family are the NapH protein, found next to NapG,in operons that encode the periplasmic nitrate reductase. Some species with this reductase lack NapC but accomplish electron transfer to NapAB in some other manner, likely to involve NapH, NapG, and/or some other protein. A few members of this protein are designated MauN and are found in methylamine utilization operons in species that appear to lack a periplasmic nitrate reductase.

@@ -1,0 +1,14 @@
+ID  dinitro_DRAG
+AC  TIGR02662
+DE  ADP-ribosyl-[dinitrogen reductase] hydrolase
+AU  Haft DH
+TC  337.05 337.05
+NC  175.40 175.40
+AL  clustalw
+IT  equivalog
+EN  ADP-ribosyl-[dinitrogen reductase] hydrolase
+GS  draG
+EC  3.2.2.24
+TP  TIGRFAMs
+CC  Members of this family are the enzyme ADP-ribosyl-[dinitrogen reductase] hydrolase (EC 3.2.2.24), better known as Dinitrogenase Reductase Activating Glycohydrolase, DRAG. This enzyme reverses a regulatory inactivation of dinitrogen reductase caused by the action of NAD(+)--dinitrogen-reductase ADP-D-ribosyltransferase (EC 2.4.2.37) (DRAT). This enzyme is restricted to nitrogen-fixing bacteria and belongs to the larger family of ADP-ribosylglycohydrolases described by Pfam model PF03747.
+DR  PFAM; PF03747; ADP-ribosylglycohydrolase

@@ -1,0 +1,26 @@
+ID  asp_4_decarbox
+AC  TIGR03801
+DE  aspartate 4-decarboxylase
+AU  Haft DH
+TC  435.10 435.10
+NC  213.00 213.00
+AL  muscle_manual
+IT  equivalog
+EN  aspartate 4-decarboxylase
+GS  aspD
+EC  4.1.1.12
+TP  TIGRFAMs
+CC  This enzyme, aspartate 4-decarboxylase (EC 4.1.1.12), removes the side-chain carboxylate from L-aspartate, converting it to L-alanine plus carbon dioxide. It is a PLP-dependent enzyme, homologous to aspartate aminotransferase (EC 2.6.1.1).
+RN  [1]
+RM  PMID:19265705
+RT  The crystal structure of the Pseudomonas dacunhae aspartate-beta-decarboxylase dodecamer reveals an unknown oligomeric assembly for a pyridoxal-5'-phosphate-dependent enzyme.
+RA  Lima S, Sundararaju B, Huang C, Khristoforov R, Momany C, Phillips RS
+RL  J Mol Biol. 2009 Apr 24;388(1):98-108.
+RN  [2]
+RM  PMID:12003930
+RT  Plasmid-encoded asp operon confers a proton motive metabolic cycle catalyzed by an aspartate-alanine exchange reaction.
+RA  Abe K, Ohnishi F, Yagi K, Nakajima T, Higuchi T, Sano M, Machida M, Sarker RI, Maloney PC
+RL  J Bacteriol. 2002 Jun;184(11):2906-13.
+DR  EXPERIMENTAL; GB|AAK58507.1; Alcaligenes faecalis
+DR  EXPERIMENTAL; GB|BAC65229.1; Pseudomonas dacunhae
+DR  EXPERIMENTAL; GB|BAB92080.1; Tetragenococcus halophilus

@@ -1,0 +1,20 @@
+ID  queA
+AC  TIGR00113
+DE  S-adenosylmethionine:tRNA ribosyltransferase-isomerase
+AU  Anolik RT, Richardson DL
+TC  267.45 267.45
+NC  158.00 158.00
+AL  clustalw
+IT  equivalog
+EN  S-adenosylmethionine:tRNA ribosyltransferase-isomerase
+GS  queA
+EC  2.4.99.17
+TP  TIGRFAMs
+CC  This model describes the enzyme for S-adenosylmethionine:tRNA ribosyltransferase-isomerase (QueA). QueA synthesizes Queuosine which is usually in the first position of the anticodon of tRNAs specific for asparagine, aspartate, histidine, and tyrosine.
+DR  ECOCYC; EG10812;
+DR  InterPro; IPR003699; Queuosine_synth
+DR  PFAM; PF02547; Queuosine_synth
+RA  Slany RK, Bosl M, Crain PF, Kersten H.  
+RT  A new function of S-adenosylmethionine: the ribosyl moiety of AdoMet is the precursor of the cyclopentenediol moiety of the tRNA wobble base queuine. 
+RL  Biochemistry 32:7811-7817.
+DR  HAMAP; MF_00113; 367 of 372

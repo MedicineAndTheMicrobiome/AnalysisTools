@@ -1,0 +1,11 @@
+ID  SigX5
+AC  TIGR02960
+DE  RNA polymerase sigma-70 factor, TIGR02960 family
+AU  Selengut J
+TC  264.75 264.75
+NC  180.50 180.50
+AL  muscle
+IT  hypoth_equivalog
+EN  RNA polymerase sigma-70 factor, TIGR02960 family
+TP  TIGRFAMs
+CC  This group of sigma factors are members of the sigma-70 family (TIGR02937).  They and appear by homology, tree building, bidirectional best hits and one-to-a-genome distribution, to represent a conserved family.

@@ -1,0 +1,12 @@
+ID  ER_PDI_fam
+AC  TIGR01130
+DE  protein disulfide isomerase
+AU  Haft DH
+TC  344.25 344.25
+NC  163.25 163.25
+AL  clustalw_manual
+IT  subfamily
+EN  protein disulfide isomerase, eukaryotic
+TP  TIGRFAMs
+CC  This HMM represents eukaryotic protein disulfide isomerases retained in the endoplasmic reticulum (ER) and closely related forms. Some members have been assigned alternative or additional functions such as prolyl 4-hydroxylase and dolichyl-diphosphooligosaccharide-protein glycotransferase.
+CC  Members of this family have at least two protein-disulfide domains, each similar to thioredoxin but with the redox-active disulfide in the motif PWCGHCK, and an ER retention signal at the extreme C-terminus (KDEL, HDEL, and similar motifs).

@@ -1,0 +1,13 @@
+ID  RNA_pol_rpoA1
+AC  TIGR02390
+DE  DNA-directed RNA polymerase subunit A'
+AU  Haft DH
+TC  1042.55 1042.55
+NC  962.90 962.90
+AL  clustalw
+IT  equivalog
+EN  DNA-directed RNA polymerase subunit A'
+GS  rpoA1
+EC  2.7.7.6
+TP  TIGRFAMs
+CC  This family consists of the archaeal A' subunit of the DNA-directed RNA polymerase.  The example from Methanocaldococcus jannaschii contains an intein.

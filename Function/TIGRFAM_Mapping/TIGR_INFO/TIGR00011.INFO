@@ -1,0 +1,29 @@
+ID  YbaK_EbsC
+AC  TIGR00011
+DE  Cys-tRNA(Pro) deacylase
+AU  Richardson DL, Haft DH
+TC  153.25 153.25
+NC  70.15 70.15
+AL  clustalw
+IT  hypoth_equivalog
+EN  Cys-tRNA(Pro) deacylase
+GS  ybaK
+EC  3.6.1.-
+TP  TIGRFAMs
+CC  This HMM represents the YbaK family, bacterial proteins whose full length sequence is homologous to an insertion domain in proline--tRNA ligases. The domain deacylates mischarged tRNAs. The YbaK protein of Haemophilus influenzae (HI1434) likewise deacylates Ala-tRNA(Pro), but not the correctly charged Pro-tRNA(Pro).  A crystallographic study of HI1434 suggests a nucleotide binding function. Previously, a member of this family was described as EbsC and was thought to be involved in cell wall metabolism.
+DR  PFAM; PF04073
+RN  [1]
+RM  PMID:16087664 
+RT  Cys-tRNA(Pro) editing by Haemophilus influenzae YbaK via a novel synthetase.YbaK.tRNA ternary complex. 
+RA  An S, Musier-Forsyth K 
+RL  J Biol Chem. 2005 Oct 14;280(41):34465-72. Epub 2005 Aug 8.
+RN  [2]
+RM  14530268
+RT  An isolated class II aminoacyl-tRNA synthetase insertion domain is functional in amino acid editing.
+RA  Wong FC, Beuning PJ, Silvers C, Musier-Forsyth K.
+RL  J Biol Chem. 2003 Dec 26;278(52):52857-64.
+RN  [3]
+RM  10813833
+RT  Crystal structure of YbaK protein from Haemophilus influenzae (HI1434) at 1.8 A resolution: functional implications.
+RA  Zhang H, Huang K, Li Z, Banerjei L, Fisher KE, Grishin NV, Eisenstein E, Herzberg O
+RL  Proteins 2000 Jul 1;40(1):86-97

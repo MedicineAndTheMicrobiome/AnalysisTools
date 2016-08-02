@@ -1,0 +1,27 @@
+ID  SMC_prok_B
+AC  TIGR02168
+DE  chromosome segregation protein SMC
+AU  Haft DH
+TC  567.35 567.35
+NC  557.95 557.95
+AL  clustalw_manual
+IT  equivalog
+EN  chromosome segregation protein SMC, common bacterial type
+GS  smc
+TP  TIGRFAMs
+CC  SMC (structural maintenance of chromosomes) proteins bind DNA and act in organizing and segregating chromosomes for partition. SMC proteins are found in bacteria, archaea, and eukaryotes. This family represents the SMC protein of most bacteria. The smc gene is often associated with scpB (TIGR00281) and scpA genes, where scp stands for segregation and condensation protein. SMC was shown (in Caulobacter crescentus) to be induced early in S phase but present and bound to DNA throughout the cell cycle.
+RN  [1]
+RM  12730166
+RT  Cell-cycle-regulated expression and subcellular localization of the Caulobacter crescentus SMC chromosome structural protein.
+RA  Jensen RB, Shapiro L.
+RL  J Bacteriol. 2003 May;185(10):3068-75.
+RN  [2]
+RM  12100548
+RT  Discovery of two novel families of proteins that are proposed to interact with prokaryotic SMC proteins, and characterization of the Bacillus subtilis family members ScpA and ScpB.
+RL  Mol Microbiol. 2002 Jul;45(1):59-71.
+RA  Soppa J, Kobayashi K, Noirot-Gros MF, Oesterhelt D, Ehrlich SD, Dervyn E, Ogasawara N, Moriya S.
+RN  [3]
+RM  12411491
+RT  Hinge-mediated dimerization of SMC protein is essential for its dynamic interaction with DNA.
+RA  Hirano M, Hirano T.
+RL  EMBO J. 2002 Nov 1;21(21):5733-44.

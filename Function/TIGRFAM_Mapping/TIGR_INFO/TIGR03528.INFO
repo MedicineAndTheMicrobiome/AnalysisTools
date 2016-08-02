@@ -1,0 +1,18 @@
+ID  2_3_DAP_am_ly
+AC  TIGR03528
+DE  diaminopropionate ammonia-lyase
+AU  Haft DH
+TC  532.25 532.25
+NC  388.40 388.40
+AL  muscle_manual
+IT  equivalog
+EN  diaminopropionate ammonia-lyase
+GS  dpaL
+EC  4.3.1.15
+TP  TIGRFAMs
+CC  Members of this protein family are the homodimeric, pyridoxal phosphate enzyme diaminopropionate ammonia-lyase, which adds water to remove two amino groups, leaving pyruvate.
+RN  [1]
+RM  PMID:12596860
+RT  Gene cloning, purification, and characterization of 2,3-diaminopropionate ammonia-lyase from Escherichia coli.
+RA  Uo T, Yoshimura T, Nishiyama T, Esaki N
+RL  Biosci Biotechnol Biochem. 2002 Dec;66(12):2639-44.

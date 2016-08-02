@@ -1,0 +1,17 @@
+ID  pucB
+AC  TIGR03202
+DE  xanthine dehydrogenase accessory protein pucB
+AU  Selengut J
+TC  235.05 235.05
+NC  148.05 148.05
+AL  muscle
+IT  hypoth_equivalog
+EN  xanthine dehydrogenase accessory protein pucB
+GS  pucB
+TP  TIGRFAMs
+CC  In Bacillus subtilis [1] the expression of this protein, located in an operon with the structural subunits of xanthine dehydrogenase, has been found to be essential for XDH activity.  Some members of this family appear to have a distant relationship to the MobA protein involved in molybdopterin biosynthesis, although this may be coincidental.
+RN  [1]
+RM  PMID: 11344136 
+RT  Functional analysis of 14 genes that constitute the purine catabolic pathway in Bacillus subtilis and evidence for a novel regulon controlled by the PucR transcription activator. 
+RA  Schultz AC, Nygaard P, Saxild HH 
+RL  J Bacteriol. 2001 Jun;183(11):3293-302.

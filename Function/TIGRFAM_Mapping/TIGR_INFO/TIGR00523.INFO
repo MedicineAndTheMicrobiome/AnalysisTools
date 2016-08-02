@@ -1,0 +1,13 @@
+ID  eIF-1A
+AC  TIGR00523
+DE  translation initiation factor eIF-1A
+AU  Haft DH
+TC  102.90 102.90
+NC  30.95 30.95
+IT  equivalog
+EN  eukaryotic/archaeal initiation factor 1A
+GS  eif1A
+TP  TIGRFAMs
+CC  Recommended nomenclature: eIF-1A for eukaryotes, aIF-1A for Archaea. Also called eIF-4C
+DR  PROSITE; PDOC00970; Eukaryotic initiation factor 1A signature
+DR  HAMAP; MF_00216; 32 of 36

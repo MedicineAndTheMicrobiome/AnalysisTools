@@ -1,0 +1,23 @@
+ID  ctc_TL5
+AC  TIGR00731
+DE  ribosomal protein L25, Ctc-form
+AU  Haft DH
+TC  73.10 73.10
+NC  70.35 70.35
+AL  clustalw_manual
+IT  equivalog
+EN  ribosomal protein L25, Ctc-form
+TP  TIGRFAMs
+CC  This HMM models a family of proteins with full-length homology to the general stress protein Ctc of Bacillus subtilis, a mesophile, and ribosomal protein TL5 of Thermus thermophilus, a thermophile. Ribosomal protein L25 of Escherichia coli and H. influenzae appear to be orthologous but consist only of the N-terminal half of Ctc and TL5. Both short (L25-like) and full-length (CTC-like) members of this family bind the E-loop of bacterial 5S rRNA. This protein appears to be restricted to bacteria and organelles, and consists of at most one copy per prokaryotic genome.Ctc of Bacillus subtilis has now been localized to ribosomes and can be viewed as the long form, or Ctc form, of L25.
+CC  The C-terminal domain of sll1824, an apparent L25 of Synechocystis PCC6803, matches the N-terminal domain of this family. Examples of L25 and Ctc are not separated by a UPGMA tree built on the region of shared homology.
+AL  clustalw_manual
+RN  [1]
+RM  12432960
+RT  The general stress protein Ctc of Bacillus subtilis is a ribosomal protein.
+RA  Schmalisch M, Langbein I, Stulke J.
+RL  J Mol Microbiol Biotechnol. 2002 Sep;4(5):495-501.  
+RN  [2]
+RM  99283874
+RN  [3]
+RM  99016057
+DR  HAMAP; MF_01334; 297 of 298

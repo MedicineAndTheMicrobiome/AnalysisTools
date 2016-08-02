@@ -1,0 +1,12 @@
+ID  cyt_nit_nrfE
+AC  TIGR03145
+DE  cytochrome c nitrate reductase biogenesis protein NrfE
+AU  Haft DH
+TC  927.30 927.30
+NC  780.30 780.30
+AL  muscle
+IT  exception
+EN  cytochrome c nitrate reductase biogenesis protein NrfE
+GS  nrfE
+TP  TIGRFAMs
+CC  Members of this protein family closely resemble the CcmF protein of the CcmABCDEFGH system, or system I, for c-type cytochrome biogenesis (GenProp0678). Members are found, as a rule, next to closely related paralogs of CcmG and CcmH and always located near other genes associated with the cytochrome c nitrite reductase enzyme complex. As a rule, members are found in species that also encode bona fide members of the CcmF, CcmG, and CcmH families.

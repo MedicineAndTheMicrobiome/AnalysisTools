@@ -1,0 +1,13 @@
+ID  fruc_bis_ald_
+AC  TIGR01859
+DE  fructose-1,6-bisphosphate aldolase, class II
+AU  Haft DH
+TC  343.05 343.05
+NC  338.60 338.60
+AL  clustalw_manual
+IT  equivalog
+EN  fructose-1,6-bisphosphate aldolase, class II, various bacterial and amitochondriate protist
+GS  fba
+EC  4.1.2.13
+TP  TIGRFAMs
+CC  This HMM represents of one of several subtypes of the class II fructose-1,6-bisphosphate aldolase, an enzyme of glycolysis. The subtypes are split into several HMMs to allow separation of a family of tagatose bisphosphate aldolases. This form is found in Gram-positive bacteria, a variety of Gram-negative, and in amitochondriate protists. The class II enzymes share homology with tagatose bisphosphate aldolase but not with class I aldolase.

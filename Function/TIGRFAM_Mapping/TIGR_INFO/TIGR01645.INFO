@@ -1,0 +1,27 @@
+ID  half-pint
+AC  TIGR01645
+DE  poly-U binding splicing factor, half-pint family
+AU  Selengut J
+TC  443.95 443.95
+NC  206.55 206.55
+AL  clustalw
+IT  subfamily
+EN  poly-U binding splicing factor, half-pint family
+TP  TIGRFAMs
+CC  The proteins represented by this model contain three RNA recognition motifs (rrm: PF00076) and have been characterized as poly-pyrimidine tract binding proteins associated with RNA splicing factors [1,2,3].
+CC  In the case of PUF60 (GP|6176532), in complex with p54, and in the presence of U2AF, facilitates association of U2 snRNP with pre-mRNA [2].
+RN  [1]
+RM  PMID: 11879639
+RT  Half pint regulates alternative splice site selection in Drosophila.
+RA  Van Buskirk C, Schupbach T.
+RL  Dev Cell 2002 Mar;2(3):343-53
+RN  [2]
+RM  PMID: 10606266
+RT  PUF60: a novel U2AF65-related splicing activity.
+RA  Page-McCaw PS, Amonlirdviman K, Sharp PA.
+RL  RNA 1999 Dec;5(12):1548-60
+RN  [3]
+RM  PMID: 10668799
+RT  Interaction cloning and characterization of RoBPI, a novel protein binding to human Ro ribonucleoproteins.
+RA  Bouffard P, Barbar E, Briere F, Boire G.
+RL  RNA 2000 Jan;6(1):66-78

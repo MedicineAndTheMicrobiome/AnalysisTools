@@ -1,0 +1,18 @@
+ID  KDO8P_synth
+AC  TIGR01362
+DE  3-deoxy-8-phosphooctulonate synthase
+AU  Haft DH
+TC  314.00 314.00
+NC  139.00 139.00
+AL  clustalw
+IT  equivalog
+EN  3-deoxy-8-phosphooctulonate synthase
+GS  kdsA
+EC  2.5.1.55
+TP  TIGRFAMs
+CC  This HMM describes 3-deoxy-8-phosphooctulonate synthase. Alternate names include 2-dehydro-3-deoxyphosphooctonate aldolase, 3-deoxy-d-manno-octulosonic acid 8-phosphate and KDO-8 phosphate synthetase. It catalyzes the aldol condensation of phosphoenolpyruvate with D-arabinose 5-phosphate:
+CC  phosphoenolpyruvate + D-arabinose 5-phosphate + H2O = 2-dehydro-3-deoxy-D-octonate 8-phosphate + phosphate
+CC   In Gram-negative bacteria, this is the first step in the biosynthesis of 3-deoxy-D-manno-octulosonate, part of the oligosaccharide core of lipopolysaccharide.
+DR  PF00793; DAHP_synth_1
+DR  InterPro; IPR001785; DAHP_synth_1
+DR  HAMAP; MF_00056; 216 of 218

@@ -1,0 +1,25 @@
+ID  ispG_gcpE
+AC  TIGR00612
+DE  4-hydroxy-3-methylbut-2-en-1-yl diphosphate synthase
+AU  Haft DH
+TC  280.25 280.25
+NC  159.60 159.60
+AL  clustalw_manual
+IT  equivalog
+EN  1-hydroxy-2-methyl-2-(E)-butenyl 4-diphosphate synthase
+GS  ispG
+EC  1.17.7.1
+TP  TIGRFAMs
+CC  This protein of previously unknown biochemical function has now been identified as an enzyme of the non-mevalonate pathway of IPP biosynthesis.
+CC  Chlamydial members of the family have a long insert. The family is largely restricted to Bacteria, where it is widely but not universally distributed. No homology can be detected between the GcpE family and other proteins.
+RN  [1]
+RM  11163766
+RT  Identification of gcpE as a novel gene of the 2-C-methyl-D-erythritol 4-phosphate pathway for isoprenoid biosynthesis in Escherichia coli.
+RA  Campos N, Rodriguez-Concepcion M, Seemann M, Rohmer M, Boronat A.
+RL  FEBS Lett 2001 Jan 19;488(3):170-3
+RN  [2]
+RM  97234638
+RT  aarC, an essential gene involved in density-dependent regulation of the 2'-N-acetyltransferase in Providencia stuartii.
+RA  Rather PN, Solinsky KA, Paradise MR, Parojcic MM
+RL  J Bacteriol 1997 Apr;179(7):2267-73
+DR  HAMAP; MF_00159; 301 of 306

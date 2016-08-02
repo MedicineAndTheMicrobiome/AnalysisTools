@@ -1,0 +1,15 @@
+ID  caa3_sub_IV
+AC  TIGR02229
+DE  caa(3)-type oxidase, subunit IV
+AU  Haft DH
+TC  37.25 37.25
+NC  27.05 27.05
+AL  clustalw_manual
+IT  subfamily
+EN  caa(3)-type oxidase, subunit IV
+TP  TIGRFAMs
+CC  This model represents a small set of proteins with weak similarity to the sequences in Pfam family PF03626, which describes the cytochrome C oxidase subunit IV.
+RM  11133964
+RT  Gene cluster of Rhodothermus marinus high-potential iron-sulfur Protein: oxygen oxidoreductase, a caa(3)-type oxidase belonging to the superfamily of heme-copper oxidases.
+RA  Santana M, Pereira MM, Elias NP, Soares CM, Teixeira M.
+RL  J Bacteriol. 2001 Jan;183(2):687-99.

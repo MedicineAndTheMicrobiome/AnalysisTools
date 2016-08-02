@@ -1,0 +1,18 @@
+ID  eif2g_arch
+AC  TIGR03680
+DE  translation initiation factor 2, gamma subunit
+AU  Selengut J
+TC  514.50 514.50
+NC  514.25 514.25
+AL  muscle
+IT  equivalog
+EN  translation initiation factor 2 subunit gamma
+GS  eif2g
+TP  TIGRFAMs
+CC  This model represents the archaeal translation initiation factor 2 subunit gamma and is found in all known archaea.
+CC  eIF-2 functions in the early steps of protein synthesis by forming a ternary complex with GTP and initiator tRNA.
+RN  [1]
+RM  PMID:18000047 
+RT  Structure of an archaeal heterotrimeric initiation factor 2 reveals a nucleotide state between the GTP and the GDP states. 
+RA  Yatime L, Mechulam Y, Blanquet S, Schmitt E 
+RL  Proc Natl Acad Sci U S A. 2007 Nov 20;104(47):18445-50. Epub 2007 Nov 13.

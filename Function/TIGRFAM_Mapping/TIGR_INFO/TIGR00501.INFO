@@ -1,0 +1,15 @@
+ID  met_pdase_II
+AC  TIGR00501
+DE  methionine aminopeptidase, type II
+AU  Haft DH
+TC  222.65 222.65
+NC  184.60 184.60
+AL  clustalw
+IT  equivalog
+EN  methionine aminopeptidase, type II
+GS  map
+EC  3.4.11.18
+TP  TIGRFAMs
+CC  Methionine aminopeptidase (map) is a cobalt-binding enzyme. Bacterial and organellar examples (type I) differ from eukaroytic and archaeal (type II) examples in lacking a region of approximately 60 amino acids between the 4th and 5th cobalt-binding ligands. The role of this protein in general is to produce the mature amino end of cytosolic proteins by removing the N-terminal methionine. This model describes type II, among which the eukaryotic members typically have an N-terminal extension not present in archaeal members. It can act cotranslationally. The enzyme from rat has been shown to associate with translation initiation factor 2 (IF-2) and may have a role in translational regulation.
+RM  Medline; 98060511; 
+RM  Medline; 95372350;

@@ -1,0 +1,13 @@
+ID  protocat_beta
+AC  TIGR02422
+DE  protocatechuate 3,4-dioxygenase, beta subunit
+AU  Haft DH
+TC  296.40 296.40
+NC  144.90 144.90
+AL  clustalw
+IT  equivalog
+EN  protocatechuate 3,4-dioxygenase, beta subunit
+GS  pcaH
+EC  1.13.11.3
+TP  TIGRFAMs
+CC  This model represents the beta chain of protocatechuate 3,4-dioxygenase. The most closely related family outside this family is that of the alpha chain (TIGR02423), typically encoded in an adjacent locus. This enzyme acts in the degradation of aromatic compounds by way of p-hydroxybenzoate to succinate and acetyl-CoA.

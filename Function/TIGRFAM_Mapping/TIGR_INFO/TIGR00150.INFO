@@ -1,0 +1,26 @@
+ID  T6A_YjeE
+AC  TIGR00150
+DE  tRNA threonylcarbamoyl adenosine modification protein YjeE
+AU  Haft DH
+TC  60.10 60.10
+NC  46.45 46.45
+AL  clustalw
+IT  equivalog
+EN  tRNA threonylcarbamoyl adenosine modification protein YjeE
+TP  TIGRFAMs
+CC  This protein family belongs to a four-gene system responsible for the threonylcarbamoyl adenosine (t6A) tRNA modification. Members of this family have a conserved nucleotide-binding motif GXXGXGKT and a nucleotide-binding fold. Member protein YjeE of Haemophilus influenzae (HI0065) was shown to have (weak) ATPase activity.
+RN  [1]
+RM  PMID:22378793 
+RT  Biosynthesis of Threonylcarbamoyl Adenosine (t6A), a Universal tRNA Nucleoside. 
+RA  Deutsch C, El Yacoubi B, de Crecy-Lagard V, Iwata-Reuyl D 
+RL  J Biol Chem. 2012 Apr 20;287(17):13666-73. 
+RN  [2]
+RM  PMID:12112691
+RT  Crystal structure of the YjeE protein from Haemophilus influenzae: a putative Atpase involved in cell wall synthesis.
+RA  Teplyakov A, Obmolova G, Tordova M, Thanki N, Bonander N, Eisenstein E, Howard AJ, Gilliland GL
+RL  Proteins. 2002 Aug 1;48(2):220-6.
+RN  [2]
+RM  PMID:17581233
+RT  From bacterial genomes to novel antibacterial agents: discovery, characterization, and antibacterial activity of compounds that bind to HI0065 (YjeE) from Haemophilus influenzae.
+RA  Lerner CG, Hajduk PJ, Wagner R, Wagenaar FL, Woodall C, Gu YG, Searle XB, Florjancic AS, Zhang T, Clark RF, Cooper CS, Mack JC, Yu L, Cai M, Betz SF, Chovan LE, McCall JO, Black-Schaefer CL, Kakavas SJ, Schurdak ME, Comess KM, Walter KA, Edalji R, Dorwin SA, Smith RA, Hebert EJ, Harlan JE, Metzger RE, Merta PJ, Baranowski JL, Coen ML, Thornewell SJ, Shivakumar AG, Saiki AY, Soni N, Bui M, Balli DJ, Sanders WJ, Nilius AM, Holzman TF, Fesik SW, Beutel BA
+RL  Chem Biol Drug Des. 2007 Jun;69(6):395-404.

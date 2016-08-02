@@ -1,0 +1,13 @@
+ID  dhaK1
+AC  TIGR02363
+DE  dihydroxyacetone kinase, DhaK subunit
+AU  Haft DH
+TC  406.25 406.25
+NC  393.90 393.90
+AL  clustalw
+IT  equivalog
+EN  dihydroxyacetone kinase, DhaK subunit
+GS  dhaK
+EC  2.7.1.-
+TP  TIGRFAMs
+CC  Two types of dihydroxyacetone kinase (glycerone kinase) are described. In yeast and a few bacteria, e.g. Citrobacter freundii, the enzyme is a single chain that uses ATP as phosphoryl donor and is designated EC 2.7.1.29. By contract, E. coli and many other bacterial species have a multisubunit form (EC 2.7.1.-) with a phosphoprotein donor related to PTS transport proteins. This family represents the DhaK subunit of the latter type of dihydroxyacetone kinase, but it specifically excludes the DhaK paralog DhaK2 (TIGR02362) found in the same operon as DhaK and DhaK in the Firmicutes.

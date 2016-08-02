@@ -1,0 +1,21 @@
+ID  asp_kin_monofn
+AC  TIGR00656
+DE  aspartate kinase, monofunctional class
+AU  Haft DH
+TC  402.25 402.25
+NC  355.20 355.20
+AL  clustalw_manual
+IT  equivalog
+EN  aspartate kinase, monofunctional class
+EC  2.7.2.4
+TP  TIGRFAMs
+CC  This model describes a subclass of aspartate kinases. These are mostly Lys-sensitive and not fused to homoserine dehydrogenase, unlike some Thr-sensitive and Met-sensitive forms. Homoserine dehydrogenase is part of Thr and Met but not Lys biosynthetic pathways.
+CC  Aspartate kinase catalyzes a first step in the biosynthesis from Asp of Lys (and its precursor diaminopimelate), Met, and Thr. In E. coli, a distinct isozyme is inhibited by each of the three amino acid products. The Met-sensitive (I) and Thr-sensitive (II) forms are bifunctional enzymes fused to homoserine dehydrogenases and form homotetramers, while the Lys-sensitive form (III) is a monofunctional homodimer.
+CC  The Lys-sensitive enzyme of Bacillus subtilis resembles the E. coli form but is an alpha 2/beta 2 heterotetramer, where the beta subunit is translated from an in-phase alternative initiator at Met-246. The protein slr0657 from Synechocystis PCC6803 is extended by a duplication of the C-terminal region corresponding to the beta chain. Incorporation of a second copy of the C-terminal domain may be quite common in this subgroup of aspartokinases.
+DR  EXPERIMENTAL; EGAD|9629|EC4024; monofunctional, Lys-sensitive homodimer
+DR  EXPERIMENTAL; EGAD|15096|BS2841; monofunctional, Lys-sensitive heterotetramer
+DR  EXPERIMENTAL; EGAD|24158|BS1676; monofunctional, diaminopimelate-sensitive heterotetramer
+DR  OUTGROUP; EGAD|9487|EC0002; bifunctional, Thr-sensitive homotetramer
+DR  OUTGROUP; EGAD|21696|EC3940; bifunctional, Met-sensistive homotetramer
+DR  OUTGROUP; EGAD|52194|YER052C; mostly Thr-sensitive
+DR  OUTGROUP; EGAD|75283|81007; bifunctional, chloroplast

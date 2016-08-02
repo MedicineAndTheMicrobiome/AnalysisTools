@@ -1,0 +1,13 @@
+ID  FeS_long_SufT
+AC  TIGR03406
+DE  probable FeS assembly SUF system protein SufT
+AU  Haft DH
+TC  202.60 202.60
+NC  153.30 153.30
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  probable FeS assembly SUF system protein SufT
+GS  sufT
+TP  TIGRFAMs
+CC  The function is unknown for this protein family, but members are found almost always in operons for the the SUF system of iron-sulfur cluster biosynthesis. The SUF system is present elsewhere on the chromosome for those few species where SUF genes are not adjacent. This family shares this property of association with the SUF system with a related family, TIGR02945. TIGR02945 consists largely of a DUF59 domain (see Pfam family PF01883), while this protein is about double the length, with a unique N-terminal domain and DUF59 C-terminal domain. A location immediately downstream of the cysteine desulfurase gene sufS in many contexts suggests the gene symbol sufT. Note that some other homologs of this family and of TIGR02945, but no actual members of this family, are found in operons associated with phenylacetic acid (or other ring-hydroxylating) degradation pathways.
+DR  PFAM; PF01883; DUF59; Domain of unknown function

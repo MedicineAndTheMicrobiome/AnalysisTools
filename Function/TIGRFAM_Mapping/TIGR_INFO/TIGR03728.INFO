@@ -1,0 +1,11 @@
+ID  glyco_access_1
+AC  TIGR03728
+DE  glycosyltransferase, SP_1767 family
+AU  Haft DH
+TC  290.75 290.75
+NC  133.00 133.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  glycosyltransferase, SP_1767 family
+TP  TIGRFAMs
+CC  Members of this protein family are putative glycosyltransferases. Some members are found close to genes for the accessory secretory (SecA2) system, and are suggested by Partial Phylogenetic Profiling to correlate with SecA2 systems. Glycosylation, therefore, may occur in the cytosol prior to secretion.

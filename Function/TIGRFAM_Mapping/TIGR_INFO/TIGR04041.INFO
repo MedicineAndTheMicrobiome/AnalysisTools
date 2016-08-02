@@ -1,0 +1,18 @@
+ID  activase_YjjW
+AC  TIGR04041
+DE  glycine radical enzyme activase, YjjW family
+AU  Haft DH
+TC  250.20 250.20
+NC  205.00 205.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  glycine radical enzyme activase, YjjW family
+GS  yjjW
+EC  1.97.1.-
+TP  TIGRFAMs
+CC  Members of this family are radical SAM enzymes, designated YjjW in E. coli, that are paired with and appear to activate a glycyl radical enzyme of unknown function, designated YjjI. This activase and its target are found in Clostridial species as well as E. coli and cousins. Members of this family may be misannotated as pyruvate formate lyase activating enzyme.
+RN  [1]
+RM  PMID:21478363 
+RT  Biological systems discovery in silico: radical S-adenosylmethionine protein families and their target peptides for posttranslational modification. 
+RA  Haft DH, Basu MK 
+RL  J Bacteriol. 2011 Jun;193(11):2745-55.

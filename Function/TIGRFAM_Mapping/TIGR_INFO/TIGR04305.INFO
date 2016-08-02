@@ -1,0 +1,21 @@
+ID  fol_rel_CADD
+AC  TIGR04305
+DE  putative folate metabolism protein, CADD family
+AU  Haft DH
+TC  200.00 200.00
+NC  175.00 175.00
+AL  muscle
+IT  subfamily
+EN  putative folate metabolism protein, CADD family
+TP  TIGRFAMs
+CC  This protein family, related to but outside the family of PqqC proteins involved in PQQ biosynthesis, includes the well-studied Chlamydia protein CADD (Chlamydia protein Associating with Death Domains), which can induce apoptosis in a host cell. Other members of this family occur in Rickettsia and Wolbachia, unrelated in terms of phylogeny (both are alphaproteobacteria) but similar in living intracellularly. Local gene context in these species, although not in Trichodesmium or Nitrosomonas eutropha, suggests a role in folate metabolism, and some species with this protein lack FolE but have other folate synthesis proteins.
+RN  [1]
+RM  PMID:15087448 
+RT  Structure of the Chlamydia protein CADD reveals a redox enzyme that modulates host cell apoptosis. 
+RA  Schwarzenbacher R, Stenner-Liewen F, Liewen H, Robinson H, Yuan H, Bossy-Wetzel E, Reed JC, Liddington RC 
+RL  J Biol Chem. 2004 Jul 9;279(28):29320-4.
+RN  [2]
+RM  PMID:17645794 
+RT  Comparative genomics of bacterial and plant folate synthesis and salvage: predictions and validations. 
+RA  de Crecy-Lagard V, El Yacoubi B, de la Garza RD, Noiriel A, Hanson AD 
+RL  BMC Genomics. 2007 Jul 23;8:245.

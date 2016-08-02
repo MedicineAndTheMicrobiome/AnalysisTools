@@ -1,0 +1,27 @@
+ID  OMP_RagA_SusC
+AC  TIGR04056
+DE  TonB-linked outer membrane protein, SusC/RagA family
+AU  Haft DH
+TC  368.25 368.25
+NC  338.25 338.25
+AL  muscle_manual
+IT  subfamily
+EN  TonB-linked outer membrane protein, SusC/RagA family
+TR  1.B.14
+TP  TIGRFAMs
+CC  This model describes a distinctive clade among the TonB-linked outer membrane proteins (OMP). Members of this family are restricted to the Bacteriodetes lineage (except for Gemmatimonas aurantiaca T-27 from the novel phylum Gemmatimonadetes) and occur in high copy numbers, with over 100 members from Bacteroides thetaiotaomicron VPI-5482 alone. Published descriptions of members of this family are available for RagA from Porphyromonas gingivalis, SusC from Bacteroides thetaiotaomicron, and OmpW from Bacteroides caccae. Members form pairs with members of the SusD/RagB family (PF07980). Transporter complexes including these outer membrane proteins are likely to import large degradation products of proteins (e.g. RagA) or carbohydrates (e.g. SusC) as nutrients, rather than siderophores.
+RN  [1]
+RM  PMID:15972517 
+RT  Sequence diversity and antigenic variation at the rag locus of Porphyromonas gingivalis. 
+RA  Hall LM, Fawell SC, Shi X, Faray-Kele MC, Aduse-Opoku J, Whiley RA, Curtis MA 
+RL  Infect Immun. 2005 Jul;73(7):4253-62. 
+RN  [2]
+RM  PMID:11553542 
+RT  Molecular cloning of a Bacteroides caccae TonB-linked outer membrane protein identified by an inflammatory bowel disease marker antibody. 
+RA  Wei B, Dalwadi H, Gordon LK, Landers C, Bruckner D, Targan SR, Braun J 
+RL  Infect Immun. 2001 Oct;69(10):6044-54. 
+RN  [3]
+RM  PMID:11717282 
+RT  Biochemical analysis of interactions between outer membrane proteins that contribute to starch utilization by Bacteroides thetaiotaomicron. 
+RA  Cho KH, Salyers AA 
+RL  J Bacteriol. 2001 Dec;183(24):7224-30.

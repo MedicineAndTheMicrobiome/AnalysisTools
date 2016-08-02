@@ -1,0 +1,11 @@
+ID  pepcterm_ATPase
+AC  TIGR03015
+DE  putative secretion ATPase, PEP-CTERM locus subfamily
+AU  Haft DH
+TC  324.50 324.50
+NC  306.30 306.30
+AL  muscle
+IT  hypoth_equivalog
+EN  putative secretion ATPase, PEP-CTERM locus subfamily
+TP  TIGRFAMs
+CC  Members of this protein are marked as probable ATPases by the nucleotide binding P-loop motif GXXGXGKTT, a motif DEAQ similar to the DEAD/H box of helicases, and extensive homology to ATPases of MSHA-type pilus systems and to GspA proteins associated with type II protein secretion systems.

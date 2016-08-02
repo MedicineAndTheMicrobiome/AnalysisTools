@@ -1,0 +1,16 @@
+ID  SufR_cyano
+AC  TIGR02702
+DE  iron-sulfur cluster biosynthesis transcriptional regulator SufR
+AU  Haft DH
+TC  178.80 178.80
+NC  141.35 141.35
+AL  clustalw
+IT  equivalog
+EN  iron-sulfur cluster biosynthesis transcriptional regulator SufR
+GS  sufR
+TP  TIGRFAMs
+CC  All members of this cyanobacterial protein family are the transcriptional regulator SufR and regulate the SUF system, which makes possible iron-sulfur cluster biosynthesis despite exposure to oxygen. In all cases, the sufR gene is encoded near SUF system genes but in the opposite direction. This DNA-binding protein belongs to the the DeoR family of helix-loop-helix proteins. All members also have a probable metal-binding motif C-X(12)-C-X(13)-C-X(14)-C near the C-terminus.
+RM  14761990
+RT  The sufR gene (sll0088 in Synechocystis sp. strain PCC 6803) functions as a repressor of the sufBCDS operon in iron-sulfur cluster biogenesis in cyanobacteria.
+RA  Wang T, Shen G, Balasubramanian R, McIntosh L, Bryant DA, Golbeck JH.
+RL  J Bacteriol. 2004 Feb;186(4):956-67.

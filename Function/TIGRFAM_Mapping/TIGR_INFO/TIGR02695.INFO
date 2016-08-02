@@ -1,0 +1,13 @@
+ID  azurin
+AC  TIGR02695
+DE  azurin
+AU  Haft DH
+TC  105.10 105.10
+NC  58.65 58.65
+AL  clustalw
+IT  equivalog
+EN  azurin
+GS  azu
+TP  TIGRFAMs
+CC  Azurin is a blue copper-binding protein in the plastocyanin/azurin family (see Pfam model PF00127). It serves as a redox partner to enzymes such as nitrite reductase or arsenite oxidase. The most closely related copper-binding proteins to this family are auracyanins, as in Chloroflexus aurantiacus, which have similar redox activities.
+DR PFAM; PF00127; Copper-bind

@@ -1,0 +1,22 @@
+ID  PrgH
+AC  TIGR02554
+DE  type III secretion apparatus protein PrgH/EprH
+AU  Selengut J
+TC  188.60 188.60
+NC  166.70 166.70
+AL  clustalw
+IT  equivalog
+EN  type III secretion system protein PrgH/EprH
+GS  eprH
+TP  TIGRFAMs
+CC  In Samonella, this gene is part of a four-gene operon PrgHIJK and in general is found in type III secretion operons.  PrgH has been shown to be required for secretion [1], as well as being a structural component of the needle complex [2].
+RN  [1]
+RM  PMID: 7476203
+RT  PhoP/PhoQ transcriptional repression of Salmonella typhimurium invasion genes: evidence for a role in protein secretion.
+RA  Pegues DA, Hantman MJ, Behlau I, Miller SI.
+RL  Mol Microbiol. 1995 Jul;17(1):169-81.
+RN  [2]
+RM  PMID: 15528446
+RT  Structural insights into the assembly of the type III secretion needle complex.
+RA  Marlovits TC, Kubori T, Sukhan A, Thomas DR, Galan JE, Unger VM.
+RL  Science. 2004 Nov 5;306(5698):1040-2.

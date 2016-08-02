@@ -1,0 +1,29 @@
+ID  ATPase-IIA2_Ca
+AC  TIGR01522
+DE  calcium-transporting P-type ATPase, PMR1-type
+AU  Selengut J
+TC  798.30 798.30
+NC  792.15 792.15
+AL  clustalw
+IT  equivalog
+EN  golgi membrane calcium-translocating P-type ATPase
+EC  3.6.3.8
+TR  3.A.3.2.-
+TP  TIGRFAMs
+CC  This model describes the P-type ATPase responsible for translocating calcium ions across the golgi membrane of fungi and animals [1,2], and is of particular importance in the sarcoplasmic reticulum of skeletal and cardiac muscle in vertebrates [2]. 
+CC  The calcium P-type ATPases have been characterized as Type IIA based on a phylogenetic analysis which distinguishes this group from the Type IIB PMCA calcium pump [3] modelled by TIGR01517.  A separate analysis divides Type IIA into sub-types, SERCA and PMR1 [2] the former of which is modelled by TIGR01116.
+RN  [1]
+RM  PMID: 2526682 
+RT  The yeast secretory pathway is perturbed by mutations in PMR1, a member of a Ca2+ ATPase family.
+RA  Rudolph HK, Antebi A, Fink GR, Buckley CM, Dorman TE, LeVitre J, Davidow LS, Mao JI, Moir DT.
+RL  Cell. 1989 Jul 14;58(1):133-45.
+RN  [2]
+RM  PMID: 10433975
+RT  Two additional type IIA Ca(2+)-ATPases are expressed in Arabidopsis thaliana: evidence that type IIA sub-groups exist.
+RA  Pittman JK, Mills RF, O'Connor CD, Williams LE.
+RL  Gene 1999 Aug 5;236(1):137-47
+RN [3]
+RM PMID:9419228
+RT Evolution of Substrate Specificities in the P-type ATPase Superfamily.
+RA Axelsen KB, Palmgren, MG.
+RL J Mol Evol. 1998 Jan; 46(1): 84-101.

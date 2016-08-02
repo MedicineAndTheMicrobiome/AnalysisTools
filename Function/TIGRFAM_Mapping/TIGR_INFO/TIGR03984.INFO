@@ -1,0 +1,11 @@
+ID  TIGR03984
+AC  TIGR03984
+DE  CRISPR-associated protein, TIGR03984 family
+AU  Haft DH
+TC  81.25 81.25
+NC  37.30 37.30
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  CRISPR-associated protein, TIGR03984 family
+TP  TIGRFAMs
+CC  Members of this protein family are found exclusively in CRISPR-containing organisms, in operon contexts with RAMP (repeat-associated mystery protein) proteins also linked to CRISPR (Clustered Regularly Interspaced Short Palindromic Repeats).

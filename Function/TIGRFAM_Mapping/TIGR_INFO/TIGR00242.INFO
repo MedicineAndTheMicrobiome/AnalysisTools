@@ -1,0 +1,19 @@
+ID  TIGR00242
+AC  TIGR00242
+DE  protein MraZ
+AU  Loftus BJ, Haft DH
+TC  98.35 98.35
+NC  46.10 46.10
+AL  clustalw
+IT  hypoth_equivalog
+EN  mraZ protein
+GS  mraZ
+TP  TIGRFAMs
+CC  Members of this family contain two tandem copies of a domain described by Pfam HMM PF02381. This protein often is found with other genes of the dcw (division cell wall) gene cluster, including mraW, ftsI, murE, murF, ftsW, murG, etc.
+DR  PFAM; PF02381
+RN  [1]
+RM  10876091
+RT  Organization and transcription of the division cell wall (dcw) cluster in Neisseria gonorrhoeae.
+RA  Francis F, Ramirez-Arcos S, Salimnia H, Victor C, Dillon JR.
+RL  Gene. 2000 Jun 27;251(2):141-51.
+DR  HAMAP; MF_01008; 260 of 314

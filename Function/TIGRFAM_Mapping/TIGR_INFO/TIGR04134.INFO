@@ -1,0 +1,11 @@
+ID  lipo_with_rSAM
+AC  TIGR04134
+DE  putative lipoprotein, rSAM/lipoprotein system
+AU  Haft DH
+TC  39.80 39.00
+NC  38.00 32.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  putative lipoprotein, rSAM/lipoprotein system
+TP  TIGRFAMs
+CC  Members of this family are Bacteroidetes lineage putative lipoproteins that always occur in pairs with a radical SAM enzyme, TIGR04133, from a branch of the radical SAM superfamily in which many members perform peptide or protein modifications. In some members, the region distal to the Cys of the putative lipoprotein cleavage motif is duplicated.

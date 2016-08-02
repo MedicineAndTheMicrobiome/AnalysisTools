@@ -1,0 +1,13 @@
+ID  hypB
+AC  TIGR00073
+DE  hydrogenase accessory protein HypB
+AU  Haft DH
+TC  121.20 121.20
+NC  85.40 85.40
+AL  msa_tigr
+IT  equivalog
+EN  hydrogenase accessory protein HypB
+GS  hypB
+TP  TIGRFAMs
+CC  A GTP hydrolase for assembly of nickel metallocenter of hydrogenase. A similar protein, ureG, is an accessory protein for urease, which also uses nickel.
+CC  hits scoring 75 and above are safe as orthologs.  [SS 1/05/04 I changed the role_ID and process GO from protein folding to to protein modification, since a protein folding role has not been established, but HypB is implicated in insertion of nickel into the large subunit of NiFe hydrogenases.]

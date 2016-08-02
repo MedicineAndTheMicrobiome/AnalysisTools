@@ -1,0 +1,17 @@
+ID  kup
+AC  TIGR00794
+DE  potassium uptake protein
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  539.60 539.60
+NC  444.90 444.90
+AL  clustalw_manual
+IT  equivalog
+EN  potassium uptake protein
+GS  kup
+TR  2.A.72
+TP  TIGRFAMs
+CC  Proteins of the KUP family include the KUP (TrkD) protein of E. coli, a partially sequenced ORF from Lactococcus lactis, high affinity K+ uptake systems (Hak1) of the yeast Debaryomyces occidentalis as well as the fungus, Neurospora crassa, and several homologues in plants.  While the E. coli KUP protein is assumed to be a secondary transporter, and uptake is blocked by protonophores such as CCCP (but not arsenate), the energy coupling mechanism has not been defined. However, the N. crassa protein has been shown to be a K+:H+ symporter, establishing that the KUP family consists of secondary carriers. The plant high affinity (20mM) K+ transporter can complement K+ uptake defects in E. coli.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_72.html
+DR  Interpro; IPR003855
+DR  PFAM; PF2705
+DR  HAMAP; MF_01522; 37 of 248

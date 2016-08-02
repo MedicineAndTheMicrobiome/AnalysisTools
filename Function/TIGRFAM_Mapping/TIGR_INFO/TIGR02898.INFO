@@ -1,0 +1,21 @@
+ID  spore_YhcN_YlaJ
+AC  TIGR02898
+DE  sporulation lipoprotein, YhcN/YlaJ family
+AU  Haft DH
+TC  99.75 99.75
+NC  52.70 52.70
+AL  muscle
+IT  subfamily
+EN  sporulation lipoprotein, YhcN/YlaJ family
+TP  TIGRFAMs
+CC  YhcN and YlaJ are predicted lipoproteins that have been detected as spore proteins but not vegetative proteins in Bacillus subtilis. Both appear to be expressed under control of the RNA polymerase sigma-G factor. The YlaJ-like members of this family have a low-complexity, strongly acidic 40-residue C-terminal domain that is not included in the seed alignment for this model. A portion of the low-complexity region between the lipoprotein signal sequence and the main conserved region of the protein family was also excised from the seed alignment.
+RN  [1]
+RM  PMID: 9611260
+RT  Characterization of yhcN, a new forespore-specific gene of Bacillus subtilis.
+RA  Bagyan I, Noback M, Bron S, Paidhungat M, Setlow P
+RL  Gene. 1998 Jun 8;212(2):179-88.
+RN  [2]
+RM  PMID: 12480901
+RT  Proteomics characterization of novel spore proteins of Bacillus subtilis.
+RA  Kuwana R, Kasahara Y, Fujibayashi M, Takamatsu H, Ogasawara N, Watabe K
+RL  Microbiology. 2002 Dec;148(Pt 12):3971-82.

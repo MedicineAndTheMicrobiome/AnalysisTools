@@ -1,0 +1,19 @@
+ID  exosortase_1
+AC  TIGR03109
+DE  exosortase A
+AU  Haft DH
+TC  265.90 265.90
+NC  204.50 204.50
+AL  muscle
+IT  hypoth_equivalog
+EN  exosortase A
+GS  xrtA
+EC  3.4.22.-
+TP  TIGRFAMs
+CC  The predicted protein-sorting transpeptidase that we call exosortase (see TIGR02602) has distinct subclasses that associated with different types of exopolysaccharide production loci. We designate this, the most common type so far, exosortase 1. We propose the gene symbol xrtA, analogous to srtA for the most common type of sortase in Gram-positive bacteria.
+DR  TIGRFAMS; TIGR02602
+RN  [1]
+RM  PMID: 16930487
+RT  Exopolysaccharide-associated protein sorting in environmental organisms: the PEP-CTERM/EpsH system. Application of a novel phylogenetic profiling heuristic.
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD
+RL  BMC Biol. 2006 Aug 24;4:29.

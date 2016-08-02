@@ -1,0 +1,21 @@
+ID  dapA
+AC  TIGR00674
+DE  4-hydroxy-tetrahydrodipicolinate synthase
+AU  Haft DH
+TC  206.15 206.15
+NC  177.55 177.55
+AL  clustalw_manual
+IT  equivalog
+EN  4-hydroxy-tetrahydrodipicolinate synthase
+GS  dapA
+EC  4.3.3.7
+TP  TIGRFAMs
+CC  Members of this family are 4-hydroxy-tetrahydrodipicolinate synthase, previously (incorrectly) called dihydrodipicolinate synthase. It is a homotetrameric enzyme of lysine biosynthesis. E. coli has several paralogs closely related to dihydrodipicoline synthase (DapA), as well as the more distant N-acetylneuraminate lyase. In Pyrococcus horikoshii, the bidirectional best hit with E. coli is to an uncharacterized paralog of DapA, not DapA itself, and it is omitted from the seed. The putative members from the Chlamydias (pathogens with a parasitic metabolism) are easily the most divergent members of the multiple alignment.
+DR  EXPERIMENTAL; EGAD|128581|137272; poplar
+DR  EXPERIMENTAL; EGAD|128579|137270; tobacco
+DR  EXPERIMENTAL; EGAD|14906|EC2478; E. coli
+DR  EXPERIMENTAL; EGAD|10095|9900; Corynebacterium glutamicum
+DR  EXCEPTION; >EGAD|14762|14776; MosA; Rhizobium meliloti
+DR  OUTGROUP; EGAD|29522|EC3225; N-acetylneuraminate lyase
+DR  PFAM; PF00701; DHDPS; dihydrodipicolinate synthase superfamily
+DR  HAMAP; MF_00418; 355 of 370

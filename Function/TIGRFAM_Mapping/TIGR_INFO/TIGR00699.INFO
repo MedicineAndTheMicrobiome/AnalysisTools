@@ -1,0 +1,15 @@
+ID  GABAtrns_euk
+AC  TIGR00699
+DE  4-aminobutyrate aminotransferase
+AU  Haft DH
+TC  567.15 567.15
+NC  251.20 251.20
+AL  clustalw
+IT  equivalog
+EN  4-aminobutyrate aminotransferase, eukaryotic type
+EC  2.6.1.19
+TP  TIGRFAMs
+CC  This enzyme is a class III pyridoxal-phosphate-dependent aminotransferase. This model describes known eukaryotic examples of the enzyme. The degree of sequence difference between this set and known bacterial examples is greater than the distance between either set the most similar enzyme with distinct function, and so separate models are built for prokaryotic and eukaryotic sets.
+CC  Alternate names include GABA transaminase, gamma-amino-N-butyrate transaminase, and beta-alanine--oxoglutarate aminotransferase.
+DR  PROSITE; PDOC00519; Aminotransferases class-III pyridoxal-phosphate attachment site
+DR  PFAM; PF00202; Aminotransferases class-III pyridoxal-phosphate

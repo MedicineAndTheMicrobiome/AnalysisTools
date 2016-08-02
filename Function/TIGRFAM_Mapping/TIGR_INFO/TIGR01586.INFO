@@ -1,0 +1,15 @@
+ID  yopT_cys_prot
+AC  TIGR01586
+DE  cysteine protease domain, YopT-type
+AU  Haft DH
+TC  52.95 52.95
+NC  50.95 50.95
+AL  clustalw_manual
+IT  domain
+EN  cysteine protease domain, YopT-type
+TP  TIGRFAMs
+CC  The HMM represents a cysteine protease domain found in proteins of bacteria that include plant pathogens (Pseudomonas syringae), root nodule bacteria, and intracellular pathogens (e.g. Yersinia pestis, Haemophilus ducreyi, Pasteurella multocida, Chlamydia trachomatis) of animal hosts. The domain features a catalytic triad of Cys, His, and Asp. Sequences can be extremely divergent outside of a few well-conserved motifs, and additional members may exist that are detected by this model. YopT, a virulence effector protein of Yersinia pestis, cleaves and releases host cell Rho GTPases from the membrane, thereby disrupting the actin cytoskeleton. Members of the family from pathogenic bacteria are likely to be pathogenesis factors.
+RM  12062101
+RT  A yersinia effector and a pseudomonas avirulence protein define a family of cysteine proteases functioning in bacterial pathogenesis.
+RA  Shao F, Merritt PM, Bao Z, Innes RW, Dixon JE.
+RL  Cell 2002 May 31;109(5):575-88

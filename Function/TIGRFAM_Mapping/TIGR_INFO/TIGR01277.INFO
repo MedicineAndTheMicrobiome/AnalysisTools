@@ -1,0 +1,15 @@
+ID  thiQ
+AC  TIGR01277
+DE  thiamine ABC transporter, ATP-binding protein
+AU  Haft DH
+TC  245.05 245.05
+NC  213.10 213.10
+AL  clustalw_manual
+IT  equivalog
+EN  thiamine ABC transporter, ATP-binding protein
+GS  thiQ
+EC  3.6.3.-
+TR  3.A.01
+TP  TIGRFAMs
+CC  This HMM describes the energy-transducing ATPase subunit ThiQ of the ThiBPQ thiamine (and thiamine pyrophosphate) ABC transporter in several Proteobacteria. This protein is found so far only in Proteobacteria, and is found in complete genomes only if the ThiB and ThiP subunits are also found.
+DR  HAMAP; MF_01723; 41 of 44

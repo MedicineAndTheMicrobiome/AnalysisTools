@@ -1,0 +1,18 @@
+ID  citF
+AC  TIGR01584
+DE  citrate lyase, alpha subunit
+AU  Durkin S
+TC  501.45 501.45
+NC  284.70 284.70
+AL  clustalw
+IT  equivalog
+EN  citrate lyase, alpha subunit
+GS  citF
+EC  2.8.3.10
+TP  TIGRFAMs
+CC  This is a model of the alpha subunit of the holoenzyme citrate lyase (EC 4.1.3.6) composed of alpha (EC 2.8.3.10), beta (EC 4.1.3.34), and acyl carrier protein subunits in a stoichiometric relationship of 6:6:6. Citrate lyase is an enzyme which converts citrate to oxaloacetate. In bacteria, this reaction is involved in citrate fermentation. The alpha subunit catalyzes the reaction Acetyl-CoA + citrate = acetate + (3S)-citryl-CoA. The seed contains an experimentally characterized member from Lactococcus lactis subsp. lactis [1]. The model covers both Gram positive and Gram negative bacteria. It is quite robust with queries scoring either quite well or quite poorly against the model. There are currently no hits in between the noise cutoff and trusted cutoff.
+RN  [1]
+RM  PMID: 1115558
+RT  Citrate lyase from Streptococcus diacetilactis. Association with its acetylating enzyme.
+RA  Kummel A, Behrens G, Gottschalk G
+RL  Arch Microbiol 1975;102(2):111-6

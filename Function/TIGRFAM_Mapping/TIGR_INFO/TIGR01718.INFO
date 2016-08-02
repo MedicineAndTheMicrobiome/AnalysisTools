@@ -1,0 +1,34 @@
+ID  Uridine-psphlse
+AC  TIGR01718
+DE  uridine phosphorylase
+AU  Selengut J
+TC  280.30 280.30
+NC  209.40 209.40
+AL  clustalw
+IT  equivalog
+EN  uridine phosphorylase
+GS  udp
+EC  2.4.2.3
+TP  TIGRFAMs
+CC  This model represents a family of bacterial and archaeal uridine phosphorylases unrelated to the mammalian enzymes of the same name.  The E. coli [1], Salmonella [2] and Klebsiella [3] genes have been characterized.
+CC  Sequences from Clostridium, Streptomyces, Treponema, Halobacterium and Pyrobaculum were included above trusted on the basis of sequence homology and a PAM-based neighbor-joining tree.  A clade including second sequences from Halobacterium and Vibrio was somewhat more distantly related and may represent a slightly different substrate specificity - these were placed below the noise cutoff.  More distantly related is a clade of archaeal sequences which as related to the DeoD family of inosine phosphorylases (TIGR00107) as they are to these uridine phosphorylases.  This clade includes a characterized protein from Sulfolobus solfataricus which has been mis-named as a methylthioadenosine phosphorylase, but which acts on inosine and guanosine - it is unclear whether uridine has been evaluated as a substrate [4].
+RN  [1]
+RM  PMID: 16751
+RT  Uridine phosphorylase from Escherichia coli. Physical and chemical characterization.
+RA  Leer JC, Hammer-Jespersen K, Schwartz M.
+RL  Eur J Biochem 1977 May 2;75(1):217-24
+RN  [2]
+RM  PMID: 9526114
+RT  Isolation and initial characterization of the uridine phosphorylase from Salmonella typhimurium.
+RA  Molchan OK, Dmitrieva NA, Romanova DV, Lopes LE, Debabov VG, Mironov AS.
+RL  Biochemistry (Mosc) 1998 Feb;63(2):195-9
+RN  [3]
+RM  PMID: 8534998
+RT  Molecular cloning and nucleotide sequence of purine nucleoside phosphorylase and uridine phosphorylase genes from Klebsiella sp.
+RA  Takehara M, Ling F, Izawa S, Inoue Y, Kimura A.
+RL  Biosci Biotechnol Biochem. 1995 Oct;59(10):1987-90.
+RN  [4]
+RM  PMID: 7929153
+RT  Purification and characterization of extremely thermophilic and thermostable 5'-methylthioadenosine phosphorylase from the archaeon Sulfolobus solfataricus. Purine nucleoside phosphorylase activity and evidence for intersubunit disulfide bonds.
+RA  Cacciapuoti G, Porcelli M, Bertoldo C, De Rosa M, Zappia V.
+RL  J Biol Chem. 1994 Oct 7;269(40):24762-9.

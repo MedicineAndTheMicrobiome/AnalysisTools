@@ -1,0 +1,18 @@
+ID  F420_CofF
+AC  TIGR04443
+DE  coenzyme gamma-F420-2:alpha-L-glutamate ligase
+AU  Haft DH
+TC  300.00 300.00
+NC  150.00 150.00
+AL  muscle_manual
+IT  equivalog
+EN  coenzyme gamma-F420-2:alpha-L-glutamate ligase
+GS  cofF
+EC  6.3.2.32
+TP  TIGRFAMs
+CC  Members of this family are the CofF, a RimK-related glutamate ligase that caps the gamma-glutamyl tail of the archaeal form of coenzyme F420, a hydride carrier. This enzyme does not appear in bacterial species, such as Mycobacterium tuberculosis, that make F420 with a different type of tail.
+RN  [1]
+RM  PMID:12909715 
+RT  Glutathione synthetase homologs encode alpha-L-glutamate ligases for methanogenic coenzyme F420 and tetrahydrosarcinapterin biosyntheses. 
+RA  Li H, Xu H, Graham DE, White RH 
+RL  Proc Natl Acad Sci U S A. 2003 Aug 19;100(17):9785-90.

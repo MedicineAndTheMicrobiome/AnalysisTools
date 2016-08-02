@@ -1,0 +1,12 @@
+ID  partition_RepB
+AC  TIGR03454
+DE  plasmid partitioning protein RepB
+AU  Haft DH
+TC  201.50 201.50
+NC  106.00 106.00
+AL  muscle_manual
+IT  equivalog
+EN  plasmid partitioning protein RepB
+GS  repB
+TP  TIGRFAMs
+CC  Members of this family are the RepB protein involved in replicon partitioning. RepB is found, in general, as part of a repABC operon in plasmids and small chromosomes, separate from the main chromosome, in various bacteria. This model describes a rather narrow clade of proteins; it should be noted that additional homologs scoring below the trusted cutoff have very similar functions, although they may be named differently.

@@ -1,0 +1,12 @@
+ID  TIGR00093
+AC  TIGR00093
+DE  pseudouridine synthase
+AU  Richardson DL, Anolik RT, Haft DH
+TC  109.30 109.30
+NC  46.40 46.40
+AL  msa_tigr
+IT  subfamily
+EN  pseudouridine synthase
+EC  5.4.99.-
+TP  TIGRFAMs
+CC  This HMM identifies panels of pseudouridine synthase enzymes that RNA modifications involved in maturing the protein translation apparatus. Counts per genome vary: two in Staphylococcus aureus, three in Pseudomonas putida, four in E. coli, etc.

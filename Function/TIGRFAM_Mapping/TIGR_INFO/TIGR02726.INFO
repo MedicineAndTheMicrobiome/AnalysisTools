@@ -1,0 +1,16 @@
+ID  phenyl_P_delta
+AC  TIGR02726
+DE  phenylphosphate carboxylase, delta subunit
+AU  Haft DH
+TC  281.95 281.95
+NC  178.85 178.85
+AL  clustalw
+IT  equivalog
+EN  phenylphosphate carboxylase, delta subunit
+GS  ppcD
+TP  TIGRFAMs
+CC  Members of this protein family are the alpha subunit of phenylphosphate carboxylase. Phenol (methyl-benzene) is converted to phenylphosphate, then para-carboxylated by this four-subunit enzyme, with the release of phosphate, to 4-hydroxybenzoate. The enzyme contains neither biotin nor thiamin pyrophosphate. This delta subunit belongs to HAD family hydrolases.
+RM  15231788
+RT  Phenylphosphate carboxylase: a new C-C lyase involved in anaerobic phenol metabolism in Thauera aromatica.
+RA  Schuhle K, Fuchs G.
+RL  J Bacteriol. 2004 Jul;186(14):4556-67.

@@ -1,0 +1,14 @@
+ID  arg_catab_astB
+AC  TIGR03241
+DE  succinylarginine dihydrolase
+AU  Haft DH
+TC  538.30 538.30
+NC  289.85 289.85
+AL  muscle
+IT  equivalog
+EN  succinylarginine dihydrolase
+GS  astB
+EC  3.5.3.23
+TP  TIGRFAMs
+CC  Members of this family are succinylarginine dihydrolase (EC 3.5.3.23), the second of five enzymes in the arginine succinyltransferase (AST) pathway.
+DR  HAMAP; MF_01172; 85 of 91

@@ -1,0 +1,17 @@
+ID  PaaY
+AC  TIGR02287
+DE  phenylacetic acid degradation protein PaaY
+AU  Selengut J
+TC  319.60 319.60
+NC  304.75 304.75
+AL  clustalw
+IT  equivalog
+EN  phenylacetic acid degradation protein PaaY
+GS  paaY
+TP  TIGRFAMs
+CC  Members of this family are located next to other genes organized into apparent operons for phenylacetic acid degradation [1].  PaaY is located near the end of these gene clusters and often next to PaaX, a transcriptional regulator.
+RN  [1]
+RM  PMID: 11260461
+RT  The phenylacetyl-CoA catabolon: a complex catabolic unit with broad biotechnological applications.
+RA  Luengo JM, Garcia JL, Olivera ER.
+RL  Mol Microbiol. 2001 Mar;39(6):1434-42.

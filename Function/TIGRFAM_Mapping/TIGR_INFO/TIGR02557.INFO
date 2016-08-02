@@ -1,0 +1,16 @@
+ID  HpaP
+AC  TIGR02557
+DE  type III secretion protein HpaP
+AU  Selengut J
+TC  184.80 184.80
+NC  173.80 173.80
+AL  clustalw
+IT  equivalog
+EN  type III secretion protein HpaP
+TP  TIGRFAMs
+CC  This family of genes is always found in type III secretion operons, althought its function in the processes of secretion and virulence is unclear [1].  Hpa stands for Hrp-associated gene, where Hrp stands for hypersensitivity response and virulence.
+RN  [1]
+RM  PMID: 12730176
+RT  Characterization of the Xanthomonas axonopodis pv. glycines Hrp pathogenicity island.
+RA  Kim JG, Park BK, Yoo CH, Jeon E, Oh J, Hwang I.
+RL  J Bacteriol. 2003 May;185(10):3155-66.

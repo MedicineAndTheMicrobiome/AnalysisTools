@@ -1,0 +1,11 @@
+ID  Myxo_Cys_RPT
+AC  TIGR04201
+DE  Cys-rich repeat, Myxococcales-type
+AU  Haft DH
+TC  25.00 20.00
+NC  22.00 19.00
+AL  manual
+IT  repeat
+EN  Cys-rich repeat, Myxococcales-type
+TP  TIGRFAMs
+CC  This repeat is restricted to the Myxococcales, a division of the deltaproteobacteria. It occurs in several surface proteins, and may form a stalk region. The repeat averages about 21 amino acids in length with four or five Cys, three of which are nearly invariant.

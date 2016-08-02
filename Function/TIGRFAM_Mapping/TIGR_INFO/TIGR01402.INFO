@@ -1,0 +1,14 @@
+ID  fliQ
+AC  TIGR01402
+DE  flagellar biosynthetic protein FliQ
+AU  Haft DH
+TC  88.90 88.90
+NC  83.25 83.25
+AL  clustalw
+IT  equivalog
+EN  flagellar biosynthetic protein FliQ
+GS  fliQ
+TP  TIGRFAMs
+CC  This model describes FliQ, a protein involved in biosynthesis of bacterial flagella. A related family of proteins, excluded from this model, participates in bacterial type III protein secretion systems.
+DR  OUTGROUP; SP:P40298; YscS; Yersinia pestis
+DR  OUTGROUP; OMNI|TC0852; SctS; Chlamydia muridarum

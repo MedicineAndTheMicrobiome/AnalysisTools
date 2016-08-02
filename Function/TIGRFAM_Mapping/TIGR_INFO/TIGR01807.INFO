@@ -1,0 +1,13 @@
+ID  CM_P2
+AC  TIGR01807
+DE  chorismate mutase
+AU  Selengut J
+TC  69.55 69.55
+NC  66.45 66.45
+AL  clustalw
+IT  equivalog_domain
+EN  chorismate mutase domain of proteobacterial P-protein, clade 2
+GS  pheA
+EC  5.4.99.5
+TP  TIGRFAMs
+CC  This model represents one of two separate clades of the chorismate mutase domain of the gamma and beta and epsilon proteobacterial "P-protein" which contains an N-terminal chorismate mutase domain and a C-terminal prephenate dehydratase domain.  It is also found in Aquifex aolicus.

@@ -1,0 +1,29 @@
+ID  hybrid_clust
+AC  TIGR01703
+DE  hydroxylamine reductase
+AU  Haft DH
+TC  360.80 360.80
+NC  181.95 181.95
+AL  clustalw
+IT  equivalog
+EN  hydroxylamine reductase
+GS  hcp
+EC  1.7.-.-
+TP  TIGRFAMs
+CC  This HMM represents a family of proteins containing an unusual 4Fe-2S-2O hydrid cluster. Earlier reports had proposed a 6Fe-6S prismane cluster. This subfamily is heterogeneous with respect to the presence or absence of a region of about 100 amino acids not far from the N-terminus of the protein. Members have been described as monomeric. The general function is unknown, although members from E. coli and several other species have hydroxylamine reductase activity. Members are found in various bacteria, in Archaea, and in several parasitic eukaryotes: Giardia intestinalis, Trichomonas vaginalis, and Entamoeba histolytica.
+RN  [1]
+RM  PMID:12374823 
+RT  Hydroxylamine reductase activity of the hybrid cluster protein from Escherichia coli. 
+RA  Wolfe MT, Heo J, Garavelli JS, Ludden PW 
+RL  J Bacteriol. 2002 Nov;184(21):5898-902.
+RN  [2]
+RM  PMID:10651802
+RT  The hybrid-cluster protein ('prismane protein') from Escherichia coli. Characterization of the hybrid-cluster protein, redox properties of the [2Fe-2S] and [4Fe-2S-2O] clusters and identification of an associated NADH oxidoreductase containing FAD and [2Fe-2S].
+RA  van den Berg WA, Hagen WR, van Dongen WM.
+RL  Eur J Biochem 2000 Feb;267(3):666-76
+RN  [3]
+RM  PMID:1318832 
+RT  Purification and biochemical characterization of a putative [6Fe-6S] prismane-cluster-containing protein from Desulfovibrio vulgaris (Hildenborough). 
+RA  Pierik AJ, Wolbert RB, Mutsaers PH, Hagen WR, Veeger C 
+RL  Eur J Biochem. 1992 Jun 15;206(3):697-704.
+DR  HAMAP; MF_00069; 89 of 90

@@ -1,0 +1,16 @@
+ID  TAS_TIGR02293
+AC  TIGR02293
+DE  putative toxin-antitoxin system antitoxin component, TIGR02293 family
+AU  Haft DH
+TC  57.00 57.00
+NC  38.25 38.25
+AL  clustalw
+IT  hypoth_equivalog
+EN  putative toxin-antitoxin system antitoxin component, TIGR02293 family
+TP  TIGRFAMs
+CC  Proteins in this family are found almost exclusively in the Proteobacteria, but also in Gloeobacter violaceus PCC 7421, a cyanobacterium. This family was proposed by Makarova, et al. (2009) to be the antitoxin component of a new class of type 2 toxin-antitoxin system, or addiction module.
+RN  [1]
+RM  PMID:19493340
+RT  Comprehensive comparative-genomic analysis of type 2 toxin-antitoxin systems and related mobile stress response systems in prokaryotes.
+RA  Makarova KS, Wolf YI, Koonin EV
+RL  Biol Direct. 2009 Jun 3;4:19.

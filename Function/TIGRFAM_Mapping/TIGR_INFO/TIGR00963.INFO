@@ -1,0 +1,13 @@
+ID  secA
+AC  TIGR00963
+DE  preprotein translocase, SecA subunit
+AU  Loftus BJ, Haft DH
+TC  800.00 640.00
+NC  797.00 630.00
+AL  clustalw_manual
+IT  equivalog
+EN  preprotein translocase, SecA subunit
+GS  secA
+TP  TIGRFAMs
+CC  The proteins SecA-F and SecY, not all of which are necessary, comprise the standard prokaryotic protein translocation apparatus. Other, specialized translocation systems also exist but are not as broadly distributed. This HMM describes SecA, an essential member of the apparatus. This model excludes SecA2 of the accessory secretory system.
+DR  HAMAP; MF_01382; 553 of 613

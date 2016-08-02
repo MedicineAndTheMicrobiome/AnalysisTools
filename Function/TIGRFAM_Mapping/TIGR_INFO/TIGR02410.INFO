@@ -1,0 +1,12 @@
+ID  carnitine_TMLD
+AC  TIGR02410
+DE  trimethyllysine dioxygenase
+AU  Haft DH
+TC  268.30 268.30
+NC  232.85 232.85
+AL  clustalw
+IT  equivalog
+EN  trimethyllysine dioxygenase
+EC  1.14.11.8
+TP  TIGRFAMs
+CC  Members of this family with known function act as trimethyllysine dioxygenase, an enzyme in the pathway for carnitine biosynthesis from lysine. This enzyme is homologous to gamma-butyrobetaine,2-oxoglutarate dioxygenase, which catalyzes the last step in carnitine biosynthesis. Members of this family appear to be eukaryotic only.

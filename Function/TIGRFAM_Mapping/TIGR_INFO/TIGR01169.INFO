@@ -1,0 +1,13 @@
+ID  rplA_bact
+AC  TIGR01169
+DE  ribosomal protein L1
+AU  Haft DH
+TC  216.30 216.30
+NC  124.75 124.75
+AL  clustalw
+IT  equivalog
+EN  ribosomal protein L1, bacterial/chloroplast
+GS  rplA
+TP  TIGRFAMs
+CC  This model describes bacterial (and chloroplast) ribosomal protein L1. The apparent mitochondrial L1 is sufficiently diverged to be the subject of a separate model.
+DR  HAMAP; MF_01318; 557 of 613

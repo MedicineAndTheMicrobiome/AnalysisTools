@@ -1,0 +1,12 @@
+ID  cca_archaeal
+AC  TIGR03671
+DE  CCA-adding enzyme
+AU  Selengut J
+TC  281.30 281.30
+NC  168.25 168.25
+AL  muscle
+IT  equivalog
+EN  CCA-adding enzyme
+GS  cca
+EC  2.7.7.25 2.7.7.21
+TP  TIGRFAMs

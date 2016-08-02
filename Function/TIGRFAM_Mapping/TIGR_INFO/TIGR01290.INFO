@@ -1,0 +1,27 @@
+ID  nifB
+AC  TIGR01290
+DE  nitrogenase cofactor biosynthesis protein NifB
+AU  Haft DH
+TC  343.65 343.65
+NC  222.20 222.20
+AL  clustalw_manual
+IT  equivalog
+EN  nitrogenase cofactor biosynthesis protein NifB
+GS  nifB
+TP  TIGRFAMs
+CC  This HMM describes NifB, a protein required for the biosynthesis of the iron-molybdenum (or iron-vanadium) cofactor used by the nitrogen-fixing enzyme nitrogenase. NifB belongs to the radical SAM family, and the FeMo cluster biosynthesis process requires S-adenosylmethionine. Archaeal homologs lack the most C-terminal region and score between the trusted and noise cutoffs of this model.
+RN  [1]
+RM  7592933
+RT  Incorporation of iron and sulfur from NifB cofactor into the iron-molybdenum cofactor of dinitrogenase.
+RA  Allen RM, Chatterjee R, Ludden PW, Shah VK
+RL  J Biol Chem 1995 Nov 10;270(45):26890-6
+RN  [2]
+RM  10364262
+RT  A vanadium and iron cluster accumulates on VnfX during iron-vanadium-cofactor synthesis for the vanadium nitrogenase in Azotobacter vinelandii.
+RA  Ruttimann-Johnson C, Staples CR, Rangaraj P, Shah VK, Ludden PW
+RL  J Biol Chem 1999 Jun 18;274(25):18087-92
+RN  [3]
+RM  PMID:16567617 
+RT  NifB-dependent in vitro synthesis of the iron-molybdenum cofactor of nitrogenase. 
+RA  Curatti L, Ludden PW, Rubio LM 
+RL  Proc Natl Acad Sci U S A. 2006 Apr 4;103(14):5297-301.

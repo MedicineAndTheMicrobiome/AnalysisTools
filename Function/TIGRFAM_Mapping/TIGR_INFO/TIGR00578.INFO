@@ -1,0 +1,12 @@
+ID  ku70
+AC  TIGR00578
+DE  ATP-dependent DNA helicase II, 70 kDa subunit (ku70)
+AU  Loftus BJ, Eisen JA
+TC  194.25 194.25
+NC  154.65 154.65
+IT  superfamily
+EN  ATP-dependent DNA helicase II, 70 kDa subunit (ku70)
+TP  TIGRFAMs
+CC  Proteins in this family are involved in non-homologous end joining, a process used for the repair of double stranded DNA breaks.  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University). Cutoff does not detect the putative ku70 homologs in yeast.
+DR  SWISSPROT; P12956;
+RM  89174787;

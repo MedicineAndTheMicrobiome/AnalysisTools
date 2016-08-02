@@ -1,0 +1,20 @@
+ID  MDH_euk_gproteo
+AC  TIGR01772
+DE  malate dehydrogenase, NAD-dependent
+AU  Selengut J
+TC  273.05 273.05
+NC  201.00 201.00
+AL  clustalw
+IT  equivalog
+EN  malate dehydrogenase, NAD-dependent
+GS  mdh
+EC  1.1.1.37
+TP  TIGRFAMs
+CC  This model represents the NAD-dependent malate dehydrogenase found in eukaryotes and certain gamma proteobacteria.  The enzyme is involved in the citric acid cycle as well as the glyoxalate cycle.  Several isoforms exidt in eukaryotes.  In S. cereviseae, for example, there are cytoplasmic, mitochondrial and peroxisomal forms.
+CC  Although malate dehydrogenases have in some cases been mistaken for lactate dehydrogenases due to the similarity of these two substrates and the apparent ease with which evolution can toggle these activities, critical residues have been identified [1] which can discriminate between the two activities.  At the time of the creation of this model no hits above the trusted cutoff contained critical residues typical of lactate dehydrogenases.
+RN  [1]
+RM  PMID: 11021970
+RT  Analysis and prediction of functional sub-types from protein sequence alignments.
+RA  Hannenhalli SS, Russell RB.
+RL  J. Mol Biol. 2000 Oct 13;303(1):61-76.
+DR  HAMAP; MF_01516; 82 of 88

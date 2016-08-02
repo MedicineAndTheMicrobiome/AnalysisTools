@@ -1,0 +1,22 @@
+ID  PduO_Nterm
+AC  TIGR00636
+DE  ATP:cob(I)alamin adenosyltransferase
+AU  Haft DH
+TC  108.45 108.45
+NC  53.90 53.90
+AL  clustalw_manual
+IT  equivalog_domain
+EN  ATP:cob(I)alamin adenosyltransferase
+EC  2.5.1.17
+TP  TIGRFAMs
+CC  This HMM represents as ATP:cob(I)alamin adenosyltransferase  family corresponding to the N-terminal half of Salmonella PduO, a 1,2-propanediol utilization protein that probably is bifunctional. PduO represents one of at least three families of ATP:corrinoid adenosyltransferase: others are CobA (which partially complements PduO) and EutT. It was not clear originally whether ATP:cob(I)alamin adenosyltransferase activity resides in the N-terminal region of PduO, modeled here, but this has now become clear from the characterization of MeaD from Methylobacterium extorquens.
+RN  [1]
+RM  11160088
+RT  Functional genomic, biochemical, and genetic characterization of the Salmonella pduO gene, an ATP:cob(I)alamin adenosyltransferase gene.
+RA  Johnson CL, Pechonick E, Park SD, Havemann GD, Leal NA, Bobik TA.
+RL  J Bacteriol 2001 Mar;183(5):1577-84
+RN  [2]
+RM  PMID: 15687219
+RT  Identification of genes involved in the glyoxylate regeneration cycle in Methylobacterium extorquens AM1, including two new genes, meaC and meaD.
+RA  Korotkova N, Lidstrom ME, Chistoserdova L
+RL  J Bacteriol. 2005 Feb;187(4):1523-6.

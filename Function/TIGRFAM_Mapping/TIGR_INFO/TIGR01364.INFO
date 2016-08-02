@@ -1,0 +1,15 @@
+ID  serC_1
+AC  TIGR01364
+DE  phosphoserine transaminase
+AU  Haft DH
+TC  443.60 443.60
+NC  102.20 102.20
+AL  clustalw
+IT  equivalog
+EN  phosphoserine aminotransferase
+GS  serC
+EC  2.6.1.52
+TP  TIGRFAMs
+CC  This HMM represents the common form of the phosphoserine aminotransferase SerC. The phosphoserine aminotransferase of the archaeon Methanosarcina barkeri and putative phosphoserine aminotransferase of Mycobacterium tuberculosis are represented by separate models. All are members of the class V aminotransferases (PF00266).
+DR  PFAM; PF00266
+DR  HAMAP; MF_00160; 112 of 138

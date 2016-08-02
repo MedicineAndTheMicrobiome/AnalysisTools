@@ -1,0 +1,13 @@
+ID  secD
+AC  TIGR01129
+DE  protein-export membrane protein SecD
+AU  Haft DH
+TC  244.40 244.40
+NC  104.80 104.80
+AL  manual
+IT  equivalog_domain
+EN  protein-export membrane protein SecD
+GS  secD
+TP  TIGRFAMs
+CC  Members of this family are highly variable in length immediately after the well-conserved motif LGLGLXGG at the amino-terminal end of this model. Archaeal homologs are not included in the seed and score between the trusted and noise cutoffs.
+CC  SecD from Mycobacterium tuberculosis has a long Pro-rich insert.

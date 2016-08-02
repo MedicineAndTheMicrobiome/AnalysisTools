@@ -1,0 +1,14 @@
+ID  mreC
+AC  TIGR00219
+DE  rod shape-determining protein MreC
+AU  Loftus BJ
+TC  92.75 92.75
+NC  64.55 64.55
+AL  clustalw
+IT  equivalog
+EN  rod shape-determining protein MreC
+GS  mreC
+TP  TIGRFAMs
+CC  MreC (murein formation C) is involved in the rod shape determination in E. coli, and more generally in cell shape determination of bacteria whether or not they are rod-shaped. Cells defective in MreC are round. Species with MreC include many of the Proteobacteria, Gram-positives, and spirochetes.
+DR  Swissprot; P16926;
+DR  ECOCYC; EG10609;

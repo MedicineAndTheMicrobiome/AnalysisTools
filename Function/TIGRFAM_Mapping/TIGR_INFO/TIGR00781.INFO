@@ -1,0 +1,22 @@
+ID  ccoO
+AC  TIGR00781
+DE  cytochrome c oxidase, cbb3-type, subunit II
+AU  Haft DH
+TC  200.65 200.65
+NC  62.85 62.85
+AL  clustalw_manual
+IT  equivalog
+EN  cytochrome c oxidase, cbb3-type, subunit II
+GS  ccoO
+EC  1.9.3.1
+TP  TIGRFAMs
+CC  This HMM describes the monoheme subunit of the cbb3-type cytochrome oxidase, found in a subset of Proteobacterial species. Species having this protein also have CcoN (subunit I, containing copper and two heme groups), CcoP (subunit III, containing two hemes), and CcoQ (essential for incorporation of the prosthetic groups).
+DR  InterPro; IPR003468
+RN  [1]
+RM  99098844
+RT  Characterization of a cb-type cytochrome c oxidase from Helicobacter pylori.
+RA  Tsukita S, Koyanagi S, Nagata K, Koizuka H, Akashi H, Shimoyama T, Tamura T, Sone N
+RL  J Biochem (Tokyo) 1999 Jan;125(1):194-201
+RN  [2]
+RM  95198544
+RT  The ccoNOQP gene cluster codes for a cb-type cytochrome oxidase that functions in aerobic respiration of Rhodobacter capsulatus.

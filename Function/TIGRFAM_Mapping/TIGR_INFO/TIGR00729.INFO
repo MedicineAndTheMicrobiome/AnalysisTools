@@ -1,0 +1,28 @@
+ID  TIGR00729
+AC  TIGR00729
+DE  ribonuclease HII
+AU  Haft DH
+TC  123.30 123.30
+NC  97.80 97.80
+AL  clustalw_manual
+IT  equivalog
+EN  ribonuclease H, mammalian HI/archaeal HII subfamily
+GS  rnhB
+EC  3.1.26.4
+TP  TIGRFAMs
+CC  This enzyme cleaves RNA from DNA-RNA hybrids.
+CC  Archaeal members of this subfamily of RNase H are designated RNase HII and one has been shown to be active as a monomer. A member from Homo sapiens was characterized as RNase HI, large subunit.
+AL  clustalw_manual
+DR  EXPERIMENTAL; GP|3551209|dbj|BAA32803.1||AB012613; Pyrococcus kodakaraensis
+DR  EXPERIMENTAL; GP|3334761|emb|CAB09725.1||Z97029; Homo sapiens
+RN  [1]
+RM  99047566
+RT  Gene cloning and characterization of recombinant RNase HII from a hyperthermophilic archaeon.
+RA  Haruki M, Hayashi K, Kochi T, Muroya A, Koga Y, Morikawa M, Imanaka T, Kanaya S
+RL  J Bacteriol 1998 Dec;180(23):6207-14
+RN  [2]
+RM  99007233
+RT  Cloning of the cDNA encoding the large subunit of human RNase HI, a homologue of the prokaryotic RNase HII.
+RA  Frank P, Braunshofer-Reiter C, Wintersberger U, Grimm R, Busen W
+RL  Proc Natl Acad Sci U S A 1998 Oct 27;95(22):12872-7
+DR  HAMAP; MF_00052; 42 of 548

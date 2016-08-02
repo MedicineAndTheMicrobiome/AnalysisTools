@@ -1,0 +1,11 @@
+ID  Lepto_longest
+AC  TIGR04388
+DE  putative large structural protein
+AU  Haft DH
+TC  45.00 45.00
+NC  40.00 40.00
+AL  muscle_manual
+IT  subfamily
+EN  putative large structural protein
+TP  TIGRFAMs
+CC  Members of this family are restricted so far to the lineage Leptospira, where they may be the longest protein encoded by the genome. Two or three paralogs are often found. The seed alignment for this model includes sequences with significant length variability, and stops adjacent to an intein feature most full-length members of this family share. Oddly, members closely related in sequence up to the start of the intein (see TIGR01445) usually show very little sequence similarity C-terminal to the end of the intein (see TIGR01443).

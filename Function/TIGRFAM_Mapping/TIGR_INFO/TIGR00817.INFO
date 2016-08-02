@@ -1,0 +1,22 @@
+ID  tpt
+AC  TIGR00817
+DE  Tpt phosphate/phosphoenolpyruvate translocator
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  317.90 317.90
+NC  210.60 210.60
+AL  clustalw_manual
+IT  subfamily
+EN  Tpt phosphate/phosphoenolpyruvate translocator
+GS  tpt
+TP  TIGRFAMs
+CC  The 6-8 TMS Triose-phosphate Transporter (TPT) Family (TC 2.A.7.9)
+CC  Functionally characterized members of the TPT family are derived from the inner envelope membranes of chloroplasts and nongreen plastids of plants. However,
+CC  homologues are also present in yeast. Saccharomyces cerevisiae has three functionally uncharacterized TPT paralogues encoded within its genome. Under normal physiological
+CC  conditions, chloroplast TPTs mediate a strict antiport of substrates, frequently exchanging an organic three carbon compound phosphate ester for inorganic phosphate (Pi).
+CC  Normally, a triose-phosphate, 3-phosphoglycerate, or another phosphorylated C3 compound made in the chloroplast during photosynthesis, exits the organelle into the
+CC  cytoplasm of the plant cell in exchange for Pi. However, experiments with reconstituted translocator in artificial membranes indicate that transport can also occur by a
+CC  channel-like uniport mechanism with up to 10-fold higher transport rates. Channel opening may be induced by a membrane potential of large magnitude and/or by high substrate
+CC  concentrations. Nongreen plastid and chloroplast carriers, such as those from maize endosperm and root membranes, mediate transport of C3 compounds phosphorylated at
+CC  carbon atom 2, particularly phosphenolpyruvate, in exchange for Pi. These are the phosphoenolpyruvate:Pi antiporters (PPT). Glucose-6-P has also been shown to be a
+CC  substrate of some plastid translocators (GPT). The three types of proteins (TPT, PPT and GPT) are divergent in sequence as well as substrate specificity, but their substrate
+CC  specificities overlap.

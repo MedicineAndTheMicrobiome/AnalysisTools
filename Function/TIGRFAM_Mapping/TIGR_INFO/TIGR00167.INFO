@@ -1,0 +1,14 @@
+ID  cbbA
+AC  TIGR00167
+DE  ketose-bisphosphate aldolase
+AU  Loftus BJ
+TC  215.60 215.60
+NC  137.50 137.50
+AL  clustalw
+IT  subfamily
+EN  ketose-bisphosphate aldolase
+TP  TIGRFAMs
+CC  This model is under revision. Proteins found by this model include
+CC  fructose-bisphosphate and tagatose-bisphosphate aldolase.
+DR  EC 4.1.2.-
+DR  HAMAP; MF_01294; 23 of 29

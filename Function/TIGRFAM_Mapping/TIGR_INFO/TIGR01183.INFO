@@ -1,0 +1,12 @@
+ID  ntrB
+AC  TIGR01183
+DE  nitrate ABC transporter, permease protein
+AU  Ujwal ML, Paulsen IT
+TC  209.05 209.05
+NC  168.75 168.75
+AL  clustalw
+IT  equivalog
+EN  nitrate ABC transporter, permease protein
+GS  ntrB
+TP  TIGRFAMs
+CC  This model describes the nitrate transport permease in bacteria. This is gene product of ntrB. The nitrate transport permease is the integral membrane component of the nitrate transport system and belongs to the ATP-binding cassette (ABC) superfamily. At least in photosynthetic bacteria nitrate assimilation is aided by other proteins derived from the operon which among others include products of ntrA, ntrB, ntrC, ntrD, narB. Functionally ntrC and ntrD resemble the ATP binding components of the binding protein-dependent transport systems. Mutational studies have shown that ntrB and ntrC  are mandatory for nitrate accumulation. Nitrate reductase is encoded by narB.

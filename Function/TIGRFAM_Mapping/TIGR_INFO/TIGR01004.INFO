@@ -1,0 +1,13 @@
+ID  PulS_OutS
+AC  TIGR01004
+DE  lipoprotein, PulS/OutS family
+AU  Loftus BJ
+TC  130.10 130.10
+NC  129.40 129.40
+AL  clustalw_manual
+IT  subfamily
+EN  lipoprotein, PulS/OutS family
+TR  8.A.2
+TP  TIGRFAMs
+CC  This family comprises lipoproteins from four gamma proteobacterial species: PulS protein of Klebsiella pneumoniae, the OutS protein of Erwinia chrysanthemi and Pectobacterium chrysanthemi, and the functionally uncharacterized E. coli protein EtpO. PulS and OutS have been shown to interact with and facilitate insertion of secretins into the outer membrane, suggesting a chaperone-like, or piloting function for members of this family.
+DR  URL: http://www-biology.ucsd.edu/~msaier/transport/8_A_2.html

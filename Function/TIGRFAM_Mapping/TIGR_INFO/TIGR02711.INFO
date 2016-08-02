@@ -1,0 +1,19 @@
+ID  symport_actP
+AC  TIGR02711
+DE  cation/acetate symporter ActP
+AU  Haft DH
+TC  1099.25 1099.25
+NC  893.30 893.30
+AL  clustalw_manual
+IT  equivalog
+EN  cation/acetate symporter ActP
+GS  actP
+TP  TIGRFAMs
+CC  Members of this family belong to the Sodium:solute symporter family. Both members of this family and other close homologs tend to be encoded next to a member of Pfam family PF04341, a set of uncharacterized membrane proteins.  The characterized member from E. coli is encoded near and cotranscribed with the acetyl coenzyme A synthetase (acs) gene. Proximity to an acs gene was used as one criterion for determining the trusted cutoff for this model. Closely related proteins may differ in function and are excluded by the high cutoffs of this model; members of the family of phenylacetic acid transporter PhaJ can score as high as 1011 bits.
+DR  PFAM; PF00474; SSF; Sodium:solute symporter family
+RN  [1]
+RM  14563880
+RT  The gene yjcG, cotranscribed with the gene acs, encodes an acetate permease in Escherichia coli.
+RA  Gimenez R, Nunez MF, Badia J, Aguilar J, Baldoma L.
+RL  J Bacteriol. 2003 Nov;185(21):6448-55.
+DR  HAMAP; MF_01426; 29 of 30

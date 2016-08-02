@@ -1,0 +1,11 @@
+ID  Fib_succ_major
+AC  TIGR02145
+DE  fibrobacter succinogenes major paralogous domain
+AU  Haft DH
+TC  41.65 41.65
+NC  21.00 21.00
+AL  clustalw
+IT  domain
+EN  Fibrobacter succinogenes major paralogous domain
+TP  TIGRFAMs
+CC  This domain of about 175 to 200 amino acids is found, in from one to five copies, in over 50 proteins in Fibrobacter succinogenes S85, an obligate anaerobe of the rumen. Many members of this family have an apparent lipoprotein signal sequence. Conserved cysteine residues, suggestive of disulfide bond formation, are also consistent with an extracytoplasmic location for this domain. This domain can also be found in small numbers of proteins in Chlorobium tepidum and Bacteroides thetaiotaomicron.

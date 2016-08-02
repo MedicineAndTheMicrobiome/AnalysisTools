@@ -1,0 +1,16 @@
+ID  methan_mark_6
+AC  TIGR03272
+DE  putative methanogenesis marker protein 6
+AU  Haft DH
+TC  125.95 125.95
+NC  76.70 76.70
+AL  muscle
+IT  hypoth_equivalog
+EN  putative methanogenesis marker protein 6
+TP  TIGRFAMs
+CC  Members of this protein family, to date, are found in a completed prokaryotic genome if and only if the species is one of the archaeal methanogens. The exact function is unknown, but likely is linked to methanogenesis or a process closely connected to it.
+RN  [1]
+RM  PMID:22070167 
+RT  ProPhylo: partial phylogenetic profiling to guide protein family construction and assignment of biological process. 
+RA  Basu MK, Selengut JD, Haft DH 
+RL  BMC Bioinformatics. 2011 Nov 9;12:434.

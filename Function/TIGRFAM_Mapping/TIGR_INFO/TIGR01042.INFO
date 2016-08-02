@@ -1,0 +1,18 @@
+ID  V-ATPase_V1_A
+AC  TIGR01042
+DE  V-type ATPase, A subunit
+AU  Durkin S
+TC  779.90 779.90
+NC  776.60 776.60
+AL  clustalw
+IT  equivalog
+EN  V-type (H+)-ATPase V1, A subunit
+EC  3.6.3.14
+TR  3.A.02
+TP  TIGRFAMs
+CC  This models eukaryotic vacuolar (H+)-ATPase that is responsible for acidifying cellular compartments. This enzyme shares extensive sequence similarity with archaeal ATP synthase.
+RN  [1]
+RM  99240666
+RT  Structure and Properties of the Vacuolar (H+)-ATPases.
+RA  Forgac M;
+RL  J Biol Chem 1999;274:12951-12954.

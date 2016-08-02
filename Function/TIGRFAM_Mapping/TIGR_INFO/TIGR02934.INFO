@@ -1,0 +1,18 @@
+ID  nifT_nitrog
+AC  TIGR02934
+DE  probable nitrogen fixation protein FixT
+AU  Haft DH
+TC  41.00 41.00
+NC  37.40 37.40
+AL  clustalw
+IT  equivalog
+EN  probable nitrogen fixation protein FixT
+GS  nifT
+TP  TIGRFAMs
+CC  This largely uncharacterized protein family is assigned a role in nitrogen fixation by two criteria. First, its gene occurs, generally, among genes essential for expression of active nitrogenase. Second, its phylogenetic profile closely matches that of nitrogen-fixing bacteria. However, mutational studies in Klebsiella pneumoniae failed to demonstrate any phenotype for deletion or overexpression of the protein.
+DR  PFAM; PF06988; NifT/FixU protein
+RN  [1]
+RM  PMID: 8631690
+RT  Perturbation of nifT expression in Klebsiella pneumoniae has limited effect on nitrogen fixation.
+RA  Simon HM, Homer MJ, Roberts GP
+RL  J Bacteriol. 1996 May;178(10):2975-7.

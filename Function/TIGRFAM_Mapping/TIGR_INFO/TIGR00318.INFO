@@ -1,0 +1,12 @@
+ID  cyaB
+AC  TIGR00318
+DE  putative adenylyl cyclase CyaB
+AU  Haft DH
+TC  57.95 57.95
+NC  31.40 31.40
+AL  clustalw
+IT  hypoth_equivalog
+EN  adenylyl cyclase CyaB, putative
+GS  cyaB
+TP  TIGRFAMs
+CC  The protein CyaB from Aeromonas hydrophila is a second adenylyl cyclase from that species, as demonstrated by complementation in E. coli and by assay of the enzymatic properties of purified recombinant protein. It has no detectable homology to any other protein of known function, and has several unusual properties, including an optimal temperature of 65 degrees and an optimal pH of 9.5. A cluster of uncharaterized archaeal homologs may be orthologous and serve (under certain circumstances) to produce the regulatory metabolite cyclic AMP (cAMP).

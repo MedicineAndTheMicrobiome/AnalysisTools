@@ -1,0 +1,14 @@
+ID  thrS
+AC  TIGR00418
+DE  threonine--tRNA ligase
+AU  Haft DH
+TC  383.65 383.65
+NC  288.75 288.75
+AL  clustalw
+IT  equivalog
+EN  threonyl-tRNA synthetase
+GS  thrS
+EC  6.1.1.3
+TP  TIGRFAMs
+CC  This HMM represents the threonyl-tRNA synthetase found in most organisms. This protein is a class II tRNA synthetase, and is recognized by the pfam HMM tRNA-synt_2b. Note that B. subtilis has closely related isozymes thrS and thrZ. The N-terminal regions are quite dissimilar between archaeal and eubacterial forms, while some eukaryotic forms are missing sequence there altogether. .
+DR  HAMAP; MF_00184; 462 of 475

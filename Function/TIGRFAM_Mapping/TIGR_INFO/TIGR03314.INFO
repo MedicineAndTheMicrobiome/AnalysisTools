@@ -1,0 +1,17 @@
+ID  Se_ssnA
+AC  TIGR03314
+DE  putative selenium metabolism protein SsnA
+AU  Haft DH
+TC  455.50 455.50
+NC  348.85 348.85
+AL  muscle
+IT  subfamily
+EN  putative selenium metabolism protein SsnA
+GS  ssnA
+TP  TIGRFAMs
+CC  Members of this protein family are found exclusively in genomes that contain putative set of labile selenium-dependent enzyme accessory proteins as well as homologs of a labile selenium-dependent purine hydroxylase. A mutant in this gene in Escherichia coli had improved stationary phase viability. The function is unknown.
+RN  [1]
+RM  PMID: 10074077
+RT  Characterization of the ssnA gene, which is involved in the decline of cell viability at the beginning of stationary phase in Escherichia coli.
+RA  Yamada M, Talukder AA, Nitta T
+RL  J Bacteriol. 1999 Mar;181(6):1838-46.

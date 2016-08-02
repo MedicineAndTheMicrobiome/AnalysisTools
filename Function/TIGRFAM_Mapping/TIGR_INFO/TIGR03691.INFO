@@ -1,0 +1,23 @@
+ID  20S_bact_alpha
+AC  TIGR03691
+DE  proteasome, alpha subunit
+AU  Haft DH
+TC  139.05 139.05
+NC  62.65 62.65
+AL  muscle_manual
+IT  equivalog
+EN  proteasome, alpha subunit, bacterial type
+GS  prcA
+EC  3.4.25.1
+TP  TIGRFAMs
+CC  Members of this family are the alpha subunit of the 20S proteasome as found in Actinobacteria such as Mycobacterium, Rhodococcus, and Streptomyces. In most Actinobacteria (an exception is Propionibacterium acnes), the proteasome is accompanied by a system of tagging proteins for degradation with Pup.
+RN  [1]
+RM  PMID:9765579
+RT  The 20S proteasome of Streptomyces coelicolor.
+RA  Nagy I, Tamura T, Vanderleyden J, Baumeister W, De Mot R
+RL  J Bacteriol. 1998 Oct;180(20):5448-53.
+RN  [2]
+RM  PMID:16468985
+RT  Mycobacterium tuberculosis prcBA genes encode a gated proteasome with broad oligopeptide specificity.
+RA  Lin G, Hu G, Tsu C, Kunes YZ, Li H, Dick L, Parsons T, Li P, Chen Z, Zwickl P, Weich N, Nathan C
+RL  Mol Microbiol. 2006 Mar;59(5):1405-16.

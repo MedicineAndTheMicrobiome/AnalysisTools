@@ -1,0 +1,15 @@
+ID  malate_syn_G
+AC  TIGR01345
+DE  malate synthase G
+AU  Haft DH
+TC  989.15 989.15
+NC  403.25 403.25
+AL  clustalw
+IT  equivalog
+EN  malate synthase G
+GS  glcB
+EC  2.3.3.9
+TP  TIGRFAMs
+CC  This HMM describes the G isozyme of malate synthase. Isocitrate synthase and malate synthase form the glyoxylate shunt, which generates additional TCA cycle intermediates.
+DR  PFAM; PF01274; Malate synthase
+DR  HAMAP; MF_00641; 60 of 60

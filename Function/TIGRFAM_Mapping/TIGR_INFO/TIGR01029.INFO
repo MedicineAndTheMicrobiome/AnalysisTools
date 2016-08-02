@@ -1,0 +1,13 @@
+ID  rpsG_bact
+AC  TIGR01029
+DE  ribosomal protein S7
+AU  Haft DH
+TC  135.85 135.85
+NC  96.25 96.25
+AL  clustalw_manual
+IT  equivalog
+EN  ribosomal protein S7, bacterial/organelle
+GS  rpsG
+TP  TIGRFAMs
+CC  This model describes the bacterial and organellar branch of the ribosomal protein S7 family (includes prokaroytic S7 and eukaryotic S5). The eukaryotic and archaeal branch is described by model TIGR01028.
+DR  HAMAP; MF_00480; 737 of 796

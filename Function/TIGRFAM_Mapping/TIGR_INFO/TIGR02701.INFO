@@ -1,0 +1,16 @@
+ID  shell_carb_anhy
+AC  TIGR02701
+DE  carboxysome shell carbonic anhydrase
+AU  Haft DH
+TC  241.05 241.05
+NC  235.30 235.30
+AL  clustalw
+IT  equivalog
+EN  carboxysome shell carbonic anhydrase
+EC  4.2.1.1
+TP  TIGRFAMs
+CC  This model describes a carboxysome shell protein that proves to be a novel class, designated epsilon, of carbonic anhydrase. It tends to be encoded near genes for RuBisCo and for other carboxysome shell proteins.
+RM  14729686
+RT  A novel evolutionary lineage of carbonic anhydrase (epsilon class) is a component of the carboxysome shell.
+RA  So AK, Espie GS, Williams EB, Shively JM, Heinhorst S, Cannon GC.
+RL  J Bacteriol. 2004 Feb;186(3):623-30.

@@ -1,0 +1,17 @@
+ID  clan_AA_DTGF
+AC  TIGR03698
+DE  clan AA aspartic protease, AF_0612 family
+AU  Haft DH
+TC  57.35 57.35
+NC  42.35 42.35
+AL  muscle_manual
+IT  subfamily
+EN  clan AA aspartic protease, AF_0612 family
+EC  3.4.23.-
+TP  TIGRFAMs
+CC  Members of this protein family are clan AA aspartic proteases, related to family TIGR02281. These proteins resemble retropepsins, pepsin-like proteases of retroviruses such as HIV. Members of this family are found in archaea and bacteria.
+RN  [1]
+RM  PMID:19173708 
+RT  Bioinformatic flowchart and database to investigate the origins and diversity of clan AA peptidases. 
+RA  Llorens C, Futami R, Renaud G, Moya A 
+RL  Biol Direct. 2009 Jan 27;4:3.

@@ -1,0 +1,17 @@
+ID  ftsW
+AC  TIGR02614
+DE  cell division protein FtsW
+AU  Haft DH
+TC  337.50 337.50
+NC  314.70 314.70
+AL  clustalw
+IT  equivalog
+EN  cell division protein FtsW
+GS  ftsW
+TP  TIGRFAMs
+CC  This family consists of FtsW, an integral membrane protein with ten transmembrane segments [1]. In general, it is one of two paralogs involved in peptidoglycan biosynthesis, the other being RodA, and is essential for cell division. All members of the seed alignment for this model are encoded in operons for the biosynthesis of UDP-N-acetylmuramoyl-pentapeptide, a precursor of murein (peptidoglycan). The FtsW designation is not used in endospore-forming bacterial (e.g. Bacillus subtilis), where the member of this family is designated SpoVE and three or more RodA/FtsW/SpoVE family paralogs are present. SpoVE acts in spore cortex formation and is dispensible for growth. Biological rolls for FtsW in cell division include recruitment of penicillin-binding protein 3 to the division site.
+RN  [1]
+RM  15576787
+RT  Functional analysis of the cell division protein FtsW of Escherichia coli.
+RA  Pastoret S, Fraipont C, den Blaauwen T, Wolf B, Aarsman ME, Piette A, Thomas A, Brasseur R, Nguyen-Disteche M.
+RL  J Bacteriol. 2004 Dec;186(24):8370-9.

@@ -1,0 +1,20 @@
+ID  PncC_domain
+AC  TIGR00199
+DE  amidohydrolase, PncC family
+AU  Loftus BJ, Haft DH
+TC  68.90 68.90
+NC  48.95 48.95
+AL  msa_tigr
+IT  subfamily_domain
+EN  amidohydrolase, PncC family
+EC  3.5.-.-
+TP  TIGRFAMs
+CC  CinA is a DNA damage- or competence-inducible protein that is polycistronic with recA in a number of species. Several bacterial species have a protein consisting largely of the C-terminal domain of CinA but lacking the N-terminal domain, including nicotinamide mononucleotide (NMN) deamidase (3.5.1.42) proteins PncC in Shewanella oneidensis and ygaD in E. coli.
+DR  INTERPRO; IPR003396
+DR  PFAM; PF02464; CinA
+DR  HAMAP; MF_00226; 160 of 185
+RN  [1]
+RM  PMID:21953451 
+RT  Identification of nicotinamide mononucleotide deamidase of the bacterial pyridine nucleotide cycle reveals a novel broadly conserved amidohydrolase family. 
+RA  Galeazzi L, Bocci P, Amici A, Brunetti L, Ruggieri S, Romine M, Reed S, Osterman AL, Rodionov DA, Sorci L, Raffaelli N 
+RL  J Biol Chem. 2011 Nov 18;286(46):40365-75.

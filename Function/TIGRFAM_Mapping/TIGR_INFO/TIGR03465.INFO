@@ -1,0 +1,18 @@
+ID  HpnD
+AC  TIGR03465
+DE  squalene synthase HpnD
+AU  Selengut J
+TC  278.60 278.60
+NC  251.35 251.35
+AL  muscle
+IT  equivalog
+EN  squalene synthase HpnD
+GS  hpnD
+EC  2.5.1.21
+TP  TIGRFAMs
+CC  The genes of this family are often found in the same genetic locus with squalene-hopene cyclase genes, and are never associated with genes for the metabolism of phytoene.  In the organisms Zymomonas mobilis and Bradyrhizobium japonicum these genes have been characterized as squalene synthases (farnesyl-pyrophosphate ligases) [1].  Often, these genes appear in tandem with the HpnC gene which appears to have resulted from an ancient gene duplication event.  Presumably these proteins form a heteromeric complex, but this has not yet been experimentally demonstrated.
+RN  [1]
+RM  PMID:9714766
+RT  Cloning of conserved genes from Zymomonas mobilis and Bradyrhizobium japonicum that function in the biosynthesis of hopanoid lipids.
+RA  Perzl M, Reipen IG, Schmitz S, Poralla K, Sahm H, Sprenger GA, Kannenberg EL
+RL  Biochim Biophys Acta. 1998 Jul 31;1393(1):108-18.

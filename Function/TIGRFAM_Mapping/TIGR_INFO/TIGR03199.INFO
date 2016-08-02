@@ -1,0 +1,18 @@
+ID  pucC
+AC  TIGR03199
+DE  xanthine dehydrogenase C subunit
+AU  Selengut J
+TC  306.05 306.05
+NC  164.00 164.00
+AL  muscle
+IT  equivalog
+EN  xanthine dehydrogenase C subunit
+GS  pucC
+EC  1.17.1.4
+TP  TIGRFAMs
+CC  This gene has been characterized in B. subtilis [1] as the  FAD binding-subunit of xanthine dehydrogenase (pucC), acting in conjunction with pucD, the molybdopterin-binding subunit and pucE, the FeS-binding subunit.
+RN  [1]
+RM  PMID: 11344136 
+RT  Functional analysis of 14 genes that constitute the purine catabolic pathway in Bacillus subtilis and evidence for a novel regulon controlled by the PucR transcription activator. 
+RA  Schultz AC, Nygaard P, Saxild HH 
+RL  J Bacteriol. 2001 Jun;183(11):3293-302.

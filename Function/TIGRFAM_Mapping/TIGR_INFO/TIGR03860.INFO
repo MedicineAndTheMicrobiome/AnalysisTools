@@ -1,0 +1,18 @@
+ID  FMN_nitrolo
+AC  TIGR03860
+DE  FMN-dependent oxidoreductase, nitrilotriacetate monooxygenase family
+AU  Haft DH
+TC  279.70 279.70
+NC  262.35 262.35
+AL  muscle_manual
+IT  subfamily
+EN  FMN-dependent oxidoreductase, nitrilotriacetate monooxygenase family
+EC  1.-.-.-
+TP  TIGRFAMs
+CC  This model represents a distinctive clade, in which all characterized members are FMN-binding, within the larger family of luciferase-like monooxygenases (LLM), among which there are both FMN- and F420-binding enzymes. A well-characterized member is nitrilotriacetate monooxygenase from Aminobacter aminovorans (Chelatobacter heintzii), where nitrilotriacetate is a chelating agent used in detergents.
+DR  EXPERIMENTAL; SP|P54989; Nitrilotriacetate monooxygenase
+RN  [1]
+RM  PMID:9023192
+RT  Cloning, sequencing, and analysis of a gene cluster from Chelatobacter heintzii ATCC 29600 encoding nitrilotriacetate monooxygenase and NADH:flavin mononucleotide oxidoreductase.
+RA  Xu Y, Mortimer MW, Fisher TS, Kahn ML, Brockman FJ, Xun L
+RL  J Bacteriol. 1997 Feb;179(4):1112-6.

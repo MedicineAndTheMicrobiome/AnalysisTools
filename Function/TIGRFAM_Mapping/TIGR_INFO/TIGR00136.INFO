@@ -1,0 +1,18 @@
+ID  gidA
+AC  TIGR00136
+DE  tRNA uridine 5-carboxymethylaminomethyl modification enzyme GidA
+AU  Haft DH
+TC  524.85 524.85
+NC  97.00 97.00
+AL  clustalw
+IT  equivalog
+EN  glucose-inhibited division protein A
+GS  gidA
+TP  TIGRFAMs
+CC  GidA, the longer of two forms of GidA-related proteins, appears to be present in all complete eubacterial genomes so far, as well as Saccharomyces cerevisiae. A subset of these organisms have a closely related protein. GidA is absent in the Archaea. It appears to act with MnmE, in an alpha2/beta2 heterotetramer, in the 5-carboxymethylaminomethyl modification of uridine 34 in certain tRNAs. The shorter, related protein, previously called gid or gidA(S), is now called TrmFO (see model TIGR00137).
+RN  [1]
+RM  PMID: 17062623
+RT  Further insights into the tRNA modification process controlled by proteins MnmE and GidA of Escherichia coli.
+RA  Yim L, Moukadiri I, Bjork GR, Armengod ME
+RL  Nucleic Acids Res. 2006;34(20):5892-905.
+DR  HAMAP; MF_00129; 524 of 540

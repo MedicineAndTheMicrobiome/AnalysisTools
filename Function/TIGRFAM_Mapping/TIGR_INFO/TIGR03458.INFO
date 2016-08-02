@@ -1,0 +1,34 @@
+ID  YgfH_subfam
+AC  TIGR03458
+DE  succinate CoA transferase
+AU  Selengut J
+TC  658.70 658.70
+NC  610.30 610.30
+AL  muscle
+IT  subfamily
+EN  succinate CoA transferase
+EC  2.8.3.-
+TP  TIGRFAMs
+CC  This family of CoA transferases includes enzymes catalyzing at least two related but distinct activities.  The E. coli YgfH protein has been characterized as a propionyl-CoA:succinate CoA transferase [1] where it appears to be involved in a pathway for the decarboxylation of succinate to propionate.  The Clostridium kluyveri CAT1 protein has been characterized as a acetyl-CoA:succinate CoA transferase [2] and is believed to be involved in anaerobic succinate degradation.
+CC  The propionate:succinate transferase activity has been reported in the propionic acid fermentation of propionibacterium species [3] where it is distinct from the coupled activities of distinct nucleotide-triphosphate dependent succinate and propionate/acetate CoA transferases (as inferred from activity in the absence of NTPs).  The family represented by this model includes a member from Propionibacterium acnes KPA171202 which is likely to be responsible for this activity.
+CC  A closely related clade not included in this family are the Ach1p proteins of fungi which are acetyl-CoA hydrolases [4].  This name has been applied to many of the proteins modeled by this HMM, possibly erroneously.
+RN  [1]
+RM  PMID:10769117 
+RT  Discovering new enzymes and metabolic pathways: conversion of succinate to propionate by Escherichia coli. 
+RA  Haller T, Buckel T, Retey J, Gerlt JA 
+RL  Biochemistry. 2000 Apr 25;39(16):4622-9. 
+RN  [2]
+RM  PMID:8550525 
+RT  Molecular analysis of the anaerobic succinate degradation pathway in Clostridium kluyveri. 
+RA  Sohling B, Gottschalk G 
+RL  J Bacteriol. 1996 Feb;178(3):871-80. 
+RN  [3]
+RM  PMID:14102852 
+RT  PURIFICATION AND PROPERTIES OF ENZYMES INVOLVED IN THE PROPIONIC ACID FERMENTATION. 
+RA  ALLEN SH, KELLERMEYER RW, STJERNHOLM RL, WOOD HG 
+RL  J Bacteriol. 1964 Jan;87:171-87.
+RN  [4]
+RM  PMID:12606555 
+RT  Functional characterization and localization of acetyl-CoA hydrolase, Ach1p, in Saccharomyces cerevisiae. 
+RA  Buu LM, Chen YC, Lee FJ 
+RL  J Biol Chem. 2003 May 9;278(19):17203-9. Epub 2003 Feb 26.

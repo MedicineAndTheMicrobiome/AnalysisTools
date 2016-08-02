@@ -1,0 +1,26 @@
+ID  ETRAMP
+AC  TIGR01495
+DE  early transcribed membrane protein (ETRAMP) family
+AU  Haft DH, Selengut J
+TC  32.75 32.75
+NC  30.65 30.65
+AL  clustalw_manual
+IT  paralog
+EN  Plasmodium ring stage membrane protein ETRAMP
+TP  TIGRFAMs
+CC  This HMM describes a family of proteins from the malaria parasite Plasmodium falciparum, several of which have been shown to be expressed specifically in the ring stage as well as the rident parasite Plasmodium yoelii. A homolog from Plasmodium chabaudi was localized to the parasitophorous vacuole membrane. Members have an initial hydrophobic, Phe/Tyr-rich stretch long enough to span the membrane, a highly charged region rich in Lys, a second putative transmembrane region, and a second highly charged, low complexity sequence region. Some members have up to 100 residues of additional C-terminal sequence. 
+CC  These genes have been shown to be found in the sub-telomeric regions of both P. falciparum and P. yoelii chromosomes [3,4]
+RN  [1]
+RM  11163452
+RT  Analysis of stage-specific transcription in plasmodium falciparum reveals a set of genes exclusively transcribed in ring stage parasites.
+RA  Spielmann T, Beck HP.
+RL  Mol Biochem Parasitol 2000 Dec;111(2):453-8
+RN  [2]
+RM  8139619
+RT  A Plasmodium chabaudi antigen located in the parasitophorous vacuole membrane.
+RA  Favaloro JM, Culvenor JG, Anders RF, Kemp DJ.
+RL  Mol Biochem Parasitol 1993 Dec;62(2):263-70
+RN  [3]
+RL  TIGR, unpublished data
+RN  [4]
+RL  TIGR, unpublished data

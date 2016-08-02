@@ -1,0 +1,13 @@
+ID  ttdA_fumA_fumB
+AC  TIGR00722
+DE  hydrolyase, tartrate alpha subunit/fumarate domain protein, Fe-S type
+AU  Haft DH
+TC  100.65 100.65
+NC  84.90 84.90
+AL  clustalw
+IT  subfamily_domain
+EN  hydro-lyases, Fe-S type, tartrate/fumarate subfamily, alpha region
+TP  TIGRFAMs
+CC  A number of Fe-S cluster-containing hydro-lyases share a conserved motif, including argininosuccinate lyase, adenylosuccinate lyase, aspartase, class I fumarate hydratase (fumarase), and tartrate dehydratase (see PROSITE:PDOC00147). This model represents a subset of closely related proteins or modules, including the E. coli tartrate dehydratase alpha chain and the N-terminal region of the class I fumarase (where the C-terminal region is homologous to the tartrate dehydratase beta chain). The activity of archaeal proteins in this subfamily has not been established.
+DR  PROSITE; PDOC00147; Fumarate lyases signature
+DR  PFAM; PF00206; lyase_1

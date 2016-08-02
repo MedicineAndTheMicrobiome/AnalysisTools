@@ -1,0 +1,11 @@
+ID  A_thal_Cys_rich
+AC  TIGR01571
+DE  uncharacterized Cys-rich domain
+AU  Haft DH
+TC  35.05 35.05
+NC  27.40 27.40
+AL  clustalw_manual
+IT  domain
+EN  uncharacterized Cys-rich domain
+TP  TIGRFAMs
+CC  This HMM describes an uncharacterized domain of about 100 residues. It is common in plants but found also in Homo sapiens, Dictyostelium, and Leishmania; at least 12 distinct members are found in Arabidopsis. Most members of this family contain more than 10 per cent Cys, but no Cys residue is invariant across the family.

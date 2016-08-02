@@ -1,0 +1,36 @@
+ID  CysI
+AC  TIGR02041
+DE  sulfite reductase (NADPH) hemoprotein, beta-component
+AU  Brinkac L
+TC  756.55 756.55
+NC  707.50 707.50
+AL  clustalw
+IT  equivalog
+EN  sulfite reductase (NADPH) hemoprotein, beta-component
+GS  cysI
+EC  1.8.1.2
+TP  TIGRFAMs
+CC  Sulfite reductase (NADPH) catalyzes a six electron reduction of sulfite to sulfide in prokaryotic organisms. It is a complex oligomeric enzyme composed of two different peptides with a subunit composition of alpha(8)-beta(4) [1]. The alpha component, encoded by cysJ, is a flavoprotein containing both FMN and FAD, while the beta component, encoded by cysI, is a siroheme, iron-sulfur protein [1].
+CC  In Salmonella typhimurium and Escherichia coli, both the alpha and beta subunits of sulfite reductase are located in a unidirectional gene cluster along with phosphoadenosine phosphosulfate reductase, which catalyzes a two step reduction of PAPS to give free sulfite [2].
+CC  In cyanobacteria and plant species, sulfite reductase ferredoxin (EC 1.8.7.1) catalyzes the reduction of sulfite to sulfide [3].
+RN  [1]
+RM  7569952
+RT  Sulfite reductase structure at 1.6 A: evolution and catalysis for reduction of inorganic anions.
+RA  Crane BR, Siegel LM, Getzoff ED.
+RL  Science. 1995 Oct 6;270(5233):59-67.
+RN  [2]
+RM  2670946
+RT  Characterization of the cysJIH regions of Salmonella typhimurium and Escherichia coli B. DNA sequences of cysI and cysH and a model for the siroheme-Fe4S4 active center of sulfite reductase hemoprotein based on amino acid homology with spinach nitrite reductase.
+RA  Ostrowski J, Wu JY, Rueger DC, Miller BE, Siegel LM, Kredich NM.
+RL  J Biol Chem. 1989 Sep 15;264(26):15726-37.
+RN  [3] 
+RM  8347657
+RT  The ferredoxin:sulphite reductase gene from Synechococcus PCC7942.
+RA  Gisselmann G, Klausmeier P, Schwenn JD.
+RL  Biochim Biophys Acta. 1993 Aug 16;1144(1):102-6. 
+DR  PFAM; PF01077; Nitrite and sulphite reductase 4Fe-4S domain
+DR  PFAM; PF03460; Nitrite/Sulfite reductase ferredoxin-like half domain
+DR  PROSITE; PS00365; Nitrite and sulfite reductases iron-sulfur/siroheme-binding site.
+DR  EXPERIMENTAL; SP|P17846; Escherichia coli; isolated as a homodimer exhibiting phospho-adenylylsulphate reductase (PAPS reductase) activity
+DR  OUTGROUP; GP|1113082; Plectonema boryanum; nitrite reductase
+DR  HAMAP; MF_01540; 71 of 72

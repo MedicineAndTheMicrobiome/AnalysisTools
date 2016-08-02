@@ -1,0 +1,27 @@
+ID  T6A_TsaD_YgjD
+AC  TIGR03723
+DE  tRNA threonylcarbamoyl adenosine modification protein TsaD
+AU  Haft DH
+TC  296.10 296.10
+NC  287.85 287.85
+AL  muscle_manual
+IT  equivalog
+EN  tRNA threonylcarbamoyl adenosine modification protein TsaD
+GS  tsaD
+TP  TIGRFAMs
+CC  This model represents bacterial members of a protein family that is widely distributed. In a few pathogenic species, the protein is exported in a way that may represent an exceptional secondary function. This model plus companion (archaeal) model TIGR03722 together span the prokaryotic member sequences of TIGR00329, a protein family that appears universal in life, and whose broad function is unknown. A member of TIGR03722 has been characterized as a DNA-binding protein with apurinic endopeptidase activity. In contrast, the rare characterized members of the present family show O-sialoglycoprotein endopeptidase (EC. 3.4.24.57) activity after export. These include glycoprotease (gcp) from Pasteurella haemolytica A1 and a cohemolysin from Riemerella anatipestifer (GB|AAG39646.1). The member from Staphylococcus aureus is essential and is related to cell wall dynamics and the modulation of autolysis, but members are also found in the Mycoplasmas (which lack a cell wall). A reasonable hypothesis is that virulence-related activities after export are secondary to a bacterial domain-wide unknown function.
+RN  [1]
+RM  PMID:22378793 
+RT  Biosynthesis of Threonylcarbamoyl Adenosine (t6A), a Universal tRNA Nucleoside. 
+RA  Deutsch C, El Yacoubi B, de Crecy-Lagard V, Iwata-Reuyl D 
+RL  J Biol Chem. 2012 Apr 20;287(17):13666-73. 
+RN  [2]
+RM  PMID:17237169
+RT  Conditional mutation of an essential putative glycoprotease eliminates autolysis in Staphylococcus aureus.
+RA  Zheng L, Yu C, Bayles K, Lasa I, Ji Y
+RL  J Bacteriol. 2007 Apr;189(7):2734-42.
+RN  [3]
+RM  PMID:1885539
+RT  Cloning, nucleotide sequence, and expression of the Pasteurella haemolytica A1 glycoprotease gene.
+RA  Abdullah KM, Lo RY, Mellors A
+RL  J Bacteriol. 1991 Sep;173(18):5597-603.

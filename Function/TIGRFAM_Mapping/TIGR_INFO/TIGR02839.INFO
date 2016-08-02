@@ -1,0 +1,19 @@
+ID  spore_V_AE
+AC  TIGR02839
+DE  stage V sporulation protein AE
+AU  Haft DH
+TC  131.10 131.10
+NC  86.05 86.05
+AL  clustalw_manual
+IT  equivalog
+EN  stage V sporulation protein AE
+GS  spoVAE
+TP  TIGRFAMs
+CC  This model describes stage V sporulation protein AE, a paralog of stage V sporulation protein AC. Both are proteins found to present in a species if and only if that species is one of the  Firmicutes capable of endospore formation, as of the time of the publication of the genome of Carboxydothermus hydrogenoformans. Mutants in spoVAE have a stage V sproulation defect.
+DR  SWISSPROT; P40870; Bacillus subtilis
+RN  [1]
+RM  16311624
+RT  Life in Hot Carbon Monoxide: The Complete Genome Sequence of Carboxydothermus hydrogenoformans Z-2901.
+RA  Wu M, Ren Q, Durkin AS, Daugherty SC, Brinkac LM, Dodson RJ, Madupu R, Sullivan SA, Kolonay JF, Nelson WC, Tallon LJ, Jones KM, Ulrich LE,
+Gonzalez JM, Zhulin IB, Robb FT, Eisen JA.
+RL  2005 Nov 25;1(5):e65

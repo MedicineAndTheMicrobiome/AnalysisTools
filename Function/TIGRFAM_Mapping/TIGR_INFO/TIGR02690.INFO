@@ -1,0 +1,22 @@
+ID  resist_ArsH
+AC  TIGR02690
+DE  arsenical resistance protein ArsH
+AU  Haft DH
+TC  292.25 292.25
+NC  138.10 138.10
+AL  clustalw_manual
+IT  equivalog
+EN  arsenical resistance protein ArsH
+GS  arsH
+TP  TIGRFAMs
+CC  Members of this protein family occur in arsenate resistance operons that include at least two different types of arsenate reductase.  ArsH is not required for arsenate resistance in some systems. This family belongs to the larger family of NADPH-dependent FMN reductases (Pfam model PF03358). The function of ArsH is not known.
+RN  [1]
+RM  10788346
+RT  The chromosomal arsenic resistance genes of Thiobacillus ferrooxidans have an unusual arrangement and confer increased arsenic and antimony resistance to Escherichia coli.
+RA Butcher BG, Deane SM, Rawlings DE.
+RL  Appl Environ Microbiol. 2000 May;66(5):1826-33.
+RN  [2]
+RM  14617642
+RT  An arsenate reductase from Synechocystis sp. strain PCC 6803 exhibits a novel combination of catalytic characteristics.
+RA  Li R, Haile JD, Kennelly PJ.
+RL  J Bacteriol. 2003 Dec;185(23):6780-9.

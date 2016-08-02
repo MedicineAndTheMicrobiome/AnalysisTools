@@ -1,0 +1,41 @@
+ID  plant-AP
+AC  TIGR01675
+DE  plant acid phosphatase
+AU  Selengut J
+TC  264.30 264.30
+NC  132.75 132.75
+AL  clustalw
+IT  equivalog
+EN  plant acid phosphatase
+TP  TIGRFAMs
+CC  This model represents a family of acid phosphatase [1,2] from plants which are most closely related to the (so called) class B non-specific acid phosphatase OlpA (TIGR01533, which is believed to be a 5'-nucleotide phosphatase) and somewhat more distantly to another class B phosphatase, AphA (TIGR01672).  Together these three clades define a subfamily (PF03767) which corresponds to the IIIB subfamily of the haloacid dehalogenase (HAD) superfamily of aspartate nucleophile hydrolases.
+CC  It has been reported that the best substrate for this enzyme that could be found was purine 5'-nucleoside phosphates [1].  This is in concordance with the assignment of the H. influenzae hel protein (from TIGR01533) as a 5'-nucleotidase, however there is presently no other evidence to support this specific function for these plant phosphatases.
+CC  Many genes from this family have been annotated as vegetative storage proteins due to their close homology with these earlier-characterized gene products [3] which are highly expressed in leaves.  There are significant differences however, including expression levels and distribution [4].  The most important difference is the lack in authentic VSPs of the nucleophilic aspartate residue, which is instead replaced by serine, glycine or asparagine.  Thus these proteins can not be expected to be active phosphatases.  This issue was confused by the publication in 1992 of an article claiming activity for the Glycine max VSP [5].  In 1994 this assertion was refuted by the separation of the activity from the VSP [6].
+CC  This model explicitly excludes the VSPs which lack the nucleophilc aspartate.  The possibility exists, however, that some members of this family may, while containing all of the conserved HAD-superfamily catalytic residues, lack activity and have a function related to the function of the VSPs rather than the acid phosphatases.
+RN  [1]
+RM  PMID: 9758760
+RT  Purification and characterization of a soybean root nodule phosphatase expressed in Pichia pastoris.
+RA  Penheiter AR, Klucas RV, Sarath G.
+RL  Protein Expr Purif 1998 Oct;14(1):125-30
+RN  [2]
+RM  PMID: 9193092
+RT  Soybean root nodule acid phosphatase.
+RA  Penheiter AR, Duff SM, Sarath G.
+RL  Plant Physiol 1997 Jun;114(2):597-604
+RN  [3]
+RA  Wittenbach, V.A.
+RL  Plant Physiol 1982; 70:1544-1548
+RN  [4]
+RM  PMID: 9747802
+RT  Arabidopsis thaliana vegetative storage protein (VSP) genes: gene organization and tissue-specific expression.
+RA  Utsugi S, Sakamoto W, Murata M, Motoyoshi F.
+RL  Plant Mol Biol 1998 Nov 1;38(4):565-76
+RN  [5]
+RM  PMID: 1639823 
+RT  The soybean vegetative storage proteins VSP alpha and VSP beta are acid phosphatases active on polyphosphates.
+RA  DeWald DB, Mason HS, Mullet JE.
+RL  J Biol Chem 1992 Aug 5;267(22):15958-64
+RN  [6]
+RT  Purification of the Major Soybean Leaf Acid Phosphatase That Is Increased by Seed-Pod Removal
+RA  P. E. Staswick, C. Papa, J. F. Huang and Y. Rhee 
+RL  PLANT PHYSIOLOGY , Vol 104, Issue 1 49-57

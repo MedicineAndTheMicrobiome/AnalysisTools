@@ -1,0 +1,18 @@
+ID  B12_rSAM_trp_MT
+AC  TIGR04428
+DE  tryptophan 2-C-methyltransferase
+AU  Haft DH
+TC  500.00 500.00
+NC  300.00 300.00
+AL  muscle
+IT  equivalog
+EN  tryptophan 2-C-methyltransferase
+GS  tsrT
+EC  2.1.1.106
+TP  TIGRFAMs
+CC  Members of this family are the B12-binding domain/radical SAM domain enzyme tryptophan methyltransferase, named TsrT in the cassette for thiostrepton biosynthesis. Thiostrepton and related thiopeptides are synthesized by extensive modification of a ribosomally translated product, but this enzyme is involved in a pathway that converts a free Trp residue to a quinaldic acid moiety before it is appended.
+RN  [1]
+RM  PMID:23064318 
+RT  Thiostrepton tryptophan methyltransferase expands the chemistry of radical SAM enzymes. 
+RA  Pierre S, Guillot A, Benjdia A, Sandstrom C, Langella P, Berteau O 
+RL  Nat Chem Biol. 2012 Dec;8(12):957-9.

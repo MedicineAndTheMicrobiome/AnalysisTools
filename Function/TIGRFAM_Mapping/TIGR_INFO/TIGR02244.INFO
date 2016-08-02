@@ -1,0 +1,18 @@
+ID  HAD-IG-Ncltidse
+AC  TIGR02244
+DE  HAD superfamily (subfamily IG) hydrolase, 5'-nucleotidase
+AU  Selengut J
+TC  237.15 237.15
+NC  118.40 118.40
+AL  clustalw
+IT  subfamily
+EN  HAD superfamily (subfamily IG) hydrolase, 5'-nucleotidase
+TP  TIGRFAMs
+CC  This model includes a 5'-nucleotidase specific for purines (IMP and GMP) [1].  These enzymes are members of the Haloacid Dehalogenase (HAD) superfamily.  HAD members are recognized by three short motifs {hhhhDxDx(T/V)}, {hhhh(T/S)}, and either {hhhh(D/E)(D/E)x(3-4)(G/N)} or {hhhh(G/N)(D/E)x(3-4)(D/E)} (where "h" stands for a hydrophobic residue).  Crystal structures of many HAD enzymes has verified PSI-PRED predictions of secondary structural elements which show each of the "hhhh" sequences of the motifs as part of beta sheets.  This subfamily of enzymes is part of "Subfamily I" of the HAD superfamily by virtue of a "cap" domain in between motifs 1 and 2.  This subfamily's cap domain has a different predicted secondary structure than all other known HAD enzymes and thus has been designated "subfamily IG".  This domain appears to consist of a mixed alpha/beta fold.
+CC  A Pfam model (PF05761) detects an identical range of sequences above the trusted cutoff, but does not model the N-terminal motif 1 region.
+CC  A TIGRFAMs model (TIGR01993) represents a (putative) family of _pyrimidine_ 5'-nucleotidases which are also subfamily I HAD's, which should not be confused with the current model.
+RN  [1]
+RM  PMID: 9371705
+RT  Bovine cytosolic IMP/GMP-specific 5'-nucleotidase: cloning and expression of active enzyme in Escherichia coli.
+RA  Allegrini S, Pesi R, Tozzi MG, Fiol CJ, Johnson RB, Eriksson S.
+RL  Biochem J. 1997 Dec 1;328 ( Pt 2):483-7.

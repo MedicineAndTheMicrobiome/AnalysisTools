@@ -1,0 +1,18 @@
+ID  EFP_modif_epmB
+AC  TIGR03821
+DE  EF-P beta-lysylation protein EpmB
+AU  Haft DH
+TC  369.30 369.30
+NC  277.90 277.90
+AL  muscle_manual
+IT  equivalog
+EN  EF-P beta-lysylation protein EpmB
+GS  epmB
+EC  5.4.3.-
+TP  TIGRFAMs
+CC  Members of this radical SAM protein subfamily, including yjeK in E. coli, form a distinctive clade, homologous to lysine-2,3-aminomutase of Bacillus, Clostridium, and methanogenic archaea. Members of this family are found in E. coli, Buchnera, Yersinia, etc. The gene symbol is now reassigned as EpmB (Elongation factor P Modification B).
+RN  [1]
+RM  PMID:22128152 
+RT  Post-translational modification by beta-lysylation is required for activity of Escherichia coli elongation factor P (EF-P). 
+RA  Park JH, Johansson HE, Aoki H, Huang BX, Kim HY, Ganoza MC, Park MH 
+RL  J Biol Chem. 2012 Jan 20;287(4):2579-90.

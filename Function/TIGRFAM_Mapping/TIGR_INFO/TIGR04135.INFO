@@ -1,0 +1,16 @@
+ID  FibroRuminTarg
+AC  TIGR04135
+DE  Cys-rich radical SAM target, FibroRumin family
+AU  Haft DH
+TC  45.00 45.00
+NC  35.00 30.00
+AL  muscle_manual
+IT  subfamily
+EN  Cys-rich radical SAM target, FibroRumin family
+TP  TIGRFAMs
+CC  Members of this protein family are cysteine-rich small peptides, about 52 amino acids long, that are proposed targets for modification by a radical SAM enzyme. Known occurrences are as tandem gene pairs Fibrobacter succinogenes subsp. succinogenes S85 (missed gene calls) and in Ruminococcus albus 8.
+RN  [1]
+RM  PMID:21478363 
+RT  Biological systems discovery in silico: radical S-adenosylmethionine protein families and their target peptides for posttranslational modification. 
+RA  Haft DH, Basu MK 
+RL  J Bacteriol. 2011 Jun;193(11):2745-55.

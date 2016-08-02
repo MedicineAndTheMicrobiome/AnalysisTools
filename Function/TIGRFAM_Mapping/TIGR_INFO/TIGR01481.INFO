@@ -1,0 +1,17 @@
+ID  ccpA
+AC  TIGR01481
+DE  catabolite control protein A
+AU  Beanan M
+TC  442.35 442.35
+NC  328.65 328.65
+AL  clustalw
+IT  equivalog
+EN  catabolite control protein A
+GS  ccpA
+TP  TIGRFAMs
+CC  Catabolite control protein A is a LacI family global transcriptional regulator found in Gram-positive bacteria.  CcpA is involved in repressing carbohydrate utilization genes [ex: alpha-amylase (amyE), acetyl-coenzyme A synthase (acsA)] and in activating genes involved in transporting excess carbon from the cell [ex: acetate kinase (ackA), alpha-acetolactate synthase (alsS)]. Additionally, disruption of CcpA in Bacillus megaterium, Staphylococcus xylosus, Lactobacillus casei and Lactocacillus pentosus also decreases growth rate, which suggests CcpA is involved in the regulation of other metabolic pathways.
+RN  [1]
+RM  PMID:10094627 
+RT  Transcriptional activation of the glycolytic las operon and catabolite repression of the gal operon in Lactococcus lactis are mediated by the catabolite control protein CcpA. 
+RA  Luesink EJ, van Herpen RE, Grossiord BP, Kuipers OP, de Vos WM 
+RL  Mol Microbiol. 1998 Nov;30(4):789-98.

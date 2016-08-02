@@ -1,0 +1,11 @@
+ID  surf_polysacc
+AC  TIGR04396
+DE  surface carbohydrate biosynthesis protein
+AU  Haft DH
+TC  56.00 56.00
+NC  55.00 55.00
+AL  clustalw_manual
+IT  subfamily_domain
+EN  surface carbohydrate biosynthesis protein
+TP  TIGRFAMs
+CC  This model describes an uncharacterized homology region found broadly in proteins of surface carbohydrate biosynthesis regions. This family shows distant homology to regions of family TIGR04326, of spore coat polysaccharide biosynthesis protein SpsB from Bacillus subtilis, etc.

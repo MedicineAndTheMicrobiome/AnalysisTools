@@ -1,0 +1,17 @@
+ID  hisD
+AC  TIGR00069
+DE  histidinol dehydrogenase
+AU  Richardson DL, Selengut J
+TC  243.80 243.80
+NC  212.50 212.50
+AL  muscle
+IT  equivalog_domain
+EN  histidinol dehydrogenase
+GS  hisD
+EC  1.1.1.23
+TP  TIGRFAMs
+CC  This HMM describes a polypeptide sequence catalyzing the final step in histidine biosynthesis, found sometimes as an independent protein and sometimes as a part of a multifunctional protein.
+DR  SWISSPROT; P06988; sample annotated sequence entry
+DR  ECOCYC; EG10447; hisD
+DR  PROSITE; PDOC00534; Histidinol dehydrogenase signature
+DR  HAMAP; MF_01024; 204 of 208

@@ -1,0 +1,17 @@
+ID  anfO_nitrog
+AC  TIGR02940
+DE  Fe-only nitrogenase accessory protein AnfO
+AU  Haft DH
+TC  129.15 129.15
+NC  78.80 78.80
+AL  muscle
+IT  equivalog
+EN  Fe-only nitrogenase accessory protein AnfO
+GS  anfO
+TP  TIGRFAMs
+CC  Members of this protein family, called Anf1 in Rhodobacter capsulatus and AnfO in Azotobacter vinelandii, are found only in species with the Fe-only nitrogenase and are encoded immediately downstream of the structural genes in the above named species.
+RN  [1]
+RM  PMID: 15601692
+RT  Identification of two new genes involved in diazotrophic growth via the alternative Fe-only nitrogenase in the phototrophic purple bacterium Rhodobacter capsulatus.
+RA  Sicking C, Brusch M, Lindackers A, Riedel KU, Schubert B, Isakovic N, Krall C, Klipp W, Drepper T, Schneider K, Masepohl B
+RL  J Bacteriol. 2005 Jan;187(1):92-8.

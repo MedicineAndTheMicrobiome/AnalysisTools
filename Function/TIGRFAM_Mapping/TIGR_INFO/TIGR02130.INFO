@@ -1,0 +1,13 @@
+ID  dapB_plant
+AC  TIGR02130
+DE  dihydrodipicolinate reductase
+AU  Selengut J
+TC  294.55 294.55
+NC  117.15 117.15
+AL  clustalw
+IT  equivalog
+EN  dihydrodipicolinate reductase
+GS  dapB
+EC  1.17.1.8
+TP  TIGRFAMs
+CC  This narrow family includes genes from Arabidopsis and Fibrobacter succinogenes (which probably recieved the gene from a plant via lateral gene transfer).  The sequences are distantly related to the dihydrodipicolinate reductases from archaea.  In Fibrobacter this gene is the only candidate DHPR in the genome.

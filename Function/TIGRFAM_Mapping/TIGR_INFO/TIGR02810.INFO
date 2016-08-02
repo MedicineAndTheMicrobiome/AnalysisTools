@@ -1,0 +1,27 @@
+ID  agaZ_gatZ
+AC  TIGR02810
+DE  D-tagatose-bisphosphate aldolase, class II, non-catalytic subunit
+AU  Haft DH
+TC  568.80 568.80
+NC  191.60 191.60
+AL  clustalw
+IT  equivalog
+EN  D-tagatose-bisphosphate aldolase, class II, non-catalytic subunit
+EC  4.1.2.40
+TP  TIGRFAMs
+CC  Aldolases specific for D-tagatose-bisphosphate occur in distinct pathways in Escherichia coli and other bacteria, one for the degradation of galactitol (formerly dulcitol) and one for degradation of N-acetyl-galactosamine and D-galactosamine. This family represents a protein of both systems that behaves as a non-catalytic subunit of D-tagatose-bisphosphate aldolase, required both for full activity and for good stability of the aldolase. Note that members of this protein family appear in public databases annotated as putative tagatose 6-phosphate kinases, possibly in error.
+RN  [1]
+RM  11976750
+RT  Two class II D-tagatose-bisphosphate aldolases from enteric bacteria.
+RA  Brinkkotter A, Shakeri-Garakani A, Lengeler JW.
+RL  Arch Microbiol. 2002 May;177(5):410-9.
+RN  [2]
+RM  8955298
+RT  Molecular analysis of the gat genes from Escherichia coli and of their roles in galactitol transport and metabolism.
+RA  Nobelmann B, Lengeler JW.
+RL  J Bacteriol. 1996 Dec;178(23):6790-5.
+RN  [3]
+RM  10931310
+RT  Pathways for the utilization of N-acetyl-galactosamine and galactosamine in Escherichia coli.
+RA  Brinkkotter A, Kloss H, Alpert C, Lengeler JW.
+RL  Mol Microbiol. 2000 Jul;37(1):125-35.

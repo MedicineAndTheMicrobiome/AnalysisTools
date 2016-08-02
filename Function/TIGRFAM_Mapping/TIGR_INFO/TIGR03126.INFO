@@ -1,0 +1,14 @@
+ID  one_C_fae
+AC  TIGR03126
+DE  formaldehyde-activating enzyme
+AU  Haft DH
+TC  118.05 118.05
+NC  31.15 31.15
+AL  muscle
+IT  equivalog_domain
+EN  formaldehyde-activating enzyme
+GS  fae
+TP  TIGRFAMs
+CC  This family consists of formaldehyde-activating enzyme, or the corresponding domain of longer, bifunctional proteins. It links formaldehyde to the C1 carrier tetrahydromethanopterin (H4MPT), an analog of tetrahydrofolate, and is common among species with H4MPT. The ribulose monophosphate (RuMP) pathway, which removes the toxic metabolite formaldehyde by assimilation, runs in the opposite direction in some species to produce ribulose 5-phosphate for nucleotide biosynthesis, leaving formaldehyde as an additional metabolite. In these species, formaldehyde activating enzyme may occur as a fusion protein with D-arabino 3-hexulose 6-phosphate formaldehyde lyase from the RuMP pathway.
+DR  SP; Q9FA38; Methylobacterium extorquens AM1
+DR  HAMAP; MF_01268; 12 of 12

@@ -1,0 +1,17 @@
+ID  DNA_S_dndE
+AC  TIGR03184
+DE  DNA sulfur modification protein DndE
+AU  Haft DH
+TC  71.85 71.85
+NC  25.10 25.10
+AL  muscle
+IT  equivalog
+EN  DNA sulfur modification protein DndE
+GS  dndE
+TP  TIGRFAMs
+CC  This model describes the DndE protein encoded by an operon associated with a sulfur-containing modification to DNA. The operon is sporadically distributed in bacteria, much like some restriction enzyme operons. DndE is a putative carboxylase homologous to NCAIR synthetases.
+RN  [1]
+RM  PMID: 16102010
+RT  A novel DNA modification by sulphur.
+RA  Zhou X, He X, Liang J, Li A, Xu T, Kieser T, Helmann JD, Deng Z
+RL  Mol Microbiol. 2005 Sep;57(5):1428-38.

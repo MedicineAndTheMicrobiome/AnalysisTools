@@ -1,0 +1,16 @@
+ID  ribE
+AC  TIGR00187
+DE  riboflavin synthase, alpha subunit
+AU  Loftus BJ
+TC  156.60 156.60
+NC  116.95 116.95
+AL  msa_tigr
+IT  equivalog
+EN  riboflavin synthase, alpha subunit
+GS  ribE
+EC  2.5.1.9
+TP  TIGRFAMs
+CC  This protein family consists almost entirely of two lumazine-binding domains, described in the HMM Lum_binding from PFAM. The model generates lower scores against other proteins that also have two lumazine-binding domains, including some involved in bioluminescence.
+CC  The name ribE was selected, from among alternatives including ribB and ribC, to match the usage in EcoCyc.
+DR  ECOCYC; EG11406; ribE;
+DR  PFAM; PF00677; Lum_binding;

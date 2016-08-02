@@ -1,0 +1,16 @@
+ID  pyrC_dimer
+AC  TIGR00856
+DE  dihydroorotase, homodimeric type
+AU  Haft DH, Durkin S
+TC  292.95 292.95
+NC  129.90 129.90
+AL  clustalw
+IT  equivalog
+EN  dihydroorotase, homodimeric type
+GS  pyrC
+EC  3.5.2.3
+TP  TIGRFAMs
+CC  This homodimeric form of dihydroorotase is less common in microbial genomes than a related dihydroorotase that appears in a complex with aspartyltranscarbamoylase or as a homologous domain in multifunctional proteins of pyrimidine biosynthesis in higher eukaryotes.
+DR  ECOCYC; EG10806; pyrC
+DR  PROSITE; PDOC00401; Dihydroorotase signatures
+DR  HAMAP; MF_00219; 123 of 126

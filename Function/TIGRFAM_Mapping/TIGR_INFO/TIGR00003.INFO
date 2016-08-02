@@ -1,0 +1,13 @@
+ID  TIGR00003
+AC  TIGR00003
+DE  copper ion binding protein
+AU  Haft DH, Richardson DL
+TC  62.00 31.00
+NC  56.40 24.00
+AL  msa_tigr
+IT  subfamily_domain
+EN  copper ion binding protein
+TP  TIGRFAMs
+CC  This HMM describes an apparently copper-specific subfamily of the metal-binding domain HMA (Pfam family PF00403). Closely related sequences outside this model include mercury resistance proteins and repeated domains of eukaryotic eukaryotic copper transport proteins. Members of this family are strictly prokaryotic. The model identifies both small proteins consisting of just this domain and N-terminal regions of cation (probably copper) transporting ATPases.
+DR  PFAM; PF00403; HMA;
+DR  EXPERIMENTAL; SP|Q47840; CopZ; regulatory protein

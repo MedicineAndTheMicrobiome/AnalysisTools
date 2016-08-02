@@ -1,0 +1,11 @@
+ID  SAM_7_link_chp
+AC  TIGR03915
+DE  probable DNA metabolism protein
+AU  Haft DH
+TC  112.25 112.25
+NC  55.80 55.80
+AL  muscle
+IT  equivalog_domain
+EN  probable DNA metabolism protein
+TP  TIGRFAMs
+CC  This HMM represents a conserved hypothetical protein that almost invariably pairs with an uncharacterized radical SAM protein. The pair occurs in about twenty percent of completed prokaryotic genomes. About forty percent of the members of this family occur as fusion proteins, where the C-terminal domain belongs to the uracil-DNA glycosylase family, a DNA repair family (because uracil in DNA is deamidated cytosine). The linkage by gene clustering and correlated species distribution to a radical SAM protein, and by gene fusion to a DNA repair protein family, suggests a role in DNA modification and/or repair.

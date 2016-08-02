@@ -1,0 +1,12 @@
+ID  methan_mark_9
+AC  TIGR03277
+DE  putative methanogenesis marker domain 9
+AU  Haft DH
+TC  96.20 96.20
+NC  95.60 95.60
+AL  muscle_manual
+IT  hypoth_equivalog_domain
+EN  putative methanogenesis marker domain 9
+TP  TIGRFAMs
+CC  A gene for a protein that contains a copy of this domain, to date, is found in a completed prokaryotic genome if and only if the species is one of the archaeal methanogens. The exact function is unknown, but likely is linked to methanogenesis or a process closely connected to it. A 69-amino acid core region of this 110-amino acid domain contains eight invariant Cys residues, including two copies of a motif [WFY]CCxxKPC. These motifs could be consistent with predicted metal-binding transcription factor as was suggested for the COG4008 family. Some members of this family have an additional N-terminal domain of about 250 amino acids from the nifR3 family of predicted TIM-barrel proteins.
+DR  COG4008; Predicted metal-binding transcription factor

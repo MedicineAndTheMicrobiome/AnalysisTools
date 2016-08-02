@@ -1,0 +1,21 @@
+ID  matur_yqeB
+AC  TIGR03309
+DE  selenium-dependent molybdenum hydroxylase system protein, YqeB family
+AU  Haft DH
+TC  220.00 220.00
+NC  205.00 205.00
+AL  muscle
+IT  hypoth_equivalog
+EN  selenium-dependent molybdenum hydroxylase system protein, YqeB family
+TP  TIGRFAMs
+CC  Members of this protein family are probable accessory proteins for the biosynthesis of enzymes with labile selenium-containing centers, different from selenocysteine-containing proteins.
+RN  [1]
+RM  PMID:18289380 
+RT  Orphan SelD proteins and selenium-dependent molybdenum hydroxylases. 
+RA  Haft DH, Self WT 
+RL  Biol Direct. 2008 Feb 20;3:4.
+RN  [2]
+RM  PMID: 16930487
+RT  Exopolysaccharide-associated protein sorting in environmental organisms: the PEP-CTERM/EpsH system. Application of a novel phylogenetic profiling heuristic.
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD
+RL  BMC Biol. 2006 Aug 24;4:29.

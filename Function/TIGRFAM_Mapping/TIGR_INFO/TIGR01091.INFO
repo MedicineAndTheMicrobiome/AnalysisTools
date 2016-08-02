@@ -1,0 +1,16 @@
+ID  upp
+AC  TIGR01091
+DE  uracil phosphoribosyltransferase
+AU  Haft DH
+TC  208.35 208.35
+NC  112.30 112.30
+AL  clustalw_manual
+IT  equivalog
+EN  uracil phosphoribosyltransferase
+GS  upp
+EC  2.4.2.9
+TP  TIGRFAMs
+CC  A fairly deep split in phylogenetic and UPGMA trees separates this mostly prokaryotic set of uracil phosphoribosyltransferases from a mostly eukaryotic set
+CC  that includes uracil phosphoribosyltransferase, uridine kinases, and other, uncharacterized proteins.
+DR  COGS; COG0035
+DR  HAMAP; MF_01218; 317 of 326

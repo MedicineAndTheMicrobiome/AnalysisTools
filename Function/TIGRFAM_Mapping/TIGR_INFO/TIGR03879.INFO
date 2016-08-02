@@ -1,0 +1,11 @@
+ID  near_KaiC_dom
+AC  TIGR03879
+DE  probable regulatory domain
+AU  Haft DH
+TC  65.10 65.10
+NC  48.05 48.05
+AL  muscle_manual
+IT  domain
+EN  probable regulatory domain
+TP  TIGRFAMs
+CC  This HMM describes a common domain shared by two different families of proteins, each of which occurs regularly next to its corresponding partner family, a probable regulatory with homology to KaiC. By implication, this protein family likely is also involved in sensory transduction and/or regulation.

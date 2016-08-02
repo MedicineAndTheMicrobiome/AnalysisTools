@@ -1,0 +1,16 @@
+ID  cysG_Nterm
+AC  TIGR01470
+DE  siroheme synthase, N-terminal domain
+AU  Haft DH
+TC  62.30 62.30
+NC  43.40 43.40
+AL  clustalw
+IT  subfamily_domain
+EN  siroheme synthase, N-terminal domain
+TP  TIGRFAMs
+CC  This HMM represents a subfamily of CysG N-terminal region-related sequences. All sequences in the seed alignment for this model are N-terminal regions of known or predicted siroheme synthases. The C-terminal region of each is uroporphyrin-III C-methyltransferase (EC 2.1.1.107), which catalyzes the first step committed to the biosynthesis of either siroheme or cobalamin (vitamin B12) rather than protoheme (heme). The region represented by this model completes the process of oxidation and iron insertion to yield siroheme. Siroheme is a cofactor for nitrite and sulfite reductases, so siroheme synthase is CysG of cysteine biosynthesis in some organisms.
+RM  11114933
+RT  Alternative pathways for siroheme synthesis in Klebsiella aerogenes.
+RA  Kolko MM, Kapetanovich LA, Lawrence JG.
+RL  J Bacteriol 2001 Jan;183(1):328-35
+DR  HAMAP; MF_01646; 105 of 106

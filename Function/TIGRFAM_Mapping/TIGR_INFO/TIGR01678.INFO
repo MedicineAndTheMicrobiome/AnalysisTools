@@ -1,0 +1,12 @@
+ID  FAD_lactone_ox
+AC  TIGR01678
+DE  sugar 1,4-lactone oxidases
+AU  Haft DH
+TC  396.80 396.80
+NC  295.40 295.40
+AL  clustalw_manual
+IT  subfamily
+EN  sugar 1,4-lactone oxidases
+TP  TIGRFAMs
+CC  This HMM represents a family of at least two different sugar 1,4 lactone oxidases, both involved in synthesizing ascorbic acid or a derivative. These include L-gulonolactone oxidase (EC 1.1.3.8) from rat and D-arabinono-1,4-lactone oxidase (EC 1.1.3.37) from Saccharomyces cerevisiae. Members are proposed to have the cofactor FAD covalently bound at a site specified by Prosite motif PS00862; OX2_COVAL_FAD; 1.
+DR  PROSITE; PS00862; OX2_COVAL_FAD

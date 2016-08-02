@@ -1,0 +1,13 @@
+ID  ARCH_P_rylase
+AC  TIGR02645
+DE  putative thymidine phosphorylase
+AU  Haft DH
+TC  434.60 434.60
+NC  302.45 302.45
+AL  clustalw
+IT  hypoth_equivalog
+EN  putative thymidine phosphorylase
+EC  2.4.2.4
+TP  TIGRFAMs
+CC  Members of this family are closely related to characterized examples of thymidine phosphorylase (EC 2.4.2.4) and pyrimidine nucleoside phosphorylase (RC 2.4.2.2). Most examples are found in the archaea, but other examples in Legionella pneumophila str. Paris and Rhodopseudomonas palustris CGA009.
+DR  HAMAP; MF_00703; 53 of 55

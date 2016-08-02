@@ -1,0 +1,13 @@
+ID  tehB
+AC  TIGR00477
+DE  tellurite resistance protein TehB
+AU  Loftus BJ
+TC  219.50 219.50
+NC  142.10 142.10
+AL  clustalw
+IT  equivalog
+EN  tellurite resistance protein TehB
+GS  tehB
+TP  TIGRFAMs
+CC  Part of a tellurite-reducing operon tehA and tehB  
+RM  Medline; 94222856;

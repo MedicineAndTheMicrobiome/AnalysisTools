@@ -1,0 +1,17 @@
+ID  hemA
+AC  TIGR01035
+DE  glutamyl-tRNA reductase
+AU  Haft DH
+TC  209.55 209.55
+NC  94.15 94.15
+AL  clustalw
+IT  equivalog
+EN  glutamyl-tRNA reductase
+GS  hemA
+EC  1.2.1.70
+TP  TIGRFAMs
+CC  This enzyme, together with glutamate-1-semialdehyde-2,1-aminomutase (TIGR00713), leads to the production of delta-amino-levulinic acid from Glu-tRNA.
+DR  COGS; COG0373
+DR  PFAM; PF00745; Glutaminyl-tRNA reductase
+DR  ECOCYC; EG10427; hemA
+DR  HAMAP; MF_00087; 410 of 425

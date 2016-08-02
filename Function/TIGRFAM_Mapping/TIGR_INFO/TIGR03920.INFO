@@ -1,0 +1,17 @@
+ID  T7SS_EccD
+AC  TIGR03920
+DE  type VII secretion integral membrane protein EccD
+AU  Haft DH
+TC  94.95 94.95
+NC  75.75 75.75
+AL  muscle_manual
+IT  equivalog
+EN  type VII secretion integral membrane protein EccD
+GS  eccD
+TP  TIGRFAMs
+CC  Members of this family are EccD, a component of actinobacterial type VII secretion systems (T7SS) with ten to eleven predicted transmembrane helix regions.
+RN  [1]
+RM  PMID:19876390 
+RT  Systematic genetic nomenclature for type VII secretion systems. 
+RA  Bitter W, Houben EN, Bottai D, Brodin P, Brown EJ, Cox JS, Derbyshire K, Fortune SM, Gao LY, Liu J, Gey van Pittius NC, Pym AS, Rubin EJ, Sherman DR, Cole ST, Brosch R 
+RL  PLoS Pathog. 2009 Oct;5(10):e1000507. Epub 2009 Oct 30.

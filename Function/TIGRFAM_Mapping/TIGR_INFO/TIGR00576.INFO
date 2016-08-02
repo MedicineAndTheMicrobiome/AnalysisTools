@@ -1,0 +1,16 @@
+ID  dut
+AC  TIGR00576
+DE  dUTP diphosphatase
+AU  Loftus BJ, Eisen JA
+TC  102.55 102.55
+NC  66.30 66.30
+IT  superfamily
+EN  deoxyuridine 5'-triphosphate nucleotidohydrolase (dut)
+GS  dut
+EC  3.6.1.23
+TP  TIGRFAMs
+CC  The main function of these proteins is in maintaining the levels of dUTP in the cell to prevent dUTP incorporation into DNA during DNA replication.  Pol proteins in viruses are very similar to this protein family. This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+CC  Changed role from 132 to 123. RTD
+DR  EGAD; 89412;
+DR  SWISSPROT; O41033;
+DR  HAMAP; MF_00116; 285 of 288

@@ -1,0 +1,16 @@
+ID  CxxCG_CxxCG_HTH
+AC  TIGR03830
+DE  putative zinc finger/helix-turn-helix protein, YgiT family
+AU  Haft DH
+TC  61.80 61.80
+NC  58.85 58.85
+AL  muscle_manual
+IT  subfamily
+EN  putative zinc finger/helix-turn-helix protein, YgiT family
+TP  TIGRFAMs
+CC  This model describes a family of predicted regulatory proteins with a conserved zinc finger/HTH architecture. The amino-terminal region contains a novel domain, featuring two CXXC motifs and occuring in a number of small bacterial proteins as well as in the present family. The carboxyl-terminal region consists of a helix-turn-helix domain, modeled by PF01381. The predicted function is DNA binding and transcriptional regulation.
+RN  [1]
+RM  PMID:19636869
+RT  Assignment of (1)H, (13)C, and (15)N resonances of YgiT, a putative DNA interacting protein from E. coli, containing one HTH and two CxxC motifs.
+RA  Papadopoulos E, Billeter M, Graslund A, Vlamis-Gardikas A
+RL  Biomol NMR Assign. 2007 Dec;1(2):217-9.

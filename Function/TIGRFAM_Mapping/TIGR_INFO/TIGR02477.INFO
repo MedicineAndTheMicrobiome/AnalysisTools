@@ -1,0 +1,22 @@
+ID  PFKA_PPi
+AC  TIGR02477
+DE  diphosphate--fructose-6-phosphate 1-phosphotransferase
+AU  Rosovitz MJ, Haft DH
+TC  587.95 587.95
+NC  197.90 197.90
+AL  clustalw
+IT  equivalog
+EN  diphosphate--fructose-6-phosphate 1-phosphotransferase
+EC  2.7.1.90
+TP  TIGRFAMs
+CC  Diphosphate--fructose-6-phosphate 1-phosphotransferase catalyzes the addition of phosphate from diphosphate (PPi) to fructose 6-phosphate to give fructose 1,6-bisphosphate (EC 2.7.1.90). The enzyme is also known as pyrophosphate-dependent phosphofructokinase. The usage of PPi-dependent enzymes in glycolysis presumably frees up ATP for other processes [1].  TIGR02482 represents the ATP-dependent 6-phosphofructokinase enzyme contained within Pfam PF00365: Phosphofructokinase. This model hits primarily bacterial, plant alpha, and plant beta sequences.
+RN [1]
+RM  12015149
+RT  The structure of a pyrophosphate-dependent phosphofructokinase from the Lyme disease spirochete Borrelia burgdorferi.
+RA  Moore SA, Ronimus RS, Roberson RS, Morgan HW.
+RL  Structure (Camb). 2002 May;10(5):659-71.
+RN [2]
+RM  11382227
+RT  Sequencing, high-level expression and phylogeny of the pyrophosphate-dependent phosphofructokinase from the thermophilic spirochete Spirochaeta thermophila.
+RA  Ronimus R, de Heus E, Ruckert A, Morgan H.
+RL  Arch Microbiol. 2001 Apr;175(4):308-12.

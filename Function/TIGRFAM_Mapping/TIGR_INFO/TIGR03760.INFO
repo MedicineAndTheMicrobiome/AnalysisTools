@@ -1,0 +1,12 @@
+ID  ICE_TraI_Pfluor
+AC  TIGR03760
+DE  integrating conjugative element relaxase, PFGI-1 class
+AU  Haft DH
+TC  161.40 161.40
+NC  144.10 144.10
+AL  muscle_manual
+IT  equivalog_domain
+EN  integrating conjugative element relaxase, PFL_4751 family
+GS  traI
+TP  TIGRFAMs
+CC  Members of this protein family are the TraI putative relaxases required for transfer by a subclass of integrating conjugative elements (ICE) as found in Pseudomonas fluorescens Pf-5, and understood from study of two related ICE, SXT and R391. This model represents the N-terminal domain. Note that no homology is detected to the similarly named TraI relaxase of the F plasmid.

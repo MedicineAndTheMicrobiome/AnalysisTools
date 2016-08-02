@@ -1,0 +1,16 @@
+ID  TIGR00106
+AC  TIGR00106
+DE  uncharacterized protein, MTH1187 family
+AU  Anolik RT, Richardson DL, Haft DH
+TC  54.70 54.70
+NC  48.10 48.10
+AL  clustalw
+IT  hypoth_equivalog
+EN  uncharacterized protein, MTH1187 family
+TP  TIGRFAMs
+CC  This protein has been crystallized in both Methanobacterium thermoautotrophicum and yeast, but its function remains unknown. Both crystal structures showed sulfate ions bound at the interface of two dimers to form a tetramer.
+RN  [1]
+RM  PMID:12866058
+RT  Crystal structures of MTH1187 and its yeast ortholog YBL001c.
+RA  Tao X, Khayat R, Christendat D, Savchenko A, Xu X, Goldsmith-Fischman S, Honig B, Edwards A, Arrowsmith CH, Tong L
+RL  Proteins. 2003 Aug 15;52(3):478-80.

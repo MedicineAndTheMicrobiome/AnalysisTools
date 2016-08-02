@@ -1,0 +1,13 @@
+ID  phycocy_alpha
+AC  TIGR01338
+DE  phycocyanin, alpha subunit
+AU  Haft DH
+TC  269.45 269.45
+NC  269.30 269.30
+AL  clustalw
+IT  equivalog
+EN  phycocyanin, alpha subunit
+GS  cpcA
+TP  TIGRFAMs
+CC  This model describes the phycocyanin alpha subunit. Other, homologous phyobiliproteins of the phycobilisome include phycocyanin alpha chain and the allophycocyanin and phycoerythrin alpha and beta chains.
+CC  This model excludes the closely related phycoerythrocyanin alpha subunit.

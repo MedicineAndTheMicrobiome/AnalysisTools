@@ -1,0 +1,11 @@
+ID  nifR3_rel_arch
+AC  TIGR00736
+DE  putative TIM-barrel protein
+AU  Haft DH
+TC  218.70 218.70
+NC  57.65 57.65
+AL  clustalw
+IT  hypoth_equivalog
+EN  TIM-barrel protein, putative
+TP  TIGRFAMs
+CC  Members of this family show a distant relationship by PSI-BLAST to alpha/beta (TIM) barrel enzymes such as dihydroorotate dehydrogenase and glycolate oxidase. At least two closely related but well-separable families among the bacteria, the nifR3/yhdG family and the yjbN family, share a more distant relationship to this family of shorter, exclusively archaeal proteins.

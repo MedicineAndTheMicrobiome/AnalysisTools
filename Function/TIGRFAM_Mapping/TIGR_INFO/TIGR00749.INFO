@@ -1,0 +1,21 @@
+ID  glk
+AC  TIGR00749
+DE  glucokinase
+AU  Loftus BJ, Haft DH
+TC  225.45 225.45
+NC  123.20 123.20
+AL  clustalw_manual
+IT  equivalog
+EN  glucokinase, proteobacterial type
+GS  glk
+EC  2.7.1.2
+TP  TIGRFAMs
+CC  This HMM represents glucokinase of E. coli and close homologs, mostly from other proteobacteria, presumed to have equivalent function. This glucokinase is more closely related to a number of uncharacterized paralogs than to the glucokinase glcK (fromerly yqgR) of Bacillus subtilis and its closest homologs, so the two sets are represented by separate models.
+DR  InterPro; IPR003836
+DR  EXPERIMENTAL; EGAD|30337|EC2388
+DR  ECOCYC; EG12957; glk
+RM  98292758
+RT  The glucose kinase of Bacillus subtilis.
+RA  Skarlatos P, Dahl MK
+RL  J Bacteriol 1998 Jun;180(12):3222-6
+DR  HAMAP; MF_00524; 82 of 84

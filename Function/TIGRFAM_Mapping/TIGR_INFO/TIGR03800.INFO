@@ -1,0 +1,13 @@
+ID  PLP_synth_Pdx2
+AC  TIGR03800
+DE  pyridoxal 5'-phosphate synthase, glutaminase subunit Pdx2
+AU  Haft DH
+TC  105.55 105.55
+NC  83.65 83.65
+AL  muscle_manual
+IT  equivalog
+EN  pyridoxal 5'-phosphate synthase, glutaminase subunit Pdx2
+GS  pdxT
+EC  2.6.-.-
+TP  TIGRFAMs
+CC  Pyridoxal 5'-phosphate (PLP) is synthesized by the PdxA/PdxJ pathway in some species (mostly within the gamma subdivision of the proteobacteria) and by the Pdx1/Pdx2 pathway in most other organisms. This family describes Pdx2, the glutaminase subunit of the PLP synthase.

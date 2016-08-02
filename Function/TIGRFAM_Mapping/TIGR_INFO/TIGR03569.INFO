@@ -1,0 +1,13 @@
+ID  NeuB_NnaB
+AC  TIGR03569
+DE  N-acetylneuraminate synthase
+AU  Selengut J
+TC  399.65 399.65
+NC  394.85 394.85
+AL  muscle
+IT  equivalog
+EN  N-acetylneuraminate synthase
+GS  neuB
+EC  2.5.1.56
+TP  TIGRFAMs
+CC  This family is a subset of the Pfam model PF03102 and is believed to include only authentic NeuB N-acetylneuraminate (sialic acid) synthase enzymes.  The majority of the genes identified by this model are observed adjacent to both the NeuA and NeuC genes which together effect the biosynthesis of CMP-N-acetylneuraminate from UDP-N-acetylglucosamine.

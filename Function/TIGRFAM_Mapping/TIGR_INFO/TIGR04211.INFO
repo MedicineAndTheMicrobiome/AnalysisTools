@@ -1,0 +1,11 @@
+ID  SH3_and_anchor
+AC  TIGR04211
+DE  SH3 domain protein
+AU  Haft DH
+TC  65.00 65.00
+NC  60.00 45.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  SH3 domain protein
+TP  TIGRFAMs
+CC  Members of this protein family have a signal peptide, a strongly conserved SH3 domain, a variable region, and then a C-terminal hydrophobic transmembrane alpha helix region.

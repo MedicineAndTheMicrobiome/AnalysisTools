@@ -1,0 +1,13 @@
+ID  gcvH
+AC  TIGR00527
+DE  glycine cleavage system H protein
+AU  Haft DH
+TC  115.85 115.85
+NC  96.90 96.90
+AL  clustalw
+IT  equivalog
+EN  glycine cleavage system H protein
+GS  gcvH
+TP  TIGRFAMs
+CC  This model represents the glycine cleavage system H protein, which shuttles the methylamine group of glycine from the P protein to the T protein. The mature protein is about 130 residues long and contains a lipoyl group covalently bound to a conserved Lys residue.
+CC  The genome of Aquifex aeolicus contains one protein scoring above the trusted cutoff and clustering with other bacterial H proteins, and four more proteins clustering together and scoring below the trusted cutoff; it seems doubtful that all of these homologs are authentic H protein. The Chlamydial homolog of H protein is nearly as divergent as the Aquifex outgroup, is not accompanied by P and T proteins, is not included in the seed alignment, and consequently also scores below the trusted cutoff.

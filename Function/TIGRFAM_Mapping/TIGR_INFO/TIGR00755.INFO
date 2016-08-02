@@ -1,0 +1,24 @@
+ID  ksgA
+AC  TIGR00755
+DE  ribosomal RNA small subunit methyltransferase A
+AU  Haft DH
+TC  171.00 171.00
+NC  168.00 168.00
+AL  clustalw_manual
+IT  equivalog
+EN  ribosomal RNA small subunit methyltransferase A
+GS  rsmA
+EC  2.1.1.182
+TP  TIGRFAMs
+CC  In both E. coli and Saccharomyces cerevisiae, this protein is responsible for the dimethylation of two adjacent adenosine residues in a conserved hairpin of 16S rRNA in bacteria, 18S rRNA in eukaryotes. This adjacent dimethylation is the only rRNA modification shared by bacteria and eukaryotes. A single member of this family is present in each of the first 20 completed microbial genomes.
+CC  This protein is essential in yeast, but not in E. coli, where its deletion leads to resistance to the antibiotic kasugamycin. Alternate name: S-adenosylmethionine--6-N',N'-adenosyl (rRNA) dimethyltransferase
+AL  clustalw_manual
+DR  EXPERIMENTAL; EGAD|18707|EC0051; Escherichia coli; ksgA
+DR  EXPERIMENTAL; EGAD|56477|YPL266W; Saccharomyces cerevisiae; DIM1
+DR  COGS; COG0030
+RN  [1]
+RM  94343533
+RT  The DIM1 gene responsible for the conserved m6(2)Am6(2)A dimethylation in the 3'-terminal loop of 18 S rRNA is essential in yeast.
+RA  Lafontaine D, Delcour J, Glasser AL, Desgres J, Vandenhaute J
+RL  J Mol Biol 1994 Aug 19;241(3):492-7
+DR  HAMAP; MF_00607; 470 of 476

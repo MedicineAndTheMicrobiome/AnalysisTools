@@ -1,0 +1,18 @@
+ID  AMP-nucleosdse
+AC  TIGR01717
+DE  AMP nucleosidase
+AU  Selengut J
+TC  364.70 364.70
+NC  238.10 238.10
+AL  clustalw
+IT  equivalog
+EN  AMP nucleosidase
+GS  amn
+EC  3.2.2.4
+TP  TIGRFAMs
+CC  This model represents the AMP nucleosidase from proteobacteria but also including a sequence from Corynebacterium, a gram-positive organism.  The species from E. coli has been most well studied [1].
+RN  [1]
+RM  PMID: 2690948
+RT  Structure and regulation of the AMP nucleosidase gene (amn) from Escherichia coli.
+RA  Leung HB, Kvalnes-Krick KL, Meyer SL, deRiel JK, Schramm VL.
+RL  Biochemistry. 1989 Oct 31;28(22):8726-33.

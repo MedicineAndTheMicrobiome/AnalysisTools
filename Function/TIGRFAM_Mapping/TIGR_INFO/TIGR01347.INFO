@@ -1,0 +1,16 @@
+ID  sucB
+AC  TIGR01347
+DE  dihydrolipoyllysine-residue succinyltransferase, E2 component of oxoglutarate dehydrogenase (succinyl-transferring) complex
+AU  Haft DH
+TC  378.65 378.65
+NC  329.90 329.90
+AL  clustalw_manual
+IT  equivalog
+EN  2-oxoglutarate dehydrogenase complex dihydrolipoamide succinyltransferase (E2 component)
+GS  sucB
+EC  2.3.1.61
+TP  TIGRFAMs
+CC  This HMM describes the TCA cycle 2-oxoglutarate system E2 component, dihydrolipoamide succinyltransferase. It is closely related to the pyruvate dehydrogenase E2 component,
+CC  dihydrolipoamide acetyltransferase. The seed for this model includes mitochondrial and Gram-negative bacterial forms. Mycobacterial candidates are highly derived, differ in having and extra copy of the lipoyl-binding domain at the N-terminus. They score below the trusted cutoff, but above the noise cutoff and above all examples of dihydrolipoamide acetyltransferase.
+DR  PF00198; 2-oxoacid_dh
+DR  PF00364; biotin_lipoyl

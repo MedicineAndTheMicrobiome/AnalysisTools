@@ -1,0 +1,18 @@
+ID  lumazine-synth
+AC  TIGR00114
+DE  6,7-dimethyl-8-ribityllumazine synthase
+AU  Anolik RT, Richardson DL, Selengut J
+TC  84.60 84.60
+NC  77.65 77.65
+AL  clustalw
+IT  equivalog
+EN  6,7-dimethyl-8-ribityllumazine synthase
+GS  ribH
+EC  2.5.1.78
+TP  TIGRFAMs
+CC  This enzyme catalyzes the cyclo-ligation of 3,4-dihydroxy-2-butanone-4-P and 5-amino-6-ribitylamino-2,4(1H,3H)-pyrimidinedione to form 6,7-dimethyl-8-ribityllumazine, the immediate precursor of riboflavin.  Sometimes referred to as riboflavin synthase, beta subunit, this should not be confused with the alpha subunit which carries out the subsequent reaction.
+CC  Archaeal members of this family are considered putative, although included in the seed and scoring above the trusted cutoff.
+DR  ECOCYC; EG11322; RIBH.
+DR  PF00885; DMRL_synthase HMM;
+RM  96007536
+DR  HAMAP; MF_00178; 387 of 402

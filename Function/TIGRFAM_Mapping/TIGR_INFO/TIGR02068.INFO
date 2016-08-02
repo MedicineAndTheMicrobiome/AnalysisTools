@@ -1,0 +1,18 @@
+ID  cya_phycin_syn
+AC  TIGR02068
+DE  cyanophycin synthetase
+AU  Haft DH
+TC  730.70 730.70
+NC  319.25 319.25
+AL  clustalw
+IT  equivalog
+EN  cyanophycin synthetase
+GS  cphA
+EC  6.3.2.29 6.3.2.30
+TP  TIGRFAMs
+CC  Cyanophycin is an insoluble storage polymer for carbon, nitrogen, and energy, found in most Cyanobacteria. The polymer has a backbone of L-aspartic acid, with most Asp side chain carboxyl groups attached to L-arginine. The polymer is made by this enzyme, cyanophycin synthetase, and degraded by cyanophycinase. Heterologously expressed cyanophycin synthetase in E. coli produces a closely related, water-soluble polymer with some Arg replaced by Lys. It is unclear whether enzymes that produce soluble cyanophycin-like polymers in vivo in non-Cyanobacterial species should be designated as cyanophycin synthetase itself or as a related enzyme. This model makes the designation as cyanophycin synthetase.
+CC  Cyanophycin synthesis is analogous to polyhydroxyalkanoic acid (PHA) biosynthesis, except that PHA polymers lack nitrogen and may be made under nitrogen-limiting conditions.
+RM  11976746
+RT  Evaluation of non-cyanobacterial genome sequences for occurrence of genes encoding proteins homologous to cyanophycin synthetase and cloning of an active cyanophycin synthetase from Acinetobacter sp. strain DSM 587.
+RA  Krehenbrink M, Oppermann-Sanio FB, Steinbuchel A.
+RL  Arch Microbiol. 2002 May;177(5):371-80. Epub 2002 Feb 14.

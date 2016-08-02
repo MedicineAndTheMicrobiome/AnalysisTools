@@ -1,0 +1,18 @@
+ID  thy_syn_methano
+AC  TIGR03283
+DE  thymidylate synthase, methanogen type
+AU  Haft DH
+TC  174.55 174.55
+NC  112.65 112.65
+AL  muscle_manual
+IT  equivalog
+EN  thymidylate synthase, methanogen type
+EC  2.1.1.-
+TP  TIGRFAMs
+CC  Thymidylate synthase makes dTMP for DNA synthesis, and is among the most widely distributed of all enzymes. Members of this protein family are encoded within a completed genome sequence if and only if that species is one of the methanogenenic archaea. In these species, tetrahydromethanopterin replaces tetrahydrofolate, The member from Methanobacterium thermoautotrophicum was shown to behave as a thymidylate synthase based on similar side reactions (the exchange of a characteristic proton with water), although the full reaction was not reconstituted. Partial sequence data showed no similarity to known thymidylate synthases simply because the region sequenced was from a distinctive  N-terminal region not found in other thymidylate synthases. Members of this protein family appear, therefore, to a novel, tetrahydromethanopterin-dependent thymidylate synthase.
+RN  [1]
+RM  PMID: 8143733
+RT  Purification and partial characterization of a putative thymidylate synthase from Methanobacterium thermoautotrophicum.
+RA  Krone UE, McFarlan SC, Hogenkamp HP
+RL  Eur J Biochem. 1994 Mar 15;220(3):789-94.
+DR  HAMAP; MF_00008; 8 of 351

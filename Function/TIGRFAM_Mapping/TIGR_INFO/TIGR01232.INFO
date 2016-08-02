@@ -1,0 +1,14 @@
+ID  lacD
+AC  TIGR01232
+DE  tagatose 1,6-diphosphate aldolase
+AU  Haft DH, Dodson RJ
+TC  432.20 432.20
+NC  121.40 121.40
+AL  clustalw
+IT  equivalog
+EN  tagatose 1,6-diphosphate aldolase
+GS  lacD
+EC  4.1.2.40
+TP  TIGRFAMs
+CC  This family consists of Gram-positive proteins. Tagatose 1,6-diphosphate aldolase is part of the tagatose-6-phosphate pathway of galactose-6-phosphate degradation.
+DR  HAMAP; MF_00734; 35 of 38

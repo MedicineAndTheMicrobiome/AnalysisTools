@@ -1,0 +1,16 @@
+ID  cas_NE0113
+AC  TIGR02584
+DE  CRISPR-associated protein, NE0113 family
+AU  Haft DH
+TC  80.65 80.65
+NC  20.80 20.80
+AL  clustalw
+IT  hypoth_equivalog
+EN  CRISPR-associated protein, NE0113 family
+TP  TIGRFAMs
+CC  Members of this minor CRISPR-associated (Cas) protein family are found in cas gene clusters in Vibrio vulnificus YJ016, Nitrosomonas europaea ATCC 19718, Mannheimia succiniciproducens MBEL55E, and Verrucomicrobium spinosum.
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=2003
+RN  [1]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005

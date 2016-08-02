@@ -1,0 +1,12 @@
+ID  Cyano_gly_rpt
+AC  TIGR04260
+DE  rSAM-associated Gly-rich repeat protein
+AU  Haft DH
+TC  31.00 31.00
+NC  28.00 28.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  rSAM-associated Gly-rich repeat protein
+GS  grrA
+TP  TIGRFAMs
+CC  Members of this protein family average 125 in length, roughly half of which is the repetitive and extremely Gly-rich C-terminal region. Virtually all members occur in the Cyanobacteria, in a neighborhood that includes a radical SAM/SPASM domain, often a marker of peptide modification systems.

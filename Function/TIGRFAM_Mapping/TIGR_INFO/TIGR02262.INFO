@@ -1,0 +1,11 @@
+ID  benz_CoA_lig
+AC  TIGR02262
+DE  benzoate-CoA ligase family
+AU  Haft DH
+TC  375.25 375.25
+NC  362.25 362.25
+AL  clustalw
+IT  subfamily
+EN  benzoate-CoA ligase family
+TP  TIGRFAMs
+CC  Characterized members of this protein family include benzoate-CoA ligase, 4-hydroxybenzoate-CoA ligase, 2-aminobenzoate-CoA ligase, etc. Members are related to fatty acid and acetate CoA ligases.

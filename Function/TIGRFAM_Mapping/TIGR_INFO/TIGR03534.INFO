@@ -1,0 +1,18 @@
+ID  RF_mod_PrmC
+AC  TIGR03534
+DE  protein-(glutamine-N5) methyltransferase, release factor-specific
+AU  Haft DH
+TC  199.10 199.10
+NC  198.70 198.70
+AL  muscle_manual
+IT  equivalog
+EN  protein-(glutamine-N5) methyltransferase, release factor-specific
+GS  prmC
+EC  2.1.1.-
+TP  TIGRFAMs
+CC  Members of this protein family are HemK (PrmC), a protein once thought to be involved in heme biosynthesis but now recognized to be a protein-glutamine methyltransferase that modifies the peptide chain release factors. All members of the seed alignment are encoded next to the release factor 1 gene (prfA) and confirmed by phylogenetic analysis. SIMBAL analysis (manuscript in prep.) shows the motif [LIV]PRx[DE]TE (in Escherichia coli, IPRPDTE) confers specificity for the release factors rather than for ribosomal protein L3.
+RN  [1]
+RM  PMID:11847124
+RT  The hemK gene in Escherichia coli encodes the N(5)-glutamine methyltransferase that modifies peptide release factors.
+RA  Heurgue-Hamard V, Champ S, Engstrom A, Ehrenberg M, Buckingham RH
+RL  EMBO J. 2002 Feb 15;21(4):769-78.

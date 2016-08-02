@@ -1,0 +1,12 @@
+ID  quinone_pig3
+AC  TIGR02824
+DE  putative NAD(P)H quinone oxidoreductase, PIG3 family
+AU  Haft DH
+TC  296.80 296.80
+NC  293.70 293.70
+AL  clustalw_manual
+IT  subfamily
+EN  putative NAD(P)H quinone oxidoreductase, PIG3 family
+TP  TIGRFAMs
+CC  Members of this family are putative quinone oxidoreductases that belong to the broader superfamily (modeled by Pfam PF00107) of zinc-dependent alcohol (of medium chain length) dehydrogenases and quinone oxiooreductases. The alignment shows no motif of conserved Cys residues as are found in zinc-binding members of the superfamily, and members are likely to be quinone oxidoreductases instead. A member of this family in Homo sapiens, PIG3, is induced by p53 but is otherwise uncharacterized.
+DR  PFAM; PF00107; ADH_zinc_N

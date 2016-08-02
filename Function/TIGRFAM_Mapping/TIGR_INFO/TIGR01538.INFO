@@ -1,0 +1,15 @@
+ID  portal_SPP1
+AC  TIGR01538
+DE  phage portal protein, SPP1 family
+AU  Fouts DE, Haft DH
+TC  165.85 165.85
+NC  38.35 38.35
+AL  clustalw_manual
+IT  equivalog
+EN  phage portal protein, SPP1 family
+TP  TIGRFAMs
+CC  This HMM represents one of several distantly related families of phage portal protein. This protein forms a hole, or portal, that enables DNA passage during packaging and ejection.  It also forms the junction between the phage head (capsid) and the tail proteins. It functions as a dodecamer of a single polypeptide of average mol. wt. of 40-90 KDa.
+RM  10467096
+RT  Structure of the 13-fold symmetric portal protein of bacteriophage SPP1.
+RA  Orlova EV, Dube P, Beckmann E, Zemlin F, Lurz R, Trautner TA, Tavares P, van Heel M.
+RL  Nat Struct Biol 1999 Sep;6(9):842-6

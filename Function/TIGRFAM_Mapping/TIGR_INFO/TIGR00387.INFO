@@ -1,0 +1,18 @@
+ID  glcD
+AC  TIGR00387
+DE  glycolate oxidase, subunit GlcD
+AU  Loftus BJ
+TC  567.90 567.90
+NC  311.85 311.85
+AL  clustalw
+IT  equivalog
+EN  glycolate oxidase, subunit GlcD
+GS  glcD
+TP  TIGRFAMs
+CC  This protein, the glycolate oxidase GlcD subunit, is similar in sequence to that of several D-lactate dehydrogenases, including that of E. coli. The glycolate oxidase has been found to have some D-lactate dehydrogenase activity.
+DR  SWISSPROT; 52075;
+RM  96178972
+RT  glc locus of Escherichia coli: characterization of genes encoding the subunits of glycolate oxidase and the glc regulator protein.
+RA  Pellicer MT, Badia J, Aguilar J, Baldoma L
+RL  J Bacteriol 1996 Apr;178(7):2051-9
+DR  ECOCYC; EG12997; glcD;

@@ -1,0 +1,26 @@
+ID  treS_nterm
+AC  TIGR02456
+DE  trehalose synthase
+AU  Haft DH
+TC  678.35 678.35
+NC  376.75 376.75
+AL  clustalw
+IT  equivalog_domain
+EN  trehalose synthase
+GS  treS
+EC  5.4.99.16
+TP  TIGRFAMs
+CC  Trehalose synthase interconverts maltose and alpha, alpha-trehalose by transglucosylation. This is one of at least three mechanisms for biosynthesis of trehalose, an important and widespread compatible solute. However, it is not driven by phosphate activation of sugars and its physiological role may tend toward trehalose degradation. This view is accentuated by numerous examples of fusion to a probable maltokinase domain. The sequence region described by this model is found both as the whole of a trehalose synthase and as the N-terminal region of a larger fusion protein that includes trehalose synthase activity. Several of these fused trehalose synthases have a domain homologous to proteins with maltokinase activity from Actinoplanes missouriensis and Streptomyces coelicolor (PMID:15378530).
+RN  [1]
+RM  8829531
+RT  Purification and properties of a novel enzyme, trehalose synthase, from Pimelobacter sp. R48.
+RA  Nishimoto T, Nakano M, Nakada T, Chaen H, Fukuda S, Sugimoto T, Kurimoto M, Tsujisaka Y.
+RL  Biosci Biotechnol Biochem. 1996 Apr;60(4):640-4.
+RN  [2]
+RM  15378530
+RT  Isolation of mak1 from Actinoplanes missouriensis and evidence that Pep2 from Streptomyces coelicolor is a maltokinase.
+RA  Jarling M, Cauvet T, Grundmeier M, Kuhnert K, Pape H.
+RL  J Basic Microbiol. 2004;44(5):360-73.
+DR  EXPERIMENTAL; SP|P72235; Pimelobacter sp.
+DR  EXPERIMENTAL; GB|AAD50660.3; Thermus caldophilus
+DR  EXPERIMENTAL; GB|CAF20645.1; Corynebacterium glutamicum

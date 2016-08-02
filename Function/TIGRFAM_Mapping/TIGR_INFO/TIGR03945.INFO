@@ -1,0 +1,11 @@
+ID  PLP_SbnA_fam
+AC  TIGR03945
+DE  2,3-diaminopropionate biosynthesis protein SbnA
+AU  Haft DH
+TC  349.95 349.95
+NC  294.65 294.65
+AL  muscle_manual
+IT  equivalog
+EN  2,3-diaminopropionate biosynthesis protein SbnA
+TP  TIGRFAMs
+CC  Members of this family include SbnA, a protein of the staphyloferrin B biosynthesis operon of Staphylococcus aureus. SbnA and SbnB together appear to synthesize 2,3-diaminopropionate, a precursor of certain siderophores and other secondary metabolites. SbnA is a pyridoxal phosphate-dependent enzyme.

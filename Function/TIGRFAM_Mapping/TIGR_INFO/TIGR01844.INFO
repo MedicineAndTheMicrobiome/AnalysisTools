@@ -1,0 +1,16 @@
+ID  type_I_sec_TolC
+AC  TIGR01844
+DE  type I secretion outer membrane protein, TolC family
+AU  Haft DH
+TC  225.15 225.15
+NC  183.80 183.80
+AL  clustalw_manual
+IT  subfamily
+EN  type I secretion outer membrane protein, TolC family
+TR  1.B.17.1
+TP  TIGRFAMs
+CC  Members of this HMM are outer membrane proteins from the TolC subfamily within the RND (Resistance-Nodulation-cell Division) efflux systems. These proteins, unlike the NodT subfamily, appear not to be lipoproteins. All are believed to participate in type I protein secretion, an ABC transporter system for protein secretion without cleavage of a signal sequence, although they may, like TolC, participate also in the efflux of smaller molecules as well. This family includes the well-documented examples TolC (E. coli), PrtF  (Erwinia),  and AprF (Pseudomonas aeruginosa).
+RM  11589692
+RT  The role of the TolC family in protein transport and multidrug efflux. From stereochemical certainty to mechanistic hypothesis.
+RA  Sharff A, Fanutti C, Shi J, Calladine C, Luisi B.
+RL  Eur J Biochem 2001 Oct;268(19):5011-26

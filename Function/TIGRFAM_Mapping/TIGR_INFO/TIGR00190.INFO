@@ -1,0 +1,14 @@
+ID  thiC
+AC  TIGR00190
+DE  phosphomethylpyrimidine synthase
+AU  Haft DH
+TC  460.00 460.00
+NC  75.00 75.00
+AL  clustalw
+IT  equivalog
+EN  phosphomethylpyrimidine synthase
+GS  thiC
+EC  4.1.99.17
+TP  TIGRFAMs
+CC  The thiC ortholog is designated thiA in Bacillus subtilis.
+DR  HAMAP; MF_00089; 316 of 319

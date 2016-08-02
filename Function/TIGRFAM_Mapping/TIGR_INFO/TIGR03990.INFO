@@ -1,0 +1,24 @@
+ID  Arch_GlmM
+AC  TIGR03990
+DE  phosphoglucosamine mutase
+AU  Selengut J
+TC  439.00 439.00
+NC  400.30 400.30
+AL  muscle
+IT  equivalog
+EN  phosphoglucosamine mutase
+GS  glmM
+EC  5.4.2.10
+TP  TIGRFAMs
+CC  The MMP1680 protein from Methanococcus maripaludis has been characterized as the archaeal protein responsible for the second step of UDP-GlcNAc biosynthesis [1].  This GlmM protein catalyzes the conversion of glucosamine-6-phosphate to glucosamine-1-phosphate.  The first-characterized bacterial GlmM protein is modeled by TIGR01455.  These two families are members of the larger phosphoglucomutase/phosphomannomutase family (characterized by three domains: PF02878, PF02879 and PF02880), but are not nearest neighbors to each other.
+CC  This model also includes a number of sequences from non-archaea in the Bacteroides, Chlorobi, Chloroflexi, Planctomycetes and Spirochaetes lineages.  Evidence supporting their inclusion in this equivalog as having the same activity comes from genomic context and phylogenetic profiling.  A large number of these organisms are known to produce exo-polysaccharide and yet only appeared to contain the GlmS enzyme of the GlmSMU pathway for UDP-GlcNAc biosynthesis (GenProp0750).  In some organisms including Leptospira, this archaeal GlmM is found adjacent to the GlmS as well as a putative GlmU non-orthologous homolog.  Phylogenetic profiling of the GlmS-only pattern using PPP [2] identifies members of this archaeal GlmM family as the highest-scoring result.
+RN  [1]
+RM  PMID:18263721 
+RT  Acetamido sugar biosynthesis in the Euryarchaea. 
+RA  Namboori SC, Graham DE 
+RL  J Bacteriol. 2008 Apr;190(8):2987-96. Epub 2008 Feb 8. 
+RN  [2]
+RM  PMID:16930487 
+RT  Exopolysaccharide-associated protein sorting in environmental organisms: the PEP-CTERM/EpsH system. Application of a novel phylogenetic profiling heuristic. 
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD 
+RL  BMC Biol. 2006 Aug 24;4:29.

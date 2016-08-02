@@ -1,0 +1,18 @@
+ID  PEP_his_kin
+AC  TIGR02916
+DE  putative PEP-CTERM system histidine kinase
+AU  Haft DH
+TC  300.00 300.00
+NC  200.00 200.00
+AL  muscle
+IT  equivalog
+EN  putative PEP-CTERM system histidine kinase
+GS  prsK
+EC  2.7.13.3
+TP  TIGRFAMs
+CC  Members of this protein family have a novel N-terminal domain, a single predicted membrane-spanning helix, and a predicted cystosolic histidine kinase domain. We designate this protein PrsK, and its companion DNA-binding response regulator protein (TIGR02915) PrsR. These predicted signal-transducing proteins appear to enable enhancer-dependent transcriptional activation. The prsK gene is often associated with exopolysaccharide biosynthesis genes.
+RN  [1]
+RM  PMID: 16930487
+RT  Exopolysaccharide-associated protein sorting in environmental organisms: the PEP-CTERM/EpsH system. Application of a novel phylogenetic profiling heuristic.
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD
+RL  BMC Biol. 2006 Aug 24;4(1):29.

@@ -1,0 +1,11 @@
+ID  anch_rpt_wall
+AC  TIGR03773
+DE  putative ABC transporter-associated repeat protein
+AU  Haft DH
+TC  190.30 190.30
+NC  176.70 176.70
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  putative ABC transporter-associated repeat protein
+TP  TIGRFAMs
+CC  Members of this protein family occur in genomes that contain a three-gene ABC transporter operon associated with the presence of domain TIGR03769. That domain occurs as a single-copy insert in the substrate-binding protein, and occurs in two or more copies in members of this protein family. Members of this family typically are encoded adjacent to the said transporter operon and may serve as a substrate receptor.

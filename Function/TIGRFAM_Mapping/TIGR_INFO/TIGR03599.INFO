@@ -1,0 +1,11 @@
+ID  YloV
+AC  TIGR03599
+DE  DAK2 domain fusion protein YloV
+AU  Haft DH
+TC  396.10 396.10
+NC  286.95 286.95
+AL  muscle_manual
+IT  subfamily
+EN  DAK2 domain fusion protein YloV
+TP  TIGRFAMs
+CC  This model describes a protein family that contains an N-terminal DAK2 domain (PF02734), so named because of similarity to the  dihydroxyacetone kinase family family. The GTP-binding protein CgtA (a member of the obg family) is a bacterial GTPase associated with ribosome biogenesis, and it has a characteristic extension (TIGR03595) in certain lineages. This protein family described here was found, by the method of partial phylognetic profiling, to have a phylogenetic distribution strongly correlated to that of TIGR03595. This correlation implies some form of functional coupling.

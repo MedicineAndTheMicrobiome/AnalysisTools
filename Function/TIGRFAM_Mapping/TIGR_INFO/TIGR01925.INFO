@@ -1,0 +1,24 @@
+ID  spIIAB
+AC  TIGR01925
+DE  anti-sigma F factor
+AU  Nelson WE
+TC  91.75 91.75
+NC  78.90 78.90
+AL  clustalw_manual
+IT  equivalog
+EN  anti-sigma F factor
+GS  spoIIAB
+EC  2.7.11.1
+TP  TIGRFAMs
+CC  This model describes the SpoIIAB anti-sigma F factor. Sigma F regulates spore development in B subtilis. SpoIIAB binds to sigma F, preventing formation of the transcription complex at the promoter.[1] SpoIIAA (anti-anti-sigma F factor) binds to SpoIIAB to inhibit association with sigma F, however SpoIIAB can phosphorylate SpoIIAA, causing disassociation of the SpoIIAA/B complex.[2] The SpoIIE phosphatase dephosphorylates SpoIIAA.
+RN  [1]
+RM  8460142
+RT  SpoIIAB is an anti-sigma factor that binds to and inhibits transcription by regulatory protein sigma F from Bacillus subtilis.
+RA  Duncan L, Losick R.
+RL  Proc Natl Acad Sci U S A. 1993 Mar 15;90(6):2325-9.
+RN  [2]
+RM  8358793
+RT  Sigma F, the first compartment-specific transcription factor of B. subtilis, is regulated by an anti-sigma factor that is also a protein kinase.
+RA  Min KT, Hilditch CM, Diederich B, Errington J, Yudkin MD.
+RL  Cell. 1993 Aug 27;74(4):735-42.
+DR  HAMAP; MF_00637; 29 of 29

@@ -1,0 +1,11 @@
+ID  HpnW_proposed
+AC  TIGR03364
+DE  FAD dependent oxidoreductase TIGR03364
+AU  Selengut J
+TC  285.10 285.10
+NC  179.40 179.40
+AL  muscle
+IT  hypoth_equivalog
+EN  FAD dependent oxidoreductase TIGR03364
+TP  TIGRFAMs
+CC  This clade of FAD dependent oxidoreductases (members of the PF01266 family) is syntenically associated with a family of proposed phosphonatase-like enzymes (TIGR03351) and is also found (less frequently) in association with phosphonate transporter components.  A likely role for this enzyme involves the oxidative deamination of an aminophosphonate differring slightly from 2-aminoethylphosphonate, possibly 1-hydroxy-2-aminoethylphosphonate (see the comments for TIGR03351).  Many members of the larger FAD dependent oxidoreductase family act as amino acid oxidative deaminases.

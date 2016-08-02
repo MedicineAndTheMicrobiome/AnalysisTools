@@ -1,0 +1,11 @@
+ID  rSAM_Pput_1520
+AC  TIGR04434
+DE  B12-binding domain/radical SAM domain protein
+AU  Haft DH
+TC  550.00 550.00
+NC  400.00 400.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  B12-binding domain/radical SAM domain protein, Pput_1520 family
+TP  TIGRFAMs
+CC  Members of this family are radical SAM domain (PF04055) enzymes with an N-terminal B12-binding domain (PF02310), as is fairly common for radical SAM enzymes with lipid substrates. However, both domains as found in this family seem to be long-branch and mostly score below the cutoffs for their respective HMMs. The function is unknown, but all cases a PLP-dependent enzyme (a cysteine desulfurase homolog) is found nearby.

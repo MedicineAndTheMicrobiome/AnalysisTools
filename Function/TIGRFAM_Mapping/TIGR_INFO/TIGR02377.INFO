@@ -1,0 +1,12 @@
+ID  MocE_fam_FeS
+AC  TIGR02377
+DE  Rieske [2Fe-2S] domain protein, MocE subfamily
+AU  Haft DH
+TC  136.15 136.15
+NC  96.20 96.20
+AL  clustalw
+IT  subfamily
+EN  Rieske [2Fe-2S] domain protein, MocE subfamily
+TP  TIGRFAMs
+CC  This HMM describes a subfamily of the Rieske-like [2Fe-2S] family of ferredoxins that includes MocE, part of the rhizopine (3-O-methyl-scyllo-inosamine) catabolic cluster in Rhizobium. Members of this family are related to, yet distinct from, the small subunit of nitrite reductase [NAD(P)H].
+DR  INTERPRO; IPR005806; Rieske [2Fe-2S] region

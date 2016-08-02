@@ -1,0 +1,11 @@
+ID  NHT_00031
+AC  TIGR04181
+DE  aminotransferase, LLPSF_NHT_00031 family
+AU  Selengut J
+TC  420.00 420.00
+NC  416.00 416.00
+AL  muscle
+IT  hypoth_equivalog
+EN  aminotransferase, LLPSF_NHT_00031 family
+TP  TIGRFAMs
+CC  This clade of aminotransferases is a member of the PF01041 (DegT/DnrJ/EryC1/StrS) superfamily.  The family is named after the instance in Leptospira interrogans serovar Lai, str. 56601, where it is the 31st gene in the 91-gene lipopolysaccharide biosynthesis locus.  Members of this family are generally found within a subcluster of seven or more genes including an epimerase/dehydratase, four genes homologous to the elements of the neuraminic (sialic) acid biosynthesis cluster (NeuABCD) and a nucleotidyl transferase. Together it is very likely that these enzymes direct the biosynthesis of a nine-carbon sugar analogous to CMP-neuraminic acid. These seven genes form the core of the cassette, although they are often accompanied by additional genes that may further modify the product sugar.

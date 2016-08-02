@@ -1,0 +1,11 @@
+ID  cyc_nuc_ocin
+AC  TIGR03896
+DE  bacteriocin-type transport-associated protein
+AU  Haft DH
+TC  161.05 161.05
+NC  160.85 160.85
+AL  muscle_manual
+IT  subfamily
+EN  bacteriocin-type transport-associated protein
+TP  TIGRFAMs
+CC  Members of this protein family are uncharacterized and contain two copies of the cyclic nucleotide-binding domain PF00027. Members are restricted to select cyanobacteria but are found regularly in association with a transport operon that, in turn, is associated with the production of putative bacteriocins. The models describing the transport operon are TIGR03794, TIGR03796, and TIGR03797.

@@ -1,0 +1,16 @@
+ID  ilvD
+AC  TIGR00110
+DE  dihydroxy-acid dehydratase
+AU  Anolik RT, Richardson DL, Haft DH
+TC  618.15 618.15
+NC  339.10 339.10
+AL  clustalw
+IT  equivalog
+EN  dihydroxy-acid dehydratase
+GS  ilvD
+EC  4.2.1.9
+TP  TIGRFAMs
+CC  This protein, dihydroxy-acid dehydratase, catalyzes the fourth step in valine and isoleucine biosynthesis. It contains a catalytically essential [4Fe-4S] cluster
+CC  This model generates scores of up to 150 bits vs. 6-phosphogluconate dehydratase, a homologous enzyme.
+DR  PROSITE: PDOC00690
+DR  HAMAP; MF_00012; 409 of 418

@@ -1,0 +1,12 @@
+ID  LD_lanti_pre
+AC  TIGR04363
+DE  FxLD family lantipeptide
+AU  Haft DH
+TC  30.00 30.00
+NC  25.00 25.00
+AL  muscle_manual
+IT  subfamily
+EN  FxLD family lantipeptide
+GS  fxlA
+TP  TIGRFAMs
+CC  Members of this protein family occur with a cassette of lanthionine-type peptide modification enzymes. Members are small (about 60 amino acids long), rich in Cys, and variable in copy number per genome (from one to three). These features suggest that members of this family are modified to become lantipeptides, although not necessarily a lantibiotic. There is no GlyGly cleavage motif to separate a leader peptide from core region.The considerable abundance in Streptomyces and relatively strong consideration hints at a non-antibiotic function. The motif FxLD in the N-terminal region is nearly invariant.

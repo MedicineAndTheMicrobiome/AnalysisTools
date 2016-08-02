@@ -1,0 +1,16 @@
+ID  metH
+AC  TIGR02082
+DE  methionine synthase
+AU  Haft DH
+TC  1010.85 1010.85
+NC  486.10 486.10
+AL  clustalw
+IT  equivalog
+EN  5-methyltetrahydrofolate--homocysteine methyltransferase
+GS  metH
+EC  2.1.1.13
+TP  TIGRFAMs
+CC  This family represents 5-methyltetrahydrofolate--homocysteine methyltransferase (EC 2.1.1.13), one of at least three different enzymes able to convert homocysteine to methionine by transferring a methyl group on to the sulfur atom. It is also called the vitamin B12(or cobalamine)-dependent methionine synthase. Other methionine synthases include 5-methyltetrahydropteroyltriglutamate--homocysteine
+CC  S-methyltransferase (MetE, EC 2.1.1.14, the cobalamin-independent methionine synthase) and betaine-homocysteine methyltransferase.
+DR  EXPERIMENTAL; SP|P13009; Escherichia coli
+DR  EXPERIMENTAL; SP|Q99707; Homo sapiens

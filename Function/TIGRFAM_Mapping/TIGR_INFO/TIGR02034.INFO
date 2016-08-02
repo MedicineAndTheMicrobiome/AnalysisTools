@@ -1,0 +1,37 @@
+ID  CysN
+AC  TIGR02034
+DE  sulfate adenylyltransferase, large subunit
+AU  Brinkac L
+TC  336.10 336.10
+NC  327.65 327.65
+AL  clustalw
+IT  subfamily
+EN  sulfate adenylyltransferase, large subunit
+GS  cysN
+EC  2.7.7.4
+TP  TIGRFAMs
+CC  Metabolic assimilation of sulfur from inorganic sulfate, requires sulfate activation by coupling to a nucleoside, for the production of high-energy nucleoside phosphosulfates. This pathway appears to be similar in all prokaryotic organisms. Activation is first achieved through sulfation of sulfate with ATP by sulfate adenylyltransferase (ATP sulfurylase) to produce 5'-phosphosulfate (APS), coupled by GTP hydrolysis. Subsequently, APS is phosphorylated by an APS kinase to produce 3'-phosphoadenosine-5'-phosphosulfate (PAPS) [1].
+CC  In Escherichia coli, ATP sulfurylase is a heterodimer composed of two subunits encoded by cysD and cysN, with APS kinase encoded by cysC. These genes are located in a unidirectionally transcribed gene cluster, and have been shown to be required for the synthesis of sulfur-containing amino acids [1].
+CC  Homologous to this E.coli activation pathway are nodPQH gene products found among members of the Rhizobiaceae family. These gene products have been shown to exhibit ATP sulfurase and APS kinase activity, yet are involved in Nod factor sulfation, and sulfation of other macromolecules [2]. With members of the Rhizobiaceae family, nodQ often appears as a fusion of cysN (large subunit of ATP sulfurase) and cysC (APS kinase) [2,3].
+RN [1]
+RM 2828368
+RA Leyh TS, Taylor JC, Markham GD.
+RT The sulfate activation locus of Escherichia coli K12: cloning, genetic, and enzymatic characterization.
+RL J Biol Chem. 1988 Feb 15;263(5):2409-16.
+RN [2]
+RM 12676676
+RA Snoeck C, Verreth C, Hernandez-Lucas I, Martinez-Romero E, Vanderleyden J.
+RT Identification of a third sulfate activation system in Sinorhizobium sp. strain BR816: the CysDN sulfate activation complex.
+RL Appl Environ Microbiol. 2003 Apr;69(4):2006-14.
+RN [3]
+RM 7961471
+RA Schwedock JS, Liu C, Leyh TS, Long SR.
+RT Rhizobium meliloti NodP and NodQ form a multifunctional sulfate-activating complex requiring GTP for activity.
+RL J Bacteriol. 1994 Nov;176(22):7055-64.
+DR PFAM; PF00009; Elongation factor Tu GTP binding domain
+DR PFAM; PF03144; Elongation factor Tu domain 2
+DR EXPERIMENTAL; SP|Q8FEJ1; Escherichia coli; correlation of enzymatic activity, complementation patterns, and polypeptides associated with subclones of cloned DNA
+DR EXPERIMENTAL; GP|2110525; Xanthomonas oryzae;
+DR EXPERIMENTAL; GP|24528411; Sinorhizobium sp. BR8160; mutanogenesis measuring growth characteristics and Nod factor sulfation.
+DR OUTGROUP; SP|P48863; Halobacterium halobium; Elongation factor 1-alpha (EF-1-alpha) (Elongation factor Tu) (EF-Tu).
+DR  HAMAP; MF_00062; 38 of 39

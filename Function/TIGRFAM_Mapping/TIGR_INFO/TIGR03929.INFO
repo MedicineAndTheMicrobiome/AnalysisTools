@@ -1,0 +1,17 @@
+ID  T7_esaA_Nterm
+AC  TIGR03929
+DE  type VII secretion protein EsaA
+AU  Haft DH
+TC  122.00 122.00
+NC  121.20 121.20
+AL  muscle_manual
+IT  equivalog_domain
+EN  type VII secretion protein EsaA, N-terminal domain
+GS  esaA
+TP  TIGRFAMs
+CC  Members of this family are associated with type VII secretion of WXG100 family targets in the Firmicutes, but not in the Actinobacteria. This model represents the conserved N-terminal domain.
+RN  [1]
+RM  PMID:18554323 
+RT  EsaC substrate for the ESAT-6 secretion pathway and its role in persistent infections of Staphylococcus aureus. 
+RA  Burts ML, DeDent AC, Missiakas DM 
+RL  Mol Microbiol. 2008 Aug;69(3):736-46. Epub 2008 Jun 28.

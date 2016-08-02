@@ -1,0 +1,20 @@
+ID  lipB
+AC  TIGR00214
+DE  lipoyl(octanoyl) transferase
+AU  Loftus BJ
+TC  83.55 83.55
+NC  64.65 64.65
+AL  clustalw
+IT  equivalog
+EN  lipoate-protein ligase B
+GS  lipB
+EC  2.3.1.181
+TP  TIGRFAMs
+CC  Involved in lipoate biosynthesis as the main determinant of the lipoyl-protein ligase activity required for lipoylation of enzymes such as alpha-ketoacid dehydrogenases. Involved in activation and re-activation (following denaturation) of lipoyl-protein ligases (calcium ion-dependant process).
+DR  ECOCYC; EG11591;
+DR  PROSITE; PDOC01017;
+RN  [1]
+RM  12591875
+RT  The Escherichia coli lipB gene encodes lipoyl (octanoyl)-acyl carrier protein:protein transferase.
+RA  Jordan SW, Cronan JE Jr.
+DR  HAMAP; MF_00013; 331 of 337

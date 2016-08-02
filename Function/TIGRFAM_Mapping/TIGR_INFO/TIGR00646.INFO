@@ -1,0 +1,12 @@
+ID  MG010
+AC  TIGR00646
+DE  DNA primase-like protein
+AU  Haft DH, Loftus BJ
+TC  260.65 260.65
+NC  260.50 260.50
+IT  hypoth_equivalog
+EN  DNA primase-related protein
+TP  TIGRFAMs
+CC  The DNA primase DnaG of E. coli and its apparent orthologs in other eubacterial species are approximately 600 residues in length. Within this set, a conspicuous outlier in percent identity, as seen in a UPGMA difference tree, is the branch containing the Mycoplasmas. This lineage is also unique in containing the small, DNA primase-related protein modelled by this HMM, which is homologous to the central third of DNA primase. Several small regions of sequence similarity specifically to Mycoplasma sequences rather than to all DnaG homologs suggests that the divergence of this protein from DnaG post-dated the separation of bacterial lineages. The function of this DNA primase-related protein is unknown.
+DR  EGAD; 31223;
+DR  SWISSPROT; P47256;

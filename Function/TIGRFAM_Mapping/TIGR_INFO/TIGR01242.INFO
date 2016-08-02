@@ -1,0 +1,12 @@
+ID  26Sp45
+AC  TIGR01242
+DE  26S proteasome subunit P45 family
+AU  Haft DH
+TC  343.60 343.60
+NC  305.15 305.15
+AL  clustalw_manual
+IT  subfamily
+EN  26S proteasome subunit P45 family
+TP  TIGRFAMs
+CC  Many proteins may score above the trusted cutoff because an internal
+DR  HAMAP; MF_00553; 23 of 23

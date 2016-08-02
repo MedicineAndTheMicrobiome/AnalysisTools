@@ -1,0 +1,12 @@
+ID  SkfF
+AC  TIGR04405
+DE  sporulation killing factor system integral membrane protein
+AU  Haft DH
+TC  150.00 150.00
+NC  25.00 25.00
+AL  clustalw
+IT  equivalog
+EN  sporulation killing factor system integral membrane protein
+GS  skfF
+TP  TIGRFAMs
+CC  Members of this family, SkfF, occur only in cassettes of the sporulation killing factor system. This protein has multiple membrane-spanning domains and is encoded next to a protein with ATP-binding cassette (ABC) homology (SkfE), suggesting ABC transporter permease activity for this protein.

@@ -1,0 +1,18 @@
+ID  citE
+AC  TIGR01588
+DE  citrate (pro-3S)-lyase, beta subunit
+AU  Durkin S
+TC  443.40 443.40
+NC  337.30 337.30
+AL  clustalw
+IT  equivalog
+EN  citrate lyase, beta subunit
+GS  citE
+EC  4.1.3.6
+TP  TIGRFAMs
+CC  This is a model of the beta subunit of the holoenzyme citrate lyase (EC 4.1.3.6) composed of alpha (EC 2.8.3.10), beta (EC 4.1.3.34), and acyl carrier protein subunits in a stoichiometric relationship of 6:6:6. Citrate lyase is an enzyme which converts citrate to oxaloacetate. In bacteria, this reaction is involved in citrate fermentation. The beta subunit catalyzes the reaction (3S)-citryl-CoA = acetyl-CoA + oxaloacetate. The seed contains an experimentally characterized member from Leuconostoc mesenteroides [1]. The model covers a wide range of Gram positive bacteria. For Gram negative bacteria, it appears that only gamma proteobacteria hit this model. The model is quite robust with queries scoring either quite well or quite poorly against the model. There are currently no hits in-between the noise cutoff and trusted cutoff.
+RN  [1]
+RM  PMID: 9457870
+RT  Purification of Leuconostoc mesenteroides citrate lyase and cloning and characterization of the citCDEFG gene cluster.
+RA  Bekal S, Van Beeumen J, Samyn B, Garmyn D, Henini S, Divies C, Prevost H
+RL  J Bacteriol 1998 Feb;180(3):647-54

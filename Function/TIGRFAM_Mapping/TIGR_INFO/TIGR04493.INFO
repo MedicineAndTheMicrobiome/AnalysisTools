@@ -1,0 +1,17 @@
+ID  microcomp_PduM
+AC  TIGR04493
+DE  microcompartment protein PduM
+AU  Haft DH
+TC  50.00 50.00
+NC  35.00 35.00
+AL  muscle_manual
+IT  equivalog
+EN  microcompartment protein PduM
+GS  pduM
+TP  TIGRFAMs
+CC  Members of this family are PduM, a protein essential for forming functional microcompartments in which a trimeric B12-dependent enzyme acts as a dehydratase for 1,2-propanediol (Salmonella enterica) or glycerol (Lactobacillus reuteri).
+RN  [1]
+RM  PMID:22343294 
+RT  The PduM protein is a structural component of the microcompartments involved in coenzyme B(12)-dependent 1,2-propanediol degradation by Salmonella enterica. 
+RA  Sinha S, Cheng S, Fan C, Bobik TA 
+RL  J Bacteriol. 2012 Apr;194(8):1912-8. doi: 10.1128/JB.06529-11.

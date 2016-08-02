@@ -1,0 +1,15 @@
+ID  DAHP_synth_Bsub
+AC  TIGR01361
+DE  3-deoxy-7-phosphoheptulonate synthase
+AU  Haft DH
+TC  267.75 267.75
+NC  132.85 132.85
+AL  clustalw
+IT  equivalog_domain
+EN  3-deoxy-7-phosphoheptulonate synthase
+GS  aroF
+EC  2.5.1.54
+TP  TIGRFAMs
+CC  This model describes one of at least three types of phospho-2-dehydro-3-deoxyheptonate aldolase (DAHP synthase). This enzyme catalyzes the first of 7 steps in the biosynthesis of chorismate, that last common precursor of all three aromatic amino acids and of PABA, ubiquinone and menaquinone. Some members of this family, including an experimentally characterized member from Bacillus subtilis, are bifunctional, with a chorismate mutase domain N-terminal to this region.
+CC  The member of this family from Synechocystis PCC 6803, CcmA, was shown to be essential for carboxysome formation. However, no other candidate for this enzyme is present in that species, chorismate biosynthesis does occur, other species having this protein lack carboxysomes but appear to make chorismate, and a requirement of CcmA for carboxysome formation does not prohibit a role in chorismate biosynthesis.
+DR  SP:P39912; Bacillus subtilis

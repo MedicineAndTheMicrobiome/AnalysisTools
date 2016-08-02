@@ -1,0 +1,13 @@
+ID  cobM_cbiF
+AC  TIGR01465
+DE  precorrin-4 C11-methyltransferase
+AU  Haft DH
+TC  259.65 259.65
+NC  206.85 206.85
+AL  clustalw_manual
+IT  equivalog
+EN  precorrin-4 C11-methyltransferase
+GS  cobM
+EC  2.1.1.133
+TP  TIGRFAMs
+CC  This HMM represents precorrin-4 C11-methyltransferase, one of two methyltransferases commonly referred to as precorrin-3 methylase (the other is precorrin-3B C17-methyltransferase, EC 2.1.1.131). This enzyme participates in the pathway toward the biosynthesis of cobalamin and related products.

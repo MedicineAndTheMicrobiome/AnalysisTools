@@ -1,0 +1,14 @@
+ID  ileS
+AC  TIGR00392
+DE  isoleucine--tRNA ligase
+AU  Haft DH
+TC  621.40 621.40
+NC  560.00 560.00
+AL  clustalw
+IT  equivalog
+EN  isoleucyl-tRNA synthetase
+GS  ileS
+EC  6.1.1.5
+TP  TIGRFAMs
+CC  The isoleucyl tRNA synthetase (IleS) is a class I amino acyl-tRNA ligase and is particularly closely related to the valyl tRNA synthetase. This HMM may recognize IleS from every species, including eukaryotic cytosolic and mitochondrial forms.
+DR  HAMAP; MF_02003; 101 of 101

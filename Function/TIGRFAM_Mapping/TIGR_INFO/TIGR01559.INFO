@@ -1,0 +1,16 @@
+ID  squal_synth
+AC  TIGR01559
+DE  farnesyl-diphosphate farnesyltransferase
+AU  Haft DH
+TC  286.75 286.75
+NC  127.80 127.80
+AL  clustalw_manual
+IT  equivalog
+EN  farnesyl-diphosphate farnesyltransferase
+EC  2.5.1.21
+TP  TIGRFAMs
+CC  This HMM describes farnesyl-diphosphate farnesyltransferase, also known as squalene synthase, as found in eukaryotes. This family is related to phytoene synthases. Tentatively identified archaeal homologs (excluded from this model) lack the C-terminal predicted transmembrane region universally conserved among members of this family.
+DR  EXPERIMENTAL; SP|P37268; Homo sapiens
+DR  EXPERIMENTAL; SP|P53799; Arabidopsis thaliana
+DR  EXPERIMENTAL; SP|P29704; Saccharomyces cerevisiae
+DR  OUTGROUP; SP|P22872; Phytoene synthase

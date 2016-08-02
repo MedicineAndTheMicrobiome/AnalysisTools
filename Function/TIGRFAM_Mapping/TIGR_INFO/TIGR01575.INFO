@@ -1,0 +1,23 @@
+ID  rimI
+AC  TIGR01575
+DE  ribosomal-protein-alanine acetyltransferase
+AU  Durkin S
+TC  86.40 86.40
+NC  82.65 82.65
+AL  clustalw
+IT  equivalog
+EN  ribosomal-protein-alanine acetyltransferase
+GS  rimI
+EC  2.3.1.128
+TP  TIGRFAMs
+CC  Members of this model belong to the GCN5-related N-acetyltransferase (GNAT) superfamily. This model covers prokarotes and the archaea. The seed contains a characterized accession for Gram negative E. coli [1]. An untraceable characterized accession (PIR|S66013) for  Gram positive B. subtilis scores well (205.0) in the full alignment. Characterized members are lacking in the archaea. Noise cutoff (72.4) was set to exclude M. loti paralog of rimI. Trusted cutoff (80.0) was set at next highest scoring member in the mini-database.
+RN  [1]
+RM  PMID: 2828880
+RT  Cloning and nucleotide sequencing of the genes rimI and rimJ which encode enzymes acetylating ribosomal proteins S18 and S5 of Escherichia coli K12.
+RA  Yoshikawa A, Isono S, Sheback A, Isono K
+RL  Mol Gen Genet 1987 Oct;209(3):481-8
+RN  [2]
+RM  PMID: 6806564
+RT  Purification and characterization of 30S ribosomal proteins from Bacillus subtilis: correlation to Escherichia coli 30S proteins.
+RA  Higo K, Otaka E, Osawa S
+RL  Mol Gen Genet 1982;185(2):239-44

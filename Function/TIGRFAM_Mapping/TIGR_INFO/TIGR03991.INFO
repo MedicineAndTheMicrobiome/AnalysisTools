@@ -1,0 +1,23 @@
+ID  alt_bact_glmU
+AC  TIGR03991
+DE  UDP-N-acetylglucosamine diphosphorylase/glucosamine-1-phosphate N-acetyltransferase
+AU  Selengut J
+TC  225.30 225.30
+NC  223.50 223.50
+AL  muscle
+IT  hypoth_equivalog
+EN  UDP-N-acetylglucosamine diphosphorylase/glucosamine-1-phosphate N-acetyltransferase
+GS  glmU
+EC  2.7.7.23 2.3.1.157
+TP  TIGRFAMs
+CC  The MJ_1101 protein from Methanococcus jannaschii has been characterized as the GlmU enzyme catalyzing the final two steps of UDP-GlcNAc biosynthesis [1].  Homologs of this enzyme are identified in a number of bacterial organisms and modeled here.  A number of these are observed in proximity to the GlmS and GlmM genes, and phylogenetic profiling by PPP [2] identifies the LEPBI_I0518 gene in Leptospira biflexa as a likely Glm-system candidate.  Multiple sequence alignments of these bacterial homologs with their archaeal counterparts reveals significant structural differences, necessitating the construction of separate models.
+RN  [1]
+RM  PMID:18263721 
+RT  Acetamido sugar biosynthesis in the Euryarchaea. 
+RA  Namboori SC, Graham DE 
+RL  J Bacteriol. 2008 Apr;190(8):2987-96. Epub 2008 Feb 8. 
+RN  [2]
+RM  PMID:16930487 
+RT  Exopolysaccharide-associated protein sorting in environmental organisms: the PEP-CTERM/EpsH system. Application of a novel phylogenetic profiling heuristic. 
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD 
+RL  BMC Biol. 2006 Aug 24;4:29.

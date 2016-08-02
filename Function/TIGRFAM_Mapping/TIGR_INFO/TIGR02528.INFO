@@ -1,0 +1,12 @@
+ID  EutP
+AC  TIGR02528
+DE  ethanolamine utilization protein, EutP
+AU  Selengut J
+TC  138.35 138.35
+NC  102.15 102.15
+AL  clustalw
+IT  equivalog
+EN  ethanolamine utilization protein, EutP
+GS  eutP
+TP  TIGRFAMs
+CC  This protein is found within operons which code for polyhedral organelles containing the enzyme ethanolamine ammonia lyase.  The function of this gene is unknown, although the presence of an N-terminal GxxGxGK motif implies a GTP-binding site.

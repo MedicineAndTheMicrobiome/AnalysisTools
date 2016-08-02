@@ -1,0 +1,15 @@
+ID  aroFGH
+AC  TIGR00034
+DE  3-deoxy-7-phosphoheptulonate synthase
+AU  Richardson DL
+TC  173.20 173.20
+NC  18.90 18.90
+AL  msa_tigr
+IT  equivalog
+EN  phospho-2-dehydro-3-deoxyheptonate aldolase
+EC  2.5.1.54
+TP  TIGRFAMs
+RM  2903857
+RL  J Bacteriol 1988 Dec;170(12):5500-5506 
+RT  Mutational analysis of the catalytic and feedback sites of the tryptophan-sensitive 3-deoxy-D-arabino-heptulosonate-7-phosphate synthase of Escherichia coli.  
+RA  Ray JM, Yanofsky C, Bauerle R

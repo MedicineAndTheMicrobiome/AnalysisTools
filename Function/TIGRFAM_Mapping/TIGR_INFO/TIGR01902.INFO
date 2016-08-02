@@ -1,0 +1,17 @@
+ID  dapE-lys-deAc
+AC  TIGR01902
+DE  N-acetyl-ornithine/N-acetyl-lysine deacetylase
+AU  Selengut J
+TC  163.10 163.10
+NC  125.90 125.90
+AL  clustalw
+IT  subfamily
+EN  N-acetyl-ornithine/N-acetyl-lysine deacetylase
+TP  TIGRFAMs
+CC  This clade of mainly archaeal and related bacterial species contains two characterized enzymes, an deacetylase with specificity for both N-acetyl-ornithine and N-acetyl-lysine from Thermus [1] which is found within a lysine biosynthesis operon, and a fusion protein with acetyl-glutamate kinase (an enzyme of ornithine biosynthesis) from Lactobacillus.  It is possible that all of the sequences within this clade have dual specificity, or that a mix of specificities have evolved within this clade.
+RN  [1]
+RM  PMID: 11852094
+RT  Characterization of a lysK gene as an argE homolog in Thermus thermophilus HB27.
+RA  Miyazaki J, Kobashi N, Fujii T, Nishiyama M, Yamane H.
+RL  FEBS Lett 2002 Feb 13;512(1-3):269-74
+DR  HAMAP; MF_01120; 11 of 11

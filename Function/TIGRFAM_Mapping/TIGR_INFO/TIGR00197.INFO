@@ -1,0 +1,12 @@
+ID  yjeF_nterm
+AC  TIGR00197
+DE  YjeF family N-terminal domain
+AU  Haft DH
+TC  88.60 88.60
+NC  64.35 64.35
+AL  clustalw_manual
+IT  hypoth_equivalog_domain
+EN  yjeF N-terminal region
+TP  TIGRFAMs
+CC  The protein region corresponding to this HMM shows no clear homology to any protein of known function.
+CC  This HMM is built on yeast protein YNL200C and the N-terminal regions of E. coli yjeF and its orthologs in various species. The C-terminal region of yjeF and its orthologs shows similarity to hydroxyethylthiazole kinase (thiM) and other enzymes involved in thiamine biosynthesis. Yeast YKL151C and B. subtilis yxkO match the yjeF C-terminal domain but lack this region.

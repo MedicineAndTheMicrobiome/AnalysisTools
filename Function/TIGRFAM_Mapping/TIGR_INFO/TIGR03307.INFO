@@ -1,0 +1,17 @@
+ID  PhnP
+AC  TIGR03307
+DE  phosphonate metabolism protein PhnP
+AU  Selengut J
+TC  272.25 272.25
+NC  188.20 188.20
+AL  muscle
+IT  equivalog
+EN  phosphonate metabolism protein PhnP
+GS  phnP
+TP  TIGRFAMs
+CC  This family of proteins found in operons encoding phosphonate C-P lyase systems as is observed in E. coli [1] and is a member of the metallo-beta-lactamase superfamily (PF00753).  As defined by this model, all instances of this protein are associated with the C-P lyase, but not all genomes containing the C-P lyase system contain phnP.
+RN  [1]
+RM  PMID: 2155230 
+RT  Molecular biology of carbon-phosphorus bond cleavage. Cloning and sequencing of the phn (psiD) genes involved in alkylphosphonate uptake and C-P lyase activity in Escherichia coli B. 
+RA  Chen CM, Ye QZ, Zhu ZM, Wanner BL, Walsh CT 
+RL  J Biol Chem. 1990 Mar 15;265(8):4461-71.

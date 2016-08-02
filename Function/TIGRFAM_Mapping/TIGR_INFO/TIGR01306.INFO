@@ -1,0 +1,14 @@
+ID  GMP_reduct_2
+AC  TIGR01306
+DE  guanosine monophosphate reductase
+AU  Haft DH
+TC  465.65 465.65
+NC  247.65 247.65
+AL  clustalw
+IT  equivalog
+EN  guanosine monophosphate reductase, bacterial
+GS  guaC
+EC  1.7.1.7
+TP  TIGRFAMs
+CC  A deep split separates two families of GMP reductase. The other (TIGR01305) is found in eukaryotic and some proteobacterial lineages, including E. coli, while this family is found in a variety of bacterial lineages.
+DR  HAMAP; MF_01511; 75 of 76

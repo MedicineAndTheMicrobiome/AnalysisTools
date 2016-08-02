@@ -1,0 +1,19 @@
+ID  CobW
+AC  TIGR02475
+DE  cobalamin biosynthesis protein CobW
+AU  Selengut J
+TC  332.10 332.10
+NC  255.35 255.35
+AL  clustalw
+IT  equivalog
+EN  cobalamin biosynthesis protein CobW
+GS  cobW
+TP  TIGRFAMs
+CC  The family of proteins identified by this model is generally found proximal to the trimeric cobaltochelatase subunit CobN which is essential for vitamin B12 (cobalamin) biosynthesis [1].
+CC  The protein contains an P-loop nucleotide-binding loop in the N-terminal domain and a histidine-rich region in the C-terminal portion suggesting a role in metal binding, possibly as an intermediary between the cobalt transport and chelation systems.
+CC  A broader CobW family is delineated by two PFAM models which identify the N- and C-terminal domains (PF02492 and PF07683).
+RN  [1]
+RT  Comparative genomics of the vitamin B12 metabolism and regulation in prokaryotes.
+RA  Rodionov DA, Vitreschak AG, Mironov AA, Gelfand MS.
+RL  J Biol Chem. 2003 Oct 17;278(42):41148-59. Epub 2003 Jul 17.
+RM  PMID: 12869542

@@ -1,0 +1,14 @@
+ID  nadp_idh_euk
+AC  TIGR00127
+DE  isocitrate dehydrogenase, NADP-dependent
+AU  Haft DH
+TC  397.15 397.15
+NC  103.45 103.45
+AL  clustalw_manual
+IT  equivalog
+EN  isocitrate dehydrogenase, NADP-dependent, eukaryotic type
+EC  1.1.1.42
+TP  TIGRFAMs
+CC  This model describes a eukaryotic, NADP-dependent form of isocitrate dehydrogenase. These eukaryotic enzymes differ considerably from a fairly tight cluster that includes all other related isocitrate dehydrogenases, 3-isopropylmalate dehydrogenases, and tartrate dehydrogenases.
+CC  Several NAD- or NADP-dependent dehydrogenases, including 3-isopropylmalate dehydrogenase, tartrate dehydrogenase, and the multimeric forms of isocitrate dehydrogenase, share a nucleotide binding domain unrelated to that of lactate dehydrogenase and its homologs. These enzymes dehydrogenate their substates at a H-C-OH site adjacent to a H-C-COOH site; the latter carbon, now adjacent to a carbonyl group, readily decarboxylates.
+CC  This model does not discriminate cytosolic, mitochondrial, and chloroplast proteins. However, the model starts very near the amino end of the cytosolic form; the finding of additional amino-terminal sequence may indicate a transit peptide.

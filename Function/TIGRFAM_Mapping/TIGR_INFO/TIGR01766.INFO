@@ -1,0 +1,11 @@
+ID  tspaseT_teng_C
+AC  TIGR01766
+DE  transposase, IS605 OrfB family
+AU  Haft DH
+TC  24.80 24.80
+NC  21.95 21.95
+AL  manual
+IT  equivalog_domain
+EN  transposase, IS605 OrfB family, central region
+TP  TIGRFAMs
+CC  This HMM represents a region of a sequence similarity between a family of putative transposases of Thermoanaerobacter tengcongensis, smaller related proteins from Bacillus anthracis, putative transposes described by Pfam HMM PF01385, and other proteins.

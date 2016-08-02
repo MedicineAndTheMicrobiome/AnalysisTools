@@ -1,0 +1,12 @@
+ID  2A060601
+AC  TIGR00917
+DE  Niemann-Pick C type protein family
+AU  Loftus BJ, Ujwal ML, Paulsen IT
+TC  1016.50 1016.50
+NC  1004.70 1004.70
+AL  clustalw_manual
+IT  subfamily
+EN  Niemann-Pick C type protein family
+TR  2.A.06
+TP  TIGRFAMs
+CC  The model describes Niemann-Pick C type protein in eukaryotes. The defective protein has been associated with Niemann-Pick disease which is described in humans as autosomal recessive lipidosis. It is characterized by the lysosomal accumulation of unestrified cholesterol. It is an integral membrane protein, which indicates that this protein is most likely involved in cholesterol transport or acts as some component of cholesterol homeostasis.

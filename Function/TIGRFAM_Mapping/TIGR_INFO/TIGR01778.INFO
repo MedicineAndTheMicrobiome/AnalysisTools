@@ -1,0 +1,22 @@
+ID  TonB-copper
+AC  TIGR01778
+DE  TonB-dependent copper receptor
+AU  Selengut J
+TC  472.45 472.45
+NC  213.90 213.90
+AL  clustalw
+IT  equivalog
+EN  TonB-dependent copper receptor
+TR  1.B.14.4
+TP  TIGRFAMs
+CC  This model represents a family of proteobacterial TonB-dependent outer membrane receptor/transporters which bind and translocate copper ions.  Two characterized members of this family exist, outer membrane protein C (OprC) from Pseudomonas aeruginosa [1] and NosA from Pseudomonas stutzeri which is responsible for providing copper for the copper-containing N2O reducatse [2].
+RN  [1]
+RM  PMID: 8760927
+RT  Protein C (OprC) of the outer membrane of Pseudomonas aeruginosa is a copper-regulated channel protein.
+RA  Yoneyama H, Nakae T.
+RL  Microbiology 1996 Aug;142 ( Pt 8):2137-44
+RN  [2]
+RM  PMID: 1885521
+RT  Molecular characterization of nosA, a Pseudomonas stutzeri gene encoding an outer membrane protein required to make copper-containing N2O reductase.
+RA  Lee HS, Abdelal AH, Clark MA, Ingraham JL.
+RL  J Bacteriol 1991 Sep;173(17):5406-13

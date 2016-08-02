@@ -1,0 +1,11 @@
+ID  SLAP_DUP
+AC  TIGR04398
+DE  SLAP domain
+AU  Haft DH
+TC  28.50 28.50
+NC  25.00 25.00
+AL  muscle_manual
+IT  domain
+EN  SLAP domain
+TP  TIGRFAMs
+CC  This domain is duplicated in SlaP (S-layer assembly protein), a partner of SecA2 in the Bacillus anthracis type of accessory Sec system (see TIGR04397). The domain is found, either once or twice, in additional Firmicutes species.

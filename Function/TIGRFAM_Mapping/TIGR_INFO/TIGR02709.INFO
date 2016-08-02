@@ -1,0 +1,13 @@
+ID  branched_ptb
+AC  TIGR02709
+DE  branched-chain phosphotransacylase
+AU  Haft DH
+TC  475.15 475.15
+NC  271.40 271.40
+AL  clustalw
+IT  equivalog
+EN  branched-chain phosphotransacylase
+GS  ptb
+EC  2.3.1.-
+TP  TIGRFAMs
+CC  This model distinguishes branched-chain phosphotransacylases like that of Enterococcus faecalis from closely related subfamilies of phosphate butyryltransferase (EC 2.3.1.19) (TIGR02706) and phosphate acetyltransferase (EC 2.3.1.8) (TIGR00651). Members of this family and of TIGR02706 show considerable crossreactivity, and the occurrence of a member of either family near an apparent leucine dehydrogenase will suggest activity on branched chain-acyl-CoA compounds.

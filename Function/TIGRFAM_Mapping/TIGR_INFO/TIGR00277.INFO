@@ -1,0 +1,12 @@
+ID  HDIG
+AC  TIGR00277
+DE  HDIG domain
+AU  Haft DH
+TC  27.60 27.60
+NC  27.50 27.50
+IT  domain
+EN  HDIG domain
+TP  TIGRFAMs
+CC  This domain is found in a few known nucleotidyltransferes and in a large number of uncharacterized proteins. It contains four widely separated His residues, the second of which is part of an invariant dipeptide His-Asp in a region matched approximately by the motif HDIG. For proteins scoring above the trusted cutoff, confidence is high both that the domain is present and that the HMM produces an essentially correct alignment. Protein regions scoring between the trusted and noise cutoffs include correctly aligned domains, homologous domains in which one or more of the His residues is conserved but misaligned, and some probable false-positive hits indications of homology.
+AL  clustalw, belvu, hmma, seaview
+DR  HAMAP; MF_01427; 1 of 19

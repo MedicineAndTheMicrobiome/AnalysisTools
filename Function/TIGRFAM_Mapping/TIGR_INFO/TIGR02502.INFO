@@ -1,0 +1,16 @@
+ID  type_III_YscX
+AC  TIGR02502
+DE  type III secretion protein, YscX family
+AU  Haft DH
+TC  99.20 99.20
+NC  44.85 44.85
+AL  clustalw
+IT  equivalog
+EN  type III secretion protein, YscX family
+TP  TIGRFAMs
+CC  Members of this family are encoded within bacterial type III secretion gene clusters. Among all species with type III secretion, those with this protein are found among those that target animal rather than plant cells. The member of this family in Yersinia was shown by mutation to be required for type III secretion of Yops effector proteins and therefore is believe to be part of the secretion machinery.
+RN  [1]
+RM  9882687
+RT  Identification of SycN, YscX, and YscY, three new elements of the Yersinia yop virulon.
+RA  Iriarte M, Cornelis GR.
+RL  J Bacteriol. 1999 Jan;181(2):675-80.

@@ -1,0 +1,21 @@
+ID  BchX
+AC  TIGR02016
+DE  chlorophyllide reductase iron protein subunit X
+AU  Selengut J
+TC  331.20 331.20
+NC  282.20 282.20
+AL  clustalw
+IT  equivalog
+EN  chlorophyllide reductase iron protein subunit X
+TP  TIGRFAMs
+CC  This HMM represents the X subunit of the three-subunit enzyme, (bacterio)chlorophyllide reductase [1,2].  This enzyme is responsible for the reduction of the chlorin B-ring and is closely related to the protochlorophyllide reductase complex which reduces the D-ring.  Both of these complexes in turn are homologous to nitrogenase.  This subunit is homologous to the nitrogenase component II, or "iron" protein.
+RN  [1]
+RM  PMID: 10648776
+RT  DNA sequence analysis of the photosynthesis region of Rhodobacter sphaeroides 2.4.1.
+RA  Choudhary M, Kaplan S.
+RL  Nucleic Acids Res. 2000 Feb 15;28(4):862-7.
+RN  [2]
+RM  PMID: 8468299
+RT  The Rhodobacter capsulatus chlorin reductase-encoding locus, bchA, consists of three genes, bchX, bchY, and bchZ.
+RA  Burke DH, Alberti M, Hearst JE.
+RL  J Bacteriol. 1993 Apr;175(8):2407-13.

@@ -1,0 +1,13 @@
+ID  galM_Leloir
+AC  TIGR02636
+DE  galactose mutarotase
+AU  Haft DH
+TC  397.65 397.65
+NC  346.80 346.80
+AL  clustalw
+IT  equivalog
+EN  galactose mutarotase
+GS  galM
+EC  5.1.3.3
+TP  TIGRFAMs
+CC  Members of this protein family act as galactose mutarotase (D-galactose 1-epimerase) and participate in the Leloir pathway for galactose/glucose interconversion. All members of the seed alignment for this model are found in gene clusters with other enzymes of the Leloir pathway. This enzyme family belongs to the aldose 1-epimerase family, described by Pfam HMM PF01263. However, the enzyme described as aldose 1-epimerase itself (EC 5.1.3.3) is called broadly specific for D-glucose, L-arabinose, D-xylose, D-galactose, maltose and lactose. The restricted genome context for genes in this family suggests members should act primarily on D-galactose.

@@ -1,0 +1,16 @@
+ID  agaS_fam
+AC  TIGR02815
+DE  putative sugar isomerase, AgaS family
+AU  Haft DH
+TC  529.20 529.20
+NC  328.05 328.05
+AL  clustalw_manual
+IT  subfamily
+EN  putative sugar isomerase, AgaS family
+TP  TIGRFAMs
+CC  Some members of this protein family are found in regions associated with N-acetyl-galactosamine and galactosamine untilization and are suggested to be isomerases.
+RN  [1]
+RM  10931310
+RT  Pathways for the utilization of N-acetyl-galactosamine and galactosamine in Escherichia coli.
+RA  Brinkkotter A, Kloss H, Alpert C, Lengeler JW.
+RL  Mol Microbiol. 2000 Jul;37(1):125-35.

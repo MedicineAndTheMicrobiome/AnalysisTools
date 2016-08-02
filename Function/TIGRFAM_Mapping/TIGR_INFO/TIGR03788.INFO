@@ -1,0 +1,16 @@
+ID  marine_srt_targ
+AC  TIGR03788
+DE  marine proteobacterial sortase target protein
+AU  Haft DH
+TC  551.65 551.65
+NC  550.25 550.25
+AL  muscle_manual
+IT  equivalog
+EN  marine proteobacterial sortase target protein
+TP  TIGRFAMs
+CC  Members of this protein family are restricted to the Proteobacteria. Each contains a C-terminal sortase-recognition motif, transmembrane domain, and basic residues cluster at the the C-terminus, and is encoded adjacent to a sortase gene. This protein is frequently the only sortase target in its genome, which is as unusual its occurrence in Gram-negative rather than Gram-positive genomes. Many bacteria with this system are marine. In addition to the LPXTG signal, members carry a vault protein inter-alpha-trypsin inhibitor domain (PF08487) and a von Willebrand factor type A domain (PF00092).
+RN  [1]
+RM  PMID:15102780
+RT  A comparative genome analysis identifies distinct sorting pathways in gram-positive bacteria.
+RA  Comfort D, Clubb RT
+RL  Infect Immun. 2004 May;72(5):2710-22.

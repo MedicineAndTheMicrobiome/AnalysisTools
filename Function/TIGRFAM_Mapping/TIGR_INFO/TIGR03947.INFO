@@ -1,0 +1,17 @@
+ID  viomycin_VioD
+AC  TIGR03947
+DE  capreomycidine synthase
+AU  Haft DH
+TC  390.90 390.90
+NC  390.75 390.75
+AL  muscle_manual
+IT  equivalog
+EN  capreomycidine synthase
+GS  vioD
+TP  TIGRFAMs
+CC  Members of this family are the enzyme capreomycidine synthase, which performs the second of two steps in the biosynthesis of 2S,3R-capreomycidine from arginine. Capreomycidine is an unusual amino acid used by non-ribosomal peptide synthases (NRPS) to make the tuberactinomycin class of peptide antibiotic. The best characterized member is VioD from the biosynthetic pathway for viomycin.
+RN  [1]
+RM  PMID:15368581
+RT  Formation of the nonproteinogenic amino acid 2S,3R-capreomycidine by VioD from the viomycin biosynthesis pathway.
+RA  Yin X, McPhail KL, Kim KJ, Zabriskie TM
+RL  Chembiochem. 2004 Sep 6;5(9):1278-81.

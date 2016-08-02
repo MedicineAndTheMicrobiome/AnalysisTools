@@ -1,0 +1,16 @@
+ID  parB_part
+AC  TIGR00180
+DE  ParB/RepB/Spo0J family partition protein
+AU  Haft DH
+TC  58.45 58.45
+NC  39.80 39.80
+AL  clustalw_manual
+IT  domain
+EN  ParB/RepB/Spo0J family partition protein
+TP  TIGRFAMs
+CC  This HMM represents the most well-conserved core of a set of chromosomal and plasmid partition proteins related to ParB, including Spo0J, RepB, and SopB. Spo0J has been shown to bind a specific DNA sequence that, when introduced into a plasmid, can serve as partition site. Study of RepB, which has nicking-closing activity, suggests that it forms a transient protein-DNA covalent intermediate during the strand transfer reaction.
+RL  J Mol Biol 1997 May 23;268(5):840-856.
+RM  97324207; 
+RL  Cell 1998 Mar 6;92(5):675-685, 
+RM  98165347
+DR  HAMAP; MF_02015; 22 of 22

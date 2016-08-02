@@ -1,0 +1,12 @@
+ID  phage_rel_nuc
+AC  TIGR03033
+DE  putative phage-type endonuclease
+AU  Haft DH
+TC  68.05 68.05
+NC  56.20 56.20
+AL  muscle
+IT  subfamily_domain
+EN  putative phage-type endonuclease
+TP  TIGRFAMs
+CC  Members of this protein family are found often in phage genomes and in prokaryotic genomes in uncharacterized regions that resemble integrated prophage regions.
+DR  COGS; COG5377; Phage-related protein, predicted endonuclease

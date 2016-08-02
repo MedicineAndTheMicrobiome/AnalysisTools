@@ -1,0 +1,18 @@
+ID  anthran_1_2_B
+AC  TIGR03231
+DE  anthranilate 1,2-dioxygenase, small subunit
+AU  Haft DH
+TC  213.50 213.50
+NC  176.20 176.20
+AL  muscle
+IT  equivalog
+EN  anthranilate 1,2-dioxygenase, small subunit
+GS  antB
+EC  1.14.12.1
+TP  TIGRFAMs
+CC  Anthranilate (2-aminobenzoate) is an intermediate of tryptophan (Trp) biosynthesis and degradation. Members of this family are the small subunit of anthranilate 1,2-dioxygenase, which acts in Trp degradation by converting anthranilate to catechol. Closely related paralogs typically are the benzoate 1,2-dioxygenase small subunit, among the larger set of ring-hydroxylating dioxygenases.
+RN  [1]
+RM  PMID: 11114907
+RT  Characterization and evolution of anthranilate 1,2-dioxygenase from Acinetobacter sp. strain ADP1.
+RA  Eby DM, Beharry ZM, Coulter ED, Kurtz DM Jr, Neidle EL
+RL  J Bacteriol. 2001 Jan;183(1):109-18.

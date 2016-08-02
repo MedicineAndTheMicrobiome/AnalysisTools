@@ -1,0 +1,22 @@
+ID  yidC_nterm
+AC  TIGR03593
+DE  membrane protein insertase, YidC/Oxa1 family, N-terminal domain
+AU  Haft DH
+TC  58.25 58.25
+NC  34.30 34.30
+AL  clustalw_manual
+IT  equivalog_domain
+EN  membrane protein insertase, YidC/Oxa1 family, N-terminal domain
+GS  yidC
+TP  TIGRFAMs
+CC  Essentially all bacteria have a member of the YidC family, whose C-terminal domain is modeled by TIGR03592. The two copies are found in endospore-forming bacteria such as Bacillus subtilis appear redundant during vegetative growth, although the member designated spoIIIJ (stage III sporulation protein J) has a distinct role in spore formation. YidC, its mitochondrial homolog Oxa1, and its chloroplast homolog direct insertion into the bacterial/organellar inner (or only) membrane. This model describes an N-terminal sequence region, including a large periplasmic domain lacking in YidC members from Gram-positive species. The multifunctional YidC protein acts both with and independently of the Sec system.
+RN  [1]
+RM  PMID:18259071
+RT  Purification, crystallization and preliminary structural characterization of the periplasmic domain P1 of the Escherichia coli membrane-protein insertase YidC.
+RA  Ravaud S, Wild K, Sinning I
+RL  Acta Crystallogr Sect F Struct Biol Cryst Commun. 2008 Feb 1;64(Pt 2):144-8.
+RN  [2]
+RM  PMID:18054957
+RT  Projection structure of yidC: a conserved mediator of membrane protein assembly.
+RA  Lotz M, Haase W, Kuhlbrandt W, Collinson I
+RL  J Mol Biol. 2008 Jan 25;375(4):901-7.

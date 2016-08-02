@@ -1,0 +1,15 @@
+ID  lysS_arch
+AC  TIGR00467
+DE  lysine--tRNA ligase
+AU  Haft DH
+TC  147.55 147.55
+NC  134.15 134.15
+AL  clustalw
+IT  equivalog
+EN  lysyl-tRNA synthetase, archaeal and spirochete
+GS  lysS
+EC  6.1.1.6
+TP  TIGRFAMs
+CC  This model represents the lysyl-tRNA synthetases that are class I amino-acyl tRNA synthetases. It includes archaeal and spirochete examples of the enzyme. All other known examples are class IIc amino-acyl tRNA synthetases and seem to form a separate orthologous set.
+RM  Medline; 98070760;
+DR  HAMAP; MF_00177; 42 of 42

@@ -1,0 +1,16 @@
+ID  fumC_II
+AC  TIGR00979
+DE  fumarate hydratase, class II
+AU  Haft DH
+TC  664.75 664.75
+NC  524.85 524.85
+AL  clustalw
+IT  equivalog
+EN  fumarate hydratase, class II
+GS  fumC
+EC  4.2.1.2
+TP  TIGRFAMs
+CC  Putative fumarases from several species (Mycobacterium tuberculosis, Streptomyces coelicolor, Pseudomonas aeruginosa) branch deeply, although within the same branch of a phylogenetic tree rooted by aspartate ammonia-lyase sequences, and score between the trusted and noise cutoffs.
+DR  OUTGROUP; EGAD|17758|BS2353; aspartate ammonia-lyase; Bacillus subtilis
+DR  OUTGROUP; EGAD|23805|EC4139; aspartate ammonia-lyase; Escherichia coli
+DR  HAMAP; MF_00743; 72 of 87

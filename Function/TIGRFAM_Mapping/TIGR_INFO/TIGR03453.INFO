@@ -1,0 +1,17 @@
+ID  partition_RepA
+AC  TIGR03453
+DE  plasmid partitioning protein RepA
+AU  Haft DH
+TC  348.45 348.45
+NC  228.65 228.65
+AL  muscle_manual
+IT  equivalog
+EN  plasmid partitioning protein RepA
+GS  repA
+TP  TIGRFAMs
+CC  Members of this family are the RepA (or ParA) protein involved in replicon partitioning. All known examples occur in bacterial species with two or more replicons, on a plasmid or the smaller chromosome. Note that an apparent exception may be seen as a pseudomolecule from assembly of an incompletely sequenced genome. Members of this family belong to a larger family that also includes the enzyme cobyrinic acid a,c-diamide synthase, but assignment of that name to members of this family would be in error.
+RN  [1]
+RM  PMID:11591666
+RT  Identification of the partitioning site within the repABC-type replicon of the composite Paracoccus versutus plasmid pTAV1.
+RA  Bartosik D, Szymanik M, Wysocka E
+RL  J Bacteriol. 2001 Nov;183(21):6234-43.

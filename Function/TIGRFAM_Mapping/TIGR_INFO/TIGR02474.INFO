@@ -1,0 +1,23 @@
+ID  pec_lyase
+AC  TIGR02474
+DE  pectate lyase
+AU  Haft DH
+TC  189.80 189.80
+NC  31.80 31.80
+AL  clustalw
+IT  equivalog
+EN  pectate lyase, PelA/Pel-15E family
+GS  pelA
+EC  4.2.2.2
+TP  TIGRFAMs
+CC  Members of this family are isozymes of pectate lyase (EC 4.2.2.2), also called polygalacturonic transeliminase and alpha-1,4-D-endopolygalacturonic acid lyase.
+RN  [1]
+RM  10691990
+RT  Nucleotide and amino-acid sequences of a new-type pectate lyase from an alkaliphilic strain of Bacillus.
+RA  Sawada K, Ogawa A, Ozawa T, Sumitomo N, Hatada Y, Kobayashi T, Ito S.
+RL  Eur J Biochem. 2000 Mar;267(5):1510-5.
+RN  [2]
+RM  10198006
+RT  Azospirillum irakense produces a novel type of pectate lyase.
+RA  Bekri MA, Desair J, Keijers V, Proost P, Searle-van Leeuwen M, Vanderleyden J, Vande Broek A.
+RL  J Bacteriol. 1999 Apr;181(8):2440-7.

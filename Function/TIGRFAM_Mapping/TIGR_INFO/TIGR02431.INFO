@@ -1,0 +1,12 @@
+ID  pcaR_pcaU
+AC  TIGR02431
+DE  beta-ketoadipate pathway transcriptional regulators, PcaR/PcaU/PobR family
+AU  Haft DH
+TC  284.75 284.75
+NC  219.60 219.60
+AL  clustalw
+IT  subfamily
+EN  beta-ketoadipate pathway transcriptional regulators, PcaR/PcaU/PobR family
+TP  TIGRFAMs
+CC  Member of this family are IclR-type transcriptional regulators with similar DNA binding sites, able to bind at least three different metabolites related to protocatechuate metabolism. Beta-ketoadipate is the inducer for PcaR, p-hydroxybenzoate for PobR, and protocatechuate for PcaU.
+DR  PFAM; PF01614; IclR

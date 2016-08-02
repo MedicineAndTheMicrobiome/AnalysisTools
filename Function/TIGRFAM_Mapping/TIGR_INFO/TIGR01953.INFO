@@ -1,0 +1,17 @@
+ID  NusA
+AC  TIGR01953
+DE  transcription termination factor NusA
+AU  Haft DH
+TC  253.40 253.40
+NC  169.10 169.10
+AL  clustalw_manual
+IT  equivalog_domain
+EN  transcription termination factor NusA
+GS  nusA
+TP  TIGRFAMs
+CC  This HMM describes NusA, or N utilization substance protein A, a bacterial transcription termination factor. It binds to RNA polymerase alpha subunit and promotes termination at certain RNA hairpin structures. It is named for the interaction in E. coli of phage lambda antitermination protein N with the N-utilization substance, consisting of NusA, NusB, NusE (ribosomal protein S10), and nusG. This model represents a region of NusA shared in all bacterial forms, and including an S1 (PF00575) and a KH (PF00013) RNA binding domains. Proteobacterial forms have an additional C-terminal region, not included in this model, with two repeats of 50-residue domain rich in acidic amino acids.
+RN  [1]
+RM  11040219
+RT  The alpha subunit of E. coli RNA polymerase activates RNA binding by NusA.
+RA   Mah TF, Kuznedelov K, Mushegian A, Severinov K, Greenblatt J.
+RL   Genes Dev. 2000 Oct 15;14(20):2664-75

@@ -1,0 +1,17 @@
+ID  acnB
+AC  TIGR00117
+DE  aconitate hydratase 2
+AU  Haft DH
+TC  1287.20 1287.20
+NC  372.35 372.35
+AL  clustalw
+IT  equivalog
+EN  aconitate hydratase 2
+GS  acnB
+EC  4.2.1.3
+TP  TIGRFAMs
+CC  Aconitate hydratase (aconitase) is an enzyme of the TCA cycle. This model describes aconitase 2, AcnB, which has weak similarity to aconitase 1. It is found almost exclusively in the Proteobacteria.
+RM  8932712
+RT  The second aconitase (AcnB) of Escherichia coli.
+RA  Bradbury AJ, Gruer MJ, Rudd KE, Guest JR.
+RL  Microbiology 1996 Feb;142( Pt 2):389-400

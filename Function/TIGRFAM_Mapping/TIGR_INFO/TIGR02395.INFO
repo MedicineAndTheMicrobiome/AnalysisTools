@@ -1,0 +1,17 @@
+ID  rpoN_sigma
+AC  TIGR02395
+DE  RNA polymerase sigma-54 factor
+AU  Haft DH
+TC  277.35 277.35
+NC  158.45 158.45
+AL  clustalw
+IT  equivalog
+EN  RNA polymerase sigma-54 factor
+GS  rpoN
+TP  TIGRFAMs
+CC  A sigma factor is a DNA-binding protein protein that binds to the DNA-directed RNA polymerase core to produce the holoenzyme capable of initiating transcription at specific sites. Different sigma factors act in vegetative growth, heat shock, extracytoplasmic functions (ECF), etc. This model represents the clade of sigma factors called sigma-54, or RpoN (unrelated to sigma 70-type factors such as RpoD/SigA). RpoN is responsible for enhancer-dependent transcription, and its presence characteristically is associated with varied panels of activators, most of which are enhancer-binding proteins (but see Brahmachary, et al., PMID:15231786). RpoN may be responsible for transcription of nitrogen fixation genes, flagellins, pilins, etc., and synonyms for the gene symbol rpoN, such as ntrA, reflect these observations
+RN  [1]
+RM  2517036
+RT  The -24/-12 promoter comes of age.
+RA  Thony B, Hennecke H.
+RL  FEMS Microbiol Rev. 1989 Dec;5(4):341-57.

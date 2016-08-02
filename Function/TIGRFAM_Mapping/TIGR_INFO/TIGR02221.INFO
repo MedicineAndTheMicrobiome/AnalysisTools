@@ -1,0 +1,16 @@
+ID  cas_TM1812
+AC  TIGR02221
+DE  CRISPR-associated protein, TM1812 family
+AU  Haft DH
+TC  76.25 76.25
+NC  65.30 65.30
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  CRISPR-associated protein, TM1812 family
+TP  TIGRFAMs
+CC  CRISPR is a term for Clustered Regularly Interspaced Short Palidromic Repeats. A number of protein families appear only in association with these repeats and are designated Cas (CRISPR associated) proteins. This family, represented by TM1812 of Thermotoga maritima, is found also in Vibrio vulnificus YJ016, Nitrosomonas europaea ATCC 19718, a large plasmid of Synechocystis sp. PCC 6803, and Fibrobacter succinogenes S85.
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=2003
+RN  [1]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005

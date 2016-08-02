@@ -1,0 +1,15 @@
+ID  fil_hemag_20aa
+AC  TIGR01731
+DE  adhesin HecA family 20-residue repeat (two copies)
+AU  Haft DH
+TC  18.00 6.00
+NC  15.40 4.00
+AL  manual
+IT  repeat
+EN  adhesin HecA family 20-residue repeat (two copies)
+TP  TIGRFAMs
+CC  This HMM represents two copies of a 20-residue repeat found in Bordetella pertussis filamentous hemagglutinin family of adhesins. This family includes extremely long proteins from a number of plant and animal pathogens.
+RM  12271135
+RT  HecA, a member of a class of adhesins produced by diverse pathogenic bacteria, contributes to the attachment, aggregation, epidermal cell  killing, and virulence phenotypes of Erwinia chrysanthemi EC16 on Nicotiana clevelandii seedlings.
+RA  Rojas CM, Ham JH, Deng WL, Doyle JJ, Collmer A.
+RL  Proc Natl Acad Sci U S A 2002 Oct 1;99(20):13142-7

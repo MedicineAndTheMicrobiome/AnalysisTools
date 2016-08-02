@@ -1,0 +1,19 @@
+ID  glgX_debranch
+AC  TIGR02100
+DE  glycogen debranching enzyme GlgX
+AU  Haft DH
+TC  640.90 640.90
+NC  275.35 275.35
+AL  clustalw
+IT  equivalog
+EN  glycogen debranching enzyme GlgX
+GS  glgX
+EC  3.2.1.-
+TP  TIGRFAMs
+CC  This family consists of the GlgX protein from the E. coli glycogen operon and probable equivalogs from other prokaryotic species. GlgX is not required for glycogen biosynthesis, but instead acts as a debranching enzyme for glycogen catabolism. This HMM distinguishes GlgX from pullanases and other related proteins that also operate on alpha-1,6-glycosidic linkages. In the wide band between the trusted and noise cutoffs are functionally similar enzymes, mostly from plants, that act similarly but usually are termed isoamylase.
+RM  8576033
+RT  Coordinate genetic regulation of glycogen catabolism and biosynthesis in Escherichia coli via the CsrA gene product.
+RA  Yang H, Liu MY, Romeo T.
+RL  J Bacteriol. 1996 Feb; 178(4): 1012-7.
+DR  EXPERIMENTAL; SP|P15067; Escherichia coli
+DR  HAMAP; MF_01248; 27 of 28

@@ -1,0 +1,12 @@
+ID  HutX
+AC  TIGR04108
+DE  putative heme utilization carrier protein HutX
+AU  Haft DH
+TC  110.00 110.00
+NC  80.00 80.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  putative heme utilization carrier protein HutX
+GS  hutX
+TP  TIGRFAMs
+CC  Members of this protein family are HutX, found paired with HutW in some heme utilization loci although not shown directly to be necessary for heme utilization. This protein is homologous to the heme carrier protein HemS, while its partner HutW is homologous to (but does not complement) HemN, the radical SAM enzyme oxygen-independent coproporphyrinogen III oxidase involved in heme biosynthesis.

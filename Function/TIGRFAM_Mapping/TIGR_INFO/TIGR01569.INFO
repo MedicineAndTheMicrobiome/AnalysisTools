@@ -1,0 +1,11 @@
+ID  A_tha_TIGR01569
+AC  TIGR01569
+DE  plant integral membrane protein TIGR01569
+AU  Haft DH, Segal N
+TC  41.45 41.45
+NC  36.20 36.20
+AL  clustalw_manual
+IT  subfamily
+EN  plant integral membrane protein TIGR01569
+TP  TIGRFAMs
+CC  This HMM describes a region of ~160 residues found exclusively in plant proteins, generally as the near complete length of the protein. At least 24 different members are found in Arabidopsis thaliana. Members have four predicted transmembrane regions, the last of which is preceded by an invariant CXXXXX[FY]C motif. The family is not functionally characterized.

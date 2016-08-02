@@ -1,0 +1,12 @@
+ID  carboxysome_A
+AC  TIGR02703
+DE  carboxysome peptide A
+AU  Haft DH
+TC  131.80 131.80
+NC  108.10 108.10
+AL  clustalw
+IT  equivalog
+EN  carboxysome peptide A
+TP  TIGRFAMs
+CC  This model distinguishes one of two closely related paralogs encoded by nearby genes in the carboxysome operons of a number of cyanobacteria and chemoautotrophic bacteria. More distantly related proteins, also belonging to Pfam family PF03319, participate in other types of shell such as the ethanolamine degradation organelle.
+DR  PFAM; PF03319; EutN_CcmL

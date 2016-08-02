@@ -1,0 +1,18 @@
+ID  Tyr_2_3_mutase
+AC  TIGR03832
+DE  tyrosine 2,3-aminomutase
+AU  Haft DH
+TC  501.00 501.00
+NC  492.70 492.70
+AL  muscle_manual
+IT  equivalog
+EN  tyrosine 2,3-aminomutase
+GS  cmdF
+EC  5.4.3.6
+TP  TIGRFAMs
+CC  Members of this protein family are tyrosine 2,3-aminomutase. It is variable from member to member as to whether the (R)-beta-Tyr or (S)-beta-Tyr is the preferred product from L-Tyr. This enzyme tends to occur in secondary metabolite biosynthesis systems, as in the production of chondramides in Chondromyces crocatus.
+RN  [1]
+RM  PMID:19222035
+RT  Discovery of additional members of the tyrosine aminomutase enzyme family and the mutational analysis of CmdF.
+RA  Krug D, Muller R
+RL  Chembiochem. 2009 Mar 2;10(4):741-50.

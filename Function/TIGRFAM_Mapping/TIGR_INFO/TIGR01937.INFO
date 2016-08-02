@@ -1,0 +1,19 @@
+ID  nqrB
+AC  TIGR01937
+DE  NADH:ubiquinone oxidoreductase, Na(+)-translocating, B subunit
+AU  Haft DH
+TC  349.90 349.90
+NC  207.25 207.25
+AL  clustalw_manual
+IT  equivalog
+EN  NADH:ubiquinone oxidoreductase, Na(+)-translocating, B subunit
+GS  nqrB
+EC  1.6.5.-
+TP  TIGRFAMs
+CC  This HMM represents the NqrB subunit of the six-protein, Na(+)-pumping NADH-quinone reductase of a number of marine and pathogenic Gram-negative bacteria. This oxidoreductase complex functions primarily as a sodium ion pump [1].
+RN  [1]
+RM  11248187
+RT  Recent progress in the Na(+)-translocating NADH-quinone reductase from the marine Vibrio alginolyticus.
+RA  Hayashi M, Nakayama Y, Unemoto T.
+RL  Biochim Biophys Acta. 2001 May 1;1505(1):37-44.
+DR  HAMAP; MF_00426; 31 of 31

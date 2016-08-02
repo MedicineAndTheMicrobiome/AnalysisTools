@@ -1,0 +1,19 @@
+ID  alaDH
+AC  TIGR00518
+DE  alanine dehydrogenase
+AU  Haft DH
+TC  391.85 391.85
+NC  173.55 173.55
+AL  clustalw
+IT  equivalog
+EN  alanine dehydrogenase
+GS  ald
+EC  1.4.1.1
+TP  TIGRFAMs
+CC  The family of known L-alanine dehydrogenases (EC 1.4.1.1) includes representatives from the Proteobacteria, Firmicutes, Cyanobacteria, and Actinobacteria, all with about 50 % identity or better. An outlier to this group in both sequence and gap pattern is the homolog from Helicobacter pylori, an epsilon division Proteobacteria, which must be considered a putative alanine dehydrogenase. In Mycobacterium smegmatis and M. tuberculosis, the enzyme doubles as a glycine dehydrogenase (1.4.1.10), running in the reverse direction (glyoxylate amination to glycine, with conversion of NADH to NAD+). Related proteins include saccharopine dehydrogenase and the N-terminal half of the NAD(P) transhydrogenase alpha subunit. All of these related proteins bind NAD and/or NADP.
+DR  PFAM; PF01262; AlaDh_PNT;
+RN  [1]
+RM  PMID:11888165 
+RT  Glycine and alanine dehydrogenase activities are catalyzed by the same protein in Mycobacterium smegmatis: upregulation of both activities under microaerophilic adaptation. 
+RA  Usha V, Jayaraman R, Toro JC, Hoffner SE, Das KS 
+RL  Can J Microbiol. 2002 Jan;48(1):7-13.

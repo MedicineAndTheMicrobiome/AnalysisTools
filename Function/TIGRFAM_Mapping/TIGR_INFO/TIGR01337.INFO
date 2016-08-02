@@ -1,0 +1,16 @@
+ID  apcB
+AC  TIGR01337
+DE  allophycocyanin, beta subunit
+AU  Haft DH
+TC  228.15 228.15
+NC  166.30 166.30
+AL  clustalw
+IT  equivalog
+EN  allophycocyanin, beta subunit
+GS  apcB
+TP  TIGRFAMs
+CC  The alpha and beta subunits of allophycocyanin form heterodimers, six of which associate into larger aggregates as part of the phycobilisome, a light-harvesting complex of phycobiliproteins and linker proteins. This model describes allophycocyanin beta subunit. Other, homologous phyobiliproteins include allophycocyanin alpha chain and the phycocyanin and phycoerythrin alpha and beta chains.
+RM  10358042
+RT  Crystal structure of allophycocyanin from red algae Porphyra yezoensis at 2.2-A resolution.
+RA  Liu JY, Jiang T, Zhang JP, Liang DC.
+RL  J Biol Chem. 1999 Jun 11;274(24):16945-52.

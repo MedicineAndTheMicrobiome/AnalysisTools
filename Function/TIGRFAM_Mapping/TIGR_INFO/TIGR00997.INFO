@@ -1,0 +1,18 @@
+ID  ispZ
+AC  TIGR00997
+DE  intracellular septation protein A
+AU  Haft DH
+TC  165.20 165.20
+NC  72.60 72.60
+AL  clustalw
+IT  equivalog
+EN  intracellular septation protein A
+GS  ispZ
+TP  TIGRFAMs
+CC  This partially characterized protein, whose absence can cause a cell division defect in an intracellularly replicating bacterium, is found only so far only in the Proteobacteria.
+DR  EXPERIMENTAL; EGAD|133907|142865; Shigella flexneri
+RM  96228708
+RT  Identification and characterization of ispA, a Shigella flexneri chromosomal gene essential for normal in vivo cell division and intracellular spreading.
+RA  Mac Siomoin RA, Nakata N, Murai T, Yoshikawa M, Tsuji H, Sasakawa C
+RL Mol Microbiol 1996 Feb;19(3):599-609
+DR  HAMAP; MF_00189; 155 of 163

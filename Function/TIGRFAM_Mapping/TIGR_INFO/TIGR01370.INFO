@@ -1,0 +1,26 @@
+ID  TIGR01370
+AC  TIGR01370
+DE  extracellular protein
+AU  Haft DH
+TC  181.25 181.25
+NC  33.65 33.65
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  extracellular protein
+TP  TIGRFAMs
+CC  Original assignment of this protein family as cysteinyl-tRNA synthetase is controversial, supported by PMID:11333988 but challenged by PMID:14679218 and by subsequent discovery of the actual mechanism for synthesizing Cys-tRNA in species where a direct Cys--tRNA ligase was not found. Lingering legacy annotations of members of this family probably should be removed. Evidence against the role includes a signal peptide. This family as been renamed "extracellular protein" to facilitate correction. Members of this family occur in Deinococcus radiodurans (bacterial) and Methanococcus jannaschii (archaeal). A number of homologous but more distantly related proteins are annotated as alpha-1,4 polygalactosaminidases. The function remains unknown.
+RN  [1]
+RM  PMID:11790254 
+RT  Quoderat demonstrandum? The mystery of experimental validation of apparently erroneous computational analyses of protein sequences. 
+RA  Iyer LM, Aravind L, Bork P, Hofmann K, Mushegian AR, Zhulin IB, Koonin EV 
+RL  Genome Biol. 2001;2(12):RESEARCH0051. 
+RN  [2]
+RM  14679218
+RT  Cysteinyl-tRNA(Cys) formation in Methanocaldococcus jannaschii: the mechanism is still unknown.
+RA  Ruan B, Nakano H, Tanaka M, Mills JA, DeVito JA, Min B, Low KB, Battista JR, Soll D.
+RL  J Bacteriol. 2004 Jan;186(1):8-14.
+RN  [3]
+RM  11333988
+RT  An aminoacyl tRNA synthetase whose sequence fits into neither of the two known classes.
+RA  Fabrega C, Farrow MA, Mukhopadhyay B, de Crecy-Lagard V, Ortiz AR, Schimmel P.
+RL  Nature 2001 May 3;411(6833):110-4

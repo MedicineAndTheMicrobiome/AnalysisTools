@@ -1,0 +1,15 @@
+ID  clpP
+AC  TIGR00493
+DE  ATP-dependent Clp endopeptidase, proteolytic subunit ClpP
+AU  Anolik RT, Haft DH
+TC  308.60 308.60
+NC  59.20 59.20
+AL  clustalw
+IT  equivalog
+EN  ATP-dependent Clp endopeptidase, proteolytic subunit ClpP
+GS  clpP
+EC  3.4.21.92
+TP  TIGRFAMs
+CC  This model for the proteolytic subunit ClpP has been rebuilt to a higher stringency. In every bacterial genome with the ClpXP machine, a ClpP protein will be found that scores at least 370 by this HMM. In general, this ClpP member will be encoded adjacent to the clpX gene, as were all examples used in the seed alignment. A large fraction of genomes have one or more additional ClpP paralogs, sometimes encoded nearby and sometimes elsewhere. The stringency of the trusted cutoff used here excludes the more divergent ClpP paralogs from being called authentic ClpP by this model.
+DR  PROSITE; PDOC00358;
+DR  HAMAP; MF_00444; 354 of 624

@@ -1,0 +1,27 @@
+ID  TraC-F-type
+AC  TIGR02746
+DE  type-IV secretion system protein TraC
+AU  Selengut J
+TC  567.05 567.05
+NC  286.55 286.55
+AL  muscle
+IT  equivalog
+EN  type-IV secretion system protein TraC
+GS  traC
+TP  TIGRFAMs
+CC  The protein family described here is common among the F, P and I-like type IV secretion systems.  Gene symbols include TraC (F-type), TrbE/VirB4 (P-type) and TraU (I-type).  The protein conyains the Walker A and B motifs and so is a putative nucleotide triphosphatase.
+RN  [1]
+RM  PMID: 12855161
+RA  Lawley TD, Klimke WA, Gubbins MJ, Frost LS.
+RT  F factor conjugation is a true type IV secretion system.
+RL   FEMS Microbiol Lett. 2003 Jul 15;224(1):1-15.
+RN  [2]
+RM  PMID: 12855161
+RA  Lawley TD, Klimke WA, Gubbins MJ, Frost LS.
+RT  F factor conjugation is a true type IV secretion system.
+RL   FEMS Microbiol Lett. 2003 Jul 15;224(1):1-15.
+RN  [3]
+RM  PMID: 16138100
+RA  Frost LS, Leplae R, Summers AO, Toussaint A.
+RT  Mobile genetic elements: the agents of open source evolution.
+RL  Nat Rev Microbiol. 2005 Sep;3(9):722-32.

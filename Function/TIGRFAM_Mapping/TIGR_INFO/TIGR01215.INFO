@@ -1,0 +1,18 @@
+ID  minE
+AC  TIGR01215
+DE  cell division topological specificity factor MinE
+AU  Haft DH
+TC  49.30 49.30
+NC  36.35 36.35
+AL  clustalw
+IT  equivalog
+EN  cell division topological specificity factor MinE
+GS  minE
+TP  TIGRFAMs
+CC  This protein is involved in the process of cell division. This protein prevents the proteins MinC and MinD to inhibit cell division at internal sites, but allows inhibiton at polar sites. This allows for correct cell division at the proper sites.
+DR  COGS; COG0851
+RM  11160816 
+RT  Deletion of the cell-division inhibitor MinC results in lysis of Neisseria gonorrhoea
+RA  Ramirez-Arcos S, Szeto J, Beveridge T, Victor C, Francis F, Dillon J.
+RL  Microbiology 2001 Jan;147(Pt 1):225-37
+DR  HAMAP; MF_00262; 249 of 253

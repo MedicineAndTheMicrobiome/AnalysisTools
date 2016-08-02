@@ -1,0 +1,17 @@
+ID  spore_IV_B
+AC  TIGR02860
+DE  stage IV sporulation protein B
+AU  Haft DH
+TC  305.25 305.25
+NC  148.70 148.70
+AL  muscle
+IT  equivalog
+EN  stage IV sporulation protein B
+GS  spoIVB
+EC  3.4.21.116
+TP  TIGRFAMs
+CC  SpoIVB, the stage IV sporulation protein B of endospore-forming bacteria such as Bacillus subtilis, is a serine proteinase, expressed in the spore (rather than mother cell) compartment, that participates in a proteolytic activation cascade for Sigma-K. It appears to be universal among endospore-forming bacteria and occurs nowhere else.
+RM  10931284
+RT  Proteolysis of SpolVB is a critical determinant in signalling of Pro-sigmaK processing in Bacillus subtilis.
+RA  Wakeley PR, Dorazi R, Hoa NT, Bowyer JR, Cutting SM.
+RL  Mol Microbiol. 2000 Jun;36(6):1336-48.

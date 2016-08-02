@@ -1,0 +1,14 @@
+ID  ccl1
+AC  TIGR00569
+DE  cyclin ccl1
+AU  Loftus BJ, Eisen JA
+TC  250.35 250.35
+NC  103.90 103.90
+IT  subfamily
+EN  cyclin ccl1
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are cyclins that are components of TFIIH, a complex that is involved in nucleotide excision repair and transcription initiation.  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford
+CC  University).
+DR  EGAD; 56516;
+DR  SWISSPROT; P37366;
+RM  94047081;

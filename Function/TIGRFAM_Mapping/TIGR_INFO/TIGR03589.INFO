@@ -1,0 +1,38 @@
+ID  PseB
+AC  TIGR03589
+DE  UDP-N-acetylglucosamine 4,6-dehydratase (inverting)
+AU  Selengut J
+TC  407.75 407.75
+NC  407.60 407.60
+AL  muscle
+IT  equivalog
+EN  UDP-N-acetylglucosamine 4,6-dehydratase (inverting)
+GS  pseB
+EC  4.2.1.115
+TP  TIGRFAMs
+CC  This enzyme catalyzes the first step in the biosynthesis of pseudaminic acid, the conversion of UDP-N-acetylglucosamine to UDP-4-keto-6-deoxy-N-acetylglucosamine.  These sequences are members of the broader PF01073 (3-beta hydroxysteroid dehydrogenase/isomerase family) family.
+RN  [1]
+RM  PMID:16684771 
+RT  Functional characterization of the flagellar glycosylation locus in Campylobacter jejuni 81-176 using a focused metabolomics approach. 
+RA  McNally DJ, Hui JP, Aubry AJ, Mui KK, Guerry P, Brisson JR, Logan SM, Soo EC 
+RL  J Biol Chem. 2006 Jul 7;281(27):18489-98. Epub 2006 May 9.
+RN  [2]
+RM  PMID:17893902 
+RT  CMP-Pseudaminic Acid is a Natural Potent Inhibitor of PseB, the First Enzyme of the Pseudaminic Acid Pathway in Campylobacter jejuni and Helicobacter pylori. 
+RA  McNally DJ, Schoenhofen IC, Houliston RS, Khieu NH, Whitfield DM, Logan SM, Jarrell HC, Brisson JR 
+RL  ChemMedChem. 2008 Jan 11;3(1):55-59. 
+RN  [3]
+RM  PMID:16286454 
+RT  Functional characterization of dehydratase/aminotransferase pairs from Helicobacter and Campylobacter: enzymes distinguishing the pseudaminic acid and bacillosamine biosynthetic pathways. 
+RA  Schoenhofen IC, McNally DJ, Vinogradov E, Whitfield D, Young NM, Dick S, Wakarchuk WW, Brisson JR, Logan SM 
+RL  J Biol Chem. 2006 Jan 13;281(2):723-32. Epub 2005 Nov 11. 
+RN  [4]
+RM  PMID:14960321 
+RT  Characterization of CJ1293, a new UDP-GlcNAc C6 dehydratase from Campylobacter jejuni. 
+RA  Creuzenet C 
+RL  FEBS Lett. 2004 Feb 13;559(1-3):136-40. 
+RN  [5]
+RM  PMID:14617187 
+RT  Pseudaminic acid, the major modification on Campylobacter flagellin, is synthesized via the Cj1293 gene. 
+RA  Goon S, Kelly JF, Logan SM, Ewing CP, Guerry P 
+RL  Mol Microbiol. 2003 Oct;50(2):659-71.

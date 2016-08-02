@@ -1,0 +1,11 @@
+ID  phage_chp_gp8
+AC  TIGR02215
+DE  phage conserved hypothetical protein, phiE125 gp8 family
+AU  Haft DH
+TC  39.00 39.00
+NC  30.80 30.80
+AL  clustalw
+IT  hypoth_equivalog
+EN  phage conserved hypothetical protein, phiE125 gp8 family
+TP  TIGRFAMs
+CC  This HMM describes a family of proteins found exclusively in phage or in prophage regions of bacterial genomes, including the phage-like Rhodobacter capsulatus gene transfer agent, which packages DNA. Members of this family show some similarity to members of PF05135, a putative DNA packaging protein family.

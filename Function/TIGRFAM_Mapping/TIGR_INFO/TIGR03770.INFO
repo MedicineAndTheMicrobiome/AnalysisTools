@@ -1,0 +1,11 @@
+ID  anch_rpt_perm
+AC  TIGR03770
+DE  anchored repeat-type ABC transporter, permease subunit
+AU  Haft DH
+TC  296.80 296.80
+NC  296.65 296.65
+AL  muscle_manual
+IT  equivalog
+EN  anchored repeat-type ABC transporter, permease subunit
+TP  TIGRFAMs
+CC  This protein family is the permease subunit of binding protein-dependent ABC transporter complex that strictly co-occurs with TIGR03769. TIGRFAMs model TIGR03769 describes a protein domain that occurs singly or as one of up to three repeats in proteins of a number of Actinobacteria, including Propionibacterium acnes KPA171202. The TIGR03769 domain occurs both in the adjacent gene for the substrate-binding protein and in additional (often nearby) proteins, often with LPXTG-like sortase recognition signals. Homologous permease subunits outside the scope of this family include manganese transporter MntB in Synechocystis sp. PCC 6803 and chelated iron transporter subunits. The function of this transporter complex is unknown.

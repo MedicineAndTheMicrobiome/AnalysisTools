@@ -1,0 +1,15 @@
+ID  pro_imino_pep_1
+AC  TIGR01249
+DE  prolyl aminopeptidase
+AU  Haft DH
+TC  259.75 259.75
+NC  95.45 95.45
+AL  clustalw
+IT  equivalog
+EN  proline iminopeptidase, Neisseria-type subfamily
+GS  pip
+EC  3.4.11.5
+TP  TIGRFAMs
+CC  This HMM represents one of two related families of proline iminopeptidase in the alpha/beta fold hydrolase family. The fine specificities of the various members, including both the range of short peptides from which proline can be removed and whether other amino acids such as alanine can be also removed, may vary among members.
+DR  EXPERIMENTAL; EGAD|139406; Xanthomonas campestris
+DR  EXPERIMENTAL; EGAD|23177; Neisseria gonorrhoeae

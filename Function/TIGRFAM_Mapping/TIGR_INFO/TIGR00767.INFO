@@ -1,0 +1,20 @@
+ID  rho
+AC  TIGR00767
+DE  transcription termination factor Rho
+AU  Haft DH
+TC  509.45 509.45
+NC  313.20 313.20
+IT  equivalog
+EN  transcription termination factor Rho
+GS  rho
+EC  3.6.4.-
+TP  TIGRFAMs
+CC  This RNA helicase, the transcription termination factor Rho, occurs in nearly all bacteria but is missing from the Cyanobacteria, the Mollicutes (Mycoplasmas), and various Lactobacillales including Streptococcus. It is also missing, of course, from the Archaea, which also lack Nus factors. 
+CC  Members of this family from Micrococcus luteus, Mycobacterium tuberculosis, and related species have a related but highly variable long, highly charged insert near the amino end.
+CC  Members of this family differ in the specificity of RNA binding.
+RN  [1]
+RM  PMID:16946247
+RT  Rho-dependent terminators and transcription termination.
+RA  Ciampi MS
+RL  Microbiology. 2006 Sep;152(Pt 9):2515-28.
+AL  manual

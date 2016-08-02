@@ -1,0 +1,16 @@
+ID  6_pyr_pter_rel
+AC  TIGR03112
+DE  6-pyruvoyl tetrahydropterin synthase-related domain
+AU  Haft DH
+TC  69.35 69.35
+NC  69.00 69.00
+AL  muscle
+IT  hypoth_equivalog_domain
+EN  6-pyruvoyl tetrahydropterin synthase-related domain
+TP  TIGRFAMs
+CC  Members of this family are small proteins, or small domains of larger proteins, that occur in certain Firmicutes in the same regions as members of families TIGR03110 and TIGR03111. Members of TIGR03110 resemble exosortase, a proposed protein sorting transpeptidase (see TIGR02602). TIGR03111 represents a small clade among the group 2 glycosyltransferases. Members of the current protein family resemble eukaryotic known and prokaryotic predicted 6-pyruvoyl tetrahydropterin synthases.
+RN  [1]
+RM  PMID:22037399 
+RT  Archaeosortases and exosortases are widely distributed systems linking membrane transit with posttranslational modification. 
+RA  Haft DH, Payne SH, Selengut JD 
+RL  J Bacteriol. 2012 Jan;194(1):36-48. Epub 2011 Oct 28.

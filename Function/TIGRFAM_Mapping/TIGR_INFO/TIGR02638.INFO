@@ -1,0 +1,23 @@
+ID  lactal_redase
+AC  TIGR02638
+DE  lactaldehyde reductase
+AU  Selengut J
+TC  523.15 523.15
+NC  479.25 479.25
+AL  clustalw
+IT  equivalog
+EN  lactaldehyde reductase
+GS  fucO
+EC  1.1.1.77
+TP  TIGRFAMs
+CC  This clade of genes encoding iron-containing alcohol dehydrogenase (PF00465) proteins is generally found in apparent operons for the catabolism of rhamnose or fucose.  Catabolism of both of these monosaccharides results in lactaldehyde which is reduced by this enzyme to 1,2 propanediol [1].  This protein is alternatively known by the name 1,2 propanediol oxidoreductase.  This enzyme is active under anaerobic conditions in E. coli while being inactivated by reactive oxygen species under aerobic conditions [2].  Under aerobic conditions the lactaldehyde product of rhamnose and fucose catabolism is believed to be oxidized to lactate by a separate enzyme, lactaldehyde dehydrogenase.
+RN  [1]
+RM  PMID: 3275622
+RT  Metabolism of L-fucose and L-rhamnose in Escherichia coli: aerobic-anaerobic regulation of L-lactaldehyde dissimilation.
+RA  Baldoma L, Aguilar J.
+RL  J Bacteriol. 1988 Jan;170(1):416-21.
+RN  [2]
+RM  PMID: 2203757
+RT  Oxygen regulation of L-1,2-propanediol oxidoreductase activity in Escherichia coli.
+RA  Cabiscol E, Hidalgo E, Badia J, Baldoma L, Ros J, Aguilar J.
+RL  J Bacteriol. 1990 Sep;172(9):5514-5.

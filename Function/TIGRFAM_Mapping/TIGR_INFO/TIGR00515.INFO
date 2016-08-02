@@ -1,0 +1,17 @@
+ID  accD
+AC  TIGR00515
+DE  acetyl-CoA carboxylase, carboxyl transferase, beta subunit
+AU  Haft DH
+TC  317.45 317.45
+NC  177.00 177.00
+IT  equivalog
+EN  acetyl-CoA carboxylase, carboxyl transferase, beta subunit
+GS  accD
+EC  6.4.1.2
+TP  TIGRFAMs
+CC  The enzyme acetyl-CoA carboxylase contains a biotin carboxyl carrier protein or domain, a biotin carboxylase, and a carboxyl transferase. This model represents the beta chain of the carboxyl transferase for cases in which the architecture of the protein is as in E. coli, in which the carboxyltransferase portion consists of two non-identical subnits, alpha and beta.
+RM  92380982
+RT  The genes encoding the two carboxyltransferase subunits of Escherichia coli acetyl-CoA carboxylase.
+RA  Li SJ, Cronan JE Jr
+RL  J Biol Chem 1992 Aug 25;267(24):16841-7
+DR  HAMAP; MF_01395; 231 of 233

@@ -1,0 +1,12 @@
+ID  sdhA_forward
+AC  TIGR01816
+DE  succinate dehydrogenase, flavoprotein subunit
+AU  Haft DH
+TC  727.35 727.35
+NC  717.55 717.55
+AL  clustalw_manual
+IT  equivalog
+EN  succinate dehydrogenase, flavoprotein subunit, E. coli/mitochondrial subgroup
+GS  sdhA
+TP  TIGRFAMs
+CC  Succinate dehydrogenase and fumarate reductase are homologous enzymes reversible in principle but favored under different circumstances. This HMM represents a narrowly defined clade of the succinate dehydrogenase flavoprotein subunit as found in mitochondria, in Rickettsia, in E. coli and other Proteobacteria, and in a few other lineages. However, this HMM excludes all known fumarate reductases. It also excludes putative succinate dehydrogenases that appear to diverged before the split between E. coli succinate dehydrogenase and fumarate reductase.

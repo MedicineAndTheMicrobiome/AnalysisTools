@@ -1,0 +1,11 @@
+ID  P5CS
+AC  TIGR01092
+DE  delta l-pyrroline-5-carboxylate synthetase
+AU  Haft DH
+TC  796.75 796.75
+NC  525.45 525.45
+AL  clustalw
+IT  equivalog
+EN  delta l-pyrroline-5-carboxylate synthetase
+TP  TIGRFAMs
+CC  This protein contains a glutamate 5-kinase (ProB, EC 2.7.2.11) region followed by a gamma-glutamyl phosphate reductase (ProA, EC 1.2.1.41) region.

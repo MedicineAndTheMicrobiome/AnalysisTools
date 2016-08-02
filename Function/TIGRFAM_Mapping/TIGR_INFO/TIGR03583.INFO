@@ -1,0 +1,12 @@
+ID  EF_0837
+AC  TIGR03583
+DE  putative amidohydrolase, EF_0837/AHA_3915 family
+AU  Haft DH
+TC  432.15 432.15
+NC  348.50 348.50
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  probable amidohydrolase EF_0837/AHA_3915
+TP  TIGRFAMs
+CC  Members of this family of relatively uncommon proteins are found in both Gram-positive (e.g. Enterococcus faecalis) and Gram-negative (e.g. Aeromonas hydrophila) bacteria, as part of a cluster of conserved proteins. These proteins resemble aminohydrolases (see PF01979), including dihydroorotases. The function is unknown.
+DR  PFAM; PF01979; Amidohydrolase family

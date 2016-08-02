@@ -1,0 +1,11 @@
+ID  HU_rel
+AC  TIGR01201
+DE  putative DNA-binding protein
+AU  Haft DH
+TC  68.60 68.60
+NC  44.15 44.15
+AL  clustalw_manual
+IT  superfamily
+EN  DNA-binding protein, histone-like, putative
+TP  TIGRFAMs
+CC  This HMM describes a set of proteins related to but longer than DNA-binding protein HU. Its distinctive domain architecture compared to HU and related histone-like DNA-binding proteins justifies the designation as superfamily. Members include, so far, one from Bacteroides fragilis, a gut bacterium, and ten from Porphyromonas gingivalis, an oral anaerobe.

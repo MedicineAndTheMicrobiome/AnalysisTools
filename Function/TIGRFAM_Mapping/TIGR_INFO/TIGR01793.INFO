@@ -1,0 +1,12 @@
+ID  cit_synth_euk
+AC  TIGR01793
+DE  citrate (Si)-synthase, eukaryotic
+AU  Haft DH
+TC  619.75 619.75
+NC  135.75 135.75
+AL  clustalw
+IT  equivalog
+EN  citrate (Si)-synthase, eukaryotic
+EC  2.3.3.1
+TP  TIGRFAMs
+CC  This HMM includes both mitochondrial and peroxisomal forms of citrate synthase. Citrate synthase is the entry point to the TCA cycle from acetyl-CoA. Peroxisomal forms, such as SP:P08679 from yeast (recognized by the C-terminal targeting motif SKL) act in the glyoxylate cycle. Eukaryotic homologs excluded by the high trusted cutoff of this model include a Tetrahymena thermophila citrate synthase that doubles as a filament protein, a putative citrate synthase from Plasmodium falciparum (no TCA cycle), and a methylcitrate synthase from Aspergillus nidulans.

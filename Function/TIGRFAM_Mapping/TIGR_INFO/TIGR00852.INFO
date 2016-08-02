@@ -1,0 +1,14 @@
+ID  pts-Glc
+AC  TIGR00852
+DE  PTS system, maltose and glucose-specific subfamily, IIC component
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  291.10 291.10
+NC  276.00 276.00
+AL  clustalw_manual
+IT  subfamily_domain
+EN  PTS system, maltose and glucose-specific subfamily, IIC component
+TP  TIGRFAMs
+CC  The PTS Glucose-Glucoside (Glc) Family (TC 4.A.1)
+CC  Bacterial PTS transporters transport and concomitantly phosphorylate their sugar substrates, and typically consist of multiple subunits or protein domains.
+CC  The Glc family includes permeases specific for glucose, N-acetylglucosamine and a large variety of a- and b-glucosides. However, not all b-glucoside PTS
+CC  permeases are in this class, as the cellobiose (Cel) b-glucoside PTS permease is in the Lac family (TC #4.A.3). These permeases show limited sequence similarity with members of the Fru family (TC #4.A.2). Several of the E. coli PTS permeases in the Glc family lack their own IIA domains and instead use the glucose IIA protein (IIAglc or Crr). Most of these permeases have the B and C domains linked together in a single polypeptide chain, and a cysteyl residue in the IIB domain is phosphorylated by direct phosphoryl transfer from IIAglc(his~P). Those permeases which lack a IIA domain include the maltose (Mal), arbutin-salicin-cellobiose (ASC), trehalose (Tre), putative glucoside (Glv) and sucrose (Scr) permeases of E. coli . Most, but not all Scr permeases of other bacteria also lack a IIA domain. This Hmm is specific for the IIC domain of the Glc family PTS transporters.

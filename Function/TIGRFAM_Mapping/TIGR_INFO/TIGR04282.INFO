@@ -1,0 +1,12 @@
+ID  glyco_like_cofC
+AC  TIGR04282
+DE  transferase 1, rSAM/selenodomain-associated
+AU  Haft DH
+TC  134.00 134.00
+NC  125.00 125.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  transferase 1, rSAM/selenodomain-associated
+EC  2.-.-.-
+TP  TIGRFAMs
+CC  Members of this protein family show strongly correlated phylogenetic distribution, and in most cases co-clustering, with an unusual radical SAM enzyme (TIGR04167) whose C-terminal PF12345 domain often contains a selenocysteine residue. Other members of the conserved gene neighborhood include another putative glycosyltransferase, an alkylhydroperoxidase family protein (TIGR04169), and a phosphoesterase family protein (TIGR04168). The cassette is likely to be biosynthetic but its exact function is unknown.

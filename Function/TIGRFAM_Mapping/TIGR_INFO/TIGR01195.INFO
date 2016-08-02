@@ -1,0 +1,13 @@
+ID  oadG_fam
+AC  TIGR01195
+DE  sodium pump decarboxylases, gamma subunit
+AU  Haft DH
+TC  36.05 36.05
+NC  32.80 32.80
+AL  manual
+IT  subfamily
+EN  sodium pump decarboxylases, gamma subunit
+TP  TIGRFAMs
+CC  This model finds the subfamily of distantly related, low complexity, hydrophobic small subunits of several related sodium ion-pumping decarboxylases. These include oxaloacetate decarboxylase gamma subunit and methylmalonyl-CoA decarboxylase delta subunit.
+CC  Most sequences scoring between the noise and trusted cutoffs are eukaryotic sodium channel proteins.
+DR  HAMAP; MF_00404; 18 of 18

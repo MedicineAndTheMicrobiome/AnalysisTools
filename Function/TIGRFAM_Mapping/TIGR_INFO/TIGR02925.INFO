@@ -1,0 +1,13 @@
+ID  cis_trans_EpsD
+AC  TIGR02925
+DE  peptidyl-prolyl cis-trans isomerase, EpsD family
+AU  Haft DH
+TC  108.90 108.90
+NC  56.60 56.60
+AL  clustalw
+IT  equivalog
+EN  peptidyl-prolyl cis-trans isomerase, EpsD family
+GS  epsD
+EC  5.2.1.8
+TP  TIGRFAMs
+CC  Members of this family belong to the peptidyl-prolyl cis-trans isomerase family and are found in loci associated with exopolysaccharide biosynthesis. All members are encoded near a homolog of EpsH, as detected by TIGR02602.

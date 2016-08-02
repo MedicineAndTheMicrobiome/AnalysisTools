@@ -1,0 +1,11 @@
+ID  DNA_bind_RsfA
+AC  TIGR02894
+DE  transcription factor, RsfA family
+AU  Haft DH
+TC  126.45 126.45
+NC  34.40 34.40
+AL  muscle
+IT  subfamily
+EN  transcription factor, RsfA family
+TP  TIGRFAMs
+CC  In a subset of endospore-forming members of the Firmcutes, members of this protein family are found, several to a genome. Two very strongly conserved sequences regions are separated by a highly variable linker region. Much of the linker region was excised from the seed alignment for this model. A characterized member is the prespore-specific transcription RsfA from Bacillus subtilis, previously called YwfN, which is controlled by sigma factor F and seems to fine-tune expression of some genes in the sigma-F regulon. A paralog in Bacillus subtilis is designated YlbO.

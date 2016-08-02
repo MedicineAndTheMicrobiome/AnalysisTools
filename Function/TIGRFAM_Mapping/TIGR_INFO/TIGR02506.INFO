@@ -1,0 +1,29 @@
+ID  NrdE_NrdA
+AC  TIGR02506
+DE  ribonucleoside-diphosphate reductase, alpha subunit
+AU  Selengut J
+TC  341.05 341.05
+NC  319.00 319.00
+AL  clustalw
+IT  equivalog
+EN  ribonucleoside-diphosphate reductase, alpha subunit
+EC  1.17.4.1
+TP  TIGRFAMs
+CC  This model represents the alpha (large) chain of the class I ribonucleotide reductase (RNR).  RNR's are responsible for the conversion of the ribose sugar of RNA into the deoxyribose sugar of DNA.  This is the rate-limiting step of DNA biosynthesis.  Class I RNR's generate the required radical (on tyrosine) via a "non-heme" iron cofactor which resides in the beta (small) subunit.  The alpha subunit contains the catalytic and allosteric regulatory sites.  The mechanism of this enzyme requires molecular oxygen [1].
+CC  E. Coli contains two versions of this enzyme which are regulated independently (NrdAB and NrdEF, where NrdA and NrdE are the large chains [2,3]).  Most organisms contain only one, but the application of the gene symbols NrdA and NrdE are somewhat arbitrary.
+CC  This model identifies RNR's in diverse clades of bacteria, eukaryotes as well as numerous DNA viruses and phage.
+RN  [1]
+RM  PMID: 11807048
+RT  Aerobic-type ribonucleotide reductase in the anaerobe Bacteroides fragilis.
+RA  Smalley D, Rocha ER, Smith CJ.
+RL  J Bacteriol. 2002 Feb;184(4):895-903.
+RN  [2]
+RM  PMID: 8052308
+RT  Structure of ribonucleotide reductase protein R1.
+RA  Uhlin U, Eklund H.
+RL  Nature. 1994 Aug 18;370(6490):533-9.
+RN  [3]
+RM  PMID: 8820648
+RT  Promoter identification and expression analysis of Salmonella typhimurium and Escherichia coli nrdEF operons encoding one of two class I ribonucleotide reductases present in both bacteria.
+RA  Jordan A, Aragall E, Gibert I, Barbe J.
+RL  Mol Microbiol. 1996 Feb;19(4):777-90.

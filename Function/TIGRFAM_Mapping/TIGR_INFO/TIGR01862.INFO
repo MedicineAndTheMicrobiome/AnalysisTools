@@ -1,0 +1,12 @@
+ID  N2-ase-Ialpha
+AC  TIGR01862
+DE  nitrogenase component I, alpha chain
+AU  Selengut J
+TC  486.05 486.05
+NC  414.85 414.85
+AL  clustalw
+IT  subfamily
+EN  nitrogenase component I, alpha chain
+EC  1.18.6.1
+TP  TIGRFAMs
+CC  This model represents the alpha chain of all three varieties (Mo-Fe, V-Fe, and Fe-Fe) of component I of nitrogenase.

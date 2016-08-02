@@ -1,0 +1,14 @@
+ID  DapC
+AC  TIGR03537
+DE  succinyldiaminopimelate transaminase
+AU  Selengut J
+TC  453.60 453.60
+NC  350.20 350.20
+AL  muscle
+IT  equivalog
+EN  succinyldiaminopimelate transaminase
+GS  dapC
+EC  2.6.1.17
+TP  TIGRFAMs
+CC  The four sequences which make up the seed for this model are not closely related, although they are all members of the PF00155 family of aminotransferases and are more closely related to each other than to anything else.  Additionally, all of them are found in the vicinity of genes involved in the biosynthesis of lysine via the diaminopimelate pathway (GenProp0125), although this amount to a separation of 12 genes in the case of Sulfurihydrogenibium azorense Az-Fu1.  None of these genomes contain another strong candidate for this role in the pathway.
+CC  Note: the detailed information included in the EC:2.6.1.17 record includes the assertions that the enzyme uses the pyridoxal pyrophosphate cofactor, which is consistent with the PF00155 family, and the assertion that the amino group donor is L-glutamate, which is undetermined for the sequences in this clade.

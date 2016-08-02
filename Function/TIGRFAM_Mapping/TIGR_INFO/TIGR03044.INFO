@@ -1,0 +1,27 @@
+ID  PS_II_psb27
+AC  TIGR03044
+DE  photosystem II protein Psb27
+AU  Haft DH
+TC  117.35 117.35
+NC  56.75 56.75
+AL  muscle_manual
+IT  equivalog
+EN  photosystem II protein Psb27
+GS  psb27
+TP  TIGRFAMs
+CC  Members of this family are the Psb27 protein of the cyanobacterial photosynthetic supracomplex, photosystem II. Although most protein components of both cyanobacterial and chloroplast versions of photosystem II are closely related and described together by single HMM families, this family is strictly bacterial. Some uncharacterized proteins with highly divergent sequences, from Arabidopsis, score between trusted and noise cutoffs for this model but are not at this time assigned as functionally equivalent photosystem II proteins.
+RN  [1]
+RM  PMID: 12069591
+RT  Proteomic analysis of a highly active photosystem II preparation from the cyanobacterium Synechocystis sp. PCC 6803 reveals the presence of novel polypeptides.
+RA  Kashino Y, Lauber WM, Carroll JA, Wang Q, Whitmarsh J, Satoh K, Pakrasi HB
+RL  Biochemistry. 2002 Jun 25;41(25):8004-12.
+RN  [2]
+RM  PMID: 15308630
+RT  Evidence that D1 processing is required for manganese binding and extrinsic protein assembly into photosystem II.
+RA  Roose JL, Pakrasi HB
+RL  J Biol Chem. 2004 Oct 29;279(44):45417-22. Epub 2004 Aug 11.
+RN  [3]
+RM  PMID: 16897475
+RT  A Psb27 homologue in Arabidopsis thaliana is required for efficient repair of photodamaged photosystem II.
+RA  Chen H, Zhang D, Guo J, Wu H, Jin M, Lu Q, Lu C, Zhang L
+RL  Plant Mol Biol. 2006 Jul;61(4-5):567-75.

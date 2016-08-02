@@ -1,0 +1,12 @@
+ID  ribD_Cterm
+AC  TIGR00227
+DE  riboflavin-specific deaminase C-terminal domain
+AU  Haft DH
+TC  150.15 150.15
+NC  82.35 82.35
+AL  clustalw
+IT  domain
+EN  riboflavin-specific deaminase C-terminal domain
+EC  3.5.4.-
+TP  TIGRFAMs
+CC  Eubacterial riboflavin-specific deaminases have a zinc-binding domain recognized by the dCMP_cyt_deam HMM toward the N-terminus and this domain toward the C-terminus. Yeast HTP reductase, a riboflavin-biosynthetic enzyme, and several archaeal proteins believed related to riboflavin biosynthesis consist only of this domain and lack the dCMP_cyt_deam domain.

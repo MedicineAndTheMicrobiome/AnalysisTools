@@ -1,0 +1,17 @@
+ID  PhnAcAld_DH
+AC  TIGR03250
+DE  putative phosphonoacetaldehyde dehydrogenase
+AU  Selengut J
+TC  635.65 635.65
+NC  457.95 457.95
+AL  manual
+IT  equivalog
+EN  putative phosphonoacetaldehyde dehydrogenase
+GS  phnY
+EC  1.2.1.-
+TP  TIGRFAMs
+CC  This family of genes are members of the PF00171 NAD-dependent aldehyde dehydrogenase family.
+CC  These genes are observed in Ralstonia eutropha JMP134, Sinorhizobium meliloti 1021, Burkholderia mallei ATCC 23344, Burkholderia thailandensis E264, Burkholderia cenocepacia AU 1054, Burkholderia pseudomallei K96243 and 1710b, Burkholderia xenovorans LB400, Burkholderia sp. 383 and Polaromonas sp. JS666 in close proximity to the PhnW gene (TIGR02326) encoding 2-aminoethyl phosphonate aminotransferase (which generates phosphonoacetaldehyde) and PhnA (TIGR02335) encoding phosphonoacetate hydrolase (not to be confused with the alkylphosphonate utilization operon protein PhnA modeled by TIGR00686).  Additionally,  transporters believed to be specific for 2-aminoethyl phosphonate are often present.  
+CC  PhnW is, in other organisms, coupled with PhnX (TIGR01422) for the degradation of phosphonoacetaldehyde (GenProp0238), but PhnX is apparently absent in each of the organisms containing this aldehyde reductase.
+CC  PhnA, characterized in a strain of Pseudomonas fluorescens that has not het been genome sequenced, is only rarely found outside of the PhnW and aldehyde dehydrogenase context.  For instance in Rhodopseudomonas and Bordetella bronchiseptica, where it is adjacent to transporters presumably specific for the import of phosphonoacetate.
+CC  It seems reasonably certain then, that this enzyme catalyzes the NAD-dependent oxidation of phosphonoacetaldehyde to phosphonoacetate, bridging the metabolic gap between PhnW and PhnA.  We propose the name phosphonoacetaldehyde dehydrogenase and the gene symbol PhnY for this enzyme.

@@ -1,0 +1,18 @@
+ID  rpoC1_cyan
+AC  TIGR02387
+DE  DNA-directed RNA polymerase, gamma subunit
+AU  Haft DH
+TC  975.90 975.90
+NC  969.35 969.35
+AL  clustalw
+IT  equivalog
+EN  DNA-directed RNA polymerase, gamma subunit
+GS  rpoC1
+EC  2.7.7.6
+TP  TIGRFAMs
+CC  The RNA polymerase gamma subunit, encoded by the rpoC1 gene, is found in cyanobacteria and corresponds to the N-terminal region the beta' subunit, encoded by rpoC, in other bacteria. The equivalent subunit in plastids and chloroplasts is designated beta', while the product of the rpoC2 gene is designated beta''.
+RM  2495268
+RT  Cyanobacterial RNA polymerase genes rpoC1 and rpoC2 correspond to rpoC of Escherichia coli.
+RA  Xie WQ, Jager K, Potts M.
+RL  J Bacteriol. 1989 Apr;171(4):1967-73.
+DR  HAMAP; MF_01323; 41 of 156

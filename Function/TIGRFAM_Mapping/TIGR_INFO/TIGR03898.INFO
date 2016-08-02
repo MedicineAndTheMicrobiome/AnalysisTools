@@ -1,0 +1,16 @@
+ID  lanti_MRSA_kill
+AC  TIGR03898
+DE  type 2 lantibiotic, mersacidin/lichenicidin family
+AU  Haft DH
+TC  23.50 23.50
+NC  22.05 22.05
+AL  muscle_manual
+IT  subfamily
+EN  type 2 lantibiotic, mersacidin/lichenicidin family
+TP  TIGRFAMs
+CC  This HMM recognizes a number of type 2 lantibiotic-type bacteriocins, including mersacidin and lichenicidin. Members often are found as gene pairs encoding two-chain bacteriocins. Maturation is accomplished, at least in part, by a LanM-type enzyme (TIGR03897). This model describes only the leader peptide region.
+RN  [1]
+RM  PMID:19561184 
+RT  Identification of a novel two-peptide lantibiotic, lichenicidin, following rational genome mining for LanM proteins. 
+RA  Begley M, Cotter PD, Hill C, Ross RP 
+RL  Appl Environ Microbiol. 2009 Sep;75(17):5451-60. Epub 2009 Jun 26.

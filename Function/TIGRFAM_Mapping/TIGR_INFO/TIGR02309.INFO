@@ -1,0 +1,13 @@
+ID  HpaB-1
+AC  TIGR02309
+DE  4-hydroxyphenylacetate 3-monooxygenase, oxygenase component
+AU  Selengut J
+TC  480.20 480.20
+NC  332.70 332.70
+AL  clustalw
+IT  equivalog
+EN  4-hydroxyphenylacetate 3-monooxygenase, oxygenase component
+GS  hpaB
+EC  1.14.14.9
+TP  TIGRFAMs
+CC  This gene for this monooxygenase is found within apparent operons for the degradation of 4-hydroxyphenylacetic acid in Deinococcus, Thermus and Oceanobacillus.  Phylogenetic trees support inclusion of the Bacillus halodurans sequence above trusted although the complete 4-hydroxyphenylacetic acid degradation pathway may not exist in that organism.  Generally, this enzyme acts with the assistance of a small flavin reductase domain protein (HpaC) to provide the cycle the flavin reductant for the reaction.  This family of sequences is a member of a larger subfamily of monooxygenases (PF03241).

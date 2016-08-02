@@ -1,0 +1,19 @@
+ID  pgl
+AC  TIGR01198
+DE  6-phosphogluconolactonase
+AU  Haft DH
+TC  124.45 124.45
+NC  120.70 120.70
+AL  clustalw
+IT  equivalog_domain
+EN  6-phosphogluconolactonase
+GS  pgl
+EC  3.1.1.31
+TP  TIGRFAMs
+CC  This enzyme of the pentose phosphate pathway is often found as a part of a multifunctional protein with
+RN  [1]
+RM  10869070
+RN  [2]
+RM  10518023
+DR  EXPERIMENTAL; SP|Q9X2N2; Pseudomonas aeruginosa
+DR  EXPERIMENTAL; SP|O95336; Homo sapiens

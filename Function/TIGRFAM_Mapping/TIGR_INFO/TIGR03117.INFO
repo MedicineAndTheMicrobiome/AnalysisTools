@@ -1,0 +1,12 @@
+ID  cas_csf4
+AC  TIGR03117
+DE  CRISPR type AFERR-associated DEAD/DEAH-box helicase Csf4
+AU  Haft DH
+TC  592.45 592.45
+NC  47.45 47.45
+AL  muscle
+IT  hypoth_equivalog
+EN  CRISPR type AFERR-associated DEAD/DEAH-box helicase Csf4
+GS  csf4
+TP  TIGRFAMs
+CC  Members of this family show up near CRISPR repeats in Acidithiobacillus ferrooxidans ATCC 23270, Azoarcus sp. EbN1, and Rhodoferax ferrireducens DSM 15236. In the latter two species, the CRISPR/cas locus is found on a plasmid. This family is one of several characteristic of a type of CRISPR-associated (cas) gene cluster we designate Aferr after A. ferrooxidans, where it is both chromosomal and the only type of cas gene cluster found. The gene is designated csf4 (CRISPR/cas Subtype as in A. ferrooxidans protein 1), as it lies farthest (fourth closest) from the repeats in the A. ferrooxidans genome.

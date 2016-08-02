@@ -1,0 +1,12 @@
+ID  rad2
+AC  TIGR00600
+DE  DNA excision repair protein (rad2)
+AU  Loftus BJ, Eisen JA
+TC  1204.40 1204.40
+NC  316.45 316.45
+IT  subfamily
+EN  DNA excision repair protein (rad2)
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are flap endonucleases that generate the 3' incision next to DNA damage as part of nucleotide excision repair.  This family is related to many other flap endonuclease families including the fen1 family.  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  SWISSPROT; P07276;
+RM  86083164;

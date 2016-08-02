@@ -1,0 +1,11 @@
+ID  TIGR00701
+AC  TIGR00701
+DE  TIGR00701 family protein
+AU  Haft DH
+TC  138.05 138.05
+NC  59.90 59.90
+AL  clustalw
+IT  hypoth_equivalog
+EN  TIGR00701 family protein
+TP  TIGRFAMs
+CC  It appears this conserved hypothetical integral membrane protein is found only in gram negative bacteria. Completed genomes that include a member of this family include Rickettsia prowazekii, Synechocystis sp. PCC6803, and Helicobacter pylori. These proteins have 3 (Helicobacter pylori) to 5 (Synechocystis sp. PCC 6803) GES predicted transmembrane regions.  Most members have 4 GES predicted transmembrane regions.

@@ -1,0 +1,22 @@
+ID  NrdG2
+AC  TIGR02495
+DE  anaerobic ribonucleoside-triphosphate reductase activating protein
+AU  Selengut J
+TC  131.15 131.15
+NC  101.50 101.50
+AL  clustalw
+IT  equivalog
+EN  anaerobic ribonucleoside-triphosphate reductase activating protein
+EC  1.97.-.-
+TP  TIGRFAMs
+CC  This enzyme is a member of the radical-SAM family (PF04055).  It is often gene clustered with the class III (anaerobic) ribonucleotide triphosphate reductase (NrdD, TIGR02487) and presumably fulfills the identical function as NrdG [1,2] which utilizes S-adenosyl methionine, an iron-sulfur cluster and a reductant (dihydroflavodoxin) to produce a glycine-centered radical in NrdD.
+RN  [1]
+RM  PMID: 11389585
+RT  Activation of class III ribonucleotide reductase from E. coli. The electron transfer from the iron-sulfur center to S-adenosylmethionine.
+RA  Padovani D, Thomas F, Trautwein AX, Mulliez E, Fontecave M.
+RL  Biochemistry. 2001 Jun 12;40(23):6713-9.
+RN  [2]
+RM  PMID: 11297442
+RT  Activation of class III ribonucleotide reductase by flavodoxin: a protein radical-driven electron transfer to the iron-sulfur center.
+RA  Mulliez E, Padovani D, Atta M, Alcouffe C, Fontecave M.
+RL  Biochemistry. 2001 Mar 27;40(12):3730-6.

@@ -1,0 +1,13 @@
+ID  pyl_corrinoid
+AC  TIGR02370
+DE  methyltransferase cognate corrinoid proteins, Methanosarcina family
+AU  Haft DH
+TC  215.30 215.30
+NC  184.95 184.95
+AL  clustalw
+IT  subfamily_domain
+EN  methyltransferase cognate corrinoid proteins, Methanosarcina family
+TP  TIGRFAMs
+CC  This model describes a subfamily of the B12 binding domain (PF02607, PF02310) proteins. Members of the seed alignment include corrinoid proteins specific to four different, mutally non-homologous enzymes of the genus Methanosarcina. Three of the four cognate enzymes (trimethylamine, dimethylamine, and monomethylamine methyltransferases) all have the unusual, ribosomally incorporated amino acid pyrrolysine at the active site. All act in systems in which a methyl group is transferred to the corrinoid protein to create methylcobalamin, from which the methyl group is later transferred elsewhere.
+DR  PFAM; PF02310; B12-binding
+DR  PFAM; PF02607; B12-binding_2

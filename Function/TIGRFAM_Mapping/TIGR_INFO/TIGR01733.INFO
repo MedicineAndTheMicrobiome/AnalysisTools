@@ -1,0 +1,19 @@
+ID  AA-adenyl-dom
+AC  TIGR01733
+DE  amino acid adenylation domain
+AU  Selengut J
+TC  317.40 317.40
+NC  254.65 254.65
+AL  clustalw
+IT  subfamily_domain
+EN  amino acid adenylation domain
+TP  TIGRFAMs
+CC  This model represents a domain responsible for the specific recognition of amino acids and activation as adenylyl amino acids.  The reaction catalyzed is aa + ATP -> aa-AMP + PPi.
+CC  These domains are usually found as components of multi-domain non-ribosomal peptide synthetases and are usually called "A-domains" in that context (for a review, see [1]).  A-domains are almost invariably followed by "T-domains" (thiolation domains, PF00550) to which the amino acid adenylate is transferred as a thiol-ester to a bound pantetheine cofactor with the release of AMP (these are also called peptide carrier proteins, or PCPs.  When the A-domain does not represent the first module (corresponding to the first amino acid in the product molecule) it is usually preceded by a "C-domain" (condensation domain, PF00668) which catalyzes the ligation of two amino acid thiol-esters from neighboring modules.
+CC  This domain is a subset of the AMP-binding domain found in Pfam (PF00501) which also hits substrate--CoA ligases and luciferases.  Sequences scoring in between trusted and noise for this model may be ambiguous as to whether they activate amino acids or other molecules lacking an alpha amino group.
+RN  [1]
+RM  PMID: 10021423
+RT  How do peptide synthetases generate structural diversity?
+RA  Konz D, Marahiel MA.
+RL  Chem Biol. 1999 Feb;6(2):R39-48. Review.
+DR  HAMAP; MF_00593; 52 of 53

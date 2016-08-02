@@ -1,0 +1,18 @@
+ID  osmo_MPGsynth
+AC  TIGR02460
+DE  mannosyl-3-phosphoglycerate synthase
+AU  Haft DH
+TC  351.20 351.20
+NC  132.00 132.00
+AL  clustalw
+IT  equivalog
+EN  mannosyl-3-phosphoglycerate synthase
+GS  mpgS
+EC  2.4.1.217
+TP  TIGRFAMs
+CC  This family consists of examples of mannosyl-3-phosphoglycerate synthase (MPGS), which together mannosyl-3-phosphoglycerate phosphatase (MPGP) comprises a two-step pathway for mannosylglycerate biosynthesis. Mannosylglycerate is a compatible solute that tends to be restricted to extreme thermophiles of archaea and bacteria. Note that in Rhodothermus marinus, this pathway is one of two; the other is condensation of GDP-mannose with D-glycerate by mannosylglycerate synthase.
+RN  [1]
+RM  12788726
+RT  The bacterium Thermus thermophilus, like hyperthermophilic archaea, uses a two-step pathway for the synthesis of mannosylglycerate.
+RA  Empadinhas N, Albuquerque L, Henne A, Santos H, da Costa MS.
+RL  Appl Environ Microbiol. 2003 Jun;69(6):3272-9.

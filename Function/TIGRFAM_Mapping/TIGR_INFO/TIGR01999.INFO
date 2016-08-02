@@ -1,0 +1,12 @@
+ID  iscU
+AC  TIGR01999
+DE  FeS cluster assembly scaffold IscU
+AU  Haft DH
+TC  192.40 192.40
+NC  155.90 155.90
+AL  clustalw_manual
+IT  equivalog_domain
+EN  FeS cluster assembly scaffold IscU
+GS  iscU
+TP  TIGRFAMs
+CC  This HMM represents IscU, a homolog of the N-terminal region of NifU, an Fe-S cluster assembly protein found mostly in nitrogen-fixing bacteria. IscU is considered part of the IscSUA-hscAB-fdx system of Fe-S assembly, whereas NifU is found in nitrogenase-containing (nitrogen-fixing) species. A NifU-type protein is also found in Helicobacter and Campylobacter. IscU and NifU are considered scaffold proteins on which Fe-S clusters are assembled before transfer to apoproteins. This model excludes true NifU proteins as in Klebsiella pneumoniae and Anabaena sp. as well as archaeal homologs. It includes largely proteobacterial and eukaryotic forms.

@@ -1,0 +1,16 @@
+ID  Syntroph_Cxxx
+AC  TIGR04117
+DE  Cys-Xaa-Xaa-Xaa repeat radical SAM target protein
+AU  Haft DH
+TC  50.00 50.00
+NC  40.00 40.00
+AL  muscle_manual
+IT  paralog
+EN  Syntrophus aciditrophicus Cys-Xaa-Xaa-Xaa repeat radical SAM target protein
+TP  TIGRFAMs
+CC  This model represents a paralogous family, in Syntrophus aciditrophicus SB, of peptides a conserved N-terminal region followed by ten to seventeen direct repeats of the sequence CXXX (see repeats model TIGR04114). The N-terminal region includes a hydrophobic patch that is not shared by most members of family TIGR04114.
+RN  [1]
+RM  PMID:21478363 
+RT  Biological systems discovery in silico: radical S-adenosylmethionine protein families and their target peptides for posttranslational modification. 
+RA  Haft DH, Basu MK 
+RL  J Bacteriol. 2011 Jun;193(11):2745-55.

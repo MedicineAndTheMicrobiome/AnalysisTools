@@ -1,0 +1,14 @@
+ID  rad24
+AC  TIGR00602
+DE  checkpoint protein rad24
+AU  Loftus BJ, Eisen JA
+TC  482.55 482.55
+NC  184.50 184.50
+IT  subfamily
+EN  checkpoint protein rad24
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are involved in DNA damage tolerance (likely cell cycle checkpoints).
+CC  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  EGAD; 52318;
+DR  SWISSPROT; P32641;
+RM  96112796;

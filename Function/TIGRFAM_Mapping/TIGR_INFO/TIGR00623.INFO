@@ -1,0 +1,14 @@
+ID  sula
+AC  TIGR00623
+DE  cell division inhibitor SulA
+AU  Loftus BJ, Eisen JA
+TC  269.45 269.45
+NC  65.45 65.45
+IT  subfamily
+EN  cell division inhibitor SulA
+TP  TIGRFAMs
+CC  All proteins in this family for which the functions are known are cell division inhibitors.  In E. coli, SulA is one of the SOS regulated genes.
+DR  EGAD; 23261;
+DR  SWISSPROT; P08846;
+RM  87248093;
+DR  HAMAP; MF_01179; 27 of 38

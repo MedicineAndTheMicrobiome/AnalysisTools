@@ -1,0 +1,12 @@
+ID  fdx_isc
+AC  TIGR02007
+DE  ferredoxin, 2Fe-2S type, ISC system
+AU  Haft DH
+TC  132.10 132.10
+NC  110.70 110.70
+AL  clustalw_manual
+IT  equivalog
+EN  ferredoxin, 2Fe-2S type, ISC system
+GS  fdx
+TP  TIGRFAMs
+CC  This family consists of proteobacterial ferredoxins associated with and essential to the ISC system of 2Fe-2S cluster assembly. This family is closely related to (but excludes) eukaryotic (mitochondrial) adrenodoxins, which are ferredoxins involved in electron transfer to P450 cytochromes.

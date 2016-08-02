@@ -1,0 +1,11 @@
+ID  alph_Pro_TM
+AC  TIGR02186
+DE  conserved hypothetical protein
+AU  Haft DH
+TC  255.25 255.25
+NC  69.60 69.60
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  conserved hypothetical protein
+TP  TIGRFAMs
+CC  This family consists of predicted transmembrane proteins of about 270 amino acids. Members are found, so far, only among the Alphaproteobacteria and only once in each genome.

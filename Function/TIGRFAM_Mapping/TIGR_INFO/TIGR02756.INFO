@@ -1,0 +1,27 @@
+ID  TraK_Ftype
+AC  TIGR02756
+DE  type-F conjugative transfer system secretin TraK
+AU  Selengut J
+TC  124.00 124.00
+NC  63.05 63.05
+AL  clustalw
+IT  equivalog
+EN  type-F conjugative transfer system secretin TraK
+GS  traK
+TP  TIGRFAMs
+CC  The TraK protein is predicted to interact with the TraV and TraB proteins as part of the scaffold which extends from the inner membrane, through the periplasm to the cell envelope and through which the F-type conjugative pilus passes.  TraK is homologous to the P-type IV secretion system protein TrbG, the Ti-type protein VirB9 and the I-type TraN protein.  The protein is related to the secretin family especially the HrcC subgroup of the type III secretion system.  The protein is hypothesized to oligomerize to form a ring structure akin to other secretins [1,2,3].
+RN  [1]
+RM  PMID: 11722740
+RA  Harris RL, Hombs V, Silverman PM.
+RT  Evidence that F-plasmid proteins TraV, TraK and TraB assemble into an envelope-spanning structure in Escherichia coli.
+RL  Mol Microbiol. 2001 Nov;42(3):757-66.
+RN  [2]
+RM  PMID: 12855161
+RA  Lawley TD, Klimke WA, Gubbins MJ, Frost LS.
+RT  F factor conjugation is a true type IV secretion system.
+RL   FEMS Microbiol Lett. 2003 Jul 15;224(1):1-15.
+RN  [3]
+RM  PMID: 16138100
+RA  Frost LS, Leplae R, Summers AO, Toussaint A.
+RT  Mobile genetic elements: the agents of open source evolution.
+RL  Nat Rev Microbiol. 2005 Sep;3(9):722-32.

@@ -1,0 +1,12 @@
+ID  glyco_rpt_poly
+AC  TIGR04370
+DE  oligosaccharide repeat unit polymerase
+AU  Haft DH
+TC  40.00 40.00
+NC  35.00 35.00
+AL  clustalw_manual
+IT  subfamily
+EN  oligosaccharide repeat unit polymerase
+TP  TIGRFAMs
+CC  Members of this subfamily of highly hydrophobic proteins, with few highly conserved residues, all may act to polymerize the oligosaccharide repeat units of surface polysaccharides, including O-antigen in Gram-negative bacteria such as Leptospira (assign gene symbol wzy) and capsular polysaccharide in Gram-positive bacteria such as Streptococcus.
+CC  O-antigen biosynthesis enzymes produce a repeat unit, usually an oligosaccharide, which itself is polymerized.  O-antigen polymerase, usually designated Wzy. This family bears homology to the O-antigen ligase WaaL, but known examples of WaaL fall outside the bounds defined here. This model is much broader than Pfam model PF14296.

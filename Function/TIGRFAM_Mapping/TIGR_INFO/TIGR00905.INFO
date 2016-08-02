@@ -1,0 +1,12 @@
+ID  2A0302
+AC  TIGR00905
+DE  transporter, basic amino acid/polyamine antiporter (APA) family
+AU  Loftus BJ
+TC  409.05 409.05
+NC  382.55 382.55
+AL  clustalw_manual
+IT  subfamily
+EN  transporter, basic amino acid/polyamine antiporter (APA) family
+TR  2.A.3.2.1-4
+TP  TIGRFAMs
+CC  This family includes several families of antiporters that, rather commonly, are encoded next to decarboxylases that convert one of the antiporter substrates into the other. This arrangement allows a cycle that can remove proteins from the cytoplasm and thereby protect against acidic conditions.

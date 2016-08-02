@@ -1,0 +1,26 @@
+ID  PABP-1234
+AC  TIGR01628
+DE  polyadenylate binding protein, human types 1, 2, 3, 4 family
+AU  Selengut J
+TC  497.10 497.10
+NC  339.15 339.15
+AL  clustalw
+IT  subfamily
+EN  polyadenylate binding protein, human types 1, 2, 3, 4 family
+TP  TIGRFAMs
+CC  These eukaryotic proteins recognize the poly-A of mRNA and consists of four tandem RNA recognition domains at the N-terminus (rrm: PF00076) followed by a PABP-specific domain (PF00658) at the C-terminus.  The protein is involved in the transport of mRNA's from the nucleus to the cytoplasm [3].
+CC  There are four paralogs in Homo sapiens which are expressed in testis (GP:11610605_PABP3 [1]), platelets (SP:Q13310_PABP4 [2]), broadly expressed (SP:P11940_PABP1 [3]) and of unknown tissue range (SP:Q15097_PABP2).
+RN  [1]
+RM  PMID: 11328870
+RT  Human testis expresses a specific poly(A)-binding protein.
+RA  Feral C, Guellaen G, Pawlak A.
+RL  Nucleic Acids Res 2001 May 1;29(9):1872-1883
+RN  [2]
+RM  PMID:8524242
+RT  iPABP, an inducible poly(A)-binding protein detected in activated human T cells.
+RA  Yang H., Duckett C.S., Lindsten T.
+RL  Mol. Cell. Biol. 15:6770-6776(1995).
+RN  [3]
+RM  PMID:9582337
+RT  The human poly(A)-binding protein 1 shuttles between the nucleus and the cytoplasm.
+RA  Afonina E., Stauber R., Pavlakis G.N.

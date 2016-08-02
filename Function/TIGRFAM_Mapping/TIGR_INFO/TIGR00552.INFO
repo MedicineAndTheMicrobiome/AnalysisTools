@@ -1,0 +1,19 @@
+ID  nadE
+AC  TIGR00552
+DE  NAD+ synthetase
+AU  Haft DH
+TC  63.65 63.65
+NC  57.50 57.50
+AL  clustalw
+IT  equivalog_domain
+EN  NAD+ synthetase
+GS  nadE
+EC  6.3.1.5
+TP  TIGRFAMs
+CC  NAD+ synthetase is a nearly ubiquitous enzyme for the final step in the biosynthesis of the essensial cofactor NAD. The member of this family from Bacillus subtilis is a strictly NH(3)-dependent NAD(+) synthetase of 272 amino acids. Proteins consisting only of the domain modeled here may be named as NH3-dependent NAD+ synthetase. Amidotransferase activity may reside in a separate protein, or not be present. Some other members of the family, such as from Mycobacterium tuberculosis, are considerably longer, contain an apparent amidotransferase domain, and show glutamine-dependent as well as NH(3)-dependent activity.
+AL  clustalw
+RM  98292757
+RT  The MTCY428.08 gene of Mycobacterium tuberculosis codes for NAD+ synthetase.
+RA  Cantoni R, Branzoni M, Labo M, Rizzi M, Riccardi G
+RL  J Bacteriol 1998 Jun;180(12):3218-21
+DR  HAMAP; MF_00193; 189 of 191

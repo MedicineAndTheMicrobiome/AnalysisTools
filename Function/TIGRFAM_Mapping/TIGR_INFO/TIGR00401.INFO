@@ -1,0 +1,25 @@
+ID  msrA
+AC  TIGR00401
+DE  peptide-methionine (S)-S-oxide reductase
+AU  Loftus BJ, Haft DH
+TC  108.10 108.10
+NC  71.15 71.15
+AL  clustalw
+IT  equivalog_domain
+EN  methionine-S-sulfoxide reductase
+GS  msrA
+EC  1.8.4.11
+TP  TIGRFAMs
+CC  This HMM describes peptide methionine sulfoxide reductase (MsrA), a repair enzyme for proteins that have been inactivated by oxidation. The enzyme from E. coli is coextensive with this model and has enzymatic activity. However, in all completed genomes in which this module is present, a second protein module, described in TIGR00357, is also found, and in several cases as part of the same polypeptide chain: N-terminal to this module in Helicobacter pylori and Haemophilus influenzae (as in  PilB of Neisseria gonorrhoeae) but C-terminal to it in Treponema pallidum. PilB, containing both domains, has been shown to be important for the expression of adhesins in certain pathogens.
+RN  [1]
+RT  The minimal gene set member msrA, encoding peptide methionine sulfoxide reductase, is a virulence determinant of the plant pathogen Erwinia chrysanthemi.
+RA  Hassouni ME, Chambost JP, Expert D, Van Gijsegem F, Barras F
+RL  Proc Natl Acad Sci U S A 1999 Feb 2;96(3):887-92
+RN  [2]
+RM  96353931
+RT  Peptide methionine sulfoxide reductase contributes to the maintenance of adhesins in three major pathogens.
+RA  Wizemann TM, Moskovitz J, Pearce BJ, Cundell D, Arvidson CG, So M, Weissbach H, Brot N, Masure HR
+RL  Proc Natl Acad Sci U S A 1996 Jul 23;93(15):7985-90 
+DR  Swissprot; P27110; 
+DR  ECOCYC; EG11433 msrA;
+DR  HAMAP; MF_01401; 194 of 197

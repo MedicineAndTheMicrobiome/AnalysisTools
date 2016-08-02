@@ -1,0 +1,12 @@
+ID  yiiD_Cterm
+AC  TIGR02447
+DE  putative thioesterase domain
+AU  Haft DH
+TC  97.10 97.10
+NC  39.25 39.25
+AL  clustalw
+IT  subfamily_domain
+EN  thioesterase domain, putative
+TP  TIGRFAMs
+CC  This family consists of a broadly distributed uncharacterized domain found often as a standalone protein. The member from Shewanella oneidensis, PDB|1T82_A (Forouhar, et al., unpublished) is described from crystallography work as a putative thioesterase.  About half of the members of this family are fused to an Acetyltransf_1 domain (PFAM model PF00583). The function of this protein is unknown.
+DR  PBD; 1T82_A; Putative Thioesterase

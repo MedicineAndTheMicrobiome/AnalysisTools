@@ -1,0 +1,13 @@
+ID  glpT
+AC  TIGR00712
+DE  glycerol-3-phosphate transporter
+AU  Haft DH
+TC  632.55 632.55
+NC  358.30 358.30
+AL  clustalw
+IT  equivalog
+EN  glycerol-3-phosphate transporter
+GS  glpT
+TR  2.A.01
+TP  TIGRFAMs
+CC  This HMM describes a very hydrophobic protein, predicted to span the membrane at least 8 times. The two members confirmed experimentally as glycerol-3-phosphate transporters, from E. coli and B. subtilis, share more than 50 % amino acid identity. Proteins of the hexose phosphate and phosphoglycerate transport systems are also quite similar.

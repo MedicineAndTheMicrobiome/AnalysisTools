@@ -1,0 +1,18 @@
+ID  dsrC_tusE_dsvC
+AC  TIGR03342
+DE  sulfur relay protein, TusE/DsrC/DsvC family
+AU  Haft DH
+TC  53.50 53.50
+NC  40.95 40.95
+AL  muscle_manual
+IT  subfamily
+EN  sulfur relay protein, TusE/DsrC/DsvC family
+GS  tusE
+TP  TIGRFAMs
+CC  Members of this protein family may be described as TusE, a partner to TusBCD in a sulfur relay system for 2-thiouridine biosynthesis, a tRNA base modification process. Other members are DsrC, a functionally similar protein in species where the sulfur relay system exists primarily for sulfur metabolism rather than tRNA base modification. Some members of this family are known explicitly as the gamma subunit of sulfite reductases.
+DR  PFAM; PF04358; DsrC; DsrC like protein
+RN  [1]
+RM  PMID: 16387657
+RT  Mechanistic insights into sulfur relay by multiple sulfur mediators involved in thiouridine biosynthesis at tRNA wobble positions.
+RA  Ikeuchi Y, Shigi N, Kato J, Nishimura A, Suzuki T
+RL  Mol Cell. 2006 Jan 6;21(1):97-108.

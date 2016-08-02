@@ -1,0 +1,17 @@
+ID  glu_cys_ligase
+AC  TIGR01434
+DE  glutamate--cysteine ligase
+AU  Haft DH
+TC  393.30 393.30
+NC  223.85 223.85
+AL  clustalw
+IT  equivalog
+EN  glutamate--cysteine ligase
+GS  gshA
+EC  6.3.2.2
+TP  TIGRFAMs
+CC  Alternate name: gamma-glutamylcysteine synthetase.
+CC  This HMM represents glutamate--cysteine ligase, and enzyme in the biosynthesis of glutathione (GSH). GSH is one of several low molecular weight cysteine derivatives that can
+CC  serve to protect against oxidative damage and participate in a biosynthetic or detoxification reactions.
+Clostridium acetobutylicum candidate is short, is from an actinomycete (mycothione expected instead), and scores between trusted and noise.
+DR  HAMAP; MF_00578; 64 of 66

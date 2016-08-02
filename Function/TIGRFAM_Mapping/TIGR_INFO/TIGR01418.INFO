@@ -1,0 +1,15 @@
+ID  PEP_synth
+AC  TIGR01418
+DE  phosphoenolpyruvate synthase
+AU  Haft DH
+TC  739.75 739.75
+NC  338.15 338.15
+AL  clustalw
+IT  equivalog
+EN  phosphoenolpyruvate synthase
+GS  ppsA
+EC  2.7.9.2
+TP  TIGRFAMs
+CC  Also called pyruvate,water dikinase and PEP synthase. The member from Methanococcus jannaschii contains a large intein. This enzyme generates phosphoenolpyruvate (PEP) from pyruvate, hydrolyzing ATP to AMP and releasing inorganic phosphate in the process. The enzyme shows extensive homology to other enzymes that use PEP as substrate or product. This enzyme may provide PEP for gluconeogenesis, for PTS-type carbohydrate transport systems, or for other processes.
+DR  EXPERIMENTAL; EGAD|36981;  Pyrococcus furiosus
+DR  EXPERIMENTAL; SP|P23538; Escherichia coli

@@ -1,0 +1,17 @@
+ID  AcACP_reductase
+AC  TIGR04058
+DE  long-chain fatty acyl-ACP reductase (aldehyde-forming)
+AU  Selengut J
+TC  449.70 449.70
+NC  449.55 449.55
+AL  muscle
+IT  equivalog
+EN  long-chain fatty acyl-ACP reductase (aldehyde-forming)
+EC  1.1.1.-
+TP  TIGRFAMs
+CC  This enzyme, found in cyanobacteria, reduces a long-chain (mainly C16 or C18) fatty acyl ACP ester to its corresponding fatty aldehyde, releasing the acyl carrier protein (ACP) [1].  NADPH or NADH is the reductant for this reaction.  This enzyme may be distantly related to the short-chain dehydrogenase or reductase (SDR) family (PF00106).  The purpose of this reaction is in the first step of alkane biosynthesis (GenProp0942).
+RN  [1]
+RM  PMID:20671186 
+RT  Microbial biosynthesis of alkanes. 
+RA  Schirmer A, Rude MA, Li X, Popova E, del Cardayre SB 
+RL  Science. 2010 Jul 30;329(5991):559-62.

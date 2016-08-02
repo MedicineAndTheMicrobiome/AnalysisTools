@@ -1,0 +1,11 @@
+ID  hrcV
+AC  TIGR01399
+DE  type III secretion protein, HrcV family
+AU  Haft DH
+TC  692.25 692.25
+NC  677.30 677.30
+AL  clustalw_manual
+IT  subfamily
+EN  type III secretion protein, HrcV family
+TP  TIGRFAMs
+CC  Members of this family are closely homologous to the flagellar biosynthesis protein FlhA (TIGR01398) and should all participate in type III secretion systems. Examples include InvA (Salmonella enterica), LcrD (Yersinia enterocolitica), HrcV (Xanthomonas), etc. Type III secretion systems resemble flagellar biogenesis systems, and may share the property of translocating special classes of peptides through the membrane.

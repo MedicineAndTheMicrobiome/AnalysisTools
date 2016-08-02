@@ -1,0 +1,17 @@
+ID  cas_csx3
+AC  TIGR02579
+DE  CRISPR-associated protein, Csx3 family
+AU  Haft DH
+TC  55.40 55.40
+NC  30.15 30.15
+AL  clustalw
+IT  hypoth_equivalog
+EN  CRISPR-associated protein, Csx3 family
+GS  csx3
+TP  TIGRFAMs
+CC  Members of this family are found encoded in CRISPR-associated (cas) gene clusters, near CRISPR repeats, in the genomes of several different thermophiles: Archaeoglobus fulgidus (archaeal), Aquifex aeolicus (Aquificae), Dictyoglomus thermophilum (Dictyoglomi), and a thermophilic Synechococcus (Cyanobacteria). It is not yet assigned to a specific CRISPR/cas subtype (hence the x designation csx3).
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=2003
+RN  [1]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005

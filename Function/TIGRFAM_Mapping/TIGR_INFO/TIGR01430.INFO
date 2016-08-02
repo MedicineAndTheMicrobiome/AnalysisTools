@@ -1,0 +1,16 @@
+ID  aden_deam
+AC  TIGR01430
+DE  adenosine deaminase
+AU  Haft DH
+TC  216.55 216.55
+NC  114.85 114.85
+AL  clustalw_manual
+IT  equivalog
+EN  adenosine deaminase
+GS  add
+EC  3.5.4.4
+TP  TIGRFAMs
+CC  This family includes the experimentally verified adenosine deaminases of mammals and E. coli.  Other members of this family are predicted also to be adenosine deaminase, an enzyme of nucleotide degradation.  This family is distantly related to AMP deaminase.
+DR  EXPERIMENTAL; SP:P22333; Escherichia coli
+DR  PFAM; PF00962; A_deaminase
+DR  HAMAP; MF_00540; 121 of 124

@@ -1,0 +1,12 @@
+ID  SCM_precur_ScmA
+AC  TIGR04252
+DE  SynChlorMet cassette protein ScmA
+AU  Haft DH
+TC  35.00 35.00
+NC  25.00 25.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  SynChlorMet cassette protein ScmA
+GS  scmA
+TP  TIGRFAMs
+CC  A biosynthesis cassette found in Syntrophobacter fumaroxidans MPOB, Chlorobium limicola DSM 245, Methanocella paludicola SANAE, and delta proteobacterium NaphS2 contains two PqqE-like radical SAM/SPASM domain proteins, a PqqD homolog, and a conserved hypothetical protein. This HMM identifies a conserved open reading frame that was identified as a predicted gene in only one of those species (Chlorobium), but that may represent the ribosomally produced peptide precursor of the system. As with most other radical SAM enzyme-modified ribosomal natural products, these polypeptides are Cys-rich in the C-terminal half.

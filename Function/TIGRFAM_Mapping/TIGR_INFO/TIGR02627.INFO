@@ -1,0 +1,14 @@
+ID  rhamnulo_kin
+AC  TIGR02627
+DE  rhamnulokinase
+AU  Haft DH
+TC  527.95 527.95
+NC  490.00 490.00
+AL  clustalw
+IT  equivalog
+EN  rhamnulokinase
+GS  rhaB
+EC  2.7.1.5
+TP  TIGRFAMs
+CC  This model describes rhamnulokinase, an enzyme that catalyzes the second step in rhamnose catabolism.
+DR  HAMAP; MF_01535; 36 of 37

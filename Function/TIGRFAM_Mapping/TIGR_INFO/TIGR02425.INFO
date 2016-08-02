@@ -1,0 +1,18 @@
+ID  decarb_PcaC
+AC  TIGR02425
+DE  4-carboxymuconolactone decarboxylase
+AU  Haft DH
+TC  155.70 155.70
+NC  138.10 138.10
+AL  clustalw
+IT  equivalog
+EN  4-carboxymuconolactone decarboxylase
+GS  pcaC
+EC  4.1.1.44
+TP  TIGRFAMs
+CC  Members of this family are 4-carboxymuconolactone decarboxylase, which catalyzes the third step in the catabolism of protocatechuate (and therefore the fourth step in the catabolism of para-hydroxybenzoate, of 3-hydroxybenzoate, of vanillate, etc.). Most members of this family are encoded within protocatechuate catabolism operons. This protein is sometimes found as a fusion protein with other enzymes of the pathway, as in Rhodococcus opacus, Streptomyces avermitilis, and Caulobacter crescentus.
+RN  [1]
+RM  15006791
+RT  Diverse organization of genes of the beta-ketoadipate pathway in members of the marine Roseobacter lineage.
+RA  Buchan A, Neidle EL, Moran MA.
+RL  Appl Environ Microbiol. 2004 Mar;70(3):1658-68.

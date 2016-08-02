@@ -1,0 +1,13 @@
+ID  2A0106
+AC  TIGR00883
+DE  MFS transporter, metabolite:H+ symporter (MHS) family protein
+AU  Loftus BJ
+TC  443.45 443.45
+NC  405.05 405.05
+AL  clustalw_manual
+IT  subfamily
+EN  metabolite-proton symporter
+TR  2.A.1.6
+TP  TIGRFAMs
+CC  This HMM represents the metabolite:H+ symport subfamily of the major facilitator superfamily (PF00083), including citrate-H+ symporters, dicarboxylate:H+ symporters, the proline/glycine-betaine transporter ProP, etc.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_1.html

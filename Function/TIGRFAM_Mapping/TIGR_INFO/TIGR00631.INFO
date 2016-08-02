@@ -1,0 +1,15 @@
+ID  uvrb
+AC  TIGR00631
+DE  excinuclease ABC subunit B
+AU  Loftus BJ, Eisen JA
+TC  750.10 750.10
+NC  402.55 402.55
+IT  equivalog
+EN  excinuclease ABC, B subunit
+GS  uvrB
+EC  3.1.25.-
+TP  TIGRFAMs
+CC  All proteins in this family for wich functions are known are DNA helicases that function in the  nucleotide excision repair and are endonucleases that make the 3' incision next to DNA damage.  They are part of a pathway requiring UvrA, UvrB, UvrC, and UvrD homologs.
+CC  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University)
+RM  86176773;
+DR  HAMAP; MF_00204; 281 of 283

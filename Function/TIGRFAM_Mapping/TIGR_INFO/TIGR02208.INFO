@@ -1,0 +1,13 @@
+ID  lipid_A_msbB
+AC  TIGR02208
+DE  lipid A biosynthesis (KDO)2-(lauroyl)-lipid IVA acyltransferase
+AU  Haft DH
+TC  336.05 336.05
+NC  268.60 268.60
+AL  clustalw_manual
+IT  equivalog
+EN  lipid A biosynthesis (KDO)2-(lauroyl)-lipid IVA acyltransferase
+GS  msbB
+EC  2.3.1.-
+TP  TIGRFAMs
+CC  This family consists of MsbB in E. coli and closely related proteins in other species. MsbB is homologous to HtrB (TIGR02207) and acts immediately after it in the biosynthesis of KDO-2 lipid A (also called Re LPS and Re endotoxin). These two enzymes act after creation of KDO-2 lipid IV-A by addition of the KDO sugars.

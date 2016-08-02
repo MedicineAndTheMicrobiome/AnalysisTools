@@ -1,0 +1,12 @@
+ID  upstrm_HI1419
+AC  TIGR02683
+DE  putative addiction module killer protein
+AU  Haft DH
+TC  62.85 62.85
+NC  36.30 36.30
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  putative addiction module killer protein
+TP  TIGRFAMs
+CC  Members of this strictly bacterial protein family are small, at roughly 100 amino acids. The gene is almost invariably the upstream member of a gene pair, where the downstream member is a predicted DNA-binding protein from a clade within Pfam helix-turn-helix family PF01381. These gene pairs, when found on the bacterial chromosome, often are located with prophage regions, but also in both integrated plasmid regions and near housekeeping genes.  Analysis suggests that the gene pair may serve as an addiction module.
+DR  PFAM; PF01381; HTH_3; Helix-turn-helix

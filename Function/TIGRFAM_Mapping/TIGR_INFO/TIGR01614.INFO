@@ -1,0 +1,16 @@
+ID  PME_inhib
+AC  TIGR01614
+DE  pectinesterase inhibitor domain
+AU  Haft DH, Segal N
+TC  35.95 35.95
+NC  32.40 32.40
+AL  clustalw_manual
+IT  domain
+EN  pectinesterase inhibitor domain
+TP  TIGRFAMs
+CC  This HMM describes a plant domain of about 200 amino acids, characterized by four conserved Cys residues, shown in a pectinesterase inhibitor from Kiwi to form two disulfide bonds: first to second and third to fourth.  Roughly half the members of this family have the region described by this HMM followed immediately by a pectinesterase domain, PF01095. This suggests that the pairing of the enzymatic domain and its inhibitor reflects a conserved regulatory mechanism for this enzyme family.
+DR  EXPERIMENTAL; SP:P83326; pectin methylesterase inhibitor; kiwi
+RM  10880981
+RT  Kiwi protein inhibitor of pectin methylesterase amino-acid sequence and structural importance of two disulfide bridges.
+RA  Camardella L, Carratore V, Ciardiello MA, Servillo L, Balestrieri C, Giovane A.
+RL  Eur J Biochem 2000 Jul;267(14):4561-5

@@ -1,0 +1,19 @@
+ID  CPEP_Pphonmut
+AC  TIGR02319
+DE  carboxyvinyl-carboxyphosphonate phosphorylmutase
+AU  Haft DH
+TC  420.05 420.05
+NC  255.20 255.20
+AL  clustalw
+IT  equivalog
+EN  carboxyvinyl-carboxyphosphonate phosphorylmutase
+GS  bcpA
+EC  2.7.8.23
+TP  TIGRFAMs
+CC  This family consists of carboxyvinyl-carboxyphosphonate phosphorylmutase (CPEP phosphonomutase), an unusual enzyme involved in the biosynthesis of the antibiotic bialaphos. So far, it is known only in that pathway and only in Streptomyces hygroscopicus. Some related proteins annotated as being functionally equivalent are likely misannotated examples of methylisocitrate lyase, an enzyme of priopionate utilization.
+DR  SWISSPROT; P11435; Streptomyces hygroscopicus
+RN  [1]
+RM  2160937
+RT  Carboxyphosphonoenolpyruvate phosphonomutase, a novel enzyme catalyzing C-P bond formation.
+RA  Hidaka T, Imai S, Hara O, Anzai H, Murakami T, Nagaoka K, Seto H.
+RL  J Bacteriol. 1990 Jun;172(6):3066-72.

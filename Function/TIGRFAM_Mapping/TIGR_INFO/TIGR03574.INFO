@@ -1,0 +1,18 @@
+ID  selen_PSTK
+AC  TIGR03574
+DE  L-seryl-tRNA(Sec) kinase
+AU  Haft DH
+TC  290.50 290.50
+NC  190.90 190.90
+AL  muscle_manual
+IT  equivalog
+EN  L-seryl-tRNA(Sec) kinase, archaeal
+GS  pstK
+EC  2.7.1.164
+TP  TIGRFAMs
+CC  Members of this protein are L-seryl-tRNA(Sec) kinase. This enzyme is part of a two-step pathway in Eukaryota and Archaea for performing selenocysteine biosynthesis by changing serine misacylated on selenocysteine-tRNA to selenocysteine. This enzyme performs the first step, phosphorylation of the OH group of the serine side chain. This family represents archaeal proteins with this activity.
+RN  [1]
+RM  PMID:18174226
+RT  Characterization and evolutionary history of an archaeal kinase involved in selenocysteinyl-tRNA formation.
+RA  Sherrer RL, O'Donoghue P, Soll D
+RL  Nucleic Acids Res. 2008 Mar;36(4):1247-59.

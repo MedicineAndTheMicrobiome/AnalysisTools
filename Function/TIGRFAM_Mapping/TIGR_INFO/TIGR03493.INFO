@@ -1,0 +1,17 @@
+ID  cellullose_BcsF
+AC  TIGR03493
+DE  celllulose biosynthesis operon protein BcsF/YhjT
+AU  Haft DH
+TC  56.00 56.00
+NC  29.05 29.05
+AL  muscle_manual
+IT  equivalog
+EN  celllulose biosynthesis operon protein BcsF/YhjT
+GS  bcsF
+TP  TIGRFAMs
+CC  Members of this protein family are found invariably together with genes of bacterial cellulose biosynthesis, and are presumed to be involved in the process. Members average about 63 amino acids in length and are not uncharacterized. The gene has been designated both YhjT and BcsF (bacterial cellulose synthesis F).
+RN  [1]
+RM  PMID:11929533
+RT  Genetic analysis of Salmonella enteritidis biofilm formation: critical role of cellulose.
+RA  Solano C, Garcia B, Valle J, Berasain C, Ghigo JM, Gamazo C, Lasa I
+RL  Mol Microbiol. 2002 Feb;43(3):793-808.

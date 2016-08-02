@@ -1,0 +1,17 @@
+ID  DAHP_synth_II
+AC  TIGR01358
+DE  3-deoxy-7-phosphoheptulonate synthase
+AU  Haft DH
+TC  614.70 614.70
+NC  464.35 464.35
+AL  clustalw_manual
+IT  equivalog
+EN  3-deoxy-7-phosphoheptulonate synthase, class II
+EC  2.5.1.54
+TP  TIGRFAMs
+CC  This HMM represents the class II family of 3-deoxy-7-phosphoheptulonate synthase, aka phospho-2-dehydro-3-deoxyheptonate aldolase, as found in plants and some bacteria. It shows some similarity to the class I family found in many bacteria. The enzyme catalyzes the first of 7 steps in the biosynthesis of chorismate, that last common precursor of all three aromatic amino acids.
+CC  Homologs scoring between trusted and noise cutoff include proteins involved in antibiotic biosynthesis; one example is active as this enzyme, while another acts on an amino analog.
+DR  COGS; COG3200
+DR  EXPERIMENTAL; SP|P80574; Streptomyces coelicolor
+DR  EXPERIMENTAL; SP|P29976; Arabidopsis thaliana; 1
+DR  EXPERIMENTAL; SP|Q00218; Arabidopsis thaliana; 2

@@ -1,0 +1,15 @@
+ID  hsdR
+AC  TIGR00348
+DE  type I site-specific deoxyribonuclease, HsdR family
+AU  Loftus BJ
+TC  284.55 284.55
+NC  213.45 213.45
+AL  clustalw
+IT  subfamily
+EN  type I site-specific deoxyribonuclease, HsdR family
+GS  hsdR
+EC  3.1.21.3
+TP  TIGRFAMs
+CC  This gene is part of the type I restriction and modification system which is composed of three polypeptides R (restriction endonuclease), M (modification) and S (specificity). This group of enzymes recognize specific short DNA sequences and have an absolute requirement for ATP (or dATP) and S-adenosyl-L-methionine. They also catalyse the reactions of EC 2.1.1.72 and EC 2.1.1.73, with similar site specificity.(J. Mol. Biol. 271 (3), 342-348 (1997)).
+CC  Members of this family are assumed to differ from each other in DNA site specificity.
+DR  EGAD:10320,

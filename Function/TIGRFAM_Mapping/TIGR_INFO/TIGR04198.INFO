@@ -1,0 +1,16 @@
+ID  paramyx_RNAcap
+AC  TIGR04198
+DE  mRNA capping enzyme
+AU  Haft DH
+TC  185.00 185.00
+NC  50.00 50.00
+AL  muscle_manual
+IT  equivalog_domain
+EN  mRNA capping enzyme, paramyxovirus family
+TP  TIGRFAMs
+CC  This model represents a common C-terminal region shared by paramyxovirus-like RNA-dependent RNA polymerases (see Pfam model PF00946). Polymerase proteins described by these two models are often called L protein (large polymerase protein). Capping of mRNA requires RNA triphosphatase and guanylyl transferase activities, demonstrated for the rinderpest virus L protein and at least partially localized to the region of this model.
+RN  [1]
+RM  PMID:19297608 
+RT  RNA triphosphatase and guanylyl transferase activities are associated with the RNA polymerase protein L of rinderpest virus. 
+RA  Gopinath M, Shaila MS 
+RL  J Gen Virol. 2009 Jul;90(Pt 7):1748-56.

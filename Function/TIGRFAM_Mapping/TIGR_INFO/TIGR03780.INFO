@@ -1,0 +1,12 @@
+ID  Bac_Flav_CT_N
+AC  TIGR03780
+DE  Bacteroides conjugative transposon TraN protein
+AU  Haft DH
+TC  164.10 164.10
+NC  126.45 126.45
+AL  muscle_manual
+IT  equivalog
+EN  Bacteroides conjugative transposon TraN protein
+GS  traN
+TP  TIGRFAMs
+CC  Members of this family are the TraN protein encoded by transfer region genes of conjugative transposons of Bacteroides. The family is related to conjugative transfer proteins VirB9 and TrbG of Agrobacterium Ti plasmids.

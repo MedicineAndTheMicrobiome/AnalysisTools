@@ -1,0 +1,18 @@
+ID  archaeo_VPXXXP
+AC  TIGR04144
+DE  archaeosortase B
+AU  Haft DH
+TC  150.00 150.00
+NC  70.00 70.00
+AL  muscle_manual
+IT  equivalog
+EN  archaeosortase B, VPXXXP-CTERM-specific
+GS  artB
+EC  3.4.22.-
+TP  TIGRFAMs
+CC  Members of this protein family are found so far in Methanohalophilus mahii DSM 5219 and Methanohalobium evestigatum Z-7303, along with five and nine proteins, respectively, with the VPXXXP-CTERM protein sorting signal (TIGR04143). In these species, this boutique system represents a second exosortase/archaeosortase-type system.
+RN  [1]
+RM  PMID:22037399 
+RT  Archaeosortases and exosortases are widely distributed systems linking membrane transit with posttranslational modification. 
+RA  Haft DH, Payne SH, Selengut JD 
+RL  J Bacteriol. 2012 Jan;194(1):36-48.

@@ -1,0 +1,24 @@
+ID  UbiB
+AC  TIGR01982
+DE  2-polyprenylphenol 6-hydroxylase
+AU  Selengut J
+TC  487.55 487.55
+NC  465.35 465.35
+AL  clustalw
+IT  equivalog
+EN  2-polyprenylphenol 6-hydroxylase
+GS  ubiB
+EC  1.14.13.-
+TP  TIGRFAMs
+CC  This model represents the enzyme (UbiB) which catalyzes the first hydroxylation step in the ubiquinone biosynthetic pathway in bacteria [1,2].  It is believed that the reaction is 2-polyprenylphenol -> 6-hydroxy-2-polyprenylphenol.  This model finds hits primarily in the proteobacteria.  The gene is also known as AarF in certain species.
+RN  [1]
+RM  PMID: 11583838
+RT  Ubiquinone biosynthesis in microorganisms.
+RA  Meganathan R.
+RL  FEMS Microbiol Lett. 2001 Sep 25;203(2):131-9. 
+RN  [2]
+RM  PMID: 10960098
+RT  Identification of Escherichia coli ubiB, a gene required for the first monooxygenase step in ubiquinone biosynthesis.
+RA  Poon WW, Davis DE, Ha HT, Jonassen T, Rather PN, Clarke CF.
+RL  J Bacteriol. 2000 Sep;182(18):5139-46.
+DR  HAMAP; MF_00414; 87 of 89

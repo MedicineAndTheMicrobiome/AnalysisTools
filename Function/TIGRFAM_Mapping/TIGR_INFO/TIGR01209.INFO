@@ -1,0 +1,17 @@
+ID  TIGR01209
+AC  TIGR01209
+DE  RNA ligase, Pab1020 family
+AU  Haft DH
+TC  136.90 136.90
+NC  136.60 136.60
+AL  clustalw
+IT  hypoth_equivalog
+EN  RNA ligase, Pab1020 family
+TP  TIGRFAMs
+CC  Members of this family are found, so far, in a single copy per genome and largely in thermophiles, of which only Aquifex aeolicus is bacterial rather than archaeal. PSI-BLAST converges after a single iteration to the whole of this family and reveals no convincing similarity to any other protein. The member protein Pab1020 has been characterized as an RNA ligase with circularization activity.
+RN  [1]
+RM  PMID:18511537
+RT  The structure of an archaeal homodimeric ligase which has RNA circularization activity.
+RA  Brooks MA, Meslet-Cladiere L, Graille M, Kuhn J, Blondeau K, Myllykallio H, van Tilbeurgh H
+RL  Protein Sci. 2008 Aug;17(8):1336-45. Epub 2008 May 29.
+DR  COGS; COG1423

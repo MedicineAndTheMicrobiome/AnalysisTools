@@ -1,0 +1,11 @@
+ID  heavy_Cys
+AC  TIGR04289
+DE  eight-cysteine-cluster domain
+AU  Haft DH
+TC  50.00 50.00
+NC  33.00 33.00
+AL  muscle_manual
+IT  domain
+EN  eight-cysteine-cluster domain
+TP  TIGRFAMs
+CC  In this domain of about 50 residues, eight of twelve invariant residues are Cys. Proteins with this domain tend to have N-terminal signal sequences, suggesting an extracytoplasmic location for this domain.

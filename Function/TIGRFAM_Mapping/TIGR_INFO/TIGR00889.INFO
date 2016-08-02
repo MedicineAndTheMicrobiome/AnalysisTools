@@ -1,0 +1,13 @@
+ID  2A0110
+AC  TIGR00889
+DE  nucleoside transporter
+AU  Loftus BJ
+TC  446.10 446.10
+NC  180.45 180.45
+AL  clustalw_manual
+IT  subfamily
+EN  nucleoside transporter
+TR  2.A.1.10
+TP  TIGRFAMs
+CC  This family of proteins transports nucleosides at a high affinity. The transport mechanism is driven by proton motive force. This family includes nucleoside permease NupG and xanthosine permease from E.Coli.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_1.html

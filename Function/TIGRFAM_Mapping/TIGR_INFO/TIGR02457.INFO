@@ -1,0 +1,16 @@
+ID  TreS_Cterm
+AC  TIGR02457
+DE  putative maltokinase
+AU  Haft DH
+TC  375.05 375.05
+NC  135.95 135.95
+AL  clustalw
+IT  hypoth_equivalog_domain
+EN  trehalose synthase-fused probable maltokinase
+TP  TIGRFAMs
+CC  Three pathways for the biosynthesis of trehalose, an osmoprotectant that in some species is also a precursor of certain cell wall glycolipids. Trehalose synthase, TreS, can interconvert maltose and trehalose, but while the equilibrium may favor trehalose, physiological concentrations of trehalose may be much greater than that of maltose and TreS may act largely in its degradation. This model describes a domain found only as a C-terminal fusion to TreS proteins. The most closely related proteins outside this family, Pep2 of Streptomyces coelicolor and Mak1 of Actinoplanes missouriensis, have known maltokinase activity. We suggest this domain acts as a maltokinase and helps drive conversion of trehalose to maltose.
+RN  [1]
+RM  15378530
+RT  Isolation of mak1 from Actinoplanes missouriensis and evidence that Pep2 from Streptomyces coelicolor is a maltokinase.
+RA  Jarling M, Cauvet T, Grundmeier M, Kuhnert K, Pape H.
+RL  J Basic Microbiol. 2004;44(5):360-73.

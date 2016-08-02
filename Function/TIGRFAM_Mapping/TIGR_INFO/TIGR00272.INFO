@@ -1,0 +1,11 @@
+ID  DPH2
+AC  TIGR00272
+DE  diphthamide biosynthesis protein 2
+AU  Haft DH
+TC  184.05 184.05
+NC  146.75 146.75
+AL  clustalw
+IT  equivalog
+EN  diphthamide biosynthesis protein 2
+TP  TIGRFAMs
+CC  This protein has been shown in Saccharomyces cerevisiae to be one of several required for the modification of a particular histidine residue of translation elongation factor 2 to diphthamide. This modified site can then become the target for ADP-ribosylation by diphtheria toxin.

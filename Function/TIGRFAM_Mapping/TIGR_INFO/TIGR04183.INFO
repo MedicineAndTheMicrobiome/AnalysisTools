@@ -1,0 +1,11 @@
+ID  Por_Secre_tail
+AC  TIGR04183
+DE  Por secretion system C-terminal sorting domain
+AU  Haft DH
+TC  23.00 23.00
+NC  20.00 20.00
+AL  muscle_manual
+IT  domain
+EN  Por secretion system C-terminal sorting domain
+TP  TIGRFAMs
+CC  Species that include Porphyromonas gingivalis, Fibrobacter succinogenes, Flavobacterium johnsoniae, Cytophaga hutchinsonii, Gramella forsetii, Prevotella intermedia, and Salinibacter ruber average twenty or more copies of a C-terminal domain, modeled by this HMM, associated with sorting to the outer membrane and covalent modification.

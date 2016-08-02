@@ -1,0 +1,16 @@
+ID  pupylate_cterm
+AC  TIGR03687
+DE  ubiquitin-like protein Pup
+AU  Haft DH
+TC  41.45 41.45
+NC  24.80 24.80
+AL  clustalw_manual
+IT  equivalog_domain
+EN  ubiquitin-like protein Pup
+TP  TIGRFAMs
+CC  Members of this protein family are Pup, a small protein whose ligation to target proteins steers them toward degradation. This protein family occurs in a number of bacteria, especially Actinobacteria such as Mycobacterium tuberculosis, that possess an archeal-type proteasome. All members of this protein family known during model construction end with the C-terminal motif [FY][VI]QKGG[QE]. Ligation is thought to occur between the C-terminal COOH of Pup and an epsilon-amino group of a Lys on the target protein. The N-terminal half of this protein is poorly conserved and not represented in the seed alignment.
+RN  [1]
+RM  PMID:18832610
+RT  Ubiquitin-Like Protein Involved in the Proteasome Pathway of Mycobacterium tuberculosis.
+RA  Pearce MJ, Mintseris J, Ferreyra J, Gygi SP, Darwin KH
+RL  Science. 2008 Oct 2.

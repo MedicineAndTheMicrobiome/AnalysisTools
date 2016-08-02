@@ -1,0 +1,17 @@
+ID  flagell_FliJ
+AC  TIGR02473
+DE  flagellar export protein FliJ
+AU  Haft DH
+TC  50.45 50.45
+NC  29.30 29.30
+AL  clustalw
+IT  equivalog
+EN  flagellar export protein FliJ
+GS  fliJ
+TP  TIGRFAMs
+CC  Members of this family are the FliJ protein found, in nearly every case, in the midst of other flagellar biosynthesis genes in bacgterial genomes. Typically the fliJ gene is found adjacent to the gene for the flagellum-specific ATPase FliI. Sequence scoring in the gray zone between trusted and noise cutoffs include both probable FliJ proteins and components of bacterial type III secretion systems.
+RN  [1]
+RM  10894728
+RT  Role of FliJ in flagellar protein export in Salmonella.
+RA  Minamino T, Chu R, Yamaguchi S, Macnab RM.
+RL  J Bacteriol. 2000 Aug;182(15):4207-15.

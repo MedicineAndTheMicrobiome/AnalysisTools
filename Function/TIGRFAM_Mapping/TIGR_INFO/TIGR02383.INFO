@@ -1,0 +1,24 @@
+ID  Hfq
+AC  TIGR02383
+DE  RNA chaperone Hfq
+AU  Haft DH
+TC  61.70 61.70
+NC  31.15 31.15
+AL  clustalw
+IT  equivalog
+EN  RNA chaperone Hfq
+GS  hfq
+TP  TIGRFAMs
+CC  This model represents the RNA-binding pleiotropic regulator Hfq, a small, Sm-like protein of bacteria. It helps pair regulatory noncoding RNAs with complementary mRNA target regions. It enhances the elongation of poly(A) tails on mRNA. It appears also to protect RNase E recognition sites (A/U-rich sequences with adjacent stem-loop structures) from cleavage. Being pleiotropic, it differs in some of its activities in different species. Hfq binds the non-coding regulatory RNA DsrA (see Rfam RF00014) in the few species known to have it: Escherichia coli, Shigella flexneri, Salmonella spp.  In Azorhizobium caulinodans, an hfq mutant is unable to express nifA, and Hfq is called NrfA, for nif regulatory factor (see PMID:8197116). The name hfq reflects phenomenology as a host factor for phage Q-beta RNA replication.
+DR  PFAM; PF01423; LSM domain
+RN  [1]
+RM  15531892
+RT  Escherichia coli Hfq has distinct interaction surfaces for DsrA, rpoS and poly(A) RNAs.
+RA  Mikulecky PJ, Kaw MK, Brescia CC, Takach JC, Sledjeski DD, Feig AL.
+RL  Nat Struct Mol Biol. 2004 in press
+RN  [2]
+RM  14561880
+RT  Coincident Hfq binding and RNase E cleavage sites on mRNA and small regulatory RNAs.
+RA  Moll I, Afonyushkin T, Vytvytska O, Kaberdin VR, Blasi U.
+RL  RNA. 2003 Nov;9(11):1308-14.
+DR  HAMAP; MF_00436; 258 of 263

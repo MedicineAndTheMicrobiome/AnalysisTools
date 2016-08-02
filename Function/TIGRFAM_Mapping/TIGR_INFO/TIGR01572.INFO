@@ -1,0 +1,11 @@
+ID  A_thl_para_3677
+AC  TIGR01572
+DE  Arabidopsis paralogous family TIGR01572
+AU  Haft DH, Segal N
+TC  104.20 104.20
+NC  60.65 60.65
+AL  clustalw_manual
+IT  paralog
+EN  Arabidopsis paralogous family TIGR01572
+TP  TIGRFAMs
+CC  This HMM describes a paralogous family of hypothetical proteins in Arabidopsis thaliana. No homologs are detected from other species. Length heterogeneity within the family is attributable partly to a 21-residue repeat present in from zero to three tandem copies. The central region of the repeat resembles the pattern [VIF][FY][QK]GX[LM]P[DEK]XXXDDAL.

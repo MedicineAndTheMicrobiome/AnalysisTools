@@ -1,0 +1,16 @@
+ID  pseudoazurin
+AC  TIGR02375
+DE  pseudoazurin
+AU  Haft DH
+TC  109.85 109.85
+NC  61.85 61.85
+AL  clustalw
+IT  equivalog
+EN  pseudoazurin
+TP  TIGRFAMs
+CC  Pseudoazurin, also called cupredoxin, is a small, blue periplasmic protein with a single bound copper atom. Pseudoazurin is related plastocyanins. Several examples of pseudoazurin are encoded by a neighboring gene for, or have been shown to transfer electrons to, copper-containing nitrite reductases (TIGR02376) of the same species.
+DR  PFAM; PF00127; Copper-bind
+RM  2824441
+RT  The blue copper protein gene of Alcaligenes faecalis S-6 directs secretion of blue copper protein from Escherichia coli cells.
+RA  Yamamoto K, Uozumi T, Beppu T.
+RL  J Bacteriol. 1987 Dec;169(12):5648-52.

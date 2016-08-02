@@ -1,0 +1,18 @@
+ID  aceE
+AC  TIGR00759
+DE  pyruvate dehydrogenase (acetyl-transferring), homodimeric type
+AU  Haft DH
+TC  859.90 859.90
+NC  436.60 436.60
+AL  clustalw
+IT  equivalog
+EN  pyruvate dehydrogenase E1 component, homodimeric type
+GS  aceE
+EC  1.2.4.1
+TP  TIGRFAMs
+CC  Most members of this family are pyruvate dehydrogenase complex, E1 component. Note: this family was classified as subfamily rather than equivalog because it includes a counterexample from Pseudomonas putida, MdeB, that is active as an E1 component of an alpha-ketoglutarate dehydrogenase complex rather than a pyruvate dehydrogase complex. The second pyruvate dehydrogenase complex E1 protein from Alcaligenes eutrophus, PdhE, complements an aceE mutant of E. coli but is not part of a pyruvate dehydrogenase complex operon, is more similar to the Pseudomonas putida MdeB than to E. coli AceE, and may have also have a different primary specificity.
+RN  [1]
+RM  97334115
+RT  Molecular characterization of the mde operon involved in L-methionine catabolism of Pseudomonas putida.
+RA  Inoue H, Inagaki K, Eriguchi SI, Tamura T, Esaki N, Soda K, Tanaka H
+RL  J Bacteriol 1997 Jun;179(12):3956-62

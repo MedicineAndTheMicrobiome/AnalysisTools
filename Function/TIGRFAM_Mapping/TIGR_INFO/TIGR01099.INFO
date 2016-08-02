@@ -1,0 +1,13 @@
+ID  galU
+AC  TIGR01099
+DE  UTP--glucose-1-phosphate uridylyltransferase
+AU  Dodson RJ
+TC  326.80 326.80
+NC  312.55 312.55
+AL  clustalw
+IT  equivalog
+EN  UTP--glucose-1-phosphate uridylyltransferase
+GS  galU
+EC  2.7.7.9
+TP  TIGRFAMs
+CC  Built to distinquish between the highly similar genes galU and galF

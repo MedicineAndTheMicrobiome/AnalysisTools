@@ -1,0 +1,15 @@
+ID  manA
+AC  TIGR00218
+DE  mannose-6-phosphate isomerase, class I
+AU  Loftus BJ
+TC  116.20 116.20
+NC  59.15 59.15
+AL  clustalw
+IT  equivalog
+EN  mannose-6-phosphate isomerase, class I
+GS  manA
+EC  5.3.1.8
+TP  TIGRFAMs
+CC  The names phosphomannose isomerase and mannose-6-phosphate isomerase are synonomous. This family contains two rather deeply branched groups. One group contains an experimentally determined phosphomannose isomerase of Streptococcus mutans as well as three uncharacterized paralogous proteins of Bacillus subtilis, all at more than 50 % identity to each other, plus a more distant homolog from Archaeoglobus fulgidus. The other group contains members from E. coli, budding yeast, Borrelia burgdorferi, etc.
+DR  PROSITE; PDOC00746;
+DR  PFAM; PF01238; PMI_typeI

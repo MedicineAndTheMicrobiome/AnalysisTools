@@ -1,0 +1,13 @@
+ID  rluA_subfam
+AC  TIGR00005
+DE  pseudouridine synthase, RluA family
+AU  Dodson RJ, Richardson DL
+TC  192.70 192.70
+NC  136.20 136.20
+AL  clustalw_manual
+IT  subfamily
+EN  pseudouridine synthase, RluA family
+EC  5.4.99.-
+TP  TIGRFAMs
+CC  In E. coli, RluD (SfhB) modifies uridine to pseudouridine at 23S RNA U1911, 1915, and 1917, RluC modifies 955, 2504 and 2580, and RluA modifies U746 and tRNA U32. An additional homolog from E. coli outside this family, TruC (SP|Q46918),
+CC  modifies uracil-65 in transfer RNAs to pseudouridine.

@@ -1,0 +1,18 @@
+ID  bac_cardiolipin
+AC  TIGR04265
+DE  cardiolipin synthase
+AU  Haft DH
+TC  290.00 290.00
+NC  280.00 280.00
+AL  muscle_manual
+IT  equivalog
+EN  cardiolipin synthase
+GS  cls
+EC  2.7.8.-
+TP  TIGRFAMs
+CC  This model is based on experimentally characterized bacterial cardiolipin synthases (cls) from E. coli, Staphylococcus aureus (two), and Bacillus pseudofirmus OF4. This model describes just one of several homologous but non-orthologous forms of cls. The cutoff score is set arbitrarily high to avoid false-positives. Note that there are two enzymatic activites called cardiolipin synthase. This model represents type 1, which does not rely on a CDP-linked donor, but instead does a reversible transfer of a phosphatidyl group from one phosphatidylglycerol molecule to another.
+RN  [1]
+RM  PMID:9370333 
+RT  Cardiolipin synthase from Escherichia coli. 
+RA  Tropp BE 
+RL  Biochim Biophys Acta. 1997 Sep 4;1348(1-2):192-200.

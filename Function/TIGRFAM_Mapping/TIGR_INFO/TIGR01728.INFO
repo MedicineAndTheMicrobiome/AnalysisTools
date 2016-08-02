@@ -1,0 +1,15 @@
+ID  SsuA_fam
+AC  TIGR01728
+DE  ABC transporter, substrate-binding protein, aliphatic sulfonates family
+AU  Haft DH
+TC  163.50 163.50
+NC  156.80 156.80
+AL  clustalw_manual
+IT  subfamily
+EN  ABC transporter, substrate-binding protein, aliphatic sulfonates family
+TP  TIGRFAMs
+CC  Members of this family are substrate-binding periplasmic proteins of ABC transporters. This subfamily includes SsuA, a member of a transporter operon needed to obtain sulfur from aliphatic sulfonates. Related proteins outside the scope of this HMM include taurine (NH2-CH2-CH2-S03H) binding proteins, the probable sulfate ester binding protein AtsR, and the probable aromatic sulfonate binding protein AsfC. All these families make sulfur available when Cys and sulfate levels are low. Please note that phylogenetic analysis by neighbor-joining suggests that a number of sequences belonging to this family have been excluded because of scoring lower than taurine-binding proteins.
+RM  10506196
+RT  The Escherichia coli ssuEADCB gene cluster is required for the utilization of sulfur from aliphatic sulfonates and is regulated by the transcriptional activator Cbl.
+RA  van Der Ploeg JR, Iwanicka-Nowicka R, Bykowski T, Hryniewicz MM, Leisinger T.
+RL  J Biol Chem 1999 Oct 8;274(41):29358-65

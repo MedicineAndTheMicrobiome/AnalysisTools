@@ -1,0 +1,16 @@
+ID  Pmev_kin_ERG8
+AC  TIGR01219
+DE  phosphomevalonate kinase
+AU  Haft DH
+TC  376.95 376.95
+NC  102.80 102.80
+AL  clustalw_manual
+IT  equivalog
+EN  phosphomevalonate kinase, ERG8-type, eukaryotic branch.
+EC  2.7.4.2
+TP  TIGRFAMs
+CC  This enzyme is part of the mevalonate pathway, one of two alternative pathways for the biosynthesis of IPP. In an example of nonorthologous gene displacement, two different types of phosphomevalonate kinase are found - the animal type and this ERG8 type. This model represents plant and fungal forms of the ERG8 type of phosphomevalonate kinase.
+RM  11243736
+RT  Nonorthologous gene displacement of phosphomevalonate kinase.
+RA  Houten SM, Waterham HR.
+RL  Mol Genet Metab 2001 Mar;72(3):273-6

@@ -1,0 +1,13 @@
+ID  ilvE_I
+AC  TIGR01122
+DE  branched-chain amino acid aminotransferase
+AU  Haft DH
+TC  245.55 245.55
+NC  196.55 196.55
+AL  clustalw
+IT  equivalog
+EN  branched-chain amino acid aminotransferase, group I
+GS  ilvE
+EC  2.6.1.42
+TP  TIGRFAMs
+CC  Among the class IV aminotransferases are two phylogenetically separable groups of branched-chain amino acid aminotransferase (IlvE). The last common ancestor of the two lineages appears also to have given rise to a family of D-amino acid aminotransferases (DAAT). This model represents the IlvE family more strongly similar to the DAAT family.

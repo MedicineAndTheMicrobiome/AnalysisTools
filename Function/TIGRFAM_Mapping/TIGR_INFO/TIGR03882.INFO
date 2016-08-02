@@ -1,0 +1,17 @@
+ID  cyclo_dehyd_2
+AC  TIGR03882
+DE  bacteriocin biosynthesis cyclodehydratase domain
+AU  Haft DH
+TC  36.90 36.90
+NC  31.90 31.90
+AL  muscle_manual
+IT  equivalog_domain
+EN  bacteriocin biosynthesis cyclodehydratase domain
+EC  6.3.-.-
+TP  TIGRFAMs
+CC  This model describes a ThiF-like domain of a fusion protein found in clusters associated with the production of TOMMs (thiazole/oxazole-modified microcins), small bacteriocins with characteristic heterocycle modifications. This domain is presumed to act as a cyclodehydratase, as do members of the SagC family modeled by TIGR03603.
+RN  [1]
+RM  PMID:18375757
+RT  Discovery of a widely distributed toxin biosynthetic gene cluster.
+RA  Lee SW, Mitchell DA, Markley AL, Hensler ME, Gonzalez D, Wohlrab A, Dorrestein PC, Nizet V, Dixon JE
+RL  Proc Natl Acad Sci U S A. 2008 Apr 15;105(15):5879-84.

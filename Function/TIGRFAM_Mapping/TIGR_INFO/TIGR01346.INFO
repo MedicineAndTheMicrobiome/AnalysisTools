@@ -1,0 +1,13 @@
+ID  isocit_lyase
+AC  TIGR01346
+DE  isocitrate lyase
+AU  Haft DH
+TC  275.90 275.90
+NC  107.20 107.20
+AL  clustalw_manual
+IT  equivalog
+EN  isocitrate lyase
+GS  aceA
+EC  4.1.3.1
+TP  TIGRFAMs
+CC  Isocitrate lyase and malate synthase are the enzymes of the glyoxylate shunt, a pathway associated with the TCA cycle.

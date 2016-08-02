@@ -1,0 +1,13 @@
+ID  gyrB
+AC  TIGR01059
+DE  DNA gyrase, B subunit
+AU  Haft DH
+TC  882.40 882.40
+NC  783.95 783.95
+AL  clustalw
+IT  equivalog
+EN  DNA gyrase, B subunit
+GS  gyrB
+EC  5.99.1.3
+TP  TIGRFAMs
+CC  This model describes the common type II DNA topoisomerase (DNA gyrase). Two apparently independently arising families, one in the Proteobacteria and one in Gram-positive lineages, are both designated toposisomerase IV. Proteins scoring above the noise cutoff for this model and below the trusted cutoff for topoisomerase IV models probably should be designated GyrB.

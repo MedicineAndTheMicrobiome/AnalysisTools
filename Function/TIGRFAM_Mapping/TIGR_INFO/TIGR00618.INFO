@@ -1,0 +1,14 @@
+ID  sbcc
+AC  TIGR00618
+DE  exonuclease SbcC
+AU  Loftus BJ, Eisen JA
+TC  478.50 478.50
+NC  144.70 144.70
+IT  subfamily
+EN  exonuclease SbcC
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are part of an exonuclease complex with sbcD homologs.  This complex is involved in the initiation of recombination to regulate the levels of palindromic sequences in DNA.
+CC  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  EGAD; 7288;
+DR  SWISSPROT; P13458;
+RM  90045931;

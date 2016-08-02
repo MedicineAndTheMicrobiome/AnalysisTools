@@ -1,0 +1,16 @@
+ID  bicupin_oxalic
+AC  TIGR03404
+DE  bicupin, oxalate decarboxylase family
+AU  Haft DH
+TC  254.20 254.20
+NC  151.10 151.10
+AL  muscle_manual
+IT  subfamily
+EN  bicupin, oxalate decarboxylase family
+TP  TIGRFAMs
+CC  Members of this protein family are defined as bicupins as they  have two copies of the cupin domain (PF00190). Two different known activities for members of this family are oxalate decarboxylase (EC 4.1.1.2) and oxalate oxidase (EC 1.2.3.4), although the latter activity has more often been found in distantly related monocupin (germin) proteins.
+RN  [1]
+RM  PMID: 16000768
+RT  Cloning and sequencing of two Ceriporiopsis subvermispora bicupin oxalate oxidase allelic isoforms: implications for the reaction specificity of oxalate oxidases and decarboxylases.
+RA  Escutia MR, Bowater L, Edwards A, Bottrill AR, Burrell MR, Polanco R, Vicuna R, Bornemann S
+RL  Appl Environ Microbiol. 2005 Jul;71(7):3608-16.

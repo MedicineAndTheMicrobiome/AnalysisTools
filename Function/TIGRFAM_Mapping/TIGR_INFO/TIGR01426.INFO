@@ -1,0 +1,14 @@
+ID  MGT
+AC  TIGR01426
+DE  glycosyltransferase, MGT family
+AU  Haft DH
+TC  109.35 109.35
+NC  97.30 97.30
+AL  clustalw
+IT  subfamily
+EN  glycosyltransferase, MGT family
+EC  2.4.1.-
+TP  TIGRFAMs
+CC  This model describes the MGT (macroside glycosyltransferase) subfamily of the UDP-glucuronosyltransferase family. Members include a number of glucosyl transferases for macrolide antibiotic inactivation, but also include transferases of glucose-related sugars for macrolide antibiotic production.
+DR  EXPERIMENTAL; GP|5305794; tylosin-biosynthetic mycarosyltransferase; Streptomyces fradiae
+DR  EXPERIMENTAL; EGAD|102200; oleandomycin glycosyltransferase; Streptomyces antibioticus

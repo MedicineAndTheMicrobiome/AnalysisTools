@@ -1,0 +1,17 @@
+ID  ftsZ
+AC  TIGR00065
+DE  cell division protein FtsZ
+AU  Richardson DL
+TC  295.20 295.20
+NC  197.75 197.75
+AL  clustalw
+IT  equivalog
+EN  cell division protein FtsZ
+GS  ftsZ
+TP  TIGRFAMs
+CC  This family consists of cell division protein FtsZ, a GTPase found in bacteria, the chloroplast of plants, and in archaebacteria. Structurally similar to tubulin, FtsZ undergoes GTP-dependent polymerization into filaments that form a cytoskeleton involved in septum synthesis.
+RN  [1]
+RM  PMID: 8016071
+RT  GTP-dependent polymerization of Escherichia coli FtsZ protein to form tubules.
+RA  Bramhill D, Thompson CM
+RL  Proc Natl Acad Sci U S A 1994 Jun 21;91(13):5813-7

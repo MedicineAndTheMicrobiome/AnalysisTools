@@ -1,0 +1,11 @@
+ID  cas_csx14
+AC  TIGR03642
+DE  CRISPR-associated protein, Csx14 family
+AU  Haft DH
+TC  90.35 90.35
+NC  52.10 52.10
+AL  muscle_manual
+IT  hypoth_equivalog_domain
+EN  CRISPR-associated protein, Csx14 family
+TP  TIGRFAMs
+CC  This model describes a protein N-terminal protein sequence domain strictly associated with CRISPR and CRISPR-associated protein systems. This model and TIGR02584 identify two separate clades from a larger homology domain family, both CRISPR-associated, while other homologs are found that may not be. Members are found in bacteria that include Pelotomaculum thermopropionicum SI, Thermoanaerobacter tengcongensis MB4, and Roseiflexus sp. RS-1, and in archaea that include Thermoplasma volcanium, Picrophilus torridus, and Methanospirillum hungatei. The molecular function is unknown.

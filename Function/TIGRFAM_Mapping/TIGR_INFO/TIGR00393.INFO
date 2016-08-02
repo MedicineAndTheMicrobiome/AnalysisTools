@@ -1,0 +1,14 @@
+ID  kpsF
+AC  TIGR00393
+DE  sugar isomerase, KpsF/GutQ family
+AU  Loftus BJ
+TC  203.70 203.70
+NC  137.15 137.15
+AL  clustalw
+IT  subfamily
+EN  KpsF/GutQ family protein
+TP  TIGRFAMs
+CC  This HMM describes a number of closely related proteins with the phosphosugar-binding domain SIS (Sugar ISomerase) followed by two copies of the CBS (named after Cystathionine Beta Synthase) domain. One is GutQ, a protein of the glucitol operon. Another is KpsF, a virulence factor involved in capsular polysialic acid biosynthesis in some pathogenic strains of E. coli.
+DR  PFAM; PF01380; SIS 
+DR  PFAM; PF00571; CBS;
+DR  EGAD:89096, EGAD:20643

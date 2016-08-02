@@ -1,0 +1,17 @@
+ID  menC_lowGC/arch
+AC  TIGR01928
+DE  o-succinylbenzoate synthase
+AU  Sunshine J
+TC  200.65 200.65
+NC  140.35 140.35
+AL  clustalw
+IT  equivalog
+EN  o-succinylbenzoate synthase
+GS  menC
+EC  4.2.1.113
+TP  TIGRFAMs
+CC  This model describes the enzyme o-succinylbenzoic acid synthetase (menC) that is involved in one of the steps of the menaquinone biosynthesis pathway.  It takes SHCHC and makes it into 2-succinylbenzoate.  Included in this model are low GC gram positive bacteria and archaea.  Also included in the seed and in the model are enzymes with the com-name of N-acylamino acid racemase (or the more general term, racemase / racemase family), which refers to the enzyme's industrial application as racemases, and not to its biological function as o-succinylbenzoic acid synthetase.
+RN  [1]
+RM  PMID: 10194342
+RT  Unexpected divergence of enzyme function and sequence: "N-acylamino acid racemase" is o-succinylbenzoate synthase.
+RA  Palmer DR, Garrett JB, Sharma V, Meganathan R, Babbitt PC, Gerlt JA.

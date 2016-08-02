@@ -1,0 +1,16 @@
+ID  6PTHBS
+AC  TIGR00039
+DE  6-pyruvoyl tetrahydropterin synthase/QueD family protein
+AU  Haft DH
+TC  125.50 125.50
+NC  57.25 57.25
+AL  clustalw_manual
+IT  subfamily
+EN  6-pyruvoyl tetrahydropterin synthase/QueD family protein
+TP  TIGRFAMs
+CC  This model has been downgraded from hypothetical_equivalog to subfamily. The animal enzymes are known to be 6-pyruvoyl tetrahydropterin synthase. The function of the bacterial branch of the sequence lineage had been thought to be the same, but many are now taken to be QueD, and enzyme of queuosine biosynthesis. Queuosine is a hypermodified base in the wobble position of some tRNAs in most species. A new model is built to be the QueD equivalog model.
+RN  [1]
+RM  PMID: 14660578
+RT  Identification of four genes necessary for biosynthesis of the modified nucleoside queuosine.
+RA  Reader JS, Metzgar D, Schimmel P, de Crecy-Lagard V
+RL  J Biol Chem. 2004 Feb 20;279(8):6280-5.

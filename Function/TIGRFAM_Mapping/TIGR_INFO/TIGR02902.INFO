@@ -1,0 +1,23 @@
+ID  spore_lonB
+AC  TIGR02902
+DE  ATP-dependent protease LonB
+AU  Haft DH
+TC  723.30 723.30
+NC  595.10 595.10
+AL  muscle
+IT  equivalog
+EN  ATP-dependent protease LonB
+GS  lonB
+EC  3.4.21.-
+TP  TIGRFAMs
+CC  Members of this protein are LonB, a paralog of the ATP-dependent protease La (LonA, TIGR00763). LonB proteins are found strictly, and almost universally, in endospore-forming bacteria. This protease was shown, in Bacillus subtilis, to be expressed specifically in the forespore, during sporulation, under control of sigma(F). The lonB gene, despite location immediately upstream of lonA, was shown to be monocistronic. LonB appears able to act on sigma(H) for post-translation control, but lonB mutation did not produce an obvious sporulation defect under the conditions tested. Note that additional paralogs of LonA and LonB occur in the Clostridium lineage and this model selects only one per species as the protein that corresponds to LonB in B. subtilis.
+RN  [1]
+RM  PMID: 11325926
+RT  Forespore-specific transcription of the lonB gene during sporulation in Bacillus subtilis.
+RA  Serrano M, Hovel S, Moran CP Jr, Henriques AO, Volker U
+RL  J Bacteriol. 2001 May;183(10):2995-3003.
+RN  [2]
+RM  PMID: 10411757
+RT  Role of lon and ClpX in the post-translational regulation of a sigma subunit of RNA polymerase required for cellular differentiation in Bacillus subtilis.
+RA  Liu J, Cosby WM, Zuber P
+RL  Mol Microbiol. 1999 Jul;33(2):415-28.

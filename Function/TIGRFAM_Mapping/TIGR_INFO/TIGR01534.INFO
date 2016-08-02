@@ -1,0 +1,37 @@
+ID  GAPDH-I
+AC  TIGR01534
+DE  glyceraldehyde-3-phosphate dehydrogenase, type I
+AU  Selengut J
+TC  367.20 367.20
+NC  124.45 124.45
+AL  clustalw
+IT  equivalog
+EN  glyceraldehyde-3-phosphate dehydrogenase, type I
+GS  gap
+EC  1.2.1.-
+TP  TIGRFAMs
+CC  This HMM represents glyceraldehyde-3-phosphate dehydrogenase (GAPDH), the enzyme responsible for the interconversion of 1,3-diphosphoglycerate and glyceraldehyde-3-phosphate, a central step in glycolysis and gluconeogenesis.  Forms exist which utilize NAD (EC 1.2.1.12), NADP (EC 1.2.1.13) or either (1.2.1.59).  In some species, NAD- and NADP- utilizing forms exist, generally being responsible for reactions in the anabolic and catabolic directions respectively [1].
+CC  Two PFAM models cover the two functional domains of this protein; PF00044 represents the N-terminal NAD(P)-binding domain and PF02800 represents the C-terminal catalytic domain.
+CC  An additional form of gap gene is found in gamma proteobacteria and is responsible for the conversion of erythrose-4-phosphate (E4P) to 4-phospho-erythronate in the biosynthesis of pyridoxine [2].  This pathway of pyridoxine biosynthesis appears to be limited, however, to a relatively small number of bacterial species although it is prevalent among the gamma-proteobacteria [3].  This enzyme is described by TIGR001532.  These sequences generally score between trusted and noise to this GAPDH model due to the close evolutionary relationship.  There exists the possiblity that some forms of GAPDH may be bifunctional and act on E4P in species which make pyridoxine and via hydroxythreonine and lack a separate E4PDH enzyme (for instance, the GAPDH from Bacillus stearothermophilus has been shown to posess a limited E4PD activity as well as a robust GAPDH activity [4]).
+CC  There are a great number of sequences in the databases which score between trusted and noise to this model, nearly all of them due to fragmentary sequences.  It seems that study of this gene has been carried out in many species utilizing PCR probes which exclude the extreme ends of the consenses used to define this model.
+CC  The noise level is set relative not to E4PD, but the next closest outliers, the class II GAPDH's (found in archaea, TIGR01546) and aspartate semialdehyde dehydrogenase (ASADH, TIGR01296) both of which have highest-scoring hits around -225 to the prior model.
+RN  [1]
+RM  PMID: 10799476
+RT  Two glyceraldehyde-3-phosphate dehydrogenases with opposite physiological roles in a nonphotosynthetic bacterium.
+RA  Fillinger S., Boschi-Muller S., Azza S., Dervyn E., Branlant G., Aymerich S.
+RL  J. Biol. Chem. 275:14031-14037(2000).
+RN  [2]
+RM  PMID: 7751290
+RT  Biochemical characterization of gapB-encoded erythrose 4-phosphate dehydrogenase of Escherichia coli K-12 and its possible role in pyridoxal 5'-phosphate biosynthesis.
+RA  Zhao G, Pease AJ, Bharani N, Winkler ME.
+RL  J Bacteriol. 1995 May;177(10):2804-12.
+RN  [3]
+RM  PMID: 11200221
+RT  Phylogenetic analyses and comparative genomics of vitamin B6 (pyridoxine) and pyridoxal phosphate biosynthesis pathways.
+RA  Mittenhuber G.
+RL  J Mol Microbiol Biotechnol. 2001 Jan;3(1):1-20. Review.
+RN  [4]
+RM  PMID: 9182530
+RT  Comparative enzymatic properties of GapB-encoded erythrose-4-phosphate dehydrogenase of Escherichia coli and phosphorylating glyceraldehyde-3-phosphate dehydrogenase.
+RA  Boschi-Muller S, Azza S, Pollastro D, Corbier C, Branlant G.
+RL  J Biol Chem. 1997 Jun 13;272(24):15106-12.

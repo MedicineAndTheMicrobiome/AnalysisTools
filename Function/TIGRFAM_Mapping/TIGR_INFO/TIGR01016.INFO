@@ -1,0 +1,17 @@
+ID  sucCoAbeta
+AC  TIGR01016
+DE  succinate-CoA ligase, beta subunit
+AU  Haft DH
+TC  375.55 375.55
+NC  167.75 167.75
+AL  clustalw
+IT  subfamily
+EN  succinyl-CoA synthetase, beta subunit
+GS  sucC
+EC  6.2.1.-
+TP  TIGRFAMs
+CC  This model is designated subfamily because it does not discriminate the ADP-forming enzyme ((EC 6.2.1.5) from the GDP_forming (EC 6.2.1.4) enzyme.
+CC  The N-terminal half is described by the CoA-ligases HMM (PF00549). The C-terminal half is described by the ATP-grasp HMM (PF02222).
+CC  This family contains a split seen both in a maximum parsimony tree (which ignores gaps) and in the gap pattern near position 85 of the seed alignment. Eukaryotic and most bacterial sequences are longer and contain a region similar to TXQTXXXG. Sequences from Deinococcus radiodurans, Mycobacterium tuberculosis, Streptomyces coelicolor, and the Archaea are 6 amino acids shorter in that region and contain a motif resembling [KR]G
+DR  COGS; COG0045
+DR  HAMAP; MF_00558; 358 of 363

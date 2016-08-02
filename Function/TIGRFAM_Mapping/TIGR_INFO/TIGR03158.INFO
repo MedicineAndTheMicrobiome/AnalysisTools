@@ -1,0 +1,15 @@
+ID  cas3_cyano
+AC  TIGR03158
+DE  CRISPR-associated helicase Cas3, subtype CYANO
+AU  Haft DH
+TC  69.10 69.10
+NC  52.25 52.25
+AL  muscle_manual
+IT  exception
+EN  CRISPR-associated helicase Cas3, subtype CYANO
+GS  cas3
+TP  TIGRFAMs
+CC  CRISPR (Clustered Regularly Interspaced Short Palindromic Repeats) is a widespread family of prokaryotic direct repeats with spacers of unique sequence between consecutive repeats. This protein family is a CRISPR-associated (Cas) family strictly associated with the Cyano
+CC  subtype of CRISPR/Cas locus, found in several species of Cyanobacteria and several archaeal species. It contains helicase motifs and appears to represent the Cas3 protein of the Cyano subtype of CRISPR/Cas system.
+DR  PFAM; PF00270; DEAD/DEAH box helicase
+DR  PFAM; PF00271; Helicase conserved C-terminal domain

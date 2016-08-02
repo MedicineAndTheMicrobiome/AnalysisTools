@@ -1,0 +1,17 @@
+ID  dnan
+AC  TIGR00663
+DE  DNA polymerase III, beta subunit
+AU  Loftus BJ, Eisen JA
+TC  137.65 137.65
+NC  129.00 129.00
+IT  equivalog
+EN  DNA polymerase III, beta subunit
+GS  dnaN
+EC  2.7.7.7
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are components of the DNA polymerase III complex (beta subunit).  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford
+CC  University).
+DR  EGAD; 28015;
+DR  SWISSPROT; P43744;
+DR  SWISSPROT; P00583;
+RM  84237568;

@@ -1,0 +1,14 @@
+ID  L-ribulokinase
+AC  TIGR01234
+DE  ribulokinase
+AU  Haft DH, Dodson RJ
+TC  583.25 583.25
+NC  222.15 222.15
+AL  clustalw
+IT  equivalog
+EN  ribulokinase
+GS  araB
+EC  2.7.1.16
+TP  TIGRFAMs
+CC  This enzyme catalyzes the second step in arabinose catabolism. The most closely related protein subfamily outside the scope of this model includes ribitol kinase from E. coli.
+DR  HAMAP; MF_00520; 36 of 52

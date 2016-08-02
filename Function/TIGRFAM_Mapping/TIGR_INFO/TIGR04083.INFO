@@ -1,0 +1,11 @@
+ID  rSAM_pep_methan
+AC  TIGR04083
+DE  putative peptide-modifying radical SAM enzyme, Mhun_1560 family
+AU  Haft DH
+TC  300.00 300.00
+NC  200.00 200.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  putative peptide-modifying radical SAM enzyme, Mhun_1560 family
+TP  TIGRFAMs
+CC  Members of this family are radical SAM enzymes, homologous to a variety of other peptide-modifying radical SAM, and found primarily in methanogenic archaea.

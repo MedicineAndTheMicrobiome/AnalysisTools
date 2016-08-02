@@ -1,0 +1,11 @@
+ID  flav_long
+AC  TIGR01752
+DE  flavodoxin
+AU  Haft DH
+TC  146.75 146.75
+NC  108.10 108.10
+AL  clustalw_manual
+IT  equivalog
+EN  flavodoxin, long chain
+TP  TIGRFAMs
+CC  Flavodoxins are small redox-active proteins with a flavin mononucleotide (FMN) prosthetic group. They can act in nitrogen fixation by nitrogenase, in sulfite reduction, and light-dependent NADP+ reduction in during photosynthesis, among other roles. This model describes the long chain type, typical for nitrogen fixation but associated with pyruvate formate-lyase activation and cobalamin-dependent methionine synthase activity in E. coli.

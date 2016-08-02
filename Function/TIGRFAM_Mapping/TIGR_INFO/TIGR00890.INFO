@@ -1,0 +1,11 @@
+ID  2A0111
+AC  TIGR00890
+DE  oxalate/formate antiporter family transporter
+AU  Loftus BJ, Haft DH
+TC  374.85 374.85
+NC  296.20 296.20
+AL  clustalw_manual
+IT  subfamily
+EN  oxalate/formate antiporter family transporter
+TP  TIGRFAMs
+CC  This subfamily belongs to the major facilitator family. Members include the oxalate/formate antiporter of Oxalobacter formigenes, where one substrate is decarboxylated in the cytosol into the other to consume a proton and drive an ion gradient.

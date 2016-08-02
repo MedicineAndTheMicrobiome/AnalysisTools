@@ -1,0 +1,13 @@
+ID  menB
+AC  TIGR01929
+DE  naphthoate synthase
+AU  Sunshine J
+TC  342.70 342.70
+NC  201.40 201.40
+AL  clustalw
+IT  equivalog
+EN  naphthoate synthase (dihydroxynaphthoic acid synthetase)
+GS  menB
+EC  4.1.3.36
+TP  TIGRFAMs
+CC  This model represents an enzyme, naphthoate synthase (dihydroxynaphthoic acid synthetase), which is involved in the fifth step of the menaquinone biosynthesis pathway.  Together with o-succinylbenzoate-CoA ligase (menE: TIGR01923), this enzyme takes 2-succinylbenzoate and converts it into 1,4-di-hydroxy-2-naphthoate.  Included above the trusted cutoff are two enzymes from Arabadopsis thaliana and one from Staphylococcus aureus which are identified as putative enoyl-CoA hydratase/isomerases.  These enzymes group with the naphthoate synthases when building a tree and when doing BLAST searches.

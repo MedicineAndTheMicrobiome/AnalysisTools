@@ -1,0 +1,19 @@
+ID  citrate_citX
+AC  TIGR03124
+DE  holo-ACP synthase CitX
+AU  Haft DH
+TC  105.25 105.25
+NC  57.15 57.15
+AL  muscle
+IT  equivalog_domain
+EN  holo-ACP synthase CitX
+GS  citX
+EC  2.7.7.61
+TP  TIGRFAMs
+CC  Members of this protein family are the CitX protein, or CitX domain of the CitXG bifunctional protein, of the citrate lyase system. CitX transfers the prosthetic group 2'-(5''-triphosphoribosyl)-3'-dephospho-CoA to the citrate lyase gamma chain, an acyl carrier protein. This enzyme may be designated holo-ACP synthase, holo-citrate lyase synthase, or apo-citrate lyase phosphoribosyl-dephospho-CoA transferase. In a few genera, including Haemophilus, this protein occurs as a fusion protein with CitG (2.7.8.25), an enzyme involved in prosthetic group biosynthesis. This CitX family is easily separated from the holo-ACP synthases of other enzyme systems.
+RN  [1]
+RM  PMID: 11948157
+RT  Identification of a gene cluster in Klebsiella pneumoniae which includes citX, a gene required for biosynthesis of the citrate lyase prosthetic group.
+RA  Schneider K, Kastner CN, Meyer M, Wessel M, Dimroth P, Bott M
+RL  J Bacteriol. 2002 May;184(9):2439-46.
+DR  HAMAP; MF_00398; 18 of 19

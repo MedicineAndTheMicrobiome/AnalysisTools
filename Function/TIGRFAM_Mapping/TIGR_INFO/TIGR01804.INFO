@@ -1,0 +1,44 @@
+ID  BADH
+AC  TIGR01804
+DE  betaine-aldehyde dehydrogenase
+AU  Brinkac L
+TC  668.60 668.60
+NC  619.95 619.95
+AL  clustalw_manual
+IT  equivalog
+EN  betaine-aldehyde dehydrogenase
+GS  betB
+EC  1.2.1.8
+TP  TIGRFAMs
+CC  Under osmotic stress, betaine aldehyde dehydrogenase oxidizes glycine betaine aldehyde into the osmoprotectant glycine betaine, via the second of two oxidation steps from exogenously supplied choline or betaine aldehyde. This choline-glycine betaine synthesis pathway can be found in gram-positive and gram-negative bacteria.
+CC  In Escherichia coli, betaine aldehyde dehydrogenase (betB) is osmotically co-induced with choline dehydrogenase (betA) in the presence of choline. These dehydrogenases are located in a betaine gene cluster with the upstream choline transporter (betT) and transcriptional regulator (betI) [1]. 
+CC  Similar to E.coli, betaine synthesis in Staphylococcus xylosus is also influenced by osmotic stress and the presence of choline with genes localized in a functionally equivalent gene cluster [2].
+CC  Organization of the betaine gene cluster in Sinorhizobium meliloti and Bacillus subtilis differs from that of E.coli by the absence of upstream choline transporter and transcriptional regulator homologues [2,3]. Additionally, B.subtilis co-expresses a type II alcohol dehydrogenase with betaine aldehyde dehydrogenase instead of choline dehydrogenase as in E.coli, St.xylosus, and Si.meliloti [3].
+CC  Betaine aldehyde dehydrogenase is a member of the aldehyde dehydrogenase family (PF00171).
+RN [1]
+RM 3065456
+RT Molecular cloning, physical mapping and expression of the bet genes governing the osmoregulatory choline-glycine betaine pathway of Escherichia coli.
+RA Andresen PA, Kaasen I, Styrvold OB, Boulnois G, Strom AR.
+RJ J Gen Microbiol. 1988 Jun;134 ( Pt 6):1737-46.
+RN [2]
+RM 10094709
+RT The choline-converting pathway in Staphylococcus xylosus C2A: genetic and physiological characterization.
+RA Rosenstein R, Futter-Bryniok D, Gotz F.
+RJ J Bacteriol. 1999 Apr;181(7):2273-8.
+RN [3]
+RM 9141699
+RT Molecular characterization of the bet genes encoding glycine betaine synthesis in Sinorhizobium meliloti 102F34.
+RA Pocard JA, Vincent N, Boncompagni E, Smith LT, Poggi MC, Le Rudulier D.
+RT Microbiology. 1997 Apr;143 ( Pt 4):1369-79.
+RN [4]
+RM 8752328
+RT Synthesis of the osmoprotectant glycine betaine in Bacillus subtilis: characterization of the gbsAB genes.
+RA Boch J, Kempf B, Schmid R, Bremer E.
+RJ J Bacteriol. 1996 Sep;178(17):5121-9.
+DR PFAM; PF00171; Aldehyde Dehydrogenase Family
+DR EXPERIMENTAL; GP|1657510; Escherichia coli; Molecular cloning, physical mapping and expression of the bet genes governing the osmoregulatory choline-glycine betaine pathway of Escherichia coli.
+DR EXPERIMENTAL; GP|4574120; Staphylococcus xylosus; The choline-converting pathway in Staphylococcus xylosus C2A: genetic and physiological characterization.
+DR EXPERIMENTAL; SP|P71016; Bacillus subtilis; Synthesis of the osmoprotectant glycine betaine in Bacillus subtilis: characterization of the gbsAB genes.
+DR EXPERIMENTAL; SP|P54222; Sinorhizobium meliloti; Molecular characterization of the bet genes encoding glycine betaine synthesis in Sinorhizobium meliloti 102F34.
+DR OUTGROUP; GP|7248632, Rattus norvegicus, 4-trimethylaminobutyraldehyde dehydrogenase
+DR  HAMAP; MF_00804; 68 of 73

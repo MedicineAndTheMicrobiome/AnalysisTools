@@ -1,0 +1,23 @@
+ID  TIGR00095
+AC  TIGR00095
+DE  16S rRNA (guanine(966)-N(2))-methyltransferase RsmD
+AU  Richardson DL, Anolik RT, Haft DH
+TC  117.50 117.50
+NC  67.90 67.90
+AL  msa_tigr
+IT  equivalog
+EN  16S rRNA (guanine(966)-N(2))-methyltransferase RsmD
+GS  rsmD
+EC  2.1.1.171
+TP  TIGRFAMs
+CC  This HMM represents a family of uncharacterized bacterial proteins. Members are present in nearly every complete bacterial genome, always in a single copy. PSI-BLAST analysis shows homology to several families of SAM-dependent methyltransferases, including ribosomal RNA adenine dimethylases.
+RN  [1]
+RM  PMID:17189261
+RT  Methyltransferase that modifies guanine 966 of the 16 S rRNA: functional identification and tertiary structure.
+RA  Lesnyak DV, Osipiuk J, Skarina T, Sergiev PV, Bogdanov AA, Edwards A, Savchenko A, Joachimiak A, Dontsova OA
+RL  J Biol Chem. 2007 Feb 23;282(8):5880-7.
+RN  [2]
+RM  PMID:22535590 
+RT  Properties of small rRNA methyltransferase RsmD: mutational and kinetic study. 
+RA  Sergeeva OV, Prokhorova IV, Ordabaev Y, Tsvetkov PO, Sergiev PV, Bogdanov AA, Makarov AA, Dontsova OA 
+RL  RNA. 2012 Jun;18(6):1178-85. doi: 10.1261/rna.032763.112.

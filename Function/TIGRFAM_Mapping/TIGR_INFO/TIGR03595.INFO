@@ -1,0 +1,12 @@
+ID  Obg_CgtA_exten
+AC  TIGR03595
+DE  Obg family GTPase CgtA, C-terminal extension
+AU  Haft DH
+TC  37.65 37.65
+NC  32.55 32.55
+AL  muscle_manual
+IT  equivalog_domain
+EN  Obg family GTPase CgtA, C-terminal extension
+GS  cgtA
+TP  TIGRFAMs
+CC  CgtA (see model TIGR02729) is a broadly conserved member of the obg family of GTPases associated with ribosome maturation. This model represents a unique C-terminal domain found in some but not all sequences of CgtA. This region is preceded, and may be followed, by a region of low-complexity sequence.

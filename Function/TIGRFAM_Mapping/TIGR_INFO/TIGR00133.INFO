@@ -1,0 +1,17 @@
+ID  gatB
+AC  TIGR00133
+DE  aspartyl/glutamyl-tRNA(Asn/Gln) amidotransferase, B subunit
+AU  Haft DH
+TC  314.80 314.80
+NC  199.15 199.15
+AL  clustalw
+IT  equivalog
+EN  aspartyl/glutamyl-tRNA(Asn/Gln) amidotransferase, B subunit
+GS  gatB
+EC  6.3.5.-
+TP  TIGRFAMs
+CC  The heterotrimer GatABC is responsible for transferring the NH2 group that converts Glu to Gln, or Asp to Asn after the Glu or Asp has been ligated to the tRNA for Gln or Asn, respectively. In Lactobacillus, GatABC is responsible only for tRNA(Gln). In the Archaea, GatABC is responsible only for tRNA(Asn), while GatDE is responsible for tRNA(Gln). In lineages that include Thermus, Chlamydia, or Acidithiobacillus, the GatABC complex catalyzes both.
+RL  Proc Natl Acad Sci U S A. 94, 11819-11826, 1997; 
+RL  J Bacteriol 179, 5625-5627, 1997;  
+RL  Curr Genet 25, 299-304, 1994
+DR  HAMAP; MF_00121; 407 of 409

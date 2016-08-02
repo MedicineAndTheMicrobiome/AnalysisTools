@@ -1,0 +1,12 @@
+ID  ChlP
+AC  TIGR02028
+DE  geranylgeranyl reductase
+AU  Selengut J
+TC  505.30 505.30
+NC  418.90 418.90
+AL  clustalw
+IT  equivalog
+EN  geranylgeranyl reductase
+GS  chlP
+TP  TIGRFAMs
+CC  This HMM represents the reductase which acts reduces the geranylgeranyl group to the phytyl group in the side chain of chlorophyll.  It is unclear whether the enzyme has a preference for acting before or after the attachment of the side chain to chlorophyllide a by chlorophyll synthase.  This clade is restricted to plants and cyanobacteria to separate it from the homologues which act in the biosynthesis of bacteriochlorophyll.

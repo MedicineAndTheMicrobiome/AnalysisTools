@@ -1,0 +1,24 @@
+ID  hslU
+AC  TIGR00390
+DE  ATP-dependent protease HslVU, ATPase subunit
+AU  Loftus BJ
+TC  362.45 362.45
+NC  225.25 225.25
+AL  clustalw
+IT  equivalog
+EN  ATP-dependent protease HslVU, ATPase subunit
+GS  hslU
+TP  TIGRFAMs
+CC  This model represents the ATPase subunit of HslVU, while the proteasome-related peptidase subunit is HslV. Residues 54-61 of the model contain a P-loop ATP-binding motif. Cys-287 of E. coli (position 308 in the seed alignment), studied in MEDLINE:98389714, is Ser in other members of the seed alignment.
+DR  ECOCYC; EG11881; hslU;
+RN  [1]
+RM  98389714
+RT  The heat-shock protein HslVU from Escherichia coli is a protein-activated ATPase as well as an ATP-dependent proteinase.
+RA  Seol JH, Yoo SJ, Shin DH, Shim YK, Kang MS, Goldberg AL, Chung CH
+RL  Eur J Biochem 1997 Aug 1;247(3):1143-50
+RN  [2]
+RM  98389714
+RT  Effects of the Cys mutations on structure and function of the ATP-dependent HslVU protease in Escherichia coli. The Cys287 to Val mutation in HslU uncouples the ATP-dependent proteolysis by HslvU from ATP hydrolysis.
+RA  Yoo SJ, Kim HH, Shin DH, Lee CS, Seong IS, Seol JH, Shimbara N, Tanaka K, Chung CH
+RL  J Biol Chem 1998 Sep 4;273(36):22929-35
+DR  HAMAP; MF_00249; 280 of 286

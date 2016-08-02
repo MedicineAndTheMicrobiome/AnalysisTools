@@ -1,0 +1,45 @@
+ID  PGP_bact
+AC  TIGR01449
+DE  phosphoglycolate phosphatase, bacterial
+AU  Selengut J
+TC  164.60 164.60
+NC  123.90 123.90
+AL  clustalw
+IT  equivalog
+EN  2-phosphoglycolate phosphatase, prokaryotic
+GS  gph
+EC  3.1.3.18
+TP  TIGRFAMs
+CC  PGP is an essential enzyme in the glycolate salvage pathway in higher organisms (photorespiration in plants).  Phosphoglycolate results from the oxidase activity of RubisCO in the Calvin cycle when concentrations of carbon dioxide are low relative to oxygen.
+CC  In Ralstonia (Alcaligenes) eutropha and Rhodobacter sphaeroides, the PGP gene (CbbZ) is located on an operon along with other Calvin cycle enzymes including RubisCO [1,2].  The only other pertinent experimental evidence concerns the gene from E. coli [3].  The in vitro activity of the Ralstonia and Escherichia enzymes was determined with crude cell extracts of strains containing PGP on expression plasmids and compared to controls. In E. coli, however, there does not appear to be a functional Calvin cycle (RubisCO is absent), although the E. coli PGP gene (gph) is on the same operon (dam) with ribulose-5-phosphate-3-epimerase (rpe), a gene in the pentose-phosphate pathway (along with other, unrelated genes).  The E. coli enzyme is not expressed under normal laboratory conditions; the pathway to which it belongs has not been determined.  In fact, the possibility exists, although unlikely, that the E. coli enzyme and others within this equivalog have as their physiological substrate another, closely related molecule.
+CC  The other seed chosen for this model, from Xylella fastidiosa has no experimental evidence, but is a plant pathogen and thus may obtain phosphoglycolate from its host.
+CC  This model has been restricted to encompass only proteobacteria as no related PGP has been verified outside of this clade.  Sequences from Aquifex aeolicus and Treponema pallidum fall between the trusted and noise cutoffs.
+CC  Just below the noise cutoff is a gene which is part of the operon for the biosynthesis of the blue pigment, indigoidine, from Erwinia (Pectobacterium) chrysanthemi, a plant pathogen [4].  It does not seem likely, considering the proposed biosynthetic mechanism, that the dephosphorylation of phosphoglycolate or a closely related compound is required.  Possibly, this gene is fortuitously located in this operon, or has an indirect relationship to the necessity for the biosynthesis of this compound.
+CC  Sequences from 11 species have been annotated as PGP or putative PGP but fall below the noise cutoff.  None of these have experimental validation.
+CC  This enzyme is a member of the Haloacid Dehalogenase (HAD) superfamily of aspartate-nucleophile hydrolase enzymes (PF00702).
+RN [1]
+RM 8226680
+RT The cbb operons of the facultative chemoautotroph Alcaligenes eutrophus encode phosphoglycolate phosphatase.
+RA Schaferjohann J, Yoo JG, Kusian B, Bowien B.
+RL J Bacteriol 1993 Nov;175(22):7329-40
+RN [2]
+RM 9006018
+RT Analysis of the cbbXYZ operon in Rhodobacter sphaeroides.
+RA Gibson JL, Tabita FR.
+RL J Bacteriol 1997 Feb;179(3):663-9
+RN [3]
+RM 10572959
+RT The gene for 2-phosphoglycolate phosphatase (gph) in Escherichia coli is located in the same operon as dam and at least five other diverse genes.
+RA Lyngstadaas A, Lobner-Olesen A, Grelland E, Boye E.
+RL Biochim Biophys Acta 1999 Oct 18;1472(1-2):376-84
+RN [4]
+RM 11790734
+RT Characterization of indigoidine biosynthetic genes in Erwinia chrysanthemi and role of this blue pigment in pathogenicity.
+RA Reverchon S, Rouanet C, Expert D, Nasser W.
+RL J Bacteriol 2002 Feb;184(3):654-65
+DR PFAM; PF00702; Hydrolase
+DR EXPERIMENTAL; EGAD|13772; Ralstonia eutropha; heterologous expression in E.coli with assay of crude cell extract, presence in operon of Calvin cycle enzymes, function consistent with lifestyle
+DR EXPERIMENTAL; EGAD|8531; Escherichia coli; overexpression in E.coli with assay of crude cell extract
+DR EXPERIMENTAL; EGAD|138370; Rhodobacter sphaeroides;   presence in operon of Calvin cycle enzymes, activity in crude lysates correlated to gene by various mutations of the operon
+DR OUTGROUP; EGAD|9059; Pseudomonas sp.; Haloacid dehalogenase II
+DR  HAMAP; MF_00495; 57 of 60

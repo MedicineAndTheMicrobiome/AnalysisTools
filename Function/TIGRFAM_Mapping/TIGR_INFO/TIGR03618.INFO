@@ -1,0 +1,16 @@
+ID  Rv1155_F420
+AC  TIGR03618
+DE  PPOX class probable F420-dependent enzyme
+AU  Haft DH
+TC  79.05 79.05
+NC  65.90 65.90
+AL  muscle_manual
+IT  subfamily
+EN  PPOX class probable F420-dependent enzyme
+TP  TIGRFAMs
+CC  A Genome Properties metabolic reconstruction for F420 biosynthesis shows that slightly over 10 percent of all prokaryotes with fully sequenced genomes, including about two thirds of the Actinomyces, make F420. The Partial Phylogenetic Profiling algorithm identifies this members of this protein family as high-scoring proteins to the F420 biosynthesis profile. A member of this family, Rv1155, was crytallized after expression in Escherichia coli, which does not synthesize F420; the crystal structure shown to resemble FMN-binding proteins, but with a recognizable empty cleft corresponding to, yet differing profounding from, the FMN site of pyridoxine 5'-phosphate oxidase. We propose that this protein family consists of F420-binding enzymes.
+RN  [1]
+RM  PMID:15620716
+RT  Crystal structure of the conserved hypothetical protein Rv1155 from Mycobacterium tuberculosis.
+RA  Canaan S, Sulzenbacher G, Roig-Zamboni V, Scappuccini-Calvo L, Frassinetti F, Maurin D, Cambillau C, Bourne Y
+RL  FEBS Lett. 2005 Jan 3;579(1):215-21.

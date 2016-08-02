@@ -1,0 +1,18 @@
+ID  BchD-ChlD
+AC  TIGR02031
+DE  magnesium chelatase ATPase subunit D
+AU  Selengut J
+TC  499.55 499.55
+NC  478.55 478.55
+AL  clustalw
+IT  equivalog
+EN  magnesium chelatase ATPase subunit D
+GS  bchD
+EC  6.6.1.1
+TP  TIGRFAMs
+CC  This HMM represents one of two ATPase subunits of the trimeric magnesium chelatase responsible for insertion of magnesium ion into protoporphyrin IX.  This is an essential step in the biosynthesis of both chlorophyll and bacteriochlorophyll [1].  This subunit is found in green plants, photosynthetic algae, cyanobacteria and other photosynthetic bacteria.  Unlike subunit I (TIGR02030), this subunit is not found in archaea.
+RN  [1]
+RM  PMID: 7892204
+RT  Magnesium-protoporphyrin chelatase of Rhodobacter sphaeroides: reconstitution of activity by combining the products of the bchH, -I, and -D genes expressed in Escherichia coli.
+RA  Gibson LC, Willows RD, Kannangara CG, von Wettstein D, Hunter CN.
+RL  Proc Natl Acad Sci U S A. 1995 Mar 14;92(6):1941-4.

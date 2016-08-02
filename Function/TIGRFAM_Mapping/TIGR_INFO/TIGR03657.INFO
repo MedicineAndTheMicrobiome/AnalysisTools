@@ -1,0 +1,27 @@
+ID  IsdB
+AC  TIGR03657
+DE  heme uptake protein IsdB
+AU  Selengut J
+TC  1231.50 1231.50
+NC  766.85 766.85
+AL  muscle
+IT  equivalog
+EN  heme uptake protein IsdB
+GS  isdB
+TP  TIGRFAMs
+CC  Isd proteins are iron-regulated surface proteins found in Bacillus, Staphylococcus and Listeria species and are responsible for heme scavenging from hemoproteins [1].  The IsdB protein is only observed in Staphylococcus and consists of an N-terminal hydrophobic signal sequence, a pair of tandem NEAT (NEAr Transporter, PF05031) domains which confers the ability to bind heme [2] and a C-terminal sortase processing signal which targets the protein to the cell wall.  IsdB is believed to make a direct contact with methemoglobin facilitating transfer of heme to IsdB [3].  The heme is then transferred to other cell wall-bound NEAT domain proteins such as IsdA and IsdC.
+RN  [1]
+RM  PMID:18676371
+RT  Demonstration of the iron-regulated surface determinant heme transfer pathway in Staphylococcus aureus.
+RA  Muryoi N, Tiedemann MT, Pluym M, Cheung J, Heinrichs DE, Stillman MJ
+RL  J Biol Chem. 2008 Aug 1.
+RN  [2]
+RM  PMID:17229211 
+RT  Haem recognition by a Staphylococcus aureus NEAT domain. 
+RA  Grigg JC, Vermeiren CL, Heinrichs DE, Murphy ME 
+RL  Mol Microbiol. 2007 Jan;63(1):139-49. 
+RN  [3]
+RM  PMID:18467329 
+RT  Pathway for heme uptake from human methemoglobin by the iron-regulated surface determinants system of Staphylococcus aureus. 
+RA  Zhu H, Xie G, Liu M, Olson JS, Fabian M, Dooley DM, Lei B 
+RL  J Biol Chem. 2008 Jun 27;283(26):18450-60. Epub 2008 May 8.

@@ -1,0 +1,17 @@
+ID  PseG
+AC  TIGR03590
+DE  pseudaminic acid biosynthesis-associated protein PseG
+AU  Selengut J
+TC  153.55 153.55
+NC  152.90 152.90
+AL  muscle
+IT  hypoth_equivalog
+EN  pseudaminic acid biosynthesis-associated protein PseG
+GS  pseG
+TP  TIGRFAMs
+CC  This protein is found in association with enzymes involved in the biosynthesis of pseudaminic acid [1], a component of polysaccharide in certain Pseudomonas strains as well as a modification of flagellin in Campylobacter and Hellicobacter [1].  The role of this protein is unclear, although it may participate in N-acetylation in conjunction with, or in the absence of PseH (TIGR03585) as it often scores above the trusted cutoff to PF00583 representing a family of acetyltransferases.
+RN  [1]
+RM  PMID:16684771 
+RT  Functional characterization of the flagellar glycosylation locus in Campylobacter jejuni 81-176 using a focused metabolomics approach. 
+RA  McNally DJ, Hui JP, Aubry AJ, Mui KK, Guerry P, Brisson JR, Logan SM, Soo EC 
+RL  J Biol Chem. 2006 Jul 7;281(27):18489-98. Epub 2006 May 9.

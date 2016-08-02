@@ -1,0 +1,16 @@
+ID  RNA_bind_YhbY
+AC  TIGR00253
+DE  putative RNA-binding protein, YhbY family
+AU  Loftus BJ, Haft DH
+TC  78.50 78.50
+NC  51.50 51.50
+AL  clustalw
+IT  hypoth_equivalog
+EN  putative RNA-binding protein, YhbY family
+TP  TIGRFAMs
+CC  A combination of crystal structure, molecular modeling, and bioinformatic data together suggest that members of this family, including YhbY of E. coli, are RNA binding proteins.
+RN  [1]
+RM  PMID:12429100
+RT  Crystal structure of E. coli YhbY: a representative of a novel class of RNA binding proteins.
+RA  Ostheimer GJ, Barkan A, Matthews BW
+RL  Structure. 2002 Nov;10(11):1593-601.

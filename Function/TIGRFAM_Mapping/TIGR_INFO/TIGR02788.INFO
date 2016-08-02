@@ -1,0 +1,27 @@
+ID  VirB11
+AC  TIGR02788
+DE  P-type DNA transfer ATPase VirB11
+AU  Selengut J
+TC  249.95 249.95
+NC  241.25 241.25
+AL  muscle
+IT  equivalog
+EN  P-type DNA transfer ATPase VirB11
+GS  virB11
+TP  TIGRFAMs
+CC  The VirB11 protein is found in the vir locus of Agrobacterium Ti plasmids where it is involved in the type IV secretion system for DNA transfer [1].  VirB11 is believed to be an ATPase [2].  VirB11 is a homolog of the P-like conjugation system TrbB protein and the Flp pilus sytem protein TadA [3].
+RN  [1]
+RM  PMID: 8763953
+RT  The tra region of the nopaline-type Ti plasmid is a chimera with elements related to the transfer systems of RSF1010, RP4, and F.
+RA  Farrand SK, Hwang I, Cook DM.
+RL  J Bacteriol. 1996 Jul;178(14):4233-47.
+RN  [2]
+RM  PMID: 15554962
+RT  Energetic components VirD4, VirB11 and VirB4 mediate early DNA transfer reactions required for bacterial type IV secretion.
+RA  Atmakuri K, Cascales E, Christie PJ.
+RL  Mol Microbiol. 2004 Dec;54(5):1199-211.
+RN  [3]
+RM  PMID: 11566992
+RT  Nonspecific adherence and fibril biogenesis by Actinobacillus actinomycetemcomitans: TadA protein is an ATPase.
+RA  Bhattacharjee MK, Kachlany SC, Fine DH, Figurski DH.
+RL  J Bacteriol. 2001 Oct;183(20):5927-36.

@@ -1,0 +1,15 @@
+ID  vgr_GE
+AC  TIGR01646
+DE  Rhs element Vgr protein
+AU  Haft DH
+TC  121.80 121.80
+NC  113.60 113.60
+AL  clustalw_manual
+IT  subfamily
+EN  Rhs element Vgr protein
+TP  TIGRFAMs
+CC  This HMM represents the Vgr family of proteins, associated with some classes of Rhs elements. This model does not include a large octapeptide repeat region, VGXXXXXX, found in the Vgr of Rhs classes G and E.
+RM  9696756
+RT  Rhs elements comprise three subfamilies which diverged prior to acquisition by Escherichia coli.
+RA  Wang YD, Zhao S, Hill CW.
+RL  J Bacteriol 1998 Aug;180(16):4102-10

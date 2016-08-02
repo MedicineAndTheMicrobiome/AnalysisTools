@@ -1,0 +1,11 @@
+ID  GlrX_arch
+AC  TIGR02187
+DE  glutaredoxin-like domain protein
+AU  Selengut J
+TC  161.30 161.30
+NC  126.30 126.30
+AL  clustalw
+IT  hypoth_equivalog
+EN  Glutaredoxin-like domain protein
+TP  TIGRFAMs
+CC  This family of archaeal proteins contains a C-terminal domain with homology to bacterial and eukaryotic glutaredoxins, including a CPYC motif.  There is an N-terminal domain which has even more distant homology to glutaredoxins.  The name "glutaredoxin" may be inappropriate in the sense of working in tandem with glutathione and glutathione reductase which may not be present in the archaea.  The overall domain structure appears to be related to bacterial alkylhydroperoxide reductases, but the homology may be distant enough that the function of this family is wholly different.

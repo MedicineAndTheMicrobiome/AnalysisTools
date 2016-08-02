@@ -1,0 +1,11 @@
+ID  grpIintron_endo
+AC  TIGR01453
+DE  group I intron endonuclease
+AU  Haft DH
+TC  56.05 56.05
+NC  44.80 44.80
+AL  clustalw_manual
+IT  subfamily
+EN  group I intron endonuclease
+TP  TIGRFAMs
+CC  This HMM represents one subfamily of endonucleases containing the endo/excinuclease amino terminal domain, Pfam:PF01541 at its amino end. A distinct subfamily includes excinuclease abc subunit c (uvrC). Members of PF01541 are often termed GIY-YIG endonucleases after conserved motifs near the amino end.  This subfamily in this HMM is found in open reading frames of group I introns in both phage and mitochondria. The closely related endonucleases of phage T4: segA, segB, segC, segD and segE, score below the trusted cutoff for the family.

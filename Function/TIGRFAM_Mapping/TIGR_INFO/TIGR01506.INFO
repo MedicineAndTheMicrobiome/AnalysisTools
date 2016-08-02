@@ -1,0 +1,14 @@
+ID  ribC_arch
+AC  TIGR01506
+DE  riboflavin synthase
+AU  Haft DH
+TC  100.55 100.55
+NC  100.25 100.25
+AL  clustalw
+IT  equivalog
+EN  riboflavin synthase
+GS  ribC
+EC  2.5.1.9
+TP  TIGRFAMs
+CC  This archaeal protein catalyzes the same reaction, the final step in riboflavin biosynthesis, as bacterial riboflavin biosynthesis alpha chain. However, it is more similar in sequence to 6,7-dimethyl-8-ribityllumazine synthase, which catalyzes the previous reaction and which (in bacteria) is called the riboflavin synthase beta chain.
+DR  EXPERIMENTAL; SP|O26237; Methanobacterium thermoautotrophicum

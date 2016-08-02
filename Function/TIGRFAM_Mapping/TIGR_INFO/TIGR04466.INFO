@@ -1,0 +1,18 @@
+ID  rSAM_BlsE
+AC  TIGR04466
+DE  cytosylglucuronate decarboxylase
+AU  Haft DH
+TC  400.00 400.00
+NC  125.00 125.00
+AL  muscle_manual
+IT  equivalog
+EN  cytosylglucuronate decarboxylase
+GS  blsE
+EC  4.1.-.-
+TP  TIGRFAMs
+CC  BlsE, part of the blasticidin S biosynthetic pathway, is a radical SAM enzyme that performs a decarboxylation at C5 of the glucoside residue. MilG in mildiomycin biosynthesis is equivalent. This enzyme follows CGA synthase and makes the pyranoside core moiety of a class of peptidyl nucleoside antibiotics.
+RN  [1]
+RM  PMID:23874663 
+RT  Discovery and Characterization of BlsE, a Radical S-Adenosyl-L-methionine Decarboxylase Involved in the Blasticidin S Biosynthetic Pathway. 
+RA  Feng J, Wu J, Dai N, Lin S, Xu HH, Deng Z, He X 
+RL  PLoS One. 2013 Jul 18;8(7):e68545. doi: 10.1371/journal.pone.0068545.

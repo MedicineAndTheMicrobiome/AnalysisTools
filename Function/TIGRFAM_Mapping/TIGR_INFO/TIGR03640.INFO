@@ -1,0 +1,17 @@
+ID  cas1_DVULG
+AC  TIGR03640
+DE  CRISPR-associated endonuclease Cas1, subtype I-C/DVULG
+AU  Haft DH
+TC  385.00 385.00
+NC  365.00 365.00
+AL  muscle_manual
+IT  exception
+EN  CRISPR-associated endonuclease Cas1, subtype I-C/DVULG
+GS  cas1c
+TP  TIGRFAMs
+CC  The CRISPR-associated protein Cas1 is virtually universal to CRISPR systems. CRISPR, an acronym for Clustered Regularly Interspaced Short Palindromic Repeats, is prokaryotic immunity system for foreign DNA, mostly from phage. CRISPR systems belong to different subtypes, distinguished by both nature of the repeats, the makeup of the cohort of associated Cas proteins, and by molecular phylogeny within the more universal Cas proteins such as this one. This model is of type EXCEPTION and provides more specific information than the EQUIVALOG model TIGR00287. It describes the Cas1 protein particular to the DVULG subtype of CRISPR/Cas system.
+RN  [1]
+RM  PMID:16292354
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/Cas subtypes exist in prokaryotic genomes.
+RA  Haft DH, Selengut J, Mongodin EF, Nelson KE
+RL  PLoS Comput Biol. 2005 Nov;1(6):e60. Epub 2005 Nov 11.

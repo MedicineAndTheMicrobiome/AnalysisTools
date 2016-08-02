@@ -1,0 +1,13 @@
+ID  pyruv_ox_red
+AC  TIGR02176
+DE  pyruvate:ferredoxin (flavodoxin) oxidoreductase
+AU  Haft DH
+TC  911.35 911.35
+NC  659.30 659.30
+AL  clustalw
+IT  equivalog
+EN  pyruvate:ferredoxin (flavodoxin) oxidoreductase, homodimeric
+GS  nifJ
+EC  1.2.7.1
+TP  TIGRFAMs
+CC  This model represents a single chain form of pyruvate:ferredoxin (or flavodoxin) oxidoreductase. This enzyme may transfer electrons to nitrogenase in nitrogen-fixing species. Portions of this protein are homologous to gamma subunit of the four subunit pyruvate:ferredoxin (flavodoxin) oxidoreductase.

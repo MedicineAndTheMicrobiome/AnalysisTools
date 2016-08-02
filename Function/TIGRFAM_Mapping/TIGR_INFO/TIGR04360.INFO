@@ -1,0 +1,12 @@
+ID  other_trbK
+AC  TIGR04360
+DE  conjugative transfer region protein TrbK
+AU  Haft DH
+TC  33.00 33.00
+NC  26.00 26.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  conjugative transfer region protein TrbK
+GS  trbK
+TP  TIGRFAMs
+CC  Members of this family regularly are encoded between the TrbJ and TrbL proteins essential for P-type conjugal transfer, and therefore are designated TrbK. Positional analogy to family TIGR04359 (the entry exclusion lipoprotein TrbK of IncP plasmid RP4), which is a lipoprotein and not homologous, suggests this protein may also be involved in entry exclusion. Members of this family are small, with a non-lipoprotein signal peptide and a conserved disulfide bond.

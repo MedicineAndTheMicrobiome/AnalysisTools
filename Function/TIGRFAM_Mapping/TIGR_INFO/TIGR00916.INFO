@@ -1,0 +1,15 @@
+ID  2A0604s01
+AC  TIGR00916
+DE  protein-export membrane protein, SecD/SecF family
+AU  Loftus BJ
+TC  148.60 148.60
+NC  127.75 127.75
+AL  clustalw_manual
+IT  subfamily
+EN  protein-export membrane protein, SecD/SecF family
+TR  2.A.6.4
+TP  TIGRFAMs
+CC  The SecA,SecB,SecD,SecE,SecF,SecG and SecY proteins form the protein translocation appartus in prokaryotes. This family is specific for the SecD and SecF proteins.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_6.html
+DR  Interpro; IPR003335
+DR  PFAM; PF02355

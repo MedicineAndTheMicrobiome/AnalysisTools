@@ -1,0 +1,19 @@
+ID  TIGR00740
+AC  TIGR00740
+DE  tRNA (cmo5U34)-methyltransferase
+AU  Haft DH
+TC  193.30 193.30
+NC  112.00 112.00
+AL  msa_ncbi
+IT  equivalog
+EN  tRNA (cmo5U34)-methyltransferase
+GS  cmoA
+EC  2.1.1.-
+TP  TIGRFAMs
+CC  This tRNA methyltransferase is involved, together with cmoB, in preparing the uridine-5-oxyacetic acid (cmo5U) at position 34.
+RN  [1]
+RM  PMID:15383682 
+RT  The modified wobble nucleoside uridine-5-oxyacetic acid in tRNAPro(cmo5UGG) promotes reading of all four proline codons in vivo. 
+RA  Nasvall SJ, Chen P, Bjork GR 
+RL  RNA. 2004 Oct;10(10):1662-73. 
+DR  HAMAP; MF_01589; 120 of 124

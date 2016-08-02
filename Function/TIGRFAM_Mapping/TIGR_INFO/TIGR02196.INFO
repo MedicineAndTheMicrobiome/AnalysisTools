@@ -1,0 +1,16 @@
+ID  GlrX_YruB
+AC  TIGR02196
+DE  glutaredoxin-like protein, YruB-family
+AU  Selengut J
+TC  88.55 88.55
+NC  76.20 76.20
+AL  clustalw
+IT  hypoth_equivalog
+EN  Glutaredoxin-like protein, YruB-family
+TP  TIGRFAMs
+CC  This glutaredoxin-like protein family contains the conserved CxxC motif and includes the Clostridium pasteurianum protein YruB which has been cloned from a rubredoxin operon [1].  Somewhat related to NrdH, it is unknown whether this protein actually interacts with glutathione/glutathione reducatase, or, like NrdH, some other reductant system.
+RN  [1]
+RM  PMID: 1637309
+RT  Cloning, sequencing and expression in Escherichia coli of the rubredoxin gene from Clostridium pasteurianum.
+RA  Mathieu I, Meyer J, Moulis JM.
+RL  Biochem J. 1992 Jul 1;285 ( Pt 1):255-62.

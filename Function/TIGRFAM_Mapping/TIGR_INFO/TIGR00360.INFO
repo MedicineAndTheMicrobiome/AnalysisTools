@@ -1,0 +1,11 @@
+ID  ComEC_N-term
+AC  TIGR00360
+DE  ComEC/Rec2-related protein
+AU  Haft DH
+TC  36.50 36.50
+NC  36.50 36.50
+AL  clustalw
+IT  subfamily_domain
+EN  ComEC/Rec2-related protein
+TP  TIGRFAMs
+CC  The related HMM ComEC_Rec2 (TIGR00361) describes a set of proteins of ~ 700-800 residues, one each from a number of different species, of which most can become competent for natural transformation with exogenous DNA. The best-studied examples are ComEC from Bacillus subtilis and Rec-2 from Haemophilus influenzae, where the protein appears to form part of the DNA import structure. This HMM represents a region found in full-length ComEC/Rec2 and shorter homologs of unknown function from large number of additional bacterial species, most of which are not known to become competent for transformation (an exception is Helicobacter pylori).

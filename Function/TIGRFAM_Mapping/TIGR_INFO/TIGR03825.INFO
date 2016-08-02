@@ -1,0 +1,12 @@
+ID  FliH_bacil
+AC  TIGR03825
+DE  flagellar assembly protein FliH
+AU  Selengut J
+TC  148.90 148.90
+NC  129.35 129.35
+AL  muscle
+IT  equivalog
+EN  flagellar assembly protein FliH
+GS  fliH
+TP  TIGRFAMs
+CC  This bacillus clade of FliH proteins is not found by the Pfam FliH model PF02108, but is closely related to the sequences identified by that model.  Sequences identified by this model are observed in flagellar operons in an analogous position relative to other flagellar operon genes.

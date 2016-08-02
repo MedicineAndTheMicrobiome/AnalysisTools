@@ -1,0 +1,13 @@
+ID  torA
+AC  TIGR02164
+DE  trimethylamine-N-oxide reductase TorA
+AU  Haft DH
+TC  1465.00 1465.00
+NC  1100.00 1100.00
+AL  clustalw
+IT  equivalog
+EN  trimethylamine-N-oxide reductase TorA
+GS  torA
+EC  1.7.2.3
+TP  TIGRFAMs
+CC  This very narrowly defined family represents TorA, part of a family of related molybdoenzymes that include biotin sulfoxide reductases, dimethyl sulfoxide reductases, and at least two different subfamilies of trimethylamine-N-oxide reductases. A single enzyme from the larger family may have more than one activity. TorA typically is located in the periplasm, has a Tat (twin-arginine translocation)-dependent signal sequence, and is encoded in a torCAD operon.

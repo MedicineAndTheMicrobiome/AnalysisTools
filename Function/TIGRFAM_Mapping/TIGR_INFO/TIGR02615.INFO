@@ -1,0 +1,12 @@
+ID  spoVE
+AC  TIGR02615
+DE  stage V sporulation protein E
+AU  Haft DH
+TC  448.80 448.80
+NC  420.15 420.15
+AL  clustalw
+IT  exception
+EN  stage V sporulation protein E
+GS  spoVE
+TP  TIGRFAMs
+CC  This model represents an exception within the members of the FtsW model TIGR02614. This exception occurs only in endospore-forming genera such as Bacillus, Geobacillus, and Oceanobacillus. Like FtsW, members are found in a peptidoglycan operon context, but in these genera they part of a larger set of paralogs (not just the pair FtsW and RodA) and are required specifically for sporulation, not for viability.

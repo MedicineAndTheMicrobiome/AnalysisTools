@@ -1,0 +1,12 @@
+ID  methyltran_FxLD
+AC  TIGR04364
+DE  methyltransferase, FxLD system
+AU  Haft DH
+TC  320.00 320.00
+NC  225.00 225.00
+AL  muscle_manual
+IT  equivalog_domain
+EN  methyltransferase, FxLD system
+GS  fxlM
+TP  TIGRFAMs
+CC  Members of this family resemble occur regularly in the vicinity of lantibiotic biosynthesis enzymes and their probable target, the FxLD family of putative ribosomal natural product precursor (TIGR04363). Members resemble protein-L-isoaspartate O-methyltransferase (TIGR00080) and a predicted methyltranserase, TIGR04188, of another putative peptide modification system.

@@ -1,0 +1,17 @@
+ID  arg_2_3_am_muta
+AC  TIGR04468
+DE  arginine 2,3-aminomutase
+AU  Haft DH
+TC  600.00 600.00
+NC  500.00 500.00
+AL  muscle_manual
+IT  equivalog
+EN  arginine 2,3-aminomutase
+GS  blsG
+EC  5.4.3.-
+TP  TIGRFAMs
+CC  Members of this family are arginine 2,3-aminomutase, a radical SAM enzyme more closely related to lysine 2,3-aminomutase than to glutamate 2,3-aminomutase. The enzyme makes L-beta-arginine, sometimes in the context of antibiotic biosynthesis (blasticidin S, mildiomycin, etc). Activity is proven in Streptomyces griseochromogenes, which makes blasticidin S.
+RN  [1]
+RT  Biosynthesis of blasticidin S from L-alpha-arginine. Stereochemistry in the arginine-2,3-aminomutase reaction.
+RA  Prabhakaran PC, Woo NT, Yorgey PS, Gould SJ
+RL  J. Am. Chem. Soc., 1988, 110 (17), 5785–5791

@@ -1,0 +1,18 @@
+ID  dearomat_oah
+AC  TIGR03200
+DE  6-oxocyclohex-1-ene-1-carbonyl-CoA hydrolase
+AU  Haft DH
+TC  464.45 464.45
+NC  187.35 187.35
+AL  muscle
+IT  equivalog
+EN  6-oxocyclohex-1-ene-1-carbonyl-CoA hydrolase
+GS  oah
+EC  3.-.-.-
+TP  TIGRFAMs
+CC  Members of this protein family are 6-oxocyclohex-1-ene-1-carbonyl-CoA hydrolase, a ring-hydrolyzing enzyme in the anaerobic metabolism of aromatic enzymes by way of benzoyl-CoA, as seen in Thauera aromatica, Geobacter metallireducens, and Azoarcus sp. Note that Rhodopseudomonas palustris uses a different pathway to perform a similar degradation of benzoyl-CoA to 3-hydroxpimelyl-CoA.
+RN  [1]
+RM  PMID: 10406950
+RT  6-Hydroxycyclohex-1-ene-1-carbonyl-CoA dehydrogenase and 6-oxocyclohex-1-ene-1-carbonyl-CoA hydrolase, enzymes of the benzoyl-CoA pathway of anaerobic aromatic metabolism in the denitrifying bacterium Thauera aromatica.
+RA  Laempe D, Jahn M, Fuchs G
+RL  Eur J Biochem. 1999 Jul;263(2):420-9.

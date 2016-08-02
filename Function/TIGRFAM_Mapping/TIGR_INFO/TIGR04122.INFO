@@ -1,0 +1,11 @@
+ID  Xnuc_lig_assoc
+AC  TIGR04122
+DE  putative exonuclease, DNA ligase-associated
+AU  Haft DH
+TC  325.00 325.00
+NC  275.00 275.00
+AL  muscle_manual
+IT  equivalog
+EN  putative exonuclease, DNA ligase-associated
+TP  TIGRFAMs
+CC  Members of this protein family frequently are found annotated as a putative exonuclease involved in mRNA processing. This protein is found, exclusively in bacteria, associated with three other proteins: an ATP-dependent DNA ligase, a helicase, and putative phosphoesterase.

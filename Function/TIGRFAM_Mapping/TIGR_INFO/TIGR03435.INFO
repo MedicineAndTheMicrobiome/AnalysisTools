@@ -1,0 +1,11 @@
+ID  Soli_TIGR03435
+AC  TIGR03435
+DE  soil-associated protein, TIGR03435 family
+AU  Haft DH
+TC  40.00 40.00
+NC  22.00 22.00
+AL  muscle_manual
+IT  paralog
+EN  soil-associated protein, TIGR03435 family
+TP  TIGRFAMs
+CC  Bacterial reference strains encoding members of this protein family are all isolated from soil. These include 39 members from Solibacter usitatus Ellin6076, 27 from Acidobacterium sp. MP5ACTX8 (both Acidobacteria), and four from Pedosphaera parvula Ellin514 (Verrucomicrobia). The family is well-diversified, with few pairs showing greater than 50 % pairwise identity. A few members are fused to Peptidase_M56 domains (see PF05569), to Sigma70_r2 domains (see PF04542), or have a duplication of this domain.

@@ -1,0 +1,16 @@
+ID  Phr_nterm
+AC  TIGR04429
+DE  Phr family secreted Rap phosphatase inhibitor
+AU  Haft DH
+TC  25.00 25.00
+NC  23.70 23.70
+AL  muscle_manual
+IT  subfamily_domain
+EN  Phr family secreted Rap phosphatase inhibitor
+TP  TIGRFAMs
+CC  Phr peptides are short peptides, best conserved in their amino-terminal regions, that are almost always encoded immediately downstream of a Rap phosphatase. A portion of the Phr peptide is secreted, enters another cell, and forms a quorum-sensing system by inhibiting its Rap phosphatase partner. The set of Phr peptides recognized by this N-terminal region model is disjoint from the PhrC/PhrF set recognized by Pfam model PF11131.
+RN  [1]
+RM  PMID:9689219 
+RT  Characterization of a family of bacterial response regulator aspartyl-phosphate (RAP) phosphatases. 
+RA  Reizer J, Reizer A, Perego M, Saier MH Jr 
+RL  Microb Comp Genomics. 1997;2(2):103-11.

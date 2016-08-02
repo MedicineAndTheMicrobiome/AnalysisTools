@@ -1,0 +1,16 @@
+ID  pren_cyc_PirE
+AC  TIGR04446
+DE  prenylated cyclic peptide, anacyclamide/piricyclamide family
+AU  Haft DH
+TC  35.00 35.00
+NC  31.00 31.00
+AL  muscle_manual
+IT  subfamily
+EN  prenylated cyclic peptide, anacyclamide/piricyclamide family
+TP  TIGRFAMs
+CC  Members of this protein family occur primarily in Cyanobacteria. They average about 50 residues in length and are the ribosomally translated precursors of peptide natural products whose modifications include cleavage, cyclization, and prenylation. Sequences are well-conserved in the N-terminal region. They are nearly invariant over the last eight residues, but hypervariable just before that stretch. A related family, often in a similar genome context, is TIGR03678.
+RN  [1]
+RM  PMID:21766822 
+RT  Enzymatic basis of ribosomal peptide prenylation in cyanobacteria. 
+RA  McIntosh JA, Donia MS, Nair SK, Schmidt EW 
+RL  J Am Chem Soc. 2011 Aug 31;133(34):13698-705.

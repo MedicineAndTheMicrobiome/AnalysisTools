@@ -1,0 +1,17 @@
+ID  thiS
+AC  TIGR01683
+DE  thiamine biosynthesis protein ThiS
+AU  Haft DH
+TC  37.45 37.45
+NC  29.40 29.40
+AL  clustalw_manual
+IT  equivalog
+EN  thiamine biosynthesis protein ThiS
+GS  thiS
+TP  TIGRFAMs
+CC  This HMM represents ThiS, a small, ubiquitin-like thiamine biosynthesis protein related to MoaD, a molybdenum cofactor biosynthesis protein. Both proteins are involved in sulfur transfer. ThiS has a conserved Gly-Gly C-terminus that is modified, in reactions requiring ThiI, ThiF, IscS, and a sulfur atom from Cys, into the thiocarboxylate that provides the sulfur for thiazole biosynthesis.
+RM  10781607
+RT  The iscS gene in Escherichia coli is required for the biosynthesis of 4-thiouridine, thiamin, and NAD.
+RA  Lauhon CT, Kambampati R.
+RL  J Biol Chem. 2000 Jun 30;275(26):20096-103.
+DR  HAMAP; MF_00443; 1 of 268

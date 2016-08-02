@@ -1,0 +1,12 @@
+ID  sigpep_I_arch
+AC  TIGR02228
+DE  signal peptidase I
+AU  Haft DH
+TC  51.85 51.85
+NC  42.15 42.15
+AL  clustalw
+IT  equivalog
+EN  signal peptidase I, archaeal type
+EC  3.4.21.89
+TP  TIGRFAMs
+CC  This HMM represents signal peptidase I from most archaea, a subunit of the eukaryotic endoplasmic reticulum signal peptidase I complex, and an apparent signal peptidase I from a small number of bacteria. It is related to but does not overlap in hits with TIGR02227, the bacterial and mitochondrial signal peptidase I.

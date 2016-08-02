@@ -1,0 +1,11 @@
+ID  P_acnes_RR
+AC  TIGR03767
+DE  metallophosphoesterase, PPA1498 family
+AU  Haft DH
+TC  330.75 330.75
+NC  222.55 222.55
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  metallophosphoesterase, PPA1498 family
+TP  TIGRFAMs
+CC  This HMM describes a small collection of probable metallophosphoresterases, related to PF00149 but with long inserts separating some of the shared motifs such that the homology is apparent only through multiple sequence alignment. Members of this protein family, in general, have a Sec-independent TAT (twin-arginine translocation) signal sequence, N-terminal to the region modeled by this HMM. Members include YP_056203.1 from Propionibacterium acnes KPA171202.

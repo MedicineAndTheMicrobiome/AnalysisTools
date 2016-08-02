@@ -1,0 +1,17 @@
+ID  TraG-Ti
+AC  TIGR02767
+DE  Ti-type conjugative transfer system protein TraG
+AU  Selengut J
+TC  686.20 686.20
+NC  543.80 543.80
+AL  muscle
+IT  equivalog
+EN  Ti-type conjugative transfer system protein TraG
+GS  traG
+TP  TIGRFAMs
+CC  This protein is found in the Agrobacterium tumefaciens Ti plasmid tra region responsible for conjugative transfer of the entire plasmid among Agrobacterium strains [1].  The protein is distantly related to the F-type conjugation system TraG protein.  Both of these systems are examples of type IV secretion systems.
+RN  [1]
+RM  PMID: 8763953
+RT  The tra region of the nopaline-type Ti plasmid is a chimera with elements related to the transfer systems of RSF1010, RP4, and F.
+RA  Farrand SK, Hwang I, Cook DM.
+RL  J Bacteriol. 1996 Jul;178(14):4233-47.

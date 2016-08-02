@@ -1,0 +1,18 @@
+ID  F420_cofD
+AC  TIGR01819
+DE  2-phospho-L-lactate transferase
+AU  Haft DH
+TC  257.45 257.45
+NC  106.75 106.75
+AL  clustalw_manual
+IT  equivalog
+EN  2-phospho-L-lactate transferase
+GS  cofD
+EC  2.7.8.28
+TP  TIGRFAMs
+CC  This HMM represents LPPG:Fo 2-phospho-L-lactate transferase, which catalyses the fourth step in the biosynthesis of coenzyme F420, a flavin derivative found in methanogens, the Mycobacteria, and several other lineages. This enzyme is characterized so far in Methanococcus jannaschii but appears restricted to F420-containing species and is predicted to carry out the same function in these other species. The clade represented by this HMM is one of two major divisions of proteins in Pfam HMM PF01933.
+RM  11888293
+RT  Characterization of the 2-phospho-L-lactate transferase enzyme involved in coenzyme F(420) biosynthesis in Methanococcus jannaschii.
+RA  Graupner M, Xu H, White RH.
+RL  Biochemistry 2002 Mar 19;41(11):3754-61
+DR  HAMAP; MF_01257; 33 of 33

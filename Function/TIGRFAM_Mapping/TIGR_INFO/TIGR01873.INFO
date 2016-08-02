@@ -1,0 +1,21 @@
+ID  cas_CT1978
+AC  TIGR01873
+DE  CRISPR-associated endoribonuclease Cas2, subtype I-E/ECOLI
+AU  Haft DH
+TC  33.15 33.15
+NC  27.15 27.15
+AL  clustalw_manual
+IT  equivalog
+EN  CRISPR-associated endoribonuclease Cas2, subtype I-E/ECOLI
+GS  cas2e
+TP  TIGRFAMs
+CC  CRISPR is a term for Clustered, Regularly Interspaced Short Palidromic Repeats. A number of protein families appear only in association with these repeats and are designated Cas (CRISPR-Associated) proteins. This HMM represents a minor branch of the Cas2 family of CRISPR-associated endonuclease, whereas most Cas2 proteins are modeled instead by TIGR01573. This form of Cas2 is characteristic for the Ecoli subtype of CRISPR/Cas locus.
+RN  [1]
+RM  PMID:18482976
+RT  A novel family of sequence-specific endoribonucleases associated with the clustered regularly interspaced short palindromic repeats.
+RA  Beloglazova N, Brown G, Zimmerman MD, Proudfoot M, Makarova KS, Kudritska M, Kochinyan S, Wang S, Chruszcz M, Minor W, Koonin EV, Edwards AM, Savchenko A, Yakunin AF
+RL  J Biol Chem. 2008 Jul 18;283(29):20361-71. Epub 2008 May 15.
+RN  [2]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005

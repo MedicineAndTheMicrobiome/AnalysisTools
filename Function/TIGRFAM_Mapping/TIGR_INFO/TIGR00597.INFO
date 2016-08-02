@@ -1,0 +1,13 @@
+ID  rad10
+AC  TIGR00597
+DE  DNA repair protein rad10
+AU  Loftus BJ, Eisen JA
+TC  72.90 72.90
+NC  45.70 45.70
+IT  subfamily
+EN  DNA repair protein rad10
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are components in a multiprotein endonuclease complex (usually made up of Rad1 and Rad10 homologs).  This complex is used primarily for nucleotide excision repair but also for some aspects of recombination repair.  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  EGAD; 79372;
+DR  SWISSPROT; Q06182;
+RM  93117111;

@@ -1,0 +1,17 @@
+ID  plc_access_R
+AC  TIGR03398
+DE  phospholipase C accessory protein PlcR
+AU  Haft DH
+TC  99.10 99.10
+NC  98.60 98.60
+AL  muscle_manual
+IT  equivalog
+EN  phospholipase C accessory protein PlcR
+GS  plcR
+TP  TIGRFAMs
+CC  The class of microbial phosphocholine-preferring phospholipase C enzymes described by model TIGR03396 has two members in Pseudomonas aeruginosa, one of which (PlcH) is hemolytic and can hydrolyzes sphingomyelin as well as phosphatidylcholine. This model describes PlcR, an accessory protein for PlcH with which it forms a heterodimer. The member of the family from P. aeruginosa, although not the members from various Burkholderia species, is encoded immediately downstream of phospholipase C.
+RN  [1]
+RM  PMID: 12410824
+RT  A novel class of microbial phosphocholine-specific phospholipases C.
+RA  Stonehouse MJ, Cota-Gomez A, Parker SK, Martin WE, Hankin JA, Murphy RC, Chen W, Lim KB, Hackett M, Vasil AI, Vasil ML
+RL  Mol Microbiol. 2002 Nov;46(3):661-76.

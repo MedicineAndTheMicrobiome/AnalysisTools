@@ -1,0 +1,11 @@
+ID  Liste_lipo_26
+AC  TIGR02167
+DE  bacterial surface protein 26-residue repeat
+AU  Haft DH
+TC  16.60 16.60
+NC  16.30 16.30
+AL  clustalw_manual
+IT  repeat
+EN  bacterial surface protein 26-residue repeat
+TP  TIGRFAMs
+CC  This HMM describes a tandem peptide repeat sequence of 25 or 26 residues, found in predicted surface proteins (often lipoproteins) from Listeria monocytogenes, L. innocua, Enterococcus faecalis, Lactobacillus plantarum, Mycoplasma mycoides, Helicobacter hepaticus, and other species.

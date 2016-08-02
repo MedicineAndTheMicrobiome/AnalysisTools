@@ -1,0 +1,23 @@
+ID  aprA
+AC  TIGR02061
+DE  adenylylsulfate reductase, alpha subunit
+AU  Brinkac L
+TC  641.75 641.75
+NC  326.00 326.00
+AL  clustalw
+IT  equivalog
+EN  adenosine phosphosulphate reductase, alpha subunit
+GS  aprA
+EC  1.8.99.2
+TP  TIGRFAMs
+CC  During dissimilatory sulfate reduction or sulfur oxidation, adenylylsulfate (APS) reductase catalyzes reversibly the two-electron reduction of APS to sulfite and AMP [1]. Found in several bacterial lineages and in Archaeoglobales, APS reductase is a heterodimer composed of an alpha subunit containing a noncovalently bound FAD, and a beta subunit containing two [4Fe-4S] clusters [1]. Described by this model is the alpha subunit of APS reductase, sharing common evolutionary origin with fumarate reductase/succinate dehydrogenase flavoproteins.
+RN [1]
+RM 10802060
+RT Adenylylsulfate reductases from archaea and bacteria are 1:1 alphabeta-heterodimeric iron-sulfur flavoenzymes--high similarity of molecular properties emphasizes their central role in sulfur metabolism.
+RA Fritz G, Buchert T, Huber H, Stetter KO, Kroneck PM.
+RL FEBS Lett. 2000 May 4;473(1):63-6.
+DR PFAM; PF02910; Fumarate reductase/succinate dehydrogenase flavoprotein C-terminal domain
+DR PFAM; PF00890; FAD binding domain
+DR EXPERIMENTAL; GP|2576391; Allochromatium vinosum; insertional inactivation resulted in inability to synthesize APS from sulfite and AMP.
+DR EXPERIMENTAL; GP|2648887; Archaeoglobus fulgidus; purified by chromatography, with APS reductase activity measured by spectroscopy.
+DR OUTGROUP; GP|2649111; Archaeoglobus fulgidus DSM4304; fumarate reductase, flavoprotein subunit.

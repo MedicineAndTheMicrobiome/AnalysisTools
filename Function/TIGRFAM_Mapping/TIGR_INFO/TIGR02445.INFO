@@ -1,0 +1,19 @@
+ID  fadA
+AC  TIGR02445
+DE  acetyl-CoA C-acyltransferase FadA
+AU  Rosovitz MJ, Haft DH
+TC  591.00 591.00
+NC  418.20 418.20
+AL  clustalw
+IT  equivalog
+EN  fatty oxidation complex, beta subunit FadA
+GS  fadA
+EC  2.3.1.16
+TP  TIGRFAMs
+CC  This subunit of the FadBA complex has acetyl-CoA C-acyltransferase (EC 2.3.1.16) activity, and is also known as beta-ketothiolase and fatty oxidation complex, beta subunit. This protein is almost always located adjacent to FadB (TIGR02437).  The FadBA complex is the major complex active for beta-oxidation of fatty acids in E. coli.
+RN  [1]
+RM  2191949
+RT  Nucleotide sequence of the fadA gene. Primary structure of 3-ketoacyl-coenzyme A thiolase from Escherichia coli and the structural organization of the fadAB operon.
+RA  Yang SY, Yang XY, Healy-Louie G, Schulz H, Elzinga M.
+RL J Biol Chem. 1990 Jun 25;265(18):10424-9.
+DR  HAMAP; MF_01620; 84 of 84

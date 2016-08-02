@@ -1,0 +1,26 @@
+ID  IsdH_HarA
+AC  TIGR03658
+DE  haptoglobin-binding heme uptake protein HarA
+AU  Selengut J
+TC  1400.25 1400.25
+NC  1044.00 1044.00
+AL  muscle
+IT  equivalog
+EN  haptoglobin-binding heme uptake protein HarA
+TP  TIGRFAMs
+CC  HarA is a heme-binding NEAT-domain (NEAr Transporter, PF05031) protein which has been shown to bind to the haptoglobin-hemoglobin complex in order to extract heme from it.  HarA has also been reported to bind hemoglobin directly [2].  HarA (also known as IsdH) contains three NEAT domains as well as a sortase A C-terminal signal for localization to the cell wall.  The heme bound at the third of these NEAT domains has been shown to be transferred to the IsdA protein also localized at the cell wall, presumably through an additional specific protein-protein interaction [3].  Haptoglobin is a hemoglobin carrier protein involved in scavenging hemoglobin in the blood following red blood cell lysis and targetting it to the liver.
+RN  [1]
+RM  PMID:17041047 
+RT  High-affinity binding of the staphylococcal HarA protein to haptoglobin and hemoglobin involves a domain with an antiparallel eight-stranded beta-barrel fold. 
+RA  Dryla A, Hoffmann B, Gelbmann D, Giefing C, Hanner M, Meinke A, Anderson AS, Koppensteiner W, Konrat R, von Gabain A, Nagy E 
+RL  J Bacteriol. 2007 Jan;189(1):254-64. Epub 2006 Oct 13.
+RN  [2]
+RM  PMID:16762363 
+RT  Solution structure of the NEAT (NEAr Transporter) domain from IsdH/HarA: the human hemoglobin receptor in Staphylococcus aureus. 
+RA  Pilpa RM, Fadeev EA, Villareal VA, Wong ML, Phillips M, Clubb RT 
+RL  J Mol Biol. 2006 Jul 7;360(2):435-47. Epub 2006 May 22. 
+RN  [3]
+RM  PMID:18676371
+RT  Demonstration of the iron-regulated surface determinant heme transfer pathway in Staphylococcus aureus.
+RA  Muryoi N, Tiedemann MT, Pluym M, Cheung J, Heinrichs DE, Stillman MJ
+RL  J Biol Chem. 2008 Aug 1.

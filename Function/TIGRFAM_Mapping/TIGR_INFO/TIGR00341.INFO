@@ -1,0 +1,11 @@
+ID  TIGR00341
+AC  TIGR00341
+DE  TIGR00341 family protein
+AU  Haft DH
+TC  94.75 94.75
+NC  92.30 92.30
+AL  clustalw
+IT  hypoth_equivalog
+EN  TIGR00341 family protein
+TP  TIGRFAMs
+CC  This conserved hypothetical protein is found so far only in three archaeal genomes and in Streptomyces coelicolor. It shares a hydrophobic uncharacterized domain (see HMM TIGR00271) of about 180 residues with several eubacterial proteins, including the much longer protein sll1151 of Synechocystis PCC6803.

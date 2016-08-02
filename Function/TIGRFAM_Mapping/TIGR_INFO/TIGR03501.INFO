@@ -1,0 +1,21 @@
+ID  GlyGly_CTERM
+AC  TIGR03501
+DE  GlyGly-CTERM domain
+AU  Haft DH
+TC  15.50 15.50
+NC  14.40 14.40
+AL  manual
+IT  domain
+EN  GlyGly-CTERM domain
+TP  TIGRFAMs
+CC  This homology domain, GlyGly-CTERM, shares a species distribution with rhombosortase (TIGR03902), a subfamily of rhomboid-like intramembrane serine proteases. It is probably a recognition sequence for protein sorting and then cleavage by rhombosortase. Shewanella species have the largest number of target proteins per genome, up to thirteen. The domain occurs at the extreme carboxyl-terminus of a diverse set of proteins, most of which are enzymes with conventional signal sequences and with hydrolytic activities: nucleases, proteases, agarases, etc. The agarase AgaA from Vibro sp. strain JT0107 is secreted into the medium, while the same protein heterologously expressed in E. coli is retained in the cell fraction. This suggests cleavage and release in species with this domain. Both this suggestion, and the chemical structure of the domain (motif, hydrophobic predicted transmembrane helix, cluster of basic residues) closely parallels that of the LPXTG/sortase system and the PEP-CTERM/exosortase(EpsH) system. For this reason, the putative processing enzyme is designated rhombosortase.
+RN  [1]
+RM  PMID:22194940 
+RT  GlyGly-CTERM and rhombosortase: a C-terminal protein processing signal in a many-to-one pairing with a rhomboid family intramembrane serine protease. 
+RA  Haft DH, Varghese N 
+RL  PLoS One. 2011;6(12):e28886. 
+RN  [2]
+RM  PMID:8285681
+RT  Cloning and sequencing of agaA, a unique agarase 0107 gene from a marine bacterium, Vibrio sp. strain JT0107.
+RA  Sugano Y, Matsumoto T, Kodama H, Noma M
+RL  Appl Environ Microbiol. 1993 Nov;59(11):3750-6.

@@ -1,0 +1,23 @@
+ID  pupylate_PafA
+AC  TIGR03686
+DE  Pup--protein ligase
+AU  Haft DH
+TC  551.30 551.30
+NC  429.85 429.85
+AL  muscle_manual
+IT  equivalog
+EN  Pup--protein ligase
+GS  pafA
+EC  6.3.2.-
+TP  TIGRFAMs
+CC  Members of this family are the Pup--protein ligase PafA (proteasome accessory factor A), a protein shown to regulate steady-state levels of certain proteasome targets in Mycobacterium tuberculosis. Iyer, et al (2008) first suggested that PafA is the ligase for Pup, a ubiquitin analog attached to an epsilon-amino group of a Lys side-chain to direct the target to the proteasome.
+RN  [1]
+RM  PMID:17277063
+RT  Characterization of the proteasome accessory factor (paf) operon in Mycobacterium tuberculosis.
+RA  Festa RA, Pearce MJ, Darwin KH
+RL  J Bacteriol. 2007 Apr;189(8):3044-50.
+RN  [2]
+RM  PMID:22910360 
+RT  Structures of Pup ligase PafA and depupylase Dop from the prokaryotic ubiquitin-like modification pathway. 
+RA  Ozcelik D, Barandun J, Schmitz N, Sutter M, Guth E, Damberger FF, Allain FH, Ban N, Weber-Ban E 
+RL  Nat Commun. 2012;3:1014. doi: 10.1038/ncomms2009.

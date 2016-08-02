@@ -1,0 +1,11 @@
+ID  zmp_18_rpt
+AC  TIGR04227
+DE  zinc metalloproteinase 18-residue repeat
+AU  Haft DH
+TC  50.00 20.00
+NC  21.00 16.00
+AL  manual
+IT  repeat
+EN  zinc metalloproteinase 18-residue repeat
+TP  TIGRFAMs
+CC  This model describes a short (18-amino acid) tandem repeat that occurs variable numbers of times in zinc metalloproteinase C (zmpC) homologs in various species of Streptococcus. This repeat occurs, oddly, as an interruption in a region of tandem repeats of another type.

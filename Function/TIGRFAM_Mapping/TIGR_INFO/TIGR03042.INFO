@@ -1,0 +1,17 @@
+ID  PS_II_psbQ_bact
+AC  TIGR03042
+DE  photosystem II protein PsbQ
+AU  Haft DH
+TC  106.90 106.90
+NC  66.40 66.40
+AL  muscle
+IT  equivalog
+EN  photosystem II protein PsbQ
+GS  psbQ
+TP  TIGRFAMs
+CC  This protein through the member sll1638 from Synechocystis sp. PCC 6803, was shown to be part of the cyanobacteria photosystem II. It is homologous to (but quite diverged from) the chloroplast PsbQ protein, called oxygen-evolving enhancer protein 3 (OEE3). We designate this cyanobacteria protein PsbQ by homology.
+RN  [1]
+RM  PMID: 12069591
+RT  Proteomic analysis of a highly active photosystem II preparation from the cyanobacterium Synechocystis sp. PCC 6803 reveals the presence of novel polypeptides.
+RA  Kashino Y, Lauber WM, Carroll JA, Wang Q, Whitmarsh J, Satoh K, Pakrasi HB
+RL  Biochemistry. 2002 Jun 25;41(25):8004-12.

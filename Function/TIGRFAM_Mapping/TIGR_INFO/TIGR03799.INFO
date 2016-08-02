@@ -1,0 +1,13 @@
+ID  NOD_PanD_pyr
+AC  TIGR03799
+DE  putative pyridoxal-dependent aspartate 1-decarboxylase
+AU  Haft DH
+TC  606.10 606.10
+NC  375.40 375.40
+AL  muscle_manual
+IT  equivalog
+EN  putative pyridoxal-dependent aspartate 1-decarboxylase
+GS  panP
+EC  4.1.1.-
+TP  TIGRFAMs
+CC  This enzyme is proposed here to be a form of aspartate 1-decarboxylase, pyridoxal-dependent, that represents a non-orthologous displacement to the more widely distributed pyruvoyl-dependent form (TIGR00223).  Aspartate 1-decarboxylase makes beta-alanine, used usually in pathothenate biosynthesis, by decarboxylation from asparatate. A number of species with the PanB and PanC enzymes, however, lack PanD. This protein family occurs in a number of Proteobacteria that lack PanD. This enzyme family appears to be a pyridoxal-dependent enzyme (see PF00282). The family was identified by Partial Phylogenetic Profiling; members in Geobacter sulfurreducens, G. metallireducens, and Pseudoalteromonas atlantica are clustered with the genes for PanB and PanC. We suggest the gene symbol panP (panthothenate biosynthesis enzyme, Pyridoxal-dependent).

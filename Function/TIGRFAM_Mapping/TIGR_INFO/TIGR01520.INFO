@@ -1,0 +1,17 @@
+ID  FruBisAldo_II_A
+AC  TIGR01520
+DE  fructose-bisphosphate aldolase, class II
+AU  Haft DH
+TC  347.70 347.70
+NC  206.25 206.25
+AL  clustalw
+IT  equivalog
+EN  fructose-bisphosphate aldolase, class II, yeast/E. coli subtype
+GS  fbaA
+EC  4.1.2.13
+TP  TIGRFAMs
+CC  Members of this family are class II examples of the glycolytic enzyme fructose-bisphosphate aldolase (FBA).
+CC  This HMM represents one of two deeply split, architecturally distinct clades of the family that includes class II fructose-bisphosphate aldolases, tagatose-bisphosphate aldolases, and related uncharacterized proteins. This family is well-conserved and includes characterized FBA from Saccharomyces cerevisiae, Escherichia coli, and Corynebacterium glutamicum. Proteins outside the scope of this model may also be designated as class II fructose-bisphosphate aldolases, but are well separated in an alignment-based phylogenetic tree.
+DR  EXPERIMENTAL; SP|P14540; Saccharomyces cerevisiae
+DR  EXPERIMENTAL; SP|P19537; Corynebacterium glutamicum
+DR  EXPERIMENTAL; SP|P11604; Escherichia coli

@@ -1,0 +1,15 @@
+ID  ncs2
+AC  TIGR00801
+DE  uracil-xanthine permease
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  291.80 291.80
+NC  202.10 202.10
+AL  clustalw_manual
+IT  superfamily
+EN  uracil-xanthine permease
+TR  2.A.40
+TP  TIGRFAMs
+CC  The Nucleobase:Cation Symporter-2 (NCS2) Family (TC 2.A.40)
+CC  Most of the functionally characterized members of the NCS2 family are transporters specific for nucleobases including both purines and pyrimidines. However, two closely related rat members of the family, SVCT1 and SVCT2,
+CC  localized to different tissues of the body, cotransport L-ascorbate and Na+ with a high degree of specificity and high affinity for the vitamin. The
+CC  NCS2 family appears to be distantly related to the NCS1 family (TC #2.A.39).

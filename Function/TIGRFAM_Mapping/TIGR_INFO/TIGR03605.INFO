@@ -1,0 +1,16 @@
+ID  antibiot_sagB
+AC  TIGR03605
+DE  SagB-type dehydrogenase domain
+AU  Haft DH
+TC  78.40 78.40
+NC  47.35 47.35
+AL  muscle_manual
+IT  domain
+EN  SagB-type dehydrogenase domain
+TP  TIGRFAMs
+CC  SagB of Sterptococcus pyogenes participates in the maturation of streptolysin S from a ribosomally produced precursor polypeptide. Chemically similar systems operate on highly diverse sets of bacteriocin precursors in numerous other bacteria. This model describes a domain within SgaB and homologous regions from other proteins, many of which appear to be involved in biosynthesis of secondary metabolites. While some substrates may be intermediates in non-ribosomal peptide syntheses, others are involved in heterocycle-containing bacteriocin biosynthesis, and can be found near SgaC-like (see TIGR03603, cyclodehydratase) and SgaD-like (see TIGR03604, "docking") proteins. Members of this domain family are heterogeneous in length, as many have a partial second copy of the domain represented here. The incomplete second domain scores below the cutoffs to this model in most cases.
+RN  [1]
+RM  PMID:18375757
+RT  Discovery of a widely distributed toxin biosynthetic gene cluster.
+RA  Lee SW, Mitchell DA, Markley AL, Hensler ME, Gonzalez D, Wohlrab A, Dorrestein PC, Nizet V, Dixon JE
+RL  Proc Natl Acad Sci U S A. 2008 Apr 15;105(15):5879-84.

@@ -1,0 +1,27 @@
+ID  LysX_arch
+AC  TIGR02144
+DE  lysine biosynthesis enzyme LysX
+AU  Selengut J
+TC  275.60 275.60
+NC  201.55 201.55
+AL  clustalw
+IT  equivalog
+EN  Lysine biosynthesis enzyme LysX
+GS  lysX
+TP  TIGRFAMs
+CC  The family of proteins found in this equivalog include the characterized LysX from Thermus thermophilus [1] which is part of a well-organized lysine biosynthesis gene cluster [2].  LysX is believed to carry out an ATP-dependent acylation of the amino group of alpha-aminoadipate in the prokaryotic version of the fungal AAA lysine biosynthesis pathway.  No species having a sequence in this equivalog contains the elements of the more common diaminopimelate lysine biosythesis pathway, and none has been shown to be a lysine auxotroph.  These sequences have mainly recieved the name of the related enzyme, "ribosomal protein S6 modification protein RimK".  RimK has been characterized in E. coli, and acts by ATP-dependent condensation of S6 with glutamate residues [3].
+RN  [1]
+RM  PMID: 12963379
+RT  Crystal structure of a lysine biosynthesis enzyme, LysX, from Thermus thermophilus HB8
+RA  Sakai H, Vassylyeva MN, Matsuura T, Sekine S, Gotoh K, Nishiyama M, Terada T, Shirouzu M, Kuramitsu S, Vassylyev DG, Yokoyama S
+RL  J Mol Biol. 2003 Sep 19;332(3):729-40
+RN  [2]
+RM  PMID: 10613839
+RT  A prokaryotic gene cluster involved in synthesis of lysine through the amino adipate pathway: a key to the evolution of amino acid biosynthesis
+RA  Nishida H, Nishiyama M, Kobashi N, Kosuge T, Hoshino T, Yamane H
+RL  Genome Res. 1999 Dec;9(12):1175-83
+RN  [3]
+RM  PMID: 2570347
+RT  Characterization of the gene rimK responsible for the addition of glutamic acid residues to the C-terminus of ribosomal protein S6 in Escherichia coli K12
+RA  Kang WK, Icho T, Isono S, Kitakawa M, Isono K
+RL  Mol Gen Genet. 1989 Jun;217(2-3):281-8

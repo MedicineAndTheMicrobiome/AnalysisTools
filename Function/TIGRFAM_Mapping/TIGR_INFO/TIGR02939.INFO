@@ -1,0 +1,12 @@
+ID  RpoE_Sigma70
+AC  TIGR02939
+DE  RNA polymerase sigma factor RpoE
+AU  Selengut J
+TC  236.15 236.15
+NC  170.45 170.45
+AL  muscle
+IT  equivalog
+EN  RNA polymerase sigma factor RpoE
+GS  rpoE
+TP  TIGRFAMs
+CC  A sigma factor is a DNA-binding protein protein that binds to the DNA-directed RNA polymerase core to produce the holoenzyme capable of initiating transcription at specific sites. Different sigma factors act in vegetative growth, heat shock, extracytoplasmic functions (ECF), etc. This model represents the clade of sigma factors called RpoE. This protein may be called sigma-24, sigma-E factor, sigma-H factor, fecI-like sigma factor or alternative sigma factor AlgU.

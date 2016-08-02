@@ -1,0 +1,11 @@
+ID  T7SS_SACOL2603
+AC  TIGR04197
+DE  type VII secretion effector, TIGR04197 family
+AU  Haft DH
+TC  26.00 26.00
+NC  21.00 20.00
+AL  muscle_manual
+IT  subfamily
+EN  type VII secretion effector, SACOL2603 family
+TP  TIGRFAMs
+CC  Members of this protein family are similar in length and sequence (although remotely) to the WXG100 family of type VII secretion system (T7SS) targets, described by family TIGR03930. Phylogenetic profiling shows that members of this family are similarly restricted to species with T7SS, marking this family as a related set of T7SS effectors. Members include SACOL2603 from Staphylococcus aureus subsp. aureus COL. Oddly, members of family PF10824 (DUF2580), which appears also to be related, seem not to be tied to T7SS.

@@ -1,0 +1,15 @@
+ID  polC_Gram_pos
+AC  TIGR01405
+DE  DNA polymerase III, alpha subunit, Gram-positive type
+AU  Haft DH
+TC  1043.45 1043.45
+NC  618.45 618.45
+AL  clustalw
+IT  equivalog
+EN  DNA polymerase III, alpha chain, Gram-positive type
+GS  polC
+EC  2.7.7.7
+TP  TIGRFAMs
+CC  This HMM describes a polypeptide chain of DNA polymerase III. Full-length homologs of this protein are restricted to the Gram-positive lineages, including the Mycoplasmas. This protein is designated alpha chain and given the gene symbol polC, but is not a full-length homolog of other polC genes.
+CC  The N-terminal region of about 200 amino acids is rich in low-complexity sequence, poorly alignable, and not included n this model.
+DR  HAMAP; MF_00356; 64 of 64

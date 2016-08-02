@@ -1,0 +1,14 @@
+ID  rpsD_bact
+AC  TIGR01017
+DE  ribosomal protein S4
+AU  Durkin S, Haft DH
+TC  177.20 177.20
+NC  66.80 66.80
+AL  clustalw
+IT  equivalog
+EN  ribosomal protein S4, bacterial/organelle type
+GS  rpsD
+TP  TIGRFAMs
+CC  This model finds organelle (chloroplast and mitochondrial) ribosomal protein S4 as well as bacterial ribosomal protein S4.
+DR  EXPERIMENTAL; EGAD|13606|EC3296; Eschericia coli
+DR  HAMAP; MF_01306; 775 of 834

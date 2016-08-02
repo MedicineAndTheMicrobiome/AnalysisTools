@@ -1,0 +1,16 @@
+ID  decahem_SO1788
+AC  TIGR03507
+DE  decaheme c-type cytochrome, OmcA/MtrC family
+AU  Haft DH
+TC  209.30 209.30
+NC  60.05 60.05
+AL  muscle_manual
+IT  subfamily
+EN  decaheme c-type cytochrome, OmcA/MtrC family
+TP  TIGRFAMs
+CC  The protein SO_1778 (MtrC) of Shewanella oneidensis MR-1, and its paralog SO_1779 (OmcA), with which it intteracts, are large decaheme proteins, about 900 amino acids in length, involved in the use of manganese [Mn(III/IV)] and iron [Fe(III)] as terminal electron acceptors. This model represents these and similar decaheme proteins, found also in Rhodoferax ferrireducens DSM 15236, Aeromonas hydrophila ATCC7966, and a few other bacterial species.
+RN  [1]
+RM  PMID:16788180
+RT  Isolation of a high-affinity functional protein complex between OmcA and MtrC: Two outer membrane decaheme c-type cytochromes of Shewanella oneidensis MR-1.
+RA  Shi L, Chen B, Wang Z, Elias DA, Mayer MU, Gorby YA, Ni S, Lower BH, Kennedy DW, Wunschel DS, Mottaz HM, Marshall MJ, Hill EA, Beliaev AS, Zachara JM, Fredrickson JK, Squier TC
+RL  J Bacteriol. 2006 Jul;188(13):4705-14.

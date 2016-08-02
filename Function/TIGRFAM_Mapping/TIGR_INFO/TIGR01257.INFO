@@ -1,0 +1,12 @@
+ID  rim_protein
+AC  TIGR01257
+DE  rim ABC transporter
+AU  Ujwal ML, Paulsen IT
+TC  4012.85 4012.85
+NC  2683.10 2683.10
+AL  clustalw
+IT  equivalog
+EN  retinal-specific rim ABC transporter
+TR  3.A.01
+TP  TIGRFAMs
+CC  This model describes the photoreceptor protein (rim protein) in eukaryotes. It is the member of ABC transporter superfamily. Rim protein is a membrane glycoprotein which is localized in the photoreceptor outer segment discs. Mutation/s in its genetic loci is implicated in the recessive Stargardt's disease.

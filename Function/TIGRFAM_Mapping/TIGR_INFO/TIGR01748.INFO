@@ -1,0 +1,18 @@
+ID  rhaA
+AC  TIGR01748
+DE  L-rhamnose isomerase
+AU  Haft DH
+TC  584.95 584.95
+NC  225.55 225.55
+AL  clustalw
+IT  equivalog
+EN  L-rhamnose isomerase
+GS  rhaA
+EC  5.3.1.14
+TP  TIGRFAMs
+CC  This enzyme interconverts L-rhamnose and L-rhamnulose. In some species, including E. coli, this is the first step in rhamnose catabolism. Sequential steps are catalyzed by rhamnulose kinase (rhaB), then rhamnulose-1-phosphate aldolase (rhaD) to yield glycerone phosphate and (S)-lactaldehyde. Characterization of this family is based on members in E. coli and Salmonella.
+RM  8396120
+RT  Sequencing and characterization of a gene cluster encoding the enzymes for L-rhamnose metabolism in Escherichia coli.
+RA  J Bacteriol 1993 Sep;175(17):5585-94
+RL  Moralejo P, Egan SM, Hidalgo E, Aguilar J.
+DR  HAMAP; MF_00541; 39 of 41

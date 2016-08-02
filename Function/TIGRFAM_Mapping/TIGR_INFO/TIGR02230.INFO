@@ -1,0 +1,16 @@
+ID  ATPase_gene1
+AC  TIGR02230
+DE  putative F0F1-ATPase subunit
+AU  Haft DH
+TC  46.70 46.70
+NC  31.40 31.40
+AL  clustalw
+IT  hypoth_equivalog
+EN  F0F1-ATPase subunit, putative
+EC  3.6.3.-
+TP  TIGRFAMs
+CC  This model represents a protein found encoded in F1F0-ATPase operons in several genomes, including Methanosarcina barkeri (archaeal) and Chlorobium tepidum (bacterial). It is a small protein (about 100 amino acids) with long hydrophic stretches and is presumed to be a subunit of the enzyme.
+RM  9425287
+RT  F0F1-ATPase genes from an archaebacterium, Methanosarcina barkeri.
+RA  Sumi M, Yohda M, Koga Y, Yoshida M.
+RL  Biochem Biophys Res Commun. 1997 Dec 18;241(2):427-33.

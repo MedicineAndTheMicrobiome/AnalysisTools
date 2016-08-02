@@ -1,0 +1,11 @@
+ID  SigBFG
+AC  TIGR02980
+DE  RNA polymerase sigma-70 factor, sigma-B/F/G subfamily
+AU  Selengut J
+TC  234.35 234.35
+NC  205.50 205.50
+AL  muscle
+IT  subfamily
+EN  RNA polymerase sigma-70 factor, sigma-B/F/G subfamily
+TP  TIGRFAMs
+CC  This group of similar sigma-70 factors includes clades found in Bacilli (including the sporulation factors SigF:TIGR02885 and SigG:TIGR02850 as well as SigB:TIGR02941), and the high GC gram positive bacteria (Actinobacteria) where a variable number of them are found depending on the lineage.

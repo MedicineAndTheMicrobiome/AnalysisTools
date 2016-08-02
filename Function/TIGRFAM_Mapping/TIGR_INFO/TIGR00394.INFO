@@ -1,0 +1,21 @@
+ID  lac_pts_IIC
+AC  TIGR00394
+DE  PTS system, lactose-specific IIC component
+AU  Loftus BJ
+TC  614.40 614.40
+NC  388.15 388.15
+AL  clustalw
+IT  equivalog_domain
+EN  phosphotransferase system, lactose specific, IIC component
+EC  2.7.1.69
+TR  4.A.3
+TP  TIGRFAMs
+CC  This family of proteins models the IIC domain of the phosphotransferase system (PTS) for lactose. The IIC domain catalyzes the transfer of a phosphoryl group from the IIB domain to lactose. When the IIC component and IIB components are in the same polypeptide chain they are designated IIBC.
+RM  93015655
+RT  Nucleotide and deduced amino acid sequences of the lacR, lacABCD, and lacFE genes encoding the repressor, tagatose 6-phosphate gene cluster, and sugar-specific phosphotransferase system components of the lactose operon of Streptococcus mutans.
+RA  Rosey EL, Stewart GC
+RL  J Bacteriol 1992 Oct;174(19):6159-70
+DR  SWISSPROT; P50976;
+DR  PFAM; PF02378 
+DR  InterPro; IPR003352
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/4_A_3.html

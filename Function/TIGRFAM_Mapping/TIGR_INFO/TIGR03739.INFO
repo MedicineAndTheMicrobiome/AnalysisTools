@@ -1,0 +1,11 @@
+ID  PRTRC_D
+AC  TIGR03739
+DE  PRTRC system protein D
+AU  Haft DH
+TC  214.80 214.80
+NC  89.80 89.80
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  PRTRC system protein D
+TP  TIGRFAMs
+CC  A novel genetic system characterized by six major proteins, included a ParB homolog and a ThiF homolog, is designated PRTRC, or ParB-Related,ThiF-Related Cassette. It is often found on plasmids. This protein family is designated PRTRC system protein D. The gray zone, between trusted and noise, includes proteins found in the same genomes as other proteins of the PRTRC systems, but not in the same contiguous gene region.

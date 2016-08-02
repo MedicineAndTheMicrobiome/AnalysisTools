@@ -1,0 +1,28 @@
+ID  FeS_CyaY
+AC  TIGR03421
+DE  iron donor protein CyaY
+AU  Haft DH
+TC  53.25 53.25
+NC  47.80 47.80
+AL  muscle_manual
+IT  equivalog
+EN  iron donor protein CyaY
+GS  cyaY
+TP  TIGRFAMs
+CC  Members of this protein family are the iron-sulfur cluster (FeS) metabolism protein CyaY, a homolog of eukaryotic frataxin. ISC is one of several bacterial systems for FeS assembly; we find by Partial Phylogenetic Profiling vs. the ISC system that CyaY most like work with the ISC system for FeS cluster biosynthesis. A study of of cyaY mutants in Salmonella enterica bears this out. Although the trusted cutoff is set low enough to include eukaryotic frataxin sequences, a narrower, exception-type model (TIGR03421) identifies identifies members of that specific set.
+RN  [1]
+RM  PMID:16603772
+RT  Iron-sulfur cluster biosynthesis: characterization of Escherichia coli CYaY as an iron donor for the assembly of [2Fe-2S] clusters in the scaffold IscU.
+RA  Layer G, Ollagnier-de Choudens S, Sanakis Y, Fontecave M
+RL  J Biol Chem. 2006 Jun 16;281(24):16256-63.
+RN  [2]
+RM  PMID:16428423
+RT  Salmonella enterica strains lacking the frataxin homolog CyaY show defects in Fe-S cluster metabolism in vivo.
+RA  Vivas E, Skovran E, Downs DM
+RL  J Bacteriol. 2006 Feb;188(3):1175-9.
+RN  [3]
+RM  PMID: 16930487
+RT  Exopolysaccharide-associated protein sorting in environmental organisms: the PEP-CTERM/EpsH system. Application of a novel phylogenetic profiling heuristic.
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD
+RL  BMC Biol. 2006 Aug 24;4:29.
+DR  HAMAP; MF_00142; 127 of 129

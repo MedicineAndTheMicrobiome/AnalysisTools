@@ -1,0 +1,11 @@
+ID  Gpos_C8_like
+AC  TIGR04450
+DE  putative immunity protein/bacteriocin
+AU  Haft DH
+TC  27.00 27.00
+NC  25.00 25.00
+AL  clustalw_manual
+IT  subfamily
+EN  putative immunity protein/bacteriocin
+TP  TIGRFAMs
+CC  This model describes full-length proteins of Gram-positive bacteria that consist of an N-terminal signal peptide, a central region of unknown function, and a Cys-rich C-terminal region. In both the overall architecture and the apparent weak homology of the C-terminal region itself, these proteins resemble archaeal proteins such as the halocin C8 precursor. In that precursor, the C-terminal region is a bacteriocin but the N-terminal region functions as the immunity protein. The related family of halocin C8-like bacteriocins and their bacterial homologs are recognized by model TIGR04449.

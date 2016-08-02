@@ -1,0 +1,18 @@
+ID  LLM_DMSO2_sfnG
+AC  TIGR04021
+DE  dimethyl sulfone monooxygenase SfnG
+AU  Haft DH
+TC  382.95 382.95
+NC  333.45 333.45
+AL  muscle_manual
+IT  equivalog
+EN  dimethyl sulfone monooxygenase SfnG
+GS  sfnG
+EC  1.14.-.-
+TP  TIGRFAMs
+CC  This family of FMNH2-dependent members of the luciferase-like monooxygenase (LLM) family includes SfnG, a monooxygenase that converts dimethylsulphone (DMSO2) to methanesulphonate. This step can be followed immediately by methanesulfonate sulfonatase (an alkanesulfonate monooxygenase - see TIGR03565) for the FMNH2-dependent conversion an inorganic form.
+RN  [1]
+RM  PMID:17768252 
+RT  Transcriptional regulation of the sulfate-starvation-induced gene sfnA by a sigma54-dependent activator of Pseudomonas putida. 
+RA  Habe H, Kouzuma A, Endoh T, Omori T, Yamane H, Nojiri H 
+RL  Microbiology. 2007 Sep;153(Pt 9):3091-8.

@@ -1,0 +1,11 @@
+ID  Myco_arth_vir_N
+AC  TIGR02184
+DE  Mycoplasma virulence family signal region
+AU  Haft DH
+TC  28.50 28.50
+NC  20.40 20.40
+AL  clustalw
+IT  paralog_domain
+EN  Mycoplasma virulence family signal region
+TP  TIGRFAMs
+CC  This HMM represents the N-terminal region, including a probable signal sequence or signal anchor which in most instances has four consecutive Lys residues before the hydrophobic stretch, of a family of large, virulence-associated proteins in Mycoplasma arthritidis and smaller proteins in Mycoplasma capricolum.

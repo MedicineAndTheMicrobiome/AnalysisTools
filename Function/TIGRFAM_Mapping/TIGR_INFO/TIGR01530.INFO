@@ -1,0 +1,18 @@
+ID  nadN
+AC  TIGR01530
+DE  NAD nucleotidase
+AU  Haft DH
+TC  436.00 436.00
+NC  253.50 253.50
+AL  clustalw
+IT  equivalog
+EN  NAD pyrophosphatase/5'-nucleotidase NadN
+GS  nadN
+EC  3.1.3.5 3.6.1.22
+TP  TIGRFAMs
+CC  This HMM describes NadN of Haemophilus influenzae and a small number of close homologs in pathogenic, Gram-negative bacteria. NadN is a periplasmic enzyme that cleaves NAD (nicotinamide adenine dinucleotide) to NMN (nicotinamide mononucleotide) and AMP. The NMN must be converted by a 5'-nucleotidase to nicotinamide riboside for import. NadN belongs a large family of 5'-nucleotidases and has NMN 5'-nucleotidase activity for NMN, AMP, etc.
+RN  [1]
+RM  11395461
+RT  NadN and e (P4) are essential for utilization of NAD and nicotinamide mononucleotide but not nicotinamide riboside in Haemophilus influenzae.
+RA  Kemmer G, Reilly TJ, Schmidt-Brauns J, Zlotnik GW, Green BA, Fiske MJ, Herbert M, Kraiss A, Schlor S, Smith A, Reidl J.
+RL  J Bacteriol. 2001 Jul;183(13):3974-81.

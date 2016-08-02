@@ -1,0 +1,15 @@
+ID  phage_lam_T
+AC  TIGR01715
+DE  phage tail assembly protein T
+AU  Haft DH
+TC  77.35 77.35
+NC  53.85 53.85
+AL  clustalw
+IT  equivalog
+EN  phage tail assembly protein T
+TP  TIGRFAMs
+CC  This HMM represents a translation of the T gene in phage lambda and related phage. A translational frameshift from the upstream gene G into the frame of T produces a minor protein gpG-T, essential in tail assembly but not found in the mature virion.
+RM  8230192
+RT  A programmed translational frameshift is required for the synthesis of a bacteriophage lambda tail assembly protein.
+RA  Levin ME, Hendrix RW, Casjens SR.
+RL  J Mol Biol 1993 Nov 5;234(1):124-39

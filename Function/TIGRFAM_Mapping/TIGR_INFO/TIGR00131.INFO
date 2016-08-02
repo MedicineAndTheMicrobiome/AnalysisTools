@@ -1,0 +1,16 @@
+ID  gal_kin
+AC  TIGR00131
+DE  galactokinase
+AU  Haft DH
+TC  226.65 226.65
+NC  185.00 185.00
+AL  clustalw_manual
+IT  equivalog
+EN  galactokinase
+GS  galK
+EC  2.7.1.6
+TP  TIGRFAMs
+CC  Galactokinase is a member of the GHMP kinases (Galactokinase, Homoserine kinase, Mevalonate kinase, Phosphomevalonate kinase) and shares with them an amino-terminal domain probably related to ATP binding.
+CC  The galactokinases found by this HMM are divided into two sets. Prokaryotic forms are generally shorter. The eukaryotic forms are longer because of additional central regions and in some cases are known to be bifunctional, with regulatory activities that are independent of galactokinase activity.
+DR  PROSITE; PDOC0054;
+DR  HAMAP; MF_00246; 85 of 86

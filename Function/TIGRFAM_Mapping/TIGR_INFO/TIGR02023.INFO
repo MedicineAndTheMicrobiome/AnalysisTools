@@ -1,0 +1,22 @@
+ID  BchP-ChlP
+AC  TIGR02023
+DE  geranylgeranyl reductase
+AU  Selengut J
+TC  343.30 343.30
+NC  215.70 215.70
+AL  clustalw
+IT  subfamily
+EN  geranylgeranyl reductase
+EC  1.3.1.-
+TP  TIGRFAMs
+CC  This HMM represents a group of geranylgeranyl reductases specific for the biosyntheses of bacteriochlorophyll and chlorophyll [1].  It is unclear whether the processes of isoprenoid ligation to the chlorin ring and reduction of the geranylgeranyl chain to a phytyl chain are necessarily ordered the same way in all species (see introduction to [2]).
+RN  [1]
+RM  PMID: 10572128
+RT  Physical mapping and functional assignment of the geranylgeranyl-bacteriochlorophyll reductase gene, bchP, of Rhodobacter sphaeroides.
+RA  Addlesee HA, Hunter CN.
+RL  J Bacteriol. 1999 Dec;181(23):7248-55. 
+RN  [2]
+RM  PMID: 10398704
+RT  Reduced activity of geranylgeranyl reductase leads to loss of chlorophyll and tocopherol and to partially geranylgeranylated chlorophyll in transgenic tobacco plants expressing antisense RNA for geranylgeranyl reductase
+RA  Tanaka R, Oster U, Kruse E, Rudiger W, Grimm B.
+RL  Plant Physiol. 1999 Jul;120(3):695-704.

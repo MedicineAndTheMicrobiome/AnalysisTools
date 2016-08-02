@@ -1,0 +1,18 @@
+ID  dipeptidase
+AC  TIGR01886
+DE  dipeptidase PepV
+AU  Selengut J
+TC  632.00 632.00
+NC  530.20 530.20
+AL  clustalw
+IT  equivalog
+EN  dipeptidase PepV
+GS  pepV
+EC  3.4.13.-
+TP  TIGRFAMs
+CC  This model represents a small clade of dipeptidase enzymes which are members of the larger M25 subfamily of metalloproteases.  Two characterized enzymes are included in the seed.  One, from Lactococcus lactis has been shown to act on a wide range of dipeptides, but not larger peptides.  The enzyme from Lactobacillus delbrueckii was originally characterized as a Xaa-His dipeptidase, specifically a carnosinase (beta-Ala-His) by complementation of an E. coli mutant.  Further study, including the crystallization of the enzyme [1], has shown it to also be a non-specific dipeptidase.  This group also includes enzymes from Streptococcus and Enterococcus.
+RN  [1]
+RM  PMID: 12176387
+RT  Crystal structure of the dinuclear zinc aminopeptidase PepV from Lactobacillus delbrueckii unravels its preference for dipeptides.
+RA  Jozic D, Bourenkow G, Bartunik H, Scholze H, Dive V, Henrich B, Huber R, Bode W, Maskos K.
+RL  Structure (Camb) 2002 Aug;10(8):1097-106

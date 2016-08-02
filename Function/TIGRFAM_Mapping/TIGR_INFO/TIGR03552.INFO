@@ -1,0 +1,18 @@
+ID  F420_cofC
+AC  TIGR03552
+DE  2-phospho-L-lactate guanylyltransferase
+AU  Haft DH
+TC  105.00 105.00
+NC  85.40 85.40
+AL  muscle_manual
+IT  equivalog
+EN  2-phospho-L-lactate guanylyltransferase
+GS  cofC
+EC  2.7.7.68
+TP  TIGRFAMs
+CC  Members of this protein family are the CofC enzyme of coenzyme F420 biosynthesis.
+RN  [1]
+RM  PMID:18260642
+RT  Identification and Characterization of the 2-Phospho-l-lactate Guanylyltransferase Involved in Coenzyme F420 Biosynthesis.
+RA  Grochowski LL, Xu H, White RH
+RL  Biochemistry. 2008 Feb 9

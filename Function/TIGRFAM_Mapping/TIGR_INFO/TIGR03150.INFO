@@ -1,0 +1,25 @@
+ID  fabF
+AC  TIGR03150
+DE  beta-ketoacyl-acyl-carrier-protein synthase II
+AU  Selengut J
+TC  493.75 493.75
+NC  437.40 437.40
+AL  muscle
+IT  equivalog
+EN  beta-ketoacyl-acyl-carrier-protein synthase II
+GS  fabF
+EC  2.3.1.179
+TP  TIGRFAMs
+CC  3-oxoacyl-[acyl-carrier-protein] synthase 2 (KAS-II, FabF) is involved in the condensation step of fatty acid biosynthesis in which the malonyl donor group is decarboxylated and the resulting carbanion used to attack and extend the acyl group attached to the acyl carrier protein [1].  Most genomes encoding fatty acid biosynthesis contain a number of condensing enzymes, often of all three types: 1, 2 and 3.  Synthase 2 is mechanistically related to synthase 1 (KAS-I, FabB) containing a number of absolutely conserved catalytic residues in common [2].
+CC  This model is based primarily on genes which are found in apparent operons with other essential genes of fatty acid biosynthesis (GenProp0681).  The large gap between the trusted cutoff and the noise cutoff contains many genes which are not found adjacent to genes of the fatty acid pathway in genomes that often also contain a better hit to this model.  These genes may be involved in other processes such as polyketide biosyntheses.  Some genomes contain more than one above-trusted hit to this model which may result from recent paralogous expansions.  Second hits to this model which are not next to other fatty acid biosynthesis genes may be involved in other processes.
+CC  FabB sequences should fall well below the noise cutoff of this model.
+RN  [1]
+RM  PMID: 11152607 
+RT  The crystal structure of beta-ketoacyl-acyl carrier protein synthase II from Synechocystis sp. at 1.54 A resolution and its relationship to other condensing enzymes. 
+RA  Moche M, Dehesh K, Edwards P, Lindqvist Y 
+RL  J Mol Biol. 2001 Jan 19;305(3):491-503. 
+RN  [2]
+RM  PMID: 16441657 
+RT  Fatty acid synthesis. Role of active site histidines and lysine in Cys-His-His-type beta-ketoacyl-acyl carrier protein synthases. 
+RA  von Wettstein-Knowles P, Olsen JG, McGuire KA, Henriksen A 
+RL  FEBS J. 2006 Feb;273(4):695-710.

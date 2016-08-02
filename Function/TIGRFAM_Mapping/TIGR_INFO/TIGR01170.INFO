@@ -1,0 +1,11 @@
+ID  rplA_mito
+AC  TIGR01170
+DE  ribosomal protein L1, mitochondrial
+AU  Haft DH
+TC  129.05 129.05
+NC  111.10 111.10
+AL  clustalw_manual
+IT  equivalog
+EN  ribosomal protein L1, mitochondrial
+TP  TIGRFAMs
+CC  This HMM represents the mitochondrial homolog of bacterial ribosomal protein L1. Unlike chloroplast L1, this form was not sufficiently similar to bacterial forms to include in a single bacterial/organellar L1 HMM.

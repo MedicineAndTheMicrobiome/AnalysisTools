@@ -1,0 +1,11 @@
+ID  lin0512_fam
+AC  TIGR02058
+DE  conserved hypothetical protein
+AU  Haft DH
+TC  56.85 56.85
+NC  27.85 27.85
+AL  clustalw
+IT  subfamily
+EN  conserved hypothetical protein
+TP  TIGRFAMs
+CC  This family consists of few members, broadly distributed. It occurs so far in several Firmicutes (twice in Oceanobacillus), one Cyanobacterium, one alpha Proteobacterium, and (with a long prefix) in plants. The function is unknown. The alignment includes a perfectly conserved motif GxGxDxHG near the N-terminus.

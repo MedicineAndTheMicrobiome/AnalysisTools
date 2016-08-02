@@ -1,0 +1,13 @@
+ID  5aminolev_synth
+AC  TIGR01821
+DE  5-aminolevulinic acid synthase
+AU  Haft DH
+TC  338.55 338.55
+NC  334.75 334.75
+AL  clustalw
+IT  equivalog_domain
+EN  5-aminolevulinic acid synthase
+GS  hemA
+EC  2.3.1.37
+TP  TIGRFAMs
+CC  This HMM represents 5-aminolevulinic acid synthase, an enzyme for one of two routes to the heme precursor 5-aminolevulinate. The protein is a pyridoxal phosphate-dependent enzyme related to 2-amino-3-ketobutyrate CoA tranferase and 8-amino-7-oxononanoate synthase. This enzyme appears restricted to the alpha Proteobacteria and mitochondrial derivatives.

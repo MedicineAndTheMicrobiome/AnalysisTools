@@ -1,0 +1,18 @@
+ID  PseI
+AC  TIGR03586
+DE  pseudaminic acid synthase
+AU  Selengut J
+TC  340.25 340.25
+NC  340.05 340.05
+AL  manual
+IT  equivalog
+EN  pseudaminic acid synthase
+GS  pseI
+EC  2.5.1.97
+TP  TIGRFAMs
+CC  Members of this family are included within the larger PF03102 (NeuB) family.  NeuB itself (TIGR03569) is involved in the biosynthesis of neuraminic acid by the condensation of phosphoenolpyruvate (PEP) with N-Acetyl-D-Mannosamine.  In an analagous reaction, this enzyme, PseI [1], condenses PEP with  6-deoxy-beta-L-AltNAc4NAc to generate pseudaminic acid.
+RN  [1]
+RM  PMID:16684771 
+RT  Functional characterization of the flagellar glycosylation locus in Campylobacter jejuni 81-176 using a focused metabolomics approach. 
+RA  McNally DJ, Hui JP, Aubry AJ, Mui KK, Guerry P, Brisson JR, Logan SM, Soo EC 
+RL  J Biol Chem. 2006 Jul 7;281(27):18489-98. Epub 2006 May 9.

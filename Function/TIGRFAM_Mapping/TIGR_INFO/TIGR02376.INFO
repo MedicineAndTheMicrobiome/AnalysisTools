@@ -1,0 +1,17 @@
+ID  Cu_nitrite_red
+AC  TIGR02376
+DE  nitrite reductase, copper-containing
+AU  Haft DH
+TC  296.30 296.30
+NC  169.10 169.10
+AL  clustalw
+IT  equivalog
+EN  nitrite reductase, copper-containing
+GS  nirK
+EC  1.7.2.1
+TP  TIGRFAMs
+CC  This family consists of copper-type nitrite reductase. It reduces nitrite to nitric oxide, the first step in denitrification.
+RM  9023188
+RT  Characterization and regulation of the gene encoding nitrite reductase in Rhodobacter sphaeroides 2.4.3.
+RA  Tosques IE, Kwiatkowski AV, Shi J, Shapleigh JP.
+RL  J Bacteriol. 1997 Feb;179(4):1090-5.

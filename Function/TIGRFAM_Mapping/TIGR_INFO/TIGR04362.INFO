@@ -1,0 +1,11 @@
+ID  choice_anch_C
+AC  TIGR04362
+DE  choice-of-anchor C domain
+AU  Haft DH
+TC  120.00 120.00
+NC  100.00 100.00
+AL  muscle_manual
+IT  subfamily_domain
+EN  choice-of-anchor C domain
+TP  TIGRFAMs
+CC  This family describes an extracellular bacterial domain that occurs on a number of proteins with PEP-CTERM (exosortase recognition site) sequences at the C-terminus, as well some with an apparent alternate anchor sequence. Note that related Pfam model PF04862 (DUF642), as of release 26, is double the length of this model because it has two tandem regions homologous to this domain. PF04862, in turn, belongs to a Pfam clan called the galactose-binding domain-like superfamily.

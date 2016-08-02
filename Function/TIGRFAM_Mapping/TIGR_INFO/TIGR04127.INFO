@@ -1,0 +1,16 @@
+ID  flavo_near_exo
+AC  TIGR04127
+DE  exosortase F-associated protein
+AU  Haft DH
+TC  35.00 35.00
+NC  25.00 25.00
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  exosortase F-associated protein
+TP  TIGRFAMs
+CC  Members of this protein family are always found next to an exosortase/archaeosortase-like protein, and occur so far only in the flavobacteria, within the Bacteroidetes. Members do not have an obvious PEP-CTERM-like C-terminal protein sorting domain.
+RN  [1]
+RM  PMID:22037399 
+RT  Archaeosortases and exosortases are widely distributed systems linking membrane transit with posttranslational modification. 
+RA  Haft DH, Payne SH, Selengut JD 
+RL  J Bacteriol. 2012 Jan;194(1):36-48. Epub 2011 Oct 28.

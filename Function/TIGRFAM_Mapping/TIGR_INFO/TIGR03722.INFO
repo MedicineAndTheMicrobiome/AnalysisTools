@@ -1,0 +1,17 @@
+ID  arch_KAE1
+AC  TIGR03722
+DE  universal archaeal protein Kae1
+AU  Haft DH
+TC  430.90 430.90
+NC  426.45 426.45
+AL  muscle_manual
+IT  equivalog_domain
+EN  universal archaeal protein Kae1
+GS  kae1
+TP  TIGRFAMs
+CC  This family represents the archaeal protein Kae1. Its partner Bud32 is fused with it in about half of the known archaeal genomes. The pair, which appears universal in the archaea, corresponds to EKC/KEOPS complex in eukaryotes. A recent characterization of the member from Pyrococcus abyssi, as an iron-binding, atypical DNA-binding protein with an apurinic lyase activity, challenges the common annotation of close homologs as O-sialoglycoprotein endopeptidase. The latter annotation is based on a characterized protein from the bacterium Pasteurella haemolytica.
+RN  [1]
+RM  PMID:17766251
+RT  An archaeal orthologue of the universal protein Kae1 is an iron metalloprotein which exhibits atypical DNA-binding properties and apurinic-endonuclease activity in vitro.
+RA  Hecker A, Leulliot N, Gadelle D, Graille M, Justome A, Dorlet P, Brochier C, Quevillon-Cheruel S, Le Cam E, van Tilbeurgh H, Forterre P
+RL  Nucleic Acids Res. 2007;35(18):6042-51.

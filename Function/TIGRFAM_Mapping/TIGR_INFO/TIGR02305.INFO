@@ -1,0 +1,18 @@
+ID  HpaG-N-term
+AC  TIGR02305
+DE  4-hydroxyphenylacetate degradation bifunctional isomerase/decarboxylase, N-terminal subunit
+AU  Selengut J
+TC  228.65 228.65
+NC  203.25 203.25
+AL  clustalw
+IT  equivalog_domain
+EN  4-hydroxyphenylacetate degradation bifunctional isomerase/decarboxylase, N-terminal subunit
+GS  hpaG
+EC  4.1.1.68 5.3.3.10
+TP  TIGRFAMs
+CC  This model represents one of two subunits/domains of the bifunctional isomerase/decarboxylase involved in 4-hydroxyphenylacetate degradation [1].  In E. coli and some other species this enzyme is encoded by a single polypeptide containing both this domain and the closely related C-terminal domain (TIGR02303).  In other species such as Pasteurella multocida these domains are found as two separate proteins (usually as tandem genes).  Together, these domains carry out the decarboxylation of 5-oxopent-3-ene-1,2,5-tricarboxylic acid (OPET) to 2-hydroxy-2,4-diene-1,7-dioate (HHDD) and the subsequent isomerization to 2-oxohept-3-ene-1,7-dioate (OHED).
+RN  [1]
+RM  PMID: 11863436
+RT  The crystal structure of HpcE, a bifunctional decarboxylase/isomerase with a multifunctional fold.
+RA  Tame JR, Namba K, Dodson EJ, Roper DI.
+RL  Biochemistry. 2002 Mar 5;41(9):2982-9.

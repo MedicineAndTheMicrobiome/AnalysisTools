@@ -1,0 +1,18 @@
+ID  ectoine_eutB
+AC  TIGR02991
+DE  ectoine utilization protein EutB
+AU  Haft DH
+TC  413.35 413.35
+NC  358.95 358.95
+AL  muscle_manual
+IT  equivalog
+EN  ectoine utilization protein EutB
+GS  eutB
+TP  TIGRFAMs
+CC  Members of this protein family are EutB, a predicted arylmalonate decarboxylase found in a conserved ectoine utilization operon of species that include Sinorhizobium meliloti 1021 (where it is known to be induced by ectoine), Mesorhizobium loti, Silicibacter pomeroyi, Agrobacterium tumefaciens, and Pseudomonas putida. Members of this family resemble threonine dehydratases.
+RN  [1]
+RM  PMID: 15687193
+RT  Ectoine-induced proteins in Sinorhizobium meliloti include an Ectoine ABC-type transporter involved in osmoprotection and
+ectoine catabolism.
+RA  Jebbar M, Sohn-Bosser L, Bremer E, Bernard T, Blanco C
+RL  J Bacteriol. 2005 Feb;187(4):1293-304.

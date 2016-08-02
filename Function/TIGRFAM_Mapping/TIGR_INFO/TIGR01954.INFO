@@ -1,0 +1,12 @@
+ID  nusA_Cterm_rpt
+AC  TIGR01954
+DE  transcription termination factor NusA, C-terminal duplication
+AU  Haft DH
+TC  48.15 48.15
+NC  30.25 30.25
+AL  clustalw
+IT  equivalog_domain
+EN  transcription termination factor NusA, C-terminal duplication
+GS  nusA
+TP  TIGRFAMs
+CC  NusA is a bacterial transcription termination factor. It is named for its interaction with phage lambda protein N, as part of the N utilization substance. Some members of the NusA family have a long C-terminal extension. This HMM represents an acidic 50-residue region found in two copies toward the C-terminus of most Proteobacterial NusA proteins, spaced about 26 residues apart. Analogous C-terminal extensions in some other bacterial lineages lack apparent homology but appear similarly acidic.

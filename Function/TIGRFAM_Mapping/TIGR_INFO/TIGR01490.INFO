@@ -1,0 +1,13 @@
+ID  HAD-SF-IB-hyp1
+AC  TIGR01490
+DE  HAD hydrolase, family IB
+AU  Selengut J
+TC  98.30 98.30
+NC  90.50 90.50
+AL  clustalw
+IT  hypoth_equivalog
+EN  HAD-superfamily subfamily IB hydrolase, TIGR01490
+TP  TIGRFAMs
+CC  This hypothetical equivalog is a member of the IB subfamily (TIGR01488) of the haloacid dehalogenase (HAD) superfamily of aspartate-nucleophile hydrolases.  The sequences modelled by this HMM are all bacterial.
+CC  The IB subfamily includes the enzyme phosphoserine phosphatase (TIGR00338).  Due to this relationship, several of these sequences have been annotated as "phosphoserine phosphatase related proteins," or "Phosphoserine phosphatase-family enzymes."  There is presently no evidence that any of the enzymes in this HMM possess PSPase activity.  OMNI|NTL01ML1250 is annotated as a "possible transferase," however this is due to the C-terminal domain found on this sequence which is homologous to a group of  glycerol-phosphate acyltransferases (between trusted and noise to TIGR00530).
+CC  A subset of these sequences including OMNI|CC1962, the Caulobacter crescentus CicA protein cluster together and may represent a separate equivalog.

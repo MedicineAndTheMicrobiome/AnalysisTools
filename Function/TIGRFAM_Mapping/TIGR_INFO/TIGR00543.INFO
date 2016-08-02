@@ -1,0 +1,16 @@
+ID  isochor_syn
+AC  TIGR00543
+DE  isochorismate synthase
+AU  Selengut J, Haft DH
+TC  224.75 224.75
+NC  214.35 214.35
+AL  clustalw
+IT  subfamily
+EN  isochorismate synthases
+EC  5.4.4.2
+TP  TIGRFAMs
+CC  This enzyme interconverts chorismate and isochorismate. In E. coli, different loci encode isochorismate synthases for the pathways of menaquinone biosynthesis and enterobactin biosynthesis (via salicilate) and fail to complement each other. Among isochorismate synthases, the N-terminal domain is poorly conserved.
+RM  99013725
+RT  The role of isochorismate hydroxymutase genes entC and menF in enterobactin and menaquinone biosynthesis in Escherichia coli.
+RA  Dahm C, Muller R, Schulte G, Schmidt K, Leistner E
+RL  Biochim Biophys Acta 1998 Oct 23;1425(2):377-86

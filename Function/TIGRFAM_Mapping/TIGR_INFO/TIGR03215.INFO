@@ -1,0 +1,18 @@
+ID  ac_ald_DH_ac
+AC  TIGR03215
+DE  acetaldehyde dehydrogenase (acetylating)
+AU  Haft DH
+TC  282.25 282.25
+NC  98.20 98.20
+AL  muscle
+IT  equivalog
+EN  acetaldehyde dehydrogenase (acetylating)
+EC  1.2.1.10
+TP  TIGRFAMs
+CC  Members of this protein family are acetaldehyde dehydrogenase  (acetylating), EC 1.2.1.10. This enzyme oxidizes acetaldehyde, using NAD(+), and attaches coenzyme A (CoA), yielding acetyl-CoA. It occurs as a late step in the meta-cleavage pathways of a variety of compounds, including catechol, biphenyl, toluene, salicylate, etc.
+RN  [1]
+RM  PMID: 1732207
+RT  Nucleotide sequence and functional analysis of the complete phenol/3,4-dimethylphenol catabolic pathway of Pseudomonas sp. strain CF600.
+RA  Shingler V, Powlowski J, Marklund U
+RL  J Bacteriol. 1992 Feb;174(3):711-24.
+DR  HAMAP; MF_01657; 11 of 11

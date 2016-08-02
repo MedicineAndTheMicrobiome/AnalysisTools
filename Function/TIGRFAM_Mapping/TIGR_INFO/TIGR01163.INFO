@@ -1,0 +1,14 @@
+ID  rpe
+AC  TIGR01163
+DE  ribulose-phosphate 3-epimerase
+AU  Haft DH
+TC  212.60 212.60
+NC  96.90 96.90
+AL  clustalw
+IT  equivalog
+EN  ribulose-phosphate 3-epimerase
+GS  rpe
+EC  5.1.3.1
+TP  TIGRFAMs
+CC  This family consists of Ribulose-phosphate 3-epimerase, also known as pentose-5-phosphate 3-epimerase (PPE). PPE converts D-ribulose 5-phosphate into D-xylulose 5-phosphate in Calvin's reductive pentose phosphate cycle. It has been found in a wide range of bacteria, archebacteria, fungi and plants.
+DR  COGS; COG0036

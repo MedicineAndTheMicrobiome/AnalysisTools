@@ -1,0 +1,18 @@
+ID  frhB
+AC  TIGR03289
+DE  coenzyme F420 hydrogenase, subunit beta
+AU  Selengut J
+TC  331.50 331.50
+NC  277.95 277.95
+AL  muscle
+IT  equivalog
+EN  coenzyme F420 hydrogenase, subunit beta
+GS  frhB
+EC  1.12.98.1
+TP  TIGRFAMs
+CC  This model represents that clade of F420-dependent hydrogenases (FRH) beta subunits [1] found exclusively and universally in methanogenic archaea.  The N- and C-terminal domains of this protein are modelled by PF04422 and PF04423 respectively.
+RN  [1]
+RM  PMID: 2207102 
+RT  Cloning, sequence determination, and expression of the genes encoding the subunits of the nickel-containing 8-hydroxy-5-deazaflavin reducing hydrogenase from Methanobacterium thermoautotrophicum delta H. 
+RA  Alex LA, Reeve JN, Orme-Johnson WH, Walsh CT 
+RL  Biochemistry. 1990 Aug 7;29(31):7237-44.

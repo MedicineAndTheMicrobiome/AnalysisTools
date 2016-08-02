@@ -1,0 +1,13 @@
+ID  S20
+AC  TIGR00029
+DE  ribosomal protein S20
+AU  Richardson DL
+TC  52.90 52.90
+NC  39.20 39.20
+AL  msa_tigr
+IT  equivalog
+EN  ribosomal protein S20
+GS  rpsT
+TP  TIGRFAMs
+CC  This family consists of bacterial (and chloroplast) examples of the bacteria ribosomal small subunit protein S20.
+DR  HAMAP; MF_00500; 515 of 528

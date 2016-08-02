@@ -1,0 +1,18 @@
+ID  IscR
+AC  TIGR02010
+DE  iron-sulfur cluster assembly transcription factor IscR
+AU  Haft DH
+TC  207.55 207.55
+NC  174.35 174.35
+AL  clustalw
+IT  equivalog
+EN  iron-sulfur cluster assembly transcription factor IscR
+GS  iscR
+TP  TIGRFAMs
+CC  This HMM describes IscR, an iron-sulfur binding transcription factor of the ISC iron-sulfur cluster assembly system.
+RN  [1]
+RM  12732309
+RT  The role of Fe-S proteins in sensing and regulation in bacteria.
+RA  Kiley PJ, Beinert H.
+RL  Curr Opin Microbiol. 2003 Apr;6(2):181-5.
+DR  HAMAP; MF_01176; 41 of 42

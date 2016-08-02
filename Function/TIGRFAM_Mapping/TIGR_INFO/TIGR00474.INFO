@@ -1,0 +1,19 @@
+ID  selA
+AC  TIGR00474
+DE  L-seryl-tRNA(Sec) selenium transferase
+AU  Haft DH
+TC  267.90 267.90
+NC  239.95 239.95
+AL  clustalw
+IT  equivalog
+EN  L-seryl-tRNA(Sec) selenium transferase
+GS  selA
+EC  2.9.1.1
+TP  TIGRFAMs
+CC  In bacteria, the incorporation of selenocysteine as the 21st amino acid, encoded by TGA, requires several elements: SelC is the tRNA itself, SelD acts as a donor of reduced selenium, SelA modifies a serine residue on SelC into selenocysteine, and SelB is a selenocysteine-specific translation elongation factor. 3-prime or 5-prime non-coding elements of mRNA have been found as probable structures for directing selenocysteine incorporation. This HMM describes SelA. This model excludes homologs that appear to differ in function from Frankia alni, Helicobacter pylori, Methanococcus jannaschii and other archaea, and so on.
+RN  [1]
+RM  PMID:17937620
+RT  Towards understanding selenocysteine incorporation into bacterial proteins.
+RA  Fischer N, Paleskava A, Gromadski KB, Konevega AL, Wahl MC, Stark H, Rodnina MV
+RL  Biol Chem. 2007 Oct;388(10):1061-7.
+DR  HAMAP; MF_00423; 79 of 82

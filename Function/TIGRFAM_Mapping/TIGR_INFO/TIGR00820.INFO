@@ -1,0 +1,18 @@
+ID  zip
+AC  TIGR00820
+DE  ZIP zinc/iron transport family
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  231.15 231.15
+NC  168.40 168.40
+AL  clustalw_manual
+IT  subfamily
+EN  ZIP zinc/iron transport family
+GS  zip
+TR  2.A.05
+TP  TIGRFAMs
+CC  The Zinc (Zn2+)-Iron (Fe2+) Permease (ZIP) Family (TC 2.A.5)
+CC  Members of the ZIP family consist of proteins with eight putative transmembrane spanners. They are derived from animals, plants and yeast. They
+CC  comprise a diverse family, with several paralogues in any one organism (e.g., at least five in Caenorabditis elegans, at least five in Arabidopsis thaliana and two in
+CC  Saccharomyces cervisiae. The two S. cerevisiae proteins, Zrt1 and Zrt2, both probably transport Zn2+ with high specificity, but Zrt1 transports Zn2+ with ten-fold higher affinity
+CC  than Zrt2. Some members of the ZIP family have been shown to transport Zn2+ while others transport Fe2+, and at least one transports a range of metal ions.  The energy source for
+CC  transport has not been characterized, but these systems probably function as secondary carriers.

@@ -1,0 +1,11 @@
+ID  chp_P_marinus_1
+AC  TIGR03894
+DE  conserved hypothetical protein, TIGR03894 family
+AU  Haft DH
+TC  67.75 67.75
+NC  67.30 67.30
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  conserved hypothetical protein, TIGR03894 family
+TP  TIGRFAMs
+CC  This protein family is restricted to the Prochlorococcus and Synechococcus lineages of the Cyanobacteria, and is sporadic in those lineages. Members average 100 amino acids in length, including a 30-residue, highly polar, low complexity region sandwiched between an N-terminal region of about 60 residues and a C-terminal [KR]VVR[KR]RS motif, both well-conserved. The function is unknown.

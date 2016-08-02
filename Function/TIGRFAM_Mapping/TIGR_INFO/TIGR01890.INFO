@@ -1,0 +1,14 @@
+ID  N-Ac-Glu-synth
+AC  TIGR01890
+DE  amino-acid N-acetyltransferase
+AU  Selengut J
+TC  202.85 202.85
+NC  174.75 174.75
+AL  clustalw
+IT  equivalog
+EN  amino-acid N-acetyltransferase
+GS  argA
+EC  2.3.1.1
+TP  TIGRFAMs
+CC  This model represents a clade of amino-acid N-acetyltransferases acting mainly on glutamate in the first step of the "acetylated" ornithine biosynthesis pathway.  For this reason it is also called N-acetylglutamate synthase.  The enzyme may also act on aspartate.
+DR  HAMAP; MF_01105; 47 of 47

@@ -1,0 +1,17 @@
+ID  spore_VI_D
+AC  TIGR02907
+DE  stage VI sporulation protein D
+AU  Haft DH
+TC  169.85 169.85
+NC  34.95 34.95
+AL  muscle
+IT  equivalog
+EN  stage VI sporulation protein D
+GS  spoVID
+TP  TIGRFAMs
+CC  SpoVID, the stage VI sporulation protein D, is restricted to endospore-forming members of the bacteria, all of which are found among the Firmicutes. It is widely distributed but not quite universal in this group. Between well-conserved N-terminal and C-terminal domains is a poorly conserved, low-complexity region of variable length, rich enough in glutamic acid to cause spurious BLAST search results unless a filter is used. The seed alignment for this model was trimmed, in effect, by choosing member sequences in which these regions are relatively short. SpoVID is involved in spore coat assembly by the mother cell compartment late in the process of sporulation.
+RN  [1]
+RM  PMID: 11325931
+RT  SpoVID guides SafA to the spore coat in Bacillus subtilis.
+RA  Ozin AJ, Samford CS, Henriques AO, Moran CP Jr
+RL  J Bacteriol. 2001 May;183(10):3041-9.

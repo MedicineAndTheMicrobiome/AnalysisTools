@@ -1,0 +1,16 @@
+ID  seadorna_dsRNA
+AC  TIGR04238
+DE  seadornavirus double-stranded RNA-binding protein
+AU  Haft DH
+TC  125.00 125.00
+NC  105.00 65.00
+AL  muscle_manual
+IT  equivalog
+EN  seadornavirus double-stranded RNA-binding protein
+TP  TIGRFAMs
+CC  This protein family occurs in the seadornavirus virus group, with an N-terminal domain for binding double-stranded RNA, is designated VP12 in Banna virus, VP8 in Kadipiro virus, and VP11 in Liao ning virus.
+RN  [1]
+RM  PMID:10811934 
+RT  Complete sequence determination and genetic analysis of Banna virus and Kadipiro virus: proposal for assignment to a new genus (Seadornavirus) within the family Reoviridae. 
+RA  Attoui H, Billoir F, Biagini P, de Micco P, de Lamballerie X 
+RL  J Gen Virol. 2000 Jun;81(Pt 6):1507-15.

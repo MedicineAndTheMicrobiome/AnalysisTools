@@ -1,0 +1,16 @@
+ID  polys_exp_MPA1
+AC  TIGR01006
+DE  polysaccharide export protein, MPA1 family
+AU  Loftus BJ
+TC  296.00 296.00
+NC  240.50 240.50
+AL  clustalw_manual
+IT  subfamily
+EN  polysaccharide export protein, MPA1 family, Gram-positive type
+TP  TIGRFAMs
+CC  This family contains members from Low GC Gram-positive bacteria; they are proposed to have a function in the export of complex polysaccharides.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/8_A_3.html
+RM  9274022
+RT  Computer-based analyses of the protein constituents of transport systems catalysing export of complex carbohydrates in bacteria.
+RA  Paulsen IT, Beness AM, Saier MH Jr.
+RL  Microbiology 1997 Aug;143 ( Pt 8):2685-99

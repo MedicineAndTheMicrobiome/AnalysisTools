@@ -1,0 +1,13 @@
+ID  2A0109
+AC  TIGR00887
+DE  phosphate:H+ symporter
+AU  Loftus BJ
+TC  610.30 610.30
+NC  510.90 510.90
+AL  clustalw_manual
+IT  equivalog
+EN  phosphate:H+ symporter
+TR  2.A.1
+TP  TIGRFAMs
+CC  This HMM represents the phosphate uptake symporter subfamily of the major facilitator superfamily (PF00083).
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_1.html

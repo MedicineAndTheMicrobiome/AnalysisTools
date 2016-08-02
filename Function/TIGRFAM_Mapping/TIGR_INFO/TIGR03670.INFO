@@ -1,0 +1,33 @@
+ID  rpoB_arch
+AC  TIGR03670
+DE  DNA-directed RNA polymerase subunit B
+AU  Selengut J
+TC  811.00 811.00
+NC  790.35 790.35
+AL  muscle
+IT  equivalog
+EN  DNA-directed RNA polymerase subunit B
+GS  rpoB
+EC  2.7.7.6
+TP  TIGRFAMs
+CC  This model represents the archaeal version of DNA-directed RNA polymerase subunit B (rpoB) and is observed in all archaeal genomes.
+RN  [1]
+RM  PMID:2501756 
+RT  Organization and nucleotide sequence of the genes encoding the large subunits A, B and C of the DNA-dependent RNA polymerase of the archaebacterium Sulfolobus acidocaldarius. 
+RA  Puhler G, Lottspeich F, Zillig W 
+RL  Nucleic Acids Res. 1989 Jun 26;17(12):4517-34. 
+RN  [2]
+RM  PMID:1408768 
+RT  Nucleotide sequence of the genes encoding the three largest subunits of the DNA-dependent RNA polymerase from the archaeum Thermococcus celer. 
+RA  Klenk HP, Schwass V, Lottspeich F, Zillig W 
+RL  Nucleic Acids Res. 1992 Sep 11;20(17):4659. 
+RN  [3]
+RM  PMID:2834336 
+RT  Cloning and physical mapping of RNA polymerase genes from Methanobacterium thermoautotrophicum and comparison of homologies and gene orders with those of RNA polymerase genes from other methanogenic archaebacteria. 
+RA  Schallenberg J, Moes M, Truss M, Reiser W, Thomm M, Stetter KO, Klein A 
+RL  J Bacteriol. 1988 May;170(5):2247-53. 
+RN  [4]
+RM  PMID:18235446 
+RT  The X-ray crystal structure of RNA polymerase from Archaea. 
+RA  Hirata A, Klein BJ, Murakami KS 
+RL  Nature. 2008 Feb 14;451(7180):851-4. Epub 2008 Jan 30.

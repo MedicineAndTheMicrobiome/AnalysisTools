@@ -1,0 +1,23 @@
+ID  bioH
+AC  TIGR01738
+DE  pimelyl-[acyl-carrier protein] methyl ester esterase
+AU  Haft DH
+TC  206.95 206.95
+NC  120.40 120.40
+AL  clustalw
+IT  equivalog
+EN  pimelyl-[acyl-carrier protein] methyl ester esterase
+GS  bioH
+EC  3.1.1.85
+TP  TIGRFAMs
+CC  This CoA-binding enzyme is required for the production of pimeloyl-coenzyme A, the substrate of the BioF protein early in the biosynthesis of biotin. Its exact function is unknown, but is proposed in ref 2. This enzyme belongs to the alpha/beta hydrolase fold family (Pfam HMM PF00561). Members of this family are restricted to the Proteobacteria.
+RN  [1]
+RM  11904168
+RT  Purification and characterisation of the BIOH protein from the biotin biosynthetic pathway.
+RA  Tomczyk NH, Nettleship JE, Baxter RL, Crichton HJ, Webster SP, Campopiano DJ.
+RN  [2]
+RM  12732651
+RT  Integrating structure, bioinformatics, and enzymology to discover function: BioH, a new carboxylesterase from Escherichia coli.
+RA  Sanishvili R, Yakunin AF, Laskowski RA, Skarina T, Evdokimova E, Doherty-Kirby A, Lajoie GA, Thornton JM, Arrowsmith CH, Savchenko A, Joachimiak A, Edwards AM.
+RL  J Biol Chem. 2003 Jul 11;278(28):26039-45.
+DR  HAMAP; MF_01260; 57 of 63

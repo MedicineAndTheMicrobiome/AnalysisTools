@@ -1,0 +1,18 @@
+ID  spore_III_AD
+AC  TIGR02849
+DE  stage III sporulation protein AD
+AU  Haft DH
+TC  85.60 85.60
+NC  38.50 38.50
+AL  clustalw
+IT  equivalog
+EN  stage III sporulation protein AD
+GS  spoIIIAD
+TP  TIGRFAMs
+CC  Members of this family are the uncharacterized protein SpoIIIAD, part of the spoIIIA operon that acts at sporulation stage III as part of a cascade of events leading to endospore formation. Note that the start sites of members of this family as annotated tend to be variable; quite a few members have apparent homologous protein-coding regions continuing upstream of the first available start codon. The length of the alignment and the scoring cutoff thresholds for the model have been set to try to detect all valid members of the family, even if annotation of the start site begins too far downstream.
+RN  [1]
+RM  16311624
+RT  Life in Hot Carbon Monoxide: The Complete Genome Sequence of Carboxydothermus hydrogenoformans Z-2901.
+RA  Wu M, Ren Q, Durkin AS, Daugherty SC, Brinkac LM, Dodson RJ, Madupu R, Sullivan SA, Kolonay JF, Nelson WC, Tallon LJ, Jones KM, Ulrich LE,
+Gonzalez JM, Zhulin IB, Robb FT, Eisen JA.
+RL  2005 Nov 25;1(5):e65

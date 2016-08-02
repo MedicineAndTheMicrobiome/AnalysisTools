@@ -1,0 +1,17 @@
+ID  trmU
+AC  TIGR00420
+DE  tRNA (5-methylaminomethyl-2-thiouridylate)-methyltransferase
+AU  Loftus BJ
+TC  236.95 236.95
+NC  185.85 185.85
+AL  clustalw
+IT  equivalog
+EN  tRNA (5-methylaminomethyl-2-thiouridylate)-methyltransferase
+GS  trmU
+EC  2.1.1.61
+TP  TIGRFAMs
+CC  tRNA (5-methylaminomethyl-2-thiouridylate)-methyltransferase (trmU, asuE, or mnmA) is involved in the biosynthesis of the modified nucleoside 5-methylaminomethyl-2-thiouridine (mnm5s2U34) present in the wobble position of some tRNAs. This enzyme appears not to occur in the Archaea.
+DR  Swissprot; P25745
+RM  87250459;
+DR  ECOCYC; EG11344;
+DR  HAMAP; MF_00144; 594 of 628

@@ -1,0 +1,12 @@
+ID  sufB
+AC  TIGR01980
+DE  FeS assembly protein SufB
+AU  Haft DH
+TC  346.40 346.40
+NC  297.80 297.80
+AL  clustalw_manual
+IT  equivalog
+EN  FeS assembly protein SufB
+GS  sufB
+TP  TIGRFAMs
+CC  This protein, SufB, forms a cytosolic complex SufBCD. This complex enhances the cysteine desulfurase of SufSE. The system, together with SufA, is believed to act in iron-sulfur cluster formation during oxidative stress. Note that SufC belongs to the family of ABC transporter ATP binding proteins, so this protein, encoded by an adjacent gene, has often been annotated as a transporter component.

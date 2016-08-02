@@ -1,0 +1,11 @@
+ID  pepcterm_export
+AC  TIGR03027
+DE  putative polysaccharide export protein, PEP-CTERM sytem-associated
+AU  Haft DH
+TC  216.30 216.30
+NC  132.55 132.55
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  putative polysaccharide export protein, PEP-CTERM sytem-associated
+TP  TIGRFAMs
+CC  This protein family belongs to the larger set of polysaccharide biosynthesis/export proteins described by Pfam model PF02563. Members of this family are variable in either containing of lacking a 78-residue insert, but appear to fall within a single clade, nevertheless, where the regions in which the gene is found encode components of the PEP-CTERM/EpsH proposed exosortase protein sorting system.

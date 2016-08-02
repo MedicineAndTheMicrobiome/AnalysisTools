@@ -1,0 +1,12 @@
+ID  Na_Pro_sym
+AC  TIGR02121
+DE  sodium/proline symporter
+AU  Haft DH
+TC  515.50 515.50
+NC  260.75 260.75
+AL  clustalw_manual
+IT  equivalog
+EN  sodium/proline symporter
+GS  putP
+TP  TIGRFAMs
+CC  This family consists of the sodium/proline symporter (proline permease) from a number of Gram-negative and Gram-positive bacteria and from the archaeal genus Methanosarcina. Using the related pantothenate permease as an outgroup, candidate sequences from Bifidobacterium longum and several from archaea    are found to be outside the clade defined by known proline permeases. These sequences, scoring between 570 and -40, define the range between trusted and noise cutoff scores.

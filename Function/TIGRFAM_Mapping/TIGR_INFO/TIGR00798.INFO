@@ -1,0 +1,15 @@
+ID  mtc
+AC  TIGR00798
+DE  tricarboxylate carrier
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  322.80 322.80
+NC  225.45 225.45
+AL  clustalw_manual
+IT  subfamily
+EN  tricarboxylate carrier
+TR  2.A.54
+TP  TIGRFAMs
+CC  The MTC family consists of a limited number of homologues, all from eukaryotes. A single member of the family has been functionally characterized, the tricarboxylate carrier from rat liver mitochondria. The rat liver mitochondrial tricarboxylate carrier has been reported to transport citrate, cis-aconitate, threo-D-isocitrate, D- and L-tartrate, malate, succinate and phosphoenolpyruvate. It presumably functions by a proton symport mechanism.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_54.html
+DR  Interpro; IPR001993
+DR  PFAM; PF00153

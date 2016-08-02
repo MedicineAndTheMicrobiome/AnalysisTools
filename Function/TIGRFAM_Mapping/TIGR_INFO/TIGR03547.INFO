@@ -1,0 +1,17 @@
+ID  muta_rot_YjhT
+AC  TIGR03547
+DE  mutatrotase, YjhT family
+AU  Haft DH
+TC  256.35 256.35
+NC  156.00 156.00
+AL  muscle_manual
+IT  subfamily
+EN  mutatrotase, YjhT family
+EC  5.1.-.-
+TP  TIGRFAMs
+CC  Members of this protein family contain multiple copies of the beta-propeller-forming Kelch repeat. All are full-length homologs to YjhT of Escherichia coli, which has been identified as a mutarotase for sialic acid. This protein improves bacterial ability to obtain host sialic acid, and thus serves as a virulence factor. Some bacteria carry what appears to be a cyclically permuted homolog of this protein.
+RN  [1]
+RM  PMID:18063573
+RT  Sialic Acid Mutarotation Is Catalyzed by the Escherichia coli {beta}-Propeller Protein YjhT.
+RA  Severi E, Muller A, Potts JR, Leech A, Williamson D, Wilson KS, Thomas GH
+RL  J Biol Chem. 2008 Feb 22;283(8):4841-9.

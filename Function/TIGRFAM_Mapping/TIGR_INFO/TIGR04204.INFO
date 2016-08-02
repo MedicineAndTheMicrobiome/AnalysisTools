@@ -1,0 +1,11 @@
+ID  MAST_ArtA_sort
+AC  TIGR04204
+DE  MAST domain
+AU  Haft DH
+TC  150.00 150.00
+NC  55.00 55.00
+AL  muscle_manual
+IT  subfamily_domain
+EN  MAST domain
+TP  TIGRFAMs
+CC  This HMM describes a domain (or in most cases the full length) of archaeal surface proteins that are putative targets for C-terminal processing by archaeosortase A (TIGR04125). Most members of this family belong to proteins encoded by tandem genes in the genus Methanosarcina. The putative processing signal, PGF-CTERM (TIGR04126), included within the domain definition, takes a variant form, with consensus motif PAF instead of PGF. We suggest the name MAST domain: Methanosarcina Archaeosortase-Sorted Tandem gene family domain.

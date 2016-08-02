@@ -1,0 +1,11 @@
+ID  rSAM_MSMEG_0568
+AC  TIGR04043
+DE  radical SAM protein, MSMEG_0568 family
+AU  Haft DH
+TC  303.70 303.70
+NC  170.55 170.55
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  radical SAM protein, MSMEG_0568 family
+TP  TIGRFAMs
+CC  Members of this protein family are radical SAM proteins related to MSMEG_0568 from Mycobacterium smegmatis. Members occur within 8-gene operons in species as diverse as M. smegmatis, Rhizobium leguminosarum, Synechococcus elongatus, and Sorangium cellulosum. The function of the operon is unknown, but similarity of MSMEG_0568 to some cofactor biosynthesis radical SAM proteins suggests a similar biosynthetic function.

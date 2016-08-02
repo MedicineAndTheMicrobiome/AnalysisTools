@@ -1,0 +1,15 @@
+ID  SUI1_MOF2
+AC  TIGR01160
+DE  translation initiation factor SUI1
+AU  Haft DH
+TC  143.90 143.90
+NC  47.90 47.90
+AL  clustalw
+IT  equivalog
+EN  translation initiation factor SUI1, eukaryotic
+TP  TIGRFAMs
+CC  Alternate name: MOF2. A similar protein family (see TIGRFAMs model TIGR01158) is found in prokaryotes. The human proteins complements a yeast SUI1 mutatation.
+RM  10376878
+RT  Mutations in the MOF2/SUI1 gene affect both translation and nonsense-mediated mRNA decay.
+RA  Cui Y, Gonzalez CI, Kinzy TG, Dinman JD, Peltz SW
+RL  RNA 1999 Jun;5(6):794-804

@@ -1,0 +1,17 @@
+ID  rSAM_paired_1
+AC  TIGR03978
+DE  His-Xaa-Ser system radical SAM maturase HxsB
+AU  Haft DH
+TC  370.00 370.00
+NC  325.00 325.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  His-Xaa-Ser system radical SAM maturase HxsB
+GS  hxsB
+TP  TIGRFAMs
+CC  This HMM describes the upstream member, HxsB, of a pair of uncharacterized radical SAM proteins, regularly found in the context of a small protein with four or more repeats of the tripeptide His-Xaa-Ser (HXS). This enzyme appears to be part of a peptide modification system.
+RN  [1]
+RM  PMID:21478363 
+RT  Biological systems discovery in silico: radical S-adenosylmethionine protein families and their target peptides for posttranslational modification. 
+RA  Haft DH, Basu MK 
+RL  J Bacteriol. 2011 Jun;193(11):2745-55.

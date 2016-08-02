@@ -1,0 +1,23 @@
+ID  lao
+AC  TIGR00750
+DE  LAO/AO transport system ATPase
+AU  Loftus BJ, Haft DH
+TC  240.75 240.75
+NC  157.75 157.75
+AL  clustalw_manual
+IT  equivalog
+EN  LAO/AO transport system ATPase
+EC  2.7.-.-
+TP  TIGRFAMs
+CC  In E. coli, mutation of this kinase blocks phosphorylation of two transporter system periplasmic binding proteins and consequently inhibits those transporters. This kinase is also found in Gram-positive bacteria, archaea, and the roundworm C. elegans. It may have a more general, but still unknown function.
+CC  Mutations have also been found that do not phosphorylate the periplasmic binding proteins, yet still allow transport. The ATPase activity of this protein seems to be necessary, however.
+RN  [1]
+RM  90110251
+RT  Purification and properties of a kinase from Escherichia coli K-12 that phosphorylates two periplasmic transport proteins.
+RA  Urban C, Celis RT
+RL  J Biol Chem 1990 Jan 25;265(3):1783-6
+RN  [2]
+RM  90110252
+RT  Mutant of Escherichia coli K-12 with defective phosphorylation of two periplasmic transport proteins.
+RA  Celis RT
+RL  J Biol Chem 1990 Jan 25;265(3):1787-93

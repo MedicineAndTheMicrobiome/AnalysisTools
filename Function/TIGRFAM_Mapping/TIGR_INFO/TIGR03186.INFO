@@ -1,0 +1,17 @@
+ID  AKGDH_not_PDH
+AC  TIGR03186
+DE  alpha-ketoglutarate dehydrogenase
+AU  Haft DH
+TC  1408.30 1408.30
+NC  1356.40 1356.40
+AL  clustalw
+IT  exception
+EN  alpha-ketoglutarate dehydrogenase
+GS  mdeB
+TP  TIGRFAMs
+CC  Several bacterial species have a paralog to homodimeric form of the pyruvate dehydrogenase E1 component (see model TIGR00759), often encoded next to L-methionine gamma-lyase gene (mdeA). The member from a strain of Pseudomonas putida was shown to act on alpha-ketobutyrate, which is produced by MdeA.This model serves as an exception model to TIGR00759, as other proteins hitting TIGR00759 should be identified as the pyruvate dehydrogenase E1 component.
+RN  [1]
+RM  PMID: 9190812
+RT  Molecular characterization of the mde operon involved in L-methionine catabolism of Pseudomonas putida.
+RA  Inoue H, Inagaki K, Eriguchi SI, Tamura T, Esaki N, Soda K, Tanaka H
+RL  J Bacteriol. 1997 Jun;179(12):3956-62.

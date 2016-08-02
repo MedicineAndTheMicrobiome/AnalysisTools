@@ -1,0 +1,15 @@
+ID  hmd_rel
+AC  TIGR01724
+DE  H2-forming N(5),N(10)-methenyltetrahydromethanopterin dehydrogenase-related protein
+AU  Haft DH
+TC  167.20 167.20
+NC  166.65 166.65
+AL  clustalw
+IT  subfamily
+EN  H2-forming N(5),N(10)-methenyltetrahydromethanopterin dehydrogenase-related protein
+TP  TIGRFAMs
+CC  This HMM represents a sister clade to the authenticated coenzyme F420-dependent N(5),N(10)-methenyltetrahydromethanopterin reductase (HMD) of TIGR01723. Two members, designated HmdII and HmdIII, are found. Members are restricted to methanogens, but the function is unknown.
+RM  11081790
+RT  Regulation of the synthesis of H2-forming methylenetetrahydromethanopterin dehydrogenase (Hmd) and of HmdII and HmdIII in Methanothermobacter marburgensis.
+RA  Afting C, Kremmer E, Brucker C, Hochheimer A, Thauer RK.
+RL  Arch Microbiol 2000 Oct;174(4):225-32

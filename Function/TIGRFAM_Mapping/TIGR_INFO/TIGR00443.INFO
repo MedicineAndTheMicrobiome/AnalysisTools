@@ -1,0 +1,18 @@
+ID  hisZ_biosyn_reg
+AC  TIGR00443
+DE  ATP phosphoribosyltransferase, regulatory subunit
+AU  Haft DH
+TC  271.65 271.65
+NC  251.60 251.60
+AL  clustalw_manual
+IT  equivalog
+EN  ATP phosphoribosyltransferase, regulatory subunit
+GS  hisZ
+TP  TIGRFAMs
+CC  Apparant second copies of histidyl-tRNA synthetase, found in Bacillus subtilis, Synechocystis sp., Aquifex aeolicus, and others, are in fact a regulatory subunit of ATP phosphoribosyltransferase, and usually encoded by a gene adjacent to that encoding the catalytic subunit.
+RN  [1]
+RM  PMID:15660995
+RT  Regulation of the hetero-octameric ATP phosphoribosyl transferase complex from Thermotoga maritima by a tRNA synthetase-like subunit.
+RA  Vega MC, Zou P, Fernandez FJ, Murphy GE, Sterner R, Popov A, Wilmanns M
+RL  Mol Microbiol. 2005 Feb;55(3):675-86.
+DR  HAMAP; MF_00125; 15 of 170

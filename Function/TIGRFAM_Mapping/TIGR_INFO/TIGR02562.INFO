@@ -1,0 +1,18 @@
+ID  cas3_yersinia
+AC  TIGR02562
+DE  CRISPR-associated helicase Cas3, subtype I-F/YPEST
+AU  Haft DH
+TC  565.95 565.95
+NC  452.40 452.40
+AL  clustalw
+IT  equivalog
+EN  CRISPR-associated helicase Cas3, subtype I-F/YPEST
+GS  cas3f
+TP  TIGRFAMs
+CC  The helicase in many CRISPR-associated (cas) gene clusters is designated Cas3, and most Cas3 proteins are described by model TIGR01587. Members of this family are considerably larger, show a number of motifs in common with TIGR01587 sequences, and replace Cas3 in some CRISPR/cas loci in a number of Proteobacteria, including Yersinia pestis, Chromobacterium violaceum, Erwinia carotovora subsp. atroseptica SCRI1043, Photorhabdus luminescens subsp. laumondii TTO1, Legionella pneumophila, etc.
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=2003
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=57298
+RN  [1]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005

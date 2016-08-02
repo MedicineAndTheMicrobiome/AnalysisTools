@@ -1,0 +1,18 @@
+ID  spore_yhbH
+AC  TIGR02877
+DE  sporulation protein YhbH
+AU  Haft DH
+TC  467.95 467.95
+NC  282.90 282.90
+AL  clustalw
+IT  equivalog
+EN  sporulation protein YhbH
+GS  yhbH
+TP  TIGRFAMs
+CC  This protein family, typified by YhbH in Bacillus subtilis, is found in nearly every endospore-forming bacterium and in no other genome (but note that the trusted cutoff score is set high to exclude a single high-scoring sequence from Nitrosococcus oceani ATCC 19707, which is classified in the Gammaproteobacteria). The gene in Bacillus subtilis was shown to be in the regulon of the sporulation sigma factor, sigma-E, and its mutation was shown to create a sporulation defect.
+RN  [1]
+RM  14523133
+RT  Identification of sporulation genes by genome-wide analysis of the sigmaE regulon of Bacillus subtilis.
+RA  Feucht A, Evans L, Errington J.
+RL  Microbiology. 2003 Oct;149(Pt 10):3023-34.
+DR  HAMAP; MF_01232; 17 of 77

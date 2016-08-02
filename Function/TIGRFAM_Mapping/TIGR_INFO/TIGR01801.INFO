@@ -1,0 +1,13 @@
+ID  CM_A
+AC  TIGR01801
+DE  chorismate mutase
+AU  Selengut J
+TC  106.35 106.35
+NC  68.30 68.30
+AL  clustalw
+IT  equivalog_domain
+EN  chorismate mutase domain of gram positive AroA protein
+GS  aroA
+EC  5.4.99.5
+TP  TIGRFAMs
+CC  This model represents a small clade of chorismate mutase domains N-terminally fused to the first enzyme in the chorismate pathway, 2-dehydro-3-deoxyphosphoheptanoate aldolase (DAHP synthetase, AroA) which are found in some gram positive species and Deinococcus.  Only in Deinococcus, where this domain is the sole CM domain in the genome can a trusted assignment of function be made.  In the other species there is at least one other trusted CM domain present.  The similarity between the Deinococcus gene and the others in this clade is sufficiently strong (~44% identity), that the whole clade can be trusted to be functional.  The possibility exists, however, that in the gram positive species the fusion to the first enzyme in the pathway has evolved a separate, regulatory role.

@@ -1,0 +1,13 @@
+ID  sulphoacet_xsc
+AC  TIGR03457
+DE  sulfoacetaldehyde acetyltransferase
+AU  Haft DH
+TC  676.40 676.40
+NC  462.40 462.40
+AL  muscle_manual
+IT  equivalog
+EN  sulfoacetaldehyde acetyltransferase
+GS  xsc
+EC  2.3.3.15
+TP  TIGRFAMs
+CC  Members of this protein family are sulfoacetaldehyde acetyltransferase, an enzyme of taurine utilization. Taurine, or 2-aminoethanesulfonate, can be used by bacteria as a source of carbon, nitrogen, and sulfur.

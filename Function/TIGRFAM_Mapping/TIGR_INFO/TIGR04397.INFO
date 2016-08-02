@@ -1,0 +1,17 @@
+ID  SecA2_Bac_anthr
+AC  TIGR04397
+DE  accessory Sec system translocase SecA2
+AU  Haft DH
+TC  1085.00 1085.00
+NC  1080.00 1080.00
+AL  muscle
+IT  exception
+EN  accessory Sec system translocase SecA2, Bacillus type
+GS  secA2
+TP  TIGRFAMs
+CC  Members of this family always occur in genomes with the preprotein translocase SecA (TIGR00963) and closely resemble it, hence the designation SecA2. However, this appears to mark a different type of accessory Sec system SecA2 (TIGR03714) from the serine-rich glycoprotein type found in Staphylococcus and Streptococcus, and the actinobacterial SecA2 (TIGR04221). This type occurs in species including Bacillus anthracis, Geobacillus thermoglucosidasius, Solibacillus silvestris, etc.
+RN  [1]
+RM  PMID:22609926 
+RT  Secretion genes as determinants of Bacillus anthracis chain length. 
+RA  Nguyen-Mau SM, Oh SY, Kern VJ, Missiakas DM, Schneewind O 
+RL  J Bacteriol. 2012 Aug;194(15):3841-50. doi: 10.1128/JB.00384-12.

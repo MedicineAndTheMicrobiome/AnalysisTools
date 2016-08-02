@@ -1,0 +1,11 @@
+ID  cyano_FeS_chp
+AC  TIGR03279
+DE  putative radical SAM enzyme, TIGR03279 family
+AU  Haft DH
+TC  574.70 574.70
+NC  170.25 170.25
+AL  muscle
+IT  hypoth_equivalog
+EN  putative radical SAM enzyme, TIGR03279 family
+TP  TIGRFAMs
+CC  Members of this protein family are predicted radical SAM enzymes of unknown function, apparently restricted to and universal across the Cyanobacteria. The high trusted cutoff score for this model, 700 bits, excludes homologs from other lineages. This exclusion seems justified because a significant number of sequence positions are simultaneously unique to and invariant across the Cyanobacteria, suggesting a specialized, conserved function, perhaps related to photosynthesis. A distantly related protein family, TIGR03278, in universal in and restricted to archaeal methanogens, and may be linked to methanogenesis.

@@ -1,0 +1,25 @@
+ID  LEU1_arch
+AC  TIGR02090
+DE  isopropylmalate/citramalate/homocitrate synthases
+AU  Selengut J
+TC  484.75 484.75
+NC  473.05 473.05
+AL  clustalw
+IT  subfamily
+EN  isopropylmalate/citramalate/homocitrate synthases
+TP  TIGRFAMs
+CC  Methanogenic archaea contain three closely related homologs of the 2-isopropylmalate synthases (LeuA) represented by TIGR00973.  Two of these in Methanococcus janaschii (MJ1392 - CimA [1]; MJ0503 - AksA [2]) have been characterized as catalyzing alternative reactions leaving the third (MJ1195) as the presumptive LeuA enzyme.  
+CC  CimA is citramalate (2-methylmalate) synthase which condenses acetyl-CoA with pyruvate.  This enzyme is believed to be involved in the biosynthesis of isoleucine in methanogens and possibly other species lacking threonine dehydratase.
+CC  AksA is a homocitrate synthase which also produces (homo)2-citrate and (homo)3-citrate in the biosynthesis of Coenzyme B which is restricted solely to methanogenic archaea.
+CC  Methanogens, then should and aparrently do contain all three of these enzymes.  Unfortunately, phylogenetic trees do not resolve into three unambiguous clades, making assignment of function to particular genes problematic.  Other archaea which lack a threonine dehydratase (mainly Euryarchaeota) should contain both a CimA and a LeuA gene.  This is true of, for example, archaeoglobus fulgidis, but not for the Pyrococci which have none in this clade, but one in TIGR00973 and one in TIGRT00977 which may fulfill these roles.  Other species which have only one hit to this model and lack threonine dehydratase are very likely LeuA enzymes.
+RN  [1]
+RM  PMID: 9864346
+RT  (R)-citramalate synthase in methanogenic archaea.
+RA  Howell DM, Xu H, White RH.
+RL  J Bacteriol. 1999 Jan;181(1):331-3. 
+RN  [2]
+RM  PMID: 9665716
+RT  Alpha-keto acid chain elongation reactions involved in the biosynthesis of coenzyme B (7-mercaptoheptanoyl threonine phosphate) in methanogenic Archaea.
+RA  Howell DM, Harich K, Xu H, White RH.
+RL  Biochemistry. 1998 Jul 14;37(28):10108-17.
+DR  HAMAP; MF_01028; 5 of 5

@@ -1,0 +1,17 @@
+ID  aRF1/eRF1
+AC  TIGR03676
+DE  peptide chain release factor 1, archaeal and eukaryotic forms
+AU  Selengut J, Anolik RT, Richardson DL, Haft DH
+TC  234.70 234.70
+NC  146.15 146.15
+AL  muscle
+IT  equivalog
+EN  peptide chain release factor 1, archaeal and eukaryotic forms
+GS  prf1
+TP  TIGRFAMs
+CC  Directs the termination of nascent peptide synthesis (translation) in response to the termination codons UAA, UAG and UGA.  This model identifies both archaeal (aRF1) and eukaryotic (eRF1) of the protein.  Also known as translation termination factor 1.
+RN  [1]
+RM  PMID:10676813 
+RT  The crystal structure of human eukaryotic release factor eRF1--mechanism of stop codon recognition and peptidyl-tRNA hydrolysis. 
+RA  Song H, Mugnier P, Das AK, Webb HM, Evans DR, Tuite MF, Hemmings BA, Barford D 
+RL  Cell. 2000 Feb 4;100(3):311-21.

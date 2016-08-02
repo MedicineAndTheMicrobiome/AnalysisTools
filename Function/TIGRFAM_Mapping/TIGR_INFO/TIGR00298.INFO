@@ -1,0 +1,19 @@
+ID  TIGR00298
+AC  TIGR00298
+DE  2-phosphosulfolactate phosphatase
+AU  Haft DH, Dodson RJ
+TC  175.05 175.05
+NC  119.70 119.70
+AL  clustalw
+IT  equivalog
+EN  2-phosphosulfolactate phosphatase
+GS  comB
+EC  3.1.3.71
+TP  TIGRFAMs
+CC  2-phosphosulfolactate phosphatase catalyzes the sulfonation of phosphoenolpyruvate to form 2-phospho-3-sulfolactate, the second step in coenzyme M biosynthesis. Coenzyme M is the terminal methyl carrier in methanogenesis.
+[1]
+RM  11589710
+RT  Identification of coenzyme M biosynthetic 2-phosphosulfolactate phosphatase. A member of a new class of Mg(2+)-dependent acid phosphatases.
+RL  Eur J Biochem. 2001 Oct;268(19):5176-88.
+RA  Graham DE, Graupner M, Xu H, White RH.
+DR  HAMAP; MF_00490; 27 of 46

@@ -1,0 +1,11 @@
+ID  SBP_KPN_01854
+AC  TIGR04028
+DE  ABC transporter substrate binding protein, KPN_01854 family
+AU  Haft DH
+TC  468.50 468.50
+NC  468.20 468.20
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  ABC transporter substrate binding protein, KPN_01854 family
+TP  TIGRFAMs
+CC  Members of this protein family are ABC transporter substrate-binding proteins related to KPN_01854 from Klebsiella pneumoniae, and occur in both Gram-positive and Gram-negative species. This transport protein family is closely associated with a putative FMN-dependent luciferase-like monooxygenase of unknown function (TIGR04027), as well as with the other proteins of its transporter complex.

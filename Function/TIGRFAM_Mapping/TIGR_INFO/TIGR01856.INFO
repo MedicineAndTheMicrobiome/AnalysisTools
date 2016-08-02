@@ -1,0 +1,15 @@
+ID  hisJ_fam
+AC  TIGR01856
+DE  histidinol phosphate phosphatase, HisJ family
+AU  Haft DH
+TC  90.20 90.20
+NC  38.60 38.60
+AL  clustalw
+IT  subfamily
+EN  histidinol phosphate phosphatase, HisJ family
+TP  TIGRFAMs
+CC  This HMM represents the histidinol phosphate phosphatase HisJ of Bacillus subtilis, and related proteins from a number of species within a larger family of phosphatases in the PHP hydrolase family. HisJ catalyzes the penultimate step of histidine biosynthesis but shows no homology to the functionally equivalent sequence in E. coli, a domain of the bifunctional HisB protein. Note, however, that many species have two members and that Clostridium perfringens, predicted not to make histidine, has five members of this family; this family is designated subfamily rather than equivalog to indicate that members may not all act as HisJ.
+RM  10322033
+RT  Histidinol phosphate phosphatase, catalyzing the penultimate step of the histidine biosynthesis pathway, is encoded by ytvP (hisJ) in Bacillus subtilis.
+RA  le Coq D, Fillinger S, Aymerich S.
+RL  J Bacteriol 1999 May;181(10):3277-80

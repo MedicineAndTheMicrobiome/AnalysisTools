@@ -1,0 +1,11 @@
+ID  fusion_not_SelD
+AC  TIGR04369
+DE  oxidoreductase/SelD-related fusion protein
+AU  Haft DH
+TC  700.00 700.00
+NC  550.00 550.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  oxidoreductase/SelD-related fusion protein
+TP  TIGRFAMs
+CC  Some selenium donor proteins (selenide,water dikase, product of the selD gene, model TIGR00476) are fusion proteins with an N-terminal extension described by model TIGR03169. Members of this family have a C-terminal region similar to yet outside the scope of the SelD model, fused to an N-terminal region similar to but outside the scope of TIGR03169.

@@ -1,0 +1,18 @@
+ID  F420_cofH
+AC  TIGR03551
+DE  7,8-didemethyl-8-hydroxy-5-deazariboflavin synthase, CofH subunit
+AU  Haft DH
+TC  374.10 374.10
+NC  369.75 369.75
+AL  muscle_manual
+IT  equivalog_domain
+EN  7,8-didemethyl-8-hydroxy-5-deazariboflavin synthase, CofH subunit
+GS  cofH
+EC  2.5.1.77
+TP  TIGRFAMs
+CC  This enzyme, together with CofG, complete the biosynthesis of 7,8-didemethyl-8-hydroxy-5-deazariboflavin synthase, the chromophore of coenzyme F420. The chromophore is also used in cyanobacteria DNA photolyases.
+RN  [1]
+RM  PMID:14593448
+RT  Identification of the 7,8-didemethyl-8-hydroxy-5-deazariboflavin synthase required for coenzyme F(420) biosynthesis.
+RA  Graham DE, Xu H, White RH
+RL  Arch Microbiol. 2003 Dec;180(6):455-64. Epub 2003 Oct 31.

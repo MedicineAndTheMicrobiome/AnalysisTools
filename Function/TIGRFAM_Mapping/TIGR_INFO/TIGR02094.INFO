@@ -1,0 +1,15 @@
+ID  more_P_ylases
+AC  TIGR02094
+DE  alpha-glucan phosphorylases
+AU  Haft DH
+TC  191.70 191.70
+NC  148.20 148.20
+AL  clustalw_manual
+IT  subfamily
+EN  alpha-glucan phosphorylases
+GS  glgP
+EC  2.4.1.1
+TP  TIGRFAMs
+CC  This family consists of known phosphorylases, and homologs believed to share the function of using inorganic phosphate to cleave an alpha 1,4 linkage between the terminal glucose residue and the rest of the polymer (maltodextrin, glycogen, etc.). The name of the glucose storage polymer substrate, and therefore the name of this enzyme, depends on the chain lengths and branching patterns. A number of the members of this family have been shown to operate on small maltodextrins, as may be obtained by utilization of exogenous sources. This family represents a distinct clade from the related family modeled by TIGR02093/PF00343.
+DR  EXPERIMENTAL; GP|4741852; Thermococcus litoralis; maltodextrin phosphorylase
+DR  EXPERIMENTAL; GP|2660639; Thermotoga maritima; alpha-glucan phosphorylase

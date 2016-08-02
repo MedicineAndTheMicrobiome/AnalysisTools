@@ -1,0 +1,13 @@
+ID  rplP_bact
+AC  TIGR01164
+DE  ribosomal protein L16
+AU  Haft DH
+TC  76.85 76.85
+NC  56.20 56.20
+AL  clustalw_manual
+IT  equivalog
+EN  ribosomal protein L16, bacterial/organelle
+GS  rplP
+TP  TIGRFAMs
+CC  This HMM describes bacterial and organellar ribosomal protein L16. The homologous protein of the eukaryotic cytosol is designated L10
+DR  HAMAP; MF_01342; 687 of 706

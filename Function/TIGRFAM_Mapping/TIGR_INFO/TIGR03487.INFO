@@ -1,0 +1,12 @@
+ID  cas_csp2
+AC  TIGR03487
+DE  CRISPR-associated protein Cas8c/Csp2, subtype PGING
+AU  Haft DH
+TC  461.75 461.75
+NC  461.45 461.45
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  CRISPR-associated protein Cas8c/Csp2, subtype PGING
+GS  cas8c
+TP  TIGRFAMs
+CC  Members of this protein family are cas, or CRISPR-associated, proteins. The two sequences in the alignment seed are found within cas gene clusters that are adjacent to CRISPR DNA repeats in two members of the order Bacteroidales, Porphyromonas gingivalis W83 and Bacteroides forsythus ATCC 43037. This cas protein family is unique to the Pging (Porphyromonas gingivalis) subtype.

@@ -1,0 +1,22 @@
+ID  ovoA_Nterm
+AC  TIGR04344
+DE  5-histidylcysteine sulfoxide synthase
+AU  Haft DH
+TC  400.00 400.00
+NC  325.00 325.00
+AL  muscle_manual
+IT  equivalog_domain
+EN  5-histidylcysteine sulfoxide synthase
+GS  ovoA
+TP  TIGRFAMs
+CC  Ovothiol A is N1-methyl-4-mercaptohistidine. In the absence of S-adenosylmethione, a methyl donor, the intermediate produced is 4-mercaptohistidine. In both Erwinia tasmaniensis and Trypanosoma cruzi, a protein occurs with 5-histidylcysteine sulfoxide synthase activity, but these two enzymes and most homologs share an additional C-terminal methyltransferase domain. Thus OvoA may be a bifunctional enzyme with 5-histidylcysteine sulfoxide synthase and 4-mercaptohistidine N1-methyltranferase activity. This model describes the 5-histidylcysteine sulfoxide synthase domain, a homolog of the ergothioneine biosynthesis protein EgtB.
+RN  [1]
+RM  PMID:21247153 
+RT  Identification and characterization of the first ovothiol biosynthetic enzyme. 
+RA  Braunshausen A, Seebeck FP 
+RL  J Am Chem Soc. 2011 Feb 16;133(6):1757-9.
+RN  [2]
+RM  PMID:9022682 
+RT  Studies on the biosynthesis of ovothiol A. Identification of 4-mercaptohistidine as an intermediate. 
+RA  Steenkamp DJ, Weldrick D, Spies HS 
+RL  Eur J Biochem. 1996 Dec 15;242(3):557-66.

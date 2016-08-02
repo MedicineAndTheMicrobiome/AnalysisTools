@@ -1,0 +1,17 @@
+ID  GldJ_short
+AC  TIGR03530
+DE  gliding motility-associated lipoprotein GldJ
+AU  Selengut J
+TC  382.90 382.90
+NC  158.95 158.95
+AL  muscle
+IT  equivalog
+EN  gliding motility-associated lipoprotein GldJ
+GS  glJ
+TP  TIGRFAMs
+CC  Members of this protein family are exclusive to the Bacteroidetes phylum (previously Cytophaga-Flavobacteria-Bacteroides). GldJ is a lipoprotein linked to a type of rapid surface gliding motility found in certain Bacteroidetes, such as Flavobacterium johnsoniae [1]. Knockouts of GldJ abolish the gliding phenotype.  GldJ is homologous to GldK.  This model represents the GldJ homolog in Cytophaga hutchinsonii and several other species which is of shorter architecture than that found in Flavobacterium johnsoniae and is represented by a separate model (TIGR03524).  Gliding motility appears closely linked to chitin utilization in the model species Flavobacterium johnsoniae. Bacteroidetes with members of this protein family appear to have all of the genes associated with gliding motility.
+RN  [1]
+RM  PMID:15805509 
+RT  Flavobacterium johnsoniae GldJ is a lipoprotein that is required for gliding motility. 
+RA  Braun TF, McBride MJ 
+RL  J Bacteriol. 2005 Apr;187(8):2628-37.

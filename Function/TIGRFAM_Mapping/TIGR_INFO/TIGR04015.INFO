@@ -1,0 +1,18 @@
+ID  WcaC
+AC  TIGR04015
+DE  colanic acid biosynthesis glycosyltransferase WcaC
+AU  Selengut J
+TC  784.85 784.85
+NC  688.05 688.05
+AL  muscle
+IT  equivalog
+EN  colanic acid biosynthesis glycosyl transferase WcaC
+GS  wcaC
+EC  2.4.-.-
+TP  TIGRFAMs
+CC  This gene is one of the glycosyl transferases involved in the biosynthesis of colanic acid, an exopolysaccharide expressed in Enterobacteraceae species [1].
+RN  [1]
+RM  PMID:8759852 
+RT  Organization of the Escherichia coli K-12 gene cluster responsible for production of the extracellular polysaccharide colanic acid. 
+RA  Stevenson G, Andrianopoulos K, Hobbs M, Reeves PR 
+RL  J Bacteriol. 1996 Aug;178(16):4885-93.

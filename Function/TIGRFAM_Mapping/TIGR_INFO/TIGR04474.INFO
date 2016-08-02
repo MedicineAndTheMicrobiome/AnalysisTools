@@ -1,0 +1,12 @@
+ID  tcm_partner
+AC  TIGR04474
+DE  three-Cys-motif partner protein
+AU  Haft DH
+TC  53.00 53.00
+NC  40.00 40.00
+AL  muscle_manual
+IT  subfamily
+EN  three-Cys-motif partner protein
+GS  tcmP
+TP  TIGRFAMs
+CC  Members of this family occur regularly as a partner to as a member of family PF07505, which has been called a phage protein but which seems to occur also in other contexts. Members average about 400 residues in length, but the conserved region covered by the model averages 260 residues and excludes the C-terminus. Conserved motifs suggest enzymatic activity. Note that its frequent partner protein (see PF07505) has a three-cysteine motif that resembles the Cx3CxxC motif of radical SAM proteins, and that in one branch (see TIGR04471) actually becomes Cx3CxxC. We suggest the name three-Cys-motif partner protein (tcmP), and renaming PF07505 to three-Cys-motif family protein

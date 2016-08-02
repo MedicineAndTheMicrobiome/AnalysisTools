@@ -1,0 +1,17 @@
+ID  TIGR00286
+AC  TIGR00286
+DE  arginine decarboxylase, pyruvoyl-dependent
+AU  Haft DH
+TC  106.95 106.95
+NC  43.50 43.50
+AL  clustalw
+IT  equivalog
+EN  arginine decarboxylase, pyruvoyl-dependent
+EC  4.1.1.19
+TP  TIGRFAMs
+CC  The three copies present in Archeoglobus fulgidus, one of which is only half-length and excluded from the seed alignment, are very closely related and clearly arose by duplication after the separation from well-studied species. The other completed archaeal genomes each contain a single copy. The lone, weak (below trusted cutoff) hit to a non-archaeal sequence is to an uncharacterized protein of Chlamydia, with the greatest similarity in the amino-terminal half of the model.
+RM  11980912
+RT  Methanococcus jannaschii uses a pyruvoyl-dependent arginine decarboxylase in polyamine biosynthesis.
+RA  Graham DE, Xu H, White RH.
+RL  J Biol Chem. 2002 Jun 28;277(26):23500-7.
+DR  HAMAP; MF_01404; 25 of 27

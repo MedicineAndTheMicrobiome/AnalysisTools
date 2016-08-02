@@ -1,0 +1,14 @@
+ID  argS
+AC  TIGR00456
+DE  arginine--tRNA ligase
+AU  Haft DH
+TC  261.65 261.65
+NC  193.50 193.50
+AL  clustalw_manual
+IT  equivalog
+EN  arginyl-tRNA synthetase
+GS  argS
+EC  6.1.1.19
+TP  TIGRFAMs
+CC  This HMM recognizes arginyl-tRNA synthetase in every completed genome to date. An interesting feature of the alignment of all arginyl-tRNA synthetases is a fairly deep split between two families. One family includes archaeal, eukaryotic and organellar, spirochete, E. coli, and Synechocystis sp. The second, sharing a deletion of about 25 residues in the central region relative to the first, includes Bacillus subtilis, Aquifex aeolicus, the Mycoplasmas and Mycobacteria, and the Gram-negative bacterium Helicobacter pylori.
+DR  HAMAP; MF_00123; 506 of 512

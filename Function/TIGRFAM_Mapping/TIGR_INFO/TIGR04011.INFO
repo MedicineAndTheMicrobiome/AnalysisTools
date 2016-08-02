@@ -1,0 +1,18 @@
+ID  poly_gGlu_PgsC
+AC  TIGR04011
+DE  poly-gamma-glutamate biosynthesis protein PgsC
+AU  Haft DH
+TC  96.45 96.45
+NC  66.30 66.30
+AL  muscle_manual
+IT  equivalog
+EN  poly-gamma-glutamate biosynthesis protein PgsC/CapC
+GS  pgsC
+EC  6.3.2.-
+TP  TIGRFAMs
+CC  Of four genes commonly found to be involved in biosynthesis and export of poly-gamma-glutamate, pgsB(capB) and pgsC(capC) are found to be involved in the synthesis per se. Members of this family are designated PgsC, covering both cases in which the poly-gamma-glutamate is secreted and those in which it is retained to form capsular material. PgsC binds tightly to PgsB, which has been shown to have poly-gamma-glutamate activity.
+RN  [1]
+RM  PMID:19483793 
+RT  Fusobacterium nucleatum, the first Gram-negative bacterium demonstrated to produce polyglutamate. 
+RA  Candela T, Moya M, Haustant M, Fouet A 
+RL  Can J Microbiol. 2009 May;55(5):627-32.

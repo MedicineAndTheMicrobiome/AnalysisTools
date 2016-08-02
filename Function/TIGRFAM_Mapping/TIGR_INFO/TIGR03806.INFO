@@ -1,0 +1,11 @@
+ID  chp_HNE_0200
+AC  TIGR03806
+DE  conserved hypothetical protein, HNE_0200 family
+AU  Haft DH
+TC  313.30 313.30
+NC  200.05 200.05
+AL  muscle_manual
+IT  hypoth_equivalog_domain
+EN  conserved hypothetical protein, HNE_0200 family
+TP  TIGRFAMs
+CC  The model TIGR03805 describes an uncharacterized protein family that contains repeats associated with the formation of a right-handed helical stack of parallel beta strands, homologous to those found in a number of carbohydrate-binding proteins and sugar hydrolases. This model describes another uncharacterized protein family, found in the same species as TIGR03805 member proteins, usually as the adjacent gene or in a fusion protein. An example is HNE_0200 from Hyphomonas neptunium ATCC 15444. Sometimes two members of this family are with a single member of TIGR03805. The function is unknown.

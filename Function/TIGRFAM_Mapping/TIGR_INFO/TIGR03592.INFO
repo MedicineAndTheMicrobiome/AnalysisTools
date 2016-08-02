@@ -1,0 +1,12 @@
+ID  yidC_oxa1_cterm
+AC  TIGR03592
+DE  membrane protein insertase, YidC/Oxa1 family
+AU  Haft DH
+TC  84.30 84.30
+NC  72.05 72.05
+AL  clustalw_manual
+IT  subfamily_domain
+EN  membrane protein insertase, YidC/Oxa1 family, C-terminal domain
+GS  yidC
+TP  TIGRFAMs
+CC  This model describes full-length from some species, and the C-terminal region only from other species, of the YidC/Oxa1 family of proteins. This domain appears to be univeral among bacteria (although absent from Archaea). The well-characterized YidC protein from Escherichia coli and its close homologs contain a large N-terminal periplasmic domain in addition to the region modeled here.

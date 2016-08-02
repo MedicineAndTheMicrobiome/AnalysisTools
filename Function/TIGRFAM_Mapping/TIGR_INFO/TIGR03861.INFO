@@ -1,0 +1,16 @@
+ID  phenyl_ABC_PedC
+AC  TIGR03861
+DE  alcohol ABC transporter, permease protein
+AU  Haft DH
+TC  241.35 241.35
+NC  183.55 183.55
+AL  muscle_manual
+IT  subfamily
+EN  alcohol ABC transporter, permease protein
+TP  TIGRFAMs
+CC  Members of this protein family, part of a larger class of efflux-type ABC transport permease proteins, are found exclusively in genomic contexts with  pyrroloquinoline-quinone (PQQ) biosynthesis enzymes and/or PQQ-dependent alcohol dehydrogenases, such as the phenylethanol dehydrogenase PedE of Pseudomonas putida U. Members include PedC, an apparent phenylethanol transport protein whose suggested role is efflux to limit intracellular concentrations of toxic metabolites during phenylethanol catalysis.
+RN  [1]
+RM  PMID:18177365
+RT  Genetic analyses and molecular characterization of the pathways involved in the conversion of 2-phenylethylamine and 2-phenylethanol into phenylacetic acid in Pseudomonas putida U.
+RA  Arias S, Olivera ER, Arcos M, Naharro G, Luengo JM
+RL  Environ Microbiol. 2008 Feb;10(2):413-32. Epub 2007 Dec 27.

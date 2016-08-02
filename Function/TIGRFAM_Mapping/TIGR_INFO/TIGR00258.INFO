@@ -1,0 +1,15 @@
+ID  TIGR00258
+AC  TIGR00258
+DE  inosine/xanthosine triphosphatase
+AU  Haft DH
+TC  117.10 117.10
+NC  69.15 69.15
+AL  clustalw
+IT  hypoth_equivalog
+EN  inosine/xanthosine triphosphatase
+TP  TIGRFAMs
+RN  [1]
+RM  PMID:16216582
+RT  Identification of an ITPase/XTPase in Escherichia coli by structural and biochemical analysis.
+RA  Zheng J, Singh VK, Jia Z
+RL  Structure. 2005 Oct;13(10):1511-20.

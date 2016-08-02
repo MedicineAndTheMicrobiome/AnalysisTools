@@ -1,0 +1,12 @@
+ID  TIGR03252
+AC  TIGR03252
+DE  uncharacterized HhH-GPD family protein
+AU  Haft DH
+TC  136.50 136.50
+NC  66.40 66.40
+AL  muscle
+IT  hypoth_equivalog
+EN  uncharacterized HhH-GPD family protein
+TP  TIGRFAMs
+CC  This model describes a small, well-conserved bacterial protein family. Its sequence largely consists of a domain, HhH-GPD, found in a variety of related base excision DNA repair enzymes (see PF00730).
+DR  PFAM; PF00730; HhH-GPD

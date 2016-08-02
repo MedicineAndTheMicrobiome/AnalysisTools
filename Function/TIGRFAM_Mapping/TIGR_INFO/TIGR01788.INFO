@@ -1,0 +1,12 @@
+ID  Glu-decarb-GAD
+AC  TIGR01788
+DE  glutamate decarboxylase
+AU  Selengut J
+TC  380.40 380.40
+NC  213.05 213.05
+AL  clustalw
+IT  equivalog
+EN  glutamate decarboxylase
+EC  4.1.1.15
+TP  TIGRFAMs
+CC  This model represents the pyridoxal phosphate-dependent glutamate (alpha) decarboxylase found in bacteria (low and hi-GC gram positive, proteobacteria and cyanobacteria), plants, fungi and at least one archaon (Methanosarcina).  The product of the enzyme is gamma-aminobutyrate (GABA).

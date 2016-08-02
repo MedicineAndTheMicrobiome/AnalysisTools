@@ -1,0 +1,14 @@
+ID  sss
+AC  TIGR00813
+DE  transporter, solute:sodium symporter (SSS) family
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  184.00 184.00
+NC  149.80 149.80
+IT  superfamily
+EN  transporter, SSS family
+TR  2.A.21
+TP  TIGRFAMs
+CC  The Solute:Sodium Symporter (SSS) Family (TC 2.A.21)
+CC  Members of the SSS family catalyze solute:Na+ symport. The solutes transported may be sugars, amino acids, nucleosides, inositols, vitamins, urea or anions, depending on the system. Members of the SSS family have been identified in bacteria, archaea and animals, and all functionally well characterized members catalyze solute uptake via Na+ symport. Proteins of the SSS generally share a core of 13 TMSs, but different members of the family may
+CC  have different numbers of TMSs. A 13 TMS topology with a periplasmic N-terminus and a cytoplasmic C-terminus has been experimentally determined for the proline:Na+ symporter, PutP, of E. coli.
+DR  HAMAP; MF_01426; 29 of 30

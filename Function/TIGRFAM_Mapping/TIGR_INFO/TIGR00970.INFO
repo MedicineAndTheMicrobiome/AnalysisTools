@@ -1,0 +1,14 @@
+ID  leuA_yeast
+AC  TIGR00970
+DE  2-isopropylmalate synthase
+AU  Haft DH
+TC  697.40 697.40
+NC  244.35 244.35
+AL  clustalw
+IT  equivalog
+EN  2-isopropylmalate synthase, yeast type
+GS  leuA
+EC  2.3.3.13
+TP  TIGRFAMs
+CC  A larger family of homologous proteins includes homocitrate synthase, distinct lineages of 2-isopropylmalate synthase, several distinct, uncharacterized, orthologous sets in the Archaea, and other related enzymes. This model describes a family of 2-isopropylmalate synthases as found in yeasts and in a minority of studied bacteria.
+DR  HAMAP; MF_00572; 30 of 31

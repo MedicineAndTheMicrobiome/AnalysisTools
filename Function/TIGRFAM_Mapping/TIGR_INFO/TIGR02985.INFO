@@ -1,0 +1,11 @@
+ID  Sig70_bacteroi1
+AC  TIGR02985
+DE  RNA polymerase sigma-70 factor, Bacteroides expansion family 1
+AU  Selengut J
+TC  126.40 126.40
+NC  114.80 114.80
+AL  muscle
+IT  subfamily
+EN  RNA polymerase sigma-70 factor, Bacteroides expansion family 1
+TP  TIGRFAMs
+CC  This group of sigma factors are members of the sigma-70 family (TIGR02937) and are found primarily in the genus Bacteroides.  This family appears to have resulted from a lineage-specific expansion as B. thetaiotaomicron VPI-5482, Bacteroides forsythus ATCC 43037, Bacteroides fragilis YCH46 and Bacteroides fragilis NCTC 9343 contain 25, 12, 24 and 23 members, respectively.  There are currentlyonly two known members of this family outside of the Bacteroides, in Rhodopseudomonas and Bradyrhizobium.

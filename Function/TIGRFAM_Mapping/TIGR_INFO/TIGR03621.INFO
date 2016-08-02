@@ -1,0 +1,16 @@
+ID  F420_MSMEG_2516
+AC  TIGR03621
+DE  probable F420-dependent oxidoreductase, MSMEG_2516 family
+AU  Haft DH
+TC  213.15 213.15
+NC  163.05 163.05
+AL  muscle_manual
+IT  subfamily
+EN  probable F420-dependent oxidoreductase, MSMEG_2516 family
+TP  TIGRFAMs
+CC  Coenzyme F420 is produced by methanogenic archaea, a number of the Actinomycetes (including Mycobacterium tuberculosis), and rare members of other lineages. The resulting information-rich phylogenetic profile identifies candidate F420-dependent oxidoreductases within the family of luciferase-like enzymes (PF00296), where the species range for the subfamily encompasses many F420-positive genomes without straying beyond. This family is uncharacterized, and named for member MSMEG_2516 from Mycobacterium smegmatis.
+RN  [1]
+RM  PMID:20675471 
+RT  Unexpected abundance of coenzyme F(420)-dependent enzymes in Mycobacterium tuberculosis and other actinobacteria. 
+RA  Selengut JD, Haft DH 
+RL  J Bacteriol. 2010 Nov;192(21):5788-98.

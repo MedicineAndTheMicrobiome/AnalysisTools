@@ -1,0 +1,22 @@
+ID  TypA_BipA
+AC  TIGR01394
+DE  GTP-binding protein TypA/BipA
+AU  Haft DH
+TC  757.30 757.30
+NC  262.60 262.60
+AL  clustalw_manual
+IT  equivalog
+EN  GTP-binding protein TypA/BipA
+GS  typA
+TP  TIGRFAMs
+CC  This bacterial (and Arabidopsis) protein, termed TypA or BipA, a GTP-binding protein, is phosphorylated on a tyrosine residue under some cellular conditions. Mutants show altered regulation of some pathways, but the precise function is unknown.
+RN  [1]
+RM  PMID: 15297874
+RT  A dedicated translation factor controls the synthesis of the global regulator Fis.
+RA  Owens RM, Pritchard G, Skipp P, Hodey M, Connell SR, Nierhaus KH, O'Connor CD
+RL  EMBO J. 2004 Aug 18;23(16):3375-85. Epub 2004 Aug 5.
+RN  [2]
+RM  PMID: 9622352
+RT  BipA: a tyrosine-phosphorylated GTPase that mediates interactions between enteropathogenic Escherichia coli (EPEC) and epithelial cells.
+RA  Farris,M., Grant,A., Richardson,T.B. and O'Connor,C.D.
+RL  Mol. Microbiol. 28 (2), 265-279 (1998)

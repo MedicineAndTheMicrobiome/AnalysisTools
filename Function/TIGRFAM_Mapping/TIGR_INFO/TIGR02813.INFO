@@ -1,0 +1,16 @@
+ID  omega_3_PfaA
+AC  TIGR02813
+DE  polyketide-type polyunsaturated fatty acid synthase PfaA
+AU  Haft DH
+TC  1010.10 1010.10
+NC  671.05 671.05
+AL  clustalw
+IT  subfamily
+EN  polyketide-type polyunsaturated fatty acid synthase PfaA
+GS  pfaA
+TP  TIGRFAMs
+CC  Members of the seed for this alignment are involved in omega-3 polyunsaturated fatty acid biosynthesis, such as the protein PfaA from the eicosapentaenoic acid biosynthesis operon in Photobacterium profundum strain SS9. PfaA is encoded together with PfaB, PfaC, and PfaD, and the functions of the individual polypeptides have not yet been described.  More distant homologs of PfaA, also included with the reach of this model, appear to be involved in polyketide-like biosynthetic mechanisms of polyunsaturated fatty acid biosynthesis, an alternative to the more familiar iterated mechanism of chain extension and desaturation, and in most cases are encoded near genes for homologs of PfaB, PfaC, and/or PfaD.
+RN  [1]
+RM  12055309
+RT  Structure and regulation of the omega-3 polyunsaturated fatty acid synthase genes from the deep-sea bacterium Photobacterium profundum strain SS9.
+RA  Allen EE, Bartlett DH.

@@ -1,0 +1,14 @@
+ID  cysta_beta_ly_B
+AC  TIGR01324
+DE  cystathionine beta-lyase
+AU  Haft DH
+TC  365.90 365.90
+NC  282.90 282.90
+AL  clustalw_manual
+IT  equivalog
+EN  cystathionine beta-lyase, bacterial
+GS  metC
+EC  4.4.1.8
+TP  TIGRFAMs
+CC  This HMM represents cystathionine beta-lyase (alternate name: beta-cystathionase), one of several pyridoxal-dependent enzymes of cysteine, methionine, and homocysteine metabolism. This enzyme is involved in the biosynthesis of Met from Cys.
+DR  PROSITE; PDOC00677; Cys/Met metabolism enzymes pyridoxal-phosphate attachment site

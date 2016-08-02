@@ -1,0 +1,17 @@
+ID  GldG
+AC  TIGR03521
+DE  gliding-associated putative ABC transporter substrate-binding component GldG
+AU  Selengut J
+TC  389.85 389.85
+NC  133.70 133.70
+AL  muscle
+IT  equivalog
+EN  gliding-associated putative ABC transporter substrate-binding component GldG
+GS  gldG
+TP  TIGRFAMs
+CC  Members of this protein family are exclusive to the Bacteroidetes phylum (previously Cytophaga-Flavobacteria-Bacteroides). GldG is a protein linked to a type of rapid surface gliding motility found in certain Bacteroidetes, such as Flavobacterium johnsoniae and Cytophaga hutchinsonii. Knockouts of GldG abolish the gliding phenotype [1].  GldG, along with GldA and GldF are believed to compose an ABC transporter [1] and are observed as an operon.  Gliding motility appears closely linked to chitin utilization in the model species Flavobacterium johnsoniae. Bacteroidetes with members of this protein family appear to have all of the genes associated with gliding motility.
+RN  [1]
+RM  PMID:11948149 
+RT  Mutations in Flavobacterium johnsoniae gldF and gldG disrupt gliding motility and interfere with membrane localization of GldA. 
+RA  Hunnicutt DW, Kempf MJ, McBride MJ 
+RL  J Bacteriol. 2002 May;184(9):2370-8.

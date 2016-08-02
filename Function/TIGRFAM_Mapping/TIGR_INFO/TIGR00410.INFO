@@ -1,0 +1,19 @@
+ID  lacE
+AC  TIGR00410
+DE  PTS system, lactose/cellobiose family IIC component
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  236.00 236.00
+NC  95.60 95.60
+AL  clustalw
+IT  subfamily
+EN  PTS system, lactose/cellobiose family IIC component
+EC  2.7.1.69
+TR  4.A.3
+TP  TIGRFAMs
+CC  Bacterial PTS transporters transport and concomitantly phosphorylate their sugar substrates, and typically consist of multiple subunits or protein domains. This family of proteins consists of both the cellobiose specific and the lactose specific forms of the phosphotransferase system (PTS) IIC component. The IIC domain catalyzes the transfer of a phosphoryl group from the IIB domain to the substrate. When the IIC component and IIB components are in the same polypeptide chain they are designated IIBC.
+DR  Swissprot; P24400;
+DR  Swissprot; P46317;
+DR  PFAM; PF02378 
+DR  InterPro; IPR003352
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/4_A_3.html
+DR  URL; http://tcdb.ucsd.edu/tcdb/tcfamily.php?superfam=4.A

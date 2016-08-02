@@ -1,0 +1,21 @@
+ID  nanowire_3heme
+AC  TIGR04257
+DE  c(7)-type cytochrome triheme domain
+AU  Haft DH
+TC  40.00 40.00
+NC  30.00 30.00
+AL  manual
+IT  domain
+EN  c(7)-type cytochrome triheme domain
+TP  TIGRFAMs
+CC  This domain binds three hemes, and itself occurs as a repeating unit. It occurs, for instance, four times in the dodecaheme c-type cytochrome protein GSU_1996, whose crystal structure shows elongation and a nanowire-like arrangement of twelve hemes that could function in extracellular electron transport processes.
+RN  [1]
+RM  PMID:21130881 
+RT  Structure of a novel dodecaheme cytochrome c from Geobacter sulfurreducens reveals an extended 12 nm protein with interacting hemes. 
+RA  Pokkuluri PR, Londer YY, Duke NE, Pessanha M, Yang X, Orshonsky V, Orshonsky L, Erickson J, Zagyanskiy Y, Salgueiro CA, Schiffer M 
+RL  J Struct Biol. 2011 Apr;174(1):223-33.
+RN  [2]
+RM  PMID:19351328 
+RT  Thermodynamic characterization of the redox centres in a representative domain of a novel c-type multihaem cytochrome. 
+RA  Morgado L, Fernandes AP, Londer YY, Pokkuluri PR, Schiffer M, Salgueiro CA 
+RL  Biochem J. 2009 May 27;420(3):485-92.

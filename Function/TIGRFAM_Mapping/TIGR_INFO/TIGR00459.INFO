@@ -1,0 +1,14 @@
+ID  aspS_bact
+AC  TIGR00459
+DE  aspartate--tRNA ligase
+AU  Haft DH
+TC  373.85 373.85
+NC  317.50 317.50
+AL  clustalw
+IT  equivalog
+EN  aspartyl-tRNA synthetase, bacterial type
+GS  aspS
+EC  6.1.1.-
+TP  TIGRFAMs
+CC  Asparate--tRNA ligases in this family may be discriminating (6.1.1.12) or nondiscriminating (6.1.1.23). In a multiple sequence alignment of representative asparaginyl-tRNA synthetases (asnS), archaeal/eukaryotic type aspartyl-tRNA synthetases (aspS_arch), and bacterial type aspartyl-tRNA synthetases (aspS_bact), there is a striking similarity between asnS and aspS_arch in gap pattern and in sequence, and a striking divergence of aspS_bact. Consequently, a separate model was built for each of the three groups. This HMM, aspS_bact, represents aspartyl-tRNA synthetases from the Bacteria and from mitochondria. In some species, this enzyme aminoacylates tRNA for both Asp and Asn; Asp-tRNA(asn) is subsequently transamidated to Asn-tRNA(asn). This model generates very low scores for the archaeal type of aspS and for asnS; scores between the trusted and noise cutoffs represent fragmentary sequences.
+DR  HAMAP; MF_00044; 453 of 490

@@ -1,0 +1,14 @@
+ID  hemE
+AC  TIGR01464
+DE  uroporphyrinogen decarboxylase
+AU  Haft DH
+TC  302.95 302.95
+NC  140.60 140.60
+AL  clustalw
+IT  equivalog
+EN  uroporphyrinogen decarboxylase
+GS  hemE
+EC  4.1.1.37
+TP  TIGRFAMs
+CC  This HMM represents uroporphyrinogen decarboxylase (HemE), which converts uroporphyrinogen III to coproporphyrinogen III. This step takes the pathway toward protoporphyrin IX, a common precursor of both heme and chlorophyll, rather than toward precorrin 2 and its products.
+DR  HAMAP; MF_00218; 370 of 374

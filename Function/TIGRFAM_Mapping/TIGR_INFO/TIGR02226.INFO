@@ -1,0 +1,11 @@
+ID  two_anch
+AC  TIGR02226
+DE  N-terminal double-transmembrane domain
+AU  Haft DH
+TC  23.05 23.05
+NC  21.00 21.00
+AL  clustalw_manual
+IT  domain
+EN  N-terminal double-transmembrane domain
+TP  TIGRFAMs
+CC  This model represents a prokaryotic N-terminal region of about 80 amino acids. The predicted membrane topology by TMHMM puts the N-terminus outside and spans the membrane twice, with a cytosolic region of about 25 amino acids between the two transmembrane regions. Member proteins tend to be between 600 and 1000 amino acids in length.

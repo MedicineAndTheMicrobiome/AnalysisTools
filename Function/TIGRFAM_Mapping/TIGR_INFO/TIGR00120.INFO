@@ -1,0 +1,15 @@
+ID  ArgJ
+AC  TIGR00120
+DE  glutamate N-acetyltransferase/amino-acid acetyltransferase
+AU  Loftus BJ, Haft DH
+TC  298.00 298.00
+NC  203.55 203.55
+AL  clustalw
+IT  equivalog
+EN  glutamate N-acetyltransferase/amino-acid acetyltransferase
+GS  argJ
+EC  2.3.1.35 2.3.1.1
+TP  TIGRFAMs
+CC  This enzyme can acetylate Glu to N-acetyl-Glu by deacetylating N-2-acetyl-ornithine into ornithine; the two halves of this reaction represent the first and fifth steps in the synthesis of Arg (or citrulline) from Glu by way of ornithine (EC 2.3.1.35). In Bacillus stearothermophilus, but not in Thermus thermophilus HB27, the enzyme is bifunctional and can also use acetyl-CoA to acetylate Glu (EC 2.3.1.1).
+DR  EC 2.3.1.35
+DR  HAMAP; MF_01106; 134 of 134

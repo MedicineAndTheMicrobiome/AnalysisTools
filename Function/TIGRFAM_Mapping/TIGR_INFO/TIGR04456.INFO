@@ -1,0 +1,17 @@
+ID  LruC_dom
+AC  TIGR04456
+DE  LruC domain
+AU  Haft DH
+TC  36.00 36.00
+NC  28.00 28.00
+AL  muscle_manual
+IT  domain
+EN  LruC domain
+TP  TIGRFAMs
+CC  This domain is abundant in the Leptospira, in Bacteroides, and in Vibrio (three widely separated lineages). Most members have plausible lipoprotein signal peptides, including lipoprotein LruC from  Leptospira interrogans and BACOVA_00967, from Bacteroides ovatus, with a solved crystal structure. Note that the C-terminal region of Pfam model PF13448 (length 83) matches the N-terminal region of some members of this domain (length 243).
+RN  [1]
+RM  PMID:22237897 
+RT  Antibodies to a novel leptospiral protein, LruC, in the eye fluids and sera of horses with Leptospira-associated uveitis. 
+RA  Verma A, Matsunaga J, Artiushin S, Pinne M, Houwers DJ, Haake DA, Stevenson B, Timoney JF 
+RL  Clin Vaccine Immunol. 2012 Mar;19(3):452-6. doi: 10.1128/CVI.05524-11.
+DR  PDB; 3oqq; Crystal structure of a Putative lipoprotein (BACOVA_00967) from Bacteroides ovatus at 2.08 A resolution

@@ -1,0 +1,19 @@
+ID  pabC_Proteo
+AC  TIGR03461
+DE  aminodeoxychorismate lyase
+AU  Haft DH
+TC  176.85 176.85
+NC  152.05 152.05
+AL  muscle_manual
+IT  equivalog
+EN  aminodeoxychorismate lyase
+GS  pabC
+EC  4.1.3.38
+TP  TIGRFAMs
+CC  Members of this protein family are aminodeoxychorismate lyase (ADC lyase), EC 4.1.3.38, the PabC protein of PABA biosynthesis. PABA (para-aminobenzoate) is a precursor of folate, needed for de novo purine biosynthesis. This enzyme is a pyridoxal-phosphate-binding protein in the class IV aminotransferase family (PF01063).
+DR  PFAM; PF01063; Aminotran_4; aminotransferase, class IV
+RN  [1]
+RM  PMID:1644759
+RT  Characterization and sequence of Escherichia coli pabC, the gene encoding aminodeoxychorismate lyase, a pyridoxal phosphate-containing enzyme.
+RA  Green JM, Merkel WK, Nichols BP
+RL  J Bacteriol. 1992 Aug;174(16):5317-23.

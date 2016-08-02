@@ -1,0 +1,21 @@
+ID  codY_Gpos
+AC  TIGR02787
+DE  GTP-sensing transcriptional pleiotropic repressor CodY
+AU  Haft DH
+TC  267.20 267.20
+NC  133.85 133.85
+AL  clustalw
+IT  equivalog
+EN  GTP-sensing transcriptional pleiotropic repressor CodY
+GS  codY
+TP  TIGRFAMs
+CC  This model represents the full length of CodY, a pleiotropic repressor in Bacillus subtilis and other Firmicutes (low-GC Gram-positive bacteria) that responds to intracellular levels of GTP and branched chain amino acids. The C-terminal helix-turn-helix DNA-binding region is modeled by PF08222 in Pfam.
+DR  PFAM; PF06018; CodY; CodY GAF-like domain
+DR  PFAM; PF08222; HTH_CodY; CodY helix-turn-helix domain
+DR  SWISSPROT; P39779; Bacillus subtilis
+RN  [1]
+RM  15802253
+RT  CodY, a global regulator of stationary phase and virulence in Gram-positive bacteria.
+RA  Sonenshein AL.
+RL  Curr Opin Microbiol. 2005 Apr;8(2):203-7.
+DR  HAMAP; MF_00621; 70 of 70

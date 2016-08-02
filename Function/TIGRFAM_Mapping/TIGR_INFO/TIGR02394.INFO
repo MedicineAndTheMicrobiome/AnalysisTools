@@ -1,0 +1,16 @@
+ID  rpoS_proteo
+AC  TIGR02394
+DE  RNA polymerase sigma factor RpoS
+AU  Haft DH
+TC  378.70 378.70
+NC  339.75 339.75
+AL  clustalw
+IT  equivalog
+EN  RNA polymerase sigma factor RpoS
+GS  rpoS
+TP  TIGRFAMs
+CC  A sigma factor is a DNA-binding protein protein that binds to the DNA-directed RNA polymerase core to produce the holoenzyme capable of initiating transcription at specific sites. Different sigma factors act in vegetative growth, heat shock, extracytoplasmic functions (ECF), etc. This model represents the clade of sigma factors called RpoS (also called sigma-38, KatF, etc.), found only in Proteobacteria. This sigma factor is induced in stationary phase (in response to the stress of nutrient limitation) and becomes the second prinicipal sigma factor at that time.  RpoS is a member of the larger Sigma-70 subfamily (TIGR02937) and most closely related to RpoD (TIGR02393).
+RM  8475100
+RT  Heterogeneity of the principal sigma factor in Escherichia coli: the rpoS gene product, sigma 38, is a second principal sigma factor of RNA polymerase in stationary-phase Escherichia coli.
+RA  Tanaka K, Takayanagi Y, Fujita N, Ishihama A, Takahashi H.
+RL  Proc Natl Acad Sci U S A. 1993 Apr 15;90(8):3511-5.

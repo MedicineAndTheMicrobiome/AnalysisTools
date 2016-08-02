@@ -1,0 +1,17 @@
+ID  SAM_quin_mod
+AC  TIGR03981
+DE  His-Xaa-Ser system putative quinone modification maturase
+AU  Haft DH
+TC  514.65 514.65
+NC  234.35 234.35
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  His-Xaa-Ser system putative quinone modification maturase
+TP  TIGRFAMs
+CC  One clue for the interpretation of this protein family is homology to the MauG protein (see TIGR03791) involved in the tryptophan tryptophylquinone post-translational modification of methylamine dehydrogenase light (beta) chain. The other is occurrence only in a five gene context in which two members are radical SAM proteins (TIGR03977 and TIGR03978) also likely involved in post-translational modification.
+RN  [1]
+RM  PMID:21478363 
+RT  Biological systems discovery in silico: radical S-adenosylmethionine protein families and their target peptides for posttranslational mo
+dification. 
+RA  Haft DH, Basu MK 
+RL  J Bacteriol. 2011 Jun;193(11):2745-55.

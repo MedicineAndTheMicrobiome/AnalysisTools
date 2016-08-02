@@ -1,0 +1,23 @@
+ID  FeFe_hydrog_A
+AC  TIGR02512
+DE  [FeFe] hydrogenase, group A
+AU  Haft DH
+TC  405.95 405.95
+NC  300.65 300.65
+AL  clustalw
+IT  subfamily
+EN  [FeFe] hydrogenase, group A
+EC  1.12.-.-
+TP  TIGRFAMs
+CC  This model describes iron-only hydrogenases of anaerobic and microaerophilic bacteria and protozoa. This model is narrower, and covers a longer stretch of sequence, than Pfam model PF02906.  This family represents a division among families that belong to PF02906, which also includes proteins such as nuclear prelamin A recognition factor in animals. Note that this family shows some heterogeneity in terms of periplasmic, cytosolic, or hydrogenosome location, NAD or NADP dependence, and overal protein protein length.
+DR  PFAM; PF02906; Fe_hyd_lg_C
+RN  [1]
+RM  11070057
+RT  Iron hydrogenases and the evolution of anaerobic eukaryotes.
+RA  Horner DS, Foster PG, Embley TM.
+RL  Mol Biol Evol. 2000 Nov;17(11):1695-709.
+RN  [2]
+RM  PMID:20395274 
+RT  The surprising diversity of clostridial hydrogenases: a comparative genomic perspective. 
+RA  Calusinska M, Happe T, Joris B, Wilmotte A 
+RL  Microbiology. 2010 Jun;156(Pt 6):1575-88.

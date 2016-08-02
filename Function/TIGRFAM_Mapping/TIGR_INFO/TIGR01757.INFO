@@ -1,0 +1,17 @@
+ID  Malate-DH_plant
+AC  TIGR01757
+DE  malate dehydrogenase, NADP-dependent
+AU  Selengut J
+TC  598.30 598.30
+NC  424.30 424.30
+AL  clustalw
+IT  equivalog
+EN  malate dehydrogenase, NADP-dependent
+EC  1.1.1.82
+TP  TIGRFAMs
+CC  This model represents the NADP-dependent malate dehydrogenase found in plants, mosses and green algae and localized to the chloroplast.  Malate dehydrogenase converts oxaloacetate into malate, a critical step in the C4 cycle which allows circumvention of the effects of photorespiration.  Malate is subsequenctly transported from the chloroplast to the cytoplasm (and then to the bundle sheath cells in C4 plants).  The plant and moss enzymes are light regulated via cysteine disulfide bonds.  The enzyme from Sorghum has been crystallized [1].
+RN  [1]
+RM  PMID: 10194350 
+RT  Structural basis for light activation of a chloroplast enzyme: the structure of sorghum NADP-malate dehydrogenase in its oxidized form.
+RA  Johansson K, Ramaswamy S, Saarinen M, Lemaire-Chamley M, Issakidis-Bourguet E, Miginiac-Maslow M, Eklund H.
+RL  Biochemistry 1999 Apr 6;38(14):4319-26

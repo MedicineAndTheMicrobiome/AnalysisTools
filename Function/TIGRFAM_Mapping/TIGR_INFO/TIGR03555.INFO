@@ -1,0 +1,13 @@
+ID  F420_mer
+AC  TIGR03555
+DE  5,10-methylenetetrahydromethanopterin reductase
+AU  Haft DH
+TC  348.70 348.70
+NC  200.55 200.55
+AL  muscle_manual
+IT  equivalog
+EN  5,10-methylenetetrahydromethanopterin reductase
+GS  mer
+EC  1.5.99.11
+TP  TIGRFAMs
+CC  Members of this protein family are 5,10-methylenetetrahydromethanopterin reductase, an F420-dependent enzyme of methanogenesis. It is restricted to the Archaea.

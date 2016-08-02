@@ -1,0 +1,17 @@
+ID  GTP_HydF
+AC  TIGR03918
+DE  [FeFe] hydrogenase H-cluster maturation GTPase HydF
+AU  Haft DH
+TC  325.55 325.55
+NC  225.00 225.00
+AL  muscle_manual
+IT  equivalog
+EN  [FeFe] hydrogenase H-cluster maturation GTPase HydF
+GS  hydF
+TP  TIGRFAMs
+CC  This model describes the family of the [Fe] hydrogenase maturation protein HypF as characterized in Chlamydomonas reinhardtii and found, in an operon with radical SAM proteins HydE and HydG, in numerous bacteria. It has GTPase activity, can bind an 4Fe-4S cluster, and is essential for hydrogenase activity.
+RN  [1]
+RM  PMID:15082711 
+RT  Discovery of two novel radical S-adenosylmethionine proteins required for the assembly of an active [Fe] hydrogenase. 
+RA  Posewitz MC, King PW, Smolinski SL, Zhang L, Seibert M, Ghirardi ML 
+RL  J Biol Chem. 2004 Jun 11;279(24):25711-20. Epub 2004 Apr 13.

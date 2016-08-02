@@ -1,0 +1,16 @@
+ID  hydrog_HybE
+AC  TIGR03993
+DE  [NiFe] hydrogenase assembly chaperone, HybE family
+AU  Haft DH
+TC  78.50 78.50
+NC  50.40 50.40
+AL  muscle_manual
+IT  subfamily_domain
+EN  [NiFe] hydrogenase assembly chaperone, HybE family
+TP  TIGRFAMs
+CC  Members of this family are chaperones for the assembly of [NiFe] hydrogenases, in the family of HybE, which is specific for hydrogenase-2 of Escherichia coli. Members often have an additional N-terminal rubredoxin domain.
+RN  [1]
+RM  PMID:19636963 
+RT  1H, 13C and 15N resonance assignments of the chaperone HybE of hydrogenase-2 from Escherichia coli. 
+RA  Shao X, Lu J, Xia B, Jin C 
+RL  Biomol NMR Assign. 2009 Jun;3(1):129-31. Epub 2009 Apr 3.

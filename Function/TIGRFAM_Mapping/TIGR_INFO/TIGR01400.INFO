@@ -1,0 +1,14 @@
+ID  fliR
+AC  TIGR01400
+DE  flagellar biosynthetic protein FliR
+AU  Haft DH
+TC  168.60 168.60
+NC  139.45 139.45
+AL  clustalw
+IT  equivalog
+EN  flagellar biosynthetic protein FliR
+GS  fliR
+TP  TIGRFAMs
+CC  This model recognizes the FliR protein of bacterial flagellar biosynthesis. It distinguishes FliR from the homologous proteins bacterial type III protein secretion systems, known by names such as YopT, EscT, and HrcT.
+DR  OUTGROUP; SP:P40701; SpaR; Salmonella typhimurium
+DR  OUTGROUP; SP:P40299; YscT; Yersinia pseudotuberculosis

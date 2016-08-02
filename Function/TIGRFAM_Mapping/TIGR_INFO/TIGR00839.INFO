@@ -1,0 +1,14 @@
+ID  aspA
+AC  TIGR00839
+DE  aspartate ammonia-lyase
+AU  Haft DH
+TC  681.20 681.20
+NC  524.80 524.80
+AL  clustalw
+IT  equivalog
+EN  aspartate ammonia-lyase
+GS  aspA
+EC  4.3.1.1
+TP  TIGRFAMs
+CC  This enzyme, aspartate ammonia-lyase, shows local homology to a number of other lyases, as modeled by Pfam HMM PF00206.
+CC  Fumarate hydratase scores as high as 570 bits against this model.

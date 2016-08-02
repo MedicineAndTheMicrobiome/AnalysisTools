@@ -1,0 +1,17 @@
+ID  phage_N6A_met
+AC  TIGR01712
+DE  phage N-6-adenine-methyltransferase
+AU  Haft DH, Fouts DE
+TC  97.05 97.05
+NC  46.80 46.80
+AL  clustalw_manual
+IT  equivalog
+EN  phage N-6-adenine-methyltransferase
+EC  2.1.1.72
+TP  TIGRFAMs
+CC  This HMM is a fragment-mode model for a phage-borne DNA N-6-adenine-methyltransferase.
+DR  EXPERIMENTAL; GP|166164; Enterobacteria phage T1
+RM  2180941
+RT  Primary structure of a DNA (N6-adenine)-methyltransferase from Escherichia coli virus T1. DNA sequence, genomic organization, and comparative analysis.
+RA  Schneider-Scherzer E, Auer B, de Groot EJ, Schweiger M.
+RL  J Biol Chem 1990 Apr 15;265(11):6086-91

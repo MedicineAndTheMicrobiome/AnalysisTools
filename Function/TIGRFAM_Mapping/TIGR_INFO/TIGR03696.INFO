@@ -1,0 +1,21 @@
+ID  Rhs_assc_core
+AC  TIGR03696
+DE  RHS repeat-associated core domain
+AU  Haft DH
+TC  32.50 32.50
+NC  26.50 26.50
+AL  muscle_manual
+IT  domain
+EN  RHS repeat-associated core domain
+TP  TIGRFAMs
+CC  This model represents a conserved unique core sequence shared by large numbers of proteins. It is occasional in the Archaea Methanosarcina barkeri) but common in bacteria and eukaryotes. Most fall into two large classes. One class consists of long proteins in which two classes of repeats are abundant: an FG-GAP repeat (PF01839) class, and an RHS repeat (PF05593) or YD repeat (TIGR01643). This class includes secreted bacterial insecticidal toxins and intercellular signalling proteins such as the teneurins in animals. The other class consists of uncharacterized proteins shorter than 400 amino acids, where this core domain of about 75 amino acids tends to occur in the N-terminal half. Over twenty such proteins are found in Pseudomonas putida alone; little sequence similarity or repeat structure is found among these proteins outside the region modeled by this domain.
+RN  [1]
+RM  PMID:15194482
+RT  Cloning and heterologous expression of a novel insecticidal gene (tccC1) from Xenorhabdus nematophilus strain.
+RA  Joo Lee P, Ahn JY, Kim YH, Wook Kim S, Kim JY, Park JS, Lee J
+RN  [2]
+RM  PMID:16406038
+RT  Teneurins: a conserved family of transmembrane proteins involved in intercellular signaling during development.
+RA  Tucker RP, Chiquet-Ehrismann R
+RL  Dev Biol. 2006 Feb 15;290(2):237-45.
+RL  Biochem Biophys Res Commun. 2004 Jul 9;319(4):1110-6.

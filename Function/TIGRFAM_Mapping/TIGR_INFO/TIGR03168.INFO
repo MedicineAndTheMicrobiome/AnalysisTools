@@ -1,0 +1,12 @@
+ID  1-PFK
+AC  TIGR03168
+DE  hexose kinase, 1-phosphofructokinase family
+AU  Selengut J
+TC  216.40 216.40
+NC  163.80 163.80
+AL  clustalw
+IT  subfamily
+EN  hexose kinase, 1-phosphofructokinase family
+EC  2.7.1.-
+TP  TIGRFAMs
+CC  This family consists largely of 1-phosphofructokinases, but also includes tagatose-6-kinases and 6-phosphofructokinases.

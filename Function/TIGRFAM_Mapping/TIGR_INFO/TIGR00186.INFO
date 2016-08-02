@@ -1,0 +1,15 @@
+ID  rRNA_methyl_3
+AC  TIGR00186
+DE  RNA methyltransferase, TrmH family, group 3
+AU  Richardson DL
+TC  160.15 160.15
+NC  149.10 149.10
+AL  clustalw
+IT  hypoth_equivalog
+EN  rRNA methylase, putative, group 3
+TP  TIGRFAMs
+CC  this is part of the trmH (spoU) family of rRNA methylases
+RM  94089409
+RA  Koonin EV, Rudd KE
+RT  SpoU protein of Escherichia coli belongs to a new family of putative rRNA methylases. 
+RL  Nucleic Acids Res 21:5519-5519.

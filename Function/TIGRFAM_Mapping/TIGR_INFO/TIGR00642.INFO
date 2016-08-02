@@ -1,0 +1,17 @@
+ID  mmCoA_mut_beta
+AC  TIGR00642
+DE  methylmalonyl-CoA mutase, small subunit
+AU  Haft DH
+TC  617.25 617.25
+NC  284.30 284.30
+IT  equivalog
+EN  methylmalonyl-CoA mutase, heterodimeric type, beta chain
+GS  mutA
+EC  5.4.99.2
+TP  TIGRFAMs
+CC  The adenosylcobalamin-binding, catalytic chain of methylmalonyl-CoA mutase may form homodimers, as in mitochondrion and E. coli, or heterodimers with a shorter, homologous chain that does not bind adenosylcobalamin. This HMM describes this non-catalytic beta chain, as found in the enzyme from Propionibacterium freudenreichii, for which the 3-dimensional structure has been solved.
+RM  97386818
+RT  Structure-based perspectives on B12-dependent enzymes.
+RA  Ludwig ML, Matthews RG
+RL  Annu Rev Biochem 1997;66:269-313
+DR  OUTGROUP; EGAD|9936|EC2917

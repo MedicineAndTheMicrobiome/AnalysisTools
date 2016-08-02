@@ -1,0 +1,31 @@
+ID  TIGR00004
+AC  TIGR00004
+DE  reactive intermediate/imine deaminase
+AU  Dodson RJ, Richardson DL, Haft DH
+TC  106.25 106.25
+NC  80.80 80.80
+AL  clustalw_manual
+IT  subfamily
+EN  reactive intermediate/imine deaminase
+TP  TIGRFAMs
+CC  This protein was described initially as an inhibitor of protein synthesis intiation, then as an endoribonuclease active on single-stranded mRNA, endoribonuclease L-PSP. Members of this family, conserved in all domains of life and often with several members per bacterial genome, appear to catalyze a reaction that minimizes toxic by-products from reactions catalyzed by pyridoxal phosphate-dependent enzymes.
+RN  [1]
+RM  PMID:22094463 
+RT  Conserved YjgF protein family deaminates reactive enamine/imine intermediates of pyridoxal 5'-phosphate (PLP)-dependent enzyme reactions. 
+RA  Lambrecht JA, Flynn JM, Downs DM 
+RL  J Biol Chem. 2012 Jan 27;287(5):3454-61.
+RN  [2]
+RM  10400702
+RT  Ribonuclease Activity of Rat Liver Perchloric Acid-soluble Protein, a Potent Inhibitor of Protein Synthesis.
+RA  Morishita R, Kawagoshi A, Sawasaki T, Madin K, Ogasawara T, Oka T, Endo Y
+RL  J Biol Chem 1999 Jul 16;274(29):20688-20692
+RN  [3]
+RM  96102067
+RT  Isolation and characterization of a novel perchloric acid-soluble protein inhibiting cell-free protein synthesis.
+RA  Oka T, Tsuji H, Noda C, Sakai K, Hong YM, Suzuki I, Munoz S, Natori Y
+RL  J Biol Chem 1995 Dec 15;270(50):30060-7
+RN  [4]
+RM  99296592
+RT  A role for a highly conserved protein of unknown function in regulation of Bacillus subtilis purA by the purine repressor.
+RA  Rappu P, Shin BS, Zalkin H, Mantsala P
+RL  J Bacteriol 1999 Jun;181(12):3810-5

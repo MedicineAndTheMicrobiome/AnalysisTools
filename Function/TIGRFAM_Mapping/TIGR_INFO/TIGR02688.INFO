@@ -1,0 +1,11 @@
+ID  TIGR02688
+AC  TIGR02688
+DE  TIGR02688 family protein
+AU  Haft DH
+TC  329.30 329.30
+NC  113.30 113.30
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  TIGR02688 family protein
+TP  TIGRFAMs
+CC  Members of this family are uncharacterized proteins sporadically distributed in bacteria and archaea, about 470 amino acids in length. Several members of this family appear in public databases with annotation as ATP-dependent protease La, despite the lack of similarity to families TIGR00763 (ATP-dependent protease La) or PF02190 (ATP-dependent protease La (LON) domain). This protein is repeatedly found downstream of another uncharacterized protein of about 880 amino acids in length, described by model TIGR02687.

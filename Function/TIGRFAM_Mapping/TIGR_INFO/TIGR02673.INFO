@@ -1,0 +1,12 @@
+ID  FtsE
+AC  TIGR02673
+DE  cell division ATP-binding protein FtsE
+AU  Haft DH
+TC  264.85 264.85
+NC  240.00 240.00
+AL  clustalw
+IT  equivalog
+EN  cell division ATP-binding protein FtsE
+GS  ftsE
+TP  TIGRFAMs
+CC  This model describes FtsE, a member of the ABC transporter ATP-binding protein family. This protein, and its permease partner FtsX, localize to the division site. In a number of species, the ftsEX gene pair is located next to FtsY, the signal recognition particle-docking protein.

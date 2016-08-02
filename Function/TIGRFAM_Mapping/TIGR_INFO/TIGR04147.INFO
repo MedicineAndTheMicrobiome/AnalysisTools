@@ -1,0 +1,12 @@
+ID  GGGPS_Halobact
+AC  TIGR04147
+DE  phosphoglycerol geranylgeranyltransferase, putative
+AU  Haft DH
+TC  300.00 300.00
+NC  275.00 275.00
+AL  clustalw_manual
+IT  equivalog
+EN  phosphoglycerol geranylgeranyltransferase, putative
+EC  2.5.1.41
+TP  TIGRFAMs
+CC  In most archaea, phosphoglycerol geranylgeranyltransferase (EC 2.5.1.41), also known as GGGP synthase and GGGPS, catalyzes the stereospecific first step in the biosynthesis of their characteristic membrane diether lipids. However, some groups of archaeal GGGPS homologs are more closely related to certain bacterial proteins than to each other. This family represents the putative GGGPS family as found in the Halobacteria.

@@ -1,0 +1,16 @@
+ID  speA
+AC  TIGR01273
+DE  arginine decarboxylase
+AU  Haft DH
+TC  624.10 624.10
+NC  310.90 310.90
+AL  clustalw_manual
+IT  equivalog
+EN  arginine decarboxylase, biosynthetic
+GS  speA
+EC  4.1.1.19
+TP  TIGRFAMs
+CC  Two alternative pathways can convert arginine to putrescine. One is decarboxylation by this enzyme followed by removal of the urea moeity by agmatinase. In the other, the ureohydrolase (arginase) acts first, followed by ornithine decarboxylase. This pathway leads to spermidine biosynthesis, hence the gene symbol speA.
+CC  A distinct biodegradative form is also pyridoxal phosphate-dependent but is not similar in sequence.
+DR  PFAM; PF00278; Pyridoxal-dependent decarboxylase
+DR  HAMAP; MF_01417; 71 of 72

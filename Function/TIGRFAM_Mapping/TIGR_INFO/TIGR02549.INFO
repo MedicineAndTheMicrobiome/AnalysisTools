@@ -1,0 +1,16 @@
+ID  CRISPR_DxTHG
+AC  TIGR02549
+DE  CRISPR-associated DxTHG motif protein
+AU  Haft DH
+TC  15.10 15.10
+NC  14.70 14.70
+AL  manual
+IT  domain
+EN  CRISPR-associated DxTHG motif protein
+TP  TIGRFAMs
+CC  This model describes a short region highly conserved between two otherwise substantially different CRISPR-associated (cas) proteins, TIGR02221 and TIGR01987. This region includes the motif [VIL]-D-x-[ST]-H-[GS].
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=2003
+RN  [1]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005

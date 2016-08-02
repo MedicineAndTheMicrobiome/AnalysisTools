@@ -1,0 +1,18 @@
+ID  nodulat_NodB
+AC  TIGR04243
+DE  chitooligosaccharide deacetylase NodB
+AU  Haft DH
+TC  240.00 240.00
+NC  210.00 210.00
+AL  muscle_manual
+IT  equivalog
+EN  chitooligosaccharide deacetylase NodB
+GS  nodB
+EC  3.5.1.-
+TP  TIGRFAMs
+CC  Nodulation factors are lipooligosaccharide signalling molecules produced by rhizobia, the symbiotic nitrogen-fixing bacteria that form nodules in plants. These Nod factor sustems have the NodABC genes in common but differ subtly in what they produce, which affects host range. NodB is a  chitooligosaccharide deacetylase.
+RN  [1]
+RM  PMID:8421697 
+RT  Rhizobium NodB protein involved in nodulation signal synthesis is a chitooligosaccharide deacetylase. 
+RA  John M, Rohrig H, Schmidt J, Wieneke U, Schell J 
+RL  Proc Natl Acad Sci U S A. 1993 Jan 15;90(2):625-9.

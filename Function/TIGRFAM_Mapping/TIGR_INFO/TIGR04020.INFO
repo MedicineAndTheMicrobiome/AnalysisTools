@@ -1,0 +1,17 @@
+ID  seco_metab_LLM
+AC  TIGR04020
+DE  natural product biosynthesis luciferase-like monooxygenase domain
+AU  Haft DH
+TC  244.45 244.45
+NC  158.60 158.60
+AL  muscle_manual
+IT  subfamily_domain
+EN  natural product biosynthesis luciferase-like monooxygenase domain
+EC  1.-.-.-
+TP  TIGRFAMs
+CC  This HMM describes a subfamily within the bacterial luciferase-like monooxygenase (LLM) family that regularly occurs within large non-ribosomal protein synthases/polyketide synthases, but also as small proteins. The LLM family includes members that bind either FMN or F420, and FMN is more likely in this case because many members are from species that lack F420 biosynthesis capability. An example member is the MupA protein of mupirocin biosynthesis in Pseudomonas fluorescens NCIMB 10586.
+RN  [1]
+RM  PMID:11495990 
+RT  Quorum-sensing-dependent regulation of biosynthesis of the polyketide antibiotic mupirocin in Pseudomonas fluorescens NCIMB 10586. 
+RA  El-Sayed AK, Hothersall J, Thomas CM 
+RL  Microbiology. 2001 Aug;147(Pt 8):2127-39.

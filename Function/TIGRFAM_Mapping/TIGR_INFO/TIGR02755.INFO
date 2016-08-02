@@ -1,0 +1,28 @@
+ID  TraX_Ftype
+AC  TIGR02755
+DE  type-F conjugative transfer system pilin acetylase TraX
+AU  Selengut J
+TC  149.35 149.35
+NC  104.70 104.70
+AL  clustalw
+IT  equivalog
+EN  type-F conjugative transfer system pilin acetylase TraX
+GS  traX
+EC  2.3.1.-
+TP  TIGRFAMs
+CC  TraX is responsible for the acetylation of the F-pilin TraA during conjugative plasmid transfer.  The purpose of this acetylation is unclear, but the reported transcriptional regulation of TraX may indicate that it is involved in the process of pilu extension/retraction [1,2,3].
+RN  [1]
+RM  PMID: 8444800
+RA  Moore D, Hamilton CM, Maneewannakul K, Mintz Y, Frost LS, Ippen-Ihler K.
+RT  The Escherichia coli K-12 F plasmid gene traX is required for acetylation of F pilin.
+RL   J Bacteriol. 1993 Mar;175(5):1375-83.
+RN  [2]
+RM  PMID: 7768788
+RA  Maneewannakul K, Maneewannakul S, Ippen-Ihler K.
+RT  Characterization of traX, the F plasmid locus required for acetylation of F-pilin subunits.
+RL  J Bacteriol. 1995 Jun;177(11):2957-64.
+RN  [3]
+RM  PMID: 16138100
+RA  Frost LS, Leplae R, Summers AO, Toussaint A.
+RT  Mobile genetic elements: the agents of open source evolution.
+RL  Nat Rev Microbiol. 2005 Sep;3(9):722-32.

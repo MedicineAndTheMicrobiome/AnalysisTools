@@ -1,0 +1,11 @@
+ID  integ_TIGR01906
+AC  TIGR01906
+DE  integral membrane protein TIGR01906
+AU  Haft DH
+TC  74.80 74.80
+NC  49.25 49.25
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  integral membrane protein TIGR01906
+TP  TIGRFAMs
+CC  This HMM represents a family of highly hydrophobic, uncharacterized predicted integral membrane proteins found almost entirely in low-GC Gram-positive bacteria, although a member is also found in the early-branching bacterium Aquifex aeolicus.

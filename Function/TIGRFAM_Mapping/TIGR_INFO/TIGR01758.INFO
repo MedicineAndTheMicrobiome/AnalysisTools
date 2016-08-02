@@ -1,0 +1,18 @@
+ID  MDH_euk_cyt
+AC  TIGR01758
+DE  malate dehydrogenase, NAD-dependent
+AU  Selengut J
+TC  470.40 470.40
+NC  457.35 457.35
+AL  clustalw
+IT  equivalog
+EN  malate dehydrogenase, NAD-dependent
+EC  1.1.1.37
+TP  TIGRFAMs
+CC  This model represents the NAD-dependent cytosolic malate dehydrogenase from eukaryotes.  The enzyme from pig has been studied by X-ray crystallography [1]
+RN  [1]
+RM  PMID: 2775751 
+RT  Refined crystal structure of cytoplasmic malate dehydrogenase at 2.5-A resolution.
+RA  Birktoft JJ, Rhodes G, Banaszak LJ.
+RL  Biochemistry 1989 Jul 11;28(14):6065-81
+DR  HAMAP; MF_01517; 1 of 128

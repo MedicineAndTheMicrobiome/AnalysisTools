@@ -1,0 +1,17 @@
+ID  rplT_bact
+AC  TIGR01032
+DE  ribosomal protein L20
+AU  Ujwal ML, Haft DH
+TC  65.65 65.65
+NC  49.95 49.95
+AL  clustalw
+IT  equivalog
+EN  ribosomal protein L20
+GS  rplT
+TP  TIGRFAMs
+CC  This model describes bacterial ribosomal protein L20 and
+CC  its chloroplast equvalent.
+CC  This protein binds directly to 23s ribosomal RNA and is necessary for the in vitro assembly process of the 50s ribosomal subunit. It is not involved in the protein synthesizing functions of that subunit. GO process changed accordingly (SS 5/09/03)
+DR  COGS; COG0292
+SP: P02421
+DR  HAMAP; MF_00382; 680 of 691

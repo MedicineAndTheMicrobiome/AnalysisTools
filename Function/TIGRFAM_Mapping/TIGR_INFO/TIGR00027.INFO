@@ -1,0 +1,13 @@
+ID  mthyl_TIGR00027
+AC  TIGR00027
+DE  methyltransferase, TIGR00027 family
+AU  Haft DH
+TC  93.55 93.55
+NC  67.25 67.25
+AL  clustalw
+IT  subfamily
+EN  methyltransferase, TIGR00027 family
+EC  2.1.1.-
+TP  TIGRFAMs
+CC  This model represents a set of probable methyltransferases, about 300 amino acids long, with essentially full length homology. Members share an N-terminal region described by Pfam model PF02409. Included are a paralogous family of 12 proteins in Mycobacterium tuberculosis, plus close homologs in related species, a family of 8 in the archaeon Methanosarcina acetivorans, and small numbers of members in other species, including plants.
+DR  PF02409; Omt_N; O-methyltransferase N-terminus

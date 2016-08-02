@@ -1,0 +1,22 @@
+ID  narG
+AC  TIGR01580
+DE  nitrate reductase, alpha subunit
+AU  Daugherty S
+TC  1084.15 1084.15
+NC  600.95 600.95
+AL  clustalw_manual
+IT  equivalog
+EN  respiratory nitrate reductase, alpha subunit
+EC  1.7.99.4
+TP  TIGRFAMs
+CC  The Nitrate reductase enzyme complex allows bacteria to use nitrate as an electron acceptor during anaerobic growth. The enzyme complex consists of a tetramer that has an alpha, beta and 2 gamma subunits. The alpha and beta subunits have catalytic activity and the gamma subunits attach the enzyme to the membrane and is a b-type cytochrome that receives electrons from the quinone pool and transfers them to the beta subunit. This model is specific for the alpha subunit for nitrate reductase I (narG) and nitrate reductase II (narZ) for gram positive and gram negative bacteria.A few thermophiles and archaea also match the model The seed members used to make the model include Nitrate reductases from Pseudomonas fluorescens (GP:11344601), E.coli (SP:P09152) and B.subtilis (SP:P42175). All seed members are experimentally characterized. Some unpublished nitrate reductases, that are shorter sequences, and probably fragments fall in between the noise and trusted cutoffs. Pfam models PF00384 (Molybdopterin oxidoreductase) and PF01568(Molydopterin dinucleotide binding domain) will also match the nitrate reductase, alpha subunit.
+RN [1]
+RM PMID:2233673
+RT Nitrate reductases of Escherichia coli: sequence of the second nitrate reductase and comparison with that encoded by the narGHJI operon
+RA  Blasco F, Iobbi C, Ratouchniak J, Bonnefoy V, Chippaux M
+RL  Mol Gen Genet 1990 Jun;222(1):104-11
+RN [2]
+RM PMID:2674654
+RT Nitrate reductase of Escherichia coli: completion of the nucleotide sequence of the nar operon and reassessment of the role of the alpha and beta subunits in iron binding and electron transfer.
+RA  Blasco F, Iobbi C, Giordano G, Chippaux M, Bonnefoy V.
+RL  Mol Gen Genet 1989 Aug;218(2):249-56

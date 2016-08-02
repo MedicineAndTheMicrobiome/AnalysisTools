@@ -1,0 +1,12 @@
+ID  TIGR02271
+AC  TIGR02271
+DE  conserved domain
+AU  Haft DH
+TC  49.75 49.75
+NC  26.15 26.15
+AL  clustalw_manual
+IT  domain
+EN  conserved domain
+TP  TIGRFAMs
+CC  This model describes an uncharacterized domain, sometimes found in association with a PRC-barrel domain (Pfam model PF05239, which is also found in rRNA processing protein RimM and in a photosynthetic reaction center complex protein). This domain is found in proteins from Bacillus subtilis, Deinococcus radiodurans, Nostoc sp. PCC 7120, Myxococcus xanthus, and several other species. The function is not known.
+DR  PFAM; PF05239; PRC-barrel domain

@@ -1,0 +1,22 @@
+ID  PriB_gamma
+AC  TIGR04418
+DE  primosomal replication protein PriB
+AU  Haft DH
+TC  72.00 72.00
+NC  70.00 70.00
+AL  muscle_manual
+IT  exception
+EN  primosomal replication protein PriB
+GS  priB
+TP  TIGRFAMs
+CC  Members of this protein family are primosomal replication protein N (PriB), virtually always encoded between rpsF (ribosomal protein S6) and rpsR (ribosomal protein S18). Note that only this short form, as found primarily in the gamma-Proteobacteria, of the single-stranded DNA binding protein family (see model TIGR00621) may partner with PriA and be involved in priming for re-initiation of replication.
+RN  [1]
+RM  PMID:22938024 
+RT  Crystal structure and DNA-binding mode of Klebsiella pneumoniae primosomal PriB protein. 
+RA  Huang YH, Lo YH, Huang W, Huang CY 
+RL  Genes Cells. 2012 Oct;17(10):837-49.
+RN  [2]
+RM  PMID:17588514 
+RT  A hand-off mechanism for primosome assembly in replication restart. 
+RA  Lopper M, Boonsombat R, Sandler SJ, Keck JL 
+RL  Mol Cell. 2007 Jun 22;26(6):781-93.

@@ -1,0 +1,17 @@
+ID  PGA_PgaD
+AC  TIGR03940
+DE  poly-beta-1,6-N-acetyl-D-glucosamine biosynthesis protein PgaD
+AU  Haft DH
+TC  31.45 31.45
+NC  24.20 24.20
+AL  muscle_manual
+IT  equivalog
+EN  poly-beta-1,6-N-acetyl-D-glucosamine biosynthesis protein PgaD
+GS  pgaD
+TP  TIGRFAMs
+CC  Members of this protein family are PgaD, essential to the production of poly-beta-1,6-N-acetyl-D-glucosamine (PGA). This cytoplasmic membrane protein appears to be an auxiliary subunit to the PGA synthase, PgaC (TIGR03937).
+RN  [1]
+RM  PMID:15090514
+RT  The pgaABCD locus of Escherichia coli promotes the synthesis of a polysaccharide adhesin required for biofilm formation.
+RA  Wang X, Preston JF 3rd, Romeo T
+RL  J Bacteriol. 2004 May;186(9):2724-34.

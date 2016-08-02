@@ -1,0 +1,18 @@
+ID  spore_sigH
+AC  TIGR02859
+DE  RNA polymerase sigma-H factor
+AU  Haft DH
+TC  294.80 294.80
+NC  82.50 82.50
+AL  clustalw
+IT  equivalog
+EN  RNA polymerase sigma-H factor
+GS  sigH
+TP  TIGRFAMs
+CC  Members of this protein family are RNA polymerase sigma-H factor for sporulation in endospore-forming bacteria. This protein is also called Sigma-30 and SigH. Although rather close homologs in Listeria score above the noise cutoff to this HMM, Listeria does not form spores and the role of the related sigma factor in that genus is in doubt.
+DR  SWISSPROT; P17869; Bacillus subtilis
+RN  [1]
+RM  3277943
+RT  Bacillus sporulation gene spo0H codes for sigma 30 (sigma H).
+RA  Dubnau E, Weir J, Nair G, Carter L 3rd, Moran C Jr, Smith I.
+RL  J Bacteriol. 1988 Mar;170(3):1054-62.

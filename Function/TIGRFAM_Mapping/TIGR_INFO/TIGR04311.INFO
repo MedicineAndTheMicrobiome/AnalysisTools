@@ -1,0 +1,11 @@
+ID  rSAM_Geo_metal
+AC  TIGR04311
+DE  putative metalloenzyme radical SAM/SPASM domain maturase
+AU  Haft DH
+TC  400.00 400.00
+NC  300.00 300.00
+AL  muscle_manual
+IT  subfamily
+EN  putative metalloenzyme radical SAM/SPASM domain maturase
+TP  TIGRFAMs
+CC  This HMM describes a family of radical SAM/SPASM enzymes largely from the deltaproteobacteria. The family is most closely related to radical SAM enzyme family regularly in archaea in the vicinity of tungsten-containing oxidoreductases. A single member of the family in archaea may correspond to multiple tungsten enzymes, e.g. five in Pyrococcus furiosus. Therefore, the lack of a conserved gene neighborhood for members of this family in deltaprotebacteria suggests members may be involved in the maturation of multiple metalloenzymes.

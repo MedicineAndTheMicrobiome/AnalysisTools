@@ -1,0 +1,15 @@
+ID  LRP1_Cterm
+AC  TIGR01624
+DE  LRP1 C-terminal domain
+AU  Haft DH
+TC  36.40 36.40
+NC  33.05 33.05
+AL  clustalw_manual
+IT  paralog_domain
+EN  LRP1 C-terminal domain
+TP  TIGRFAMs
+CC  This HMM represents a tightly conserved small domain found in LRP1 and related plant proteins. This family also contains a well-conserved putative zinc finger domain (TIGR01623). The rest of the sequence of most members consists of highly divergent, low-complexity sequence.
+RM  7647564
+RT  LRP1, a gene expressed in lateral and adventitious root primordia of arabidopsis.
+RA  Smith DL, Fedoroff NV.
+RL  Plant Cell 1995 Jun;7(6):735-45

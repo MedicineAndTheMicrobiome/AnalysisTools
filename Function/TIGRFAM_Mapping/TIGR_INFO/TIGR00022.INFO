@@ -1,0 +1,16 @@
+ID  TIGR00022
+AC  TIGR00022
+DE  YhcH/YjgK/YiaL family protein
+AU  Richardson DL
+TC  45.50 45.50
+NC  35.65 35.65
+AL  msa_tigr
+IT  subfamily
+EN  YhcH/YjgK/YiaL family protein
+TP  TIGRFAMs
+CC  This family consists of conserved hypothetical proteins, about 150 amino acids in length. Members with limited information include YhcH, a possible sugar isomerase of sialic acid catabolism, and YjgK.
+RN  [1]
+RM  PMID:16077096
+RT  Crystal structure of the bacterial YhcH protein indicates a role in sialic acid catabolism.
+RA  Teplyakov A, Obmolova G, Toedt J, Galperin MY, Gilliland GL
+RL  J Bacteriol. 2005 Aug;187(16):5520-7.

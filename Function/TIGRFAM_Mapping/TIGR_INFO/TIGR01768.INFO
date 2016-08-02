@@ -1,0 +1,18 @@
+ID  GGGP-family
+AC  TIGR01768
+DE  geranylgeranylglyceryl phosphate synthase family protein
+AU  Selengut J
+TC  113.25 113.25
+NC  62.90 62.90
+AL  clustalw
+IT  subfamily
+EN  geranylgeranylglyceryl phosphate synthase family protein
+EC  2.5.1.-
+TP  TIGRFAMs
+CC  This model represents a family of sequences including geranylgeranylglyceryl phosphate synthase which catalyzes the first committed step in the synthesis of ether-linked membrane lipids in archaea [1].  The clade of bacterial sequences may have the same function or a closely related function. This model supercedes TIGR00265, which has been retired.
+RN  [1]
+RM  PMID: 11732904
+RT  Geranylgeranylglyceryl phosphate synthase. Characterization of the recombinant enzyme from Methanobacterium thermoautotrophicum.
+RA  Soderberg T, Chen A, Poulter CD.
+RL  Biochemistry 2001 Dec 11;40(49):14847-54
+DR  HAMAP; MF_00112; 91 of 94

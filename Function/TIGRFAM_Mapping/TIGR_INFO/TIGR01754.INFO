@@ -1,0 +1,11 @@
+ID  flav_RNR
+AC  TIGR01754
+DE  putative ribonucleotide reductase-associated flavodoxin
+AU  Haft DH
+TC  163.80 163.80
+NC  81.50 81.50
+AL  clustalw
+IT  equivalog
+EN  ribonucleotide reductase-associated flavodoxin, putative
+TP  TIGRFAMs
+CC  This HMM represents a family of proteins found immediately downstream of ribonucleotide reductase genes in Xyella fastidiosa and some Gram-positive bacteria. It appears to be a highly divergent flavodoxin of the short chain type, more like the flavodoxins of the sulfate-reducing genus Desulfovibrio than like the NifF flavodoxins associated with nitrogen fixation.

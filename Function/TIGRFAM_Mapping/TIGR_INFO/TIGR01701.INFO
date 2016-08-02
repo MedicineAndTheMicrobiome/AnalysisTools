@@ -1,0 +1,16 @@
+ID  Fdhalpha-like
+AC  TIGR01701
+DE  oxidoreductase alpha (molybdopterin) subunit
+AU  Selengut J
+TC  582.15 582.15
+NC  323.80 323.80
+AL  clustalw
+IT  hypoth_equivalog
+EN  oxidoreductase alpha (molybdopterin) subunit
+TP  TIGRFAMs
+CC  This model represents a well-defined clade of oxidoreductase alpha subunits most closely related to a group of formate dehydrogenases including the E. coli FdhH protein (TIGR01591).  These alpha subunits contain a molybdopterin cofactor and generally associate with two other subunits which contain iron-sulfur clusters and cytochromes.  The particular subunits with which this enzyme interacts and the substrate which is reduced is unknown at this time.  In Ralstonia, the gene is associated with the cbb operon [1], but is not essential for CO2 fixation.
+RN  [1]
+RM  PMID: 8824147
+RT  Identification of cbbBc as an additional distal gene of the chromosomal cbb CO2 fixation operon from Ralstonia eutropha.
+RA  Bommer D, Schaferjohann J, Bowien B.
+RL  Arch Microbiol 1996 Oct;166(4):245-51

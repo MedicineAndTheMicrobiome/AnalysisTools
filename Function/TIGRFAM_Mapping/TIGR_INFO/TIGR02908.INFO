@@ -1,0 +1,13 @@
+ID  CoxD_Bacillus
+AC  TIGR02908
+DE  cytochrome c oxidase, subunit IVB
+AU  Selengut J
+TC  117.85 117.85
+NC  117.70 117.70
+AL  muscle
+IT  equivalog
+EN  cytochrome c oxidase, subunit IVB
+GS  ctaF
+EC  1.9.3.1
+TP  TIGRFAMs
+CC  This model represents a small clade of cytochrome oxidase subunit IV's found in the Bacilli.

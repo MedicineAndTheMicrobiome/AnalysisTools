@@ -1,0 +1,21 @@
+ID  tRNA_TsaA
+AC  TIGR00104
+DE  tRNA-Thr(GGU) m(6)t(6)A37 methyltransferase TsaA
+AU  Anolik RT, Richardson DL, Haft DH
+TC  93.25 93.25
+NC  75.40 75.40
+AL  clustalw
+IT  equivalog
+EN  tRNA-Thr(GGU) m(6)t(6)A37 methyltransferase TsaA
+GS  tsaA
+EC  2.1.1.-
+TP  TIGRFAMs
+CC  This protein has been characterized by crystallography in complex with S-Adenosylmethionine, making it a probable S-adenosylmethionine-dependent methyltransferase. Analysis in EcoGene links this protein to the enzyme characterization mapped to the tsaA gene in Escherichia coli.
+DR  ECOGENE; EG11503
+RN  [1]
+RM  PMID:17588214
+RT  Functional insights from structural genomics.
+RA  Forouhar F, Kuzin A, Seetharaman J, Lee I, Zhou W, Abashidze M, Chen Y, Yong W, Janjua H, Fang Y, Wang D, Cunningham K, Xiao R, Acton TB, Pichersky E, Klessig DF, Porter CW, Montelione GT, Tong L
+RL  J Struct Funct Genomics. 2007 Sep;8(2-3):37-44. Epub 2007 Jun 23.
+DR  PROSITE; PDOC01022;
+DR  PROSITE; PS01318;

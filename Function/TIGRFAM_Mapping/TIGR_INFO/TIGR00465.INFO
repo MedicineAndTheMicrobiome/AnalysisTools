@@ -1,0 +1,18 @@
+ID  ilvC
+AC  TIGR00465
+DE  ketol-acid reductoisomerase
+AU  Loftus BJ
+TC  226.15 226.15
+NC  185.00 185.00
+AL  clustalw
+IT  equivalog
+EN  ketol-acid reductoisomerase
+GS  ilvC
+EC  1.1.1.86
+TP  TIGRFAMs
+CC  This is  the second enzyme in the parallel isoleucine-valine biosynthetic pathway
+DR  Swissprot; P05793;
+RM  86111952;
+DR  ECOCYC; EG10495; 
+DR  Swissprot; Q05758;
+DR  HAMAP; MF_00435; 435 of 439

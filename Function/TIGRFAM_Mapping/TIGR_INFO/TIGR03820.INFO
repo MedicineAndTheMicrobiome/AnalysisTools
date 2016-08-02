@@ -1,0 +1,23 @@
+ID  lys_2_3_AblA
+AC  TIGR03820
+DE  lysine-2,3-aminomutase
+AU  Haft DH
+TC  525.40 525.40
+NC  525.15 525.15
+AL  muscle_manual
+IT  equivalog
+EN  lysine-2,3-aminomutase
+GS  ablA
+EC  5.4.3.2
+TP  TIGRFAMs
+CC  This model describes lysine-2,3-aminomutase as found along with beta-lysine acetyltransferase in a two-enzyme pathway for making the compatible solute N-epsilon-acetyl-beta-lysine. This compatible solute, or osmolyte, is known to protect a number of methanogenic archaea against salt stress. The trusted cutoff distinguishes a tight clade with essentially full-length homology from additional homologs that are shorter or highly diverged in the C-terminal region. All members of this family have the radical SAM motif CXXXCXXC, while some but not all have a second copy of the motif in the C-terminal region.
+RN  [1]
+RM  PMID:14532061
+RT  Lysine-2,3-aminomutase and beta-lysine acetyltransferase genes of methanogenic archaea are salt induced and are essential for the biosynthesis of Nepsilon-acetyl-beta-lysine and growth at high salinity.
+RA  Pfluger K, Baumann S, Gottschalk G, Lin W, Santos H, Muller V
+RL  Appl Environ Microbiol. 2003 Oct;69(10):6047-55.
+RN  [2]
+RM  PMID:14532061
+RT  Lysine-2,3-aminomutase and beta-lysine acetyltransferase genes of methanogenic archaea are salt induced and are essential for the biosynthesis of Nepsilon-acetyl-beta-lysine and growth at high salinity.
+RA  Pfluger K, Baumann S, Gottschalk G, Lin W, Santos H, Muller V
+RL  Appl Environ Microbiol. 2003 Oct;69(10):6047-55.

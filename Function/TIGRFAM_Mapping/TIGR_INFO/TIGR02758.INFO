@@ -1,0 +1,17 @@
+ID  TraA_TIGR
+AC  TIGR02758
+DE  type IV conjugative transfer system pilin TraA
+AU  Selengut J
+TC  76.55 76.55
+NC  39.70 39.70
+AL  clustalw
+IT  equivalog
+EN  type IV conjugative transfer system pilin TraA
+GS  traA
+TP  TIGRFAMs
+CC  TraA is the single structural subunit of the pilus found in type IV conjugative transfer systems.  This family is generally found in gammaproteobacteria.  The pilins show considerable heterogeneity among the different conjugative plasmit types.  All of them however contain an N-terminal part which is cleaved off by a leader peptidase (LepB, or similar) to result in a 68-78 amino acid product.  Pilins may be further processed by acetylation (in F-like systems by the TraX protein) or by cyclization (in P-like systems by the TraF protein) [1].
+RN  [1]
+RM  PMID: 7768788
+RA  Maneewannakul K, Maneewannakul S, Ippen-Ihler K.
+RT  Characterization of traX, the F plasmid locus required for acetylation of F-pilin subunits.
+RL  J Bacteriol. 1995 Jun;177(11):2957-64.

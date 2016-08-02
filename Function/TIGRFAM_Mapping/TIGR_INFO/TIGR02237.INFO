@@ -1,0 +1,17 @@
+ID  recomb_radB
+AC  TIGR02237
+DE  DNA repair and recombination protein RadB
+AU  Haft DH
+TC  172.40 172.40
+NC  155.40 155.40
+AL  clustalw_manual
+IT  equivalog
+EN  DNA repair and recombination protein RadB
+GS  radB
+TP  TIGRFAMs
+CC  This family consists exclusively of archaeal RadB protein, a homolog of bacterial RecA (TIGR02012), eukaryotic RAD51 (TIGR02239) and DMC1 (TIGR02238), and archaeal RadA (TIGR02236).
+RM  10903318
+RT  Both RadA and RadB are involved in homologous recombination in Pyrococcus furiosus.
+RA  Komori K, Miyata T, DiRuggiero J, Holley-Shanks R, Hayashi I, Cann IK, Mayanagi K, Shinagawa H, Ishino Y.
+RL  J Biol Chem. 2000 Oct 27;275(43):33782-90.
+DR  HAMAP; MF_00350; 17 of 17

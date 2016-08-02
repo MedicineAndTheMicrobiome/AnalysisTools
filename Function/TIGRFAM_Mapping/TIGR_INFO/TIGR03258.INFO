@@ -1,0 +1,12 @@
+ID  PhnT
+AC  TIGR03258
+DE  2-aminoethylphosphonate ABC transport system, ATP-binding component PhnT
+AU  Selengut J
+TC  499.15 499.15
+NC  399.10 399.10
+AL  muscle
+IT  equivalog
+EN  2-aminoethylphosphonate ABC transport system, ATP-binding component PhnT
+GS  phnT
+TP  TIGRFAMs
+CC  This ATP-binding component of an ABC transport system is found in Salmonella and Burkholderia lineages in the vicinity of enzymes for the breakdown of 2-aminoethylphosphonate.

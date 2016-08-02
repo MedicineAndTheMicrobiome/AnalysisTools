@@ -1,0 +1,17 @@
+ID  catachol_actin
+AC  TIGR02438
+DE  catechol 1,2-dioxygenase
+AU  Haft DH
+TC  404.40 404.40
+NC  346.50 346.50
+AL  clustalw
+IT  equivalog
+EN  catechol 1,2-dioxygenase, Actinobacterial
+GS  catA
+EC  1.13.11.1
+TP  TIGRFAMs
+CC  Members of this family are catechol 1,2-dioxygenases of the Actinobacteria. They are more closely related to actinobacterial chlorocatechol 1,2-dioxygenases than to proteobacterial catechol 1,2-dioxygenases, and so are built in this separate model. The member from Rhodococcus rhodochrous NCIMB 13259 (GB|AAC33003.1) is described as a homodimer with bound Fe, similarly active on catechol, 3-methylcatechol and 4-methylcatechol.
+RM  9677336
+RT  Purification and characterization of catechol 1,2-dioxygenase from Rhodococcus rhodochrous NCIMB 13259 and cloning and sequencing of its catA gene.
+RA  Strachan PD, Freer AA, Fewson CA.
+RL  Biochem J. 1998 Aug 1;333 ( Pt 3):741-7.

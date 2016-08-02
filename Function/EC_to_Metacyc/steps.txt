@@ -1,0 +1,31 @@
+First, if necessary, download the latest databases from MetaCyc.  You may need
+to register.  You should expect the following:
+
+    Databases:
+    http://bioinformatics.ai.sri.com/ecocyc/dist/flatfiles-52983746/
+    Username: biocyc-flatfiles
+    Password: data-20541
+
+
+
+1.) Extract_From_MetaCycDatabaseFiles 
+
+	This will be necessary if the databases need to be updated.
+Otherwise, you may reuse the extracted files froma previous run.
+
+2.) Map_Read_toPathway_viaEC
+
+	If you have reads already assigned to 1 or many EC's, then use
+this script to assign EC's to a pathway.
+
+3.) Pathway_toOntology
+
+	Once potential pathways are assigned to each read, then assign
+ontologies up the the root.
+
+4.) Ontology_toCounts
+
+	Once each read has multiple ontological assignments, count
+up the number of hits per ontological category.
+
+

@@ -1,0 +1,17 @@
+ID  TIGR00305
+AC  TIGR00305
+DE  putative toxin-antitoxin system toxin component, PIN family
+AU  Loftus BJ, Haft DH
+TC  29.15 29.15
+NC  28.85 28.85
+AL  clustalw
+IT  equivalog
+EN  putative toxin-antitoxin system toxin component, PIN family
+TP  TIGRFAMs
+CC  This uncharacterized protein family, part of the PIN domain superfamily, is restricted to bacteria and archaea. A comprehensive in silico study of toxin-antitoxin systems by Makarova, et al. (2009) finds evidence this family represents the toxin-like component of one class of type 2 toxin-antitoxin systems.
+DR  PFAM; PF01850; PIN domain
+RN  [1]
+RM  PMID:19493340
+RT  Comprehensive comparative-genomic analysis of type 2 toxin-antitoxin systems and related mobile stress response systems in prokaryotes.
+RA  Makarova KS, Wolf YI, Koonin EV
+RL  Biol Direct. 2009 Jun 3;4:19.

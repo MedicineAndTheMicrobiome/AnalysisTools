@@ -1,0 +1,11 @@
+ID  RPE5
+AC  TIGR03776
+DE  rickettsial palindromic element RPE5 domain
+AU  Haft DH
+TC  29.45 29.45
+NC  28.30 28.30
+AL  muscle_manual
+IT  domain
+EN  Rickettsial palindromic element RPE5 domain
+TP  TIGRFAMs
+CC  This HMM describes protein translations of a family, RPE5, of Rickettsia palindromic elements (RPE). The elements spread within a genome as selfish genetic elements, inserting into genes additional coding region that does not disrupt the reading frame. This model finds RPE-encoded regions in several Rickettsial species and, so far, no where else.

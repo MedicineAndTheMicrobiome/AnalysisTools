@@ -1,0 +1,13 @@
+ID  HpaB-2
+AC  TIGR02310
+DE  4-hydroxyphenylacetate 3-monooxygenase, oxygenase component
+AU  Selengut J
+TC  885.20 885.20
+NC  741.30 741.30
+AL  clustalw
+IT  equivalog
+EN  4-hydroxyphenylacetate 3-monooxygenase, oxygenase component
+GS  hpaB
+EC  1.14.14.9
+TP  TIGRFAMs
+CC  This gene for this monooxygenase is found within apparent operons for the degradation of 4-hydroxyphenylacetic acid in Shigella, Photorhabdus and Pasteurella.  The family modelled by this HMM is narrowly limited to gammaproteobacteria to exclude other aromatic hydroxylases involved in various secondary metabolic pathways.  Generally, this enzyme acts with the assistance of a small flavin reductase domain protein (HpaC) to provide the cycle the flavin reductant for the reaction.  This family of sequences is a member of a larger subfamily of monooxygenases (PF03241).

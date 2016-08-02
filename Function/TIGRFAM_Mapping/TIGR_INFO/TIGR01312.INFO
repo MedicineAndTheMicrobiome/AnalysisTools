@@ -1,0 +1,17 @@
+ID  XylB
+AC  TIGR01312
+DE  xylulokinase
+AU  Haft DH
+TC  380.25 380.25
+NC  368.35 368.35
+AL  clustalw_manual
+IT  equivalog
+EN  D-xylulose kinase
+GS  xylB
+EC  2.7.1.17
+TP  TIGRFAMs
+CC  This HMM describes D-xylulose kinases, a subfamily of the FGGY family of carbohydrate kinases. The member from Klebsiella pneumoniae, designated DalK (see PMID:9324246), was annotated erroneously in GenBank as D-arabinitol kinase but is authentic D-xylulose kinase.
+CC  D-xylulose kinase (XylB) generally is found with xylose isomerase (XylA) and acts in xylose utilization.
+DR  EXPERIMENTAL; GP|2581798; D-xylulose kinase; Thermoanaerobacter ethanolicus
+DR  EXPERIMENTAL; PIR:A30266; D-xylulose kinase; Escherichia coli
+DR  EXPERIMENTAL; GP|2895855; D-xylulose kinase; Lactobacillus brevis

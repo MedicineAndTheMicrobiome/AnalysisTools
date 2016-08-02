@@ -1,0 +1,23 @@
+ID  NrdG
+AC  TIGR02491
+DE  anaerobic ribonucleoside-triphosphate reductase activating protein
+AU  Selengut J
+TC  126.10 126.10
+NC  114.40 114.40
+AL  clustalw
+IT  equivalog
+EN  anaerobic ribonucleoside-triphosphate reductase activating protein
+GS  nrdG
+EC  1.97.1.-
+TP  TIGRFAMs
+CC  This enzyme [1] is a member of the radical-SAM family (PF04055) and utilizes S-adenosyl methionine, an iron-sulfur cluster and a reductant (dihydroflavodoxin [2]) to produce a glycine-centered radical in the class III (anaerobic) ribonucleotide triphosphate reductase (NrdD, TIGR02487).  The two components form an alpha-2/beta-2 heterodimer.
+RN  [1]
+RM  PMID: 11389585
+RT  Activation of class III ribonucleotide reductase from E. coli. The electron transfer from the iron-sulfur center to S-adenosylmethionine.
+RA  Padovani D, Thomas F, Trautwein AX, Mulliez E, Fontecave M.
+RL  Biochemistry. 2001 Jun 12;40(23):6713-9.
+RN  [2]
+RM  PMID: 11297442
+RT  Activation of class III ribonucleotide reductase by flavodoxin: a protein radical-driven electron transfer to the iron-sulfur center.
+RA  Mulliez E, Padovani D, Atta M, Alcouffe C, Fontecave M.
+RL  Biochemistry. 2001 Mar 27;40(12):3730-6.

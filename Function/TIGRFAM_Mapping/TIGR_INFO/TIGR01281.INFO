@@ -1,0 +1,19 @@
+ID  DPOR_bchL
+AC  TIGR01281
+DE  light-independent protochlorophyllide reductase, iron-sulfur ATP-binding protein
+AU  Haft DH
+TC  345.15 345.15
+NC  280.45 280.45
+AL  clustalw
+IT  equivalog
+EN  light-independent protochlorophyllide reductase, iron-sulfur ATP-binding protein
+GS  bchL
+EC  1.3.7.7
+TP  TIGRFAMs
+CC  The BchL peptide (ChlL in chloroplast and cyanobacteria) is an ATP-binding iron-sulfur protein of the dark form protochlorophyllide reductase, an enzyme similar to nitrogenase. This subunit resembles the nitrogenase NifH subunit.
+DR  PFAM;  PF00142; fer4_NifH
+RM  10811655
+RT  Reconstitution of light-independent protochlorophyllide reductase from purified bchl and BchN-BchB subunits. In vitro confirmation of nitrogenase-like features of a bacteriochlorophyll biosynthesis enzyme.
+RA  Fujita Y, Bauer CE
+RL  J Biol Chem 2000 Aug 4;275(31):23583-8
+DR  HAMAP; MF_00355; 85 of 88

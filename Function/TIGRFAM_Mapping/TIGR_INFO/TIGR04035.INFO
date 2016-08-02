@@ -1,0 +1,17 @@
+ID  glucan_65_rpt
+AC  TIGR04035
+DE  glucan-binding repeat
+AU  Haft DH
+TC  147.70 45.00
+NC  44.10 42.00
+AL  muscle_manual
+IT  repeat
+EN  glucan-binding repeat
+TP  TIGRFAMs
+CC  This model describes a region of about 63 amino acids that is composed of three repeats of a more broadly distributed family of shorter repeats modeled by Pfam model PF01473. While the shorter repeats are often associated with choline binding (and therefore with cell wall binding), the longer repeat described here represents a subgroup of repeat sequences associated with glucan binding, as found in a number glycosylhydrolases. Shah, et al. describe a repeat consensus, WYYFDANGKAVTGAQTINGQTLYFDQDGKQVKG, that corresponds to half of the repeat as modeled here and one and a half copies of the repeat as modeled by PF01473.
+DR  Pfam; PF01473; 
+RN  [1]
+RM  PMID:15576779 
+RT  Conserved repeat motifs and glucan binding by glucansucrases of oral streptococci and Leuconostoc mesenteroides. 
+RA  Shah DS, Joucla G, Remaud-Simeon M, Russell RR 
+RL  J Bacteriol. 2004 Dec;186(24):8301-8.

@@ -1,0 +1,16 @@
+ID  WXG100_ESAT6
+AC  TIGR03930
+DE  WXG100 family type VII secretion target
+AU  Haft DH
+TC  44.85 44.85
+NC  34.45 34.45
+AL  muscle_manual
+IT  subfamily
+EN  WXG100 family type VII secretion target
+TP  TIGRFAMs
+CC  Members of this protein family include secretion targets for the two main variants of type VII secretion systems (T7SS), one found in the Actinobacteria, one found in the Firmicutes. This model was derived through iteration from PF06013. The best characterized member of this family is ESAT-6 from Mycobacterium tuberculosis. Members of this family usually are ~100 amino acids in length but occasionally have a long C-terminal extension.
+RN  [1]
+RM  PMID:18723613 
+RT  ESAT-6-like protein secretion in Bacillus anthracis. 
+RA  Garufi G, Butler E, Missiakas D 
+RL  J Bacteriol. 2008 Nov;190(21):7004-11. Epub 2008 Aug 22.

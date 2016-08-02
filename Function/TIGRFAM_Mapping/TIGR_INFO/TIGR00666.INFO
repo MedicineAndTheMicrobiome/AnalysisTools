@@ -1,0 +1,21 @@
+ID  PBP4
+AC  TIGR00666
+DE  D-alanyl-D-alanine carboxypeptidase/D-alanyl-D-alanine-endopeptidase
+AU  Haft DH, Loftus BJ
+TC  107.80 107.80
+NC  75.45 75.45
+IT  equivalog
+EN  D-alanyl-D-alanine carboxypeptidase, serine-type, PBP4 family
+GS  dacB
+EC  3.4.16.4
+TP  TIGRFAMs
+CC  In E. coli, this protein is known as penicillin binding protein 4 (dacB). A signal sequence is cleaved from a precursor form. The protein is described as periplasmic in E. coli (Gram-negative) and extracellular in Actinomadura R39 (Gram-positive). Unlike some other proteins with similar activity, it does not form transpeptidation. It is not essential for viability. This family is related to class A beta-lactamases.
+AL  manual
+RN  [1]
+RM  91250093
+RN  [2]
+RM  92207168
+RT  Primary and predicted secondary structures of the Actinomadura R39 extracellular DD-peptidase, a penicillin-binding protein (PBP) related to the Escherichia coli PBP4.
+RA  Granier B, Duez C, Lepage S, Englebert S, Dusart J, Dideberg O, Van Beeumen J, Frere JM, Ghuysen JM
+RL  Biochem J 1992 Mar 15;282 ( Pt 3):781-8
+DR  ECOCYC; EG10202; dacB

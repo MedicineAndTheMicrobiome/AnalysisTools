@@ -1,0 +1,21 @@
+ID  dapD
+AC  TIGR00965
+DE  2,3,4,5-tetrahydropyridine-2,6-dicarboxylate N-succinyltransferase
+AU  Haft DH
+TC  375.40 375.40
+NC  53.60 53.60
+AL  clustalw
+IT  equivalog
+EN  2,3,4,5-tetrahydropyridine-2,6-dicarboxylate N-succinyltransferase
+GS  dapD
+EC  2.3.1.117
+TP  TIGRFAMs
+CC  This enzyme is part of the diaminopimelate pathway of lysine biosynthesis.
+CC  Alternate name: tetrahydrodipicolinate N-succinyltransferase.
+CC  The closely related TabB protein of Pseudomonas syringae (pv. tabaci), SP|P31852|TABB_PSESZ, appears to act in the biosynthesis of tabtoxin rather than lysine.  The trusted cutoff is set high enough to exclude this gene.  Sequences below trusted also include a version of this enzyme which apparently utilize acetate rather than succinate (EC: 2.3.1.89).
+RN  [1]
+RM  PMID:9294453 
+RT  A possible role for acetylated intermediates in diaminopimelate and tabtoxinine-beta-lactam biosynthesis in Pseudomonas syringae pv. tabaci BR2.024. 
+RA  Liu L, Shaw PD 
+RL  J Bacteriol. 1997 Sep;179(18):5922-7.
+DR  HAMAP; MF_00811; 185 of 190

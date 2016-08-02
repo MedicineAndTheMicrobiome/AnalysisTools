@@ -1,0 +1,14 @@
+ID  gltX_arch
+AC  TIGR00463
+DE  glutamate--tRNA ligase
+AU  Haft DH
+TC  401.75 401.75
+NC  384.75 384.75
+AL  clustalw
+IT  equivalog
+EN  glutamyl-tRNA synthetase, archaeal and eukaryotic family
+GS  gltX
+EC  6.1.1.17
+TP  TIGRFAMs
+CC  The glutamyl-tRNA synthetases of the eukaryotic cytosol and of the Archaea are more similar to glutaminyl-tRNA synthetases than to bacterial glutamyl-tRNA synthetases. This HMM models just the eukaryotic cytosolic and archaeal forms of the enzyme. In some eukaryotes, the glutamyl-tRNA synthetase is part of a longer, multifunctional aminoacyl-tRNA ligase. In many species, the charging of tRNA(gln) proceeds first through misacylation with Glu and then transamidation. For this reason, glutamyl-tRNA synthetases, including all known archaeal enzymes (as of 2010) may act on both tRNA(gln) and tRNA(glu).
+DR  HAMAP; MF_00022; 42 of 565

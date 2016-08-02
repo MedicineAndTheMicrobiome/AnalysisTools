@@ -1,0 +1,11 @@
+ID  Chlam_Ver_rRNA
+AC  TIGR04137
+DE  Chlam_Verruc_Plancto small basic protein
+AU  Haft DH
+TC  50.00 50.00
+NC  27.00 23.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  Chlam_Verruc_Plancto small basic protein
+TP  TIGRFAMs
+CC  Members of this protein family are commonly found next to markers of rRNA processing such as YbeY. They are extremely lineage-restricted, in the Planctomycetes and Chlamydiae/Verrucomicrobia group. Since classification is based on rRNA molecular phylogeny, this provides additional support for a role in rRNA metabolism. This small protein, about 50 amino acids in length, is rich in basic residues, a third line of support for rRNA interaction.

@@ -1,0 +1,17 @@
+ID  HAD-SF-IIB-MPGP
+AC  TIGR01486
+DE  mannosyl-3-phosphoglycerate phosphatase family
+AU  Selengut J, Haft DH
+TC  164.75 164.75
+NC  114.15 114.15
+AL  clustalw
+IT  subfamily
+EN  mannosyl-3-phosphoglycerate phosphatase family
+EC  3.1.3.-
+TP  TIGRFAMs
+CC  This small group of proteins is a member of the IIB subfamily (TIGR01484) of the Haloacid Dehalogenase (HAD) superfamily of aspartate-nucleophile hydrolases.  Several members of this family from thermophiles (and from Dehalococcoides ethenogenes) are now known to act as mannosyl-3-phosphoglycerate (MPG) phosphatase. In these cases, the enzyme acts after MPG synthase to make the compatible solute mannosylglycerate. We propose that other mesophilic members of this family do not act as  mannosyl-3-phosphoglycerate phosphatase. A member of this family is found in Escherichia coli, which appears to lack  MPG synthase. Mannosylglycerate is imported in E. coli by phosphoenolpyruvate-dependent transporter (PMID:14645248), but it appears the phosphorylation is not on the glycerate moiety, that the phosphorylated import is degraded by an alpha-mannosidase from an adjacent gene, and that E. coli would have no pathway to obtain MPG.
+RM  12788726
+RT  The bacterium Thermus thermophilus, like hyperthermophilic archaea, uses a two-step pathway for the synthesis of mannosylglycerate.
+RA  Empadinhas N, Albuquerque L, Henne A, Santos H, da Costa MS.
+RL  Appl Environ Microbiol. 2003 Jun;69(6):3272-9.
+DR  HAMAP; MF_00617; 18 of 19

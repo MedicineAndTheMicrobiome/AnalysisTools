@@ -1,0 +1,15 @@
+ID  A118_put_portal
+AC  TIGR01542
+DE  phage portal protein, putative, A118 family
+AU  Haft DH, Fouts DE
+TC  277.20 277.20
+NC  38.20 38.20
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  phage portal protein, putative, A118 family
+TP  TIGRFAMs
+CC  This HMM represents a family of phage minor structural proteins. The protein is suggested to be the head-tail connector, or portal protein, on the basis of its position in the phage gene order, its presence in mature phage, its size, and its conservation across a number of complete genomes of tailed phage that lack other candidate portal proteins. Several other known portal protein families lack clear homology to this family and to each other.
+RM  10652093
+RT  Complete nucleotide sequence, molecular analysis and genome structure of bacteriophage A118 of Listeria monocytogenes: implications for phage evolution.
+RA  Loessner MJ, Inman RB, Lauer P, Calendar R.
+RL  Mol Microbiol 2000 Jan;35(2):324-40

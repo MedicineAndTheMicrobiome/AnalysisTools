@@ -1,0 +1,23 @@
+ID  Kv_beta
+AC  TIGR01293
+DE  voltage-dependent potassium channel beta subunit
+AU  Haft DH, Paulsen IT
+TC  365.40 365.40
+NC  228.70 228.70
+AL  clustalw
+IT  subfamily
+EN  voltage-dependent potassium channel beta subunit, animal
+TR  8.A.05
+TP  TIGRFAMs
+CC  This HMM describes the conserved core region of the beta subunit of voltage-gated potassium (Kv) channels in animals. Amino-terminal regions differ substantially, in part by alternative splicing, and are not included in the model. Four beta subunits form a complex with four alpha subunit cytoplasmic (T1) regions, and the structure of the complex is solved. The beta subunit belongs to a family of NAD(P)H-dependent aldo-keto reductases, binds NADPH, and couples voltage-gated channel activity to the redox potential of the cell.
+CC  Plant beta subunits and their closely related bacterial homologs (in Deinococcus radiudurans, Xylella fastidiosa, etc.) appear more closely related to each other than to animal forms. However, the bacterial species lack convincing counterparts the Kv alpha subunit and the Kv beta homolog may serve as an enzyme. Cutoffs are set for this model such that yeast and plant forms and bacterial close homologs score between trusted and noise cutoffs.
+RN  [1]
+RM  11294861
+RT  Coupling of voltage-dependent potassium channel inactivation and oxidoreductase active site of Kvbeta subunits.
+RA  Bahring R, Milligan CJ, Vardanyan V, Engeland B, Young BA, Dannenberg J, Waldschutz R, Edwards JP, Wray D, Pongs O.
+RL  J Biol Chem 2001 Jun 22;276(25):22923-9
+RN  [2]
+RM  10884227
+RT  Structure of the cytoplasmic beta subunit-T1 assembly of voltage-dependent K+ channels.
+RA  Gulbis JM, Zhou M, Mann S, MacKinnon R
+RL  Science 2000 Jul 7;289(5476):123-7

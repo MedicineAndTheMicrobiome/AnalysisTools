@@ -1,0 +1,11 @@
+ID  mob_CxxC_CxxC
+AC  TIGR04402
+DE  mobilome CxxCx(11)CxxC protein
+AU  Haft DH
+TC  65.00 65.00
+NC  35.00 25.00
+AL  muscle_manual
+IT  subfamily
+EN  mobilome CxxCx(11)CxxC protein
+TP  TIGRFAMs
+CC  Members of this family share twin CxxC motifs near the C-terminus, suggesting a DNA- or RNA-binding activity. The spacing between CxxC motifs is variable, from 11 to 16 amino acids. Members in general occur on plasmids or near other markers of lateral gene transfer (transposases, integrases, endonucleases, etc).

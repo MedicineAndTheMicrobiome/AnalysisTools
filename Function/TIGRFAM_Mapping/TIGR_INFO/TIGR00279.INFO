@@ -1,0 +1,14 @@
+ID  L10e
+AC  TIGR00279
+DE  ribosomal protein L10.e
+AU  Haft DH
+TC  223.55 223.55
+NC  101.70 101.70
+AL  clustalw
+IT  equivalog
+EN  ribosomal protein L10.e
+GS  rplJ
+TP  TIGRFAMs
+CC  This model finds the archaeal and eukaryotic forms of ribosomal protein L10. The protein is encoded by multiple loci in some eukaryotes and has been assigned a number of extra-ribosomal functions, some of which will require re-evaluation in the context of identification as a ribosomal protein.
+CC  L10.e is distantly related to eubacterial ribosomal protein L16.
+DR  HAMAP; MF_00448; 21 of 42

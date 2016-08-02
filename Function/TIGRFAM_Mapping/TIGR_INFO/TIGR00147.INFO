@@ -1,0 +1,28 @@
+ID  TIGR00147
+AC  TIGR00147
+DE  lipid kinase, YegS/Rv2252/BmrU family
+AU  Richardson DL, Haft DH
+TC  118.65 118.65
+NC  102.30 102.30
+AL  clustalw
+IT  subfamily
+EN  lipid kinase, YegS/Rv2252/BmrU family
+EC  2.7.1.-
+TP  TIGRFAMs
+CC  The E. coli member of this family, YegS has been purified [1] and shown to have phosphatidylglycerol kinase activity. The member from M. tuberculosis, Rv2252, has diacylglycerol kinase activity. BmrU from B. subtilis is in an operon with multidrug efflux transporter Bmr, but is uncharacterized.
+DR  HAMAP; MF_01377; 40 of 41
+RN  [1]
+RM  PMID:17351295 
+RT  Crystal structure of YegS, a homologue to the mammalian diacylglycerol kinases, reveals a novel regulatory metal binding site. 
+RA  Bakali HM, Herman MD, Johnson KA, Kelly AA, Wieslander A, Hallberg BM, Nordlund P 
+RL  J Biol Chem. 2007 Jul 6;282(27):19644-52. Epub 2007 Mar 11.
+RN  [2]
+RM  PMID:10220166
+RT  Identification and transcriptional analysis of new members of the sigmaB regulon in Bacillus subtilis.
+RA  Petersohn A, Antelmann H, Gerth U, Hecker M
+RL  Microbiology. 1999 Apr;145 ( Pt 4):869-80.
+RN  [3]
+RM  PMID:7961792
+RT  A protein that activates expression of a multidrug efflux transporter upon binding the transporter substrates.
+RA  Ahmed M, Borsch CM, Taylor SS, Vazquez-Laslop N, Neyfakh AA
+RL  J Biol Chem. 1994 Nov 11;269(45):28506-13.

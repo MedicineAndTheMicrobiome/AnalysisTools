@@ -1,0 +1,12 @@
+ID  TonB-siderophor
+AC  TIGR01783
+DE  TonB-dependent siderophore receptor
+AU  Selengut J
+TC  223.50 223.50
+NC  197.25 197.25
+AL  clustalw
+IT  subfamily
+EN  TonB-dependent siderophore receptor
+TR  1.B.14
+TP  TIGRFAMs
+CC  This subfamily model encompasses a wide variety of TonB-dependent outer membrane siderophore receptors. It has no overlap with TonB receptors known to transport other substances, but is likely incomplete due to lack of characterizations. It is likely that genuine siderophore receptors will be identified which score below the noise cutoff to this model at which point the model should be updated.

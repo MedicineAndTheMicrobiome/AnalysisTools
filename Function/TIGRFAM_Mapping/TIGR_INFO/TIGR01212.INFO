@@ -1,0 +1,17 @@
+ID  TIGR01212
+AC  TIGR01212
+DE  radical SAM protein, TIGR01212 family
+AU  Haft DH
+TC  180.00 180.00
+NC  120.00 120.00
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  radical SAM protein, TIGR01212 family
+TP  TIGRFAMs
+CC  Members of this family are apparent radical-SAM enzymes, related to the N-terminal region of the bifunctional ELP3, whose C-terminal region is part of the elongator complex and appears to acetylate histones and other proteins. ELP3 binds S-adenosylmethionine (SAM) and was recently shown to be involved in a DNA demethylation process in eukaryotes. Close sequence similarity of this family (with lacks the GNAT family acetyltransferase domain) to the ELP3 N-terminal region and a strong match to the Pfam model PF04055 support identification of this family as radical SAM despite the atypical spacing between first and second Cys residues in the 4Fe4S-binding motif.
+RN  [1]
+RM  PMID:20054296 
+RT  A role for the elongator complex in zygotic paternal genome demethylation. 
+RA  Okada Y, Yamagata K, Hong K, Wakayama T, Zhang Y 
+RL  Nature. 2010 Jan 28;463(7280):554-8. doi: 10.1038/nature08732.
+DR  PFAM; PF04055

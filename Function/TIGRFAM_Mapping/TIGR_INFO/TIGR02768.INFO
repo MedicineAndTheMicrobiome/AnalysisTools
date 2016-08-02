@@ -1,0 +1,17 @@
+ID  TraA_Ti
+AC  TIGR02768
+DE  Ti-type conjugative transfer relaxase TraA
+AU  Selengut J
+TC  590.45 590.45
+NC  348.55 348.55
+AL  muscle
+IT  equivalog
+EN  Ti-type conjugative transfer relaxase TraA
+GS  traA
+TP  TIGRFAMs
+CC  This protein contains domains distinctive of a single strand exonuclease (N-terminus, MobA/MobL, PF03389) as well as a helicase domain (central region, homologous to the corresponding region of the F-type relaxase TraI, TIGR02760).  This protein likely fills the same role as TraI(F), nicking (at the oriT site) and unwinding the coiled plasmid prior to conjugative transfer [1].
+RN  [1]
+RM  PMID: 8763953
+RT  The tra region of the nopaline-type Ti plasmid is a chimera with elements related to the transfer systems of RSF1010, RP4, and F.
+RA  Farrand SK, Hwang I, Cook DM.
+RL  J Bacteriol. 1996 Jul;178(14):4233-47.

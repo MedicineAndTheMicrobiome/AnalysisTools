@@ -1,0 +1,13 @@
+ID  NAD_NadX
+AC  TIGR03855
+DE  aspartate dehydrogenase
+AU  Haft DH
+TC  206.55 206.55
+NC  190.70 190.70
+AL  clustalw_manual
+IT  equivalog
+EN  aspartate dehydrogenase
+GS  nadX
+EC  1.4.1.21
+TP  TIGRFAMs
+CC  Members of this protein family are L-aspartate dehydrogenase, as shown for the NADP-dependent enzyme TM_1643 of Thermotoga maritima. Members lack homology to NadB, the aspartate oxidase (EC 1.4.3.16) of most mesophilic bacteria (described by TIGR00551), which this enzyme replaces in the generation of oxaloacetate from aspartate for the NAD biosynthetic pathway. All members of the seed alignment are found adjacent to other genes of NAD biosynthesis, although other uses of L-aspartate dehydrogenase may occur.

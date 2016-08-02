@@ -1,0 +1,14 @@
+ID  frr
+AC  TIGR00496
+DE  ribosome recycling factor
+AU  Anolik RT, Haft DH
+TC  149.10 149.10
+NC  93.40 93.40
+AL  clustalw
+IT  equivalog
+EN  ribosome recycling factor
+GS  frr
+TP  TIGRFAMs
+CC  This model finds only eubacterial proteins. Mitochondrial and/or chloroplast forms might be expected but are not currently known. This protein was previously called ribosome releasing factor. By releasing ribosomes from mRNA at the end of protein biosynthesis, it prevents inappropriate translation from 3-prime regions of the mRNA and frees the ribosome for new rounds of translation. EGAD|53116|YHR038W is part of the frr superfamily.
+RM  MEDLINE; 97295231;
+DR  HAMAP; MF_00040; 512 of 525

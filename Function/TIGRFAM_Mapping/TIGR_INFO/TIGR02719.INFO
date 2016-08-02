@@ -1,0 +1,16 @@
+ID  repress_PhaQ
+AC  TIGR02719
+DE  poly-beta-hydroxybutyrate-responsive repressor
+AU  Haft DH
+TC  139.35 139.35
+NC  66.35 66.35
+AL  clustalw
+IT  equivalog
+EN  poly-beta-hydroxybutyrate-responsive repressor
+GS  phaQ
+TP  TIGRFAMs
+CC  Members of this family are transcriptional regulatory proteins found in the vicinity of poly-beta-hydroxybutyrate (PHB) operons in several species of Bacillus. This protein appears to have repressor activity modulated by PHB itself. This protein belongs to the larger PadR family (see PF03551).
+RM  15126462
+RT  PhaQ, a new class of poly-beta-hydroxybutyrate (phb)-responsive repressor, regulates phaQ and phaP (phasin) expression in Bacillus megaterium through interaction with PHB.
+RA  Lee TR, Lin JS, Wang SS, Shaw GC.
+RL  J Bacteriol. 2004 May;186(10):3015-21.

@@ -1,0 +1,22 @@
+ID  ccoS
+AC  TIGR00847
+DE  cytochrome oxidase maturation protein, cbb3-type
+AU  Haft DH
+TC  28.35 28.35
+NC  20.10 20.10
+AL  pima_manual
+IT  equivalog
+EN  cytochrome oxidase maturation protein, cbb3-type
+GS  ccoS
+TP  TIGRFAMs
+CC  CcoS from Rhodobacter capsulatus has been shown essential for incorporation of redox-active prosthetic groups (heme, Cu) into cytochrome cbb(3) oxidase. FixS of Bradyrhizobium japonicum appears to have the same function. Members of this family are found so far in organisms with a cbb3-type cytochrome oxidase, including Neisseria meningitidis, Helicobacter pylori, Campylobacter jejuni, Caulobacter crescentus, Bradyrhizobium japonicum, and Rhodobacter capsulatus.
+RN  [1]
+RM  20171584
+RT  Roles of the ccoGHIS gene products in the biogenesis of the cbb(3)-type cytochrome c oxidase.
+RA  Koch HG, Winterstein C, Saribas AS, Alben JO, Daldal F
+RL  J Mol Biol 2000 Mar 17;297(1):49-65
+RN  [2]
+RM  96241863
+RT  The Bradyrhizobium japonicum fixGHIS genes are required for the formation of the high-affinity cbb3-type cytochrome oxidase.
+RA  Preisig O, Zufferey R, Hennecke H
+DR  EXPERIMENTAL; EGAD|136707|145795; Rhodobacter capsulatus

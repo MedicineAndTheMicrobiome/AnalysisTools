@@ -1,0 +1,12 @@
+ID  glu_cys_lig_pln
+AC  TIGR01436
+DE  glutamate--cysteine ligase
+AU  Haft DH
+TC  463.15 463.15
+NC  90.55 90.55
+AL  clustalw
+IT  equivalog
+EN  glutamate--cysteine ligase, plant type
+EC  6.3.2.2
+TP  TIGRFAMs
+CC  This HMM represents one of two highly dissimilar forms of glutamate--cysteine ligase (gamma-glutamylcysteine synthetase), an enzyme of glutathione biosynthesis. The other type is modeled by TIGR01434. This type is found in plants (with a probable transit peptide), root nodule and other bacteria, but not E. coli and closely related species.

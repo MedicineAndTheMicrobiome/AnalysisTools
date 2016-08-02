@@ -1,0 +1,14 @@
+ID  TIGR02336
+AC  TIGR02336
+DE  1,3-beta-galactosyl-N-acetylhexosamine phosphorylase
+AU  Haft DH
+TC  560.30 560.30
+NC  263.00 263.00
+AL  clustalw
+IT  equivalog
+EN  1,3-beta-galactosyl-N-acetylhexosamine phosphorylase
+GS  gnpA
+EC  2.4.1.211
+TP  TIGRFAMs
+CC  Members of this family are found in phylogenetically diverse bacteria, including Clostridium perfringens (in the Firmicutes), Bifidobacterium longum and Propionibacterium acnes (in the Actinobacteria), and Vibrio vulnificus (in the Proteobacteria), most of which occur as mammalian pathogens or commensals. The nominal activity, 1,3-beta-galactosyl-N-acetylhexosamine phosphorylase (EC 2.4.1.211), varies somewhat from instance to instance in relative rates for closely related substrates.
+DR  EXPERIMENTAL; gi|219807265; beta-1,3-galactosyl-N-acetylhexosamine phosphorylase

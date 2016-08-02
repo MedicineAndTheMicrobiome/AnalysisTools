@@ -1,0 +1,16 @@
+ID  glgA_Coryne
+AC  TIGR02149
+DE  glycogen synthase, Corynebacterium family
+AU  Haft DH
+TC  302.40 302.40
+NC  287.10 287.10
+AL  clustalw_manual
+IT  subfamily
+EN  glycogen synthase, Corynebacterium family
+GS  glgA
+TP  TIGRFAMs
+CC  This model describes Corynebacterium glutamicum GlgA and closely related proteins in several other species. This enzyme is required for glycogen biosynthesis and appears to replace the distantly related TIGR02095 family of ADP-glucose type glycogen synthase in Corynebacterium glutamicum, Mycobacterium tuberculosis, Bifidobacterium longum, and Streptomyces coelicolor.
+RM  12855718
+RT  Genetic dissection of trehalose biosynthesis in Corynebacterium glutamicum: inactivation of trehalose production leads to impaired growth and an altered cell wall lipid composition.
+RA  Tzvetkov M, Klopprogge C, Zelder O, Liebl W.
+RL  Microbiology. 2003 Jul;149(Pt 7):1659-73.

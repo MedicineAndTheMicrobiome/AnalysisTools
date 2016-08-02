@@ -1,0 +1,15 @@
+ID  fkbM_fam
+AC  TIGR01444
+DE  methyltransferase, FkbM family
+AU  Haft DH
+TC  37.70 37.70
+NC  26.30 26.30
+AL  clustalw_manual
+IT  subfamily_domain
+EN  methyltransferase, FkbM family
+TP  TIGRFAMs
+CC  Members of this family are characterized by two well-conserved short regions separated by a variable in both sequence and length. The first of the two regions is found in a large number of proteins outside this subfamily, a number of which have been characterized as methyltransferases. One member of the present family, FkbM, was shown to be required for a specific methylation in the biosynthesis of the immunosuppressant FK506 in Streptomyces strain MA6548.
+RM  8752344
+RT  Characterization of methyltransferase and hydroxylase genes involved in the biosynthesis of the immunosuppressants FK506 and FK520.
+RA  Motamedi H, Shafiee A, Cai SJ, Streicher SL, Arison BH, Miller RR.
+RL  J Bacteriol 1996 Sep;178(17):5243-8

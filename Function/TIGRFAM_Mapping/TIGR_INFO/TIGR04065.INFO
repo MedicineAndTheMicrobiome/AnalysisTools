@@ -1,0 +1,16 @@
+ID  ocin_CLI_3235
+AC  TIGR04065
+DE  putative bacteriocin precursor, CLI_3235 family
+AU  Haft DH
+TC  26.00 26.00
+NC  20.00 20.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  putative bacteriocin precursor, CLI_3235 family
+TP  TIGRFAMs
+CC  Members of this protein family are Cys-rich putative bacteriocin precursor peptides restricted to the Clostridia but found in multiple species with up to three per genome. They are found next to a CLI_3234 family radical SAM protein that may perform post-translational modification. This model describes approximately 35 residues starting from the N-terminus. Precursor peptides average about 50 amino acids in length.
+RN  [1]
+RM  PMID:21478363 
+RT  Biological systems discovery in silico: radical S-adenosylmethionine protein families and their target peptides for posttranslational modification. 
+RA  Haft DH, Basu MK 
+RL  J Bacteriol. 2011 Jun;193(11):2745-55.

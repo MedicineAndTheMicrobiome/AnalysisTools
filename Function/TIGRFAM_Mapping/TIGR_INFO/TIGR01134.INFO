@@ -1,0 +1,14 @@
+ID  purF
+AC  TIGR01134
+DE  amidophosphoribosyltransferase
+AU  Haft DH
+TC  350.00 350.00
+NC  166.25 166.25
+AL  clustalw_manual
+IT  equivalog
+EN  amidophosphoribosyltransferase
+GS  purF
+EC  2.4.2.14
+TP  TIGRFAMs
+CC  Alternate name: glutamine phosphoribosylpyrophosphate (PRPP) amidotransferase.
+DR  COGS; COG0034

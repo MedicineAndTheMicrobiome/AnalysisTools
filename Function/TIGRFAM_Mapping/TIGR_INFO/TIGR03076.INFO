@@ -1,0 +1,11 @@
+ID  near_not_gcvH
+AC  TIGR03076
+DE  chlamydial GcvH-like protein upstream region protein
+AU  Haft DH
+TC  509.50 509.50
+NC  159.20 159.20
+AL  clustalw
+IT  hypoth_equivalog
+EN  Chlamydial GcvH-like protein upstream region protein
+TP  TIGRFAMs
+CC  The H protein (GcvH) of the glycine cleavage system shuttles the methylamine group of glycine from the P protein to the T protein. Most Chlamydia but lack the P and T proteins, and have a single homolog of GcvH that appears deeply split from canonical GcvH in molecular phylogenetic trees. The protein family modeled here is observed so far only in the Chlamydiae, always as part of a two-gene operon, upstream of the homolog of GcvH. Its function is unknown.

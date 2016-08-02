@@ -1,0 +1,21 @@
+ID  ruvA
+AC  TIGR00084
+DE  Holliday junction DNA helicase RuvA
+AU  Richardson DL, Haft DH
+TC  116.45 116.45
+NC  81.50 81.50
+AL  clustalw_manual
+IT  equivalog
+EN  Holliday junction DNA helicase, RuvA subunit
+GS  ruvA
+EC  3.6.4.12
+TP  TIGRFAMs
+CC  RuvA specifically binds Holliday junctions as a sandwich of two tetramers and maintains the configuration of the junction. It forms a complex with two hexameric rings of RuvB, the subunit that contains helicase activity. The complex drives ATP-dependent branch migration of the Holliday junction recombination intermediate. The endonuclease RuvC resolves junctions.
+RN  [1]
+RM  98105106
+RT  Processing of recombination intermediates by the RuvABC proteins.
+RA  West SC
+RL  Annu Rev Genet 1997;31:213-44
+RN  [2]
+RM  97199382
+DR  HAMAP; MF_00031; 463 of 486

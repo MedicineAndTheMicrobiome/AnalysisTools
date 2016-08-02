@@ -1,0 +1,17 @@
+ID  DNA_S_dndC
+AC  TIGR03183
+DE  putative sulfurtransferase DndC
+AU  Haft DH
+TC  290.40 290.40
+NC  218.70 218.70
+AL  muscle
+IT  equivalog
+EN  putative sulfurtransferase DndC
+GS  dndC
+TP  TIGRFAMs
+CC  Members of this protein family are the DndC protein from the dnd (degradation during electrophoresis) operon. The dnd phenotype reflects a sulfur-containing modification to DNA. This operon is sparsely and sporadically distributed among bactera; among the first eight examples are members from the Actinobacteria, Firmicutes, Gammaproteobacteria, Cyanobacteria. DndC is suggested to be a sulfurtransferase.
+RN  [1]
+RM  PMID: 16102010
+RT  A novel DNA modification by sulphur.
+RA  Zhou X, He X, Liang J, Li A, Xu T, Kieser T, Helmann JD, Deng Z
+RL  Mol Microbiol. 2005 Sep;57(5):1428-38.

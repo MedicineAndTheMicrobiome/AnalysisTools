@@ -1,0 +1,11 @@
+ID  TAT_Cys_rich
+AC  TIGR04401
+DE  twin-arginine translocation signal/Cys-rich four helix bundle protein
+AU  Haft DH
+TC  100.00 100.00
+NC  70.00 70.00
+AL  muscle_manual
+IT  subfamily
+EN  twin-arginine translocation signal/Cys-rich four helix bundle protein
+TP  TIGRFAMs
+CC  Members of this family average about 150 amino acids in length, beginning with a twin-arginine translocation signal sequence, then a His-rich spacer region, followed by a ~105-residue region in which thirteen positions are nearly invariant Cys residues. CDD (Conserved Domain Database) assigns members of this family to clan cl13994, the DUF326 superfamily, based on homology to PA2107 from Pseudomonas aeruginosa. PA2107 is a cysteine-rich four helical bundle protein, with solved structure PDB:3KAW.

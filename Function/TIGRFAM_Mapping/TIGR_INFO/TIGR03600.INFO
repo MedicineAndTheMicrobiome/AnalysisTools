@@ -1,0 +1,11 @@
+ID  phage_DnaB
+AC  TIGR03600
+DE  phage replicative helicase, DnaB family
+AU  Haft DH
+TC  498.65 498.65
+NC  498.45 498.45
+AL  muscle_manual
+IT  exception
+EN  phage replicative helicase, DnaB family, HK022 subfamily
+TP  TIGRFAMs
+CC  Members of this family are phage (or prophage-region) homologs of the bacterial homohexameric replicative helicase DnaB. Some phage may rely on host DnaB, while others encode their own verions. This model describes the largest phage-specific clade among the close homologs of DnaB, but there are, or course, other DnaB homologs from phage that fall outside the scope of this model.

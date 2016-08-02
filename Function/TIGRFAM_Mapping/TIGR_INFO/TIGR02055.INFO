@@ -1,0 +1,39 @@
+ID  APS_reductase
+AC  TIGR02055
+DE  adenylylsulfate reductase, thioredoxin dependent
+AU  Brinkac L
+TC  235.30 235.30
+NC  232.80 232.80
+AL  clustalw
+IT  subfamily
+EN  thioredoxin-dependent adenylylsulfate APS reductase
+EC  1.8.4.10
+TP  TIGRFAMs
+CC  This model describes recently identified adenosine 5'-phosphosulfate (APS) reductase activity found in sulfate-assimilatory prokaryotes, thus separating it from the traditionally described phosphoadenosine 5'-phosphosulfate (PAPS) reductases found in bacteria and fungi [1]. Homologous to PAPS reductase in enterobacteria, cyanobacteria, and yeast, APS reductase here clusters with, and demonstrates greater homology to plant APS reductase. Additionally, the presence of two conserved C-terminal motifs (CCXXRKXXPL & SXGCXXCT) distinguishes APS substrate specificity and serves as a FeS cluster [2].
+RN [1]
+RM 10613872
+RT Identification of a new class of 5'-adenylylsulfate (APS) reductases from sulfate-assimilating bacteria.
+RA Bick JA, Dennis JJ, Zylstra GJ, Nowack J, Leustek T.
+RL J Bacteriol. 2000 Jan;182(1):135-42.
+RN [2]
+RM 11940598
+RT The presence of an iron-sulfur cluster in adenosine 5'-phosphosulfate reductase separates organisms utilizing adenosine 5'-phosphosulfate and phosphoadenosine 5'-phosphosulfate for sulfate assimilation.
+RA Kopriva S, Buchert T, Fritz G, Suter M, Benda R, Schunemann V, Koprivova A, Schurmann P, Trautwein AX, Kroneck PM, Brunold C.
+RL J Biol Chem. 2002 Jun 14;277(24):21786-91. Epub 2002 Apr 08.
+RN [3]
+RM 10464198
+RT Reduction of adenosine-5'-phosphosulfate instead of 3'-phosphoadenosine-5'-phosphosulfate in cysteine biosynthesis by Rhizobium meliloti and other members of the family Rhizobiaceae.
+RA Abola AP, Willits MG, Wang RC, Long SR.
+RL J Bacteriol. 1999 Sep;181(17):5280-7.
+RN [4]
+RM 12072441
+RT 5'-adenosinephosphosulfate lies at a metabolic branch point in mycobacteria.
+RA Williams SJ, Senaratne RH, Mougous JD, Riley LW, Bertozzi CR.
+RL J Biol Chem. 2002 Sep 6;277(36):32606-15. Epub 2002 Jun 18.
+DR PFAM; PF01507; Phosphoadenosine phosphosulfate reductase family
+DR EXPERIMENTAL; SP|P56891; Sinorhizobium meliloti; genetic complementation of E.coli mutants preferentiating APS rather than PAPS; kinetic properties consistent with Trx-dependent APS reductase activity.
+DR EXPERIMENTAL; SP|P94498; Bacillus subtilis; genetic complementation of E.coli mutants.
+DR EXPERIMENTAL; SP|P71752; Mycobacterium tuberculosis; genetic complementation of E.coli mutants and mutagenesis resulting in cysteine and methionine auxotrophy.
+DR EXPERIMENTAL; SP|O05927; Pseudomonas aeruginosa; genetic complemention of E.coli mutants and kinetic properties consistent with Trx-dependent APS reductase activity.
+DR OUTGROUP; SP|P17854; Escherichia coli; Phosphoadenosine phosphosulfate reductase.
+DR  HAMAP; MF_00063; 30 of 92

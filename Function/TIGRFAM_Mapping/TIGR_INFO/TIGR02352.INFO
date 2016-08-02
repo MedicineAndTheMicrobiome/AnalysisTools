@@ -1,0 +1,17 @@
+ID  thiamin_ThiO
+AC  TIGR02352
+DE  glycine oxidase ThiO
+AU  Haft DH
+TC  250.80 250.80
+NC  222.75 222.75
+AL  clustalw
+IT  equivalog
+EN  glycine oxidase ThiO
+GS  thiO
+EC  1.4.3.19
+TP  TIGRFAMs
+CC  This family consists of the homotetrameric, FAD-dependent glycine oxidase ThiO, from species such as Bacillus subtilis that use glycine in thiamine biosynthesis. In general, members of this family will not be found in species such as E. coli that instead use tyrosine and the ThiH protein.
+RM  12627963
+RT  Structural and mechanistic studies on ThiO, a glycine oxidase essential for thiamin biosynthesis in Bacillus subtilis.
+RA  Settembre EC, Dorrestein PC, Park JH, Augustine AM, Begley TP, Ealick SE.
+RL  Biochemistry. 2003 Mar 18;42(10):2971-81.

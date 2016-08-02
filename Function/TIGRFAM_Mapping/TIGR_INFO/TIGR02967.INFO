@@ -1,0 +1,20 @@
+ID  guan_deamin
+AC  TIGR02967
+DE  guanine deaminase
+AU  Haft DH
+TC  375.40 375.40
+NC  285.30 285.30
+AL  muscle
+IT  equivalog
+EN  guanine deaminase
+GS  guaD
+EC  3.5.4.3
+TP  TIGRFAMs
+CC  This model describes guanine deaminase, which hydrolyzes guanine to xanthine and ammonia. Xanthine can then be converted to urate by xanthine dehydrogenase, and urate subsequently degraded. In some bacteria, the guanine deaminase gene is found near the xdhABC genes for xanthine dehydrogenase. Non-homologous forms of guanine deaminase also exist, as well as distantly related forms outside the scope of this model.
+DR  URL; http://www.brenda.uni-koeln.de/php/result_flat.php4?ecno=3.5.4.3
+DR  BRENDA; 3.5.4.3
+RN  [1]
+RM  PMID: 10913105
+RT  Identification, expression, and characterization of Escherichia coli guanine deaminase.
+RA  Maynes JT, Yuan RG, Snyder FF
+RL  J Bacteriol. 2000 Aug;182(16):4658-60.

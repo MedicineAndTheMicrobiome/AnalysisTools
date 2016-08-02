@@ -1,0 +1,14 @@
+ID  acr3
+AC  TIGR00832
+DE  arsenical-resistance protein
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  282.80 282.80
+NC  173.70 173.70
+AL  clustalw_manual
+IT  equivalog
+EN  arsenical-resistance protein
+GS  arsB
+TR  2.A.59
+TP  TIGRFAMs
+CC  The Arsenical Resistance-3 (ACR3) Family (TC 2.A.59)
+CC  The first protein of the ACR3 family functionally characterized was the ACR3 protein of Saccharomyces cerevisiae. It is present in the yeast plasma membrane and pumps arsenite out of the cell in response to the pmf. Similar proteins are found in bacteria, often as part of a four gene operon with an regulatory protein ArsR, a protein of unknown function ArsH, and an arsenate reductase that converts arsenate to arsenite to facilitate transport.

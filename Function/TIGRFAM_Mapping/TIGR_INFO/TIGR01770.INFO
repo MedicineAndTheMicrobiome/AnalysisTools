@@ -1,0 +1,13 @@
+ID  NDH_I_N
+AC  TIGR01770
+DE  proton-translocating NADH-quinone oxidoreductase, chain N
+AU  Haft DH
+TC  332.60 332.60
+NC  196.20 196.20
+AL  clustalw_manual
+IT  subfamily
+EN  proton-translocating NADH-quinone oxidoreductase, chain N
+TP  TIGRFAMs
+CC  This HMM describes the 14th (based on E. coli) structural gene, N, of bacterial and chloroplast energy-transducing NADH (or NADPH) dehydrogenases. This model does not describe any subunit of the mitochondrial complex I (for which the subunit composition is very different), nor NADH dehydrogenases that are not coupled to ion transport. The Enzyme Commission designation 1.6.5.3, for NADH dehydrogenase (ubiquinone), is applied broadly, perhaps unfortunately, even if the quinone is menaquinone (Thermus, Mycobacterium) or plastoquinone (chloroplast). For chloroplast members, the name
+CC  NADH-plastoquinone oxidoreductase is used for the complex and this protein is designated as subunit 2 or B. This model also includes a subunit of a related complex in the archaeal methanogen, Methanosarcina mazei, in which F420H2 replaces NADH and 2-hydroxyphenazine replaces the quinone.
+DR  HAMAP; MF_01439; 36 of 37

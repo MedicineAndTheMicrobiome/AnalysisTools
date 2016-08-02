@@ -1,0 +1,22 @@
+ID  PaaX_trns_reg
+AC  TIGR02277
+DE  phenylacetic acid degradation operon negative regulatory protein PaaX
+AU  Selengut J
+TC  264.55 264.55
+NC  216.80 216.80
+AL  clustalw
+IT  equivalog
+EN  phenylacetic acid degradation operon negative regulatory protein PaaX
+GS  paaX
+TP  TIGRFAMs
+CC  This transcriptional regulator is always found in association with operons believed to be involved in the degradation of phenylacetic acid [1].  The gene product has been shown to bind to the promoter sites and repress their transcription [2].
+RN  [1]
+RM  PMID: 11260461
+RT  The phenylacetyl-CoA catabolon: a complex catabolic unit with broad biotechnological applications.
+RA  Luengo JM, Garcia JL, Olivera ER.
+RL  Mol Microbiol. 2001 Mar;39(6):1434-42.
+RN  [2]
+RM  PMID: 10766858 
+RT  Transcriptional regulation of the divergent paa catabolic operons for phenylacetic acid degradation in Escherichia coli.
+RA  Ferrandez A, Garcia JL, Diaz E.
+RL  J Biol Chem. 2000 Apr 21;275(16):12214-22.

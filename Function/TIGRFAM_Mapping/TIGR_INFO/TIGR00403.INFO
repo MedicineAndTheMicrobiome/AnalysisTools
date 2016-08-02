@@ -1,0 +1,17 @@
+ID  ndhI
+AC  TIGR00403
+DE  NADH-plastoquinone oxidoreductase, I subunit
+AU  Loftus BJ
+TC  302.35 302.35
+NC  168.65 168.65
+AL  clustalw
+IT  equivalog
+EN  NADH-plastoquinone oxidoreductase subunit I protein
+GS  ndhI
+EC  1.6.5.3
+TP  TIGRFAMs
+DR  Swissprot; P26525; 
+DR  PROSITE; PDOC00176; 
+DR  PFAM; PF00037; 
+DR Swissprot; P06253;
+DR  HAMAP; MF_01351; 228 of 502

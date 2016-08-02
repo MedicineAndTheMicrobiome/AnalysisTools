@@ -1,0 +1,13 @@
+ID  prpF
+AC  TIGR02334
+DE  probable AcnD-accessory protein PrpF
+AU  Haft DH
+TC  440.55 440.55
+NC  415.90 415.90
+AL  clustalw_manual
+IT  equivalog
+EN  probable AcnD-accessory protein PrpF
+GS  prpF
+TP  TIGRFAMs
+CC  The 2-methylcitrate cycle is one of at least five degradation pathways for propionate via propionyl-CoA. Degradation of propionate toward pyruvate consumes oxaloacetate and releases succinate. Oxidation of succinate back into oxaloacetate by the TCA cycle makes the 2-methylcitrate pathway a cycle. This family consists of PrpF, an incompletely characterized protein that appears to be an essential accessory protein for the Fe/S-dependent 2-methylisocitrate dehydratase AcnD (TIGR02333). This protein is related to but distinct from FldA (part of Pfam family PF04303), a putative fluorene degradation protein of Sphingomonas sp. LB126.
+DR  PFAM; PF04303; DUF453

@@ -1,0 +1,12 @@
+ID  GSu_C4xC__C2xCH
+AC  TIGR01904
+DE  Geobacter sulfurreducens CxxxxCH...CXXCH domain
+AU  Haft DH
+TC  19.05 19.05
+NC  14.90 14.90
+AL  manual
+IT  paralog_domain
+EN  Geobacter sulfurreducens CxxxxCH...CXXCH domain
+TP  TIGRFAMs
+CC  This domain occurs from three to eight times in eight different proteins of Geobacter sulfurreducens. The final CXXCH motif matches ProSite motif PS00190, the cytochrome c family heme-binding site signature, suggesting
+DR  PROSITE: PDOC00169; cytochrome c family heme-binding site signature

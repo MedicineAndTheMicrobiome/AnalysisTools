@@ -1,0 +1,16 @@
+ID  lytR_cpsA_psr
+AC  TIGR00350
+DE  cell envelope-related function transcriptional attenuator common domain
+AU  Haft DH
+TC  62.30 62.30
+NC  49.25 49.25
+AL  clustalw
+IT  domain
+EN  cell envelope-related function transcriptional attenuator common domain
+TP  TIGRFAMs
+CC  This HMM describes a domain of unknown function that is found in the predicted extracellular domain of a number of putative membrane-bound proteins. One of these is proteins psr, described as a penicillin binding protein 5 (PDP-5) synthesis repressor. Another is Bacillus subtilis LytR, described as a transcriptional attenuator of itself and the LytABC operon, where LytC is N-acetylmuramoyl-L-alanine amidase. A third is CpsA, a putative regulatory protein involved in exocellular polysaccharide biosynthesis. Besides the region of strong similarily represented by this HMM, these proteins share the property of having a short putative N-terminal cytoplasmic domain and transmembrane domain forming a signal-anchor.
+RM  97149274 
+RT  The cpsABCDE genes involved in polysaccharide production in Streptococcus salivarius ssp. thermophilus strain NCBF 2393.
+RA  Griffin AM, Morris VJ, Gasson MJ
+RL  Gene 1996 Dec 12;183(1-2):23-7
+DR  HAMAP; MF_01140; 8 of 8

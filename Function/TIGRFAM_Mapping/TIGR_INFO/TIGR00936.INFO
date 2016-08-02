@@ -1,0 +1,14 @@
+ID  ahcY
+AC  TIGR00936
+DE  adenosylhomocysteinase
+AU  Haft DH
+TC  497.60 497.60
+NC  121.60 121.60
+AL  clustalw
+IT  equivalog
+EN  adenosylhomocysteinase
+GS  ahcY
+EC  3.3.1.1
+TP  TIGRFAMs
+CC  This enzyme hydrolyzes adenosylhomocysteine as part of a cycle for the regeneration of the methyl donor S-adenosylmethionine. Species that lack this enzyme are likely to have adenosylhomocysteine nucleosidase (EC 3.2.2.9), an enzyme which also acts as 5'-methyladenosine nucleosidase (see TIGR01704).
+DR  HAMAP; MF_00563; 150 of 151

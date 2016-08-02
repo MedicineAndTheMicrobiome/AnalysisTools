@@ -1,0 +1,16 @@
+ID  cdk7
+AC  TIGR00570
+DE  CDK-activating kinase assembly factor MAT1
+AU  Loftus BJ, Eisen JA
+TC  160.20 160.20
+NC  150.65 150.65
+IT  equivalog
+EN  CDK-activating kinase assembly factor MAT1
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are cyclin dependent protein kinases that are components of TFIIH, a complex that is involved in nucleotide excision repair and transcription initiation.  Also known as MAT1 (menage a trois 1).  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  EGAD; 96906;
+DR  SWISSPROT: P51949;
+RM  96006524
+RT  Alternative mechanisms of CAK assembly require an assembly factor or an activating kinase.
+RA  Fisher RP, Jin P, Chamberlin HM, Morgan DO.
+RL  Cell 1995 Oct 6;83(1):47-57

@@ -1,0 +1,18 @@
+ID  histamin_N_OH
+AC  TIGR04439
+DE  putative histamine N-monooxygenase
+AU  Haft DH
+TC  700.00 700.00
+NC  550.00 550.00
+AL  muscle_manual
+IT  equivalog
+EN  putative histamine N-monooxygenase
+GS  basC
+EC  1.14.13.-
+TP  TIGRFAMs
+CC  Members of this family are involved in synthesizing N-hydroxyhistamine as a precursor to acinetobactin, a siderophore found in Acinetobacter baumannii. Assuming histidine is first decarboxylated to histamine, then hydroxylated, members of this family are histamine N-monooxygenase. The putative histidine decarboxylase is found in the same biosynthetic cluster.
+RN  [1]
+RM  PMID:15289555 
+RT  Identification and transcriptional organization of a gene cluster involved in biosynthesis and transport of acinetobactin, a siderophore produced by Acinetobacter baumannii ATCC 19606T. 
+RA  Mihara K, Tanabe T, Yamakawa Y, Funahashi T, Nakao H, Narimatsu S, Yamamoto S 
+RL  Microbiology. 2004 Aug;150(Pt 8):2587-97.

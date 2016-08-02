@@ -1,0 +1,11 @@
+ID  tail_TIGR02242
+AC  TIGR02242
+DE  phage tail protein domain
+AU  Haft DH
+TC  51.85 51.85
+NC  33.45 33.45
+AL  clustalw_manual
+IT  domain
+EN  phage tail protein domain
+TP  TIGRFAMs
+CC  This model describes a region of sequence similarity shared by  a number of uncharacterized proteins in bacterial genomes, including Geobacter sulfurreducens PCA, Mesorhizobium loti, Streptomyces coelicolor A3(2), Gloeobacter violaceus PCC 7421, and Myxococcus xanthus. In all cases, the genomic region resembles a phage tail region, based on tentative identifications of neighboring genes. A region of this domain resembles a region of TIGR01634, another phage tail protein model.

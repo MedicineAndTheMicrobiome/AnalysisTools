@@ -1,0 +1,18 @@
+ID  spore_YlmC_YmxH
+AC  TIGR02888
+DE  sporulation protein, YlmC/YmxH family
+AU  Haft DH
+TC  44.20 44.20
+NC  43.00 43.00
+AL  muscle
+IT  subfamily
+EN  sporulation protein, YlmC/YmxH family
+TP  TIGRFAMs
+CC  Members of this family belong to the broader family of PRC-barrel domain proteins (see Pfam model PF05239), but are found only in endospore-forming bacteria of the Firmicutes lineage. Most such species have exactly two members of this family and all have at least one; the function is unknown. One of two members from Bacillus subtilis, YmxH, is strongly induced by the mother cell-specific sigma-E factor.
+DR  COGS; COG1873
+DR  PFAM; PF05239; PRC; PRC-barrel domain
+RN  [1]
+RM  14523133
+RT  Identification of sporulation genes by genome-wide analysis of the sigmaE regulon of Bacillus subtilis.
+RA  Feucht A, Evans L, Errington J.
+RL  Microbiology. 2003 Oct;149(Pt 10):3023-34.

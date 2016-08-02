@@ -1,0 +1,14 @@
+ID  murA
+AC  TIGR01072
+DE  UDP-N-acetylglucosamine 1-carboxyvinyltransferase
+AU  Dodson RJ, Haft DH
+TC  392.70 392.70
+NC  234.80 234.80
+AL  clustalw
+IT  equivalog
+EN  UDP-N-acetylglucosamine 1-carboxyvinyltransferase
+GS  murA
+EC  2.5.1.7
+TP  TIGRFAMs
+DR  OUTGROUP; OMNI|NT01BS2653; 3-phosphoshikimate 1-carboxyvinyltransferase
+DR  HAMAP; MF_00111; 419 of 430

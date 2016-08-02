@@ -1,0 +1,18 @@
+ID  rib_reduct_arch
+AC  TIGR01508
+DE  diaminohydroxyphosphoribosylaminopyrimidine reductase
+AU  Haft DH, Selengut J
+TC  186.45 186.45
+NC  165.85 165.85
+AL  clustalw
+IT  equivalog
+EN  2,5-diamino-6-hydroxy-4-(5-phosphoribosylamino)pyrimidine 1'-reductase, archaeal
+EC  1.1.1.-
+TP  TIGRFAMs
+CC  This HMM represents a specific reductase of riboflavin biosynthesis in the Archaea, diaminohydroxyphosphoribosylaminopyrimidine reductase. It should not be confused with bacterial 5-amino-6-(5-phosphoribosylamino)uracil reductase. The intermediate 2,5-diamino-6-hydroxy-4-(5-phosphoribosylamino)pyrimidine
+CC  in riboflavin biosynthesis is reduced first, and then deaminated, in both Archaea and Fungi, opposite the order in Bacteria. The subsequent deaminase is not presently known and is not closely homologous to the deaminase domain (3.5.4.26) fused to the reductase domain (1.1.1.193) similar to this protein but found in most bacteria.
+RM  11889103
+RT  The pyrimidine nucleotide reductase step in riboflavin and F(420) biosynthesis in archaea proceeds by the eukaryotic route to riboflavin.
+RA  Graupner M, Xu H, White RH.
+RL  J Bacteriol 2002 Apr;184(7):1952-7
+DR  EXPERIMENTAL; SP|Q58085

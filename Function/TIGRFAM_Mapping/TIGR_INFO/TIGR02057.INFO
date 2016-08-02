@@ -1,0 +1,27 @@
+ID  PAPS_reductase
+AC  TIGR02057
+DE  phosphoadenosine phosphosulfate reductase
+AU  Brinkac L
+TC  254.20 254.20
+NC  228.85 228.85
+AL  clustalw
+IT  equivalog
+EN  phosphoadenosine phosphosulfate reductase, thioredoxin dependent
+GS  cysH
+EC  1.8.4.8
+TP  TIGRFAMs
+CC  Requiring thioredoxin as an electron donor, phosphoadenosine phosphosulfate reductase catalyzes the reduction of 3'-phosphoadenylylsulfate (PAPS) to sulfite and  phospho-adenosine-phosphate (PAP). Found in enterobacteria, cyanobacteria, and yeast, PAPS reductase is related to a group of plant (TIGR00424) and bacterial (TIGR02055) enzymes preferring 5'-adenylylsulfate (APS) over PAPS as a substrate for reduction to sulfite [2].
+RN [1]
+RM 9261082
+RT Crystal structure of phosphoadenylyl sulphate (PAPS) reductase: a new family of adenine nucleotide alpha hydrolases.
+RA Savage H, Montoya G, Svensson C, Schwenn JD, Sinning I.
+RL Structure. 1997 Jul 15;5(7):895-906.
+RN [2]
+RM 10613872
+RT Identification of a new class of 5'-adenylylsulfate (APS) reductases from sulfate-assimilating bacteria.
+RA Bick JA, Dennis JJ, Zylstra GJ, Nowack J, Leustek T.
+RT J Bacteriol. 2000 Jan;182(1):135-42.
+DR PFAM; PF01507; Phosphoadenosine phosphosulfate reductase family
+DR EXPERIMENTAL; SP|P17854; Escherichia coli; crystal structure determined to 2.0A resolution; catalytic properties measured.
+DR EXPERIMENTAL; SP|P18408; Saccharomyces cerevisiae; site-directed mutagenesis.
+DR  HAMAP; MF_00063; 54 of 92

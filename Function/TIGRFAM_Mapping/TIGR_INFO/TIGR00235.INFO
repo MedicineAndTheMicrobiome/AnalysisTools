@@ -1,0 +1,14 @@
+ID  udk
+AC  TIGR00235
+DE  uridine kinase
+AU  Loftus BJ
+TC  220.30 220.30
+NC  173.45 173.45
+AL  clustalw
+IT  equivalog
+EN  uridine kinase
+GS  udk
+EC  2.7.1.48
+TP  TIGRFAMs
+CC  Model contains a number of longer eukaryotic proteins and starts bringing in  phosphoribulokinase hits at scores of 160 and below
+DR  HAMAP; MF_00551; 129 of 132

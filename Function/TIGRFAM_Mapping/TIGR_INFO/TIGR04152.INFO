@@ -1,0 +1,18 @@
+ID  exosort_VPLPA
+AC  TIGR04152
+DE  exosortase D, VPLPA-CTERM-specific
+AU  Haft DH
+TC  400.00 400.00
+NC  275.00 275.00
+AL  muscle_manual
+IT  exception
+EN  exosortase D, VPLPA-CTERM-specific
+GS  xrtD
+EC  3.4.22.-
+TP  TIGRFAMs
+CC  This model describes a variant sub class, exosortase D, of protein sorting enzyme (see parent exosortase model TIGR02602), specific for the VPLPA-CTERM variant (TIGR03370) of the PEP-CTERM protein sorting signal.
+RN  [1]
+RM  PMID:22037399 
+RT  Archaeosortases and exosortases are widely distributed systems linking membrane transit with posttranslational modification. 
+RA  Haft DH, Payne SH, Selengut JD 
+RL  J Bacteriol. 2012 Jan;194(1):36-48. Epub 2011 Oct 28.

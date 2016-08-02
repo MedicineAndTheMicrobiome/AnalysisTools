@@ -1,0 +1,12 @@
+ID  spore_ypjB
+AC  TIGR02878
+DE  sporulation protein YpjB
+AU  Haft DH
+TC  229.15 229.15
+NC  39.70 39.70
+AL  clustalw
+IT  equivalog
+EN  sporulation protein YpjB
+GS  ypjB
+TP  TIGRFAMs
+CC  Members of this protein, YpjB, family are restricted to a subset of endospore-forming bacteria, including Bacillus species but not CLostridium or some others. In Bacillus subtilis, ypjB was found to be part of the sigma-E regulon, where sigma-E is a sporulation sigma factor that regulates expression in the mother cell compartment. Null mutants of ypjB show a sporulation defect. This protein family is not, however, a part of the endospore formation minimal gene set.

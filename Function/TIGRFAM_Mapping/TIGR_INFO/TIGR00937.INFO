@@ -1,0 +1,20 @@
+ID  2A51
+AC  TIGR00937
+DE  chromate efflux transporter
+AU  Loftus BJ, Haft DH
+TC  171.70 171.70
+NC  119.50 119.50
+AL  clustalw_manual
+IT  subfamily
+EN  chromate transporter, chromate ion transporter (CHR) family
+GS  chrA
+TR  2.A.51
+TP  TIGRFAMs
+CC  Members of this family probably act as chromate transporters, and are found in Pseudomonas aeruginosa, Alcaligenes eutrophus, Vibrio cholerae, Bacillus subtilis, Ochrobactrum tritici, cyanobacteria and archaea. The protein reduces chromate accumulation and is essential for chromate resistance.
+DR  Interpro; IPR003370
+DR  PFAM; PF02417
+RN  [1]
+RM  PMID:18776016 
+RT  The chromate-inducible chrBACF operon from the transposable element TnOtChr confers resistance to chromium(VI) and superoxide. 
+RA  Branco R, Chung AP, Johnston T, Gurel V, Morais P, Zhitkovich A 
+RL  J Bacteriol. 2008 Nov;190(21):6996-7003.

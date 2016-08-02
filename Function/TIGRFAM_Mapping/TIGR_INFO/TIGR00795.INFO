@@ -1,0 +1,13 @@
+ID  lctP
+AC  TIGR00795
+DE  transporter, lactate permease (LctP) family
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  341.15 341.15
+NC  320.30 320.30
+AL  clustalw_manual
+IT  subfamily
+EN  L-lactate transport
+TR  2.A.14
+TP  TIGRFAMs
+CC  The Lactate Permease (LctP) Family (TC 2.A.14)
+CC  The only characterized member of this family, from E. coli, appears to catalyze lactate:H+ uptake. Members of this family have 12 probable TMS.

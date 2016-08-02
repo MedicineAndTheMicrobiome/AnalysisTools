@@ -1,0 +1,11 @@
+ID  beta_prop_Msarc
+AC  TIGR04275
+DE  beta propeller repeat
+AU  Haft DH
+TC  85.00 30.00
+NC  36.00 29.00
+AL  muscle_manual
+IT  repeat
+EN  beta propeller repeat, Methanosarcina surface protein type
+TP  TIGRFAMs
+CC  This model describes a repeat region found mostly in cell surface proteins of various methanogens. Methanosarcina barkeri, for example, has twenty such proteins, often with either seven or fourteen repeats. These repeats resemble the beta propeller repeats of the TolB periplasmic protein of Gram-negative bacteria, part of a complex associated with various functions including biopolymer transport (see TIGR02800).

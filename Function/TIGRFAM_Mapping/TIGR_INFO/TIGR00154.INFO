@@ -1,0 +1,24 @@
+ID  ispE
+AC  TIGR00154
+DE  4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase
+AU  Haft DH
+TC  138.70 138.70
+NC  105.20 105.20
+AL  clustalw_manual
+IT  equivalog
+EN  4-diphosphocytidyl-2C-methyl-D-erythritol kinase
+GS  ispE
+EC  2.7.1.148
+TP  TIGRFAMs
+CC  Members of this family of GHMP kinases were previously designated as conserved hypothetical protein YchB or as isopentenyl monophosphate kinase. It is now known, in tomato and E. coli, to encode 4-diphosphocytidyl-2C-methyl-D-erythritol kinase, an enzyme of the deoxyxylulose phosphate pathway of terpenoid biosynthesis.
+DR  SWISS-PROT; P24209; annotated E. coli entry
+DR  PROSITE; PDOC0054;
+DR  ECOCYC; EG11294; ispE
+RN  [1]
+RT  Biosynthesis of terpenoids: YchB protein of Escherichia coli phosphorylates the 2-hydroxy group of 4-diphosphocytidyl-2C-methyl-D-erythritol.
+RA  Luttgen H, Rohdich F, Herz S, Wungsintaweekul J, Hecht S, Schuhr CA, Fellermeier M, Sagner S, Zenk MH, Bacher A, Eisenreich W.
+RL  Proc Natl Acad Sci U S A 2000 Feb 1;97(3):1062-7
+RM  10655484
+RN  [2]
+RM  97201482
+DR  HAMAP; MF_00061; 411 of 432

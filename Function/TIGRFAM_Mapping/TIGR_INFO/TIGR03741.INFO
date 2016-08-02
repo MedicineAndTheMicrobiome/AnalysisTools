@@ -1,0 +1,11 @@
+ID  PRTRC_E
+AC  TIGR03741
+DE  PRTRC system protein E
+AU  Haft DH
+TC  37.95 37.95
+NC  28.70 28.70
+AL  muscle_manual
+IT  subfamily_domain
+EN  PRTRC system protein E
+TP  TIGRFAMs
+CC  A novel genetic system characterized by six or seven major proteins, included a ParB homolog and a ThiF homolog, is designated PRTRC, or ParB-Related,ThiF-Related Cassette. It is often found on plasmids. This protein family averages about 150 amino acids in length, but the last third contains low-complexity sequence that complicates sequence comparisons. This model does not include the low-complexity region.

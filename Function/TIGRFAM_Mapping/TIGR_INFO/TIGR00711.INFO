@@ -1,0 +1,16 @@
+ID  efflux_EmrB
+AC  TIGR00711
+DE  drug resistance MFS transporter, drug:H+ antiporter-2 (14 Spanner) (DHA2) family
+AU  Haft DH
+TC  230.20 230.20
+NC  175.95 175.95
+AL  clustalw
+IT  subfamily
+EN  drug resistance transporter, EmrB/QacA subfamily
+TR  2.A.1.3
+TP  TIGRFAMs
+CC  This subfamily of drug efflux proteins, a part of the major faciliator family, is predicted to have 14 potential membrane-spanning regions. Members with known activities include EmrB (multiple drug resistance efflux pump) in E. coli, FarB (antibacterial fatty acid resistance) in Neisseria gonorrhoeae, TcmA (tetracenomycin C resistance) in Streptomyces glaucescens, etc. In most cases, the efflux pump is described as having a second component encoded in the same operon, such as EmrA of E. coli.
+RN  [1]
+RM  98125732
+RN  [2]
+RM  93028382

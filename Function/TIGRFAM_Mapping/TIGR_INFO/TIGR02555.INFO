@@ -1,0 +1,26 @@
+ID  OrgA_MxiK
+AC  TIGR02555
+DE  type III secretion apparatus protein OrgA/MxiK
+AU  Selengut J
+TC  118.60 118.60
+NC  70.15 70.15
+AL  clustalw
+IT  equivalog
+EN  type III secretion apparatus protein OrgA/MxiK
+TP  TIGRFAMs
+CC  This gene is found in type III secretion operons and has been shown to be essential for the invasion phenotype in Salmonella and a component of the secretion apparatus [1].  The protein is known as OrgA in Salmonella due to its oxygen-dependent expression pattern in which low-oxygen levels up-regulate the gene [2].  In Shigella the ghene is called MxiK and has been shown to be sessential for the proper assembly of the secretion needle complex [3].
+RN  [1]
+RM  PMID: 10816487
+RT  Transcriptional organization and function of invasion genes within Salmonella enterica serovar Typhimurium pathogenicity island 1, including the prgH, prgI, prgJ, prgK, orgA, orgB, and orgC genes.
+RA  Klein JR, Fahlen TF, Jones BD.
+RL  Infect Immun. 2000 Jun;68(6):3368-76.
+RN  [2]
+RM  PMID: 8063389
+RT  Identification and characterization of a Salmonella typhimurium oxygen-regulated gene required for bacterial internalization.
+RA  Jones BD, Falkow S.
+RL  Infect Immun. 1994 Sep;62(9):3745-52.
+RN  [3]
+RM  PMID: 12864857
+RT  MxiK and MxiN interact with the Spa47 ATPase and are required for transit of the needle components MxiH and MxiI, but not of Ipa proteins, through the type III secretion apparatus of Shigella flexneri.
+RA  Jouihri N, Sory MP, Page AL, Gounon P, Parsot C, Allaoui A.
+RL  Mol Microbiol. 2003 Aug;49(3):755-67.

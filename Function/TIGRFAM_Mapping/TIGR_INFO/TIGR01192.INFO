@@ -1,0 +1,13 @@
+ID  chvA
+AC  TIGR01192
+DE  glucan exporter ATP-binding protein
+AU  Ujwal ML, Paulsen IT
+TC  585.40 585.40
+NC  351.90 351.90
+AL  clustalw
+IT  subfamily
+EN  glucan exporter ATP-binding protein
+EC  3.6.3.42
+TP  TIGRFAMs
+CC  This model describes glucan exporter ATP binding protein in bacteria. It belongs to the larger ABC transporter superfamily with the characteristic ATP binding motif. The In general, this protein is in some ways implicated in osmoregulation and suggested to participate in the export of glucan from the cytoplasm to periplasm. The cyclic beta-1,2-glucan in the bactrerial periplasmic space is suggested to confer the property of high osmolority. It has also been demonstrated that mutants in this loci have lost functions of virulence and motility. It is unclear  as to how virulence and osmoadaptaion are related.
+DR  HAMAP; MF_01728; 19 of 23

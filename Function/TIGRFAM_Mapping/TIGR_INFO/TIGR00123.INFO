@@ -1,0 +1,18 @@
+ID  cbiM
+AC  TIGR00123
+DE  cobalamin biosynthesis protein CbiM
+AU  Haft DH
+TC  184.15 184.15
+NC  39.85 39.85
+AL  clustalw
+IT  equivalog
+EN  cobalamin biosynthesis protein CbiM
+GS  cbiM
+TP  TIGRFAMs
+CC  A cutoff of 200 bits for trusted orthologs of cbiM is suggested. Scores lower than 200 but higher than 20 may be considered sufficient to call a protein cobalamin biosynthesis protein CbiM-related.
+CC  The seed alignment for this HMM is a cluster of very closely related proteins from Methanobacterium thermoautotrophicum, Archaeoglobus fulgidus, Methanococcus jannaschii, and Salmonella typhimurium, each of which has greater than 50% identity to all the others. The ortholog from Salmonella is the source of the gene symbol cbiM for this set.
+CC  In Methanobacterium thermoautotrophicum, Archaeoglobus fulgidus, and Methanococcus jannaschii, a second homolog of cbiM is also found. These cbiM-related proteins appear to represent a distinct but less well-conserved orthologous group. Still more distant homologs include sll0383 from Synechocystis sp. and HI1621 from Haemophilus influenzae; the latter protein, from a species that does not synthesize cobalamin, is the most divergent member of the group. The functions of and relationships among the set of proteins homologous to cbiM have not been determined.
+RM  93273696
+RT  Characterization of the cobalamin (vitamin B12) biosynthetic genes of Salmonella typhimurium.
+RA  Roth JR, Lawrence JG, Rubenfield M, Kieffer-Higgins S, Church GM
+RL  J Bacteriol 1993 Jun;175(11):3303-16

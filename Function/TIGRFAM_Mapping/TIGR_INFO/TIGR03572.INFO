@@ -1,0 +1,27 @@
+ID  WbuZ
+AC  TIGR03572
+DE  glycosyl amidation-associated protein WbuZ
+AU  Selengut J
+TC  299.70 299.70
+NC  299.35 299.35
+AL  muscle
+IT  equivalog
+EN  glycosyl amidation-associated protein WbuZ
+GS  wbuZ
+TP  TIGRFAMs
+CC  This clade of sequences is highly similar to the HisF protein, but generally represents the second HisF homolog in the genome where the other is an authentic HisF observed in the context of a complete histidine biosynthesis operon.  The similarity between these WbuZ sequences and true HisFs is such that often the closest match by BLAST of a WbuZ is a HisF.  Only by making a multiple sequence alignment is the homology relationship among the WbuZ sequences made apparent.  WbuZ genes are invariably observed in the presence of a homolog of the HisH protein (designated WbuY) and a proposed N-acetyl sugar amidotransferase designated in WbuX in E. coli [1], IfnA in P. aeriginosa [2] and PseA in C. jejuni [3].  Similarly, this trio of genes is invariably found in the context of saccharide biosynthesis loci.  It has been shown that the WbuYZ homologs are not essential components of the activity expressed by WbuX, leading to the proposal that these to proteins provide ammonium ions to the amidotransferase when these are in low concentration [1].  WbuY (like HisH) is proposed to act as a glutaminase to release ammonium.  In histidine biosynthesis this is also dispensible in the presence of exogenous ammonium ion.  HisH and HisF form a complex such that the ammonium ion is passed directly to HisF where it is used in an amidation reaction causing a subsequent cleavage and cyclization.  In the case of WbuYZ, the ammonium ion would be passed from WbuY to WbuZ.  WbuZ, being non-essential and so similar to HisF that a sugar substrate is unlikely, would function instead as a amoonium channel to the WbuX protein which does the enzymatic work.
+RN  [1]
+RM  PMID:15629947 
+RT  Structural and genetic characterization of enterohemorrhagic Escherichia coli O145 O antigen and development of an O145 serogroup-specific PCR assay. 
+RA  Feng L, Senchenkova SN, Tao J, Shashkov AS, Liu B, Shevelev SD, Reeves PR, Xu J, Knirel YA, Wang L 
+RL  J Bacteriol. 2005 Jan;187(2):758-64. 
+RN  [2]
+RM  PMID:18156256 
+RT  lfnA from Pseudomonas aeruginosa O12 and wbuX from Escherichia coli O145 encode membrane-associated proteins and are required for expression of 2,6-dideoxy-2-acetamidino-L-galactose in lipopolysaccharide O antigen. 
+RA  King JD, Mulrooney EF, Vinogradov E, Kneidinger B, Mead K, Lam JS 
+RL  J Bacteriol. 2008 Mar;190(5):1671-9. Epub 2007 Dec 21. 
+RN  [3]
+RM  PMID:16684771 
+RT  Functional characterization of the flagellar glycosylation locus in Campylobacter jejuni 81-176 using a focused metabolomics approach. 
+RA  McNally DJ, Hui JP, Aubry AJ, Mui KK, Guerry P, Brisson JR, Logan SM, Soo EC 
+RL  J Biol Chem. 2006 Jul 7;281(27):18489-98. Epub 2006 May 9.

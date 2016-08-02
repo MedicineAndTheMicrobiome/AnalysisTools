@@ -1,0 +1,16 @@
+ID  aden_form_hyp
+AC  TIGR02304
+DE  putative adenylate-forming enzyme
+AU  Haft DH
+TC  251.90 251.90
+NC  110.70 110.70
+AL  clustalw
+IT  hypoth_equivalog
+EN  putative adenylate-forming enzyme
+TP  TIGRFAMs
+CC  Members of this family form a distinct clade within a larger family of proteins that also includes coenzyme F390 synthetase, an enzyme known in Methanobacterium thermoautotrophicum and a few other methanogenic archaea. That enzyme adenylates coenzyme F420 to F390, a reversible process, during oxygen stress. Other informative homologies include domains of the non-ribosomal peptide synthetases involved in activation by adenylation. The family defined by this model is likely to be of an adenylate-forming enzyme related to but distinct from coenzyme F390 synthetase.
+RN  [1]
+RM  8550473
+RT  Coenzyme F390 synthetase from Methanobacterium thermoautotrophicum Marburg belongs to the superfamily of adenylate-forming enzymes.
+RA  Vermeij P, van der Steen RJ, Keltjens JT, Vogels GD, Leisinger T.
+RL  J Bacteriol. 1996 Jan;178(2):505-10.

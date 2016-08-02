@@ -1,0 +1,19 @@
+ID  ycfN_thiK
+AC  TIGR02721
+DE  thiamine kinase
+AU  Haft DH
+TC  299.45 299.45
+NC  98.95 98.95
+AL  clustalw_manual
+IT  equivalog
+EN  thiamine kinase
+GS  thiK
+EC  2.7.1.89
+TP  TIGRFAMs
+CC  Members of this family are the ycfN gene product of Escherichia coli, now identified as the salvage enzyme thiamine kinase (thiK), and additional proteobacterial homologs taken to be orthologs with equivalent function.
+RN  [1]
+RM  15150256
+RT  Identification of the two missing bacterial genes involved in thiamine salvage: thiamine pyrophosphokinase and thiamine kinase.
+RA  Melnick J, Lis E, Park JH, Kinsland C, Mori H, Baba T, Perkins J, Schyns G, Vassieva O, Osterman A, Begley TP.
+RL  J Bacteriol. 2004 Jun;186(11):3660-2.
+DR  HAMAP; MF_01604; 18 of 19

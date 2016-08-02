@@ -1,0 +1,12 @@
+ID  fdhD_narQ
+AC  TIGR00129
+DE  formate dehydrogenase family accessory protein FdhD
+AU  Haft DH
+TC  140.90 140.90
+NC  33.65 33.65
+AL  clustalw_manual
+IT  equivalog
+EN  formate dehydrogenase family accessory protein FdhD
+TP  TIGRFAMs
+CC  FdhD in E. coli and NarQ in B. subtilis are required for the activity of formate dehydrogenase. The gene name in B. subtilis reflects the requirement of the neighboring gene narA for nitrate assimilation, for which NarQ is not required. In some species, the gene is associated not with a known formate dehydrogenase but with a related putative molybdopterin-binding oxidoreductase. A reasonable hypothesis is that this protein helps prepare a required cofactor for assembly into the holoenzyme.
+DR  HAMAP; MF_00187; 87 of 88

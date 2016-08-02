@@ -1,0 +1,16 @@
+ID  flagell_FlgJ
+AC  TIGR02541
+DE  flagellar rod assembly protein/muramidase FlgJ
+AU  Haft DH
+TC  193.00 193.00
+NC  139.15 139.15
+AL  clustalw
+IT  equivalog
+EN  flagellar rod assembly protein/muramidase FlgJ
+GS  flgJ
+TP  TIGRFAMs
+CC  The N-terminal region of this protein acts directly in flagellar rod assembly. The C-terminal region is a flagellum-specific muramidase (peptidoglycan hydrolase) required for formation of the outer membrane L ring.
+RM  11554792
+RT  The role in flagellar rod assembly of the N-terminal domain of Salmonella FlgJ, a flagellum-specific muramidase.
+RA  Hirano T, Minamino T, Macnab RM.
+RL  J Mol Biol. 2001 Sep 14;312(2):359-69.

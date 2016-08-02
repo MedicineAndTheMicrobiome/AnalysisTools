@@ -1,0 +1,13 @@
+ID  mucon_cyclo
+AC  TIGR02534
+DE  muconate and chloromuconate cycloisomerases
+AU  Haft DH
+TC  334.95 334.95
+NC  276.75 276.75
+AL  clustalw
+IT  subfamily
+EN  muconate and chloromuconate cycloisomerases
+EC  5.5.1.-
+TP  TIGRFAMs
+CC  This model encompasses muconate cycloisomerase (EC 5.5.1.1) and chloromuconate cycloisomerase (EC 5.5.1.7), enzymes that often overlap in specificity. It excludes more distantly related proteins such as mandelate racemase (5.1.2.2).
+DR  URL; http://www.brenda.uni-koeln.de/php/result_flat.php4?ecno=5.5.1.1

@@ -1,0 +1,18 @@
+ID  exosort_xrtJ
+AC  TIGR04199
+DE  exosortase J
+AU  Haft DH
+TC  200.00 200.00
+NC  85.00 85.00
+AL  muscle_manual
+IT  exception
+EN  exosortase J
+GS  xrtJ
+EC  3.4.22.-
+TP  TIGRFAMs
+CC  Exosortase J occurs as a three-member paralogous family in Acidobacterium sp. MP5ACTX8. It contains an N-terminal exosortase/archaeosortase domain and a novel C-terminal domain comprising about half of total protein length. The presumptive target, found as an adjacent gene for two of the three paralogs, consists of a possible lipoprotein signal peptide followed almost immediately by a C-terminal region with some PEP-CTERM-like characteristics.
+RN  [1]
+RM  PMID:22037399 
+RT  Archaeosortases and exosortases are widely distributed systems linking membrane transit with posttranslational modification. 
+RA  Haft DH, Payne SH, Selengut JD 
+RL  J Bacteriol. 2012 Jan;194(1):36-48. Epub 2011 Oct 28.

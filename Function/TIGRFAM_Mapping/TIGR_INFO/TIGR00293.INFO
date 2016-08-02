@@ -1,0 +1,14 @@
+ID  TIGR00293
+AC  TIGR00293
+DE  prefoldin, alpha subunit
+AU  Haft DH
+TC  53.90 53.90
+NC  43.00 43.00
+AL  clustalw
+IT  equivalog
+EN  prefoldin, archaeal alpha subunit/eukaryotic subunit 5
+GS  pfdA
+TP  TIGRFAMs
+CC  Members of this protein family, rich in coiled coil regions,  are molecular chaperones in the class of the prefoldin (GimC) alpha subunit. Prefoldin is a hexamer of two alpha and four beta subunits. This protein appears universal in the archaea but is restricted to Aquifex aeolicus among bacteria so far. Eukaryotes have several related proteins; only prefoldin subunit 5, which appeared the most similar to archaeal prefoldin alpha, is included in this model.
+CC  This model finds a set of small proteins from the Archaea and from Aquifex aeolicus that may represent two orthologous groups. The proteins are predicted to be mostly coiled coil, and builds of HMMs for the seed alignment with less selective parameters lead to significant hits to large numbers of proteins that contain coiled coil regions. This model is built with a more selective usage of Dirichlet priors.
+DR  HAMAP; MF_00308; 48 of 48

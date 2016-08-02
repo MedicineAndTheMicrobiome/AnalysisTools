@@ -1,0 +1,12 @@
+ID  type_II_gspE
+AC  TIGR02533
+DE  type II secretion system protein E
+AU  Haft DH
+TC  630.25 630.25
+NC  594.10 594.10
+AL  clustalw_manual
+IT  equivalog
+EN  type II secretion system protein E
+GS  gspE
+TP  TIGRFAMs
+CC  This family describes GspE, the E protein of the type II secretion system, also called the main terminal branch of the general secretion pathway. This model separates GspE from the PilB protein of type IV pilin biosynthesis.

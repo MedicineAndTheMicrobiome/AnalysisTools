@@ -1,0 +1,13 @@
+ID  cobJ_cbiH
+AC  TIGR01466
+DE  precorrin-3B C17-methyltransferase
+AU  Haft DH
+TC  246.35 246.35
+NC  103.80 103.80
+AL  clustalw
+IT  equivalog_domain
+EN  precorrin-3B C17-methyltransferase
+GS  cobJ
+EC  2.1.1.131
+TP  TIGRFAMs
+CC  This HMM represents precorrin-3B C17-methyltransferase, one of two methyltransferases commonly referred to as precorrin-3 methylase (the other is precorrin-4 C11-methyltransferase, EC 2.1.1.133). This enzyme participates in the pathway toward the biosynthesis of cobalamin and related products. Members of this family may appear as fusion proteins with other enzymes of cobalamin biosynthesis.

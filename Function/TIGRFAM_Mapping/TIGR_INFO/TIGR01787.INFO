@@ -1,0 +1,42 @@
+ID  squalene_cyclas
+AC  TIGR01787
+DE  squalene/oxidosqualene cyclases
+AU  Selengut J
+TC  322.70 322.70
+NC  233.50 233.50
+AL  clustalw
+IT  subfamily
+EN  squalene/oxidosqualene cyclases
+EC  5.4.-.-
+TP  TIGRFAMs
+CC  This family of enzymes catalyzes the cyclization of the triterpenes squalene or 2-3-oxidosqualene to a variety of products including hopene [1], lanosterol [2], cycloartenol [3], amyrin [4], lupeol and isomultiflorenol [6].
+RN  [1]
+RM  PMID: 12120044
+RT  Squalene-hopene cyclase: catalytic mechanism and substrate recognition.
+RA  Hoshino T, Sato T.
+RL  Chem Commun (Camb). 2002 Feb 21;(4):291-301.
+RN  [2]
+RM  PMID: 7735243
+RT  Molecular cloning of cDNA encoding rat 2,3-oxidosqualene: lanosterol cyclase.
+RA  Kusano M, Shibuya M, Sankawa U, Ebizuka Y.
+RL  Biol Pharm Bull 1995 Jan;18(1):195-7
+RN  [3]
+RM  PMID: 7505443
+RT  Isolation of an Arabidopsis thaliana gene encoding cycloartenol synthase by functional expression in a yeast mutant lacking lanosterol synthase by the use of a chromatographic screen.
+RA  Corey EJ, Matsuda SP, Bartel B.
+RL  Proc Natl Acad Sci U S A 1993 Dec 15;90(24):11628-32
+RN  [4]
+RM  PMID: 10848960
+RT  Molecular cloning and functional expression of triterpene synthases from pea (Pisum sativum) new alpha-amyrin-producing enzyme is a multifunctional triterpene synthase.
+RA  Morita M, Shibuya M, Kushiro T, Masuda K, Ebizuka Y.
+RL  Eur J Biochem 2000 Jun;267(12):3453-60
+RN  [5]
+RM  PMID: 9883589
+RT  Cloning and characterization of the Arabidopsis thaliana lupeol synthase gene.
+RA  Herrera JB, Bartel B, Wilson WK, Matsuda SP.
+RL  Phytochemistry 1998 Dec;49(7):1905-11
+RN  [6]
+RM  PMID: 11733028 
+RT  Molecular cloning and characterization of isomultiflorenol synthase, a new triterpene synthase from Luffa cylindrica, involved in biosynthesis of bryonolic acid.
+RA  Hayashi H, Huang P, Inoue K, Hiraoka N, Ikeshiro Y, Yazaki K, Tanaka S, Kushiro T, Shibuya M, Ebizuka Y.
+RL  Eur J Biochem 2001 Dec;268(23):6311-7

@@ -1,0 +1,18 @@
+ID  GerC3_HepT
+AC  TIGR02748
+DE  heptaprenyl diphosphate synthase component II
+AU  Haft DH
+TC  456.55 456.55
+NC  292.30 292.30
+AL  clustalw
+IT  equivalog
+EN  heptaprenyl diphosphate synthase component II
+GS  hepT
+EC  2.5.1.30
+TP  TIGRFAMs
+CC  Members of this family are component II of the heterodimeric heptaprenyl diphosphate synthase. The trusted cutoff was set such that all members identified are encoded near to a recognizable gene for component I (in Pfam family PF07307). This enzyme acts in menaquinone-7 isoprenoid side chain biosynthesis.
+DR  SP; P31114; Bacillus subtilis
+RM  9748348
+RT  Two subunits of heptaprenyl diphosphate synthase of Bacillus subtilis form a catalytically active complex.
+RA  Zhang YW, Koyama T, Marecak DM, Prestwich GD, Maki Y, Ogura K.
+RL  Biochemistry. 1998 Sep 22;37(38):13411-20.

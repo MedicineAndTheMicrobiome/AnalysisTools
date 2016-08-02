@@ -1,0 +1,20 @@
+ID  ectoine_eutD
+AC  TIGR02993
+DE  ectoine utilization protein EutD
+AU  Haft DH
+TC  613.00 613.00
+NC  505.15 505.15
+AL  muscle_manual
+IT  equivalog
+EN  ectoine utilization protein EutD
+GS  eutD
+EC  3.-.-.-
+TP  TIGRFAMs
+CC  Members of this family are putative peptidases or hydrolases similar to Xaa-Pro aminopeptidase (PF00557). They belong to ectoine utilization operons, as found in Sinorhizobium meliloti 1021 (where it is known to be induced by ectoine), Mesorhizobium loti, Silicibacter pomeroyi, Agrobacterium tumefaciens, and Pseudomonas putida. The exact function is unknown.
+RN  [1]
+RM  PMID: 15687193
+RT  Ectoine-induced proteins in Sinorhizobium meliloti include an Ectoine ABC-type transporter involved in osmoprotection and
+ectoine catabolism.
+RA  Jebbar M, Sohn-Bosser L, Bremer E, Bernard T, Blanco C
+RL  J Bacteriol. 2005 Feb;187(4):1293-304.
+DR  PFAM; PF00557; peptidase, M24 family

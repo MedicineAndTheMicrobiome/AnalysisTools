@@ -1,0 +1,11 @@
+ID  TIGR02619
+AC  TIGR02619
+DE  putative CRISPR-associated protein, APE2256 family
+AU  Haft DH
+TC  37.45 37.45
+NC  26.90 26.90
+AL  clustalw
+IT  domain
+EN  putative CRISPR-associated protein, APE2256 family
+TP  TIGRFAMs
+CC  This model represents a conserved domain of about 150 amino acids found in at least five archaeal species and three bacterial species, exclusively in species with CRISPR (Clustered Regularly Interspaced Short Palidromic Repeats). In six of eight species, the member of this family is in the vicinity of a CRISPR/Cas locus.

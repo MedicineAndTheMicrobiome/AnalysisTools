@@ -1,0 +1,18 @@
+ID  ODC_inducible
+AC  TIGR04301
+DE  ornithine decarboxylase SpeF
+AU  Haft DH
+TC  1310.00 1310.00
+NC  1305.00 1305.00
+AL  muscle_manual
+IT  exception
+EN  ornithine decarboxylase SpeF
+GS  speF
+EC  4.1.1.17
+TP  TIGRFAMs
+CC  Members of this family are known or trusted examples of ornithine decarboxylase, all encoded in the immediate vicinity of an ornithine-putrescine antiporter. Decarboxylation of ornithine to putrescine, followed by exchange of a putrescine for a new ornithine, is a proton-motive cycle that can be induced by low pH and protect a bacterium against transient exposure to acidic conditions.
+RN  [1]
+RM  PMID:22247134 
+RT  Evidence of two functionally distinct ornithine decarboxylation systems in lactic Acid bacteria. 
+RA  Romano A, Trip H, Lonvaud-Funel A, Lolkema JS, Lucas PM 
+RL  Appl Environ Microbiol. 2012 Mar;78(6):1953-61.

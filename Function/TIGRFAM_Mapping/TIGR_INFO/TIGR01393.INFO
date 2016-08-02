@@ -1,0 +1,19 @@
+ID  lepA
+AC  TIGR01393
+DE  elongation factor 4
+AU  Haft DH
+TC  533.90 533.90
+NC  260.40 260.40
+AL  clustalw_manual
+IT  equivalog
+EN  elongation factor 4
+GS  lepA
+EC  3.6.5.-
+TP  TIGRFAMs
+CC  LepA (GUF1 in Saccaromyces), now called elongation factor 4, is a GTP-binding membrane protein related to EF-G and EF-Tu. Two types of phylogenetic tree, rooted by other GTP-binding proteins, suggest that eukaryotic homologs (including GUF1 of yeast) originated within the bacterial LepA family. The function is unknown.
+DR  HAMAP; MF_00071; 493 of 500
+RN  [1]
+RM  PMID:21930951 
+RT  The conserved protein EF4 (LepA) modulates the elongation cycle of protein synthesis. 
+RA  Liu H, Chen C, Zhang H, Kaur J, Goldman YE, Cooperman BS 
+RL  Proc Natl Acad Sci U S A. 2011 Sep 27;108(39):16223-8.

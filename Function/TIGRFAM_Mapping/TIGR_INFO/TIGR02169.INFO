@@ -1,0 +1,17 @@
+ID  SMC_prok_A
+AC  TIGR02169
+DE  chromosome segregation protein SMC
+AU  Haft DH
+TC  729.40 729.40
+NC  694.65 694.65
+AL  clustalw_manual
+IT  equivalog
+EN  chromosome segregation protein SMC, primarily archaeal type
+GS  smc
+TP  TIGRFAMs
+CC  SMC (structural maintenance of chromosomes) proteins bind DNA and act in organizing and segregating chromosomes for partition. SMC proteins are found in bacteria, archaea, and eukaryotes. It is found in a single copy and is homodimeric in prokaryotes, but six paralogs (excluded from this family) are found in eukarotes, where SMC proteins are heterodimeric. This family represents the SMC protein of archaea and a few bacteria (Aquifex, Synechocystis, etc); the SMC of other bacteria is described by TIGR02168. The N- and C-terminal domains of this protein are well conserved, but the central hinge region is skewed in composition and highly divergent.
+RN  [1]
+RM  14660695
+RT  The evolution of SMC proteins: phylogenetic analysis and structural implications.
+RA  Cobbe N, Heck MM.
+RL  Mol Biol Evol. 2004 Feb;21(2):332-47

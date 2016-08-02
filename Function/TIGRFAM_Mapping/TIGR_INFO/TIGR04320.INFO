@@ -1,0 +1,26 @@
+ID  Surf_Exclu_PgrA
+AC  TIGR04320
+DE  SEC10/PgrA surface exclusion domain
+AU  Haft DH
+TC  70.00 70.00
+NC  65.00 65.00
+AL  manual
+IT  domain
+EN  SEC10/PgrA surface exclusion domain
+TP  TIGRFAMs
+CC  This model describes a conserved domain found in surface proteins of a number of Firmutes. Many members have LPXTG C-terminal anchoring motifs and a substantial number have the KxYKxGKxW putative sorting signal at the N-terminus. The tetracycline resistance plasmid pCF10 in Enterococcus faecalis promotes conjugal plasmid transfer in response to sex pheromones, but PgrA/Sec10 encoded by that plasmid, a member of this family, specifically inhibits the ability of cells to receive homologous plasmids. The phenomenon is called surface exclusion.
+RN  [1]
+RM  PMID:3936037 
+RT  Induction of surface exclusion (entry exclusion) by Streptococcus faecalis sex pheromones: use of monoclonal antibodies to identify an inducible surface antigen involved in the exclusion process. 
+RA  Dunny GM, Zimmerman DL, Tortorello ML 
+RL  Proc Natl Acad Sci U S A. 1985 Dec;82(24):8582-6.
+RN  [2]
+RM  PMID:1938961 
+RT  Molecular and genetic analysis of a region of plasmid pCF10 containing positive control genes and structural genes encoding surface proteins involved in pheromone-inducible conjugation in Enterococcus faecalis. 
+RA  Kao SM, Olmsted SB, Viksnins AS, Gallo JC, Dunny GM 
+RL  J Bacteriol. 1991 Dec;173(23):7650-64. 
+RN  [3]
+RM  PMID:1603060 
+RT  Sex pheromone plasmid pAD1-encoded surface exclusion protein of Enterococcus faecalis. 
+RA  Weidlich G, Wirth R, Galli D 
+RL  Mol Gen Genet. 1992 May;233(1-2):161-8.

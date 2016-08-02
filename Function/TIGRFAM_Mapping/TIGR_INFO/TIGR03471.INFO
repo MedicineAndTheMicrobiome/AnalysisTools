@@ -1,0 +1,28 @@
+ID  HpnJ
+AC  TIGR03471
+DE  hopanoid biosynthesis associated radical SAM protein HpnJ
+AU  Selengut J
+TC  577.60 577.60
+NC  577.40 577.40
+AL  muscle
+IT  hypoth_equivalog
+EN  hopanoid biosynthesis associated radical SAM protein HpnJ
+GS  hpnJ
+TP  TIGRFAMs
+CC  The sequences represented by this model are members of the radical SAM superfamily of enzymes (PF04055).  These enzymes utilize an iron-sulfur redox cluster and S-adenosylmethionine to carry out diverse radical mediated reactions [1].  The member of this clade from Acidithiobacillus ferrooxidans ATCC 23270 (AFE_0975) is found in the same locus as squalene-hopene cyclase (SHC, TIGR01507) and other genes associated with the biosynthesis of hopanoid natural products.  Similarly, in Ralstonia eutropha JMP134 (Reut_B4901) this gene is adjacent to HpnAB, IspH and HpnH (TIGR03470), although SHC itself is elsewhere in the genome.  Notably, this gene (here named HpnJ) and three others form a conserved set (HpnIJKL) which occur in a subset of all genomes containing the SHC enzyme.  This relationship was discerned using the method of partial phylogenetic profiling [2].  This group includes Zymomonas mobilis, the organism where the initial hopanoid biosynthesis locus was described consisting of the genes HpnA-E and SHC (HpnF) [3].  Continuing past SHC are found a phosphorylase enzyme (ZMO0873, i.e. HpnG, TIGR03468) and another radical SAM enzyme (ZMO0874), HpnH.  Although discontinuous in Z. mobilis, we continue the gene symbol sequence with HpnIJKL.
+CC  One of the well-described hopanoid intermediates is bacteriohopanetetrol.  In the conversion from hopene several reactions must occur in the side chain for which a radical mechanism might be reasonable.  These include the four (presumably anaerobic) hydroxylations and a methyl shift.
+RN  [1]
+RM  PMID:11222759 
+RT  Radical SAM, a novel protein superfamily linking unresolved steps in familiar biosynthetic pathways with radical mechanisms: functional characterization using new analysis and information visualization methods. 
+RA  Sofia HJ, Chen G, Hetzler BG, Reyes-Spindola JF, Miller NE 
+RL  Nucleic Acids Res. 2001 Mar 1;29(5):1097-106. 
+RN  [2]
+RM  PMID:16930487 
+RT  Exopolysaccharide-associated protein sorting in environmental organisms: the PEP-CTERM/EpsH system. Application of a novel phylogenetic profiling heuristic. 
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD 
+RL  BMC Biol. 2006 Aug 24;4:29. 
+RN  [3]
+RM  PMID:9714766
+RT  Cloning of conserved genes from Zymomonas mobilis and Bradyrhizobium japonicum that function in the biosynthesis of hopanoid lipids.
+RA  Perzl M, Reipen IG, Schmitz S, Poralla K, Sahm H, Sprenger GA, Kannenberg EL
+RL  Biochim Biophys Acta. 1998 Jul 31;1393(1):108-18.

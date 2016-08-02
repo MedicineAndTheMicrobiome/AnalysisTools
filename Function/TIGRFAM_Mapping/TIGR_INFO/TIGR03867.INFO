@@ -1,0 +1,18 @@
+ID  MprA_tail
+AC  TIGR03867
+DE  MprA protease C-terminal rhombosortase-interaction domain
+AU  Haft DH
+TC  19.70 19.70
+NC  18.35 18.35
+AL  muscle_manual
+IT  equivalog_domain
+EN  MprA protease C-terminal rhombosortase-interaction domain
+GS  mprA
+EC  3.4.21.-
+TP  TIGRFAMs
+CC  This HMM describes the Ralstonia lineage variant of the GlyGly-CTERM domain (TIGR03501), a predicted target for protein sorting and cleavage by rhombosortase, a member of the family of rhomboid proteases.  Note that some MprA family proteases are full-length homologs except for the lack of this domain. All members of the present family are predicted serine proteases.
+RN  [1]
+RM  PMID:22194940 
+RT  GlyGly-CTERM and rhombosortase: a C-terminal protein processing signal in a many-to-one pairing with a rhomboid family intramembrane serine protease. 
+RA  Haft DH, Varghese N 
+RL  PLoS One. 2011;6(12):e28886.

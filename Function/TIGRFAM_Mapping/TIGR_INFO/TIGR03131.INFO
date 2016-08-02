@@ -1,0 +1,12 @@
+ID  malonate_mdcH
+AC  TIGR03131
+DE  malonate decarboxylase, epsilon subunit
+AU  Haft DH
+TC  297.90 297.90
+NC  271.60 271.60
+AL  muscle
+IT  equivalog
+EN  malonate decarboxylase, epsilon subunit
+GS  mdcH
+TP  TIGRFAMs
+CC  Members of this protein family are the epsilon subunit of malonate decarboxylase. This subunit has malonyl-CoA/dephospho-CoA acyltransferase activity. Malonate decarboxylase may be a soluble enzyme, or linked to membrane subunits and active as a sodium pump. The epsilon subunit is closely related to the malonyl CoA-acyl carrier protein (ACP) transacylase family described by TIGR00128, but acts on an ACP subunit of malonate decarboxylase that has an unusual coenzyme A derivative as its prothetic group.

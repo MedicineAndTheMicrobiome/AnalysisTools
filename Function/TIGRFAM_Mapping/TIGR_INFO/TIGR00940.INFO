@@ -1,0 +1,19 @@
+ID  2a6301s01
+AC  TIGR00940
+DE  monovalent cation:proton antiporter
+AU  Loftus BJ
+TC  920.45 920.45
+NC  834.40 834.40
+AL  clustalw_manual
+IT  subfamily
+EN  Tmonovalent cation:proton antiporter
+GS  CPA3
+TR  2.A.63
+TP  TIGRFAMs
+CC  This family of proteins constists of bacterial multicomponent K+:H+ and Na+:H+ antiporters. The best characterized systems are the PhaABCDEFG system of Rhizobium meliloti which functions in pH adaptation and as a K+ efflux system and the MnhABCDEFG system of Staphylococcus aureus which functions as a Na+:H+ antiporter.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_63.html
+DR  Interpro; IPR003916
+DR  Interpro; IPR001750
+DR  Interpro; IPR001516
+DR  PFAM; PF00361
+DR  PFAM; PF00662

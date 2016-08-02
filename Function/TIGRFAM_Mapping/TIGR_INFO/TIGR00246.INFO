@@ -1,0 +1,20 @@
+ID  tRNA_RlmH_YbeA
+AC  TIGR00246
+DE  rRNA large subunit m3Psi methyltransferase RlmH
+AU  Loftus BJ, Haft DH
+TC  149.70 149.70
+NC  49.10 49.10
+AL  clustalw
+IT  equivalog
+EN  rRNA large subunit m3Psi methyltransferase RlmH
+GS  rlmH
+EC  2.1.1.177
+TP  TIGRFAMs
+CC  This protein, in the SPOUT methyltransferase family, previously designated YbeA in E. coli, was shown to be responsible for a further modification, a methylation, to a pseudouridine base in ribosomal large subunit RNA.
+RN  [1]
+RM  PMID:18755835
+RT  YbeA is the m3Psi methyltransferase RlmH that targets nucleotide 1915 in 23S rRNA.
+RA  Purta E, Kaminska KH, Kasprzak JM, Bujnicki JM, Douthwaite S
+RL  RNA. 2008 Oct;14(10):2234-44. Epub 2008 Aug 28.
+DR  ECOCYC; EG11254; ybeA
+DR  HAMAP; MF_00658; 247 of 402

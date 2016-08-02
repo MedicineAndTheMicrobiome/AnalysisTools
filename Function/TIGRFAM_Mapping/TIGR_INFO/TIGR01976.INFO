@@ -1,0 +1,11 @@
+ID  am_tr_V_VC1184
+AC  TIGR01976
+DE  cysteine desulfurase family protein
+AU  Haft DH
+TC  352.35 352.35
+NC  283.70 283.70
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  cysteine desulfurase family protein, VC1184 subfamily
+TP  TIGRFAMs
+CC  This HMM describes a subfamily of probable pyridoxal phosphate-dependent enzymes in the aminotransferase class V family (PF00266). The most closely related characterized proteins are active as cysteine desulfurases, selenocysteine lyases, or both; some are involved in FeS cofactor biosynthesis and are designated NifS. An active site Cys residue present in those sequences, in motifs resembling GHHC or GSAC, is not found in this family. The function of members of this family is unknown, but seems unlike to be as an aminotransferase.

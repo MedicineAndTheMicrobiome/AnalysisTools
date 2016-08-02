@@ -1,0 +1,12 @@
+ID  L3_arch
+AC  TIGR03626
+DE  archaeal ribosomal protein L3
+AU  Haft DH
+TC  308.70 308.70
+NC  303.95 303.95
+AL  muscle_manual
+IT  equivalog
+EN  archaeal ribosomal protein L3
+GS  rpl3p
+TP  TIGRFAMs
+CC  This model describes exclusively the archaeal class of ribosomal protein L3. A separate model (TIGR03625) describes the bacterial/organelle form, and both belong to Pfam family PF00297. Eukaryotic proteins are excluded from this model.

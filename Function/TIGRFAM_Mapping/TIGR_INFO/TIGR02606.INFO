@@ -1,0 +1,12 @@
+ID  antidote_CC2985
+AC  TIGR02606
+DE  putative addiction module antidote protein, CC2985 family
+AU  Haft DH
+TC  46.20 46.20
+NC  33.35 33.35
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  putative addiction module antidote protein, CC2985 family
+TP  TIGRFAMs
+CC  This bacterial protein family has a very similar seed alignment to that of Pfam model PF03693 but is a more stringent model with higher cutoff scores. Proteins that score above the trusted cutoff to this model almost invariably are found adjacent to a ParE family protein (PF05016), where ParE is the killing partner of an addiction module for plasmid stabilization. Members of this family, therefore, are putative addiction module antidote proteins. Some are encoded on plasmids or in prophage regions, but others appear chromosomal. A genome may contain several identical copies, such as the four in Magnetococcus sp. MC-1. This family is named for one member, CC2985 of Caulobacter crescentus CB15.
+DR  PFAM; PF03693

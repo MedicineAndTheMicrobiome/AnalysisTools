@@ -1,0 +1,16 @@
+ID  psaA
+AC  TIGR01335
+DE  photosystem I core protein PsaA
+AU  Haft DH
+TC  862.55 862.55
+NC  857.05 857.05
+AL  clustalw
+IT  equivalog
+EN  photosystem I core protein PsaA
+GS  psaA
+EC  1.97.1.12
+TP  TIGRFAMs
+CC  The core proteins of photosystem I are PsaA and PsaB, homologous integral membrane proteins that form a heterodimer. The heterodimer binds the electron-donating chlorophyll dimer P700, as well as chlorophyll, phylloquinone, and 4FE-4S electron acceptors. This model describes PsaA only.
+DR  PF00223; psaA_psaB; Photosystem I psaA/psaB protein
+DR  PROSITE; PDOC00347; Photosystem I psaA and psaB proteins signature
+DR  HAMAP; MF_00458; 144 of 145

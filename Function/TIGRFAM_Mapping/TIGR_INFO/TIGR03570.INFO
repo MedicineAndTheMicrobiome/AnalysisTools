@@ -1,0 +1,27 @@
+ID  NeuD_NnaD
+AC  TIGR03570
+DE  sugar O-acyltransferase, sialic acid O-acetyltransferase NeuD family
+AU  Selengut J
+TC  160.80 160.80
+NC  124.65 124.65
+AL  muscle
+IT  subfamily
+EN  sugar O-acyltransferase, sialic acid O-acetyltransferase NeuD family
+TP  TIGRFAMs
+CC  This family of proteins includes the characterized NeuD sialic acid O-acetyltransferase enzymes from E. coli and Streptococcus agalactiae (group B strep) [1, 2, 3].  These two are quite closely related to one another, so extension of this annotation to other members of the family in unsupported without additional independent evidence.  The neuD gene is often observed in close proximity to the neuABC genes for the biosynthesis of CMP-N-acetylneuraminic acid (CMP-sialic acid), and NeuD sequences from these organisms were used to construct the seed for this model.  Nevertheless, there are numerous instances of sequences identified by this model which are observed in a different genomic context (although almost universally in exopolysaccharide biosynthesis-related loci), as well as in genomes for which the biosynthesis of sialic acid (SA) is undemonstrated.  Even in the cases where the association with SA biosynthesis is strong, it is unclear in the literature whether the biological substrate is SA iteself, CMP-SA, or a polymer containing SA.  Similarly, it is unclear to what extent the enzyme has a preference for acetylation at the 7, 8 or 9 positions.  In the absence of evidence of association with SA, members of this family may be involved with the acetylation of differring sugar substrates, or possibly the delivery of alternative acyl groups.  The closest related sequences to this family (and those used to root the phylogenetic tree constructed to create this model) are believed to be succinyltransferases involved in lysine biosynthesis.
+CC  These proteins contain repeats of the bacterial transferase hexapeptide (PF00132), although often these do not register above the trusted cutoff.
+RN  [1]
+RM  PMID:7814319 
+RT  Nucleotide sequence and genetic analysis of the neuD and neuB genes in region 2 of the polysialic acid gene cluster of Escherichia coli K1. 
+RA  Annunziato PW, Wright LF, Vann WF, Silver RP 
+RL  J Bacteriol. 1995 Jan;177(2):312-9. 
+RN  [2]
+RM  PMID:16490781 
+RT  The group B streptococcal sialic acid O-acetyltransferase is encoded by neuD, a conserved component of bacterial sialic acid biosynthetic gene clusters. 
+RA  Lewis AL, Hensler ME, Varki A, Nizet V 
+RL  J Biol Chem. 2006 Apr 21;281(16):11186-92. Epub 2006 Feb 20. 
+RN  [3]
+RM  PMID:16923886 
+RT  Separate pathways for O acetylation of polymeric and monomeric sialic acids and identification of sialyl O-acetyl esterase in Escherichia coli K1. 
+RA  Steenbergen SM, Lee YC, Vann WF, Vionnet J, Wright LF, Vimr ER 
+RL  J Bacteriol. 2006 Sep;188(17):6195-206.

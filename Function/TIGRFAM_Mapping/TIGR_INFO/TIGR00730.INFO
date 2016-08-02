@@ -1,0 +1,16 @@
+ID  TIGR00730
+AC  TIGR00730
+DE  TIGR00730 family protein
+AU  Haft DH
+TC  96.35 96.35
+NC  63.80 63.80
+AL  clustalw
+IT  hypoth_equivalog
+EN  TIGR00730 family protein
+TP  TIGRFAMs
+CC  This model represents one branch of a subfamily of proteins of unknown function. Both PSI-BLAST and weak hits by this HMM show a low level of similarity to and suggest an evolutionary relationship of the subfamily to the DprA/Smf family of DNA-processing proteins involved in chromosomal transformation with foreign DNA. Both Aquifex aeolicus and Mycobacterium leprae have one member in each of two branches of this subfamily, suggesting that the branches may have distinct functions.
+RN  [1]
+RM  PMID:15459330
+RT  Crystal structures of possible lysine decarboxylases from Thermus thermophilus HB8.
+RA  Kukimoto-Niino M, Murayama K, Kato-Murayama M, Idaka M, Bessho Y, Tatsuguchi A, Ushikoshi-Nakayama R, Terada T, Kuramitsu S, Shirouzu M, Yokoyama S
+RL  Protein Sci. 2004 Nov;13(11):3038-42. Epub 2004 Sep 30.

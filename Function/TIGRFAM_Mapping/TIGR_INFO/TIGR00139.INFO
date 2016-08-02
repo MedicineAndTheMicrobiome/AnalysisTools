@@ -1,0 +1,15 @@
+ID  h_aconitase
+AC  TIGR00139
+DE  homoaconitase
+AU  Haft DH
+TC  529.90 529.90
+NC  315.30 315.30
+AL  clustalw
+IT  equivalog
+EN  homoaconitase
+GS  lysF
+EC  4.2.1.36
+TP  TIGRFAMs
+CC  Homoaconitase is known only as a fungal enzyme from two species, where it is part of an unusual lysine biosynthesis pathway. Because this HMM is based on just two sequences from a narrow taxonomic range, it may not recognize distant orthologs, should any exist.
+CC  Homoaconitase, aconitase, and 3-isopropylmalate dehydratase have similar overall structures, but 3-isopropylmalate dehydratase is split into large (leuC) and small (leuD) chains in eubacteria. Several pairs of archaeal proteins resemble leuC and leuD over their lengths but are even closer to the respective domains of homoaconitase, and their identity is uncertain.
+RL  Microbiology 1996 Feb;142( Pt 2):389-400

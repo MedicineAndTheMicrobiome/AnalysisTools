@@ -1,0 +1,16 @@
+ID  ABC_phnC
+AC  TIGR02315
+DE  phosphonate ABC transporter, ATP-binding protein
+AU  Haft DH
+TC  266.10 266.10
+NC  251.85 251.85
+AL  clustalw
+IT  equivalog
+EN  phosphonate ABC transporter, ATP-binding protein
+GS  phnC
+EC  3.6.3.28
+TR  3.A.1
+TP  TIGRFAMs
+CC  Phosphonates are a class of phosphorus-containing organic compound with a stable direct C-P bond rather than a C-O-P linkage. A number of bacterial species have operons, typically about 14 genes in size, with genes for ATP-dependent transport of phosphonates, degradation, and regulation of the expression of the system. Members of this protein family are the ATP-binding cassette component of tripartite ABC transporters of phosphonates.
+DR  URL; http://tcdb.ucsd.edu/tcdb/tcfamilybrowse.php?tcname=3.A.1
+DR  HAMAP; MF_01713; 110 of 132

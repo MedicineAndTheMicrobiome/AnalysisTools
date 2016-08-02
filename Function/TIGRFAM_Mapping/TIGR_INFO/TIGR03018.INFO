@@ -1,0 +1,12 @@
+ID  pepcterm_TyrKin
+AC  TIGR03018
+DE  exopolysaccharide/PEP-CTERM locus tyrosine autokinase
+AU  Haft DH
+TC  230.65 230.65
+NC  190.65 190.65
+AL  muscle
+IT  hypoth_equivalog_domain
+EN  exopolysaccharide/PEP-CTERM locus tyrosine autokinase
+EC  2.7.10.2
+TP  TIGRFAMs
+CC  Members of this protein family are related to a known protein-tyrosine autokinase and to numerous homologs from exopolysaccharide biosynthesis region proteins, many of which are designated as chain length determinants. Most members of this family contain a short region, immediately C-terminal to the region modeled here, with an abundance of Tyr residues. These C-terminal tyrosine residues are likely to be autophosphorylation sites. Some members of this family are fusion proteins.

@@ -1,0 +1,13 @@
+ID  ssb
+AC  TIGR00621
+DE  single-stranded DNA-binding protein
+AU  Loftus BJ, Eisen JA
+TC  53.95 53.95
+NC  51.50 51.50
+IT  subfamily
+EN  single stranded DNA-binding protein (ssb)
+GS  ssb
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are single-stranded DNA binding proteins that function in many processes including transcription, repair, replication and recombination. Members encoded between genes for ribosomal proteins S6 and S18 should be annotated as primosomal protein N (PriB). Forms in gamma-protoeobacteria are much shorter and poorly recognized by this model. Additional members of this family include phage proteins. Eukaryotic members are organellar proteins.
+DR  SWISSPROT; P02339;
+RM  82037821;

@@ -1,0 +1,22 @@
+ID  HpnI
+AC  TIGR03472
+DE  hopanoid biosynthesis associated glycosyl transferase protein HpnI
+AU  Selengut J
+TC  310.00 310.00
+NC  242.15 242.15
+AL  muscle
+IT  hypoth_equivalog
+EN  hopanoid biosynthesis associated glycosyl transferase protein HpnI
+GS  hpnI
+TP  TIGRFAMs
+CC  This family of genes include a glycosyl transferase, group 2 domain (PF00535) which are responsible, generally for the transfer of nucleotide-diphosphate sugars to substrates such as polysaccharides and lipids.  The member of this clade from Acidithiobacillus ferrooxidans ATCC 23270 (AFE_0974) is found in the same locus as squalene-hopene cyclase (SHC, TIGR01507) and other genes associated with the biosynthesis of hopanoid natural products.  Similarly, in Ralstonia eutropha JMP134 (Reut_B4902) this gene is adjacent to HpnAB, IspH and HpnH (TIGR03470), although SHC itself is elsewhere in the genome.  Notably, this gene (here named HpnI) and three others form a conserved set (HpnIJKL) which occur in a subset of all genomes containing the SHC enzyme.  This relationship was discerned using the method of partial phylogenetic profiling [1].  This group includes Zymomonas mobilis, the organism where the initial hopanoid biosynthesis locus was described consisting of the genes HpnA-E and SHC (HpnF) [2].  Continuing past SHC are found a phosphorylase enzyme (ZMO0873, i.e. HpnG, TIGR03468) and another radical SAM enzyme (ZMO0874), HpnH.  Although discontinuous in Z. mobilis, we continue the gene symbol sequence with HpnIJKL.  Hopanoids are known to feature polar glycosyl head groups in many organisms.
+RN  [1]
+RM  PMID:16930487 
+RT  Exopolysaccharide-associated protein sorting in environmental organisms: the PEP-CTERM/EpsH system. Application of a novel phylogenetic profiling heuristic. 
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD 
+RL  BMC Biol. 2006 Aug 24;4:29. 
+RN  [2]
+RM  PMID:9714766
+RT  Cloning of conserved genes from Zymomonas mobilis and Bradyrhizobium japonicum that function in the biosynthesis of hopanoid lipids.
+RA  Perzl M, Reipen IG, Schmitz S, Poralla K, Sahm H, Sprenger GA, Kannenberg EL
+RL  Biochim Biophys Acta. 1998 Jul 31;1393(1):108-18.

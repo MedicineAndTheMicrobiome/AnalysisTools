@@ -1,0 +1,11 @@
+ID  T1SS_VCA0849
+AC  TIGR03661
+DE  type I secretion C-terminal target domain (VC_A0849 subclass)
+AU  Haft DH
+TC  17.60 17.60
+NC  7.90 7.90
+AL  muscle_manual
+IT  domain
+EN  type I secretion C-terminal target domain (VC_A0849 subclass)
+TP  TIGRFAMs
+CC  This model represents a C-terminal domain associated with secretion by type 1 secretion systems (T1SS). Members of this subclass do not include the RtxA toxin of Vibrio cholerae and its homologs, although the two classes of proteins share large size, occurrence in genomes with T1SS, regions with long tandem repeats, and regions with the glycine-rich repeat modeled by PF00353.

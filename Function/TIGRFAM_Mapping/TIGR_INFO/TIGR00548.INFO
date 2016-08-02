@@ -1,0 +1,18 @@
+ID  lolB
+AC  TIGR00548
+DE  outer membrane lipoprotein LolB
+AU  Haft DH
+TC  59.60 59.60
+NC  54.35 54.35
+AL  clustalw
+IT  equivalog
+EN  outer membrane lipoprotein LolB
+GS  lolB
+TP  TIGRFAMs
+CC  This protein, LolB, is known so far only in the gamma and beta subdivisions of the Proteobacteria. It is a processed, lipid-modified outer membrane protein. It is required in E. coli for insertion of the major outer lipoprotein (Lpp) into the outer membrane. Lpp is transferred to LolB from the carrier protein LolA in the periplasm. Previously, this protein was thought to play in role in 5-aminolevulinic acid synthesis and was designated HemM.
+AL  ClustalW
+RM  98046025
+RT  A novel outer membrane lipoprotein, LolB (HemM), involved in the LolA (p20)-dependent localization of lipoproteins to the outer membrane of Escherichia coli.
+RA  Matsuyama Si, Yokota N, Tokuda H
+RL  EMBO J 1997 Dec 1;16(23):6947-55
+DR  HAMAP; MF_00233; 116 of 117

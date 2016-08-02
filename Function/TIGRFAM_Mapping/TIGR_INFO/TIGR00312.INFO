@@ -1,0 +1,18 @@
+ID  cbiD
+AC  TIGR00312
+DE  cobalamin biosynthesis protein CbiD
+AU  Haft DH
+TC  166.90 166.90
+NC  108.35 108.35
+AL  clustalw
+IT  equivalog
+EN  cobalamin biosynthesis protein CbiD
+GS  cbiD
+TP  TIGRFAMs
+CC  This protein has been shown by cloning into E. coli to be required for cobalamin biosynthesis.
+CC  role_id
+RM  96146525
+RT  Salmonella typhimurium cobalamin (vitamin B12) biosynthetic genes: functional studies in S. typhimurium and Escherichia coli.
+RA  Raux E, Lanois A, Levillayer F, Warren MJ, Brody E, Rambach A, Thermes C
+RL  J Bacteriol 1996 Feb;178(3):753-67
+DR  HAMAP; MF_00787; 123 of 135

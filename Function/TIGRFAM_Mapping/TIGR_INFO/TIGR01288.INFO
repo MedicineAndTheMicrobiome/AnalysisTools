@@ -1,0 +1,15 @@
+ID  nodI
+AC  TIGR01288
+DE  nodulation ABC transporter NodI
+AU  Haft DH
+TC  424.00 424.00
+NC  258.50 258.50
+AL  clustalw
+IT  equivalog
+EN  ATP-binding ABC transporter family nodulation protein NodI
+GS  nodI
+TR  3.A.01
+TP  TIGRFAMs
+CC  This protein is required for normal nodulation by nitrogen-fixing root nodule bacteria such as Mesorhizobium loti. It is a member of the family of ABC transporter ATP binding proteins and works with NodJ to export a nodulation signal molecule.
+CC  This model does not recognize the highly divergent NodI from Azorhizobium caulinodans.
+DR  HAMAP; MF_01704; 21 of 23

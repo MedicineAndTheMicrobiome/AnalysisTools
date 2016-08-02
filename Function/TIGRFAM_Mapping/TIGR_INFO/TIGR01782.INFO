@@ -1,0 +1,12 @@
+ID  TonB-Xanth-Caul
+AC  TIGR01782
+DE  TonB-dependent receptor
+AU  Selengut J
+TC  310.00 310.00
+NC  123.00 123.00
+AL  clustalw
+IT  subfamily
+EN  TonB-dependent receptor
+TR  1.B.14.
+TP  TIGRFAMs
+CC  This model represents a family of TonB-dependent outer-membrane receptors which are found mainly in Xanthomonas and Caulobacter.  These appear to represent the expansion of a paralogous family in that the 22 X. axonopodis (21 in X. campestris) and 18 C. crescentus sequences are more closely related to each other than any of the many TonB-dependent receptors found in other species.  In fact, the Crescentus and Xanthomonas sequences are inseparable on a phylogenetic tree using a PAM-weighted neighbor-joining method, indicating that one of the two genuses may have acquired this set of receptors from the other.  The mechanism by which this family is shared between Xanthomonas, a gamma proteobacterial plant pathogen and Caulobacter, an alpha proteobacterial aquatic organism is unclear.

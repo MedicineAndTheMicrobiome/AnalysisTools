@@ -1,0 +1,23 @@
+ID  hdxy_isourate
+AC  TIGR02962
+DE  hydroxyisourate hydrolase
+AU  Selengut J, Haft DH
+TC  87.45 87.45
+NC  79.80 79.80
+AL  muscle
+IT  equivalog
+EN  hydroxyisourate hydrolase
+GS  uraH
+EC  3.5.2.17
+TP  TIGRFAMs
+CC  Members of this family, hydroxyisourate hydrolase, represent a distinct clade of transthyretin-related proteins. Bacterial members typically are encoded next to ureidoglycolate hydrolase and often near either xanthine dehydrogenase or xanthine/uracil permease genes and have been demonstrated to have hydroxyisourate hydrolase activity [1].  In eukaryotes, a clade separate from the transthyretins (a family of thyroid-hormone binding proteins) has also been shown to have HIU hydrolase activity in urate catabolizing organisms [2].  Transthyretin, then, would appear to be the recently diverged paralog of the more ancient HIUH family.
+RN  [1]
+RM  PMID: 16098976
+RT  Transthyretin-related proteins function to facilitate the hydrolysis of 5-hydroxyisourate, the end product of the uricase reaction.
+RA  Lee Y, Lee do H, Kho CW, Lee AY, Jang M, Cho S, Lee CH, Lee JS, Myung PK, Park BC, Park SG
+RL  FEBS Lett. 2005 Aug 29;579(21):4769-74.
+RN  [2]
+RM  PMID: 17085964 
+RT  Mouse Transthyretin-related Protein Is a Hydrolase which Degrades 5-Hydroxyisourate, the End Product of the Uricase Reaction. 
+RA  Lee Y, Park BC, Lee do H, Bae KH, Cho S, Lee CH, Lee JS, Myung PK, Park SG 
+RL  Mol Cells. 2006 Oct 31;22(2):141-5.

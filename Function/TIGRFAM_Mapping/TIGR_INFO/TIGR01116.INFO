@@ -1,0 +1,39 @@
+ID  ATPase-IIA1_Ca
+AC  TIGR01116
+DE  calcium-translocating P-type ATPase, SERCA-type
+AU  Selengut J
+TC  703.40 703.40
+NC  697.45 697.45
+AL  clustalw
+IT  equivalog
+EN  sarco/endoplasmic reticulum calcium-translocating P-type ATPase
+EC  3.6.3.8
+TR  3.A.3.2
+TP  TIGRFAMs
+CC  This model describes the P-type ATPase responsible for translocating calcium ions across the endoplasmic reticulum membrane of eukaryotes [1], and is of particular importance in the sarcoplasmic reticulum of skeletal and cardiac muscle in vertebrates [2]. These pumps transfer Ca2+ from the cytoplasm to the lumen of the endoplasmic reticulum.  In humans and mice, at least, there are multiple isoforms of the SERCA pump with overlapping but not redundant functions. Defects in SERCA isoforms are associated with diseases in humans [3].
+CC  The calcium P-type ATPases have been characterized as Type IIA based on a phylogenetic analysis which distinguishes this group from the Type IIB PMCA calcium pump [4] modelled by TIGR01517.  A separate analysis divides Type IIA into sub-types, SERCA and PMR1 [5] the latter of which is modelled by TIGR01522.
+RN [1]
+RM PMID:11302372
+RT Sarce(endo)plasmic reticulum calcium pumps: recent advances in our understanding of structure/function and biology (review).
+RA East JM.
+RL Mol Membr Biol. 2000 Oct-Dec;17(4):189-200
+RN [2]
+RM PMID:11444913
+RT SERCA pump level is a critical determinant of Ca(2+)homeostasis and cardiac contractility.
+RA Periasamy M, Huke S.
+RL J Mol Cell Cardiol. 2001 Jun;33(6):1053-63
+RN [3]
+RM PMID: 10951187
+RT Ca2+ signalling and muscle disease.
+RA MacLennan DH.
+RL Eur J Biochem 2000 Sep;267(17):5291-7
+RN [4]
+RM PMID:9419228
+RT Evolution of Substrate Specificities in the P-type ATPase Superfamily.
+RA Axelsen KB, Palmgren, MG.
+RL J Mol Evol. 1998 Jan; 46(1): 84-101.
+RN [5]
+RM PMID: 10433975
+RT Two additional type IIA Ca(2+)-ATPases are expressed in Arabidopsis thaliana: evidence that type IIA sub-groups exist.
+RA Pittman JK, Mills RF, O'Connor CD, Williams LE.
+RL Gene 1999 Aug 5;236(1):137-47

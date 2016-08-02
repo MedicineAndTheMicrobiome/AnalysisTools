@@ -1,0 +1,27 @@
+ID  cytochro_ccmI
+AC  TIGR03142
+DE  cytochrome c-type biogenesis protein CcmI
+AU  Haft DH
+TC  29.30 29.30
+NC  28.75 28.75
+AL  muscle_manual
+IT  equivalog_domain
+EN  cytochrome c-type biogenesis protein CcmI
+GS  ccmI
+TP  TIGRFAMs
+CC  This TPR repeat-containing protein is the CcmI protein (also called CycH) of c-type cytochrome biogenesis. CcmI is thought to act as an apo-cytochrome c chaperone. This model describes the N-terminal region of the protein, Members of this protein family
+RN  [1]
+RM  PMID: 15937187
+RT  Overproduction of CcmG and CcmFH(Rc) fully suppresses the c-type cytochrome biogenesis defect of Rhodobacter capsulatus CcmI-null mutants.
+RA  Sanders C, Deshmukh M, Astor D, Kranz RG, Daldal F
+RL  J Bacteriol. 2005 Jun;187(12):4245-56.
+RN  [2]
+RM  PMID: 14758542
+RT  The roles of different regions of the CycH protein in c-type cytochrome biogenesis in Sinorhizobium meliloti.
+RA  Cinege G, Kereszt A, Kertesz S, Balogh G, Dusha I
+RL  Mol Genet Genomics. 2004 Mar;271(2):171-9. Epub 2004 Jan 31.
+RN  [3]
+RM  PMID: 8752349
+RT  Rhodobacter capsulatus CycH: a bipartite gene product with pleiotropic effects on the biogenesis of structurally different c-type cytochromes.
+RA  Lang SE, Jenney FE Jr, Daldal F
+RL  J Bacteriol. 1996 Sep;178(17):5279-90.

@@ -1,0 +1,13 @@
+ID  ae
+AC  TIGR00834
+DE  anion exchange protein
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  599.45 599.45
+NC  445.45 445.45
+AL  clustalw_manual
+IT  subfamily
+EN  anion exchange protein
+TP  TIGRFAMs
+CC  The Anion Exchanger (AE) Family (TC 2.A.31)
+CC  Characterized protein members of the AE family are found only in animals.
+CC  They preferentially catalyze anion exchange (antiport) reactions, typically acting as HCO3-:Cl- antiporters, but also transporting a range of other inorganic and organic anions. Additionally, renal Na+:HCO3- cotransporters have been found to be members of the AE family. They catalyze the reabsorption of HCO3- in the renal proximal tubule.

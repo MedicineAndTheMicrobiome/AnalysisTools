@@ -1,0 +1,18 @@
+ID  CYP450_TxtE
+AC  TIGR04458
+DE  4-nitrotryptophan synthase
+AU  Haft DH
+TC  500.00 500.00
+NC  250.00 250.00
+AL  muscle_manual
+IT  equivalog
+EN  4-nitrotryptophan synthase
+GS  txtE
+EC  1.-.-.-
+TP  TIGRFAMs
+CC  Members of this family are cytochrome P450 enzymes that convert L-tryptophan into L-4-nitrotryptophan. In thaxtomin gene clusters, this enzyme (TxtE) uses nitric acid (NO) derived from arginine by the nitric oxide synthase TxtD, and O2, to perform the tryptophan nitration. L-4-nitrotryptophan is then used as a non-proteinogenic amino acid by non-ribosomal peptide synthases (NRPS).
+RN  [1]
+RM  PMID:22941045 
+RT  Cytochrome P450-catalyzed L-tryptophan nitration in thaxtomin phytotoxin biosynthesis. 
+RA  Barry SM, Kers JA, Johnson EG, Song L, Aston PR, Patel B, Krasnoff SB, Crane BR, Gibson DM, Loria R, Challis GL 
+RL  Nat Chem Biol. 2012 Oct;8(10):814-6.

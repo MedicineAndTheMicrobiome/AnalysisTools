@@ -1,0 +1,12 @@
+ID  TOMM_kin_cyc
+AC  TIGR03903
+DE  TOMM system kinase/cyclase fusion protein
+AU  Haft DH
+TC  705.75 705.75
+NC  668.05 668.05
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  TOMM system kinase/cyclase fusion protein
+TP  TIGRFAMs
+CC  This model represents proteins of 1350 in length, in multiple species of Burkholderia, in Acidovorax avenae subsp. citrulli AAC00-1 and Delftia acidovorans SPH-1, and in multiple copies in Sorangium cellulosum, in genomic neighborhoods that include a cyclodehydratase/docking scaffold fusion protein (TIGR03882) and a member of the thiazole/oxazole modified metabolite (TOMM) precursor family TIGR03795. It has a kinase domain in the N-terminal 300 amino acids, followed by a cyclase homology domain, followed by regions without named domain definitions. It is a probable bacteriocin-like metabolite biosynthesis protein.
+DR; PFAM; PF00069; protein kinase domain

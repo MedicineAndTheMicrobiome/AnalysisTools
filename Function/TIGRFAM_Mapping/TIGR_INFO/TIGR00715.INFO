@@ -1,0 +1,22 @@
+ID  precor6x_red
+AC  TIGR00715
+DE  precorrin-6x reductase
+AU  Haft DH
+TC  129.85 129.85
+NC  82.00 82.00
+AL  clustalw
+IT  equivalog
+EN  precorrin-6x reductase
+GS  cobK
+EC  1.3.1.54
+TP  TIGRFAMs
+CC  This enzyme catalyzes a step in cobalamin biosynthesis. It has been identified experimentally in Pseudomonas denitrificans and has been shown to be part of cobalamin biosynthetic operons in several other species.
+CC  This enzyme was found to be a monomer by gel filtration.
+DR  InterPro; IPR003723
+DR  PFAM; PF02571
+RN  [1]
+RM  92121090
+RT  Precorrin-6x reductase from Pseudomonas denitrificans: purification and characterization of the enzyme and identification of the structural gene.
+RA  Blanche F, Thibaut D, Famechon A, Debussche L, Cameron B, Crouzet J
+RL  J Bacteriol 1992 Feb;174(3):1036-42
+DR  EXPERIMENTAL; EGAD|134631|143617; Pseudomonas denitrificans

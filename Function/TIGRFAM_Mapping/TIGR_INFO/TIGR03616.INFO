@@ -1,0 +1,13 @@
+ID  RutG
+AC  TIGR03616
+DE  pyrimidine utilization transport protein G
+AU  Selengut J
+TC  758.65 758.65
+NC  744.65 744.65
+AL  muscle
+IT  equivalog
+EN  pyrimidine utilization transport protein G
+GS  rutG
+TR  2.A.40.-.-
+TP  TIGRFAMs
+CC  This protein is observed in operons extremely similar to that characterized in E. coli K-12 [1] responsible for the import and catabolism of pyrimidines, primarily uracil.  This protein is a member of the uracil-xanthine permease family defined by TIGR00801.  As well as the The Nucleobase:Cation Symporter-2 (NCS2) Family (TC 2.A.40).

@@ -1,0 +1,18 @@
+ID  malonate_beta
+AC  TIGR03133
+DE  biotin-independent malonate decarboxylase, beta subunit
+AU  Haft DH
+TC  278.15 278.15
+NC  127.80 127.80
+AL  muscle
+IT  equivalog
+EN  biotin-independent malonate decarboxylase, beta subunit
+GS  mdcD
+EC  4.1.1.88
+TP  TIGRFAMs
+CC  Members of this protein family are the beta subunit of malonate decarboxylase. Malonate decarboxylase may be a soluble enzyme, or linked to membrane subunits and active as a sodium pump. In the malonate decarboxylase complex, the beta subunit appears to act as a malonyl-CoA decarboxylase.
+RN  [1]
+RM  PMID: 10561613
+RT  Functional evaluation of the genes involved in malonate decarboxylation by Acinetobacter calcoaceticus.
+RA  Koo JH, Kim YS
+RL  Eur J Biochem. 1999 Dec;266(2):683-90.

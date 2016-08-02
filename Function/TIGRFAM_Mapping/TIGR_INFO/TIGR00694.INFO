@@ -1,0 +1,23 @@
+ID  thiM
+AC  TIGR00694
+DE  hydroxyethylthiazole kinase
+AU  Loftus BJ, Haft DH
+TC  256.40 256.40
+NC  110.90 110.90
+AL  clustalw
+IT  equivalog_domain
+EN  hydroxyethylthiazole kinase
+GS  thiM
+EC  2.7.1.50
+TP  TIGRFAMs
+CC  This model represents the hydoxyethylthiazole kinase, ThiM, of a number of bacteria, and C-terminal domains of bifunctional thiamine biosynthesis proteins of Saccharomyces cerevisiae and Schizosaccharomyces pombe, in which the N-terminal domain corresponds to the bacterial thiamine-phosphate pyrophosphorylase (EC 2.5.1.3), ThiE.
+AL  clustalw
+DR  SWISSPROT; P76423
+DR  ECOCYC; EG14069; thiM
+DR  EXPERIMENTAL; EGAD|90780|EC2104; Escherichia coli
+DR  EXPERIMENTAL; EGAD|56426|YPL214C; Saccharomyces cerevisiae
+RN  [1]
+RM  93352421
+RN  [2]
+RM  89255088
+DR  HAMAP; MF_00228; 110 of 142

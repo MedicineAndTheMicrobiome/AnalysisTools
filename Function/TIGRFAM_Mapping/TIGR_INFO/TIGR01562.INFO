@@ -1,0 +1,19 @@
+ID  FdhE
+AC  TIGR01562
+DE  formate dehydrogenase accessory protein FdhE
+AU  Selengut J
+TC  187.65 187.65
+NC  54.80 54.80
+AL  clustalw
+IT  equivalog
+EN  formate dehydrogenase accessory protein FdhE
+GS  fdhE
+TP  TIGRFAMs
+CC  This HMM describes an accessory protein required for the assembly of formate dehydrogenase of certain proteobacteria although not present in the final complex [1].  The exact nature of the function of FdhE in the assembly of the complex is unknown, but considering the presence of selenocysteine, molybdopterin, iron-sulfur clusters and cytochrome b556, it is likely to have something to do with the insertion of cofactors.
+CC  The only sequence scoring between trusted and noise is that from Aquifex aeolicus, which shows certain structural differences from the proteobacterial forms in the alignment. However it is notable that A. aeolicus also has a sequence scoring above trusted to the alpha subunit of formate dehydrogenase (TIGR01553).
+RN  [1]
+RM  PMID: 2170340 
+RT  Identification and expression of the Escherichia coli fdhD and fdhE genes, which are involved in the formation of respiratory formate dehydrogenase.
+RA  Schlindwein C, Giordano G, Santini CL, Mandrand MA.
+RL  J Bacteriol 1990 Oct;172(10):6112-21.
+DR  HAMAP; MF_00611; 50 of 52

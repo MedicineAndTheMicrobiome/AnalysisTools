@@ -1,0 +1,15 @@
+ID  F_box_assoc_1
+AC  TIGR01640
+DE  F-box protein interaction domain
+AU  Haft DH
+TC  37.90 37.90
+NC  37.60 37.60
+AL  manual
+IT  domain
+EN  F-box protein interaction domain
+TP  TIGRFAMs
+CC  This HMM describes a large family of plant domains, with several hundred members in Arabidopsis thaliana. Most examples are found C-terminal to an F-box (PF00646), a 60 amino acid motif involved in ubiquitination of target proteins to mark them for degradation. Two-hybid experiments support the idea that most members are interchangeable F-box subunits of SCF E3 complexes. Some members have two copies of this domain.
+RM  12169662
+RT  The F-box subunit of the SCF E3 complex is encoded by a diverse superfamily of genes in Arabidopsis.
+RA  Gagne JM, Downes BP, Shiu SH, Durski AM, Vierstra RD.
+RL  Proc Natl Acad Sci U S A 2002 Aug 20;99(17):11519-11524

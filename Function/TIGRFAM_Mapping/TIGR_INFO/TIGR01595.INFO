@@ -1,0 +1,16 @@
+ID  cas_CT1132
+AC  TIGR01595
+DE  CRISPR-associated protein, CT1132 family
+AU  Haft DH
+TC  125.80 125.80
+NC  36.95 36.95
+AL  clustalw
+IT  subfamily
+EN  CRISPR-associated protein, CT1132 family
+TP  TIGRFAMs
+CC  This protein is found in at least five widely species that contain CRISPR loci. Four cas (CRISPR-associated) proteins that are widely distributed and found near the CRISPR repeats. This protein is found exclusively next to other cas proteins. Its function is unknown.
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=2003
+RN  [1]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005

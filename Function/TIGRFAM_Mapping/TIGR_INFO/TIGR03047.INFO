@@ -1,0 +1,18 @@
+ID  PS_II_psb28
+AC  TIGR03047
+DE  photosystem II reaction center protein Psb28
+AU  Haft DH
+TC  61.10 61.10
+NC  38.25 38.25
+AL  muscle
+IT  equivalog
+EN  photosystem II reaction center protein Psb28
+GS  psb28
+TP  TIGRFAMs
+CC  Members of this protein family are the Psb28 protein of photosystem II. Two different protein families, apparently without homology between them, have been designated PsbW. Cyanobacterial proteins previously designated PsbW are members of the family described here. However, while members of the plant PsbW family are not found (so far) in Cyanobacteria, members of the present family do occur in plants. We therefore support the alternative designation that has emerged for this protein family, Psp28, rather than PsbW.
+RN  [1]
+RM  PMID: 12069591
+RT  Proteomic analysis of a highly active photosystem II preparation from the cyanobacterium Synechocystis sp. PCC 6803 reveals the presence of novel polypeptides.
+RA  Kashino Y, Lauber WM, Carroll JA, Wang Q, Whitmarsh J, Satoh K, Pakrasi HB
+RL  Biochemistry. 2002 Jun 25;41(25):8004-12.
+DR  HAMAP; MF_01370; 37 of 37

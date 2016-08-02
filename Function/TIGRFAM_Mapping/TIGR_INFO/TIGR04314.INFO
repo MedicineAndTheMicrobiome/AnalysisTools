@@ -1,0 +1,11 @@
+ID  methano7heme
+AC  TIGR04314
+DE  methanogenesis multiheme c-type cytochrome
+AU  Haft DH
+TC  250.00 250.00
+NC  75.00 75.00
+AL  muscle_manual
+IT  equivalog
+EN  methanogenesis multiheme c-type cytochrome
+TP  TIGRFAMs
+CC  Members of this protein family are multiheme cytochrome c proteins of Methanosarcina acetivorans C2A and several other archaeal methanogens. All members have N-terminal signal peptides and are presumed to act in electron transfer reactions associated with methanogenesis. Putative heme-binding motifs include five (or six) CXXCH motifs, a CXXXCH motif, and a CXXXXCH motif. These proteins show multiple regions of local homology, in the same order, with multiheme cytochrome c proteins such as octaheme tetrathionate reductase from Shewanella.

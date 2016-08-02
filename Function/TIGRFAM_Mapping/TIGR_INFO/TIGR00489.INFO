@@ -1,0 +1,13 @@
+ID  aEF-1_beta
+AC  TIGR00489
+DE  translation elongation factor aEF-1 beta
+AU  Haft DH
+TC  61.20 61.20
+NC  41.45 41.45
+AL  clustalw
+IT  equivalog
+EN  translation elongation factor aEF-1 beta
+TP  TIGRFAMs
+CC  This model describes the archaeal translation elongation factor aEF-1 beta. The member from Sulfolobus solfataricus was demonstrated experimentally. It is a dimer that catalyzes the exchange of GDP for GTP on aEF-1 alpha.
+DR  MUID 95359209
+DR  HAMAP; MF_00043; 24 of 28

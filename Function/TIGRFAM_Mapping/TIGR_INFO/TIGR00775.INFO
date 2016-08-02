@@ -1,0 +1,14 @@
+ID  NhaD
+AC  TIGR00775
+DE  Na+/H+ antiporter, NhaD family
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  577.10 577.10
+NC  409.25 409.25
+AL  clustalw_manual
+IT  subfamily
+EN  Na+/H+ antiporter, NhaD family
+TR  2.A.62
+TP  TIGRFAMs
+CC  These proteins are members of the NhaD Na+:H+ Antiporter (NhaD) Family (TC 2.A.62).  A single member of the NhaD family has been characterized. This protein is the NhaD protein of Vibrio parahaemolyticus which has 12 GES predicted transmembrane regions. It has been shown to catalyze Na+/H+ antiport, but Li+ can also be a substrate.
+DR  InterPro; IPR000676
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_62.html

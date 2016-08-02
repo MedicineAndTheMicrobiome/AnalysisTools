@@ -1,0 +1,19 @@
+ID  TrpE-arch
+AC  TIGR01820
+DE  anthranilate synthase component I
+AU  Selengut J
+TC  512.05 512.05
+NC  501.20 501.20
+AL  clustalw
+IT  equivalog
+EN  anthranilate synthase component I, archaeal clade
+GS  trpE
+EC  4.1.3.27
+TP  TIGRFAMs
+CC  This model represents an archaeal clade of anthranilate synthase component I enzymes.  This enzyme is responsible for the first step of tryptophan biosynthesis from chorismate.
+CC  The Sulfolobus enzyme has been reported to be part of a gene cluster for Trp biosynthesis [1]
+RN  [1]
+RM  PMID: 8416906 
+RT  Tryptophan biosynthesis genes trpEGC in the thermoacidophilic archaebacterium Sulfolobus solfataricus.
+RA  Tutino ML, Scarano G, Marino G, Sannia G, Cubellis MV.
+RL  J Bacteriol 1993 Jan;175(1):299-302

@@ -1,0 +1,12 @@
+ID  nitri_red_nirB
+AC  TIGR02374
+DE  nitrite reductase [NAD(P)H], large subunit
+AU  Haft DH
+TC  578.35 578.35
+NC  442.75 442.75
+AL  clustalw_manual
+IT  equivalog_domain
+EN  nitrite reductase [NAD(P)H], large subunit
+GS  nirB
+EC  1.7.1.4
+TP  TIGRFAMs

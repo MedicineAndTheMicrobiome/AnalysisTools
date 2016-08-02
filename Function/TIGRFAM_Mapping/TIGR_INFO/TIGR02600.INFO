@@ -1,0 +1,12 @@
+ID  Verru_Chthon_A
+AC  TIGR02600
+DE  Verru_Chthon cassette protein A
+AU  Haft DH
+TC  332.30 332.30
+NC  242.55 242.55
+AL  clustalw_manual
+IT  subfamily
+EN  Verru_Chthon cassette protein A
+GS  vccA
+TP  TIGRFAMs
+CC  In Verrucomicrobium spinosum and Chthoniobacter flavus, a four-gene operon that includes proteins with an N-terminal signal sequence for cleavage and methylation recurs many times. Each operon is likely to encode a membrane complex, the function of which is unknown. This model represents a long protein from this putative membrame complex, with members averaging about 1300 amino acids. The N-terminal region includes an apparent signal sequence. The function is unknown. Most cassettes are adjacent to an unusually large protein with both an outer membrane autotransporter region and PEP-CTERM putative protein-sorting motif.

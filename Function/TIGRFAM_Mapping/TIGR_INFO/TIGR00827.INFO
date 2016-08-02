@@ -1,0 +1,13 @@
+ID  EIIC-GAT
+AC  TIGR00827
+DE  PTS system, galactitol-specific IIC component
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  542.20 542.20
+NC  439.65 439.65
+AL  clustalw_manual
+IT  subfamily
+EN  PTS system, galactitol-specific IIC component
+TR  4.A.5
+TP  TIGRFAMs
+CC  Bacterial PTS transporters transport and concomitantly phosphorylate their sugar substrates, and typically consist of multiple subunits or protein domains. The only characterized member of this family of PTS transporters is the E. coli galactitol transporter. Gat family PTS systems typically have 3 components: IIA, IIB and IIC. This family is specific for the IIC component of the PTS Gat family.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/4_A_5.html

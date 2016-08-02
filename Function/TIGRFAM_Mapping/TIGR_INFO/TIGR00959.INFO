@@ -1,0 +1,18 @@
+ID  ffh
+AC  TIGR00959
+DE  signal recognition particle protein
+AU  Haft DH, Loftus BJ
+TC  473.20 473.20
+NC  453.65 453.65
+AL  clustalw_manual
+IT  equivalog
+EN  signal recognition particle protein
+GS  ffh
+TR  3.A.5
+TP  TIGRFAMs
+CC  This model represents Ffh (Fifty-Four Homolog), the protein component that forms the bacterial (and organellar) signal recognition particle together with a 4.5S RNA. Ffh is a GTPase homologous to eukaryotic SRP54 and also to the GTPase FtsY (TIGR00064) that is the receptor for the signal recognition particle.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/3_A_5.html
+RM  11735405
+RT  Role of SRP RNA in the GTPase cycles of Ffh and FtsY.
+RA  Peluso P, Shan SO, Nock S, Herschlag D, Walter P.
+RL  Biochemistry 2001 Dec 18;40(50):15224-33

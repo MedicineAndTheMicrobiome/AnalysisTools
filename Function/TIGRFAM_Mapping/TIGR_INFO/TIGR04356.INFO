@@ -1,0 +1,11 @@
+ID  grasp_GAK
+AC  TIGR04356
+DE  ATP-grasp enzyme, GAK system
+AU  Haft DH
+TC  300.00 300.00
+NC  175.00 175.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  ATP-grasp enzyme, GAK system
+TP  TIGRFAMs
+CC  Members of this family are ATP-grasp family enzymes related to a number of characterized glutamate ligases, including the ribosomal protein S6 modification enzyme RimK. This group belongs to a conserved gene neighborhood that also features an HPr kinase-related protein (see TIGR04355). We assign this system the initial designation GAK, for Grasp (this ATP-grasp family enzyme), Amphipathic (for the member of family TIGR04354, designated Amphi-Trp), and Kinase, for the HPr-kinase homolog TIGR04355.

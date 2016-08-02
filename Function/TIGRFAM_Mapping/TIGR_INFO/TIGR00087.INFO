@@ -1,0 +1,34 @@
+ID  surE
+AC  TIGR00087
+DE  5'/3'-nucleotidase SurE
+AU  Haft DH
+TC  135.10 135.10
+NC  33.20 33.20
+IT  equivalog
+EN  5'/3'-nucleotidase SurE
+GS  surE
+EC  3.1.3.5 3.1.3.6
+TP  TIGRFAMs
+CC  This protein family originally was named SurE because of its role in stationary phase survivalin Escherichia coli. In E. coli, surE is next to pcm, an L-isoaspartyl protein repair methyltransferase that is also required for stationary phase survival. Recent work (PMID:15489502) shows that viewing SurE as an acid phosphatase (3.1.3.2) is not accurate. Rather, SurE in E. coli, Thermotoga maritima, and Pyrobaculum aerophilum acts strictly on nucleoside 5'- and 3'-monophosphates.
+CC  E. coli SurE is Recommended cutoffs are 15 for homology, 40 for probable orthology, and 200 for orthology with full-length homology.
+RN  [1]
+RM  93046805
+RT  Complementation of Saccharomyces cerevisiae acid phosphatase mutation by a genomic sequence from the yeast Yarrowia lipolytica identifies a new phosphatase.
+RA  Treton BY, Le Dall MT, Gaillardin CM
+RL  Curr Genet 1992 Nov;22(5):345-55
+RN  [2]
+RM  12595266
+RT  Structure and function of an archaeal homolog of survival protein E (SurEalpha): an acid phosphatase with purine nucleotide specificity.
+RA  Mura C, Katz JE, Clarke SG, Eisenberg D.
+RL  J Mol Biol. 2003 Mar 7;326(5):1559-75. Erratum in: J Mol Biol. 2003 Apr 25;328(2):517.
+RN  [3]
+RM  11709173
+RT  Structure of Thermotoga maritima stationary phase survival protein SurE: a novel acid phosphatase.
+RA  Zhang RG, Skarina T, Katz JE, Beasley S, Khachatryan A, Vyas S, Arrowsmith CH, Clarke S, Edwards A, Joachimiak A, Savchenko A. 
+RL  Structure (Camb). 2001 Nov;9(11):1095-106.
+RN  [4]
+RM  15489502
+RT  General enzymatic screens identify three new nucleotidases in Escherichia coli. Biochemical characterization of SurE, YfbR, and YjjG.
+RA  Proudfoot M, Kuznetsova E, Brown G, Rao NN, Kitagawa M, Mori H, Savchenko A, Yakunin AF.
+RL  J Biol Chem. 2004 Dec 24;279(52):54687-94.
+DR  HAMAP; MF_00060; 366 of 372

@@ -1,0 +1,17 @@
+ID  soxL2
+AC  TIGR03171
+DE  Rieske iron-sulfur protein SoxL2
+AU  Haft DH
+TC  582.10 582.10
+NC  581.95 581.95
+AL  muscle
+IT  equivalog
+EN  Rieske iron-sulfur protein SoxL2
+GS  soxL2
+TP  TIGRFAMs
+CC  This iron-sulfur protein is found in a contiguous genomic region with subunits of cytochrome b558/566 in several archaeal species, and appears to be part of a cytochrome bc1-analogous system.
+RN  [1]
+RM  PMID: 15632423
+RT  Respiratory gene clusters of Metallosphaera sedula - differential expression and transcriptional organization.
+RA  Kappler U, Sly LI, McEwan AG
+RL  Microbiology. 2005 Jan;151(Pt 1):35-43.

@@ -1,0 +1,11 @@
+ID  heli_sec_ATPase
+AC  TIGR03819
+DE  helicase/secretion neighborhood ATPase
+AU  Haft DH
+TC  373.15 373.15
+NC  362.35 362.35
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  helicase/secretion neighborhood ATPase
+TP  TIGRFAMs
+CC  Members of this protein family comprise a distinct clade of putative ATPase associated with an integral membrane complex likely to act in pilus formation, secretion, or conjugal transfer. The association of most members with a nearby gene for a DEAH-box helicase suggests a role in conjugal transfer.

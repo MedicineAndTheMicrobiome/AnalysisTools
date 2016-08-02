@@ -1,0 +1,14 @@
+ID  IMP_synth_hisH
+AC  TIGR01855
+DE  imidazole glycerol phosphate synthase, glutamine amidotransferase subunit
+AU  Haft DH
+TC  105.40 105.40
+NC  84.35 84.35
+AL  clustalw_manual
+IT  equivalog
+EN  imidazole glycerol phosphate synthase, glutamine amidotransferase subunit
+GS  hisH
+EC  2.4.2.-
+TP  TIGRFAMs
+CC  This HMM represents the glutamine amidotransferase subunit (or domain, in eukaryotic systems) of imidazole glycerol phosphate synthase. This subunit catalyzes step 5 of histidine biosynthesis from PRPP. The other subunit, the cyclase, catalyzes step 6.
+DR  HAMAP; MF_00278; 217 of 217

@@ -1,0 +1,13 @@
+ID  B12_SAM_MJ_1487
+AC  TIGR04013
+DE  B12-binding domain/radical SAM domain protein, MJ_1487 family
+AU  Haft DH
+TC  251.00 251.00
+NC  250.70 250.70
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  B12-binding domain/radical SAM domain protein, MJ_1487 family
+TP  TIGRFAMs
+CC  Members of this family have both a B12 binding homology domain (PF02310) and a radical SAM domain (PF04055), and occur only once per genome. Some species with members of this family have a related protein with similar domain architecture. This protein is occurs largely in archaeal methanogens but also in a few bacteria, including Thermotoga maritima and Myxococcus xanthus.
+DR  PFAM; PF02310; B12 binding domain
+DR  PFAM; PF04055; radical SAM domain protein

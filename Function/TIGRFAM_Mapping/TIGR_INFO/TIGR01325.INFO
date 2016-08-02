@@ -1,0 +1,16 @@
+ID  O_suc_HS_sulf
+AC  TIGR01325
+DE  O-succinylhomoserine sulfhydrylase
+AU  Haft DH
+TC  510.05 510.05
+NC  433.55 433.55
+AL  clustalw_manual
+IT  equivalog
+EN  O-succinylhomoserine sulfhydrylase
+GS  metZ
+EC  4.2.99.-
+TP  TIGRFAMs
+CC  This HMM describes O-succinylhomoserine sulfhydrylase, one of several related pyridoxal phosphate-dependent enzymes of cysteine and methionine metabolism. This enzyme is part of an alternative pathway of homocysteine biosynthesis, a step in methionine biosynthesis.
+DR  PROSITE; PDOC00677; Cys/Met metabolism enzymes pyridoxal-phosphate attachment site
+DR  EXPERIMENTAL; OMNI|NTL03PA03107; Pseudomonas aeruginosa
+DR  EXPERIMENTAL; GP|4191271; Rhizobium etli

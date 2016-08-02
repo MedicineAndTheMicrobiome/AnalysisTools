@@ -1,0 +1,17 @@
+ID  asp_kinases
+AC  TIGR00657
+DE  aspartate kinase
+AU  Haft DH
+TC  208.70 208.70
+NC  91.15 91.15
+IT  subfamily_domain
+EN  aspartate kinase
+EC  2.7.2.4
+TP  TIGRFAMs
+CC  Aspartate kinase catalyzes a first step in the biosynthesis from Asp of Lys (and its precursor diaminopimelate), Met, and Thr. In E. coli, a distinct isozyme is inhibited by each of the three amino acid products. The Met-sensitive (I) and Thr-sensitive (II) forms are bifunctional enzymes fused to homoserine dehydrogenases and form homotetramers, while the Lys-sensitive form (III) is a monofunctional homodimer.
+CC  The Lys-sensitive enzyme of Bacillus subtilis resembles the E. coli form but is an alpha 2/beta 2 heterotetramer, where the beta subunit is translated from an in-phase alternative initiator at Met-246. This may be a feature of a number of closely related forms, including a paralog from B. subtilis.
+DR  EXPERIMENTAL; EGAD|9629|EC4024; monofunctional, Lys-sensitive homodimer
+DR  EXPERIMENTAL; EGAD|9487|EC0002; bifunctional, Thr-sensitive homotetramer
+DR  EXPERIMENTAL; EGAD|21696|EC3940; bifunctional, Met-sensistive homotetramer
+DR  EXPERIMENTAL; EGAD|52194|YER052C; mostly Thr-sensitive
+DR  EXPERIMENTAL; EGAD|75283|81007; bifunctional, chloroplast

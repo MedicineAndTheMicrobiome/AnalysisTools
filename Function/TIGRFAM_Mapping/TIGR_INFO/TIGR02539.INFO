@@ -1,0 +1,19 @@
+ID  SepCysS
+AC  TIGR02539
+DE  O-phospho-L-seryl-tRNA:Cys-tRNA synthase
+AU  Haft DH
+TC  365.25 365.25
+NC  214.40 214.40
+AL  clustalw
+IT  equivalog
+EN  O-phospho-L-seryl-tRNA:Cys-tRNA synthase
+GS  pscS
+EC  2.5.1.73
+TP  TIGRFAMs
+CC  Aminoacylation of tRNA(Cys) with Cys, and cysteine biosynthesis in the process, happens in Methanocaldococcus jannaschii and several other archaea by misacylation of tRNA(Cys) with O-phosphoserine (Sep), followed by modification of the phosphoserine to cysteine. In some species, direct tRNA-cys aminoacylation also occurs but this pathway is required for Cys biosynthesis. Members of this protein catalyze the second step in this two step pathway, using pyridoxal phosphate and a sulfur donor to synthesize Cys from Sep while attached to the tRNA.
+RN  [1]
+RM  15790858
+RT  RNA-dependent cysteine biosynthesis in archaea.
+RA  Sauerwald A, Zhu W, Major TA, Roy H, Palioura S, Jahn D, Whitman WB, Yates JR 3rd, Ibba M, Soll D.
+RL  Science. 2005 Mar 25;307(5717):1969-72.
+DR  HAMAP; MF_01675; 25 of 26

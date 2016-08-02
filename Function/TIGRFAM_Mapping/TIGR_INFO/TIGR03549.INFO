@@ -1,0 +1,16 @@
+ID  TIGR03549
+AC  TIGR03549
+DE  YcaO domain protein
+AU  Haft DH
+TC  900.00 900.00
+NC  800.00 800.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  YcaO domain protein
+TP  TIGRFAMs
+CC  This family consists of remarkably well-conserved proteins from gamma and beta Proteobacteria, heavily skewed towards organisms of marine environments. Its gene neighborhood is not conserved. This family has an OsmC-like N-terminal domain. It shares a YcaO domain, frequently associated with ATP-dependent cyclodehydration for peptide modification. The function is unknown. Fifteen of the first sixteen members of this family are from selenouridine-positive genomes, but this correlation may not be meaningful.
+RN  [1]
+RM  PMID:22522320 
+RT  YcaO domains use ATP to activate amide backbones during peptide cyclodehydrations. 
+RA  Dunbar KL, Melby JO, Mitchell DA 
+RL  Nat Chem Biol. 2012 Apr 22;8(6):569-75. doi: 10.1038/nchembio.944.

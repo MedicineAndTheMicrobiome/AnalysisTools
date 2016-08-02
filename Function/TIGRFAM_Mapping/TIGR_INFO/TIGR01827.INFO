@@ -1,0 +1,11 @@
+ID  gatC_rel
+AC  TIGR01827
+DE  putative Asp-tRNA(Asn)/Glu-tRNA(Gln) amidotransferase, subunit C
+AU  Haft DH
+TC  52.10 52.10
+NC  51.70 51.70
+AL  clustalw
+IT  equivalog
+EN  Asp-tRNA(Asn)/Glu-tRNA(Gln) amidotransferase, subunit C, putative
+TP  TIGRFAMs
+CC  This HMM represents a family small family related to GatC, the third subunit of an enzyme for completing the charging of tRNA(Gln) by amidating the Glu-tRNA(Gln). The few known archaea that contain a member of this family appear to produce Asn-tRNA(Asn) by an analogous amidotransferase reaction. This protein is proposed to substitute for GatC in the charging of both tRNAs.

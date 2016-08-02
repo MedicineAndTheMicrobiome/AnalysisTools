@@ -1,0 +1,25 @@
+ID  molyb_mobA
+AC  TIGR02665
+DE  molybdenum cofactor guanylyltransferase
+AU  Haft DH
+TC  151.85 151.85
+NC  125.95 125.95
+AL  clustalw
+IT  equivalog
+EN  molybdenum cofactor guanylyltransferase, proteobacterial
+GS  mobA
+EC  2.7.7.77
+TP  TIGRFAMs
+CC  In many molybdopterin-containing enzymes, including nitrate reductase and dimethylsulfoxide reductase, the cofactor is molybdopterin-guanine dinucleotide. The family described here contains MobA, molybdenum cofactor guanylyltransferase, from the Proteobacteria only. MobA can reconstitute molybdopterin-guanine dinucleotide biosynthesis without the product of the neighboring gene MobB. The probable MobA proteins of other lineages differ sufficiently that they are not included in scope of this family.
+DR  EXPERIMENTAL; SP|P32173; Escherichia coli
+DR  EXPERIMENTAL; SP|P95645; Rhodobacter sphaeroides
+RN  [1]
+RM  12719427
+RT  Biochemical and structural analysis of the molybdenum cofactor biosynthesis protein MobA.
+RA  Guse A, Stevenson CE, Kuper J, Buchanan G, Schwarz G, Giordano G, Magalon A, Mendel RR, Lawson DM, Palmer T.
+RL  J Biol Chem. 2003 Jul 11;278(28):25302-7.
+RN  [2]
+RT  Characterisation of the mob locus of Rhodobacter sphaeroides WS8: mobA is the only gene required for molybdopterin guanine dinucleotide synthesis.
+RA  Buchanan G, Kuper J, Mendel RR, Schwarz G, Palmer T.
+RL  Arch Microbiol. 2001 Jul;176(1-2):62-8.
+DR  HAMAP; MF_00316; 80 of 151

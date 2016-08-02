@@ -1,0 +1,11 @@
+ID  aProt_lowcomp
+AC  TIGR02302
+DE  TIGR02302 family protein
+AU  Haft DH
+TC  394.30 394.30
+NC  187.25 187.25
+AL  clustalw
+IT  hypoth_equivalog
+EN  TIGR02302 family protein
+TP  TIGRFAMs
+CC  Members of this family are long (~850 residue) bacterial proteins from the alpha Proteobacteria. Each has 2-3 predicted transmembrane helices near the N-terminus and a long C-terminal region that includes stretches of Gln/Gly-rich low  complexity sequence, predicted by TMHMM to be outside the membrane. In Bradyrhizobium japonicum, two tandem reading frames are together homologous the single members found in other species; the cutoffs scores are set low enough that the longer scores above the trusted cutoff and the shorter above the noise cutoff for this model.

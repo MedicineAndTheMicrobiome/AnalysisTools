@@ -1,0 +1,22 @@
+ID  cyclo_dehy_ocin
+AC  TIGR03603
+DE  thiazole/oxazole-forming peptide maturase, SagC family component
+AU  Haft DH
+TC  187.65 187.65
+NC  55.20 55.20
+AL  muscle_manual
+IT  subfamily
+EN  thiazole/oxazole-forming peptide maturase, SagC family component
+EC  6.3.-.-
+TP  TIGRFAMs
+CC  Members of this protein family include enzymes related to SagC, a protein involved in thiazole/oxazole cyclodehydration modifications during biosynthesis of streptolysin S in Streptococcus pyogenes from the protoxin polypeptide (product of the sagA gene). Recent evidence suggests that the YcaO/SagD-like component, not this component, performs an ATP-dependent cyclodehydration. This protein family serves as a marker for widely distributed prokaryotic systems for making a general class of heterocycle-containing bacteriocins. Note that this model does not find all possible examples of bacteriocin biosynthesis cyclodehydratases, an in particular misses the E. coli plasmid protein McbB of microcin B17 biosynthesis.
+RN  [1]
+RM  PMID:22522320 
+RT  YcaO domains use ATP to activate amide backbones during peptide cyclodehydrations. 
+RA  Dunbar KL, Melby JO, Mitchell DA 
+RL  Nat Chem Biol. 2012 Apr 22;8(6):569-75. 
+RN  [2]
+RM  PMID:18375757
+RT  Discovery of a widely distributed toxin biosynthetic gene cluster.
+RA  Lee SW, Mitchell DA, Markley AL, Hensler ME, Gonzalez D, Wohlrab A, Dorrestein PC, Nizet V, Dixon JE
+RL  Proc Natl Acad Sci U S A. 2008 Apr 15;105(15):5879-84.

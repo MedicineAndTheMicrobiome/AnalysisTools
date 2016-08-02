@@ -1,0 +1,18 @@
+ID  acid_phos_Burk
+AC  TIGR03397
+DE  acid phosphatase, Burkholderia-type
+AU  Haft DH
+TC  362.75 362.75
+NC  129.05 129.05
+AL  muscle_manual
+IT  subfamily
+EN  acid phosphatase, Burkholderia-type
+GS  acpA
+EC  3.1.-.-
+TP  TIGRFAMs
+CC  A member of this family, AcpA from Burkholderia mallei, has been charactized as a surface-bound glycoprotein with acid phosphatase activity, as can be shown with the colorigenic substrate 5-bromo-4-chloro-3-indolyl phosphate. This family shares regions of sequence similarity with phosphocholine-preferring phospholipase C enzymes (TIGR03396) from many of the same species.
+RN  [1]
+RM  PMID: 11160805
+RT  Identification of the acid phosphatase (acpA) gene homologues in pathogenic and non-pathogenic Burkholderia spp. facilitates TnphoA mutagenesis.
+RA  Burtnick M, Bolton A, Brett P, Watanabe D, Woods D
+RL  Microbiology. 2001 Jan;147(Pt 1):111-20.

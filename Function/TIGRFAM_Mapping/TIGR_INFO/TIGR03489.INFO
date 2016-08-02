@@ -1,0 +1,12 @@
+ID  cas_csp1
+AC  TIGR03489
+DE  CRISPR-associated protein Cas7/Csp1, subtype PGING
+AU  Haft DH
+TC  340.65 340.65
+NC  29.20 29.20
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  CRISPR-associated protein Cas7/Csp1, subtype PGING
+GS  cas7
+TP  TIGRFAMs
+CC  Members of this protein family are Csp1, a CRISPR-associated (cas) gene marker for the Pging subtype of CRISPR/cas system, as found in Porphyromonas gingivalis W83 and Bacteroides forsythus ATCC 43037. This protein belongs to the family of DevR (TIGR01875), a regulator of development in Myxococcus xanthus located in a cas gene region. A different branch of the DevR family, Cst2 (TIGR02585), is a marker for the Tneap subtype of CRISPR/cas system.

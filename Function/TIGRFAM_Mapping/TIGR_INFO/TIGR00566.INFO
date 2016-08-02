@@ -1,0 +1,13 @@
+ID  trpG_papA
+AC  TIGR00566
+DE  glutamine amidotransferase of anthranilate synthase or aminodeoxychorismate synthase
+AU  Haft DH
+TC  121.05 121.05
+NC  95.25 95.25
+AL  clustalw
+IT  subfamily
+EN  glutamine amidotransferase of anthranilate synthase or aminodeoxychorismate synthase
+TP  TIGRFAMs
+CC  This HMM describes the glutamine amidotransferase domain or peptide of the tryptophan-biosynthetic pathway enzyme anthranilate synthase or of the folate biosynthetic pathway enzyme para-aminobenzoate synthase. In at least one case, a single polypeptide from Bacillus subtilis was shown to have both functions. This model covers a subset of the sequences described by the PFAM HMM GATase.
+DR  PROSITE;  PDOC00405; GATASE_TYPE_I;
+DR  PFAM;  PF00117;  GATase;

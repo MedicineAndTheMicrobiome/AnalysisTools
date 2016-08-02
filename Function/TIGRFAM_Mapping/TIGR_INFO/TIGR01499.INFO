@@ -1,0 +1,20 @@
+ID  folC
+AC  TIGR01499
+DE  bifunctional protein FolC
+AU  Haft DH
+TC  162.65 162.65
+NC  125.05 125.05
+AL  clustalw_manual
+IT  subfamily
+EN  folylpolyglutamate synthase/dihydrofolate synthase
+GS  folC
+EC  6.3.2.-
+TP  TIGRFAMs
+CC  This HMM represents the FolC family of folate pathway proteins. Most examples are bifunctional, active as both folylpolyglutamate synthetase (EC 6.3.2.17) and dihydrofolate synthetase (EC 6.3.2.12). The two activities are similar - ATP + glutamate + dihydropteroate or tetrahydrofolyl-[Glu](n) = ADP + orthophosphate + dihydrofolate or tetrahydrofolyl-[Glu](n+1).
+CC  A mutation study of the FolC gene of E. coli suggests that both activities belong to the same active site. Because some examples are monofunctional (and these cannot be separated phylogenetically), the model is treated as subfamily, not equivalog.
+RM  1989505
+DR  EXPERIMENTAL; bifunctional; Pseudomonas aeruginosa
+DR  EXPERIMENTAL; bifunctional; Escherichia coli
+RT  Mutagenesis of the folC gene encoding folylpolyglutamate synthetase-dihydrofolate synthetase in Escherichia coli.
+RA  Kimlova LJ, Pyne C, Keshavjee K, Huy J, Beebakhee G, Bognar AL.
+RL  Arch Biochem Biophys 1991 Jan;284(1):9-16

@@ -1,0 +1,17 @@
+ID  formate_focA
+AC  TIGR04060
+DE  formate transporter FocA
+AU  Haft DH
+TC  290.10 290.10
+NC  289.90 289.90
+AL  muscle_manual
+IT  equivalog
+EN  formate transporter FocA
+GS  focA
+TP  TIGRFAMs
+CC  FocA (formate channel A) forms a pentameric formate-selective channel through the plasma membrane. The focA gene is largely restricted to Proteobacteria and occurs adjacent to genes for pyruvate formate lyase (PFL) and the PFL activase, a radical SAM protein. FocA is homologous to a nitrite transport protein, NirC.
+RN  [1]
+RM  PMID:19940917 
+RT  Structure of the formate transporter FocA reveals a pentameric aquaporin-like channel. 
+RA  Wang Y, Huang Y, Wang J, Cheng C, Huang W, Lu P, Xu YN, Wang P, Yan N, Shi Y 
+RL  Nature. 2009 Nov 26;462(7272):467-72.

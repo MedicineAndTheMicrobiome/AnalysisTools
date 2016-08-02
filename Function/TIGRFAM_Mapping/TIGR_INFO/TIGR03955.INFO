@@ -1,0 +1,17 @@
+ID  rSAM_HydG
+AC  TIGR03955
+DE  [FeFe] hydrogenase H-cluster radical SAM maturase HydG
+AU  Haft DH
+TC  312.15 312.15
+NC  311.80 311.80
+AL  muscle_manual
+IT  equivalog
+EN  [FeFe] hydrogenase H-cluster radical SAM maturase HydG
+GS  hydG
+TP  TIGRFAMs
+CC  This model describes the radical SAM protein HydG. It is part of an enzyme metallocenter maturation system, working together with GTP-binding protein HydF and another radical SAM enzyme, HydE, in H-cluster maturation in [FeFe] hydrogenases.
+RN  [1]
+RM  PMID:15082711
+RT  Discovery of two novel radical S-adenosylmethionine proteins required for the assembly of an active [Fe] hydrogenase.
+RA  Posewitz MC, King PW, Smolinski SL, Zhang L, Seibert M, Ghirardi ML
+RL  J Biol Chem. 2004 Jun 11;279(24):25711-20. Epub 2004 Apr 13.

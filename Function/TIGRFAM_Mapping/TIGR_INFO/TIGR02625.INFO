@@ -1,0 +1,25 @@
+ID  YiiL_rotase
+AC  TIGR02625
+DE  L-rhamnose mutarotase
+AU  Haft DH
+TC  99.60 99.60
+NC  84.70 84.70
+AL  clustalw
+IT  equivalog
+EN  L-rhamnose mutarotase
+GS  rhaM
+EC  5.1.3.-
+TP  TIGRFAMs
+CC  Members of this protein family are rhamnose mutarotase from Escherichia coli, previously designated YiiL as an uncharacterized protein, and close homologs also associated with rhamnose dissimilation operons in other bacterial genomes. Mutarotase is a term for an epimerase that changes optical activity. This enzyme was shown experimentally to interconvert alpha and beta stereoisomers of the pyranose form of L-rhamnose [1]. The crystal structure of this small (104 amino acid) protein shows a locally asymmetric dimer with active site residues of His, Tyr, and Trp [2].
+DR  PFAM; PF05336; Protein of unknown function (DUF718)
+RN  [1]
+RM  15060078
+RT  NMR application probes a novel and ubiquitous family of enzymes that alter monosaccharide configuration.
+RA  Ryu KS, Kim C, Kim I, Yoo S, Choi BS, Park C.
+RL  J Biol Chem. 2004 Jun 11;279(24):25544-8
+RN  [2]
+RM  15876375
+RT  Structural insights into the monosaccharide specificity of Escherichia coli rhamnose mutarotase.
+RA  Ryu KS, Kim JI, Cho SJ, Park D, Park C, Cheong HK, Lee JO, Choi BS.
+RL  J Mol Biol. 2005 May 27;349(1):153-62.
+DR  HAMAP; MF_01663; 66 of 72

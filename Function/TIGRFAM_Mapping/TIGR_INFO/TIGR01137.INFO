@@ -1,0 +1,12 @@
+ID  cysta_beta
+AC  TIGR01137
+DE  cystathionine beta-synthase
+AU  Haft DH
+TC  510.25 510.25
+NC  356.90 356.90
+AL  clustalw_manual
+IT  equivalog
+EN  cystathionine beta-synthase
+EC  4.2.1.22
+TP  TIGRFAMs
+CC  Members of this family closely resemble cysteine synthase but contain an additional C-terminal CBS domain. The function of any bacterial member included in this family is proposed but not proven.

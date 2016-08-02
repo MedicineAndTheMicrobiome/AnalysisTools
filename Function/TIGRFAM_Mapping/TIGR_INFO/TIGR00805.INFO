@@ -1,0 +1,14 @@
+ID  oat
+AC  TIGR00805
+DE  sodium-independent organic anion transporter
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  280.00 280.00
+NC  259.30 259.30
+AL  clustalw_manual
+IT  subfamily
+EN  sodium-independent organic anion transporter
+GS  oat
+TR  2.A.60
+TP  TIGRFAMs
+CC  The Organo Anion Transporter (OAT) Family (TC 2.A.60)
+CC  Proteins of the OAT family catalyze the Na+-independent facilitated transport of organic anions such as bromosulfobromophthalein and prostaglandins as well as conjugated and unconjugated bile acids (taurocholate and cholate, respectively). These transporters have been characterized in mammals, but homologues are present in C. elegans  and A. thaliana. Some of the mammalian proteins exhibit a high degree of tissue specificity. For example, the rat OAT is found at high levels in liver and kidney and at lower levels in other tissues. These proteins possess 10-12 putative a-helical transmembrane spanners. They may catalyze electrogenic anion uniport or anion exchange.

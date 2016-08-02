@@ -1,0 +1,15 @@
+ID  mutl
+AC  TIGR00585
+DE  DNA mismatch repair protein MutL
+AU  Loftus BJ, Eisen JA
+TC  253.25 253.25
+NC  133.15 133.15
+IT  superfamily
+EN  DNA mismatch repair protein MutL
+GS  mutL
+TP  TIGRFAMs
+CC  All proteins in this family for which the functions are known are involved in the process of generalized mismatch repair.  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  EGAD; 8885;
+DR  SWISSPROT; P23367;
+RM  92279041;
+DR  HAMAP; MF_00149; 286 of 291

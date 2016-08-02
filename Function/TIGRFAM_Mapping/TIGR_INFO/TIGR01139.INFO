@@ -1,0 +1,13 @@
+ID  cysK
+AC  TIGR01139
+DE  cysteine synthase A
+AU  Haft DH
+TC  350.95 350.95
+NC  330.00 330.00
+AL  clustalw
+IT  equivalog
+EN  cysteine synthase A
+GS  cysK
+EC  2.5.1.47
+TP  TIGRFAMs
+CC  This model distinguishes cysteine synthase A (CysK) from cysteine synthase B (CysM). CysM differs in having a broader specificity that also allows the use of thiosulfate to produce cysteine thiosulfonate.

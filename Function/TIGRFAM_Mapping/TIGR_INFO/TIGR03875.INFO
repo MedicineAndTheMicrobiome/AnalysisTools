@@ -1,0 +1,11 @@
+ID  RNA_lig_partner
+AC  TIGR03875
+DE  RNA ligase partner, MJ_0950 family
+AU  Haft DH
+TC  95.30 95.30
+NC  90.65 90.65
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  RNA ligase partner, MJ_0950 family
+TP  TIGRFAMs
+CC  This uncharacterized protein family is found almost perfectly in the same set of genomes as the Pab1020 family described by model TIGR01209. These pairs are found mostly in Archaea, but also in a few bacteria (e.g. Alkalilimnicola ehrlichei MLHE-1, Aquifex aeolicus). While the partner protein has been described as  homodimeric ligase that has RNA circularization activity, the function of this protein (also called UPF0278) is unknown.

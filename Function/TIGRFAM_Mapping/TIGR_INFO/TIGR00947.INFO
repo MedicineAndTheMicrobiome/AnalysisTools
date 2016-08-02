@@ -1,0 +1,20 @@
+ID  2A73
+AC  TIGR00947
+DE  putative bicarbonate transporter, IctB family
+AU  Loftus BJ, Haft DH
+TC  366.40 366.40
+NC  209.65 209.65
+AL  clustalw_manual
+IT  equivalog
+EN  putative bicarbonate transporter, IctB family
+GS  ictB
+TP  TIGRFAMs
+CC  This family of proteins is suggested to transport inorganic carbon (HCO3-), based on the phenotype of a mutant of IctB in Synechococcus sp. strain PCC 7942. Bicarbonate uptake is used by many photosynthetic organisms including cyanobacteria. These organisms are able to concentrate CO2/HCO3- against a greater than ten-fold concentration gradient. Cyanobacteria may have several such carriers operating with different efficiencies. Note that homology to various O-antigen ligases, with possible implications for mutant cell envelope structure, might allow alternatives to the interpretation of IctB as a bicarbonate transport protein.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_73.html
+DR  Interpro; IPR006007
+DR  PFAM; PF04932
+RN  [1]
+RM  PMID:9688546
+RT  A putative HCO3- transporter in the cyanobacterium Synechococcus sp. strain PCC 7942.
+RA  Bonfil DJ, Ronen-Tarazi M, Sultemeyer D, Lieman-Hurwitz J, Schatz D, Kaplan A
+RL  FEBS Lett. 1998 Jul 3;430(3):236-40.

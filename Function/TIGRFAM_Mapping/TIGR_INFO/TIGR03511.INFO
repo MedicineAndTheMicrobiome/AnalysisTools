@@ -1,0 +1,17 @@
+ID  GldH_lipo
+AC  TIGR03511
+DE  gliding motility-associated lipoprotein GldH
+AU  Haft DH
+TC  78.70 78.70
+NC  30.60 30.60
+AL  muscle_manual
+IT  subfamily
+EN  gliding motility-associated lipoprotein GldH
+GS  gldH
+TP  TIGRFAMs
+CC  Members of this protein family are predicted lipoproteins, exclusive to the Bacteroidetes phylum (previously Cytophaga-Flavobacteria-Bacteroides). Members include GldH, a protein linked to a type of rapid surface gliding motility found in certain Bacteroidetes, such as Flavobacterium johnsoniae and Cytophaga hutchinsonii. Gliding motility appears closely linked to chitin utilization in the model species Flavobacterium johnsoniae. Not all Bacteroidetes with members of this protein family may have gliding motility.
+RN  [1]
+RM  PMID:14594839
+RT  Flavobacterium johnsoniae GldH is a lipoprotein that is required for gliding motility and chitin utilization. 
+RA  McBride MJ, Braun TF, Brust JL
+RL  J Bacteriol. 2003 Nov;185(22):6648-57.

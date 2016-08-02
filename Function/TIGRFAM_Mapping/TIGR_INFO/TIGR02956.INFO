@@ -1,0 +1,23 @@
+ID  TMAO_torS
+AC  TIGR02956
+DE  TMAO reductase sytem sensor TorS
+AU  Haft DH
+TC  676.50 676.50
+NC  446.00 446.00
+AL  muscle
+IT  equivalog
+EN  TMAO reductase sytem sensor TorS
+GS  torS
+EC  2.7.13.3
+TP  TIGRFAMs
+CC  This protein, TorS, is part of a regulatory system for the torCAD operon that encodes the pterin molybdenum cofactor-containing enzyme trimethylamine-N-oxide (TMAO) reductase (TorA), a cognate chaperone (TorD), and a penta-haem cytochrome (TorC). TorS works together with the inducer-binding protein TorT and the response regulator TorR. TorS contains histidine kinase ATPase (PF02518), HAMP (PF00672), phosphoacceptor (PF00512), and phosphotransfer (PF01627) domains and a response regulator receiver domain (PF00072).
+RN  [1]
+RM  PMID: 16221580
+RT  Microbial dimethylsulfoxide and trimethylamine-N-oxide respiration.
+RA  McCrindle SL, Kappler U, McEwan AG
+RL  Adv Microb Physiol. 2005;50:147-98.
+RN  [2]
+RM  PMID: 8809780
+RT  An unorthodox sensor protein (TorS) mediates the induction of the tor structural genes in response to trimethylamine N-oxide in Escherichia coli.
+RA  Jourlin C, Bengrine A, Chippaux M, Mejean V
+RL  Mol Microbiol. 1996 Jun;20(6):1297-306.

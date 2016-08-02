@@ -1,0 +1,18 @@
+ID  VI_Rhs_Vgr
+AC  TIGR03361
+DE  type VI secretion system Vgr family protein
+AU  Haft DH
+TC  186.35 186.35
+NC  180.60 180.60
+AL  muscle_manual
+IT  subfamily_domain
+EN  type VI secretion system Vgr family protein
+TP  TIGRFAMs
+CC  Members of this protein family belong to the Rhs element Vgr protein family (see TIGR01646), but furthermore all are found in genomes with type VI secretion loci. However, members of this protein family, although recognizably correlated to type VI secretion according the partial phylogenetic profiling algorithm, are often found far the type VI secretion locus.
+DR  TIGRFAM; vgr_GE; Rhs element Vgr protein
+RN  [1]
+RM  PMID: 16763151
+RT  A virulence locus of Pseudomonas aeruginosa encodes a protein secretion apparatus.
+RA  Mougous JD, Cuff ME, Raunser S, Shen A, Zhou M, Gifford CA, Goodman AL, Joachimiak G, Ordonez CL, Lory S, Walz T, Joachimiak A,
+Mekalanos JJ
+RL  Science. 2006 Jun 9;312(5779):1526-30.

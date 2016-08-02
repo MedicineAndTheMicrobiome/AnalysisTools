@@ -1,0 +1,33 @@
+ID  PseC
+AC  TIGR03588
+DE  UDP-4-amino-4,6-dideoxy-N-acetyl-beta-L-altrosamine transaminase
+AU  Selengut J
+TC  423.50 423.50
+NC  419.20 419.20
+AL  muscle
+IT  equivalog
+EN  UDP-4-amino-4,6-dideoxy-N-acetyl-beta-L-altrosamine transaminase
+GS  pseC
+EC  2.6.1.92
+TP  TIGRFAMs
+CC  This family of enzymes are aminotransferases of the PF01041 family involved in the biosynthesis of pseudaminic acid [1,2,3].  They convert UDP-4-keto-6-deoxy-N-acetylglucosamine into UDP-4-amino-4,6-dideoxy-N-acetylgalactose.  Pseudaminic acid has a role in surface polysaccharide in Pseudomonas as well as in the modification of flagellin in Campylobacter and Helicobacter species [4].
+RN  [1]
+RM  PMID:16421095 
+RT  Structural and functional characterization of PseC, an aminotransferase involved in the biosynthesis of pseudaminic acid, an essential flagellar modification in Helicobacter pylori. 
+RA  Schoenhofen IC, Lunin VV, Julien JP, Li Y, Ajamian E, Matte A, Cygler M, Brisson JR, Aubry A, Logan SM, Bhatia S, Wakarchuk WW, Young NM 
+RL  J Biol Chem. 2006 Mar 31;281(13):8907-16. Epub 2006 Jan 18. 
+RN  [2]
+RM  PMID:16286454 
+RT  Functional characterization of dehydratase/aminotransferase pairs from Helicobacter and Campylobacter: enzymes distinguishing the pseudaminic acid and bacillosamine biosynthetic pathways. 
+RA  Schoenhofen IC, McNally DJ, Vinogradov E, Whitfield D, Young NM, Dick S, Wakarchuk WW, Brisson JR, Logan SM 
+RL  J Biol Chem. 2006 Jan 13;281(2):723-32. Epub 2005 Nov 11. 
+RN  [3]
+RM  PMID:15790564 
+RT  Biochemical characterization of the Campylobacter jejuni Cj1294, a novel UDP-4-keto-6-deoxy-GlcNAc aminotransferase that generates UDP-4-amino-4,6-dideoxy-GalNAc. 
+RA  Obhi RK, Creuzenet C 
+RL  J Biol Chem. 2005 May 27;280(21):20902-8. Epub 2005 Mar 24. 
+RN  [4]
+RM  PMID:16684771 
+RT  Functional characterization of the flagellar glycosylation locus in Campylobacter jejuni 81-176 using a focused metabolomics approach. 
+RA  McNally DJ, Hui JP, Aubry AJ, Mui KK, Guerry P, Brisson JR, Logan SM, Soo EC 
+RL  J Biol Chem. 2006 Jul 7;281(27):18489-98. Epub 2006 May 9.

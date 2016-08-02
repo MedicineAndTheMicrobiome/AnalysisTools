@@ -1,0 +1,14 @@
+ID  aroQ
+AC  TIGR01088
+DE  3-dehydroquinate dehydratase, type II
+AU  Dodson RJ, Haft DH
+TC  169.85 169.85
+NC  145.55 145.55
+AL  clustalw
+IT  equivalog
+EN  3-dehydroquinate dehydratase, type II
+GS  aroQ
+EC  4.2.1.10
+TP  TIGRFAMs
+CC  This HMM specifies the type II enzyme. The type I enzyme, often found as part of a multifunctional protein, is described by TIGR01093.
+DR  HAMAP; MF_00169; 223 of 227

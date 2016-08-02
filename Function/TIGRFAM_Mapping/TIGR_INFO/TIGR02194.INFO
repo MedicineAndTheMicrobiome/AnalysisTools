@@ -1,0 +1,17 @@
+ID  GlrX_NrdH
+AC  TIGR02194
+DE  glutaredoxin-like protein NrdH
+AU  Selengut J
+TC  85.75 85.75
+NC  72.05 72.05
+AL  clustalw
+IT  subfamily
+EN  Glutaredoxin-like protein NrdH
+GS  nrdH
+TP  TIGRFAMs
+CC  NrdH-redoxin is a representative of a class of small redox proteins that contain a conserved CXXC motif and are characterized by a glutaredoxin-like amino acid sequence and thioredoxin-like activity profile.  Unlike other the glutaredoxins to which it is most closely related, NrdH aparrently does not interact with glutathione/glutathione reductase, but rather with thioredoxin reductase to catalyze the reduction of ribonucleotide reductase.
+RN  [1]
+RM  PMID: 11441020
+RT  Structural basis for the thioredoxin-like activity profile of the glutaredoxin-like NrdH-redoxin from Escherichia coli.
+RA  Stehr M, Schneider G, Aslund F, Holmgren A, Lindqvist Y.
+RL  J Biol Chem. 2001 Sep 21;276(38):35836-41. Epub 2001 Jul 05.

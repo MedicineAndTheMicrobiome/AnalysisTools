@@ -1,0 +1,17 @@
+ID  catechol_2_3
+AC  TIGR03211
+DE  catechol 2,3 dioxygenase
+AU  Haft DH
+TC  320.20 320.20
+NC  237.95 237.95
+AL  manual
+IT  equivalog
+EN  catechol 2,3 dioxygenase
+EC  1.13.11.2
+TP  TIGRFAMs
+CC  Members of this family all are enzymes active as catechol 2,3 dioxygenase (1.13.11.2), although some members have highly significant activity on catechol derivatives such as 3-methylcatechol, 3-chlorocatechol, and 4-chlorocatechol (see Mars, et al.). This enzyme is also called metapyrocatechase, as it performs a meta-cleavage (an extradiol ring cleavage), in contrast to the ortho-cleavage (intradiol ring cleavage)performed by catechol 1,2-dioxygenase (EC 1.13.11.1), also called pyrocatechase.
+RN  [1]
+RM  PMID: 9973359
+RT  Conversion of 3-chlorocatechol by various catechol 2,3-dioxygenases and sequence analysis of the chlorocatechol dioxygenase region of Pseudomonas putida GJ31.
+RA  Mars AE, Kingma J, Kaschabek SR, Reineke W, Janssen DB
+RL  J Bacteriol. 1999 Feb;181(4):1309-18.

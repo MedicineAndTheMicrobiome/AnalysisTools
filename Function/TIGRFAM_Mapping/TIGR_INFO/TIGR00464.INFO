@@ -1,0 +1,15 @@
+ID  gltX_bact
+AC  TIGR00464
+DE  glutamate--tRNA ligase
+AU  Haft DH
+TC  289.95 289.95
+NC  260.60 260.60
+AL  clustalw
+IT  equivalog
+EN  glutamyl-tRNA synthetase, bacterial family
+GS  gltX
+EC  6.1.1.17
+TP  TIGRFAMs
+CC  The glutamyl-tRNA synthetases of the eukaryotic cytosol and of the Archaea are more similar to glutaminyl-tRNA synthetases than to bacterial glutamyl-tRNA synthetases. This HMM models just the bacterial and mitochondrial forms of the enzyme. In many species, the charging of tRNA(gln) proceeds first through misacylation with Glu and then transamidation. For this reason, glutamyl-tRNA synthetases may act on both tRNA(gln) and tRNA(glu). This model is highly specific. Proteins with positive scores below the trusted cutoff may be fragments rather than full-length sequences.
+DR  EC 6.1.1.17
+DR  HAMAP; MF_00022; 514 of 565

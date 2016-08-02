@@ -1,0 +1,17 @@
+ID  apsK
+AC  TIGR00455
+DE  adenylyl-sulfate kinase
+AU  Loftus BJ
+TC  138.70 138.70
+NC  133.35 133.35
+AL  clustalw
+IT  equivalog_domain
+EN  adenylyl-sulfate kinase
+GS  cysC
+EC  2.7.1.25
+TP  TIGRFAMs
+CC  This protein, adenylylsulfate kinase, is often found as a fusion protein with sulfate adenylyltransferase.
+CC  Important residue (active site in E.coli) is residue 100 of the seed alignment.
+DR  Swissprot; P23846;
+DR  ECOCYC; EG10185; 
+DR  HAMAP; MF_00065; 74 of 76

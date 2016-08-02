@@ -1,0 +1,17 @@
+ID  F1F0_chp_2
+AC  TIGR03165
+DE  F1/F0 ATPase, Methanosarcina type, subunit 2
+AU  Haft DH
+TC  55.50 55.50
+NC  31.85 31.85
+AL  muscle
+IT  hypoth_equivalog
+EN  F1/F0 ATPase, Methanosarcina type, subunit 2
+EC  3.6.3.-
+TP  TIGRFAMs
+CC  Members of this protein family are uncharacterized, highly hydrophobic proteins encoded in the middle of apparent F1/F0 ATPase operons. We note, however, that this protein is both broadly and sparsely distributed. It is found in about only about two percent of microbial genomes sequenced, with the first ten examples found coming from the Euryarchaeota, Chlorobia, Betaproteobacteria, Deltaproteobacteria, and Planctomycetes. In most of these species, surrounding operon appears to represent a second F1/F0 ATPase system, and the member proteins belong to subfamilies with the same phylogenetic distribution as the current protein family.
+RN  [1]
+RM  PMID: 9425287
+RT  F0F1-ATPase genes from an archaebacterium, Methanosarcina barkeri.
+RA  Sumi M, Yohda M, Koga Y, Yoshida M
+RL  Biochem Biophys Res Commun. 1997 Dec 18;241(2):427-33.

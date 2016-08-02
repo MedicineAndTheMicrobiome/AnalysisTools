@@ -1,0 +1,14 @@
+ID  nikR
+AC  TIGR02793
+DE  nickel-responsive transcriptional regulator NikR
+AU  Haft DH
+TC  175.45 175.45
+NC  71.75 71.75
+AL  clustalw_manual
+IT  equivalog
+EN  nickel-responsive transcriptional regulator NikR
+GS  nikR
+TP  TIGRFAMs
+CC  Three members of the seed for this model, from Escherichia coli, Pseudomonas putida, and Brucella melitensis, are found associated with a nickel ABC transporter operon that acts to import nickel for use as a cofactor in urease or hydrogenase. These proteins, with characterized nickel-binding and DNA-binding domains, act as nickel-responsive transcriptional regulators. In the larger family of full-length homologs, most others both lack proximity to the nickel ABC transporter operon and form a separate clade. Several of the homologs not within the scope of this model, but rather scoring between the trusted and noise cutoffs, have been shown to bind nickel, copper, or both, and to regulate genes in response to nickel.
+DR  PFAM; PF01402; Ribbon-helix-helix protein, copG family
+DR  HAMAP; MF_00476; 31 of 80

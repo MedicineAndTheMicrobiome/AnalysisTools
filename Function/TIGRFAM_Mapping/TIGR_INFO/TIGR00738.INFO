@@ -1,0 +1,15 @@
+ID  rrf2_super
+AC  TIGR00738
+DE  Rrf2 family protein
+AU  Haft DH
+TC  73.30 73.30
+NC  49.95 49.95
+IT  superfamily
+EN  Rrf2 family protein
+TP  TIGRFAMs
+CC  This HMM represents a superfamily of probable transcriptional regulators. One member, RRF2 of Desulfovibrio vulgaris is an apparent regulatory protein experimentally (MEDLINE:97293189). The N-terminal region appears related to the DNA-binding biotin repressor region of the BirA bifunctional according to results after three rounds of PSI-BLAST with a fairly high stringency.
+AL  hmmalign_manual
+RN  [1]
+RM  97293189
+RT  Deletion of two downstream genes alters expression of the hmc operon of Desulfovibrio vulgaris subsp. vulgaris Hildenborough.
+DR  HAMAP; MF_01177; 35 of 36

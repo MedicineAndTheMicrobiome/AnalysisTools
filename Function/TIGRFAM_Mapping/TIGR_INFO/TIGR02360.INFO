@@ -1,0 +1,15 @@
+ID  pbenz_hydroxyl
+AC  TIGR02360
+DE  4-hydroxybenzoate 3-monooxygenase
+AU  Haft DH
+TC  538.70 538.70
+NC  219.25 219.25
+AL  clustalw
+IT  equivalog
+EN  4-hydroxybenzoate 3-monooxygenase
+GS  pobA
+EC  1.14.13.2
+TP  TIGRFAMs
+CC  Members of this family are the enzyme 4-hydroxybenzoate 3-monooxygenase, also called p-hydroxybenzoate hydroxylase. It converts 4-hydroxybenzoate + NADPH + molecular oxygen to protocatechuate + NADPH + water. It contains monooxygenase (PF01360) and FAD binding (PF01494) domains.  Pathways that contain this enzyme include the protocatechuate 4,5-degradation pathway.
+DR  PFAM; PF01360; Monooxygenase
+DR  PFAM; PF01494; FAD_binding_3

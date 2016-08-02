@@ -1,0 +1,15 @@
+ID  MtrF
+AC  TIGR02507
+DE  tetrahydromethanopterin S-methyltransferase, F subunit
+AU  Selengut J
+TC  25.00 25.00
+NC  22.00 22.00
+AL  clustalw
+IT  equivalog_domain
+EN  tetrahydromethanopterin S-methyltransferase, F subunit
+GS  mtrF
+EC  2.1.1.86
+TP  TIGRFAMs
+CC  This small protein (MtrF) is one of eight subunits of the   N5-methyltetrahydromethanopterin:
+CC  coenzyme M methyltransferase in methanogenic archaea. This methyltranferase is membrane-associated enzyme complex that uses methy-transfer reaction to drive sodium-ion pump. Archaea domain, have evolved energy-yielding pathways marked by one-carbon biochemistry featuring novel cofactors and enzymes. This transferase is involved in the transfer of 'methyl' group from N5-methyltetrahydromethanopterin to coenzyme M. In an accompanying reaction, methane is produced by two-electron reduction of the methyl moiety in methyl-coenzyme M by another enzyme methyl-coenzyme M reductase.
+DR  HAMAP; MF_01099; 6 of 7

@@ -1,0 +1,11 @@
+ID  rSAM_pair_X
+AC  TIGR04100
+DE  radical SAM enzyme, TIGR04100 family
+AU  Haft DH
+TC  262.00 262.00
+NC  260.00 260.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  radical SAM enzyme, TIGR04100 family
+TP  TIGRFAMs
+CC  Members of this protein family are radical SAM enzymes that appear paired with members of TIGR04002, a family of small (~170 residue), mostly hydrophobic  protein. This family of radical SAM enzymes belongs to a larger family TIGR04038, in which some members show regularly in contexts with TatD.

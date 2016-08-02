@@ -1,0 +1,13 @@
+ID  2A0127
+AC  TIGR00902
+DE  MFS transporter, phenyl propionate permease (PPP) family
+AU  Loftus BJ
+TC  698.90 698.90
+NC  430.20 430.20
+AL  clustalw_manual
+IT  subfamily
+EN  phenyl proprionate permease family protein
+TR  2.A.1.27
+TP  TIGRFAMs
+CC  This family of proteins is involved in the uptake of 3-phenylpropionic acid. This uptake mechanism is for the metabolism of phenylpropanoid compounds and plays an important role in the natural degradative cycle of these aromatic molecules.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_1.html

@@ -1,0 +1,13 @@
+ID  ECA_wecE
+AC  TIGR02379
+DE  TDP-4-keto-6-deoxy-D-glucose transaminase
+AU  Haft DH
+TC  434.85 434.85
+NC  340.30 340.30
+AL  clustalw
+IT  subfamily
+EN  TDP-4-keto-6-deoxy-D-glucose transaminase
+GS  wecE
+TP  TIGRFAMs
+CC  This family consists of TDP-4-keto-6-deoxy-D-glucose transaminases, the WecE (formerly RffA) protein of enterobacterial common antigen (ECA) biosynthesis, from enterobacteria. It also includes closely matching sequence from species not expected to make ECA, but which contain other genes for the biosynthesis of TDP-4-keto-6-deoxy-D-Glc, an intermediate in the biosynthesis of other compounds as well and the substrate of WecA. This family belongs to the DegT/DnrJ/EryC1/StrS aminotransferase family (PF01041).
+DR  PFAM; PF01041; DegT/DnrJ/EryC1/StrS aminotransferase family

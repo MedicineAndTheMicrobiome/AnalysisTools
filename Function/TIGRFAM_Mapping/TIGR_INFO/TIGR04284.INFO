@@ -1,0 +1,12 @@
+ID  aldehy_Rv0768
+AC  TIGR04284
+DE  aldehyde dehydrogenase, Rv0768 family
+AU  Haft DH
+TC  775.00 775.00
+NC  750.00 750.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  aldehyde dehydrogenase, Rv0768 family
+EC  1.2.1.-
+TP  TIGRFAMs
+CC  This family describes a branch of the aldehyde dehydrogenase (NAD) family (see PF00171) that includes Rv0768 from Mycobacterium tuberculosis. All members of this family belong to species predicted to synthesize mycofactocin, suggesting that this enzyme or another upstream or downstream in the same pathway might be mycofactocin-dependent. However, the taxonomic range of this family is not nearly broad enough to make that relationship conclusive.

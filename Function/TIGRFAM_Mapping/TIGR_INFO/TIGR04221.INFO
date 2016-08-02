@@ -1,0 +1,17 @@
+ID  SecA2_Mycobac
+AC  TIGR04221
+DE  accessory Sec system translocase SecA2
+AU  Haft DH
+TC  725.00 725.00
+NC  690.00 690.00
+AL  muscle
+IT  equivalog
+EN  accessory Sec system translocase SecA2, Actinobacterial type
+GS  secA2
+TP  TIGRFAMs
+CC  Members of this family are the SecA2 subunit of the Mycobacterial type of accessory secretory system. This family is quite different SecA2 of the Staph/Strep type (TIGR03714).
+RN  [1]
+RM  PMID:11717254 
+RT  Two nonredundant SecA homologues function in mycobacteria. 
+RA  Braunstein M, Brown AM, Kurtz S, Jacobs WR Jr 
+RL  J Bacteriol. 2001 Dec;183(24):6979-90.

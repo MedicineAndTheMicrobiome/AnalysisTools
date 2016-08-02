@@ -1,0 +1,16 @@
+ID  spore_CotS
+AC  TIGR02906
+DE  spore coat protein, CotS family
+AU  Haft DH
+TC  172.70 172.70
+NC  105.30 105.30
+AL  clustalw
+IT  subfamily
+EN  spore coat protein, CotS family
+TP  TIGRFAMs
+CC  Members of this family include the spore coat proteins CotS and YtaA from Bacillus subtilis and, from other endospore-forming bacteria, homologs that are more closely related to these two than to the spore coat proteins YutH and YsxE. The CotS family is more broadly distributed than YutH or YsxE, but still is not universal among spore-formers.
+RN  [1]
+RM  PMID: 9603889
+RT  A spore coat protein, CotS, of Bacillus subtilis is synthesized under the regulation of sigmaK and GerE during development and is located in the inner coat layer of spores.
+RA  Takamatsu H, Chikahiro Y, Kodama T, Koide H, Kozuka S, Tochikubo K, Watabe K
+RL  J Bacteriol. 1998 Jun;180(11):2968-74.

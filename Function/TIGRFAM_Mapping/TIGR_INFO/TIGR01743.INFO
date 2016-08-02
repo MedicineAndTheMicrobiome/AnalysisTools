@@ -1,0 +1,16 @@
+ID  purR_Bsub
+AC  TIGR01743
+DE  pur operon repressor PurR
+AU  Haft DH
+TC  258.70 258.70
+NC  133.00 133.00
+AL  clustalw
+IT  equivalog
+EN  pur operon repressor, Bacillus subtilis type
+GS  purR
+TP  TIGRFAMs
+CC  This HMM represents the puring operon repressor PurR of low-GC Gram-positive bacteria. This homodimeric repressor contains a large region homologous to phosphoribosyltransferases and is inhibited by 5-phosphoribosyl 1-pyrophosphate.
+RM  7638212
+RT  Identification of the Bacillus subtilis pur operon repressor.
+RA  Weng M, Nagy PL, Zalkin H.
+RL  Proc Natl Acad Sci U S A 1995 Aug 1;92(16):7455-9

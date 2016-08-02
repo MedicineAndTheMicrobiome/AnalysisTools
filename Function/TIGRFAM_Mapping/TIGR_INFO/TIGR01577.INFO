@@ -1,0 +1,16 @@
+ID  oligosac_amyl
+AC  TIGR01577
+DE  oligosaccharide amylase
+AU  Beanan M
+TC  820.70 820.70
+NC  328.50 328.50
+AL  clustalw
+IT  hypoth_equivalog
+EN  oligosaccharide amylase
+TP  TIGRFAMs
+CC  The name of this type of amylase is based on the characterization of an glucoamylase family enzyme from Thermoactinomyces vulgaris. The T. vulgaris enzyme was expressed in E. coli and, like other glucoamylases, it releases beta-D-glucose from starch.  However, unlike previously characterized glucoamylases, this T. vulgaris amylase hydrolyzes maltooligosaccharides (maltotetraose, maltose) more efficiently than starch (PMID: 11549021), indicating this enzyme belongs to a class of glucoamylase-type enzymes with oligosaccharide-metabolizing activity. [1]
+RN  [1]
+RM  11549021
+RT  Novel glucoamylase-type enzymes from Thermoactinomyces vulgaris and Methanococcus jannaschii whose genes are found in the flanking region of the alpha-amylase genes.
+RA  Uotsu-Tomita R, Tonozuka T, Sakai H, Sakano Y
+RL  Appl Microbiol Biotechnol. 2001 Aug;56(3-4):465-73.

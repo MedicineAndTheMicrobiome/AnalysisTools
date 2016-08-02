@@ -1,0 +1,17 @@
+ID  PHB_depoly_PhaZ
+AC  TIGR01849
+DE  polyhydroxyalkanoate depolymerase, intracellular
+AU  Haft DH
+TC  300.75 300.75
+NC  86.50 86.50
+AL  clustalw_manual
+IT  subfamily
+EN  polyhydroxyalkanoate depolymerase, intracellular
+GS  phaZ
+EC  3.1.1.-
+TP  TIGRFAMs
+CC  This HMM represents an intracellular depolymerase for polyhydroxyalkanoate (PHA), a carbon and energy storing polyester that accumulates in granules in many bacterial species when carbon sources are abundant but other nutrients are limiting. This family is named for PHAs generally, rather than polyhydroxybutyrate (PHB) specificially as in Ralstonia eutropha H16, to avoid overcalling chemical specificity in other species. Note that this family lacks the classic GXSXG lipase motif and instead shows weak similarity to some
+RM  11114905
+RT  Cloning of an intracellular Poly[D(-)-3-Hydroxybutyrate] depolymerase gene from Ralstonia eutropha H16 and characterization of the gene product.
+RA  Saegusa H, Shiraki M, Kanai C, Saito T.
+RL   Bacteriol 2001 Jan;183(1):94-100

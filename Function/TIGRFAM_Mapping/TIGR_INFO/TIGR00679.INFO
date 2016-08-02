@@ -1,0 +1,19 @@
+ID  hpr-ser
+AC  TIGR00679
+DE  HPr(Ser) kinase/phosphatase
+AU  Loftus BJ, Haft DH
+TC  240.00 240.00
+NC  230.00 230.00
+AL  muscle_manual
+IT  equivalog
+EN  Hpr(Ser) kinase/phosphatase
+GS  hprK
+EC  2.7.1.-
+TP  TIGRFAMs
+CC  Members of this family are the bifunctional enzyme, HPr kinase/phosphatase. All members of the seed alignment (n=57) have a gene tightly clustered with a gene for the phospocarrier protein HPr, its target.
+DR  InterPro; IPR003755
+DR  EGAD; 156779;
+RM  99141583;
+RM  99121006;
+DR  SWISSPROT; O34483;
+DR  HAMAP; MF_01249; 84 of 149

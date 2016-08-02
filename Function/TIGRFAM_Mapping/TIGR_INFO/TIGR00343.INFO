@@ -1,0 +1,22 @@
+ID  TIGR00343
+AC  TIGR00343
+DE  pyridoxal 5'-phosphate synthase, synthase subunit Pdx1
+AU  Haft DH, Loftus BJ
+TC  438.45 438.45
+NC  152.25 152.25
+AL  clustalw
+IT  equivalog
+EN  pyridoxal 5'-phosphate synthase, synthase subunit Pdx1
+TP  TIGRFAMs
+CC  This protein had been believed to be a singlet oxygen resistance protein. Subsequent work showed that it is a protein of pyridoxine (vitamin B6) biosynthesis, and that pyridoxine quenches the highly toxic singlet form of oxygen produced by light in the presence of certain chemicals.
+RN  [1]
+RM  99362765
+RT  A highly conserved sequence is a novel gene involved in de novo vitamin B6 biosynthesis.
+RA  Ehrenshaft M, Bilski P, Li MY, Chignell CF, Daub ME
+RL  Proc Natl Acad Sci U S A 1999 Aug 3;96(16):9374-8
+RN  [2]
+RM  98325374
+RT  SOR1, a gene required for photosensitizer and singlet oxygen resistance in Cercospora fungi, is highly conserved in divergent organisms.
+RA  Ehrenshaft M, Jenns AE, Chung KR, Daub ME
+RL  Mol Cell 1998 Mar;1(4):603-9
+DR  HAMAP; MF_01824; 117 of 131

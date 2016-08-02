@@ -1,0 +1,13 @@
+ID  tyr_de_CO2_Arch
+AC  TIGR03812
+DE  tyrosine decarboxylase MnfA
+AU  Haft DH
+TC  299.40 299.40
+NC  274.80 274.80
+AL  muscle_manual
+IT  equivalog
+EN  tyrosine decarboxylase MnfA
+GS  mfnA
+EC  4.1.1.25
+TP  TIGRFAMs
+CC  Members of this protein family are the archaeal form, MnfA, of tyrosine decarboxylase, and are involved in methanofuran biosynthesis. Members show clear homology to the Enterococcus form, Tdc, that is involved in tyrosine decarboxylation for resistance to acidic conditions.

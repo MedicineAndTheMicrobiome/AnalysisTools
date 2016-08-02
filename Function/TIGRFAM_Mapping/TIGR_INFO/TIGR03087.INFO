@@ -1,0 +1,15 @@
+ID  stp1
+AC  TIGR03087
+DE  sugar transferase, PEP-CTERM/EpsH1 system associated
+AU  Selengut J
+TC  316.65 316.65
+NC  244.30 244.30
+AL  muscle
+IT  hypoth_equivalog
+EN  sugar transferase, PEP-CTERM/EpsH1 system associated
+TP  TIGRFAMs
+CC  Members of this family include a match to the PF00534 Glycosyl transferases group 1 domain.  Nearly all are found in species that encode the PEP-CTERM/exosortase system predicted to act in protein sorting in a number of Gram-negative bacteria [1].  In particular, these transferases are found proximal to a particular variant of exosortase, EpsH1, which appears to travel with a conserved group of genes summarized by Genome Property GenProp0652. The nature of the sugar transferase reaction catalyzed by members of this clade is unknown and may conceivably be variable with respect to substrate by species, but we hypothesize a conserved substrate.
+RN  [1]
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD
+RT  Exopolysaccharide-associated protein sorting in environmental organisms by the PEP-CTERM/EpsH system: application of a novel phylogenetic profiling heuristic.
+RL  BMC Biol., in press, 2006

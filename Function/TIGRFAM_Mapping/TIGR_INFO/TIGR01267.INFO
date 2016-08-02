@@ -1,0 +1,16 @@
+ID  Phe4hydrox_mono
+AC  TIGR01267
+DE  phenylalanine-4-hydroxylase
+AU  Haft DH
+TC  264.75 264.75
+NC  182.45 182.45
+AL  clustalw_manual
+IT  equivalog
+EN  phenylalanine-4-hydroxylase, monomeric form
+GS  phhA
+EC  1.14.16.1
+TP  TIGRFAMs
+CC  This HMM describes the smaller, monomeric form of phenylalanine-4-hydroxylase, as found in a small number of Gram-negative bacteria. The enzyme irreversibly converts phenylalanine to tryosine and is known to be the rate-limiting step in phenylalanine catabolism in some systems.
+CC  This family is of biopterin and metal-dependent hydroxylases is related to a family of longer, multimeric aromatic amino acid hydroxylases that have additional N-terminal regulatory sequences. These include tyrosine 3-monooxygenase, phenylalanine-4-hydroxylase, and tryptophan 5-monoxygenase.
+DR  EXPERIMENTAL;  SP|P30967; Chromobacterium violaceum
+DR  EXPERIMENTAL;  SP:P43334; Pseudomonas aeruginosa

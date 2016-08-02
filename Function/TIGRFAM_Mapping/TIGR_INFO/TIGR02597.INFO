@@ -1,0 +1,11 @@
+ID  TIGR02597
+AC  TIGR02597
+DE  TIGR02597 family protein
+AU  Haft DH
+TC  50.00 45.00
+NC  43.00 33.00
+AL  clustalw_manual
+IT  paralog
+EN  TIGR02597 family protein
+TP  TIGRFAMs
+CC  This model describes a paralogous family with at least ten members in Verrucomicrobium spinosum. Two additional predicted proteins match more weakly and score between the trusted and noise cutoffs, while a third contains a point mutation. Eleven of the thirteen genes are found in a single tandem array.

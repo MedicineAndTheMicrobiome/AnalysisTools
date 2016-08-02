@@ -1,0 +1,22 @@
+ID  secB
+AC  TIGR00809
+DE  protein-export chaperone SecB
+AU  Haft DH
+TC  102.80 102.80
+NC  51.70 51.70
+AL  clustalw_manual
+IT  equivalog
+EN  protein-export chaperone SecB
+GS  secB
+TP  TIGRFAMs
+CC  This protein acts as an export-specific cytosolic chaperone. It binds the mature region of pre-proteins destined for secretion, prevents aggregation, and delivers them to SecA.
+CC  This protein is tetrameric in E. coli.
+CC  The archaeal Methanococcus jannaschii homolog MJ0357 has been shown (PMID:14985117) to share many properties, including chaperone-like activity, and scores between trusted and noise.
+RM   98232496
+RT  The Escherichia coli SRP and SecB targeting pathways converge at the translocon.
+RA  Valent QA, Scotti PA, High S, de Gier JW, von Heijne G, Lentzen G, Wintermeyer W, Oudega B, Luirink J
+RL  EMBO J 1998 May 1;17(9):2504-12
+DR  EXPERIMENTAL; EGAD|9663|EC3609; Escherichia coli
+DR  Interpro; IPR003708
+DR  PFAM; PF02556
+DR  HAMAP; MF_00821; 261 of 266

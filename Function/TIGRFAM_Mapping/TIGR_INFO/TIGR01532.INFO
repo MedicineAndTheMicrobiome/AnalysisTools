@@ -1,0 +1,20 @@
+ID  E4PD_g-proteo
+AC  TIGR01532
+DE  erythrose-4-phosphate dehydrogenase
+AU  Selengut J
+TC  530.55 530.55
+NC  455.25 455.25
+AL  clustalw
+IT  equivalog
+EN  erythrose-4-phosphate dehydrogenase
+GS  epd
+EC  1.2.1.72
+TP  TIGRFAMs
+CC  This HMM represents the small clade of dehydrogenases in gamma-proteobacteria which utilize NAD+ to oxidize erythrose-4-phosphate (E4P) to 4-phospho-erythronate, a precursor for the de novo synthesis of pyridoxine  via 4-hydroxythreonine and D-1-deoxyxylulose [1].  This enzyme activity appears to have evolved from glyceraldehyde-3-phosphate dehydrogenase, whose substrate differs only in the lack of one carbon relative to E4P.
+CC  Accordingly, this model is very close to the corresponding models for GAPDH, and those sequences which hit above trusted here invariably hit between trusted and noise to the GAPDH model (TIGR01534).  Similarly, it may be found that there are species outside of the gamma proteobacteria which synthesize pyridoxine and have more than one aparrent GAPDH gene of which one may have E4PD activity - this may necessitate a readjustment of these models.  Alternatively, some of the GAPDH enzymes may prove to be bifunctional in certain species.
+RN  [1]
+RM  PMID: 7751290
+RT  Biochemical characterization of gapB-encoded erythrose 4-phosphate dehydrogenase of Escherichia coli K-12 and its possible role in pyridoxal 5'-phosphate biosynthesis.
+RA  Zhao G, Pease AJ, Bharani N, Winkler ME.
+RL  J Bacteriol. 1995 May;177(10):2804-12.
+DR  HAMAP; MF_01640; 55 of 58

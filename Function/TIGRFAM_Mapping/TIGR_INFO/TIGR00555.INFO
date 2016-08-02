@@ -1,0 +1,24 @@
+ID  panK_eukar
+AC  TIGR00555
+DE  pantothenate kinase
+AU  Haft DH
+TC  247.60 247.60
+NC  82.75 82.75
+AL  clustalw_manual
+IT  equivalog
+EN  pantothenate kinase, eukaryotic/staphyloccocal type
+GS  coaA
+EC  2.7.1.33
+TP  TIGRFAMs
+CC  This model describes a eukaryotic form of pantothenate kinase, characterized from the fungus Aspergillus nidulans and with similar forms known in several other eukaryotes. It also includes forms from several Gram-positive bacteria suggested to have originated from the eukaryotic form by lateral transfer. It differs in a number of biochemical properties (such as inhibition by acetyl-CoA) from most bacterial CoaA and lacks sequence similarity. This enzyme is the key regulatory step in the biosynthesis of coenzyme A (CoA).
+RN  [1]
+RM  99107849
+RT  Cloning and characterization of a eukaryotic pantothenate kinase gene (panK) from Aspergillus nidulans.
+RA  Calder RB, Williams RS, Ramaswamy G, Rock CO, Campbell E, Unkles SE, Kinghorn JR, Jackowski S
+RL  Biol Chem 1999 Jan 22;274(4):2014-20
+RN  [2]
+RM  12760898
+RT  Inhibitors of pantothenate kinase: novel antibiotics for staphylococcal infections.
+RA  Choudhry AE, Mandichak TL, Broskey JP, Egolf RW, Kinsland C, Begley TP, Seefeld MA, Ku TW, Brown JR, Zalacain M, Ratnam K.
+RL  Antimicrob Agents Chemother. 2003 Jun; 47(6): 2051-5.
+DR  HAMAP; MF_01273; 19 of 19

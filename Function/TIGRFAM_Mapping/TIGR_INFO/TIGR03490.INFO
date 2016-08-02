@@ -1,0 +1,21 @@
+ID  Mycoplas_LppA
+AC  TIGR03490
+DE  mycoides cluster lipoprotein, LppA/P72 family
+AU  Haft DH
+TC  325.50 325.50
+NC  94.90 94.90
+AL  muscle_manual
+IT  paralog
+EN  mycoides cluster lipoprotein, LppA/P72 family
+TP  TIGRFAMs
+CC  Members of this protein family occur in Mycoplasma mycoides, Mycoplasma hyopneumoniae, and related Mycoplasmas in small paralogous families that may also include truncated forms and/or pseudogenes.  Members are predicted lipoproteins with a conserved signal peptidase II processing and lipid attachment site. Note that the name for certain characterized members, p72, reflects an anomalous apparent molecular weight, given a theoretical MW of about 61 kDa.
+RN  [1]
+RM  PMID:9004514
+RT  Characterization of the gene for an immunodominant 72 kDa lipoprotein of Mycoplasma mycoides subsp. mycoides small colony type.
+RA  Cheng X, Nicolet J, Miserez R, Kuhnert P, Krampe M, Pilloud T, Abdo EM, Griot C, Frey J
+RL  Microbiology. 1996 Dec;142 ( Pt 12):3515-24.
+RN  [2]
+RM  PMID:10512041
+RT  Comparative analysis of the lppA locus in Mycoplasma capricolum subsp. capricolum and Mycoplasma capricolum subsp. capripneumoniae.
+RA  Monnerat MP, Thiaucourt F, Nicolet J, Frey J
+RL  Vet Microbiol. 1999 Sep 15;69(3):157-72.

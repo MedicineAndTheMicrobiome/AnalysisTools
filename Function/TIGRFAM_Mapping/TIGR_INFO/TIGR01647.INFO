@@ -1,0 +1,18 @@
+ID  ATPase-IIIA_H
+AC  TIGR01647
+DE  plasma-membrane proton-efflux P-type ATPase
+AU  Selengut J
+TC  615.50 615.50
+NC  548.95 548.95
+AL  clustalw
+IT  equivalog
+EN  plasma-membrane proton-efflux P-type ATPase
+EC  3.6.3.6
+TR  3.A.3.3.1
+TP  TIGRFAMs
+CC  This model describes the plasma membrane proton efflux P-type ATPase found in plants, fungi, protozoa, slime molds and archaea.  The best studied representative is from yeast [1].
+RN  [1]
+RM  PMID: 1288321
+RT  Structure and function of the yeast plasma-membrane H(+)-ATPase.
+RA  Rao R, Nakamoto RK, Verjovski-Almeida S, Slayman CW.
+RL  Ann N Y Acad Sci 1992 Nov 30;671:195-203

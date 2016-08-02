@@ -1,0 +1,17 @@
+ID  TIGR00296
+AC  TIGR00296
+DE  uncharacterized protein, PH0010 family
+AU  Haft DH
+TC  91.05 91.05
+NC  61.70 61.70
+AL  clustalw
+IT  hypoth_equivalog
+EN  uncharacterized protein, PH0010 family
+TP  TIGRFAMs
+CC  Members of this functionally uncharacterized protein family have been crystallized from Pyrococcus Horikoshii, Methanosarcina Mazei, and Sulfolobus Tokodaii.
+RN  [1]
+RM  PMID:15558565
+RT  Crystal structure of PH0010 from Pyrococcus horikoshii, which is highly homologous to human AMMECR 1C-terminal region.
+RA  Tajika Y, Sakai N, Tamura T, Yao M, Watanabe N, Tanaka I
+RL  Proteins. 2005 Feb 1;58(2):501-3.
+DR  HAMAP; MF_00645; 29 of 30

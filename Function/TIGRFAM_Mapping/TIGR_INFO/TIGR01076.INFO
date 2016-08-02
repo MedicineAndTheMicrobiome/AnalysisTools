@@ -1,0 +1,18 @@
+ID  sortase_fam
+AC  TIGR01076
+DE  sortase
+AU  Haft DH
+TC  39.35 39.35
+NC  21.95 21.95
+AL  clustalw_manual
+IT  subfamily
+EN  LPXTG-site transpeptidase (sortase) family protein
+EC  3.4.22.-
+TP  TIGRFAMs
+CC  This family includes Staphylococcus aureus sortase, a transpeptidase that attaches surface proteins by the Thr
+CC  of an LPXTG motif to the cell wall. It also includes a protein required for correct assembly of an LPXTG-containing fimbrial protein, a set of homologous proteins from Streptococcus pneumoniae, in which LPXTG proteins are common. However, related proteins are found in Bacillus subtilis and Methanobacterium thermoautotrophicum, in which LPXTG-mediated cell wall attachment is not known.
+RN  [1]
+RM  99357874
+RT  Staphylococcus aureus sortase, an enzyme that anchors        surface proteins to the cell wall.
+RA  Mazmanian SK, Liu G, Ton-That H, Schneewind O.
+RL  Science 1999 Jul 30;285(5428):760-3

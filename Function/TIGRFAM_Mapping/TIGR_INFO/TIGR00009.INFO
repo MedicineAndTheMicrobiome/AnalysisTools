@@ -1,0 +1,15 @@
+ID  L28
+AC  TIGR00009
+DE  ribosomal protein L28
+AU  Holt IE, Richardson DL, Haft DH
+TC  48.30 48.30
+NC  42.85 42.85
+AL  clustalw
+IT  equivalog
+EN  ribosomal protein L28
+GS  rpmB
+TP  TIGRFAMs
+CC  This HMM describes bacterial and chloroplast forms of the 50S ribosomal protein L28, a polypeptide about 60 amino acids in length. Mitochondrial homologs differ substantially in architecture (e.g. SP|P36525 from Saccharomyces cerevisiae, which is 258 amino acids long) and are not included.
+DR  PFAM; PF00830; Ribosomal_L28
+DR  INTERPRO; IPR001383; Ribosomal_L28
+DR  HAMAP; MF_00373; 502 of 509

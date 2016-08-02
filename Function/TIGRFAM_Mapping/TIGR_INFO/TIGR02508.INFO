@@ -1,0 +1,14 @@
+ID  type_III_yscG
+AC  TIGR02508
+DE  type III secretion protein, YscG family
+AU  Haft DH
+TC  97.15 97.15
+NC  48.35 48.35
+AL  clustalw
+IT  equivalog
+EN  type III secretion protein, YscG family
+TP  TIGRFAMs
+CC  YscG is a molecular chaperone for YscE, where both are part of  the type III secretion system that in Yersinia is designated Ysc (Yersinia secretion). The secretion system delivers effector proteins, designate Yops (Yersinia outer proteins) in Yersinia. This family consists of YscG of Yersinia, and functionally equivalent type III secretion machinery protein in other species: AscG in Aeromonas, LscG in Photorhabdus luminescens, etc.
+RN  [1]
+RM  11035761
+RT  Yersinia pestis YscG protein is a Syc-like chaperone that directly binds yscE.

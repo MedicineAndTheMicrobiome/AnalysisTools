@@ -1,0 +1,15 @@
+ID  dam
+AC  TIGR00571
+DE  DNA adenine methylase
+AU  Loftus BJ, Eisen JA, Haft DH
+TC  114.85 114.85
+NC  91.70 91.70
+IT  subfamily
+EN  DNA adenine methylase (dam)
+GS  dam
+EC  2.1.1.72
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are DNA-adenine methyltransferases. This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University). The DNA adenine methylase (dam) of E. coli and related species is instrumental in distinguishing the newly synthesized strand during DNA replication for methylation-directed mismatch repair. This family includes several phage methylases and a number of different restriction enzyme chromosomal site-specific modification systems.
+DR  EGAD; 16548;
+DR  SWISSPROT; P00475;
+RM  83168905;

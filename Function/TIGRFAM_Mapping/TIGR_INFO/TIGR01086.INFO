@@ -1,0 +1,13 @@
+ID  fucA
+AC  TIGR01086
+DE  L-fuculose phosphate aldolase
+AU  Dodson RJ, Haft DH
+TC  400.25 400.25
+NC  269.50 269.50
+AL  clustalw
+IT  equivalog
+EN  L-fuculose phosphate aldolase
+GS  fucA
+EC  4.1.2.17
+TP  TIGRFAMs
+CC  Members of this family are L-fuculose phosphate aldolase from various Proteobacteria, encoded in fucose utilization operons. Homologs in other bacteria given similar annotation but scoring below the trusted cutoff may share extensive sequence similarity but are not experimenally characterized and are not found in apparent fucose utilization operons; we consider their annotation as L-fuculose phosphate aldolase to be tenuous. This model has been narrowed in scope from the previous version.

@@ -1,0 +1,15 @@
+ID  leuA_bact
+AC  TIGR00973
+DE  2-isopropylmalate synthase
+AU  Haft DH
+TC  598.70 598.70
+NC  597.20 597.20
+AL  clustalw
+IT  equivalog
+EN  2-isopropylmalate synthase, bacterial type
+GS  leuA
+EC  2.3.3.13
+TP  TIGRFAMs
+CC  This is the first enzyme of leucine biosynthesis.
+CC  A larger family of homologous proteins includes homocitrate synthase, distinct lineages of 2-isopropylmalate synthase, several distinct, uncharacterized, orthologous sets in the Archaea, and other related enzymes. This model describes a family of 2-isopropylmalate synthases found primarily in Bacteria. The homologous families in the Archaea may represent isozymes and/or related enzymes.
+DR  HAMAP; MF_01025; 77 of 96

@@ -1,0 +1,15 @@
+ID  amt
+AC  TIGR00836
+DE  ammonium transporter
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  343.30 343.30
+NC  250.20 250.20
+AL  clustalw_manual
+IT  subfamily
+EN  ammonium transporter
+GS  amt
+TR  2.A.49
+TP  TIGRFAMs
+CC  The Ammonium Transporter (Amt) Family (TC 2.A.49)
+CC  All functionally characterized members of the Amt family are ammonia or ammonium uptake transporters. Some, but not others, also transport methylammonium.
+CC  The mechanism of energy coupling, if any, to methyl-NH2 or NH3 uptake by the AmtB protein of E. coli is not entirely clear. NH4+ uniport driven by the pmf, energy independent NH3 facilitation, and NH4+/K+ antiport have been proposed as possible transport mechanisms. In Corynebacterium glutamicum and Arabidopsis thaliana, uptake via the Amt1 homologues of AmtB has been reported to be driven by the pmf.

@@ -1,0 +1,16 @@
+ID  seadorna_VP9
+AC  TIGR04237
+DE  seadornavirus/coltivirus VP9 protein
+AU  Haft DH
+TC  45.00 45.00
+NC  24.00 24.00
+AL  muscle_manual
+IT  equivalog
+EN  seadornavirus/coltivirus VP9 protein
+TP  TIGRFAMs
+CC  This model, broader than related Pfam model PF08978, describes proteins VP9 in Coltivirus, and proteins with various designations in the seadornavirus group: VP9 in Banna virus, VP10 in Liao ning virus, and VP11 in Kadipiro virus.
+RN  [1]
+RM  PMID:10811934 
+RT  Complete sequence determination and genetic analysis of Banna virus and Kadipiro virus: proposal for assignment to a new genus (Seadornavirus) within the family Reoviridae. 
+RA  Attoui H, Billoir F, Biagini P, de Micco P, de Lamballerie X 
+RL  J Gen Virol. 2000 Jun;81(Pt 6):1507-15.

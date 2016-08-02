@@ -1,0 +1,15 @@
+ID  sigpep_I_bact
+AC  TIGR02227
+DE  signal peptidase I
+AU  Haft DH
+TC  47.00 47.00
+NC  43.00 43.00
+AL  clustalw_manual
+IT  equivalog
+EN  signal peptidase I, bacterial type
+GS  lepB
+EC  3.4.21.89
+TP  TIGRFAMs
+CC  This HMM represents signal peptidase I from most bacteria. Eukaryotic sequences are likely organellar. Several bacteria have multiple paralogs, but these represent isozymes of signal peptidase I. Virtually all known bacteria may be presumed to 
+CC  A related model finds a simlar protein in many archaea and a few bacteria, as well as a microsomal (endoplasmic reticulum) protein in eukaryotes.
+DR  PFAM; PF00461; Signal peptidase I

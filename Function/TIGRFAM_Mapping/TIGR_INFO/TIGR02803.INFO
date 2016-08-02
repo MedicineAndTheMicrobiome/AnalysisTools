@@ -1,0 +1,12 @@
+ID  ExbD_1
+AC  TIGR02803
+DE  TonB system transport protein ExbD
+AU  Haft DH
+TC  152.95 152.95
+NC  130.80 130.80
+AL  clustalw
+IT  equivalog
+EN  TonB system transport protein ExbD, group 1
+GS  exbD
+TP  TIGRFAMs
+CC  Members of this family are Gram-negative bacterial inner membrane proteins, generally designated ExbD, related to the TolR family modeled by TIGRFAMs TIGR02801. Members always are encoded next to a protein designated ExbB (TIGR02797), related to the TolQ  family modeled by TIGRFAMs TIGR02796. ExbD and ExbB together form a proton channel through which they can harness the proton-motive force to energize TonB, which in turn energizes TonB-dependent receptors in the outer membrane. TonB-dependent receptors with known specificity tend to import siderophores or vitamin B12. A TonB system and Tol-Pal system often will co-exist in a single bacterial genome.

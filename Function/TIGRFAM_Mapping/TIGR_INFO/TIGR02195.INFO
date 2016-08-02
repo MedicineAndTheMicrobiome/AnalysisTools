@@ -1,0 +1,13 @@
+ID  heptsyl_trn_II
+AC  TIGR02195
+DE  lipopolysaccharide heptosyltransferase II
+AU  Haft DH
+TC  134.60 134.60
+NC  106.95 106.95
+AL  clustalw
+IT  equivalog
+EN  lipopolysaccharide heptosyltransferase II
+GS  waaF
+EC  2.4.-.-
+TP  TIGRFAMs
+CC  This family consists of examples of ADP-heptose:LPS heptosyltransferase II, an enzyme of LPS inner core region biosynthesis. LPS, composed of lipid A, a core region, and O antigen, is found in the outer membrane of Gram-negative bacteria.

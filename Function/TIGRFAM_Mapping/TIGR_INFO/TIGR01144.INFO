@@ -1,0 +1,14 @@
+ID  ATP_synt_b
+AC  TIGR01144
+DE  ATP synthase F0, B subunit
+AU  Ujwal ML, Haft DH, Paulsen IT
+TC  65.50 65.50
+NC  54.85 54.85
+AL  clustalw
+IT  equivalog
+EN  ATP synthase, F0 subunit b
+GS  atpF
+EC  3.6.3.14
+TP  TIGRFAMs
+CC  This model describes the F1/F0 ATP synthase b subunit in bacteria only. Scoring just below the trusted cutoff are the N-terminal domains of Mycobacterial b/delta fusion proteins and a subunit from an archaeon, Methanosarcina barkeri, in which the ATP synthase homolog differs in architecture and is not experimentally confirmed. This model helps resolve b from the related b' subunit. Within the family is an example from a sodium-translocating rather than proton-translocating ATP synthase.
+DR  EXCEPTION; gi|231608; ATP synthase b chain, sodium ion specific

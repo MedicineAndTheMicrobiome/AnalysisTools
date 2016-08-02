@@ -1,0 +1,17 @@
+ID  PPR
+AC  TIGR00756
+DE  pentatricopeptide repeat domain
+AU  Haft DH
+TC  15.50 15.50
+NC  13.40 13.40
+IT  repeat
+EN  pentatricopeptide repeat domain (PPR motif)
+TP  TIGRFAMs
+CC  This model describes a domain called the PPR motif, or pentatricopeptide repeat. Its consensus sequence is 35 positions long and typically is found in four or more tandem copies. This family is strongly represented in plant proteins, particularly those sorted to chloroplasts or mitochondria.
+CC  The pfam hmm PF01535, domain of unknown function DUF17, consists of 6 copies of this repeat.
+CC  This family has a similar consensus to the TPR domain (tetratricopeptide), pfam PF00515, a 33-residue repeat. It is predicted to form a pair of antiparallel helices similar to that of TPR.
+AL  hmmalign
+RM  20130690
+RT  The PPR motif - a TPR-related motif prevalent in plant organellar proteins.
+RA  Small ID, Peeters I
+RL  Trends Biochem Sci 2000 Feb;25(2):45-7

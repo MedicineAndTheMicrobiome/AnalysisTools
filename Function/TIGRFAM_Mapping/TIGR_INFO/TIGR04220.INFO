@@ -1,0 +1,21 @@
+ID  patB_acyB_mcaB
+AC  TIGR04220
+DE  cyanobactin biosynthesis protein, PatB/AcyB/McaB family
+AU  Haft DH
+TC  55.00 55.00
+NC  33.00 25.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  cyanobactin biosynthesis protein, PatB/AcyB/McaB family
+TP  TIGRFAMs
+CC  Members of this protein family are small (~ 80 amino acids) and occur in biosynthesis clusters for cyanobactins, a type of ribosomal natural product, thiazole/oxazole-modified microcin (TOMM). The function of this protein family is unknown, and the recognized cyanobactin precursors (e.g. microcyclamides and patellamides) are encoded by a different protein (see TIGR03678). In this protein family, however, a core region of about 62 amino acids (modeled) is followed by a hypervariable region of 5 to 23 amino acids, with hallmarks of possible cyclodehydratase modification sites. The hallmarks include Cys residues flanked by Gly, and variable length Ser-rich tripeptide repeats. Further, members of this family were shown dispensible for patellamide biosynthesis, and two may occur in a cluster. Therefore, this family may represent a precursor of another type of ribosomal natural product.
+RN  [1]
+RM  PMID:18245249 
+RT  Microcyclamide biosynthesis in two strains of Microcystis aeruginosa: from structure to genes and vice versa. 
+RA  Ziemert N, Ishida K, Quillardet P, Bouchier C, Hertweck C, de Marsac NT, Dittmann E 
+RL  Appl Environ Microbiol. 2008 Mar;74(6):1791-7. 
+RN  [2]
+RM  PMID:20008171 
+RT  Highly diverse cyanobactins in strains of the genus Anabaena. 
+RA  Leikoski N, Fewer DP, Jokela J, Wahlsten M, Rouhiainen L, Sivonen K 
+RL  Appl Environ Microbiol. 2010 Feb;76(3):701-9.

@@ -1,0 +1,18 @@
+ID  tRNA_CCA_actino
+AC  TIGR02692
+DE  CCA tRNA nucleotidyltransferase
+AU  Haft DH
+TC  438.80 438.80
+NC  402.00 402.00
+AL  clustalw_manual
+IT  equivalog
+EN  tRNA adenylyltransferase
+EC  2.7.7.72
+TP  TIGRFAMs
+CC  The enzyme tRNA adenylyltransferase, also called tRNA-nucleotidyltransferase and CCA-adding enzyme, can add or repair the required CCA triplet at the 3'-end of tRNA molecules. Genes encoding tRNA include the CCA tail in some but not all bacteria, and this enzyme may be required for viability. Members of this family represent a distinct clade within the larger family PF01743 (tRNA nucleotidyltransferase/poly(A) polymerase family protein). The example from Streptomyces coelicolor was shown to act as a CCA-adding enzyme and not as a poly(A) polymerase.
+DR  PFAM; PF01743; PolyA_pol
+RN  [1]
+RM  14645289
+RT  The Streptomyces coelicolor polynucleotide phosphorylase homologue, and not the putative poly(A) polymerase, can polyadenylate RNA.
+RA  Sohlberg B, Huang J, Cohen SN.
+RL  J Bacteriol. 2003 Dec;185(24):7273-8.

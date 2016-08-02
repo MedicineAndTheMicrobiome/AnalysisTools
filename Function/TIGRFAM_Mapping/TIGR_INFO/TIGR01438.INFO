@@ -1,0 +1,24 @@
+ID  TGR
+AC  TIGR01438
+DE  thioredoxin and glutathione reductase
+AU  Haft DH
+TC  475.85 475.85
+NC  405.50 405.50
+AL  clustalw_manual
+IT  subfamily
+EN  thioredoxin and glutathione reductase selenoprotein
+EC  1.6.4.-
+TP  TIGRFAMs
+CC  This homodimeric, FAD-containing member of the pyridine nucleotide disulfide oxidoreductase family contains a C-terminal motif Cys-SeCys-Gly, where SeCys is selenocysteine encoded by TGA (in some sequence reports interpreted as a stop codon). In some members of this subfamily, Cys-SeCys-Gly is replaced by Cys-Cys-Gly. The reach of the selenium atom at the C-term arm of the protein is proposed to allow broad substrate specificity.
+DR  EXPERIMENTAL; PIR:S66677; Homo sapiens; selenocysteine-containing thioredoxin reductase
+DR  OUTGROUP; SP|P47791; glutathione reductase
+RN  [1]
+RM  11259642
+RT  Selenoprotein oxidoreductase with specificity for thioredoxin and glutathione systems.
+RA  Sun QA, Kirnarsky L, Sherman S, Gladyshev VN.
+RL  Proc Natl Acad Sci U S A 2001 Mar 27;98(7):3673-8
+RN  [2]
+RM  8650234
+RT  Selenocysteine, identified as the penultimate C-terminal residue in human T-cell thioredoxin reductase, corresponds to TGA in the human placental gene.
+RA  Gladyshev VN, Jeang KT, Stadtman TC.
+RL  Proc Natl Acad Sci U S A 1996 Jun 11;93(12):6146-51

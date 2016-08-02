@@ -1,0 +1,13 @@
+ID  autotrns_rpt
+AC  TIGR02601
+DE  autotransporter-associated beta strand repeat
+AU  Haft DH
+TC  19.85 19.85
+NC  16.05 16.05
+AL  clustalw
+IT  repeat
+EN  autotransporter-associated beta strand repeat
+TP  TIGRFAMs
+CC  This model represent a core 32-residue region of a class of bacterial protein repeat found in one to 30 copies per protein. Most proteins with a copy of this repeat have domains associated with membrane autotransporters (PF03797, TIGR01414). The repeats occur with a periodicity of 60 to 100 residues. A pattern of sequence conservation is that every second residue is well-conserved across most of the domain. Pfam model PF05594 is based on a longer, much more poorly conserved multiple sequence alignment and hits some of the same proteins as this model with some overlap between the hit regions of the two models. It describes these repeats as likely to have a beta-helical structure.
+DR  PFAM; PF05594; Haemagluttinin repeat
+DR  SCOP; b.80.1.7; Virulence factor P.69 pertactin

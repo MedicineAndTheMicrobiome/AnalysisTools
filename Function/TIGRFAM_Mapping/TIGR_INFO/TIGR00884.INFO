@@ -1,0 +1,14 @@
+ID  guaA_Cterm
+AC  TIGR00884
+DE  GMP synthase (glutamine-hydrolyzing), C-terminal domain
+AU  Haft DH
+TC  338.75 338.75
+NC  126.15 126.15
+AL  clustalw_manual
+IT  equivalog_domain
+EN  GMP synthase (glutamine-hydrolyzing), C-terminal domain or B subunit
+GS  guaA
+EC  6.3.5.2
+TP  TIGRFAMs
+CC  This protein of purine de novo biosynthesis is well-conserved. However, it appears to split into two separate polypeptide chains in most of the Archaea. This C-terminal region would be the larger subunit
+DR  HAMAP; MF_00345; 24 of 26

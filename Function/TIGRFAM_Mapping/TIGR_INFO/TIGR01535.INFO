@@ -1,0 +1,14 @@
+ID  glucan_glucosid
+AC  TIGR01535
+DE  glucan 1,4-alpha-glucosidase
+AU  Beanan M
+TC  741.90 741.90
+NC  337.85 337.85
+AL  clustalw
+IT  equivalog
+EN  glucan 1,4-alpha-glucosidase
+EC  3.2.1.3
+TP  TIGRFAMs
+CC  Glucan 1,4-alpha-glucosidase catalyzes the hydrolysis of terminal 1,4-linked alpha-D-glucose residues from non-reducing ends of polysaccharides, releasing a beta-D-glucose monomer.  Some forms of this enzyme can hydrolyze terminal 1,6- and 1,3-alpha-D-glucosidic bonds in polysaccharides as well.
+PMID:1633799
+Ohnishi, H., Kitamura, H. Minowa, T., Ohta, T. (1992) Molecular cloning of a glucoamylase gene from a thermophilic Clostridium and kinetics of the cloned enzyme.  Eur J Biochem, 1992 15:207920:413-418.

@@ -1,0 +1,15 @@
+ID  pilT_fam
+AC  TIGR01420
+DE  twitching motility protein
+AU  Haft DH
+TC  319.10 319.10
+NC  220.05 220.05
+AL  clustalw_manual
+IT  subfamily
+EN  pilus retraction protein PilT
+TP  TIGRFAMs
+CC  This model represents the PilT subfamily of proteins related to GspE, a protein involved in type II secretion (also called the General Secretion Pathway). PilT is an apparent cytosolic ATPase associated with type IV pilus systems. It is not required for pilin biogenesis, but is required for twitching motility and social gliding behaviors, shown in some species, powered by pilus retraction. Members of this family may be found in some species that type IV pili but have related structures for DNA uptake and natural transformation.
+RM  10993081
+RT  Pilus retraction powers bacterial twitching motility.
+RA  Merz AJ, So M, Sheetz MP.
+RL  Nature 2000 Sep 7;407(6800):98-102

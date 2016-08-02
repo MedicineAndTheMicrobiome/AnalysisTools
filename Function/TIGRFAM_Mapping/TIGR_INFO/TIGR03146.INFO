@@ -1,0 +1,13 @@
+ID  cyt_nit_nrfB
+AC  TIGR03146
+DE  cytochrome c nitrite reductase, pentaheme subunit
+AU  Haft DH
+TC  166.60 166.60
+NC  68.35 68.35
+AL  muscle
+IT  equivalog
+EN  cytochrome c nitrite reductase, pentaheme subunit
+GS  nrfB
+EC  1.7.2.2
+TP  TIGRFAMs
+CC  Members of this protein family contain five copies of the CXXCH heme-binding motif, and are the NrfB component of the multisubunit enzyme, cytochrome c nitrite reductase.

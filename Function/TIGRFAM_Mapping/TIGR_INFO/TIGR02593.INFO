@@ -1,0 +1,17 @@
+ID  CRISPR_cas5
+AC  TIGR02593
+DE  CRISPR-associated protein Cas5
+AU  Haft DH
+TC  17.80 15.00
+NC  15.80 14.00
+AL  manual
+IT  subfamily_domain
+EN  CRISPR-associated protein Cas5, N-terminal domain
+GS  cas5
+TP  TIGRFAMs
+CC  This model represents a shared N-terminal domain, about 43 amino acids in length, common to a number of related protein families each of which is associated with a distinct subtype of CRISPR/cas system, where CRISPR is an acronym for Clustered Regularly Interspaced Short Palindromic Repeat and Cas is an abbreviation for CRISPR-associated. Members of this family are widely distributed enough that we designated the family Cas5. Homology appears remote, or absent, between the more C-terminal regions different subfamilies of these proteins, which typically are 210 to 265 amino acids in total length. Cas5 proteins of six different CRISPR/cas subtypes so far defined are described by respective full-length models  TIGR01868, TIGR01876, TIGR01895, TIGR01874, TIGR02586, and TIGR02592. The best characterized protein in this family is DevS or Myxococcus xanthus, a Cas protein that appears to participate in a species-specific developmental pathway.
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=2003
+RN  [1]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005

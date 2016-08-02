@@ -1,0 +1,18 @@
+ID  chp_LLNDYxLRE
+AC  TIGR03976
+DE  His-Xaa-Ser system protein HxsD
+AU  Haft DH
+TC  50.00 50.00
+NC  30.00 30.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  His-Xaa-Ser system protein HxsD
+GS  hxsD
+TP  TIGRFAMs
+CC  This rare conserved hypothetical protein of small size occurs exclusively, and perhaps universally, in the context of a pair of (uncharacterized) radical SAM proteins, TIGR03977 and TIGR03978. Many members of this family have invariant motifs LYW and LLNDYxLRE, but PSI-BLAST starting from family members well below 20 % pairwise sequence identity to this group eventually brings in the entire family as modeled here. The family TIGR03979 represents the fourth regularly conserved member of this system.
+RN  [1]
+RM  PMID:21478363 
+RT  Biological systems discovery in silico: radical S-adenosylmethionine protein families and their target peptides for posttranslational mo
+dification. 
+RA  Haft DH, Basu MK 
+RL  J Bacteriol. 2011 Jun;193(11):2745-55.

@@ -1,0 +1,14 @@
+ID  mutH_TIGR
+AC  TIGR02248
+DE  DNA mismatch repair endonuclease MutH
+AU  Haft DH
+TC  229.90 229.90
+NC  50.10 50.10
+AL  clustalw_manual
+IT  equivalog
+EN  DNA mismatch repair endonuclease MutH
+GS  mutH
+TP  TIGRFAMs
+CC  This family consists exclusively of MutH, an endonuclease in some Proteobacteria that is activated by MutS1 and MutL for methylation-directed mismatch repair.
+DR  PFAM; PF02976; MutH
+DR  HAMAP; MF_00759; 56 of 57

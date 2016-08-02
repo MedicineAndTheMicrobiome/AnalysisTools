@@ -1,0 +1,19 @@
+ID  dxs
+AC  TIGR00204
+DE  1-deoxy-D-xylulose-5-phosphate synthase
+AU  Haft DH
+TC  465.95 465.95
+NC  222.45 222.45
+AL  clustalw
+IT  equivalog
+EN  1-deoxy-D-xylulose-5-phosphate synthase
+GS  dxs
+EC  2.2.1.7
+TP  TIGRFAMs
+CC  DXP synthase is a thiamine diphosphate-dependent enzyme related to transketolase and the pyruvate dehydrogenase E1-beta subunit. By an acyloin condensation of pyruvate with glyceraldehyde 3-phosphate, it produces 1-deoxy-D-xylulose 5-phosphate, a precursor of thiamine diphosphate (TPP), pyridoxal phosphate, and the isoprenoid building block isopentenyl diphosphate (IPP).
+DR  PROSITE; PDOC00635
+RM  98151473
+RT  Cloning and characterization of a gene from Escherichia coli encoding a transketolase-like enzyme that catalyzes the synthesis of D-1-deoxyxylulose 5-phosphate, a common precursor for isoprenoid, thiamin, and pyridoxol biosynthesis.
+RA  Lois LM, Campos N, Putra SR, Danielsen K, Rohmer M, Boronat A
+RL  Proc Natl Acad Sci U S A 1998 Mar 3;95(5):2105-10
+DR  HAMAP; MF_00315; 373 of 379

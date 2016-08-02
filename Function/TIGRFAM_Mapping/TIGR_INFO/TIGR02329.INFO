@@ -1,0 +1,12 @@
+ID  propionate_PrpR
+AC  TIGR02329
+DE  propionate catabolism operon regulatory protein PrpR
+AU  Haft DH
+TC  499.20 499.20
+NC  428.20 428.20
+AL  clustalw
+IT  equivalog
+EN  propionate catabolism operon regulatory protein PrpR
+GS  prpR
+TP  TIGRFAMs
+CC  At least five distinct pathways exists for the catabolism of propionate by way of propionyl-CoA. Members of this family represent the transcriptional regulatory protein PrpR, whose gene is found in most cases divergently transcribed from an operon for the methylcitric acid cycle of propionate catabolism. 2-methylcitric acid, a catabolite by this pathway, is a coactivator of PrpR.

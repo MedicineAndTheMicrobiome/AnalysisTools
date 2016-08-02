@@ -1,0 +1,17 @@
+ID  Bsubt_queE
+AC  TIGR03365
+DE  7-cyano-7-deazaguanosine (preQ0) biosynthesis protein QueE
+AU  Haft DH
+TC  206.10 206.10
+NC  99.25 99.25
+AL  muscle
+IT  equivalog
+EN  7-cyano-7-deazaguanosine (preQ0) biosynthesis protein QueE
+GS  queE
+TP  TIGRFAMs
+CC  This uncharacterized enzyme, designated QueE, participates in the biosynthesis, from GTP, of 7-cyano-7-deazaguanosine, also called preQ0 because in many species it is a precursor of queuosine. In most Archaea, it is instead the precursor of a different tRNA modified base, archaeosine.
+RN  [1]
+RM  PMID: 14660578
+RT  Identification of four genes necessary for biosynthesis of the modified nucleoside queuosine.
+RA  Reader JS, Metzgar D, Schimmel P, de Crecy-Lagard V
+RL  J Biol Chem. 2004 Feb 20;279(8):6280-5.

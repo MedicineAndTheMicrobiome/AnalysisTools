@@ -1,0 +1,11 @@
+ID  tatD_link_rSAM
+AC  TIGR04038
+DE  radical SAM protein, TatD family-associated
+AU  Haft DH
+TC  129.70 129.70
+NC  73.15 73.15
+AL  muscle_manual
+IT  subfamily_domain
+EN  radical SAM protein, TatD family-associated
+TP  TIGRFAMs
+CC  Members of this family are radical SAM proteins found in about 5 percent of microbial genomes. A portion occur as gene fusions with, or adjacent to, members of the TatD family of hydrolases (PF01026). The TatD family may have several paralogs per genome, including TatD itself from E. coli (a soluble protein not actually part of the twin-arginine translocation complex), which appears to act in quality control for TAT, directing turnover of misfolded TAT substrates. The functions of TatD family hydrolases in general (other than TatD itself, which may be exceptional within its larger family), and of this radical SAM domain protein modeled here, are unknown.

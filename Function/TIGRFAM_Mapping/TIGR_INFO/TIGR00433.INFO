@@ -1,0 +1,16 @@
+ID  bioB
+AC  TIGR00433
+DE  biotin synthase
+AU  Loftus BJ, Haft DH
+TC  230.00 230.00
+NC  210.00 210.00
+AL  muscle_manual
+IT  equivalog
+EN  biotin synthase
+GS  bioB
+EC  2.8.1.6
+TP  TIGRFAMs
+CC  Catalyzes the last step of the biotin biosynthesis pathway. All members of the seed alignment are in the immediate gene neighborhood of a bioA gene.
+DR  Swissprot; P12996;
+DR  Swissprot; P53557,
+RM  89066784;

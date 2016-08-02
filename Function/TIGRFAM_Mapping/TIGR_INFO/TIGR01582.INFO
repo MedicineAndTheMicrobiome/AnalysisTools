@@ -1,0 +1,19 @@
+ID  FDH-beta
+AC  TIGR01582
+DE  formate dehydrogenase, beta subunit
+AU  Selengut J
+TC  334.70 334.70
+NC  152.40 152.40
+AL  clustalw
+IT  equivalog
+EN  formate dehydrogenase, beta subunit, Fe-S containing
+GS  fdxH
+EC  1.2.1.2
+TP  TIGRFAMs
+CC  This model represents the beta subunit of the gamma-proteobacterial formate dehydrogenase.  This subunit contains four 4Fe-4S clusters and is involved in transmitting electrons from the alpha subunit (TIGR01553) at the periplasmic space to the gamma subunit which spans the cytoplasmic membrane [1].
+CC  In addition to the gamma proteobacteria, a sequence from Aquifex aolicus falls within the scope of this model.  This appears to be the case for the alpha, gamma and epsilon (accessory protein TIGR01562) chains as well.
+RN  [1]
+RM  PMID: 11884747
+RT  Molecular basis of proton motive force generation: structure of formate dehydrogenase-N.
+RA  Jormakka M, Tornroth S, Byrne B, Iwata S.
+RL  Science. 2002 Mar 8;295(5561):1863-8.

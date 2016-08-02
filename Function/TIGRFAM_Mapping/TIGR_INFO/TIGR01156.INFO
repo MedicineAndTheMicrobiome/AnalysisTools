@@ -1,0 +1,13 @@
+ID  cytb6/f_IV
+AC  TIGR01156
+DE  cytb6/f complex subunit IV
+AU  Ujwal ML, Paulsen IT
+TC  127.05 127.05
+NC  126.95 126.95
+AL  clustalw
+IT  equivalog
+EN  cytochrome b6/f complex subunit IV
+EC  1.10.9.1
+TP  TIGRFAMs
+CC  This model describes the subunit IV of the cytochrome b6/f complex. The cyt b6/f complex is central to the functions of the oxygenic phosynthetic electron transport in cyanobacteria and its equivalents in algae and higher plants. Energetically, on the redox scale the cytb6/f complex is placed below the other components - Q(A); Q(B) of the photosystem II in the Z-scheme, along the pathway of the electron transport. The complex is made of the following subunits: cytochrome f; cytochrome b6; Rieske 2Fe-2S; and subunits IV; V; VI; VII. Subunit IV is one of the principal subunits for the binding of the redox prosthetic groups. Each monomer of the complex contains a molecule of chlorophyll a and beta-carotene.
+DR  HAMAP; MF_01344; 116 of 116

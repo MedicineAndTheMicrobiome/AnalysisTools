@@ -1,0 +1,15 @@
+ID  aden_kin_iso1
+AC  TIGR01360
+DE  adenylate kinase
+AU  Haft DH, DeBoy RT
+TC  284.10 284.10
+NC  214.00 214.00
+AL  clustalw
+IT  equivalog
+EN  adenylate kinase, isozyme 1 subfamily
+EC  2.7.4.3
+TP  TIGRFAMs
+CC  Members of this family are adenylate kinase, EC 2.7.4.3. This clade is found only in eukaryotes and includes human adenylate kinase isozyme 1 (myokinase). Within the adenylate kinase superfamily, this set appears specifically closely related to a subfamily of eukaryotic UMP-CMP kinases (TIGR01359), rather than to the large clade of bacterial, archaeal, and eukaryotic adenylate kinase family members in TIGR01351.
+DR  EXPERIMENTAL; SP|Q9Y6K8; human; 2.7.4.3; isozyme 1
+DR  EXPERIMENTAL; SP|Q9Y6K8; human; 2.7.4.3; isozyme 5
+DR  OUTGROUP; SP|P30085; UMP-CMP kinase; human

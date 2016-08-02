@@ -1,0 +1,16 @@
+ID  PST-A
+AC  TIGR01607
+DE  Plasmodium subtelomeric family
+AU  Selengut J
+TC  218.25 218.25
+NC  113.50 113.50
+AL  clustalw
+IT  paralog
+EN  Plasmodium subtelomeric family (PST-A)
+TP  TIGRFAMs
+CC  This model represents a paralogous family of genes in Plasmodium falciparum and Plasmodium yoelii [1,2] which are closely related to various phospholipases and lysophospholipases of plants as well as generally being related to the alpha/beta-fold superfamily of hydrolases.
+CC  These genes are preferentially located in the subtelomeric regions of the chromosomes of both P. falciparum and P. yoelii [1,2].
+RN  [1]
+RL  TIGR, unpublished data
+RN  [2]
+RL  TIGR, unpublished data

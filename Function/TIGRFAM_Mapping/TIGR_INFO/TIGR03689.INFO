@@ -1,0 +1,28 @@
+ID  pup_AAA
+AC  TIGR03689
+DE  proteasome ATPase
+AU  Haft DH
+TC  504.75 504.75
+NC  251.60 251.60
+AL  muscle_manual
+IT  equivalog
+EN  proteasome ATPase
+GS  arc
+EC  3.6.4.8
+TP  TIGRFAMs
+CC  In the Actinobacteria, as shown for Mycobacterium tuberculosis, some proteins are modified by ligation between an epsilon-amino group of a lysine side chain and the C-terminal carboxylate of the ubiquitin-like protein Pup. This modification leads to protein degradation by the archaeal-like proteasome found in the Actinobacteria. Members of this protein family belong to the AAA family of ATPases and tend to be clustered with the genes for Pup, the Pup ligase PafA, and structural components of the proteasome. This protein forms hexameric rings with ATPase activity.
+RN  [1]
+RM  PMID:15659170
+RT  Characterization of a Mycobacterium tuberculosis proteasomal ATPase homologue.
+RA  Darwin KH, Lin G, Chen Z, Li H, Nathan CF
+RL  Mol Microbiol. 2005 Jan;55(2):561-71.
+RN  [2]
+RM  PMID:18980670
+RT  Unraveling the biochemistry and provenance of pupylation: a prokaryotic analog of ubiquitination.
+RA  Iyer LM, Burroughs AM, Aravind L
+RL  Biol Direct. 2008 Nov 3;3(1):45.
+RN  [3]
+RM  PMID:9765579
+RT  The 20S proteasome of Streptomyces coelicolor.
+RA  Nagy I, Tamura T, Vanderleyden J, Baumeister W, De Mot R
+RL  J Bacteriol. 1998 Oct;180(20):5448-53.

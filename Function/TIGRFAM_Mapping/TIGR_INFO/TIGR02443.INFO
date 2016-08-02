@@ -1,0 +1,11 @@
+ID  TIGR02443
+AC  TIGR02443
+DE  conserved hypothetical protein
+AU  Haft DH
+TC  49.45 49.45
+NC  23.75 23.75
+AL  clustalw
+IT  hypoth_equivalog
+EN  conserved hypothetical metal-binding protein
+TP  TIGRFAMs
+CC  Members of this family are small proteins, about 70 residues in length, with a basic triplet near the N-terminus and a probable metal-binding motif CPXCX(18)CXXC. Members are found in various Proteobacteria.

@@ -1,0 +1,22 @@
+ID  PHA_reg_PhaR
+AC  TIGR01848
+DE  polyhydroxyalkanoate synthesis repressor PhaR
+AU  Haft DH
+TC  109.45 109.45
+NC  52.35 52.35
+AL  clustalw
+IT  equivalog
+EN  polyhydroxyalkanoate synthesis repressor PhaR
+GS  phaR
+TP  TIGRFAMs
+CC  Poly-B-hydroxyalkanoates are lipidlike carbon/energy storage polymers found in granular inclusions. PhaR is a regulatory protein found in general near other proteins associated with polyhydroxyalkanoate (PHA) granule biosynthesis and utilization. It is found to be a DNA-binding homotetramer that is also capable of binding short chain hydroxyalkanoic acids and PHA granules. PhaR may regulate the expression of itself, of the phasins that coat granules, and of enzymes that direct carbon flux into polymers stored in granules. The C-terminal region is poorly conserved in this family and is not part of this model.//GO terms added 12/6/04 [SS]
+RN  [1]
+RM  12081972
+RT  A repressor protein, PhaR, regulates polyhydroxyalkanoate (PHA) synthesis via its direct interaction with PHA.
+RA  Maehara A, Taguchi S, Nishiyama T, Yamane T, Doi Y.
+RL  J Bacteriol 2002 Jul;184(14):3992-4002
+RN  [2]
+RM  11914361
+RT  AniA regulates reserve polymer accumulation and global protein expression in Rhizobium etli.
+RA  Encarnacion S, del Carmen Vargas M, Dunn MF, Davalos A, Mendoza G, Mora Y, Mora J
+RL  J Bacteriol 2002 Apr;184(8):2287-95

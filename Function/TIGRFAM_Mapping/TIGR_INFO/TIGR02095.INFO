@@ -1,0 +1,15 @@
+ID  glgA
+AC  TIGR02095
+DE  glycogen/starch synthase, ADP-glucose type
+AU  Haft DH
+TC  328.45 328.45
+NC  219.55 219.55
+AL  clustalw_manual
+IT  subfamily
+EN  glycogen/starch synthase, ADP-glucose type
+GS  glgA
+EC  2.4.1.21
+TP  TIGRFAMs
+CC  This family consists of glycogen (or starch) synthases that use ADP-glucose (EC 2.4.1.21), rather than UDP-glucose (EC 2.4.1.11) as in animals, as the glucose donor. This enzyme is found in bacteria and plants. Whether the name given is glycogen synthase or starch synthase depends on context, and therefore on substrate.
+DR  PFAM; PF00534; Glycos_transf_1
+DR  HAMAP; MF_00484; 230 of 233

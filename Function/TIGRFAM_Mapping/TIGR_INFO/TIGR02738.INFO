@@ -1,0 +1,22 @@
+ID  TrbB
+AC  TIGR02738
+DE  type-F conjugative transfer system pilin assembly thiol-disulfide isomerase TrbB
+AU  Selengut J
+TC  132.00 132.00
+NC  102.80 102.80
+AL  clustalw
+IT  equivalog
+EN  type-F conjugative transfer system pilin assembly thiol-disulfide isomerase TrbB
+GS  trbB
+TP  TIGRFAMs
+CC  This protein is part of a large group of proteins involved in conjugative transfer of plasmid DNA, specifically the F-type system.  This protein has been predicted to contain a thioredoxin fold, contains a conserved pair of cysteines and has been shown to function as a thiol disulfide isomerase by complementation of an Ecoli DsbA defect [1].  The protein is believed to be involved in pilin assembly [2].  The protein is closely related to TraF (TIGR02739) which is somewhat longer, lacks the cysteine motif and is apparently not functional as a disulfide bond isomerase.
+RN  [1]
+RM  PMID: 16321931
+RA  Elton TC, Holland SJ, Frost LS, Hazes B.
+RT  F-like type IV secretion systems encode proteins with thioredoxin folds that are putative DsbC homologues.
+RL  J Bacteriol. 2005 Dec;187(24):8267-77.
+RN  [2]
+RM  PMID: 16138100
+RA  Frost LS, Leplae R, Summers AO, Toussaint A.
+RT  Mobile genetic elements: the agents of open source evolution.
+RL  Nat Rev Microbiol. 2005 Sep;3(9):722-32.

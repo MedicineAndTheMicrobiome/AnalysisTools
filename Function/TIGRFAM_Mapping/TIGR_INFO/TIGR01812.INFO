@@ -1,0 +1,11 @@
+ID  sdhA_frdA_Gneg
+AC  TIGR01812
+DE  succinate dehydrogenase or fumarate reductase, flavoprotein subunit
+AU  Haft DH
+TC  567.30 567.30
+NC  528.30 528.30
+AL  clustalw_manual
+IT  subfamily
+EN  succinate dehydrogenase or fumarate reductase, flavoprotein subunitGram-negative/mitochondrial subgroup
+TP  TIGRFAMs
+CC  This HMM represents the succinate dehydrogenase flavoprotein subunit as found in Gram-negative bacteria, mitochondria, and some Archaea. Mitochondrial forms interact with ubiquinone and are designated EC 1.3.5.1, but can be degraded to 1.3.99.1. Some isozymes in E. coli and other species run primarily in the opposite direction and are designated fumarate reductase.

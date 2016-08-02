@@ -1,0 +1,17 @@
+ID  T7_EssCb_Firm
+AC  TIGR03928
+DE  type VII secretion protein EssC
+AU  Haft DH
+TC  778.40 778.40
+NC  653.55 653.55
+AL  muscle_manual
+IT  equivalog
+EN  type VII secretion protein EssC, C-terminal domain
+GS  essC
+TP  TIGRFAMs
+CC  This HMM describes the C-terminal domain, or longer subunit, of the Firmicutes type VII secretion protein EssC. This protein (homologous to EccC in Actinobacteria) and the WXG100 target proteins are the only homologous parts of type VII secretion between Firmicutes and Actinobacteria.
+RN  [1]
+RM  PMID:18554323 
+RT  EsaC substrate for the ESAT-6 secretion pathway and its role in persistent infections of Staphylococcus aureus. 
+RA  Burts ML, DeDent AC, Missiakas DM 
+RL  Mol Microbiol. 2008 Aug;69(3):736-46. Epub 2008 Jun 28.

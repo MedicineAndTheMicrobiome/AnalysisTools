@@ -1,0 +1,20 @@
+ID  GAPDH-II_archae
+AC  TIGR01546
+DE  glyceraldehyde-3-phosphate dehydrogenase, type II
+AU  Selengut J
+TC  232.90 232.90
+NC  56.25 56.25
+AL  clustalw
+IT  equivalog
+EN  glyceraldehyde-3-phosphate dehydrogenase, type II
+EC  1.2.1.59
+TP  TIGRFAMs
+CC  This HMM describes the type II glyceraldehyde-3-phosphate dehydrogenases which are limited to archaea.  These enzymes catalyze the interconversion of 1,3-diphosphoglycerate and glyceraldehyde-3-phosphate, a central step in glycolysis and gluconeogenesis.  In archaea, either NAD or NADP may be utilized as the cofactor.
+CC  The class I GAPDH's from bacteria and eukaryotes are covered by TIGR01534.
+CC  All of the members of the seed are characterized.  See, for instance [1].  This model is very solid, there are no species falling between trusted and noise at this time.  The closest relatives scoring in the noise are the class I GAPDH's.
+RN  [1]
+RM  PMID: 2165475
+RT  Glyceraldehyde-3-phosphate dehydrogenase from the hyperthermophilic archaebacterium Pyrococcus woesei: characterization of the enzyme, cloning and sequencing of the gene, and expression in Escherichia coli.
+RA  Zwickl P, Fabry S, Bogedain C, Haas A, Hensel R.
+RL  J Bacteriol 1990 Aug;172(8):4329-38.
+DR  HAMAP; MF_00559; 43 of 43

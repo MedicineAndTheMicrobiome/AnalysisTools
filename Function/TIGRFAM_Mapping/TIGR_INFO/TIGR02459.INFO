@@ -1,0 +1,16 @@
+ID  CbtB
+AC  TIGR02459
+DE  cobalt transporter subunit CbtB (proposed)
+AU  Selengut J
+TC  64.40 64.40
+NC  24.15 24.15
+AL  clustalw
+IT  hypoth_equivalog
+EN  cobalt transporter subunit CbtB (proposed)
+GS  cbtB
+TP  TIGRFAMs
+CC  This model represents a family of proteins which have been proposed [1] to act as cobalt transporters acting in concert with vitamin B12 biosynthesis systems.  Evidence for this assignment includes 1) prediction of a single trans-membrane segment and a C-terminal histidine-rich motif likely to be a metal-binding site, 2) positional gene linkage with known B12 biosynthesis genes, 3) upstream proximity of B12 transcriptional regulatory sites, 4) the absence of other known cobalt import systems and 5) the obligate co-localization with a protein (CbtA) predicted to have five additional trans-membrane segments.
+RN  [1]
+RA  Rodionov DA, Vitreschak AG, Mironov AA, Gelfand MS.
+RT  Comparative genomics of the vitamin B12 metabolism and regulation in prokaryotes.
+RL  J Biol Chem. 2003 Oct 17;278(42):41148-59. Epub 2003 Jul 17.

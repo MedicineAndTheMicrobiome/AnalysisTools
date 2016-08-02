@@ -1,0 +1,11 @@
+ID  GRASP_targ_2
+AC  TIGR04497
+DE  putative ATP-grasp target RiPP
+AU  Haft DH
+TC  32.00 32.00
+NC  28.00 28.00
+AL  manual
+IT  subfamily
+EN  putative ATP-grasp target RiPP
+TP  TIGRFAMs
+CC  Members of this small family are putative RiPP (Ribosomally translated, Post-translationally modified Peptides) precursors, modified by RimK-like ATP-grasp proteins. Members are encoded near both an ATP-grasp protein and C39 peptidase domain-containing transporter. Members are short polypeptides that contain the GG motif expected for cleavage on export.

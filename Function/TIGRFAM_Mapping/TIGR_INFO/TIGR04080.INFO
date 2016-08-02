@@ -1,0 +1,17 @@
+ID  rSAM_pep_cyc
+AC  TIGR04080
+DE  KxxxW cyclic peptide radical SAM maturase
+AU  Haft DH
+TC  500.00 500.00
+NC  100.00 100.00
+AL  muscle_manual
+IT  equivalog
+EN  KxxxW cyclic peptide radical SAM maturase
+GS  kwcM
+TP  TIGRFAMs
+CC  Members of this family are radical SAM enzymes that appear to perform a cyclization on an adjacent cognate peptide from family TIGR04079. Genomes with the complete system include Streptococcus thermophilus LMD-9 and Lactococcus lactis subsp. cremoris MG1363, among others. The gene symbol assigned is kwcM, for KxxxW Cyclic peptide Maturase.
+RN  [1]
+RM  PMID:17921293 
+RT  Control of the transcription of a short gene encoding a cyclic peptide in Streptococcus thermophilus: a new quorum-sensing system? 
+RA  Ibrahim M, Guillot A, Wessner F, Algaron F, Besset C, Courtin P, Gardan R, Monnet V 
+RL  J Bacteriol. 2007 Dec;189(24):8844-54. Epub 2007 Oct 5.

@@ -1,0 +1,11 @@
+ID  A_thal_3678
+AC  TIGR01568
+DE  uncharacterized plant-specific domain TIGR01568
+AU  Haft DH, Segal N
+TC  46.45 46.45
+NC  24.15 24.15
+AL  clustalw_manual
+IT  domain
+EN  uncharacterized plant-specific domain TIGR01568
+TP  TIGRFAMs
+CC  This HMM describes an uncharacterized domain of about 70 residues found exclusively in plants, generally toward the C-terminus of proteins of 200 to 350 amino acids in length. At least 14 such proteins are found in Arabidopsis thaliana. Other regions of these proteins tend to consist largely of low-complexity sequence.

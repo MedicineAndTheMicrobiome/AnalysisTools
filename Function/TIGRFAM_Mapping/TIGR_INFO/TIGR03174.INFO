@@ -1,0 +1,12 @@
+ID  cas_Csc3
+AC  TIGR03174
+DE  CRISPR type I-D/CYANO-associated protein Csc3/Cas10d
+AU  Haft DH
+TC  60.00 40.00
+NC  25.00 25.00
+AL  muscle
+IT  equivalog
+EN  CRISPR type I-D/CYANO-associated protein Csc3/Cas10d
+GS  csc3
+TP  TIGRFAMs
+CC  CRISPR (Clustered Regularly Interspaced Short Palindromic Repeats) is a widespread family of prokaryotic direct repeats with spacers of unique sequence between consecutive repeats. This protein family is a CRISPR-associated (Cas) family strictly associated with the Cyano subtype of CRISPR/Cas locus, found in several species of Cyanobacteria and several archaeal species. This family is designated Csc3 for CRISPR/Cas Subtype Cyano protein 3, as it is often the third gene upstream of the core cas genes, cas3-cas4-cas1-cas2.

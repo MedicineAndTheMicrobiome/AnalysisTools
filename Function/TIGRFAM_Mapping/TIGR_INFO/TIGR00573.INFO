@@ -1,0 +1,14 @@
+ID  dnaq
+AC  TIGR00573
+DE  exonuclease, DNA polymerase III, epsilon subunit family
+AU  Loftus BJ, Eisen JA
+TC  71.50 71.50
+NC  67.40 67.40
+IT  subfamily_domain
+EN  exonuclease, DNA polymerase III, epsilon subunit family
+EC  2.7.7.7
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are components of the DNA polymerase III complex (epsilon subunit).  There is, however, an outgroup that includes paralogs in some gamma-proteobacteria and the n-terminal region of DinG from some low GC gram positive bacteria. This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  EGAD; 2879;
+DR  SWISSPROT; P43745;
+DR  HAMAP; MF_00356; 64 of 64

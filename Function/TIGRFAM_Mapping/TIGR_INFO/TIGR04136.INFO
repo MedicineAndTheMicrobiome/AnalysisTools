@@ -1,0 +1,16 @@
+ID  rSAM_FibroRumin
+AC  TIGR04136
+DE  radical SAM peptide maturase, FibroRumin system
+AU  Haft DH
+TC  400.00 400.00
+NC  250.00 250.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  radical SAM peptide maturase, FibroRumin system
+TP  TIGRFAMs
+CC  Members of this protein family are radical SAM enzymes proposed to act on small, Cys-rich peptides encoded by tandem gene pairs. Members occur in enzymes Fibrobacter succinogenes subsp. succinogenes S85 (genes for their target peptides missed) and in Ruminococcus albus 8. This enzyme family is similar in sequence to the SCIFF (Six Cysteines in Forty-Five) system maturase (TIGR03974).
+RN  [1]
+RM  PMID:21478363 
+RT  Biological systems discovery in silico: radical S-adenosylmethionine protein families and their target peptides for posttranslational modification. 
+RA  Haft DH, Basu MK 
+RL  J Bacteriol. 2011 Jun;193(11):2745-55.

@@ -1,0 +1,17 @@
+ID  HpnA
+AC  TIGR03466
+DE  hopanoid-associated sugar epimerase
+AU  Selengut J
+TC  367.65 367.65
+NC  307.90 307.90
+AL  muscle
+IT  hypoth_equivalog
+EN  hopanoid-associated sugar epimerase
+GS  hpnA
+TP  TIGRFAMs
+CC  The sequences in this family are members of the PF01370 superfamily of NAD-dependent epimerases and dehydratases typically acting on nucleotide-sugar substrates.  The genes of  the family modeled here are generally in the same locus with  genes involved in the biosynthesis and elaboration of hopene, the cyclization product of the polyisoprenoid squalene.  This gene and its association with hopene biosynthesis in Zymomonas mobilis has been noted in the literature where the gene symbol hpnA was assigned [1].  Hopanoids are known to be components of the plasma membrane and to have polar sugar head groups in Z. mobilis and other species.
+RN  [1]
+RM  PMID:9714766 
+RT  Cloning of conserved genes from Zymomonas mobilis and Bradyrhizobium japonicum that function in the biosynthesis of hopanoid lipids. 
+RA  Perzl M, Reipen IG, Schmitz S, Poralla K, Sahm H, Sprenger GA, Kannenberg EL 
+RL  Biochim Biophys Acta. 1998 Jul 31;1393(1):108-18.

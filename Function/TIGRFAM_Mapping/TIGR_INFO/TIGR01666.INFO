@@ -1,0 +1,12 @@
+ID  YCCS
+AC  TIGR01666
+DE  TIGR01666 family membrane protein
+AU  Selengut J
+TC  470.75 470.75
+NC  242.70 242.70
+AL  clustalw
+IT  hypoth_equivalog
+EN  TIGR01666 family membrane protein
+GS  yccS
+TP  TIGRFAMs
+CC  This model represents a clade of sequences from gamma and beta proteobacteria.  These proteins are >700 amino acids long and many have been annotated as putative membrane proteins.  The gene from Salmonella has been annotated as a putative efflux transporter.  The gene from E. coli has the name yccS.

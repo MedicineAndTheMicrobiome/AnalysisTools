@@ -1,0 +1,11 @@
+ID  TIGR03843
+AC  TIGR03843
+DE  conserved hypothetical protein
+AU  Haft DH
+TC  172.40 172.40
+NC  90.60 90.60
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  conserved hypothetical protein
+TP  TIGRFAMs
+CC  This HMM represents a protein family largely restricted to the Actinobacteria (high-GC Gram-positives), although it is also found in the Chloroflexi. Distant similarity to the phosphatidylinositol 3- and 4-kinase is suggested by the matching of some members to PF00454.

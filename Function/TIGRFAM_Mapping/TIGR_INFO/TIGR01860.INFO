@@ -1,0 +1,13 @@
+ID  VNFD
+AC  TIGR01860
+DE  nitrogenase vanadium-iron protein, alpha chain
+AU  Selengut J
+TC  823.10 823.10
+NC  822.85 822.85
+AL  clustalw
+IT  equivalog
+EN  nitrogenase vanadium-iron protein, alpha chain
+GS  vnfD
+EC  1.18.6.1
+TP  TIGRFAMs
+CC  This HMM represents the alpha chain of the vanadium-containing component of the vanadium-iron nitrogenase compound I.  The complex also includes a second alpha chain, two beta chains and two delta chains.  Compount I interacts with compound II also known as the iron-protein which transfers electrons to compound I where the catalysis occurs.

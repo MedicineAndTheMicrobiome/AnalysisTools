@@ -1,0 +1,18 @@
+ID  sod_Ni_protease
+AC  TIGR02754
+DE  nickel-type superoxide dismutase maturation protease
+AU  Haft DH
+TC  63.25 63.25
+NC  55.10 55.10
+AL  clustalw_manual
+IT  equivalog
+EN  nickel-type superoxide dismutase maturation protease
+GS  sodX
+EC  3.4.21.-
+TP  TIGRFAMs
+CC  Members of this protein family are apparent proteases encoded adjacent to the genes for a nickel-type superoxide dismutase. This family belongs to the same larger family (see Pfam model PF00717) as signal peptidase I, an unusual serine protease suggested to have a Ser/Lys catalytic dyad.
+DR  PFAM; PF00717; Peptidase S24-like domainRN  [1]
+RM  15516600
+RT  In vivo production of active nickel superoxide dismutase from Prochlorococcus marinus MIT9313 is dependent on its cognate peptidase.
+RA  Eitinger T.
+RL  J Bacteriol. 2004 Nov;186(22):7821-5.

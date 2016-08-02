@@ -1,0 +1,16 @@
+ID  thrC
+AC  TIGR00260
+DE  threonine synthase
+AU  Loftus BJ
+TC  167.10 167.10
+NC  108.00 108.00
+AL  clustalw
+IT  equivalog
+EN  threonine synthase
+GS  thrC
+EC  4.2.3.1
+TP  TIGRFAMs
+CC  Involved in threonine biosynthesis it catalyses the reaction O-PHOSPHO-L-HOMOSERINE + H(2)O = L-THREONINE + ORTHOPHOSPHATE using pyridoxal phosphate as a cofactor. the enzyme is distantly related to the serine/threonine dehydratases which are also pyridoxal-phosphate dependent enzymes. the pyridoxal-phosphate binding site is a Lys (K) residues present at residue 70 of the model.
+DR  ECOCYC; EG11000; thrC
+DR  PROSITE; PDOC00149; Serine/threonine dehydratases pyridoxal-phosphate attachment site
+RM  87080286

@@ -1,0 +1,20 @@
+ID  asn_synth_AEB
+AC  TIGR01536
+DE  asparagine synthase (glutamine-hydrolyzing)
+AU  Haft DH
+TC  267.10 267.10
+NC  159.05 159.05
+AL  clustalw_manual
+IT  equivalog
+EN  asparagine synthase (glutamine-hydrolyzing)
+GS  asnB
+EC  6.3.5.4
+TP  TIGRFAMs
+CC  This HMM describes the glutamine-hydrolysing asparagine synthase. A poorly conserved C-terminal extension was removed from the model. Bacterial members of the family tend to have a long, poorly conserved insert lacking from archaeal and eukaryotic sequences. Multiple isozymes have been demonstrated, such as in Bacillus subtilis. Long-branch members of the phylogenetic tree (which typically were also second or third candidate members from their genomes) were removed from the seed alignment and score below trusted cutoff.
+DR  PFAM; PF00733; Asn_synthase
+DR  PFAM; PF00310; GATase_2
+RN  [1]
+RM  10498721
+RT  Three asparagine synthetase genes of Bacillus subtilis.
+RA  Yoshida K, Fujita Y, Ehrlich SD.
+RL  J Bacteriol 1999 Oct;181(19):6081-91

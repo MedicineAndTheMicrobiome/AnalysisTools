@@ -1,0 +1,17 @@
+ID  alt_F1F0_F1_al
+AC  TIGR03324
+DE  alternate F1F0 ATPase, F1 subunit alpha
+AU  Haft DH
+TC  750.50 750.50
+NC  708.60 708.60
+AL  muscle_manual
+IT  exception
+EN  alternate F1F0 ATPase, F1 subunit alpha
+EC  3.6.3.-
+TP  TIGRFAMs
+CC  A small number of taxonomically diverse prokaryotic species, including Methanosarcina barkeri, have what appears to be a second ATP synthase, in addition to the normal F1F0 ATPase in bacteria and A1A0 ATPase in archaea. These enzymes use ion gradients to synthesize ATP, and in principle may run in either direction.  This model represents the F1 alpha subunit of this apparent second ATP synthase.
+RN  [1]
+RM  PMID: 9425287
+RT  F0F1-ATPase genes from an archaebacterium, Methanosarcina barkeri.
+RA  Sumi M, Yohda M, Koga Y, Yoshida M
+RL  Biochem Biophys Res Commun. 1997 Dec 18;241(2):427-33.

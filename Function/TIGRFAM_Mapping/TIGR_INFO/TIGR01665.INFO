@@ -1,0 +1,11 @@
+ID  put_anti_recept
+AC  TIGR01665
+DE  phage minor structural protein, N-terminal region
+AU  Haft DH
+TC  26.75 26.75
+NC  25.80 25.80
+AL  manual
+IT  subfamily_domain
+EN  phage minor structural protein, N-terminal region
+TP  TIGRFAMs
+CC  This HMM represents the conserved N-terminal region, typically from about residue 25 to about residue 350, of a family of uncharacterized phage proteins 500 to 1700 residues in length.

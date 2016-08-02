@@ -1,0 +1,12 @@
+ID  CXXU_selWTH
+AC  TIGR02174
+DE  selT/selW/selH selenoprotein domain
+AU  Haft DH
+TC  34.20 34.20
+NC  30.00 30.00
+AL  clustalw_manual
+IT  domain
+EN  selT/selW/selH selenoprotein domain
+TP  TIGRFAMs
+CC  This HMM represents a domain found in both bacteria and animals, including animal proteins SelT, SelW, and SelH, all of which are selenoproteins. In a CXXC motif near the N-terminus of the domain, selenocysteine may replace the second Cys. Proteins with this domain may include an insert of about 70 amino acids. This model is broader than the current SelW model PF05169 in Pfam.
+DR  PFAM; PF05169; Selenoprotein W-related family

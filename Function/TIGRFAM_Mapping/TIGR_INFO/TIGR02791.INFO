@@ -1,0 +1,27 @@
+ID  VirB5
+AC  TIGR02791
+DE  P-type DNA transfer protein VirB5
+AU  Selengut J
+TC  132.25 132.25
+NC  114.65 114.65
+AL  muscle
+IT  equivalog
+EN  P-type DNA transfer protein VirB5
+GS  virB5
+TP  TIGRFAMs
+CC  The VirB5 protein is involved in the type IV DNA secretion systems typified by the Agrobacterium Ti plasmid vir system where it interacts with several other proteins essential for proper pilus formation [1].  VirB5 is homologous to the IncN (N-type) conjugation system protein TraC [2] as well as the P-type protein TrbJ and the F-type protein TraE [3].
+RN  [1]
+RM  PMID: 15901731
+RT  Identification of the VirB4-VirB8-VirB5-VirB2 pilus assembly sequence of type IV secretion systems.
+RA  Yuan Q, Carle A, Gao C, Sivanesan D, Aly KA, Hoppner C, Krall L, Domke N, Baron C.
+RL  J Biol Chem. 2005 Jul 15;280(28):26349-59. Epub 2005 May 18.
+RN  [2]
+RM  PMID: 14673074
+RT  Structural and functional characterization of the VirB5 protein from the type IV secretion system encoded by the conjugative plasmid pKM101.
+RA  Yeo HJ, Yuan Q, Beck MR, Baron C, Waksman G.
+RL  Proc Natl Acad Sci U S A. 2003 Dec 23;100(26):15947-52. Epub 2003 Dec 12.
+RN  [3]
+RM  PMID: 12855161
+RT  F factor conjugation is a true type IV secretion system.
+RA  Lawley TD, Klimke WA, Gubbins MJ, Frost LS.
+RL  FEMS Microbiol Lett. 2003 Jul 15;224(1):1-15.

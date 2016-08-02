@@ -1,0 +1,14 @@
+ID  fliS
+AC  TIGR00208
+DE  flagellar protein FliS
+AU  Loftus BJ
+TC  53.75 53.75
+NC  32.60 32.60
+AL  clustalw
+IT  equivalog
+EN  flagellar biosynthetic protein FliS
+GS  fliS
+TP  TIGRFAMs
+CC  The function of this protein in flagellar biosynthesis is unknown, but appears to be regulatory. The member of this family in Vibrio parahaemolyticus is designated FlaJ (creating a synonym for FliS) and was shown essential for flagellin biosynthesis.
+DR  ECOCYC; EG11388; fliS;
+RM  97014377

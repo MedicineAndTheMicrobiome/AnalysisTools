@@ -1,0 +1,24 @@
+ID  cobA
+AC  TIGR00708
+DE  cob(I)yrinic acid a,c-diamide adenosyltransferase
+AU  Haft DH, Loftus BJ
+TC  167.75 167.75
+NC  79.50 79.50
+AL  msa_ncbi
+IT  equivalog
+EN  cob(I)alamin adenosyltransferase
+GS  cobO
+EC  2.5.1.17
+TP  TIGRFAMs
+CC  Alternate name: corrinoid adenosyltransferase.
+DR  InterPro; IPR003724
+DR  PFAM; PF02572
+DR  ECOCYC; EG10130; btuR
+DR  SWISSPROT; P13040
+RN  [1]
+RM  95164524
+RT  Purification and initial characterization of the ATP:corrinoid adenosyltransferase encoded by the cobA gene of Salmonella typhimurium.
+RA  Suh S, Escalante-Semerena JC
+RL  J Bacteriol 1995 Feb;177(4):921-5
+DR  EXPERIMENTAL; EGAD|20442|20988; Salmonella choleraesuis
+DR  EXPERIMENTAL; EGAD|20445|20991; Pseudomonas denitrificans

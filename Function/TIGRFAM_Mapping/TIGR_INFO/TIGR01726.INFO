@@ -1,0 +1,12 @@
+ID  HEQRo_perm_3TM
+AC  TIGR01726
+DE  amino ABC transporter, permease protein, 3-TM region, His/Glu/Gln/Arg/opine family
+AU  Haft DH
+TC  42.20 42.20
+NC  37.50 37.50
+AL  clustalw_manual
+IT  subfamily_domain
+EN  amine acid ABC transporter, permease protein, 3-TM region, His/Glu/Gln/Arg/opine family
+TP  TIGRFAMs
+CC  This HMM represents one of several classes of multiple membrane spanning regions found immediately N-terminal to the domain described by PF00528, binding-protein-dependent transport systems inner membrane component. The region covered by this HMM generally is predicted to contain three transmembrane helices. Substrate specificities attributed to members of this family include histidine, arginine, glutamine, glutamate, and (in Agrobacterium) the opines octopine and nopaline.
+DR  PF00528; BPD_transp;

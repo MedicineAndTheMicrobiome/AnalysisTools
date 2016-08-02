@@ -1,0 +1,18 @@
+ID  cas3_GSU0051
+AC  TIGR02621
+DE  CRISPR-associated helicase Cas3, subtype Dpsyc
+AU  Haft DH
+TC  218.25 218.25
+NC  66.75 66.75
+AL  clustalw
+IT  exception
+EN  CRISPR-associated helicase Cas3, subtype Dpsyc
+GS  cas3
+EC  3.6.4.-
+TP  TIGRFAMs
+CC  This model describes a CRISPR-associated putative DEAH-box helicase, or Cas3, of a subtype found in Actinomyces naeslundii MG1, Geobacter sulfurreducens PCA, Gemmata obscuriglobus UQM 2246, and Desulfotalea psychrophila. This protein includes both DEAH and HD motifs.
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=2003
+RN  [1]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005

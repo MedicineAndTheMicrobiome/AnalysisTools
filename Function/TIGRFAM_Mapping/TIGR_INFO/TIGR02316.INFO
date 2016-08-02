@@ -1,0 +1,13 @@
+ID  propion_prpE
+AC  TIGR02316
+DE  propionate--CoA ligase
+AU  Haft DH
+TC  827.40 827.40
+NC  760.80 760.80
+AL  clustalw
+IT  equivalog
+EN  propionate--CoA ligase
+GS  prpE
+EC  6.2.1.17
+TP  TIGRFAMs
+CC  This family contains one of three readily separable clades of proteins in the group of acetate and propionate--CoA ligases. Characterized members of this family act on propionate. From propionyl-CoA, there is a cyclic degradation pathway: it is ligated by PrpC to the TCA cycle intermediate oxaloacetate, acted upon further by PrpD and an aconitase, then cleaved by PrpB to pyruvate and the TCA cycle intermediate succinate.

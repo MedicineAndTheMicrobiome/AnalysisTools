@@ -1,0 +1,13 @@
+ID  mug
+AC  TIGR00584
+DE  mismatch-specific thymine-DNA glycosylate (mug)
+AU  Loftus BJ, Eisen JA
+TC  402.60 402.60
+NC  41.55 41.55
+IT  subfamily
+EN  mismatch-specific thymine-DNA glycosylate (mug)
+EC  3.2.2.-
+TP  TIGRFAMs
+CC  All proteins in this family for whcih functions are known are G-T or G-U mismatch glycosylases that function in base excision repair.  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).  Used 2pf model.
+DR  SWISSPROT: P56581;
+RM  98361936;

@@ -1,0 +1,12 @@
+ID  3a0501s007
+AC  TIGR00967
+DE  preprotein translocase, SecY subunit
+AU  Loftus BJ, Haft DH
+TC  253.60 253.60
+NC  233.30 233.30
+AL  clustalw_manual
+IT  equivalog
+EN  preprotein translocase, SecY subunit
+GS  secY
+TP  TIGRFAMs
+CC  Members of this protein family are the SecY component of the SecYEG translocon, or protein translocation pore, which is driven by the ATPase SecA. This model does not discriminate bacterial from archaeal forms.

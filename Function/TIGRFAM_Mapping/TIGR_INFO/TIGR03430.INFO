@@ -1,0 +1,18 @@
+ID  trp_dimet_allyl
+AC  TIGR03430
+DE  tryptophan dimethylallyltransferase
+AU  Haft DH, Fedorova N
+TC  740.75 740.75
+NC  353.75 353.75
+AL  muscle_manual
+IT  equivalog
+EN  tryptophan dimethylallyltransferase
+GS  dmaW
+EC  2.5.1.34
+TP  TIGRFAMs
+CC  Members of this family are the enzyme tryptophan dimethylallyltransferase (EC 2.5.1.34), a distinct clade within a larger group of aromatic prenyltransferases that may act on on trp-containing cyclic dipeptides, or on tyrosine or other related substrates. Tryptophan dimethylallyltransferase and related enzymes typically are of fungal origin are involved in the biosynthesis of secondary metabolites such as ergot alkaloids.
+RN  [1]
+RM  PMID:7488077
+RT  The Claviceps purpurea gene encoding dimethylallyltryptophan synthase, the committed step for ergot alkaloid biosynthesis.
+RA  Tsai HF, Wang H, Gebler JC, Poulter CD, Schardl CL
+RL  Biochem Biophys Res Commun. 1995 Nov 2;216(1):119-25.

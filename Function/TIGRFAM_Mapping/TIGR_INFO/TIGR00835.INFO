@@ -1,0 +1,13 @@
+ID  agcS
+AC  TIGR00835
+DE  amino acid carrier protein
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  272.65 272.65
+NC  259.20 259.20
+AL  clustalw_manual
+IT  subfamily
+EN  amino acid carrier protein
+GS  agcS
+TP  TIGRFAMs
+CC  The Alanine or Glycine: Cation Symporter (AGCS) Family (TC 2.A.25)
+CC  Members of the AGCS family transport alanine and/or glycine in symport with Na+ and or H+.

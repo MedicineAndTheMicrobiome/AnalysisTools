@@ -1,0 +1,23 @@
+ID  EcbF-BcbF
+AC  TIGR01689
+DE  capsule biosynthesis phosphatase
+AU  Selengut J
+TC  162.00 162.00
+NC  47.80 47.80
+AL  clustalw
+IT  subfamily
+EN  capsule biosynthesis phosphatase
+TP  TIGRFAMs
+CC  This model describes a small family of highly conserved proteins (>60% ID).  Two of these, BcbF and EcbF of Pasteurella multocida are believed to be part of the capsule polysaccharide biosynthesis machinery because they are cotranscribed from a locus devoted to that purpose [1].  In pasteurella there are six different variant capsules (A-F), and these proteins are found only in B and E.  The other two species in which this gene is (currently) found are both also pathogenic.  
+CC  These proteins are also members of the IIIC (TIGR01681) subfamily of the Haloacid Dehalogenase (HAD) superfamily of aspartate-nucleophile hydrolases.  All of the characterized enzymes within subfamily III are phosphatases, and all of the active site residues characteristic of HAD-superfamily phosphatases [2] are present in this subfamily.
+CC  Due to the likelihood that the substrates of these enzymes are different depending on the nature of the particular polysaccharides associated with each species, this model has been classified as a subfamily despite the close homology.
+RN  [1]
+RM  PMID: 10699509
+RT  Genetic organisation of the capsule biosynthetic locus of Pasteurella multocida M1404 (B:2).
+RA  Boyce JD, Chung JY, Adler B.
+RL  Vet Microbiol 2000 Mar 1;72(1-2):121-34
+RN  [2]
+RM  PMID: 7966317
+RT  Computer analysis of bacterial haloacid dehalogenases defines a large superfamily of hydrolases with diverse specificity. Application of an iterative approach to database search.
+RA  Koonin EV, Tatusov RL.
+RL  J Mol Biol 1994 Nov 18;244(1):125-32

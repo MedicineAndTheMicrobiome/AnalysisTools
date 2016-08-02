@@ -1,0 +1,17 @@
+ID  eubact_ribD
+AC  TIGR00326
+DE  riboflavin biosynthesis protein RibD
+AU  Haft DH
+TC  156.35 156.35
+NC  152.80 152.80
+AL  clustalw
+IT  equivalog
+EN  riboflavin biosynthesis protein RibD
+GS  ribD
+EC  3.5.4.26 1.1.1.193
+TP  TIGRFAMs
+CC  This HMM describes the ribD protein as found in Escherichia coli. The N-terminal domain includes the conserved zinc-binding site region captured in the HMM dCMP_cyt_deam and shared by proteins such as cytosine deaminase, mammalian apolipoprotein B mRNA editing protein, blasticidin-S deaminase, and Bacillus subtilis competence protein comEB. The C-terminal domain is homologous to the full length of yeast HTP reductase, a protein required for riboflavin biosynthesis. A number of archaeal proteins believed related to riboflavin biosynthesis contain only this C-terminal domain and are not found as full-length matches to this model.
+DR  PROSITE; PDOC00702;
+DR  PFAM; PF00383; dCMP_cyt_deam;
+DR  PFAM; PF01872; RibD_C; 
+DR  ECOCYC; EG11321; ribD;

@@ -1,0 +1,15 @@
+ID  tape_meas_TP901
+AC  TIGR01760
+DE  phage tail tape measure protein, TP901 family, core region
+AU  Haft DH
+TC  28.80 28.80
+NC  27.50 27.50
+AL  clustalw_manual
+IT  equivalog_domain
+EN  phage tail tape measure protein, TP901 family, core region
+TP  TIGRFAMs
+CC  This HMM represents a reasonably well conserved core region of a family of phage tail proteins. The member from phage TP901-1 was characterized as a tail length tape measure protein in that a shortened form of the protein leads to phage with proportionately shorter tails.
+RM  11040123
+RT  Mutational analysis of two structural genes of the temperate lactococcal bacteriophage TP901-1 involved in tail length determination and baseplate assembly.
+RA  Pedersen M, Ostergaard S, Bresciani J, Vogensen FK.
+RL  Virology 2000 Oct 25;276(2):315-28

@@ -1,0 +1,20 @@
+ID  IMP_dehydrog
+AC  TIGR01302
+DE  inosine-5'-monophosphate dehydrogenase
+AU  Haft DH
+TC  481.50 481.50
+NC  303.25 303.25
+AL  clustalw_manual
+IT  equivalog
+EN  inosine-5'-monophosphate dehydrogenase
+GS  guaB
+EC  1.1.1.205
+TP  TIGRFAMs
+CC  This HMM describes IMP dehydrogenase, an enzyme of GMP biosynthesis. This form contains two CBS domains.
+CC  This HMM describes a rather tightly conserved cluster of IMP dehydrogenase sequences, many of which are characterized. The model excludes two related families of proteins proposed also to be IMP dehydrogenases, but without characterized members. These are related families are the subject of separate models.
+DR;  PFAM; PF00571; CBS (two copies)
+DR;  PFAM; PF00478; IMPDH_C
+DR;  PFAM; PF01574; IMPDH_N
+DR;  EXPERIMENTAL; SP|P50097; Tritrichomonas foetus
+DR;  EXPERIMENTAL; SP|P50099; Streptococcus pyogenes
+DR;  EXPERIMENTAL; GP|146275; Homo sapiens

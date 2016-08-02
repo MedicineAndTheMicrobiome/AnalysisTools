@@ -1,0 +1,18 @@
+ID  spore_II_E
+AC  TIGR02865
+DE  stage II sporulation protein E
+AU  Haft DH
+TC  490.80 490.80
+NC  201.15 201.15
+AL  muscle
+IT  equivalog
+EN  stage II sporulation protein E
+GS  spoIIE
+EC  3.1.3.16
+TP  TIGRFAMs
+CC  Stage II sporulation protein E (SpoIIE) is a multiple membrane spanning protein with two separable functions. It plays a role in the switch to polar cell division during sporulation. By means of it protein phosphatase activity, located in the C-terminal region, it activates sigma-F. All proteins that score above the trusted cutoff to this model are found in endospore-forming Gram-positive bacteria. Surprisingly, a sequence from the Cyanobacterium-like (and presumably non-spore-forming) photosynthesizer Heliobacillus mobilis is homologous, and scores between the trusted and noise cutoffs.
+RN  [1]
+RM  15866939
+RT  Genetic dissection of the sporulation protein SpoIIE and its role in asymmetric division in Bacillus subtilis.
+RA  Carniol K, Ben-Yehuda S, King N, Losick R.
+RL  J Bacteriol. 2005 May;187(10):3511-20.

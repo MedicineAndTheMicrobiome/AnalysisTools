@@ -1,0 +1,29 @@
+ID  PFKA_ATP
+AC  TIGR02482
+DE  6-phosphofructokinase
+AU  Rosovitz MJ, Haft DH
+TC  371.35 371.35
+NC  359.45 359.45
+AL  clustalw
+IT  equivalog
+EN  6-phosphofructokinase
+GS  pfkA
+EC  2.7.1.11
+TP  TIGRFAMs
+CC  6-phosphofructokinase (EC 2.7.1.11) catalyzes the addition of phosphate from ATP to fructose 6-phosphate to give fructose 1,6-bisphosphate.  This represents a key control step in glycolysis.  This model hits bacterial ATP-dependent 6-phosphofructokinases which lack a beta-hairpin loop present in TIGR02483 family members. TIGR02483 contains members that are ATP-dependent as well as members that are pyrophosphate-dependent. TIGR02477 represents the pyrophosphate-dependent phosphofructokinase, diphosphate--fructose-6-phosphate 1-phosphotransferase (EC 2.7.1.90).
+RN [1]
+RM  8436141
+RT  Molecular cloning and nucleotide sequence of the gene for pyruvate kinase of Bacillus stearothermophilus and the production of the enzyme in Escherichia coli. Evidence that the genes for phosphofructokinase and pyruvate kinase constitute an operon.
+RA  Sakai H, Ohta T.
+RL  Eur J Biochem. 1993 Feb 1;211(3):851-9.
+RN [2]
+RM  1828763
+RT  Purification and properties of the phosphofructokinase from Lactobacillus bulgaricus. A non-allosteric analog of the enzyme from Escherichia coli.
+RA  Le Bras G, Deville-Bonne D, Garel JR.
+RL  Eur J Biochem. 1991 Jun 15;198(3):683-7.
+RN  [3]
+RM  2953977
+RT  Mutations in the active site of Escherichia coli phosphofructokinase.
+RA  Hellinga HW, Evans PR.
+RL  Nature. 1987 Jun 4-10;327(6121):437-9.
+DR  HAMAP; MF_00339; 153 of 182

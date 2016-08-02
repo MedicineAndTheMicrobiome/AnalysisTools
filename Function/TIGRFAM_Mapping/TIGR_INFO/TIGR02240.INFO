@@ -1,0 +1,17 @@
+ID  PHA_depoly_arom
+AC  TIGR02240
+DE  poly(3-hydroxyalkanoate) depolymerase
+AU  Haft DH
+TC  250.60 250.60
+NC  182.50 182.50
+AL  clustalw
+IT  equivalog
+EN  poly(3-hydroxyalkanoate) depolymerase
+GS  phaZ
+EC  3.1.1.-
+TP  TIGRFAMs
+CC  This family consists of the polyhydroxyalkanoic acid (PHA) depolymerase of Pseudomonas oleovorans, Pseudomonas putida BM01, and related species. This enzyme is part of polyester storage and mobilization system as in many bacteria. However, species containing this enzyme are unusual in their capacity to produce aromatic polyesters when grown on carbon sources such as benzoic acid or phenylacetic acid.
+RM  10506180
+RT  Novel biodegradable aromatic plastics from a bacterial source. Genetic and biochemical studies on a route of the phenylacetyl-coa catabolon.
+RA  Garcia B, Olivera ER, Minambres B, Fernandez-Valverde M, Canedo LM, Prieto MA, Garcia JL, Martinez M, Luengo JM.
+RL  J Biol Chem. 1999 Oct 8;274(41):29228-41.

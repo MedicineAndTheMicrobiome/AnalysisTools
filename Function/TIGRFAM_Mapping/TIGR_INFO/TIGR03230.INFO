@@ -1,0 +1,17 @@
+ID  lipo_lipase
+AC  TIGR03230
+DE  lipoprotein lipase
+AU  Haft DH
+TC  822.75 822.75
+NC  658.90 658.90
+AL  muscle
+IT  equivalog
+EN  lipoprotein lipase
+EC  3.1.1.34
+TP  TIGRFAMs
+CC  Members of this protein family are lipoprotein lipase (EC 3.1.1.34), a eukaryotic triacylglycerol lipase active in plasma and similar to pancreatic and hepatic triacylglycerol lipases (EC 3.1.1.3). It is also called clearing factor. It cleaves chylomicron and VLDL triacylglycerols; it also has phospholipase A-1 activity.
+RN  [1]
+RM  PMID: 8308035
+RT  Lipoprotein lipase. Molecular model based on the pancreatic lipase x-ray structure: consequences for heparin binding and catalysis.
+RA  van Tilbeurgh H, Roussel A, Lalouel JM, Cambillau C
+RL  J Biol Chem. 1994 Feb 11;269(6):4626-33.

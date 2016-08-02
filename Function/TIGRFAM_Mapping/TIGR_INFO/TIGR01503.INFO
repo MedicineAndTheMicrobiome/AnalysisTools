@@ -1,0 +1,12 @@
+ID  MthylAspMut_E
+AC  TIGR01503
+DE  methylaspartate mutase, E subunit
+AU  Haft DH
+TC  390.10 390.10
+NC  240.90 240.90
+AL  clustalw
+IT  equivalog
+EN  methylaspartate mutase, E subunit
+EC  5.4.99.1
+TP  TIGRFAMs
+CC  This HMM represents the E (epsilon) subunit of methylaspartate mutase (glutamate mutase), a cobalamin-dependent enzyme that catalyzes the first step in a pathway of glutamate fermentation.

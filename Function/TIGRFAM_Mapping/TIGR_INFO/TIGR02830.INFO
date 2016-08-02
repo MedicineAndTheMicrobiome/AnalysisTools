@@ -1,0 +1,17 @@
+ID  spore_III_AG
+AC  TIGR02830
+DE  stage III sporulation protein AG
+AU  Haft DH
+TC  147.70 147.70
+NC  28.55 28.55
+AL  muscle
+IT  equivalog
+EN  stage III sporulation protein AG
+GS  spoIIIAG
+TP  TIGRFAMs
+CC  CC  A comparative genome analysis of all sequenced genomes of shows a number of proteins conserved strictly among the endospore-forming subset of the Firmicutes. This protein, a member of this panel, is found in a spore formation operon and is designated stage III sporulation protein AG.
+RM  16311624
+RT  Life in Hot Carbon Monoxide: The Complete Genome Sequence of Carboxydothermus hydrogenoformans Z-2901.
+RA  Wu M, Ren Q, Durkin AS, Daugherty SC, Brinkac LM, Dodson RJ, Madupu R, Sullivan SA, Kolonay JF, Nelson WC, Tallon LJ, Jones KM, Ulrich LE,
+Gonzalez JM, Zhulin IB, Robb FT, Eisen JA.
+RL  2005 Nov 25;1(5):e65

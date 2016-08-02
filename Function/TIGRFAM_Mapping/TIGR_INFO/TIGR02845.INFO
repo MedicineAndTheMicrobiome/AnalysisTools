@@ -1,0 +1,17 @@
+ID  spore_V_AD
+AC  TIGR02845
+DE  stage V sporulation protein AD
+AU  Haft DH
+TC  411.80 411.80
+NC  123.90 123.90
+AL  clustalw
+IT  equivalog
+EN  stage V sporulation protein AD
+GS  spoVAD
+TP  TIGRFAMs
+CC  Bacillus and Clostridium species contain about 10 % dipicolinic acid (pyridine-2,6-dicarboxylic acid) by weight. This protein family, SpoVAD, belongs to the spoVA operon that is suggested to act in the transport of dipicolinic acid (DPA) from the mother cell, where DPA is synthesized, to the forespore, a process essential to sporulation. Members of this protein family are found, so far, in exactly those species believed capable of endospore formation.
+RN  [1]
+RM  16077113
+RT  Localization of SpoVAD to the inner membrane of spores of Bacillus subtilis.
+RA  Vepachedu VR, Setlow P.
+RL  J Bacteriol. 2005 Aug;187(16):5677-82.

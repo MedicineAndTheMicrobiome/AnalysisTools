@@ -1,0 +1,16 @@
+ID  Y_sulf_Ax21
+AC  TIGR04273
+DE  sulfation-dependent quorum factor, Ax21 family
+AU  Haft DH
+TC  250.00 250.00
+NC  100.00 100.00
+AL  muscle_manual
+IT  equivalog
+EN  sulfation-dependent quorum factor, Ax21 family
+TP  TIGRFAMs
+CC  This family consists of proteins closely related to Ax21 (Activator of XA21-mediated immunity), a protein that is secreted by a type I secretion system (RaxABC), and that appears to be sulfated on an N-terminal region tryosine in a motif LSYN. Ax21 acts in a quorum-sensing system. Homologous peptide-mediated quorum-sensing systems appear to exist in other species, such as the emerging opportunistic pathogen Stenotrophomonas maltophilia. Intriguingly, the rice genome encodes a receptor (XA21) for this protein that triggers innate immunity.
+RN  [1]
+RM  PMID:22204763 
+RT  Small protein-mediated quorum sensing in a Gram-negative bacterium: novel targets for control of infectious disease. 
+RA  Ronald PC 
+RL  Discov Med. 2011 Dec;12(67):461-70.

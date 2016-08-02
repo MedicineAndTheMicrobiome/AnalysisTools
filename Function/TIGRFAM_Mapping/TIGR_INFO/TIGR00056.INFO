@@ -1,0 +1,23 @@
+ID  TIGR00056
+AC  TIGR00056
+DE  ABC transport permease subunit
+AU  Richardson DL, Haft DH
+TC  212.20 212.20
+NC  101.00 101.00
+AL  msa_tigr
+IT  subfamily
+EN  ABC transport permease subunit
+TP  TIGRFAMs
+CC  This HMM describes a subfamily of ABC transporter permease subunits. One member of this family has been associated with the toluene tolerance phenotype of Pseudomonas putida, another with L-glutamate transport, another with maintenance of lipid asymmetry. Many bacterial species have one or two members. The Mycobacteria have large paralogous families included in the DUF140 family but excluded from this subfamily on based on extreme divergence at the amino end and on phylogenetic and UPGMA trees on the more conserved regions.
+RN  [1]
+RM  PMID:16495545 
+RT  Identification of a meningococcal L-glutamate ABC transporter operon essential for growth in low-sodium environments. 
+RA  Monaco C, Tala A, Spinosa MR, Progida C, De Nitto E, Gaballo A, Bruni CB, Bucci C, Alifano P 
+RL  Infect Immun. 2006 Mar;74(3):1725-40.
+RN  [2]
+RM  PMID:19383799 
+RT  An ABC transport system that maintains lipid asymmetry in the gram-negative outer membrane. 
+RA  Malinverni JC, Silhavy TJ 
+RL  Proc Natl Acad Sci U S A. 2009 May 12;106(19):8009-14.
+DR  PFAM; PF02405; DUF140
+DR  IPR003453; DUF140

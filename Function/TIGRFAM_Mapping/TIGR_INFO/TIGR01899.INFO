@@ -1,0 +1,24 @@
+ID  cas_TM1807_csm5
+AC  TIGR01899
+DE  CRISPR type III-A/MTUBE-associated RAMP protein Csm5
+AU  Haft DH
+TC  38.30 38.30
+NC  28.05 28.05
+AL  clustalw_manual
+IT  equivalog
+EN  CRISPR type III-A/MTUBE-associated RAMP protein Csm5
+GS  csm5
+TP  TIGRFAMs
+CC  CRISPR is a term for Clustered Regularly Interspaced Short Palidromic Repeats. A number of protein families appear only in association with these repeats and are designated Cas (CRISPR associated) proteins. Members of this cas gene family are found in the mtube subtype of CRISPR/cas locus and designated Csm5, for CRISPR/cas Subtype Mtube, protein 5.
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=2003
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=57305
+DR  PFAM; PF03787; RAMP superfamily
+RN  [1]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005
+RN  [2]
+RM  11788711
+RT  A DNA repair system specific for thermophilic Archaea and bacteria predicted by genomic context analysis.
+RA  Makarova KS, Aravind L, Grishin NV, Rogozin IB, Koonin EV.
+RL  Nucleic Acids Res. 2002 Jan 15;30(2):482-96.

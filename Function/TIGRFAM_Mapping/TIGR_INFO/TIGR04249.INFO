@@ -1,0 +1,12 @@
+ID  SCM_chp_ScmC
+AC  TIGR04249
+DE  SynChlorMet cassette protein ScmC
+AU  Haft DH
+TC  125.00 125.00
+NC  65.00 65.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  SynChlorMet cassette protein ScmC
+GS  scmC
+TP  TIGRFAMs
+CC  A biosynthesis cassette found in Syntrophobacter fumaroxidans MPOB, Chlorobium limicola DSM 245, Methanocella paludicola SANAE, and delta proteobacterium NaphS2 contains two PqqE-like radical SAM/SPASM domain proteins, a PqqD homolog, and a conserved hypothetical protein. These components suggest modification of a ribosomally produced peptide precursor, but the precursor has not been identified. Members of this family are designated ScmC.

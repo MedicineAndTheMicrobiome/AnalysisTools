@@ -1,0 +1,22 @@
+ID  FimV_Cterm
+AC  TIGR03504
+DE  FimV C-terminal domain
+AU  Haft DH
+TC  30.65 30.65
+NC  23.45 23.45
+AL  muscle_manual
+IT  hypoth_equivalog_domain
+EN  FimV C-terminal domain
+GS  fimV
+TP  TIGRFAMs
+CC  This protein is found at the extreme C-terminus of FimV from Pseudomonas aeruginosa, and of TspA of Neisseria meningitidis. Disruption of the former blocks twitching motility from type IV pili; Semmler, et al. suggest a role in peptidoglycan layer remodelling required by type IV fimbrial systems.
+RN  [1]
+RM  PMID:10846211
+RT  Identification of a novel gene, fimV, involved in twitching motility in Pseudomonas aeruginosa.
+RA  Semmler AB, Whitchurch CB, Leech AJ, Mattick JS
+RL  Microbiology. 2000 Jun;146 ( Pt 6):1321-32.
+RN  [2]
+RM  PMID:10377136
+RT  Identification and characterization of TspA, a major CD4(+) T-cell- and B-cell-stimulating Neisseria-specific antigen.
+RA  Kizil G, Todd I, Atta M, Borriello SP, Ait-Tahar K, Ala'Aldeen DA
+RL  Infect Immun. 1999 Jul;67(7):3533-41.

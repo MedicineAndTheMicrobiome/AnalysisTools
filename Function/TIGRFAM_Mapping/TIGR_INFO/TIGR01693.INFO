@@ -1,0 +1,14 @@
+ID  UTase_glnD
+AC  TIGR01693
+DE  protein-P-II uridylyltransferase
+AU  Haft DH
+TC  519.40 519.40
+NC  285.45 285.45
+AL  clustalw_manual
+IT  equivalog
+EN  [Protein-PII] uridylyltransferase
+GS  glnD
+EC  2.7.7.59
+TP  TIGRFAMs
+CC  This HMM describes GlnD, the uridylyltransferase/uridylyl-removing enzyme for the nitrogen regulatory protein PII.  Not all homologs of PII share the property of uridylyltransferase modification on the characteristic Tyr residue (see Prosite pattern PS00496 and document PDOC00439), but the modification site is preserved in the PII homolog of all species with a member of this family.
+DR  HAMAP; MF_00277; 139 of 140

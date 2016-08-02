@@ -1,0 +1,11 @@
+ID  adhes_NPXG
+AC  TIGR01901
+DE  filamentous hemagglutinin family N-terminal domain
+AU  Haft DH
+TC  29.10 29.10
+NC  15.05 15.05
+AL  clustalw_manual
+IT  domain
+EN  filamentous hemagglutinin family N-terminal domain
+TP  TIGRFAMs
+CC  This HMM represents a conserved domain found near the N-terminus of a number of large, repetitive bacterial proteins, including many proteins of over 2500 amino acids. Members generally have a signal sequence, then an intervening region, then the region described by this HMM. Following this region, proteins typically have regions rich in repeats but may show no homology between the repeats of one member and the repeats of another. A number of the members of this family have been designated adhesins, filamentous haemagglutinins, heme/hemopexin-binding protein, etc.

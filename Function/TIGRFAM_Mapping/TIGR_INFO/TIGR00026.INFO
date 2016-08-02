@@ -1,0 +1,18 @@
+ID  hi_GC_TIGR00026
+AC  TIGR00026
+DE  deazaflavin-dependent oxidoreductase, nitroreductase family
+AU  Haft DH
+TC  46.35 46.35
+NC  38.15 38.15
+AL  clustalw
+IT  subfamily
+EN  deazaflavin-dependent oxidoreductase, nitroreductase family
+TP  TIGRFAMs
+CC  This model represents a family of proteins found in paralogous families in the genera Mycobacterium and Streptomyces. Seven members are in Mycobacterium tuberculosis. Member protein Rv3547 has been characterized as a deazaflavin-dependent nitroreductase.
+DR  PFAM; PF04075; DUF385
+DR  INTERPRO; IPR004378
+RN  [1]
+RM  PMID:19039139
+RT  PA-824 kills nonreplicating Mycobacterium tuberculosis by intracellular NO release.
+RA  Singh R, Manjunatha U, Boshoff HI, Ha YH, Niyomrattanakit P, Ledwidge R, Dowd CS, Lee IY, Kim P, Zhang L, Kang S, Keller TH, Jiricek J, Barry CE 3rd
+RL  Science. 2008 Nov 28;322(5906):1392-5.

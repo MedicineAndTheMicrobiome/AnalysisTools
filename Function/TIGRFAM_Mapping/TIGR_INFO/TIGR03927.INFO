@@ -1,0 +1,17 @@
+ID  T7SS_EssA_Firm
+AC  TIGR03927
+DE  type VII secretion protein EssA
+AU  Haft DH
+TC  32.45 32.45
+NC  30.00 30.00
+AL  muscle_manual
+IT  equivalog
+EN  type VII secretion protein EssA
+GS  essA
+TP  TIGRFAMs
+CC  Members of this family are associated with type VII secretion of WXG100 family targets in the Firmicutes, but not in the Actinobacteria. This highly divergent protein family consists largely of a central region of highly polar low-complexity sequence containing occasional LF motifs in weak repeats about 17 residues in length, flanked by hydrophobic N- and C-terminal regions.
+RN  [1]
+RM  PMID:18554323 
+RT  EsaC substrate for the ESAT-6 secretion pathway and its role in persistent infections of Staphylococcus aureus. 
+RA  Burts ML, DeDent AC, Missiakas DM 
+RL  Mol Microbiol. 2008 Aug;69(3):736-46. Epub 2008 Jun 28.

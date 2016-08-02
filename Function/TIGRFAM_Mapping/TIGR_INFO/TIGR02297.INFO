@@ -1,0 +1,17 @@
+ID  HpaA
+AC  TIGR02297
+DE  4-hydroxyphenylacetate catabolism regulatory protein HpaA
+AU  Selengut J
+TC  274.65 274.65
+NC  197.30 197.30
+AL  clustalw
+IT  equivalog
+EN  4-hydroxyphenylacetate catabolism regulatory protein HpaA
+GS  hpaA
+TP  TIGRFAMs
+CC  This putative transcriptional regulator, which contains both the substrate-binding, dimerization domain (PF02311) and the helix-turn-helix DNA-binding domain (PF00165) of the AraC famil, is located proximal to genes of the 4-hydroxyphenylacetate catabolism pathway [1].
+RN  [1]
+RM  PMID: 8550403
+RT  Molecular characterization of the 4-hydroxyphenylacetate catabolic pathway of Escherichia coli W: engineering a mobile aromatic degradative cluster.
+RA  Prieto MA, Diaz E, Garcia JL.
+RL  J Bacteriol. 1996 Jan;178(1):111-20.

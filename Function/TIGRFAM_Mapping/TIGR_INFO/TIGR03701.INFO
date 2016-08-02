@@ -1,0 +1,16 @@
+ID  mena_SCO4490
+AC  TIGR03701
+DE  menaquinone biosynthesis decarboxylase, SCO4490 family
+AU  Haft DH
+TC  495.90 495.90
+NC  490.95 490.95
+AL  muscle_manual
+IT  equivalog
+EN  menaquinone biosynthesis decarboxylase, SCO4490 family
+TP  TIGRFAMs
+CC  Members of this protein family are putative decarboxylases involved in a late stage of the alternative pathway for menaquinone, via futalosine, as in Streptomyces coelicolor and Helicobacter pylori.
+RN  [1]
+RM  PMID:18801996
+RT  An alternative menaquinone biosynthetic pathway operating in microorganisms.
+RA  Hiratsuka T, Furihata K, Ishikawa J, Yamashita H, Itoh N, Seto H, Dairi T
+RL  Science. 2008 Sep 19;321(5896):1670-3.

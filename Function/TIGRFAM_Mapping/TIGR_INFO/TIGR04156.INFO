@@ -1,0 +1,13 @@
+ID  cyanoexo_CrtB
+AC  TIGR04156
+DE  cyanoexosortase B
+AU  Haft DH
+TC  300.00 300.00
+NC  80.00 80.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  cyanoexosortase B
+GS  crtB
+EC  3.4.22.-
+TP  TIGRFAMs
+CC  This HMM describes a cyanobacterial-restricted form of exosortase, associated with a PEP-CTERM domain subclass described in model TIGR04155. This is one of two such cyanoexosortases, either of which is sufficient to accompany TIGR04155 family members. The cyanoexosortase is TIGR03763.

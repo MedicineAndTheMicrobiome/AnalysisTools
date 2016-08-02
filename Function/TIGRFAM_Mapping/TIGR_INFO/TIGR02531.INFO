@@ -1,0 +1,13 @@
+ID  yecD_yerC
+AC  TIGR02531
+DE  TrpR homolog YerC/YecD
+AU  Haft DH
+TC  42.20 42.20
+NC  41.75 41.75
+AL  clustalw
+IT  hypoth_equivalog
+EN  TrpR-related protein YerC/YecD
+TP  TIGRFAMs
+CC  This model represents a protein subfamily found mostly in the Firmicutes (Bacillus and allies). This family is similar in sequence to the trp operon repressor TrpR described by TIGR01321, and represents a distinct clade within the broader family described by PF01371. At least one species, Xylella fastidiosa, in the Proteobacteria, has a member of both this family and TIGR01321. Several genomes with a member of this family do not synthesize tryptophan, and members of this family should not be considered trp operon repressors without new evidence.
+DR  PFAM; PF01371; trp operon repressor
+DR  TIGRFAMS; TIGR01321

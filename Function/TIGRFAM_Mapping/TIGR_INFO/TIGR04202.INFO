@@ -1,0 +1,17 @@
+ID  capSnatchArena
+AC  TIGR04202
+DE  RNA endonuclease, cap-snatching
+AU  Haft DH
+TC  40.00 40.00
+NC  25.00 25.00
+AL  manual
+IT  signature
+EN  RNA endonuclease, cap-snatching, arenavirus family
+EC  3.1.-.-
+TP  TIGRFAMs
+CC  This HMM describes a shared signature region from an RNA endonuclease region associated with cap-snatching for mRNA production by RNA viruses. This domain usually is part of a multifunctional protein, the L protein responsible for RNA-dependent RNA polymerase activity. Cap-snatching is a viral alternative to synthesizing a eukaryotic-like mRNA cap itself.
+RN  [1]
+RM  PMID:20862324 
+RT  The N-terminal domain of the arenavirus L protein is an RNA endonuclease essential in mRNA transcription. 
+RA  Morin B, Coutard B, Lelke M, Ferron F, Kerber R, Jamal S, Frangeul A, Baronti C, Charrel R, de Lamballerie X, Vonrhein C, Lescar J, Bricogne G, Gunther S, Canard B 
+RL  PLoS Pathog. 2010 Sep 16;6(9):e1001038.

@@ -1,0 +1,14 @@
+ID  muco_delta
+AC  TIGR03221
+DE  muconolactone delta-isomerase
+AU  Haft DH
+TC  130.60 130.60
+NC  33.50 33.50
+AL  muscle
+IT  equivalog
+EN  muconolactone delta-isomerase
+GS  catC
+EC  5.3.3.4
+TP  TIGRFAMs
+CC  Members of this protein family are muconolactone delta-isomerase (EC 5.3.3.4), the CatC protein of the ortho cleavage pathway for metabolizing aromatic compounds by way of catechol.
+DR  PFAM; PF02426; Muconolactone delta-isomerase

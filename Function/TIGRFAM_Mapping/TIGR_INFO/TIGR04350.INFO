@@ -1,0 +1,27 @@
+ID  C_S_lyase_PatB
+AC  TIGR04350
+DE  putative C-S lyase
+AU  Haft DH
+TC  340.00 340.00
+NC  325.00 325.00
+AL  muscle_manual
+IT  subfamily
+EN  putative C-S lyase
+EC  4.4.-.-
+TP  TIGRFAMs
+CC  Members of this subfamily are probable C-S lyases from a family of pyridoxal phosphate-dependent enzymes that tend to be (mis)annotated as probable aminotransferases. One member is PatB of Bacillus subtilis, a proven C-S-lyase. Another is the virulence factor cystalysin from Treponema denticola, whose hemolysin activity may stem from H2S production. Members of the seed alignment occur next to examples of the enzyme 5-histidylcysteine sulfoxide synthase, from ovothiol A biosynthesis, and would be expected to perform a C-S cleavage of 5-histidylcysteine sulfoxide to leave 1-methyl-4-mercaptohistidine (ovothiol A).
+RN  [1]
+RM  PMID:15760717 
+RT  The PatB protein of Bacillus subtilis is a C-S-lyase. 
+RA  Auger S, Gomez MP, Danchin A, Martin-Verstraete I 
+RL  Biochimie. 2005 Feb;87(2):231-8. 
+RN  [2]
+RM  PMID:10880431 
+RT  Crystal structure of cystalysin from Treponema denticola: a pyridoxal 5'-phosphate-dependent protein acting as a haemolytic enzyme. 
+RA  Krupka HI, Huber R, Holt SC, Clausen T 
+RL  EMBO J. 2000 Jul 3;19(13):3168-78.
+RN  [3]
+RM  PMID:21247153 
+RT  Identification and characterization of the first ovothiol biosynthetic enzyme. 
+RA  Braunshausen A, Seebeck FP 
+RL  J Am Chem Soc. 2011 Feb 16;133(6):1757-9.

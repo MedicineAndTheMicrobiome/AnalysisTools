@@ -1,0 +1,24 @@
+ID  spore_safA
+AC  TIGR02899
+DE  spore coat assembly protein SafA
+AU  Haft DH
+TC  67.85 67.85
+NC  58.90 58.90
+AL  manual
+IT  subfamily_domain
+EN  spore coat assembly protein SafA
+GS  safA
+TP  TIGRFAMs
+CC  SafA (YrbB) (SafA) of Bacillus subtilis is a protein found at the interface of the spore cortex and spore coat, and is dependent on SpoVID for its localization. This model is based on the N-terminal LysM (lysin motif) domain (see PFAM model PF01476) of SafA and, from several other spore-forming species, the protein with the most similar N-terminal region. However, this set of proteins differs greatly in C-terminal of the LysM domaim; blocks of 12-residue and 13-residue repeats are found in the Bacillus cereus group, tandem LysM domains in Thermoanaerobacter tengcongensis MB4, etc.  
+CC  in which one of which is found in most examples of endospore-forming bacteria. Because lysin motifs are repeated in many proteins, this model is built as a single-hit (-g option, hmms style) model.
+RN  [1]
+RM  PMID: 11325931
+RT  SpoVID guides SafA to the spore coat in Bacillus subtilis.
+RA  Ozin AJ, Samford CS, Henriques AO, Moran CP Jr
+RL  J Bacteriol. 2001 May;183(10):3041-9.
+RN  [2]
+RM  PMID: 12480901
+RT  Proteomics characterization of novel spore proteins of Bacillus subtilis.
+RA  Kuwana R, Kasahara Y, Fujibayashi M, Takamatsu H, Ogasawara N, Watabe K
+RL  Microbiology. 2002 Dec;148(Pt 12):3971-82.
+DR  PFAM; PF01476; LysM domain

@@ -1,0 +1,13 @@
+ID  rplX_A_E
+AC  TIGR01080
+DE  ribosomal protein L24
+AU  Haft DH
+TC  47.65 47.65
+NC  37.55 37.55
+AL  clustalw
+IT  equivalog
+EN  ribosomal protein L24p/L26e, archaeal/eukaryotic
+GS  rplX
+TP  TIGRFAMs
+CC  This model represents the archaeal and eukaryotic branch of the ribosomal protein L24p/L26e family. Bacterial and organellar forms are represented by related HMM TIGR01079.
+DR  HAMAP; MF_01326; 43 of 649

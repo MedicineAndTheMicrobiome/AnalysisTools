@@ -1,0 +1,17 @@
+ID  GldM_gliding
+AC  TIGR03517
+DE  gliding motility-associated protein GldM
+AU  Haft DH
+TC  269.35 269.35
+NC  97.30 97.30
+AL  muscle_manual
+IT  subfamily
+EN  gliding motility-associated protein GldM
+GS  gldM
+TP  TIGRFAMs
+CC  This protein family, GldM, is named for the member from Flavobacterium johnsoniae, which is required for a type of rapid gliding motility found in certain members of the Bacteriodetes. However, members are found also in several members of the Bacteriodetes that appear not to be motile. The best conserved region, toward the N-terminus, is centered on a highly hydrobobic probable transmembrane helix. Two paralogs are found in Cytophaga hutchinsonii.
+RN  [1]
+RM  PMID:16199564
+RT  Flavobacterium johnsoniae gliding motility genes identified by mariner mutagenesis.
+RA  Braun TF, Khubbar MK, Saffarini DA, McBride MJ
+RL  J Bacteriol. 2005 Oct;187(20):6943-52.

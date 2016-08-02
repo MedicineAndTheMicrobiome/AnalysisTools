@@ -1,0 +1,11 @@
+ID  TQXA_dom
+AC  TIGR03934
+DE  TQXA domain
+AU  Haft DH
+TC  30.40 30.40
+NC  22.00 22.00
+AL  muscle_manual
+IT  domain
+EN  TQXA domain
+TP  TIGRFAMs
+CC  This HMM describes a domain of about 40 residues with an invariant TQ dipeptide in an almost invariant TQxA[VI]W motif. This domain occurs in surface-expressed proteins of Gram-positive bacteria, many of which are anchored by LPXTG-containing sortase target domains. Numerous members of this family have domains PF05738 (Cna protein B-type domain) and PF08341 (fibronectin-binding protein signal sequence).

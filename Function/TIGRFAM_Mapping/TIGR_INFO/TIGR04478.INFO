@@ -1,0 +1,12 @@
+ID  rSAM_YfkAB
+AC  TIGR04478
+DE  radical SAM/CxCxxxxC motif protein YfkAB
+AU  Haft DH
+TC  250.00 250.00
+NC  120.00 120.00
+AL  muscle_manual
+IT  equivalog
+EN  radical SAM/CxCxxxxC motif protein YfkAB
+GS  yfkAB
+TP  TIGRFAMs
+CC  Members of this highly conserved family in some Firmicutes have an N-terminal radical SAM domain (PF04055) and a C-terminal PF08756 domain with a CxCxxxxC motif that suggests binding to an additional metallocluster. It appears all correct sequences in this family are about 370 amino acids in length, containing the YfkA and YfkB regions originally reported as separate ORFs in Bacillus subtilis. Partial Phylogenetic Profiling shows occurrences almost exclusively in the Bacilli, with very few examples of either lateral transfer or gene loss. The essentially monophyletic distribution suggests a housekeeping function. Members have no well-conserved gene neighborhood. The function is unknown.

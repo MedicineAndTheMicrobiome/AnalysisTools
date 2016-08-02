@@ -1,0 +1,16 @@
+ID  ergot_EASG
+AC  TIGR03649
+DE  ergot alkaloid biosynthesis protein, AFUA_2G17970 family
+AU  Haft DH
+TC  256.40 256.40
+NC  247.95 247.95
+AL  muscle_manual
+IT  subfamily
+EN  ergot alkaloid biosynthesis protein, AFUA_2G17970 family
+TP  TIGRFAMs
+CC  This family consists of fungal proteins of unknown function associated with secondary metabolite biosynthesis, such as of the ergot alkaloids such as ergovaline. Nomenclature differs because gene order differs - this is EasG in Neotyphodium lolii but is designated ergot alkaloid biosynthetic protein A in several other fungi.
+RN  [1]
+RM  PMID:17308187
+RT  A complex ergovaline gene cluster in epichloe endophytes of grasses.
+RA  Fleetwood DJ, Scott B, Lane GA, Tanaka A, Johnson RD
+RL  Appl Environ Microbiol. 2007 Apr;73(8):2571-9.

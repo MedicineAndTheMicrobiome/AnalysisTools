@@ -1,0 +1,19 @@
+ID  osmo_MPG_phos
+AC  TIGR02461
+DE  mannosyl-3-phosphoglycerate phosphatase
+AU  Haft DH
+TC  244.35 244.35
+NC  176.50 176.50
+AL  clustalw
+IT  equivalog
+EN  mannosyl-3-phosphoglycerate phosphatase
+GS  mpgP
+EC  3.1.3.70
+TP  TIGRFAMs
+CC  Members of this family are mannosyl-3-phosphoglycerate phosphatase (EC 3.1.3.70). It acts sequentially after mannosyl-3-phosphoglycerate synthase (EC 2.4.1.217) in a two-step pathway of biosynthesis of the compatible solute mannosylglycerate, a typical osmolyte of thermophiles.
+RN  [1]
+RM  11562374
+RT  Pathway for the synthesis of mannosylglycerate in the hyperthermophilic archaeon Pyrococcus horikoshii. Biochemical and genetic characterization of key enzymes.
+RA  Empadinhas N, Marugg JD, Borges N, Santos H, da Costa MS.
+RL  J Biol Chem. 2001 Nov 23;276(47):43580-8.
+DR  HAMAP; MF_00617; 4 of 19

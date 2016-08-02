@@ -1,0 +1,11 @@
+ID  myxo_disulf_rpt
+AC  TIGR02232
+DE  Myxococcus cysteine-rich repeat
+AU  Haft DH
+TC  20.80 20.80
+NC  20.60 20.60
+AL  clustalw_manual
+IT  repeat
+EN  Myxococcus cysteine-rich repeat
+TP  TIGRFAMs
+CC  This model represents a sequence region shared between several proteins of Myxococcus xanthus DK 1622 and some eukaryotic proteins that include human pappalysin-1 (SP|Q13219). The region of about 40 amino acids contains several conserved Cys residues presumed to form disulfide bonds. The region appears in up to 13 repeats in Myxococcus.

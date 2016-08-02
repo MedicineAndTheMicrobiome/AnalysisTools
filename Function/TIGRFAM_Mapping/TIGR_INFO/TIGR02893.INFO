@@ -1,0 +1,17 @@
+ID  spore_yabQ
+AC  TIGR02893
+DE  spore cortex biosynthesis protein YabQ
+AU  Haft DH
+TC  78.05 78.05
+NC  45.70 45.70
+AL  muscle_manual
+IT  equivalog
+EN  spore cortex biosynthesis protein YabQ
+GS  yabQ
+TP  TIGRFAMs
+CC  YabQ, a protein predicted to span the membrane several times, is found in exactly those genomes whose species perform sporulation in the style of Bacillus subtilis, Clostridium tetani, and others of the Firmicutes. Mutation of this sigma(E)-dependent gene blocks development of the spore cortex. The length of the C-terminal region, including some hydrophobic regions, is rather variable between members.
+RN  [1]
+RM  11283287
+RT  The Bacillus subtilis yabQ gene is essential for formation of the spore cortex.
+RA  Asai K, Takamatsu H, Iwano M, Kodama T, Watabe K, Ogasawara N.
+RL  Microbiology. 2001 Apr;147(Pt 4):919-27.

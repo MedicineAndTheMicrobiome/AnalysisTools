@@ -1,0 +1,11 @@
+ID  GC_trans_RRR
+AC  TIGR03382
+DE  Myxococcales GC_trans_RRR domain
+AU  Haft DH
+TC  15.85 15.85
+NC  14.85 14.85
+AL  muscle_manual
+IT  domain
+EN  Myxococcales GC_trans_RRR domain
+TP  TIGRFAMs
+CC  The domain described here is small (about 30 amino acids), hydrophobic, only moderately conserved, and similar to numerous other transmembrane helix-containing sequence regions from convergent evolution. The trusted cutoff for the HMM therefore must be set fairly high. This domain is found, once per protein but in many proteins per genome in several bacteria of the order Myxococcales. It begins with a signature Gly-Cys motif. Its other features, including a hydrophobic transmembrane helix, Arg-rich cluster, and location at the protein C-terminus, resemble the PEP-CTERM proposed protein targeting domain.

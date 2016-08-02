@@ -1,0 +1,24 @@
+ID  tdh
+AC  TIGR00692
+DE  L-threonine 3-dehydrogenase
+AU  Haft DH
+TC  458.35 458.35
+NC  348.75 348.75
+AL  clustalw
+IT  equivalog
+EN  L-threonine 3-dehydrogenase
+GS  tdh
+EC  1.1.1.103
+TP  TIGRFAMs
+CC  This protein is a tetrameric, zinc-binding, NAD-dependent enzyme of threonine catabolism. Closely related proteins include sorbitol dehydrogenase, xylitol dehydrogenase, and benzyl alcohol dehydrogenase. Eukaryotic examples of this enzyme have been demonstrated experimentally but do not appear in database search results.
+CC  E. coli His-90 modulates substrate specificity and is believed part of the active site.
+AL  clustalw
+RN  [1]
+RM  98162635
+RT  Site-directed mutagenesis of histidine-90 in Escherichia coli L-threonine dehydrogenase alters its substrate specificity.
+RA  Johnson AR, Dekker EE
+RL  Arch Biochem Biophys 1998 Mar 1;351(1):8-16
+DR  EXPERIMENTAL; EGAD|143282|152806; Xanthomonas campestris
+DR  EXPERIMENTAL; EGAD|7118|EC3616; Escherichia coli
+DR  ECOCYC; EG10993; tdh
+DR  HAMAP; MF_00627; 117 of 127

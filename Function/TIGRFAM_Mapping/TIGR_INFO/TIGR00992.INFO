@@ -1,0 +1,12 @@
+ID  3a0901s03IAP75
+AC  TIGR00992
+DE  chloroplast envelope protein translocase, IAP75 family
+AU  Loftus BJ
+TC  1163.25 1163.25
+NC  507.30 507.30
+AL  clustalw_manual
+IT  subfamily
+EN  chloroplast envelope protein translocase, IAP75 family
+TP  TIGRFAMs
+CC  Two families of proteins are involved in the chloroplast envelope import appartus.They are the  three proteins of the outer membrane (TOC) and four proteins in the inner membrane (TIC). This family is specific for the TOC IAP75 protein.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/3_A_9.html

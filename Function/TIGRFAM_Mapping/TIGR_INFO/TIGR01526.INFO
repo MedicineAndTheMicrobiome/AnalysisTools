@@ -1,0 +1,17 @@
+ID  nadR_NMN_Atrans
+AC  TIGR01526
+DE  nicotinamide-nucleotide adenylyltransferase
+AU  Haft DH
+TC  341.15 341.15
+NC  78.30 78.30
+AL  clustalw_manual
+IT  equivalog_domain
+EN  nicotinamide-nucleotide adenylyltransferase, NadR type
+EC  2.7.7.1
+TP  TIGRFAMs
+CC  The NadR protein of E. coli and closely related bacteria is both enzyme and regulatory protein. The first 60 or so amino acids, N-terminal to the region covered by this model, is a DNA-binding helix-turn-helix domain (PF01381) responsible for repressing the nadAB genes of NAD de novo biosynthesis. The NadR homologs in Mycobacterium tuberculosis, Haemophilus influenzae, and others appear to lack the repressor domain. NadR has recently been shown to act as an enzyme of the salvage pathway of NAD biosynthesis, nicotinamide-nucleotide adenylyltransferase; members of this family are presumed to share this activity.
+CC  E. coli NadR has also been found to regulate the import of its substrate, nicotinamide ribonucleotide, but it is not known if the other members of this model share that activity.
+RM  10464228
+RT  The Escherichia coli NadR regulator is endowed with nicotinamide mononucleotide adenylyltransferase activity.
+RA  Raffaelli N, Lorenzi T, Mariani PL, Emanuelli M, Amici A, Ruggieri S, Magni G.
+RL  J Bacteriol 1999 Sep;181(17):5509-11

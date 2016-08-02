@@ -1,0 +1,17 @@
+ID  trpA
+AC  TIGR00262
+DE  tryptophan synthase, alpha subunit
+AU  Loftus BJ
+TC  102.35 102.35
+NC  100.35 100.35
+AL  clustalw
+IT  equivalog
+EN  tryptophan synthase, alpha subunit
+GS  trpA
+EC  4.2.1.20
+TP  TIGRFAMs
+CC  Tryptophan synthase catalyzes the last step in the biosynthesis of tryptophan. The alpha chain is responsible for the aldol cleavage of indoleglycerol phosphate to indole and glyceraldehyde 3-phosphate. In  bacteria  and  plants each domain is found on a separate subunit (alpha and beta chains),  while  in fungi the two domains are fused together on a single multifunctional protein. The signature pattern for trpA contains three conserved acidic residues. [LIVM]-E-[LIVM]-G-x(2)-[FYC]-[ST]-[DE]-[PA]-[LIVMY]-[AGLI]-[DE]-G and this is located between residues 43-58 of the model. The Sulfolobus solfataricus trpA is known to be quite divergent from other known trpA sequences.
+DR  ECOCYC; EG11024; trpA
+DR  PFAM; PF00290; trp_syntA
+DR  PROSITE; PDOC00151; Tryptophan synthase alpha chain signature
+DR  HAMAP; MF_00131; 381 of 384

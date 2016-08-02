@@ -1,0 +1,24 @@
+ID  ISP4_OPT
+AC  TIGR00727
+DE  small oligopeptide transporter, OPT family
+AU  Haft DH
+TC  438.70 438.70
+NC  299.45 299.45
+IT  equivalog
+EN  small oligopeptide transporter, OPT family
+TR  2.A.67
+TP  TIGRFAMs
+CC  This HMM represents a family of transporters of small oligopeptides, demonstrated experimentally in three different species of yeast. A set of related proteins from the plant Arabidopsis thaliana forms an outgroup to the yeast set by neighbor joining analysis but is remarkably well conserved and is predicted here to have equivalent function.
+RN  [1]
+RM  97195785
+RT  An oligopeptide transport gene from Candida albicans.
+RA  Lubkowitz MA, Hauser L, Breslav M, Naider F, Becker JM
+RL  Microbiology 1997 Feb;143 ( Pt 2):387-96
+RN  [2]
+RM  98305694
+RT  Schizosaccharomyces pombe isp4 encodes a transporter representing a novel family of oligopeptide transporters.
+RA  Lubkowitz MA, Barnes D, Breslav M, Burchfield A, Naider F, Becker JM
+RL  Mol Microbiol 1998 May;28(4):729-41
+DR  EXPERIMENTAL; EGAD|151451|161614; Candida albicans
+DR  EXPERIMENTAL; EGAD|87330|95040; Schizosaccharomyces pombe
+DR  EXPERIMENTAL; EGAD|56682|YPR194C; Saccharomyces cerevisiae

@@ -1,0 +1,18 @@
+ID  LIC
+AC  TIGR00860
+DE  cation transporter family protein
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  280.20 280.20
+NC  233.65 233.65
+AL  clustalw_manual
+IT  subfamily
+EN  Cation transporter family protein
+GS  LIC
+TP  TIGRFAMs
+CC  The Ligand-gated Ion Channel (LIC) Family of Neurotransmitter Receptors TC 1.A.9)
+CC  Members of the LIC family of ionotropic neurotransmitter receptors are found only in vertebrate and invertebrate animals. They exhibit receptor specificity for (1)
+CC  acetylcholine, (2) serotonin, (3) glycine, (4) glutamate and (5) g-aminobutyric acid (GABA). All of these receptor channels are probably hetero- or
+CC  homopentameric. The best characterized are the nicotinic acetyl-choline receptors which are pentameric channels of a2bgd subunit composition. All subunits are
+CC  homologous. The three dimensional structures of the protein complex in both the open and closed configurations have been solved at 0.9 nm resolution.
+CC  The channel protein complexes of the LIC family preferentially transport cations or anions depending on the channel (e.g., the acetylcholine receptors are cation
+CC  selective while glycine receptors are anion selective).

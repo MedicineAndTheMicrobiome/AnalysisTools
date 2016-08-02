@@ -1,0 +1,12 @@
+ID  gamma_Glu_sys
+AC  TIGR04332
+DE  poly-gamma-glutamate system protein
+AU  Haft DH
+TC  100.00 100.00
+NC  30.00 30.00
+AL  muscle_manual
+IT  subfamily
+EN  poly-gamma-glutamate system protein
+GS  pgsW
+TP  TIGRFAMs
+CC  Poly(gamma-glutamic acid), or PGA, is an extracellular structural polymer found in Bacillus subtilis and a number of other species. PGA is sometimes capsule-forming, sometimes secretory, and may be produced by Gram-positive (single plasma membrane) and Gram-negative (inner and outer membranes), so export and/or attachment machinery may differ from system to system. Members of this family occur in a subset of PGA operons, in lineages that include Francisella, Leptospira, Treponema, Thermotoga, Fusobacterium, and Clostridium, among others. Because gene symbols pgsWXYZ are not yet in use, we suggest pgsW, as one of a series of poly-gamma-glutamate synthesis auxiliary proteins.

@@ -1,0 +1,39 @@
+ID  PEP_mutase
+AC  TIGR02320
+DE  phosphoenolpyruvate mutase
+AU  Haft DH, Selengut J
+TC  319.55 319.55
+NC  284.50 284.50
+AL  clustalw
+IT  equivalog
+EN  phosphoenolpyruvate mutase
+GS  aepX
+EC  5.4.2.9
+TP  TIGRFAMs
+CC  This family consists of examples of phosphoenolpyruvate phosphomutase, an enzyme that creates a C-P bond as the first step in the biosynthesis of natural products including antibiotics like bialaphos [1] and phosphonothricin [2] in Streptomyces species, phosphonate-modified molecules such as the polysaccharide B of Bacteroides fragilis [3], the phosphonolipids of Tetrahymena pyroformis [4], the glycosylinositolphospholipids of Trypanosoma cruzi [5].  This gene generally occurs in prokaryotic organisms adjacent to the gene for phosphonopyruvate decarboxylase (aepY).  Since the PEP phosphomutase reaction favors the substrate PEP energetically, the decarboxylase is required to drive the reaction in the direction of phosphonate production.  Most often an aminotansferase (aepZ) is also present which leads to the production of the most common phosphonate compound, 2-aminoethylphosphonate (AEP).
+CC  A closely related enzyme, phosphonopyruvate hydrolase from Variovorax sp. Pal2, is excluded from this model.
+RN  [1]
+RM  PMID: 1337066 
+RT  Studies on the biosynthesis of bialaphos (SF-1293). 14. Nucleotide sequence of phosphoenolpyruvate phosphomutase gene isolated from a bialaphos producing organism, Streptomyces hygroscopicus, and its expression in Streptomyces lividans. 
+RA  Hidaka T, Hidaka M, Seto H 
+RL  J Antibiot (Tokyo). 1992 Dec;45(12):1977-80. 
+RN  [2]
+RM  PMID: 9673017 
+RT  Isolation and characterization of the PEP-phosphomutase and the phosphonopyruvate decarboxylase genes from the phosphinothricin tripeptide producer Streptomyces viridochromogenes Tu494. 
+RA  Schwartz D, Recktenwald J, Pelzer S, Wohlleben W 
+RL  FEMS Microbiol Lett. 1998 Jun 15;163(2):149-57. 
+RN  [3]
+RM  PMID: 11035722 
+RT  Bacteroides fragilis NCTC9343 produces at least three distinct capsular polysaccharides: cloning, characterization, and reassignment of polysaccharide B and C biosynthesis loci. 
+RA  Coyne MJ, Kalka-Moll W, Tzianabos AO, Kasper DL, Comstock LE 
+RL  Infect Immun. 2000 Nov;68(11):6176-81. 
+RN  [4]
+RM  PMID: 1547241 
+RT  Phosphonate biosynthesis: molecular cloning of the gene for phosphoenolpyruvate mutase from Tetrahymena pyriformis and overexpression of the gene product in Escherichia coli. 
+RA  Seidel HM, Pompliano DL, Knowles JR 
+RL  Biochemistry. 1992 Mar 10;31(9):2598-608. 
+RN  [5]
+RM  PMID: 12672809 
+RT  Properties of phosphoenolpyruvate mutase, the first enzyme in the aminoethylphosphonate biosynthetic pathway in Trypanosoma cruzi. 
+RA  Sarkar M, Hamilton CJ, Fairlamb AH 
+RL  J Biol Chem. 2003 Jun 20;278(25):22703-8. Epub 2003 Apr 2.

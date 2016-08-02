@@ -1,0 +1,12 @@
+ID  SigW_bacill
+AC  TIGR02948
+DE  RNA polymerase sigma-W factor
+AU  Selengut J
+TC  243.10 243.10
+NC  162.40 162.40
+AL  muscle
+IT  equivalog
+EN  RNA polymerase sigma-W factor
+GS  sigW
+TP  TIGRFAMs
+CC  This sigma factor is restricted to certain lineages of the order Bacillales.

@@ -1,0 +1,12 @@
+ID  phge_HK97_gp10
+AC  TIGR01725
+DE  phage protein, HK97 gp10 family
+AU  Haft DH
+TC  30.80 30.80
+NC  27.95 27.95
+AL  manual
+IT  hypoth_equivalog
+EN  phage protein, HK97 gp10 family
+TP  TIGRFAMs
+CC  This HMM represents an uncharacterized, highly divergent bacteriophage family. The family includes gp10 from HK022 and HK97. It appears related to TIGR01635, a phage morphogenesis family believed to be involved in tail completion.
+DR  TIGRFAMS; TIGR01635

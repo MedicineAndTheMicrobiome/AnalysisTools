@@ -1,0 +1,13 @@
+ID  O_succ_thio_ly
+AC  TIGR02080
+DE  O-succinylhomoserine (thiol)-lyase
+AU  Haft DH
+TC  504.55 504.55
+NC  450.65 450.65
+AL  clustalw
+IT  equivalog
+EN  O-succinylhomoserine (thiol)-lyase
+GS  metB
+EC  2.5.1.48
+TP  TIGRFAMs
+CC  This family consists of O-succinylhomoserine (thiol)-lyase, one of three different enzymes designated cystathionine gamma-synthase and involved in methionine biosynthesis. In all three cases, sulfur is added by transsulfuration from Cys to yield cystathionine rather than by a sulfhydrylation step that  uses H2S directly and bypasses cystathionine.

@@ -1,0 +1,13 @@
+ID  prfB
+AC  TIGR00020
+DE  peptide chain release factor 2
+AU  Haft DH
+TC  383.15 383.15
+NC  337.40 337.40
+AL  clustalw_manual
+IT  equivalog
+EN  peptide chain release factor 2
+GS  prfB
+TP  TIGRFAMs
+CC  In many but not all taxa, there is a conserved real translational frameshift at a TGA codon. RF-2 helps terminate translation at TGA codons and can therefore regulate its own production by readthrough when RF-2 is insufficient. There is a PFAM HMM called "RF-1" for the superfamily of RF-1, RF-2, mitochondrial, RF-H, etc.
+DR  HAMAP; MF_00094; 133 of 135

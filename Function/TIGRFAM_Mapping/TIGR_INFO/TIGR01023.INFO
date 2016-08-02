@@ -1,0 +1,14 @@
+ID  rpmG_bact
+AC  TIGR01023
+DE  ribosomal protein L33
+AU  Haft DH
+TC  23.95 23.95
+NC  22.70 22.70
+AL  clustalw_manual
+IT  equivalog
+EN  ribosomal protein L33, bacterial type
+GS  rpmG
+TP  TIGRFAMs
+CC  This model describes bacterial ribosomal protein L33 and its chloroplast and mitochondrial equivalents.
+DR  COGS; COG0267
+DR  HAMAP; MF_00294; 779 of 819

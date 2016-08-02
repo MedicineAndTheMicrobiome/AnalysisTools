@@ -1,0 +1,11 @@
+ID  perox_Avi_7169
+AC  TIGR04030
+DE  alkylhydroperoxidase domain protein, Avi_7169 family
+AU  Haft DH
+TC  233.15 233.15
+NC  187.85 187.85
+AL  muscle_manual
+IT  hypoth_equivalog_domain
+EN  alkylhydroperoxidase domain protein, Avi_7169 family
+TP  TIGRFAMs
+CC  Members of this family represent a narrow clade that falls within a family of alkylhydroperoxidase-related proteins, fused to or adjacent to a sequence described by TIGR04029. These two partners occur almost always in the context of a putative FMN-dependent luciferase-like monooxygenase (LLM) (TIGR04027), and an ABC transporter in which TIGR04028 models the substrate-binding protein.

@@ -1,0 +1,12 @@
+ID  hacA_fam
+AC  TIGR01343
+DE  homoaconitate hydratase family protein
+AU  Haft DH
+TC  385.70 385.70
+NC  382.60 382.60
+AL  clustalw_manual
+IT  subfamily
+EN  homoaconitate hydratase family protein
+TP  TIGRFAMs
+CC  This HMM represents a subfamily of proteins consisting of aconitase, homoaconitase, 3-isopropylmalate dehydratase, and uncharacterized proteins. The majority of the members of this family have been designated as 3-isopropylmalate dehydratase large subunit (LeuC) in microbial genome annotation, but the only characterized member is Thermus thermophilus homoaconitase, an enzyme of a non-aspartate pathway of Lys biosynthesis.
+DR  HAMAP; MF_01027; 61 of 61

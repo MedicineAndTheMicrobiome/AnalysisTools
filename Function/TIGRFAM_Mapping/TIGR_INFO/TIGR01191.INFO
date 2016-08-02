@@ -1,0 +1,12 @@
+ID  ccmC
+AC  TIGR01191
+DE  heme exporter protein CcmC
+AU  Ujwal ML, Paulsen IT
+TC  186.00 186.00
+NC  181.55 181.55
+AL  clustalw
+IT  subfamily
+EN  heme exporter protein CcmC
+GS  ccmC
+TP  TIGRFAMs
+CC  This model describes the cyt c biogenesis protein encoded by ccmC in bacteria. It must be noted an arabidopsis, a tritcum and a piscum plant proteins were recognizable in the clade. Quite likely they are of organellar origin. Bacterial c-type cytocromes are located on the periplasmic side of the cytoplasmic membrane. Several gene products encoded in a locus designated as 'ccm' are implicated in the transport and assembly of the functional cytochrome C. This cluster includes genes, ccmA;B;C;D;E;F;G and H. The posttranslational pathway includes the transport of heme moiety, the secretion of the apoprotein and the covalent attachment of the heme with the apoprotein. The proteins ccmA and B represent an ABC transporter; ccmC and D participate in the heme transfer to ccmE, which function as a periplasmic heme chaperone. The presence of ccmF, G and H is suggested to be obligatory for the final functional assembly of cytochrome c.

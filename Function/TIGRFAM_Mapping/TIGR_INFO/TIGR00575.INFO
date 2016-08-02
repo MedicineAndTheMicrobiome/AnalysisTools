@@ -1,0 +1,17 @@
+ID  dnlj
+AC  TIGR00575
+DE  DNA ligase, NAD-dependent
+AU  Loftus BJ, Eisen JA, Haft DH
+TC  444.45 444.45
+NC  277.20 277.20
+IT  equivalog
+EN  DNA ligase, NAD-dependent
+GS  ligA
+EC  6.5.1.2
+TP  TIGRFAMs
+CC  All proteins in this family with known functions are NAD-dependent DNA ligases.  Functions of these proteins include DNA repair, DNA replication, and DNA recombination. This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+CC  The member of this family from Treponema pallidum differs in having three rather than just one copy of the BRCT (BRCA1 C Terminus) domain (PF00533) at the C-terminus. It is included in the seed.
+DR  SWISSPROT; P43813;
+DR  EGAD; 28109;
+RM  86310292;
+DR  HAMAP; MF_01588; 546 of 556

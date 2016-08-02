@@ -1,0 +1,15 @@
+ID  nadA
+AC  TIGR00550
+DE  quinolinate synthetase complex, A subunit
+AU  Haft DH, Anolik RT
+TC  262.90 262.90
+NC  106.85 106.85
+AL  clustalw
+IT  equivalog
+EN  quinolinate synthetase complex, A subunit
+GS  nadA
+EC  2.5.1.72
+TP  TIGRFAMs
+CC  This protein, termed NadA, plays a role in the synthesis of pyridine, a precursor to NAD. The quinolinate synthetase complex consists of A protein (this protein) and B protein. B protein converts L-aspartate to iminoaspartate, an unstable reaction product which in the absence of A protein is spontaneously hydrolyzed to form oxaloacetate. The A protein, NadA, converts iminoaspartate to quinolate.
+DR  ECOCYC; EG10630; nadA;
+DR  HAMAP; MF_00569; 27 of 27

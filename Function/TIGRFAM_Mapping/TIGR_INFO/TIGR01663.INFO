@@ -1,0 +1,28 @@
+ID  PNK-3'Pase
+AC  TIGR01663
+DE  polynucleotide kinase 3'-phosphatase
+AU  Selengut J
+TC  502.80 502.80
+NC  172.25 172.25
+AL  clustalw
+IT  equivalog
+EN  polynucleotide 5'-kinase 3'-phosphatase
+GS  PNKP
+EC  3.1.3.32
+TP  TIGRFAMs
+CC  This model represents the metazoan 5'-polynucleotide-kinase-3'-phosphatase, PNKP, which is believed to be involved in repair of oxidative DNA damage.  Removal of 3' phosphates is essential for the further processing of the break by DNA polymerases [1,2].  
+CC  The central phosphatase domain is a member of the IIIA subfamily (TIGR01662) of the haloacid dehalogenase (HAD) superfamily of aspartate-nucleophile hydrolases.  As is common in this superfamily, the enzyme is magnesium dependent.  A difference between this enzyme and other HAD-superfamily phosphatases is in the third conserved catalytic motif which usually contains two conserved aspartate residues believed to be involved in binding the magnesium ion.  Here, the second aspartate is replaced by a conserved arginine residue which may indicate an interaction with the phosphate backbone of the substrate.
+CC  Very close relatives of this domain are also found separate from the N- and C-terminal domains seen here, as in the 3'-phosphatase found in plants.  The larger family of these domains is described by TIGR01664.
+CC  Outside of the phosphatase domain is a P-loop ATP-binding motif associated with the kinase activity.
+CC  The entry for the mouse homolog, GP|7108591, appears to be missing a large piece of sequence corresponding to the first conserved catalytic motif of the phosphatase domain as well as the conserved threonine of the second motif.  Either this is a sequencing artifact or this may represent a pseudo- or non-functional gene.
+CC  Note that the EC number for the kinase function is: 2.7.1.78
+RN  [1]
+RM  PMID: 10446192
+RT  Molecular cloning of the human gene, PNKP, encoding a polynucleotide kinase 3'-phosphatase and evidence for its role in repair of DNA strand breaks caused by oxidative damage.
+RA  Jilani A, Ramotar D, Slack C, Ong C, Yang XM, Scherer SW, Lasko DD.
+RL  J Biol Chem 1999 Aug 20;274(34):24176-86
+RN  [2]
+RM  PMID: 10446193
+RT  Molecular characterization of a human DNA kinase.
+RA  Karimi-Busheri F, Daly G, Robins P, Canas B, Pappin DJ, Sgouros J, Miller GG, Fakhrai H, Davis EM, Le Beau MM, Weinfeld M.
+RL  J Biol Chem 1999 Aug 20;274(34):24187-94

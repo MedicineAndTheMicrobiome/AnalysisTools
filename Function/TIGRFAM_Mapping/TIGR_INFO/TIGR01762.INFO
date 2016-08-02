@@ -1,0 +1,26 @@
+ID  chlorin-enz
+AC  TIGR01762
+DE  chlorinating enzyme
+AU  Selengut J
+TC  226.30 226.30
+NC  49.70 49.70
+AL  clustalw
+IT  subfamily
+EN  chlorinating enzyme
+TP  TIGRFAMs
+CC  This model represents a a group of highly homologous enzymes related to dioxygenases which chlorinate amino acid methyl groups.  BarB1 and BarB2 are proposed to trichlorinate one of the methyl groups of a leucine residue in the biosynthesis of barbamide in the cyanobacterium Lyngbya majuscula [1].  SyrB2 is proposed to chlorinate the methyl group of threonine in the biosynthesis of syringomycin in Pseudomonas syringae [1,2].  CmaB is proposed to chlorinate the beta-methyl group of alloisoleucine in the process of ring closure in the biosynthesis of coronamic acid, a component of coronatine also in Pseudomonas syringae [1,3].
+RN  [1]
+RM  PMID: 12383521
+RT  The barbamide biosynthetic gene cluster: a novel marine cyanobacterial system of mixed polyketide synthase (PKS)-non-ribosomal peptide synthetase (NRPS) origin involving an unusual trichloroleucyl starter unit.
+RA  Chang Z, Flatt P, Gerwick W, Nguyen V, Willis C, Sherman D.
+RL  Gene. 2002 Aug 21;296(1-2):235.
+RN  [2]
+RM  PMID: 7608074 
+RT  Analysis of the syrB and syrC genes of Pseudomonas syringae pv. syringae indicates that syringomycin is synthesized by a thiotemplate mechanism.
+RA  Zhang JH, Quigley NB, Gross DC.
+RL  J Bacteriol 1995 Jul;177(14):4009-20
+RN  [3]
+RM  PMID:12928499 
+RT  The complete genome sequence of the Arabidopsis and tomato pathogen Pseudomonas syringae pv. tomato DC3000. 
+RA  Buell CR, Joardar V, Lindeberg M, Selengut J, Paulsen IT, Gwinn ML, Dodson RJ, Deboy RT, Durkin AS, Kolonay JF, Madupu R, Daugherty S, Brinkac L, Beanan MJ, Haft DH, Nelson WC, Davidsen T, Zafar N, Zhou L, Liu J, Yuan Q, Khouri H, Fedorova N, Tran B, Russell D, Berry K, Utterback T, Van Aken SE, Feldblyum TV, D'Ascenzo M, Deng WL, Ramos AR, Alfano JR, Cartinhour S, Chatterjee AK, Delaney TP, Lazarowitz SG, Martin GB, Schneider DJ, Tang X, Bender CL, White O, Fraser CM, Collmer A 
+RL  Proc Natl Acad Sci U S A. 2003 Sep 2;100(18):10181-6.

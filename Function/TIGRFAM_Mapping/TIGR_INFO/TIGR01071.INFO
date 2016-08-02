@@ -1,0 +1,12 @@
+ID  rplO_bact
+AC  TIGR01071
+DE  ribosomal protein L15
+AU  Haft DH
+TC  77.95 77.95
+NC  48.35 48.35
+AL  clustalw
+IT  equivalog
+EN  ribosomal protein L15, bacterial/organelle
+GS  rplO
+TP  TIGRFAMs
+DR  HAMAP; MF_01341; 508 of 549

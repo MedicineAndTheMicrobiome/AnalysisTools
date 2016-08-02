@@ -1,0 +1,23 @@
+ID  RNase_R
+AC  TIGR02063
+DE  ribonuclease R
+AU  Haft DH
+TC  597.85 597.85
+NC  424.20 424.20
+AL  clustalw_manual
+IT  equivalog
+EN  ribonuclease R
+GS  rnr
+EC  3.1.-.-
+TP  TIGRFAMs
+CC  This family consists of an exoribonuclease, ribonuclease R, also called VacB. It is one of the eight exoribonucleases reported in E. coli and is broadly distributed throughout the bacteria. In E. coli, double mutants of this protein and polynucleotide phosphorylase are not viable. Scoring between trusted and noise cutoffs to the model are shorter, divergent forms from the Chlamydiae, and divergent forms from the Campylobacterales (including Helicobacter pylori) and Leptospira interrogans.
+RN  [1]
+RM  9603904
+RT  The vacB gene required for virulence in Shigella flexneri and Escherichia coli encodes the exoribonuclease RNase R.
+RA  Cheng ZF, Zuo Y, Li Z, Rudd KE, Deutscher MP.
+RL  J Biol Chem. 1998 Jun 5;273(23):14077-80.
+RN  [2]
+RM  11948193
+RT  Purification and characterization of the Escherichia coli exoribonuclease RNase R. Comparison with RNase II.
+RA  Cheng ZF, Deutscher MP.
+RL  J Biol Chem. 2002 Jun 14;277(24):21624-9. Epub 2002 Apr 10.

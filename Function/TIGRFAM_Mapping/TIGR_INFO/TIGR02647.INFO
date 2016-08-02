@@ -1,0 +1,11 @@
+ID  DNA
+AC  TIGR02647
+DE  TIGR02647 family protein
+AU  Haft DH
+TC  44.60 44.60
+NC  44.10 44.10
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  TIGR02647 family protein
+TP  TIGRFAMs
+CC  Members of this family are found, so far, only in the Gammaproteobacteria. The function is unknown. The location on the chromosome usually is not far from housekeeping genes rather than in what is clearly, say, a prophage region. Some members have been annotated in public databases as DNA-binding protein inhibitor Id-2-related protein, putative transcriptional regulator, or hypothetical DNA binding protein.

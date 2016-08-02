@@ -1,0 +1,23 @@
+ID  TIGR00294
+AC  TIGR00294
+DE  GTP cyclohydrolase
+AU  Haft DH
+TC  100.35 100.35
+NC  96.10 96.10
+AL  clustalw
+IT  hypoth_equivalog
+EN  GTP cyclohydrolase, MptA/FolE2 family
+EC  3.5.4.-
+TP  TIGRFAMs
+CC  This family includes type I GTP cyclohydrolases involved in methanopterin in archaea (MptA) and de novo tetrahydrofolate biosynthesis in bacteria (FolE2).
+RN  [1]
+RM  PMID:17497938 
+RT  Characterization of an Fe(2+)-dependent archaeal-specific GTP cyclohydrolase, MptA, from Methanocaldococcus jannaschii. 
+RA  Grochowski LL, Xu H, Leung K, White RH 
+RL  Biochemistry. 2007 Jun 5;46(22):6658-67.
+RN  [2]
+RM  PMID:17032654 
+RT  Discovery of a new prokaryotic type I GTP cyclohydrolase family. 
+RA  El Yacoubi B, Bonnett S, Anderson JN, Swairjo MA, Iwata-Reuyl D, de Crecy-Lagard V 
+RL  J Biol Chem. 2006 Dec 8;281(49):37586-93.
+DR  HAMAP; MF_01527; 85 of 167

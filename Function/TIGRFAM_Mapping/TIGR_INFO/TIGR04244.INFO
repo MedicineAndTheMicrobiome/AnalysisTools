@@ -1,0 +1,18 @@
+ID  nitrous_NosZ_RR
+AC  TIGR04244
+DE  nitrous-oxide reductase, TAT-dependent
+AU  Haft DH
+TC  625.00 625.00
+NC  525.00 525.00
+AL  muscle_manual
+IT  equivalog
+EN  nitrous-oxide reductase, TAT-dependent
+GS  nosZ
+EC  1.7.2.4
+TP  TIGRFAMs
+CC  Members of this family are the nitrous-oxide reductase structural protein, NosZ, with an N-terminal twin-arginine translocation (TAT) signal sequence (see TIGR01409). The TAT system replaces the Sec system for export of proteins with bound cofactor.
+RN  [1]
+RM  PMID:11160097 
+RT  Role of the Tat ransport system in nitrous oxide reductase translocation and cytochrome cd1 biosynthesis in Pseudomonas stutzeri. 
+RA  Heikkila MP, Honisch U, Wunsch P, Zumft WG 
+RL  J Bacteriol. 2001 Mar;183(5):1663-71.

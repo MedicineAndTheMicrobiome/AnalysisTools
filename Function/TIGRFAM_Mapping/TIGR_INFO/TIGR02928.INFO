@@ -1,0 +1,17 @@
+ID  TIGR02928
+AC  TIGR02928
+DE  orc1/cdc6 family replication initiation protein
+AU  Haft DH
+TC  181.30 181.30
+NC  175.55 175.55
+AL  muscle
+IT  subfamily
+EN  orc1/cdc6 family replication initiation protein
+TP  TIGRFAMs
+CC  Members of this protein family are found exclusively in the archaea. This set of DNA binding proteins shows homology to the origin recognition complex subunit 1/cell division control protein 6 family in eukaryotes. Several members may be found in genome and interact with each other.
+RN  [1]
+RM  PMID: 16179962
+RT  Biochemical characterization of two Cdc6/ORC1-like proteins from the crenarchaeon Sulfolobus solfataricus.
+RA  De Felice M, Esposito L, Rossi M, Pisani FM
+RL  Extremophiles. 2006 Feb;10(1):61-70. Epub 2005 Sep 23.
+DR  HAMAP; MF_01407; 50 of 50

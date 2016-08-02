@@ -1,0 +1,14 @@
+ID  L12
+AC  TIGR00855
+DE  ribosomal protein L7/L12
+AU  Haft DH
+TC  84.40 84.40
+NC  55.00 55.00
+AL  clustalw_manual
+IT  equivalog
+EN  ribosomal protein L7/L12
+GS  rplL
+TP  TIGRFAMs
+CC  Ribosomal proteins L7 and L12 are synonymous except for post-translational modification of the N-terminal amino acid.
+CC  THis model resembles Pfam model PF00542 but matches the full length of prokaryotic and organellar proteins rather than just the C-terminus.
+DR  HAMAP; MF_00368; 518 of 530

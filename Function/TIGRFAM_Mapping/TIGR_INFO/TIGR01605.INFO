@@ -1,0 +1,13 @@
+ID  PYST-D
+AC  TIGR01605
+DE  Plasmodium yoelii subtelomeric family PYST-D
+AU  Selengut J
+TC  41.40 41.40
+NC  31.35 31.35
+AL  clustalw
+IT  paralog
+EN  Plasmodium yoelii subtelomeric family PYST-D
+TP  TIGRFAMs
+CC  This model represents a paralogous family of Plasmodium yoelii genes preferentially located in the subtelomeric regions of the chromosomes [1].  These genes are generally very short (ca. 50 residues).  There are no obvious homologs to these genes in any other organism.
+RN  [1]
+RL  TIGR, unpublished data

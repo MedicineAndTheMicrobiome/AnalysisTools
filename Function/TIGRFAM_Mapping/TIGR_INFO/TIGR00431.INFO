@@ -1,0 +1,14 @@
+ID  TruB
+AC  TIGR00431
+DE  tRNA pseudouridine(55) synthase
+AU  Haft DH
+TC  151.45 151.45
+NC  58.10 58.10
+AL  clustalw_manual
+IT  equivalog
+EN  tRNA pseudouridine(55) synthase
+GS  truB
+EC  5.4.99.25
+TP  TIGRFAMs
+CC  TruB, the tRNA pseudouridine 55 synthase, converts uracil to pseudouridine in the T loop of most tRNAs in all three domains of life. This model is built on a seed alignment of bacterial proteins only. Saccharomyces cerevisiae protein YNL292w (Pus4) has been shown to be the pseudouridine 55 synthase of both cytosolic and mitochondrial compartments, active at no other position on tRNA and the only enzyme active at that position in the species. A distinct yeast protein YLR175w, (centromere/microtubule-binding protein CBF5) is an rRNA pseudouridine synthase, and the archaeal set is much more similar to CBF5 than to Pus4. It is unclear whether the archaeal proteins found by this model are tRNA pseudouridine 55 synthases like TruB, rRNA pseudouridine synthases like CBF5, or (as suggested by the absence of paralogs in the Archaea) both. CBF5 likely has additional, eukaryotic-specific functions. The trusted cutoff is set above the scores for the archaeal homologs of unknown function, so yeast Pus4p scores between trusted and noise.
+DR  HAMAP; MF_01081; 2 of 26

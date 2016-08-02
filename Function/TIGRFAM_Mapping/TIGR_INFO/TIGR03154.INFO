@@ -1,0 +1,17 @@
+ID  sulfolob_CbsA
+AC  TIGR03154
+DE  cytochrome b558/566, subunit A
+AU  Haft DH
+TC  468.40 468.40
+NC  27.45 27.45
+AL  clustalw
+IT  equivalog
+EN  cytochrome b558/566, subunit A
+GS  cbsA
+TP  TIGRFAMs
+CC  Members of this protein family are CbsA, one subunit of a highly glycosylated, heterodimeric, mono-heme cytochrome b558/566, found in Sulfolobus acidocaldarius and several other members of the Sulfolobales, a branch of the Crenarchaeota.
+RN  [1]
+RM  PMID: 12887010
+RT  New genes encoding subunits of a cytochrome bc1-analogous complex in the respiratory chain of the hyperthermoacidophilic crenarchaeon Sulfolobus acidocaldarius.
+RA  Hiller A, Henninger T, Schafer G, Schmidt CL
+RL  J Bioenerg Biomembr. 2003 Apr;35(2):121-31.

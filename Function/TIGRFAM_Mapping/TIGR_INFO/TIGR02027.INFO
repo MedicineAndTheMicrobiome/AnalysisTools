@@ -1,0 +1,24 @@
+ID  rpoA
+AC  TIGR02027
+DE  DNA-directed RNA polymerase, alpha subunit
+AU  Haft DH, Dodson RJ
+TC  227.80 227.80
+NC  112.40 112.40
+AL  clustalw
+IT  equivalog
+EN  DNA-directed RNA polymerase, alpha subunit, bacterial and chloroplast-type
+GS  rpoA
+EC  2.7.7.6
+TP  TIGRFAMs
+CC  This family consists of the bacterial (and chloroplast) DNA-directed RNA polymerase alpha subunit, encoded by the rpoA gene. The RNA polymerase catalyzes the transcription of DNA into RNA using the four ribonucleoside triphosphates as substrates. The amino terminal domain is involved in dimerizing and assembling the other RNA polymerase subunits into a transcriptionally active enzyme. The carboxy-terminal domain contains determinants for interaction with DNA and with transcriptional activator proteins.
+RN  [1]
+RM  9657722
+RT  Structure of the Escherichia coli RNA polymerase alpha subunit amino-terminal domain.
+RA  Zhang G, Darst SA.
+RL  Science. 1998 Jul 10;281(5374):262-6.
+RN  [2]
+RM  7613089
+RT  The Escherichia coli RNA polymerase alpha subunit: structure and function.
+RA  Ebright RH, Busby S.
+RL  Curr Opin Genet Dev. 1995 Apr;5(2):197-203.
+DR  HAMAP; MF_00059; 671 of 673

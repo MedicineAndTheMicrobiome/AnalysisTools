@@ -1,0 +1,16 @@
+ID  choice_anch_A
+AC  TIGR04215
+DE  choice-of-anchor A domain
+AU  Haft DH
+TC  29.00 29.00
+NC  23.00 23.00
+AL  muscle_manual
+IT  domain
+EN  choice-of-anchor A domain
+TP  TIGRFAMs
+CC  This domain may occur as essentially the full length of a protein, except for an N-terminal sequence and a C-terminal protein-sorting signal such as PEP-CTERM or LPXTG.  Most often, the putative surface protein is longer and contains repetitive sequence regions. This is one of very few domains for which both anchoring domains occur, and designated choice-of-anchor A domain. The best characterized member is Bacillus anthracis protein BA0871, a collagen-binding protein with five CNA-family protein B-type repeats toward the C-terminus and an LPXTG cell wall attachment motif.
+RN  [1]
+RM  PMID:15456768 
+RT  Identification and biochemical characterization of two novel collagen binding MSCRAMMs of Bacillus anthracis. 
+RA  Xu Y, Liang X, Chen Y, Koehler TM, Hook M 
+RL  J Biol Chem. 2004 Dec 10;279(50):51760-8.

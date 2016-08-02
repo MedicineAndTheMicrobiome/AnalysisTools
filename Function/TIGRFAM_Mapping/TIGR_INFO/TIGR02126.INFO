@@ -1,0 +1,16 @@
+ID  phgtail_TP901_1
+AC  TIGR02126
+DE  phage major tail protein, TP901-1 family
+AU  Haft DH
+TC  37.00 37.00
+NC  22.80 22.80
+AL  clustalw_manual
+IT  equivalog
+EN  phage major tail protein, TP901-1 family
+TP  TIGRFAMs
+CC  This family includes the members of PF06199 but is broader. Characterized members are major tail proteins from various phage, including lactococcal temperate bacteriophage TP901-1.
+DR  PFAM; PF06199; Phage major tail protein 2
+RM  8610457
+RT  A genomic region of lactococcal temperate bacteriophage TP901-1 encoding major virion proteins.
+RA  Johnsen MG, Appel KF, Madsen PL, Vogensen FK, Hammer K, Arnau J.
+RL  Virology. 1996 Apr 15;218(2):306-15.

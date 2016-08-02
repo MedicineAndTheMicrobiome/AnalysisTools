@@ -1,0 +1,17 @@
+ID  phageshock_pspG
+AC  TIGR02975
+DE  phage shock protein G
+AU  Haft DH
+TC  53.70 53.70
+NC  34.10 34.10
+AL  muscle
+IT  equivalog
+EN  phage shock protein G
+GS  pspG
+TP  TIGRFAMs
+CC  This protein previously was designated yjbO in E. coli. It is found only in genomes that have the phage shock operon (psp), but only rarely is encoded near other psp genes. The psp regulon is upregulated in response to a number of stress conditions, including ethanol, expression of the filamentous phage secretin protein IV and other secretins, and heat shock.
+RN  [1]
+RM  PMID: 15485810
+RT  Identification of a new member of the phage shock protein response in Escherichia coli, the phage shock protein G (PspG).
+RA  Lloyd LJ, Jones SE, Jovanovic G, Gyaneshwar P, Rolfe MD, Thompson A, Hinton JC, Buck M
+RL  J Biol Chem. 2004 Dec 31;279(53):55707-14. Epub 2004 Oct 13.

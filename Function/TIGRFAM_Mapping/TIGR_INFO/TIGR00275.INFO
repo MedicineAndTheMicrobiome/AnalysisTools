@@ -1,0 +1,12 @@
+ID  TIGR00275
+AC  TIGR00275
+DE  flavoprotein, HI0933 family
+AU  Loftus BJ, Haft DH
+TC  183.80 183.80
+NC  130.60 130.60
+AL  clustalw
+IT  subfamily
+EN  flavoprotein, HI0933 family
+TP  TIGRFAMs
+CC  The model when searched with a partial length search brings in proteins with a dinucleotide-binding motif (Rossman fold) over the initial 40 residues of the model, including oxidoreductases and dehydrogenases. Partially characterized members include an FAD-binding protein from Bacillus cereus and flavoprotein HI0933 from Haemophilus influenzae.
+DR  SwissProt; P37631;

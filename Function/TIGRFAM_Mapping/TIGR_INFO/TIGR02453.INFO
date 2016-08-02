@@ -1,0 +1,11 @@
+ID  TIGR02453
+AC  TIGR02453
+DE  TIGR02453 family protein
+AU  Haft DH
+TC  105.40 105.40
+NC  68.65 68.65
+AL  clustalw
+IT  subfamily_domain
+EN  TIGR02453 family protein
+TP  TIGRFAMs
+CC  Members of this family are widely (though sparsely) distributed bacterial proteins about 230 residues in length. All members have a motif RxxRDxRFxxx[DN]KxxY. The function of this protein family is unknown. In several fungi, this model identifies a conserved region of a longer protein. Therefore, it may be incorrect to speculate that all members share a common function.

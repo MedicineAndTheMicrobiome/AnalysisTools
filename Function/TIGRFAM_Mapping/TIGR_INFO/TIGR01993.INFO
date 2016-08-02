@@ -1,0 +1,18 @@
+ID  Pyr-5-nucltdase
+AC  TIGR01993
+DE  pyrimidine 5'-nucleotidase
+AU  Selengut J
+TC  142.90 142.90
+NC  81.70 81.70
+AL  clustalw
+IT  hypoth_equivalog
+EN  pyrimidine 5'-nucleotidase
+EC  3.1.3.5
+TP  TIGRFAMs
+CC  This family of proteins includes the SDT1/SSM1 gene from yeast which has been shown to code for a pyrimidine (UMP/CMP) 5'nucleotidase.  The family spans plants, fungi and a small number of bacteria.
+CC  These enzymes are members of the haloacid dehalogenase (HAD) superfamily of hydrolases, specifically the IA subfamily (variant 3, TIGR01509).
+RN  [1]
+RM  PMID: 11934891
+RT  SDT1/SSM1, a multicopy suppressor of S-II null mutant, encodes a novel pyrimidine 5'-nucleotidase.
+RA  Nakanishi T, Sekimizu K.
+RL  J Biol Chem. 2002 Jun 14;277(24):22103-6. Epub 2002 Apr 04.

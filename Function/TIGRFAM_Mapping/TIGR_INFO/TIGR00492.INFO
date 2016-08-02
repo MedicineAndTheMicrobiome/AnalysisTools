@@ -1,0 +1,15 @@
+ID  alr
+AC  TIGR00492
+DE  alanine racemase
+AU  Anolik RT, Richardson DL
+TC  168.00 168.00
+NC  129.90 129.90
+AL  clustalw
+IT  equivalog
+EN  alanine racemase
+GS  alr
+EC  5.1.1.1
+TP  TIGRFAMs
+CC  This enzyme interconverts L-alanine and D-alanine. Its primary function is to generate D-alanine for cell wall formation. With D-alanine-D-alanine ligase, it makes up the D-alanine branch of the peptidoglycan biosynthetic route. It is a monomer with one pyridoxal phosphate per subunit. In E. coli, the ortholog is duplicated so that a second isozyme, DadX, is present. DadX, a paralog of the biosynthetic Alr, is induced by D- or L-alanine and is involved in catabolism.
+DR  PROSITE; PDOC00332; 
+DR  HAMAP; MF_01201; 227 of 233

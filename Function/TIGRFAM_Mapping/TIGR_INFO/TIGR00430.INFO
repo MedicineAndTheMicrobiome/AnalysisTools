@@ -1,0 +1,14 @@
+ID  Q_tRNA_tgt
+AC  TIGR00430
+DE  tRNA-guanine transglycosylase
+AU  Haft DH
+TC  306.75 306.75
+NC  213.65 213.65
+AL  clustalw
+IT  equivalog
+EN  tRNA-guanine transglycosylase
+GS  tgt
+EC  2.4.2.29
+TP  TIGRFAMs
+CC  This tRNA-guanine transglycosylase (tgt) catalyzes an exchange for the guanine base at position 34 of many tRNAs; this nucleotide is subsequently modified to queuosine. The Archaea have a closely related enzyme that catalyzes a base exchange for guanine at position 15 in some tRNAs, a site that is subsequently converted to the archaeal-specific modified base archaeosine (7-formamidino-7-deazaguanosine), while Archaeoglobus fulgidus has both enzymes.
+DR  HAMAP; MF_00168; 310 of 313

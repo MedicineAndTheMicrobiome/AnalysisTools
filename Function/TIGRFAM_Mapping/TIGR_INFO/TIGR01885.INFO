@@ -1,0 +1,14 @@
+ID  Orn_aminotrans
+AC  TIGR01885
+DE  ornithine--oxo-acid transaminase
+AU  Haft DH, Sunshine J
+TC  378.40 378.40
+NC  352.30 352.30
+AL  clustalw
+IT  equivalog
+EN  ornithine aminotransferase
+GS  rocD
+EC  2.6.1.13
+TP  TIGRFAMs
+CC  This HMM describes the final step in the biosynthesis of ornithine from glutamate via the non-acetylated pathway.  Ornithine amino transferase takes L-glutamate 5-semialdehyde and makes it into ornithine, which is used in the urea cycle, as well as in the biosynthesis of arginine.  This model includes low-GC bacteria and eukaryotic species.  The genes from two species are annotated as putative acetylornithine aminotransferases - one from Porphyromonas gingivalis (OMNI|PG1271), and the other from Staphylococcus aureus (OMNI|SA0170).  After homology searching using BLAST it was determined that these two sequences were most closely related to ornithine aminotransferases. This model's seed includes one characterized hit, from Bacillus subtilis (SP|P38021).
+DR  HAMAP; MF_01107; 17 of 120

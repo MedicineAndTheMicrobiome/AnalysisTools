@@ -1,0 +1,15 @@
+ID  metG
+AC  TIGR00398
+DE  methionine--tRNA ligase
+AU  Haft DH
+TC  336.35 336.35
+NC  216.40 216.40
+AL  clustalw_manual
+IT  equivalog_domain
+EN  methionyl-tRNA synthetase
+GS  metG
+EC  6.1.1.10
+TP  TIGRFAMs
+CC  The methionyl-tRNA synthetase (metG) is a class I amino acyl-tRNA ligase. This HMM appears to recognize the methionyl-tRNA synthetase of every species, including eukaryotic cytosolic and mitochondrial forms. The UPGMA difference tree calculated after search and alignment according to this HMM shows an unusual deep split between two families of MetG. One family contains forms from the Archaea, yeast cytosol, spirochetes, and E. coli, among others. The other family includes forms from yeast mitochondrion, Synechocystis sp., Bacillus subtilis, the Mycoplasmas, Aquifex aeolicus, and Helicobacter pylori. The E. coli enzyme is homodimeric, although monomeric forms can be prepared that are fully active. Activity of this enzyme in bacteria includes aminoacylation of fMet-tRNA with Met; subsequent formylation of the Met to fMet is catalyzed by a separate enzyme. Note that the protein from Aquifex aeolicus is split into an alpha (large) and beta (small) subunit; this model does not include the C-terminal region corresponding to the beta chain.
+DR  PROSITE PDOC00161; Aminoacyl-transfer RNA synthetases class-I signature
+DR  HAMAP; MF_01228; 38 of 38

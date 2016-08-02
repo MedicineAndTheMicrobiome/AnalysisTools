@@ -1,0 +1,11 @@
+ID  amanitin
+AC  TIGR04309
+DE  amanitin/phalloidin family toxin
+AU  Haft DH
+TC  35.00 35.00
+NC  34.00 25.00
+AL  muscle_manual
+IT  subfamily
+EN  amanitin/phalloidin family toxin
+TP  TIGRFAMs
+CC  Members of this family are ribosomally produced precursors of toxins produced by several mushrooms. These precursors undergo extensive post-translational modification to become amatoxins (e.g. alpha-amanitin) and phallotoxins (e.g. phalloidin).

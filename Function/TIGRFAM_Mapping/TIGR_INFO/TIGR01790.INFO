@@ -1,0 +1,11 @@
+ID  carotene-cycl
+AC  TIGR01790
+DE  lycopene cyclase family protein
+AU  Selengut J
+TC  209.50 209.50
+NC  78.95 78.95
+AL  clustalw
+IT  subfamily
+EN  lycopene cyclase family protein
+TP  TIGRFAMs
+CC  This family includes lycopene beta and epsilion cyclases (which form beta and delta carotene, respectively) from bacteria and plants as well as the plant capsanthin/capsorubin and neoxanthin cyclases which appear to have evolved from the plant lycopene cyclases.  The plant lycopene epsilon cyclases also transform neurosporene to alpha zeacarotene.

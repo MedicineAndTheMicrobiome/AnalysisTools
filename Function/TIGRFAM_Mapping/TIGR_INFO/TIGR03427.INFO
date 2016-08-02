@@ -1,0 +1,11 @@
+ID  ABC_peri_uca
+AC  TIGR03427
+DE  ABC transporter periplasmic binding protein, urea carboxylase region
+AU  Haft DH
+TC  333.90 333.90
+NC  167.20 167.20
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  ABC transporter periplasmic binding protein, urea carboxylase region
+TP  TIGRFAMs
+CC  Members of this family are ABC transporter periplasmic binding proteins associated with the urea carboxylase/allophanate hydrolase pathway, an alternative to urease for urea degradation. The protein is restricted to bacteria with the pathway, with its gene close to the urea carboxylase and allophanate hydrolase genes. The substrate for this transporter therefore is likely to be urea or a compound from which urea is easily derived.

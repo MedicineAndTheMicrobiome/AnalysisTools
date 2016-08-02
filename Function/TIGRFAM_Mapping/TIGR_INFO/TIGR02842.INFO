@@ -1,0 +1,13 @@
+ID  CyoC
+AC  TIGR02842
+DE  cytochrome o ubiquinol oxidase, subunit III
+AU  Selengut J
+TC  223.75 223.75
+NC  214.00 214.00
+AL  muscle
+IT  equivalog
+EN  cytochrome o ubiquinol oxidase, subunit III
+GS  cyoC
+EC  1.10.3.-
+TP  TIGRFAMs
+CC  Cytochrome o terminal oxidase complex is the component of the aerobic respiratory chain which reacts with oxygen, reducing it to water with the concomitant transport of 4 protons across the membrane.  Also known as the cytochrome bo complex, cytochrome o ubiquinol oxidase contains four subunits, two heme b cofactors and a copper atom which is believed to be the oxygen active site.  This complex is structurally related to the cytochrome caa3 oxidases which utilize cytochrome c as the reductant and contain heme a cofactors, as well as the intermediate form aa3 oxidases which also react directly with quinones as the reductant.

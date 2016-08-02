@@ -1,0 +1,14 @@
+ID  EIIA-man
+AC  TIGR00824
+DE  PTS system, mannose/fructose/sorbose family, IIA component
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  98.35 98.35
+NC  66.75 66.75
+AL  clustalw_manual
+IT  subfamily_domain
+EN  PTS system, mannose/fructose/sorbose family, IIA component
+EC  2.7.1.69
+TR  4.A.6
+TP  TIGRFAMs
+CC  Bacterial PTS transporters transport and concomitantly phosphorylate their sugar substrates, and typically consist of multiple subunits or protein domains.The Man family is unique in several respects among PTS permease families It is the only PTS family in which members possess a IID protein. It is the only PTS family in which the IIB constituent is phosphorylated on a histidyl rather than a cysteyl residue. Its permease members exhibit broad specificity for a range of sugars, rather than being specific for just one or a few sugars. The mannose permease of E. coli, for example, can transport and phosphorylate glucose, mannose, fructose, glucosamine, N-acetylglucosamine, and other sugars. Other members of this can transport sorbose, fructose and N-acetylglucosamine. This family is specific for the IIA components.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/4_A_6.html

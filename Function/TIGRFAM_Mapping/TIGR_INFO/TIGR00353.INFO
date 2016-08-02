@@ -1,0 +1,18 @@
+ID  nrfE
+AC  TIGR00353
+DE  cytochrome c-type biogenesis protein CcmF
+AU  Loftus BJ
+TC  569.05 569.05
+NC  173.80 173.80
+AL  clustalw
+IT  equivalog
+EN  c-type cytochrome biogenesis protein CcmF
+GS  ccmF
+TP  TIGRFAMs
+CC  The product of this gene is required for the biogenesis of C-type cytochromes. This gene is thought to have eleven transmembrane helices. Disruption of this gene in Paracoccus denitrificans, encoding a putative transporter, results in formation of an unstable apocytochrome c and deficiency in siderophore production.
+RM  98154435
+RT  Identification of the contiguous Paracoccus denitrificans ccmF and ccmH genes: disruption of ccmF, encoding a putative transporter, results in formation of an unstable apocytochrome c and deficiency in siderophore production.
+RA  Pearce DA, Page MD, Norris HA, Tomlinson EJ, Ferguson SJ
+RL  Microbiology 1998 Feb;144 ( Pt 2):467-77  
+DR  ECOCYC; EG11948; nrfE;
+DR  SP:P32710

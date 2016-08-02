@@ -1,0 +1,17 @@
+ID  lanti_2_LanM
+AC  TIGR03897
+DE  type 2 lantibiotic biosynthesis protein LanM
+AU  Haft DH
+TC  304.00 304.00
+NC  287.60 287.60
+AL  muscle_manual
+IT  subfamily
+EN  type 2 lantibiotic biosynthesis protein LanM
+GS  lanM
+TP  TIGRFAMs
+CC  Members of this family are known generally as LanM, a multifunctional enzyme of lantibiotic biosynthesis. This catalysis by LanM distinguishes the type 2 lantibiotics, such as mersacidin, cinnamycin, and lichenicidin, from LanBC-produced type 1 lantibiotics such as nisin and subtilin. The N-terminal domain contains regions associated with Ser and Thr dehydration. The C-terminal region contains a PF05147 domain, which catalyzes the formation of the lanthionine bridge.
+RN  [1]
+RM  PMID:19561184 
+RT  Identification of a novel two-peptide lantibiotic, lichenicidin, following rational genome mining for LanM proteins. 
+RA  Begley M, Cotter PD, Hill C, Ross RP 
+RL  Appl Environ Microbiol. 2009 Sep;75(17):5451-60.

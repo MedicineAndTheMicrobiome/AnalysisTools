@@ -1,0 +1,12 @@
+ID  Gpos_tandem_5TM
+AC  TIGR01218
+DE  tandem five-TM protein
+AU  Haft DH
+TC  35.00 35.00
+NC  32.00 32.00
+AL  clustalw
+IT  subfamily
+EN  tandem five-transmembrane protein
+TP  TIGRFAMs
+CC  Members of this family of proteins, with average length of 210, have no invariant residues but five predicted transmembrane segments. Strangely, most members occur in groups of consecutive paralogous genes. A striking example is a set of eleven encoded consecutively, head-to-tail, in Staphylococcus aureus strain COL.
+DR  PFAM; PF04276; Protein of unknown function (DUF443)

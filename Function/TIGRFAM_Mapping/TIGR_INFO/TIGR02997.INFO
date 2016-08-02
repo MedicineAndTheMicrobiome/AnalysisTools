@@ -1,0 +1,11 @@
+ID  Sig70-cyanoRpoD
+AC  TIGR02997
+DE  RNA polymerase sigma factor, cyanobacterial RpoD-like family
+AU  Selengut J
+TC  384.50 384.50
+NC  361.85 361.85
+AL  muscle
+IT  subfamily
+EN  RNA polymerase sigma factor, cyanobacterial RpoD-like family
+TP  TIGRFAMs
+CC  This family includes a number of closely related sigma-70 (TIGR02937) factors in the cyanobacteria.  All appear most closely related to the essential sigma-70 factor RpoD, and some score above trusted to the RpoD C-terminal domain model (TIGR02393).

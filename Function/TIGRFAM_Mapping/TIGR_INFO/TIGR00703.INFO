@@ -1,0 +1,12 @@
+ID  TIGR00703
+AC  TIGR00703
+DE  TIGR00703 family protein
+AU  Haft DH
+TC  155.40 155.40
+NC  153.50 153.50
+AL  clustalw
+IT  hypoth_equivalog
+EN  TIGR00703 family protein
+TP  TIGRFAMs
+CC  The function of this family is unknown. These proteins are from 222 to 233 residues in length, lack hydrophobic stretches, and are found so far only in thermophiles.
+DR  HAMAP; MF_00264; 5 of 5

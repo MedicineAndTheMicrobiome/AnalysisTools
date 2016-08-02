@@ -1,0 +1,26 @@
+ID  TIGR00054
+AC  TIGR00054
+DE  RIP metalloprotease RseP
+AU  Anolik RT, Haft DH
+TC  147.55 147.55
+NC  70.00 70.00
+AL  clustalw
+IT  equivalog
+EN  RIP metalloprotease RseP
+GS  rseP
+EC  3.4.24.-
+TP  TIGRFAMs
+CC  Members of this nearly universal bacterial protein family are regulated intramembrane proteolysis (RIP) proteases. Older and synonymous gene symbols include yaeL in E. coli, mmpA in Caulobacter crescentus, etc. This family includes a region that hits the PDZ domain, found in a number of proteins targeted to the membrane by binding to a peptide ligand. The N-terminal region of this family contains a perfectly conserved motif HEXGH as found in a number of metalloproteinases, where the Glu is the active site and the His residues coordinate the metal cation.
+CC  Membership in this family is determined by an HMM built to force a match to the full length of the seed alignment. A model that detects fragments as well matches a number of members of the PEPTIDASE FAMILY S2C. The region of match appears not to overlap the active site domain.
+DR  PFAM; PF00595; PDZ;
+DR  PROSITE; PDOC00129; Neutral zinc metallopeptidases, zinc-binding region signature
+RN  [1]
+RM  PMID: 15496982
+RT  RseP (YaeL), an Escherichia coli RIP protease, cleaves transmembrane sequences.
+RA  Akiyama Y, Kanehara K, Ito K
+RL  EMBO J. 2004 Nov 10;23(22):4434-42.
+RN  [2]
+RM  PMID: 15686556
+RT  A membrane metalloprotease participates in the sequential degradation of a Caulobacter polarity determinant.
+RA  Chen JC, Viollier PH, Shapiro L
+RL  Mol Microbiol. 2005 Feb;55(4):1085-103.

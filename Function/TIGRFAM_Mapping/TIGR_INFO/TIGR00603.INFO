@@ -1,0 +1,14 @@
+ID  rad25
+AC  TIGR00603
+DE  DNA repair helicase rad25
+AU  Loftus BJ, Eisen JA
+TC  328.70 328.70
+NC  303.80 303.80
+IT  subfamily
+EN  DNA repair helicase rad25
+EC  3.6.4.12
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are DNA-DNA helicases used for the initiation of nucleotide excision repair and transacription as part of the TFIIH complex.This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  EGAD; 53442
+DR  SWISSPROT; Q00578;
+RM  92298384;

@@ -1,0 +1,11 @@
+ID  rSAM_QueE_gams
+AC  TIGR04349
+DE  putative 7-cyano-7-deazaguanosine (preQ0) biosynthesis protein QueE
+AU  Haft DH
+TC  300.00 300.00
+NC  295.00 295.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  putative 7-cyano-7-deazaguanosine (preQ0) biosynthesis protein QueE, gammaproteobacterial type
+TP  TIGRFAMs
+CC  Members of this radical SAM domain protein family appear to be a form of the queuosine biosynthesis protein QueE. QueE is involved in making preQ0 (7-cyano-7-deazaquanine), a precursor of both the bacterial/eukaryotic modified tRNA base queuosine and the archaeal modified base archaeosine. Members occur in preQ0 operons species that lack members of related protein family TIGR03365.

@@ -1,0 +1,16 @@
+ID  organ_hyd_perox
+AC  TIGR03561
+DE  peroxiredoxin, Ohr subfamily
+AU  Haft DH
+TC  88.85 88.85
+NC  73.45 73.45
+AL  muscle_manual
+IT  subfamily
+EN  peroxiredoxin, Ohr subfamily
+TP  TIGRFAMs
+CC  Pfam model PF02566, OsmC-like protein, contains several deeply split clades of homologous proteins. The clade modeled here includes the protein Ohr, or organic hydroperoxide resistance protein.
+RN  [1]
+RM  PMID:18084893
+RT  Peroxiredoxins in bacterial antioxidant defense.
+RA  Dubbs JM, Mongkolsuk S
+RL  Subcell Biochem. 2007;44:143-93.

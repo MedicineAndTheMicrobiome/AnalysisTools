@@ -1,0 +1,22 @@
+ID  CueR
+AC  TIGR02044
+DE  Cu(I)-responsive transcriptional regulator
+AU  Selengut J
+TC  147.40 147.40
+NC  116.90 116.90
+AL  clustalw
+IT  equivalog
+EN  Cu(I)-responsive transcriptional regulator
+GS  cueR
+TP  TIGRFAMs
+CC  This HMM represents the copper-, silver- and gold- (I) responsive transcriptional activator of the gamma proteobacterial copper efflux system [1].  This protein is a member of the MerR family of transcriptional activators (PF00376) and contains a distinctive pattern of cysteine residues in its metal binding loop, Cys-X7-Cys.  This family also lacks a conserved cysteine at the N-terminal end of the dimerization helix which is required for the binding of divalent metals such as zinc; here it is replaced by a serine residue [2].
+RN  [1]
+RM  PMID: 11136469
+RT  CueR (YbbI) of Escherichia coli is a MerR family regulator controlling expression of the copper exporter CopA.
+RA  Stoyanov JV, Hobman JL, Brown NL.
+RL  Mol Microbiol. 2001 Jan;39(2):502-11. 
+RN  [2]
+RM  PMID: 12958362
+RT  Molecular basis of metal-ion selectivity and zeptomolar sensitivity by CueR.
+RA  Changela A, Chen K, Xue Y, Holschen J, Outten CE, O'Halloran TV, Mondragon A.
+RL  Science. 2003 Sep 5;301(5638):1383-7.

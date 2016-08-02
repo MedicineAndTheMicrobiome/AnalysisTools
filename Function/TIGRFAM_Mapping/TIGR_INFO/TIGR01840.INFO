@@ -1,0 +1,12 @@
+ID  esterase_phb
+AC  TIGR01840
+DE  esterase, PHB depolymerase family
+AU  Haft DH
+TC  107.85 107.85
+NC  74.70 74.70
+AL  clustalw_manual
+IT  subfamily
+EN  esterase, PHB depolymerase family
+EC  3.1.1.-
+TP  TIGRFAMs
+CC  This HMM describes a subfamily among lipases of the ab-hydrolase family. This subfamily includes bacterial depolymerases for poly(3-hydroxybutyrate) (PHB) and related polyhydroxyalkanoates (PHA), as well as acetyl xylan esterases, feruloyl esterases, and others from fungi.

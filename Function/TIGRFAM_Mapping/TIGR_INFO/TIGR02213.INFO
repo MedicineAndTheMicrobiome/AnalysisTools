@@ -1,0 +1,12 @@
+ID  lolE_release
+AC  TIGR02213
+DE  lipoprotein releasing system, transmembrane protein LolE
+AU  Haft DH
+TC  540.35 540.35
+NC  485.15 485.15
+AL  clustalw
+IT  equivalog
+EN  lipoprotein releasing system, transmembrane protein LolE
+GS  lolE
+TP  TIGRFAMs
+CC  This protein is part of an unusual ABC transporter complex that releases lipoproteins from the periplasmic side of the bacterial inner membrane, rather than transport any substrate across the inner membrane. In some species, the permease-like transmembrane protein is represented by two paralogs, LolC and LolE, both in the LolCDE complex. This family consists of LolE, as found in E. coli and related species.

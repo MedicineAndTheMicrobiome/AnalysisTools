@@ -1,0 +1,11 @@
+ID  TIGR02099
+AC  TIGR02099
+DE  TIGR02099 family protein
+AU  Haft DH
+TC  519.15 519.15
+NC  386.50 386.50
+AL  clustalw
+IT  hypoth_equivalog
+EN  TIGR02099 family protein
+TP  TIGRFAMs
+CC  This HMM describes a family of long proteins, over 1250 amino acids in length and present in the Proteobacteria. The degree of sequence similarity is low between sequences from different genera. Apparent membrane-spanning regions at the N-terminus and C-terminus suggest the protein is inserted into (or exported through) the membrane.

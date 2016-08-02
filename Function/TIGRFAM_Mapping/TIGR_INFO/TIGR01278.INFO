@@ -1,0 +1,20 @@
+ID  DPOR_BchB
+AC  TIGR01278
+DE  light-independent protochlorophyllide reductase, B subunit
+AU  Haft DH
+TC  490.35 490.35
+NC  115.30 115.30
+AL  clustalw_manual
+IT  equivalog
+EN  light-independent protochlorophyllide reductase, B subunit
+GS  bchB
+EC  1.3.7.7
+TP  TIGRFAMs
+CC  Alternate name: dark protochlorophyllide reductase
+CC  This enzyme describes the B subunit of the dark form protochlorophyllide reductase, a nitrogenase-like enzyme. This subunit shows homology to the nitrogenase molybdenum-iron protein. It catalyzes a step in bacteriochlorophyll biosynthesis.
+DR  PFAM; PF00148; oxidored_nitro
+RM  10811655
+RT  Reconstitution of light-independent protochlorophyllide reductase from purified bchl and BchN-BchB subunits. In vitro confirmation of nitrogenase-like features of a bacteriochlorophyll biosynthesis enzyme.
+RA  Fujita Y, Bauer CE
+RL  J Biol Chem 2000 Aug 4;275(31):23583-8
+DR  HAMAP; MF_00353; 84 of 104

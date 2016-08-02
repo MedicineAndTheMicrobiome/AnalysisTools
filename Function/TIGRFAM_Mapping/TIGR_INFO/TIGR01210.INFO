@@ -1,0 +1,12 @@
+ID  TIGR01210
+AC  TIGR01210
+DE  radical SAM enzyme, TIGR01210 family
+AU  Haft DH
+TC  212.15 212.15
+NC  46.45 46.45
+AL  clustalw
+IT  hypoth_equivalog
+EN  radical SAM enzyme, TIGR01210 family
+TP  TIGRFAMs
+CC  This family of exclusively archaeal radical SAM enzymes has no characterized close homologs.
+DR  COGS; COG1244

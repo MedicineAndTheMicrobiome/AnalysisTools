@@ -1,0 +1,23 @@
+ID  coaBC_dfp
+AC  TIGR00521
+DE  phosphopantothenoylcysteine decarboxylase / phosphopantothenate--cysteine ligase
+AU  Haft DH
+TC  219.70 219.70
+NC  211.10 211.10
+AL  clustalw
+IT  equivalog
+EN  phosphopantothenoylcysteine decarboxylase / phosphopantothenate--cysteine ligase
+GS  coaBC
+EC  4.1.1.36 6.3.2.5
+TP  TIGRFAMs
+CC  This HMM represents a bifunctional enzyme that catalyzes the second and third steps (cysteine ligation, EC 6.3.2.5, and decarboxylation, EC 4.1.1.36) in the biosynthesis of coenzyme A (CoA) from pantothenate in bacteria.  In early descriptions of this flavoprotein, a ts mutation in one region of the protein appeared to cause a defect in DNA metaobolism rather than an increased need for the pantothenate precursor beta-alanine. This protein was then called dfp, for DNA/pantothenate metabolism flavoprotein. The authors responsible for detecting phosphopantothenate--cysteine ligase activity suggest renaming this bifunctional protein coaBC for its role in CoA biosynthesis. This enzyme contains the FMN cofactor, but no FAD or pyruvoyl group. The amino-terminal region contains the phosphopantothenoylcysteine decarboxylase activity.
+RN  [1]
+RM  11278255
+RT  Phosphopantothenoylcysteine synthetase from Escherichia coli. Identification and characterization of the last unidentified coenzyme A biosynthetic enzyme in bacteria.
+RA  Strauss E, Kinsland C, Ge Y, McLafferty FW, Begley TP.
+RL  J Biol Chem 2001 Apr 27;276(17):13513-6
+RN  [2]
+RM  88115193
+RT  beta-Alanine auxotrophy associated with dfp, a locus affecting DNA synthesis in Escherichia coli.
+RA  Spitzer ED, Jimenez-Billini HE, Weiss B
+RL  J Bacteriol 1988 Feb;170(2):872-6

@@ -1,0 +1,11 @@
+ID  XapX
+AC  TIGR03510
+DE  XapX domain
+AU  Haft DH
+TC  27.80 27.80
+NC  19.95 19.95
+AL  muscle_manual
+IT  domain
+EN  XapX domain
+TP  TIGRFAMs
+CC  This HMM describes an uncharacterized small, hydrophobic protein of about 50 amino acids, found between the xapB and xapR genes of the E. coli xanthosine utilization system, and homologous regions in other small proteins, such as the N-terminal region of DUF1427 (Pfam model PF07235). We name this domain XapX, as it comprises the full length of the protein encoded between the genes for the well-studied XapB and XapR proteins.

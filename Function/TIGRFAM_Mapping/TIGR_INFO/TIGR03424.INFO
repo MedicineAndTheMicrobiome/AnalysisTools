@@ -1,0 +1,16 @@
+ID  urea_degr_1
+AC  TIGR03424
+DE  urea carboxylase-associated protein 1
+AU  Haft DH
+TC  284.70 284.70
+NC  181.85 181.85
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  urea carboxylase-associated protein 1
+TP  TIGRFAMs
+CC  A number of bacteria degrade urea as a nitrogen source by the urea carboxylase/allophanate hydrolase pathway, which uses biotin and consumes ATP, rather than my means of the nickel-dependent enzyme urease. This model represents one of a pair of homologous, tandem uncharacterized genes found together with the urea carboxylase and allophanate hydrolase genes.
+RN  [1]
+RM  PMID:15090492
+RT  Enzymatic characterization of a prokaryotic urea carboxylase.
+RA  Kanamori T, Kanou N, Atomi H, Imanaka T
+RL  J Bacteriol. 2004 May;186(9):2532-9.

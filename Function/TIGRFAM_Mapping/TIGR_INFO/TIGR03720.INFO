@@ -1,0 +1,16 @@
+ID  exospor_lead
+AC  TIGR03720
+DE  exosporium leader peptide
+AU  Haft DH
+TC  20.10 20.10
+NC  20.10 20.10
+AL  muscle_manual
+IT  domain
+EN  exosporium leader peptide
+TP  TIGRFAMs
+CC  This domain is found as a leader peptide in at least two proteins targeted to the exosporium, a structure that occurs as the outermost layer of Bacillus anthracis, B. cereus, and B. thuringiensis spores. The exosporium consists of a basal layer and a nap of hair-like filaments. BclA, the major protein of the nap filaments, is targeted there by this leader peptide.
+RN  [1]
+RM  PMID:18761690
+RT  Targeting of the BclA and BclB proteins to the Bacillus anthracis spore surface.
+RA  Thompson BM, Stewart GC
+RL  Mol Microbiol. 2008 Oct;70(2):421-34.

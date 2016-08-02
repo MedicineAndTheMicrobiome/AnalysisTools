@@ -1,0 +1,19 @@
+ID  bioW
+AC  TIGR01204
+DE  6-carboxyhexanoate--CoA ligase
+AU  Haft DH
+TC  193.55 193.55
+NC  69.15 69.15
+AL  clustalw
+IT  equivalog
+EN  6-carboxyhexanoate--CoA ligase
+GS  bioW
+EC  6.2.1.14
+TP  TIGRFAMs
+CC  Alternate name: pimeloyl-CoA synthase.
+DR  EXPERMIMENTAL; EGAD|17542; Bacillus sphaericus
+RM  1445232
+RT  Investigation of the first step of biotin biosynthesis in Bacillus sphaericus. Purification and characterization of the pimeloyl-CoA synthase, and uptake of pimelate.
+RA  Ploux O, Soularue P, Marquet A, Gloeckler R, Lemoine Y
+RL  Biochem J 1992 Nov 1;287 ( Pt 3):685-90
+DR  HAMAP; MF_00668; 4 of 19

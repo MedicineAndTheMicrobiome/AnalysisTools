@@ -1,0 +1,14 @@
+ID  benE
+AC  TIGR00843
+DE  benzoate transporter
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  203.40 203.40
+NC  183.25 183.25
+AL  clustalw_manual
+IT  subfamily
+EN  benzoate transporter
+TR  2.A.46
+TP  TIGRFAMs
+CC  The benzoate transporter family contains only a single characterised member, the benzoate transporter of Acinetobacter calcoaceticus, which functions as a benzoate/proton symporter.
+DR  URL; 
+http://www-biology.ucsd.edu/~msaier/transport/2_A_46.html

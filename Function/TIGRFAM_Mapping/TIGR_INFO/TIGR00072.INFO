@@ -1,0 +1,11 @@
+ID  hydrog_prot
+AC  TIGR00072
+DE  hydrogenase maturation protease
+AU  Haft DH
+TC  47.45 47.45
+NC  36.95 36.95
+AL  clustalw_manual
+IT  superfamily
+EN  hydrogenase maturation protease
+TP  TIGRFAMs
+CC  HycI and HoxM are well-characterized as responsible for C-terminal protease activity on their respective hydrogenase large chains. A large number of homologous proteins appear responsible for the maturation of various forms of hydrogenase.

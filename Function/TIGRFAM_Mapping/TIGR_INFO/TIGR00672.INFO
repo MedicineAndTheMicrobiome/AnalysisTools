@@ -1,0 +1,17 @@
+ID  cdh
+AC  TIGR00672
+DE  CDP-diacylglycerol diphosphatase
+AU  Loftus BJ, Haft DH
+TC  375.35 375.35
+NC  94.40 94.40
+AL  clustalw_manual
+IT  equivalog
+EN  CDP-diacylglycerol diphosphatase, bacterial type
+GS  cdh
+EC  3.6.1.26
+TP  TIGRFAMs
+CC  This HMM finds only bacterial examples of CDP-diacylglycerol pyrophosphatase. The member from Mycobacterium tuberculosis, the only non-proteobacterial example, is only tentatively identified and scores below the trusted cutoff. No homology is detected to functionally similar mammalian enzymes.
+CC  Alternate names for this enzyme include CDP-diglyceride hydrolase and CDP-diacylglycerol hydrolase.
+DR  ECOCYC; EG10138; cdh
+DR  EXPERIMENTAL; EGAD|16276|EC3918; Escherichia coli
+DR  HAMAP; MF_00319; 19 of 26

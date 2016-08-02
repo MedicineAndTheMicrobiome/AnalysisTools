@@ -1,0 +1,17 @@
+ID  flgE_epsilon
+AC  TIGR02489
+DE  flagellar hook protein FlgE
+AU  Haft DH
+TC  412.85 412.85
+NC  180.40 180.40
+AL  clustalw
+IT  equivalog
+EN  flagellar hook protein FlgE, epsilon proteobacterial
+GS  flgE
+TP  TIGRFAMs
+CC  Members of this family are flagellar hook proteins, designated FlgE, as found in the epsilon subdivision of the Proteobacteria (Helicobacter, Wolinella, and Campylobacter). These proteins differ significantly in architecture from proteins designated FlgE in other lineages; the N-terminal and C-terminal domains are homologous, but members of this family only contain a large central domain that is surface-exposed and variable between strains.
+RN  [1]
+RM  9658019
+RT  The central, surface-exposed region of the flagellar hook protein FlgE of Campylobacter jejuni shows hypervariability among strains.
+RA  Luneberg E, Glenn-Calvo E, Hartmann M, Bar W, Frosch M.
+RL  J Bacteriol. 1998 Jul;180(14):3711-4.

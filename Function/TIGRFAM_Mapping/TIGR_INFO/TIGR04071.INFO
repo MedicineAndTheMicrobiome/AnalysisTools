@@ -1,0 +1,17 @@
+ID  methanobac_OB3b
+AC  TIGR04071
+DE  methanobactin precursor, Mb-OB3b family
+AU  Haft DH
+TC  30.00 30.00
+NC  20.00 20.00
+AL  muscle_manual
+IT  subfamily
+EN  methanobactin precursor, Mb-OB3b family
+GS  mbnA
+TP  TIGRFAMs
+CC  Methanobactins are siderophore-like copper-chelating natural products with considerable variety from species to species. The 11-residue methanobactin of Methylosinus trichosporium OB3b is derived from a 30-residue precursor. A very similar 31-residue precursor is found in the rice endophyte Azospirillum sp. B510, which has not yet been shown to produce a methanobactin. This HMM models the shared region of the first 25 amino acids, including a Cys-Gly-Ser motif.
+RN  [1]
+RM  PMID:20961038 
+RT  A comparison of methanobactins from Methylosinus trichosporium OB3b and Methylocystis strain Sb2 predicts methanobactins are synthesized from diverse peptide precursors modified to create a common core for binding and reducing copper ions. 
+RA  Krentz BD, Mulheron HJ, Semrau JD, Dispirito AA, Bandow NL, Haft DH, Vuilleumier S, Murrell JC, McEllistrem MT, Hartsel SC, Gallagher WH 
+RL  Biochemistry. 2010 Nov 30;49(47):10117-30.

@@ -1,0 +1,12 @@
+ID  arg_ornith_anti
+AC  TIGR03810
+DE  arginine-ornithine antiporter
+AU  Haft DH
+TC  591.00 591.00
+NC  588.75 588.75
+AL  muscle_manual
+IT  equivalog
+EN  arginine-ornithine antiporter
+GS  arcD
+TP  TIGRFAMs
+CC  Members of this protein family are the arginine/ornithine antiporter, ArcD. This exchanger of ornithine for arginine occurs in a system with arginine deiminase, ornithine carbamoyltransferase, and carbamate kinase, with together turn arginine to ornithine with the generation of ATP and release of CO2.

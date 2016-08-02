@@ -1,0 +1,11 @@
+ID  PpiC_rel_mature
+AC  TIGR04500
+DE  putative peptide maturation system protein
+AU  Haft DH
+TC  180.00 180.00
+NC  120.00 120.00
+AL  muscle_manual
+IT  subfamily
+EN  putative peptide maturation system protein
+TP  TIGRFAMs
+CC  Members of this protein family have a novel N-terminal sequence region. Close homologs to the C-terminal region of this protein score well to PpiC-type peptidyl-prolyl cis-trans isomerase models (see PF00639), yet no sequence within the family scores well to such models, suggesting origin within a branch of the PpiC family but subsequent neofunctionalization with a rapid change of sequence. The genome context for members always includes an ATP-grasp enzyme associated with peptide modification and a short polypeptide likely to be the modification target.

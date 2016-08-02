@@ -1,0 +1,14 @@
+ID  nickel_nikE
+AC  TIGR02769
+DE  nickel import ATP-binding protein NikE
+AU  Haft DH
+TC  332.55 332.55
+NC  303.55 303.55
+AL  clustalw
+IT  equivalog
+EN  nickel import ATP-binding protein NikE
+GS  nikE
+EC  3.6.3.24
+TP  TIGRFAMs
+CC  This family represents the NikE subunit of a multisubunit nickel import ABC transporter complex. Nickel, once imported, may be used in urease and in certain classes of hydrogenase and superoxide dismutase.
+DR  HAMAP; MF_01712; 16 of 16

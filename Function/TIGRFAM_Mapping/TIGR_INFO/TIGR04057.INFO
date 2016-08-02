@@ -1,0 +1,11 @@
+ID  SusC_RagA_signa
+AC  TIGR04057
+DE  TonB-dependent outer membrane receptor, SusC/RagA subfamily, signature region
+AU  Haft DH
+TC  46.20 46.20
+NC  33.60 33.60
+AL  muscle_manual
+IT  signature
+EN  TonB-dependent outer membrane receptor, SusC/RagA subfamily, signature region
+TP  TIGRFAMs
+CC  This model describes a 31-residue signature region of the SusC/RagA family of outer membrane proteins from the Bacteriodetes. While many TonB-dependent outer membrane receptors are associated with siderophore import, this family seems to include generalized nutrient receptors that may convey fairly large oligomers of protein or carbohydrate. This family occurs in high copy numbers in the most abundant species of the human gut microbiome.

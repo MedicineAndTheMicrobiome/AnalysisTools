@@ -1,0 +1,17 @@
+ID  B_thiol_YtxJ
+AC  TIGR04019
+DE  bacillithiol system protein YtxJ
+AU  Haft DH
+TC  77.25 77.25
+NC  29.15 29.15
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  bacillithiol system protein YtxJ
+GS  ytxJ
+TP  TIGRFAMs
+CC  Members of this protein family, including YtxJ from Bacillus subtilis, occur in species that encode proteins for synthesizing bacillithiol. The protein is described as thioredoxin-like, while another bacillithiol-associated protein, YpdA (TIGR04018), is described as thioredoxin reductase-like.
+RN  [1]
+RM  PMID:20308541 
+RT  Biosynthesis and functions of bacillithiol, a major low-molecular-weight thiol in Bacilli. 
+RA  Gaballa A, Newton GL, Antelmann H, Parsonage D, Upton H, Rawat M, Claiborne A, Fahey RC, Helmann JD 
+RL  Proc Natl Acad Sci U S A. 2010 Apr 6;107(14):6482-6.

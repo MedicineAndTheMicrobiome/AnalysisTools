@@ -1,0 +1,18 @@
+ID  galactar-dH20
+AC  TIGR03248
+DE  galactarate dehydratase
+AU  Selengut J
+TC  730.85 730.85
+NC  634.95 634.95
+AL  muscle
+IT  equivalog
+EN  galactarate dehydratase
+GS  garD
+EC  4.2.1.42
+TP  TIGRFAMs
+CC  Galactarate dehydratase converts D-galactarate to 5-dehydro-4-deoxyglucarate which is subsequently acted on by GarL, tartronate semialdehyde reductase and glycerate kinase ([1], GenProp0714).
+RN  [1]
+RM  PMID: 9772162 
+RT  Evolution of enzymatic activities in the enolase superfamily: characterization of the (D)-glucarate/galactarate catabolic pathway in Escherichia coli. 
+RA  Hubbard BK, Koch M, Palmer DR, Babbitt PC, Gerlt JA 
+RL  Biochemistry. 1998 Oct 13;37(41):14369-75.

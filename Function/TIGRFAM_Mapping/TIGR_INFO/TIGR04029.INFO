@@ -1,0 +1,11 @@
+ID  CMD_Avi_7170
+AC  TIGR04029
+DE  CMD domain protein, Avi_7170 family
+AU  Haft DH
+TC  100.75 100.75
+NC  98.25 98.25
+AL  muscle_manual
+IT  hypoth_equivalog_domain
+EN  CMD domain protein, Avi_7170 family
+TP  TIGRFAMs
+CC  Sequences in this family occur as the N-terminal domain of a fusion protein with a C-terminal peroxidase-like protein, or as discrete protein encoded next to a peroxidase-like protein. The two partners regularly are encoded near to, and in the same genomes as, a putative FMN-dependent luciferase-like monooxygenase (LLM) (TIGR04027), and an ABC transporter in which TIGR04028 models the substrate-binding protein. CDD identifies this family as falling within the CMD superfamily that includes carboxymuconolactone decarboxylase.

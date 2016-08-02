@@ -1,0 +1,18 @@
+ID  thrB_alt
+AC  TIGR00938
+DE  homoserine kinase
+AU  Haft DH
+TC  255.90 255.90
+NC  133.60 133.60
+AL  clustalw
+IT  equivalog
+EN  homoserine kinase, Neisseria type
+GS  thrB
+EC  2.7.1.39
+TP  TIGRFAMs
+CC  Homoserine kinase is required in the biosynthesis of threonine from aspartate.The member of this family from Pseudomonas aeruginosa was shown by direct assay and complementation to act specifically as a homoserine kinase.
+RM  93086420
+RT  Isolation, organization and expression of the Pseudomonas aeruginosa threonine genes.
+RA  Clepet C, Borne F, Krishnapillai V, Baird C, Patte JC, Cami B
+RL  Mol Microbiol 1992 Nov;6(21):3109-19
+DR  HAMAP; MF_00301; 68 of 69

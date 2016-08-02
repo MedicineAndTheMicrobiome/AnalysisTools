@@ -1,0 +1,16 @@
+ID  yccV
+AC  TIGR02097
+DE  hemimethylated DNA binding domain
+AU  Haft DH
+TC  38.05 38.05
+NC  23.10 23.10
+AL  clustalw
+IT  domain
+EN  hemimethylated DNA binding domain
+TP  TIGRFAMs
+CC  This HMM describes the small protein from E. coli YccV and its homologs in other Proteobacteria. YccV is now described as a hemimethylated DNA binding protein. The model also describes a domain in longer eukaryotic proteins.
+RM  12700277
+RT  Isolation of a new hemimethylated DNA binding protein which regulates dnaA gene expression.
+RA  d'Alencon E, Taghbalout A, Bristow C, Kern R, Aflalo R, Kohiyama M.
+RL  J Bacteriol. ; 185(9): 2967-71.
+DR  HAMAP; MF_01194; 35 of 36

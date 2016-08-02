@@ -1,0 +1,18 @@
+ID  PQQ_syn_pqqF
+AC  TIGR02110
+DE  coenzyme PQQ biosynthesis protein PqqF
+AU  Haft DH
+TC  320.00 320.00
+NC  275.00 275.00
+AL  clustalw
+IT  equivalog
+EN  coenzyme PQQ biosynthesis probable peptidase PqqF
+GS  pqqF
+EC  3.4.24.-
+TP  TIGRFAMs
+CC  In a subset of species that make coenzyme PQQ (pyrrolo-quinoline-quinone), this probable peptidase is found in the PQQ biosynthesis region and is thought to act as a protease on PqqA (TIGR02107), a probable peptide precursor of the coenzyme. PQQ is required for some glucose dehydrogenases and alcohol dehydrogenases.
+DR  SP:P55174
+RM  8526497
+RT  Tn5-directed cloning of pqq genes from Pseudomonas fluorescens CHA0: mutational inactivation of the genes results in overproduction of the antibiotic pyoluteorin.
+RA  Schnider U, Keel C, Voisard C, Defago G, Haas D.
+RL  Appl Environ Microbiol. 1995 Nov; 61(11): 3856-64.

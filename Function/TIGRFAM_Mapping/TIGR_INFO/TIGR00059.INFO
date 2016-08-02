@@ -1,0 +1,13 @@
+ID  L17
+AC  TIGR00059
+DE  ribosomal protein L17
+AU  Haft DH
+TC  70.05 70.05
+NC  57.15 57.15
+AL  clustalw
+IT  equivalog
+EN  ribosomal protein L17
+GS  rplQ
+TP  TIGRFAMs
+CC  Eubacterial and mitochondrial. The mitochondrial form, from yeast, contains an additional 110 amino acids C-terminal to the region found by this model.
+DR  HAMAP; MF_01368; 527 of 534

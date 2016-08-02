@@ -1,0 +1,23 @@
+ID  sulfopy_beta
+AC  TIGR03846
+DE  sulfopyruvate decarboxylase, beta subunit
+AU  Haft DH
+TC  221.50 221.50
+NC  186.40 186.40
+AL  muscle_manual
+IT  equivalog
+EN  sulfopyruvate decarboxylase, beta subunit
+GS  comE
+EC  4.1.1.79
+TP  TIGRFAMs
+CC  Nearly every member of this protein family is the beta subunit, or else the C-terminal region, of sulfopyruvate decarboxylase, in an archaeal species capable of coenzyme M biosynthesis. However, the enzyme also occurs in Roseovarius nubinhibens ISM in a degradative pathway, where the resulting sulfoacetaldehyde is desulfonated to acetyl phosphate, then converted to acetyl-CoA (see PMID:19581363).
+RN  [1]
+RM  PMID:10940029
+RT  Identification of the gene encoding sulfopyruvate decarboxylase, an enzyme involved in biosynthesis of coenzyme M.
+RA  Graupner M, Xu H, White RH
+RL  J Bacteriol. 2000 Sep;182(17):4862-7.
+RN  [2]
+RM  PMID:19581363
+RT  Bifurcated degradative pathway of 3-sulfolactate in Roseovarius nubinhibens ISM via sulfoacetaldehyde acetyltransferase and (S)-cysteate sulfolyase.
+RA  Denger K, Mayer J, Buhmann M, Weinitschke S, Smits TH, Cook AM
+RL  J Bacteriol. 2009 Sep;191(18):5648-56. Epub 2009 Jul 6.

@@ -1,0 +1,26 @@
+ID  plsX
+AC  TIGR00182
+DE  fatty acid/phospholipid synthesis protein PlsX
+AU  Richardson DL
+TC  243.40 243.40
+NC  177.85 177.85
+AL  clustalw
+IT  equivalog
+EN  fatty acid/phospholipid synthesis protein PlsX
+GS  plsX
+TP  TIGRFAMs
+CC  This protein of fatty acid/phospholipid biosynthesis, called PlsX after the member in Streptococcus pneumoniae, is proposed to be a phosphate acyltransferase that partners with PlsY (TIGR00023) in a two-step 1-acylglycerol-3-phosphate biosynthesis pathway alternative to the one-step PlsB (EC 2.3.1.15) pathway.
+RN  [1]
+RM  PMID:19058030
+RT  Crystal structure of fatty acid/phospholipid synthesis protein PlsX from Enterococcus faecalis.
+RA  Kim Y, Li H, Binkowski TA, Holzle D, Joachimiak A
+RL  J Struct Funct Genomics. 2008 Dec 5.
+RN  [2]
+RM  PMID:17645809
+RT  Involvement of the YneS/YgiH and PlsX proteins in phospholipid biosynthesis in both Bacillus subtilis and Escherichia coli.
+RA  Yoshimura M, Oshima T, Ogasawara N
+RL  BMC Microbiol. 2007 Jul 24;7:69.
+DR  PFAM; PF02504
+DR  InterPro; IPR003664
+DR  ECOCYC; EG11437; plsX
+DR  HAMAP; MF_00019; 411 of 415

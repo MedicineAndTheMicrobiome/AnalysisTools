@@ -1,0 +1,17 @@
+ID  Rxyl_3153
+AC  TIGR03989
+DE  NDMA-dependent alcohol dehydrogenase, Rxyl_3153 family
+AU  Haft DH
+TC  440.00 440.00
+NC  360.00 360.00
+AL  muscle_manual
+IT  subfamily
+EN  NDMA-dependent alcohol dehydrogenase, Rxyl_3153 family
+EC  1.1.99.36
+TP  TIGRFAMs
+CC  This HMM describes a clade within the family PF00107 of zinc-binding dehydrogenases. The family PF00107 contains class III alcohol dehydrogenases, including enzymes designated S-(hydroxymethyl)glutathione dehydrogenase and NAD/mycothiol-dependent formaldehyde dehydrogenase. Members of the current family occur only in species that contain the very small protein mycofactocin (TIGR03969), a possible cofactor precursor, and radical SAM protein TIGR03962. We name this family for Rxyl_3153, where the lone member of the family co-clusters with these markers in Rubrobacter xylanophilus.
+RN  [1]
+RM  PMID:21223593 
+RT  Bioinformatic evidence for a widely distributed, ribosomally produced electron carrier precursor, its maturation proteins, and its nicotinoprotein redox partners. 
+RA  Haft DH 
+RL  BMC Genomics. 2011 Jan 11;12(1):21.

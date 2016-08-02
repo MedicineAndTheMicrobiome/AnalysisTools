@@ -1,0 +1,13 @@
+ID  yjeF_cterm
+AC  TIGR00196
+DE  YjeF family C-terminal domain
+AU  Haft DH
+TC  129.85 129.85
+NC  97.70 97.70
+AL  clustalw_manual
+IT  hypoth_equivalog_domain
+EN  yjeF C-terminal region, hydroxyethylthiazole kinase-related
+TP  TIGRFAMs
+CC  E. coli yjeF has full-length orthologs in a number of species, all of unknown function. However, yeast YNL200C is homologous and corresponds to the N-terminal region while yeast YKL151C and B. subtilis yxkO correspond to this C-terminal region only.
+CC  With search program hmmsw, the present model hits hydroxyethylthiazole kinase, an enzyme associated with thiamine biosynthesis, with scores between 10 and 30. The noise cutoff for this family is set higher, at 40 bits.
+DR  PROSITE: PDOC00806 PS01049 PS01050

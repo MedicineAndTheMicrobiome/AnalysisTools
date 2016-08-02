@@ -1,0 +1,38 @@
+ID  HAD_type_II
+AC  TIGR01428
+DE  haloacid dehalogenase, type II
+AU  Selengut J
+TC  125.40 125.40
+NC  72.30 72.30
+AL  clustalw
+IT  equivalog
+EN  2-haloalkanoic acid dehalogenase, type II
+GS  dehII
+EC  3.8.1.2
+TP  TIGRFAMs
+CC  Catalyzes the hydrolytic dehalogenation of small L-2-haloalkanoic acids to yield the corresponding D-2-hydroxyalkanoic acids. 
+CC  Belongs to the Haloacid Dehalogenase (HAD) superfamily of aspartate-nucleophile hydrolases (PF00702), class (subfamily) I.
+CC  Note that the Type I HAD enzymes have not yet been fully characterized, but clearly utilize a substantially different catalytic mechanism and are thus unlikely to be related.
+RN [1]
+RM 1744048
+RT Characterization of the haloacid dehalogenase from Xanthobacter autotrophicus GJ10 and sequencing of the dhlB gene
+RA van der Ploeg J, van Hall G, Janssen DB
+RL J Bacteriol 1991 Dec;173(24):7925-33
+RN [2]
+RM 10498712
+RT Cloning and characterization of a cryptic haloacid dehalogenase from Burkholderia cepacia MBA4
+RA Tsang JS, Sam L
+RL J Bacteriol 1999 Oct;181(19):6003-9
+RN [3]
+RM 10198020
+RT nvestigation of two evolutionarily unrelated halocarboxylic acid dehalogenase gene families
+RA Hill KE, Marchesi JR, Weightman AJ
+RL J Bacteriol 1999 Apr;181(8):2535-47
+RN [4]
+RM 11404103
+RT Microbial dehalogenation
+RA Janssen DB, Oppentocht JE, Poelarends GJ
+RL Curr Opin Biotechnol 2001 Jun;12(3):254-8
+DR PFAM; PF00702; hydrolase
+DR EXPERIMENTAL; GP|4127501; cryptic, not expressed by all individuals in a culture; Burkholderia cepacia MBA4
+DR EXPERIMENTAL; GP|4468659; Pseudomonas putida PP3

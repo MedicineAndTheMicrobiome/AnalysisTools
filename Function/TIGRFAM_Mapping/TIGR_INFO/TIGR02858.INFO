@@ -1,0 +1,16 @@
+ID  spore_III_AA
+AC  TIGR02858
+DE  stage III sporulation protein AA
+AU  Haft DH
+TC  281.30 281.30
+NC  77.85 77.85
+AL  muscle
+IT  equivalog
+EN  stage III sporulation protein AA
+GS  spoIIIAA
+TP  TIGRFAMs
+CC  Members of this protein are the stage III sporulation protein AA, encoded by one of several genes in the spoIIIA locus. It seems that this protein is found in a species if and only if that species is capable of endospore formation.
+RM  1766372
+RT  The spoIIIA operon of Bacillus subtilis defines a new temporal class of mother-cell-specific sporulation genes under the control of the sigma E form of RNA polymerase.
+RA  Illing N, Errington J.
+RL  Mol Microbiol. 1991 Aug;5(8):1927-40.

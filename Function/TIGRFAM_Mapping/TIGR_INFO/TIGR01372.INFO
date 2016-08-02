@@ -1,0 +1,11 @@
+ID  soxA
+AC  TIGR01372
+DE  sarcosine oxidase, alpha subunit family
+AU  Dodson RJ
+TC  1164.00 1164.00
+NC  906.05 906.05
+AL  clustalw
+IT  subfamily
+EN  sarcosine oxidase, alpha subunit family, heterotetrameric form
+TP  TIGRFAMs
+CC  This HMM describes the alpha subunit of a family of known and putative heterotetrameric sarcosine oxidases. Five operons of such oxidases are found in Mesorhizobium loti and three in Agrobacterium tumefaciens, a high enough copy number to suggest that not all members are share the same function. The model is designated as subfamily rather than equivalog for this reason.Sarcosine oxidase catalyzes the oxidative demethylation of sarcosine to glycine. The reaction converts tetrahydrofolate to 5,10-methylene-tetrahydrofolate. The enzyme is known in monomeric and heterotetrameric (alpha,beta,gamma,delta) forms

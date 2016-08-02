@@ -1,0 +1,16 @@
+ID  diverge_rpsU
+AC  TIGR02396
+DE  rpsU-divergently transcribed protein
+AU  Haft DH
+TC  74.55 74.55
+NC  46.55 46.55
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  rpsU-divergently transcribed protein
+TP  TIGRFAMs
+CC  This uncharacterized protein is found in a number of Alphaproteobacteria and, with N-terminal regions long enough to be transit peptides, in eukaryotes. This phylogeny suggests mitochondrial derivation. In several Alphaproteobacteria, the gene for this protein is encoded divergently from rpsU, the gene for ribosomal protein S21. S21 is unusual in being encoded outside the usual long ribosomal protein operons, but rather in contexts that suggest regulation of the initiation of protein translation.
+RN  [1]
+RM  15229555
+RT  Analysis of genomic context: prediction of functional associations from conserved bidirectionally transcribed gene pairs.
+RA  Korbel JO, Jensen LJ, von Mering C, Bork P.
+RL  Nat Biotechnol. 2004 Jul;22(7):911-7.

@@ -1,0 +1,20 @@
+ID  PhnG_redo
+AC  TIGR03293
+DE  phosphonate C-P lyase system protein PhnG
+AU  Selengut J
+TC  89.00 89.00
+NC  47.30 47.30
+AL  muscle
+IT  equivalog
+EN  phosphonate C-P lyase system protein PhnG
+GS  phnG
+TP  TIGRFAMs
+CC  PhnH is a component of the C-P lyase system (GenProp0232) for the catabolism of phosphonate compounds.  The specific function of this component is unknown.  This model is based on Pfam model PF06754.2, and has been broadened to include sequences missed by that model which are clearly true positive hits based on genome context.
+RN   [1]
+RM   9882650
+RT   Rhizobium (Sinorhizobium) meliloti phn genes:
+RT   characterization and identification of their protein
+RT   products.
+RA   Parker GF, Higgins TP, Hawkes T, Robson RL;
+RL   J Bacteriol 1999;181:389-395.
+DR   INTERPRO; IPR009609;

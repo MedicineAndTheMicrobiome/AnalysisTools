@@ -1,0 +1,16 @@
+ID  strep_pil_rpt
+AC  TIGR03786
+DE  streptococcal pilin isopeptide linkage domain
+AU  Haft DH
+TC  31.85 31.85
+NC  29.45 29.45
+AL  muscle_manual
+IT  domain
+EN  streptococcal pilin isopeptide linkage domain
+TP  TIGRFAMs
+CC  This HMM describes a domain that occurs once in the major pilin of Streptococcus pyogenes, Spy0128, but in higher copy numbers in other streptococcal proteins. The domain occurs nine times in a surface-anchored protein of Bifidobacterium longum. All members of this family have LPXTG-type sortase target sequences. The S. pyogenes major pilin has been shown to undergo isopeptide bond cross-linking, mediated by sortases, that are critical to maintaining pilus structural integrity. One such Lys-to-Asn isopeptide bond is to a near-invariant Asn near the C-terminal end of this domain (column 81 of the seed alignment). A Glu in the S. pyogenes  major pilin (column 25 of the seed alignment), invariant as Glu or Gln, is described as catalytic for isopeptide bond formation.
+RN  [1]
+RM  PMID:19497855
+RT  Intramolecular isopeptide bonds give thermodynamic and proteolytic stability to the major pilin protein of Streptococcus pyogenes.
+RA  Kang HJ, Baker EN
+RL  J Biol Chem. 2009 Jun 9.

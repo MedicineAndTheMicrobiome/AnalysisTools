@@ -1,0 +1,12 @@
+ID  L7
+AC  TIGR01310
+DE  60S ribosomal protein L7
+AU  Haft DH
+TC  254.00 254.00
+NC  92.30 92.30
+AL  clustalw_manual
+IT  subfamily
+EN  60S ribosomal protein L7, eukaryotic
+TP  TIGRFAMs
+CC  This HMM describes the eukaryotic 60S (cytosolic) ribosomal protein L7 and paralogs that may or may not also be L7. Human, Drosophila, and Arabidopsis all have both a typical L7 and an L7-related paralog. This family is designated subfamily rather than equivalog to reflect these uncharacterized paralogs.
+CC  Members of this family average ~ 250 residues in length, somewhat longer than the archaeal L30P/L7E homolog (~ 155 residues) and much longer than the related bacterial/organellar form (~ 60 residues).

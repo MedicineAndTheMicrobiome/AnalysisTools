@@ -1,0 +1,13 @@
+ID  bass
+AC  TIGR00841
+DE  bile acid transporter
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  326.30 326.30
+NC  190.30 190.30
+AL  clustalw_manual
+IT  subfamily
+EN  bile acid transporter
+TR  2.A.28
+TP  TIGRFAMs
+CC  The Bile Acid:Na+ Symporter (BASS) Family (TC 2.A.28)
+CC  Functionally characterized members of the BASS family catalyze Na+:bile acid symport. These systems have been identified in intestinal, liver and kidney tissues of animals. These symporters exhibit broad specificity, taking up a variety of non bile organic compounds as well as taurocholate and other bile salts. Functionally uncharacterised homologues are found in plants, yeast, archaea and bacteria.

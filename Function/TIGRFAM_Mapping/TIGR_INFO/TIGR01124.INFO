@@ -1,0 +1,15 @@
+ID  ilvA_2Cterm
+AC  TIGR01124
+DE  threonine ammonia-lyase, biosynthetic
+AU  Haft DH
+TC  411.30 411.30
+NC  325.50 325.50
+AL  clustalw
+IT  equivalog
+EN  threonine ammonia-lyase, biosynthetic, long form
+GS  ilvA
+EC  4.3.1.19
+TP  TIGRFAMs
+CC  This model describes a form of threonine ammonia-lyase, a pyridoxal-phosphate dependent enzyme, with two copies of the threonine dehydratase C-terminal domain (Pfam:PF00585). Members with known function participate in isoleucine biosynthesis and are inhibited by isoleucine.
+CC  Alternate name: threonine deaminase, threonine dehydratase.
+CC  Forms scoring between the trusted and noise cutoff tend to branch with this subgroup of threonine ammonia-lyase phylogenetically but have only a single copy of the C-terminal domain.

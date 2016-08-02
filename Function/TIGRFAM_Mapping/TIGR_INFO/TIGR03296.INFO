@@ -1,0 +1,13 @@
+ID  M6dom_TIGR03296
+AC  TIGR03296
+DE  M6 family metalloprotease domain
+AU  Haft DH
+TC  110.80 110.80
+NC  31.30 31.30
+AL  muscle_manual
+IT  domain
+EN  M6 family metalloprotease domain
+EC  3.4.24.-
+TP  TIGRFAMs
+CC  This model describes a metalloproteinase domain, with a characteristic HExxH motif. Examples of this domain are found in proteins in the family of immune inhibitor A, which cleaves antibacterial peptides, and in other, only distantly related proteases. This model is built to be broader and more inclusive than Pfam model PF05547.
+DR  PFAM; PF05547; Immune inhibitor A peptidase M6

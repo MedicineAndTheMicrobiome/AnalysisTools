@@ -1,0 +1,17 @@
+ID  T7SS_EccB
+AC  TIGR03919
+DE  type VII secretion protein EccB
+AU  Haft DH
+TC  154.00 154.00
+NC  142.00 142.00
+AL  muscle_manual
+IT  equivalog
+EN  type VII secretion protein EccB, Actinobacterial
+GS  eccB
+TP  TIGRFAMs
+CC  This model represents the transmembrane protein EccB of the actinobacterial flavor of type VII secretion systems. Species such as Mycobacterium tuberculosis have several instances of this system per genome, designated EccB1, EccB2, etc. This model does not identify functionally related proteins in the Firmicutes such as Staphylococcus aureus and Bacillus anthracis.
+RN  [1]
+RM  PMID:19876390 
+RT  Systematic genetic nomenclature for type VII secretion systems. 
+RA  Bitter W, Houben EN, Bottai D, Brodin P, Brown EJ, Cox JS, Derbyshire K, Fortune SM, Gao LY, Liu J, Gey van Pittius NC, Pym AS, Rubin EJ, Sherman DR, Cole ST, Brosch R 
+RL  PLoS Pathog. 2009 Oct;5(10):e1000507. Epub 2009 Oct 30.

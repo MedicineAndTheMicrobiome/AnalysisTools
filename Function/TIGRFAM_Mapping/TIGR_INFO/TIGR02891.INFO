@@ -1,0 +1,15 @@
+ID  CtaD_CoxA
+AC  TIGR02891
+DE  cytochrome c oxidase, subunit I
+AU  Selengut J
+TC  670.75 670.75
+NC  617.40 617.40
+AL  muscle
+IT  equivalog
+EN  cytochrome c oxidase, subunit I
+GS  ctaD
+EC  1.9.3.1
+TP  TIGRFAMs
+CC  This large family represents subunit I's (CtaD, CoxA, CaaA) of cytochrome c oxidases of bacterial origin.  Cytochrome c oxidase is the component of the respiratory chain that catalyzes the reduction of oxygen to water. Subunits I-III form the functional core of the enzyme complex.  Subunit I is the catalytic subunit of the enzyme.  Electrons originating in cytochrome c are transferred via the copper A center of subunit II and heme a of subunit I to the bimetallic center formed by heme a3 and copper B. This cytochrome c oxidase shows proton pump activity across the membrane in addition to the electron transfer.
+CC  In the bacilli an apparent split (paralogism) has created a sister clade (TIGR02882) encoding subunits (QoxA) of the aa3-type quinone oxidase complex which reacts directly with quinones, bypassing the interaction with soluble cytochrome c.  This model attempts to exclude these sequences, placing them between the trusted and noise cutoffs.  
+CC  These families, as well as archaeal and eukaryotic cytochrome c subunit I's are included within the superfamily model, PF00115.

@@ -1,0 +1,17 @@
+ID  apaH
+AC  TIGR00668
+DE  bis(5'-nucleosyl)-tetraphosphatase (symmetrical)
+AU  Loftus BJ, Haft DH
+TC  222.85 222.85
+NC  169.65 169.65
+AL  clustalw
+IT  equivalog
+EN  bis(5'-nucleosyl)-tetraphosphatase (symmetrical)
+GS  apaH
+EC  3.6.1.41
+TP  TIGRFAMs
+CC  Diadenosine 5',5"'-P1,P4-tetraphosphate (Ap4A) is a regulatory metabolite of stress conditions. It is hydrolyzed to two ADP by this enzyme.
+CC  Alternate names include diadenosine-tetraphosphatase and Ap4A hydrolase.
+DR  SWISSPROT; P05637
+DR  ECOCYC; EG10048; apaH
+DR  HAMAP; MF_00199; 135 of 137

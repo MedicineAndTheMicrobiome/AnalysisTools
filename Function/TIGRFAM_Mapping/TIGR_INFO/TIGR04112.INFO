@@ -1,0 +1,12 @@
+ID  seleno_YedE
+AC  TIGR04112
+DE  putative selenium metabolism protein, YedE family
+AU  Haft DH
+TC  200.00 200.00
+NC  90.00 90.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  putative selenium metabolism protein, YedE family
+GS  yedE
+TP  TIGRFAMs
+CC  For 79 of the first 80 reference genomes in which a member of this protein family, YedE, is found, a selenium utilization system is found, spread over a broad taxonomic range (Firmicutes, spirochetes, delta-proteobacteria, Fusobacteria, Bacteriodes, etc. This family is less widespread than YedF, also involved in selenium metabolism.

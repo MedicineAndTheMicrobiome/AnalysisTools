@@ -1,0 +1,18 @@
+ID  RTPR
+AC  TIGR02505
+DE  ribonucleoside-triphosphate reductase, adenosylcobalamin-dependent
+AU  Selengut J
+TC  340.05 340.05
+NC  154.15 154.15
+AL  clustalw
+IT  equivalog
+EN  ribonucleoside-triphosphate reductase, adenosylcobalamin-dependent
+GS  nrdJ
+EC  1.17.4.2
+TP  TIGRFAMs
+CC  This model represents a group of adenosylcobalamin(B12)-dependent ribonucleotide reductases (RNR) related to the characterized species from Lactococcus leichmannii [1].  RNR's are responsible for the conversion of the ribose sugar of RNA into the deoxyribose sugar of DNA.  This is the rate-limiting step of DNA biosynthesis.  Thus model identifies NrdJ enzymes only in cyanobacteria, lactococcus and certain bacteriophage.  A separate model (TIGR02504) identifies a larger group of divergent B12-dependent RNR's.
+RN  [1]
+RM  PMID: 8397403
+RT  Cloning, sequencing, and expression of the adenosylcobalamin-dependent ribonucleotide reductase from Lactobacillus leichmannii.
+RA  Booker S, Stubbe J.
+RL  Proc Natl Acad Sci U S A. 1993 Sep 15;90(18):8352-6.

@@ -1,0 +1,12 @@
+ID  AMP_deaminase
+AC  TIGR01429
+DE  AMP deaminase
+AU  Haft DH
+TC  726.30 726.30
+NC  170.85 170.85
+AL  clustalw_manual
+IT  equivalog
+EN  AMP deaminase
+EC  3.5.4.6
+TP  TIGRFAMs
+CC  This HMM describes AMP deaminase, a large, well-conserved eukaryotic protein involved in energy metabolism. Most members of the family have an additional, poorly alignable region of 150 amino acids or more N-terminal to the region included in the HMM.

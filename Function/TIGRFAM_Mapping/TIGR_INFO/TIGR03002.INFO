@@ -1,0 +1,22 @@
+ID  outer_YhbN_LptA
+AC  TIGR03002
+DE  lipopolysaccharide transport periplasmic protein LptA
+AU  Haft DH
+TC  71.70 71.70
+NC  34.80 34.80
+AL  muscle_manual
+IT  equivalog
+EN  lipopolysaccharide transport periplasmic protein LptA
+GS  lptA
+TP  TIGRFAMs
+CC  Members of this protein family include LptA (previously called YhbN). It was shown to be an essential protein in E. coli, implicated in cell envelope integrity, and to play a role in the delivery of LPS to the outer leaflet of the outer membrane. It works with LptB (formerly yhbG), a homolog of ABC transporter ATP-binding proteins, encoded by an adjacent gene. Numerous homologs in other Proteobacteria are found in a conserved location near lipopolysaccharide inner core biosynthesis genes. This family is related to organic solvent tolerance protein (OstA), though distantly.
+RN  [1]
+RM  PMID:17056748
+RT  Characterization of lptA and lptB, two essential genes implicated in lipopolysaccharide transport to the outer membrane of Escherichia coli.
+RA  Sperandeo P, Cescutti R, Villa R, Di Benedetto C, Candia D, Deho G, Polissi A
+RL  J Bacteriol. 2007 Jan;189(1):244-53.
+RN  [2]
+RM  PMID: 16765569
+RT  Non-essential KDO biosynthesis and new essential cell envelope biogenesis genes in the Escherichia coli yrbG-yhbG locus.
+RA  Sperandeo P, Pozzi C, Deho G, Polissi A
+RL  Res Microbiol. 2006 Feb 9

@@ -1,0 +1,23 @@
+ID  rsmG_gidB
+AC  TIGR00138
+DE  16S rRNA (guanine(527)-N(7))-methyltransferase RsmG
+AU  Haft DH
+TC  99.50 99.50
+NC  75.90 75.90
+AL  clustalw_manual
+IT  equivalog
+EN  16S rRNA (guanine(527)-N(7))-methyltransferase RsmG
+GS  rsmG
+EC  2.1.1.170
+TP  TIGRFAMs
+CC  RsmG was previously called GidB (glucose-inhibited division protein B). It is present and a single copy in nearly all complete eubacterial genomes. It is missing only from some obligate intracellular species of various lineages (Chlamydiae, Ehrlichia, Wolbachia, Anaplasma, Buchnera, etc.). RsmG shows a methytransferase fold in its the crystal structure, and acts as a 7-methylguanosine (m(7)G) methyltransferase, apparently specific to 16S rRNA.
+RN  [1]
+RM  PMID:17238915
+RT  Loss of a conserved 7-methylguanosine modification in 16S rRNA confers low-level streptomycin resistance in bacteria.
+RA  Okamoto S, Tamaru A, Nakajima C, Nishimura K, Tanaka Y, Tokuyama S, Suzuki Y, Ochi K
+RN  [2]
+RM  12001236
+RT  Crystal structure of the Escherichia coli glucose-inhibited division protein B (GidB) reveals a methyltransferase fold.
+RA  Romanowski MJ, Bonanno JB, Burley SK.
+RL  Proteins. 2002 Jun 1;47(4):563-7.
+DR  HAMAP; MF_00074; 519 of 539

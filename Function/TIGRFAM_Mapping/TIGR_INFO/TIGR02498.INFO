@@ -1,0 +1,11 @@
+ID  type_III_ssaH
+AC  TIGR02498
+DE  type III secretion system protein, SsaH family
+AU  Haft DH
+TC  56.15 56.15
+NC  32.75 32.75
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  type III secretion system protein, SsaH family
+TP  TIGRFAMs
+CC  This family describes a small protein, always smaller than 100 amino acids, encoded in pathogenicity islands for bacterial type III secretion systems in various strains of Yersinia, Salmonella, and enteropathogenic E. coli, as well as Chromobacterium violaceum and Citrobacter rodentium. Although strictly associated with type III secretion systems, this protein seems not yet to have been characterized as part of the apparatus or as an effector protein.

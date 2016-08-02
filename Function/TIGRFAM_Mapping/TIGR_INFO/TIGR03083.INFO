@@ -1,0 +1,11 @@
+ID  TIGR03083
+AC  TIGR03083
+DE  uncharacterized Actinobacterial protein TIGR03083
+AU  Haft DH
+TC  50.00 50.00
+NC  41.55 41.55
+AL  muscle_manual
+IT  domain
+EN  uncharacterized Actinobacterial protein TIGR03083
+TP  TIGRFAMs
+CC  This protein family pulls together several groups of proteins, each very different from the others. They share in common three conserved regions. The first is a region of about 38 amino acids, nearly always at the N-terminus of a protein. This region has a bulky hydrophobic residue, usually Trp, at position 29, and a His residue at position 37 that is invariant, so far, in over 150 instances. The second conserved region has a motif [DE]xxxHxxD. The third conserved region contains a hydrophobic patch and a well-conserved Arg residue. Most examples are found in the Actinobacteria, including the genera Mycobacterium, Corynebacterium, Streptomyces, Nocardia, Frankia, etc. The pattern of near-invariant residues against a backdrop of extreme sequence divergence suggests enzymatic activity and conservation of active site residues.

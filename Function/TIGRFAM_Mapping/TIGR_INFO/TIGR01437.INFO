@@ -1,0 +1,11 @@
+ID  selA_rel
+AC  TIGR01437
+DE  uncharacterized pyridoxal phosphate-dependent enzyme
+AU  Haft DH
+TC  385.30 385.30
+NC  150.35 150.35
+AL  clustalw
+IT  hypoth_equivalog
+EN  uncharacterized pyridoxal phosphate-dependent enzyme
+TP  TIGRFAMs
+CC  This HMM describes a protein related to a number of pyridoxal phosphate-dependent enzymes, and in particular to selenocysteine synthase (SelA), which converts Ser to selenocysteine on its tRNA. While resembling SelA, this protein is found only in species that have a better candidate SelA or else lack the other genes (selB, selC, and selD) required for selenocysteine incorporation.

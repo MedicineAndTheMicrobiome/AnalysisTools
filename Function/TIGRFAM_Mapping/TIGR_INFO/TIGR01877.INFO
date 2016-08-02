@@ -1,0 +1,23 @@
+ID  cas_cas6
+AC  TIGR01877
+DE  CRISPR-associated endoribonuclease Cas6
+AU  Haft DH, Sunshine J
+TC  58.65 58.65
+NC  31.95 31.95
+AL  clustalw_manual
+IT  equivalog
+EN  CRISPR-associated endoribonuclease Cas6
+GS  cas6
+EC  3.1.-.-
+TP  TIGRFAMs
+CC  CRISPR is a term for Clustered, Regularly Interspaced Short Palidromic Repeats. A number of protein families appear only in association with these repeats and are designated Cas (CRISPR-Associated) proteins. This broadly distributed, highly divergent Cas family is now characterized as an endoribonuclease that generates guide RNAs for host defense against phage and other invaders. The family contains a C-terminal motif GXGXXXXXGXG, where the each X between two Gly is hydrophobic and the spacer XXXXX contains (usually) one Arg or Lys. The seed alignment for the current version of this model has gappy columns removed. Members of this protein family are found associated with several different CRISPR/cas system subtypes, and consequently we designate this family Cas6.
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=2003
+RN  [1]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005
+RN  [1]
+RM  PMID:19141480
+RT  Cas6 is an endoribonuclease that generates guide RNAs for invader defense in prokaryotes.
+RA  Carte J, Wang R, Li H, Terns RM, Terns MP
+RL  Genes Dev. 2008 Dec 15;22(24):3489-96.

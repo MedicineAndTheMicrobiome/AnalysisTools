@@ -1,0 +1,11 @@
+ID  phage_LysB
+AC  TIGR03495
+DE  phage lysis regulatory protein, LysB family
+AU  Haft DH
+TC  92.75 92.75
+NC  39.25 39.25
+AL  clustalw_manual
+IT  subfamily
+EN  phage lysis regulatory protein, LysB family
+TP  TIGRFAMs
+CC  Members of this protein family are phage lysis regulatory protein, including the well-studied protein LysB (lysis protein B) of Enterobacteria phage P2. For members of this family, genes are found in phage or in prophage regions of bacterial genomes, typically near a phage lysozyme or phage holin.

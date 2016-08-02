@@ -1,0 +1,18 @@
+ID  spore_yabP
+AC  TIGR02892
+DE  sporulation protein YabP
+AU  Haft DH
+TC  75.40 75.40
+NC  46.15 46.15
+AL  muscle
+IT  equivalog
+EN  sporulation protein YabP
+GS  yabP
+TP  TIGRFAMs
+CC  Members of this protein family are the YabP protein of the bacterial sporulation program, as found in Bacillus subtilis, Clostridium tetani, and other spore-forming members of the Firmicutes. In Bacillus subtilis, a yabP single mutant appears to sporulate and germinate normally (PMID:11283287), but is in an operon with yabQ (essential for formation of the spore cortex), it near-universal among endospore-forming bacteria, and is found nowhere else. It is likely, therefore, that YabP does have a function in sporulation or germination, one that is either unappreciated or partially redundant with that of another protein.
+DR  PFAM; PF07873; YabP homologue family
+RN  [1]
+RM  11283287
+RT  The Bacillus subtilis yabQ gene is essential for formation of the spore cortex.
+RA  Asai K, Takamatsu H, Iwano M, Kodama T, Watabe K, Ogasawara N.
+RL  Microbiology. 2001 Apr;147(Pt 4):919-27.

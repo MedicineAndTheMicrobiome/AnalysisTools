@@ -1,0 +1,30 @@
+ID  rRNA_mod_RlmN
+AC  TIGR00048
+DE  23S rRNA (adenine(2503)-C(2))-methyltransferase
+AU  Richardson DL, Haft DH
+TC  290.00 290.00
+NC  285.00 285.00
+AL  msa_tigr
+IT  equivalog
+EN  23S rRNA (adenine(2503)-C(2))-methyltransferase
+GS  rlmN
+EC  2.1.1.192
+TP  TIGRFAMs
+CC  Members of this family are RlmN, a 23S rRNA m2A2503 methyltransferase in the radical SAM enzyme family. Closely related is Cfr, a Staphylococcus sciuri plasmid-borne homolog to this family, Cfr, has been identified as essential to transferrable resistance to chloramphenicol and florfenicol. Cfr methylates 23S RNA at a different site.
+DR  PFAM; PF04055; Radical SAM superfamily
+RN  [1]
+RM  PMID:18025251 
+RT  The methyltransferase YfgB/RlmN is responsible for modification of adenosine 2503 in 23S rRNA. 
+RA  Toh SM, Xiong L, Bae T, Mankin AS 
+RL  RNA. 2008 Jan;14(1):98-106. Epub 2007 Nov 19.
+RN  [2]
+RM  10952608
+RT  Identification of a plasmid-borne chloramphenicol-florfenicol resistance gene in Staphylococcus sciuri.
+RA  Schwarz S, Werckenthin C, Kehrenberg C.
+RL  Antimicrob Agents Chemother 2000 Sep;44(9):2530-3
+RN  [3]
+RM  11222759
+RT  Radical SAM, a novel protein superfamily linking unresolved steps in familiar biosynthetic pathways with radical mechanisms: functional characterization using new analysis and information visualization methods.
+RA  Sofia HJ, Chen G, Hetzler BG, Reyes-Spindola JF, Miller NE.
+RL  Nucleic Acids Res 2001 Mar 1;29(5):1097-106
+DR  HAMAP; MF_01849; 521 of 570

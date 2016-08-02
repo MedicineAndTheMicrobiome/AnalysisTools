@@ -1,0 +1,30 @@
+ID  AphA
+AC  TIGR01672
+DE  HAD phosphatase, family IIIB
+AU  Selengut J
+TC  195.80 195.80
+NC  105.60 105.60
+AL  clustalw
+IT  hypoth_equivalog
+EN  HAD superfamily (subfamily IIIB) phosphatase, TIGR01672
+GS  aphA
+EC  3.1.3.-
+TP  TIGRFAMs
+CC  This family of proteins is a member of the IIIB subfamily (PF02767) of the haloacid dehalogenase (HAD) superfamily of hydrolases.  All characterized members of subfamily III and most characterized members of the HAD superfamily are phosphatases.  HAD superfamily phosphatases contain active site residues in several conserved catalytic motifs [1], all of which are found conserved here.
+CC  The AphA gene from E. coli has been characterized and shown to be an active phosphatase enzyme [2].  This family has been previously described as the "class B non-specific bacterial acid phosphatase" (B-NSAP) family [3] where it is noted that the enzyme is secreted and has a broad substrate range.  The possibility exists, however, that the enzyme is specific for an as yet undefined substrate.
+CC  Supporting evidence for the inclusion in the HAD superfamily, whose phosphatase members are magnesium dependent, is the inhibition by EDTA and calcium ions, and stimulation by magnesium ion [3].
+RN [1]
+RM PMID: 7966317
+RT Computer analysis of bacterial haloacid dehalogenases defines a large superfamily of hydrolases with diverse specificity. Application of an iterative approach to database search.
+RA Koonin EV, Tatusov RL.
+RL J Mol Biol 1994 Nov 18;244(1):125-32
+RN  [2]
+RM  PMID: 9011040 
+RT  Identification of the gene (aphA) encoding the class B acid phosphatase/phosphotransferase of Escherichia coli MG1655 and characterization of its product.
+RA  Thaller MC, Schippa S, Bonci A, Cresti S, Rossolini GM.
+RL  FEMS Microbiol Lett 1997 Jan 15;146(2):191-8
+RN  [3]
+RM  PMID: 9760992
+RT  Bacterial nonspecific acid phosphohydrolases: physiology, evolution and use as tools in microbial biotechnology.
+RA  Rossolini GM, Schippa S, Riccio ML, Berlutti F, Macaskie LE, Thaller MC.
+RL  Cell Mol Life Sci 1998 Aug;54(8):833-50

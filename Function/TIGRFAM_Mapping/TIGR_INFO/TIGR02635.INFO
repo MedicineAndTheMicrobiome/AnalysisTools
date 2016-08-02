@@ -1,0 +1,18 @@
+ID  RhaI_grampos
+AC  TIGR02635
+DE  L-rhamnose isomerase
+AU  Selengut J
+TC  531.35 531.35
+NC  436.05 436.05
+AL  clustalw
+IT  hypoth_equivalog
+EN  L-rhamnose isomerase, Streptomyces subtype
+GS  rhaI
+EC  5.3.1.14
+TP  TIGRFAMs
+CC  This clade of sequences is closely related to the L-rhamnose isomerases found in Pseudomonas stutzeri [1] and in a number of the Rhizobiales (TIGR02629).  The genes of the family represented here are found in similar genomic contexts which contain genes apparently involved in rhamnose catabolism such as rhamnulose-1-phosphate aldolase (TIGR02632), sugar kinases, and sugar transporters.
+RN  [1]
+RM  15184124
+RT  Cloning, nucleotide sequence, and overexpression of the L-rhamnose isomerase gene from Pseudomonas stutzeri in Escherichia coli.
+RA  Leang K, Takada G, Ishimura A, Okita M, Izumori K.
+RL  Appl Environ Microbiol. 2004 Jun;70(6):3298-304.

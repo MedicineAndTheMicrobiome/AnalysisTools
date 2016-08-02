@@ -1,0 +1,13 @@
+ID  P_ylase
+AC  TIGR02093
+DE  glycogen/starch/alpha-glucan phosphorylases
+AU  Haft DH
+TC  552.90 552.90
+NC  250.40 250.40
+AL  clustalw
+IT  subfamily
+EN  glycogen/starch/alpha-glucan phosphorylases
+GS  glgP
+EC  2.4.1.1
+TP  TIGRFAMs
+CC  This family consists of phosphorylases. Members use phosphate to break alpha 1,4 linkages between pairs of glucose residues at the end of long glucose polymers, releasing alpha-D-glucose 1-phosphate. The nomenclature convention is to preface the name according to the natural substrate, as in glycogen phosphorylase, starch phosphorylase, maltodextrin phosphorylase, etc. Name differences among these substrates reflect differences in patterns of branching with alpha 1,6 linkages. Members include allosterically regulated and unregulated forms. A related family, TIGR02094, contains examples known to act well on particularly small alpha 1,4 glucans, as may be found after import from exogenous sources.

@@ -1,0 +1,11 @@
+ID  4helix_suffix
+AC  TIGR04258
+DE  four helix bundle suffix domain
+AU  Haft DH
+TC  40.00 40.00
+NC  23.00 23.00
+AL  muscle_manual
+IT  equivalog_domain
+EN  four helix bundle suffix domain
+TP  TIGRFAMs
+CC  This domain occurs as a suffix domain to some members of the much broader protein family TIGR02436, a few of whose other members are encoded within intervening sequences of bacterial 23S ribosomal RNA. Some proteins with this domain, in turn, are followed by a predicted DNA topoisomerase type C4 zinc finger.

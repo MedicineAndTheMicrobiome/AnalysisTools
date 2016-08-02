@@ -1,0 +1,28 @@
+ID  CoA_CoA_reduc
+AC  TIGR03385
+DE  CoA-disulfide reductase
+AU  Haft DH
+TC  578.80 578.80
+NC  530.80 530.80
+AL  muscle_manual
+IT  equivalog
+EN  CoA-disulfide reductase
+GS  cdr
+EC  1.8.1.14
+TP  TIGRFAMs
+CC  Members of this protein family are CoA-disulfide reductase (EC 1.8.1.14), as characterized in Staphylococcus aureus, Pyrococcus horikoshii, and Borrelia burgdorferi, and inferred in several other species on the basis of high levels of CoA and an absence of glutathione as a protective thiol.
+RN  [1]
+RM  PMID: 15720393
+RT  Discovery and characterization of a Coenzyme A disulfide reductase from Pyrococcus horikoshii. Implications for this disulfide metabolism of anaerobic hyperthermophiles.
+RA  Harris DR, Ward DE, Feasel JM, Lancaster KM, Murphy RD, Mallet TC, Crane EJ 3rd
+RL  FEBS J. 2005 Mar;272(5):1189-200.
+RN  [2]
+RM  PMID: 16981688
+RT  Structure of coenzyme A-disulfide reductase from Staphylococcus aureus at 1.54 A resolution.
+RA  Mallett TC, Wallen JR, Karplus PA, Sakai H, Tsukihara T, Claiborne A
+RL  Biochemistry. 2006 Sep 26;45(38):11278-89.
+RN  [3]
+RM  PMID: 16390443
+RT  Borrelia burgdorferi bb0728 encodes a coenzyme A disulphide reductase whose function suggests a role in intracellular redox and the oxidative stress response.
+RA  Boylan JA, Hummel CS, Benoit S, Garcia-Lara J, Treglown-Downey J, Crane EJ 3rd, Gherardini FC
+RL  Mol Microbiol. 2006 Jan;59(2):475-86.

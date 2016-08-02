@@ -1,0 +1,16 @@
+ID  tim
+AC  TIGR00419
+DE  triose-phosphate isomerase
+AU  Loftus BJ
+TC  130.60 130.60
+NC  113.50 113.50
+AL  clustalw
+IT  equivalog
+EN  triosephosphate isomerase
+GS  tpiA
+EC  5.3.1.1
+TP  TIGRFAMs
+CC  Triosephosphate isomerase (tim/TPIA) is the glycolytic enzyme that catalyzes  the  reversible  interconversion  of glyceraldehyde 3-phosphate and dihydroxyacetone phosphate. The active site of the enzyme is located between residues 240-258 of the model ([AV]-Y-E-P-[LIVM]-W-[SA]-I-G-T-[GK]) with E being the active site residue. There is a slight deviation from this sequence within the archeal members of this family.
+DR  ECOCYC; EG11015; 
+DR  PROSITE; PDOC00155;
+DR  HAMAP; MF_00147; 450 of 469

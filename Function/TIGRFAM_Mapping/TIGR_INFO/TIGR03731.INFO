@@ -1,0 +1,16 @@
+ID  lantibio_gallid
+AC  TIGR03731
+DE  lantibiotic, gallidermin/nisin family
+AU  Haft DH
+TC  29.30 29.30
+NC  28.80 28.80
+AL  muscle_manual
+IT  subfamily
+EN  lantibiotic, gallidermin/nisin family
+TP  TIGRFAMs
+CC  Members of this family are lantibiotic precursors in the family that includes gallidermin, nisin, mutacin, epidermin, and streptin.
+RN  [1]
+RM  PMID:19009315
+RT  Membrane lipids determine the antibiotic activity of the lantibiotic gallidermin.
+RA  Christ K, Al-Kaddah S, Wiedemann I, Rattay B, Sahl HG, Bendas G
+RL  J Membr Biol. 2008 Nov-Dec;226(1-3):9-16.

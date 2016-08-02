@@ -1,0 +1,12 @@
+ID  spore_sigF
+AC  TIGR02885
+DE  RNA polymerase sigma-F factor
+AU  Haft DH
+TC  321.45 321.45
+NC  317.60 317.60
+AL  muscle
+IT  equivalog
+EN  RNA polymerase sigma-F factor
+GS  sigF
+TP  TIGRFAMs
+CC  Members of this protein family are the RNA polymerase sigma factor F. Sigma-F is specifically and universally a component of the Firmicutes lineage endospore formation program, and is expressed in the forespore to turn on expression of dozens of genes. It is closely homologous to sigma-G, which is also expressed in the forespore.

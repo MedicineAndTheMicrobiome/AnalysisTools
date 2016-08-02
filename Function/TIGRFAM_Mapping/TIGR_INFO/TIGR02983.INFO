@@ -1,0 +1,16 @@
+ID  SigE-fam_strep
+AC  TIGR02983
+DE  RNA polymerase sigma-70 factor, sigma-E family
+AU  Selengut J
+TC  141.55 141.55
+NC  127.60 127.60
+AL  muscle
+IT  subfamily
+EN  RNA polymerase sigma-70 factor, sigma-E family
+TP  TIGRFAMs
+CC  This group of similar sigma-70 factors includes the sigE factor from Streptomyces coelicolor [1].  The family appears to include a paralagous expansion in the Streptomycetes lineage, while related Actinomycetales have at most two representatives.
+RN  [1]
+RM  PMID: 8052622 
+RT  Analysis of the Streptomyces coelicolor sigE gene reveals the existence of a subfamily of eubacterial RNA polymerase sigma factors involved in the regulation of extracytoplasmic functions. 
+RA  Lonetto MA, Brown KL, Rudd KE, Buttner MJ 
+RL  Proc Natl Acad Sci U S A. 1994 Aug 2;91(16):7573-7.

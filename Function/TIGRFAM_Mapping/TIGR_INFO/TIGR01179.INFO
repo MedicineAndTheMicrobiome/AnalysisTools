@@ -1,0 +1,14 @@
+ID  galE
+AC  TIGR01179
+DE  UDP-glucose 4-epimerase GalE
+AU  Haft DH
+TC  262.30 262.30
+NC  231.95 231.95
+AL  clustalw_manual
+IT  equivalog
+EN  UDP-glucose-4-epimerase GalE
+GS  galE
+EC  5.1.3.2
+TP  TIGRFAMs
+CC  Alternate name: UDPgalactose 4-epimerase
+CC  This enzyme interconverts UDP-glucose and UDP-galactose. A set of related proteins, some of which are tentatively identified as UDP-glucose-4-epimerase in Thermotoga maritima, Bacillus halodurans, and several archaea, but deeply branched from this set and lacking experimental evidence, are excluded from this HMM and described by a separate model.

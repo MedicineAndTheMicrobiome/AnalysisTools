@@ -1,0 +1,12 @@
+ID  comE
+AC  TIGR01259
+DE  comEA protein
+AU  Ujwal ML, Paulsen IT
+TC  152.35 152.35
+NC  66.40 66.40
+AL  clustalw
+IT  subfamily
+EN  comEA protein
+TR  3.A.01
+TP  TIGRFAMs
+CC  This model describes the ComEA protein in bacteria. The com E locus is obligatory for bacterial cell competence - the process of internalizing the exogenous added DNA. Lesions in the loci has been variously described for the appearance of competence-related pheonotypes and impairment of competence, suggesting their intimate functional role in bacterial transformation.

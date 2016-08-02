@@ -1,0 +1,11 @@
+ID  halo_sig_pep
+AC  TIGR04207
+DE  surface glycoprotein signal peptide
+AU  Haft DH
+TC  24.60 24.60
+NC  24.00 23.50
+AL  muscle_manual
+IT  domain
+EN  surface glycoprotein signal peptide
+TP  TIGRFAMs
+CC  This N-terminal homology domain appears to be a specialized class of signal peptide. It occurs mostly in the halophilic archaea, primarily on proteins with the C-terminal PGF-CTERM domain,  including the S-layer-forming major surface glycoprotein of several species. The PGF-CTERM domain is the putative archaeosortase A recognition sequence. However, this N-terminal domain occurs also in several archaeal proteins that lack PGF-CTERM, and occurs in bacteria on a protein from Clostridium leptum DSM 753.

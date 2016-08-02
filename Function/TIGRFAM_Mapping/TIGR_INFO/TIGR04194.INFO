@@ -1,0 +1,11 @@
+ID  grasp_w_spasm_A
+AC  TIGR04194
+DE  grasp-with-spasm leader A domain
+AU  Haft DH
+TC  33.00 33.00
+NC  25.00 25.00
+AL  manual
+IT  domain
+EN  grasp-with-spasm leader A domain
+TP  TIGRFAMs
+CC  This HMM describes the leader peptide domain, ending in a Gly-Gly cleavage motif, for a post-ribosomal natural product (PRNP) precursor. The corresponding modification enzymes include an ATP-GRASP enzyme and a SPASM-domain protein, related to the C-terminal region of numerous peptide-modification radical SAM enzymes.

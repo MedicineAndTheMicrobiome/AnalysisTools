@@ -1,0 +1,18 @@
+ID  HAD-SF-IE
+AC  TIGR01544
+DE  HAD hydrolase, family IE
+AU  Selengut J
+TC  256.95 256.95
+NC  96.15 96.15
+AL  clustalw
+IT  hypoth_equivalog
+EN  haloacid dehalogenase superfamily, subfamily IE hydrolase, TIGR01544
+TP  TIGRFAMs
+CC  This HMM represents a small group of metazoan sequences.  The sequences from mouse are annotated as Pyrimidine 5'-nucleotidases, aparrently in reference to HSPC233, the human homolog.  However, no such annotation can currently be found for this gene.
+CC  This group of sequences was found during searches for members of the haloacid dehalogenase (HAD) superfamily.  All of the conserved catalytic motifs [1] are found.  The placement of the variable domain between motifs 1 and 2 indicates membership in subfamily I of the superfamily, but these sequences are sufficiently different from any of the branches (IA, TIGR01493, TIGR01509, TIGR01549; IB, TIGR01488; IC, TIGR01494; ID, TIGR01658; IF TIGR01545) of that subfamily as to constitute a separate branch to now be called IE.  Considering that the closest identifiable hit outside of the noise range is to a phosphoserine phosphatase, this group may be considered to be most closely allied to subfamily IB.
+RN  [1]
+RM  PMID: 7966317
+RT  Computer analysis of bacterial haloacid dehalogenases defines a large superfamily of hydrolases with diverse specificity. Application of an iterative approac
+h to database search.
+RA  Koonin EV, Tatusov RL.
+RL  J Mol Biol 1994 Nov 18;244(1):125-32

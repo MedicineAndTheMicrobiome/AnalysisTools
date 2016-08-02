@@ -1,0 +1,24 @@
+ID  PylS_Cterm
+AC  TIGR02367
+DE  pyrrolysine--tRNA ligase, C-terminal region
+AU  Haft DH
+TC  178.15 178.15
+NC  177.85 177.85
+AL  clustalw
+IT  equivalog_domain
+EN  pyrrolysyl-tRNA synthetase, C-terminal region
+GS  pylS
+EC  6.1.1.26
+TP  TIGRFAMs
+CC  PylS is the enzyme responsible for charging the pyrrolysine tRNA, PylT, by ligating a free molecule of pyrrolysine. Pyrrolysine is encoded at an in-frame UAG (amber) at least in several corrinoid-dependent methyltransferases of the archaeal genera Methanosarcina and Methanococcoides, such as trimethylamine methyltransferase. This protein occurs as a fusion protein in Methanosarcina but as split genes in Desulfitobacterium hafniense and other bacteria.
+RN  [1]
+RM  15329732
+RT  Direct charging of tRNA(CUA) with pyrrolysine in vitro and in vivo.
+RA  Blight SK, Larue RC, Mahapatra A, Longstaff DG, Chang E, Zhao G, Kang PT, Green-Church KB, Chan MK, Krzycki JA.
+RL  Nature. 2004 Sep 16;431(7006):333-5.
+RN  [2]
+RM  15314242
+RT  An aminoacyl-tRNA synthetase that specifically activates pyrrolysine.
+RA  Polycarpo C, Ambrogelly A, Berube A, Winbush SM, McCloskey JA, Crain PF, Wood JL, Soll D.
+RL  Proc Natl Acad Sci U S A. 2004 Aug 24;101(34):12450-4.
+DR  HAMAP; MF_01573; 6 of 6

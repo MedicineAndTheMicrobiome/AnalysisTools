@@ -1,0 +1,15 @@
+ID  aroD
+AC  TIGR01093
+DE  3-dehydroquinate dehydratase, type I
+AU  Haft DH, Dodson RJ
+TC  139.30 139.30
+NC  40.85 40.85
+AL  clustalw_manual
+IT  equivalog_domain
+EN  3-dehydroquinate dehydratase, type I
+GS  aroD
+EC  4.2.1.10
+TP  TIGRFAMs
+CC  This model detects 3-dehydroquinate dehydratase, type I, either as a monofunctional protein or as a domain of a larger, multifunctional protein. It is often found fused to shikimate 5-dehydrogenase (EC 1.1.1.25), and sometimes additional domains.
+CC  Type II 3-dehydroquinate dehydratase, designated AroQ, is described by the HMM TIGR01088.
+DR  HAMAP; MF_00214; 118 of 135

@@ -1,0 +1,12 @@
+ID  L12P_arch
+AC  TIGR03685
+DE  50S ribosomal protein L12P
+AU  Selengut J
+TC  100.00 100.00
+NC  99.85 99.85
+AL  muscle
+IT  equivalog
+EN  50S ribosomal protein L12P
+GS  rpl12p
+TP  TIGRFAMs
+CC  This model represents the L12P protein of the large (50S) subunit of the archaeal ribosome.

@@ -1,0 +1,11 @@
+ID  acidic_w_LPXTA
+AC  TIGR04383
+DE  processed acidic surface protein
+AU  Haft DH
+TC  50.00 50.00
+NC  40.00 40.00
+AL  muscle_manual
+IT  equivalog
+EN  processed acidic surface protein
+TP  TIGRFAMs
+CC  Members of this family are acidic surface proteins with an N-terminal signal peptide and a variant C-terminal sortase recognition sequence, LPXTA rather than LPXTG. The N-terminal region past the signal peptide is repeated a second or third time in many members of this family. Members occur in Firmicutes, encoded next to a dedicated sortase related to SrtC that assembles pilins, suggesting that this protein serves a structural rather than enzymatic role. Processing by the neighboring sortase may result in polymerization as well as surface attachment.

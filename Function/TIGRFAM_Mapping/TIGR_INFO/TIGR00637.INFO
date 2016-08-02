@@ -1,0 +1,15 @@
+ID  ModE_repress
+AC  TIGR00637
+DE  ModE molybdate transport repressor domain
+AU  Haft DH
+TC  98.50 98.50
+NC  22.20 22.20
+AL  clustalw
+IT  subfamily_domain
+EN  ModE molybdate transport repressor domain
+TP  TIGRFAMs
+CC  ModE is a molybdate-activated repressor of the molybdate transport operon in E. coli. It consists of the domain represented by this HMM and two tandem copies of mop-like domain, where Mop proteins are a family of 68-residue molybdenum-pterin binding proteins of Clostridium pasteurianum. This HMM also represents the full length of a pair of archaeal proteins that lack Mop-like domains. PSI-BLAST analysis shows similarity to helix-turn-helix regulatory proteins.
+RM  96146523
+RT  Repression of the Escherichia coli modABCD (molybdate transport) operon by ModE.
+RA  Grunden AM, Ray RM, Rosentel JK, Healy FG, Shanmugam KT
+RL  J Bacteriol 1996 Feb;178(3):735-44

@@ -1,0 +1,15 @@
+ID  gutA
+AC  TIGR00849
+DE  PTS system, glucitol/sorbitol-specific IIA component
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  189.55 189.55
+NC  105.00 105.00
+AL  clustalw_manual
+IT  subfamily
+EN  PTS system, glucitol/sorbitol-specific IIA component
+EC  2.7.1.69
+TR  4.A.4
+TP  TIGRFAMs
+CC  Bacterial PTS transporters transport and concomitantly phosphorylate their sugar substrates, and typically consist of multiple subunits or protein domains. This family consists only of glucitol-specific transporters, and occur both in Gram-negative and Gram-positive bacteria.The system in E.Coli consists of a IIA protein, and a IIBC protein. This family is specific for the IIA component.
+DR  URL; 
+http://www-biology.ucsd.edu/~msaier/transport/4_A_4.html

@@ -1,0 +1,15 @@
+ID  ndhF3_CO2
+AC  TIGR01960
+DE  NAD(P)H dehydrogenase, subunit NdhF3 family
+AU  Haft DH
+TC  588.70 588.70
+NC  393.50 393.50
+AL  clustalw
+IT  subfamily
+EN  NAD(P)H dehydrogenase, subunit NdhF3 family
+TP  TIGRFAMs
+CC  This family represents a subfamily of NAD(P)H dehydrogenase subunit 5, or ndhF. It is restricted to two paralogs in each completed cyanobacterial genome, in which several subtypes of ndhF are found. Included in this family is NdhF3, shown to play a role in high-affinity CO2 uptake in Synechococcus sp. PCC7002. In all cases, neighboring genes include a paralog of ndhD but do include other NAD(P)H dehydrogenase subunits. Instead, genes related to C02 uptake tend to be found nearby.
+RM  10383770
+RT  The involvement of NAD(P)H dehydrogenase subunits, NdhD3 and NdhF3, in high-affinity CO2 uptake in Synechococcus sp. PCC7002 gives evidence for multiple NDH-1 complexes with specific roles in cyanobacteria.
+RA  Klughammer B, Sultemeyer D, Badger MR, Price GD.
+RL  Mol Microbiol. 1999 Jun;32(6):1305-15.

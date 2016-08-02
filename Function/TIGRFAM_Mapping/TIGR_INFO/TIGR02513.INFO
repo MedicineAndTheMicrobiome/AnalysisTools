@@ -1,0 +1,16 @@
+ID  type_III_yscB
+AC  TIGR02513
+DE  type III secretion system chaperone, YscB family
+AU  Haft DH
+TC  90.05 90.05
+NC  89.70 89.70
+AL  clustalw
+IT  equivalog
+EN  type III secretion system chaperone, YscB family
+TP  TIGRFAMs
+CC  Members of this family include YscB of Yersinia and functionally equivalent (but differently named) proteins from type III secretion systems of other pathogens that affect animal cells. YscB acts, along with SycN (TIGR02503), as a chaperone for YopN, a key part of a complex that regulates type III secretion so it responds to contact with the eukaryotic target cell.
+RN  [1]
+RM  15701523
+RT  Three-dimensional structure of a macromolecular assembly that regulates type III secretion in Yersinia pestis.
+RA  Schubot FD, Jackson MW, Penrose KJ, Cherry S, Tropea JE, Plano GV, Waugh DS.
+RL  J Mol Biol. 2005 Mar 4;346(4):1147-61.

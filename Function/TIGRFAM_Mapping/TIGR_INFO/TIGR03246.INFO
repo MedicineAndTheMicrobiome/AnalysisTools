@@ -1,0 +1,13 @@
+ID  arg_catab_astC
+AC  TIGR03246
+DE  succinylornithine transaminase family
+AU  Haft DH
+TC  609.95 609.95
+NC  579.10 579.10
+AL  muscle
+IT  subfamily
+EN  succinylornithine transaminase family
+GS  astC
+EC  2.6.1.81
+TP  TIGRFAMs
+CC  Members of the seed alignment for this protein family are the enzyme succinylornithine transaminase (EC 2.6.1.81), which catalyzes the third of five steps in arginine succinyltransferase (AST) pathway, an ammonia-releasing pathway of arginine degradation. All seed alignment sequences are found within arginine succinyltransferase operons, and all proteins that score above 820.0 bits should function as succinylornithine transaminase. However, a number of sequences extremely closely related in sequence, found in different genomic contexts, are likely to act in different biological processes and may act on different substrates. This model is desigated subfamily rather than equivalog, pending further consideration, for this reason.

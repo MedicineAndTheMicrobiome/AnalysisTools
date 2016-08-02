@@ -1,0 +1,12 @@
+ID  rhombo_lipo
+AC  TIGR04179
+DE  rhombotail lipoprotein
+AU  Haft DH
+TC  150.00 150.00
+NC  30.00 30.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  rhombotail lipoprotein
+GS  rhlP
+TP  TIGRFAMs
+CC  Members of this protein family are probable lipoproteins. Nearly every member ends with a C-terminal region consisting of a glycine-rich probable cleavage site, a hydrophobic probable transmembrane helix, and a cluster of basic residues, as described in putative protein sorting region model TIGR03501. Furthermore, members tend to be encoded next to a rhomboid family protease, called rhombosortase (TIGR03902) predicted to perform a C-terminal cleavage.

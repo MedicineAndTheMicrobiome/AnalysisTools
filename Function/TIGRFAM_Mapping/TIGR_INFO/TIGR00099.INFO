@@ -1,0 +1,15 @@
+ID  Cof-subfamily
+AC  TIGR00099
+DE  Cof-like hydrolase
+AU  Selengut J
+TC  137.00 137.00
+NC  100.65 100.65
+AL  clustalw
+IT  subfamily
+EN  Cof subfamily of IIB subfamily of haloacid dehalogenase superfamily
+TP  TIGRFAMs
+CC  This subfamily of sequences falls within the Class-IIB subfamily (TIGR01484) of the Haloacid Dehalogenase superfamily of aspartate-nucleophile hydrolases.  The use of the name "Cof" as an identifier here is arbitrary and refers to the E. coli Cof protein.
+CC  This subfamily is notable for the large number of recent paralogs in many species.  Listeria, for instance, has 12, Clostridium, Lactococcus and Streptococcus pneumoniae have 8 each, Enterococcus and Salmonella have 7 each, and Bacillus subtilus, Mycoplasma, Staphylococcus and E. coli have 6 each.  This high degree of gene duplication is limited to the gamma proteobacteria and low-GC gram positive lineages.  The profusion of genes in this subfamily is not coupled with a high degree of divergence, so it is impossible to determine an accurate phylogeny at the equivalog level.
+CC  Considering the relationship of this subfamily to the other known members of the HAD-IIB subfamily (TIGR01484), sucrose and trehalose phosphatases and phosphomannomutase, it seems a reasonable hypothesis that these enzymes act on phosphorylated sugars.  Possibly the diversification of genes in this subfamily represents the diverse sugars and polysaccharides that various bacteria find in their biological niches.
+CC  The members of this subfamily are restricted almost exclusively to bacteria (one sequences from S. pombe scores above trusted, while another is between trusted and noise).  It is notable that no archaea are found in this group, the closest relations to the archaea found here being two Deinococcus sequences.
+DR  HAMAP; MF_01847; 32 of 33

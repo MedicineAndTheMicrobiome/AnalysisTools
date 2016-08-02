@@ -1,0 +1,22 @@
+ID  CarR_dom_SF
+AC  TIGR03462
+DE  lycopene cyclase domain
+AU  Selengut J
+TC  39.40 39.40
+NC  29.50 29.50
+AL  muscle
+IT  subfamily_domain
+EN  lycopene cyclase domain
+TP  TIGRFAMs
+CC  This domain is often repeated twice within the same polypeptide, as is observed in Archaea, Thermus, Sphingobacteria [1] and Fungi.  In the fungal sequences, this tandem domain pair is observed as the N-terminal half of a bifunctional protein [2], where it has been characterized as a lycopene beta-cyclase and the C-terminal half is a phytoene synthetase.  In Myxococcus and Actinobacterial genomes this domain appears as a single polypeptide, tandemly repeated and usually in a genomic context consistent with a role in carotenoid biosynthesis.  It is unclear whether any of the sequences in this family truly encode lycopene epsilon cyclases. However a number are annotated as such.
+CC  The domain is generally hydrophobic with a number of predicted membrane spanning segments and contains a distinctive motif (hPhEEhhhhhh).  In certain sequences one of either the proline or glutamates may vary, but always one of the tandem pair appear to match this canonical sequence exactly.
+RN  [1]
+RM  PMID:16625353 
+RT  A carotenoid synthesis gene cluster from Algoriphagus sp. KK10202C with a novel fusion-type lycopene beta-cyclase gene. 
+RA  Tao L, Yao H, Kasai H, Misawa N, Cheng Q 
+RL  Mol Genet Genomics. 2006 Jul;276(1):79-86. Epub 2006 Apr 20. 
+RN  [2]
+RM  PMID:10951210 
+RT  A bifunctional enzyme with lycopene cyclase and phytoene synthase activities is encoded by the carRP gene of Mucor circinelloides. 
+RA  Velayos A, Eslava AP, Iturriaga EA 
+RL  Eur J Biochem. 2000 Sep;267(17):5509-19.

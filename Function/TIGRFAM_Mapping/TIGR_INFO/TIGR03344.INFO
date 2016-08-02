@@ -1,0 +1,16 @@
+ID  VI_effect_Hcp1
+AC  TIGR03344
+DE  type VI secretion system effector, Hcp1 family
+AU  Haft DH
+TC  58.90 58.90
+NC  32.40 32.40
+AL  muscle_manual
+IT  subfamily
+EN  type VI secretion system effector, Hcp1 family
+TP  TIGRFAMs
+CC  This family includes Hcp1 (hemolysin coregulated protein 1), an exported, homohexameric ring-forming virulence protein from Pseudomonas aeruginosa. Hcp1 lacks a conventional signal sequence and is instead exported by means of the type VI secretion system, encoded by a pathogenicity cluster of a class previously designated IAHP (IcmF-associated homologous protein).  Homologs of Hcp1, in this protein family, are found in various bacteria of which most but not all are known pathogens. Pathogens may have many multiple members of this family, with three to ten in Erwinia carotovora, Yersinia pestis, uropathogenic Escherichia coli, and the insect pathogen Photorhabdus luminescens.
+RN  [1]
+RM  PMID: 16763151
+RT  A virulence locus of Pseudomonas aeruginosa encodes a protein secretion apparatus.
+RA  Mougous JD, Cuff ME, Raunser S, Shen A, Zhou M, Gifford CA, Goodman AL, Joachimiak G, Ordonez CL, Lory S, Walz T, Joachimiak A, Mekalanos JJ
+RL  Science. 2006 Jun 9;312(5779):1526-30.

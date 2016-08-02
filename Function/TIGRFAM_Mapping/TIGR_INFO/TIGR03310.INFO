@@ -1,0 +1,23 @@
+ID  matur_MocA_YgfJ
+AC  TIGR03310
+DE  molybdenum cofactor cytidylyltransferase
+AU  Haft DH
+TC  186.45 186.45
+NC  182.80 182.80
+AL  muscle
+IT  equivalog
+EN  molybdenum cofactor cytidylyltransferase
+GS  mocA
+EC  2.7.7.76
+TP  TIGRFAMs
+CC  Members of this protein include MocA, which transfers cytosine from CTP to molybdopterin during molybdopterin cytosine dinucleotide (MCD) cofactor biosynthesis. It is distantly related to MobA, the  GTP:molybdopterin guanylyltransferase. The MocA family is particularly closely related in phylogenetic distribution to other markers of selenium-dependent molybdenum hydroxylases (SDMH), suggesting most SDMH must use MCD rather than molybdopterin guanine dinucleotide.
+RN  [1]
+RM  PMID:18289380
+RT  Orphan SelD proteins and selenium-dependent molybdenum hydroxylases.
+RA  Haft DH, Self WT
+RL  Biol Direct. 2008 Feb 20;3:4.
+RN  [2]
+RM  PMID:19542235 
+RT  MocA is a specific cytidylyltransferase involved in molybdopterin cytosine dinucleotide biosynthesis in Escherichia coli. 
+RA  Neumann M, Mittelstadt G, Seduk F, Iobbi-Nivol C, Leimkuhler S 
+RL  J Biol Chem. 2009 Aug 14;284(33):21891-8.

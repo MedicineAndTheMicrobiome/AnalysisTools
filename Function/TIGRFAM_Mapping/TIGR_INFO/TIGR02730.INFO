@@ -1,0 +1,23 @@
+ID  carot_isom
+AC  TIGR02730
+DE  carotene isomerase
+AU  Haft DH
+TC  586.90 586.90
+NC  296.40 296.40
+AL  clustalw
+IT  equivalog
+EN  carotene isomerase
+GS  crtH
+EC  5.-.-.-
+TP  TIGRFAMs
+CC  Members of this family, including sll0033 (crtH) of Synechocystis sp. PCC 6803, catalyze a cis-trans isomerization of carotenes to the all-trans lycopene, a reaction that can also occur non-enzymatically in light through photoisomerization.
+RN  [1]
+RM  15557094
+RT  Analysis in vitro of the enzyme CRTISO establishes a poly-cis-carotenoid biosynthesis pathway in plants.
+RA  Isaacson T, Ohad I, Beyer P, Hirschberg J.
+RL  Plant Physiol. 2004 Dec;136(4):4246-55.
+RN  [2]
+RM  11773533
+RT  Identification of a gene required for cis-to-trans carotene isomerization in carotenogenesis of the cyanobacterium Synechocystis sp. PCC 6803.
+RA  Masamoto K, Wada H, Kaneko T, Takaichi S.
+RL  Plant Cell Physiol. 2001 Dec;42(12):1398-402.

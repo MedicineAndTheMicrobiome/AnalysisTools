@@ -1,0 +1,11 @@
+ID  bind_CPR_0540
+AC  TIGR03850
+DE  carbohydrate ABC transporter substrate-binding protein, CPR_0540 family
+AU  Haft DH
+TC  299.00 299.00
+NC  298.80 298.80
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  carbohydrate ABC transporter substrate-binding protein, CPR_0540 family
+TP  TIGRFAMs
+CC  Members of this protein are the substrate-binding protein of a predicted carbohydrate transporter operon, together with permease subunits of ABC transporter homology families. This substrate-binding protein frequently co-occurs in genomes with a family of disaccharide phosphorylases, TIGR02336, suggesting that the molecule transported will include beta-D-galactopyranosyl-(1->3)-N-acetyl-D-glucosamine and related carbohydrates. Members of this family are sporadically strain by strain, often in species with a human host association, including Propionibacterium acnes and Clostridium perfringens, and Bacillus cereus.

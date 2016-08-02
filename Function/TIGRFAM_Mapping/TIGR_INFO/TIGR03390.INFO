@@ -1,0 +1,17 @@
+ID  ascorbOXfungal
+AC  TIGR03390
+DE  L-ascorbate oxidase
+AU  Haft DH
+TC  445.35 445.35
+NC  295.40 295.40
+AL  muscle_manual
+IT  equivalog
+EN  L-ascorbate oxidase, fungal type
+EC  1.10.3.3
+TP  TIGRFAMs
+CC  This model describes a family of fungal ascorbate oxidases, within a larger family of multicopper oxidases that also includes plant ascorbate oxidases (TIGR03388), plant laccases and laccase-like proteins (TIGR03389), and related proteins. The member from Acremonium sp. HI-25 is characterized.
+RN  [1]
+RM  PMID: 9858779
+RT  Cloning of a thermostable ascorbate oxidase gene from Acremonium sp. HI-25 and modification of the azide sensitivity of the enzyme by site-directed mutagenesis.
+RA  Takeda K, Itoh H, Yoshioka I, Yamamoto M, Misaki H, Kajita S, Shirai K, Kato M, Shin T, Murao S, Tsukagoshi N
+RL  Biochim Biophys Acta. 1998 Nov 10;1388(2):444-56.

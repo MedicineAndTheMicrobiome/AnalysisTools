@@ -1,0 +1,14 @@
+ID  nico
+AC  TIGR00802
+DE  transition metal uptake transporter, Ni2+-Co2+ transporter (NiCoT) family
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  333.05 333.05
+NC  96.30 96.30
+AL  clustalw_manual
+IT  subfamily
+EN  high-affinity nickel-transporter, HoxN/HupN/NixA family
+TR  2.A.52.1
+TP  TIGRFAMs
+CC  This family is found in both Gram-negative and Gram-positive bacteria. The functionally characterized members of the family catalyze uptake of either Ni2+ or Co2+ in a proton motive force-dependent process. Topological analyses with the HoxN Ni2+ transporter of Ralstonia eutropha (Alcaligenes eutrophus) suggest that it possesses 8 TMSs with its N- and C-termini in the cytoplasm.
+DR  URL; 
+http://www-biology.ucsd.edu/~msaier/transport/2_A_52.html

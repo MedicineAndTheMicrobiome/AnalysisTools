@@ -1,0 +1,22 @@
+ID  mtaA_cmuA
+AC  TIGR01463
+DE  methyltransferase, MtaA/CmuA family
+AU  Haft DH
+TC  235.40 235.40
+NC  103.65 103.65
+AL  clustalw
+IT  subfamily
+EN  methyltransferase, MtaA/CmuA family
+EC  2.1.1.-
+TP  TIGRFAMs
+CC  This subfamily is closely related to, yet is distinct from, uroporphyrinogen decarboxylase (EC 4.1.1.37).  It includes two isozymes from Methanosarcina barkeri of methylcobalamin--coenzyme M methyltransferase. It also includes a chloromethane utilization protein, CmuA, which transfers the methyl group of chloromethane to a corrinoid protein.
+RN  [1]
+RM  11133460
+RT  Chloromethane utilization gene cluster from Hyphomicrobium chloromethanicum strain CM2(T) and development of functional gene probes to detect halomethane-degrading bacteria.
+RA  McAnulla C, Woodall CA, McDonald IR, Studer A, Vuilleumier S, Leisinger T, Murrell JC.
+RL  Appl Environ Microbiol 2001 Jan;67(1):307-16
+RN  [2]
+RM  8654414
+RT  Methylcobalamin: coenzyme M methyltransferase isoenzymes MtaA and MtbA from Methanosarcina barkeri. Cloning, sequencing and differential transcription of the encoding genes, and functional overexpression of the mtaA gene in Escherichia coli.
+RA  Harms U, Thauer RK.
+RL  Eur J Biochem 1996 Feb 1;235(3):653-9

@@ -1,0 +1,22 @@
+ID  quino_hemo_SAM
+AC  TIGR03906
+DE  quinohemoprotein amine dehydrogenase maturation protein
+AU  Haft DH
+TC  453.00 453.00
+NC  451.95 451.95
+AL  muscle_manual
+IT  equivalog
+EN  quinohemoprotein amine dehydrogenase maturation protein
+GS  peaB
+TP  TIGRFAMs
+CC  Members of this protein family are radical SAM enzymes responsible for post-translational modifications to the gamma subunit of quinohemoprotein amine dehydrogenases. Ono, et al. (PMID:16546999) suggest that this protein is responsible for intrapeptidyl thioether cross-linking rather than cysteine tryptophylquinone biogenesis in the gamma subunit.
+RN  [1]
+RM  PMID:16546999 
+RT  Involvement of a putative [Fe-S]-cluster-binding protein in the biogenesis of quinohemoprotein amine dehydrogenase. 
+RA  Ono K, Okajima T, Tani M, Kuroda S, Sun D, Davidson VL, Tanizawa K 
+RL  J Biol Chem. 2006 May 12;281(19):13672-84.
+RN  [2]
+RM  PMID:18177365 
+RT  Genetic analyses and molecular characterization of the pathways involved in the conversion of 2-phenylethylamine and 2-phenylethanol into phenylacetic acid in Pseudomonas putida U. 
+RA  Arias S, Olivera ER, Arcos M, Naharro G, Luengo JM 
+RL  Environ Microbiol. 2008 Feb;10(2):413-32.

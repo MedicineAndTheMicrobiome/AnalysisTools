@@ -1,0 +1,12 @@
+ID  NRPS-para261
+AC  TIGR01720
+DE  non-ribosomal peptide synthase domain TIGR01720
+AU  Selengut J
+TC  74.20 74.20
+NC  39.00 39.00
+AL  clustalw
+IT  subfamily_domain
+EN  non-ribosomal peptide synthase domain TIGR01720
+TP  TIGRFAMs
+CC  This domain appears to be located immediately downstream from a condensation domain (PF00668), and is followed primarily by the end of the molecule or another condensation domain (in a few cases it is followed by PF00501, an AMP-binding module).  The converse is not true, PF00668 domains are not always followed by this domain.  This implicates this domain in possible post-condensation modification events.
+CC  This HMM is 171 amino acids long and contains three very highly conserved regions.  At the N-terminus is a nearly invariant lysine (position 11) followed by xxxRxxPxxGxGYG in which the proline and the first glycine are invariant.  This is followed approximately 22 residues later by the motif FNYLG.  Near the C-terminus of the domain is the sequence TxSD where the serine and aspartate are nearly invariant.

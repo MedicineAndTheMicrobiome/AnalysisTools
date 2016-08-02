@@ -1,0 +1,24 @@
+ID  polC
+AC  TIGR00354
+DE  DNA polymerase II, large subunit DP2
+AU  Loftus BJ, Haft DH
+TC  702.15 702.15
+NC  544.30 544.30
+AL  clustalw
+IT  equivalog
+EN  DNA polymerase, archaeal type II, large subunit
+GS  polC
+EC  2.7.7.7
+TP  TIGRFAMs
+CC  This HMM represents the large subunit, DP2, of a two subunit novel Archaeal replicative DNA polymerase first characterized for Pyrococcus furiosus. Structure of DP2 appears to be organized as a ~950 residue component separated from a ~300 residue component by a ~150 residue intein. The other subunit, DP1, has sequence similarity to the eukaryotic DNA polymerase delta small subunit.
+RN  [1]
+RM  98006263
+RT  A novel DNA polymerase in the hyperthermophilic archaeon, Pyrococcus furiosus: gene cloning, expression, and characterization.
+RA  Uemori T, Sato Y, Kato I, Doi H, Ishino Y
+RL  Genes Cells 1997 Aug;2(8):499-512
+RN  [2]
+RM  99045670
+RT  A heterodimeric DNA polymerase: evidence that members of Euryarchaeota possess a distinct DNA polymerase.
+RA  Cann IK, Komori K, Toh H, Kanai S, Ishino Y
+RL  Proc Natl Acad Sci U S A 1998 Nov 24;95(24):14250-5
+DR  HAMAP; MF_00324; 30 of 30

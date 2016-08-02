@@ -1,0 +1,11 @@
+ID  CPW_WPC
+AC  TIGR01492
+DE  Plasmodium falciparum CPW-WPC domain
+AU  Haft DH
+TC  35.60 35.60
+NC  32.95 32.95
+AL  clustalw_manual
+IT  domain
+EN  Plasmodium falciparum CPW-WPC domain
+TP  TIGRFAMs
+CC  This HMM represents a domain of about 61 residues in length with six well-conserved cysteine residues and six well-conserved aromatic sites. The domain can be found in tandem repeats, and is known so far only in Plasmodium falciparum. It is named for motifs of CPxxW and (less well conserved) WPC.

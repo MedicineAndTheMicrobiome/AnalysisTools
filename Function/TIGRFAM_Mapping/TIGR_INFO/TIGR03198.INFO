@@ -1,0 +1,18 @@
+ID  pucE
+AC  TIGR03198
+DE  xanthine dehydrogenase E subunit
+AU  Selengut J
+TC  254.30 254.30
+NC  197.75 197.75
+AL  muscle
+IT  equivalog
+EN  xanthine dehydrogenase E subunit
+GS  pucE
+EC  1.17.1.4
+TP  TIGRFAMs
+CC  This gene has been characterized in B. subtilis [1] as the Iron-sulfur cluster binding-subunit of xanthine dehydrogenase (pucE), acting in conjunction with pucC, the FAD-binding subunit and pucD, the molybdopterin binding subunit.  The more common XDH complex (GenProp0640) includes the xdhA gene as the Fe-S cluster binding component.
+RN  [1]
+RM  PMID: 11344136 
+RT  Functional analysis of 14 genes that constitute the purine catabolic pathway in Bacillus subtilis and evidence for a novel regulon controlled by the PucR transcription activator. 
+RA  Schultz AC, Nygaard P, Saxild HH 
+RL  J Bacteriol. 2001 Jun;183(11):3293-302.

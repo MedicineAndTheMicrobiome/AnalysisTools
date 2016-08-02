@@ -1,0 +1,22 @@
+ID  TraD_Ftype
+AC  TIGR02759
+DE  type IV conjugative transfer system coupling protein TraD
+AU  Selengut J
+TC  521.35 521.35
+NC  327.80 327.80
+AL  clustalw
+IT  equivalog
+EN  type IV conjugative transfer system coupling protein TraD
+GS  traD
+TP  TIGRFAMs
+CC  The TraD protein  performs an essential coupling function in conjugative type IV secretion systems.  This protein sits at the inner membrane in contact with the assembled pilus and its scaffold as well as the relaxosome-plasmid DNA complex (through TraM) [1,2].
+RN  [1]
+RM  PMID: 15466052
+RA  Beranek A, Zettl M, Lorenzoni K, Schauer A, Manhart M, Koraimann G.
+RT  Thirty-eight C-terminal amino acids of the coupling protein TraD of the F-like conjugative resistance plasmid R1 are required and sufficient to confer binding to the substrate selector protein TraM.
+RL   J Bacteriol. 2004 Oct;186(20):6999-7006.
+RN  [2]
+RM  PMID: 16138100
+RA  Frost LS, Leplae R, Summers AO, Toussaint A.
+RT  Mobile genetic elements: the agents of open source evolution.
+RL  Nat Rev Microbiol. 2005 Sep;3(9):722-32.

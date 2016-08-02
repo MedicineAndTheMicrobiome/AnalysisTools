@@ -1,0 +1,11 @@
+ID  couple_hipB
+AC  TIGR03070
+DE  transcriptional regulator, y4mF family
+AU  Haft DH
+TC  71.65 71.65
+NC  61.30 61.30
+AL  muscle
+IT  subfamily
+EN  transcriptional regulator, y4mF family
+TP  TIGRFAMs
+CC  Members of this family belong to a clade of helix-turn-helix DNA-binding proteins, among the larger family PF01381 (HTH_3;  Helix-turn-helix). Members are similar in sequence to the HipB protein of E. coli. Genes for members of the seed alignment for this protein family were found to be closely linked to genes encoding proteins related to HipA. The HibBA operon appears to have some features in common with toxin-antitoxin post-segregational killing systems.

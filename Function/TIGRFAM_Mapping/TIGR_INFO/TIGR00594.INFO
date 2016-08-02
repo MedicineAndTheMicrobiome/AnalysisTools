@@ -1,0 +1,14 @@
+ID  polc
+AC  TIGR00594
+DE  DNA polymerase III, alpha subunit
+AU  Loftus BJ, Eisen JA
+TC  434.35 434.35
+NC  379.70 379.70
+IT  superfamily
+EN  DNA-directed DNA polymerase III (polc)
+GS  dnaE
+EC  2.7.7.7
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are DNA polymerases.
+CC  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  HAMAP; MF_01902; 62 of 62

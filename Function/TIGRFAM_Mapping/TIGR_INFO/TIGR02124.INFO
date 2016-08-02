@@ -1,0 +1,12 @@
+ID  hypE
+AC  TIGR02124
+DE  hydrogenase expression/formation protein HypE
+AU  Haft DH
+TC  251.60 251.60
+NC  148.35 148.35
+AL  clustalw
+IT  equivalog
+EN  hydrogenase expression/formation protein HypE
+GS  hypE
+TP  TIGRFAMs
+CC  This family contains HypE (or HupE), a protein required for expression of catalytically active hydrogenase in many systems. It appears to be an accessory protein involved in maturation rather than a regulatory protein involved in expression. HypE shows considerable homology to the thiamine-monophosphate kinase ThiL (TIGR01379) and other enzymes.

@@ -1,0 +1,13 @@
+ID  mutY
+AC  TIGR01084
+DE  A/G-specific adenine glycosylase
+AU  Durkin S
+TC  286.50 286.50
+NC  179.95 179.95
+AL  clustalw
+IT  equivalog
+EN  A/G-specific adenine glycosylase
+GS  mutY
+EC  3.2.2.-
+TP  TIGRFAMs
+CC  This equivalog HMM identifies mutY members of the PF00730 superfamily (HhH-GPD: Helix-hairpin-helix and Gly/Pro rich loop followed by a conserved aspartate). The major members of the superfamily are nth and mutY.

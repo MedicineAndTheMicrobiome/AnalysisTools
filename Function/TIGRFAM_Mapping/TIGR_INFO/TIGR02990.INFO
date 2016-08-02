@@ -1,0 +1,17 @@
+ID  ectoine_eutA
+AC  TIGR02990
+DE  ectoine utilization protein EutA
+AU  Haft DH
+TC  318.00 318.00
+NC  232.70 232.70
+AL  muscle_manual
+IT  equivalog
+EN  ectoine utilization protein EutA
+GS  eutA
+TP  TIGRFAMs
+CC  Members of this protein family are EutA, a predicted arylmalonate decarboxylase found in a conserved ectoine utilization operon of species that include Sinorhizobium meliloti 1021 (where it is known to be induced by ectoine), Mesorhizobium loti and Silicibacter pomeroyi. It is missing from two other species with the other ectoine transport and utilization genes: Pseudomonas putida and Agrobacterium tumefaciens.
+RN  [1]
+RM  PMID: 15687193
+RT  Ectoine-induced proteins in Sinorhizobium meliloti include an Ectoine ABC-type transporter involved in osmoprotection and ectoine catabolism.
+RA  Jebbar M, Sohn-Bosser L, Bremer E, Bernard T, Blanco C
+RL  J Bacteriol. 2005 Feb;187(4):1293-304.

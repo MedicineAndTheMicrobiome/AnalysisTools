@@ -1,0 +1,14 @@
+ID  rad14
+AC  TIGR00598
+DE  DNA repair protein
+AU  Loftus BJ, Eisen JA
+TC  113.15 113.15
+NC  66.65 66.65
+IT  equivalog
+EN  DNA repair protein
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are used for the recognition of DNA damage as part of nucleotide excision repair.
+CC  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  EGAD; 55115;
+DR  SWISSPROT; P28519;
+RM  92158051;

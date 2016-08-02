@@ -1,0 +1,15 @@
+ID  prfC
+AC  TIGR00503
+DE  peptide chain release factor 3
+AU  Haft DH
+TC  466.95 466.95
+NC  327.25 327.25
+AL  clustalw
+IT  equivalog
+EN  peptide chain release factor 3
+GS  prfC
+TP  TIGRFAMs
+CC  This translation releasing factor, RF-3 (prfC) was originally described as stop codon-independent, in contrast to peptide chain release factor 1 (RF-1, prfA) and RF-2 (prfB). RF-1 and RF-2 are closely related to each other, while RF-3 is similar to elongation factors EF-Tu and EF-G; RF-1 is active at UAA and UAG and RF-2 is active at UAA and UGA. More recently, RF-3 was shown to be active primarily at UGA stop codons in E. coli. All bacteria and organelles have RF-1. The Mycoplasmas and organelles, which translate UGA as Trp rather than as a stop codon, lack RF-2. RF-3, in contrast, seems to be rare among bacteria and is found so far only in Escherichia coli and some other gamma subdivision Proteobacteria, in Synechocystis PCC6803, and in Staphylococcus aureus.
+RM  Medline; 98119823; 
+RM  Medline; 95256223;
+DR  HAMAP; MF_00072; 214 of 218

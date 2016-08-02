@@ -1,0 +1,16 @@
+ID  L9
+AC  TIGR00158
+DE  ribosomal protein L9
+AU  Haft DH
+TC  58.60 58.60
+NC  26.05 26.05
+AL  clustalw
+IT  equivalog
+EN  ribosomal protein L9
+GS  rplI
+TP  TIGRFAMs
+CC  Ribosomal protein L9 appears to be universal in, but restricted to, eubacteria and chloroplast.
+DR  PFAM; PF01281; Ribosomal_L9;
+DR  ECOCYC; EG10870; rplI
+DR  PROSITE; PDOC00560;
+DR  HAMAP; MF_00503; 532 of 548

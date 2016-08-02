@@ -1,0 +1,16 @@
+ID  mauM_napG
+AC  TIGR00397
+DE  MauM/NapG family ferredoxin-type protein
+AU  Loftus BJ
+TC  178.85 178.85
+NC  83.15 83.15
+AL  clustalw
+IT  subfamily
+EN  MauM/NapG family ferredoxin-type protein
+TP  TIGRFAMs
+CC  MauM is involved in methylamine utilization. NapG is associated with nitrate reductase activity. The two proteins are highly similar.
+DR  PROSITE; PS00198; 4FE4S_FERREDOXIN;
+DR  PFAM; PF00037; fer4;
+DR  ECOCYC; EG12064; napG;
+DR  EGAD; 42168;
+DR  SWISSPROT; Q51659;

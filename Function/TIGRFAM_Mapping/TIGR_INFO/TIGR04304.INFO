@@ -1,0 +1,11 @@
+ID  GeoRSP_SPASM
+AC  TIGR04304
+DE  GeoRSP system SPASM domain protein
+AU  Haft DH
+TC  300.00 300.00
+NC  75.00 75.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  GeoRSP system SPASM domain protein
+TP  TIGRFAMs
+CC  Members of this protein family are encoded by one of two consecutive genes for SPASM domain proteins. The two are closely homologous in the SPASM domain regions, and also in a small N-terminal region, but the other family (TIGR04303) has an intact radical SAM domain (PF04055) that this "quasi-rSAM" protein lacks. A PqqD-family protein, TIGR04302, is always adjacent.

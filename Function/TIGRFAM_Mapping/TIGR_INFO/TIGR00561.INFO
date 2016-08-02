@@ -1,0 +1,19 @@
+ID  pntA
+AC  TIGR00561
+DE  NAD(P)(+) transhydrogenase (AB-specific), alpha subunit
+AU  Haft DH
+TC  444.40 444.40
+NC  258.60 258.60
+AL  clustalw
+IT  equivalog
+EN  NAD(P) transhydrogenase, alpha subunit
+GS  pntA
+EC  1.6.1.2
+TP  TIGRFAMs
+CC  This integral membrane protein is the alpha subunit of alpha 2 beta 2 tetramer that couples the proton transport across the membrane to the reversible transfer of hydride ion equivalents between NAD and NADP. An alternate name is pyridine nucleotide transhydrogenase alpha subunit. The N-terminal region is homologous to alanine dehydrogenase.
+CC  In some species, such as Rhodospirillum rubrum, the alpha chain is replaced by two shorter chains, both with some homology to the full-length alpha chain modeled here. These score below the trusted cutoff.
+DR  ECOCYC; EG10744; pntA
+RM  98358599
+RT  Site-directed mutagenesis of the proton-pumping pyridine nucleotide transhydrogenase of Escherichia coli.
+RA  Bragg PD
+RL  Biochim Biophys Acta 1998 Jun 10;1365(1-2):98-104

@@ -1,0 +1,28 @@
+ID  MiaB-like-B
+AC  TIGR01578
+DE  MiaB-like tRNA modifying enzyme, archaeal-type
+AU  Selengut J
+TC  314.70 314.70
+NC  310.95 310.95
+AL  clustalw
+IT  hypoth_equivalog
+EN  MiaB-like tRNA modifying enzyme, archaeal-type
+TP  TIGRFAMs
+CC  This clade of sequences is closely related to MiaB, a modifier of isopentenylated adenosine-37 of certain eukaryotic and bacterial tRNAs (see TIGR01574 [1,2,3]).
+CC  Sequence alignments suggest that this equivalog performs the same chemical transformation as MiaB, perhaps on a different (or differently modified) tRNA base substrate.
+CC  This clade is a member of a subfamily (TIGR00089) and spans the archaea and eukaryotes.  The only archaeal miaB-like genes are in this clade, while eukaryotes have sequences described by this HMM as well as ones falling within the scope of the MiaB equivalog model.
+RN  [1]
+RM  PMID: 10572129
+RT  Identification of the miaB gene, involved in methylthiolation of isopentenylated A37 derivatives in the tRNA of Salmonella typhimurium and Escherichia coli.
+RA  Esberg B, Leung HC, Tsui HC, Bjork GR, Winkler ME.
+RL  J Bacteriol. 1999 Dec;181(23):7256-65.
+RN  [2]
+RM  PMID: 11882645
+RT  Enzymatic modification of tRNAs: MiaB is an iron-sulfur protein.
+RA  Pierrel F, Bjork GR, Fontecave M, Atta M.
+RL  J Biol Chem. 2002 Apr 19;277(16):13367-70.
+RN  [3]
+RM  PMID: 11313137
+RT  TRAM, a predicted RNA-binding domain, common to tRNA uracil methylation and adenine thiolation enzymes.
+RA  Anantharaman V, Koonin EV, Aravind L.
+RL  FEMS Microbiol Lett. 2001 Apr 13;197(2):215-21.

@@ -1,0 +1,22 @@
+ID  VirB9
+AC  TIGR02781
+DE  P-type conjugative transfer protein VirB9
+AU  Selengut J
+TC  217.70 217.70
+NC  130.25 130.25
+AL  muscle
+IT  equivalog
+EN  P-type conjugative transfer protein VirB9
+GS  virB9
+TP  TIGRFAMs
+CC  The VirB9 protein is found in the vir locus of Agrobacterium Ti plasmids where it is involved in a type IV secretion system  [1].  VirB9 is a homolog of the F-type conjugative transfer system TraK protein (which is believed to be an outer membrane pore-forming secretin, TIGR02756) as well as the Ti system TrbG protein [2].
+RN  [1]
+RM  PMID: 11895979
+RT  Characterization and transcriptional analysis of gene clusters for a type IV secretion machinery in human granulocytic and monocytic ehrlichiosis agents.
+RA  Ohashi N, Zhi N, Lin Q, Rikihisa Y.
+RL  Infect Immun. 2002 Apr;70(4):2128-38.
+RN  [2]
+RM  PMID: 12855161
+RT  F factor conjugation is a true type IV secretion system.
+RA  Lawley TD, Klimke WA, Gubbins MJ, Frost LS.
+RL  FEMS Microbiol Lett. 2003 Jul 15;224(1):1-15.

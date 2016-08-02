@@ -1,0 +1,12 @@
+ID  tail_P2_I
+AC  TIGR01634
+DE  phage tail protein I
+AU  Haft DH, Fouts DE, Sunshine J
+TC  30.05 30.05
+NC  24.00 24.00
+AL  clustalw_manual
+IT  equivalog
+EN  phage tail protein, P2 protein I family
+TP  TIGRFAMs
+CC  This HMM represents the family of phage P2 protein I and related tail proteins from a number of temperate phage of Gram-negative bacteria. This HMM is built as a fragment model and identifies some phage tail proteins with strong but local similarity to members of the seed alignment.
+DR  HAMAP; MF_00612; 1 of 71

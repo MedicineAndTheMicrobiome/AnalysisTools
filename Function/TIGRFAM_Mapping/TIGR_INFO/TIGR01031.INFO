@@ -1,0 +1,14 @@
+ID  rpmF_bact
+AC  TIGR01031
+DE  ribosomal protein L32
+AU  Ujwal ML, Haft DH
+TC  22.60 22.60
+NC  22.20 22.20
+AL  clustalw
+IT  equivalog
+EN  ribosomal protein L32
+GS  rpmF
+TP  TIGRFAMs
+CC  This protein describes bacterial ribosomal protein L32.  The noise cutoff is set low enough to include the equivalent protein from mitochondria and chloroplasts. No related proteins from the Archaea nor from the eukaryotic cytosol are detected by this model. This model is a fragment model; the putative L32 of some species shows similarity only toward the N-terminus.
+DR COGS; COG0333
+DR  HAMAP; MF_00340; 572 of 617

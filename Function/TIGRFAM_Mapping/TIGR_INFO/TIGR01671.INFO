@@ -1,0 +1,11 @@
+ID  phage_TIGR01671
+AC  TIGR01671
+DE  phage conserved hypothetical protein TIGR01671
+AU  Haft DH, Sunshine J, Fouts DE
+TC  41.30 41.30
+NC  25.85 25.85
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  phage uncharacterized protein TIGR01671
+TP  TIGRFAMs
+CC  This HMM represents an uncharacterized, well-conserved family of proteins found in bacteriophage and prophage regions of Gram-positive bacteria.

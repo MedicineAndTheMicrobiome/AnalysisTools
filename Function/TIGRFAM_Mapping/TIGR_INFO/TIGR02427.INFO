@@ -1,0 +1,18 @@
+ID  protocat_pcaD
+AC  TIGR02427
+DE  3-oxoadipate enol-lactonase
+AU  Haft DH
+TC  255.85 255.85
+NC  179.40 179.40
+AL  clustalw
+IT  equivalog
+EN  3-oxoadipate enol-lactonase
+GS  pcaD
+EC  3.1.1.24
+TP  TIGRFAMs
+CC  Members of this family are 3-oxoadipate enol-lactonase. Note that the substrate is known as 3-oxoadipate enol-lactone, 2-oxo-2,3-dihydrofuran-5-acetate, 4,5-Dihydro-5-oxofuran-2-acetate, and 5-oxo-4,5-dihydrofuran-2-acetate. The enzyme the catalyzes the fourth step in the protocatechuate degradation to beta-ketoadipate and then to succinyl-CoA and acetyl-CoA. 4-hydroxybenzoate, 3-hydroxybenzoate, and vanillate all can be converted in one step to protocatechuate. This enzyme also acts in catechol degradation. In genomes that catabolize both catechol and protocatechuate, two forms of this enzyme may be found. All members of the seed alignment for this model were chosen from within protocatechuate degradation operons of at least three genes of the pathway, from genomes with the complete pathway through beta-ketoadipate.
+RN  [1]
+RM  15006791
+RT  Diverse organization of genes of the beta-ketoadipate pathway in members of the marine Roseobacter lineage.
+RA  Buchan A, Neidle EL, Moran MA.
+RL  Appl Environ Microbiol. 2004 Mar;70(3):1658-68.

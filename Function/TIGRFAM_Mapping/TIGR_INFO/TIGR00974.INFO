@@ -1,0 +1,12 @@
+ID  3a0107s02c
+AC  TIGR00974
+DE  phosphate ABC transporter, permease protein PstA
+AU  Haft DH, Loftus BJ
+TC  193.45 193.45
+NC  161.90 161.90
+AL  clustalw_manual
+IT  equivalog
+EN  phosphate ABC transporter, permease protein PstA
+GS  pstA
+TP  TIGRFAMs
+CC  This HMM describes PtsA, one of a pair of permease proteins in the ABC (high affinity) phosphate transporter. In a number of species, this permease is fused with the PtsC protein (TIGR02138). In the model bacterium Escherichia coli, this transport system is induced when the concentration of extrallular inorganic phosphate is low. A constitutive, lower affinity transporter operates otherwise.

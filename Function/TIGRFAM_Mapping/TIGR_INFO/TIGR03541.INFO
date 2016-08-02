@@ -1,0 +1,11 @@
+ID  reg_near_HchA
+AC  TIGR03541
+DE  LuxR family transcriptional regulatory, chaperone HchA-associated
+AU  Haft DH
+TC  215.60 215.60
+NC  215.45 215.45
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  LuxR family transcriptional regulatory, chaperone HchA-associated
+TP  TIGRFAMs
+CC  Members of this protein family belong to the LuxR transcriptional regulator family, and contain both autoinducer binding (PF03472) and transcriptional regulator (PF00196) domains. Members, however, occur only in a few members of the Gammaproteobacteria that have the chaperone/aminopeptidase HchA, and are always encoded by the adjacent gene.

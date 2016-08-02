@@ -1,0 +1,12 @@
+ID  PGMB-YQAB-SF
+AC  TIGR02009
+DE  beta-phosphoglucomutase family hydrolase
+AU  Selengut J
+TC  153.35 153.35
+NC  145.85 145.85
+AL  clustalw
+IT  subfamily
+EN  beta-phosphoglucomutase family hydrolase
+TP  TIGRFAMs
+CC  This subfamily HMM groups together three clades: the characterized beta-phosphoglucomutases (including those from E.coli, B.subtilus and L.lactis, TIGR01990), a clade of putative bPGM's from mycobacteria and a clade including the uncharacterized E.coli and H.influenzae yqaB genes which may prove to be beta-mutases of a related 1-phosphosugar.
+CC  All of these are members of the larger Haloacid dehalogenase (HAD) subfamily IA and include the "variant 3" glu-asp version of the third conserved HAD domain (TIGR01509).

@@ -1,0 +1,12 @@
+ID  glycerol3P_DH
+AC  TIGR03376
+DE  glycerol-3-phosphate dehydrogenase (NAD(+))
+AU  Haft DH
+TC  285.50 285.50
+NC  242.70 242.70
+AL  muscle_manual
+IT  equivalog
+EN  glycerol-3-phosphate dehydrogenase (NAD(+))
+EC  1.1.1.8
+TP  TIGRFAMs
+CC  Members of this protein family are the eukaryotic enzyme, glycerol-3-phosphate dehydrogenase (NAD(+)) (EC 1.1.1.8). Enzymatic activity for 1.1.1.8 is defined as sn-glycerol 3-phosphate + NAD(+) = glycerone phosphate + NADH. Note the very similar reactions of enzymes defined as EC 1.1.1.94 and 1.1.99.5, assigned to families of proteins in the bacteria.

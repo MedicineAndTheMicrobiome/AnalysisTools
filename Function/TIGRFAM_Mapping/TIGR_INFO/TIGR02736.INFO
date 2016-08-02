@@ -1,0 +1,12 @@
+ID  cbb3_Q_epsi
+AC  TIGR02736
+DE  cytochrome c oxidase, cbb3-type, CcoQ subunit
+AU  Haft DH
+TC  61.55 61.55
+NC  32.40 32.40
+AL  clustalw
+IT  equivalog
+EN  cytochrome c oxidase, cbb3-type, CcoQ subunit, epsilon-Proteobacterial
+EC  1.9.3.1
+TP  TIGRFAMs
+CC  Members of this protein family are restricted to the epsilon branch of the Proteobacteria. All members are found in operons containing the other three structural subunits of the cbb3 type of cytochrome c oxidase. These small proteins show remote sequence similarity to the CcoQ subunit in other cytochrome c oxidase systems, so this family is assumed to represent the epsilonproteobacterial variant of CcoQ.

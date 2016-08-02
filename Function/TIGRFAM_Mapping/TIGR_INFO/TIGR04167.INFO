@@ -1,0 +1,11 @@
+ID  rSAM_SeCys
+AC  TIGR04167
+DE  radical SAM/Cys-rich domain protein
+AU  Haft DH
+TC  300.00 300.00
+NC  140.00 140.00
+AL  muscle_manual
+IT  subfamily
+EN  radical SAM/Cys-rich domain protein
+TP  TIGRFAMs
+CC  Members of this protein family have an N-terminal radical SAM domain (PF04055) and a C-terminal PF12345 domain. The C-terminal region has several conserved Cys residues, one of which is replaced by selenocysteine in at least five bacterial reference genomes.

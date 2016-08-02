@@ -1,0 +1,11 @@
+ID  List_Bact_rpt
+AC  TIGR02543
+DE  repeat, TIGR02543 family
+AU  Haft DH
+TC  20.95 20.95
+NC  17.40 17.40
+AL  manual
+IT  domain
+EN  Listeria/Bacterioides repeat
+TP  TIGRFAMs
+CC  This model describes a conserved core region, about 43 residues in length, of at least two families of tandem repeats. These include 78-residue repeats from 2 to 15 in number, in some proteins of Bacteroides forsythus ATCC 43037, and 70-residue repeats in families of internalins of Listeria species. Single copies are found in proteins of  Fibrobacter succinogenes, Geobacter sulfurreducens, and a few bacteria.

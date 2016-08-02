@@ -1,0 +1,15 @@
+ID  eIF-2B_rel
+AC  TIGR00524
+DE  eIF-2B alpha/beta/delta-related uncharacterized proteins
+AU  Haft DH
+TC  185.85 185.85
+NC  142.60 142.60
+IT  subfamily
+EN  eIF-2B alpha/beta/delta-related uncharacterized proteins
+TP  TIGRFAMs
+CC  This HMM, eIF-2B_rel, describes half of a superfamily, where the other half consists of eukaryotic translation initiation factor 2B (eIF-2B) subunits alpha, beta, and delta. It is unclear whether the eIF-2B_rel set is monophyletic, or whether they are all more closely related to each other than to any eIF-2B subunit because the eIF-2B clade is highly derived.  Members of this branch of the family are all uncharacterized with respect to function and are found in the Archaea, Bacteria, and Eukarya, although a number are described as putative translation intiation factor components. Proteins found by eIF-2B_rel include at least three clades, including a set of uncharacterized eukaryotic proteins, a set found in some but not all Archaea, and a set universal so far among the Archaea and closely related to several uncharacterized bacterial proteins.
+RM  98188271
+RT  Archaeal translation initiation revisited: the initiation factor 2 and eukaryotic initiation factor 2B alpha-beta-delta subunit families.
+RA  Kyrpides NC, Woese CR
+RL  Proc Natl Acad Sci U S A 1998 Mar 31;95(7):3726-30
+DR  HAMAP; MF_01678; 159 of 164

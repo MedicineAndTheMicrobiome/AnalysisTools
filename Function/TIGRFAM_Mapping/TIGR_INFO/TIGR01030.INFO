@@ -1,0 +1,14 @@
+ID  rpmH_bact
+AC  TIGR01030
+DE  ribosomal protein L34
+AU  Ujwal ML, Haft DH
+TC  37.65 37.65
+NC  34.55 34.55
+AL  clustalw
+IT  equivalog
+EN  ribosomal protein L34, bacterial type
+GS  rpmH
+TP  TIGRFAMs
+CC  This model describes the bacterial protein L34 and its equivalents in organelles.
+DR  COGS; COG0230
+DR  HAMAP; MF_00391; 494 of 502

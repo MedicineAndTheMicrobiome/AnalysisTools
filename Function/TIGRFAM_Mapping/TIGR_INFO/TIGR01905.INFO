@@ -1,0 +1,11 @@
+ID  paired_CXXCH_1
+AC  TIGR01905
+DE  doubled CXXCH domain
+AU  Haft DH
+TC  25.20 25.20
+NC  17.00 17.00
+AL  manual
+IT  subfamily_domain
+EN  doubled CXXCH domain
+TP  TIGRFAMs
+CC  This HMM represents a domain of about 41 amino acids that contains, among other motifs, two copies of the motif CXXCH associated with heme binding.   Almost every member of this family has at least three copies of this domain (at least six copies of CXXCH) is predicted to be a high molecular weight c-type cytochrome. Members are found mostly in species of Shewanella, Geobacter, and Vibrio.

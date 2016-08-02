@@ -1,0 +1,18 @@
+ID  rpl7ae
+AC  TIGR03677
+DE  50S ribosomal protein L7Ae
+AU  Selengut J
+TC  134.60 134.60
+NC  134.35 134.35
+AL  muscle
+IT  equivalog
+EN  50S ribosomal protein L7Ae
+GS  rpl7ae
+TP  TIGRFAMs
+CC  This model specifically identifies the archaeal version of the large ribosomal complex L7 protein.  The family is a narrower version of the PF01248 model which also recognizes the L30 protein.
+CC  Multifunctional RNA-binding protein that recognizes the K-turn motif in ribosomal RNA, box H/ACA, box C/D and box C'/D' sRNAs.  Interacts with protein L15e.
+RN  [1]
+RM  PMID:16008351 
+RT  The crystal structure of the Methanocaldococcus jannaschii multifunctional L7Ae RNA-binding protein reveals an induced-fit interaction with the box C/D RNAs. 
+RA  Suryadi J, Tran EJ, Maxwell ES, Brown BA 2nd 
+RL  Biochemistry. 2005 Jul 19;44(28):9657-72.

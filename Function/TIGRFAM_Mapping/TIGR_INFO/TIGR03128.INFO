@@ -1,0 +1,24 @@
+ID  RuMP_HxlA
+AC  TIGR03128
+DE  3-hexulose-6-phosphate synthase
+AU  Haft DH
+TC  243.40 243.40
+NC  146.85 146.85
+AL  muscle
+IT  equivalog_domain
+EN  3-hexulose-6-phosphate synthase
+GS  hxlA
+EC  4.1.2.43
+TP  TIGRFAMs
+CC  Members of this protein family are 3-hexulose-6-phosphate synthase (HPS), or the HPS domain of a fusion protein. This enzyme is part of the ribulose monophosphate (RuMP) pathway, which in one direction removes the toxic metabolite formaldehyde by assimilation into fructose-6-phosphate. In the other direction, in species lacking a complete pentose phosphate pathway, the RuMP pathway yields ribulose-5-phosphate, necessary for nucleotide biosynthesis,
+CC  at the cost of also yielding formaldehyde. These latter species tend usually have a formaldehyde-activating enzyme to attach formaldehyde to the C1 carrier tetrahydromethanopterin. In these species, the enzyme is viewed as a lyase rather than a synthase and is called D-arabino 3-hexulose 6-phosphate formaldehyde lyase. Note that there is some overlap in specificity with the Escherichia coli enzyme 3-keto-L-gulonate 6-phosphate decarboxylase.
+RN  [1]
+RM  PMID: 15978081
+RT  HxlR, a member of the DUF24 protein family, is a DNA-binding protein that acts as a positive regulator of the formaldehyde-inducible hxlAB operon in Bacillus subtilis.
+RA  Yurimoto H, Hirai R, Matsuno N, Yasueda H, Kato N, Sakai Y
+RL  Mol Microbiol. 2005 Jul;57(2):511-9.
+RN  [2]
+RM  PMID: 15697207
+RT  Evolution of enzymatic activities in the orotidine 5'-monophosphate decarboxylase suprafamily: structural basis for catalytic promiscuity in wild-type and designed mutants of 3-keto-L-gulonate 6-phosphate decarboxylase.
+RA  Wise EL, Yew WS, Akana J, Gerlt JA, Rayment I
+RL  Biochemistry. 2005 Feb 15;44(6):1816-23.

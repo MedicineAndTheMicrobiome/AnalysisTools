@@ -1,0 +1,11 @@
+ID  MSMEG_0572_fam
+AC  TIGR04044
+DE  MSMEG_0572 family protein
+AU  Haft DH
+TC  109.85 109.85
+NC  108.90 108.90
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  MSMEG_0572 family protein
+TP  TIGRFAMs
+CC  This model describes a family of proteins with remote similarity to the DsrE/DsrF-like family (see PF02635). All members are found in a context of at least seven genes that includes a radical SAM protein, suggesting biosynthesis. The system is sparsely but broadly distributed in bacteria, including Actinobacteria, Proteobacteria, and Cyanobacteria.

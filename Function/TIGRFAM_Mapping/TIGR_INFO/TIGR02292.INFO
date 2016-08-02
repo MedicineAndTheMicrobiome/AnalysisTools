@@ -1,0 +1,13 @@
+ID  ygfB_yecA
+AC  TIGR02292
+DE  yecA family protein
+AU  Haft DH
+TC  33.80 33.80
+NC  33.50 33.50
+AL  clustalw
+IT  subfamily
+EN  yecA family protein
+TP  TIGRFAMs
+CC  This family resembles PFAM model PF03695 (version PF03695.3), uncharacterised protein family UPF0149, but is broader in scope and includes additional proteins. It includes E. coli proteins YgfB and YecA. The function of this family of proteins is unknown. The crystal structure is known for the member from Haemophilus influenzae (Ygfb, HI0817).
+DR  PFAM; PF03695;
+DR  HAMAP; MF_00346; 30 of 49

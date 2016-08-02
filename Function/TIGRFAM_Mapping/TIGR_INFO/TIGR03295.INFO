@@ -1,0 +1,18 @@
+ID  frhA
+AC  TIGR03295
+DE  coenzyme F420 hydrogenase, subunit alpha
+AU  Selengut J
+TC  392.50 392.50
+NC  280.80 280.80
+AL  muscle
+IT  equivalog
+EN  coenzyme F420 hydrogenase, subunit alpha
+GS  frhA
+EC  1.12.98.1
+TP  TIGRFAMs
+CC  This model represents that clade of F420-dependent hydrogenases (FRH) beta subunits [1] found exclusively and universally in methanogenic archaea.  This protein is a member of the Nickel-dependent hydrogenase superfamily represented by Pfam model, PF00374.
+RN  [1]
+RM  PMID: 2207102 
+RT  Cloning, sequence determination, and expression of the genes encoding the subunits of the nickel-containing 8-hydroxy-5-deazaflavin reducing hydrogenase from Methanobacterium thermoautotrophicum delta H. 
+RA  Alex LA, Reeve JN, Orme-Johnson WH, Walsh CT 
+RL  Biochemistry. 1990 Aug 7;29(31):7237-44.

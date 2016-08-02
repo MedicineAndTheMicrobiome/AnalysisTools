@@ -1,0 +1,17 @@
+ID  exosort_Gpos
+AC  TIGR03110
+DE  exosortase family protein XrtG
+AU  Haft DH
+TC  102.75 102.75
+NC  67.95 67.95
+AL  muscle
+IT  hypoth_equivalog
+EN  exosortase family protein XrtG
+GS  xrtG
+TP  TIGRFAMs
+CC  Members of this protein family are found in a modest number of non-pathogenic Gram-positive bacteria, including three species of Lactococcus and three paralogs in Clostridium acetobutylicum. This protein appears related to the conserved core region of a family of proposed transpeptidases, exosortase (previously EpsH), thought to act on PEP-CTERM proteins. Members of the seed alignment include all exosortase proposed active site residues. However, in contrast to canonical exosortase (TIGR02602) and archaeal (TIGR03762), and cyanobacterial (TIGR03763) variants, this family has not yet been matched to a cognate PEP-CTERM-like sorting signal. This protein is assigned the gene symbol XrtG (eXosoRTase family protein of Gram-positives).
+RN  [1]
+RM  PMID:22037399 
+RT  Archaeosortases and exosortases are widely distributed systems linking membrane transit with posttranslational modification. 
+RA  Haft DH, Payne SH, Selengut JD 
+RL  J Bacteriol. 2012 Jan;194(1):36-48. Epub 2011 Oct 28.

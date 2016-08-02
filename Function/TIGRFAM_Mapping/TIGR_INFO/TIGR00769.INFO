@@ -1,0 +1,13 @@
+ID  AAA
+AC  TIGR00769
+DE  ADP/ATP carrier protein family
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  387.20 387.20
+NC  359.10 359.10
+AL  clustalw_manual
+IT  superfamily
+EN  ADP/ATP carrier protein family
+TR  2.A.12
+TP  TIGRFAMs
+CC  These proteins are members of the ATP:ADP Antiporter (AAA) Family (TC 2.A.12), which consists of nucleotide transporters that have 12 GES predicted transmembrane regions. One protein from Rickettsia prowazekii functions to take up ATP from the eukaryotic cell cytoplasm into the bacterium in exchange for ADP.  Five AAA family paralogues are encoded within the genome of R. prowazekii. This organism transports UMP and GMP but not CMP, and it seems likely that one or more of the AAA family paralogues are responsible. The genome of Chlamydia trachomatis encodes two AAA family members, Npt1 and Npt2, which catalyse ATP/ADP exchange and GTP, CTP, ATP and UTP uptake probably employing a proton symport mechanism. Two homologous adenylate translocators of Arabidopsis thaliana are postulated to be localized to the intracellular plastid membrane where they function as ATP importers.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_12.html

@@ -1,0 +1,13 @@
+ID  TrpR
+AC  TIGR01321
+DE  trp operon repressor
+AU  Haft DH
+TC  67.25 67.25
+NC  34.45 34.45
+AL  clustalw
+IT  equivalog
+EN  trp operon repressor, proteobacterial
+GS  trpR
+TP  TIGRFAMs
+CC  This HMM represents TrpR, the repressor of the trp operon. It is found so far only in the gamma subdivision of the proteobacteria and in Chlamydia trachomatis. All members belong to species capable of tryptophan biosynthesis.
+DR  HAMAP; MF_00475; 51 of 53

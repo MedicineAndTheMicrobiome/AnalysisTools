@@ -1,0 +1,12 @@
+ID  Pal_lipo
+AC  TIGR02802
+DE  peptidoglycan-associated lipoprotein
+AU  Haft DH
+TC  125.35 125.35
+NC  111.55 111.55
+AL  clustalw_manual
+IT  equivalog
+EN  peptidoglycan-associated lipoprotein
+GS  pal
+TP  TIGRFAMs
+CC  Members of this protein are Pal (also called OprL), the Peptidoglycan-Associated Lipoprotein of the Tol-Pal system. The system appears to be involved both in the maintenance of outer membrane integrity and in the import of certain organic molecules as nutrients. Members of this family contain a hydrodrophobic lipoprotein signal sequence, a conserved N-terminal cleavage and modification site, a poorly conserved low-complexity region, together comprising about 65 amino acids, and a well-conserved C-terminal domain. The seed alignment for this model includes only the conserved C-terminal domain.

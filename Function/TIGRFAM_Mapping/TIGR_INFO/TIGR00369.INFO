@@ -1,0 +1,11 @@
+ID  unchar_dom_1
+AC  TIGR00369
+DE  uncharacterized domain 1
+AU  Haft DH
+TC  36.60 36.60
+NC  29.30 29.30
+AL  clustalw_manual
+IT  domain
+EN  uncharacterized domain 1
+TP  TIGRFAMs
+CC  Most proteins containing this domain consist almost entirely of a single copy of this domain. A protein from C. elegans consists of two tandem copies of the domain. The domain is also found as the N-terminal region of an apparent initiation factor eIF-2B alpha subunit of Aquifex aeolicus. The function of the domain is unknown.

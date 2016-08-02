@@ -1,0 +1,13 @@
+ID  TIGR00363
+AC  TIGR00363
+DE  lipoprotein, YaeC family
+AU  Loftus BJ, Haft DH
+TC  228.85 228.85
+NC  90.40 90.40
+AL  clustalw
+IT  subfamily
+EN  lipoprotein, YaeC family
+TP  TIGRFAMs
+CC  This family of putative lipoproteins contains a consensus site for lipoprotein signal sequence cleavage. Included in this family is the E. coli hypothetical protein yaeC. About half of the proteins between the noise and trusted cutoffs contain the consensus lipoprotein signature and may belong to this family.
+DR  PROSITE; PDOC00013; 
+DR  SWISSPROT; P04846; one of two E. coli members

@@ -1,0 +1,17 @@
+ID  D_pro_red_PrdD
+AC  TIGR04482
+DE  proline reductase cluster protein PrdD
+AU  Haft DH
+TC  320.00 320.00
+NC  310.00 310.00
+AL  muscle_manual
+IT  equivalog
+EN  proline reductase cluster protein PrdD
+GS  prdD
+TP  TIGRFAMs
+CC  Members of this family are PrdD, encoded in the proline reductase gene cluster. Members are closely homologous to PrdA, which cleaves during maturation to create two subunits of the subunits of the proline reductase complex, one of which has a Cys-derived pyruvoyl active site.
+RN  [1]
+RM  PMID:23222730 
+RT  Proline-dependent regulation of Clostridium difficile Stickland metabolism. 
+RA  Bouillaut L, Self WT, Sonenshein AL 
+RL  J Bacteriol. 2013 Feb;195(4):844-54. doi: 10.1128/JB.01492-12.

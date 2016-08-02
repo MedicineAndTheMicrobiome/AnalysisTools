@@ -1,0 +1,18 @@
+ID  uvrC
+AC  TIGR00194
+DE  excinuclease ABC subunit C
+AU  Loftus BJ
+TC  285.45 285.45
+NC  266.10 266.10
+AL  clustalw
+IT  equivalog
+EN  excinuclease ABC, C subunit
+GS  uvrC
+EC  3.1.25.-
+TP  TIGRFAMs
+CC  This family consists of the DNA repair enzyme UvrC, an ABC excinuclease subunit which interacts with the UvrA/UvrB complex to excise UV-damaged nucleotide segments.
+RM  Medline: 93221456
+RT  Mechanism of action of the Escherichia coli UvrABC nuclease: clues to the damage recognition problem.
+RA  Van Houten B, Snowden A.
+RL  Bioessays. 1993 Jan;15(1):51-9. Review.
+DR  HAMAP; MF_00203; 432 of 437

@@ -1,0 +1,17 @@
+ID  NHEJ_ligase_prk
+AC  TIGR02776
+DE  DNA ligase D
+AU  Haft DH
+TC  373.20 373.20
+NC  221.10 221.10
+AL  clustalw_manual
+IT  equivalog
+EN  DNA ligase D
+GS  ligD
+TP  TIGRFAMs
+CC  Members of this protein family are DNA ligases involved in the repair of DNA double-stranded breaks by non-homologous end joining (NHEJ). The system of the bacterial Ku protein (TIGR02772) plus this DNA ligase is seen in about 20 % of bacterial genomes to date and at least one archaeon (Archeoglobus fulgidus). This model describes a central and a C-terminal domain. These two domains may be permuted, as in genus Mycobacterium, or divided into tandem ORFs, and therefore not be identified by this HMM. An additional N-terminal 3'-phosphoesterase (PE) domain present in some but not all examples of this ligase is not included in the seed alignment for this model; this HMM models only the central ATP-dependent ligase domain and the C-terminal polymerase domain. Most examples of genes for this ligase are adjacent to the gene for Ku.
+RN  [1]
+RM  16046407
+RT  Essential constituents of the 3'-phosphoesterase domain of bacterial DNA ligase D, a nonhomologous end-joining enzyme.
+RA  Zhu H, Wang LK, Shuman S.
+RL  J Biol Chem. 2005 Oct 7;280(40):33707-15.

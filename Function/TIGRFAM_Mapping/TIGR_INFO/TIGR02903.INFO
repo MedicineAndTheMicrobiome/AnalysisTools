@@ -1,0 +1,13 @@
+ID  spore_lon_C
+AC  TIGR02903
+DE  ATP-dependent protease, Lon family
+AU  Haft DH
+TC  678.80 678.80
+NC  583.30 583.30
+AL  muscle
+IT  equivalog
+EN  ATP-dependent protease, Lon family
+GS  lonC
+EC  3.4.21.-
+TP  TIGRFAMs
+CC  Members of this protein family resemble the widely distributed ATP-dependent protease La, also called Lon and LonA. It resembles even more closely LonB, which is a LonA paralog found in genomes if and only if the species is capable of endospore formation (as in Bacillus subtilis, Clostridium tetani, and select other members of the Firmicutes) and expressed specifically in the forespore compartment. Members of this family are restricted to a subset of spore-forming species, and are very likely to participate in the program of endospore formation. We propose the designation LonC.

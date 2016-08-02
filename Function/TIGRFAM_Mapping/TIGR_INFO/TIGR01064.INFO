@@ -1,0 +1,17 @@
+ID  pyruv_kin
+AC  TIGR01064
+DE  pyruvate kinase
+AU  Haft DH
+TC  306.40 306.40
+NC  233.00 233.00
+AL  clustalw_manual
+IT  equivalog
+EN  pyruvate kinase
+GS  pyk
+EC  2.7.1.40
+TP  TIGRFAMs
+CC  This enzyme is a homotetramer. Some forms are active only in the presence of fructose-1,6-bisphosphate or similar phosphorylated sugars.
+RM  20179818
+RT  Pyruvate kinase of the hyperthermophilic crenarchaeote Thermoproteus tenax: physiological role and phylogenetic aspects.
+RA  Schramm A, Siebers B, Tjaden B, Brinkmann H, Hensel R
+RL  J Bacteriol 2000 Apr;182(7):2001-9

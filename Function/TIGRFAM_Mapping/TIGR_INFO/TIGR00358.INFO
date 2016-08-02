@@ -1,0 +1,13 @@
+ID  3_prime_RNase
+AC  TIGR00358
+DE  VacB and RNase II family 3'-5' exoribonucleases
+AU  Haft DH
+TC  368.60 368.60
+NC  139.00 139.00
+AL  clustalw
+IT  superfamily
+EN  VacB and RNase II family 3'-5' exoribonucleases
+EC  3.1.13.1
+TP  TIGRFAMs
+CC  This HMM is defined to identify a pair of paralogous 3-prime exoribonucleases in E. coli, plus the set of proteins apparently orthologous to one or the other in other eubacteria. VacB was characterized originally as required for the expression of virulence genes, but is now recognized as the exoribonuclease RNase R (Rnr). Its paralog in E. coli and H. influenzae is designated exoribonuclease II (Rnb). Both are involved in the degradation of mRNA, and consequently have strong pleiotropic effects that may be difficult to disentangle. Both these proteins share domain-level similarity (RNB, S1) with a considerable number of other proteins, and full-length similarity scoring below the trusted cutoff to proteins associated with various phenotypes but uncertain biochemistry; it may be that these latter proteins are also 3-prime exoribonucleases.
+DR  HAMAP; MF_01036; 50 of 51

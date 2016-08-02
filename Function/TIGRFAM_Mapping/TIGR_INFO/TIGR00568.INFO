@@ -1,0 +1,14 @@
+ID  alkb
+AC  TIGR00568
+DE  alkylated DNA repair protein AlkB
+AU  Loftus BJ, Eisen JA
+TC  231.05 231.05
+NC  70.85 70.85
+IT  equivalog
+EN  DNA alkylation damage repair protein AlkB
+GS  alkB
+TP  TIGRFAMs
+CC  Proteins in this family have an as of yet undetermined function in the repair of alkylation damage to DNA. Alignment and family designation based on phylogenomic analysis of Jonathan A. Eisen (PhD Thesis, Stanford University, 1999).
+DR  EGAD; 8017;
+DR  SWISSPROT; P05050;
+RM  87057220;

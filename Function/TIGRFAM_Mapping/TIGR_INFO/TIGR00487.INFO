@@ -1,0 +1,13 @@
+ID  IF-2
+AC  TIGR00487
+DE  translation initiation factor IF-2
+AU  Haft DH
+TC  424.40 424.40
+NC  354.60 354.60
+AL  clustalw
+IT  equivalog
+EN  translation initiation factor IF-2
+GS  infB
+TP  TIGRFAMs
+CC  This model discriminates eubacterial (and mitochondrial) translation initiation factor 2 (IF-2), encoded by the infB gene in bacteria, from similar proteins in the Archaea and Eukaryotes. In the bacteria and in organelles, the initiator tRNA is charged with N-formyl-Met instead of Met. This translation factor acts in delivering the initator tRNA to the ribosome. It is one of a number of GTP-binding translation factors recognized by the pfam HMM GTP_EFTU.
+DR  HAMAP; MF_00100; 552 of 608

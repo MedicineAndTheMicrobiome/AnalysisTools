@@ -1,0 +1,15 @@
+ID  2A0602
+AC  TIGR00915
+DE  RND transporter, hydrophobe/amphiphile efflux-1 (HAE1) family
+AU  Loftus BJ, Haft DH
+TC  940.35 940.35
+NC  456.65 456.65
+AL  clustalw_manual
+IT  subfamily
+EN  The (Largely Gram-negative Bacterial) Hydrophobe/Amphiphile Efflux-1 (HAE1) Family
+TR  2.A.6.2
+TP  TIGRFAMs
+CC  Proteins scoring above the trusted cutoff (1000) form a tight clade within the RND (Resistance-Nodulation-Cell Division) superfamily. Proteins scoring greater than the noise cutoff (100) appear to form a larger clade, cleanly separated from more distant homologs that include cadmium/zinc/cobalt resistance transporters.
+CC  This family is one of several subfamilies within the scope of Pfam HMM PF00873.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_6.html
+DR  PFAM; PF00873; AcrB/AcrD/AcrF family

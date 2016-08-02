@@ -1,0 +1,23 @@
+ID  PaaB1
+AC  TIGR02280
+DE  phenylacetate degradation probable enoyl-CoA hydratase PaaB
+AU  Selengut J
+TC  345.15 345.15
+NC  303.40 303.40
+AL  clustalw
+IT  equivalog
+EN  phenylacetate degradation probable enoyl-CoA hydratase paaB
+GS  paaB
+EC  4.2.1.17
+TP  TIGRFAMs
+CC  This family of proteins are found within apparent operons for the degradation of phenylacetic acid [1].  These proteins contain the enoyl-CoA hydratase domain as detected by PF00378.  This activity is consistent with current hypotheses for the degradation pathway [2] which involve the ligation of phenylacetate with coenzyme A (paaF), hydroxylation (paaGHIJK), ring-opening (paaN) and degradation of the resulting fatty acid-like compound to a Krebs cycle intermediate (paaABCDE).
+RN  [1]
+RM  PMID: 11260461
+RT  The phenylacetyl-CoA catabolon: a complex catabolic unit with broad biotechnological applications.
+RA  Luengo JM, Garcia JL, Olivera ER.
+RL  Mol Microbiol. 2001 Mar;39(6):1434-42.
+RN  [2]
+RM  PMID: 9748275
+RT  Catabolism of phenylacetic acid in Escherichia coli. Characterization of a new aerobic hybrid pathway.
+RA  Ferrandez A, Minambres B, Garcia B, Olivera ER, Luengo JM, Garcia JL, Diaz E.
+RL  J Biol Chem. 1998 Oct 2;273(40):25974-86.

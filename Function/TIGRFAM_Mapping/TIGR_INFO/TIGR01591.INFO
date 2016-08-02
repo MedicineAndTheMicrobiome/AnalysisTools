@@ -1,0 +1,24 @@
+ID  Fdh-alpha
+AC  TIGR01591
+DE  formate dehydrogenase, alpha subunit
+AU  Selengut J
+TC  666.25 666.25
+NC  610.65 610.65
+AL  clustalw
+IT  equivalog
+EN  formate dehydrogenase, alpha subunit, archaeal-type
+EC  1.2.1.2
+TP  TIGRFAMs
+CC  This HMM describes a subset of formate dehydrogenase alpha chains found mainly archaea but also in alpha and gamma proteobacteria and a small number of gram positive bacteria.  The alpha chain contains domains for molybdopterin dinucleotide binding and molybdopterin oxidoreductase (PF01568 and PF00384, respectively).  The holo-enzyme also contains beta and gamma subunits.
+CC  The enzyme catalyzes the oxidation of formate (produced from pyruvate during anaerobic growth) to carbon dioxide with the concomitant release of two electrons and two protons.  The enzyme's purpose is to allow growth on formate in some circumstances [1] and, in the case of FdhH in gamma proteobacteria, to pass electrons to hydrogenase (by which process acid is neutralized) [2].
+CC  This model is well-defined, with only a single fragmentary sequence falling between trusted and noise.  The alpha subunit of a version of nitrate reductase is closely related.
+RN  [1]
+RM  MUID: 87008493
+RT  Cloning, expression, and nucleotide sequence of the formate dehydrogenase genes from Methanobacterium formicicum.
+RA  Shuber A.P., Orr E.C., Recny M.A., Schendel P.F., May H.D., Schauer N.L., Ferry J.G.
+RL  J. Biol. Chem. 261:12942-12947(1986).
+RN  [1]
+RM  MUID: 97190104
+RT  Crystal structure of formate dehydrogenase H: catalysis involving Mo, molybdopterin, selenocysteine, and an Fe4S4 cluster.
+RA  Boyington J.C., Gladyshev V.N., Khangulov S.V., Stadtman T.C., Sun P.D.
+RL  Science 275:1305-1308(1997).

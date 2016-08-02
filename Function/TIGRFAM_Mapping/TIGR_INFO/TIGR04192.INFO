@@ -1,0 +1,12 @@
+ID  GRASP_w_spasm
+AC  TIGR04192
+DE  ATP-GRASP peptide maturase, grasp-with-spasm system
+AU  Haft DH
+TC  230.00 230.00
+NC  220.00 220.00
+AL  muscle_manual
+IT  equivalog
+EN  ATP-GRASP peptide maturase, grasp-with-spasm system
+GS  gwsG
+TP  TIGRFAMs
+CC  Members of this protein family are ATP-GRASP proteins that occur in a peptide maturation cassette with a SPASM domain protein. SPASM (TIGR04085) usually occurs as a C-terminal extension to radical SAM enzymes that act as peptide maturases, although it can occur independently.

@@ -1,0 +1,17 @@
+ID  TIGR00052
+AC  TIGR00052
+DE  nudix-type nucleoside diphosphatase, YffH/AdpP family
+AU  Richardson DL, Haft DH
+TC  79.55 79.55
+NC  64.10 64.10
+AL  msa_tigr
+IT  subfamily
+EN  nudix-type nucleoside diphosphatase, YffH/AdpP family
+EC  3.6.1.-
+TP  TIGRFAMs
+CC  Members of this family include proteins of about 200 amino acids, including the recently characterized nudix hydrolase YffH, shows to be highly active as a GDP-mannose pyrophosphatase. It also includes the C-terminal half of a 361-amino acid protein, TrgB from Rhodobacter sphaeroides, shown experimentally to help confer tellurite resistance. This HMM also hits a region near the C-terminus of a 1092-amino acid protein of C. elegans.
+RN  [1]
+RM  PMID: 16766526
+RT  Three New Nudix Hydrolases from Escherichia coli.
+RA  Xu W, Dunn CA, O'handley SF, Smith DL, Bessman MJ
+RL  J Biol Chem. 2006 Aug 11;281(32):22794-8.

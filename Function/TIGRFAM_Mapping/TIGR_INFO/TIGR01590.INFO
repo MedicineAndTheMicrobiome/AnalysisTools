@@ -1,0 +1,24 @@
+ID  yir-bir-cir_Pla
+AC  TIGR01590
+DE  yir/bir/cir-family of variant antigens
+AU  Selengut J
+TC  71.10 71.10
+NC  46.55 46.55
+AL  clustalw
+IT  paralog
+EN  yir/bir/cir-family of variant antigens, Plasmodium-specific
+TP  TIGRFAMs
+CC  This HMM represents a large paralogous family of variant antigens from several Plasmodium species (P. yoelii, P. berghei and P. chabaudi).  The seed was generated from a list of ORF's in P. yoelii containing a paralagous domain as defined by an algorithm implemented at TIFR [1].  The list was aligned and reduced to six sequences approximating the most divergent clades present in the data set.  
+CC  The model only hits genes previously characterized as yir, bir, or cir genes above the trusted cutoff.  In between trusted and noise is one gene from P. vivax (vir25) which has been characterized as a distant relative of the yir/bir/cir family [2].  The vir family [3] appears to be present in 600-1000 copies per haploid genome and is preferentially located in the sub-telomeric regions of the chromosomes.  The genomic data for yoelii is consistent with this observation.  It is not believed that there are any orthologs of this family in P. falciparum.
+RN  [1]
+RL  TIGR, unpublished data
+RN  [2]
+RM  PMID: 11298455
+RT  A superfamily of variant genes encoded in the subtelomeric region of Plasmodium vivax.
+RA  del Portillo HA, Fernandez-Becerra C, Bowman S, Oliver K, Preuss M, Sanchez CP, Schneider NK, Villalobos JM, Rajandream MA, Harris D, Pereira da Silva LH, Barrell B, Lanzer M.
+RL  Nature. 2001 Apr 12;410(6830):839-42.
+RN  [3]
+RM  PMID: 11886633
+RT  A large gene family for putative variant antigens shared by human and rodent malaria parasites.
+RA  Janssen CS, Barrett MP, Turner CM, Phillips RS.
+RL  Proc R Soc Lond B Biol Sci 2002 Feb 22;269(1489):431-6

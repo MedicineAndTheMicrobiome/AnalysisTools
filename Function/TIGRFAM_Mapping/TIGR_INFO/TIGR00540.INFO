@@ -1,0 +1,12 @@
+ID  TPR_hemY_coli
+AC  TIGR00540
+DE  heme biosynthesis-associated TPR protein
+AU  Haft DH
+TC  142.00 142.00
+NC  138.00 138.00
+AL  muscle
+IT  hypoth_equivalog
+EN  heme biosynthesis-associated TPR protein
+GS  hemY
+TP  TIGRFAMs
+CC  Members of this protein family are uncharacterized tetratricopeptide repeat (TPR) proteins invariably found in heme biosynthesis gene clusters. The absence of any invariant residues other than Ala argues against this protein serving as an enzyme per se. The gene symbol hemY assigned in E. coli is unfortunate in that an unrelated protein, protoporphyrinogen oxidase (HemG in E. coli) is designated HemY in Bacillus subtilis.

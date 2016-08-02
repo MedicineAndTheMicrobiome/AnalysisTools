@@ -1,0 +1,12 @@
+ID  CM_M_hiGC-arch
+AC  TIGR01808
+DE  chorismate mutase
+AU  Selengut J
+TC  52.15 52.15
+NC  50.65 50.65
+AL  clustalw
+IT  equivalog_domain
+EN  monofunctional chorismate mutase, high GC gram positive type
+EC  5.4.99.5
+TP  TIGRFAMs
+CC  This model represents the monofunctional chorismate mutase from high GC gram-positive bacteria and archaea.  Trusted annotations from Corynebacterium and Pyrococcus are aparrently the sole chorismate mutase enzymes in their respective genomes.  This is coupled with the presence in those genomes of the enzymes of the chorismate pathways both up- and downstream of chorismate mutase.

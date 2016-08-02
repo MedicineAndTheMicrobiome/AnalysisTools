@@ -1,0 +1,15 @@
+ID  dsbE
+AC  TIGR00385
+DE  periplasmic protein thiol:disulfide oxidoreductases, DsbE subfamily
+AU  Loftus BJ
+TC  123.15 123.15
+NC  82.00 82.00
+AL  clustalw
+IT  subfamily
+EN  periplasmic protein thiol:disulfide oxidoreductases, DsbE subfamily
+GS  dsbE
+TP  TIGRFAMs
+CC  Involved in the biogenesis of c-type cytochromes as well as in disulfide bond formation in some periplasmic proteins.
+DR  PROSITE; PDOC00172;
+DR  EGAD; 7765;
+DR  SWISSPROT; P33926;

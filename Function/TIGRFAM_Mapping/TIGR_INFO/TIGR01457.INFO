@@ -1,0 +1,11 @@
+ID  HAD-SF-IIA-hyp2
+AC  TIGR01457
+DE  HAD hydrolase, TIGR01457 family
+AU  Selengut J
+TC  247.65 247.65
+NC  179.35 179.35
+AL  clustalw
+IT  hypoth_equivalog
+EN  HAD-superfamily subfamily IIA hydrolase, TIGR01457
+TP  TIGRFAMs
+CC  This hypothetical equivalog is a member of the Class IIA subfamily of the haloacid dehalogenase superfamily of aspartate-nucleophile hydrolases.  The sequences modelled by this equivalog are all gram positive (low-GC) bacteria.  Sequences found in this HMM are annotated variously as related to NagD or 4-nitrophenyl phosphatase, and this hypothetical equivalog, of all of those within the Class IIA subfamily, is most closely related to the E. coli NagD enzyme and the PGP_euk equivalog (TIGR01452).  However, there is presently no evidence that this hypothetical equivalog has the same function of either those.

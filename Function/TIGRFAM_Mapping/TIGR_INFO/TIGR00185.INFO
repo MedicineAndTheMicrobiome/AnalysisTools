@@ -1,0 +1,23 @@
+ID  tRNA_yibK_trmL
+AC  TIGR00185
+DE  tRNA (cytidine(34)-2'-O)-methyltransferase
+AU  Richardson DL, Haft DH
+TC  190.60 190.60
+NC  88.85 88.85
+AL  clustalw
+IT  equivalog
+EN  tRNA (cytidine(34)-2'-O)-methyltransferase
+GS  trmL
+EC  2.1.1.207
+TP  TIGRFAMs
+CC  TrmL (previously YibK) is responsible for 2'-O-methylation at tRNA(Leu) position 34.
+RN  [1]
+RM  PMID:20855540 
+RT  YibK is the 2'-O-methyltransferase TrmL that modifies the wobble nucleotide in Escherichia coli tRNA(Leu) isoacceptors. 
+RA  Benitez-Paez A, Villarroya M, Douthwaite S, Gabaldon T, Armengod ME 
+RL  RNA. 2010 Nov;16(11):2131-43.
+RN  [2]
+RM  PMID:12596263 
+RT  Structure of the YibK methyltransferase from Haemophilus influenzae (HI0766): a cofactor bound at a site formed by a knot. 
+RA  Lim K, Zhang H, Tempczyk A, Krajewski W, Bonander N, Toedt J, Howard A, Eisenstein E, Herzberg O 
+RL  Proteins. 2003 Apr 1;51(1):56-67.

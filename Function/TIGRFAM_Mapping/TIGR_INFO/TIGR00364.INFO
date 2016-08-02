@@ -1,0 +1,33 @@
+ID  TIGR00364
+AC  TIGR00364
+DE  queuosine biosynthesis protein QueC
+AU  Loftus BJ, Haft DH
+TC  150.30 150.30
+NC  86.20 86.20
+AL  clustalw
+IT  equivalog
+EN  queuosine biosynthesis protein QueC
+GS  queC
+TP  TIGRFAMs
+CC  Members of this protein family are QueC, involved in synthesizing pre-Q0 from GTP en route to tRNA modification with queuosine. This protein family is represented by a single member in nearly every completed large (> 1000 genes) prokaryotic genome. In Rhizobium meliloti, the gene was designated exsB, possibly because of polar effects on exsA expression in a shared polycistronic mRNA. In Arthrobacter viscosus, the homologous gene was designated ALU1 and was associated with an aluminum tolerance phenotype.
+RN  [1]
+RM  PMID:16199558 
+RT  Genetic analysis identifies a function for the queC (ybaX) gene product at an initial step in the queuosine biosynthetic pathway in Escherichia coli. 
+RA  Gaur R, Varshney U 
+RL  J Bacteriol. 2005 Oct;187(20):6893-901.
+RN  [2]
+RM  PMID: 14660578
+RT  Identification of four genes necessary for biosynthesis of the modified nucleoside queuosine.
+RA  Reader JS, Metzgar D, Schimmel P, de Crecy-Lagard V
+RL  J Biol Chem. 2004 Feb 20;279(8):6280-5.
+RN  [3]
+RM  9045825
+RT  Functional analysis of exsC and exsB in regulation of exoenzyme S production by Pseudomonas aeruginosa.
+RA  Goranson J, Hovey AK, Frank DW.
+RL  J Bacteriol 1997 Mar;179(5):1646-54
+RN  [4]
+RM  98042479
+RT  Isolation of ALU1-P gene encoding a protein with aluminum tolerance activity from Arthrobacter viscosus.
+RA  Jo J, Jang YS, Kim KY, Kim MH, Kim IJ, Chung WI
+RL  Biochem Biophys Res Commun 1997 Oct 29;239(3):835-9
+DR  HAMAP; MF_01633; 386 of 392

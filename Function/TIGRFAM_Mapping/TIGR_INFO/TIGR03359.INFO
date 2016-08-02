@@ -1,0 +1,23 @@
+ID  VI_chp_6
+AC  TIGR03359
+DE  type VI secretion protein, TIGR03359 family
+AU  Haft DH
+TC  260.30 260.30
+NC  213.30 213.30
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  type VI secretion protein, VC_A0110 family
+GS  vasA
+TP  TIGRFAMs
+CC  This protein family is associated with type VI secretion in a number of pathogenic bacteria. Mutation is associated with impaired virulence, such as impaired infection of plants by Rhizobium leguminosarum.
+RN  [1]
+RM  PMID: 16432199
+RT  Identification of a conserved bacterial protein secretion system in Vibrio cholerae using the Dictyostelium host model system.
+RA  Pukatzki S, Ma AT, Sturtevant D, Krastins B, Sarracino D, Nelson WC, Heidelberg JF, Mekalanos JJ
+RL  Proc Natl Acad Sci U S A. 2006 Jan 31;103(5):1528-33.RN  [2]
+RM  PMID: 16763151
+RT  A virulence locus of Pseudomonas aeruginosa encodes a protein secretion apparatus.
+RA  Mougous JD, Cuff ME, Raunser S, Shen A, Zhou M, Gifford CA, Goodman AL, Joachimiak G, Ordonez CL, Lory S, Walz
+T, Joachimiak A,
+Mekalanos JJ
+RL  Science. 2006 Jun 9;312(5779):1526-30.

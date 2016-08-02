@@ -1,0 +1,18 @@
+ID  PaaD
+AC  TIGR02286
+DE  phenylacetic acid degradation protein PaaD
+AU  Selengut J
+TC  118.90 118.90
+NC  77.00 77.00
+AL  clustalw
+IT  equivalog
+EN  phenylacetic acid degradation protein PaaD
+GS  paaD
+TP  TIGRFAMs
+CC  This member of the domain family TIGR00369 (which is, in turn, a member of the PF03061 thioesterase superfamily) is nearly always found adjacent to other genes of the phenylacetic acid degradation pathway [1].  Its function is currently unknown, but a role as a thioesterase is not inconsistent with the proposed overall pathway.
+CC  Sequences scoring between trusted and noise include those from archaea and other species not known to catabolize phenylacetic acid and which are not adjacent to other genes potentially involved with such a pathway.
+RN  [1]
+RM  PMID: 11260461
+RT  The phenylacetyl-CoA catabolon: a complex catabolic unit with broad biotechnological applications.
+RA  Luengo JM, Garcia JL, Olivera ER.
+RL  Mol Microbiol. 2001 Mar;39(6):1434-42.

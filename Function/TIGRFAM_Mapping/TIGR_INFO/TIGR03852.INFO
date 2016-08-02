@@ -1,0 +1,23 @@
+ID  sucrose_gtfA
+AC  TIGR03852
+DE  sucrose phosphorylase
+AU  Haft DH
+TC  334.40 334.40
+NC  240.75 240.75
+AL  muscle_manual
+IT  equivalog
+EN  sucrose phosphorylase
+GS  gtfA
+EC  2.4.1.7
+TP  TIGRFAMs
+CC  In the forward direction, this enzyme uses phosphate to cleave sucrose into D-fructose + alpha-D-glucose 1-phosphate. Characterized representatives from Streptococcus mutans and Bifidobacterium adolescentis represent well-separated branches of a molecular phylogenetic tree. In S. mutans, the region including this gene has been associated with neighboring transporter genes and multiple sugar metabolism.
+RN  [1]
+RM  PMID:2971020
+RT  Streptococcus mutans gtfA gene specifies sucrose phosphorylase.
+RA  Russell RR, Mukasa H, Shimamura A, Ferretti JJ
+RL  Infect Immun. 1988 Oct;56(10):2763-5.
+RN  [2]
+RM  PMID:16990265
+RT  Structural rearrangements of sucrose phosphorylase from Bifidobacterium adolescentis during sucrose conversion.
+RA  Mirza O, Skov LK, Sprogoe D, van den Broek LA, Beldman G, Kastrup JS, Gajhede M
+RL  J Biol Chem. 2006 Nov 17;281(46):35576-84. Epub 2006 Sep 21.

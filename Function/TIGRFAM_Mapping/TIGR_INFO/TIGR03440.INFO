@@ -1,0 +1,17 @@
+ID  egtB_TIGR03440
+AC  TIGR03440
+DE  ergothioneine biosynthesis protein EgtB
+AU  Haft DH
+TC  240.00 240.00
+NC  210.00 210.00
+AL  muscle_manual
+IT  subfamily
+EN  ergothioneine biosynthesis protein EgtB
+GS  egtB
+TP  TIGRFAMs
+CC  Members of this family include EgtB, and enzyme of the ergothioneine biosynthesis, as found in numerous Actinobacteria. Characterized homologs to this family include a formylglycine-generating enzyme that serves as a maturase for an aerobic sulfatase (cf. the radical SAM enzymes that serve as anaerobic sulfatase maturases).
+RN  [1]
+RM  PMID:20420449 
+RT  In vitro reconstitution of Mycobacterial ergothioneine biosynthesis. 
+RA  Seebeck FP 
+RL  J Am Chem Soc. 2010 May 19;132(19):6632-3.

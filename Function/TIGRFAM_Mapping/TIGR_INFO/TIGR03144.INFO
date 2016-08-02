@@ -1,0 +1,18 @@
+ID  cytochr_II_ccsB
+AC  TIGR03144
+DE  cytochrome c-type biogenesis protein CcsB
+AU  Haft DH
+TC  187.60 187.60
+NC  138.75 138.75
+AL  manual
+IT  equivalog
+EN  cytochrome c-type biogenesis protein CcsB
+GS  ccsB
+TP  TIGRFAMs
+CC  Members of this protein family represent one of two essential proteins of system II for c-type cytochrome biogenesis. Additional proteins tend to be part of the system but can be replaced by chemical reductants such as dithiothreitol. This protein is designated CcsB in Bordetella pertussis and some other bacteria, resC in Bacillus (where there is additional N-terminal sequence), and CcsA in chloroplast. We use the CcsB designation here. Member sequences show regions of strong sequence conservation and variable-length, poorly conserved regions in between; sparsely filled columns were removed from the seed alignment prior to model construction.
+RN  [1]
+RM  PMID: 15937156
+RT  Mutations in cytochrome assembly and periplasmic redox pathways in Bordetella pertussis.
+RA  Feissner RE, Beckett CS, Loughman JA, Kranz RG
+RL  J Bacteriol. 2005 Jun;187(12):3941-9.
+DR  HAMAP; MF_01391; 100 of 136

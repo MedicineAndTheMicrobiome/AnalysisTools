@@ -1,0 +1,17 @@
+ID  clan_AA_DTGA
+AC  TIGR02281
+DE  clan AA aspartic protease, TIGR02281 family
+AU  Haft DH
+TC  57.95 57.95
+NC  40.45 40.45
+AL  clustalw
+IT  subfamily
+EN  clan AA aspartic protease, TIGR02281 family
+EC  3.4.23.-
+TP  TIGRFAMs
+CC  This family consists of predicted aspartic proteases, typically from 180 to 230 amino acids in length, in MEROPS clan AA. This model describes the well-conserved 121-residue C-terminal region. The poorly conserved, variable length N-terminal region usually contains a predicted transmembrane helix. Sequences in the seed alignment and those scoring above the trusted cutoff are Proteobacterial; homologs scroing between trusted and noise are found in Pyrobaculum aerophilum str. IM2 (archaeal), Pirellula sp. (Planctomycetes), and Nostoc sp. PCC 7120 (Cyanobacteria).
+RN  [1]
+RM  PMID:19173708 
+RT  Bioinformatic flowchart and database to investigate the origins and diversity of clan AA peptidases. 
+RA  Llorens C, Futami R, Renaud G, Moya A 
+RL  Biol Direct. 2009 Jan 27;4:3.

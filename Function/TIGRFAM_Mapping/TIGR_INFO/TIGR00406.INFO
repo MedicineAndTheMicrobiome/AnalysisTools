@@ -1,0 +1,19 @@
+ID  prmA
+AC  TIGR00406
+DE  ribosomal protein L11 methyltransferase
+AU  Loftus BJ, Haft DH
+TC  183.15 183.15
+NC  112.05 112.05
+AL  clustalw
+IT  equivalog
+EN  ribosomal protein L11 methyltransferase
+GS  prmA
+EC  2.1.1.-
+TP  TIGRFAMs
+CC  Ribosomal protein L11 methyltransferase is an S-adenosyl-L-methionine-dependent methyltransferase required for the modification of ribosomal protein L11. This protein is found in bacteria and (with a probable transit peptide) in Arabidopsis.
+DR  INTERPRO; IPR000051; SAM_bind
+DR  EGAD;36278; 
+DR  Swissprot; P28637;
+DR  Swissprot; P44402;
+RL  J. BACTERIOL. 175:7178-7188(1993)
+DR  HAMAP; MF_00735; 266 of 304

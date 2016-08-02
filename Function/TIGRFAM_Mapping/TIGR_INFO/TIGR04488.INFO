@@ -1,0 +1,17 @@
+ID  SoxY_true_GGCGG
+AC  TIGR04488
+DE  thiosulfate oxidation carrier protein SoxY
+AU  Haft DH
+TC  125.00 125.00
+NC  120.00 120.00
+AL  muscle_manual
+IT  equivalog
+EN  thiosulfate oxidation carrier protein SoxY
+GS  soxY
+TP  TIGRFAMs
+CC  Members of this family are bona fide SoxY, the sulfate carrier protein with the GGCGG ir GGCG swinging arm C-terminal sequence. The Cys in the swinging arm is the residue to which the inorganic sulfate moiety becomes covalently attached. In some species, a closely related paralog occurs as well (TIGR04487), with a swinging arm sequence AACIE. More distantly related forms have an additional C-terminal SoxZ-related domain. All members are periplasmic and have an N-terminal twin-arginine translocation (TAT) signal sequence.
+RN  [1]
+RM  PMID:17522046 
+RT  The SoxYZ complex carries sulfur cycle intermediates on a peptide swinging arm. 
+RA  Sauve V, Bruno S, Berks BC, Hemmings AM 
+RL  J Biol Chem. 2007 Aug 10;282(32):23194-204. Epub 2007 May 23.

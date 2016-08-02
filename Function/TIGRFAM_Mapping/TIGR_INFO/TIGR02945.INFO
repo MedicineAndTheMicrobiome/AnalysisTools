@@ -1,0 +1,12 @@
+ID  SUF_assoc
+AC  TIGR02945
+DE  FeS assembly SUF system protein
+AU  Haft DH
+TC  143.40 143.40
+NC  118.00 118.00
+AL  muscle
+IT  hypoth_equivalog
+EN  FeS assembly SUF system protein
+TP  TIGRFAMs
+CC  Members of this family belong to the broader Pfam family PF01883, or Domain of Unknown Function DUF59. Many members of DUF59 are candidate ring hydroxylating complex subunits. However, members of the narrower family defined here all are found in genomes that carry the FeS assembly SUF system. For 70 % of these species, the member of this protein family is found as part of the SUF locus, usually immediately downstream of the sufS gene.
+DR  PFAM; PF01883; DUF59; Domain of unknown function

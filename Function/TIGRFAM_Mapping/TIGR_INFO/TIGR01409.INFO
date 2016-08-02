@@ -1,0 +1,23 @@
+ID  TAT_signal_seq
+AC  TIGR01409
+DE  Tat (twin-arginine translocation) pathway signal sequence
+AU  Haft DH
+TC  16.70 16.70
+NC  16.70 16.70
+AL  manual
+IT  domain
+EN  Tat (twin-arginine translocation) pathway signal sequence
+TP  TIGRFAMs
+CC  Proteins assembled with various cofactors or by means of cytosolic molecular chaperones are poor candidates for translocation across the bacterial inner membrane by the standard general secretory (Sec) pathway. This model describes a family of predicted long, non-Sec signal sequences and signal-anchor sequences (uncleaved signal sequences). All contain an absolutely conserved pair of arginine residues, in a motif approximated by (S/T)-R-R-X-F-L-K, followed by a membrane-spanning hydrophobic region.
+CC  Members with small amino acid side chains at the -1 and -3 positions from the C-terminus of the model should be predicted to be cleaved as are Sec pathway signal sequences. Members are almost exclusively bacterial, although archaeal sequences are also found. A large fraction of the members of this family may have bound redox-active cofactors.
+RN  [1]
+RM  8939424
+RT  A common export pathway for proteins binding complex redox cofactors?
+RA  Berks BC.
+RL  Mol Microbiol 1996 Nov;22(3):393-404
+RN  [2]
+RM  10652088
+RT  The Tat protein export pathway.
+RA  Berks BC, Sargent F, Palmer T.
+RL  Mol Microbiol 2000 Jan;35(2):260-74
+DR  HAMAP; MF_01630; 90 of 93

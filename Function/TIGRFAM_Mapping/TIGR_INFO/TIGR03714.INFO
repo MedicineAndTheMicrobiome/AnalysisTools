@@ -1,0 +1,17 @@
+ID  secA2
+AC  TIGR03714
+DE  accessory Sec system translocase SecA2
+AU  Haft DH
+TC  930.00 928.00
+NC  927.00 927.00
+AL  muscle_manual
+IT  equivalog
+EN  accessory Sec system translocase SecA2
+GS  secA2
+TP  TIGRFAMs
+CC  Members of this protein family are homologous to SecA and part of the accessory Sec system. This system, including both five core proteins for export and a variable number of proteins for glycosylation, operates in certain Gram-positive pathogens for the maturation and delivery of serine-rich glycoproteins such as the cell surface glycoprotein GspB in Streptococcus gordonii.
+RN  [1]
+RM  PMID:18621893
+RT  Characterization of the accessory Sec system of Staphylococcus aureus.
+RA  Siboo IR, Chaffin DO, Rubens CE, Sullam PM
+RL  J Bacteriol. 2008 Sep;190(18):6188-96.

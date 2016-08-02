@@ -1,0 +1,11 @@
+ID  AZL_007920_fam
+AC  TIGR04052
+DE  AZL_007920/MXAN_0976 family protein
+AU  Haft DH
+TC  95.05 95.05
+NC  90.75 90.75
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  AZL_007920/MXAN_0976 family protein
+TP  TIGRFAMs
+CC  Members of this rare protein family regularly occur next to a member of the MXAN_0977 subfamily (TIGR04039) of the di-heme cytochrome c peroxidase/MauG family (PF03150). MauG itself (TIGR03791) is a protein modification enzyme responsible for the tryptophan tryptophylquinone (TTQ) modification involved in methylamine dehydrogenase activation. All members of this family have a motif of four spaced invariant Cys residues, while additional homologs outside the scope of this family lack the four Cys residues.

@@ -1,0 +1,24 @@
+ID  dat
+AC  TIGR00709
+DE  2,4-diaminobutyrate 4-transaminase
+AU  Haft DH
+TC  401.60 401.60
+NC  334.40 334.40
+AL  clustalw
+IT  subfamily
+EN  2,4-diaminobutyrate 4-transaminases
+EC  2.6.1.-
+TP  TIGRFAMs
+CC  This family consists of L-diaminobutyric acid transaminases. This general designation covers both 2.6.1.76 (diaminobutyrate-2-oxoglutarate transaminase, which uses glutamate as the amino donor in DABA biosynthesis), and 2.6.1.46 (diaminobutyrate--pyruvate transaminase, which uses alanine as the amino donor). Most members with known function are 2.6.1.76, and at least some annotations as 2.6.1.46 in current databases at time of model revision are incorrect.  A distinct branch of this family contains examples of 2.6.1.76 nearly all of which are involved in ectoine biosynthesis. A related enzyme is 4-aminobutyrate aminotransferase (EC 2.6.1.19), also called GABA transaminase. These enzymes all are pyridoxal phosphate-containing class III aminotransferase.
+AL  clustalw
+DR  PROSITE; PDOC00519; Aminotransferases class-III pyridoxal-phosphate attachment site
+DR  PFAM; PF00202; Aminotransferases class-III pyridoxal-phosphate
+RN  [1]
+RM  97405910
+RN  [2]
+RM  98173550
+DR  EXPERIMENTAL; EGAD|27972|HI0949; Haemophilus influenzae
+DR  EXPERIMENTAL; EGAD|149638|159677; Acinetobacter baumannii
+DR  EXPERIMENTAL; EGAD|149640|159679; Marinococcus halophilus
+DR  OUTGROUP; EGAD|18860|EC2662
+DR  OUTGROUP; EGAD|170770|APE0457

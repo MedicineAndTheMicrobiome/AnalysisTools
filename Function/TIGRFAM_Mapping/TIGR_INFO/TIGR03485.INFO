@@ -1,0 +1,12 @@
+ID  cas_csx13_N
+AC  TIGR03485
+DE  CRISPR-associated protein Cas8a1/Csx13, MYXAN subtype
+AU  Haft DH
+TC  80.85 80.85
+NC  80.35 80.35
+AL  muscle
+IT  hypoth_equivalog_domain
+EN  CRISPR-associated protein Cas8a1/Csx13, MYXAN subtype
+GS  cas8a1
+TP  TIGRFAMs
+CC  Members of this family are found among cas (CRISPR-Associated) genes close to CRISPR repeats in Leptospira interrogans (a spirochete), Myxococcus xanthus (a delta-proteobacterium), and Lyngbya sp. PCC 8106 (a cyanobacterium). It is found with other cas genes in Anabaena variabilis ATCC 29413. In Lyngbya sp., the protein is split into two tandem genes. This model corresponds to the N-terminal region or upstream gene; the C-terminal region is described by TIGR03486. CRISPR/cas systems are associated with prokaryotic acquired resistance to phage and other exogenous DNA.

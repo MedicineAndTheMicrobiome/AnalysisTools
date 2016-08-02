@@ -1,0 +1,13 @@
+ID  2am3keto_CoA
+AC  TIGR01822
+DE  glycine C-acetyltransferase
+AU  Haft DH
+TC  493.00 493.00
+NC  439.10 439.10
+AL  clustalw
+IT  equivalog
+EN  glycine C-acetyltransferase
+GS  kbl
+EC  2.3.1.29
+TP  TIGRFAMs
+CC  This HMM represents a narrowly defined clade of animal and bacterial (almost exclusively Proteobacterial) 2-amino-3-ketobutyrate--CoA ligase, now called glycine C-acetyltransferase. This enzyme can act in threonine catabolism. The closest homolog from Bacillus subtilis, and sequences like it, may be functionally equivalent but were not included in the model because of difficulty in finding reports of function.

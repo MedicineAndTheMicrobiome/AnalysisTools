@@ -1,0 +1,18 @@
+ID  Mo_ABC_porter
+AC  TIGR01581
+DE  NifC-like ABC-type porter
+AU  Selengut J
+TC  210.30 210.30
+NC  202.60 202.60
+AL  clustalw
+IT  hypoth_equivalog
+EN  NifC-like ABC-type porter
+TR  3.A.1.-.-
+TP  TIGRFAMs
+CC  This model describes a clade of ABC porter genes with relatively weak homology compared to its neighbor clades, the molybdate (TIGR02141) and sulfate (TIGR00969) porters.  Neighbor-Joining, PAM-distance  phylogenetic trees support the separation of the clades in this way.
+CC  Included in this group is a gene designated NifC in Clostridium pasturianum [1].  It would be reasonable to presume that NifC acts as a molybdate porter since the most common form of nitrogenase is a molybdoenzyme.  Several other sequences falling within the scope of this model are annotated as molybdate porters and one, from Halobacterium, is annotated as a sulfate porter.  There is presently no experimental evidence to support annotations with this degree of specificity.
+RN  [1]
+RM  PMID: 2194453
+RT  A nitrogen-fixation gene (nifC) in Clostridium pasteurianum with sequence similarity to chlJ of Escherichia coli.
+RA  Wang SZ, Chen JS, Johnson JL.
+RL  Biochem Biophys Res Commun. 1990 Jun 29;169(3):1122-8.

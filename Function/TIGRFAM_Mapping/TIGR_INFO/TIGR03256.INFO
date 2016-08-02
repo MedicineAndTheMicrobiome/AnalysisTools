@@ -1,0 +1,13 @@
+ID  met_CoM_red_alp
+AC  TIGR03256
+DE  methyl-coenzyme M reductase, alpha subunit
+AU  Haft DH
+TC  767.75 767.75
+NC  314.45 314.45
+AL  muscle
+IT  equivalog
+EN  methyl-coenzyme M reductase, alpha subunit
+GS  mcrA
+EC  2.8.4.1
+TP  TIGRFAMs
+CC  Members of this protein family are the alpha subunit of methyl coenzyme M reductase, also called coenzyme-B sulfoethylthiotransferase (EC 2.8.4.1). This enzyme, with alpha, beta, and gamma subunits, catalyzes the last step in methanogenesis. Several methanogens have encode two such enzymes, designated I and II; this model does not separate the isozymes.

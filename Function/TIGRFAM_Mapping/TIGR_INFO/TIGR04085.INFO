@@ -1,0 +1,26 @@
+ID  rSAM_more_4Fe4S
+AC  TIGR04085
+DE  radical SAM additional 4Fe4S-binding SPASM domain
+AU  Haft DH
+TC  27.00 27.00
+NC  16.00 16.00
+AL  clustalw_manual
+IT  domain
+EN  radical SAM additional 4Fe4S-binding SPASM domain
+TP  TIGRFAMs
+CC  This domain contains regions binding additional 4Fe4S clusters found in various radical SAM proteins C-terminal to the domain described by model PF04055. Radical SAM enzymes with this domain tend to be involved in protein modification, including anaerobic sulfatase maturation proteins, a quinohemoprotein amine dehydrogenase biogenesis protein, the Pep1357-cyclizing radical SAM enzyme, and various bacteriocin biosynthesis proteins. The motif CxxCxxxxxCxxxC is nearly invariant for members of this family, although PqqE has a variant form. We name this domain SPASM for Subtilosin, PQQ, Anaerobic Sulfatase, and Mycofactocin.
+RN  [1]
+RM  PMID:21478363 
+RT  Biological systems discovery in silico: radical S-adenosylmethionine protein families and their target peptides for posttranslational modification. 
+RA  Haft DH, Basu MK 
+RL  J Bacteriol. 2011 Jun;193(11):2745-55. Epub 2011 Apr 8.
+RN  [1]
+RM  PMID:21223593 
+RT  Bioinformatic evidence for a widely distributed, ribosomally produced electron carrier precursor, its maturation proteins, and its nicotinoprotein redox partners. 
+RA  Haft DH 
+RL  BMC Genomics. 2011 Jan 11;12:21.
+RN  [3]
+RM  PMID:20218986 
+RT  Anaerobic sulfatase-maturating enzyme--a mechanistic link with glycyl radical-activating enzymes? 
+RA  Benjdia A, Subramanian S, Leprince J, Vaudry H, Johnson MK, Berteau O 
+RL  FEBS J. 2010 Apr;277(8):1906-20. Epub 2010 Mar 9.

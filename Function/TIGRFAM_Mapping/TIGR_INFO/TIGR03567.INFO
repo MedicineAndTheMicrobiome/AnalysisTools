@@ -1,0 +1,23 @@
+ID  FMN_reduc_SsuE
+AC  TIGR03567
+DE  FMN reductase
+AU  Haft DH
+TC  164.05 164.05
+NC  112.25 112.25
+AL  muscle_manual
+IT  equivalog
+EN  FMN reductase, SsuE family
+GS  ssuE
+EC  1.5.1.38
+TP  TIGRFAMs
+CC  Members of this protein family use NAD(P)H to reduce FMN and regenerate FMNH2. Members include the homodimeric, NAD(P)H-dependent enzyme SsuE from Escherichia coli, which serves as a partner to an FMNH2-dependent alkanesulfonate monooxygenase. It is induced by sulfate starvation. The NADH-dependent enzyme MsuE from Pseudomonas aeruginosa is outside the scope of this model (see model TIGR03566).
+RN  [1]
+RM  PMID:17289450
+RT  Mechanism of flavin reduction in the alkanesulfonate monooxygenase system.
+RA  Gao B, Ellis HR
+RL  Biochim Biophys Acta. 2007 Mar;1774(3):359-67.
+RN  [2]
+RM  PMID:10480865
+RT  Characterization of a two-component alkanesulfonate monooxygenase from Escherichia coli.
+RA  Eichhorn E, van der Ploeg JR, Leisinger T
+RL  J Biol Chem. 1999 Sep 17;274(38):26639-46.

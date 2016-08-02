@@ -1,0 +1,21 @@
+ID  rusti_cyanin
+AC  TIGR03095
+DE  rusticyanin
+AU  Haft DH
+TC  146.70 146.70
+NC  68.50 68.50
+AL  muscle
+IT  equivalog
+EN  rusticyanin
+TP  TIGRFAMs
+CC  Rusticyanin is a blue copper protein, described in an obligate acidophilic chemolithoautroph, Acidithiobacillus ferrooxidans, as an electron transfer protein. It can constitute up to 5 percent of protein in cells grown on Fe(II) and is thought to be part of an electron chain for Fe(II) oxidation, with two c-type cytochromes, an aa3-type cytochrome oxidase, and 02 as terminal electron acceptor. It is rather closely related to sulfocyanin (TIGR03094).
+RN  [1]
+RM  PMID: 15256554
+RT  Regulation of the expression of the Acidithiobacillus ferrooxidans rus operon encoding two cytochromes c, a cytochrome oxidase and rusticyanin.
+RA  Yarzabal A, Appia-Ayme C, Ratouchniak J, Bonnefoy V
+RL  Microbiology. 2004 Jul;150(Pt 7):2113-23.
+RN  [2]
+RM  PMID: 15357880
+RT  Functionally specified protein signatures distinctive for each of the different blue copper proteins.
+RA  Giri AV, Anishetty S, Gautam P
+RL  BMC Bioinformatics. 2004 Sep 9;5:127.

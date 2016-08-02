@@ -1,0 +1,12 @@
+ID  traB
+AC  TIGR00261
+DE  TraB family protein
+AU  Loftus BJ
+TC  178.35 178.35
+NC  145.10 145.10
+AL  clustalw
+IT  subfamily
+EN  pheromone shutdown-related protein TraB
+TP  TIGRFAMs
+CC  traB is a plasmid encoded gene that functions in the shutdown of the peptide sex pheromone cPD1 which is produced by the plasmid free recipient cell prior to conjugative transfer in Enterococcus faecalis. Once the recipient acquires the plasmid, production of cPD1 is shut down. The gene product may play another role in the other species in the family.
+DR  GB:D28859

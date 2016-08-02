@@ -1,0 +1,15 @@
+ID  nagB
+AC  TIGR00502
+DE  glucosamine-6-phosphate deaminase
+AU  Anolik RT, Richardson DL
+TC  236.90 236.90
+NC  130.85 130.85
+AL  clustalw
+IT  equivalog
+EN  glucosamine-6-phosphate isomerase
+GS  nagB
+EC  3.5.99.6
+TP  TIGRFAMs
+CC  The set of proteins recognized by this HMM includes a closely related pair from Bacillus subtilis, one of which is uncharacterized but included as a member of the orthologous set.
+DR  PROSITE; PDOC00894; 
+DR  HAMAP; MF_01241; 139 of 173

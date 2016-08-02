@@ -1,0 +1,36 @@
+ID  bPGM
+AC  TIGR01990
+DE  beta-phosphoglucomutase
+AU  Selengut J
+TC  189.40 189.40
+NC  146.10 146.10
+AL  clustalw
+IT  equivalog
+EN  beta-phosphoglucomutase
+GS  pgmB
+EC  5.4.2.6
+TP  TIGRFAMs
+CC  This model represents the beta-phosphoglucomutase enzyme which catalyzes the interconverison of beta-D-glucose-1-phosphate and beta-D-glucose-6-phosphate.  The 6-phosphate is capable of non-enzymatic anomerization (alpha <-> beta) while the 1-phosphate is not.  A separate enzyme is responsible for the isomerization of the alpha anomers.  Beta-D-glucose-1-phosphate results from the phosphorylysis of maltose (2.4.1.8), trehalose (2.4.1.64) or trehalose-6-phosphate (2.4.1.216).  Alternatively, these reactions can be run in the synthetic direction to create the disaccharides.  All sequenced genomes which contain a member of this family also appear to contain at least one putative maltose or trehalose phosphorylase.  Three species, Lactococcus, Enterococcus and Neisseria appear to contain a pair of paralogous beta-PGM's.
+CC  Beta-phosphoglucomutase is a member of the haloacid dehalogenase superfamily of hydrolase enzymes.  These enzymes are characterized by a series of three catalytic motifs positioned within an alpha-beta (Rossman) fold [1].  beta-PGM contains an inserted alpha helical domain in between the first and second conserved motifs and thus is a member of subfamily IA of the superfamily [2,3].  The third catalytic motif comes in three variants, the third of which, containing a conserved DD or ED, is the only one found here as well as in several other related enzymes (TIGR01509).
+CC  The enzyme from L. lactis has been extensively characterized including a remarkable crystal structure which traps the pentacoordinate transition state [4].
+RN [1]
+RM PMID: 7966317
+RT Computer analysis of bacterial haloacid dehalogenases defines a large superfamily of hydrolases with diverse specificity. Application of an iterative approach to database search.
+RA Koonin EV, Tatusov RL.
+RL J Mol Biol 1994 Nov 18;244(1):125-32
+RN [2]
+RM PMID: 11601995
+RT MDP-1 is a new and distinct member of the haloacid dehalogenase family of aspartate-dependent phosphohydrolases.
+RA Selengut, JD
+RL Biochemistry 2001 Oct 23;40(42):12704-11
+RN [3]
+RM PMID: 10956028
+RT The crystal structure of bacillus cereus phosphonoacetaldehyde hydrolase: insight into catalysis of phosphorus bond cleavage and catalytic diversification wi
+thin the HAD enzyme superfamily.
+RA Morais MC, Zhang W, Baker AS, Zhang G, Dunaway-Mariano D, Allen KN.
+RL Biochemistry 2000 Aug 29;39(34):10385-96
+RN  [4]
+RM  PMID: 12637673
+RT  The pentacovalent phosphorus intermediate of a phosphoryl transfer reaction.
+RA  Lahiri SD, Zhang G, Dunaway-Mariano D, Allen KN.
+RL  Science. 2003 Mar 28;299(5615):2067-71. Epub 2003 Mar 13.

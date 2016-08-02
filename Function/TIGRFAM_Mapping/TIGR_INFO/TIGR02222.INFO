@@ -1,0 +1,22 @@
+ID  chap_CsaA
+AC  TIGR02222
+DE  export-related chaperone protein CsaA
+AU  Haft DH
+TC  119.65 119.65
+NC  94.40 94.40
+AL  clustalw_manual
+IT  subfamily
+EN  export-related chaperone protein CsaA
+GS  csaA
+TP  TIGRFAMs
+CC  This HMM describes Bacillus subtilis CsaA, an export-related chaperone that interacts with the Sec system, and related proteins from a number of other bacteria and archaea. The crystal structure is known for the homodimer from Thermus thermophilus.
+RN  [1]
+RM  11157762
+RT  The crystal structure of the ttCsaA protein: an export-related chaperone from Thermus thermophilus.
+RA  Kawaguchi S, Muller J, Linde D, Kuramitsu S, Shibata T, Inoue Y, Vassylyev DG, Yokoyama S.
+RL  EMBO J. 2001 Feb 1;20(3):562-9.
+RN  [2]
+RM  13129613
+RT  Interaction of the Bacillus subtilis chaperone CsaA with the secretory protein YvaY.
+RA  Linde D, Volkmer-Engert R, Schreiber S, Muller JP.
+RL  FEMS Microbiol Lett. 2003 Sep 12;226(1):93-100.

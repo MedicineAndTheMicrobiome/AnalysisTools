@@ -1,0 +1,15 @@
+ID  moaA
+AC  TIGR02666
+DE  molybdenum cofactor biosynthesis protein A
+AU  Haft DH
+TC  284.05 284.05
+NC  270.95 270.95
+AL  clustalw_manual
+IT  equivalog
+EN  molybdenum cofactor biosynthesis protein A, bacterial
+GS  moaA
+TP  TIGRFAMs
+CC  The model for this family describes molybdenum cofactor biosynthesis protein A, or MoaA, as found in bacteria. It does not include the family of probable functional equivalent proteins from the archaea. MoaA works together with MoaC to synthesize precursor Z from guanine.
+DR  PFAM; PF04055; Radical_SAM
+DR  PFAM; PF06463; Mob_synth_C
+DR  HAMAP; MF_01225; 171 of 198

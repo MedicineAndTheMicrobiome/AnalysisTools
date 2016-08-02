@@ -1,0 +1,12 @@
+ID  plasmid_TraJ
+AC  TIGR02525
+DE  plasmid transfer ATPase TraJ
+AU  Haft DH
+TC  368.30 368.30
+NC  368.15 368.15
+AL  clustalw
+IT  equivalog
+EN  plasmid transfer ATPase TraJ
+GS  traJ
+TP  TIGRFAMs
+CC  Members of this protein family are predicted ATPases associated with plasmid transfer loci in bacteria. This family is most similar to the DotB ATPase of a type-IV secretion-like system of obligate intracellular pathogens Legionella pneumophila and Coxiella burnetii (TIGR02524).

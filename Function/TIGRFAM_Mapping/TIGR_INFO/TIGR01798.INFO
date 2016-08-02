@@ -1,0 +1,13 @@
+ID  cit_synth_I
+AC  TIGR01798
+DE  citrate (Si)-synthase
+AU  Haft DH
+TC  485.15 485.15
+NC  465.10 465.10
+AL  clustalw_manual
+IT  equivalog
+EN  citrate synthase I (hexameric type)
+GS  gltA
+EC  2.3.3.1
+TP  TIGRFAMs
+CC  This HMM describes one of several distinct but closely homologous classes of citrate synthase, the protein that brings carbon (from acetyl-CoA) into the TCA cycle. This form, class I, is known to be hexameric and allosterically inhibited by NADH in Escherichia coli, Acinetobacter anitratum, Azotobacter vinelandii, Pseudomonas aeruginosa, etc. In most species with a class I citrate synthase, a dimeric class II isozyme is found. The class II enzyme may act primarily on propionyl-CoA to make 2-methylcitrate or be bifunctional, may be found among propionate utilization enzymes, and may be constitutive or induced by propionate. Some members of this model group as class I enzymes, and may be hexameric, but have shown regulatory properties more like class II enzymes.

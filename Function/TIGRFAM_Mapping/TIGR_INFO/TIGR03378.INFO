@@ -1,0 +1,14 @@
+ID  glycerol3P_GlpB
+AC  TIGR03378
+DE  glycerol-3-phosphate dehydrogenase, anaerobic, B subunit
+AU  Haft DH
+TC  174.15 174.15
+NC  113.60 113.60
+AL  muscle_manual
+IT  equivalog
+EN  glycerol-3-phosphate dehydrogenase, anaerobic, B subunit
+GS  glpB
+EC  1.1.5.3
+TP  TIGRFAMs
+CC  Members of this protein family are the B subunit, product of the glpB gene, of a three-subunit, membrane-anchored, FAD-dependent anaerobic glycerol-3-phosphate dehydrogenase.
+DR  HAMAP; MF_00753; 45 of 46

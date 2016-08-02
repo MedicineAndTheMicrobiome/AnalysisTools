@@ -1,0 +1,15 @@
+ID  acyl_carrier
+AC  TIGR00517
+DE  acyl carrier protein
+AU  Haft DH
+TC  70.45 70.45
+NC  26.40 26.40
+IT  equivalog
+EN  acyl carrier protein
+GS  acpP
+TP  TIGRFAMs
+CC  This small protein has phosphopantetheine covalently bound to a Ser residue. It acts as a carrier of the growing fatty acid chain, which is bound to the prosthetic group, during fatty acid biosynthesis. Homologous phosphopantetheine-binding domains are found in longer proteins. Acyl carrier proteins scoring above the noise cutoff but below the trusted cutoff may be specialized versions. These include those involved in mycolic acid biosynthesis in the Mycobacteria, lipid A biosynthesis in Rhizobium, actinorhodin polyketide synthesis in Streptomyces coelicolor, etc. This protein is not found in the Archaea.
+CC  Gene name acpP.
+CC  S (Ser) at position 37 in the seed alignment, in the motif DSLD, is the phosphopantetheine attachment site.
+DR  PROSITE; PDOC00012; Phosphopantetheine attachment site
+DR  HAMAP; MF_01217; 345 of 374

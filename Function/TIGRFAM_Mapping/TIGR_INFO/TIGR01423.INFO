@@ -1,0 +1,13 @@
+ID  trypano_reduc
+AC  TIGR01423
+DE  trypanothione-disulfide reductase
+AU  Haft DH
+TC  738.10 738.10
+NC  459.70 459.70
+AL  clustalw
+IT  equivalog
+EN  trypanothione-disulfide reductase
+GS  Tpr
+EC  1.8.1.12
+TP  TIGRFAMs
+CC  Trypanothione, a glutathione-modified derivative of spermidine, is (in its reduced form) an important antioxidant found in trypanosomatids (Crithidia, Leishmania, Trypanosoma). This model describes trypanothione reductase, a possible antitrypanosomal drug target closely related to some forms of glutathione reductase.

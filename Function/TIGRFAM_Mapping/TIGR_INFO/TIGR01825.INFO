@@ -1,0 +1,12 @@
+ID  gly_Cac_T_rel
+AC  TIGR01825
+DE  putative pyridoxal phosphate-dependent acyltransferase
+AU  Haft DH
+TC  535.40 535.40
+NC  491.85 491.85
+AL  clustalw
+IT  subfamily
+EN  pyridoxal phosphate-dependent acyltransferase, putative
+EC  2.3.1.-
+TP  TIGRFAMs
+CC  This HMM represents an enzyme subfamily related to three known enzymes; it appears closest to glycine C-acteyltransferase, shows no overlap with it in species distribution, and may share that function. The three closely related enzymes are glycine C-acetyltransferase (2-amino-3-ketobutyrate coenzyme A ligase), 5-aminolevulinic acid synthase, and 8-amino-7-oxononanoate synthase. All transfer the R-group (acetyl, succinyl, or 6-carboxyhexanoyl) from coenzyme A to an amino acid (Gly, Gly, Ala, respectively), with release of CO2 for the latter two reactions.

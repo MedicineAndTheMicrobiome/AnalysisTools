@@ -1,0 +1,11 @@
+ID  adjacent_YSIRK
+AC  TIGR04094
+DE  YSIRK-targeted surface antigen transcriptional regulator
+AU  Haft DH
+TC  200.00 200.00
+NC  160.00 160.00
+AL  muscle_manual
+IT  equivalog
+EN  YSIRK-targeted surface antigen transcriptional regulator
+TP  TIGRFAMs
+CC  Bacteria whose genomes encode only one protein with the YSIRK variant form of signal peptide (TIGR01168) were examined for conserved genes near that one tagged protein. This protein is found adjacent to at various classes of repetitive or low-complexity YSIRK proteins (whether unique in genome or not), in a range of species (Enterococcus faecalis X98, Ruminococcus torques, Coprobacillus sp. D7, Lysinibacillus fusiformis ZC1, Streptococcus equi subsp. equi 4047, etc). The affliated YSIRK proteins include Streptococcal protective antigen (see PMID:19865839) and proteins with the Rib/alpha/Esp surface antigen repeat (see TIGR02331). The last quarter of this protein has an AraC family helix-turn-helix (HTH)transcriptional regulator domain.

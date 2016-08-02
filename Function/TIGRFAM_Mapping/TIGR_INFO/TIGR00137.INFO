@@ -1,0 +1,19 @@
+ID  gid_trmFO
+AC  TIGR00137
+DE  tRNA:m(5)U-54 methyltransferase
+AU  Haft DH
+TC  428.65 428.65
+NC  82.85 82.85
+AL  clustalw
+IT  equivalog
+EN  tRNA:m(5)U-54 methyltransferase
+GS  trmFO
+EC  2.1.1.74
+TP  TIGRFAMs
+CC  This model represents an orthologous set of proteins present in relatively few bacteria but very tightly conserved where it occurs. It is closely related to gidA (glucose-inhibited division protein A), which appears to be present in all complete eubacterial genomes so far and in Saccharomyces cerevisiae. It was designated gid but is now recognized as a tRNA:m(5)U-54 methyltransferase and is now designated trmFO.
+RN  [1]
+RM  PMID: 16027442
+RT  Identification of a novel gene encoding a flavin-dependent tRNA:m5U methyltransferase in bacteria--evolutionary implications.
+RA  Urbonavicius J, Skouloubris S, Myllykallio H, Grosjean H
+RL  Nucleic Acids Res. 2005 Jul 18;33(13):3955-64.
+DR  HAMAP; MF_01037; 207 of 218

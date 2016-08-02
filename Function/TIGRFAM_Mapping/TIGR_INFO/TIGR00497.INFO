@@ -1,0 +1,16 @@
+ID  hsdM
+AC  TIGR00497
+DE  type I restriction-modification system, M subunit
+AU  Loftus BJ
+TC  242.75 242.75
+NC  139.20 139.20
+AL  clustalw
+IT  equivalog
+EN  type I restriction system adenine methylase (hsdM)
+GS  hsdM
+EC  2.1.1.72
+TP  TIGRFAMs
+CC  Function: methylation of specific adenine residues; required for both restriction and modification activities. The ECOR124/3 I enzyme recognizes 5'GAA(N7)RTCG. for E.coli see (J. Mol. Biol. 257: 960-969 (1996)).
+DR  Swissprot; P10484;
+DR  PROSITE; PDOC00087 
+RM  Medline; 97415765;

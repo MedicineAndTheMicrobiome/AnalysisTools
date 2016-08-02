@@ -1,0 +1,22 @@
+ID  L_thr_O3P_dcar
+AC  TIGR01140
+DE  threonine-phosphate decarboxylase
+AU  Haft DH
+TC  290.55 290.55
+NC  276.85 276.85
+AL  muscle_manual
+IT  equivalog
+EN  L-threonine-O-3-phosphate decarboxylase
+EC  4.1.1.81
+TP  TIGRFAMs
+CC  This family contains pyridoxal phosphate-binding class II aminotransferases (see PFAM:PF00222) closely related to, yet distinct from, histidinol-phosphate aminotransferase (HisC). It is found in cobalamin biosynthesis operons in Salmonella typhimurium and Bacillus halodurans (each of which also has HisC) and has been shown to have L-threonine-O-3-phosphate decarboxylase activity in Salmonella. Although the gene symbol cobD was assigned in Salmonella, cobD in other contexts refers to a different cobalamin biosynthesis enzyme, modeled by PF03186 and called cbiB in Salmonella.
+RN  [1]
+RM  98112812
+RT  CobD, a novel enzyme with L-threonine-O-3-phosphate decarboxylase activity, is responsible for the synthesis of (R)-1-amino-2-propanol O-2-phosphate, a proposed new intermediate in cobalamin biosynthesis in Salmonella typhimurium LT2.
+RA  Brushaber KR, O'Toole GA, Escalante-Semerena JC
+RL  J Biol Chem 1998 Jan 30;273(5):2684-91
+RN  [2]
+RM  PMID: 12119022
+RT  Structural studies of the L-threonine-O-3-phosphate decarboxylase (CobD) enzyme from Salmonella enterica: the apo, substrate, and product-aldimine complexes.
+RA  Cheong CG, Escalante-Semerena JC, Rayment I
+RL  Biochemistry. 2002 Jul 23;41(29):9079-89.

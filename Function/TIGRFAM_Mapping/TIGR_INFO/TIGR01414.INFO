@@ -1,0 +1,12 @@
+ID  autotrans_barl
+AC  TIGR01414
+DE  outer membrane autotransporter barrel domain
+AU  Haft DH
+TC  16.00 16.00
+NC  15.90 15.90
+AL  clustalw_manual
+IT  domain
+EN  outer membrane autotransporter barrel domain
+TR  1.B.12
+TP  TIGRFAMs
+CC  A number of Gram-negative bacterial proteins, mostly found in pathogens and associated with virulence, contain a conserved C-terminal domain that integrates into the outer membrane and enables the N-terminal region to be delivered across the membrane. This C-terminal autotransporter domain is about 400 amino acids in length and includes the aromatic amino acid-rich OMP signal, typically ending with a Phe or Trp residue, at the extreme C-terminus.

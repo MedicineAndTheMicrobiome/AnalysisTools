@@ -1,0 +1,13 @@
+ID  cysKM
+AC  TIGR01136
+DE  cysteine synthase
+AU  Haft DH
+TC  344.15 344.15
+NC  335.75 335.75
+AL  clustalw_manual
+IT  subfamily
+EN  cysteine synthase
+EC  2.5.1.47
+TP  TIGRFAMs
+CC  This model discriminates cysteine synthases (EC 2.5.1.47) (both CysK and CysM) from cystathionine beta-synthase, a protein found primarily in eukaryotes and carrying a C-terminal CBS domain lacking from this protein. Bacterial proteins lacking the CBS domain but otherwise showing resemblamnce to cystathionine beta-synthases and considerable phylogenetic distance from known cysteine synthases were excluded from the seed and score below the trusted cutoff.
+DR  COGS; COG0031

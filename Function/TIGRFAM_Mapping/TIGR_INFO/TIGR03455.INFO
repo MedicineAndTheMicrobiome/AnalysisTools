@@ -1,0 +1,14 @@
+ID  HisG_C-term
+AC  TIGR03455
+DE  ATP phosphoribosyltransferase, C-terminal domain
+AU  Selengut J
+TC  40.05 40.05
+NC  34.10 34.10
+AL  muscle
+IT  equivalog_domain
+EN  ATP phosphoribosyltransferase, C-terminal domain
+GS  hisG
+EC  2.4.2.17
+TP  TIGRFAMs
+CC  This domain corresponds to the C-terminal third of the HisG protein.  It is absent in many lineages.
+DR  HAMAP; MF_00079; 148 of 162

@@ -1,0 +1,19 @@
+ID  FadI
+AC  TIGR02446
+DE  acetyl-CoA C-acyltransferase FadI
+AU  Rosovitz MJ, Haft DH
+TC  711.55 711.55
+NC  428.10 428.10
+AL  clustalw
+IT  equivalog
+EN  fatty oxidation complex, beta subunit FadI
+GS  fadI
+EC  2.3.1.16
+TP  TIGRFAMs
+CC  This subunit of the FadJI complex has acetyl-CoA C-acyltransferase (EC 2.3.1.16) activity, and is also known as beta-ketothiolase and fatty oxidation complex, beta subunit, and YfcY. This protein is almost always located adjacent to FadJ (TIGR02440).  The FadJI complex is needed for anaerobic beta-oxidation of short-chain fatty acids in E. coli.
+RN  [1]
+RM  12535077
+RT  A new Escherichia coli metabolic competency: growth on fatty acids by a novel anaerobic beta-oxidation pathway.
+RA  Campbell JW, Morgan-Kiss RM, Cronan JE Jr.
+RL  Mol Microbiol. 2003 Feb;47(3):793-805.
+DR  HAMAP; MF_01618; 61 of 63

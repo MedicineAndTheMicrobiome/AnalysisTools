@@ -1,0 +1,12 @@
+ID  NDH_I_M
+AC  TIGR01972
+DE  proton-translocating NADH-quinone oxidoreductase, chain M
+AU  Haft DH
+TC  263.80 263.80
+NC  250.60 250.60
+AL  clustalw_manual
+IT  subfamily
+EN  proton-translocating NADH-quinone oxidoreductase, chain M
+TP  TIGRFAMs
+CC  This HMM describes the 13th (based on E. coli) structural gene, M, of bacterial NADH dehydrogenase I, as well as chain 4 of the corresponding mitochondrial complex I and of the chloroplast NAD(P)H dehydrogenase complex.
+DR  HAMAP; MF_00491; 132 of 136

@@ -1,0 +1,28 @@
+ID  AcCoA-syn-alpha
+AC  TIGR02717
+DE  acetyl coenzyme A synthetase (ADP forming), alpha domain
+AU  Selengut J
+TC  567.15 567.15
+NC  463.00 463.00
+AL  clustalw
+IT  equivalog_domain
+EN  acetyl coenzyme A synthetase (ADP forming), alpha domain
+GS  acs
+EC  6.2.1.13
+TP  TIGRFAMs
+CC  Although technically reversible, it is believed that this group of ADP-dependent acetyl-CoA synthetases (ACS) act in the direction of acetate and ATP production in the organisms in which it has been characterized [1,2,3].  In most species this protein exists as a fused alpha-beta domain polypeptide.  In Pyrococcus and related species, however the domains exist as separate polypeptides.  This model represents the alpha (N-terminal) domain.  In Pyrococcus and related species there appears to have been the development of a paralogous family such that four other proteins are close relatives.  In reference [1], one of these (along with its beta-domain partner) was characterized as ACS-II showing specificity for phenylacetyl-CoA.  This model has been constructed to exclude these non-ACS-I paralogs.  This may result in new, authentic ACS-I sequences falling below the trusted cutoff.
+RN  [1]
+RM  8830684
+RT  Purification and characterization of two reversible and ADP-dependent acetyl coenzyme A synthetases from the hyperthermophilic archaeon Pyrococcus furiosus.
+RA  Mai X, Adams MW
+RL  J Bacteriol. 1996 Oct;178(20):5897-903
+RN  [2]
+RM  10375639
+RT  Cloning and sequencing of an acetyl-CoA synthetase (ADP-forming) gene from the amitochondriate protist, Giardia lamblia.
+RA  Sanchez LB, Morrison HG, Sogin ML, Muller M
+RL   Gene. 1999 Jun 11;233(1-2):225-31
+RN  [3]
+RM  11069669
+RT  Early lateral transfer of genes encoding malic enzyme, acetyl-CoA synthetase and alcohol dehydrogenases from anaerobic prokaryotes to Entamoeba histolytica.
+RA  Field J, Rosenthal B, Samuelson J
+RL  Mol Microbiol. 2000 Nov;38(3):446-55

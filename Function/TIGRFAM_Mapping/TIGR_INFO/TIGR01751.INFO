@@ -1,0 +1,33 @@
+ID  crot-CoA-red
+AC  TIGR01751
+DE  crotonyl-CoA reductase
+AU  Selengut J
+TC  378.55 378.55
+NC  236.30 236.30
+AL  clustalw
+IT  equivalog
+EN  crotonyl-CoA reductase
+GS  ccrA
+EC  1.3.1.-
+TP  TIGRFAMs
+CC  The enzyme modelled by this HMM is responsible for the conversion of crotonyl-CoA to butyryl-CoA.  In serine cycle methylotrophic bacteria this enzyme is involved in the process of acetyl-CoA to glyoxylate [1,2].  In other bacteria the enzyme is used to produce butyrate for incorporation into polyketides such as tylosin from Streptomyces fradiae [3] and coronatine from Pseudomonas syringae [4].
+RN  [1]
+RM  PMID: 8704985
+RT  Molecular characterization of a chromosomal region involved in the oxidation of acetyl-CoA to glyoxylate in the isocitrate-lyase-negative methylotroph Methylobacterium extorquens AM1.
+RA  Chistoserdova LV, Lidstrom ME.
+RL  Microbiology. 1996 Jun;142 ( Pt 6):1459-68.
+RN  [2]
+RM  PMID: 11872727
+RT  Glyoxylate regeneration pathway in the methylotroph Methylobacterium extorquens AM1.
+RA  Korotkova N, Chistoserdova L, Kuksa V, Lidstrom ME.
+RL  J Bacteriol. 2002 Mar;184(6):1750-8.
+RN  [3]
+RM  PMID: 9031628
+RT  Analysis of four tylosin biosynthetic genes from the tylLM region of the Streptomyces fradiae genome.
+RA  Gandecha AR, Large SL, Cundliffe E.
+RL  Gene 1997 Jan 15;184(2):197-203
+RN  [4]
+RM  PMID: 9860992
+RT  Biosynthesis of the Pseudomonas polyketide coronafacic acid requires monofunctional and multifunctional polyketide synthase proteins.
+RA  Rangaswamy V, Jiralerspong S, Parry R, Bender CL.
+RL  Proc Natl Acad Sci U S A. 1998 Dec 22;95(26):15469-74.

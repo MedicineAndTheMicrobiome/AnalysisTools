@@ -1,0 +1,15 @@
+ID  lipid_A_lpxA
+AC  TIGR01852
+DE  acyl-[acyl-carrier-protein]-UDP-N-acetylglucosamine O-acyltransferase
+AU  Haft DH
+TC  231.05 231.05
+NC  114.05 114.05
+AL  clustalw_manual
+IT  equivalog
+EN  acyl-[acyl-carrier-protein]--UDP-N-acetylglucosamine O-acyltransferase
+GS  lpxA
+EC  2.3.1.129
+TP  TIGRFAMs
+CC  This HMM describes LpxA, an enzyme for the biosynthesis of lipid A, a component oflipopolysaccharide (LPS) in the outer membrane outer leaflet of most Gram-negative bacteria. Some differences are found between lipid A of different species, but this protein represents the first step (from UDP-N-acetyl-D-glucosamine) and appears to be conserved in function. Proteins from this family contain many copies of the bacterial transferase hexapeptide repeat (PF00132).
+DR  URL; http://www.genome.ad.jp/dbget-bin/show_pathway?MAP00540+2.3.1.129
+DR  HAMAP; MF_00387; 175 of 177

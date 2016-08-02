@@ -1,0 +1,12 @@
+ID  MSMEG_4193
+AC  TIGR03848
+DE  probable phosphomutase, MSMEG_4193 family
+AU  Haft DH
+TC  203.85 203.85
+NC  173.95 173.95
+AL  muscle_manual
+IT  subfamily
+EN  probable phosphomutase, MSMEG_4193 family
+EC  5.4.2.-
+TP  TIGRFAMs
+CC  A three-gene system broadly conserved among the Actinobacteria includes MSMEG_4193 and homologs, a subgroup among the larger phosphoglycerate mutase family protein (PF00300). Another member of the trio is a probable kinase, related to phosphatidylinositol kinases; that context supports the hypothesis that this protein acts as a phosphomutase.

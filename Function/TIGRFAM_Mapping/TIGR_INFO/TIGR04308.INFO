@@ -1,0 +1,11 @@
+ID  repeat_SSSPR51
+AC  TIGR04308
+DE  surface protein repeat SSSPR-51
+AU  Haft DH
+TC  35.00 27.50
+NC  27.00 27.00
+AL  manual
+IT  repeat
+EN  surface protein repeat SSSPR-51
+TP  TIGRFAMs
+CC  This repeat domain is designated SSRS51, Streptococcal and Staphylococcal Surface Protein Repeat of size 51. These repeats are homologous to the listerial repeats of Pfam model PF13461, but shorter on average by about 8 amino acids. Up to twelve tandem repeats can occur, on some of the longest proteins of their respective species. Nearly all member proteins carry the C-terminal sortase target sequence, LPXTG, recognizable by model TIGR01167. The repeat structure and probable surface location suggest a possible adhesion function. A protein with this class of repeats may have other classes as well.

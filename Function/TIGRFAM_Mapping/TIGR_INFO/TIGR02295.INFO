@@ -1,0 +1,19 @@
+ID  HpaD
+AC  TIGR02295
+DE  3,4-dihydroxyphenylacetate 2,3-dioxygenase
+AU  Selengut J
+TC  321.40 321.40
+NC  264.70 264.70
+AL  clustalw
+IT  equivalog
+EN  3,4-dihydroxyphenylacetate 2,3-dioxygenase
+GS  hpaD
+EC  1.13.11.15
+TP  TIGRFAMs
+CC  This enzyme catalyzes the second step in the degradation of 4-hydroxyphenylacetate to succinate and pyruvate. 4-hydroxyphenylacetate arises from the degradation of tyrosine.  The substrate, 3,4-dihydroxyphenylacetate (homoprotocatechuate) arises from the action of a hydroxylase on 4-hydroxyphenylacetate.  The aromatic ring is opened by this dioxygenase exo to the 3,4-diol resulting in 2-hydroxy-5-carboxymethylmuconate semialdehyde.
+CC  The enzyme from Bacillus brevis contains manganese [1].
+RN  [1]
+RM  PMID: 6270137
+RT  3,4-Dihydroxyphenylacetate 2,3-dioxygenase. A manganese(II) dioxygenase from Bacillus brevis.
+RA  Que L Jr, Widom J, Crawford RL.
+RL  J Biol Chem. 1981 Nov 10;256(21):10941-4.

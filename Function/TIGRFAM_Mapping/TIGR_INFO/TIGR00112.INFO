@@ -1,0 +1,18 @@
+ID  proC
+AC  TIGR00112
+DE  pyrroline-5-carboxylate reductase
+AU  Haft DH, Anolik RT, Richardson DL
+TC  196.75 196.75
+NC  89.05 89.05
+AL  clustalw
+IT  equivalog
+EN  pyrroline-5-carboxylate reductase
+GS  proC
+EC  1.5.1.2
+TP  TIGRFAMs
+CC  This enzyme catalyzes the final step in proline biosynthesis. Among the four paralogs in Bacillus subtilis (proG, proH, proI, and comER), ComER is the most divergent and does not prevent proline auxotrophy from mutation of the other three. It is excluded from the seed and scores between the trusted and noise cutoffs.
+DR  PROSITE; PDOC00451
+RM  11418582
+RT  Multiple genes for the last step of proline biosynthesis in Bacillus subtilis.
+RA  Belitsky BR, Brill J, Bremer E, Sonenshein AL.
+RL  J Bacteriol 2001 Jul;183(14):4389-92

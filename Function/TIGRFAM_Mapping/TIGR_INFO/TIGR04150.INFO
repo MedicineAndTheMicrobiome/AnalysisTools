@@ -1,0 +1,16 @@
+ID  pseudo_rSAM_GG
+AC  TIGR04150
+DE  pseudo-rSAM protein, GG-Bacteroidales system
+AU  Haft DH
+TC  250.00 250.00
+NC  75.00 75.00
+AL  muscle_manual
+IT  subfamily
+EN  pseudo-rSAM protein, GG-Bacteroidales system
+TP  TIGRFAMs
+CC  Many peptide-modifying radical SAM enzymes have two 4Fe4S-binding regions, an N-terminal one recognized by Pfam radical SAM domain-defining model PF04055 and a C-terminal one recognized by TIGR04085. Members of this protein family occur in cassettes with such a radical SAM family (TIGR04148) and with a peptide modification target (TIGR04149). Surprisingly, members of this family show full-length homology to each other, with several scoring at least borderline hits to both PF04055 and TIGR04085, and yet differ in the presence/absence of a signature CX(3)CX(2)CX(9)C motif. Instead, members are best-conserved in the TIGR04085-like C-terminal region. Therefore, this protein family is designated a pseudo-radical-SAM protein, which likely works in partnership with a TIGR04148 family protein.
+RN  [1]
+RM  PMID:21478363 
+RT  Biological systems discovery in silico: radical S-adenosylmethionine protein families and their target peptides for posttranslational modification. 
+RA  Haft DH, Basu MK 
+RL  J Bacteriol. 2011 Jun;193(11):2745-55.

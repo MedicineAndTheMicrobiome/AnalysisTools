@@ -1,0 +1,16 @@
+ID  ComEB
+AC  TIGR02571
+DE  ComE operon protein 2
+AU  Selengut J
+TC  219.45 219.45
+NC  181.45 181.45
+AL  clustalw
+IT  equivalog
+EN  ComE operon protein 2
+TP  TIGRFAMs
+CC  This protein is found in the ComE operon for "late competence" as characterized in B. subtilis [1].  Proteins in this family contain homology to a cytidine/deoxycytidine deaminase domain family (PF00383), and may carry out this activity.
+RN  [1]
+RM  PMID: 7968523
+RT  Characterization of comE, a late competence operon of Bacillus subtilis required for the binding and uptake of transforming DNA.
+RA  Hahn J, Inamine G, Kozlov Y, Dubnau D.
+RL  Mol Microbiol. 1993 Oct;10(1):99-111.

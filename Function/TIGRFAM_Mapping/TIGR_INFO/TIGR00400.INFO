@@ -1,0 +1,24 @@
+ID  mgtE
+AC  TIGR00400
+DE  magnesium transporter
+AU  Loftus BJ
+TC  232.75 232.75
+NC  179.75 179.75
+AL  clustalw
+IT  equivalog
+EN  Mg2+ transporter (mgtE)
+GS  mgtE
+TR  9.A.19
+TP  TIGRFAMs
+CC  This family of prokaryotic proteins models a class of Mg++ transporter first described in Bacillus firmus. May form a homodimer.
+RM  98283691
+RT  Microbial magnesium transport: unusual transporters searching for identity.
+RA  Smith RL, Maguire ME
+RL  Mol Microbiol 1998 Apr;28(2):217-26
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/9_A_19.html
+DR  PFAM; PF01769
+DR  InterPro; IPR002665
+RM  7868596
+RT  Cloning and characterization of MgtE, a putative new class of Mg2+ transporter from Bacillus firmus OF4.
+RA  Smith RL, Thompson LJ, Maguire ME
+RL  J Bacteriol 1995 Mar;177(5):1233-8

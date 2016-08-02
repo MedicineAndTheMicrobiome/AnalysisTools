@@ -1,0 +1,18 @@
+ID  PgaC_IcaA
+AC  TIGR03937
+DE  poly-beta-1,6 N-acetyl-D-glucosamine synthase
+AU  Haft DH
+TC  422.30 422.30
+NC  206.80 206.80
+AL  muscle_manual
+IT  equivalog
+EN  poly-beta-1,6 N-acetyl-D-glucosamine synthase
+GS  pgaC
+EC  2.4.1.-
+TP  TIGRFAMs
+CC  Members of this protein family are biofilm-forming enzymes that polymerize N-acetyl-D-glucosamine residues in beta(1,6) linkage. One named members is IcaA (intercellular adhesin protein A), an enzyme that acts (with aid of subunit IcaD) in Polysaccharide Intercellular Adhesin (PIA) biosynthesis in Staphylococcus epidermis). The homologous member in E. coli is designated PgaC. Members are often encoded next to a polysaccharide deacetylase and involved in biofilm formation. Note that chitin, although also made from N-acetylglucosamine, is formed with beta-1,4 linkages.
+RN  [1]
+RM  PMID:15090514
+RT  The pgaABCD locus of Escherichia coli promotes the synthesis of a polysaccharide adhesin required for biofilm formation.
+RA  Wang X, Preston JF 3rd, Romeo T
+RL  J Bacteriol. 2004 May;186(9):2724-34.

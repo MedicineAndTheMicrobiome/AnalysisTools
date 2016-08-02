@@ -1,0 +1,20 @@
+ID  menD
+AC  TIGR00173
+DE  2-succinyl-5-enolpyruvyl-6-hydroxy-3-cyclohexene-1-carboxylic-acid synthase
+AU  Haft DH
+TC  244.20 244.20
+NC  183.05 183.05
+AL  muscle_manual
+IT  equivalog
+EN  2-succinyl-5-enolpyruvyl-6-hydroxy-3-cyclohexene-1-carboxylic-acid synthase
+GS  menD
+EC  2.2.1.9
+TP  TIGRFAMs
+CC  MenD was thought until recently to act as SHCHC synthase, but has recently been shown to act instead as SEPHCHC synthase. Conversion of SEPHCHC into SHCHC and pyruvate may occur spontaneously but is catalyzed efficiently, at least in some organisms, by MenH (see TIGR03695).
+CC  2-oxoglutarate decarboxylase/SHCHC synthase (menD) is a thiamine pyrophosphate enzyme involved in menaquinone biosynthesis.
+RN  [1]
+RM  PMID:17760421
+RT  Menaquinone biosynthesis in Escherichia coli: identification of 2-succinyl-5-enolpyruvyl-6-hydroxy-3-cyclohexene-1-carboxylate as a novel intermediate and re-evaluation of MenD activity.
+RA  Jiang M, Cao Y, Guo ZF, Chen M, Chen X, Guo Z
+RL  Biochemistry. 2007 Sep 25;46(38):10979-89. Epub 2007 Aug 31.
+DR  HAMAP; MF_01659; 164 of 212

@@ -1,0 +1,13 @@
+ID  CobG
+AC  TIGR02435
+DE  precorrin-3B synthase
+AU  Selengut J
+TC  234.80 234.80
+NC  222.65 222.65
+AL  clustalw
+IT  equivalog
+EN  precorrin-3B synthase
+GS  cobG
+EC  1.14.13.83
+TP  TIGRFAMs
+CC  An iron-sulfur protein. An oxygen atom from dioxygen is incorporated into the macrocycle at C-20. In the aerobic cobalamin biosythesis pathway, four enzymes are involved in the conversion of precorrin-3A to precorrin-6A. The first of the four steps is carried out by EC 1.14.13.83, precorrin-3B synthase (CobG), yielding precorrin-3B as the product. This is followed by three methylation reactions, which introduce a methyl group at C-17 (CobJ; EC 2.1.1.131), C-11 (CobM; EC 2.1.1.133) and C-1 (CobF; EC 2.1.1.152) of the macrocycle, giving rise to precorrin-4, precorrin-5 and precorrin-6A, respectively.

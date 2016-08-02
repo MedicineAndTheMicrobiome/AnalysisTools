@@ -1,0 +1,23 @@
+ID  ftsL_broad
+AC  TIGR02209
+DE  cell division protein FtsL
+AU  Haft DH
+TC  42.45 42.45
+NC  29.80 29.80
+AL  clustalw
+IT  equivalog
+EN  cell division protein FtsL
+GS  ftsL
+TP  TIGRFAMs
+CC  This model represents FtsL, both forms similar to that in E. coli and similar to that in B. subtilis. FtsL is one of the later proteins active in cell division septum formation. FtsL is small, low in complexity, and highly divergent. The scope of this model is broader than that of the Pfam model PF04999.3 for FtsL, as this one includes FtsL from Bacillus subtilis and related species.
+DR  PFAM; PF04999
+RN  [1]
+RM  12626683
+RT  Cytokinesis in bacteria.
+RA  Errington J, Daniel RA, Scheffers DJ.
+RL  Microbiol Mol Biol Rev. 2003 Mar;67(1):52-65
+RN  [2]
+RM  10986263
+RT  Analysis of the essential cell division gene ftsL of Bacillus subtilis by mutagenesis and heterologous complementation.
+RA  Sievers J, Errington J.
+RL  J Bacteriol. 2000 Oct;182(19):5572-9.

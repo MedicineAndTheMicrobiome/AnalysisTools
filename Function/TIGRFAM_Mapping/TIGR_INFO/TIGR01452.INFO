@@ -1,0 +1,46 @@
+ID  PGP_euk
+AC  TIGR01452
+DE  phosphoglycolate/pyridoxal phosphate phosphatase family
+AU  Selengut J
+TC  201.95 201.95
+NC  160.55 160.55
+AL  clustalw
+IT  subfamily
+EN  phosphoglycolate/pyridoxal phosphate phosphatase family
+EC  3.1.3.18
+TP  TIGRFAMs
+CC  PGP [1] is an essential enzyme in the glycolate salvage pathway in higher organisms (photorespiration in plants).  Phosphoglycolate results from the oxidase activity of RubisCO in the Calvin cycle when concentrations of carbon dioxide are low relative to oxygen.  In mammals, PGP is found in many tissues, notably in red blood cells where P-glycolate is and important activator of the hydrolysis of 2,3-bisphosphoglycerate, a major modifier of the oxygen affinity of hemoglobin.
+CC  Pyridoxal phosphate (PLP, Vitamin B6) phosphatase [2] is involved in the degradation of PLP in mammals and is widely distributed in human tissues including erythrocyes.
+CC  The enzymes described here are members of the Haloacid dehalogenase superfamily of hydrolase enzymes (PF00702).  Unlike the bacterial PGP equivalog (TIGR01449), which is a member of class (subfamily) I, these enzymes are members of class (subfamily) II [4].  These two families have almost certainly arisen from convergent evolution (although these two ancestors may themselves have diverged from a more distant HAD superfamily progenitor).
+CC  The primary seed sequence for this model comes from Chlamydomonas reinhardtii, a photosynthetic alga.  The enzyme has been purified and characterized and these data are fully consistent with the assignment of function as a PGPase involved in photorespiration [1].
+CC  The second seed, from Homo sapiens chromosome 22 has been characterized as a pyridoxal phosphatase [2].  Biochemical characterization of partially purified PGP's from various tissues including red blood cells [3] have been performed while one gene for PGP has been localized to chromosome 16p13.3 [5].  The sequence used here maps to chromosome 22.  There is indeed a related gene on chromosome 16 (and it is expressed, since EST's are found) which shows 46% identity and 59% positives by BLAST2 (E=1e-66).  The chromosome 16  gene is not in evidence in nraa but translated from the genomic sequence would score 372.4 (E=7.9e-113) versus this HMM, well above trusted.  
+CC  The third seed, from C. elegans, is only supported by sequence similarity.
+CC  This HMM is limited to eukaryotic species including S. pombe and S. cerevisiae, although several archaea score between the trusted and noise cutoffs.
+CC  This HMM is closely related to a family of bacterial sequences including the E. coli NagD and B. subtilus AraL genes which are characterized by the ability to hydrolyze para-nitrophenylphosphate (pNPPases or NPPases).  The chlamydomonas PGPase d
+RN  [1]
+RM  PMID: 11581250
+RT  Characteristics and sequence of phosphoglycolate phosphatase from a eukaryotic green alga Chlamydomonas reinhardtii.
+RA  Mamedov TG, Suzuki K, Miura K, Kucho Ki K, Fukuzawa H.
+RL  J Biol Chem 2001 Dec 7;276(49):45573-9
+RN  [2]
+RM  PMID: 14522954
+RT  Human pyridoxal phosphatase. Molecular cloning, functional expression, and tissue distribution.
+RA  Jang YM, Kim DW, Kang TC, Won MH, Baek NI, Moon BJ, Choi SY, Kwon OS.
+RL  J Biol Chem. 2003 Dec 12;278(50):50040-6. Epub 2003 Sep 30.
+RN  [3]
+RM  PMID: 3015949
+RT  Mechanism of activation by anions of phosphoglycolate phosphatases from spinach and human red blood cells.
+RA  Rose ZB, Grove DS, Seal SN.
+RL  J Biol Chem 1986 Aug 25;261(24):10996-1002
+RN  [4]
+RM  PMID: 11601995
+RT  MDP-1 is a new and distinct member of the haloacid dehalogenase family of aspartate-dependent phosphohydrolases.
+RA  Selengut JD.
+RL  Biochemistry 2001 Oct 23;40(42):12704-11
+RN  [5]
+RM  PMID: 2164460
+RT  Localisation of human PGP and HAGH genes to 16p13.3.
+RA  Mulley JC, Barton N, Callen DF.
+RL  Cytogenet Cell Genet 1990;53(2-3):175-6
+DR  EXPERIMENTAL; GP|15982558; Chlamydomonas reinhardtii; purification, enzymatic assay, kinetics, inhibition, stromal targetting sequence
+DR  PFAM; PF00702; hydrolase; e-14; Haloacid Dehalogenase superfamily

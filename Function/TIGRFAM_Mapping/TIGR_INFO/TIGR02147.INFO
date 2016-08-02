@@ -1,0 +1,11 @@
+ID  Fsuc_second
+AC  TIGR02147
+DE  TIGR02147 family protein
+AU  Haft DH
+TC  50.00 50.00
+NC  40.00 40.00
+AL  clustalw_manual
+IT  paralog
+EN  TIGR02147 family protein
+TP  TIGRFAMs
+CC  This family consists of the 40 members of a paralogous protein family in the rumen anaerobe Fibrobacter succinogenes S85 and a smaller number in Bdellovibrio bacteriovorus HD100. Member proteins are about 270 residues long and appear to lack signal sequences and transmembrane helices. The only perfectly conserved residue is a glycine in an otherwise poorly conserved region, suggesting members are not enzymes. The family is not characterized.

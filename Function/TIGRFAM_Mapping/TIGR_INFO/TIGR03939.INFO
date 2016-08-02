@@ -1,0 +1,17 @@
+ID  PGA_TPR_OMP
+AC  TIGR03939
+DE  poly-beta-1,6 N-acetyl-D-glucosamine export porin PgaA
+AU  Haft DH
+TC  366.65 366.65
+NC  288.00 288.00
+AL  muscle_manual
+IT  equivalog
+EN  poly-beta-1,6 N-acetyl-D-glucosamine export porin PgaA
+GS  pgaA
+TP  TIGRFAMs
+CC  Members of this protein family are the poly-beta-1,6 N-acetyl-D-glucosamine (PGA) export porin PgaA of Gram-negative bacteria. There is no counterpart in the poly-beta-1,6 N-acetyl-D-glucosamine biosynthesis systems of Gram-positive bacteria such as Staphylococcus epidermidis. The PGA polysaccharide adhesin is a critical determinant of biofilm formation. The conserved C-terminal domain of this outer membrane protein is preceded by a variable number of TPR repeats.
+RN  [1]
+RM  PMID:15090514
+RT  The pgaABCD locus of Escherichia coli promotes the synthesis of a polysaccharide adhesin required for biofilm formation.
+RA  Wang X, Preston JF 3rd, Romeo T
+RL  J Bacteriol. 2004 May;186(9):2724-34.

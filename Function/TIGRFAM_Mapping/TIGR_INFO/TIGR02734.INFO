@@ -1,0 +1,13 @@
+ID  crtI_fam
+AC  TIGR02734
+DE  phytoene desaturase
+AU  Haft DH
+TC  238.10 238.10
+NC  165.95 165.95
+AL  clustalw
+IT  subfamily
+EN  phytoene desaturase
+GS  crtI
+EC  1.14.99.-
+TP  TIGRFAMs
+CC  Phytoene is converted to lycopene by desaturation at four (two symmetrical pairs of) sites. This is achieved by two enzymes (crtP and crtQ) in cyanobacteria (Gloeobacter being an exception) and plants, but by a single enzyme in most other bacteria and in fungi. This single enzyme is called the bacterial-type phytoene desaturase, or CrtI. Most members of this family, part of the larger Pfam family PF01593, which also contains amino oxidases, are CrtI itself; it is likely that all members act on either phytoene or on related compounds such as dehydrosqualene, for carotenoid biosynthesis.

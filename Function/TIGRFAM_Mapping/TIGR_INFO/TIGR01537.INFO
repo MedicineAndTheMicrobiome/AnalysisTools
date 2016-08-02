@@ -1,0 +1,20 @@
+ID  portal_HK97
+AC  TIGR01537
+DE  phage portal protein, HK97 family
+AU  Fouts DE, Haft DH
+TC  112.05 112.05
+NC  56.00 56.00
+AL  clustalw_manual
+IT  equivalog
+EN  phage portal protein, HK97 family
+TP  TIGRFAMs
+CC  This HMM represents one of several distantly related families of phage portal protein. This protein forms a hole, or portal, that enables DNA passage during packaging and ejection.  It also forms the junction between the phage head (capsid) and the tail proteins. It functions as a dodecamer of a single polypeptide of average mol. wt. of 40-90 KDa.
+RN  [1]
+RA  Casjens S, Hendrix R
+RT  Control Mechanisms in dsDNA Bacteriophage Assembly
+RL  p. 15-91. In R. Calendar (ed.), The Bacteriophages. Plenum Press, New York and London, 1988
+RN  [2]
+RM  7723020
+RT  Genetic basis of bacteriophage HK97 prohead assembly.
+RA  Duda RL, Martincic K, Hendrix RW.
+RL  J Mol Biol 1995 Apr 7;247(4):636-47

@@ -1,0 +1,18 @@
+ID  phageshock_pspE
+AC  TIGR02981
+DE  phage shock operon rhodanese PspE
+AU  Haft DH
+TC  126.30 126.30
+NC  72.85 72.85
+AL  clustalw
+IT  exception
+EN  phage shock operon rhodanese PspE
+GS  pspE
+EC  2.8.1.1
+TP  TIGRFAMs
+CC  Members of this very narrowly defined protein family are proteins active as rhodanese (EC 2.8.1.1) and found in the extended variants of the phage shock protein (psp operon) in Escherichia coli and a few closely related species. Note that the designation phage shock protein PspE has been applied, incorrectly, in many instances where the genome lacks the phage shock regulon entirely.
+RN  [1]
+RM  PMID: 11997041
+RT  PspE (phage-shock protein E) of Escherichia coli is a rhodanese.
+RA  Adams H, Teertstra W, Koster M, Tommassen J
+RL  FEBS Lett. 2002 May 8;518(1-3):173-6.

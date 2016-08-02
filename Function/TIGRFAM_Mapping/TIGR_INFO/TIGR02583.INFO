@@ -1,0 +1,23 @@
+ID  DevR_archaea
+AC  TIGR02583
+DE  CRISPR-associated protein Cas7/Csa2, subtype I-A/APERN
+AU  Selengut J
+TC  212.60 212.60
+NC  107.40 107.40
+AL  clustalw
+IT  exception
+EN  CRISPR-associated protein Cas7/Csa2, subtype I-A/APERN
+GS  cas7a
+TP  TIGRFAMs
+CC  CRISPR is a term for Clustered Regularly Interspaced Short Palidromic Repeats. A number of protein families appear only in association with these repeats and are designated Cas (CRISPR associated) proteins.  This HMM represents one such family, typified by MJ0381 of Methanococcus jannaschii. This archaeal clade is a member of the DevR family (TIGR01875) which includes the DevR protein of Myxococcus xanthus, a protein whose expression appears to regulated through a number of means, including both location and autorepression; DevR mutants are incapable of fruiting body development [1]. This subfamily is found in a CRISPR/Cas locus we designate APERN, so the family is designated Csa2, for CRISPR/Cas Subtype Protein 2.
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=2003
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=57306
+RN  [1]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005
+RN  [2]
+RM  11788711
+RT  A DNA repair system specific for thermophilic Archaea and bacteria predicted by genomic context analysis.
+RA  Makarova KS, Aravind L, Grishin NV, Rogozin IB, Koonin EV.
+RL  Nucleic Acids Res. 2002 Jan 15;30(2):482-96

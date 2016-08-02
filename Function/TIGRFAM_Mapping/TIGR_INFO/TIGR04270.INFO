@@ -1,0 +1,16 @@
+ID  Rama_corrin_act
+AC  TIGR04270
+DE  methylamine methyltransferase corrinoid protein reductive activase
+AU  Haft DH
+TC  500.00 500.00
+NC  200.00 200.00
+AL  muscle_manual
+IT  subfamily
+EN  methylamine methyltransferase corrinoid protein reductive activase
+TP  TIGRFAMs
+CC  Members of this family occur as paralogs in species capable of generating methane from mono-, di-, and tri-methylamine. Members include RamA (Reductive Activation of Methyltransfer, Amines) from Methanosarcina barkeri MS (DSM 800). Member proteins have two C-terminal motifs with four Cys each, likely to bind one 4Fe-4S cluster per motif.
+RN  [1]
+RM  PMID:19043046 
+RT  RamA, a protein required for reductive activation of corrinoid-dependent methylamine methyltransferase reactions in methanogenic archaea. 
+RA  Ferguson T, Soares JA, Lienard T, Gottschalk G, Krzycki JA 
+RL  J Biol Chem. 2009 Jan 23;284(4):2285-95.

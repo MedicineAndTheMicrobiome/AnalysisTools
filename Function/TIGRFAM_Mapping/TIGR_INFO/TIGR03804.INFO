@@ -1,0 +1,18 @@
+ID  para_beta_helix
+AC  TIGR03804
+DE  parallel beta-helix repeat
+AU  Haft DH
+TC  19.45 19.45
+NC  15.60 15.60
+AL  manual
+IT  repeat
+EN  parallel beta-helix repeat (two copies)
+TP  TIGRFAMs
+CC  This model represents a tandem pair of an approximately 22-amino acid (each) repeat homologous to the beta-strand repeats that stack in a right-handed parallel beta-helix in the periplasmic C-5 mannuronan epimerase, AlgA, of Pseudomonas aeruginosa. A homology domain consisting of a longer tandem array of these repeats is described in the SMART database as CASH (SM00722), and is found in many carbohydrate-binding proteins and sugar hydrolases. A single repeat is represented by SM00710. This TIGRFAMs model represents a flavor of the parallel beta-helix-forming repeat based on prokaryotic sequences only in its seed alignment, although it also finds many eukaryotic sequences.
+RN  [1]
+RM  PMID:11852237
+RT  CASH--a beta-helix domain widespread among carbohydrate-binding proteins.
+RA  Ciccarelli FD, Copley RR, Doerks T, Russell RB, Bork P
+RL  Trends Biochem Sci. 2002 Feb;27(2):59-62.
+DR  SMART; SM00722
+DR  SMART; SM00710

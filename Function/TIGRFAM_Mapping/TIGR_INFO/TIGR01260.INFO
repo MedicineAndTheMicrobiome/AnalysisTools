@@ -1,0 +1,14 @@
+ID  ATP_synt_c
+AC  TIGR01260
+DE  ATP synthase F0, C subunit
+AU  Ujwal ML, Paulsen IT
+TC  43.95 43.95
+NC  43.20 43.20
+AL  clustalw
+IT  equivalog
+EN  ATP synthase, F0 subunit c
+GS  atpE
+EC  3.6.3.14
+TR  3.A.02
+TP  TIGRFAMs
+CC  This model describes the subunit c in F1/F0-ATP synthase, a membrane associated multisubunit  complex found in bacteria and organelles of higher eukaryotes, namely, mitochondria and chloroplast. This enzyme is principally involved in the synthesis of ATP from ADP and inorganic phosphate by coupling the energy derived from the proton electrochemical gradient across the biological membrane. A brief description of this multisubunit enzyme complex: F1 and F0 represent two major clusters of subunits. The functional role of subunit c, which is the part of F0 cluster, has been delineated in-vitro reconstitution experiments. Overall experimental proof exists that demonstrate the electrochemical gradient is converted into a rotational torque that leads to ATP synthesis.

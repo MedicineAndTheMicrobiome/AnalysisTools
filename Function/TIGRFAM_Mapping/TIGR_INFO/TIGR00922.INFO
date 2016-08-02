@@ -1,0 +1,28 @@
+ID  nusG
+AC  TIGR00922
+DE  transcription termination/antitermination factor NusG
+AU  Haft DH, Durkin S, Selengut J
+TC  135.70 135.70
+NC  125.85 125.85
+AL  clustalw
+IT  equivalog
+EN  transcription termination/antitermination factor NusG
+GS  nusG
+TP  TIGRFAMs
+CC  NusG proteins are transcription factors which are aparrently universal in prokaryotes (archaea and eukaryotes have homologs that may have related functions).  The essential components of these factors include an N-terminal RNP-like (ribonucleoprotein) domain and a C-terminal KOW motif (PF00467) believed to be a nucleic acid binding domain [3].   In E. coli, NusA has been shown to interact with RNA polymerase and termination factor Rho.  This model covers a wide variety of bacterial species but excludes mycoplasmas which are covered by a separate model (TIGR01956).
+CC  The function of all of these NusG proteins is likely to be the same at the level of interaction with RNA and other protein factors to affect termination; however different species may utilize NusG towards different processes and in combination with different suites of affector proteins.
+CC  In E. coli, NusG promotes rho-dependent termination. It is an essential gene. In Streptomyces virginiae and related species, an additional N-terminal sequence is also present and is suggested to play a role in butyrolactone-mediated autoregulation. In Thermotoga maritima, NusG has a long insert, fails to substitute for E. coli NusG (with or without the long insert), is a large 0.7 % of total cellular protein, and has a general, sequence non-specific DNA and RNA binding activity that blocks ethidium staining, yet permits transcription.
+CC  Archaeal proteins once termed NusG share the KOW domain but are actually a ribosomal protein corresponding to L24p in bacterial and L26e in eukaryotes (TIGR00405).
+RN  [1]
+RM  20281307
+RT  Regulation of rho-dependent transcription termination by NusG is specific to the Escherichia coli elongation complex.
+RA  Pasman Z, von Hippel PH
+RL  Biochemistry 2000 May 9;39(18):5573-85
+RN  [2]
+RM  96312350
+RT  A NusG-like protein from Thermotoga maritima binds to DNA and RNA.
+RN  [3]
+RM  PMID: 12198166
+RT  Crystal structures of transcription factor NusG in light of its nucleic acid- and protein-binding activities.
+RA  Steiner T, Kaiser JT, Marinkovic S, Huber R, Wahl MC.
+RL  EMBO J. 2002 Sep 2;21(17):4641-53.

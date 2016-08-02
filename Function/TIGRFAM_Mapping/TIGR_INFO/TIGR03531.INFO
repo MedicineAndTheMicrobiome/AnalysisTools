@@ -1,0 +1,18 @@
+ID  selenium_SpcS
+AC  TIGR03531
+DE  O-phosphoseryl-tRNA(Sec) selenium transferase
+AU  Haft DH
+TC  224.85 224.85
+NC  117.85 117.85
+AL  muscle_manual
+IT  equivalog
+EN  O-phosphoseryl-tRNA(Sec) selenium transferase
+GS  spcS
+EC  2.9.1.2
+TP  TIGRFAMs
+CC  In the archaea and eukaryotes, the conversion of the mischarged serine to selenocysteine (Sec) on its tRNA is accomplished in two steps. This enzyme, O-phosphoseryl-tRNA(Sec) selenium transferase, acts second, after a phosphophorylation step catalyzed by a homolog of the bacterial SelA protein.
+RN  [1]
+RM  PMID:17142313
+RT  RNA-dependent conversion of phosphoserine forms selenocysteine in eukaryotes and archaea.
+RA  Yuan J, Palioura S, Salazar JC, Su D, O'Donoghue P, Hohn MJ, Cardoso AM, Whitman WB, Soll D
+RL  Proc Natl Acad Sci U S A. 2006 Dec 12;103(50):18923-7.

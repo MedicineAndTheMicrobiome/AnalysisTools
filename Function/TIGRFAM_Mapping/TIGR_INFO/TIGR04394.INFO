@@ -1,0 +1,18 @@
+ID  choline_CutC
+AC  TIGR04394
+DE  choline trimethylamine-lyase
+AU  Haft DH
+TC  1050.00 1050.00
+NC  825.00 825.00
+AL  muscle
+IT  equivalog
+EN  choline trimethylamine-lyase
+GS  cutC
+EC  4.3.99.4
+TP  TIGRFAMs
+CC  Members of this family, homologs to pyruvate formate-lyases and benzylsuccinate synthases, are glycine radical enzymes that appear to act as choline TMA-lyase, that is, to perform a C-N bond cleavage turning choline into trimethylamine (TMA) plus acetaldehyde. The gene symbol is cutC, for choline utilization. The activase, CutD, is a radical SAM enzyme.
+RN  [1]
+RM  PMID:23151509 
+RT  Microbial conversion of choline to trimethylamine requires a glycyl radical enzyme.
+RA  Craciun S, Balskus EP 
+RL  Proc Natl Acad Sci U S A. 2012 Nov 14.

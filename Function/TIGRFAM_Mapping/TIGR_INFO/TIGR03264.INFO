@@ -1,0 +1,23 @@
+ID  met_CoM_red_C
+AC  TIGR03264
+DE  methyl-coenzyme M reductase I operon protein C
+AU  Haft DH
+TC  213.50 213.50
+NC  51.55 51.55
+AL  muscle
+IT  equivalog
+EN  methyl-coenzyme M reductase I operon protein C
+GS  mcrC
+TP  TIGRFAMs
+CC  Members of this protein family are protein C, a non-structural  protein, of the operon for methyl coenzyme M reductase, also called coenzyme-B sulfoethylthiotransferase (EC 2.8.4.1). That enzyme, with alpha, beta, and gamma subunits, catalyzes the last step in methanogenesis; it
+CC  has several modified sites, so accessory proteins are expected. Several methanogens have encode two such enzymes, designated I and II; this protein occurs only operons of type I. The precise function is unknown.
+RN  [1]
+RM  PMID: 8359675
+RT  Identification of the mcrC gene product in Methanococcus vannielii.
+RA  Stroup D, Reeve JN
+RL  FEMS Microbiol Lett. 1993 Jul 15;111(1):129-34.
+RN  [2]
+RM  PMID: 8177216
+RT  Characterization and phylogeny of mcrII, a gene cluster encoding an isoenzyme of methyl coenzyme M reductase from hyperthermophilic Methanothermus fervidus.
+RA  Lehmacher A, Klenk HP
+RL  Mol Gen Genet. 1994 Apr;243(2):198-206.

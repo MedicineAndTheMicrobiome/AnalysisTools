@@ -1,0 +1,13 @@
+ID  cyto_c552_HCOOH
+AC  TIGR03152
+DE  formate-dependent cytochrome c nitrite reductase, c552 subunit
+AU  Haft DH
+TC  692.50 692.50
+NC  576.85 576.85
+AL  muscle
+IT  exception
+EN  formate-dependent cytochrome c nitrite reductase, c552 subunit
+GS  nrfA
+EC  1.7.2.2
+TP  TIGRFAMs
+CC  Members of this protein family are cytochrome c552, a component of cytochrome c nitrite reductase, which is known more formally as nitrite reductase (cytochrome; ammonia-forming) (EC 1.7.2.2).  Nitrate can be reduced by several enzymes. EC 1.7.2.2 reduces nitrite all the way to ammonia, rather than to ammonium hydroxide (nitrite reductase (NAD(P)H), EC 1.7.1.4) or nitric oxide (nitrite reductase (NO-forming), EC 1.7.2.1). Some examples of EC 1.7.2.2  occur in a seven gene system that enables formate-dependent nitrite reduction, but is also found in simpler contexts. Members of this protein family, however, belong to the formate-dependent system.

@@ -1,0 +1,21 @@
+ID  EpsF
+AC  TIGR03017
+DE  chain length determinant protein EpsF
+AU  Selengut J
+TC  422.75 422.75
+NC  328.55 328.55
+AL  muscle
+IT  hypoth_equivalog
+EN  chain length determinant protein EpsF
+GS  epsF
+TP  TIGRFAMs
+CC  Sequences in this family of proteins are members of the chain length determinant family (PF02706) which includes the wzc protein from E.coli.  This family of proteins are homologous to the EpsF protein of the methanolan biosynthesis operon of Methylobacillus species strain 12S [1].  The distribution of this protein appears to be restricted to a subset of exopolysaccharide operons containing a syntenic grouping of genes including a variant of the EpsH exosortase protein [2].  Exosortase has been proposed to be involved in the targetting and processing of proteins containing the PEP-CTERM domain to the exopolysaccharide layer.
+RN  [1]
+RM  12624205
+RA  Yoshida T, Ayabe Y, Yasunaga M, Usami Y, Habe H, Nojiri H, Omori T
+RT  Genes involved in the synthesis of the exopolysaccharide methanolan by the obligate methylotroph Methylobacillus sp strain 12S.
+RL  Microbiology. 2003 Feb;149(Pt 2):431-44.
+RN  [2]
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD
+RT  Exopolysaccharide-associated protein sorting in environmental organisms by the PEP-CTERM/EpsH system: application of a novel phylogenetic profiling heuristic.
+RL  BMC Biol., in press, 2006

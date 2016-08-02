@@ -1,0 +1,15 @@
+ID  LSD1
+AC  TIGR01053
+DE  zinc finger domain, LSD1 subclass
+AU  Haft DH, Wu D
+TC  15.50 15.50
+NC  12.65 12.65
+AL  clustalw
+IT  subfamily_domain
+EN  zinc finger domain, LSD1 subclass
+TP  TIGRFAMs
+CC  This model describes a putative zinc finger domain found in three closely spaced copies in Arabidopsis protein LSD1 and in two copies in other proteins from the same species. The motif resembles CxxCRxxLMYxxGASxVxCxxC
+RM  97207015
+RT  A novel zinc finger protein is encoded by the Arabidopsis LSD1 gene and functions as a negative regulator of plant cell death.
+RA  Dietrich RA, Richberg MH, Schmidt R, Dean C, Dangl JL
+RL  Cell 1997 Mar 7;88(5):685-94

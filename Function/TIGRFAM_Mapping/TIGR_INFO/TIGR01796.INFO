@@ -1,0 +1,13 @@
+ID  CM_mono_aroH
+AC  TIGR01796
+DE  chorismate mutase
+AU  Selengut J
+TC  82.00 82.00
+NC  51.30 51.30
+AL  clustalw
+IT  equivalog
+EN  monofunctional chorismate mutase, gram positive type, clade 1
+GS  aroH
+EC  5.4.99.5
+TP  TIGRFAMs
+CC  This model represents a family of monofunctional (non-fused) chorismate mutases from gram positive bacteria (Firmicutes) and cyanobacteria.  Trusted members of the family are found in operons with other enzymes of the chorismate pathways, both up- and downstream of CM (Listeria, Bacillus, Oceanobacillus) or are the sole CM in the genome where the other members of the chorismate pathways are found elsewhere in the genome (Nostoc, Thermosynechococcus).

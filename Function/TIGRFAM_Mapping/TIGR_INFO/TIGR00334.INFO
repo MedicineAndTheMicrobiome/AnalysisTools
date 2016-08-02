@@ -1,0 +1,23 @@
+ID  5S_RNA_mat_M5
+AC  TIGR00334
+DE  ribonuclease M5
+AU  Haft DH
+TC  110.65 110.65
+NC  61.85 61.85
+AL  clustalw
+IT  equivalog
+EN  ribonuclease M5
+GS  rnmV
+EC  3.1.26.8
+TP  TIGRFAMs
+CC  This family of orthologous proteins shows a weak but significant similarity to the central region of the DnaG-type DNA primase. The region of similarity is termed the Toprim (topoisomerase-primase) domain and is also shared by RecR, OLD family nucleases, and type IA and II topoisomerases.
+RN  [1]
+RM  PMID:16077031
+RT  The 5S rRNA maturase, ribonuclease M5, is a Toprim domain family member.
+RA  Allemand F, Mathy N, Brechemier-Baey D, Condon C
+RL  Nucleic Acids Res. 2005 Aug 2;33(13):4368-76
+RN  [2]
+RM  98391745
+RT  Toprim--a conserved catalytic domain in type IA and II topoisomerases, DnaG-type primases, OLD family nucleases and RecR proteins.
+RA  Aravind L, Leipe DD, Koonin EV
+RL  Nucleic Acids Res 1998 Sep 15;26(18):4205-13

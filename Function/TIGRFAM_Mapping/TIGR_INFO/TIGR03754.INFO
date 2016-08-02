@@ -1,0 +1,12 @@
+ID  conj_TOL_TraD
+AC  TIGR03754
+DE  conjugative coupling factor TraD, PFGI-1 class
+AU  Haft DH
+TC  647.55 647.55
+NC  485.15 485.15
+AL  muscle_manual
+IT  equivalog
+EN  conjugative coupling factor TraD, TOL family
+GS  traD
+TP  TIGRFAMs
+CC  Members of this protein are assigned by homology to the TraD family of conjugative coupling factor. This particular clade serves as a marker for an extended gene region that occurs occasionally on plasmids, including the toluene catabolism TOL plasmid. More commonly, the gene region is chromosomal, flanked by various markers of conjugative transfer and insertion.

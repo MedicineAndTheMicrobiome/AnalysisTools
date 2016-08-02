@@ -1,0 +1,14 @@
+ID  SAM_DCase_Eco
+AC  TIGR03331
+DE  S-adenosylmethionine decarboxylase proenzyme
+AU  Haft DH
+TC  255.80 255.80
+NC  157.30 157.30
+AL  muscle_manual
+IT  equivalog
+EN  S-adenosylmethionine decarboxylase proenzyme, Escherichia coli form
+GS  speD
+EC  4.1.1.50
+TP  TIGRFAMs
+CC  Members of this protein family are the single chain precursor of the S-adenosylmethionine decarboxylase as found in Escherichia coli. This form shows a substantially different architecture from the form shared by the Archaea, Bacillus, and many other species (TIGR03330). It shows little or no similarity to the form found in eukaryotes (TIGR00535).
+DR  HAMAP; MF_00465; 55 of 56

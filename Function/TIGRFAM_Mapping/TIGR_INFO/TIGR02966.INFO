@@ -1,0 +1,15 @@
+ID  phoR_proteo
+AC  TIGR02966
+DE  phosphate regulon sensor kinase PhoR
+AU  Haft DH
+TC  334.20 334.20
+NC  326.80 326.80
+AL  muscle
+IT  equivalog
+EN  phosphate regulon sensor kinase PhoR
+GS  phoR
+EC  2.7.3.-
+TP  TIGRFAMs
+CC  Members of this protein family are the regulatory histidine kinase PhoR associated with the phosphate ABC transporter in most Proteobacteria. Related proteins from Gram-positive organisms are not included in this model. The phoR gene usually is adjacent to the response regulator phoB gene (TIGR02154).
+DR  PFAM; PF00512; His Kinase A (phosphoacceptor) domain
+DR  PFAM; PF02518; ATPase, histidine kinase-, DNA gyrase B-, and HSP90-like domain protein

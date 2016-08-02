@@ -1,0 +1,25 @@
+ID  metmalonyl_epim
+AC  TIGR03081
+DE  methylmalonyl-CoA epimerase
+AU  Haft DH
+TC  114.95 114.95
+NC  60.30 60.30
+AL  muscle
+IT  equivalog
+EN  methylmalonyl-CoA epimerase
+GS  mce
+EC  5.1.99.1
+TP  TIGRFAMs
+CC  Members of this protein family are the enzyme methylmalonyl-CoA epimerase (EC 5.1.99.1), also called methylmalonyl-CoA racemase. This enzyme converts (2R)-methylmalonyl-CoA to (2S)-methylmalonyl-CoA, which is then a substrate for methylmalonyl-CoA mutase (TIGR00642). It is known in bacteria, archaea, and as a mitochondrial protein in animals. It is closely related to lactoylglutathione lyase (TIGR00068), which is also called glyoxylase I, and is also a homodimer.
+RN  [1]
+RM  PMID: 11481338
+RT  Identification of the human methylmalonyl-CoA racemase gene based on the analysis of prokaryotic gene arrangements. Implications for decoding the human genome.
+RA  Bobik TA, Rasche ME
+RL  J Biol Chem. 2001 Oct 5;276(40):37194-8.
+RN  [2]
+RM  PMID: 11470438
+RT  Crystal structure of methylmalonyl-coenzyme A epimerase from P. shermanii: a novel enzymatic function on an ancient metal binding scaffold.
+RA  McCarthy AA, Baker HM, Shewry SC, Patchett ML, Baker EN
+RL  Structure. 2001 Jul 3;9(7):637-46.
+DR  BRENDA; 5.1.99.1; Methylmalonyl-CoA epimerase
+DR  PFAM; PF00903; glyoxalase family protein

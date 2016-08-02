@@ -1,0 +1,17 @@
+ID  cydB
+AC  TIGR00203
+DE  cytochrome d ubiquinol oxidase, subunit II
+AU  Loftus BJ
+TC  117.30 117.30
+NC  88.55 88.55
+AL  clustalw
+IT  equivalog
+EN  cytochrome d oxidase, subunit II (cydB)
+GS  cydB
+EC  1.10.3.-
+TP  TIGRFAMs
+CC  part of a two component cytochrome D terminal complex. Terminal reaction in the aerobic respiratory chain.
+DR  SWISSPROT; P11027         
+DR  ECOCYC; EG10174
+DR  InterPro; IPR003317; Cyto_ox_2
+DR  PFAM; PF02322; Cyto_ox_2

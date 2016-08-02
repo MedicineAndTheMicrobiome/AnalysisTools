@@ -1,0 +1,23 @@
+ID  queuosine_YadB
+AC  TIGR03838
+DE  glutamyl-queuosine tRNA(Asp) synthetase
+AU  Haft DH
+TC  276.70 276.70
+NC  264.10 264.10
+AL  muscle
+IT  equivalog
+EN  glutamyl-queuosine tRNA(Asp) synthetase
+GS  gluQ
+EC  6.1.1.-
+TP  TIGRFAMs
+CC  This protein resembles a shortened glutamyl-tRNA ligase, but its purpose is to modify tRNA(Asp) at a queuosine position in the anticodon rather than to charge a tRNA with its cognate amino acid.
+RN  [1]
+RM  PMID:15096612
+RT  A truncated aminoacyl-tRNA synthetase modifies RNA.
+RA  Salazar JC, Ambrogelly A, Crain PF, McCloskey JA, Soll D
+RL  Proc Natl Acad Sci U S A. 2004 May 18;101(20):7536-41.
+RN  [2]
+RM  PMID:16164993
+RT  Glu-Q-tRNA(Asp) synthetase coded by the yadB gene, a new paralog of aminoacyl-tRNA synthetase that glutamylates tRNA(Asp) anticodon.
+RA  Blaise M, Becker HD, Lapointe J, Cambillau C, Giege R, Kern D
+RL  Biochimie. 2005 Sep-Oct;87(9-10):847-61.

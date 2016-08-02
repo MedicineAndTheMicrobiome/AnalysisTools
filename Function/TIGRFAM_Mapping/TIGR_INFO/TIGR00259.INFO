@@ -1,0 +1,21 @@
+ID  thylakoid_BtpA
+AC  TIGR00259
+DE  membrane complex biogenesis protein, BtpA family
+AU  Haft DH
+TC  153.40 153.40
+NC  106.15 106.15
+AL  clustalw
+IT  subfamily
+EN  membrane complex biogenesis protein, BtpA family
+TP  TIGRFAMs
+CC  Members of this family are found in C. elegans, Synechocystis sp., E. coli, and several of the Archaea. Members in Cyanobacteria have been shown to play a role in protein complex biogenesis, and designated BtpA (biogenesis of thylakoid protein). Homologs in non-photosynthetic species, where thylakoid intracytoplasmic membranes are lacking, are likely to act elsewhere in membrane protein biogenesis.
+RN  [1]
+RM  PMID:9045660
+RT  Molecular identification of a novel protein that regulates biogenesis of photosystem I, a membrane protein complex.
+RA  Bartsevich VV, Pakrasi HB
+RL  J Biol Chem. 1997 Mar 7;272(10):6382-7.
+RN  [2]
+RM  PMID:12651001
+RT  Purification of recombinant BtpA and Ycf3, proteins involved in membrane protein biogenesis in Synechocystis PCC 6803.
+RA  Schwabe TM, Gloddek K, Schluesener D, Kruip J
+RL  J Chromatogr B Analyt Technol Biomed Life Sci. 2003 Mar 25;786(1-2):45-59.

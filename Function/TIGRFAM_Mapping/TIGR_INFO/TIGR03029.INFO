@@ -1,0 +1,17 @@
+ID  EpsG
+AC  TIGR03029
+DE  chain length determinant protein tyrosine kinase EpsG
+AU  Selengut J
+TC  313.80 313.80
+NC  206.90 206.90
+AL  muscle
+IT  equivalog
+EN  chain length determinant protein tyrosine kinase EpsG
+GS  epsG
+TP  TIGRFAMs
+CC  The proteins in this family are homologs of the EpsG protein found in Methylobacillus strain 12S and are generally found in operons with other Eps homologs.  The protein is believed to function as the protein tyrosine kinase component of the chain length regulator (along with the transmembrane component EpsF).
+RN  [1]
+RM  12624205
+RA  Yoshida T, Ayabe Y, Yasunaga M, Usami Y, Habe H, Nojiri H, Omori T
+RT  Genes involved in the synthesis of the exopolysaccharide methanolan by the obligate methylotroph Methylobacillus sp strain 12S.
+RL  Microbiology. 2003 Feb;149(Pt 2):431-44.

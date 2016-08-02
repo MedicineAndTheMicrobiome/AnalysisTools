@@ -1,0 +1,14 @@
+ID  AcAcCoA_reduct
+AC  TIGR01829
+DE  acetoacetyl-CoA reductase
+AU  Haft DH
+TC  302.10 302.10
+NC  300.90 300.90
+AL  clustalw_manual
+IT  subfamily
+EN  acetoacetyl-CoA reductase
+GS  phbB
+EC  1.1.1.36
+TP  TIGRFAMs
+CC  This HMM represent acetoacetyl-CoA reductase, a member of the family short-chain-alcohol dehydrogenases. Note that, despite the precision implied by the enzyme name, the reaction of EC 1.1.1.36 is defined more generally as
+CC  (R)-3-hydroxyacyl-CoA + NADP+ = 3-oxoacyl-CoA + NADPH. Members of this family may act in the biosynthesis of poly-beta-hydroxybutyrate (e.g. Rhizobium meliloti) and related poly-beta-hydroxyalkanoates. Note that the member of this family from Azospirillum brasilense, designated NodG, appears to lack acetoacetyl-CoA reductase activity and to act instead in the production of nodulation factor. This family is downgraded to subfamily for this NodG. Other proteins designated NodG, as from Rhizobium, belong to related but distinct protein families.

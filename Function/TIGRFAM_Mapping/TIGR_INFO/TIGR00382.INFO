@@ -1,0 +1,21 @@
+ID  clpX
+AC  TIGR00382
+DE  ATP-dependent Clp protease, ATP-binding subunit ClpX
+AU  Loftus BJ
+TC  370.75 370.75
+NC  178.75 178.75
+AL  clustalw
+IT  equivalog
+EN  endopeptidase Clp ATP-binding regulatory subunit (clpX)
+GS  clpX
+TP  TIGRFAMs
+CC  A member of the ATP-dependent proteases, ClpX has ATP-dependent chaperone activity and is required for specific ATP-dependent proteolytic activities expressed by ClpPX. The gene is also found to be involved in stress tolerance in Bacillus subtilis and is essential for the efficient acquisition of genes specifying type IA and IB restriction.
+DR  SWISSPROT; P33138;
+DR  ECOCYC; EG10159; clpX;
+DR  PROSITE; PDOC00358;
+RN  [1]
+RM  98241620
+RT  Enzymatic and structural similarities between the Escherichia coli ATP-dependent proteases, ClpXP and ClpAP.
+RN  [2]
+RM  98254126
+DR  HAMAP; MF_00175; 433 of 438

@@ -1,0 +1,11 @@
+ID  YokU_near_AblA
+AC  TIGR03829
+DE  uncharacterized protein, YokU family
+AU  Haft DH
+TC  90.85 90.85
+NC  49.75 49.75
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  uncharacterized protein, YokU family
+TP  TIGRFAMs
+CC  Members of this protein family occur in various species of the genus Bacillus, always next to the gene (kamA or ablA) for lysine 2,3-aminomutase. Members have a pair of CXXC motifs, and share homology to the amino-terminal region of a family of putative transcription factors for which the C-terminal is modeled by PF01381, a helix-turn-helix domain model. This family, however, is shorter and lacks the helix-turn-helix region. The function of this protein family is unknown, but a regulatory role in compatible solute biosynthesis is suggested by local genome context.

@@ -1,0 +1,11 @@
+ID  exo_archaeo
+AC  TIGR04178
+DE  exosortase/archaeosortase family protein
+AU  Haft DH
+TC  23.00 23.00
+NC  22.00 22.00
+AL  muscle_manual
+IT  signature
+EN  exosortase/archaeosortase family protein
+TP  TIGRFAMs
+CC  This model represents the most conserved region of the multitransmembrane protein family of exosortases and archaeosortases. The region includes nearly invariant motifs at the  ends of three predicted transmembrane helices on the extracytoplasmic face: a Cys (often Cys-Xaa-Gly), Asn-Xaa-Xaa-Arg, and His. This model is much broader than the bacterial exosortase model (TIGR02602), and has in intended scope similar to (or broader than) Pfam model PF09721.

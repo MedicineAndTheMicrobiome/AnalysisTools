@@ -1,0 +1,11 @@
+ID  CSLREA_Nterm
+AC  TIGR04214
+DE  CSLREA domain
+AU  Haft DH
+TC  25.00 25.00
+NC  21.50 18.50
+AL  muscle_manual
+IT  domain
+EN  CSLREA domain
+TP  TIGRFAMs
+CC  This model describes an N-terminal region, with a motif CSLREA, shared by tandem genes in Acinetobacter that both have the GlyGly-CTERM putative protein-sorting domain. Many proteins with this domain are putative outer membrane proteins (OMPs) with predicted beta strand-forming repeats.

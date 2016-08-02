@@ -1,0 +1,12 @@
+ID  2A0120
+AC  TIGR00899
+DE  sugar efflux transporter
+AU  Loftus BJ
+TC  522.30 522.30
+NC  321.25 321.25
+AL  clustalw_manual
+IT  subfamily
+EN  sugar efflux transporter
+TR  2.A.1.20
+TP  TIGRFAMs
+CC  This family of proteins is an efflux system for lactose, glucose, aromatic glucosides and galactosides, cellobiose, maltose, a-methyl glucoside and other sugar compounds. They are found in both gram-negative and gram-postitive bacteria.

@@ -1,0 +1,11 @@
+ID  E1_like_apg7
+AC  TIGR01381
+DE  E1-like protein-activating enzyme Gsa7p/Apg7p
+AU  Haft DH
+TC  571.35 571.35
+NC  304.85 304.85
+AL  clustalw
+IT  equivalog
+EN  E1-like protein-activating enzyme Gsa7p/Apg7p
+TP  TIGRFAMs
+CC  This HMM represents a family of eukaryotic proteins found in animals, plants, and yeasts, including Apg7p (YHR171W) from Saccharomyces cerevisiae and GSA7 from Pichia pastoris. Members are about 650 to 700 residues in length and include a central domain of about 150 residues shared with the ThiF/MoeB/HesA family of proteins. A low level of similarity to ubiquitin-activating enzyme E1 is described in a paper on peroxisome autophagy mediated by GSA7, and is the basis of the name ubiquitin activating enzyme E1-like protein. Members of the family appear to be involved in protein lipidation events analogous to ubiquitination and required for membrane fusion events during autophagy.

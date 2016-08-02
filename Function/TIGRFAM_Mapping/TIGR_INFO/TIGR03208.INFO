@@ -1,0 +1,13 @@
+ID  cyc_hxne_CoA_lg
+AC  TIGR03208
+DE  cyclohexanecarboxylate-CoA ligase
+AU  Haft DH
+TC  792.30 792.30
+NC  492.60 492.60
+AL  muscle
+IT  equivalog
+EN  cyclohexanecarboxylate-CoA ligase
+GS  aliA
+EC  6.2.1.-
+TP  TIGRFAMs
+CC  Members of this protein family are cyclohexanecarboxylate-CoA ligase. This enzyme prepares the aliphatic ring compound, cyclohexanecarboxylate, for dehydrogenation and then degradation by a pathway also used in benzoyl-CoA degradation in Rhodopseudomonas palustris.

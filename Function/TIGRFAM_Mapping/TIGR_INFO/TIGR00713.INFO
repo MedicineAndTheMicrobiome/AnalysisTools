@@ -1,0 +1,21 @@
+ID  hemL
+AC  TIGR00713
+DE  glutamate-1-semialdehyde-2,1-aminomutase
+AU  Haft DH
+TC  527.30 527.30
+NC  281.90 281.90
+AL  clustalw_manual
+IT  equivalog
+EN  glutamate-1-semialdehyde-2,1-aminomutase
+GS  hemL
+EC  5.4.3.8
+TP  TIGRFAMs
+CC  This enzyme, glutamate-1-semialdehyde-2,1-aminomutase (glutamate-1-semialdehyde aminotransferase, GSA aminotransferase), contains a pyridoxal phosphate attached at a Lys residue at position 283 of the seed alignment. It is in the family of class III aminotransferases.
+AL  clustalw_manual
+DR  PROSITE; PDOC00519; Aminotransferases class-III pyridoxal-phosphate attachment site
+DR  PFAM; PF00202; Aminotransferases class-III pyridoxal-phosphate
+DR  ECOCYC; EG10432; hemL
+DR  EXPERIMENTAL; EGAD|19989|EC0154; Escherichia coli
+DR  EXPERIMENTAL; EGAD|10151|9957; Propionibacterium freudenreichii
+DR  EXPERIMENTAL; EGAD|76320|82044; Hordeum vulgare
+DR  HAMAP; MF_00375; 349 of 360

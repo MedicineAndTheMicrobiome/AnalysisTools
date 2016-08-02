@@ -1,0 +1,15 @@
+ID  tatAE
+AC  TIGR01411
+DE  twin arginine-targeting protein translocase, TatA/E family
+AU  Haft DH
+TC  53.90 53.90
+NC  34.95 34.95
+AL  clustalw_manual
+IT  subfamily
+EN  twin arginine-targeting protein translocase, TatA/E family
+GS  tatA
+TR  2.A.64
+TP  TIGRFAMs
+CC  This HMM distinguishes TatA/E from the related TatB, but does not distinguish TatA from TatE. The Tat (twin-arginine translocation) system is a Sec-independent exporter for folded proteins, often with a redox cofactor already bound, across the bacterial inner membrane. Functionally equivalent systems are found in the chloroplast and some in archaeal species. The signal peptide recognized by the Tat system is modeled by TIGR01409.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_64.html
+DR  HAMAP; MF_00236; 258 of 266

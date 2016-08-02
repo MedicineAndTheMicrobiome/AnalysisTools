@@ -1,0 +1,11 @@
+ID  RNP_Burkhold
+AC  TIGR03795
+DE  ribosomal natural product, two-chain TOMM family
+AU  Haft DH
+TC  41.00 41.00
+NC  34.55 34.55
+AL  muscle_manual
+IT  subfamily
+EN  ribosomal natural product, two-chain TOMM family
+TP  TIGRFAMs
+CC  Members of this protein family are found sparsely, mostly in members of the genus Burkholderia. Members often occur as tandem homologous genes, such as BMA_0021 and BMA_0022 in Burkholderia mallei ATCC 23344, or else have a duplication. The genes regularly are encoded near a cyclodehydrogenase/docking protein fusion protein of TOMM (thiazole/oxazole-modified microcins) biosynthetic clusters, suggesting a role in bacteriocin biosynthesis. The role of the putative natural product is unknown, but function as a two-chain bacteriocin is suggested.

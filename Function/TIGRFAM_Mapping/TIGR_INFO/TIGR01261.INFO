@@ -1,0 +1,15 @@
+ID  hisB_Nterm
+AC  TIGR01261
+DE  histidinol-phosphatase
+AU  Haft DH
+TC  140.00 140.00
+NC  93.45 93.45
+AL  clustalw_manual
+IT  equivalog_domain
+EN  histidinol-phosphatase
+GS  hisB
+EC  3.1.3.15
+TP  TIGRFAMs
+CC  This model describes histidinol phosphatase. All known examples in the scope of this model are bifunctional proteins with a histidinol phosphatase domain followed by an imidazoleglycerol-phosphate dehydratase domain. These enzymatic domains catalyze the ninth and seventh steps, respectively, of histidine biosynthesis.
+DR  SwissProt; SP|P06987; annotated E. coli entry
+DR  HAMAP; MF_01022; 53 of 53

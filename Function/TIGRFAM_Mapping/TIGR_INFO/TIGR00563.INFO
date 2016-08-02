@@ -1,0 +1,19 @@
+ID  rsmB
+AC  TIGR00563
+DE  16S rRNA (cytosine(967)-C(5))-methyltransferase
+AU  Haft DH
+TC  269.05 269.05
+NC  188.00 188.00
+IT  equivalog
+EN  16S rRNA (cytosine(967)-C(5))-methyltransferase
+GS  rsmB
+EC  2.1.1.176
+TP  TIGRFAMs
+CC  This protein is also known as sun protein. The reading frame was originally interpreted as two reading frames, fmu and fmv. The recombinant protein from E. coli was shown to methylate only C967 of small subunit (16S) ribosomal RNA and to produce only m5C at that position.
+CC  The seed alignment is built from bacterial sequences only. Eukaryotic homologs include Nop2, a protein required for processing pre-rRNA, that is likely also a rRNA methyltransferase, although the fine specificity may differ. Cutoff scores are set to avoid treating archaeal and eukaroytic homologs automatically as functionally equivalent, although they may have very similar roles.
+DR  PFAM; PF01189; NOL1/NOP2/sun family
+DR  PROSITE; PDOC00888; NOL1/NOP2/sun family signature
+RM  99152378
+RT  Purification, cloning, and characterization of the 16S RNA m5C967 methyltransferase from Escherichia coli.
+RA  Tscherne JS, Nurse K, Popienick P, Michel H, Sochacki M, Ofengand J
+RL  Biochemistry 1999 Feb 9;38(6):1884-92

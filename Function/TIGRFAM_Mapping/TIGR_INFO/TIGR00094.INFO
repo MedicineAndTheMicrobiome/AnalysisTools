@@ -1,0 +1,19 @@
+ID  tRNA_TruD_broad
+AC  TIGR00094
+DE  tRNA pseudouridine synthase, TruD family
+AU  Haft DH
+TC  172.20 172.20
+NC  60.85 60.85
+AL  clustalw
+IT  subfamily
+EN  tRNA pseudouridine synthase, TruD family
+EC  5.4.99.-
+TP  TIGRFAMs
+CC  an EGAD loading error caused one member to be called surE, but that's an adjacent gene.
+CC  MJ11364 is a strong partial match from 50 to 230 aa.
+RN  [1]
+RM  PMID:12756329
+RT  A novel unanticipated type of pseudouridine synthase with homologs in bacteria, archaea, and eukarya.
+RA  Kaya Y, Ofengand J
+RL  RNA. 2003 Jun;9(6):711-21.
+DR  HAMAP; MF_01082; 111 of 135

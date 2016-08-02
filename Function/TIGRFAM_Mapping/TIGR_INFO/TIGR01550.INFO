@@ -1,0 +1,19 @@
+ID  DOC_P1
+AC  TIGR01550
+DE  death-on-curing family protein
+AU  Haft DH
+TC  38.65 38.65
+NC  38.30 38.30
+AL  clustalw_manual
+IT  subfamily
+EN  death-on-curing family protein
+TP  TIGRFAMs
+CC  The characterized member of this family is the death-on-curing (DOC) protein of phage P1. It is part of a two protein operon with prevents-host-death (phd) that forms an addiction module. DOC lacks homology to analogous addiction module post-segregational killing proteins involved in plasmid maintenance. These modules work as a combination of a long lived poison (e.g. this protein) and a more abundant but shorter lived antidote.
+CC  Members of this family have a well-conserved central motif HxFx[ND][AG]NKR.
+CC  A similar region, with K replaced by G, is found in the huntingtin interacting protein (HYPE) family.
+RN  [1]
+RM  8411153
+RT  Plasmid addiction genes of bacteriophage P1: doc, which causes cell death on curing of prophage, and phd, which prevents host death when prophage is retained.
+RA  Lehnherr H, Maguin E, Jafri S, Yarmolinsky MB.
+RL  J Mol Biol 1993 Oct 5;233(3):414-28
+DR  EXPERIMENTAL; SP:Q06259; Bacteriophage P1

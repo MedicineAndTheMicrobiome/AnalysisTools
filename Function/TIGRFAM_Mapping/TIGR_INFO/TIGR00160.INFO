@@ -1,0 +1,19 @@
+ID  MGSA
+AC  TIGR00160
+DE  methylglyoxal synthase
+AU  Richardson DL, Haft DH
+TC  146.90 146.90
+NC  71.55 71.55
+AL  clustalw
+IT  equivalog
+EN  methylglyoxal synthase
+GS  mgsA
+EC  4.2.3.3
+TP  TIGRFAMs
+CC  Methylglyoxal synthase (MGS) generates methylglyoxal (MG), a toxic metabolite (that may also be a regulatory metabolite and) that is detoxified, prinicipally, through a pathway involving glutathione and glyoxylase I. Totemeyer, et al. (MUID:98149311) propose that, during a loss of control over carbon flux, with accumulation of phosphorylated sugars and depletion of phosphate, as might happen during a rapid shift to a richer medium, MGS aids the cell by converting some dihydroxyacetone phosphate (DHAP) to MG and phosphate. This is therefore an alternative to triosephosphate isomerase and the remainder of the glycolytic pathway for the disposal of DHAP during the stress of a sudden increase in available sugars.
+DR  ECOCYC; EG12307; mgsA;
+RM  98149311
+RT  From famine to feast: the role of methylglyoxal production in Escherichia coli.
+RA  Totemeyer S, Booth NA, Nichols WW, Dunbar B, Booth IR
+RL  Mol Microbiol 1998 Feb;27(3):553-62
+DR  HAMAP; MF_00549; 124 of 127

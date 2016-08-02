@@ -1,0 +1,13 @@
+ID  benz_CoA_bzdQ
+AC  TIGR03192
+DE  benzoyl-CoA reductase, bzd-type, Q subunit
+AU  Haft DH
+TC  380.20 380.20
+NC  280.95 280.95
+AL  muscle
+IT  equivalog
+EN  benzoyl-CoA reductase, bzd-type, Q subunit
+GS  bzdQ
+EC  1.3.7.8
+TP  TIGRFAMs
+CC  Members of this family are the Q subunit of one of two related types of four-subunit ATP-dependent benzoyl-CoA reductase. This enzyme system catalyzes the dearomatization of benzoyl-CoA, a common intermediate in pathways for the degradation for a number of different aromatic compounds, such as phenol and toluene.

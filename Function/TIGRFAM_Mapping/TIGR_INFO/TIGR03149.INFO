@@ -1,0 +1,18 @@
+ID  cyt_nit_nrfC
+AC  TIGR03149
+DE  cytochrome c nitrite reductase, Fe-S protein
+AU  Haft DH
+TC  377.60 377.60
+NC  337.80 337.80
+AL  muscle
+IT  equivalog
+EN  cytochrome c nitrite reductase, Fe-S protein
+GS  nrfC
+EC  1.7.2.2
+TP  TIGRFAMs
+CC  Members of this protein family are the Fe-S protein, NrfC, of a cytochrome c nitrite reductase system for which the pentaheme cytochrome c protein, NrfB (family TIGR03146) is an unambiguous marker. Members of this protein family show similarity to other ferredoxin-like proteins, including a subunit of a polysulfide reductase.
+RN  [1]
+RM  PMID: 8057835
+RT  A seven-gene operon essential for formate-dependent nitrite reduction to ammonia by enteric bacteria.
+RA  Hussain H, Grove J, Griffiths L, Busby S, Cole J
+RL  Mol Microbiol. 1994 Apr;12(1):153-63.

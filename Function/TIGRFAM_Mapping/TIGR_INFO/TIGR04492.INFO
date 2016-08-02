@@ -1,0 +1,17 @@
+ID  VioB
+AC  TIGR04492
+DE  iminophenyl-pyruvate dimer synthase VioB
+AU  Haft DH
+TC  1250.00 1250.00
+NC  1100.00 1100.00
+AL  muscle_manual
+IT  equivalog
+EN  iminophenyl-pyruvate dimer synthase VioB
+GS  vioB
+TP  TIGRFAMs
+CC  Following the action of a flavin-dependent L-amino acid oxidase that converts L-tryptophan to indole-3-pyruvate imine, the enzymes VioB (this family), RebD, and StaD can ligate two molecules, forming a coupled iminophenyl-pyruvate dimer. In the violacein biosynthesis pathway, this compound is acted on by VioE before it cyclizes spontaneously to chromopyrrolic acid. In the pathways of homolog StaD (staurosporine), chromopyrrolate is formed, and the enzyme is referred to as chromopyrrolate synthase. RebD is very similar to StaD, but acts on chlorinated Trp-derived molecules.
+RN  [1]
+RM  PMID:19389622 
+RT  Divergent pathways in the biosynthesis of bisindole natural products. 
+RA  Ryan KS, Drennan CL 
+RL  Chem Biol. 2009 Apr 24;16(4):351-64. doi: 10.1016/j.chembiol.2009.01.017.

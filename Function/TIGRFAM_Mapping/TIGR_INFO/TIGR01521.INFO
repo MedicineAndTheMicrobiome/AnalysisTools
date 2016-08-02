@@ -1,0 +1,18 @@
+ID  FruBisAldo_II_B
+AC  TIGR01521
+DE  fructose-bisphosphate aldolase, class II, Calvin cycle subtype
+AU  Haft DH
+TC  496.35 496.35
+NC  373.15 373.15
+AL  clustalw
+IT  equivalog
+EN  fructose-bisphosphate aldolase, class II, Calvin cycle subtype
+GS  fba
+EC  4.1.2.13
+TP  TIGRFAMs
+CC  Members of this family are class II examples of the enzyme fructose-bisphosphate aldolase, an enzyme both of glycolysis and (in the opposite direction) of the Calvin cycle of CO2 fixation. A deep split separates the tightly conserved yeast/E. coli/Mycobacterium subtype (all species lacking the Calvin cycle) represented by model TIGR01520 from a broader group of aldolases that includes both tagatose- and fructose-bisphosphate aldolases. This model represents a distinct, elongated, very well conserved subtype within the latter group. Most species with this aldolase subtype have the Calvin cycle.
+DR  EXPERIMENTAL; SP|Q59100; Alcaligenes eutrophus
+RM  7763137
+RT  Analysis of the genes forming the distal parts of the two cbb CO2 fixation operons from Alcaligenes eutrophus.
+RA  Schaferjohann J, Yoo JG, Bowien B.
+RL  Arch Microbiol 1995 Apr;163(4):291-9

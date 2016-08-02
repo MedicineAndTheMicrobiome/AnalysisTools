@@ -1,0 +1,23 @@
+ID  mycothiol_MshB
+AC  TIGR03445
+DE  N-acetyl-1-D-myo-inositol-2-amino-2-deoxy-alpha-D-glucopyranoside deacetylase
+AU  Haft DH
+TC  224.35 224.35
+NC  203.00 203.00
+AL  muscle_manual
+IT  equivalog
+EN  N-acetyl-1-D-myo-inositol-2-amino-2-deoxy-alpha-D-glucopyranoside deacetylase
+GS  mshB
+EC  3.5.1.103
+TP  TIGRFAMs
+CC  Members of this protein family are N-acetyl-1-D-myo-inositol-2-amino-2-deoxy-alpha-D-glucopyranoside deacetylase, also called 1D-myo-inosityl-2-acetamido-2-deoxy-alpha-D-glucopyranoside deacetylase, the MshB protein of mycothiol biosynthesis in Mycobacterium tuberculosis and related species.
+RN  [1]
+RM  PMID:16630724
+RT  Purification and characterization of Mycobacterium tuberculosis 1D-myo-inosityl-2-acetamido-2-deoxy-alpha-D-glucopyranoside deacetylase, MshB, a mycothiol biosynthetic enzyme.
+RA  Newton GL, Ko M, Ta P, Av-Gay Y, Fahey RC
+RL  Protein Expr Purif. 2006 Jun;47(2):542-50.
+RN  [2]
+RM  PMID:11092856
+RT  N-Acetyl-1-D-myo-inosityl-2-amino-2-deoxy-alpha-D-glucopyranoside deacetylase (MshB) is a key enzyme in mycothiol biosynthesis.
+RA  Newton GL, Av-Gay Y, Fahey RC
+RL  J Bacteriol. 2000 Dec;182(24):6958-63.

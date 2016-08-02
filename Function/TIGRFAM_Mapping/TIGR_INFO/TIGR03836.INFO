@@ -1,0 +1,17 @@
+ID  termin_org_HMW1
+AC  TIGR03836
+DE  cytadherence high molecular weight protein 1 N-terminal region
+AU  Haft DH
+TC  85.20 85.20
+NC  85.20 85.20
+AL  muscle_manual
+IT  equivalog_domain
+EN  cytadherence high molecular weight protein 1 N-terminal region
+GS  hmw1
+TP  TIGRFAMs
+CC  This model describes the N-terminal region of the Mycoplasma cytadherence protein HMW1, up to but not including the first EAGR box domain. The apparent orthologs in different Mycoplasma species differ profoundly in archictecture C-terminally to the region described here.
+RN  [1]
+RM  PMID:15576770
+RT  HMW1 is required for stability and localization of HMW2 to the attachment organelle of Mycoplasma pneumoniae.
+RA  Willby MJ, Balish MF, Ross SM, Lee KK, Jordan JL, Krause DC
+RL  J Bacteriol. 2004 Dec;186(24):8221-8.

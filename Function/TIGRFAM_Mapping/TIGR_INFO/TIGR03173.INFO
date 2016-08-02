@@ -1,0 +1,17 @@
+ID  pbuX
+AC  TIGR03173
+DE  xanthine permease
+AU  Selengut J
+TC  414.15 414.15
+NC  371.25 371.25
+AL  muscle
+IT  subfamily
+EN  xanthine permease
+GS  pbuX
+TP  TIGRFAMs
+CC  All the seed members of this model are observed adjacent to genes for either xanthine phosphoribosyltransferase (for the conversion of xanthine to guanine, GenProp0696, [1]) or genes for the conversion of xanthine to urate and its concomitant catabolism (GenProp0640, GenProp0688, GenProp0686 and GenProp0687).  A number of sequences scoring higher than trusted to this model are found in different genomic contexts, and the possibility exist that these transport related compounds in addition to or instead of xanthine itself.  The outgroup to this family are sequences which are characterized as uracil permeases or are adjacent to established uracil phosphoribosyltransferases.
+RN  [1]
+RM  PMID: 9098051 
+RT  Xanthine metabolism in Bacillus subtilis: characterization of the xpt-pbuX operon and evidence for purine- and nitrogen-controlled expression of genes involved in xanthine salvage and catabolism. 
+RA  Christiansen LC, Schou S, Nygaard P, Saxild HH 
+RL  J Bacteriol. 1997 Apr;179(8):2540-50.

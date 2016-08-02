@@ -1,0 +1,19 @@
+ID  eIF_5A
+AC  TIGR00037
+DE  translation elongation factor IF5A
+AU  Richardson DL, Haft DH
+TC  75.45 75.45
+NC  69.80 69.80
+AL  clustalw
+IT  equivalog
+EN  translation elongation factor IF5A
+GS  eif5A
+TP  TIGRFAMs
+CC  Recent work (2009) changed the view of eIF5A in eukaryotes and aIF5A in archaea, hypusine-containing proteins, from translation initiation factor to translation elongation factor.
+RN  [1]
+RM  PMID:19424157 
+RT  Hypusine-containing protein eIF5A promotes translation elongation. 
+RA  Saini P, Eyler DE, Green R, Dever TE 
+RL  Nature. 2009 May 7;459(7243):118-21. 
+DR  PROSITE; PDOC00274;
+DR  HAMAP; MF_00085; 44 of 44

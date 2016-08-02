@@ -1,0 +1,19 @@
+ID  mtrA
+AC  TIGR01111
+DE  tetrahydromethanopterin S-methyltransferase, subunit A
+AU  Ujwal ML, Paulsen IT
+TC  249.15 249.15
+NC  173.85 173.85
+AL  clustalw
+IT  equivalog
+EN  N5-methyltetrahydromethanopterin:coenzyme M methyltransferase subunit A
+GS  mtrA
+EC  2.1.1.86
+TP  TIGRFAMs
+CC  This model describes N5-methyltetrahydromethanopterin:
+CC  coenzyme M methyltransferase subunit A in methanogenic archaea. This methyltranferase is a membrane-associated enzyme complex that uses methyl-transfer reaction to drive sodium-ion pump. Archaea have evolved energy-yielding pathways marked by one-carbon biochemistry featuring novel cofactors and enzymes. This transferase (encoded by subunit A) is involved in the transfer of 'methyl' group from N5-methyltetrahydromethanopterin to coenzyme M. In an accompanying reaction, methane is produced by two-electron reduction of methyl-coenzyme M by another enzyme, methyl-coenzyme M reductase.
+RM  9559648
+RT  Cloning, sequencing and expression of the genes encoding the sodium translocating N5-methyltetrahydromethanopterin: coenzyme M methyltransferase of the methylotrophic archaeon Methanosarcina mazei Go1.
+RA  Lienard T, Gottschalk G.
+RL  FEBS Lett 1998 Mar 27;425(2):204-8
+DR  HAMAP; MF_01093; 8 of 8

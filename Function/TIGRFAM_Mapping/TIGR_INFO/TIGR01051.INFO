@@ -1,0 +1,13 @@
+ID  topA_bact
+AC  TIGR01051
+DE  DNA topoisomerase I
+AU  Ujwal ML, Haft DH
+TC  456.40 456.40
+NC  379.15 379.15
+AL  clustalw_manual
+IT  equivalog
+EN  DNA topoisomerase I, bacterial
+GS  topA
+EC  5.99.1.2
+TP  TIGRFAMs
+CC  This model describes DNA topoisomerase I among the  members of bacteria. DNA topoisomerase I transiently cleaves one DNA strand and thus relaxes negatively supercoiled DNA during replication, transcription and recombination events.

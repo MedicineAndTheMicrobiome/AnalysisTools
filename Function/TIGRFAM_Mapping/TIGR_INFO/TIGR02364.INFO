@@ -1,0 +1,11 @@
+ID  dha_pts
+AC  TIGR02364
+DE  dihydroxyacetone kinase, phosphotransfer subunit
+AU  Haft DH
+TC  98.25 98.25
+NC  96.95 96.95
+AL  clustalw
+IT  equivalog_domain
+EN  dihydroxyacetone kinase, phosphotransfer subunit
+TP  TIGRFAMs
+CC  In E. coli and many other bacteria, unlike the yeasts and a few bacteria such as Citrobacter freundii, the dihydroxyacetone kinase (also called glycerone kinase) transfers a phosphate from a phosphoprotein rather than from ATP and contains multiple subunits. This protein, which resembles proteins of PTS transport systems, is found with its gene adjacent to

@@ -1,0 +1,11 @@
+ID  GlrX-dom
+AC  TIGR02190
+DE  glutaredoxin-family domain
+AU  Selengut J
+TC  99.30 99.30
+NC  82.90 82.90
+AL  clustalw
+IT  hypoth_equivalog_domain
+EN  Glutaredoxin-family domain
+TP  TIGRFAMs
+CC  This C-terminal domain with homology to glutaredoxin is fused to an N-terminal peroxiredoxin-like domain.

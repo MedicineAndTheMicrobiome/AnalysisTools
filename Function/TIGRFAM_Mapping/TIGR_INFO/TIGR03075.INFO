@@ -1,0 +1,13 @@
+ID  PQQ_enz_alc_DH
+AC  TIGR03075
+DE  PQQ-dependent dehydrogenase, methanol/ethanol family
+AU  Haft DH
+TC  480.05 480.05
+NC  249.80 249.80
+AL  muscle
+IT  subfamily
+EN  PQQ-dependent dehydrogenase, methanol/ethanol family
+EC  1.1.-.-
+TP  TIGRFAMs
+CC  This protein family has a phylogenetic distribution very similar to that coenzyme PQQ biosynthesis enzymes, as shown by partial phylogenetic profiling. Genes in this family often are found adjacent to the PQQ biosynthesis genes themselves. An unusual, strained disulfide bond between adjacent Cys residues contributes to PQQ-binding, as does a Trp residue that is part of a PQQ enzyme repeat (see PF01011). Characterized members include the dehydrogenase subunit of a membrane-anchored, three subunit alcohol (ethanol) dehydrogenase of Gluconobacter suboxydans, a homodimeric ethanol dehydrogenase in Pseudomonas aeruginosa, and the large subunit of an alpha2/beta2 heterotetrameric methanol dehydrogenase in Methylobacterium extorquens.
+DR  PFAM; PF01011; PQQ enzyme repeat

@@ -1,0 +1,14 @@
+ID  mono_pep_trsgly
+AC  TIGR02070
+DE  monofunctional biosynthetic peptidoglycan transglycosylase
+AU  Haft DH
+TC  182.65 182.65
+NC  176.55 176.55
+AL  clustalw_manual
+IT  equivalog
+EN  monofunctional biosynthetic peptidoglycan transglycosylase
+GS  mtgA
+EC  2.4.2.-
+TP  TIGRFAMs
+CC  This family is one of the transglycosylases involved in the late stages of peptidoglycan biosynthesis. Members tend to be small, about 240 amino acids in length, and consist almost entirely of a domain described by Pfam HMM PF00912 for transglycosylases. Species with this protein will have several other transglycosylases as well. All species with this protein are Proteobacteria that produce murein (peptidoglycan).
+DR  HAMAP; MF_00766; 119 of 120

@@ -1,0 +1,12 @@
+ID  MYXAN_cmx8
+AC  TIGR04413
+DE  CRISPR type MYXAN-associated protein Cmx8
+AU  Haft DH
+TC  150.00 150.00
+NC  50.00 50.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  CRISPR type MYXAN-associated protein Cmx8
+GS  cmx8
+TP  TIGRFAMs
+CC  Members of this family occur only in CRISPR/cas loci of the MYXAN type, but are present in a minority of such systems. This protein appears to replace the MYXAN system Cas8a1/Csx13 protein (TIGR03485/TIGR03486), compared to which it shows similar length and composition but only about 12 percent sequence identity.

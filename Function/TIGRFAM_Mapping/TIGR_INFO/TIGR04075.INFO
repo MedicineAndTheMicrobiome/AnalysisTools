@@ -1,0 +1,21 @@
+ID  bacter_Pnkp
+AC  TIGR04075
+DE  polynucleotide kinase-phosphatase
+AU  Haft DH
+TC  750.00 750.00
+NC  550.00 550.00
+AL  muscle
+IT  equivalog
+EN  polynucleotide kinase-phosphatase
+TP  TIGRFAMs
+CC  Members of this protein family are the bacterial polynucleotide kinase-phosphatase (Pnkp) whose genes occur paired with genes for the 3' terminal RNA ribose 2'-O-methyltransferase Hen1. All members of the seed alignment belong to a cassette with the Hen1. The pair acts in bacterial RNA repair. This enzyme performs end-healing reactions on broken RNA, preparing from the RNA ligase to close the break. The working hypothesis is that the combination of Pnkp (RNA repair) and Hen1 (RNA modification) serves to first repair RNA damage from ribotoxins and then perform a modification that prevents the damage from recurring.
+RN  [1]
+RM  PMID:17986465 
+RT  Characterization of the 2',3' cyclic phosphodiesterase activities of Clostridium thermocellum polynucleotide kinase-phosphatase and bacteriophage lambda phosphatase. 
+RA  Keppetipola N, Shuman S 
+RL  Nucleic Acids Res. 2007;35(22):7721-32. Epub 2007 Nov 5. 
+RN  [2]
+RM  PMID:20007328
+RT  Bacterial Hen1 is a 3' terminal RNA ribose 2'-O-methyltransferase component of a bacterial RNA repair cassette.
+RA  Jain R, Shuman S
+RL  RNA. 2010 Feb;16(2):316-23.

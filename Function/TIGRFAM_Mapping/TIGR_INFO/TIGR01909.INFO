@@ -1,0 +1,11 @@
+ID  C_GCAxxG_C_C
+AC  TIGR01909
+DE  C_GCAxxG_C_C family protein
+AU  Haft DH
+TC  47.40 47.40
+NC  36.55 36.55
+AL  clustalw_manual
+IT  subfamily
+EN  C_GCAxxG_C_C family probable redox protein
+TP  TIGRFAMs
+CC  This HMM represents a putative redox-active protein of about 140 residues, with four perfectly conserved Cys residues. It includes a CGAXXG motif. Most members are found within one or two loci of transporter or oxidoreductase genes. A member from Geobacter sulfurreducens, located in a molybdenum transporter operon, has a TAT (twin-arginine translocation) signal sequence for Sec-independent transport across the plasma membrane, a hallmark of bound prosthetic groups such as FeS clusters.

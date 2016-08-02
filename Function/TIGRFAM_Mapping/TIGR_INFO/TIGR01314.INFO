@@ -1,0 +1,15 @@
+ID  gntK_FGGY
+AC  TIGR01314
+DE  gluconate kinase
+AU  Haft DH
+TC  648.55 648.55
+NC  355.65 355.65
+AL  clustalw
+IT  equivalog
+EN  gluconate kinase, FGGY type
+GS  gntK
+EC  2.7.1.12
+TP  TIGRFAMs
+CC  Gluconate is derived from glucose in two steps. This HMM describes one form of gluconate kinase, belonging to the FGGY family of carbohydrate kinases. Gluconate kinase phosphoryates gluconate for entry into the Entner-Douderoff pathway.
+DR  EXPERIMENTAL; SP:P12011; Bacillus subtilis
+RM  9657988

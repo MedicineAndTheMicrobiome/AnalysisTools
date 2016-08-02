@@ -1,0 +1,15 @@
+ID  deoD
+AC  TIGR00107
+DE  purine nucleoside phosphorylase
+AU  Anolik RT, Richardson DL
+TC  232.25 232.25
+NC  106.40 106.40
+AL  clustalw
+IT  equivalog
+EN  purine-nucleoside phosphorylase, family 1 (deoD)
+GS  deoD
+EC  2.4.2.1
+TP  TIGRFAMs
+CC  Purine nucleoside phosphorylase (also called inosine phosphorylase) is a purine salvage enzyme. Purine nucleosides, such as guanosine, inosine, or xanthosine, plus orthophosphate, can be converted to their respective purine bases (guanine, hypoxanthine, or xanthine) plus ribose-1-phosphate. This family of purine nucleoside phosphorylase is restricted to the bacteria.
+DR  PROSITE; PDOC00946
+DR  HAMAP; MF_01627; 112 of 115

@@ -1,0 +1,14 @@
+ID  Trypano_RHS
+AC  TIGR01631
+DE  trypanosome RHS family
+AU  Haft DH, Bringaud F, Biteau N, El-Sayed, N
+TC  89.75 89.75
+NC  28.30 28.30
+AL  clustalw
+IT  paralog
+EN  trypanosome RHS (retrotransposon hot spot) family
+TP  TIGRFAMs
+CC  This fragment-mode HMM describes full-length and part-length members of the RHS (retrotransposon hot spot) family in Trypanosoma brucei and Trypanosoma cruzi. Members of this family are frequently interrupted by non-LTR retrotransposons inserted at exactly the same relative position.
+RT  A new, expressed multigene family containing a hot spot of insertion for retroelements is associated with polymorphic subtelomeric regions of Trypanosoma brucei.
+RA  F. Bringaud, N. Biteau, S.E. Melville, S. Hez, N.M. El-Sayed, V. Leech, M. Berriman, N. Hall, J.E. Donelson and T. Baltz.
+RL  Eukaryotic Cell (2002), 1, 137-151.

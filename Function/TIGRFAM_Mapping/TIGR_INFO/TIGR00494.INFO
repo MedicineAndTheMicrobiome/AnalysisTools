@@ -1,0 +1,14 @@
+ID  crcB
+AC  TIGR00494
+DE  protein CrcB
+AU  Anolik RT, Haft DH
+TC  80.45 80.45
+NC  50.60 50.60
+AL  clustalw
+IT  hypoth_equivalog
+EN  protein CrcB
+GS  crcB
+TP  TIGRFAMs
+CC  The role of this protein is uncharacterized, but phenotypes associated with overproduction include resistance to camphor, suppression of a mukB chromosomal partition mutant, and  chromosome condensation, together suggesting a function related to chromosome folding.
+DR  MEDLINE:97001112
+DR  HAMAP; MF_00454; 269 of 398

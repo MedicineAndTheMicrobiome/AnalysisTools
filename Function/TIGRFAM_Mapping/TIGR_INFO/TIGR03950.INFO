@@ -1,0 +1,12 @@
+ID  sidero_Fe_reduc
+AC  TIGR03950
+DE  siderophore ferric iron reductase, AHA_1954 family
+AU  Haft DH
+TC  137.90 137.90
+NC  70.35 70.35
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  siderophore ferric iron reductase, AHA_1954 family
+EC  1.-.-.-
+TP  TIGRFAMs
+CC  Members of this protein family are 2Fe-2S cluster binding proteins, found regularly in the context of siderophore transporters. Members are distantly related to FhuF from E. coli, a ferric iron reductase linked to removal of iron from hydroxamate-type siderophores (PMID:14756576).

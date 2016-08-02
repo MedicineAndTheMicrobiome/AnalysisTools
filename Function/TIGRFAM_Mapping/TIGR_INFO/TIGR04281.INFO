@@ -1,0 +1,11 @@
+ID  peripla_PGF_1
+AC  TIGR04281
+DE  putative ABC transporter PGF-CTERM-modified substrate-binding protein
+AU  Haft DH
+TC  325.00 325.00
+NC  240.00 240.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  putative ABC transporter PGF-CTERM-modified substrate-binding protein
+TP  TIGRFAMs
+CC  Members of this archaeal protein family resemble periplasmic substrate-binding proteins of ABC transporters and appear in gene neighborhoods with permease and ATP-binding cassette proteins. Notably, essentially all members also have the PGF-CTERM putative protein-sorting domain at the C-terminus, while more distant homologs (excluded by the trusted cutoff) instead have what appear to be lipoprotein signal peptides at the N-terminus.

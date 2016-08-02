@@ -1,0 +1,15 @@
+ID  antiport_nhaC
+AC  TIGR00931
+DE  Na+/H+ antiporter NhaC
+AU  Haft DH, Loftus BJ
+TC  370.00 370.00
+NC  250.00 250.00
+AL  clustalw_manual
+IT  equivalog
+EN  Na+/H+ antiporter NhaC
+GS  nhaC
+TR  2.A.35
+TP  TIGRFAMs
+CC  A single member of the NhaC family, a protein from Bacillus firmus, has been functionally characterized.It is involved in pH homeostasis and sodium extrusion. Members of the NhaC family are found in both Gram-negative bacteria and Gram-positive bacteria. Intriguingly, archaeal homolog ArcD (just outside boundaries of family) has been identified as an arginine/ornithine antiporter.
+DR  EXPERIMENTAL; SP|P27611; Bacillus firmus
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_35.html

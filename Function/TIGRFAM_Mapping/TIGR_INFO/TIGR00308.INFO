@@ -1,0 +1,13 @@
+ID  TRM1
+AC  TIGR00308
+DE  N2,N2-dimethylguanosine tRNA methyltransferase
+AU  Haft DH
+TC  280.65 280.65
+NC  153.90 153.90
+AL  clustalw_manual
+IT  equivalog
+EN  tRNA(guanine-26,N2-N2) methyltransferase
+EC  2.1.1.-
+TP  TIGRFAMs
+CC  This enzyme is responsible for two methylations of a characteristic guanine of most tRNA molecules. The activity has been demonstrated for eukaryotic and archaeal proteins, which are active when expressed in E. coli, a species that lacks this enzyme. At least one Eubacterium, Aquifex aeolicus, has an ortholog, as do all completed archaeal genomes.
+DR  HAMAP; MF_00290; 21 of 26

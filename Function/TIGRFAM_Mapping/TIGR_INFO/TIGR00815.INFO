@@ -1,0 +1,28 @@
+ID  sulP
+AC  TIGR00815
+DE  sulfate permease
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  380.45 380.45
+NC  289.50 289.50
+AL  clustalw_manual
+IT  subfamily
+EN  high affinity sulphate transporter 1
+GS  sulP
+TP  TIGRFAMs
+CC  The SulP family is a large and ubiquitous family with over 30 sequenced members derived from bacteria, fungi, plants and
+CC  animals. Many organisms including Bacillus subtilis, Synechocystis sp, Saccharomyces cerevisiae, Arabidopsis thaliana and
+CC  Caenorhabditis elegans possess multiple SulP family paralogues. Many of these proteins are functionally characterized, and all
+CC  are sulfate uptake transporters. Some transport their substrate with high affinities, while others transport it with relatively low
+CC  affinities. Most function by SO42- :H+symport, but SO42- :HCO3- antiport has been reported for the rat protein (spP45380).
+CC  The bacterial proteins vary in size from 434 residues to 566 residues with one exception, a Mycobacterium tuberculosis protein
+CC  with 784 residues. The eukaryotic proteins vary in size from 611 residues to 893 residues with one exception, a protein
+CC  designated "early nodulin 70 protein" from Glycine max which is reported to be of 485 residues. Thus, the eukaryotic proteins are
+CC  almost without exception larger than the prokaryotic proteins. These proteins exhibit 10-13 putative transmembrane a-helical
+CC  spanners (TMSs) depending on the protein.
+CC  The phylogenetic tree for the SulP family reveals five principal branches. Three of these are bacterial specific as follows: one
+CC  bears a single protein from M. tuberculosis; a second bears two proteins, one from M. tuberculosis, the other from Synechocystis
+CC  sp, and the third bears all remaining prokaryotic proteins. The remaining two clusters bear only eukaryotic proteins with the
+CC  animal proteins all localized to one branch and the plant and fungal proteins localized to the other.
+CC  The generalized transport reactions catalyzed by SulP family proteins are:
+CC  (1) SO42- (out) + nH+ (out) --> SO42- (in) + nH+ (in).
+CC  (2) SO42- (out) + nHCO3- (in)  SO42- (in) + nHCO3- (out).

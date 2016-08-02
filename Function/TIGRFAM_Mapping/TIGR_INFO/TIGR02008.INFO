@@ -1,0 +1,11 @@
+ID  fdx_plant
+AC  TIGR02008
+DE  ferredoxin [2Fe-2S]
+AU  Haft DH
+TC  81.15 81.15
+NC  68.05 68.05
+AL  clustalw
+IT  subfamily
+EN  ferredoxin [2Fe-2S]
+TP  TIGRFAMs
+CC  This model represents single domain 2Fe-2S (also called plant type) ferredoxins. In general, these occur as a single domain proteins or with a chloroplast transit peptide. Species tend to be photosynthetic, but several forms may occur in one species and individually may not be associated with photocynthesis. Halobacterial forms differ somewhat in architecture; they score between trusted and noise cutoffs. Sequences scoring below the noise cutoff tend to be ferredoxin-related domains of larger proteins.

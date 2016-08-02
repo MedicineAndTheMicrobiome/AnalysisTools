@@ -1,0 +1,13 @@
+ID  PS_I_psaI
+AC  TIGR03052
+DE  photosystem I reaction center subunit VIII
+AU  Haft DH
+TC  38.20 38.20
+NC  33.45 33.45
+AL  muscle_manual
+IT  equivalog
+EN  photosystem I reaction center subunit VIII
+GS  psaI
+TP  TIGRFAMs
+CC  Members of this protein family are PsaI, subunit VIII of the photosystem I reaction center. This protein is found in both the Cyanobacteria and the chloroplasts of plants, but is absent from non-oxygenic photosynthetic bacteria such as Rhodobacter sphaeroides. Species that contain photosystem I also contain photosystem II, which splits water and releases molecular oxygen.
+DR  HAMAP; MF_00431; 87 of 87

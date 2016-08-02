@@ -1,0 +1,13 @@
+ID  chol_sulf_TF
+AC  TIGR03418
+DE  putative choline sulfate-utilization transcription factor
+AU  Haft DH
+TC  324.80 324.80
+NC  282.40 282.40
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  putative choline sulfate-utilization transcription factor
+TP  TIGRFAMs
+CC  Members of this protein family are transcription factors of the LysR family. Their genes typically are divergently transcribed from choline-sulfatase genes. That enzyme makes choline, a precursor to the osmoprotectant glycine-betaine, available by hydrolysis of choline sulfate.
+DR  PFAM; PF00126; HTH_1; transcriptional regulator, LysR family
+DR  PFAM; PF03466; LysR_substrate; LysR substrate binding domain

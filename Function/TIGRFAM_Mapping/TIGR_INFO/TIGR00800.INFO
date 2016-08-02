@@ -1,0 +1,14 @@
+ID  ncs1
+AC  TIGR00800
+DE  NCS1 nucleoside transporter family
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  353.10 353.10
+NC  113.20 113.20
+AL  clustalw_manual
+IT  subfamily
+EN  NCS1 nucleoside transporter family
+GS  ncs1
+TR  2.A.39
+TP  TIGRFAMs
+CC  The Nucleobase:Cation Symporter-1 (NCS1) Family (TC 2.A.39)
+CC  The NCS1 family consists of bacterial and yeast transporters for nucleobases including purines and pyrimidines. Members of this family possess twelve putative transmembrane a-helical spanners (TMSs). At least some of them have been shown to function in uptake by substrate:H+ symport mechanism.

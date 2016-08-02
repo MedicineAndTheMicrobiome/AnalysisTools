@@ -1,0 +1,18 @@
+ID  chlor_syn_BchG
+AC  TIGR01476
+DE  bacteriochlorophyll/chlorophyll synthetase
+AU  Haft DH
+TC  212.30 212.30
+NC  152.35 152.35
+AL  clustalw
+IT  subfamily
+EN  bacteriochlorophyll/chlorophyll synthetase
+GS  bchG
+EC  2.5.1.-
+TP  TIGRFAMs
+CC  This HMM describes a subfamily of a large family of polyprenyltransferases (PF01040) that also includes 4-hydroxybenzoate octaprenyltransferase and protoheme IX farnesyltransferase (heme O synthase). Members of this family are found exclusively in photosynthetic organisms, including a single copy in Arabidopsis thaliana.
+RM  8655525
+RT  Sequence of the bchG gene from Chloroflexus aurantiacus: relationship between chlorophyll synthase and other polyprenyltransferases.
+RA  Lopez JC, Ryan S, Blankenship RE.
+RL  J Bacteriol 1996 Jun;178(11):3369-73
+DR  PFAM; PF01040; UbiA

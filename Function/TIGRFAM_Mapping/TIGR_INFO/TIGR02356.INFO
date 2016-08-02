@@ -1,0 +1,18 @@
+ID  adenyl_thiF
+AC  TIGR02356
+DE  thiazole biosynthesis adenylyltransferase ThiF
+AU  Haft DH
+TC  275.25 275.25
+NC  269.75 269.75
+AL  clustalw
+IT  equivalog
+EN  thiazole biosynthesis adenylyltransferase ThiF, E. coli subfamily
+GS  thiF
+EC  2.7.7.73
+TP  TIGRFAMs
+CC  Members of the HesA/MoeB/ThiF family of proteins (PF00899) include a number of members encoded in the midst of thiamine biosynthetic operons. This mix of known and putative ThiF proteins shows a deep split in phylogenetic trees, with the Escherichia. coli ThiF and the E. coli MoeB proteins seemingly more closely related than E. coli ThiF and Campylobacter (for example) ThiF. This model represents the more widely distributed clade of ThiF proteins such found in E. coli.
+DR  PFAM; PF00899; ThiF family
+RM  14567704
+RT  Biosynthesis of the thiazole moiety of thiamin pyrophosphate (vitamin B1).
+RA  Park JH, Dorrestein PC, Zhai H, Kinsland C, McLafferty FW, Begley TP.
+RL  Biochemistry. 2003 Oct 28;42(42):12430-8.

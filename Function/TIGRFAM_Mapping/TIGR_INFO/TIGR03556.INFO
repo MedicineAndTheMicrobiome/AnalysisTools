@@ -1,0 +1,12 @@
+ID  photolyase_8HDF
+AC  TIGR03556
+DE  deoxyribodipyrimidine photo-lyase, 8-HDF type
+AU  Haft DH
+TC  884.60 884.60
+NC  732.30 732.30
+AL  muscle_manual
+IT  exception
+EN  deoxyribodipyrimidine photo-lyase, 8-HDF type
+EC  4.1.99.3
+TP  TIGRFAMs
+CC  This model describes a narrow clade of cyanobacterial deoxyribodipyrimidine photo-lyase. This group, in contrast to several closely related proteins, uses a chromophore that, in other lineages is modified further to become coenzyme F420. This chromophore is called 8-HDF in most articles on the DNA photolyase and FO in most literature on coenzyme F420.

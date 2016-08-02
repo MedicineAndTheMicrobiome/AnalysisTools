@@ -1,0 +1,11 @@
+ID  bunya_NSm
+AC  TIGR04210
+DE  bunyavirus nonstructural protein NSm
+AU  Haft DH
+TC  28.00 23.00
+NC  22.00 20.00
+AL  muscle_manual
+IT  equivalog_domain
+EN  bunyavirus nonstructural protein NSm
+TP  TIGRFAMs
+CC  This HMM describes a protein region that is cleaved from a bunyavirus polyprotein to become the nonstructural protein NSm (encoded by the M segment). It is flanked by glycoprotein GP2 and glycoprotein GP1.

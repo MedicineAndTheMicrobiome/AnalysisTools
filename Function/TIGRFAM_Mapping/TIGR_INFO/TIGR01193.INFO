@@ -1,0 +1,15 @@
+ID  bacteriocin_ABC
+AC  TIGR01193
+DE  ABC-type bacteriocin transporter
+AU  Haft DH, Ujwal ML, Paulsen IT
+TC  523.85 523.85
+NC  460.50 460.50
+AL  clustalw_manual
+IT  subfamily
+EN  ABC-type bacteriocin transporter
+TP  TIGRFAMs
+CC  This model describes ABC-type bacteriocin transporter. The amino terminal domain (PF03412) processes the N-terminal leader peptide from the bacteriocin while C-terminal domains resemble ABC transporter membrane protein and ATP-binding cassette domain. In general, bacteriocins are agents which are responsible for killing or inhibiting the closely related species or even different strains of the same species. Bacteriocins are usually encoded by bacterial plasmids. Bacteriocins are named after the species and hence in literature one encounters various names e.g., leucocin from Leuconostic geldium; pedicocin from Pedicoccus acidilactici; sakacin from Lactobacillus sake etc.
+RM  10085080
+RT  Membrane topology of the lactococcal bacteriocin ATP-binding cassette transporter protein LcnC. Involvement of LcnC in lactococcin a maturation.
+RA  Franke CM, Tiemersma J, Venema G, Kok J.
+RL  J Biol Chem 1999 Mar 26;274(13):8484-90

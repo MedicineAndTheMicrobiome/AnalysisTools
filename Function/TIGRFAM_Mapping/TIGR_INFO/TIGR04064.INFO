@@ -1,0 +1,17 @@
+ID  rSAM_nif11
+AC  TIGR04064
+DE  nif11-like peptide radical SAM maturase
+AU  Haft DH
+TC  518.70 518.70
+NC  313.30 313.30
+AL  muscle_manual
+IT  equivalog
+EN  nif11-like peptide radical SAM maturase
+GS  nlpM
+TP  TIGRFAMs
+CC  Members of this family are radical SAM enzymes that occur co-clustered with nif11-related ribosomal natural product (RNP) precursors described by TIGRFAMs model TIGR03798. Homology within the bacteriocin family reflects largely constraints on the leader peptide, tied to processes such as cleavage and export, and members associate with various families of maturation enzyme. The gene symbol assigned is nlpM, for Nif11-class Leader Peptide family Radical SAM Maturase.
+RN  [1]
+RM  PMID:20500830 
+RT  Expansion of ribosomally produced natural products: a nitrile hydratase- and Nif11-related precursor family. 
+RA  Haft DH, Basu MK, Mitchell DA 
+RL  BMC Biol. 2010 May 25;8:70.

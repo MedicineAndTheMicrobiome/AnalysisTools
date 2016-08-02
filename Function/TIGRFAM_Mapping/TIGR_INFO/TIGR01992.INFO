@@ -1,0 +1,46 @@
+ID  PTS-IIBC-Tre
+AC  TIGR01992
+DE  PTS system, trehalose-specific IIBC component
+AU  Selengut J
+TC  591.95 591.95
+NC  555.25 555.25
+AL  clustalw
+IT  equivalog_domain
+EN  PTS system, trehalose-specific IIBC component
+GS  treP
+EC  2.7.1.69
+TP  TIGRFAMs
+CC  This HMM represents the fused enzyme II B and C components of the trehalose-specific PTS sugar transporter system [1].  Trehalose is converted to trehalose-6-phosphate in the process of translocation into the cell.  These transporters lack their own IIA domains and instead use the glucose IIA protein (IIAglc or Crr) [2].  The exceptions to this rule are Staphylococci and Streptococci which contain their own A domain as a C-terminal fusion.
+CC  This family is closely related to the sucrose transporting PTS IIBC enzymes and the B and C domains of each are described by subfamily-domain level TIGRFAMs models (TIGR00826 and TIGR00852, respectively).
+CC  In E. coli, B. subtilis and P. fluorescens the presence of this gene is associated with the presence of trehalase which degrades T6P to glucose and glucose-6-P.  
+CC  Trehalose may also be transported (in Salmonella) via the mannose PTS or galactose permease systems [3], or (in Sinorhizobium, Thermococcus and Sulfolobus, for instance) by ABC transporters [4,5,6].
+RN  [1]
+RM  PMID: 11553642
+RT  Trehalose-6-phosphate phosphorylase is part of a novel metabolic pathway for trehalose utilization in Lactococcus lactis.
+RA  Andersson U, Levander F, Radstrom P.
+RL  J Biol Chem. 2001 Nov 16;276(46):42707-13. Epub 2001 Sep 11.
+RN  [2]
+RM  PMID: 12949193 
+RT  Glucose and trehalose PTS permeases of Spiroplasma citri probably share a single IIA domain, enabling the spiroplasma to adapt quickly to carbohydrate changes in its environment.
+RA  Andre A, Maccheroni W, Doignon F, Garnier M, Renaudin J.
+RL  Microbiology. 2003 Sep;149(Pt 9):2687-2696. 
+RN  [3]
+RM  PMID: 3023298
+RT  Transport of trehalose in Salmonella typhimurium.
+RA  Postma PW, Keizer HG, Koolwijk P.
+RL  J Bacteriol. 1986 Dec;168(3):1107-11.
+RN  [4]
+RM  PMID: 12003938
+RT  Redundancy in periplasmic binding protein-dependent transport systems for trehalose, sucrose, and maltose in Sinorhizobium meliloti.
+RA  Jensen JB, Peters NK, Bhuvaneswari TV.
+RL  J Bacteriol. 2002 Jun;184(11):2978-86.
+RN  [5]
+RM  PMID: 12454482
+RT  Crystallization and preliminary X-ray analysis of the trehalose/maltose ABC transporter MalFGK2 from Thermococcus litoralis.
+RA  Schiefner A, Diederichs K, Hashimoto K, Boos W, Welte W.
+RL  Acta Crystallogr D Biol Crystallogr. 2002 Dec;58(Pt 12):2147-9.
+RN  [6]
+RM  PMID: 11260467
+RT  Sugar transport in Sulfolobus solfataricus is mediated by two families of binding protein-dependent ABC transporters.
+RA  Elferink MG, Albers SV, Konings WN, Driessen AJ.
+RL  Mol Microbiol. 2001 Mar;39(6):1494-503.

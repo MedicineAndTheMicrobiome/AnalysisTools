@@ -1,0 +1,24 @@
+ID  TIGR00148
+AC  TIGR00148
+DE  decarboxylase, UbiD family
+AU  Haft DH
+TC  244.85 244.85
+NC  15.90 15.90
+AL  clustalw
+IT  subfamily
+EN  UbiD family decarboxylase
+EC  4.1.1.-
+TP  TIGRFAMs
+CC  The member of this family in E. coli is UbiD, 3-octaprenyl-4-hydroxybenzoate carboxy-lyase. The family described by this HMM, however, is broad enough that it is likely to contain several different decarboxylases. 
+CC  Found in bacteria, archaea, and yeast, with two members in A. fulgidus. No homologs were detected besides those classified as orthologs. The member from H. pylori has a C-terminal extension of just over 100 residues that is shared in part by the Aquifex aeolicus homolog.
+RN  [1]
+RM  11029449
+RT  Identification of the ubiD gene on the Escherichia coli chromosome.
+RA  Zhang H, Javor GT.
+RL  J Bacteriol. 2000 Nov;182(21):6243-6.
+RN  [2]
+RM  12799002
+RT  Regulation of the isofunctional genes ubiD and ubiX of the ubiquinone biosynthetic pathway of Escherichia coli.
+RA  Zhang H, Javor GT.
+RL  FEMS Microbiol Lett. 2003 Jun 6;223(1):67-72.
+DR  HAMAP; MF_01636; 114 of 117

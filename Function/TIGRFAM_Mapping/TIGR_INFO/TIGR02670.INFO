@@ -1,0 +1,17 @@
+ID  cas_csx8
+AC  TIGR02670
+DE  CRISPR-associated protein Cas8a1/Csx8, subtype I
+AU  Haft DH
+TC  201.75 201.75
+NC  201.40 201.40
+AL  clustalw
+IT  equivalog
+EN  CRISPR-associated protein Cas8a1/Csx8, subtype I
+GS  cas8a1
+TP  TIGRFAMs
+CC  In three genomes so far, a member of this protein appears in the midst of a CRISPR-associated (cas) gene operon, immediately upstream of a member of family TIGR01875 (CRISPR-associated autoregulator, DevR family). The genomes so far are Nocardia farcinica IFM10152, Clostridium perfringens SM101, and Clostridium tetani E88.
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=2003
+RN  [1]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005

@@ -1,0 +1,19 @@
+ID  spore_II_GA
+AC  TIGR02854
+DE  sigma-E processing peptidase SpoIIGA
+AU  Haft DH
+TC  209.55 209.55
+NC  74.50 74.50
+AL  muscle
+IT  equivalog
+EN  sigma-E processing peptidase SpoIIGA
+GS  spoIIGA
+EC  3.4.23.-
+TP  TIGRFAMs
+CC  Members of this protein family are the stage II sporulation protein SpoIIGA. This protein acts as an activating protease for Sigma-E, one of several specialized sigma factors of the sporulation process in Bacillus subtilis and related endospore-forming bacteria.
+DR  SWISSPROT; P13801; Bacillus subtilis
+DR  PFAM; PF03419; Peptidase_U4
+RM  10498732
+RT  The "pro" sequence of the sporulation-specific sigma transcription factor sigma(E) directs it to the mother cell side of the sporulation septum.
+RA  Ju J, Haldenwang WG.
+RL  J Bacteriol. 1999 Oct;181(19):6171-5.

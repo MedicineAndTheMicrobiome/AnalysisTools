@@ -1,0 +1,17 @@
+ID  purH
+AC  TIGR00355
+DE  phosphoribosylaminoimidazolecarboxamide formyltransferase/IMP cyclohydrolase
+AU  Loftus BJ, Haft DH
+TC  528.00 528.00
+NC  462.65 462.65
+AL  clustalw
+IT  equivalog
+EN  phosphoribosylaminoimidazolecarboxamide formyltransferase/IMP cyclohydrolase
+GS  purH
+EC  2.1.2.3 3.5.4.10
+TP  TIGRFAMs
+CC  PurH is bifunctional: IMP cyclohydrolase (EC 3.5.4.10); phosphoribosylaminoimidazolecarboxamide formyltransferase (EC 2.1.2.3)
+CC  Involved in  purine ribonucleotide biosynthesis. The IMP cyclohydrolase activity is in the N-terminal region.
+DR  ECOCYC; EG10795; purH;
+DR  SWISSPROT; P15639;
+DR  HAMAP; MF_00139; 305 of 310

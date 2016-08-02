@@ -1,0 +1,12 @@
+ID  PDHac_trf_mito
+AC  TIGR01349
+DE  pyruvate dehydrogenase complex dihydrolipoamide acetyltransferase
+AU  Haft DH
+TC  445.00 445.00
+NC  277.20 277.20
+AL  clustalw_manual
+IT  equivalog
+EN  pyruvate dehydrogenase complex dihydrolipoamide acetyltransferase, long form
+EC  2.3.1.12
+TP  TIGRFAMs
+CC  This model represents one of several closely related clades of the dihydrolipoamide acetyltransferase subunit of the pyruvate dehydrogenase complex. It includes sequences from mitochondria and from alpha and beta branches of the proteobacteria, as well as from some other bacteria. Sequences from Gram-positive bacteria are not included. The non-enzymatic homolog protein X, which serves as an E3 component binding protein, falls within the clade phylogenetically but is rejected by its low score.

@@ -1,0 +1,12 @@
+ID  tonB_Cterm
+AC  TIGR01352
+DE  TonB family C-terminal domain
+AU  Haft DH
+TC  27.10 27.10
+NC  25.00 25.00
+AL  clustalw_manual
+IT  subfamily_domain
+EN  TonB family C-terminal domain
+TR  2.C.1
+TP  TIGRFAMs
+CC  This HMM represents the C-terminal of TonB and is homologs. TonB is an energy-transducer for TonB-dependent receptors of Gram-negative bacteria. Most members are designated as TonB or TonB-related proteins, but a few represent the paralogous TolA protein. Several bacteria have up to four TonB paralogs. In nearly every case, a proline-rich repetive region is found N-terminal to this domain; these low-complexity regions are highly divergent and cannot readily be aligned. The region is suggested to help span the periplasm.

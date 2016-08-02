@@ -1,0 +1,11 @@
+ID  cyano_w_EgtBD
+AC  TIGR04375
+DE  hercynine metabolism protein
+AU  Haft DH
+TC  125.00 125.00
+NC  90.00 90.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  hercynine metabolism protein
+TP  TIGRFAMs
+CC  Hercynine is the betaine (trimethylated amino group) form of histidine. This protein occurs in a conserved four-gene cyanobacterial cassette along with a EgtD, the methyltransferase that converts histidine to hercynine as in ergothioneine biosynthesis, an EgtB homolog that is likely to attach some thiol (e.g. gamma-glutamyl-cysteine) through its sulfur to the hercynine imidazole ring, and a small protein of unknown function (TIGR04374). Members are distantly related to phage shock protein A (PspA).

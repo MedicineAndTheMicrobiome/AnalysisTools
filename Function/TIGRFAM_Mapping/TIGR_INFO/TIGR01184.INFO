@@ -1,0 +1,11 @@
+ID  ntrCD
+AC  TIGR01184
+DE  nitrate ABC transporter, ATP-binding proteins C and D
+AU  Ujwal ML, Haft DH, Paulsen IT
+TC  291.80 291.80
+NC  259.45 259.45
+AL  clustalw
+IT  subfamily
+EN  nitrate transport ATP-binding subunits C and D
+TP  TIGRFAMs
+CC  This model describes the ATP binding subunits of nitrate transport in bacteria and archaea. This protein belongs to the ATP-binding cassette (ABC) superfamily. It is thought that the two subunits encoded by ntrC and ntrD form the binding surface for interaction with ATP. This model is restricted in identifying ATP binding subunit associated with the nitrate transport. Nitrate assimilation is aided by other proteins derived from the operon which among others include products of ntrA - a regulatory protein; ntrB - a hydropbobic transmembrane permease  and narB - a reductase.

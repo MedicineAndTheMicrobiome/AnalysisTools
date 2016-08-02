@@ -1,0 +1,15 @@
+ID  infA
+AC  TIGR00008
+DE  translation initiation factor IF-1
+AU  Chandra I, Richardson DL
+TC  61.15 61.15
+NC  39.70 39.70
+AL  msa_tigr
+IT  equivalog
+EN  translation initiation factor IF-1
+GS  infA
+TP  TIGRFAMs
+CC  This family consists of translation initiation factor IF-1 as found in bacteria and chloroplasts. This protein, about 70 residues in length, consists largely of an S1 RNA binding domain (PF00575).
+DR  InterPro;  IPR003029; S1
+DR  PFAM; PF00575; S1
+DR  HAMAP; MF_00075; 622 of 626

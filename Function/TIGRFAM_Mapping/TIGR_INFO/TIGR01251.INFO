@@ -1,0 +1,20 @@
+ID  ribP_PPkin
+AC  TIGR01251
+DE  ribose-phosphate diphosphokinase
+AU  Haft DH
+TC  113.00 113.00
+NC  107.35 107.35
+AL  clustalw_manual
+IT  subfamily
+EN  ribose-phosphate pyrophosphokinase
+GS  prs
+EC  2.7.6.1
+TP  TIGRFAMs
+CC  Alternate name: phosphoribosylpyrophosphate synthetase
+CC  In some systems, close homologs lacking enzymatic activity exist and perform regulatory functions. The model is designated subfamily rather than equivalog for this reason.
+RN  [1]
+RM  8132556
+RT  A novel 39-kDa phosphoribosylpyrophosphate synthetase-associated protein of rat liver. Cloning, high sequence similarity to the catalytic subunits, and a negative regulatory role.
+RA  Kita K, Ishizuka T, Ishijima S, Sonoda T, Tatibana M.
+RL  J Biol Chem 1994 Mar 18;269(11):8334-40
+DR  HAMAP; MF_00583; 155 of 155

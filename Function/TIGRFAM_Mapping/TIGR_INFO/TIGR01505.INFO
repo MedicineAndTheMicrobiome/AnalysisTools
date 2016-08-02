@@ -1,0 +1,24 @@
+ID  tartro_sem_red
+AC  TIGR01505
+DE  2-hydroxy-3-oxopropionate reductase
+AU  Haft DH
+TC  340.75 340.75
+NC  301.35 301.35
+AL  clustalw
+IT  equivalog
+EN  2-hydroxy-3-oxopropionate reductase
+EC  1.1.1.60
+TP  TIGRFAMs
+CC  This HMM represents 2-hydroxy-3-oxopropionate reductase (EC 1.1.1.60), also called tartronate semialdehyde reductase. It follows glyoxylate carboligase and precedes glycerate kinase in D-glycerate pathway of glyoxylate degradation. The eventual product, 3-phosphoglycerate, is an intermediate of glycolysis and is readily metabolized. Tartronic semialdehyde, the substrate of this enzyme, may also come from other pathways, such as D-glucarate catabolism.
+DR  EXPERIMENTAL; SP|P77161|GLXR_ECOLI; E. coli; allantoin degradation
+DR  EXPERIMENTAL; SP|P23523|GARR_ECOLI; E. coli; glucaterate/galacterate degradation
+RN  [1]
+RM  10762278
+RT  A common regulator for the operons encoding the enzymes involved in D-galactarate, D-glucarate, and D-glycerate utilization in Escherichia coli.
+RA  Monterrubio R, Baldoma L, Obradors N, Aguilar J, Badia J.
+RL  J Bacteriol 2000 May;182(9):2672-4
+RN  [2]
+RM  10601204
+RT  Genetic analysis of a chromosomal region containing genes required for assimilation of allantoin nitrogen and linked glyoxylate metabolism in Escherichia coli.
+RA  Cusa E, Obradors N, Baldoma L, Badia J, Aguilar J.
+RL  J Bacteriol 1999 Dec;181(24):7479-84

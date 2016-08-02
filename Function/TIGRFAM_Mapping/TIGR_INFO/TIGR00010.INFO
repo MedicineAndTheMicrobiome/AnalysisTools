@@ -1,0 +1,16 @@
+ID  TIGR00010
+AC  TIGR00010
+DE  hydrolase, TatD family
+AU  Haft DH, Richardson DL, Hickey E
+TC  206.00 206.00
+NC  108.85 108.85
+AL  clustalw_manual
+IT  subfamily
+EN  hydrolase, TatD family
+TP  TIGRFAMs
+CC  PSI-BLAST, starting with a urease alpha subunit, finds a large superfamily of proteins, including a number of different enzymes that act as hydrolases at C-N bonds other than peptide bonds (EC 3.5.-.-), many uncharacterized proteins, and the members of this family.
+CC  Several genomes have multiple paralogs related to this family. However, a set of 17 proteins can be found, one each from 17 of the first 20 genomes, such that each member forms a bidirectional best hit across genomes with all other members of the set. This core set (and one other near-perfect member), but not the other paralogs, form the seed for this model. Additionally, members of the seed alignment and all trusted hits, but not all paralogs, have a conserved motif DxHxH near the amino end. The member from E. coli was recently shown to have DNase activity.
+RM  10747959
+RT  TatD is a cytoplasmic protein with DNase activity. No requirement for TatD family proteins in sec-independent protein export.
+RA  Wexler M, Sargent F, Jack RL, Stanley NR, Bogsch EG, Robinson C, Berks BC, Palmer T.
+RL J Biol Chem 2000 Jun 2;275(22):16717-22

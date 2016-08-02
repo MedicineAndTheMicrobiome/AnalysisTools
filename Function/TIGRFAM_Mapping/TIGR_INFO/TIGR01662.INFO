@@ -1,0 +1,28 @@
+ID  HAD-SF-IIIA
+AC  TIGR01662
+DE  HAD hydrolase, family IIIA
+AU  Selengut J
+TC  44.60 44.60
+NC  43.00 43.00
+AL  clustalw_manual
+IT  subfamily_domain
+EN  HAD-superfamily hydrolase, subfamily IIIA
+TP  TIGRFAMs
+CC  This subfamily falls within the Haloacid Dehalogenase (HAD) superfamily of aspartate-nucleophile hydrolases.  The Class III subfamilies are characterized by the lack of any domains located between either between the first and second conserved catalytic motifs (as in the Class I subfamilies, TIGR01493, TIGR01509, TIGR01488 and TIGR01494) or between the second and third conserved catalytic motifs (as in the Class II subfamilies, TIGR01460 and TIGR01484) of the superfamily domain.  The IIIA subfamily contains five major clades: histidinol-phosphatase (TIGR01261, [3]) and histidinol-phosphatase-related protein (TIGR00213) which together form a subfamily (TIGR01656), DNA 3'-phosphatase (TIGR01663, TIGR01664), YqeG (TIGR01668) and YrbI (TIGR01670).  
+CC  In the case of histidinol phosphatase and PNK-3'-phosphatase, this model represents a domain of a bifunctional system.  In the histidinol phosphatase HisB, a C-terminal domain is an imidazoleglycerol-phosphate dehydratase which catalyzes a related step in histidine biosynthesis.  In PNK-3'-phosphatase, N- and C-terminal domains constitute the polynucleotide kinase and DNA-binding components of the enzyme.
+RN [1]
+RM PMID: 7966317
+RT Computer analysis of bacterial haloacid dehalogenases defines a large superfamily of hydrolases with diverse specificity. Application of an iterative approach to database search.
+RA Koonin EV, Tatusov RL.
+RL J Mol Biol 1994 Nov 18;244(1):125-32
+RN [2]
+RM PMID: 11601995
+RT MDP-1 is a new and distinct member of the haloacid dehalogenase family of aspartate-dependent phosphohydrolases.
+RA Selengut, JD
+RL Biochemistry 2001 Oct 23;40(42):12704-11
+RN  [3]
+RM  PMID: 3007936
+RT  Gene structure in the histidine operon of Escherichia coli. Identification and nucleotide sequence of the hisB gene.
+RA  Chiariotti L, Nappo AG, Carlomagno MS, Bruni CB.
+RL  Mol Gen Genet 1986 Jan;202(1):42-7
+DR  HAMAP; MF_01022; 53 of 53

@@ -1,0 +1,16 @@
+ID  hlyII
+AC  TIGR01002
+DE  beta-channel forming cytolysin
+AU  Haft DH
+TC  245.60 245.60
+NC  141.55 141.55
+AL  clustalw
+IT  subfamily
+EN  beta-channel forming cytolysin
+TP  TIGRFAMs
+CC  This family of cytolytic pore-forming proteins includes alpha toxin and leukocidin F and S subunits from Staphylococcus aureus, hemolysin II of Bacillus cereus, and related toxins.
+RN  [1]
+RM  PMID:10547438 
+RT  Complete nucleotide sequence and molecular characterization of hemolysin II gene from Bacillus cereus.
+RA  Baida G, Budarina ZI, Kuzmin NP, Solonin AS
+RL  FEMS Microbiol Lett 1999 Nov 1;180(1):7-14

@@ -1,0 +1,19 @@
+ID  mycofact_TetR
+AC  TIGR03968
+DE  mycofactocin system transcriptional regulator
+AU  Haft DH
+TC  224.90 224.90
+NC  176.40 176.40
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  mycofactocin system transcriptional regulator
+GS  mftR
+TP  TIGRFAMs
+CC  Members of this family are TetR family putative transcriptional regulators that occur in genome contexts near proteins of the mycofactocin system. These include the precursor peptide (TIGR03969), a radical SAM peptide maturase (TIGR03962), and a putative carrier protein (TIGR03967).
+DR; PFAM; PF00440; TetR_N
+DR; PDB; 2RAE; Transcriptional regulator, AcrR family protein
+RN  [1]
+RM  PMID:21223593 
+RT  Bioinformatic evidence for a widely distributed, ribosomally produced electron carrier precursor, its maturation proteins, and its nicotinoprotein redox partners. 
+RA  Haft DH 
+RL  BMC Genomics. 2011 Jan 11;12(1):21.

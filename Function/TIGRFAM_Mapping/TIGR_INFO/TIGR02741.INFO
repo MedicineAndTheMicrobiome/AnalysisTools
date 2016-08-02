@@ -1,0 +1,22 @@
+ID  TraQ
+AC  TIGR02741
+DE  type-F conjugative transfer system pilin chaperone TraQ
+AU  Selengut J
+TC  111.60 111.60
+NC  43.40 43.40
+AL  clustalw
+IT  equivalog
+EN  type-F conjugative transfer system pilin chaperone TraQ
+GS  traQ
+TP  TIGRFAMs
+CC  This protein makes a specific interaction with the pilin (TraA) protein to aid its transfer through the inner membrane during the process of F-type conjugative pilus assembly [1,2].
+RN  [1]
+RM  PMID: 10564517
+RA  Harris RL, Sholl KA, Conrad MN, Dresser ME, Silverman PM.
+RT  Interaction between the F plasmid TraA (F-pilin) and TraQ proteins.
+RL   Mol Microbiol. 1999 Nov;34(4):780-91.
+RN  [2]
+RM  PMID: 16138100
+RA  Frost LS, Leplae R, Summers AO, Toussaint A.
+RT  Mobile genetic elements: the agents of open source evolution.
+RL  Nat Rev Microbiol. 2005 Sep;3(9):722-32.

@@ -1,0 +1,12 @@
+ID  sulfatase_rSAM
+AC  TIGR03942
+DE  anaerobic sulfatase maturase
+AU  Haft DH, Harkins DM
+TC  349.45 349.45
+NC  228.70 228.70
+AL  muscle_manual
+IT  equivalog
+EN  anaerobic sulfatase-maturating enzyme
+EC  1.1.99.-
+TP  TIGRFAMs
+CC  Members of this protein family are radical SAM family enzymes, maturases that prepare the oxygen-sensitive radical required in the active site of anaerobic sulfatases. This maturase role has led to many misleading legacy annotations suggesting that this enzyme maturase is instead a sulfatase regulatory protein. All members of the seed alignment are radical SAM enzymes encoded next to or near an anaerobic sulfatase. Note that a single genome may encode more than one sulfatase/maturase pair.

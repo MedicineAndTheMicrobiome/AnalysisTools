@@ -1,0 +1,17 @@
+ID  bacill_yteA
+AC  TIGR02890
+DE  regulatory protein, yteA family
+AU  Haft DH
+TC  134.40 134.40
+NC  128.80 128.80
+AL  muscle
+IT  subfamily
+EN  regulatory protein, yteA family
+TP  TIGRFAMs
+CC  Members of this predicted regulatory protein are found only in endospore-forming members of the Firmicutes group of bacteria, and in nearly every such species; Clostridium perfringens seems to be an exception. The member from Bacillus subtilis, the model system for the study of the sporulation program, has been designated both yteA and yzwB. Some (but not all) members of this family show a strong sequence match to PFAM family PF01258 the C4-type zinc finger protein, DksA/TraR family, but only one of the four key Cys residues is conserved. All members of this protein family share an additional C-terminal domain. Smaller proteins from the proteobacteria with just the N-terminal domain, including DksA and DksA2 are RNA polymerase-binding regulatory proteins even if the Zn-binding site is not conserved.
+DR  PF01258; zf-dskA_traR
+RN  [1]
+RM  PMID:21255113 
+RT  Role of a Zn-independent DksA in Zn homeostasis and stringent response. 
+RA  Blaby-Haas CE, Furman R, Rodionov DA, Artsimovitch I, de Crecy-Lagard V 
+RL  Mol Microbiol. 2011 Feb;79(3):700-15.

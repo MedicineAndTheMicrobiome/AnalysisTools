@@ -1,0 +1,17 @@
+ID  sdhC_b558_fam
+AC  TIGR02046
+DE  succinate dehydrogenase (or fumarate reductase) cytochrome b subunit, b558 family
+AU  Haft DH
+TC  96.00 96.00
+NC  56.50 56.50
+AL  clustalw
+IT  subfamily
+EN  succinate dehydrogenase (or fumarate reductase) cytochrome b subunit, b558 family
+GS  sdhC
+TP  TIGRFAMs
+CC  This family consists of the succinate dehydrogenase subunit C of Bacillus subtilis, designated cytochrome b-558, and related sequences that include a fumarate reductase subunit C. This subfamily is only weakly similar to the main group of succinate dehydrogenase cytochrome b subunits described by Pfam model PF01127, so that some members score above the gathering threshold and some do not.
+RM  3086287
+RT  Nucleotide sequence of the gene for cytochrome b558 of the Bacillus subtilis succinate dehydrogenase complex.
+RA  Magnusson K, Philips MK, Guest JR, Rutberg L.
+RL  J Bacteriol. 1986 Jun;166(3):1067-71.
+DR  SWISSPROT; P08064

@@ -1,0 +1,16 @@
+ID  phage_lambda_G
+AC  TIGR01674
+DE  phage minor tail protein G
+AU  Haft DH
+TC  74.45 74.45
+NC  39.55 39.55
+AL  clustalw_manual
+IT  equivalog
+EN  phage minor tail protein G
+TP  TIGRFAMs
+CC  This HMM describes a family of bacteriophage proteins including G of phage lambda. This protein has been described as undergoing a translational frameshift at a Gly-Lys dipeptide near the C-terminus of protein G from phage lambda, with about 4 % efficiency, to produce tail assembly protein G-T. The Lys of the Gly-Lys pair is the conserved second-to-last residue of seed alignment for this family.
+DR  SP:P03734; minor tail protein G; phage lambda
+RM  8230192
+RT  A programmed translational frameshift is required for the synthesis of a bacteriophage lambda tail assembly protein.
+RA  Levin ME, Hendrix RW, Casjens SR.
+RL  J Mol Biol 1993 Nov 5;234(1):124-39

@@ -1,0 +1,16 @@
+ID  narI
+AC  TIGR00351
+DE  respiratory nitrate reductase, gamma subunit
+AU  Loftus BJ
+TC  105.55 105.55
+NC  62.10 62.10
+AL  clustalw
+IT  equivalog
+EN  respiratory nitrate reductase, gamma subunit
+GS  narI
+EC  1.7.99.4
+TP  TIGRFAMs
+CC  Involved in anerobic respiration the gene product catalyzes the reaction (reduced acceptor + NO3- = Acceptor + nitrite). Another possible role_id for this gene product is in nitrogen fixation (Role_id:160).
+DR  ECOCYC; EG10644; narV;
+DR  ECOCYC; EG10640; narI;
+DR  SWISSPROT; P11350;

@@ -1,0 +1,17 @@
+ID  beta_RFAP_syn
+AC  TIGR00144
+DE  beta-ribofuranosylaminobenzene 5'-phosphate synthase family
+AU  Haft DH
+TC  113.50 113.50
+NC  44.70 44.70
+AL  clustalw
+IT  subfamily
+EN  beta-RFAP synthase
+TP  TIGRFAMs
+CC  This protein family contains several archaeal examples of beta-ribofuranosylaminobenzene 5-prime-phosphate synthase (beta-RFAP synthase), an enzyme involved in methanopterin biosynthesis. In some species, two members of this family are found. It is unclear whether both act as beta-RFAP synthase. This family is related to the GHMP kinases (Galactokinase, Homoserine kinase, Mevalonate kinase, Phosphomevalonate kinase). Members are found so far only in the Archaea and in Methylobacterium extorquens.
+DR  PROSITE; PDOC00545;
+RN  [1]
+RM  12142414
+RT  Purification, overproduction, and partial characterization of beta-RFAP synthase, a key enzyme in the methanopterin biosynthesis pathway.
+RA  Scott JW, Rasche ME.
+RL  J Bacteriol. 2002 Aug;184(16):4442-8.

@@ -1,0 +1,13 @@
+ID  ilvA_1Cterm
+AC  TIGR01127
+DE  threonine ammonia-lyase
+AU  Haft DH
+TC  378.75 378.75
+NC  336.90 336.90
+AL  clustalw
+IT  equivalog
+EN  threonine ammonia-lyase, medium form
+GS  ilvA
+EC  4.3.1.19
+TP  TIGRFAMs
+CC  A form of threonine dehydratase with two copies of the C-terminal domain Pfam:PF00585 is described by TIGR01124. This model describes a phylogenetically distinct form with a single copy of  PF00585. This form branches with the catabolic threonine dehydratase of E. coli; many members are designated as catabolic for this reason. However, the catabolic form lacks any PF00585 domain. Many members of this model are found in species with other Ile biosynthetic enzymes.

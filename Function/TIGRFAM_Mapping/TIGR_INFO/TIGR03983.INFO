@@ -1,0 +1,12 @@
+ID  cas1_MYXAN
+AC  TIGR03983
+DE  CRISPR-associated endonuclease Cas1, subtype MYXAN
+AU  Haft DH
+TC  358.05 358.05
+NC  255.95 255.95
+AL  muscle_manual
+IT  equivalog_domain
+EN  CRISPR-associated endonuclease Cas1, subtype MYXAN
+GS  cas1
+TP  TIGRFAMs
+CC  Members of this protein are the Cas1 endonuclease, or Cas1 domain in Cas4/Cas1 fusion proteins, of the MYXAN subtype of CRISPR/Cas systems. These systems typically feature repeats and spacers each about 36 base pairs in length. Species with this type of CRISPR system include Myxococcus xanthus, Cyanothece sp., Leptospira interrogans, Sorangium cellulosum, Anabaena variabilis ATCC 29413, etc.

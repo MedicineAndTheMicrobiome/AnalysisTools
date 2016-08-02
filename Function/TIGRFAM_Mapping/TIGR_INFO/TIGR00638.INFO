@@ -1,0 +1,23 @@
+ID  Mop
+AC  TIGR00638
+DE  molybdenum-pterin binding domain
+AU  Haft DH
+TC  55.00 55.00
+NC  28.55 28.55
+AL  clustalw
+IT  subfamily_domain
+EN  molybdenum-pterin binding domain
+TP  TIGRFAMs
+CC  This model describes a multigene family of molybdenum-pterin binding proteins of about 70 amino acids in Clostridium pasteurianum, as a tandemly-repeated domain C-terminal to an unrelated domain in ModE, a molybdate transport gene repressor of E. coli, and in single or tandemly paired domains in several related proteins.
+AL  ClustalW
+RN  [1]
+RM  88005784
+RT  The molybdenum-pterin binding protein is encoded by a multigene family in Clostridium pasteurianum.
+RA  Hinton SM, Slaughter C, Eisner W, Fisher T
+RL  Gene 1987;54(2-3):211-9
+RN  [2]
+RM  93259949
+RT  Characterization of Rhodobacter capsulatus genes encoding a molybdenum transport system and putative molybdenum-pterin-binding proteins.
+RA  Wang G, Angermuller S, Klipp W
+RL  J Bacteriol 1993 May;175(10):3031-42
+DR  HAMAP; MF_01705; 22 of 73

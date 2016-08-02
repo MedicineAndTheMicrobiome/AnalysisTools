@@ -1,0 +1,17 @@
+ID  chaperone_ClpB
+AC  TIGR03346
+DE  ATP-dependent chaperone protein ClpB
+AU  Haft DH
+TC  1232.10 1232.10
+NC  1085.10 1085.10
+AL  muscle_manual
+IT  equivalog
+EN  ATP-dependent chaperone ClpB
+GS  clpB
+TP  TIGRFAMs
+CC  Members of this protein family are the bacterial ATP-dependent chaperone ClpB. This protein belongs to the AAA family, ATPases associated with various cellular activities (PF00004). This molecular chaperone does not act as a protease, but rather serves to disaggregate misfolded and aggregated proteins.
+RN  [1]
+RM  PMID: 15037241
+RT  The ClpB/Hsp104 molecular chaperone-a protein disaggregating machine.
+RA  Lee S, Sowa ME, Choi JM, Tsai FT
+RL  J Struct Biol. 2004 Apr-May;146(1-2):99-105.

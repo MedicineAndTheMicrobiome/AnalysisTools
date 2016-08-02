@@ -1,0 +1,17 @@
+ID  diampropi_NH3ly
+AC  TIGR01747
+DE  diaminopropionate ammonia-lyase family
+AU  Haft DH
+TC  274.00 274.00
+NC  112.90 112.90
+AL  clustalw
+IT  subfamily
+EN  diaminopropionate ammonia-lyase family
+EC  4.3.1.15
+TP  TIGRFAMs
+CC  This small subfamily includes diaminopropionate ammonia-lyase from Salmonella typhimurium and a small number of close homologs, about 50 % identical in sequence. The enzyme is a pyridoxal phosphate-binding homodimer homologous to threonine dehydratase (threonine deaminase).
+DR  EXPERIMENTAL; SP|P40817|DPAL_SALTY;
+RM  3275662
+RT  Diaminopropionate ammonia-lyase from Salmonella typhimurium. Purification and characterization of the crystalline enzyme, and sequence determination of the pyridoxal 5'-phosphate binding peptide.
+RA  Nagasawa T, Tanizawa K, Satoda T, Yamada H.
+RL  J Biol Chem 1988 Jan 15;263(2):958-64

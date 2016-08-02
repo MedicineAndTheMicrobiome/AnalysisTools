@@ -1,0 +1,11 @@
+ID  phd_fam
+AC  TIGR01552
+DE  prevent-host-death family protein
+AU  Haft DH
+TC  20.80 20.80
+NC  20.40 20.40
+AL  manual
+IT  subfamily
+EN  prevent-host-death family protein
+TP  TIGRFAMs
+CC  This HMM recognizes a region of about 55 amino acids toward the N-terminal end of bacterial proteins of about 85 amino acids in length. The best-characterized member is prevent-host-death (phd) of bacteriophage P1, the antidote partner of death-on-curing (doc) (TIGR01550) in an addiction module. Addiction modules prevent plasmid curing by killing the host cell as the longer-lived killing protein persists while the gene for the shorter-lived antidote is lost. Note, however, that relatively few members of this family appear to be plasmid or phage-encoded. Also, there is little overlap, except for phage P1 itself, of species with this family and with the doc family.

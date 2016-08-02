@@ -1,0 +1,13 @@
+ID  EF-Tu
+AC  TIGR00485
+DE  translation elongation factor Tu
+AU  Haft DH
+TC  522.40 522.40
+NC  135.30 135.30
+AL  clustalw
+IT  equivalog
+EN  translation elongation factor TU
+GS  tuf
+TP  TIGRFAMs
+CC  This HMM models orthologs of translation elongation factor EF-Tu in bacteria, mitochondria, and chloroplasts, one of several GTP-binding translation factors found by the more general pfam HMM GTP_EFTU. The eukaryotic conterpart, eukaryotic translation elongation factor 1 (eEF-1 alpha), is excluded from this model. EF-Tu is one of the most abundant proteins in bacteria, as well as one of the most highly conserved, and in a number of species the gene is duplicated with identical function. When bound to GTP, EF-Tu can form a complex with any (correctly) aminoacylated tRNA except those for initiation and for selenocysteine, in which case EF-Tu is replaced by other factors. Transfer RNA is carried to the ribosome in these complexes for protein translation.
+DR  HAMAP; MF_00118; 685 of 762

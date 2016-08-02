@@ -1,0 +1,18 @@
+ID  LEU3_arch
+AC  TIGR02088
+DE  isopropylmalate/isohomocitrate dehydrogenases
+AU  Selengut J
+TC  409.80 409.80
+NC  342.85 342.85
+AL  clustalw
+IT  subfamily
+EN  isopropylmalate/isohomocitrate dehydrogenases
+TP  TIGRFAMs
+CC  This model represents a group of archaeal decarboxylating dehydrogenases which include the leucine biosynthesis enzyme 3-isopropylmalate dehydrogenase (LeuB, LEU3) and the methanogenic cofactor CoB biosynthesis enzyme isohomocitrate dehydrogenase (AksF).  Both of these have been characterized in Methanococcus janaschii [1].  Non-methanogenic archaea have only one hit to this model and presumably this is LeuB, although phylogenetic trees cannot establish which gene is which in the methanogens.
+CC  The AksF gene is capable of acting on isohomocitrate, iso(homo)2-citrate and iso(homo)3-citrate in the successive elongation cycles of coenzyme B (7-mercaptoheptanoyl-threonine phosphate).
+CC  This family is closely related to both the LeuB genes found in TIGR00169 and the mitochondrial eukaryotic isocitrate dehydratases found in TIGR00175.   All of these are included within the broader subfamily model, PF00180.
+RN  [1]
+RM  PMID: 10940051
+RT  Identification of enzymes homologous to isocitrate dehydrogenase that are involved in coenzyme B and leucine biosynthesis in methanoarchaea.
+RA  Howell DM, Graupner M, Xu H, White RH.
+RL  J Bacteriol. 2000 Sep;182(17):5013-6.

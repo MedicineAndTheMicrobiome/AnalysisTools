@@ -1,0 +1,13 @@
+ID  CM_T
+AC  TIGR01799
+DE  chorismate mutase
+AU  Selengut J
+TC  95.90 95.90
+NC  55.90 55.90
+AL  clustalw
+IT  equivalog_domain
+EN  chorismate mutase domain of T-protein
+GS  tyrA
+EC  5.4.99.5
+TP  TIGRFAMs
+CC  This model represents the chorismate mutase domain of the gamma proteobacterial "T-protein" which consists of an N-terminal chorismate mutase domain and a C-terminal prephenate dehydrogenase domain.

@@ -1,0 +1,15 @@
+ID  kdgT
+AC  TIGR00793
+DE  2-keto-3-deoxygluconate transporter
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  453.80 453.80
+NC  127.55 127.55
+AL  clustalw_manual
+IT  equivalog
+EN  2-keto-3-deoxygluconate transporter
+GS  kdgT
+TR  2.A.10
+TP  TIGRFAMs
+CC  This family includes the characterized 2-Keto-3-Deoxygluconate transporters from Bacillus subtilis and Erwinia chrysanthemi. There are homologs of this protein found in both gram-positive and gram-negative bacteria.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_10.html
+DR  HAMAP; MF_00070; 15 of 21

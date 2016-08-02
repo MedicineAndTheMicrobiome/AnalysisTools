@@ -1,0 +1,14 @@
+ID  HMG_CoA_R_NADP
+AC  TIGR00533
+DE  hydroxymethylglutaryl-CoA reductase (NADPH)
+AU  Haft DH
+TC  441.80 441.80
+NC  204.70 204.70
+AL  clustalw
+IT  equivalog_domain
+EN  3-hydroxy-3-methylglutaryl Coenzyme A reductase, hydroxymethylglutaryl-CoA reductase (NADP)
+GS  hmgA
+EC  1.1.1.34
+TP  TIGRFAMs
+CC  This model represents archaeal examples of the enzyme hydroxymethylglutaryl-CoA reductase (NADP) (EC 1.1.1.34) and the catalytic domain of eukaryotic examples, which also contain a hydrophobic N-terminal domain. This enzyme synthesizes mevalonate, a precursor of isopentenyl pyrophosphate (IPP), a building block for the synthesis of cholesterol, isoprenoids, and other molecules. A related hydroxymethylglutaryl-CoA reductase, typified by an example from Pseudomonas mevalonii, is NAD-dependent and catabolic.
+DR  PROSITE; PDOC00064; Hydroxymethylglutaryl-coenzyme A reductase signatures and profile

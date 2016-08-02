@@ -1,0 +1,17 @@
+ID  archaeo_STT3
+AC  TIGR04154
+DE  oligosaccharyl transferase, archaeosortase A system-associated
+AU  Haft DH
+TC  450.00 450.00
+NC  350.00 350.00
+AL  muscle_manual
+IT  subfamily
+EN  oligosaccharyl transferase, archaeosortase A system-associated
+EC  2.4.1.-
+TP  TIGRFAMs
+CC  Members of this protein family occur, one to three members per genome, in the same species of Euryarchaeota as contain the predicted protein-sorting enzyme archaeosortase (TIGR04125) and its cognate protein-sorting signal PGF-CTERM (TIGR04126).
+RN  [1]
+RM  PMID:22037399 
+RT  Archaeosortases and exosortases are widely distributed systems linking membrane transit with posttranslational modification. 
+RA  Haft DH, Payne SH, Selengut JD 
+RL  J Bacteriol. 2012 Jan;194(1):36-48.

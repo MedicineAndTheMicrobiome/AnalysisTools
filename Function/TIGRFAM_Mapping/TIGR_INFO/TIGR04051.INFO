@@ -1,0 +1,12 @@
+ID  rSAM_NirJ
+AC  TIGR04051
+DE  heme d1 biosynthesis radical SAM protein NirJ
+AU  Haft DH
+TC  515.45 515.45
+NC  447.15 447.15
+AL  muscle_manual
+IT  equivalog
+EN  heme d1 biosynthesis radical SAM protein NirJ
+GS  nirJ
+TP  TIGRFAMs
+CC  Heme d1 occurs in the cytochrome cd1 subunit of nitrite reductase in species such as Pseudomonas stutzeri. NirJ is a radical SAM protein involved in its bioynthesis. In a number of species, distinct genes NirJ1 and NirJ2 are found in similar genomic regions; this model describe authentic NirJ from genomes with NirJ only.

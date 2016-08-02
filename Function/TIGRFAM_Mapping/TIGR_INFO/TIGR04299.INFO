@@ -1,0 +1,17 @@
+ID  antiport_PotE
+AC  TIGR04299
+DE  putrescine-ornithine antiporter
+AU  Haft DH
+TC  560.00 560.00
+NC  550.00 550.00
+AL  muscle_manual
+IT  equivalog
+EN  putrescine-ornithine antiporter
+GS  potE
+TP  TIGRFAMs
+CC  Members of this protein family are putrescine-ornithine antiporter. They work together with an enzyme that decarboxylates ornithine to putrescine. This two-gene system has the net effect of removing a protein from the cytosol, providing transient resistance to acid conditions.
+RN  [1]
+RM  PMID:22247134 
+RT  Evidence of two functionally distinct ornithine decarboxylation systems in lactic Acid bacteria. 
+RA  Romano A, Trip H, Lonvaud-Funel A, Lolkema JS, Lucas PM 
+RL  Appl Environ Microbiol. 2012 Mar;78(6):1953-61.

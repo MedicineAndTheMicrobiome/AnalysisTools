@@ -1,0 +1,18 @@
+ID  BchH
+AC  TIGR02025
+DE  magnesium chelatase, H subunit
+AU  Selengut J
+TC  829.00 829.00
+NC  823.75 823.75
+AL  clustalw
+IT  equivalog
+EN  magnesium chelatase, H subunit
+GS  bchH
+EC  6.6.1.1
+TP  TIGRFAMs
+CC  This HMM represents the H subunit of the magnesium chelatase complex responsible for magnesium insertion into the protoporphyrin IX ring in the biosynthesis of both chlorophyll and bacteriochlorophyll.  In chlorophyll-utilizing species, this gene is known as ChlH, while in bacteriochlorophyll-utilizing spoecies it is called BchH.  Subunit H is the largest (~140kDa) of the three subunits (the others being BchD/ChlD and BchI/ChlI), and is known to bind protoporphyrin IX.  Subunit H is homologous to the CobN subunit of cobaltochelatase and by anology with that enzyme, subunit H is believed to also bind the magnesium ion which is inserted into the ring.  In conjunction with the hydrolysis of ATP by subunits I and D, a conformation change is believed to happen in subunit H causing the magnesium ion insertion into the distorted protoporphyrin ring [1].
+RN  [1]
+RM  PMID: 12828371
+RT  Biosynthesis of chlorophylls from protoporphyrin IX.
+RA  Willows RD.
+RL  Nat Prod Rep. 2003 Jun;20(3):327-41.

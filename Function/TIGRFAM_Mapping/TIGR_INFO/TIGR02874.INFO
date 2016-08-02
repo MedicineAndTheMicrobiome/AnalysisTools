@@ -1,0 +1,17 @@
+ID  spore_ytfJ
+AC  TIGR02874
+DE  sporulation protein YtfJ
+AU  Haft DH
+TC  116.30 116.30
+NC  79.75 79.75
+AL  clustalw
+IT  equivalog
+EN  sporulation protein YtfJ
+GS  ytfJ
+TP  TIGRFAMs
+CC  Members of this protein family, exemplified by YtfJ of Bacillus subtilis, are encoded by bacterial genomes if and only if the species is capable of endospore formation. YtfJ  was confirmed in spores of Bacillus subtilis; it appears to be expressed in the forespore under control of SigF (see PMID:12480901).
+RN  [1]
+RM  12480901
+RT  Proteomics characterization of novel spore proteins of Bacillus subtilis.
+RA  Kuwana R, Kasahara Y, Fujibayashi M, Takamatsu H, Ogasawara N, Watabe K.
+RL  Microbiology. 2002 Dec;148(Pt 12):3971-82.

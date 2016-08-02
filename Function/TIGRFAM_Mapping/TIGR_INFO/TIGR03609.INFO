@@ -1,0 +1,18 @@
+ID  S_layer_CsaB
+AC  TIGR03609
+DE  polysaccharide pyruvyl transferase CsaB
+AU  Haft DH
+TC  213.10 213.10
+NC  145.65 145.65
+AL  muscle_manual
+IT  equivalog
+EN  polysaccharide pyruvyl transferase CsaB
+GS  csaB
+EC  2.-.-.-
+TP  TIGRFAMs
+CC  The CsaB protein (cell surface anchoring B) of Bacillus anthracis adds a pyruvoyl group to peptidoglycan-associated polysaccharide. This addition is required for proteins with an S-layer homology domain (PF00395) to bind. Within the larger group of proteins described by Pfam model PF04230, this model represents a distinct clade that nearly exactly follows the phylogenetic distribution of the S-layer homology domain (PF00395).
+RN  [1]
+RM  PMID:10970841
+RT  Bacterial SLH domain proteins are non-covalently anchored to the cell surface via a conserved mechanism involving wall polysaccharide pyruvylation.
+RA  Mesnage S, Fontaine T, Mignot T, Delepierre M, Mock M, Fouet A
+RL  EMBO J. 2000 Sep 1;19(17):4473-84.

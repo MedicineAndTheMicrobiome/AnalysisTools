@@ -1,0 +1,18 @@
+ID  egtE_PLP_lyase
+AC  TIGR04343
+DE  ergothioneine biosynthesis PLP-dependent enzyme EgtE
+AU  Haft DH
+TC  400.00 400.00
+NC  375.00 375.00
+AL  muscle_manual
+IT  equivalog
+EN  ergothioneine biosynthesis PLP-dependent enzyme EgtE
+GS  egtE
+EC  4.4.-.-
+TP  TIGRFAMs
+CC  Members of this protein family are the pyridoxal phosphate-dependent enzyme EgtE, which catalyzes the final step in the biosynthesis of ergothioneine.
+RN  [1]
+RM  PMID:20420449 
+RT  In vitro reconstitution of Mycobacterial ergothioneine biosynthesis. 
+RA  Seebeck FP 
+RL  J Am Chem Soc. 2010 May 19;132(19):6632-3.

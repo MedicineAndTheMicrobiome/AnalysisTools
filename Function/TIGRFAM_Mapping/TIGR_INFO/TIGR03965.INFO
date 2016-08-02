@@ -1,0 +1,18 @@
+ID  mycofact_glyco
+AC  TIGR03965
+DE  mycofactocin system glycosyltransferase
+AU  Haft DH
+TC  280.00 280.00
+NC  220.00 220.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  mycofactocin system glycosyltransferase
+GS  mftF
+TP  TIGRFAMs
+CC  Members of this protein family are putative glycosyltransferases, members of PF00535 (glycosyl transferase family 2). Members appear mostly in the Actinobacteria, where they appear to be part of a system for converting a precursor peptide (TIGR03969) into a novel redox carrier designated mycofactocin. A radical SAM enzyme, TIGR03962, is a proposed to be a key maturase for mycofactocin.
+DR  PFAM; PF00535; Glycos_transf_2
+RN  [1]
+RM  PMID:21223593 
+RT  Bioinformatic evidence for a widely distributed, ribosomally produced electron carrier precursor, its maturation proteins, and its nicotinoprotein redox partners. 
+RA  Haft DH 
+RL  BMC Genomics. 2011 Jan 11;12(1):21.

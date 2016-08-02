@@ -1,0 +1,18 @@
+ID  nifM_nitrog
+AC  TIGR02933
+DE  nitrogen fixation protein NifM
+AU  Haft DH
+TC  168.20 168.20
+NC  135.85 135.85
+AL  muscle
+IT  equivalog
+EN  nitrogen fixation protein NifM
+GS  nifM
+TP  TIGRFAMs
+CC  Members of this protein family, found in a subset of nitrogen-fixing bacteria, are the nitrogen fixation protein NifM. NifM, homologous to peptidyl-prolyl cis-trans isomerases, appears to be an accessory protein for NifH, the Fe protein, also called component II or dinitrogenase reductase, of nitrogenase.
+DR  PFAM; PF00639; PPIC-type PPIASE domain
+RN  [1]
+RM  PMID: 10772917
+RT  NifH and NifM proteins interact as demonstrated by the yeast two-hybrid system.
+RA  Petrova N, Gigova L, Venkov P
+RL  Biochem Biophys Res Commun. 2000 Apr 21;270(3):863-7.

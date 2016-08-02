@@ -1,0 +1,18 @@
+ID  MerA
+AC  TIGR02053
+DE  mercury(II) reductase
+AU  Selengut J
+TC  454.45 454.45
+NC  419.65 419.65
+AL  clustalw
+IT  equivalog
+EN  mercury(II) reductase
+GS  merA
+EC  1.16.1.1
+TP  TIGRFAMs
+CC  This HMM represents the mercuric reductase found in the mer operon for the detoxification of mercury compounds.  MerA is a FAD-containing flavoprotein which reduces Hg(II) to Hg(0) utilizing NADPH [1].
+RN  [1]
+RM  PMID: 8467420
+RT  Purification and properties of mercuric reductase from Yersinia enterocolitica 138A14.
+RA  Blaghen M, Vidon DJ, el Kebbaj MS.
+RL  Can J Microbiol. 1993 Feb;39(2):193-200.

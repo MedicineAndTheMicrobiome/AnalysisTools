@@ -1,0 +1,19 @@
+ID  His_Ser_Rich
+AC  TIGR03979
+DE  His-Xaa-Ser repeat protein HxsA
+AU  Haft DH
+TC  121.65 121.65
+NC  63.80 63.80
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  His-Xaa-Ser repeat protein HxsA
+GS  hxsA
+TP  TIGRFAMs
+CC  Members of this protein share two defining regions. One is a histidine/serine-rich cluster, typically H-R-S-H-S-S-H-R-S-H-S-S-H. Members are found always in the context of a pair of radical SAM proteins, HxsB and HxsC, and a fourth protein HxsD. The system is predicted to perform peptide modifications, likely in the His-Xaa-Ser region, to produce some uncharacterized natural product.
+DR  PFAM; PF01471; Putative peptidoglycan binding domain
+RN  [1]
+RM  PMID:21478363 
+RT  Biological systems discovery in silico: radical S-adenosylmethionine protein families and their target peptides for posttranslational mo
+dification. 
+RA  Haft DH, Basu MK 
+RL  J Bacteriol. 2011 Jun;193(11):2745-55.

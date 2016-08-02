@@ -1,0 +1,11 @@
+ID  flav_short
+AC  TIGR01753
+DE  flavodoxin
+AU  Haft DH
+TC  123.00 123.00
+NC  90.50 90.50
+AL  clustalw_manual
+IT  equivalog
+EN  flavodoxin, short chain
+TP  TIGRFAMs
+CC  Flavodoxins are small redox-active proteins with a flavin mononucleotide (FMN) prosthetic group. They can act in nitrogen fixation by nitrogenase, in sulfite reduction, and light-dependent NADP+ reduction in during photosynthesis, among other roles. This model describes the short chain type. Many of these are involved in sulfite reduction.

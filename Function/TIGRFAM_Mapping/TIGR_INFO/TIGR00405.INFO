@@ -1,0 +1,19 @@
+ID  L26e_arch
+AC  TIGR00405
+DE  ribosomal protein L24
+AU  Haft DH, Loftus BJ
+TC  69.95 69.95
+NC  49.85 49.85
+AL  clustalw
+IT  equivalog
+EN  ribosomal protein L24p/L26e, archaeal
+GS  rplX
+TP  TIGRFAMs
+CC  This protein contains a KOW domain, shared by bacterial NusG and the L24p/L26e family of ribosomal proteins. Although called archaeal NusG in several publications, it is the only close homolog of eukaryotic L26e in archaeal genomes, shares an operon with L11 in many genomes, and has been sequenced from purified ribosomes. It is here designated as a ribosomal protein for these reasons.
+DR  EGAD;40837;
+DR  Swissprot; Q46494;  
+DR  EGAD; 44546;
+DR  Swissprot; Q57818; 
+DR  PROSITE; PDOC00852;
+DR  PFAM; PF00467;
+RL  J Mol Biol. 1998 May 1;278(2):307-16.

@@ -1,0 +1,14 @@
+ID  aroC
+AC  TIGR00033
+DE  chorismate synthase
+AU  Haft DH
+TC  212.20 212.20
+NC  131.10 131.10
+AL  clustalw
+IT  equivalog
+EN  chorismate synthase
+GS  aroC
+EC  4.2.3.5
+TP  TIGRFAMs
+CC  Homotetramer (noted in E.coli) suggests reason for good conservation.
+DR  HAMAP; MF_00300; 500 of 502

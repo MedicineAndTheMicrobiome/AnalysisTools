@@ -1,0 +1,18 @@
+ID  Pglycolate_arch
+AC  TIGR01487
+DE  phosphoglycolate phosphatase, TA0175-type
+AU  Selengut J, Haft D
+TC  122.75 122.75
+NC  108.70 108.70
+AL  clustalw
+IT  equivalog
+EN  phosphoglycolate phosphatase, TA0175-type
+EC  3.1.3.18
+TP  TIGRFAMs
+CC  This group of Archaeal sequences, now known to be phosphoglycolate phosphatases, is most closely related to the sucrose-phosphate phosphatases from plants and cyanobacteria (TIGR01485).  Together, these two models comprise a subfamily model (TIGR01482).  TIGR01482, in turn, is a member of the IIB subfamily (TIGR01484) of the Haloacid Dehalogenase (HAD) superfamily of aspartate-nucleophile hydrolases.
+RN  [1]
+RM  PMID:14555659 
+RT  Structure- and function-based characterization of a new phosphoglycolate phosphatase from Thermoplasma acidophilum. 
+RA  Kim Y, Yakunin AF, Kuznetsova E, Xu X, Pennycooke M, Gu J, Cheung F, Proudfoot M, Arrowsmith CH, Joachimiak A, Edwards AM, Christendat D 
+RL  J Biol Chem. 2004 Jan 2;279(1):517-26.
+DR  HAMAP; MF_01419; 28 of 28

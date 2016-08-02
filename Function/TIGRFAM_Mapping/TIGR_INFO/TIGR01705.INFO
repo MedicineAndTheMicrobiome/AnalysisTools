@@ -1,0 +1,28 @@
+ID  MTA/SAH-nuc-hyp
+AC  TIGR01705
+DE  putative 5'-methylthioadenosine/S-adenosylhomocysteine nucleosidase
+AU  Selengut J
+TC  152.20 152.20
+NC  40.85 40.85
+AL  clustalw
+IT  hypoth_equivalog
+EN  5'-methylthioadenosine/S-adenosylhomocysteine nucleosidase, putative
+TP  TIGRFAMs
+CC  This model represents the enzyme 5'-methylthioadenosine/S-adenosylhomocysteine nucleosidase which acts on its two substrates at the same active site. 
+CC  This clade of sequences is sufficiently distinct from the characterized proteins [1,2] which form the seed of TIGR01704 as to cast some doubt on the accuracy of annotations based on sequence similarity alone.
+CC  This enzyme is involved in the recycling of the components of S-adenosylmethionine after it has donated one of its two non-ribose sulfur ligands to an acceptor.  In the case of 5'-methylthioadenosine this represents the first step of the methionine salvage pathway in bacteria [1,2,3].  This enzyme is widely distributed in bacteria.
+RN  [1]
+RM  PMID: 10574451
+RT  Identification of yrrU as the methylthioadenosine nucleosidase gene in Bacillus subtilis.
+RA  Sekowska A, Danchin A.
+RL  DNA Res 1999 Oct 29;6(5):255-64
+RN  [2]
+RM  PMID: 11591349
+RT  Structure of E. coli 5'-methylthioadenosine/S-adenosylhomocysteine nucleosidase reveals similarity to the purine nucleoside phosphorylases.
+RA  Lee JE, Cornell KA, Riscoe MK, Howell PL.
+RL  Structure (Camb) 2001 Oct;9(10):941-53
+RN  [3]
+RM  PMID: 12022921
+RT  The methionine salvage pathway in Bacillus subtilis
+RA  Sekowska A, Danchin, A.
+RL  BMC Microbiology 2001; 2:8

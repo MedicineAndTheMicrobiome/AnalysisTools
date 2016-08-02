@@ -1,0 +1,13 @@
+ID  dfx_rbo
+AC  TIGR00320
+DE  desulfoferrodoxin
+AU  Haft DH
+TC  146.90 146.90
+NC  57.10 57.10
+AL  clustalw
+IT  equivalog
+EN  desulfoferrodoxin
+TP  TIGRFAMs
+CC  The short N-terminal domain contains four conserved Cys for binding of a ferric iron atom, and is homologous to the small protein desulforedoxin; this domain may also be responsible for dimerization. The remainder of the molecule binds a ferrous iron atom and is similar to neelaredoxin, a monomeric blue non-heme iron protein.
+CC  The homolog from Treponema pallidum scores between the trusted cutoff for orthology and the noise cutoff. Although essentially a full length homolog, it lacks three of the four Cys residues in the N-terminal domain; the domain may have lost ferric binding ability but may have some conserved structural role such as dimerization, or some new function.
+CC  This protein is described in some articles as rubredoxin oxidoreductase (rbo), and its gene shares an operon with the rubredoxin gene in Desulfovibrio vulgaris Hildenborough.

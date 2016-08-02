@@ -1,0 +1,11 @@
+ID  nitro_assoc
+AC  TIGR01616
+DE  nitrogenase-associated protein
+AU  Haft DH
+TC  109.00 109.00
+NC  74.15 74.15
+AL  clustalw
+IT  hypoth_equivalog
+EN  nitrogenase-associated protein
+TP  TIGRFAMs
+CC  This HMM describes a small family of uncharacterized proteins found so far in alpha and gamma proteobacteria and in Nostoc sp. PCC 7120, a cyanobacterium. The gene for this protein is associated with nitrogenase genes. This family shows sequence similarity to TIGR00014, a glutaredoxin-dependent arsenate reductase that converts arsentate to arsenite for disposal. This family is one of several included in Pfam model PF03960.

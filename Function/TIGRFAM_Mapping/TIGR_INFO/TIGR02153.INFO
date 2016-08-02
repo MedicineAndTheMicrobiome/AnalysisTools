@@ -1,0 +1,18 @@
+ID  gatD_arch
+AC  TIGR02153
+DE  glutamyl-tRNA(Gln) amidotransferase, subunit D
+AU  Haft DH
+TC  324.00 324.00
+NC  258.35 258.35
+AL  clustalw
+IT  equivalog
+EN  glutamyl-tRNA(Gln) amidotransferase, subunit D
+GS  gatD
+EC  6.3.5.-
+TP  TIGRFAMs
+CC  This peptide is found only in the Archaea. It is part of a heterodimer, with GatE (TIGR00134), that acts as an amidotransferase on misacylated Glu-tRNA(Gln) to produce Gln-tRNA(Gln). The analogous amidotransferase found in bacteria is the GatABC system, although GatABC homologs in the Archaea appear to act instead on Asp-tRNA(Asn).
+RM  10993083
+RT  Domain-specific recruitment of amide amino acids for protein synthesis.
+RA  Tumbula DL, Becker HD, Chang WZ, Soll D.
+RL  Nature. 2000 Sep 7;407(6800):106-10.
+DR  HAMAP; MF_00586; 29 of 29

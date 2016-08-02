@@ -1,0 +1,18 @@
+ID  ACC_deam_rel
+AC  TIGR01275
+DE  pyridoxal phosphate-dependent enzymes, D-cysteine desulfhydrase family
+AU  Haft DH
+TC  289.40 289.40
+NC  240.55 240.55
+AL  clustalw_manual
+IT  subfamily
+EN  pyridoxal phosphate-dependent enzymes, D-cysteine desulfhydrase family
+TP  TIGRFAMs
+CC  This HMM represents a family of pyridoxal phosphate-dependent enzymes closely related to (and often designated as putative examples of) 1-aminocyclopropane-1-carboxylate deaminase. It appears that members of this family include both D-cysteine desulfhydrase (EC 4.4.1.15) and  1-aminocyclopropane-1-carboxylate deaminase (EC 3.5.99.7).
+DR  PFAM; PF00291; Pyridoxal-phosphate dependent enzyme
+DR  SYSTERS; N69630
+RM  11527960
+RT  Role of D-cysteine desulfhydrase in the adaptation of Escherichia coli to D-cysteine.
+RA  Soutourina J, Blanquet S, Plateau P.
+RL  J Biol Chem. 2001 Nov 2;276(44):40864-72. Epub 2001 Aug 29.
+DR  HAMAP; MF_01045; 21 of 22

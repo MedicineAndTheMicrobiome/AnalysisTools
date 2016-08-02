@@ -1,0 +1,22 @@
+ID  gmhA
+AC  TIGR00441
+DE  phosphoheptose isomerase
+AU  Loftus BJ, Haft DH
+TC  209.45 209.45
+NC  176.20 176.20
+AL  muscle_manual
+IT  equivalog
+EN  phosphoheptose isomerase
+GS  gmhA
+EC  5.3.1.28
+TP  TIGRFAMs
+CC  This model describes phosphoheptose isomerase. Because a closely related paralo in Escherichia coli differs in function (DnaA initiator-associating protein diaA), this model has been rebuilt with a high stringency, and is likely to miss many true examples for phosphoheptose isomerase. 
+CC  Involved in lipopolysaccharide biosynthesis it may have a role in virulence in Haemophilus ducreyi.
+RN  [1]
+RM  PMID:18056714
+RT  Structure and function of sedoheptulose-7-phosphate isomerase, a critical enzyme for lipopolysaccharide biosynthesis and a target for antibiotic adjuvants.
+RA  Taylor PL, Blakely KM, de Leon GP, Walker JR, McArthur F, Evdokimova E, Zhang K, Valvano MA, Wright GD, Junop MS
+RL  J Biol Chem. 2008 Feb 1;283(5):2835-45. Epub 2007 Dec 3.
+DR  Swissprot; P51001 
+DR  ECOCYC; EG13146; 
+DR  HAMAP; MF_01157; 32 of 33

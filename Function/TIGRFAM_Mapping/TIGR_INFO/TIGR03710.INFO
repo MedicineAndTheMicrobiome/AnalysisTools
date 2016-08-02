@@ -1,0 +1,35 @@
+ID  OAFO_sf
+AC  TIGR03710
+DE  2-oxoacid:acceptor oxidoreductase, alpha subunit
+AU  Selengut J
+TC  482.75 482.75
+NC  459.15 459.15
+AL  muscle
+IT  subfamily
+EN  2-oxoacid:acceptor oxidoreductase, alpha subunit
+TP  TIGRFAMs
+CC  This family of proteins contains a C-terminal thiamine diphosphate (TPP) binding domain typical of flavodoxin/ferredoxin oxidoreductases (PF01855) as well as an N-terminal domain similar to the gamma subunit of the same group of oxidoreductases (PF01558).  The genes represented by this model are always found in association with a neighboring gene for a beta subunit (TIGR02177) which also occurs in a 4-subunit (alpha/beta/gamma/ferredoxin) version of the system.  This alpha/gamma plus beta structure was used to define the set of sequences to include in this model.  
+CC  This pair of genes is not consistantly observed in proximity to any electron acceptor genes, but is found next to putative ferredoxins or ferredoxin-domain proteins in Azoarcus sp. EbN1, Bradyrhizobium japonicum USDA 110, Frankia sp. CcI3, Rhodoferax ferrireducens DSM 15236, Rhodopseudomonas palustris BisB5, Os, Sphingomonas wittichii RW1 and Streptomyces clavuligerus.  Other potential acceptors are also sporadically observed in close proximity including ferritin-like proteins, reberythrin, peroxiredoxin and a variety of other flavin and iron-sulfur cluster-containing proteins.
+CC  The phylogenetic distribution of this family encompasses archaea, a number of deeply-branching bacterial clades and only a small number of firmicutes and proteobacteria. 
+CC  The enzyme from Sulfolobus has been characterized with respect to its substrate specificity [1] which is described as wide, encompassing various 2-oxoacids such as 2-oxoglutarate, 2-oxobutyrate and pyruvate.  The enzyme from Hydrogenobacter thermophilus has been shown to have a high specificity towards 2-oxoglutarate [2,3] and is one of the key enzymes in the reverse TCA cycle in this organism.  Furthermore, considering its binding of coenzyme A, it can be reasonably inferred that the product of the reaction is succinyl-CoA.  
+CC  The genes for this enzyme in Prevotella intermedia 17, Persephonella marina EX-H1 and Picrophilus torridus DSM 9790 are in close proximity to a variety of TCA cycle genes.  Persephonella marina and P. torridus [4] are believed to encode complete TCA cycles, and none of these contains the lipoate-based 2-oxoglutarate dehydrogenase (E1/E2/E3) system.  That system is presumed to be replaced by this one.  In fact, the lipoate system is absent in most organisms possessing a member of this family, providing additional circumstantial evidence that many of these enzymes are capable of acting as 2-oxoglutarate dehydrogenases and
+RN  [1]
+RM  PMID:8902625
+RT  2-oxoacid:ferredoxin oxidoreductase from the thermoacidophilic archaeon, Sulfolobus sp. strain 7.
+RA  Zhang Q, Iwasaki T, Wakagi T, Oshima T
+RL  J Biochem. 1996 Sep;120(3):587-99.
+RN  [2]
+RM  PMID:11401501
+RT  The genes for anabolic 2-oxoglutarate: ferredoxin oxidoreductase from Hydrogenobacter thermophilus TK-6.
+RA  Yun NR, Arai H, Ishii M, Igarashi Y
+RL  Biochem Biophys Res Commun. 2001 Mar 30;282(2):589-94.
+RN  [3]
+RM  PMID:8655524
+RT  Purification and characterization of 2-oxoglutarate:ferredoxin oxidoreductase from a thermophilic, obligately chemolithoautotrophic bacterium, Hydrogenobacter thermophilus TK-6.
+RA  Yoon KS, Ishii M, Igarashi Y, Kodama T
+RL  J Bacteriol. 1996 Jun;178(11):3365-8.
+RN  [4]
+RM  PMID:15184674
+RT  Genome sequence of Picrophilus torridus and its implications for life around pH 0.
+RA  Futterer O, Angelov A, Liesegang H, Gottschalk G, Schleper C, Schepers B, Dock C, Antranikian G, Liebl W
+RL  Proc Natl Acad Sci U S A. 2004 Jun 15;101(24):9091-6. Epub 2004 Jun 7.

@@ -1,0 +1,17 @@
+ID  fruA
+AC  TIGR00848
+DE  PTS system, fructose subfamily, IIA component
+AU  Haft DH, Paulsen IT, Saier MH, Loftus BJ
+TC  103.50 103.50
+NC  95.80 95.80
+AL  clustalw_manual
+IT  subfamily_domain
+EN  PTS system, fructose subfamily, IIA component
+GS  fruA
+EC  2.7.1.69
+TR  4.A.2
+TP  TIGRFAMs
+CC  4.A.2 The PTS Fructose-Mannitol (Fru) Family
+CC  Bacterial PTS transporters transport and concomitantly phosphorylate their sugar substrates, and typically consist of multiple subunits or protein domains. The Fru family is a large and complex family which includes several sequenced fructose and mannitol-specific permeases as well as several putative PTS
+CC  permeases of unknown specificities. The fructose permeases of this family phosphorylate fructose on the 1-position. Those of family 4.6 phosphorylate fructose on the 6-position. The Fru family PTS systems typically have 3 domains, IIA, IIB and IIC, which may be found as 1 or more proteins. The fructose and mannitol transporters form separate phylogenetic clusters in this family. This Hmm is specific for the IIA domain of the fructose PTS transporters. Also similar to the Enzyme IIA Fru subunits of the PTS, but included in TIGR01419 rather than this model, is enzyme IIA Ntr (nitrogen), also called PtsN, found in E. coli and other organisms, which may play a solely regulatory role.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/4_A_2.html

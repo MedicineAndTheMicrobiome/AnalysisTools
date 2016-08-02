@@ -1,0 +1,17 @@
+ID  ECX1
+AC  TIGR02065
+DE  exosome complex exonuclease 1
+AU  Haft DH
+TC  318.70 318.70
+NC  292.55 292.55
+AL  clustalw
+IT  equivalog
+EN  archaeal exosome-like complex exonuclease 1
+EC  3.1.13.-
+TP  TIGRFAMs
+CC  This family contains the archaeal protein orthologous to the eukaryotic exosome protein Rrp41. It is somewhat more distantly related to the bacterial protein ribonuclease PH. An exosome-like complex has been demonstrated experimentally for the Archaea in Sulfolobus solfataricus, so members of this family are designated exosome complex exonuclease 1, after usage in SwissProt.
+RM  12947419
+RT  An exosome-like complex in Sulfolobus solfataricus.
+RA  Evguenieva-Hackenburg E, Walter P, Hochleitner E, Lottspeich F, Klug G.
+RL  EMBO Rep. 2003 Sep;4(9):889-93. Epub 2003 Aug 29.
+DR  HAMAP; MF_00591; 15 of 15

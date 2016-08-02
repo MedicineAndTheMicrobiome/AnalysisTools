@@ -1,0 +1,14 @@
+ID  homoserO_Ac_trn
+AC  TIGR01392
+DE  homoserine O-acetyltransferase
+AU  Haft DH
+TC  276.85 276.85
+NC  109.05 109.05
+AL  clustalw_manual
+IT  equivalog
+EN  homoserine O-acetyltransferase
+GS  metX
+EC  2.3.1.31
+TP  TIGRFAMs
+CC  This family describes homoserine-O-acetyltransferase, an enzyme of methionine biosynthesis. This model has been rebuilt to identify sequences more broadly, including a number of sequences suggested to be homoserine O-acetyltransferase based on proximity to other Met biosynthesis genes.
+DR  HAMAP; MF_00296; 127 of 127

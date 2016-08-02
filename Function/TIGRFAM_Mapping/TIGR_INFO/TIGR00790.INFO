@@ -1,0 +1,16 @@
+ID  fnt
+AC  TIGR00790
+DE  formate/nitrite transporter
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  232.30 232.30
+NC  126.35 126.35
+AL  clustalw_manual
+IT  subfamily
+EN  formate/nitrite transporter
+GS  fnt
+TR  2.A.44
+TP  TIGRFAMs
+CC  The Formate-Nitrite Transporter (FNT) Family (TC 2.A.44)
+CC  The prokaryotic proteins of the FNT family probably function in the transport of the structurally related compounds, formate and nitrite. The homologous yeast protein may function as a short chain aliphatic carboxylate H+ symporter,
+CC  transporting formate, acetate and propionate, and functioning primarily as an acetate uptake permease. The putative formate efflux transporters (FocA) of bacteria associated with pyruvate-formate lyase (pfl) comprise cluster I; the putative formate uptake permeases (FdhC) of bacteria and archaea associated with formate dehydrogenase comprise cluster II; the putative nitrite uptake permeases (NirC) of bacteria comprise cluster III, and the single yeast protein, the putative acetate:H+ symporter alone comprises cluster IV. The energy coupling mechanisms for proteins of the FNT family have not been extensively characterized. HCO2 -, CH3CO2 - and NO2 - uptakes are probably coupled to H+
+CC  symport. HCO2 - efflux may be driven by the membrane potential by a uniport mechanism or by H+ antiport.

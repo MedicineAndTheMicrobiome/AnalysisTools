@@ -1,0 +1,13 @@
+ID  sm_term_P27
+AC  TIGR01558
+DE  putative phage terminase, small subunit, P27 family
+AU  Haft DH, Fouts DE
+TC  45.60 45.60
+NC  30.25 30.25
+AL  clustalw_manual
+IT  equivalog
+EN  phage terminase, small subunit, putative, P27 family
+TP  TIGRFAMs
+CC  This HMM describes a distinct family of phage (and integrated prophage) putative terminase small subunit.
+CC  Members tend to be adjacent to the phage terminase large subunit gene.
+RM  11895953

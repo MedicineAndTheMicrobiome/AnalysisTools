@@ -1,0 +1,16 @@
+ID  OMP85_target
+AC  TIGR03304
+DE  outer membrane insertion C-terminal signal
+AU  Haft DH
+TC  10.00 10.00
+NC  7.50 7.50
+AL  manual
+IT  domain
+EN  outer membrane insertion C-terminal signal
+TP  TIGRFAMs
+CC  This hidden Markov model detects a 10-residue targeting sequence common to beta-barrel outer membrane proteins (OMP) that rely on Omp85-like proteins for insertion into the outer membrane. Hits should be trusted if they include the last amino acid of a protein sequence that occurs in Gram-negative bacteria. It has been noted that Omp85 target sequences differ somewhat by species, while this model works generally for most Proteobacteria. For a given species, an iterated approach, in which trusted matches to this model become the basis of a new model that finds additional OMP signals, is recommended. Note that this model does not work well under HMMER3, but works better under HMMER2 when the model is built with the -g option from the seed alignment.
+RN  [1]
+RM  PMID: 17090219
+RT  Assembly factor Omp85 recognizes its outer membrane protein substrates by a species-specific C-terminal motif.
+RA  Robert V, Volokhina EB, Senf F, Bos MP, Van Gelder P, Tommassen J
+RL  PLoS Biol. 2006 Nov;4(11):e377.

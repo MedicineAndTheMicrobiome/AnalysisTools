@@ -1,0 +1,17 @@
+ID  acpS
+AC  TIGR00516
+DE  holo-[acyl-carrier-protein] synthase
+AU  Haft DH
+TC  59.80 59.80
+NC  35.25 35.25
+IT  equivalog_domain
+EN  holo-[acyl-carrier-protein] synthase
+GS  acpS
+EC  2.7.8.7
+TP  TIGRFAMs
+CC  Formerly dpj. This enzyme adds the prosthetic group, phosphopantethiene, to the acyl carrier protein (ACP) apo-enzyme to generate the holo-enzyme. Related phosphopantethiene--protein transferases also exist. There is an orthologous domain in eukaryotic proteins.
+RM  96027548
+RT  Cloning, overproduction, and characterization of the Escherichia coli holo-acyl carrier protein synthase.
+RA  Lambalot RH, Walsh CT
+RL  J Biol Chem 1995 Oct 20;270(42):24658-61
+DR  HAMAP; MF_00101; 359 of 394

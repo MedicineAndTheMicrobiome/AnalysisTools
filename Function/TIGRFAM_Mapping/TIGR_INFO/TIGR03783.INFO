@@ -1,0 +1,12 @@
+ID  Bac_Flav_CT_G
+AC  TIGR03783
+DE  Bacteroides conjugation system ATPase, TraG family
+AU  Haft DH
+TC  261.55 261.55
+NC  254.35 254.35
+AL  muscle_manual
+IT  subfamily
+EN  Bacteroides conjugation system ATPase, TraG family
+GS  traG
+TP  TIGRFAMs
+CC  Members of this family include the predicted ATPase, TraG, encoded by transfer region genes of conjugative transposons of Bacteroides, such as CTnDOT, found on the main chromosome. Members also include TraG homologs borne on plasmids in Bacteroides. The protein family is related to the conjugative transfer system ATPase VirB4.

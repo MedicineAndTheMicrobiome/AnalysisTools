@@ -1,0 +1,11 @@
+ID  pantethn_trn
+AC  TIGR00556
+DE  phosphopantetheine--protein transferase domain
+AU  Haft DH
+TC  45.35 45.35
+NC  32.00 32.00
+IT  domain
+EN  phosphopantetheine--protein transferase domain
+TP  TIGRFAMs
+CC  This HMM models a domain active in transferring the phophopantetheine prosthetic group to its attachment site on enzymes and carrier proteins. Many members of this family are small proteins that act on the acyl carrier protein involved in fatty acid biosynthesis. Some members are domains of larger proteins involved specialized pathways for the synthesis of unusual molecules including polyketides, atypical fatty acids, and antibiotics.
+DR  HAMAP; MF_00101; 389 of 394

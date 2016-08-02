@@ -1,0 +1,18 @@
+ID  TIGR00427
+AC  TIGR00427
+DE  membrane protein, MarC family
+AU  Loftus BJ, Haft DH
+TC  99.20 99.20
+NC  86.75 86.75
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  membrane protein, MarC family
+TP  TIGRFAMs
+CC  MarC is a protein that spans the plasma membrane multiple times and once was thought to be a multiple antibiotic resistance protein. The function for this family is unknown.
+RN  [1]
+RM  PMID:17954692
+RT  The marC gene of Escherichia coli is not involved in multiple antibiotic resistance.
+RA  McDermott PF, McMurry LM, Podglajen I, Dzink-Fox JL, Schneiders T, Draper MP, Levy SB
+RL  Antimicrob Agents Chemother. 2008 Jan;52(1):382-3. Epub 2007 Oct 22.
+DR  ECOCYC; EG11342;  
+DR  Swissprot; Q56068;

@@ -1,0 +1,17 @@
+ID  termin_org_DnaJ
+AC  TIGR03835
+DE  terminal organelle assembly protein TopJ
+AU  Haft DH
+TC  512.25 512.25
+NC  333.00 333.00
+AL  muscle_manual
+IT  equivalog
+EN  terminal organelle assembly protein TopJ
+GS  topJ
+TP  TIGRFAMs
+CC  This model describes TopJ (MG_200, CbpA), a DnaJ homolog and probable assembly protein of the Mycoplasma terminal organelle. The terminal organelle is involved in both cytadherence and gliding motility.
+RN  [1]
+RM  PMID:19183275
+RT  Mycoplasma pneumoniae J-domain protein required for terminal organelle function.
+RA  Cloward JM, Krause DC
+RL  Mol Microbiol. 2009 Mar;71(5):1296-307.

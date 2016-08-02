@@ -1,0 +1,13 @@
+ID  S15_bact
+AC  TIGR00952
+DE  ribosomal protein S15
+AU  Haft DH
+TC  63.65 63.65
+NC  37.30 37.30
+AL  clustalw_manual
+IT  equivalog
+EN  ribosomal protein S15, bacterial/organelle
+GS  rpsO
+TP  TIGRFAMs
+CC  This model is built to recognize specifically bacterial, chloroplast, and mitochondrial ribosomal protein S15. The homologous proteins of Archaea and Eukarya are designated S13.
+DR  HAMAP; MF_01343; 647 of 715

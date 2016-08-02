@@ -1,0 +1,18 @@
+ID  archaeo_artC
+AC  TIGR03762
+DE  archaeosortase C
+AU  Haft DH
+TC  100.00 100.00
+NC  60.00 60.00
+AL  muscle_manual
+IT  equivalog
+EN  archaeosortase C, PEF-CTERM variant
+GS  artC
+EC  3.4.22.-
+TP  TIGRFAMs
+CC  Members of this family are archaeal homologs to bacterial PEP-CTERM-sorting protein exosortase (TIGR02602). Members of this family are found in species with an archaeal variant sorting motif, PEF-CTERM (TIGR03024). Members are found in the thermoacidophilic Aciduliprofundum boonei, the mesophilic psychromethanogens Methanosarcina mazei and Methanococcoides burtonii, and in Ferroglobus placidus DSM 10642.
+RN  [1]
+RM  PMID:22037399 
+RT  Archaeosortases and exosortases are widely distributed systems linking membrane transit with posttranslational modification. 
+RA  Haft DH, Payne SH, Selengut JD 
+RL  J Bacteriol. 2012 Jan;194(1):36-48.

@@ -1,0 +1,11 @@
+ID  PHA_gran_rgn
+AC  TIGR02610
+DE  putative polyhydroxyalkanoic acid system protein
+AU  Haft DH
+TC  40.25 40.25
+NC  33.25 33.25
+AL  clustalw
+IT  hypoth_equivalog
+EN  putative polyhydroxyalkanoic acid system protein
+TP  TIGRFAMs
+CC  All members of this family are encoded by genes  polyhydroxyalkanoic acid (PHA) biosynthesis and utilization genes, including proteins at found at the surface of PHA granules. Examples so far are found in the Pseudomonales, Xanthomonadales, and Vibrionales, all of which belong to the Gammaproteobacteria.

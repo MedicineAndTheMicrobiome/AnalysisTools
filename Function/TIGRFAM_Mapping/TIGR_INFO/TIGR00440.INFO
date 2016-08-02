@@ -1,0 +1,14 @@
+ID  glnS
+AC  TIGR00440
+DE  glutamine--tRNA ligase
+AU  Haft DH
+TC  425.80 425.80
+NC  343.00 343.00
+AL  clustalw
+IT  equivalog
+EN  glutaminyl-tRNA synthetase
+GS  glnS
+EC  6.1.1.18
+TP  TIGRFAMs
+CC  This protein is a relatively rare aminoacyl-tRNA synthetase, found in the cytosolic compartment of eukaryotes, in E. coli and a number of other Gram-negative Bacteria, and in Deinococcus radiodurans. In contrast, the pathway to Gln-tRNA in mitochondria, Archaea, Gram-positive Bacteria, and a number of other lineages is by misacylation with Glu followed by transamidation to correct the aminoacylation to Gln. This enzyme is a class I tRNA synthetase (hit by the pfam HMM tRNA-synt_1c) and is quite closely related to glutamyl-tRNA synthetases.
+DR  HAMAP; MF_00126; 69 of 70

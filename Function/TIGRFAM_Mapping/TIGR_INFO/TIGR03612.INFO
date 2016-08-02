@@ -1,0 +1,17 @@
+ID  RutA
+AC  TIGR03612
+DE  pyrimidine utilization protein A
+AU  Selengut J
+TC  498.30 498.30
+NC  434.65 434.65
+AL  muscle
+IT  equivalog
+EN  pyrimidine utilization protein A
+GS  rutA
+TP  TIGRFAMs
+CC  This protein is observed in operons extremely similar to that characterized in E. coli K-12 [1] responsible for the import and catabolism of pyrimidines, primarily uracil.  This protein is a member of the luciferase family defined by PF00296 and is likely a FMN-dependent monoxygenase.
+RN  [1]
+RM  PMID:16540542 
+RT  A previously undescribed pathway for pyrimidine catabolism. 
+RA  Loh KD, Gyaneshwar P, Markenscoff Papadimitriou E, Fong R, Kim KS, Parales R, Zhou Z, Inwood W, Kustu S 
+RL  Proc Natl Acad Sci U S A. 2006 Mar 28;103(13):5114-9. Epub 2006 Mar 15.

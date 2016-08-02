@@ -1,0 +1,16 @@
+ID  PhzF_family
+AC  TIGR00654
+DE  phenazine biosynthesis protein, PhzF family
+AU  Haft DH
+TC  76.20 76.20
+NC  38.35 38.35
+IT  subfamily
+EN  phenazine biosynthesis protein PhzF family
+TP  TIGRFAMs
+CC  Members of this family show a distant global similarity to diaminopimelate epimerases, which can be taken as the outgroup. One member of this family has been shown to act as an enzyme in the biosynthesis of the antibiotic phenazine in Pseudomonas aureofaciens. The function in other species is unclear.
+RM  96102876
+RT  Molecular analysis of genes encoding phenazine biosynthesis in the biological control bacterium. Pseudomonas aureofaciens 30-84.
+RA  Pierson LS 3rd, Gaffney T, Lam S, Gong F
+RL  FEMS Microbiol Lett 1995 Dec 15;134(2-3):299-307
+DR  ECOCYC; EG11825; yddE;
+DR  OUTGROUP; EGAD|103253|AF0747;

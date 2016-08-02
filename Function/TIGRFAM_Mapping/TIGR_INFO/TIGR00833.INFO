@@ -1,0 +1,13 @@
+ID  actII
+AC  TIGR00833
+DE  transport protein
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  874.70 874.70
+NC  244.55 244.55
+AL  clustalw_manual
+IT  subfamily
+EN  Transport protein
+TR  2.A.06
+TP  TIGRFAMs
+CC  The Resistance-Nodulation-Cell Division (RND) Superfamily- MmpL sub family (TC 2.A.6.5)
+CC  Characterized members of the RND superfamily all probably catalyze substrate efflux via an H+ antiport mechanism. These proteins are found ubiquitously in bacteria, archaea and eukaryotes. This sub-family includes the S. coelicolor ActII3 protein, which may play a role in drug resistance, and the M. tuberculosis MmpL7 protein, which catalyzes export of an outer membrane lipid, phthiocerol dimycocerosate.

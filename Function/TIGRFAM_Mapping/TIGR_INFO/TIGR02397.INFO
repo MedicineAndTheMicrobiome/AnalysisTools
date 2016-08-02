@@ -1,0 +1,23 @@
+ID  dnaX_nterm
+AC  TIGR02397
+DE  DNA polymerase III, subunit gamma and tau
+AU  Haft DH
+TC  250.00 200.00
+NC  149.80 149.80
+AL  clustalw
+IT  equivalog
+EN  DNA polymerase III, subunit gamma and tau
+GS  dnaX
+EC  2.7.7.7
+TP  TIGRFAMs
+CC  This model represents the well-conserved first ~ 365 amino acids of the translation of the dnaX gene. The full-length product of the dnaX gene in the model bacterium E. coli is the DNA polymerase III tau subunit. A translational frameshift leads to early termination and a truncated protein subunit gamma, about 1/3 shorter than tau and present in roughly equal amounts. This frameshift mechanism is not necessarily universal for species with DNA polymerase III but appears conserved in the exterme thermophile Thermus thermophilis.
+RN  [1]
+RM  9209069
+RT  Conservation of the Escherichia coli dnaX programmed ribosomal frameshift signal in Salmonella typhimurium.
+RA  Blinkova A, Burkart MF, Owens TD, Walker JR.
+RL  J Bacteriol. 1997 Jul;179(13):4438-42.
+RN  [2]
+RM  9341154
+RT  Thermus thermophilis dnaX homolog encoding gamma- and tau-like proteins of the chromosomal replicase.
+RA  Yurieva O, Skangalis M, Kuriyan J, O'Donnell M.
+RL  J Biol Chem. 1997 Oct 24;272(43):27131-9.

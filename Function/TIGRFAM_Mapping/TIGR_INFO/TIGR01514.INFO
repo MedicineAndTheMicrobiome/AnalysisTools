@@ -1,0 +1,16 @@
+ID  NAPRTase
+AC  TIGR01514
+DE  nicotinate phosphoribosyltransferase
+AU  Haft DH
+TC  269.55 269.55
+NC  170.90 170.90
+AL  clustalw
+IT  equivalog
+EN  nicotinate phosphoribosyltransferase
+GS  pncB
+EC  6.3.4.21
+TP  TIGRFAMs
+CC  This HMM represents nicotinate phosphoribosyltransferase, the first enzyme in the salvage pathway of NAD biosynthesis from nicontinate (niacin). Members are primary proteobacterial but also include yeasts and Methanosarcina acetivorans.  A related family, apparently non-overlapping in species distribution, is TIGR01513. Members of that family differ in substantially in sequence and have a long C-terminal extension missing from this family, but are proposed also to act as nicotinate phosphoribosyltransferase (see model TIGR01513).
+DR  EXPERIMENTAL; SP:P18133; Escherichia coli
+DR  EXPERIMENTAL; SP|P22253; Salmonella typhimurium
+DR  HAMAP; MF_00570; 81 of 81

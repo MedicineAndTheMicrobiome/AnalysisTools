@@ -1,0 +1,11 @@
+ID  pepcterm_CAAX
+AC  TIGR03008
+DE  CAAX prenyl protease-related protein
+AU  Haft DH
+TC  81.05 81.05
+NC  61.10 61.10
+AL  muscle
+IT  hypoth_equivalog
+EN  CAAX prenyl protease-related protein
+TP  TIGRFAMs
+CC  The CAAX prenyl protease, in eukaryotes, catalyzes three covalent modifications, including cleavage and acylation, at the C-terminus of certain proteins in a process connected to protein sorting. This family describes a bacterial protein family homologous to one domain of the CAAX-processing enzyme. Members of this protein family are found in genomes that carry a predicted protein sorting system, PEP-CTERM/exosortase, usually in the vicinity of the EpsH homolog that is the hallmark of the system. The function of this protein is unknown, but it may relate to protein motification.

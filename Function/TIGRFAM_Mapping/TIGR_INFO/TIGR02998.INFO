@@ -1,0 +1,29 @@
+ID  RraA_entero
+AC  TIGR02998
+DE  regulator of ribonuclease activity A
+AU  Selengut J
+TC  241.25 241.25
+NC  224.35 224.35
+AL  muscle
+IT  equivalog
+EN  regulator of ribonuclease activity A
+GS  rraA
+TP  TIGRFAMs
+CC  This family includes a number of closely related sequences from certain enterobacteria.  The E. coli member of this family has been characterized as a regulator of RNase E [1] and its crystal structure has been analyzed [2].  The broader subfamily which includes this equivalog, TIGR01935, was initially classified as a "hypothetical equivalog" with the name "regulator of ribonuclease activity A" based on the same evidence for this model.  It now appears that, considering the second group of enterobacterial sequences within TIGR01935, the functional assignment is unsupported.
+CC  THIS PROTEIN IS _NOT_ MenG, AKA S-adenosylmethionine: 2-demethylmenaquinone methyltransferase (EC 2.1.-.-).  See the references characterizing this as a case of transitive annotation error [2,3].
+RN  [1]
+RM  PMID: 13678585
+RT  RraA. a protein inhibitor of RNase E activity that globally modulates RNA abundance in E. coli.
+RA  Lee K, Zhan X, Gao J, Qiu J, Feng Y, Meganathan R, Cohen SN, Georgiou G.
+RL  Cell. 2003 Sep 5;114(5):623-34.
+RN  [2]
+RM  PMID: 14499605
+RT  The X-ray structure of Escherichia coli RraA (MenG), A protein inhibitor of RNA processing.
+RA  Monzingo AF, Gao J, Qiu J, Georgiou G, Robertus JD.
+RL  J Mol Biol. 2003 Oct 3;332(5):1015-24.
+RN  [3]
+RM  PMID: 12837779
+RT  Crystal structure of a putative methyltransferase from Mycobacterium tuberculosis: misannotation of a genome clarified by protein structural analysis.
+RA  Johnston JM, Arcus VL, Morton CJ, Parker MW, Baker EN.
+RL  J Bacteriol. 2003 Jul;185(14):4057-65.
+DR  HAMAP; MF_00471; 55 of 128

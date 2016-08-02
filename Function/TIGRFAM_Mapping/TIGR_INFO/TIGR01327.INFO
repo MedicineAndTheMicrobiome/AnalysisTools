@@ -1,0 +1,17 @@
+ID  PGDH
+AC  TIGR01327
+DE  phosphoglycerate dehydrogenase
+AU  Haft DH
+TC  454.00 454.00
+NC  268.10 268.10
+AL  clustalw_manual
+IT  equivalog
+EN  D-3-phosphoglycerate dehydrogenase
+GS  serA
+EC  1.1.1.95
+TP  TIGRFAMs
+CC  This HMM represents a long form of D-3-phosphoglycerate dehydrogenase, the serA gene of one pathway of serine biosynthesis. Shorter forms, scoring between trusted and noise cutoff, include SerA from E. coli.
+DR  PFAM; PF00389   2-Hacid_DH
+DR  PFAM; PF02826   2-Hacid_DH_C
+DR  PFAM; PF01842   ACT
+DR  COGS; COG0111

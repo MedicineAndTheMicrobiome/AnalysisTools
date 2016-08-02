@@ -1,0 +1,13 @@
+ID  cyanoexo_CrtA
+AC  TIGR03763
+DE  cyanoexosortase A
+AU  Haft DH
+TC  150.00 150.00
+NC  95.00 95.00
+AL  muscle_manual
+IT  equivalog
+EN  cyanoexosortase A
+GS  crtA
+EC  3.4.22.-
+TP  TIGRFAMs
+CC  The predicted protein-sorting transpeptidase that we call exosortase (see TIGR02602) has distinct subclasses that associated with different types of exopolysaccharide production loci and/or different taxonomic lineages. We designate this relatively divergent cyanobacterial type to be type 3. We propose the gene symbol xrtC. This type coexists with a TIGR02602-recognized form in Nostoc sp. PCC 7120.

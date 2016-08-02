@@ -1,0 +1,11 @@
+ID  amphi-Trp
+AC  TIGR04354
+DE  amphi-Trp domain
+AU  Haft DH
+TC  31.00 31.00
+NC  28.00 28.00
+AL  muscle_manual
+IT  domain
+EN  amphi-Trp domain
+TP  TIGRFAMs
+CC  This domain usually comprises most of the span of bacterial or archaeal proteins with a length of about 90 amino acids. Some members, however, are extended by one or two copies of domain PF07411 in the C-terminal region. No residue in this domain is invariant. A striking feature of this domain is a C-terminal region that alternates strongly charged with strongly hydrophobic residues and usually ends with a Trp residue, e.g. LEIEIEW or FEIKVRW, suggesting an amphipathic beta strand structure. We suggest the name amphi-Trp for this domain. Some members of this function occur regularly in genomic contexts that include putative kinases of unknown specificity related to (but distinct from) HPr kinase, a Ser-specific protein kinase. The function is unknown.

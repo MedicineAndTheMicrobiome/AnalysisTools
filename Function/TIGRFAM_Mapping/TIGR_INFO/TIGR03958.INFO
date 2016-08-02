@@ -1,0 +1,17 @@
+ID  monoFe_hyd_HmdC
+AC  TIGR03958
+DE  5,10-methenyltetrahydromethanopterin hydrogenase cofactor biosynthesis protein HmdC
+AU  Haft DH
+TC  407.00 407.00
+NC  406.85 406.85
+AL  muscle
+IT  equivalog
+EN  5,10-methenyltetrahydromethanopterin hydrogenase cofactor biosynthesis protein HmdC
+GS  hmdC
+TP  TIGRFAMs
+CC  Members of this protein family are HmdC, whose gene regularly occurs in the context of genes for HmdA (5,10-methenyltetrahydromethanopterin hydrogenase) and the radical SAM protein HmdB involved in biosynthesis of the HmdA cofactor. Bioinformatics suggests this protein, a homolog of eukaryotic fibrillarin, may be involved in biosynthesis of the guanylyl pyridinol cofactor in HmdA.
+RN  [1]
+RM  PMID:19897660
+RT  Identification and characterization of a novel member of the radical AdoMet enzyme superfamily and implications for the biosynthesis of the Hmd hydrogenase active site cofactor.
+RA  McGlynn SE, Boyd ES, Shepard EM, Lange RK, Gerlach R, Broderick JB, Peters JW
+RL  J Bacteriol. 2010 Jan;192(2):595-8. Epub 2009 Nov 6.

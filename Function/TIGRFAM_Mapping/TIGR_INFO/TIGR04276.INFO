@@ -1,0 +1,12 @@
+ID  FxsC_Cterm
+AC  TIGR04276
+DE  FxsC C-terminal domain
+AU  Haft DH
+TC  55.00 55.00
+NC  40.00 40.00
+AL  muscle_manual
+IT  hypoth_equivalog_domain
+EN  FxsC C-terminal domain
+GS  fsxC
+TP  TIGRFAMs
+CC  This HMM describes a sequence region found regularly as the C-terminal domain of a protein (where the N-terminal domain resembles a TIR domain - see PF13676) in the vicinity of a proposed peptide-modifying radical SAM/SPASM domain protein, FxsB (TIGR04269).

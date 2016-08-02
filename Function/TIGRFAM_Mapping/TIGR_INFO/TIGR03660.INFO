@@ -1,0 +1,11 @@
+ID  T1SS_rpt_143
+AC  TIGR03660
+DE  T1SS-143 repeat domain
+AU  Haft DH
+TC  66.05 66.05
+NC  52.75 52.75
+AL  muscle_manual
+IT  domain
+EN  T1SS-143 repeat domain
+TP  TIGRFAMs
+CC  This model represents a domain of about 143 amino acids that may occur singly or in up to 23 tandem repeats in very large proteins in the genus Vibrio, and in related species such as Legionella pneumophila, Photobacterium profundum, Rhodopseudomonas palustris, Shewanella pealeana, and Aeromonas hydrophila. Proteins with these domains represent a subset of a broader set of proteins with a particular signal for type 1 secretion, consisting of several glycine-rich repeats modeled by PF00353, followed by a C-terminal domain modeled by TIGR03661. Proteins with this domain tend to share several properties with the RtxA (Repeats in Toxin) protein of Vibrio cholerae, including a large size often containing tandemly repeated domains and a C-terminal signal for type 1 secretion.

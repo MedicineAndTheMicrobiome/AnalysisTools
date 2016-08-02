@@ -1,0 +1,17 @@
+ID  PQQ_syn_pqqB
+AC  TIGR02108
+DE  coenzyme PQQ biosynthesis protein B
+AU  Haft DH
+TC  303.55 303.55
+NC  76.85 76.85
+AL  clustalw
+IT  equivalog
+EN  coenzyme PQQ biosynthesis protein B
+GS  pqqB
+TP  TIGRFAMs
+CC  This HMM describes coenzyme PQQ biosynthesis protein B, a gene required for the biosynthesis of pyrrolo-quinoline-quinone (coenzyme PQQ). PQQ is required for some glucose dehydrogenases and alcohol dehydrogenases. Note that this gene appears to be required for PQQ in biosynthesis in Methylobacterium extorquens (under the name pqqG) and in Klebiella pneumoniae but that the equivalent pqqV in Acinetobacter calcoaceticus is not necessary for heterologous expression of PQQ biosynthesis in E. coli. Based on this latter finding, it is suggested (Goosen, et al. 1989) that PqqB might be a transporter or a PQQ-dependent enzyme rather than a PQQ biosynthesis enzyme.
+RM  2536663
+RT  Acinetobacter calcoaceticus genes involved in biosynthesis of the coenzyme pyrrolo-quinoline-quinone: nucleotide sequence and expression in Escherichia coli K-12.
+RA  Goosen N, Horsman HP, Huinen RG, van de Putte P.
+RL  J Bacteriol. 1989 Jan; 171(1): 447-55.
+DR  HAMAP; MF_00653; 39 of 39

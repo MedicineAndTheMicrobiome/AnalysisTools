@@ -1,0 +1,17 @@
+ID  pyrC_multi
+AC  TIGR00857
+DE  dihydroorotase, multifunctional complex type
+AU  Haft DH, Durkin S
+TC  279.05 279.05
+NC  197.80 197.80
+AL  clustalw
+IT  subfamily_domain
+EN  dihydroorotase, multifunctional complex type
+GS  pyrC
+EC  3.5.2.3
+TP  TIGRFAMs
+CC  In contrast to the homodimeric type of dihydroorotase found in E. coli, this class tends to appear in a large, multifunctional complex with aspartate transcarbamoylase. Homologous domains appear in multifunctional proteins of higher eukaryotes. In some species, including Pseudomonas putida and P. aeruginosa, this protein is inactive but is required as a non-catalytic subunit of aspartate transcarbamoylase (ATCase). In these species, a second, active dihydroorotase is also present.
+CC  The seed for this model does not include any example of the dihydroorotase domain of eukaryotic multidomain pyrimidine synthesis proteins.
+CC  All proteins described by this HMM should represent active and inactive dihydroorotase per se and functionally equivalent domains of multifunctional proteins from higher eukaryotes, but exclude related proteins such as allantoinase.
+DR  PROSITE; PDOC00401; Dihydroorotase signatures
+DR  HAMAP; MF_01645; 2 of 26

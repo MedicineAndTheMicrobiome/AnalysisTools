@@ -1,0 +1,14 @@
+ID  pth
+AC  TIGR00447
+DE  aminoacyl-tRNA hydrolase
+AU  Anolik RT, Haft DH
+TC  143.15 143.15
+NC  87.20 87.20
+AL  clustalw
+IT  equivalog
+EN  aminoacyl-tRNA hydrolase
+GS  pth
+EC  3.1.1.29
+TP  TIGRFAMs
+CC  The natural substrate for this enzyme may be peptidyl-tRNAs that drop off the ribosome during protein synthesis. Peptidyl-tRNA hydrolase is a bacterial protein; YHR189W from Saccharomyces cerevisiae appears to be orthologous and likely has the same function.
+DR  PROSITE; PDOC00920;

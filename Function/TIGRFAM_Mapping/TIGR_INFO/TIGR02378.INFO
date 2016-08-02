@@ -1,0 +1,13 @@
+ID  nirD_assim_sml
+AC  TIGR02378
+DE  nitrite reductase [NAD(P)H], small subunit
+AU  Haft DH
+TC  74.65 74.65
+NC  69.85 69.85
+AL  clustalw
+IT  equivalog_domain
+EN  nitrite reductase [NAD(P)H], small subunit
+GS  nirD
+EC  1.7.1.4
+TP  TIGRFAMs
+CC  This HMM describes NirD, the small subunit of nitrite reductase [NAD(P)H] (the assimilatory nitrite reductase), which associates with NirB, the large subunit (TIGR02374). In a few bacteria such as Klebsiella pneumoniae and in Fungi, the two regions are fused.

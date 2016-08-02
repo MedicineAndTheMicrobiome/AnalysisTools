@@ -1,0 +1,27 @@
+ID  TraF
+AC  TIGR02739
+DE  type-F conjugative transfer system pilin assembly protein TraF
+AU  Selengut J
+TC  204.60 204.60
+NC  183.65 183.65
+AL  clustalw
+IT  equivalog
+EN  type-F conjugative transfer system pilin assembly protein TraF
+GS  traF
+TP  TIGRFAMs
+CC  This protein is part of a large group of proteins involved in conjugative transfer of plasmid DNA, specifically the F-type system.  This protein has been predicted to contain a thioredoxin fold and has been shown to be localized to the periplasm [1].  Unlike the related protein TrbB (TIGR02738), TraF does not contain a conserved pair of cysteines and has been shown not to function as a thiol disulfide isomerase by complementation of an Ecoli DsbA defect [2].  The protein is believed to be involved in pilin assembly [3].  Even more closely related than TrbB is a clade of genes (TIGR02740) which do contain the CXXC motif, but it is unclear whether these genes are involved in type-F conjugation systems per se.
+RN  [1]
+RM  PMID: 3042757
+RA  Wu JH, Kathir P, Ippen-Ihler K
+RT  The product of the F plasmid transfer operon gene, traF, is a periplasmic protein
+RL  J Bacteriol. 1988 Aug;170(8):3633-9.
+RN  [2]
+RM  PMID: 16321931
+RA  Elton TC, Holland SJ, Frost LS, Hazes B.
+RT  F-like type IV secretion systems encode proteins with thioredoxin folds that are putative DsbC homologues.
+RL  J Bacteriol. 2005 Dec;187(24):8267-77.
+RN  [3]
+RM  PMID: 16138100
+RA  Frost LS, Leplae R, Summers AO, Toussaint A.
+RT  Mobile genetic elements: the agents of open source evolution.
+RL  Nat Rev Microbiol. 2005 Sep;3(9):722-32.

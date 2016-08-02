@@ -1,0 +1,22 @@
+ID  HpnH
+AC  TIGR03470
+DE  hopanoid biosynthesis associated radical SAM protein HpnH
+AU  Selengut J
+TC  225.05 225.05
+NC  162.35 162.35
+AL  muscle
+IT  hypoth_equivalog
+EN  hopanoid biosynthesis associated radical SAM protein HpnH
+GS  hpnH
+TP  TIGRFAMs
+CC  The sequences represented by this model are members of the radical SAM superfamily of enzymes (PF04055).  These enzymes utilize an iron-sulfur redox cluster and S-adenosylmethionine to carry out diverse radical mediated reactions [1].  The members of this clade are frequently found in the same locus as squalene-hopene cyclase (SHC, TIGR01507) and other genes associated with the biosynthesis of hopanoid natural products.  The linkage between SHC and this radical SAM enzyme is strong; one is nearly always observed in the same genome where the other is found.  A hopanoid biosynthesis locus was described in Zymomonas mobilis consisting of the genes HpnA-E and SHC (HpnF) [1].  Continuing past SHC are found a phosphorylase enzyme (ZMO0873, i.e. HpnG, TIGR03468) and this radical SAM enzyme (ZMO0874) which we name here HpnH.  Granted, in Z. mobilis, HpnH is in a convergent orientation with respect to HpnA-G, but one gene beyond HpnH and running in the same convergent direction is IspH (ZM0875, 4-hydroxy-3-methylbut-2-enyl diphosphate reductase), an essential enzyme of IPP biosynthesis and therefore essential for the biosynthesis of hopanoids.  One of the well-described hopanoid intermediates is bacteriohopanetetrol.  In the conversion from hopene several reactions must occur in the side chain for which a radical mechanism might be reasonable.  These include the four (presumably anaerobic) hydroxylations and a methyl shift.
+RN  [1]
+RM  PMID:11222759 
+RT  Radical SAM, a novel protein superfamily linking unresolved steps in familiar biosynthetic pathways with radical mechanisms: functional characterization using new analysis and information visualization methods. 
+RA  Sofia HJ, Chen G, Hetzler BG, Reyes-Spindola JF, Miller NE 
+RL  Nucleic Acids Res. 2001 Mar 1;29(5):1097-106. 
+RN  [2]
+RM  PMID:9714766
+RT  Cloning of conserved genes from Zymomonas mobilis and Bradyrhizobium japonicum that function in the biosynthesis of hopanoid lipids.
+RA  Perzl M, Reipen IG, Schmitz S, Poralla K, Sahm H, Sprenger GA, Kannenberg EL
+RL  Biochim Biophys Acta. 1998 Jul 31;1393(1):108-18.

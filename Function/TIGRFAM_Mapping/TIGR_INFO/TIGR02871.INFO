@@ -1,0 +1,17 @@
+ID  spore_ylbJ
+AC  TIGR02871
+DE  sporulation integral membrane protein YlbJ
+AU  Haft DH
+TC  304.65 304.65
+NC  138.20 138.20
+AL  clustalw
+IT  equivalog
+EN  sporulation integral membrane protein YlbJ
+GS  ylbJ
+TP  TIGRFAMs
+CC  Members of this protein family are found exclusively in Firmicutes (low-GC Gram-positive bacterial) and are known from studies in Bacillus subtilis to be part of the sigma-E regulon. Mutation leads to a sporulation defect, confirming that members of this protein family, YlbJ, are sporulation proteins. This protein appears to be universal among endospore-forming bacteria, but is encoded by a pair ORFs distant from eash other in Symbiobacterium thermophilum IAM14863.
+RN  [1]
+RM  12662922
+RT  The sigmaE regulon and the identification of additional sporulation genes in Bacillus subtilis.
+RA  Eichenberger P, Jensen ST, Conlon EM, van Ooij C, Silvaggi J, Gonzalez-Pastor JE, Fujita M, Ben-Yehuda S, Stragier P, Liu JS, Losick R.
+RL  J Mol Biol. 2003 Apr 11;327(5):945-72.

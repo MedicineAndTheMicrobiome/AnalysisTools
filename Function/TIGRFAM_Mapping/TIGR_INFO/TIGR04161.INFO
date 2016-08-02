@@ -1,0 +1,16 @@
+ID  VPEID-CTERM
+AC  TIGR04161
+DE  VPEID-CTERM protein sorting domain
+AU  Haft DH
+TC  33.00 33.00
+NC  30.00 25.00
+AL  muscle_manual
+IT  hypoth_equivalog_domain
+EN  VPEID-CTERM protein sorting domain
+TP  TIGRFAMs
+CC  Proteins belonging to this family are small, 80 to 120 residues, including a signal peptide, a central low-complexity region, and this roughly 31-amino acid extreme C-terminal region. Members occur paired with a variant form of exosortase. Species include Ruegeria sp., Phaeobacter gallaeciensis, Roseovarius nubinhibens ISM, and two in Methylobacter tundripaludum.
+RN  [1]
+RM  PMID:22037399 
+RT  Archaeosortases and exosortases are widely distributed systems linking membrane transit with posttranslational modification. 
+RA  Haft DH, Payne SH, Selengut JD 
+RL  J Bacteriol. 2012 Jan;194(1):36-48. Epub 2011 Oct 28.

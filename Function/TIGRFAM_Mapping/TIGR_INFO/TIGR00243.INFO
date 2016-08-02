@@ -1,0 +1,15 @@
+ID  Dxr
+AC  TIGR00243
+DE  1-deoxy-D-xylulose 5-phosphate reductoisomerase
+AU  Loftus BJ, Haft DH
+TC  315.70 315.70
+NC  224.55 224.55
+AL  clustalw
+IT  equivalog
+EN  1-deoxy-D-xylulose 5-phosphate reductoisomerase
+GS  dxr
+EC  1.1.1.267
+TP  TIGRFAMs
+CC  1-deoxy-D-xylulose 5-phosphate is converted to 2-C-methyl-D-erythritol 4-phosphate in the presence of NADPH. It is involved in the synthesis of isopentenyl diphosphate (IPP), a basic building block in isoprenoid, thiamin, and pyridoxal biosynthesis.
+RL  Proc Natl Acad Sci U S A 1998 Aug 18;95(17):9879-84
+DR  HAMAP; MF_00183; 297 of 301

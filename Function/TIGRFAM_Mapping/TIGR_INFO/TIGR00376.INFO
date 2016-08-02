@@ -1,0 +1,17 @@
+ID  TIGR00376
+AC  TIGR00376
+DE  putative DNA helicase
+AU  Loftus BJ
+TC  348.90 348.90
+NC  276.05 276.05
+AL  clustalw
+IT  hypoth_equivalog
+EN  DNA helicase, putative
+EC  3.6.4.12
+TP  TIGRFAMs
+CC  The gene product may represent a DNA helicase. Eukaryotic members of this family have been characterized as binding certain single-stranded G-rich DNA sequences (GGGGT and GGGCT). A number of related proteins are characterized as helicases.
+RM  93352537
+RT  The human S mu bp-2, a DNA-binding protein specific to the single-stranded guanine-rich sequence related to the immunoglobulin mu chain switch region.
+RA  Fukita Y, Mizuta TR, Shirozu M, Ozawa K, Shimizu A, Honjo T
+RL  Biol Chem 1993 Aug 15;268(23):17463-70 
+DR  EGAD:44287, SP:Q57568,

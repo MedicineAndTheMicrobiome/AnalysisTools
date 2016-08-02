@@ -1,0 +1,17 @@
+ID  urea_trans_yut
+AC  TIGR03441
+DE  urea transporter
+AU  Haft DH
+TC  274.60 274.60
+NC  178.50 178.50
+AL  muscle_manual
+IT  equivalog
+EN  urea transporter, Yersinia type
+GS  yut
+TP  TIGRFAMs
+CC  Members of this protein family are bacterial urea transporters, found not only is species that contain urease, but adjacent to the urease operon. It was characterized in Yersinia pseudotuberculosis. Members are homologous to eukaryotic members of solute carrier family 14, a family that includes urea transporters, and to bacterial proteins in species with no detectable urea degradation system.
+RN  [1]
+RM  PMID:12180933
+RT  The Yersinia pseudotuberculosis Yut protein, a new type of urea transporter homologous to eukaryotic channels and functionally interchangeable in vitro with the Helicobacter pylori UreI protein.
+RA  Sebbane F, Bury-Mone S, Cailliau K, Browaeys-Poly E, De Reuse H, Simonet M
+RL  Mol Microbiol. 2002 Aug;45(4):1165-74.

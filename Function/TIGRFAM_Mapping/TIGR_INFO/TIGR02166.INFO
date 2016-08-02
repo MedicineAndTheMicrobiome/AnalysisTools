@@ -1,0 +1,15 @@
+ID  dmsA_ynfE
+AC  TIGR02166
+DE  anaerobic dimethyl sulfoxide reductase, A subunit, DmsA/YnfE family
+AU  Haft DH
+TC  777.70 777.70
+NC  525.10 525.10
+AL  clustalw_manual
+IT  subfamily
+EN  anaerobic dimethyl sulfoxide reductase, A subunit, DmsA/YnfE family
+TP  TIGRFAMs
+CC  Members of this family include known and probable dimethyl sulfoxide reductase (DMSO reductase) A chains. In E. coli, dmsA encodes the canonical anaerobic DMSO reductase A chain. The paralog ynfE, as part of ynfFGH expressed from a multicopy plasmid, could complement a dmsABC deletion, suggesting a similar function and some overlap in specificity, although YnfE could not substitute for DmsA in a mixed complex.
+RM  [1]
+RT  The Escherichia coli ynfEFGHI operon encodes polypeptides which are paralogues of dimethyl sulfoxide reductase (DmsABC).
+RA  Lubitz SP, Weiner JH.
+RL  Arch Biochem Biophys. 2003 Oct 15;418(2):205-16.

@@ -1,0 +1,17 @@
+ID  TFS_arch
+AC  TIGR01384
+DE  transcription factor S
+AU  Haft DH
+TC  64.75 64.75
+NC  56.50 56.50
+AL  clustalw_manual
+IT  equivalog
+EN  transcription factor S, archaeal
+TP  TIGRFAMs
+CC  This model describes archaeal transcription factor S, a protein related in size and sequence to certain eukaryotic RNA polymerase small subunits, and in sequence and function to the much larger eukaryotic transcription factor IIS (TFIIS). Although originally suggested to be a subunit of the archaeal RNA polymerase, it elutes separately from active polymerase in gel filtration experiments and acts, like TFIIs, as an induction factor for RNA cleavage by RNA polymerase.
+CC  There has been an apparent duplication event in the Halobacteriaceae lineage (Haloarcula, Haloferax, Haloquadratum, Halobacterium and Natromonas).  There appears to be a separate duplication in Methanosphaera stadtmanae.
+RM  20239876
+RT  Transcription factor S, a cleavage induction factor of the archaeal RNA polymerase.
+RA  Hausner W, Lange U, Musfeldt M.
+RL  J Biol Chem 2000 Apr 28;275(17):12393-9
+DR  EXPERIMENTAL; GP|6723838; Methanococcus thermolithotrophicus

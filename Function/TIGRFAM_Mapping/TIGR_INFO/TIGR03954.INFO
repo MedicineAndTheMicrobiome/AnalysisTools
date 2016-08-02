@@ -1,0 +1,11 @@
+ID  integ_memb_HG
+AC  TIGR03954
+DE  integral membrane protein
+AU  Haft DH
+TC  33.25 33.25
+NC  32.85 32.85
+AL  muscle_manual
+IT  domain
+EN  integral membrane protein
+TP  TIGRFAMs
+CC  This HMM describes a strictly bacterial integral membrane domain of about 85 residues in length. It occurs in proteins that on rare occasions are fused to transporter domains such as the major facilitator superfamily domain. Of three invariant residues, two occur as a His-Gly dipeptide in the middle of three predicted transmembrane helices.

@@ -1,0 +1,17 @@
+ID  EIIA-LAC
+AC  TIGR00823
+DE  PTS system, lactose-specific IIa component
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  136.95 136.95
+NC  117.85 117.85
+AL  clustalw_manual
+IT  subfamily
+EN  phosphotransferase system enzyme II, lactose-specific, factor III
+GS  lacF
+EC  2.7.1.69
+TP  TIGRFAMs
+CC  The PTS Lactose-N,N?-Diacetylchitobiose-b-glucoside (Lac) Family (TC 4.A.3)
+CC  Bacterial PTS transporters transport and concomitantly phosphorylate their sugar substrates, and typically consist of multiple subunits or protein domains.
+CC  The Lac family includes several sequenced lactose (b-galactoside) permeases of Gram-positive bacteria as well as the E. coli N,N?-diacetylchitobiose (Chb)
+CC  permease which can transport aromatic b-glucosides and cellobiose as well as the chitin disaccharide, Chb, but only Chb induces expression of the chb
+CC  operon. While the Lac permeases consist of two polypeptide chains (IIA and IICB), the Chb permease of E. coli consists of three (IIA, IIB and IIC). In B. subtilis, a PTS permease similar to the Chb permease of E. coli is believed to transport lichenan (a b-1,3;1,4 glucan) degradation products, oligosaccharides of 2-4 glucose units. This Hmm is specific for the IIA subunit of the Lac PTS family.

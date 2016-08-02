@@ -1,0 +1,13 @@
+ID  RNA_lig_T4_1
+AC  TIGR02308
+DE  RNA ligase, T4 RnlA family
+AU  Haft DH
+TC  242.25 242.25
+NC  74.90 74.90
+AL  clustalw
+IT  equivalog
+EN  RNA ligase, T4 RnlA family
+EC  6.5.1.3
+TP  TIGRFAMs
+CC  Members of this family are phage proteins with ATP-dependent RNA ligase activity. Host defense to phage may include cleavage and inactivation of specific tRNA molecules; members of this family act to reverse this RNA damage. The enzyme is adenylated, transiently, on a Lys residue in a motif KXDGSL.
+DR  EXPERIMENTAL; SP|P00971; Bacteriophage T4

@@ -1,0 +1,19 @@
+ID  uxuA
+AC  TIGR00695
+DE  mannonate dehydratase
+AU  Loftus BJ, Haft DH
+TC  199.55 199.55
+NC  122.60 122.60
+IT  equivalog
+EN  mannonate dehydratase
+GS  uxuA
+EC  4.2.1.8
+TP  TIGRFAMs
+CC  This Fe2+-requiring enzyme plays a role in D-glucuronate catabolism in Escherichia coli. Mannonate dehydratase converts D-mannonate to 2-dehydro-3-deoxy-D-gluconate. An apparent equivalog is found in a glucuronate utilization operon in Bacillus stearothermophilus T-6.
+DR  ECOCYC; EG11066; uxuA
+DR  SWISSPROT; P24215
+RN  [1]
+RM  99296578
+RN  [2]
+RM  87275954
+DR  HAMAP; MF_00106; 85 of 87

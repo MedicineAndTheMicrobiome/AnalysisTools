@@ -1,0 +1,14 @@
+ID  Sa_S2_E_A
+AC  TIGR01012
+DE  ribosomal protein S2
+AU  Haft DH
+TC  211.50 211.50
+NC  92.60 92.60
+AL  clustalw
+IT  equivalog
+EN  ribosomal protein Sa(cytosolic)/S2(archaeal)
+GS  rpsB
+TP  TIGRFAMs
+CC  This HMM describes the ribosomal protein of the cytosol and of Archaea, homologous to S2 of bacteria. It is designated typically as Sa in eukaryotes and Sa or S2 in the archaea.
+CC  TIGR01011 describes the related protein of organelles and bacteria.
+DR  HAMAP; MF_00291; 50 of 736

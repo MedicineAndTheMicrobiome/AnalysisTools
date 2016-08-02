@@ -1,0 +1,21 @@
+ID  HAD-SF-IIA-hyp3
+AC  TIGR01458
+DE  HAD hydrolase, TIGR01458 family
+AU  Selengut J
+TC  175.95 175.95
+NC  118.50 118.50
+AL  clustalw
+IT  hypoth_equivalog
+EN  HAD-superfamily subfamily IIA hydrolase, TIGR01458
+TP  TIGRFAMs
+CC  This hypothetical equivalog is a member of the IIA subfamily (TIGR01460) of the haloacid dehalogenase superfamily of aspartate-nucleophile hydrolases. One sequence (GP|10716807) has been annotated as a "phospholysine phosphohistidine inorganic pyrophosphatase," probably in reference to studies on similarly described (but unsequenced) enzymes from bovine and rat tissues [1,2].  However, the supporting information for this annotation has never been published.
+RN [1]
+RM PMID: 9448729
+RT 3-phosphohistidine and 6-phospholysine are substrates of a 56-kDa inorganic pyrophosphatase from bovine liver.
+RA Hiraishi H, Yokoi F, Kumon A.
+RL Arch Biochem Biophys 1998 Jan 15;349(2):381-7
+RN [2]
+RM PMID: 7822258
+RT 3-Phosphohistidine/6-phospholysine phosphatase from rat brain as acid phosphatase.
+RA Ohmori H, Kuba M, Kumon A.
+RL J Biochem (Tokyo) 1994 Aug;116(2):380-5

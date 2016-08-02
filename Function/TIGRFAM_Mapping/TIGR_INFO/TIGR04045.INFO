@@ -1,0 +1,11 @@
+ID  MSMEG_0567_GNAT
+AC  TIGR04045
+DE  putative N-acetyltransferase, MSMEG_0567 N-terminal domain family
+AU  Haft DH
+TC  68.45 68.45
+NC  67.95 67.95
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  putative N-acetyltransferase, MSMEG_0567 N-terminal domain family
+TP  TIGRFAMs
+CC  Members of this family belong to the GNAT family (PF00583), in which numerous characterized examples, though not all, are are shown to be N-acetyltransferases or to interact with acetyl-CoA. This family occurs in a sparsely distributed biosynthetic cluster that occurs in Actinobacteria, Cyanobacteria, and Proteobacteria.

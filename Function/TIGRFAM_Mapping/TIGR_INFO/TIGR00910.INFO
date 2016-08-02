@@ -1,0 +1,17 @@
+ID  2A0307_GadC
+AC  TIGR00910
+DE  glutamate:gamma-aminobutyrate antiporter
+AU  Loftus BJ
+TC  673.50 673.50
+NC  415.65 415.65
+AL  clustalw_manual
+IT  equivalog
+EN  glutamate:gamma-aminobutyrate antiporter
+GS  gadC
+TP  TIGRFAMs
+CC  Lowered cutoffs from 1000/500 to 800/300, promoted from subfamily to equivalog, and put into a Genome Property DHH 9/1/2009
+RN  [1]
+RM  PMID:17768258
+RT  Sodium regulates Escherichia coli acid resistance, and influences GadX- and GadW-dependent activation of gadE.
+RA  Richard H, Foster JW
+RL  Microbiology. 2007 Sep;153(Pt 9):3154-61.

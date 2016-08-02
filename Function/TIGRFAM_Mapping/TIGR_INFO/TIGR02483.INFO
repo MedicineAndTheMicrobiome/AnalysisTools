@@ -1,0 +1,27 @@
+ID  PFK_mixed
+AC  TIGR02483
+DE  phosphofructokinase
+AU  Rosovitz MJ, Haft DH
+TC  430.55 430.55
+NC  373.85 373.85
+AL  clustalw
+IT  subfamily
+EN  phosphofructokinase
+TP  TIGRFAMs
+CC  Members of this family that are characterized, save one, are phosphofructokinases dependent on pyrophosphate (EC 2.7.1.90) rather than ATP (EC 2.7.1.11). The exception is one of three  phosphofructokinases from Streptomyces coelicolor.  Family members are both bacterial and archaeal.
+RN  [1]
+RM  9055413
+RT  Identification of ATP-dependent phosphofructokinase as a regulatory step in the glycolytic pathway of the actinomycete Streptomyces coelicolor A3(2).
+RA  Alves AM, Euverink GJ, Bibb MJ, Dijkhuizen L.
+RL  Appl Environ Microbiol.
+RN  [2]
+RM  8550409
+RT  Characterization and phylogeny of the pfp gene of Amycolatopsis methanolica encoding PPi-dependent phosphofructokinase.
+RA  Alves AM, Meijer W
+RL J Bacteriol. 1996 Jan;178(1):149-55.
+RN  [3]
+RM  9555897
+RT  PPi-dependent phosphofructokinase from Thermoproteus tenax, an archaeal descendant of an ancient line in phosphofructokinase evolution.
+RA  Siebers B, Klenk HP, Hensel R.
+RL  J Bacteriol. 1998 Apr;180(8):2137-43.
+DR  HAMAP; MF_00339; 14 of 182

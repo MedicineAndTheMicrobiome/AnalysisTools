@@ -1,0 +1,27 @@
+ID  PhnH_redo
+AC  TIGR03292
+DE  phosphonate C-P lyase system protein PhnH
+AU  Selengut J
+TC  91.50 91.50
+NC  58.65 58.65
+AL  muscle
+IT  equivalog
+EN  phosphonate C-P lyase system protein PhnH
+GS  phnH
+TP  TIGRFAMs
+CC  PhnH is a component of the C-P lyase system (GenProp0232) for the catabolism of phosphonate compounds.  The specific function of this component is unknown.  This model is based on Pfam model PF05845.2, and has been broadened to include sequences missed by that model which are clearly true positive hits based on genome context.
+RN   [1]
+RM   2155230
+RT   Molecular biology of carbon-phosphorus bond cleavage.
+RT   Cloning and sequencing of the phn (psiD) genes involved in
+RT   alkylphosphonate uptake and C-P lyase activity in
+RT   Escherichia coli B.
+RA   Chen CM, Ye QZ, Zhu ZM, Wanner BL, Walsh CT;
+RL   J Biol Chem 1990;265:4461-4471.
+RN   [2]
+RM   1840580
+RT   Molecular analysis of the cryptic and functional phn
+RT   operons for phosphonate use in Escherichia coli K-12.
+RA   Makino K, Kim SK, Shinagawa H, Amemura M, Nakata A;
+RL   J Bacteriol 1991;173:2612-2665.
+DR   INTERPRO; IPR008772;

@@ -1,0 +1,11 @@
+ID  lipo_MXAN_6521
+AC  TIGR04455
+DE  probable lipoprotein, LA_1396/MXAN_6521 family
+AU  Haft DH
+TC  60.00 60.00
+NC  30.00 30.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  probable lipoprotein, LA_1396/MXAN_6521 family
+TP  TIGRFAMs
+CC  Members of this family are predicted lipoproteins, near 200 residues in length, found in multiple species of Leptospira (a spirochete) but also in the Myxococcales branch of the Deltaproteobacteria (Myxococcus xanthus, Chondromyces apiculatus, Cystobacter fuscus, Corallococcus coralloides), an uncommon mix of species. In both lineages, the N-terminal region appears to be a lipoprotein signal peptide.

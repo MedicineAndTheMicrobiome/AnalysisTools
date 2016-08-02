@@ -1,0 +1,30 @@
+ID  lysidine_TilS_C
+AC  TIGR02433
+DE  tRNA(Ile)-lysidine synthetase, C-terminal domain
+AU  Haft DH
+TC  20.20 20.20
+NC  18.95 18.95
+AL  clustalw
+IT  equivalog_domain
+EN  tRNA(Ile)-lysidine synthetase, C-terminal domain
+GS  tilS
+EC  6.-.-.-
+TP  TIGRFAMs
+CC  TIGRFAMs model TIGR02432 describes the family of the N-terminal domain of tRNA(Ile)-lysidine synthetase. This family (TIGR02433) describes a small C-terminal domain of about 50 residues present in about half the members of family TIGR02432,and in no other protein. Characterized examples of tRNA(Ile)-lysidine synthetase from E. coli and Bacillus subtilis both contain this domain.
+DR  PFAM; PF01171; ATP_bind_3; PP-loop family
+RN  [1]
+RM  14527414
+RT  An RNA-modifying enzyme that governs both the codon and amino acid specificities of isoleucine tRNA.
+RA  Soma A, Ikeuchi Y, Kanemasa S, Kobayashi K, Ogasawara N, Ote T, Kato J, Watanabe K, Sekine Y, Suzuki T.
+RL  Mol Cell. 2003 Sep;12(3):689-98.
+RN  [2]
+RM  3132458
+RT  A novel lysine-substituted nucleoside in the first position of the anticodon of minor isoleucine tRNA from Escherichia coli.
+RA  Muramatsu T, Yokoyama S, Horie N, Matsuda A, Ueda T, Yamaizumi Z, Kuchino Y, Nishimura S, Miyazawa T.
+RL  J Biol Chem. 1988 Jul 5;263(19):9261-7.
+RN  [3]
+RM  15044829
+RT  A global approach to identify novel broad-spectrum antibacterial targets among proteins of unknown function.
+RA  Zalacain M, Biswas S, Ingraham KA, Ambrad J, Bryant A, Chalker AF, Iordanescu S, Fan J, Fan F, Lunsford RD, O'Dwyer K, Palmer LM, So C, Sylvester D, Volker C, Warren P, McDevitt D, Brown JR, Holmes DJ, Burnham MK.
+RL  J Mol Microbiol Biotechnol. 2003;6(2):109-26.
+DR  HAMAP; MF_01161; 120 of 240

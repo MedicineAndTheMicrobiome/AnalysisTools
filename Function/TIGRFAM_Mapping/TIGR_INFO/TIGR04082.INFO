@@ -1,0 +1,17 @@
+ID  rSAM_for_selen
+AC  TIGR04082
+DE  selenobiotic family peptide radical SAM maturase
+AU  Haft DH
+TC  350.00 350.00
+NC  250.00 250.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  selenobiotic family peptide radical SAM maturase
+GS  sbtM
+TP  TIGRFAMs
+CC  Members of this protein family are radical SAM (rSAM) enzymes similar in sequence to others with known or postulated roles in peptide modification, and regularly found adjacent to members of the GSU_1558 peptide family described by model TIGR04081. GSU_1558 and several other members of that family appear to be selenoproteins, hence the term selenobiotic.
+RN  [1]
+RM  PMID:21478363 
+RT  Biological systems discovery in silico: radical S-adenosylmethionine protein families and their target peptides for posttranslational modification. 
+RA  Haft DH, Basu MK 
+RL  J Bacteriol. 2011 Jun;193(11):2745-55.

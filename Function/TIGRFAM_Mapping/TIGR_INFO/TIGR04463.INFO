@@ -1,0 +1,11 @@
+ID  rSAM_vs_C_rich
+AC  TIGR04463
+DE  radical SAM/SPASM domain protein maturase
+AU  Haft DH
+TC  525.00 525.00
+NC  400.00 400.00
+AL  muscle_manual
+IT  equivalog
+EN  radical SAM/SPASM domain protein maturase
+TP  TIGRFAMs
+CC  Members of this family are probable protein/peptide-modifying radical SAM/SPASM domain proteins. The majority of members of this family seem to target Cys-rich repetitive regions of large proteins rather than of bacteriocin-sized small precursors. This arrangement suggests the modification target may be multifunctional, with the C-terminal domain behaving like a bacteriocin but other parts of the same precursor serving an immunity function, as occurs for the halocin C8 precursor.

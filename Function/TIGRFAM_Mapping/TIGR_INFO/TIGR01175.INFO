@@ -1,0 +1,15 @@
+ID  pilM
+AC  TIGR01175
+DE  type IV pilus assembly protein PilM
+AU  Haft DH
+TC  133.00 133.00
+NC  75.55 75.55
+AL  clustalw
+IT  subfamily
+EN  type IV pilus assembly protein PilM
+TP  TIGRFAMs
+CC  This protein is required for the assembly of the type IV fimbria in Pseudomonas aeruginosa responsible for twitching motility, and for a similar pilus-like structure in Synechocystis. It is also found in species such as Deinococcus described as having natural transformation (for which a type IV pilus-like structure is proposed) but not fimbria.
+RM  7565110
+RT  Characterization of a five-gene cluster required for thebiogenesis of type 4 fimbriae in Pseudomonas aeruginosa.
+RA  Martin PR, Watson AA, McCaul TF, Mattick JS.
+RL  Mol Microbiol 1995 May;16(3):497-508

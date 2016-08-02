@@ -1,0 +1,25 @@
+ID  GlnA
+AC  TIGR00653
+DE  glutamine synthetase, type I
+AU  Haft DH
+TC  429.15 429.15
+NC  324.75 324.75
+IT  equivalog
+EN  glutamine synthetase, type I
+GS  glnA
+EC  6.3.1.2
+TP  TIGRFAMs
+CC  Alternate name: glutamate--ammonia ligase. This model represents the dodecameric form, which can be subdivided into 1-alpha and 1-beta forms. The phylogeny of the 1-alpha and 1-beta forms appears polyphyletic. E. coli, Synechocystis PCC6803, Aquifex aeolicus, and the crenarcheon Sulfolobus acidocaldarius have form 1-beta, while Bacillus subtilis, Thermotoga maritima, and various euryarchaea has form 1-alpha. The 1-beta dodecamer from the crenarcheon Sulfolobus acidocaldarius differs from that in E. coli in that it is not regulated by adenylylation.
+DR  ECOCYC; EG10383; glnA;
+DR  EXPERIMENTAL; EGAD|20324|EC3870;
+DR  EXPERIMENTAL; EGAD|8994|8799;
+RN  [1]
+RM  99081206
+RT  The glutamine synthetase from the hyperthermoacidophilic crenarcheon Sulfolobus acidocaldarius: isolation, characterization and sequencing of the gene.
+RA  Yin Z, Purschke WG, Schafer G, Schmidt CL
+RL  Biol Chem 1998 Nov;379(11):1349-54
+RN  [2]
+RM  95214531
+RT  Glutamine synthetase gene evolution in bacteria.
+RA  Pesole G, Gissi C, Lanave C, Saccone C
+RL  Mol Biol Evol 1995 Mar;12(2):189-97

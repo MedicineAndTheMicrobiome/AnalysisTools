@@ -1,0 +1,17 @@
+ID  Phe_D_beta_mut
+AC  TIGR04475
+DE  phenylalanine aminomutase (D-beta-phenylalanine forming)
+AU  Haft DH
+TC  800.00 800.00
+NC  525.00 525.00
+AL  muscle_manual
+IT  equivalog
+EN  phenylalanine aminomutase (D-beta-phenylalanine forming)
+EC  5.4.3.11
+TP  TIGRFAMs
+CC  Members of this family have the  MIO prosthetic group (4-methylideneimidazole-5-one), derived from an Ala-Ser-Gly motif. Other MIO enzymes include Phe, Tyr, and His ammonia-lyases. The member from Pantoea agglomerans, and probably all members, convert Phe to D-beta-phenylalanine (EC 5.4.3.11). By contrast, members of family TIGR04473 convert Phe to L-beta-phenylalanine (5.4.3.10), as in taxol biosynthesis.
+RN  [1]
+RM  PMID:21561099 
+RT  Stereochemistry and mechanism of a microbial phenylalanine aminomutase. 
+RA  Ratnayake ND, Wanninayake U, Geiger JH, Walker KD 
+RL  J Am Chem Soc. 2011 Jun 8;133(22):8531-3. doi: 10.1021/ja2030728.

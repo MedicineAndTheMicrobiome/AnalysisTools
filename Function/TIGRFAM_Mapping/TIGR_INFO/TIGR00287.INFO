@@ -1,0 +1,30 @@
+ID  cas1
+AC  TIGR00287
+DE  CRISPR-associated endonuclease Cas1
+AU  Haft DH
+TC  71.70 71.70
+NC  66.00 66.00
+AL  clustalw
+IT  equivalog
+EN  CRISPR-associated endonuclease Cas1
+GS  cas1
+EC  3.1.-.-
+TP  TIGRFAMs
+CC  This model identifies CRISPR-associated protein Cas1, the most universal CRISPR system protein. CRISPR is an acronym for Clustered Regularly Interspaced Short Palindromic Repeats, a system for heritable host defense by prokaryotic cells against phage and other foreign DNA. Cas1 is a metal-dependent DNA-specific endonuclease.
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=2003
+RN  [1]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005
+RN  [2]
+RM  11952905
+RT  Identification of genes that are associated with DNA repeats in prokaryotes.
+RA  Jansen R, Embden JD, Gaastra W, Schouls LM.
+RL  Mol Microbiol 2002 Mar;43(6):1565-75
+RN  [3]
+RM  PMID:19523907
+RT  Structural basis for DNase activity of a conserved protein implicated in CRISPR-mediated genome defense.
+RA  Wiedenheft B, Zhou K, Jinek M, Coyle SM, Ma W, Doudna JA
+RL  Structure. 2009 Jun 10;17(6):904-12.
+DR  PFAM; PF01867
+DR  INTERPRO; IPR002729

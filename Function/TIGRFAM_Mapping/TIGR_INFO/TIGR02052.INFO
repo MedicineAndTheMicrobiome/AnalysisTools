@@ -1,0 +1,17 @@
+ID  MerP
+AC  TIGR02052
+DE  mercuric transport protein periplasmic component
+AU  Selengut J
+TC  92.55 92.55
+NC  65.20 65.20
+AL  clustalw
+IT  equivalog
+EN  mercuric transport protein periplasmic component
+GS  merP
+TP  TIGRFAMs
+CC  This HMM represents the periplasmic mercury (II) binding protein of the bacterial mercury detoxification system which passes mercuric ion to the MerT transporter for subsequent reduction to Hg(0) by the mercuric reductase MerA.  MerP contains a distinctive GMTCXXC motif associated with metal binding [1].  MerP is related to a larger family of metal binding proteins (PF00403).
+RN  [1]
+RM  PMID: 9188683
+RT  Structures of the reduced and mercury-bound forms of MerP, the periplasmic protein from the bacterial mercury detoxification system.
+RA  Steele RA, Opella SJ.
+RL  Biochemistry. 1997 Jun 10;36(23):6885-95.

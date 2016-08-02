@@ -1,0 +1,18 @@
+ID  SPP_plant-cyano
+AC  TIGR01485
+DE  sucrose phosphatase
+AU  Selengut J
+TC  183.65 183.65
+NC  100.05 100.05
+AL  clustalw
+IT  equivalog
+EN  sucrose-6F-phosphate phosphohydrolase
+GS  SPP
+EC  3.1.3.24
+TP  TIGRFAMs
+CC  This model describes the sucrose phosphate phosphohydrolase from plants and cyanobacteria (SPP). SPP is a member of the Class IIB subfamily (TIGR01484) of the Haloacid Dehalogenase (HAD) superfamily of aspartate-nucleophile hydrolases. SPP catalyzes the final step in the biosynthesis of sucrose, a critically important molecule for plants. Sucrose phosphate synthase (SPS), the prior step in the biosynthesis of sucrose, contains a domain which exhibits considerable similarity to SPP albeit without conservation of the catalytic residues.  The catalytic machinery of the synthase resides in another domain.  It seems likely that the phosphatase-like domain is involved in substrate binding, possibly binding both substrates in a "product-like" orientation prior to ligation by the synthase catalytic domain.
+RN [1]
+RM PMID: 11050182
+RT Purification, molecular cloning, and sequence analysis of sucrose-6F-phosphate phosphohydrolase from plants.
+RA Lunn JE, Ashton AR, Hatch MD, Heldt HW.
+RL Proc Natl Acad Sci U S A 2000 Nov 7;97(23):12914-9

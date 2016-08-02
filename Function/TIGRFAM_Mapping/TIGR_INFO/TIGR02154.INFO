@@ -1,0 +1,17 @@
+ID  PhoB
+AC  TIGR02154
+DE  phosphate regulon transcriptional regulatory protein PhoB
+AU  Selengut J
+TC  296.20 296.20
+NC  260.85 260.85
+AL  clustalw
+IT  equivalog
+EN  phosphate regulon transcriptional regulatory protein PhoB
+GS  phoB
+TP  TIGRFAMs
+CC  PhoB is a DNA-binding response regulator protein acting with PhoR in a 2-component system responding to phosphate ion.  PhoB acts as a positive regulator of gene expression for phosphate-related genes such as phoA, phoS, phoE and ugpAB as well as itself [1].  It is often found proximal to genes for the high-affinity phosphate ABC transporter (pstSCAB; GenProp0190) and presumably regulates these as well.
+RN  [1]
+RM  PMID: 3537313
+RT  Nucleotide sequence of the phoB gene, the positive regulatory gene for the phosphate regulon of Escherichia coli K-12.
+RA  Makino K, Shinagawa H, Amemura M, Nakata A.
+RL  J Mol Biol. 1986 Jul 5;190(1):37-44.

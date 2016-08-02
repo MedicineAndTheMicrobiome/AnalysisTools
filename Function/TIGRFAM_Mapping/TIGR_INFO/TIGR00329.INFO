@@ -1,0 +1,28 @@
+ID  gcp_kae1
+AC  TIGR00329
+DE  metallohydrolase, glycoprotease/Kae1 family
+AU  Loftus BJ, Haft DH
+TC  207.80 207.80
+NC  124.95 124.95
+AL  clustalw
+IT  subfamily
+EN  metallohydrolase, glycoprotease/Kae1 family
+TP  TIGRFAMs
+CC  This subfamily includes the well-studied secreted O-sialoglycoprotein endopeptidase (glycoprotease, EC 3.4.24.57) of Pasteurella haemolytica, a pathogen. A member from Riemerella anatipestifer, associated with cohemolysin activity, likewise is exported without benefit of a classical signal peptide and shows glycoprotease activity on the test substrate glycophorin. However, archaeal members of this subfamily show unrelated activities as demonstrated in Pyrococcus abyssi: DNA binding, iron binding, apurinic endonuclease activity, genomic association with a kinase domain, and no glycoprotease activity. This family thus pulls together a set of proteins as a homology group that appears to be near-universal in life, yet heterogeneous in assayed function between bacteria and archaea.
+DR  PROSITE; PDOC00779; GLYCOPROTEASE
+DR  HAMAP; MF_01447; 21 of 21
+RN  [1]
+RM  PMID:1885539
+RT  Cloning, nucleotide sequence, and expression of the Pasteurella haemolytica A1 glycoprotease gene.
+RA  Abdullah KM, Lo RY, Mellors A
+RL  J Bacteriol. 1991 Sep;173(18):5597-603.
+RN  [2]
+RM  PMID:17766251
+RT  An archaeal orthologue of the universal protein Kae1 is an iron metalloprotein which exhibits atypical DNA-binding properties and apurinic-endonuclease activity in vitro.
+RA  Hecker A, Leulliot N, Gadelle D, Graille M, Justome A, Dorlet P, Brochier C, Quevillon-Cheruel S, Le Cam E, van Tilbeurgh H, Forterre P
+RL  Nucleic Acids Res. 2007;35(18):6042-51.
+RN  [3]
+RM  PMID:11889100
+RT  Identification and characterization of CAMP cohemolysin as a potential virulence factor of Riemerella anatipestifer. 
+RA  Crasta KC, Chua KL, Subramaniam S, Frey J, Loh H, Tan HM
+RL  J Bacteriol. 2002 Apr;184(7):1932-9.

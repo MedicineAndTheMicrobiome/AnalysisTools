@@ -1,0 +1,18 @@
+ID  NeuC_NnaA
+AC  TIGR03568
+DE  UDP-N-acetyl-D-glucosamine 2-epimerase, UDP-hydrolysing
+AU  Selengut J
+TC  235.90 235.90
+NC  152.75 152.75
+AL  muscle
+IT  equivalog
+EN  UDP-N-acetyl-D-glucosamine 2-epimerase, UDP-hydrolysing
+GS  neuC
+EC  5.1.3.- 3.1.4.-
+TP  TIGRFAMs
+CC  This family of enzymes catalyzes the combined epimerization and UDP-hydrolysis of UDP-N-acetylglucosamine to N-acetylmannosamine [1].  This is in contrast to the related enzyme WecB (TIGR00236) which retains the UDP moiety.  NeuC acts in concert with NeuA and NeuB to synthesize CMP-N5-acetyl-neuraminate.
+RN  [1]
+RM  PMID:14729696
+RT  The NeuC protein of Escherichia coli K1 is a UDP N-acetylglucosamine 2-epimerase.
+RA  Vann WF, Daines DA, Murkin AS, Tanner ME, Chaffin DO, Rubens CE, Vionnet J, Silver RP
+RL  J Bacteriol. 2004 Feb;186(3):706-12.

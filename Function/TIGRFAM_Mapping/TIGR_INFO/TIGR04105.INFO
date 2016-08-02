@@ -1,0 +1,17 @@
+ID  FeFe_hydrog_B1
+AC  TIGR04105
+DE  [FeFe] hydrogenase, group B1/B3
+AU  Haft DH
+TC  450.00 450.00
+NC  380.00 380.00
+AL  muscle_manual
+IT  subfamily
+EN  [FeFe] hydrogenase, group B1/B3
+EC  1.12.-.-
+TP  TIGRFAMs
+CC  See PMID:20395274 for descriptions of different groups.
+RN  [1]
+RM  PMID:20395274 
+RT  The surprising diversity of clostridial hydrogenases: a comparative genomic perspective. 
+RA  Calusinska M, Happe T, Joris B, Wilmotte A 
+RL  Microbiology. 2010 Jun;156(Pt 6):1575-88.

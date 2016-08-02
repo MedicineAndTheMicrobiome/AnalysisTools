@@ -1,0 +1,32 @@
+ID  yihY_not_rbn
+AC  TIGR00765
+DE  YihY family inner membrane protein
+AU  Haft DH
+TC  73.15 73.15
+NC  43.25 43.25
+AL  clustalw
+IT  subfamily_domain
+EN  YihY family inner membrane protein
+GS  yihY
+TP  TIGRFAMs
+CC  Initial identification of members of this protein family was based on characterization of the yihY gene product as ribonuclease BN in Escherichia coli. This identification has been withdrawn, as the group now finds the homolog in E. coli of RNase Z is the true ribonuclease BN rather than a strict functional equivalent of RNase Z. 
+CC  Members of this subfamily include the largely uncharacterized BrkB (Bordetella resist killing by serum B) from Bordetella pertussis. Some members have an additional C-terminal domain. Paralogs from E. coli (yhjD) and Mycobactrium tuberculosis (Rv3335c) are part of a smaller, related subfamily that form their own cluster.
+DR  EXPERIMENTAL; EGAD:17695; Escherichia coli
+DR  OUTGROUP; EGAD|10508|EC3522; Escherichia coli
+DR  OUTGROUP; EGAD|160884|Rv3335c; Mycobacterium tuberculosis
+RN  [1]
+RM  15764599
+RT  The RNase Z homologue encoded by Escherichia coli elaC gene is RNase BN.
+RA  Ezraty B, Dahlgren B, Deutscher MP.
+RL  J Biol Chem. 2005 Apr 29;280(17):16542-5.
+RN  [2]
+RM  20092870
+RT  Purification and characterization of the tRNA-processing enzyme RNase BN.
+RA  Callahan C, Neri-Cortes D, Deutscher MP
+RL  J Biol Chem 2000 Jan 14;275(2):1030-4
+RN  [3]
+RM  93015723
+RT  The presence of only one of five exoribonucleases is sufficient to support the growth of Escherichia coli.
+RA  Kelly KO, Deutscher MP
+RL  J Bacteriol 1992 Oct;174(20):6682-4
+DR  HAMAP; MF_00672; 73 of 74

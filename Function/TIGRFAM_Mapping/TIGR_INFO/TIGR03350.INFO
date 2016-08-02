@@ -1,0 +1,16 @@
+ID  type_VI_ompA
+AC  TIGR03350
+DE  type VI secretion system peptidoglycan-associated domain
+AU  Haft DH
+TC  139.80 139.80
+NC  133.80 133.80
+AL  muscle_manual
+IT  equivalog_domain
+EN  type VI secretion system peptidoglycan-associated domain
+TP  TIGRFAMs
+CC  The flagellar motor protein MotB, the Gram-negative bacterial outer membrane protein OmpA (with an N-terminal outer membrane beta barrel domain) share a C-terminal peptidoglycan-associating homology region. This model describes a domain found fused to type VI secretion system homologs of the type IV system protein DotU (see model TIGR03349), with OmpA/MotB homology.
+RN  [1]
+RM  PMID: 16763151
+RT  A virulence locus of Pseudomonas aeruginosa encodes a protein secretion apparatus.
+RA  Mougous JD, Cuff ME, Raunser S, Shen A, Zhou M, Gifford CA, Goodman AL, Joachimiak G, Ordonez CL, Lory S, Walz T, Joachimiak A, Mekalanos JJ
+RL  Science. 2006 Jun 9;312(5779):1526-30.

@@ -1,0 +1,14 @@
+ID  talAB
+AC  TIGR00874
+DE  transaldolase
+AU  Haft DH
+TC  396.20 396.20
+NC  130.45 130.45
+AL  clustalw
+IT  equivalog
+EN  transaldolase
+GS  tal
+EC  2.2.1.2
+TP  TIGRFAMs
+CC  This family includes the majority of known and predicted transaldolase sequences, including E. coli TalA and TalB. It excluded two other families. The first includes E. coli transaldolase-like protein TalC. The second family includes the putative transaldolases of Helicobacter pylori and Mycobacterium tuberculosis.
+DR  HAMAP; MF_00492; 142 of 149

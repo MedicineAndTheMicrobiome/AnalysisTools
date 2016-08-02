@@ -1,0 +1,11 @@
+ID  T7SS_Rv3446c
+AC  TIGR03931
+DE  type VII secretion-associated protein, Rv3446c family
+AU  Haft DH
+TC  47.60 47.60
+NC  46.75 46.75
+AL  muscle_manual
+IT  hypoth_equivalog_domain
+EN  type VII secretion-associated protein, Rv3446c family, C-terminal domain
+TP  TIGRFAMs
+CC  Members of this protein family occur as part of the ESX-4 cluster of type VII secretion system (T7SS) proteins in Mycobacterium tuberculosis and in similar T7SS clusters in other Actinobacteria genera, including Corynebacterium, Nocardia, Rhodococcus, and Saccharopolyspora. This HMM describes the better-conserved C-terminal region.

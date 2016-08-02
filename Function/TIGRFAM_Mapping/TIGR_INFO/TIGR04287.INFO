@@ -1,0 +1,13 @@
+ID  exosort_XrtK
+AC  TIGR04287
+DE  exosortase K
+AU  Haft DH
+TC  55.00 55.00
+NC  40.00 40.00
+AL  muscle_manual
+IT  equivalog
+EN  exosortase K
+GS  xrtK
+EC  3.4.22.-
+TP  TIGRFAMs
+CC  Members of this protein family are exosortase K, a bacterial branch of the archaeosortase/exosortase family of protein-processing enzymes (see TIGR04178). All members of the seed alignment are encoded next to a member of family TIGR04286, which has the putative processing signal MSEP-CTERM (see family TIGR04286) at the extreme C-terminus.

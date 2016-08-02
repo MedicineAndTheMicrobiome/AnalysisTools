@@ -1,0 +1,25 @@
+ID  TIGR00274
+AC  TIGR00274
+DE  N-acetylmuramic acid 6-phosphate etherase
+AU  Dodson RJ, Loftus BJ, Haft DH
+TC  302.00 302.00
+NC  160.45 160.45
+AL  clustalw
+IT  equivalog
+EN  N-acetylmuramic acid 6-phosphate etherase
+GS  murQ
+EC  4.2.1.126
+TP  TIGRFAMs
+CC  This protein, MurQ, is involved in recycling components of the bacterial murein sacculus turned over during cell growth. The cell wall metabolite anhydro-N-acetylmuramic acid (anhMurNAc) is converted by a kinase, AnmK, to MurNAc-phosphate, then converted to N-acetylglucosamine-phosphate by this etherase, called MurQ. This family of proteins is similar to the C-terminal half of a number of vertebrate glucokinase regulator proteins and contains a Prosite pattern which is shared by this group of proteins in a region of local similarity.
+RN  [1]
+RM  PMID: 15983044
+RT  Scission of the lactyl ether bond of N-acetylmuramic acid by Escherichia coli "etherase".
+RA  Jaeger T, Arsic M, Mayer C.
+RL  J Biol Chem. 2005 Aug 26;280(34):30100-6.
+RN  [2]
+RM  PMID:16452451
+RT  MurQ Etherase is required by Escherichia coli in order to metabolize anhydro-N-acetylmuramic acid obtained either from the environment or from its own cell wall.
+RA  Uehara T, Suefuji K, Jaeger T, Mayer C, Park JT
+RL  J Bacteriol. 2006 Feb;188(4):1660-2.
+DR  PROSITE; PDOC00979; GCKR
+DR  HAMAP; MF_00068; 141 of 144

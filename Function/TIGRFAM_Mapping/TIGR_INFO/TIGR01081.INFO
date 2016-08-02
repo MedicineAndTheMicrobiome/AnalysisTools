@@ -1,0 +1,18 @@
+ID  mpl
+AC  TIGR01081
+DE  UDP-N-acetylmuramate:L-alanyl-gamma-D-glutamyl-meso-diaminopimelate ligase
+AU  Haft DH
+TC  388.70 388.70
+NC  206.05 206.05
+AL  clustalw
+IT  equivalog
+EN  UDP-N-acetylmuramate:L-alanyl-gamma-D-glutamyl-meso-diaminopimelate ligase
+GS  mpl
+TP  TIGRFAMs
+CC  Alternate name: murein tripeptide ligase
+DR  SWISSPROT; P37773
+DR  EG12440; mpl
+RM  96404780
+RT  Identification of the mpl gene encoding UDP-N-acetylmuramate: L-alanyl-gamma-D-glutamyl-meso-diaminopimelate ligase in Escherichia coli and its role in recycling of cell wall peptidoglycan.
+RA  Mengin-Lecreulx D, van Heijenoort J, Park JT
+RL  Bacteriol 1996 Sep;178(18):5347-52

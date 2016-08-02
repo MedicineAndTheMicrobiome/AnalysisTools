@@ -1,0 +1,13 @@
+ID  pyru_phos_dikin
+AC  TIGR01828
+DE  pyruvate, phosphate dikinase
+AU  Haft DH
+TC  843.45 843.45
+NC  321.25 321.25
+AL  clustalw_manual
+IT  equivalog
+EN  pyruvate, phosphate dikinase
+GS  ppdK
+EC  2.7.9.1
+TP  TIGRFAMs
+CC  This HMM represents pyruvate,phosphate dikinase, also called pyruvate,orthophosphate dikinase.  It is similar in sequence to other PEP-utilizing enzymes.

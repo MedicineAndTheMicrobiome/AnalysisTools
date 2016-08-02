@@ -1,0 +1,15 @@
+ID  Na_pump_decarbB
+AC  TIGR01109
+DE  sodium ion-translocating decarboxylase, beta subunit
+AU  Ujwal ML, Haft DH, Paulsen IT
+TC  190.60 190.60
+NC  184.35 184.35
+AL  clustalw
+IT  subfamily
+EN  sodium ion-translocating decarboxylase, beta subunit
+TP  TIGRFAMs
+CC  This model describes the beta subunits of sodium pump decarboxylases that include oxaloacetate decarboxylase, methylmalonyl-CoA decarboxylase, and glutaconyl-CoA decarboxylase. Beta and gammma-subunits are integral membrane proteins, while alpha is membrane bound. Catalytically, the energy released by the decarboxylation reaction is coupled to the extrusion of Na+ ions across the membrane.
+RM  11248185
+RT  Sodium ion-translocating decarboxylases.
+RA  Buckel W.
+RL  Biochim Biophys Acta 2001 May 1;1505(1):15-27

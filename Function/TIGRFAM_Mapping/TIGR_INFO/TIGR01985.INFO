@@ -1,0 +1,17 @@
+ID  phasin_2
+AC  TIGR01985
+DE  phasin
+AU  Selengut J
+TC  99.70 99.70
+NC  76.65 76.65
+AL  clustalw
+IT  equivalog
+EN  phasin
+TP  TIGRFAMs
+CC  This HMM represents a family of granule-associate proteins (phasins) which are part of the polyhydroxyalkanoate synthesis machinery.  This family is based on a pair of characterized genes from Methylobacterium extorquens.
+CC  Members of the seed for this model all contain the rest of the components believed to be essential for this system (see the "polyhydroxyalkanoic acid synthesis" property in the GenPropDB).  Members of this family score below trusted to another phasin model, TIGR01841 and together may represent a subfamily or broader equivalog.
+RN  [1]
+RM  PMID: 12399487
+RT  Poly-beta-hydroxybutyrate biosynthesis in the facultative methylotroph methylobacterium extorquens AM1: identification and mutation of gap11, gap20, and phaR.
+RA  Korotkova N, Chistoserdova L, Lidstrom ME.
+RL  J Bacteriol. 2002 Nov;184(22):6174-81.

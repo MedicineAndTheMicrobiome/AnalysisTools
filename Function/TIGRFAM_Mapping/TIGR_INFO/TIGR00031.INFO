@@ -1,0 +1,19 @@
+ID  UDP-GALP_mutase
+AC  TIGR00031
+DE  UDP-galactopyranose mutase
+AU  Richardson DL
+TC  303.75 303.75
+NC  188.30 188.30
+AL  clustalw
+IT  equivalog
+EN  UDP-galactopyranose mutase
+GS  glf
+EC  5.4.99.9
+TP  TIGRFAMs
+CC  This enzyme is involved in the conversion of UDP-GALP into UDP-GALF through a 2-keto intermediate. It contains FAD as a cofactor.
+CC  The gene is known as glf, ceoA, and rfbD. It is known experimentally in E. coli, Mycobacterium tuberculosis, and Klebsiella pneumoniae.
+DR  ECOCYC; EG11981; 
+RN  [1]
+RM  96165258 
+RN  [2]
+RM  99003115

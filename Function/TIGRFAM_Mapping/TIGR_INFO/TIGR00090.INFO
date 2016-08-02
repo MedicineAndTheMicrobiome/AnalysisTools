@@ -1,0 +1,33 @@
+ID  rsfS_iojap_ybeB
+AC  TIGR00090
+DE  ribosome silencing factor
+AU  Richardson DL, Haft DH
+TC  56.90 56.90
+NC  52.95 52.95
+AL  muscle_manual
+IT  equivalog
+EN  ribosome silencing factor RsfS/YbeB/iojap
+GS  rsfS
+TP  TIGRFAMs
+CC  This model describes a widely distributed family of bacterial proteins related to iojap from plants. It includes RsfS(YbeB) from E. coli. The gene iojap is a pattern-striping gene in maize, reflecting a chloroplast development defect in some cells. The conserved function of this protein is to silence ribosomes by binding the ribosomal large subunit and impairing joining with the small subunit in response to nutrient stress. Note that RsfS (starvation) is an author-endorsed change from the published symbol RsfA, which conflicted with previously published gene symbols.
+AL  msa
+RN  [1]
+RM  PMID:22829778 
+RT  RsfA (YbeB) Proteins Are Conserved Ribosomal Silencing Factors. 
+RA  Hauser R, Pech M, Kijek J, Yamamoto H, Titz B, Naeve F, Tovchigrechko A, Yamamoto K, Szaflarski W, Takeuchi N, Stellberger T, Diefenbacher ME, Nierhaus KH, Uetz P 
+RL  PLoS Genet. 2012 Jul;8(7):e1002815. Epub 2012 Jul 19.
+RN  [2]
+RM  PMID:22238375 
+RT  C7orf30 specifically associates with the large subunit of the mitochondrial ribosome and is involved in translation. 
+RA  Wanschers BF, Szklarczyk R, Pajak A, van den Brand MA, Gloerich J, Rodenburg RJ, Lightowlers RN, Nijtmans LG, Huynen MA 
+RL  Nucleic Acids Res. 2012 May;40(9):4040-51. Epub 2012 Jan 11.
+RN  [3]
+RM  PMID:17337586
+RT  Identification of novel Escherichia coli ribosome-associated proteins using isobaric tags and multidimensional protein identification techniques.
+RA  Jiang M, Sullivan SM, Walker AK, Strahler JR, Andrews PC, Maddock JR
+RL  J Bacteriol. 2007 May;189(9):3434-44.
+RN  [4]
+RM  98283854
+RT  Mapping of promoters for the nucleus-encoded plastid RNA polymerase (NEP) in the iojap maize mutant.
+RA  Silhavy D, Maliga P
+RL  Curr Genet 1998 May;33(5):340-4

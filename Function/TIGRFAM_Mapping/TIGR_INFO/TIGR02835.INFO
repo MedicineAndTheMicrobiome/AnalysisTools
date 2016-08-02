@@ -1,0 +1,13 @@
+ID  spore_sigmaE
+AC  TIGR02835
+DE  RNA polymerase sigma-E factor
+AU  Haft DH
+TC  348.60 348.60
+NC  306.75 306.75
+AL  clustalw
+IT  equivalog
+EN  RNA polymerase sigma-E factor
+GS  sigE
+TP  TIGRFAMs
+CC  Members of this family comprise the Firmicutes lineage endospore formation-specific sigma factor SigE, also called SpoIIGB and sigma-29. As characterized in Bacillus subtilis, this protein is synthesized as a precursor, specifically in the mother cell compartment, and must cleaved by the SpoIIGA protein to be made active.
+DR  SWISSPROT; P06222; Bacillus subtilis

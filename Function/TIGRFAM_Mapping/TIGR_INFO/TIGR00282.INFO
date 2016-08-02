@@ -1,0 +1,13 @@
+ID  TIGR00282
+AC  TIGR00282
+DE  metallophosphoesterase, MG_246/BB_0505 family
+AU  Haft DH
+TC  254.15 254.15
+NC  147.40 147.40
+AL  clustalw
+IT  hypoth_equivalog
+EN  metallophosphoesterase, MG_246/BB_0505 family
+TP  TIGRFAMs
+CC  A member of this family from Mycoplasma Pneumoniae has been crystallized and described as a novel phosphatase.
+DR  PDB; 1T71; Crystal Structure Of A Novel Phosphatase Mycoplasma Pneumoniae
+DR  PFAM; PF00149; Metallophos

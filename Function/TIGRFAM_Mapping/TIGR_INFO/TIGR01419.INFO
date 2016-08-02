@@ -1,0 +1,22 @@
+ID  nitro_reg_IIA
+AC  TIGR01419
+DE  PTS IIA-like nitrogen-regulatory protein PtsN
+AU  Haft DH
+TC  138.70 138.70
+NC  130.15 130.15
+AL  clustalw_manual
+IT  equivalog
+EN  PTS IIA-like nitrogen-regulatory protein PtsN
+GS  ptsN
+TP  TIGRFAMs
+CC  This HMM describes a full-length protein of about 160 residues closely related to the fructose-specific phosphotransferase (PTS) system IIA component. It is a regulatory protein found only in species with a phosphoenolpyruvate-protein phosphotransferase (enzyme I of PTS systems) and an HPr-like phosphocarrier protein, but not all species have a IIC-like permease. 
+CC  Members of this family are found in Proteobacteria, Chlamydia, and the spirochete Treponema pallidum.
+RN  [1]
+RM  9537369
+RT  The Rhizobium etli rpoN locus: DNA sequence analysis and phenotypical characterization of rpoN, ptsN, and ptsA mutants.
+RA  Michiels J, Van Soom T, D'hooghe I, Dombrecht B, Benhassine T, de Wilde P, Vanderleyden J.
+RN [2]
+RM PMID: 11208802
+RT Evidence of multiple regulatory functions for the PtsN (IIA(Ntr)) protein of Pseudomonas putida.
+RA Cases I, Lopez JA, Albar JP, De Lorenzo V.
+RL J Bacteriol 2001 Feb;183(3):1032-7

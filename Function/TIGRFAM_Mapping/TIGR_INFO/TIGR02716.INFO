@@ -1,0 +1,23 @@
+ID  C20_methyl_CrtF
+AC  TIGR02716
+DE  C-20 methyltransferase BchU
+AU  Haft DH
+TC  276.10 276.10
+NC  275.90 275.90
+AL  clustalw
+IT  equivalog
+EN  C-20 methyltransferase BchU
+GS  bchU
+EC  2.1.1.-
+TP  TIGRFAMs
+CC  Members of this protein family are the S-adenosylmethionine-depenedent C-20 methyltransferase BchU, part of the pathway of bacteriochlorophyll c production in photosynthetic green sulfur bacteria. The position modified by this enzyme represents the difference between bacteriochlorophylls c and d; strains lacking this protein can only produced bacteriochlorophyll d.
+RN  [1]
+RM  15090495
+RT  The bchU gene of Chlorobium tepidum encodes the c-20 methyltransferase in bacteriochlorophyll c biosynthesis.
+RA  Maresca JA, Gomez Maqueo Chew A, Ponsati MR, Frigaard NU, Ormerod JG, Bryant DA.
+RL  J Bacteriol. 2004 May;186(9):2558-66.
+RN  [2]
+RM  15792807
+RT  In vitro activity of C-20 methyltransferase, BchU, involved in bacteriochlorophyll c biosynthetic pathway in green sulfur bacteria.
+RA  Harada J, Saga Y, Yaeda Y, Oh-Oka H, Tamiaki H.
+RL  FEBS Lett. 2005 Mar 28;579(9):1983-7.

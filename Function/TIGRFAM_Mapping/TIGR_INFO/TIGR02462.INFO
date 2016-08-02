@@ -1,0 +1,12 @@
+ID  pyranose_ox
+AC  TIGR02462
+DE  pyranose oxidase
+AU  Haft DH
+TC  544.90 544.90
+NC  106.55 106.55
+AL  clustalw
+IT  equivalog
+EN  pyranose oxidase
+EC  1.1.3.10
+TP  TIGRFAMs
+CC  Pyranose oxidase (also called glucose 2-oxidase) converts D-glucose and molecular oxygen to 2-dehydro-D-glucose and hydrogen peroxide. Peroxide production is believed to be important to the wood rot fungi in which this enzyme is found for lignin degradation.

@@ -1,0 +1,14 @@
+ID  selD
+AC  TIGR00476
+DE  selenide, water dikinase
+AU  Haft DH
+TC  97.60 97.60
+NC  87.35 87.35
+AL  clustalw
+IT  equivalog
+EN  selenium donor protein
+GS  selD
+EC  2.7.9.3
+TP  TIGRFAMs
+CC  In prokaryotes, the incorporation of selenocysteine as the 21st amino acid, encoded by TGA, requires several elements: SelC is the tRNA itself, SelD acts as a donor of reduced selenium, SelA modifies a serine residue on SelC into selenocysteine, and SelB is a selenocysteine-specific translation elongation factor. 3-prime or 5-prime non-coding elements of mRNA have been found as probable structures for directing selenocysteine incorporation. This HMM describes SelD, known as selenophosphate synthetase, selenium donor protein, and selenide,water dikinase. SelD provides reduced selenium for the selenium transferase SelA. This protein itself contains selenocysteine in many species; any sequence scoring above the trusted cutoff but not aligning to the beginning of the HMM is likely have selenocysteine residue incorrectly interpreted as a stop codon upstream of the given sequence. The SelD protein also provides selenophosphate for the enzyme tRNA 2-selenouridine synthase, which catalyzes a tRNA base modification. All genomes with SelD should make selenocysteine, selenouridine, or both.
+DR  HAMAP; MF_00625; 70 of 70

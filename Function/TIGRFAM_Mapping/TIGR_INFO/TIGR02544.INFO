@@ -1,0 +1,11 @@
+ID  III_secr_YscJ
+AC  TIGR02544
+DE  type III secretion apparatus lipoprotein, YscJ/HrcJ family
+AU  Haft DH
+TC  161.95 161.95
+NC  100.05 100.05
+AL  clustalw_manual
+IT  equivalog
+EN  type III secretion apparatus lipoprotein, YscJ/HrcJ family
+TP  TIGRFAMs
+CC  All members of this protein family are predicted lipoproteins with a conserved Cys near the N-terminus for cleavage and modification, and are part of known or predicted type III secretion systems. Members are found in both plant and animal pathogens, including the obligately intracellular chlamydial species and (non-pathogenic) root nodule bacteria. The most closely related proteins outside this family are examples of the flagellar M-ring protein FliF.

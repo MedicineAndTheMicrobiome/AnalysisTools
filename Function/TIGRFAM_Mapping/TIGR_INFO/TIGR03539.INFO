@@ -1,0 +1,13 @@
+ID  DapC_actino
+AC  TIGR03539
+DE  succinyldiaminopimelate transaminase
+AU  Selengut J
+TC  355.65 355.65
+NC  318.95 318.95
+AL  muscle
+IT  equivalog
+EN  succinyldiaminopimelate transaminase
+GS  dapC
+EC  2.6.1.17
+TP  TIGRFAMs
+CC  This family of actinobacterial succinyldiaminopimelate transaminase enzymes (DapC) are members of the PF00155 superfamily.  Many of these genes appear adjacent to other genes encoding enzymes of the lysine biosynthesis via diaminopimelate pathway (GenProp0125).

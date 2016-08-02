@@ -1,0 +1,20 @@
+ID  thyX
+AC  TIGR02170
+DE  thymidylate synthase, flavin-dependent
+AU  Haft DH
+TC  87.90 87.90
+NC  67.10 67.10
+AL  clustalw_manual
+IT  equivalog
+EN  thymidylate synthase, flavin-dependent
+GS  thyX
+EC  2.1.1.148
+TP  TIGRFAMs
+CC  Two forms of microbial thymidylate synthase are known: ThyA (2.1.1.45) and ThyX (2.1.1.148). This model describes ThyX, a homotetrameric flavoprotein. Both enzymes convert dUMP to dTMP. Under oxygen-limiting conditions, thyX can complement a thyA mutation.
+DR  PFAM; PF02511; Thy1
+RN  [1]
+RM  15046578
+RT  Two distinct pathways for thymidylate (dTMP) synthesis in (hyper)thermophilic Bacteria and Archaea.
+RA  Leduc D, Graziani S, Meslet-Cladiere L, Sodolescu A, Liebl U, Myllykallio H.
+RL  Biochem Soc Trans. 2004 Apr;32(Pt 2):231-5.
+DR  HAMAP; MF_01408; 48 of 48

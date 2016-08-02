@@ -1,0 +1,23 @@
+ID  casA_cse1
+AC  TIGR02547
+DE  CRISPR type I-E/ECOLI-associated protein CasA/Cse1
+AU  Haft DH
+TC  70.05 70.05
+NC  46.40 46.40
+AL  clustalw_manual
+IT  equivalog
+EN  CRISPR type I-E/ECOLI-associated protein CasA/Cse1
+GS  casA
+TP  TIGRFAMs
+CC  CRISPR is a term for Clustered, Regularly Interspaced Short Palidromic Repeats. A number of protein families appear only in association with these repeats and are designated Cas (CRISPR-Associated) proteins. This HMM family, represented by CT1972 from Chlorobium tepidum, is found in Ecoli subtype CRISPR/Cas regions of many bacteria, most of which are mesophiles, and not in Archaea. It is designated Cse1.
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=2003
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=57302
+RN  [1]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005
+RN  [2]
+RM  PMID:18703739
+RT  Small CRISPR RNAs guide antiviral defense in prokaryotes.
+RA  Brouns SJ, Jore MM, Lundgren M, Westra ER, Slijkhuis RJ, Snijders AP, Dickman MJ, Makarova KS, Koonin EV, van der Oost J
+RL  Science. 2008 Aug 15;321(5891):960-4.

@@ -1,0 +1,17 @@
+ID  CP_lyasePhnL
+AC  TIGR02324
+DE  phosphonate C-P lyase system protein PhnL
+AU  Haft DH
+TC  256.30 256.30
+NC  153.25 153.25
+AL  clustalw
+IT  equivalog
+EN  phosphonate C-P lyase system protein PhnL
+GS  phnL
+TP  TIGRFAMs
+CC  Members of this family are the PhnL protein of C-P lyase systems for utilization of phosphonates. These systems resemble phosphonatase-based systems in having a three component ABC transporter, where TIGR01097 is the permease, TIGR01098 is the phosphonates binding protein, and TIGR02315 is the ATP-binding cassette (ABC) protein. They differ, however, in having, typically, ten or more additional genes, many of which are believed to form a membrane-associated C-P lysase complex.  This protein (PhnL) and the adjacent-encoded PhnK (TIGR02323) resemble transporter ATP-binding proteins but are suggested, based on mutatgenesis studies, to be part of this C-P lyase complex rather than part of a transporter per se.
+RN  [1]
+RM  8388873
+RT  Mutational analysis of an Escherichia coli fourteen-gene operon for phosphonate degradation, using TnphoA' elements.
+RA  Metcalf WW, Wanner BL.
+RL  J Bacteriol. 1993 Jun;175(11):3430-42.

@@ -1,0 +1,12 @@
+ID  V_ATP_synt_G
+AC  TIGR01147
+DE  V-type ATPase, G subunit
+AU  Ujwal ML, Paulsen IT
+TC  56.95 56.95
+NC  50.45 50.45
+AL  clustalw
+IT  equivalog
+EN  vacuolar ATP synthase, subunit G
+EC  3.6.3.14
+TP  TIGRFAMs
+CC  This model describes the vacuolar ATP synthase G subunit in eukaryotes and includes members from diverse groups e.g., fungi, plants, parasites etc. V-ATPases are multi-subunit enzymes composed of two functional domains: A transmembrane Vo domain and a peripheral catalytic domain V1. The G subunit is one of the subunits of the catalytic domain. V-ATPases are responsible for the acidification of endosomes and lysosomes, which are part of the central vacuolar system.

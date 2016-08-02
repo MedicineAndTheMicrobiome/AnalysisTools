@@ -1,0 +1,17 @@
+ID  PEP_exosort
+AC  TIGR02595
+DE  PEP-CTERM protein-sorting domain
+AU  Haft DH, Selengut J
+TC  16.00 16.00
+NC  9.55 9.55
+AL  clustalw_manual
+IT  domain
+EN  PEP-CTERM protein-sorting domain
+TP  TIGRFAMs
+CC  This model describes a 25-residue domain that includes a near-invariant Pro-Glu-Pro (PEP) motif, a thirteen residue strongly hydrophobic sequence likely to span the membrane, and a five-residue strongly basic motif that often contains four Arg residues. In nearly every case, this motif is found within nine residues, and usually within five residues, of the extreme C-terminus of the protein. Proteins with this motif typically have signal sequences at the N-terminus. This region appears many times per genome or not at all, and co-occurs in genomes with a proposed protein-sorting integral membrane protein we designate exosortase (see TIGR02602). PEP-CTERM proteins frequently are poorly conserved, Ser/Thr-rich proteins and may become extensively modified proteinaceous constituents of extracellular material in bacterial biofilms.
+DR  PFAM; PF07589; Protein of unknown function (DUF1555)
+RN  [1]
+RM  16930487
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD
+RT  Exopolysaccharide-associated protein sorting in environmental organisms: the PEP-CTERM/EpsH system. Application of a novel phylogenetic profiling heuristic.
+RL  BMC Biol. 2006 Aug 24;4(1):29

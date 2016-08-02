@@ -1,0 +1,20 @@
+ID  xseA
+AC  TIGR00237
+DE  exodeoxyribonuclease VII, large subunit
+AU  Loftus BJ
+TC  151.75 151.75
+NC  118.85 118.85
+AL  clustalw
+IT  equivalog
+EN  exodeoxyribonuclease VII, large subunit
+GS  xseA
+EC  3.1.11.6
+TP  TIGRFAMs
+CC  This family consist of exodeoxyribonuclease VII, large subunit XseA which catalyses exonucleolytic cleavage in either the 5'->3' or 3'->5' direction to yield 5'-phosphomononucleotides. Exonuclease VII consists of one large subunit and four small subunits.
+DR  Swissprot; P04994; 
+DR  ECOCYC; EG11072;
+RM  Medline: 6284744
+RT  Subunit structure of Escherichia coli exonuclease VII.
+RA  Vales LD, Rabin BA, Chase JW.
+RL  J Biol Chem. 1982 Aug 10;257(15):8799-805.
+DR  HAMAP; MF_00378; 288 of 293

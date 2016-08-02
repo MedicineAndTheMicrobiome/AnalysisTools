@@ -1,0 +1,12 @@
+ID  SoxZ_true
+AC  TIGR04490
+DE  thiosulfate oxidation carrier complex protein SoxZ
+AU  Haft DH
+TC  76.00 76.00
+NC  69.00 69.00
+AL  muscle_manual
+IT  equivalog
+EN  thiosulfate oxidation carrier complex protein SoxZ
+GS  soxZ
+TP  TIGRFAMs
+CC  SoxZ forms a heterodimer with SoxY, the subunit that forms a covalent bond with a sulfur moiety during thiosulfate oxidation to sulfate. Note that virtually all proteins that have a SoxY domain fused to a SoxZ domain are functionally distinct and not involved in thiosulfate oxidation.

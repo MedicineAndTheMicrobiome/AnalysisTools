@@ -1,0 +1,11 @@
+ID  biosn_Pnap_2097
+AC  TIGR04099
+DE  probable biosynthetic protein, Pnap_2097 family
+AU  Haft DH
+TC  125.00 125.00
+NC  90.00 90.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  probable biosynthetic protein, Pnap_2097 family
+TP  TIGRFAMs
+CC  Radical SAM family TIGR04043 is a marker for a widespread eight-gene probable biosynthetic cluster of unknown function. This protein family occurs only in the context of TIGR04043 member-containing biosynthetic clusters, although in a minority of such clusters. This protein family belongs to the TIGR04098 domain family, which also includes N-terminal domains of several probable polyketide synthases. A role in biosynthetic processes is suspected.

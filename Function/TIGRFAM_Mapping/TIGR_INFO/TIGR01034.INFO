@@ -1,0 +1,16 @@
+ID  metK
+AC  TIGR01034
+DE  methionine adenosyltransferase
+AU  Haft DH
+TC  309.40 309.40
+NC  122.20 122.20
+AL  clustalw
+IT  equivalog
+EN  S-adenosylmethionine synthetase
+GS  metK
+EC  2.5.1.6
+TP  TIGRFAMs
+CC  Tandem isozymes of this S-adenosylmethionine synthetase in E. coli are designated MetK and MetX.
+DR  COGS; COG0192
+DR  ECOCYC; EG10589; metK
+DR  HAMAP; MF_00086; 447 of 452

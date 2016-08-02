@@ -1,0 +1,11 @@
+ID  acidobact_VWFA
+AC  TIGR03436
+DE  VWFA-related Acidobacterial domain
+AU  Haft DH
+TC  81.25 81.25
+NC  61.40 61.40
+AL  manual
+IT  subfamily_domain
+EN  VWFA-related Acidobacterial domain
+TP  TIGRFAMs
+CC  Members of this family are bacterial domains that include a region related to the von Willebrand factor type A (VWFA) domain (PF00092). These domains are restricted to, and have undergone a large paralogous family expansion in, the Acidobacteria, including Solibacter usitatus and Acidobacterium capsulatum ATCC 51196.

@@ -1,0 +1,19 @@
+ID  GPH_sucrose
+AC  TIGR01301
+DE  sucrose/H+ symporter
+AU  Haft DH, Paulsen IT
+TC  511.00 511.00
+NC  274.35 274.35
+AL  clustalw
+IT  subfamily
+EN  GPH family sucrose/H+ symporter
+TR  2.A.02
+TP  TIGRFAMs
+CC  This HMM represents sucrose/proton symporters, found in plants, from the Glycoside-Pentoside-Hexuronide (GPH)/cation symporter family. These proteins are predicted to have 12 transmembrane domains. Members may export sucrose (e.g. SUT1, SUT4) from green parts to the phloem for long-distance transport or import sucrose (e.g SUT2) to sucrose sinks such as the tap root of the carrot.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_2.html
+DR  EXPERIMENTAL; GP|10998390; Arabidopsis thaliana SUT4
+DR  EXPERIMENTAL; GP|2969884; Daucus carota SUT2
+RM  9847123
+RT  Characterization of source- and sink-specific sucrose/H+ symporters from carrot.
+RA  Shakya R, Sturm A.
+RL  Plant Physiol 1998 Dec;118(4):1473-80

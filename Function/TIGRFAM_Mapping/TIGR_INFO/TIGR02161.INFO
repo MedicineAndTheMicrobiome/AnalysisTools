@@ -1,0 +1,15 @@
+ID  napC_nirT
+AC  TIGR02161
+DE  periplasmic nitrate (or nitrite) reductase c-type cytochrome, NapC/NirT family
+AU  Haft DH
+TC  310.60 310.60
+NC  296.05 296.05
+AL  clustalw
+IT  subfamily
+EN  periplasmic nitrate (or nitrite) reductase c-type cytochrome, NapC/NirT family
+TP  TIGRFAMs
+CC  Nearly every member of this subfamily is NapC, a predicted membrane-anchored four-heme c-type cytochrome that forms one component of the periplasmic nitrate reductase along with NapA, NapB, NapD, NapE, and NapF subunits. A single known exception at this time is NirT, which is instead a component of a nitrite reductase. This family excludes TorC subunits of trimethylamine N-oxide (TMAO) reductases.
+RM  8730872
+RT  Isolation of periplasmic nitrate reductase genes from Rhodobacter sphaeroides DSM 158: structural and functional differences among prokaryotic nitrate reductases.
+RA  Reyes F, Roldan MD, Klipp W, Castillo F, Moreno-Vivian C.
+RL  Mol Microbiol. 1996 Mar;19(6):1307-18.

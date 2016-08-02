@@ -1,0 +1,22 @@
+ID  FliZ
+AC  TIGR03823
+DE  flagellar regulatory protein FliZ
+AU  Selengut J
+TC  159.30 159.30
+NC  86.95 86.95
+AL  muscle
+IT  equivalog
+EN  flagellar regulatory protein FliZ
+GS  fliZ
+TP  TIGRFAMs
+CC  FliZ is involved in the regulation of flagellar assembly [1] and possibly also the down-regulation of the motile phenotype [2].  FliZ interacts with the flagellar translational activator FlhCD complex.
+RN  [1]
+RM  PMID:18469103 
+RT  FliZ Is a posttranslational activator of FlhD4C2-dependent flagellar gene expression. 
+RA  Saini S, Brown JD, Aldridge PD, Rao CV 
+RL  J Bacteriol. 2008 Jul;190(14):4979-88. Epub 2008 May 9. 
+RN  [2]
+RM  PMID:18765794 
+RT  Inverse regulatory coordination of motility and curli-mediated adhesion in Escherichia coli. 
+RA  Pesavento C, Becker G, Sommerfeldt N, Possling A, Tschowri N, Mehlis A, Hengge R 
+RL  Genes Dev. 2008 Sep 1;22(17):2434-46.

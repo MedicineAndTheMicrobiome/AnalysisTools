@@ -1,0 +1,17 @@
+ID  CGA_synthase
+AC  TIGR04467
+DE  hydroxymethylcytosylglucuronate/cytosylglucuronate synthase
+AU  Haft DH
+TC  300.00 300.00
+NC  100.00 100.00
+AL  muscle_manual
+IT  equivalog
+EN  hydroxymethylcytosylglucuronate/cytosylglucuronate synthase
+EC  2.4.1.-
+TP  TIGRFAMs
+CC  Members of this family synthesize cytosylglucuronate (or hydroxymethylcytosylglucuronate) from UDP-glucuronate and free cytosine (or hydroxymethylcytosine). This reaction is followed by a decarboxylation at C5 of the glucoside residue. The net reaction makes the pyranoside core moiety of a class of peptidyl nucleoside antibiotics.
+RN  [1]
+RM  PMID:22753012 
+RT  Analysis of the mildiomycin biosynthesis gene cluster in Streptoverticillum remofaciens ZJU5119 and characterization of MilC, a hydroxymethyl cytosyl-glucuronic acid synthase. 
+RA  Wu J, Li L, Deng Z, Zabriskie TM, He X 
+RL  Chembiochem. 2012 Jul 23;13(11):1613-21. doi: 10.1002/cbic.201200173.

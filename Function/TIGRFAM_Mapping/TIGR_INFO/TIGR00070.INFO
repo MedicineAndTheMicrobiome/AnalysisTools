@@ -1,0 +1,15 @@
+ID  hisG
+AC  TIGR00070
+DE  ATP phosphoribosyltransferase
+AU  Richardson DL, Selengut J
+TC  75.75 75.75
+NC  61.55 61.55
+AL  muscle
+IT  equivalog
+EN  ATP phosphoribosyltransferase
+GS  hisG
+EC  2.4.2.17
+TP  TIGRFAMs
+CC  Members of this family from B. subtilis, Aquifex aeolicus, and Synechocystis PCC6803 (and related taxa) lack the C-terminal third of the sequence. The sole homolog from Archaeoglobus fulgidus lacks the N-terminal 50 residues (as reported) and is otherwise atypical of the rest of the family.  This model excludes the C-terminal extension.
+DR  PROSITE; PDOC01020; 
+DR  HAMAP; MF_01018; 204 of 204

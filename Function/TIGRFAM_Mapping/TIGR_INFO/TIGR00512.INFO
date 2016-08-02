@@ -1,0 +1,19 @@
+ID  salvage_mtnA
+AC  TIGR00512
+DE  S-methyl-5-thioribose-1-phosphate isomerase
+AU  Haft DH
+TC  279.00 279.00
+NC  234.35 234.35
+AL  muscle_manual
+IT  equivalog
+EN  S-methyl-5-thioribose-1-phosphate isomerase
+GS  mtnA
+EC  5.3.1.23
+TP  TIGRFAMs
+CC  The delineation of this family was based in part on a discussion and neighbor-joining phylogenetic study, by Kyrpides and Woese, of archaeal and other proteins homologous to the alpha, beta, and delta subunits of eukaryotic initiation factor 2B (eIF-2B), a five-subunit molecule that catalyzes GTP recycling for eIF-2. This clade is now recognized to include the methionine salvage pathway enzyme MtnA.
+RN  [2]
+RM  98188271
+RT  Archaeal translation initiation revisited: the initiation factor 2 and eukaryotic initiation factor 2B alpha-beta-delta subunit families.
+RA  Kyrpides NC, Woese CR
+RL  Proc Natl Acad Sci U S A 1998 Mar 31;95(7):3726-30
+DR  HAMAP; MF_01678; 159 of 164

@@ -1,0 +1,14 @@
+ID  fliR_like_III
+AC  TIGR01401
+DE  type III secretion apparatus protein SpaR/YscT/HrcT
+AU  Haft DH
+TC  163.05 163.05
+NC  140.95 140.95
+AL  clustalw
+IT  equivalog
+EN  type III secretion protein SpaR/YscT/HrcT
+GS  epaR
+TP  TIGRFAMs
+CC  This model represents members of bacterial type III secretion systems homologous to the flagellar biosynthetic protein FliR (TIGRFAMs:TIGR01400).
+DR  OUTGROUP; PIR:JC4509; FliR; Treponema pallidum
+DR  OUTGROUP; SP:P33135; FliR; Escherichia coli

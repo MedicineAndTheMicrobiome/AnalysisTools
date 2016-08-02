@@ -1,0 +1,17 @@
+ID  nitrile_alph
+AC  TIGR01323
+DE  nitrile hydratase, alpha subunit
+AU  Haft DH
+TC  249.85 249.85
+NC  239.05 239.05
+AL  clustalw
+IT  equivalog
+EN  nitrile hydratase, alpha subunit
+GS  nthA
+EC  4.2.1.84
+TP  TIGRFAMs
+CC  This model describes both iron- and cobalt-containing nitrile hydratase alpha chains. It excludes the thiocyanate hydrolase gamma subunit of Thiobacillus thioparus, a sequence that appears to have evolved from within the family of nitrile hydratase alpha subunits but which differs by several indels and a more rapid accumulation of point mutations.
+DR  EXPERIMENTAL; SP|P29378; Rhodococcus rhodochrous; cobalt-containing
+DR  EXPERIMENTAL; SP:P97051; Pseudomonas putida; cobalt-containing
+DR  EXPERIMENTAL; SP:P13448; Rhodococcus erythropolis; iron-containing
+DR  EXCEPTION; GP|3142158; thiocyanate hydrolase gamma subunit; Thiobacillus thioparus

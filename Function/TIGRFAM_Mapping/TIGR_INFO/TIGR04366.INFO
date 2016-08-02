@@ -1,0 +1,21 @@
+ID  cupin_WbuC
+AC  TIGR04366
+DE  cupin fold metalloprotein, WbuC family
+AU  Haft DH
+TC  42.00 42.00
+NC  39.00 39.00
+AL  muscle_manual
+IT  subfamily
+EN  cupin fold metalloprotein, WbuC family
+TP  TIGRFAMs
+CC  Members of this family show sequence similarity to cupin fold proteins (see PF07883), including conserved His residues likely to serve as metal-binding ligands. Many members occur in bacterial O-antigen biosynthesis regions. Some members have acquired the gene symbol wbuC (e.g. Jarvis, et al, 2011), but publications using this term do not ascribe a function.
+RN  [1]
+RM  PMID:21531829 
+RT  Molecular characterization of Cronobacter lipopolysaccharide O-antigen gene clusters and development of serotype-specific PCR assays. 
+RA  Jarvis KG, Grim CJ, Franco AA, Gopinath G, Sathyamoorthy V, Hu L, Sadowski JA, Lee CS, Tall BD 
+RL  Appl Environ Microbiol. 2011 Jun;77(12):4017-26.
+RN  [2]
+RM  PMID:18948958 
+RT  Protein-folding location can regulate manganese-binding versus copper- or zinc-binding. 
+RA  Tottey S, Waldron KJ, Firbank SJ, Reale B, Bessant C, Sato K, Cheek TR, Gray J, Banfield MJ, Dennison C, Robinson NJ 
+RL  Nature. 2008 Oct 23;455(7216):1138-42.

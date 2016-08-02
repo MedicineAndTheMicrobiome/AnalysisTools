@@ -1,0 +1,21 @@
+ID  LcrG_PcrG
+AC  TIGR02573
+DE  type III secretion protein LcrG
+AU  Selengut J
+TC  90.80 90.80
+NC  51.40 51.40
+AL  clustalw
+IT  equivalog
+EN  type III secretion protein LcrG
+TP  TIGRFAMs
+CC  This protein is found in type III secretion operons, along with LcrR, H and V.  Also known as PcrG in Pseudomonas, the protein is believed to make a 1:1 complex with PcrV (LcrV) [1].  Mutants of LcrG cause premature secretion of effector proteins into the medium  [2].
+RN  [1]
+RM  PMID: 14565848
+RT  Type III secretion proteins PcrV and PcrG from Pseudomonas aeruginosa form a 1:1 complex through high affinity interactions.
+RA  Nanao M, Ricard-Blum S, Di Guilmi AM, Lemaire D, Lascoux D, Chabert J, Attree I, Dessen A.
+RL  BMC Microbiol. 2003 Oct 18;3(1):21.
+RN  [2]
+RM  PMID: 11443094
+RT  Roles of LcrG and LcrV during type III targeting of effector Yops by Yersinia enterocolitica.
+RA  DeBord KL, Lee VT, Schneewind O.
+RL  J Bacteriol. 2001 Aug;183(15):4588-98.

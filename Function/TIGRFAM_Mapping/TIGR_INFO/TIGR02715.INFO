@@ -1,0 +1,17 @@
+ID  amido_AtzE
+AC  TIGR02715
+DE  amidohydrolase, AtzE family
+AU  Haft DH
+TC  425.75 425.75
+NC  371.70 371.70
+AL  clustalw
+IT  subfamily
+EN  amidohydrolase, AtzE family
+EC  3.-.-.-
+TP  TIGRFAMs
+CC  Members of this protein family are aminohydrolases related to, but distinct from, glutamyl-tRNA(Gln) amidotransferase subunit A. The best characterized member is the biuret hydrolase of Pseudomonas sp. ADP, which hydrolyzes ammonia from the three-nitrogen compound biuret to yield allophanate. Allophanate is also an intermediate in urea degradation by the urea carboxylase/allophanate hydrolase pathway, an alternative to urease.
+RN  [1]
+RM  16085834
+RT  Allophanate hydrolase, not urease, functions in bacterial cyanuric acid metabolism.
+RA  Cheng G, Shapir N, Sadowsky MJ, Wackett LP.
+RL  Appl Environ Microbiol. 2005 Aug;71(8):4437-45.

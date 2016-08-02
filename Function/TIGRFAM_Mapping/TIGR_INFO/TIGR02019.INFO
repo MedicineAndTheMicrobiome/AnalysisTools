@@ -1,0 +1,17 @@
+ID  BchJ
+AC  TIGR02019
+DE  bacteriochlorophyll 4-vinyl reductase
+AU  Selengut J
+TC  74.30 74.30
+NC  28.80 28.80
+AL  clustalw
+IT  equivalog
+EN  bacteriochlorophyll 4-vinyl reductase
+GS  bchJ
+TP  TIGRFAMs
+CC  This HMM represents the component of bacteriochlorophyll synthetase responsible for reduction of the B-ring pendant ethylene (4-vinyl) group.  It appears that this step must precede the reduction of ring D, at least by the "dark" protochlorophyllide reductase enzymes BchN, BchB and BchL [1].  This family appears to be present in photosynthetic bacteria except for the cyanobacterial clade.  Cyanobacteria must use a non-orthologous gene to carry out this required step for the biosynthesis of both bacteriochlorophyll and chlorophyll.
+RN  [1]
+RM  PMID: 7876113
+RT  Altered monovinyl and divinyl protochlorophyllide pools in bchJ mutants of Rhodobacter capsulatus. Possible monovinyl substrate discrimination of light-independent protochlorophyllide reductase.
+RA  Suzuki JY, Bauer CE.
+RL  J Biol Chem. 1995 Feb 24;270(8):3732-40.

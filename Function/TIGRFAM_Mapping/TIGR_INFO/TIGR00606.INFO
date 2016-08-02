@@ -1,0 +1,13 @@
+ID  rad50
+AC  TIGR00606
+DE  rad50
+AU  Eisen JA, Loftus BJ
+TC  453.75 453.75
+NC  328.35 328.35
+IT  subfamily
+EN  rad50
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are involved
+CC  in recombination, recombinational repair, and/or non-homologous end joining.
+CC  They are components of an exonuclease complex with MRE11 homologs.  This family is distantly related to the SbcC family of bacterial proteins.
+CC  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).

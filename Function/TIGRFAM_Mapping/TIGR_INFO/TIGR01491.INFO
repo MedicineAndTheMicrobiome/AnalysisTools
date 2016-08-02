@@ -1,0 +1,11 @@
+ID  HAD-SF-IB-PSPlk
+AC  TIGR01491
+DE  phosphoserine phosphatase-like hydrolase, archaeal
+AU  Selengut J
+TC  151.90 151.90
+NC  106.50 106.50
+AL  clustalw
+IT  hypoth_equivalog
+EN  HAD-superfamily, subfamily-IB PSPase-like hydrolase, archaeal
+TP  TIGRFAMs
+CC  This hypothetical equivalog is a member of the IB subfamily (TIGR01488) of the haloacid dehalogenase (HAD) superfamily of aspartate-nucleophile hydrolases.  The sequences modelled by this HMM are all from archaeal species.  The phylogenetically closest group of sequences to these are phosphoserine phosphatases (TIGR00338).  There are no known archaeal phosphoserine phosphatases, and no archaea fall within TIGR00338.  It is likely, then, that this HMM represents the archaeal branch of the PSPase equivalog.

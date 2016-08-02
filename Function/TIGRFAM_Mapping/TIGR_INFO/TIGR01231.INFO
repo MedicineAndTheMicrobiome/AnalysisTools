@@ -1,0 +1,14 @@
+ID  lacC
+AC  TIGR01231
+DE  tagatose-6-phosphate kinase
+AU  Haft DH, Dodson RJ
+TC  409.55 409.55
+NC  212.80 212.80
+AL  clustalw
+IT  equivalog
+EN  tagatose-6-phosphate kinase
+GS  lacC
+EC  2.7.1.144
+TP  TIGRFAMs
+CC  This enzyme is part of the tagatose-6-phosphate pathway of lactose degradation.
+DR  HAMAP; MF_01557; 39 of 39

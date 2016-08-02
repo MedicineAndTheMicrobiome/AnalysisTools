@@ -1,0 +1,12 @@
+ID  CM_mono_grmpos
+AC  TIGR01805
+DE  chorismate mutase
+AU  Selengut J
+TC  71.20 71.20
+NC  61.20 61.20
+AL  clustalw
+IT  equivalog_domain
+EN  monofunctional chorismate mutase, gram positive-type, clade 2
+EC  5.4.99.5
+TP  TIGRFAMs
+CC  This model represents a clade of chorismate mutase proteins/domains from gram positive species.  The sequence from Enterococcus is fused to the C-terminus of an aparrent acetyltransferase, and the seuence from Clostridium acetobutylicum (but not perfringens) is fused to the N-terminus of shikimate-5-dehydrogenase, another enzyme of the chorismate pathway.  All the other members of this clade are mono-functional.  Members of this clade from Streptococcus and Lactococcus have been found which represent the sole chorismate mutase domain in their respective genomes which also exhibit evidence of the enzymes of both the upstream and downstream branches of the chorismate pathways.

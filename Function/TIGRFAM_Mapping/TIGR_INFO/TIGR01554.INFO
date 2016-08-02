@@ -1,0 +1,11 @@
+ID  major_cap_HK97
+AC  TIGR01554
+DE  phage major capsid protein, HK97 family
+AU  Fouts DE, Haft DH
+TC  23.50 23.50
+NC  21.00 21.00
+AL  clustalw_manual
+IT  equivalog
+EN  phage major capsid protein, HK97 family
+TP  TIGRFAMs
+CC  This HMM family represents the major capsid protein component of the heads (capsids) of bacteriophage HK97, phi-105, P27, and related phage.  This model represents one of several analogous families lacking detectable sequence similarity.  The gene encoding this component is typically located in an operon encoding the small and large terminase subunits, the portal protein and the prohead or maturation protease.

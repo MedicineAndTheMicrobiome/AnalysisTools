@@ -1,0 +1,12 @@
+ID  glyco_like_mftF
+AC  TIGR04283
+DE  transferase 2, rSAM/selenodomain-associated
+AU  Haft DH
+TC  182.00 182.00
+NC  175.00 175.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  transferase 2, rSAM/selenodomain-associated
+EC  2.-.-.-
+TP  TIGRFAMs
+CC  This enzyme may transfer a nucleotide, or it sugar moiety, as part of a biosynthetic pathway. Other proposed members of the pathway include another transferase (TIGR04282), a phosphoesterase, and a radical SAM enzyme (TIGR04167) whose C-terminal domain (PF12345) frequently contains a selenocysteine.

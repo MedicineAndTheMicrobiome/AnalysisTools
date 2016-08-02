@@ -1,0 +1,15 @@
+ID  pfaD_fam
+AC  TIGR02814
+DE  PfaD family protein
+AU  Haft DH
+TC  449.25 449.25
+NC  147.65 147.65
+AL  clustalw_manual
+IT  subfamily_domain
+EN  PfaD family protein
+TP  TIGRFAMs
+CC  The protein PfaD is part of four gene locus, similar to polyketide biosynthesis systems, responsible for omega-3 polyunsaturated fatty acid biosynthesis in several high pressure and/or cold-adapted bacteria. Several other members of the seed alignment for this model are found in loci presumed to act in polyketide biosyntheses per se.
+RN  [1]
+RM  12055309
+RT  Structure and regulation of the omega-3 polyunsaturated fatty acid synthase genes from the deep-sea bacterium Photobacterium profundum strain SS9.
+RA  Allen EE, Bartlett DH.

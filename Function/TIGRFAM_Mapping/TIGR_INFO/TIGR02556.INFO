@@ -1,0 +1,16 @@
+ID  cas_TM1802
+AC  TIGR02556
+DE  CRISPR-associated protein, TM1802 family
+AU  Haft DH
+TC  156.95 156.95
+NC  88.55 88.55
+AL  clustalw
+IT  hypoth_equivalog
+EN  CRISPR-associated protein, TM1802 family
+TP  TIGRFAMs
+CC  This minor cas protein is found in CRISPR/cas regions of at least five prokaryotic genomes: Methanosarcina mazei, Sulfurihydrogenibium azorense, Thermotoga maritima, Carboxydothermus hydrogenoformans, and Dictyoglomus thermophilum, the first of which is archaeal while the rest are bacterial.
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=2003
+RN  [1]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005

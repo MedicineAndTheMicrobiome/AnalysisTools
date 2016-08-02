@@ -1,0 +1,11 @@
+ID  A_thal_3515
+AC  TIGR01627
+DE  uncharacterized plant-specific domain TIGR01627
+AU  Haft DH, Segal N
+TC  149.85 149.85
+NC  81.05 81.05
+AL  clustalw_manual
+IT  domain
+EN  uncharacterized plant-specific domain TIGR01627
+TP  TIGRFAMs
+CC  This HMM represents an uncharacterized domain found in both Arabidopsis thaliana (at least 10 copies) and Oryza sativa. Most member proteins have only a short stretch of sequence N-terminal to this domain, but one has a long N-terminal extension that includes a protein kinase domain (PF00069).

@@ -1,0 +1,24 @@
+ID  lexA
+AC  TIGR00498
+DE  repressor LexA
+AU  Anolik RT, Richardson DL
+TC  110.95 110.95
+NC  96.00 96.00
+AL  clustalw
+IT  equivalog
+EN  SOS regulatory protein LexA
+GS  lexA
+EC  3.4.21.88
+TP  TIGRFAMs
+CC  LexA acts as a homodimer to repress a number of genes involved in the response to DNA damage (SOS response), including itself and RecA. RecA, in the presence of single-stranded DNA, acts as a co-protease to activate a latent autolytic protease activity (EC 3.4.21.88) of LexA, where the active site Ser is part of LexA. The autolytic cleavage site is an Ala-Gly bond in LexA (at position 84-85 in E. coli LexA; this sequence is replaced by Gly-Gly in Synechocystis). The cleavage leads to derepression of the SOS regulon and eventually to DNA repair. LexA in Bacillus subtilis is called DinR. LexA is much less broadly distributed than RecA.
+RN  [1]
+RM  8798618
+RT  Interaction of Escherichia coli RecA protein with LexA repressor. II. Inhibition of DNA strand exchange by the uncleavable LexA S119A repressor argues that recombination and SOS induction are competitive processes.
+RA  Harmon FG, Rehrauer WM, Kowalczykowski SC.
+RL  J Biol Chem. 1996 Sep 27;271(39):23874-83.
+RN  [2]
+RM  9555905
+RT  The Bacillus subtilis DinR binding site: redefinition of the consensus sequence.
+RA  Winterling KW, Chafin D, Hayes JJ, Sun J, Levine AS, Yasbin RE, Woodgate R.
+RL  J Bacteriol. 1998 Apr;180(8):2201-11.
+DR  HAMAP; MF_00015; 326 of 332

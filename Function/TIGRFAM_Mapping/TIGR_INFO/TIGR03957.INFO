@@ -1,0 +1,17 @@
+ID  rSAM_HmdB
+AC  TIGR03957
+DE  5,10-methenyltetrahydromethanopterin hydrogenase cofactor biosynthesis protein HmdB
+AU  Haft DH
+TC  320.90 320.90
+NC  132.70 132.70
+AL  muscle_manual
+IT  equivalog
+EN  5,10-methenyltetrahydromethanopterin hydrogenase cofactor biosynthesis protein HmdB
+GS  hmdB
+TP  TIGRFAMs
+CC  Members of this archaeal protein family are HmdB, a partially characterized radical SAM protein with an unusual CX5CX2C motif. Its gene flanks the H2-forming methylene-H4-methanopterin dehydrogenase gene hmdA, found in hydrogenotrophic methanogens. HmdB appears to act in in biosynthesis of the novel cofactor of HmdA.
+RN  [1]
+RM  PMID:19897660 
+RT  Identification and characterization of a novel member of the radical AdoMet enzyme superfamily and implications for the biosynthesis of the Hmd hydrogenase active site cofactor. 
+RA  McGlynn SE, Boyd ES, Shepard EM, Lange RK, Gerlach R, Broderick JB, Peters JW 
+RL  J Bacteriol. 2010 Jan;192(2):595-8. Epub 2009 Nov 6.

@@ -1,0 +1,15 @@
+ID  histidine_hisI
+AC  TIGR03188
+DE  phosphoribosyl-ATP diphosphatase
+AU  Haft DH
+TC  42.70 42.70
+NC  30.95 30.95
+AL  muscle
+IT  equivalog_domain
+EN  phosphoribosyl-ATP pyrophosphohydrolase
+GS  hisE
+EC  3.6.1.31
+TP  TIGRFAMs
+CC  This enzyme, phosphoribosyl-ATP pyrophosphohydrolase, catalyses the second step in the histidine biosynthesis pathway. It often occurs as a fusion protein. This model a somewhat narrower scope than Pfam model PF01503, as some paralogs that appear to be functionally distinct are excluded from this model.
+DR  PFAM; PF01503;
+DR  HAMAP; MF_01020; 209 of 210

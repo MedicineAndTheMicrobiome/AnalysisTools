@@ -1,0 +1,16 @@
+ID  het_cyc_patell
+AC  TIGR03678
+DE  bacteriocin leader peptide, microcyclamide/patellamide family
+AU  Haft DH
+TC  39.60 39.60
+NC  28.00 28.00
+AL  muscle_manual
+IT  subfamily_domain
+EN  bacteriocin leader peptide, microcyclamide/patellamide family
+TP  TIGRFAMs
+CC  This model represents a conserved N-terminal region shared by microcyclamide and patellamide bacteriocins precursors. These bacteriocin precursors are associated with heterocyclization. Related precursors are found in family TIGR04446.
+RN  [1]
+RM  PMID:18245249
+RT  Microcyclamide biosynthesis in two strains of Microcystis aeruginosa: from structure to genes and vice versa.
+RA  Ziemert N, Ishida K, Quillardet P, Bouchier C, Hertweck C, de Marsac NT, Dittmann E
+RL  Appl Environ Microbiol. 2008 Mar;74(6):1791-7.

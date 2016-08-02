@@ -1,0 +1,17 @@
+ID  TraF_Ti
+AC  TIGR02771
+DE  conjugative transfer signal peptidase TraF
+AU  Selengut J
+TC  100.25 100.25
+NC  65.35 65.35
+AL  muscle
+IT  equivalog
+EN  conjugative transfer signal peptidase TraF
+GS  traF
+TP  TIGRFAMs
+CC  This protein is found in apparent operons encoding elements of conjugative transfer systems.  This family is homologous to a broader family of signal (leader) peptidases such as lepB.  This family is present in both Ti-type and I-type conjugative systems [1].
+RN  [1]
+RM  PMID: 1400217
+RT  Mutational analysis of essential IncP alpha plasmid transfer genes traF and traG and involvement of traF in phage sensitivity.
+RA  Waters VL, Strack B, Pansegrau W, Lanka E, Guiney DG.
+RL  J Bacteriol. 1992 Oct;174(20):6666-73.

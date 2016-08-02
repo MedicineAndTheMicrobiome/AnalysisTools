@@ -1,0 +1,17 @@
+ID  bacter_Hen1
+AC  TIGR04074
+DE  3' terminal RNA ribose 2'-O-methyltransferase Hen1
+AU  Haft DH
+TC  340.00 340.00
+NC  200.00 200.00
+AL  muscle
+IT  equivalog
+EN  3' terminal RNA ribose 2'-O-methyltransferase Hen1
+EC  2.1.1.-
+TP  TIGRFAMs
+CC  Members of this protein family are bacterial Hen1, a 3' terminal RNA ribose 2'-O-methyltransferase that acts in bacterial RNA repair. All members of the seed alignment belong to a cassette with the RNA repair enzyme polynucleotide kinase-phosphatase (Pnkp). Chemically similar Hen1 in eukaryotes acts instead on small regulatory RNAs.
+RN  [1]
+RM  PMID:20007328
+RT  Bacterial Hen1 is a 3' terminal RNA ribose 2'-O-methyltransferase component of a bacterial RNA repair cassette.
+RA  Jain R, Shuman S
+RL  RNA. 2010 Feb;16(2):316-23.

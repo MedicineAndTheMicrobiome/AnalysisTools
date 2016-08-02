@@ -1,0 +1,11 @@
+ID  TFSII
+AC  TIGR01385
+DE  transcription elongation factor S-II
+AU  Haft DH
+TC  237.10 237.10
+NC  100.00 100.00
+AL  clustalw_manual
+IT  equivalog
+EN  transcription elongation factor S-II
+TP  TIGRFAMs
+CC  This model represents eukaryotic transcription elongation factor S-II. This protein allows stalled RNA transcription complexes to perform a cleavage of the nascent RNA and restart at the newly generated 3-prime end.

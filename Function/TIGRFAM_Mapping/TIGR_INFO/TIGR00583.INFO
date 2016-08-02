@@ -1,0 +1,13 @@
+ID  mre11
+AC  TIGR00583
+DE  DNA repair protein (mre11)
+AU  Loftus BJ, Eisen JA
+TC  434.60 434.60
+NC  203.25 203.25
+IT  equivalog
+EN  DNA repair protein (mre11)
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are subunits of a nuclease complex made up of multiple proteins including MRE11 and RAD50 homologs.  The functions of this nuclease complex include recombinational repair and non-homolgous end joining. This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).  The proteins in this family are distantly related to proteins in the SbcCD complex of bacteria.
+DR  EGAD; 55138;
+DR  SWISSPROT; P32829;
+RM  95309669;

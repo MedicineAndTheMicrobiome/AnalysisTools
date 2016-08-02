@@ -1,0 +1,11 @@
+ID  PQQ_ABC_bind
+AC  TIGR03863
+DE  ABC transporter, substrate binding protein, PQQ-dependent alcohol dehydrogenase system
+AU  Haft DH
+TC  413.60 413.60
+NC  76.10 76.10
+AL  muscle_manual
+IT  subfamily
+EN  ABC transporter, substrate binding protein, PQQ-dependent alcohol dehydrogenase system
+TP  TIGRFAMs
+CC  Members of this protein family are putative substrate-binding proteins of an ABC transporter family that associates, in gene neighborhood and phylogenomic profile, with pyrroloquinoline-quinone (PQQ)-dependent degradation of certain alcohols, such as 2-phenylethanol in Pseudomonas putida U.

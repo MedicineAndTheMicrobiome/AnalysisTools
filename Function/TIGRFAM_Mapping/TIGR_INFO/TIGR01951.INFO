@@ -1,0 +1,13 @@
+ID  nusB
+AC  TIGR01951
+DE  transcription antitermination factor NusB
+AU  Haft DH
+TC  88.35 88.35
+NC  77.90 77.90
+AL  clustalw_manual
+IT  equivalog
+EN  transcription antitermination factor NusB
+GS  nusB
+TP  TIGRFAMs
+CC  A transcription antitermination complex active in many bacteria was designated N-utilization substance (Nus) in E. coli because of its interaction with phage lambda protein N. This HMM represents NusB. Other components are NusA and NusG. NusE is, in fact, ribosomal protein S10.
+DR  HAMAP; MF_00073; 405 of 409

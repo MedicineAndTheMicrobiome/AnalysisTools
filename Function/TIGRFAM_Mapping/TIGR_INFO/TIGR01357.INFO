@@ -1,0 +1,14 @@
+ID  aroB
+AC  TIGR01357
+DE  3-dehydroquinate synthase
+AU  Haft DH
+TC  305.00 305.00
+NC  295.00 295.00
+AL  clustalw_manual
+IT  equivalog
+EN  3-dehydroquinate synthase
+GS  aroB
+EC  4.2.3.4
+TP  TIGRFAMs
+CC  This HMM represents 3-dehydroquinate synthase, the enzyme catalyzing the second of seven steps in the shikimate pathway of chorismate biosynthesis. Chorismate is the last common intermediate in the biosynthesis of all three aromatic amino acids.
+DR  HAMAP; MF_00110; 205 of 208

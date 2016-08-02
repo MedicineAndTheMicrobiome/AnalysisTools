@@ -1,0 +1,22 @@
+ID  rnfE
+AC  TIGR01948
+DE  electron transport complex, RnfABCDGE type, E subunit
+AU  Haft DH
+TC  213.40 213.40
+NC  187.25 187.25
+AL  clustalw_manual
+IT  subfamily
+EN  electron transport complex, RnfABCDGE type, E subunit
+TP  TIGRFAMs
+CC  The six subunit complex RnfABCDGE in Rhodobacter capsulatus encodes an apparent NADH oxidoreductase responsible for electron transport to nitrogenase, necessary for nitrogen fixation. A closely related complex in E. coli, RsxABCDGE (Reducer of SoxR), reduces the 2Fe-2S-containing superoxide sensor SoxR, active as a transcription factor when oxidized. This family of putative NADH oxidoreductase complexes exists in many of the same species as the related NQR, a Na(+)-translocating NADH-quinone reductase, but is distinct. This model describes the E subunit.
+RN  [1]
+RM  9154934
+RT  Membrane localization, topology, and mutual stabilization of the rnfABC gene products in Rhodobacter capsulatus and implications for a new family of energy-coupling NADH oxidoreductases.
+RA  Kumagai H, Fujiwara T, Matsubara H, Saeki K.
+RL  Biochemistry. 1997 May 6;36(18):5509-21.
+RN  [2]
+RM  12773378
+RT  A reducing system of the superoxide sensor SoxR in Escherichia coli.
+RA  Koo MS, Lee JH, Rah SY, Yeo WS, Lee JW, Lee KL, Koh YS, Kang SO, Roe JH.
+RL  EMBO J. 2003 Jun 2;22(11):2614-22.
+DR  HAMAP; MF_00478; 63 of 64

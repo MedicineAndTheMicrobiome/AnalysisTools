@@ -1,0 +1,44 @@
+ID  MMSDH
+AC  TIGR01722
+DE  methylmalonate-semialdehyde dehydrogenase (acylating)
+AU  Brinkac L
+TC  448.50 448.50
+NC  392.40 392.40
+AL  clustalw_manual
+IT  equivalog
+EN  methylmalonic acid semialdehyde dehydrogenase
+GS  mmsA
+EC  1.2.1.27
+TP  TIGRFAMs
+CC  Involved in valine catabolism, methylmalonate-semialdehyde dehydrogenase catalyzes the irreversible NAD+- and CoA-dependent oxidative decarboxylation of methylmalonate semialdehyde to propionyl-CoA [1].
+CC  Methylmalonate-semialdehyde dehydrogenase has been characterized in both prokaryotes [1,2] and eukaryotes [3], functioning as a mammalian tetramer and a bacterial homodimer. Although similar in monomeric molecular mass and enzymatic activity, the N-terminal sequence in P.aeruginosa does not correspond with the N-terminal sequence predicted for rat liver [1].
+CC  Sequence homology to a variety of prokaryotic and eukaryotic aldehyde dehydrogenases places MMSDH in the aldehyde dehydrogenase (NAD+) superfamily (PF00171), making MMSDH's CoA requirement unique among known ALDHs. Methylmalonate semialdehyde dehydrogenase is closely related to betaine aldehyde dehydrogenase, 2-hydroxymuconic semialdehyde dehydrogenase, and class 1 and 2 aldehyde dehydrogenase [3].
+CC  In Bacillus, a highly homologous protein to methylmalonic acid semialdehyde dehydrogenase, groups out from the main MMSDH clade with Listeria and Sulfolobus. This Bacillus protein has been suggested to be located in an iol operon and/or involved in myo-inositol catabolism, converting malonic semialdehyde to acetyl CoA ad CO2 [4]. The preceeding enzymes responsible for valine catabolism are present in Bacillus, Listeria, and Sulfolobus.
+RN [1]
+RM 1339433
+RT Characterization of the mmsAB operon of Pseudomonas aeruginosa PAO encoding methylmalonate-semialdehyde dehydrogenase and 3-hydroxyisobutyrate dehydrogenase.
+RA Steele MI, Lorenz D, Hatter K, Park A, Sokatch JR.
+RL J Biol Chem. 1992 Jul 5;267(19):13585-92.
+RN [2]
+RM 8550471
+RT Cloning and characterization of a gene (msdA) encoding methylmalonic acid semialdehyde dehydrogenase from Streptomyces coelicolor.
+RA Zhang YX, Tang L, Hutchinson CR.
+RL J Bacteriol. 1996 Jan;178(2):490-5.
+RN [3]
+RM 1527093
+RT CoA-dependent methylmalonate-semialdehyde dehydrogenase, a unique member of the aldehyde dehydrogenase superfamily. cDNA cloning, evolutionary relationships, and tissue distribution.
+RA Kedishvili NY, Popov KM, Rougraff PM, Zhao Y, Crabb DW, Harris RA.
+RL J Biol Chem. 1992 Sep 25;267(27):19724-9
+RN [4]
+RM 9226270
+RT Organization and transcription of the myo-inositol operon, iol, of Bacillus subtilis.
+RA Yoshida KI, Aoyama D, Ishio I, Shibayama T, Fujita Y.
+RL J Bacteriol. 1997 Jul;179(14):4591-8.
+DR PFAM; PF00171; Aldehyde dehydrogenase family
+DR PROSITE; PS00687; ALDEHYDE_DEHYDR_GLU
+DR PROSITE; PS00070; ALDEHYDE_DEHYDR_CYS
+DR EXPERIMENTAL; SP|P28810; Pseudomonas aeruginosa; characterization of the mmsAB operon of Pseudomonas aeruginosa PAO encoding methylmalonate-semialdehyde dehydrogenase and 3-hydroxyisobutyrate dehydrogenase.
+DR EXPERIMENTAL; SP|Q07536; Bos taurus; novel use of an iodo-myristyl-CoA analog identifies a semialdehyde dehydrogenase in bovine liver
+DR EXPERIMENTAL; GP|1041092; Streptomyces coelicolor; cloning and characterization of a gene (msdA) encoding methylmalonic acid semialdehyde dehydrogenase from Streptomyces
+DR OUTGROUP; SP|P17445; Escherichia coli; Betaine aldehyde dehydrogenase
+DR  HAMAP; MF_01670; 34 of 34

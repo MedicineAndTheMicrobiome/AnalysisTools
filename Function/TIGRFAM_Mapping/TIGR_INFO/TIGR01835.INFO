@@ -1,0 +1,17 @@
+ID  HMG-CoA-S_prok
+AC  TIGR01835
+DE  hydroxymethylglutaryl-CoA synthase
+AU  Selengut J
+TC  360.35 360.35
+NC  238.85 238.85
+AL  clustalw
+IT  equivalog
+EN  3-hydroxy-3-methylglutaryl CoA synthase, prokaryotic clade
+EC  2.3.3.10
+TP  TIGRFAMs
+CC  This clade of hydroxymethylglutaryl-CoA (HMG-CoA) synthases is found in a limited spectrum of mostly gram-positive bacteria which make isopentenyl pyrophosphate (IPP) via the mevalonate pathway.  This pathway is found primarily in eukaryotes and archaea, but the bacterial homologs are distinct, having aparrently diverged after being laterally transferred from an early eukaryote [1].  HMG-CoA synthase is the first step in the pathway and joins acetyl-CoA with acetoacetyl-CoA with the release of one molecule of CoA.  The Borellia sequence may have resulted from a separate lateral transfer event.
+RN  [1]
+RM  PMID: 10894743
+RT  Identification, evolution, and essentiality of the mevalonate pathway for isopentenyl diphosphate biosynthesis in gram-positive cocci.
+RA  Wilding EI, Brown JR, Bryant AP, Chalker AF, Holmes DJ, Ingraham KA, Iordanescu S, So CY, Rosenberg M, Gwynn MN.
+RL  J Bacteriol 2000 Aug;182(15):4319-27

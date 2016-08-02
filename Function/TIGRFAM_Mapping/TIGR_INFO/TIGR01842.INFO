@@ -1,0 +1,11 @@
+ID  type_I_sec_PrtD
+AC  TIGR01842
+DE  type I secretion system ATPase
+AU  Haft DH
+TC  510.15 510.15
+NC  386.60 386.60
+AL  clustalw
+IT  subfamily
+EN  type I secretion system ABC transporter, PrtD family
+TP  TIGRFAMs
+CC  Type I protein secretion is a system in some Gram-negative bacteria to export proteins (often proteases) across both inner and outer membranes to the extracellular medium. This is one of three proteins of the type I secretion apparatus. Targeted proteins are not cleaved at the N-terminus, but rather carry signals located toward the extreme C-terminus to direct type I secretion.

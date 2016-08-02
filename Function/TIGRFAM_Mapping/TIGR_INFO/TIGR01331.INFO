@@ -1,0 +1,13 @@
+ID  bisphos_cysQ
+AC  TIGR01331
+DE  3'(2'),5'-bisphosphate nucleotidase
+AU  Haft DH
+TC  228.80 228.80
+NC  145.00 145.00
+AL  clustalw_manual
+IT  equivalog
+EN  3'(2'),5'-bisphosphate nucleotidase, bacterial
+GS  cysQ
+EC  3.1.3.7
+TP  TIGRFAMs
+CC  Sulfate is incorporated into 3-phosphoadenylylsulfate, PAPS, for utilization in pathways such as methionine biosynthesis. Transfer of sulfate from PAPS to an acceptor leaves adenosine 3'-5'-bisphosphate, APS. This HMM describes a form found in bacteria of the enzyme 3'(2'),5'-bisphosphate nucleotidase, which removes the 3'-phosphate from APS to regenerate AMP and help drive the cycle.

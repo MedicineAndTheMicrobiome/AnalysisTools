@@ -1,0 +1,16 @@
+ID  S_layer_rel_Mac
+AC  TIGR01567
+DE  S-layer family duplication domain
+AU  Haft DH
+TC  121.90 121.90
+NC  84.45 84.45
+AL  clustalw_manual
+IT  subfamily_domain
+EN  S-layer family duplication domain
+TP  TIGRFAMs
+CC  This HMM represents a sequence region found tandemly duplicated in two proven archaeal S-layer glycoproteins, MA0829 from Methanosarcina acetivorans C2A and MM1976 from Methanosarcina mazei Go1, as well as in several paralogs of those L-layer proteins  from both species. Members of the family show regions of local similarity to another known family of archaeal S-layer proteins described by model TIGR01564. Some members of this family, including the proven S-layer proteins, have the archaeosortase A target motif, PGF-CTERM (TIGR04126), at the protein C-terminus.
+RN  [1]
+RM  PMID:19228054 
+RT  S-layer, surface-accessible, and concanavalin A binding proteins of Methanosarcina acetivorans and Methanosarcina mazei. 
+RA  Francoleon DR, Boontheung P, Yang Y, Kin U, Ytterberg AJ, Denny PA, Denny PC, Loo JA, Gunsalus RP, Loo RR 
+RL  J Proteome Res. 2009 Apr;8(4):1972-82.

@@ -1,0 +1,14 @@
+ID  rmlA_long
+AC  TIGR01208
+DE  glucose-1-phosphate thymidylyltransferase
+AU  Haft DH
+TC  320.25 320.25
+NC  196.85 196.85
+AL  clustalw
+IT  equivalog
+EN  glucose-1-phosphate thymidylylransferase, long form
+EC  2.7.7.24
+TP  TIGRFAMs
+CC  The family of known and putative glucose-1-phosphate thymidyltransferase (also called dTDP-glucose synthase) shows a deep split into a short form (see TIGR01207) and a long form described by this model. The homotetrameric short form is found in numerous bacterial species that incorporate dTDP-L-rhamnose, which it helps synthesize, into the cell wall. It is subject to feedback inhibition. This form, in contrast, is found in many species for which it serves as a sugar-activating enzyme for antibiotic biosynthesis and or other, unknown pathways, and in which dTDP-L-rhamnose is not necessarily produced.
+CC  Alternate name: dTDP-D-glucose synthase
+DR  COGS; COG1209

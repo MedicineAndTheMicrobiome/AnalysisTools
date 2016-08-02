@@ -1,0 +1,14 @@
+ID  DapD_actino
+AC  TIGR03535
+DE  2,3,4,5-tetrahydropyridine-2,6-dicarboxylate N-succinyltransferase
+AU  Selengut J
+TC  441.50 441.50
+NC  441.35 441.35
+AL  muscle
+IT  equivalog
+EN  2,3,4,5-tetrahydropyridine-2,6-dicarboxylate N-succinyltransferase
+GS  dapD
+EC  2.3.1.117
+TP  TIGRFAMs
+CC  This enzyme is part of the diaminopimelate pathway of lysine biosynthesis.  This model represents a clade of the enzyme specific to Actinobacteria.
+CC  Alternate name: tetrahydrodipicolinate N-succinyltransferase.

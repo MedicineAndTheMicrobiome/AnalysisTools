@@ -1,0 +1,13 @@
+ID  cytochro_ccmD
+AC  TIGR03141
+DE  heme exporter protein CcmD
+AU  Haft DH
+TC  25.95 25.95
+NC  25.70 25.70
+AL  manual
+IT  equivalog
+EN  heme exporter protein CcmD
+GS  ccmD
+TP  TIGRFAMs
+CC  The model for this protein family describes a small, hydrophobic, and only moderately well-conserved protein, tricky to identify accurately for all of these reasons. However, members are found as part of large operons involved in heme export across the inner membrane for assembly of c-type cytochromes in a large number of bacteria. The gray zone between the trusted cutoff (13.0) and noise cutoff (4.75) includes both low-scoring examples and false-positive matches to hydrophobic domains of longer proteins.
+DR  PFAM; PF04995; CcmD; heme exporter protein D

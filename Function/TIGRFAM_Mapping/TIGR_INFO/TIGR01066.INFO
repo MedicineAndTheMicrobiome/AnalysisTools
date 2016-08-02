@@ -1,0 +1,13 @@
+ID  rplM_bact
+AC  TIGR01066
+DE  ribosomal protein L13
+AU  Haft DH
+TC  93.05 93.05
+NC  72.45 72.45
+AL  clustalw
+IT  equivalog
+EN  ribosomal protein L13, bacterial type
+GS  rplM
+TP  TIGRFAMs
+CC  This model distinguishes ribosomal protein L13 of bacteria and organelles from its eukarytotic and archaeal counterparts.
+DR  HAMAP; MF_01366; 438 of 470

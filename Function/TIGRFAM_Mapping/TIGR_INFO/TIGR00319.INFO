@@ -1,0 +1,12 @@
+ID  desulf_FeS4
+AC  TIGR00319
+DE  desulfoferrodoxin FeS4 iron-binding domain
+AU  Haft DH
+TC  36.05 36.05
+NC  24.10 24.10
+AL  clustalw
+IT  domain
+EN  desulfoferrodoxin FeS4 iron-binding domain
+TP  TIGRFAMs
+CC  This domain is found as essentially the full length of desulforedoxin, a 37-residue homodimeric non-heme iron protein. It is also found as the N-terminal domain of desulfoferrodoxin (rbo), a homodimeric non-heme iron protein with 2 Fe atoms per monomer in different oxidation states.This domain binds the ferric rather than the ferrous Fe of desulfoferrodoxin.
+CC  Neelaredoxin, a monomeric blue non-heme iron protein, lacks this domain.

@@ -1,0 +1,19 @@
+ID  met_gam_lyase
+AC  TIGR01328
+DE  methionine gamma-lyase
+AU  Haft DH
+TC  549.70 549.70
+NC  466.75 466.75
+AL  clustalw_manual
+IT  equivalog
+EN  methionine gamma-lyase
+GS  megL
+EC  4.4.1.11
+TP  TIGRFAMs
+CC  This HMM describes a methionine gamma-lyase subset of a family of PLP-dependent trans-sulfuration enzymes. The member from the parasite Trichomonas vaginalis is described as catalyzing alpha gamma- and alpha-beta eliminations and gamma-replacement reactions on methionine, cysteine, and some derivatives. Likewise, the enzyme from Pseudomonas degrades cysteine as well as methionine.
+RM  1953661
+RT  Purification and characterization of methionine gamma-lyase from Trichomonas vaginalis.
+RA  Lockwood BC, Coombs GH
+RL  Biochem J 1991 Nov 1;279 ( Pt 3):675-82
+DR  PROSITE; PDOC00677; Cys/Met metabolism enzymes pyridoxal-phosphate attachment site
+DR  EXPERIMENTAL; PIR:JC4174

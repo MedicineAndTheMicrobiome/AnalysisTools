@@ -1,0 +1,21 @@
+ID  SigM_subfam
+AC  TIGR02950
+DE  RNA polymerase sigma factor, SigM family
+AU  Selengut J
+TC  147.95 147.95
+NC  129.80 129.80
+AL  muscle
+IT  subfamily
+EN  RNA polymerase sigma factor, SigM family
+TP  TIGRFAMs
+CC  This family of RNA polymerase sigma factors is a member of the Sigma-70 subfamily (TIGR02937) and is restricted to certain lineages of the order Bacillales.  This family encompasses at least two distinct sigma factors as two proteins are found in each of B. anthracis, B. subtilis subsp. subtilis str. 168, and B. lichiniformis (although these are not apparently the same two in each).  One of these is designated as SigM in B. subtilis (Swiss_Prot:  	SIGM_BACSU) and is activated by various stressors [1,2].
+RN  [1]
+RM  PMID: 12775685
+RT  SigM, an extracytoplasmic function sigma factor of Bacillus subtilis, is activated in response to cell wall antibiotics, ethanol, heat, acid, and superoxide stress.
+RA  Thackray PD, Moir A.
+RL  J Bacteriol. 2003 Jun;185(12):3491-8.
+RN  [2]
+RM  PMID: 10216858
+RT  Sigma M, an ECF RNA polymerase sigma factor of Bacillus subtilis 168, is essential for growth and survival in high concentrations of salt.
+RA  Horsburgh MJ, Moir A.
+RL  Mol Microbiol. 1999 Apr;32(1):41-50.

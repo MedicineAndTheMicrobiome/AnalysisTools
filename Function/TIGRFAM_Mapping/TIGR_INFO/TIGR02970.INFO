@@ -1,0 +1,12 @@
+ID  succ_dehyd_cytB
+AC  TIGR02970
+DE  succinate dehydrogenase, cytochrome b556 subunit
+AU  Haft DH
+TC  52.30 52.30
+NC  40.65 40.65
+AL  muscle
+IT  equivalog
+EN  succinate dehydrogenase, cytochrome b556 subunit
+GS  sdhC
+TP  TIGRFAMs
+CC  In E. coli and many other bacteria, two small, hydrophobic, mutually homologous subunits of succinate dehydrogenase, a TCA cycle enzyme, are SdhC and SdhD. This family is the SdhC, the cytochrome b subunit, called b556 in bacteria and b560 in mitochondria. SdhD (see TIGR02968) is called the hydrophobic membrane anchor subunit, although both SdhC and SdhD participate in anchoring the complex. In some bacteria, this cytochrome b subunit is replaced my a member of the cytochrome b558 family (see TIGR02046).

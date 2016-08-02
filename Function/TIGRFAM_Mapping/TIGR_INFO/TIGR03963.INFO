@@ -1,0 +1,12 @@
+ID  rSAM_QueE_Clost
+AC  TIGR03963
+DE  putative 7-cyano-7-deazaguanosine (preQ0) biosynthesis protein QueE
+AU  Haft DH
+TC  260.10 260.10
+NC  196.65 196.65
+AL  muscle_manual
+IT  equivalog
+EN  putative 7-cyano-7-deazaguanosine (preQ0) biosynthesis protein QueE, clostridial
+TP  TIGRFAMs
+CC  Members of this radical SAM domain protein family appear to be the Clostridial form of the queuosine biosynthesis protein QueE. QueE is involved in making preQ0 (7-cyano-7-deazaquanine), a precursor of both the bacterial/eukaryotic
+CC  modified tRNA base queuosine and the archaeal modified base archaeosine. Members occur in preQ0 operons species that lack members of related protein family TIGR03365.

@@ -1,0 +1,10 @@
+ID  hisAF_rel
+AC  TIGR00734
+DE  hisA/hisF family protein
+AU  Haft DH
+TC  179.85 179.85
+NC  88.45 88.45
+IT  hypoth_equivalog
+EN  hisA/hisF family protein
+TP  TIGRFAMs
+CC  This HMM models a family of proteins found so far in three archaeal species: Methanobacterium thermoautotrophicum, Methanococcus jannaschii, and Archaeoglobus fulgidus. This protein is homologous to phosphoribosylformimino-5-aminoimidazole carboxamide ribotide isomerase (HisA) and, with lower similarity, to the cyclase HisF, both of which are enzymes of histidine biosynthesis. Each species with this protein also encodes HisA. The function of this protein is unknown.

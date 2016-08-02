@@ -1,0 +1,11 @@
+ID  sucr_syn_bact_C
+AC  TIGR02471
+DE  sucrose-phosphate synthase, sucrose phosphatase-like domain
+AU  Haft DH
+TC  209.75 209.75
+NC  171.00 171.00
+AL  clustalw
+IT  equivalog_domain
+EN  sucrose-phosphate synthase, sucrose phosphatase-like domain, bacterial
+TP  TIGRFAMs
+CC  Sucrose phosphate synthase (SPS) and sucrose phosphate phosphatase (SPP) are the last two enzymes of sucrose biosynthesis. In cyanobacteria and plants, the C-terminal region of most or all versions of SPS has a domain homologous to the known SPP. This domain may serve a binding or regulatory rather than catalytic function. Sequences in this family are bacterial C-terminal regions found in all but two of the putative bacterial sucrose phosphate synthases described by TIGR02472.

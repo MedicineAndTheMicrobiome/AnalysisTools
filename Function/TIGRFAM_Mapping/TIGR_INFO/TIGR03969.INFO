@@ -1,0 +1,17 @@
+ID  mycofactocin
+AC  TIGR03969
+DE  mycofactocin precursor
+AU  Haft DH
+TC  25.00 25.00
+NC  19.00 19.00
+AL  muscle_manual
+IT  equivalog
+EN  mycofactocin precursor
+GS  mftA
+TP  TIGRFAMs
+CC  Members of this protein family occur in Mycobacterium tuberculosis and many other Actinobacteria, as well as some delta-Proteobacteria (e.g. Geobacter uraniireducens), Firmicutes (Pelotomaculum thermopropionicum and Desulfotomaculum acetoxidans), and Chloroflexi (Thermomicrobium roseum DSM 5159 and Sphaerobacter thermophilus DSM 20745). Members sometimes are missed during gene model identification but always occur in the vicinity of radical SAM (rSAM) enzyme TIGR03962, which resembles several rSAM enzymes of peptide maturation (PqqE, AlbA). Species with this protein always carry members of unusual clades of nicotinoproteins that are restricted to mycofactocin-containing species and in which the NAD, when studied, has appeared non-exchangeable. It is proposed that the mature form of mycofactocin is a novel redox carrier for a segregated redox pool.
+RN  [1]
+RM  PMID:21223593 
+RT  Bioinformatic evidence for a widely distributed, ribosomally produced electron carrier precursor, its maturation proteins, and its nicotinoprotein redox partners. 
+RA  Haft DH 
+RL  BMC Genomics. 2011 Jan 11;12(1):21.

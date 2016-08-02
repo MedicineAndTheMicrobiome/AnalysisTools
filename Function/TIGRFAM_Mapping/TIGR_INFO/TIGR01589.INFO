@@ -1,0 +1,11 @@
+ID  A_thal_3526
+AC  TIGR01589
+DE  uncharacterized plant-specific domain TIGR01589
+AU  Haft DH, Segal N
+TC  36.55 36.55
+NC  24.85 24.85
+AL  clustalw
+IT  domain
+EN  uncharacterized plant-specific domain TIGR01589
+TP  TIGRFAMs
+CC  This HMM represents an uncharacterized plant-specific domain 57 residues in length. It is found toward the N-terminus of most proteins that contain it. Examples include at least 10 proteins from Arabidopsis thaliana and at least one from Oryza sativa.

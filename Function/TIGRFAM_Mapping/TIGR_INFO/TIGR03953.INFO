@@ -1,0 +1,12 @@
+ID  rplD_bact
+AC  TIGR03953
+DE  50S ribosomal protein L4
+AU  Haft DH
+TC  130.10 130.10
+NC  98.50 98.50
+AL  muscle_manual
+IT  equivalog
+EN  50S ribosomal protein L4, bacterial/organelle
+GS  rplD
+TP  TIGRFAMs
+CC  Members of this protein family are ribosomal protein L4. This model recognizes bacterial and most organellar forms, but excludes homologs from the eukaryotic cytoplasm and from archaea.

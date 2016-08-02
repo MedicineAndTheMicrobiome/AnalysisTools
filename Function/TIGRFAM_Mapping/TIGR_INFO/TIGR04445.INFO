@@ -1,0 +1,17 @@
+ID  preny_LynF_TruF
+AC  TIGR04445
+DE  peptide O-prenyltransferase, LynF/TruF/PatF family
+AU  Haft DH
+TC  140.00 140.00
+NC  30.00 30.00
+AL  muscle_manual
+IT  subfamily
+EN  peptide O-prenyltransferase, LynF/TruF/PatF family
+EC  2.5.1.-
+TP  TIGRFAMs
+CC  Members of this family are prenytransferases that modify mostly, perhaps exclusively, ribosomally derived cyclic peptides. Note that in some cases, the natural product becomes C-prenylated through a non-enzymatic rearrangement after initial O-prenylation. Prenylated products carry names such as prenylagaramide, anacyclamide, and piricyclamide.
+RN  [1]
+RM  PMID:21766822 
+RT  Enzymatic basis of ribosomal peptide prenylation in cyanobacteria. 
+RA  McIntosh JA, Donia MS, Nair SK, Schmidt EW 
+RL  J Am Chem Soc. 2011 Aug 31;133(34):13698-705.

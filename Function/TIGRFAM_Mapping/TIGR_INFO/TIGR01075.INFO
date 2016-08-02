@@ -1,0 +1,13 @@
+ID  uvrD
+AC  TIGR01075
+DE  DNA helicase II
+AU  Durkin S
+TC  1144.45 1144.45
+NC  761.10 761.10
+AL  clustalw
+IT  equivalog
+EN  DNA helicase II
+GS  uvrD
+EC  3.6.4.12
+TP  TIGRFAMs
+CC  Designed to identify uvrD members of the uvrD/rep subfamily.

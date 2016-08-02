@@ -1,0 +1,18 @@
+ID  gnd_rel
+AC  TIGR00872
+DE  6-phosphogluconate dehydrogenase (decarboxylating)
+AU  Haft DH
+TC  297.20 297.20
+NC  267.50 267.50
+AL  clustalw
+IT  equivalog
+EN  6-phosphogluconate dehydrogenase (decarboxylating)
+GS  gnd
+EC  1.1.1.44
+TP  TIGRFAMs
+CC  This family resembles a larger family (gnd) of bacterial and eukaryotic 6-phosphogluconate dehydrogenases but differs from it by a deep split in a UPGMA similarity clustering tree and the lack of a central region of about 140 residues. Among complete genomes, it is found is found in Bacillus subtilis and Mycobacterium tuberculosis, both of which also contain gnd, and in Aquifex aeolicus.  The protein from Methylobacillus flagellatus KT has been characterized as a decarboxylating 6-phosphogluconate dehydrogenase as part of an unusual formaldehyde oxidation cycle[1].  In some sequenced organisms members of this family are the sole 6-phosphogluconate dehydrogenase present and are probably active in the pentose phosphate cycle.
+RN  [1]
+RM  PMID: 10658669
+RT  Analysis of two formaldehyde oxidation pathways in Methylobacillus flagellatus KT, a ribulose monophosphate cycle methylotroph
+RA  Chistoserdova L, Gomelsky L, Vorholt JA, Gomelsky M, Tsygankov YD, Lidstrom ME
+RL  Microbiology. 2000 Jan;146 ( Pt 1):233-8

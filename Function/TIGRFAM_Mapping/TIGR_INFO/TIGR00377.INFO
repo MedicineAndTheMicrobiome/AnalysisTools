@@ -1,0 +1,11 @@
+ID  ant_ant_sig
+AC  TIGR00377
+DE  anti-anti-sigma factor
+AU  Haft DH
+TC  53.45 53.45
+NC  27.20 27.20
+IT  superfamily
+EN  anti-anti-sigma factor
+TP  TIGRFAMs
+CC  This superfamily includes small (105-125 residue) proteins related to SpoIIAA of Bacillus subtilis, an anti-anti-sigma factor. SpoIIAA can bind to and inhibit the anti-sigma F factor SpoIIAB. Also, it can be phosphorylated by SpoIIAB on a Ser residue at position 59 of the seed alignment. A similar arrangement is inferred for RsbV, an anti-anti-sigma factor for sigma B. This Ser is fairly well conserved within a motif resembling MXS[STA]G[VIL]X[VIL][VILF] among homologous known or predicted anti-anti-sigma factors. Regions similar to SpoIIAA and apparently homologous, but differing considerably near the phosphorlated Ser of SpoIIAA, appear in a single copy in several longer proteins, but score below the trusted cutoff currently set for this superfamily HMM.
+AL  clustalw, hmma, belvu

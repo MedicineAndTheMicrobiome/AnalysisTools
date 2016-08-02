@@ -1,0 +1,13 @@
+ID  ribazole_cobC
+AC  TIGR03162
+DE  alpha-ribazole phosphatase
+AU  Haft DH
+TC  162.90 162.90
+NC  155.60 155.60
+AL  muscle_manual
+IT  equivalog
+EN  alpha-ribazole phosphatase
+GS  cobC
+EC  3.1.3.73
+TP  TIGRFAMs
+CC  Members of this protein family include the known CobC protein of Salmonella and Eschichia coli species, and homologous proteins found in cobalamin biosynthesis regions in other bacteria. This protein is alpha-ribazole phosphatase (EC 3.1.3.73) and, like many phosphatases, can be closely related in sequence to other phosphatases with different functions. Close homologs excluded from this model include proteins with duplications, so this model is built in -g mode to suppress hits to those proteins.

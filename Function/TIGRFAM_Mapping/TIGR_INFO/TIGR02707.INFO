@@ -1,0 +1,19 @@
+ID  butyr_kinase
+AC  TIGR02707
+DE  butyrate kinase
+AU  Haft DH
+TC  289.10 289.10
+NC  129.35 129.35
+AL  clustalw
+IT  equivalog
+EN  butyrate kinase
+GS  buk
+EC  2.7.2.7
+TP  TIGRFAMs
+CC  This model represents an enzyme family in which members are designated either butryate kinase or branched-chain carboxylic acid kinase. The EC designation 2.7.2.7 describes an enzyme with relatively broad specificity; gene products whose context suggests a role in metabolism of aliphatic amino acids are likely to act as branched-chain carboxylic acid kinase. The gene typically found adjacent, ptb (phosphate butyryltransferase), likewise encodes an enzyme that may have a broad specificity that includes a role in aliphatic amino acid cabolism.
+RN  [1]
+RM  10464218
+RT  Catabolism of branched-chain alpha-keto acids in Enterococcus faecalis: the bkd gene cluster, enzymes, and metabolic route.
+RA  Ward DE, Ross RP, van der Weijden CC, Snoep JL, Claiborne A.
+RL  J Bacteriol. 1999 Sep;181(17):5433-42.
+DR  HAMAP; MF_00542; 28 of 31

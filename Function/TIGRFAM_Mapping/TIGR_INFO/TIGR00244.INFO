@@ -1,0 +1,29 @@
+ID  TIGR00244
+AC  TIGR00244
+DE  transcriptional regulator NrdR
+AU  Haft DH, Loftus BJ
+TC  124.65 124.65
+NC  86.70 86.70
+AL  clustalw
+IT  equivalog
+EN  transcriptional regulator NrdR
+GS  nrdR
+TP  TIGRFAMs
+CC  Members of this almost entirely bacterial family contain an ATP cone domain (PFAM:PF03477). There is never more than one member per genome. Common gene symbols given include nrdR, ybaD, ribX and ytcG. The member from Streptomyces coelicolor is found upstream in the operon of the class II oxygen-independent ribonucleotide reductase gene nrdJ and was shown to repress nrdJ expression. Many members of this family are found near genes for riboflavin biosynthesis in Gram-negative bacteria, suggesting a role in that pathway. However, a phylogenetic profiling study associates members of this family with the presence of a palindromic signal with consensus acaCwAtATaTwGtgt, termed the NrdR-box, an upstream element for most operons for ribonucleotide reductase of all three classes in bacterial genomes.
+DR  PFAM; PF03477; ATP-cone; ATP cone domain
+RN  [1]
+RM  15522084
+RT  Alternative oxygen-dependent and oxygen-independent ribonucleotide reductases in Streptomyces: cross-regulation and physiological role in response to oxygen limitation.
+RA  Borovok I, Gorovitz B, Yanku M, Schreiber R, Gust B, Chater K, Aharonowitz Y, Cohen G.
+RL  Mol Microbiol. 2004 Nov;54(4):1022-35.
+RN  [2]
+RM  15949864
+RT  Identification of a bacterial regulatory system for ribonucleotide reductases by phylogenetic profiling.
+RA  Rodionov DA, Gelfand MS.
+RL  Trends Genet. 2005 Jul;21(7):385-9.
+RN  [3]
+RM  PMID: 16950922
+RT  The Streptomyces NrdR transcriptional regulator is a Zn ribbon/ATP cone protein that binds to the promoter regions of class Ia and class II ribonucleotide reductase operons.
+RA  Grinberg I, Shteinberg T, Gorovitz B, Aharonowitz Y, Cohen G, Borovok I
+RL  J Bacteriol. 2006 Nov;188(21):7635-44. Epub 2006 Sep 1.
+DR  HAMAP; MF_00440; 427 of 432

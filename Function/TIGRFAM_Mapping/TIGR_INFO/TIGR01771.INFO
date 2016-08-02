@@ -1,0 +1,18 @@
+ID  L-LDH-NAD
+AC  TIGR01771
+DE  L-lactate dehydrogenase
+AU  Selengut J
+TC  303.55 303.55
+NC  281.90 281.90
+AL  clustalw_manual
+IT  equivalog
+EN  L-lactate dehydrogenase
+EC  1.1.1.27
+TP  TIGRFAMs
+CC  This model represents the NAD-dependent L-lactate dehydrogenases from bacteria and eukaryotes.  This enzyme function as as the final step in anaerobic glycolysis.  Although lactate dehydrogenases have in some cases been mistaken for malate dehydrogenases due to the similarity of these two substrates and the apparent ease with which evolution can toggle these activities, critical residues have been identified [1] which can discriminate between the two activities.  At the time of the creation of this model no hits above the trusted cutoff contained critical residues typical of malate dehydrogenases.
+RN  [1]
+RM  PMID: 11021970
+RT  Analysis and prediction of functional sub-types from protein sequence alignments.
+RA  Hannenhalli SS, Russell RB.
+RL  J. Mol Biol. 2000 Oct 13;303(1):61-76.
+DR  HAMAP; MF_00488; 171 of 173

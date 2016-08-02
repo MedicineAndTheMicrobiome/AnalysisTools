@@ -1,0 +1,17 @@
+ID  dienoyl_CoA_hyt
+AC  TIGR03189
+DE  cyclohexa-1,5-dienecarbonyl-CoA hydratase
+AU  Haft DH
+TC  292.50 292.50
+NC  122.95 122.95
+AL  muscle
+IT  equivalog
+EN  cyclohexa-1,5-dienecarbonyl-CoA hydratase
+EC  4.2.1.100
+TP  TIGRFAMs
+CC  This enzyme, cyclohexa-1,5-dienecarbonyl-CoA hydratase, also called dienoyl-CoA hydratase, acts on the product of benzoyl-CoA reductase (EC 1.3.99.15). Benzoyl-CoA is a common intermediate in the degradation of many aromatic compounds, and this enzyme is part of an anaerobic pathway for dearomatization and degradation.
+RN  [1]
+RM  PMID: 17122342
+RT  Cyclohexa-1,5-diene-1-carbonyl-coenzyme A hydratases of Geobacter metallireducens and Syntrophus aciditrophicus: evidence for a common benzoyl-CoA degradation pathway in facultative and strict anaerobes.
+RA  Peters F, Shinoda Y, McInerney MJ, Boll M
+RL  J Bacteriol. 2006 Nov 22

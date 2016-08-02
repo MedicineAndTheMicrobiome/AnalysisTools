@@ -1,0 +1,18 @@
+ID  plsB
+AC  TIGR03703
+DE  glycerol-3-phosphate O-acyltransferase
+AU  Haft DH
+TC  618.50 618.50
+NC  336.70 336.70
+AL  muscle_manual
+IT  equivalog
+EN  glycerol-3-phosphate O-acyltransferase
+GS  plsB
+EC  2.3.1.15
+TP  TIGRFAMs
+CC  Members of this protein family are PlsB, glycerol-3-phosphate O-acyltransferase, present in E. coli and numerous related species. In many bacteria, PlsB is not found, and appears to be replaced by a two enzyme system for 1-acyl-glycerol-3-phosphate biosynthesis, the PlsX/Y system.
+RN  [1]
+RM  PMID:16294310
+RT  A protein network for phospholipid synthesis uncovered by a variant of the tandem affinity purification method in Escherichia coli.
+RA  Gully D, Bouveret E
+RL  Proteomics. 2006 Jan;6(1):282-93.

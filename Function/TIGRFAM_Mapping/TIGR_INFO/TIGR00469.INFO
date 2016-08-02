@@ -1,0 +1,14 @@
+ID  pheS_mito
+AC  TIGR00469
+DE  phenylalanine--tRNA ligase
+AU  Haft DH
+TC  258.35 258.35
+NC  157.15 157.15
+AL  clustalw
+IT  equivalog
+EN  phenylalanyl-tRNA synthetase, mitochondrial
+GS  pheS
+EC  6.1.1.20
+TP  TIGRFAMs
+CC  Unlike all other known phenylalanyl-tRNA synthetases, the mitochondrial form demonstrated from yeast is monomeric. It is similar to but longer than the alpha subunit (PheS) of the alpha 2 beta 2 form found in Bacteria, Archaea, and eukaryotes, and shares the characteristic motifs of class II aminoacyl-tRNA ligases. This HMM models the experimental example from Saccharomyces cerevisiae (designated MSF1) and its orthologs from other eukaryotic species.
+RM  Medline; 92020858;

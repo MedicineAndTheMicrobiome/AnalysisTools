@@ -1,0 +1,14 @@
+ID  rhamnu_1P_ald
+AC  TIGR02624
+DE  rhamnulose-1-phosphate aldolase
+AU  Haft DH
+TC  400.95 400.95
+NC  146.20 146.20
+AL  clustalw
+IT  equivalog
+EN  rhamnulose-1-phosphate aldolase
+GS  rhaD
+EC  4.1.2.19
+TP  TIGRFAMs
+CC  Members of this family are the enzyme RhaD, rhamnulose-1-phosphate aldolase.
+DR  HAMAP; MF_00770; 35 of 37

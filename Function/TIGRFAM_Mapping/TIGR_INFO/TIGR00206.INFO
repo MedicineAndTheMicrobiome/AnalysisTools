@@ -1,0 +1,12 @@
+ID  fliF
+AC  TIGR00206
+DE  flagellar M-ring protein FliF
+AU  Loftus BJ
+TC  129.75 129.75
+NC  128.65 128.65
+AL  clustalw
+IT  equivalog
+EN  flagellar basal-body M-ring protein/flagellar hook-basal body protein (fliF)
+GS  fliF
+TP  TIGRFAMs
+CC  Component of the M (cytoplasmic associated) ring, one of four rings (L,P,S,M) which make up the flagellar hook-basal body which is a major portion of the flagellar organelle. Although the basic structure of the flagella appears to be similar for all bacteria, additional rings and structures surrounding the basal body have been observed for some bacteria (eg Vibrio cholerae and Treponema pallidum).

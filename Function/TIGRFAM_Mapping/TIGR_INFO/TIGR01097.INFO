@@ -1,0 +1,14 @@
+ID  PhnE
+AC  TIGR01097
+DE  phosphonate ABC transporter, permease protein PhnE
+AU  Loftus BJ, Selengut J
+TC  216.70 216.70
+NC  189.95 189.95
+AL  muscle
+IT  equivalog
+EN  phosphonate ABC transporter, permease protein PhnE
+GS  phnE
+TR  3.A.1
+TP  TIGRFAMs
+CC  Phosphonates are a class of compound analogous to organic phosphates, but in which the C-O-P linkage is replaced by a direct, stable C-P bond. Some bacteria can utilize phosphonates as a source of phosphorus. This family consists of permease proteins of known or predicted phosphonate ABC transporters.  Often this protein is found as a duplicated pair, occasionally as a fused pair.  Certain "second" copies score in between the trusted and noise cutoff and should be considered true hits (by context).
+DR  URL; http://tcdb.ucsd.edu/tcdb/tcfamilybrowse.php?tcname=3.A.1.9

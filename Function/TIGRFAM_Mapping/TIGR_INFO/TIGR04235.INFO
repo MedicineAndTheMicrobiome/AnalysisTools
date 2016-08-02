@@ -1,0 +1,16 @@
+ID  seadorna_VP4
+AC  TIGR04235
+DE  seadornavirus VP4 protein
+AU  Haft DH
+TC  80.00 80.00
+NC  25.00 25.00
+AL  muscle_manual
+IT  equivalog
+EN  seadornavirus VP4 protein
+TP  TIGRFAMs
+CC  This protein family occurs in the seadornavirus virus group, with designation VP4 in Banna virus, Kadipiro virus, and Liao ning virus. Although this family has been suggested to resemble methyltransferases, members show apparent N-terminal sequence similarity to the outer capsid protein VP5 of the orbivirus group, such as bluetongue virus, which also belong to the Reoviridae.
+RN  [1]
+RM  PMID:10811934 
+RT  Complete sequence determination and genetic analysis of Banna virus and Kadipiro virus: proposal for assignment to a new genus (Seadornavirus) within the family Reoviridae. 
+RA  Attoui H, Billoir F, Biagini P, de Micco P, de Lamballerie X 
+RL  J Gen Virol. 2000 Jun;81(Pt 6):1507-15.

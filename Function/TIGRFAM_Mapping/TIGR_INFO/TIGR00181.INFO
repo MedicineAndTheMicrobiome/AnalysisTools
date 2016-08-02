@@ -1,0 +1,24 @@
+ID  pepF
+AC  TIGR00181
+DE  oligoendopeptidase F
+AU  Haft DH
+TC  490.55 490.55
+NC  382.10 382.10
+AL  clustalw
+IT  equivalog
+EN  oligoendopeptidase F
+GS  pepF
+EC  3.4.24.-
+TP  TIGRFAMs
+CC  This family represents the oligoendopeptidase F clade of the family of larger M3 or thimet (for thiol-dependent metallopeptidase) oligopeptidase family. Lactococcus lactis PepF hydrolyzed peptides of 7 and 17 amino acids with fairly broad specificity. The homolog of lactococcal PepF in group B Streptococcus was named PepB (PMID:8757883), with the name difference reflecting a difference in species of origin rather activity; substrate profiles were quite similar.  Differences in substrate specificity should be expected in other species. The gene is duplicated in Lactococcus lactis on the plasmid that bears it. A shortened second copy is found in Bacillus subtilis.
+RN  [1]
+RM  7798200
+RT  Biochemical and genetic characterization of PepF, an oligopeptidase from Lactococcus lactis.
+RA  Monnet V, Nardi M, Chopin A, Chopin MC, Gripon JC.
+RL  J Biol Chem 269, 32070-32076, 1994;
+RT  Biochemical and genetic characterization of PepF, an oligopeptidase from Lactococcus lactis.
+RN  [2]
+RM  8757883
+RT  Characterization of PepB, a group B streptococcal oligopeptidase.
+RA  Lin B, Averett WF, Novak J, Chatham WW, Hollingshead SK, Coligan JE, Egan ML, Pritchard DG.
+RL  Infect Immun. 1996 Aug;64(8):3401-6.

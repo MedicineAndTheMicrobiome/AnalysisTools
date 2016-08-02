@@ -1,0 +1,33 @@
+ID  HIF-SF_euk
+AC  TIGR02251
+DE  dullard-like phosphatase domain
+AU  Selengut J
+TC  139.15 139.15
+NC  101.65 101.65
+AL  clustalw
+IT  subfamily_domain
+EN  Dullard-like phosphatase domain
+TP  TIGRFAMs
+CC  This model represents the putative phosphatase domain of a family of eukaryotic proteins including "Dullard" [1], and the NLI interacting factor (NIF)-like phosphatases [2].
+CC  This domain is a member of the haloacid dehalogenase (HAD) superfamily by virtue of a conserved set of three catalytic motifs [3] and a conserved fold as predicted by PSIPRED.  The third motif in this family is distinctive (hhhhDNxPxxa) and aparrently lacking the last aspartate.  This domain is classified as a "Class III" HAD, since there is no large "cap" domain found between motifs 1 and 2 or motifs 2 and 3 [4].
+CC  This domain is related to domains found in FCP1-like phosphatases (TIGR02250), and together both are detected by the Pfam model PF03031.
+RN  [1]
+RL  Biochem Biophys Res Commun. 2002 Jul 5;295(1):85-91.
+RT  Molecular cloning and characterization of dullard: a novel gene required for neural development.
+RA  Satow R, Chan TC, Asashima M.
+RM  PMID: 12083771
+RN  [2]
+RL  Proc Natl Acad Sci U S A. 2004 Apr 6;101(14):4906-11. Epub 2004 Mar 29.
+RT  RBSP3 (HYA22) is a tumor suppressor gene implicated in major epithelial malignancies.
+RA  Kashuba VI, Li J, Wang F, Senchenko VN, Protopopov A, Malyukova A, Kutsenko AS, Kadyrova E, Zabarovska VI, Muravenko OV, Zelenin AV, Kisselev LL, Kuzmin I, Minna JD, Winberg G, Ernberg I, Braga E, Lerman MI, Klein G, Zabarovsky ER.
+RM  PMID: 15051889
+RN  [3]
+RM  PMID: 7966317
+RT  Computer analysis of bacterial haloacid dehalogenases defines a large superfamily of hydrolases with diverse specificity. Application of an iterative approach to database search.
+RA  Koonin EV, Tatusov RL.
+RL  J Mol Biol 1994 Nov 18;244(1):125-32
+RN  [4]
+RM  PMID: 11601995
+RT  MDP-1 is a new and distinct member of the haloacid dehalogenase family of aspartate-dependent phosphohydrolases.
+RA  Selengut, JD
+RL  Biochemistry 2001 Oct 23;40(42):12704-11

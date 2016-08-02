@@ -1,0 +1,35 @@
+ID  branching_enzym
+AC  TIGR01515
+DE  1,4-alpha-glucan branching enzyme
+AU  Selengut J
+TC  463.95 463.95
+NC  262.00 262.00
+AL  clustalw
+IT  equivalog
+EN  alpha-1,4-glucan:alpha-1,4-glucan 6-glycosyltransferase
+GS  glgB
+EC  2.4.1.18
+TP  TIGRFAMs
+CC  This HMM describes the glycogen branching enzymes which are responsible for the transfer of chains of approx. 7 alpha(1--4)-linked glucosyl residues to other similar chains (in new alpha(1--6) linkages) in the biosynthesis of glycogen.
+CC  This enzyme is a member of the broader amylase family of starch hydrolases which fold as (beta/alpha)8 barrels, the so-called TIM-barrel structure [1,2].
+CC  All of the sequences comprising the seed of this model have been experimentally characterized. (For instance, [3]).
+CC  This model encompasses both bacterial and eukaryotic species.  No archaea have this enzyme, although Aquifex aolicus does.
+CC  Two species, Bacillus thuringiensis and Clostridium perfringens have two sequences each which are annotated as amylases.  These annotations are aparrently in error.  GP|18143720 from C. perfringens, for instance, contains the note "674 aa, similar to gp:A14658_1 amylase (1,4-alpha-glucan branching enzyme (EC 2.4.1.18) ) from Bacillus thuringiensis (648 aa); 51.1% identity in 632 aa overlap."
+CC  A branching enzyme from Porphyromonas gingivales, OMNI|PG1793, appears to be more closely related to the eukaryotic species (across a deep phylogenetic split) and may represent an instance of lateral transfer from this species' host.
+CC  A sequence from Arabidopsis thaliana, GP|9294564, scores just above trusted, but appears either to contain corrupt sequence or, more likely, to be a pseudogene as some of the conserved catalytic residues common to the alpha amylase family are not conserved here.
+RN  [1]
+RM  PMID: 11257505
+RT  Relationship of sequence and structure to specificity in the alpha-amylase family of enzymes.
+RA  MacGregor EA, Janecek S, Svensson B.
+RL  Biochim Biophys Acta 2001 Mar 9;1546(1):1-20
+RN [2]
+RM PMID: 9758744
+RT High-level expression of branching enzyme II from maize endosperm in Escherichia coli.
+RA Libessart N, Preiss J.
+RL Protein Expr Purif 1998 Oct;14(1):1-7
+RN  [3]
+RM  PMID: 407932
+RT  Biosynthesis of bacterial glycogen. Purification and properties of the Escherichia coli b alpha-1,4,-glucan: alpha-1,4-glucan 6-glycosyltansferase.
+RA  Boyer C, Preiss J.
+RL  Biochemistry. 1977 Aug 9;16(16):3693-9.
+DR  HAMAP; MF_00685; 240 of 243

@@ -1,0 +1,16 @@
+ID  NMN_trans_PnuC
+AC  TIGR01528
+DE  nicotinamide mononucleotide transporter PnuC
+AU  Haft DH
+TC  42.45 42.45
+NC  37.95 37.95
+AL  clustalw_manual
+IT  subfamily
+EN  nicotinamide mononucleotide transporter PnuC
+GS  pnuC
+TP  TIGRFAMs
+CC  The PnuC protein of E. coli is membrane protein responsible for nicotinamide mononucleotide transport, subject to regulation by interaction with the NadR (also called NadI) protein (see TIGR01526). This HMM defines a region corresponding to most of the length of PnuC, found primarily in pathogens. The extreme N- and C-terminal regions are poorly conserved and not included in the alignment and model.
+RM  1991724
+RT  Activity of the nicotinamide mononucleotide transport system is regulated in Salmonella typhimurium.
+RA  Zhu N, Olivera BM, Roth JR.
+RL  J Bacteriol 1991 Feb;173(3):1311-20

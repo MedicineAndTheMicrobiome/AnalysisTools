@@ -1,0 +1,13 @@
+ID  AcCoA-C-Actrans
+AC  TIGR01930
+DE  acetyl-CoA C-acyltransferase
+AU  Selengut J
+TC  240.55 240.55
+NC  180.65 180.65
+AL  clustalw
+IT  subfamily
+EN  acetyl-CoA acetyltransferases
+EC  2.3.1.16
+TP  TIGRFAMs
+CC  This model represents a large family of enzymes which catalyze the thiolysis of a linear fatty acid CoA (or acetoacetyl-CoA) using a second CoA molecule to produce acetyl-CoA and a CoA-ester product two carbons shorter (or, alternatively, the  condensation of two molecules of acetyl-CoA to produce acetoacetyl-CoA and CoA).  This enzyme is also known as "thiolase", "3-ketoacyl-CoA thiolase", "beta-ketothiolase" and "Fatty oxidation complex beta subunit".  When catalyzing the degradative reaction on fatty acids the corresponding EC number is 2.3.1.16.  The condensation reaction corresponds to 2.3.1.9.  Note that the enzymes which catalyze the condensation are generally not involved in fatty acid biosynthesis, which is carried out by a decarboxylating condensation of acetyl and malonyl esters of acyl carrier proteins.  Rather, this activity may produce acetoacetyl-CoA for pathways such as IPP biosynthesis in the absence of sufficient fatty acid oxidation.
+DR  HAMAP; MF_01620; 84 of 84

@@ -1,0 +1,14 @@
+ID  3a0106s01
+AC  TIGR00968
+DE  sulfate ABC transporter, ATP-binding protein
+AU  Loftus BJ
+TC  342.75 342.75
+NC  328.10 328.10
+AL  clustalw_manual
+IT  subfamily
+EN  sulfate ABC transporter, ATP-binding protein
+GS  cysA
+EC  3.6.3.25
+TR  3.A.1
+TP  TIGRFAMs
+DR  HAMAP; MF_01701; 62 of 65

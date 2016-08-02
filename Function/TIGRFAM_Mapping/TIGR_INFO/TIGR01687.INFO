@@ -1,0 +1,11 @@
+ID  moaD_arch
+AC  TIGR01687
+DE  MoaD family protein
+AU  Haft DH
+TC  49.50 49.50
+NC  48.25 48.25
+AL  clustalw_manual
+IT  subfamily
+EN  MoaD family protein, archaeal
+TP  TIGRFAMs
+CC  Members of this family appear to be archaeal versions of MoaD, subunit 1 of molybdopterin converting factor. This model has been split from the bacterial/eukaryotic equivalog model TIGR01682 because the presence of two members of this family in a substantial number of archaeal species suggests that roles might not be interchangeable.

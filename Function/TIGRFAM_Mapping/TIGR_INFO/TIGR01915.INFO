@@ -1,0 +1,12 @@
+ID  npdG
+AC  TIGR01915
+DE  NADPH-dependent F420 reductase
+AU  Loftus BJ, Haft DH
+TC  149.80 149.80
+NC  86.85 86.85
+AL  clustalw_manual
+IT  equivalog
+EN  NADPH-dependent F420 reductase
+GS  npdG
+TP  TIGRFAMs
+CC  This HMM represents a subset of a parent family described by Pfam model PF03807. Unlike the parent family, members of this family are found only in species with evidence of coenzyme F420. All members of this family are believed to act as NADPH-dependent F420 reductase.

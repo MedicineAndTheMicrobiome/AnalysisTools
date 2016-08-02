@@ -1,0 +1,12 @@
+ID  spore_ylxY
+AC  TIGR02873
+DE  probable sporulation protein, polysaccharide deacetylase family
+AU  Haft DH
+TC  391.50 391.50
+NC  199.95 199.95
+AL  clustalw
+IT  hypoth_equivalog
+EN  probable sporulation protein, polysaccharide deacetylase family
+GS  ylxY
+TP  TIGRFAMs
+CC  Members of this protein family are most closely related to TIGR02764, a subset of polysaccharide deacetylase family proteins found in a species if and only if the species forms endospores like those of Bacillus subtilis or Clostridium tetani. This family is likewise restricted to spore-formers, but is not universal among them in having sequences with full-length matches to the model.

@@ -1,0 +1,20 @@
+ID  QueF-II
+AC  TIGR03139
+DE  7-cyano-7-deazaguanine reductase
+AU  Selengut J
+TC  86.90 86.90
+NC  81.05 81.05
+AL  muscle
+IT  equivalog
+EN  7-cyano-7-deazaguanine reductase
+GS  queF
+EC  1.7.1.13
+TP  TIGRFAMs
+CC  This enzyme catalyzes the 4-electron reduction of the cyano group of 7-cyano-7-deazaguanine (proQ1) to an amine [1].  Although related to a large family of GTP cyclohydrolases (PF01227), the relationship is structural and not germane to the catalytic mechanism.  This mode represents the shorter, gram-positive version of the enzyme as found in B. subtilis.
+CC  The enzymatic step represents the first point at which the biosynthesis of queuosine in bacteria and eukaryotes is distinguished from the biosynthesis of archaeosine in archaea.
+RN  [1]
+RM  PMID: 15767583 
+RT  From cyclohydrolase to oxidoreductase: discovery of nitrile reductase activity in a common fold. 
+RA  Van Lanen SG, Reader JS, Swairjo MA, de Crecy-Lagard V, Lee B, Iwata-Reuyl D 
+RL  Proc Natl Acad Sci U S A. 2005 Mar 22;102(12):4264-9. Epub 2005 Mar 14.
+DR  HAMAP; MF_00818; 152 of 153

@@ -1,0 +1,11 @@
+ID  PQQ_ABC_repeats
+AC  TIGR03866
+DE  PQQ-dependent catabolism-associated beta-propeller protein
+AU  Haft DH
+TC  287.30 287.30
+NC  248.45 248.45
+AL  muscle_manual
+IT  subfamily
+EN  PQQ-dependent catabolism-associated beta-propeller protein
+TP  TIGRFAMs
+CC  Members of this protein family consist of seven repeats each of the YVTN family beta-propeller repeat (see TIGR02276). Members occur invariably as part of a transport operon that is associated with PQQ-dependent catabolism of alcohols such as phenylethanol.

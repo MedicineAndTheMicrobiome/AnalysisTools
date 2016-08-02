@@ -1,0 +1,12 @@
+ID  molyb_syn
+AC  TIGR00177
+DE  molybdenum cofactor synthesis domain
+AU  Haft DH
+TC  85.35 85.35
+NC  56.30 56.30
+AL  PSI-BLAST_manual
+IT  domain
+EN  molybdenum cofactor synthesis domain
+TP  TIGRFAMs
+CC  The Drosophila protein cinnamon, the Arabidopsis protein cnx1, and rat protein gephyrin each have one domain like MoeA and one like MoaB and Mog. These domains are, however, distantly related to each other, as captured by this HMM. Gephyrin is unusual in that it seems to be a tubulin-binding neuroprotein involved in the clustering of both blycine receptors and GABA receptors, rather than a protein of molybdenum cofactor biosynthesis.
+DR  HAMAP; MF_00226; 27 of 185

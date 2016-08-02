@@ -1,0 +1,18 @@
+ID  cas_Cas5h
+AC  TIGR02592
+DE  CRISPR-associated protein Cas5, subtype I-B/HMARI
+AU  Haft DH
+TC  97.00 97.00
+NC  42.05 42.05
+AL  clustalw
+IT  exception
+EN  CRISPR-associated protein Cas5, subtype I-B/HMARI
+GS  cas5b
+TP  TIGRFAMs
+CC  This is a CRISPR-associated protein unique to the hmari subtype of cas genes and CRISPR repeat, which is the only subtype present in Haloarcula marismortui ATCC 43049. The hmari type, though uncommon, is also found in the Aquificae, Thermotogae, Firmicutes, and Dictyoglomi.
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=2003
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=57307
+RN  [1]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005

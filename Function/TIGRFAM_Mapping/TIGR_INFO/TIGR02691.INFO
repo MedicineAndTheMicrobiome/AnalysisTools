@@ -1,0 +1,20 @@
+ID  arsC_pI258_fam
+AC  TIGR02691
+DE  arsenate reductase (thioredoxin)
+AU  Haft DH
+TC  174.30 174.30
+NC  112.10 112.10
+AL  clustalw_manual
+IT  equivalog
+EN  arsenate reductase (thioredoxin)
+GS  arsC
+EC  1.20.4.- 3.1.3.48
+TP  TIGRFAMs
+CC  This family describes the well-studied thioredoxin-dependent arsenate reductase of Staphylococcus aureaus plasmid pI258 and other mechanistically similar arsenate reductases. The mechanism involves an intramolecular disulfide bond cascade, and aligned members of this family have four absolutely conserved Cys residues. This group of arsenate reductases belongs to the low-molecular weight protein-tyrosine phosphatase family (PF01451), as does a group of glutathione/glutaredoxin type arsenate reductases (TIGR02689). At least two other, non-homologous groups of arsenate reductases involved in arsenical resistance are also known. This enzyme reduces arsenate to arsenite, which may be more toxic but which is more easily exported.
+DR  PFAM; PF01451; LMWPc; Low molecular weight phosphotyrosine protein phosphatase
+RN  [1]
+RM  12072565
+RT  All intermediates of the arsenate reductase mechanism, including an intramolecular dynamic disulfide cascade.
+RA  Messens J, Martins JC, Van Belle K, Brosens E, Desmyter A, De Gieter M, Wieruszeski JM, Willem R, Wyns L, Zegers I.
+RL  Proc Natl Acad Sci U S A. 2002 Jun 25;99(13):8506-11.
+DR  HAMAP; MF_01624; 31 of 31

@@ -1,0 +1,12 @@
+ID  ComEC_Rec2
+AC  TIGR00361
+DE  DNA internalization-related competence protein ComEC/Rec2
+AU  Haft DH
+TC  190.05 190.05
+NC  164.20 164.20
+AL  clustalw
+IT  equivalog
+EN  DNA internalization-related competence protein ComEC/Rec2
+TP  TIGRFAMs
+CC  Apparant orthologs are found in 5 species so far (Haemophilus influenzae, Escherichia coli, Bacillus subtilis, Neisseria gonorrhoeae, Streptococcus pneumoniae), of which all but E. coli are model systems for the study of competence for natural transformation. This protein is a predicted multiple membrane-spanning protein likely to be involved in DNA internalization. In a large number of bacterial species not known to exhibit competence, this protein is replaced by a half-length N-terminal homolog of unknown function, modelled by the related HMM ComEC_N-term.
+CC  The role for this protein in species that are not naturally transformable is unknown.

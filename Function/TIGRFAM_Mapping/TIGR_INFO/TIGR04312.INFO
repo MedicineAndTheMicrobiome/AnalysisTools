@@ -1,0 +1,11 @@
+ID  choice_anch_B
+AC  TIGR04312
+DE  choice-of-anchor B domain
+AU  Haft DH
+TC  100.00 100.00
+NC  90.00 90.00
+AL  muscle_manual
+IT  subfamily_domain
+EN  choice-of-anchor B domain
+TP  TIGRFAMs
+CC  This domain, about 385 amino acids long, can have either of at least two types of C-terminal sorting signal. Members from Shewanella and allies have the rhombosortase target domain GlyGly-CTERM (TIGR03501), while members of the Bacteroidetes have the Por secretion system C-terminal domain (TIGR04183). Most other members lack any C-terminal extension, but in most of those, the normal signal sequence is replaced by a lipoprotein signal sequence. Member sequences show a region of local similarity to the LVIVD repeat sequence (PF08309).

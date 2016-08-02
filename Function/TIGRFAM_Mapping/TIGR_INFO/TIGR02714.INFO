@@ -1,0 +1,12 @@
+ID  amido_AtzD_TrzD
+AC  TIGR02714
+DE  ring-opening amidohydrolases
+AU  Haft DH
+TC  153.10 153.10
+NC  81.05 81.05
+AL  clustalw
+IT  subfamily
+EN  ring-opening amidohydrolases
+EC  3.5.2.-
+TP  TIGRFAMs
+CC  Members of this family are are ring-opening amidohydrolases, including cyanuric acid amidohydrolase (EC 3.5.2.15) (AtzD and TrzD) and barbiturase. Note that barbiturase does not act as defined for EC 3.5.2.1 (barbiturate + water = malonate + urea) but rather catalyzes the ring-opening of barbituric acid to ureidomalonic acid (see Soong, et al., PMID:11485332).

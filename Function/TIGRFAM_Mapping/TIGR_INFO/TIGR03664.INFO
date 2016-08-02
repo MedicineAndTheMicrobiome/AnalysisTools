@@ -1,0 +1,23 @@
+ID  fut_nucase
+AC  TIGR03664
+DE  futalosine hydrolase
+AU  Selengut J
+TC  124.70 124.70
+NC  102.55 102.55
+AL  muscle
+IT  equivalog
+EN  futalosine hydrolase
+GS  mqnB
+EC  3.2.2.26
+TP  TIGRFAMs
+CC  This enzyme catalyzes the conversion of futalosine to de-hypoxanthine futalosine in a pathway for the biosynthesis of menaquinone [1] distinct from the pathway observed in E. coli.
+RN  [1]
+RM  PMID:18801996 
+RT  An alternative menaquinone biosynthetic pathway operating in microorganisms. 
+RA  Hiratsuka T, Furihata K, Ishikawa J, Yamashita H, Itoh N, Seto H, Dairi T 
+RL  Science. 2008 Sep 19;321(5896):1670-3.
+RN  [2]
+RM  PMID:19420717 
+RT  Enzymatic properties of futalosine hydrolase, an enzyme essential to a newly identified menaquinone biosynthetic pathway. 
+RA  Hiratsuka T, Itoh N, Seto H, Dairi T 
+RL  Biosci Biotechnol Biochem. 2009 May;73(5):1137-41

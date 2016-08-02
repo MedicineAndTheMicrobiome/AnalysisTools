@@ -1,0 +1,18 @@
+ID  thiol_BshA
+AC  TIGR03999
+DE  N-acetyl-alpha-D-glucosaminyl L-malate synthase BshA
+AU  Haft DH
+TC  273.70 273.70
+NC  173.85 173.85
+AL  muscle_manual
+IT  equivalog
+EN  N-acetyl-alpha-D-glucosaminyl L-malate synthase BshA
+GS  bshA
+EC  2.4.1.-
+TP  TIGRFAMs
+CC  Members of this protein family are BshA, a glycosyltransferase required for bacillithiol biosynthesis. This enzyme combines UDP-GlcNAc and L-malate to form N-acetyl-alpha-D-glucosaminyl L-malate synthase. Bacillithiol is a low-molecular-weight thiol, an analog of glutathione and mycothiol, and is found largely in the Firmicutes.
+RN  [1]
+RM  PMID:20308541
+RT  Biosynthesis and functions of bacillithiol, a major low-molecular-weight thiol in Bacilli.
+RA  Gaballa A, Newton GL, Antelmann H, Parsonage D, Upton H, Rawat M, Claiborne A, Fahey RC, Helmann JD
+RL  Proc Natl Acad Sci U S A. 2010 Apr 6;107(14):6482-6.

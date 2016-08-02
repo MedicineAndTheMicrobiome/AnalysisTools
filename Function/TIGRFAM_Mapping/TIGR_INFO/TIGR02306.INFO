@@ -1,0 +1,16 @@
+ID  RNA_lig_DRB0094
+AC  TIGR02306
+DE  RNA ligase
+AU  Haft DH
+TC  151.15 151.15
+NC  49.30 49.30
+AL  clustalw
+IT  equivalog
+EN  RNA ligase, DRB0094 family
+EC  6.5.1.3
+TP  TIGRFAMs
+CC  The member of this family from Deinococcus radiodurans, a species that withstands and recovers from extensive radiation or dessication damage, is an apparent RNA ligase. It repairs RNA stand breaks in nicked DNA:RNA and RNA:RNA but not DNA:DNA duplexes. It has adenylyltransferase activity associated with the C-terminal domain.  Related proteins also in this family are found in Streptomyces avermitilis MA-4680 and in bacteriophage 44RR2.8t. The phage example is unsurprising since one mechanism of host cell defense against phage is cleavage and inactivation of certain tRNA molecules. A fungal sequence from Neurospora crassa scores between trusted and noise cutofffs and may be similar in function.
+RM  15333634
+RT  An RNA Ligase from Deinococcus radiodurans.
+RA  Martins A, Shuman S.
+RL  in press, 2004

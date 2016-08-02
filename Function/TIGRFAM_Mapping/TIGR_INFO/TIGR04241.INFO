@@ -1,0 +1,16 @@
+ID  adenoE3CR1rpt
+AC  TIGR04241
+DE  mastadenovirus E3 CR1-alpha-1
+AU  Haft DH
+TC  37.00 37.00
+NC  25.00 23.00
+AL  muscle_manual
+IT  equivalog_domain
+EN  mastadenovirus E3 CR1-alpha-1
+TP  TIGRFAMs
+CC  This domain occurs only in the adenovirus E3 region CR1-alpha-1 protein. It may occur once, twice, or three times.
+RN  [1]
+RM  PMID:14573794 
+RT  Genetic content and evolution of adenoviruses. 
+RA  Davison AJ, Benko M, Harrach B 
+RL  J Gen Virol. 2003 Nov;84(Pt 11):2895-908.

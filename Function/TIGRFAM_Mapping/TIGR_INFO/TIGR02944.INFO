@@ -1,0 +1,11 @@
+ID  suf_reg_Xantho
+AC  TIGR02944
+DE  FeS assembly SUF system regulator
+AU  Haft DH
+TC  110.65 110.65
+NC  104.20 104.20
+AL  muscle
+IT  equivalog
+EN  FeS assembly SUF system regulator, gammaproteobacterial
+TP  TIGRFAMs
+CC  The SUF system is an oxygen-resistant iron-sulfur cluster assembly system found in both aerobes and facultative anaerobes. Its presence appears to be a marker of oxygen tolerance; strict anaerobes and microaerophiles tend to have different FeS cluster biosynthesis systems. Members of this protein family belong to the rrf2 family of transcriptional regulators and are found, typically, as the first gene of a SUF operon. It is found only in a subset of genomes that encode the SUF system, including the genus Xanthomonas. The conserved location suggests an autoregulatory role.

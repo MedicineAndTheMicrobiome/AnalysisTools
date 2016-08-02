@@ -1,0 +1,11 @@
+ID  chap_CCT_beta
+AC  TIGR02341
+DE  T-complex protein 1, beta subunit
+AU  Haft DH
+TC  522.15 522.15
+NC  504.00 504.00
+AL  clustalw
+IT  equivalog
+EN  T-complex protein 1, beta subunit
+TP  TIGRFAMs
+CC  Members of this family, all eukaryotic, are part of the group II chaperonin complex called CCT (chaperonin containing TCP-1) or TRiC. The archaeal equivalent group II chaperonin is often called the thermosome. Both are somewhat related to the group I chaperonin of bacterial, GroEL/GroES. This family consists exclusively of the CCT beta chain (part of a paralogous family) from animals, plants, fungi, and other eukaryotes.

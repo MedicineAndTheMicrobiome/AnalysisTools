@@ -1,0 +1,12 @@
+ID  bact_S11
+AC  TIGR03632
+DE  30S ribosomal protein S11
+AU  Haft DH
+TC  154.50 154.50
+NC  117.20 117.20
+AL  muscle_manual
+IT  equivalog
+EN  30S ribosomal protein S11
+GS  rpsK
+TP  TIGRFAMs
+CC  This model describes the bacterial 30S ribosomal protein S11. Cutoffs are set such that the model excludes archaeal and eukaryotic ribosomal proteins, but many chloroplast and mitochondrial equivalents of S11 are detected.

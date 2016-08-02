@@ -1,0 +1,16 @@
+ID  PEP_integral
+AC  TIGR02921
+DE  PEP-CTERM family integral membrane protein
+AU  Haft DH, Selengut J
+TC  200.00 200.00
+NC  100.00 100.00
+AL  muscle
+IT  hypoth_equivalog
+EN  PEP-CTERM family integral membrane protein
+TP  TIGRFAMs
+CC  Members of this protein family, found in eighteen genera so far, have a PEP-CTERM sequence at the carboxyl-terminus (see model TIGR02595), but are unusual among PEP-CTERM proteins in having multiple predicted transmembrane segments. The function is unknown.  It is proposed that an exosortase (see TIGR02602), recognizes and cleaves PEP-CTERM proteins in a manner analogous to the cleavage of LPXTG proteins by sortase (see Haft, et al., 2006). In at least six species, a gene encoding what appears to be a dedicated (single target) exosortase is adjacent. In that subset, the PEP-CTERM motif takes the form VPEPxxWxL.
+DR  TIGRFAMS; TIGR02595; PEP_anchor
+RN  [1]
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD
+RT  Exopolysaccharide-associated protein sorting in environmental organisms by the PEP-CTERM/EpsH system: application of a novel phylogenetic profiling heuristic.
+RL  BMC Biol., in press, 2006

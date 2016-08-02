@@ -1,0 +1,11 @@
+ID  phage_term_2
+AC  TIGR01547
+DE  phage terminase, large subunit, PBSX family
+AU  Haft DH, Fouts DE
+TC  105.05 105.05
+NC  50.85 50.85
+AL  manual
+IT  equivalog
+EN  phage terminase, large subunit, PBSX family
+TP  TIGRFAMs
+CC  This HMM detects members of a highly divergent family of the large subunit of phage terminase. All members are encoded by phage genomes or within prophage regions of bacterial genomes. This is a distinct family from PF03354.

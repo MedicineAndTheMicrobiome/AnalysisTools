@@ -1,0 +1,16 @@
+ID  NhaB
+AC  TIGR00774
+DE  Na+/H+ antiporter NhaB
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  826.10 826.10
+NC  713.40 713.40
+AL  clustalw_manual
+IT  equivalog
+EN  Na+/H+ antiporter NhaB
+GS  nhaB
+TR  2.A.34
+TP  TIGRFAMs
+CC  These proteins are members of the NhaB Na+:H+ Antiporter (NhaB) Family (TC 2.A.34).  The only characterised member of this family is the Escherichia coli NhaB protein, which has 12 GES predicted transmembrane regions, and catalyses sodium/proton exchange. Unlike NhaA this activity is not pH dependent.
+DR  InterPro; IPR000676
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_34.html
+DR  HAMAP; MF_01599; 68 of 83

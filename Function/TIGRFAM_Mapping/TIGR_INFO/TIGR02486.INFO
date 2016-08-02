@@ -1,0 +1,22 @@
+ID  RDH
+AC  TIGR02486
+DE  reductive dehalogenase
+AU  Selengut J
+TC  160.35 160.35
+NC  132.25 132.25
+AL  clustalw
+IT  subfamily
+EN  reductive dehalogenase
+EC  1.97.1.-
+TP  TIGRFAMs
+CC  This model represents a family of corrin and 8-iron Fe-S cluster-containing reductive dehalogenases [1] found primarily in halorespiring microorganisms such as dehalococcoides ethenogenes which contains as many as 17 enzymes of this type with varying substrate ranges.  One example of a characterized species is the tetrachloroethene reductive dehalogenase [2] (1.97.1.8) which also acts on trichloroethene converting it to dichloroethene.
+RN  [1]
+RM  PMID: 11097881
+RT  Trichloroethene reductive dehalogenase from Dehalococcoides ethenogenes: sequence of tceA and substrate range characterization.
+RA  Magnuson JK, Romine MF, Burris DR, Kingsley MT.
+RL  Appl Environ Microbiol. 2000 Dec;66(12):5141-7.
+RN  [2]
+RM  PMID: 9224702
+RT   Redox chemistry of cobalamin and iron-sulfur cofactors in the tetrachloroethene reductase of Dehalobacter restrictus.
+RA  Schumacher W, Holliger C, Zehnder AJ, Hagen WR.
+RL  FEBS Lett. 1997 Jun 16;409(3):421-5.

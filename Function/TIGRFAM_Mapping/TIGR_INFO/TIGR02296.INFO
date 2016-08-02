@@ -1,0 +1,19 @@
+ID  HpaC
+AC  TIGR02296
+DE  4-hydroxyphenylacetate 3-monooxygenase, reductase component
+AU  Selengut J
+TC  205.95 205.95
+NC  178.90 178.90
+AL  clustalw
+IT  equivalog
+EN  4-hydroxyphenylacetate 3-monooxygenase, reductase component
+GS  hpaC
+EC  1.14.14.9
+TP  TIGRFAMs
+CC  This model identifies the reductase component (HpaC) of 4-hydroxyphenylacetate 3-monooxygenase [1].  This enzyme catalyzes the first step (hydroxylation at the 3-position) in the degradation of 4-hydroxyphenylacetate to succinate and pyruvate. 4-hydroxyphenylacetate arises from the degradation of tyrosine.  
+CC  These reductases catalyze the reduction of free flavins by NADPH.  The flavin is then utilized by the large subunit of the monooxygenase.
+RN  [1]
+RM  PMID: 8077235
+RT  Molecular characterization of 4-hydroxyphenylacetate 3-hydroxylase of Escherichia coli. A two-protein component enzyme.
+RA  Prieto MA, Garcia JL.
+RL  J Biol Chem. 1994 Sep 9;269(36):22823-9.

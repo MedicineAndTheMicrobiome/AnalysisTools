@@ -1,0 +1,27 @@
+ID  TisB_tox
+AC  TIGR04459
+DE  type I toxin-antitoxin system toxin TisB
+AU  Haft DH
+TC  38.00 38.00
+NC  25.00 25.00
+AL  muscle
+IT  equivalog
+EN  type I toxin-antitoxin system toxin TisB
+GS  tisB
+TP  TIGRFAMs
+CC  Members of this family are the TisB toxin protein of a type I toxin-antitoxin system, meaning that the antitoxin is a non-coding RNA. TisB is induced by some types of stress (SOS, ciprofloxacin) and appears to induce a persister state by dissipating transmembrane potential, thus depleting ATP. Persister cells, unable to grow until the persister state changes, survive a number of challenges, including exposure to most antibiotics.
+RN  [1]
+RM  PMID:18761622 
+RT  A small SOS-induced toxin is targeted against the inner membrane in Escherichia coli. 
+RA  Unoson C, Wagner EG 
+RL  Mol Microbiol. 2008 Oct;70(1):258-70. doi: 10.1111/j.1365-2958.2008.06416.x.
+RN  [2]
+RM  PMID:23062338 
+RT  Peptide-lipid interactions of the stress-response peptide TisB that induces bacterial persistence. 
+RA  Steinbrecher T, Prock S, Reichert J, Wadhwani P, Zimpfer B, Burck J, Berditsch M, Elstner M, Ulrich AS 
+RL  Biophys J. 2012 Oct 3;103(7):1460-9. doi: 10.1016/j.bpj.2012.07.060.
+RN  [3]
+RM  PMID:22728134 
+RT  Persister-promoting bacterial toxin TisB produces anion-selective pores in planar lipid bilayers. 
+RA  Gurnev PA, Ortenberg R, Dorr T, Lewis K, Bezrukov SM 
+RL  FEBS Lett. 2012 Jul 30;586(16):2529-34. doi: 10.1016/j.febslet.2012.06.021.

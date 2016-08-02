@@ -1,0 +1,19 @@
+ID  CDF
+AC  TIGR01297
+DE  cation diffusion facilitator family transporter
+AU  Haft DH, Paulsen IT, Saier MH
+TC  82.35 82.35
+NC  73.35 73.35
+AL  clustalw_manual
+IT  superfamily
+EN  cation diffusion facilitator family transporter
+TR  2.A.4
+TP  TIGRFAMs
+CC  This HMM describes a broadly distributed family of transporters, a number of which have been shown to transport divalent cations of cobalt, cadmium and/or zinc. The family has six predicted transmembrane domains. Members of the family are variable in length because of variably sized inserts, often containing low-complexity sequence.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_4.html
+DR  PFAM; PF01545; Cation_efflux
+RM  9075641
+RT  A novel family of ubiquitous heavy metal ion transport proteins.
+RA  Paulsen IT, Saier MH Jr.
+RL  J Membr Biol 1997 Mar 15;156(2):99-103
+DR  HAMAP; MF_01425; 30 of 31

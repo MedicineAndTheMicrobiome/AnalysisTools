@@ -1,0 +1,18 @@
+ID  tRNA_sel_U_synt
+AC  TIGR03167
+DE  tRNA 2-selenouridine synthase
+AU  Haft DH
+TC  219.75 219.75
+NC  109.85 109.85
+AL  muscle
+IT  equivalog
+EN  tRNA 2-selenouridine synthase
+GS  selU
+EC  2.9.1.-
+TP  TIGRFAMs
+CC  The Escherichia coli YbbB protein was shown to encode a selenophosphate-dependent tRNA 2-selenouridine synthase, essential for modification of some tRNAs to replace a sulfur atom with selenium. This enzyme works with SelD, the selenium donor protein, which also acts in selenocysteine incorporation. Although the members of this protein family show a fairly deep split, sequences from both sides of the split are supported by co-occurence with, and often proximity to, the selD gene.
+RN  [1]
+RM  PMID: 14594807
+RT  Functional diversity of the rhodanese homology domain: the Escherichia coli ybbB gene encodes a selenophosphate-dependent tRNA 2-selenouridine synthase.
+RA  Wolfe MD, Ahmed F, Lacourciere GM, Lauhon CT, Stadtman TC, Larson TJ
+RL  J Biol Chem. 2004 Jan 16;279(3):1801-9. Epub 2003 Oct 31.

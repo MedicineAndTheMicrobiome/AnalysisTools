@@ -1,0 +1,13 @@
+ID  TMAO_torE
+AC  TIGR02972
+DE  trimethylamine N-oxide reductase system, TorE protein
+AU  Haft DH
+TC  77.75 77.75
+NC  67.85 67.85
+AL  muscle
+IT  equivalog
+EN  trimethylamine N-oxide reductase system, TorE protein
+GS  torE
+TP  TIGRFAMs
+CC  Members of this small, apparent transmembrane protein are designated TorE and occur in operons for the trimethylamine N-oxide (TMAO) reductase system. Members are closely related to the NapE protein of the related periplasmic nitrate reductase system. It may be that TorE is an integral membrane subunit of a complex with the reductase TorA.
+DR  PFAM; PF06796; NapE

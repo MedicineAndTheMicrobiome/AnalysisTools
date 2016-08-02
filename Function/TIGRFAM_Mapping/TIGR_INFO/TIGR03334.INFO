@@ -1,0 +1,24 @@
+ID  IOR_beta
+AC  TIGR03334
+DE  indolepyruvate ferredoxin oxidoreductase, beta subunit
+AU  Haft DH
+TC  205.80 205.80
+NC  88.70 88.70
+AL  muscle_manual
+IT  equivalog
+EN  indolepyruvate ferredoxin oxidoreductase, beta subunit
+GS  iorB
+EC  1.2.7.8
+TP  TIGRFAMs
+CC  This model represents the beta subunit of indolepyruvate ferredoxin oxidoreductase, an alpha(2)/beta(2) tetramer, as found in Pyrococcus furiosus and Methanobacterium thermoautotrophicum. Cofactors for the tetramer include TPP, 4Fe4S, and 3Fe-4S. It shows considerable sequence similarity to subunits of several other ketoacid oxidoreductases.
+DR  BRENDA; 1.2.7.8
+RN  [1]
+RM  PMID: 15262931
+RT  Two biosynthetic pathways for aromatic amino acids in the archaeon Methanococcus maripaludis.
+RA  Porat I, Waters BW, Teng Q, Whitman WB
+RL  J Bacteriol. 2004 Aug;186(15):4940-50.
+RN  [2]
+RM  PMID: 8206994
+RT  Indolepyruvate ferredoxin oxidoreductase from the hyperthermophilic archaeon Pyrococcus furiosus. A new enzyme involved in peptide fermentation.
+RA  Mai X, Adams MW
+RL  J Biol Chem. 1994 Jun 17;269(24):16726-32.

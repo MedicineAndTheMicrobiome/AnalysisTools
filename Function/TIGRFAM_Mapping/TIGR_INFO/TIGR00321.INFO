@@ -1,0 +1,14 @@
+ID  dhys
+AC  TIGR00321
+DE  deoxyhypusine synthase
+AU  Haft DH
+TC  304.25 304.25
+NC  79.75 79.75
+AL  clustalw
+IT  equivalog
+EN  deoxyhypusine synthase
+EC  2.5.1.46
+TP  TIGRFAMs
+CC  Deoxyhypusine synthase is responsible for the first step in creating hypusine. Hypusine is a modified amino acid found in eukaryotes and in archaea in their respective forms of initiation factor 5A. Its presence is confirmed in archaeal genera Pyrococcus (PMID:12761201), Sulfolobus, Halobacterium, and Haloferax (PMID:10648545), but in an older report was not detected in Methanococcus voltae (J Biol Chem 1987 Dec 5;262(34):16585-9).
+CC  This family of apparent orthologs has an unusual UPGMA difference tree, in which the members from the archaea M. jannaschii and P. horikoshii cluster with the known eukaryotic deoxyhypusine synthases. Separated by a fairly deep branch, although still strongly related, is a small cluster of proteins from Methanobacterium thermoautotrophicum and Archeoglobus fulgidus, the latter of which has two.
+DR  HAMAP; MF_00153; 15 of 27

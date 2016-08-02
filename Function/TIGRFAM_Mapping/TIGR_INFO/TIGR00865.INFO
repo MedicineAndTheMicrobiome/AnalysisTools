@@ -1,0 +1,20 @@
+ID  bcl-2
+AC  TIGR00865
+DE  apoptosis regulator
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  283.35 283.35
+NC  223.20 223.20
+AL  clustalw_manual
+IT  subfamily
+EN  apoptosis regulator
+GS  bcl-2
+TP  TIGRFAMs
+CC  The Bcl-2 (Bcl-2) Family (TC 1.A.21)
+CC  The Bcl-2 family consists of the apoptosis regulator, Bcl-X, and its homologues. Bcl-X is a dominant regulator of programmed cell death in mammalian cells.
+CC  The long form (Bcl-X(L)) displays cell death repressor activity, but the short isoform (Bcl-X(S)) and the b-isoform (Bcl-Xb) promote cell death. Bcl-X(L),
+CC  Bcl-X(S) and Bcl-Xb are three isoforms derived by alternative RNA splicing. Bcl-X(S) forms heterodimers with Bcl-2. Homologues of Bcl-X include the Bax (rat; 192 aas; spQ63690) and Bak (mouse; 208 aas; spO08734) proteins which also influence
+CC  apoptosis.
+CC  Using isolated mitochondria, recombinant Bax and Bak have been shown to induce Dy loss, swelling and cytochrome c release. All of these changes are
+CC  dependent on Ca2+ and are prevented by cyclosporin A and bongkrekic acid, both of which are known to close permeability transition pores (megachannels).
+CC  Coimmimoprecipitation studies revealed that Bax and Bak interact with VDAC to form permeability transition pores. Thus, even though they can form channels
+CC  in artificial membranes at acidic pH, proapoptotic Bcl-2 family proteins (including Bax and Bak) probably induce the mitochondrial permeability transition and cytochrome c release by interacting with permeability transition pores, the most important component for pore fomation of which is VDAC.

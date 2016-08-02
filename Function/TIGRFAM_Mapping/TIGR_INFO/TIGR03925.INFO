@@ -1,0 +1,19 @@
+ID  T7SS_EccC_b
+AC  TIGR03925
+DE  type VII secretion protein EccCb
+AU  Haft DH
+TC  346.55 346.55
+NC  251.05 251.05
+AL  muscle_manual
+IT  equivalog_domain
+EN  type VII secretion protein EccCb
+GS  eccCb
+TP  TIGRFAMs
+CC  This model represents the C-terminal domain or EccCb subunit of the type VII secretion protein EccC as found in the Actinobacteria. Type VII secretion is defined more broadly as including secretion systems for ESAT-6-like proteins in the Firmicutes as well as in the Actinobacteria, but this family does not show close homologs in the Firmicutes.
+DR  PFAM; PF01580; FtsK/SpoIIIE family
+RN  [1]
+RM  PMID:19876390
+RT  Systematic genetic nomenclature for type VII secretion systems.
+RA  Bitter W, Houben EN, Bottai D, Brodin P, Brown EJ, Cox JS, Derbyshire K, Fortune SM, Gao LY, Liu J, Gey van Pittius NC, Pym AS, Rubin
+EJ, Sherman DR, Cole ST, Brosch R
+RL  PLoS Pathog. 2009 Oct;5(10):e1000507. Epub 2009 Oct 30.

@@ -1,0 +1,13 @@
+ID  tolA_full
+AC  TIGR02794
+DE  protein TolA
+AU  Haft DH
+TC  59.45 59.45
+NC  48.35 48.35
+AL  unknown
+IT  equivalog
+EN  TolA protein
+GS  tolA
+TR  2.C.1.2
+TP  TIGRFAMs
+CC  TolA couples the inner membrane complex of itself with TolQ and TolR to the outer membrane complex of TolB and OprL (also called Pal). Most of the length of the protein consists of low-complexity sequence that may differ in both length and composition from one species to another, complicating efforts to discriminate TolA (the most divergent gene in the tol-pal system) from paralogs such as TonB. Selection of members of the seed alignment and criteria for setting scoring cutoffs are based largely conserved operon struction.  //The Tol-Pal complex is required for maintaining outer membrane integrity.  Also involved in transport (uptake) of colicins and filamentous DNA, and implicated in pathogenesis. Transport is energized by the proton motive force. TolA is an inner membrane protein that interacts with periplasmic TolB and with outer membrane porins ompC, phoE and lamB.

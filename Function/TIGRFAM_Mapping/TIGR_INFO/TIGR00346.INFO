@@ -1,0 +1,18 @@
+ID  azlC
+AC  TIGR00346
+DE  azaleucine resistance protein AzlC
+AU  Loftus BJ
+TC  332.35 332.35
+NC  49.70 49.70
+AL  clustalw
+IT  equivalog
+EN  4-azaleucine resistance probable transporter AzlC
+GS  azlC
+TR  2.A.78
+TP  TIGRFAMs
+CC  Overexpression of this gene results in resistance to a leucine analog, 4-azaleucine. The protein has 5 potential transmembrane motifs. It has been inferred, but not experimentally demonstrated, to be part of a branched-chain amino acid transport system.  Commonly found in association with azlD.
+RM  97431495
+RT  An lrp-like gene of Bacillus subtilis involved in branched-chain amino acid transport.
+RA  Belitsky BR, Gustafsson MC, Sonenshein AL, Von Wachenfeldt C
+RL  J Bacteriol 1997 Sep;179(17):5448-57
+DR  URL; http://saier-144-164.ucsd.edu/tcdb/index.php?Submit=Lookup&tc=2.A.78

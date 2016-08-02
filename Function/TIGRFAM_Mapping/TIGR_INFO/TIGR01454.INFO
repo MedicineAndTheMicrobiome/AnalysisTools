@@ -1,0 +1,36 @@
+ID  AHBA_synth_RP
+AC  TIGR01454
+DE  AHBA synthesis associated protein
+AU  Selengut J
+TC  246.65 246.65
+NC  132.25 132.25
+AL  clustalw
+IT  hypoth_equivalog
+EN  3-amino-5-hydroxybenoic acid synthesis related protein
+TP  TIGRFAMs
+CC  The enzymes in this equivalog are all located in the operons for the  biosynthesis of 3-amino-5-hydroxybenoic acid (AHBA), which is a precursor of several antibiotics including ansatrienin [1], naphthomycin [1], rifamycin [2] and mitomycin [3].  The role that this enzyme plays in this biosynthesis has not been elucidated.
+CC  This enzyme is a member of the Haloacid dehalogenase superfamily (PF00702) of aspartate-nucleophile hydrolases.
+CC  This enzyme is closely related to phosphoglycolate phosphatase (TIGR01449), but it is unclear what purpose a PGPase or PGPase-like activity would serve in these biosyntheses.
+CC  This model is limited to the Gram positive Actinobacteria.
+CC  The most closely related enzyme below the noise cutoff is IndB which is involved in the biosynthesis of Indigoidine in Pectobacterium (Erwinia) chrysanthemi, a gamma proteobacter [4]. This enzyme is similarly related to PGP.  In this case, too it is unclear what role would be be played by a PGPase activity.
+RN [1]
+RM PMID: 10103039
+RT Biosynthesis of ansatrienin (mycotrienin) and naphthomycin. Identification and analysis of two separate biosynthetic gene clusters in Streptomyces collinus Tu 1892.
+RA Chen S, von Bamberg D, Hale V, Breuer M, Hardt B, Muller R, Floss HG, Reynolds KA, Leistner E.
+RL Eur J Biochem 1999 Apr;261(1):98-107
+RN [2]
+RM PMID: 11278540
+RT Mutational analysis and reconstituted expression of the biosynthetic genes involved in the formation of 3-amino-5-hydroxybenzoic acid, the starter unit of rifamycin biosynthesis in amycolatopsis Mediterranei S699.
+RA Yu TW, Muller R, Muller M, Zhang X, Draeger G, Kim CG, Leistner E, Floss HG.
+RL J Biol Chem 2001 Apr 20;276(16):12546-55
+RN [3]
+RM PMID: 10099135
+RT Molecular characterization and analysis of the biosynthetic gene cluster for the antitumor antibiotic mitomycin C from Streptomyces lavendulae NRRL 2564.
+RA Mao Y, Varoglu M, Sherman DH.
+RL Chem Biol 1999 Apr;6(4):251-63
+RN [4]
+RM PMID: 11790734
+RT Characterization of indigoidine biosynthetic genes in Erwinia chrysanthemi and role of this blue pigment in pathogenicity.
+RA Reverchon S, Rouanet C, Expert D, Nasser W.
+RL J Bacteriol 2002 Feb;184(3):654-65
+DR PFAM; PF00702; hydrolase; Haloacid dehalogenase superfamily

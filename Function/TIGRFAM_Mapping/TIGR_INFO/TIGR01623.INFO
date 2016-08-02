@@ -1,0 +1,15 @@
+ID  put_zinc_LRP1
+AC  TIGR01623
+DE  putative zinc finger domain, LRP1 type
+AU  Haft DH
+TC  42.00 42.00
+NC  18.50 18.50
+AL  clustalw_manual
+IT  paralog_domain
+EN  putative zinc finger domain, LRP1 type
+TP  TIGRFAMs
+CC  This HMM represents a putative zinc finger domain found in plants. Arabidopsis thaliana has at least 10 distinct members. Proteins containing this domain, including LRP1, generally share the same size, about 300 amino acids, and architecture. This 43-residue domain, and a more C-terminal companion domain of similar size, appear as tightly conserved islands of sequence similarity. The remainder consists largely of low-complexity sequence. Several animal proteins have regions with matching patterns of Cys, Gly, and His residues. These are not included in the model but score between trusted and noise cutoffs.
+RM  7647564
+RT  LRP1, a gene expressed in lateral and adventitious root primordia of arabidopsis.
+RA  Smith DL, Fedoroff NV.
+RL  Plant Cell 1995 Jun;7(6):735-45

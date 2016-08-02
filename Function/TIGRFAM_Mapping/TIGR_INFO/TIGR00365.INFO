@@ -1,0 +1,17 @@
+ID  TIGR00365
+AC  TIGR00365
+DE  monothiol glutaredoxin, Grx4 family
+AU  Haft DH, Loftus BJ
+TC  117.10 117.10
+NC  85.70 85.70
+AL  clustalw
+IT  equivalog
+EN  monothiol glutaredoxin, Grx4 family
+GS  grxD
+TP  TIGRFAMs
+CC  The gene for the member of this glutaredoxin family in E. coli, originally designated ydhD, is now designated grxD. Its protein, Grx4, is a monothiol glutaredoxin similar to Grx5 of yeast, which is involved in iron-sulfur cluster formation.
+RN  [1]
+RM  PMID:15833738
+RT  A novel monothiol glutaredoxin (Grx4) from Escherichia coli can serve as a substrate for thioredoxin reductase.
+RA  Fernandes AP, Fladvad M, Berndt C, Andresen C, Lillig CH, Neubauer P, Sunnerhagen M, Holmgren A, Vlamis-Gardikas A
+RL  J Biol Chem. 2005 Jul 1;280(26):24544-52.

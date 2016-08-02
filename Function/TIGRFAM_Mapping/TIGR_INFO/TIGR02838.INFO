@@ -1,0 +1,12 @@
+ID  spore_V_AC
+AC  TIGR02838
+DE  stage V sporulation protein AC
+AU  Haft DH
+TC  164.00 164.00
+NC  70.30 70.30
+AL  clustalw
+IT  equivalog
+EN  stage V sporulation protein AC
+GS  spoVAC
+TP  TIGRFAMs
+CC  This model describes stage V sporulation protein AC, a paralog of stage V sporulation protein AE. Both are proteins found to present in a species if and only if that species is one of the  Firmicutes capable of endospore formation, as of the time of the publication of the genome of Carboxydothermus hydrogenoformans. Mutants in spoVAC have a stage V sproulation defect.

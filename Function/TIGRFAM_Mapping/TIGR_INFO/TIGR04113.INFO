@@ -1,0 +1,12 @@
+ID  cas_csx17
+AC  TIGR04113
+DE  CRISPR-associated protein Csx17, subtype Dpsyc
+AU  Haft DH
+TC  150.00 150.00
+NC  30.00 30.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  CRISPR-associated protein Csx17, subtype Dpsyc
+GS  csx17
+TP  TIGRFAMs
+CC  Members of this protein family are found exclusively in  CRISPR-associated (cas) type I system gene clusters of the Dpsyc subtype. Markers for that type include a variant form of cas3 (model TIGR02621) and the GSU0054-like protein family (model TIGR02165). This family occurs in less than half of known Dpsyc clusters.

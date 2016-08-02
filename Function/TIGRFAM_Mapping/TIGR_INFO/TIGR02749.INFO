@@ -1,0 +1,17 @@
+ID  prenyl_cyano
+AC  TIGR02749
+DE  solanesyl diphosphate synthase
+AU  Haft DH
+TC  383.20 383.20
+NC  328.30 328.30
+AL  clustalw
+IT  equivalog
+EN  solanesyl diphosphate synthase
+GS  sds
+EC  2.5.1.-
+TP  TIGRFAMs
+CC  Members of this family all are from cyanobacteria or plastid-containing eukaryotes. A member from Arabidopsis (where both plastoquinone and ubiquinone contain the C(45) prenyl moiety) was characterized by heterologous expression as a solanesyl diphosphate synthase.
+RM  12437513
+RT  Cloning and kinetic characterization of Arabidopsis thaliana solanesyl diphosphate synthase.
+RA  Hirooka K, Bamba T, Fukusaki E, Kobayashi A.
+RL  Biochem J. 2003 Mar 1;370(Pt 2):679-86.

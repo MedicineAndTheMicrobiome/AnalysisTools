@@ -1,0 +1,23 @@
+ID  allantoicase
+AC  TIGR02961
+DE  allantoicase
+AU  Haft DH
+TC  277.90 277.90
+NC  118.60 118.60
+AL  muscle
+IT  equivalog
+EN  allantoicase
+GS  alc
+EC  3.5.3.4
+TP  TIGRFAMs
+CC  Members of this family are the enzyme allantoicase (EC 3.5.3.4), also called allantoate amidinohydrolase. This enzyme hydrolyzes allantoate to (S)-ureidoglycolate and urea; it can also degrade (R)-ureidoglycolate to glyoxylate and urea. Allantoinase (EC 3.5.2.5) hydrolyzes (S)-allantoin (a xanthine metabolite, via urate) to allantoate. Allantoate can then be degraded either by this enzyme, allantoicase, or by allantoate deiminase (EC 3.5.3.9).  Members of the seed alignment for this model were taken from BRENDA. Proteins in this family contain two copies of the allantoicase repeat (PF03561).
+CC  A different but similarly named enzyme, allantoate amidohydrolase  (EC 3.5.3.9), simultaneously breaks down the urea to ammonia and carbon dioxide.
+DR  BRENDA; 3.5.3.4
+DR  URL; www.brenda.uni-koeln.de/php/result_flat.php4?ecno=3.5.3.4
+DR  PFAM; PF03561; Allantoicase repeat
+DR  HAMAP; MF_00813; 20 of 20
+RN  [1]
+RM  PMID: 10864446 
+RT  Xenopus allantoicase: molecular cloning, enzymatic activity and developmental expression. 
+RA  Vigetti D, Monetti C, Pollegioni L, Taramelli R, Bernardini G 
+RL  Arch Biochem Biophys. 2000 Jul 1;379(1):90-6.

@@ -1,0 +1,11 @@
+ID  yscI_hrpB_dom
+AC  TIGR02497
+DE  type III secretion apparatus protein, YscI/HrpB, C-terminal domain
+AU  Haft DH
+TC  23.45 23.45
+NC  21.80 21.80
+AL  clustalw_manual
+IT  equivalog_domain
+EN  type III secretion apparatus protein, YscI/HrpB, C-terminal domain
+TP  TIGRFAMs
+CC  This model represents the conserved C-terminal domain of a protein conserved in across species in the bacterial type III secretion apparatus. This protein is designated YscI (Yop proteins translocation protein I) in Yersinia and HrpB (hypersensitivity response and pathogenicity protein B) in plant pathogens such as Pseudomonas syringae.

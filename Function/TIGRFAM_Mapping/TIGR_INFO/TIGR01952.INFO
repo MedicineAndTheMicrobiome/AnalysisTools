@@ -1,0 +1,11 @@
+ID  nusA_arch
+AC  TIGR01952
+DE  NusA family KH domain protein, archaeal
+AU  Haft DH
+TC  74.35 74.35
+NC  58.30 58.30
+AL  clustalw
+IT  hypoth_equivalog
+EN  NusA family KH domain protein, archaeal
+TP  TIGRFAMs
+CC  This HMM represents a family of archaeal proteins found in a single copy per genome. It contains two KH domains (PF00013) and is most closely related to the central region bacterial NusA, a transcription termination factor named for its iteraction with phage lambda protein N in E. coli. The proteins required for antitermination by N include NusA, NusB, nusE (ribosomal protein S10), and nusG. This system, on the whole, appears not to be present in the Archaea.

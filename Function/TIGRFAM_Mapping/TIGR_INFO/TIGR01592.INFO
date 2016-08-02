@@ -1,0 +1,12 @@
+ID  holin_SPP1
+AC  TIGR01592
+DE  holin, SPP1 family
+AU  Haft DH, Fouts D
+TC  47.30 47.30
+NC  28.25 28.25
+AL  clustalw_manual
+IT  equivalog
+EN  holin, SPP1 family
+GS  xhlB
+TP  TIGRFAMs
+CC  This HMM represents one of more than 30 families of phage proteins, all lacking detectable homology with each other, known or believed to act as holins. Holins act in cell lysis by bacteriophage. Members of this family are found in phage PBSX and phage SPP1, among others.

@@ -1,0 +1,11 @@
+ID  cas_csx11
+AC  TIGR02682
+DE  CRISPR-associated protein, Csx11 family
+AU  Haft DH
+TC  248.95 248.95
+NC  241.10 241.10
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  CRISPR-associated protein, Csx11 family
+TP  TIGRFAMs
+CC  Members of this uncommon, sporadically distributed protein family are large (>900 amino acids) and strictly associated, so far, with CRISPR-associated (Cas) gene clusters. Nearby Cas genes always include members of the RAMP superfamily and the six-gene CRISPR-associated RAMP module. Species in which it is found, so far, include three archaea (Methanosarcina mazei, M. barkeri and Methanobacterium thermoautotrophicum) and two bacteria (Thermodesulfovibrio yellowstonii DSM 11347 and Sulfurihydrogenibium azorense).

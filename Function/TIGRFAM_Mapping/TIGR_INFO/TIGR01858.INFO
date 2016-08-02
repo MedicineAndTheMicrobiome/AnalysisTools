@@ -1,0 +1,23 @@
+ID  tag_bisphos_ald
+AC  TIGR01858
+DE  class II aldolase, tagatose bisphosphate family
+AU  Haft DH
+TC  443.55 443.55
+NC  349.45 349.45
+AL  clustalw
+IT  equivalog
+EN  class II aldolase, tagatose bisphosphate family
+EC  4.1.2.-
+TP  TIGRFAMs
+CC  This HMM describes tagatose-1,6-bisphosphate aldolases, and perhaps other closely related class II aldolases. This tetrameric, Zn2+-dependent enzyme is related to the class II fructose bisphosphate aldolase; fructose 1,6-bisphosphate and tagatose 1,6 bisphosphate differ only in chirality at C4.
+RN  [1]
+RM  11940603
+RT  Structure of tagatose-1,6-bisphosphate aldolase. Insight into chiral discrimination, mechanism, and specificity of class II aldolases.
+RA  Hall DR, Bond CS, Leonard GA, Watt CI, Berry A, Hunter WN.
+RL  J Biol Chem 2002 Jun 14;277(24):22018-24
+RN  [2]
+RM  10712619
+RT  Exploring substrate binding and discrimination in fructose1, 6-bisphosphate and tagatose 1,6-bisphosphate aldolases.
+RA  Zgiby SM, Thomson GJ, Qamar S, Berry A.
+RL  Eur J Biochem 2000 Mar;267(6):1858-68
+DR  HAMAP; MF_01294; 23 of 29

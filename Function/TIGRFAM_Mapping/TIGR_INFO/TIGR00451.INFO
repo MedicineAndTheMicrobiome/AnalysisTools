@@ -1,0 +1,12 @@
+ID  unchar_dom_2
+AC  TIGR00451
+DE  uncharacterized domain 2
+AU  Haft DH
+TC  27.00 27.00
+NC  26.00 26.00
+AL  clustalw
+IT  domain
+EN  uncharacterized domain 2
+TP  TIGRFAMs
+CC  This uncharacterized domain is found a number of enzymes and uncharacterized proteins, often at the C-terminus. It is found in some but not all members of a family of related tRNA-guanine transglycosylases (tgt), which exchange a guanine base for some modified base without breaking the phosphodiester backbone of the tRNA. It is also found in rRNA pseudouridine synthase, another enzyme of RNA base modification not otherwise homologous to tgt. It is found, again at the C-terminus, in two putative glutamate 5-kinases. It is also found in a family of small, uncharacterized archaeal proteins consisting mostly of this domain.
+DR  HAMAP; MF_01634; 14 of 32

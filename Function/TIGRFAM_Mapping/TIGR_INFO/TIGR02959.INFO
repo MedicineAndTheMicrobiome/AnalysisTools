@@ -1,0 +1,17 @@
+ID  SigZ
+AC  TIGR02959
+DE  RNA polymerase sigma factor, SigZ family
+AU  Selengut J
+TC  168.65 168.65
+NC  150.85 150.85
+AL  muscle
+IT  hypoth_equivalog
+EN  RNA polymerase sigma factor, SigZ family
+GS  sigZ
+TP  TIGRFAMs
+CC  This family of RNA polymerase sigma factors is a member of the Sigma-70 subfamily (TIGR02937).  One of these is designated as SigZ in B. subtilis (Swiss_Prot: SIGZ_BACSU) [1].  Interestingly, this group has a very sporatic distribution, B. subtilis, for instance, being the only sequenced strain of Bacilli with a member.  Dechloromonas aromatica RCB appears to have two of these sigma factors.  A member appears on a plasmid found in Photobacterium profundum SS9 and Vibrio fischeri ES114 (where a second one is chromosomally encoded).
+RN  [1]
+RM  PMID: 9308178
+RT  Sequence of the Bacillus subtilis genome region in the vicinity of the lev operon reveals two new extracytoplasmic function RNA polymerase sigma factors SigV and SigZ.
+RA  Sorokin A, Bolotin A, Purnelle B, Hilbert H, Lauber J, Dusterhoft A, Ehrlich SD.
+RL  Microbiology. 1997 Sep;143 ( Pt 9):2939-43.

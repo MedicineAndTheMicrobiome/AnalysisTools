@@ -1,0 +1,12 @@
+ID  phage_tail_L
+AC  TIGR01600
+DE  phage minor tail protein L
+AU  Haft DH, Fouts DE
+TC  70.75 70.75
+NC  33.70 33.70
+AL  clustalw
+IT  equivalog
+EN  lambda-like phage minor tail protein L
+TP  TIGRFAMs
+CC  This model detects members of the family of phage lambda minor tail protein L.  This HMM was built as a fragment model to allow detection of fragmentary sequences, as might be found in cryptic prophage regions.
+DR  SWISSPROT; SP|P03738; phage lambda

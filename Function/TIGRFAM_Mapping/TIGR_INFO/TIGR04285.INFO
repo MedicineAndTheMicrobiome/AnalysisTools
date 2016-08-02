@@ -1,0 +1,17 @@
+ID  nucleoid_noc
+AC  TIGR04285
+DE  nucleoid occlusion protein
+AU  Haft DH
+TC  315.00 315.00
+NC  290.00 290.00
+AL  muscle_manual
+IT  exception
+EN  nucleoid occlusion protein
+GS  noc
+TP  TIGRFAMs
+CC  This model describes nucleoid occlusion protein, a close homolog to ParB chromosome partitioning proteins including Spo0J in Bacillus subtilis. Its gene often is located near the gene for the Spo0J ortholog. This protein bind a specific DNA sequence and blocks cytokinesis from happening until chromosome segregation is complete.
+RN  [1]
+RM  PMID:19494834 
+RT  Noc protein binds to specific DNA sequences to coordinate cell division with chromosome segregation. 
+RA  Wu LJ, Ishikawa S, Kawai Y, Oshima T, Ogasawara N, Errington J 
+RL  EMBO J. 2009 Jul 8;28(13):1940-52.

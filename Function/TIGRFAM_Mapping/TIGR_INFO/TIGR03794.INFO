@@ -1,0 +1,11 @@
+ID  NHLM_micro_HlyD
+AC  TIGR03794
+DE  NHLM bacteriocin system secretion protein
+AU  Haft DH
+TC  156.20 156.20
+NC  135.65 135.65
+AL  muscle_manual
+IT  equivalog
+EN  NHLM bacteriocin system secretion protein
+TP  TIGRFAMs
+CC  Members of this protein family are homologs of the HlyD membrane fusion protein of type I secretion systems. Their occurrence in prokaryotic genomes is associated with the occurrence of a novel class of microcin (small bacteriocins) with a leader peptide region related to nitrile hydratase. We designate the class of bacteriocin as Nitrile Hydratase Leader Microcin, or NHLM. This family, therefore, is designated as NHLM bacteriocin system secretion protein. Some but not all NHLM-class putative microcins belong to the TOMM (thiazole/oxazole modified microcin) class as assessed by the presence of the scaffolding protein and/or cyclodehydratase in the same gene clusters.

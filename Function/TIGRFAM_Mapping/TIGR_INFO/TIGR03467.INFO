@@ -1,0 +1,17 @@
+ID  HpnE
+AC  TIGR03467
+DE  squalene-associated FAD-dependent desaturase
+AU  Selengut J
+TC  283.05 283.05
+NC  261.90 261.90
+AL  muscle
+IT  hypoth_equivalog
+EN  squalene-associated FAD-dependent desaturase
+GS  hpnE
+TP  TIGRFAMs
+CC  The sequences in this family are members of the PF01593 superfamily of flavin-containing amine oxidases which include the phytoene desaturases.  These sequences also include a FAD-dependent oxidoreductase domain, PF01266.  The genes of  the family modeled here are generally in the same locus with  genes involved in the biosynthesis and elaboration of squalene, the condensation product of the polyisoprenoid farnesyl pyrophosphate.  This gene and its association with hopene biosynthesis in Zymomonas mobilis has been noted in the literature where the gene symbol hpnE was assigned [1].  This gene is also found in contexts where  the downstream conversion of squalene to hopenes is not evidence.  The precise nature of the reaction catalyzed by this enzyme is unknown at this time.
+RN  [1]
+RM  PMID:9714766 
+RT  Cloning of conserved genes from Zymomonas mobilis and Bradyrhizobium japonicum that function in the biosynthesis of hopanoid lipids. 
+RA  Perzl M, Reipen IG, Schmitz S, Poralla K, Sahm H, Sprenger GA, Kannenberg EL 
+RL  Biochim Biophys Acta. 1998 Jul 31;1393(1):108-18.

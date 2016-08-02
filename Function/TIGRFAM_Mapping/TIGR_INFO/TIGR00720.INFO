@@ -1,0 +1,22 @@
+ID  sda_mono
+AC  TIGR00720
+DE  L-serine ammonia-lyase
+AU  Haft DH
+TC  345.10 345.10
+NC  216.25 216.25
+AL  clustalw
+IT  equivalog
+EN  L-serine dehydratase, iron-sulfur-dependent, single chain form
+EC  4.3.1.17
+TP  TIGRFAMs
+CC  This enzyme is also called serine deaminase and L-serine dehydratase 1. L-serine ammonia-lyase converts serine into pyruvate in the gluconeogenesis pathway from serine.  This enzyme is comprised of a single chain in Escherichia coli, Mycobacterium tuberculosis, and several other species, but has separate alpha and beta chains in Bacillus subtilis and related species. The beta and alpha chains are homologous to the N-terminal and C-terminal regions, respectively, but are rather deeply branched in a UPGMA tree. This enzyme requires iron and dithiothreitol for activation in vitro, and is a predicted 4Fe-4S protein. Escherichia coli Pseudomonas aeruginosa have two copies of this protein.
+RN  [1]
+RM  PMID:8436113 
+RT  Use of gene fusions of the structural gene sdaA to purify L-serine deaminase 1 from Escherichia coli K-12. 
+RA  Su H, Moniakis J, Newman EB 
+RL  Eur J Biochem. 1993 Feb 1;211(3):521-7.
+RN  [2]
+RM  PMID:15498577 
+RT  The iron-sulfur cluster in the L-serine dehydratase TdcG from Escherichia coli is required for enzyme activity. 
+RA  Burman JD, Harris RL, Hauton KA, Lawson DM, Sawers RG 
+RL  FEBS Lett. 2004 Oct 22;576(3):442-4.

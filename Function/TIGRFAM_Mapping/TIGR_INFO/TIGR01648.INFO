@@ -1,0 +1,27 @@
+ID  hnRNP-R-Q
+AC  TIGR01648
+DE  hnRNP-R, Q splicing factor family
+AU  Selengut J
+TC  317.85 317.85
+NC  247.30 247.30
+AL  clustalw
+IT  subfamily
+EN  heterogeneous nuclear ribonucleoprotein R, Q family
+TP  TIGRFAMs
+CC  Sequences in this subfamily include the human heterogeneous nuclear ribonucleoproteins (hnRNP) R [1], Q [2] and APOBEC-1 complementation factor (aka APOBEC-1 stimulating protein)[3].  These proteins contain three RNA recognition domains (rrm: PF00076) and a somewhat variable C-terminal domain.
+RN  [1]
+RM  PMID: 9421497
+RT  Molecular definition of heterogeneous nuclear ribonucleoprotein R (hnRNP R) using autoimmune antibody:
+immunological relationship with hnRNP P
+RA  W Hassfeld, EKL Chan, DA Mathison, D Portman, G Dreyfuss, G Steiner and EM Tan 
+RL  Nucleic Acids Research, Vol 26, Issue 2 439-445
+RN  [2]
+RM  PMID: 11574476
+RT  SMN interacts with a novel family of hnRNP and spliceosomal proteins.
+RA  Mourelatos Z, Abel L, Yong J, Kataoka N, Dreyfuss G.
+RL  EMBO J 2001 Oct 1;20(19):5443-52
+RN  [3]
+RM  PMID: 10781591
+RT  Purification and molecular cloning of a novel essential component of the apolipoprotein B mRNA editing enzyme-complex.
+RA  Lellek H, Kirsten R, Diehl I, Apostel F, Buck F, Greeve J.
+RL  J Biol Chem 2000 Jun 30;275(26):19848-56

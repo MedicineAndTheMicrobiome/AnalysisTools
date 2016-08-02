@@ -1,0 +1,13 @@
+ID  fum_red_Fp
+AC  TIGR01176
+DE  fumarate reductase, flavoprotein subunit
+AU  Haft DH
+TC  932.70 932.70
+NC  847.05 847.05
+AL  clustalw
+IT  equivalog
+EN  fumarate reductase, flavoprotein subunit
+GS  frdA
+EC  1.3.99.1
+TP  TIGRFAMs
+CC  The terms succinate dehydrogenase and fumarate reductase may be used interchangeably in certain systems. However, a number of species have distinct complexes, with the fumarate reductase active under anaerobic conditions. This model represents the fumarate reductase flavoprotein subunit from several such species in which a distinct succinate dehydrogenase is also found. Not all bona fide fumarate reductases will be found by this model.

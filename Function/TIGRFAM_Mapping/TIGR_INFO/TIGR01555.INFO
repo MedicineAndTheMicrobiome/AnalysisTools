@@ -1,0 +1,11 @@
+ID  phge_rel_HI1409
+AC  TIGR01555
+DE  phage-associated protein, HI1409 family
+AU  Haft DH
+TC  196.25 196.25
+NC  57.30 57.30
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  phage-related protein, HI1409 family
+TP  TIGRFAMs
+CC  This HMM describes an uncharacterized family of proteins found in prophage regions of a number of bacterial genomes, including Haemophilus influenzae, Xylella fastidiosa, Salmonella typhi, and Enterococcus faecalis. Distantly related proteins can be found in the prophage-bearing plasmids of Borrelia burgdorferi.

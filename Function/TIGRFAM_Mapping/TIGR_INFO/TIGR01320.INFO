@@ -1,0 +1,18 @@
+ID  mal_quin_oxido
+AC  TIGR01320
+DE  malate dehydrogenase (acceptor)
+AU  Haft DH
+TC  549.95 549.95
+NC  197.40 197.40
+AL  clustalw
+IT  equivalog
+EN  malate:quinone-oxidoreductase
+GS  mqo
+EC  1.1.5.4
+TP  TIGRFAMs
+CC  This membrane-associated enzyme is an alternative to the better-known NAD-dependent malate dehydrogenase as part of the TCA cycle. The reduction of a quinone rather than NAD+ makes the reaction essentially irreversible in the direction of malate oxidation to oxaloacetate. Both forms of malate dehydrogenase are active in E. coli; disruption of this form causes less phenotypic change. In some bacteria, this form is the only or the more important malate dehydrogenase.
+RM  11092847
+RT  Functions of the membrane-associated and cytoplasmic malate dehydrogenases in the citric acid cycle of Escherichia coli.
+RA  van der Rest ME, Frank C, Molenaar D.
+RL  J Bacteriol 2000 Dec;182(24):6892-9RM  11092847
+DR  HAMAP; MF_00212; 117 of 129

@@ -1,0 +1,16 @@
+ID  targ_of_XrtJ
+AC  TIGR04200
+DE  XrtJ-associated TM-motif-TM protein
+AU  Haft DH
+TC  40.00 40.00
+NC  29.00 22.00
+AL  manual
+IT  paralog
+EN  XrtJ-associated TM-motif-TM protein
+TP  TIGRFAMs
+CC  This model represents essentially the full length, ~60 residues, of a two-gene paralogous family from Acidobacterium sp. MP5ACTX8. Sequences consist of an N-terminal signal sequence ending in a GC motif, suggestive of the lipoprotein signal sequence, followed immediately by a C-terminal domain sequence with characteristics PEP-CTERM-like sequences, including a PExP motif and a transmembrane helix. Both members occur next to the novel exosortase variant, XrtJ, which contains a novel C-terminal domain.
+RN  [1]
+RM  PMID:22037399 
+RT  Archaeosortases and exosortases are widely distributed systems linking membrane transit with posttranslational modification. 
+RA  Haft DH, Payne SH, Selengut JD 
+RL  J Bacteriol. 2012 Jan;194(1):36-48. Epub 2011 Oct 28.

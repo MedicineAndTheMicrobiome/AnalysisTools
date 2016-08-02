@@ -1,0 +1,18 @@
+ID  indolpyr_decarb
+AC  TIGR03393
+DE  indolepyruvate decarboxylase
+AU  Haft DH
+TC  946.00 946.00
+NC  696.00 696.00
+AL  muscle_manual
+IT  equivalog
+EN  indolepyruvate decarboxylase, Erwinia family
+GS  ipdC
+EC  4.1.1.74
+TP  TIGRFAMs
+CC  A family of closely related, thiamine pyrophosphate-dependent enzymes includes indolepyruvate decarboxylase (EC 4.1.1.74), phenylpyruvate decarboxylase (EC 4.1.1.43), pyruvate decarboxylase (EC 4.1.1.1), branched-chain alpha-ketoacid decarboxylase, etc.. Members of this group of homologs may overlap in specificity. Within the larger family, this model represents a clade of bacterial indolepyruvate decarboxylases, part of a pathway for biosynthesis of the plant hormone indole-3-acetic acid. Typically, these species interact with plants, as pathogens or as beneficial, root-associated bacteria.
+RN  [1]
+RM  PMID: 12752451
+RT  Crystal structure of thiamindiphosphate-dependent indolepyruvate decarboxylase from Enterobacter cloacae, an enzyme involved in the biosynthesis of the plant hormone indole-3-acetic acid.
+RA  Schutz A, Sandalova T, Ricagno S, Hubner G, Konig S, Schneider G
+RL  Eur J Biochem. 2003 May;270(10):2312-21.

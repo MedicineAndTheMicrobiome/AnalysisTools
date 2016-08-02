@@ -1,0 +1,11 @@
+ID  Clo7Bot_mod_Cys
+AC  TIGR04333
+DE  Cys-rich peptide, Clo7bot family
+AU  Haft DH
+TC  31.00 31.00
+NC  25.00 25.00
+AL  muscle_manual
+IT  subfamily
+EN  Cys-rich peptide, Clo7bot family
+TP  TIGRFAMs
+CC  Members of this protein family range in size from 34 to 53 residues, including from four to seven Cys residues. Multiple strains of Clostridium botulinum show seven tandem members upstream of a radical SAM/SPASM domain protein likely to act as a ribosomal natural product maturase. By analogy to subtilosin A, the Cys residues are likely targets for modifications that may introduce new crosslinks. Across multiple strains of Clostridium botulinum and C. sporogenes, the adjacent radical SAM enzyme is nearly invariant.

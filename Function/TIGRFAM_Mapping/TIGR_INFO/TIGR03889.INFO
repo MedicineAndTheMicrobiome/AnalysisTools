@@ -1,0 +1,11 @@
+ID  nitrile_acc
+AC  TIGR03889
+DE  nitrile hydratase accessory protein
+AU  Haft DH
+TC  46.00 46.00
+NC  44.00 44.00
+AL  muscle_manual
+IT  equivalog
+EN  nitrile hydratase accessory protein
+TP  TIGRFAMs
+CC  Members of this protein family are found in operons with the alpha and beta subunits of nitrile hydratase, an enzyme with Fe(III) or Co(III) at the active site, and appear to be accessory proteins for maturation or activation of the enzyme. This protein is homologous to the beta subunit (see TIGR03888).

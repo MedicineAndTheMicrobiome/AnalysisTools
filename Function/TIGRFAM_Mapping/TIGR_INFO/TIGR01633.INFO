@@ -1,0 +1,11 @@
+ID  phi3626_gp14_N
+AC  TIGR01633
+DE  putative phage tail component, N-terminal domain
+AU  Haft DH, Fouts DE
+TC  23.65 23.65
+NC  22.70 22.70
+AL  clustalw_manual
+IT  hypoth_equivalog_domain
+EN  putative phage tail component, N-terminal domain
+TP  TIGRFAMs
+CC  This HMM represents the best-conserved region of about 125 amino acids, toward the N-terminus, of a family of proteins from temperate phage of a number of Gram-positive bacteria. These phage proteins range in length from 230 to 525 amino acids.

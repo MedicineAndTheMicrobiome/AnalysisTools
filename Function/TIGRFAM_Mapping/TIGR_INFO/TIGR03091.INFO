@@ -1,0 +1,19 @@
+ID  SASP_sspK
+AC  TIGR03091
+DE  small, acid-soluble spore protein K
+AU  Haft DH
+TC  57.15 57.15
+NC  35.10 35.10
+AL  clustalw
+IT  equivalog
+EN  small, acid-soluble spore protein K
+GS  sspK
+TP  TIGRFAMs
+CC  This protein family is restricted to a subset of endospore-forming bacteria such as Bacillus subtilis, all of which are in the Firmicutes (low-GC Gram-positive) lineage. It is a minor SASP (small, acid-soluble spore protein) designated SspK.
+DR  PFAM; PF08176; 
+RN  [1]
+RM  PMID: 9852018
+RT  New small, acid-soluble proteins unique to spores of Bacillus subtilis: identification of the coding genes and regulation and function of two of these genes.
+RA  Bagyan I, Setlow B, Setlow P
+RL  J Bacteriol. 1998 Dec;180(24):6704-12.
+DR  HAMAP; MF_01504; 12 of 12

@@ -1,0 +1,12 @@
+ID  cas1_PREFRAN
+AC  TIGR04329
+DE  CRISPR-associated endonuclease Cas1, subtype PREFRAN
+AU  Haft DH
+TC  300.00 300.00
+NC  160.00 160.00
+AL  muscle_manual
+IT  exception
+EN  CRISPR-associated endonuclease Cas1, subtype PREFRAN
+GS  cas1
+TP  TIGRFAMs
+CC  Members of this family are the Cas1 endonuclease of a novel CRISPR subtype, PREFRAN, found in Prevotella bryantii B14, Prevotella disiens FB035-09AN, Francisella tularensis subsp. novicida, Francisella philomiragia, Butyrivibrio proteoclasticus B316, Helcococcus kunzii ATCC 51366, etc.

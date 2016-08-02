@@ -1,0 +1,18 @@
+ID  murE
+AC  TIGR01085
+DE  UDP-N-acetylmuramyl-tripeptide synthetase
+AU  Haft DH
+TC  257.30 257.30
+NC  204.35 204.35
+AL  clustalw_manual
+IT  subfamily
+EN  UDP-N-acetylmuramyl-tripeptide synthetase
+GS  murE
+TP  TIGRFAMs
+CC  Most members of this family are EC 6.3.2.13, UDP-N-acetylmuramoyl-L-alanyl-D-glutamate--2,6-diaminopimelate ligase. An exception is Staphylococcus aureus, in which diaminopimelate is replaced by lysine in the peptidoglycan and MurE is EC 6.3.2.7. The Mycobacteria, part of the closest neighboring branch outside of the low-GC Gram-positive bacteria, use diaminopimelate.
+CC  A close homolog, scoring just below the trusted cutoff, is found (with introns) in Arabidopsis thaliana. Its role is unknown.
+RM  99429836
+RT  Expression of the Staphylococcus aureus UDP-N-acetylmuramoyl- L-alanyl-D-glutamate:L-lysine ligase in Escherichia coli and effects on peptidoglycan biosynthesis and cell growth.
+RA  Mengin-Lecreulx D, Falla T, Blanot D, van Heijenoort J, Adams DJ, Chopra I
+RL  J Bacteriol 1999 Oct;181(19):5909-14
+DR  HAMAP; MF_00208; 205 of 205

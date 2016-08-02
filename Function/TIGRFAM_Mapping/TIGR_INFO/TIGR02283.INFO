@@ -1,0 +1,12 @@
+ID  MltB_2
+AC  TIGR02283
+DE  lytic murein transglycosylase
+AU  Haft DH
+TC  248.45 248.45
+NC  198.20 198.20
+AL  clustalw_manual
+IT  subfamily
+EN  lytic murein transglycosylase
+EC  2.4.-.-
+TP  TIGRFAMs
+CC  Members of this family are closely related to the MltB family lytic murein transglycosylases described by TIGR02282 and are likewise all proteobacterial, although that family and this one form clearly distinct clades. Several species have one member of each family. Many members of this family (unlike the MltB family) contain an additional C-terminal domain, a putative peptidoglycan binding domain (PF01471), not included in region described by this model. Many sequences appear to contain N-terminal lipoprotein attachment sites, as does E. coli MltB in TIGR02282.

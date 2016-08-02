@@ -1,0 +1,14 @@
+ID  argG
+AC  TIGR00032
+DE  argininosuccinate synthase
+AU  Haft DH
+TC  268.20 268.20
+NC  168.65 168.65
+AL  clustalw_manual
+IT  equivalog
+EN  argininosuccinate synthase
+GS  argG
+EC  6.3.4.5
+TP  TIGRFAMs
+CC  argG in bacteria, ARG1 in Saccharomyces cerevisiae. There is a very unusual clustering in the alignment, with a deep split between one cohort of E. coli, H. influenzae, and Streptomyces, and the other cohort of eukaryotes, archaea, and the rest of the eubacteria.
+DR  HAMAP; MF_00581; 67 of 72

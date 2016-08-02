@@ -1,0 +1,13 @@
+ID  dTDP_gluc_dehyt
+AC  TIGR01181
+DE  dTDP-glucose 4,6-dehydratase
+AU  Haft DH
+TC  365.10 365.10
+NC  197.00 197.00
+AL  clustalw_manual
+IT  equivalog
+EN  dTDP-glucose 4,6-dehydratase
+GS  rfbB
+EC  4.2.1.46
+TP  TIGRFAMs
+CC  This protein is related to UDP-glucose 4-epimerase (GalE) and likewise has an NAD cofactor.

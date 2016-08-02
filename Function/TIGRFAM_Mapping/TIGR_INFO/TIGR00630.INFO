@@ -1,0 +1,15 @@
+ID  uvra
+AC  TIGR00630
+DE  excinuclease ABC subunit A
+AU  Loftus BJ, Eisen JA
+TC  729.80 729.80
+NC  289.80 289.80
+IT  equivalog
+EN  excinuclease ABC, A subunit
+GS  uvrA
+EC  3.1.25.-
+TP  TIGRFAMs
+CC  This family is a member of the ABC transporter superfamily of proteins of which all members for which functions are known except the UvrA proteins are involved in the transport of material through membranes.  UvrA orthologs are involved in the recognition of DNA damage as a step in nucleotide excision repair.
+CC  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  EGAD; 6128;
+DR  HAMAP; MF_00205; 90 of 94

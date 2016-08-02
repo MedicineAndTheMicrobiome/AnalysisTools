@@ -1,0 +1,11 @@
+ID  Lepto_4Cys
+AC  TIGR04454
+DE  small lipoprotein, LB_250 family
+AU  Haft DH
+TC  35.00 35.00
+NC  25.00 25.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  small lipoprotein, LB_250 family
+TP  TIGRFAMs
+CC  Members of this family average about 92 amino acids in length, including an apparent lipoprotein signal peptide and a mature portion with four additional invariant Cys residues. This family is universal, so far, across at least twenty species of Leptospira but unknown outside the genus.

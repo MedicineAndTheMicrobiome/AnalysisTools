@@ -1,0 +1,14 @@
+ID  DcuC
+AC  TIGR00771
+DE  transporter, anaerobic C4-dicarboxylate uptake C (DcuC) family
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  187.00 187.00
+NC  148.50 148.50
+AL  clustalw_manual
+IT  subfamily
+EN  c4-dicarboxylate anaerobic carrier family protein
+TR  2.A.61
+TP  TIGRFAMs
+CC  These proteins are members of the C4-dicarboxylate Uptake C (DcuC) Family (TC 2.A.61). The only functionally characterized member of this family is the anaerobic C4-dicarboxylate transporter (DcuC) of Escherichia coli. DcuC has 12 GES predicted transmembrane regions, is induced only under anaerobic conditions, and is not repressed by glucose. It may therefore function as a succinate efflux system during anaerobic glucose fermentation. However, when overexpressed, it can replace either DcuA or DcuB in
+CC  catalyzing fumarate-succinate exchange and fumarate uptake.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_61.html

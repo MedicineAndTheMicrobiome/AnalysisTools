@@ -1,0 +1,18 @@
+ID  LcrE
+AC  TIGR02568
+DE  type III secretion regulator YopN/LcrE/InvE/MxiC
+AU  Selengut J
+TC  89.50 89.50
+NC  51.60 51.60
+AL  clustalw
+IT  equivalog
+EN  type III secretion regulator YopN/LcrE/InvE/MxiC
+TP  TIGRFAMs
+CC  This protein is found in type III secretion operons and, in Yersinia is localized to the cell surface and is involved in the Low-Calicium Response (LCR), possibly by sensing the calcium concentration [1].  In Salmonella, the gene is known as InvE and is believed to perform an essential role in the secretion process and interacts with the proteins SipBCD and SicA [2].//Altered name to reflect regulatory role. Added GO and role IDs .  Negative regulation of type III secretion in Y pestis is mediated in part by a multiprotein complex that has been proposed to act as a physical impediment to type III secretion by blocking the entrance to the secretion apparatus prior to contact with mammalian cells. This complex is composed of YopN, its heterodimeric secretion chaperone SycN-YscB, and TyeA. PMID: 15701523[SS 6/3/05]
+RN  [1]
+RM  PMID: 1857212
+RT  The surface-located YopN protein is involved in calcium signal transduction in Yersinia pseudotuberculosis.
+RA  Forsberg A, Viitanen AM, Skurnik M, Wolf-Watz H.
+RL  Mol Microbiol. 1991 Apr;5(4):977-86.
+RN  [2]
+RM  PMID: 12169593

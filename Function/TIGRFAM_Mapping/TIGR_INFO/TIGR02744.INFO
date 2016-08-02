@@ -1,0 +1,22 @@
+ID  TrbI_Ftype
+AC  TIGR02744
+DE  type-F conjugative transfer system protein TrbI
+AU  Selengut J
+TC  83.65 83.65
+NC  54.20 54.20
+AL  clustalw
+IT  equivalog
+EN  type-F conjugative transfer system protein TrbI
+GS  trbI
+TP  TIGRFAMs
+CC  This protein is an essential component of the F-type conjugative transfer sytem for plasmid DNA transfer and has been shown to be localized to the periplasm [1,2].
+RN  [1]
+RM  PMID: 1355084
+RA  Maneewannakul S, Maneewannakul K, Ippen-Ihler K.
+RT  Characterization, localization, and sequence of F transfer region products: the pilus assembly gene product TraW and a new product, TrbI.
+RL   J Bacteriol. 1992 Sep;174(17):5567-74.
+RN  [2]
+RM  PMID: 16138100
+RA  Frost LS, Leplae R, Summers AO, Toussaint A.
+RT  Mobile genetic elements: the agents of open source evolution.
+RL  Nat Rev Microbiol. 2005 Sep;3(9):722-32.

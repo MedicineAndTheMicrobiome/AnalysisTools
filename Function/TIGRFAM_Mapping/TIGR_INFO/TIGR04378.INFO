@@ -1,0 +1,13 @@
+ID  myo_inos_iolB
+AC  TIGR04378
+DE  5-deoxy-glucuronate isomerase
+AU  Haft DH
+TC  205.00 205.00
+NC  180.00 180.00
+AL  muscle_manual
+IT  equivalog
+EN  5-deoxy-glucuronate isomerase
+GS  iolB
+EC  5.3.1.-
+TP  TIGRFAMs
+CC  Members of this protein family, 5-deoxy-glucuronate isomerase (iolB), represent one of eight enzymes in a pathway converting myo-inositol to acetyl-CoA.

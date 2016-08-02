@@ -1,0 +1,22 @@
+ID  menaquin_MqnC
+AC  TIGR03699
+DE  dehypoxanthine futalosine cyclase
+AU  Haft DH
+TC  428.10 428.10
+NC  397.65 397.65
+AL  muscle_manual
+IT  equivalog
+EN  dehypoxanthine futalosine cyclase
+GS  mqnC
+TP  TIGRFAMs
+CC  members of this protein family are involved in menaquinone biosynthesis by an alternate pathway via futalosine.
+RN  [1]
+RM  PMID:18801996
+RT  An alternative menaquinone biosynthetic pathway operating in microorganisms.
+RA  Hiratsuka T, Furihata K, Ishikawa J, Yamashita H, Itoh N, Seto H, Dairi T
+RL  Science. 2008 Sep 19;321(5896):1670-3.
+RN  [2]
+RM  PMID:23763543
+RT  In Vitro Reconstitution of the Radical S-Adenosylmethionine Enzyme MqnC Involved in the Biosynthesis of Futalosine-Derived Menaquinone.
+RA  Cooper LE, Fedoseyenko D, Abdelwahed SH, Kim SH, Dairi T, Begley TP 
+RL  Biochemistry. 2013 Jun 27.

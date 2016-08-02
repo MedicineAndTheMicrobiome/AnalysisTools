@@ -1,0 +1,18 @@
+ID  spore_sigG
+AC  TIGR02850
+DE  RNA polymerase sigma-G factor
+AU  Haft DH
+TC  457.00 457.00
+NC  324.75 324.75
+AL  clustalw
+IT  equivalog
+EN  RNA polymerase sigma-G factor
+GS  sigG
+TP  TIGRFAMs
+CC  Members of this family comprise the Firmicutes lineage endospore formation-specific sigma factor SigG. It is also desginated stage III sporulation protein G (SpoIIIG). This protein is rather closely related to sigma-F (SpoIIAC), another sporulation sigma factor.
+DR  SWISSPROT; P19940; Bacillus subtilis
+RN  [1]
+RM  2497052
+RT  Tandem genes encoding sigma-factors for consecutive steps of development in Bacillus subtilis.
+RA  Karmazyn-Campelli C, Bonamy C, Savelli B, Stragier P.
+RL  Genes Dev. 1989 Feb;3(2):150-7.

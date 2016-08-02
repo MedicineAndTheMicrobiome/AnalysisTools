@@ -1,0 +1,14 @@
+ID  tyr_phenol_ly
+AC  TIGR02618
+DE  tyrosine phenol-lyase
+AU  Haft DH
+TC  720.70 720.70
+NC  607.50 607.50
+AL  clustalw
+IT  equivalog
+EN  tyrosine phenol-lyase
+EC  4.1.99.2
+TP  TIGRFAMs
+CC  This model describes a group of tyrosine phenol-lyase (4.1.99.2) (beta-tyrosinase), a pyridoxal-phosphate enzyme closely related to tryptophanase (4.1.99.1) (see model TIGR02617). Both belong to the beta-eliminating lyase family (PF01212)
+DR  PFAM; PF01212; beta-eliminating lyase family
+DR  HAMAP; MF_00543; 8 of 8

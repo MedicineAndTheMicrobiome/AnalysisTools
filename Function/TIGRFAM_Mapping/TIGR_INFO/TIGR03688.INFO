@@ -1,0 +1,22 @@
+ID  pupylate_PafA2
+AC  TIGR03688
+DE  proteasome accessory factor PafA2
+AU  Haft DH
+TC  492.30 492.30
+NC  406.65 406.65
+AL  muscle_manual
+IT  equivalog
+EN  proteasome accessory factor PafA2
+EC  6.3.2.-
+TP  TIGRFAMs
+CC  This protein family is paralogous to (and distinct from) the PafA (proteasome accessory factor) first described in Mycobacterium tuberculosis (see TIGR03686). Members of both this family and TIGR03686 itself tend to cluster with each other, with the ubiquitin analog Pup (TIGR03687) associated with targeting to the proteasome, and with proteasome subunits themselves.
+RN  [1]
+RM  PMID:17277063
+RT  Characterization of the proteasome accessory factor (paf) operon in Mycobacterium tuberculosis.
+RA  Festa RA, Pearce MJ, Darwin KH
+RL  J Bacteriol. 2007 Apr;189(8):3044-50.
+RN  [2]
+RM  PMID:18832610
+RT  Ubiquitin-Like Protein Involved in the Proteasome Pathway of Mycobacterium tuberculosis.
+RA  Pearce MJ, Mintseris J, Ferreyra J, Gygi SP, Darwin KH
+RL  Science. 2008 Oct 2.

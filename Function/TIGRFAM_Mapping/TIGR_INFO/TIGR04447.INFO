@@ -1,0 +1,16 @@
+ID  PatC_TenC_TruC
+AC  TIGR04447
+DE  cyanobactin cluster PatC/TenC/TruC protein
+AU  Haft DH
+TC  30.00 30.00
+NC  25.00 20.00
+AL  muscle_manual
+IT  domain
+EN  cyanobactin cluster PatC/TenC/TruC protein
+TP  TIGRFAMs
+CC  Members of this family usually are small proteins (PatC, TenC, TruC) of unknown function in cyanobactin (prenylated cyclic peptide) biosynthesis clusters, where a different small protein is a known cyanobactin precursor (patellamide, anacyclamide, piricyclamide, etc). They may instead be the C-terminal domain of a longer protein that otherwise consists mostly of lectin-like or VWF type A domains, in similar context. Similar to the cyanobactin precursors, members of this family have two very strongly conserved regions separated by a hypervariable region, suggesting these proteins may undergo a similar maturation.
+RN  [1]
+RM  PMID:15883371 
+RT  Patellamide A and C biosynthesis by a microcin-like pathway in Prochloron didemni, the cyanobacterial symbiont of Lissoclinum patella. 
+RA  Schmidt EW, Nelson JT, Rasko DA, Sudek S, Eisen JA, Haygood MG, Ravel J 
+RL  Proc Natl Acad Sci U S A. 2005 May 17;102(20):7315-20.

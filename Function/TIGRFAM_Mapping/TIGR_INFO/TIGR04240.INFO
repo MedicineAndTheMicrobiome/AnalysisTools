@@ -1,0 +1,16 @@
+ID  flavi_E_stem
+AC  TIGR04240
+DE  flavivirus envelope glycoprotein E, stem/anchor domain
+AU  Haft DH
+TC  26.00 25.20
+NC  25.00 24.80
+AL  muscle_manual
+IT  equivalog_domain
+EN  flavivirus envelope glycoprotein E, stem/anchor domain
+TP  TIGRFAMs
+CC  This model describes the C-terminal domain, containing a stem region followed by two transmembrane anchor domains, of the envelope protein E. This protein is cleaved from the large flavivirus polyprotein, which yields three structural and seven nonstructural proteins.
+RN  [1]
+RM  PMID:21325407 
+RT  The unique transmembrane hairpin of flavivirus fusion protein E is essential for membrane fusion. 
+RA  Fritz R, Blazevic J, Taucher C, Pangerl K, Heinz FX, Stiasny K 
+RL  J Virol. 2011 May;85(9):4377-85. Epub 2011 Feb 16.

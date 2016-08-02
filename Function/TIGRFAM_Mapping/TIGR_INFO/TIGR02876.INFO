@@ -1,0 +1,17 @@
+ID  spore_yqfD
+AC  TIGR02876
+DE  sporulation protein YqfD
+AU  Haft DH
+TC  256.70 256.70
+NC  94.60 94.60
+AL  muscle
+IT  equivalog
+EN  sporulation protein YqfD
+GS  yqfD
+TP  TIGRFAMs
+CC  YqfD is part of the sigma-E regulon in the sporulation program of endospore-forming Gram-positive bacteria. Mutation results in a sporulation defect in Bacillus subtilis. Members are found in all currently known endospore-forming bacteria, including the genera Bacillus,  Symbiobacterium, Carboxydothermus, Clostridium, and Thermoanaerobacter.
+RN  [1]
+RM  14523133
+RT  Identification of sporulation genes by genome-wide analysis of the sigmaE regulon of Bacillus subtilis.
+RA  Feucht A, Evans L, Errington J.
+RL  Microbiology. 2003 Oct;149(Pt 10):3023-34.

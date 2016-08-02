@@ -1,0 +1,16 @@
+ID  KxYKxGKxW
+AC  TIGR03715
+DE  KxYKxGKxW signal peptide
+AU  Haft DH
+TC  18.00 17.60
+NC  17.00 16.00
+AL  muscle_manual
+IT  domain
+EN  KxYKxGKxW signal peptide
+TP  TIGRFAMs
+CC  This model describes a novel form of signal peptide that occurs as an N-terminal domain with a recognizable motif, reminiscent of the YSIRK and PEP-CTERM forms of signal peptide. This domain tends to occur on long, low-complexity (usually Serine-rich and heavily glycosylated) proteins of the Firmicutes, and (as with YSIRK) the majority of these proteins have the LPXTG cell wall-anchoring motif at the C-terminus.
+RN  [1]
+RM  PMID:17369296
+RT  Glycine residues in the hydrophobic core of the GspB signal sequence route export toward the accessory Sec pathway.
+RA  Bensing BA, Siboo IR, Sullam PM
+RL  J Bacteriol. 2007 May;189(10):3846-54.

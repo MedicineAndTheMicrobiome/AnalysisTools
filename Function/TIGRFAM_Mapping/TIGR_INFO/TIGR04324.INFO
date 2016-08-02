@@ -1,0 +1,12 @@
+ID  SpoChoClust_2
+AC  TIGR04324
+DE  sporadic carbohydrate cluster 2OG-Fe(II) oxygenase
+AU  Haft DH
+TC  150.00 150.00
+NC  80.00 80.00
+AL  muscle_manual
+IT  subfamily
+EN  sporadic carbohydrate cluster 2OG-Fe(II) oxygenase
+EC  1.-.-.-
+TP  TIGRFAMs
+CC  This family, related to streptomycin biosynthesis protein StrG and to phytanoyl-CoA dioxygenase, belongs to the 2-oxoglutarate and Fe(II)-dependent oxygenase superfamily, which includes not just dioxygenases, but also some chlorinating enzymes involved in natural product biosynthesis. Most members of this family are adjacent to a member of TIGR04323, and occur in a larger carbohydrate biosynthesis cluster found sporadically in genera Bradyrhizobium, Leptospira, Magnetospirillum, Oscillatoria, Prochlorococcus, etc.

@@ -1,0 +1,15 @@
+ID  flavo_cyto_c
+AC  TIGR01813
+DE  flavocytochrome c
+AU  Haft DH
+TC  285.45 285.45
+NC  218.75 218.75
+AL  clustalw_manual
+IT  subfamily
+EN  flavocytochrome c
+TP  TIGRFAMs
+CC  This HMM describes a family of redox proteins related to the succinate dehydrogenases and fumarate reductases of E. coli, mitochondria, and other well-characterized systems. A member of this family from Shewanella frigidimarina NCIMB400 is characterized as a water-soluble periplasmic protein with four heme groups, a non-covalently bound FAD, and essentially unidirectional fumarate reductase activity. At least seven distinct members of this family are found in Shewanella oneidensis, a species able to use a wide variety of pathways for respiraton.
+RM  10455032
+RT  Characterization of a flavocytochrome that is induced during the anaerobic respiration of Fe3+ by Shewanella frigidimarina NCIMB400.
+RA  Dobbin PS, Butt JN, Powell AK, Reid GA, Richardson DJ.
+RL  Biochem J 1999 Sep 1;342 ( Pt 2):439-48

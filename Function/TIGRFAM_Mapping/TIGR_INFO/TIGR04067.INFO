@@ -1,0 +1,16 @@
+ID  oc_CLOSPO_01332
+AC  TIGR04067
+DE  putative bacteriocin precursor, CLOSPO_01332 family
+AU  Haft DH
+TC  45.00 45.00
+NC  30.00 30.00
+AL  muscle_manual
+IT  equivalog
+EN  putative bacteriocin precursor, CLOSPO_01332 family
+TP  TIGRFAMs
+CC  Members of this protein family are Cys-rich putative bacteriocin precursor peptides found in a few strains of Clostridium and Anaerococcus. This family is related to the family of CLI_3235 (TIGR04065). Members of both families are found next to a CLI_3234 family radical SAM protein that appears to perform post-translational modification.
+RN  [1]
+RM  PMID:21478363 
+RT  Biological systems discovery in silico: radical S-adenosylmethionine protein families and their target peptides for posttranslational modification. 
+RA  Haft DH, Basu MK 
+RL  J Bacteriol. 2011 Jun;193(11):2745-55.

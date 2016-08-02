@@ -1,0 +1,13 @@
+ID  ccs
+AC  TIGR00783
+DE  citrate carrier protein, CCS family
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  549.05 549.05
+NC  417.35 417.35
+AL  clustalw_manual
+IT  subfamily
+EN  citrate carrier protein, CCS family
+TR  2.A.24
+TP  TIGRFAMs
+CC  These proteins are members of the Citrate:Cation Symporter (CCS) Family (TC 2.A.24).  These proteins have 12 GES predicted transmembrane regions.  Most members of the CCS family catalyze citrate uptake with either Na+ or H+ as the cotransported cation.  However, one member is specific for L-malate and probably functions by a proton symport mechanism.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_24.html

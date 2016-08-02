@@ -1,0 +1,17 @@
+ID  mycofact_creat
+AC  TIGR03964
+DE  mycofactocin system creatininase family protein
+AU  Haft DH
+TC  172.00 172.00
+NC  168.00 168.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  mycofactocin system creatininase family protein
+GS  mftE
+TP  TIGRFAMs
+CC  Members of this protein family are uncharacterized Actinobacterial proteins, with homology to creatinine amidohydrolase from Pseudomonas. Members occur only in the context of the mycofactocin system.
+RN  [1]
+RM  PMID:21223593 
+RT  Bioinformatic evidence for a widely distributed, ribosomally produced electron carrier precursor, its maturation proteins, and its nicotinoprotein redox partners. 
+RA  Haft DH 
+RL  BMC Genomics. 2011 Jan 11;12(1):21.

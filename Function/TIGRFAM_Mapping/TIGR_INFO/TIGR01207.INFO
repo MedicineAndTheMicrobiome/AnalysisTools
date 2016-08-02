@@ -1,0 +1,18 @@
+ID  rmlA
+AC  TIGR01207
+DE  glucose-1-phosphate thymidylyltransferase
+AU  Haft DH
+TC  360.65 360.65
+NC  189.50 189.50
+AL  clustalw
+IT  equivalog
+EN  glucose-1-phosphate thymidylyltransferase, short form
+GS  rfbA
+EC  2.7.7.24
+TP  TIGRFAMs
+CC  Alternate name: dTDP-D-glucose synthase
+CC  homotetramer
+CC  This HMM describes a tightly conserved but broadly distributed subfamily (here designated as short form) of known and putative bacterial glucose-1-phosphate thymidylyltransferases. It is well characterized in several species as the first of four enzymes involved in the biosynthesis of dTDP-L-rhamnose, a cell wall constituent and a feedback inhibitor of the enzyme.
+DR  EXPERIMENTAL; EGAD|17315; Salmonella enterica
+DR  EXPERIMENTAL; OMNI|NT03PA5970; Pseudomonas aeruginosa
+DR  COGS; COG1209

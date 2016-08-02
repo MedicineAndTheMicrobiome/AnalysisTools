@@ -1,0 +1,13 @@
+ID  eda
+AC  TIGR01182
+DE  2-dehydro-3-deoxyphosphogluconate aldolase/4-hydroxy-2-oxoglutarate aldolase
+AU  Haft DH
+TC  156.05 156.05
+NC  95.25 95.25
+AL  clustalw_manual
+IT  subfamily
+EN  Entner-Doudoroff aldolase
+GS  eda
+EC  4.1.2.14 4.1.3.16
+TP  TIGRFAMs
+CC  2-deydro-3-deoxyphosphogluconate aldolase (EC 4.1.2.14) is an enzyme of the Entner-Doudoroff pathway.  This aldolase has another function, 4-hydroxy-2-oxoglutarate aldolase (EC 4.1.3.16) shown experimentally in Escherichia coli and Pseudomonas putida

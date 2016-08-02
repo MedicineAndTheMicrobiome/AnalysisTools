@@ -1,0 +1,17 @@
+ID  release_prfH
+AC  TIGR03072
+DE  putative peptide chain release factor H
+AU  Haft DH
+TC  166.65 166.65
+NC  142.70 142.70
+AL  muscle
+IT  equivalog
+EN  putative peptide chain release factor H
+GS  prfH
+TP  TIGRFAMs
+CC  Members of this protein family are bacterial proteins homologous to peptide chain release factors 1 (RF-1, product of the prfA gene), and 2 (RF-2, product of the prfB gene). The member from Escherichia coli K-12, designated prfH, appears to be a pseudogene. This class I release factor is always found as the downstream gene of a two-gene operon.
+RN  [1]
+RM  PMID: 16970810
+RT  Diverse bacterial genomes encode an operon of two genes, one of which is an unusual class-I release factor that potentially recognizes atypical mRNA signals other than normal stop codons.
+RA  Baranov PV, Vestergaard B, Hamelryck T, Gesteland RF, Nyborg J, Atkins JF
+RL  Biol Direct. 2006 Sep 13;1(1):28.

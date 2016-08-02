@@ -1,0 +1,12 @@
+ID  hydantase
+AC  TIGR01879
+DE  amidase, hydantoinase/carbamoylase family
+AU  Selengut J
+TC  204.00 204.00
+NC  143.85 143.85
+AL  clustalw
+IT  subfamily
+EN  amidase, hydantoinase/carbamoylase family
+EC  3.5.-.-
+TP  TIGRFAMs
+CC  Enzymes in this subfamily hydrolize the amide bonds of compounds containing carbamoyl groups or hydantoin rings.  These enzymes are members of the broader family of amidases represented by PF01546.

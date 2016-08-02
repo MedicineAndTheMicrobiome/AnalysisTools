@@ -1,0 +1,13 @@
+ID  2A0601
+AC  TIGR00914
+DE  heavy metal efflux pump, CzcA family
+AU  Haft DH, Loftus BJ, Paulsen IT
+TC  701.45 701.45
+NC  424.40 424.40
+AL  clustalw_manual
+IT  subfamily
+EN  heavy metal efflux pump, CzcA family
+TP  TIGRFAMs
+CC  This model represents a family of H+/heavy metal cation antiporters. This family is one of several subfamilies within the scope of Pfam HMM PF00873.
+DR  PFAM; PF00873; AcrB/AcrD/AcrF family
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_6.html

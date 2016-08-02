@@ -1,0 +1,12 @@
+ID  tfb2
+AC  TIGR00625
+DE  transcription factor Tfb2
+AU  Loftus BJ, Eisen JA
+TC  320.70 320.70
+NC  228.35 228.35
+IT  subfamily
+EN  Transcription factor tfb2
+TP  TIGRFAMs
+CC  All proteins in this family are part of the TFIIH complex which is involved in the initiation of transcription and nucleotide excision repair.
+CC  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  EGAD; 45586;

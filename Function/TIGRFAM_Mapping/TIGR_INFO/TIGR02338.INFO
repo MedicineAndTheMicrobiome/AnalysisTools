@@ -1,0 +1,17 @@
+ID  gimC_beta
+AC  TIGR02338
+DE  prefoldin, beta subunit
+AU  Haft DH
+TC  73.00 73.00
+NC  49.65 49.65
+AL  clustalw
+IT  equivalog
+EN  prefoldin, beta subunit, archaeal
+TP  TIGRFAMs
+CC  Chaperonins are cytosolic, ATP-dependent molecular chaperones, with a conserved toroidal architecture, that assist  in the folding of nascent and/or denatured polypeptide chains. The group I chaperonin system consists of GroEL and GroES, and is found (usually) in bacteria and organelles of bacterial origin. The group II chaperonin system, called the thermosome in Archaea and TRiC or CCT in the Eukaryota, is structurally similar but only distantly related. Prefoldin, also called GimC, is a complex in Archaea and Eukaryota, that works with group II chaperonins. Members of this protein family are the archaeal clade of the beta class of prefoldin subunit. Closely related, but outside the scope of this family are the eukaryotic beta-class prefoldin subunits, Gim-1,3,4 and 6. The alpha class prefoldin subunits are more distantly related.
+RN  [1]
+RM  10581246
+RT  MtGimC, a novel archaeal chaperone related to the eukaryotic chaperonin cofactor GimC/prefoldin.
+RA  Leroux MR, Fandrich M, Klunker D, Siegers K, Lupas AN, Brown JR, Schiebel E, Dobson CM, Hartl FU.
+RL  EMBO J. 1999 Dec 1;18(23):6730-43.
+DR  HAMAP; MF_00307; 36 of 36

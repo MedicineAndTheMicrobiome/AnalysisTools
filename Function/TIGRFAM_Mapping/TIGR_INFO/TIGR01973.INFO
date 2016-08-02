@@ -1,0 +1,13 @@
+ID  NuoG
+AC  TIGR01973
+DE  NADH dehydrogenase (quinone), G subunit
+AU  Selengut J
+TC  470.05 470.05
+NC  439.55 439.55
+AL  clustalw
+IT  equivalog
+EN  NADH-quinone oxidoreductase, chain G
+GS  nuoG
+EC  1.6.99.5
+TP  TIGRFAMs
+CC  This HMM represents the G subunit (one of 14: A->N) of the NADH-quinone oxidoreductase complex I which generally couples NADH and ubiquinone oxidation/reduction in bacteria and mammalian mitochondria while translocating protons, but may act on NADPH and/or plastoquinone in cyanobacteria and plant chloroplasts.  This HMM excludes related subunits from formate dehydrogenase complexes.

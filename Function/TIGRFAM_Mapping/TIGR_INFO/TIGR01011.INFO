@@ -1,0 +1,14 @@
+ID  rpsB_bact
+AC  TIGR01011
+DE  ribosomal protein S2
+AU  Haft DH
+TC  76.30 76.30
+NC  68.50 68.50
+AL  clustalw
+IT  equivalog
+EN  ribosomal protein S2, bacterial type
+GS  rpsB
+TP  TIGRFAMs
+CC  This model describes the bacterial, ribosomal, and chloroplast forms of ribosomal protein S2.
+CC  TIGR01012 describes the archaeal and cytosolic forms.
+DR  HAMAP; MF_00291; 669 of 736

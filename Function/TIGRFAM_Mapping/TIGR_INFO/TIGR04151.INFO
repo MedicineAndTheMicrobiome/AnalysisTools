@@ -1,0 +1,18 @@
+ID  exosort_VPDSG
+AC  TIGR04151
+DE  exosortase C, VPDSG-CTERM-specific
+AU  Haft DH
+TC  300.00 300.00
+NC  200.00 200.00
+AL  muscle_manual
+IT  exception
+EN  exosortase C, VPDSG-CTERM-specific
+GS  xrtC
+EC  3.4.22.-
+TP  TIGRFAMs
+CC  Through in silico analysis, we previously described the PEP-CTERM/exosortase system (PMID:16930487). This model describes the exosortase subtype specific for the VPDSG-CTERM variant (TIGR03778) of PEP-CTERM. Systems are found, so far, in Verrucomicrobiae bacterium DG1235 (twenty) and bacterium Ellin514 (two). This system may coexist with other system variants.
+RN  [1]
+RM  PMID:22037399 
+RT  Archaeosortases and exosortases are widely distributed systems linking membrane transit with posttranslational modification. 
+RA  Haft DH, Payne SH, Selengut JD 
+RL  J Bacteriol. 2012 Jan;194(1):36-48. Epub 2011 Oct 28.

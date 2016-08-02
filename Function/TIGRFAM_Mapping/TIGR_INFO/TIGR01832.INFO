@@ -1,0 +1,14 @@
+ID  kduD
+AC  TIGR01832
+DE  2-deoxy-D-gluconate 3-dehydrogenase
+AU  Haft DH
+TC  338.85 338.85
+NC  284.85 284.85
+AL  clustalw_manual
+IT  equivalog
+EN  2-deoxy-D-gluconate 3-dehydrogenase
+GS  kduD
+EC  1.1.1.125
+TP  TIGRFAMs
+CC  This HMM describes 2-deoxy-D-gluconate 3-dehydrogenase (also called 2-keto-3-deoxygluconate oxidoreductase), a member of the family of short-chain-alcohol dehydrogenases (PF00106). This protein has been characterized in Erwinia chrysanthemi as an enzyme of pectin degradation.
+DR  EXPERIMENTAL; SP|Q05528; Erwinia chrysanthemi

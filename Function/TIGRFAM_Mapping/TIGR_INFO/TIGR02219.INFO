@@ -1,0 +1,16 @@
+ID  phage_NlpC_fam
+AC  TIGR02219
+DE  putative phage cell wall peptidase, NlpC/P60 family
+AU  Haft DH
+TC  81.90 81.90
+NC  62.25 62.25
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  putative phage cell wall peptidase, NlpC/P60 family
+TP  TIGRFAMs
+CC  Members of this family show sequence similarity to members of the NlpC/P60 family described by Pfam model PF00877 and by  Anantharaman and Aravind (PMID:12620121). The NlpC/P60 family includes a number of characterized bacterial cell wall hydrolases. Members of this related family are all found in prophage regions of bacterial genomes.
+DR  PFAM; PF00877; NlpC/P60 family
+RM  12620121
+RT  Evolutionary history, structural features and biochemical diversity of the NlpC/P60 superfamily of enzymes.
+RA  Anantharaman V, Aravind L.
+RL  Genome Biol. 2003;4(2):R11

@@ -1,0 +1,12 @@
+ID  UDG_fam_dom
+AC  TIGR03914
+DE  uracil-DNA glycosylase family domain
+AU  Haft DH
+TC  189.95 189.95
+NC  170.20 170.20
+AL  muscle_manual
+IT  hypoth_equivalog_domain
+EN  uracil-DNA glycosylase family domain
+EC  3.2.2.-
+TP  TIGRFAMs
+CC  This model represents a clade within the uracil-DNA glycosylase superfamily. Among characterized proteins, it most closely resembles the Thermus thermophilus uracil-DNA glycosylase TTUDGA, which acts uracil (deamidated cytosine) in both single-stranded DNA and U/G pairs of double-stranded DNA. This domain may occur either as a stand-alone protein or as the C-terminal domain of a fusion with another domain that always pairs with a particular radical-SAM family protein.

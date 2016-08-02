@@ -1,0 +1,13 @@
+ID  mmdA
+AC  TIGR01117
+DE  methylmalonyl-CoA decarboxylase alpha subunit
+AU  Ujwal ML, Paulsen IT
+TC  998.80 998.80
+NC  908.80 908.80
+AL  clustalw
+IT  subfamily
+EN  methylmalonyl-CoA decarboxylase alpha subunit
+GS  mmdA
+EC  4.1.1.41
+TP  TIGRFAMs
+CC  This model describes methymalonyl-CoA decarboxylase aplha subunit in archaea and bacteria. Metylmalonyl-CoA decarboxylase Na+ pump is a representative of a class of Na+ transport decarboxylases that couples the energy derived by decarboxylation of carboxylic acid substrates to drive the extrusion of Na+ ion across the membrane.

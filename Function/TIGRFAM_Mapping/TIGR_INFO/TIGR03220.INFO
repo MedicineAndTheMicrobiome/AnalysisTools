@@ -1,0 +1,18 @@
+ID  catechol_dmpE
+AC  TIGR03220
+DE  2-oxopent-4-enoate hydratase
+AU  Haft DH
+TC  408.80 408.80
+NC  247.25 247.25
+AL  muscle
+IT  equivalog
+EN  2-oxopent-4-enoate hydratase
+GS  dmpE
+EC  4.2.-.-
+TP  TIGRFAMs
+CC  Members of this protein family are 2-oxopent-4-enoate hydratase, which is also called 2-hydroxypent-2,4-dienoate hydratase. It is closely related to another gene found in the same operon, 4-oxalocrotonate decarboxylase, with which it interacts closely.
+RN  [1]
+RM  PMID: 1732207
+RT  Nucleotide sequence and functional analysis of the complete phenol/3,4-dimethylphenol catabolic pathway of Pseudomonas sp. strain CF600.
+RA  Shingler V, Powlowski J, Marklund U
+RL  J Bacteriol. 1992 Feb;174(3):711-24.

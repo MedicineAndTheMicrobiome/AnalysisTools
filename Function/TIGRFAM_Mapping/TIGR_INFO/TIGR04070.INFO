@@ -1,0 +1,18 @@
+ID  photo_TT_lyase
+AC  TIGR04070
+DE  spore photoproduct lyase
+AU  Haft DH
+TC  400.00 400.00
+NC  350.00 350.00
+AL  muscle_manual
+IT  equivalog
+EN  spore photoproduct lyase
+GS  splB
+EC  4.1.99.14
+TP  TIGRFAMs
+CC  DNA damage to bacterial spores from ultraviolet light accumulates in the form of 5-thyminyl-5,6-dihydrothymine, spore photoproduct. The damage is repaired by spore photoproduct lyase, a member of the radical SAM family of enzymes. The score of this model is set to restrict itself to spore-forming members of the Firmicutes, but additional homologs scoring below the trusted cutoff tend to occur in radioresistant organisms (e.g. Kineococcus radiotolerans) and may be functionally equivalent.  A related family in the Mycobacterium lineage is described by family TIGR03886, and may or may not be equivalent in function.
+RN  [1]
+RM  PMID:19178276
+RT  Spore photoproduct lyase catalyzes specific repair of the 5R but not the 5S spore photoproduct.
+RA  Chandra T, Silver SC, Zilinskas E, Shepard EM, Broderick WE, Broderick JB
+RL  J Am Chem Soc. 2009 Feb 25;131(7):2420-1.

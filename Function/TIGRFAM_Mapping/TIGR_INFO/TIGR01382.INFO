@@ -1,0 +1,15 @@
+ID  PfpI
+AC  TIGR01382
+DE  intracellular protease, PfpI family
+AU  Haft DH
+TC  139.05 139.05
+NC  112.55 112.55
+AL  clustalw_manual
+IT  subfamily
+EN  intracellular protease, PfpI family
+TP  TIGRFAMs
+CC  The member of this family from Pyrococcus horikoshii has been solved to 2 Angstrom resolution. It is an ATP-independent intracellular protease that crystallizes as a hexameric ring. Cys-101 is proposed as the active site residue in a catalytic triad with the adjacent His-102 and a Glu residue from an adjacent monomer. A member of this family from Bacillus subtilis, GSP18, has been shown to be expressed in response to several forms of stress. A role in the degradation of small peptides has been suggested. A closely related family consists of the thiamine biosynthesis protein ThiJ and its homologs.
+RM  11114201
+RT  Crystal structure of an intracellular protease from Pyrococcus horikoshii at 2-A resolution.
+RA  Du X, Choi IG, Kim R, Wang W, Jancarik J, Yokota H, Kim SH.
+RL  Proc Natl Acad Sci U S A 2000 Dec 19;97(26):14079-84

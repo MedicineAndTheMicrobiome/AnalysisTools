@@ -1,0 +1,24 @@
+ID  cas_RAMP_Cmr4
+AC  TIGR02580
+DE  CRISPR type III-B/RAMP module RAMP protein Cmr4
+AU  Haft DH
+TC  87.00 87.00
+NC  65.40 65.40
+AL  clustalw
+IT  equivalog
+EN  CRISPR type III-B/RAMP module RAMP protein Cmr4
+GS  cmr4
+TP  TIGRFAMs
+CC  This model represents a CRISPR-associated protein from the family that includes TM1792 of Thermotoga maritima. This family is part of the broad RAMP superfamily (PF03787) collection of CRISPR-associated proteins. It is the fourth of a recurring set of six proteins, four of are in the RAMP superfamily, that we designate the CRISPR RAMP module.
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=2003
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=57303
+DR  PFAM; PF03787; RAMP superfamily
+RN  [1]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005
+RN  [2]
+RM  11788711
+RT  A DNA repair system specific for thermophilic Archaea and bacteria predicted by genomic context analysis.
+RA  Makarova KS, Aravind L, Grishin NV, Rogozin IB, Koonin EV.
+RL  Nucleic Acids Res. 2002 Jan 15;30(2):482-96.

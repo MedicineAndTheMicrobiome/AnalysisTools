@@ -1,0 +1,17 @@
+ID  butyr_acet_CoA
+AC  TIGR03948
+DE  butyryl-CoA:acetate CoA-transferase
+AU  Haft DH
+TC  674.80 674.80
+NC  514.65 514.65
+AL  muscle_manual
+IT  equivalog
+EN  butyryl-CoA:acetate CoA-transferase
+EC  2.8.3.-
+TP  TIGRFAMs
+CC  This enzyme represents one of at least two mechanisms for reclaiming CoA from butyryl-CoA at the end of butyrate biosynthesis (an important process performed by some colonic bacteria), namely transfer of CoA to acetate. An alternate mechanism transfers the butyrate onto inorganic phosphate, after which butyrate kinase transfers the phosphate onto ADP, creating ATP.
+RN  [1]
+RM  PMID:19807780
+RT  Diversity of human colonic butyrate-producing bacteria revealed by analysis of the butyryl-CoA:acetate CoA-transferase gene.
+RA  Louis P, Young P, Holtrop G, Flint HJ
+RL  Environ Microbiol. 2009 Oct 5.

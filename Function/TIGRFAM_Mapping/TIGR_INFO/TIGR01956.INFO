@@ -1,0 +1,11 @@
+ID  NusG_myco
+AC  TIGR01956
+DE  NusG family protein
+AU  Selengut J
+TC  103.10 103.10
+NC  80.10 80.10
+AL  clustalw
+IT  hypoth_equivalog
+EN  NusG family protein
+TP  TIGRFAMs
+CC  This model represents a family of Mycoplasma proteins orthologous to the bacterial transcription termination/antitermination factor NusG.  These sequences from Mycoplasma are notably diverged (long branches in a Neighbor-joining phylogenetic tree) from the bacterial species. And although NusA and ribosomal protein S10 (NusE) appear to be present, NusB may be absent in Mycoplasmas calling into question whether these species have a functional Nus system including this family as a member.

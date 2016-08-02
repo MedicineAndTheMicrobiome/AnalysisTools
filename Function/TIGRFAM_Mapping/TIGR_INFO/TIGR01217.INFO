@@ -1,0 +1,12 @@
+ID  ac_ac_CoA_syn
+AC  TIGR01217
+DE  acetoacetate-CoA ligase
+AU  Haft DH
+TC  520.90 520.90
+NC  299.00 299.00
+AL  clustalw
+IT  equivalog
+EN  acetoacetyl-CoA synthase
+EC  6.2.1.16
+TP  TIGRFAMs
+CC  This enzyme catalyzes the first step of the mevalonate pathway of IPP biosynthesis.  Most bacteria do not use this pathway, but rather the deoxyxylulose pathway.

@@ -1,0 +1,12 @@
+ID  dsdC
+AC  TIGR02036
+DE  D-serine deaminase transcriptional activator
+AU  Haft DH
+TC  352.40 352.40
+NC  258.45 258.45
+AL  clustalw
+IT  equivalog
+EN  D-serine deaminase transcriptional activator
+GS  dsdC
+TP  TIGRFAMs
+CC  This family, part of the LysR family of transcriptional regulators, activates transcription of the gene for D-serine deaminase, dsdA. Trusted members of this family so far are found adjacent to dsdA and only in Gammaproteobacteria, including E. coli, Vibrio cholerae, and Colwellia psychrerythraea.

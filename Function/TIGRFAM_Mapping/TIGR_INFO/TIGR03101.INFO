@@ -1,0 +1,16 @@
+ID  hydr2_PEP
+AC  TIGR03101
+DE  exosortase A system-associated hydrolase 2
+AU  Selengut J
+TC  202.75 202.75
+NC  111.90 111.90
+AL  muscle
+IT  hypoth_equivalog
+EN  exosortase A system-associated hydrolase 2
+TP  TIGRFAMs
+CC  This group of proteins are members of the alpha/beta hydrolase superfamily.  These proteins are generally found in genomes containing the exosortase/PEP-CTERM protein expoert system [1], specifically the type 1 variant of this system described by the Genome Property GenProp0652.  When found in this context they are invariably present in the vicinity of a second, relatively unrelated enzyme (ortholog 1, TIGR03100) of the same superfamily.
+RN  [1]
+RM  PMID: 16930487
+RT  Exopolysaccharide-associated protein sorting in environmental organisms: the PEP-CTERM/EpsH system. Application of a novel phylogenetic profiling heuristic.
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD
+RL  BMC Biol. 2006 Aug 24;4(1):29.

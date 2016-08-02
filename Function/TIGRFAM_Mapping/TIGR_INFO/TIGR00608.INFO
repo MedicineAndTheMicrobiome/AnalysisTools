@@ -1,0 +1,15 @@
+ID  radc
+AC  TIGR00608
+DE  DNA repair protein RadC
+AU  Loftus BJ, Eisen JA
+TC  133.85 133.85
+NC  105.10 105.10
+IT  superfamily
+EN  DNA repair protein radc
+TP  TIGRFAMs
+CC  The genes in this family for which the functions are known have an as yet porrly defined role in determining sensitivity to DNA damaging agents such as UV irradiation.
+CC  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  EGAD; 24268;
+DR  SWISSPROT; P25531;
+RM  92158627;
+DR  HAMAP; MF_00018; 233 of 235

@@ -1,0 +1,19 @@
+ID  pgm_bpd_ind
+AC  TIGR01307
+DE  phosphoglycerate mutase (2,3-diphosphoglycerate-independent)
+AU  Haft DH
+TC  330.65 330.65
+NC  164.40 164.40
+AL  clustalw_manual
+IT  equivalog
+EN  phosphoglycerate mutase (2,3-diphosphoglycerate-independent)
+GS  gpmI
+EC  5.4.2.12
+TP  TIGRFAMs
+CC  This protein is about double in length of, and devoid of homology to the form of phosphoglycerate mutase that uses 2,3-bisphosphoglycerate as a cofactor.
+DR  PFAM; PF01676; Metalloenzyme: Metalloenzyme superfamily
+DR  COGS; COG0696
+DR  EXPERIMENTAL; PIR:A42807; Zea mays (maize)
+DR  EXPERIMENTAL; EGAD|38624; Pseudomonas syringae
+DR  EXPERIMENTAL; SP|P39773; Bacillus subtilis
+DR  HAMAP; MF_01038; 231 of 236

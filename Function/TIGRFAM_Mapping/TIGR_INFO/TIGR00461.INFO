@@ -1,0 +1,21 @@
+ID  gcvP
+AC  TIGR00461
+DE  glycine dehydrogenase
+AU  Loftus BJ
+TC  859.20 859.20
+NC  664.70 664.70
+AL  clustalw
+IT  equivalog
+EN  glycine dehydrogenase (decarboxylating)
+GS  gcvP
+EC  1.4.4.2
+TP  TIGRFAMs
+CC  This apparently ubiquitous enzyme is found in bacterial, mammalian and plant sources. The enzyme catalyzes the reaction: GLYCINE + LIPOYLPROTEIN = S-AMINOMETHYL-DIHYDROLIPOYLPROTEIN + CO2. It is part of the glycine decarboxylase multienzyme complex (GDC) consisting of four proteins P, H, L and T.  Active site in E.coli is located as the (K) residues at position 713 of the SEED alignment.
+DR  Swissprot; P33195;
+RM  Medline 94237484;
+DR  ECOCYC; EG11810; 
+DR  Swissprot; P49361; 
+RM  MEDLINE; 94218395;
+DR  PFAM; PF02347
+DR  InterPro; IPR003437
+DR  HAMAP; MF_00711; 177 of 179

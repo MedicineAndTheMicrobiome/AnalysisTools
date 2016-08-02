@@ -1,0 +1,12 @@
+ID  Pmev_kin_Gr_pos
+AC  TIGR01220
+DE  phosphomevalonate kinase
+AU  Haft DH
+TC  165.70 165.70
+NC  70.35 70.35
+AL  clustalw
+IT  equivalog
+EN  phosphomevalonate kinase, ERG8-type, Gram-positive branch
+EC  2.7.4.2
+TP  TIGRFAMs
+CC  This enzyme is part of the mevalonate pathway, one of two alternative pathways for the biosynthesis of IPP. In an example of nonorthologous gene displacement, two different types of phosphomevalonate kinase are found - the animal type and this ERG8 type. This model represents the low GC Gram-positive organism forms of the ERG8 type of phosphomevalonate kinase.

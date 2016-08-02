@@ -1,0 +1,11 @@
+ID  formate_TAT
+AC  TIGR02811
+DE  formate dehydrogenase region TAT target
+AU  Haft DH
+TC  48.45 48.45
+NC  30.80 30.80
+AL  muscle
+IT  hypoth_equivalog
+EN  formate dehydrogenase region TAT target
+TP  TIGRFAMs
+CC  Members of this uncharacterized protein family are all small, extending 70 or fewer residues from their respective likely start codons. All have the twin-arginine-dependent tranport (TAT) signal sequence at the N-terminus and a conserved 20-residue C-terminal region that includes the motif Y-[HRK]-X-[TS]-X-H-[IV]-X-X-[YF]-Y. The TAT signal sequence suggests a bound cofactor. All members are encoded near genes for subunits of formate dehydrogenase, and may themselves be a subunit or accessory protein.

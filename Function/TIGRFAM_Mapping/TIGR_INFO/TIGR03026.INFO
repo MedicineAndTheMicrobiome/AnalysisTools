@@ -1,0 +1,37 @@
+ID  NDP-sugDHase
+AC  TIGR03026
+DE  nucleotide sugar dehydrogenase
+AU  Selengut J
+TC  189.80 189.80
+NC  105.10 105.10
+AL  muscle
+IT  subfamily
+EN  nucleotide sugar dehydrogenase
+TP  TIGRFAMs
+CC  Enzymes in this family catalyze the NAD-dependent alcohol-to-acid oxidation of nucleotide-linked sugars.  Examples include UDP-glucose 6-dehydrogenase (1.1.1.22) [1], GDP-mannose 6-dehydrogenase (1.1.1.132) [2], UDP-N-acetylglucosamine 6-dehydrogenase (1.1.1.136) [3], UDP-N-acetyl-D-galactosaminuronic acid dehydrogenase [4] and UDP-N-acetyl-D-mannosaminuronic acid dehydrogenase [5].  These enzymes are most often involved in the biosynthesis of polysaccharides and are often found in operons devoted to that purpose.
+CC  All of these enzymes contain three Pfam domains, PF03721, PF00984, and PF03720 for the N-terminal, central, and C-terminal regions respectively.
+RN  [1]
+RM  PMID: 10376820 
+RT  Assay for UDPglucose 6-dehydrogenase in phosphate-starved cells: gene tuaD of Bacillus subtilis 168 encodes the UDPglucose 6-dehydrogenase involved in teichuronic acid synthesis. 
+RA  Pagni M, Lazarevic V, Soldo B, Karamata D 
+RL  Microbiology. 1999 May;145 ( Pt 5):1049-53. 
+RN  [2]
+RM  PMID: 8606150 
+RT  Characterization of the gene coding for GDP-mannose dehydrogenase (algD) from Azotobacter vinelandii. 
+RA  Campos M, Martinez-Salazar JM, Lloret L, Moreno S, Nunez C, Espin G, Soberon-Chavez G 
+RL  J Bacteriol. 1996 Apr;178(7):1793-9. 
+RN  [3]
+RM  PMID: 15226302 
+RT  Biochemical characterization of WbpA, a UDP-N-acetyl-D-glucosamine 6-dehydrogenase involved in O-antigen biosynthesis in Pseudomonas aeruginosa PAO1. 
+RA  Miller WL, Wenzel CQ, Daniels C, Larocque S, Brisson JR, Lam JS 
+RL  J Biol Chem. 2004 Sep 3;279(36):37551-8. Epub 2004 Jun 28. 
+RN  [4]
+RM  PMID: 10931835 
+RT  WbpO, a UDP-N-acetyl-D-galactosamine dehydrogenase from Pseudomonas aeruginosa serotype O6. 
+RA  Zhao X, Creuzenet C, Belanger M, Egbosimba E, Li J, Lam JS 
+RL  J Biol Chem. 2000 Oct 27;275(43):33252-9.
+RN  [5]
+RM  PMID: 2166030 
+RT  Biosynthesis of enterobacterial common antigen in Escherichia coli. Biochemical characterization of Tn10 insertion mutants defective in enterobacterial common antigen synthesis. 
+RA  Meier-Dieter U, Starman R, Barr K, Mayer H, Rick PD 
+RL  J Biol Chem. 1990 Aug 15;265(23):13490-7.

@@ -1,0 +1,23 @@
+ID  4OH_2_O_val_ald
+AC  TIGR03217
+DE  4-hydroxy-2-oxovalerate aldolase
+AU  Haft DH
+TC  286.00 286.00
+NC  147.55 147.55
+AL  muscle
+IT  equivalog
+EN  4-hydroxy-2-oxovalerate aldolase
+GS  dmpG
+EC  4.1.3.39
+TP  TIGRFAMs
+CC  Members of this protein family are 4-hydroxy-2-oxovalerate aldolase, also called  4-hydroxy-2-ketovalerate aldolase and 2-oxo-4-hydroxypentanoate aldolase. This enzyme, part of the pathway for the meta-cleavage of catechol, produces pyruvate and acetaldehyde. Acetaldehyde is then converted by acetaldehyde dehydrogenase (acylating) (DmpF; EC 1.2.1.10) to acetyl-CoA. The two enzymes are tightly associated.
+RN  [1]
+RM  PMID: 7496535
+RT  The 4-hydroxy-2-oxovalerate aldolase and acetaldehyde dehydrogenase (acylating) encoded by the nahM and nahO genes of the naphthalene catabolic plasmid pWW60-22 provide further evidence of conservation of meta-cleavage pathway gene sequences.
+RA  Platt A, Shingler V, Taylor SC, Williams PA
+RL  Microbiology. 1995 Sep;141 ( Pt 9):2223-33.
+RN  [2]
+RM  PMID: 12764229
+RT  Crystal structure of a bifunctional aldolase-dehydrogenase: sequestering a reactive and volatile intermediate.
+RA  Manjasetty BA, Powlowski J, Vrielink A
+RL  Proc Natl Acad Sci U S A. 2003 Jun 10;100(12):6992-7. Epub 2003 May 22.

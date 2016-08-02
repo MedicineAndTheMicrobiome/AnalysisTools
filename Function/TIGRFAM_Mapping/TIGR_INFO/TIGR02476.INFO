@@ -1,0 +1,33 @@
+ID  BluB
+AC  TIGR02476
+DE  5,6-dimethylbenzimidazole synthase
+AU  Haft DH, Selengut J
+TC  150.00 150.00
+NC  120.00 120.00
+AL  clustalw
+IT  equivalog
+EN  5,6-dimethylbenzimidazole synthase
+GS  bluB
+EC  1.14.99.40
+TP  TIGRFAMs
+CC  A previously published hypothesis that BluB, involved in cobalamin biosynthesis, is EC 1.16.8.1 (cob(II)yrinic acid a,c-diamide reductase) is now contradicted by newer work ascribing a role in 5,6-dimethylbenzimidazole (DMB) biosynthesis. The BluB protein is related to the nitroreductase family (PF0881).
+RN  [1]
+RM  PMID:17301238 
+RT  Single-enzyme conversion of FMNH2 to 5,6-dimethylbenzimidazole, the lower ligand of B12. 
+RA  Gray MJ, Escalante-Semerena JC 
+RL  Proc Natl Acad Sci U S A. 2007 Feb 20;104(8):2921-6.
+RN  [2]
+RM  PMID:17377583 
+RT  BluB cannibalizes flavin to form the lower ligand of vitamin B12. 
+RA  Taga ME, Larsen NA, Howard-Jones AR, Walsh CT, Walker GC 
+RL  Nature. 2007 Mar 22;446(7134):449-53. 
+RN  [3]
+RM  PMID: 12869542
+RT  Comparative genomics of the vitamin B12 metabolism and regulation in prokaryotes.
+RA  Rodionov DA, Vitreschak AG, Mironov AA, Gelfand MS.
+RL  J Biol Chem. 2003 Oct 17;278(42):41148-59.
+RN  [4]
+RM  PMID: 7635831
+RT  Identification and sequence analysis of genes involved in late steps in cobalamin (vitamin B12) synthesis in Rhodobacter capsulatus.
+RA  Pollich M, Klug G.
+RL  J Bacteriol. 1995 Aug;177(15):4481-7.

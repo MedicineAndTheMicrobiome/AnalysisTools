@@ -1,0 +1,16 @@
+ID  halocin_C8_dom
+AC  TIGR04449
+DE  halocin C8-like bacteriocin domain
+AU  Haft DH
+TC  24.00 24.00
+NC  22.50 20.00
+AL  muscle_manual
+IT  subfamily_domain
+EN  halocin C8-like bacteriocin domain
+TP  TIGRFAMs
+CC  This HMM describes the 76-amino C-terminal domain of the halocin C8 precursor that actually becomes the mature bacteriocin halocin C8 after export and cleavage, as well as homologous C-terminal regions from many other archaea. Surprisingly, this Cys-rich region occurs also in many strains of Staphylococcus epidermidis. Gene regions do not provide evidence for post-translational modification other than cleavage. Halocin C8 is active against a broad range of archaea; the region N-terminal to the bacteriocin domain modeled here serves as the immunity protein for the cell secreting the bacteriocin.
+RN  [1]
+RM  PMID:18658263 
+RT  The helix-loop-helix motif at the N terminus of HalI is essential for its immunity function against halocin C8. 
+RA  Mei S, Sun C, Liu X, Lu Q, Cai L, Li Y, Xiang H 
+RL  J Bacteriol. 2008 Oct;190(19):6501-8.

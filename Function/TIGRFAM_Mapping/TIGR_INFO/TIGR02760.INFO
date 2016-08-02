@@ -1,0 +1,18 @@
+ID  TraI_TIGR
+AC  TIGR02760
+DE  conjugative transfer relaxase protein TraI
+AU  Selengut J
+TC  929.85 929.85
+NC  664.40 664.40
+AL  muscle
+IT  equivalog
+EN  conjugative transfer relaxase protein TraI
+GS  traI
+EC  3.6.4.12
+TP  TIGRFAMs
+CC  This protein is a component of the relaxosome complex.  In the process of conjugative plasmid transfer the realaxosome binds to the plasmid at the oriT (origin of transfer) site.  The relaxase protein TraI mediates the single-strand nicking and ATP-dependent unwinding (relaxation, helicase activity) of the plasmid molecule.  These two activities reside in separate domains of the protein [1].
+RN  [1]
+RM  PMID: 15629940
+RA  Matson SW, Ragonese H.
+RT  The F-plasmid TraI protein contains three functional domains required for conjugative DNA strand transfer.
+RL  J Bacteriol. 2005 Jan;187(2):697-706.

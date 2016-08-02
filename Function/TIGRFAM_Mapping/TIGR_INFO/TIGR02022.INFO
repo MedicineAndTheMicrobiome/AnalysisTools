@@ -1,0 +1,17 @@
+ID  hutF
+AC  TIGR02022
+DE  formiminoglutamate deiminase
+AU  Haft DH
+TC  413.05 413.05
+NC  213.90 213.90
+AL  clustalw
+IT  equivalog
+EN  formiminoglutamate deiminase
+GS  hutF
+EC  3.5.3.13
+TP  TIGRFAMs
+CC  In some species, histidine utilization goes via urocanate to glutamate in four step, the last being removal of formamide. This HMM describes an alternate fourth step, formiminoglutamate hydrolase, which leads to N-formyl-L-glutamate. This product may be acted on by formylglutamate amidohydrolase (TIGR02017) and bypass glutamate as a product during its degradation. Alternatively, removal of formate (by EC 3.5.1.68) would yield glutamate.
+RM  2842309
+RT  Organization and multiple regulation of histidine utilization genes in Pseudomonas putida.
+RA  Hu L, Phillips AT.
+RL  J Bacteriol. 1988 Sep;170(9):4272-9.

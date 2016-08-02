@@ -1,0 +1,13 @@
+ID  oadA
+AC  TIGR01108
+DE  oxaloacetate decarboxylase alpha subunit
+AU  Ujwal ML, Haft DH, Paulsen IT
+TC  756.50 756.50
+NC  720.35 720.35
+AL  clustalw
+IT  equivalog
+EN  oxaloacetate decarboxylase alpha subunit
+GS  oadA
+EC  4.1.1.3
+TP  TIGRFAMs
+CC  This model describes the bacterial oxaloacetate decarboxylase alpha subunit and its equivalents in archaea. The oxaloacetate decarboxylase Na+ pump is the paradigm of the family of Na+ transport decarboxylases that present in bacteria and archaea. It a multi subunit enzyme consisting of a peripheral alpha-subunit and integral membrane subunits beta and gamma. The energy released by the decarboxylation reaction of oxaloacetate is coupled to Na+ ion pumping across the membrane.

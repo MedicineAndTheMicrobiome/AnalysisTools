@@ -1,0 +1,17 @@
+ID  cat_per_HPI
+AC  TIGR00198
+DE  catalase/peroxidase HPI
+AU  Haft DH
+TC  770.25 770.25
+NC  427.70 427.70
+AL  clustalw
+IT  equivalog
+EN  catalase/peroxidase HPI
+GS  katG
+EC  1.11.1.6
+TP  TIGRFAMs
+CC  As catalase, this enzyme catalyzes the dismutation of two molecules of hydrogen peroxide to dioxygen and two molecules of water. As a peroxidase, it uses hydrogen peroxide to oxidize donor compounds and produce water.
+CC  KatG from E. coli is a homotetramer with two non-covalently associated iron protoheme IX groups per tetramer, but the ortholog from Synechococcus sp. is a homodimer with one protoheme.
+CC  Important sites (numbered according to E. coli KatG) include heme ligands His-106 and His-267 and active site Trp-318.
+CC  Note that the translation PID:g296476 from accession X71420 from Rhodobacter capsulatus B10 contains extensive frameshift differences from the rest of the orthologous family.
+DR  HAMAP; MF_01961; 279 of 304

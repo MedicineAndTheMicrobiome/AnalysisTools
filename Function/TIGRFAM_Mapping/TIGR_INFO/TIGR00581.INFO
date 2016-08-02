@@ -1,0 +1,21 @@
+ID  moaC
+AC  TIGR00581
+DE  molybdenum cofactor biosynthesis protein C
+AU  Haft DH
+TC  141.50 141.50
+NC  71.45 71.45
+IT  equivalog
+EN  molybdenum cofactor biosynthesis protein MoaC
+GS  moaC
+TP  TIGRFAMs
+CC  MoaC catalyzes an early step in molybdenum cofactor biosynthesis in E. coli. The Arabidopsis homolog Cnx3 complements MoaC deficiency in E. coli (MUID:95197640). Eukarotic members of this family branch within the bacterial branch, with the archaeal members as an apparent outgroup. This protein is absent in a number of the pathogens with smaller genomes, including Mycoplasmas, Chlamydias, and spirochetes, but is found in most other complete genomes to date. The homolog form Synechocystis sp. is fused to a MobA-homologous region and is an outlier to all other bacterial forms by both neighbor-joining and UPGMA analyses. Members of this family are well-conserved. The seed for this model excludes both archaeal sequences and the most divergent bacterial sequences, but still finds all candidate MoaC sequences easily between trusted and noise cutoffs. We suggest that sequences branching outside the set that contains all seed members be regarded only as putative functional equivalents of MoaC unless and until a member of the archaeal outgroup is shown to have equivalent function.
+RN  [1]
+RM  95197640
+RT  Isolation of two Arabidopsis cDNAs involved in early steps of molybdenum cofactor biosynthesis by functional complementation of Escherichia coli mutants.
+RA  Hoff T, Schnorr KM, Meyer C, Caboche M
+RL  J Biol Chem 1995 Mar 17;270(11):6100-7
+DR  OUTGROUP; EGAD|105404|AF2150
+DR  OUTGROUP; EGAD|43752|MJ1135
+DR  EXPERIMENTAL; EGAD|21351|EC0783;
+DR  EXPERIMENTAL; EGAD|25607|26408;
+DR  HAMAP; MF_01224; 228 of 237

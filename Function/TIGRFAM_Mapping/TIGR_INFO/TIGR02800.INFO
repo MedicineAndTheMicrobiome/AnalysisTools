@@ -1,0 +1,16 @@
+ID  propeller_TolB
+AC  TIGR02800
+DE  Tol-Pal system beta propeller repeat protein TolB
+AU  Haft DH
+TC  343.15 343.15
+NC  143.70 143.70
+AL  clustalw_manual
+IT  equivalog
+EN  tol-pal system beta propeller repeat protein TolB
+GS  tolB
+TR  2.C.1
+TP  TIGRFAMs
+CC  Members of this protein family are the TolB periplasmic protein of Gram-negative bacteria. TolB is part of the Tol-Pal (peptidoglycan-associated lipoprotein) multiprotein complex, comprising five envelope proteins, TolQ, TolR, TolA, TolB and Pal, which form two complexes. The TolQ, TolR and TolA inner-membrane proteins interact via their transmembrane domains. The {beta}-propeller domain of the periplasmic protein TolB is responsible for its interaction with Pal. TolB also interacts with the outer-membrane peptidoglycan-associated proteins Lpp and OmpA. TolA undergoes a conformational change in response to changes in the proton-motive force, and interacts with Pal in an energy-dependent manner. The C-terminal periplasmic domain of TolA also interacts with the N-terminal domain of TolB.
+CC   The Tol-PAL system is required for bacterial outer membrane integrity. E. coli TolB is involved in the tonB-independent uptake of group A colicins (colicins A, E1, E2, E3 and K), and is necessary for the colicins to reach their respective targets after initial binding to the bacteria. It is also involved in uptake of filamentous DNA.  Study of its structure suggest that the TolB protein might be involved in the recycling of peptidoglycan or in its covalent linking with lipoproteins.  The Tol-Pal system is also implicated in pathogenesis of E. coli, Haemophilus ducreyi , Salmonella enterica and Vibrio cholerae, but the mechanism(s) is unclear.
+DR  PFAM; PF07676; WD40-like Beta Propeller Repeat
+DR  HAMAP; MF_00671; 195 of 223

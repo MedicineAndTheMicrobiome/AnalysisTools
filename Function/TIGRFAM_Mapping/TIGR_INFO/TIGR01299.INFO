@@ -1,0 +1,24 @@
+ID  synapt_SV2
+AC  TIGR01299
+DE  synaptic vesicle protein SV2
+AU  Haft DH, Paulsen IT
+TC  637.30 637.30
+NC  236.15 236.15
+AL  clustalw_manual
+IT  subfamily
+EN  synaptic vesicle protein SV2
+TR  2.A.01
+TP  TIGRFAMs
+CC  This HMM describes a tightly conserved subfamily of the larger family of sugar (and other) transporters described by PFAM HMM PF00083. Members of this subfamily include closely related forms SV2A and SV2B of synaptic vesicle protein from vertebrates and a more distantly related homolog (below trusted cutoff) from Drosophila melanogaster. Members are predicted to have two sets of six transmembrane helices.
+DR  PF00083; sugar_tr; Sugar (and other) transporter
+RN  [1]
+RM  10624962
+RT  SV2A and SV2B function as redundant Ca2+ regulators in neurotransmitter release.
+RA  Janz R, Goda Y, Geppert M, Missler M, Sudhof TC
+RL  Neuron 1999 Dec;24(4):1003-16
+RN  [2]
+RM  1355409
+RT  The synaptic vesicle protein SV2 is a novel type of transmembrane transporter.
+RA  Feany MB, Lee S, Edwards RH, Buckley KM
+RL  Cell 1992 Sep 4;70(5):861-7
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_1.html

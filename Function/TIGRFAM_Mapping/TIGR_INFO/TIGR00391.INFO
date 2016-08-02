@@ -1,0 +1,12 @@
+ID  hydA
+AC  TIGR00391
+DE  hydrogenase (NiFe) small subunit (hydA)
+AU  Loftus BJ
+TC  179.50 179.50
+NC  91.00 91.00
+AL  clustalw
+IT  superfamily
+EN  hydrogenase (NiFe) small subunit (hydA)
+TP  TIGRFAMs
+CC  Called (hupA/hydA/hupS/hoxK/vhtG)   Involved in hydrogenase reactions performing different specific functions in different species eg (EC 1.12.2.1) in Desulfovibrio gigas,(EC 1.12.99.3) in Wolinella succinogenes and (EC 1.18.99.1) in E.coli and a number of other species and (EC 1.12.99.-) in the archea.
+DR  (EC 1.12.2.1),(EC 1.12.99.3),(EC 1.18.99.1)

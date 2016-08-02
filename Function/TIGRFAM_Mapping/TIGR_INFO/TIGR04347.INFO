@@ -1,0 +1,11 @@
+ID  pseudo_SAM_Halo
+AC  TIGR04347
+DE  pseudo-rSAM protein/SPASM domain protein
+AU  Haft DH
+TC  525.00 525.00
+NC  480.00 480.00
+AL  muscle_manual
+IT  subfamily
+EN  pseudo-rSAM protein/SPASM domain protein
+TP  TIGRFAMs
+CC  Members of this family all have a C-terminal SPASM domain (see model TIGR04085), a region usually found as a C-terminal second 4Fe-4S domain of radical SAM domain (see PF04055) proteins. A majority of rSAM/SPASM proteins modify ribosomally produced peptides. In a few members of this family, the key Cys residues of the radical SAM domain have been lost, making this a pseudo-rSAM family. Members of this family are restricted so far to Haloarchaea, always occur next a member of family TIGR04031, and are often accompanied by another rSAM/SPASM domain protein. The function of this two or three gene cassette is unknown.

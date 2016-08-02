@@ -1,0 +1,16 @@
+ID  phaR_Bmeg
+AC  TIGR02132
+DE  polyhydroxyalkanoic acid synthase, PhaR subunit
+AU  Haft DH
+TC  148.40 148.40
+NC  47.40 47.40
+AL  clustalw
+IT  equivalog
+EN  polyhydroxyalkanoic acid synthase, PhaR subunit
+GS  phaR
+TP  TIGRFAMs
+CC  This HMM describes a protein, PhaR, localized to polyhydroxyalkanoic acid (PHA) inclusion granules in Bacillus cereus and related species. PhaR is required for PHA biosynthesis along with PhaC and may be a regulatory subunit.
+RM  11418564
+RT  PhaC and PhaR are required for polyhydroxyalkanoic acid synthase activity in Bacillus megaterium.
+RA  McCool GJ, Cannon MC.
+RL  J Bacteriol. 2001 Jul;183(14):4235-43.

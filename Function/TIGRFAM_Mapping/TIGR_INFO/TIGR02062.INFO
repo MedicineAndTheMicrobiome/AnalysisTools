@@ -1,0 +1,15 @@
+ID  RNase_B
+AC  TIGR02062
+DE  exoribonuclease II
+AU  Haft DH
+TC  641.90 641.90
+NC  328.55 328.55
+AL  clustalw
+IT  equivalog
+EN  exoribonuclease II
+GS  rnb
+EC  3.1.13.1
+TP  TIGRFAMs
+CC  This family consists of exoribonuclease II, the product of the rnb gene, as found in a number of gamma proteobacteria. In  Escherichia coli, it is one of eight different exoribonucleases. It is involved in mRNA degradation and tRNA precursor end processing.
+DR  SWISSPROT; P30850; characterization
+DR  HAMAP; MF_01036; 50 of 51

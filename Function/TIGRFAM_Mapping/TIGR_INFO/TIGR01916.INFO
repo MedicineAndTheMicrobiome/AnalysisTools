@@ -1,0 +1,24 @@
+ID  F420_cofE
+AC  TIGR01916
+DE  coenzyme F420-0:L-glutamate ligase
+AU  Haft DH
+TC  180.65 180.65
+NC  130.70 130.70
+AL  clustalw_manual
+IT  equivalog
+EN  coenzyme F420-0:L-glutamate ligase
+GS  cofE
+EC  6.3.2.31
+TP  TIGRFAMs
+CC  This model represents an enzyme of coenzyme F(420) biosynthesis, as catalyzed by MJ0768 of Methanococcus jannaschii and by the N-terminal half of FbiB of Mycobacterium bovis strain BCG. Note that only two glutamates are ligated in M. jannaschii, but five to six in the Mycobacterium lineage. In M. jannaschii, CofE catalyzes the GTP-dependent addition of two L-glutamates.
+RN  [1]
+RM  PMID:11717263
+RT  Use of transposon Tn5367 mutagenesis and a nitroimidazopyran-based selection system to demonstrate a requirement for fbiA and fbiB in coenzyme F(420) biosynthesis by Mycobacterium bovis BCG.
+RA  Choi KP, Bair TB, Bae YM, Daniels L
+RL  J Bacteriol. 2001 Dec;183(24):7058-66.
+RN  [2]
+RM  PMID:12911320
+RT  CofE catalyzes the addition of two glutamates to F420-0 in F420 coenzyme biosynthesis in Methanococcus jannaschii.
+RA  Li H, Graupner M, Xu H, White RH
+RL  Biochemistry. 2003 Aug 19;42(32):9771-8.
+DR  HAMAP; MF_01259; 11 of 11

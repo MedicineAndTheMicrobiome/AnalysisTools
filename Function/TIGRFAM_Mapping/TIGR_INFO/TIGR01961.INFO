@@ -1,0 +1,13 @@
+ID  NuoC_fam
+AC  TIGR01961
+DE  NADH (or F420H2) dehydrogenase, subunit C
+AU  Haft DH
+TC  122.45 122.45
+NC  121.35 121.35
+AL  clustalw_manual
+IT  subfamily
+EN  NADH (or F420H2) dehydrogenase, subunit C
+GS  nuoC
+TP  TIGRFAMs
+CC  This model describes the C subunit of the NADH dehydrogenase complex I in bacteria, as well as many instances of the corresponding mitochondrial subunit (NADH dehydrogenase subunit 9) and of the F420H2 dehydrogenase in Methanosarcina. Complex I contains subunits designated A-N. This C subunit often occurs as a fusion protein with the D subunit. This model excludes the NAD(P)H and plastoquinone-dependent form of chloroplasts and
+DR  HAMAP; MF_01359; 84 of 116

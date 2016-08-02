@@ -1,0 +1,11 @@
+ID  fabG_rel
+AC  TIGR01831
+DE  putative 3-oxoacyl-(acyl-carrier-protein) reductase
+AU  Haft DH
+TC  338.85 338.85
+NC  273.90 273.90
+AL  clustalw
+IT  hypoth_equivalog
+EN  3-oxoacyl-(acyl-carrier-protein) reductase, putative
+TP  TIGRFAMs
+CC  This HMM represents a small, very well conserved family of proteins closely related to the FabG family, TIGR01830, and possibly equal in function. In all completed genomes with a member of this family, a FabG in TIGR01830 is also found.

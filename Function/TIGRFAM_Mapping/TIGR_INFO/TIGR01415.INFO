@@ -1,0 +1,12 @@
+ID  trpB_rel
+AC  TIGR01415
+DE  pyridoxal-phosphate dependent TrpB-like enzyme
+AU  Haft DH
+TC  518.85 518.85
+NC  295.15 295.15
+AL  clustalw
+IT  hypoth_equivalog
+EN  pyridoxal-phosphate dependent TrpB-like enzyme
+TP  TIGRFAMs
+CC  This HMM represents a family of pyridoxal-phosphate dependent enzyme (PF00291) closely related to the beta subunit of tryptophan synthase (TIGR00263). However, the only case in which a member of this family replaces a member of TIGR00263 is in Sulfolobus species which contain two sequences which hit this model, one of which is proximal to the alpha subunit. In every other case so far, either the species appears not to make tryptophan (there is no trp synthase alpha subunit), or a trp synthase beta subunit matching TIGR00263 is also found.
+DR  HAMAP; MF_00133; 20 of 315

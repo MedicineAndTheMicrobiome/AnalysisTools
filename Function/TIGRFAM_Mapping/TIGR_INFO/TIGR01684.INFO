@@ -1,0 +1,22 @@
+ID  viral_ppase
+AC  TIGR01684
+DE  viral phosphatase
+AU  Selengut J
+TC  134.00 134.00
+NC  43.85 43.85
+AL  clustalw
+IT  hypoth_equivalog
+EN  viral phosphatase
+TP  TIGRFAMs
+CC  This model represents a family of viral proteins of unknown function.  These proteins are members, however, of the IIIC (TIGR01681) subfamily of the haloacid dehalogenase (HAD) superfamily of aspartate nucleophile hydrolases.  All characterized members of the III subfamilies (IIIA, TIGR01662; IIIB, PF03767) are phosphatases, including MDP-1, a member of subfamily IIIC (TIGR01681) [1].  No member of this subfamily is characterized with respect to particular function.  All of the active site residues characteristic of HAD-superfamily phosphatases [2] are present in subfamily IIIC.
+CC  These proteins also include an N-terminal domain (ca. 125 aas) that is unique (by HMM) to this clade.
+RN  [1]
+RM  PMID: 11601995
+RT  MDP-1 is a new and distinct member of the haloacid dehalogenase family of aspartate-dependent phosphohydrolases.
+RA  Selengut, JD
+RL  Biochemistry 2001 Oct 23;40(42):12704-11
+RN  [2]
+RM  PMID: 7966317
+RT  Computer analysis of bacterial haloacid dehalogenases defines a large superfamily of hydrolases with diverse specificity. Application of an iterative approach to database search.
+RA  Koonin EV, Tatusov RL.
+RL  J Mol Biol 1994 Nov 18;244(1):125-32

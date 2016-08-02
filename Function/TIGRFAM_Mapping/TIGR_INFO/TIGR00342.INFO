@@ -1,0 +1,36 @@
+ID  TIGR00342
+AC  TIGR00342
+DE  tRNA sulfurtransferase ThiI
+AU  Loftus BJ, Haft DH
+TC  264.50 264.50
+NC  166.10 166.10
+AL  clustalw
+IT  equivalog_domain
+EN  tRNA sulfurtransferase ThiI
+GS  thiI
+EC  2.8.1.4
+TP  TIGRFAMs
+CC  Members of this protein family are "ThiI", a sulfurtransferase involved in 4-thiouridine modification of tRNA. This protein often is bifunctional, with genetically separable activities, where the C-terminal rhodanese-like domain (residues 385 to 482 in E. coli ThiI), a domain not included in this model, is sufficient to synthesize the thiazole moiety of thiamine (see TIGR04271). Note that ThiI, because of its role in tRNA modification, may occur in species (such as Mycoplasma genitalium) that lack de novo thiamine biosynthesis.
+RN  [1]
+RM  PMID:21724998 
+RT  The rhodanese domain of ThiI is both necessary and sufficient for synthesis of the thiazole moiety of thiamine in Salmonella enterica. 
+RA  Martinez-Gomez NC, Palmer LD, Vivas E, Roach PL, Downs DM 
+RL  J Bacteriol. 2011 Sep;193(18):4582-7.
+RN  [2]
+RM  PMID:18604845 
+RT  Direct evidence that ThiI is an ATP pyrophosphatase for the adenylation of uridine in 4-thiouridine biosynthesis. 
+RA  You D, Xu T, Yao F, Zhou X, Deng Z 
+RL  Chembiochem. 2008 Aug 11;9(12):1879-82.
+RN  [3]
+RM  11443125
+RT  The role of the cysteine residues of ThiI in the generation of 4-thiouridine in tRNA.
+RA  Mueller EG, Palenchar PM, Buck CJ.
+RL  J Biol Chem. 2001 Sep 7;276(36):33588-95.
+RN  [4]
+RM  97352701
+RT  Characterization of thiI, a new gene involved in thiazole biosynthesis in Salmonella typhimurium.
+RA  Webb E, Claas K, Downs DM
+RL  J Bacteriol 1997 Jul;179(13):4399-402
+DR  PFAM; PF02568
+DR  InterPro; IPR003720
+DR  HAMAP; MF_00021; 184 of 191

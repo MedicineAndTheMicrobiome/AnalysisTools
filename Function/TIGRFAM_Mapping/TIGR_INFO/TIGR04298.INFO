@@ -1,0 +1,16 @@
+ID  his_histam_anti
+AC  TIGR04298
+DE  histidine-histamine antiporter
+AU  Haft DH
+TC  750.00 750.00
+NC  725.00 725.00
+AL  muscle_manual
+IT  equivalog
+EN  histidine-histamine antiporter
+TP  TIGRFAMs
+CC  Members of this protein family are antiporters that exchange histidine with histamine, product of histidine decarboxylation. A system consisting of this protein, and a histidine decarboxylase encoded by an adjacent gene, creates decarboxylation/antiport proton-motive cycle that provides a transient resistance to acidic conditions.
+RN  [1]
+RM  PMID:22247134 
+RT  Evidence of two functionally distinct ornithine decarboxylation systems in lactic Acid bacteria. 
+RA  Romano A, Trip H, Lonvaud-Funel A, Lolkema JS, Lucas PM 
+RL  Appl Environ Microbiol. 2012 Mar;78(6):1953-61.

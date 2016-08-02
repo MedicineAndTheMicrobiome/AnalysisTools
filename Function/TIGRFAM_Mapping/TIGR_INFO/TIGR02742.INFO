@@ -1,0 +1,22 @@
+ID  TrbC_Ftype
+AC  TIGR02742
+DE  type-F conjugative transfer system pilin assembly protein TrbC
+AU  Selengut J
+TC  66.45 66.45
+NC  39.45 39.45
+AL  clustalw
+IT  equivalog
+EN  type-F conjugative transfer system pilin assembly protein TrbC
+GS  trbC
+TP  TIGRFAMs
+CC  This protein is an essential component of the F-type conjugative pilus assembly system for the transfer of plasmid DNA [1,2].  The N-terminal portion of these proteins are heterogeneous and are not covered by this model.
+RN  [1]
+RM  PMID: 205063
+RA  Maneewannakul S, Maneewannakul K, Ippen-Ihler K.
+RT  Characterization of trbC, a new F plasmid tra operon gene that is essential to conjugative transfer.
+RL   J Bacteriol. 1991 Jun;173(12):3872-8.
+RN  [2]
+RM  PMID: 16138100
+RA  Frost LS, Leplae R, Summers AO, Toussaint A.
+RT  Mobile genetic elements: the agents of open source evolution.
+RL  Nat Rev Microbiol. 2005 Sep;3(9):722-32.

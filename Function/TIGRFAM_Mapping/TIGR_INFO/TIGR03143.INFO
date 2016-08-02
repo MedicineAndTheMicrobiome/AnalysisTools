@@ -1,0 +1,12 @@
+ID  AhpF_homolog
+AC  TIGR03143
+DE  putative alkyl hydroperoxide reductase F subunit
+AU  Selengut J
+TC  687.65 687.65
+NC  466.90 466.90
+AL  muscle
+IT  hypoth_equivalog
+EN  putative alkyl hydroperoxide reductase F subunit
+EC  1.6.4.-
+TP  TIGRFAMs
+CC  This family of thioredoxin reductase homologs is found adjacent to alkylhydroperoxide reductase C subunit predominantly in cases where there is only one C subunit in the genome and that genome is lacking the F subunit partner (also a thioredcxin reductase homolog) that is usually found (TIGR03140).

@@ -1,0 +1,18 @@
+ID  argC_other
+AC  TIGR01851
+DE  N-acetyl-gamma-glutamyl-phosphate reductase
+AU  Haft DH
+TC  229.85 229.85
+NC  152.20 152.20
+AL  clustalw_manual
+IT  equivalog
+EN  N-acetyl-gamma-glutamyl-phosphate reductase, uncommon form
+GS  argC
+EC  1.2.1.38
+TP  TIGRFAMs
+CC  This HMM represents the less common of two related families of N-acetyl-gamma-glutamyl-phosphate reductase, an enzyme catalyzing the third step or Arg biosynthesis from Glu. The two families differ by phylogeny, similarity clustering, and gap architecture in a multiple sequence alignment.
+RM  1406250
+RT  Isolation of arginine auxotrophs, cloning by mutant complementation, and sequence analysis of the argC gene from the cyanobacterium Anabaena species PCC 7120.
+RA  Floriano B, Herrero A, Flores E.
+RL  Mol Microbiol 1992 Aug;6(15):2085-94
+DR  HAMAP; MF_01110; 23 of 23

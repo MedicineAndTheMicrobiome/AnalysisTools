@@ -1,0 +1,12 @@
+ID  Trp_5_monoox
+AC  TIGR01270
+DE  tryptophan 5-monooxygenase
+AU  Haft DH
+TC  705.50 705.50
+NC  608.15 608.15
+AL  clustalw_manual
+IT  equivalog
+EN  tryptophan 5-monooxygenase, tetrameric
+EC  1.14.16.4
+TP  TIGRFAMs
+CC  This HMM describes tryptophan 5-monooxygenase, a member of the family of tetrameric, biopterin-dependent aromatic amino acid hydroxylases found in metazoans. It is closely related to tetrameric phenylalanine-4-hydroxylase and tyrosine 3-monooxygenase, and more distantly related to the monomeric phenylalanine-4-hydroxylase found in some Gram-negative bacteria.

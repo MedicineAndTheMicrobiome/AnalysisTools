@@ -1,0 +1,17 @@
+ID  mycofact_rSAM
+AC  TIGR03962
+DE  mycofactocin radical SAM maturase
+AU  Haft DH
+TC  265.00 265.00
+NC  225.00 225.00
+AL  muscle_manual
+IT  equivalog
+EN  mycofactocin radical SAM maturase
+GS  mftC
+TP  TIGRFAMs
+CC  Members of this family are uncharacterized radical SAM proteins from the Mycobacterium tuberculosis and many other Actinobacteria, as well as some deltaproteobacteria (e.g. Geobacter uraniireducens), firmicutes (Pelotomaculum thermopropionicum and Desulfotomaculum acetoxidans), and Chloroflexi (Thermomicrobium roseum DSM 5159 and Sphaerobacter thermophilus DSM 20745). They resemble several characterized radical SAM enzymes of peptide modification (PqqE, AlbA), and are always found next to the proposed target, TIGR03969, the putative mycofactocin precursor.
+RN  [1]
+RM  PMID:21223593 
+RT  Bioinformatic evidence for a widely distributed, ribosomally produced electron carrier precursor, its maturation proteins, and its nicotinoprotein redox partners. 
+RA  Haft DH 
+RL  BMC Genomics. 2011 Jan 11;12(1):21.

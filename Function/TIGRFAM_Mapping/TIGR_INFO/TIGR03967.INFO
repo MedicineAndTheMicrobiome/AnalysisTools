@@ -1,0 +1,17 @@
+ID  mycofact_MftB
+AC  TIGR03967
+DE  putative mycofactocin binding protein MftB
+AU  Haft DH
+TC  38.00 38.00
+NC  30.00 30.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  putative mycofactocin binding protein MftB
+GS  mftB
+TP  TIGRFAMs
+CC  Families TIGR03969 and TIGR03962 describe, respectively, the putative mycofactocin precursor and its cognate radical SAM peptide maturase. This small protein family appears in the same sporadically distributed cassette and may serve as a scaffolding protein during mycofactocin maturation or as a carrier protein for the mature product, a putative novel redox carrier. A feature of mycofactocin-encoding genomes is co-clustering with sets of NAD-binding oxidoreductases in which the NAD is not exchangeable. Therefore it is proposed that mature mycofactocin, bound by a member of this family as a carrier protein, docks with the nicotinoprotein to allow electron transfer. Mediation of electron transfer through this system would define a segregated redox pool.
+RN  [1]
+RM  PMID:21223593 
+RT  Bioinformatic evidence for a widely distributed, ribosomally produced electron carrier precursor, its maturation proteins, and its nicotinoprotein redox partners. 
+RA  Haft DH 
+RL  BMC Genomics. 2011 Jan 11;12(1):21.

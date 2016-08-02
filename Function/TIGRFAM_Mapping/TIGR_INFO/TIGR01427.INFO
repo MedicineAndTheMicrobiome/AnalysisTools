@@ -1,0 +1,13 @@
+ID  PTS_IIC_fructo
+AC  TIGR01427
+DE  PTS system, Fru family, IIC component
+AU  Haft DH, Paulsen IT
+TC  157.55 157.55
+NC  155.90 155.90
+AL  clustalw_manual
+IT  subfamily_domain
+EN  PTS system, fructose subfamily, IIC component
+TR  4.A.2
+TP  TIGRFAMs
+CC  This model represents the IIC component, or IIC region of a IIABC or IIBC polypeptide of a phosphotransferase system for carbohydrate transport. Members of this family belong to the fructose-specific subfamily of the broader family (PF02378) of PTS IIC proteins. Members should be found as part of the same chain or in the same operon as fructose family IIA (TIGR00848) and IIB (TIGR00829) protein regions. A number of bacterial species have members in two different branches of this subfamily, suggesting some diversity in substrate specificity of its members.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/4_A_2.html

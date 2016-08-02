@@ -1,0 +1,12 @@
+ID  RpoD_Cterm
+AC  TIGR02393
+DE  RNA polymerase sigma factor RpoD
+AU  Haft DH
+TC  354.00 354.00
+NC  343.70 343.70
+AL  clustalw_manual
+IT  equivalog_domain
+EN  RNA polymerase sigma factor RpoD, C-terminal domain
+GS  rpoD
+TP  TIGRFAMs
+CC  This model represents the well-conserved C-terminal region of the major, essential sigma factor of most bacteria. Members of this clade show considerable variability in domain architecture and molecular weight, as well as in nomenclature:  RpoD in E. coli and other Proteobacteria, SigA in Bacillus subtilis and many other Gram-positive bacteria, HrdB in Streptomyces, MysA in Mycobacterium smegmatis, etc.

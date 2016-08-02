@@ -1,0 +1,32 @@
+ID  23BDH
+AC  TIGR02415
+DE  acetoin reductases
+AU  Haft DH
+TC  304.35 304.35
+NC  242.75 242.75
+AL  clustalw
+IT  subfamily
+EN  acetoin reductases
+EC  1.1.1.-
+TP  TIGRFAMs
+CC  One member of this family, as characterized in Klebsiella terrigena, is described as able to interconvert acetoin + NADH with meso-2,3-butanediol + NAD(+). It is also called capable of irreversible reduction of diacetyl with NADH to acetoin. Blomqvist, et al. decline to specify either EC 1.1.1.4 which is (R,R)-butanediol dehydrogenase, or EC 1.1.1.5, which is acetoin dehydrogenase without a specified stereochemistry, for this enzyme. This enzyme is a homotetramer in the family of short chain dehydrogenases (PF00106). Another member of this family, from Corynebacterium glutamicum, is called L-2,3-butanediol dehydrogenase (PMID:11577733).
+RN  [1]
+RM  8444801
+RT  Characterization of the genes of the 2,3-butanediol operons from Klebsiella terrigena and Enterobacter aerogenes.
+RA  Blomqvist K, Nikkola M, Lehtovaara P, Suihko ML, Airaksinen U, Straby KB, Knowles JK, Penttila ME.
+DR  PFAM; PF00106; adh_short
+RN  [2]
+RM  9332371
+RT  Molecular cloning and characterization of a cDNA encoding a bovine butanediol dehydrogenase.
+RA  Smania AM, Argarana CE.
+RL  Gene. 1997 Sep 15;197(1-2):231-8.
+RN  [3]
+RM  11173520
+RT  Crystal structure of meso-2,3-butanediol dehydrogenase in a complex with NAD+ and inhibitor mercaptoethanol at 1.7 A resolution for understanding of chiral substrate recognition mechanisms.
+RA  Otagiri M, Kurisu G, Ui S, Takusagawa Y, Ohkuma M, Kudo T, Kusunoki M.
+RL  J Biochem (Tokyo). 2001 Feb;129(2):205-8.
+RN  [4]
+RM  11577733
+RT  Purification and characterization of L-2,3-butanediol dehydrogenase of Brevibacterium saccharolyticum C-1012 expressed in Escherichia coli.
+RA  Takusagawa Y, Otagiri M, Ui S, Ohtsuki T, Mimura A, Ohkuma M, Kudo T.
+RL  Biosci Biotechnol Biochem. 2001 Aug;65(8):1876-8.

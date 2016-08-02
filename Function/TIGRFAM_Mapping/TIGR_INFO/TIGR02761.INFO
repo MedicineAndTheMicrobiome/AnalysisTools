@@ -1,0 +1,17 @@
+ID  TraE_TIGR
+AC  TIGR02761
+DE  type IV conjugative transfer system protein TraE
+AU  Selengut J
+TC  109.05 109.05
+NC  62.80 62.80
+AL  muscle
+IT  equivalog
+EN  type IV conjugative transfer system protein TraE
+GS  traE
+TP  TIGRFAMs
+CC  TraE is a component of type IV secretion systems involved in conjugative transfer of plasmid DNA [1].  The function of the TraE protein is unknown.
+RN  [1]
+RM  PMID: 16138100
+RA  Frost LS, Leplae R, Summers AO, Toussaint A.
+RT  Mobile genetic elements: the agents of open source evolution.
+RL  Nat Rev Microbiol. 2005 Sep;3(9):722-32.

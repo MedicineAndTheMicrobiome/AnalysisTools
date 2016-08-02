@@ -1,0 +1,12 @@
+ID  int_mem_ywzB
+AC  TIGR02327
+DE  conserved hypothetical integral membrane protein
+AU  Haft DH
+TC  39.65 39.65
+NC  30.65 30.65
+AL  clustalw
+IT  hypoth_equivalog
+EN  conserved hypothetical integral membrane protein
+TP  TIGRFAMs
+CC  Members of this protein family are small, typically about 80 residues in length, and are highly hydrophobic. The gene is found so far only in a subset of the Firmicutes in association with genes of the ATP synthase F1 complex or NADH-quinone oxidoreductase. This family includes ywzB from Bacillus subtilis; Pfam model PF06612 describes the same family as Protein of unknown function DUF1146.
+DR  PFAM; PF06612

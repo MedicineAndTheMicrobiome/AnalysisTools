@@ -1,0 +1,11 @@
+ID  Piru_Ver_Nterm
+AC  TIGR02604
+DE  putative membrane-bound dehydrogenase domain
+AU  Haft DH
+TC  122.20 122.20
+NC  105.05 105.05
+AL  clustalw_manual
+IT  subfamily_domain
+EN  putative membrane-bound dehydrogenase domain
+TP  TIGRFAMs
+CC  All proteins that score above the trusted cutoff score of 45 to this model are large proteins of either Pirellula sp. 1 or Verrucomicrobium spinosum. These proteins all contain, in addition to this domain, several hundred residues of highly variable sequence, and then a well-conserved C-terminal domain (TIGR02603) that features a putative cytochrome c-type heme binding motif CXXCH. The membrane-bound L-sorbosone dehydrogenase from Acetobacter liquefaciens (Gluconacetobacter liquefaciens) (SP|Q44091) is homologous to this domain but lacks additional sequence regions shared by members of this family and  belongs to a different clade of the larger family of homologs. It and its closely related homologs are excluded from the this model by scoring between the trusted (45) and noise (18) cutoffs.

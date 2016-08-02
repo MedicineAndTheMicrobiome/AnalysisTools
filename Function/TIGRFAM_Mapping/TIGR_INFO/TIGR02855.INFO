@@ -1,0 +1,22 @@
+ID  spore_yabG
+AC  TIGR02855
+DE  sporulation peptidase YabG
+AU  Haft DH
+TC  270.40 270.40
+NC  100.20 100.20
+AL  muscle
+IT  equivalog
+EN  sporulation peptidase YabG
+GS  yabG
+TP  TIGRFAMs
+CC  Members of this family are the protein YabG, demonstrated for Bacillus subtilis to be an endopeptidase able to release N-terminal peptides from a number of sporulation proteins, including CotT, CotF, and SpoIVA. It appears to be expressed under control of sigma-K.
+RN  [1]
+RM  11040425
+RT  The yabG gene of Bacillus subtilis encodes a sporulation specific protease which is involved in the processing of several spore coat proteins.
+RA  Takamatsu H, Imamura A, Kodama T, Asai K, Ogasawara N, Watabe K.
+RL  FEMS Microbiol Lett. 2000 Nov 1;192(1):33-8.
+RN  [2]
+RM  10714992
+RT  The Bacillus subtilis yabG gene is transcribed by SigK RNA polymerase during sporulation, and yabG mutant spores have altered coat protein composition.
+RA  Takamatsu H, Kodama T, Imamura A, Asai K, Kobayashi K, Nakayama T, Ogasawara N, Watabe K.
+RL  J Bacteriol. 2000 Apr;182(7):1883-8.

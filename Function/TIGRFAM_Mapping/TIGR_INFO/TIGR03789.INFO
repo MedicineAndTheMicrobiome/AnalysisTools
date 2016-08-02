@@ -1,0 +1,12 @@
+ID  pdsO
+AC  TIGR03789
+DE  proteobacterial sortase system peptidoglycan-associated protein
+AU  Haft DH
+TC  152.20 152.20
+NC  146.35 146.35
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  proteobacterial sortase system peptidoglycan-associated protein
+GS  pdsO
+TP  TIGRFAMs
+CC  A newly defined histidine kinase (TIGR03785) and response regulator (TIGR03787) gene pair occurs exclusively in Proteobacteria, mostly of marine origin, nearly all of which contain a subfamily 6 sortase (TIGR03784) and its single dedicated target protein (TIGR03788) adjacent to to the sortase.  This protein family shows up in only in those species with the histidine kinase/response regulator gene pair, and often adjacent to that pair. It belongs to the PF00691 domain family, which is the peptidoglycan-associated region of flagellar motor protein MotB, OmpA (whose N-terminal region forms an outer membrane beta barrel), and peptidoglycan-associated lipoprotein Pal. Its function is unknown. We assign the gene symbol pdsO, for Proteobacterial Dedicated Sortase system OmpA family protein.

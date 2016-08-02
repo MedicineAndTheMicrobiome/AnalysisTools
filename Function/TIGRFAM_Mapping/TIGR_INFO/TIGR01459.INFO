@@ -1,0 +1,11 @@
+ID  HAD-SF-IIA-hyp4
+AC  TIGR01459
+DE  HAD hydrolase, TIGR01459 family
+AU  Selengut J
+TC  103.75 103.75
+NC  80.30 80.30
+AL  clustalw
+IT  hypoth_equivalog
+EN  HAD-superfamily class IIA hydrolase, TIGR01459
+TP  TIGRFAMs
+CC  This hypothetical equivalog is a member of the Class IIA subfamily of the haloacid dehalogenase superfamily of aspartate-nucleophile hydrolases.  The sequences modelled by this equivalog are all gram negative and primarily alpha proteobacteria.  Only one sequence hase been annotated as other than "hypothetical."  That one, from Brucella, is annotated as related to NagD, but only by sequence similarity and should be treated with some skepticism. (See comments for Class IIA subfamily HMM)

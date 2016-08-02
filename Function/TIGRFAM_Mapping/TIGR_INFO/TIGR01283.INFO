@@ -1,0 +1,12 @@
+ID  nifE
+AC  TIGR01283
+DE  nitrogenase MoFe cofactor biosynthesis protein NifE
+AU  Haft DH
+TC  505.10 505.10
+NC  412.85 412.85
+AL  clustalw
+IT  equivalog
+EN  nitrogenase molybdenum-iron cofactor biosynthesis protein NifE
+GS  nifE
+TP  TIGRFAMs
+CC  This protein is part of the NifEN complex involved in biosynthesis of the molybdenum-iron cofactor used by the homologous NifDK complex of nitrogenase. In a few species, the protein is found as a NifEN fusion protein.

@@ -1,0 +1,18 @@
+ID  Shik_kin_archae
+AC  TIGR01920
+DE  shikimate kinase
+AU  Selengut J
+TC  126.85 126.85
+NC  124.45 124.45
+AL  clustalw
+IT  equivalog
+EN  shikimate kinase
+EC  2.7.1.71
+TP  TIGRFAMs
+CC  This HMM represents the shikimate kinase (SK) gene found in archaea which is only distantly related to homoserine kinase (thrB) and not atr all to the bacterial SK enzyme.  The SK from M. janaschii has been overexpressed in E. coli and characterized [1].  SK catalyzes the fifth step of the biosynthesis of chorismate from D-erythrose-4-phosphate and phosphoenolpyruvate.
+RN  [1]
+RM  PMID: 11114929
+RT  Archaeal shikimate kinase, a new member of the GHMP-kinase family.
+RA  Daugherty M, Vonstein V, Overbeek R, Osterman A.
+RL  J Bacteriol. 2001 Jan;183(1):292-300.
+DR  HAMAP; MF_00370; 19 of 19

@@ -1,0 +1,15 @@
+ID  cit_synth_II
+AC  TIGR01800
+DE  2-methylcitrate synthase/citrate synthase II
+AU  Haft DH
+TC  421.30 421.30
+NC  418.15 418.15
+AL  clustalw_manual
+IT  subfamily
+EN  2-methylcitrate synthase/citrate synthase II
+TP  TIGRFAMs
+CC  Members of this family are dimeric enzymes with activity as 2-methylcitrate synthase, citrate synthase, or both. Many Gram-negative species have a hexameric citrate synthase, termed citrate synthase I (TIGR01798). Members of this family (TIGR01800) appear as a second citrate synthase isozyme but typically are associated with propionate metabolism and synthesize 2-methylcitrate from propionyl-CoA; citrate synthase activity may be incidental. A number of species, including Thermoplasma acidophilum, Pyrococcus furiosus, and the Antarctic bacterium DS2-3R have a bifunctional member of this family as the only citrate synthase isozyme.
+RM  9579066
+RT  Citrate synthase and 2-methylcitrate synthase: structural, functional and evolutionary relationships.
+RA  Gerike U, Hough DW, Russell NJ, Dyall-Smith ML, Danson MJ.
+RL  Microbiology 1998 Apr;144 ( Pt 4):929-35

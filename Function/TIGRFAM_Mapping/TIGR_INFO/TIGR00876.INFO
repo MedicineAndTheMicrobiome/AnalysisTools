@@ -1,0 +1,15 @@
+ID  tal_mycobact
+AC  TIGR00876
+DE  transaldolase
+AU  Haft DH
+TC  233.75 233.75
+NC  147.15 147.15
+AL  clustalw
+IT  equivalog
+EN  transaldolase, mycobacterial type
+GS  tal
+EC  2.2.1.2
+TP  TIGRFAMs
+CC  This HMM describes one of three related but easily separable famiiles of known and putative transaldolases. This family and the family typified by E. coli TalA and TalB both contain experimentally verified examples.
+DR  EXPERIMENTAL; EGAD|143437|152962; Solanum tuberosum
+DR  HAMAP; MF_00493; 34 of 34

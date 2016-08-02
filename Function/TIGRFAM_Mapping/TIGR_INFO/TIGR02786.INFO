@@ -1,0 +1,17 @@
+ID  addB_alphas
+AC  TIGR02786
+DE  double-strand break repair protein AddB
+AU  Haft DH
+TC  486.50 486.50
+NC  458.40 458.40
+AL  clustalw_manual
+IT  equivalog
+EN  double-strand break repair protein AddB, alphaproteobacterial type
+GS  addB
+TP  TIGRFAMs
+CC  AddAB is a system well described in the Firmicutes as a replacement for RecBCD in many prokaryotes for the repair of double stranded break DNA damage. More recently, a distantly related gene pair conserved in many alphaproteobacteria was shown also to function in double-stranded break repair in Rhizobium etli. This family consists of AddB proteins of the alphaproteobacteial type.
+RN  [1]
+RM  15547262
+RT  The recombination genes addAB are not restricted to gram-positive bacteria: genetic analysis of the recombination initiation enzymes RecF and AddAB in Rhizobium etli.
+RA  Zuniga-Castillo J, Romero D, Martinez-Salazar JM.
+RL  J Bacteriol. 2004 Dec;186(23):7905-13.

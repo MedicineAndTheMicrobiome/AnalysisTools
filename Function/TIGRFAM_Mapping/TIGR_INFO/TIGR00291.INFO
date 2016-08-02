@@ -1,0 +1,17 @@
+ID  RNA_SBDS
+AC  TIGR00291
+DE  rRNA metabolism protein, SBDS family
+AU  Haft DH
+TC  126.55 126.55
+NC  104.45 104.45
+AL  clustalw
+IT  equivalog
+EN  rRNA metabolism protein, SBDS family
+TP  TIGRFAMs
+CC  This protein family, possibly universal in both archaea and eukaryotes, appears to be involved in (ribosomal) RNA metabolism. Mutations in the human ortholog are associated with Shwachman-Bodian-Diamond syndrome.
+RN  [1]
+RM  PMID:15701634
+RT  The Shwachman-Bodian-Diamond syndrome protein family is involved in RNA metabolism.
+RA  Savchenko A, Krogan N, Cort JR, Evdokimova E, Lew JM, Yee AA, Sanchez-Pulido L, Andrade MA, Bochkarev A, Watson JD, Kennedy MA, Greenblatt J, Hughes T, Arrowsmith CH, Rommens JM, Edwards AM
+RL  J Biol Chem. 2005 May 13;280(19):19213-20. Epub 2005 Feb 8.
+DR  PROSITE; PS01267;

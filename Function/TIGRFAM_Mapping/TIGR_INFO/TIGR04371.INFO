@@ -1,0 +1,17 @@
+ID  methyltran_NanM
+AC  TIGR04371
+DE  putative sugar O-methyltransferase
+AU  Haft DH
+TC  44.00 42.00
+NC  41.00 41.00
+AL  muscle_manual
+IT  subfamily
+EN  putative sugar O-methyltransferase
+EC  2.1.1.-
+TP  TIGRFAMs
+CC  Members of this family appear to be SAM-dependent O-methyltransferases acting on sugars, based on iterated sequence searches and gene context. Members occur in Leptospira O-antigen regions, as well NanM from the biosynthesis cluster for nanchangmycin, which produces 4-O-methyl-L-rhodinose as an intermediate.
+RN  [1]
+RM  PMID:12770825 
+RT  A complete gene cluster from Streptomyces nanchangensis NS3226 encoding biosynthesis of the polyether ionophore nanchangmycin. 
+RA  Sun Y, Zhou X, Dong H, Tu G, Wang M, Wang B, Deng Z 
+RL  Chem Biol. 2003 May;10(5):431-41.

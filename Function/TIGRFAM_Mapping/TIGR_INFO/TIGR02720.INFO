@@ -1,0 +1,18 @@
+ID  pyruv_oxi_spxB
+AC  TIGR02720
+DE  pyruvate oxidase
+AU  Haft DH
+TC  637.85 637.85
+NC  455.90 455.90
+AL  clustalw
+IT  equivalog
+EN  pyruvate oxidase
+GS  spxB
+EC  1.2.3.3
+TP  TIGRFAMs
+CC  Members of this family are examples of pyruvate oxidase (EC 1.2.3.3), an enzyme with FAD and TPP as cofactors that catalyzes the reaction pyruvate + phosphate + O2 + H2O = acetyl phosphate + CO2 + H2O2. It should not be confused with pyruvate dehydrogenase [cytochrome] (EC 1.2.2.2) as in E. coli PoxB, although the E. coli enzyme is closely homologous and has pyruvate oxidase as an alternate name.
+RN  [1]
+RM  15175288
+RT  Characterization and functional analysis of the poxB gene, which encodes pyruvate oxidase in Lactobacillus plantarum.
+RA  Lorquet F, Goffin P, Muscariello L, Baudry JB, Ladero V, Sacco M, Kleerebezem M, Hols P.
+RL  J Bacteriol. 2004 Jun;186(12):3749-59.

@@ -1,0 +1,17 @@
+ID  GldD_lipo
+AC  TIGR03512
+DE  gliding motility-associated lipoprotein GldD
+AU  Haft DH
+TC  179.00 179.00
+NC  68.70 68.70
+AL  muscle_manual
+IT  equivalog
+EN  gliding motility-associated lipoprotein GldD
+GS  gldD
+TP  TIGRFAMs
+CC  Members of this protein family are found a number of Bacteriodetes lineage bacteria, including both species such as Flavobacterium johnsoniae, which possess a poorly understood form of rapid gliding motility, and other species which apparently do not. Mutation of GldD blocks both this motility and chitin utilization in the model species, Flavobacterium johnsoniae.
+RN  [1]
+RM  PMID:11418556
+RT  Cloning and characterization of the Flavobacterium johnsoniae gliding motility genes gldD and gldE.
+RA  Hunnicutt DW, McBride MJ
+RL  J Bacteriol. 2001 Jul;183(14):4167-75.

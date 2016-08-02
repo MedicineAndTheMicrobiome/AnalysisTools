@@ -1,0 +1,31 @@
+ID  Thioester-redct
+AC  TIGR01746
+DE  thioester reductase domain
+AU  Selengut J
+TC  213.35 213.35
+NC  148.40 148.40
+AL  clustalw
+IT  subfamily_domain
+EN  thioester reductase domain
+TP  TIGRFAMs
+CC  This model includes the terminal domain from the fungal alpha aminoadipate reductase enzyme (also known as aminoadipate semialdehyde dehydrogenase) which is involved in the biosynthesis of lysine [1],  as well as the reductase-containing component of the myxochelin biosynthetic gene cluster, MxcG [2].  
+CC  The mechanism of reduction involves activation of the substrate by adenylation and transfer to a covalently-linked pantetheine cofactor as a thioester.  This thioester is then reduced to give an aldehyde (thus releasing the product) and a regenerated pantetheine thiol [3].  (In myxochelin biosynthesis this aldehyde is further reduced to an alcohol or converted to an amine by an aminotransferase.)  This is a fundamentally different reaction than beta-ketoreductase domains of polyketide synthases which act at a carbonyl two carbons removed from the thioester and forms an alcohol as a product.
+CC  This domain is invariably found at the C-terminus of the proteins which contain it (presumably because it results in the release of the product).  The majority of hits to this model are non-ribosomal peptide synthetases in which this domain is similarly located proximal to a thiolation domain (PF00550).  In some cases this domain is found at the end of a polyketide synthetase enzyme, but is unlike ketoreductase domains which are found before the thiolase domains.  Exceptions to this observed relationship with the thiolase domain include three proteins which consist of stand-alone reductase domains (GP|466833 from M. leprae, GP|435954 from Anabaena and OMNI|NTL02SC1199 from Strep. coelicolor) and one protein (OMNI|NTL01NS2636 from Nostoc) which contains N-terminal homology with a small group of hypothetical proteins but no evidence of a thiolation domain next to the putative reductase domain.
+CC  Below the noise cutoff to this model are proteins containing more distantly related ketoreductase and dehydratase/epimerase domains.
+CC  It has been suggested [3] that a NADP-binding motif can be found in the N-terminal portion of this domain that may form a Rossman-type fold.
+RN  [1]
+RM  PMID: 10320345
+RT  Lysine biosynthesis in Saccharomyces cerevisiae: mechanism of alpha-aminoadipate reductase (Lys2) involves
+posttranslational phosphopantetheinylation by Lys5.
+RA  Ehmann DE, Gehring AM, Walsh CT.
+RL  Biochemistry 1999 May 11;38(19):6171-7
+RN  [2]
+RM  PMID: 11029592
+RT  The myxochelin iron transport regulon of the myxobacterium Stigmatella aurantiaca Sg a15.
+RA  Silakowski B, Kunze B, Nordsiek G, Blocker H, Hofle G, Muller R.
+RL  Eur J Biochem 2000 Nov;267(21):6476-85
+RN  [3]
+RM  PMID: 11254122
+RT  Characterization of the lys2 gene of Acremonium chrysogenum encoding a functional alpha-aminoadipate activating and reducing enzyme.
+RA  Hijarrubia MJ, Aparicio JF, Casqueiro J, Martin JF.
+RL  Mol Gen Genet 2001 Feb;264(6):755-62

@@ -1,0 +1,14 @@
+ID  CbiT
+AC  TIGR02469
+DE  precorrin-6Y C5,15-methyltransferase (decarboxylating), CbiT subunit
+AU  Selengut J
+TC  78.30 78.30
+NC  67.15 67.15
+AL  clustalw
+IT  equivalog_domain
+EN  precorrin-6Y C5,15-methyltransferase (decarboxylating), CbiT subunit
+GS  cbiT
+EC  2.1.1.132
+TP  TIGRFAMs
+CC  This model recognizes the CbiT methylase which is responsible, in part (along with CbiE), for methylating precorrin-6y (or cobalt-precorrin-6y) at both the 5 and 15 positions as well as the concomitant decarbozylation at C-12.  In many organisms, this protein is fused to the CbiE subunit.  The fused protein, when found in organisms catalyzing the oxidative version of the cobalamin biosynthesis pathway, is called CobL.
+DR  HAMAP; MF_00786; 17 of 18

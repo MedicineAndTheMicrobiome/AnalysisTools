@@ -1,0 +1,12 @@
+ID  LEUD_arch
+AC  TIGR02087
+DE  3-isopropylmalate dehydratase, small subunit
+AU  Selengut J
+TC  108.95 108.95
+NC  105.85 105.85
+AL  clustalw
+IT  subfamily
+EN  3-isopropylmalate dehydratase, small subunit
+TP  TIGRFAMs
+CC  This subfamily is most closely related to the 3-isopropylmalate dehydratase, small subunits which form TIGR00171.  This subfamily includes the members of TIGR02084 which are gene clustered with other genes of leucine biosynthesis.  The rest of the subfamily includes mainly archaeal species which exhibit two hits to this model.  In these cases it is possible that one or the other of the hits does not have a 3-isopropylmalate dehydratase activity but rather one of the other related aconitase-like activities.
+DR  HAMAP; MF_01032; 43 of 44

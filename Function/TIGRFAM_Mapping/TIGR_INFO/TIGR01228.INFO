@@ -1,0 +1,14 @@
+ID  hutU
+AC  TIGR01228
+DE  urocanate hydratase
+AU  Haft DH, Dodson RJ
+TC  422.20 422.20
+NC  185.50 185.50
+AL  clustalw_manual
+IT  equivalog
+EN  urocanate hydratase
+GS  hutU
+EC  4.2.1.49
+TP  TIGRFAMs
+CC  This model represents the second of four enzymes involved in the degradation of histidine to glutamate.
+DR  HAMAP; MF_00577; 109 of 112

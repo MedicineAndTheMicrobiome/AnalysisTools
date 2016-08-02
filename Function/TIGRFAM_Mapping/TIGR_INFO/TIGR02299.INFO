@@ -1,0 +1,18 @@
+ID  HpaE
+AC  TIGR02299
+DE  5-carboxymethyl-2-hydroxymuconate semialdehyde dehydrogenase
+AU  Selengut J
+TC  638.35 638.35
+NC  593.45 593.45
+AL  clustalw
+IT  equivalog
+EN  5-carboxymethyl-2-hydroxymuconate semialdehyde dehydrogenase
+GS  hpaE
+EC  1.2.1.60
+TP  TIGRFAMs
+CC  This model represents the dehydrogenase responsible for the conversion of 5-carboxymethyl-2-hydroxymuconate semialdehyde to 5-carboxymethyl-2-hydroxymuconate (a tricarboxylic acid).  This is the step in the degradation of 4-hydroxyphenylacetic acid via homoprotocatechuate following the oxidative opening of the aromatic ring.
+RN  [1]
+RM  PMID: 2194577
+RT  Nucleotide sequences of the meta-cleavage pathway enzymes 2-hydroxymuconic semialdehyde dehydrogenase and 2-hydroxymuconic semialdehyde hydrolase from Pseudomonas CF600.
+RA  Nordlund I, Shingler V.
+RL  Biochim Biophys Acta. 1990 Jun 21;1049(2):227-30.

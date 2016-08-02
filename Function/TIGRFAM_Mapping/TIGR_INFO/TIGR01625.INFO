@@ -1,0 +1,12 @@
+ID  YidE_YbjL_dupl
+AC  TIGR01625
+DE  AspT/YidE/YbjL antiporter duplication domain
+AU  Haft DH, Sunshine J, Selengut J
+TC  71.95 71.95
+NC  51.80 51.80
+AL  clustalw
+IT  subfamily_domain
+EN  AspT/YidE/YbjL antiporter duplication domain
+TP  TIGRFAMs
+CC  This model represents a domain that is duplicated the aspartate-alanine antiporter AspT, as well as HI0035 of Haemophilus influenzae, YidE and YbjL of E. coli, and a number of other known or putative transporters. Member proteins may have 0, 1, or 2 copies of TrkA potassium uptake domain PF02080 between the duplications. The domain contains several apparent transmembrane regions and is proposed here to act in transport.
+DR  HAMAP; MF_01016; 43 of 44

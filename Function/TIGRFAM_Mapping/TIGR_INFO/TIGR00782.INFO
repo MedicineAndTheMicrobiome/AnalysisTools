@@ -1,0 +1,22 @@
+ID  ccoP
+AC  TIGR00782
+DE  cytochrome c oxidase, cbb3-type, subunit III
+AU  Haft DH
+TC  179.95 179.95
+NC  54.05 54.05
+AL  clustalw_manual
+IT  equivalog
+EN  cytochrome c oxidase, cbb3-type, subunit III
+GS  ccoP
+EC  1.9.3.1
+TP  TIGRFAMs
+CC  This HMM describes a di-heme subunit of approximately 26 kDa of the cbb3 type copper and heme-containing cytochrome oxidase.
+RN  [1]
+RM  99098844
+RT  Characterization of a cb-type cytochrome c oxidase from Helicobacter pylori.
+RA  Tsukita S, Koyanagi S, Nagata K, Koizuka H, Akashi H, Shimoyama T, Tamura T, Sone N
+DR  InterPro; IPR000345
+RL  J Biochem (Tokyo) 1999 Jan;125(1):194-201
+RN  [2]
+RM  95198544
+RT  The ccoNOQP gene cluster codes for a cb-type cytochrome oxidase that functions in aerobic respiration of Rhodobacter capsulatus.

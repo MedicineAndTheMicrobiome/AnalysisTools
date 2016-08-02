@@ -1,0 +1,12 @@
+ID  HpnN
+AC  TIGR03480
+DE  hopanoid biosynthesis associated RND transporter like protein HpnN
+AU  Selengut J
+TC  751.85 751.85
+NC  401.60 401.60
+AL  muscle
+IT  hypoth_equivalog
+EN  hopanoid biosynthesis associated RND transporter like protein HpnN
+GS  hpnN
+TP  TIGRFAMs
+CC  The genomes containing members of this family share the machinery for the biosynthesis of hopanoid lipids.  Furthermore, the genes of this family are usually located proximal to other components of this biological process.  The proteins appear to be related to the RND family of export proteins, particularly the hydrophobe/amphiphile efflux-3 (HAE3) family represented by TIGR00921.

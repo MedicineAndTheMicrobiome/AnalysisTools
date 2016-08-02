@@ -1,0 +1,22 @@
+ID  psaOeuk
+AC  TIGR03059
+DE  photosystem I protein PsaO
+AU  Haft DH
+TC  107.85 107.85
+NC  44.35 44.35
+AL  muscle
+IT  equivalog
+EN  photosystem I protein PsaO
+GS  psaO
+TP  TIGRFAMs
+CC  Members of this family are the PsaO protein of photosystem I. This protein is found in chloroplasts but not in Cyanobacteria.
+RN  [1]
+RM  PMID: 11801243
+RT  PSI-O, a new 10-kDa subunit of eukaryotic photosystem I.
+RA  Knoetzel J, Mant A, Haldrup A, Jensen PE, Scheller HV
+RL  FEBS Lett. 2002 Jan 16;510(3):145-8.
+RN  [2]
+RM  PMID: 15169790
+RT  The PSI-O subunit of plant photosystem I is involved in balancing the excitation pressure between the two photosystems.
+RA  Jensen PE, Haldrup A, Zhang S, Scheller HV
+RL  J Biol Chem. 2004 Jun 4;279(23):24212-7.

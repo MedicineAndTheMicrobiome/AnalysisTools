@@ -1,0 +1,13 @@
+ID  dctM
+AC  TIGR00786
+DE  TRAP transporter, DctM subunit
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  268.45 268.45
+NC  131.85 131.85
+AL  clustalw_manual
+IT  subfamily
+EN  TRAP transporter, DctM subunit
+TR  2.A.56
+TP  TIGRFAMs
+CC  The Tripartite ATP-independent Periplasmic Transporter (TRAP-T) Family (TC 2.A.56)- DctM subunit TRAP-T family permeases generally consist of three components, and these systems have so far been found in Gram-negative bacteria, Gram-postive bacteria and archaea. Only one member of the family has been both sequenced and functionally characterized. This system is the DctPQM system of Rhodobacter capsulatus (Forward et al., 1997).  DctP is a periplasmic dicarboxylate (malate, fumarate, succinate) binding receptor that is biochemically well-characterized. DctQ is an integral cytoplasmic membrane protein with 4 putative transmembrane a-helical spanners (TMSs). DctM is a second integral cytoplasmic membrane protein with 12 putative TMSs. These proteins have been shown to be both necessary and sufficient for the proton motive
+CC  force-dependent uptake of dicarboxylates into R. capsulatus.

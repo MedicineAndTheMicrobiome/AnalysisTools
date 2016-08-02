@@ -1,0 +1,22 @@
+ID  F420_G6P_family
+AC  TIGR03557
+DE  F420-dependent oxidoreductase, G6PDH family
+AU  Haft DH
+TC  210.40 210.40
+NC  128.40 128.40
+AL  muscle_manual
+IT  subfamily
+EN  F420-dependent oxidoreductase, G6PDH family
+EC  1.-.-.-
+TP  TIGRFAMs
+CC  Members of this protein family include F420-dependent glucose-6-phosphate dehydrogenases (TIGR03554) and related proteins. All members of this family come from species that synthesize coenzyme F420, with the exception of those that belong to TIGR03885, a clade within this family in which cofactor binding may instead be directed to FMN.
+RN  [1]
+RM  PMID:20675471 
+RT  Unexpected abundance of coenzyme F(420)-dependent enzymes in Mycobacterium tuberculosis and other actinobacteria. 
+RA  Selengut JD, Haft DH 
+RL  J Bacteriol. 2010 Nov;192(21):5788-98.
+RN  [2]
+RM  PMID:23110042 
+RT  Tat-dependent translocation of an F420-binding protein of Mycobacterium tuberculosis. 
+RA  Bashiri G, Perkowski EF, Turner AP, Feltcher ME, Braunstein M, Baker EN 
+RL  PLoS One. 2012;7(10):e45003. doi: 10.1371/journal.pone.0045003.

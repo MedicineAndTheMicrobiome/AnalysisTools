@@ -1,0 +1,19 @@
+ID  cdhC
+AC  TIGR00316
+DE  CO dehydrogenase/CO-methylating acetyl-CoA synthase complex, beta subunit
+AU  Haft DH
+TC  355.95 355.95
+NC  355.55 355.55
+AL  clustalw
+IT  equivalog
+EN  CO dehydrogenase/CO-methylating acetyl-CoA synthase complex, beta subunit
+GS  cdhC
+EC  1.2.99.2 2.3.1.169
+TP  TIGRFAMs
+CC  Nomenclature follows the description for Methanosarcina thermophila. The CO-methylating acetyl-CoA synthase is considered the defining enzyme of the Wood-Ljungdahl pathway, used for acetate catabolism by sulfate reducing bacteria but for acetate biosynthesis by acetogenic bacteria such as oorella thermoacetica (f. Clostridium thermoaceticum).
+RN  [1]
+RM  97113446
+RT  Analysis of the CO dehydrogenase/acetyl-coenzyme A synthase operon of Methanosarcina thermophila.
+RA  Maupin-Furlow JA, Ferry JG
+RL  J Bacteriol 1996 Dec;178(23):6849-56
+DR  HAMAP; MF_01138; 10 of 10

@@ -1,0 +1,18 @@
+ID  ala_DH_arch
+AC  TIGR02371
+DE  alanine dehydrogenase
+AU  Haft DH
+TC  409.15 409.15
+NC  255.45 255.45
+AL  clustalw
+IT  equivalog
+EN  alanine dehydrogenase, Archaeoglobus fulgidus type
+GS  ala
+EC  1.4.1.1
+TP  TIGRFAMs
+CC  This enzyme, a homolog of bacterial ornithine cyclodeaminases and marsupial mu-crystallins, is a homodimeric, NAD-dependent alanine dehydrogenase found in Archaeoglobus fulgidus and several other Archaea. For a number of close homologs, scoring between trusted and noise cutoffs, it is not clear at present what is the enzymatic activity.
+DR  EXPERIMENTAL; PDB|1OMO_A; Archaeoglobus fulgidus
+RM  15516582
+RT  A Novel Archaeal Alanine Dehydrogenase Homologous to Ornithine Cyclodeaminase and {micro}-Crystallin.
+RA  Schroder I, Vadas A, Johnson E, Lim S, Monbouquette HG.
+RL  J Bacteriol. 2004 Nov;186(22):7680-7689.

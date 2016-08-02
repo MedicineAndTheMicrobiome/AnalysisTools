@@ -1,0 +1,15 @@
+ID  gntP
+AC  TIGR00791
+DE  transporter, gluconate:H+ symporter (GntP) family
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  292.75 292.75
+NC  250.15 250.15
+AL  clustalw_manual
+IT  subfamily
+EN  gluconate transporter
+TR  2.A.8
+TP  TIGRFAMs
+CC  This family includes known gluconate transporters of E. coli and Bacillus species as well as an idonate transporter from E. coli.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_8.html
+DR  Interpro; IPR003474
+DR  PFAM; PF02447

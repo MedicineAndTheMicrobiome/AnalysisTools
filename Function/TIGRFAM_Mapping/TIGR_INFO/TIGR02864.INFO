@@ -1,0 +1,15 @@
+ID  spore_sspO
+AC  TIGR02864
+DE  small, acid-soluble spore protein O
+AU  Haft DH
+TC  30.55 30.55
+NC  30.05 30.05
+AL  clustalw
+IT  equivalog
+EN  small, acid-soluble spore protein O
+GS  sspO
+TP  TIGRFAMs
+CC  This model represents a minor (low-abundance) spore protein, designated SspO. It is found in a very limited subset of the already small group of endospore-forming bacteria, but these species include Oceanobacillus iheyensis, Geobacillus kaustophilus, Bacillus subtilis, B. halodurans, and B. cereus. This protein was previously called CotK.
+DR  SWISSPROT; P71031; Bacillus subtilis
+DR  PFAM; PF0817; SspO
+DR  HAMAP; MF_00665; 11 of 11

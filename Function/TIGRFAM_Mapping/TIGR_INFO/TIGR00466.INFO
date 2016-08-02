@@ -1,0 +1,16 @@
+ID  kdsB
+AC  TIGR00466
+DE  3-deoxy-D-manno-octulosonate cytidylyltransferase
+AU  Loftus BJ
+TC  155.20 155.20
+NC  113.75 113.75
+AL  clustalw
+IT  equivalog
+EN  3-deoxy-D-manno-octulosonate cytidylyltransferase
+GS  kdsB
+EC  2.7.7.38
+TP  TIGRFAMs
+DR  Swissprot; P42216; 
+RM  Medline; 87057231; 
+DR  ECOCYC; EG10519; 
+DR  HAMAP; MF_00057; 85 of 87

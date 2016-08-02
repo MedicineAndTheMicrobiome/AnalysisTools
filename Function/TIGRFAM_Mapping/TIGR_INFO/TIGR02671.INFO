@@ -1,0 +1,17 @@
+ID  cas_csx9
+AC  TIGR02671
+DE  CRISPR-associated protein Cas8a2/Csx9, subtype I-A/APERN
+AU  Haft DH
+TC  156.65 156.65
+NC  156.05 156.05
+AL  clustalw
+IT  equivalog
+EN  CRISPR-associated protein Cas8a2/Csx9, subtype I-A/APERN
+GS  cas8a2
+TP  TIGRFAMs
+CC  Members of this family, so far, are archaeal proteins found in CRISPR-associated (cas) gene regions. So far, this rare cas protein is found in only three genomes: Pyrococcus horikoshii shinkaj OT3, Pyrococcus abyssi GE5, and Thermococcus kodakarensis KOD1. In each case it is found immediately upstream of cas3 in loci that resemble the Apern type but lack Csa1 and Csa4 genes.
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=2003
+RN  [1]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005

@@ -1,0 +1,18 @@
+ID  Bthiol_YpdA
+AC  TIGR04018
+DE  putative bacillithiol system oxidoreductase, YpdA family
+AU  Haft DH
+TC  339.90 339.90
+NC  165.70 165.70
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  putative bacillithiol system oxidoreductase, YpdA family
+GS  ypdA
+EC  1.8.-.-
+TP  TIGRFAMs
+CC  Members of this protein family, including YpdA from Bacillus subtilis, are apparent oxidoreductases present only in species with an active bacillithiol system. They have been suggested actually to be thiol disulfide oxidoreductases (TDOR), although the evidence is incomplete.
+RN  [1]
+RM  PMID:20308541 
+RT  Biosynthesis and functions of bacillithiol, a major low-molecular-weight thiol in Bacilli. 
+RA  Gaballa A, Newton GL, Antelmann H, Parsonage D, Upton H, Rawat M, Claiborne A, Fahey RC, Helmann JD 
+RL  Proc Natl Acad Sci U S A. 2010 Apr 6;107(14):6482-6.

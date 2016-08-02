@@ -1,0 +1,17 @@
+ID  spore_YpeB
+AC  TIGR02889
+DE  germination protein YpeB
+AU  Haft DH
+TC  303.55 303.55
+NC  73.45 73.45
+AL  muscle
+IT  equivalog
+EN  germination protein YpeB
+GS  ypeB
+TP  TIGRFAMs
+CC  Members of this family are YpeB, a protein usually encoded with the putative spore-cortex-lytic enzyme SleB and required, together with SleB, for normal germination. This family is retricted to endospore-forming species in the Firmicutes lineage of bacteria, and found in all such species to date except Clostridium perfringens. The matching phenotypes of mutants in SleB (called a lytic transglycosylase) and YpeB suggests that YpeB is necessary to allow SleB to function.
+RN  [1]
+RM  10658652
+RT  Complete spore-cortex hydrolysis during germination of Bacillus subtilis 168 requires SleB and YpeB.
+RA  Boland FM, Atrih A, Chirakkal H, Foster SJ, Moir A.
+RL  Microbiology. 2000 Jan;146 ( Pt 1):57-64.

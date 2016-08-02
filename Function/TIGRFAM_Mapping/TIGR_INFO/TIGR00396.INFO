@@ -1,0 +1,14 @@
+ID  leuS_bact
+AC  TIGR00396
+DE  leucine--tRNA ligase
+AU  Haft DH
+TC  548.40 548.40
+NC  335.30 335.30
+AL  clustalw_manual
+IT  equivalog
+EN  leucyl-tRNA synthetase, eubacterial and mitochondrial family
+GS  leuS
+EC  6.1.1.4
+TP  TIGRFAMs
+CC  The leucyl-tRNA synthetases belong to two families so broadly different that they are represented by separate models. This model includes both eubacterial and mitochondrial leucyl-tRNA synthetases. It generates higher scores for some valyl-tRNA synthetases than for any archaeal or eukaryotic cytosolic leucyl-tRNA synthetase. Note that the enzyme from Aquifex aeolicus is split into alpha and beta chains; neither chain is long enough to score above the trusted cutoff, but the alpha chain scores well above the noise cutoff. The beta chain must be found by a model and search designed for partial length matches.
+DR  HAMAP; MF_00049; 507 of 550

@@ -1,0 +1,11 @@
+ID  4cys_cytochr
+AC  TIGR03874
+DE  c-type cytochrome, methanol metabolism-related
+AU  Haft DH
+TC  161.75 161.75
+NC  136.55 136.55
+AL  muscle_manual
+IT  equivalog
+EN  c-type cytochrome, methanol metabolism-related
+TP  TIGRFAMs
+CC  This family represents a c-type cytochrome related to (but excluding) cytochrome c-555 of Methylococcus capsulatus. Members contain four invariant Cys residues, including two from a heme-binding motif shared with c-555, and two others.

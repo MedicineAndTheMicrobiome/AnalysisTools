@@ -1,0 +1,13 @@
+ID  gnd
+AC  TIGR00873
+DE  6-phosphogluconate dehydrogenase (decarboxylating)
+AU  Haft DH
+TC  426.70 426.70
+NC  211.20 211.20
+AL  clustalw
+IT  equivalog
+EN  6-phosphogluconate dehydrogenase (decarboxylating)
+GS  gnd
+EC  1.1.1.44
+TP  TIGRFAMs
+CC  This model does not specify whether the cofactor is NADP only (EC 1.1.1.44), NAD only, or both. The model does not assign an EC number for that reason.

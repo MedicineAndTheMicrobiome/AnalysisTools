@@ -1,0 +1,15 @@
+ID  heptose_epim
+AC  TIGR02197
+DE  ADP-glyceromanno-heptose 6-epimerase
+AU  Haft DH
+TC  274.60 274.60
+NC  199.70 199.70
+AL  clustalw_manual
+IT  equivalog
+EN  ADP-L-glycero-D-manno-heptose-6-epimerase
+GS  rfaD
+EC  5.1.3.20
+TP  TIGRFAMs
+CC  This family consists of examples of ADP-L-glycero-D-mannoheptose-6-epimerase, an enzyme involved in biosynthesis of the inner core of lipopolysaccharide (LPS) for Gram-negative bacteria. This enzyme is homologous to UDP-glucose 4-epimerase (TIGR01179) and belongs to the NAD dependent epimerase/dehydratase family (PF01370).
+DR  PFAM; PF01370; NAD dependent epimerase/dehydratase family
+DR  HAMAP; MF_01601; 105 of 107

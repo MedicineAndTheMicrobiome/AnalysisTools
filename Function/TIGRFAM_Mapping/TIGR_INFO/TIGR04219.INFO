@@ -1,0 +1,11 @@
+ID  OMP_w_GlyGly
+AC  TIGR04219
+DE  outer membrane protein
+AU  Haft DH
+TC  105.00 105.00
+NC  80.00 80.00
+AL  muscle_manual
+IT  subfamily
+EN  outer membrane protein
+TP  TIGRFAMs
+CC  Members of this protein family are outer membrane proteins (OMP), as can be seen by their homology to YfaZ protein (see PMID:16522795) and by the OMP targeting region at the C-terminus, including a C-terminal Phe residue. Members of this protein family are found in the great majority of genomes with the GlyGly-CTERM protein sorting signal and the rhombosortase putative sorting enzyme, although the relationship may be fortuitous.

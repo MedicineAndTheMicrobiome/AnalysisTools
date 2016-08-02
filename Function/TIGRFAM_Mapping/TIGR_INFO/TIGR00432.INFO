@@ -1,0 +1,15 @@
+ID  arcsn_tRNA_tgt
+AC  TIGR00432
+DE  tRNA-guanine(15) transglycosylase
+AU  Haft DH
+TC  350.00 350.00
+NC  200.00 200.00
+AL  clustalw
+IT  equivalog
+EN  tRNA-guanine(15) transglycosylase
+GS  tgtA
+EC  2.4.2.48
+TP  TIGRFAMs
+CC  This tRNA-guanine transglycosylase (tgt) differs from the tgt of E. coli and other Bacteria in the site of action and the modification that results. It exchanges 7-cyano-7-deazaguanine (preQ0) with guanine at position 15 of archaeal tRNA; this nucleotide is subsequently converted to archaeosine, found exclusively in the Archaea. This enzyme from Haloferax volcanii has been purified, characterized, and partially sequenced and is the basis for identifying this family. In contrast, bacterial tgt (TIGR00430) catalyzes the exchange of preQ0 or preQ1 for the guanine base at position 34; this nucleotide is subsequently modified to queuosine. Archeoglobus fulgidus has both enzymes, while some other Archaea have just this one.
+RM  Medline; 97390456
+DR  HAMAP; MF_01634; 19 of 32

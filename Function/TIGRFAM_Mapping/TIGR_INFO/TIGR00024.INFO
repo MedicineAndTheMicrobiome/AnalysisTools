@@ -1,0 +1,16 @@
+ID  SbcD_rel_arch
+AC  TIGR00024
+DE  putative phosphoesterase
+AU  Haft DH, Richardson DL
+TC  115.20 115.20
+NC  70.20 70.20
+AL  clustalw
+IT  hypoth_equivalog
+EN  putative phosphoesterase, SbcD/Mre11-related
+EC  3.1.-.-
+TP  TIGRFAMs
+CC  Members of this uncharacterized family share a motif approximating DXH(X25)GDXXD(X25)GNHD as found in several phosphoesterases, including the nucleases SbcD and Mre11. SbcD is a subunit of the SbcCD nuclease of E. coli that can cleave DNA hairpins to unblock stalled DNA replication. All members of this family are archaeal.
+RM  9653124
+RT  The SbcCD nuclease of Escherichia coli is a structural maintenance of chromosomes (SMC) family protein that cleaves hairpin DNA.
+RA  Connelly JC, Kirkham LA, Leach DR.
+RL  Proc Natl Acad Sci U S A 1998 Jul 7;95(14):7969-74

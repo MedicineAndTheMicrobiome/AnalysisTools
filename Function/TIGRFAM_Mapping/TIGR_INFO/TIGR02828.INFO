@@ -1,0 +1,11 @@
+ID  TIGR02828
+AC  TIGR02828
+DE  putative membrane fusion protein
+AU  Haft DH
+TC  154.40 154.40
+NC  50.30 50.30
+AL  clustalw_manual
+IT  hypoth_equivalog_domain
+EN  putative membrane fusion protein
+TP  TIGRFAMs
+CC  Members of this family show similarity to the members of TIGR00999, the membrane fusion protein (MFP) cluster 2 family, which is linked to RND transport systems.

@@ -1,0 +1,17 @@
+ID  Se_sel_red_FAD
+AC  TIGR03312
+DE  probable selenate reductase, FAD-binding subunit
+AU  Haft DH
+TC  241.50 241.50
+NC  87.85 87.85
+AL  muscle
+IT  hypoth_equivalog
+EN  probable selenate reductase, FAD-binding subunit
+GS  ygfM
+TP  TIGRFAMs
+CC  This protein is suggested by Bebien, et al., to be the FAD-binding subunit of a molydbopterin-containing selenate reductase. Our comparative genomics suggests it to be a subunit of a selenium-dependent molybdenum hydroxylase for an unknown substrate.
+RN  [1]
+RM  PMID: 12480890
+RT  Involvement of a putative molybdenum enzyme in the reduction of selenate by Escherichia coli.
+RA  Bebien M, Kirsch J, Mejean V, Vermeglio A
+RL  Microbiology. 2002 Dec;148(Pt 12):3865-72.

@@ -1,0 +1,14 @@
+ID  hutH
+AC  TIGR01225
+DE  histidine ammonia-lyase
+AU  Haft DH, Dodson RJ
+TC  539.15 539.15
+NC  534.10 534.10
+AL  clustalw
+IT  equivalog
+EN  histidine ammonia-lyase
+GS  hutH
+EC  4.3.1.3
+TP  TIGRFAMs
+CC  This enzyme deaminates histidine to urocanic acid, the first step in histidine degradation. It is closely related to phenylalanine ammonia-lyase.
+DR  HAMAP; MF_00229; 143 of 144

@@ -1,0 +1,12 @@
+ID  GGGPS_Afulg
+AC  TIGR04146
+DE  phosphoglycerol geranylgeranyltransferase
+AU  Haft DH
+TC  320.00 320.00
+NC  270.00 270.00
+AL  clustalw_manual
+IT  equivalog
+EN  phosphoglycerol geranylgeranyltransferase
+EC  2.5.1.41
+TP  TIGRFAMs
+CC  This enzyme, known also as GGGP synthase and GGGPS, catalyzes the stereospecific first step in the biosynthesis of the characteristic membrane diether lipids of archaea. Interestingly, the closest homologs outside this family are not the functionally equivalent enzymes of other archaea, but rather functionally distinct bacterial enzymes.

@@ -1,0 +1,31 @@
+ID  TIGR00157
+AC  TIGR00157
+DE  ribosome small subunit-dependent GTPase A
+AU  Haft DH
+TC  100.00 100.00
+NC  60.00 60.00
+AL  clustalw_manual
+IT  equivalog
+EN  ribosome small subunit-dependent GTPase A
+GS  rsgA
+EC  3.6.-.-
+TP  TIGRFAMs
+CC  Members of this protein were designated YjeQ and are now designated RsgA (ribosome small subunit-dependent GTPase A).
+CC  The strongest motif in the alignment of these proteins is GXSGVGKS[ST], a classic P-loop for nucleotide binding. This protein has been shown to cleave GTP and remain bound to GDP. A role as a regulator of translation has been suggested.
+CC  The Aquifex aeolicus ortholog is split into consecutive open reading frames. Consequently, this model was build in fragment mode (-f option).
+RN  [1]
+RM  12220175
+RT  YjeQ, an essential, conserved, uncharacterized protein from Escherichia coli, is an unusual GTPase with circularly permuted G-motifs and marked burst kinetics.
+RA  Daigle DM, Rossi L, Berghuis AM, Aravind L, Koonin EV, Brown ED.
+RL  Biochemistry 2002 Sep 17;41(37):11109-17
+RN  [2]
+RM  14973029
+RT  Studies of the interaction of Escherichia coli YjeQ with the ribosome in vitro.
+RA  Daigle DM, Brown ED.
+RL  J Bacteriol. 2004 Mar;186(5):1381-7.
+RN  [3]
+RM  15466596
+RT  A novel GTPase activated by the small subunit of ribosome.
+RA  Himeno H, Hanawa-Suetsugu K, Kimura T, Takagi K, Sugiyama W, Shirata S, Mikami T, Odagiri F, Osanai Y, Watanabe D, Goto S, Kalachnyuk L, Ushida C, Muto A.
+RL  Nucleic Acids Res. 2004 Oct 05;32(17):5303-9.
+DR  HAMAP; MF_01820; 94 of 102

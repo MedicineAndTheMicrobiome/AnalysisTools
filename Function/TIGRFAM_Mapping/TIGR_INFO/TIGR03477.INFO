@@ -1,0 +1,26 @@
+ID  DMSO_red_II_gam
+AC  TIGR03477
+DE  DMSO reductase family type II enzyme, heme b subunit
+AU  Haft DH
+TC  169.85 169.85
+NC  37.65 37.65
+AL  muscle_manual
+IT  subfamily
+EN  DMSO reductase family type II enzyme, heme b subunit
+TP  TIGRFAMs
+CC  This model represents a heme b-binding subunit, typically called the gamma subunit, of various proteins that also contain a molybdopterin subunit and an iron-sulfur protein. The group includes two distinct but very closely related periplasmic proteins of anaerobic respiration, selenate reductase and chlorate reductase. Other members of this family include  dimethyl sulphide dehydrogenase and ethylbenzene dehydrogenase.
+RN  [1]
+RM  PMID:15866716
+RT  The C subunit of Ideonella dechloratans chlorate reductase: expression, purification, refolding, and heme reconstitution.
+RA  Karlsson J, Nilsson T
+RL  Protein Expr Purif. 2005 Jun;41(2):306-12.
+RN  [2]
+RM  PMID:11294876
+RT  Ethylbenzene dehydrogenase, a novel hydrocarbon-oxidizing molybdenum/iron-sulfur/heme enzyme.
+RA  Kniemeyer O, Heider J
+RL  J Biol Chem. 2001 Jun 15;276(24):21381-6.
+RN  [3]
+RM  PMID:12067345
+RT  Molecular analysis of dimethyl sulphide dehydrogenase from Rhodovulum sulfidophilum: its place in the dimethyl sulphoxide reductase family of microbial molybdopterin-containing enzymes.
+RA  McDevitt CA, Hugenholtz P, Hanson GR, McEwan AG
+RL  Mol Microbiol. 2002 Jun;44(6):1575-87.

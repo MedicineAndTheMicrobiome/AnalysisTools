@@ -1,0 +1,17 @@
+ID  PR_assoc_PrdC
+AC  TIGR04481
+DE  proline reductase-associated electron transfer protein PrdC
+AU  Haft DH
+TC  490.00 490.00
+NC  300.00 300.00
+AL  muscle_manual
+IT  equivalog
+EN  proline reductase-associated electron transfer protein PrdC
+GS  prdC
+TP  TIGRFAMs
+CC  Members of this family are encoded near the prdA and prdB genes for proteins of the proline reductase complex, are induced by proline, and are designated PrdC by Bouillaut, et al. Some members are selenoproteins (at two different positions), as is PrdB. Members are homologous to, but distinct from, electron transport protein RnfC.
+RN  [1]
+RM  PMID:23222730 
+RT  Proline-dependent regulation of Clostridium difficile Stickland metabolism. 
+RA  Bouillaut L, Self WT, Sonenshein AL 
+RL  J Bacteriol. 2013 Feb;195(4):844-54. doi: 10.1128/JB.01492-12.

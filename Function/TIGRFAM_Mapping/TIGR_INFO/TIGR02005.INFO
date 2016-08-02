@@ -1,0 +1,28 @@
+ID  PTS-IIBC-alpha
+AC  TIGR02005
+DE  PTS system, alpha-glucoside-specific IIBC component
+AU  Selengut J
+TC  607.30 607.30
+NC  386.80 386.80
+AL  clustalw
+IT  subfamily_domain
+EN  PTS system, alpha-glucoside-specific IIBC component
+EC  2.7.1.69
+TR  4.A.1.1.-
+TP  TIGRFAMs
+CC  This HMM represents a family of fused PTS enzyme II B and C domains.  A gene from Clostridium [1] has been partially characterized as a maltose transporter, while genes from Fusobacterium and Klebsiella [2,3] have been proposed to transport the five non-standard isomers of sucrose.
+RN  [1]
+RM  PMID: 11781805
+RT  Characterization of a maltose transport system in Clostridium acetobutylicum ATCC 824.
+RA  Tangney M, Winters GT, Mitchell WJ.
+RL  J Ind Microbiol Biotechnol. 2001 Nov;27(5):298-306. 
+RN  [2]
+RM  PMID: 11882720
+RT  Metabolism of sucrose and its five isomers by Fusobacterium mortiferum.
+RA  Pikis A, Immel S, Robrish SA, Thompson J.
+RL  Microbiology. 2002 Mar;148(Pt 3):843-52. 
+RN  [3]
+RM  PMID: 11473129 
+RT  Metabolism of sucrose and its five linkage-isomeric alpha-D-glucosyl-D-fructoses by Klebsiella pneumoniae. Participation and properties of sucrose-6-phosphate hydrolase and phospho-alpha-glucosidase.
+RA  Thompson J, Robrish SA, Immel S, Lichtenthaler FW, Hall BG, Pikis A.
+RL  J Biol Chem. 2001 Oct 5;276(40):37415-25. Epub 2001 Jul 25.

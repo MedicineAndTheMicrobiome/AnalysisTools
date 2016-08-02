@@ -1,0 +1,14 @@
+ID  rpoB
+AC  TIGR02013
+DE  DNA-directed RNA polymerase, beta subunit
+AU  Nelson WE
+TC  801.15 801.15
+NC  610.10 610.10
+AL  clustalw_manual
+IT  equivalog
+EN  DNA-directed RNA polymerase, beta subunit
+GS  rpoB
+EC  2.7.7.6
+TP  TIGRFAMs
+CC  This model describes orthologs of the beta subunit of Bacterial RNA polymerase. The core enzyme consists of two alpha chains, one beta chain, and one beta' subunit.
+DR  HAMAP; MF_01321; 560 of 665

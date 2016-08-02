@@ -1,0 +1,17 @@
+ID  PEP_TPR_lipo
+AC  TIGR02917
+DE  putative PEP-CTERM system TPR-repeat lipoprotein
+AU  Haft DH
+TC  312.20 312.20
+NC  217.45 217.45
+AL  muscle
+IT  equivalog
+EN  putative PEP-CTERM system TPR-repeat lipoprotein
+GS  prsT
+TP  TIGRFAMs
+CC  This protein family occurs in strictly within a subset of Gram-negative bacterial species with the proposed PEP-CTERM/exosortase system, analogous to the LPXTG/sortase system common in Gram-positive bacteria. This protein occurs in a species if and only if a transmembrane histidine kinase (TIGR02916) and a DNA-binding response regulator (TIGR02915) also occur. The present of tetratricopeptide repeats (TPR) suggests protein-protein interaction, possibly for the regulation of PEP-CTERM protein expression, since many PEP-CTERM proteins in these genomes are preceded by a proposed DNA binding site for the response regulator.
+RN  [1]
+RM  PMID: 16930487
+RT  Exopolysaccharide-associated protein sorting in environmental organisms: the PEP-CTERM/EpsH system. Application of a novel phylogenetic profiling heuristic.
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD
+RL  BMC Biol. 2006 Aug 24;4(1):29.

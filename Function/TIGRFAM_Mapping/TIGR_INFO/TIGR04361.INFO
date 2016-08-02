@@ -1,0 +1,16 @@
+ID  TrbK_Ti
+AC  TIGR04361
+DE  entry exclusion protein TrbK
+AU  Haft DH
+TC  50.00 50.00
+NC  40.00 40.00
+AL  muscle_manual
+IT  equivalog
+EN  entry exclusion protein TrbK, Ti-type
+TP  TIGRFAMs
+CC  Members of this family are encoded between the genes for TrbJ and TrbL of P-type plasmid conjugal transfer systems, and therefore are TrbK, a member of a guild of unrelated TrbK protein families. The similarly located TrbK of plasmid RP4 (family TIGR04359) functions in entry exclusion, and the current family may as well, despite lacking any detectable homology. Members of this family include TrbK of the Ti plasmid from Agrobacterium, shown not to be required for transfer, which would be consistent with a role in entry exclusion rather than transfer itself. Li et al. (PMID:10438776) cite unpublished results that showed an entry exclusion function for TrbK of the Ti plasmid. This small protein shares close C-terminal sequence homology to the much longer protein encoded by the neighboring gene TrbJ.
+RN  [1]
+RM  PMID:10438776 
+RT  Essential components of the Ti plasmid trb system, a type IV macromolecular transporter. 
+RA  Li PL, Hwang I, Miyagi H, True H, Farrand SK 
+RL  J Bacteriol. 1999 Aug;181(16):5033-41.

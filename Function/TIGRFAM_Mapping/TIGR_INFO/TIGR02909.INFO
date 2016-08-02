@@ -1,0 +1,13 @@
+ID  spore_YkwD
+AC  TIGR02909
+DE  uncharacterized protein, YkwD family
+AU  Haft DH
+TC  171.00 171.00
+NC  143.80 143.80
+AL  muscle
+IT  subfamily_domain
+EN  uncharacterized protein, YkwD family
+TP  TIGRFAMs
+CC  Members of this protein family represent a subset of those belonging to Pfam family PF00188 (SCP-like extracellular protein). Based on currently cuttoffs for this model, all member proteins are found in Bacteria capable of endospore formation. Members include a named but uncharacterized protein, YkwD of Bacillus subtilis. Only the C-terminal region is well-conserved and is included in the seed alignment for this model. Three members of this family have an N-terminal domain homologous to the spore coat assembly protein SafA.
+DR  PFAM; PF00188; SCP; SCP-like extracellular protein
+DR  PFAM; PF01476; LysM; LysM domain

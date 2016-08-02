@@ -1,0 +1,15 @@
+ID  leud
+AC  TIGR02084
+DE  3-isopropylmalate dehydratase, small subunit
+AU  Selengut J
+TC  245.85 245.85
+NC  231.40 231.40
+AL  clustalw
+IT  equivalog
+EN  3-isopropylmalate dehydratase, small subunit
+GS  leuD
+EC  4.2.1.33
+TP  TIGRFAMs
+CC  Homoaconitase, aconitase, and 3-isopropylmalate dehydratase have similar overall structures. All are dehydratases (EC 4.2.1.-) and bind a Fe-4S iron-sulfur cluster.  3-isopropylmalate dehydratase is split into large (leuC) and small (leuD) chains in eubacteria.
+CC  Several pairs of archaeal proteins resemble the leuC and leuD pair in length and sequence but even more closely resemble the respective domains of homoaconitase, and their identity is uncertain. The members of the seed for this model are those sequences which are gene clustered with other genes involved in leucine biosynthesis and include some archaea.
+DR  HAMAP; MF_01032; 9 of 44

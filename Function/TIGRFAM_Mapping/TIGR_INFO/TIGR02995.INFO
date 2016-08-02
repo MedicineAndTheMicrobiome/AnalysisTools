@@ -1,0 +1,12 @@
+ID  ectoine_ehuB
+AC  TIGR02995
+DE  ectoine/hydroxyectoine ABC transporter solute-binding protein EhuB
+AU  Haft DH
+TC  190.90 190.90
+NC  172.50 172.50
+AL  muscle
+IT  equivalog
+EN  ectoine/hydroxyectoine ABC transporter solute-binding protein
+GS  ehuB
+TP  TIGRFAMs
+CC  Members of this family are the extracellular solute-binding proteins of ABC transporters that closely resemble amino acid transporters. The member from Sinorhizobium meliloti is involved in ectoine uptake, both for osmoprotection and for catabolism. All other members of the seed alignment are found associated with ectoine catabolic genes.

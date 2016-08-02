@@ -1,0 +1,12 @@
+ID  TIGR00044
+AC  TIGR00044
+DE  pyridoxal phosphate enzyme, YggS family
+AU  Richardson DL
+TC  106.25 106.25
+NC  98.50 98.50
+AL  msa_tigr
+IT  hypoth_equivalog
+EN  pyridoxal phosphate enzyme, YggS family
+TP  TIGRFAMs
+CC  Members of this protein family include YggS from Escherichia coli and YBL036C, an uncharacterized pyridoxal protein of Saccharomyces cerevisiae.
+DR  PFAM; PF01168; Alanine racemase, N-terminal domain

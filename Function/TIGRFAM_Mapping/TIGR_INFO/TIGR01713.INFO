@@ -1,0 +1,12 @@
+ID  typeII_sec_gspC
+AC  TIGR01713
+DE  type II secretion system protein C
+AU  Haft DH
+TC  101.60 101.60
+NC  47.30 47.30
+AL  clustalw_manual
+IT  equivalog
+EN  type II secretion system protein C
+GS  gspC
+TP  TIGRFAMs
+CC  This HMM represents GspC, protein C of the main terminal branch of the general secretion pathway, also called type II secretion. This system transports folded proteins across the bacterial outer membrane and is widely distributed in Gram-negative pathogens.

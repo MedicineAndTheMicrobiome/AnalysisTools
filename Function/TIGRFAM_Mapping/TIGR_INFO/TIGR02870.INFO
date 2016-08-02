@@ -1,0 +1,17 @@
+ID  spore_II_D
+AC  TIGR02870
+DE  stage II sporulation protein D
+AU  Haft DH
+TC  234.75 234.75
+NC  228.70 228.70
+AL  muscle
+IT  equivalog
+EN  stage II sporulation protein D
+GS  spoIID
+TP  TIGRFAMs
+CC  Stage II sporulation protein D (SpoIID) is a protein of the endospore formation program in a number of lineages in the Firmicutes (low-GC Gram-positive bacteria). It is expressed in the mother cell compartment, under control of Sigma-E. SpoIID, along with SpoIIM and SpoIIP, is one of three major proteins involved in engulfment of the forespore by the mother cell.
+RN  [1]
+RM  15752199
+RT  Subcellular localization of a sporulation membrane protein is achieved through a network of interactions along and across the septum.
+RA  Mol Microbiol. 2005 Mar;55(6):1767-81.
+RL  Doan T, Marquis KA, Rudner DZ.

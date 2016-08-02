@@ -1,0 +1,16 @@
+ID  YscW
+AC  TIGR02567
+DE  type III secretion system chaperone YscW
+AU  Selengut J
+TC  58.20 58.20
+NC  58.00 58.00
+AL  clustalw
+IT  equivalog
+EN  type III secretion system chaperone YscW
+TP  TIGRFAMs
+CC  This family of proteins is found within type III secretion operons.  The protein has been characterized [1] as a chaperone for the outer membrane pore component YscC (TIGR02516).  YscW is a lipoprotein which is itself localized to the outer membrane and, it is believed, facilitates the oligomerization and localization of YscC.
+RN  [1]
+RM  PMID: 15292137
+RT  Role of the pilot protein YscW in the biogenesis of the YscC secretin in Yersinia enterocolitica.
+RA  Burghout P, Beckers F, de Wit E, van Boxtel R, Cornelis GR, Tommassen J, Koster M.
+RL  J Bacteriol. 2004 Aug;186(16):5366-75.

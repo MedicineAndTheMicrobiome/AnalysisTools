@@ -1,0 +1,17 @@
+ID  VI_chp_7
+AC  TIGR03362
+DE  type VI secretion-associated protein, VC_A0119 family
+AU  Haft DH
+TC  230.10 230.10
+NC  105.80 105.80
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  type VI secretion-associated protein, VC_A0119 family
+TP  TIGRFAMs
+CC  This protein family is one of two related families in type VI secretion systems that contain an ImpA-related N-terminal domain (PF06812).
+DR  PFAM; PF06812; ImpA-rel_N
+RN  [1]
+RM  PMID: 16432199
+RT  Identification of a conserved bacterial protein secretion system in Vibrio cholerae using the Dictyostelium host model system.
+RA  Pukatzki S, Ma AT, Sturtevant D, Krastins B, Sarracino D, Nelson WC, Heidelberg JF, Mekalanos JJ
+RL  Proc Natl Acad Sci U S A. 2006 Jan 31;103(5):1528-33.

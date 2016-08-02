@@ -1,0 +1,22 @@
+ID  YjjG/YfnB
+AC  TIGR02254
+DE  noncanonical pyrimidine nucleotidase, YjjG family
+AU  Selengut J, Haft DH
+TC  159.90 159.90
+NC  152.10 152.10
+AL  clustalw
+IT  equivalog
+EN  noncanonical pyrimidine nucleotidase, YjjG family
+EC  3.1.3.5
+TP  TIGRFAMs
+CC  This HAD superfamily includes including YjjG from E. coli and YfnB from B. subtilis. YjjG has been shown to act as a house-cleaning enzyme, cleaving nucleotides with non-canonical nucleotide bases. This family is a member of the haloacid dehalogenase (HAD) superfamily of hydrolases which are characterized by three conserved sequence motifs [2].  By virtue of an alpha helical domain in-between the first and second conserved motif, this family is a member of subfamily IA (TIGR01549).
+RN  [1]
+RM  PMID:17286574 
+RT  The Escherichia coli protein YjjG is a house-cleaning nucleotidase in vivo. 
+RA  Titz B, Hauser R, Engelbrecher A, Uetz P 
+RL  FEMS Microbiol Lett. 2007 May;270(1):49-57.
+RN  [2]
+RM  PMID: 7966317
+RT  Computer analysis of bacterial haloacid dehalogenases defines a large superfamily of hydrolases with diverse specificity. Application of an iterative approach to database search.
+RA  Koonin EV, Tatusov RL.
+RL  J Mol Biol 1994 Nov 18;244(1):125-32

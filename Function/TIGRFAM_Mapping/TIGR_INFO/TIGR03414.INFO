@@ -1,0 +1,22 @@
+ID  ABC_choline_bnd
+AC  TIGR03414
+DE  choline ABC transporter, periplasmic binding protein
+AU  Haft DH
+TC  379.05 379.05
+NC  191.50 191.50
+AL  muscle_manual
+IT  subfamily
+EN  choline ABC transporter, periplasmic binding protein
+GS  choX
+TP  TIGRFAMs
+CC  Partial phylogenetic profiling (PMID:16930487) vs. the genome property of glycine betaine biosynthesis from choline consistently reveals a member of this ABC transporter periplasmic binding protein as the best match, save for the betaine biosynthesis enzymes themselves. Genomes often carry several paralogs, one encoded together with the permease and ATP-binding components and another encoded next to a choline-sulfatase gene, suggesting that different members of this protein family interact with shared components and give some flexibility in substrate. Of two members from Sinorhizobium meliloti 1021, one designated ChoX has been shown experimentally to bind choline (though not various related compounds such as betaine) and to be required for about 60 % of choline uptake. Members of this protein have an invariant Cys residue near the N-terminus and likely are lipoproteins.
+RN  [1]
+RM  PMID:15342567
+RT  The Sinorhizobium meliloti ABC transporter Cho is highly specific for choline and expressed in bacteroids from Medicago sativa nodules.
+RA  Dupont L, Garcia I, Poggi MC, Alloing G, Mandon K, Le Rudulier D.
+RL  J Bacteriol. 2004 Sep;186(18):5988-96.
+RN  [2]
+RM  PMID: 16930487
+RT  Exopolysaccharide-associated protein sorting in environmental organisms: the PEP-CTERM/EpsH system. Application of a novel phylogenetic profiling heuristic.
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD
+RL  BMC Biol. 2006 Aug 24;4:29.

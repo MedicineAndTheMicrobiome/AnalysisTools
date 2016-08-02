@@ -1,0 +1,14 @@
+ID  4hydroxCoAred
+AC  TIGR03193
+DE  4-hydroxybenzoyl-CoA reductase, gamma subunit
+AU  Haft DH
+TC  257.80 257.80
+NC  203.85 203.85
+AL  muscle
+IT  equivalog
+EN  4-hydroxybenzoyl-CoA reductase, gamma subunit
+GS  hcrC
+EC  1.3.7.9
+TP  TIGRFAMs
+CC  4-hydroxybenzoyl-CoA reductase converts 4-hydroxybenzoyl-CoA to benzoyl-CoA, a common intermediate in the degradation of aromatic compounds. This protein family represents the gamma chain of this three-subunit enzyme.
+DR  PFAM; PF01799; [2Fe-2S] binding domain

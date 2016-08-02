@@ -1,0 +1,12 @@
+ID  hyd_TM1266
+AC  TIGR03959
+DE  putative iron-only hydrogenase system regulator
+AU  Haft DH
+TC  60.80 60.80
+NC  50.45 50.45
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  putative iron-only hydrogenase system regulator
+TP  TIGRFAMs
+CC  Members of this protein family occur as part of a system for producing iron-only hydrogenases, dependent on radical SAM proteins HydE and HydG and GTPase HydF. One member of this family, TM_1266 from Thermotoga maritima, has a known crystal structure. The small size, about 80 residues, and a distant relationship to the nickel regulator NikR of the CopG transcriptional regulator family suggest a role as a transcription factor.
+DR  PDB; 2NZC_D; Uncharacterized Protein Tm1266 From Thermotoga Maritima

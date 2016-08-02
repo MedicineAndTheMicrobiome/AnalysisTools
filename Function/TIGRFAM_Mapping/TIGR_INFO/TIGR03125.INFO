@@ -1,0 +1,13 @@
+ID  citrate_citG
+AC  TIGR03125
+DE  triphosphoribosyl-dephospho-CoA synthase CitG
+AU  Haft DH
+TC  272.30 272.30
+NC  252.45 252.45
+AL  muscle
+IT  equivalog_domain
+EN  triphosphoribosyl-dephospho-CoA synthase CitG
+GS  citG
+EC  2.4.2.52
+TP  TIGRFAMs
+CC  Triphosphoribosyl-dephospho-CoA is transferred to, and becomes the prosthetic group of, the respective acyl carrier protein subunits of both citrate lyase and malonate decarboxylase. Members of this protein family are triphosphoribosyl-dephospho-CoA synthases specifically from citrate lyase systems. This protein sometimes occurs as a fusion protein with CitX, the phosphoribosyl-dephospho-CoA transferase.

@@ -1,0 +1,13 @@
+ID  TTQ_MADH_Hv
+AC  TIGR02658
+DE  methylamine dehydrogenase (amicyanin) heavy chain
+AU  Haft DH
+TC  454.45 454.45
+NC  90.50 90.50
+AL  clustalw
+IT  equivalog
+EN  methylamine dehydrogenase (amicyanin) heavy chain
+GS  mauB
+EC  1.4.9.1
+TP  TIGRFAMs
+CC  This family consists of the heavy chain of methylamine dehydrogenase light chain, a periplasmic enzyme.  The enzyme contains a tryptophan tryptophylquinone (TTQ) prothetic group  derived from two Trp residues in the light subunity. The enzyme forms a complex with the type I blue copper protein amicyanin and a cytochrome. Electron transfer procedes from TQQ to the copper and then to the heme group of the cytochrome.

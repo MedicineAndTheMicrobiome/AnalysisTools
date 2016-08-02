@@ -1,0 +1,12 @@
+ID  bacteriocin_sig
+AC  TIGR01847
+DE  bacteriocin-type signal sequence
+AU  Haft DH
+TC  15.70 14.00
+NC  14.75 13.60
+AL  manual
+IT  domain
+EN  bacteriocin-type signal sequence
+TP  TIGRFAMs
+CC  Bacteriocins are bacterial peptide products toxic to closely related bacteria. This model represents the N-terminal region up to the GG cleavage motif. Processing to remove this bacteriocin leader peptide occurs together with export by an ABC transporter. Note: because this model is so small (15 amino acids), it may have many spurious high-scoring matches to unrelated proteins, even with fairly stringent cutoff scores. The most likely true positives are small proteins of Gram-positive bacteria, matching regions that start within the first 15 amino acids, and encoded near bacteriocin transport family proteins (TIGR01000, TIGR01193).
+DR  HAMAP; MF_00741; 1 of 326

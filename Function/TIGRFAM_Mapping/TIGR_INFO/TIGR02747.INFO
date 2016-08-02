@@ -1,0 +1,27 @@
+ID  TraV
+AC  TIGR02747
+DE  type IV conjugative transfer system protein TraV
+AU  Selengut J
+TC  44.75 44.75
+NC  37.25 37.25
+AL  clustalw
+IT  equivalog
+EN  type IV conjugative transfer system lipoprotein TraV
+GS  traV
+TP  TIGRFAMs
+CC  The TraV protein is a component of conjugative type IV secretion systems.  TraV is an outer membrane lipoprotein and is believed to interact with the secretin TraK [1,2,3].  The alignment contains three conserved cysteines in the N-terminal half.
+RN  [1]
+RM  PMID: 11722740
+RT  Evidence that F-plasmid proteins TraV, TraK and TraB assemble into an envelope-spanning structure in Escherichia coli.
+RA  Harris RL, Hombs V, Silverman PM.
+RL  Mol Microbiol. 2001 Nov;42(3):757-66.
+RN  [2]
+RM  PMID: 12855161
+RA  Lawley TD, Klimke WA, Gubbins MJ, Frost LS.
+RT  F factor conjugation is a true type IV secretion system.
+RL   FEMS Microbiol Lett. 2003 Jul 15;224(1):1-15.
+RN  [3]
+RM  PMID: 16138100
+RA  Frost LS, Leplae R, Summers AO, Toussaint A.
+RT  Mobile genetic elements: the agents of open source evolution.
+RL  Nat Rev Microbiol. 2005 Sep;3(9):722-32.

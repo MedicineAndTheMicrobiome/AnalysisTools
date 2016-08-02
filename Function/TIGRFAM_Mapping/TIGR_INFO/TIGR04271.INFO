@@ -1,0 +1,17 @@
+ID  ThiI_C_thiazole
+AC  TIGR04271
+DE  thiazole biosynthesis domain
+AU  Haft DH
+TC  70.00 70.00
+NC  55.00 40.00
+AL  muscle_manual
+IT  equivalog_domain
+EN  thiazole biosynthesis domain
+GS  thiI
+TP  TIGRFAMs
+CC  The ThiI protein of Escherichia coli is a bifunctional protein in which most of the length of the protein is responsible for sulfurtransferase activity in 4-thiouridine modification to tRNA (EC 2.8.1.4 - see model TIGR00342). This rhodanese-like C-terminal domain, by itself, is able to synthesize the thiazole moiety during thiamin biosynthesis. Note that the invariant Cys residue in this domain is unusual in being required for both activities of the bifunctional ThiI protein.
+RN  [1]
+RM  PMID:21724998 
+RT  The rhodanese domain of ThiI is both necessary and sufficient for synthesis of the thiazole moiety of thiamine in Salmonella enterica. 
+RA  Martinez-Gomez NC, Palmer LD, Vivas E, Roach PL, Downs DM 
+RL  J Bacteriol. 2011 Sep;193(18):4582-7. Epub 2011 Jul 1.

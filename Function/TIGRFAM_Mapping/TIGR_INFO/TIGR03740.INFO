@@ -1,0 +1,16 @@
+ID  galliderm_ABC
+AC  TIGR03740
+DE  lantibiotic protection ABC transporter, ATP-binding subunit
+AU  Haft DH
+TC  309.75 309.75
+NC  277.90 277.90
+AL  muscle_manual
+IT  subfamily
+EN  gallidermin-class lantibiotic protection ABC transporter, ATP-binding subunit
+TP  TIGRFAMs
+CC  Model TIGR03731 represents the family of all lantibiotics related to gallidermin, including epidermin, mutatin, and nisin. This protein family describes the ATP-binding subunit of a gallidermin/epidermin class lantibiotic protection transporter. It is largely restricted to gallidermin-family lantibiotic biosynthesis and export cassettes, but also occurs in orphan transporter cassettes in species that lack candidate lantibiotic precursor and synthetase genes.
+RN  [1]
+RM  PMID:9770275
+RT  Producer self-protection against the lantibiotic epidermin by the ABC transporter EpiFEG of Staphylococcus epidermidis Tu3298.
+RA  Otto M, Peschel A, Gotz F
+RL  FEMS Microbiol Lett. 1998 Sep 15;166(2):203-11.

@@ -1,0 +1,11 @@
+ID  quorum_AgrD
+AC  TIGR04223
+DE  cyclic lactone autoinducer peptide
+AU  Haft DH
+TC  19.00 19.00
+NC  16.80 16.00
+AL  manual
+IT  subfamily
+EN  cyclic lactone autoinducer peptide
+TP  TIGRFAMs
+CC  Members of this family of short peptides are precursors to thiolactone (unless Cys is replaced by Ser) cyclic autoinducer peptides, used in quorum-sensing systems in Gram-positive bacteria. The best characterized is the AgrD precursor, processed by the AgrB protein. Nearby proteins regularly encountered include a histidine kinase and a response regulator. This model is related to PF05931 but is newer and currently broader in scope.

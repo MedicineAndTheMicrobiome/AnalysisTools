@@ -1,0 +1,24 @@
+ID  GarL
+AC  TIGR03239
+DE  2-dehydro-3-deoxyglucarate aldolase
+AU  Selengut J
+TC  406.75 406.75
+NC  372.15 372.15
+AL  muscle
+IT  equivalog
+EN  2-dehydro-3-deoxyglucarate aldolase
+GS  garL
+EC  4.1.2.20
+TP  TIGRFAMs
+CC  In E. coli this enzyme (GarL, [1,2]) 2-dehydro-3-deoxyglucarate aldolase acts in the catabolism of several sugars including D-galactarate, D-glucarate and L-idarate.  In fact, 5-dehydro-4-deoxy-D-glucarate aldolase is a synonym for this enzyme as it is unclear in the literature whether the enzyme acts on only one of these or, as seems likely, has no preference.  (Despite the apparent large difference in substrate stucture indicated by their names, 2-DH-3DO- and 5-DH-4DO-glucarate differ only by the chirality of most central hydroxyl-bearing carbon and is alternately named 2-DH-3DO-galactarate.)  The reported product of D-galactarate dehydratase (4.2.1.42) is the 5DH-4DO-glucarate isomer and this enzyme is found proximal to the aldolase in many genomes (GenProp0714) where no epimerase is known.  Similarly, the product of D-glucarate dehydratase (4.2.1.40) is again the 5-DH-4DO isomer, so the provenance of the 2-DH-3DO-glucarate isomer for which this enzyme is named is unclear.
+RN  [1]
+RM  PMID: 9772162 
+RT  Evolution of enzymatic activities in the enolase superfamily: characterization of the (D)-glucarate/galactarate catabolic pathway in Escherichia coli. 
+RA  Hubbard BK, Koch M, Palmer DR, Babbitt PC, Gerlt JA 
+RL  Biochemistry. 1998 Oct 13;37(41):14369-75. 
+RN  [2]
+RM  PMID: 10921867 
+RT  Crystal structures of the metal-dependent 2-dehydro-3-deoxy-galactarate aldolase suggest a novel reaction mechanism. 
+RA  Izard T, Blackwell NC 
+RL  EMBO J. 2000 Aug 1;19(15):3849-56.
+DR  HAMAP; MF_01291; 22 of 24

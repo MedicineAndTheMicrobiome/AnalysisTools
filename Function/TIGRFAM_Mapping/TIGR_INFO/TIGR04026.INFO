@@ -1,0 +1,12 @@
+ID  PPOX_FMN_cyano
+AC  TIGR04026
+DE  PPOX class probable FMN-dependent enzyme, alr4036 family
+AU  Haft DH
+TC  140.55 140.55
+NC  121.40 121.40
+AL  muscle_manual
+IT  subfamily
+EN  PPOX class probable FMN-dependent enzyme, alr4036 family
+EC  1.-.-.-
+TP  TIGRFAMs
+CC  Members of the PPOX family (see PF01243) may contain either FMN or F420 as cofactor. This subfamily described here is widespread in Cyanobacteria and plants, and is named for alr4036 from Nostoc sp. PCC 7120. The family consists mostly of proteins from species that lack the capability to synthesize F420, so it is probable that all members bind FMN rather than F420.

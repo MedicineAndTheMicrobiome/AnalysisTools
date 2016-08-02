@@ -1,0 +1,11 @@
+ID  TIGR02450
+AC  TIGR02450
+DE  tryptophan-rich conserved hypothetical protein
+AU  Haft DH
+TC  36.85 36.85
+NC  26.35 26.35
+AL  clustalw
+IT  hypoth_equivalog
+EN  tryptophan-rich conserved hypothetical protein
+TP  TIGRFAMs
+CC  Members of this family are small hypothetical proteins of 60 to 100 residues from Cyanobacteria and some Proteobacteria. Prochlorococcus marinus strains have two members, other species one only. Interestingly, of the eight most conserved residues, four are aromatic and three are invariant tryptophans. It appears all species that encode this protein can synthesize tryptophan de novo.

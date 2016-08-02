@@ -1,0 +1,11 @@
+ID  target_X_rSAM
+AC  TIGR03995
+DE  putative rSAM target protein, CGCGG family
+AU  Haft DH
+TC  87.60 87.60
+NC  81.20 81.20
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  putative rSAM target protein, CGCGG family
+TP  TIGRFAMs
+CC  Members of this family of small proteins, approx. 100 amino acids in length, co-occur with a subfamily of radical SAM protein in several species in the Halobacteria and in Bacillus. The radical SAM protein belongs to a branch in which most characterized members act on peptide substrates. The lack of homology of this family to any known enzyme and the distinctive C-terminal region motif, with the common modification target residue Cys flanked by sterically permissive Gly residues.

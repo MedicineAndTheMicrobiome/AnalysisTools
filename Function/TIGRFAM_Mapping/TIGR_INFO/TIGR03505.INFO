@@ -1,0 +1,22 @@
+ID  FimV_core
+AC  TIGR03505
+DE  FimV N-terminal domain
+AU  Haft DH
+TC  43.45 43.45
+NC  42.30 42.30
+AL  muscle_manual
+IT  equivalog_domain
+EN  FimV N-terminal domain
+GS  fimV
+TP  TIGRFAMs
+CC  This region is found at, or about 200 amino acids from, the N-terminus of FimV from Pseudomonas aeruginosa, TspA of Neisseria meningitidis, and related proteins. Disruption of FimV blocks twitching motility from type IV pili; Semmler, et al. suggest a role for this family in peptidoglycan layer remodelling required by type IV fimbrial systems. Most but not all members of this protein family have a C-terminal region recognized by TIGR03504. In between is a highly variable, often repeat-filled region rich in the negatively charged amino acids Asp and Glu.
+RN  [1]
+RM  PMID:10846211
+RT  Identification of a novel gene, fimV, involved in twitching motility in Pseudomonas aeruginosa.
+RA  Semmler AB, Whitchurch CB, Leech AJ, Mattick JS
+RL  Microbiology. 2000 Jun;146 ( Pt 6):1321-32.
+RN  [2]
+RM  PMID:10377136
+RT  Identification and characterization of TspA, a major CD4(+) T-cell- and B-cell-stimulating Neisseria-specific antigen.
+RA  Kizil G, Todd I, Atta M, Borriello SP, Ait-Tahar K, Ala'Aldeen DA
+RL  Infect Immun. 1999 Jul;67(7):3533-41.

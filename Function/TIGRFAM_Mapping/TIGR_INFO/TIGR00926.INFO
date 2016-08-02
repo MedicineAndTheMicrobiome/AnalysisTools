@@ -1,0 +1,11 @@
+ID  2A1704
+AC  TIGR00926
+DE  oligopeptide transporter, peptide:H+ symporter
+AU  Loftus BJ
+TC  821.60 821.60
+NC  775.90 775.90
+AL  clustalw_manual
+IT  subfamily
+EN  Peptide:H+ symporter (also transports b-lactam antibiotics, the antitumor agent, bestatin, and various protease inhibitors)
+GS  PepT1
+TP  TIGRFAMs

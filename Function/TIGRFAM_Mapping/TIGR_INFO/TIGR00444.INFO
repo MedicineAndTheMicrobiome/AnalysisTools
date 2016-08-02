@@ -1,0 +1,14 @@
+ID  mazG
+AC  TIGR00444
+DE  MazG family protein
+AU  Loftus BJ, Haft DH
+TC  148.30 148.30
+NC  130.45 130.45
+AL  clustalw
+IT  subfamily
+EN  MazG family protein
+TP  TIGRFAMs
+CC  This family of prokaryotic proteins has no known function. It includes the uncharacterized protein MazG in E. coli.
+DR  Swissprot; P33646; MAZG_ECOLI
+DR  ECOCYC; EG10572; MazG
+DR  Swissprot; P44723;

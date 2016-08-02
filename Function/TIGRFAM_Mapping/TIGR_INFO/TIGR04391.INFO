@@ -1,0 +1,16 @@
+ID  CcmD_alt_fam
+AC  TIGR04391
+DE  CcmD family protein
+AU  Haft DH
+TC  24.00 24.00
+NC  22.00 22.00
+AL  muscle_manual
+IT  subfamily
+EN  CcmD family protein
+TP  TIGRFAMs
+CC  Members of this protein family are small (typically less than 50 amino acids in length), with the first half highly hydrophobic like transmembrane alpha helices and containing a nearly invariant tyrosine residue. Members from the Desulfovibrionales appear in the position of ccmD of system I c-type cytochrome biogenesis operons (see PF04995). This family and PF04995 appear very similar in sequence properties, but the very low level of actual sequence identify makes it unclear that the similarity reflects homology per se.
+RN  [1]
+RM  PMID:18326572 
+RT  Topology and function of CcmD in cytochrome c maturation. 
+RA  Richard-Fogal CL, Frawley ER, Kranz RG 
+RL  J Bacteriol. 2008 May;190(10):3489-93.

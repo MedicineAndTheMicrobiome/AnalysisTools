@@ -1,0 +1,17 @@
+ID  purD
+AC  TIGR00877
+DE  phosphoribosylamine--glycine ligase
+AU  Haft DH
+TC  288.00 288.00
+NC  199.75 199.75
+AL  clustalw_manual
+IT  equivalog_domain
+EN  phosphoribosylamine--glycine ligase
+GS  purD
+EC  6.3.4.13
+TP  TIGRFAMs
+CC  Alternate name: glycinamide ribonucleotide synthetase (GARS).
+CC  This enzyme appears as a monofunctional protein in prokaryotes but as part of a larger, multidomain protein in eukaryotes.
+DR  EXPERIMENTAL; EGAD|7937|EC4005; Escherichia coli
+DR  ECOCYC; EG10792; purD
+DR  HAMAP; MF_00138; 94 of 95

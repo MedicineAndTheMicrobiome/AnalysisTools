@@ -1,0 +1,11 @@
+ID  flavo_MJ0208
+AC  TIGR02700
+DE  archaeoflavoprotein, MJ0208 family
+AU  Haft DH
+TC  251.35 251.35
+NC  154.85 154.85
+AL  clustalw
+IT  hypoth_equivalog
+EN  archaeoflavoprotein, MJ0208 family
+TP  TIGRFAMs
+CC  This model describes one of two paralogous families of archaealflavoprotein. The other, described by TIGR02699 and typified by the partially characterized AF1518 of Archaeoglobus fulgidus, is a homodimeric FMN-containing flavoprotein that accepts electrons from ferredoxin and can transfer them to various oxidoreductases. The function of this protein family is unknown.

@@ -1,0 +1,14 @@
+ID  hutI
+AC  TIGR01224
+DE  imidazolonepropionase
+AU  Haft DH, Dodson RJ
+TC  298.15 298.15
+NC  101.65 101.65
+AL  clustalw
+IT  equivalog
+EN  imidazolonepropionase
+GS  hutI
+EC  3.5.2.7
+TP  TIGRFAMs
+CC  This enzyme catalyzes the third step in histidine degradation.
+DR  HAMAP; MF_00372; 202 of 204

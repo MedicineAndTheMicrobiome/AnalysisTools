@@ -1,0 +1,16 @@
+ID  phaP_Bmeg
+AC  TIGR02131
+DE  polyhydroxyalkanoic acid inclusion protein PhaP
+AU  Haft DH
+TC  109.30 109.30
+NC  108.85 108.85
+AL  clustalw_manual
+IT  equivalog
+EN  polyhydroxyalkanoic acid inclusion protein PhaP
+GS  phaP
+TP  TIGRFAMs
+CC  This HMM describes a protein found in polyhydroxyalkanoic acid (PHA) gene regions and incorporated into PHA inclusions in Bacillus cereus and Bacillus megaterium. The role of the protein may include amino acid storage (see McCool,G.J. and Cannon,M.C, 1999).
+RM  9882674
+RT  Polyhydroxyalkanoate inclusion body-associated proteins and coding region in Bacillus megaterium.
+RA  McCool GJ, Cannon MC.
+RL  J Bacteriol. 1999 Jan;181(2):585-92.

@@ -1,0 +1,12 @@
+ID  ABC_MoxJ
+AC  TIGR03870
+DE  methanol oxidation system protein MoxJ
+AU  Haft DH
+TC  258.10 258.10
+NC  164.60 164.60
+AL  muscle_manual
+IT  equivalog
+EN  methanol oxidation system protein MoxJ
+GS  moxJ
+TP  TIGRFAMs
+CC  This predicted periplasmic protein, called MoxJ or MxaJ, is required for methanol oxidation in Methylobacterium extorquens. Two differing lines of evidence suggest two different roles. Forming one view, homology suggests it is the substrate-binding protein of an ABC transporter associated with methanol oxidation. The gene, furthermore, is found regular in genomes with, and only two or three genes away from, a corresponding permease and ATP-binding cassette gene pair. The other view is that this protein is an accessory factor or additional subunit of methanol dehydrogenase itself. Mutational studies show a dependence on this protein for expression of the PQQ-dependent, two-subunit methanol dehydrogenase (MxaF and MxaI) in Methylobacterium extorquens, as if it is a chaperone for enzyme assembly or a third subunit. A homologous N-terminal sequence was found in Paracoccus denitrificans as a 32Kd third subunit. This protein may, in fact, be both, a component of a periplasmic enzyme that converts methanol to formaldehyde and a component of an ABC transporter that delivers the resulting formaldehyde to the cell's interior.

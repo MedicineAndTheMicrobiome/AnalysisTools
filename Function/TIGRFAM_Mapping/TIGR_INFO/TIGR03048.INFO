@@ -1,0 +1,14 @@
+ID  PS_I_psaC
+AC  TIGR03048
+DE  photosystem I iron-sulfur protein PsaC
+AU  Haft DH
+TC  130.65 130.65
+NC  66.30 66.30
+AL  muscle
+IT  equivalog
+EN  photosystem I iron-sulfur protein PsaC
+GS  psaC
+EC  1.97.1.12
+TP  TIGRFAMs
+CC  Members of this family are PsaC, an essential component of photosystem I (PS-I) reaction center in Cyanobacteria and chloroplasts. This small protein, about 80 amino acids in length, contains two copies of the ferredoxin-like 4Fe-4S binding site (PF00037) and therefore eight conserved Cys residues. This protein is also called photosystem I subunit VII.
+DR  PFAM; PF00037; Fer4

@@ -1,0 +1,17 @@
+ID  pyrrolys_PylB
+AC  TIGR03910
+DE  pyrrolysine biosynthesis radical SAM protein
+AU  Haft DH
+TC  348.20 348.20
+NC  347.90 347.90
+AL  muscle_manual
+IT  equivalog
+EN  pyrrolysine biosynthesis radical SAM protein
+GS  pylB
+TP  TIGRFAMs
+CC  This model describes a radical SAM protein, PylB, that is part of the three-gene cassette sufficient for the biosynthesis of pyrrolysine (the twenty-second amino acid) when expressed heterologously in E. coli. The pyrrolysine next is ligated to its own tRNA and incorporated at special UAG codons.
+RN  [1]
+RM  PMID:17204561
+RT  A natural genetic code expansion cassette enables transmissible biosynthesis and genetic encoding of pyrrolysine.
+RA  Longstaff DG, Larue RC, Faust JE, Mahapatra A, Zhang L, Green-Church KB, Krzycki JA
+RL  Proc Natl Acad Sci U S A. 2007 Jan 16;104(3):1021-6.

@@ -1,0 +1,12 @@
+ID  nodulat_NodA
+AC  TIGR04245
+DE  N-acyltransferase NodA
+AU  Haft DH
+TC  175.00 175.00
+NC  125.00 125.00
+AL  muscle_manual
+IT  subfamily
+EN  N-acyltransferase NodA
+GS  nodA
+TP  TIGRFAMs
+CC  Nodulation factors are lipo-chitooligosaccharides made by bacterial nitrogen-fixing bacteria as a signal to plant hosts. Nod factors differ slightly from system to system are serve as host range determinants. Because the N-acyl group varies from one NodA to another, the family treated as a subfamily, but all members of this family belong to NodABC systems.

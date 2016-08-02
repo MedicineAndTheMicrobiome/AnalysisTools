@@ -1,0 +1,16 @@
+ID  glyS_dimeric
+AC  TIGR00389
+DE  glycine--tRNA ligase
+AU  Haft DH
+TC  243.30 243.30
+NC  190.90 190.90
+AL  clustalw_manual
+IT  equivalog
+EN  glycyl-tRNA synthetase, dimeric type
+GS  glyS
+EC  6.1.1.14
+TP  TIGRFAMs
+CC  This HMM describes a glycyl-tRNA synthetase distinct from the two alpha and two beta chains of the tetrameric E. coli glycyl-tRNA synthetase. This enzyme is a homodimeric class II tRNA synthetase and is recognized by pfam HMM tRNA-synt_2b, which recognizes His, Ser, Pro, and this set of glycyl-tRNA synthetases.
+DR  PROSITE; PDOC00363; Aminoacyl-transfer RNA synthetases class-II signatures
+DR  PFAM; PF00587; tRNA-synt_2b;
+DR  HAMAP; MF_00253; 80 of 81

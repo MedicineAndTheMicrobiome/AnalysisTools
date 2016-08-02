@@ -1,0 +1,17 @@
+ID  HpnB
+AC  TIGR03469
+DE  hopene-associated glycosyltransferase HpnB
+AU  Selengut J
+TC  379.25 379.25
+NC  242.40 242.40
+AL  muscle
+IT  hypoth_equivalog
+EN  hopene-associated glycosyltransferase HpnB
+GS  hpnB
+TP  TIGRFAMs
+CC  This family of genes include a glycosyl transferase, group 2 domain (PF00535) which are responsible, generally for the transfer of nucleotide-diphosphate sugars to substrates such as polysaccharides and lipids.  The genes of this family are often found in the same genetic locus with squalene-hopene cyclase genes, and are never associated with genes for the metabolism of phytoene.  Indeed, the members of this family appear to never be found in a genome lacking squalene-hopene cyclase (SHC), although not all genomes encoding SHC have this glycosyl transferase.  In the organism Zymomonas mobilis the linkage of this gene to hopanoid biosynthesis has been noted and the gene named HpnB [1].  Hopanoids are known to feature polar glycosyl head groups in many organisms.
+RN  [1]
+RM  PMID:9714766
+RT  Cloning of conserved genes from Zymomonas mobilis and Bradyrhizobium japonicum that function in the biosynthesis of hopanoid lipids.
+RA  Perzl M, Reipen IG, Schmitz S, Poralla K, Sahm H, Sprenger GA, Kannenberg EL
+RL  Biochim Biophys Acta. 1998 Jul 31;1393(1):108-18.

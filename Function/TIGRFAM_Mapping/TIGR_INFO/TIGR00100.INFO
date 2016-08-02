@@ -1,0 +1,18 @@
+ID  hypA
+AC  TIGR00100
+DE  hydrogenase nickel insertion protein HypA
+AU  Haft DH, Anolik RT
+TC  88.10 88.10
+NC  56.80 56.80
+AL  msa_tigr
+IT  equivalog
+EN  hydrogenase nickel insertion protein HypA
+GS  hypA
+TP  TIGRFAMs
+CC  CXXC-~12X-CXXC and genetically seems a regulatory protein.
+CC  In Hpylori, hypA mutant abolished hydrogenase activity and decrease in urease activity. Nickel supplementation in media restored urease activity and partial hydrogenase activity. HypA probably involved in inserting Ni in enzymes.
+RM  12081959
+RT  Network of hydrogenase maturation in Escherichia coli: role of accessory proteins HypA and HybF.
+RA  Hube M, Blokesch M, Bock A.
+RL  J Bacteriol 2002 Jul;184(14):3879-85
+DR  HAMAP; MF_00213; 97 of 111

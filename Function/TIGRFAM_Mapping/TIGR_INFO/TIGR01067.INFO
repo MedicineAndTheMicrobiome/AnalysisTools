@@ -1,0 +1,13 @@
+ID  rplN_bact
+AC  TIGR01067
+DE  ribosomal protein L14
+AU  Haft DH
+TC  111.10 111.10
+NC  108.30 108.30
+AL  clustalw
+IT  equivalog
+EN  ribosomal protein L14, bacterial/organelle
+GS  rplN
+TP  TIGRFAMs
+CC  This HMM distinguishes bacterial and most organellar examples of ribosomal protein L14 from all archaeal and eukaryotic forms.
+DR  HAMAP; MF_01367; 681 of 753

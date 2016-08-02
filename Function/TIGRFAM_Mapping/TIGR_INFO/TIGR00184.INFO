@@ -1,0 +1,14 @@
+ID  purA
+AC  TIGR00184
+DE  adenylosuccinate synthase
+AU  Haft DH
+TC  395.55 395.55
+NC  59.25 59.25
+AL  clustalw_manual
+IT  equivalog
+EN  adenylosuccinate synthase
+GS  purA
+EC  6.3.4.4
+TP  TIGRFAMs
+CC  Alternate name IMP--aspartate ligase.
+DR  HAMAP; MF_00011; 480 of 500

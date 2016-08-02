@@ -1,0 +1,12 @@
+ID  secE_euk_arch
+AC  TIGR00327
+DE  protein translocase SEC61 complex gamma subunit, archaeal and eukaryotic
+AU  Haft DH
+TC  36.20 36.20
+NC  34.50 34.50
+AL  clustalw
+IT  equivalog
+EN  protein translocase SEC61 complex gamma subunit, archaeal and eukaryotic
+TP  TIGRFAMs
+CC  This model describes archaeal SEC61-like and eukaryotic SEC61 but not bacterial secE proteins, for which a Pfam PF00584 (SecE) has been created.
+DR  HAMAP; MF_00422; 25 of 26

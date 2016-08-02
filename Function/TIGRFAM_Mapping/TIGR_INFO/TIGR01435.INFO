@@ -1,0 +1,20 @@
+ID  glu_cys_lig_rel
+AC  TIGR01435
+DE  glutamate--cysteine ligase/glutathione synthase
+AU  Haft DH
+TC  656.00 656.00
+NC  338.35 338.35
+AL  clustalw_manual
+IT  equivalog
+EN  glutamate--cysteine ligase/glutathione synthase, Streptococcus agalactiae type
+GS  gshAB
+EC  6.3.2.2 6.3.2.3
+TP  TIGRFAMs
+CC  This model represents a bifunctional protein family for the biosynthesis of glutathione, and perhaps a range of related 
+CC  gamma-glutamyltripeptides of the form gamma-Glu-Cys-X(aa). The N-terminal region is similar to proteobacterial glutamate-cysteine ligase. The C-terminal region is homologous to cyanophycin synthetase of cyanobacteria and, more distantly, to D-alanine-D-alanine ligases. Members of this HMM family are found in Listeria and Enterococcus, Gram-positive lineages in which glutathione is produced (see PUBMED:8606174), and in Pasteurella multocida, a Proteobacterium. In Clostridium acetobutylicum, adjacent genes include separate proteins rather than a fusion protein.
+RN  [1]
+RM  17123467
+RT  Novel substrate specificity of glutathione synthesis enzymes from Streptococcus agalactiae and Clostridium acetobutylicum.
+RA  Kino K, Kuratsu S, Noguchi A, Kokubo M, Nakazawa Y, Arai T, Yagasaki M, Kirimura K.
+RL  Biochem Biophys Res Commun. 2007 Jan 12;352(2):351-9.
+DR  HAMAP; MF_00782; 13 of 13

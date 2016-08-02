@@ -1,0 +1,19 @@
+ID  TIGR00276
+AC  TIGR00276
+DE  epoxyqueuosine reductase
+AU  Haft DH
+TC  200.00 200.00
+NC  195.00 195.00
+AL  clustalw
+IT  equivalog
+EN  epoxyqueuosine reductase
+GS  queG
+EC  1.-.-.-
+TP  TIGRFAMs
+CC  This model was rebuilt to exclude archaeal homologs, now that there is new information that bacterial members are epoxyqueuosine reductase, QueG, involved in queuosine biosynthesis for tRNA maturation.
+RN  [1]
+RM  PMID:21502530 
+RT  Discovery of epoxyqueuosine (oQ) reductase reveals parallels between halorespiration and tRNA modification. 
+RA  Miles ZD, McCarty RM, Molnar G, Bandarian V 
+RL  Proc Natl Acad Sci U S A. 2011 May 3;108(18):7368-72. 
+DR  PROSITE; PDOC00176; 4Fe-4S ferredoxins, iron-sulfur binding region signature;

@@ -1,0 +1,17 @@
+ID  glyco_rSAM_CFB
+AC  TIGR04157
+DE  glycosyltransferase, GG-Bacteroidales peptide system
+AU  Haft DH
+TC  400.00 400.00
+NC  300.00 300.00
+AL  muscle_manual
+IT  subfamily
+EN  glycosyltransferase, GG-Bacteroidales peptide system
+EC  2.4.1.-
+TP  TIGRFAMs
+CC  Members of this protein family are predicted glycosyltransferases that occur in conserved gene neighborhoods in various members of the Bacteroidales. These neighborhoods feature a radical SAM enzyme predicted to act in peptide modification (family TIGR04148), peptides from family TIGR04149 with a characteristic GG cleavage motif, and several other proteins.
+RN  [1]
+RM  PMID:21478363 
+RT  Biological systems discovery in silico: radical S-adenosylmethionine protein families and their target peptides for posttranslational modification. 
+RA  Haft DH, Basu MK 
+RL  J Bacteriol. 2011 Jun;193(11):2745-55.

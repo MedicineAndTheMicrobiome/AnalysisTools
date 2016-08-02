@@ -1,0 +1,11 @@
+ID  CxxC_CxxC_SSSS
+AC  TIGR02605
+DE  putative regulatory protein, FmdB family
+AU  Haft DH
+TC  31.30 31.30
+NC  29.40 29.40
+AL  clustalw
+IT  subfamily_domain
+EN  putative regulatory protein, FmdB family
+TP  TIGRFAMs
+CC  This model represents a region of about 50 amino acids found in a number of small proteins in a wide range of bacteria. The region begins usually with the initiator Met and contains two CxxC motifs separated by 17 amino acids. One member of this family is has been noted as a putative regulatory protein, designated FmdB (SP:Q50229, PMID:8841393 ). Most members of this family have a C-terminal region containing highly degenerate sequence, such as SSTSESTKSSGSSGSSGSSESKASGSTEKSTSSTTAAAAV in Mycobacterium tuberculosis and VAVGGSAPAPSPAPRAGGGGGGCCGGGCCG in Streptomyces avermitilis. These low complexity regions, which are not included in the model, resemble low-complexity C-terminal regions of some heterocycle-containing bacteriocin precursors.

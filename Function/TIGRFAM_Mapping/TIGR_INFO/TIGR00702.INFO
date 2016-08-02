@@ -1,0 +1,18 @@
+ID  TIGR00702
+AC  TIGR00702
+DE  YcaO-type kinase domain
+AU  Haft DH
+TC  75.65 75.65
+NC  41.35 41.35
+AL  clustalw_manual
+IT  domain
+EN  YcaO-type kinase domain
+TP  TIGRFAMs
+CC  This protein family includes YcaO and homologs that can phosphorylate a peptide amide backbone (rather than side chains), as during heterocycle-forming modifications during maturation of the TOMM class (Thiazole/Oxazole-Modified Microcins) of bacteriocins. However, YcaO domain proteins also occur in contexts that do not suggest peptide modification.
+RN  [1]
+RM  PMID:22522320 
+RT  YcaO domains use ATP to activate amide backbones during peptide cyclodehydrations. 
+RA  Dunbar KL, Melby JO, Mitchell DA 
+RL  Nat Chem Biol. 2012 Apr 22;8(6):569-75.
+DR  InterPro; IPR003776
+DR  PFAM; PF02624

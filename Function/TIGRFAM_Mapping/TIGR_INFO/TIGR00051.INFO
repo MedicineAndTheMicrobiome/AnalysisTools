@@ -1,0 +1,21 @@
+ID  TIGR00051
+AC  TIGR00051
+DE  acyl-CoA thioester hydrolase, YbgC/YbaW family
+AU  Richardson DL, Haft DH
+TC  68.70 68.70
+NC  34.40 34.40
+AL  msa_tigr
+IT  subfamily
+EN  acyl-CoA thioester hydrolase, YbgC/YbaW family
+TP  TIGRFAMs
+CC  This model describes a subset of related acyl-CoA thioesterases that include several at least partially characterized proteins. YbgC is an acyl-CoA thioesterase associated with the Tol-Pal system. YbaW is part of the FadM regulon.
+RN  [1]
+RM  PMID:18338382
+RT  Structural and enzymatic characterization of HP0496, a YbgC thioesterase from Helicobacter pylori.
+RA  Angelini A, Cendron L, Goncalves S, Zanotti G, Terradot L
+RL  Proteins. 2008 Sep;72(4):1212-21.
+RN  [2]
+RM  PMID:19684132
+RT  A new member of the Escherichia coli fad regulon: transcriptional regulation of fadM (ybaW).
+RA  Feng Y, Cronan JE
+RL  J Bacteriol. 2009 Oct;191(20):6320-8. Epub 2009 Aug 14.

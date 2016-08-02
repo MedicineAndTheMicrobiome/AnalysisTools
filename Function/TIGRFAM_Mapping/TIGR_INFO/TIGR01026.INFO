@@ -1,0 +1,14 @@
+ID  fliI_yscN
+AC  TIGR01026
+DE  ATPase, FliI/YscN family
+AU  Durkin S, Haft DH
+TC  379.50 379.50
+NC  247.55 247.55
+AL  clustalw
+IT  subfamily
+EN  ATPase, FliI/YscN family
+EC  3.6.3.14
+TP  TIGRFAMs
+CC  This family of ATPases demonstrates extensive homology with ATP synthase F1, beta subunit. It is a mixture of members with two different protein functions. The first group is exemplified by Salmonella typhimurium FliI protein. It is needed for flagellar assembly, its ATPase activity is required for flagellation, and it may be involved in a specialized protein export pathway that proceeds without signal peptide cleavage. The second group of proteins function in the export of virulence proteins; exemplified by Yersinia sp. YscN protein an ATPase involved in the type III secretory pathway for the antihost Yops proteins.
+DR  EXPERIMENTAL; EGAD|22700|23428; Salmonella typhimurium
+DR  EXPERIMENTAL; EGAD|17899|18211; Yersinia sp.

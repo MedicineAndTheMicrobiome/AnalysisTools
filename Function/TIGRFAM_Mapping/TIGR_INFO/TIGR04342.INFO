@@ -1,0 +1,11 @@
+ID  EXLDI
+AC  TIGR04342
+DE  EXLDI protein
+AU  Haft DH
+TC  32.00 31.00
+NC  27.00 27.00
+AL  muscle_manual
+IT  subfamily
+EN  EXLDI protein
+TP  TIGRFAMs
+CC  The most conserved region in this protein family is the C-terminal pentapeptide, with motif ExLDI. Members from the Firmicutes average about 120 amino acids in length, while members from the Actinobacteria have an additional 45-residue amino-terminal segment not included in the model. In PMID:21756306 it is suggested that the member from Streptococcus mutans UA159, and its homologs, participate in bacteriocin production, export, or immunity.

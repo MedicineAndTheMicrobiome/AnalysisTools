@@ -1,0 +1,18 @@
+ID  ccoN
+AC  TIGR00780
+DE  cytochrome c oxidase, cbb3-type, subunit I
+AU  Haft DH
+TC  583.15 583.15
+NC  168.15 168.15
+AL  clustalw_manual
+IT  equivalog
+EN  cytochrome c oxidase, cbb3-type, subunit I
+GS  ccoN
+EC  1.9.3.1
+TP  TIGRFAMs
+CC  This HMM represents the largest subunit, I, of the ccb3-type cytochrome c oxidase, with two protohemes and copper.  It shows strong homology to subunits of other types of cytochrome oxidases. Species with this type, all from the Proteobacteria so far, include Neisseria meningitidis, Helicobacter pylori, Campylobacter jejuni, Rhodobacter sphaeroides, Rhizobium leguminosarum, and others.
+CC  Gene symbols ccoN and fixN are synonymous.
+RM  99098844
+RT  Characterization of a cb-type cytochrome c oxidase from Helicobacter pylori.
+RA  Tsukita S, Koyanagi S, Nagata K, Koizuka H, Akashi H, Shimoyama T, Tamura T, Sone N
+RL  J Biochem (Tokyo) 1999 Jan;125(1):194-201

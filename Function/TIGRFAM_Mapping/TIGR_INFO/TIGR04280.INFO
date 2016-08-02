@@ -1,0 +1,12 @@
+ID  geopep_mat_rSAM
+AC  TIGR04280
+DE  putative geopeptide radical SAM maturase
+AU  Haft DH
+TC  400.00 400.00
+NC  275.00 275.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  putative geopeptide radical SAM maturase
+GS  gptM
+TP  TIGRFAMs
+CC  This family is the radical SAM/SPASM domain putative peptide maturase for geopeptide, described by model TIGR04229. The SPASM domain (see model TIGR04085) frequently marks peptide-modifying radical SAM enzymes.

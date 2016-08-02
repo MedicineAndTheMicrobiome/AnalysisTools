@@ -1,0 +1,17 @@
+ID  folE
+AC  TIGR00063
+DE  GTP cyclohydrolase I
+AU  Richardson DL
+TC  181.60 181.60
+NC  100.90 100.90
+AL  clustalw
+IT  equivalog
+EN  GTP cyclohydrolase I
+GS  folE
+EC  3.5.4.16
+TP  TIGRFAMs
+CC  alternate names: Punch (Drosophila),
+CC  GTP cyclohydrolase I (EC 3.5.4.16) catalyzes the biosynthesis of formic acid and dihydroneopterin triphosphate from GTP. This reaction is the first step in the biosynthesis of tetrahydrofolate in prokaryotes, of tetrahydrobiopterin in vertebrates, and of pteridine-containing pigments in insects.
+DR  PROSITE: PDOC00672; GTP cyclohydrolase I signatures
+DR  COG; 0302;
+DR  HAMAP; MF_00223; 231 of 239

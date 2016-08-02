@@ -1,0 +1,16 @@
+ID  CXXX_matur
+AC  TIGR04119
+DE  CXXX repeat peptide maturase
+AU  Haft DH
+TC  150.00 150.00
+NC  85.00 85.00
+AL  muscle_manual
+IT  equivalog_domain
+EN  CXXX repeat peptide maturase
+TP  TIGRFAMs
+CC  This model describes a peptide maturase that works with, usually fused to, a radical SAM enzyme in a system that modifies peptides with multiple tandem repeats of CXXX sequences. This protein includes an iron-sulfur cluster binding region associated with peptide modification as described in domain model TIGR04085.
+RN  [1]
+RM  PMID:21478363 
+RT  Biological systems discovery in silico: radical S-adenosylmethionine protein families and their target peptides for posttranslational modification. 
+RA  Haft DH, Basu MK 
+RL  J Bacteriol. 2011 Jun;193(11):2745-55.

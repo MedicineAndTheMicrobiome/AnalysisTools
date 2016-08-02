@@ -1,0 +1,17 @@
+ID  met_CoM_red_A2
+AC  TIGR03269
+DE  methyl coenzyme M reductase system, component A2
+AU  Haft DH
+TC  517.10 517.10
+NC  410.90 410.90
+AL  muscle
+IT  equivalog
+EN  methyl coenzyme M reductase system, component A2
+GS  atwA
+TP  TIGRFAMs
+CC  The enzyme that catalyzes the final step in methanogenesis, methyl coenzyme M reductase, contains alpha, beta, and gamma chains. In older literature, the complex of alpha, beta, and gamma chains was termed component C, while this single chain protein was termed methyl coenzyme M reductase system component A2.
+RN  [1]
+RM  PMID: 8491734
+RT  Component A2 of methylcoenzyme M reductase system from Methanobacterium thermoautotrophicum delta H: nucleotide sequence and functional expression by Escherichia coli.
+RA  Kuhner CH, Lindenbach BD, Wolfe RS
+RL  J Bacteriol. 1993 May;175(10):3195-203.

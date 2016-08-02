@@ -1,0 +1,12 @@
+ID  CO_dehy_Mo_lg
+AC  TIGR02416
+DE  carbon-monoxide dehydrogenase, large subunit
+AU  Haft DH
+TC  991.15 991.15
+NC  507.70 507.70
+AL  clustalw_manual
+IT  equivalog
+EN  carbon-monoxide dehydrogenase, large subunit
+EC  1.2.99.2
+TP  TIGRFAMs
+CC  This model represents the large subunits of group of carbon-monoxide dehydrogenases that include molybdenum as part of the enzymatic cofactor. There are various forms of carbon-monoxide dehydrogenase; Salicibacter pomeroyi DSS-3, for example, has two forms. Note that, at least in some species, the active site Cys is modified with a selenium attached to (rather than replacing) the sulfur atom. This is termed selanylcysteine, and created post-translationally, in contrast to selenocysteine incorporation during translation as for many other selenoproteins.

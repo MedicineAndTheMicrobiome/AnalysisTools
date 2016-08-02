@@ -1,0 +1,42 @@
+ID  Ubi-OHases
+AC  TIGR01988
+DE  ubiquinone biosynthesis hydroxylase, UbiH/UbiF/VisC/COQ6 family
+AU  Selengut J
+TC  224.65 224.65
+NC  193.65 193.65
+AL  clustalw
+IT  subfamily
+EN  Ubiquinone biosynthesis hydroxylase, UbiH/UbiF/VisC/COQ6 family
+EC  1.14.13.-
+TP  TIGRFAMs
+CC  This HMM represents a family of FAD-dependent hydroxylases (monooxygenases) which are all believed to act in the aerobic ubiquinone biosynthesis pathway [1].  A separate set of hydroxylases, as yet undiscovered, are believed to be active under anaerobic conditions [2].  In E. coli three enzyme activities have been described, UbiB (which acts first at position 6, see TIGR01982), UbiH (which acts at position 4, [3]) and UbiF (which acts at position 5, [4]).  UbiH and UbiF are similar to one another and form the basis of this subfamily.  Interestingly, E. coli contains another hydroxylase gene, called visC, that is highly similar to UbiF, adjacent to UbiH and, when mutated, results in a phenotype similar to that of UbiH (which has also been named visB) [5].  Several other species appear to have three homologs in this family, although they assort themselves differently on phylogenetic trees (e.g. Xylella and Mesorhizobium) making it difficult to ascribe a specific activity to each one.  Eukaryotes appear to have only a single homolog in this subfamily (COQ6, [6]) which complements UbiH, but also possess a non-orthologous gene, COQ7 which complements UbiF.
+RN  [1]
+RM  PMID: 11583838
+RT  Ubiquinone biosynthesis in microorganisms.
+RA  Meganathan R.
+RL  FEMS Microbiol Lett. 2001 Sep 25;203(2):131-9.
+RN  [2]
+RM  PMID: 365223
+RT  Alternative hydroxylases for the aerobic and anaerobic biosynthesis of ubiquinone in Escherichia coli.
+RA  Alexander K, Young IG.
+RL  Biochemistry. 1978 Oct 31;17(22):4750-5.
+RN  [3]
+RM  PMID: 11153266
+RT  Biosynthesis of menaquinone (vitamin K2) and ubiquinone (coenzyme Q): a perspective on enzymatic mechanisms.
+RA  Meganathan R.
+RL  Vitam Horm. 2001;61:173-218. 
+RN  [4]
+RM  PMID: 10802164
+RT  Ubiquinone (coenzyme Q) biosynthesis in Escherichia coli: identification of the ubiF gene.
+RA  Kwon O, Kotsakis A, Meganathan R.
+RL  FEMS Microbiol Lett. 2000 May 15;186(2):157-61.
+RN  [5]
+RM  PMID: 1339425
+RT  Isolation and characterization of a light-sensitive mutant of Escherichia coli K-12 with a mutation in a gene that is required for the biosynthesis of ubiquinone.
+RA  Nakahigashi K, Miyamoto K, Nishimura K, Inokuchi H.
+RL  J Bacteriol. 1992 Nov;174(22):7352-9. 
+RN  [6]
+RM  PMID: 12721307
+RT  The Saccharomyces cerevisiae COQ6 gene encodes a mitochondrial flavin-dependent monooxygenase required for coenzyme Q biosynthesis.
+RA  Gin P, Hsu AY, Rothman SC, Jonassen T, Lee PT, Tzagoloff A, Clarke CF.
+RL  J Biol Chem. 2003 Jul 11;278(28):25308-16. Epub 2003 Apr 29.

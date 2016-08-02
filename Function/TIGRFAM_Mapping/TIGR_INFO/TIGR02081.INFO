@@ -1,0 +1,12 @@
+ID  metW
+AC  TIGR02081
+DE  methionine biosynthesis protein MetW
+AU  Haft DH
+TC  189.50 189.50
+NC  56.95 56.95
+AL  clustalw
+IT  equivalog
+EN  methionine biosynthesis protein MetW
+GS  metW
+TP  TIGRFAMs
+CC  This protein is found alongside MetX, of the enzyme that acylates homoserine as a first step toward methionine biosynthesis, in many species. It appears to act in methionine biosynthesis but is not fully characterized.

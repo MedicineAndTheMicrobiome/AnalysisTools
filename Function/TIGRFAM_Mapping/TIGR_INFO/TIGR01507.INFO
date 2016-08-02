@@ -1,0 +1,29 @@
+ID  hopene_cyclase
+AC  TIGR01507
+DE  squalene-hopene cyclase
+AU  Brinkac L
+TC  431.10 431.10
+NC  386.85 386.85
+AL  clustalw
+IT  equivalog
+EN  squalene-hopene cyclase
+GS  shc
+EC  5.4.99.17
+TP  TIGRFAMs
+CC  SHC is an essential prokaryotic gene in hopanoid (triterpenoid) biosynthesis. Squalene hopene cyclase, an integral membrane protein, directly cyclizes squalene into hopanoid products [1,2].
+RN [1]
+RM 97442532
+RT Structure and function of a squalene cyclase
+RA Wendt KU, Lenhart A, Schulz GE.
+RL Science 277:1811-1815(1997)
+RN  [2]
+RM  PMID: 12120044
+RT  Squalene-hopene cyclase: catalytic mechanism and substrate recognition. 
+RA  Hoshino, T. and Sato, T.
+RL  Chem. Commun. (2002) 291-301.
+DR PFAM; PF00432; Prenyltransferase/squalene oxidase repeat
+DR PROSITE; PS01074; Terpene Synthases
+DR EXPERIMENTAL; GP|3164082; Methylococcus capsulatus; heterologous expression in E.coli with in vitro activity of the recombinant cyclase demonstrated using crude cell-free lysate or solubilized membrane preparation
+DR EXPERIMENTAL; GP|2970047; Alicyclobacillus acidocaldarius; heterologous expression in E.coli with site-directed mutagenesis experimentation determining active site residues.
+DR HOMOLOGY; SP|P73914; Synechocystis sp.; homology based methodology and phylogenetic relationship. conservation of active site residues and structural motifs.
+DR OUTGROUP; GP|1098635; Rattus norvegicus; Oxidosqualene Cyclase

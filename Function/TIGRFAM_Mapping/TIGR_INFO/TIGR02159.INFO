@@ -1,0 +1,26 @@
+ID  PA_CoA_Oxy4
+AC  TIGR02159
+DE  phenylacetate-CoA oxygenase, PaaJ subunit
+AU  Brinkac L
+TC  108.15 108.15
+NC  74.40 74.40
+AL  clustalw_manual
+IT  equivalog
+EN  phenylacetate-CoA oxygenase, PaaJ subunit
+GS  paaJ
+TP  TIGRFAMs
+CC  Phenylacetate-CoA oxygenase is comprised of a five gene complex responsible for the hydroxylation of phenylacetate-CoA (PA-CoA) as the second catabolic step in phenylacetic acid (PA) degradation [1,2]. Although the exact function of this enzyme has not been determined, it has been shown to be required for phenylacetic acid degradation and has been proposed to function in a multicomponent oxygenase acting on phenylacetate-CoA [2].
+RN [1]
+RM 9600981
+RT Molecular characterization of the phenylacetic acid catabolic pathway in Pseudomonas putida U: the phenylacetyl-CoA catabolon.
+RA Olivera ER, Minambres B, Garcia B, Muniz C, Moreno MA, Ferrandez A, Diaz E, Garcia JL, Luengo JM.
+RL Proc Natl Acad Sci U S A. 1998 May 26;95(11):6419-24.
+RN [2]
+RM 9748275
+RT Catabolism of phenylacetic acid in Escherichia coli. Characterization of a new aerobic hybrid pathway.
+RA Ferrandez A, Minambres B, Garcia B, Olivera ER, Luengo JM, Garcia JL, Diaz E.
+RL J Biol Chem. 1998 Oct 2;273(40):25974-86.
+DR EXPERIMENTAL; GP|3253202; Pseudomonas putida; transposon mutagenesis prevented growth on MM containing PhAc, PhAc accumulation when grown in MM containing 4-OH-PhAc + PhAc and 4-OH-PhAc + PhH.
+DR EXPERIMENTAL; SP|P76077; Escherichia coli; transposon mutagenesis resulted in 2-HPA formation in MM containing glyucerol and PA.
+DR EXPERIMENTAL; GP|11072189; Azoarcus evansii; heterologous expression in E.coli with assay of soluable cell extracts.
+DR OUTGROUP; GP|29897220; Bacillus cereus ATCC 14579; Mrp protein

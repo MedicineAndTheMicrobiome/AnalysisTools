@@ -1,0 +1,18 @@
+ID  archaeo_artD
+AC  TIGR04175
+DE  archaeosortase D
+AU  Haft DH
+TC  125.00 125.00
+NC  75.00 75.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  archaeosortase D
+GS  artD
+EC  3.4.22.-
+TP  TIGRFAMs
+CC  This model describes archaeosortase D, one of several strictly archaeal subfamilies related to exosortase, the bacterial protein-sorting putative transpeptidase (see TIGR02602). ArtD is found in the genus Methanocaldococcus. Its predicted target, encoded by an adjacent gene, has a C-terminal VPIP motif-containing region (TIGR04173) likely to be its recognition site.
+RN  [1]
+RM  PMID:22037399 
+RT  Archaeosortases and exosortases are widely distributed systems linking membrane transit with posttranslational modification. 
+RA  Haft DH, Payne SH, Selengut JD 
+RL  J Bacteriol. 2012 Jan;194(1):36-48.

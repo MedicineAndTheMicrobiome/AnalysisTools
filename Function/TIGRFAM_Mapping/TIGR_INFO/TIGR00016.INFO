@@ -1,0 +1,20 @@
+ID  ackA
+AC  TIGR00016
+DE  acetate kinase
+AU  Richardson DL
+TC  293.40 293.40
+NC  146.10 146.10
+AL  clustalw
+IT  equivalog
+EN  acetate kinase
+GS  ackA
+EC  2.7.2.1
+TP  TIGRFAMs
+CC  Acetate kinase is involved in the activation of acetate to acetyl CoA and in the secretion of acetate. It catalyzes the reaction  ATP + acetate = ADP + acetyl phosphate. Some members of this family have been shown to act on propionate as well as acetate. An example of a propionate/acetate kinase is TdcD of E. coli (SP|P11868), an enzyme of an anaerobic pathway of threonine catabolism. It is not known how many members of this family act on additional substrates besides acetate.
+DR  PROSITE; PDOC00826;
+RN  [1]
+RM  9484901
+RT  Novel keto acid formate-lyase and propionate kinase enzymes are components of an anaerobic pathway in Escherichia coli that degrades L-threonine to propionate.
+RA  Hesslinger C, Fairhurst SA, Sawers G.
+RL  Mol Microbiol. 1998 Jan;27(2):477-92.
+DR  HAMAP; MF_00020; 241 of 243

@@ -1,0 +1,18 @@
+ID  VI_FHA
+AC  TIGR03354
+DE  type VI secretion system FHA domain protein
+AU  Haft DH
+TC  120.25 120.25
+NC  92.95 92.95
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  type VI secretion system FHA domain protein
+TP  TIGRFAMs
+CC  Members of this protein family are FHA (forkhead-associated) domain-containing proteins that are part of type VI secretion loci in a considerable number of bacteria, most of which are known pathogens. Species include Pseudomonas aeruginosa PAO1, Aeromonas hydrophila, Yersinia pestis, Burkholderia mallei, etc.
+DR  PFAM; PF00498; FHA domain
+RN  [1]
+RM  PMID: 16763151
+RT  A virulence locus of Pseudomonas aeruginosa encodes a protein secretion apparatus.
+RA  Mougous JD, Cuff ME, Raunser S, Shen A, Zhou M, Gifford CA, Goodman AL, Joachimiak G, Ordonez CL, Lory S, Walz T, Joachimiak A,
+Mekalanos JJ
+RL  Science. 2006 Jun 9;312(5779):1526-30.

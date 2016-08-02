@@ -1,0 +1,16 @@
+ID  marine_sortase
+AC  TIGR03784
+DE  sortase, marine proteobacterial type
+AU  Haft DH
+TC  158.25 158.25
+NC  136.95 136.95
+AL  muscle_manual
+IT  equivalog
+EN  sortase, marine proteobacterial type
+TP  TIGRFAMs
+CC  Members of this protein family are sortase enzymes, cysteine transpeptidases involved in protein sorting activities. Members of this family tend to be found in proteobacteria, rather than in Gram-positive bacteria where sortases attach proteins to the Gram-positive cell wall or participate in pilin cross-linking. Many species with this sortase appear to contain a signal target sequence, a protein with a Vault protein inter-alpha-trypsin domain (PF08487) and a von Willebrand factor type A domain (PF00092), encoded by an adjacent gene. These sortases are designated subfamily 6 according to Comfort and Clubb (2004).
+RN  [1]
+RM  PMID:15102780
+RT  A comparative genome analysis identifies distinct sorting pathways in gram-positive bacteria.
+RA  Comfort D, Clubb RT
+RL  Infect Immun. 2004 May;72(5):2710-22.

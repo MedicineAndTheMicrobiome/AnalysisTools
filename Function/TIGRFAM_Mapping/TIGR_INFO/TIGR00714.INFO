@@ -1,0 +1,23 @@
+ID  hscB
+AC  TIGR00714
+DE  Fe-S protein assembly co-chaperone HscB
+AU  Haft DH
+TC  46.75 46.75
+NC  44.70 44.70
+AL  clustalw_manual
+IT  equivalog
+EN  Fe-S protein assembly co-chaperone HscB
+GS  hscB
+TP  TIGRFAMs
+CC  This HMM describes the small subunit, Hsc20 (20K heat shock cognate protein) of a pair of proteins Hsc66-Hsc20, related to the DnaK-DnaJ heat shock proteins, which also serve as molecular chaperones. Hsc20, unlike DnaJ, appears not to have chaperone activity on its own, but to act solely as a regulatory subunit for Hsc66 (i.e., to be a co-chaperone). The gene for Hsc20 in E. coli, hscB, is not induced by heat shock.
+AL  clustalw_manual
+DR  PFAM; PF00226; DnaJ
+RN  [1]
+RM  99069337
+RT   The Hsc66-Hsc20 chaperone system in Escherichia coli: chaperone activity and interactions with the DnaK-DnaJ-grpE system.
+RA  Silberg JJ, Hoff KG, Vickery LE
+RL  J Bacteriol 1998 Dec;180(24):6617-24
+DR  EXPERIMENTAL; EGAD|6265|EC2527; Escherichia coli
+DR  OUTGROUP; EGAD|155934|AA0494; Aquifex aeolicus
+DR  OUTGROUP; EGAD|163242|RP184
+DR  HAMAP; MF_00682; 109 of 111

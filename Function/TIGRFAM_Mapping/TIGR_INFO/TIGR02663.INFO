@@ -1,0 +1,13 @@
+ID  nifX
+AC  TIGR02663
+DE  nitrogen fixation protein NifX
+AU  Haft DH
+TC  112.00 112.00
+NC  82.55 82.55
+AL  clustalw_manual
+IT  equivalog
+EN  nitrogen fixation protein NifX
+GS  nifX
+TP  TIGRFAMs
+CC  Members of this family are NifX proteins encoded within operons for nitrogen fixation in a number of bacteria. NifX, NafY, and the C-terminal region of NifB all belong to the Pfam family PF02579 and are involved in MoFe cofactor biosynthesis. NifX is a nitrogenase accessory protein with a role in expression of the MoFe cofactor.
+DR  PFAM; PF02579; Nitro_FeMo-Co

@@ -1,0 +1,35 @@
+ID  HIBADH
+AC  TIGR01692
+DE  3-hydroxyisobutyrate dehydrogenase
+AU  Brinkac L
+TC  291.60 291.60
+NC  231.15 231.15
+AL  clustalw_manual
+IT  equivalog
+EN  3-hydroxyisobutyrate dehydrogenase
+GS  mmsB
+EC  1.1.1.31
+TP  TIGRFAMs
+CC  3-hydroxyisobutyrate dehydrogenase is an enzyme that catalyzes the NAD+-dependent oxidation of 3-hydroxyisobutyrate to methylmalonate semialdehyde of the valine catabolism pathway.
+CC  In Pseudomonas aeruginosa, 3-hydroxyisobutyrate dehydrogenase (mmsB) is co-induced with methylmalonate-semialdehyde dehydrogenase (mmsA) when grown on medium containing valine as the sole carbon source. The positive transcriptional regulator of this operon (mmsR) is located upstream of these genes and has been identified as a member of the XylS/AraC family of transcriptional regulators [1].
+CC  3-hydroxyisobutyrate dehydrogenase shares high sequence homology to the characterized 3-hydroxyisobutyrate dehydrogenase from rat liver [2] with conservation of proposed NAD+ binding residues at the N-terminus (G-8,10,13,24 and D-31).
+CC  This enzyme belongs to the 3-hydroxyacid dehydrogenase family, sharing a common evolutionary origin and enzymatic mechanism with 6-phosphogluconate [3]. HIBADH exhibits sequence similarity to the NAD binding domain of 6-phosphogluconate dehydrogenase above trusted (PF03446).
+RN [1]
+RM 1339433
+RT Characterization of the mmsAB operon of Pseudomonas aeruginosa PAO encoding methylmalonate-semialdehyde dehydrogenase and 3-hydroxyisobutyrate dehydrogenase.
+RA Steele MI, Lorenz D, Hatter K, Park A, Sokatch JR.
+RJ J Biol Chem. 1992 Jul 5;267(19):13585-92.
+RN [2]
+RM 2647728
+RT Cloning and sequence analysis of a cDNA for 3-hydroxyisobutyrate dehydrogenase. Evidence for its evolutionary relationship to other pyridine nucleotide-dependent dehydrogenases.
+RA Rougraff PM, Zhang B, Kuntz MJ, Harris RA, Crabb DW.
+RJ J Biol Chem. 1989 Apr 5;264(10):5899-903.
+RN [3]
+RM 8766712
+RT Structural and mechanistic similarities of 6-phosphogluconate and 3-hydroxyisobutyrate dehydrogenases reveal a new enzyme family, the 3-hydroxyacid dehydrogenases.
+RA Hawes JW, Harper ET, Crabb DW, Harris RA.
+RJ FEBS Lett. 1996 Jul 8;389(3):263-7.
+DR PFAM; PF03446; NAD binding domain of 6-phosphogluconate dehydrogenase
+DR EXPERIMENTAL; SP|P28811; Pseudomonas aeruginosa; characterization of the mmsAB operon of Pseudomonas aeruginosa PAO encoding methylmalonate-semialdehyde  dehydrogenase and 3-hydroxyisobutyrate dehydrogenase.
+DR EXPERIMENTAL; SP|P29266; Rattus norvegicus; Cloning and sequence analysis of a cDNA for 3-hydroxyisobutyrate dehydrogenase. Evidence for its evolutionary relationship to other pyridine nucleotide-dependent dehydrogenases.
+DR OUTGROUP; SP|P00350; Escherichia coli; 6-phosphogluconate dehydrogenase

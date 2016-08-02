@@ -1,0 +1,13 @@
+ID  recQ
+AC  TIGR01389
+DE  ATP-dependent DNA helicase RecQ
+AU  Haft DH
+TC  640.20 640.20
+NC  533.15 533.15
+AL  clustalw_manual
+IT  equivalog
+EN  ATP-dependent DNA helicase RecQ
+GS  recQ
+EC  3.6.4.12
+TP  TIGRFAMs
+CC  The ATP-dependent DNA helicase RecQ of E. coli is about 600 residues long. This model represents bacterial proteins with a high degree of similarity in domain architecture and in primary sequence to E. coli RecQ. The model excludes eukaryotic and archaeal proteins with RecQ-like regions, as well as more distantly related bacterial helicases related to RecQ.

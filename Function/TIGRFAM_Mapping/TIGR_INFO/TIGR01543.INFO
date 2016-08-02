@@ -1,0 +1,17 @@
+ID  proheadase_HK97
+AC  TIGR01543
+DE  phage prohead protease, HK97 family
+AU  Fouts DE, Haft DH
+TC  59.00 59.00
+NC  30.70 30.70
+AL  clustalw_manual
+IT  equivalog
+EN  phage prohead protease, HK97 family
+EC  3.4.-.-
+TP  TIGRFAMs
+CC  This HMM describes the prohead protease of HK97 and related phage. It is generally encoded next to the gene for the capsid protein that it processes, and in some cases may be fused to it. This family does not show similarity to the prohead protease of phage T4 (see PF03420).
+DR  EXPERIMENTAL; SP|P49860; HK97
+RM  7723020
+RT  Genetic basis of bacteriophage HK97 prohead assembly.
+RA  Duda RL, Martincic K, Hendrix RW.
+RL  J Mol Biol 1995 Apr 7;247(4):636-47

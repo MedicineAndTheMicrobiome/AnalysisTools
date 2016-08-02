@@ -1,0 +1,15 @@
+ID  TRAP_TAXI
+AC  TIGR02122
+DE  TRAP transporter solute receptor, TAXI family
+AU  Haft DH
+TC  84.35 84.35
+NC  69.25 69.25
+AL  clustalw_manual
+IT  subfamily
+EN  TRAP transporter solute receptor, TAXI family
+TP  TIGRFAMs
+CC  This family is one of at least three major families of extracytoplasmic solute receptor (ESR) for TRAP (Tripartite ATP-independent Periplasmic Transporter) transporters. The others are the DctP (TIGR00787) and SmoM (PF03480) families. These transporters are secondary (driven by an ion gradient) but composed of three polypeptides, although in some species the 4-TM and 12-TM integral membrane proteins are fused. Substrates for this transporter family are not fully characterized but, besides C4 dicarboxylates, may include mannitol and other compounds.
+RM  11524131
+RT  The tripartite ATP-independent periplasmic (TRAP) transporters of bacteria and archaea.
+RA  Kelly DJ, Thomas GH.
+RL  FEMS Microbiol Rev. 2001 Aug;25(4):405-24.

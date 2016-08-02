@@ -1,0 +1,18 @@
+ID  thiol_BshB1
+AC  TIGR04001
+DE  bacillithiol biosynthesis deacetylase BshB1
+AU  Haft DH
+TC  182.50 182.50
+NC  151.25 151.25
+AL  muscle_manual
+IT  equivalog
+EN  bacillithiol biosynthesis deacetylase BshB1
+GS  bshB1
+EC  3.-.-.-
+TP  TIGRFAMs
+CC  Members of this protein family are BshB1 (YpjG), an enzyme of bacillithiol biosynthesis; either BshB1 or BshB2 (YojG) must be present, and often both are present. Bacillithiol is a low-molecular-weight thiol, an analog of glutathione and mycothiol, and is found largely in the Firmicutes.
+RN  [1]
+RM  PMID:20308541
+RT  Biosynthesis and functions of bacillithiol, a major low-molecular-weight thiol in Bacilli.
+RA  Gaballa A, Newton GL, Antelmann H, Parsonage D, Upton H, Rawat M, Claiborne A, Fahey RC, Helmann JD
+RL  Proc Natl Acad Sci U S A. 2010 Apr 6;107(14):6482-6.

@@ -1,0 +1,13 @@
+ID  ectoine_eutC
+AC  TIGR02992
+DE  ectoine utilization protein EutC
+AU  Haft DH
+TC  471.65 471.65
+NC  324.45 324.45
+AL  muscle_manual
+IT  equivalog
+EN  ectoine utilization protein EutC
+GS  eutC
+TP  TIGRFAMs
+CC  Members of this protein family are EutA, a predicted arylmalonate decarboxylase found in a conserved ectoine utilization operon of species that include Sinorhizobium meliloti 1021 (where it is known to be induced by ectoine), Mesorhizobium loti, Silicibacter pomeroyi, Agrobacterium tumefaciens, and Pseudomonas putida. This family belongs to the ornithine cyclodeaminase/mu-crystallin family (PF02423).
+DR  PFAM; PF02423; OCD_Mu_crystall; Ornithine cyclodeaminase/mu-crystallin family

@@ -1,0 +1,16 @@
+ID  modD
+AC  TIGR01334
+DE  modD protein
+AU  Haft DH
+TC  178.85 178.85
+NC  162.60 162.60
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  putative molybdenum utilization protein ModD
+GS  modD
+TP  TIGRFAMs
+CC  The gene modD for a member of this family is found with molybdenum transport genes modABC in Rhodobacter capsulatus. However, disruption of modD causes only a 4-fold (rather than 500-fold for modA, modB, modC) change in the external molybdenum concentration required to suppress an alternative nitrogenase. ModD proteins are highly similar to nicotinate-nucleotide pyrophosphorylase (also called quinolinate phosphoribosyltransferase). The function  unknown.
+RM  8491722
+RT  Characterization of Rhodobacter capsulatus genes encoding a molybdenum transport system and putative molybdenum-pterin-binding proteins.
+RA  Wang G, Angermuller S, Klipp W.
+RL  J Bacteriol 1993 May;175(10):3031-3042

@@ -1,0 +1,15 @@
+ID  deoC
+AC  TIGR00126
+DE  deoxyribose-phosphate aldolase
+AU  Haft DH
+TC  117.30 117.30
+NC  39.35 39.35
+AL  clustalw
+IT  equivalog
+EN  deoxyribose-phosphate aldolase
+GS  deoC
+EC  4.1.2.4
+TP  TIGRFAMs
+CC  Deoxyribose-phosphate aldolase is involved in the catabolism of nucleotides and deoxyriibonucleotides. The catalytic process is as follows:  2-deoxy-D-ribose 5-phosphate = D-glyceraldehyde 3-phosphate + acetaldehyde. It is found in both gram-postive and gram-negative bacteria.
+DR  EC 4.1.2.4
+DR  HAMAP; MF_00592; 48 of 50

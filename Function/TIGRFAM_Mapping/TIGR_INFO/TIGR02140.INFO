@@ -1,0 +1,12 @@
+ID  permease_CysW
+AC  TIGR02140
+DE  sulfate ABC transporter, permease protein CysW
+AU  Haft DH
+TC  329.10 329.10
+NC  212.20 212.20
+AL  clustalw
+IT  equivalog
+EN  sulfate ABC transporter, permease protein CysW
+GS  cysW
+TP  TIGRFAMs
+CC  This HMM represents CysW, one of two homologous, tandem permeases in the sulfate ABC transporter system; the other is CysT (TIGR02139). The sulfate transporter has been described in E. coli as transporting sulfate, thiosulfate, selenate, and selenite. Sulfate transporters may also transport molybdate ion if a specific molybdate transporter is not present.

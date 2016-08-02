@@ -1,0 +1,12 @@
+ID  flgG_G_neg
+AC  TIGR02488
+DE  flagellar basal-body rod protein FlgG
+AU  Haft DH
+TC  252.75 252.75
+NC  238.85 238.85
+AL  clustalw
+IT  equivalog
+EN  flagellar basal-body rod protein FlgG, Gram-negative bacteria
+GS  flgG
+TP  TIGRFAMs
+CC  This family consists of the FlgG protein of the flagellar apparatus in the Proteobacteria and spirochetes.

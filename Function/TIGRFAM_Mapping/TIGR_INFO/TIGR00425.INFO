@@ -1,0 +1,13 @@
+ID  CBF5
+AC  TIGR00425
+DE  putative rRNA pseudouridine synthase
+AU  Haft DH
+TC  238.15 238.15
+NC  169.60 169.60
+AL  clustalw
+IT  hypoth_equivalog
+EN  rRNA pseudouridine synthase, putative
+EC  5.4.99.-
+TP  TIGRFAMs
+CC  This family, found in archaea and eukaryotes, includes the only archaeal proteins markedly similar to bacterial TruB, the tRNA pseudouridine 55 synthase. However, among two related yeast proteins, the archaeal set matches yeast YLR175w far better than YNL292w. The first, termed centromere/microtubule binding protein 5 (CBF5), is an apparent rRNA pseudouridine synthase, while the second is the exclusive tRNA pseudouridine 55 synthase for both cytosolic and mitochondrial compartments. It is unclear whether archaeal proteins found by this model modify tRNA, rRNA, or both.
+DR  HAMAP; MF_01081; 17 of 26

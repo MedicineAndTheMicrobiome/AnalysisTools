@@ -1,0 +1,13 @@
+ID  Mtu_fam_mce
+AC  TIGR00996
+DE  virulence factor Mce family protein
+AU  Haft DH
+TC  140.50 140.50
+NC  82.00 82.00
+AL  clustalw
+IT  paralog
+EN  virulence factor Mce family protein
+TP  TIGRFAMs
+CC  Members of this paralogous family are found as six tandem homologous proteins in the same orientation per cassette, in four separate cassettes in Mycobacterium tuberculosis. The six members of each cassette represent six subfamilies. One subfamily includes the protein mce (mycobacterial cell entry), a virulence protein required for invasion of non-phagocytic cells.
+DR  Interpro; IPR003399
+DR  PFAM; PF02470

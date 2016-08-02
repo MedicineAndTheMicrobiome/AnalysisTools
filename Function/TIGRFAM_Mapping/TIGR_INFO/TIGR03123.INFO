@@ -1,0 +1,11 @@
+ID  one_C_unchar_1
+AC  TIGR03123
+DE  probable H4MPT-linked C1 transfer pathway protein
+AU  Haft DH
+TC  244.10 244.10
+NC  113.00 113.00
+AL  muscle
+IT  hypoth_equivalog
+EN  probable H4MPT-linked C1 transfer pathway protein
+TP  TIGRFAMs
+CC  This protein family was identified, by the method of partial phylogenetic profiling, as related to the use of tetrahydromethanopterin (H4MPT) as a C-1 carrier. Characteristic markers of the H4MPT-linked C1 transfer pathway include formylmethanofuran dehydrogenase subunits, methenyltetrahydromethanopterin cyclohydrolase, etc. Tetrahydromethanopterin, a tetrahydrofolate analog, occurs in methanogenic archaea, bacterial methanotrophs, planctomycetes, and a few other lineages.

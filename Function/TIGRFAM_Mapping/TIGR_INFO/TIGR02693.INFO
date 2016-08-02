@@ -1,0 +1,17 @@
+ID  arsenite_ox_L
+AC  TIGR02693
+DE  arsenite oxidase, large subunit
+AU  Haft DH
+TC  359.05 359.05
+NC  357.05 357.05
+AL  clustalw
+IT  equivalog
+EN  arsenite oxidase, large subunit
+EC  1.20.9.1
+TP  TIGRFAMs
+CC  This model represents the large subunit of an arsenite oxidase complex. The small subunit is a Rieske protein. Homologs to both large and small subunits that score in the gray zone between the set trusted and noise bit score cutoffs for the respective models are found in Aeropyrum pernix K1 and in Sulfolobus tokodaii str. 7. This enzyme acts in energy metabolim by arsenite oxidation, rather than detoxification by reduction of arsenate to arsenite prior to export.
+RN  [1]
+RM  12679550
+RT  Arsenite oxidase, an ancient bioenergetic enzyme.
+RA  Lebrun E, Brugna M, Baymann F, Muller D, Lievremont D, Lett MC, Nitschke W.
+RL  Mol Biol Evol. 2003 May;20(5):686-93.

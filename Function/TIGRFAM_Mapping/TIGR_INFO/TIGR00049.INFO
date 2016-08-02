@@ -1,0 +1,27 @@
+ID  TIGR00049
+AC  TIGR00049
+DE  iron-sulfur cluster assembly accessory protein
+AU  Richardson DL, Haft DH
+TC  58.80 58.80
+NC  45.60 45.60
+AL  clustalw
+IT  subfamily
+EN  Iron-sulfur cluster assembly accessory protein
+TP  TIGRFAMs
+CC  Proteins in this subfamily appear to be associated with the process of FeS-cluster assembly.  The HesB proteins are associated with the nif gene cluster and the Rhizobium gene IscN has been shown to be required for nitrogen fixation [1].  Nitrogenase includes multiple FeS clusters and many genes for their assembly.  The E. coli SufA protein is associated with SufS, a NifS homolog and SufD which are involved in the FeS cluster assembly of the FhnF protein [2].  The Azotobacter protein IscA (homologs of which are also found in E.coli) is associated which IscS, another NifS homolog and IscU, a nifU homolog as well as other factors consistent with a role in FeS cluster chemistry [3].  A homolog from Geobacter contains a selenocysteine in place of an otherwise invariant cysteine, further suggesting a role in redox chemistry.
+RN  [1]
+RM  PMID: 12207230
+RT  The Rhizobium etli gene iscN is highly expressed in bacteroids and required for nitrogen fixation.
+RA  Dombrecht B, Tesfay MZ, Verreth C, Heusdens C, Napoles MC, Vanderleyden J, Michiels J.
+RL  Mol Genet Genomics 2002 Aug;267(6):820-8
+RN  [2]
+RM  PMID: 10322040
+RT  SufS is a NifS-like protein, and SufD is necessary for stability of the [2Fe-2S] FhuF protein in Escherichia coli.
+RA  Patzer SI, Hantke K.
+RL  J Bacteriol 1999 May;181(10):3307-9
+RN  [3]
+RM  PMID: 9582371
+RT  Assembly of iron-sulfur clusters. Identification of an iscSUA-hscBA-fdx gene cluster from Azotobacter vinelandii.
+RA  Zheng L, Cash VL, Flint DH, Dean DR.
+RL  J Biol Chem 1998 May 22;273(21):13264-72
+DR  HAMAP; MF_01429; 29 of 30

@@ -1,0 +1,12 @@
+ID  YdfZ_fam
+AC  TIGR03318
+DE  putative selenium-binding protein YdfZ
+AU  Haft DH
+TC  49.70 49.70
+NC  40.60 40.60
+AL  muscle
+IT  hypoth_equivalog
+EN  putative selenium-binding protein YdfZ
+GS  ydfZ
+TP  TIGRFAMs
+CC  This small protein has a very limited distribution, being found so far only among some gamma-Proteobacteria. The member from Escherichia coli was shown to bind selenium in the absence of a working SelD-dependent selenium incorporation system. Note that while the E. coli member contains a single Cys residue, a likely selenium binding site, some other members of this protein family contain two Cys residues or none.

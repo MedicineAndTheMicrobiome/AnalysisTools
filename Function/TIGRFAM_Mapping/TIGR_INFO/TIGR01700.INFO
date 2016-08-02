@@ -1,0 +1,35 @@
+ID  PNPH
+AC  TIGR01700
+DE  purine nucleoside phosphorylase I, inosine and guanosine-specific
+AU  Selengut J
+TC  293.35 293.35
+NC  288.70 288.70
+AL  clustalw
+IT  equivalog
+EN  purine nucleoside phosphorylase I, inosine and guanosine-specific
+EC  2.4.2.1
+TP  TIGRFAMs
+CC  This model represents a family of bacterial and metazoan purine phosphorylases acting primarily on inosine and guanosine and not acting on adenosine.  
+CC  PNP-I refers to the nomenclature from Bacillus stearothermophilus [1] where PHP-II refers to the nucleotidase acting on adenosine as the primary substrate.
+CC  The bacterial enzymes (PUNA) are typified by the Bacilus PupG protein [2] which is involved in the metabolism of nucleosides as a carbon source.
+CC  Several metazoan enzymes (PNPH) are well characterized including the human [3] and bovine [4] enzymes which have been crystallized.
+RN  [1]
+RM  PMID: 9058965
+RT  Cloning and expression of purine nucleoside phosphorylase I gene from Bacillus stearothermophilus TH 6-2.
+RA  Hamamoto T, Okuyama K, Noguchi T, Midorikawa Y.
+RL  Biosci Biotechnol Biochem. 1997 Feb;61(2):272-5.
+RN  [2]
+RM  PMID: 10537218
+RT  Nucleosides as a carbon source in Bacillus subtilis: characterization of the drm-pupG operon.
+RA  Schuch R, Garibian A, Saxild HH, Piggot PJ, Nygaard P.
+RL  Microbiology 1999 Oct;145 ( Pt 10):2957-66
+RN  [3]
+RM  PMID: 2104852
+RT  Three-dimensional structure of human erythrocytic purine nucleoside phosphorylase at 3.2 A resolution.
+RA  Ealick SE, Rule SA, Carter DC, Greenhough TJ, Babu YS, Cook WJ, Habash J, Helliwell JR, Stoeckler JD, Parks RE Jr, et al.
+RL  J Biol Chem. 1990 Jan 25;265(3):1812-20.
+RN  [4]
+RM  PMID: 9020983
+RT  Crystal structure of calf spleen purine nucleoside phosphorylase in a complex with hypoxanthine at 2.15 A resolution.
+RA  Koellner G, Luic M, Shugar D, Saenger W, Bzowska A.
+RL  J Mol Biol. 1997 Jan 17;265(2):202-16.

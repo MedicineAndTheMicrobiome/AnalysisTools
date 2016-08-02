@@ -1,0 +1,18 @@
+ID  egtD_ergothio
+AC  TIGR03438
+DE  dimethylhistidine N-methyltransferase
+AU  Haft DH
+TC  290.90 290.90
+NC  210.00 210.00
+AL  muscle_manual
+IT  equivalog
+EN  dimethylhistidine N-methyltransferase
+GS  egtD
+EC  2.1.1.44
+TP  TIGRFAMs
+CC  This model represents a distinct set of uncharacterized proteins found in the bacteria. Analysis by PSI-BLAST shows remote sequence homology to methyltransferases
+RN  [1]
+RM  PMID:20420449 
+RT  In vitro reconstitution of Mycobacterial ergothioneine biosynthesis. 
+RA  Seebeck FP 
+RL  J Am Chem Soc. 2010 May 19;132(19):6632-3.

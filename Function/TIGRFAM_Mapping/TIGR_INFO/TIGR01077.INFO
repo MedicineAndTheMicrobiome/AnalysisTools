@@ -1,0 +1,14 @@
+ID  L13_A_E
+AC  TIGR01077
+DE  ribosomal protein L13
+AU  Haft DH
+TC  98.90 98.90
+NC  62.00 62.00
+AL  clustalw
+IT  equivalog
+EN  ribosomal protein L13, archaeal/eukaryotic
+GS  rplM
+TP  TIGRFAMs
+CC  This model represents ribosomal protein of L13 from the Archaea and from the eukaryotic cytosol. Bacterial and organellar forms are represented by HMM TIGR01066.
+DR  PROSITE; PDOC00625; Ribosomal protein L13 signature
+DR  HAMAP; MF_01366; 28 of 470

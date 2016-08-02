@@ -1,0 +1,20 @@
+ID  mnmE_trmE_thdF
+AC  TIGR00450
+DE  tRNA modification GTPase TrmE
+AU  Loftus BJ, Haft DH
+TC  252.60 252.60
+NC  200.70 200.70
+AL  clustalw
+IT  equivalog
+EN  tRNA modification GTPase TrmE
+GS  trmE
+EC  3.6.-.-
+TP  TIGRFAMs
+CC  TrmE, also called MnmE and previously designated ThdF (thiophene and furan oxidation protein), is a GTPase involved in tRNA modification to create 5-methylaminomethyl-2-thiouridine in the wobble position of some tRNAs. This protein and GidA form an alpha2/beta2 heterotetramer.
+DR  EXPERIMENTAL; OMNI|NTL01EC03627; Escherichia coli
+DR  ECOCYC; EG10997; 
+RM  10601028
+RT  The Escherichia coli trmE (mnmE) gene, involved in tRNA modification, codes for an evolutionarily conserved GTPase with unusual biochemical properties.
+RA  Cabedo H, Macian F, Villarroya M, Escudero JC, Martinez-Vicente M, Knecht E, Armengod ME
+RL  EMBO J 1999 Dec 15;18(24):7063-76
+DR  HAMAP; MF_00379; 519 of 542

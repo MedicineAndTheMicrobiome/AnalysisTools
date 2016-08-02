@@ -1,0 +1,14 @@
+ID  thym_sym
+AC  TIGR03284
+DE  thymidylate synthase
+AU  Haft DH
+TC  108.35 108.35
+NC  90.60 90.60
+AL  muscle_manual
+IT  equivalog
+EN  thymidylate synthase
+GS  thyA
+EC  2.1.1.45
+TP  TIGRFAMs
+CC  Members of this protein family are thymidylate synthase, an enzyme that produces dTMP from dUMP. In prokaryotes, its gene usually is found close to that for dihydrofolate reductase, and in some systems the two enzymes are found as a fusion protein. This model excludes a set of related proteins (TIGR03283) that appears to replace this family in archaeal methanogens, where tetrahydrofolate is replaced by tetrahydromethanopterin.
+DR  HAMAP; MF_00008; 338 of 351

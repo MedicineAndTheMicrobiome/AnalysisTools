@@ -1,0 +1,23 @@
+ID  hisA_euk
+AC  TIGR02129
+DE  phosphoribosylformimino-5-aminoimidazole carboxamide ribotide isomerase
+AU  Selengut J
+TC  229.30 229.30
+NC  149.80 149.80
+AL  clustalw
+IT  equivalog
+EN  phosphoribosylformimino-5-aminoimidazole carboxamide ribotide isomerase, eukaryotic type
+GS  hisA
+EC  5.3.1.16
+TP  TIGRFAMs
+CC  This enzyme acts in the biosynthesis of histidine and has been characterized in S. cerevisiae [1] and Arabidopsis [2] where it complements the E. coli HisA gene.  In eukaryotes the gene is known as HIS6.  In bacteria, this gene is found in Fibrobacter succinogenes, presumably due to lateral gene transfer from plants in the rumen gut.
+RN  [1]
+RM  PMID: 9332345
+RT  Paralogous histidine biosynthetic genes: evolutionary analysis of the Saccharomyces cerevisiae HIS6 and HIS7 genes
+RA  Fani R, Tamburini E, Mori E, Lazcano A, Lio P, Barberio C, Casalone E, Cavalieri D, Perito B, Polsinelli M
+RL  Gene. 1997 Sep 15;197(1-2):9-17
+RN  [2]
+RM  PMID: 9747713
+RT  Molecular cloning and characterization of the gene encoding N'-[(5'-phosphoribosyl)-formimino]-5-aminoimidazole-4-carboxamide ribonucleotide (BBM II) isomerase from Arabidopsis thaliana
+RA  Fujimori K, Tada S, Kanai S, Ohta D
+RL  Mol Gen Genet. 1998 Aug;259(2):216-23

@@ -1,0 +1,13 @@
+ID  LLM_2I7G
+AC  TIGR03858
+DE  probable oxidoreductase, LLM family
+AU  Haft DH
+TC  462.25 462.25
+NC  383.95 383.95
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  probable oxidoreductase, LLM family
+EC  1.-.-.-
+TP  TIGRFAMs
+CC  This HMM describes a highly conserved, somewhat broadly distributed family withing the luciferase-like monooxygenase (LLM) superfamily. Most members are from species incapable of synthesizing coenzyme F420, bound by some members of the LLM superfamily. Members, therefore, are more likely to use FMN as a cofactor.
+DR  PDB; 2I7G; Monooxygenase From Agrobacterium Tumefaciens

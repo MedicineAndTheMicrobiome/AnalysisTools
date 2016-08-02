@@ -1,0 +1,14 @@
+ID  4hydrxCoA_B
+AC  TIGR03195
+DE  4-hydroxybenzoyl-CoA reductase, beta subunit
+AU  Haft DH
+TC  404.55 404.55
+NC  188.00 188.00
+AL  muscle
+IT  equivalog
+EN  4-hydroxybenzoyl-CoA reductase, beta subunit
+GS  hcrB
+EC  1.3.7.9
+TP  TIGRFAMs
+CC  This model represents the second largest chain, beta, of the enzyme 4-hydroxybenzoyl-CoA reductase. In species capable of degrading various aromatic compounds by way of benzoyl-CoA, this enzyme can convert 4-hydroxybenzoyl-CoA to benzoyl-CoA.
+DR  PFAM; PF00941; FAD_binding_5

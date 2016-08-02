@@ -1,0 +1,11 @@
+ID  intg_mem_TP0381
+AC  TIGR02206
+DE  conserved hypothetical integral membrane protein TIGR02206
+AU  Haft DH
+TC  75.00 75.00
+NC  57.95 57.95
+AL  clustalw
+IT  hypoth_equivalog
+EN  conserved hypothetical integral membrane protein TIGR02206
+TP  TIGRFAMs
+CC  This HMM represents a family of hydrophobic proteins with seven predicted transmembrane alpha helices. Members are found in Bacillus subtilis (ywaF), TP0381 from Treponema pallidum (TP0381), Streptococcus pyogenes, Rhodococcus erythropolis, etc.

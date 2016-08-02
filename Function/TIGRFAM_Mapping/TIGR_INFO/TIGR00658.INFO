@@ -1,0 +1,21 @@
+ID  orni_carb_tr
+AC  TIGR00658
+DE  ornithine carbamoyltransferase
+AU  Haft DH
+TC  280.85 280.85
+NC  175.35 175.35
+AL  clustalw
+IT  equivalog
+EN  ornithine carbamoyltransferase
+GS  argF
+EC  2.1.3.3
+TP  TIGRFAMs
+CC  This family of ornithine carbamoyltransferases (OTCase) is in a superfamily with the related enzyme aspartate carbamoyltransferase. Most known examples are anabolic, playing a role in arginine biosynthesis, but some are catabolic.
+CC  Most OTCases are homotrimers, but the homotrimers are organized into dodecamers built from four trimers in at least two species; the catabolic OTCase of Pseudomonas aeruginosa is allosterically regulated, while OTCase of the extreme thermophile Pyrococcus furiosus shows both allostery and thermophily.
+AL  Clustalw
+DR  PFAM; PF00185; OTCace
+DR  PROSITE; PDOC00091;
+RN  [1]
+RM  98169451
+RN  [2]
+DR  HAMAP; MF_01109; 303 of 307

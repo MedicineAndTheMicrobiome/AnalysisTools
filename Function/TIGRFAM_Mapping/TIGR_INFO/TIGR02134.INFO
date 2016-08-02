@@ -1,0 +1,12 @@
+ID  transald_staph
+AC  TIGR02134
+DE  transaldolase
+AU  Selengut J
+TC  281.95 281.95
+NC  193.65 193.65
+AL  clustalw
+IT  equivalog
+EN  transaldolase
+EC  2.2.1.2
+TP  TIGRFAMs
+CC  This small family of proteins is a member of the transaldolase sybfamily represented by PF00923.  Coxiella and Staphylococcus lack members of the known transaldolase equivalog families and appear to require a transaldolase activity for completion of the pentose phosphate pathway.

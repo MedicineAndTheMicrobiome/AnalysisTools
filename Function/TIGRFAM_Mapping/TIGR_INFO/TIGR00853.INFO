@@ -1,0 +1,15 @@
+ID  pts-lac
+AC  TIGR00853
+DE  PTS system, lactose/cellobiose family IIB component
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  110.00 110.00
+NC  90.30 90.30
+AL  clustalw_manual
+IT  subfamily_domain
+EN  PTS system, lactose/cellobiose family IIB component
+TR  4.A.3
+TP  TIGRFAMs
+CC  Bacterial PTS transporters transport and concomitantly phosphorylate their sugar substrates, and typically consist of multiple subunits or protein domains.The Lac family includes several sequenced lactose (b-galactoside) permeases of Gram-positive bacteria as well as those in E. coli. While the Lac family usually consists of two polypeptide components IIA and IICB, the Chb permease of E. coli consists of three IIA, IIB and IIC. This family is specific for the IIB subunit of the Lac PTS family.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/4_A_3.html
+DR  Interpro; IPR003501
+DR  PFAM; PF2302

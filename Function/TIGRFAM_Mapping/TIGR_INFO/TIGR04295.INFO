@@ -1,0 +1,11 @@
+ID  B12_rSAM_oligo
+AC  TIGR04295
+DE  B12-binding domain/radical SAM domain protein, rhizo-twelve system
+AU  Haft DH
+TC  400.00 400.00
+NC  260.00 260.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  B12-binding domain/radical SAM domain protein, rhizo-twelve system
+TP  TIGRFAMs
+CC  A variety of bacteria, including multiple species of  Bradyrhizobium, Mesorhizobium, and Methylobacterium, have a typically twelve-gene cassette (hence the designation rhizo-twelve) for the biosynthesis of some unknown oligosaccaride. This family is a B12-binding domain/radical SAM domain protein found in roughly have of these cassettes, but nowhere else.

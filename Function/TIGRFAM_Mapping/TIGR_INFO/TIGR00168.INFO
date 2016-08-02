@@ -1,0 +1,14 @@
+ID  infC
+AC  TIGR00168
+DE  translation initiation factor IF-3
+AU  Loftus BJ
+TC  69.25 69.25
+NC  57.90 57.90
+AL  clustalw
+IT  equivalog
+EN  translation initiation factor IF-3
+GS  infC
+TP  TIGRFAMs
+CC  infC uses abnormal initiation codons such as AUA, AUC, and CUG which
+CC  render its expression particularly sensitive to excess of its gene product IF-3 thereby regulating its own expression
+DR  HAMAP; MF_00080; 236 of 238

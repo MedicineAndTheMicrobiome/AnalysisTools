@@ -1,0 +1,16 @@
+ID  18S_RNA_Rcl1p
+AC  TIGR03400
+DE  18S rRNA biogenesis protein RCL1
+AU  Haft DH
+TC  227.95 227.95
+NC  189.65 189.65
+AL  muscle_manual
+IT  equivalog
+EN  18S rRNA biogenesis protein RCL1
+TP  TIGRFAMs
+CC  Members of this strictly eukaryotic protein family are not RNA 3'-phosphate cyclase (6.5.1.4), but rather a homolog with a distinct function, found in the nucleolus and required for ribosomal RNA processing. Homo sapiens has both a member of this RCL (RNA terminal phosphate cyclase like) family and EC 6.5.1.4, while Saccharomyces has a member of this family only.
+RN  [1]
+RM  PMID: 10790377
+RT  Rcl1p, the yeast protein similar to the RNA 3'-phosphate cyclase, associates with U3 snoRNP and is required for 18S rRNA biogenesis.
+RA  Billy E, Wegierski T, Nasr F, Filipowicz W
+RL  EMBO J. 2000 May 2;19(9):2115-26.

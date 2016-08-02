@@ -1,0 +1,11 @@
+ID  rSAM_ocin_1
+AC  TIGR03975
+DE  bacteriocin maturation radical SAM protein 1
+AU  Haft DH
+TC  281.85 281.85
+NC  255.45 255.45
+AL  muscle_manual
+IT  subfamily
+EN  bacteriocin maturation radical SAM protein 1
+TP  TIGRFAMs
+CC  Models TIGR03793 and TIGR03798 describe bacteriocin precursor families to occur often in large paralogous families and are subject to various modifications, including by LanM family lantibiotic synthases and by cyclodehydratases. This model represents a radical SAM protein family that regularly occurs in the context of these bacteriocins, and may occur where other familiar peptide modification enzymes are absent.

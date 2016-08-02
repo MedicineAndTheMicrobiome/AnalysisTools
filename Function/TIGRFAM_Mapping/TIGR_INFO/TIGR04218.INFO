@@ -1,0 +1,16 @@
+ID  TOMM_plantaz
+AC  TIGR04218
+DE  ribosomal natural product, plantazolicin-class
+AU  Haft DH
+TC  45.00 40.00
+NC  30.00 25.00
+AL  muscle_manual
+IT  subfamily
+EN  ribosomal natural product, plantazolicin-class
+TP  TIGRFAMs
+CC  Members of this protein family are precursors of TOMMs, that is, thizazole/oxazole-modified microcins. Members are about 42 residues in length, have a C-terminal region of extremely low complexity rich in Ser, and are often missed by ab initio gene callers. The plantazolicin from Bacillus amyloliquefaciens FZB42 is a peptide antibiotic effective against Bacillus anthracis.
+RN  [1]
+RM  PMID:21950656 
+RT  Structure Determination and Interception of Biosynthetic Intermediates for the Plantazolicin Class of Highly Discriminating Antibiotics.
+RA  Molohon KJ, Melby JO, Lee J, Evans BS, Dunbar KL, Bumpus SB, Kelleher NL, Mitchell DA 
+RL  ACS Chem Biol. 2011 Oct 6.

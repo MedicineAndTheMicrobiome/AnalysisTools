@@ -1,0 +1,21 @@
+ID  aconitase_1
+AC  TIGR01341
+DE  aconitate hydratase 1
+AU  Haft DH
+TC  945.00 945.00
+NC  508.80 508.80
+AL  clustalw_manual
+IT  equivalog
+EN  aconitate hydratase 1
+GS  acnA
+EC  4.2.1.3
+TP  TIGRFAMs
+CC  This HMM represents one form of the TCA cycle enzyme aconitate hydratase, also known as aconitase and citrate hydro-lyase. It is found in bacteria, archaea, and eukaryotic cytosol. It has been shown to act also as an iron-responsive element binding protein in animals and may have the same role in other eukaryotes.
+DR  EXPERIMENTAL; SP:P70920; Bradyrhizobium japonicum
+DR  EXPERIMENTAL; SP:P37032; Legionella pneumophila
+DR  EXPERIMENTAL; SP|Q42560; Arabidopsis thaliana
+DR  EXPERIMENTAL; GP|6456849; Streptomyces viridochromogenes
+RM  10748225
+RT  The aconitase function of iron regulatory protein 1. Genetic studies in yeast implicate its role in iron-mediated redox regulation.
+RA  Narahari J, Ma R, Wang M, Walden WE.
+RL  J Biol Chem 2000 May 26;275(21):16227-16234

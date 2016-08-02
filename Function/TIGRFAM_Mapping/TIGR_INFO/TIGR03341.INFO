@@ -1,0 +1,23 @@
+ID  YhgI_GntY
+AC  TIGR03341
+DE  IscR-regulated protein YhgI
+AU  Haft DH
+TC  269.35 269.35
+NC  97.85 97.85
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  IscR-regulated protein YhgI
+GS  yhgI
+TP  TIGRFAMs
+CC  IscR (TIGR02010) is an iron-sulfur cluster-binding transcriptional regulator (see Genome Property GenProp0138). Members of this protein family include YhgI, whose expression is under control of IscR, and show sequence similarity to IscA, a known protein of iron-sulfur cluster biosynthesis. These two lines of evidence strongly suggest a role as an iron-sulfur cluster biosynthesis protein. An older study designated this protein GntY and suggested a role for it and for the product of an adjacent gene, based on complementation studies, in gluconate utilization.
+DR  PF01521; Fe-S_biosyn; HesB-like domain
+RN  [1]
+RM  PMID: 16677314
+RT  IscR-dependent gene expression links iron-sulphur cluster assembly to the control of O2-regulated genes in Escherichia coli.
+RA  Giel JL, Rodionov D, Liu M, Blattner FR, Kiley PJ
+RL  Mol Microbiol. 2006 May;60(4):1058-75.
+RN  [2]
+RM  PMID: 9871335
+RT  The gluconate high affinity transport of GntI in Escherichia coli involves a multicomponent complex system.
+RA  Porco A, Alonso G, Isturiz T
+RL  J Basic Microbiol. 1998;38(5-6):395-404.

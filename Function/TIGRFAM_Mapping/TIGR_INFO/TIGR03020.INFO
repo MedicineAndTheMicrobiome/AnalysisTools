@@ -1,0 +1,21 @@
+ID  EpsA
+AC  TIGR03020
+DE  transcriptional regulator EpsA
+AU  Selengut J
+TC  223.30 223.30
+NC  122.90 122.90
+AL  muscle
+IT  equivalog
+EN  transcriptional regulator EpsA
+GS  epsA
+TP  TIGRFAMs
+CC  Proteins in this family include a C-terminal LuxR transcriptional regulator domain (PF00196).  These proteins are positioned proximal to either EpsH-containing exopolysaccharide biosynthesis operons of the Methylobacillus type [1], or the associated PEP-CTERM-containing genes [2].
+RN  [1]
+RM  12624205
+RA  Yoshida T, Ayabe Y, Yasunaga M, Usami Y, Habe H, Nojiri H, Omori T
+RT  Genes involved in the synthesis of the exopolysaccharide methanolan by the obligate methylotroph Methylobacillus sp strain 12S.
+RL  Microbiology. 2003 Feb;149(Pt 2):431-44.
+RN  [2]
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD
+RT  Exopolysaccharide-associated protein sorting in environmental organisms by the PEP-CTERM/EpsH system: application of a novel phylogenetic profiling heuristic.
+RL  BMC Biol., in press, 2006

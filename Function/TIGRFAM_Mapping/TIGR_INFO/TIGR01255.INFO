@@ -1,0 +1,15 @@
+ID  pyr_form_ly_1
+AC  TIGR01255
+DE  formate acetyltransferase
+AU  Haft DH
+TC  994.20 994.20
+NC  181.10 181.10
+AL  clustalw_manual
+IT  equivalog
+EN  formate acetyltransferase 1
+GS  pflB
+EC  2.3.1.54
+TP  TIGRFAMs
+CC  Alternate names: pyruvate formate-lyase; formate C-acetyltransferase
+CC  This enzyme converts formate + acetyl-CoA into pyruvate + CoA.
+CC  This HMM describes formate acetyltransferase 1. More distantly related putative formate acetyltransferases have also been identified, including formate acetyltransferase 2 from E. coli, which is excluded from this model.

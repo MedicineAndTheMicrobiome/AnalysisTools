@@ -1,0 +1,14 @@
+ID  hisS
+AC  TIGR00442
+DE  histidine--tRNA ligase
+AU  Haft DH
+TC  286.75 286.75
+NC  246.90 246.90
+AL  clustalw_manual
+IT  equivalog
+EN  histidyl-tRNA synthetase
+GS  hisS
+EC  6.1.1.21
+TP  TIGRFAMs
+CC  This model finds a histidyl-tRNA synthetase in every completed genome. Apparent second copies from Bacillus subtilis, Synechocystis sp., and Aquifex aeolicus are slightly shorter, more closely related to each other than to other hisS proteins, and actually serve as regulatory subunits for an enzyme of histidine biosynthesis. They were excluded from the seed alignment and score much lower than do single copy histidyl-tRNA synthetases of other genomes not included in the seed alignment. These putative second copies of HisS score below the trusted cutoff.  The regulatory protein kinase GCN2 of Saccharomyces cerevisiae (YDR283c), and related proteins from other species designated eIF-2 alpha kinase, have a domain closely related to histidyl-tRNA synthetase that may serve to detect and respond to uncharged tRNA(his), an indicator of amino acid starvation; these regulatory proteins are not orthologous and so score below the noise cutoff.
+DR  HAMAP; MF_00127; 475 of 485

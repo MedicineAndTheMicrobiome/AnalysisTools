@@ -1,0 +1,13 @@
+ID  PTS-II-BC-unk1
+AC  TIGR02003
+DE  PTS system, IIBC component
+AU  Selengut J
+TC  649.85 649.85
+NC  442.35 442.35
+AL  clustalw
+IT  hypoth_equivalog_domain
+EN  PTS system, IIBC component
+EC  2.7.1.69
+TR  4.A.1.1.-
+TP  TIGRFAMs
+CC  This HMM represents a family of fused B and C components of PTS enzyme II.  This clade is a member of a larger family which contains enzyme II's specific for a variety of sugars including glucose (TIGR02002) and N-acetylglucosamine (TIGR01998).  None of the members of this clade have been experimentally characterized.  This clade includes sequences from Streptococcus and Enterococcus which also include a C-terminal A domain as well as Bacillus and Clostridium which do not.  In nearly all cases, these species also contain an authentic glucose-specific PTS transporter.

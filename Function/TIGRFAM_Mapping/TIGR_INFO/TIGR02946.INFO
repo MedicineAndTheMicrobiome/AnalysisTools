@@ -1,0 +1,17 @@
+ID  acyl_WS_DGAT
+AC  TIGR02946
+DE  acyltransferase, WS/DGAT/MGAT
+AU  Haft DH
+TC  309.95 309.95
+NC  161.30 161.30
+AL  muscle
+IT  subfamily
+EN  acyltransferase, WS/DGAT/MGAT
+EC  2.3.1.-
+TP  TIGRFAMs
+CC  This bacteria-specific protein family includes a characterized, homodimeric, broad specificity acyltransferase from Acinetobacter sp. strain ADP1, active as wax ester synthase, as acyl coenzyme A:diacylglycerol acyltransferase, and as acyl-CoA:monoacylglycerol acyltransferase.
+RN  [1]
+RM  PMID: 15687201
+RT  The wax ester synthase/acyl coenzyme A:diacylglycerol acyltransferase from Acinetobacter sp. strain ADP1: characterization of a novel type of acyltransferase.
+RA  Stoveken T, Kalscheuer R, Malkus U, Reichelt R, Steinbuchel A
+RL  J Bacteriol. 2005 Feb;187(4):1369-76.

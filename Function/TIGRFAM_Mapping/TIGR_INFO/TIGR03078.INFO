@@ -1,0 +1,17 @@
+ID  CH4_NH3mon_ox_C
+AC  TIGR03078
+DE  methane monooxygenase/ammonia monooxygenase, subunit C
+AU  Haft DH
+TC  280.60 280.60
+NC  124.60 124.60
+AL  muscle
+IT  equivalog
+EN  methane monooxygenase/ammonia monooxygenase, subunit C
+EC  1.14.13.25
+TP  TIGRFAMs
+CC  Both ammonia oxidizers such as Nitrosomonas europaea and methanotrophs (obligate methane oxidizers) such as Methylococcus capsulatus each can grow only on their own characteristic substrate. However, both groups have the ability to oxidize both substrates, and so the relevant enzymes must be named here according to their ability to oxidze both. The protein family represented here reflects subunit C of both the particulate methane monooxygenase of methylotrophs and the ammonia monooxygenase of nitrifying bacteria.
+RN  [1]
+RM  PMID: 11233157
+RT  Differential inhibition in vivo of ammonia monooxygenase, soluble methane monooxygenase and membrane-associated methane monoxygenase by phenylacetylene.
+RA  Lontoh S, DiSpirito AA, Krema CL, Whittaker MR, Hooper AB, Semrau JD
+RL  Environ Microbiol. 2000 Oct;2(5):485-94.

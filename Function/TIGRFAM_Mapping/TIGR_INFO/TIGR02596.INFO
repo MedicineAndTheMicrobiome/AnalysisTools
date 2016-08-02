@@ -1,0 +1,12 @@
+ID  TIGR02596
+AC  TIGR02596
+DE  Verru_Chthon cassette protein D
+AU  Haft DH
+TC  70.00 70.00
+NC  63.00 63.00
+AL  clustalw_manual
+IT  subfamily
+EN  Verru_Chthon cassette protein D
+GS  vccD
+TP  TIGRFAMs
+CC  This model describes a nearly twenty member protein family in Verrucomicrobium spinosum and a somewhat smaller paralogous family in Chthoniobacter flavus. All members share a type IV pilin-like N-terminal leader sequence (TIGR02532). These proteins occur in the four-gene Verru_Chthon cassette, in which two other genes likewise encode a cleavage/methylation domain. Most of these cassettes occur next to an unusually large PEP-CTERM protein with an autotransporter domain.

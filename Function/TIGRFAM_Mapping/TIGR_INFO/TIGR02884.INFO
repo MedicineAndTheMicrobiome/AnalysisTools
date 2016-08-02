@@ -1,0 +1,24 @@
+ID  spore_pdaA
+AC  TIGR02884
+DE  delta-lactam-biosynthetic de-N-acetylase
+AU  Haft DH
+TC  298.00 298.00
+NC  164.95 164.95
+AL  muscle
+IT  equivalog
+EN  delta-lactam-biosynthetic de-N-acetylase
+GS  pdaA
+EC  3.5.-.-
+TP  TIGRFAMs
+CC  Muramic delta-lactam is an unusual constituent of peptidoglycan, found only in bacterial spores in the peptidoglycan wall, or spore cortex. The proteins in this family are PdaA (yfjS), a member of a larger family of polysaccharide deacetylases, and are specificially involved in delta-lactam biosynthesis. PdaA acts immediately after CwlD, an N-acetylmuramoyl-L-alanine amidase and performs a de-N-acetylation. PdaA may also perform the following transpeptidation for lactam ring formation, as heterologous expression in E. coli of CwlD and PdaA together is sufficient for delta-lactam production.
+DR  PFAM; PF01522; Polysacc_deac_1;
+RN  [1]
+RM  14679227
+RT  Production of muramic delta-lactam in Bacillus subtilis spore peptidoglycan.
+RA  Gilmore ME, Bandyopadhyay D, Dean AM, Linnstaedt SD, Popham DL.
+RL  J Bacteriol. 2004 Jan;186(1):80-9.
+RN  [2]
+RM  12374835
+RT  A polysaccharide deacetylase gene (pdaA) is required for germination and for production of muramic delta-lactam residues in the spore cortex of Bacillus subtilis.
+RA  Fukushima T, Yamamoto H, Atrih A, Foster SJ, Sekiguchi J.
+RL  J Bacteriol. 2002 Nov;184(21):6007-15.

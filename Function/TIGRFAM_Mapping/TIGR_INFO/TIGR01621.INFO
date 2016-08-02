@@ -1,0 +1,17 @@
+ID  RluA-like
+AC  TIGR01621
+DE  pseudouridine synthase Rlu family protein, TIGR01621
+AU  Sunshine J, Selengut J
+TC  222.30 222.30
+NC  157.90 157.90
+AL  clustalw
+IT  hypoth_equivalog
+EN  pseudouridine synthase Rlu family protein, TIGR01621
+EC  5.4.99.-
+TP  TIGRFAMs
+CC  This model represents a clade of sequences within the pseudouridine synthase superfamily (PF00849).  The superfamily includes E. coli proteins: RluA, RluB, RluC, RluD, and RsuA.  The sequences modeled here are most closely related to RluA [1].  Neisseria, among those species hitting this model, does not appear to have an RluA homolog.  It is presumed that these sequences function as pseudouridine synthases, although perhaps with different specificity.
+RN  [1]
+RM  PMID: 10383384
+RT  Functional effect of deletion and mutation of the Escherichia coli ribosomal RNA and tRNA pseudouridine synthase RluA.
+RA  Raychaudhuri S, Niu L, Conrad J, Lane BG, Ofengand J.
+RL  J Biol Chem. 1999 Jul 2;274(27):18880-6.

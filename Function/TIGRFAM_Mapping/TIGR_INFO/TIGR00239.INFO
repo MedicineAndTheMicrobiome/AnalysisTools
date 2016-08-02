@@ -1,0 +1,15 @@
+ID  2oxo_dh_E1
+AC  TIGR00239
+DE  oxoglutarate dehydrogenase (succinyl-transferring), E1 component
+AU  Haft DH
+TC  770.00 770.00
+NC  618.85 618.85
+AL  clustalw
+IT  equivalog
+EN  2-oxoglutarate dehydrogenase, E1 component
+GS  sucA
+EC  1.2.4.2
+TP  TIGRFAMs
+CC  The 2-oxoglutarate dehydrogenase complex consists of this thiamine pyrophosphate-binding subunit (E1), dihydrolipoamide succinyltransferase (E2), and lipoamide dehydrogenase (E3).
+CC  The E1 ortholog from Corynebacterium glutamicum is unusual in having an N-terminal extension that resembles the dihydrolipoamide succinyltransferase (E2) component of 2-oxoglutarate dehydrogenase.
+DR  HAMAP; MF_01169; 43 of 43

@@ -1,0 +1,12 @@
+ID  PFL2-3
+AC  TIGR01774
+DE  glycyl radical enzyme, PFL2/glycerol dehydratase family
+AU  Haft DH, Selengut J
+TC  678.20 678.20
+NC  464.45 464.45
+AL  clustalw
+IT  subfamily
+EN  glycyl radical enzyme, PFL2/glycerol dehydratase family
+TP  TIGRFAMs
+CC  This family previously was designated pyruvate formate-lyase, but it now appears that members include the B12-independent glycerol dehydratase. Therefore, the functional definition of the family is being broadened.
+CC  This family includes the PflF and PflD proteins of E. coli, described as isoforms of pyruvate-formate lyase found in a limited number additional species.  PFL catalyzes the reaction pyruvate + CoA -> acetyl-CoA + formate, which is a step in the fermentation of glucose.

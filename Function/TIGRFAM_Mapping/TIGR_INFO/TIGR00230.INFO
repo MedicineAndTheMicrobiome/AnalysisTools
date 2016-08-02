@@ -1,0 +1,15 @@
+ID  sfsA
+AC  TIGR00230
+DE  sugar fermentation stimulation protein
+AU  Loftus BJ
+TC  126.45 126.45
+NC  86.00 86.00
+AL  clustalw
+IT  equivalog
+EN  sugar fermentation stimulation protein
+GS  sfsA
+TP  TIGRFAMs
+CC  probable regulatory factor involved in maltose metabolism contains a putative DNA binding domain. Isolated as a gene which enabled E.coli strain MK2001 to use maltose.
+DR  ECOCYC; EG10949; sfsA
+RM  91193225
+DR  HAMAP; MF_00095; 210 of 217

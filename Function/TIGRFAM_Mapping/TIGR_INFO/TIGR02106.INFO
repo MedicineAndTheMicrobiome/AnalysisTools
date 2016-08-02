@@ -1,0 +1,15 @@
+ID  cyd_oper_ybgT
+AC  TIGR02106
+DE  cyd operon protein YbgT
+AU  Haft DH
+TC  31.60 31.60
+NC  22.05 22.05
+AL  clustalw
+IT  equivalog
+EN  cyd operon protein YbgT
+TP  TIGRFAMs
+CC  This HMM describes a very small (as short as 33 amino acids) protein of unknown function, essentially always found in an operon with CydAB, subunits of the cytochrome d terminal oxidase. It begins with an aromatic motif MWYFXW and appears to contain a membrane-spanning helix. This protein appears to be restricted to the Proteobacteria and exist in a single copy only. We suggest it may be a membrane subunit of the terminal oxidase. The family is named after the E. coli member YbgT (SP|P56100). This model excludes the apparently related protein YccB (SP|P24244).
+RM  9068659
+RT  Characterization of the tol-pal and cyd region of Escherichia coli K-12: transcript analysis and identification of two new proteins encoded by the cyd operon.
+RA  Muller MM, Webster RE.
+RL  J Bacteriol. 1997 Mar; 179(6): 2077-80.

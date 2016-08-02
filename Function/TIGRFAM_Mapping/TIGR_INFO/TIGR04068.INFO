@@ -1,0 +1,18 @@
+ID  rSAM_ocin_clost
+AC  TIGR04068
+DE  Cys-rich peptide radical SAM maturase CcpM
+AU  Haft DH
+TC  500.00 500.00
+NC  375.00 375.00
+AL  muscle_manual
+IT  equivalog
+EN  Cys-rich peptide radical SAM maturase CcpM
+GS  ccpM
+TP  TIGRFAMs
+CC  Members of this family are radical SAM enzymes that occur next to clostridial Cys-rich predicted bacteriocin (or other class of ribosomal natural product) precursors (see families TIGR04065 and TIGR04067). They include a TIGR04085 C-terminal additional 4Fe4S cluster-binding domain that is associated with peptide modification by radical SAM enzymes, and they are proposed to be ribosomal natural product maturases. The gene symbol ccpM is assigned, for Clostridial Cys-rich Peptide Maturase.
+RN  [1]
+RM  PMID:21478363 
+RT  Biological systems discovery in silico: radical S-adenosylmethionine protein families and their target peptides for posttranslational mo
+dification. 
+RA  Haft DH, Basu MK 
+RL  J Bacteriol. 2011 Jun;193(11):2745-55.

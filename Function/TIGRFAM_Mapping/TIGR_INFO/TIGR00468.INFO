@@ -1,0 +1,14 @@
+ID  pheS
+AC  TIGR00468
+DE  phenylalanine--tRNA ligase, alpha subunit
+AU  Haft DH
+TC  237.45 237.45
+NC  190.65 190.65
+AL  clustalw_manual
+IT  equivalog
+EN  phenylalanyl-tRNA synthetase, alpha subunit
+GS  pheS
+EC  6.1.1.20
+TP  TIGRFAMs
+CC  Most phenylalanyl-tRNA synthetases are heterodimeric, with 2 alpha (pheS) and 2 beta (pheT) subunits. This HMM describes the alpha subunit, which shows some similarity to class II aminoacyl-tRNA ligases. Mitochondrial phenylalanyl-tRNA synthetase is a single polypeptide chain, active as a monomer, and similar to this chain rather than to the beta chain, but excluded from this model. An interesting feature of the alignment of all sequences captured by this model is a deep split between non-spirochete bacterial examples and all other examples; supporting this split is a relative deletion of about 50 residues in the former set between two motifs well conserved throughout the alignment.
+DR  HAMAP; MF_00282; 32 of 32

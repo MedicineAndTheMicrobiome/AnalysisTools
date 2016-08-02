@@ -1,0 +1,16 @@
+ID  sorted_by_XrtN
+AC  TIGR04477
+DE  XrtN system VIT domain protein
+AU  Haft DH
+TC  250.00 250.00
+NC  125.00 125.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  XrtN system VIT domain protein
+TP  TIGRFAMs
+CC  Members of this subfamily average about 850 amino acids in length, ending with a variant form of PEP-CTERM sorting signal. Members have a VIT (vault protein inter-alpha-trypsin inhibitor heavy chain) domain (PF08487). Other bacterial subfamilies of VIT domain proteins have members with either GlyGly-CTERM or LPXTG C-terminal sorting signals. Members of this subfamily occur only in context next to a protein sorting/processing enzyme, exosortase N (XrtN). These subsystems occur both among the Bacteriodetes and in the spirochete genus Leptospira.
+RN  [1]
+RM  PMID:22037399 
+RT  Archaeosortases and exosortases are widely distributed systems linking membrane transit with posttranslational modification. 
+RA  Haft DH, Payne SH, Selengut JD 
+RL  J Bacteriol. 2012 Jan;194(1):36-48. doi: 10.1128/JB.06026-11.

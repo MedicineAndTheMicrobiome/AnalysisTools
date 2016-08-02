@@ -1,0 +1,14 @@
+ID  AGP_acyltrn
+AC  TIGR00530
+DE  1-acylglycerol-3-phosphate O-acyltransferases
+AU  Haft DH
+TC  102.95 102.95
+NC  44.30 44.30
+AL  clustalw_manual
+IT  subfamily_domain
+EN  1-acyl-sn-glycerol-3-phosphate acyltransferases
+EC  2.3.1.51
+TP  TIGRFAMs
+CC  This model describes the core homologous region of a collection of related proteins, several of which are known to act as 1-acyl-sn-glycerol-3-phosphate acyltransferases (EC 2.3.1.51). Proteins scoring above the trusted cutoff are likely to have the same general activity. However, there is variation among characterized members as to whether the acyl group can be donated by acyl carrier protein or coenzyme A, and in the length and saturation of the donated acyl group.
+CC  1-acyl-sn-glycerol-3-phosphate acyltransferase is also called 1-AGP acyltransferase, lysophosphatidic acid acyltransferase, and LPA acyltransferase.
+DR  EC 2.3.1.51

@@ -1,0 +1,11 @@
+ID  dehyd_SbnB_fam
+AC  TIGR03944
+DE  2,3-diaminopropionate biosynthesis protein SbnB
+AU  Haft DH
+TC  326.90 326.90
+NC  254.65 254.65
+AL  muscle_manual
+IT  equivalog
+EN  2,3-diaminopropionate biosynthesis protein SbnB
+TP  TIGRFAMs
+CC  Members of this protein family are probable NAD-dependent dehydrogenases related to the alanine dehydrogenase of Archaeoglobus fulgidus (see TIGR02371, PDB structure 1OMO and PMID:15313611) and more distantly to ornithine cyclodeaminase. Members include the staphylobactin biosynthesis protein SbnB and tend to occur in contexts suggesting non-ribosomal peptide synthesis, always adjacent to (occasionally fused with) a pyridoxal phosphate-dependent enzyme, SbnA. The pair appears to provide 2,3-diaminopropionate for biosynthesis of siderophores or other secondary metabolites.

@@ -1,0 +1,16 @@
+ID  capsid_maj_N4
+AC  TIGR04387
+DE  major capsid protein, N4-gp56 family
+AU  Haft DH
+TC  60.00 50.00
+NC  30.00 30.00
+AL  muscle_manual
+IT  equivalog
+EN  major capsid protein, N4-gp56 family
+TP  TIGRFAMs
+CC  Members of this family are phage major capsid proteins as found in phage N4 (a double-stranded DNA virus) plus many additional lytic phage and integrated prophage regions.
+RN  [1]
+RM  PMID:18374942 
+RT  Insight into DNA and protein transport in double-stranded DNA viruses: the structure of bacteriophage N4. 
+RA  Choi KH, McPartland J, Kaganman I, Bowman VD, Rothman-Denes LB, Rossmann MG 
+RL  J Mol Biol. 2008 May 2;378(3):726-36.

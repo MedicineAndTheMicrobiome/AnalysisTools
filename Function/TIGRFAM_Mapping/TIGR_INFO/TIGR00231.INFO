@@ -1,0 +1,13 @@
+ID  small_GTP
+AC  TIGR00231
+DE  small GTP-binding protein domain
+AU  Haft DH
+TC  42.50 42.50
+NC  35.20 35.20
+AL  clustalw
+IT  domain
+EN  small GTP-binding protein domain
+TP  TIGRFAMs
+CC  Proteins with a small GTP-binding domain recognized by this model include Ras, RhoA, Rab11, translation elongation factor G, translation initiation factor IF-2, tetratcycline resistance protein TetM, CDC42, Era, ADP-ribosylation factors, tdhF, and many others. In some proteins the domain occurs more than once.
+CC  This model recognizes a large number of small GTP-binding proteins and related domains in larger proteins.  Note that the alpha chains of heterotrimeric G proteins are larger proteins in which the NKXD motif is separated from the GxxxxGK[ST] motif (P-loop) by a long insert and are not easily detected by this model.
+DR  HAMAP; MF_00379; 525 of 542

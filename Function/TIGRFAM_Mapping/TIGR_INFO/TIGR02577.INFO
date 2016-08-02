@@ -1,0 +1,23 @@
+ID  cas_TM1794_Cmr2
+AC  TIGR02577
+DE  CRISPR-associated protein Cas10/Cmr2, subtype III-B
+AU  Haft DH
+TC  79.40 79.40
+NC  66.40 66.40
+AL  clustalw
+IT  hypoth_equivalog
+EN  CRISPR-associated protein Cas10/Cmr2, subtype III-B
+GS  cas10
+TP  TIGRFAMs
+CC  This model represent a Crm2 family of the CRISPR-associated RAMP module, a set of six genes recurring found together in prokaryotic genomes. This gene cluster is found only in species with CRISPR repeats, usually near the repeats themselves. Because most of the six (but not this family) contain RAMP domains, and because its appearance in a genome appears to depend on other CRISPR-associated Cas genes, the set is designated the CRISPR RAMP module. This protein, typified by TM1794 from Thermotoga maritima, is designated Crm2, for CRISPR RAMP Module protein 2.
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=2003
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=57303
+RN  [1]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005
+RN  [2]
+RM  11788711
+RT  A DNA repair system specific for thermophilic Archaea and bacteria predicted by genomic context analysis.
+RA  Makarova KS, Aravind L, Grishin NV, Rogozin IB, Koonin EV.
+RL  Nucleic Acids Res. 2002 Jan 15;30(2):482-96.

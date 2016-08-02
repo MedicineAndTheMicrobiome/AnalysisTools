@@ -1,0 +1,15 @@
+ID  rnpA
+AC  TIGR00188
+DE  ribonuclease P protein component
+AU  Haft DH
+TC  38.35 38.35
+NC  16.85 16.85
+AL  clustalw
+IT  equivalog
+EN  ribonuclease P protein component, eubacterial
+GS  rnpA
+EC  3.1.26.5
+TP  TIGRFAMs
+CC  This peptide is the protein component of a ribonucleoprotein that cleaves the leader sequence from each tRNA precursor to leave the mature 5'-terminus. The catalytic site is in the RNA component, M1 RNA.
+CC  The yeast mitochondrial RNase P protein component gene RPM2 has no obvious sequence similarity to rnpA, but resembles eukaryotic nuclear RNase P instead.
+DR  HAMAP; MF_00227; 326 of 332

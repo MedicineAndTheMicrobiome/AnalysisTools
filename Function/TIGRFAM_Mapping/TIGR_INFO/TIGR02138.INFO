@@ -1,0 +1,13 @@
+ID  phosphate_pstC
+AC  TIGR02138
+DE  phosphate ABC transporter, permease protein PstC
+AU  Haft DH
+TC  196.45 196.45
+NC  194.40 194.40
+AL  clustalw_manual
+IT  equivalog
+EN  phosphate ABC transporter, permease protein PstC
+GS  pstC
+TR  3.A.1
+TP  TIGRFAMs
+CC  The typical operon for the high affinity inorganic phosphate ABC transporter encodes an ATP-binding protein, a phosphate-binding protein, and two permease proteins. This family consists of one of the two permease proteins, PstC, which is homologous to PstA (TIGR00974). In the model bacterium Escherichia coli, this transport system is induced when the concentration of extrallular inorganic phosphate is low. A constitutive, lower affinity transporter operates otherwise.

@@ -1,0 +1,17 @@
+ID  phnR
+AC  TIGR03337
+DE  phosphonate utilization transcriptional regulator PhnR
+AU  Selengut J
+TC  296.75 296.75
+NC  294.60 294.60
+AL  muscle
+IT  equivalog
+EN  phosphonate utilization transcriptional regulator PhnR
+GS  phnR
+TP  TIGRFAMs
+CC  This family of proteins are members of the GntR family (PF00392) containing an N-terminal helix-turn-helix (HTH) motif.  This clade is found adjacent to or inside of operons for the degradation of 2-aminoethylphosphonate (AEP) in Salmonella [1], Vibrio Aeromonas hydrophila, Hahella chejuensis and Psychromonas ingrahamii.
+RN  [1]
+RM  PMID: 7592415 
+RT  Molecular cloning, mapping, and regulation of Pho regulon genes for phosphonate breakdown by the phosphonatase pathway of Salmonella typhimurium LT2. 
+RA  Jiang W, Metcalf WW, Lee KS, Wanner BL 
+RL  J Bacteriol. 1995 Nov;177(22):6411-21.

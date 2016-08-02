@@ -1,0 +1,12 @@
+ID  TonB-tbp-lbp
+AC  TIGR01776
+DE  TonB-dependent lactoferrin and transferrin receptors
+AU  Selengut J
+TC  468.80 468.80
+NC  308.00 308.00
+AL  clustalw_manual
+IT  subfamily
+EN  TonB-dependent lactoferrin and transferrin receptors
+TR  1.B.14.2
+TP  TIGRFAMs
+CC  This family of TonB-dependent receptors are responsible for import of iron from the mammalian iron carriers lactoferrin and transferrin across the outer membrane.  These receptors are found only in bacteria which can infect mammals such as Moraxella, Mannheimia, Neisseria, Actinobacillus, Pasteurella, Haemophilus and Histophilus species.

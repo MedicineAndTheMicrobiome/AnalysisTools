@@ -1,0 +1,15 @@
+ID  PBP_1b
+AC  TIGR02071
+DE  penicillin-binding protein 1B
+AU  Haft DH
+TC  717.75 717.75
+NC  425.80 425.80
+AL  clustalw_manual
+IT  equivalog
+EN  penicillin-binding protein 1B
+GS  mrcB
+TP  TIGRFAMs
+CC  Bacterial that synthesize a cell wall of peptidoglycan (murein) generally have several transglycosylases and transpeptidases for the task. This family consists of a particular bifunctional transglycosylase/transpeptidase in E. coli and other Proteobacteria, designated penicillin-binding protein 1B.
+DR  SWISSPROT; P02919; Penicillin-binding protein 1B of E. coli
+DR  PFAM; PF00912; Transglycosyl
+DR  PFAM; PF00905; Transpeptidase

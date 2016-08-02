@@ -1,0 +1,24 @@
+ID  rect
+AC  TIGR00616
+DE  recombinase, phage RecT family
+AU  Loftus BJ, Eisen JA
+TC  52.65 52.65
+NC  50.50 50.50
+AL  clustalw_manual
+IT  subfamily
+EN  recombinase, phage RecT family
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known bind ssDNA and are involved in the the pairing of homologous DNA
+CC  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University). RecT and homologs are found in prophage regions of bacterial genomes. RecT works with a partner protein, RecE.
+DR  PFAM; PF03837
+DR  SWISSPROT; P33228;
+RN  [1]
+RM  94064562
+RT  Genetic and molecular analyses of the C-terminal region of the recE gene from the Rac prophage of Escherichia coli K-12 reveal the recT gene.
+RA  Clark AJ, Sharma V, Brenowitz S, Chu CC, Sandler S, Satin L, Templin A, Berger I, Cohen A.
+RL  J Bacteriol. 1993 Dec;175(23):7673-82.
+RN  [2]
+RM  10921910
+RT  RecE/RecT and Redalpha/Redbeta initiate double-stranded break repair by specifically interacting with their respective partners.
+RA  Muyrers JP, Zhang Y, Buchholz F, Stewart AF.
+RL  Genes Dev. 2000 Aug 1;14(15):1971-82.

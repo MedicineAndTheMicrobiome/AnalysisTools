@@ -1,0 +1,11 @@
+ID  geo_PqqD_fam
+AC  TIGR04302
+DE  GeoRSP system PqqD family protein
+AU  Haft DH
+TC  100.00 100.00
+NC  50.00 50.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  GeoRSP system PqqD family protein
+TP  TIGRFAMs
+CC  Members of this PqqD-related family so far occur only in the genus Geobacter, always together with a PqqE-like radical SAM domain/SPASM domain protein and a second SPASM domain protein with traces of a degenerate radical SAM domain. The extended gene region includes a high-molecular-weight cytochrome c family protein. Besides authentic PqqD (TIGR03859), another example of a PqqD family protein occurs in the SynChlorMet cassette, again with two PqqE-like proteins. The system is named GeoRSP for its prevalence in Geobacter, its Radical SAM protein, is SPASM domain protein, and its PqqD family protein.

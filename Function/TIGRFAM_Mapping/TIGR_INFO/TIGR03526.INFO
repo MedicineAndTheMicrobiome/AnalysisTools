@@ -1,0 +1,16 @@
+ID  selenium_YgeY
+AC  TIGR03526
+DE  putative selenium metabolism hydrolase
+AU  Haft DH
+TC  321.50 321.50
+NC  153.20 153.20
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  putative selenium metabolism hydrolase
+TP  TIGRFAMs
+CC  SelD, selenophosphate synthase, is the selenium donor protein for both selenocysteine and selenouridine biosynthesis systems, but it occurs also in a few prokaryotes that have neither of those pathways. The method of partial phylogenetic profiling [1], starting from such orphan-selD genomes, identifies this protein as one of those most strongly correlated to SelD occurrence. Its distribution is also well correlated with that of family TIGR03309, a putative accessory protein of labile selenium (non-selenocysteine) enzyme maturation. This family includes the uncharacterized YgeY of Escherichia coli, and belongs to a larger family of metalloenzymes in which some are known peptidases, others enzymes of different types.
+RN  [1]
+RM  PMID: 16930487
+RT  Exopolysaccharide-associated protein sorting in environmental organisms: the PEP-CTERM/EpsH system. Application of a novel phylogenetic profiling heuristic.
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD
+RL  BMC Biol. 2006 Aug 24;4:29.

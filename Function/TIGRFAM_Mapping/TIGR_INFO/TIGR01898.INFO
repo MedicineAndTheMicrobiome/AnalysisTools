@@ -1,0 +1,24 @@
+ID  cas_TM1791_cmr6
+AC  TIGR01898
+DE  CRISPR type III-B/RAMP module RAMP protein Cmr6
+AU  Haft DH
+TC  51.10 51.10
+NC  36.85 36.85
+AL  clustalw_manual
+IT  equivalog
+EN  CRISPR type III-B/RAMP module RAMP protein Cmr6
+GS  cmr6
+TP  TIGRFAMs
+CC  CRISPR is a term for Clustered Regularly Interspaced Short Palidromic Repeats. A number of protein families appear only in association with these repeats and are designated Cas (CRISPR associated) proteins. This family, represented by TM1791 of Thermotoga maritima, is designated Cmr6 [sic], for CRISPR/Cas Ramp Module protein 6. This family is both closely related to and frequently encoded next to the TM1792 family of Cas proteins described by TIGR01867. The two proteins are fused in an example from Methanopyrus kandleri.
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=2003
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=57303
+DR  PFAM; PF03787; RAMP superfamily
+RN  [1]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005
+RN  [2]
+RM  11788711
+RT  A DNA repair system specific for thermophilic Archaea and bacteria predicted by genomic context analysis.
+RA  Makarova KS, Aravind L, Grishin NV, Rogozin IB, Koonin EV.
+RL  Nucleic Acids Res. 2002 Jan 15;30(2):482-96.

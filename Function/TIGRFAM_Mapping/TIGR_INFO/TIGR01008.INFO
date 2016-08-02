@@ -1,0 +1,13 @@
+ID  rpsC_E_A
+AC  TIGR01008
+DE  ribosomal protein S3
+AU  Haft DH
+TC  150.25 150.25
+NC  120.00 120.00
+AL  clustalw_manual
+IT  equivalog
+EN  ribosomal protein S3, eukaryotic/archaeal type
+GS  rpsC
+TP  TIGRFAMs
+CC  This model describes ribosomal protein S3 of the eukaryotic cytosol and of the archaea. TIGRFAMs model TIGR01009 describes the bacterial/organellar type, although the organellar types have a different architecture with long insertions and may score poorly.
+DR  HAMAP; MF_01309; 42 of 718

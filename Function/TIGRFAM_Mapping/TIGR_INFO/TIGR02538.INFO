@@ -1,0 +1,17 @@
+ID  type_IV_pilB
+AC  TIGR02538
+DE  type IV-A pilus assembly ATPase PilB
+AU  Haft DH
+TC  675.65 675.65
+NC  625.75 625.75
+AL  clustalw_manual
+IT  equivalog
+EN  type IV-A pilus assembly ATPase PilB
+GS  pilB
+TP  TIGRFAMs
+CC  This model describes a protein of type IV pilus biogenesis designated PilB in Pseudomonas aeruginosa but PilF in Neisseria gonorrhoeae; the more common usage, reflected here, is PilB. This protein is an ATPase involved in protein export for pilin assembly and is closely related to GspE (TIGR02533) of type II secretion, also called the main terminal branch of the general  secretion pathway. Note that type IV pilus systems are often divided into type IV-A and IV-B, with the latter group including bundle-forming pilus, mannose-sensitive hemagglutinin, etc. Members of this family are found in type IV-A systems.
+RN  [1]
+RM  8100347
+RT  Conservation of genes encoding components of a type IV pilus assembly/two-step protein export pathway in Neisseria gonorrhoeae.
+RA  Lauer P, Albertson NH, Koomey M.
+RL  Mol Microbiol. 1993 Apr;8(2):357-68.

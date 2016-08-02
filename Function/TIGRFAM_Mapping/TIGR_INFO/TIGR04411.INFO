@@ -1,0 +1,12 @@
+ID  T2SS_GspN_Lepto
+AC  TIGR04411
+DE  type II secretion system protein N
+AU  Haft DH
+TC  50.00 50.00
+NC  49.50 42.00
+AL  muscle_manual
+IT  equivalog
+EN  type II secretion system protein N, Leptospira/Geobacter-type
+GS  gspN
+TP  TIGRFAMs
+CC  Members of this family are the N (or GspN) protein of type II secretion systems (T2SS) as found in Leptospira, Geobacter, Myxococcus, and several other genera. Sequence similarity to GspN as found in, say, Gammaproteobacteria (see PF01203) is extremely remote.

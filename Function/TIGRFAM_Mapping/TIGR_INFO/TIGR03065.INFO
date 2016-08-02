@@ -1,0 +1,16 @@
+ID  srtB_sig_QVPTGV
+AC  TIGR03065
+DE  sortase B signal domain, QVPTGV class
+AU  Haft DH
+TC  21.35 21.35
+NC  21.20 21.20
+AL  manual
+IT  subfamily_domain
+EN  sortase B signal domain, QVPTGV class
+TP  TIGRFAMs
+CC  This model represents a boutique (unusual) sorting signal, recognized by a member of the sortase SrtB family rather than by the housekeeping sortase, SrtA.
+RN  [1]
+RM  PMID: 15317792
+RT  A novel sortase, SrtC2, from Streptococcus pyogenes anchors a surface protein containing a QVPTGV motif to the cell wall.
+RA  Barnett TC, Patel AR, Scott JR
+RL  J Bacteriol. 2004 Sep;186(17):5865-75.

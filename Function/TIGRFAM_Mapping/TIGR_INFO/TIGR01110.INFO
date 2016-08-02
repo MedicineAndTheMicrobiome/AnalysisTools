@@ -1,0 +1,17 @@
+ID  mdcA
+AC  TIGR01110
+DE  malonate decarboxylase, alpha subunit
+AU  Ujwal ML, Haft DH, Paulsen IT
+TC  789.15 789.15
+NC  313.85 313.85
+AL  clustalw
+IT  equivalog
+EN  malonate decarboxylase, alpha subunit
+GS  mdcA
+TP  TIGRFAMs
+CC  This model describes malonate decarboxylase alpha subunit, from both the water-soluble form as found in Klebsiella pneumoniae and the form couple to sodium ion pumping in Malonomonas rubra. Malonate decarboxylase Na+ pump is the paradigm of the family of Na+ transport decarboxylases. Essentially, it couples the energy derived from decarboxylation of a carboxylic acid substrate to move Na+ ion across the bilayer. Functional malonate decarboylase is a multi subunit protein. The alpha subunit enzymatically performs the transfer of malonate (substrate) to an acyl carrier protein subunit for subsequent decarboxylation, hence the name: acetyl-S-acyl carrier protein:malonate carrier protein-SH transferase.
+RN  [1]
+RM  PMID: 11902724
+RT  Enzymic and genetic basis for bacterial growth on malonate.
+RA  Dimroth P, Hilbi H
+RL  Mol Microbiol. 1997 Jul;25(1):3-10.

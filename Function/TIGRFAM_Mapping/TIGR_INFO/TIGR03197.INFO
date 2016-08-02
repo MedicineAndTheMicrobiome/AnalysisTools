@@ -1,0 +1,18 @@
+ID  MnmC_Cterm
+AC  TIGR03197
+DE  tRNA U-34 5-methylaminomethyl-2-thiouridine biosynthesis protein MnmC, C-terminal domain
+AU  Haft DH
+TC  174.20 174.20
+NC  150.70 150.70
+AL  muscle
+IT  equivalog_domain
+EN  tRNA U-34 5-methylaminomethyl-2-thiouridine biosynthesis protein MnmC, C-terminal domain
+GS  mnmC
+TP  TIGRFAMs
+CC  In Escherichia coli, the protein previously designated YfcK is now identified as the bifunctional enzyme MnmC. It acts, following the action of the heterotetramer of GidA and MnmE, in the modification of U-34 of certain tRNA to 5-methylaminomethyl-2-thiouridine (mnm5s2U). In other bacterial, the corresponding proteins are usually but always found as a single polypeptide chain, but occasionally as the product of tandem genes. This model represents the C-terminal region of the multifunctional protein.
+RN  [1]
+RM  PMID: 15247431
+RT  Identification of a bifunctional enzyme MnmC involved in the biosynthesis of a hypermodified uridine in the wobble position of tRNA.
+RA  Bujnicki JM, Oudjama Y, Roovers M, Owczarek S, Caillet J, Droogmans L
+RL  RNA. 2004 Aug;10(8):1236-42. Epub 2004 Jul 9.
+DR  HAMAP; MF_01102; 107 of 174

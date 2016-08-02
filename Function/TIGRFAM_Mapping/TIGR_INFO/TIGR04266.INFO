@@ -1,0 +1,23 @@
+ID  NDMA_methanol
+AC  TIGR04266
+DE  NDMA-dependent methanol dehydrogenase
+AU  Haft DH
+TC  625.00 625.00
+NC  400.00 400.00
+AL  muscle
+IT  equivalog
+EN  NDMA-dependent methanol dehydrogenase
+GS  mdo
+EC  1.1.99.37
+TP  TIGRFAMs
+CC  Members of this family belong to the iron-dependent alcohol dehydrogenase family (see PF00465). The NADP(H) cofactor is bound too tightly for exchange (although non-convalently), so enzymatic activity depends on a second substrate or electron carrier. The radical SAM-modified natural product mycofactocin is proposed to fill this role.
+RN  [1]
+RM  PMID:8449887 
+RT  Electron microscopic analysis and structural characterization of novel NADP(H)-containing methanol: N,N'-dimethyl-4-nitrosoaniline oxidoreductases from the gram-positive methylotrophic bacteria Amycolatopsis methanolica and Mycobacterium gastri MB19. 
+RA  Bystrykh LV, Vonck J, van Bruggen EF, van Beeumen J, Samyn B, Govorukhina NI, Arfman N, Duine JA, Dijkhuizen L 
+RL  J Bacteriol. 1993 Mar;175(6):1814-22.
+RN  [2]
+RM  PMID:21223593 
+RT  Bioinformatic evidence for a widely distributed, ribosomally produced electron carrier precursor, its maturation proteins, and its nicotinoprotein redox partners. 
+RA  Haft DH 
+RL  BMC Genomics. 2011 Jan 11;12:21.

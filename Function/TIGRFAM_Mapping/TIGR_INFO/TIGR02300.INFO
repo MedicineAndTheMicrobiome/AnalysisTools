@@ -1,0 +1,11 @@
+ID  FYDLN_acid
+AC  TIGR02300
+DE  TIGR02300 family protein
+AU  Haft DH
+TC  41.65 41.65
+NC  35.70 35.70
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  TIGR02300 family protein
+TP  TIGRFAMs
+CC  Members of this family are bacterial proteins with a conserved motif [KR]FYDLN, sometimes flanked by a pair of CXXC motifs, followed by a long region of low complexity sequence in which roughly half the residues are Asp and Glu, including multiple runs of five or more acidic residues. The function of members of this family is unknown.

@@ -1,0 +1,17 @@
+ID  tape_meas_lam_C
+AC  TIGR01541
+DE  phage tail tape measure protein, lambda family
+AU  Fouts DE, Haft DH
+TC  104.75 104.75
+NC  20.95 20.95
+AL  clustalw_manual
+IT  equivalog_domain
+EN  phage tail tape measure protein, lambda family
+TP  TIGRFAMs
+CC  This HMM represents a relatively well-conserved region near the C-terminus of the tape measure protein of a lambda and related phage. This protein, which controls phage tail length, is typically about 1000 residues in length. Both low-complexity sequence and insertion/deletion events appear common in this family. Mutational studies suggest a ruler or template role in the determination of phage tail length. Similar behavior is attributed to proteins from distantly related or unrelated families in other phage.
+RN  [1]
+RM  6096021
+RT  Length determination in bacteriophage lambda tails.
+RA  Katsura I, Hendrix RW.
+RL  Cell 1984 Dec;39(3 Pt 2):691-8
+DR  EXPERIMENTAL; SP|P03736; phage lambda

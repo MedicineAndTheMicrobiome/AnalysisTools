@@ -1,0 +1,16 @@
+ID  GG_sam_targ_CFB
+AC  TIGR04149
+DE  natural product precursor, GG-Bacteroidales family
+AU  Haft DH
+TC  25.00 25.00
+NC  22.00 22.00
+AL  muscle_manual
+IT  domain
+EN  natural product precursor, GG-Bacteroidales family
+TP  TIGRFAMs
+CC  Sequences in this protein domain family include a leader peptide region, up to and including a Gly-Gly cleavage motif, and about 15 additional residues, usually Cys-rich, from a family of predicted ribosomal natural product precursors. Many of these are associated with peptide-modifying radical SAM enzymes. The core region, up through the diglycine motif, resembles and contains some overlapping hits with the bacteriocin precuror leader peptide region modeled by TIGR01847, but is longer with an extreme N-terminal region with consensus sequence MKKLKKLKL.
+RN  [1]
+RM  PMID:21478363 
+RT  Biological systems discovery in silico: radical S-adenosylmethionine protein families and their target peptides for posttranslational modification. 
+RA  Haft DH, Basu MK 
+RL  J Bacteriol. 2011 Jun;193(11):2745-55.

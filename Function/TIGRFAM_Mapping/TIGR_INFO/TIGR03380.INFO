@@ -1,0 +1,23 @@
+ID  agmatine_aguA
+AC  TIGR03380
+DE  agmatine deiminase
+AU  Haft DH, Harkins DM
+TC  381.80 381.80
+NC  309.30 309.30
+AL  muscle_manual
+IT  equivalog
+EN  agmatine deiminase
+GS  aguA
+EC  3.5.3.12
+TP  TIGRFAMs
+CC  Members of this family are agmatine deiminase (3.5.3.12), as characterized in Pseudomonas aeruginosa and plants. Related deiminases include the peptidyl-arginine deiminase (3.5.3.15) as found in  Porphyromonas gingivalis.
+RN  [1]
+RM  PMID: 12634339
+RT  Identification of the putrescine biosynthetic genes in Pseudomonas aeruginosa and characterization of agmatine deiminase and N-carbamoylputrescine amidohydrolase of the arginine decarboxylase pathway.
+RA  Nakada Y, Itoh Y
+RL  Microbiology. 2003 Mar;149(Pt 3):707-14.
+RN  [2]
+RM  PMID: 12782327
+RT  Identification and characterization of plant agmatine iminohydrolase, the last missing link in polyamine biosynthesis of plants.
+RA  Janowitz T, Kneifel H, Piotrowski M
+RL  FEBS Lett. 2003 Jun 5;544(1-3):258-61.

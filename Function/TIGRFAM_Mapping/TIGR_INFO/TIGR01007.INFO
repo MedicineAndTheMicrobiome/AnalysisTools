@@ -1,0 +1,16 @@
+ID  eps_fam
+AC  TIGR01007
+DE  capsular exopolysaccharide family
+AU  Ujwal ML, Loftus BJ, Paulsen IT
+TC  108.05 108.05
+NC  85.75 85.75
+AL  clustalw_manual
+IT  subfamily_domain
+EN  capsular exopolysaccharide family
+TR  8.A.03
+TP  TIGRFAMs
+CC  This model describes the capsular exopolysaccharide proteins in bacteria. The exopolysaccharide gene cluster consists of several genes which encode a number of proteins which regulate the exoploysaccharide biosynthesis(EPS). Atleast 13 genes espA to espM in streptococcus species seem to direct the EPS proteins and all of which share high homology. Functional roles were characterized by gene disruption experiments which resulted in exopolysaccharide-deficient phenotypes.
+RM  8626297
+RT  Identification and characterization of the eps (Exopolysaccharide) gene cluster from Streptococcus thermophilus Sfi6.
+RA  Stingele F, Neeser JR, Mollet B.
+RL  J Bacteriol 1996 Mar;178(6):1680-90

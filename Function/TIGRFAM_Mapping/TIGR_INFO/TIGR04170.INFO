@@ -1,0 +1,18 @@
+ID  RNR_1b_NrdE
+AC  TIGR04170
+DE  ribonucleoside-diphosphate reductase, class 1b, alpha subunit
+AU  Haft DH
+TC  750.00 750.00
+NC  500.00 500.00
+AL  muscle
+IT  exception
+EN  ribonucleoside-diphosphate reductase, class 1b, alpha subunit
+GS  nrdE
+EC  1.17.4.1
+TP  TIGRFAMs
+CC  Members of this family are NrdE, the alpha subunit of class 1b ribonucleotide reductase. This form uses a dimanganese moiety associated with a tyrosine radical to reduce the cellular requirement for iron.
+RN  [1]
+RM  PMID:21561096 
+RT  Bacillus subtilis Class Ib Ribonucleotide Reductase is a Dimanganese(III)-Tyrosyl Radical Enzyme.
+RA  Zhang Y, Stubbe J 
+RL  Biochemistry. 2011 May 11.

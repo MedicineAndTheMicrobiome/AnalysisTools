@@ -1,0 +1,18 @@
+ID  Fe_III_red_FhuF
+AC  TIGR03951
+DE  siderophore-iron reductase FhuF
+AU  Haft DH
+TC  63.85 63.85
+NC  59.15 59.15
+AL  muscle_manual
+IT  equivalog
+EN  siderophore-iron reductase FhuF
+GS  fhuF
+EC  1.-.-.-
+TP  TIGRFAMs
+CC  Members of this protein family, including FhuF of E. coli, are siderophore ferric iron reductases that appear to play a role in iron removal from certain hydroxamate-type siderophores, including coprogen, ferrichrome, ferrioxamine B, and aerobactin. Genes occur in regularly in siderophore transport and/or biosynthesis clusters. The C-terminus includes four Cys residues in a C-C-10(X)-C-X-X-C motif that binds a 2Fe-2S cluster. Family TIGR03950 is similar, but especially in the C-terminal region, but likely acts on a different panel of siderophores.
+RN  [1]
+RM  PMID:14756576
+RT  FhuF, part of a siderophore-reductase system.
+RA  Matzanke BF, Anemuller S, Schunemann V, Trautwein AX, Hantke K
+RL  Biochemistry. 2004 Feb 10;43(5):1386-92.

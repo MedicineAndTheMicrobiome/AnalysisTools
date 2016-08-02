@@ -1,0 +1,19 @@
+ID  heptsyl_trn_I
+AC  TIGR02193
+DE  lipopolysaccharide heptosyltransferase I
+AU  Haft DH
+TC  185.30 185.30
+NC  144.00 144.00
+AL  clustalw
+IT  equivalog
+EN  lipopolysaccharide heptosyltransferase I
+GS  waaC
+EC  2.4.-.-
+TP  TIGRFAMs
+CC  This family consists of examples of ADP-heptose:LPS heptosyltransferase I, an enzyme of LPS inner core region biosynthesis. LPS, composed of lipid A, a core region, and O antigen, is found in the outer membrane of Gram-negative bacteria.
+DR  PFAM; PF01075
+RN  [1]
+RM  9831648
+RT  Cloning, sequencing, and characterization of the lipopolysaccharide biosynthetic enzyme heptosyltransferase I gene (waaC) from Campylobacter jejuni and Campylobacter coli.
+RA  Klena JD, Gray SA, Konkel ME.
+RL  Gene. 1998 Nov 19;222(2):177-85.

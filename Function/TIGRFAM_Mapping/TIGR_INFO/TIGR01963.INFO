@@ -1,0 +1,11 @@
+ID  PHB_DH
+AC  TIGR01963
+DE  3-hydroxybutyrate dehydrogenase
+AU  Haft DH
+TC  307.05 307.05
+NC  240.80 240.80
+AL  clustalw
+IT  subfamily
+EN  3-hydroxybutyrate dehydrogenase
+TP  TIGRFAMs
+CC  This HMM represents a subfamily of the short chain dehydrogenases. Characterized members so far as 3-hydroxybutyrate dehydrogenases and are found in species that accumulate ester polmers called polyhydroxyalkanoic acids (PHAs) under certain conditions. Several members of the family are from species not known to accumulate PHAs, including Oceanobacillus iheyensis and Bacillus subtilis. However, polymer formation is not required for there be a role for 3-hydroxybutyrate dehydrogenase; it may be members of this family have the same function in those species.

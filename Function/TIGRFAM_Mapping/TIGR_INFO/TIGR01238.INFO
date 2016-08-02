@@ -1,0 +1,12 @@
+ID  D1pyr5carbox3
+AC  TIGR01238
+DE  delta-1-pyrroline-5-carboxylate dehydrogenase
+AU  Haft DH
+TC  485.20 485.20
+NC  374.05 374.05
+AL  clustalw
+IT  equivalog_domain
+EN  delta-1-pyrroline-5-carboxylate dehydrogenase (PutA C-terminal domain)
+EC  1.2.1.88
+TP  TIGRFAMs
+CC  This model represents one of several related branches of delta-1-pyrroline-5-carboxylate dehydrogenase. Members of this branch are the C-terminal domain of the PutA bifunctional proline dehydrogenase / delta-1-pyrroline-5-carboxylate dehydrogenase.

@@ -1,0 +1,18 @@
+ID  cbbX_cfxQ
+AC  TIGR02880
+DE  CbbX protein
+AU  Haft DH
+TC  459.25 459.25
+NC  275.25 275.25
+AL  clustalw
+IT  equivalog
+EN  probable Rubsico expression protein CbbX
+GS  cbbX
+TP  TIGRFAMs
+CC  Proteins in this family are now designated CbbX. Some previously were CfxQ (carbon fixation Q). Its gene is often found immmediately downstream of the Rubisco large and small chain genes, and it is suggested to be necessary for Rubisco expression. CbbX has been shown to be necessary for photoautotrophic growth.  This protein belongs to the larger family of PF00004, ATPase family Associated with various cellular Activities. Within that larger family, members of this family are most closely related to the stage V sporulation protein K, or SpoVK, in endospore-forming bacteria such as Bacillus subtilis.
+DR  PFAM; PF00004; AAA; ATPase family associated with various cellular activities
+RN  [1]
+RM  10742049
+RT  A nucleomorph-encoded CbbX and the phylogeny of RuBisCo regulators.
+RA  Maier UG, Fraunholz M, Zauner S, Penny S, Douglas S.
+RL  Mol Biol Evol. 2000 Apr;17(4):576-83.

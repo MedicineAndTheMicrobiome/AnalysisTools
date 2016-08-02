@@ -1,0 +1,15 @@
+ID  ydaH
+AC  TIGR00819
+DE  AbgT transporter family
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  753.55 753.55
+NC  241.15 241.15
+AL  clustalw_manual
+IT  subfamily
+EN  p-Aminobenzoyl-glutamate transporter family
+GS  ydaH
+TR  2.A.68
+TP  TIGRFAMs
+CC  The p-Aminobenzoyl-glutamate transporter family includes two transporters, the AbgT (YdaH) protein of E. coli and MtrF of Neisseria gonorrhoea. AbgT is apparently cryptic in wild type cells, but when expressed on a high copy number plasmid, or when expressed at higher levels due to mutation, it allows utilization of p-aminobenzoyl-glutamate as a source of p-aminobenzoate for p-aminobenzoate auxotrophs. p-Aminobenzoate is a constituent of and a precursor for the biosynthesis of folic acid.
+DR  URL; 
+http://www-biology.ucsd.edu/~msaier/transport/2_A_68.html

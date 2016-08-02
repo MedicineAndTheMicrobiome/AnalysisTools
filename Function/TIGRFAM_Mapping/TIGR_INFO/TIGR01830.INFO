@@ -1,0 +1,13 @@
+ID  3oxo_ACP_reduc
+AC  TIGR01830
+DE  3-oxoacyl-[acyl-carrier-protein] reductase
+AU  Haft DH
+TC  297.75 297.75
+NC  291.10 291.10
+AL  clustalw_manual
+IT  equivalog
+EN  3-oxoacyl-(acyl-carrier-protein) reductase
+GS  fabG
+EC  1.1.1.100
+TP  TIGRFAMs
+CC  This HMM represents 3-oxoacyl-[ACP] reductase, also called 3-ketoacyl-acyl carrier protein reductase, an enzyme of fatty acid biosynthesis.

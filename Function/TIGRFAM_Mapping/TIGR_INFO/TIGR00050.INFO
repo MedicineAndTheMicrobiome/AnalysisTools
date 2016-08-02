@@ -1,0 +1,22 @@
+ID  rRNA_methyl_1
+AC  TIGR00050
+DE  RNA methyltransferase, TrmH family, group 1
+AU  Richardson DL, Haft DH
+TC  167.15 167.15
+NC  89.40 89.40
+AL  msa_tigr
+IT  subfamily
+EN  RNA methyltransferase, TrmH family, group 1
+EC  2.1.1.-
+TP  TIGRFAMs
+CC  This is part of the trmH (spoU) family of S-adenosyl-L-methionine (AdoMet)-dependent methyltransferases, and is now characterized, in E. coli, as a tRNA:Cm32/Um32 methyltransferase. It may be named TrMet(Xm32), or TrmJ, according to the nomenclature style chosen
+RN  [1]
+RM  PMID: 16848900
+RT  The yfhQ gene of Escherichia coli encodes a tRNA:Cm32/Um32 methyltransferase.
+RA  Purta E, van Vliet F, Tkaczuk KL, Dunin-Horkawicz S, Mori H, Droogmans L, Bujnicki JM
+RL  BMC Mol Biol. 2006 Jul 18;7(1):23.
+RN  [2]
+RM  94089409
+RT  SpoU protein of Escherichia coli belongs to a new family of putative rRNA methylases.
+RA  Koonin EV, Rudd KE
+RL  Nucleic Acids Res 1993 Nov 25;21(23):5519

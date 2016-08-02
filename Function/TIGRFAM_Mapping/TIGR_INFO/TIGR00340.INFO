@@ -1,0 +1,12 @@
+ID  zpr1_rel
+AC  TIGR00340
+DE  zinc finger protein ZPR1 homolog
+AU  Haft DH
+TC  117.95 117.95
+NC  93.25 93.25
+AL  clustalw
+IT  hypoth_equivalog
+EN  ZPR1-related zinc finger protein
+TP  TIGRFAMs
+CC  This HMM describes a strictly archaeal family homologous to the domain duplicated in the eukaryotic zinc-binding protein ZPR1. ZPR1 was shown experimentally to bind approximately two moles of zinc; each copy of the domain contains a putative zinc finger of the form CXXCX(25)CXXC. ZPR1 binds the tyrosine kinase domain of epidermal growth factor receptor, but is displaced by receptor activation and autophosphorylation after which it redistributes in part to the nucleus. The proteins described by this HMM by analogy may be suggested to play a role in signal transduction.
+CC  An HMM ZPR1_znf (TIGR00310) has been created to describe the domain shared by this protein and ZPR1.

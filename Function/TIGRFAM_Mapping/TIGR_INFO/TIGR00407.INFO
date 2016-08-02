@@ -1,0 +1,20 @@
+ID  proA
+AC  TIGR00407
+DE  glutamate-5-semialdehyde dehydrogenase
+AU  Loftus BJ
+TC  317.45 317.45
+NC  240.45 240.45
+AL  clustalw
+IT  equivalog_domain
+EN  gamma-glutamyl phosphate reductase
+GS  proA
+EC  1.2.1.41
+TP  TIGRFAMs
+CC  The related HMM TIGR01092 describes a full-length fusion protein delta l-pyrroline-5-carboxylate synthetase that includes a gamma-glutamyl phosphate reductase region as described by this model.
+CC  Alternate name: glutamate-5-semialdehyde dehydrogenase.
+CC  The prosite motif begins at residue 332 of the seed alignment although not all of the members of the family exactly obey the motif.
+DR  Swissprot; P07004;
+DR  ECOCYC; EG10767;  
+DR  PROSITE; PDOC00940 
+DR  PFAM; PF00696; 
+DR  HAMAP; MF_00412; 394 of 405

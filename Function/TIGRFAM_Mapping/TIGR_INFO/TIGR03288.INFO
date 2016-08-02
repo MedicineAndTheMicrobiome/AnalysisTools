@@ -1,0 +1,13 @@
+ID  CoB_CoM_SS_B
+AC  TIGR03288
+DE  CoB--CoM heterodisulfide reductase, subunit B
+AU  Haft DH
+TC  345.15 345.15
+NC  257.95 257.95
+AL  muscle
+IT  equivalog
+EN  CoB--CoM heterodisulfide reductase, subunit B
+GS  hdrB
+EC  1.8.98.1
+TP  TIGRFAMs
+CC  Members of this protein family are subunit B of the CoB--CoM heterodisulfide reductase, or simply heterodisulfide reductase, found in methanogenic archaea. Some archaea species have two copies, HdrB1 and HdrB2.

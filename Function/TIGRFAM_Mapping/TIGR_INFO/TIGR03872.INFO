@@ -1,0 +1,17 @@
+ID  cytochrome_MoxG
+AC  TIGR03872
+DE  cytochrome c(L), periplasmic
+AU  Haft DH
+TC  147.80 147.80
+NC  61.05 61.05
+AL  muscle_manual
+IT  equivalog
+EN  cytochrome c(L), periplasmic
+GS  moxG
+TP  TIGRFAMs
+CC  This model describes a periplasmic c-type cytochrome that serves as the primary electron acceptor for the quinoprotein methanol dehydrogenase, a PQQ enzyme. The member from Paracoccus denitrificans is also characterized as an electron acceptor for methylamine dehydrogenase, a tryptophan tryptophylquinone enzyme. This protein is called cytochrome c(L) in methylotrophic bacteria such Methylobacterium extorquens, but c551i in Paracoccus denitrificans.
+RN  [1]
+RM  PMID:16414073
+RT  The 1.6A X-ray structure of the unusual c-type cytochrome, cytochrome cL, from the methylotrophic bacterium Methylobacterium extorquens.
+RA  Williams P, Coates L, Mohammed F, Gill R, Erskine P, Bourgeois D, Wood SP, Anthony C, Cooper JB
+RL  J Mol Biol. 2006 Mar 17;357(1):151-62. Epub 2006 Jan 5.

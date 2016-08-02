@@ -1,0 +1,27 @@
+ID  GET3_arsA_TRC40
+AC  TIGR00345
+DE  transport-energizing ATPase, TRC40/GET3/ArsA family
+AU  Loftus BJ, Haft DH
+TC  135.00 135.00
+NC  120.00 120.00
+AL  clustalw
+IT  subfamily
+EN  transport-energizing ATPase, TRC40/GET3/ArsA family
+EC  3.6.1.-
+TP  TIGRFAMs
+CC  Members of this family are ATPases that energize transport, although with different partner proteins for different functions. Recent findings show that TRC40 (GET3 in yeast) in involved in the insertion of tail-anchored membrane proteins in eukaryotes. A similar function is expected for members of this family in archaea. However, the earliest discovery of a function for this protein family is ArsA, an arsenic resistance protein that partners with ArsB (see PF02040) for As(III) efflux.
+RN  [1]
+RM  PMID:20981284 
+RT  Functional Promiscuity of Homologues of the Bacterial ArsA ATPases. 
+RA  Castillo R, Saier MH 
+RL  Int J Microbiol. 2010;2010:187373.
+RN  [2]
+RM  PMID:22124326 
+RT  Tail-anchor targeting by a Get3 tetramer: the structure of an archaeal homologue. 
+RA  Suloway CJ, Rome ME, Clemons WM Jr 
+RL  EMBO J. 2011 Nov 29;31(3):707-19. 
+RN  [3]
+RM  PMID:8674982 
+RT  The arsenical resistance operon of IncN plasmid R46. 
+RA  Bruhn DF, Li J, Silver S, Roberto F, Rosen BP 
+RL  FEMS Microbiol Lett. 1996 Jun 1;139(2-3):149-53.

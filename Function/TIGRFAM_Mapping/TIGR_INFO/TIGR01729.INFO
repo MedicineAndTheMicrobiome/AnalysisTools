@@ -1,0 +1,16 @@
+ID  taurine_ABC_bnd
+AC  TIGR01729
+DE  taurine ABC transporter, periplasmic binding protein
+AU  Haft DH
+TC  304.25 304.25
+NC  124.65 124.65
+AL  clustalw
+IT  equivalog
+EN  taurine ABC transporter, periplasmic binding protein
+GS  tauA
+TP  TIGRFAMs
+CC  This HMM identifies a cluster of ABC transporter periplasmic substrate binding proteins, apparently specific for taurine. Transport systems for taurine (NH2-CH2-CH2-SO3H), sulfonates, and sulfate esters import sulfur when sulfate levels are low. The most closely related proteins outside this family are putative aliphatic sulfonate binding proteins (TIGR01728).
+RM  8808933
+RT  Identification of sulfate starvation-regulated genes in Escherichia coli: a gene cluster involved in the utilization of taurine as a sulfur source.
+RA  van der Ploeg JR, Weiss MA, Saller E, Nashimoto H, Saito N, Kertesz MA, Leisinger T.
+RL  J Bacteriol 1996 Sep;178(18):5438-46

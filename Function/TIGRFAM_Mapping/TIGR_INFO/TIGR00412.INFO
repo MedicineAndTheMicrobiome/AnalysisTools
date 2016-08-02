@@ -1,0 +1,10 @@
+ID  redox_disulf_2
+AC  TIGR00412
+DE  redox-active disulfide protein 2
+AU  Haft DH
+TC  73.50 73.50
+NC  55.60 55.60
+IT  hypoth_equivalog
+EN  small redox-active disulfide protein 2
+TP  TIGRFAMs
+CC  This small protein is found in three archaeal species so far (Methanococcus jannaschii, Archeoglobus fulgidus, and Methanobacterium thermoautotrophicum) as well as in Anabaena PCC7120. It is homologous to thioredoxins, glutaredoxins, and protein disulfide isomerases, and shares with them a redox-active disulfide. The redox active disulfide region CXXC motif resembles neither thioredoxin nor glutaredoxin. A closely related protein found in the same three Archaea, described by redox_disulf_1, has a glutaredoxin-like CP[YH]C sequence; it has been characterized in functional assays as redox-active but unlikely to be a thioredoxin or glutaredoxin.

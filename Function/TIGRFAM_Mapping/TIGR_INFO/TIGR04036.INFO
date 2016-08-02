@@ -1,0 +1,12 @@
+ID  LLM_CE1758_fam
+AC  TIGR04036
+DE  putative luciferase-like monooxygenase, FMN-dependent, CE1758 family
+AU  Haft DH
+TC  479.10 479.10
+NC  369.25 369.25
+AL  muscle_manual
+IT  subfamily
+EN  putative luciferase-like monooxygenase, FMN-dependent, CE1758 family
+EC  1.-.-.-
+TP  TIGRFAMs
+CC  This tightly conserved subfamily of the bacterial luciferase-like monooxygenase (LLM) family, with members showing > 60 % pairwise sequence identity, includes proteins from both species with and species without the ability to make coenzyme F420. Therefore, the like cofactor is FMN rather than F420. The presence of three members in Kineococcus radiotolerans SRS30216 and two in Saccharopolyspora erythraea NRRL 2338 suggest closely related (subfamily) rather than exactly conserved (equivalog) function. Gene neighborhoods around members are not conserved.

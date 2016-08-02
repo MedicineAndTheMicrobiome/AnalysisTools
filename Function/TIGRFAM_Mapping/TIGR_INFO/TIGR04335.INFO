@@ -1,0 +1,17 @@
+ID  AmmeMemoSam_A
+AC  TIGR04335
+DE  AmmeMemoRadiSam system protein A
+AU  Haft DH
+TC  99.00 99.00
+NC  96.00 96.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  AmmeMemoRadiSam system protein A
+GS  amrA
+TP  TIGRFAMs
+CC  Members of this protein family belong to the same domain family as AMMECR1, a mammalian protein named for AMME - Alport syndrome, Mental Retardation, Midface hypoplasia, and Elliptocytosis. Members of the present family occur as part of a three gene system with a homolog of the mammalian protein Memo (Mediator of ErbB2-driven cell MOtility), and an uncharacterized radical SAM enzyme.
+RN  [1]
+RM  PMID:17715145 
+RT  The RAGNYA fold: a novel fold with multiple topological variants found in functionally diverse nucleic acid, nucleotide and peptide-binding proteins. 
+RA  Balaji S, Aravind L 
+RL  Nucleic Acids Res. 2007;35(17):5658-71.

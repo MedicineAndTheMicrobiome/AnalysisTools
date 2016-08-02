@@ -1,0 +1,19 @@
+ID  fsa_talC_mipB
+AC  TIGR00875
+DE  fructose-6-phosphate aldolase
+AU  Haft DH
+TC  245.95 245.95
+NC  105.40 105.40
+AL  clustalw
+IT  equivalog
+EN  fructose-6-phosphate aldolase, TalC/MipB family
+GS  fsa
+EC  4.1.2.-
+TP  TIGRFAMs
+CC  This HMM represents a family that includes the E. coli transaldolase homologs TalC and MipB, both shown to be fructose-6-phosphate aldolases rather than transaldolases as previously thought. It is related to but distinct from the transaldolase family of E. coli TalA and TalB. The member from Bacillus subtilis becomes phosphorylated during early stationary phase but not during exponential growth.
+RN  [1]
+RM  PMID:11120740
+RT  Fructose-6-phosphate aldolase is a novel class I aldolase from Escherichia coli and is related to a novel group of bacterial transaldolases.
+RA  Schurmann M, Sprenger GA
+RL  J Biol Chem. 2001 Apr 6;276(14):11055-61.
+DR  HAMAP; MF_00496; 14 of 15

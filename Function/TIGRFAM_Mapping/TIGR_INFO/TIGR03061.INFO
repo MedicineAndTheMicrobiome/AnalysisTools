@@ -1,0 +1,17 @@
+ID  pip_yhgE_Nterm
+AC  TIGR03061
+DE  YhgE/Pip N-terminal domain
+AU  Haft DH
+TC  96.15 96.15
+NC  51.90 51.90
+AL  muscle_manual
+IT  subfamily_domain
+EN  YhgE/Pip N-terminal domain
+TP  TIGRFAMs
+CC  This family contains the N-terminal domain of a family of multiple membrane-spanning proteins of Gram-positive bacteria. One member was shown to be a host protein essential for phage infection, so many members of this family are called "phage infection protein". A separate model, TIGR03062, represents the conserved C-terminal domain. The domains are separated by regions highly variable in both length and sequence, often containing extended heptad repeats as described in model TIGR03057.
+DR  EXPERIMENTAL; SP|P49022; phage infection protein
+RN  [1]
+RM  PMID: 8366036
+RT  Cloning of a chromosomal gene required for phage infection of Lactococcus lactis subsp. lactis C2.
+RA  Geller BL, Ivey RG, Trempy JE, Hettinger-Smith B
+RL  J Bacteriol. 1993 Sep;175(17):5510-9.

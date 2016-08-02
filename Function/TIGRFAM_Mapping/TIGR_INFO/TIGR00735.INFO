@@ -1,0 +1,20 @@
+ID  hisF
+AC  TIGR00735
+DE  imidazoleglycerol phosphate synthase, cyclase subunit
+AU  Haft DH
+TC  294.55 294.55
+NC  137.00 137.00
+AL  clustalw_manual
+IT  equivalog_domain
+EN  imidazoleglycerol phosphate synthase, cyclase subunit
+GS  hisF
+TP  TIGRFAMs
+AL  clustalw_manual
+RN  [1]
+RM  98316711
+RN  [2]
+RM  93374850
+DR  EXPERIMENTAL; GP|4455213|emb|CAB36536.1||AL035440; Arabidopsis thaliana
+DR  EXPERIMENTAL; EGAD|51001|YBR248C; Saccharomyces cerevisiae
+DR  EXPERIMENTAL; EGAD|7988|EC2025; Escherichia coli
+DR  HAMAP; MF_01013; 426 of 430

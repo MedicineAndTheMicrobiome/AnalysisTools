@@ -1,0 +1,13 @@
+ID  prpB
+AC  TIGR02317
+DE  methylisocitrate lyase
+AU  Haft DH
+TC  354.40 354.40
+NC  318.80 318.80
+AL  clustalw
+IT  equivalog
+EN  methylisocitrate lyase
+GS  prpB
+EC  4.1.3.30
+TP  TIGRFAMs
+CC  Members of this family are methylisocitrate lyase, also called (2S,3R)-3-hydroxybutane-1,2,3-tricarboxylate pyruvate-lyase. This enzyme acts in propionate metabolism. It cleaves a carbon-carbon bond to convert 2-methylisocitrate to pyruvate plus succinate. Some members of this family have been annotated, incorrectly it seems, as the related protein carboxyphosphoenolpyruvate phosphomutase, which is involved in synthesizing the antibiotic bialaphos in Streptomyces hygroscopicus.

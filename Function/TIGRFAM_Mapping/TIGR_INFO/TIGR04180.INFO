@@ -1,0 +1,11 @@
+ID  EDH_00030
+AC  TIGR04180
+DE  NAD dependent epimerase/dehydratase, LLPSF_EDH_00030 family
+AU  Selengut J
+TC  475.00 475.00
+NC  365.00 365.00
+AL  muscle
+IT  hypoth_equivalog
+EN  NAD dependent epimerase/dehydratase, LLPSF_EDH_00030 family
+TP  TIGRFAMs
+CC  This clade within the NAD dependent epimerase/dehydratase superfamily (PF01370) is characterized by inclusion of its members within a cassette of seven distinctive enzymes.  These include four genes homologous to the elements of the neuraminic (sialic) acid biosynthesis cluster (NeuABCD), an aminotransferase and a nucleotidyltransferase in addition to the epimerase/dehydratase.  Together it is very likely that these enzymes direct the biosynthesis of a nine-carbon sugar analagous to CMP-neuraminic acid. These seven genes form the core of the cassette, although they are often accompanied by additional genes that may further modify the product sugar. Although this cassette is widely distributed in bacteria, the family nomenclature arises from the instance in Leptospira interrogans serovar Lai, str. 56601, where it appears as the 30th gene in the 91-gene lipopolysaccharide biosynthesis cluster.

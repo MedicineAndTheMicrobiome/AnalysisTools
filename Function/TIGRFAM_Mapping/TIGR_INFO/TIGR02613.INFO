@@ -1,0 +1,12 @@
+ID  mob_myst_B
+AC  TIGR02613
+DE  mobile mystery protein B
+AU  Haft DH
+TC  124.40 124.40
+NC  124.25 124.25
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  mobile mystery protein B
+TP  TIGRFAMs
+CC  Members of this protein family, which we designate mobile mystery protein B, are found in mobization-related contexts more often than not, including within a CRISPR-associated gene region in Geobacter sulfurreducens PCA, and on plasmids in  Agrobacterium tumefaciens and Coxiella burnetii, always together with mobile mystery protein A (TIGR02612), a member of the family of helix-turn-helix DNA binding proteins (PF01381). This protein is encoded by the downstream member of the gene pair and belongs to the Fic protein family (PF02661), where Fic (filamentation induced by cAMP) is a regulator of cell division. The characteristics of having a two-gene operon in a varied context and often on plasmids, with one member affecting cell division and the other able to bind DNA, suggests similarity to addiction modules.
+DR  PFAM; PF02661

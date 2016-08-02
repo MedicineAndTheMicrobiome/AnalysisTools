@@ -1,0 +1,11 @@
+ID  Sec_Non_Glob
+AC  TIGR04420
+DE  Sec region non-globular protein
+AU  Haft DH
+TC  90.00 90.00
+NC  40.00 40.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  Sec region non-globular protein
+TP  TIGRFAMs
+CC  Members of this family occur only in the genus Leptospira, always encoded between genes for the YajC and SecD components of the Sec preprotein translocase. Sequences have an N-terminal signal peptide and a C-terminal transmembrane segment. Between these are regions of non-globular, low-complexity sequence including Lys-rich and Ser/Thr/Asn/Glu-rich regions.

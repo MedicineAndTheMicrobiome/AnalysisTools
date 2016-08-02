@@ -1,0 +1,11 @@
+ID  beta_helix_1
+AC  TIGR03805
+DE  parallel beta-helix repeat-containing protein
+AU  Haft DH
+TC  141.50 141.50
+NC  107.30 107.30
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  parallel beta-helix repeat-containing protein
+TP  TIGRFAMs
+CC  Members of this protein family contain a tandem pair of beta-helix repeats (see TIGR03804). Each repeat is expected to consist of three beta strands that form a single turn as they form a right-handed helix of stacked beta-structure. Member proteinsa occur regularly in two-gene pairs along with another uncharacterized protein family; both protein families exhibit either lipoprotein or regular signal peptides, suggesting transit through the plasma membrane, and the two may be fused. The function of the pair is unknown.

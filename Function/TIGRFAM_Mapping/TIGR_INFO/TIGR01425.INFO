@@ -1,0 +1,11 @@
+ID  SRP54_euk
+AC  TIGR01425
+DE  signal recognition particle protein SRP54
+AU  Haft DH
+TC  576.25 576.25
+NC  501.00 501.00
+AL  clustalw
+IT  equivalog
+EN  signal recognition particle protein SRP54
+TP  TIGRFAMs
+CC  This HMM represents examples from the eukaryotic cytosol of the signal recognition particle protein component, SRP54. This GTP-binding protein is a component of the eukaryotic signal recognition particle, along with several other protein subunits and a 7S RNA. Some species, including Arabidopsis, have several closely related forms. The extreme C-terminal region is glycine-rich and lower in complexity, poorly conserved between species, and excluded from this model.

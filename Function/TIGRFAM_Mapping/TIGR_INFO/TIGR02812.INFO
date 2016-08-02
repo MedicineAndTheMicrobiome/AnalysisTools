@@ -1,0 +1,19 @@
+ID  fadR_gamma
+AC  TIGR02812
+DE  fatty acid metabolism transcriptional regulator FadR
+AU  Haft DH
+TC  249.20 249.20
+NC  85.40 85.40
+AL  clustalw
+IT  equivalog
+EN  fatty acid metabolism transcriptional regulator FadR
+GS  fadR
+TP  TIGRFAMs
+CC  Members of this family are FadR, a transcriptional regulator of fatty acid metabolism, including both biosynthesis and beta-oxidation. It is found exclusively in a subset of Gammaproteobacteria, with strictly one copy per genome. It has an N-terminal DNA-binding domain and a less well conserved C-terminal long chain acyl-CoA-binding domain. FadR from this family heterologously expressed in Escherichia coli show differences in regulatory response and fatty acid binding profiles. The family is nevertheless designated equivalog, as all member proteins have at least nominally the same function.
+DR  PFAM; PF00392; GntR; transcriptional regulator, GntR family
+DR  PFAM; PF07840; FadR_C; FadR C-terminal domain
+RM  16027119
+RT  Unexpected functional diversity among FadR fatty acid transcriptional regulatory proteins.
+RA  Iram SH, Cronan JE.
+RL  J Biol Chem. 2005 Sep 16;280(37):32148-56.
+DR  HAMAP; MF_00696; 52 of 54

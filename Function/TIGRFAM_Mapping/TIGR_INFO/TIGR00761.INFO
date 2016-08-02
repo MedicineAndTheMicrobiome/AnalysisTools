@@ -1,0 +1,24 @@
+ID  argB
+AC  TIGR00761
+DE  acetylglutamate kinase
+AU  Haft DH
+TC  151.30 151.30
+NC  113.20 113.20
+AL  clustalw_manual
+IT  equivalog_domain
+EN  acetylglutamate kinase
+GS  argB
+EC  2.7.2.8
+TP  TIGRFAMs
+CC  This HMM describes N-acetylglutamate kinases (ArgB) of many prokaryotes and the N-acetylglutamate kinase domains of multifunctional proteins from yeasts. This enzyme is the second step in the "acetylated" ornithine biosynthesis pathway.  A related group of enzymes representing the first step of the pathway contain a homologous domain and are excluded from this model.
+AL  clustalw_manual
+DR  EXPERIMENTAL; EGAD|15079|15117; Bacillus stearothermophilus
+DR  EXPERIMENTAL; EGAD|8342|EC3959; Escherichia coli
+DR  EXPERIMENTAL; EGAD|52213|YER069W; Saccharomyces cerevisiae
+DR  OUTGROUP; EGAD|10737|EC2818; N-acetylglutamate synthetase; Escherichia coli
+RN  [1]
+RM  91301142
+RT  Determination of amino acid sequences involved in the processing of the ARG5/ARG6 precursor in Saccharomyces cerevisiae.
+RA  Boonchird C, Messenguy F, Dubois E
+RL  Eur J Biochem 1991 Jul 15;199(2):325-35
+DR  HAMAP; MF_00082; 441 of 446

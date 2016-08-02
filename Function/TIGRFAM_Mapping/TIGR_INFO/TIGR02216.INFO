@@ -1,0 +1,11 @@
+ID  phage_TIGR02216
+AC  TIGR02216
+DE  phage conserved hypothetical protein
+AU  Haft DH
+TC  56.10 56.10
+NC  28.15 28.15
+AL  clustalw
+IT  hypoth_equivalog
+EN  phage conserved hypothetical protein
+TP  TIGRFAMs
+CC  This HMM describes a family of proteins found exclusively in phage or in prophage regions of bacterial genomes, including the phage-like Rhodobacter capsulatus gene transfer agent, which packages DNA.

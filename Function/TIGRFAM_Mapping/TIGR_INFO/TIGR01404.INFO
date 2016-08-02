@@ -1,0 +1,11 @@
+ID  FlhB_rel_III
+AC  TIGR01404
+DE  type III secretion protein, YscU/HrpY family
+AU  Haft DH
+TC  326.80 326.80
+NC  312.70 312.70
+AL  clustalw_manual
+IT  subfamily
+EN  type III secretion protein, YscU/HrpY family
+TP  TIGRFAMs
+CC  This HMM represents one of several families of proteins related to bacterial flagellar biosynthesis proteins and involved in bacterial type III protein secretion systems. This family is homologous to, but distinguished from, flagellar biosynthetic protein FlhB (TIGRFAMs model TIGR00328). This model may not identify all type III secretion system FlhB homologs.

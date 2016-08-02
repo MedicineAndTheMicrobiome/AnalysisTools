@@ -1,0 +1,47 @@
+ID  betA
+AC  TIGR01810
+DE  choline dehydrogenase
+AU  Brinkac L
+TC  732.10 732.10
+NC  570.25 570.25
+AL  clustalw_manual
+IT  equivalog
+EN  choline dehydrogenase
+GS  betA
+EC  1.1.99.1
+TP  TIGRFAMs
+CC  Choline dehydrogenase catalyzes the conversion of exogenously supplied choline into the intermediate glycine betaine aldehyde, as part of a two-step oxidative reaction leading to the formation of osmoprotectant betaine. This enzymatic system can be found in both gram-positive and gram-negative bacteria.
+CC  As in Escherichia coli [1], Staphylococcus xylosus [2], and Sinorhizobium meliloti [3], this enzyme is found associated in a transciptionally co-induced gene cluster with betaine aldehyde dehydrogenase, the second catalytic enzyme in this reaction. Other gram-positive organisms have been shown to employ a different enzymatic system, utlizing a soluable choline oxidase or type III alcohol dehydrogenase instead of choline dehydrogenase [4].
+CC  This enzyme is a member of the GMC oxidoreductase family (PF00732 and PF05199), sharing a common evoluntionary origin and enzymatic reaction with alcohol dehydrogenase [5]. Outgrouping from this model, Caulobacter crescentus shares sequence homology with choline dehydrogenase, yet other genes participating in this enzymatic reaction have not currently been identified.
+RN [1]
+RM 3065456
+RT Molecular cloning, physical mapping and expression of the bet genes governing the osmoregulatory choline-glycine betaine pathway of Escherichia coli.
+RA Andresen PA, Kaasen I, Styrvold OB, Boulnois G, Strom AR.
+RJ J Gen Microbiol. 1988 Jun;134 ( Pt 6):1737-46.
+RN [2]
+RM 10094709
+RT The choline-converting pathway in Staphylococcus xylosus C2A: genetic and physiological characterization.
+RA Rosenstein R, Futter-Bryniok D, Gotz F.
+RJ J Bacteriol. 1999 Apr;181(7):2273-8.
+RN [3]
+RM 9141699
+RT Molecular characterization of the bet genes encoding glycine betaine synthesis in Sinorhizobium meliloti 102F34.
+RA Pocard JA, Vincent N, Boncompagni E, Smith LT, Poggi MC, Le Rudulier D.
+RT Microbiology. 1997 Apr;143 ( Pt 4):1369-79.
+RN [4]
+RM 8752328
+RT Synthesis of the osmoprotectant glycine betaine in Bacillus subtilis: characterization of the gbsAB genes.
+RA Boch J, Kempf B, Schmid R, Bremer E.
+RJ J Bacteriol. 1996 Sep;178(17):5121-9.
+RN [5]
+RM 1453953
+RT DNA sequence determination and functional characterization of the OCT-plasmid-encoded alkJKL genes of Pseudomonas oleovorans.
+RA van Beilen JB, Eggink G, Enequist H, Bos R, Witholt B.
+RJ Mol Microbiol. 1992 Nov;6(21):3121-36.
+DR PFAM; PF00732; GMC_oxred_N: GMC oxidoreductase
+DR PFAM; PF05199; GMC_oxred_C: GMC oxidoreductase
+DR EXPERIMENTAL; SP|P17444; Escherichia coli; Molecular cloning, physical mapping and expression of the bet genes governing the osmoregulatory choline-glycine betaine pathway of Escherichia coli.
+DR EXPERIMENTAL; GP|4574121; Staphylococcus xylosus; The choline-converting pathway in Staphylococcus xylosus C2A: genetic and physiological characterization.
+DR EXPERIMENTAL; SP|P54223; Sinorhizobium meliloti; Molecular characterization of the bet genes encoding glycine betaine synthesis in Sinorhizobium meliloti 102F34.
+DR OUTGROUP; SP|Q00593; Pseudomonas oleovorans; Alcohol dehydrogenase
+DR  HAMAP; MF_00750; 84 of 85

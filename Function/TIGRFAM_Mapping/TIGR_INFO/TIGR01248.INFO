@@ -1,0 +1,11 @@
+ID  drrC
+AC  TIGR01248
+DE  daunorubicin resistance protein C
+AU  Ujwal ML, Paulsen IT
+TC  165.65 165.65
+NC  74.80 74.80
+AL  clustalw
+IT  subfamily
+EN  daunorubicin resistance protein C
+TP  TIGRFAMs
+CC  The model describes daunorubicin resistance protein C in bacteria. This protein confers the function of daunorubicin resistance. The protein seems to share strong sequence similarity to UvrA proteins, which are involved in excision repair of DNA. Disruption of drrC gene showed increased sensitivity upon exposure to duanorubicin. However it failed to complement  uvrA mutants to exposure to UV irradiation. The mechanism on how it confers duanomycin resistance is unclear, but has been suggested to be different from DrrA and DrrB which are antiporters.

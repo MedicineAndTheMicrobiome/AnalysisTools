@@ -1,0 +1,15 @@
+ID  pyrE_Therm
+AC  TIGR01367
+DE  orotate phosphoribosyltransferase
+AU  Haft DH
+TC  150.25 150.25
+NC  107.00 107.00
+AL  clustalw
+IT  equivalog
+EN  orotate phosphoribosyltransferase, Thermus family
+GS  pyrE
+EC  2.4.2.10
+TP  TIGRFAMs
+CC  This HMM represents a distinct clade of orotate phosphoribosyltransferases. Members include the experimentally determined example from Thermus aquaticus and additional examples from Caulobacter crescentus, Helicobacter pylori, Mesorhizobium loti, and related species.
+DR  EXPERIMENTAL; EGAD|42983; Thermus aquaticus
+DR  HAMAP; MF_01208; 47 of 300

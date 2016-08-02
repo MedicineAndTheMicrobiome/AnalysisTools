@@ -1,0 +1,18 @@
+ID  alk_sulf_monoox
+AC  TIGR03565
+DE  alkanesulfonate monooxygenase, FMNH(2)-dependent
+AU  Haft DH
+TC  518.20 518.20
+NC  368.40 368.40
+AL  muscle_manual
+IT  equivalog
+EN  alkanesulfonate monooxygenase, FMNH(2)-dependent
+GS  ssuD
+EC  1.14.14.5
+TP  TIGRFAMs
+CC  Members of this protein family are monooxygenases that catalyze desulfonation of aliphatic sulfonates such as methane sulfonate. This enzyme uses reduced FMN, although various others members of the same luciferase-like monooxygenase family (PF00296) are F420-dependent enzymes.
+RN  [1]
+RM  PMID:10049377
+RT  A novel reduced flavin mononucleotide-dependent methanesulfonate sulfonatase encoded by the sulfur-regulated msu operon of Pseudomonas aeruginosa.
+RA  Kertesz MA, Schmidt-Larbig K, Wuest T
+RL  J Bacteriol. 1999 Mar;181(5):1464-73.

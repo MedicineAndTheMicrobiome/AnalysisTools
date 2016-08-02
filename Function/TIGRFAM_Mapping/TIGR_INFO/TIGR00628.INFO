@@ -1,0 +1,17 @@
+ID  ung
+AC  TIGR00628
+DE  uracil-DNA glycosylase
+AU  Loftus BJ, Eisen JA
+TC  185.75 185.75
+NC  109.05 109.05
+IT  equivalog
+EN  uracil-DNA glycosylase
+GS  ung
+EC  3.2.2.27
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are uracil-DNA glycosylases that function in base excision repair.
+CC  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  EGAD; 13350;
+DR  SWISSPROT; P12295;
+RM  88227981;
+DR  HAMAP; MF_00148; 252 of 258

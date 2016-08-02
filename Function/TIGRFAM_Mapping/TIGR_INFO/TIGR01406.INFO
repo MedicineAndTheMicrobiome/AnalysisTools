@@ -1,0 +1,13 @@
+ID  dnaQ_proteo
+AC  TIGR01406
+DE  DNA polymerase III, epsilon subunit
+AU  Haft DH
+TC  222.70 222.70
+NC  113.60 113.60
+AL  clustalw_manual
+IT  equivalog
+EN  DNA polymerase III, epsilon subunit, Proteobacterial
+GS  dnaQ
+EC  2.7.7.7
+TP  TIGRFAMs
+CC  This model represents DnaQ, the DNA polymerase III epsilon subunit, as found in most Proteobacteria. It consists largely of an exonuclease domain as described in Pfam HMM PF00929. In Gram-positive bacteria, closely related regions are found both in the Gram-positive type DNA polymerase III alpha subunit and as an additional N-terminal domain of a DinG-family helicase. Both are excluded from this model, as are smaller proteins, also outside the Proteobacteria, that are similar in size to the epsilon subunit but as different in sequence as are the epsilon-like regions found in Gram-positive bacteria.

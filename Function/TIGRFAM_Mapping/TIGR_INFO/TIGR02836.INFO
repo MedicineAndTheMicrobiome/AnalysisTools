@@ -1,0 +1,23 @@
+ID  spore_IV_A
+AC  TIGR02836
+DE  stage IV sporulation protein A
+AU  Haft DH
+TC  459.90 459.90
+NC  190.65 190.65
+AL  clustalw_manual
+IT  equivalog
+EN  stage IV sporulation protein A
+GS  spoIVA
+TP  TIGRFAMs
+CC  A comparative genome analysis of all sequenced genomes of shows a number of proteins conserved strictly among the endospore-forming subset of the Firmicutes. This protein, a member of this panel, is designated stage IV sporulation protein A. It acts in the mother cell compartment and plays a role in spore coat morphogenesis.
+DR  SWISSPROT; P35149; Bacillus subtilis
+RN  [1]
+RM  1729246
+RT  Characterization of spoIVA, a sporulation gene involved in coat morphogenesis in Bacillus subtilis.
+RA  Roels S, Driks A, Losick R.
+RL  J Bacteriol. 1992 Jan;174(2):575-85.
+RN  [2]
+RM  16311624
+RT  Life in Hot Carbon Monoxide: The Complete Genome Sequence of Carboxydothermus hydrogenoformans Z-2901.
+RA  Wu M, Ren Q, Durkin AS, Daugherty SC, Brinkac LM, Dodson RJ, Madupu R, Sullivan SA, Kolonay JF, Nelson WC, Tallon LJ, Jones KM, Ulrich LE, Gonzalez JM, Zhulin IB, Robb FT, Eisen JA.
+RL  2005 Nov 25;1(5):e65

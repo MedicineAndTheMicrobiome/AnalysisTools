@@ -1,0 +1,23 @@
+ID  Gln_ase
+AC  TIGR03814
+DE  glutaminase A
+AU  Haft DH
+TC  255.40 255.40
+NC  246.00 246.00
+AL  muscle_manual
+IT  equivalog
+EN  glutaminase A
+GS  glsA
+EC  3.5.1.2
+TP  TIGRFAMs
+CC  This family describes the enzyme glutaminase, from a larger family that includes serine-dependent beta-lactamases and penicillin-binding proteins. Many bacteria have two isozymes. This model is based on selected known glutaminases and their homologs within prokaryotes, with the exclusion of highly-derived (long branch) and architecturally varied homologs, so as to achieve conservative assignments. A sharp drop in scores occurs below 250, and cutoffs are set accordingly. The enzyme converts glutamine to glutamate, with the release of ammonia. Members tend to be described as glutaminase A (glsA), where B (glsB) is unknown and may not be homologous (as in Rhizobium etli). Some species have two isozymes that may both be designated A (GlsA1 and GlsA2).
+RN  [1]
+RM  PMID:10095071
+RT  Sequence and molecular analysis of the Rhizobium etli glsA gene, encoding a thermolabile glutaminase.
+RA  Calderon J, Huerta-Saquero A, Du Pont G, Duran S
+RL  Biochim Biophys Acta. 1999 Mar 19;1444(3):451-6.
+RN  [2]
+RM  PMID:18459799
+RT  Functional and structural characterization of four glutaminases from Escherichia coli and Bacillus subtilis.
+RA  Brown G, Singer A, Proudfoot M, Skarina T, Kim Y, Chang C, Dementieva I, Kuznetsova E, Gonzalez CF, Joachimiak A, Savchenko A, Yakunin AF
+RL  Biochemistry. 2008 May 27;47(21):5724-35.

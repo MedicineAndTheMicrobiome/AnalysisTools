@@ -1,0 +1,12 @@
+ID  M3_not_pepF
+AC  TIGR02289
+DE  oligoendopeptidase, M3 family
+AU  Haft DH
+TC  442.35 442.35
+NC  184.15 184.15
+AL  clustalw
+IT  subfamily
+EN  oligoendopeptidase, M3 family
+EC  3.4.24.-
+TP  TIGRFAMs
+CC  This family consists of probable oligoendopeptidases in the M3 family, related to lactococcal PepF and group B streptococcal PepB (TIGR00181) but in a distinct clade with considerable sequence differences. The likely substrate is small peptides and not whole proteins, as with PepF, but members are not characterized and the activity profile may differ. Several bacteria have both a member of this family and a member of the PepF family.

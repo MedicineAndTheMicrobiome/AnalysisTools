@@ -1,0 +1,12 @@
+ID  marine_sort_RR
+AC  TIGR03787
+DE  proteobacterial dedicated sortase system response regulator
+AU  Haft DH
+TC  335.70 335.70
+NC  310.60 310.60
+AL  muscle_manual
+IT  equivalog
+EN  proteobacterial dedicated sortase system response regulator
+GS  pdsR
+TP  TIGRFAMs
+CC  This model describes a family of DNA-binding response regulator proteins, associated with an adjacent histidine kinase (TIGR03785) to form a two-component system. This system co-occurs with, and often is adjacent to, a proteobacterial variant form of the protein sorting transpeptidase called sortase (TIGR03784), and a single target protein for the sortase. We give this protein the gene symbol pdsR, for Proteobacterial Dedicated Sortase system Response regulator.

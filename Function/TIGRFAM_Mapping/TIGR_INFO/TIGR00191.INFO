@@ -1,0 +1,17 @@
+ID  thrB
+AC  TIGR00191
+DE  homoserine kinase
+AU  Haft DH
+TC  168.25 168.25
+NC  161.15 161.15
+AL  clustalw
+IT  equivalog
+EN  homoserine kinase
+GS  thrB
+EC  2.7.1.39
+TP  TIGRFAMs
+CC  Homoserine kinase is part of the threonine biosynthetic pathway.
+CC  Homoserine kinase is a member of the GHMP kinases (Galactokinase, Homoserine kinase, Mevalonate kinase, Phosphomevalonate kinase) and shares with them an amino-terminal domain probably related to ATP binding.
+CC  P.aeruginosa homoserine kinase seems not to be homologous (see PROSITE:PDOC0054)
+DR  PROSITE; PDOC0054;
+DR  HAMAP; MF_00384; 228 of 231

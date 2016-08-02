@@ -1,0 +1,12 @@
+ID  cas1_CYANO
+AC  TIGR04093
+DE  CRISPR-associated endonuclease Cas1, subtype CYANO
+AU  Haft DH
+TC  385.00 385.00
+NC  340.00 340.00
+AL  muscle_manual
+IT  exception
+EN  CRISPR-associated endonuclease Cas1, subtype CYANO
+GS  cas1
+TP  TIGRFAMs
+CC  The CRISPR-associated protein Cas1 is virtually universal to CRISPR systems. CRISPR, an acronym for Clustered Regularly Interspaced Short Palindromic Repeats, is prokaryotic immunity system for foreign DNA, mostly from phage. CRISPR systems belong to different subtypes, distinguished by both nature of the repeats, the makeup of the cohort of associated Cas proteins, and by molecular phylogeny within the more universal Cas proteins such as this one. This model is of type EXCEPTION and provides more specific information than the EQUIVALOG model TIGR00287. It describes a clade of Cas1 limited to the CYANO subtype of CRISPR/Cas system and most often the type found there.

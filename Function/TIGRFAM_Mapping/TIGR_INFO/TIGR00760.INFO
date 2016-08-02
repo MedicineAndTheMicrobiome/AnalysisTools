@@ -1,0 +1,27 @@
+ID  araD
+AC  TIGR00760
+DE  L-ribulose-5-phosphate 4-epimerase
+AU  Haft DH
+TC  389.10 389.10
+NC  46.75 46.75
+AL  clustalw
+IT  equivalog
+EN  L-ribulose-5-phosphate 4-epimerase
+GS  araD
+EC  5.1.3.4
+TP  TIGRFAMs
+CC  E. coli has two genes, sgaE and sgbE (YiaS), that are very close homologs of araD, the established L-ribulose-5-phosphate 4-epimerase of E. coli. SgbE, part of an operon for L-xylulose metabolism, also has L-ribulose-5-phosphate 4-epimerase activity;  L-xylulose-5-phosphate may be converted into L-ribulose-5-phosphate by another product of that operon.
+CC  The homolog to this family from Mycobacterium smegmatis is flanked by putative araB and araA genes, consistent with it also being araD.
+RN  [1]
+RM  97237725
+RT  The Bacillus subtilis L-arabinose (ara) operon: nucleotide sequence, genetic organization and expression.
+RA  Sa-Nogueira I, Nogueira TV, Soares S, de Lencastre H
+RL  Microbiology 1997 Mar;143 ( Pt 3):957-69
+RN  [2]
+RM  10913097
+RT  Role of the yiaR and yiaS genes of Escherichia coli in metabolism of endogenously formed L-xylulose.
+RA  Ibanez E, Gimenez R, Pedraza T, Baldoma L, Aguilar J, Badia J.
+RL  J Bacteriol. 2000 Aug;182(16):4625-7.
+DR  EXPERIMENTAL; GB|AAA27025.1; Salmonella typhimurium
+DR  EXPERIMENTAL; SP|P08203; Escherichia coli
+DR  EXPERIMENTAL; SP|P94525; Bacillus subtilis

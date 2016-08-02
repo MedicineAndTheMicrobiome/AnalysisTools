@@ -1,0 +1,13 @@
+ID  lon_rel
+AC  TIGR00764
+DE  putative ATP-dependent protease
+AU  Haft DH
+TC  516.60 516.60
+NC  121.00 121.00
+AL  clustalw_manual
+IT  equivalog
+EN  lon-related putative ATP-dependent protease
+TP  TIGRFAMs
+CC  This HMM represents a set of proteins with extensive C-terminal homology to the ATP-dependent protease La, product of the lon gene of E. coli. The model is based on a seed alignment containing only archaeal members, but several bacterial proteins match the model well. Because several species, including Thermotoga maritima and Treponema pallidum, contain both a close homolog of the lon protease and nearly full-length homolog of the  members of this family, we suggest there may also be a functional division between the two families.
+CC  Members of this family from Pyrococcus horikoshii and Pyrococcus abyssi each contain a predicted intein.
+DR  URL; http://www.uk.neb.com/neb/inteins/Pho_Lon.html

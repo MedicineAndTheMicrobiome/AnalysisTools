@@ -1,0 +1,16 @@
+ID  thi_PPkinase
+AC  TIGR01378
+DE  thiamine pyrophosphokinase
+AU  Haft DH
+TC  76.40 76.40
+NC  67.85 67.85
+AL  clustalw_manual
+IT  equivalog
+EN  thiamine pyrophosphokinase
+EC  2.7.6.2
+TP  TIGRFAMs
+CC  This model has been revised. Originally, it described strictly eukaryotic thiamine pyrophosphokinase. However, it is now expanded to include also homologous enzymes, apparently functionally equivalent, from species that rely on thiamine pyrophosphokinase rather than thiamine-monophosphate kinase (TIGR01379) to produce the active TPP cofactor. This includes the thiamine pyrophosphokinase from Bacillus subtilis, previously designated YloS.
+RM  15150256
+RT  Identification of the two missing bacterial genes involved in thiamine salvage: thiamine pyrophosphokinase and thiamine kinase.
+RA  Melnick J, Lis E, Park JH, Kinsland C, Mori H, Baba T, Perkins J, Schyns G, Vassieva O, Osterman A, Begley TP.
+RL  J Bacteriol. 2004 Jun;186(11):3660-2.

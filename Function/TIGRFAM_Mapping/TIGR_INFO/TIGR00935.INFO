@@ -1,0 +1,12 @@
+ID  2a45
+AC  TIGR00935
+DE  arsenite/antimonite efflux pump membrane protein
+AU  Loftus BJ
+TC  415.00 415.00
+NC  405.00 405.00
+AL  clustalw_manual
+IT  subfamily
+EN  arsenite/antimonite efflux pump membrane protein
+GS  arsB
+TP  TIGRFAMs
+CC  Members of this protein family are ArsB, a highly hydrophobic integral membrane protein involved in transport processes used to protect cells from arsenite (or antimonite). Members of the seed alignment were selected by adjacency to the ATPase subunit ArsA that energizes the transport.

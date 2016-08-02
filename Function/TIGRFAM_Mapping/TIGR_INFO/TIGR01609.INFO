@@ -1,0 +1,11 @@
+ID  PF_unchar_267
+AC  TIGR01609
+DE  Plasmodium falciparum uncharacterized protein TIGR01609
+AU  Haft DH
+TC  74.55 74.55
+NC  46.85 46.85
+AL  clustalw
+IT  paralog_domain
+EN  Plasmodium falciparum uncharacterized protein TIGR01609
+TP  TIGRFAMs
+CC  This HMM represents a family of at least four proteins in Plasmodium falciparum. An interesting feature is five perfectly conserved Trp residues.

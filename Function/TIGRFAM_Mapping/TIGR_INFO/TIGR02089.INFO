@@ -1,0 +1,17 @@
+ID  TTC
+AC  TIGR02089
+DE  tartrate dehydrogenase
+AU  Selengut J
+TC  470.40 470.40
+NC  397.35 397.35
+AL  clustalw
+IT  equivalog
+EN  tartrate dehydrogenase
+EC  1.1.1.93
+TP  TIGRFAMs
+CC  Tartrate dehydrogenase catalyzes the oxidation of both meso- and (+)-tartrate as well as a D-malate [1].  These enzymes are closely related to the 3-isopropylmalate and isohomocitrate dehydrogenases found in TIGR00169 and TIGR02088, respectively.
+RN  [1]
+RM  PMID: 2184888 
+RT  Characterization of the multiple catalytic activities of tartrate dehydrogenase.
+RA  Tipton PA, Peisach J.
+RL  Biochemistry. 1990 Feb 20;29(7):1749-56.

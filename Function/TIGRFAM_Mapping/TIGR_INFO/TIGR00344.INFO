@@ -1,0 +1,15 @@
+ID  alaS
+AC  TIGR00344
+DE  alanine--tRNA ligase
+AU  Loftus BJ
+TC  457.05 457.05
+NC  420.00 420.00
+AL  muscle
+IT  equivalog
+EN  alanine--tRNA ligase
+GS  alaS
+EC  6.1.1.7
+TP  TIGRFAMs
+CC  The model describes alanine--tRNA ligase. This enzyme catalyzes the reaction (tRNAala + L-alanine + ATP = L-alanyl-tRNAala + pyrophosphate + AMP).
+DR  ECOCYC; EG10034; alaS;
+DR  PROSITE; PDOC00363; Aminoacyl-transfer RNA synthetases class-II signatures

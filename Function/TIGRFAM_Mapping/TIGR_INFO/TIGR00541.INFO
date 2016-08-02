@@ -1,0 +1,16 @@
+ID  hisDCase_pyru
+AC  TIGR00541
+DE  histidine decarboxylase, pyruvoyl type
+AU  Haft DH
+TC  346.65 346.65
+NC  200.50 200.50
+AL  clustalw
+IT  equivalog
+EN  histidine decarboxylase, pyruvoyl type
+EC  4.1.1.22
+TP  TIGRFAMs
+CC  This enzyme converts histadine to histamine in a single step by catalyzing the release of CO2. This type is synthesized as an inactive single chain precursor, then cleaved into two chains. The Ser at the new N-terminus at the cleavage site is converted to a pyruvoyl group essential for activity. This type of histidine decarboxylase appears is known so far only in some Gram-positive bacteria, where it may play a role in amino acid catabolism. There is also a pyridoxal phosphate type histidine decarboxylase, as found in human, where histamine is a biologically active amine.
+RM  90212559
+RT  Cloning, sequencing, expression, and site-directed mutagenesis of the gene from Clostridium perfringens encoding pyruvoyl-dependent histidine decarboxylase.
+RA  van Poelje PD, Snell EE
+RL  Biochemistry 1990 Jan 9;29(1):132-9

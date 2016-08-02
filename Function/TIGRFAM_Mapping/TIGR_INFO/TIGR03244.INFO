@@ -1,0 +1,18 @@
+ID  arg_catab_AstA
+AC  TIGR03244
+DE  arginine N-succinyltransferase
+AU  Haft DH
+TC  391.00 391.00
+NC  358.20 358.20
+AL  muscle
+IT  equivalog
+EN  arginine N-succinyltransferase
+GS  astA
+EC  2.3.1.109
+TP  TIGRFAMs
+CC  In many bacteria, the arginine succinyltransferase (ast) pathway operon consists of five genes, including this protein, arginine N-succinyltransferase (EC 2.3.1.109). In a few species, such as Pseudomonas aeruginosa, the member of this family is encoded adjacent to a paralog, and the two polypeptides form a heterodimeric enzyme, active on both arginine and ornithine. In such species, this polypeptide may be treated as the beta subunit of an enzyme that may be named either arginine N-succinyltransferase (AST) or arginine and orthithine N-succinyltransferase (AOST).
+RN  [1]
+RM  PMID: 9393691
+RT  Cloning and characterization of the aru genes encoding enzymes of the catabolic arginine succinyltransferase pathway in Pseudomonas aeruginosa.
+RA  Itoh Y
+RL  J Bacteriol. 1997 Dec;179(23):7280-90.

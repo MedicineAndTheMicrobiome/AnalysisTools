@@ -1,0 +1,24 @@
+ID  cas_Csy4
+AC  TIGR02563
+DE  CRISPR-associated endoribonuclease Cas6/Csy4, subtype I-F/YPEST
+AU  Haft DH
+TC  36.25 36.25
+NC  29.30 29.30
+AL  clustalw
+IT  equivalog
+EN  CRISPR-associated endoribonuclease Cas6/Csy4, subtype I-F/YPEST
+GS  cas6f
+EC  3.1.-.-
+TP  TIGRFAMs
+CC  CRISPR (Clustered Regularly Interspaced Short Palindromic Repeats) is a widespread family of prokaryotic direct repeats with spacers of unique sequence between consecutive repeats. This protein family, typified by YPO2462 of Yersinia pestis, is a CRISPR-associated (Cas) family strictly associated with the Ypest subtype of CRISPR/Cas locus. This family is designated Csy4, for CRISPR/Cas Subtype Ypest protein 4.
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=2003
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=57298
+RN  [1]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005
+RN  [2]
+RM  PMID:22522703 
+RT  Csy4 relies on an unusual catalytic dyad to position and cleave CRISPR RNA. 
+RA  Haurwitz RE, Sternberg SH, Doudna JA 
+RL  EMBO J. 2012 Apr 20;31(12):2824-32.

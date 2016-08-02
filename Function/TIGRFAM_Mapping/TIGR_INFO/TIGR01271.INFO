@@ -1,0 +1,13 @@
+ID  CFTR_protein
+AC  TIGR01271
+DE  cystic fibrosis transmembrane conductor regulator (CFTR)
+AU  Loftus BJ, Ujwal ML, Paulsen IT
+TC  1761.20 1761.20
+NC  1208.30 1208.30
+AL  clustalw
+IT  equivalog
+EN  cystic fibrosis transmembrane conductor regulator (CFTR)
+EC  3.6.3.49
+TR  3.A.01
+TP  TIGRFAMs
+CC  The model describes the cystis fibrosis transmembrane conductor regulator (CFTR) in eukaryotes. The principal role of this protein is chloride ion conductance. The protein is predicted to consist of 12 transmembrane domains. Mutations or lesions in the genetic loci have been linked to the aetiology of asthma, bronchiectasis, chronic obstructive pulmonary disease etc. Disease-causing mutations have been studied by 36Cl efflux assays in vitro cell cultures and electrophysiology, all of which point to the impairment of chloride channel stability and not the biosynthetic processing per se.

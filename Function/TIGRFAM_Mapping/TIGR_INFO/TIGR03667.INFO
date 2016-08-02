@@ -1,0 +1,22 @@
+ID  Rv3369
+AC  TIGR03667
+DE  PPOX class probable F420-dependent enzyme, Rv3369 family
+AU  Haft DH
+TC  125.30 125.30
+NC  64.25 64.25
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  PPOX class probable F420-dependent enzyme, Rv3369 family
+EC  1.-.-.-
+TP  TIGRFAMs
+CC  A Genome Properties metabolic reconstruction for F420 biosynthesis shows that slightly over 10 percent of all prokaryotes with fully sequenced genomes, including about two thirds of the Actinomycetales, make F420. A variant of the Partial Phylogenetic Profiling algorithm, SIMBAL, shows that this protein likely binds F420 in a cleft similar to that in which the homologous enzyme pyridoxamine phosphate oxidase (PPOX) binds FMN.
+RN  [1]
+RM  PMID:20675471 
+RT  Unexpected abundance of coenzyme F(420)-dependent enzymes in Mycobacterium tuberculosis and other actinobacteria. 
+RA  Selengut JD, Haft DH 
+RL  J Bacteriol. 2010 Nov;192(21):5788-98.
+RN  [2]
+RM  PMID:16930487
+RT  Exopolysaccharide-associated protein sorting in environmental organisms: the PEP-CTERM/EpsH system. Application of a novel phylogenetic profiling heuristic.
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD
+RL  BMC Biol. 2006 Aug 24;4:29.

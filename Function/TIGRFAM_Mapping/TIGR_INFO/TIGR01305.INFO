@@ -1,0 +1,14 @@
+ID  GMP_reduct_1
+AC  TIGR01305
+DE  guanosine monophosphate reductase
+AU  Haft DH
+TC  492.15 492.15
+NC  216.20 216.20
+AL  clustalw
+IT  equivalog
+EN  guanosine monophosphate reductase, eukaryotic
+GS  guaC
+EC  1.7.1.7
+TP  TIGRFAMs
+CC  A deep split separates two families of GMP reductase. This family includes both eukaryotic and some proteobacterial sequences, while the other family contains other bacterial sequences.
+DR  HAMAP; MF_00596; 44 of 46

@@ -1,0 +1,11 @@
+ID  PY-rept-46
+AC  TIGR01602
+DE  Plasmodium yoelii repeat of length 46
+AU  Selengut J
+TC  48.25 48.25
+NC  20.15 20.15
+AL  clustalw
+IT  paralog_domain
+EN  Plasmodium yoelii repeat of length 46
+TP  TIGRFAMs
+CC  This repeat is found in only 2 genes in Plasmodium yoelii, in each of these genes it is repeated 9 times.  It is found in no other organism.

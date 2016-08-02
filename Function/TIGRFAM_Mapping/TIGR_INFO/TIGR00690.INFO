@@ -1,0 +1,25 @@
+ID  rpoZ
+AC  TIGR00690
+DE  DNA-directed RNA polymerase, omega subunit
+AU  Haft DH, Loftus BJ
+TC  23.60 23.60
+NC  23.10 23.10
+AL  clustalw_manual
+IT  equivalog
+EN  DNA-directed RNA polymerase, omega subunit
+GS  rpoZ
+EC  2.7.7.6
+TP  TIGRFAMs
+CC  This small component of highly purified E. coli RNA polymerase is not required for transcription, but acts in assembly and is present in stochiometric amounts.
+CC  The trusted cutoff excludes archaeal homologs but captures some organellar sequences.
+AL  msa_ncbi
+DR  EXPERIMENTAL; SP|P08374; 
+DR  ECOCYC; EG10899; rpoZ
+RN  [1]
+RM  91267958
+RN  [2]
+RM  11531998
+RT  Escherichia coli RNA polymerase subunit omega and its N-terminal domain bind full-length beta' to facilitate incorporation into the alpha2beta subassembly.
+RA  Ghosh P, Ishihama A, Chatterji D.
+RL  Eur J Biochem 2001 Sep;268(17):4621-7
+DR  HAMAP; MF_00366; 417 of 451

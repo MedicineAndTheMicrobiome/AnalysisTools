@@ -1,0 +1,14 @@
+ID  mtp
+AC  TIGR00799
+DE  Golgi 4-transmembrane spanning transporter
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  181.30 181.30
+NC  102.00 102.00
+AL  clustalw_manual
+IT  subfamily
+EN  Golgi 4-transmembrane spanning transporter
+GS  mtp
+TR  2.A.74
+TP  TIGRFAMs
+CC  The proteins of the MET family have 4 TMS regions and are located in late endosomal or lysosomal membranes. Substrates of the mouse MTP transporter include thymidine, both nucleoside and nucleobase analogues, antibiotics, anthracyclines, ionophores and steroid hormones. MET transporters may be involved in the subcellular compartmentation of steroid hormones and other compounds.Drug sensitivity by mouse MET was regulated by compounds that inhibit lysosomal function, interface with intracellular cholesterol transport, or modulate the multidrug resistance phenotype of mammalian cells. Thus, MET family members may compartmentalize diverse hydrophobic molecules, thereby affecting cellular drug sensitivity,nucleoside/nucleobase availability and steroid hormone responses.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_74.html

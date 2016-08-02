@@ -1,0 +1,13 @@
+ID  KdgD
+AC  TIGR03249
+DE  5-dehydro-4-deoxyglucarate dehydratase
+AU  Selengut J
+TC  373.95 373.95
+NC  332.85 332.85
+AL  muscle
+IT  equivalog
+EN  5-dehydro-4-deoxyglucarate dehydratase
+GS  kdgD
+EC  4.2.1.41
+TP  TIGRFAMs
+CC  5-dehydro-4-deoxyglucarate dehydratase not only catalyzes the dehydration of the substrate (diol to ketone + water), but causes the decarboxylation of the intermediate product to yield 2-oxoglutarate semialdehyde (2,5-dioxopentanoate).  The gene for the enzyme is usually observed in the vicinity of transporters and dehydratases handling D-galactarate and D-gluconate as well as aldehyde dehydrogenases which convert the product to alpha-ketoglutarate.

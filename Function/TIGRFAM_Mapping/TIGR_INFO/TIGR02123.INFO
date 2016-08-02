@@ -1,0 +1,12 @@
+ID  TRAP_fused
+AC  TIGR02123
+DE  TRAP transporter, 4TM/12TM fusion protein
+AU  Haft DH
+TC  320.65 320.65
+NC  250.40 250.40
+AL  clustalw_manual
+IT  subfamily
+EN  TRAP transporter, 4TM/12TM fusion protein
+TR  2.A.56
+TP  TIGRFAMs
+CC  In some species, the 12-transmembrane spanning and 4-transmembrane spanning components of tripartite ATP-independent periplasmic (TRAP)-type transporters are fused. This model describes such transporters, found in the Archaea and in Bacteria.

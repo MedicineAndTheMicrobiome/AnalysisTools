@@ -1,0 +1,13 @@
+ID  trehalos_R_Ecol
+AC  TIGR02405
+DE  trehalose operon repressor
+AU  Haft DH
+TC  357.35 357.35
+NC  212.95 212.95
+AL  clustalw
+IT  equivalog
+EN  trehalose operon repressor, proteobacterial
+GS  treR
+TP  TIGRFAMs
+CC  This family consists of repressors of the LacI family typically associated with trehalose utilization operons. Trehalose is imported as trehalose-6-phosphate and then hydrolyzed by alpha,alpha-phosphotrehalase to glucose and glucose-6-P. This family includes repressors mostly from Gammaproteobacteria and does not include the GntR family TreR of Bacillus subtilis
+DR  PFAM; PF00356; transcriptional regulator, lacI family

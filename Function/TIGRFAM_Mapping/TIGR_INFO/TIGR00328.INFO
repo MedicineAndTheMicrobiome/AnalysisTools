@@ -1,0 +1,17 @@
+ID  flhB
+AC  TIGR00328
+DE  flagellar biosynthetic protein FlhB
+AU  Haft DH, Loftus BJ
+TC  349.25 349.25
+NC  332.20 332.20
+AL  clustalw
+IT  equivalog
+EN  flagellar biosynthetic protein FlhB
+GS  flhB
+TP  TIGRFAMs
+CC  FlhB and its functionally equivalent orthologs, from among a larger superfamily of proteins involved in type III protein export systems, are specifically involved in flagellar protein export. The seed members are restricted and the trusted cutoff is set high such that the proteins gathered by this model play roles specifically related to flagellar structures. Full-length homologs scoring below the trusted cutoff are involved in peptide export but not necessarily in the creation of flagella.
+DR  ECOCYC; EG14035; flhB;
+RM  95095932
+RT  Molecular characterization of the Salmonella typhimurium flhB operon and its protein products.
+RA  Minamino T, Iino T, Kutuskake K
+RL  J Bacteriol 1994 Dec;176(24):7630-7

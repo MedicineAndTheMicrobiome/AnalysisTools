@@ -1,0 +1,11 @@
+ID  ProTailRpt
+AC  TIGR04307
+DE  proline-rich tail region repeat
+AU  Haft DH
+TC  40.00 10.00
+NC  16.00 8.00
+AL  muscle_manual
+IT  repeat
+EN  proline-rich tail region repeat
+TP  TIGRFAMs
+CC  This HMM describes a proline-rich tandem repeat of about 24 residues found in C-terminal regions of Gram-positive surface proteins with LPXTG sequences for processing and cell surface attachment by sortase.

@@ -1,0 +1,23 @@
+ID  ELP3
+AC  TIGR01211
+DE  radical SAM enzyme/protein acetyltransferase, ELP3 family
+AU  Haft DH
+TC  350.00 350.00
+NC  160.00 160.00
+AL  clustalw
+IT  subfamily
+EN  radical SAM enzyme/protein acetyltransferase, ELP3 family
+EC  2.3.1.48
+TP  TIGRFAMs
+CC  This family includes elongator complex protein 3 (ELP3) from eukaryotes and related proteins from other lineages. ELP3 is a component of the RNA polymerase II holoenzyme. It has an N-terminal radical SAM domain and C-terminal GNAT acetyltransferase domain. Members of this family are found in eukaryotes, archaea, and a few bacteria (e.g. Atopobium sp). The activity discovered first was an acetyltransferase modification at the N-termini of all four core histones, shown in vitro in eukaryotes. More recently, the radical SAM domain was shown to play a role in zygotic paternal genome demethylation. Family TIGR01212, widespread in prokaryotes, lacks the GNAT acetyltransferase domain but shares extensive sequence similarity with this family (TIGR01211).
+DR  COGS; COG1243
+RN  [1]
+RM  PMID:10445034 
+RT  A novel histone acetyltransferase is an integral subunit of elongating RNA polymerase II holoenzyme. 
+RA  Wittschieben BO, Otero G, de Bizemont T, Fellows J, Erdjument-Bromage H, Ohba R, Li Y, Allis CD, Tempst P, Svejstrup JQ 
+RL  Mol Cell. 1999 Jul;4(1):123-8. 
+RN  [2]
+RM  PMID:20054296 
+RT  A role for the elongator complex in zygotic paternal genome demethylation. 
+RA  Okada Y, Yamagata K, Hong K, Wakayama T, Zhang Y 
+RL  Nature. 2010 Jan 28;463(7280):554-8. doi: 10.1038/nature08732.

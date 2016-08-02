@@ -1,0 +1,19 @@
+ID  asnASE_II
+AC  TIGR00520
+DE  L-asparaginase, type II
+AU  Haft DH
+TC  314.30 314.30
+NC  211.35 211.35
+AL  clustalw_manual
+IT  subfamily
+EN  L-asparaginase, type II
+EC  3.5.1.1
+TP  TIGRFAMs
+CC  Two related families of asparaginase (L-asparagine amidohydrolase, EC 3.5.1.1) are designated type I and type II according to the terminology in E. coli, which has both: L-asparaginase I is a low-affinity enzyme found in the cytoplasm, while L-asparaginase II is a high-affinity periplasmic enzyme synthesized with a cleavable signal sequence. This model describes L-asparaginases related to type II of E. coli.  Both the cytoplasmic and the cell wall asparaginases of Saccharomyces cerevisiae belong to this set. Members of this set from Acinetobacter glutaminasificans and Pseudomonas fluorescens are described as having both glutaminase and asparaginase activitities. All members are homotetrameric.
+RM  90170867
+RT  Analysis of the Escherichia coli gene encoding L-asparaginase II, ansB, and its regulation by cyclic AMP receptor and FNR proteins.
+RA  Jennings MP, Beacham IR
+RL  J Bacteriol 1990 Mar;172(3):1491-8
+DR  PFAM; PF00710; Asparaginase
+DR  PROSITE; PDOC0013; Asparaginase / glutaminase active sites signatures
+DR  ECOCYC; EG10046; ansB

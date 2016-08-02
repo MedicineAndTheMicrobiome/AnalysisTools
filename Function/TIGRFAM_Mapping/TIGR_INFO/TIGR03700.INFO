@@ -1,0 +1,16 @@
+ID  mena_SCO4494
+AC  TIGR03700
+DE  putative menaquinone biosynthesis radical SAM enzyme, SCO4494 family
+AU  Haft DH
+TC  434.55 434.55
+NC  422.35 422.35
+AL  muscle_manual
+IT  equivalog
+EN  putative menaquinone biosynthesis radical SAM enzyme, SCO4494 family
+TP  TIGRFAMs
+CC  Members of this protein family appear to be involved in menaquinone biosynthesis by an alternate pathway via futalosine, based on close phylogenetic correlation with known markers of the futalosine pathway, gene clustering in many organisms, and paralogy with the SCO4550 protein.
+RN  [1]
+RM  PMID:18801996
+RT  An alternative menaquinone biosynthetic pathway operating in microorganisms.
+RA  Hiratsuka T, Furihata K, Ishikawa J, Yamashita H, Itoh N, Seto H, Dairi T
+RL  Science. 2008 Sep 19;321(5896):1670-3.

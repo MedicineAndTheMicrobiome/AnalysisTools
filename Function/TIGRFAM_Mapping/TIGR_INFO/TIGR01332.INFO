@@ -1,0 +1,16 @@
+ID  cyt_b559_alpha
+AC  TIGR01332
+DE  cytochrome b559, alpha subunit
+AU  Haft DH
+TC  93.95 93.95
+NC  25.90 25.90
+AL  clustalw
+IT  equivalog
+EN  cytochrome b559, alpha subunit
+GS  psbE
+TP  TIGRFAMs
+CC  This HMM describes the alpha subunit of cytochrome b559, about 83 residues in length. The N-terminal half is homologous to the ~ 40-residue beta subunit. Cytochrome b559 is associated with photosystem II.
+CC  Sequences scoring between trusted and noise cutoffs are fragments.
+DR  PFAM; PF00284; cytochr_b559a
+DR  PFAM; PF00283; cytochr_b559
+DR  HAMAP; MF_00642; 117 of 117

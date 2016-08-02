@@ -1,0 +1,17 @@
+ID  carnitine_bodg
+AC  TIGR02409
+DE  gamma-butyrobetaine hydroxylase
+AU  Haft DH
+TC  414.75 414.75
+NC  316.65 316.65
+AL  clustalw
+IT  equivalog
+EN  gamma-butyrobetaine hydroxylase
+EC  1.14.11.1
+TP  TIGRFAMs
+CC  Members of this protein family are gamma-butyrobetaine hydroxylase, both bacterial and eukarytotic. This enzyme catalyzes the last step in the conversion of lysine to carnitine. Carnitine can serve as a compatible solvent in bacteria and also participates in fatty acid metabolism.
+DR  PFAM; PF03322; Gamma-butyrobetaine hydroxylase
+RM  8504802
+RT  gamma-Butyrobetaine hydroxylase. Structural characterization of the Pseudomonas enzyme.
+RA  Ruetschi U, Nordin I, Odelhog B, Jornvall H, Lindstedt S.
+RL  Eur J Biochem. 1993 May 1;213(3):1075-80.

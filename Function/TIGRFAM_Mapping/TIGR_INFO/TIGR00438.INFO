@@ -1,0 +1,18 @@
+ID  rrmJ
+AC  TIGR00438
+DE  ribosomal RNA large subunit methyltransferase J
+AU  Loftus BJ
+TC  300.15 300.15
+NC  117.00 117.00
+AL  clustalw
+IT  equivalog
+EN  cell division protein FtsJ
+GS  rrmJ
+EC  2.1.1.166
+TP  TIGRFAMs
+CC  Methylates the 23S rRNA. Previously known as cell division protein ftsJ.//
+CC  Trusted cutoff too high?  [SS 10/1/04]
+DR  Swissprot; P28692;
+RM  Medline 93186701
+RL  J Bacteriol. 1993 Mar;175(5):1344-51
+DR  HAMAP; MF_01547; 44 of 296

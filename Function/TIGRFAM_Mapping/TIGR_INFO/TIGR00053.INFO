@@ -1,0 +1,16 @@
+ID  TIGR00053
+AC  TIGR00053
+DE  addiction module toxin component, YafQ family
+AU  Richardson DL, Haft DH
+TC  87.25 87.25
+NC  52.65 52.65
+AL  msa_tigr
+IT  subfamily
+EN  addiction module toxin component, YafQ family
+TP  TIGRFAMs
+CC  This HMM represents a cluster of eubacterial proteins and a cluster of archaeal proteins, all of which are uncharacterized, from 85 to 102 residues in length, and similar in sequence. These include YafQ, a ribosome-associated endoribonuclease that serves as part of a toxin-antitoxin system, for which DinJ is the antidote component.
+RN  [1]
+RM  PMID:19210620
+RT  Bacterial toxin YafQ is an endoribonuclease that associates with the ribosome and blocks translation elongation through sequence-specific and frame-dependent mRNA cleavage.
+RA  Prysak MH, Mozdzierz CJ, Cook AM, Zhu L, Zhang Y, Inouye M, Woychik NA
+RL  Mol Microbiol. 2009 Mar;71(5):1071-87.

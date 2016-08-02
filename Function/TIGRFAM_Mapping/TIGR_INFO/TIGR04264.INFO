@@ -1,0 +1,22 @@
+ID  hyperosmo_Ebh
+AC  TIGR04264
+DE  hyperosmolarity resistance protein Ebh
+AU  Haft DH
+TC  250.00 250.00
+NC  100.00 100.00
+AL  muscle_manual
+IT  equivalog_domain
+EN  hyperosmolarity resistance protein Ebh, N-terminal domain
+GS  ebh
+TP  TIGRFAMs
+CC  Staphylococcal protein Ebh (extracellular matrix-binding protein homolog) is a giant protein, sometimes over 10,000 amino acids long as reported. This model describes a non-repetitive amino-terminal domain of about 2400 amino acids.
+RN  [1]
+RM  PMID:18639517 
+RT  Staphylococcus aureus giant protein Ebh is involved in tolerance to transient hyperosmotic pressure. 
+RA  Kuroda M, Tanaka Y, Aoki R, Shu D, Tsumoto K, Ohta T 
+RL  Biochem Biophys Res Commun. 2008 Sep 19;374(2):237-41.
+RN  [2]
+RM  PMID:18334223 
+RT  A helical string of alternately connected three-helix bundles for the cell wall-associated adhesion protein Ebh from Staphylococcus aureus. 
+RA  Tanaka Y, Sakamoto S, Kuroda M, Goda S, Gao YG, Tsumoto K, Hiragi Y, Yao M, Watanabe N, Ohta T, Tanaka I 
+RL  Structure. 2008 Mar;16(3):488-96.

@@ -1,0 +1,11 @@
+ID  hypoth_ymh
+AC  TIGR02391
+DE  TIGR02391 family protein
+AU  Haft DH
+TC  39.45 39.45
+NC  35.50 35.50
+AL  clustalw
+IT  hypoth_equivalog_domain
+EN  TIGR02391 family protein
+TP  TIGRFAMs
+CC  This family consists of a relatively rare (~ 8 occurrences per 200 genomes) prokaryotic protein family. Genes for members are appear to be associated variously with phage and plasmid regions, restriction system loci, transposons, and housekeeping genes. The function is unknown.

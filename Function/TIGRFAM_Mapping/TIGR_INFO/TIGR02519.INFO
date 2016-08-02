@@ -1,0 +1,11 @@
+ID  pilus_MshL
+AC  TIGR02519
+DE  pilus (MSHA type) biogenesis protein MshL
+AU  Haft DH
+TC  250.20 250.20
+NC  193.30 193.30
+AL  clustalw
+IT  equivalog
+EN  pilus (MSHA type) biogenesis protein MshL
+TP  TIGRFAMs
+CC  Members of this family are predicted secretins, that is, outer membrane pore proteins associated with delivery of proteins from periplasm to the outside of the cell. Related families include GspD of type II secretion (TIGR02517), the YscC/HrcC family from type III secretion (TIGR02516), and the PilQ secretin of type IV pilus formation (TIGR02515). Members of this family are found in gene clusters associated with MSHA (mannose-sensitive hemagglutinin) and related pili, and appear to be the secretin of this pilus system.

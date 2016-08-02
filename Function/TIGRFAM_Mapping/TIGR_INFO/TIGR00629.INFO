@@ -1,0 +1,15 @@
+ID  uvde
+AC  TIGR00629
+DE  UV damage endonuclease UvdE
+AU  Loftus BJ, Eisen JA, Haft DH
+TC  124.45 124.45
+NC  118.70 118.70
+IT  equivalog
+EN  UV damage endonuclease UvdE
+GS  uvdE
+EC  3.-.-.-
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are UV dimer endonucleases that function in an alternative nucleotide excision repair process.
+CC  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  EGAD: 153543;
+DR  HAMAP; MF_00606; 11 of 11

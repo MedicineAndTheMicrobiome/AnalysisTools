@@ -1,0 +1,11 @@
+ID  Lepto_lipo_1
+AC  TIGR04389
+DE  lipoprotein, tandem type
+AU  Haft DH
+TC  100.00 100.00
+NC  40.00 40.00
+AL  muscle_manual
+IT  subfamily
+EN  lipoprotein, Leptospiral tandem type
+TP  TIGRFAMs
+CC  Members of this family are lipoproteins restricted (so far) to the genus Leptospira, sometimes with several paralogs clustered with each other, such as four in a row (out of six) in Leptospira interrogans str. UI 13372. The tandem set may be co-clustered with a putative structural protein that is usually the longest encoded by the leptospiral genome (and that often is an intein-containing protein).

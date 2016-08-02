@@ -1,0 +1,22 @@
+ID  gltA
+AC  TIGR01316
+DE  glutamate synthase (NADPH), homotetrameric
+AU  Haft DH
+TC  471.75 471.75
+NC  394.95 394.95
+AL  clustalw
+IT  equivalog
+EN  glutamate synthase (NADPH), homotetrameric
+GS  gltA
+EC  1.4.1.13
+TP  TIGRFAMs
+CC  This protein is homologous to the small subunit of NADPH and NADH forms of glutamate synthase as found in eukaryotes and some bacteria. This protein is found in numerous species having no homolog of the glutamate synthase large subunit. The prototype of the family, from Pyrococcus sp. KOD1, was shown to be active as a homotetramer and to require NADPH.
+RM  9202379
+RT  Gene cloning, sequencing and enzymatic properties of glutamate synthase from the hyperthermophilic archaeon Pyrococcus sp. KOD1.
+RA  Jongsareejit B, Rahman RN, Fujiwara S, Imanaka T
+RL  Mol Gen Genet 1997 May;254(6):635-42RM  9202379
+DR  EXPERIMENTAL; EGAD|130457; Pyrococcus sp. KOD1RM  9202379
+RT  Gene cloning, sequencing and enzymatic properties of glutamate synthase from the hyperthermophilic archaeon Pyrococcus sp. KOD1.
+RA  Jongsareejit B, Rahman RN, Fujiwara S, Imanaka T
+RL  Mol Gen Genet 1997 May;254(6):635-42RM  9202379
+DR  EXPERIMENTAL; EGAD|130457; Pyrococcus sp. KOD1

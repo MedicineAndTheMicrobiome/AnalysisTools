@@ -1,0 +1,11 @@
+ID  phn_thr-fam
+AC  TIGR03308
+DE  phosphonate metabolim protein, transferase hexapeptide repeat family
+AU  Selengut J
+TC  201.65 201.65
+NC  175.65 175.65
+AL  muscle
+IT  hypoth_equivalog
+EN  phosphonate metabolim protein, transferase hexapeptide repeat family
+TP  TIGRFAMs
+CC  This family of proteins contains copies of the Bacterial transferase hexapeptide repeat family (PF00132) and is only found in operons encoding the phosphonate C-P lyase system (GenProp0232).  Many C-P lyase operons, however, lack a homolog of this protein.

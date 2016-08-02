@@ -1,0 +1,16 @@
+ID  lant_SP_1948
+AC  TIGR03893
+DE  type 2 lantibiotic, SP_1948 family
+AU  Haft DH
+TC  32.95 32.95
+NC  32.65 32.65
+AL  muscle_manual
+IT  subfamily
+EN  type 2 lantibiotic, SP_1948 family
+TP  TIGRFAMs
+CC  This HMM recognizes a number of type 2 lantibiotic-type bacteriocins, related to but distinct from the family that includes lichenicidin and mersacidin. Sequence similarity among members consists largely of a 20-residue block of conserved sequence that covers most of the leader peptide region, absent from the mature lantibiotic. This is followed by a region with characteristic composition for lantibiotic precursor regions, rich in Ser and Thr and including a near-invariant Cys near or at the C-terminus, involved in cyclization. Members of this family typically are shorter than 70 amino acids.
+RN  [1]
+RM  PMID:19477413 
+RT  Dissecting structural and functional diversity of the lantibiotic mersacidin. 
+RA  Appleyard AN, Choi S, Read DM, Lightfoot A, Boakes S, Hoffmann A, Chopra I, Bierbaum G, Rudd BA, Dawson MJ, Cortes J 
+RL  Chem Biol. 2009 May 29;16(5):490-8.

@@ -1,0 +1,23 @@
+ID  prpD
+AC  TIGR02330
+DE  2-methylcitrate dehydratase
+AU  Haft DH
+TC  458.00 458.00
+NC  330.70 330.70
+AL  clustalw
+IT  equivalog
+EN  2-methylcitrate dehydratase
+GS  prpD
+EC  4.2.1.79
+TP  TIGRFAMs
+CC  Members of this family are bacterial proteins known or predicted to act as 2-methylcitrate dehydratase, an enzyme involved in the methylcitrate cycle of propionate catabolism. A related clade of archaeal proteins that may or may not be functionally equivalent is reserved for a future model and is excluded from this family. The PrpD enzyme of E. coli is responsible for the minor aconitase activity (AcnC) not accounted for by AcnA and AcnB.
+RN  [1]
+RM  12473114
+RT  Oxidation of propionate to pyruvate in Escherichia coli. Involvement of methylcitrate dehydratase and aconitase.
+RA  Brock M, Maerker C, Schutz A, Volker U, Buckel W.
+RL  Eur J Biochem. 2002 Dec;269(24):6184-94.
+RN  [2]
+RM  11782506
+RT  AcnC of Escherichia coli is a 2-methylcitrate dehydratase (PrpD) that can use citrate and isocitrate as substrates.
+RA  Blank L, Green J, Guest JR.
+RL  Microbiology. 2002 Jan;148(Pt 1):133-46.

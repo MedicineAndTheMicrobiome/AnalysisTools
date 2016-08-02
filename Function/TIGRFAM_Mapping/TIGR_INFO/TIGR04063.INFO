@@ -1,0 +1,17 @@
+ID  stp3
+AC  TIGR04063
+DE  PEP-CTERM/exosortase A-associated glycosyltransferase, Daro_2409 family
+AU  Haft DH
+TC  442.05 442.05
+NC  330.75 330.75
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  PEP-CTERM/exosortase A-associated glycosyltransferase, Daro_2409 family
+EC  2.4.-.-
+TP  TIGRFAMs
+CC  PEP-CTERM/exosortase is a protein-sorting system associated with exopolysaccharide production. Members of this protein family are group 1 glycosyltransferases (see PF00534) in which the overwhelming majority occur in species with the EpsH1 form of exosortase (see TIGR03109), and usually co-clustered with the exosortase. A typical member is Daro_2409 from Dechloromonas aromatica RCB.
+RN  [1]
+RM  PMID: 16930487 
+RT  Exopolysaccharide-associated protein sorting in environmental organisms: the PEP-CTERM/EpsH system. Application of a novel phylogenetic profiling heuristic. 
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD 
+RL  BMC Biol. 2006 Aug 24;4:29.

@@ -1,0 +1,12 @@
+ID  soxA_mon
+AC  TIGR01377
+DE  sarcosine oxidase, monomeric form
+AU  Dodson RJ
+TC  479.65 479.65
+NC  184.35 184.35
+AL  clustalw
+IT  subfamily
+EN  sarcosine oxidase, monomeric form
+TP  TIGRFAMs
+CC  Sarcosine oxidase catalyzes the oxidative demethylation of sarcosine to glycine. The reaction converts tetrahydrofolate to 5,10-methylene-tetrahydrofolate. The enzyme is known in monomeric and heterotetrameric (alpha,beta,gamma,delta) forms
+DR  HAMAP; MF_00516; 3 of 5

@@ -1,0 +1,17 @@
+ID  phageshock_pspD
+AC  TIGR02979
+DE  phage shock protein PspD
+AU  Haft DH
+TC  64.20 64.20
+NC  38.50 38.50
+AL  muscle
+IT  hypoth_equivalog
+EN  phage shock protein PspD
+GS  pspD
+TP  TIGRFAMs
+CC  Members of this family are phage shock protein PspD, found in a minority of bacteria that carry the defining genes of the phage shock regulon (pspA, pspB, pspC, and pspF). It is found in Escherichia coli, Yersinia pestis, and closely related species, where it is part of the phage shock operon. It is known to be expressed but its function is unknown.
+RN  [1]
+RM  PMID: 16709570
+RT  Induction and function of the phage-shock-protein (Psp) extracytoplasmic stress response in Escherichia coli.
+RA  Jovanovic G, Lloyd LJ, Stumpf MP, Mayhew AJ, Buck M
+RL  J Biol Chem. 2006 May 17

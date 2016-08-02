@@ -1,0 +1,19 @@
+ID  sopT
+AC  TIGR00339
+DE  sulfate adenylyltransferase
+AU  Loftus BJ
+TC  322.95 322.95
+NC  181.80 181.80
+AL  clustalw
+IT  equivalog_domain
+EN  ATP sulphurylase
+GS  sat
+EC  2.7.7.4
+TP  TIGRFAMs
+CC  This enzyme forms adenosine 5'-phosphosulfate (APS) from ATP and free sulfate, the first step in the formation of the activated sulfate donor 3'-phosphoadenylylsulfate (PAPS). In some cases, it is found in a bifunctional protein in which the other domain, APS kinase, catalyzes the second and final step, the phosphorylation of APS to PAPS; the combined ATP sulfurylase/APS kinase may be called PAPS synthase.
+CC  Members of this family also include the dissimilatory sulfate adenylyltransferase (sat) of the sulfate reducer Archaeoglobus fulgidus.
+RM  96094345
+RT  The isolation and characterization of cDNA encoding the mouse bifunctional ATP sulfurylase-adenosine 5'-phosphosulfate kinase.
+RA  Li H, Deyrup A, Mensch JR Jr, Domowicz M, Konstantinidis AK, Schwartz NB
+RL  J Biol Chem 1995 Dec 8;270(49):29453-9
+DR  HAMAP; MF_00066; 58 of 59

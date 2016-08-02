@@ -1,0 +1,18 @@
+ID  vsr
+AC  TIGR00632
+DE  DNA mismatch endonuclease Vsr
+AU  Loftus BJ, Eisen JA, Haft DH
+TC  97.85 97.85
+NC  44.85 44.85
+IT  subfamily
+EN  DNA mismatch endonuclease Vsr
+GS  vsr
+EC  3.1.-.-
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are G:T mismatch endonucleases that function in a specialized mismatch repair process used usually to repair G:T mismatches in specific sections of the genome. This family was based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University). Members of this family typically are found near to a DNA cytosine methyltransferase.
+DR  SWISSPROT; P09184;
+RN  [1]
+RM  PMID:2198248
+RT  A gene required for very short patch repair in Escherichia coli is adjacent to the DNA cytosine methylase gene.
+RA  Sohail A, Lieb M, Dar M, Bhagwat AS
+RL  J Bacteriol. 1990 Aug;172(8):4214-21.

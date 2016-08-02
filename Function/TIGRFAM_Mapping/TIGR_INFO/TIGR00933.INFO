@@ -1,0 +1,15 @@
+ID  2a38
+AC  TIGR00933
+DE  potassium uptake protein, TrkH family
+AU  Loftus BJ
+TC  331.15 331.15
+NC  284.05 284.05
+AL  clustalw_manual
+IT  subfamily
+EN  potassium uptake protein, TrkH family
+TR  2.A.38
+TP  TIGRFAMs
+CC  The proteins of the Trk family are derived from Gram-negative and Gram-positive bacteria, yeast and wheat. The proteins of E. coli K12 TrkH and TrkG as well as several yeast proteins have been functionally characterized.The E. coli TrkH and TrkG proteins are complexed to two peripheral membrane proteins, TrkA, an NAD-binding protein, and TrkE, an ATP-binding protein. This complex forms the potassium uptake system.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_38.html
+DR  Interpro; IPR003445
+DR  PFAM; PF02386

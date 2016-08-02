@@ -1,0 +1,11 @@
+ID  A_thal_3588
+AC  TIGR01570
+DE  uncharacterized plant-specific domain TIGR01570
+AU  Haft DH, Segal N
+TC  109.55 109.55
+NC  46.20 46.20
+AL  clustalw_manual
+IT  subfamily_domain
+EN  uncharacterized plant-specific domain TIGR01570
+TP  TIGRFAMs
+CC  This HMM represents a region of about 170 amino acids found at the C-terminus of a family of plant proteins. These proteins typically have additional highly divergent N-terminal regions rich in low complexity sequence. PSI-BLAST reveals no clear similarity to any characterized protein. At least 12 distinct members are found in Arabidopsis thaliana.

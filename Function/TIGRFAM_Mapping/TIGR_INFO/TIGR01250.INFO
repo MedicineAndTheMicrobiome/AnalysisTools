@@ -1,0 +1,16 @@
+ID  pro_imino_pep_2
+AC  TIGR01250
+DE  proline-specific peptidase
+AU  Haft DH
+TC  167.65 167.65
+NC  87.40 87.40
+AL  clustalw_manual
+IT  subfamily
+EN  proline-specific peptidase, Bacillus coagulans-type subfamily
+TP  TIGRFAMs
+CC  This HMM describes a subfamily of the alpha/beta fold family of hydrolases. Characterized members include prolinases (Pro-Xaa dipeptidase, EC 3.4.13.8),  prolyl aminopeptidases (EC 3.4.11.5), and a leucyl aminopeptidase
+RN  [1]
+RM  9572959
+RT  Cloning and characterization of a prolinase gene (pepR) from Lactobacillus rhamnosus.
+RA  Varmanen P, Rantanen T, Palva A, Tynkkynen S.
+RL  Appl Environ Microbiol 1998 May;64(5):1831-6

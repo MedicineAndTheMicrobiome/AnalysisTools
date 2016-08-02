@@ -1,0 +1,12 @@
+ID  methyltr_grsp
+AC  TIGR04188
+DE  methyltransferase, ATP-grasp peptide maturase system
+AU  Haft DH
+TC  380.00 380.00
+NC  350.00 350.00
+AL  muscle_manual
+IT  subfamily
+EN  methyltransferase, ATP-grasp peptide maturase system
+GS  tgmC
+TP  TIGRFAMs
+CC  Members of this protein family are predicted SAM-dependent methyltransferases that regularly occur in the context of a putative peptide modification ATP-grasp enzyme (TIGR04187, related to enzymes of microviridin maturation) and a putative ribosomal peptide modification target (TIGR04186).

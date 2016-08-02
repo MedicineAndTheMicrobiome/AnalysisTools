@@ -1,0 +1,14 @@
+ID  urate_oxi
+AC  TIGR03383
+DE  urate oxidase
+AU  Haft DH
+TC  168.40 168.40
+NC  78.90 78.90
+AL  muscle_manual
+IT  equivalog
+EN  urate oxidase
+GS  pucL
+EC  1.7.3.3
+TP  TIGRFAMs
+CC  Members of this protein family are urate oxidase, also called uricase. This protein contains two copies of the domain described by the uricase model PF01014. In animals, this enzyme has been lost from primates and birds.
+DR  PF01014; Uricase

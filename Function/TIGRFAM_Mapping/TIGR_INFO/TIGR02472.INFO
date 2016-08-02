@@ -1,0 +1,12 @@
+ID  sucr_P_syn_N
+AC  TIGR02472
+DE  sucrose-phosphate synthase, putative, glycosyltransferase domain
+AU  Haft DH
+TC  576.00 576.00
+NC  239.80 239.80
+AL  clustalw
+IT  equivalog_domain
+EN  sucrose-phosphate synthase, putative, glycosyltransferase domain
+EC  2.4.1.14
+TP  TIGRFAMs
+CC  This family consists of the N-terminal regions, or in some cases the entirety, of bacterial proteins closely related to plant sucrose-phosphate synthases (SPS). The C-terminal domain (TIGR02471), found with most members of this family, resembles both bona fide plant sucrose-phosphate phosphatases (SPP) and the SPP-like domain of plant SPS. At least two members of this family lack the SPP-like domain, which may have binding or regulatory rather than enzymatic activity by analogy to plant SPS. This enzyme produces sucrose 6-phosphate and UDP from UDP-glucose and D-fructose 6-phosphate, and may be encoded near the gene for fructokinase.

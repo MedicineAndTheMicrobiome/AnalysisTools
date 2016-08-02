@@ -1,0 +1,16 @@
+ID  ABC_peri_MoxJ_2
+AC  TIGR03871
+DE  quinoprotein dehydrogenase-associated probable ABC transporter substrate-binding protein
+AU  Haft DH
+TC  212.15 212.15
+NC  194.60 194.60
+AL  muscle_manual
+IT  subfamily
+EN  quinoprotein dehydrogenase-associated probable ABC transporter substrate-binding protein
+TP  TIGRFAMs
+CC  This protein family, a sister family to TIGR03870, is found more broadly. It occurs a range of PQQ-biosynthesizing species, not just in known methanotrophs. Interpretation of evidence by homology and by direct experimental work suggest two different roles. By homology, this family appears to be the periplasmic substrate-binding protein of an ABC transport family.  However, mutational studies and direct characterization for some sequences related to this family suggests this family may act as a maturation chaperone or additional subunit of a methanol dehydrogenase-like enzyme.
+RN  [1]
+RM  PMID:3114231
+RT  Isolation and nucleotide sequence of the methanol dehydrogenase structural gene from Paracoccus denitrificans.
+RA  Harms N, de Vries GE, Maurer K, Hoogendijk J, Stouthamer AH
+RL  J Bacteriol. 1987 Sep;169(9):3969-75.

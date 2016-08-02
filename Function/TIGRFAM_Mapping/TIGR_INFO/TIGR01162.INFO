@@ -1,0 +1,18 @@
+ID  purE
+AC  TIGR01162
+DE  phosphoribosylaminoimidazole carboxylase, catalytic subunit
+AU  Haft DH
+TC  149.60 149.60
+NC  62.25 62.25
+AL  clustalw
+IT  equivalog_domain
+EN  phosphoribosylaminoimidazole carboxylase, PurE protein
+GS  purE
+EC  4.1.1.21
+TP  TIGRFAMs
+CC  Phosphoribosylaminoimidazole carboxylase is a fusion protein in plants and fungi, but consists of two non-interacting proteins in bacteria, PurK and PurE. This model represents PurK, an N5-CAIR mutase.
+DR  SWISSPROT; P09028; PUR6_ECOLI
+RM  10074353
+RT  Evidence for the direct transfer of the carboxylate of N5-carboxyaminoimidazole ribonucleotide (N5-CAIR) to generate 4-carboxy-5-aminoimidazole ribonucleotide catalyzed by Escherichia coli PurE, an N5-CAIR mutase.
+RA  Meyer E, Kappock TJ, Osuji C, Stubbe J
+RL  Biochemistry 1999 Mar 9;38(10):3012-8

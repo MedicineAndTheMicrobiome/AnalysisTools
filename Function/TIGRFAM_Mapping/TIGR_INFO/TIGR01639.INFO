@@ -1,0 +1,11 @@
+ID  P_fal_TIGR01639
+AC  TIGR01639
+DE  Plasmodium falciparum uncharacterized domain TIGR01639
+AU  Haft DH
+TC  25.75 25.75
+NC  24.50 24.50
+AL  clustalw_manual
+IT  paralog_domain
+EN  Plasmodium falciparum uncharacterized domain TIGR01639
+TP  TIGRFAMs
+CC  This HMM represents a conserved sequence region of about 60 amino acids found in over 40 predicted proteins of Plasmodium falciparum. It is not found elsewhere, including closely related species such as Plasmodium yoelii. No member of this family is characterized.

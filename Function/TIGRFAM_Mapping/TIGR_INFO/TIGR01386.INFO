@@ -1,0 +1,12 @@
+ID  cztS_silS_copS
+AC  TIGR01386
+DE  heavy metal sensor kinase
+AU  Haft DH
+TC  292.55 292.55
+NC  239.85 239.85
+AL  clustalw_manual
+IT  subfamily
+EN  heavy metal sensor kinase
+EC  2.7.13.3
+TP  TIGRFAMs
+CC  Members of this family contain a sensor histidine kinase domain (Pfam:PF00512) and a domain found in bacterial signal proteins (Pfam:PF00672). This group is separated phylogenetically from related proteins with similar architecture and contains a number of proteins associated with heavy metal resistance efflux systems for copper, silver, cadmium, and/or zinc.

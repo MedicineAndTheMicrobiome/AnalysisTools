@@ -1,0 +1,16 @@
+ID  RNaseIII
+AC  TIGR02191
+DE  ribonuclease III
+AU  Haft DH
+TC  166.25 166.25
+NC  165.70 165.70
+AL  clustalw_manual
+IT  equivalog
+EN  ribonuclease III, bacterial
+GS  rnc
+EC  3.1.26.3
+TP  TIGRFAMs
+CC  This family consists of bacterial examples of ribonuclease III. This enzyme cleaves double-stranded rRNA. It is involved in processing ribosomal RNA precursors. It is found even in minimal genones such as Mycoplasma genitalium and Buchnera aphidicola, and in some cases has been shown to be an essential gene. These bacterial proteins contain a double-stranded RNA binding motif (PF00035) and a ribonuclease III domain (PF00636). Eukaryotic homologs tend to be much longer proteins with additional domains, localized to the nucleus, and not included in this family.
+DR  PFAM; PF00035; dsrm
+DR  PFAM; PF00636; Ribonuclease_3
+DR  HAMAP; MF_00104; 352 of 357

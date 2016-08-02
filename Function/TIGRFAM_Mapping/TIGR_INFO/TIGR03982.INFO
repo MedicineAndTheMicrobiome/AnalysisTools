@@ -1,0 +1,17 @@
+ID  TIGR03982
+AC  TIGR03982
+DE  His-Xaa-Ser system protein, TIGR03982 family
+AU  Haft DH
+TC  90.00 90.00
+NC  89.60 89.60
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  His-Xaa-Ser system protein, TIGR03982 family
+TP  TIGRFAMs
+CC  Members of this rare protein family occur in the presence of TIGR03981 and TIGR03979, which in turn occur only in the context of radical SAM protein families TIGR03977 and TIGR03978. The function is unknown.
+RN  [1]
+RM  PMID:21478363 
+RT  Biological systems discovery in silico: radical S-adenosylmethionine protein families and their target peptides for posttranslational mo
+dification. 
+RA  Haft DH, Basu MK 
+RL  J Bacteriol. 2011 Jun;193(11):2745-55.

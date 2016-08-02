@@ -1,0 +1,21 @@
+ID  MalateDH_bact
+AC  TIGR01763
+DE  malate dehydrogenase, NAD-dependent
+AU  Selengut J
+TC  351.85 351.85
+NC  285.55 285.55
+AL  clustalw
+IT  equivalog
+EN  malate dehydrogenase, NAD-dependent
+GS  mdh
+EC  1.1.1.37
+TP  TIGRFAMs
+CC  This enzyme converts malate into oxaloacetate in the citric acid cycle.  The critical residues which discriminate malate dehydrogenase from lactate dehydrogenase have been characterized [1], and have been used to set the cutoffs for this model.  Sequences showing [aflimv][ap]R[rk]pgM[st] and [ltv][ilm]gGhgd were kept above trusted, while those in which the capitalized residues in the patterns were found to be Q, E and E were kept below the noise cutoff.  Some sequences in the grey zone have been annotated as malate dehydrogenases, but none have been characterized.
+CC  Phylogenetically, a clade of sequences from eukaryotes such as Toxoplasma and Plasmodium which include a characterized lactate dehydrogenase and show abiguous critical residue patterns appears to be more closely related to these bacterial sequences than other eukaryotic sequences.  These are relatively long branch and have been excluded from the model.  All other sequences falling below trusted appear to be phylogenetically outside of the clade including the trusted hits.
+CC  The annotation of Botryococcus braunii as lactate dehydrogenase appears top be in error.  This was initially annotated as MDH by Swiss-Prot and then changed.  The rationale for either of these annotations is not traceable.
+RN  [1]
+RM  PMID: 11021970
+RT  Analysis and prediction of functional sub-types from protein sequence alignments.
+RA  Hannenhalli SS, Russell RB.
+RL  J. Mol Biol. 2000 Oct 13;303(1):61-76.
+DR  HAMAP; MF_00487; 137 of 161

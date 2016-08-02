@@ -1,0 +1,12 @@
+ID  cinA_nterm
+AC  TIGR00200
+DE  competence/damage-inducible protein CinA N-terminal domain
+AU  Loftus BJ
+TC  243.15 243.15
+NC  194.15 194.15
+AL  msa_tigr
+IT  domain
+EN  competence/damage-inducible protein CinA N-terminal domain
+TP  TIGRFAMs
+CC  cinA is a DNA damage- or competence-inducible protein that is polycistronic with recA in a number of species
+DR  HAMAP; MF_00226; 167 of 185

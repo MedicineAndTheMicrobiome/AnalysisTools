@@ -1,0 +1,21 @@
+ID  glycerol_kin
+AC  TIGR01311
+DE  glycerol kinase
+AU  Haft DH
+TC  590.35 590.35
+NC  269.35 269.35
+AL  clustalw_manual
+IT  equivalog
+EN  glycerol kinase
+GS  glpK
+EC  2.7.1.30
+TP  TIGRFAMs
+CC  This HMM describes glycerol kinase, a member of the FGGY family of carbohydrate kinases.
+DR  EXPERIMENTAL; SP|P44400; tetrameric; Haemophilus influenzae
+DR  EXPERIMENTAL; SP|O93623; dimeric; Pyrococcus kodakaraensis
+DR  EXPERIMENTAL; SP:P32190; Saccharomyces cerevisiae
+RN  [1]
+RM  9930671
+RN  [2]
+RM  8358828
+DR  HAMAP; MF_00186; 271 of 275

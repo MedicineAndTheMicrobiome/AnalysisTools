@@ -1,0 +1,17 @@
+ID  thiP
+AC  TIGR01253
+DE  thiamine/thiamine pyrophosphate ABC transporter, permease protein
+AU  Ujwal ML, Haft DH, Paulsen IT
+TC  395.10 395.10
+NC  234.10 234.10
+AL  clustalw
+IT  equivalog
+EN  thiamine ABC transporter, permease protein
+GS  thiP
+TR  3.A.01
+TP  TIGRFAMs
+CC  The model describes thiamine ABC transporter, permease protein  in bacteria. The protein belongs to the larger ABC transport system. It consists of atleast three components: the inner mebrane permease; thiamine binding protein; an ATP-binding subunit. It has been experimentally demonstrated that the mutants in the various steps in the de novo synthesis of the thiamine and the biologically active form, namely thiamine pyrophosphate can be exogenously supplemented with thiamine, thiamine monophosphate (TMP) or thiamine pyrophosphate (TPP).
+RM  98204886
+RT  thiBPQ encodes an ABC transporter required for transport of thiamine and thiamine pyrophosphate in Salmonella typhimurium.
+RA  Webb E, Claas K, Downs D.
+RL  J Biol Chem 1998 Apr 10;273(15):8946-50

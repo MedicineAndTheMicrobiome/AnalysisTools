@@ -1,0 +1,23 @@
+ID  TMPT_Se_Te
+AC  TIGR03840
+DE  thiopurine S-methyltransferase, Se/Te detoxification family
+AU  Haft DH
+TC  223.20 223.20
+NC  189.85 189.85
+AL  muscle_manual
+IT  equivalog
+EN  thiopurine S-methyltransferase, Se/Te detoxification family
+GS  tmpT
+EC  2.1.1.67
+TP  TIGRFAMs
+CC  Members of this family are thiopurine S-methyltransferase from a branch in which at least some member proteins can perform selenium methylation as a means to detoxify selenium, or perform a related  detoxification of tellurium. Note that the EC number definition does not specify a particular thiopurine, but rather represents a class of activity.
+RN  [1]
+RM  PMID:9565678
+RT  A tellurite-resistance genetic determinant from phytopathogenic pseudomonads encodes a thiopurine methyltransferase: evidence of a widely-conserved family of methyltransferases.
+RA  Cournoyer B, Watanabe S, Vivian A
+RL  Biochim Biophys Acta. 1998 Apr 29;1397(2):161-8.
+RN  [2]
+RM  PMID:15658983
+RT  Freshwater selenium-methylating bacterial thiopurine methyltransferases: diversity and molecular phylogeny.
+RA  Favre-Bonte S, Ranjard L, Colinon C, Prigent-Combaret C, Nazaret S, Cournoyer B
+RL  Environ Microbiol. 2005 Feb;7(2):153-64.

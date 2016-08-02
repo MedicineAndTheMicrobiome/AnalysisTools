@@ -1,0 +1,16 @@
+ID  DGQHR_dnd_1
+AC  TIGR04172
+DE  DNA phosphorothioation-associated DGQHR protein 1
+AU  Haft DH
+TC  450.00 450.00
+NC  250.00 250.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  DNA phosphorothioation-associated DGQHR protein 1
+TP  TIGRFAMs
+CC  The DND system produces an phosphorothioation modification to DNA, replacing a non-bridging oxygen of a phosphate group with sulfur. The modification causes DNA degradation during electrophoresis in Tris buffer. This protein, like DndB (TIGR03233), contains a DGQHR domain (TIGR03187), which also occurs in several contexts that suggest lateral transfer rather than DNA phosphorothioation-dependent restriction.
+RN  [1]
+RM  PMID:22070167 
+RT  ProPhylo: partial phylogenetic profiling to guide protein family construction and assignment of biological process. 
+RA  Basu MK, Selengut JD, Haft DH 
+RL  BMC Bioinformatics. 2011 Nov 9;12:434.

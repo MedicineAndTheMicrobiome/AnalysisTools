@@ -1,0 +1,13 @@
+ID  septum_zipA
+AC  TIGR02205
+DE  cell division protein ZipA
+AU  Haft DH
+TC  119.65 119.65
+NC  95.35 95.35
+AL  clustalw
+IT  equivalog
+EN  cell division protein ZipA
+GS  zipA
+TP  TIGRFAMs
+CC  This HMM represents the full length of bacterial cell division protein ZipA. The N-terminal hydrophobic stretch is an uncleaved signal-anchor sequence. This is followed by an unconserved, variable length, low complexity region, and then a conserved C-terminal region of about 140 amino acids (see PF04354) that interacts with the tubulin-like cell division protein FtsZ.
+DR  HAMAP; MF_00509; 87 of 90

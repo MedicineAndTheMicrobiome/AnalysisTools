@@ -1,0 +1,12 @@
+ID  orph_peri_GRRM
+AC  TIGR04262
+DE  extracellular substrate-binding orphan protein, GRRM family
+AU  Haft DH
+TC  190.00 190.00
+NC  140.00 140.00
+AL  muscle_manual
+IT  subfamily
+EN  extracellular substrate-binding orphan protein, GRRM family
+GS  grrP
+TP  TIGRFAMs
+CC  This subfamily belongs to bacterial extracellular solute-binding protein family 3 (PF00497). In that family, most members are ABC transporter periplasmic substrate-binding proteins. However, members of the present subfamily are orphans in the sense of being adjacent to neither ABC transporter ATP-binding proteins or permease subunits. Instead, most members are encoded next to the two signature proteins of the proposed Glycine-Rich Repeat Modification (GRRM) system, a radical SAM/SPASM protein GrrM (TIGR04261) and the Gly-rich repeat protein itself GrrA (TIGR04260).

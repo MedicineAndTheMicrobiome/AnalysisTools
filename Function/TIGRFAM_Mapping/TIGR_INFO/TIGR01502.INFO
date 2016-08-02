@@ -1,0 +1,12 @@
+ID  B_methylAsp_ase
+AC  TIGR01502
+DE  methylaspartate ammonia-lyase
+AU  Haft DH
+TC  286.15 286.15
+NC  168.75 168.75
+AL  clustalw
+IT  equivalog
+EN  methylaspartate ammonia-lyase
+EC  4.3.1.2
+TP  TIGRFAMs
+CC  This HMM describes methylaspartate ammonia-lyase, also called beta-methylaspartase (EC 4.3.1.2). It follows methylaspartate mutase (composed of S and E subunits) in one of several possible pathways of glutamate fermentation.

@@ -1,0 +1,14 @@
+ID  ssl1
+AC  TIGR00622
+DE  transcription factor ssl1
+AU  Loftus BJ, Eisen JA
+TC  45.10 45.10
+NC  35.45 35.45
+IT  subfamily
+EN  transcription factor ssl1
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are components of the TFIIH complex which is involved in the initiaiton of transcription and nucleotide excision repair.
+CC  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  EGAD; 41398;
+RM  94040711;
+RM  94252326;

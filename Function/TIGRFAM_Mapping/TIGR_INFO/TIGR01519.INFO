@@ -1,0 +1,11 @@
+ID  plasmod_dom_1
+AC  TIGR01519
+DE  Plasmodium falciparum uncharacterized domain
+AU  Haft DH
+TC  29.35 29.35
+NC  27.55 27.55
+AL  clustalw_manual
+IT  paralog_domain
+EN  Plasmodium falciparum uncharacterized domain
+TP  TIGRFAMs
+CC  This HMM represents an uncharacterized domain present in roughly eight hypothetical proteins of the malaria parasite Plasmodium falciparum.

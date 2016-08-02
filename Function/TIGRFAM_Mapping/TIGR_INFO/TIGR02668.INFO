@@ -1,0 +1,13 @@
+ID  moaA_archaeal
+AC  TIGR02668
+DE  probable molybdenum cofactor biosynthesis protein A
+AU  Haft DH
+TC  325.25 325.25
+NC  281.40 281.40
+AL  clustalw
+IT  hypoth_equivalog
+EN  probable molybdenum cofactor biosynthesis protein A, archaeal
+GS  moaA
+TP  TIGRFAMs
+CC  This model describes an archaeal family related, and predicted to be functionally equivalent, to molybdenum cofactor biosynthesis protein A (MoaA) of bacteria (see TIGR02666).
+DR  HAMAP; MF_01225; 26 of 198

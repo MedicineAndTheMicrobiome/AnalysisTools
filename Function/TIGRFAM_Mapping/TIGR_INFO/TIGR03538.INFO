@@ -1,0 +1,18 @@
+ID  DapC_gpp
+AC  TIGR03538
+DE  succinyldiaminopimelate transaminase
+AU  Selengut J
+TC  474.60 474.60
+NC  424.35 424.35
+AL  muscle
+IT  equivalog
+EN  succinyldiaminopimelate transaminase
+GS  dapC
+EC  2.6.1.17
+TP  TIGRFAMs
+CC  This family of succinyldiaminopimelate transaminases (DapC) includes the experimentally characterized enzyme from Bordatella pertussis [1].  The majority of genes in this family are proximal to genes encoding components of the lysine biosynthesis via diaminopimelate pathway (GenProp0125).
+RN  [1]
+RM  PMID:10850974 
+RT  Characterization of a bordetella pertussis diaminopimelate (DAP) biosynthesis locus identifies dapC, a novel gene coding for an N-succinyl-L,L-DAP aminotransferase. 
+RA  Fuchs TM, Schneider B, Krumbach K, Eggeling L, Gross R 
+RL  J Bacteriol. 2000 Jul;182(13):3626-31.

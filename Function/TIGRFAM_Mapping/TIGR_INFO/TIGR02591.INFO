@@ -1,0 +1,18 @@
+ID  cas_Csh1
+AC  TIGR02591
+DE  CRISPR-associated protein Cas8b/Csh1, subtype I-B/HMARI
+AU  Selengut J, Haft DH
+TC  104.05 104.05
+NC  33.25 33.25
+AL  clustalw
+IT  hypoth_equivalog_domain
+EN  CRISPR-associated protein Cas8b/Csh1, subtype I-B/HMARI
+GS  cas8b
+TP  TIGRFAMs
+CC  This domain is found in the C-terminal 2/3 of a family of CRISPR associated proteins of the Hmari subtype [1].  Except for the two sequences from halophilic archaea this domain contains a pair of CXXC motifs.
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=2003
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=57307
+RN  [1]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005

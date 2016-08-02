@@ -1,0 +1,23 @@
+ID  glucar-dehydr
+AC  TIGR03247
+DE  glucarate dehydratase
+AU  Selengut J
+TC  828.70 828.70
+NC  626.05 626.05
+AL  muscle
+IT  equivalog
+EN  glucarate dehydratase
+GS  gudD
+EC  4.2.1.40
+TP  TIGRFAMs
+CC  Glucarate dehydratase converts D-glucarate (and L-idarate, a stereoisomer) to 5-dehydro-4-deoxyglucarate which is subsequently acted on by GarL, tartronate semialdehyde reductase and glycerate kinase ([1], GenProp0716).  The E. coli enzyme has been well-characterized [2].
+RN  [1]
+RM  PMID: 9772162 
+RT  Evolution of enzymatic activities in the enolase superfamily: characterization of the (D)-glucarate/galactarate catabolic pathway in Escherichia coli. 
+RA  Hubbard BK, Koch M, Palmer DR, Babbitt PC, Gerlt JA 
+RL  Biochemistry. 1998 Oct 13;37(41):14369-75. 
+RN  [2]
+RM  PMID: 11513584 
+RT  Evolution of enzymatic activities in the enolase superfamily: identification of the general acid catalyst in the active site of D-glucarate dehydratase from Escherichia coli. 
+RA  Gulick AM, Hubbard BK, Gerlt JA, Rayment I 
+RL  Biochemistry. 2001 Aug 28;40(34):10054-62.

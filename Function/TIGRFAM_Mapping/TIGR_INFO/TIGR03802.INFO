@@ -1,0 +1,17 @@
+ID  Asp_Ala_antiprt
+AC  TIGR03802
+DE  aspartate-alanine antiporter
+AU  Haft DH
+TC  546.95 546.95
+NC  418.90 418.90
+AL  muscle_manual
+IT  equivalog
+EN  aspartate-alanine antiporter
+GS  aspT
+TP  TIGRFAMs
+CC  All members of the seed alignment for this model are asparate-alanine anti-transporters (AspT) encoded next to the gene for aspartate 4-decarboxylase (AspD), which converts asparate to alanine, releasing CO2. The exchange of Asp for Ala is electrogenic, so the AspD/AspT system confers a proton-motive force. This transporter contains two copies of the AspT/YidE/YbjL antiporter duplication domain (TIGR01625).
+RN  [1]
+RM  PMID:12003930
+RT  Plasmid-encoded asp operon confers a proton motive metabolic cycle catalyzed by an aspartate-alanine exchange reaction.
+RA  Abe K, Ohnishi F, Yagi K, Nakajima T, Higuchi T, Sano M, Machida M, Sarker RI, Maloney PC
+RL  J Bacteriol. 2002 Jun;184(11):2906-13.

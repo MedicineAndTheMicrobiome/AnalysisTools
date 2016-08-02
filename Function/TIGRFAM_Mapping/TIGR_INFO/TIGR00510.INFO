@@ -1,0 +1,26 @@
+ID  lipA
+AC  TIGR00510
+DE  lipoyl synthase
+AU  Haft DH
+TC  310.25 310.25
+NC  187.30 187.30
+AL  clustalw
+IT  equivalog
+EN  lipoate synthase
+GS  lipA
+EC  2.8.1.8
+TP  TIGRFAMs
+CC  This enzyme is an iron-sulfur protein. It is localized to mitochondria in yeast and Arabidopsis. It generates lipoic acid, a thiol antioxidant that is linked to a specific Lys as prosthetic group for the pyruvate and alpha-ketoglutarate dehydrogenase complexes and the glycine-cleavage system.
+CC  The family shows strong sequence conservation.
+AL  ClustalW
+RN  [1]
+RM  93352559
+RT  Isolation and characterization of LIP5. A lipoate biosynthetic locus of Saccharomyces cerevisiae.
+RA  Sulo P, Martin NC
+RL  J Biol Chem 1993 Aug 15;268(23):17634-9
+RN  [2]
+RM  99330162
+RT  The lipoate synthase from Escherichia coli is an iron-sulfur protein.
+RA  Ollagnier-de Choudens S, Fontecave M
+RL  FEBS Lett 1999 Jun 18;453(1-2):25-8
+DR  HAMAP; MF_00206; 384 of 391

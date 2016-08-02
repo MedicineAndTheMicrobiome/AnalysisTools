@@ -1,0 +1,18 @@
+ID  Rv0697
+AC  TIGR03970
+DE  dehydrogenase, Rv0697 family
+AU  Haft DH
+TC  387.45 387.45
+NC  387.15 387.15
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  dehydrogenase, Rv0697 family
+GS  mftG
+EC  1.-.-.-
+TP  TIGRFAMs
+CC  This model describes a set of dehydrogenases belonging to the glucose-methanol-choline oxidoreductase (GMC oxidoreductase) family. Members of the present family are restricted to Actinobacterial genome contexts containing also members of families TIGR03962 and TIGR03969 (the mycofactocin system), and are proposed to be uniform in function.
+RN  [1]
+RM  PMID:21223593 
+RT  Bioinformatic evidence for a widely distributed, ribosomally produced electron carrier precursor, its maturation proteins, and its nicotinoprotein redox partners. 
+RA  Haft DH 
+RL  BMC Genomics. 2011 Jan 11;12(1):21.

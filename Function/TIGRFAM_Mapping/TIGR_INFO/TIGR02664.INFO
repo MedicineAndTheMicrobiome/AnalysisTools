@@ -1,0 +1,11 @@
+ID  nitr_red_assoc
+AC  TIGR02664
+DE  conserved hypothetical protein
+AU  Haft DH
+TC  110.00 110.00
+NC  54.45 54.45
+AL  clustalw
+IT  subfamily
+EN  conserved hypothetical protein
+TP  TIGRFAMs
+CC  Most members of this protein family are found in the Cyanobacteria, and these mostly near nitrate reductase genes and molybdopterin biosynthesis genes. We note that molybdopterin guanine dinucleotide is a cofactor for nitrate reductase. This protein is sometimes annotated as nitrate reductase-associated protein. Its function is unknown.

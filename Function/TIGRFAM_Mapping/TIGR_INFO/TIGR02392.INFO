@@ -1,0 +1,12 @@
+ID  rpoH_proteo
+AC  TIGR02392
+DE  alternative sigma factor RpoH
+AU  Haft DH
+TC  323.10 323.10
+NC  185.40 185.40
+AL  clustalw
+IT  equivalog
+EN  alternative sigma factor RpoH
+GS  rpoH
+TP  TIGRFAMs
+CC  A sigma factor is a DNA-binding protein protein that binds to the DNA-directed RNA polymerase core to produce the holoenzyme capable of initiating transcription at specific sites. Different sigma factors act in vegetative growth, heat shock, extracytoplasmic functions (ECF), etc. This model represents the clade of sigma factors called RpoH and further restricted to the Proteobacteria. This protein may be called sigma-32, sigma factor H, heat shock sigma factor, and alternative sigma factor RpoH. Note that in some species the single locus rpoH may be replaced by two or more differentially regulated stress response sigma factors.

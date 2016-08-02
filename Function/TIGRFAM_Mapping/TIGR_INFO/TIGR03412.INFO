@@ -1,0 +1,22 @@
+ID  iscX_yfhJ
+AC  TIGR03412
+DE  FeS assembly protein IscX
+AU  Haft DH
+TC  40.40 40.40
+NC  24.95 24.95
+AL  muscle_manual
+IT  equivalog
+EN  FeS assembly protein IscX
+GS  iscX
+TP  TIGRFAMs
+CC  Members of this protein family are YfhJ, a protein of the ISC system for iron-sulfur cluster assembly. Other genes in the system include iscSUA, hscBA, and fdx.
+RN  [1]
+RM  PMID: 16698547
+RT  YfhJ, a molecular adaptor in iron-sulfur cluster formation or a frataxin-like protein?
+RA  Pastore C, Adinolfi S, Huynen MA, Rybin V, Martin S, Mayer M, Bukau B, Pastore A
+RL  Structure. 2006 May;14(5):857-67.
+RN  [2]
+RM  PMID: 15937904
+RT  Crystal structure of Escherichia coli YfhJ protein, a member of the ISC machinery involved in assembly of iron-sulfur clusters.
+RA  Shimomura Y, Takahashi Y, Kakuta Y, Fukuyama K
+RL  Proteins. 2005 Aug 15;60(3):566-9.

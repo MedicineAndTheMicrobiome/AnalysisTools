@@ -1,0 +1,12 @@
+ID  dhbA_paeA
+AC  TIGR04316
+DE  2,3-dihydro-2,3-dihydroxybenzoate dehydrogenase
+AU  Haft DH
+TC  300.00 300.00
+NC  285.00 285.00
+AL  muscle_manual
+IT  equivalog
+EN  2,3-dihydro-2,3-dihydroxybenzoate dehydrogenase
+EC  1.3.1.28
+TP  TIGRFAMs
+CC  Members of this family are 2,3-dihydro-2,3-dihydroxybenzoate dehydrogenase (EC 1.3.1.28), the third enzyme in the biosynthesis of 2,3-dihydroxybenzoic acid (DHB) from chorismate. The first two enzymes are isochorismate synthase (EC 5.4.4.2) and isochorismatase (EC 3.3.2.1). Synthesis is often followed by adenylation by the enzyme DHBA-AMP ligase (EC 2.7.7.58) to activate (DHB) for a non-ribosomal peptide synthetase.

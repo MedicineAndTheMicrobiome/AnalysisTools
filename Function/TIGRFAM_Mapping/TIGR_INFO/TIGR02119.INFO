@@ -1,0 +1,18 @@
+ID  panF
+AC  TIGR02119
+DE  sodium/pantothenate symporter
+AU  Haft DH
+TC  328.05 328.05
+NC  323.05 323.05
+AL  clustalw_manual
+IT  equivalog
+EN  sodium/pantothenate symporter
+GS  panF
+TP  TIGRFAMs
+CC  Pantothenate (vitamin B5) is a precursor of coenzyme A and is made from aspartate and 2-oxoisovalerate in most bacteria with completed genome sequences. However, some pathogens must import pantothenate. This HMM describes PanF, a sodium/pantothenate symporter, from a larger family of  Sodium/substrate symporters (PF00474). Several species that have this transporter appear to lack all enzymes of pantothenate biosynthesis, namely Haemophilus influenzae, Pasteurella multocida, Fusobacterium nucleatum, and Borrelia burgdorferi.
+DR  PFAM; PF00474; Sodium/substrate symporters
+DR  SWISSPROT; P16256; Escherichia coli
+RM  2193919
+RT  Cloning, sequence, and expression of the pantothenate permease (panF) gene of Escherichia coli.
+RA  Jackowski S, Alix JH.
+RL  J Bacteriol. 1990 Jul;172(7):3842-8.

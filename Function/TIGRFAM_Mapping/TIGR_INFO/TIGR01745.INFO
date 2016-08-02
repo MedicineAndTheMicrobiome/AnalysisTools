@@ -1,0 +1,12 @@
+ID  asd_gamma
+AC  TIGR01745
+DE  aspartate-semialdehyde dehydrogenase
+AU  Haft DH
+TC  402.90 402.90
+NC  90.45 90.45
+AL  clustalw
+IT  equivalog
+EN  aspartate-semialdehyde dehydrogenase, gamma-proteobacterial
+GS  asd
+EC  1.2.1.11
+TP  TIGRFAMs

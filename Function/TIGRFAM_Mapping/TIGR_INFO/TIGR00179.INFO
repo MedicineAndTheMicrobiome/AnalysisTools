@@ -1,0 +1,14 @@
+ID  murB
+AC  TIGR00179
+DE  UDP-N-acetylenolpyruvoylglucosamine reductase
+AU  Haft DH
+TC  144.50 144.50
+NC  31.50 31.50
+AL  clustalw_manual
+IT  equivalog
+EN  UDP-N-acetylenolpyruvoylglucosamine reductase
+GS  murB
+EC  1.3.1.98
+TP  TIGRFAMs
+CC  This HMM describes MurB, UDP-N-acetylenolpyruvoylglucosamine reductase, which is also called UDP-N-acetylmuramate dehydrogenase. It is part of the pathway for the biosynthesis of the UDP-N-acetylmuramoyl-pentapeptide that is a precursor of bacterial peptidoglycan.
+DR  HAMAP; MF_00037; 369 of 382

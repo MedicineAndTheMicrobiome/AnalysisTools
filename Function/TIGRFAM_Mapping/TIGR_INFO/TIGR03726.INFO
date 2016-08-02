@@ -1,0 +1,11 @@
+ID  strep_RK_lipo
+AC  TIGR03726
+DE  putative cross-wall-targeting lipoprotein signal
+AU  Haft DH
+TC  20.85 20.85
+NC  17.70 17.70
+AL  muscle_manual
+IT  equivalog_domain
+EN  putative cross-wall-targeting lipoprotein signal
+TP  TIGRFAMs
+CC  The YSIRK signal domain targets proteins to the cross-wall, or septum, of dividing Gram-positive bacterial. Lipoprotein signal motifs direct a characteristic N-terminal cleavage and lipid modification for membrane anchoring. This Streptococcal-only signal peptide variant appears to be a hybrid between the two, likely directing protein targeting of nascent surface lipoproteins to the cross-wall. Nearly all members of this family have the characteristic LPXTG cell wall anchor signal at the C-terminus.

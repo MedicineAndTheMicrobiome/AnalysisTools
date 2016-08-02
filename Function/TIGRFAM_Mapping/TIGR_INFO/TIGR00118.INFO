@@ -1,0 +1,27 @@
+ID  acolac_lg
+AC  TIGR00118
+DE  acetolactate synthase, large subunit, biosynthetic type
+AU  Haft DH
+TC  538.35 538.35
+NC  489.00 489.00
+AL  clustalw
+IT  equivalog
+EN  acetolactate synthase, large subunit, biosynthetic type
+GS  ilvB
+EC  2.2.1.6
+TP  TIGRFAMs
+CC  Two groups of proteins form acetolactate from two molecules of pyruvate. The type of acetolactate synthase described in this model also catalyzes the formation of acetohydroxybutyrate from pyruvate and 2-oxobutyrate, an early step in the branched chain amino acid biosynthesis; it is therefore also termed  acetohydroxyacid synthase.
+CC  In bacteria, this catalytic chain is associated with a smaller regulatory chain in an alpha2/beta2 heterotetramer. 
+CC  Acetolactate synthase is a thiamine pyrophosphate enzyme. In this type, FAD and Mg++ are also found.
+CC  Several isozymes of this enzyme are found in E. coli K12, one of which contains a frameshift in the large subunit gene and is not expressed.
+DR  PROSITE; PDOC00166;
+DR  PFAM; PF00205; TPP_enzymes;
+RN  [1]
+RM  97254452
+RT  Cloning and phylogenetic analysis of the genes encoding acetohydroxyacid synthase from the archaeon Methanococcus aeolicus.
+RN  [2]
+RM  98322107
+RT  Biosynthesis of 2-aceto-2-hydroxy acids: acetolactate synthases and acetohydroxyacid synthases.
+RA  Chipman D, Barak Z, Schloss JV;
+RL  Biochim Biophys Acta 1998 Jun 29;1385(2):401-19 
+DR  OUTGROUP; SP:P30146; glyoxylate carboligase; E. coli

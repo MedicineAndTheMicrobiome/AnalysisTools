@@ -1,0 +1,23 @@
+ID  Se_dep_XDH
+AC  TIGR03311
+DE  selenium-dependent xanthine dehydrogenase
+AU  Haft DH
+TC  830.45 830.45
+NC  680.95 680.95
+AL  muscle
+IT  equivalog
+EN  selenium-dependent xanthine dehydrogenase
+GS  xdh
+EC  1.17.1.4
+TP  TIGRFAMs
+CC  Members of this protein resemble conventional xanthine dehydrogenase enzymes, which depend on molybdenum cofactor - molybdopterin bound to molybdate with two sulfur atoms as ligands. But all members of this family occur in species that contain markers for the biosynthesis of enzymes with a selenium-containing form of molybdenum cofactor. The member of this family from Enterococcus faecalis has been shown to act as a xanthine dehydrogenenase, and its activity if dependent on SelD (selenophosphate synthase), selenium, and molybdenum.
+RN  [1]
+RM  PMID:21257770 
+RT  A selenium-dependent xanthine dehydrogenase triggers biofilm proliferation in Enterococcus faecalis through oxidant production. 
+RA  Srivastava M, Mallard C, Barke T, Hancock LE, Self WT 
+RL  J Bacteriol. 2011 Apr;193(7):1643-52. doi: 10.1128/JB.01063-10.
+RN  [2]
+RM  PMID:18289380 
+RT  Orphan SelD proteins and selenium-dependent molybdenum hydroxylases. 
+RA  Haft DH, Self WT 
+RL  Biol Direct. 2008 Feb 20;3:4. doi: 10.1186/1745-6150-3-4.

@@ -1,0 +1,20 @@
+ID  MsbA_lipidA
+AC  TIGR02203
+DE  lipid A export permease/ATP-binding protein MsbA
+AU  Haft DH
+TC  602.00 602.00
+NC  575.55 575.55
+AL  clustalw
+IT  equivalog
+EN  lipid A export permease/ATP-binding protein MsbA
+GS  msbA
+TR  3.A.1.106.1
+TP  TIGRFAMs
+CC  This family consists of a single polypeptide chain transporter in the ATP-binding cassette (ABC) transporter family, MsbA, which exports lipid A. It may also act in multidrug resistance. Lipid A, a part of lipopolysaccharide, is found in the outer leaflet of the outer membrane of most Gram-negative bacteria. Members of this family are restricted to the Proteobacteria (although lipid A is more broadly distributed) and often are clustered with lipid A biosynthesis genes.
+DR  PFAM; PF00664; ABC_membrane
+DR  PFAMl PF00005; ABC_tran
+RM  12119303
+RT  ATPase activity of the MsbA lipid flippase of Escherichia coli.
+RA  Doerrler WT, Raetz CR.
+RL  J Biol Chem. 2002 Sep 27;277(39):36697-705.
+DR  HAMAP; MF_01703; 106 of 106

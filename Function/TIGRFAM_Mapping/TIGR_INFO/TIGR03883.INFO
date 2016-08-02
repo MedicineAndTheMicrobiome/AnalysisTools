@@ -1,0 +1,13 @@
+ID  DUF2342_F420
+AC  TIGR03883
+DE  uncharacterized protein, coenzyme F420 biosynthesis associated
+AU  Selengut J
+TC  171.35 171.35
+NC  161.10 161.10
+AL  muscle
+IT  subfamily
+EN  uncharacterized protein, coenzyme F420 biosynthesis associated
+TP  TIGRFAMs
+CC  A phylogenetic tree of the DUF2342 family (TIGR03624) consists of two major branches.  One of these branches, modeled here, is observed almost entirely to be found in coenzyme F420 biosynthesizing species of the Actinobacterial, Chloroflexi and Archaeal lineages.  The few organisms having genes within this family and lacking F420 biosynthesis may either have an undiscovered F420 transporter, or may represent F420-to-FMN revertants.
+CC  This family includes a Chloroflexus Aurantiacus
+CC  protein whose crystal structure has been determined (PDB:3CMN_A).  This has been annotated as a putative hydrolase, but the support for that assertion is untraceable.  There is no cofactor present in the structure.

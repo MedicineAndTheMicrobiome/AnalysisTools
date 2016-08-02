@@ -1,0 +1,23 @@
+ID  gmd
+AC  TIGR01472
+DE  GDP-mannose 4,6-dehydratase
+AU  Haft DH
+TC  415.00 415.00
+NC  103.25 103.25
+AL  clustalw_manual
+IT  equivalog
+EN  GDP-mannose 4,6-dehydratase
+GS  gmd
+EC  4.2.1.47
+TP  TIGRFAMs
+CC  Alternate name: GDP-D-mannose dehydratase. This enzyme converts GDP-mannose to GDP-4-dehydro-6-deoxy-D-mannose, the first of three steps for the conversion of GDP-mannose to GDP-fucose in animals, plants, and bacteria. In bacteria, GDP-L-fucose acts as a precursor of surface antigens such as the extracellular polysaccharide colanic acid of E. coli.
+CC  Excluded from this model are members of the clade that score poorly because of highly dervied (phylogenetically long-branch) sequences, e.g. Aneurinibacillus thermoaerophilus Gmd, described as a bifunctional GDP-mannose 4,6-dehydratase/GDP-6-deoxy-D-lyxo-4-hexulose reductase (PUBMED:11096116).
+DR  EXPERIMENTAL; SP|O60547; Homo sapiens
+DR  EXPERIMENTAL; OMNI|HP0044; Helicobacter pylori
+DR  EXPERIMENTAL; SP|P32054; Escherichia coli
+DR  EXPERIMENTAL; SP|Q9SNY3; Arabidopsis thaliana
+RN  [1]
+RM  9525924
+RT  Molecular cloning of human GDP-mannose 4,6-dehydratase and reconstitution of GDP-fucose biosynthesis in vitro.
+RA  Sullivan FX, Kumar R, Kriz R, Stahl M, Xu GY, Rouse J, Chang XJ, Boodhoo A, Potvin B, Cumming DA.
+RL  J Biol Chem 1998 Apr 3;273(14):8193-202

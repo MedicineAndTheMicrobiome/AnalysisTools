@@ -1,0 +1,12 @@
+ID  sufC
+AC  TIGR01978
+DE  FeS assembly ATPase SufC
+AU  Haft DH
+TC  212.80 212.80
+NC  127.85 127.85
+AL  clustalw
+IT  equivalog
+EN  FeS assembly ATPase SufC
+GS  sufC
+TP  TIGRFAMs
+CC  SufC is part of the SUF system, shown in E. coli to consist of six proteins and believed to act in Fe-S cluster formation during oxidative stress. SufC forms a complex with SufB and SufD. SufC belongs to the ATP-binding cassette transporter family (PF00005) but is no longer thought to be part of a transporter. The complex is reported as cytosolic (PMID:12554644) or associated with the membrane (PMID:11943156). The SUF system also includes a cysteine desulfurase (SufS, enhanced by SufE) and a probable iron-sulfur cluster assembly scaffold protein, SufA.

@@ -1,0 +1,31 @@
+ID  cas2
+AC  TIGR01573
+DE  CRISPR-associated endonuclease Cas2
+AU  Haft DH
+TC  24.50 24.50
+NC  22.00 22.00
+AL  clustalw_manual
+IT  equivalog
+EN  CRISPR-associated endonuclease Cas2
+GS  cas2
+TP  TIGRFAMs
+CC  This model describes most members of the family of Cas2, one of the first four protein families found to mark prokaryotic genomes that contain multiple CRISPR elements. CRISPR systems protect against invasive nucleic acid sequences, including phage. Cas2 proteins have been characterized as either endoribonuclease (for ssRNA) or endodeoxyribonuclease (for dsDNA), depending on the system to which the Cas2 belongs. CRISPR is an acronym for Clustered Regularly Interspaced Short Palindromic Repeats. The cas genes usually are found near the repeats. A distinct branch of the Cas2 family shows a very low level of sequence identity and is modeled by TIGR01873 instead of by this HMM (TIGR01573).
+RN  [1]
+RM  PMID:22942283 
+RT  Double-stranded endonuclease activity in Bacillus halodurans clustered regularly interspaced short palindromic repeats (CRISPR)-associated Cas2 protein. 
+RA  Nam KH, Ding F, Haitjema C, Huang Q, DeLisa MP, Ke A 
+RL  J Biol Chem. 2012 Oct 19;287(43):35943-52.
+RN  [2]
+RM  PMID:18482976
+RT  A novel family of sequence-specific endoribonucleases associated with the clustered regularly interspaced short palindromic repeats.
+RA  Beloglazova N, Brown G, Zimmerman MD, Proudfoot M, Makarova KS, Kudritska M, Kochinyan S, Wang S, Chruszcz M, Minor W, Koonin EV, Edwards AM, Savchenko A, Yakunin AF
+RL  J Biol Chem. 2008 Jul 18;283(29):20361-71. Epub 2008 May 15.
+RN  [3]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005
+RN  [4]
+RM  11952905
+RT  Identification of genes that are associated with DNA repeats in prokaryotes.
+RA  Jansen R, Embden JD, Gaastra W, Schouls LM.
+RL  Mol Microbiol 2002 Mar;43(6):1565-75

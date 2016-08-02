@@ -1,0 +1,23 @@
+ID  apbA_panE
+AC  TIGR00745
+DE  2-dehydropantoate 2-reductase
+AU  Haft DH, Loftus BJ
+TC  141.35 141.35
+NC  91.40 91.40
+AL  clustalw
+IT  subfamily
+EN  2-dehydropantoate 2-reductase
+EC  1.1.1.-
+TP  TIGRFAMs
+CC  This HMM describes enzymes that perform as 2-dehydropantoate 2-reductase, one of four enzymes required for the de novo biosynthesis of pantothenate (vitamin B5) from Asp and 2-oxoisovalerate. Although few members of the seed alignment are characterized experimentally, nearly all from complete genomes are found in a genome-wide (but not local) context of all three other pantothenate-biosynthetic enzymes (TIGR00222, TIGR00018, TIGR00223). The gene encoding this enzyme is designated apbA in Salmonella typhimurium and panE in Escherichia coli; this protein functions as a monomer and functions in the alternative pyrimidine biosynthetic, or APB, pathway, used to synthesize the pyrimidine moiety of thiamine. Note, synthesis of the pyrimidine moiety of thiamine occurs either via the first five steps in de novo purine biosynthesis, which uses the pur gene products, or through the APB pathway.  Note that this family includes both NADH and NADPH-dependent enzymes, and enzymes with broad specificity, such as a D-mandelate dehydrogease that is also a 2-dehydropantoate 2-reductase.
+DR  InterPro; IPR003710
+RN  [1]
+RM  PMID:9721324
+RT  The panE gene, encoding ketopantoate reductase, maps at 10 minutes and is allelic to apbA in Salmonella typhimurium.
+RA  Frodyma ME, Downs D
+RL  J Bacteriol 1998 Sep;180(17):4757-9
+RN  [2]
+RM  PMID:18391442
+RT  A new family of D-2-hydroxyacid dehydrogenases that comprises D-mandelate dehydrogenases and 2-ketopantoate reductases.
+RA  Wada Y, Iwai S, Tamura Y, Ando T, Shinoda T, Arai K, Taguchi H
+RL  Biosci Biotechnol Biochem. 2008 Apr;72(4):1087-94.

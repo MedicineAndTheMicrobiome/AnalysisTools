@@ -1,0 +1,29 @@
+ID  rimK_fam
+AC  TIGR00768
+DE  alpha-L-glutamate ligase, RimK family
+AU  Haft DH
+TC  143.40 143.40
+NC  100.80 100.80
+AL  clustalw
+IT  subfamily
+EN  alpha-L-glutamate ligase, RimK family
+EC  6.3.2.-
+TP  TIGRFAMs
+CC  This family, related to bacterial glutathione synthetases, contains at least three different alpha-L-glutamate ligases. One is RimK, as in E. coli, which adds additional Glu residues to the native Glu-Glu C-terminus of ribosomal protein S6, but not to Lys-Glu mutants. Most species with a member of this subfamily lack an S6 homolog ending in Glu-Glu, however. Members in Methanococcus jannaschii act instead as a tetrahydromethanopterin:alpha-l-glutamate ligase (MJ0620) and a gamma-F420-2:alpha-l-glutamate ligase (MJ1001).
+AL  clustalw
+DR  EXPERIMENTAL; EGAD|6445|EC0852; Escherichia coli
+RN  [1]
+RM  89364710
+RT  Characterization of the gene rimK responsible for the addition of glutamic acid residues to the C-terminus of ribosomal protein S6 in Escherichia coli K12.
+RA   Kang WK, Icho T, Isono S, Kitakawa M, Isono K
+RL  Mol Gen Genet 1989 Jun;217(2-3):281-8
+RN  [2]
+RM  98078575
+RT  A diverse superfamily of enzymes with ATP-dependent carboxylate-amine/thiol ligase activity.
+RA  Galperin MY, Koonin EV
+RL  Protein Sci 1997 Dec;6(12):2639-43
+RN  [3]
+RT  Glutathione synthetase homologs encode alpha-L-glutamate ligases for methanogenic coenzyme F420 and tetrahydrosarcinapterin biosyntheses.
+RA  Li H, Xu H, Graham DE, White RH.
+RL  Proc Natl Acad Sci U S A. 2003 Aug 19;100(17):9785-90
+DR  HAMAP; MF_01552; 114 of 117

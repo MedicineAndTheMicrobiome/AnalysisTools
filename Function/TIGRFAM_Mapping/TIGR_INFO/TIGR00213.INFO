@@ -1,0 +1,16 @@
+ID  GmhB_yaeD
+AC  TIGR00213
+DE  D,D-heptose 1,7-bisphosphate phosphatase
+AU  Haft DH
+TC  149.60 149.60
+NC  93.00 93.00
+AL  clustalw
+IT  subfamily
+EN  D,D-heptose 1,7-bisphosphate phosphatase
+GS  gmhB
+TP  TIGRFAMs
+CC  This family of proteins formerly designated yaeD resembles the histidinol phosphatase domain of the bifunctional protein HisB. The member from E. coli has been characterized as D,D-heptose 1,7-bisphosphate phosphatase, GmhB, involved in inner core LPS assembly (PMID:11751812).
+RM  11751812
+RT  Biosynthesis pathway of ADP-L-glycero-beta-D-manno-heptose in Escherichia coli.
+RA  Kneidinger B, Marolda C, Graninger M, Zamyatina A, McArthur F, Kosma P, Valvano MA, Messner P.
+RL  J Bacteriol. 2002 Jan;184(2):363-9.

@@ -1,0 +1,22 @@
+ID  T6A_YeaZ
+AC  TIGR03725
+DE  tRNA threonylcarbamoyl adenosine modification protein YeaZ
+AU  Haft DH
+TC  69.30 69.30
+NC  67.75 67.75
+AL  muscle_manual
+IT  equivalog
+EN  tRNA threonylcarbamoyl adenosine modification protein YeaZ
+GS  yeaZ
+TP  TIGRFAMs
+CC  This family describes a protein family, YeaZ, now associated with the threonylcarbamoyl adenosine (t6A) tRNA modification. Members of this family may occur as fusions with ygjD (previously gcp) or the ribosomal protein N-acetyltransferase rimI, and is frequently encoded next to rimI.
+RN  [1]
+RM  PMID:22378793 
+RT  Biosynthesis of Threonylcarbamoyl Adenosine (t6A), a Universal tRNA Nucleoside. 
+RA  Deutsch C, El Yacoubi B, de Crecy-Lagard V, Iwata-Reuyl D 
+RL  J Biol Chem. 2012 Apr 20;287(17):13666-73. 
+RN  [2]
+RM  PMID:16617437
+RT  Structural characterization of Salmonella typhimurium YeaZ, an M22 O-sialoglycoprotein endopeptidase homolog.
+RA  Nichols CE, Johnson C, Lockyer M, Charles IG, Lamb HK, Hawkins AR, Stammers DK
+RL  Proteins. 2006 Jul 1;64(1):111-23.

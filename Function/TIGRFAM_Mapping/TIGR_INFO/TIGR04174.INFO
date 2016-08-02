@@ -1,0 +1,16 @@
+ID  IPTL_CTERM
+AC  TIGR04174
+DE  IPTL-CTERM protein sorting domain
+AU  Haft DH
+TC  20.50 20.50
+NC  20.00 20.00
+AL  muscle_manual
+IT  subfamily_domain
+EN  IPTL-CTERM protein sorting domain
+TP  TIGRFAMs
+CC  This HMM describes a variant form of the PEP-CTERM C-terminal protein-sorting domain, with a consensus motif IPTL replacing the more typical VPEP. A majority of these sequences have a WG (Trp-Gly) motif at positions 7-8 of the domain.  Species with multiple (up to 15) copies of this domain include Acidovorax citrulli, Acidovorax delafieldii 2AN, Delftia acidovorans SPH-1, and gamma proteobacterium NOR5-3.
+RN  [1]
+RM  PMID:22070167 
+RT  ProPhylo: partial phylogenetic profiling to guide protein family construction and assignment of biological process. 
+RA  Basu MK, Selengut JD, Haft DH 
+RL  BMC Bioinformatics. 2011 Nov 9;12:434.

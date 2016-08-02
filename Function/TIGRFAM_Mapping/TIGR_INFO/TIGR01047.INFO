@@ -1,0 +1,18 @@
+ID  nspC
+AC  TIGR01047
+DE  carboxynorspermidine decarboxylase
+AU  Haft DH
+TC  409.05 409.05
+NC  205.95 205.95
+AL  clustalw_manual
+IT  equivalog
+EN  carboxynorspermidine decarboxylase
+GS  nspC
+TP  TIGRFAMs
+CC  This protein is related to diaminopimelate decarboxylase. It is the last enzyme in norspermidine biosynthesis by an unusual pathway shown in Vibrio alginolyticus.
+DR  COGS; COG0019
+DR  EXPERIMENTAL; EGAD|19651|20127; Vibrio alginolyticus
+RM  92065241
+RT  Purification and some properties of carboxynorspermidine synthase participating in a novel biosynthetic pathway for norspermidine in Vibrio alginolyticus.
+RA  Nakao H, Shinoda S, Yamamoto S
+RL  J Gen Microbiol 1991 Jul;137 ( Pt 7):1737-42

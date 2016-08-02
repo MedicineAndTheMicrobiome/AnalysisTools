@@ -1,0 +1,16 @@
+ID  ZPR1_znf
+AC  TIGR00310
+DE  ZPR1 zinc finger domain
+AU  Haft DH
+TC  78.30 78.30
+NC  74.55 74.55
+AL  clustalw
+IT  domain
+EN  ZPR1 zinc finger domain
+TP  TIGRFAMs
+CC  An orthologous protein found once in each of the completed archaeal genomes corresponds to a zinc finger-containing domain repeated as the N-terminal and C-terminal halves of the mouse protein ZPR1. ZPR1 is an experimentally proven zinc-binding protein that binds the tyrosine kinase domain of the epidermal growth factor receptor (EGFR); binding is inhibited by EGF stimulation and tyrosine phosphorylation, and activation by EGF is followed by some redistribution of ZPR1 to the nucleus. By analogy, other proteins with the ZPR1 zinc finger domain may be regulatory proteins that sense protein phosphorylation state and/or participate in signal transduction.
+CC  The search program hmmls is suggested to detect repeats of this domain in eukaryotic proteins. However, search with hmmsw may reveal shorter versions of the domain, as in PID:g1165216.
+RM  96256480
+RT  Binding of zinc finger protein ZPR1 to the epidermal growth factor receptor.
+RA  Galcheva-Gargova Z, Konstantinov KN, Wu IH, Klier FG, Barrett T, Davis RJ
+RL  Science 1996 Jun 21;272(5269):1797-802

@@ -1,0 +1,14 @@
+ID  cysM
+AC  TIGR01138
+DE  cysteine synthase B
+AU  Haft DH, Dodson RJ
+TC  394.20 394.20
+NC  330.85 330.85
+AL  clustalw
+IT  equivalog
+EN  cysteine synthase B
+GS  cysM
+EC  2.5.1.47
+TP  TIGRFAMs
+CC  CysM differs from CysK in that it can also use thiosulfate instead of sulfide, to produce cysteine thiosulfonate instead of cysteine.
+CC  Alternate name: O-acetylserine (thiol)-lyase

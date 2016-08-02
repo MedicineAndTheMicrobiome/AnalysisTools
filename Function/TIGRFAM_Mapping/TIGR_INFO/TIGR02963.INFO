@@ -1,0 +1,13 @@
+ID  xanthine_xdhA
+AC  TIGR02963
+DE  xanthine dehydrogenase, small subunit
+AU  Haft DH
+TC  467.00 467.00
+NC  283.20 283.20
+AL  muscle
+IT  equivalog
+EN  xanthine dehydrogenase, small subunit
+GS  xdhA
+EC  1.17.1.4
+TP  TIGRFAMs
+CC  Members of this protein family are the small subunit (or, in eukaryotes, the N-terminal domain) of xanthine dehydrogenase, an enzyme of purine catabolism via urate. The small subunit contains both an FAD and a 2Fe-2S cofactor. Aldehyde oxidase (retinal oxidase) appears to have arisen as a neofunctionalization among xanthine dehydrogenases in eukaryotes and

@@ -1,0 +1,19 @@
+ID  hxl6Piso_put
+AC  TIGR00542
+DE  putative hexulose-6-phosphate isomerase
+AU  Haft DH
+TC  272.15 272.15
+NC  188.50 188.50
+IT  hypoth_equivalog
+EN  hexulose-6-phosphate isomerase, putative
+TP  TIGRFAMs
+CC  This family shows similarity by PSI-BLAST to other isomerases. Putative identification as hexulose-6-phosphate isomerase is reported in Swiss-Prot, attributing a discussion in Genome Sci. Technol. 1:53-75(1996).
+CC  This family is conserved at better than 40 % identity among the four known examples from three species: Escherichia coli (SgbU and SgaU), Haemophilus influenzae, and Mycoplasma pneumoniae. The rarity of the family, high level of conservation, and proposed catabolic role suggests lateral transfer may be a part of the evolutionary history of this protein.
+DR  SWISSPROT; P37679;
+DR  SWISSPROT; P39305;
+DR  ECOCYC; EG12286; SGBU
+RN  [1]
+RA   REIZER J., CHARBIT A., REIZER A., SAIER M.H. JR.;
+RT   "Novel phosphotransferases system genes revealed by bacterial genome analysis: operons encoding homologues of sugar-specific permease domains of the phosphotransferase system and pentose catabolic enzymes."
+RL   GENOME SCI. TECHNOL. 1:53-75(1996).
+DR  HAMAP; MF_01951; 18 of 19

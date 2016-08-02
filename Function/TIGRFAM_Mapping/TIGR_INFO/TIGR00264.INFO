@@ -1,0 +1,12 @@
+ID  TIGR00264
+AC  TIGR00264
+DE  alpha-NAC homolog
+AU  Haft DH
+TC  98.75 98.75
+NC  62.95 62.95
+AL  clustalw
+IT  hypoth_equivalog
+EN  alpha-NAC-related protein
+TP  TIGRFAMs
+CC  This hypothetical protein is found so far only in the Archaea. Its C-terminal domain of about 40 amino acids is homologous to the C-termini of the nascent polypeptide-associated complex alpha chain (alpha-NAC) and its yeast ortholog Egd2p and to the huntingtin-interacting protein HYPK. It shows weaker similarity, possibly through shared structural constraints rather than through homology, with the amino-terminal domain of elongation factor Ts. Alpha-NAC plays a role in preventing nascent polypeptides from binding inappropriately to membrane-targeting apparatus during translation, but is also active as a transcription regulator.
+DR  HAMAP; MF_00814; 21 of 25

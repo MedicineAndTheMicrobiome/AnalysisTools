@@ -1,0 +1,20 @@
+ID  SpoIID_LytB
+AC  TIGR02669
+DE  SpoIID/LytB domain
+AU  Haft DH
+TC  83.30 83.30
+NC  37.35 37.35
+AL  clustalw
+IT  domain
+EN  SpoIID/LytB domain
+TP  TIGRFAMs
+CC  This model describes a domain found typically in two or three proteins per genome in Cyanobacteria and Firmicutes, and sporadically in other genomes. One member is SpoIID of Bacillus subtilis. Another in B. subtilis is the C-terminal half of LytB, encoded immediately upstream of an amidase, the autolysin LytC, to which its N-terminus is homologous. Gene neighborhoods are not well conserved for members of this family, as many, such as SpoIID, are monocistronic. One early modelling-based study suggests a DNA-binding role for SpoIID, but the function of this domain is unknown.
+RN  [1]
+RM  1357079
+RT  Sequencing and analysis of the Bacillus subtilis lytRABC divergon: a regulatory unit encompassing the structural genes of the N-acetylmuramoyl-L-alanine amidase and its modifier.
+RA  J Gen Microbiol. 1992 Sep;138(9):1949-61.
+RN  [2]
+RM  3129534
+RT  The possible DNA-binding nature of the regulatory proteins, encoded by spoIID and gerE, involved in the sporulation of Bacillus subtilis.
+RA  Holland SK, Cutting S, Mandelstam J.
+RL  J Gen Microbiol. 1987 Sep;133(9):2381-91.

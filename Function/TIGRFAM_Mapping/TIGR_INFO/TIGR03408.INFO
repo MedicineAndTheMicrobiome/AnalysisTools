@@ -1,0 +1,18 @@
+ID  urea_trans_UrtC
+AC  TIGR03408
+DE  urea ABC transporter, permease protein UrtC
+AU  Haft DH
+TC  296.20 296.20
+NC  165.95 165.95
+AL  muscle_manual
+IT  equivalog
+EN  urea ABC transporter, permease protein UrtC
+GS  urtC
+TR  3.A.1
+TP  TIGRFAMs
+CC  Members of this protein family are ABC transporter permease proteins associated with urea transport and metabolism. This protein is found in a conserved five-gene transport operon typically found adjacent to urease genes. It was shown in Cyanobacteria that disruption leads to the loss of high-affinity urea transport activity.
+RN  [1]
+RM  PMID: 11929526
+RT  An ABC-type, high-affinity urea permease identified in cyanobacteria.
+RA  Valladares A, Montesinos ML, Herrero A, Flores E
+RL  Mol Microbiol. 2002 Feb;43(3):703-15.

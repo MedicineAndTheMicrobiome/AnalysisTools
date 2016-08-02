@@ -1,0 +1,14 @@
+ID  rpmD_bact
+AC  TIGR01308
+DE  ribosomal protein L30
+AU  Haft DH
+TC  44.65 44.65
+NC  38.20 38.20
+AL  clustalw_manual
+IT  equivalog
+EN  ribosomal protein L30, bacterial/organelle
+GS  rpmD
+TP  TIGRFAMs
+CC  This model describes bacterial (and organellar) 50S ribosomal protein L30. Homologous ribosomal proteins of the eukaryotic cytosol and of the archaea differ substantially in architecture, from bacterial L30 and also from each other, and are described by separate models.
+DR  PFAM; PF00327; ribosomal protein L30p/L7e
+DR  HAMAP; MF_01371; 466 of 535

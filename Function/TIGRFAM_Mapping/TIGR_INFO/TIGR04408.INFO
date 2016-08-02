@@ -1,0 +1,12 @@
+ID  LptG_lptG
+AC  TIGR04408
+DE  LPS export ABC transporter permease LptG
+AU  Haft DH
+TC  240.00 240.00
+NC  150.00 150.00
+AL  muscle_manual
+IT  equivalog
+EN  LPS export ABC transporter permease LptG
+GS  lptG
+TP  TIGRFAMs
+CC  Members of this family are LptG, one of homologous, two tandem-encoded permease genes of an export ATP transporter for lipopolysaccharide (LPS) assembly in most Gram-negative bacteria. The other permease subunit is LptF (TIGR04407).

@@ -1,0 +1,14 @@
+ID  HpaI-NOT-DapA
+AC  TIGR02313
+DE  2,4-dihydroxyhept-2-ene-1,7-dioic acid aldolase
+AU  Selengut J
+TC  396.70 396.70
+NC  370.90 370.90
+AL  clustalw
+IT  exception
+EN  2,4-dihydroxyhept-2-ene-1,7-dioic acid aldolase
+GS  hpaI
+EC  4.1.2.-
+TP  TIGRFAMs
+CC  This model represents a subset of the DapA (dihydrodipicolinate synthase) family which has apparently evolved a separate function.  The product of DapA, dihydrodipicolinate, results from the non-enzymatic cyclization and dehydration of 6-amino-2,4-dihydroxyhept-2-ene-1,7-dioic acid, which is different from the substrate of this reaction only in the presence of the amino group.  In the absence of this amino group, and running the reaction in the opposite direction, the reaction corresponds to the HpaI aldolase component of the 4-hydroxyphenylacetic acid catabolism pathway (see TIGR02311).  At present, this variant of DapA is found only in Oceanobacillus iheyensis HTE831 and Thermus thermophilus HB27.  In both of these cases, one or more other DapA genes can be found and the one identified by this model is part of an operon for 4-hydroxyphenylacetic acid catabolism.
+DR  HAMAP; MF_00418; 2 of 370

@@ -1,0 +1,11 @@
+ID  egtB_X_signatur
+AC  TIGR04373
+DE  EgtB-related enzyme signature domain
+AU  Haft DH
+TC  71.00 70.00
+NC  69.00 69.00
+AL  muscle_manual
+IT  signature
+EN  EgtB-related enzyme signature domain
+TP  TIGRFAMs
+CC  This model represents a signature C-terminal region of a distinct clade in the EgtB subfamily, other members of which participate in ergothioneine biosynthesis

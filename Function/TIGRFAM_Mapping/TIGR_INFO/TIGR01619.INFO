@@ -1,0 +1,11 @@
+ID  hyp_HI0040
+AC  TIGR01619
+DE  TIGR01619 family protein
+AU  Sunshine J, Selengut J
+TC  149.40 149.40
+NC  38.35 38.35
+AL  clustalw
+IT  hypoth_equivalog
+EN  TIGR01619 family protein
+TP  TIGRFAMs
+CC  This model represents a hypothetical equivalog of gamma proteobacteria, includes HI0040. These sequences do not have any similarity to known proteins by PSI-BLAST.

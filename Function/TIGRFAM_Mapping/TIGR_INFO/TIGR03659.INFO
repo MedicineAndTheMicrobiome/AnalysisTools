@@ -1,0 +1,32 @@
+ID  IsdE
+AC  TIGR03659
+DE  heme ABC transporter, heme-binding protein isdE
+AU  Selengut J
+TC  298.65 298.65
+NC  249.70 249.70
+AL  muscle
+IT  equivalog
+EN  heme ABC transporter, heme-binding protein isdE
+GS  isdE
+TP  TIGRFAMs
+CC  This family of ABC substrate-binding proteins is observed primarily in close proximity with proteins localized to the cell wall and bearing the NEAT (NEAr Transporter, PF05031) heme-binding domain [1,2].  IsdE has been shown to bind heme and is involved in the process of scavenging heme for the purpose of obtaining iron [3,4].
+RN  [1]
+RM  PMID:18676371
+RT  Demonstration of the iron-regulated surface determinant heme transfer pathway in Staphylococcus aureus.
+RA  Muryoi N, Tiedemann MT, Pluym M, Cheung J, Heinrichs DE, Stillman MJ
+RL  J Biol Chem. 2008 Aug 1.
+RN  [2]
+RM  PMID:18715872
+RT  The IsdC protein from staphylococcus aureus uses a flexible binding pocket to capture heme.
+RA  Villareal VA, Pilpa RM, Robson SA, Fadeev EA, Clubb RT
+RL  J Biol Chem. 2008 Aug 20.
+RN  [3]
+RM  PMID:17929943 
+RT  Heme binding properties of Staphylococcus aureus IsdE. 
+RA  Pluym M, Vermeiren CL, Mack J, Heinrichs DE, Stillman MJ 
+RL  Biochemistry. 2007 Nov 6;46(44):12777-87. Epub 2007 Oct 12. 
+RN  [4]
+RM  PMID:17666394 
+RT  Heme coordination by Staphylococcus aureus IsdE. 
+RA  Grigg JC, Vermeiren CL, Heinrichs DE, Murphy ME 
+RL  J Biol Chem. 2007 Sep 28;282(39):28815-22. Epub 2007 Jul 31.

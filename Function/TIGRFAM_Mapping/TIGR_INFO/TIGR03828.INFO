@@ -1,0 +1,13 @@
+ID  pfkB
+AC  TIGR03828
+DE  1-phosphofructokinase
+AU  Selengut J
+TC  292.00 292.00
+NC  288.00 288.00
+AL  muscle
+IT  equivalog
+EN  1-phosphofructokinase
+GS  pfkB
+EC  2.7.1.56
+TP  TIGRFAMs
+CC  This enzyme acts in concert with the fructose-specific phosphotransferase system (PTS) which imports fructose as fructose-1-phosphate.  The action of 1-phosphofructokinase results in beta-D-fructose-1,6-bisphosphate and is an entry point into glycolysis (GenProp0688).

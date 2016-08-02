@@ -1,0 +1,13 @@
+ID  mreB
+AC  TIGR00904
+DE  cell shape determining protein, MreB/Mrl family
+AU  Haft DH
+TC  365.75 365.75
+NC  146.25 146.25
+AL  clustalw
+IT  subfamily
+EN  cell shape determining protein, MreB/Mrl family
+TP  TIGRFAMs
+CC  MreB (mecillinam resistance) in E. coli (also called envB) and the paralogous pair MreB and Mrl of Bacillus subtilis have all been shown to help determine cell shape. This protein is present in a wide variety of bacteria, including spirochetes, but is missing from the Mycoplasmas and from Gram-positive cocci. Most completed bacterial genomes have a single member of this family. In some species it is an essential gene.
+CC  A close homolog is found in the Archaeon Methanobacterium thermoautotrophicum, and a more distant homolog in Archaeoglobus fulgidus. The family is related to cell division protein FtsA and heat shock protein DnaK.
+DR  ECOCYC; EG10608; mreB

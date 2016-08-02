@@ -1,0 +1,12 @@
+ID  cobo_pep
+AC  TIGR04164
+DE  modified peptide precursor CbpA
+AU  Haft DH
+TC  35.00 35.00
+NC  25.00 20.00
+AL  muscle_manual
+IT  equivalog
+EN  modified peptide precursor CbpA
+GS  cbpA
+TP  TIGRFAMs
+CC  Members of this family are short peptides predicted to reach mature form after modification by a radical SAM enzyme (TIGR04163).

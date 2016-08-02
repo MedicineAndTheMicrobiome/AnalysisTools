@@ -1,0 +1,11 @@
+ID  cyc_pep_trnsptr
+AC  TIGR01194
+DE  cyclic peptide transporter
+AU  Ujwal ML, Paulsen IT
+TC  286.20 286.20
+NC  257.50 257.50
+AL  clustalw
+IT  subfamily
+EN  cyclic peptide transporter
+TP  TIGRFAMs
+CC  This model describes cyclic peptide transporter in bacteria. Bacteria have elaborate pathways for the production of toxins and secondary metabolites. Many such compounds, including syringomycin and pyoverdine are synthesized on non-ribosomal templates consisting of a multienzyme complex. On several occasions the proteins of the complex and transporter protein are present on the same operon. Often times these compounds cross the biological membrane by specific transporters. Syringomycin is an amphipathic, cylclic lipodepsipeptide when inserted into host causes formation of channels, permeable to variety of cations. On the other hand, pyoverdine is a cyclic octa-peptidyl dihydroxyquinoline, which is efficient in sequestering iron for uptake.

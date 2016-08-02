@@ -1,0 +1,15 @@
+ID  holin_BlyA
+AC  TIGR01606
+DE  holin, BlyA family
+AU  Haft DH
+TC  52.85 52.85
+NC  44.00 44.00
+AL  clustalw
+IT  equivalog
+EN  holin, BlyA family
+TP  TIGRFAMs
+CC  This family represents a BlyA, a small holin found in Borrelia circular plasmids that prove to be temperate phage. This protein was previously proposed to be an hemolysin. BlyA is small (67 residues) and contains two largely hydrophobic helices and a highly charged C-terminus.
+RM 11073925
+RT  Characterization of Borrelia burgdorferi BlyA and BlyB proteins: a prophage-encoded holin-like system.
+RA  Damman CJ, Eggers CH, Samuels DS, Oliver DB.
+RL  J Bacteriol 2000 Dec;182(23):6791-7

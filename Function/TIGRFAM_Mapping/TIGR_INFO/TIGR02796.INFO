@@ -1,0 +1,13 @@
+ID  tolQ
+AC  TIGR02796
+DE  protein TolQ
+AU  Haft DH
+TC  221.00 221.00
+NC  201.15 201.15
+AL  clustalw_manual
+IT  equivalog
+EN  TolQ protein
+GS  tolQ
+TR  2.C.1.2
+TP  TIGRFAMs
+CC  TolQ is one of the essential components of the Tol-Pal system. Together with TolR, it harnesses protonmotive force to energize TolA, which spans the periplasm to reach the complex of TolB and Pal at the outer member. The tol-pal system proves to be important for maintaining outer membrane integrity. Gene pairs similar to the TolQ and TolR gene pair often number several per genome, but this model describes specificially TolQ per se, as found in tol-pal operons. A close homolog, excluded from this model, is ExbB of the ExbB/ExbD/TonB protein complex, which powers transport of siderophores and vitamin B12 across the bacterial outer membrane.  The Tol-Pal system is exploited by colicin and filamentous phage DNA to enter the cell. It is also implicated in pathogenesis in several bacterial species

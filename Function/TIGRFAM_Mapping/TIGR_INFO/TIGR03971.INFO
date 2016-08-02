@@ -1,0 +1,17 @@
+ID  SDR_subfam_1
+AC  TIGR03971
+DE  SDR family mycofactocin-dependent oxidoreductase
+AU  Haft DH
+TC  300.00 300.00
+NC  295.00 295.00
+AL  muscle_manual
+IT  subfamily
+EN  SDR family mycofactocin-dependent oxidoreductase
+EC  1.1.99.-
+TP  TIGRFAMs
+CC  Members of this protein subfamily are putative oxidoreductases belonging to the larger SDR family. All members occur in genomes that encode a cassette for the biosynthesis of mycofactocin, a proposed electron carrier of a novel redox pool. Characterized members of this family are described as NDMA-dependent, meaning that a blue aniline dye serving as an artificial electron acceptor is required for members of this family to cycle in vitro, since the bound NAD residue is not exchangeable. See EC 1.1.99.36.
+RN  [1]
+RM  PMID:21223593 
+RT  Bioinformatic evidence for a widely distributed, ribosomally produced electron carrier precursor, its maturation proteins, and its nicotinoprotein redox partners. 
+RA  Haft DH 
+RL  BMC Genomics. 2011 Jan 11;12(1):21.

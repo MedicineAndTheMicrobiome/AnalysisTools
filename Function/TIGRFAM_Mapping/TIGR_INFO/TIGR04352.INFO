@@ -1,0 +1,11 @@
+ID  HprK_rel_A
+AC  TIGR04352
+DE  HprK-related kinase A
+AU  Haft DH
+TC  200.00 200.00
+NC  140.00 140.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  HprK-related kinase A
+TP  TIGRFAMs
+CC  A number of protein families resemble HPr kinase (see TIGR00679) but do not belong to that system. They include this family, which appears instead to be the marker for a different type of gene neighborhood, in which one of the conserved neighboring proteins resembles (but is distinct from) PqqD.

@@ -1,0 +1,12 @@
+ID  mycofact_OYE_1
+AC  TIGR03996
+DE  mycofactocin system FadH/OYE family oxidoreductase 1
+AU  Haft DH
+TC  627.90 627.90
+NC  600.20 600.20
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  mycofactocin system FadH/OYE family oxidoreductase 1
+EC  1.-.-.-
+TP  TIGRFAMs
+CC  The yeast protein called old yellow enzyme and FadH from Escherichia coli (2,4-dienoyl CoA reductase) are enzymes with 4Fe-4S, FMN, and FAD prosthetic groups, and interact with NADPH as well as substrate. Members of this related protein family occur in the vicinity of the putative mycofactocin biosynthesis operon in a number of Actinobacteria such as Frankia sp. and Rhodococcus sp. The function of this oxidoreductase is unknown.

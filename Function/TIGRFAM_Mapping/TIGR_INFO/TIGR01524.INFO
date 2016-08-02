@@ -1,0 +1,25 @@
+ID  ATPase-IIIB_Mg
+AC  TIGR01524
+DE  magnesium-translocating P-type ATPase
+AU  Selengut J
+TC  610.75 610.75
+NC  563.35 563.35
+AL  clustalw
+IT  equivalog
+EN  magnesium-translocating P-type ATPase
+GS  mgtA
+EC  3.6.3.2
+TR  3.A.3.4.1
+TP  TIGRFAMs
+CC  This HMM describes the magnesium translocating P-type ATPase found in a limited number of bacterial species and best described in Salmonella typhimurium, which contains two isoforms [1].  These transporters are active in low external Mg2+ concentrations and pump the ion into the cytoplasm.
+CC  The magnesium ATPases have been classified as type IIIB by a phylogenetic analysis [2].
+RN  [1]
+RM  PMID: 1328179
+RT  MgtA and MgtB: prokaryotic P-type ATPases that mediate Mg2+ influx.
+RA  Maguire ME.
+RL  J Bioenerg Biomembr 1992 Jun;24(3):319-28
+RN  [2]
+RM  PMID:9419228
+RT  Evolution of Substrate Specificities in the P-type ATPase Superfamily.
+RA  Axelsen KB, Palmgren, MG.
+RL  J Mol Evol. 1998 Jan; 46(1): 84-101.

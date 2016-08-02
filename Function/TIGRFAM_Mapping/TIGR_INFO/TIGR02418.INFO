@@ -1,0 +1,13 @@
+ID  acolac_catab
+AC  TIGR02418
+DE  acetolactate synthase, catabolic
+AU  Haft DH
+TC  551.10 551.10
+NC  509.25 509.25
+AL  clustalw
+IT  equivalog
+EN  acetolactate synthase, catabolic
+GS  alsS
+EC  2.2.1.6
+TP  TIGRFAMs
+CC  Acetolactate synthase (EC 2.2.1.6) combines two molecules of pyruvate to yield 2-acetolactate with the release of CO2. This reaction may be involved in either valine biosynthesis (biosynthetic) or conversion of pyruvate to acetoin and possibly to 2,3-butanediol (catabolic). The biosynthetic type, described by TIGR00118, is also capable of forming  acetohydroxybutyrate from pyruvate and 2-oxobutyrate for isoleucine biosynthesis. The family described here, part of the same larger family of thiamine pyrophosphate-dependent enzymes (PF00205, PF02776) is the catabolic form, generally found associated with in species with acetolactate decarboxylase and usually found in the same operon. The model may not encompass all catabolic acetolactate synthases, but rather one particular clade in the larger TPP-dependent enzyme family.

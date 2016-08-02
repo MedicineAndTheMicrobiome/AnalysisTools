@@ -1,0 +1,17 @@
+ID  betaine_BetI
+AC  TIGR03384
+DE  transcriptional repressor BetI
+AU  Haft DH
+TC  201.30 201.30
+NC  127.70 127.70
+AL  muscle_manual
+IT  equivalog
+EN  transcriptional repressor BetI
+GS  betI
+TP  TIGRFAMs
+CC  BetI is a DNA-binding transcriptional repressor of the bet (betaine) regulon. In sequence, it is related to TetR (PF00440). Choline, through BetI, induces the expression of the betaine biosynthesis genes betA and betB by derepression. The choline porter gene betT is also part of this regulon in Escherichia coli. Note that a different transcriptional regulator, ArcA, controls the expression of bet regulon genes in response to oxygen, as BetA is an oxygen-dependent enzyme.
+RN  [1]
+RM  PMID: 9141699
+RT  Molecular characterization of the bet genes encoding glycine betaine synthesis in Sinorhizobium meliloti 102F34.
+RA  Pocard JA, Vincent N, Boncompagni E, Smith LT, Poggi MC, Le Rudulier D
+RL  Microbiology. 1997 Apr;143 ( Pt 4):1369-79.

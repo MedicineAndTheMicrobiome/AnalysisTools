@@ -1,0 +1,15 @@
+ID  TIGR00481
+AC  TIGR00481
+DE  Raf kinase inhibitor-like protein, YbhB/YbcL family
+AU  Anolik RT, Richardson DL, Haft DH
+TC  57.75 57.75
+NC  51.00 51.00
+AL  clustalw
+IT  hypoth_equivalog
+EN  Raf kinase inhibitor-like protein, YbhB/YbcL family
+TP  TIGRFAMs
+RN  [1]
+RM  PMID:11439028
+RT  Crystal structures of YBHB and YBCL from Escherichia coli, two bacterial homologues to a Raf kinase inhibitor protein.
+RA  Serre L, Pereira de Jesus K, Zelwer C, Bureaud N, Schoentgen F, Benedetti H
+RL  J Mol Biol. 2001 Jul 13;310(3):617-34.

@@ -1,0 +1,17 @@
+ID  RelE_StbE
+AC  TIGR02385
+DE  addiction module toxin, RelE/StbE family
+AU  Haft DH
+TC  27.90 27.90
+NC  27.00 27.00
+AL  clustalw_manual
+IT  subfamily
+EN  addiction module toxin, RelE/StbE family
+TP  TIGRFAMs
+CC  Plasmids may be maintained stably in bacterial populations through the action of addiction modules, in which a toxin and antidote are encoded in a cassette on the plasmid. In any daughter cell that lacks the plasmid, the toxin persists and is lethal after the antidote protein is depleted. Toxin/antitoxin pairs are also found on main chromosomes, and likely represent selfish DNA. Sequences in the seed for this alignment all are found adjacent to RelB/DinJ family antitoxin genes (TIGR02384), as are most genes found by the resulting model. StbE from Morganella morganii plasmid R485 shows typical behaviour for an addiction module toxin. It cannot be cloned without its partner (the antitoxin), whereas its partner cannot confer plasmid stability without StbE.
+DR  PFAM; PF05016; Plasmid stabilization system protein
+RN  [1]
+RM  9829958
+RT  A family of stability determinants in pathogenic bacteria.
+RA  Hayes F.
+RL  J Bacteriol. 1998 Dec;180(23):6415-8.

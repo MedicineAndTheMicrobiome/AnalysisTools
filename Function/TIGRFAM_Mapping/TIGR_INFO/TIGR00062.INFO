@@ -1,0 +1,13 @@
+ID  L27
+AC  TIGR00062
+DE  ribosomal protein L27
+AU  Haft DH
+TC  90.35 90.35
+NC  46.50 46.50
+AL  clustalw
+IT  equivalog
+EN  ribosomal protein L27
+GS  rpmA
+TP  TIGRFAMs
+CC  Eubacterial, chloroplast, and mitochondrial. Mitochondrial members have an additional C-terminal domain.
+DR  HAMAP; MF_00539; 522 of 534

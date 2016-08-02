@@ -1,0 +1,12 @@
+ID  MTase_LIC12133
+AC  TIGR04325
+DE  putative methyltransferase, LIC12133 family
+AU  Haft DH
+TC  80.00 80.00
+NC  40.00 40.00
+AL  muscle_manual
+IT  subfamily
+EN  putative methyltransferase, LIC12133 family
+EC  2.1.1.-
+TP  TIGRFAMs
+CC  Members of this family tend to occur next to glycosyltransferases and other characteristic enzymes of O-antigen biosynthetic regions. The founding member is LIC12133 from Leptospira interrogans serovar Copenhageni. PSI-BLAST reveals distant homology to known SAM-dependent methyltransferases, as in Pfam family PF13489.

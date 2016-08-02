@@ -1,0 +1,16 @@
+ID  methan_mark_15
+AC  TIGR03286
+DE  putative methanogenesis marker protein 15
+AU  Haft DH
+TC  455.75 455.75
+NC  275.55 275.55
+AL  muscle
+IT  hypoth_equivalog
+EN  putative methanogenesis marker protein 15
+TP  TIGRFAMs
+CC  Members of this protein family, to date, are found in a completed prokaryotic genome if and only if the species is one of the archaeal methanogens. The exact function is unknown, but likely is linked to methanogenesis or a process closely connected to it. Related proteins include the BadF/BadG/BcrA/BcrD ATPase family (PF01869), which includes an activator for (R)-2-hydroxyglutaryl-CoA dehydratase.
+RN  [1]
+RM  PMID:22070167 
+RT  ProPhylo: partial phylogenetic profiling to guide protein family construction and assignment of biological process. 
+RA  Basu MK, Selengut JD, Haft DH 
+RL  BMC Bioinformatics. 2011 Nov 9;12:434.

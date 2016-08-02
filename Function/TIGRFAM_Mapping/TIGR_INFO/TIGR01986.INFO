@@ -1,0 +1,12 @@
+ID  glut_syn_euk
+AC  TIGR01986
+DE  glutathione synthetase
+AU  Haft DH
+TC  329.80 329.80
+NC  163.05 163.05
+AL  clustalw
+IT  equivalog
+EN  glutathione synthetase, eukaryotic
+EC  6.3.2.3
+TP  TIGRFAMs
+CC  This HMM represents the eukaryotic glutathione synthetase, which shows little resemblance to the analogous enzyme of Gram-negative bacteria (TIGR01380). In the Kinetoplastida, trypanothione replaces glutathione, but can be made from glutathione; a sequence from Leishmania is not included in the seed, is highly divergent, and therefore scores between the trusted and noise cutoffs.

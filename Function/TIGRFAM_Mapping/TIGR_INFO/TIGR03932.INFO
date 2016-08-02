@@ -1,0 +1,17 @@
+ID  PIA_icaD
+AC  TIGR03932
+DE  intracellular adhesion protein D
+AU  Haft DH
+TC  69.05 69.05
+NC  44.30 44.30
+AL  muscle_manual
+IT  equivalog
+EN  intracellular adhesion protein D
+GS  icaD
+TP  TIGRFAMs
+CC  Members of this protein family are IcaD (intracellular adhesion protein D), which with catalytic subunit IcaA forms  an N-acetylglucosaminyltransferase. In the absence of IcaC, this enzyme forms N-acetylglucosamine oligomers up to 20 in length.
+RN  [1]
+RM  PMID:9660830
+RT  Characterization of the N-acetylglucosaminyltransferase activity involved in the biosynthesis of the Staphylococcus epidermidis polysaccharide intercellular adhesin.
+RA  Gerke C, Kraft A, Sussmuth R, Schweitzer O, Gotz F
+RL  J Biol Chem. 1998 Jul 17;273(29):18586-93.

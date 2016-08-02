@@ -1,0 +1,14 @@
+ID  phr2
+AC  TIGR00591
+DE  deoxyribodipyrimidine photolyase
+AU  Loftus BJ, Eisen JA
+TC  550.05 550.05
+NC  251.50 251.50
+IT  superfamily
+EN  photolyase PhrII
+GS  phrB
+EC  4.1.99.3
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are DNA-photolyases used for the direct repair of UV irradiation induced DNA damage.  Some repair 6-4 photoproducts while others repair cyclobutane pyrimidine dimers. This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  EGAD; 138476;
+RM  95112825;

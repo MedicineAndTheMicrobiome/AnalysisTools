@@ -1,0 +1,15 @@
+ID  bcct
+AC  TIGR00842
+DE  transporter, betaine/carnitine/choline transporter (BCCT) family
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  407.55 407.55
+NC  340.30 340.30
+AL  clustalw_manual
+IT  subfamily
+EN  choline/carnitine/betaine transport
+TR  2.A.15
+TP  TIGRFAMs
+CC  The Betaine/Carnitine/Choline Transporter (BCCT) Family (TC 2.A.15)
+CC  Proteins of the BCCT family share the common functional feature of transporting molecules with a quaternary ammonium group [R-N+(CH3)3]. The BCCT family includes transporters for carnitine, choline and glycine betaine. BCCT transporters have 12 putative TMS, and are energized by pmf-driven proton symport. Some of these permeases exhibit osmosensory and osmoregulatory
+CC  properties inherent to their polypeptide chains.
+DR  HAMAP; MF_01049; 20 of 21

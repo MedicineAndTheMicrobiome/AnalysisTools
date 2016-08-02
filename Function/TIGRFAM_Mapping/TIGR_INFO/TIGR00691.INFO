@@ -1,0 +1,14 @@
+ID  spoT_relA
+AC  TIGR00691
+DE  RelA/SpoT family protein
+AU  Haft DH, Loftus BJ
+TC  499.20 499.20
+NC  337.65 337.65
+AL  clustalw
+IT  subfamily
+EN  (p)ppGpp synthetase, RelA/SpoT family
+TP  TIGRFAMs
+CC  The functions of E. coli RelA and SpoT differ somewhat. RelA (EC 2.7.6.5) produces pppGpp (or ppGpp) from ATP and GTP (or GDP). SpoT (EC 3.1.7.2) degrades ppGpp, but may also act as a secondary ppGpp synthetase. The two proteins are strongly similar. In many species, a single homolog to SpoT and RelA appears reponsible for both ppGpp synthesis and ppGpp degradation.
+CC  (p)ppGpp is a regulatory metabolite of the stringent response, but appears also to be involved in antibiotic biosynthesis in some species.
+DR  ECOCYC; EG10835; relA
+DR  ECOCYC; EG10966; spoT

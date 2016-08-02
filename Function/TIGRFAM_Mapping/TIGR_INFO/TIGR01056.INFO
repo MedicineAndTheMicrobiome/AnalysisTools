@@ -1,0 +1,17 @@
+ID  topB
+AC  TIGR01056
+DE  DNA topoisomerase III
+AU  Ujwal ML, Haft DH
+TC  515.75 515.75
+NC  356.40 356.40
+AL  clustalw_manual
+IT  subfamily
+EN  DNA topoisomerase III, bacteria and conjugative plasmid
+GS  topB
+EC  5.99.1.2
+TP  TIGRFAMs
+CC  This model describes topoisomerase III from bacteria and its equivalents encoded on plasmids. The gene is designated topB if found in the bacterial chromosome, traE on conjugative plasmid RP4, etc. These enzymes are involved in the control of DNA topology. DNA topoisomerase III belongs to the type I topoisomerases, which are ATP-independent.
+RM  97382294
+RT  The traE gene of plasmid RP4 encodes a homologue of Escherichia coli DNA topoisomerase III.
+RA  Li Z, Hiasa H, Kumar U, DiGate RJ
+RL J Biol Chem 1997 Aug 1;272(31):19582-7

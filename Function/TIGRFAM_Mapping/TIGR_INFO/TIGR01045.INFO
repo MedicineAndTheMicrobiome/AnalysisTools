@@ -1,0 +1,16 @@
+ID  RPE1
+AC  TIGR01045
+DE  rickettsial palindromic element RPE1 domain
+AU  Haft DH
+TC  30.00 30.00
+NC  29.25 29.25
+AL  unknown
+IT  domain
+EN  Rickettsial palindromic element RPE1 domain
+TP  TIGRFAMs
+CC  This HMM describes protein translations of the first family described, RPE1, of Rickettsia palindromic elements (RPE). In Rickettsia conorii, 19 copies are found within protein coding regions, where they encode an insert relative to homologs from other species but do not disrupt the reading frame. Insertion is always in the same reading frame. This model finds RPE-encoded regions in several Rickettsial species and, so far, no where else.
+RM  20485642
+RT  Selfish DNA in protein-coding genes of rickettsia.
+RA  Ogata H, Audic S, Barbe V, Artiguenave F, Fournier PE, Raoult D, Claverie JM
+RL  Science 2000 Oct 13;290(5490):347-50
+DR  HAMAP; MF_02005; 1 of 47

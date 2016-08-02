@@ -1,0 +1,12 @@
+ID  heme_HutZ
+AC  TIGR04110
+DE  heme utilization protein HutZ
+AU  Haft DH
+TC  225.00 225.00
+NC  210.00 210.00
+AL  muscle_manual
+IT  equivalog
+EN  heme utilization protein HutZ
+GS  hutZ
+TP  TIGRFAMs
+CC  Members of this family are heme utilization proteins, typically designated HutZ. They are members of the PPOX family (PF01243) and, except for the lack of an N-terminal extension, are closely related to one form of heme oxidase (1.14.99.3), HugZ (TIGR04109). Members typically are found in a three-gene operon with radical SAM enzyme HutW and a protein of unknown function, HutX.

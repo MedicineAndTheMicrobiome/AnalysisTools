@@ -1,0 +1,13 @@
+ID  dctP
+AC  TIGR00787
+DE  TRAP transporter solute receptor, DctP family
+AU  Paulsen IT, Saier MH, Loftus BJ, Haft DH
+TC  175.05 175.05
+NC  154.05 154.05
+AL  clustalw_manual
+IT  subfamily
+EN  tripartite ATP-independent periplasmic transporter solute receptor, DctP family
+TR  2.A.56
+TP  TIGRFAMs
+CC  TRAP-T (Tripartite ATP-independent Periplasmic Transporter) family proteins generally consist of three components, and these systems have so far been found in Gram-negative bacteria, Gram-postive bacteria and archaea. The best characterized example is the DctPQM system of Rhodobacter capsulatus, a C4 dicarboxylate (malate, fumarate, succinate) transporter. This model represents the DctP family, one of at least three major families of extracytoplasmic solute receptor for TRAP family transporters. Other are the SnoM family (see PF03480) and TAXI (TRAP-associated extracytoplasmic immunogenic) family.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_56.html

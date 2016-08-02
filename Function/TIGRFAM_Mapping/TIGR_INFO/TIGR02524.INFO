@@ -1,0 +1,16 @@
+ID  dot_icm_DotB
+AC  TIGR02524
+DE  Dot/Icm secretion system ATPase DotB
+AU  Haft DH
+TC  463.30 463.30
+NC  230.40 230.40
+AL  clustalw
+IT  equivalog
+EN  Dot/Icm secretion system ATPase DotB
+GS  dotB
+TP  TIGRFAMs
+CC  Members of this protein family are the DotB component of Dot/Icm secretion systems, as found in obligate intracellular pathogens Legionella pneumophila and Coxiella burnetii. While this system resembles type IV secretion systems and has been called a form of type IV, the liturature now seems to favor calling this the Dot/Icm system. This family is most closely related to TraJ proteins of plasmid transfer, rather than to proteins of other type IV secretion systems.
+RM  15661013
+RT  The Legionella IcmS-IcmW protein complex is important for Dot/Icm-mediated protein translocation.
+RA  Ninio S, Zuckman-Cholon DM, Cambronne ED, Roy CR.
+RL  Mol Microbiol. 2005 Feb;55(3):912-26.

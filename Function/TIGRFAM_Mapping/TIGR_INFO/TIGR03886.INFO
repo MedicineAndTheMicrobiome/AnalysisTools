@@ -1,0 +1,12 @@
+ID  lyase_spl_fam
+AC  TIGR03886
+DE  spore photoproduct lyase family protein
+AU  Haft DH
+TC  437.55 437.55
+NC  437.30 437.30
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  spore photoproduct lyase family protein
+TP  TIGRFAMs
+CC  This uncharacterized radical SAM domain protein occurs rarely and sporadically in species that include select Alphaproteobacteria and Actinobacteria, and in Deinococcus deserti VCD115. It is a distant but full-length homolog to the Bacillus subtilis spore photoproduct lyase (spl), which monomerizes thymine dimers created as DNA damage by uv radiation.
+DR  PFAM; PF04055; radical SAM domain protein

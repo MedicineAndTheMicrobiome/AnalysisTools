@@ -1,0 +1,12 @@
+ID  fliP
+AC  TIGR01103
+DE  flagellar biosynthetic protein FliP
+AU  Ujwal ML, Haft DH, Paulsen IT
+TC  217.45 217.45
+NC  192.40 192.40
+AL  clustalw
+IT  equivalog
+EN  flagellar biosynthetic protein FliP
+GS  fliP
+TP  TIGRFAMs
+CC  This model describes bacterial flagellar biogenesis protein fliP, which is one of the genes in motility locus on the bacterial chromosome that is involved in structure and function of bacterial flagellum. It was demonstrated that mutants in fliP locus were non-flagellated and non-motile, while revertants were flagellated and motile.

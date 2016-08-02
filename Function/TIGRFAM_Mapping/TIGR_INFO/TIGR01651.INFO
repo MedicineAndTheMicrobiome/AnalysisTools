@@ -1,0 +1,36 @@
+ID  CobT
+AC  TIGR01651
+DE  cobaltochelatase, CobT subunit
+AU  Beanan M
+TC  759.05 759.05
+NC  137.60 137.60
+AL  clustalw
+IT  equivalog
+EN  cobaltochelatase, CobT subunit
+GS  cobT
+EC  6.6.1.2
+TP  TIGRFAMs
+CC  This model describes Pseudomonas denitrificans CobT gene product, which is a cobalt chelatase subunit that functions in cobalamin biosynthesis.  Cobalamin (vitamin B12) can be synthesized via several pathways, including an aerobic pathway (found in Pseudomonas denitrificans) and an anaerobic pathway (found in P. shermanii and Salmonella typhimurium).  These pathways differ in the point of cobalt insertion during corrin ring formation [1].  There are apparently a number of variations on these two pathways, where the major differences seem to be concerned with the process of ring contraction [2]. Confusion regarding the functions of enzymes found in the aerobic vs. anaerobic pathways has arisen because nonhomologous genes in these different pathways were given the same gene symbols.  Thus, cobT in the aerobic pathway (P. denitrificans) is not a homolog of cobT in the anaerobic pathway  (S. typhimurium). It should be noted that E. coli synthesizes cobalamin only when it is supplied with the precursor cobinamide, which is a complex intermediate.  Additionally, all E. coli cobalamin synthesis genes (cobU, cobS and cobT) were named after their Salmonella typhimurium homologs which function in the anaerobic cobalamin synthesis pathway [3].
+CC  This model describes the aerobic cobalamin pathway Pseudomonas denitrificans CobT gene product, which is a cobalt chelatase subunit, with a MW ~70 kDa [4].  The aerobic pathway cobalt chelatase is a heterotrimeric, ATP-dependent enzyme that catalyzes cobalt insertion during cobalamin biosynthesis.  The other two subunits are the P. denitrificans CobS (TIGR01650) and CobN (PF02514 CobN/Magnesium Chelatase) proteins. To avoid potential confusion with the nonhomologous Salmonella typhimurium/E.coli cobT gene product, the  P. denitrificans gene symbol is not used in the name of this model.
+RN  [1]
+RM  8905078
+RT  Cobalamin (coenzyme B12): synthesis and biological significance
+RA  Roth,JR, Lawrence, JG, Bobik,TA
+RL  Annu Rev Microbiol. 1996;50:137-81.
+RN  [2]
+RM  11215515
+RT  Biosynthesis of cobalamin (vitamin B12): a bacterial         conundrum
+RA  Raux E, Schubert HL, Warren MJ
+RL  Cell Mol Life Sci. 2000 Dec;57(13-14):1880-93.
+RN  [3]
+RM  7592411
+RT  The cobalamin (coenzyme B12) biosynthetic genes of Escherichia coli
+RA  Lawrence, JG, Roth JR
+RL  J Bacteriol. 1995 Nov;177(22):6371-80.
+RN  [4]
+RM  1429466
+RT  Assay, purification, and characterization of cobaltochelatase, a unique complex enzyme catalyzing cobalt insertion in hydrogenobyrinic acid
+a,c-diamide during coenzyme B12 biosynthesis in              Pseudomonas denitrificans
+RA  Debussche, L, Couder, M, Thibault, D., Cameron, B.,          Crouzet, J. Blanche, F.
+RL  Assay, purification, and characterization of                 cobaltochelatase, a unique complex enzyme catalyzing         cobalt insertion in hydrogenobyrinic acid
+a,c-diamide during coenzyme B12 biosynthesis in              Pseudomonas denitrificans

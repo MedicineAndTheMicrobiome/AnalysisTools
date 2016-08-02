@@ -1,0 +1,18 @@
+ID  ligK_PcmE
+AC  TIGR02798
+DE  4-carboxy-4-hydroxy-2-oxoadipate aldolase/oxaloacetate decarboxylase
+AU  Haft DH
+TC  304.50 304.50
+NC  215.55 215.55
+AL  clustalw
+IT  equivalog
+EN  4-carboxy-4-hydroxy-2-oxoadipate aldolase/oxaloacetate decarboxylase
+GS  ligK
+EC  4.1.-.- 4.1.1.3
+TP  TIGRFAMs
+CC  Members of this protein family 4-carboxy-4-hydroxy-2-oxoadipate aldolase, also called 4-oxalocitramalate aldolase. This enzyme of the protocatechuate 4,5-cleavage pathway converts its substrate to pyruvate plus oxaloacetate. Protocatechuate is an intermediate in many pathways for degrading aromatic compounds, including lignin, fluorene, etc. Hara, et al. showed the LigK gene was not only a 4-carboxy-4-hydroxy-2-oxoadipate aldolase but also the enzyme of the following step, oxaloacetate decarboxylase.
+RN  [1]
+RM  12486039
+RT  Characterization of the 4-carboxy-4-hydroxy-2-oxoadipate aldolase gene and operon structure of the protocatechuate 4,5-cleavage pathway genes in Sphingomonas paucimobilis SYK-6.
+RA  Hara H, Masai E, Miyauchi K, Katayama Y, Fukuda M.
+RL  J Bacteriol. 2003 Jan;185(1):41-50.

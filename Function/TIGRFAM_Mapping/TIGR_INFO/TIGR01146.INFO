@@ -1,0 +1,14 @@
+ID  ATPsyn_F1gamma
+AC  TIGR01146
+DE  ATP synthase F1, gamma subunit
+AU  Ujwal ML, Paulsen IT
+TC  194.45 194.45
+NC  58.75 58.75
+AL  clustalw
+IT  equivalog
+EN  ATP synthase, F1 gamma subunit
+GS  atpG
+EC  3.6.3.14
+TP  TIGRFAMs
+CC  This model describes the ATP synthase  gamma subunit in bacteria and its equivalents in organelles, namely, mitochondria and chloroplast. F1/F0-ATP synthase is a multisubunit, membrane associated enzyme found in bacteria and organelles of higher eukaryotes, namely, mitochondria and chloroplast. This enzyme is principally involed in the synthesis of ATP from ADP and inorganic phosphate by coupling the energy derived from the proton electrochemical gradient across the biological membrane. A brief description of this multisubunit enzyme complex: F1 and F0 represent two major clusters of subunits. The gamma subunit is the part of F1 cluster. Surrounding the gamma subunit in a cylinder-like structure are three alpha and three subunits in an alternating fashion. This is the central catalytic unit whose different conformations permit the binding of ADP and inorganic phosphate and release of ATP.
+DR  HAMAP; MF_00815; 511 of 518

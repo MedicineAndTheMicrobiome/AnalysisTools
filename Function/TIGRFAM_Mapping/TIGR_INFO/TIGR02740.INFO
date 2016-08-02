@@ -1,0 +1,16 @@
+ID  TraF-like
+AC  TIGR02740
+DE  TraF-like protein
+AU  Selengut J
+TC  232.25 232.25
+NC  183.85 183.85
+AL  clustalw
+IT  hypoth_equivalog
+EN  TraF-like protein
+TP  TIGRFAMs
+CC  This protein is related to the F-type conjugation system pilus assembly proteins TraF (TIGR02739)and TrbB (TIGR02738) both of which exhibit a thioredoxin fold [1].  The protein represented by this model has the same length and architecture as TraF, but lacks the CXXC-motif found in TrbB and believed to be responsible for the disulfide isomerase activity of that protein.
+RN  [1]
+RM  PMID: 16321931
+RA  Elton TC, Holland SJ, Frost LS, Hazes B.
+RT  F-like type IV secretion systems encode proteins with thioredoxin folds that are putative DsbC homologues.
+RL  J Bacteriol. 2005 Dec;187(24):8267-77.

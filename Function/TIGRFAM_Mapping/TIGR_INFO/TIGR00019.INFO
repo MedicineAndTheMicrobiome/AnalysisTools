@@ -1,0 +1,13 @@
+ID  prfA
+AC  TIGR00019
+DE  peptide chain release factor 1
+AU  Haft DH
+TC  423.25 423.25
+NC  330.00 330.00
+AL  msa_tigr_manual
+IT  equivalog
+EN  peptide chain release factor 1
+GS  prfA
+TP  TIGRFAMs
+CC  This HMM describes peptide chain release factor 1 (PrfA, RF-1), and excludes the related peptide chain release factor 2 (PrfB, RF-2). RF-1 helps recognize and terminate translation at UAA and UAG stop codons. The mitochondrial release factors are prfA-like, although not included above the trusted cutoff for this model. RF-1 does not have a translational frameshift.
+DR  HAMAP; MF_00093; 498 of 505

@@ -1,0 +1,12 @@
+ID  APS_reduc
+AC  TIGR00424
+DE  5'-adenylylsulfate reductase, thioredoxin-independent
+AU  Haft DH
+TC  553.20 553.20
+NC  347.35 347.35
+AL  clustalw
+IT  equivalog
+EN  5'-adenylylsulfate reductase, thioredoxin-independent
+TP  TIGRFAMs
+CC  This enzyme, involved in the assimilation of inorganic sulfate, is closely related to the thioredoxin-dependent PAPS reductase of Bacteria (CysH) and Saccharomyces cerevisiae. However, it has its own C-terminal thioredoxin-like domain and is not thioredoxin-dependent. Also, it has a substrate preference for 5'-adenylylsulfate (APS) over 3'-phosphoadenylylsulfate (PAPS) so the pathway does not require an APS kinase (CysC) to convert APS to PAPS. Arabidopsis thaliana appears to have three isozymes, all able to complement E. coli CysH mutants (even in backgrounds lacking thioredoxin or APS kinase) but likely localized to different compartments in Arabidopsis.
+RM  97075174

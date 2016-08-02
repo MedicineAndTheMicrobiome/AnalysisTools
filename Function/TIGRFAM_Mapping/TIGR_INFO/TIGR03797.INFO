@@ -1,0 +1,11 @@
+ID  NHLM_micro_ABC2
+AC  TIGR03797
+DE  NHLM bacteriocin system ABC transporter, ATP-binding protein
+AU  Haft DH
+TC  709.40 709.40
+NC  613.40 613.40
+AL  muscle_manual
+IT  equivalog
+EN  NHLM bacteriocin system ABC transporter, ATP-binding protein
+TP  TIGRFAMs
+CC  Members of this protein family are ABC transporter ATP-binding subunits, part of a three-gene putative bacteriocin transport operon. The other subunits include another ATP-binding subunit (TIGR03796), which has an N-terminal leader sequence cleavage domain, and an HlyD homolog (TIGR03794). In a number of genomes, members of protein families related to nitrile hydratase alpha subunit or to nif11 have undergone paralogous family expansions, with members possessing a putative bacteriocin cleavage region ending with a classic Gly-Gly motif. Those sets of putative bacteriocins, members of this protein family and its partners TIGR03794 and TIGR03796, and cyclodehydratase/docking scaffold fusion proteins of thiazole/oxazole biosynthesis frequently show correlated species distribution and co-clustering within many of those genomes.

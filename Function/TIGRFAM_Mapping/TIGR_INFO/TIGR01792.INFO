@@ -1,0 +1,14 @@
+ID  urease_alph
+AC  TIGR01792
+DE  urease, alpha subunit
+AU  Haft DH
+TC  680.00 680.00
+NC  212.95 212.95
+AL  clustalw_manual
+IT  equivalog
+EN  urease, alpha subunit
+GS  ureC
+EC  3.5.1.5
+TP  TIGRFAMs
+CC  This HMM describes the urease alpha subunit UreC (designated beta or B chain, UreB in Helicobacter species). Accessory proteins for incorporation of the nickel cofactor are usually found in addition to the urease alpha, beta, and gamma subunits. The trusted cutoff is set above the scores of many reported fragments and of a putative second urease alpha chain in Streptomyces coelicolor.
+DR  HAMAP; MF_01953; 204 of 213

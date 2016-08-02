@@ -1,0 +1,18 @@
+ID  TIGR00726
+AC  TIGR00726
+DE  YfiH family protein
+AU  Haft DH
+TC  141.15 141.15
+NC  94.35 94.35
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  YfiH family protein
+TP  TIGRFAMs
+CC  PSI-BLAST converges on members of this family of uncharacterized bacterial proteins and shows no significant similarity to any characterized protein. No completed genome to date has two members. Members of the family have been crystallized but the function is unknown.
+RN  [1]
+RM  PMID:16498617
+RT  Crystal structure of hypothetical protein YfiH from Shigella flexneri at 2 A resolution.
+RA  Kim Y, Maltseva N, Dementieva I, Collart F, Holzle D, Joachimiak A
+RL  Proteins. 2006 Jun 1;63(4):1097-101.
+DR  InterPro; IPR003730
+DR  PFAM; PF02578

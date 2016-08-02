@@ -1,0 +1,18 @@
+ID  glycerol3P_GlpC
+AC  TIGR03379
+DE  glycerol-3-phosphate dehydrogenase, anaerobic, C subunit
+AU  Haft DH
+TC  279.90 279.90
+NC  222.45 222.45
+AL  muscle_manual
+IT  equivalog
+EN  glycerol-3-phosphate dehydrogenase, anaerobic, C subunit
+GS  glpC
+EC  1.1.5.3
+TP  TIGRFAMs
+CC  Members of this protein family are the membrane-anchoring, non-catalytic C subunit, product of the glpC gene, of a three-subunit, FAD-dependent, anaerobic glycerol-3-phosphate dehydrogenase. GlpC lasks classical hydrophobic transmembrane helices; Cole, et al suggest interaction with the membrane may involve amphipathic helices. GlcC has conserved Cys-containing motifs suggestive of iron-sulfur binding. This complex is found mostly in Escherichia coli and closely related species.
+RN  [1]
+RM  PMID: 3286606
+RT  Nucleotide sequence and gene-polypeptide relationships of the glpABC operon encoding the anaerobic sn-glycerol-3-phosphate dehydrogenase of Escherichia coli K-12.
+RA  Cole ST, Eiglmeier K, Ahmed S, Honore N, Elmes L, Anderson WF, Weiner JH
+RL  J Bacteriol. 1988 Jun;170(6):2448-56.

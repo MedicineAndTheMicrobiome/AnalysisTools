@@ -1,0 +1,13 @@
+ID  Histidinol-ppas
+AC  TIGR01656
+DE  histidinol-phosphate phosphatase domain
+AU  Selengut J
+TC  84.15 84.15
+NC  62.40 62.40
+AL  clustalw
+IT  subfamily_domain
+EN  histidinol-phosphate phosphatase family domain
+TP  TIGRFAMs
+CC  This domain is found in authentic histidinol-phosphate phosphatases which are sometimes found as stand-alone entities and sometimes as fusions with imidazoleglycerol-phosphate dehydratase (TIGR01261).  Additionally, a family of proteins including YaeD from E. coli (TIGR00213) and various other proteins are closely related but may not have the same substrate specificity.
+CC  This domain is a member of the haloacid-dehalogenase (HAD) superfamily of aspartate-nucleophile hydrolases.  This superfamily is distinguished by the presence of three motifs: an N-terminal motif containing the nucleophilic aspartate, a central motif containing an conserved serine or threonine, and a C-terminal motif containing a conserved lysine (or arginine) and conserved aspartates.  More specifically, the domian modelled here is a member of subfamily III of the HAD-superfamily by virtue of lacking a "capping" domain in either of the two common positions, between motifs 1 and 2, or between motifs 2 and 3.
+DR  HAMAP; MF_01022; 53 of 53

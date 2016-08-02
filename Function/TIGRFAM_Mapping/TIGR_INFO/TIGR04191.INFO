@@ -1,0 +1,27 @@
+ID  YphP_YqiW
+AC  TIGR04191
+DE  putative bacilliredoxin, YphP/YqiW family
+AU  Haft DH
+TC  100.00 100.00
+NC  25.00 25.00
+AL  muscle_manual
+IT  subfamily
+EN  putative bacilliredoxin, YphP/YqiW family
+EC  1.-.-.-
+TP  TIGRFAMs
+CC  This protein family is one of several observed in species that express bacillithiol, an analog of glutathione and mycothiol. Rather than being involved in bacillithiol biosynthesis, members are likely to act in bacillithiol-dependent processes. A suggested term is bacilliredoxin (a glutaredoxin-like thiol-dependent oxidoreductase), and a suggested role of YphP is de-bacillithiolation - removing bacillithiol that became linked to protein thiols under oxidative stress. An older description of YphP as a disulphide isomerase therefore may be wrong.
+RN  [1]
+RM  PMID:21749987 
+RT  S-bacillithiolation protects against hypochlorite stress in Bacillus subtilis as revealed by transcriptomics and redox proteomics. 
+RA  Chi BK, Gronau K, Mader U, Hessling B, Becher D, Antelmann H 
+RL  Mol Cell Proteomics. 2011 Nov;10(11):M111.009506. doi: 10.1074/mcp.M111.009506.
+RN  [2]
+RM  PMID:20712413 
+RT  Bacillithiol, a new player in bacterial redox homeostasis. 
+RA  Helmann JD 
+RL  Antioxid Redox Signal. 2011 Jul 1;15(1):123-33. doi: 10.1089/ars.2010.3562.
+RN  [3]
+RM  PMID:22938038 
+RT  S-bacillithiolation protects conserved and essential proteins against hypochlorite stress in firmicutes bacteria. 
+RA  Chi BK, Roberts AA, Huyen TT, Basell K, Becher D, Albrecht D, Hamilton CJ, Antelmann H 
+RL  Antioxid Redox Signal. 2013 Apr 10;18(11):1273-95. doi: 10.1089/ars.2012.4686.

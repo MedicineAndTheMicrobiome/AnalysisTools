@@ -1,0 +1,16 @@
+ID  reactive_PduG
+AC  TIGR04491
+DE  diol dehydratase reactivase alpha subunit
+AU  Haft DH
+TC  400.00 400.00
+NC  100.00 100.00
+AL  muscle_manual
+IT  equivalog
+EN  diol dehydratase reactivase alpha subunit
+TP  TIGRFAMs
+CC  Members of this family are the alpha (large) subunit of the alpha-2/beta-2 tetrameric enzyme that reactivates B12-dependent trimeric diol dehydratases (1,2-propanediol dehydratase, glycerol dehydratase). Note that the beta subunit of the reactivase is homologous to the beta (medium) subunit of the diol dehydratase. The reactivase catalyzes the exchange of chemically inactivated B-12 for active B12. This model excludes homologs from Mycobacterium (e.g. M. smegmatis), where the several paralogous forms of the dehydratase occur and are exceptional also by not being found in a carboxysome-like microcompartment.
+RN  [1]
+RM  PMID:21040475 
+RT  Diol dehydratase-reactivating factor is a reactivase--evidence for multiple turnovers and subunit swapping with diol dehydratase. 
+RA  Mori K, Hosokawa Y, Yoshinaga T, Toraya T 
+RL  FEBS J. 2010 Dec;277(23):4931-43. doi: 10.1111/j.1742-4658.2010.07898.x.

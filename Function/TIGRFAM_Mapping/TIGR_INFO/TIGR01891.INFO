@@ -1,0 +1,11 @@
+ID  amidohydrolases
+AC  TIGR01891
+DE  amidohydrolase
+AU  Selengut J
+TC  153.75 153.75
+NC  106.20 106.20
+AL  clustalw
+IT  subfamily
+EN  amidohydrolase
+TP  TIGRFAMs
+CC  This model represents a subfamily of amidohydrolases which are a subset of those sequences detected by PF01546.  Included within this group are hydrolases of hippurate (N-benzylglycine), indoleacetic acid (IAA) N-conjugates of amino acids, N-acetyl-L-amino acids and aminobenzoylglutamate.  These hydrolases are of the carboxypeptidase-type, most likely utilizing a zinc ion in the active site.

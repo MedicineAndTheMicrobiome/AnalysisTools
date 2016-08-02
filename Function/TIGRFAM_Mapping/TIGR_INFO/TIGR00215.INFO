@@ -1,0 +1,16 @@
+ID  lpxB
+AC  TIGR00215
+DE  lipid-A-disaccharide synthase
+AU  Loftus BJ
+TC  190.25 190.25
+NC  176.15 176.15
+AL  clustalw
+IT  equivalog
+EN  lipid-A-disaccharide synthase
+GS  lpxB
+EC  2.4.1.182
+TP  TIGRFAMs
+CC  Lipid-A precursor biosynthesis producing lipid A disaccharide in a condensation reaction. transcribed as part of an operon including lpxA
+DR  Swissprot; P10441;
+DR  ECOCYC; EG10546; 
+DR  HAMAP; MF_00392; 180 of 185

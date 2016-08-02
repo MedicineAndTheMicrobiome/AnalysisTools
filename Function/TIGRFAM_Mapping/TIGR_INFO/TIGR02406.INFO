@@ -1,0 +1,13 @@
+ID  ectoine_EctA
+AC  TIGR02406
+DE  diaminobutyrate acetyltransferase
+AU  Haft DH
+TC  120.60 120.60
+NC  63.05 63.05
+AL  clustalw_manual
+IT  equivalog
+EN  diaminobutyrate acetyltransferase
+GS  ectA
+EC  2.3.1.178
+TP  TIGRFAMs
+CC  This enzyme family is the EctA of ectoine biosynthesis. Ectoine is a compatible solute, analagous to trehalose, betaines, etc., found often in halotolerant organisms. EctA is L-2,4-diaminobutyric acid acetyltransferase, also called DABA acetyltransferase.

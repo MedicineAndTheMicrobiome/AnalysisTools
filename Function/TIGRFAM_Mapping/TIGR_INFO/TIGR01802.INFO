@@ -1,0 +1,12 @@
+ID  CM_pl-yst
+AC  TIGR01802
+DE  chorismate mutase
+AU  Selengut J
+TC  170.90 170.90
+NC  89.65 89.65
+AL  clustalw
+IT  equivalog
+EN  monofunctional chorismate mutase, eukaryotic type
+EC  5.4.99.5
+TP  TIGRFAMs
+CC  This model represents the plant and yeast (plastidic) chorismate mutase.  These CM's are distinct from other forms by the presence of an extended regulatory domain.

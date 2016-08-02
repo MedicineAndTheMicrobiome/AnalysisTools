@@ -1,0 +1,37 @@
+ID  kdpB
+AC  TIGR01497
+DE  K+-transporting ATPase, B subunit
+AU  Selengut J, Beanan M
+TC  527.90 527.90
+NC  398.75 398.75
+AL  clustalw
+IT  equivalog
+EN  K+-transporting ATPase, B subunit
+GS  kdpB
+EC  3.6.3.12
+TR  3.A.3.7.1
+TP  TIGRFAMs
+CC  This model describes the P-type ATPase subunit of the complex responsible for translocating potassium ions across biological membranes in microbes.  In E. coli and other species, this complex consists of the proteins KdpA, KdpB, KdpC and KdpF.  KdpB is the ATPase subunit, while KdpA is the potassium-ion translocating subunit[1].  The function of KdpC is unclear, although cit has been suggested to couple the ATPase subunit to the ion-translocating subunit [2], while KdpF serves to stabilize the complex [3].
+CC  The potassium P-type ATPases have been characterized as Type IA based on a phylogenetic analysis which places this clade closest to the heavy-metal translocating ATPases (Type IB) [4].  Others place this clade closer to the Na+/K+ antiporter type (Type IIC) based on physical characteristics [1].
+CC  This model is very clear-cut, with a strong break between trusted hits and noise.  All members of the seed alignment, from Clostridium, Anabaena and E. coli are in the characterized table.  One sequence above trusted, OMNI|NTL01TA01282, is apparently mis-annotated in the primary literature, but properly annotated by TIGR.
+RN [1]
+RM PMID: 1970651 
+RT The bacterial Kdp K(+)-ATPase and its relation to other transport ATPases, such as the Na+/K(+)- and Ca2(+)-ATPases in higher organisms.
+RA Epstein W, Walderhaug MO, Polarek JW, Hesse JE, Dorus E, Daniel JM.
+RL Philos Trans R Soc Lond B Biol Sci 1990 Jan 30;326(1236):479-86; discussion 486-7
+RN [2]
+RM PMID: 9858692 
+RT Assembly of the Kdp complex, the multi-subunit K+-transport ATPase of Escherichia coli.
+RA Gassel M, Siebers A, Epstein W, Altendorf K.
+RL Biochim Biophys Acta 1998 Dec 9;1415(1):77-84
+RN [3]
+RM PMID: 10608856 
+RT The KdpF subunit is part of the K(+)-translocating Kdp complex of Escherichia coli and is responsible for stabilization of the complex in vitro.
+RA Gassel M, Mollenkamp T, Puppe W, Altendorf K.
+RL J Biol Chem. 1999 Dec 31;274(53):37901-7.
+RN [4]
+RM PMID:9419228
+RT Evolution of Substrate Specificities in the P-type ATPase Superfamily.
+RA Axelsen KB, Palmgren, MG.
+RL J Mol Evol. 1998 Jan; 46(1): 84-101.
+DR  HAMAP; MF_00285; 77 of 78

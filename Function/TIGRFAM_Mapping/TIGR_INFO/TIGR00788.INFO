@@ -1,0 +1,14 @@
+ID  fbt
+AC  TIGR00788
+DE  folate/biopterin transporter
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  216.40 216.40
+NC  204.55 204.55
+AL  clustalw_manual
+IT  subfamily
+EN  folate/biopterin transporter
+GS  fbt
+TR  2.A.71
+TP  TIGRFAMs
+CC  The Folate-Biopterin Transporter (FBT) Family (TC 2.A.71)
+CC  The only functionally characterized members of the family are from protozoa and include FT1, the major folate transporter in Leishmania, and BT1, the Leishmania biopterin/folate transporter. A related protein in Trypanosoma brucei, ESAGIO, shows weak folate/biopterin transport activity.

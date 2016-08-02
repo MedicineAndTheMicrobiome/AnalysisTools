@@ -1,0 +1,17 @@
+ID  ATP_synt_epsi
+AC  TIGR01216
+DE  ATP synthase F1, epsilon subunit
+AU  Haft DH
+TC  67.25 67.25
+NC  62.35 62.35
+AL  clustalw_manual
+IT  equivalog
+EN  ATP synthase, F1 epsilon subunit (delta in mitochondria)
+GS  atpC
+EC  3.6.3.14
+TP  TIGRFAMs
+CC  This HMM describes one of the five types of subunits in the F1 part of F1/F0 ATP synthases. Members of this family are designated epsilon in bacterial and chloroplast systems but designated delta in mitochondria, where the counterpart of the bacterial delta subunit is designated OSCP. In a few cases (Propionigenium modestum, Acetobacterium woodii) scoring above the trusted cutoff and designated here as exceptions, Na+ replaces H+ for translocation.
+DR  PFAM; PF00401; ATP synthase, Delta/Epsilon chain
+DR  EXCEPTION; SP|P29709; sodium-translocating ATP synthase, F1 epsilon chain; Propionigenium modestum
+DR  EXCEPTION; SP|P50009; sodium-translocating ATP synthase, F1 epsilon chain; Acetobacterium woodii
+DR  HAMAP; MF_00530; 539 of 553

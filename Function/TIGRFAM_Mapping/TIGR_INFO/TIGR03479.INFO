@@ -1,0 +1,16 @@
+ID  DMSO_red_II_alp
+AC  TIGR03479
+DE  DMSO reductase family type II enzyme, molybdopterin subunit
+AU  Haft DH
+TC  984.75 984.75
+NC  559.05 559.05
+AL  muscle_manual
+IT  subfamily
+EN  DMSO reductase family type II enzyme, molybdopterin subunit
+TP  TIGRFAMs
+CC  This model represents the molybdopterin subunit, typically called the alpha subunit, of various proteins that also contain an iron-sulfur subunit and a heme b subunit. The group includes two distinct but very closely related periplasmic proteins of anaerobic respiration, selenate reductase and chlorate reductase. Other members of this family include  dimethyl sulphide dehydrogenase, ethylbenzene dehydrogenase, and an archaeal respiratory nitrate reductase. This alpha subunit has a twin-arginine translocation (TAT) signal for Sec-independent translocation across the plasma membrane.
+RN  [1]
+RM  PMID:12067345
+RT  Molecular analysis of dimethyl sulphide dehydrogenase from Rhodovulum sulfidophilum: its place in the dimethyl sulphoxide reductase family of microbial molybdopterin-containing enzymes.
+RA  McDevitt CA, Hugenholtz P, Hanson GR, McEwan AG
+RL  Mol Microbiol. 2002 Jun;44(6):1575-87.

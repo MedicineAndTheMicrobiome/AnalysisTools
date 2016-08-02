@@ -1,0 +1,16 @@
+ID  murC
+AC  TIGR01082
+DE  UDP-N-acetylmuramate--L-alanine ligase
+AU  Haft DH, Dodson RJ
+TC  335.10 335.10
+NC  292.80 292.80
+AL  clustalw
+IT  equivalog
+EN  UDP-N-acetylmuramate--L-alanine ligase
+GS  murC
+EC  6.3.2.8
+TP  TIGRFAMs
+CC  This HMM describes the MurC protein in bacterial peptidoglycan (murein) biosynthesis. In a few species (Mycobacterium leprae, the Chlamydia), the amino acid may be L-serine or glycine instead of L-alanine.
+CC  A related protein, 
+CC  UDP-N-acetylmuramate:L-alanyl-gamma-D-glutamyl-meso-diaminopimelate ligase (murein tripeptide ligase) is described by HMM TIGR01081.
+DR  HAMAP; MF_00046; 480 of 487

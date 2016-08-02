@@ -1,0 +1,13 @@
+ID  PS_I_psaK
+AC  TIGR03049
+DE  photosystem I reaction center subunit PsaK
+AU  Haft DH
+TC  67.95 67.95
+NC  42.80 42.80
+AL  muscle_manual
+IT  equivalog
+EN  photosystem I reaction center subunit PsaK
+GS  psaK
+TP  TIGRFAMs
+CC  Members of this protein family are the PsaK of the photosystem I reaction center. Photosystems I and II occur together in the same sets of organisms. Photosystem I uses light energy to transfer electrons from plastocyanin to ferredoxin, while photosystem II uses light energy to split water and releases molecular oxygen.
+DR  PFAM; PF01241; PSI_PSAK; Photosystem I psaG / psaK

@@ -1,0 +1,17 @@
+ID  nifR3_yhdG
+AC  TIGR00737
+DE  putative TIM-barrel protein, nifR3 family
+AU  Haft DH
+TC  293.30 293.30
+NC  184.95 184.95
+AL  clustalw
+IT  subfamily
+EN  putative TIM-barrel protein, nifR3 family
+TP  TIGRFAMs
+CC  This model represents one branch of COG0042 (Predicted TIM-barrel enzymes, possibly dehydrogenases, nifR3 family). This branch includes NifR3 itself, from Rhodobacter capsulatus. It excludes a broadly distributed but more sparsely populated subfamily that contains sll0926 from Synechocystis PCC6803, HI0634 from Haemophilus influenzae, and BB0225 from Borrelia burgdorferi. It also excludes a shorter and more distant archaeal subfamily.
+CC  The function of nifR3, a member of this family, is unknown, but it is found in an operon with nitrogen-sensing two component regulators in  Rhodobacter capsulatus.
+CC  Members of this family show a distant relationship to alpha/beta (TIM) barrel enzymes such as dihydroorotate dehydrogenase and glycolate oxidase.
+RM  98409323
+RT  Evolution of new protein function: recombinational enhancer Fis originated by horizontal gene transfer from the transcriptional regulator NtrC.
+RA  Morett E, Bork P
+RL  FEBS Lett 1998 Aug 14;433(1-2):108-12

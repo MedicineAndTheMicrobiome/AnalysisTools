@@ -1,0 +1,15 @@
+ID  atpA
+AC  TIGR00962
+DE  ATP synthase F1, alpha subunit
+AU  Durkin S, Haft DH
+TC  484.45 484.45
+NC  209.00 209.00
+AL  clustalw
+IT  equivalog
+EN  proton translocating ATP synthase, F1 alpha subunit
+GS  atpA
+EC  3.6.3.14
+TP  TIGRFAMs
+CC  The sequences of ATP synthase F1 alpha and beta subunits are related and both contain a nucleotide-binding site for ATP and ADP. They have a common amino terminal domain but vary at the C-terminus. The beta chain has catalytic activity, while the alpha chain is a regulatory subunit. The alpha-subunit contains a highly conserved adenine-specific noncatalytic nucleotide-binding domain. The conserved amino acid sequence is Gly-X-X-X-X-Gly-Lys. Proton translocating ATP synthase F1, alpha subunit is homologous to proton translocating ATP synthase archaeal/vacuolar(V1), B subunit.
+DR  EXPERIMENTAL; EGAD|19577|20051; E. coli
+DR  HAMAP; MF_01346; 698 of 715

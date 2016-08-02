@@ -1,0 +1,19 @@
+ID  PTS-IIBC-malX
+AC  TIGR02004
+DE  PTS system, maltose and glucose-specific IIBC component
+AU  Selengut J
+TC  632.20 632.20
+NC  511.90 511.90
+AL  clustalw
+IT  hypoth_equivalog_domain
+EN  PTS system, maltose and glucose-specific IIBC component
+GS  malX
+EC  2.7.1.69
+TR  4.A.1.1.-
+TP  TIGRFAMs
+CC  This model represents a family of PTS enzyme II fused B and C components including and most closely related to the MalX maltose and glucose-specific transporter of E. coli [1].  A pair of paralogous genes from E. coli strain CFT073 score between trusted and noise and may have diverged sufficiently to have an altered substrate specificity.
+RN  [1]
+RM  PMID: 1856179
+RT  The malX malY operon of Escherichia coli encodes a novel enzyme II of the phosphotransferase system recognizing glucose and maltose and an enzyme abolishing the endogenous induction of the maltose system.
+RA  Reidl J, Boos W.
+RL  J Bacteriol. 1991 Aug;173(15):4862-76.

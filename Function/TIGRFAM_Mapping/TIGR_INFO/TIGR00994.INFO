@@ -1,0 +1,13 @@
+ID  3a0901s05TIC20
+AC  TIGR00994
+DE  chloroplast protein import component, Tic20 family
+AU  Loftus BJ
+TC  341.15 341.15
+NC  290.90 290.90
+AL  clustalw_manual
+IT  subfamily
+EN  chloroplast protein import component, Tic20 family
+TR  3.A.9
+TP  TIGRFAMs
+CC  Two families of proteins are involved in the chloroplast envelope import appartus.They are the  three proteins of the outer membrane (TOC) and four proteins in the inner membrane (TIC). This family is specific for the Tic20 protein.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/3_A_9.html

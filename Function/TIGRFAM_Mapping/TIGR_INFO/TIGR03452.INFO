@@ -1,0 +1,18 @@
+ID  mycothione_red
+AC  TIGR03452
+DE  mycothione reductase
+AU  Haft DH
+TC  635.65 635.65
+NC  411.55 411.55
+AL  muscle_manual
+IT  equivalog
+EN  mycothione reductase
+GS  mtr
+EC  1.8.1.15
+TP  TIGRFAMs
+CC  Mycothiol, a glutathione analog in Mycobacterium tuberculosis and related species, can form a disulfide-linked dimer called mycothione. This enzyme can reduce mycothione to regenerate two mycothiol molecules. The enzyme shows some sequence similarity to glutathione-disulfide reductase, trypanothione-disulfide reductase, and dihydrolipoamide dehydrogenase. The characterized protein from M. tuberculosis, a homodimer, has FAD as a cofactor, one per monomer, and uses NADPH as a substrate.
+RN  [1]
+RM  PMID:10512639
+RT  Expression, purification, and characterization of Mycobacterium tuberculosis mycothione reductase.
+RA  Patel MP, Blanchard JS
+RL  Biochemistry. 1999 Sep 7;38(36):11827-33.

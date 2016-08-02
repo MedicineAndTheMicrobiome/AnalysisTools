@@ -1,0 +1,17 @@
+ID  RiPP_SkfA
+AC  TIGR04404
+DE  sporulation killing factor
+AU  Haft DH
+TC  45.00 45.00
+NC  25.00 25.00
+AL  muscle_manual
+IT  equivalog
+EN  sporulation killing factor
+GS  skfA
+TP  TIGRFAMs
+CC  Members of this family are ribosomally synthesized and post-translationally modified peptide natural products, modified by sulfur-to-alpha-carbon cross-link introduced by a radical SAM enzyme, SkfB (TIGR04403).
+RN  [1]
+RM  PMID:16816204 
+RT  Phosphate starvation induces the sporulation killing factor of Bacillus subtilis. 
+RA  Allenby NE, Watts CA, Homuth G, Pragai Z, Wipat A, Ward AC, Harwood CR 
+RL  J Bacteriol. 2006 Jul;188(14):5299-303.

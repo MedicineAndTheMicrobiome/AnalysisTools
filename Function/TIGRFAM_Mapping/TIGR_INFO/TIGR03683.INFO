@@ -1,0 +1,13 @@
+ID  A-tRNA_syn_arch
+AC  TIGR03683
+DE  alanine--tRNA ligase
+AU  Selengut J
+TC  744.70 744.70
+NC  741.70 741.70
+AL  muscle
+IT  equivalog
+EN  alanyl-tRNA synthetase
+GS  alaS
+EC  6.1.1.7
+TP  TIGRFAMs
+CC  This family of alanyl-tRNA synthetases is limited to the archaea, and is a subset of those sequences identified by the model PF07973 covering the second additional domain (SAD) of alanyl and threonyl tRNA synthetases .

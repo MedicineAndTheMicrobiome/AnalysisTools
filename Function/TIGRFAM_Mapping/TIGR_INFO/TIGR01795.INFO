@@ -1,0 +1,13 @@
+ID  CM_mono_cladeE
+AC  TIGR01795
+DE  chorismate mutase
+AU  Selengut J
+TC  107.55 107.55
+NC  58.80 58.80
+AL  clustalw
+IT  equivalog
+EN  monofunctional chorismate mutase, alpha proteobacterial type
+EC  5.4.99.5
+TP  TIGRFAMs
+CC  This model represents a small clade of monofunctional (non-fused) chorismate mutases spanning alpha proteobacteria and two actinobacter gram positive species.
+CC  The alpha proteobacterial members are trusted because the pathways of CM are evident and there is only one plausible CM in the genome.  In S. coelicolor, however, there is another aparrent monofunctional CM.

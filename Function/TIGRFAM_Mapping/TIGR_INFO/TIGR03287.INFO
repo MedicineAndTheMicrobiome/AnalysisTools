@@ -1,0 +1,13 @@
+ID  methan_mark_16
+AC  TIGR03287
+DE  putative methanogenesis marker 16 metalloprotein
+AU  Haft DH
+TC  363.95 363.95
+NC  232.70 232.70
+AL  muscle
+IT  hypoth_equivalog
+EN  putative methanogenesis marker 16 metalloprotein
+TP  TIGRFAMs
+CC  Members of this protein family, to date, are found in a completed prokaryotic genome if and only if the species is one of the archaeal methanogens. The exact function is unknown, but likely is linked to methanogenesis or a process closely connected to it. This protein is a predicted to bind FeS clusters, based on the presence of two copies of the Fer4 domain (PF00037), with each copy having four Cys residues invariant across all members.
+DR  PFAM; PF01837; DUF39: Domain of unknown function
+DR  PFAM; PF00037; Fer4: 4Fe-4S binding domain

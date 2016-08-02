@@ -1,0 +1,11 @@
+ID  III_secr_ATP
+AC  TIGR02546
+DE  type III secretion apparatus H+-transporting two-sector ATPase
+AU  Haft DH
+TC  604.75 604.75
+NC  604.05 604.05
+AL  clustalw_manual
+IT  equivalog
+EN  type III secretion apparatus H+-transporting two-sector ATPase
+EC  3.6.3.14
+TP  TIGRFAMs

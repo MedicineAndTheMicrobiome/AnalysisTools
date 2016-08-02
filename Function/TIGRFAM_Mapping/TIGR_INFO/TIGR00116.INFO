@@ -1,0 +1,17 @@
+ID  tsf
+AC  TIGR00116
+DE  translation elongation factor Ts
+AU  Anolik RT, Richardson DL
+TC  104.05 104.05
+NC  93.70 93.70
+AL  clustalw
+IT  equivalog
+EN  translation elongation factor Ts
+GS  tsf
+TP  TIGRFAMs
+CC  Translational elongation factor Ts (EF-Ts) catalyzes the exchange of GTP for the GDP of the EF-Tu.GDP complex as part of the cycle of translation elongation.
+CC  This protein is found in Bacteria, mitochondria, and chloroplasts.
+DR  PROSITE; PDOC00867;
+DR  PFAM; PF00889; EF_TS;
+RM  95340508
+DR  HAMAP; MF_00050; 539 of 550

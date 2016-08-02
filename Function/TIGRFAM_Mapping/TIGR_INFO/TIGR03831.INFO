@@ -1,0 +1,16 @@
+ID  YgiT_finger
+AC  TIGR03831
+DE  YgiT-type zinc finger domain
+AU  Haft DH
+TC  20.20 20.20
+NC  19.80 19.80
+AL  muscle_manual
+IT  domain
+EN  YgiT-type zinc finger domain
+TP  TIGRFAMs
+CC  This domain model describes a small domain with two copies of a putative zinc-binding motif CXXC (usually CXXCG). Most member proteins consist largely of this domain or else carry an additional C-terminal helix-turn-helix domain, resembling that of the phage protein Cro and modeled by PF01381.
+RN  [1]
+RM  PMID:19636869
+RT  Assignment of (1)H, (13)C, and (15)N resonances of YgiT, a putative DNA interacting protein from E. coli, containing one HTH and two CxxC motifs.
+RA  Papadopoulos E, Billeter M, Graslund A, Vlamis-Gardikas A
+RL  Biomol NMR Assign. 2007 Dec;1(2):217-9.

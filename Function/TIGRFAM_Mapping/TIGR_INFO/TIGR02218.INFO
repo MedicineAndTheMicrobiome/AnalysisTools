@@ -1,0 +1,11 @@
+ID  phg_TIGR02218
+AC  TIGR02218
+DE  phage conserved hypothetical protein BR0599
+AU  Haft DH
+TC  80.50 80.50
+NC  53.85 53.85
+AL  clustalw_manual
+IT  subfamily
+EN  phage conserved hypothetical protein BR0599
+TP  TIGRFAMs
+CC  This HMM describes a family of proteins found almost exclusively in phage or in prophage regions of bacterial genomes, including the phage-like Rhodobacter capsulatus gene transfer agent, which packages DNA. An apparent exception is Wolbachia pipientis wMel, a bacterial endosymbiont of the fruit fly, which has several candidate phage-related genes physically separate from obvious prophage regions.

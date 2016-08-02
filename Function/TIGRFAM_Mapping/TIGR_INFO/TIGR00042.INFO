@@ -1,0 +1,30 @@
+ID  TIGR00042
+AC  TIGR00042
+DE  non-canonical purine NTP pyrophosphatase, RdgB/HAM1 family
+AU  Haft DH, Richardson DL, Anolik RT
+TC  145.35 145.35
+NC  55.90 55.90
+AL  clustalw
+IT  equivalog
+EN  non-canonical purine NTP pyrophosphatase, RdgB/HAM1 family
+GS  rdgB
+EC  3.6.1.-
+TP  TIGRFAMs
+CC  Saccharomyces cerevisiae HAM1 protects against the mutagenic effects of the base analog 6-N-hydroxylaminopurine, which can be a natural product of monooxygenase activity on adenine. Methanococcus jannaschii MJ0226 and E. coli RdgB are also characterized as pyrophosphatases active against non-standard purines NTPs. E. coli RdgB appears to act by intercepting non-canonical deoxyribonucleotide triphosphates from replication precursor pools.[3]
+DR  URL; http://www.proteome.com/YPD/HAM1.html;
+RN  [1]
+RM  87031562
+RT  Mutants of Saccharomyces cerevisiae supersensitive to the mutagenic effect of 6-N-hydroxylaminopurine. 
+RA  Pavlov IuI
+RL  Genetika 22, 2235-43 (1986).
+RN  [2]
+RM  96381244
+RT  HAM1, the gene controlling 6-N-hydroxylaminopurine sensitivity and mutagenesis in the yeast Saccharomyces cerevisiae. 
+RA  Noskov VN, Staak K, Shcherbakova PV, Kozmin SG, Negishi K, Ono BC, Hayatsu H, Pavlov YI
+RL  Yeast 1996 Jan;12(1):17-29
+RN  [3]
+RM  12730170
+RT  Repair system for noncanonical purines in Escherichia coli.
+RA  Burgis NE, Brucker JJ, Cunningham RP
+RL  J Bacteriol. 2003 May;185(10):3101-10
+DR  HAMAP; MF_01405; 177 of 196

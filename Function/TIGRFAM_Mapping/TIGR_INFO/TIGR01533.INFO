@@ -1,0 +1,23 @@
+ID  lipo_e_P4
+AC  TIGR01533
+DE  5'-nucleotidase, lipoprotein e(P4) family
+AU  Haft DH
+TC  216.05 216.05
+NC  72.30 72.30
+AL  clustalw_manual
+IT  equivalog
+EN  5'-nucleotidase, lipoprotein e(P4) family
+TP  TIGRFAMs
+CC  This HMM represents a set of bacterial lipoproteins belonging to a larger acid phosphatase family (PF03767),
+CC  which in turn belongs to the haloacid dehalogenase (HAD) superfamily of aspartate-dependent hydrolases. Members are found on the outer membrane of Gram-negative bacteria and the cytoplasmic membrane of Gram-positive bacteria. Most members have classic lipoprotein signal sequences. A critical role of this 5'-nucleotidase in Haemophilus influenzae is the degradation of external riboside in order to allow transport into the cell. An earlier suggested role in hemin transport is no longer current. This enzyme may also have other physiologically significant roles.
+DR  PFAM; PF03767; acid_phosphat_B
+RN  [1]
+RM  10760156
+RT  NADP and NAD utilization in Haemophilus influenzae.
+RA  Reidl J, Schlor S, Kraiss A, Schmidt-Brauns J, Kemmer G, Soleva E.
+RL  Mol Microbiol. 2000 Mar;35(6):1573-81.
+RN  [2]
+RM  11395461
+RT  NadN and e (P4) are essential for utilization of NAD and nicotinamide mononucleotide but not nicotinamide riboside in Haemophilus influenzae.
+RA  Kemmer G, Reilly TJ, Schmidt-Brauns J, Zlotnik GW, Green BA, Fiske MJ, Herbert M, Kraiss A, Schlor S, Smith A, Reidl J.
+RL  J Bacteriol 2001 Jul;183(13):3974-81

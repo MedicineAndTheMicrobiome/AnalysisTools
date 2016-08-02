@@ -1,0 +1,26 @@
+ID  YD_repeat_2x
+AC  TIGR01643
+DE  YD repeat (two copies)
+AU  Haft DH
+TC  15.80 15.80
+NC  10.10 10.10
+AL  manual
+IT  repeat
+EN  YD repeat (two copies)
+TP  TIGRFAMs
+CC  This HMM describes two tandem copies of a 21-residue extracellular repeat found in Gram-negative, Gram-positive, and animal proteins. The repeat is named for a YD dipeptide, the most strongly conserved motif of the repeat. These repeats appear in general to be involved in binding carbohydrate; the chicken  teneurin-1 YD-repeat region has been shown to bind heparin.
+RN  [1]
+RM  10341219
+RT  Teneurin-1, a vertebrate homologue of the Drosophila pair-rule gene ten-m, is a neuronal protein with a novel type of heparin-binding domain.
+RA  Minet AD, Rubin BP, Tucker RP, Baumgartner S, Chiquet-Ehrismann R.
+RL  J Cell Sci 1999 Jun;112 ( Pt 12):2019-32
+RN  [2]
+RM  7934896
+RT  Rhs elements of Escherichia coli: a family of genetic composites each encoding a large mosaic protein.
+RA  Hill CW, Sandt CH, Vlazny DA.
+RL  Mol Microbiol 1994 Jun;12(6):865-71
+RN  [3]
+RM  2403547
+RT  Structure of the rhsA locus from Escherichia coli K-12 and comparison of rhsA with other members of the rhs multigene family.
+RA  Feulner G, Gray JA, Kirschman JA, Lehner AF, Sadosky AB, Vlazny DA, Zhang J, Zhao S, Hill CW.
+RL  J Bacteriol 1990 Jan;172(1):446-56

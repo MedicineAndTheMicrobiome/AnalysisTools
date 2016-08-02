@@ -1,0 +1,13 @@
+ID  tyr_amTase_E
+AC  TIGR01264
+DE  tyrosine aminotransferase
+AU  Haft DH
+TC  474.25 474.25
+NC  256.05 256.05
+AL  clustalw_manual
+IT  equivalog
+EN  tyrosine aminotransferase, eukaryotic
+GS  TAT
+EC  2.6.1.5
+TP  TIGRFAMs
+CC  This HMM describes tyrosine aminotransferase as found in animals and Trypanosoma cruzi. It is the first enzyme of a pathway of tyrosine degradation via homogentisate. Several plant enzyme designated as probable tyrosine aminotransferases are very closely related to an experimentally demonstrated nicotianamine aminotransferase, an enzyme in a siderophore (iron uptake chelator) biosynthesis pathway. These plant sequences are excluded from the model seed and score between the trusted an noise cutoffs.

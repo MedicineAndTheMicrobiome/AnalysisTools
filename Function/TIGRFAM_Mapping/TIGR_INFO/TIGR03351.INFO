@@ -1,0 +1,26 @@
+ID  PhnX-like
+AC  TIGR03351
+DE  phosphonatase-like hydrolase
+AU  Selengut J
+TC  218.90 218.90
+NC  116.85 116.85
+AL  muscle
+IT  hypoth_equivalog
+EN  phosphonatase-like hydrolase
+TP  TIGRFAMs
+CC  This clade of sequences are the closest homologs to the PhnX enzyme, phosphonoacetaldehyde (Pald) hydrolase (phosphonatase, TIGR01422).  This phosphonatase-like enzyme and PhnX itself are members of the haloacid dehalogenase (HAD) superfamily (PF00702) having a a number of distinctive features that set them apart from typical HAD enzymes.  The typical HAD N-terminal motif DxDx(T/V) here is DxAGT and the usual conserved lysine prior to the C-terminal motif is instead an arginine.  Also distinctive of phosphonatase, and particular  to its bi-catalytic mechanism is a conserved lysine in the variable "cap" domain [1].  This lysine forms a Schiff base with the aldehyde of phosphonoacetaldehyde, providing, through the resulting positive charge, a polarization of the C-P bond necesary for cleavage as well as a route to the initial product of cleavage, an ene-amine.  The conservation of these elements in this phosphonatase-like enzyme suggests that the substrate is also, like Pald, a 2-oxo-ethylphosphonate.  Despite this, the genomic context of members of this family are quite distinct from PhnX, which is almost invariably associated with the 2-aminoethylphosphonate transaminase PhnW (TIGR02326), the source of the substrate Pald.  Members of this clade are never associated with PhnW, but rather associate with families of FAD-dependent oxidoreductases related to deaminating amino acid oxidases (PF01266) as well as zinc-dependent dehydrogenases (PF00107).  Notably, family members from Arthrobacter aurescens TC1 and Nocardia farcinica IFM 10152 are adjacent to the PhnCDE ABC cassette phosphonates transporter (GenProp0236) typically found in association with the phosphonates C-P lyase system (GenProp0232).  These observations suggest two possibilities.  First, the substrate for this enzyme family is also Pald, the non-association with PhnW not withstanding.  Alternatively, the substrate is something very closely related such as hydroxyphosphonoacetaldehyde (Hpald).  Hpald could come from oxidative deamination of 1-hydroxy-2-aminoethylphosphonate (HAEP) by the associated oxidase.  HAEP would not be a substrate for PhnW due to its high specificity for AEP.  HAEP has been shown to be a constituent of the sphingophosphonolipid of Bacteriovorax stolpii [3], and presumably has other natural sources.  If Hpald is the substrate, the product would be glycoaldehyde (hydroxyacetaldehyde), and the associated alcohol dehydrogenase may serve to convert this to glycol.
+RN  [1]
+RM  PMID: 17070898 
+RT  Diversification of function in the haloacid dehalogenase enzyme superfamily: The role of the cap domain in hydrolytic phosphoruscarbon bond cleavage. 
+RA  Lahiri SD, Zhang G, Dunaway-Mariano D, Allen KN 
+RL  Bioorg Chem. 2006 Dec;34(6):394-409. Epub 2006 Oct 27. 
+RN  [2]
+RM  PMID: 16245012 
+RT  The evolution of microbial phosphonate degradative pathways. 
+RA  Huang J, Su Z, Xu Y 
+RL  J Mol Evol. 2005 Nov;61(5):682-90. Epub 2005 Oct 20. 
+RN  [3]
+RM  PMID: 17123828 
+RT  Detection and Identification of Bacteriovorax stolpii UKi2 Sphingophosphonolipid Molecular Species. 
+RA  Jayasimhulu K, Hunt SM, Kaneshiro ES, Watanabe Y, Giner JL 
+RL  J Am Soc Mass Spectrom. 2007 Mar;18(3):394-403. Epub 2006 Nov 22.

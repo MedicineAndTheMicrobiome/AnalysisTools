@@ -1,0 +1,11 @@
+ID  bact_IIb_cerein
+AC  TIGR03949
+DE  class IIb bacteriocin, lactobin A/cerein 7B family
+AU  Haft DH
+TC  21.50 21.50
+NC  21.00 21.00
+AL  muscle_manual
+IT  subfamily
+EN  class IIb bacteriocin, lactobin A/cerein 7B family
+TP  TIGRFAMs
+CC  Members of this protein family are described variably as bacteriocins per se, one chain of a two-chain bacteriocin, or bacteriocin enhancer proteins. All members of the seed alignment occur in paired gene contexts with another member of the same protein family. This family includes bacteriocins that appear not to undergo post-translational modification, other than cleavage at a Gly-Gly motif coupled to sec-independent export.  For many members, the N-terminal bacteriocin cleavage motif region is recognized by TIGR01847. C-terminal to the cleavage motif, these proteins are hydrophobic and low in complexity, consistent with pore-forming activity as a mechanism of bacteriocin action.

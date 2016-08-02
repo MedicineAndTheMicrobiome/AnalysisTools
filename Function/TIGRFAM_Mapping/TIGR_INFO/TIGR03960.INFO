@@ -1,0 +1,11 @@
+ID  rSAM_fuse_unch
+AC  TIGR03960
+DE  radical SAM family uncharacterized protein
+AU  Haft DH
+TC  462.30 462.30
+NC  453.80 453.80
+AL  muscle_manual
+IT  hypoth_equivalog_domain
+EN  radical SAM family uncharacterized protein
+TP  TIGRFAMs
+CC  This HMM describes a radical SAM protein, or protein region, regularly found paired with or fused to a region described by TIGR03936. PSI-BLAST analysis of TIGR03936 suggests a relationship to the tRNA pseudouridine synthase TruA, suggesting that this system may act in RNA modification.

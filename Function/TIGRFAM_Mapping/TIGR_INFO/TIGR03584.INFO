@@ -1,0 +1,18 @@
+ID  PseF
+AC  TIGR03584
+DE  pseudaminic acid cytidylyltransferase
+AU  Selengut J
+TC  205.70 205.70
+NC  199.80 199.80
+AL  muscle
+IT  equivalog
+EN  pseudaminic acid cytidylyltransferase
+GS  pseF
+EC  2.7.7.81
+TP  TIGRFAMs
+CC  The sequences in this family include the PF02348 (cytidyltransferase) domain and are homologous to the NeuA protein responsible for the transfer of CMP to neuraminic acid.  According to [1], this gene is responsible for the transfer of CMP to the structurally related sugar, pseudaminic acid which is observed as a component of sugar modifications of flagellin in Campylobacter species.  This gene is commonly observed in apparent operons with other genes responsible for the biosynthesis of pseudaminic acid and as a component of flagellar and exopolysaccharide biosynthesis loci.
+RN  [1]
+RM  PMID:16684771 
+RT  Functional characterization of the flagellar glycosylation locus in Campylobacter jejuni 81-176 using a focused metabolomics approach. 
+RA  McNally DJ, Hui JP, Aubry AJ, Mui KK, Guerry P, Brisson JR, Logan SM, Soo EC 
+RL  J Biol Chem. 2006 Jul 7;281(27):18489-98. Epub 2006 May 9.

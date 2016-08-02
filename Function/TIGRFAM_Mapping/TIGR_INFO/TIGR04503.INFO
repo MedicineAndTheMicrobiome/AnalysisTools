@@ -1,0 +1,11 @@
+ID  mft_etfB
+AC  TIGR04503
+DE  electron transfer flavoprotein, mycofactocin-associated
+AU  Haft DH
+TC  200.00 200.00
+NC  160.00 160.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  electron transfer flavoprotein, mycofactocin-associated
+TP  TIGRFAMs
+CC  Members of this small protein family are putative electron transfer flavoproteins, related to FixA from E. coli and EtfB from Methylophilus methylotrophus but clearly forming a distinctive clade. All members occur in species with a mycofactocin system. We have proposed that mycofactocin is a redox carrier synthesized from a ribosomally translated peptide with aid from a radical SAM enzyme, analogous to PQQ.

@@ -1,0 +1,16 @@
+ID  fpg
+AC  TIGR00577
+DE  DNA-formamidopyrimidine glycosylase
+AU  Loftus BJ, Eisen JA
+TC  203.30 203.30
+NC  105.10 105.10
+IT  equivalog
+EN  DNA-formamidopyrimidine glycosylase
+GS  mutM
+EC  3.2.2.23
+TP  TIGRFAMs
+CC  All proteins in the FPG family with known functions are FAPY-DNA glycosylases that function in base excision repair. Homologous to endonuclease VIII (nei). This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  EGAD; 8852;
+DR  SWISSPROT; P05523;
+RM  88082692;
+DR  HAMAP; MF_00103; 329 of 333

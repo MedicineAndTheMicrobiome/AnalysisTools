@@ -1,0 +1,12 @@
+ID  NrdE-prime
+AC  TIGR02510
+DE  ribonucleoside-diphosphate reductase, alpha chain
+AU  Selengut J
+TC  602.25 602.25
+NC  516.70 516.70
+AL  clustalw
+IT  equivalog
+EN  ribonucleoside-diphosphate reductase, alpha chain
+EC  1.17.4.1
+TP  TIGRFAMs
+CC  This model represents a small clade of ribonucleoside-diphosphate reductase, alpha chains which are sufficiently divergent from the usual Class I RNR alpha chains (NrdE or NrdA, TIGR02506) as to warrant their own model.  The genes from Thermus thermophilus, Dichelobacter and Salinibacter are adjacent to the usual RNR beta chain.

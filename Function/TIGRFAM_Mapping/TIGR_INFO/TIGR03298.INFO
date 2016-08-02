@@ -1,0 +1,12 @@
+ID  argP
+AC  TIGR03298
+DE  transcriptional regulator, ArgP family
+AU  Haft DH
+TC  273.55 273.55
+NC  127.45 127.45
+AL  muscle
+IT  subfamily
+EN  transcriptional regulator, ArgP family
+GS  argP
+TP  TIGRFAMs
+CC  ArgP used to be known as IciA. ArgP is a positive regulator of argK. It is a negative autoregulator in presence of arginine.  It competes with DnaA for oriC iteron (13-mer) binding. It activates dnaA and nrd transcription. It has been demonstrated to be part of the pho regulon (PMID:10589831). ArgP mutants convey canavanine (an L-arginine structural homolog) sensitivity (PMID: 15150242).

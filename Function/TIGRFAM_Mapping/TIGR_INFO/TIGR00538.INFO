@@ -1,0 +1,12 @@
+ID  hemN
+AC  TIGR00538
+DE  oxygen-independent coproporphyrinogen III oxidase
+AU  Haft DH
+TC  324.95 324.95
+NC  261.65 261.65
+IT  equivalog
+EN  oxygen-independent coproporphyrinogen III oxidase
+GS  hemN
+EC  1.3.99.22
+TP  TIGRFAMs
+CC  This model represents HemN, the oxygen-independent coproporphyrinogen III oxidase that replaces HemF function under anaerobic conditions. Several species, including E. coli, Helicobacter pylori, and Aquifex aeolicus, have both a member of this family and a member of another, closely related family for which there is no evidence of coproporphyrinogen III oxidase activity. Members of this family have a perfectly conserved motif PYRT[SC]YP in a region N-terminal to the region of homology with the related uncharacterized protein.

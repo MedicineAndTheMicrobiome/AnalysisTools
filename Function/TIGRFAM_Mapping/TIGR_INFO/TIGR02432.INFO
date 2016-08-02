@@ -1,0 +1,30 @@
+ID  lysidine_TilS_N
+AC  TIGR02432
+DE  tRNA(Ile)-lysidine synthetase
+AU  Haft DH
+TC  93.60 93.60
+NC  85.80 85.80
+AL  clustalw_manual
+IT  equivalog_domain
+EN  tRNA(Ile)-lysidine synthetase, N-terminal domain
+GS  tilS
+EC  6.3.4.-
+TP  TIGRFAMs
+CC  The only examples in which the wobble position of a tRNA must discriminate between G and A of mRNA are AUA (Ile) vs. AUG (Met) and UGA (stop) vs. UGG (Trp). In all bacteria, the wobble position of the tRNA(Ile) recognizing AUA is lysidine, a lysine derivative of cytidine. This family describes a protein domain found, apparently, in all bacteria in a single copy. Eukaryotic sequences appear to be organellar. The domain archictecture of this protein family is variable; some, including characterized proteins of E. coli and B. subtilis known to be tRNA(Ile)-lysidine synthetase, include a conserved 50-residue domain that many other members lack. This protein belongs to the ATP-binding PP-loop family ( PF01171). It appears in the literature and protein databases as TilS, YacA, and putative cell cycle protein MesJ (a misnomer).
+DR  PFAM; PF01171; ATP_bind_3; PP-loop family
+RN  [1]
+RM  14527414
+RT  An RNA-modifying enzyme that governs both the codon and amino acid specificities of isoleucine tRNA.
+RA  Soma A, Ikeuchi Y, Kanemasa S, Kobayashi K, Ogasawara N, Ote T, Kato J, Watanabe K, Sekine Y, Suzuki T.
+RL  Mol Cell. 2003 Sep;12(3):689-98.
+RN  [2]
+RM  3132458
+RT  A novel lysine-substituted nucleoside in the first position of the anticodon of minor isoleucine tRNA from Escherichia coli.
+RA  Muramatsu T, Yokoyama S, Horie N, Matsuda A, Ueda T, Yamaizumi Z, Kuchino Y, Nishimura S, Miyazawa T.
+RL  J Biol Chem. 1988 Jul 5;263(19):9261-7.
+RN  [3]
+RM  15044829
+RT  A global approach to identify novel broad-spectrum antibacterial targets among proteins of unknown function.
+RA  Zalacain M, Biswas S, Ingraham KA, Ambrad J, Bryant A, Chalker AF, Iordanescu S, Fan J, Fan F, Lunsford RD, O'Dwyer K, Palmer LM, So C, Sylvester D, Volker C, Warren P, McDevitt D, Brown JR, Holmes DJ, Burnham MK.
+RL  J Mol Microbiol Biotechnol. 2003;6(2):109-26.
+DR  HAMAP; MF_01161; 237 of 240

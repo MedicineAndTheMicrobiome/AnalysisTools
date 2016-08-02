@@ -1,0 +1,13 @@
+ID  dapE_proteo
+AC  TIGR01246
+DE  succinyl-diaminopimelate desuccinylase
+AU  Haft DH
+TC  361.80 361.80
+NC  192.30 192.30
+AL  clustalw
+IT  equivalog
+EN  succinyl-diaminopimelate desuccinylase, proteobacterial clade
+GS  dapE
+EC  3.5.1.18
+TP  TIGRFAMs
+CC  This HMM describes a proteobacterial subset of succinyl-diaminopimelate desuccinylases. An experimentally confirmed Gram-positive lineage succinyl-diaminopimelate desuccinylase has been described for Corynebacterium glutamicum (SP:Q59284), and a neighbor-joining tree shows the seed members, SP:Q59284, and putative archaeal members such as TrEMBL:O58003 in a single clade. However, the archaeal members differ substantially, share a number of motifs with acetylornithine deacetylases rather than succinyl-diaminopimelate desuccinylases, and are not taken as trusted examples of  succinyl-diaminopimelate desuccinylases. This model is limited to proteobacterial members for this reason.

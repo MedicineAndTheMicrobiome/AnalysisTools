@@ -1,0 +1,17 @@
+ID  PDHac_trf_long
+AC  TIGR01348
+DE  dihydrolipoyllysine-residue acetyltransferase
+AU  Haft DH
+TC  552.10 552.10
+NC  407.30 407.30
+AL  clustalw_manual
+IT  equivalog
+EN  pyruvate dehydrogenase complex dihydrolipoamide acetyltransferase, long form
+GS  aceF
+EC  2.3.1.12
+TP  TIGRFAMs
+CC  This HMM describes a subset of pyruvate dehydrogenase complex dihydrolipoamide acetyltransferase specifically close by both phylogenetic and per cent identity (UPGMA) trees. Members of this set include two or three copies of the lipoyl-binding domain.  E. coli AceF is a member of this model, while mitochondrial and some other bacterial forms belong to a separate model.
+DR  SWISSPROT; ODP2_ECOLI; annotated entry
+DR  ECOCYC; EG10025; aceF
+DR  PF00198; 2-oxoacid_dh; one copy
+DR  PF00364; biotin_lipoyl; two or three copies.

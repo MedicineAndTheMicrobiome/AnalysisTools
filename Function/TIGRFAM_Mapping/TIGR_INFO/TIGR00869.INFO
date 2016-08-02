@@ -1,0 +1,14 @@
+ID  sec62
+AC  TIGR00869
+DE  protein translocation protein, Sec62 family
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  166.65 166.65
+NC  126.35 126.35
+AL  clustalw_manual
+IT  subfamily
+EN  protein translocation protein, Sec62 family
+TR  1.A.15
+TP  TIGRFAMs
+CC  Members of the NSCC2 family have been sequenced from various yeast, fungal and animals species including Saccharomyces cerevisiae, Drosophila melanogaster and Homo sapiens. These proteins are the Sec62 proteins, believed to be associated with the Sec61 and Sec63 constituents of the general
+CC  protein secretary systems of yeast microsomes. They are also the non-selective cation (NS) channels of the mammalian cytoplasmic membrane. The yeast Sec62 protein has been shown to be essential for cell growth. The mammalian NS channel proteins has been implicated in platelet derived growth factor(PGDF) dependent single channel current in fibroblasts. These channels are essentially closed in serum deprived tissue-culture cells and are specifically opened by exposure to PDGF. These channels are reported to exhibit equal selectivity for Na+, K+ and Cs+ with low permeability to Ca2+, and no permeability to anions.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/1_A_15.html

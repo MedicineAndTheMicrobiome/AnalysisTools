@@ -1,0 +1,19 @@
+ID  cysH
+AC  TIGR00434
+DE  phosophoadenylyl-sulfate reductase
+AU  Anolik RT, Haft DH
+TC  165.10 165.10
+NC  95.95 95.95
+AL  clustalw
+IT  subfamily
+EN  phosophoadenylyl-sulfate reductase (thioredoxin)
+GS  cysH
+EC  1.8.4.8
+TP  TIGRFAMs
+CC  This enzyme, involved in the assimilation of inorganic sulfate, is designated cysH in Bacteria and MET16 in Saccharomyces cerevisiae. Synonyms include phosphoadenosine phosphosulfate reductase, PAPS reductase, and PAPS reductase, thioredoxin-dependent. In a reaction requiring reduced thioredoxin and NADPH, it converts 3(prime)-phosphoadenylylsulfate (PAPS) to sulfite and adenosine 3(prime),5(prime) diphosphate (PAP). A related family of plant enzymes, scoring below the trusted cutoff, differs in having a thioredoxin-like C-terminal domain, not requiring thioredoxin, and in having a preference for 5(prime)-adenylylsulfate (APS) over PAPS.
+RN  [1]
+RM  8917600
+RT  Sulfate reduction in higher plants: molecular evidence for a novel 5'-adenylylsulfate reductase.
+RA  Setya A, Murillo M, Leustek T.
+RL  Proc Natl Acad Sci U S A. 1996 Nov 12;93(23):13383-8.
+DR  HAMAP; MF_00063; 86 of 92

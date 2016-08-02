@@ -1,0 +1,14 @@
+ID  NAPRTase_put
+AC  TIGR01513
+DE  nicotinate phosphoribosyltransferase
+AU  Haft DH
+TC  297.40 297.40
+NC  119.20 119.20
+AL  clustalw
+IT  hypoth_equivalog
+EN  putative nicotinate phosphoribosyltransferase
+GS  pncB
+EC  6.3.4.21
+TP  TIGRFAMs
+CC  A deep split separates two related families of proteins, one of which includes experimentally characterized examples of nicotinate phosphoribosyltransferase, an the first enzyme of NAD salvage biosynthesis. This HMM represents the other family. Members have a different (longer) spacing of several key motifs and have an additional C-terminal domain of up to 100 residues. One argument suggesting that this family represents the same enzyme is that no species has a member of both families. Another is that the gene encoding this protein is located near other NAD salvage biosynthesis genes in Nostoc and in at least four different Gram-positive bacteria. NAD and NADP are ubiquitous in life.
+CC  Most members of this family are Gram-positive bacteria. An additional set of mutually closely related archaeal sequences score between the trusted and noise cutoffs.

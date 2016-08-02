@@ -1,0 +1,18 @@
+ID  cello_pts_IIC
+AC  TIGR00359
+DE  PTS system, cellobiose-specific IIC component
+AU  Loftus BJ
+TC  434.45 434.45
+NC  297.70 297.70
+AL  clustalw
+IT  equivalog
+EN  phosphotransferase system, cellobiose specific, IIC component
+GS  celB
+EC  2.7.1.69
+TP  TIGRFAMs
+CC  The family consists of the cellobiose specific form of the phosphotransferase system (PTS), IIC component.
+RM  97144536
+RT  Identification and characterization of a new beta-glucoside utilization system in Bacillus subtilis.
+RA  Tobisch S, Glaser P, Kruger S, Hecker M
+RL  J Bacteriol 1997 Jan;179(2):496-506
+DR  EGAD:30177, SP:P46317

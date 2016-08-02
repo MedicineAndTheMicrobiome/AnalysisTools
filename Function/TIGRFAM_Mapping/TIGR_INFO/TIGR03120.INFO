@@ -1,0 +1,14 @@
+ID  one_C_mch
+AC  TIGR03120
+DE  methenyltetrahydromethanopterin cyclohydrolase
+AU  Haft DH
+TC  228.80 228.80
+NC  147.25 147.25
+AL  muscle
+IT  equivalog
+EN  methenyltetrahydromethanopterin cyclohydrolase
+GS  mch
+EC  3.5.4.27
+TP  TIGRFAMs
+CC  Members of this protein family are the enzyme methenyltetrahydromethanopterin cyclohydrolase, a key enzyme for tetrahydromethanopterin (H4MPT)-linked C1 transfer metabolism.
+DR  HAMAP; MF_00486; 30 of 34

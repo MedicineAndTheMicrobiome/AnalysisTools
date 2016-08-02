@@ -1,0 +1,17 @@
+ID  moeB
+AC  TIGR02355
+DE  molybdopterin synthase sulfurylase MoeB
+AU  Haft DH
+TC  376.55 376.55
+NC  340.15 340.15
+AL  clustalw
+IT  equivalog
+EN  molybdopterin synthase sulfurylase MoeB
+GS  moeB
+TP  TIGRFAMs
+CC  This model describes the molybdopterin biosynthesis protein MoeB in E. coli and related species. The enzyme covalently modifies the molybdopterin synthase MoaD by sulfurylation. This enzyme is closely related to ThiF, a thiamine biosynthesis enzyme that modifies ThiS by an analogous adenylation. Both MoeB and ThiF belong to the HesA/MoeB/ThiF family (PF00899).
+RN  [1]
+RM  12234097
+RT  Differential effects of a molybdopterin synthase sulfurylase (moeB) mutation on Escherichia coli molybdoenzyme maturation.
+RA  Sambasivarao D, Turner RJ, Bilous PT, Rothery RA, Shaw G, Weiner JH.
+RL  Biochem Cell Biol. 2002;80(4):435-43.

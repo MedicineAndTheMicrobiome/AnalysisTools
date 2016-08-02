@@ -1,0 +1,15 @@
+ID  nst
+AC  TIGR00803
+DE  UDP-galactose transporter
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  55.85 55.85
+NC  53.90 53.90
+AL  clustalw_manual
+IT  subfamily
+EN  UDP-galactose transporter
+GS  nst
+TR  2.A.50
+TP  TIGRFAMs
+CC  The 10-12 TMS Nucleotide Sugar Transporters (TC 2.A.7.10)
+CC  Nucleotide-sugar transporters (NSTs) are found in the Golgi apparatus and the endoplasmic reticulum of eukaryotic cells. Members of the family have been sequenced from yeast, protozoans and animals. Animals such as C. elegans  possess many of these transporters. Humans have at least two closely related isoforms of the UDP-galactose:UMP exchange transporter.
+CC  NSTs generally appear to function by antiport mechanisms, exchanging a nucleotide-sugar for a nucleotide. Thus, CMP-sialic acid is exchanged for CMP; GDP-mannose is preferentially exchanged for GMP, and UDP-galactose and UDP-N-acetylglucosamine are exchanged for UMP (or possibly UDP). Other nucleotide sugars (e.g., GDP-fucose, UDP-xylose, UDP-glucose, UDP-N-acetylgalactosamine, etc.) may also be transported in exchange for various nucleotides, but their transporters have not been molecularly characterized. Each compound appears to be translocated by its own transport protein. Transport allows the compound, synthesized in the cytoplasm, to be exported to the lumen of the Golgi apparatus or the endoplasmic reticulum where it is used for the synthesis of glycoproteins and glycolipids.

@@ -1,0 +1,16 @@
+ID  asnA
+AC  TIGR00669
+DE  aspartate--ammonia ligase
+AU  Loftus BJ, Haft DH
+TC  292.80 292.80
+NC  185.40 185.40
+AL  clustalw_manual
+IT  equivalog
+EN  aspartate--ammonia ligase, AsnA-type
+GS  asnA
+EC  6.3.1.1
+TP  TIGRFAMs
+CC  This model represents one of two non-homologous forms of aspartate--ammonia ligase (asparagine synthetase) found in E. coli. This type is also found in Haemophilus influenzae, Treponema pallidum and Lactobacillus delbrueckii, but appears to have a very limited distribution.
+CC  The fact that the protein from the  H. influenzae is more than 70 % identical to that from the spirochete Treponema pallidum, but less than 65 % identical to that from the closely related E. coli, strongly suggests lateral transfer.
+AL  clustalw_manual
+DR  HAMAP; MF_00555; 89 of 93

@@ -1,0 +1,27 @@
+ID  TIGR00057
+AC  TIGR00057
+DE  tRNA threonylcarbamoyl adenosine modification protein, Sua5/YciO/YrdC/YwlC family
+AU  Richardson DL, Haft DH
+TC  123.20 123.20
+NC  75.45 75.45
+AL  msa_tigr
+IT  equivalog
+EN  tRNA threonylcarbamoyl adenosine modification protein, Sua5/YciO/YrdC/YwlC family
+TP  TIGRFAMs
+CC  Has paralogs, but YrdC called a tRNA modification protein. Ref 2 authors say probably heteromultimeric complex. Paralogs may mean its does the final binding to the tRNA.
+RN  [1]
+RM  PMID:22378793 
+RT  Biosynthesis of Threonylcarbamoyl Adenosine (t6A), a Universal tRNA Nucleoside. 
+RA  Deutsch C, El Yacoubi B, de Crecy-Lagard V, Iwata-Reuyl D 
+RL  J Biol Chem. 2012 Apr 20;287(17):13666-73. 
+RN  [2]
+RM  PMID:21775474 
+RT  YrdC exhibits properties expected of a subunit for a tRNA threonylcarbamoyl transferase. 
+RA  Harris KA, Jones V, Bilbille Y, Swairjo MA, Agris PF 
+RL  RNA. 2011 Sep;17(9):1678-87. 
+RN  [3]
+RM  PMID:1325384 
+RT  Isolation and characterization of SUA5, a novel gene required for normal growth in Saccharomyces cerevisiae. 
+RA  Na JG, Pinto I, Hampsey M 
+RL  Genetics. 1992 Aug;131(4):791-801.
+DR  HAMAP; MF_01852; 27 of 150

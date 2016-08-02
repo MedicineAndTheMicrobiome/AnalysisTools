@@ -1,0 +1,13 @@
+ID  rpsE_arch
+AC  TIGR01020
+DE  ribosomal protein S5
+AU  Durkin S
+TC  181.65 181.65
+NC  122.55 122.55
+AL  clustalw
+IT  equivalog
+EN  ribosomal protein S5(archaeal type)/S2(eukaryote cytosolic type)
+GS  rpsE
+TP  TIGRFAMs
+CC  This model finds eukaryotic ribosomal protein S2 as well as archaeal ribosomal protein S5.
+DR  HAMAP; MF_01307; 47 of 571

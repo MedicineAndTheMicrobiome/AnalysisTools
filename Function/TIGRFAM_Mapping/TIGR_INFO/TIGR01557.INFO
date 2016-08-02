@@ -1,0 +1,21 @@
+ID  myb_SHAQKYF
+AC  TIGR01557
+DE  myb-like DNA-binding domain, SHAQKYF class
+AU  Haft DH, Hannick LI
+TC  29.30 29.30
+NC  26.05 26.05
+AL  manual
+IT  subfamily_domain
+EN  myb-like DNA-binding domain, SHAQKYF class
+TP  TIGRFAMs
+CC  This HMM describes a DNA-binding domain restricted to (but common in) plant proteins, many of which also contain a response regulator domain. The domain appears related to the Myb-like DNA-binding domain described by Pfam model PF00249. It is distinguished in part by a well-conserved motif SH[AL]QKY[RF] at the C-terminal end of the motif.
+RN  [1]
+RM  10652136
+RT  The tomato I-box binding factor LeMYBI is a member of a novel class of myb-like proteins.
+RA  Rose A, Meier I, Wienand U.
+RL  Plant J 1999 Dec;20(6):641-52
+RN  [2]
+RM  7957104
+RT  A novel DNA binding protein with homology to Myb oncoproteins containing only one repeat can function as a transcriptional activator.
+RA  Baranowskij N, Frohberg C, Prat S, Willmitzer L.
+RL  EMBO J 1994 Nov 15;13(22):5383-92

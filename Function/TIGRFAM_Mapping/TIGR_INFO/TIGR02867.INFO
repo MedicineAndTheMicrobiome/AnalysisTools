@@ -1,0 +1,18 @@
+ID  spore_II_P
+AC  TIGR02867
+DE  stage II sporulation protein P
+AU  Haft DH
+TC  123.15 123.15
+NC  43.65 43.65
+AL  muscle
+IT  subfamily
+EN  stage II sporulation protein P
+GS  spoIIP
+TP  TIGRFAMs
+CC  Stage II sporulation protein P is a protein of the endospore formation program in a number of lineages in the Firmicutes (low-GC Gram-positive bacteria). It is expressed in the mother cell compartment, under control of Sigma-E. SpoIIP, along with  SpoIIM and SpoIID, is one of three major proteins involved in engulfment of the forespore by the mother cell. This protein family is named for the single member in Bacillus subtilis, although most sporulating bacteria have two members.
+DR  PFAM; PF07454; SpoIIP
+RN  [1]
+RM  15752199
+RT  Subcellular localization of a sporulation membrane protein is achieved through a network of interactions along and across the septum.
+RA  Doan T, Marquis KA, Rudner DZ.
+RL  Mol Microbiol. 2005 Mar;55(6):1767-81.

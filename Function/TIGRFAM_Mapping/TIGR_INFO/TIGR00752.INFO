@@ -1,0 +1,15 @@
+ID  slp
+AC  TIGR00752
+DE  outer membrane lipoprotein, Slp family
+AU  Haft DH
+TC  88.45 88.45
+NC  74.75 74.75
+AL  clustalw
+IT  superfamily
+EN  outer membrane lipoprotein, Slp family
+TP  TIGRFAMs
+CC  Slp superfamily members are present in the Gram-negative gamma proteobacteria Escherichia coli, which also contains a close paralog, Haemophilus influenzae and Pasteurella multocida and Vibrio cholera.  The known members of the family to date share a motif LX[GA]C near the N-terminus, which is compatible with the possibility that the protein is modified into a lipoprotein with Cys as the new N-terminus. Slp from Escherichia coli is known to be a lipoprotein of the outer membrane and to be expressed in response to carbon starvation.
+RM  94293775
+RT  Characterization of the carbon starvation-inducible and stationary phase-inducible gene slp encoding an outer membrane lipoprotein in Escherichia coli.
+RA  Alexander DM, St John AC
+RL  Mol Microbiol 1994 Mar;11(6):1059-71

@@ -1,0 +1,15 @@
+ID  gltS
+AC  TIGR00210
+DE  sodium/glutamate symporter
+AU  Haft DH
+TC  310.75 310.75
+NC  19.60 19.60
+AL  clustalw
+IT  equivalog
+EN  sodium--glutamate symport carrier (gltS)
+GS  gltS
+TP  TIGRFAMs
+RM  91203811
+RT  Characterization of the Escherichia coli K12 gltS glutamate permease gene.
+RA  Kalman M, Gentry DR, Cashel M
+RL  Mol Gen Genet 1991 Mar;225(3):379-86

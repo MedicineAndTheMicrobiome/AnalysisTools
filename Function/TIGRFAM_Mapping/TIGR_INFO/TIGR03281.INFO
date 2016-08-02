@@ -1,0 +1,12 @@
+ID  methan_mark_12
+AC  TIGR03281
+DE  putative methanogenesis marker protein 12
+AU  Haft DH
+TC  180.85 180.85
+NC  159.00 159.00
+AL  muscle
+IT  hypoth_equivalog
+EN  putative methanogenesis marker protein 12
+TP  TIGRFAMs
+CC  Members of this protein family, to date, are found in a completed prokaryotic genome if and only if the species is one of the archaeal methanogens. The exact function is unknown, but likely is linked to methanogenesis or a process closely connected to it.
+DR  HAMAP; MF_01087; 6 of 6

@@ -1,0 +1,27 @@
+ID  CadR-PbrR
+AC  TIGR02047
+DE  Cd(II)/Pb(II)-responsive transcriptional regulator
+AU  Selengut J
+TC  151.45 151.45
+NC  139.35 139.35
+AL  clustalw
+IT  equivalog
+EN  Cd(II)/Pb(II)-responsive transcriptional regulator
+GS  cadR
+TP  TIGRFAMs
+CC  This HMM represents the cadmium(II) and/or lead(II) responsive transcriptional activator of the proteobacterial metal efflux system [1,2].  This protein is a member of the MerR family of transcriptional activators (PF00376) and contains a distinctive pattern of cysteine residues in its metal binding loop, Cys-X(6-9)-Cys, as well as a conserved and critical cysteine at the N-terminal end of the dimerization helix [3].
+RN  [1]
+RM  PMID: 11282588
+RT  Chromosomal locus for cadmium resistance in Pseudomonas putida consisting of a cadmium-transporting ATPase and a MerR family response regulator.
+RA  Lee SW, Glickmann E, Cooksey DA.
+RL  Appl Environ Microbiol. 2001 Apr;67(4):1437-44. 
+RN  [2]
+RM  PMID: 11544228
+RT  Cloning and functional analysis of the pbr lead resistance determinant of Ralstonia metallidurans CH34.
+RA  Borremans B, Hobman JL, Provoost A, Brown NL, van Der Lelie D.
+RL  J Bacteriol. 2001 Oct;183(19):5651-8.
+RN  [3]
+RM  PMID: 12958362
+RT  Molecular basis of metal-ion selectivity and zeptomolar sensitivity by CueR.
+RA  Changela A, Chen K, Xue Y, Holschen J, Outten CE, O'Halloran TV, Mondragon A.
+RL  Science. 2003 Sep 5;301(5638):1383-7.

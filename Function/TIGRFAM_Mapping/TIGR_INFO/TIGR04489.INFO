@@ -1,0 +1,13 @@
+ID  exosort_XrtO
+AC  TIGR04489
+DE  exosortase O
+AU  Haft DH
+TC  250.00 250.00
+NC  90.00 90.00
+AL  muscle_manual
+IT  equivalog
+EN  exosortase O
+GS  xrtO
+EC  3.4.22.-
+TP  TIGRFAMs
+CC  Members of this protein are a variant form of exosortase, XrtO, with a dedicated target typically encoded by the adjacent gene. Members have a unique C-terminal extension very different from EpsI (TIGR02914), the extension that many exosortases have. The targets of XrtO all are members of family TIGR02921, which describes a PEP-CTERM protein about 950 residues long, found in more than 15 genera so far. These PEP-CTERM proteins are unusually hydrophobic in stretches, suggesting an integral membrane location, which is unusual. About one third of the members of TIGR02921 are in genomes with this protein, exosortase O, always encoded by an adjacent gene. Genomes include Synechocystis sp. PCC 7509, Xenococcus sp. PCC 7305,Pleurocapsa sp. PCC 7327, Microcoleus vaginatus, Hahella chejuensis,  Vibrio azureus NBRC 104587, etc.

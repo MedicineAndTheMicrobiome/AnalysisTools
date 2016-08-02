@@ -1,0 +1,17 @@
+ID  mycothiol_Mca
+AC  TIGR03446
+DE  mycothiol conjugate amidase Mca
+AU  Haft DH
+TC  277.15 277.15
+NC  227.90 227.90
+AL  muscle_manual
+IT  equivalog
+EN  mycothiol conjugate amidase Mca
+GS  mca
+TP  TIGRFAMs
+CC  Mycobacterium tuberculosis, Corynebacterium glutamicum, and related species use the thiol mycothiol in place of glutathione. This enzyme, homologous to the (dispensible) MshB enzyme of mycothiol biosynthesis, is described as an amidase that acts on conjugates to mycothiol. It is a detoxification enzyme.
+RN  [1]
+RM  PMID:14556638
+RT  Characterization of Mycobacterium tuberculosis mycothiol S-conjugate amidase.
+RA  Steffek M, Newton GL, Av-Gay Y, Fahey RC
+RL  Biochemistry. 2003 Oct 21;42(41):12067-76.

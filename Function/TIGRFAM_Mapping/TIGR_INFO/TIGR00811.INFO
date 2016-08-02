@@ -1,0 +1,14 @@
+ID  sit
+AC  TIGR00811
+DE  silicon transporter
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  1047.60 1047.60
+NC  581.85 581.85
+AL  clustalw_manual
+IT  subfamily
+EN  silicon transporter
+GS  siT1
+TR  2.A.32
+TP  TIGRFAMs
+CC  Marine diatoms such as Cylindrotheca fusiformis encode at least six silicon transport protein homologues which exhibit similar size and topology. One characterized member of the family (Sit1) functions in the energy-dependent uptake of either Silicic acid [Si(OH)4] or Silicate [Si(OH)3O-] by a Na+ symport mechanism. The system is found in marine diatoms which make their "glass houses" out of silicon.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/2_A_32.html

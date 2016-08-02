@@ -1,0 +1,11 @@
+ID  gltD_gamma_fam
+AC  TIGR01318
+DE  glutamate synthase, small subunit
+AU  Haft DH
+TC  482.95 482.95
+NC  399.60 399.60
+AL  clustalw_manual
+IT  subfamily_domain
+EN  glutamate synthase small subunit family protein, proteobacterial
+TP  TIGRFAMs
+CC  This HMM represents one of three built for the NADPH-dependent or NADH-dependent glutamate synthase (EC 1.4.1.13 and 1.4.1.14, respectively) small subunit and homologs. TIGR01317 describes the small subunit (or equivalent region from longer forms) in eukaryotes, Gram-positive bacteria, and some other lineages, both NADH and NADPH-dependent. TIGR01316 describes a protein of similar length, from Archaea and a number of bacterial lineages, that forms glutamate synthase homotetramers without a large subunit. This model describes both glutatate synthase small subunit and closely related paralogs of unknown function from a number of gamma and alpha subdivision Proteobacteria, including E. coli.

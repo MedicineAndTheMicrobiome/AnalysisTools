@@ -1,0 +1,11 @@
+ID  Soli_cterm
+AC  TIGR03437
+DE  Solibacter uncharacterized C-terminal domain
+AU  Haft DH
+TC  29.05 29.05
+NC  21.95 21.95
+AL  muscle_manual
+IT  paralog_domain
+EN  Solibacter uncharacterized C-terminal domain
+TP  TIGRFAMs
+CC  This model describes a protein domain found in 90 proteins of Solibacter usitatus Ellin6076, nearly always as the C-terminal  domain of a much larger protein. No homologs to this domain are detected outside of S. usitatus, a member of the Acidobacteria.

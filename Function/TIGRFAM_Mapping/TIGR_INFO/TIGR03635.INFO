@@ -1,0 +1,12 @@
+ID  S17_bact
+AC  TIGR03635
+DE  30S ribosomal protein S17
+AU  Haft DH
+TC  88.70 88.70
+NC  79.40 79.40
+AL  muscle_manual
+IT  equivalog
+EN  30S ribosomal protein S17
+GS  rpsQ
+TP  TIGRFAMs
+CC  This model describes the bacterial ribosomal small subunit protein S17, while excluding cytosolic eukaryotic homologs and archaeal homologs. The model finds many, but not, chloroplast and mitochondrial counterparts to bacterial S17.

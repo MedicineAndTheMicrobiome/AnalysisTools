@@ -1,0 +1,18 @@
+ID  ftsN
+AC  TIGR02223
+DE  cell division protein FtsN
+AU  Haft DH
+TC  107.65 107.65
+NC  65.55 65.55
+AL  clustalw_manual
+IT  equivalog
+EN  cell division protein FtsN
+GS  ftsN
+TP  TIGRFAMs
+CC  FtsN is a poorly conserved protein active in cell division in a number of Proteobacteria. The N-terminal 30 residue region tends to by Lys/Arg-rich, and is followed by a membrane-spanning region. This is followed by an acidic low-complexity region of variable length and a well-conserved C-terminal domain of two tandem regions matched by Pfam model PF05036 (Sporulation related repeat), found in several cell division and sporulation proteins. The role of FtsN as a suppressor for other cell division mutations is poorly understood; it may involve cell wall hydrolysis.
+DR  PFAM; PF05036; Sporulation related repeat
+RN  [1]
+RM  12626683
+RT  Cytokinesis in bacteria.
+RA  Errington J, Daniel RA, Scheffers DJ.
+RL  Microbiol Mol Biol Rev. 2003 Mar;67(1):52-65

@@ -1,0 +1,18 @@
+ID  DNA_S_dndA
+AC  TIGR03235
+DE  cysteine desulfurase DndA
+AU  Haft DH
+TC  480.00 480.00
+NC  465.00 465.00
+AL  muscle
+IT  equivalog
+EN  cysteine desulfurase DndA
+GS  dndA
+EC  2.8.1.7
+TP  TIGRFAMs
+CC  This model describes DndA, a protein related to IscS and part of a larger family of cysteine desulfurases. It is encoded, typically, divergently from a conserved, sparsely distributed operon for sulfur modification of DNA. This modification system is designated dnd, after the phenotype of DNA degradation during electrophoresis. The system is sporadically distributed in bacteria, much like some restriction enzyme operons. DndB is described as a putative ATPase.
+RN  [1]
+RM  PMID: 16102010
+RT  A novel DNA modification by sulphur.
+RA  Zhou X, He X, Liang J, Li A, Xu T, Kieser T, Helmann JD, Deng Z
+RL  Mol Microbiol. 2005 Sep;57(5):1428-38.

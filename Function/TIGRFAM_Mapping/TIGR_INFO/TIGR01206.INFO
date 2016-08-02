@@ -1,0 +1,16 @@
+ID  lysW
+AC  TIGR01206
+DE  lysine biosynthesis protein LysW
+AU  Haft DH
+TC  53.20 53.20
+NC  24.55 24.55
+AL  clustalw
+IT  equivalog
+EN  lysine biosynthesis protein LysW
+GS  lysW
+TP  TIGRFAMs
+CC  This very small, poorly characterized protein has been shown essential in Thermus thermophilus for an unusual pathway of Lys biosynthesis from aspartate by way of alpha-aminoadipate (AAA) rather than diaminopimelate. It is found also in Deinococcus radiodurans and Pyrococcus horikoshii, which appear to share the AAA pathway.
+RM  11238076
+RT  Distribution of genes for lysine biosynthesis through the aminoadipate pathway among prokaryotic genomes.
+RA  Nishida H
+RL  Bioinformatics 2001 Feb;17(2):189-91

@@ -1,0 +1,24 @@
+ID  FtcD
+AC  TIGR02024
+DE  glutamate formiminotransferase
+AU  Selengut J
+TC  221.25 221.25
+NC  164.80 164.80
+AL  clustalw
+IT  equivalog
+EN  glutamate formiminotransferase
+GS  ftcD
+EC  2.1.2.5
+TP  TIGRFAMs
+CC  This HMM represents the tetrahydrofolate (THF) dependent glutamate formiminotransferase involved in the histidine utilization pathway.  This enzyme interconverts L-glutamate and N-formimino-L-glutamate.  The enzyme is bifunctional as it also catalyzes the cyclodeaminase reaction on N-formimino-THF, converting it to 5,10-methenyl-THF and releasing ammonia - part of the process of regenerating THF.
+CC  This model covers enzymes from metazoa as well as gram-positive bacteria and archaea.  In humans, deficiency of this enzyme results in a disease phenotype [1].  The crystal structure of the enzyme has been studied in the context of the catalytic mechanism [2].
+RN  [1]
+RM  PMID: 12815595
+RT  The molecular basis of glutamate formiminotransferase deficiency.
+RA  Hilton JF, Christensen KE, Watkins D, Raby BA, Renaud Y, de la Luna S, Estivill X, MacKenzie RE, Hudson TJ, Rosenblatt DS.
+RL  Hum Mutat. 2003 Jul;22(1):67-73. 
+RN  [2]
+RM  PMID: 10673422
+RT  The crystal structure of the formiminotransferase domain of formiminotransferase-cyclodeaminase: implications for substrate channeling in a bifunctional enzyme.
+RA  Kohls D, Sulea T, Purisima EO, MacKenzie RE, Vrielink A.
+RL  Structure Fold Des. 2000 Jan 15;8(1):35-46.

@@ -1,0 +1,11 @@
+ID  urea_ABC_arch
+AC  TIGR03669
+DE  urea ABC transporter, substrate-binding protein
+AU  Haft DH
+TC  494.80 494.80
+NC  281.15 281.15
+AL  muscle_manual
+IT  equivalog
+EN  urea ABC transporter, substrate-binding protein, archaeal type
+TP  TIGRFAMs
+CC  Members of this protein family are identified as the substrate-binding protein of a urea ABC transport system by similarity to a known urea transporter from Corynebacterium glutamicum, operon structure, proximity of its operons to urease (urea-utilization protein) operons, and by Partial Phylogenetic Profiling vs. urea utilization.

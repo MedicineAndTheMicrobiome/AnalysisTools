@@ -1,0 +1,13 @@
+ID  RNaseEG
+AC  TIGR00757
+DE  ribonuclease, Rne/Rng family
+AU  Haft DH
+TC  325.95 325.95
+NC  53.65 53.65
+AL  clustalw
+IT  subfamily_domain
+EN  ribonuclease, Rne/Rng family
+EC  3.1.4.-
+TP  TIGRFAMs
+CC  This model describes ribonuclease G (formerly CafA, cytoplasmic axial filament protein A), the N-terminal domain of ribonuclease E in which ribonuclease activity resides, and related proteins. In E. coli, both RNase E and RNase G have been shown to play a role in the maturation of the 5' end of 16S RNA.
+CC  The C-terminal half of RNase E (excluded from the seed alignment for this model) lacks ribonuclease activity but participates in mRNA degradation by organizing the degradosome.

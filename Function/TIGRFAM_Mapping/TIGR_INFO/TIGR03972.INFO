@@ -1,0 +1,22 @@
+ID  rSAM_TYW1
+AC  TIGR03972
+DE  wyosine biosynthesis protein TYW1
+AU  Haft DH
+TC  317.95 317.95
+NC  315.95 315.95
+AL  muscle_manual
+IT  equivalog
+EN  wyosine biosynthesis protein TYW1
+GS  twy1
+TP  TIGRFAMs
+CC  Members of this protein family are the archaeal protein TWY1, a radical SAM protein that catalyzes the second step in creating the wye-bases, wyosine and derivatives such as wybutosine, for tRNA base modification.
+RN  [1]
+RM  PMID:17881823 
+RT  Structure of an archaeal TYW1, the enzyme catalyzing the second step of wye-base biosynthesis. 
+RA  Goto-Ito S, Ishii R, Ito T, Shibata R, Fusatomi E, Sekine SI, Bessho Y, Yokoyama S 
+RL  Acta Crystallogr D Biol Crystallogr. 2007 Oct;63(Pt 10):1059-68.
+RN  [2]
+RM  PMID:17727881 
+RT  Crystal structure of the radical SAM enzyme catalyzing tricyclic modified base formation in tRNA. 
+RA  Suzuki Y, Noma A, Suzuki T, Senda M, Senda T, Ishitani R, Nureki O 
+RL  J Mol Biol. 2007 Oct 5;372(5):1204-14.

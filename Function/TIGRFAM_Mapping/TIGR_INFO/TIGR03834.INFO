@@ -1,0 +1,16 @@
+ID  EAGR_box
+AC  TIGR03834
+DE  EAGR box
+AU  Haft DH
+TC  34.10 34.10
+NC  26.10 26.10
+AL  muscle_manual
+IT  domain
+EN  EAGR box
+TP  TIGRFAMs
+CC  The EAGR box (Enriched in Aromatic and Glycine Residues) is found in three different proteins of the Mycoplasma genitalium terminal organelle, which acts in both cytadherence and gliding motility. The presence of this domain in a genome predicts the Mycoplasma-type terminal organelle structure, gliding motility, and cytadherence. The EAGR box may occur from one to nine times in a protein.
+RN  [1]
+RM  PMID:17675381
+RT  Functional analysis of the Mycoplasma genitalium MG312 protein reveals a specific requirement of the MG312 N-terminal domain for gliding motility.
+RA  Burgos R, Pich OQ, Querol E, Pinol J
+RL  J Bacteriol. 2007 Oct;189(19):7014-23.

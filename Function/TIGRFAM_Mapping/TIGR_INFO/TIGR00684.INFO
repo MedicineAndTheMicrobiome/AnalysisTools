@@ -1,0 +1,16 @@
+ID  narJ
+AC  TIGR00684
+DE  nitrate reductase molybdenum cofactor assembly chaperone
+AU  Haft DH, Loftus BJ
+TC  59.35 59.35
+NC  48.55 48.55
+AL  clustalw
+IT  equivalog
+EN  nitrate reductase molybdenum cofactor assembly chaperone
+GS  narJ
+TP  TIGRFAMs
+CC  This protein is termed NarJ in most species that have a single copy, and has been called the delta subunit of nitrate reductase. However, although it is required for correct assembly of active enzyme, it dissociates and is not part of the enzyme.  Two hits to this HMM are found each in E. coli and in Mycobacterium tuberculosis, but in each case duplication to create paralogs appears to be recent. The NarX protein of Mycobacterium tuberculosis includes one of these paralogs as a domain, fused to structural domains of nitrate reductases before and after the NarJ-homologous region.
+RM  98294038
+RT  NarJ is a specific chaperone required for molybdenum cofactor assembly in nitrate reductase A of Escherichia coli.
+RA  Blasco F, Dos Santos JP, Magalon A, Frixon C, Guigliarelli B, Santini CL, Giordano G
+RL  Mol Microbiol 1998 May;28(3):435-47

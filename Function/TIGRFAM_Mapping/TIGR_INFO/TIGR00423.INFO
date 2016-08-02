@@ -1,0 +1,12 @@
+ID  TIGR00423
+AC  TIGR00423
+DE  radical SAM domain protein, CofH subfamily
+AU  Loftus BJ, Haft DH
+TC  260.25 260.25
+NC  188.90 188.90
+AL  clustalw
+IT  subfamily
+EN  radical SAM domain protein, CofH subfamily
+TP  TIGRFAMs
+CC  This protein family includes the CofH protein of coenzyme F(420) biosynthesis from Methanocaldococcus jannaschii, but appears to hit genomes more broadly than just the subset that make coenzyme F(420), so that narrower group is being built as a separate family.
+DR  HAMAP; MF_01612; 27 of 27

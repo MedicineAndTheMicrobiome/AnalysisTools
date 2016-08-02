@@ -1,0 +1,19 @@
+ID  cmk
+AC  TIGR00017
+DE  cytidylate kinase
+AU  Richardson DL
+TC  135.55 135.55
+NC  36.35 36.35
+AL  clustalw
+IT  equivalog
+EN  cytidylate kinase
+GS  cmk
+EC  2.7.4.14
+TP  TIGRFAMs
+CC  This family consists of cytidylate kinase, which catalyzes the phosphorylation of cytidine 5-monophosphate (dCMP) to cytidine 5 -diphosphate (dCDP) in the presence of ATP or GTP. UMP and dCMP can also act as acceptors.
+RN  [1]
+RM  PMID: 9862805
+RT  Structures of escherichia coli CMP kinase alone and in complex with CDP: a new fold of the nucleoside monophosphate binding domain and insights into cytosine nucleotide specificity
+RA  Briozzo P, Golinelli-Pimpaneau B, Gilles AM, Gaucher JF, Burlacu-Miron S, Sakamoto H, Janin J, Barzu O.
+RL  Structure. 1998 Dec 15;6(12):1517-27
+DR  HAMAP; MF_01349; 27 of 27

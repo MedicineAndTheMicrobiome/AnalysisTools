@@ -1,0 +1,12 @@
+ID  thauma_sortase
+AC  TIGR04297
+DE  thaumarchaeosortase
+AU  Haft DH
+TC  250.00 250.00
+NC  40.00 40.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  thaumarchaeosortase
+GS  artG
+TP  TIGRFAMs
+CC  This member of the archaeosortase/exosortase family occurs exclusively in the Thaumarchaeota, where the corresponding proposed sorting signal is PEFG-CTERM (see model TIGR04296). This family is unusual in that the suspected active site residue, Cys in every other defined subfamily of archaeosortases and exosortases is replaced by Ser.

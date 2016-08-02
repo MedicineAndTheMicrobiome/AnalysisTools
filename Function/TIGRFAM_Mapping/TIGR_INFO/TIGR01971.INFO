@@ -1,0 +1,12 @@
+ID  NuoI
+AC  TIGR01971
+DE  NADH-quinone oxidoreductase, chain I
+AU  Selengut J
+TC  113.05 113.05
+NC  103.55 103.55
+AL  clustalw
+IT  subfamily
+EN  NADH-quinone oxidoreductase, chain I
+TP  TIGRFAMs
+CC  This HMM represents the I subunit (one of 14: A->N) of the NADH-quinone oxidoreductase complex I which generally couples NADH and ubiquinone oxidation/reduction in bacteria and mammalian mitochondria, but may act on NADPH and/or plastoquinone in cyanobacteria and plant chloroplasts.  This HMM excludes "I" subunits from the closely related F420H2 dehydrogenase and formate hydrogenlyase complexes.
+DR  HAMAP; MF_01351; 487 of 502

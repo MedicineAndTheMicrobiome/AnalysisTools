@@ -1,0 +1,15 @@
+ID  cdhA
+AC  TIGR00314
+DE  CO dehydrogenase/acetyl-CoA synthase complex, epsilon subunit
+AU  Loftus BJ
+TC  781.30 781.30
+NC  384.00 384.00
+AL  clustalw
+IT  equivalog
+EN  CO dehydrogenase/acetyl-CoA synthase complex, epsilon subunit
+GS  cdhA
+EC  1.2.99.2
+TP  TIGRFAMs
+CC  Acetyl-CoA decarbonylase/synthase (ACDS) is a multienzyme complex. Carbon monoxide dehydrogenase is a synonym. The ACDS complex carries out an unusual reaction involving the reversible cleavage and synthesis of acetyl-CoA in methanogens. The model contains the prosite signature for 4Fe-4S ferredoxins [C-x(2)-C-x(2)-C-x(3)-C-[PEG]] between residues 448-462 of the model.
+DR  PROSITE; PDOC00176; 4FE4S_FERREDOXIN
+DR  HAMAP; MF_01137; 13 of 13

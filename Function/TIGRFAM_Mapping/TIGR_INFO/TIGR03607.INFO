@@ -1,0 +1,11 @@
+ID  TIGR03607
+AC  TIGR03607
+DE  patatin-related protein
+AU  Haft DH
+TC  262.45 262.45
+NC  154.55 154.55
+AL  muscle_manual
+IT  subfamily_domain
+EN  patatin-related protein
+TP  TIGRFAMs
+CC  This bacterial protein family contains an N-terminal  patatin domain, where patatins are plant storage proteins capable of phospholipase activity (see PF01734). Regions of strong sequence conservation are separated by regions of significant sequence and length variability. Members of the family are distributed sporadically among bacteria. The function is unknown.

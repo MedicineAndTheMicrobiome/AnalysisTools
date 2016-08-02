@@ -1,0 +1,11 @@
+ID  restrict_AAA_1
+AC  TIGR04435
+DE  restriction system-associated AAA family ATPase
+AU  Haft DH
+TC  300.00 300.00
+NC  200.00 200.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  restriction system-associated AAA family ATPase
+TP  TIGRFAMs
+CC  Members of this family are AAA family ATPases by homology. They occur regularly in a conserved gene neighborhood with the restriction (R), modification (M), and specificity (S) proteins of an apparent type I restriction enzyme system, plus one additional uncharacterized protein. It is not clear whether members of this family contribute to restriction per se, or to another process such as transfer of mobile elements.

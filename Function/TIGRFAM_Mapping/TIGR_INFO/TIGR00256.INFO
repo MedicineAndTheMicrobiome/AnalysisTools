@@ -1,0 +1,18 @@
+ID  TIGR00256
+AC  TIGR00256
+DE  D-tyrosyl-tRNA(Tyr) deacylase
+AU  Haft DH
+TC  101.50 101.50
+NC  57.15 57.15
+AL  clustalw
+IT  equivalog
+EN  D-tyrosyl-tRNA(Tyr) deacylase
+GS  dtd
+EC  3.6.1.-
+TP  TIGRFAMs
+CC  This homodimeric enzyme appears able to cleave any D-amino acid (and glycine, which does not have distinct D/L forms) from charged tRNA. The name reflects characterization with respect to D-Tyr on tRNA(Tyr) as established in the literature, but substrate specificity seems much broader.
+RM  11568181
+RT  Structure of crystalline D-Tyr-tRNA(Tyr) deacylase. A representative of a new class of tRNA-dependent hydrolases.
+RA  Ferri-Fioni ML, Schmitt E, Soutourina J, Plateau P, Mechulam Y, Blanquet S.
+RL  J Biol Chem 2001 Dec 14;276(50):47285-90
+DR  HAMAP; MF_00518; 332 of 336

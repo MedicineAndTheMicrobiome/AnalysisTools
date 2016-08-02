@@ -1,0 +1,13 @@
+ID  benz_CoA_red_C
+AC  TIGR02263
+DE  benzoyl-CoA reductase, subunit C
+AU  Haft DH
+TC  421.15 421.15
+NC  141.80 141.80
+AL  clustalw
+IT  equivalog
+EN  benzoyl-CoA reductase, subunit C
+GS  bcrC
+EC  1.3.7.8
+TP  TIGRFAMs
+CC  This HMM describes C subunit of benzoyl-CoA reductase, a 4-subunit enzyme. Many aromatic compounds are metabolized by way of benzoyl-CoA. This enzyme acts under anaerobic conditions.

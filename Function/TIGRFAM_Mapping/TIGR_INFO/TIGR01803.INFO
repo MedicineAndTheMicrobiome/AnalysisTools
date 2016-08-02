@@ -1,0 +1,21 @@
+ID  CM-like
+AC  TIGR01803
+DE  chorismate mutase related enzymes
+AU  Selengut J
+TC  73.35 73.35
+NC  60.35 60.35
+AL  clustalw
+IT  subfamily
+EN  chorismate mutase related enzymes
+TP  TIGRFAMs
+CC  This subfamily includes two enzymes which are variants on the mechanism of chorismate mutase and are likely to have evolved from an ancestral chorismate mutase enzyme.  4-amino-4-deoxy-chorismate mutase produces amino-deoxy-prephenate which is subsequently converted to para-dimethylamino-phenylalanine, a component of the natural product pristinamycin [1].  Isochorismate-pyruvate lyase presumably catalyzes the same type of 2+2+2 cyclo-rearrangement as chorismate mutase, but acting on isochorismate, this results in two broken bonds instead of one broken and one made.  The product of this reaction is salicylate (2-hydroxy-benzoate) which is also incorporated into various natural products [2].
+RN  [1]
+RM  PMID: 9044253 
+RT  Identification and analysis of genes from Streptomyces pristinaespiralis encoding enzymes involved in the biosynthesis of the 4-dimethylamino-L-phenylalanine precursor of pristinamycin I.
+RA  Blanc V, Gil P, Bamas-Jacques N, Lorenzon S, Zagorec M, Schleuniger J, Bisch D, Blanche F, Debussche L, Crouzet J, Thibaut D.
+RL  Mol Microbiol 1997 Jan;23(2):191-202
+RN  [2]
+RM  PMID: 7500944
+RT  Structural genes for salicylate biosynthesis from chorismate in Pseudomonas aeruginosa.
+RA  Serino L, Reimmann C, Baur H, Beyeler M, Visca P, Haas D.
+RL  Mol Gen Genet 1995 Nov 15;249(2):217-28

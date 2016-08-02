@@ -1,0 +1,18 @@
+ID  gluc_glyc_Psyn
+AC  TIGR02398
+DE  glucosylglycerol-phosphate synthase
+AU  Haft DH
+TC  569.00 569.00
+NC  388.80 388.80
+AL  clustalw
+IT  equivalog
+EN  glucosylglycerol-phosphate synthase
+GS  ggpS
+EC  2.4.1.213
+TP  TIGRFAMs
+CC  Glucosylglycerol-phosphate synthase catalyzes the key step in the biosynthesis of the osmolyte glucosylglycerol. It is known in several cyanobacteria and in Pseudomonas anguilliseptica. The enzyme is closely related to the alpha,alpha-trehalose-phosphate synthase, likewise involved in osmolyte biosynthesis, of E. coli and many other bacteria. A close homolog from Xanthomonas campestris is excluded from this model and scores between trusted and noise.
+DR  PFAM; PF00982; Glyco_transf_20
+RM  9733686
+RT  The ggpS gene from Synechocystis sp. strain PCC 6803 encoding glucosyl-glycerol-phosphate synthase is involved in osmolyte synthesis.
+RA  Marin K, Zuther E, Kerstan T, Kunert A, Hagemann M.
+RL  J Bacteriol. 1998 Sep;180(18):4843-9.

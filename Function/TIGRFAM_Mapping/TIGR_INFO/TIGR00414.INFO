@@ -1,0 +1,15 @@
+ID  serS
+AC  TIGR00414
+DE  serine--tRNA ligase
+AU  Haft DH
+TC  301.65 301.65
+NC  225.60 225.60
+AL  clustalw_manual
+IT  equivalog
+EN  seryl-tRNA synthetase
+GS  serS
+EC  6.1.1.11
+TP  TIGRFAMs
+CC  This HMM represents the seryl-tRNA synthetase found in most organisms. This protein is a class II tRNA synthetase, and is recognized by the pfam HMM tRNA-synt_2b. The seryl-tRNA synthetases of two archaeal species, Methanococcus jannaschii and Methanobacterium thermoautotrophicum, differ considerably and are included in a different model.
+DR  PFAM; PF00587;
+DR  HAMAP; MF_00176; 529 of 536

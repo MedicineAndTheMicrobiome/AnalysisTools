@@ -1,0 +1,15 @@
+ID  cax
+AC  TIGR00378
+DE  calcium/proton exchanger
+AU  Loftus BJ
+TC  211.15 211.15
+NC  37.30 37.30
+AL  clustalw
+IT  equivalog
+EN  calcium/proton exchanger (cax)
+GS  cax
+TP  TIGRFAMs
+RM  96323302
+RT  CAX1, an H+/Ca2+ antiporter from Arabidopsis.
+RA  Hirschi KD, Zhen RG, Cunningham KW, Rea PA, Fink GR
+RL  Proc Natl Acad Sci U S A 1996 Aug 6;93(16):8782-6 

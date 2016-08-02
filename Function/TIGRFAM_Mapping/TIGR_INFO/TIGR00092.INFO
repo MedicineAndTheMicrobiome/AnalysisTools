@@ -1,0 +1,22 @@
+ID  TIGR00092
+AC  TIGR00092
+DE  GTP-binding protein YchF
+AU  Richardson DL, Haft DH
+TC  279.20 279.20
+NC  203.55 203.55
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  GTP-binding protein YchF
+GS  ychF
+TP  TIGRFAMs
+CC  This predicted GTP-binding protein is found in a single copy in every complete bacterial genome, and is found in Eukaryotes. A more distantly related protein, separated from this model, is found in the archaea. It is known to bind GTP and double-stranded nucleic acid. It is suggested to belong to a nucleoprotein complex and act as a translation factor.
+RN  [1]
+RM  12837776
+RT  Crystal structure of the YchF protein reveals binding sites for GTP and nucleic acid.
+RA  Teplyakov A, Obmolova G, Chu SY, Toedt J, Eisenstein E, Howard AJ, Gilliland GL.
+RL  J Bacteriol. 2003 Jul;185(14):4031-7.
+RN  [2]
+RM  11200227
+RT  Comparative genomics of prokaryotic GTP-binding proteins (the Era, Obg, EngA, ThdF (TrmE), YchF and YihA families) and their relationship to eukaryotic GTP-binding proteins (the DRG, ARF, RAB, RAN, RAS and RHO families).
+RA  Mittenhuber G.
+RL  J Mol Microbiol Biotechnol 2001 Jan;3(1):21-35

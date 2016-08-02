@@ -1,0 +1,15 @@
+ID  fabD
+AC  TIGR00128
+DE  malonyl CoA-acyl carrier protein transacylase
+AU  Richardson DL
+TC  260.90 260.90
+NC  209.60 209.60
+AL  clustalw
+IT  equivalog
+EN  malonyl CoA-acyl carrier protein transacylase
+GS  fabD
+EC  2.3.1.39
+TP  TIGRFAMs
+CC  This enzyme of fatty acid biosynthesis transfers the malonyl moeity from coenzyme A to acyl-carrier protein.
+CC  The seed alignment for this family of proteins contains a single member each from a number of bacterial species but also an additional pair of closely related, uncharacterized proteins from B. subtilis, one of which has a long C-terminal extension.
+RM  95286570

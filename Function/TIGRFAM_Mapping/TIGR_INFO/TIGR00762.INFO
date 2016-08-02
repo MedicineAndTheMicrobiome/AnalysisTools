@@ -1,0 +1,16 @@
+ID  DegV
+AC  TIGR00762
+DE  EDD domain protein, DegV family
+AU  Haft DH, Dodson RJ
+TC  99.70 99.70
+NC  84.10 84.10
+AL  clustalw_manual
+IT  domain
+EN  EDD domain protein, DegV family
+TP  TIGRFAMs
+CC  This family of proteins is related to DegV of Bacillus subtilis  and includes paralogous sets in several species (B. subtilis, Deinococcus radiodurans, Mycoplasma pneumoniae) that are closer in percent identity to each than to most homologs from other species. This suggests both recent paralogy and diversity of function. DegV itself is encoded immediately downstream of DegU, a transcriptional regulator of degradation, but is itself uncharacterized. Crystallography suggested a lipid-binding site, while comparison of the crystal structure to dihydroxyacetone kinase and to a mannose transporter EIIA domain suggests a conserved domain, EDD, with phosphotransferase activity.
+RN  [1]
+RM  PMID:15632288
+RT  EDD, a novel phosphotransferase domain common to mannose transporter EIIA, dihydroxyacetone kinase, and DegV.
+RA  Kinch LN, Cheek S, Grishin NV
+RL  Protein Sci. 2005 Feb;14(2):360-7.

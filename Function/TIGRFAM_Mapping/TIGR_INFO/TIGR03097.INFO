@@ -1,0 +1,16 @@
+ID  PEP_O_lig_1
+AC  TIGR03097
+DE  probable O-glycosylation ligase, exosortase A-associated
+AU  Selengut J, Haft DH
+TC  188.10 188.10
+NC  124.05 124.05
+AL  muscle
+IT  hypoth_equivalog
+EN  probable O-glycosylation ligase, exosortase A-associated
+TP  TIGRFAMs
+CC  These proteins are members of the O-antigen polymerase (wzy) family described by Pfam model PF04932.  This group is  associated with genomes and ususally genomic contexts containing elements of the exosortase/PEP-CTERM protein export system [1], specificially the type 1 variety of this system described by the Genome Property, GenProp0652.
+RN  [1]
+RM  PMID: 16930487
+RT  Exopolysaccharide-associated protein sorting in environmental organisms: the PEP-CTERM/EpsH system. Application of a novel phylogenetic profiling heuristic.
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD
+RL  BMC Biol. 2006 Aug 24;4(1):29.

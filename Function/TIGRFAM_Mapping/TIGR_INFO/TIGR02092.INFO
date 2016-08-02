@@ -1,0 +1,13 @@
+ID  glgD
+AC  TIGR02092
+DE  glucose-1-phosphate adenylyltransferase, GlgD subunit
+AU  Haft DH
+TC  236.60 236.60
+NC  231.25 231.25
+AL  clustalw_manual
+IT  equivalog
+EN  glucose-1-phosphate adenylyltransferase, GlgD subunit
+GS  glgD
+EC  2.7.7.27
+TP  TIGRFAMs
+CC  This family is GlgD, an apparent regulatory protein that appears in an alpha2/beta2 heterotetramer with GlgC (glucose-1-phosphate adenylyltransferase, TIGR02091) in a subset of bacteria that use GlgC for glycogen biosynthesis.

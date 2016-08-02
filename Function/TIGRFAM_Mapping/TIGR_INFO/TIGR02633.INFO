@@ -1,0 +1,15 @@
+ID  xylG
+AC  TIGR02633
+DE  D-xylose ABC transporter, ATP-binding protein
+AU  Haft DH
+TC  723.65 723.65
+NC  666.30 666.30
+AL  clustalw
+IT  equivalog
+EN  D-xylose ABC transporter, ATP-binding protein
+GS  xylG
+EC  3.6.3.17
+TP  TIGRFAMs
+CC  Several bacterial species have enzymes xylose isomerase and xylulokinase enzymes for xylose utilization. Members of this protein family are the ATP-binding cassette (ABC) subunit of the known or predicted high-affinity xylose ABC transporter for xylose import. These genes, which closely resemble other sugar transport ABC transporter genes, typically are encoded near xylose utilization enzymes and regulatory proteins. Note that this form of the transporter contains two copies of the ABC transporter domain (PF00005).
+DR  PFAM; PF00005; ABC transporter
+DR  HAMAP; MF_01722; 30 of 33

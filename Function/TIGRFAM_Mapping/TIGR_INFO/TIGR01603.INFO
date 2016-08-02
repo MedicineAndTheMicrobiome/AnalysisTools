@@ -1,0 +1,11 @@
+ID  maj_tail_phi13
+AC  TIGR01603
+DE  phage major tail protein, phi13 family
+AU  Haft DH, Fouts DE, Sunshine J
+TC  35.20 35.20
+NC  34.95 34.95
+AL  manual
+IT  subfamily
+EN  phage major tail protein, phi13 family
+TP  TIGRFAMs
+CC  This HMM describes a set of proteins that share low levels of sequence similarity but similar lengths and similar patterns of charged, hydrophobic, and Gly/Pro residues. All members (except one attributed to mouse embryo cDNA) belong to phage of Gram-positive bacteria. Several are identified as phage major tail proteins. Some members of this family have additional C-terminal regions of about 100 residues not included in this model.

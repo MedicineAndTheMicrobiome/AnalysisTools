@@ -1,0 +1,11 @@
+ID  KaiC_arch_3
+AC  TIGR03880
+DE  KaiC domain protein, AF_0351 family
+AU  Haft DH
+TC  249.45 249.45
+NC  205.15 205.15
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  KaiC domain protein, AF_0351 family
+TP  TIGRFAMs
+CC  This model represents a rather narrowly distributed archaeal protein family in which members have a single copy of the KaiC domain. This stands in contrast to the circadian clock protein KaiC itself, with two copies of the domain. Members are expected to have weak ATPase activity, by homology to the autokinase/autophosphorylase KaiC itself.

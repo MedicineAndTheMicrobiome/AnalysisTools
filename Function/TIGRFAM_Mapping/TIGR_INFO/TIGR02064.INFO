@@ -1,0 +1,33 @@
+ID  dsrA
+AC  TIGR02064
+DE  sulfite reductase, dissimilatory-type alpha subunit
+AU  Brinkac L
+TC  392.85 392.85
+NC  222.85 222.85
+AL  clustalw
+IT  equivalog
+EN  sulfite reductase, dissimilatory-type alpha subunit
+GS  dsrA
+EC  1.8.99.3
+TP  TIGRFAMs
+CC  Dissimilatory sulfite reductase catalyzes the six-electron reduction of sulfite to sulfide, as the terminal reaction in dissimilatory sulfate reduction. It remains unclear however, whether trithionate and thiosulfate serve as intermediate compounds to sulfide, or as end products of sulfite reduction [1].
+CC  Sulfite reductase is a multisubunit enzyme composed of dimers of either alpha/beta or alpha/beta/gamma subunits, each containing a siroheme and iron sulfur cluster prosthetic center [2]. Found in sulfate-reducing bacteria, these genes are commonly located in an unidirectional gene cluster [3].
+CC  This model describes the alpha subunit of sulfite reductase.
+RN  [1]
+RM  PMID: 7747930
+RT  Metabolism of sulfate-reducing prokaryotes.
+RA  Hansen TA
+RL  Antonie Van Leeuwenhoek. 1994;66(1-3):165-85. Review.
+RN  [2]
+RM  PMID: 1555572
+RT  The third subunit of desulfoviridin-type dissimilatory sulfite reductases.
+RA  Pierik AJ, Duyvis MG, van Helvoort JM, Wolbert RB, Hagen WR.
+RL  Eur J Biochem. 1992 Apr 1;205(1):111-5.
+RN  [3]
+RM  PMID: 11557144
+RT  A novel organization of the dissimilatory sulfite reductase operon of Thermodesulforhabdus norvegica verified by RT-PCR.
+RA  Larsen O, Lien T, Birkeland NK.
+RL  FEMS Microbiol Lett. 2001 Sep 11;203(1):81-5.
+DR  PFAM; PF01077; Nitrite and sulphite reductase 4Fe-4S domain
+DR  EXPERIEMENTAL; SP|P45574; Desulfovibrio vulgaris; purified protein formed mainly trithionate besides thiosulfate and sulfide in sulfite reduction coupled to hydrogenase and methyl viologen
+DR  OUTGROUP; SP|Q59110; Archaeoglobus fulgidus; Sulfite reductase, dissimilatory-type beta subunit

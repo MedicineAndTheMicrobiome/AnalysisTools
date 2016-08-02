@@ -1,0 +1,16 @@
+ID  minD_arch
+AC  TIGR01969
+DE  cell division ATPase MinD
+AU  Haft DH
+TC  201.75 201.75
+NC  196.65 196.65
+AL  clustalw_manual
+IT  subfamily
+EN  cell division ATPase MinD, archaeal
+GS  minD
+TP  TIGRFAMs
+CC  This HMM represents the archaeal branch of the MinD family. MinD, a weak ATPase, works in bacteria with MinC as a generalized cell division inhibitor and, through interaction with MinE, prevents septum placement inappropriate sites. Often several members of this family are found in archaeal genomes, and the function is uncharacterized. More distantly related proteins ParA chromosome partitioning proteins. The exact roles of the various archaeal MinD homologs are unknown.
+RM  11296216
+RT  Structural and functional studies of MinD ATPase: implications for the molecular recognition of the bacterial cell division apparatus.
+RA  Hayashi I, Oyama T, Morikawa K.
+RL  EMBO J. 2001 Apr 17;20(8):1819-28.

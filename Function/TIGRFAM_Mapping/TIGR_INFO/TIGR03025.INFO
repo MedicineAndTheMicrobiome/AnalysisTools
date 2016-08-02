@@ -1,0 +1,62 @@
+ID  EPS_sugtrans
+AC  TIGR03025
+DE  exopolysaccharide biosynthesis polyprenyl glycosylphosphotransferase
+AU  Selengut J
+TC  295.55 295.55
+NC  292.45 292.45
+AL  muscle
+IT  subfamily
+EN  exopolysaccharide biosynthesis polyprenyl glycosylphosphotransferase
+TP  TIGRFAMs
+CC  Members of this family are generally found near other genes involved in the biosynthesis of a variety of exopolysaccharides.  These proteins consist of two fused domains, an N-terminal hydrophobic domain of generally low conservation and a highly conserved C-terminal sugar transferase domain (PF02397).  Characterized and partially characterized members of this subfamily include Salmonella WbaP (originally RfbP) [1], E. coli WcaJ [2], Methylobacillus EpsB [3], Xanthomonas GumD [4], Vibrio CpsA [5], Erwinia AmsG [6], Group B Streptococcus CpsE (originally CpsD) [7], and Streptococcus suis Cps2E [8].  Each of these is believed to act in transferring the sugar from, for instance, UDP-glucose or UDP-galactose, to a lipid carrier such as undecaprenyl phosphate as the first (priming) step in the synthesis of an oligosaccharide "block".  This function is encoded in the C-terminal domain.  The liposaccharide is believed to be subsequently transferred through a "flippase" function from the cytoplasmic to the periplasmic face of the inner membrane by the N-terminal domain.  
+CC  Certain closely related transferase enzymes such as Sinorhizobium ExoY [9] and Lactococcus EpsD [10] lack the N-terminal domain and are not found by this model.
+RN  [1]
+RM  PMID: 8626328 
+RT  C-terminal half of Salmonella enterica WbaP (RfbP) is the galactosyl-1-phosphate transferase domain catalyzing the first step of O-antigen synthesis. 
+RA  Wang L, Liu D, Reeves PR 
+RL  J Bacteriol. 1996 May;178(9):2598-604. 
+RN  [2]
+RM  PMID: 318640 
+RT  Role of a sugar-lipid intermediate in colanic acid synthesis by Escherichia coli. 
+RA  Johnson JG, Wilson DB 
+RL  J Bacteriol. 1977 Jan;129(1):225-36. 
+RN  [3]
+RM  12624205
+RA  Yoshida T, Ayabe Y, Yasunaga M, Usami Y, Habe H, Nojiri H, Omori T
+RT  Genes involved in the synthesis of the exopolysaccharide methanolan by the obligate methylotroph Methylobacillus sp strain 12S.
+RL  Microbiology. 2003 Feb;149(Pt 2):431-44.
+RN  [4]
+RM  PMID: 9537354 
+RT  Xanthomonas campestris pv. campestris gum mutants: effects on xanthan biosynthesis and plant virulence. 
+RA  Katzen F, Ferreiro DU, Oddo CG, Ielmini MV, Becker A, Puhler A, Ielpi L 
+RL  J Bacteriol. 1998 Apr;180(7):1607-17. 
+RN  [5]
+RM  PMID: 12949095 
+RT  Multiple regulators control capsular polysaccharide production in Vibrio parahaemolyticus. 
+RA  Guvener ZT, McCarter LL 
+RL  J Bacteriol. 2003 Sep;185(18):5431-41. 
+RN  [6]
+RM  PMID: 7596293 
+RT  Molecular analysis of the ams operon required for exopolysaccharide synthesis of Erwinia amylovora. 
+RA  Bugert P, Geider K 
+RL  Mol Microbiol. 1995 Mar;15(5):917-33.
+RN  [7]
+RM  PMID: 8355611 
+RT  Identification of cpsD, a gene essential for type III capsule expression in group B streptococci. 
+RA  Rubens CE, Heggen LM, Haft RF, Wessels MR 
+RL  Mol Microbiol. 1993 May;8(5):843-55. 
+RN  [8]
+RM  PMID: 10085014 
+RT  Identification and characterization of the cps locus of Streptococcus suis serotype 2: the capsule protects against phagocytosis and is an important virulence factor. 
+RA  Smith HE, Damman M, van der Velde J, Wagenaar F, Wisselink HJ, Stockhofe-Zurwieden N, Smits MA 
+RL  Infect Immun. 1999 Apr;67(4):1750-6. 
+RN  [9]
+RM  PMID: 14769477 
+RT  The key Sinorhizobium meliloti succinoglycan biosynthesis gene exoY is expressed from two promoters. 
+RA  Cheng HP, Yao SY 
+RL  FEMS Microbiol Lett. 2004 Feb 9;231(1):131-6. 
+RN  [10]
+RM  PMID: 10515924 
+RT  Functional analysis of glycosyltransferase genes from Lactococcus lactis and other gram-positive cocci: complementation, expression, and diversity. 
+RA  van Kranenburg R, Vos HR, van Swam II, Kleerebezem M, de Vos WM 
+RL  J Bacteriol. 1999 Oct;181(20):6347-53.

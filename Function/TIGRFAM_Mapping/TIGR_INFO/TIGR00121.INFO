@@ -1,0 +1,17 @@
+ID  birA_ligase
+AC  TIGR00121
+DE  biotin--[acetyl-CoA-carboxylase] ligase
+AU  Haft DH
+TC  83.10 83.10
+NC  76.45 76.45
+AL  clustalw_manual
+IT  equivalog_domain
+EN  birA, biotin-[acetyl-CoA-carboxylase] ligase region
+EC  6.3.4.15
+TP  TIGRFAMs
+CC  This model represents the biotin--acetyl-CoA-carboxylase ligase region of biotin--acetyl-CoA-carboxylase ligase. In Escherichia coli and some other species, this enzyme is part of a bifunction protein BirA that includes a small, N-terminal biotin operon repressor domain. Proteins identified by this model should not be called bifunctional unless they are also identified by birA_repr_reg (TIGR00122).
+CC  The protein name suggests that this enzyme transfers biotin only to acetyl-CoA-carboxylase but it also transfers the biotin moiety to other proteins. The apparent orthologs among the eukaryotes are larger proteins that contain a single copy of this domain.
+RM  3536662
+RT  DNA-binding and enzymatic domains of the bifunctional biotin operon repressor (BirA) of Escherichia coli.
+RA  Buoncristiani MR, Howard PK, Otsuka AJ
+RL  Gene 1986;44(2-3):255-61

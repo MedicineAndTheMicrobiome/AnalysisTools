@@ -1,0 +1,19 @@
+ID  TIGR00096
+AC  TIGR00096
+DE  16S rRNA (cytidine(1402)-2'-O)-methyltransferase
+AU  Richardson DL, Anolik RT, Haft DH
+TC  167.90 167.90
+NC  84.90 84.90
+AL  msa_tigr
+IT  equivalog
+EN  16S rRNA (cytidine(1402)-2'-O)-methyltransferase
+GS  rsmI
+EC  2.1.1.198
+TP  TIGRFAMs
+CC  This protein, previously known as YraL, is RsmI, one of a pair of genes involved in a unique dimethyl modification of a cytidine in 16S rRNA. See Pfam model PF00590 (tetrapyrrole methylase), which demonstrates homology between this family and other members,  including several methylases for the tetrapyrrole class of compound, as well as the enzyme diphthine synthase.
+RN  [1]
+RM  PMID:19965768 
+RT  Fine-tuning of the ribosomal decoding center by conserved methyl-modifications in the Escherichia coli 16S rRNA. 
+RA  Kimura S, Suzuki T 
+RL  Nucleic Acids Res. 2010 Mar;38(4):1341-52.
+DR  PFAM; PF00590; Tetrapyrrole (Corrin/Porphyrin) Methylases

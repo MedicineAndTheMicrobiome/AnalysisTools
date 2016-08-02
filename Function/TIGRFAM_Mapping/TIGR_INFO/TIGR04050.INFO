@@ -1,0 +1,11 @@
+ID  MSMEG_0567_Cter
+AC  TIGR04050
+DE  AIR synthase-related protein, MSMEG_0567 C-terminal family
+AU  Haft DH
+TC  312.20 312.20
+NC  311.60 311.60
+AL  muscle_manual
+IT  hypoth_equivalog_domain
+EN  AIR synthase-related protein, MSMEG_0567 C-terminal family
+TP  TIGRFAMs
+CC  Members of this family include the C-terminal region of MSMEG_0567 from Mycobacterium smegmatis, where the N-terminal is a GNAT family N-acetyltransferase, and resemble the full length of sll0787 from Synechocystis sp. PCC 6803. The conserved cluster that contains these is found broadly (Cyanobacteria, Proteobacteria, Actinobacteria) in about 8 percent of genomes and appears to be biosynthetic. The product is unkown.

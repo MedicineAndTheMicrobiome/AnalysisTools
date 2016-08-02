@@ -1,0 +1,18 @@
+ID  hupD
+AC  TIGR00140
+DE  hydrogenase expression/formation protein
+AU  Richardson DL
+TC  151.80 151.80
+NC  103.10 103.10
+AL  clustalw
+IT  equivalog
+EN  hydrogenase expression/formation protein
+GS  hybD
+EC  3.4.23.-
+TP  TIGRFAMs
+CC  valid names: hupD, hynC, hoxM.
+CC  C at 64 and 67 are believed to be metal binding. Postulated to be involved in processing or hydrogenase. Superfamily suggests that it is a peptidase/protease.
+RM  93273705 
+RT  Analysis of the periplasmic [NiFe] hydrogenase transcription unit from Desulfovibrio fructosovorans.
+RA  Rousset M, Dermoun Z, Wall JD, Belaich JP
+RL  J Bacteriol 1993 Jun;175(11):3388-93 

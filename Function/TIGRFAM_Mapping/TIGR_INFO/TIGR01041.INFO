@@ -1,0 +1,13 @@
+ID  ATP_syn_B_arch
+AC  TIGR01041
+DE  ATP synthase archaeal, B subunit
+AU  Durkin S
+TC  844.65 844.65
+NC  770.30 770.30
+AL  clustalw
+IT  equivalog
+EN  ATP synthase archaeal, B subunit
+EC  3.6.3.14
+TP  TIGRFAMs
+CC  Archaeal ATP synthase shares extensive sequence similarity with eukaryotic and prokaryotic V-type (H+)-ATPases.
+DR  HAMAP; MF_00310; 27 of 102

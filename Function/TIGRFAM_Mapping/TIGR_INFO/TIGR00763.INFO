@@ -1,0 +1,16 @@
+ID  lon
+AC  TIGR00763
+DE  endopeptidase La
+AU  Haft DH
+TC  608.05 608.05
+NC  336.55 336.55
+AL  clustalw_manual
+IT  equivalog
+EN  endopeptidase La
+GS  lon
+EC  3.4.21.53
+TP  TIGRFAMs
+CC  This protein, the ATP-dependent serine endopeptidase La, is induced by heat shock and other stresses in E. coli, B. subtilis, and other species. The yeast member, designated PIM1, is located in the mitochondrial matrix, required for mitochondrial function, and also induced by heat shock.
+DR  EXPERIMENTAL; EGAD|50657|YBL022C; Saccharomyces cerevisiae
+DR  EXPERIMENTAL; EGAD|18728|EC0439; Escherichia coli
+DR  EXPERIMENTAL; EGAD|5576|BS2814; Bacillus subtilis

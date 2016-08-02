@@ -1,0 +1,13 @@
+ID  ureG
+AC  TIGR00101
+DE  urease accessory protein UreG
+AU  Haft DH
+TC  204.20 204.20
+NC  74.20 74.20
+AL  msa_tigr_manual
+IT  equivalog
+EN  urease accessory protein UreG
+GS  ureG
+TP  TIGRFAMs
+CC  This HMM represents UreG, a GTP hydrolase that acts in the assembly of the nickel metallocenter of urease. It is found only in urease-positive species, although some urease-positive species (e.g. Bacillus subtilis) lack this protein. A similar protein, hypB, is an accessory protein for expression of hydrogenase, which also uses nickel.
+DR  HAMAP; MF_01389; 134 of 144

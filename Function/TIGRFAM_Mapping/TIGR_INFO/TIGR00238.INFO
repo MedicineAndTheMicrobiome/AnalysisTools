@@ -1,0 +1,16 @@
+ID  TIGR00238
+AC  TIGR00238
+DE  KamA family protein
+AU  Haft DH
+TC  199.20 199.20
+NC  115.45 115.45
+AL  clustalw_manual
+IT  subfamily
+EN  KamA family protein
+TP  TIGRFAMs
+CC  This HMM represents essentially the whole of E. coli YjeK and of some of its apparent orthologs. YodO in Bacillus subtilis, a family member which is longer protein by an additional 100 residues, is characterized as a lysine 2,3-aminomutase with iron, sulphide and pyridoxal 5'-phosphate groups. The homolog MJ0634 from M. jannaschii is preceded by nearly 200 C-terminal residues. This family shows similarity to molybdenum cofactor biosynthesis protein MoaA and related proteins.
+CC  Note that the E. coli homolog was expressed in E. coli and purified and found not to display display lysine 2,3-aminomutase activity. Active site residues are found in 100 residue extension in B. subtilis. Name changed to KamA family protein.
+RM  10839984
+RT  A novel lysine 2,3-aminomutase encoded by the yodO gene of bacillus subtilis: characterization and the observation of organic radical intermediates.
+RA  Chen D, Ruzicka FJ, Frey PA.
+RL  Biochem J. 2000 Jun 15;348 Pt 3:539-49

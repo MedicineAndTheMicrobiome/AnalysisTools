@@ -1,0 +1,16 @@
+ID  sda_beta
+AC  TIGR00719
+DE  L-serine dehydratase, iron-sulfur-dependent, beta subunit
+AU  Haft DH
+TC  161.20 161.20
+NC  45.80 45.80
+AL  clustalw
+IT  equivalog
+EN  L-serine dehydratase, iron-sulfur-dependent, beta subunit
+GS  sdaAB
+EC  4.3.1.17
+TP  TIGRFAMs
+CC  This enzyme is also called serine deaminase.
+CC  This model describes the beta chain of an iron-sulfur-dependent L-serine dehydratase, as in Bacillus subtilis. A fairly deep split in a UPGMA tree separates members of this family of beta chains from the homologous region of single chain forms such as found in E. coli.
+CC  This family of enzymes is not homologous to the pyridoxal phosphate-dependent threonine deaminases and eukaryotic serine deaminases.
+RM  97386436

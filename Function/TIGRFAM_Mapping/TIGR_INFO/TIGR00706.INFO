@@ -1,0 +1,18 @@
+ID  SppA_dom
+AC  TIGR00706
+DE  signal peptide peptidase SppA, 36K type
+AU  Haft DH
+TC  155.45 155.45
+NC  97.75 97.75
+AL  clustalw
+IT  equivalog_domain
+EN  signal peptide peptidase SppA, 36K type
+GS  sppA
+EC  3.4.-.-
+TP  TIGRFAMs
+CC  The related but duplicated, double-length protein SppA (protease IV) of E. coli was shown experimentally to degrade signal peptides as are released by protein processing and secretion. This protein shows stronger homology to the C-terminal region of SppA than to the N-terminal domain or to the related putative protease SuhB.
+CC  The member of this family from Bacillus subtilis was shown to have properties consistent with a role in degrading signal peptides after cleavage from precursor proteins, although it was not demonstrated conclusively.
+RM  99386931
+RT  Signal peptide peptidase- and ClpP-like proteins of Bacillus subtilis required for efficient translocation and processing of secretory proteins.
+RA  Bolhuis A, Matzen A, Hyyrylainen HL, Kontinen VP, Meima R, Chapuis J, Venema G, Bron S, Freudl R, van Dijl JM
+RL  J Biol Chem 1999 Aug 27;274(35):24585-92

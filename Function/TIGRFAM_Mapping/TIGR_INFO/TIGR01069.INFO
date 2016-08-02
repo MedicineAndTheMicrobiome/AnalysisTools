@@ -1,0 +1,17 @@
+ID  mutS2
+AC  TIGR01069
+DE  MutS2 family protein
+AU  Durkin S
+TC  557.35 557.35
+NC  468.60 468.60
+AL  clustalw
+IT  subfamily
+EN  MutS2 family protein
+TP  TIGRFAMs
+CC  Function of MutS2 is unknown. It should not be considered a DNA mismatch repair protein. It is likely a DNA mismatch binding protein of unknown cellular function.
+RN  [1]
+RM  98391755
+RT  A phylogenomic study of the MutS family of proteins.
+RA  Eisen JA;
+RL  Nucleic Acids Res 1998;26:4291-4300.
+DR  HAMAP; MF_00092; 41 of 41

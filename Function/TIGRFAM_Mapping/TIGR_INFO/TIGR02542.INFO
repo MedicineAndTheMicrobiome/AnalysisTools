@@ -1,0 +1,11 @@
+ID  T_forsyth_147
+AC  TIGR02542
+DE  TANFOR domain
+AU  Haft DH
+TC  67.00 65.00
+NC  30.00 30.00
+AL  clustalw
+IT  domain
+EN  TANFOR domain
+TP  TIGRFAMs
+CC  The longest predicted protein in Tannerella forsythia (Bacteroides forsythus) ATCC 43037 is over 3000 residues long and lacks homology to other known proteins. Immediately after the signal sequence are four tandem repeats, approximately 147 residues long. This model describes that repeat, plus homologous single copy N-terminal domains in other large bacterial proteins.  We designate this region the TANFOR domain. Many proteins with this domain also have fibronectin type III domains.

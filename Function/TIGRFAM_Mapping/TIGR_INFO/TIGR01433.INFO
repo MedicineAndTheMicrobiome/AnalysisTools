@@ -1,0 +1,20 @@
+ID  CyoA
+AC  TIGR01433
+DE  ubiquinol oxidase, subunit II
+AU  Selengut J
+TC  266.20 266.20
+NC  218.75 218.75
+AL  clustalw
+IT  equivalog
+EN  cytochrome o ubiquinol oxidase subunit II
+GS  cyoA
+EC  1.10.3.-
+TP  TIGRFAMs
+CC  This enzyme catalyzes the oxidation of ubiquinol with the concomitant reduction of molecular oxygen to water.  This acts as the terminal electron acceptor in the respiratory chain.  Subunit II is responsible for binding and oxidation of the ubiquinone substrate.  This sequence is closely related to QoxA, which oxidizes quinol in gram positive bacteria but which is in complex with subunits which utilize cytochromes a in the reduction of molecular oxygen.  Slightly more distantly related is subunit II of cytochrome c oxidase which uses cyt. c as the oxidant.
+RN [1]
+RM 2162835 
+RT The sequence of the cyo operon indicates substantial structural similarities between the cytochrome o ubiquinol oxidase of Escherichia coli and the aa3-type family of cytochrome c oxidases
+RA Chepuri V, Lemieux L, Au DC, Gennis RB
+RL J Biol Chem 1990 Jul 5;265(19):11185-92
+DR EXPERIMENTAL; EGAD|20044; Escherichia coli CyoA
+DR OUTGROUP; SP|P34957; Bacillus subtilis QoxA

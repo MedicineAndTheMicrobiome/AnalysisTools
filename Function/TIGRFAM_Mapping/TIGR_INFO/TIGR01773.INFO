@@ -1,0 +1,33 @@
+ID  GABAperm
+AC  TIGR01773
+DE  GABA permease
+AU  Brinkac L
+TC  678.10 678.10
+NC  491.50 491.50
+AL  clustalw_manual
+IT  equivalog
+EN  gamma-aminobutyrate permease
+GS  gabP
+TR  2.A.3
+TP  TIGRFAMs
+CC  GABA permease (gabP) catalyzes the translocation of 4-aminobutyrate (GABA) across the plasma membrane, with homologues expressed in Gram-negative and Gram-positive organisms. This permease is a highly hydrophobic transmembrane protein consisting of 12 transmembrane domains with hydrophilic N- and C-terminal ends [1]. Induced by nitrogen-limited culture conditions in both Escherichia coli and Bacillus subtilis, gabP is an energy dependent transport system stimulated by membrane potential and has been observed adjacent and distant from other GABA degradation proteins [1,2].
+CC  GabP is highly homologous to amino acid permeases from B. subtilis, E. coli, as well as to other members of the amino acid permease family (PF00324). A member of the APC (amine-polyamine-choline) transporter superfamily, GABA permease possesses a "consensus amphiphatic region" (CAR) found to be evolutionarily conserved within this transport family [3]. This amphiphatic region is located between helix 8 and cytoplasmic loop 8-9, forming a potential channel domain and suggested to play a significant role in ligand recognition and translocation [3]. Unique to GABA permeases, a conserved cysteine residue (CYS-300, E.coli) located at the beginning of the amphiphatic domain, has been determined to be critical for catalytic specificity [3].
+RN [1]
+RM 8297211
+RT Molecular organization of the Escherichia coli gab cluster: nucleotide sequence of the structural genes gabD and gabP and expression of the GABA permease gene.
+RA Niegemann E, Schulz A, Bartsch K.
+RJ Arch Microbiol. 1993;160(6):454-60.
+RN [2]
+RM 9677314
+RT 4-Aminobutyrate (GABA) transporters from the amine-polyamine-choline superfamily: substrate specificity and ligand recognition profile of the 4-aminobutyrate permease from Bacillus subtilis.
+RA Brechtel CE, King SC.
+RJ Biochem J. 1998;333(Pt. 3):565-71.
+RN [3]
+RM 9685361
+RT Functional significance of the "signature cysteine" in helix 8 of the Escherichia coli 4-aminobutyrate transporter from the amine-polyamine-choline superfamily.
+RA Hu LA, King SC.
+RJ J Biol Chem. 1998;273(32):20162-7.
+DR PFAM; PF00324; Amino acid permease
+DR EXPERIMENTAL; SP|P25527; Escherichia coli; molecular organization of the Escherichia coli gab cluster: nucleotide sequence of the structural genes gabD and gabP and expression of the GABA permease gene.
+DR EXPERIMENTAL; SP|P46349; Bacillus subtilis; expression of the Bacillus subtilis gabP gene is regulated independently in response to nitrogen and amino acid availability.
+DR OUTGROUP; SP|P39636; Bacillus subtilis; Amino-acid permease rocC.

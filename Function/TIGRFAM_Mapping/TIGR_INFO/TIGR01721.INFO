@@ -1,0 +1,11 @@
+ID  AMN-like
+AC  TIGR01721
+DE  putative AMP nucleosidase
+AU  Selengut J
+TC  307.20 307.20
+NC  199.60 199.60
+AL  clustalw
+IT  hypoth_equivalog
+EN  AMP nucleosidase, putative
+TP  TIGRFAMs
+CC  The sequences in the clade represented by this model are most closely related to the AMP nucleosidase found in TIGR01717.  These sequences are found only in Chlamydia and Porphyromonas and differ sufficiently from the characterized AMP nucleosidase to put some doubt on assignment of this name.

@@ -1,0 +1,23 @@
+ID  DEAH_box_HrpA
+AC  TIGR01967
+DE  RNA helicase HrpA
+AU  Haft DH
+TC  722.75 722.75
+NC  558.45 558.45
+AL  clustalw
+IT  equivalog
+EN  RNA helicase HrpA
+GS  hrpA
+EC  3.6.4.13
+TP  TIGRFAMs
+CC  This HMM represents HrpA, one of two related but uncharacterized DEAH-box ATP-dependent helicases in many Proteobacteria and a few high-GC Gram-positive bacteria. HrpA is about 1300 amino acids long, while its paralog HrpB, also uncharacterized, is about 800 amino acids long. Related characterized eukarotic proteins are RNA helicases associated with pre-mRNA processing. The HrpA/B homolog from Borrelia is 500 amino acids shorter but appears to be derived from HrpA rather than HrpB.
+RN  [1]
+RM  PMID:15186427 
+RT  HrpA, a DEAH-box RNA helicase, is involved in mRNA processing of a fimbrial operon in Escherichia coli. 
+RA  Koo JT, Choe J, Moseley SL 
+RL  Mol Microbiol. 2004 Jun;52(6):1813-26.
+RN  [2]
+RM  PMID:24367266 
+RT  HrpA, an RNA Helicase Involved in RNA Processing, Is Required for Mouse Infectivity and Tick Transmission of the Lyme Disease Spirochete. 
+RA  Salman-Dilgimen A, Hardy PO, Radolf JD, Caimano MJ, Chaconas G 
+RL  PLoS Pathog. 2013 Dec;9(12):e1003841.

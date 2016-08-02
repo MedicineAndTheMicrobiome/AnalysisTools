@@ -1,0 +1,14 @@
+ID  pgm_1
+AC  TIGR01258
+DE  phosphoglycerate mutase 1 family
+AU  Haft DH
+TC  81.70 81.70
+NC  72.95 72.95
+AL  clustalw
+IT  subfamily
+EN  phosphoglycerate mutase, BPG-dependent, family 1
+TP  TIGRFAMs
+CC  Most members of this family are phosphoglycerate mutase (EC 5.4.2.1). This enzyme interconverts 2-phosphoglycerate and 3-phosphoglycerate. The enzyme is transiently phosphorylated on an active site histidine by 2,3-diphosphoglyerate, which is both substrate and product.  Some members of this family have are phosphoglycerate mutase as a minor activity and act primarily as a bisphoglycerate mutase, interconverting 2,3-diphosphoglycerate and 1,3-diphosphoglycerate (EC 5.4.2.4). This HMM is designated as a subfamily for this reason. The second and third paralogs in S. cerevisiae are somewhat divergent and apparently inactive (see PUBMED:9544241) but are also part of this subfamily phylogenetically.
+DR  COGS; COG0588
+RM  9544241
+DR  HAMAP; MF_01039; 267 of 272

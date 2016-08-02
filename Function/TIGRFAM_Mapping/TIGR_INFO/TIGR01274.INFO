@@ -1,0 +1,20 @@
+ID  ACC_deam
+AC  TIGR01274
+DE  1-aminocyclopropane-1-carboxylate deaminase
+AU  Haft DH
+TC  392.00 392.00
+NC  259.80 259.80
+AL  clustalw_manual
+IT  equivalog
+EN  1-aminocyclopropane-1-carboxylate deaminase
+EC  3.5.99.7
+TP  TIGRFAMs
+CC  This pyridoxal phosphate-dependent enzyme degrades 1-aminocyclopropane-1-carboxylate, which in plants is a precursor of the ripening hormone ethylene, to ammonia and alpha-ketoglutarate. This model includes all members of this family for which function has been demonstrated experimentally, but excludes a closely related family often annotated as putative members of this family.
+DR  PFAM; PF00291; Pyridoxal-phosphate dependent enzyme     
+DR  SYSTERS; N69628;
+DR  EXPERIMENTAL; GP|7024439; Penicillium citrinum
+DR  EXPERIMENTAL; GB:U37103; Pseudomonas fluorescens
+DR  EXPERIMENTAL; PIR:PW0041; yeast (Hansenula saturnus)
+RM  10737185
+RM  98269041
+DR  HAMAP; MF_00807; 34 of 34

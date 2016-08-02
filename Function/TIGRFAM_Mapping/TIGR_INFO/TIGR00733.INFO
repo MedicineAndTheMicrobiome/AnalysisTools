@@ -1,0 +1,22 @@
+ID  TIGR00733
+AC  TIGR00733
+DE  oligopeptide transporter, OPT family
+AU  Haft DH
+TC  182.50 182.50
+NC  77.15 77.15
+AL  clustalw_manual
+IT  equivalog
+EN  putative oligopeptide transporter, OPT family
+TR  2.A.67
+TP  TIGRFAMs
+CC  This protein represents a small family of integral membrane proteins from  Gram-negative bacteria, a Gram-positive bacteria, and an archaeal species. Members of this family contain 15 to 18 GES predicted transmembrane regions, and this family has extensive homology to a family of yeast tetrapeptide transporters, including isp4 (Schizosaccharomyces pombe) and Opt1 (Candida albicans).  EspB, an apparent equivalog from Myxococcus xanthus, shares an operon with a two component system regulatory protein, and is required for the normal timing of sporulation after the aggregation of cells. This is consistent with a role in transporting oligopeptides as signals across the membrane.
+RN  [1]
+RM  20032045
+RT  Sporulation timing in Myxococcus xanthus is controlled by the espAB locus.
+RA  Cho K, Zusman DR
+RL  Mol Microbiol 1999 Nov;34(4):714-25
+RN  [2]
+RM  98305694
+RT  Schizosaccharomyces pombe isp4 encodes a transporter representing a novel family of oligopeptide transporters.
+RA  Lubkowitz MA, Barnes D, Breslav M, Burchfield A, Naider F, Becker JM
+RL  Mol Microbiol 1998 May;28(4):729-41

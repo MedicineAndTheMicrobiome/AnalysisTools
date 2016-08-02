@@ -1,0 +1,18 @@
+ID  arch_ComA
+AC  TIGR03849
+DE  phosphosulfolactate synthase
+AU  Haft DH
+TC  331.90 331.90
+NC  331.70 331.70
+AL  muscle_manual
+IT  equivalog
+EN  phosphosulfolactate synthase
+GS  comA
+EC  4.4.1.19
+TP  TIGRFAMs
+CC  This model finds the ComA (Coenzyme M biosynthesis A) protein, phosphosulfolactate synthase, in methanogenic archaea. The ComABC pathway is one of at least two pathways to the intermediate sulfopyruvate. Coenzyme M occurs rarely and sporadically outside of the archaea, as for expoxide metabolism in Xanthobacter autotrophicus Py2, but candidate phosphosulfolactate synthases from that and other species occur fall below the cutoff and outside the scope of this model. This model deliberately is narrower in scope than PF02679.
+RN  [1]
+RM  PMID:11830598
+RT  Identification of coenzyme M biosynthetic phosphosulfolactate synthase: a new family of sulfonate-biosynthesizing enzymes.
+RA  Graham DE, Xu H, White RH
+RL  J Biol Chem. 2002 Apr 19;277(16):13421-9. Epub 2002 Feb 5.

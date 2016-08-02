@@ -1,0 +1,11 @@
+ID  yxeA_fam
+AC  TIGR01655
+DE  conserved hypothetical protein
+AU  Haft DH
+TC  29.65 29.65
+NC  29.60 29.60
+AL  clustalw_manual
+IT  subfamily
+EN  conserved hypothetical protein TIGR01655
+TP  TIGRFAMs
+CC  This HMM represents a family of small (about 115 amino acids) uncharacterized proteins with N-terminal signal sequences, found exclusively in Gram-positive organisms. Most genomes that have any members of this family have at least two members.

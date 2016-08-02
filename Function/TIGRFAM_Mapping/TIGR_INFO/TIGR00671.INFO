@@ -1,0 +1,21 @@
+ID  baf
+AC  TIGR00671
+DE  pantothenate kinase, type III
+AU  Haft DH
+TC  58.20 58.20
+NC  52.45 52.45
+IT  subfamily
+EN  pantothenate kinase, type III
+GS  coaX
+EC  2.7.1.33
+TP  TIGRFAMs
+CC  This HMM describes a family of proteins found in a single copy in at least ten different early completed bacterial genomes. The only characterized member of the family is Bvg accessory factor (Baf), a protein required, in addition to the regulatory operon bvgAS, for heterologous transcription of the Bordetella pertussis toxin operon (ptx) in E. coli.
+RM  95325323
+RT  Identification of a Bordetella pertussis regulatory factor required for transcription of the pertussis toxin operon in Escherichia coli.
+RA  DeShazer D, Wood GE, Friedman RL
+RL  J Bacteriol 1995 Jul;177(13):3801-7
+RM  17323930
+RT  Structure of the type III pantothenate kinase from Bacillus anthracis at 2.0 A resolution: implications for coenzyme A-dependent redox biology.
+RA  Nicely NI, Parsonage D, Paige C, Newton GL, Fahey RC, Leonardi R, Jackowski S, Mallett TC, Claiborne A.
+RL  Biochemistry. 2007 Mar 20;46(11):3234-45. Epub 2007 Feb 27.
+DR  HAMAP; MF_01274; 264 of 265

@@ -1,0 +1,13 @@
+ID  NaPi_cotrn_rel
+AC  TIGR00704
+DE  Na/Pi-cotransporter II-related protein
+AU  Haft DH
+TC  210.10 210.10
+NC  100.30 100.30
+IT  hypoth_equivalog
+EN  Na/Pi-cotransporter
+TR  2.A.58
+TP  TIGRFAMs
+CC  This HMM describes essentially the full length of an uncharacterized protein from Bacillus subtilis and correponding lengths of longer proteins from E. coli and Treponema pallidum. PSI-BLAST analysis converges to demonstrate homology to one other group of proteins, type II sodium/phosphate (Na/Pi) cotransporters. A well-conserved repeated domain in this family, approximately 60 residues in length, is also repeated in the Na/Pi cotransporters, although with greater spacing between the repeats. The two families share additional homology in the region after the first repeat, share the properly of having extensive hydrophobic regions, and may be similar in function.
+DR  InterPro; IPR003841
+DR  PFAM; PF02690

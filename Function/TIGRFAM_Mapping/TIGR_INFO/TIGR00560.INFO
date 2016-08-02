@@ -1,0 +1,18 @@
+ID  pgsA
+AC  TIGR00560
+DE  CDP-diacylglycerol--glycerol-3-phosphate 3-phosphatidyltransferase
+AU  Haft DH
+TC  109.10 109.10
+NC  72.30 72.30
+AL  clustalw
+IT  equivalog
+EN  CDP-diacylglycerol--glycerol-3-phosphate 3-phosphatidyltransferase
+GS  pgsA
+EC  2.7.8.5
+TP  TIGRFAMs
+CC  Alternate names: phosphatidylglycerophosphate synthase; glycerophosphate phosphatidyltransferase; PGP synthase. A number of related enzymes are quite similar in both sequence and catalytic activity, including Saccharamyces cerevisiae YDL142c, now known to be a cardiolipin synthase. There may be problems with incorrect transitive annotation of near homologs as authentic CDP-diacylglycerol--glycerol-3-phosphate 3-phosphatidyltransferase.
+AL  Clustalw;
+DR  EG10706; pgsA;
+DR  PROSITE; PDOC00321; CDP-alcohol phosphatidyltransferases signature
+DR  PFAM; CDP-OH_P_transf; CDP-alcohol phosphatidyltransferase
+DR  HAMAP; MF_01437; 27 of 27

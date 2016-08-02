@@ -1,0 +1,14 @@
+ID  recJ
+AC  TIGR00644
+DE  single-stranded-DNA-specific exonuclease RecJ
+AU  Haft DH, Loftus BJ, Eisen JA
+TC  396.90 396.90
+NC  230.05 230.05
+AL  clustalw_manual
+IT  equivalog
+EN  single-stranded-DNA-specific exonuclease RecJ
+GS  recJ
+EC  3.1.-.-
+TP  TIGRFAMs
+CC  All proteins in this family are 5'-3' single-strand DNA exonucleases.  These proteins are used in some aspects of mismatch repair, recombination, and recombinational repair.
+RM  9110030

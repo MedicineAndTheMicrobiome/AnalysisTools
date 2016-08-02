@@ -1,0 +1,17 @@
+ID  BchE
+AC  TIGR02026
+DE  magnesium-protoporphyrin IX monomethyl ester anaerobic oxidative cyclase
+AU  Selengut J
+TC  481.35 481.35
+NC  328.80 328.80
+AL  clustalw
+IT  equivalog
+EN  magnesium-protoporphyrin IX monomethyl ester anaerobic oxidative cyclase
+GS  bchE
+TP  TIGRFAMs
+CC  This HMM represents the cobalamin-dependent oxidative cyclase, a radical SAM enzyme responsible for forming the distinctive E-ring of the chlorin ring system under anaerobic conditions [1].  This step is essential in the biosynthesis of both bacteriochlorophyll and chlorophyll under anaerobic conditions (a separate enzyme, AcsF, acts under aerobic conditions).  This model identifies two clades of sequences, one from photosynthetic, non-cyanobacterial bacteria and another including Synechocystis and several non-photosynthetic bacteria.  The function of the Synechocystis gene is supported by gene clustering with other photosynthetic genes, so the purpose of the gene in the non-photosynthetic bacteria is uncertain.  Note that homologs of this gene are not found in plants which rely solely on the aerobic cyclase.
+RN  [1]
+RM  PMID: 10841582
+RT  Anaerobic chlorophyll isocyclic ring formation in Rhodobacter capsulatus requires a cobalamin cofactor.
+RA  Gough SP, Petersen BO, Duus JO.
+RL  Proc Natl Acad Sci U S A. 2000 Jun 6;97(12):6908-13.

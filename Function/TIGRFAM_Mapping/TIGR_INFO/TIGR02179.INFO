@@ -1,0 +1,11 @@
+ID  PorD_KorD
+AC  TIGR02179
+DE  2-oxoacid:acceptor oxidoreductase, delta subunit, pyruvate/2-ketoisovalerate family
+AU  Haft DH
+TC  60.05 60.05
+NC  55.55 55.55
+AL  clustalw_manual
+IT  subfamily
+EN  2-oxoacid:acceptor oxidoreductase, delta subunit, pyruvate/2-ketoisovalerate family
+TP  TIGRFAMs
+CC  A number of anaerobic and microaerophilic species lack pyruvate dehydrogenase and have instead a four subunit, oxygen-sensitive pyruvate oxidoreductase, with either ferredoxins or flavodoxins used as the acceptor. Several related four-subunit enzymes may exist in the same species. This model describes a subfamily of delta subunits, representing mostly pyruvate, 2-ketoisovalerate, and 2-oxoglutarate  specific enzymes. The delta subunit is the smallest and resembles ferredoxins.

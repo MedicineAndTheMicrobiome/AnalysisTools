@@ -1,0 +1,16 @@
+ID  tdt
+AC  TIGR00816
+DE  C4-dicarboxylate transporter/malic acid transport protein
+AU  Saier MH, Paulsen IT, Loftus BJ
+TC  237.25 237.25
+NC  121.50 121.50
+AL  clustalw_manual
+IT  subfamily
+EN  C4-dicarboxylate transporter/malic acid transport protein
+GS  tdt
+TR  2.A.16
+TP  TIGRFAMs
+CC  The Tellurite-Resistance/Dicarboxylate Transporter (TDT) Family (TC 2.A.16)
+CC  Two members of the TDT family have been functionally characterized. One is the TehA protein of E. coli which has been implicated in resistance to tellurite; the other is the Mae1 protein of S. pombe which functions in the uptake of malate and other dicarboxylates by a proton symport
+CC  mechanism. These proteins  exhibit 10 putative transmembrane a-helical
+CC  spanners (TMSs).

@@ -1,0 +1,11 @@
+ID  dinG_rel
+AC  TIGR01407
+DE  putative DnaQ family exonuclease/DinG family helicase
+AU  Haft DH
+TC  547.70 547.70
+NC  349.25 349.25
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  DnaQ family exonuclease/DinG family helicase, putative
+TP  TIGRFAMs
+CC  This HMM represents a family of proteins in Gram-positive bacteria. The N-terminal region of about 200 amino acids resembles the epsilon subunit of E. coli DNA polymerase III and the homologous region of the Gram-positive type DNA polymerase III alpha subunit. The epsilon subunit contains an exonuclease domain. The remainder of this protein family resembles a predicted ATP-dependent helicase, the DNA damage-inducible protein DinG of E. coli.

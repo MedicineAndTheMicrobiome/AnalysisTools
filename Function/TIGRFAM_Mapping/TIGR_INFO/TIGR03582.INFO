@@ -1,0 +1,12 @@
+ID  EF_0829
+AC  TIGR03582
+DE  PRD domain protein, EF_0829/AHA_3910 family
+AU  Haft DH
+TC  69.35 69.35
+NC  31.40 31.40
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  PRD domain protein EF_0829/AHA_3910
+TP  TIGRFAMs
+CC  Members of this family of relatively uncommon proteins are found in both Gram-positive (e.g. Enterococcus faecalis) and Gram-negative (e.g. Aeromonas hydrophila) bacteria, as part of a cluster of conserved proteins. This protein contains a PRD domain (see PF00874). The function is unknown.
+DR  PFAM; PF00874; PRD; PRD domain

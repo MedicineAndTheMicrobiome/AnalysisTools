@@ -1,0 +1,17 @@
+ID  tap_IncFII_lead
+AC  TIGR03475
+DE  RepA leader peptide Tap
+AU  Haft DH
+TC  35.05 35.05
+NC  34.00 34.00
+AL  muscle
+IT  equivalog
+EN  RepA leader peptide Tap
+GS  tap
+TP  TIGRFAMs
+CC  This protein is a translated leader peptide that actis in the regulation of the expression of the plasmid replication protein RepA in incF2 group plasmids.
+RN  [1]
+RM  PMID:1378398
+RT  Replication control of plasmid R1: RepA synthesis is regulated by CopA RNA through inhibition of leader peptide translation.
+RA  Blomberg P, Nordstrom K, Wagner EG
+RL  EMBO J. 1992 Jul;11(7):2675-83.

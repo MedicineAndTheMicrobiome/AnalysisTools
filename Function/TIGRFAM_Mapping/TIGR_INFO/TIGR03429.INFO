@@ -1,0 +1,27 @@
+ID  arom_pren_DMATS
+AC  TIGR03429
+DE  aromatic prenyltransferase, DMATS type
+AU  Haft DH, Fedorova N
+TC  163.85 163.85
+NC  69.85 69.85
+AL  muscle_manual
+IT  subfamily
+EN  aromatic prenyltransferase, DMATS type
+EC  2.5.-.-
+TP  TIGRFAMs
+CC  Members of this protein family are mostly fungal enzymes of secondary metabolite production. Characterized or partially characterized members include several examples of dimethylallyltryptophan synthase, a brevianamide F prenyltransferase, LtxC from lyngbyatoxin biosynthesis, and a probable dimethylallyl tyrosine synthase.
+RN  [1]
+RM  PMID:7488077
+RT  The Claviceps purpurea gene encoding dimethylallyltryptophan synthase, the committed step for ergot alkaloid biosynthesis.
+RA  Tsai HF, Wang H, Gebler JC, Poulter CD, Schardl CL
+RL  Biochem Biophys Res Commun. 1995 Nov 2;216(1):119-25.
+RN  [2]
+RM  PMID:14732265
+RT  The determinant step in ergot alkaloid biosynthesis by an endophyte of perennial ryegrass.
+RA  Wang J, Machado C, Panaccione DG, Tsai HF, Schardl CL
+RL  Fungal Genet Biol. 2004
+RN  [3]
+RM  PMID:16000710
+RT  Overproduction, purification and characterization of FtmPT1, a brevianamide F prenyltransferase from Aspergillus fumigatus.
+RA  Grundmann A, Li SM
+RL  Microbiology. 2005 Jul;151(Pt 7):2199-207.Feb;41(2):189-98.

@@ -1,0 +1,29 @@
+ID  CydD
+AC  TIGR02857
+DE  thiol reductant ABC exporter, CydD subunit
+AU  Selengut J
+TC  435.00 435.00
+NC  435.00 435.00
+AL  muscle
+IT  equivalog
+EN  thiol reductant ABC exporter, CydD subunit
+GS  cydD
+TR  3.A.1.129.1
+TP  TIGRFAMs
+CC  The gene pair cydCD encodes an ABC-family transporter in which each gene contains an N-terminal membrane-spanning domain (PF00664) and a C-terminal ATP-binding domain (PF00005).  In E. coli these genes were discovered as mutants which caused the terminal heme-copper oxidase complex cytochrome bd to fail to assemble.  Recent work has shown that the transporter is involved in export of redox-active thiol compounds such as cysteine and glutathione [1,2].  The linkage to assembly of the cytochrome bd complex is further supported by the conserved operon structure found outside the gammaproteobacteria (cydABCD) containing both the transporter and oxidase genes components.  The genes used as the seed members for this model are all either found in the gammproteobacterial context or the CydABCD context.  All members of this family scoring above trusted at the time of its creation were from genomes which encode a cytochrome bd complex.
+CC  Unfortunately, the gene symbol nomenclature adopted based on this operon in B. subtilis assigns cydC to the third gene in the operon where this gene is actually homologous to the E. coli cydD gene.   We have chosen to name all homologs in this family in accordance with the precedence of publication of the E. coli name, CydD
+RN  [1]
+RM  PMID: 16040611
+RT  A bacterial glutathione transporter (Escherichia coli CydDC) exports reductant to the periplasm.
+RA  Pittman MS, Robinson HC, Poole RK.
+RL  J Biol Chem. 2005 Sep 16;280(37):32254-61. Epub 2005 Jul 22.
+RN  [2]
+RM  PMID: 12393891
+RT  Cysteine is exported from the Escherichia coli cytoplasm by CydDC, an ATP-binding cassette-type transporter required for cytochrome assembly.
+RA  Pittman MS, Corker H, Wu G, Binet MB, Moir AJ, Poole RK.
+RL  J Biol Chem. 2002 Dec 20;277(51):49841-9. Epub 2002 Oct 21.
+RN  [3]
+RM  PMID: 9335308
+RT  Transcriptional regulation of the cydDC operon, encoding a heterodimeric ABC transporter required for assembly of cytochromes c and bd in Escherichia coli K-12: regulation by oxygen and alternative electron acceptors.
+RA  Cook GM, Membrillo-Hernandez J, Poole RK.
+RL  J Bacteriol. 1997 Oct;179(20):6525-30.

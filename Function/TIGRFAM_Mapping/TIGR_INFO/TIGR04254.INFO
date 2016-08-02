@@ -1,0 +1,11 @@
+ID  OpituPEPCTERM_1
+AC  TIGR04254
+DE  putative globular PEP-CTERM protein
+AU  Haft DH
+TC  44.00 44.00
+NC  22.00 22.00
+AL  muscle_manual
+IT  subfamily
+EN  putative globular PEP-CTERM protein
+TP  TIGRFAMs
+CC  Representatives of this family include a 13-member paralogous family of proteins about 215 amino acids in length from the termite gut bacterium Opitutaceae bacterium TAV2, a member of the Verrucomicrobia. The signal peptide (N-terminal) and PEP-CTERM putative protein sorting signal (C-terminal) are not included in the seed alignment. Conserved residues such as an invariant Arg and a lack of conspicuous low-complexity sequence suggest a globular structure and possible enzymatic activity. Members average about thirty percent sequence identify overall, but over seventy percent in the PEP-CTERM region. The function of this family is unknown.

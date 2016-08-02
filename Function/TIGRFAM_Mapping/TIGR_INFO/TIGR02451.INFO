@@ -1,0 +1,16 @@
+ID  anti_sig_ChrR
+AC  TIGR02451
+DE  anti-sigma factor, putative, ChrR family
+AU  Haft DH
+TC  124.50 124.50
+NC  58.20 58.20
+AL  clustalw
+IT  subfamily
+EN  anti-sigma factor, putative, ChrR family
+TP  TIGRFAMs
+CC  The member of this family from Rhodobacter sphaeroides has been shown both to form a complex with sigma(E) and to negatively regulate tetrapyrrole biosynthesis. This protein likely contains (at least) two distinct functional domains; several smaller homologs (excluded by the model) show homology only to the C-terminal, including a motif PxHxHxGxE.
+RN  [1]
+RM  10610760
+RT  The Rhodobacter sphaeroides ECF sigma factor, sigma(E), and the target promoters cycA P3 and rpoE P1.
+RA  Newman JD, Falkowski MJ, Schilke BA, Anthony LC, Donohue TJ.
+RL  J Mol Biol. 1999 Nov 26;294(2):307-20.

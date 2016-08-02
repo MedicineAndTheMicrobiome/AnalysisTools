@@ -1,0 +1,11 @@
+ID  swm_rep_I
+AC  TIGR02059
+DE  cyanobacterial long protein repeat
+AU  Haft DH
+TC  40.10 15.00
+NC  35.30 8.00
+AL  pima_manual
+IT  domain
+EN  cyanobacterial long protein repeat
+TP  TIGRFAMs
+CC  This domain appears in 29 copies in a large (>10000 amino protein in Synechococcus sp. WH8102 associated with a novel flagellar system, as one of three different repeats. Similar domains are found in two different large (<3500) proteins of Synechocystis PCC6803.

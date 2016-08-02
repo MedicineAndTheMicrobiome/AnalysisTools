@@ -1,0 +1,12 @@
+ID  Fb_sc_TIGR02172
+AC  TIGR02172
+DE  fibrobacter succinogenes paralogous family TIGR02172
+AU  Haft DH
+TC  228.20 228.20
+NC  69.05 69.05
+AL  clustalw
+IT  paralog
+EN  Fibrobacter succinogenes paralogous family TIGR02172
+TP  TIGRFAMs
+CC  This model describes a paralogous family of five proteins, likely to be enzymes, in the rumen bacterium Fibrobacter succinogenes S85. Members show homology to proteins described by PFAM model PF01636, a phosphotransferase enzyme family associated with resistance to aminoglycoside antibiotics. However, members of this family score below the current trusted and noise cutoffs for PF01636.
+DR  PFAM; PF01636

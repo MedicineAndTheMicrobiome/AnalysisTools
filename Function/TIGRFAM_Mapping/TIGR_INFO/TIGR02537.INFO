@@ -1,0 +1,16 @@
+ID  arch_flag_Nterm
+AC  TIGR02537
+DE  archaeal flagellin N-terminal-like domain
+AU  Haft DH
+TC  15.30 15.30
+NC  15.30 15.30
+AL  manual
+IT  domain
+EN  archaeal flagellin N-terminal-like domain
+TP  TIGRFAMs
+CC  This model describes a hydrophobic N-terminal sequence of archaeal flagellins and other archaeal proteins. The sequence is directly analogous to bacterial sequences recognized by TIGR02532, which has cleavage motif resembling G^FxxxE followed by strongly hydrophobic sequence. Such sequences are the recognized for cleavage and methylation, and include pilins and other pilus components and competence and type II secretion secretion proteins. In the present family, the E is not conversed and sequence differs enough that there is no overlap between this family and  TIGR02532.
+RN  [1]
+RM  12813086
+RT  Archaeal homolog of bacterial type IV prepilin signal peptidases with broad substrate specificity.
+RA  Albers SV, Szabo Z, Driessen AJ.
+RL  J Bacteriol. 2003 Jul;185(13):3918-25.

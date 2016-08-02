@@ -1,0 +1,40 @@
+ID  ATPase_P-type
+AC  TIGR01494
+DE  HAD ATPase, P-type, family IC
+AU  Selengut J
+TC  62.30 62.30
+NC  29.20 29.20
+AL  clustalw_manual
+IT  subfamily
+EN  ATPase, P-type (transporting), HAD superfamily, subfamily IC
+EC  3.6.3.-
+TP  TIGRFAMs
+CC  The P-type ATPases are a large family of trans-membrane transporters acting on charged substances.  The distinguishing feature of the family is the formation of a phosphorylated intermediate (aspartyl-phosphate) during the course of the reaction.  Another common name for these enzymes is the E1-E2 ATPases based on the two isolable conformations: E1 (unphosphorylated) and E2 (phosphorylated).  Generally, P-type ATPases consist of only a single subunit encompassing the ATPase and ion translocation pathway, however, in the case of the potassium (TIGR01497) and sodium/potassium (TIGR01106) varieties, these functions are split between two subunits[5].  Additional small regulatory or stabilizing subunits may also exist in some forms.
+CC  P-type ATPases are nearly ubiquitous in life and are found in numerous copies in higher organisms (at least 45 in Arabidopsis thaliana, for instance [1]).  Phylogenetic analyses have revealed that the P-type ATPase subfamily is divided up into groups based on substrate specificities [2] and this is represented in the various subfamily and equivalog models that have been made: IA (K+) TIGR01497, IB (heavy metals) TIGR01525, IIA1 (SERCA-type Ca++) TIGR01116, IIA2 (PMR1-type Ca++) TIGR01522, IIB (PMCA-type Ca++) TIGR01517, IIC (Na+/K+, H+/K+ antiporters) TIGR01106, IID (fungal-type Na+ and K+) TIGR01523, IIIA (H+) TIGR01647, IIIB (Mg++) TIGR01524, IV (phospholipid, flippase) TIGR01652 and V (unknown specificity) TIGR01657.
+CC  The crystal structure of one calcium-pumping ATPase [4] and an analysis of the fold of the catalytic domain of the P-type ATPases [3] have been published.  These reveal that the catalytic core of these enzymes is a haloacid dehalogenase(HAD)-type aspartate-nucleophile hydrolase.  The location of the ATP-binding loop in between the first and second HAD conserved catalytic motifs defines these enzymes as members of subfamily I of the HAD superfamily (see also TIGR01493, TIGR01509, TIGR01549, TIGR01544 and TIGR01545).  Based on these classifications, the P-type ATPase _superfamily_ corresponds to the IC subfamily of the HAD superfamily.
+RN [1]
+RM PMID: 11402198
+RT Inventory of the Superfamily of P-type Ion Pumps in Arabidopsis.
+RA Axelsen KB, Palmgren MG.
+RL Plant Physiol. 2001 Jun; 126(2): 696-706. 
+RN [2]
+RM PMID:9419228
+RT Evolution of Substrate Specificities in the P-type ATPase Superfamily.
+RA Axelsen KB, Palmgren, MG.
+RL J Mol Evol. 1998 Jan; 46(1): 84-101.
+RN [3]
+RM PMID:9584613
+RT The catalytic domain of the P-type ATPase has the haloacid dehalogenase fold.
+RA Aravind L, Galperin MY, Koonin EV.
+RL Trends Biochem Sci. 1998 Apr; 23(4): 127-9.
+RN [4]
+RM PMID: 10864315
+RT Crystal structure of the calcium pump of sarcoplasmic reticulum at 2.6 A resolution.
+RA Toyoshima C, Nakasako M, Nomura H, Ogawa H.
+RL Nature. 2000 Jun 8; 405(6787): 647-55
+RN [5]
+RM PMID: 1970651 
+RT The bacterial Kdp K(+)-ATPase and its relation to other transport ATPases, such as the Na+/K(+)- and Ca2(+)-ATPases in higher organisms.
+RA Epstein W, Walderhaug MO, Polarek JW, Hesse JE, Dorus E, Daniel JM.
+RL Philos Trans R Soc Lond B Biol Sci 1990 Jan 30;326(1236):479-86; discussion 486-7
+DR  HAMAP; MF_00285; 77 of 78

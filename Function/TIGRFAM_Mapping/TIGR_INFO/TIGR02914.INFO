@@ -1,0 +1,22 @@
+ID  EpsI_fam
+AC  TIGR02914
+DE  EpsI family protein
+AU  Haft DH
+TC  42.80 42.80
+NC  42.45 42.45
+AL  unknown
+IT  equivalog_domain
+EN  EpsI family protein
+GS  epsI
+TP  TIGRFAMs
+CC  In Methylobacillus sp strain 12S, EpsI is encoded immediately downstream of the multiple-membrane-spanning putative transporter EpsH, and is predicted to be a periplasmic protein involved in, but not required for, expression of the exopolysaccharide methanolan. In a number of other species, protein homologous to EpsI is encoded either next to EpsH or, more often, combined in a fused gene. We have proposed renaming EpsH, or the EpsHI fusion protein, to exosortase, based on its phylogenetic association with the PEP-CTERM proposed protein targeting signal.
+RN  [1]
+RM  PMID: 16930487
+RT  Exopolysaccharide-associated protein sorting in environmental organisms: the PEP-CTERM/EpsH system. Application of a novel phylogenetic profiling heuristic.
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD
+RL  BMC Biol. 2006 Aug 24;4(1):29.
+RN  [2]
+RM  PMID: 12624205
+RT  Genes involved in the synthesis of the exopolysaccharide methanolan by the obligate methylotroph Methylobacillus sp strain 12S.
+RA  Yoshida T, Ayabe Y, Yasunaga M, Usami Y, Habe H, Nojiri H, Omori T
+RL  Microbiology. 2003 Feb;149(Pt 2):431-44.

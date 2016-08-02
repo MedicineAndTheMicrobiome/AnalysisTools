@@ -1,0 +1,11 @@
+ID  tRNA_deam_assoc
+AC  TIGR03941
+DE  putative tRNA adenosine deaminase-associated protein
+AU  Haft DH
+TC  53.60 53.60
+NC  42.20 42.20
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  putative tRNA adenosine deaminase-associated protein
+TP  TIGRFAMs
+CC  This HMM describes a protein family about 200 amino acids in length with only five invariant residues, including an Arg, a Ser-Asp pair, and two Gly residues. Members always are found exclusively in Actinobacteria, and always adjacent to homologs of TadA, a tRNA-specific adenosine deaminase from Escherichia coli. Homology, phyletic pattern, and gene neighborhood together suggest a housekeeping function in tRNA metabolism.

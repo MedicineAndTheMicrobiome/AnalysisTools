@@ -1,0 +1,36 @@
+ID  NAPA
+AC  TIGR01706
+DE  periplasmic nitrate reductase, large subunit
+AU  Selengut J
+TC  930.55 930.55
+NC  472.50 472.50
+AL  clustalw
+IT  equivalog
+EN  periplasmic nitrate reductase, large subunit
+GS  napA
+EC  1.7.99.4
+TP  TIGRFAMs
+CC  This model represents the large subunit of a family of nitrate reductases found in proteobacteria which are localized to the periplasm.  This subunit binds molybdopterin and contains a twin-arginine motif at the N-terminus.  The protein associates with NapB, a soluble heme-containing protein and NapC, a membrane-bound cytochrome c.
+CC  The periplasmic nitrate reductases are not involved in the assimilation of nitrogen, and are not directly involved in the formation of electrochemical gradients (i.e. respiration) either.  Rather, the purpose of this enzyme is either dissimilatory (i.e. to dispose of excess reductive equivalents) or indirectly respiratory by virtue of the consumption of electrons derived from NADH via the proton translocating NADH dehydrogenase [4].
+CC  The enzymes from Alicagenes eutrophus [1] and Paracoccus pantotrophus [2] have been characterized.  In E. coli [3] (as well as other organisms) this gene is part of a large nitrate reduction operon (napFDAGHBC).
+RN  [1]
+RM  PMID: 8376334
+RT  Structure and function of a periplasmic nitrate reductase in Alcaligenes eutrophus H16
+RA  RA Siddiqui, U Warnecke-Eberz, A Hengsberger, B Schneider, S Kostka and B Friedrich 
+RL  J. Bacteriol., 09 1993, 5867-5876, Vol 175, No. 18 
+RN  [2]
+RM  PMID: 7639719
+RT  The napEDABC gene cluster encoding the periplasmic nitrate reductase system of Thiosphaera pantotropha.
+RA  Berks B.C., Richardson D.J., Reilly A., Willis A.C., Ferguson S.J.;
+RL  Biochem. J. 309:983-992(1995).
+RN  [3]
+RM  PMID: 11844760
+RT  Periplasmic nitrate reductase (NapABC enzyme) supports anaerobic respiration by Escherichia coli K-12.
+RA  Stewart V, Lu Y, Darwin AJ.
+RL  J Bacteriol 2002 Mar;184(5):1314-23
+RN  [4]
+RM  PMID: 9720883
+RT  Definition and distinction between assimilatory, dissimilatory and respiratory pathways.
+RA  Moreno-Vivian C, Ferguson SJ.
+RL  Mol Microbiol 1998 Jul;29(2):664-6
+DR  HAMAP; MF_01630; 89 of 93

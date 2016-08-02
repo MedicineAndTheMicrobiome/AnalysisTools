@@ -1,0 +1,17 @@
+ID  rnhC
+AC  TIGR00716
+DE  ribonuclease HIII
+AU  Haft DH
+TC  161.20 161.20
+NC  80.20 80.20
+AL  msa_ncbi
+IT  equivalog
+EN  ribonuclease HIII
+GS  rnhC
+EC  3.1.26.4
+TP  TIGRFAMs
+CC  This enzyme cleaves RNA from DNA-RNA hybrids.
+CC  Two types of ribonuclease H in Bacillus subtilis, RNase HII (rnhB) and RNase HIII (rnhC), are both known experimentally and are quite similar to each other. The only RNase H homolog in the Mycoplasmas resembles rnhC. Archaeal forms resemble HII more closely than HIII. This model describes bacterial RNase III.
+AL  msa_ncbi
+DR  EXPERIMENTAL; EGAD|107727|BS2856; Bacillus subtilis
+DR  HAMAP; MF_00053; 65 of 67

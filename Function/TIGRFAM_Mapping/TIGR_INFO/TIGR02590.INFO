@@ -1,0 +1,18 @@
+ID  cas_Csh2
+AC  TIGR02590
+DE  CRISPR-associated protein Cas7/Csh2, subtype I-B/HMARI
+AU  Haft DH
+TC  171.55 171.55
+NC  118.65 118.65
+AL  clustalw
+IT  exception
+EN  CRISPR-associated protein Cas7/Csh2, subtype I-B/HMARI
+GS  cas7b
+TP  TIGRFAMs
+CC  This model represents one of two closely related CRISPR-associated proteins that belong to the larger family of TIGR01595. Members are the Csh2 protein of the Hmari subtype of CRISPR/cas system. CRISPR stands for Clustered Regularly Interspaced Short Palindromic Repeats. The related model is TIGR02589, the Csd3 protein of the Dvulg CRISPR subtype.
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=2003
+DR  URL  http://www.tigr.org/tigr-scripts/CMR2/genome_property_def.spl?prop=57307
+RN  [1]
+RT  A guild of 45 CRISPR-associated (Cas) protein families and multiple CRISPR/cas subtypes exist in prokaryotic genomes
+RA  Haft DH, Selengut JD, Mongodin EF, Nelsen KE
+RL  PLOS Comput. Biol. 1(6), e60-e69, 2005

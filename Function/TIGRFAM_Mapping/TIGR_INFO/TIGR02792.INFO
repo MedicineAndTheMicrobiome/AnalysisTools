@@ -1,0 +1,18 @@
+ID  PCA_ligA
+AC  TIGR02792
+DE  protocatechuate 4,5-dioxygenase, alpha subunit
+AU  Haft DH
+TC  108.60 108.60
+NC  43.75 43.75
+AL  clustalw
+IT  equivalog
+EN  protocatechuate 4,5-dioxygenase, alpha subunit
+GS  ligA
+EC  1.13.11.8
+TP  TIGRFAMs
+CC  Protocatechuate (PCA) 4,5-dioxygenase is the first enzyme in the PCA 4,5-cleavage pathway that is an alternative to PCA 3,4-cleavage and PCA 2,3 cleavage pathways. PCA is an intermediate in the breakdown of lignin (hence the gene symbol ligA) and other compounds. Members of this family are the alpha chain of PCA 4,5-dioxygenase, or the equivalent domain of a fusion protein.
+RN  [1]
+RM  12486039
+RT  Characterization of the 4-carboxy-4-hydroxy-2-oxoadipate aldolase gene and operon structure of the protocatechuate 4,5-cleavage pathway genes in Sphingomonas paucimobilis SYK-6.
+RA  Hara H, Masai E, Miyauchi K, Katayama Y, Fukuda M.
+RL  J Bacteriol. 2003 Jan;185(1):41-50.

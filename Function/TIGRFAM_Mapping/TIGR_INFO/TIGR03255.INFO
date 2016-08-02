@@ -1,0 +1,13 @@
+ID  PhnV
+AC  TIGR03255
+DE  2-aminoethylphosphonate ABC transport system, membrane component PhnV
+AU  Selengut J
+TC  358.70 358.70
+NC  251.85 251.85
+AL  muscle
+IT  equivalog
+EN  2-aminoethylphosphonate ABC transport system, membrane component PhnV
+GS  phnV
+TR  3.A.1.11.5
+TP  TIGRFAMs
+CC  This membrane component of an ABC transport system is found in Salmonella and Burkholderia lineages in the vicinity of enzymes for the breakdown of 2-aminoethylphosphonate.

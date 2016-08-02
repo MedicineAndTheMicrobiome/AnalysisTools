@@ -1,0 +1,16 @@
+ID  arch_PEF_CTERM
+AC  TIGR03024
+DE  PEF-CTERM protein sorting domain
+AU  Haft DH
+TC  23.00 23.00
+NC  22.00 21.50
+AL  manual
+IT  domain
+EN  PEF-CTERM protein sorting domain
+TP  TIGRFAMs
+CC  This domain, distantly related to the PEP-Cterm domain described in model TIGR02595, is found in Methanosarcina mazei in four different proteins, as well as in other archaea such as Methanococcoides burtonii. Several proteins with this domain have their genes only a short distance from archaeosortase C, a proposed integral membrane transpeptidase. This family should exclude members of the PEFG-CTERM domain family (TIGR04296), specific to the Thaumarchaeota.
+RN  [1]
+RM  PMID:22037399 
+RT  Archaeosortases and exosortases are widely distributed systems linking membrane transit with posttranslational modification. 
+RA  Haft DH, Payne SH, Selengut JD 
+RL  J Bacteriol. 2012 Jan;194(1):36-48.

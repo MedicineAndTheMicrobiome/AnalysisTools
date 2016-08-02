@@ -1,0 +1,19 @@
+ID  YfhB_g-proteo
+AC  TIGR01545
+DE  HAD hydrolase, family IF
+AU  Selengut J
+TC  259.25 259.25
+NC  204.50 204.50
+AL  clustalw
+IT  hypoth_equivalog
+EN  haloacid dehalogenase superfamily, subfamily IF hydrolase, YfhB
+GS  yfhb
+TP  TIGRFAMs
+CC  This HMM describes a clade of sequences limited to the gamma proteobacteria.  This group is a member of the haloacid dehalogenase (HAD) superfamily of aspartate-dependent hydrolases and all of the conserved catalytic motifs are present [1].  Although structurally similar to subfamily IA in that the variable domain is predicted to consist of five consecutive alpha helices (by PSI-PRED), it is sufficiently divergent to warrant being regarded as a separate sub-family (IF).
+CC  The gene name comes from the E. coli gene.  There is currently no information regarding the function of this gene.
+RN  [1]
+RM  PMID: 7966317
+RT  Computer analysis of bacterial haloacid dehalogenases defines a large superfamily of hydrolases with diverse specificity. Application of an iterative approac
+h to database search.
+RA  Koonin EV, Tatusov RL.
+RL  J Mol Biol 1994 Nov 18;244(1):125-32

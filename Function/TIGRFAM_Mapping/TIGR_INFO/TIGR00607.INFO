@@ -1,0 +1,13 @@
+ID  rad52
+AC  TIGR00607
+DE  recombination protein rad52
+AU  Loftus BJ, Eisen JA
+TC  224.80 224.80
+NC  65.05 65.05
+IT  subfamily
+EN  recombination protein rad52
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are involved in recombination and recombination repair.  Their exact biochemical activity is not yet known.
+CC  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  EGAD; 4038;
+DR  SWISSPROT; P43351;

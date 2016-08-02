@@ -1,0 +1,18 @@
+ID  WcaF
+AC  TIGR04008
+DE  colanic acid biosynthesis acetyltransferase WcaF
+AU  Selengut J
+TC  326.30 326.30
+NC  326.05 326.05
+AL  muscle
+IT  equivalog
+EN  colanic acid biosynthesis acetyltransferase WcaF
+GS  wcaF
+EC  2.3.1.-
+TP  TIGRFAMs
+CC  This gene is one of the glycosyl transferases involved in the biosynthesis of colanic acid, an exopolysaccharide expressed in Enterobacteraceae species [1].  This acetyltransferase is believed to catalyze the addition of the acetyl group that is attached through an O linkage to the first fucosyl residue of the colanic acid repetitive unit (E unit)
+RN  [1]
+RM  PMID:8759852 
+RT  Organization of the Escherichia coli K-12 gene cluster responsible for production of the extracellular polysaccharide colanic acid. 
+RA  Stevenson G, Andrianopoulos K, Hobbs M, Reeves PR 
+RL  J Bacteriol. 1996 Aug;178(16):4885-93.

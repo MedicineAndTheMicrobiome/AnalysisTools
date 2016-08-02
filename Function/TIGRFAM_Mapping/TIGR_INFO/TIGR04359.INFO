@@ -1,0 +1,17 @@
+ID  TrbK_RP4
+AC  TIGR04359
+DE  entry exclusion lipoprotein TrbK
+AU  Haft DH
+TC  23.00 22.00
+NC  22.00 20.00
+AL  muscle_manual
+IT  equivalog
+EN  entry exclusion lipoprotein TrbK
+GS  trbK
+TP  TIGRFAMs
+CC  The characterized model example of TrbK, from incompatibility group P (IncP) plasmid RP4, is an N-terminally processed lipoprotein, localized to the periplasmic face of the plasma membrane. TrbK prevents entry through conjugation by other IncP plasmids. Unrelated, uncharacterized proteins encoded in equivalent positions in other plasmid P-type conjugative transfer regions (e.g. TIGR04360) may have analogous functions.
+RN  [1]
+RM  PMID:8955288 
+RT  TrbK, a small cytoplasmic membrane lipoprotein, functions in entry exclusion of the IncP alpha plasmid RP4. 
+RA  Haase J, Kalkum M, Lanka E 
+RL  J Bacteriol. 1996 Dec;178(23):6720-9.

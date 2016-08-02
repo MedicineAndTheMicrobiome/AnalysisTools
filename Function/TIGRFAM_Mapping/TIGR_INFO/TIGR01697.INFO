@@ -1,0 +1,16 @@
+ID  PNPH-PUNA-XAPA
+AC  TIGR01697
+DE  inosine/guanosine/xanthosine phosphorylase family
+AU  Selengut J
+TC  197.10 197.10
+NC  143.30 143.30
+AL  clustalw
+IT  subfamily
+EN  inosine/guanosine/xanthosine phosphorylase family
+EC  2.4.2.1
+TP  TIGRFAMs
+CC  This model is a subset of the subfamily represented by PF00896 (phosphorylase family 2).  This model excludes the methylthioadenosine phosphorylases (MTAP, TIGR01684) which are believed toplay a specific role in the recycling of methionine from methylthioadenosine.  In this subfamily is found three clades of purine phosphorylases based on a neighbor-joining tree using the MTAP family as an outgroup.  
+CC  The highest-branching clade (TIGR01698) consists of a group of sequences from both gram positive and gram negative bacteria which have been annotated as purine nucleotide phosphorylases but have not been further characterized as to substrate specificity.
+CC  Of the two remaining clades, one is xanthosine phosphorylase (XAPA, TIGR01699), is limited to certain gamma proteobacteria and constitutes a special purine phosphorylase found in a specialized operon for xanthosine catabolism.  The enzyme also acts on the same purines (inosine and guanosine) as the other characterized members of this subfamily, but is only induced when xanthosine must be degraded. 
+CC  The remaining and largest clade consists of purine nucleotide phosphorylases (PNPH, TIGR01700) from metazoa and bacteria which act primarily on guanosine and inosine (and do not act on adenosine).
+CC  Sequences from Clostridium (GP:15025051) and Thermotoga (OMNI:TM1596) fall between these last two clades and are uncharacterized with respect to substrate range and operon.

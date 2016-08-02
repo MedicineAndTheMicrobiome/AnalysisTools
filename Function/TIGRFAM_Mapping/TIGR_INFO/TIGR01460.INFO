@@ -1,0 +1,42 @@
+ID  HAD-SF-IIA
+AC  TIGR01460
+DE  HAD hydrolase, family IIA
+AU  Selengut J
+TC  100.15 100.15
+NC  65.85 65.85
+AL  clustalw
+IT  subfamily
+EN  Haloacid Dehalogenase Superfamily Class (subfamily) IIA
+TP  TIGRFAMs
+CC  This HMM represents one structural subclass of the Haloacid Dehalogenase (HAD) superfamily of aspartate-nucleophile hydrolases.  The superfamily is defined by the presence of three short catalytic motifs [1].
+CC  The classes are defined [2] based on the location and the observed or predicted fold of a so-called "capping domain" [3], or the absence of such a domain.
+CC  Class I consists of sequences in which the capping domain is found in between the first and second catalytic motifs.  Class II consists of sequences in which the capping domain is found between the second and third motifs.  Class III sequences have no capping domain in iether of these positions.
+CC  The Class IIA capping domain is predicted by PSI-PRED to consist of a mixed alpha-beta fold with the basic pattern: Helix-Helix-Helix-Sheet-Helix-Loop-Sheet-Helix-Sheet-Helix.
+CC  Presently, this subfamily encompasses a single equivalog model (TIGR01452) for the eukaryotic phosphoglycolate phosphatase, as well as four hypothetical equivalogs covering closely related sequences (TIGR01456 and TIGR01458 in eukaryotes, TIGR01457 in gram positive bacteria and TIGR01459 in gram negative bacteria).
+CC  The Escherishia coli NagD gene and the Bacillus subtilus AraL gene are members of this subfamily but are not members of the any of the presently defined equivalogs within it.  NagD is part of the NAG operon responsible for N-acetylglucosamine metabolism [4].  The function of this gene is unknown.  Genes from several organisms have been annotated as NagD, or NagD-like.  However, without data on the presence of other members of this pathway, (such as in the case of Yersinia pestis) these assignments should not be given great weight.  The AraL gene is similar: it is part of the L-arabinose operon, but the function is unknown [5].  A gene from Halobacterium has been annotated as AraL, but no other Ara operon genes have been annotated.
+CC  Many of the genes in this subfamily have been annotated as "pNPPase" "4-nitrophenyl phosphatase" or "NPPase".  These all refer to the same activity versus a common lab test compound used to determine phosphatase activity.  There is no evidence that this activity is physiologically relevant.
+RN  [1]
+RM  PMID: 7966317
+RT  Computer analysis of bacterial haloacid dehalogenases defines a large superfamily of hydrolases with diverse specificity. Application of an iterative approach to database search.
+RA  Koonin EV, Tatusov RL.
+RL  J Mol Biol 1994 Nov 18;244(1):125-32
+RN  [2]
+RM  PMID: 11601995
+RT  MDP-1 is a new and distinct member of the haloacid dehalogenase family of aspartate-dependent phosphohydrolases.
+RA  Selengut, JD
+RL  Biochemistry 2001 Oct 23;40(42):12704-11
+RN  [3]
+RM  PMID: 10956028
+RT  The crystal structure of bacillus cereus phosphonoacetaldehyde hydrolase: insight into catalysis of phosphorus bond cleavage and catalytic diversification within the HAD enzyme superfamily.
+RA  Morais MC, Zhang W, Baker AS, Zhang G, Dunaway-Mariano D, Allen KN.
+RL Biochemistry 2000 Aug 29;39(34):10385-96
+RN  [4]
+RM  PMID: 2190615
+RT  Cloning and characterization of the N-acetylglucosamine operon of Escherichia coli.
+RA  Peri KG, Goldie H, Waygood EB.
+RL  Biochem Cell Biol 1990 Jan;68(1):123-37
+RN  [5]
+RM  PMID: 9084180
+RT  The Bacillus subtilis L-arabinose (ara) operon: nucleotide sequence, genetic organization and expression.
+RA  Sa-Nogueira I, Nogueira TV, Soares S, de Lencastre H.
+RL  Microbiology 1997 Mar;143 ( Pt 3):957-69

@@ -1,0 +1,13 @@
+ID  EYA-cons_domain
+AC  TIGR01658
+DE  EYA conserved domain
+AU  Selengut J
+TC  195.30 195.30
+NC  142.75 142.75
+AL  clustalw
+IT  equivalog_domain
+EN  eyes absent protein conserved domain
+GS  EYA
+EC  3.1.3.48
+TP  TIGRFAMs
+CC  This domain is common to all eyes absent (EYA) homologs.  Metazoan EYA's also contain a variable N-terminal domain consisting largely of low-complexity sequences.

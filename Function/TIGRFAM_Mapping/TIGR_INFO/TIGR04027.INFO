@@ -1,0 +1,12 @@
+ID  LLM_KPN_01858
+AC  TIGR04027
+DE  putative FMN-dependent luciferase-like monooxygenase, KPN_01858 family
+AU  Haft DH
+TC  412.90 412.90
+NC  316.75 316.75
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  putative FMN-dependent luciferase-like monooxygenase, KPN_01858 family
+EC  1.-.-.-
+TP  TIGRFAMs
+CC  This protein family consists of luciferase-like monooxygenases (LLM), and include KPN_01858 from Klebsiella pneumoniae as a representative member. Most are from species that lack F420 biosynthesis, so the family is likely to bind FMN as its cofactor. This family is closely associated with a binding protein-dependent ABC transporter, suggesting a role in catabolism.

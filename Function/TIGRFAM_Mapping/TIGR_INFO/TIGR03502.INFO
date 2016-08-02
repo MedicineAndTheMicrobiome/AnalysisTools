@@ -1,0 +1,22 @@
+ID  lipase_Pla1_cef
+AC  TIGR03502
+DE  extracellular lipase, Pla-1/cef family
+AU  Haft DH
+TC  383.90 383.90
+NC  221.80 221.80
+AL  muscle_manual
+IT  subfamily
+EN  extracellular lipase, Pla-1/cef family
+EC  3.1.-.-
+TP  TIGRFAMs
+CC  Members of this protein family are bacterial lipoproteins largely from the Gammaproteobacteria. Characterized members are expressed extracellularly and have esterase activity. Members include the lipase Pla-1 from Aeromonas hydrophila (AF092033) and CHO cell elongation factor (cef) from Vibrio hollisae
+RN  [1]
+RM  PMID:10417167
+RT  Cloning, sequencing, and role in virulence of two phospholipases (A1 and C) from mesophilic Aeromonas sp. serogroup O:34.
+RA  Merino S, Aguilar A, Nogueras MM, Regue M, Swift S, Tomas JM
+RL  Infect Immun. 1999 Aug;67(8):4008-13.
+RN  [2]
+RM  PMID:7790052
+RT  Purification and characterization of a Chinese hamster ovary cell elongation factor of Vibrio hollisae.
+RA  Kothary MH, Claverie EF, Miliotis MD, Madden JM, Richardson SH
+RL  Infect Immun. 1995 Jul;63(7):2418-23.

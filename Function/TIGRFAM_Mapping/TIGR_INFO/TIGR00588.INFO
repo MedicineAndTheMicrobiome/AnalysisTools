@@ -1,0 +1,13 @@
+ID  ogg
+AC  TIGR00588
+DE  8-oxoguanine DNA-glycosylase (ogg)
+AU  Loftus BJ, Eisen JA
+TC  397.85 397.85
+NC  128.00 128.00
+IT  subfamily
+EN  8-oxoguanine DNA-glycosylase (ogg)
+EC  3.2.2.-
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known are 8-oxo-guanaine DNA glycosylases that function in base excision repair. This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University). This family is distantly realted to the Nth-MutY superfamily.
+DR  EGAD; 59316;
+DR  SWISSPROT; P53397;

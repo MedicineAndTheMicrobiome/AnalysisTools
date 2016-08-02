@@ -1,0 +1,16 @@
+ID  murJ_mviN
+AC  TIGR01695
+DE  murein biosynthesis integral membrane protein MurJ
+AU  Haft DH
+TC  235.55 235.55
+NC  142.15 142.15
+AL  clustalw_manual
+IT  equivalog
+EN  murein biosynthesis integral membrane protein MurJ
+GS  mviN
+TP  TIGRFAMs
+CC  This HMM represents MurJ (previously MviN), a family of integral membrane proteins predicted to have ten or more transmembrane regions. Members have been suggested to act as a lipid II flippase, translocated a precursor of murein. However, it appears FtsW has that activity. Flippase activity for MurJ has not been shown.
+RM  11274131
+RT  glnD and mviN are genes of an essential operon in Sinorhizobium meliloti.
+RA  Rudnick PA, Arcondeguy T, Kennedy CK, Kahn D.
+RL  J Bacteriol 2001 Apr;183(8):2682-5

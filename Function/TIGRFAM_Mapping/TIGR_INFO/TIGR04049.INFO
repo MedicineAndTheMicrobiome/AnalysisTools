@@ -1,0 +1,11 @@
+ID  AIR_rel_sll0787
+AC  TIGR04049
+DE  AIR synthase-related protein, sll0787 family
+AU  Haft DH
+TC  321.30 321.30
+NC  321.10 321.10
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  AIR synthase-related protein, sll0787 family
+TP  TIGRFAMs
+CC  Members of this family include sll0787 from Synechocystis sp. PCC 6803 and resemble the C-terminal region of MSMEG_0567 from Mycobacterium smegmatis, where the N-terminal is a GNAT family N-acetyltransferase. The conserved cluster is found broadly (Cyanobacteria, Proteobacteria, Actinobacteria) in about 8 percent of genomes and appears to be biosynthetic. The product is unkown.

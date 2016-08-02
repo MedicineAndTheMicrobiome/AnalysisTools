@@ -1,0 +1,16 @@
+ID  galT_1
+AC  TIGR00209
+DE  galactose-1-phosphate uridylyltransferase
+AU  Loftus BJ
+TC  102.10 102.10
+NC  89.25 89.25
+AL  clustalw
+IT  equivalog
+EN  galactose-1-phosphate uridylyltransferase, family 1
+GS  galT
+EC  2.7.7.10
+TP  TIGRFAMs
+CC  This enzyme is involved in glucose and galactose interconversion. This model describes one of two extremely distantly related branches of the model PF01087 from PFAM.
+DR  ECOCYC; EG10366
+DR  PROSITE; PS00117;
+DR  PFAM; PF01087; GalP_UDP_transf.

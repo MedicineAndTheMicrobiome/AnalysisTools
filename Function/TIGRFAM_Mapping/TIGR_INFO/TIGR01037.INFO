@@ -1,0 +1,13 @@
+ID  pyrD_sub1_fam
+AC  TIGR01037
+DE  dihydroorotate dehydrogenase family protein
+AU  Haft DH, Ujwal ML
+TC  150.15 150.15
+NC  141.60 141.60
+AL  clustalw
+IT  subfamily_domain
+EN  dihydroorotate dehydrogenase (subfamily 1) family protein
+EC  1.3.-.-
+TP  TIGRFAMs
+CC  This family includes subfamily 1 dihydroorotate dehydrogenases while excluding the closely related subfamily 2 (TIGR01036). This family also includes a number of uncharacterized proteins and a domain of dihydropyrimidine dehydrogenase. The uncharacterized proteins might all be dihydroorotate dehydrogenase.
+DR  HAMAP; MF_00224; 72 of 72

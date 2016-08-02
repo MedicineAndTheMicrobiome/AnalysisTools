@@ -1,0 +1,16 @@
+ID  B_an_ocin
+AC  TIGR03601
+DE  probable heterocycle-containing bacteriocin, BA_2677 family
+AU  Haft DH
+TC  18.45 18.45
+NC  18.10 18.10
+AL  muscle_manual
+IT  equivalog
+EN  probable heterocycle-containing bacteriocin, BA_2677 family
+TP  TIGRFAMs
+CC  Numerous bacteria encode systems for producing bacteriocins by extensive modification of ribosomally produced precursors. These proteins are recognizable in part by proximity to the modification proteins, and in part by small size, with leader peptide-like N-terminal sequence followed by low-complexity sequence rich in Cys, Gly, and/or Ser. This protein family represents a probable member of the class, though previously unrecognized because it is not encoded adjacent to its modification proteins.
+RN  [1]
+RM  PMID:19383135
+RT  A strain-variable bacteriocin in Bacillus anthracis and Bacillus cereus with repeated Cys-Xaa-Xaa motifs.
+RA  Haft DH
+RL  Biol Direct. 2009 Apr 21;4(1):15.

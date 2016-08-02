@@ -1,0 +1,13 @@
+ID  gshA_cyan_rel
+AC  TIGR02050
+DE  carboxylate-amine ligase, YbdK family
+AU  Haft DH
+TC  176.40 176.40
+NC  150.95 150.95
+AL  clustalw
+IT  subfamily
+EN  carboxylate-amine ligase, YbdK family
+EC  6.3.-.-
+TP  TIGRFAMs
+CC  This family represents a division of a larger family, the other branch of which is predicted to act as glutamate--cysteine ligase (the first of two enzymes in glutathione biosynthesis) in the cyanobacteria.  Species containing this protein, however, are generally not believe to make glutathione, and the function is unknown.
+DR  HAMAP; MF_01609; 146 of 148

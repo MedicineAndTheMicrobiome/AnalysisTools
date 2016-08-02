@@ -1,0 +1,11 @@
+ID  PQQ_ABC_ATP
+AC  TIGR03864
+DE  ABC transporter, ATP-binding subunit, PQQ-dependent alcohol dehydrogenase system
+AU  Haft DH
+TC  302.25 302.25
+NC  266.50 266.50
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  ABC transporter, ATP-binding subunit, PQQ-dependent alcohol dehydrogenase system
+TP  TIGRFAMs
+CC  Members of this protein family are the ATP-binding subunit of an ABC transporter system that is associated with PQQ biosynthesis and PQQ-dependent alcohol dehydrogenases. While this family shows homology to several efflux ABC transporter subunits, the presence of a periplasmic substrate-binding protein and association with systems for catabolism of alcohols suggests a role in import rather than detoxification.

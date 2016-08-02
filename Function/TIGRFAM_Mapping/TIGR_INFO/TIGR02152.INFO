@@ -1,0 +1,16 @@
+ID  D_ribokin_bact
+AC  TIGR02152
+DE  ribokinase
+AU  Haft DH
+TC  299.65 299.65
+NC  172.40 172.40
+AL  clustalw_manual
+IT  equivalog
+EN  ribokinase
+GS  rbsK
+EC  2.7.1.15
+TP  TIGRFAMs
+CC  This HMM describes ribokinase, an enzyme catalyzing the first step in ribose catabolism. The rbsK gene encoding ribokinase typically is found with ribose transport genes. Ribokinase belongs to the carbohydrate kinase pfkB family (PF00294). In the wide gulf between the current trusted (360 bit) and noise (100 bit) cutoffs are a number of sequences, few of which are clustered with predicted ribose transport genes but many of which are currently annotated as if having ribokinase activity. Most likely some have this function and others do not.
+DR  EXPERIMENTAL; SP|P32143; Escherichia coli
+DR  EXPERIMENTAL; SP|P36945; Bacillus subtilis
+DR  EXPERIMENTAL; GP|4959404; Lactobacillus sakei

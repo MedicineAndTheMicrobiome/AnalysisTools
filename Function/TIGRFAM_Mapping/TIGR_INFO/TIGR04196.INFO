@@ -1,0 +1,17 @@
+ID  glycopep_SunS
+AC  TIGR04196
+DE  glycopeptide, sublancin family
+AU  Haft DH
+TC  40.00 40.00
+NC  33.00 33.00
+AL  muscle_manual
+IT  subfamily
+EN  glycopeptide, sublancin family
+GS  sunA
+TP  TIGRFAMs
+CC  Members of this family, including sublancin, are post-ribosomal natural products (PRNP) with an S-linked glycosylation. Sublancin itself also has two disulfide bonds. A related gene cluster in Bacillus cereus E33L includes the four Cys involved in the disulfide cluster but lacks the region with the glycosylated Cys. These score ~ 27 by this HMMER3 model and are excluded.
+RN  [1]
+RM  PMID:21196935 
+RT  Sublancin is not a lantibiotic but an S-linked glycopeptide. 
+RA  Oman TJ, Boettcher JM, Wang H, Okalibe XN, van der Donk WA 
+RL  Nat Chem Biol. 2011 Feb;7(2):78-80.

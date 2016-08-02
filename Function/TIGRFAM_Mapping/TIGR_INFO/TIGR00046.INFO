@@ -1,0 +1,17 @@
+ID  TIGR00046
+AC  TIGR00046
+DE  RNA methyltransferase, RsmE family
+AU  Haft DH
+TC  41.00 41.00
+NC  31.05 31.05
+AL  clustalw
+IT  subfamily
+EN  RNA methyltransferase, RsmE family
+EC  2.1.1.-
+TP  TIGRFAMs
+CC  Members of this protein family, previously called conserved hypothetical protein TIGR00046, include the YggJ protein of E. coli, which has now been shown to methylate U1498 in 16S rRNA.
+RN  [1]
+RM  PMID: 16431987
+RT  Identification and characterization of RsmE, the founding member of a new RNA base methyltransferase family.
+RA  Basturea GN, Rudd KE, Deutscher MP.
+RL  RNA. 2006 Mar;12(3):426-34.

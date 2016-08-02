@@ -1,0 +1,12 @@
+ID  cyanophycinase
+AC  TIGR02069
+DE  cyanophycinase
+AU  Haft DH
+TC  126.60 126.60
+NC  73.30 73.30
+AL  clustalw
+IT  equivalog
+EN  cyanophycinase
+EC  3.4.15.6
+TP  TIGRFAMs
+CC  This HMM describes both cytosolic and extracellular cyanophycinases. The former are part of a system in many Cyanobacteria and a few other species of generating and later utilizing a storage polymer for nitrogen, carbon, and energy, called cyanophycin. The latter are found in species such as Pseudomonas anguilliseptica that can use external cyanophycin. The polymer has a backbone of L-aspartic acid, with most Asp side chain carboxyl groups attached to L-arginine.

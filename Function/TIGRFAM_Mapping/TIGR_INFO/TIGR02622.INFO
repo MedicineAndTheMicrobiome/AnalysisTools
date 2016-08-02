@@ -1,0 +1,23 @@
+ID  CDP_4_6_dhtase
+AC  TIGR02622
+DE  CDP-glucose 4,6-dehydratase
+AU  Haft DH
+TC  278.45 278.45
+NC  148.25 148.25
+AL  clustalw
+IT  equivalog
+EN  CDP-glucose 4,6-dehydratase
+GS  rfbG
+EC  4.2.1.45
+TP  TIGRFAMs
+CC  Members of this protein family are CDP-glucose 4,6-dehydratase from a variety of Gram-negative and Gram-positive bacteria. Members typically are encoded next to a gene that encodes a glucose-1-phosphate cytidylyltransferase, which produces the substrate, CDP-D-glucose, used by this enzyme to produce CDP-4-keto-6-deoxyglucose.
+RN  [1]
+RM  15023057
+RT  Crystal structure at 1.8 A resolution of CDP-D-glucose 4,6-dehydratase from Yersinia pseudotuberculosis.
+RA  Vogan EM, Bellamacina C, He X, Liu HW, Ringe D, Petsko GA.
+RL  Biochemistry. 2004 Mar 23;43(11):3057-67.
+RN  [2]
+RM  9367902
+RT  Identification and mutational analysis of rfbG, the gene encoding CDP-D-glucose-4,6-dehydratase, isolated from free living soil bacterium Azotobacter vinelandii.
+RA  Gavini N, Hausman BS, Pulakat L, Schreiner RP, Williamson JA.
+RL  Biochem Biophys Res Commun. 1997 Nov 7;240(1):153-61.

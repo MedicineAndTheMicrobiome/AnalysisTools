@@ -1,0 +1,17 @@
+ID  TTQ_mauG
+AC  TIGR03791
+DE  tryptophan tryptophylquinone biosynthesis enzyme MauG
+AU  Haft DH
+TC  443.85 443.85
+NC  394.50 394.50
+AL  muscle_manual
+IT  equivalog
+EN  tryptophan tryptophylquinone biosynthesis enzyme MauG
+GS  mauG
+TP  TIGRFAMs
+CC  Members of this protein family are the tryptophan tryptophylquinone biosynthesis (TTQ) enzyme MauG, as found in Methylobacterium extorquens and related species. This protein is required to complete the maturation of the TTQ cofactor in the methylamine dehydrogenase light (beta) chain.
+RN  [1]
+RM  PMID:19196017
+RT  Kinetic Mechanism for the Initial Steps in MauG-dependent Tryptophan Tryptophylquinone Biosynthesis.
+RA  Lee S, Shin S, Li X, Davidson V
+RL  Biochemistry. 2009 Feb 5.

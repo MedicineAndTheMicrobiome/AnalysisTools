@@ -1,0 +1,12 @@
+ID  C_P_lyase_phnF
+AC  TIGR02325
+DE  phosphonate metabolism transcriptional regulator PhnF
+AU  Haft DH
+TC  156.80 156.80
+NC  155.35 155.35
+AL  clustalw
+IT  equivalog
+EN  phosphonates metabolism transcriptional regulator PhnF
+GS  phnF
+TP  TIGRFAMs
+CC  All members of the seed alignment for this family are predicted helix-turn-helix transcriptional regulatory proteins of the broader gntR and are found associated with genes for the import and degradation of phosphonates and/or related compounds (e.g. phosphonites) with a direct C-P bond.

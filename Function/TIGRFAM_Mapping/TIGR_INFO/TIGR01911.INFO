@@ -1,0 +1,11 @@
+ID  HesB_rel_seleno
+AC  TIGR01911
+DE  HesB-like selenoprotein
+AU  Haft DH
+TC  66.35 66.35
+NC  48.50 48.50
+AL  clustalw_manual
+IT  subfamily
+EN  HesB-like selenoprotein
+TP  TIGRFAMs
+CC  This HMM represents a family of small proteins related to HesB and its close homologs, which are likely to be invovlved in iron-sulfur cluster assembly (See TIGR00049 and PF01521). Several members are selenoproteins, with a TGA codon and Sec residue that aligns to the conserved Cys of the HesB domain. A variable Cys/Ser/Gly-rich C-terminal region is not included in the seed alignment and model.

@@ -1,0 +1,18 @@
+ID  UHCUDC
+AC  TIGR03164
+DE  OHCU decarboxylase
+AU  Selengut J
+TC  96.25 96.25
+NC  83.45 83.45
+AL  muscle
+IT  equivalog_domain
+EN  OHCU decarboxylase
+GS  uraD
+EC  4.1.1.-
+TP  TIGRFAMs
+CC  Previously thought to only proceed spontaneously, the decarboxylation of 2-oxo-4-hydroxy-4-carboxy--5-ureidoimidazoline (OHCU) has been recently been shown to be catalyzed by this enzyme in Mus musculus [1].  Homologs of this enzyme are found adjacent to and fused with uricase in a number of prokaryotes and are represented by this model.
+RN  [1]
+RM  PMID: 16462750 
+RT  Completing the uric acid degradation pathway through phylogenetic comparison of whole genomes. 
+RA  Ramazzina I, Folli C, Secchi A, Berni R, Percudani R 
+RL  Nat Chem Biol. 2006 Mar;2(3):144-8. Epub 2006 Feb 5.

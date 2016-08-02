@@ -1,0 +1,16 @@
+ID  trehalose_treC
+AC  TIGR02403
+DE  alpha,alpha-phosphotrehalase
+AU  Haft DH
+TC  799.05 799.05
+NC  751.90 751.90
+AL  clustalw_manual
+IT  equivalog
+EN  alpha,alpha-phosphotrehalase
+GS  treC
+EC  3.2.1.93
+TP  TIGRFAMs
+CC  Trehalose is a glucose disaccharide that serves in many biological systems as a compatible solute for protection against hyperosmotic and thermal stress. This family describes trehalose-6-phosphate hydrolase, product of the treC (or treA) gene, which is often found together with a trehalose uptake transporter and a trehalose operon repressor.
+DR  EXPERIMENTAL; SP|P28904; Escherichia coli
+DR  EXPERIMENTAL; SP|P39795; Bacillus subtilis
+DR  EXPERIMENTAL; GB|AAN06917.1; Pseudomonas fluorescens

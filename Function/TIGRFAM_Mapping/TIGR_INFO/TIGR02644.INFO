@@ -1,0 +1,14 @@
+ID  Y_phosphoryl
+AC  TIGR02644
+DE  pyrimidine-nucleoside phosphorylase
+AU  Haft DH
+TC  409.05 409.05
+NC  275.15 275.15
+AL  clustalw
+IT  subfamily
+EN  pyrimidine-nucleoside phosphorylase
+GS  pdp
+EC  2.4.2.2
+TP  TIGRFAMs
+CC  In general, members of this protein family are designated pyrimidine-nucleoside phosphorylase, enzyme family EC 2.4.2.2, as in Bacillus subtilis, and more narrowly as the enzyme family EC 2.4.2.4, thymidine phosphorylase (alternate name: pyrimidine phosphorylase), as in Escherichia coli. The set of proteins encompassed by this model is designated subfamily rather than equivalog for this reason; the protein name from this model should be used when TIGR02643 does not score above trusted cutoff.
+DR  HAMAP; MF_01628; 65 of 67

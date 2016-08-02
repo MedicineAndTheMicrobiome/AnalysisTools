@@ -1,0 +1,13 @@
+ID  sufS
+AC  TIGR01979
+DE  cysteine desulfurase, SufS family
+AU  Haft DH
+TC  475.10 475.10
+NC  352.70 352.70
+AL  clustalw_manual
+IT  subfamily
+EN  cysteine desulfurases, SufSfamily
+GS  sufS
+TP  TIGRFAMs
+CC  This model represents a subfamily of NifS-related cysteine desulfurases involved in FeS cluster formation needed for nitrogen fixation among other vital functions. Many cysteine desulfurases are also active as selenocysteine lyase and/or cysteine sulfinate desulfinase. This subfamily is associated with the six-gene SUF system described in E. coli and Erwinia as an FeS cluster formation system during oxidative stress. The active site Cys is this subfamily resembles GHHC with one or both His conserved.
+DR  HAMAP; MF_01831; 29 of 30

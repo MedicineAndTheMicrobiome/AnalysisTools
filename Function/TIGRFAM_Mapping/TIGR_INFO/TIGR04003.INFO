@@ -1,0 +1,23 @@
+ID  rSAM_BssD
+AC  TIGR04003
+DE  [benzylsuccinate synthase]-activating enzyme
+AU  Haft DH
+TC  496.45 496.45
+NC  496.25 496.25
+AL  muscle_manual
+IT  equivalog
+EN  [benzylsuccinate synthase]-activating enzyme
+GS  bssD
+EC  1.97.-.-
+TP  TIGRFAMs
+CC  Members of this radical SAM protein family are [benzylsuccinate synthase]-activating enzyme, a glycyl radical active site-creating enzyme related to [pyruvate formate-lyase]-activating enzyme and additional uncharacterized homologs activating additional glycyl radical-containing enzymes.
+RN  [1]
+RM  PMID:8706665
+RT  Evidence that anaerobic oxidation of toluene in the denitrifying bacterium Thauera aromatica is initiated by formation of benzylsuccinate from toluene and fumarate.
+RA  Biegert T, Fuchs G, Heider J
+RL  Eur J Biochem. 1996 Jun 15;238(3):661-8.
+RN  [2]
+RM  PMID:9632263
+RT  Biochemical and genetic characterization of benzylsuccinate synthase from Thauera aromatica: a new glycyl radical enzyme catalysing the first step in anaerobic toluene metabolism.
+RA  Leuthner B, Leutwein C, Schulz H, Horth P, Haehnel W, Schiltz E, Schagger H, Heider J
+RL  Mol Microbiol. 1998 May;28(3):615-28.

@@ -1,0 +1,14 @@
+ID  3mg
+AC  TIGR00567
+DE  DNA-3-methyladenine glycosylase
+AU  Loftus BJ, Eisen JA
+TC  116.35 116.35
+NC  75.80 75.80
+IT  subfamily
+EN  DNA-3-methyladenine glycosylase  (3mg)
+EC  3.2.2.-
+TP  TIGRFAMs
+CC  This families are based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).  All proteins in this family for which the function is known are involved in the base excision repair of alkylation damage to DNA.  The exact specificty of the type of alkylation damage repaired by each of these varies somewhat between species.  Substrates include 3-methyl adenine, 7-methyl-guanaine, and 3-methyl-guanine.
+DR  SWISSPROT; P94378;
+RM  MEDLINE: 97124196;
+DR  HAMAP; MF_00527; 159 of 162

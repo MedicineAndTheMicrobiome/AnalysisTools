@@ -1,0 +1,23 @@
+ID  phosphonatase
+AC  TIGR01422
+DE  phosphonoacetaldehyde hydrolase
+AU  Selengut J
+TC  221.20 221.20
+NC  117.40 117.40
+AL  clustalw
+IT  equivalog
+EN  phosphonoacetaldehyde hydrolase
+GS  phnX
+EC  3.11.1.1
+TP  TIGRFAMs
+CC  This enzyme catalyzes the cleavage of the carbon phosphorous bond of a phosphonate.  The mechanism depends on the substrate having a carbonyl one carbon away from the cleavage position.  
+CC  This enzyme is a member of the Haloacid Dehalogenase (HAD) superfamily of aspartate-nucleophile hydrolases (PF00702), and contains a modified version of the conserved catalytic motifs of that superfamily: the first motif is usually DxDx(T/V), here it is DxAxT, and in the third motif the normal conserved lysine is instead an arginine.  Additionally, the enzyme contains a unique conserved catalytic lysine (B. cereus pos. 53) which is involved in the binding and activation of the substrate through the formation of a Schiff base.  The substrate of this enzyme is the product of 2-aminoethylphosphonate (AEP) transaminase, phosphonoacetaldehyde.  This degradation pathway for AEP may be related to its toxic properties which are utilized by microorganisms as a chemical warfare agent.
+RN [1]
+RM 10956028
+RT The crystal structure of bacillus cereus phosphonoacetaldehyde hydrolase: insight into catalysis of phosphorus bond cleavage and catalytic diversification within the HAD enzyme superfamily.
+RA Morais MC, Zhang W, Baker AS, Zhang G, Dunaway-Mariano D, Allen KN 
+RL Biochemistry 2000 Aug 29;39(34):10385-96.
+DR PFAM; PF00702
+DR EXPERIMENTAL; GP|10835405|pdb|1FEZ|A; Bacillus cereus
+DR OUTGROUP; EGAD|155362|AA0933; Aquifex aolicus; phosphoglycolate phosphatase (pgp)
+DR  HAMAP; MF_01375; 42 of 42

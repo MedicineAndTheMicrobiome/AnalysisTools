@@ -1,0 +1,17 @@
+ID  DNA_III_psi
+AC  TIGR00664
+DE  DNA polymerase III, psi subunit
+AU  Loftus BJ, Haft DH
+TC  150.55 150.55
+NC  49.80 49.80
+AL  clustalw
+IT  equivalog
+EN  DNA polymerase III, psi subunit
+GS  holD
+EC  2.7.7.7
+TP  TIGRFAMs
+CC  This small subunit of the DNA polymerase III holoenzyme in E. coli and related species appearsto have a narrow taxonomic distribution. It is not found so far outside the gamma subdivision proteobacteria.
+DR  SWISSPROT; P28632
+DR  EXPERIMENTAL; EGAD|10576|EC4372; Escherichia coli
+RN  [1]
+RM  98389786

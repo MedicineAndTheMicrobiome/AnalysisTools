@@ -1,0 +1,15 @@
+ID  aroA
+AC  TIGR01356
+DE  3-phosphoshikimate 1-carboxyvinyltransferase
+AU  Haft DH
+TC  287.25 287.25
+NC  167.55 167.55
+AL  clustalw_manual
+IT  equivalog
+EN  3-phosphoshikimate 1-carboxyvinyltransferase
+GS  aroA
+EC  2.5.1.19
+TP  TIGRFAMs
+CC  This model represents 3-phosphoshikimate-1-carboxyvinyltransferase (aroA), which catalyzes the sixth of seven steps in the shikimate pathway of the biosynthesis of chorimate. Chorismate is last common precursor of all three aromatic amino acids.
+CC  Sequences scoring between the trusted and noise cutoffs include fragmentary and aberrant sequences in which generally well-conserved motifs are missing or altererd, but no example of a protein known to have a different function.
+DR  HAMAP; MF_00210; 373 of 381

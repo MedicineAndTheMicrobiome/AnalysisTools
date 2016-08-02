@@ -1,0 +1,15 @@
+ID  D_Ser_am_lyase
+AC  TIGR02035
+DE  D-serine ammonia-lyase
+AU  Haft DH
+TC  368.25 368.25
+NC  159.25 159.25
+AL  clustalw
+IT  equivalog
+EN  D-serine ammonia-lyase
+GS  dsdA
+EC  4.3.1.18
+TP  TIGRFAMs
+CC  This family consists of D-serine ammonia-lyase (EC 4.3.1.18), a pyridoxal-phosphate enzyme that converts D-serine to pyruvate and NH3. This  enzyme is also called D-serine dehydratase and D-serine deaminase and was previously designated EC 4.2.1.14. It is homologous to an enzyme that acts on threonine and may itself act weakly on threonine.
+DR  KEGG; 4.3.1.18
+DR  HAMAP; MF_01030; 69 of 71

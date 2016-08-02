@@ -1,0 +1,16 @@
+ID  PYST-A
+AC  TIGR01599
+DE  Plasmodium yoelii subtelomeric family PYST-A
+AU  Selengut J
+TC  114.80 114.80
+NC  75.65 75.65
+AL  clustalw
+IT  paralog
+EN  Plasmodium yoelii subtelomeric family PYST-A
+TP  TIGRFAMs
+CC  This model represents a paralogous family of Plasmodium yoelii genes preferentially located in the subtelomeric regions of the chromosomes [1].  Members of this family are expressed in both the Sporozoite and Gametozoite life stages [1].  
+CC  A single high-scoring gene was identified in the complete genome of P. falciparum [2] as well as a single gene from P. chaboudi from GenBank which were included in the seed.  There are no obvious homologs to these genes in any non-Plasmodium organism.  These observations suggest an expansion of this family in yoelii from a common Plasmodium ancestor gene (present in a single copy in falciparum).
+RN  [1]
+RL  TIGR, unpublished data
+RN  [2]
+RL  TIGR, unpublished data

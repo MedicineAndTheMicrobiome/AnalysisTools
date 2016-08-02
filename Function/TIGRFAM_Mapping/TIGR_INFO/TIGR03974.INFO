@@ -1,0 +1,17 @@
+ID  rSAM_six_Cys
+AC  TIGR03974
+DE  SCIFF radical SAM maturase
+AU  Haft DH
+TC  425.00 425.00
+NC  380.00 380.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  SCIFF radical SAM maturase
+GS  scfB
+TP  TIGRFAMs
+CC  Members of this protein family are predicted radical SAM enzymes universally associated with Six Cysteines in Forty-Five protein, or SCIFF (family TIGR03973), a predicted ribosomal natural product precursor that is nearly universal in the class Clostridia. Similarity of this family to radical SAM maturases (PqqE and subtilosin A maturase) found in the vicinity of other peptide precursors suggests this protein is the SCIFF radical SAM maturase.
+RN  [1]
+RM  PMID:21478363 
+RT  Biological systems discovery in silico: radical S-adenosylmethionine protein families and their target peptides for posttranslational modification. 
+RA  Haft DH, Basu MK 
+RL  J Bacteriol. 2011 Jun;193(11):2745-55.

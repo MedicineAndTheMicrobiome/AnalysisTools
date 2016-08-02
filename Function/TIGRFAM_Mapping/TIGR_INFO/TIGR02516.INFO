@@ -1,0 +1,14 @@
+ID  type_III_yscC
+AC  TIGR02516
+DE  type III secretion outer membrane pore, YscC/HrcC family
+AU  Haft DH
+TC  238.45 238.45
+NC  198.40 198.40
+AL  clustalw_manual
+IT  equivalog
+EN  type III secretion outer membrane pore, YscC/HrcC family
+TP  TIGRFAMs
+CC  A number of proteins homologous to the type IV pilus secretin PilQ (TIGR02515) are involved in type IV pilus formation, competence for transformation, type III secretion, and type II secretion (also called the main terminal branch of the general secretion pathway). The clade described by this model contains the outer membrane pore proteins of bacterial type III secretion systems, typified by YscC for animal pathogens and HrcC for plant pathogens.
+DR  PFAM; PF07660; STN
+DR  PFAM; PF03958; Secretin_N
+DR  PFAM; PF00263; Secretin_C

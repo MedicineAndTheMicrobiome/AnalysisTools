@@ -1,0 +1,11 @@
+ID  prismane_assoc
+AC  TIGR03980
+DE  hybrid cluster protein-associated redox disulfide domain
+AU  Haft DH
+TC  44.95 44.95
+NC  44.15 44.15
+AL  muscle_manual
+IT  subfamily_domain
+EN  hybrid cluster protein-associated redox disulfide domain
+TP  TIGRFAMs
+CC  Members of this protein family resemble the domain of unknown function DUF1858 described by PF08984, but all members contain an apparent redox-active disulfide. In at least one member protein, a cysteine in the CXXC motif is substituted by a selenocysteine. Most member proteins consist of this domain only, but a few members are fused to or adjacent to members of the hybrid-cluster (prismane) family or the nitrite/sulfite reductase family.

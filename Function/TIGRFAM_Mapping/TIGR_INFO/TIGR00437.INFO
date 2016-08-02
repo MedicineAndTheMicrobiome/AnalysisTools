@@ -1,0 +1,19 @@
+ID  feoB
+AC  TIGR00437
+DE  ferrous iron transport protein B
+AU  Loftus BJ
+TC  315.65 315.65
+NC  246.65 246.65
+AL  clustalw
+IT  equivalog
+EN  ferrous iron transporter FeoB
+GS  feoB
+TR  9.A.8
+TP  TIGRFAMs
+CC  FeoB (773 amino acids in E. coli), a cytoplasmic membrane protein required for iron(II) update, is encoded in an operon with FeoA (75 amino acids), which is also required, and is regulated by Fur. There appear to be two copies in Archaeoglobus fulgidus and  Clostridium acetobutylicum.
+DR  Swissprot; P33650;
+DR  ECOCYC; EG12102; 
+RM  Medline; 94012482;
+DR  PFAM; PF02421
+DR  InterPro; IPR003373
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/9_A_8.html

@@ -1,0 +1,11 @@
+ID  TIGR00304
+AC  TIGR00304
+DE  TIGR00304 family protein
+AU  Loftus BJ
+TC  62.65 62.65
+NC  29.75 29.75
+AL  clustalw
+IT  hypoth_equivalog
+EN  TIGR00304 family protein
+TP  TIGRFAMs
+CC  The member of this family from Pyrococcus horikoshii scores only 13.91 bits, largely because it is at least 15 residues shorter than other members of this family of small proteins and is penalized for not matching to the N-terminal section of the model. Cutoff scores are set so this hit is between noise and trusted cutoffs.

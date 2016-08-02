@@ -1,0 +1,16 @@
+ID  pckA
+AC  TIGR00224
+DE  phosphoenolpyruvate carboxykinase (ATP)
+AU  Loftus BJ
+TC  590.05 590.05
+NC  290.70 290.70
+AL  clustalw
+IT  equivalog
+EN  phosphoenolpyruvate carboxykinase (ATP)
+GS  pckA
+EC  4.1.1.49
+TP  TIGRFAMs
+CC  Involved in the gluconeogenesis pathway. It converts oxaloacetic acid to  phosphoenolpyruvate using ATP. Enzyme is a monomer. The reaction is also catalysed by phosphoenolpyruvate carboxykinase (GTP) (EC 4.1.1.32) using GTP instead of ATP, described in PROSITE:PDOC00421
+DR  PROSITE; PDOC00460;
+DR  ECOCYC; EG10688; pckA
+DR  HAMAP; MF_00453; 184 of 188

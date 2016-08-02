@@ -1,0 +1,17 @@
+ID  PEP_resp_reg
+AC  TIGR02915
+DE  PEP-CTERM-box response regulator transcription factor
+AU  Haft DH
+TC  502.60 502.60
+NC  461.10 461.10
+AL  muscle
+IT  equivalog
+EN  PEP-CTERM-box response regulator transcription factor
+GS  prsR
+TP  TIGRFAMs
+CC  Members of this protein family share full-length homology with  (but do not include) the acetoacetate metabolism regulatory protein AtoC (see SP|Q06065). These proteins have a Fis family DNA binding sequence (PF02954), a response regulator receiver domain (PF00072), and sigma-54 interaction domain (PF00158).
+RN  [1]
+RM  PMID: 16930487
+RT  Exopolysaccharide-associated protein sorting in environmental organisms: the PEP-CTERM/EpsH system. Application of a novel phylogenetic profiling heuristic.
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD
+RL  BMC Biol. 2006 Aug 24;4(1):29.

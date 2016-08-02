@@ -1,0 +1,11 @@
+ID  PFTS_polysacc
+AC  TIGR04417
+DE  polysaccharide biosynthesis PFTS motif protein
+AU  Haft DH
+TC  100.00 100.00
+NC  25.00 25.00
+AL  muscle_manual
+IT  subfamily
+EN  polysaccharide biosynthesis PFTS motif protein
+TP  TIGRFAMs
+CC  Members of this protein family are found in O-antigen biosynthesis loci in Leptospira, two tandem homologs in a polysaccharide biosynthesis region in the archaeon Methanoregula formicicum, in Rhizobium leguminosarum bv. trifolii WSM2297, etc. Members are more strongly conserved in the C-terminal region, where an invariant sequence PFTS is found.

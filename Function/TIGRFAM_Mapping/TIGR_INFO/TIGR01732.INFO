@@ -1,0 +1,11 @@
+ID  tiny_TM_bacill
+AC  TIGR01732
+DE  conserved hypothetical protein
+AU  Haft DH
+TC  21.35 21.35
+NC  19.35 19.35
+AL  clustalw_manual
+IT  subfamily
+EN  conserved hypothetical tiny transmembrane protein
+TP  TIGRFAMs
+CC  This HMM represents a family of hypothetical proteins, half of which are 40 residues or less in length. Members are found only in spore-forming species. A Gly-rich variable region is followed by a strongly conserved, highly hydrophobic region, predicted to form a transmembrane helix, ending with an invariant Gly. The consensus for this stretch is FALLVVFILLIIV.

@@ -1,0 +1,14 @@
+ID  pcna
+AC  TIGR00590
+DE  proliferating cell nuclear antigen (pcna)
+AU  Loftus BJ, Eisen JA
+TC  99.10 99.10
+NC  73.05 73.05
+IT  equivalog
+EN  proliferating cell nuclear antigen (pcna)
+GS  pcn
+TP  TIGRFAMs
+CC  All proteins in this family for which functions are known form sliding DNA clamps that are used in DNA replication processes.  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  EGAD; 95043;
+DR  SWISSPROT; P12004;
+DR  HAMAP; MF_00317; 35 of 48

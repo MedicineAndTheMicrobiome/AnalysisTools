@@ -1,0 +1,15 @@
+ID  devC
+AC  TIGR01185
+DE  ABC exporter transmembrane subunit, DevC protein
+AU  Ujwal ML, Haft DH, Paulsen IT
+TC  290.35 290.35
+NC  96.75 96.75
+AL  clustalw
+IT  subfamily
+EN  DevC protein
+TP  TIGRFAMs
+CC  This model describes a predicted membrane subunit, DevC, of an ABC transporter known so far from two species of cyanobacteria. Some experimental data from mutational analysis suggest that this protein along with DevA and DevB encoded in the same operon may be involved in the transport/export of glycolipids.
+RM  98230330
+RT  The DevBCA exporter is essential for envelope formation in heterocysts of the cyanobacterium Anabaena sp. strain PCC 7120.
+RA  Fiedler G, Arnold M, Hannus S, Maldener I
+RL  Mol Microbiol 1998 Mar;27(6):1193-202

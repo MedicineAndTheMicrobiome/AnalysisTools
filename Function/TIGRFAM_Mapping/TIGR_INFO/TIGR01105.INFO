@@ -1,0 +1,16 @@
+ID  galF
+AC  TIGR01105
+DE  regulatory protein GalF
+AU  Dodson RJ
+TC  659.20 659.20
+NC  416.75 416.75
+AL  clustalw
+IT  equivalog
+EN  UTP-glucose-1-phosphate uridylyltransferase, non-catalytic GalF subunit
+GS  galF
+TP  TIGRFAMs
+CC  GalF is a non-catalytic subunit of the UTP-glucose pyrophosphorylase modulating the enzyme activity to increase the formation of UDP-glucose
+RN  [1]
+RM  97126811
+RA  Marolda CL, Valvano MA;
+RL  Mol Microbiol 1996;22:827-40.

@@ -1,0 +1,29 @@
+ID  rsbW_low_gc
+AC  TIGR01924
+DE  anti-sigma B factor
+AU  Nelson WE, Selengut J
+TC  155.05 155.05
+NC  100.10 100.10
+AL  clustalw_manual
+IT  equivalog
+EN  serine-protein kinase RsbW
+GS  rsbW
+EC  2.7.11.1
+TP  TIGRFAMs
+CC  This model describes the anti-sigma B factor also known as  serine-protein kinase RsbW. Sigma B controls the general stress regulon in B subtilis and is activated by cell stresses such as stationary phase and heat shock. RsbW binds to sigma B and prevents formation of the transcription complex at the promoter.[1] RsbV (anti-anti-sigma factor) binds to RsbW to inhibit association with sigma B, however RsbW can phosphorylate RsbV, causing disassociation of the RsbV/RsbW complex.[2] Low ATP level or environmental stress causes the dephosphorylation of RsbV.[3]
+RN  [1]
+RM  PMID: 8460143
+RT  Bacillus subtilis sigma B is regulated by a binding protein (RsbW) that blocks its association with core RNA polymerase.
+RA  Benson AK, Haldenwang WG.
+RL  Proc Natl Acad Sci U S A. 1993 Mar 15;90(6):2330-4.
+RN  [2]
+RM  PMID: 8144446
+RT  Interactions between a Bacillus subtilis anti-sigma factor (RsbW) and its antagonist (RsbV).
+RA  Dufour A, Haldenwang WG.
+RL  J Bacteriol. 1994 Apr;176(7):1813-20.
+RN  [3]
+RM  PMID: 8808936
+RT  Reactivation of the Bacillus subtilis anti-sigma B antagonist, RsbV, by stress- or starvation-induced phosphatase activities.
+RA  Voelker U, Voelker A, Haldenwang WG.
+RL  J Bacteriol. 1996 Sep;178(18):5456-63.
+DR  HAMAP; MF_00638; 35 of 35

@@ -1,0 +1,25 @@
+ID  cyoE_ctaB
+AC  TIGR01473
+DE  protoheme IX farnesyltransferase
+AU  Haft DH
+TC  210.30 210.30
+NC  138.30 138.30
+AL  clustalw_manual
+IT  equivalog
+EN  protoheme IX farnesyltransferase
+GS  cyoE
+EC  2.5.1.-
+TP  TIGRFAMs
+CC  This HMM describes protoheme IX farnesyltransferase, also called heme O synthase, an enzyme that creates an intermediate in the biosynthesis of heme A. Prior to the description of its enzymatic function, this protein was often called a cytochrome o ubiquinol oxidase assembly factor.
+DR  EXPERIMENTAL; SP:P24009; Bacillus subtilis; CtaB
+DR  EXPERIMENTAL; EGAD|109348; Bacillus subtilis; CtaO
+DR  EXPERIMENTAL; SP:P18404; Escherichia coli; CyoE
+DR  EXPERIMENTAL; SP:P21592; Saccharomyces cerevisiae; COX10
+DR  EXPERIMENTAL; PIR:I38603; Homo sapiens
+RN  [1]
+RM  9378722
+RN  [2]
+RM  93129216
+RN  [3]
+RM  8118433
+DR  HAMAP; MF_00154; 433 of 455

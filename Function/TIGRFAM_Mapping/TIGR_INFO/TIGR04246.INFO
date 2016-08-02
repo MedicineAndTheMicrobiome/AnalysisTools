@@ -1,0 +1,18 @@
+ID  nitrous_NosZ_Gp
+AC  TIGR04246
+DE  nitrous-oxide reductase, Sec-dependent
+AU  Haft DH
+TC  625.00 625.00
+NC  550.00 550.00
+AL  muscle_manual
+IT  equivalog_domain
+EN  nitrous-oxide reductase, Sec-dependent
+GS  nosZ
+EC  1.7.2.4
+TP  TIGRFAMs
+CC  This model represents the nitrous-oxide reductase protein NosZ as characterized in Geobacillus thermodenitrificans. In contrast to the related form in Pseudomonas stutzeri, this version lacks a recognizable twin-arginine translocation (TAT) signal at the N-terminus. Consequently, its accessory protein may differ. Some members of this family have an additional cytochrome c-like domain at the C-terminus.
+RN  [1]
+RM  PMID:19054093 
+RT  The nos gene cluster from gram-positive bacterium Geobacillus thermodenitrificans NG80-2 and functional characterization of the recombinant NosZ. 
+RA  Liu X, Gao C, Zhang A, Jin P, Wang L, Feng L 
+RL  FEMS Microbiol Lett. 2008 Dec;289(1):46-52.

@@ -1,0 +1,16 @@
+ID  phero_cyc_pep
+AC  TIGR04079
+DE  KxxxW-cyclized secreted peptide
+AU  Haft DH
+TC  35.00 20.00
+NC  25.00 18.00
+AL  muscle_manual
+IT  subfamily
+EN  KxxxW-cyclized secreted peptide
+TP  TIGRFAMs
+CC  Members of this family are short precursor peptides in which the mature form undergoes a cyclization between a Lys and a Trp four residues away. The modification enzyme appears to be an adjacent encoded radical SAM protein. Genomes encoding this system include Streptococcus thermophilus LMD-9 and Lactococcus lactis subsp. cremoris MG1363, among others.
+RN  [1]
+RM  PMID:17921293 
+RT  Control of the transcription of a short gene encoding a cyclic peptide in Streptococcus thermophilus: a new quorum-sensing system? 
+RA  Ibrahim M, Guillot A, Wessner F, Algaron F, Besset C, Courtin P, Gardan R, Monnet V 
+RL  J Bacteriol. 2007 Dec;189(24):8844-54. Epub 2007 Oct 5.

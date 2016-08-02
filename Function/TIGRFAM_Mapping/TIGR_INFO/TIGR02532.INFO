@@ -1,0 +1,14 @@
+ID  IV_pilin_GFxxxE
+AC  TIGR02532
+DE  prepilin-type N-terminal cleavage/methylation domain
+AU  Haft DH
+TC  16.30 16.30
+NC  16.30 16.30
+AL  manual
+IT  domain
+EN  prepilin-type N-terminal cleavage/methylation domain
+TP  TIGRFAMs
+CC  This model describes many but not all examples of the N-terminal region of bacterial proteins that resemble type IV pilins at their N-terminus, with a cleavage site G^FxxxE followed by a hydrophobic stretch. The new N-terminal residue, usually Phe, is methylated. Separate domains of the prepilin peptidase appear responsible for cleavage and methylation. Proteins with this N-terminal region include type IV pilins and other components of pilus biogenesis, competence proteins, and type II secretion proteins. Typically several proteins in a single operon have this N-terminal domain. The N-terminal cleavage and methylation site is described by PROSITE motif PS00409 as [KRHEQSTAG]-G-[FYLIVM]-[ST]-[LT]-[LIVP]-E-[LIVMFWSTAG](14).
+DR  PROSITE; PDOC00342; PS00409; prokaryotic N-terminal methylation site
+DR  PFAM; PF07963; prokaryotic N-terminal methylation motif
+DR  HAMAP; MF_00221; 1 of 82

@@ -1,0 +1,16 @@
+ID  classIII_w_PIP
+AC  TIGR04205
+DE  class III signal peptide protein, archaeosortase D/PIP-CTERM system
+AU  Haft DH
+TC  65.00 65.00
+NC  50.00 50.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  class III signal peptide protein, archaeosortase D/PIP-CTERM system
+TP  TIGRFAMs
+CC  Members of this protein family are short proteins that consist largely of the archaeal class III signal peptide (see PF04021). Members are encoded in a gene cassette between archaeosortase D (TIGR04175) and its PIP-CTERM target protein (TIGR04173).
+RN  [1]
+RM  PMID:22037399 
+RT  Archaeosortases and exosortases are widely distributed systems linking membrane transit with posttranslational modification. 
+RA  Haft DH, Payne SH, Selengut JD 
+RL  J Bacteriol. 2012 Jan;194(1):36-48.

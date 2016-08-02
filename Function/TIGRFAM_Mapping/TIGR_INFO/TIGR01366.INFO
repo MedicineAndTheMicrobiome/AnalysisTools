@@ -1,0 +1,13 @@
+ID  serC_3
+AC  TIGR01366
+DE  putative phosphoserine aminotransferase
+AU  Haft DH
+TC  401.65 401.65
+NC  81.70 81.70
+AL  clustalw
+IT  equivalog
+EN  phosphoserine aminotransferase, putative
+EC  2.6.1.52
+TP  TIGRFAMs
+CC  This HMM represents a putative variant form of the serine biosynthesis enzyme phosphoserine aminotransferase, as found in Mycobacterium tuberculosis and related high-GC Gram-positive bacteria.
+DR  HAMAP; MF_00160; 12 of 138

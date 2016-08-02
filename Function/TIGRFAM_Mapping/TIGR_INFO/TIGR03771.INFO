@@ -1,0 +1,11 @@
+ID  anch_rpt_ABC
+AC  TIGR03771
+DE  anchored repeat-type ABC transporter, ATP-binding subunit
+AU  Haft DH
+TC  268.80 268.80
+NC  237.60 237.60
+AL  muscle_manual
+IT  equivalog
+EN  anchored repeat-type ABC transporter, ATP-binding subunit
+TP  TIGRFAMs
+CC  This protein family is the ATP-binding cassette subunit of binding protein-dependent ABC transporter complex that strictly co-occurs with TIGR03769. TIGRFAMs model TIGR03769 describes a protein domain that occurs singly or as one of up to three repeats in proteins of a number of Actinobacteria, including Propionibacterium acnes KPA171202. The TIGR03769 domain occurs both in an adjacent gene for the substrate-binding protein and in additional (often nearby) proteins, often with LPXTG-like sortase recognition signals. Homologous ATP-binding subunits outside the scope of this family include manganese transporter MntA in Synechocystis sp. PCC 6803 and chelated iron transporter subunits. The function of this transporter complex is unknown.

@@ -1,0 +1,23 @@
+ID  2_5_ligase
+AC  TIGR02258
+DE  2'-5' RNA ligase
+AU  Haft DH
+TC  65.70 65.70
+NC  47.30 47.30
+AL  clustalw_manual
+IT  equivalog
+EN  2'-5' RNA ligase
+EC  6.5.1.-
+TP  TIGRFAMs
+CC  This protein family consists of bacterial and archaeal proteins with two tandem copies of Pfam domain PF02834. Members for which activity has been measured perform a reversible, ATP-independent 2'-5'-ligation of what is presumably a non-phyiological substrate: half-tRNA splice intermediates from an intron-containing yeast tRNA. The physiological substrate(s) in prokaryotes may include small 2'-5'-link-containing oligonucleotides, perhaps with regulatory or biosynthetic roles.
+DR  PFAM; PF02834; 2_5_RNA_ligase
+RN  [1]
+RM  8940112
+RT  The 2'-5' RNA ligase of Escherichia coli. Purification, cloning, and genomic disruption.
+RA  Arn EA, Abelson JN.
+RL  J Biol Chem. 1996 Dec 6;271(49):31145-53.
+RN  [2]
+RM  12798681
+RT  Crystal structure of the 2'-5' RNA ligase from Thermus thermophilus HB8.
+RA  Kato M, Shirouzu M, Terada T, Yamaguchi H, Murayama K, Sakai H, Kuramitsu S, Yokoyama S.
+RL  J Mol Biol. 2003 Jun 20;329(5):903-11.

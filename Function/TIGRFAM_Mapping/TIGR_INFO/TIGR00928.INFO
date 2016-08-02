@@ -1,0 +1,22 @@
+ID  purB
+AC  TIGR00928
+DE  adenylosuccinate lyase
+AU  Haft DH, Durkin S
+TC  326.20 326.20
+NC  307.75 307.75
+AL  clustalw
+IT  equivalog
+EN  adenylosuccinate lyase
+GS  purB
+EC  4.3.2.2
+TP  TIGRFAMs
+CC  This family consists of adenylosuccinate lyase, the enzyme that catalyzes step 8 in the purine biosynthesis pathway for de novo synthesis of IMP and also the final reaction in the two-step sequence from IMP to AMP.
+DR  EXPERIMENTAL; EGAD|164678|TM1095; Thermotoga maritima
+DR  EXPERIMENTAL; EGAD|14517|EC1131; Escherichia coli
+DR  EXPERIMENTAL; EGAD|2198|2146; Homo sapiens
+DR  OUTGROUP; EGAD|49512|slr1133; argininosuccinate lyase
+DR  OUTGROUP; EGAD|64123|67018; argininosuccinate lyase
+RM  Medline: 92104952
+RT  Escherichia coli purB gene: cloning, nucleotide sequence, and regulation by purR.
+RA  He B, Smith JM, Zalkin H.
+RL  J Bacteriol. 1992 Jan;174(1):130-6.

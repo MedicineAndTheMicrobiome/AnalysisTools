@@ -1,0 +1,13 @@
+ID  ribF
+AC  TIGR00083
+DE  riboflavin biosynthesis protein RibF
+AU  Richardson DL
+TC  184.35 184.35
+NC  95.15 95.15
+AL  msa_tigr
+IT  equivalog
+EN  riboflavin kinase/FMN adenylyltransferase
+GS  ribF
+EC  2.7.1.26 2.7.7.2
+TP  TIGRFAMs
+CC  multifunctional enzyme: riboflavin kinase (EC 2.7.1.26) (flavokinase) / FMN adenylyltransferase (EC 2.7.7.2) (FAD pyrophosphorylase) (FAD synthetase).

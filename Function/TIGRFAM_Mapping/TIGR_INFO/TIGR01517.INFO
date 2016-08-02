@@ -1,0 +1,40 @@
+ID  ATPase-IIB_Ca
+AC  TIGR01517
+DE  calcium-translocating P-type ATPase, PMCA-type
+AU  Selengut J
+TC  507.05 507.05
+NC  275.90 275.90
+AL  clustalw
+IT  equivalog
+EN  plasma-membrane calcium-translocating P-type ATPase
+EC  3.6.3.8
+TR  3.A.3.2
+TP  TIGRFAMs
+CC  This model describes the P-type ATPase responsible for translocating calcium ions across the plasma membrane of eukaryotes [1], out of the cell.  In some organisms, this type of pump may also be found in vacuolar membranes [2].
+CC  In humans and mice, at least, there are multiple isoforms of the PMCA pump with overlapping but not redundant functions.  Accordingly, there are no human diseases linked to PMCA defects, although alterations of PMCA function do elicit physiological effects [3].
+CC  The calcium P-type ATPases have been characterized as Type IIB based on a phylogenetic analysis which distinguishes this group from the Type IIA SERCA calcium pump [4].  A separate analysis divides Type IIA into sub-types (SERCA and PMR1) [5] which are modelled by two corresponding HMMs (TIGR01116 and TIGR01522).  This HMM is well separated from those.
+RN  [1]
+RM  PMID: 10434059
+RT  Developmental expression of the four plasma membrane calcium ATPase (Pmca) genes in the mouse
+RA  Zacharias DA, Kappen C.
+RL  Biochim. Biophys. Acta. 1999 Aug 5;1428(2-3):397-405.
+RN  [2]
+RM  PMID: 10802325
+RT  Vacuolar localization of an Entamoeba histolytica homologue of the plasma membrane ATPase (PMCA).
+RA  Ghosh SK, Rosenthal B, Rogers R, Samuelson J.
+RL  Mol Biochem Parasitol 2000 Apr 30;108(1):125-30
+RN  [3]
+RM  PMID: 11779702
+RT  The role of plasma membrane Ca2+ pumps (PMCAs) in pathologies of mammalian cells.
+RA  Lehotsky J, Kaplan P, Murin R, Raeymaekers L.
+RL  Front Biosci 2002 Jan 1;7:d53-84
+RN  [4]
+RM  PMID:9419228
+RT  Evolution of Substrate Specificities in the P-type ATPase Superfamily.
+RA  Axelsen KB, Palmgren, MG.
+RL  J Mol Evol. 1998 Jan; 46(1): 84-101.
+RN  [5]
+RM  PMID: 10433975
+RT  Two additional type IIA Ca(2+)-ATPases are expressed in Arabidopsis thaliana: evidence that type IIA sub-groups exist.
+RA  Pittman JK, Mills RF, O'Connor CD, Williams LE.
+RL  Gene 1999 Aug 5;236(1):137-47

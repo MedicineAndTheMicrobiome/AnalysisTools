@@ -1,0 +1,11 @@
+ID  RPA4764
+AC  TIGR03768
+DE  metallophosphoesterase, RPA4764 family
+AU  Haft DH
+TC  387.40 387.40
+NC  341.10 341.10
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  metallophosphoesterase, RPA4764 family
+TP  TIGRFAMs
+CC  This HMM describes a small collection of probable metallophosphoresterases, related to PF00149. Members of this protein family usually have a Sec-independent TAT (twin-arginine translocation) signal sequence, N-terminal to the region modeled by this HMM. This model and TIGR03767 divide a narrow clade of PF00149-related enzymes.

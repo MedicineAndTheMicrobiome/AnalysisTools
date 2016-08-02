@@ -1,0 +1,12 @@
+ID  methbact_MbnC
+AC  TIGR04160
+DE  methanobactin biosynthesis cassette protein MbnC
+AU  Haft DH
+TC  75.00 75.00
+NC  50.00 50.00
+AL  muscle_manual
+IT  equivalog_domain
+EN  methanobactin biosynthesis cassette protein MbnC
+GS  mbnC
+TP  TIGRFAMs
+CC  The first characterized methanobactin is made from a ribosomal precursor in Methylosinus trichosporium OB3b. Two additional species with homologous precursor peptides (family TIGR04071) are Azospirillum sp. B510 and Gluconacetobacter sp. SXCC-1. This model describes a clique of related sequences, domain or full-length, that occurs always and only next to a methanobactin precursor of the Mb-OB3b type. The model excludes several Pseudomonas proteins whose function is unknown, which likewise are in model TIGR04061, but which diverge toward the C-terminus.

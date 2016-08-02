@@ -1,0 +1,11 @@
+ID  gde_arch
+AC  TIGR01561
+DE  putative glycogen debranching enzyme, archaeal type
+AU  Durkin S
+TC  364.15 364.15
+NC  52.55 52.55
+AL  clustalw
+IT  hypoth_equivalog
+EN  glycogen debranching enzyme, archaeal type, putative
+TP  TIGRFAMs
+CC  The seed for this model is composed of two uncharacterized archaeal proteins from Methanosarcina acetivorans and Sulfolobus solfataricus. Trusted cutoff  is set so that essentially only archaeal members hit the model. The notable exceptions to archaeal membership are the Gram positive Clostridium perfringens which scores much better than some other archaea and the Cyanobacterium Nostoc sp. which scores just above the trusted cutoff. Noise cutoff is set to exclude the characterized eukaryotic glycogen debranching enzyme in S. cerevisiae. These cutoffs leave the prokaryotes Porphyromonas gingivalis and Deinococcus radiodurans below trusted but above noise. Multiple alignments including these last two species exhibit sequence divergence which may suggest a subtly different function for these prokaryotic proteins.

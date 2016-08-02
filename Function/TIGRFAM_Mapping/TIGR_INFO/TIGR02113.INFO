@@ -1,0 +1,17 @@
+ID  coaC_strep
+AC  TIGR02113
+DE  phosphopantothenoylcysteine decarboxylase
+AU  Haft DH
+TC  261.40 261.40
+NC  213.20 213.20
+AL  clustalw
+IT  equivalog
+EN  phosphopantothenoylcysteine decarboxylase, streptococcal
+GS  coaC
+EC  4.1.1.36
+TP  TIGRFAMs
+CC  In most bacteria, a single bifunctional protein catalyses phosphopantothenoylcysteine decarboxylase and phosphopantothenate--cysteine ligase activities, sequential steps in coenzyme A biosynthesis (see TIGR00521). These activities reside in separate proteins encoded by tandem genes in some bacterial lineages. This model describes proteins from the genera Streptococcus and Enterococcus homologous to the N-terminal region of TIGR00521, corresponding to phosphopantothenoylcysteine decarboxylase activity.
+RM  11278255
+RT  Phosphopantothenoylcysteine synthetase from Escherichia coli. Identification and characterization of the last unidentified coenzyme A biosynthetic enzyme in bacteria.
+RA  Strauss E, Kinsland C, Ge Y, McLafferty FW, Begley TP.
+RL  J Biol Chem. 2001 Apr 27; 276(17): 13513-6.

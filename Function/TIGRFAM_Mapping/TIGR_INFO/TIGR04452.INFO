@@ -1,0 +1,11 @@
+ID  Lepto_Lipo_YY_C
+AC  TIGR04452
+DE  small lipoprotein, LA_3946 family
+AU  Haft DH
+TC  28.00 28.00
+NC  24.00 20.00
+AL  muscle_manual
+IT  subfamily
+EN  small lipoprotein, LA_3946 family
+TP  TIGRFAMs
+CC  Members of this family of small lipoproteins that occur in at least nineteen species of Leptospira, but not so far anywhere outside that genus. Notable features include the putative lipoprotein modification Cys and an additional Cys near the C-terminus, both invariant, plus a well-conserved  (although not invariant) Tyr-Tyr pair. From one to four paralogs occur in most Leptospira species. Members include LA_3946.

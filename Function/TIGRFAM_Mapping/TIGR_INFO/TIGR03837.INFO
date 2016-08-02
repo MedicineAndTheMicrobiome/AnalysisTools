@@ -1,0 +1,11 @@
+ID  efp_adjacent_2
+AC  TIGR03837
+DE  conserved hypothetical protein, PP_1857 family
+AU  Haft DH
+TC  347.05 347.05
+NC  108.15 108.15
+AL  muscle_manual
+IT  equivalog
+EN  conserved hypothetical protein, PP_1857 family
+TP  TIGRFAMs
+CC  This HMM describes a conserved hypothetical protein that typically is encoded next to the gene efp for translation elongation factor P. The function is unknown.

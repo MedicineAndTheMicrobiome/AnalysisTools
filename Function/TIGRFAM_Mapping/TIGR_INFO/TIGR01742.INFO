@@ -1,0 +1,11 @@
+ID  SA_tandem_lipo
+AC  TIGR01742
+DE  Staphylococcus tandem lipoproteins
+AU  Haft DH
+TC  160.45 160.45
+NC  151.70 151.70
+AL  clustalw_manual
+IT  subfamily
+EN  Staphylococcus tandem lipoproteins
+TP  TIGRFAMs
+CC  Members of this family are predicted lipoproteins (mostly), found in Staphylococcus aureus in several different tandem clusters in pathogenicity islands. Members are also found, clustered, in Staphylococcus epidermidis.

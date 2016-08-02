@@ -1,0 +1,12 @@
+ID  typeII_sec_gspG
+AC  TIGR01710
+DE  type II secretion system protein G
+AU  Haft DH
+TC  88.85 88.85
+NC  51.30 51.30
+AL  clustalw_manual
+IT  equivalog
+EN  type II secretion system protein G
+GS  gspG
+TP  TIGRFAMs
+CC  This HMM represents GspG, protein G of the main terminal branch of the general secretion pathway, also called type II secretion. It transports folded proteins across the bacterial outer membrane and is widely distributed in Gram-negative pathogens.

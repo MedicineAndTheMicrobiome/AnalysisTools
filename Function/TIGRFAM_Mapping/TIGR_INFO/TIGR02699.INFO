@@ -1,0 +1,16 @@
+ID  archaeo_AfpA
+AC  TIGR02699
+DE  archaeoflavoprotein AfpA
+AU  Haft DH
+TC  192.45 192.45
+NC  184.25 184.25
+AL  clustalw
+IT  hypoth_equivalog
+EN  archaeoflavoprotein AfpA
+GS  afpA
+TP  TIGRFAMs
+CC  The prototypical member of this archaeal protein family is AF1518 from Archaeoglobus fulgidus. This homodimer with two non-covalently bound FMN cofactors can receive electrons from ferredoxin, but not from a number of other electron donors such as NADH or rubredoxin. It can then donate electrons to various reductases.
+RM  14679228
+RT  Flavin mononucleotide-binding flavoprotein family in the domain Archaea.
+RA  Ding YH, Ferry JG.
+RL  J Bacteriol. 2004 Jan;186(1):90-7.

@@ -1,0 +1,23 @@
+ID  CelA
+AC  TIGR03030
+DE  cellulose synthase catalytic subunit (UDP-forming)
+AU  Selengut J
+TC  699.10 699.10
+NC  598.15 598.15
+AL  muscle
+IT  equivalog_domain
+EN  cellulose synthase catalytic subunit (UDP-forming)
+GS  bcsA
+EC  2.4.1.12
+TP  TIGRFAMs
+CC  Cellulose synthase catalyzes the beta-1,4 polymerization of glucose residues in the formation of cellulose.  In bacteria, the substrate is UDP-glucose.  The synthase consists of two subunits (or domains in the frequent cases where it is encoded as a single polypeptide), the catalytic domain modelled here and the regulatory domain (PF03170).  The regulatory domain binds the allosteric activator cyclic di-GMP.  The protein is membrane-associated and probably assembles into multimers such that the individual cellulose strands can self-assemble into multi-strand fibrils.
+RN  [1]
+RM  PMID: 2030672 
+RT  Cellulose biosynthesis and function in bacteria. 
+RA  Ross P, Mayer R, Benziman M 
+RL  Microbiol Rev. 1991 Mar;55(1):35-58. 
+RN  [2]
+RM  PMID: 8083166 
+RT  Characterization of genes in the cellulose-synthesizing operon (acs operon) of Acetobacter xylinum: implications for cellulose crystallization. 
+RA  Saxena IM, Kudlicka K, Okuda K, Brown RM Jr 
+RL  J Bacteriol. 1994 Sep;176(18):5735-52.

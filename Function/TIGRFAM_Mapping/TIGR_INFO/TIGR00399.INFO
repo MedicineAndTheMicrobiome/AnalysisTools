@@ -1,0 +1,15 @@
+ID  metG_C_term
+AC  TIGR00399
+DE  methionine--tRNA ligase, beta subunit
+AU  Haft DH
+TC  116.65 116.65
+NC  64.45 64.45
+AL  clustalw_manual
+IT  equivalog_domain
+EN  methionyl-tRNA synthetase C-terminal region/beta chain
+GS  metG
+EC  6.1.1.10
+TP  TIGRFAMs
+CC  The methionyl-tRNA synthetase (metG) is a class I amino acyl-tRNA ligase. This HMM describes a region of the methionyl-tRNA synthetase that is present at the C-terminus of MetG in some species (E. coli, B. subtilis, Thermotoga maritima, Methanobacterium thermoautotrophicum), and as a separate beta chain in Aquifex aeolicus. It is absent in a number of other species (e.g. Mycoplasma genitalium, Mycobacterium tuberculosis), while Pyrococcus horikoshii has both a full length MetG and a second protein homologous to the beta chain only. Proteins hit by this HMM should called methionyl-tRNA synthetase beta chain if and only if the HMM metG hits a separate protein not also hit by this HMM.
+DR  EC 6.1.1.10
+DR  HAMAP; MF_01228; 16 of 38

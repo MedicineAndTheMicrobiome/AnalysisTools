@@ -1,0 +1,11 @@
+ID  SAM_SPASM_FxsB
+AC  TIGR04269
+DE  radical SAM/SPASM domain protein, FxsB family
+AU  Haft DH
+TC  370.00 370.00
+NC  355.00 355.00
+AL  muscle_manual
+IT  subfamily_domain
+EN  radical SAM/SPASM domain protein, FxsB family
+TP  TIGRFAMs
+CC  This HMM describes a radical SAM (PF04055)/SPASM domain (TIGR04085) fusion subfamily distinct from PqqE, MftC, anaerobic sulfatase maturases, and other peptide maturases. The combined region described in this model can itself be fused to another domain, such as TIGR04267, or stand alone. Members occurring in the same cassette as a member of family TIGR04268 should be designated FxsB.

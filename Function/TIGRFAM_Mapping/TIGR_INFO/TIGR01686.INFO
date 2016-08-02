@@ -1,0 +1,23 @@
+ID  FkbH
+AC  TIGR01686
+DE  FkbH domain
+AU  Selengut J
+TC  146.65 146.65
+NC  60.90 60.90
+AL  clustalw
+IT  subfamily_domain
+EN  FkbH-like domain
+TP  TIGRFAMs
+CC  This model describes a domain of a family of proteins of unknown overall function.  One of these, however, is a modular polyketide synthase 4800 amino acids in length from Streptomyces avermilitis in which this domain is the C-terminal segment.  By contrast, the FkbH protein from Streptomyces hygroscopicus aparently contains only this domain.  The remaining members of the family all contain an additional N-terminal domain of between 200 and 275 amino acids which show less than 20% identity to one another.  It seems likely then that these proteins are involved in disparate functions, probably the biosynthesis of different natural products.  For instance, the FkbH gene is found in a gene cluster believed to be responsible for the biosynthesis of unususal "PKS extender units" in the ascomycin pathway [2].
+CC  This domain is composed of two parts, the first of which is a member of subfamily IIIC (TIGR01681) of the haloacid dehalogenase (HAD) superfamily of aspartate-nucleophile hydrolases.  All of the characterized enzymes within subfamily III are phosphatases, and all of the active site residues characteristic of HAD-superfamily phosphatases [1] are present in this domain.
+CC  The C-terminal portion of this domain is unique to this family (by BLAST).
+RN  [1]
+RM  PMID: 7966317
+RT  Computer analysis of bacterial haloacid dehalogenases defines a large superfamily of hydrolases with diverse specificity. Application of an iterative approach to database search.
+RA  Koonin EV, Tatusov RL.
+RL  J Mol Biol 1994 Nov 18;244(1):125-32
+RN  [2]
+RM  PMID: 10863099
+RT  The FK520 gene cluster of Streptomyces hygroscopicus var. ascomyceticus (ATCC 14891) contains genes for biosynthesis of unusual polyketide extender units.
+RA  Wu K, Chung L, Revill WP, Katz L, Reeves CD.
+RL  Gene 2000 Jun 13;251(1):81-90

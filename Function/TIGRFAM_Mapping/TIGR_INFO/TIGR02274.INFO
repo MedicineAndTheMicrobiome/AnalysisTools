@@ -1,0 +1,14 @@
+ID  dCTP_deam
+AC  TIGR02274
+DE  deoxycytidine triphosphate deaminase
+AU  Haft DH
+TC  92.80 92.80
+NC  52.70 52.70
+AL  clustalw_manual
+IT  equivalog
+EN  deoxycytidine triphosphate deaminase
+GS  dcd
+EC  3.5.4.13
+TP  TIGRFAMs
+CC  Members of this family include the Escherichia coli monofunctional deoxycytidine triphosphate deaminase (dCTP deaminase) and a Methanocaldococcus jannaschii bifunctional dCTP deaminase (3.5.4.13)/dUTP diphosphatase (EC 3.6.1.23), which has the EC number 3.5.4.30 for the overall operation.
+DR  HAMAP; MF_00146; 277 of 281

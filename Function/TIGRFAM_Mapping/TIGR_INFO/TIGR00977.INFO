@@ -1,0 +1,11 @@
+ID  LeuA_rel
+AC  TIGR00977
+DE  2-isopropylmalate synthase/homocitrate synthase family protein
+AU  Haft DH
+TC  468.35 468.35
+NC  371.85 371.85
+AL  clustalw
+IT  hypoth_equivalog
+EN  2-isopropylmalate synthase/homocitrate synthase family protein
+TP  TIGRFAMs
+CC  This model represents uncharacterized proteins related to 2-isopropylmalate synthases and homocitrate synthases but phylogenetically distint. Each species represented in the seed alignment also has a member of a known family of 2-isopropylmalate synthases.

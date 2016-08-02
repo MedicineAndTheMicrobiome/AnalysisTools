@@ -1,0 +1,15 @@
+ID  psiM2_ORF9
+AC  TIGR01630
+DE  phage uncharacterized protein, C-terminal domain
+AU  Haft DH, Fouts DE
+TC  41.65 41.65
+NC  27.85 27.85
+AL  clustalw_manual
+IT  hypoth_equivalog
+EN  phage uncharacterized protein (putative large terminase), C-terminal domain
+TP  TIGRFAMs
+CC  This HMM represents the C-terminal region of a set of phage proteins typically about 400-500 amino acids in length, although some members are considerably shorter. An article on Methanobacterium phage Psi-M2 (PMID:9791169) calls the member from that phage, ORF9, a putative large terminase subunit, and ORF8 a candidate terminase small subunit. Most proteins in this family have an apparent P-loop nucleotide-binding sequence toward the N-terminus.
+RM  9791169
+RT  Molecular analysis of Methanobacterium phage psiM2.
+RA  Pfister P, Wasserfallen A, Stettler R, Leisinger T.
+RL  Mol Microbiol 1998 Oct;30(2):233-44

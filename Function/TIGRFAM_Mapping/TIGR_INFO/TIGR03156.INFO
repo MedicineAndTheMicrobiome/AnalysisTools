@@ -1,0 +1,22 @@
+ID  GTP_HflX
+AC  TIGR03156
+DE  GTP-binding protein HflX
+AU  Haft DH
+TC  216.75 216.75
+NC  123.05 123.05
+AL  muscle
+IT  equivalog
+EN  GTP-binding protein HflX
+GS  hflX
+TP  TIGRFAMs
+CC  This protein family is one of a number of homologous small, well-conserved GTP-binding proteins with pleiotropic effects. Bacterial members are designated HflX, following the naming convention in Escherichia coli where HflX is encoded immediately downstream of the RNA chaperone Hfq, and immediately upstream of HflKC, a membrane-associated protease pair with an important housekeeping function. Over large numbers of other bacterial genomes, the pairing with hfq is more significant than with hflK and hlfC. The gene from Homo sapiens in this family has been named PGPL (pseudoautosomal GTP-binding protein-like).
+RN  [1]
+RM  PMID: 8248183
+RT  The Escherichia coli hflA locus encodes a putative GTP-binding protein and two membrane proteins, one of which contains a protease-like domain.
+RA  Noble JA, Innis MA, Koonin EV, Rudd KE, Banuett F, Herskowitz I
+RL  Proc Natl Acad Sci U S A. 1993 Nov 15;90(22):10866-70.
+RN  [2]
+RM  PMID: 9466997
+RT  A novel pseudoautosomal gene encoding a putative GTP-binding protein resides in the vicinity of the Xp/Yp telomere.
+RA  Gianfrancesco F, Esposito T, Montanini L, Ciccodicola A, Mumm S, Mazzarella R, Rao E, Giglio S, Rappold G, Forabosco A
+RL  Hum Mol Genet. 1998 Mar;7(3):407-14.

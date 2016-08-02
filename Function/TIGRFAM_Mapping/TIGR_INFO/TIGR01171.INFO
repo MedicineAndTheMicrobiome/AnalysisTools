@@ -1,0 +1,13 @@
+ID  rplB_bact
+AC  TIGR01171
+DE  ribosomal protein L2
+AU  Haft DH
+TC  174.50 174.50
+NC  164.85 164.85
+AL  clustalw_manual
+IT  equivalog
+EN  ribosomal protein L2, bacterial/organellar
+GS  rplB
+TP  TIGRFAMs
+CC  This model distinguishes bacterial and organellar ribosomal protein L2 from its counterparts in the archaea nad in the eukaryotic cytosol. Plant mitochondrial examples tend to have long, variable inserts.
+DR  HAMAP; MF_01320; 676 of 742

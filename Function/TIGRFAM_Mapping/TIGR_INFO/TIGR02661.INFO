@@ -1,0 +1,17 @@
+ID  MauD
+AC  TIGR02661
+DE  methylamine dehydrogenase accessory protein MauD
+AU  Haft DH
+TC  188.60 188.60
+NC  52.55 52.55
+AL  clustalw
+IT  equivalog
+EN  methylamine dehydrogenase accessory protein MauD
+GS  mauD
+TP  TIGRFAMs
+CC  This protein, MauD, appears critical to proper formation of the small subunit of methylamine dehydrogenase, which has both an unusual tryptophan tryptophylquinone cofactor and multiple disulfide bonds. MauD shares sequence similarity, including a CPxC motif, with a number of thiol:disulfide interchange proteins. In MauD mutants, the small subunit apparently does not form properly and is rapidly degraded.
+RN  [1]
+RM  9403107
+RT  MauE and MauD proteins are essential in methylamine metabolism of Paracoccus denitrificans.
+RA  van der Palen CJ, Reijnders WN, de Vries S, Duine JA, van Spanning RJ.
+RL  Antonie Van Leeuwenhoek. 1997 Oct;72(3):219-28.

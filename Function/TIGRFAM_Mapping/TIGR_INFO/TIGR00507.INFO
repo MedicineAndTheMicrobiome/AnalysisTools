@@ -1,0 +1,13 @@
+ID  aroE
+AC  TIGR00507
+DE  shikimate dehydrogenase
+AU  Haft DH
+TC  200.20 200.20
+NC  124.50 124.50
+IT  equivalog_domain
+EN  shikimate dehydrogenase
+GS  aroE
+EC  1.1.1.25
+TP  TIGRFAMs
+CC  This HMM finds proteins from prokaryotes and functionally equivalent domains from larger, multifunctional proteins of fungi and plants. Below the trusted cutoff of 180, but above the noise cutoff of 20, are the putative shikimate dehydrogenases of Thermotoga maritima and Mycobacterium tuberculosis, and uncharacterized paralogs of shikimate dehydrogenase from E. coli and H. influenzae. The related enzyme quinate 5-dehydrogenase scores below the noise cutoff. A neighbor-joining tree, constructed with quinate 5-dehydrogenases as the outgroup, shows the Clamydial homolog as clustering among the shikimate dehydrogenases, although the sequence is unusual in the degree of sequence divergence and the presence of an additional N-terminal domain.
+DR  HAMAP; MF_00222; 310 of 327

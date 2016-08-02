@@ -1,0 +1,35 @@
+ID  sir
+AC  TIGR02042
+DE  sulfite reductase, ferredoxin dependent
+AU  Brinkac L
+TC  731.50 731.50
+NC  574.70 574.70
+AL  clustalw
+IT  equivalog
+EN  ferredoxin-sulfite reductase
+GS  sir
+EC  1.8.7.1
+TP  TIGRFAMs
+CC  Distantly related to the iron-sulfur hemoprotein of sulfite reductase (NADPH) found in Proteobacteria and Eubacteria, sulfite reductase (ferredoxin) is a cyanobacterial and plant
+CC  monomeric enzyme that also catalyzes the reduction of sulfite to sulfide [1,2,3].
+RN [1]
+RM 8347657
+RT The ferredoxin:sulphite reductase gene from Synechococcus PCC7942.
+RA Gisselmann G, Klausmeier P, Schwenn JD.
+RL Biochim Biophys Acta. 1993 Aug 16;1144(1):102-6.
+RN [2]
+RM 8695637
+RT A cDNA clone from Arabidopsis thaliana encoding plastidic ferredoxin:sulfite reductase.
+RA Bruhl A, Haverkamp T, Gisselmann G, Schwenn JD.
+RL Biochim Biophys Acta. 1996 Jul 18;1295(2):119-24.
+RN [3]
+RM 9722674
+RT Molecular characterization of tobacco sulfite reductase: enzyme purification, gene cloning, and gene expression analysis.
+RA Yonekura-Sakakibara K, Ashikari T, Tanaka Y, Kusumi T, Hase T.
+RL J Biochem (Tokyo). 1998 Sep;124(3):615-21.
+DR PFAM; PF01077; Nitrite and sulphite reductase 4Fe-4S domain
+DR PFAM; PF03460; Nitrite/Sulfite reductase ferredoxin-like half domain.
+DR EXPERIMENTAL; SP|P30008; Anacystis nidulans; expression using a fusion vector giving a single gene product immunologically related to the fd-sulphite reductase from the wild-type.
+DR EXPERIMENTAL GP|804953;  Arabidopsis thaliana; enzymatically inactive expression of modified gene product; demonstrated specific cross-reaction with polyclonal antibodies against ferredoxin sulfite reductase from Synechococcus.
+DR EXPERIMENTAL; GP|3721540; Nicotiana tabacum; enzyme purification, gene cloning, and gene expression analysis.
+DR OUTGROUP; SP|P17846; Escherichia coli; Sulfite reductase [NADPH] hemoprotein beta-component.

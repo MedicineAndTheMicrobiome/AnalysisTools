@@ -1,0 +1,18 @@
+ID  coaD_prev_kdtB
+AC  TIGR01510
+DE  pantetheine-phosphate adenylyltransferase
+AU  Haft DH
+TC  103.30 103.30
+NC  72.75 72.75
+AL  clustalw
+IT  equivalog
+EN  pantetheine-phosphate adenylyltransferase, bacterial
+GS  coaD
+EC  2.7.7.3
+TP  TIGRFAMs
+CC  This HMM describes pantetheine-phosphate adenylyltransferase, the penultimate enzyme of coenzyme A (CoA) biosynthesis in bacteria. It does not show any strong homology to eukaryotic enzymes of coenzyme A biosynthesis. This protein was previously designated KdtB and postulated (because of cytidyltransferase homology and proximity to kdtA) to be an enzyme of LPS biosynthesis, a cytidyltransferase for 3-deoxy-D-manno-2-octulosonic acid. However, no activity toward that compound was found with either CTP or ATP. The phylogenetic distribution of this enzyme is more consistent with coenzyme A biosynthesis than with LPS biosynthesis.
+RM  10480925
+RT  Purification and characterization of phosphopantetheine adenylyltransferase from Escherichia coli.
+RA  Geerlof A, Lewendon A, Shaw WV.
+RL  J Biol Chem 1999 Sep 17;274(38):27105-11
+DR  HAMAP; MF_00151; 431 of 437

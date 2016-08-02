@@ -1,0 +1,23 @@
+ID  OPT_sfam
+AC  TIGR00728
+DE  oligopeptide transporter, OPT superfamily
+AU  Haft DH
+TC  128.35 128.35
+NC  121.65 121.65
+IT  superfamily
+EN  oligopeptide transporter, OPT superfamily
+TR  2.A.67
+TP  TIGRFAMs
+CC  This superfamily has two main branches. One branch contains a tetrapeptide transporter demonstrated experimentally in three different species of yeast. The other family contains EspB of Myxococcus xanthus, a protein required for normal rather than delayed sporulation after cellular aggregation; its role is unknown but is compatible with transport of a signalling molecule.
+CC  Homology between the two branches of the superfamily is seen most easily at the ends of the protein. The central regions are poorly conserved within each branch and may not be homologous between branches.
+AL  PSI-BLAST_manual
+RN  [1]
+RM  98305694
+RT  Schizosaccharomyces pombe isp4 encodes a transporter representing a novel family of oligope
+RA  Lubkowitz MA, Barnes D, Breslav M, Burchfield A, Naider F, Becker JM
+RL  Mol Microbiol 1998 May;28(4):729-41
+RN  [2]
+RM  20032045
+RT  Sporulation timing in Myxococcus xanthus is controlled by the espAB locus.
+RA  Cho K, Zusman DR
+RL  Mol Microbiol 1999 Nov;34(4):714-25

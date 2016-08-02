@@ -1,0 +1,17 @@
+ID  fluorinase
+AC  TIGR04507
+DE  adenosyl-fluoride synthase
+AU  Haft DH
+TC  400.00 400.00
+NC  225.00 225.00
+AL  muscle_manual
+IT  equivalog
+EN  adenosyl-fluoride synthase
+EC  2.5.1.63
+TP  TIGRFAMs
+CC  Members of this family are fluorinase (adenosyl-fluoride synthase, EC 2.5.1.63), an enzyme involved in the first committed step in the biosynthesis of at least two different organofluorine compounds. Few organofluorine natural products are known. Related enzymes include chlorinases (EC 2.5.1.94) that lack fluorinase activity, although a fluorinase may show chlorinase activity.
+RN  [1]
+RM  PMID:16604208 
+RT  Substrate specificity in enzymatic fluorination. The fluorinase from Streptomyces cattleya accepts 2'-deoxyadenosine substrates. 
+RA  Cobb SL, Deng H, McEwan AR, Naismith JH, O'Hagan D, Robinson DA 
+RL  Org Biomol Chem. 2006 Apr 21;4(8):1458-60.

@@ -1,0 +1,12 @@
+ID  RiPP_XyeA
+AC  TIGR04495
+DE  putative rSAM-modified RiPP, XyeA family
+AU  Haft DH
+TC  33.00 33.00
+NC  25.00 25.00
+AL  muscle_manual
+IT  subfamily
+EN  putative rSAM-modified RiPP, XyeA family
+GS  xyeA
+TP  TIGRFAMs
+CC  Members of this family are short polypeptides with a conserved GG motif as found in bacteriocins that are cleaved upon export. Each gene occurs immediately upstream of a gene for a peptide-modifying radical SAM/SPASM domain protein. The system is designated Xye for genera Xenorhabdus, Yersinia, and Erwinia, hence XyeA for the precursor peptide. The vicinity will also contain a transport protein with a C39 family peptidase domain (see PF03412), characteristic of GG motif cleave-on-export systems. The function of this RiPP family is unknown.

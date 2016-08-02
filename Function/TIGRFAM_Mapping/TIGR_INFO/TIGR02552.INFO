@@ -1,0 +1,37 @@
+ID  LcrH_SycD
+AC  TIGR02552
+DE  type III secretion low calcium response chaperone LcrH/SycD
+AU  Selengut J
+TC  104.80 104.80
+NC  89.40 89.40
+AL  clustalw
+IT  equivalog
+EN  type III secretion low calcium response chaperone LcrH/SycD
+TP  TIGRFAMs
+CC  Genes in this family are found in type III secretion operons.  LcrH, from Yersinia is believed to have a regulatory function in the low-calcium response of the secretion system [1,2].  The same protein is also known as SycD (SYC = Specific Yop Chaperone) for its chaperone role [3].  In Pseudomonas, where the homolog is known as PcrH, the chaperone role has been demonstrated and the regulatory role appears to be absent [4].
+CC  ScyD/LcrH contains three central tetratricopeptide-like repeats that are predicted to fold into an all-alpha-helical array [5].
+RN  [1]
+RM  PMID: 1705541
+RT  Analysis of the V antigen lcrGVH-yopBD operon of Yersinia pseudotuberculosis: evidence for a regulatory role of LcrH and LcrV.
+RA  Bergman T, Hakansson S, Forsberg A, Norlander L, Macellaro A, Backman A, Bolin I, Wolf-Watz H.
+RL  J Bacteriol. 1991 Mar;173(5):1607-16.
+RN  [2]
+RM  PMID: 11844757
+RT  YopD and LcrH regulate expression of Yersinia enterocolitica YopQ by a posttranscriptional mechanism and bind to yopQ RNA.
+RA  Anderson DM, Ramamurthi KS, Tam C, Schneewind O.
+RL  J Bacteriol. 2002 Mar;184(5):1287-95.
+RN  [3]
+RM  PMID: 9987117
+RT  Role of SycD, the chaperone of the Yersinia Yop translocators YopB and YopD.
+RA  Neyt C, Cornelis GR.
+RL  Mol Microbiol. 1999 Jan;31(1):143-56.
+RN  [4]
+RM  PMID: 14673772
+RT  PcrH of Pseudomonas aeruginosa is essential for secretion and assembly of the type III translocon.
+RA  Broms JE, Forslund AL, Forsberg A, Francis MS.
+RL  J Infect Dis. 2003 Dec 15;188(12):1909-21. Epub 2003 Dec 3.
+RN  [5]
+RM  PMID: 12799000
+RT  Tetratricopeptide-like repeats in type-III-secretion chaperones and regulators.
+RA  Pallen MJ, Francis MS, Futterer K.
+RL  FEMS Microbiol Lett. 2003 Jun 6;223(1):53-60.

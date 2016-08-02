@@ -1,0 +1,13 @@
+ID  rplX_bact
+AC  TIGR01079
+DE  ribosomal protein L24
+AU  Haft DH
+TC  53.70 53.70
+NC  41.10 41.10
+AL  clustalw
+IT  equivalog
+EN  ribosomal protein L24, bacterial/organelle
+GS  rplX
+TP  TIGRFAMs
+CC  This model recognizes bacterial and organellar forms of ribosomal protein L24. It excludes eukaryotic and archaeal forms, designated L26 in eukaryotes.
+DR  HAMAP; MF_01326; 562 of 649

@@ -1,0 +1,21 @@
+ID  Gneg_AbrB_dup
+AC  TIGR03082
+DE  membrane protein AbrB duplication
+AU  Haft DH
+TC  94.70 94.70
+NC  70.45 70.45
+AL  muscle
+IT  domain
+EN  membrane protein AbrB duplication
+TP  TIGRFAMs
+CC  The model describes a hydrophobic sequence region that is duplicated to form the AbrB protein of Escherichia coli (not to be confused with a Bacillus subtilis protein with the same gene symbol). In some species, notably the Cyanobacteria and Thermus thermophilus, proteins consist of a single copy rather than two copies. The member from Pseudomonas putida, PP_1415, was suggested to be an ammonia monooxygenase characteristic of heterotrophic nitrifiers, based on an experimental indication of such activity in the organism and a glimmer of local sequence similarity between parts of P. putida protein and an instance of the AmoA protein from Nitrosomonas europaea (PMID:9732537); we do not believe the sequence similarity to be meaningful. The member from E. coli (b0715, ybgN) appears to be the largely uncharacterized AbrB (aidB regulator) protein of E. coli cited in Volkert, et al. (PMID 8002588), although we did not manage to trace the origin of association of the article to the sequence.
+RN  [1]
+RM  PMID: 8002588
+RT  Induction of the Escherichia coli aidB gene under oxygen-limiting conditions requires a functional rpoS (katF) gene.
+RA  Volkert MR, Hajec LI, Matijasevic Z, Fang FC, Prince R
+RL  J Bacteriol. 1994 Dec;176(24):7638-45.
+RN  [2]
+RM  PMID: 9732537
+RT  Physiological and molecular biological characterization of ammonia oxidation of the heterotrophic nitrifier Pseudomonas putida.
+RA  Daum M, Zimmer W, Papen H, Kloos K, Nawrath K, Bothe H
+RL  Curr Microbiol. 1998 Oct;37(4):281-8.

@@ -1,0 +1,17 @@
+ID  hypoxanDNAglyco
+AC  TIGR04274
+DE  DNA-deoxyinosine glycosylase
+AU  Haft DH
+TC  80.00 80.00
+NC  50.00 50.00
+AL  muscle_manual
+IT  equivalog
+EN  hypoxanthine-DNA glycosylase
+EC  3.2.2.15
+TP  TIGRFAMs
+CC  Members of this protein family represent family 6 of the uracil-DNA glycosylase superfamily, where the five previously described families all act as uracil-DNA glycosylase (EC 3.2.2.27) per se. This family, instead, acts as a hypoxanthine-DNA glycosylase, where hypoxanthine results from deamination of adenine. Activity was shown directly for members from Methanosarcina barkeri and Methanosarcina acetivorans.
+RN  [1]
+RM  PMID:21642431 
+RT  New family of deamination repair enzymes in uracil-DNA glycosylase superfamily. 
+RA  Lee HW, Dominy BN, Cao W 
+RL  J Biol Chem. 2011 Sep 9;286(36):31282-7.

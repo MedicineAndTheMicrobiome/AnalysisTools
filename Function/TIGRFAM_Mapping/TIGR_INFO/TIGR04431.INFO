@@ -1,0 +1,18 @@
+ID  N6_acetyl_AAC6
+AC  TIGR04431
+DE  aminoglycoside N(6')-acetyltransferase, AacA4 family
+AU  Haft DH
+TC  260.00 260.00
+NC  235.00 235.00
+AL  muscle_manual
+IT  equivalog
+EN  aminoglycoside N(6')-acetyltransferase, AacA4 family
+GS  aacA4
+EC  2.3.1.82
+TP  TIGRFAMs
+CC  Members of this family are the aacA4 type of aminoglycoside N(6')-acetyltransferase (EC 2.3.1.82), an enzyme that modifies and inactivates aminoglycoside antibiotics such as kanamycin, neomycin, tobramycin, and amikacin. Members are regularly spread among pathogens into integron, transposon, and plasmid loci, with recombination often happening within the protein-coding region. Most of the region amino-terminal to the recombination site or sites was removed from this model.
+RN  [1]
+RM  PMID:2841303 
+RT  Sequencing and expression of the 6'-N-acetyltransferase gene of transposon Tn1331 from Klebsiella pneumoniae. 
+RA  Nobuta K, Tolmasky ME, Crosa LM, Crosa JH 
+RL  J Bacteriol. 1988 Aug;170(8):3769-73.

@@ -1,0 +1,14 @@
+ID  fmt
+AC  TIGR00460
+DE  methionyl-tRNA formyltransferase
+AU  Haft DH
+TC  201.50 201.50
+NC  178.75 178.75
+AL  clustalw_manual
+IT  equivalog
+EN  methionyl-tRNA formyltransferase
+GS  fmt
+EC  2.1.2.9
+TP  TIGRFAMs
+CC  The top-scoring characterized proteins other than methionyl-tRNA formyltransferase (fmt) itself are formyltetrahydrofolate dehydrogenases. The mitochondrial methionyl-tRNA formyltransferases are so divergent that, in a multiple alignment of bacterial fmt, mitochondrial fmt, and formyltetrahydrofolate dehydrogenases, the mitochondrial fmt appears the most different. However, because both bacterial and mitochondrial fmt are included in the seed alignment, all credible fmt sequences score higher than any non-fmt sequence. This enzyme modifies Met on initiator tRNA to f-Met.
+DR  HAMAP; MF_00182; 452 of 467

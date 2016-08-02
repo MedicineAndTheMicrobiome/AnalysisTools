@@ -1,0 +1,12 @@
+ID  cas_Cas5p
+AC  TIGR03488
+DE  CRISPR-associated protein Cas5, subtype PGING
+AU  Haft DH
+TC  100.00 100.00
+NC  40.00 40.00
+AL  muscle_manual
+IT  equivalog
+EN  CRISPR-associated protein Cas5, subtype PGING
+GS  cas5
+TP  TIGRFAMs
+CC  CC  Members of this protein family are cas, or CRISPR-associated, proteins. The two sequences in the alignment seed are found within cas gene clusters that are adjacent to CRISPR DNA repeats in two members of the order Bacteroidales, Porphyromonas gingivalis W83 and Bacteroides forsythus ATCC 43037. This cas protein family is unique to the Pgingi (Porphyromonas gingivalis) subtype, but shows some sequence similarity to genes of the Cas5 type (see TIGR02593).

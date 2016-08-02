@@ -1,0 +1,13 @@
+ID  himA
+AC  TIGR00987
+DE  integration host factor, alpha subunit
+AU  Haft DH
+TC  120.25 120.25
+NC  89.75 89.75
+AL  clustalw
+IT  equivalog
+EN  integration host factor, alpha subunit
+GS  ihfA
+TP  TIGRFAMs
+CC  This protein forms a site-specific DNA-binding heterodimer with the integration host factor beta subunit. It is closely related to the DNA-binding protein HU.
+DR  HAMAP; MF_00380; 190 of 200

@@ -1,0 +1,12 @@
+ID  rodA_shape
+AC  TIGR02210
+DE  rod shape-determining protein RodA
+AU  Haft DH
+TC  336.70 336.70
+NC  313.50 313.50
+AL  clustalw_manual
+IT  equivalog
+EN  rod shape-determining protein RodA
+GS  mrdB
+TP  TIGRFAMs
+CC  This protein is a member of the FtsW/RodA/SpoVE family (PF01098). It is found only in species with rod (or spiral) shapes. In many species, mutation of rodA has been shown to correlate with loss of the normal rod shape. Note that RodA homologs are found, scoring below the cutoffs for this model, in a number of both rod-shaped and coccoid bacteria, including four proteins in Bacillus anthracis, for example.

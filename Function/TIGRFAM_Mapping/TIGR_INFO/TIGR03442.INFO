@@ -1,0 +1,17 @@
+ID  TIGR03442
+AC  TIGR03442
+DE  ergothioneine biosynthesis protein EgtC
+AU  Haft DH
+TC  218.65 218.65
+NC  200.10 200.10
+AL  muscle_manual
+IT  equivalog
+EN  ergothioneine biosynthesis protein EgtC
+GS  egtC
+TP  TIGRFAMs
+CC  Members of this strictly bacterial protein family show similarity to class II glutamine amidotransferases (see Pfam family PF00310). They are distinguished by appearing in a genome context with, and usually adjacent to or between, members of families TIGR03438 (an uncharacterized methyltransferase) and TIGR03440 (an uncharacterized protein).
+RN  [1]
+RM  PMID:20420449 
+RT  In vitro reconstitution of Mycobacterial ergothioneine biosynthesis. 
+RA  Seebeck FP 
+RL  J Am Chem Soc. 2010 May 19;132(19):6632-3.

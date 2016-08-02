@@ -1,0 +1,11 @@
+ID  B12_rSAM_cofa1
+AC  TIGR04385
+DE  putative variant cofactor biosynthesis B12-binding domain/radical SAM domain protein 1
+AU  Haft DH
+TC  450.00 450.00
+NC  300.00 300.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  putative variant cofactor biosynthesis B12-binding domain/radical SAM domain protein 1
+TP  TIGRFAMs
+CC  Members of this protein family are one of two tandem B12-binding domain/radical SAM domain proteins that occur in a genome context with a pair of homologs to ThiC (phosphomethylpyrimidine synthase, EC 4.1.99.17), an enzyme that performs a complex rearrangement involved in thiamin biosynthesis, and a putative CobT (nicotinate-nucleotide--dimethylbenzimidazole phosphoribosyltransferase), an enzyme of cobalamin biosynthesis.

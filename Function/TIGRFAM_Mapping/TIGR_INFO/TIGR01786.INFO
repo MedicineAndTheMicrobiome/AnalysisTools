@@ -1,0 +1,12 @@
+ID  TonB-hemlactrns
+AC  TIGR01786
+DE  TonB-dependent hemoglobin/transferrin/lactoferrin receptor family protein
+AU  Selengut J
+TC  323.75 323.75
+NC  270.65 270.65
+AL  clustalw
+IT  subfamily
+EN  TonB-dependent hemoglobin/transferrin/lactoferrin receptor family protein
+TR  1.B.14
+TP  TIGRFAMs
+CC  This model represents a family of TonB-dependent outer membrane receptor/transporters acting on iron-containing proteins such as hemoglobin, transferrin and lactoferrin.  Two subfamily models with a narrower scope are contained within this model, the heme/hemoglobin receptor family protein model (TIGR01785) and the transferrin/lactoferrin receptor family model (TIGR01776).  Accessions which score above trusted to this model while not scoring above trusted to the more specific models are most likely to be hemoglobin transporters.  Nearly all of the species containing trusted hits to this model have access to hemoglobin, transferrin or lactoferrin or related proteins in their biological niche.

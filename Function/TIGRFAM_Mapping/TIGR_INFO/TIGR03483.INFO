@@ -1,0 +1,12 @@
+ID  FtsZ_alphas_C
+AC  TIGR03483
+DE  cell division protein FtsZ, alphaProteobacterial C-terminal extension
+AU  Haft DH
+TC  62.95 62.95
+NC  27.60 27.60
+AL  muscle_manual
+IT  equivalog_domain
+EN  cell division protein FtsZ, alphaProteobacterial C-terminal extension
+GS  ftsZ
+TP  TIGRFAMs
+CC  This model describes a domain found as a C-terminal extension to the cell division protein FtsZ in many but not all members of the alphaProteobacteria.

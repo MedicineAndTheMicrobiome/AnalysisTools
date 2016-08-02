@@ -1,0 +1,18 @@
+ID  wecG_tagA_cpsF
+AC  TIGR00696
+DE  glycosyltransferase, WecB/TagA/CpsF family
+AU  Haft DH, Loftus BJ
+TC  69.00 69.00
+NC  37.80 37.80
+AL  clustalw_manual
+IT  superfamily
+EN  bacterial polymer biosynthesis proteins, WecB/TagA/CpsF family
+EC  2.4.1.-
+TP  TIGRFAMs
+CC  The WecG member of this superfamily, believed to be UDP-N-acetyl-D-mannosaminuronic acid transferase, plays a role in enterobacterial common antigen (eca) synthesis in Escherichia coli. Another family member, the Bacillus subtilis TagA protein, is involved in the biosynthesis of the cell wall polymer poly(glycerol phosphate). The third family member, CpsF, CMP-N-acetylneuraminic acid synthetase has a role in the capsular polysaccharide biosynthesis pathway.
+DR  ECOCYC; EG11458; wecG
+RM  96228704
+RT  Characterization of cpsF and its product CMP-N-acetylneuraminic acid synthetase, a group B streptococcal enzyme that can function in K1 capsular polysaccharide biosynthesis in Escherichia coli.
+RA  Haft RF, Wessels MR, Mebane MF, Conaty N, Rubens CE
+RL  Mol Microbiol 1996 Feb;19(3):555-63
+DR  HAMAP; MF_01001; 32 of 33

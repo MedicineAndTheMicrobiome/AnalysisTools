@@ -1,0 +1,20 @@
+ID  D-hydantoinase
+AC  TIGR02033
+DE  dihydropyrimidinase
+AU  Selengut J
+TC  393.25 393.25
+NC  322.65 322.65
+AL  clustalw
+IT  equivalog
+EN  D-hydantoinase
+GS  hydA
+EC  3.5.2.2
+TP  TIGRFAMs
+CC  This HMM represents the D-hydantoinase (dihydropyrimidinase) which primarily converts 5,6-dihydrouracil to 3-ureidopropanoate but also acts on dihydrothymine and hydantoin.  The enzyme is a metalloenzyme [1].
+RN  [1]
+RM  PMID: 7765480
+RT  A thermostable hydantoinase of Bacillus stearothermophilus NS1122A: cloning, sequencing, and high expression of the enzyme gene, and some properties of the
+expressed enzyme.
+RA  Mukohara Y, Ishikawa T, Watabe K, Nakamura H.
+RL  Biosci Biotechnol Biochem. 1994 Sep;58(9):1621-6.
+DR  HAMAP; MF_01644; 9 of 10

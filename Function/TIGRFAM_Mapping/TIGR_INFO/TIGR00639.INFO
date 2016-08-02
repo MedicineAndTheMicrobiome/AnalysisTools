@@ -1,0 +1,22 @@
+ID  PurN
+AC  TIGR00639
+DE  phosphoribosylglycinamide formyltransferase
+AU  Haft DH
+TC  150.10 150.10
+NC  127.00 127.00
+IT  equivalog
+EN  phosphoribosylglycinamide formyltransferase, formyltetrahydrofolate-dependent
+GS  purN
+EC  2.1.2.2
+TP  TIGRFAMs
+CC  This HMM describes phosphoribosylglycinamide formyltransferase (GAR transformylase), one of several proteins in formyl_transf (Pfam family PF00551). This enzyme uses formyl tetrahydrofolate as a formyl group donor to produce 5'-phosphoribosyl-N-formylglycinamide. PurT, a different GAR transformylase, uses ATP and formate rather than formyl tetrahydrofolate. Experimental proof includes complementation of E. coli purN mutants by orthologs from vertebrates (where it is a domain of a multifunctional protein), Bacillus subtilis, and Arabidopsis.
+CC  No archaeal example was detected.
+CC  In phylogenetic analyses, the member from Saccharomyces cerevisiae shows a long branch length but membership in the family, while the formyltetrahydrofolate deformylases form a closely related outgroup.
+DR  PFAM; PF00551; formyl_transf
+DR  YPD; ADE8
+DR  OUTGROUP; EGAD|15350|EC1232
+DR  OUTGROUP; EGAD|156449|AA1257
+RM  87280114
+RT  Identification and nucleotide sequence of a gene encoding 5'-phosphoribosylglycinamide transformylase in Escherichia coli K12.
+RA  Smith JM, Daum HA 3d
+RL  J Biol Chem 1987 Aug 5;262(22):10565-9

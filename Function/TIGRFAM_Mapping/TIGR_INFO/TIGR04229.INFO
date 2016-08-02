@@ -1,0 +1,12 @@
+ID  geopeptide
+AC  TIGR04229
+DE  putative radical SAM-modified peptide
+AU  Haft DH
+TC  30.00 25.00
+NC  26.00 21.00
+AL  manual
+IT  hypoth_equivalog
+EN  putative radical SAM-modified peptide
+GS  gptA
+TP  TIGRFAMs
+CC  This family of short peptides occurs near radical SAM/SPASM domain proteins and is proposed to be modified by that enzyme.

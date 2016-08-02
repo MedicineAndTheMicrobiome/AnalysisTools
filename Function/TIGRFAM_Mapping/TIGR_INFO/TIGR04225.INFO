@@ -1,0 +1,16 @@
+ID  CshA_fibril_rpt
+AC  TIGR04225
+DE  CshA-type fibril repeat
+AU  Haft DH
+TC  60.00 40.00
+NC  40.00 30.00
+AL  muscle_manual
+IT  repeat
+EN  CshA-type fibril repeat
+TP  TIGRFAMs
+CC  Many proteins with this repeat are LPXTG-anchored surface proteins of Firmicutes species, but the repeat occurs more broadly. Members include CshA from Streptococcus gordonii.
+RN  [1]
+RM  PMID:10322009 
+RT  Cell wall-anchored CshA polypeptide (259 kilodaltons) in Streptococcus gordonii forms surface fibrils that confer hydrophobic and adhesive properties. 
+RA  McNab R, Forbes H, Handley PS, Loach DM, Tannock GW, Jenkinson HF 
+RL  J Bacteriol. 1999 May;181(10):3087-95.

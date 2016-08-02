@@ -1,0 +1,16 @@
+ID  dapB
+AC  TIGR00036
+DE  4-hydroxy-tetrahydrodipicolinate reductase
+AU  Richardson DL
+TC  122.00 122.00
+NC  80.70 80.70
+AL  clustalw_manual
+IT  equivalog
+EN  4-hydroxy-tetrahydrodipicolinate reductase
+GS  dapB
+EC  1.17.1.8
+TP  TIGRFAMs
+DR  PDB:1DIH
+DR  ECOCYC; EG10206; 
+DR  PROSITE; PDOC01000;
+DR  HAMAP; MF_00102; 384 of 389

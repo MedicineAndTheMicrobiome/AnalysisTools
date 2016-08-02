@@ -1,0 +1,11 @@
+ID  put_Glu_GABA_T
+AC  TIGR03813
+DE  putative glutamate/gamma-aminobutyrate antiporter
+AU  Haft DH
+TC  546.85 546.85
+NC  404.65 404.65
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  putative glutamate/gamma-aminobutyrate antiporter
+TP  TIGRFAMs
+CC  Members of this protein family are putative putative glutamate/gamma-aminobutyrate antiporters. Each member of the seed alignment is found adjacent to a glutamate decarboxylase, which converts glutamate (Glu) to gamma-aminobutyrate (GABA). However, the majority belong to genome contexts with a glutaminase (converts Gln to Glu) as well as the decarboxylase that converts Glu to GABA. The specificity of the transporter remains uncertain.

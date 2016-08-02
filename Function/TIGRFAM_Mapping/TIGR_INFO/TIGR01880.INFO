@@ -1,0 +1,12 @@
+ID  Ac-peptdase-euk
+AC  TIGR01880
+DE  N-acyl-L-amino-acid amidohydrolase
+AU  Selengut J
+TC  338.60 338.60
+NC  201.90 201.90
+AL  clustalw
+IT  subfamily
+EN  N-acyl-L-amino-acid amidohydrolase
+EC  3.5.1.14
+TP  TIGRFAMs
+CC  This model represents a family of eukaryotic N-acyl-L-amino-acid amidohydrolases active on fatty acid and acetyl amides of L-amino acids.

@@ -1,0 +1,13 @@
+ID  PTS_I_fam
+AC  TIGR01417
+DE  phosphoenolpyruvate-protein phosphotransferase
+AU  Haft DH
+TC  341.70 341.70
+NC  320.10 320.10
+AL  clustalw
+IT  equivalog_domain
+EN  phosphoenolpyruvate-protein phosphotransferase
+GS  ptsP
+EC  2.7.3.9
+TP  TIGRFAMs
+CC  This HMM recognizes a distinct clade of phophoenolpyruvate (PEP)-dependent enzymes. Most members are known or deduced to function as the phosphoenolpyruvate-protein phosphotransferase (or enzyme I) of PTS sugar transport systems. However, some species with both a member of this family and a homolog of the phosphocarrier protein HPr lack a IIC component able to serve as a permease. An HPr homolog designated NPr has been implicated in the regulation of nitrogen assimilation, which demonstrates that not all phosphotransferase system components are associated directly with PTS transport.

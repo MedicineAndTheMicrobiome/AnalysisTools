@@ -1,0 +1,22 @@
+ID  aprB
+AC  TIGR02060
+DE  adenylylsulfate reductase, beta subunit
+AU  Brinkac L
+TC  135.65 135.65
+NC  55.15 55.15
+AL  clustalw
+IT  equivalog
+EN  adenosine phosphosulphate reductase, beta subunit
+GS  aprB
+EC  1.8.99.2
+TP  TIGRFAMs
+CC  During dissimilatory sulfate reduction and sulfur oxidation, adenylylsulfate (APS) reductase catalyzes reversibly the two-electron reduction of APS to sulfite and AMP [1]. Found in several bacterial lineages and in Archaeoglobales, APS reductase is a heterodimer composed of an alpha subunit containing a noncovalently bound FAD, and a beta subunit containing two [4Fe-4S] clusters [1]. Described by this model is the beta subunit of APS reductase, sharing common evolutionary origin with other iron-sulfur cluster-binding proteins.
+RN [1]
+RM 10802060
+RT Adenylylsulfate reductases from archaea and bacteria are 1:1 alphabeta-heterodimeric iron-sulfur flavoenzymes--high similarity of molecular properties emphasizes their central role in sulfur metabolism.
+RA Fritz G, Buchert T, Huber H, Stetter KO, Kroneck PM.
+RL FEBS Lett. 2000 May 4;473(1):63-6.
+DR PFAM; PF00037; iron-sulfur cluster-binding protein
+DR EXPERIMENTAL; GP|2576390; Allochromatium vinosum; insertional inactivation resulted in inability to synthesize APS from sulfite and AMP.
+DR EXPERIMENTAL; GP|443816; Archaeoglobus fulgidus; purified by chromatography, with APS reductase activity measured by spectroscopy.
+DR OUTGROUP; GP|19916865; Methanosarcina acetivorans str. C2A; polyferredoxin

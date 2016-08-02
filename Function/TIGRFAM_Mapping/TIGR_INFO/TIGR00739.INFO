@@ -1,0 +1,22 @@
+ID  yajC
+AC  TIGR00739
+DE  preprotein translocase, YajC subunit
+AU  Haft DH
+TC  44.20 44.20
+NC  31.35 31.35
+AL  clustalw
+IT  equivalog
+EN  preprotein translocase, YajC subunit
+GS  yajC
+TP  TIGRFAMs
+CC  While this protein is part of the preprotein translocase in Escherichia coli, it is not essential for viability or protein secretion.  The N-terminus region contains a predicted membrane-spanning region followed by a region consisting almost entirely of residues with charged (acidic, basic, or zwitterionic) side chains. This small protein is about 100 residues in length, and is restricted to bacteria; however, this protein is absent from some lineages, including spirochetes and Mycoplasmas.
+RN  [1]
+RM  97449133
+RT  The SecDFyajC domain of preprotein translocase controls preprotein movement by regulating SecA membrane cycling.
+RA  Duong F, Wickner W
+RL  EMBO J 1997 Aug 15;16(16):4871-9
+RN  [2]
+RM  99043892
+RT  Cloning and sequencing of yajC and secD homologs of Brucella abortus and demonstration of immune responses to YajC in mice vaccinated with B. abortus RB51.
+RA  Vemulapalli R, Duncan AJ, Boyle SM, Sriranganathan N, Toth TE, Schurig GG
+RL  Infect Immun 1998 Dec;66(12):5684-91

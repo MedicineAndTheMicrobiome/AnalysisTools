@@ -1,0 +1,17 @@
+ID  thiol_BshC
+AC  TIGR03998
+DE  bacillithiol biosynthesis cysteine-adding enzyme BshC
+AU  Haft DH
+TC  265.80 265.80
+NC  218.60 218.60
+AL  muscle_manual
+IT  equivalog
+EN  bacillithiol biosynthesis cysteine-adding enzyme BshC
+GS  bshC
+TP  TIGRFAMs
+CC  Members of this protein family are BshC, an enzyme required for bacillithiol biosynthesis and described as a cysteine-adding enzyme. Bacillithiol is a low-molecular-weight thiol, an analog of glutathione and mycothiol, and is found largely in the Firmicutes.
+RN  [1]
+RM  PMID:20308541
+RT  Biosynthesis and functions of bacillithiol, a major low-molecular-weight thiol in Bacilli.
+RA  Gaballa A, Newton GL, Antelmann H, Parsonage D, Upton H, Rawat M, Claiborne A, Fahey RC, Helmann JD
+RL  Proc Natl Acad Sci U S A. 2010 Apr 6;107(14):6482-6.

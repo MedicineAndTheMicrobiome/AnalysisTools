@@ -1,0 +1,13 @@
+ID  trpE_proteo
+AC  TIGR00565
+DE  anthranilate synthase component I
+AU  Haft DH
+TC  494.65 494.65
+NC  341.10 341.10
+IT  equivalog
+EN  anthranilate synthase component I, proteobacterial subset
+GS  trpE
+EC  4.1.3.27
+TP  TIGRFAMs
+CC  This enzyme resembles some other chorismate-binding enzymes, including para-aminobenzoate synthase (pabB) and isochorismate synthase. There is a fairly deep split between two sets, seen in the pattern of gaps as well as in amino acid sequence differences. This group includes proteobacteria such as E. coli and Helicobacter pylori but also the gram-positive organism Corynebacterium glutamicum. The second group includes eukaryotes, archaea, and most other bacterial lineages; sequences from the second group may resemble pabB more closely than other trpE from this group.
+DR  PFAM; PF00425; chorismate_bind

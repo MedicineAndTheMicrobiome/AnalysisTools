@@ -1,0 +1,12 @@
+ID  NifU_proper
+AC  TIGR02000
+DE  Fe-S cluster assembly protein NifU
+AU  Haft DH
+TC  273.30 273.30
+NC  167.90 167.90
+AL  clustalw
+IT  equivalog
+EN  Fe-S cluster assembly protein NifU
+GS  nifU
+TP  TIGRFAMs
+CC  Three different but partially homologous Fe-S cluster assembly systems have been described: Isc, Suf, and Nif. The latter is associated with donation of an Fe-S cluster to nitrogenase in a number of nitrogen-fixing species. NifU, described here, consists of an N-terminal domain (PF01592) and a C-terminal domain (PF01106). Homologs with an equivalent domain archictecture from Helicobacter and Campylobacter, however, are excluded from this model by a high trusted cutoff. The model, therefore, is specific for NifU involved in nitrogenase maturation. The related model TIGR01999 homologous to the N-terminus of this model describes IscU from the Isc system as in E. coli, Saccharomyces cerevisiae, and Homo sapiens.

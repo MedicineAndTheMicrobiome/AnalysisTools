@@ -1,0 +1,12 @@
+ID  flagell_flgL
+AC  TIGR02550
+DE  flagellar hook-associated protein 3
+AU  Haft DH
+TC  127.20 127.20
+NC  123.45 123.45
+AL  clustalw
+IT  equivalog
+EN  flagellar hook-associated protein 3
+GS  flgL
+TP  TIGRFAMs
+CC  This protein family consists of flagellar hook-associated proteins designated FlgL (or HAP3) encoded in bacterial flagellar operons.  A N-terminal region of about 150 residues and a C-terminal region of about 85 residues are conserved. Members show considerable length heterogeneity between these two well-conserved terminal regions; the seed alignment 486 columns, 393 of which are modeled in the HMM, while members of this family are from 287 to over 500 residues in length. This model distinguishes FlgL from the flagellin gene product FliC.

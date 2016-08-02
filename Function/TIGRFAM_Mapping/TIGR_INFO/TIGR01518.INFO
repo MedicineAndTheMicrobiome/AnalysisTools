@@ -1,0 +1,15 @@
+ID  g3p_cytidyltrns
+AC  TIGR01518
+DE  glycerol-3-phosphate cytidylyltransferase
+AU  Haft DH
+TC  165.40 165.40
+NC  71.00 71.00
+AL  clustalw
+IT  equivalog
+EN  glycerol-3-phosphate cytidylyltransferase
+GS  tagD
+EC  2.7.7.39
+TP  TIGRFAMs
+CC  This HMM describes glycerol-3-phosphate cytidyltransferase, also called CDP-glycerol pyrophosphorylase. A closely related protein assigned a different function experimentally is a human ethanolamine-phosphate cytidylyltransferase (EC 2.7.7.14).
+CC  Glycerol-3-phosphate cytidyltransferase acts in pathways of teichoic acid biosynthesis. Teichoic acids are substituted polymers, linked by phosphodiester bonds, of glycerol, ribitol, etc. An example is poly(glycerol phosphate), the major teichoic acid of the Bacillus subtilis cell wall. Most but not all species encoding proteins in this family are Gram-positive bacteria.
+DR  EXPERIMENTAL; SP|P27623; Bacillus subtilis

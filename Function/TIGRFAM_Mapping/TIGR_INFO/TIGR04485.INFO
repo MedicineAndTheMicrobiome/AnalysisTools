@@ -1,0 +1,12 @@
+ID  thiosulf_SoxX
+AC  TIGR04485
+DE  sulfur oxidation c-type cytochrome SoxX
+AU  Haft DH
+TC  61.00 61.00
+NC  60.00 45.00
+AL  muscle_manual
+IT  equivalog
+EN  sulfur oxidation c-type cytochrome SoxX
+GS  soxX
+TP  TIGRFAMs
+CC  Members of this family are SoxX, a c-type cytochrome with a CxxCH motif, part of a heterodimer with SoxA. SoxXA, SoxYZ, and SoxB contribute to thiosulfate oxidation to sulfate.

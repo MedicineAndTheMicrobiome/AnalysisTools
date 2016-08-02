@@ -1,0 +1,12 @@
+ID  tfb4
+AC  TIGR00627
+DE  transcription factor tfb4
+AU  Loftus BJ, Eisen JA
+TC  355.05 355.05
+NC  97.50 97.50
+IT  subfamily
+EN  transcription factor tfb4
+TP  TIGRFAMs
+CC  All proteins in this family are part of the TFIIH complex which is involved in the initiation of transcription and nucleotide excision repair.
+CC  This family is based on the phylogenomic analysis of JA Eisen (1999, Ph.D. Thesis, Stanford University).
+DR  EGAD; 124857;

@@ -1,0 +1,29 @@
+ID  fabH
+AC  TIGR00747
+DE  3-oxoacyl-[acyl-carrier-protein] synthase III
+AU  Haft DH, Loftus BJ
+TC  292.10 292.10
+NC  135.65 135.65
+AL  clustalw
+IT  subfamily
+EN  3-oxoacyl-(acyl-carrier-protein) synthase III
+GS  fabH
+EC  2.3.1.180
+TP  TIGRFAMs
+CC  FabH in general initiate elongation in type II fatty acid synthase systems found in bacteria and plants. The two members of this subfamily from Bacillus subtilis differ from each other, and from FabH from E. coli, in acyl group specificity.
+CC  Active site residues include Cys112, His244 and Asn274 of E. coli FabH. Cys-112 is the site of acyl group attachment.
+DR  EXPERIMENTAL; EGAD|23257|EC1091; Escherichia coli
+DR  EXPERIMENTAL; EGAD|22159|22835; Rhodobacter capsulatus
+DR  EXPERIMENTAL; EGAD|60481|63308; spinach
+RN  [1]
+RM  20096678
+RT  beta-ketoacyl-acyl carrier protein synthase III (FabH) is a determining factor in branched-chain fatty acid biosynthesis.
+RA  Choi KH, Heath RJ, Rock CO
+RL  J Bacteriol 2000 Jan;182(2):365-70
+RN  [2]
+RT  The 1.8 A crystal structure and active-site architecture of beta-ketoacyl-acyl carrier protein synthase III (FabH) from Escherichia coli.
+RA  Davies C, Heath RJ, White SW, Rock CO
+RL  Structure Fold Des 2000;8(2):185-195
+RN  [3]
+RM  94291939
+DR  HAMAP; MF_01815; 327 of 330

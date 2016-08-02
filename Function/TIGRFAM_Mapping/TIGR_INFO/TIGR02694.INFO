@@ -1,0 +1,18 @@
+ID  arsenite_ox_S
+AC  TIGR02694
+DE  arsenite oxidase, small subunit
+AU  Haft DH
+TC  95.65 95.65
+NC  61.70 61.70
+AL  clustalw
+IT  equivalog
+EN  arsenite oxidase, small subunit
+EC  1.20.9.1
+TP  TIGRFAMs
+CC  This model represents the small subunit of an arsenite oxidase complex. It is a Rieske protein and appears to rely on the Tat  (twin-arginine translocation) system to cross the membrane. Although this enzyme could run in the direction of arsenate reduction to arsenite in principle, the relevant biological function is arsenite oxidation for energy metabolism, not arsenic resistance. Homologs to both large (TIGR02693) and small subunits that score in the gray zone between the set trusted and noise bit score cutoffs for the respective models are found in Aeropyrum pernix K1 and in Sulfolobus tokodaii str. 7.
+DR  PFAM; PF00355; Rieske [2Fe-2S] domain
+RN  [1]
+RM  12679550
+RT  Arsenite oxidase, an ancient bioenergetic enzyme.
+RA  Lebrun E, Brugna M, Baymann F, Muller D, Lievremont D, Lett MC, Nitschke W.
+RL  Mol Biol Evol. 2003 May;20(5):686-93.

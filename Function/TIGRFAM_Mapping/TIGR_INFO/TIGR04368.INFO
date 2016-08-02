@@ -1,0 +1,18 @@
+ID  Glu_2_3_NH3_mut
+AC  TIGR04368
+DE  glutamate 2,3-aminomutase
+AU  Haft DH
+TC  650.00 650.00
+NC  525.00 525.00
+AL  muscle_manual
+IT  equivalog
+EN  glutamate 2,3-aminomutase
+GS  eam
+EC  5.4.3.9
+TP  TIGRFAMs
+CC  Members of this family are glutamate 2,3-aminomutase, a radical SAM enzyme with a pyridoxal phosphate group. It is closely related to lysine 2,3-aminomutase, but distinguished by architecture (longer N-terminal region, shorter C-terminal region) and replacement of key lysine-binding residues  Asp293 and Asp330 (inferred from the crystal structure) by glutamate-binding residues Lys and Asn. Activity was demonstrated for sequences from Clostridium difficile, Thermoanaerobacter tengcongensis MB4, and Syntrophomonas wolfei str. Goettingen. The action of this enzyme creates beta-glutamate, an osmolyte.
+RN  [1]
+RM  PMID:17222594 
+RT  Glutamate 2,3-aminomutase: a new member of the radical SAM superfamily of enzymes. 
+RA  Ruzicka FJ, Frey PA 
+RL  Biochim Biophys Acta. 2007 Feb;1774(2):286-96.

@@ -1,0 +1,18 @@
+ID  catechol_dmpH
+AC  TIGR03218
+DE  4-oxalocrotonate decarboxylase
+AU  Haft DH
+TC  350.55 350.55
+NC  294.20 294.20
+AL  muscle
+IT  equivalog
+EN  4-oxalocrotonate decarboxylase
+GS  dmpH
+EC  4.1.1.77
+TP  TIGRFAMs
+CC  Members of this protein family are 4-oxalocrotonate decarboxylase. Note that this protein, as characterized (indirectly) in Pseudomonas sp. strain CF600, was inactive except when coexpressed with DmpE, 2-oxopent-4-enoate hydratase, a homologous protein from the same operon. Both of these enzymes are active in the degradation of catechol, a common intermediate in the degradation of aromatic compounds such as benzoate, toluene, phenol, dimethylphenol (dmp), salicylate, etc.
+RN  [1]
+RM  PMID: 1732207
+RT  Nucleotide sequence and functional analysis of the complete phenol/3,4-dimethylphenol catabolic pathway of Pseudomonas sp. strain CF600.
+RA  Shingler V, Powlowski J, Marklund U
+RL  J Bacteriol. 1992 Feb;174(3):711-24.

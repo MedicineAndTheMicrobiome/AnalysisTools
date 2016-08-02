@@ -1,0 +1,21 @@
+ID  hnRNP-L_PTB
+AC  TIGR01649
+DE  hnRNP-L/PTB/hephaestus splicing factor family
+AU  Selengut J
+TC  287.40 287.40
+NC  132.10 132.10
+AL  clustalw
+IT  subfamily
+EN  hnRNP-L/PTB/hephaestus splicing factor family
+TP  TIGRFAMs
+CC  Included in this family of heterogeneous ribonucleoproteins are PTB (polypyrimidine tract binding protein [1]) and hnRNP-L [2].  These proteins contain four RNA recognition motifs (rrm: PF00067).
+RN  [1]
+RM  PMID: 11804786
+RT  Lineage-specific expression of polypyrimidine tract binding protein (PTB) in Drosophila embryos.
+RA  Davis MB, Sun W, Standiford DM.
+RL  Mech Dev 2002 Feb;111(1-2):143-7
+RN  [2]
+RM  PMID: 7542615
+RT  HnRNP L binds a cis-acting RNA sequence element that enables intron-dependent gene expression.
+RA  Liu X, Mertz JE.
+RL  Genes Dev 1995 Jul 15;9(14):1766-80

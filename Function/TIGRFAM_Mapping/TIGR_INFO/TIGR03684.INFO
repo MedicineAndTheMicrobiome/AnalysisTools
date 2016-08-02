@@ -1,0 +1,16 @@
+ID  arCOG00985
+AC  TIGR03684
+DE  arCOG04150 universal archaeal PUA-domain protein
+AU  Selengut J
+TC  120.60 120.60
+NC  120.45 120.45
+AL  muscle
+IT  equivalog
+EN  arCOG04150 universal archaeal PUA-domain protein
+TP  TIGRFAMs
+CC  This universal archaeal protein [1] contains a domain possibly associated with RNA binding (PF01472, TIGR00451).
+RN  [1]
+RM  PMID:18042280 
+RT  Clusters of orthologous genes for 41 archaeal genomes and implications for evolutionary genomics of archaea. 
+RA  Makarova KS, Sorokin AV, Novichkov PS, Wolf YI, Koonin EV 
+RL  Biol Direct. 2007 Nov 27;2:33.

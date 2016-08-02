@@ -1,0 +1,16 @@
+ID  SWIM_PBPRA1643
+AC  TIGR04102
+DE  SWIM/SEC-C metal-binding motif protein, PBPRA1643 family
+AU  Haft DH
+TC  68.00 68.00
+NC  55.00 55.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  SWIM/SEC-C metal-binding motif protein, PBPRA1643 family
+TP  TIGRFAMs
+CC  Members of this protein family have a SWIM, or SEC-C, domain (see PF02810), a 21-amino acid putative Zn-binding domain that is shared with SecA, plant MuDR transposases, etc. This small protein family of unknown function occurs primarily in marine bacteria.
+RN  [1]
+RM  PMID:12151216
+RT  SWIM, a novel Zn-chelating domain present in bacteria, archaea and eukaryotes.
+RA  Makarova KS, Aravind L, Koonin EV
+RL  Trends Biochem Sci. 2002 Aug;27(8):384-6.

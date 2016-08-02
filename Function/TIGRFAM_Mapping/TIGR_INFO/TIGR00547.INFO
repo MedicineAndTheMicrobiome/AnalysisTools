@@ -1,0 +1,24 @@
+ID  lolA
+AC  TIGR00547
+DE  outer membrane lipoprotein carrier protein LolA
+AU  Haft DH
+TC  48.60 48.60
+NC  33.95 33.95
+AL  clustalw
+IT  equivalog
+EN  periplasmic chaperone LolA
+GS  lolA
+TP  TIGRFAMs
+CC  This protein, LolA, is known so far only in the gamma and beta subdivisions of the Proteobacteria. The E. coli major outer lipoprotein (Lpp) of E. coli is released from the inner membrane as a complex with this chaperone in an energy-requiring process, and is then delivered to LolB for insertion into the outer membrane. LolA is involved in the delivery of lipoproteins generally, rather than just Lpp, and is an essential protein in E. coli, unlike Lpp itself.
+AL  ClustalW
+RN  [1]
+RM  99047631
+RT  LolA-dependent release of a lipid-modified protein from the inner membrane of Escherichia coli requires nucleoside triphosphate.
+RA  Yakushi T, Yokota N, Matsuyama S, Tokuda H
+RL  J Biol Chem 1998 Dec 4;273(49):32576-81
+RN  [2]
+RM  99065127
+RT  Genetic analyses of the in vivo function of LolA, a periplasmic chaperone involved in the outer membrane localization of Escherichia coli lipoproteins.
+RA  Tajima T, Yokota N, Matsuyama S, Tokuda H
+RL  FEBS Lett 1998 Nov 13;439(1-2):51-4
+DR  HAMAP; MF_00240; 122 of 131

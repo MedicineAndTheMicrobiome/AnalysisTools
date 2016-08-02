@@ -1,0 +1,16 @@
+ID  RNasePH
+AC  TIGR01966
+DE  ribonuclease PH
+AU  Haft DH
+TC  141.50 141.50
+NC  117.35 117.35
+AL  clustalw
+IT  equivalog
+EN  ribonuclease PH
+GS  rph
+EC  2.7.7.56
+TP  TIGRFAMs
+CC  This bacterial enzyme, ribonuclease PH, performs the final 3'-trimming and modification of tRNA precursors. This model is restricted absolutely to bacteria. Related families outside the model include proteins described as probable exosome complex exonucleases (rRNA processing) and polyribonucleotide nucleotidyltransferases (mRNA degradation). The most divergent member within the family is RNase PH from Deinococcus radiodurans.
+DR  PROSITE; PS01277; Ribonuclease PH signature.
+DR  INTERPRO; IPR002381
+DR  HAMAP; MF_00564; 282 of 287

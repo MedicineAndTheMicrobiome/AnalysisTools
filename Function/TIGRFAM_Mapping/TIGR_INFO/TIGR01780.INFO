@@ -1,0 +1,48 @@
+ID  SSADH
+AC  TIGR01780
+DE  succinate-semialdehyde dehydrogenase
+AU  Brinkac L
+TC  646.35 646.35
+NC  499.70 499.70
+AL  clustalw_manual
+IT  subfamily
+EN  succinate-semialdehyde dehydrogenase
+EC  1.2.1.-
+TP  TIGRFAMs
+CC  Succinic semialdehyde dehydrogenase is one of three enzymes constituting 4-aminobutyrate (GABA) degradation in both prokaryotes and eukaryotes, catalyzing the (NAD(P)+)-dependent catabolism reaction of succinic semialdehyde to succinate for metabolism by the citric acid cycle. The EC number depends on the cofactor: 1.2.1.24 for NAD only, 1.2.1.79 for NADP only, and 1.2.1.16 if both can be used.
+CC  In Escherichia coli, succinic semialdehyde dehydrogenase is located in an unidirectionally transcribed gene cluster encoding enzymes for GABA degradation and is suggested to be cotranscribed with succinic semialdehyde transaminase from a common promoter upstream of SSADH [1]. Similar gene arrangements can be found in characterized Ralstonia eutropha [2] and the genome analysis of Bacillus subtilis.
+CC  Prokaryotic succinic semialdehyde dehydrogenases (1.2.1.16) share high sequence homology to characterized succinic semialdehyde dehydrogenases from rat and human (1.2.1.24), exhibiting conservation of proposed cofactor binding residues, and putative active sites (G-237 & G-242, C-293 & G-259 respectively of rat SSADH) [3].
+CC  Eukaryotic SSADH enzymes exclusively utilize NAD+ as a cofactor, exhibiting little to no NADP+ activity [4]. While a NADP+ preference has been detected in prokaryotes in addition to both NADP+- and NAD+-dependencies as in E.coli, Pseudomonas, and Klebsiella pneumoniae [2]. The function of this alternative SSADH currently is unknown, but has been suggested to play a possible role in 4-hydroxyphenylacetic degradation [2].
+CC  Just outside the scope of this model, are several sequences belonging to clades scoring between trusted and noise. These sequences may be actual SSADH enzymes, but lack sufficiently close characterized homologs to make a definitive assignment at this time.
+CC  SSADH enzyme belongs to the aldehyde dehydrogenase family (PF00171), sharing a common evolutionary origin and enzymatic mechanism with lactaldehyde dehydrogenase [5]. Like in lactaldehyde dehydrogenase and succinate semialdehyde dehydrogenase, the mammalian catalytic glutamic acid and cysteine residues are conserved in all the enzymes of this family (PS00687, PS00070).
+RN [1]
+RM 8297211
+RT Molecular organization of the Escherichia coli gab cluster: nucleotide sequence of the structural genes gabD and gabP and expression of the GABA permease gene.
+RA Niegemann E, Schulz A, Bartsch K.
+RJ Arch Microbiol. 1993;160(6):454-60.
+RN [2]
+RM 10564790
+RT Biochemical and molecular characterization of a succinate semialdehyde dehydrogenase involved in the catabolism of 4-hydroxybutyric acid in Ralstonia eutropha.
+RA Lutke-Eversloh T, Steinbuchel A.
+RJ FEMS Microbiol Lett. 1999 Dec 1;181(1):63-71.
+RN [3]
+RM 7814412
+RT Molecular cloning of the mature NAD(+)-dependent succinic semialdehyde dehydrogenase from rat and human. cDNA isolation, evolutionary homology, and tissue expression.
+RA Chambliss KL, Caudle DL, Hinson DD, Moomaw CR, Slaughter CA, Jakobs C, Gibson KM.
+RJ J Biol Chem. 1995 Jan 6;270(1):461-7.
+RN [4]
+RM 3888627
+RT Mutations affecting the enzymes involved in the utilization of 4-aminobutyric acid as nitrogen source by the yeast Saccharomyces cerevisiae.
+RA Ramos F, el Guezzar M, Grenson M, Wiame JM.
+RJ Eur J Biochem. 1985 Jun 3;149(2):401-4.
+RN [5]
+RM 1917845
+RT Molecular cloning and DNA sequencing of the Escherichia coli K-12 ald gene encoding aldehyde dehydrogenase
+RA Hidalgo E, Chen YM, Lin EC, Aguilar J.
+RJ J Bacteriol. 1991 Oct;173(19):6118-23.
+DR PFAM; PF00171; Aldehyde dehydrogenase family
+DR EXPERIMENTAL; SP|P25526; Escherichia coli; in vivo cloning and characterization of the gabCTDP gene cluster in Escherichia coli K-12.
+DR EXPERIMENTAL; GP|6635357; Ralstonia eutropha; biochemical and molecular characterization of a succinate semialdehyde dehydrogenase involved in the catabolism of 4-hydroxybutyric acid in Ralstonia eutropha
+DR EXPERIMENTAL; SP|P38067; Saccharomyces cerevisiae; mutations affecting the enzymes involoved in the utilization of 4-aminobutyric acid as nitrogen source by yeast Saccharomyces cerevisia
+DR EXPERIMENTAL; SP|P51650; Rattus norvegicus; molecular cloning of the mature NAD(+)-dependent succinic semialdehyde dehydrogenase from rat and human. cDNA isolation, evolutionary homology, and tissue expression.
+DR OUTGROUP; SP|P25553; Escherichia coli; lactaldehyde dehydrogenase

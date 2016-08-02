@@ -1,0 +1,12 @@
+ID  rpt_csmH
+AC  TIGR03058
+DE  chlorosome envelope protein H
+AU  Haft DH
+TC  60.00 10.00
+NC  25.00 8.00
+AL  muscle
+IT  equivalog_domain
+EN  chlorosome envelope protein H repeat
+GS  csmH
+TP  TIGRFAMs
+CC  CsmH, as studied in Chlorobium tepidum, is one of at least ten surface-exposed proteins of the chloroplast, a bacteriochlorophyll-rich structure with a lipid-protein envelope. CsmH contain typically three copies of a repeated sequence, modeled by this HMM.

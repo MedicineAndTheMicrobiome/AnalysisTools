@@ -1,0 +1,16 @@
+ID  MarR_EPS
+AC  TIGR04176
+DE  EPS-associated transcriptional regulator, MarR family
+AU  Selengut J
+TC  88.00 88.00
+NC  85.00 85.00
+AL  muscle
+IT  equivalog
+EN  EPS-associated transcriptional regulator, MarR family
+TP  TIGRFAMs
+CC  Members of this family of MarR-family transcriptional regulators are associated with long genomic loci consisting of genes encoding enzymes for the biosynthesis of exopolysaccharides.  These genes include glycosyl transferases, sugar modifying enzymes (epimerases, isomerases, methyltransferases, aminotransferases, etc.), and exopolysaccharide polymerases (wzx, wzy).  In Leptospira interrogans, borgpeterenii and biflexa, this gene is observed first in unidirectional EPS biosynthesis loci as long as 90 genes.  MarR genes (PF01407) are known to bind to DNA regions with palindromic or pseudopalindromic sequences as homodimers, and to bind small molecules as triggers for conformational changes controlling on/off states [1].
+RN  [1]
+RM  PMID:16450885 
+RT  Ligand-responsive transcriptional regulation by members of the MarR family of winged helix proteins. 
+RA  Wilkinson SP, Grove A 
+RL  Curr Issues Mol Biol. 2006 Jan;8(1):51-62.

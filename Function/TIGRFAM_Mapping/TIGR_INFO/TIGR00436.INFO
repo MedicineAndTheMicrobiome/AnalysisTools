@@ -1,0 +1,26 @@
+ID  era
+AC  TIGR00436
+DE  GTP-binding protein Era
+AU  Loftus BJ, Haft DH
+TC  116.25 116.25
+NC  95.25 95.25
+AL  clustalw
+IT  equivalog
+EN  GTP-binding protein Era
+GS  era
+TP  TIGRFAMs
+CC  Era is an essential GTPase in Escherichia coli and many other bacteria. It plays a role in ribosome biogenesis. Few bacteria lack this protein.
+RN  [1]
+RM  99342029
+RT  Crystal structure of ERA: a GTPase-dependent cell cycle regulator containing an RNA binding motif.
+RA  Chen X, Court DL, Ji X
+RL  Proc Natl Acad Sci U S A 1999 Jul 20;96(15):8396-401
+RN  [2]
+RM  99458620
+RT  Era, an essential Escherichia coli small G-protein, binds to the 30S ribosomal subunit. 
+RA  Sayed A, Matsuyama Si, Inouye M
+RL  Biochem Biophys Res Commun 1999 Oct 14;264(1):51-4
+DR  Swissprot; P06616;
+DR  ECOCYC; EG10270; 
+DR  Swissprot; Q49768;
+DR  HAMAP; MF_00367; 209 of 212

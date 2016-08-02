@@ -1,0 +1,13 @@
+ID  Hemerythrin
+AC  TIGR00058
+DE  hemerythrin family non-heme iron protein
+AU  Richardson DL, Haft DH
+TC  131.85 131.85
+NC  70.80 70.80
+AL  clustalw
+IT  subfamily
+EN  hemerythrin family non-heme iron protein
+TP  TIGRFAMs
+CC  This family includes oxygen carrier proteins of various oligomeric states from the vascular fluid (hemerythrin) and muscle (myohemerythrin) of some marine invertebrates. Each unit binds 2 non-heme Fe using 5 H, one E and one D. One member of this family,from the sandworm Nereis diversicolor, is an unusual (non-metallothionein) cadmium-binding protein. Homologous proteins, excluded from this narrowly defined family, are found in archaea and bacteria (see PF01814).
+DR  PROSITE; PDOC00476; hemerythrins
+DR  PFAM; PF01814; Hemerythrin

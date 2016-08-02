@@ -1,0 +1,14 @@
+ID  trpS
+AC  TIGR00233
+DE  tryptophan--tRNA ligase
+AU  Loftus BJ, Haft DH
+TC  176.75 176.75
+NC  139.15 139.15
+AL  clustalw
+IT  equivalog
+EN  tryptophanyl-tRNA synthetase
+GS  trpS
+EC  6.1.1.2
+TP  TIGRFAMs
+CC  This HMM represents tryptophanyl-tRNA synthetase. Some members of the family have a PF00458 domain amino-terminal to the region described by this HMM.
+DR  HAMAP; MF_00140; 142 of 142

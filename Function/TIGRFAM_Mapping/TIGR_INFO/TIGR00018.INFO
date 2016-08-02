@@ -1,0 +1,17 @@
+ID  panC
+AC  TIGR00018
+DE  pantoate--beta-alanine ligase
+AU  Richardson DL
+TC  212.75 212.75
+NC  77.60 77.60
+AL  msa_tigr
+IT  equivalog
+EN  pantoate--beta-alanine ligase
+GS  panC
+EC  6.3.2.1
+TP  TIGRFAMs
+CC  This family is pantoate--beta-alanine ligase, the last enzyme of pantothenate biosynthesis.
+DR  ECOCYC; EG11746; 
+DR  PFAM; PF02569; Pantoate_ligase
+DR  InterPro; IPR003721; Pantoate_ligase
+DR  HAMAP; MF_01349; 24 of 27

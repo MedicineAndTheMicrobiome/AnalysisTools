@@ -1,0 +1,15 @@
+ID  EII-GUT
+AC  TIGR00821
+DE  PTS system, glucitol/sorbitol-specific, IIC component
+AU  Paulsen IT, Saier MH, Loftus BJ
+TC  166.30 166.30
+NC  83.05 83.05
+AL  clustalw_manual
+IT  subfamily
+EN  PTS system, glucitol/sorbitol-specific, IIC component
+GS  srlA
+EC  2.7.1.69
+TR  4.A.4
+TP  TIGRFAMs
+CC  Bacterial PTS transporters transport and concomitantly phosphorylate their sugar substrates, and typically consist of multiple subunits or protein domains. The Gut family consists only of glucitol-specific transporters, but these occur both in Gram-negative and Gram-positive bacteria.E. coli consists of IIA protein, a IIC protein and a IIBC protein. This family is specific for the IIC component.
+DR  URL; http://www-biology.ucsd.edu/~msaier/transport/4_A_4.html

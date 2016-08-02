@@ -1,0 +1,22 @@
+ID  GTPase_EngA
+AC  TIGR03594
+DE  ribosome-associated GTPase EngA
+AU  Haft DH
+TC  306.70 306.70
+NC  230.20 230.20
+AL  muscle_manual
+IT  equivalog
+EN  ribosome-associated GTPase EngA
+GS  engA
+TP  TIGRFAMs
+CC  EngA (YfgK, Der) is a ribosome-associated essential GTPase with a duplication of its GTP-binding domain. It is broadly to universally distributed among bacteria. It appears to function in ribosome biogenesis or stability.
+RN  [1]
+RM  PMID:16963571
+RT  Cooperative and critical roles for both G domains in the GTPase activity and cellular function of ribosome-associated Escherichia coli EngA.
+RA  Bharat A, Jiang M, Sullivan SM, Maddock JR, Brown ED
+RL  J Bacteriol. 2006 Nov;188(22):7992-6.
+RN  [2]
+RM  PMID:17905831
+RT  Functional analysis of the GTPases EngA and YhbZ encoded by Salmonella typhimurium.
+RA  Lamb HK, Thompson P, Elliott C, Charles IG, Richards J, Lockyer M, Watkins N, Nichols C, Stammers DK, Bagshaw CR, Cooper A, Hawkins AR
+RL  Protein Sci. 2007 Nov;16(11):2391-402.

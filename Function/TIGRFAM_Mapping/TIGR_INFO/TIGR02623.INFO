@@ -1,0 +1,17 @@
+ID  G1P_cyt_trans
+AC  TIGR02623
+DE  glucose-1-phosphate cytidylyltransferase
+AU  Haft DH
+TC  300.25 300.25
+NC  143.35 143.35
+AL  clustalw
+IT  equivalog
+EN  glucose-1-phosphate cytidylyltransferase
+GS  rfbF
+EC  2.7.7.33
+TP  TIGRFAMs
+CC  Members of this family are the enzyme glucose-1-phosphate cytidylyltransferase, also called CDP-glucose pyrophosphorylase, the product of the rfbF gene.
+RM  15634670
+RT  Kinetic and structural analysis of alpha-D-Glucose-1-phosphate cytidylyltransferase from Salmonella typhi.
+RA  Koropatkin NM, Cleland WW, Holden HM.
+RL  J Biol Chem. 2005 Mar 18;280(11):10774-80.

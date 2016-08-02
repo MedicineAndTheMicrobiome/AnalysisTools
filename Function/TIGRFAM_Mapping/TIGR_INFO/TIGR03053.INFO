@@ -1,0 +1,14 @@
+ID  PS_I_psaM
+AC  TIGR03053
+DE  photosystem I reaction center subunit XII
+AU  Haft DH
+TC  22.85 22.85
+NC  22.60 22.60
+AL  muscle_manual
+IT  equivalog
+EN  photosystem I reaction center subunit XII
+GS  psaM
+TP  TIGRFAMs
+CC  Members of this protein family are PsaM, which is subunit XII of the photosystem I reaction center.  This protein is found in both the Cyanobacteria and the chloroplasts of plants, but is absent from non-oxygenic photosynthetic bacteria such as Rhodobacter sphaeroides. Species that contain photosystem I also contain photosystem II, which splits water and releases molecular oxygen. The seed alignment for this model includes sequences from Pfam model PF07465 and additional sequences, as from Prochlorococcus.
+DR  PFAM; PF07465; PsaM; Photosystem I protein M (PsaM)
+DR  HAMAP; MF_00828; 44 of 44

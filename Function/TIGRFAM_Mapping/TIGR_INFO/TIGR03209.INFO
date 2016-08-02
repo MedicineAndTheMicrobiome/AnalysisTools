@@ -1,0 +1,28 @@
+ID  P21_Cbot
+AC  TIGR03209
+DE  transcriptional regulator BotR, P-21
+AU  Phillippy K, Selengut J
+TC  138.35 138.35
+NC  54.25 54.25
+AL  muscle
+IT  equivalog
+EN  clostridium toxin-associated regulator BotR
+GS  botR
+TP  TIGRFAMs
+CC  Clostridium botulinum neurotoxin production is regulated by a regulatory sigma-70 protein, BotR transcription regulator.  
+CC  Similarly, tetanus toxin production of Clostridium tetani is regulated by TetR which is a very close relative of BotR. Both BotR and TetR are members of the TIGR02937 subfamily of sigma-70 RNA polymerase sigma factors.  Functional complementation experiments have been done for botR and tetR in highly transformable strain of Clostridium perfringens host cells to assess functional interchangeability of sigma factors and it has been confirmed that they are interchangeable in vivo [3].
+RN  [1]
+RM  PMID: 15158256 
+RT  Nucleotide sequence and transcriptional analysis of the type A2 neurotoxin gene cluster in Clostridium botulinum. 
+RA  Dineen SS, Bradshaw M, Karasek CE, Johnson EA 
+RL  FEMS Microbiol Lett. 2004 Jun 1;235(1):9-16. 
+RN  [2]
+RM  PMID: 16701505 
+RT  Organization and regulation of the neurotoxin genes in Clostridium botulinum and Clostridium tetani. 
+RA  Raffestin S, Marvaud JC, Cerrato R, Dupuy B, Popoff MR 
+RL  Anaerobe. 2004 Apr;10(2):93-100.
+RN  [3]
+RM  PMID: 16677313
+RT  Regulation of toxin and bacteriocin gene expression in Clostridium by interchangeable RNA polymerase sigma factors.
+RA  Dupuy B, Raffestin S, Matamouros S, Mani N, Popoff MR, Sonenshein AL
+RL  Mol Microbiol. 2006 May;60(4):1044-57.

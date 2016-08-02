@@ -1,0 +1,13 @@
+ID  EF-1_alpha
+AC  TIGR00483
+DE  translation elongation factor EF-1, subunit alpha
+AU  Haft DH
+TC  540.10 540.10
+NC  401.10 401.10
+AL  clustalw
+IT  equivalog
+EN  translation elongation factor EF-1 alpha
+GS  tuf
+TP  TIGRFAMs
+CC  This model represents the counterpart of bacterial EF-Tu for the Archaea (aEF-1 alpha) and Eukaryotes (eEF-1 alpha). The trusted cutoff is set fairly high so that incomplete sequences will score between suggested and trusted cutoff levels.
+DR  HAMAP; MF_00118; 46 of 762

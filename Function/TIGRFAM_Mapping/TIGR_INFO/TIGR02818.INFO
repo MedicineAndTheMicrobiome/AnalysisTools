@@ -1,0 +1,12 @@
+ID  adh_III_F_hyde
+AC  TIGR02818
+DE  S-(hydroxymethyl)glutathione dehydrogenase/class III alcohol dehydrogenase
+AU  Haft DH
+TC  543.95 543.95
+NC  509.55 509.55
+AL  clustalw
+IT  equivalog
+EN  S-(hydroxymethyl)glutathione dehydrogenase/class III alcohol dehydrogenase
+EC  1.1.1.284 1.1.1.1
+TP  TIGRFAMs
+CC  The members of this protein family show dual function. First, they remove formaldehyde, a toxic metabolite, by acting as S-(hydroxymethyl)glutathione dehydrogenase (1.1.1.284). S-(hydroxymethyl)glutathione can form spontaneously from formaldehyde and glutathione, and so this enzyme previously was designated glutathione-dependent formaldehyde dehydrogenase. These same proteins are also designated alcohol dehydrogenase (EC 1.1.1.1) of class III, for activities that do not require glutathione; they tend to show poor activity for ethanol among their various substrate alcohols.

@@ -1,0 +1,18 @@
+ID  ATPase-Plipid
+AC  TIGR01652
+DE  phospholipid-translocating P-type ATPase, flippase
+AU  Selengut J
+TC  431.25 431.25
+NC  401.20 401.20
+AL  clustalw
+IT  subfamily
+EN  phospholipid-translocating P-type ATPase, flippase
+EC  3.6.3.1
+TR  3.A.3.8.-
+TP  TIGRFAMs
+CC  This model describes the P-type ATPase responsible for transporting phospholipids from one leaflet of bilayer membranes to the other [1].  These ATPases are found only in eukaryotes.
+RN  [1]
+RM  PMID: 9099684
+RT  The phospholipid flippase activity of gastric vesicles.
+RA  Suzuki H, Kamakura M, Morii M, Takeguchi N.
+RL  J Biol Chem 1997 Apr 18;272(16):10429-34

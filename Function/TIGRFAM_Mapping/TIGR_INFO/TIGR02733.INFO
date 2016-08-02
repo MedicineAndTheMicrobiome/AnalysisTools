@@ -1,0 +1,17 @@
+ID  desat_CrtD
+AC  TIGR02733
+DE  C-3',4' desaturase CrtD
+AU  Haft DH
+TC  549.70 549.70
+NC  214.20 214.20
+AL  clustalw
+IT  equivalog
+EN  C-3',4' desaturase CrtD
+GS  crtD
+EC  1.3.99.-
+TP  TIGRFAMs
+CC  Members of this family are slr1293, a carotenoid biosynthesis protein which was shown to be the C-3',4' desaturase (CrtD) of  myxoxanthophyll biosynthesis in Synechocystis sp. strain PCC 6803, and close homologs (presumed to be functionally equivalent) from other cyanobacteria, where myxoxanthophyll biosynthesis is either known or expected. This enzyme can act on neurosporene and so presumably catalyzes the first step that is committed to myxoxanthophyll.
+RM  15317766
+RT  Slr1293 in Synechocystis sp. strain PCC 6803 Is the C-3',4' desaturase (CrtD) involved in myxoxanthophyll biosynthesis.
+RA  Mohamed HE, Vermaas W.
+RL  J Bacteriol. 2004 Sep;186(17):5621-8.

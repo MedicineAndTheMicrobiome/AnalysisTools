@@ -1,0 +1,17 @@
+ID  hydr_PhnA
+AC  TIGR02335
+DE  phosphonoacetate hydrolase
+AU  Haft DH
+TC  407.55 407.55
+NC  84.50 84.50
+AL  clustalw_manual
+IT  equivalog
+EN  phosphonoacetate hydrolase
+GS  phnA
+EC  3.11.1.2
+TP  TIGRFAMs
+CC  This family consists of examples of phosphonoacetate hydrolase, an enzyme specific for the cleavage of the C-P bond in phosphonoacetate. Phosphonates are organic compounds with a direct C-P bond that is far less labile that the C-O-P bonds of phosphate attachment sites. Phosphonates may be degraded for phosphorus and energy by broad spectrum C-P lyase encoded by large operon or by specific enzymes for some of the more common phosphonates in nature. This family represents an enzyme from the latter category. It may be found encoded near genes for phosphonate transport and for pther specific phosphonatases.
+RM  9300819
+RT  Cloning of the phosphonoacetate hydrolase gene from Pseudomonas fluorescens 23F encoding a new type of carbon-phosphorus bond cleaving enzyme and its expression in Escherichia coli and Pseudomonas putida.
+RA  Kulakova AN, Kulakov LA, Quinn JP.
+RL  Gene. 1997 Aug 11;195(1):49-53.

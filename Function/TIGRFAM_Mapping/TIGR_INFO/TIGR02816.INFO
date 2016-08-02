@@ -1,0 +1,11 @@
+ID  pfaB_fam
+AC  TIGR02816
+DE  PfaB family protein
+AU  Haft DH
+TC  144.30 144.30
+NC  55.50 55.50
+AL  clustalw_manual
+IT  subfamily
+EN  PfaB family protein
+TP  TIGRFAMs
+CC  The protein PfaB is part of four gene locus, similar to polyketide biosynthesis systems, responsible for omega-3 polyunsaturated fatty acid biosynthesis in several high pressure and/or cold-adapted bacteria. The fairly permissive trusted cutoff set for this model allows detection of homologs encoded near homologs to other proteins of the locus: PfaA, PfaC, and/or PfaD. The likely role in every case is either polyunsaturated fatty acid or polyketide biosynthesis.

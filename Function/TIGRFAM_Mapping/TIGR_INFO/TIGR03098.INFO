@@ -1,0 +1,16 @@
+ID  ligase_PEP_1
+AC  TIGR03098
+DE  acyl-CoA ligase (AMP-forming), exosortase A-associated
+AU  Selengut J
+TC  592.35 592.35
+NC  525.25 525.25
+AL  muscle
+IT  hypoth_equivalog
+EN  acyl-CoA ligase (AMP-forming), exosortase A-associated
+TP  TIGRFAMs
+CC  This group of proteins contains an AMP-binding domain (PF00501) associated with acyl CoA-ligases.  These proteins are generally found in genomes containing the exosortase/PEP-CTERM protein expoert system [1], specifically the type 1 variant of this system described by the Genome Property GenProp0652.  When found in this context they are invariably present next to a decarboxylase enzyme.  A number of sequences from Burkholderia species also hit this model, but the genomic context is obviously different.  The hypothesis of a constant substrate for this family is only strong where the exosortase context is present.
+RN  [1]
+RM  PMID: 16930487
+RT  Exopolysaccharide-associated protein sorting in environmental organisms: the PEP-CTERM/EpsH system. Application of a novel phylogenetic profiling heuristic.
+RA  Haft DH, Paulsen IT, Ward N, Selengut JD
+RL  BMC Biol. 2006 Aug 24;4(1):29.

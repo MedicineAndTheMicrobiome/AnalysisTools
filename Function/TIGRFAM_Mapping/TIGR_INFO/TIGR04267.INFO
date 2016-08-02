@@ -1,0 +1,11 @@
+ID  mod_HExxH
+AC  TIGR04267
+DE  HEXXH motif domain
+AU  Haft DH
+TC  25.00 25.00
+NC  24.00 24.00
+AL  muscle_manual
+IT  domain
+EN  HEXXH motif domain
+TP  TIGRFAMs
+CC  Some proteins with this domain toward the C-terminus have an N-terminal region with a radical SAM domain (PF04055) and a SPASM domain (TIGR04085), a combination frequently associated with peptide modification. All seed alignment members, and all family members that are not fused to a radical SAM domain, have a motif HEXXH that suggests metalloprotease activity. A role in peptide or protein maturation is suggested.

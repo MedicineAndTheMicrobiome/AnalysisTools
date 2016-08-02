@@ -1,0 +1,16 @@
+ID  csrA
+AC  TIGR00202
+DE  carbon storage regulator
+AU  Loftus BJ
+TC  70.10 70.10
+NC  31.10 31.10
+AL  clustalw
+IT  equivalog
+EN  carbon storage regulator (csrA)
+GS  csrA
+TP  TIGRFAMs
+CC  Modulates the expression of genes in the glycogen biosynthesis and gluconeogenesis pathways by accelerating the 5'-to-3' degradation of these transcripts through selective RNA binding. The N-terminal end of the sequence (AA 11-45) contains the KH motif which is characteristic of a set of RNA-binding proteins.
+DR  ECOCYC; EG11447
+DR  InterPro; IPR003751; CsrA
+DR  PFAM; PF02599; CsrA
+DR  HAMAP; MF_00167; 171 of 174

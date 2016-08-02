@@ -1,0 +1,11 @@
+ID  tape_meas_nterm
+AC  TIGR02675
+DE  tape measure domain
+AU  Haft DH
+TC  21.35 21.35
+NC  19.05 19.05
+AL  clustalw_manual
+IT  domain
+EN  tape measure domain
+TP  TIGRFAMs
+CC  Proteins containing this domain are strictly bacterial, including bacteriophage and prophage regions of bacterial genomes. Most members are 800 to 1800 amino acids long, making them among the longest predicted proteins of their respective phage genomes, where they are encoded in tail protein regions. This roughly 80-residue domain described here usually begins between residue 100 and 250. Many members are known or predicted to act as phage tail tape measure proteins, a minor tail component that regulates tail length.

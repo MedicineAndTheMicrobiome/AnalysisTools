@@ -1,0 +1,16 @@
+ID  nat_prod_clost
+AC  TIGR04066
+DE  peptide maturation system protein, TIGR04066 family
+AU  Haft DH
+TC  200.00 200.00
+NC  125.00 125.00
+AL  muscle_manual
+IT  hypoth_equivalog
+EN  peptide maturation system protein, TIGR04066 family
+TP  TIGRFAMs
+CC  Members of this protein family occur in various Clostridial genomes, always in the context of a short peptide and a radical SAM protein predicted to modify the short peptide. PSI-BLAST analysis suggests a sequence relationship to archaeal proteins designated as subunits of an H+-transporting two-sector ATPase. The modified peptide is likely to be a bacteriocin, and this protein is a candidate to act in either maturation or immunity.
+RN  [1]
+RM  PMID:21478363 
+RT  Biological systems discovery in silico: radical S-adenosylmethionine protein families and their target peptides for posttranslational modification. 
+RA  Haft DH, Basu MK 
+RL  J Bacteriol. 2011 Jun;193(11):2745-55.

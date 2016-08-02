@@ -1,0 +1,12 @@
+ID  mob_myst_A
+AC  TIGR02612
+DE  mobile mystery protein A
+AU  Haft DH
+TC  122.60 122.60
+NC  76.25 76.25
+AL  clustalw
+IT  hypoth_equivalog
+EN  mobile mystery protein A
+TP  TIGRFAMs
+CC  Members of this protein family are found in mobization-related contexts more often than not, including within a CRISPR-associated gene region in Geobacter sulfurreducens PCA, and on plasmids in  Agrobacterium tumefaciens and Coxiella burnetii, always together with mobile mystery protein B, a member of the Fic protein family (PF02661). This protein is encoded by the upstream member of the gene pair and belongs to a family of helix-turn-helix DNA binding proteins (PF01381).
+DR  PFAM; PF01381; Helix-turn-helix

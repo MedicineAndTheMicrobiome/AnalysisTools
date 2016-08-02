@@ -1,0 +1,32 @@
+ID  glmM
+AC  TIGR01455
+DE  phosphoglucosamine mutase
+AU  Haft DH
+TC  447.55 447.55
+NC  339.25 339.25
+AL  clustalw
+IT  equivalog
+EN  phosphoglucosamine mutase
+GS  glmM
+EC  5.4.2.10
+TP  TIGRFAMs
+CC  This HMM describes GlmM, phosphoglucosamine mutase, also designated in MrsA and YhbF E. coli, UreC in Helicobacter pylori, and femR315 or FemD in Staphlococcus aureus. It converts glucosamine-6-phosphate to glucosamine-1-phosphate as part of the pathway toward UDP-N-acetylglucosamine for peptidoglycan and lipopolysaccharides.
+DR  EXPERIMENTAL; OMNI|SA2151; Staphylococcus aureus
+DR  EXPERIMENTAL; SP:P25177; Helicobacter pylori
+DR  EXPERIMENTAL; PIR:I41215; Escherichia coli
+RN  [1]
+RM  8550580
+RT  Characterization of the essential gene glmM encoding phosphoglucosamine mutase in Escherichia coli.
+RA  Mengin-Lecreulx D, van Heijenoort J.
+RL  J Biol Chem 1996 Jan 5;271(1):32-9
+RN  [2]
+RM  9171391
+RT  The Helicobacter pylori ureC gene codes for a phosphoglucosamine mutase.
+RA  De Reuse H, Labigne A, Mengin-Lecreulx D.
+RL  J Bacteriol 1997 Jun;179(11):3488-93
+RN  [3]
+RM  9286983
+RT  The femR315 gene from Staphylococcus aureus, the interruption of which results in reduced methicillin resistance, encodes a phosphoglucosamine mutase.
+RA  Jolly L, Wu S, van Heijenoort J, de Lencastre H, Mengin-Lecreulx D, Tomasz A.
+RL  J Bacteriol 1997 Sep;179(17):5321-5
+DR  HAMAP; MF_01554; 469 of 502

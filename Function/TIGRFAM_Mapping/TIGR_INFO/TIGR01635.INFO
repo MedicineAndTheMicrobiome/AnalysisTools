@@ -1,0 +1,11 @@
+ID  tail_comp_S
+AC  TIGR01635
+DE  phage virion morphogenesis protein
+AU  Haft DH, Fouts DE, Sunshine J
+TC  37.65 37.65
+NC  34.85 34.85
+AL  clustalw_manual
+IT  equivalog
+EN  phage virion morphogenesis (putative tail completion) protein
+TP  TIGRFAMs
+CC  This HMM describes protein S of phage P2, suggested experimentally to act in tail completion and stable head joining, and related proteins from a number of phage.

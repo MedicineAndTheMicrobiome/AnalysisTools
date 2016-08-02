@@ -1,0 +1,14 @@
+ID  pheT_arch
+AC  TIGR00471
+DE  phenylalanine--tRNA ligase, beta subunit
+AU  Haft DH
+TC  282.65 282.65
+NC  252.40 252.40
+AL  clustalw
+IT  equivalog
+EN  phenylalanyl-tRNA synthetase, beta subunit
+GS  pheT
+EC  6.1.1.20
+TP  TIGRFAMs
+CC  Every known example of the phenylalanyl-tRNA synthetase, except the monomeric form of mitochondrial, is an alpha 2 beta 2 heterotetramer. The beta subunits break into two subfamilies that are considerably different in sequence, length, and pattern of gaps. This HMM represents the subfamily that includes the beta subunit from eukaryotic cytosol, the Archaea, and spirochetes.
+DR  HAMAP; MF_00284; 40 of 40

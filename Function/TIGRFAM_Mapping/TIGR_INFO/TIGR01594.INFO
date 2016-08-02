@@ -1,0 +1,11 @@
+ID  holin_lambda
+AC  TIGR01594
+DE  phage holin, lambda family
+AU  Haft DH, Fouts DE
+TC  55.05 55.05
+NC  33.15 33.15
+AL  clustalw_manual
+IT  equivalog
+EN  phage holin, lambda family
+TP  TIGRFAMs
+CC  This HMM represents one of a large number of mutally dissimilar families of phage holins. Holins act against the host cell membrane to allow lytic enzymes of the phage to reach the bacterial cell wall. This family includes the product of the S gene of phage lambda.

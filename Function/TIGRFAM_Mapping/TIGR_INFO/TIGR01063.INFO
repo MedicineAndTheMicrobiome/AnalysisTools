@@ -1,0 +1,13 @@
+ID  gyrA
+AC  TIGR01063
+DE  DNA gyrase, A subunit
+AU  Haft DH
+TC  877.00 877.00
+NC  874.00 874.00
+AL  clustalw
+IT  equivalog
+EN  DNA gyrase, A subunit
+GS  gyrA
+EC  5.99.1.3
+TP  TIGRFAMs
+CC  This model describes the common type II DNA topoisomerase (DNA gyrase). Two apparently independently arising families, one in the Proteobacteria and one in Gram-positive lineages, are both designated toposisomerase IV.

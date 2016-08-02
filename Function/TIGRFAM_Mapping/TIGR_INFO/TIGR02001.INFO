@@ -1,0 +1,11 @@
+ID  gcw_chp
+AC  TIGR02001
+DE  conserved hypothetical protein
+AU  Haft DH
+TC  47.15 47.15
+NC  34.75 34.75
+AL  clustalw_manual
+IT  subfamily
+EN  conserved hypothetical protein, proteobacterial
+TP  TIGRFAMs
+CC  This HMM represents a conserved hypothetical protein about 240 residues in length found so far in Proteobacteria including Shewanella oneidensis, Ralstonia solanacearum, and Colwellia psychrerythraea, usually as part of a paralogous family. The function is unknown.

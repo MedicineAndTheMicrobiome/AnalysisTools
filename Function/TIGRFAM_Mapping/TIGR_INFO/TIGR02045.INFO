@@ -1,0 +1,18 @@
+ID  P_fruct_ADP
+AC  TIGR02045
+DE  ADP-specific phosphofructokinase
+AU  Haft DH
+TC  408.10 408.10
+NC  404.30 404.30
+AL  clustalw
+IT  equivalog
+EN  ADP-specific phosphofructokinase
+GS  pfkC
+EC  2.7.1.146
+TP  TIGRFAMs
+CC  Phosphofructokinase is a key enzyme of glycolysis. The phosphate group donor for different subtypes of phosphofructokinase can be ATP, ADP, or pyrophosphate. This family consists of ADP-dependent phosphofructokinases. Members are more similar to ADP-dependent glucokinases (excluded from this family) than to other phosphofructokinases.
+RM  11342216
+RT  Sequencing, expression, characterisation and phylogeny of the ADP-dependent phosphofructokinase from the hyperthermophilic, euryarchaeal Thermococcus zilligii.
+RA  Ronimus RS, de Heus E, Morgan HW.
+RL  Biochim Biophys Acta. 2001 Feb 16;1517(3):384-91.
+DR  HAMAP; MF_00561; 8 of 8

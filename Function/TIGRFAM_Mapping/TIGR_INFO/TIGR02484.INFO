@@ -1,0 +1,23 @@
+ID  CitB
+AC  TIGR02484
+DE  CitB domain protein
+AU  Selengut J
+TC  246.60 246.60
+NC  166.20 166.20
+AL  clustalw
+IT  subfamily_domain
+EN  CitB domain protein
+TP  TIGRFAMs
+CC  This model identifies proteins of two distinct names which may or may not have two distinct functions.
+CC  CitB [1] has been identified in salmonella and E. coli as the signal transduction component of a two-component system for citrate in which CitA acts as a citrate transporter.
+CC  CobZ is essential for cobalamin biosynthesis (by knockout of the R. capsulatus gene [2]) and is complemented by the characterized precorrin 3B synthase CobG.  The enzyme has been shown to contain flavin, heme and Fe-S cluster cofactors and is believed to require dioxygen as a substrate.  This model identifies the C-terminal domain of the R. capsulatus CobZ, which, in most other species exists as a separate gene adjacent to CobZ.
+RN  [1]
+RM  PMID: 1718953
+RT  Cloning and nucleotide sequence of the gene (citA) encoding a citrate carrier from Salmonella typhimurium.
+RA  Shimamoto T, Izawa H, Daimon H, Ishiguro N, Shinagawa M, Sakano Y, Tsuda M, Tsuchiya T.
+RL  J Biochem (Tokyo). 1991 Jul;110(1):22-8.
+RN  [2]
+RM  PMID: 15525640
+RT  Identification and characterization of a novel vitamin B12 (cobalamin) biosynthetic enzyme (CobZ) from Rhodobacter capsulatus, containing flavin, heme, and Fe-S cofactors.
+RA  McGoldrick HM, Roessner CA, Raux E, Lawrence AD, McLean KJ, Munro AW, Santabarbara S, Rigby SE, Heathcote P, Scott AI, Warren MJ.
+RL  J Biol Chem. 2005 Jan 14;280(2):1086-94. Epub 2004 Nov 03.

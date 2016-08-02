@@ -1,0 +1,18 @@
+ID  CPSaseII_lrg
+AC  TIGR01369
+DE  carbamoyl-phosphate synthase, large subunit
+AU  Haft DH
+TC  1027.00 1027.00
+NC  469.10 469.10
+AL  clustalw_manual
+IT  equivalog_domain
+EN  carbamoyl-phosphate synthase, large subunit
+GS  carB
+EC  6.3.5.5
+TP  TIGRFAMs
+CC  Carbamoyl-phosphate synthase (CPSase) catalyzes the first committed step in pyrimidine, arginine, and urea biosynthesis. In general, it is a glutamine-dependent enzyme, EC 6.3.5.5, termed CPSase II in eukaryotes. An exception is the mammalian mitochondrial urea-cycle form,
+CC  CPSase I, in which the glutamine amidotransferase domain active site Cys on the small subunit has been lost, and the enzyme is ammonia-dependent. In both CPSase I and the closely related, glutamine-dependent CPSase III (allosterically activated by acetyl-glutamate) demonstrated in some other vertebrates, the small and large chain regions are fused in a single polypeptide chain. This HMM represents the large chain of glutamine-hydrolysing carbamoyl-phosphate synthases, or the corresponding regions of larger, multifunctional proteins, as found in all domains of life, and CPSase I forms are considered exceptions within the family.
+CC  In several thermophilic species (Methanobacterium thermoautotrophicum, Methanococcus jannaschii, Aquifex aeolicus), the large subunit appears split, at different points, into two separate genes.
+DR  EXCEPTION; SP|P31327; EC 6.3.4.16; Homo sapiens
+DR  EXPERIMENTAL; SP|P00968; Escherichia coli
+DR  HAMAP; MF_01210; 171 of 173

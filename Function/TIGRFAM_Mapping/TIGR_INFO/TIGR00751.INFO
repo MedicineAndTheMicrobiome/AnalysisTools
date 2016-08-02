@@ -1,0 +1,17 @@
+ID  menA
+AC  TIGR00751
+DE  1,4-dihydroxy-2-naphthoate octaprenyltransferase
+AU  Loftus BJ, Haft DH
+TC  102.15 102.15
+NC  88.15 88.15
+IT  equivalog
+EN  1,4-dihydroxy-2-naphthoate octaprenyltransferase
+GS  menA
+EC  2.5.1.74
+TP  TIGRFAMs
+CC  This membrane-associated enzyme converts 1,4-dihydroxy-2-naphthoic acid (DHNA) to demethylmenaquinone, a step in menaquinone biosynthesis.
+RM  98241547
+RT  Menaquinone (vitamin K2) biosynthesis: localization and characterization of the menA gene from Escherichia coli.
+RA  Suvarna K, Stevenson D, Meganathan R, Hudspeth ME
+RL  J Bacteriol 1998 May;180(10):2782-7
+DR  EXPERIMENTAL; EGAD|22028|EC3930; Escherichia coli

@@ -1,0 +1,11 @@
+ID  3a0106s03
+AC  TIGR00971
+DE  sulfate ABC transporter, sulfate-binding protein
+AU  Loftus BJ, Haft DH
+TC  155.50 155.50
+NC  135.25 135.25
+AL  clustalw_manual
+IT  subfamily
+EN  sulfate/thiosulfate-binding protein
+TP  TIGRFAMs
+CC  This HMM describes binding proteins functionally associated with the sulfate ABC transporter. In the model bacterium E. coli, two different members work with the same transporter; mutation analysis says each enables the uptake of both sulfate and thiosulfate. In many species, a single binding protein is found, and may be referred to in general terms as a sulfate ABC transporter sulfate-binding protein.

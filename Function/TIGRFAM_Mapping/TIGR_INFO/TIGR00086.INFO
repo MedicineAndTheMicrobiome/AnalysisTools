@@ -1,0 +1,17 @@
+ID  smpB
+AC  TIGR00086
+DE  SsrA-binding protein
+AU  Haft DH
+TC  119.10 119.10
+NC  82.35 82.35
+AL  msa_tigr
+IT  equivalog
+EN  SsrA-binding protein
+GS  smpB
+TP  TIGRFAMs
+CC  This model describes the SsrA-binding protein, also called tmRNA binding protein, small protein B, and SmpB. The small, stable RNA SsrA (also called tmRNA or 10Sa RNA) recognizes stalled ribosomes such as occur during translation from message that lacks a stop codon. It becomes charged with Ala like a tRNA, then acts as mRNA to resume translation started with the defective mRNA. The short C-terminal peptide tag added by the SsrA system marks the abortively translated protein for degradation. SmpB binds SsrA after its aminoacylation but before the coupling of the Ala to the nascent polypeptide chain and is an essential part of the SsrA peptide tagging system. SmpB has been associated with the survival of bacterial pathogens in conditions of stress. It is universal in the first 100 sequenced bacterial genomes.
+RM  99321766
+RT  SmpB, a unique RNA-binding protein essential for the peptide-tagging activity of SsrA (tmRNA).
+RA  Karzai AW, Susskind MM, Sauer RT
+RL  EMBO J 1999 Jul 1;18(13):3793-9
+DR  HAMAP; MF_00023; 537 of 544

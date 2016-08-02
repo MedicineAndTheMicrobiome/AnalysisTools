@@ -1,0 +1,15 @@
+ID  DHPS
+AC  TIGR01496
+DE  dihydropteroate synthase
+AU  Haft DH
+TC  162.60 162.60
+NC  92.70 92.70
+AL  clustalw_manual
+IT  equivalog
+EN  dihydropteroate synthase
+GS  folP
+EC  2.5.1.15
+TP  TIGRFAMs
+CC  This HMM represents dihydropteroate synthase, the enzyme that catalyzes the second to last step in folic acid biosynthesis. The gene is usually designated folP (folic acid biosynthsis) or sul (sulfanilamide resistance). This model represents one branch of the family of pterin-binding enzymes (PF00809) and of a cluster of dihydropteroate synthase and related enzymes (COG0294). Other members of PF00809 and  COG0294 are represented by HMM TIGR00284.
+DR  EXPERIMENTAL; SP|P05382; Streptococcus pneumoniae
+DR  EXPERIMENTAL; SP|P19539; Plasmid pGS05

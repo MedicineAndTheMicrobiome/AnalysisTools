@@ -1,0 +1,18 @@
+ID  cspD
+AC  TIGR02381
+DE  cold shock domain protein CspD
+AU  Haft DH
+TC  115.40 115.40
+NC  113.00 113.00
+AL  clustalw
+IT  equivalog
+EN  cold shock domain protein CspD
+GS  cspD
+TP  TIGRFAMs
+CC  This HMM represents what appears to be a phylogenetically distinct clade, containing E. coli CspD (SP|P24245) and related proteobacterial proteins within the larger family of cold shock domain proteins described by Pfam HMM PF00313. The gene symbol cspD may have been used idependently for other subfamilies of cold shock domain proteins, such as for B. subtilis CspD. These proteins typically are shorter than 70 amino acids. In E. coli, CspD is a stress response protein induced in stationary phase. This homodimer binds single-stranded DNA and appears to inhibit DNA replication [1].
+DR  PFAM; PF00313; CSD
+RN  [1]
+RM  11260474
+RT  CspD, a novel DNA replication inhibitor induced during the stationary phase in Escherichia coli.
+RA  Yamanaka K, Zheng W, Crooke E, Wang YH, Inouye M.
+RL  Mol Microbiol. 2001 Mar;39(6):1572-84.

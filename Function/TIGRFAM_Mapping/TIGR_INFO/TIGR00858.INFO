@@ -1,0 +1,14 @@
+ID  bioF
+AC  TIGR00858
+DE  8-amino-7-oxononanoate synthase
+AU  Haft DH
+TC  426.45 426.45
+NC  324.95 324.95
+AL  clustalw_manual
+IT  equivalog
+EN  8-amino-7-oxononanoate synthase
+GS  bioF
+EC  2.3.1.47
+TP  TIGRFAMs
+CC  7-keto-8-aminopelargonic acid synthetase is an alternate name.
+CC  This model represents 8-amino-7-oxononanoate synthase, the BioF protein of biotin biosynthesis. This model is based on a careful phylogenetic analysis to separate members of this family from 2-amino-3-ketobutyrate and other related pyridoxal phosphate-dependent enzymes. In several species, including Staphylococcus and Coxiella, a candidate 8-amino-7-oxononanoate synthase is confirmed by location in the midst of a biotin biosynthesis operon but scores below the trusted cutoff of this model.

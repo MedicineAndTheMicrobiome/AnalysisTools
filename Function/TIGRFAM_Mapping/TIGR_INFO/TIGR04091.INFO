@@ -1,0 +1,17 @@
+ID  LTA_dltB
+AC  TIGR04091
+DE  D-alanyl-lipoteichoic acid biosynthesis protein DltB
+AU  Haft DH
+TC  375.00 375.00
+NC  250.00 250.00
+AL  muscle_manual
+IT  equivalog
+EN  D-alanyl-lipoteichoic acid biosynthesis protein DltB
+GS  dltB
+TP  TIGRFAMs
+CC  Members of this protein family are DltB, part of a four-gene operon for D-alanyl-lipoteichoic acid biosynthesis that is present in the vast majority of low-GC Gram-positive organisms. This protein may be involved in transport of D-alanine across the plasma membrane.
+RN  [1]
+RM  PMID:9158726 
+RT  The dlt operon in the biosynthesis of D-alanyl-lipoteichoic acid in Lactobacillus casei. 
+RA  Neuhaus FC, Heaton MP, Debabov DV, Zhang Q 
+RL  Microb Drug Resist. 1996 Spring;2(1):77-84.

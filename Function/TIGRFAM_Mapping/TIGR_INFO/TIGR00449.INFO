@@ -1,0 +1,13 @@
+ID  tgt_general
+AC  TIGR00449
+DE  tRNA-guanine family transglycosylase
+AU  Anolik RT, Haft DH
+TC  47.60 47.60
+NC  22.35 22.35
+AL  clustalw
+IT  superfamily
+EN  tRNA-guanine family transglycosylase
+EC  2.4.2.-
+TP  TIGRFAMs
+CC  Different tRNA-guanine transglycosylases catalyze different tRNA base modifications. Two guanine base substitutions by different enzymes described by the model are involved in generating queuosine at position 34 in bacterial tRNAs and archaeosine at position 15 in archaeal tRNAs. This model is designed for fragment searching, so the superfamily is used loosely.
+DR  HAMAP; MF_01634; 32 of 32
