@@ -1,0 +1,37 @@
+
+How to Generate a Consensus Fasta from a Position Profile
+
+1.)  Select your set of sequences you would like to have represented in the consensus.
+	a.)  If you have a very large sample of sequences you may want to remove the redundant sequences, but do *not* remove all redundancies, or else you will not have a representative sample of your population.  If your set of sequences is not representative of the population, performing the step involving thresholding based on positional base composition will resulte in a biased consensus.
+	b.)  Place sequences into a multi-fasta file.
+
+2.)  Using clustalw or any other multiple sequence alignment tool which can produce a clustalw .aln file, generate your alignment.
+
+3.)  Check to see if you have any unexpected significant divisions in your sample, ie multiple strains with significant differences in sequence similarity.  If so, you may want to separate you sample into multiple consensus to reduce the number of ambiguity codes that need to be used to represent your sample.
+
+You can use the following tools to estimate the distance between sequences and to generate a dendrogram.
+	a.) ClustalALN_to_R_distanceMatrix.pl
+	b.) QuickPlot_DistanceMatrix.r
+
+The advantage of using the dendrogram generated with these tools instead of those built by clustalw is that the distances are represented as percent differences along the side of the graphic.  The maximum percent distance between sequences will be a lower bound for the percentage of ambiguity codes necessary to represent your sample in a consensus.  To design degenerate primers for a sequence, you would like to see your consensus at least ~93% free of ambiguity codes.  Designing degenerate primers for consensus sequences greater than ~7% is more difficult, unless the ambiguity codes are frequently clustered together along the sequence, leaving large enough conserved regions for primers to be binded.
+
+If you decide to break your sample into smaller groups, then perform steps 1 and 2, again for each subsample before continuing to step 4.
+
+4.)  Convert your .aln file into a profile
+	a.)  ClustalALN_to_PositionProfile.pl
+
+This will generate a position profile.  A position profile contains the count of the number of A,T,G,C or Gaps in each position.  
+
+5.)  Convert your position profile into a consensus fasta file:
+	a.)  Profile_To_ConsensusFASTA.pl
+
+You can use the output from this program as your template for degenerate primer design.  But you may want to sanity check the results by continuing with the steps below.
+
+6.)  If you want to make sure the number of ambiguity codes looks reasonable you can check the base composition with the following tool:
+	a.)  Report_Base_Composition.pl (this is in the FASTATools branch)
+
+7.)  If it looks like the number of ambiguous bases is too high (>13%), you can try to reduce the number of ambiguous bases in the consensus by removing low frequency alleles.  The following program lets you generate a new profile by either filtering (ie. Zeroing out) bases that do not exceed a nominal or percent cutoff.  Be careful setting this threshold too high to reduce your percentage of ambiguity codes.  Bases represented at less than 5% thresholding can be sequencing error.  But by using a threshold greater than 10%, you could be eliminating true genetic variations existent in the population.
+	a.) Filter_Profile_By_Threshold.pl
+
+8.)  Go to step 5 to generate a consensus using the output from the filtering code.
+
