@@ -1,0 +1,27 @@
+
+Factor information:
+
+    Patient   daynumber_for_collection    Host_Age     Host_Gender
+ p18    :11   Min.   : 0.000           Min.   : 1.20   M:56       
+ p3     :11   1st Qu.: 2.000           1st Qu.:21.00   F:68       
+ p12    : 9   Median : 3.000           Median :54.00              
+ p15    : 9   Mean   : 5.508           Mean   :46.63              
+ p20    : 9   3rd Qu.: 7.000           3rd Qu.:72.00              
+ p2     : 7   Max.   :22.000           Max.   :97.00              
+ (Other):68                                                       
+ Medical_complications Patient_diagnosis Post_visit_treament      Type       
+ Min.   :0.0000        Min.   :1.000     Min.   :0.000       Min.   :0.0000  
+ 1st Qu.:0.0000        1st Qu.:1.000     1st Qu.:3.000       1st Qu.:0.0000  
+ Median :1.0000        Median :1.000     Median :3.000       Median :1.0000  
+ Mean   :0.8065        Mean   :1.532     Mean   :2.718       Mean   :0.6694  
+ 3rd Qu.:1.0000        3rd Qu.:2.000     3rd Qu.:3.000       3rd Qu.:1.0000  
+ Max.   :2.0000        Max.   :3.000     Max.   :3.000       Max.   :1.0000  
+                                                                             
+ Vacc_status     Fever       SYMPTOM_COUGH  
+ N:100       Min.   :0.000   Min.   :0.000  
+ Y: 24       1st Qu.:1.000   1st Qu.:2.000  
+             Median :1.000   Median :2.000  
+             Mean   :1.468   Mean   :2.089  
+             3rd Qu.:2.000   3rd Qu.:3.000  
+             Max.   :3.000   Max.   :3.000  
+                                            

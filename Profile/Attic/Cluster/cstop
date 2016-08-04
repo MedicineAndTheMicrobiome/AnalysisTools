@@ -1,0 +1,185 @@
+cstop=function (T, D, pvalue=0.05)
+{
+ if (class(T)!="hclust")
+    stop ("Error: T is not hclust object")
+ if (class(D)!="dist")
+    stop ("Error: D is not dist object")
+ nlabels=length(T$labels)
+ if (dim(T$merge)[1]!=(nlabels-1))
+    stop ("Error: merges not equal to n-1")
+ if (sum(attr(D,"Labels")==T$labels)!=nlabels)
+    stop ("Error: hclust and dist do not match")
+ if (length(T$labels)<=3)
+    return (rep(1,length(T$labels)))
+
+ adj=rep(list(-1),nlabels-1)
+ for (i in 1:(nlabels-1)){
+     if (T$merge[i,1]<0){
+     	if (adj[[i]][[1]] == -1){
+	   adj[[i]][[1]]=abs(T$merge[i,1])
+	}else{
+	   stop ("Error 1 with adj list")
+	}
+     }else{
+	if (adj[[T$merge[i,1]]][[1]]==-1){
+	   stop ("Error 2 with adj list")
+	}else{
+	   adj[[i]]=adj[[T$merge[i,1]]]
+	}
+     }
+     if (T$merge[i,2]<0){
+     	if (adj[[i]][[1]] != -1){
+	   adj[[i]]=c(adj[[i]],abs(T$merge[i,2]))
+	}else{
+	   stop ("Error 3 with adj list")
+	}
+     }else{
+	if (adj[[T$merge[i,2]]][[1]]==-1){
+	   stop ("Error 4 with adj list")
+	}else{
+	   adj[[i]]=c(adj[[i]],adj[[T$merge[i,2]]])
+	}
+     }
+ }
+
+# print ("Done finding labels of children")
+ cnum=rep(-1,nlabels)
+ names(cnum)=T$labels
+ cand=c(nlabels-1)
+ ind=0
+ while (length(cand)>0){
+#       print (c("cand",cand))
+       cc=cand[1]
+       cand=cand[-1]
+       lc_ind=T$merge[cc,1]
+       if (lc_ind<0) {
+       	  lc_list=c(abs(lc_ind))
+       }else{
+          lc_list=adj[[lc_ind]]
+       }
+       rc_ind=T$merge[cc,2]
+       if (rc_ind<0) {
+          rc_list=c(abs(rc_ind))
+       }else{
+          rc_list=adj[[rc_ind]]
+       }
+       len_join=length(lc_list)+length(rc_list)
+       if (len_join<=3){
+       	  ind = ind+1
+       	  for (i in c(lc_list,rc_list)){
+	      cnum[i]=ind
+	  }
+       }else{
+          MA=myan(D=D,L=lc_list,R=rc_list)
+	  B=MA$B
+	  W=MA$W
+       	  Totaldeg=(len_join*(len_join-1))/2 - 1
+       	  if (length(lc_list)==1 || length(rc_list)==1){
+       	     Bdeg=1
+       	  }else{
+             Bdeg=2
+       	  }
+       	  Wdeg=Totaldeg-Bdeg
+	  B=B/Bdeg
+	  W=W/Wdeg
+       	  F=B/W
+	  pval=pf(F,Bdeg,Wdeg,lower.tail=FALSE)
+#	  print (c("cc",cc,"F",F,"pval",pval,"Bdeg",Bdeg,"Wdeg",Wdeg))
+	  if (pval<pvalue){
+	     if (lc_ind>0){
+	     	cand=c(cand,lc_ind)
+	     }else{
+	        ind=ind+1
+                cnum[abs(lc_ind)]=ind
+	     }
+	     if (rc_ind>0){
+	     	cand=c(cand,rc_ind)
+	     }else{
+	        ind=ind+1
+		cnum[abs(rc_ind)]=ind
+             }
+	  }else{
+	     ind=ind+1
+       	     for (i in c(lc_list,rc_list)){
+	     	  cnum[i]=ind
+	     }
+          }
+	}
+ }  
+ return (sort(cnum))
+}
+
+myan=function (D,L,R)
+{
+ if (class(D)!="dist")
+    stop ("Error: D is not dist object")
+
+ L=sort(L)
+ R=sort(R)
+
+ g1=c();
+ g2=c();
+ g3=c();
+
+ n=attr(D,"Size")
+ if(length(L)>1){
+    for (i in 1:(length(L))){
+     j=i+1
+     while(j<=length(L)){
+        g1=c(g1,D[n*(L[i]-1) - L[i]*(L[i]-1)/2 + L[j]-L[i]])
+	j=j+1
+       }
+     }
+ }
+
+ if(length(R)>1){
+   for (i in 1:(length(R))){
+    j=i+1
+    while(j<=length(R)){
+       g2=c(g2,D[n*(R[i]-1) - R[i]*(R[i]-1)/2 + R[j]-R[i]])
+       j=j+1
+    }
+   }
+ }
+
+ for (i in 1:length(L)){
+     li=L[i]
+     for (j in 1:length(R)){
+     	 rj=R[j]
+	 if(li<rj){
+	   r=li
+	   s=rj
+	 }else{
+	   r=rj
+	   s=li
+	 }
+     	 g3=c(g3,D[n*(r-1) - r*(r-1)/2 + s-r])
+     }
+ }
+
+ tot=c(g1,g2,g3)
+ av=mean(tot)
+ tot=tot-av
+ sstot=sum(tot*tot)
+ 
+ if(is.null(g1)&&is.null(g2)){
+     stop("Error: both lists are empty")
+ }
+
+ if(is.null(g1)&&!is.null(g2)){
+     ssbet=length(g2)*sum((mean(g2)-av)*(mean(g2)-av)) + length(g3)*sum((mean(g3)-av)*(mean(g3)-av))
+     ssw=sum((g2-mean(g2))*(g2-mean(g2))) + sum((g3-mean(g3))*(g3-mean(g3)))
+ }
+
+ if(!is.null(g1)&&is.null(g2)){
+     ssbet=length(g1)*sum((mean(g1)-av)*(mean(g1)-av)) + length(g3)*sum((mean(g3)-av)*(mean(g3)-av))
+     ssw=sum((g1-mean(g1))*(g1-mean(g1))) + sum((g3-mean(g3))*(g3-mean(g3)))
+ }
+
+ if(!is.null(g1)&&!is.null(g2)){
+     ssbet=length(g1)*sum((mean(g1)-av)*(mean(g1)-av)) + length(g2)*sum((mean(g2)-av)*(mean(g2)-av)) + length(g3)*sum((mean(g3)-av)*(mean(g3)-av))
+     ssw=sum((g1-mean(g1))*(g1-mean(g1))) + sum((g2-mean(g2))*(g2-mean(g2))) + sum((g3-mean(g3))*(g3-mean(g3)))
+ }
+
+ return (list(B=ssbet,W=ssw))
+}

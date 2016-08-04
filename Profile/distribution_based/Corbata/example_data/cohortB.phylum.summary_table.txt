@@ -1,0 +1,11 @@
+Sample	Total	Bacteria Acidobacteria	Bacteria Actinobacteria	Bacteria Bacteroidetes	Bacteria Cyanobacteria	Bacteria Firmicutes	Bacteria Fusobacteria	Bacteria Proteobacteria	Bacteria SR1	Bacteria Spirochaetes	Bacteria Synergistetes	Bacteria TM7	Bacteria domain:Bacteria	Unknown domain:Unknown
+P1	7308	0	2346	261	37	3856	26	571	0	0	0	58	125	28
+P2	7727	0	3391	25	15	4047	0	60	0	0	0	0	171	18
+P3	3128	0	377	57	0	1304	0	1350	0	0	0	0	39	1
+P4	7454	0	639	15	90	5938	1	646	0	0	0	0	116	9
+P5	8193	0	3783	306	0	3327	193	134	0	0	0	27	406	17
+P6	1300	0	136	107	0	853	27	163	1	0	0	1	12	0
+P7	5294	0	2434	90	4	2310	69	83	1	2	0	35	264	2
+P8	5895	0	1983	3	3	3602	2	140	0	0	0	0	151	11
+P9	5169	3	2862	10	14	1297	0	768	0	1	1	0	191	22
+P10	6830	0	2530	3	0	4064	3	57	0	0	0	1	163	9

@@ -1,0 +1,26 @@
+Version 1.1
+Release Date: June 2013
+
+This is the README file for the CORBATA(Core Biome Analysis Tool).
+
+Released packages can be downloaded from SourceForge.net:
+	http://sourceforge.net/projects/corbata/
+
+Additional information may be found at:
+	http://www.jcvi.org/cms/research/projects/corbata
+
+
+Distribution Structure
+======================
+
+NOTE: Please use the Unix command "tar -xvf Corbata_<release_date>.tgz" to uncompress the tar package.
+
+README		--	This file
+doc/         	-- 	Documentation regarding how to run scripts and description of outputs
+lib/		--	Standalone and other miscellaneous scripts
+example_data/	--	Example input files
+example_run/	--	Example scripts for invoking analyses
+Run_Single_SampleAnalyses.pl	--  Run through suite of single cohort analyses
+Run_Two_SampleComparisons.pl	--  Run through suite of two cohort comparison analyses
+
+Run the two above scripts to display usage and capabilities.

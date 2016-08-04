@@ -1,0 +1,11 @@
+Sample	Description	Region	Type	Day	Infection	UnitNames	Replicate
+01d0_202_V3V5	Day 0  replicate 1 Infected  Nasal Wash Sample for V3V5 region 	V3V5	Wash	0	I	1	1
+01d0_65_V1V3	Day 0 replicate 1 Infected  Nasal Wash Sample for V1V3 region 	V1V3	Wash	0	I	1	1
+01d0_65_V3V5	Day 0  replicate 2 Infected  Nasal Wash Sample for V3V5 region 	V3V5	Wash	0	I	1	1
+01d0_66_V1V3	Day 0 replicate 2 Infected  Nasal Wash Sample for V1V3 region 	V1V3	Wash	0	I	1	2
+01d0_66_V3V5	Day 0  replicate 3 Infected  Nasal Wash Sample for V3V5 region 	V3V5	Wash	0	I	1	2
+01d1_72_V1V3	Day 1 replicate 1 Infected  Nasal Wash Sample for V1V3 region 	V1V3	Wash	1	I	1	1
+01d1_73_V1V3	Day 1 replicate 2 Infected  Nasal Wash Sample for V1V3 region 	V1V3	Wash	1	I	1	2
+01d1_73_V3V5	Day 1  replicate 1 Infected  Nasal Wash Sample for V3V5 region 	V3V5	Wash	1	I	1	1
+01d1_74_V1V3	Day 1 replicate 3 Infected  Nasal Wash Sample for V1V3 region 	V1V3	Wash	1	I	1	3
+01d1_74_V3V5	Day 1  replicate 2 Infected  Nasal Wash Sample for V3V5 region 	V3V5	Wash	1	I	1	2

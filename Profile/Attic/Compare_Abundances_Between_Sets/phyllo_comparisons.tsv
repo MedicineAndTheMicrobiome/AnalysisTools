@@ -1,0 +1,19 @@
+sampleID	treatment 	location_city	trt_lvl	Drought_vs_Water	CA_DvsW	TXHF_DvsW	TXDE_DvsW
+PHYLLO12	drought	CA	0.5	1	2		
+PHYLLO14	drought	CA	0.5	1	2		
+PHYLLO16	drought	TX_DE	0.75	1			2
+PHYLLO18	drought	CA	0.5		 		
+PHYLLO22	drought	CA	0.5	1	2		
+PHYLLO24	drought	TX_DE	0.75	1			2
+PHYLLO25	drought	TX_DE	0.75	1			2
+PHYLLO28	drought	TX_HF	0.5	1		2	
+PHYLLO29	drought	TX_HF	0.5	1		2	
+PHYLLO09	watered	TX_HF	1	2		1	
+PHYLLO10	watered	TX_DE	1	2			1
+PHYLLO13	watered	CA	1	2	1		
+PHYLLO15	watered	TX_DE	1	2			1
+PHYLLO17	watered	CA	1		 		
+PHYLLO21	watered	CA	1	2	1		
+PHYLLO23	watered	TX_DE	1	2			1
+PHYLLO26	watered	TX_HF	1	2		1	
+PHYLLO27	watered	TX_HF	1	2		1	

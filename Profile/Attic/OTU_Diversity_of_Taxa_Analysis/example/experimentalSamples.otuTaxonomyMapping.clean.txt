@@ -1,0 +1,1403 @@
+OTU	Size	Taxonomy
+Otu0001	1470	Bacteria Proteobacteria Gammaproteobacteria Alteromonadales Alteromonadaceae Alishewanella
+Otu0002	625	Bacteria
+Otu0003	554	Bacteria Proteobacteria Betaproteobacteria Rhodocyclales Rhodocyclaceae
+Otu0004	457	Bacteria Gemmatimonadetes Gemmatimonadetes Gemmatimonadales Gemmatimonadaceae Gemmatimonas
+Otu0005	401	Bacteria
+Otu0006	389	Bacteria Actinobacteria Actinobacteria Solirubrobacterales
+Otu0007	387	Bacteria Cyanobacteria_Chloroplast Chloroplast Chloroplast
+Otu0008	351	Bacteria Acidobacteria Acidobacteria_Gp1 Granulicella
+Otu0009	301	Bacteria Cyanobacteria_Chloroplast Chloroplast Chloroplast
+Otu0010	286	Bacteria Actinobacteria Actinobacteria Actinomycetales Pseudonocardiaceae Actinomycetospora
+Otu0011	230	Bacteria
+Otu0012	196	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales Cytophagaceae Spirosoma
+Otu0013	174	Bacteria Bacteroidetes Bacteroidia Bacteroidales Porphyromonadaceae
+Otu0014	136	Bacteria
+Otu0015	119	Bacteria Actinobacteria Actinobacteria
+Otu0016	117	Bacteria
+Otu0017	107	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales Cytophagaceae
+Otu0018	106	Bacteria
+Otu0019	77	Bacteria Firmicutes Clostridia Clostridiales Lachnospiraceae
+Otu0020	65	Bacteria Bacteroidetes Bacteroidia Bacteroidales Prevotellaceae Prevotella
+Otu0021	65	Bacteria Acidobacteria Acidobacteria_Gp4 Gp4
+Otu0022	64	Bacteria
+Otu0023	52	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales Cytophagaceae Siphonobacter
+Otu0024	51	Bacteria
+Otu0025	51	Bacteria
+Otu0026	35	Bacteria Firmicutes Clostridia Clostridiales Ruminococcaceae Fastidiosipila
+Otu0027	33	Bacteria Firmicutes Clostridia Clostridiales Clostridiales_Incertae_Sedis_XI Helcococcus
+Otu0028	32	Bacteria Firmicutes Negativicutes Selenomonadales Veillonellaceae Selenomonas
+Otu0029	25	Bacteria Spirochaetes Spirochaetes Spirochaetales Spirochaetaceae Treponema
+Otu0030	24	Bacteria Actinobacteria Actinobacteria Actinomycetales Nocardioidaceae Nocardioides
+Otu0031	24	Bacteria Bacteroidetes Bacteroidia Bacteroidales
+Otu0032	21	Bacteria Bacteroidetes Bacteroidia Bacteroidales Prevotellaceae Prevotella
+Otu0033	21	Bacteria Firmicutes Clostridia Clostridiales Clostridiales_Incertae_Sedis_XIII Mogibacterium
+Otu0034	21	Bacteria
+Otu0035	20	Bacteria Proteobacteria Gammaproteobacteria Alteromonadales Alteromonadaceae Alishewanella
+Otu0036	19	Bacteria Bacteroidetes Bacteroidia Bacteroidales Porphyromonadaceae Tannerella
+Otu0037	18	Bacteria
+Otu0038	18	Bacteria Actinobacteria Actinobacteria Actinomycetales Propionibacteriaceae
+Otu0039	18	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales Cytophagaceae Dyadobacter
+Otu0040	17	Bacteria Actinobacteria Actinobacteria Actinomycetales Nocardiopsaceae Nocardiopsis
+Otu0041	17	Bacteria Firmicutes Negativicutes Selenomonadales Veillonellaceae Veillonella
+Otu0042	15	Bacteria Firmicutes Bacilli Bacillales Staphylococcaceae Jeotgalicoccus
+Otu0043	14	Bacteria Firmicutes Bacilli Lactobacillales Lactobacillaceae Lactobacillus
+Otu0044	14	Bacteria
+Otu0045	14	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0046	14	Bacteria Actinobacteria Actinobacteria Actinomycetales Actinomycetaceae Actinomyces
+Otu0047	13	Bacteria Actinobacteria Actinobacteria Actinomycetales Nocardiopsaceae Nocardiopsis
+Otu0048	13	Bacteria Proteobacteria Gammaproteobacteria Pasteurellales Pasteurellaceae Aggregatibacter
+Otu0049	13	Bacteria Firmicutes Clostridia Clostridiales
+Otu0050	13	Bacteria
+Otu0051	12	Bacteria Bacteroidetes Bacteroidia Bacteroidales Prevotellaceae Prevotella
+Otu0052	12	Bacteria Actinobacteria Actinobacteria Actinomycetales Propionibacteriaceae
+Otu0053	12	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales Chitinophagaceae
+Otu0054	11	Bacteria Firmicutes Bacilli Bacillales Bacillales_Incertae_Sedis_XII Exiguobacterium
+Otu0055	11	Bacteria Synergistetes Synergistia Synergistales Synergistaceae Jonquetella
+Otu0056	11	Bacteria Actinobacteria Actinobacteria Actinomycetales Pseudonocardiaceae Actinomycetospora
+Otu0057	11	Bacteria Acidobacteria Acidobacteria_Gp1
+Otu0058	11	Bacteria Proteobacteria Betaproteobacteria Neisseriales Neisseriaceae Aquaspirillum
+Otu0059	11	Bacteria Bacteroidetes Bacteroidia Bacteroidales Prevotellaceae Prevotella
+Otu0060	11	Bacteria
+Otu0061	10	Bacteria Bacteroidetes Bacteroidia Bacteroidales Prevotellaceae Prevotella
+Otu0062	10	Bacteria Proteobacteria
+Otu0063	10	Bacteria Bacteroidetes Bacteroidia Bacteroidales Prevotellaceae Prevotella
+Otu0064	10	Bacteria Proteobacteria Betaproteobacteria Rhodocyclales Rhodocyclaceae
+Otu0065	10	Bacteria
+Otu0066	9	Bacteria Bacteroidetes Flavobacteria Flavobacteriales Flavobacteriaceae
+Otu0067	9	Bacteria
+Otu0068	9	Bacteria Actinobacteria Actinobacteria Actinomycetales Corynebacteriaceae Corynebacterium
+Otu0069	9	Bacteria Firmicutes Clostridia Clostridiales Ruminococcaceae
+Otu0070	9	Bacteria Firmicutes Bacilli Lactobacillales Aerococcaceae Eremococcus
+Otu0071	8	Bacteria Firmicutes Negativicutes Selenomonadales Veillonellaceae Dialister
+Otu0072	8	Bacteria Firmicutes Bacilli Bacillales
+Otu0073	8	Bacteria Firmicutes Clostridia Clostridiales
+Otu0074	8	Bacteria Actinobacteria Actinobacteria Actinomycetales Pseudonocardiaceae Actinomycetospora
+Otu0075	8	Bacteria
+Otu0076	8	Bacteria
+Otu0077	7	Bacteria Actinobacteria Actinobacteria Actinomycetales Actinomycetaceae Actinomyces
+Otu0078	7	Bacteria Proteobacteria Gammaproteobacteria Pseudomonadales Moraxellaceae
+Otu0079	7	Bacteria
+Otu0080	7	Bacteria Proteobacteria
+Otu0081	7	Bacteria
+Otu0082	7	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Alcaligenaceae
+Otu0083	7	Bacteria
+Otu0084	7	Bacteria Bacteroidetes Bacteroidia Bacteroidales Porphyromonadaceae
+Otu0085	7	Bacteria
+Otu0086	6	Bacteria Actinobacteria Actinobacteria Actinomycetales Actinomycetaceae Actinomyces
+Otu0087	6	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0088	6	Bacteria
+Otu0089	6	Bacteria Firmicutes Bacilli Lactobacillales Lactobacillaceae Lactobacillus
+Otu0090	6	Bacteria
+Otu0091	6	Bacteria Firmicutes Clostridia Clostridiales Ruminococcaceae
+Otu0092	6	Bacteria
+Otu0093	6	Bacteria Bacteroidetes Flavobacteria Flavobacteriales Flavobacteriaceae
+Otu0094	5	Bacteria Proteobacteria Deltaproteobacteria Myxococcales Kofleriaceae Kofleria
+Otu0095	5	Bacteria Actinobacteria Actinobacteria
+Otu0096	5	Bacteria Bacteroidetes Bacteroidetes_incertae_sedis Ohtaekwangia
+Otu0097	5	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0098	5	Bacteria
+Otu0099	5	Bacteria
+Otu0100	5	Bacteria Proteobacteria Gammaproteobacteria
+Otu0101	5	Bacteria
+Otu0102	5	Bacteria Firmicutes Clostridia Clostridiales Lachnospiraceae
+Otu0103	5	Bacteria Bacteroidetes Bacteroidia Bacteroidales Prevotellaceae Prevotella
+Otu0104	5	Bacteria Spirochaetes Spirochaetes Spirochaetales Spirochaetaceae
+Otu0105	5	Bacteria Proteobacteria
+Otu0106	5	Bacteria Firmicutes Clostridia Clostridiales Peptococcaceae_1 Peptococcus
+Otu0107	4	Bacteria Firmicutes Clostridia Clostridiales Eubacteriaceae Eubacterium
+Otu0108	4	Bacteria Firmicutes
+Otu0109	4	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0110	4	Bacteria Fusobacteria Fusobacteria Fusobacteriales Leptotrichiaceae Sneathia
+Otu0111	4	Bacteria Firmicutes Bacilli Bacillales Bacillales_Incertae_Sedis_XI Gemella
+Otu0112	4	Bacteria
+Otu0113	4	Bacteria
+Otu0114	4	Bacteria
+Otu0115	4	Bacteria
+Otu0116	4	Bacteria
+Otu0117	4	Bacteria Bacteroidetes Bacteroidia Bacteroidales Porphyromonadaceae Porphyromonas
+Otu0118	4	Bacteria
+Otu0119	4	Bacteria Firmicutes Bacilli Bacillales
+Otu0120	4	Bacteria Actinobacteria Actinobacteria Actinomycetales Actinomycetaceae Varibaculum
+Otu0121	4	Bacteria Bacteroidetes
+Otu0122	4	Bacteria
+Otu0123	4	Bacteria
+Otu0124	4	Bacteria Firmicutes Clostridia Clostridiales Ruminococcaceae
+Otu0125	4	Bacteria Actinobacteria Actinobacteria Actinomycetales Propionibacteriaceae
+Otu0126	4	Bacteria
+Otu0127	4	Bacteria Proteobacteria Gammaproteobacteria Pasteurellales Pasteurellaceae Haemophilus
+Otu0128	4	Bacteria
+Otu0129	4	Bacteria Proteobacteria
+Otu0130	4	Bacteria Deinococcus-Thermus Deinococci Deinococcales Trueperaceae Truepera
+Otu0131	4	Bacteria
+Otu0132	4	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales Cytophagaceae Spirosoma
+Otu0133	4	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0134	4	Bacteria Proteobacteria
+Otu0135	4	Bacteria Bacteroidetes Bacteroidia Bacteroidales Prevotellaceae Prevotella
+Otu0136	4	Bacteria Bacteroidetes Bacteroidia Bacteroidales Porphyromonadaceae Porphyromonas
+Otu0137	4	Bacteria
+Otu0138	4	Bacteria Proteobacteria
+Otu0139	4	Bacteria Firmicutes Clostridia Clostridiales Peptostreptococcaceae Peptostreptococcaceae_incertae_sedis
+Otu0140	4	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu0141	4	Bacteria Actinobacteria Actinobacteria Actinomycetales Nocardioidaceae Nocardioides
+Otu0142	4	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales Cytophagaceae Siphonobacter
+Otu0143	4	Bacteria Bacteroidetes Flavobacteria Flavobacteriales Flavobacteriaceae
+Otu0144	4	Bacteria
+Otu0145	4	Bacteria
+Otu0146	4	Bacteria
+Otu0147	4	Bacteria Firmicutes
+Otu0148	4	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0149	3	Bacteria
+Otu0150	3	Bacteria Bacteroidetes Bacteroidia Bacteroidales
+Otu0151	3	Bacteria Firmicutes Negativicutes Selenomonadales Veillonellaceae Dialister
+Otu0152	3	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales Chitinophagaceae Gracilimonas
+Otu0153	3	Bacteria Gemmatimonadetes Gemmatimonadetes Gemmatimonadales Gemmatimonadaceae Gemmatimonas
+Otu0154	3	Bacteria Spirochaetes Spirochaetes Spirochaetales Spirochaetaceae Treponema
+Otu0155	3	Bacteria Spirochaetes Spirochaetes Spirochaetales Spirochaetaceae Treponema
+Otu0156	3	Bacteria Firmicutes Bacilli Bacillales Bacillales_Incertae_Sedis_XI Gemella
+Otu0157	3	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu0158	3	Bacteria Proteobacteria Gammaproteobacteria Oceanospirillales Oceanospirillaceae Marinomonas
+Otu0159	3	Bacteria Fusobacteria Fusobacteria Fusobacteriales
+Otu0160	3	Bacteria
+Otu0161	3	Bacteria Proteobacteria Alphaproteobacteria
+Otu0162	3	Bacteria Deinococcus-Thermus Deinococci Thermales Thermaceae Thermus
+Otu0163	3	Bacteria
+Otu0164	3	Bacteria
+Otu0165	3	Bacteria Firmicutes Bacilli Lactobacillales Lactobacillaceae Lactobacillus
+Otu0166	3	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0167	3	Bacteria Proteobacteria Gammaproteobacteria Pasteurellales Pasteurellaceae
+Otu0168	3	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0169	3	Bacteria
+Otu0170	3	Bacteria Proteobacteria
+Otu0171	3	Bacteria
+Otu0172	3	Bacteria Proteobacteria
+Otu0173	3	Bacteria
+Otu0174	3	Bacteria
+Otu0175	3	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0176	3	Bacteria Actinobacteria Actinobacteria Actinomycetales Pseudonocardiaceae Actinomycetospora
+Otu0177	3	Bacteria Acidobacteria Acidobacteria_Gp1
+Otu0178	3	Bacteria Actinobacteria Actinobacteria Actinomycetales Actinomycetaceae Mobiluncus
+Otu0179	3	Bacteria Actinobacteria Actinobacteria
+Otu0180	3	Bacteria Bacteroidetes Flavobacteria Flavobacteriales Flavobacteriaceae
+Otu0181	3	Bacteria Acidobacteria Acidobacteria_Gp6 Gp6
+Otu0182	3	Bacteria
+Otu0183	3	Bacteria Synergistetes Synergistia Synergistales Synergistaceae Jonquetella
+Otu0184	3	Bacteria Proteobacteria Gammaproteobacteria
+Otu0185	3	Bacteria Bacteroidetes Bacteroidia Bacteroidales Prevotellaceae Paraprevotella
+Otu0186	3	Bacteria
+Otu0187	3	Bacteria Firmicutes Bacilli Bacillales
+Otu0188	3	Bacteria
+Otu0189	3	Bacteria Actinobacteria Actinobacteria Actinomycetales Actinomycetaceae Arcanobacterium
+Otu0190	3	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales Cytophagaceae Siphonobacter
+Otu0191	3	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu0192	3	Bacteria
+Otu0193	3	Bacteria Bacteroidetes Bacteroidia Bacteroidales Prevotellaceae Prevotella
+Otu0194	3	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales Cytophagaceae Spirosoma
+Otu0195	3	Bacteria
+Otu0196	3	Bacteria Firmicutes Clostridia Clostridiales
+Otu0197	3	Bacteria Actinobacteria Actinobacteria Bifidobacteriales Bifidobacteriaceae Bifidobacterium
+Otu0198	3	Bacteria Bacteroidetes Bacteroidia Bacteroidales
+Otu0199	3	Bacteria Bacteroidetes Bacteroidia Bacteroidales Porphyromonadaceae Porphyromonas
+Otu0200	3	Bacteria
+Otu0201	3	Bacteria Actinobacteria Actinobacteria Actinomycetales Pseudonocardiaceae Actinomycetospora
+Otu0202	3	Bacteria
+Otu0203	3	Bacteria
+Otu0204	3	Bacteria Spirochaetes Spirochaetes Spirochaetales Spirochaetaceae Treponema
+Otu0205	3	Bacteria Actinobacteria Actinobacteria Coriobacteriales Coriobacteriaceae Eggerthella
+Otu0206	3	Bacteria Bacteroidetes
+Otu0207	3	Bacteria
+Otu0208	3	Bacteria Firmicutes Bacilli Bacillales Bacillaceae_2
+Otu0209	3	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu0210	3	Bacteria Actinobacteria Actinobacteria Actinomycetales Pseudonocardiaceae Actinomycetospora
+Otu0211	3	Bacteria Firmicutes Clostridia Clostridiales Eubacteriaceae Eubacterium
+Otu0212	3	Bacteria Proteobacteria
+Otu0213	3	Bacteria Acidobacteria Acidobacteria_Gp1
+Otu0214	3	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales Chitinophagaceae Gracilimonas
+Otu0215	3	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0216	3	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0217	3	Bacteria
+Otu0218	3	Bacteria Actinobacteria Actinobacteria Actinomycetales Nocardiopsaceae Nocardiopsis
+Otu0219	3	Bacteria Proteobacteria
+Otu0220	3	Bacteria Bacteroidetes Flavobacteria Flavobacteriales Flavobacteriaceae
+Otu0221	3	Bacteria Firmicutes Bacilli Lactobacillales Leuconostocaceae Weissella
+Otu0222	3	Bacteria Firmicutes Clostridia Clostridiales Clostridiales_Incertae_Sedis_XIII Mogibacterium
+Otu0223	2	Bacteria Firmicutes
+Otu0224	2	Bacteria Firmicutes Clostridia Clostridiales Eubacteriaceae Eubacterium
+Otu0225	2	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales Chitinophagaceae
+Otu0226	2	Bacteria
+Otu0227	2	Bacteria
+Otu0228	2	Bacteria Chloroflexi Thermomicrobia
+Otu0229	2	Bacteria
+Otu0230	2	Bacteria Firmicutes Clostridia Clostridiales Incertae_Sedis_XI Murdochiella
+Otu0231	2	Bacteria Actinobacteria Actinobacteria Actinomycetales Pseudonocardiaceae Actinomycetospora
+Otu0232	2	Bacteria
+Otu0233	2	Bacteria Proteobacteria Alphaproteobacteria Rhodobacterales Rhodobacteraceae
+Otu0234	2	Bacteria Firmicutes Clostridia Clostridiales Ruminococcaceae Saccharofermentans
+Otu0235	2	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales Chitinophagaceae
+Otu0236	2	Bacteria
+Otu0237	2	Bacteria
+Otu0238	2	Bacteria
+Otu0239	2	Bacteria
+Otu0240	2	Bacteria Firmicutes Clostridia Clostridiales
+Otu0241	2	Bacteria Bacteroidetes Bacteroidia Bacteroidales Porphyromonadaceae Porphyromonas
+Otu0242	2	Bacteria
+Otu0243	2	Bacteria Firmicutes Clostridia Clostridiales
+Otu0244	2	Bacteria Bacteroidetes Bacteroidia Bacteroidales Porphyromonadaceae Porphyromonas
+Otu0245	2	Bacteria Proteobacteria Gammaproteobacteria
+Otu0246	2	Bacteria
+Otu0247	2	Bacteria
+Otu0248	2	Bacteria Proteobacteria Betaproteobacteria Burkholderiales
+Otu0249	2	Bacteria Firmicutes Bacilli Lactobacillales
+Otu0250	2	Bacteria Firmicutes Clostridia Clostridiales
+Otu0251	2	Bacteria
+Otu0252	2	Bacteria Firmicutes Bacilli Bacillales
+Otu0253	2	Bacteria Firmicutes Bacilli Bacillales Paenibacillaceae_1 Paenibacillus
+Otu0254	2	Bacteria
+Otu0255	2	Bacteria Proteobacteria Gammaproteobacteria Xanthomonadales Xanthomonadaceae
+Otu0256	2	Bacteria
+Otu0257	2	Bacteria Bacteroidetes Bacteroidia Bacteroidales Porphyromonadaceae Paludibacter
+Otu0258	2	Bacteria
+Otu0259	2	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales Cytophagaceae
+Otu0260	2	Bacteria
+Otu0261	2	Bacteria
+Otu0262	2	Bacteria Actinobacteria Actinobacteria Solirubrobacterales
+Otu0263	2	Bacteria Firmicutes Bacilli Bacillales Bacillales_Incertae_Sedis_XI Gemella
+Otu0264	2	Bacteria
+Otu0265	2	Bacteria Proteobacteria Betaproteobacteria
+Otu0266	2	Bacteria Actinobacteria Actinobacteria Actinomycetales Propionibacteriaceae Propionibacterium
+Otu0267	2	Bacteria Proteobacteria Betaproteobacteria
+Otu0268	2	Bacteria Proteobacteria Gammaproteobacteria Pseudomonadales Pseudomonadaceae
+Otu0269	2	Bacteria
+Otu0270	2	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0271	2	Bacteria
+Otu0272	2	Bacteria Proteobacteria Betaproteobacteria Neisseriales Neisseriaceae Simonsiella
+Otu0273	2	Bacteria Proteobacteria Betaproteobacteria Burkholderiales
+Otu0274	2	Bacteria Firmicutes Negativicutes Selenomonadales Veillonellaceae Dialister
+Otu0275	2	Bacteria
+Otu0276	2	Bacteria Bacteroidetes Bacteroidia Bacteroidales
+Otu0277	2	Bacteria Bacteroidetes Bacteroidia Bacteroidales
+Otu0278	2	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0279	2	Bacteria
+Otu0280	2	Bacteria Bacteroidetes Bacteroidia Bacteroidales
+Otu0281	2	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0282	2	Bacteria Proteobacteria Alphaproteobacteria Rhizobiales
+Otu0283	2	Bacteria
+Otu0284	2	Bacteria Proteobacteria Gammaproteobacteria Xanthomonadales Xanthomonadaceae Lysobacter
+Otu0285	2	Bacteria Proteobacteria Gammaproteobacteria Cardiobacteriales Cardiobacteriaceae Cardiobacterium
+Otu0286	2	Bacteria
+Otu0287	2	Bacteria
+Otu0288	2	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales Cytophagaceae Siphonobacter
+Otu0289	2	Bacteria Firmicutes Clostridia Clostridiales Clostridiales_Incertae_Sedis_XIII Mogibacterium
+Otu0290	2	Bacteria Bacteroidetes Bacteroidia Bacteroidales Prevotellaceae Prevotella
+Otu0291	2	Bacteria Chloroflexi
+Otu0292	2	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0293	2	Bacteria Cyanobacteria_Chloroplast Cyanobacteria
+Otu0294	2	Bacteria Firmicutes Negativicutes Selenomonadales
+Otu0295	2	Bacteria Firmicutes Negativicutes Selenomonadales Veillonellaceae Dialister
+Otu0296	2	Bacteria Bacteroidetes Bacteroidia Bacteroidales Prevotellaceae
+Otu0297	2	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales Cytophagaceae Siphonobacter
+Otu0298	2	Bacteria
+Otu0299	2	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0300	2	Bacteria
+Otu0301	2	Bacteria Actinobacteria Actinobacteria
+Otu0302	2	Bacteria Chloroflexi
+Otu0303	2	Bacteria Actinobacteria Actinobacteria Actinomycetales Propionibacteriaceae Propionimicrobium
+Otu0304	2	Bacteria
+Otu0305	2	Bacteria Firmicutes Negativicutes Selenomonadales Veillonellaceae Anaeroglobus
+Otu0306	2	Bacteria
+Otu0307	2	Bacteria Bacteroidetes Bacteroidia Bacteroidales
+Otu0308	2	Bacteria
+Otu0309	2	Bacteria Proteobacteria Betaproteobacteria Neisseriales Neisseriaceae Aquaspirillum
+Otu0310	2	Bacteria Firmicutes
+Otu0311	2	Bacteria
+Otu0312	2	Bacteria Bacteroidetes Bacteroidia Bacteroidales Porphyromonadaceae Porphyromonas
+Otu0313	2	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0314	2	Bacteria
+Otu0315	2	Bacteria Spirochaetes Spirochaetes Spirochaetales Spirochaetaceae Treponema
+Otu0316	2	Bacteria Proteobacteria
+Otu0317	2	Bacteria Firmicutes Negativicutes Selenomonadales Veillonellaceae Selenomonas
+Otu0318	2	Bacteria
+Otu0319	2	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales Cytophagaceae
+Otu0320	2	Bacteria
+Otu0321	2	Bacteria Actinobacteria Actinobacteria Actinomycetales Nocardiopsaceae
+Otu0322	2	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu0323	2	Bacteria Bacteroidetes Flavobacteria Flavobacteriales Flavobacteriaceae Epilithonimonas
+Otu0324	2	Bacteria Proteobacteria Betaproteobacteria Burkholderiales
+Otu0325	2	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales Cytophagaceae Hymenobacter
+Otu0326	2	Bacteria
+Otu0327	2	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0328	2	Bacteria
+Otu0329	2	Bacteria
+Otu0330	2	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0331	2	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu0332	2	Bacteria Bacteroidetes Flavobacteria Flavobacteriales Flavobacteriaceae
+Otu0333	2	Bacteria Firmicutes Bacilli Lactobacillales Carnobacteriaceae Trichococcus
+Otu0334	2	Bacteria Armatimonadetes Armatimonadia Armatimonadales Armatimonadaceae Armatimonas_Armatimonadetes_gp1
+Otu0335	2	Bacteria
+Otu0336	2	Bacteria Acidobacteria Acidobacteria_Gp1
+Otu0337	2	Bacteria Proteobacteria Alphaproteobacteria Sphingomonadales
+Otu0338	2	Bacteria Actinobacteria Actinobacteria Actinomycetales Actinomycetaceae Actinomyces
+Otu0339	2	Bacteria Bacteroidetes
+Otu0340	2	Bacteria Firmicutes Clostridia Clostridiales Incertae_Sedis_XI Murdochiella
+Otu0341	2	Bacteria Proteobacteria
+Otu0342	2	Bacteria Bacteroidetes Flavobacteria Flavobacteriales Flavobacteriaceae
+Otu0343	2	Bacteria Firmicutes Negativicutes Selenomonadales Veillonellaceae Negativicoccus
+Otu0344	2	Bacteria
+Otu0345	2	Bacteria Firmicutes Clostridia Clostridiales Ruminococcaceae
+Otu0346	2	Bacteria Proteobacteria
+Otu0347	2	Bacteria
+Otu0348	2	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0349	2	Bacteria
+Otu0350	2	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0351	2	Bacteria Proteobacteria
+Otu0352	2	Bacteria Firmicutes Negativicutes Selenomonadales Veillonellaceae Megasphaera
+Otu0353	2	Bacteria
+Otu0354	2	Bacteria Firmicutes Bacilli Bacillales Paenibacillaceae_1 Paenibacillus
+Otu0355	2	Bacteria Bacteroidetes Flavobacteria Flavobacteriales Flavobacteriaceae
+Otu0356	2	Bacteria Proteobacteria Gammaproteobacteria
+Otu0357	2	Bacteria Proteobacteria Gammaproteobacteria
+Otu0358	2	Bacteria Actinobacteria Actinobacteria Actinomycetales Actinomycetaceae Actinomyces
+Otu0359	2	Bacteria Proteobacteria
+Otu0360	2	Bacteria
+Otu0361	2	Bacteria
+Otu0362	2	Bacteria Proteobacteria Gammaproteobacteria
+Otu0363	2	Bacteria Acidobacteria Acidobacteria_Gp1
+Otu0364	2	Bacteria
+Otu0365	2	Bacteria Bacteroidetes Bacteroidia Bacteroidales Prevotellaceae
+Otu0366	2	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0367	2	Bacteria Bacteroidetes Flavobacteria Flavobacteriales Flavobacteriaceae
+Otu0368	2	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0369	2	Bacteria Firmicutes
+Otu0370	2	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0371	2	Bacteria Actinobacteria Actinobacteria Solirubrobacterales Conexibacteraceae Conexibacter
+Otu0372	2	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales Chitinophagaceae Gracilimonas
+Otu0373	2	Bacteria Actinobacteria Actinobacteria
+Otu0374	2	Bacteria Bacteroidetes Flavobacteria Flavobacteriales Flavobacteriaceae
+Otu0375	2	Bacteria
+Otu0376	2	Bacteria
+Otu0377	2	Bacteria
+Otu0378	2	Bacteria Actinobacteria Actinobacteria Actinomycetales Micrococcaceae Renibacterium
+Otu0379	2	Bacteria Proteobacteria Betaproteobacteria
+Otu0380	2	Bacteria
+Otu0381	2	Bacteria
+Otu0382	2	Bacteria
+Otu0383	2	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0384	2	Bacteria
+Otu0385	2	Bacteria
+Otu0386	1	Bacteria Firmicutes Clostridia Clostridiales Clostridiales_Incertae_Sedis_XI Gallicola
+Otu0387	1	Bacteria
+Otu0388	1	Bacteria Firmicutes Clostridia Clostridiales
+Otu0389	1	Bacteria Bacteroidetes
+Otu0390	1	Bacteria Firmicutes Bacilli Lactobacillales Streptococcaceae Streptococcus
+Otu0391	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0392	1	Bacteria
+Otu0393	1	Bacteria Firmicutes Clostridia Clostridiales
+Otu0394	1	Bacteria Acidobacteria Acidobacteria_Gp7 Gp7
+Otu0395	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales Porphyromonadaceae
+Otu0396	1	Bacteria
+Otu0397	1	Bacteria Bacteroidetes
+Otu0398	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales Porphyromonadaceae
+Otu0399	1	Bacteria Bacteroidetes
+Otu0400	1	Bacteria Firmicutes Bacilli
+Otu0401	1	Bacteria
+Otu0402	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales Prevotellaceae
+Otu0403	1	Bacteria
+Otu0404	1	Bacteria
+Otu0405	1	Bacteria
+Otu0406	1	Bacteria
+Otu0407	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales
+Otu0408	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu0409	1	Bacteria Firmicutes Clostridia Clostridiales Peptostreptococcaceae Peptostreptococcaceae_incertae_sedis
+Otu0410	1	Bacteria
+Otu0411	1	Bacteria
+Otu0412	1	Bacteria Bacteroidetes Flavobacteria Flavobacteriales Flavobacteriaceae
+Otu0413	1	Bacteria Acidobacteria
+Otu0414	1	Bacteria Proteobacteria
+Otu0415	1	Bacteria
+Otu0416	1	Bacteria
+Otu0417	1	Bacteria
+Otu0418	1	Bacteria Acidobacteria Acidobacteria_Gp1 Granulicella
+Otu0419	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales
+Otu0420	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0421	1	Bacteria
+Otu0422	1	Bacteria Spirochaetes Spirochaetes Spirochaetales Spirochaetaceae Treponema
+Otu0423	1	Bacteria Bacteroidetes
+Otu0424	1	Bacteria Firmicutes Negativicutes Selenomonadales
+Otu0425	1	Bacteria
+Otu0426	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu0427	1	Bacteria Firmicutes Bacilli
+Otu0428	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu0429	1	Bacteria
+Otu0430	1	Bacteria
+Otu0431	1	Bacteria
+Otu0432	1	Bacteria Fusobacteria Fusobacteria Fusobacteriales Leptotrichiaceae Leptotrichia
+Otu0433	1	Bacteria Firmicutes
+Otu0434	1	Bacteria Firmicutes Clostridia Clostridiales
+Otu0435	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales
+Otu0436	1	Bacteria
+Otu0437	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0438	1	Bacteria
+Otu0439	1	Bacteria Bacteroidetes Flavobacteria Flavobacteriales Flavobacteriaceae
+Otu0440	1	Bacteria Proteobacteria
+Otu0441	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0442	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Alcaligenaceae
+Otu0443	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales
+Otu0444	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales
+Otu0445	1	Bacteria Acidobacteria Acidobacteria_Gp1
+Otu0446	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales Porphyromonadaceae Tannerella
+Otu0447	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales
+Otu0448	1	Bacteria Bacteroidetes
+Otu0449	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0450	1	Bacteria Proteobacteria
+Otu0451	1	Bacteria
+Otu0452	1	Bacteria Bacteroidetes
+Otu0453	1	Bacteria Gemmatimonadetes Gemmatimonadetes Gemmatimonadales Gemmatimonadaceae Gemmatimonas
+Otu0454	1	Bacteria
+Otu0455	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu0456	1	Bacteria
+Otu0457	1	Bacteria
+Otu0458	1	Bacteria Firmicutes Clostridia Clostridiales
+Otu0459	1	Bacteria Proteobacteria Alphaproteobacteria
+Otu0460	1	Bacteria Proteobacteria Betaproteobacteria
+Otu0461	1	Bacteria
+Otu0462	1	Bacteria
+Otu0463	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales
+Otu0464	1	Bacteria Firmicutes Clostridia Clostridiales
+Otu0465	1	Bacteria Bacteroidetes
+Otu0466	1	Bacteria Firmicutes Negativicutes Selenomonadales
+Otu0467	1	Bacteria
+Otu0468	1	Bacteria
+Otu0469	1	Bacteria Proteobacteria Betaproteobacteria
+Otu0470	1	Bacteria Firmicutes
+Otu0471	1	Bacteria Firmicutes Clostridia Clostridiales
+Otu0472	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales Prevotellaceae
+Otu0473	1	Bacteria
+Otu0474	1	Bacteria
+Otu0475	1	Bacteria Bacteroidetes Flavobacteria Flavobacteriales Flavobacteriaceae
+Otu0476	1	Bacteria Proteobacteria
+Otu0477	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0478	1	Bacteria
+Otu0479	1	Bacteria
+Otu0480	1	Bacteria
+Otu0481	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0482	1	Bacteria Proteobacteria Gammaproteobacteria Pseudomonadales Pseudomonadaceae
+Otu0483	1	Bacteria Proteobacteria
+Otu0484	1	Bacteria
+Otu0485	1	Bacteria
+Otu0486	1	Bacteria Actinobacteria Actinobacteria Actinomycetales Dermacoccaceae Dermacoccus
+Otu0487	1	Bacteria Firmicutes Bacilli Lactobacillales
+Otu0488	1	Bacteria
+Otu0489	1	Bacteria Proteobacteria
+Otu0490	1	Bacteria
+Otu0491	1	Bacteria Proteobacteria Gammaproteobacteria Pseudomonadales Pseudomonadaceae
+Otu0492	1	Bacteria Firmicutes Negativicutes Selenomonadales Veillonellaceae Negativicoccus
+Otu0493	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales
+Otu0494	1	Bacteria
+Otu0495	1	Bacteria
+Otu0496	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu0497	1	Bacteria Proteobacteria
+Otu0498	1	Bacteria Firmicutes Bacilli
+Otu0499	1	Bacteria Firmicutes
+Otu0500	1	Bacteria Firmicutes Bacilli
+Otu0501	1	Bacteria Actinobacteria Actinobacteria Actinomycetales Dermacoccaceae Dermacoccus
+Otu0502	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu0503	1	Bacteria
+Otu0504	1	Bacteria Firmicutes
+Otu0505	1	Bacteria
+Otu0506	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Alcaligenaceae Alcaligenes
+Otu0507	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0508	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae Delftia
+Otu0509	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales
+Otu0510	1	Bacteria Proteobacteria
+Otu0511	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales Prevotellaceae
+Otu0512	1	Bacteria
+Otu0513	1	Bacteria Proteobacteria
+Otu0514	1	Bacteria Firmicutes Clostridia Clostridiales
+Otu0515	1	Bacteria
+Otu0516	1	Bacteria Firmicutes Negativicutes Selenomonadales Veillonellaceae Negativicoccus
+Otu0517	1	Bacteria
+Otu0518	1	Bacteria Firmicutes
+Otu0519	1	Bacteria Firmicutes Clostridia Clostridiales
+Otu0520	1	Bacteria Proteobacteria Gammaproteobacteria
+Otu0521	1	Bacteria
+Otu0522	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales
+Otu0523	1	Bacteria Proteobacteria Alphaproteobacteria Sphingomonadales
+Otu0524	1	Bacteria Proteobacteria Epsilonproteobacteria Campylobacterales
+Otu0525	1	Bacteria Firmicutes Bacilli Bacillales
+Otu0526	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales
+Otu0527	1	Bacteria
+Otu0528	1	Bacteria
+Otu0529	1	Bacteria
+Otu0530	1	Bacteria Firmicutes Bacilli Bacillales Bacillales_Incertae_Sedis_XII Exiguobacterium
+Otu0531	1	Bacteria
+Otu0532	1	Bacteria Firmicutes
+Otu0533	1	Bacteria Firmicutes Bacilli Lactobacillales Lactobacillaceae Lactobacillus
+Otu0534	1	Bacteria Proteobacteria
+Otu0535	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0536	1	Bacteria Firmicutes Bacilli Lactobacillales Carnobacteriaceae
+Otu0537	1	Bacteria
+Otu0538	1	Bacteria Proteobacteria Gammaproteobacteria
+Otu0539	1	Bacteria Firmicutes Bacilli Lactobacillales Carnobacteriaceae Granulicatella
+Otu0540	1	Bacteria
+Otu0541	1	Bacteria
+Otu0542	1	Bacteria Bacteroidetes Flavobacteria Flavobacteriales Flavobacteriaceae Capnocytophaga
+Otu0543	1	Bacteria
+Otu0544	1	Bacteria Firmicutes
+Otu0545	1	Bacteria Proteobacteria
+Otu0546	1	Bacteria
+Otu0547	1	Bacteria
+Otu0548	1	Bacteria Actinobacteria Actinobacteria Actinomycetales Propionibacteriaceae
+Otu0549	1	Bacteria
+Otu0550	1	Bacteria Proteobacteria Betaproteobacteria
+Otu0551	1	Bacteria
+Otu0552	1	Bacteria Firmicutes
+Otu0553	1	Bacteria Firmicutes Negativicutes Selenomonadales Veillonellaceae Negativicoccus
+Otu0554	1	Bacteria
+Otu0555	1	Bacteria
+Otu0556	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0557	1	Bacteria Proteobacteria
+Otu0558	1	Bacteria Acidobacteria Acidobacteria_Gp1
+Otu0559	1	Bacteria
+Otu0560	1	Bacteria Actinobacteria Actinobacteria
+Otu0561	1	Bacteria
+Otu0562	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0563	1	Bacteria
+Otu0564	1	Bacteria Proteobacteria
+Otu0565	1	Bacteria
+Otu0566	1	Bacteria
+Otu0567	1	Bacteria
+Otu0568	1	Bacteria Acidobacteria Acidobacteria_Gp1 Granulicella
+Otu0569	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0570	1	Bacteria
+Otu0571	1	Bacteria Actinobacteria Actinobacteria Actinomycetales Propionibacteriaceae
+Otu0572	1	Bacteria Proteobacteria
+Otu0573	1	Bacteria
+Otu0574	1	Bacteria
+Otu0575	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0576	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0577	1	Bacteria Firmicutes Bacilli Lactobacillales
+Otu0578	1	Bacteria Firmicutes Bacilli Lactobacillales Carnobacteriaceae Trichococcus
+Otu0579	1	Bacteria
+Otu0580	1	Bacteria Proteobacteria
+Otu0581	1	Bacteria Proteobacteria Alphaproteobacteria Rhodobacterales Rhodobacteraceae
+Otu0582	1	Bacteria Proteobacteria
+Otu0583	1	Bacteria
+Otu0584	1	Bacteria Bacteroidetes Flavobacteria Flavobacteriales Flavobacteriaceae
+Otu0585	1	Bacteria
+Otu0586	1	Bacteria Firmicutes Bacilli
+Otu0587	1	Bacteria
+Otu0588	1	Bacteria Proteobacteria
+Otu0589	1	Bacteria Proteobacteria Gammaproteobacteria Pseudomonadales Moraxellaceae
+Otu0590	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0591	1	Bacteria Firmicutes Clostridia Clostridiales Clostridiales_Incertae_Sedis_XI Anaerococcus
+Otu0592	1	Bacteria
+Otu0593	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0594	1	Bacteria
+Otu0595	1	Bacteria Proteobacteria Alphaproteobacteria
+Otu0596	1	Bacteria
+Otu0597	1	Bacteria
+Otu0598	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales Porphyromonadaceae Tannerella
+Otu0599	1	Bacteria
+Otu0600	1	Bacteria Proteobacteria
+Otu0601	1	Bacteria
+Otu0602	1	Bacteria Actinobacteria Actinobacteria Actinomycetales Micrococcaceae
+Otu0603	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0604	1	Bacteria Firmicutes Clostridia Clostridiales
+Otu0605	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0606	1	Bacteria
+Otu0607	1	Bacteria Firmicutes
+Otu0608	1	Bacteria Firmicutes Bacilli Lactobacillales
+Otu0609	1	Bacteria Acidobacteria Acidobacteria_Gp1 Granulicella
+Otu0610	1	Bacteria
+Otu0611	1	Bacteria Actinobacteria Actinobacteria Actinomycetales Pseudonocardiaceae Actinomycetospora
+Otu0612	1	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales
+Otu0613	1	Bacteria Firmicutes Bacilli Lactobacillales
+Otu0614	1	Bacteria Firmicutes Bacilli Lactobacillales Carnobacteriaceae
+Otu0615	1	Bacteria Proteobacteria Gammaproteobacteria Pseudomonadales Moraxellaceae Enhydrobacter
+Otu0616	1	Bacteria Firmicutes
+Otu0617	1	Bacteria Proteobacteria Alphaproteobacteria Rhizobiales
+Otu0618	1	Bacteria
+Otu0619	1	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales Cytophagaceae Spirosoma
+Otu0620	1	Bacteria
+Otu0621	1	Bacteria Firmicutes Bacilli Lactobacillales Carnobacteriaceae
+Otu0622	1	Bacteria
+Otu0623	1	Bacteria Bacteroidetes
+Otu0624	1	Bacteria Firmicutes Bacilli Lactobacillales
+Otu0625	1	Bacteria
+Otu0626	1	Bacteria Firmicutes Bacilli
+Otu0627	1	Bacteria Proteobacteria Alphaproteobacteria Rhizobiales
+Otu0628	1	Bacteria Firmicutes Bacilli Bacillales Paenibacillaceae_1 Paenibacillus
+Otu0629	1	Bacteria Actinobacteria Actinobacteria
+Otu0630	1	Bacteria
+Otu0631	1	Bacteria Actinobacteria Actinobacteria Actinomycetales Pseudonocardiaceae Actinomycetospora
+Otu0632	1	Bacteria
+Otu0633	1	Bacteria Proteobacteria Alphaproteobacteria Alphaproteobacteria_incertae_sedis Geminicoccus
+Otu0634	1	Bacteria
+Otu0635	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0636	1	Bacteria Actinobacteria Actinobacteria Actinomycetales Pseudonocardiaceae Actinomycetospora
+Otu0637	1	Bacteria Proteobacteria Alphaproteobacteria Rhodobacterales Rhodobacteraceae
+Otu0638	1	Bacteria Actinobacteria Actinobacteria Actinomycetales Pseudonocardiaceae Actinomycetospora
+Otu0639	1	Bacteria Proteobacteria Alphaproteobacteria Alphaproteobacteria_incertae_sedis Geminicoccus
+Otu0640	1	Bacteria
+Otu0641	1	Bacteria
+Otu0642	1	Bacteria Proteobacteria
+Otu0643	1	Bacteria Firmicutes
+Otu0644	1	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales Chitinophagaceae
+Otu0645	1	Bacteria Actinobacteria Actinobacteria
+Otu0646	1	Bacteria Proteobacteria Alphaproteobacteria
+Otu0647	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales Prevotellaceae
+Otu0648	1	Bacteria
+Otu0649	1	Bacteria Firmicutes Clostridia Clostridiales Lachnospiraceae Howardella
+Otu0650	1	Bacteria Proteobacteria Alphaproteobacteria
+Otu0651	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0652	1	Bacteria Actinobacteria Actinobacteria Actinomycetales Nocardioidaceae Marmoricola
+Otu0653	1	Bacteria Proteobacteria Gammaproteobacteria
+Otu0654	1	Bacteria Proteobacteria
+Otu0655	1	Bacteria Bacteroidetes
+Otu0656	1	Bacteria Proteobacteria
+Otu0657	1	Bacteria Acidobacteria Acidobacteria_Gp1
+Otu0658	1	Bacteria
+Otu0659	1	Bacteria Actinobacteria Actinobacteria Actinomycetales Pseudonocardiaceae Actinomycetospora
+Otu0660	1	Bacteria
+Otu0661	1	Bacteria Acidobacteria Acidobacteria_Gp1 Granulicella
+Otu0662	1	Bacteria Actinobacteria Actinobacteria Actinomycetales Pseudonocardiaceae Actinomycetospora
+Otu0663	1	Bacteria
+Otu0664	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu0665	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu0666	1	Bacteria
+Otu0667	1	Bacteria
+Otu0668	1	Bacteria
+Otu0669	1	Bacteria
+Otu0670	1	Bacteria Proteobacteria
+Otu0671	1	Bacteria
+Otu0672	1	Bacteria
+Otu0673	1	Bacteria Proteobacteria
+Otu0674	1	Bacteria
+Otu0675	1	Bacteria Proteobacteria
+Otu0676	1	Bacteria
+Otu0677	1	Bacteria Proteobacteria Alphaproteobacteria
+Otu0678	1	Bacteria
+Otu0679	1	Bacteria Proteobacteria
+Otu0680	1	Bacteria
+Otu0681	1	Bacteria Proteobacteria
+Otu0682	1	Bacteria
+Otu0683	1	Bacteria Acidobacteria Acidobacteria_Gp1
+Otu0684	1	Bacteria
+Otu0685	1	Bacteria Proteobacteria
+Otu0686	1	Bacteria
+Otu0687	1	Bacteria
+Otu0688	1	Bacteria
+Otu0689	1	Bacteria Proteobacteria Alphaproteobacteria Rhodospirillales
+Otu0690	1	Bacteria
+Otu0691	1	Bacteria Proteobacteria
+Otu0692	1	Bacteria
+Otu0693	1	Bacteria
+Otu0694	1	Bacteria
+Otu0695	1	Bacteria
+Otu0696	1	Bacteria Proteobacteria
+Otu0697	1	Bacteria
+Otu0698	1	Bacteria Proteobacteria
+Otu0699	1	Bacteria
+Otu0700	1	Bacteria Proteobacteria
+Otu0701	1	Bacteria
+Otu0702	1	Bacteria
+Otu0703	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales
+Otu0704	1	Bacteria
+Otu0705	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0706	1	Bacteria Proteobacteria Alphaproteobacteria
+Otu0707	1	Bacteria
+Otu0708	1	Bacteria Proteobacteria Betaproteobacteria Neisseriales Neisseriaceae
+Otu0709	1	Bacteria
+Otu0710	1	Bacteria Actinobacteria Actinobacteria Actinomycetales Pseudonocardiaceae Actinomycetospora
+Otu0711	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Alcaligenaceae Advenella
+Otu0712	1	Bacteria
+Otu0713	1	Bacteria
+Otu0714	1	Bacteria
+Otu0715	1	Bacteria Firmicutes Bacilli Lactobacillales Carnobacteriaceae
+Otu0716	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0717	1	Bacteria Proteobacteria Alphaproteobacteria Rhodospirillales Acetobacteraceae
+Otu0718	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0719	1	Bacteria Proteobacteria Alphaproteobacteria Rhodobacterales Rhodobacteraceae
+Otu0720	1	Bacteria Firmicutes Negativicutes Selenomonadales Veillonellaceae
+Otu0721	1	Bacteria
+Otu0722	1	Bacteria
+Otu0723	1	Bacteria Proteobacteria Alphaproteobacteria Rhizobiales
+Otu0724	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0725	1	Bacteria
+Otu0726	1	Bacteria Bacteroidetes Flavobacteria Flavobacteriales Flavobacteriaceae
+Otu0727	1	Bacteria
+Otu0728	1	Bacteria
+Otu0729	1	Bacteria
+Otu0730	1	Bacteria
+Otu0731	1	Bacteria
+Otu0732	1	Bacteria Proteobacteria Gammaproteobacteria Alteromonadales Alteromonadaceae Alishewanella
+Otu0733	1	Bacteria Firmicutes Bacilli Bacillales Staphylococcaceae Staphylococcus
+Otu0734	1	Bacteria
+Otu0735	1	Bacteria Proteobacteria Betaproteobacteria
+Otu0736	1	Bacteria
+Otu0737	1	Bacteria Cyanobacteria_Chloroplast Chloroplast Chloroplast Streptophyta
+Otu0738	1	Bacteria
+Otu0739	1	Bacteria
+Otu0740	1	Bacteria
+Otu0741	1	Bacteria Firmicutes Bacilli Lactobacillales Carnobacteriaceae Granulicatella
+Otu0742	1	Bacteria Bacteroidetes
+Otu0743	1	Bacteria
+Otu0744	1	Bacteria Proteobacteria
+Otu0745	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu0746	1	Bacteria Bacteroidetes
+Otu0747	1	Bacteria
+Otu0748	1	Bacteria Fusobacteria Fusobacteria Fusobacteriales
+Otu0749	1	Bacteria
+Otu0750	1	Bacteria
+Otu0751	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales Prevotellaceae Prevotella
+Otu0752	1	Bacteria
+Otu0753	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales Prevotellaceae Prevotella
+Otu0754	1	Bacteria Actinobacteria Actinobacteria
+Otu0755	1	Bacteria Bacteroidetes
+Otu0756	1	Bacteria
+Otu0757	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales Prevotellaceae
+Otu0758	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Burkholderiaceae Ralstonia
+Otu0759	1	Bacteria Actinobacteria Actinobacteria
+Otu0760	1	Bacteria
+Otu0761	1	Bacteria
+Otu0762	1	Bacteria Proteobacteria
+Otu0763	1	Bacteria
+Otu0764	1	Bacteria
+Otu0765	1	Bacteria Firmicutes Bacilli Lactobacillales Carnobacteriaceae
+Otu0766	1	Bacteria
+Otu0767	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales
+Otu0768	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0769	1	Bacteria Firmicutes Clostridia Clostridiales Clostridiales_Incertae_Sedis_XI
+Otu0770	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0771	1	Bacteria
+Otu0772	1	Bacteria Proteobacteria
+Otu0773	1	Bacteria Proteobacteria Alphaproteobacteria Rhodobacterales Rhodobacteraceae
+Otu0774	1	Bacteria Firmicutes Negativicutes Selenomonadales Veillonellaceae Propionispora
+Otu0775	1	Bacteria Actinobacteria Actinobacteria Actinomycetales Pseudonocardiaceae Actinomycetospora
+Otu0776	1	Bacteria
+Otu0777	1	Bacteria
+Otu0778	1	Bacteria
+Otu0779	1	Bacteria Firmicutes Clostridia Clostridiales
+Otu0780	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales
+Otu0781	1	Bacteria
+Otu0782	1	Bacteria
+Otu0783	1	Bacteria
+Otu0784	1	Bacteria
+Otu0785	1	Bacteria
+Otu0786	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu0787	1	Bacteria
+Otu0788	1	Bacteria Firmicutes Negativicutes Selenomonadales Veillonellaceae Selenomonas
+Otu0789	1	Bacteria
+Otu0790	1	Bacteria Proteobacteria Gammaproteobacteria
+Otu0791	1	Bacteria Proteobacteria
+Otu0792	1	Bacteria
+Otu0793	1	Bacteria Firmicutes Negativicutes Selenomonadales Veillonellaceae
+Otu0794	1	Bacteria
+Otu0795	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales
+Otu0796	1	Bacteria Bacteroidetes
+Otu0797	1	Bacteria
+Otu0798	1	Bacteria Bacteroidetes Flavobacteria Flavobacteriales Flavobacteriaceae
+Otu0799	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae Delftia
+Otu0800	1	Bacteria
+Otu0801	1	Bacteria Firmicutes Clostridia Clostridiales
+Otu0802	1	Bacteria Firmicutes Clostridia Clostridiales
+Otu0803	1	Bacteria
+Otu0804	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales
+Otu0805	1	Bacteria Proteobacteria
+Otu0806	1	Bacteria
+Otu0807	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales Prevotellaceae
+Otu0808	1	Bacteria
+Otu0809	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0810	1	Bacteria
+Otu0811	1	Bacteria Bacteroidetes
+Otu0812	1	Bacteria Firmicutes Clostridia Clostridiales Lachnospiraceae
+Otu0813	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu0814	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales Prevotellaceae
+Otu0815	1	Bacteria Spirochaetes Spirochaetes Spirochaetales Spirochaetaceae Treponema
+Otu0816	1	Bacteria
+Otu0817	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0818	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0819	1	Bacteria
+Otu0820	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales Prevotellaceae Prevotella
+Otu0821	1	Bacteria
+Otu0822	1	Bacteria Acidobacteria Acidobacteria_Gp1
+Otu0823	1	Bacteria
+Otu0824	1	Bacteria Firmicutes Bacilli Lactobacillales Lactobacillaceae Lactobacillus
+Otu0825	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales Prevotellaceae
+Otu0826	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0827	1	Bacteria
+Otu0828	1	Bacteria
+Otu0829	1	Bacteria
+Otu0830	1	Bacteria
+Otu0831	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0832	1	Bacteria
+Otu0833	1	Bacteria
+Otu0834	1	Bacteria Proteobacteria
+Otu0835	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0836	1	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales Chitinophagaceae
+Otu0837	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0838	1	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales Chitinophagaceae
+Otu0839	1	Bacteria
+Otu0840	1	Bacteria
+Otu0841	1	Bacteria
+Otu0842	1	Bacteria Actinobacteria Actinobacteria Actinomycetales Microbacteriaceae
+Otu0843	1	Bacteria
+Otu0844	1	Bacteria
+Otu0845	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0846	1	Bacteria Actinobacteria Actinobacteria Actinomycetales Microbacteriaceae
+Otu0847	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0848	1	Bacteria Firmicutes Negativicutes Selenomonadales Veillonellaceae Negativicoccus
+Otu0849	1	Bacteria Firmicutes Clostridia Clostridiales Clostridiales_Incertae_Sedis_XI Anaerococcus
+Otu0850	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0851	1	Bacteria Firmicutes Clostridia Clostridiales Incertae_Sedis_XI Murdochiella
+Otu0852	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0853	1	Bacteria Actinobacteria Actinobacteria Actinomycetales Actinomycetaceae Actinomyces
+Otu0854	1	Bacteria
+Otu0855	1	Bacteria Actinobacteria Actinobacteria Actinomycetales Actinomycetaceae Actinomyces
+Otu0856	1	Bacteria
+Otu0857	1	Bacteria Actinobacteria Actinobacteria Actinomycetales Actinomycetaceae Actinomyces
+Otu0858	1	Bacteria Actinobacteria Actinobacteria
+Otu0859	1	Bacteria
+Otu0860	1	Bacteria Proteobacteria Gammaproteobacteria
+Otu0861	1	Bacteria
+Otu0862	1	Bacteria Proteobacteria
+Otu0863	1	Bacteria
+Otu0864	1	Bacteria
+Otu0865	1	Bacteria
+Otu0866	1	Bacteria Firmicutes Negativicutes Selenomonadales Veillonellaceae
+Otu0867	1	Bacteria
+Otu0868	1	Bacteria
+Otu0869	1	Bacteria
+Otu0870	1	Bacteria Actinobacteria Actinobacteria Actinomycetales Microbacteriaceae Rathayibacter
+Otu0871	1	Bacteria Acidobacteria Acidobacteria_Gp1
+Otu0872	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0873	1	Bacteria Firmicutes Clostridia Clostridiales
+Otu0874	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0875	1	Bacteria Actinobacteria Actinobacteria Actinomycetales Actinomycetaceae Arcanobacterium
+Otu0876	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales Prevotellaceae
+Otu0877	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0878	1	Bacteria Firmicutes Clostridia Clostridiales Incertae_Sedis_XI Murdochiella
+Otu0879	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales Prevotellaceae Prevotella
+Otu0880	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales Prevotellaceae
+Otu0881	1	Bacteria Firmicutes Clostridia Clostridiales
+Otu0882	1	Bacteria
+Otu0883	1	Bacteria Firmicutes Clostridia Clostridiales Eubacteriaceae Pseudoramibacter
+Otu0884	1	Bacteria Actinobacteria Actinobacteria Actinomycetales Actinomycetaceae
+Otu0885	1	Bacteria Acidobacteria Acidobacteria_Gp1 Granulicella
+Otu0886	1	Bacteria Actinobacteria Actinobacteria
+Otu0887	1	Bacteria Firmicutes Negativicutes Selenomonadales Veillonellaceae
+Otu0888	1	Bacteria Actinobacteria Actinobacteria Actinomycetales Actinomycetaceae Actinomyces
+Otu0889	1	Bacteria Firmicutes Bacilli Lactobacillales
+Otu0890	1	Bacteria
+Otu0891	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu0892	1	Bacteria
+Otu0893	1	Bacteria
+Otu0894	1	Bacteria
+Otu0895	1	Bacteria Firmicutes Bacilli
+Otu0896	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0897	1	Bacteria Proteobacteria
+Otu0898	1	Bacteria Firmicutes Bacilli
+Otu0899	1	Bacteria Bacteroidetes
+Otu0900	1	Bacteria Proteobacteria
+Otu0901	1	Bacteria Firmicutes Negativicutes Selenomonadales Veillonellaceae
+Otu0902	1	Bacteria Firmicutes Bacilli Lactobacillales
+Otu0903	1	Bacteria Chloroflexi Thermomicrobia Sphaerobacterales Sphaerobacteraceae Sphaerobacter
+Otu0904	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales
+Otu0905	1	Bacteria
+Otu0906	1	Bacteria
+Otu0907	1	Bacteria Bacteroidetes
+Otu0908	1	Bacteria Deinococcus-Thermus Deinococci Deinococcales Trueperaceae Truepera
+Otu0909	1	Bacteria Firmicutes Bacilli Lactobacillales
+Otu0910	1	Bacteria Proteobacteria Gammaproteobacteria Enterobacteriales Enterobacteriaceae
+Otu0911	1	Bacteria
+Otu0912	1	Bacteria Firmicutes Bacilli Lactobacillales
+Otu0913	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0914	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu0915	1	Bacteria Firmicutes Bacilli Lactobacillales
+Otu0916	1	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales Cytophagaceae
+Otu0917	1	Bacteria Firmicutes
+Otu0918	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales Prevotellaceae
+Otu0919	1	Bacteria
+Otu0920	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0921	1	Bacteria
+Otu0922	1	Bacteria Bacteroidetes Flavobacteria Flavobacteriales Flavobacteriaceae
+Otu0923	1	Bacteria Proteobacteria Alphaproteobacteria Rhizobiales
+Otu0924	1	Bacteria
+Otu0925	1	Bacteria Firmicutes
+Otu0926	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0927	1	Bacteria
+Otu0928	1	Bacteria Firmicutes
+Otu0929	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0930	1	Bacteria Proteobacteria Gammaproteobacteria Xanthomonadales Xanthomonadaceae
+Otu0931	1	Bacteria Bacteroidetes Flavobacteria Flavobacteriales Flavobacteriaceae Chryseobacterium
+Otu0932	1	Bacteria Proteobacteria
+Otu0933	1	Bacteria
+Otu0934	1	Bacteria
+Otu0935	1	Bacteria
+Otu0936	1	Bacteria Verrucomicrobia Opitutae
+Otu0937	1	Bacteria Firmicutes Negativicutes Selenomonadales Veillonellaceae Veillonella
+Otu0938	1	Bacteria Firmicutes Clostridia Clostridiales Ruminococcaceae
+Otu0939	1	Bacteria Bacteroidetes
+Otu0940	1	Bacteria Proteobacteria
+Otu0941	1	Bacteria Proteobacteria Deltaproteobacteria Desulfuromonadales
+Otu0942	1	Bacteria Firmicutes
+Otu0943	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0944	1	Bacteria Actinobacteria Actinobacteria
+Otu0945	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu0946	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales Porphyromonadaceae Porphyromonas
+Otu0947	1	Bacteria Proteobacteria Alphaproteobacteria
+Otu0948	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0949	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0950	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu0951	1	Bacteria
+Otu0952	1	Bacteria
+Otu0953	1	Bacteria
+Otu0954	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Burkholderiaceae
+Otu0955	1	Bacteria Proteobacteria
+Otu0956	1	Bacteria Firmicutes Bacilli Lactobacillales Lactobacillaceae Lactobacillus
+Otu0957	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu0958	1	Bacteria
+Otu0959	1	Bacteria Firmicutes Bacilli Bacillales Staphylococcaceae Nosocomiicoccus
+Otu0960	1	Bacteria Actinobacteria Actinobacteria
+Otu0961	1	Bacteria
+Otu0962	1	Bacteria Proteobacteria Gammaproteobacteria Enterobacteriales Enterobacteriaceae
+Otu0963	1	Bacteria
+Otu0964	1	Bacteria
+Otu0965	1	Bacteria
+Otu0966	1	Bacteria Proteobacteria
+Otu0967	1	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales Cytophagaceae Siphonobacter
+Otu0968	1	Bacteria Proteobacteria Gammaproteobacteria Pseudomonadales Moraxellaceae Acinetobacter
+Otu0969	1	Bacteria Actinobacteria Actinobacteria
+Otu0970	1	Bacteria
+Otu0971	1	Bacteria Proteobacteria Betaproteobacteria Neisseriales Neisseriaceae Kingella
+Otu0972	1	Bacteria Actinobacteria Actinobacteria Actinomycetales Corynebacteriaceae
+Otu0973	1	Bacteria
+Otu0974	1	Bacteria
+Otu0975	1	Bacteria
+Otu0976	1	Bacteria Firmicutes Clostridia Clostridiales Clostridiales_Incertae_Sedis_XI Helcococcus
+Otu0977	1	Bacteria Firmicutes
+Otu0978	1	Bacteria
+Otu0979	1	Bacteria
+Otu0980	1	Bacteria Deinococcus-Thermus Deinococci
+Otu0981	1	Bacteria Proteobacteria
+Otu0982	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0983	1	Bacteria Proteobacteria Alphaproteobacteria Rhizobiales
+Otu0984	1	Bacteria
+Otu0985	1	Bacteria
+Otu0986	1	Bacteria Firmicutes Bacilli Lactobacillales Leuconostocaceae Weissella
+Otu0987	1	Bacteria Firmicutes
+Otu0988	1	Bacteria
+Otu0989	1	Bacteria Actinobacteria Actinobacteria
+Otu0990	1	Bacteria Actinobacteria Actinobacteria Acidimicrobiales
+Otu0991	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu0992	1	Bacteria
+Otu0993	1	Bacteria Firmicutes Bacilli Bacillales
+Otu0994	1	Bacteria Proteobacteria
+Otu0995	1	Bacteria Firmicutes Bacilli Lactobacillales Carnobacteriaceae Granulicatella
+Otu0996	1	Bacteria
+Otu0997	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu0998	1	Bacteria Firmicutes Bacilli Lactobacillales Aerococcaceae Facklamia
+Otu0999	1	Bacteria Firmicutes Clostridia Clostridiales
+Otu1000	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1001	1	Bacteria
+Otu1002	1	Bacteria
+Otu1003	1	Bacteria
+Otu1004	1	Bacteria Firmicutes Clostridia Clostridiales Ruminococcaceae
+Otu1005	1	Bacteria Proteobacteria Betaproteobacteria
+Otu1006	1	Bacteria Proteobacteria
+Otu1007	1	Bacteria
+Otu1008	1	Bacteria
+Otu1009	1	Bacteria Firmicutes Bacilli
+Otu1010	1	Bacteria
+Otu1011	1	Bacteria
+Otu1012	1	Bacteria Firmicutes Clostridia Clostridiales Clostridiales_Incertae_Sedis_XI Gallicola
+Otu1013	1	Bacteria Firmicutes Clostridia Clostridiales Clostridiales_Incertae_Sedis_XI Anaerococcus
+Otu1014	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu1015	1	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales
+Otu1016	1	Bacteria
+Otu1017	1	Bacteria
+Otu1018	1	Bacteria
+Otu1019	1	Bacteria
+Otu1020	1	Bacteria
+Otu1021	1	Bacteria Proteobacteria
+Otu1022	1	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales Cytophagaceae Siphonobacter
+Otu1023	1	Bacteria Firmicutes Clostridia Clostridiales Ruminococcaceae
+Otu1024	1	Bacteria
+Otu1025	1	Bacteria
+Otu1026	1	Bacteria
+Otu1027	1	Bacteria
+Otu1028	1	Bacteria
+Otu1029	1	Bacteria Proteobacteria
+Otu1030	1	Bacteria
+Otu1031	1	Bacteria Proteobacteria Alphaproteobacteria Rhizobiales
+Otu1032	1	Bacteria
+Otu1033	1	Bacteria
+Otu1034	1	Bacteria Actinobacteria Actinobacteria Actinomycetales Pseudonocardiaceae Actinomycetospora
+Otu1035	1	Bacteria
+Otu1036	1	Bacteria
+Otu1037	1	Bacteria
+Otu1038	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1039	1	Bacteria Bacteroidetes Flavobacteria Flavobacteriales Flavobacteriaceae
+Otu1040	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu1041	1	Bacteria
+Otu1042	1	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales Cytophagaceae Spirosoma
+Otu1043	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1044	1	Bacteria
+Otu1045	1	Bacteria Bacteroidetes
+Otu1046	1	Bacteria Proteobacteria Gammaproteobacteria Xanthomonadales Xanthomonadaceae
+Otu1047	1	Bacteria Bacteroidetes
+Otu1048	1	Bacteria
+Otu1049	1	Bacteria Firmicutes
+Otu1050	1	Bacteria
+Otu1051	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1052	1	Bacteria
+Otu1053	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1054	1	Bacteria Bacteroidetes Flavobacteria Flavobacteriales Flavobacteriaceae Cloacibacterium
+Otu1055	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu1056	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1057	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1058	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1059	1	Bacteria Proteobacteria
+Otu1060	1	Bacteria
+Otu1061	1	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales Chitinophagaceae
+Otu1062	1	Bacteria
+Otu1063	1	Bacteria
+Otu1064	1	Bacteria
+Otu1065	1	Bacteria
+Otu1066	1	Bacteria Proteobacteria Alphaproteobacteria
+Otu1067	1	Bacteria
+Otu1068	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales Prevotellaceae Prevotella
+Otu1069	1	Bacteria
+Otu1070	1	Bacteria Proteobacteria Alphaproteobacteria Rhizobiales
+Otu1071	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1072	1	Bacteria Proteobacteria Gammaproteobacteria Cardiobacteriales Cardiobacteriaceae Cardiobacterium
+Otu1073	1	Bacteria Firmicutes Bacilli Lactobacillales Leuconostocaceae Leuconostoc
+Otu1074	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales
+Otu1075	1	Bacteria
+Otu1076	1	Bacteria Firmicutes Bacilli Lactobacillales Streptococcaceae
+Otu1077	1	Bacteria Proteobacteria
+Otu1078	1	Bacteria
+Otu1079	1	Bacteria Proteobacteria
+Otu1080	1	Bacteria
+Otu1081	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1082	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1083	1	Bacteria
+Otu1084	1	Bacteria Proteobacteria Betaproteobacteria Neisseriales Neisseriaceae
+Otu1085	1	Bacteria
+Otu1086	1	Bacteria Proteobacteria
+Otu1087	1	Bacteria
+Otu1088	1	Bacteria Proteobacteria Gammaproteobacteria
+Otu1089	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1090	1	Bacteria
+Otu1091	1	Bacteria Firmicutes Bacilli Bacillales Bacillales_Incertae_Sedis_XI Gemella
+Otu1092	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1093	1	Bacteria
+Otu1094	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Burkholderiaceae
+Otu1095	1	Bacteria Proteobacteria
+Otu1096	1	Bacteria Firmicutes Clostridia Clostridiales Incertae_Sedis_XI Murdochiella
+Otu1097	1	Bacteria
+Otu1098	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1099	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales
+Otu1100	1	Bacteria Proteobacteria
+Otu1101	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1102	1	Bacteria Actinobacteria Actinobacteria Actinomycetales Actinomycetaceae Actinomyces
+Otu1103	1	Bacteria
+Otu1104	1	Bacteria
+Otu1105	1	Bacteria
+Otu1106	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales Porphyromonadaceae
+Otu1107	1	Bacteria Firmicutes Clostridia Clostridiales Ruminococcaceae Fastidiosipila
+Otu1108	1	Bacteria
+Otu1109	1	Bacteria Firmicutes Bacilli Bacillales
+Otu1110	1	Bacteria
+Otu1111	1	Bacteria
+Otu1112	1	Bacteria
+Otu1113	1	Bacteria
+Otu1114	1	Bacteria Firmicutes Clostridia Clostridiales Clostridiales_Incertae_Sedis_XI Peptoniphilus
+Otu1115	1	Bacteria
+Otu1116	1	Bacteria
+Otu1117	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu1118	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1119	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Oxalobacteraceae
+Otu1120	1	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales Chitinophagaceae
+Otu1121	1	Bacteria Firmicutes Clostridia Clostridiales
+Otu1122	1	Bacteria Proteobacteria Alphaproteobacteria Rhizobiales
+Otu1123	1	Bacteria
+Otu1124	1	Bacteria Firmicutes
+Otu1125	1	Bacteria
+Otu1126	1	Bacteria Bacteroidetes
+Otu1127	1	Bacteria Firmicutes Clostridia Clostridiales
+Otu1128	1	Bacteria Firmicutes Bacilli Lactobacillales Aerococcaceae Abiotrophia
+Otu1129	1	Bacteria Proteobacteria Betaproteobacteria
+Otu1130	1	Bacteria Proteobacteria Gammaproteobacteria Pseudomonadales Moraxellaceae Enhydrobacter
+Otu1131	1	Bacteria Bacteroidetes
+Otu1132	1	Bacteria Firmicutes Clostridia Clostridiales Incertae_Sedis_XI Murdochiella
+Otu1133	1	Bacteria
+Otu1134	1	Bacteria Actinobacteria Actinobacteria Actinomycetales Propionibacteriaceae
+Otu1135	1	Bacteria
+Otu1136	1	Bacteria Proteobacteria
+Otu1137	1	Bacteria Proteobacteria Gammaproteobacteria
+Otu1138	1	Bacteria
+Otu1139	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu1140	1	Bacteria Proteobacteria Gammaproteobacteria Xanthomonadales Xanthomonadaceae
+Otu1141	1	Bacteria
+Otu1142	1	Bacteria Firmicutes Bacilli Lactobacillales
+Otu1143	1	Bacteria Firmicutes Clostridia Clostridiales Clostridiales_Incertae_Sedis_XI Peptoniphilus
+Otu1144	1	Bacteria
+Otu1145	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales Prevotellaceae
+Otu1146	1	Bacteria
+Otu1147	1	Bacteria
+Otu1148	1	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales Chitinophagaceae Sediminibacterium
+Otu1149	1	Bacteria Firmicutes Clostridia Clostridiales
+Otu1150	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu1151	1	Bacteria
+Otu1152	1	Bacteria
+Otu1153	1	Bacteria
+Otu1154	1	Bacteria Proteobacteria
+Otu1155	1	Bacteria Proteobacteria Gammaproteobacteria Pseudomonadales Moraxellaceae
+Otu1156	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1157	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu1158	1	Bacteria
+Otu1159	1	Bacteria
+Otu1160	1	Bacteria Firmicutes Bacilli Lactobacillales
+Otu1161	1	Bacteria Firmicutes Clostridia Clostridiales
+Otu1162	1	Bacteria Firmicutes Bacilli Lactobacillales
+Otu1163	1	Bacteria
+Otu1164	1	Bacteria
+Otu1165	1	Bacteria Proteobacteria
+Otu1166	1	Bacteria
+Otu1167	1	Bacteria Firmicutes Bacilli
+Otu1168	1	Bacteria Firmicutes Bacilli
+Otu1169	1	Bacteria Firmicutes Clostridia Clostridiales Clostridiales_Incertae_Sedis_XI Anaerococcus
+Otu1170	1	Bacteria
+Otu1171	1	Bacteria Firmicutes
+Otu1172	1	Bacteria Proteobacteria
+Otu1173	1	Bacteria Proteobacteria Alphaproteobacteria
+Otu1174	1	Bacteria
+Otu1175	1	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales Chitinophagaceae
+Otu1176	1	Bacteria
+Otu1177	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1178	1	Bacteria Proteobacteria
+Otu1179	1	Bacteria Firmicutes Clostridia Clostridiales
+Otu1180	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales Porphyromonadaceae Porphyromonas
+Otu1181	1	Bacteria
+Otu1182	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu1183	1	Bacteria
+Otu1184	1	Bacteria
+Otu1185	1	Bacteria Firmicutes Clostridia Clostridiales
+Otu1186	1	Bacteria Actinobacteria Actinobacteria
+Otu1187	1	Bacteria Proteobacteria
+Otu1188	1	Bacteria Proteobacteria
+Otu1189	1	Bacteria Proteobacteria Betaproteobacteria
+Otu1190	1	Bacteria
+Otu1191	1	Bacteria Proteobacteria
+Otu1192	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu1193	1	Bacteria
+Otu1194	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1195	1	Bacteria Proteobacteria
+Otu1196	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1197	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu1198	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1199	1	Bacteria Proteobacteria Gammaproteobacteria
+Otu1200	1	Bacteria
+Otu1201	1	Bacteria
+Otu1202	1	Bacteria Actinobacteria Actinobacteria Actinomycetales Actinomycetaceae Actinomyces
+Otu1203	1	Bacteria Proteobacteria
+Otu1204	1	Bacteria
+Otu1205	1	Bacteria Firmicutes
+Otu1206	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales Porphyromonadaceae Porphyromonas
+Otu1207	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu1208	1	Bacteria
+Otu1209	1	Bacteria
+Otu1210	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1211	1	Bacteria Proteobacteria Alphaproteobacteria
+Otu1212	1	Bacteria Firmicutes Bacilli Lactobacillales
+Otu1213	1	Bacteria Proteobacteria
+Otu1214	1	Bacteria Firmicutes Clostridia Clostridiales Ruminococcaceae Saccharofermentans
+Otu1215	1	Bacteria Bacteroidetes Flavobacteria Flavobacteriales Flavobacteriaceae
+Otu1216	1	Bacteria
+Otu1217	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1218	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu1219	1	Bacteria
+Otu1220	1	Bacteria
+Otu1221	1	Bacteria
+Otu1222	1	Bacteria
+Otu1223	1	Bacteria
+Otu1224	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales Prevotellaceae
+Otu1225	1	Bacteria
+Otu1226	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1227	1	Bacteria
+Otu1228	1	Bacteria
+Otu1229	1	Bacteria Firmicutes Clostridia Clostridiales Lachnospiraceae Butyrivibrio
+Otu1230	1	Bacteria
+Otu1231	1	Bacteria
+Otu1232	1	Bacteria Proteobacteria Alphaproteobacteria Rhizobiales
+Otu1233	1	Bacteria Firmicutes
+Otu1234	1	Bacteria Firmicutes
+Otu1235	1	Bacteria Fusobacteria Fusobacteria Fusobacteriales Fusobacteriaceae
+Otu1236	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1237	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu1238	1	Bacteria Proteobacteria
+Otu1239	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1240	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales Porphyromonadaceae Porphyromonas
+Otu1241	1	Bacteria Proteobacteria
+Otu1242	1	Bacteria Firmicutes Clostridia Clostridiales
+Otu1243	1	Bacteria Firmicutes
+Otu1244	1	Bacteria Proteobacteria Alphaproteobacteria Rhodobacterales Rhodobacteraceae
+Otu1245	1	Bacteria Proteobacteria
+Otu1246	1	Bacteria Firmicutes Clostridia Clostridiales Lachnospiraceae
+Otu1247	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1248	1	Bacteria Firmicutes Clostridia Clostridiales Lachnospiraceae Oribacterium
+Otu1249	1	Bacteria
+Otu1250	1	Bacteria
+Otu1251	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1252	1	Bacteria Actinobacteria Actinobacteria
+Otu1253	1	Bacteria Proteobacteria Alphaproteobacteria
+Otu1254	1	Bacteria Proteobacteria
+Otu1255	1	Bacteria
+Otu1256	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales Prevotellaceae
+Otu1257	1	Bacteria
+Otu1258	1	Bacteria
+Otu1259	1	Bacteria
+Otu1260	1	Bacteria
+Otu1261	1	Bacteria
+Otu1262	1	Bacteria Proteobacteria
+Otu1263	1	Bacteria Bacteroidetes Bacteroidia Bacteroidales Prevotellaceae
+Otu1264	1	Bacteria Fusobacteria Fusobacteria Fusobacteriales
+Otu1265	1	Bacteria Proteobacteria Betaproteobacteria
+Otu1266	1	Bacteria Firmicutes Bacilli
+Otu1267	1	Bacteria
+Otu1268	1	Bacteria
+Otu1269	1	Bacteria Proteobacteria Alphaproteobacteria
+Otu1270	1	Bacteria
+Otu1271	1	Bacteria Firmicutes Bacilli Lactobacillales Carnobacteriaceae Granulicatella
+Otu1272	1	Bacteria Actinobacteria Actinobacteria Actinomycetales Actinomycetaceae Actinomyces
+Otu1273	1	Bacteria Actinobacteria Actinobacteria
+Otu1274	1	Bacteria Proteobacteria Gammaproteobacteria Enterobacteriales Enterobacteriaceae
+Otu1275	1	Bacteria Firmicutes Clostridia Clostridiales Lachnospiraceae Oribacterium
+Otu1276	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1277	1	Bacteria Proteobacteria Alphaproteobacteria Rhizobiales
+Otu1278	1	Bacteria Proteobacteria Gammaproteobacteria Xanthomonadales Xanthomonadaceae
+Otu1279	1	Bacteria
+Otu1280	1	Bacteria
+Otu1281	1	Bacteria Proteobacteria Alphaproteobacteria Rhizobiales
+Otu1282	1	Bacteria Proteobacteria
+Otu1283	1	Bacteria
+Otu1284	1	Bacteria Proteobacteria
+Otu1285	1	Bacteria
+Otu1286	1	Bacteria Proteobacteria
+Otu1287	1	Bacteria
+Otu1288	1	Bacteria Firmicutes Bacilli Lactobacillales
+Otu1289	1	Bacteria Proteobacteria Alphaproteobacteria
+Otu1290	1	Bacteria
+Otu1291	1	Bacteria
+Otu1292	1	Bacteria Firmicutes Negativicutes Selenomonadales Veillonellaceae
+Otu1293	1	Bacteria Firmicutes Bacilli Lactobacillales
+Otu1294	1	Bacteria Proteobacteria Gammaproteobacteria Pseudomonadales Pseudomonadaceae
+Otu1295	1	Bacteria
+Otu1296	1	Bacteria Firmicutes Clostridia Clostridiales Ruminococcaceae Saccharofermentans
+Otu1297	1	Bacteria Proteobacteria Alphaproteobacteria Rhodobacterales Rhodobacteraceae
+Otu1298	1	Bacteria
+Otu1299	1	Bacteria
+Otu1300	1	Bacteria Firmicutes Bacilli Lactobacillales
+Otu1301	1	Bacteria
+Otu1302	1	Bacteria
+Otu1303	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Alcaligenaceae Alcaligenes
+Otu1304	1	Bacteria Firmicutes Bacilli Lactobacillales Lactobacillaceae Lactobacillus
+Otu1305	1	Bacteria Firmicutes Bacilli Lactobacillales Streptococcaceae Streptococcus
+Otu1306	1	Bacteria
+Otu1307	1	Bacteria Proteobacteria
+Otu1308	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1309	1	Bacteria Firmicutes Clostridia Clostridiales Ruminococcaceae
+Otu1310	1	Bacteria Firmicutes Bacilli Lactobacillales
+Otu1311	1	Bacteria
+Otu1312	1	Bacteria
+Otu1313	1	Bacteria
+Otu1314	1	Bacteria
+Otu1315	1	Bacteria Actinobacteria Actinobacteria Actinomycetales Propionibacteriaceae
+Otu1316	1	Bacteria Proteobacteria
+Otu1317	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1318	1	Bacteria
+Otu1319	1	Bacteria
+Otu1320	1	Bacteria Firmicutes Clostridia Clostridiales Lachnospiraceae
+Otu1321	1	Bacteria
+Otu1322	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu1323	1	Bacteria
+Otu1324	1	Bacteria
+Otu1325	1	Bacteria Proteobacteria Gammaproteobacteria
+Otu1326	1	Bacteria
+Otu1327	1	Bacteria Firmicutes Bacilli Bacillales Staphylococcaceae Jeotgalicoccus
+Otu1328	1	Bacteria Firmicutes Bacilli Bacillales
+Otu1329	1	Bacteria Bacteroidetes Flavobacteria Flavobacteriales Flavobacteriaceae
+Otu1330	1	Bacteria Firmicutes Bacilli Bacillales Staphylococcaceae Jeotgalicoccus
+Otu1331	1	Bacteria
+Otu1332	1	Bacteria Firmicutes Clostridia Clostridiales
+Otu1333	1	Bacteria
+Otu1334	1	Bacteria
+Otu1335	1	Bacteria Proteobacteria Gammaproteobacteria Enterobacteriales Enterobacteriaceae
+Otu1336	1	Bacteria Deinococcus-Thermus Deinococci Deinococcales Trueperaceae Truepera
+Otu1337	1	Bacteria
+Otu1338	1	Bacteria
+Otu1339	1	Bacteria
+Otu1340	1	Bacteria Firmicutes Bacilli Lactobacillales
+Otu1341	1	Bacteria Proteobacteria
+Otu1342	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu1343	1	Bacteria
+Otu1344	1	Bacteria Actinobacteria Actinobacteria Actinomycetales Pseudonocardiaceae Actinomycetospora
+Otu1345	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales
+Otu1346	1	Bacteria
+Otu1347	1	Bacteria Proteobacteria Alphaproteobacteria
+Otu1348	1	Bacteria
+Otu1349	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1350	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1351	1	Bacteria
+Otu1352	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1353	1	Bacteria
+Otu1354	1	Bacteria
+Otu1355	1	Bacteria Firmicutes Bacilli Bacillales
+Otu1356	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1357	1	Bacteria
+Otu1358	1	Bacteria
+Otu1359	1	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales Cytophagaceae Siphonobacter
+Otu1360	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1361	1	Bacteria Actinobacteria Actinobacteria Actinomycetales Actinomycetaceae
+Otu1362	1	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales Cytophagaceae Siphonobacter
+Otu1363	1	Bacteria
+Otu1364	1	Bacteria Firmicutes
+Otu1365	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1366	1	Bacteria
+Otu1367	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1368	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Comamonadaceae
+Otu1369	1	Bacteria Firmicutes Bacilli
+Otu1370	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1371	1	Bacteria
+Otu1372	1	Bacteria Firmicutes Bacilli Lactobacillales
+Otu1373	1	Bacteria Firmicutes
+Otu1374	1	Bacteria
+Otu1375	1	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales Cytophagaceae Siphonobacter
+Otu1376	1	Bacteria
+Otu1377	1	Bacteria Firmicutes
+Otu1378	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1379	1	Bacteria Firmicutes Bacilli Lactobacillales Leuconostocaceae Weissella
+Otu1380	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1381	1	Bacteria Actinobacteria Actinobacteria Actinomycetales
+Otu1382	1	Bacteria Bacteroidetes Sphingobacteria Sphingobacteriales Chitinophagaceae Sediminibacterium
+Otu1383	1	Bacteria Spirochaetes Spirochaetes Spirochaetales Spirochaetaceae Treponema
+Otu1384	1	Bacteria
+Otu1385	1	Bacteria
+Otu1386	1	Bacteria Proteobacteria Alphaproteobacteria Caulobacterales Caulobacteraceae Caulobacter
+Otu1387	1	Bacteria Firmicutes Clostridia Clostridiales Incertae_Sedis_XI Murdochiella
+Otu1388	1	Bacteria Proteobacteria Betaproteobacteria Burkholderiales Alcaligenaceae
+Otu1389	1	Bacteria Proteobacteria Alphaproteobacteria Rhodobacterales Rhodobacteraceae
+Otu1390	1	Bacteria Proteobacteria Alphaproteobacteria
+Otu1391	1	Bacteria
+Otu1392	1	Bacteria Proteobacteria Betaproteobacteria
+Otu1393	1	Bacteria
+Otu1394	1	Bacteria
+Otu1395	1	Bacteria Firmicutes Bacilli Lactobacillales
+Otu1396	1	Bacteria Planctomycetes Planctomycetacia Planctomycetales Planctomycetaceae
+Otu1397	1	Bacteria
+Otu1398	1	Bacteria Proteobacteria Gammaproteobacteria
+Otu1399	1	Bacteria
+Otu1400	1	Bacteria Proteobacteria
+Otu1401	1	Bacteria Proteobacteria Gammaproteobacteria
+Otu1402	1	Bacteria

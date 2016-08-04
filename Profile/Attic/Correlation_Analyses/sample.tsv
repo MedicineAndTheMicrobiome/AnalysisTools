@@ -1,0 +1,9 @@
+SampleID	QV	Index1	Index2	Index3	line	linep1	line2slop	flat
+abc	30	10	20	30	30	31	60	2
+cdf	50	13	53	34	50	51	100	2
+fgh	31	21	86	47	31	32	62	2
+hij	47	45	48	72	47	48	94	2
+jkl	38	67	58	54	38	39	76	2
+lmn	38	85	67	21	38	39	76	2
+nop	38	58	67	22	38	39	76	2
+pqr	48	56	34	44	48	49	96	2

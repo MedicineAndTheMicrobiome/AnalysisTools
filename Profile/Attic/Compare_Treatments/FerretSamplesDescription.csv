@@ -1,0 +1,96 @@
+"Sample"	"Description"	"Region"	"Type"	"Day"	"Infection"	"UnitNames"	"Replicate"
+"01d0_202_V3V5"	"Day 0  replicate 1 Infected  Nasal Wash Sample for V3V5 region "	"V3V5"	"Wash"	0	"I"	1	1
+"01d0_65_V1V3"	"Day 0 replicate 1 Infected  Nasal Wash Sample for V1V3 region "	"V1V3"	"Wash"	0	"I"	1	1
+"01d0_65_V3V5"	"Day 0  replicate 2 Infected  Nasal Wash Sample for V3V5 region "	"V3V5"	"Wash"	0	"I"	1	1
+"01d0_66_V1V3"	"Day 0 replicate 2 Infected  Nasal Wash Sample for V1V3 region "	"V1V3"	"Wash"	0	"I"	1	2
+"01d0_66_V3V5"	"Day 0  replicate 3 Infected  Nasal Wash Sample for V3V5 region "	"V3V5"	"Wash"	0	"I"	1	2
+"01d1_72_V1V3"	"Day 1 replicate 1 Infected  Nasal Wash Sample for V1V3 region "	"V1V3"	"Wash"	1	"I"	1	1
+"01d1_73_V1V3"	"Day 1 replicate 2 Infected  Nasal Wash Sample for V1V3 region "	"V1V3"	"Wash"	1	"I"	1	2
+"01d1_73_V3V5"	"Day 1  replicate 1 Infected  Nasal Wash Sample for V3V5 region "	"V3V5"	"Wash"	1	"I"	1	1
+"01d1_74_V1V3"	"Day 1 replicate 3 Infected  Nasal Wash Sample for V1V3 region "	"V1V3"	"Wash"	1	"I"	1	3
+"01d1_74_V3V5"	"Day 1  replicate 2 Infected  Nasal Wash Sample for V3V5 region "	"V3V5"	"Wash"	1	"I"	1	2
+"01d1_75_V3V5"	"Day 1  replicate 3 Infected  Nasal Wash Sample for V3V5 region "	"V3V5"	"Wash"	1	"I"	1	3
+"01d2_80_V1V3"	"Day 2 replicate 1 Infected  Nasal Wash Sample for V1V3 region "	"V1V3"	"Wash"	2	"I"	1	1
+"01d2_81_V1V3"	"Day 2 replicate 2 Infected  Nasal Wash Sample for V1V3 region "	"V1V3"	"Wash"	2	"I"	1	2
+"01d2_81_V3V5"	"Day 2  replicate 1 Infected  Nasal Wash Sample for V3V5 region "	"V3V5"	"Wash"	2	"I"	1	1
+"01d2_82_V1V3"	"Day 2 replicate 3 Infected  Nasal Wash Sample for V1V3 region "	"V1V3"	"Wash"	2	"I"	1	3
+"01d2_82_V3V5"	"Day 2 replicate 2 Infected  Nasal Wash Sample for V3V5 region "	"V3V5"	"Wash"	2	"I"	1	2
+"01d2_83_V3V5"	"Day 2  replicate 3 Infected  Nasal Wash Sample for V3V5 region "	"V3V5"	"Wash"	2	"I"	1	3
+"06d0_19_V1V3"	"Day 0 replicate 1 Uninfected  control Nasal Wash Sample for V1V3 region "	"V1V3"	"Wash"	0	"U"	6	1
+"06d0_20_V1V3"	"Day 0 replicate 2 Uninfected  control Nasal Wash Sample for V1V3 region "	"V1V3"	"Wash"	0	"U"	6	2
+"06d0_20_V3V5"	"Day 0  replicate 1 Uninfected  control Nasal Wash Sample for V3V5 region "	"V3V5"	"Wash"	0	"U"	6	1
+"06d0_21_V1V3"	"Day 0 replicate 3 Uninfected  control Nasal Wash Sample for V1V3 region "	"V1V3"	"Wash"	0	"U"	6	3
+"06d0_21_V3V5"	"Day 0 replicate 2 Uninfected  control Nasal Wash Sample for V3V5 region "	"V3V5"	"Wash"	0	"U"	6	2
+"06d0_22_V3V5"	"Day 0 replicate 3 Uninfected  control Nasal Wash Sample for V3V5 region "	"V3V5"	"Wash"	0	"U"	6	3
+"06d1_27_V1V3"	"Day 1 replicate 1 Uninfected  control Nasal Wash Sample for V1V3 region "	"V1V3"	"Wash"	1	"U"	6	1
+"06d1_28_V3V5"	"Day 1 replicate 1 Uninfected  control Nasal Wash Sample for V3V5 region "	"V3V5"	"Wash"	1	"U"	6	1
+"06d1_29_V1V3"	"Day 1 replicate 2 Uninfected  control Nasal Wash Sample for V1V3 region "	"V1V3"	"Wash"	1	"U"	6	2
+"06d1_29_V3V5"	"Day 1  replicate 2Uninfected  control Nasal Wash Sample for V3V5 region "	"V3V5"	"Wash"	1	"U"	6	2
+"06d1_30_V3V5"	"Day 1  replicate 3Uninfected  control Nasal Wash Sample for V3V5 region "	"V3V5"	"Wash"	1	"U"	6	3
+"06d2_35_V1V3"	"Day 2 replicate 1 Uninfected  control Nasal Wash Sample for V1V3 region "	"V1V3"	"Wash"	2	"U"	6	1
+"06d2_36_V3V5"	"Day 2  replicate 1 Uninfected  control Nasal Wash Sample for V3V5 region "	"V3V5"	"Wash"	2	"U"	6	1
+"06d2_37_V1V3"	"Day 2 replicate 2 Uninfected  control Nasal Wash Sample for V1V3 region "	"V1V3"	"Wash"	2	"U"	6	2
+"06d2_37_V3V5"	"Day 2  replicate 2 Uninfected  control Nasal Wash Sample for V3V5 region "	"V3V5"	"Wash"	2	"U"	6	2
+"06d2_38_V3V5"	"Day 2  replicate 3 Uninfected  control Nasal Wash Sample for V3V5 region "	"V3V5"	"Wash"	2	"U"	6	3
+"08d0_88_V1V3"	"Day 0 replicate 1 Infected  Nasal Wash Sample for V1V3 region "	"V1V3"	"Wash"	0	"I"	8	1
+"08d0_89_V1V3"	"Day 0 replicate 2 Infected  Nasal Wash Sample for V1V3 region "	"V1V3"	"Wash"	0	"I"	8	2
+"08d0_89_V3V5"	"Day 0  replicate 1 Infected  Nasal Wash Sample for V3V5 region "	"V3V5"	"Wash"	0	"I"	8	1
+"08d0_90_V1V3"	"Day 0 replicate 3 Infected  Nasal Wash Sample for V1V3 region "	"V1V3"	"Wash"	0	"I"	8	3
+"08d0_90_V3V5"	"Day 0  replicate 2 Infected  Nasal Wash Sample for V3V5 region "	"V3V5"	"Wash"	0	"I"	8	2
+"08d1_3_V1V3"	"Day 1 replicate 1 Infected  Nasal Wash Sample for V1V3 region "	"V1V3"	"Wash"	1	"I"	8	1
+"08d1_4_V1V3"	"Day 1 replicate 2 Infected  Nasal Wash Sample for V1V3 region "	"V1V3"	"Wash"	1	"I"	8	2
+"08d1_4_V3V5"	"Day 1  replicate 1 Infected  Nasal Wash Sample for V3V5 region "	"V3V5"	"Wash"	1	"I"	8	1
+"08d1_5_V1V3"	"Day 1 replicate 3 Infected  Nasal Wash Sample for V1V3 region "	"V1V3"	"Wash"	1	"I"	8	3
+"08d2_11_V1V3"	"Day 2 replicate 1 Infected  Nasal Wash Sample for V1V3 region "	"V1V3"	"Wash"	2	"I"	8	1
+"08d2_12_V1V3"	"Day 2 replicate 2 Infected  Nasal Wash Sample for V1V3 region "	"V1V3"	"Wash"	2	"I"	8	2
+"08d2_12_V3V5"	"Day 2  replicate 1 Infected  Nasal Wash Sample for V3V5 region "	"V3V5"	"Wash"	2	"I"	8	1
+"08d2_13_V1V3"	"Day 2 replicate 3 Infected  Nasal Wash Sample for V1V3 region "	"V1V3"	"Wash"	2	"I"	8	3
+"08d2_13_V3V5"	"Day 2  replicate 2 Infected  Nasal Wash Sample for V3V5 region "	"V3V5"	"Wash"	2	"I"	8	2
+"08d2_14_V3V5"	"Day 2  replicate 3 Infected  Nasal Wash Sample for V3V5 region "	"V3V5"	"Wash"	2	"I"	8	3
+"94d_0S_24_V1V3"	"Uninfected replicate 1 Nasal Swab Sample for V1V3 region"	"V1V3"	"Swab"	0	"U"	94	1
+"94d_0S_25_V1V3"	"Uninfected replicate 2 Nasal Swab Sample for V1V3 region"	"V1V3"	"Swab"	0	"U"	94	2
+"94d_0S_25_V3V5"	"Uninfected  replicate 1 Nasal Swab Sample for V3V5region"	"V3V5"	"Swab"	0	"U"	94	1
+"94d_0S_26_V1V3"	"Uninfected replicate 3 Nasal Swab Sample for V1V3 region"	"V1V3"	"Swab"	0	"U"	94	3
+"94d_0S_26_V3V5"	"Uninfected  replicate 2 Nasal Swab Sample for V3V5region"	"V3V5"	"Swab"	0	"U"	94	2
+"94d_0S_27_V3V5"	"Uninfected  replicate 3 Nasal Swab Sample for V3V5 region"	"V3V5"	"Swab"	0	"U"	94	3
+"94d_0W_16_V1V3"	"Uninfected replicate 1 Nasal Wash Sample for V1V3 region"	"V1V3"	"Wash"	0	"U"	94	1
+"94d_0W_17_V1V3"	"Uninfected replicate 2 Nasal Wash Sample for V1V3 region"	"V1V3"	"Wash"	0	"U"	94	2
+"94d_0W_17_V3V5"	"Uninfected  replicate 1 Nasal Wash Sample for V3V5 region"	"V3V5"	"Wash"	0	"U"	94	1
+"94d_0W_18_V1V3"	"Uninfected replicate 3 Nasal Wash Sample for V1V3 region"	"V1V3"	"Wash"	0	"U"	94	3
+"94d_0W_18_V3V5"	"Uninfected replicate 2 Nasal Wash Sample for V3V5 region"	"V3V5"	"Wash"	0	"U"	94	2
+"94d_0W_19_V3V5"	"Uninfected replicate 3 Nasal Wash Sample for V3V5 region"	"V3V5"	"Wash"	0	"U"	94	3
+"94d_2S_10_V1V3"	"Uninfected replicate 1 Nasal Swab Sample for V1V3 region"	"V1V3"	"Swab"	2	"U"	94	1
+"94d_2S_10_V3V5"	"Uninfected replicate 1  Nasal Swab Sample for V3V5 region"	"V3V5"	"Swab"	2	"U"	94	1
+"94d_2S_11_V3V5"	"Uninfected replicate 2 Nasal Swab Sample for V3V5 region"	"V3V5"	"Swab"	2	"U"	94	2
+"94d_2S_8_V1V3"	"Uninfected replicate 2 Nasal Swab Sample for V1V3 region"	"V1V3"	"Swab"	2	"U"	94	2
+"94d_2S_9_V1V3"	"Uninfected replicate 3 Nasal Swab Sample for V1V3 region"	"V1V3"	"Swab"	2	"U"	94	3
+"94d_2S_9_V3V5"	"Uninfected replicate 3 Nasal Swab Sample for V3V5 region"	"V3V5"	"Swab"	2	"U"	94	3
+"94d_2W_0_V1V3"	"Uninfected replicate 1 Nasal Wash Sample for V1V3 region"	"V1V3"	"Wash"	2	"U"	94	1
+"94d_2W_1_V1V3"	"Uninfected replicate 2 Nasal Wash Sample for V1V3 region"	"V1V3"	"Wash"	2	"U"	94	2
+"94d_2W_1_V3V5"	"Uninfected replicate 1 Nasal Wash Sample for V3V5 region"	"V3V5"	"Wash"	2	"U"	94	1
+"94d_2W_2_V1V3"	"Uninfected replicate 3 Nasal Wash Sample for V1V3 region"	"V1V3"	"Wash"	2	"U"	94	3
+"94d_2W_2_V3V5"	"Uninfected  replicate 2 Nasal Wash Sample for V3V5 region"	"V3V5"	"Wash"	2	"U"	94	2
+"94d_2W_3_V3V5"	"Uninfected  replicate 3 Nasal Wash Sample for V3V5 region"	"V3V5"	"Wash"	2	"U"	94	3
+"96d_0S_56_V1V3"	"Uninfected replicate 1 Nasal Swab Sample for V1V3 region"	"V1V3"	"Swab"	0	"U"	96	1
+"96d_0S_57_V1V3"	"Uninfected replicate 2 Nasal Swab Sample for V1V3 region"	"V1V3"	"Swab"	0	"U"	96	2
+"96d_0S_57_V3V5"	"Uninfected replicate 1 Nasal Swab Sample for V3V5 region"	"V3V5"	"Swab"	0	"U"	96	1
+"96d_0S_58_V1V3"	"Uninfected replicate 3 Nasal Swab Sample for V1V3 region"	"V1V3"	"Swab"	0	"U"	96	3
+"96d_0S_58_V3V5"	"Uninfected replicate 2 Nasal Swab Sample for V3V5 region"	"V3V5"	"Swab"	0	"U"	96	2
+"96d_0S_59_V3V5"	"Uninfected replicate 3 Nasal Swab Sample for V3V5 region"	"V3V5"	"Swab"	0	"U"	96	3
+"96d_0W_48_V1V3"	"Uninfected replicate 1 Nasal Wash Sample for V1V3 region"	"V1V3"	"Wash"	0	"U"	96	1
+"96d_0W_49_V1V3"	"Uninfected replicate 2 Nasal Wash Sample for V1V3 region"	"V1V3"	"Wash"	0	"U"	96	2
+"96d_0W_49_V3V5"	"Uninfected replicate 1 Nasal Wash Sample for V3V5 region"	"V3V5"	"Wash"	0	"U"	96	1
+"96d_0W_50_V3V5"	"Uninfected replicate 2 Nasal Wash Sample for V3V5 region"	"V3V5"	"Wash"	0	"U"	96	2
+"96d_0W_51_V3V5"	"Uninfected replicate 3 Nasal Wash Sample for V3V5 region"	"V3V5"	"Wash"	0	"U"	96	3
+"96d_2S_40_V1V3"	"Uninfected replicate 1 Nasal Swab Sample for V1V3 region"	"V1V3"	"Swab"	2	"U"	96	1
+"96d_2S_41_V1V3"	"Uninfected replicate 2 Nasal Swab Sample for V1V3 region"	"V1V3"	"Swab"	2	"U"	96	2
+"96d_2S_41_V3V5"	"Uninfected replicate 1 Nasal Swab Sample for V3V5 region"	"V3V5"	"Swab"	2	"U"	96	1
+"96d_2S_42_V1V3"	"Uninfected replicate 3 Nasal Swab Sample for V1V3 region"	"V1V3"	"Swab"	2	"U"	96	3
+"96d_2S_42_V3V5"	"Uninfected replicate 2 Nasal Swab Sample for V3V5 region"	"V3V5"	"Swab"	2	"U"	96	2
+"96d_2S_43_V3V5"	"Uninfected replicate 3 Nasal Swab Sample for V3V5 region"	"V3V5"	"Swab"	2	"U"	96	3
+"96d_2W_32_V1V3"	"Uninfected replicate 1 Nasal Wash Sample for V1V3 region"	"V1V3"	"Wash"	2	"U"	96	1
+"96d_2W_33_V1V3"	"Uninfected replicate 2 Nasal Wash Sample for V1V3 region"	"V1V3"	"Wash"	2	"U"	96	2
+"96d_2W_33_V3V5"	"Uninfected replicate 1 Nasal Wash Sample for V3V5 region"	"V3V5"	"Wash"	2	"U"	96	1
+"96d_2W_34_V1V3"	"Uninfected replicate 3 Nasal Wash Sample for V1V3 region"	"V1V3"	"Wash"	2	"U"	96	3
+"96d_2W_34_V3V5"	"Uninfected replicate 2 Nasal Wash Sample for V3V5 region"	"V3V5"	"Wash"	2	"U"	96	2
+"96d_2W_35_V3V5"	"Uninfected replicate 3 Nasal Wash Sample for V3V5 region"	"V3V5"	"Wash"	2	"U"	96	3
