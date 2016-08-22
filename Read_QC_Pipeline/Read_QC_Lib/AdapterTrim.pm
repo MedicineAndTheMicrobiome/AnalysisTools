@@ -159,11 +159,12 @@ sub execute_analysis{
 		"$fastq_path " .
 		"-o $output_path/$self->{ADAPTER_TRIM_OUT_NAME} " .
 		"--match-read-wildcards " .
-		">& $output_path/$self->{STATS_OUT_NAME}";
+		"> $output_path/$self->{STATS_OUT_NAME} " .
+		"2>&1";
 
 	# Execute
 	print STDERR "Executing: $execute_analysis_string\n";
-	my $res=`$execute_analysis_string`;
+	print STDERR `$execute_analysis_string`;
 
 	# Keep track of where final output fastq file is
 	$self->{processed_fastq}="$output_path/$self->{ADAPTER_TRIM_OUT_NAME}";
