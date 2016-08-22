@@ -17,7 +17,7 @@ use Read_QC_Lib::QualityTrim;
 use Read_QC_Lib::RibosomeFilter;
 use Read_QC_Lib::Subsample;
 
-use Config::IniFiles;
+use Read_QC_Lib::Config::IniFiles;
 
 my $command_list = "contam,dust,qvtrim,adapt,ribo";
 
