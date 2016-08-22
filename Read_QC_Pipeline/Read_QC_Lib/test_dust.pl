@@ -1,4 +1,4 @@
-#!/bin/env perl
+#!/usr/bin/env perl
 
 use strict;
 use FindBin;
@@ -13,7 +13,7 @@ my $global_scratch=$cfg->val("GLOBAL", "scratch_dir");
 my $dust_bin=$cfg->val("dust_screen", "bin");
 my $cutoff=$cfg->val("dust_screen", "cutoff");
 
-my $test_data="../test_data/TAGGCATG-CTCTCTAT_R1.fasta";
+my $test_data="test_data/TAGGCATG-CTCTCTAT_R1.fasta";
 
 my $dust_mod= new Read_QC_Lib::Dust;
 
@@ -21,7 +21,7 @@ $dust_mod->set_executable_path($dust_bin);
 $dust_mod->set_cutoff($cutoff);
 $dust_mod->set_temporary_directory($global_scratch);
 $dust_mod->set_input_fasta($test_data);
-$dust_mod->set_output_directory("/usr/local/devel/DAS/users/kli/SVN/DAS/Read_QC_Pipeline/Read_QC_Lib/tmp");
+$dust_mod->set_output_directory(".");
 
 $dust_mod->perform_qc();
 

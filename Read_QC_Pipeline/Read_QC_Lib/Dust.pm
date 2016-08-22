@@ -134,7 +134,7 @@ sub execute_analysis{
 	}
 
 	# Construct execution string
-	my $execute_analysis_string="$exec_path $fasta_path > $output_path/$self->{DUST_OUT_NAME}";
+	my $execute_analysis_string="$exec_path -in $fasta_path -out $output_path/$self->{DUST_OUT_NAME} -outfmt fasta";
 
 	# Execute
 	print STDERR "Executing: $execute_analysis_string\n";
@@ -168,7 +168,7 @@ sub parse_results{
 		my $id=$1;
 		
 		my $seq_len=length($sequence);
-		my $num_Ns=($sequence=~tr/N//);
+		my $num_Ns=($sequence=~tr/a-z//);
 		my $perc_hq_seq=($seq_len-$num_Ns)/$seq_len;
 		
 		my $outline=join "\t", ($id, $num_Ns, $seq_len, sprintf("%3.3f", $perc_hq_seq));
