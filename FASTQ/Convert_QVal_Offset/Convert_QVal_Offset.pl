@@ -31,20 +31,24 @@ $0
 ";
 
 if(!(
-	defined($opt_f) ||
+	defined($opt_f) &&
 	defined($opt_o))){
 	die $usage;
 }
 
 my $in_fastq=$opt_f;
-my $target_offset=64;
+my $target_offset=33;
 my $out_fastq=$opt_o;
 my $source_offset;
 
+if(defined($opt_t)){
+	$target_offset=$opt_t;
+}
+
 if($target_offset == 64){
-	$source_offset=33;
+	$source_offset = 33;
 }elsif($target_offset == 33){
-	$source_offset=64;
+	$source_offset = 64;
 }else{
 	die "Target offset is non-standard.  i.e. not 64 or 33.\n";
 }
@@ -53,6 +57,7 @@ if($target_offset == 64){
 
 print STDERR "Input FASTQ: $in_fastq\n";
 print STDERR "Target Offset: $target_offset\n";
+print STDERR "Source Offset: $source_offset (Assumed)\n";
 print STDERR "Output FASTQ: $out_fastq\n";
 
 ###############################################################################
@@ -119,7 +124,7 @@ my $num_recs=0;
 my $tot_errn=0;
 my $tot_errp=0;
 
-print STDERR "Reading FASTQ file: $in_fastq...\n";
+print STDERR "Reading FASTQ file...\n";
 
 while(!eof(FASTQ_FH)){
 
@@ -147,14 +152,23 @@ while(!eof(FASTQ_FH)){
 close(FASTQ_FH);
 close(OUT_FQ_FH);
 
+print STDERR "$tot_errn / $tot_errp\n";
+
 if($tot_errn == 0 && $tot_errp == 0){
 	print STDERR "QVs in range.\n";
+}elsif($tot_errn < 0 && $tot_errp > 0){
+	print STDERR "QVs inconsistently out of range.  Cannot confirm offset.\n";
+	unlink $out_fastq;
 }elsif($tot_errn<0){
 	print STDERR "QVs out of range, i.e. negative.  Assumed starting offset was 64, but was 33?\n";
+	print STDERR "No conversion performed.\n";
+	system("cp $in_fastq $out_fastq");
 }elsif($tot_errp>0){
 	print STDERR "QVs out of range, i.e. too large.  Assumed started offset was 33, but was 64?\n";
+	print STDERR "No conversion performed.\n";
+	system("cp $in_fastq $out_fastq");
 }
 
-print STDERR "Completed.\n";
+print STDERR "Completed.\n\n";
 
 ###############################################################################
