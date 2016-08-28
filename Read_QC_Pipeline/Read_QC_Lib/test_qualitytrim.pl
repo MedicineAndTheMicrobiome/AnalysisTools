@@ -15,7 +15,7 @@ my $qvtrim_bin=$cfg->val("quality_trim", "bin");
 my $qthres=$cfg->val("quality_trim", "quality_threshold");
 my $mincut=$cfg->val("quality_trim", "minimum_length");
 
-my $test_data="../test_data/TAGGCATG-CTCTCTAT_R1.fastq";
+my $test_data="test_data/TAGGCATG-CTCTCTAT_R1.fastq";
 
 my $qvtrim_mod= new Read_QC_Lib::QualityTrim;
 
@@ -24,7 +24,7 @@ $qvtrim_mod->set_quality_threshold($qthres);
 $qvtrim_mod->set_minimum_length($mincut);
 $qvtrim_mod->set_temporary_directory($global_scratch);
 $qvtrim_mod->set_input_fastq($test_data);
-$qvtrim_mod->set_output_directory("/usr/local/devel/DAS/users/kli/SVN/DAS/Read_QC_Pipeline/Read_QC_Lib/tmp");
+$qvtrim_mod->set_output_directory("tmp");
 
 $qvtrim_mod->perform_qc();
 
