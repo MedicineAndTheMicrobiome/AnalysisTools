@@ -21,7 +21,7 @@ $dust_mod->set_executable_path($dust_bin);
 $dust_mod->set_cutoff($cutoff);
 $dust_mod->set_temporary_directory($global_scratch);
 $dust_mod->set_input_fasta($test_data);
-$dust_mod->set_output_directory(".");
+$dust_mod->set_output_directory("tmp");
 
 $dust_mod->perform_qc();
 
