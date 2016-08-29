@@ -21,7 +21,7 @@ my $mod= new Read_QC_Lib::Subsample;
 $mod->set_executable_path($bin);
 $mod->set_input_fastq($test_data);
 $mod->set_sample_size($sample_size);
-$mod->set_output_directory("/usr/local/devel/DAS/users/kli/SVN/DAS/Read_QC_Pipeline/Read_QC_Lib/tmp");
+$mod->set_output_directory("tmp");
 
 $mod->perform_qc();
 
