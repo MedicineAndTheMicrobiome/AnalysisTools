@@ -118,6 +118,9 @@ print STDERR "\n";
 
 sub load_file_list{
 	my $list=shift;
+
+	system("dos2unix $list");
+
 	open(IN_FH, "<$list") || die "Could not opne $list\n";
 	my @load_file;
 	while(<IN_FH>){
