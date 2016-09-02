@@ -6,7 +6,7 @@ use strict;
 use FindBin;
 use lib "$FindBin::Bin";
 use Getopt::Std;
-use vars qw($opt_l $opt_p $opt_s $opt_c $opt_o);
+use vars qw($opt_l $opt_p $opt_s $opt_r $opt_c $opt_o);
 use File::Basename;
 use POSIX; # for ceil function
 
@@ -21,7 +21,7 @@ use Read_QC_Lib::Config::IniFiles;
 
 my $command_list = "contam,dust,qvtrim,adapt,ribo";
 
-getopts("l:p:s:c:o:");
+getopts("l:p:s:r:c:o:");
 my $usage = "usage: 
 
 $0 
@@ -29,6 +29,7 @@ $0
 	-l <List of reads to process>
 	-p <Parameter file>
 	-o <Output directory>
+	[-r <input fastq root directory>]
 	[-s <Offset, default=1>,<Multiplier, default=1>]
 	[-c <Command list, default=\"$command_list\"]
 	
@@ -65,6 +66,9 @@ $0
 	An example of a quick QC run would be:
 		subsample,contam,dust,qvtrim,adapt,ribo
 
+	If the -r option is specified, then that path will be pre-pended to the forward and
+	reverse fastq paths if they are relative.  i.e. they do not begin with a /.
+	
 	
 ";
 
@@ -76,6 +80,7 @@ my $read_list=$opt_l;
 my $parameter_fname=$opt_p;
 my $output_dir=$opt_o;
 my $subparam="1,1";
+my $input_fastq_root="";
 
 
 if(defined($opt_s)){
@@ -84,6 +89,10 @@ if(defined($opt_s)){
 
 if(defined($opt_c)){
 	$command_list=$opt_c;
+}
+
+if(defined($opt_r)){
+	$input_fastq_root=$opt_r;
 }
 
 my ($offset, $multiplier)=split ",", $subparam;
@@ -96,6 +105,7 @@ print STDERR "\n";
 print STDERR "Read List: $read_list\n";
 print STDERR "Parameters: $parameter_fname\n";
 print STDERR "Subset Paramters: Offset=$offset Multiplier=$multiplier\n";
+print STDERR "Input fastq root director: $input_fastq_root\n";
 
 print STDERR "Command List:\n";
 foreach my $command(@command_arr){
@@ -112,6 +122,7 @@ sub load_file_list{
 	my @load_file;
 	while(<IN_FH>){
 		chomp;
+		if(substr($_, 0, 1) eq "#"){ next;} # Skip comments
 		push @load_file, $_;
 	}
 	close(IN_FH);	
@@ -406,6 +417,15 @@ for(my $idx=$offset; $idx<$num_records; $idx+=$multiplier){
 
 	print STDERR "\nWorking on record: $idx.\n";
 	my ($lib_name, $for_path, $rev_path, $for_adapt, $rev_adapt)= split "\t", ${$file_hash_ref}[$idx];
+
+	if($input_fastq_root ne ""){
+		if(substr($for_path, 0 , 1) ne "/"){
+			$for_path="$input_fastq_root/$for_path";
+		}
+		if(substr($rev_path, 0 , 1) ne "/"){
+			$rev_path="$input_fastq_root/$rev_path";
+		}
+	}
 
 	if($rev_path eq ""){
 		$rev_path = $UNSPECIFIED;
