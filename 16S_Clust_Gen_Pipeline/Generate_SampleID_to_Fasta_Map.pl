@@ -20,6 +20,16 @@ $0
 	in the specified path, and generate a sample id to fasta file
 	path.
 
+	This is an optional script, but if you have a directory of
+	fasta files and you think the fasta file names are consistently
+	named and reflect the name of the sample the fasta file it
+	represents, then this script will automatically generate
+	a sample id to fasta file name.
+
+	The output file is:
+
+	<generated sample id> \\t <fasta path> \\n
+
 ";
 
 if(!(
