@@ -149,6 +149,15 @@ sub execute_analysis{
 	my $adapter_string="";
 	foreach my $adapt_seq(@{$adapter_sequences_ref}){
 		$adapt_seq=~s/\s+//g; 
+
+		my $test_str=$adapt_seq;
+
+		# Confirm that adapter sequence is not empty
+		my $num_alpha=($test_str=~s/[A-Za-z]//g);
+		if($num_alpha eq "" || $num_alpha == 0){
+			die "ERROR: Adapter Sequence is empty: $adapt_seq.\n";
+		}
+
 		$adapter_string.="-b $adapt_seq "
 	}
 
