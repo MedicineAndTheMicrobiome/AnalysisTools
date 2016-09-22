@@ -107,7 +107,7 @@ foreach my $fpath(keys %map){
 
 open(OUT_FH, ">$output_fname") || die "Could not open $output_fname\n";
 
-foreach my $fpath(@fastalist){
+foreach my $fpath(sort @fastalist){
 	my $samp_id=join ".", @{$map{$fpath}};
 	print OUT_FH "$samp_id\t$fpath\n";
 }
