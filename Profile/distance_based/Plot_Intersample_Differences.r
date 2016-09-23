@@ -18,7 +18,7 @@ script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
 
 usage = paste(
 	"\nUsage:\n", script_name, "\n",
-	"	-i <input summary_table.xls file>\n",
+	"	-i <input summary_table.tsv file>\n",
 	"	[-o <output file root name>]\n",
 	"	[-w (flag: use Weighted Rank Distance as distance, default is Euclidean)]\n",
 	"	[-s <short name split character, default is \" \">]\n",
@@ -72,15 +72,42 @@ if(length(opt$colors)){
 ###############################################################################
 # Load the WRD code
 
-path_comp=strsplit(script_name, "/")[[1]];
-bin_comp_idx=length(path_comp);
-bin_path=paste(path_comp[-bin_comp_idx], collapse="/", sep="");
-if(nchar(bin_path)==0){
-        bin_path=".";
-}
-cat("Binary path: '", bin_path, "'\n", sep="");
+#path_comp=strsplit(script_name, "/")[[1]];
+#bin_comp_idx=length(path_comp);
+#bin_path=paste(path_comp[-bin_comp_idx], collapse="/", sep="");
+#if(nchar(bin_path)==0){
+#        bin_path=".";
+#}
+#cat("Binary path: '", bin_path, "'\n", sep="");
+#
+#source(paste(bin_path, "Cluster/WeightedRankDifference.r", sep="/"));
 
-source(paste(bin_path, "Cluster/WeightedRankDifference.r", sep="/"));
+order_dist=function(a, b, deg){
+        #asort=sort(a, decreasing=F, index.return=T, method="shell");
+        #bsort=sort(b, decreasing=F, index.return=T, method="shell");
+
+        arank=rank(a, ties.method="average");
+        brank=rank(b, ties.method="average");
+
+        sort_sqrdiff=sqrt(sum(((arank-brank)^2)*((a+b)/2)^deg));
+        #sort_sqrdiff=sqrt(sum(((arank-brank)^2)*(((a-b)/2)^2)));
+        return(sort_sqrdiff);
+
+}
+
+###############################################################################
+
+weight_rank_dist=function(M, deg){
+        NumSamples=nrow(M);
+        order_dist_mat=matrix(0, nrow=NumSamples, ncol=NumSamples);
+        for(i in 1:NumSamples){
+                for(j in 1:i){
+                        order_dist_mat[i,j]=order_dist(M[i,], M[j,], deg);
+                }
+        }
+        rownames(order_dist_mat)=rownames(M);
+        return(as.dist(order_dist_mat));
+}
 
 ###############################################################################
 
