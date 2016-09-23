@@ -7,9 +7,7 @@ set rootfname = $1
 
 echo "Root output name:" $rootfname
 
-Graph_Taxonomic_Diversity.r -i $rootfname
-
-$binpath/RankAbundance_Analysis.r $rootfname
+$binpath/RankAbundance_Analysis.r -i $rootfname
 
 $binpath/RankAbundance_BoxPlot.r $rootfname -r
 
