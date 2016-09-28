@@ -2,7 +2,8 @@
 
 ###############################################################################
 
-library(MASS)
+library(MASS);
+library(vegan);
 library('getopt');
 
 params=c(
@@ -98,24 +99,96 @@ normalize=function(counts){
         return(normalized);
 }
 
-plot_connected_figure=function(coordinates, offsets_mat, title=""){
+plot_connected_figure=function(coordinates, offsets_mat, groups_per_plot=3, title=""){
 	sorted_sids=sort(rownames(offsets_mat));
+	coordinates=coordinates[sorted_sids,];
+	offsets_mat=offsets_mat[sorted_sids,];
 
-	print(offsets_mat[sorted_sids,]);
-	print(coordinates[sorted_sids,]);
+	print(offsets_mat);
+	print(coordinates);
 
+	# Get Unique Groups
 	groups=sort(unique(offsets_mat[,"Group ID"]));
-	colors=nrow(offsets_mat);
 	num_groups=length(groups);
+
+	colors=rainbow(num_groups);
+	color_mat_dim=ceiling(sqrt(num_groups));
+	colors=as.vector(t(matrix(colors, nrow=color_mat_dim, ncol=color_mat_dim)));
+	palette(colors);
+
+	# Get limits of points
+	extra_margin=.2;
+	x_range=range(coordinates[,1]);
+	y_range=range(coordinates[,2]);
+	x_ext=abs(x_range[2]-x_range[1]);
+	y_ext=abs(y_range[2]-y_range[1]);
+	xlim=c(x_range[1]-x_ext*extra_margin, x_range[2]+x_ext*extra_margin);
+	ylim=c(y_range[1]-y_ext*extra_margin, y_range[2]+y_ext*extra_margin);
+	cat("\nPoint ranges:\n");
+	cat("X:\n");
+	print(x_range);
+	cat("Y:\n");
+	print(y_range);
+	cat("Plot ranges:\n");
+	cat("X:\n");
+	print(xlim);
+	cat("Y:\n");
+	print(ylim);
+	cat("\n");
+
+	# Plot all samples
+	plot(0, main=title, xlab="Dim 1", ylab="Dim 2", type="n", xlim=xlim, ylim=ylim);
 	for(i in 1:num_groups){
-		colors[groups[i]==offsets_mat[sorted_sids,"Group ID"]]=i;
+		grp_subset=which(offsets_mat[,"Group ID"]==groups[i]);
+		num_members=length(grp_subset);
+		print(grp_subset);
+
+		offsets_subset=offsets_mat[grp_subset,];
+		coord_subset=coordinates[grp_subset,];
+
+		sort_ix=order(offsets_subset[,"Offsets"], decreasing=F);
+
+		offsets_subset=offsets_subset[sort_ix,];
+		coord_subset=coord_subset[sort_ix,];
+
+		print(offsets_subset);
+		print(coord_subset);
+			
+		points(coord_subset, type="b", col=i, pch=20, cex=.5);
+		points(coord_subset[c(1, 1, num_members),], type="p", col=i, pch=c(17, 1, 15), cex=c(1, 2, 1.25));
 	}
-	print(colors);
 
-	palette(rainbow(num_groups));
+	# Plot subset of samples
+	for(i in 1:num_groups){
+		if(((i-1) %% groups_per_plot)==0){
+			plot(0, main=title, xlab="Dim 1", ylab="Dim 2", type="n", xlim=xlim, ylim=ylim);
+		}
 
-	plot(coordinates[sorted_sids,], main=title, xlab="Dim 1", ylab="Dim 2", type="n");
-	text(coordinates[sorted_sids,], labels=offsets_mat[sorted_sids,"Group ID"], col=colors);
+		cat("Plotting: ", groups[i], "\n");
+		grp_subset=which(offsets_mat[,"Group ID"]==groups[i]);
+		num_members=length(grp_subset);
+		print(grp_subset);
+
+		offsets_subset=offsets_mat[grp_subset,];
+		coord_subset=coordinates[grp_subset,];
+
+		sort_ix=order(offsets_subset[,"Offsets"], decreasing=F);
+
+		offsets_subset=offsets_subset[sort_ix,];
+		coord_subset=coord_subset[sort_ix,];
+
+		print(offsets_subset);
+		print(coord_subset);
+			
+		# Label start, stop, and group id
+		points(coord_subset, type="b", col=i, pch=20, cex=.5);
+		points(coord_subset[c(1, 1, num_members),], type="p", col=i, pch=c(17, 1, 15), cex=c(1, 2, 1.25));
+		text(coord_subset[1,1], coord_subset[1,2], labels=groups[i], col="black", pos=1, cex=.75, font=2);
+
+		# Label offsets
+		offset_ix=2:num_members;
+		text(coord_subset[offset_ix,1], coord_subset[offset_ix,2], labels=offsets_subset[offset_ix,"Offsets"], col=i, adj=c(.5,-.75), cex=.5, font=3);
+	}
 }
 
 ###############################################################################
@@ -134,7 +207,8 @@ normalized_mat=normalize(counts_mat);
 
 #print(normalized_mat);
 
-dist_mat=dist(normalized_mat);
+dist_mat=vegdist(normalized_mat, method="horn");
+#dist_mat=dist(normalized_mat);
 #print(dist_mat);
 
 # Remove 0 distances with very small number
@@ -158,5 +232,8 @@ plot_connected_figure(mds2_coord, offset_mat, title="IsoMetric MDS");
 
 cat("Done.\n")
 dev.off();
-
+warn=warnings();
+if(length(warn)){
+	print(warn);
+}
 q(status=0)
