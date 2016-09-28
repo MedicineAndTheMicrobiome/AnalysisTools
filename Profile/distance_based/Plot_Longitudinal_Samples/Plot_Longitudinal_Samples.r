@@ -207,7 +207,7 @@ normalized_mat=normalize(counts_mat);
 
 #print(normalized_mat);
 
-dist_mat=vegdist(normalized_mat, method="horn");
+dist_mat=vegdist(normalized_mat, method="euclidean");
 #dist_mat=dist(normalized_mat);
 #print(dist_mat);
 
