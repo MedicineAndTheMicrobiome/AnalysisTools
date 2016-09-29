@@ -5,6 +5,10 @@ set ref_root=hs_ref_all
 set tools_path=../Dependencies
 
 #
+# 0. First download reference.  Run source/get_chrom.csh
+#
+
+#
 # 1. Concatenate references
 #
 
