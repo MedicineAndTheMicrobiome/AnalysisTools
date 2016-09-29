@@ -35,11 +35,14 @@ srprismopts="-p false -b 100000000 -n 5 -R 0 -r 1 -M 7168"
 	#--trace-level info"
 	#-M 15360 
 
+bmtagger_bin=${0%/*}
+echo $bmtagger_bin
+
 : ${TMPDIR:=/tmp}
-: ${BMFILTER:=bmfilter}
+: ${BMFILTER:=$bmtagger_bin/bmfilter}
 : ${BLASTN:=blastn}
-: ${SRPRISM:=srprism}
-: ${EXTRACT_FA:=extract_fullseq}
+: ${SRPRISM:=$bmtagger_bin/../../srprism}
+: ${EXTRACT_FA:=$bmtagger_bin/extract_fullseq}
 
 function check_exec () {
 	if [ "$1" == "" ] ; then return 0; fi
