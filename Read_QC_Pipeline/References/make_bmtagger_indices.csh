@@ -9,7 +9,7 @@ set tools_path=../Dependencies
 #
 
 cd source
-get_chrom.csh
+./get_chrom.csh
 cd ..
 
 #
