@@ -8,6 +8,10 @@ set tools_path=../Dependencies
 # 0. First download reference.  Run source/get_chrom.csh
 #
 
+cd source
+get_chrom.csh
+cd ..
+
 #
 # 1. Concatenate references
 #
