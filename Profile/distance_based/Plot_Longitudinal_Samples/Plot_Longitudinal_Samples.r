@@ -104,8 +104,8 @@ plot_connected_figure=function(coordinates, offsets_mat, groups_per_plot=3, titl
 	coordinates=coordinates[sorted_sids,];
 	offsets_mat=offsets_mat[sorted_sids,];
 
-	print(offsets_mat);
-	print(coordinates);
+	#print(offsets_mat);
+	#print(coordinates);
 
 	# Get Unique Groups
 	groups=sort(unique(offsets_mat[,"Group ID"]));
@@ -151,8 +151,8 @@ plot_connected_figure=function(coordinates, offsets_mat, groups_per_plot=3, titl
 		offsets_subset=offsets_subset[sort_ix,];
 		coord_subset=coord_subset[sort_ix,];
 
-		print(offsets_subset);
-		print(coord_subset);
+		#print(offsets_subset);
+		#print(coord_subset);
 			
 		points(coord_subset, type="b", col=i, pch=20, cex=.5);
 		points(coord_subset[c(1, 1, num_members),], type="p", col=i, pch=c(17, 1, 15), cex=c(1, 2, 1.25));
@@ -164,10 +164,10 @@ plot_connected_figure=function(coordinates, offsets_mat, groups_per_plot=3, titl
 			plot(0, main=title, xlab="Dim 1", ylab="Dim 2", type="n", xlim=xlim, ylim=ylim);
 		}
 
-		cat("Plotting: ", groups[i], "\n");
+		#cat("Plotting: ", groups[i], "\n");
 		grp_subset=which(offsets_mat[,"Group ID"]==groups[i]);
 		num_members=length(grp_subset);
-		print(grp_subset);
+		#print(grp_subset);
 
 		offsets_subset=offsets_mat[grp_subset,];
 		coord_subset=coordinates[grp_subset,];
@@ -177,8 +177,8 @@ plot_connected_figure=function(coordinates, offsets_mat, groups_per_plot=3, titl
 		offsets_subset=offsets_subset[sort_ix,];
 		coord_subset=coord_subset[sort_ix,];
 
-		print(offsets_subset);
-		print(coord_subset);
+		#print(offsets_subset);
+		#print(coord_subset);
 			
 		# Label start, stop, and group id
 		points(coord_subset, type="b", col=i, pch=20, cex=.5);
@@ -189,6 +189,63 @@ plot_connected_figure=function(coordinates, offsets_mat, groups_per_plot=3, titl
 		offset_ix=2:num_members;
 		text(coord_subset[offset_ix,1], coord_subset[offset_ix,2], labels=offsets_subset[offset_ix,"Offsets"], col=i, adj=c(.5,-.75), cex=.5, font=3);
 	}
+}
+
+###############################################################################
+
+plot_sample_distances=function(distmat, offsets_mat, title=""){
+	sorted_sids=sort(rownames(offsets_mat));
+	offsets_mat=offsets_mat[sorted_sids,];
+
+	# Get Unique Groups
+	groups=sort(unique(offsets_mat[,"Group ID"]));
+	num_groups=length(groups);
+
+	# Get color assignments
+	colors=rainbow(num_groups);
+	color_mat_dim=ceiling(sqrt(num_groups));
+	colors=as.vector(t(matrix(colors, nrow=color_mat_dim, ncol=color_mat_dim)));
+	palette(colors);
+
+	def_par=par(no.readonly=T);
+	par(mfrow=c(4,1));
+
+	# Get range of offsets
+	offset_ranges=range(offsets_mat[,"Offsets"]);
+	cat("Offset Range:\n");
+	print(offset_ranges);
+
+	#print(offsets_mat);
+	distmat2d=as.matrix(distmat);
+	dist_ranges=range(distmat2d);
+	cat("Distance Ranges:\n");
+	print(dist_ranges);
+
+	# Plot subset of samples
+	for(i in 1:num_groups){
+
+		cat("Plotting: ", groups[i], "\n");
+		grp_subset=which(offsets_mat[,"Group ID"]==groups[i]);
+		num_members=length(grp_subset);
+
+		offset_info=offsets_mat[grp_subset,];
+		sort_ix=order(offset_info[,"Offsets"]);
+		offset_info=offset_info[sort_ix,];
+		print(offset_info);
+
+		subset_samples=rownames(offset_info);
+		subset_dist=distmat2d[subset_samples[1], subset_samples];
+		print(subset_dist);
+
+
+		plot(offset_info[,"Offsets"], subset_dist, main=groups[i],
+			 xlab="Time", ylab="Distance", type="l", col=i, lwd=2,
+			 xlim=offset_ranges, ylim=dist_ranges);
+
+		points(offset_info[c(1,1, num_members),"Offsets"], subset_dist[c(1,1, num_members)], type="p", pch=c(17, 1, 15), cex=c(1, 2, 1.25));
+		points(offset_info[,"Offsets"], subset_dist, type="b", pch=16, cex=.5);
+	}
+	par(def_par);
 }
 
 ###############################################################################
@@ -242,6 +299,8 @@ mds2_coord=isomds$points;
 
 plot_connected_figure(mds_coord, offset_mat, title="Metric MDS");
 plot_connected_figure(mds2_coord, offset_mat, title="IsoMetric MDS");
+
+plot_sample_distances(dist_mat, offset_mat);
 
 ##############################################################################
 
