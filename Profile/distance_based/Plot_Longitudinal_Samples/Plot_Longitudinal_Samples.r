@@ -200,13 +200,28 @@ offset_mat=load_offset(OffsetFileName);
 ###############################################################################
 
 counts_mat=load_summary_file(InputFileName);
-
 #print(counts_mat);
 
+###############################################################################
+
+offset_mat_samples=rownames(offset_mat);
+counts_mat_samples=rownames(counts_mat);
+shared=intersect(offset_mat_samples, counts_mat_samples);
+
+cat("\n\n");
+cat("Samples not represented in summary table file:\n");
+print(setdiff(counts_mat_samples, shared));
+cat("Samples not represented in offsets file:\n");
+print(setdiff(offset_mat_samples, shared));
+cat("\n\n");
+
+offset_mat=offset_mat[shared,];
+counts_mat=counts_mat[shared,];
+
+###############################################################################
+
 normalized_mat=normalize(counts_mat);
-
 #print(normalized_mat);
-
 dist_mat=vegdist(normalized_mat, method="euclidean");
 #dist_mat=dist(normalized_mat);
 #print(dist_mat);
