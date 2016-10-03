@@ -133,14 +133,30 @@ simplify=function(normalized_mat, top=4){
 
 ###############################################################################
 
-plot_dist=function(x, y, width=30, abundances){
+plot_dist=function(x, y, width=20, abundances){
 	
 	rect(
 		xleft=x-width/2,
 		ybottom=0,
 		xright=x+width/2,
 		ytop=1,
+		lwd=.01,
+		col="grey"
 	);
+
+	num_abund=length(abundances);
+	prev=0;
+	for(i in 1:num_abund){
+		rect(
+			xleft=x-width/2,
+			ybottom=prev,
+			xright=x+width/2,
+			ytop=prev+abundances[i],
+			lwd=.01,
+			col=i
+		);	
+		prev=prev+abundances[i];
+	}
 		
 }
 
@@ -154,7 +170,7 @@ plot_sample_distances=function(diversity_arr, normalized_mat, offsets_mat, title
 
 
 	def_par=par(no.readonly=T);
-	par(mfrow=c(6,1));
+	par(mfrow=c(3,1));
 
 	# Get range of offsets
 	offset_ranges=range(offsets_mat[,"Offsets"]);
@@ -164,6 +180,17 @@ plot_sample_distances=function(diversity_arr, normalized_mat, offsets_mat, title
 	diversity_ranges=range(diversity_arr);
 	cat("Diversity Range:\n");
 	print(diversity_ranges);
+
+	# Get closest between offsets
+	min_period=numeric();
+	for(i in 1:num_groups){
+		grp_subset=which(offsets_mat[,"Group ID"]==groups[i]);
+                offsets=offsets_mat[grp_subset, "Offsets"];
+		min_period=min(diff(offsets), min_period)
+	}
+	cat("Minimum period: ", min_period, "\n");
+
+	cat_names=colnames(normalized_mat);
 
 	# Plot individual samples
 	for(i in 1:num_groups){
@@ -192,19 +219,35 @@ plot_sample_distances=function(diversity_arr, normalized_mat, offsets_mat, title
 			 xlab="Time", ylab="Diversity", type="l", col=i, lwd=2,
 			 xlim=offset_ranges, ylim=diversity_ranges);
 
-		points(offset_info[c(1,1, num_members),"Offsets"], subset_diversity[c(1,1, num_members)], type="p", pch=c(17, 1, 15), cex=c(1, 2, 1.25));
+		points(offset_info[c(1,1, num_members),"Offsets"], subset_diversity[c(1,1, num_members)], 
+			type="p", pch=c(17, 1, 15), cex=c(1, 2, 1.25));
 		points(offset_info[,"Offsets"], subset_diversity, type="b", pch=16, cex=.5);
 
 		###############################################################
 
+		# Plot abundances
 		subset_norm=normalized_mat[subset_samples,];
 		plot(offset_info[,"Offsets"], subset_diversity, main=groups[i],
 			 xlab="Time", ylab="Taxa", type="n", col=i, lwd=2,
 			 xlim=offset_ranges, ylim=c(0,1));
 
-		for(i in 1:num_members){
-			plot_dist(offset_info[i,"Offsets"], y=0, normalized_mat[i,]);
+		for(t in 1:num_members){
+			plot_dist(offset_info[subset_samples[t],"Offsets"], y=0, 
+				abundances=normalized_mat[subset_samples[t],], width=min_period);
 		}
+
+		###############################################################
+
+		num_in_key=15;
+		plot(0, 0, main=groups[i],
+			 xlab="", ylab="", type="n", col=i, lwd=2,
+			 xlim=c(0,10), ylim=c(0,num_in_key), xaxt="n", yaxt="n");
+
+		for(j in 1:num_in_key){
+			rect(0, j-1, .9, j+.9-1, col=j, lwd=.1);
+			text(1, j-1+.4, labels=cat_names[j], pos=4 );
+		}
+		
 	
 	}
 	par(def_par);
