@@ -238,14 +238,15 @@ plot_sample_distances=function(diversity_arr, normalized_mat, offsets_mat, title
 
 		###############################################################
 
-		num_in_key=15;
+		# Plot color key/legend
+		num_in_key=min(35, length(cat_names));
 		plot(0, 0, main=groups[i],
 			 xlab="", ylab="", type="n", col=i, lwd=2,
 			 xlim=c(0,10), ylim=c(0,num_in_key), xaxt="n", yaxt="n");
 
 		for(j in 1:num_in_key){
 			rect(0, j-1, .9, j+.9-1, col=j, lwd=.1);
-			text(1, j-1+.4, labels=cat_names[j], pos=4 );
+			text(1, j-1+.4, labels=cat_names[j], pos=4, cex=.8);
 		}
 		
 	
@@ -295,11 +296,13 @@ simplified_mat=simplify(normalized_mat, top=3);
 num_simp_taxa=ncol(simplified_mat);
 
 # Get color assignments
-colors=rainbow(num_simp_taxa);
+colors=hsv(seq(0,1,length.out=num_simp_taxa), c(1,.5), c(1,.75,.5));
 color_mat_dim=ceiling(sqrt(num_simp_taxa));
 color_pad=rep("grey", color_mat_dim^2);
 color_pad[1:num_simp_taxa]=colors;
-colors=as.vector(t(matrix(color_pad, nrow=color_mat_dim, ncol=color_mat_dim)));
+color_mat=matrix(color_pad, nrow=color_mat_dim, ncol=color_mat_dim);
+colors=as.vector(t(color_mat));
+colors=colors[colors!="grey"];
 palette(colors);
 
 ###############################################################################
