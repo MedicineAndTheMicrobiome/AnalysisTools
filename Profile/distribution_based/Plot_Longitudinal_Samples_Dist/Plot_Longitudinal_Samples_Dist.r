@@ -160,7 +160,7 @@ plot_dist=function(x, y, width=20, abundances){
 		
 }
 
-plot_sample_distances_by_individual=function(diversity_arr, normalized_mat, offsets_mat, col_assign, category_colors, ind_colors){
+plot_sample_distributions_by_individual=function(diversity_arr, normalized_mat, offsets_mat, col_assign, category_colors, ind_colors){
 	sorted_sids=sort(rownames(offsets_mat));
 	offsets_mat=offsets_mat[sorted_sids,];
 
@@ -258,10 +258,9 @@ plot_sample_distances_by_individual=function(diversity_arr, normalized_mat, offs
 
 ###############################################################################
 
-plot_sample_distances_by_group=function(diversity_arr, normalized_mat, offsets_mat, col_assign, ind_colors){
+plot_sample_diversity_by_group=function(diversity_arr, normalized_mat, offsets_mat, col_assign, ind_colors){
 	sorted_sids=sort(rownames(offsets_mat));
 	offsets_mat=offsets_mat[sorted_sids,];
-
 
 	# Get Num Cohorts
 	cohorts=sort(unique(offsets_mat[,"Group ID"]));	
@@ -338,6 +337,107 @@ plot_sample_distances_by_group=function(diversity_arr, normalized_mat, offsets_m
 }
 
 ###############################################################################
+
+plot_sample_distributions_by_group=function(normalized_mat, offsets_mat, cat_colors){
+
+	sorted_sids=sort(rownames(offsets_mat));
+	offsets_mat=offsets_mat[sorted_sids,];
+
+	# Get Num Cohorts
+	cohorts=sort(unique(offsets_mat[,"Group ID"]));	
+	num_cohorts=length(cohorts);
+	cat("\nNumber of Cohorts: ", num_cohorts, "\n");
+	print(cohorts);
+	cat("\n");
+
+	# Get range of offsets
+	offset_ranges=range(offsets_mat[,"Offsets"]);
+	cat("Offset Range:\n");
+	print(offset_ranges);
+
+	# Get closest between offsets
+	min_period=numeric();
+	indivs=unique(offsets_mat[,"Indiv ID"]);
+	num_indivs=length(indivs);
+	for(i in 1:num_indivs){
+		grp_subset=which(offsets_mat[,"Indiv ID"]==indivs[i]);
+                offsets=offsets_mat[grp_subset, "Offsets"];
+		min_period=min(diff(offsets), min_period)
+	}
+	cat("Minimum period: ", min_period, "\n");
+
+	palette(cat_colors);
+
+	# Set up plots per page
+	def_par=par(no.readonly=T);
+	for(g in 1:num_cohorts){
+
+		coh_offset_mat=offsets_mat[ offsets_mat[,"Group ID"]==cohorts[g], ];
+		print(coh_offset_mat);
+
+		# Get Unique Inidividuals
+		indivs=sort(unique(coh_offset_mat[,"Indiv ID"]));
+		num_indivs=length(indivs);
+		cat("Number of Individuals: ", num_indivs, "\n");
+		print(indivs);
+		cat("\n");
+
+		par(mfrow=c(num_indivs,1));
+		par(oma=c(3,0,2,0));
+		par(mar=c(0.1, 4.1, 0.1, 2.1)); # bot, left, top, right
+
+		# Plot individual samples
+		for(i in 1:num_indivs){
+
+			# Grab from group
+			cat("\n\nPlotting: ", as.character(indivs[i]), "\n");
+			ind_subset=which(coh_offset_mat[,"Indiv ID"]==indivs[i]);
+			num_timepts=length(ind_subset);
+			cat("Num Time Pts: ", num_timepts, "\n");
+
+			# Subset offsets, and sort by offset
+			offset_info=coh_offset_mat[ind_subset,];
+			sort_ix=order(offset_info[,"Offsets"]);
+			offset_info=offset_info[sort_ix,];
+			print(offset_info);
+
+			###############################################################
+			if(i==num_indivs){
+				xaxt_setting="s";	
+			}else{
+				xaxt_setting="n";
+			}
+		
+			plot(0, 0, main="",
+				xlab="", ylab=indivs[i], type="n", bty="n",
+				xaxt=xaxt_setting, yaxt="n",
+				xlim=offset_ranges, ylim=c(0,1));
+
+			subset_samples=rownames(offset_info);
+
+			# Draw guide lines
+			abline(h=.5, col="grey", lwd=20);
+			xaxp=par()$xaxp;
+			xguides=seq(xaxp[1], xaxp[2], (xaxp[2]-xaxp[1])/xaxp[3]);
+			print(xguides);
+			abline(v=xguides, col="grey", lwd=.5);
+
+			# Draw stacked barplot
+			for(t in 1:num_timepts){
+				cat("sample: ", subset_samples[t], "\n");
+				plot_dist(offset_info[t,"Offsets"], y=0, 
+					abundances=normalized_mat[subset_samples[t],], width=min_period);
+
+			}
+		}
+
+		mtext(cohorts[g], side=3, outer=T, font=2);
+	}
+	par(def_par);
+}
+
+###############################################################################
+###############################################################################
 ###############################################################################
 
 offset_mat=load_offset(OffsetFileName);
@@ -400,8 +500,10 @@ names(col_assign)=indiv_ids;
 
 ###############################################################################
 
-plot_sample_distances_by_individual(diversity_arr, simplified_mat, offset_mat, col_assign, category_colors, ind_colors);
-plot_sample_distances_by_group(diversity_arr, simplified_mat, offset_mat, col_assign, ind_colors);
+
+plot_sample_distributions_by_individual(diversity_arr, simplified_mat, offset_mat, col_assign, category_colors, ind_colors);
+plot_sample_diversity_by_group(diversity_arr, simplified_mat, offset_mat, col_assign, ind_colors);
+plot_sample_distributions_by_group(simplified_mat, offset_mat, category_colors);
 
 ##############################################################################
 
