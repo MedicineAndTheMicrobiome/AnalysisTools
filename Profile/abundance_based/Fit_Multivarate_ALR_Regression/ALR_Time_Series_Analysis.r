@@ -3,11 +3,10 @@
 ###############################################################################
 
 library(MASS);
-library(vegan);
 library('getopt');
-library(car);
-library(boot);
 options(useFancyQuotes=F);
+
+NUM_VAR=20;
 
 params=c(
 	"summary_file", "s", 1, "character",
@@ -16,7 +15,8 @@ params=c(
 	"treatment", "t", 2, "character",
 	"time", "m", 2, "character",
 	"subject", "u", 2, "character",
-	"outputroot", "o", 2, "character"
+	"outputroot", "o", 2, "character",
+	"reset_time_pts", "r", 2, "logical"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -26,14 +26,18 @@ usage = paste(
 	"\nUsage:\n", script_name, "\n",
 	"	-s <summary file table>\n",
 	"	-f <factors>\n",
-	"	[-p <number of variables>]\n",
 	"\n",
+	"    Column Names in Factor File:\n",
 	"	-t <Treatment variable>\n",
 	"	-m <tiMe variable>\n",
 	"	-u <sUbject variable>\n",
 	"\n",
+	"	[-p <number of variables, default=", NUM_VAR, " >]\n",
 	"	[-o <output filename root>]\n",
+	"	[-r (reset time points so first time is 0)]\n",
 	"\n",
+	"This script will generate trellis plots grouped by treatment\n",
+	"variable across all the subjects across time.\n",
 	"\n");
 
 if(!length(opt$summary_file) || !length(opt$factors)){
@@ -43,16 +47,22 @@ if(!length(opt$summary_file) || !length(opt$factors)){
 
 if(!length(opt$outputroot)){
 	OutputRoot=gsub(".summary_table.xls", "", opt$summary_file);
+	OutputRoot=gsub(".summary_table.tsv", "", OutputRoot);
 }else{
 	OutputRoot=opt$outputroot;
 }
 
 if(!length(opt$num_variables)){
-	NumVariables=20;
+	NumVariables=NUM_VAR;
 }else{
 	NumVariables=opt$num_variables;
 }
 
+if(!length(opt$reset_time_pts)){
+	ResetTimePoints=F;
+}else{
+	ResetTimePoints=T;
+}
 
 SummaryFile=opt$summary_file;
 FactorsFile=opt$factors;
@@ -70,11 +80,11 @@ cat("\n");
 cat("Treatment Variable: ", TreatmentVar, "\n");
 cat("Time Variable: ", TimeVar, "\n");
 cat("Subject Variable: ", SubjectVar, "\n");
+cat("\n");
+cat("Reset Time Points? ", ResetTimePoints, "\n");
 
 options(width=120);
 cat("Text Line Width: ", options()$width, "\n", sep="");
-
-rnd=paste(".", sprintf("%i",sample(1000, 1)), sep="");
 
 ##############################################################################
 
@@ -125,117 +135,6 @@ normalize=function(counts){
 
 ##############################################################################
 
-# Load matrix
-counts=load_summary_file(SummaryFile);
-num_taxa=ncol(counts);
-num_samples=nrow(counts);
-
-# Shorten names:
-full_names=colnames(counts);
-splits=strsplit(full_names, " ");
-short_names=character();
-for(i in 1:length(full_names)){
-        short_names[i]=tail(splits[[i]], 1);
-}
-colnames(counts)=short_names;
-
-# Normalize
-normalized=normalize(counts);
-
-# Reorder by abundance
-mean_abund=apply(normalized, 2, mean);
-ix=order(mean_abund, decreasing=TRUE);
-normalized=normalized[,ix];
-mean_abund=mean_abund[ix];
-sorted_taxa_names=colnames(normalized);
-
-num_top_taxa=NumVariables;
-num_top_taxa=min(c(num_top_taxa, num_taxa));
-prop_abundance_represented=sum(mean_abund[1:num_top_taxa]);
-
-cat("\nThe top ", num_top_taxa, " taxa are:\n", sep="");
-for(i in 1:num_top_taxa){
-	cat("\t", sorted_taxa_names[i], "\t[", mean_abund[i], "]\n", sep="");
-}
-cat("\n");
-
-cat("Accounting for ", prop_abundance_represented, " of taxa.\n", sep="");
-cat("\n");
-
-##############################################################################
-
-# Load factors
-factors=load_factors(FactorsFile);
-factor_names=colnames(factors);
-num_factors=ncol(factors);
-factor_sample_names=rownames(factors);
-num_factor_samples=length(factor_sample_names);
-
-cat("\n");
-cat(num_factors, " Factor(s) Loaded:\n", sep="");
-print(factor_names);
-cat("\n");
-
-#print(factors);
-#summary(factors);
-
-continuous_factors=factors;
-is_continous_factor=logical(num_factors);
-
-for(f in 1:num_factors){
-	level_info=levels(factors[,f]);
-	is_continous_factor[f]=is.null(level_info);
-
-	if(is_continous_factor[f]){
-		# do nothing
-	}else if(length(level_info)==2){
-		# Convert two level factors to numeric
-		is_continous_factor[f]=TRUE;
-		continuous_factors[,f]=as.integer(continuous_factors[,f]);
-	}else{
-		is_continous_factor[f]=FALSE;
-	}
-}
-
-continuous_factors=continuous_factors[,is_continous_factor, drop=F];
-print(continuous_factors);
-
-##############################################################################
-
-# Reconcile factors with samples
-factor_sample_ids=rownames(factors);
-counts_sample_ids=rownames(counts);
-
-#print(factor_sample_id);
-#print(counts_sample_id);
-
-shared_sample_ids=intersect(factor_sample_ids, counts_sample_ids);
-num_shared_sample_ids=length(shared_sample_ids);
-num_factor_sample_ids=length(factor_sample_ids);
-num_counts_sample_ids=length(counts_sample_ids);
-
-cat("Num counts sample IDs: ", num_counts_sample_ids, "\n");
-cat("Num factor sample IDs: ", num_factor_sample_ids, "\n");
-cat("Num shared sample IDs: ", num_shared_sample_ids, "\n");
-cat("\n");
-
-cat("Samples missing from count information:\n");
-print(setdiff(factor_sample_ids, counts_sample_ids));
-cat("\n");
-cat("Samples missing from factor information:\n");
-print(setdiff(counts_sample_ids, factor_sample_ids));
-cat("\n");
-cat("Total samples shared: ", num_shared_sample_ids, "\n");
-
-shared_sample_ids=sort(shared_sample_ids);
-
-# Reorder data by sample id
-normalized=normalized[shared_sample_ids,];
-num_samples=nrow(normalized);
-factors=factors[shared_sample_ids,,drop=F];
-
-##############################################################################
-
 extract_top_categories=function(ordered_normalized, top){
 
 	num_samples=nrow(ordered_normalized);
@@ -267,7 +166,7 @@ extract_top_categories=function(ordered_normalized, top){
 			
 }
 
-additive_log_rato=function(ordered_matrix){
+additive_log_ratio=function(ordered_matrix){
 	num_cat=ncol(ordered_matrix);
 	num_samp=nrow(ordered_matrix);
 
@@ -289,19 +188,18 @@ additive_log_rato=function(ordered_matrix){
 	return(alr_struct);
 }
 
-##############################################################################
-
-# Assign 0's to values smaller than smallest abundance across entire dataset
-min_assay=min(normalized[normalized!=0]);
-cat("Lowest non-zero value: ", min_assay, "\n\n", sep="");
-zero_replacment=min_assay/10;
-normalized[normalized==0]=zero_replacment;
-
-##############################################################################
-
-if(num_top_taxa>= num_taxa){
-	num_top_taxa = (num_taxa-1);
-	cat("Number of taxa to work on was changed to: ", num_top_taxa, "\n");
+# Reset time points to 0.
+reset_time_points=function(factors, subj_var, time_var){
+	#print(factors);
+	groups_arr=factors[,subj_var];
+	groups=unique(groups_arr);
+	for(grp in groups){
+		#cat("resetting: ", grp, "\n");
+		times=factors[groups_arr==grp,time_var];
+		min_time=min(times);
+		factors[groups_arr==grp,time_var]=times-min_time;
+	}
+	return(factors);	
 }
 
 ##############################################################################
@@ -420,98 +318,196 @@ plot_heatmap=function(mat, title="", noPrintZeros=F, guideLines=F){
 }
 
 ##############################################################################
+##############################################################################
 
-pdf(paste(OutputRoot, rnd, ".alr.time_series.pdf", sep=""), height=8.5, width=11);
+# Load matrix
+counts=load_summary_file(SummaryFile);
+num_taxa=ncol(counts);
+num_samples=nrow(counts);
+
+cat("Num Taxa Loaded: ", num_taxa, "\n");
+cat("Num Samples Loaded: ", num_samples, "\n");
 
 ##############################################################################
 
-cat("Performing regression.\n");
+# Load factors
+factors=load_factors(FactorsFile);
+factor_names=colnames(factors);
+num_factors=ncol(factors);
+factor_sample_names=rownames(factors);
+num_factor_samples=length(factor_sample_names);
+
+if(ResetTimePoints){
+	factors=reset_time_points(factors, SubjectVar, TimeVar);
+}
+
+cat("\n");
+cat(num_factors, " Factor(s) Loaded:\n", sep="");
+print(factor_names);
+cat("\n");
+
+##############################################################################
+
+# Reconcile factors with samples
+factor_sample_ids=rownames(factors);
+counts_sample_ids=rownames(counts);
+
+#print(factor_sample_id);
+#print(counts_sample_id);
+
+shared_sample_ids=intersect(factor_sample_ids, counts_sample_ids);
+num_shared_sample_ids=length(shared_sample_ids);
+num_factor_sample_ids=length(factor_sample_ids);
+num_counts_sample_ids=length(counts_sample_ids);
+
+cat("Num counts sample IDs: ", num_counts_sample_ids, "\n");
+cat("Num factor sample IDs: ", num_factor_sample_ids, "\n");
+cat("Num shared sample IDs: ", num_shared_sample_ids, "\n");
+cat("\n");
+
+cat("Samples missing from count information:\n");
+print(setdiff(factor_sample_ids, counts_sample_ids));
+cat("\n");
+cat("Samples missing from factor information:\n");
+print(setdiff(counts_sample_ids, factor_sample_ids));
+cat("\n");
+cat("Total samples shared: ", num_shared_sample_ids, "\n");
+
+shared_sample_ids=sort(shared_sample_ids);
+
+counts=counts[shared_sample_ids,,drop=F];
+factors=factors[shared_sample_ids,,drop=F];
+
+print(factors);
+##############################################################################
+
+# Normalize
+normalized=normalize(counts);
+
+# Assign 0's to values smaller than smallest abundance across entire dataset
+min_assay=min(normalized[normalized!=0]);
+cat("Lowest non-zero value: ", min_assay, "\n\n", sep="");
+zero_replacment=min_assay/10;
+normalized[normalized==0]=zero_replacment;
+
+##############################################################################
+
+# Reorder categories by abundance
+mean_abund=apply(normalized, 2, mean);
+ix=order(mean_abund, decreasing=TRUE);
+normalized=normalized[,ix];
+mean_abund=mean_abund[ix];
+sorted_taxa_names=colnames(normalized);
+
+num_top_taxa=NumVariables;
+num_top_taxa=min(c(num_top_taxa, num_taxa));
+prop_abundance_represented=sum(mean_abund[1:num_top_taxa]);
+
+cat("\nThe top ", num_top_taxa, " taxa are:\n", sep="");
+for(i in 1:num_top_taxa){
+	cat("\t", sorted_taxa_names[i], "\t[", mean_abund[i], "]\n", sep="");
+}
+cat("\n");
+
+cat("Accounting for ", prop_abundance_represented, " of taxa.\n", sep="");
+cat("\n");
+
+##############################################################################
+
+top_perc_categ=function(mean_abund, abn_acct=.1){
+	ord_ix=order(mean_abund, decreasing=T);
+	sorted_abd=mean_abund[ord_ix];
+	cum_sum=cumsum(sorted_abd);
+	keep=(which(cum_sum<abn_acct))+1;
+	if(length(keep)){
+		keep_max=max(keep);
+	}else{
+		keep_max=1;
+	}
+	keep_names=(names(sorted_abd[1:keep_max]));	
+	return(keep_names[!is.na(keep_names)]);
+}
+
+bottom_perc_categ=function(mean_abund, abn_acct=.1){
+	ord_ix=order(mean_abund, decreasing=F);
+	sorted_abd=mean_abund[ord_ix];
+	cum_sum=cumsum(sorted_abd);
+	keep=(which(cum_sum<abn_acct))+1;
+	if(length(keep)){
+		keep_max=max(keep);
+	}else{
+		keep_max=1;
+	}
+	keep_names=(names(sorted_abd[1:keep_max]));	
+	return(keep_names[!is.na(keep_names)]);
+}
+
+surround_perc_categ=function(mean_abund, abn_acct=.1, cat_index){
+	ord_ix=order(mean_abund, decreasing=T);
+	sorted_abd=mean_abund[ord_ix];
+
+	cat_names=names(sorted_abd);
+	center_ix=which(cat_index==cat_names);
+	num_cat=length(mean_abund);
+
+	lt_cat=c();
+	gt_cat=c();
+
+	if(center_ix<num_cat){
+		lt_cat=top_perc_categ(sorted_abd[(center_ix+1):num_cat], abn_acct/2);
+	}
+	if(center_ix>1){
+		gt_cat=bottom_perc_categ(sorted_abd[1:(center_ix-1)], abn_acct/2);
+	}
+
+	return(c(gt_cat, lt_cat));
+}
+
+##############################################################################
+
+# Extract top taxa for ALR
+if(num_top_taxa>= num_taxa){
+	num_top_taxa = (num_taxa-1);
+	cat("Number of taxa to work on was changed to: ", num_top_taxa, "\n");
+}
+
 cat("Extracting: ", num_top_taxa, " + 1 (remaining) categories.\n", sep="");
 
 responses=extract_top_categories(normalized, num_top_taxa);
-resp_alr_struct=additive_log_rato(responses);
+resp_alr_struct=additive_log_ratio(responses);
 transformed=resp_alr_struct$transformed;
 
-#print(factors);
-treatment_levels=levels(factors[,TreatmentVar]);
-time_levels=levels(factors[,TimeVar]);
-subject_levels=levels(factors[,SubjectVar]);
+top_cat_ix=top_perc_categ(mean_abund, abn_acct=.25);
+bot_cat_ix=bottom_perc_categ(mean_abund, abn_acct=.25);
 
-num_treatments=length(treatment_levels);
-num_times=length(time_levels);
+cat("\n");
+cat("Top Categories: (", sum(mean_abund[top_cat_ix])*100, "% of Avg Abn)\n", sep="");
+print(top_cat_ix);
+cat("\n");
+cat("Bottom Categories: (", sum(mean_abund[bot_cat_ix])*100, "% of Avg Abn)\n", sep="");
+print(bot_cat_ix);
+cat("\n");
+
+##############################################################################
+# Get treatment, time, and subject groups
+treatment_levels=levels(as.factor(factors[,TreatmentVar]));
+subject_levels=levels(factors[,SubjectVar]);
+time_ranges=range(factors[,TimeVar]);
+
+num_treatment_levels=length(treatment_levels);
 num_subjects=length(subject_levels);
 
-alr_range=range(transformed);
+cat("Num Subjects: ", num_subjects, "\n");
+cat("Num Treatments Levels: ", num_treatment_levels, "\n");
+cat("Time Levels: ", time_ranges[1], "-", time_ranges[2], "\n");
 
+##############################################################################
 
-col_layout=c(
-	1,
-	1,
-	2,
-	3
-);
+pdf(paste(OutputRoot, ".alr.time_series.pdf", sep=""), height=11, width=8.5);
 
-mat_layout=col_layout;
-for(i in 1:(num_treatments-1)){
-	mat_layout=cbind(mat_layout, (col_layout+i*max(col_layout)));
-}
-print(mat_layout);
-
-colors=c(
-	"black",
-	"red",
-	"green",
-	"blue",
-	"orange",
-	"purple",
-	"brown",
-	"grey",
-	"pink",
-	"orange4"
-);
-
-palette(colors);
-
-sd_diff_fun=function(data, index){
-	sub_data=data[index,];
-	grps=(sub_data[,"grp"]==0);
-	grpA=sub_data[grps, "values"];
-	grpB=sub_data[!grps, "values"];
-	stdA=sd(grpA);
-	stdB=sd(grpB);
-	return(stdA-stdB);
-}
-
-# Generate names for comparison matrices
-mat_side_dim=(num_times-1)*(num_treatments);
-changes_compare_names=character(mat_side_dim);
-i=1;
-for(trt_ix in 1:num_treatments){
-	for(tim_ix in 1:(num_times-1)){
-		changes_compare_names[i]=paste(treatment_levels[trt_ix], ":", 
-			time_levels[tim_ix], "-",
-			time_levels[tim_ix+1], 
-			sep="");
-		i=i+1;
-	}
-}
-
-# Generates names for changes comparison matrices
-all_comparison_dim=num_times*num_treatments;
-all_compar_names=character(all_comparison_dim);
-i=1;
-for(trt_ix in 1:num_treatments){
-	for(tim_ix in 1:num_times){
-		all_compar_names[i]=
-			paste(treatment_levels[trt_ix], ":", time_levels[tim_ix], sep="");
-		i=i+1;
-	}
-}	
+par(oma=c(.8,.5,3,.8));
 
 for(var_ix in 1:num_top_taxa){
-
-	grouped_values=array(NA, c(num_subjects, num_times, num_treatments));
-	dimnames(grouped_values)=list(subject_levels, time_levels, treatment_levels);
 
 	cat("##########################################################################\n");
 	cat("#                                                                        #\n");
@@ -519,201 +515,117 @@ for(var_ix in 1:num_top_taxa){
 	cat("#                                                                        #\n");
 	cat("##########################################################################\n");
 
-	alr=transformed[,var_ix];
-	
-	for(samp_ix in 1:num_samples){
-		subj_id=factors[samp_ix, SubjectVar];
-		time_id=factors[samp_ix, TimeVar];
-		treat_id=factors[samp_ix, TreatmentVar];
-		grouped_values[subj_id, time_id, treat_id]=alr[samp_ix];
-	}
+	par(mfrow=c(15,5));
+	first_plot=T;
 
-	# Compute changes between time periods within the same donor.
-	changes_matrix=array(NA, c(num_subjects, num_times-1, num_treatments));
-	dimnames(changes_matrix)=list(subject_levels, tail(time_levels, num_times-1), treatment_levels);
-	for(trt_ix in 1:num_treatments){
-		for(subj_ix in 1:num_subjects){
-			for(time_ix in 1:(num_times-1)){
-				changes_matrix[subj_ix, time_ix, trt_ix]=
-					abs(
-						grouped_values[subj_ix, time_ix+1, trt_ix]-
-						grouped_values[subj_ix, time_ix, trt_ix]
-					);
-			}
-		}
-	}
-	
-	# Create names for changes matrix
-	changes_names=character();
-	for(tim_ix in 1:(num_times-1)){
-		changes_names[tim_ix]=paste(time_levels[tim_ix], "-", time_levels[tim_ix+1], sep="");
-	}
-	
-	# Find max change
-	all_changes=as.vector(changes_matrix);
-	all_changes=all_changes[!is.na(all_changes)];
-	max_change=max(all_changes);
-	
-	# Generate Speghetti Plots for each treatment
-	par(mfrow=c(1, num_treatments));
-	par(oma=c(0,0,4,0));
-	par(mar=c(5.1, 4.1, 1, 1));
+	alr_range=range(transformed[,var_ix]);
+	abd_range=range(normalized[,var_ix]);
+	logit_abd_range=log10(abd_range/(1-abd_range));
 
-	layout(mat_layout);
+	sur_cat_ix=surround_perc_categ(mean_abund, abn_acct=.25, sorted_taxa_names[var_ix]);
 
-	for(trt_ix in 1:num_treatments){
+	for(trt in treatment_levels){
+		cat("Working on Treatment: ", trt, "\n");
+		trt_samp=(factors[,TreatmentVar]==trt);
 
-		# Set up empty plot
-		plot(1:num_times, time_levels, type="n", 
-			xlim=c(1-.5, num_times+.5), ylim=alr_range,
-			xlab="Time",
-			ylab="ALR Transformed Abundances",
-			main=treatment_levels[trt_ix],
-			xaxt="n",
-			yaxt="n"
-		);
-		axis(side=1, at=1:num_times, labels=time_levels);
-		tickmark=seq(floor(alr_range[1]), ceiling(alr_range[2]), 1);
-		axis(side=2, at=tickmark, labels=sprintf("%3.0f", tickmark), las=2, cex=.8);
+		sbj_in_trt=unique(factors[trt_samp,SubjectVar]);
+		
+		for(sbj in sbj_in_trt){
 
-		# Generate Spaghetti Plot each subject
-		plotted=0;
-		for(subj_ix in 1:num_subjects){
+			cat("\nWorking on Subject: ", sbj, "\n");
 
-			if(all(is.na(grouped_values[subj_ix, time_levels, trt_ix]))){
-				next;
+			samps=rownames(factors[factors[,SubjectVar]==sbj,]);
+			num_samps=length(samps);
+			time_pts=factors[samps,TimeVar];
+			ord_ix=order(time_pts);
+
+			samps=samps[ord_ix];
+			time_pts=time_pts[ord_ix];
+
+			norm_abd=normalized[samps,var_ix];
+			logit_abd=log10(norm_abd/(1-norm_abd));
+			alr=transformed[samps,var_ix];
+			
+			top_den=apply(normalized[samps, top_cat_ix, drop=F], 1, sum);
+			sur_den=apply(normalized[samps, sur_cat_ix, drop=F], 1, sum);
+			bot_den=apply(normalized[samps, bot_cat_ix, drop=F], 1, sum);
+
+			mat=matrix(c(norm_abd, top_den, sur_den, bot_den), nrow=num_samps, ncol=4, byrow=T);
+			colnames(mat)=c("Categ Abund", "Top", "Surrounding", "Bottom");
+			rownames(mat)=samps;
+			print(mat);
+
+			alr_top=log10(norm_abd/top_den);
+			alr_sur=log10(norm_abd/sur_den);
+			alr_bot=log10(norm_abd/bot_den);
+
+			if(first_plot){
+				first_plot=F;
+				title=c("Logit", "ALR Remain", "ALR Top", "ALR Surr", "ALR Bottom");
+				top_mar=1;
 			}else{
-				plotted=plotted+1;
+				title=c("","","","","");
+				top_mar=0;
+			}
 
-				points(1:num_times, grouped_values[subj_ix, time_levels, trt_ix], type="b",
-					col=plotted);
+			# Plot logit(abundance)
+			par(mar=c(0, 1, top_mar, 0));
+			plot(time_pts, logit_abd,
+				xlim=time_ranges, ylim=logit_abd_range,
+				type="b",
+				xlab="", ylab="",
+				xaxt="n", yaxt="n",
+				main=title[1]
+				);
+			title(ylab=sbj, line=.05, cex.lab=.55);	
 
-				subj_name=subject_levels[subj_ix];
+			par(mar=c(0, 1, top_mar, 0));
 
-				# Label left-most point with donor ID
-				text(1, grouped_values[subj_ix, 1, trt_ix], 
-					pos=2,
-					labels=subj_name, col=plotted, cex=.5);
+			# Plot alr, with denominator = not top N categories
+			plot(time_pts, alr,
+				xlim=time_ranges, ylim=alr_range,
+				type="b",
+				xlab="", ylab="",
+				xaxt="n", yaxt="n",
+				main=title[2]
+				);
 
-				# Label right-most point with donor ID
-				text(num_times, grouped_values[subj_ix, num_times, trt_ix], 
-					pos=4,
-					labels=subj_name, col=plotted, cex=.5);
+			# Plot with top cat as denominator
+			plot(time_pts, alr_top,
+				xlim=time_ranges, ylim=alr_range,
+				type="b",
+				xlab="", ylab="",
+				xaxt="n", yaxt="n",
+				main=title[3]
+				);
+
+			# Plot with surrounding cat as denominator
+			plot(time_pts, alr_sur,
+				xlim=time_ranges, ylim=alr_range,
+				type="b",
+				xlab="", ylab="",
+				xaxt="n", yaxt="n",
+				main=title[4]
+				);
+
+			# Plot with low cat as denominator
+			plot(time_pts, alr_bot,
+				xlim=time_ranges, ylim=alr_range,
+				type="b",
+				xlab="", ylab="",
+				xaxt="n", yaxt="n",
+				main=title[5]
+				);
+
+
+			if(par()$page){
+				mtext(paste(
+					var_ix, ".) ", sorted_taxa_names[var_ix], " (", signif(mean_abund[var_ix]*100,3), "%) ",
+					sep=""),
+				side=3, line=1.5, outer=T);
 			}
 		}
-
-		# Compute standard deviation at each point
-		sds=apply(grouped_values[, , trt_ix], 2, function(x){sd(x, na.rm=T)});
-		barplot(sds, xlab="Standard Deviations", ylim=c(0,5));
-
-		# Plot changes boxplot
-		changes_list=list();
-		for(tim_ix in 1:(num_times-1)){
-			changes_list[[tim_ix]]=changes_matrix[,tim_ix,trt_ix];
-		}
-		boxplot(changes_list, xlim=c(0, num_times), cex=0,
-			xaxt="n",	
-			ylim=c(0, max_change), xlab="Changes");
-		stripchart(changes_list, method="jitter", add=T, vertical=T, pch=1, col="blue");
-
-		axis(side=1, at=1:(num_times-1), labels=changes_names);
-		
-		
-
 	}
-	mtext(sorted_taxa_names[var_ix], outer=T, side=3, cex=1.5, line=1);
-	
-	#--------------------------------------------------------------------
-	# Compute p-values for differences in medians and standard deviation	
-
-	median_pval_mat=matrix(NA, ncol=all_comparison_dim, nrow=all_comparison_dim);
-	rownames(median_pval_mat)=all_compar_names;
-	colnames(median_pval_mat)=all_compar_names;
-
-	stdev_pval_mat=matrix(NA, ncol=all_comparison_dim, nrow=all_comparison_dim);
-	rownames(stdev_pval_mat)=all_compar_names;
-	colnames(stdev_pval_mat)=all_compar_names;
-	
-	pm_ixA=1;
-	for(trt_ixA in 1:num_treatments){
-		for(time_ixA in 1:num_times){
-			pm_ixB=1;
-			for(trt_ixB in 1:num_treatments){
-				for(time_ixB in 1:num_times){
-
-					# Medians
-					res=wilcox.test(
-						grouped_values[, time_ixA, trt_ixA],
-						grouped_values[, time_ixB, trt_ixB],
-						alternative="less"
-					);
-					median_pval_mat[pm_ixA, pm_ixB]=res$p.value;
-						
-					# Std. Dev
-					grpA=grouped_values[,time_ixA, trt_ixA];
-					grpB=grouped_values[,time_ixB, trt_ixB];
-
-					grpA=grpA[!is.na(grpA)];
-					grpB=grpB[!is.na(grpB)];
-					values=c(grpA, grpB);
-					groups=c(rep(0, length(grpA)), rep(1, length(grpB)));
-					values_mat=cbind(values, groups);
-					colnames(values_mat)=c("values", "grp");
-
-					# Boot strap differences in standard deviation
-					b_res=boot(values_mat, sd_diff_fun, R=1000, strata=groups);
-					sd_pval=sum(b_res$t>0)/length(b_res$t);
-					stdev_pval_mat[pm_ixA, pm_ixB]=sd_pval;
-
-					pm_ixB=pm_ixB+1;
-				}
-			}
-			pm_ixA=pm_ixA+1;
-		}
-	}
-
-	#--------------------------------------------------------------------
-	# Compute p-values for changes between groups
-
-	changes_pval_mat=matrix(NA, ncol=mat_side_dim, nrow=mat_side_dim);
-	colnames(changes_pval_mat)=changes_compare_names;
-	rownames(changes_pval_mat)=changes_compare_names;
-
-	pm_ixA=1;
-	for(trt_ixA in 1:num_treatments){
-		for(time_ixA in 1:(num_times-1)){
-			pm_ixB=1;
-			for(trt_ixB in 1:num_treatments){
-				for(time_ixB in 1:(num_times-1)){
-					res=wilcox.test(
-						changes_matrix[,time_ixA, trt_ixA],			
-						changes_matrix[,time_ixB, trt_ixB],
-						alternative="less"
-					);
-					changes_pval_mat[pm_ixA, pm_ixB]=res$p.value;
-					pm_ixB=pm_ixB+1;
-				}
-			}
-			pm_ixA=pm_ixA+1;
-		}
-	}
-
-	#--------------------------------------------------------------------
-	# Plot pvalue matrices
-
-	par(mfrow=c(1,1));
-	par(oma=c(0,0,4,0));
-
-	plot_heatmap(median_pval_mat, 
-		title=paste(sorted_taxa_names[var_ix], ", Alternate Hypothesis: Row > Col Median", sep=""),
-		guideLines=T);
-	plot_heatmap(stdev_pval_mat, 
-		title=paste(sorted_taxa_names[var_ix], ", Alternate Hypothesis: Row > Col Std Dev", sep=""),
-		guideLines=T);
-	plot_heatmap(changes_pval_mat, 
-		title=paste(sorted_taxa_names[var_ix], ", Alternate Hypothesis: Row > Col Changes", sep=""),
-		guideLines=T);
-
 
 
 }
