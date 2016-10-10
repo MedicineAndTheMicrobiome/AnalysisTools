@@ -88,6 +88,10 @@ cat("Text Line Width: ", options()$width, "\n", sep="");
 
 ##############################################################################
 
+pdf(paste(OutputRoot, ".alr.time_series.pdf", sep=""), height=8.5, width=11);
+
+##############################################################################
+
 load_factors=function(fname){
 	factors=data.frame(read.table(fname,  header=TRUE, row.names=1, check.names=FALSE));
 	factor_names=colnames(factors);
@@ -204,7 +208,15 @@ reset_time_points=function(factors, subj_var, time_var){
 
 ##############################################################################
 
-plot_text=function(strings){
+plot_text=function(strings, plot_only=F){
+
+	if(!plot_only){
+		for(line in strings){
+			cat(line, "\n", sep="");
+		}
+		return;
+	}
+
 	par(family="Courier");
 	par(oma=rep(.5,4));
 	par(mar=rep(0,4));
@@ -318,6 +330,19 @@ plot_heatmap=function(mat, title="", noPrintZeros=F, guideLines=F){
 }
 
 ##############################################################################
+
+# Get color assignments
+get_colors=function(num_col, alpha=1){
+        colors=hsv(seq(0,1,length.out=num_col), c(1,.5), c(1,.75,.5), alpha);
+        color_mat_dim=ceiling(sqrt(num_col));
+        color_pad=rep("grey", color_mat_dim^2);
+        color_pad[1:num_col]=colors;
+        color_mat=matrix(color_pad, nrow=color_mat_dim, ncol=color_mat_dim);
+        colors=as.vector(t(color_mat));
+        colors=colors[colors!="grey"];
+}
+
+##############################################################################
 ##############################################################################
 
 # Load matrix
@@ -403,14 +428,18 @@ num_top_taxa=NumVariables;
 num_top_taxa=min(c(num_top_taxa, num_taxa));
 prop_abundance_represented=sum(mean_abund[1:num_top_taxa]);
 
-cat("\nThe top ", num_top_taxa, " taxa are:\n", sep="");
-for(i in 1:num_top_taxa){
-	cat("\t", sorted_taxa_names[i], "\t[", mean_abund[i], "]\n", sep="");
-}
-cat("\n");
 
-cat("Accounting for ", prop_abundance_represented, " of taxa.\n", sep="");
-cat("\n");
+text_arr=c(
+	paste("The top ", num_top_taxa, " categories accounting for ", 
+		signif(prop_abundance_represented*100, 4), "% of categories are:", sep=""),
+	"\n"
+);
+
+for(i in 1:num_top_taxa){
+	text_arr=c(text_arr, paste("\t", sorted_taxa_names[i], "\t[", signif(mean_abund[i]*100, 4), "%]", sep=""));
+}
+
+plot_text(text_arr);
 
 ##############################################################################
 
@@ -480,13 +509,20 @@ transformed=resp_alr_struct$transformed;
 top_cat_ix=top_perc_categ(mean_abund, abn_acct=.25);
 bot_cat_ix=bottom_perc_categ(mean_abund, abn_acct=.25);
 
-cat("\n");
-cat("Top Categories: (", sum(mean_abund[top_cat_ix])*100, "% of Avg Abn)\n", sep="");
-print(top_cat_ix);
-cat("\n");
-cat("Bottom Categories: (", sum(mean_abund[bot_cat_ix])*100, "% of Avg Abn)\n", sep="");
-print(bot_cat_ix);
-cat("\n");
+text_arr=c(
+	"\n",
+	paste("Top Categories: (", signif(sum(mean_abund[top_cat_ix])*100, 4), "% of Avg Abn)\n", sep=""),
+	capture.output(print(top_cat_ix)),
+	"\n"
+);
+plot_text(text_arr);
+
+text_arr=c(
+	paste("Bottom Categories: (", signif(sum(mean_abund[bot_cat_ix])*100, 4), "% of Avg Abn)\n", sep=""),
+	capture.output(print(bot_cat_ix)),
+	"\n"
+);
+plot_text(text_arr);
 
 ##############################################################################
 # Get treatment, time, and subject groups
@@ -503,10 +539,21 @@ cat("Time Levels: ", time_ranges[1], "-", time_ranges[2], "\n");
 
 ##############################################################################
 
-pdf(paste(OutputRoot, ".alr.time_series.pdf", sep=""), height=11, width=8.5);
+transform_names=c("Logit", "ALR Rem", "ALR Top", "ALR Sur", "ALR Bot");
+num_transforms=length(transform_names);
 
-par(oma=c(.8,.5,3,.8));
+##############################################################################
 
+indiv_colors=get_colors(num_subjects);
+names(indiv_colors)=subject_levels;
+palette(indiv_colors);
+
+trt_colors_transp=get_colors(num_treatment_levels+3, 0.3);
+trt_colors_opaque=get_colors(num_treatment_levels+3, 1.0);
+
+par(oma=c(.8,.5,3,3));
+
+#num_top_taxa=1;
 for(var_ix in 1:num_top_taxa){
 
 	cat("##########################################################################\n");
@@ -515,24 +562,35 @@ for(var_ix in 1:num_top_taxa){
 	cat("#                                                                        #\n");
 	cat("##########################################################################\n");
 
-	par(mfrow=c(15,5));
+	par(mfrow=c(8,5));
 	first_plot=T;
 
 	alr_range=range(transformed[,var_ix]);
 	abd_range=range(normalized[,var_ix]);
 	logit_abd_range=log10(abd_range/(1-abd_range));
 
+	# Get the categories surrounding current target category
 	sur_cat_ix=surround_perc_categ(mean_abund, abn_acct=.25, sorted_taxa_names[var_ix]);
 
+
+	# Compute and organize numbers
+	trt_list=list();
+	trt_ends=list();
+	all_transform_range=numeric();
 	for(trt in treatment_levels){
 		cat("Working on Treatment: ", trt, "\n");
 		trt_samp=(factors[,TreatmentVar]==trt);
-
 		sbj_in_trt=unique(factors[trt_samp,SubjectVar]);
+		num_sbj_in_trt=length(sbj_in_trt);
 		
+		sbj_list=list();
+
+		starts_mat=matrix(0, nrow=num_sbj_in_trt, ncol=num_transforms, dimnames=list(sbj_in_trt, transform_names));
+		ends_mat=matrix(0, nrow=num_sbj_in_trt, ncol=num_transforms, dimnames=list(sbj_in_trt, transform_names));
+
 		for(sbj in sbj_in_trt){
 
-			cat("\nWorking on Subject: ", sbj, "\n");
+			cat("Working on Subject: ", sbj, "\n");
 
 			samps=rownames(factors[factors[,SubjectVar]==sbj,]);
 			num_samps=length(samps);
@@ -550,15 +608,48 @@ for(var_ix in 1:num_top_taxa){
 			sur_den=apply(normalized[samps, sur_cat_ix, drop=F], 1, sum);
 			bot_den=apply(normalized[samps, bot_cat_ix, drop=F], 1, sum);
 
-			mat=matrix(c(norm_abd, top_den, sur_den, bot_den), nrow=num_samps, ncol=4, byrow=T);
-			colnames(mat)=c("Categ Abund", "Top", "Surrounding", "Bottom");
-			rownames(mat)=samps;
-			print(mat);
-
 			alr_top=log10(norm_abd/top_den);
 			alr_sur=log10(norm_abd/sur_den);
 			alr_bot=log10(norm_abd/bot_den);
 
+			sbj_list[[sbj]]=matrix(c(time_pts, logit_abd, alr, alr_top, alr_sur, alr_bot),
+						ncol=6, byrow=F, 
+						dimnames=list(
+							c(samps),
+							c("Time", transform_names)
+						)
+					);
+			all_transform_range=range(c(all_transform_range, sbj_list[[sbj]][,2:6]));
+			
+			for(trans_id in transform_names){
+				starts_mat[sbj, trans_id]=sbj_list[[sbj]][1, trans_id];
+				ends_mat[sbj, trans_id]=sbj_list[[sbj]][length(time_pts), trans_id];
+			}
+
+			
+		}
+
+		ends_list=list();
+		ends_list[["starts"]]=starts_mat;
+		ends_list[["ends"]]=ends_mat;
+
+		trt_list[[trt]]=sbj_list;
+		trt_ends[[trt]]=ends_list;
+	}
+
+	#print(trt_list);
+	#print(trt_ends);
+
+	#------------------------------------------------------------------------------------------------
+	# Plot individual time series
+	for(trt in treatment_levels){
+
+		trt_samp=(factors[,TreatmentVar]==trt);
+		sbj_in_trt=unique(factors[trt_samp,SubjectVar]);
+		
+		for(sbj in sbj_in_trt){
+
+			# Determine whether to label each column of plots
 			if(first_plot){
 				first_plot=F;
 				title=c("Logit", "ALR Remain", "ALR Top", "ALR Surr", "ALR Bottom");
@@ -568,56 +659,50 @@ for(var_ix in 1:num_top_taxa){
 				top_mar=0;
 			}
 
-			# Plot logit(abundance)
+			time_pts=trt_list[[trt]][[sbj]][,"Time"];
+			logit_abd   =trt_list[[trt]][[sbj]][,"Logit"];
+			alr     =trt_list[[trt]][[sbj]][,"ALR Rem"];
+			alr_top =trt_list[[trt]][[sbj]][,"ALR Top"];
+			alr_sur =trt_list[[trt]][[sbj]][,"ALR Sur"];
+			alr_bot =trt_list[[trt]][[sbj]][,"ALR Bot"];
+
+			indi_col=indiv_colors[sbj];
+			num_pts=length(time_pts);
+
+			# Compute position of axis labels and guide lines
+			axis_ticks=seq(all_transform_range[1], all_transform_range[2], length.out=7);
+			axis_ticks=axis_ticks[c(-1,-7)];
+			guide_line_col="grey90";
+			guide_line_lwd=.3;
+
+			plot_mini=function(x, y, xlim, ylim, main){
+				plot(x, y,
+					xlim=xlim, ylim=ylim,
+					xlab="", ylab="",
+					xaxt="n", yaxt="n",
+					main=main, type="n"
+					);
+				last=length(x);
+				abline(h=axis_ticks, col=guide_line_col, lwd=guide_line_lwd);
+				points(x, y, col=indi_col, type="l", lwd=2);
+				points(x, y, col="black", type="b", pch=16, cex=.25, lwd=.25);
+				points(x[c(1,1,last)], y[c(1,1,last)], col=indi_col, pch=c(17,1,15), cex=c(1,2,1.25));
+			}
+			
 			par(mar=c(0, 1, top_mar, 0));
-			plot(time_pts, logit_abd,
-				xlim=time_ranges, ylim=logit_abd_range,
-				type="b",
-				xlab="", ylab="",
-				xaxt="n", yaxt="n",
-				main=title[1]
-				);
-			title(ylab=sbj, line=.05, cex.lab=.55);	
+			plot_mini(time_pts, logit_abd, time_ranges, all_transform_range, title[1]);
+			title(ylab=sbj, line=.05, cex.lab=1);	
 
-			par(mar=c(0, 1, top_mar, 0));
+			plot_mini(time_pts, alr, time_ranges, all_transform_range, title[2]);
+			plot_mini(time_pts, alr_top, time_ranges, all_transform_range, title[3]);
+			plot_mini(time_pts, alr_sur, time_ranges, all_transform_range, title[4]);
+			plot_mini(time_pts, alr_bot, time_ranges, all_transform_range, title[5]);
 
-			# Plot alr, with denominator = not top N categories
-			plot(time_pts, alr,
-				xlim=time_ranges, ylim=alr_range,
-				type="b",
-				xlab="", ylab="",
-				xaxt="n", yaxt="n",
-				main=title[2]
-				);
-
-			# Plot with top cat as denominator
-			plot(time_pts, alr_top,
-				xlim=time_ranges, ylim=alr_range,
-				type="b",
-				xlab="", ylab="",
-				xaxt="n", yaxt="n",
-				main=title[3]
-				);
-
-			# Plot with surrounding cat as denominator
-			plot(time_pts, alr_sur,
-				xlim=time_ranges, ylim=alr_range,
-				type="b",
-				xlab="", ylab="",
-				xaxt="n", yaxt="n",
-				main=title[4]
-				);
-
-			# Plot with low cat as denominator
-			plot(time_pts, alr_bot,
-				xlim=time_ranges, ylim=alr_range,
-				type="b",
-				xlab="", ylab="",
-				xaxt="n", yaxt="n",
-				main=title[5]
-				);
+			axis(side=4, at=axis_ticks, labels=signif(axis_ticks,2),
+				las=2, cex.axis=.75);
 
 
+			# Label top margin with category name being analyzed
 			if(par()$page){
 				mtext(paste(
 					var_ix, ".) ", sorted_taxa_names[var_ix], " (", signif(mean_abund[var_ix]*100,3), "%) ",
@@ -627,6 +712,138 @@ for(var_ix in 1:num_top_taxa){
 		}
 	}
 
+	#------------------------------------------------------------------------------------------------
+	# Plot individuals combined per treatment
+
+	par(mfrow=c(num_treatment_levels, 5));
+	num_treatment_levels=length(treatment_levels);
+
+	for(trt_ix in 1:num_treatment_levels){
+		trt=treatment_levels[trt_ix];
+
+		trt_samp=(factors[,TreatmentVar]==trt);
+		sbj_in_trt=unique(factors[trt_samp,SubjectVar]);
+
+		for(i in 1:num_transforms){
+
+			if(trt_ix==1){
+				transform_label=transform_names[i];
+				top_mar=1;	
+			}else{
+				transform_label="";
+				top_mar=0;
+			}	
+
+			par(mar=c(0, 1, top_mar, 0));
+			plot(0, xlim=time_ranges, ylim=all_transform_range,
+				type="n", xlab="Time", ylab="",
+				xaxt="n", yaxt="n"
+			);
+			title(main=transform_label);
+
+			if(i==num_transforms){
+				axis(side=4, at=axis_ticks, labels=signif(axis_ticks,2),
+					las=2, cex.axis=.75);
+			}
+
+			axis_ticks=seq(all_transform_range[1], all_transform_range[2], length.out=7);
+			axis_ticks=axis_ticks[c(-1,-7)];
+			guide_line_col="grey90";
+			guide_line_lwd=.3;
+			abline(h=axis_ticks, col=guide_line_col, lwd=guide_line_lwd);
+
+			for(sbj in sbj_in_trt){
+				time_pts =trt_list[[trt]][[sbj]][,"Time"];
+				transform=trt_list[[trt]][[sbj]][,transform_names[i]];
+				last=length(time_pts);
+				points(time_pts, transform, col=indiv_colors[sbj], type="l", lwd=2);
+				points(time_pts, transform, col="black", type="b", pch=16, cex=.25, lwd=.25);
+				points(time_pts[c(1,1,last)], transform[c(1,1,last)], 
+					col=indiv_colors[sbj], pch=c(17,1,15), cex=c(1,2,1.25));
+			}
+
+		}
+	}
+	mtext(paste(
+		var_ix, ".) ", sorted_taxa_names[var_ix], " (", signif(mean_abund[var_ix]*100,3), "%) ",
+		sep=""),
+	side=3, line=1.5, outer=T);
+
+	#------------------------------------------------------------------------------------------------
+	# Plot before/after scatter plot
+
+	
+	par(mfrow=c(num_treatment_levels+1, num_transforms));
+
+	# Plot individual
+	for(trt_ix in 1:num_treatment_levels){
+		trt=treatment_levels[trt_ix];
+
+		trt_samp=(factors[,TreatmentVar]==trt);
+		sbj_in_trt=unique(factors[trt_samp,SubjectVar]);
+
+		for(i in 1:num_transforms){
+
+			if(trt_ix==1){
+				transform_label=transform_names[i];
+			}else{
+				transform_label="";
+			}	
+
+			starts_val=trt_ends[[trt_ix]]$starts[,i];		
+			ends_val=trt_ends[[trt_ix]]$ends[,i];		
+
+			plot(0,0, xlim=all_transform_range, ylim=all_transform_range, col=trt_ix, type="n", xaxt="n", yaxt="n");
+			abline(0, 1, col="grey85");
+
+			#points_mat=cbind(starts_val, ends_val);
+			#ch_ix=chull(points_mat);
+			#polygon(points_mat[ch_ix,], border=trt_ix, col=trt_colors_transparent);	
+
+			points(starts_val, ends_val, col=trt_colors_transp[trt_ix], cex=3, pch=16);
+			points(starts_val, ends_val, col=trt_colors_opaque[trt_ix], cex=.25, pch=16);
+
+		}
+	}
+
+	# Plot Combined
+	for(i in 1:num_transforms){
+		plot(0,0, xlim=all_transform_range, ylim=all_transform_range, type="n", xaxt="n", yaxt="n");
+		abline(0, 1, col="grey85");
+
+		for(trt_ix in 1:num_treatment_levels){
+			trt=treatment_levels[trt_ix];
+
+			trt_samp=(factors[,TreatmentVar]==trt);
+			sbj_in_trt=unique(factors[trt_samp,SubjectVar]);
+
+
+			if(trt_ix==1){
+				transform_label=transform_names[i];
+			}else{
+				transform_label="";
+			}	
+
+			starts_val=trt_ends[[trt_ix]]$starts[,i];		
+			ends_val=trt_ends[[trt_ix]]$ends[,i];		
+
+			#points_mat=cbind(starts_val, ends_val);
+			#ch_ix=chull(points_mat);
+			#polygon(points_mat[ch_ix,], border=trt_ix);	
+
+			points(starts_val, ends_val, col=trt_colors_transp[trt_ix], cex=3, pch=16);
+			points(starts_val, ends_val, col=trt_colors_opaque[trt_ix], cex=.25, pch=16);
+
+		}
+	}
+
+	# Label plot
+	mtext(paste(
+		var_ix, ".) ", sorted_taxa_names[var_ix], " (", signif(mean_abund[var_ix]*100,3), "%) ",
+		sep=""),
+	side=3, line=1.5, outer=T);
+
+	
 
 }
 
