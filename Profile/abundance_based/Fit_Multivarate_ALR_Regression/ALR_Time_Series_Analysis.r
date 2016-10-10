@@ -551,7 +551,6 @@ palette(indiv_colors);
 trt_colors_transp=get_colors(num_treatment_levels+3, 0.3);
 trt_colors_opaque=get_colors(num_treatment_levels+3, 1.0);
 
-par(oma=c(.8,.5,3,3));
 
 #num_top_taxa=1;
 for(var_ix in 1:num_top_taxa){
@@ -562,6 +561,7 @@ for(var_ix in 1:num_top_taxa){
 	cat("#                                                                        #\n");
 	cat("##########################################################################\n");
 
+	par(oma=c(.8,.5,3,3));
 	par(mfrow=c(8,5));
 	first_plot=T;
 
@@ -741,6 +741,10 @@ for(var_ix in 1:num_top_taxa){
 			);
 			title(main=transform_label);
 
+			if(i==1){
+				mtext(text=trt, side=2, cex=.75);
+			}
+
 			if(i==num_transforms){
 				axis(side=4, at=axis_ticks, labels=signif(axis_ticks,2),
 					las=2, cex.axis=.75);
@@ -773,6 +777,8 @@ for(var_ix in 1:num_top_taxa){
 	# Plot before/after scatter plot
 
 	
+	par(oma=c(0,0,3,0));
+	par(mar=c(1, 1, 1, 1.1));
 	par(mfrow=c(num_treatment_levels+1, num_transforms));
 
 	# Plot individual
@@ -784,22 +790,29 @@ for(var_ix in 1:num_top_taxa){
 
 		for(i in 1:num_transforms){
 
-			if(trt_ix==1){
-				transform_label=transform_names[i];
-			}else{
-				transform_label="";
-			}	
+			left_label=ifelse(i==1, "after", "");
+			top_label=ifelse(trt_ix==1, transform_names[i], "");
 
 			starts_val=trt_ends[[trt_ix]]$starts[,i];		
 			ends_val=trt_ends[[trt_ix]]$ends[,i];		
 
-			plot(0,0, xlim=all_transform_range, ylim=all_transform_range, col=trt_ix, type="n", xaxt="n", yaxt="n");
-			abline(0, 1, col="grey85");
+			plot(0,0, xlim=all_transform_range, ylim=all_transform_range, 
+				col=trt_ix, type="n", xaxt="n", yaxt="n"
+			);
+			title(ylab=left_label, line=0, cex=.8);
+			title(main=top_label, line=.2, cex=.8);
+
+			if(i==num_transforms){
+				mtext(text=trt, side=4, line=.1);
+			}
+			abline(0, 1, col="grey85", lwd=2);
 
 			#points_mat=cbind(starts_val, ends_val);
 			#ch_ix=chull(points_mat);
 			#polygon(points_mat[ch_ix,], border=trt_ix, col=trt_colors_transparent);	
 
+			abline(v=mean(starts_val), col=trt_colors_transp[trt_ix]);
+			abline(h=mean(ends_val), col=trt_colors_transp[trt_ix]);
 			points(starts_val, ends_val, col=trt_colors_transp[trt_ix], cex=3, pch=16);
 			points(starts_val, ends_val, col=trt_colors_opaque[trt_ix], cex=.25, pch=16);
 
@@ -808,15 +821,24 @@ for(var_ix in 1:num_top_taxa){
 
 	# Plot Combined
 	for(i in 1:num_transforms){
-		plot(0,0, xlim=all_transform_range, ylim=all_transform_range, type="n", xaxt="n", yaxt="n");
-		abline(0, 1, col="grey85");
+		plot(0,0, xlim=all_transform_range, ylim=all_transform_range, 
+			type="n", xaxt="n", yaxt="n",
+			);
+
+		left_label=ifelse(i==1, "after", "");
+		title(ylab=left_label, line=0);
+		title(xlab="before", line=0);
+		if(i==num_transforms){
+			mtext(text="Combined", side=4, line=.1, cex=.8);
+		}
+
+		abline(0, 1, col="grey85", lwd=2);
 
 		for(trt_ix in 1:num_treatment_levels){
 			trt=treatment_levels[trt_ix];
 
 			trt_samp=(factors[,TreatmentVar]==trt);
 			sbj_in_trt=unique(factors[trt_samp,SubjectVar]);
-
 
 			if(trt_ix==1){
 				transform_label=transform_names[i];
@@ -827,9 +849,8 @@ for(var_ix in 1:num_top_taxa){
 			starts_val=trt_ends[[trt_ix]]$starts[,i];		
 			ends_val=trt_ends[[trt_ix]]$ends[,i];		
 
-			#points_mat=cbind(starts_val, ends_val);
-			#ch_ix=chull(points_mat);
-			#polygon(points_mat[ch_ix,], border=trt_ix);	
+			abline(v=mean(starts_val), col=trt_colors_transp[trt_ix]);
+			abline(h=mean(ends_val), col=trt_colors_transp[trt_ix]);
 
 			points(starts_val, ends_val, col=trt_colors_transp[trt_ix], cex=3, pch=16);
 			points(starts_val, ends_val, col=trt_colors_opaque[trt_ix], cex=.25, pch=16);
@@ -841,7 +862,7 @@ for(var_ix in 1:num_top_taxa){
 	mtext(paste(
 		var_ix, ".) ", sorted_taxa_names[var_ix], " (", signif(mean_abund[var_ix]*100,3), "%) ",
 		sep=""),
-	side=3, line=1.5, outer=T);
+		side=3, line=1.5, outer=T);
 
 	
 
