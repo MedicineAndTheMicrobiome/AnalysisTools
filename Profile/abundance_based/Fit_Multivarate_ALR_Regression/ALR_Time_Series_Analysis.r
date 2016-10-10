@@ -734,7 +734,7 @@ for(var_ix in 1:num_top_taxa){
 				top_mar=0;
 			}	
 
-			par(mar=c(0, 1, top_mar, 0));
+			par(mar=c(2, 1, top_mar, 0));
 			plot(0, xlim=time_ranges, ylim=all_transform_range,
 				type="n", xlab="Time", ylab="",
 				xaxt="n", yaxt="n"
@@ -764,6 +764,16 @@ for(var_ix in 1:num_top_taxa){
 				points(time_pts, transform, col="black", type="b", pch=16, cex=.25, lwd=.25);
 				points(time_pts[c(1,1,last)], transform[c(1,1,last)], 
 					col=indiv_colors[sbj], pch=c(17,1,15), cex=c(1,2,1.25));
+			}
+
+
+			if(trt_ix==num_treatment_levels){
+				time_ticks=round(seq(time_ranges[1], time_ranges[2], length.out=10));
+				axis(side=1, line=0,
+					at=time_ticks,
+					labels=time_ticks,
+					las=2
+				);
 			}
 
 		}
