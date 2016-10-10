@@ -89,6 +89,7 @@ cat("Text Line Width: ", options()$width, "\n", sep="");
 ##############################################################################
 
 pdf(paste(OutputRoot, ".alr.time_series.pdf", sep=""), height=8.5, width=11);
+changes_fh=file(paste(OutputRoot, ".alr.time_series.changes.tsv", sep=""), "w");
 
 ##############################################################################
 
@@ -544,6 +545,26 @@ num_transforms=length(transform_names);
 
 ##############################################################################
 
+cat(file=changes_fh, paste(
+	"# Category", "Abundance", "Transform", sep="\t"));
+cat(file=changes_fh, "\t");
+for(trt_ix in 1:num_treatment_levels){
+	cat(file=changes_fh, 
+		paste(
+			paste(treatment_levels[trt_ix],"Start", sep=":"),
+			paste(treatment_levels[trt_ix],"LB95", sep=":"),
+			paste(treatment_levels[trt_ix],"UB95", sep=":"),
+			paste(treatment_levels[trt_ix],"End", sep=":"),
+			paste(treatment_levels[trt_ix],"LB95", sep=":"),
+			paste(treatment_levels[trt_ix],"UB95", sep=":"),
+		sep="\t")
+	);
+	cat(file=changes_fh, "\t");
+}
+cat(file=changes_fh, "\n");
+
+##############################################################################
+
 indiv_colors=get_colors(num_subjects);
 names(indiv_colors)=subject_levels;
 palette(indiv_colors);
@@ -874,7 +895,44 @@ for(var_ix in 1:num_top_taxa){
 		sep=""),
 		side=3, line=1.5, outer=T);
 
-	
+	##############################################################################
+	# Output to text file
+
+	for(i in 1:num_transforms){
+
+		cat(file=changes_fh, paste(
+			sorted_taxa_names[var_ix], 
+			mean_abund[var_ix],
+			transform_names[i], sep="\t")
+		);
+		cat(file=changes_fh, "\t");
+
+		for(trt_ix in 1:num_treatment_levels){
+			starts_val=trt_ends[[trt_ix]]$starts[,i];
+			ends_val=trt_ends[[trt_ix]]$ends[,i];
+		
+			n=length(starts_val);
+			sqrt_n=sqrt(n);
+
+			start_mean=mean(starts_val);
+			start_stdev=sd(starts_val);
+			start_int95=start_stdev/sqrt_n*1.96
+
+			end_mean=mean(ends_val);
+			end_stdev=sd(ends_val);
+			end_int95=end_stdev/sqrt_n*1.96
+
+			cat(file=changes_fh,
+				start_mean, start_mean-start_int95, start_mean+start_int95,
+				end_mean, end_mean-end_int95, end_mean+end_int95,
+				sep="\t");
+			cat(file=changes_fh, "\t");
+		}
+
+		cat(file=changes_fh, "\n");
+	}
+
+			
 
 }
 
