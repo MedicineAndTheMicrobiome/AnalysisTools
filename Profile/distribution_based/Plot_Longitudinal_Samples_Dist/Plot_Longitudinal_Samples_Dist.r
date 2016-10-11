@@ -133,6 +133,19 @@ simplify_matrix_categories=function(normalized_mat, top=4){
 
 ###############################################################################
 
+# Get color assignments
+get_colors=function(num_col, alpha=1){
+	colors=hsv(seq(0,1,length.out=num_col+1), c(1,.5), c(1,.75,.5), alpha=alpha);
+	color_mat_dim=ceiling(sqrt(num_col));
+	color_pad=rep("grey", color_mat_dim^2);
+	color_pad[1:num_col]=colors[1:num_col];
+	color_mat=matrix(color_pad, nrow=color_mat_dim, ncol=color_mat_dim);
+	colors=as.vector(t(color_mat));
+	colors=colors[colors!="grey"];
+}
+
+###############################################################################
+
 plot_dist=function(x, y, width=20, abundances){
 	
 	rect(
@@ -437,6 +450,107 @@ plot_sample_distributions_by_group=function(normalized_mat, offsets_mat, cat_col
 }
 
 ###############################################################################
+
+plot_change_scatter=function(diversity_arr, offset_mat){
+
+	cat("Plotting Change Scatter:\n");
+	print(diversity_arr);
+	print(offset_mat);
+
+	trt_levels=levels(offset_mat[,"Group ID"]);
+	ind_ids=levels(offset_mat[,"Indiv ID"]);
+	
+	num_indiv=length(ind_ids);
+	num_trt=length(trt_levels);
+
+	cat("Treatment Levels: \n");
+	print(trt_levels);
+	cat("Individual IDs: \n");
+	print(ind_ids);
+
+	# Extract start/end diversity
+	ends=matrix(NA, nrow=num_indiv, ncol=2, dimnames=list(ind_ids, c("start", "end")));
+	for(ind_ix in ind_ids){
+		offset_subset=offset_mat[offset_mat[,"Indiv ID"]==ind_ix,];
+		offset_subset=offset_subset[order(offset_subset[,"Offsets"], decreasing=F),];
+		samp_names=rownames(offset_subset)
+		num_offsets=nrow(offset_subset);
+		ends[ind_ix, "start"]=diversity_arr[samp_names[1]];
+		ends[ind_ix, "end"]=diversity_arr[samp_names[num_offsets]];
+		#print(offset_subset);
+		#print(ends);
+	}
+
+	end_ranges=range(ends);
+
+	grp_col_transp=get_colors(num_trt, alpha=.2);
+	grp_col_opaque=get_colors(num_trt, alpha=1);
+
+	# Plot by treatment group
+	par(mfrow=c(num_trt+1, 1));
+	for(trt_ix in 1:num_trt){
+		trt=trt_levels[trt_ix];
+		trt_ind_ids=unique(offset_mat[trt==offset_mat[,"Group ID"], "Indiv ID"]);
+		trt_ends=ends[trt_ind_ids,];
+
+		print(trt_ends);
+		plot(0,0, type="n",
+			main=trt,
+			xlab="Start", ylab="End",
+			xlim=end_ranges, ylim=end_ranges);
+		abline(a=0, b=1, col="grey", lwd=2);
+
+		abline(h=median(trt_ends[,"end"]), col=grp_col_opaque[trt_ix]);
+		abline(v=median(trt_ends[,"start"]), col=grp_col_opaque[trt_ix]);
+
+		points(trt_ends, col=grp_col_transp[trt_ix], cex=2, pch=19);
+		points(trt_ends, col=grp_col_opaque[trt_ix], cex=.25, pch=19);
+		
+	}
+
+	# Plot groups in single plot
+	plot(0,0, type="n",
+		main="Combined",
+		xlab="Start", ylab="End",
+		xlim=end_ranges, ylim=end_ranges);
+	abline(a=0, b=1, col="grey", lwd=2);
+
+	all_ends_and_groups=list();
+	for(trt_ix in 1:num_trt){
+                trt=trt_levels[trt_ix];
+                trt_ind_ids=unique(offset_mat[trt==offset_mat[,"Group ID"], "Indiv ID"]);
+                trt_ends=ends[trt_ind_ids,];
+
+		all_ends_and_groups[[paste(trt, ":start", sep="")]]=trt_ends[,"start"];
+		all_ends_and_groups[[paste(trt, ":end", sep="")]]=trt_ends[,"end"];
+
+		abline(h=median(trt_ends[,"end"]), col=grp_col_opaque[trt_ix]);
+		abline(v=median(trt_ends[,"start"]), col=grp_col_opaque[trt_ix]);
+
+		points(trt_ends, col=grp_col_transp[trt_ix], cex=2, pch=19);
+		points(trt_ends, col=grp_col_opaque[trt_ix], cex=.25, pch=19);
+	}
+
+	#######################################################################
+	# Compute pvalues between groups
+
+	aeag_names=names(all_ends_and_groups);
+
+	for(aeag_idx in aeag_names){
+		cat(aeag_idx, ": ", median(all_ends_and_groups[[aeag_idx]]), "\n", sep="");	
+	}
+
+	pval_matrix=matrix(NA, nrow=num_trt*2, ncol=num_trt*2, dimnames=list(aeag_names, aeag_names));
+	for(aeag_idx_A in aeag_names){
+		for(aeag_idx_B in aeag_names){
+			res=wilcox.test(all_ends_and_groups[[aeag_idx_A]], all_ends_and_groups[[aeag_idx_B]]);
+			pval_matrix[aeag_idx_A, aeag_idx_B]=res$p.value;
+		}
+	}
+	print(pval_matrix);
+
+}
+
 ###############################################################################
 ###############################################################################
 
@@ -480,16 +594,6 @@ diversity_arr=diversity(normalized_mat, "shannon");
 simplified_mat=simplify_matrix_categories(normalized_mat, top=3);
 num_simp_cat=ncol(simplified_mat);
 
-# Get color assignments
-get_colors=function(num_col){
-	colors=hsv(seq(0,1,length.out=num_col), c(1,.5), c(1,.75,.5));
-	color_mat_dim=ceiling(sqrt(num_col));
-	color_pad=rep("grey", color_mat_dim^2);
-	color_pad[1:num_col]=colors;
-	color_mat=matrix(color_pad, nrow=color_mat_dim, ncol=color_mat_dim);
-	colors=as.vector(t(color_mat));
-	colors=colors[colors!="grey"];
-}
 
 category_colors=get_colors(num_simp_cat);
 ind_colors=get_colors(num_indiv);
@@ -504,6 +608,8 @@ names(col_assign)=indiv_ids;
 plot_sample_distributions_by_individual(diversity_arr, simplified_mat, offset_mat, col_assign, category_colors, ind_colors);
 plot_sample_diversity_by_group(diversity_arr, simplified_mat, offset_mat, col_assign, ind_colors);
 plot_sample_distributions_by_group(simplified_mat, offset_mat, category_colors);
+
+plot_change_scatter(diversity_arr, offset_mat);
 
 ##############################################################################
 
