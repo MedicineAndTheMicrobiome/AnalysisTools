@@ -13,7 +13,9 @@ params=c(
 	"input_file", "i", 1, "character",
 	"output_file", "o", 2, "character",
 	"alpha", "a", 2, "numeric",
-	"beta", "b", 2, "numeric"
+	"beta", "b", 2, "numeric",
+	"N", "n", 2, "numeric",
+	"M", "m", 2, "numeric"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -25,6 +27,9 @@ usage = paste(
 	"	[-o <output file root name>]\n",
 	"	[-a <alpha, def=", DEF_ALPHA, "]\n",
 	"	[-b <beta, def=", DEF_BETA, "]\n",
+	"\n",
+	"	[-n <sample size 1>]\n",
+	"	[-m <sample size 2>]\n",
 	"\n",
 	"This script will take a summary table and then\n",
 	"generate a power analysis at various effect\n",
@@ -54,6 +59,8 @@ usage = paste(
 	"	Small: < 0.02\n",
 	"	Medium: ~ 0.13\n",
 	"	Large: > 0.26\n",
+	"\n",
+	"If n and m are specified, then only those sample sizes will be computed.\n",
 	"\n");
 
 if(!length(opt$input_file)){
@@ -73,12 +80,22 @@ if(length(opt$output_file)>0){
 }
 
 Alpha=ifelse(length(opt$alpha), opt$alpha, DEF_ALPHA);
-Beta=ifelse(length(opt$alpha), opt$beta, DEF_BETA);
+Beta=ifelse(length(opt$beta), opt$beta, DEF_BETA);
+
+N=ifelse(length(opt$N), opt$N, 0);
+M=ifelse(length(opt$M), opt$M, 0);
 
 cat("Input Summary Table: ", InputFileName, "\n");
 cat("Output Filename Root: ", OutputFileRoot, "\n");
 cat("Target Alpha: ", Alpha, "\n");
 cat("Target Beta: ", Beta, "\n");
+
+if(N!=0){
+	cat("N: ", N, "\n");
+}
+if(M!=0){
+	cat("M: ", M, "\n");
+}
 
 ###############################################################################
 
@@ -187,7 +204,7 @@ print(diversity_arr);
 # Determine which effect sizes to try
 range=range(diversity_arr);
 span=diff(range);
-effect_sizes=seq(0, span, length.out=20);
+effect_sizes=seq(0, span/3, length.out=40);
 
 cat("The range of diversity: ", range[1], "-", range[2], "\n");
 cat("The span: ", span, "\n");
@@ -195,6 +212,14 @@ cat("\n");
 cat("Computing power over: \n");
 print(effect_sizes);
 cat("\n");
+
+N1_range=2:40;
+
+if(N==0){
+	N1_range=2:40;
+}else{
+	N1_range=N;
+}
 
 ###############################################################################
 
@@ -215,9 +240,9 @@ for(effect_size in effect_sizes){
 
 	cat("Cohen's Eta^2: ", r_sqrd, "\n");
 	
-	for(N1 in 2:40){
+	for(N1 in N1_range){
 		
-		N2=N1;
+		N2=ifelse(M==0,N1,M);
 
 		beta_at_alpha=compute_beta(diversity_arr, effect_size, N1, N2, Alpha);
 
