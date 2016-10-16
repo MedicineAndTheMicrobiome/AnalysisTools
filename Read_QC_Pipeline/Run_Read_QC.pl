@@ -447,9 +447,14 @@ for(my $idx=$offset; $idx<$num_records; $idx+=$multiplier){
 	print STDERR "  Reverse Path: $rev_path\n";
 	print STDERR "  Reverse Adapter: $rev_adapt\n";
 	print STDERR "\n";
+
 	
 	# Make directory for library
 	my $library_dir="$output_dir/$lib_name";
+	if(-e "$library_dir/completed."){
+		print STDERR "It appears $library_dir has already successfully completed.  Skipping.\n";
+		next;
+	}
 	make_dir($library_dir);
 
 	# Set up has for library/iteration specific parameters
