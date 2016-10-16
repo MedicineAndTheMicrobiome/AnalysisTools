@@ -169,7 +169,13 @@ sub parse_results{
 		
 		my $seq_len=length($sequence);
 		my $num_Ns=($sequence=~tr/a-z//);
-		my $perc_hq_seq=($seq_len-$num_Ns)/$seq_len;
+
+		my $perc_hq_seq;
+		if($seq_len>0){
+			$perc_hq_seq=($seq_len-$num_Ns)/$seq_len;
+		}else{
+			$perc_hq_seq=0;
+		}
 		
 		my $outline=join "\t", ($id, $num_Ns, $seq_len, sprintf("%3.3f", $perc_hq_seq));
 		print STATS_FH "$outline\n";
