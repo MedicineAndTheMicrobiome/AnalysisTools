@@ -292,9 +292,13 @@ sub execute_module{
 	}elsif($command eq "qvtrim"){
 
 		$mod=new Read_QC_Lib::QualityTrim;
-		$mod->set_executable_path($config->val("quality_trim", "bin"));
-		$mod->set_quality_threshold($config->val("quality_trim", "quality_threshold"));
-		$mod->set_minimum_length($config->val("quality_trim", "minimum_length"));
+		$mod->set_trim_executable_path($config->val("quality_trim", "bin_trim"));
+		$mod->set_filt_executable_path($config->val("quality_filt", "bin_filt"));
+
+		$mod->set_trim_quality_threshold($config->val("quality_trim", "trim_quality_threshold"));
+		$mod->set_trim_minimum_length($config->val("quality_trim", "trim_minimum_length"));
+		$mod->set_filt_quality_threshold($config->val("quality_trim", "filt_quality_threshold"));
+		$mod->set_filt_percent_above($config->val("quality_trim", "filt_percent_above"));
 
 	}elsif($command eq "barcode_trim"){
 		

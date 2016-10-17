@@ -75,19 +75,34 @@ sub set_output_directory{
 	$self->{output_path}=shift;
 }
 
-sub set_executable_path{
+sub set_trim_executable_path{
 	my $self = shift;
-	$self->{executable_path}=shift;
+	$self->{trim_executable_path}=shift;
 }
 
-sub set_quality_threshold{
+sub set_filt_executable_path{
 	my $self = shift;
-	$self->{quality_threshold}=shift;
+	$self->{filt_executable_path}=shift;
 }
 
-sub set_minimum_length{
+sub set_trim_quality_threshold{
 	my $self = shift;
-	$self->{minimum_length}=shift;
+	$self->{trim_quality_threshold}=shift;
+}
+
+sub set_trim_minimum_length{
+	my $self = shift;
+	$self->{trim_minimum_length}=shift;
+}
+
+sub set_filt_quality_threshold{
+	my $self = shift;
+	$self->{filt_quality_threshold}=shift;
+}
+
+sub set_filt_percent_above{
+	my $self = shift;
+	$self->{filt_percent_above}=shift;
 }
 
 sub get_processed_fastq{
@@ -123,20 +138,26 @@ sub check_variable{
 sub execute_analysis{
 	my $self=shift;
 	
-	my $exec_path=$self->{executable_path};
+	my $trim_exec_path=$self->{trim_executable_path};
+	my $filt_exec_path=$self->{filt_executable_path};
 	my $output_path=$self->{output_path};
 	my $fastq_path=$self->{input_fastq_path};	
 
-	my $quality_threshold=$self->{quality_threshold};
-	my $minimum_length=$self->{minimum_length};
+	my $trim_quality_threshold=$self->{trim_quality_threshold};
+	my $trim_minimum_length=$self->{trim_minimum_length};
+	my $filt_quality_threshold=$self->{filt_quality_threshold};
+	my $filt_percent_above=$self->{filt_percent_above};
 
 	# Confirm necessary variables are set
 	my $err=0;
-	$err+=check_variable($exec_path, "Execution Path");
+	$err+=check_variable($trim_exec_path, "Trimmer Execution Path");
+	$err+=check_variable($filt_exec_path, "Filter Execution Path");
 	$err+=check_variable($output_path, "Result Path");
 	$err+=check_variable($fastq_path, "Input FASTQ Path");
-	$err+=check_variable($quality_threshold, "Quality Threshold");
-	$err+=check_variable($minimum_length, "Minimum Length");
+	$err+=check_variable($trim_quality_threshold, "Trimmer Quality Threshold");
+	$err+=check_variable($trim_minimum_length, "Trimer Minimum Length");
+	$err+=check_variable($filt_quality_threshold, "Filter Quality Threshold");
+	$err+=check_variable($filt_percent_above, "Filter Percent Above");
 	die "Variables undefined." unless !$err;
 
 	# Make output directory if necessary
@@ -146,11 +167,11 @@ sub execute_analysis{
 
 	# Construct execution string
 	my $execute_analysis_string=
-		"$exec_path " .
-		"-i $fastq_path " .
-		"-t $quality_threshold " .
-		"-l $minimum_length " .
-		"-v " .
+		"$trim_exec_path " .
+		"  -i $fastq_path " .
+		"  -t $trim_quality_threshold -l $trim_minimum_length -v | " .
+		"$filt_exec_path " .
+		"  -q $filt_quality_threshold -p $filt_percent_above -v " .
 		"> $output_path/$self->{QVTRIM_OUT_NAME}";
 
 	# Execute
