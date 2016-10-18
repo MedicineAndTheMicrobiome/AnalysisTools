@@ -9,7 +9,7 @@ use File::Basename;
 use FileHandle;
 use vars qw($opt_f $opt_g $opt_r $opt_o $opt_p $opt_c);
 
-my $MOTHUR_BIN="/usr/local/bin/mothur";
+my $MOTHUR_BIN="/usr/bin/mothur";
 
 my $PIPELINE_UTIL_PATH="$FindBin::Bin/pipeline_utilities";
 print STDERR "Path of Pipeline Utilities: $PIPELINE_UTIL_PATH\n";
