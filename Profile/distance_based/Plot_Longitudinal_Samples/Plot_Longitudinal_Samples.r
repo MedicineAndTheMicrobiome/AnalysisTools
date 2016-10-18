@@ -143,13 +143,13 @@ plot_connected_figure=function(coordinates, offsets_mat, groups_per_plot=3, titl
 		num_members=length(grp_subset);
 		print(grp_subset);
 
-		offsets_subset=offsets_mat[grp_subset,];
-		coord_subset=coordinates[grp_subset,];
+		offsets_subset=offsets_mat[grp_subset,, drop=F];
+		coord_subset=coordinates[grp_subset,, drop=F];
 
 		sort_ix=order(offsets_subset[,"Offsets"], decreasing=F);
 
-		offsets_subset=offsets_subset[sort_ix,];
-		coord_subset=coord_subset[sort_ix,];
+		offsets_subset=offsets_subset[sort_ix,, drop=F];
+		coord_subset=coord_subset[sort_ix,, drop=F];
 
 		#print(offsets_subset);
 		#print(coord_subset);
@@ -169,13 +169,13 @@ plot_connected_figure=function(coordinates, offsets_mat, groups_per_plot=3, titl
 		num_members=length(grp_subset);
 		#print(grp_subset);
 
-		offsets_subset=offsets_mat[grp_subset,];
-		coord_subset=coordinates[grp_subset,];
+		offsets_subset=offsets_mat[grp_subset,, drop=F];
+		coord_subset=coordinates[grp_subset,, drop=F];
 
 		sort_ix=order(offsets_subset[,"Offsets"], decreasing=F);
 
-		offsets_subset=offsets_subset[sort_ix,];
-		coord_subset=coord_subset[sort_ix,];
+		offsets_subset=offsets_subset[sort_ix,, drop=F];
+		coord_subset=coord_subset[sort_ix,, drop=F];
 
 		#print(offsets_subset);
 		#print(coord_subset);
@@ -186,8 +186,11 @@ plot_connected_figure=function(coordinates, offsets_mat, groups_per_plot=3, titl
 		text(coord_subset[1,1], coord_subset[1,2], labels=groups[i], col="black", pos=1, cex=.75, font=2);
 
 		# Label offsets
-		offset_ix=2:num_members;
-		text(coord_subset[offset_ix,1], coord_subset[offset_ix,2], labels=offsets_subset[offset_ix,"Offsets"], col=i, adj=c(.5,-.75), cex=.5, font=3);
+		if(num_members>1){
+			offset_ix=2:num_members;
+			text(coord_subset[offset_ix,1], coord_subset[offset_ix,2], 
+				labels=offsets_subset[offset_ix,"Offsets"], col=i, adj=c(.5,-.75), cex=.5, font=3);
+		}
 	}
 }
 
