@@ -195,11 +195,17 @@ plot_sample_distributions_by_individual=function(diversity_arr, normalized_mat, 
 	print(diversity_ranges);
 
 	# Get closest between offsets
-	min_period=numeric();
+	periods=numeric();
 	for(i in 1:num_groups){
 		grp_subset=which(offsets_mat[,"Indiv ID"]==groups[i]);
                 offsets=offsets_mat[grp_subset, "Offsets"];
-		min_period=min(diff(offsets), min_period)
+		periods=c(diff(offsets), periods);
+	}
+	periods_sorted=sort(unique(periods));
+	if(periods_sorted[1]==0){
+		min_period=periods_sorted[2];
+	}else{
+		min_period=periods_sorted[1];
 	}
 	cat("Minimum period: ", min_period, "\n");
 
@@ -369,13 +375,19 @@ plot_sample_distributions_by_group=function(normalized_mat, offsets_mat, cat_col
 	print(offset_ranges);
 
 	# Get closest between offsets
-	min_period=numeric();
+	periods=numeric();
 	indivs=unique(offsets_mat[,"Indiv ID"]);
 	num_indivs=length(indivs);
 	for(i in 1:num_indivs){
 		grp_subset=which(offsets_mat[,"Indiv ID"]==indivs[i]);
                 offsets=offsets_mat[grp_subset, "Offsets"];
-		min_period=min(diff(offsets), min_period)
+		periods=c(diff(offsets), periods);
+	}
+	periods_sorted=sort(unique(periods));
+	if(periods_sorted[1]==0){
+		min_period=periods_sorted[2];
+	}else{
+		min_period=periods_sorted[1];
 	}
 	cat("Minimum period: ", min_period, "\n");
 
