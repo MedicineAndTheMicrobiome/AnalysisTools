@@ -503,7 +503,7 @@ plot_change_scatter=function(diversity_arr, offset_mat){
 	for(trt_ix in 1:num_trt){
 		trt=trt_levels[trt_ix];
 		trt_ind_ids=unique(offset_mat[trt==offset_mat[,"Group ID"], "Indiv ID"]);
-		trt_ends=ends[trt_ind_ids,];
+		trt_ends=ends[trt_ind_ids,, drop=F];
 
 		print(trt_ends);
 		plot(0,0, type="n",
@@ -531,7 +531,7 @@ plot_change_scatter=function(diversity_arr, offset_mat){
 	for(trt_ix in 1:num_trt){
                 trt=trt_levels[trt_ix];
                 trt_ind_ids=unique(offset_mat[trt==offset_mat[,"Group ID"], "Indiv ID"]);
-                trt_ends=ends[trt_ind_ids,];
+                trt_ends=ends[trt_ind_ids,, drop=F];
 
 		all_ends_and_groups[[paste(trt, ":start", sep="")]]=trt_ends[,"start"];
 		all_ends_and_groups[[paste(trt, ":end", sep="")]]=trt_ends[,"end"];
