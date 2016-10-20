@@ -59,10 +59,10 @@ pdf(OutputPDF,width=8.5,height=8.5)
 load_offset=function(fname){
         cat("Loading Offsets: ", fname, "\n");
         offsets_mat=read.delim(fname,  header=FALSE, row.names=1, sep="\t", comment.char="#", quote="");
-	colnames(offsets_mat)=c("Group ID", "Offsets");
+	colnames(offsets_mat)=c("Indiv ID", "Offsets", "Cohort ID");
 
 	# reset offsets
-	groups=unique(offsets_mat[,"Group ID"]);
+	groups=unique(offsets_mat[,"Indiv ID"]);
 	
 	cat("Groups:\n");
 	print(groups);
@@ -70,9 +70,9 @@ load_offset=function(fname){
 
 	# Reset offsets so they are relative to the first/smallest sample
 	for(gid in groups){
-		offsets=offsets_mat[gid==offsets_mat[,"Group ID"], "Offsets"];
+		offsets=offsets_mat[gid==offsets_mat[,"Indiv ID"], "Offsets"];
 		min_off=min(offsets);
-		offsets_mat[gid==offsets_mat[,"Group ID"], "Offsets"]=offsets-min_off;
+		offsets_mat[gid==offsets_mat[,"Indiv ID"], "Offsets"]=offsets-min_off;
 	}
 
 	return(offsets_mat);
@@ -99,7 +99,7 @@ normalize=function(counts){
         return(normalized);
 }
 
-plot_connected_figure=function(coordinates, offsets_mat, groups_per_plot=3, title=""){
+plot_connected_figure=function(coordinates, offsets_mat, groups_per_plot=3, col_assign, ind_colors, title=""){
 	sorted_sids=sort(rownames(offsets_mat));
 	coordinates=coordinates[sorted_sids,];
 	offsets_mat=offsets_mat[sorted_sids,];
@@ -108,13 +108,10 @@ plot_connected_figure=function(coordinates, offsets_mat, groups_per_plot=3, titl
 	#print(coordinates);
 
 	# Get Unique Groups
-	groups=sort(unique(offsets_mat[,"Group ID"]));
+	groups=sort(unique(offsets_mat[,"Indiv ID"]));
 	num_groups=length(groups);
 
-	colors=rainbow(num_groups);
-	color_mat_dim=ceiling(sqrt(num_groups));
-	colors=as.vector(t(matrix(colors, nrow=color_mat_dim, ncol=color_mat_dim)));
-	palette(colors);
+	palette(ind_colors);
 
 	# Get limits of points
 	extra_margin=.2;
@@ -139,7 +136,7 @@ plot_connected_figure=function(coordinates, offsets_mat, groups_per_plot=3, titl
 	# Plot all samples
 	plot(0, main=title, xlab="Dim 1", ylab="Dim 2", type="n", xlim=xlim, ylim=ylim);
 	for(i in 1:num_groups){
-		grp_subset=which(offsets_mat[,"Group ID"]==groups[i]);
+		grp_subset=which(offsets_mat[,"Indiv ID"]==groups[i]);
 		num_members=length(grp_subset);
 		print(grp_subset);
 
@@ -153,9 +150,16 @@ plot_connected_figure=function(coordinates, offsets_mat, groups_per_plot=3, titl
 
 		#print(offsets_subset);
 		#print(coord_subset);
+
+		#--------------------------------------------------------------------------------
 			
-		points(coord_subset, type="b", col=i, pch=20, cex=.5);
-		points(coord_subset[c(1, 1, num_members),], type="p", col=i, pch=c(17, 1, 15), cex=c(1, 2, 1.25));
+		# Draw colored lines
+		points(coord_subset, type="l", col=col_assign[groups[i]], pch=20, lwd=2.5);
+		# Draw reinforcement black lines
+		points(coord_subset, type="b", col="black", pch=20, cex=.1);
+		# Draw start/stop glyphs
+		points(coord_subset[c(1, 1, num_members),], type="p", col=col_assign[groups[i]], 
+			pch=c(17, 1, 15), cex=c(1, 2, 1.25));
 	}
 
 	# Plot subset of samples
@@ -165,7 +169,7 @@ plot_connected_figure=function(coordinates, offsets_mat, groups_per_plot=3, titl
 		}
 
 		#cat("Plotting: ", groups[i], "\n");
-		grp_subset=which(offsets_mat[,"Group ID"]==groups[i]);
+		grp_subset=which(offsets_mat[,"Indiv ID"]==groups[i]);
 		num_members=length(grp_subset);
 		#print(grp_subset);
 
@@ -176,39 +180,39 @@ plot_connected_figure=function(coordinates, offsets_mat, groups_per_plot=3, titl
 
 		offsets_subset=offsets_subset[sort_ix,, drop=F];
 		coord_subset=coord_subset[sort_ix,, drop=F];
-
-		#print(offsets_subset);
-		#print(coord_subset);
 			
-		# Label start, stop, and group id
-		points(coord_subset, type="b", col=i, pch=20, cex=.5);
-		points(coord_subset[c(1, 1, num_members),], type="p", col=i, pch=c(17, 1, 15), cex=c(1, 2, 1.25));
+		#--------------------------------------------------------------------------------
+		# Draw colored lines
+		points(coord_subset, type="l", col=col_assign[groups[i]], pch=20, cex=.5, lwd=2.5);
+		# Draw reinforcement black lines
+		points(coord_subset, type="l", col="black", lwd=.1);
+		# Draw start/stop glyphs
+		points(coord_subset[c(1, 1, num_members),], type="p", col=col_assign[groups[i]], 
+			pch=c(17, 1, 15), cex=c(1, 2, 1.25));
+		# Label individual id
 		text(coord_subset[1,1], coord_subset[1,2], labels=groups[i], col="black", pos=1, cex=.75, font=2);
 
 		# Label offsets
 		if(num_members>1){
 			offset_ix=2:num_members;
 			text(coord_subset[offset_ix,1], coord_subset[offset_ix,2], 
-				labels=offsets_subset[offset_ix,"Offsets"], col=i, adj=c(.5,-.75), cex=.5, font=3);
+				labels=offsets_subset[offset_ix,"Offsets"], col="black", 
+				adj=c(.5,-.75), cex=.5, font=3);
 		}
 	}
 }
 
 ###############################################################################
 
-plot_sample_distances=function(distmat, offsets_mat, title=""){
+plot_sample_distances=function(distmat, offsets_mat, col_assign, ind_colors, title=""){
 	sorted_sids=sort(rownames(offsets_mat));
 	offsets_mat=offsets_mat[sorted_sids,];
 
 	# Get Unique Groups
-	groups=sort(unique(offsets_mat[,"Group ID"]));
-	num_groups=length(groups);
+	indiv_ids=sort(unique(offsets_mat[,"Indiv ID"]));
+	num_indiv=length(indiv_ids);
 
-	# Get color assignments
-	colors=rainbow(num_groups);
-	color_mat_dim=ceiling(sqrt(num_groups));
-	colors=as.vector(t(matrix(colors, nrow=color_mat_dim, ncol=color_mat_dim)));
-	palette(colors);
+	palette(ind_colors);
 
 	def_par=par(no.readonly=T);
 	par(mfrow=c(4,1));
@@ -225,13 +229,13 @@ plot_sample_distances=function(distmat, offsets_mat, title=""){
 	print(dist_ranges);
 
 	# Plot subset of samples
-	for(i in 1:num_groups){
+	for(i in 1:num_indiv){
 
-		cat("Plotting: ", groups[i], "\n");
-		grp_subset=which(offsets_mat[,"Group ID"]==groups[i]);
-		num_members=length(grp_subset);
+		cat("Plotting: ", indiv_ids[i], "\n");
+		ind_subset=which(offsets_mat[,"Indiv ID"]==indiv_ids[i]);
+		num_samples=length(ind_subset);
 
-		offset_info=offsets_mat[grp_subset,];
+		offset_info=offsets_mat[ind_subset,];
 		sort_ix=order(offset_info[,"Offsets"]);
 		offset_info=offset_info[sort_ix,];
 		print(offset_info);
@@ -240,18 +244,114 @@ plot_sample_distances=function(distmat, offsets_mat, title=""){
 		subset_dist=distmat2d[subset_samples[1], subset_samples];
 		print(subset_dist);
 
-
-		plot(offset_info[,"Offsets"], subset_dist, main=groups[i],
-			 xlab="Time", ylab="Distance", type="l", col=i, lwd=2,
+		# Plot colored lines
+		plot(offset_info[,"Offsets"], subset_dist, main=indiv_ids[i],
+			 xlab="Time", ylab="Distance", type="l", col=col_assign[indiv_ids[i]], lwd=2.5,
 			 xlim=offset_ranges, ylim=dist_ranges);
-
-		points(offset_info[c(1,1, num_members),"Offsets"], subset_dist[c(1,1, num_members)], type="p", pch=c(17, 1, 15), cex=c(1, 2, 1.25));
-		points(offset_info[,"Offsets"], subset_dist, type="b", pch=16, cex=.5);
+		# Plot ends
+		points(offset_info[c(1,1, num_samples),"Offsets"], subset_dist[c(1,1, num_samples)], 
+			col=col_assign[indiv_ids[i]],
+			type="p", pch=c(17, 1, 15), cex=c(1, 2, 1.25));
+		# Plot reinforcement thin black lines
+		points(offset_info[,"Offsets"], subset_dist, type="b", pch=16, cex=.1, lwd=.1);
 	}
 	par(def_par);
 }
 
 ###############################################################################
+
+plot_sample_dist_by_group=function(dist_mat, offsets_mat, col_assign, ind_colors){
+	
+	dist_mat=as.matrix(dist_mat);
+
+        sorted_sids=sort(rownames(offsets_mat));
+        offsets_mat=offsets_mat[sorted_sids,, drop=F];
+
+        # Get Num Cohorts
+        cohorts=sort(unique(offsets_mat[,"Cohort ID"]));
+        num_cohorts=length(cohorts);
+        cat("Number of Cohorts: ", num_cohorts, "\n");
+        print(cohorts);
+        cat("\n");
+
+        # Get range of offsets
+        offset_ranges=range(offsets_mat[,"Offsets"]);
+        cat("Offset Range:\n");
+        print(offset_ranges);
+
+        # Get range of diversity
+        dist_ranges=range(dist_mat);
+        cat("Distance Range:\n");
+        print(dist_ranges);
+
+        # Set up plots per page
+        def_par=par(no.readonly=T);
+        par(mfrow=c(num_cohorts,1));
+
+        # Set palette for individuals
+        palette(ind_colors);
+
+        for(g in 1:num_cohorts){
+	
+		cat("--------------------------------------------------------------------\n");
+                cat("Plotting: ", as.character(cohorts[g]), "\n");
+                plot(0, 0, main=cohorts[g],
+                         xlab="Time", ylab="Distance", type="n",
+                         xlim=offset_ranges, ylim=dist_ranges);
+
+                coh_offset_mat=offsets_mat[ offsets_mat[,"Cohort ID"]==cohorts[g], ];
+                print(coh_offset_mat);
+
+                # Get Unique Inidividuals
+                indivs=sort(unique(coh_offset_mat[,"Indiv ID"]));
+                num_indivs=length(indivs);
+                cat("Number of Individuals: ", num_indivs, "\n");
+                print(indivs);
+                cat("\n");
+
+                # Plot individual samples
+                for(i in 1:num_indivs){
+
+                        # Grab from individual cohort 
+                        cat("Plotting: ", as.character(indivs[i]), "\n");
+                        ind_subset=which(coh_offset_mat[,"Indiv ID"]==indivs[i]);
+                        num_timepts=length(ind_subset);
+
+                        # Subset offsets, and sort by offset
+                        offset_info=coh_offset_mat[ind_subset,,drop=F];
+                        sort_ix=order(offset_info[,"Offsets"]);
+                        offset_info=offset_info[sort_ix,];
+
+                        # Subset distances
+                        subset_samples=rownames(offset_info);
+			subset_dist=dist_mat[subset_samples[1], subset_samples];
+
+                        # Plot distances
+                        points(offset_info[c(1,1, num_timepts),"Offsets"], subset_dist[c(1,1, num_timepts)],
+                                type="p", pch=c(17, 1, 15), cex=c(1, 2, 1.25), col=col_assign[indivs[i]]);
+                        points(offset_info[,"Offsets"], subset_dist, type="l", lwd=2.5, col=col_assign[indivs[i]]);
+                        points(offset_info[,"Offsets"], subset_dist, type="l", lwd=.1, col="black");
+			text(offset_info[num_timepts, "Offsets"], subset_dist[num_timepts], adj=c(-.5,-1),
+				labels=indivs[i], col="black", cex=.5);
+
+                }
+        }
+        par(def_par);
+}
+
+###############################################################################
+
+# Get color assignments
+get_colors=function(num_col, alpha=1){
+        colors=hsv(seq(0,1,length.out=num_col+1), c(1,.5), c(1,.75,.5), alpha=alpha);
+        color_mat_dim=ceiling(sqrt(num_col));
+        color_pad=rep("grey", color_mat_dim^2);
+        color_pad[1:num_col]=colors[1:num_col];
+        color_mat=matrix(color_pad, nrow=color_mat_dim, ncol=color_mat_dim);
+        colors=as.vector(t(color_mat));
+        colors=colors[colors!="grey"];
+}
+
 ###############################################################################
 
 offset_mat=load_offset(OffsetFileName);
@@ -280,6 +380,31 @@ counts_mat=counts_mat[shared,];
 
 ###############################################################################
 
+# Get Cohort info
+cohort_names=sort(unique(offset_mat[,"Cohort ID"]));
+num_cohorts=length(cohort_names);
+cat("Cohorts:\n");
+print(cohort_names);
+cat("Num Cohorts: ", num_cohorts, "\n");
+cat("\n");
+
+# Get Individuals info
+indiv_names=sort(unique(offset_mat[,"Indiv ID"]));
+num_indiv=length(indiv_names);
+cat("Individuals:\n");
+print(indiv_names);
+cat("Num Individuals: ", num_indiv, "\n");
+cat("\n");
+
+###############################################################################
+
+# Assign colors
+ind_colors=get_colors(num_indiv);
+col_assign=1:num_indiv;
+names(col_assign)=indiv_names;
+
+###############################################################################
+
 normalized_mat=normalize(counts_mat);
 #print(normalized_mat);
 dist_mat=vegdist(normalized_mat, method="euclidean");
@@ -300,10 +425,12 @@ mds2_coord=isomds$points;
 ###############################################################################
 
 
-plot_connected_figure(mds_coord, offset_mat, title="Metric MDS");
-plot_connected_figure(mds2_coord, offset_mat, title="IsoMetric MDS");
+plot_connected_figure(mds_coord, offset_mat, groups_per_plot=5, col_assign, ind_colors, title="Metric MDS");
+plot_connected_figure(mds2_coord, offset_mat, groups_per_plot=5, col_assign, ind_colors, title="IsoMetric MDS");
 
-plot_sample_distances(dist_mat, offset_mat);
+plot_sample_distances(dist_mat, offset_mat, col_assign, ind_colors);
+
+plot_sample_dist_by_group(dist_mat, offset_mat, col_assign, ind_colors);
 
 ##############################################################################
 
