@@ -39,6 +39,9 @@ $0
 		<output filename root>.groups
 		<output filename root>.fasta
 
+	NOTE: Mothur doesn't like :'s in the read ids, so this
+	script will also convert all :'s in the read ids to _'s.
+
 ";
 
 if(!(
@@ -123,6 +126,7 @@ sub output_sample_read_ids{
 	open(FH, ">>$filename") || die "Could not append to $filename.\n";
 
 	foreach my $read_id (@{$read_id_arr_ref}){
+		$read_id=~s/:/_/g;
 		print FH "$read_id\t$group_name\n";
 		$num_lines_out++;
 	}
@@ -179,7 +183,7 @@ if($build_mfasta){
 	}
 	
 	for(my $i=0; $i<$num_maps_loaded; $i++){
-		`cat $fasta_fname_arr[$i] >> $mfasta_fname`;
+		`cat $fasta_fname_arr[$i] | sed 's/:/_/g' >> $mfasta_fname`;
 	}
 }
 
