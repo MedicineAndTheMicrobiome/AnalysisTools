@@ -7,6 +7,7 @@ use FileHandle;
 use vars qw($opt_i $opt_s);
 getopts("i:s:");
 
+###############################################################################
 
 my $usage = "usage:
 $0
@@ -15,6 +16,8 @@ $0
 		-s <comma separate split string, eg. donorA,donorB>
 
 	Maintains column headers and confirms that all listed split strings are disjoint.
+
+	Produces a new summary table for each item in the -s
 
 ";
 
@@ -28,21 +31,30 @@ if(!(
 my $input_file_name=$opt_i;
 my @strings=split /,/, $opt_s;
 
+###############################################################################
+
 print STDERR "Input Filename: $input_file_name\n";
 my $basename=$input_file_name;
-$basename=~s/\.summary_table\.xls$//;
 
+$basename=~s/\.summary_table\.xls$//;
+$basename=~s/\.summary_table\.tsv$//;
+
+###############################################################################
+
+# Open a file for each item in the list
 my @out_names;
 my @filehandles;
 my $i=0;
 foreach my $split_str (@strings){
-	my $out_names=$basename . "." . $split_str . ".summary_table.xls";
+	my $out_names=$basename . "." . $split_str . ".summary_table.tsv";
 	print "Output Files: '$out_names'\n";
 	$filehandles[$i]=FileHandle->new;
 	$filehandles[$i]->open(">$out_names");
 	$i++;
 }
 		
+
+# Open input summary table
 my $linenum=0;
 my $split_count=0;
 open(INFH, "<$input_file_name") || die "Could not open $input_file_name\n";
@@ -50,12 +62,14 @@ open(INFH, "<$input_file_name") || die "Could not open $input_file_name\n";
 while(<INFH>){
 
 	if($linenum==0){
+		# Output categories
 		foreach my $fh(@filehandles){
 			print {$fh} $_;
 		}
 	} else{
 		my @fields=split /\t/, $_;
 
+		# If sample id contains the split category, output it
 		for(my $i=0; $i<=$#strings; $i++){
 			my $search_string=$strings[$i];
 			if($fields[0]=~/$search_string/){
@@ -67,6 +81,7 @@ while(<INFH>){
 	$linenum++;
 }
 
+# Determine how successful split was
 my $num_samples=$linenum-1;
 if(($split_count) == $num_samples){
 	print STDERR "Split successful.  \n";
@@ -79,3 +94,7 @@ if(($split_count) == $num_samples){
 }
 
 close(INFH);
+
+###############################################################################
+
+print STDERR "done.\n";
