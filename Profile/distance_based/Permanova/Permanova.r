@@ -56,10 +56,11 @@ if(!length(opt$distmat) || !length(opt$factors)){
 }
 
 if(!length(opt$outputroot)){
-	OutputFnameRoot=gsub(".r_distmat", "", opt$distmat);
+	OutputFnameRoot=gsub(".distmat", "", opt$distmat);
 }else{
 	OutputFnameRoot=opt$outputroot;
 }
+OutputFnameRoot=paste(OutputFnameRoot, ".perm", sep="");
 
 if(!length(opt$model_formula)){
 	ModelFormula="";
