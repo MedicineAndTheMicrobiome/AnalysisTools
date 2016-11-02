@@ -7,14 +7,15 @@ use Getopt::Std;
 use File::Basename;
 use Statistics::Descriptive;
 use Statistics::R;
-use vars qw($opt_f $opt_o);
+use vars qw($opt_f $opt_o $opt_n);
 
-getopts("f:o:");
+getopts("f:o:n:");
 
 my $usage = "usage: 
 $0 
 	-f <fasta file>
 	-o <output report filename root>
+	[-n <max sequences to analyze>]
 
 	This script will take the input fasta file and determine where
 	all the sequences fall on a reference 16S sequence in order to 
@@ -25,6 +26,8 @@ $0
 
 	The reference sequence is hard coded because the variable
 	regions are mapped on to the reference sequence.
+
+	if -n option is specified grab the top N sequences, else all.
 ";
 
 
@@ -34,6 +37,11 @@ if(!defined($opt_f) || !defined($opt_o)){
 
 my $input_fasta=$opt_f;
 my $output_root=$opt_o;
+my $num_seq=0;
+
+if(defined($opt_n)){
+	$num_seq=$opt_n;
+}
 
 print STDERR "Input FASTA: $input_fasta\n";
 print STDERR "Ouput Root: $output_root\n";
@@ -75,6 +83,34 @@ print `formatdb -p F -i $ref_tmp`;
 
 ###############################################################################
 
+my $tmp_subsmp_fasta="$output_root.subsmp.fasta";
+if($num_seq>0){
+
+	print STDERR "Grabbing top $num_seq for blast.\n";
+	open(TMP_FH, ">$tmp_subsmp_fasta") || die "Could not open $tmp_subsmp_fasta\n";
+	open(F_FH, "<$input_fasta") || die "Could not open $input_fasta\n";
+
+	my $num_recs=0;
+	while(<F_FH>){
+		if($_=~/^>/){
+			if($num_recs==$num_seq){
+				last;
+			}
+			$num_recs++;
+		}
+		print TMP_FH $_;
+	}
+
+	close(TMP_FH);
+	close(F_FH);
+
+	print STDERR "Num Records: $num_recs / $num_seq\n";
+
+	$input_fasta=$tmp_subsmp_fasta;
+}
+
+###############################################################################
+
 my $bl_out_tmp="$output_root.blast_out";
 
 my $blast_cmd="blastall -p blastn -i $input_fasta -d $ref_tmp -o $bl_out_tmp -F F -e 1e-5 -G 1 -a 2 -W 5 -q -2 -m 8";
@@ -107,6 +143,10 @@ print `$blast_cmd`;
 `rm $ref_tmp.nhr`;
 `rm $ref_tmp.nin`;
 `rm $ref_tmp.nsq`;
+
+if($num_seq>0){
+	`rm $tmp_subsmp_fasta`;
+}
 
 
 ###############################################################################
