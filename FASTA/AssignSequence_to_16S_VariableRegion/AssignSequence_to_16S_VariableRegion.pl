@@ -5,8 +5,6 @@
 use strict;
 use Getopt::Std;
 use File::Basename;
-use Statistics::Descriptive;
-use Statistics::R;
 use vars qw($opt_f $opt_o $opt_n);
 
 getopts("f:o:n:");
