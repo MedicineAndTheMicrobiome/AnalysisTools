@@ -4,6 +4,7 @@
 
 use strict;
 use Getopt::Std;
+use File::Basename;
 use Statistics::Descriptive;
 use Statistics::R;
 use vars qw($opt_f $opt_o);
@@ -107,11 +108,15 @@ print `$blast_cmd`;
 `rm $ref_tmp.nin`;
 `rm $ref_tmp.nsq`;
 
+
 ###############################################################################
+
+my ($output_filename)=fileparse($output_root);
 
 my $Rcode;
 
 $Rcode=qq`
+options(echo=F);
 
 ###############################################################################
 # Read blast output
@@ -161,18 +166,22 @@ points(dse, col="green", type="l");
 # Plot query (read) alignment
 dqs=density(qs);
 dqe=density(qe);
-plot(0, type="n", xlim=c(0,max(c(qs, qe))), ylim=c(0,max(c(dqs\$y, dqe\$y))), 
+max_len=max(c(qs,qe));
+plot(0, type="n", xlim=c(0,max(c(qs, qe))), ylim=c(0, max(c(dqs\$y, dqe\$y))), 
 	main="Subject Alignment Positions",
 	xlab="Subject Position (bp)",
-	ylab="Density")
+	ylab="Density",
+	xaxt="n");
 points(dqs, col="blue", type="l");
 points(dqe, col="green", type="l");
+bottom_axis=c(seq(0, max_len, 50), max_len);
+axis(side=1, at=bottom_axis, labels=bottom_axis);
 
 ###############################################################################
 # Plot histogram of alignment lengths
 hist(s_al, main="Reference Alignment Lengths", xlab="Lengths (bp)");
 
-mtext("$output_root", side=3, line=0, outer=T, font=2, cex=1.4);
+mtext("$output_filename", side=3, line=0, outer=T, font=2, cex=1.4);
 
 dev.off();
 
@@ -181,13 +190,16 @@ dev.off();
 ###############################################################################
 
 # Prep file
-my $tmp_r_code_file="$output_root.r";
+my $tmp_r_code_file="$output_root.tmp.r";
 open(Rcode_FH, ">$tmp_r_code_file") || die "Could not open $tmp_r_code_file.\n";
 print Rcode_FH "$Rcode";
 close(Rcode_FH);
 
 # Execute R
 system("R --no-save < $tmp_r_code_file");
+
+`rm $tmp_r_code_file`;
+`rm $bl_out_tmp`;
 
 print STDERR "Done.\n";
 
