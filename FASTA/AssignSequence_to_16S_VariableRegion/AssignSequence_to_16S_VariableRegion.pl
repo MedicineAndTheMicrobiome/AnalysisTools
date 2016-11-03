@@ -146,7 +146,7 @@ my $bl_out_tmp="$output_root.blast_out";
 my $blast_cmd="blastall -p blastn -i $input_fasta -d $ref_tmp -o $bl_out_tmp -F F -e 1e-5 -G 1 -a 2 -W 7 -q -2 -m 8";
 
 print STDERR "Running blast...\n";
-print STDERR $blast_cmd;
+print STDERR "$blast_cmd\n";
 print `$blast_cmd`;
 
 ##############################################################################
@@ -252,7 +252,7 @@ print Rcode_FH "$Rcode";
 close(Rcode_FH);
 
 # Execute R
-system("R --no-save < $tmp_r_code_file");
+system("R --no-save --quiet < $tmp_r_code_file");
 
 # Remove blast out and temporary R code
 `rm $tmp_r_code_file`;
