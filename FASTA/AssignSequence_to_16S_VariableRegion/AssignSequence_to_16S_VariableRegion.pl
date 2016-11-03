@@ -148,7 +148,6 @@ if($num_seq>0){
 	`rm $tmp_subsmp_fasta`;
 }
 
-
 ###############################################################################
 
 my ($output_filename)=fileparse($output_root);
@@ -193,9 +192,10 @@ plot(0, type="n", xlim=c(0,1542), ylim=c(0,max(c(dss\$y, dse\$y))),
 	xaxt="n"
 );
 
-vregion_pos=c(96,306,487,746,885,1029,1180,1372,1468);
+vregion_pos=c(8,96,306,487,746,885,1029,1180,1372,1468);
+label_pos=diff(vregion_pos)/2 + vregion_pos[1:(length(vregion_pos)-1)];
 abline(v=vregion_pos, col="grey", lty=5);
-axis(side=3, at=vregion_pos, labels=paste("V", 1:9, sep=""));
+axis(side=3, at=label_pos, labels=paste("V", 1:9, sep=""));
 bottom_axis=seq(0, 1500, 100);
 axis(side=1, at=bottom_axis, labels=bottom_axis);
 
