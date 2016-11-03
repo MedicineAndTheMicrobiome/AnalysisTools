@@ -5,15 +5,16 @@
 use strict;
 use Getopt::Std;
 use File::Basename;
-use vars qw($opt_f $opt_o $opt_n);
+use vars qw($opt_f $opt_o $opt_n $opt_t);
 
-getopts("f:o:n:");
+getopts("f:o:n:t:");
 
 my $usage = "usage: 
 $0 
 	-f <fasta file>
 	-o <output report filename root>
 	[-n <max sequences to analyze>]
+	[-t <reuse reference file name>]
 
 	This script will take the input fasta file and determine where
 	all the sequences fall on a reference 16S sequence in order to 
@@ -26,6 +27,16 @@ $0
 	regions are mapped on to the reference sequence.
 
 	if -n option is specified grab the top N sequences, else all.
+
+	use the -t option, to specify a temporary that will can be
+	reused between runs.
+
+	Example:
+		$0 \\
+			-f input.fasta \\
+			-o output \\
+			-n 3000 \\
+			-t /tmp/ref
 ";
 
 
@@ -35,14 +46,21 @@ if(!defined($opt_f) || !defined($opt_o)){
 
 my $input_fasta=$opt_f;
 my $output_root=$opt_o;
-my $num_seq=0;
 
+my $num_seq=-1;
 if(defined($opt_n)){
 	$num_seq=$opt_n;
 }
 
+my $tmp_ref_fname=undef;
+if(defined($opt_t)){
+	$tmp_ref_fname=$opt_t;
+}
+
 print STDERR "Input FASTA: $input_fasta\n";
 print STDERR "Ouput Root: $output_root\n";
+print STDERR "Max Sequences to Analyze: $num_seq\n";
+print STDERR "Reuse Reference: $tmp_ref_fname\n";
 
 ###############################################################################
 
@@ -71,16 +89,30 @@ CTGCGGTTGGATCACCTCCTTA
 
 my $reference_defline=">ecoli.O157_H7";
 
+# Have temp reference sequence file based on input file name
 my $ref_tmp="$output_root.ref.fasta";
-open(REF_FH, ">$ref_tmp") || die "Could not open $ref_tmp\n";
-print REF_FH "$reference_defline";
-print REF_FH "$reference_16s";
-close(REF_FH);
 
-print `formatdb -p F -i $ref_tmp`;
+# If user specified fixed reference file name, use it
+if(defined($tmp_ref_fname)){
+	$ref_tmp=$tmp_ref_fname;
+}
+
+# If reference fasta doesn't exist, create and populate it 
+if(!(-e $ref_tmp)){
+	print STDERR "Creating $ref_tmp...\n";
+	open(REF_FH, ">$ref_tmp") || die "Could not open $ref_tmp\n";
+	print REF_FH "$reference_defline";
+	print REF_FH "$reference_16s";
+	close(REF_FH);
+
+	print `formatdb -p F -i $ref_tmp`;
+}else{
+	print STDERR "Reusing exiting $ref_tmp...\n";
+}
 
 ###############################################################################
 
+# Perform subsampling of top/first sequences if requested
 my $tmp_subsmp_fasta="$output_root.subsmp.fasta";
 if($num_seq>0){
 
@@ -109,8 +141,8 @@ if($num_seq>0){
 
 ###############################################################################
 
+# Set up and perform blast
 my $bl_out_tmp="$output_root.blast_out";
-
 my $blast_cmd="blastall -p blastn -i $input_fasta -d $ref_tmp -o $bl_out_tmp -F F -e 1e-5 -G 1 -a 2 -W 7 -q -2 -m 8";
 
 print STDERR "Running blast...\n";
@@ -119,30 +151,15 @@ print `$blast_cmd`;
 
 ##############################################################################
 
-#my @sbj_st_arr;
-#my @sbj_end_arr;
-#my @qry_st_arr;
-#my @qry_end_arr;
-#
-#open(BL_RES_FH, "<$bl_out_tmp") || die "Could not open $bl_out_tmp for reading.\n";
-#
-#while(<BL_RES_FH>){
-#	chomp;
-#	
-#	my ($qry, $sbj, $perc_id, $aln_len, $mism, $gap, 
-#		$qry_st, $qrt_end, $sbj_st, $sbj_end, $eval, $bit)=split "\t", $_;
-#
-#	#print "$qry_st-$qrt_end   $sbj_st-$sbj_end\n";	
-#
-#}
+# Clean up temp reference fasta, if necessary
+if(!defined($tmp_ref_fname)){
+	`rm $ref_tmp`;
+	`rm $ref_tmp.nhr`;
+	`rm $ref_tmp.nin`;
+	`rm $ref_tmp.nsq`;
+}
 
-###############################################################################
-
-`rm $ref_tmp`;
-`rm $ref_tmp.nhr`;
-`rm $ref_tmp.nin`;
-`rm $ref_tmp.nsq`;
-
+# Remove subsample file if necessary
 if($num_seq>0){
 	`rm $tmp_subsmp_fasta`;
 }
@@ -228,7 +245,7 @@ dev.off();
 
 ###############################################################################
 
-# Prep file
+# Prep R script file
 my $tmp_r_code_file="$output_root.tmp.r";
 open(Rcode_FH, ">$tmp_r_code_file") || die "Could not open $tmp_r_code_file.\n";
 print Rcode_FH "$Rcode";
@@ -237,6 +254,7 @@ close(Rcode_FH);
 # Execute R
 system("R --no-save < $tmp_r_code_file");
 
+# Remove blast out and temporary R code
 `rm $tmp_r_code_file`;
 `rm $bl_out_tmp`;
 
