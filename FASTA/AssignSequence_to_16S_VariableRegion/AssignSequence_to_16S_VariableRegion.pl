@@ -5,8 +5,6 @@
 use strict;
 use Getopt::Std;
 use File::Basename;
-use Statistics::Descriptive;
-use Statistics::R;
 use vars qw($opt_f $opt_o $opt_n);
 
 getopts("f:o:n:");
@@ -75,7 +73,7 @@ my $reference_defline=">ecoli.O157_H7";
 
 my $ref_tmp="$output_root.ref.fasta";
 open(REF_FH, ">$ref_tmp") || die "Could not open $ref_tmp\n";
-print REF_FH "$reference_defline\n";
+print REF_FH "$reference_defline";
 print REF_FH "$reference_16s";
 close(REF_FH);
 
@@ -113,9 +111,10 @@ if($num_seq>0){
 
 my $bl_out_tmp="$output_root.blast_out";
 
-my $blast_cmd="blastall -p blastn -i $input_fasta -d $ref_tmp -o $bl_out_tmp -F F -e 1e-5 -G 1 -a 2 -W 5 -q -2 -m 8";
+my $blast_cmd="blastall -p blastn -i $input_fasta -d $ref_tmp -o $bl_out_tmp -F F -e 1e-5 -G 1 -a 2 -W 7 -q -2 -m 8";
 
 print STDERR "Running blast...\n";
+print STDERR $blast_cmd;
 print `$blast_cmd`;
 
 ##############################################################################
