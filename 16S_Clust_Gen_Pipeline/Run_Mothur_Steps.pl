@@ -299,12 +299,14 @@ sub log_counts{
 
 # Link fasta file to working directory
 my ($name, $path)=fileparse($input_fasta);
+print STDERR "Linking $input_fasta -> $output_dir/$name\n";
 symlink $input_fasta, "$output_dir/$name";
 my $in="$output_dir/$name";
 $in=~s/\.fasta$//;
 
 # Link groups file to working directory
 my ($group_name, $group_path)=fileparse($groups_file);
+print STDERR "Linking $groups_file -> $output_dir/$group_name\n";
 symlink $groups_file, "$output_dir/$group_name";
 my $group="$output_dir/$group_name";
 $group=~s/\.groups//;
@@ -312,11 +314,13 @@ $group=~s/\.groups//;
 # Link 16S alignments and taxa file to working directory
 my ($ref16s_name, $ref16s_path)=fileparse($ref_16s_align);
 my $reference_name="16S_Reference";
+print STDERR "Linking $ref_16s_align -> $output_dir/$reference_name.align\n";
 symlink $ref_16s_align, "$output_dir/$reference_name.align";
 # Find taxa map file
 my $taxa_map=$ref_16s_align;
 $taxa_map=~s/\.align$/.tax/;
 # Use link as "name"
+print STDERR "Linking $taxa_map -> $output_dir/$reference_name.taxa\n";
 symlink $taxa_map, "$output_dir/$reference_name.tax";
 my $reference_link="$output_dir/$reference_name.align";
 my $tax_map="$output_dir/$reference_name.tax";
