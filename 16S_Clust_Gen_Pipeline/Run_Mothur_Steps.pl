@@ -226,8 +226,10 @@ sub execute_mothur_cmd{
 		print STDERR "$exec_string\n";
 
 		@begin_time=times;
-		my $out=`$exec_string > $logfile 2>&1`;
+		my $out=`$exec_string > $logfile\.tmp 2>&1`;
 		@end_time=times;
+
+		`mv $logfile\.tmp $logfile`;
 
 		#open(FH, ">$logfile") || die "Could not open $logfile.\n";
 		#print FH "$out\n";
