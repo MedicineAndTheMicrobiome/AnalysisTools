@@ -226,12 +226,12 @@ sub execute_mothur_cmd{
 		print STDERR "$exec_string\n";
 
 		@begin_time=times;
-		my $out=`$exec_string`;
+		my $out=`$exec_string > $logfile 2>&1`;
 		@end_time=times;
 
-		open(FH, ">$logfile") || die "Could not open $logfile.\n";
-		print FH "$out\n";
-		close(FH);
+		#open(FH, ">$logfile") || die "Could not open $logfile.\n";
+		#print FH "$out\n";
+		#close(FH);
 
 		# Check for errors in the log file
 		my $has_errors=check_logfile_for_errors($logfile);
