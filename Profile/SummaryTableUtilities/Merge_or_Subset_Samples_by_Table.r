@@ -56,8 +56,22 @@ usage = paste (
 	"you should make sure your output looks correct.\n",
 	"\n",
 	"Based the samples included in the new summary table, a new mapping\n",
-	"table will be generated where the metadata that is consistent across\n",
-	"the replicates is saved.\n",
+	"table will be generated.  If the collapsed samples had different\n",
+	"metadata entries, they will be combined into a single field separated\n",
+	"with semicolons.\n",
+	"\n",
+	"For example:\n",
+	"	Sample	NewID	Metadata1	Metadata2\n",
+	"	abc.1	abc	1		red\n",
+	"	abc.2	abc	2		red\n",
+	"	abc.3	abc	3		blue\n",
+	"	def.1	def	1		green\n",
+	"	def.2	def	2		green\n",
+	"\n",
+	"After collapsing by NewID Will look like:\n",
+	"	NewID	Metadata1	Metadata2\n",	
+	"	abc	1;2;3		red;blue\n",
+	"	def	1;2		green\n",
 	"\n");
 
 if(!length(opt$input_file) || !length(opt$mapping_table)){
@@ -253,6 +267,7 @@ collapse_entries=function(in_mat){
 collpsed_map_table=matrix("", nrow=num_uniq_grps, ncol=ncol(full_mapping_table)-1);
 rownames(collpsed_map_table)=unique_groups;
 colnames(collpsed_map_table)=colnames(full_mapping_table)[-ColumnNum];
+key_cat=colnames(full_mapping_table)[ColumnNum];
 for(i in 1:num_uniq_grps){
 	cur_grp=unique_groups[i];
         cat("Group: ", cur_grp, "\n");
@@ -261,7 +276,7 @@ for(i in 1:num_uniq_grps){
 }
 
 fc=file(paste(OutputFileNameRoot, ".", group_name, ".meta.tsv", sep=""));
-cat(file=fc, paste(c("sample_id", colnames(collpsed_map_table)), collapse="\t"), "\n", sep="");
+cat(file=fc, paste(c(key_cat, colnames(collpsed_map_table)), collapse="\t"), "\n", sep="");
 write.table(collpsed_map_table, file=paste(OutputFileNameRoot, ".", group_name, ".meta.tsv", sep=""),
 		quote=F, sep="\t", row.names=T, col.names=F, append=T);
 
