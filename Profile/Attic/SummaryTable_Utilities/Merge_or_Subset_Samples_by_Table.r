@@ -159,28 +159,31 @@ new_summary_table=matrix(NA, nrow=num_uniq_grps, ncol=num_categories);
 
 cat("Working on extracting and merging:\n");
 mapping_sample_names=rownames(mapping_table);
+available_sample_names=rownames(counts_mat);
+
 for(i in 1:num_uniq_grps){
 	cur_grp=unique_groups[i];
 	
 	grp_idx=(mapping_table[,1]==cur_grp);
 	grp_sample_names=mapping_sample_names[grp_idx];
 
-	cat("Group: ", cur_grp, "\n");
+	cat("Group: ", cur_grp);
 	grp_sample_names=grp_sample_names[!is.na(grp_sample_names)];
 
-
-	print(grp_sample_names);
-	available_sample_names=rownames(counts_mat);
-	print(available_sample_names);
+	#print(grp_sample_names);
+	num_to_collapse=length(grp_sample_names);
+	cat(" (", num_to_collapse, ")\n", sep="");
+	
+	#print(available_sample_names);
 	target_sample_names=intersect(available_sample_names, grp_sample_names);
-	if(length(available_sample_names) != length(grp_sample_names)){
+	if(length(target_sample_names) != length(grp_sample_names)){
 		cat("\n");
 		cat("***************************************************************\n");
 		cat("* WARNING: Targeted Sample Names don't match Available!!!     *\n");
 		cat("* Targeted:                                                   *\n");
 		print(grp_sample_names);
-		cat("* Available:                                                  *\n");
-		print(available_sample_names);
+		#cat("* Available:                                                  *\n");
+		#print(available_sample_names);
 		cat("* Providing:                                                  *\n");
 		print(target_sample_names);
 		cat("***************************************************************\n");
