@@ -54,6 +54,10 @@ usage = paste (
 	"do not match up.  It's safer to allow the program to abort so you\n",
 	"can try to fix the error.  If you chose to use the force ignore,\n",
 	"you should make sure your output looks correct.\n",
+	"\n",
+	"Based the samples included in the new summary table, a new mapping\n",
+	"table will be generated where the metadata that is consistent across\n",
+	"the replicates is saved.\n",
 	"\n");
 
 if(!length(opt$input_file) || !length(opt$mapping_table)){
@@ -117,8 +121,8 @@ load_mapping_file=function(fname){
 
 ###############################################################################
 
-mapping_table=load_mapping_file(MappingTable);
-mapping_table=mapping_table[, ColumnNum, drop=F];
+full_mapping_table=load_mapping_file(MappingTable);
+mapping_table=full_mapping_table[, ColumnNum, drop=F];
 
 inmap_samples=rownames(inmat);
 mapping_table_samples=rownames(mapping_table);
@@ -230,6 +234,37 @@ write_summary_file=function(out_mat, fname){
 group_name=colnames(mapping_table)[1];
 output_fname=paste(OutputFileNameRoot, ".", group_name, ".summary_table.tsv", sep="");
 write_summary_file(new_summary_table, output_fname);
+
+###############################################################################
+###############################################################################
+
+# Generate new mapping table with rows collapsed and keyed by new sample ID
+#print(full_mapping_table);
+collapse_entries=function(in_mat){
+	num_col=ncol(in_mat);
+	collapsed=character(num_col);
+	for(i in 1:num_col){
+		col_val=gsub("^ *", "", in_mat[,i]);
+		collapsed[i]=paste(unique(col_val), collapse=";");
+	}
+	return(collapsed);
+}
+
+collpsed_map_table=matrix("", nrow=num_uniq_grps, ncol=ncol(full_mapping_table)-1);
+rownames(collpsed_map_table)=unique_groups;
+colnames(collpsed_map_table)=colnames(full_mapping_table)[-ColumnNum];
+for(i in 1:num_uniq_grps){
+	cur_grp=unique_groups[i];
+        cat("Group: ", cur_grp, "\n");
+	grp_idx=(full_mapping_table[,ColumnNum]==cur_grp);
+	collpsed_map_table[i,]=collapse_entries(full_mapping_table[grp_idx,-ColumnNum,drop=F]);
+}
+
+fc=file(paste(OutputFileNameRoot, ".", group_name, ".meta.tsv", sep=""));
+cat(file=fc, paste(c("sample_id", colnames(collpsed_map_table)), collapse="\t"), "\n", sep="");
+write.table(collpsed_map_table, file=paste(OutputFileNameRoot, ".", group_name, ".meta.tsv", sep=""),
+		quote=F, sep="\t", row.names=T, col.names=F, append=T);
+
 
 ###############################################################################
 
