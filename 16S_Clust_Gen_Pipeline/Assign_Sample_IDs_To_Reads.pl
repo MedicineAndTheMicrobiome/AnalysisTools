@@ -2,10 +2,15 @@
 
 ###############################################################################
 
+use FindBin ();
 use strict;
 use Getopt::Std;
 use FileHandle;
 use vars qw($opt_m $opt_o $opt_f $opt_r);
+
+my $PIPELINE_UTIL_PATH="$FindBin::Bin/pipeline_utilities";
+print STDERR "Path of Pipeline Utilities: $PIPELINE_UTIL_PATH\n";
+my $RENAME_BIN="$PIPELINE_UTIL_PATH/../../FASTA/Rename_FASTA_Records_with_MappingFile.pl";
 
 getopts("m:o:fr");
 my $usage = "usage: 
@@ -38,6 +43,7 @@ $0
 	The output file(s) will be:
 		<output filename root>.groups
 		<output filename root>.fasta
+		<output filename root>.read_mapping
 
 	NOTE: Mothur doesn't like :'s in the read ids, so this
 	script will also convert all :'s in the read ids to _'s.
@@ -126,7 +132,6 @@ sub output_sample_read_ids{
 	open(FH, ">>$filename") || die "Could not append to $filename.\n";
 
 	foreach my $read_id (@{$read_id_arr_ref}){
-		$read_id=~s/:/_/g;
 		print FH "$read_id\t$group_name\n";
 		$num_lines_out++;
 	}
@@ -135,6 +140,26 @@ sub output_sample_read_ids{
 
 	print STDERR "  Num Lines Output: $num_lines_out\n";
 
+}
+
+#-------------------------------------------------------------------------------
+
+sub rename_id{
+	my $read_id_arr_ref=shift;
+	my $sample_id=shift;
+	my $rename_map_hash_ref=shift;
+
+	my @renamed_read_id_arr;
+
+	my $i=0;
+	foreach my $read_id (@{$read_id_arr_ref}){
+		my $new_id=sprintf("$sample_id\_%06i", $i);
+		push @renamed_read_id_arr, $new_id;
+		${$rename_map_hash_ref}{$read_id}=$new_id;
+		$i++;
+	}
+
+	return(\@renamed_read_id_arr);
 }
 
 ###############################################################################
@@ -151,6 +176,7 @@ if(-e $groups_fname){
 
 # Generate read to group/sample mapping
 my $total_reads_output=0;
+my %mapping_hash;
 for(my $i=0; $i<$num_maps_loaded; $i++){
 	my $sample_id=$sample_name_arr[$i];
 	my $fasta_fname=$fasta_fname_arr[$i];
@@ -158,8 +184,11 @@ for(my $i=0; $i<$num_maps_loaded; $i++){
 	print STDERR "Extracting Read IDs from $fasta_fname...\n";
 	my $read_id_arr_ref=get_read_ids_from_fasta($fasta_fname);
 
-	print STDERR "  Outputing Mapping Info for $sample_id...\n";
-	output_sample_read_ids($groups_fname, $sample_id, $read_id_arr_ref);
+	print STDERR "Renaming Read IDs...\n";
+	my $renamed_read_id_arr_ref=rename_id($read_id_arr_ref, $sample_id, \%mapping_hash);
+
+	print STDERR "Outputing Mapping Info for $sample_id...\n";
+	output_sample_read_ids($groups_fname, $sample_id, $renamed_read_id_arr_ref);
 
 	$total_reads_output+=($#{$read_id_arr_ref}+1);
 
@@ -167,6 +196,14 @@ for(my $i=0; $i<$num_maps_loaded; $i++){
 }
 
 print STDERR "Total Reads Processed: $total_reads_output\n";
+
+# Out mapping file
+my $output_mapping_fname="$output_fname.read_mapping";
+open(MAP_FH, ">$output_mapping_fname") || die "Could not open $output_mapping_fname for writing.\n";
+foreach my $key (sort keys %mapping_hash){
+	print MAP_FH "$key\t$mapping_hash{$key}\n";
+}
+close(MAP_FH);
 
 # Concatenate all the fasta files together
 if($build_mfasta){
@@ -183,8 +220,15 @@ if($build_mfasta){
 	}
 	
 	for(my $i=0; $i<$num_maps_loaded; $i++){
-		`cat $fasta_fname_arr[$i] | sed 's/:/_/g' >> $mfasta_fname`;
+		`cat $fasta_fname_arr[$i] >> $mfasta_fname`;
 	}
+
+	print STDERR "Remapping FASTA file IDs...\n";
+	my $ren_cmd_str="perl $RENAME_BIN -i $mfasta_fname -o $mfasta_fname.tmp -m $output_mapping_fname";
+	print STDERR "'$ren_cmd_str'\n";
+	print STDERR `$ren_cmd_str`;
+
+	system("mv $mfasta_fname.tmp $mfasta_fname");
 }
 
 ###############################################################################
