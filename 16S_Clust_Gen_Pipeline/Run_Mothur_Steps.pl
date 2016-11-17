@@ -7,7 +7,7 @@ use strict;
 use Getopt::Std;
 use File::Basename;
 use FileHandle;
-use vars qw($opt_f $opt_g $opt_r $opt_o $opt_p $opt_c);
+use vars qw($opt_f $opt_g $opt_r $opt_o $opt_p $opt_c $opt_m);
 
 my $MOTHUR_BIN="/usr/bin/mothur";
 
@@ -25,12 +25,13 @@ my $COUNT_NAMES_BIN="$PIPELINE_UTIL_PATH/Count_Names/Count_Names.pl";
 my $TIMING_LOGNAME="timing_log.tsv";
 my $MOTHUR_LOG="mothur.current.logfile";
 my $COUNTS_LOGNAME="counts.logfile";
+my $DEF_NUM_MISM=2;
 my $DEF_NPROC=4;
 my $DEF_CLUST_CUTOFF=0.10;
 
 ###############################################################################
 
-getopts("f:g:r:o:p:c:");
+getopts("f:g:r:o:m:p:c:");
 my $usage = "usage: 
 
 $0 
@@ -39,6 +40,7 @@ $0
 	-r <reference 16S alignments, e.g. [abs path]/silva.nr_v119.align >
 	-o <output directory>
 
+	[-m <max mismatch for uniqueness in preclustering, default=$DEF_NUM_MISM>]
 	[-p <num processors, default=$DEF_NPROC>]
 	[-c <maximum cluster cutoff, default=$DEF_CLUST_CUTOFF>]
 
@@ -99,6 +101,7 @@ my $ref_16s_align=$opt_r;
 my $output_dir=$opt_o;
 my $num_proc=defined($opt_p)?$opt_p:$DEF_NPROC;
 my $clust_cutoff=defined($opt_c)?$opt_c:$DEF_CLUST_CUTOFF;
+my $preclust_diff=defined($opt_m)?$opt_m:$DEF_NUM_MISM;
 
 print STDERR "Using Mothur at: $MOTHUR_BIN\n";
 print STDERR "Input FASTA File: $input_fasta\n";
@@ -107,6 +110,7 @@ print STDERR "Reference 16S Alignments: $ref_16s_align\n";
 print STDERR "Output Directory: $output_dir\n";
 print STDERR "Num Processors: $num_proc\n";
 print STDERR "Cluster Cutoff: $clust_cutoff\n";
+print STDERR "Num Mismatch for Precluster: $preclust_diff\n";
 
 if(!(-e $output_dir)){
 	print STDERR "Making $output_dir...\n";
@@ -398,6 +402,7 @@ execute_mothur_cmd(
 	"pre.cluster",
 	"fasta=$in.unique.good.filter.unique.fasta,
 	name=$in.unique.good.filter.names,
+	diffs=$preclust_diff,
 	processors=$num_proc"
 );
 # Makes
