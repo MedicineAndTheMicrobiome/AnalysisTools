@@ -402,6 +402,7 @@ execute_mothur_cmd(
 	"pre.cluster",
 	"fasta=$in.unique.good.filter.unique.fasta,
 	name=$in.unique.good.filter.names,
+	group=$group.good.groups,
 	diffs=$preclust_diff,
 	processors=$num_proc"
 );
