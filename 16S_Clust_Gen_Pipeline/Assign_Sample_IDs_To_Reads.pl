@@ -45,8 +45,11 @@ $0
 		<output filename root>.fasta
 		<output filename root>.read_mapping
 
-	NOTE: Mothur doesn't like :'s in the read ids, so this
-	script will also convert all :'s in the read ids to _'s.
+	NOTE: Mothur doesn't like :, -, and \\'s in the read and sample ids, so this
+	script will also convert all those in the read and sample ids to _'s.
+
+	Also, to shorten read ID names, new read ID will be changed to <sample_id>_#####,
+	where ##### is the index of that read.
 
 ";
 
@@ -180,6 +183,11 @@ my %mapping_hash;
 for(my $i=0; $i<$num_maps_loaded; $i++){
 	my $sample_id=$sample_name_arr[$i];
 	my $fasta_fname=$fasta_fname_arr[$i];
+
+	print STDERR "Cleaning Sample ID names. (Substituting :,-, and \\ with _'s.)\n";
+	$sample_id=~s/:/_/g;
+	$sample_id=~s/-/_/g;
+	$sample_id=~s/\//_/g;
 	
 	print STDERR "Extracting Read IDs from $fasta_fname...\n";
 	my $read_id_arr_ref=get_read_ids_from_fasta($fasta_fname);
