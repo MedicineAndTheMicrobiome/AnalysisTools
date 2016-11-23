@@ -27,7 +27,8 @@ my $MOTHUR_LOG="mothur.current.logfile";
 my $COUNTS_LOGNAME="counts.logfile";
 my $DEF_NUM_MISM=2;
 my $DEF_NPROC=4;
-my $DEF_CLUST_CUTOFF=0.10;
+my $DEF_CLUST_CUTOFF=0.45;
+#my $DEF_CLUST_CUTOFF=0.3; if you just want .03
 
 ###############################################################################
 
@@ -42,7 +43,9 @@ $0
 
 	[-m <max mismatch for uniqueness in preclustering, default=$DEF_NUM_MISM>]
 	[-p <num processors, default=$DEF_NPROC>]
-	[-c <maximum cluster cutoff, default=$DEF_CLUST_CUTOFF>]
+	[-c <maximum distance saved in distance matrix, default=$DEF_CLUST_CUTOFF>]
+		(note: to acquire clusters of .03, you may need .3
+		       to acquire clusters of .10, you may need .45)
 
 	This script will run through all the necessary steps to go from
 	cleaned up FASTA sequences per sample, to OTU generation and taxonomic
@@ -467,7 +470,9 @@ execute_mothur_cmd(
 execute_mothur_cmd(
 	"cluster",
 	"column=$in.unique.good.filter.unique.precluster.pick.dist, 
-	name=$in.unique.good.filter.unique.precluster.pick.names"
+	name=$in.unique.good.filter.unique.precluster.pick.names,
+	precision=100
+	"
 );
 # Makes
 #	IN.unique.good.filter.unique.precluster.pick.an.sabund
