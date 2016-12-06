@@ -108,6 +108,10 @@ OutputDirectory=NULL;
 if(length(opt$output_dir)){
 	OutputDirectory=opt$output_dir;
 	fname_tail=tail(strsplit(OutputFileNameRoot, "/")[[1]],1);
+	if(!file.exists(OutputDirectory)){
+		cat("Creating director: ", OutputDirectory, "\n");
+		dir.create(OutputDirectory);
+	}
 	OutputFileNameRoot=paste(OutputDirectory, "/", fname_tail, sep="");
 }
 
