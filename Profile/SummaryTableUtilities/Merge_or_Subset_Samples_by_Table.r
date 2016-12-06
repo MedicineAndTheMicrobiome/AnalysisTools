@@ -9,7 +9,8 @@ params=c(
 	"mapping_table", "m", 1, "character",
 	"output_fname_root", "o", 1, "character",
 	"force_ignore", "f", 2, "logical",
-	"column_num", "c", 2, "numeric"
+	"column_num", "c", 2, "numeric",
+	"output_dir", "d", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -24,6 +25,7 @@ usage = paste (
 	"	[-f (force ignore mismatching samples)]\n",
 	"	[-o <output filename root>]\n",
 	"	[-c <column number starting from 1, excluding sample IDs, default=1>]\n",
+	"	[-d <output directory>]\n",
 	"\n",	
 	"This script will read in both the summary table and mapping table\n",
 	"and merge the counts between samples that map to the same group/id.\n",
@@ -72,6 +74,9 @@ usage = paste (
 	"	NewID	Metadata1	Metadata2\n",	
 	"	abc	1;2;3		red;blue\n",
 	"	def	1;2		green\n",
+	"\n",
+	"The -d output directory option will override directory specified in the input\n",
+	"or output file name root, if specified.\n",
 	"\n");
 
 if(!length(opt$input_file) || !length(opt$mapping_table)){
@@ -99,10 +104,18 @@ if(length(opt$force_ignore)){
 	ForceIgnore=T;
 }
 
+OutputDirectory=NULL;
+if(length(opt$output_dir)){
+	OutputDirectory=opt$output_dir;
+	fname_tail=tail(strsplit(OutputFileNameRoot, "/")[[1]],1);
+	OutputFileNameRoot=paste(OutputDirectory, "/", fname_tail, sep="");
+}
+
 ###############################################################################
 
 cat("\n")
 cat("Input File Name: ", InputFileName, "\n");
+cat("Override Output Directory: ", OutputDirectory, "\n");
 cat("Output File Name Root: ", OutputFileNameRoot, "\n");       
 cat("Mapping Table Name: ", MappingTable, "\n");
 cat("Column Number: ", ColumnNum, "\n");
