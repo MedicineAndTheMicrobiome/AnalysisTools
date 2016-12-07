@@ -42,9 +42,9 @@ usage = paste (
 	"	sample5 \\t na \n",
 	"\n",
 	"Will generate 3 output summary tables named:\n",
-	"	<input summary_table root name>.animals.cat.summary_table.tsv\n",
-	"	<input summary_table root name>.animals.dog.summary_table.tsv\n",
-	"	<input summary_table root name>.animals.elephant.summary_table.tsv\n",
+	"	<input summary_table root directory>/animals/cat/<filename root>.cat.summary_table.tsv\n",
+	"	<input summary_table root directory>/animals/dog/<filename root>.dog.summary_table.tsv\n",
+	"	<input summary_table root directory>/animals/elephant/<filename root>.elephant.summary_table.tsv\n",
 	"\n");
 
 if(!length(opt$input_file)
@@ -68,11 +68,19 @@ if(length(OutputFileNameRoot)==0){
 	OutputFileNameRoot=gsub("\\.summary_table.xls$", "", OutputFileNameRoot);
 }
 
+ofnr_components=strsplit(OutputFileNameRoot, "/")[[1]];
+num_ofnr_comp=length(ofnr_components);
+
+OutputRootDir=paste(head(ofnr_components, num_ofnr_comp-1), collapse="/");
+OutputRootFname=ofnr_components[num_ofnr_comp];
+
 ###############################################################################
 
 cat("\n")
 cat("Input File Name: ", InputFileName, "\n");
 cat("Output File Name Root: ", OutputFileNameRoot, "\n");       
+cat("   Directory: ", OutputRootDir, "\n");
+cat("   Filename: ", OutputRootFname, "\n");
 cat("Group Table Name: ", GroupFileName, "\n");
 cat("Group Column Number: ", GroupColumn, "\n");
 cat("Sample Column Number: ", SampleColumn, "\n");
@@ -128,10 +136,16 @@ load_group_file=function(fname, sample_col, group_col){
 ###############################################################################
 
 group_map=load_group_file(GroupFileName, SampleColumn, GroupColumn);
-cat("Group Map:\n");
-print(group_map);
+cat("Group Map (head only):\n");
+print(head(group_map));
 grouping_name=colnames(group_map);
 cat("\n");
+
+cat("Grouping Name: ", grouping_name, "\n");
+dir_wgrpname=paste(OutputRootDir, "/", grouping_name, sep="");
+cat("Making directory to store split summary tables: ", dir_wgrpname, "\n");
+dir.create(dir_wgrpname);
+
 
 ###############################################################################
 
@@ -168,6 +182,7 @@ for(i in 1:num_groups){
 	cat("Extracting samples for group: ", cur_grp, "\n");
 	grp_ix=which(cur_grp==group_map[,1]);
 	cur_grp_samples=sample_names[grp_ix];
+	cat("\nGroup members (head only):\n");
 	print(cur_grp_samples);
 	cat("\n");
 
@@ -181,11 +196,16 @@ for(i in 1:num_groups){
 	}
 	group_counts=counts_mat[cur_grp_samples,, drop=F];
 	#print(group_counts);
-	
-	# Output group summary table
+
+	# Make directory to store summary table
 	cur_grp=gsub(" ","_", cur_grp);
-	cur_output_fname=paste(OutputFileNameRoot, ".", grouping_name, ".", cur_grp, ".summary_table.tsv", sep="");
-	write_summary_file(group_counts, cur_output_fname);
+	dir_wgrp_wtype=paste(dir_wgrpname, "/", cur_grp, sep="");
+	dir.create(dir_wgrp_wtype);
+	
+	# Write out file
+	full_output_fname=paste(dir_wgrp_wtype, "/", OutputRootFname, ".", cur_grp, ".summary_table.tsv", sep="");
+	cat("Writing Summary Table: ", full_output_fname, "\n");
+	write_summary_file(group_counts, full_output_fname);
 
 }
 
