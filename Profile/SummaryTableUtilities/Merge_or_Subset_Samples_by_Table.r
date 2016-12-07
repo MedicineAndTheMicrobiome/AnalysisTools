@@ -105,14 +105,23 @@ if(length(opt$force_ignore)){
 }
 
 OutputDirectory=NULL;
+# If output directory is specified, then override/truncate path of the OutputFileNameRoot
+
+ofnr_components=strsplit(OutputFileNameRoot, "/")[[1]];
+num_ofnr_comp=length(ofnr_components);
 if(length(opt$output_dir)){
+	# If output dir specified:
 	OutputDirectory=opt$output_dir;
-	fname_tail=tail(strsplit(OutputFileNameRoot, "/")[[1]],1);
-	if(!file.exists(OutputDirectory)){
-		cat("Creating director: ", OutputDirectory, "\n");
-		dir.create(OutputDirectory);
-	}
-	OutputFileNameRoot=paste(OutputDirectory, "/", fname_tail, sep="");
+	OutputFileNameRoot=ofnr_components[num_ofnr_comp];
+}else{
+	# If output dir not specified
+	OutputDirectory=paste(head(ofnr_components, num_ofnr_comp-1), collapse="/");
+	OutputFileNameRoot=ofnr_components[num_ofnr_comp];
+}
+
+if(!file.exists(OutputDirectory)){
+	cat("Creating output directory: ", OutputDirectory, "\n");
+	dir.create(OutputDirectory);
 }
 
 ###############################################################################
@@ -158,6 +167,12 @@ mapping_table=full_mapping_table[, ColumnNum, drop=F];
 inmap_samples=rownames(inmat);
 mapping_table_samples=rownames(mapping_table);
 shared_samples=intersect(inmap_samples, mapping_table_samples);
+
+target_column_name=colnames(mapping_table);
+# Get target column's name, and create a directory to put the results in it
+cat("Targeted Column's Name is: ", target_column_name, "\n", sep="");
+OutputDirectory=paste(OutputDirectory, "/", target_column_name, sep="");
+dir.create(OutputDirectory);
 
 if(length(setdiff(shared_samples, mapping_table_samples))){
 	cat("WARNING: Missing samples in Mapping Table.\n");
@@ -263,7 +278,7 @@ write_summary_file=function(out_mat, fname){
 
 # Output new summary table
 group_name=colnames(mapping_table)[1];
-output_fname=paste(OutputFileNameRoot, ".", group_name, ".summary_table.tsv", sep="");
+output_fname=paste(OutputDirectory, "/", OutputFileNameRoot, ".", group_name, ".summary_table.tsv", sep="");
 write_summary_file(new_summary_table, output_fname);
 
 ###############################################################################
@@ -292,9 +307,9 @@ for(i in 1:num_uniq_grps){
 	collpsed_map_table[i,]=collapse_entries(full_mapping_table[grp_idx,-ColumnNum,drop=F]);
 }
 
-fc=file(paste(OutputFileNameRoot, ".", group_name, ".meta.tsv", sep=""));
+fc=file(paste(OutputDirectory,"/",OutputFileNameRoot, ".", group_name, ".meta.tsv", sep=""));
 cat(file=fc, paste(c(key_cat, colnames(collpsed_map_table)), collapse="\t"), "\n", sep="");
-write.table(collpsed_map_table, file=paste(OutputFileNameRoot, ".", group_name, ".meta.tsv", sep=""),
+write.table(collpsed_map_table, file=paste(OutputDirectory,"/",OutputFileNameRoot, ".", group_name, ".meta.tsv", sep=""),
 		quote=F, sep="\t", row.names=T, col.names=F, append=T);
 
 
