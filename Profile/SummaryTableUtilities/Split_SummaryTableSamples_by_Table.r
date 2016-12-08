@@ -9,7 +9,8 @@ params=c(
 	"output_file", "o", 2, "character",
 	"group_file", "p", 1, "character",
 	"group_column", "r", 1, "numeric",
-	"sample_column", "s", 1, "numeric" 
+	"sample_column", "s", 1, "numeric",
+	"force_on_error", "f", 2, "logical"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -24,6 +25,7 @@ usage = paste (
 	"	-p <input grouP table tsv file>\n",
 	"	-s <column of Sample identifiers in group table>\n",
 	"	-r <Column of gRoup identifiers in group table>\n",
+	"	[-f (force split to finish even on ID mismatch error)\n",
 	"\n",
 	"This script will read in a summary_table and a group table\n",
 	"and then based on the groups specified, will generate new\n",
@@ -74,6 +76,8 @@ num_ofnr_comp=length(ofnr_components);
 OutputRootDir=paste(head(ofnr_components, num_ofnr_comp-1), collapse="/");
 OutputRootFname=ofnr_components[num_ofnr_comp];
 
+ForceOnError=ifelse(length(opt$force_on_error), T, F);
+
 ###############################################################################
 
 cat("\n")
@@ -84,6 +88,7 @@ cat("   Filename: ", OutputRootFname, "\n");
 cat("Group Table Name: ", GroupFileName, "\n");
 cat("Group Column Number: ", GroupColumn, "\n");
 cat("Sample Column Number: ", SampleColumn, "\n");
+cat("Force on Error: ", ForceOnError, "\n");
 
 ###############################################################################
 ###############################################################################
@@ -192,7 +197,11 @@ for(i in 1:num_groups){
 		cat("ERROR: Missing sample(s) in summary table but requested in group: ", cur_grp, ".\n");
 		print(missing_in_counts);
 		cat("\n");
-		quit(status=-1);
+		if(!ForceOnError){
+			quit(status=-1);
+		}else{
+			cur_grp_samples=intersect(cur_grp_samples,rownames(counts_mat));
+		}
 	}
 	group_counts=counts_mat[cur_grp_samples,, drop=F];
 	#print(group_counts);
