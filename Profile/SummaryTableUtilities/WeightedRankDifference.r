@@ -57,7 +57,7 @@ weight_rank_dist_opt=function(M, deg){
 
 ###############################################################################
 
-test=T;
+test=F;
 if(test){
 	test_mat=matrix(c(
 		1,2,3,4,5,
