@@ -161,7 +161,7 @@ cat("Computing distances...\n");
 if(type=="euc"){
 	dist_mat=dist(normalized);
 }else if (type=="wrd"){
-	dist_mat=weight_rank_dist(normalized, deg=4);
+	dist_mat=weight_rank_dist_opt(normalized, deg=4);
 }else if (type=="man"){
 	dist_mat=vegdist(normalized, method="manhattan");
 }else if (type=="bray"){
