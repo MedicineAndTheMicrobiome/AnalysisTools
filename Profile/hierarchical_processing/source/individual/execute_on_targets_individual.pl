@@ -101,6 +101,7 @@ if(-e $DataRootDirectory){
 
 if(-e $ExecutionScript){
 	print STDERR "\tFound $ExecutionScript\n\n";
+	print STDERR `chmod +x $ExecutionScript`;
 	if($ExecutionScript=~/^\//){
 		print STDERR "Execution script was absolutely specified.  Good.\n";
 	}else{
