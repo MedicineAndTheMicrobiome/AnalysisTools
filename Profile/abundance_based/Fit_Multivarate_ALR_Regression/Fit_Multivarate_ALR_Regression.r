@@ -697,7 +697,6 @@ model_string= paste("transformed ~", model_pred_str);
 cat("\nFitting this multivariate model: ", model_string, "\n");
 text=character();
 
-
 mv_fit=tryCatch({
 	mv_fit=lm(as.formula(model_string), data=factors);
 }, error = function(e){
@@ -705,7 +704,7 @@ mv_fit=tryCatch({
 	text[1]="Could not perform multivariate anova on your data because the formula";
 	text[2]="did not appear to be a fixed effect only model.";
 	plot_text(text);
-	mv_fit;
+	cat("(There will be no mv_fit data structure to compute on.)\n");
 });
 
 manova_trial=tryCatch({
