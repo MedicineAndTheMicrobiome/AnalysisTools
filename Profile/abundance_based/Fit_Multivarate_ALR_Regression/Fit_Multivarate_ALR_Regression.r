@@ -883,12 +883,12 @@ plot_correl_heatmap(uv_anova_pval_mat, title="Univariate F-Tests Pr(>F)", guideL
 # Remove NAs
 not_estimable=apply(uv_coeff_mat, 1, function(x){ any(is.na(x))});
 coef_names_not_estimable=rownames(uv_coeff_mat)[not_estimable];
-uv_coeff_mat=uv_coeff_mat[!not_estimable,];
-uv_pval_mat=uv_pval_mat[!not_estimable,];
+uv_coeff_mat=uv_coeff_mat[!not_estimable,, drop=F];
+uv_pval_mat=uv_pval_mat[!not_estimable,, drop=F];
 
 # remove intercept
-uv_coeff_mat=uv_coeff_mat[-1,]; 
-uv_pval_mat=uv_pval_mat[-1,] 
+uv_coeff_mat=uv_coeff_mat[-1,, drop=F]; 
+uv_pval_mat=uv_pval_mat[-1,, drop=F] 
 
 # Plot pvalues
 plot_correl_heatmap(uv_pval_mat, title="Univariate Coefficients Pr(>|t|)");
@@ -940,7 +940,7 @@ plot_correl_heatmap(rsqrd_mat, title="Univariate R Squared");
 
 # Plot univariate coefficients
 not_na_coeff=apply(uv_coeff_mat, 1, function(x){!any(is.na(x))});
-plot_correl_heatmap(uv_coeff_mat[not_na_coeff,], title="Univariate Coefficients", guideLines=T);
+plot_correl_heatmap(uv_coeff_mat[not_na_coeff,, drop=F], title="Univariate Coefficients", guideLines=T);
 
 # Significant Univariate Coefficients
 uv_pval_vect=as.vector(uv_pval_mat);
