@@ -234,7 +234,7 @@ plot_correl_heatmap=function(mat, title="", noPrintZeros=F, guideLines=F){
 
         max_width=max(nchar(sprintf("%.2f",mat)));
 	#cell_cex=sqrt(min(c(cscale, rscale))^2);
-	cell_cex=(1/max_width)*sqrt(min(c(cscale, rscale))^2);
+	cell_cex=(1/max_width)*sqrt(cscale^2 +  rscale^2);
 
         for(i in 1:nrow(mat)){
                 for(j in 1:ncol(mat)){
