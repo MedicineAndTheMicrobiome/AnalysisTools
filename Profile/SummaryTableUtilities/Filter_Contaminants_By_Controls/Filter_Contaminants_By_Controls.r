@@ -219,7 +219,9 @@ plot_RAcurve=function(ordered_composition, title="", top=0, max=1){
 	if(top<=0){
 		top=num_cat;
 	}
-	barplot(ordered_composition[1:top], names.arg=names[1:top], las=2, cex.names=.5, main=paste("\n\n",title, sep=""), ylim=c(0,max));
+	barplot(ordered_composition[1:top], names.arg=names[1:top], las=2, 
+		cex.names=.75, cex.axis=.75,
+		main=paste("\n\n",title, sep=""), ylim=c(0,max));
 }
 
 ###############################################################################
@@ -338,7 +340,9 @@ if(!doPaired){
 
 ###############################################################################
 
-pdf(paste(OutputFileRoot, ".dist_contam.pdf", sep=""), height=8.5, width=11);
+pdf(paste(OutputFileRoot, ".dist_contam.pdf", sep=""), height=8.5, width=14);
+
+top_cat_to_plot=35;
 
 # Plot 3 columns of images:
 # a.) Experimental
@@ -348,6 +352,11 @@ pdf(paste(OutputFileRoot, ".dist_contam.pdf", sep=""), height=8.5, width=11);
 ###############################################################################
 
 par(mfrow=c(4,3));
+mar=par()$mar;
+mar=c(8.1, 3.1, 2.1, 1);
+#mar=c(6.1, 3.1, 3.1, 1);
+par(mar=mar);
+
 #num_exp_samples=length(exp_ids);
 fits=list();
 for(exp_samp_id in experm_samples){
@@ -371,16 +380,18 @@ for(exp_samp_id in experm_samples){
 	max_abund=max(exp_dist, ctl_dist, filt_dist);
 	max_y=max_abund*1.1;
 	
-	plot_RAcurve(exp_dist, title="Experimental", top=20, max=max_y);
-	plot_RAcurve(ctl_dist, title="Control", top=20, max=max_y);
-	plot_RAcurve(filt_dist, title="Corrected", top=20, max=max_y);
+	plot_RAcurve(exp_dist, title=paste("Experimental:", exp_samp_id), top=top_cat_to_plot, max=max_y);
+	plot_RAcurve(ctl_dist, title=paste("Control:", ctl_name), top=top_cat_to_plot, max=max_y);
+	plot_RAcurve(filt_dist, title="Corrected", top=top_cat_to_plot, max=max_y);
+	mtext(paste("Proportion Removed:", round(removed, 3)), line=-1.75, outer=F, cex=.5);
+	mtext(paste("Multiplier:", round(mult, 3)), line=-2.5, outer=F, cex=.5);
 
 }
 
 ###############################################################################
 # Output summary file table
 
-filtered_counts_fh=file(paste(OutputFileRoot, ".contam_filt.summary_table.xls", sep=""), "w");
+filtered_counts_fh=file(paste(OutputFileRoot, ".contam_filt.summary_table.tsv", sep=""), "w");
 
 # Output header info
 cat(file=filtered_counts_fh, "sample_id", "total", paste(colnames(counts_mat), collapse="\t"), sep="\t");
