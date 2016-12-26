@@ -23,7 +23,7 @@ AbundanceCutoff=1;
 DEFAULT_PLEVEL=.5;
 DEFAULT_DELIM=";";
 DEFAULT_COUNTS=400;
-DEFAULT_NUM_BS=80;
+DEFAULT_NUM_BS=100;
 
 usage = paste (
 	"\nUsage:\n\n", script_name,
@@ -234,16 +234,20 @@ normalize=function(counts){
 
 ###############################################################################
 
-plot_RAcurve=function(ordered_composition, title="", top=0, max=1){
+plot_RAcurve=function(ordered_composition, title="", top=0, max=1, overlay_dist=NULL){
 	#cat("Plotting: ", title, "\n", sep="");
 	names=names(ordered_composition);
 	num_cat=length(names);
 	if(top<=0){
 		top=num_cat;
 	}
-	barplot(ordered_composition[1:top], names.arg=names[1:top], las=2, 
+	mids=barplot(ordered_composition[1:top], names.arg=names[1:top], las=2, 
 		cex.names=.75, cex.axis=.75,
 		main=paste("\n\n",title, sep=""), ylim=c(0,max));
+
+	if(!is.null(overlay_dist)){
+		points(mids, overlay_dist[1:top], pch="o", col="blue");	
+	}
 }
 
 plot_RAbox=function(ordered_composition, title="", top=0, max=1){
@@ -451,6 +455,7 @@ layout(layout_mat);
 fits=list();
 for(exp_samp_id in experm_samples){
 
+	cat("Working on: ", exp_samp_id, "\n");
 	exp_dist=normalized_mat[exp_samp_id,];
 
 	if(doPaired){
@@ -461,6 +466,14 @@ for(exp_samp_id in experm_samples){
 		ctl_dist=avg_cont_dist;
 	}
 
+	# Get Num Taxa:
+	num_exp_cat=sum(exp_dist>0);
+	num_ctl_cat=sum(ctl_dist>0);
+	# Get Min Abund
+	min_exp_abd=min(exp_dist[exp_dist>0]);
+	min_ctl_abd=min(ctl_dist[ctl_dist>0]);
+
+
 	# Observed fit
 	obs_fit=fit_contaminant_mixture_model(ctl_dist, exp_dist, PLevel);
 
@@ -468,7 +481,7 @@ for(exp_samp_id in experm_samples){
 	pert_ctrl=perturb_dist(ctl_dist, Counts, NumBS);
 	fits=bootstrp_fit(exp_dist, pert_ctrl, PLevel);
 
-	print(quantile(fits$stats[,"removed"]));
+	#print(quantile(fits$stats[,"removed"]));
 	perc95_ix=min(which(fits$stats[,"removed"]==quantile(fits$stats[,"removed"], .95, type=1)));
 
 	# Get the max abundance expect across all fits
@@ -476,20 +489,24 @@ for(exp_samp_id in experm_samples){
 	max_disp_y=max_abund*1.1;
 	
 	# 1.) Plot obs remove
-	plot_RAcurve(exp_dist, title=paste("Obs. Experimtl.:", exp_samp_id), top=top_cat_to_plot, max=max_disp_y);
+	plot_RAcurve(exp_dist, title=paste("Obs. Experimental.:", exp_samp_id), top=top_cat_to_plot, max=max_disp_y);
+	mtext(paste("Num Categories:", num_exp_cat), line=-1.75, outer=F, cex=.5);
+	mtext(paste("Min Abundance:", min_exp_abd), line=-2.5, outer=F, cex=.5);
 
 	# 2.) Plot obs ctrl
-	plot_RAcurve(ctl_dist, title=paste("Obs. Control:", ctl_name), top=top_cat_to_plot, max=max_disp_y);
+	plot_RAcurve(ctl_dist, title=paste("Obs. Control:", ctl_name), top=top_cat_to_plot, max=max_disp_y, overlay_dist=exp_dist);
+	mtext(paste("Num Categories:", num_ctl_cat), line=-1.75, outer=F, cex=.5);
+	mtext(paste("Min Abundance:", min_ctl_abd), line=-2.5, outer=F, cex=.5);
 
 	# 3.) Plot straight obs filter
-	plot_RAcurve(obs_fit$cleaned, title=paste("Obs. Cleaned:"), top=top_cat_to_plot, max=max_disp_y);
+	plot_RAcurve(obs_fit$cleaned, title=paste("Obs. Cleaned:"), top=top_cat_to_plot, max=max_disp_y, overlay_dist=exp_dist);
 	mtext(paste("Proportion Removed:", round(obs_fit$removed, 3)), line=-1.75, outer=F, cex=.5);
 	mtext(paste("Multiplier:", round(obs_fit$multiplier, 3)), line=-2.5, outer=F, cex=.5);
 
 	# 4.) Plot perturbation instance at 95% best 
-	plot_RAcurve(pert_ctrl[perc95_ix,], title="95% Most Removed Pert. Instance", top=top_cat_to_plot, max=max_disp_y);
+	plot_RAcurve(pert_ctrl[perc95_ix,], title="95% Most Removed Pert. Control Instance", top=top_cat_to_plot, max=max_disp_y, overlay_dist=exp_dist);
 	# 5.) Plot filtered instance at 95% best
-	plot_RAcurve(fits$cleaned[perc95_ix,], title="95% Most Removed Cleaned", top=top_cat_to_plot, max=max_disp_y);
+	plot_RAcurve(fits$cleaned[perc95_ix,], title="95% Most Removed Cleaned", top=top_cat_to_plot, max=max_disp_y, overlay_dist=exp_dist);
 	mtext(paste("Proportion Removed:", round(fits$stats[perc95_ix, "removed"], 3)), line=-1.75, outer=F, cex=.5);
 	mtext(paste("Multiplier:", round(fits$stats[perc95_ix, "multiplier"], 3)), line=-2.5, outer=F, cex=.5);
 
@@ -500,9 +517,14 @@ for(exp_samp_id in experm_samples){
 	plot_RAbox(fits$cleaned, title="Range of Cleaned", top=top_cat_to_plot, max=max_disp_y);
 
 	# 8.) Plot histogram of percent removed
-	hist(fits$stat[,"removed"], main="Bootstrapped Proportions Removed", xlab="Bootstrapped Proportions Removed");
+	hist(fits$stat[,"removed"], main="Bootstrapped Proportions Removed", xlab="Bootstrapped Proportions Removed", 
+		breaks=20, xlim=c(0,1));
+	abline(v=fits$stat[perc95_ix,"removed"], col="blue");
+	
 	# 9.) Plot histogram of multiplier
-	hist(fits$stat[,"multiplier"], main="Bootstrapped Multipliers", xlab="Multipliers");
+	hist(fits$stat[,"proportion"], main="Bootstrapped Mixture: (c/(1+c))", xlab="Multipliers",
+		breaks=20, xlim=c(0,1));
+	abline(v=fits$stat[perc95_ix,"proportion"], col="blue");
 
 
 }
