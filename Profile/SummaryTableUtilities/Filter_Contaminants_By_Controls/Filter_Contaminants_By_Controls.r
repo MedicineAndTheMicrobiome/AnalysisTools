@@ -19,11 +19,10 @@ opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
 
 script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
 
-AbundanceCutoff=1;
 DEFAULT_PLEVEL=.5;
 DEFAULT_DELIM=";";
 DEFAULT_COUNTS=400;
-DEFAULT_NUM_BS=100;
+DEFAULT_NUM_BS=1000;
 
 usage = paste (
 	"\nUsage:\n\n", script_name,
@@ -76,6 +75,9 @@ usage = paste (
 	"	non-contaminant, so we want the fit to be spread out across\n",
 	"	all categories, and not dominated by a few categories\n",
 	"	that fit poorly.\n",
+	"	\n",
+	"	You can think of it this way: smaller p levels are like electoral votes, \n",
+	"	where as larger p levels are popular votes.\n",
 	"\n",
 	"\n",
 	"There are two options to apply the contaminant filter:\n",
@@ -299,7 +301,7 @@ fit_contaminant_mixture_model=function(contam_comp, exper_comp, plevel){
 	normalized_filt_comp=adjusted_comp/sum(adjusted_comp);
 	names(normalized_filt_comp)=names(exper_comp);
 
-	# Estimate Proportion removed
+	# Estimate Proportion removed (after zero-ing out negatives)
 	proportion_removed=sum(exper_comp-adjusted_comp);
 
 	# Output results in structure/list
@@ -316,6 +318,7 @@ fit_contaminant_mixture_model=function(contam_comp, exper_comp, plevel){
 counts_mat=load_summary_table(InputSummaryTable);
 counts_total=apply(counts_mat, 1, sum);
 summary_table_sample_ids=rownames(counts_mat);
+num_categories=ncol(counts_mat);
 
 # Clean names
 long_names=colnames(counts_mat);
@@ -428,11 +431,6 @@ pdf(paste(OutputFileRoot, ".dist_contam.pdf", sep=""), height=14, width=8.5);
 
 top_cat_to_plot=35;
 
-# Plot 3 columns of images:
-# a.) Experimental
-# b.) Control
-# c.) Subracted
-
 ###############################################################################
 
 par(mfrow=c(8,2));
@@ -450,6 +448,15 @@ layout_mat=matrix(c(
 ), byrow=T, ncol=4);
 
 layout(layout_mat);
+
+num_exp_cat=ncol(normalized_mat);
+num_exp_samples=length(experm_samples);
+cleaned_obs_matrix=matrix(-1, nrow=num_exp_samples, ncol=num_exp_cat, dimnames=list(experm_samples, original_names));
+cleaned_bs_matrix=matrix(-1, nrow=num_exp_samples, ncol=num_exp_cat, dimnames=list(experm_samples, original_names));
+obs_prop_removed=numeric(num_exp_samples);
+bs_prop_removed=numeric(num_exp_samples);
+names(obs_prop_removed)=experm_samples;
+names(bs_prop_removed)=experm_samples;
 
 #num_exp_samples=length(exp_ids);
 fits=list();
@@ -483,6 +490,12 @@ for(exp_samp_id in experm_samples){
 
 	#print(quantile(fits$stats[,"removed"]));
 	perc95_ix=min(which(fits$stats[,"removed"]==quantile(fits$stats[,"removed"], .95, type=1)));
+
+	# Save cleaned to matrix for export
+	cleaned_obs_matrix[exp_samp_id,]=obs_fit$cleaned;
+	cleaned_bs_matrix[exp_samp_id,]=fits$cleaned[perc95_ix,];
+	obs_prop_removed[exp_samp_id]=obs_fit$removed;
+	bs_prop_removed[exp_samp_id]=fits$stats[perc95_ix, "removed"];
 
 	# Get the max abundance expect across all fits
 	max_abund=max(exp_dist, ctl_dist, obs_fit$cleaned, pert_ctrl, fits$cleaned);
@@ -518,63 +531,79 @@ for(exp_samp_id in experm_samples){
 
 	# 8.) Plot histogram of percent removed
 	hist(fits$stat[,"removed"], main="Bootstrapped Proportions Removed", xlab="Bootstrapped Proportions Removed", 
-		breaks=20, xlim=c(0,1));
+		breaks=seq(0,1,.025), xlim=c(0,1));
 	abline(v=fits$stat[perc95_ix,"removed"], col="blue");
 	
 	# 9.) Plot histogram of multiplier
 	hist(fits$stat[,"proportion"], main="Bootstrapped Mixture: (c/(1+c))", xlab="Multipliers",
-		breaks=20, xlim=c(0,1));
+		breaks=seq(0,1,.025), xlim=c(0,1));
 	abline(v=fits$stat[perc95_ix,"proportion"], col="blue");
 
 
 }
 
 ###############################################################################
+
+write_summary_file=function(out_mat, fname){
+        fc=file(fname, "w");
+        cat(file=fc, paste("sample_id\ttotal", paste(colnames(out_mat), collapse="\t"), sep="\t"));
+        cat(file=fc, "\n");
+        sample_names=rownames(out_mat);
+        num_samples=nrow(out_mat);
+        for(samp_idx in 1:num_samples){
+                total=sum(out_mat[samp_idx,]);
+                outline=paste(sample_names[samp_idx], total,
+                        paste(out_mat[samp_idx,], collapse="\t"), sep="\t");
+                cat(file=fc, outline);
+                cat(file=fc, "\n");
+        }
+        close(fc);
+}
+
+###############################################################################
 # Output summary file table
 
-filtered_counts_fh=file(paste(OutputFileRoot, ".contam_filt.summary_table.tsv", sep=""), "w");
+# Adjust counts
+obs_saved=1-obs_prop_removed;
+bs_saved=1-bs_prop_removed;
 
-# Output header info
-cat(file=filtered_counts_fh, "sample_id", "total", paste(colnames(counts_mat), collapse="\t"), sep="\t");
-cat(file=filtered_counts_fh, "\n");
+# exp totals
+exp_tot=apply(counts_mat[experm_samples,],1, sum);
 
-# Output sample info
-#for(i in 1:num_exp_samples){
-#	
-#	sample_id=exp_ids[i];
-#	fit=fits[[i]];
-#
-#	filtered_counts=round(counts_mat[sample_id,]-fit$percent_removed*counts_total[sample_id]);
-#
-#	total=sum(filtered_counts);
-#	cat(file=filtered_counts_fh, sample_id, total, paste(filtered_counts, collapse="\t"), sep="\t");
-#	cat(file=filtered_counts_fh, "\n");
-#}
-#close(filtered_counts_fh);
-#
-################################################################################
-## Output statistics on what was filtered
-#
-#statistics_fh=file(paste(OutputFileRoot, ".contam_filt.stats.csv", sep=""), "w");
-#cat(file=statistics_fh, "Sample_ID", "Input_Counts", "Filtered_Counts", "Percent_Filtered", sep=",");
-#cat(file=statistics_fh, "\n");
-#
-#for(i in 1:num_exp_samples){
-#	
-#	sample_id=exp_ids[i];
-#	fit=fits[[i]];
-#
-#	filtered_counts=round(counts_mat[sample_id,]-fit$percent_removed*counts_total[sample_id]);
-#	total_filtered=sum(filtered_counts);
-#	perc_filtered=100*(1-total_filtered/counts_total[sample_id]);
-#
-#	cat(file=statistics_fh, sample_id, counts_total[sample_id], total_filtered, sprintf("%3.2f", perc_filtered), sep=",");
-#	cat(file=statistics_fh, "\n");
-#
-#	
-#}
-#
-#close(statistics_fh);
+obs_saved_totals=numeric(num_exp_samples);
+bs_saved_totals=numeric(num_exp_samples);
+
+names(obs_saved_totals)=experm_samples;
+names(bs_saved_totals)=experm_samples;
+
+# Adjust counts based on proportion of non-contaminant
+obs_saved_totals[experm_samples]=exp_tot[experm_samples]*obs_saved[experm_samples];
+bs_saved_totals[experm_samples]=exp_tot[experm_samples]*bs_saved[experm_samples];
+
+# Compute individual category counts based on non-contam * category abundance
+cleaned_obs_counts=matrix(-1, ncol=num_categories, nrow=num_exp_samples, dimnames=list(experm_samples,original_names));
+cleaned_bs_counts=matrix(-1, ncol=num_categories, nrow=num_exp_samples, dimnames=list(experm_samples,original_names));
+
+for(samp in experm_samples){
+	cleaned_obs_counts[samp,]=floor(cleaned_obs_matrix[samp,]*obs_saved_totals[samp]);
+	cleaned_bs_counts[samp,]=floor(cleaned_bs_matrix[samp,]*bs_saved_totals[samp]);
+}
+
+write_summary_file(cleaned_obs_counts, paste(OutputFileRoot, ".obsrv_cln.summary_table.tsv", sep=""));
+write_summary_file(cleaned_bs_counts, paste(OutputFileRoot,  ".btstp_cln.summary_table.tsv", sep=""));
+
+###############################################################################
+
+# Write parameters
+fc=file(paste(OutputFileRoot, ".cleaned.stats.tsv", sep=""), "w");
+
+cat(file=fc, "Input Summary File Table: ", InputSummaryTable, "\n", sep="");
+cat(file=fc, "Output Filename Root: ", OutputFileRoot, "\n", sep="");
+cat(file=fc, "P-norm level: ", PLevel, "\n", sep="");
+cat(file=fc, "Num Bootstraps: ", NumBS, "\n", sep="");
+cat(file=fc, "Counts: ", Counts, "\n", sep="");
+
+close(fc);
 
 ###############################################################################
 
