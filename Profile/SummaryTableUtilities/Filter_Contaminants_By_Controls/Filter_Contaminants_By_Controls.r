@@ -10,7 +10,9 @@ params=c(
 	"paired_contam", "p", 2, "character",
 	"plevel", "l", 2, "numeric",
 	"output_fname_root", "o", 2, "character",
-	"short_name_delim", "d", 2, "character"
+	"short_name_delim", "d", 2, "character",
+	"num_bs", "b", 2, "numeric",
+	"counts", "c", 2, "numeric"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -20,6 +22,8 @@ script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
 AbundanceCutoff=1;
 DEFAULT_PLEVEL=.5;
 DEFAULT_DELIM=";";
+DEFAULT_COUNTS=400;
+DEFAULT_NUM_BS=80;
 
 usage = paste (
 	"\nUsage:\n\n", script_name,
@@ -33,6 +37,10 @@ usage = paste (
 	"	[-l <p-norm used in the objective function, default=", DEFAULT_PLEVEL, ">]\n",
 	"	[-o <output filename root>]\n",
 	"	[-d <name shortening delimitor, default=", DEFAULT_DELIM, ">]\n",
+	"\n",
+	"	Bootstrapping parameters:\n",
+	"	[-c <counts, estimated number of DNA molecules sampled, default=", DEFAULT_COUNTS, ">]\n",
+	"	[-b <number of bootstraps, default=", DEFAULT_NUM_BS, ">]\n",
 	"\n",	
 	"This script will use the contaminant profiles/negative controls\n",
 	"to adjust the taxa proportions from the experimental samples.\n",
@@ -106,6 +114,9 @@ PairedContamFName=opt$paired_contam;
 PLevel=opt$plevel;
 OutputFileRoot=opt$output_fname_root;
 ShortNameDelim=opt$short_name_delim;
+NumBS=opt$num_bs;
+Counts=opt$counts;
+
 
 if(!length(OutputFileRoot)){
 	OutputFileRoot=gsub("\\.summary_table\\.xls", "", InputSummaryTable);
@@ -120,11 +131,22 @@ if(!length(ShortNameDelim)){
 	ShortNameDelim=DEFAULT_DELIM;
 }
 
+if(!length(NumBS)){
+	NumBS=DEFAULT_NUM_BS;
+}
+
+if(!length(Counts)){
+	Counts=DEFAULT_COUNTS;
+}
+
+
 cat("\n")
 cat("Input Summary File Table: ", InputSummaryTable, "\n", sep="");
 cat("Output Filename Root: ", OutputFileRoot, "\n", sep="");
 cat("P-norm level: ", PLevel, "\n", sep="");
 cat("Short Name Delim: ", ShortNameDelim, "\n", sep="");
+cat("Num Bootstraps: ", NumBS, "\n", sep="");
+cat("Counts: ", Counts, "\n", sep="");
 cat("\n");
 
 doPaired=NULL;
@@ -224,6 +246,19 @@ plot_RAcurve=function(ordered_composition, title="", top=0, max=1){
 		main=paste("\n\n",title, sep=""), ylim=c(0,max));
 }
 
+plot_RAbox=function(ordered_composition, title="", top=0, max=1){
+	#cat("Plotting: ", title, "\n", sep="");
+	names=colnames(ordered_composition);
+	num_cat=length(names);
+	if(top<=0){
+		top=num_cat;
+	}
+	boxplot(ordered_composition[,1:top], names.arg=names[1:top], las=2, 
+		cex.names=.75, cex.axis=.75,
+		bty="n",
+		main=paste("\n\n",title, sep=""), ylim=c(0,max));
+}
+
 ###############################################################################
 
 fit_contaminant_mixture_model=function(contam_comp, exper_comp, plevel){
@@ -245,9 +280,9 @@ fit_contaminant_mixture_model=function(contam_comp, exper_comp, plevel){
 	# Perform the optimization
 	optim_res=optim(par=0, objective, method="Brent", lower=0, upper=1);
 	contam_prop=optim_res$par;
-	cat("Contaminant Proportion: ", contam_prop, "\n", sep="");
+	#cat("Contaminant Proportion: ", contam_prop, "\n", sep="");
 	contam_scale=contam_prop/(1-contam_prop);
-	cat("Contaminant Scale: ", contam_scale, "\n", sep="");
+	#cat("Contaminant Scale: ", contam_scale, "\n", sep="");
 
 	# Remove contaminant from experimentals
 	adjusted_comp=exper_comp - contam_scale*contam_comp;
@@ -258,16 +293,17 @@ fit_contaminant_mixture_model=function(contam_comp, exper_comp, plevel){
 
 	# Compute normalized filtered composition (so distribution adds up to 1 again)
 	normalized_filt_comp=adjusted_comp/sum(adjusted_comp);
+	names(normalized_filt_comp)=names(exper_comp);
 
 	# Estimate Proportion removed
 	proportion_removed=sum(exper_comp-adjusted_comp);
 
 	# Output results in structure/list
 	fit=list();
-	fit$contaminant_multiplier=contam_scale;
-	fit$contaminant_proportion=contam_prop;
-	fit$normalized_filtered_composition=normalized_filt_comp;
-	fit$proportion_removed=proportion_removed;
+	fit$multiplier=contam_scale;
+	fit$proportion=contam_prop;
+	fit$removed=proportion_removed;
+	fit$cleaned=normalized_filt_comp;
 	return(fit);
 }
 
@@ -340,7 +376,51 @@ if(!doPaired){
 
 ###############################################################################
 
-pdf(paste(OutputFileRoot, ".dist_contam.pdf", sep=""), height=8.5, width=14);
+perturb_dist=function(distr, counts, num_bs){
+	# Generate random distributions based input dist
+	pert=t(rmultinom(num_bs, size=counts, prob=distr));	
+
+	# Normalize
+	for(i in 1:num_bs){
+		pert[i,]=pert[i,]/counts;	
+	}
+	return(pert);
+}
+
+bootstrp_fit=function(exper_dist, pert_ctl_dist_matrix, plevel){
+
+	# Number of BS to perform depends on number of rows/pertrubations of ctrl
+	num_bs=nrow(pert_ctl_dist_matrix);
+
+	# Statistic of removal
+	results_mat=matrix(0, nrow=num_bs, ncol=3);
+	colnames(results_mat)=c("multiplier", "proportion", "removed");
+	
+	# Distribution after removing contaminants
+	cleaned_dist_mat=matrix(-1, nrow=num_bs, ncol=length(exper_dist));
+	colnames(cleaned_dist_mat)=names(exper_dist);
+
+	# Loop for fitting mixture model
+	for(bs_ix in 1:num_bs){
+		fit=fit_contaminant_mixture_model(pert_ctl_dist_matrix[bs_ix,], exper_dist, plevel);
+
+		results_mat[bs_ix, "multiplier"]=fit$multiplier;
+		results_mat[bs_ix, "proportion"]=fit$proportion;
+		results_mat[bs_ix, "removed"]=fit$removed;
+		cleaned_dist_mat[bs_ix, ]=fit$cleaned;
+	}
+	
+	# Package in list before returning
+	results=list();
+	results$cleaned=cleaned_dist_mat;
+	results$stats=results_mat;
+
+	return(results);
+}
+
+###############################################################################
+
+pdf(paste(OutputFileRoot, ".dist_contam.pdf", sep=""), height=14, width=8.5);
 
 top_cat_to_plot=35;
 
@@ -351,11 +431,21 @@ top_cat_to_plot=35;
 
 ###############################################################################
 
-par(mfrow=c(4,3));
+par(mfrow=c(8,2));
 mar=par()$mar;
 mar=c(8.1, 3.1, 2.1, 1);
 #mar=c(6.1, 3.1, 3.1, 1);
 par(mar=mar);
+
+layout_mat=matrix(c(
+1,1,1,1,
+2,2,3,3,
+4,4,5,5,
+6,6,7,7,
+8,8,9,9
+), byrow=T, ncol=4);
+
+layout(layout_mat);
 
 #num_exp_samples=length(exp_ids);
 fits=list();
@@ -371,20 +461,49 @@ for(exp_samp_id in experm_samples){
 		ctl_dist=avg_cont_dist;
 	}
 
-	fit=fit_contaminant_mixture_model(ctl_dist, exp_dist, PLevel);
-	mult=fit$contaminant_multiplier;
-	prop=fit$contaminant_proportion;
-	filt_dist=fit$normalized_filtered_composition;
-	removed=fit$proportion_removed;
+	# Observed fit
+	obs_fit=fit_contaminant_mixture_model(ctl_dist, exp_dist, PLevel);
 
-	max_abund=max(exp_dist, ctl_dist, filt_dist);
-	max_y=max_abund*1.1;
+	# Bootstrap fit
+	pert_ctrl=perturb_dist(ctl_dist, Counts, NumBS);
+	fits=bootstrp_fit(exp_dist, pert_ctrl, PLevel);
+
+	print(quantile(fits$stats[,"removed"]));
+	perc95_ix=min(which(fits$stats[,"removed"]==quantile(fits$stats[,"removed"], .95, type=1)));
+
+	# Get the max abundance expect across all fits
+	max_abund=max(exp_dist, ctl_dist, obs_fit$cleaned, pert_ctrl, fits$cleaned);
+	max_disp_y=max_abund*1.1;
 	
-	plot_RAcurve(exp_dist, title=paste("Experimental:", exp_samp_id), top=top_cat_to_plot, max=max_y);
-	plot_RAcurve(ctl_dist, title=paste("Control:", ctl_name), top=top_cat_to_plot, max=max_y);
-	plot_RAcurve(filt_dist, title="Corrected", top=top_cat_to_plot, max=max_y);
-	mtext(paste("Proportion Removed:", round(removed, 3)), line=-1.75, outer=F, cex=.5);
-	mtext(paste("Multiplier:", round(mult, 3)), line=-2.5, outer=F, cex=.5);
+	# 1.) Plot obs remove
+	plot_RAcurve(exp_dist, title=paste("Obs. Experimtl.:", exp_samp_id), top=top_cat_to_plot, max=max_disp_y);
+
+	# 2.) Plot obs ctrl
+	plot_RAcurve(ctl_dist, title=paste("Obs. Control:", ctl_name), top=top_cat_to_plot, max=max_disp_y);
+
+	# 3.) Plot straight obs filter
+	plot_RAcurve(obs_fit$cleaned, title=paste("Obs. Cleaned:"), top=top_cat_to_plot, max=max_disp_y);
+	mtext(paste("Proportion Removed:", round(obs_fit$removed, 3)), line=-1.75, outer=F, cex=.5);
+	mtext(paste("Multiplier:", round(obs_fit$multiplier, 3)), line=-2.5, outer=F, cex=.5);
+
+	# 4.) Plot perturbation instance at 95% best 
+	plot_RAcurve(pert_ctrl[perc95_ix,], title="95% Most Removed Pert. Instance", top=top_cat_to_plot, max=max_disp_y);
+	# 5.) Plot filtered instance at 95% best
+	plot_RAcurve(fits$cleaned[perc95_ix,], title="95% Most Removed Cleaned", top=top_cat_to_plot, max=max_disp_y);
+	mtext(paste("Proportion Removed:", round(fits$stats[perc95_ix, "removed"], 3)), line=-1.75, outer=F, cex=.5);
+	mtext(paste("Multiplier:", round(fits$stats[perc95_ix, "multiplier"], 3)), line=-2.5, outer=F, cex=.5);
+
+	# 6.) Plot range of pertubation
+	plot_RAbox(pert_ctrl, title="Perturbed Control", top=top_cat_to_plot, max=max_disp_y);
+
+	# 7.) Plot range of filtered
+	plot_RAbox(fits$cleaned, title="Range of Cleaned", top=top_cat_to_plot, max=max_disp_y);
+
+	# 8.) Plot histogram of percent removed
+	hist(fits$stat[,"removed"], main="Bootstrapped Proportions Removed", xlab="Bootstrapped Proportions Removed");
+	# 9.) Plot histogram of multiplier
+	hist(fits$stat[,"multiplier"], main="Bootstrapped Multipliers", xlab="Multipliers");
+
 
 }
 
