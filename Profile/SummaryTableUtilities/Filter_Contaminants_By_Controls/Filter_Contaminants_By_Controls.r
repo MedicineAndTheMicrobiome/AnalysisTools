@@ -383,13 +383,46 @@ if(!doPaired){
 
 ###############################################################################
 
-perturb_dist=function(distr, counts, num_bs){
+perturb_dist_classical=function(distr, counts, num_bs){
+
+	cat("Classical Perturbation:\n");
+
 	# Generate random distributions based input dist
 	pert=t(rmultinom(num_bs, size=counts, prob=distr));	
 
 	# Normalize
 	for(i in 1:num_bs){
 		pert[i,]=pert[i,]/counts;	
+	}
+	return(pert);
+}
+
+perturb_dist_sim_anneal=function(distr, counts, num_bs){
+
+	cat("Simulated Annealing Perturbation:\n");
+
+	num_bs=max(counts, num_bs);
+	reps=num_bs/counts;
+
+	pert_mat=matrix(0, nrow=reps*counts, ncol=length(distr));
+	for(cts in 1:counts){
+		pert_reps=t(rmultinom(reps, size=cts, prob=distr));	
+		pert_reps=pert_reps/cts;
+
+		pert_mat[
+			(((cts-1)*reps)
+			:
+			(cts*reps-1))+1,]=pert_reps;
+	}
+
+	return(pert_mat);
+}
+
+perturb_dist=function(distr, counts, num_bs, sim_anneal=F){
+	if(sim_anneal){
+		pert=perturb_dist_sim_anneal(distr, counts, num_bs);
+	}else{
+		pert=perturb_dist_classical(distr, counts, num_bs);
 	}
 	return(pert);
 }
@@ -429,7 +462,7 @@ bootstrp_fit=function(exper_dist, pert_ctl_dist_matrix, plevel){
 
 pdf(paste(OutputFileRoot, ".dist_contam.pdf", sep=""), height=14, width=8.5);
 
-top_cat_to_plot=35;
+top_cat_to_plot=45;
 
 ###############################################################################
 
@@ -485,7 +518,10 @@ for(exp_samp_id in experm_samples){
 	obs_fit=fit_contaminant_mixture_model(ctl_dist, exp_dist, PLevel);
 
 	# Bootstrap fit
+	cat("Perturbing...\n");
 	pert_ctrl=perturb_dist(ctl_dist, Counts, NumBS);
+	cat("Num Perturbations: ", nrow(pert_ctrl), "\n", sep="");
+	cat("Fitting...\n");
 	fits=bootstrp_fit(exp_dist, pert_ctrl, PLevel);
 
 	#print(quantile(fits$stats[,"removed"]));
@@ -498,7 +534,7 @@ for(exp_samp_id in experm_samples){
 	bs_prop_removed[exp_samp_id]=fits$stats[perc95_ix, "removed"];
 
 	# Get the max abundance expect across all fits
-	max_abund=max(exp_dist, ctl_dist, obs_fit$cleaned, pert_ctrl, fits$cleaned);
+	max_abund=max(exp_dist, ctl_dist, obs_fit$cleaned, pert_ctrl[perc95_ix,], fits$cleaned[perc95_ix,]);
 	max_disp_y=max_abund*1.1;
 	
 	# 1.) Plot obs remove
