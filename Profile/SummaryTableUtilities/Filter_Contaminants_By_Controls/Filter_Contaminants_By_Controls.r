@@ -22,7 +22,7 @@ script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
 DEFAULT_PLEVEL=.5;
 DEFAULT_DELIM=";";
 DEFAULT_COUNTS=400;
-DEFAULT_NUM_BS=1000;
+DEFAULT_NUM_BS=4000;
 
 usage = paste (
 	"\nUsage:\n\n", script_name,
@@ -402,7 +402,7 @@ perturb_dist_sim_anneal=function(distr, counts, num_bs){
 	cat("Simulated Annealing Perturbation:\n");
 
 	num_bs=max(counts, num_bs);
-	reps=num_bs/counts;
+	reps=ceiling(num_bs/counts);
 
 	pert_mat=matrix(0, nrow=reps*counts, ncol=length(distr));
 	for(cts in 1:counts){
