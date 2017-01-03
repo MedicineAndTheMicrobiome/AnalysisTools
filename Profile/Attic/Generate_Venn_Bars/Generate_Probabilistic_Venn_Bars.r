@@ -3,7 +3,9 @@
 ###############################################################################
 #                                                                             #
 #       Copyright (c) 2014 J. Craig Venter Institute.                         #
-#       All rights reserved.                                                  #
+#                                                                             #
+#	Copyright (c) 2017 The Center for Medicine and the Microbiome         #
+#                          University of Pittsburgh                           #
 #                                                                             #
 ###############################################################################
 #                                                                             #
@@ -83,6 +85,8 @@ usage = paste (
 	"   1.) The values underlying the first two bar venn graphs (.shared_prob.tsv)\n",
 	"   2.) The values underlying the most likely outcome venn square (.likely_counts.tsv)\n",
 	"   3.) A list of taxa for each of the 4 venn categories (.category_lists.tsv)\n",
+	"   4.) A set of summary tables with only the categories in group A that are exclusive\n",
+	"       to A at various likelihood cutoffs (###.summary_table.tsv)\n",
 	"\n");
 
 if(!length(opt$profA) || !length(opt$profB) || !length(opt$output_root)){
