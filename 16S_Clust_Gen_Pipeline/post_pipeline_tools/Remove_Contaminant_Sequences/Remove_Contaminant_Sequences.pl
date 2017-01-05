@@ -359,7 +359,7 @@ open(BRKDWN_FH, ">$sample_breakdown_fh") || die "Could not open $sample_breakdow
 print STDERR sprintf("%30s %15s %17s %17s %17s %17s", "[Sample ID]", "[Num Seqs Kept]", "[Num Seqs Total]", "[Prop Seq Kep]", "[Num OTUs Kept]", "[Num OTUs Total]"), "\n";
 print BRKDWN_FH (join "\t", ("Sample ID", "Num Seq Kept", "Num Seq Total", "Perc Seq Kept", "Num OTUs Kept", "Num OTUs Total", "Perc OTUs Kept")) . "\n";
 
-my $total_reads=0;
+my $total_seqs=0;
 my $num_total_samples=scalar keys %{$sample_to_read_hash_ref};
 my $num_total_contam_seqs=0;
 foreach my $samp_id (keys %{$sample_to_read_hash_ref}){
@@ -370,7 +370,7 @@ foreach my $samp_id (keys %{$sample_to_read_hash_ref}){
 
 	my @reads_in_sample=@{${$sample_to_read_hash_ref}{$samp_id}};
 	my $num_total_in_sample=$#reads_in_sample+1;
-	$total_reads+=$num_total_in_sample;
+	$total_seqs+=$num_total_in_sample;
 	my $num_kept_in_sample=0;
 	my $rejected=0;
 	my %kept_otus;
@@ -405,19 +405,25 @@ close(BRKDWN_FH);
 
 my $summary_fn="$OutputFilenameRoot\.stats.tsv";
 open(SUMMARY_FH, ">$summary_fn") || die "Could not open $summary_fn.\n";
-print SUMMARY_FH "# ContamFile\tClustLevel\tNumOTUs\tNumReads\tNumComtamSamp\tNumExpSamp\tNumContamOTUs\tNumContamSeqs\tPercOTUsKept\tPercSeqsKept\n";
-print SUMMARY_FH join "\t", (
+print SUMMARY_FH "# ContamFile\tNumCtrlSamp\tNumNonCtrlSamp\tClustLevel\tNumContamOTUs\tNumTotOTUs\tNumContamSeq\tNumTotlSeq\tPercOTUsContam\tPercSeqsContam\tNumOTUsKept\tNumSeqsKept\n";
+print SUMMARY_FH (join "\t", (
 	$ContaminantsFilename,
-	$LevelofIdentity,
-	$num_otus,
-	$total_reads,
 	$num_contam_samples,
 	$num_total_samples-$num_contam_samples,
+
+	$LevelofIdentity,
 	$num_otus_contam,
+	$num_otus,
+
 	$num_total_contam_seqs,
+	$total_seqs,
+
 	sprintf("%3.2f", 100*($num_otus_contam/$num_otus)),
-	sprintf("%3.2f", 100*($total_reads-$num_total_contam_seqs)/$total_reads)
-) . "\n";
+	sprintf("%3.2f", 100*($num_total_contam_seqs/$total_seqs)),
+
+	$num_otus-$num_otus_contam,
+	$total_seqs-$num_total_contam_seqs
+)) . "\n";
 close(SUMMARY_FH);
 
 
