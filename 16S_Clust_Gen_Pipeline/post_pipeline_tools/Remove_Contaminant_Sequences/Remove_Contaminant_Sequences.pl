@@ -75,6 +75,7 @@ $0
 	Extract FASTA
 		7.) Extract new FASTA file with uncomtaminant associated reads
 
+
 ";
 
 if(!(
@@ -99,6 +100,8 @@ my $LevelofIdentity=$opt_l;
 if(!defined($opt_l)){
 	$LevelofIdentity=$DEF_ID_LEVEL;
 }
+
+$OutputFilenameRoot="$OutputFilenameRoot\." . sprintf("%3.2f",$LevelofIdentity); 
 
 
 print STDERR "\n";
@@ -312,10 +315,15 @@ $contam_hash_ref=load_list_file($ContaminantsFilename);
 
 my %contaminated_otu;
 my $num_otus_contam;
+my $num_contam_samples=scalar keys %{$contam_hash_ref};
+
+my $rarefact_fname="$OutputFilenameRoot\.cont_raref\.tsv";
+open(RAREFACTION_FH, ">$rarefact_fname") || die "Could not open $rarefact_fname\n";
 
 print STDERR "Building list of contaminated OTUs...\n";
 
-print STDERR sprintf("%30s %10s %25s\n", "Sample ID", "Num Reads", "Cumulative Contam OTUs/Total OTUs");
+print STDERR sprintf("%30s %10s %35s\n", "Sample ID", "Num Reads", "Cumulative Contam/Total OTUs");
+print RAREFACTION_FH (join "\t", ("Sample ID", "Num Reads in Sample", "Cumulative Contam/Total OTUs")) ."\n";
 foreach my $cont_samp_id(sort keys %{$contam_hash_ref}){
 	my @cont_reads_arr=@{${$sample_to_read_hash_ref}{$cont_samp_id}};
 	my $num_reads=($#cont_reads_arr+1);
@@ -328,10 +336,13 @@ foreach my $cont_samp_id(sort keys %{$contam_hash_ref}){
 	my @contam_otus=keys %contaminated_otu;
 	$num_otus_contam=$#contam_otus +1;
 
-	print STDERR sprintf("%30s %10i %25i/%i\n", $cont_samp_id, $num_reads, $num_otus_contam, $num_otus);
+	print STDERR sprintf("%30s %10i %35s\n", $cont_samp_id, $num_reads, "$num_otus_contam/$num_otus");
+	print RAREFACTION_FH (join "\t", ($cont_samp_id, $num_reads, "$num_otus_contam/$num_otus")) ."\n";
 }
 
-print STDERR "Percentage of OTUs removed: ", sprintf("%2.3f",100*$num_otus_contam/$num_otus), "%\n";
+close(RAREFACTION_FH);
+
+print STDERR "Percentage of OTUs considered contaminated: ", sprintf("%2.3f",100*$num_otus_contam/$num_otus), "%\n";
 
 print STDERR "ok.\n\n";
 
@@ -342,22 +353,73 @@ print STDERR "Filtering reads in contaminated OTUs...\n";
 my @kept_read_groups_arr;
 my @kept_reads_arr;
 
+my $sample_breakdown_fh="$OutputFilenameRoot\.sample_brkdwn\.tsv";
+open(BRKDWN_FH, ">$sample_breakdown_fh") || die "Could not open $sample_breakdown_fh\n";
+
+print STDERR sprintf("%30s %15s %17s %17s %17s %17s", "[Sample ID]", "[Num Seqs Kept]", "[Num Seqs Total]", "[Prop Seq Kep]", "[Num OTUs Kept]", "[Num OTUs Total]"), "\n";
+print BRKDWN_FH (join "\t", ("Sample ID", "Num Seq Kept", "Num Seq Total", "Perc Seq Kept", "Num OTUs Kept", "Num OTUs Total", "Perc OTUs Kept")) . "\n";
+
+my $total_reads=0;
+my $num_total_samples=scalar keys %{$sample_to_read_hash_ref};
+my $num_total_contam_seqs=0;
 foreach my $samp_id (keys %{$sample_to_read_hash_ref}){
 	#if(${$contam_hash_ref}{$samp_id}){
 	#	print STDERR "Skipping $samp_id\n";
 	#	next;
 	#}
+
+	my @reads_in_sample=@{${$sample_to_read_hash_ref}{$samp_id}};
+	my $num_total_in_sample=$#reads_in_sample+1;
+	$total_reads+=$num_total_in_sample;
+	my $num_kept_in_sample=0;
+	my $rejected=0;
+	my %kept_otus;
+	my %rejc_otus;
 	
-	print STDERR "Filtering reads in $samp_id.\n";
-	foreach my $read_id (@{${$sample_to_read_hash_ref}{$samp_id}}){
+	foreach my $read_id (@reads_in_sample){
 		my $rep_read=${$read_to_repread_hash_ref}{$read_id};
 		my $otu=${$repread_to_otu_hash_ref}{$rep_read};
-		if($contaminated_otu{$otu}==1){
+		if(!defined($contaminated_otu{$otu})){
 			push @kept_read_groups_arr, "$read_id\t$samp_id";
 			push @kept_reads_arr, "$read_id\t$samp_id";
+			$num_kept_in_sample++;
+			$kept_otus{$otu}=1;
+		}else{
+			$rejc_otus{$otu}=1;
+			$num_total_contam_seqs++;
 		}
 	}
+
+	my $num_kept_otus=scalar keys %kept_otus;
+	my $num_rejc_otus=scalar keys %rejc_otus;
+	my $num_tot_otus=$num_kept_otus+$num_rejc_otus;
+
+	print STDERR sprintf("%30s %15i %17i %17.3f %17i %17i", $samp_id, $num_kept_in_sample, $num_total_in_sample, $num_kept_in_sample/$num_total_in_sample, $num_kept_otus, $num_tot_otus), "\n";
+	print BRKDWN_FH (join "\t", ($samp_id, $num_kept_in_sample, $num_total_in_sample, sprintf("%3.2f", 100*$num_kept_in_sample/$num_total_in_sample), 
+		$num_kept_otus, $num_tot_otus,  sprintf("%3.2f", 100*$num_kept_otus/$num_tot_otus))) ."\n";
 }
+
+close(BRKDWN_FH);
+
+#------------------------------------------------------------------------------
+
+my $summary_fn="$OutputFilenameRoot\.stats.tsv";
+open(SUMMARY_FH, ">$summary_fn") || die "Could not open $summary_fn.\n";
+print SUMMARY_FH "# ContamFile\tClustLevel\tNumOTUs\tNumReads\tNumComtamSamp\tNumExpSamp\tNumContamOTUs\tNumContamSeqs\tPercOTUsKept\tPercSeqsKept\n";
+print SUMMARY_FH join "\t", (
+	$ContaminantsFilename,
+	$LevelofIdentity,
+	$num_otus,
+	$total_reads,
+	$num_contam_samples,
+	$num_total_samples-$num_contam_samples,
+	$num_otus_contam,
+	$num_total_contam_seqs,
+	sprintf("%3.2f", 100*($num_otus_contam/$num_otus)),
+	sprintf("%3.2f", 100*($total_reads-$num_total_contam_seqs)/$total_reads)
+) . "\n";
+close(SUMMARY_FH);
+
 
 #------------------------------------------------------------------------------
 
