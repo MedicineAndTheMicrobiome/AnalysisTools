@@ -428,6 +428,7 @@ close(SUMMARY_FH);
 
 
 #------------------------------------------------------------------------------
+# List of reads/sample mapping on non contaminants
 
 print STDERR "Outputing new Group and FASTA file.\n";
 
@@ -439,16 +440,19 @@ foreach my $group_pair(@kept_read_groups_arr){
 close(FH_GR);
 
 #------------------------------------------------------------------------------
-
-my $no_contam_reads_fn="$OutputFilenameRoot\.no_ctm.groups";
+# Build extraction list of non contaminant reads
+my $no_contam_reads_fn="$OutputFilenameRoot\.no_ctm.reads";
 open(FH_LI, ">$no_contam_reads_fn") || die "Could not open $no_contam_reads_fn for writing.\n";
 foreach my $read(@kept_reads_arr){
 	print FH_LI "$read\n";
 }
 close(FH_LI);
 
-my $exec_str="$EXTRACT_FASTA_PATH";
-
+# Extract reads from FASTA
+my $no_contam_fasta_fn="$OutputFilenameRoot\.no_ctm.fasta";
+my $exec_str="$EXTRACT_FASTA_PATH -f $FastaFilename -l $no_contam_reads_fn > $no_contam_fasta_fn";
+print STDERR "$exec_str\n";
+system($exec_str);
 
 ###############################################################################
 
