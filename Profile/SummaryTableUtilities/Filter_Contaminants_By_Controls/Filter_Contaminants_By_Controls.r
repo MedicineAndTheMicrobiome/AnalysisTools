@@ -145,7 +145,7 @@ ShortNameDelim=opt$short_name_delim;
 NumBS=opt$num_bs;
 Counts=opt$counts;
 SimAnneal=opt$sim_anneal;
-
+Quantile=opt$quantile;
 
 
 if(!length(OutputFileRoot)){
@@ -170,13 +170,20 @@ if(!length(Counts)){
 }
 
 if(!length(SimAnneal)){
-	SimAnneal=DEFAULT_SIMANNEAL;
+	SimAnneal=DEFAULT_SIM_ANNEAL;
 }
 
 if(!length(Quantile)){
 	Quantile=DEFAULT_QUANTILE;
 }
 
+if(SimAnneal){
+	Quantile=0.0;
+	cat("Quantile should be 0.0 for Simulated Annealing, because the resampling size keeps changing.\n");
+	cat("Just taking the best resample...\n");
+}
+
+percentile_str=sprintf("%3.2f%", 100*(1-Quantile));
 
 cat("\n")
 cat("Input Summary File Table: ", InputSummaryTable, "\n", sep="");
@@ -591,9 +598,9 @@ for(exp_samp_id in experm_samples){
 	mtext(paste("Multiplier:", round(obs_fit$multiplier, 3)), line=-2.5, outer=F, cex=.5);
 
 	# 4.) Plot perturbation instance at 95% best 
-	plot_RAcurve(pert_ctrl[perc95_ix,], title="95% Most Removed Pert. Control Instance", top=top_cat_to_plot, max=max_disp_y, overlay_dist=exp_dist);
+	plot_RAcurve(pert_ctrl[perc95_ix,], title=paste(percentile_str, " Most Removed Pert. Control Instance", sep=""), top=top_cat_to_plot, max=max_disp_y, overlay_dist=exp_dist);
 	# 5.) Plot filtered instance at 95% best
-	plot_RAcurve(fits$cleaned[perc95_ix,], title="95% Most Removed Cleaned", top=top_cat_to_plot, max=max_disp_y, overlay_dist=exp_dist);
+	plot_RAcurve(fits$cleaned[perc95_ix,], title=paste(percentile_str, " Most Removed Cleaned", sep=""), top=top_cat_to_plot, max=max_disp_y, overlay_dist=exp_dist);
 	mtext(paste("Proportion Removed:", round(fits$stats[perc95_ix, "removed"], 3)), line=-1.75, outer=F, cex=.5);
 	mtext(paste("Multiplier:", round(fits$stats[perc95_ix, "multiplier"], 3)), line=-2.5, outer=F, cex=.5);
 
