@@ -12,7 +12,9 @@ params=c(
 	"output_fname_root", "o", 2, "character",
 	"short_name_delim", "d", 2, "character",
 	"num_bs", "b", 2, "numeric",
-	"counts", "c", 2, "numeric"
+	"counts", "c", 2, "numeric",
+	"sim_anneal", "s", 2, "logical",
+	"quantile", "q", 2, "numeric"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -22,7 +24,9 @@ script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
 DEFAULT_PLEVEL=.5;
 DEFAULT_DELIM=";";
 DEFAULT_COUNTS=400;
-DEFAULT_NUM_BS=4000;
+DEFAULT_NUM_BS=8000;
+DEFAULT_SIM_ANNEAL=F;
+DEFAULT_QUANTILE=0.025;
 
 usage = paste (
 	"\nUsage:\n\n", script_name,
@@ -40,6 +44,8 @@ usage = paste (
 	"	Bootstrapping parameters:\n",
 	"	[-c <counts, estimated number of DNA molecules sampled, default=", DEFAULT_COUNTS, ">]\n",
 	"	[-b <number of bootstraps, default=", DEFAULT_NUM_BS, ">]\n",
+	"	[-s <simulated annealing, default=", DEFAULT_SIM_ANNEAL, ">]\n",
+	"	[-q <quantile of best fit to keep, default=", DEFAULT_QUANTILE, ">]\n",
 	"\n",	
 	"This script will use the contaminant profiles/negative controls\n",
 	"to adjust the taxa proportions from the experimental samples.\n",
@@ -63,7 +69,12 @@ usage = paste (
 	"	Sum (abs(Exp[i]-c*Cont[i]))^p\n",
 	"	 where i is only the categories in the Cont\n",
 	"\n",
-	"	With the constraint that c is in [0,1].\n",
+	"	With the constraint that c is in [0,Inf].\n",
+	"\n",
+	"	Alternatively, the objective function can be reformulated as:\n",
+	"	Sum (abs((x*Exp[i]-(1-x)*Cont[i]))^p\n",
+	"	so that x is between [0,1], which makes the search easier and\n",
+	"	easier to plot.\n",
 	"\n",
 	"	p is the p-norm degree:\n",
 	"	When p=2, the fit is a least squares.\n",
@@ -77,7 +88,7 @@ usage = paste (
 	"	that fit poorly.\n",
 	"	\n",
 	"	You can think of it this way: smaller p levels are like electoral votes, \n",
-	"	where as larger p levels are popular votes.\n",
+	"	whereas larger p levels are popular votes.\n",
 	"\n",
 	"\n",
 	"There are two options to apply the contaminant filter:\n",
@@ -101,6 +112,21 @@ usage = paste (
 	"	...\n",
 	"	<expern sample id>\\t<contamn sample id>\\n\n",	
 	"\n",
+	"The bootstrapping comes with several parameters:\n",
+	"	* Counts (-c) specifies the number of sequences that you think the PCR\n",
+	"	reaction actually amplified.  The larger this number the more\n",
+	"	robust you think the distribution of the control to be and\n",
+	"	less variation will be introduced into the perturbed control\n",
+	"	distribution upon bootstrapping.\n",
+	"	* Num Boostraps (-b) is the number of variations of distributions to try.\n",
+	"	* Simulated Annealing (-s) is a tweak to the resampling algorithm.\n",
+	"	Instead of assuming the counts is always the same, the counts become\n",
+	"	the uppower bound, so that we start from 1 and iterate up to the Counts.\n",
+	"	Thus the more bootstrap you allow, the more repeats at the same count\n",
+	"	you will have.  \n",
+	"	* Quantile (-q) is the best matching distribution you want to keep.\n",
+	"	Smaller values will take the better fit.  Don't use -q 0.0, because\n",
+	"	the best may be a outlier of perturbed distributions.\n",	
 	"\n", sep="");
 
 if(!length(opt$input_summary_table)){
@@ -118,6 +144,8 @@ OutputFileRoot=opt$output_fname_root;
 ShortNameDelim=opt$short_name_delim;
 NumBS=opt$num_bs;
 Counts=opt$counts;
+SimAnneal=opt$sim_anneal;
+
 
 
 if(!length(OutputFileRoot)){
@@ -141,6 +169,14 @@ if(!length(Counts)){
 	Counts=DEFAULT_COUNTS;
 }
 
+if(!length(SimAnneal)){
+	SimAnneal=DEFAULT_SIMANNEAL;
+}
+
+if(!length(Quantile)){
+	Quantile=DEFAULT_QUANTILE;
+}
+
 
 cat("\n")
 cat("Input Summary File Table: ", InputSummaryTable, "\n", sep="");
@@ -149,6 +185,8 @@ cat("P-norm level: ", PLevel, "\n", sep="");
 cat("Short Name Delim: ", ShortNameDelim, "\n", sep="");
 cat("Num Bootstraps: ", NumBS, "\n", sep="");
 cat("Counts: ", Counts, "\n", sep="");
+cat("Perform 'simulated annealing':", SimAnneal, "\n", sep="");
+cat("Quantile (1-alpha), alpha: ", Quantile, "\n", sep="");
 cat("\n");
 
 doPaired=NULL;
@@ -519,13 +557,13 @@ for(exp_samp_id in experm_samples){
 
 	# Bootstrap fit
 	cat("Perturbing...\n");
-	pert_ctrl=perturb_dist(ctl_dist, Counts, NumBS);
+	pert_ctrl=perturb_dist(ctl_dist, Counts, NumBS, sim_anneal=SimAnneal);
 	cat("Num Perturbations: ", nrow(pert_ctrl), "\n", sep="");
 	cat("Fitting...\n");
 	fits=bootstrp_fit(exp_dist, pert_ctrl, PLevel);
 
 	#print(quantile(fits$stats[,"removed"]));
-	perc95_ix=min(which(fits$stats[,"removed"]==quantile(fits$stats[,"removed"], .95, type=1)));
+	perc95_ix=min(which(fits$stats[,"removed"]==quantile(fits$stats[,"removed"], 1-Quantile, type=1)));
 
 	# Save cleaned to matrix for export
 	cleaned_obs_matrix[exp_samp_id,]=obs_fit$cleaned;
@@ -638,6 +676,8 @@ cat(file=fc, "Output Filename Root: ", OutputFileRoot, "\n", sep="");
 cat(file=fc, "P-norm level: ", PLevel, "\n", sep="");
 cat(file=fc, "Num Bootstraps: ", NumBS, "\n", sep="");
 cat(file=fc, "Counts: ", Counts, "\n", sep="");
+cat(file=fc, "Perform 'simulated annealing':", SimAnneal, "\n", sep="");
+cat(file=fc, "Quantile (1-alpha), alpha: ", Quantile, "\n", sep="");
 
 close(fc);
 
