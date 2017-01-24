@@ -542,7 +542,8 @@ for(num_cl in 2:max_clusters){
 				las=2, horiz=T, xlab="", col=greater_than_col,
 				xlim=plot_range
 			);
-			abline(h=diff(barpos)/2+barpos[-num_top_cat], col="grey90");
+			midlines=diff(barpos)/2+barpos[-num_top_cat];
+			abline(h=midlines, col="grey90");
 
 			# Label greater thans for categories that contribute to a greater R^2
 			for(cat in neg_ratios_ix){
