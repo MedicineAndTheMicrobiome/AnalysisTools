@@ -402,8 +402,9 @@ print(hcl);
 
 orig_dendr=as.dendrogram(hcl);
 
-
 pdf(paste(output_fname_root, ".cl_inf.pdf", sep=""), height=8.5, width=14);
+palette_col=c("black", "red", "green", "blue", "cyan", "magenta", "orange", "gray");
+palette(palette_col);
 
 # Compute ISO and classical MDS
 nonparm_mds_res=matrix(0,nrow=num_samples,ncol=2);
@@ -488,35 +489,63 @@ for(num_cl in 2:max_clusters){
 	par(oma=c(.5,10,2,1));
 	plot_count=0;
 	for(i in 1:num_cl){
+
 		members_i=names(memberships[memberships==i]);
+
 		for(j in 1:num_cl){
 
 			if(i>=j){
 				next;
 			}
+
+			members_j=names(memberships[memberships==j]);
+			both_mem=c(members_i, members_j);
 		
+			# Only plot the left most category labels
 			if(!(plot_count %% barplots_per_page)){
 				plot_cat_names=short_cat_names[1:num_top_cat];
 			}else{
 				plot_cat_names=rep("",num_top_cat);
 			}
 
+			# Pull up the previously calculated ratios
 			ratios=ratios_list[[ paste(i, "#", j, sep="")]];
 			
+			neg_ratios_ix=which(ratios<0);
 			pos_contrib=rep("grey", num_top_cat);
-			pos_contrib[ratios<0]="red";
+			pos_contrib[neg_ratios_ix]="red";
+
+			# Compute differences in abundance.
+			i_means=apply(norm_mat[members_i,1:num_top_cat], 2, mean);
+			j_means=apply(norm_mat[members_j,1:num_top_cat], 2, mean);
+			greater_thans=(i_means > j_means);
+
+			# Plot bars
+			# Extend the plot range so we have room to label the cluster with greater abundance
+			plot_range=numeric(2);
+			plot_range[1]=log_ratios_ranges[1]-diff(log_ratios_ranges)/10;
+			plot_range[2]=log_ratios_ranges[2];
 
 			par(mar=c(5,1,1,1));
-			barplot(ratios, names.arg=plot_cat_names, 
+			barpos=barplot(ratios, names.arg=plot_cat_names, 
 				las=2, horiz=T, xlab="", col=pos_contrib,
-				xlim=log_ratios_ranges
+				xlim=plot_range
 			);
+
+			# Label greater thans for categories that contribute to a greater R^2
+			for(cat in neg_ratios_ix){
+				if(greater_thans[cat]){
+					text(ratios[cat], barpos[cat], i, font=2, col=i, pos=2);
+				}else{
+					text(ratios[cat], barpos[cat], j, font=2, col=j, pos=2);
+				}
+			}
+
+			# Label the 0 point
 			abline(v=0);
 
-			members_j=names(memberships[memberships==j]);
 
-			both_mem=c(members_i, members_j);
-
+			# Plot thumbnail MDS
 			par(mar=c(3,1,0,1));
 			plot(classic_mds_res[both_mem,], col=memberships[both_mem], xaxt="n", yaxt="n", 
 				xlab="",
@@ -524,6 +553,7 @@ for(num_cl in 2:max_clusters){
 			x_plot_range=par()$usr;
 			axis(side=1, at=mean(x_plot_range[c(1,2)]), labels=sprintf("\n%i vs %i", i, j), tick=F)
 
+			# Label number of clusters in the margins
 			if(!(plot_count %% barplots_per_page)){
 				mtext(paste("Num Clusters: ", num_cl), side=3, outer=T);
 			}
