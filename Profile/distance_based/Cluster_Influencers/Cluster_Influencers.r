@@ -451,8 +451,9 @@ for(num_cl in 2:max_clusters){
 	layout(mds_layout);
 	plot(nonparm_mds_res, col=memberships, xlab="Dim 1", ylab="Dim 2", main="non-metric MDS");
 	plot(classic_mds_res, col=memberships, xlab="Dim 1", ylab="Dim 2", main="classical MDS");
+	par(mar=c(0,0,0,0));
 	plot(0, type="n", xlab="", ylab="", main="", bty="n", xaxt="n", yaxt="n", xlim=c(0,1), ylim=c(0,1));
-	legend(0,1, fill=1:num_cl, legend=c(as.character(1:num_cl)));
+	legend(0,1, fill=1:num_cl, legend=c(as.character(1:num_cl)), bty="n", cex=2);
 	mtext(paste("Num Clusters: ", num_cl), side=3, outer=T);
 	
 	# Compute R^2 pairwise between clusters
@@ -484,7 +485,7 @@ for(num_cl in 2:max_clusters){
 
 	# Generate Plots
 	layout(barplot_layout);
-	par(oma=c(1,10,1,1));
+	par(oma=c(.5,10,2,1));
 	plot_count=0;
 	for(i in 1:num_cl){
 		members_i=names(memberships[memberships==i]);
@@ -516,7 +517,7 @@ for(num_cl in 2:max_clusters){
 
 			both_mem=c(members_i, members_j);
 
-			par(mar=c(4,1,0,1));
+			par(mar=c(3,1,0,1));
 			plot(classic_mds_res[both_mem,], col=memberships[both_mem], xaxt="n", yaxt="n", 
 				xlab="",
 				ylab="", main="");
