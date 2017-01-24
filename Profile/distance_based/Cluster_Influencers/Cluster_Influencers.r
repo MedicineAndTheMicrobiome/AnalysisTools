@@ -306,6 +306,32 @@ analyze_cluster_pairs=function(st, members_a, members_b, num_cat_to_probe, dist_
 
 }
 
+color_denfun_bySample=function(n){
+        if(is.leaf(n)){
+                leaf_attr=attributes(n);
+                leaf_name=leaf_attr$label;
+                ind_color=sample_to_color_map[[leaf_name]];
+                if(is.null(ind_color)){
+                        ind_color="black";
+                }
+
+                attr(n, "nodePar") = c(leaf_attr$nodePar,
+                                                list(lab.col=ind_color));
+        }
+        return(n);
+}
+
+text_scale_denfun=function(n){
+        if(is.leaf(n)){
+                leaf_attr=attributes(n);
+                leaf_name=leaf_attr$label;
+                attr(n, "nodePar") = c(leaf_attr$nodePar,
+                                        cex=0,
+                                        lab.cex=label_scale);
+        }
+        return(n);
+}
+
 ###############################################################################
 
 output_fname_root = paste(OutputFileRoot, ".", dist_type, sep="");
@@ -374,10 +400,10 @@ hcl=hclust(full_dist_mat, method="ward.D2");
 
 print(hcl);
 
-dendr=as.dendrogram(hcl);
+orig_dendr=as.dendrogram(hcl);
+
 
 pdf(paste(output_fname_root, ".cl_inf.pdf", sep=""), height=8.5, width=14);
-plot(dendr);
 
 # Compute ISO and classical MDS
 nonparm_mds_res=matrix(0,nrow=num_samples,ncol=2);
@@ -397,12 +423,27 @@ barplot_layout=matrix(c(
 	1,3,5,7,9,11,
 	1,3,5,7,9,11,
 	2,4,6,8,10,12), byrow=T, nrow=4, ncol=6);
+barplots_per_page=6;
+
+label_scale=min(2,50/num_samples);
 
 # Begin pair-wise cluster analyses
 for(num_cl in 2:max_clusters){
 
 	cat("Cutting for ", num_cl, " clusters...\n", sep="");
 	memberships=cutree(hcl, k=num_cl);
+
+	# Plot Dendrogram
+	par(oma=c(0,0,2,0));
+	par(mar=c(5.1,4.1,4.1,2.1));
+	par(mfrow=c(1,1));
+	sample_to_color_map=as.list(memberships);
+	tweaked_dendro=dendrapply(orig_dendr, color_denfun_bySample);
+	tweaked_dendro=dendrapply(tweaked_dendro, text_scale_denfun);
+	plot(tweaked_dendro);
+	ranges=par()$usr;
+	legend(ranges[1], ranges[4], fill=1:num_cl, legend=c(as.character(1:num_cl)), bty="n");
+	mtext(paste("Num Clusters: ", num_cl), side=3, outer=T);
 
 	# Generate MDS plots
 	par(oma=c(0,0,2,0));
@@ -414,7 +455,7 @@ for(num_cl in 2:max_clusters){
 	legend(0,1, fill=1:num_cl, legend=c(as.character(1:num_cl)));
 	mtext(paste("Num Clusters: ", num_cl), side=3, outer=T);
 	
-
+	# Compute R^2 pairwise between clusters
 	ratios_list=list();
 	log_ratios_ranges=numeric();
 	for(i in 1:num_cl){
@@ -444,7 +485,7 @@ for(num_cl in 2:max_clusters){
 	# Generate Plots
 	layout(barplot_layout);
 	par(oma=c(1,10,1,1));
-	first_plot=T;
+	plot_count=0;
 	for(i in 1:num_cl){
 		members_i=names(memberships[memberships==i]);
 		for(j in 1:num_cl){
@@ -453,12 +494,11 @@ for(num_cl in 2:max_clusters){
 				next;
 			}
 		
-			if(first_plot){
+			if(!(plot_count %% barplots_per_page)){
 				plot_cat_names=short_cat_names[1:num_top_cat];
 			}else{
 				plot_cat_names=rep("",num_top_cat);
 			}
-
 
 			ratios=ratios_list[[ paste(i, "#", j, sep="")]];
 			
@@ -483,7 +523,12 @@ for(num_cl in 2:max_clusters){
 			x_plot_range=par()$usr;
 			axis(side=1, at=mean(x_plot_range[c(1,2)]), labels=sprintf("\n%i vs %i", i, j), tick=F)
 
-			first_plot=F;
+			if(!(plot_count %% barplots_per_page)){
+				mtext(paste("Num Clusters: ", num_cl), side=3, outer=T);
+			}
+
+			plot_count=plot_count+1;
+
 		}
 
 	}
