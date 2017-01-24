@@ -12,13 +12,15 @@ library('vegan');
 DEF_DISTTYPE="euc";
 DEF_NUM_TOP_CAT=10;
 DEF_NUM_CLUS=8;
+DEF_SPLIT_CHAR=";";
 
 params=c(
 	"input_summary_table", "i", 1, "character",
 	"output_filename_root", "o", 2, "character",
 	"dist_type", "d", 2, "character",
 	"num_top_cat", "p", 2, "numeric",
-	"num_clus", "k", 2, "numeric"
+	"num_clus", "k", 2, "numeric",
+	"split_char", "s", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -31,6 +33,7 @@ usage = paste(
 	"	[-d <euc/wrd/man/bray/horn/bin/gow/tyc, default =", DEF_DISTTYPE, ">]\n",
 	"	[-p <num of top categories to probe, default =", DEF_NUM_TOP_CAT, " >\n",
 	"	[-k <num of clusters to split into, default =", DEF_NUM_CLUS, ">\n",
+	"	[-s <split char for long category names, default =", DEF_SPLIT_CHAR, "\n",
 	"\n",
 	"This script will:\n",
 	"	1.) Read in a summary table and compute a distance matrix.\n",
@@ -75,6 +78,11 @@ if(length(opt$num_clus)){
 num_top_cat=DEF_NUM_TOP_CAT;
 if(length(opt$num_top_cat)){
 	num_top_cat=opt$num_top_cat;
+}
+
+SplitChar=DEF_SPLIT_CHAR;
+if(length(opt$split_char)){
+	SplitChar=opt$split_char;
 }
 
 
@@ -190,7 +198,7 @@ compute_dist=function(norm_st, type){
 	return(dist_mat);
 }
 
-compute_sum_of_squares=function(dist_mat, members_a, members_b){
+compute_anova=function(dist_mat, members_a, members_b){
 
 	# Compute SST (SS Total)
 	# Compute SSW (SS Error)
@@ -198,14 +206,71 @@ compute_sum_of_squares=function(dist_mat, members_a, members_b){
 
 	# Fstat = 
 
+	dist_mat=as.matrix(dist_mat);
+
+	SSB=0;
+	SSW=0;
+
+	between_cts=0;
+	within_cts=0;
+
+	for(memb1 in members_a){
+		for(memb2 in members_a){
+			if(memb1!=memb2){
+				SSW=SSW+dist_mat[memb1, memb2];
+				within_cts=within_cts+1;
+			}
+		}
+	}
+
+	for(memb1 in members_b){
+		for(memb2 in members_b){
+			if(memb1!=memb2){
+				SSW=SSW+dist_mat[memb1, memb2];
+				within_cts=within_cts+1;
+			}
+		}
+	}
+
+	for(memb1 in members_a){
+		for(memb2 in members_b){
+			SSB=SSB+dist_mat[memb1, memb2];
+			between_cts=between_cts+1;
+		}
+	}
+
+	# Correct double adding of members (that were on the other side of diagonal)
+	SSW=SSW/2;
+	within_cts=within_cts/2;
+
+	SST=SSW+SSB;
+
+	MSW=SSW/within_cts;
+	MSB=SSB/between_cts;
+	
+	pseudoF=MSB/MSW;
+	Rsqrd=SSB/SST;
+
+	results=list();
+	results$SSW=SSW;
+	results$SSB=SSB;
+	results$SST=SST;
+	results$MSW=MSW;
+	results$MSB=MSB;
+	results$pseudoF=pseudoF;
+	results$Rsqrd=Rsqrd;
+	
+	return(results);
+
 }
 
 ###############################################################################
 
-analyze_cluster_pairs=function(st, members_a, members_b, num_cat_to_probe, dist_type){
+analyze_cluster_pairs=function(st, members_a, members_b, num_cat_to_probe, dist_mat_list){
 
 	num_mem_a=length(members_a);
 	num_mem_b=length(members_b);
+	cat_names=colnames(st);
 
 	cat("Num members in clusters: ", num_mem_a, " vs. ", num_mem_b, "\n");
 
@@ -215,16 +280,30 @@ analyze_cluster_pairs=function(st, members_a, members_b, num_cat_to_probe, dist_
 	print(members_b);
 	cat("\n\n");
 
-	complete_dist=compute_dist(st, dist_type);
-	complete_ss=compute_sum_of_squares(complete_dist, members_a, members_b);
+	complete_dist=dist_mat_list[["full"]];
+	complete_anova=compute_anova(complete_dist, members_a, members_b);
+	cat("Complete ANOVA:\n");
+	print(complete_anova);
+
+	ratios=matrix(0, nrow=num_cat_to_probe, ncol=1);
+	rownames(ratios)=cat_names[1:num_cat_to_probe];
+	colnames(ratios)=c("rsqrd");
 
 	for(i in 1:num_cat_to_probe){
-		red_st=st[, -i, drop=F];
-		red_dist=compute_dist(red_st, dist_type);
-		red_ss=compute_sum_of_squares(red_dist, members_a, members_b);
+		cat("Leaving out: ", cat_names[i], "\n", sep="");
+		part_dist=dist_mat_list[[i]];
+		part_anova=compute_anova(part_dist, members_a, members_b);
+		cat("Partial ANOVA:\n");
+		#print(part_anova);
+		ratios[i,"rsqrd"]=part_anova$Rsqrd/complete_anova$Rsqrd;
+		#print(ratios);
 	}
 
-	cat("\n");
+	results=list();
+	results[["partial_anova"]]=part_anova;
+	results[["ratios"]]=ratios;
+	return(results);
+
 }
 
 ###############################################################################
@@ -259,18 +338,39 @@ sample_names=rownames(norm_mat);
 num_samples=nrow(norm_mat);
 num_categories=ncol(norm_mat);
 
-cat("Top Categories: \n");
-print(category_names[1:30]);
-cat("\n\n");
+cat("\nTop Categories: \n");
+print(category_names[1:num_top_cat]);
+cat("\n");
 
-
-# Compute distances
-cat("Computing distances...\n");
-all_samp_dist_mat=compute_dist(norm_mat, dist_type);
+# Shorten category names
+short_cat_names=character();
+for(i in 1:num_categories){
+	short_cat_names[i]=tail(strsplit(category_names[i], SplitChar)[[1]],1);
+}
+colnames(norm_mat)=short_cat_names;
+cat("Shorted Top Categories: \n");
+print(short_cat_names[1:num_top_cat]);
+cat("\n");
 
 ###############################################################################
 
-hcl=hclust(all_samp_dist_mat, method="ward.D2");
+# Compute full distances
+cat("Computing distances...\n");
+full_dist_mat=compute_dist(norm_mat, dist_type);
+
+# Compute partial distances
+cat("Precomputing distances without top categories...\n");
+dist_mat_list=list();
+for(target_cat_ix in 1:num_top_cat){
+	cat("\t", target_cat_ix, ".) ", short_cat_names[target_cat_ix], "\n", sep="");
+	dist_mat_list[[target_cat_ix]]=compute_dist(norm_mat[,-target_cat_ix], dist_type);
+}
+
+dist_mat_list[["full"]]=full_dist_mat;
+
+###############################################################################
+
+hcl=hclust(full_dist_mat, method="ward.D2");
 
 print(hcl);
 
@@ -279,28 +379,44 @@ dendr=as.dendrogram(hcl);
 pdf(paste(output_fname_root, ".cl_inf.pdf", sep=""), height=8.5, width=14);
 plot(dendr);
 
+# Compute ISO and classical MDS
 nonparm_mds_res=matrix(0,nrow=num_samples,ncol=2);
 classic_mds_res=matrix(0,nrow=num_samples,ncol=2);
 
-imds_res=isoMDS(all_samp_dist_mat);
+imds_res=isoMDS(full_dist_mat);
 nonparm_mds_res[,1]=imds_res$points[,1]
 nonparm_mds_res[,2]=imds_res$points[,2]
-#plot(mds_res[,1], mds_res[,2]);
 
-classic_mds_res=cmdscale(all_samp_dist_mat);
-#plot(mds_res[,1], mds_res[,2]);
+classic_mds_res=cmdscale(full_dist_mat);
 
-# Output distance matrix
-#asFull=as.matrix(dist_mat);
-#print(asFull);
+mds_layout=matrix(c(
+	1,1,1,1,2,2,2,2,3), byrow=T, nrow=1, ncol=9);
 
+barplot_layout=matrix(c(
+	1,3,5,7,9,11,
+	1,3,5,7,9,11,
+	1,3,5,7,9,11,
+	2,4,6,8,10,12), byrow=T, nrow=4, ncol=6);
+
+# Begin pair-wise cluster analyses
 for(num_cl in 2:max_clusters){
 
 	cat("Cutting for ", num_cl, " clusters...\n", sep="");
 	memberships=cutree(hcl, k=num_cl);
-	plot(nonparm_mds_res, col=memberships, main=paste("Num Clusters: ", num_cl));
-	plot(classic_mds_res, col=memberships, main=paste("Num Clusters: ", num_cl));
+
+	# Generate MDS plots
+	par(oma=c(0,0,2,0));
+	par(mar=c(5.1,4.1,4.1,2.1));
+	layout(mds_layout);
+	plot(nonparm_mds_res, col=memberships, xlab="Dim 1", ylab="Dim 2", main="non-metric MDS");
+	plot(classic_mds_res, col=memberships, xlab="Dim 1", ylab="Dim 2", main="classical MDS");
+	plot(0, type="n", xlab="", ylab="", main="", bty="n", xaxt="n", yaxt="n", xlim=c(0,1), ylim=c(0,1));
+	legend(0,1, fill=1:num_cl, legend=c(as.character(1:num_cl)));
+	mtext(paste("Num Clusters: ", num_cl), side=3, outer=T);
 	
+
+	ratios_list=list();
+	log_ratios_ranges=numeric();
 	for(i in 1:num_cl){
 
 		members_i=names(memberships[memberships==i]);
@@ -315,7 +431,59 @@ for(num_cl in 2:max_clusters){
 
 			members_j=names(memberships[memberships==j]);
 			sub_mat=norm_mat[c(members_i, members_j),];
-			analyze_cluster_pairs(sub_mat, members_i, members_j, num_top_cat, dist_type);
+			results=analyze_cluster_pairs(sub_mat, members_i, members_j, num_top_cat, dist_mat_list);
+
+			lograt=log10(results$ratios[,"rsqrd"]);
+			ratios_list[[ paste(i, "#", j, sep="")]]=lograt;
+			log_ratios_ranges=range(log_ratios_ranges, range(lograt));
+
+		}
+
+	}
+
+	# Generate Plots
+	layout(barplot_layout);
+	par(oma=c(1,10,1,1));
+	first_plot=T;
+	for(i in 1:num_cl){
+		members_i=names(memberships[memberships==i]);
+		for(j in 1:num_cl){
+
+			if(i>=j){
+				next;
+			}
+		
+			if(first_plot){
+				plot_cat_names=short_cat_names[1:num_top_cat];
+			}else{
+				plot_cat_names=rep("",num_top_cat);
+			}
+
+
+			ratios=ratios_list[[ paste(i, "#", j, sep="")]];
+			
+			pos_contrib=rep("grey", num_top_cat);
+			pos_contrib[ratios<0]="red";
+
+			par(mar=c(5,1,1,1));
+			barplot(ratios, names.arg=plot_cat_names, 
+				las=2, horiz=T, xlab="", col=pos_contrib,
+				xlim=log_ratios_ranges
+			);
+			abline(v=0);
+
+			members_j=names(memberships[memberships==j]);
+
+			both_mem=c(members_i, members_j);
+
+			par(mar=c(4,1,0,1));
+			plot(classic_mds_res[both_mem,], col=memberships[both_mem], xaxt="n", yaxt="n", 
+				xlab="",
+				ylab="", main="");
+			x_plot_range=par()$usr;
+			axis(side=1, at=mean(x_plot_range[c(1,2)]), labels=sprintf("\n%i vs %i", i, j), tick=F)
+
+			first_plot=F;
 		}
 
 	}
