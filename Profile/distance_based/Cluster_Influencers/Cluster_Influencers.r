@@ -30,7 +30,7 @@ usage = paste(
 	"\n\nUsage:\n", script_name, "\n",
 	"	-i <input summary_table.tsv file>\n",
 	"	[-o <output file root name, default is input file base name>]\n",
-	"	[-d <euc/wrd/man/bray/horn/bin/gow/tyc, default =", DEF_DISTTYPE, ">]\n",
+	"	[-d <euc/wrd/man/bray/horn/bin/gow/tyc/minkp5/minkp3, default =", DEF_DISTTYPE, ">]\n",
 	"	[-p <num of top categories to probe, default =", DEF_NUM_TOP_CAT, " >\n",
 	"	[-k <num of clusters to split into, default =", DEF_NUM_CLUS, ">\n",
 	"	[-s <split char for long category names, default =", DEF_SPLIT_CHAR, "\n",
@@ -43,6 +43,10 @@ usage = paste(
 	"		a.) computer SSB w/ all categories\n",
 	"		b.) for each category, compute SSB w/o category of interest\n",
 	"		c.) Compute SSB[i]/SSB[all] for top p taxa.\n",
+	"\n",
+	"For the distance types:\n",
+	" minkp5 is the minkowski with p=.5, i.e. sum((x_i-y_i)^1/2)^2\n",
+	" minkp3 is the minkowski with p=.3, i.e. sum((x_i-y_i)^1/3)^3\n",
 	"\n");
 
 if(!length(opt$input_summary_table)){
@@ -193,6 +197,10 @@ compute_dist=function(norm_st, type){
 		dist_mat=vegdist(norm_st, method="gower");
 	}else if (type=="tyc"){
 		dist_mat=thetaYC(norm_st);
+	}else if (type=="minkp3"){
+		dist_mat=dist(norm_st, method="minkowski", p=1/3);
+	}else if (type=="minkp5"){
+		dist_mat=dist(norm_st, method="minkowski", p=1/2);
 	}
 
 	return(dist_mat);
@@ -473,7 +481,7 @@ for(num_cl in 2:max_clusters){
 			cat("Working on cluster[", i, "] vs cluster[", j, "]\n");
 
 			members_j=names(memberships[memberships==j]);
-			sub_mat=norm_mat[c(members_i, members_j),];
+			sub_mat=norm_mat[c(members_i, members_j),,drop=F];
 			results=analyze_cluster_pairs(sub_mat, members_i, members_j, num_top_cat, dist_mat_list);
 
 			lograt=log10(results$ratios[,"rsqrd"]);
@@ -520,6 +528,9 @@ for(num_cl in 2:max_clusters){
 			j_means=apply(norm_mat[members_j,1:num_top_cat], 2, mean);
 			greater_thans=(i_means > j_means);
 
+			greater_than_col=rep(j, num_top_cat);
+			greater_than_col[greater_thans]=i;
+
 			# Plot bars
 			# Extend the plot range so we have room to label the cluster with greater abundance
 			plot_range=numeric(2);
@@ -528,16 +539,19 @@ for(num_cl in 2:max_clusters){
 
 			par(mar=c(5,1,1,1));
 			barpos=barplot(ratios, names.arg=plot_cat_names, 
-				las=2, horiz=T, xlab="", col=pos_contrib,
+				las=2, horiz=T, xlab="", col=greater_than_col,
 				xlim=plot_range
 			);
+			abline(h=diff(barpos)/2+barpos[-num_top_cat], col="grey90");
 
 			# Label greater thans for categories that contribute to a greater R^2
 			for(cat in neg_ratios_ix){
 				if(greater_thans[cat]){
 					text(ratios[cat], barpos[cat], i, font=2, col=i, pos=2);
+					text(ratios[cat], barpos[cat], i, font=1, col="black", pos=2);
 				}else{
 					text(ratios[cat], barpos[cat], j, font=2, col=j, pos=2);
+					text(ratios[cat], barpos[cat], j, font=1, col="black", pos=2);
 				}
 			}
 
