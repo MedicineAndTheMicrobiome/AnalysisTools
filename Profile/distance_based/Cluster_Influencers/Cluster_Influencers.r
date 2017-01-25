@@ -7,6 +7,7 @@ cat("\n\n");
 library(MASS)
 library('getopt');
 library('vegan');
+library('plotrix');
 
 
 DEF_DISTTYPE="euc";
@@ -69,7 +70,7 @@ if(length(opt$dist_type)){
 	dist_type=opt$dist_type;
 }
 
-if(!any(dist_type == c("wrd","man","bray","horn","bin","gow","euc","tyc"))){
+if(!any(dist_type == c("wrd","man","bray","horn","bin","gow","euc","tyc","minkp3","minkp5"))){
 	cat("Error: Specified distance type: ", dist_type, " not recognized.\n");
 	quit(status=-1);
 }
@@ -436,6 +437,13 @@ barplots_per_page=6;
 
 label_scale=min(2,50/num_samples);
 
+# Compute necessary radii of grid lines based on range of MDS points
+mds_range=range(classic_mds_res);
+num_grid_lines=6;
+grid_lines=(1:num_grid_lines)*(mds_range[2]-mds_range[1])/((num_grid_lines-2)*2);
+cat("Grid Line radii:\n");
+print(grid_lines);
+
 # Begin pair-wise cluster analyses
 for(num_cl in 2:max_clusters){
 
@@ -459,7 +467,12 @@ for(num_cl in 2:max_clusters){
 	par(mar=c(5.1,4.1,4.1,2.1));
 	layout(mds_layout);
 	plot(nonparm_mds_res, col=memberships, xlab="Dim 1", ylab="Dim 2", main="non-metric MDS");
-	plot(classic_mds_res, col=memberships, xlab="Dim 1", ylab="Dim 2", main="classical MDS");
+	plot(classic_mds_res, type="n", col=memberships, xlab="Dim 1", ylab="Dim 2", main="classical MDS");
+	for(grid_radius in grid_lines){
+		draw.ellipse(0,0, a=grid_radius, b=grid_radius, border="grey90");
+	}
+	points(classic_mds_res, col=memberships);
+
 	par(mar=c(0,0,0,0));
 	plot(0, type="n", xlab="", ylab="", main="", bty="n", xaxt="n", yaxt="n", xlim=c(0,1), ylim=c(0,1));
 	legend(0,1, fill=1:num_cl, legend=c(as.character(1:num_cl)), bty="n", cex=2);
@@ -562,9 +575,11 @@ for(num_cl in 2:max_clusters){
 
 			# Plot thumbnail MDS
 			par(mar=c(3,1,0,1));
-			plot(classic_mds_res[both_mem,], col=memberships[both_mem], xaxt="n", yaxt="n", 
-				xlab="",
-				ylab="", main="");
+			plot(classic_mds_res[both_mem,], type="n", xaxt="n", yaxt="n", main="");
+			for(grid_radius in grid_lines){
+				draw.ellipse(0,0, a=grid_radius, b=grid_radius, border="grey90");
+			}
+			points(classic_mds_res[both_mem,], col=memberships[both_mem]);
 			x_plot_range=par()$usr;
 			axis(side=1, at=mean(x_plot_range[c(1,2)]), labels=sprintf("\n%i vs %i", i, j), tick=F)
 
