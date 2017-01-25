@@ -537,8 +537,8 @@ for(num_cl in 2:max_clusters){
 			pos_contrib[neg_ratios_ix]="red";
 
 			# Compute differences in abundance.
-			i_means=apply(norm_mat[members_i,1:num_top_cat], 2, mean);
-			j_means=apply(norm_mat[members_j,1:num_top_cat], 2, mean);
+			i_means=apply(norm_mat[members_i,1:num_top_cat, drop=F], 2, mean);
+			j_means=apply(norm_mat[members_j,1:num_top_cat, drop=F], 2, mean);
 			greater_thans=(i_means > j_means);
 
 			greater_than_col=rep(j, num_top_cat);
