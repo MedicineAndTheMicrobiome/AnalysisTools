@@ -460,7 +460,8 @@ for(num_cl in 2:max_clusters){
 	plot(tweaked_dendro);
 	ranges=par()$usr;
 	legend(ranges[1], ranges[4], fill=1:num_cl, legend=c(as.character(1:num_cl)), bty="n");
-	mtext(paste("Num Clusters: ", num_cl), side=3, outer=T);
+	mtext(paste("Distance Type: ", dist_type), side=3, line=1, outer=T);
+	mtext(paste("Num Clusters: ", num_cl), side=3, line=0, outer=T);
 
 	# Generate MDS plots
 	par(oma=c(0,0,2,0));
@@ -505,9 +506,9 @@ for(num_cl in 2:max_clusters){
 
 	}
 
-	# Generate Plots
+	# Generate R^2 Ratio Plots
 	layout(barplot_layout);
-	par(oma=c(.5,10,2,1));
+	par(oma=c(.5,10,3,1));
 	plot_count=0;
 	for(i in 1:num_cl){
 
@@ -585,13 +586,144 @@ for(num_cl in 2:max_clusters){
 
 			# Label number of clusters in the margins
 			if(!(plot_count %% barplots_per_page)){
-				mtext(paste("Num Clusters: ", num_cl), side=3, outer=T);
+				mtext(paste("Num Clusters: ", num_cl), side=3, line=1.5, outer=T);
+				mtext(paste("Cluster Differentiators:  Log10(R^2 Ratio) Plot"), side=3, line=0, outer=T);
 			}
 
 			plot_count=plot_count+1;
 
 		}
 
+	}
+
+	# Compute cluster unifiers
+	layout(barplot_layout);
+	par(oma=c(.5,10,3,1));
+
+	plot_count=0;
+	pairs_names=names(ratios_list);
+	for(i in 1:num_cl){
+
+		ratios_by_cluster=matrix(0, nrow=num_cl-1, ncol=num_top_cat)
+		greater_thans=matrix(F, nrow=num_cl-1, ncol=num_top_cat)
+
+		colnames(ratios_by_cluster)=short_cat_names[1:num_top_cat];	
+		colnames(greater_thans)=short_cat_names[1:num_top_cat];	
+
+		mem_j=numeric(num_cl-1);
+
+		ix=1;
+		
+		# Pull out the matching cluster comparisons
+		for(j in 1:num_cl){
+
+			if(i==j){
+				next;
+			}
+
+			combin_name=paste(i, "#", j, sep="");
+
+			if(any(combin_name==pairs_names)){
+				ratios=ratios_list[[combin_name]];
+			}else{
+				combin_name=paste(j, "#", i, sep="");
+				ratios=ratios_list[[combin_name]];
+			}
+
+			cat("Pulled: ", combin_name, "\n", sep="");
+			ratios_by_cluster[ix,]=ratios;
+
+			# Compute differences in abundance.
+			members_i=names(memberships[memberships==i]);
+			members_j=names(memberships[memberships==j]);
+
+			i_means=apply(norm_mat[members_i,1:num_top_cat, drop=F], 2, mean);
+			j_means=apply(norm_mat[members_j,1:num_top_cat, drop=F], 2, mean);
+			greater_thans[ix,]=(i_means > j_means);
+
+			mem_j[ix]=j;
+
+			ix=ix+1;
+
+		}
+
+		cat("Focusing on: ", i, "\n");
+
+		#cat("Greater thans:\n");
+		#print(greater_thans);
+		#cat("All Ratios:\n");
+		#print(ratios_by_cluster);
+
+		# Compute the mean ratios only cross the categories that have a greater abundance
+		cluster_unifiers_matrix=matrix(0, nrow=num_cl-1, ncol=num_top_cat, dimnames=list(1:(num_cl-1),short_cat_names[1:num_top_cat]));	
+
+		for(cl_ix in 1:(num_cl-1)){
+			for(cat_ix in 1:num_top_cat){
+				if(ratios_by_cluster[cl_ix, cat_ix]<0 && greater_thans[cl_ix, cat_ix]){
+					val=ratios_by_cluster[cl_ix, cat_ix];
+				}else{
+					val=NA;
+				}
+				cluster_unifiers_matrix[cl_ix, cat_ix]=val;
+			}
+		}
+
+		#cat("Unifiers Matrix:\n");
+		#print(cluster_unifiers_matrix);
+
+		mean_wo_na=function(x){
+			return(mean(x, na.rm=T));
+		}
+		mean_unifiers=apply(cluster_unifiers_matrix, 2, mean_wo_na);
+		#cat("Kept:");
+		#print(mean_unifiers);
+		
+		# Only plot the left most category labels
+		if(!(plot_count %% barplots_per_page)){
+			plot_cat_names=short_cat_names[1:num_top_cat];
+		}else{
+			plot_cat_names=rep("",num_top_cat);
+		}
+
+		par(mar=c(5,1,1,1));
+		barpos=barplot(mean_unifiers, names.arg=plot_cat_names, 
+			las=2, horiz=T, xlab="", col=i,
+			xlim=plot_range
+		);
+		for(cat_ix in 1:num_top_cat){
+			data_points=cluster_unifiers_matrix[, cat_ix];
+			for(dp_ix in 1:length(data_points)){
+				points(data_points[dp_ix], barpos[cat_ix], pch=23, bg=i, col="black");
+			}
+		}
+		midlines=diff(barpos)/2+barpos[-num_top_cat];
+		abline(h=midlines, col="grey90");
+
+		# Label the 0 point
+		abline(v=0);
+
+		# Plot thumbnail MDS
+		par(mar=c(3,1,0,1));
+		cols=rep("grey50", num_samples);
+		names(cols)=rownames(classic_mds_res);
+		cols[members_i]=i;
+		plot(classic_mds_res, type="n", xaxt="n", yaxt="n", main="");
+		for(grid_radius in grid_lines){
+			draw.ellipse(0,0, a=grid_radius, b=grid_radius, border="grey90");
+		}
+		points(classic_mds_res, col=cols);
+		x_plot_range=par()$usr;
+		axis(side=1, at=mean(x_plot_range[c(1,2)]), labels=paste("Cluster ", i, sep=""), tick=F)
+
+		# Label number of clusters in the margins
+		if(!(plot_count %% barplots_per_page)){
+			mtext(paste("Num Clusters: ", num_cl), side=3, line=1.5, outer=T);
+			mtext(paste("Cluster Unifiers:  Mean (Log10(R^2 Ratio) w/ Greater Abundances) Plot"), side=3, line=0, outer=T);
+		}
+
+		plot_count=plot_count+1;
+
+		
 	}
 	
 
