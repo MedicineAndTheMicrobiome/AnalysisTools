@@ -9,17 +9,21 @@ library('getopt');
 params=c(
 	"input_file", "i", 1, "character",
 	"offset_file", "t", 1, "character",
-	"output_file", "o", 2, "character"
+	"output_file", "o", 2, "character",
+	"diversity_type", "d", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
 script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
+
+DEF_DIVERSITY="tail";
 
 usage = paste(
 	"\nUsage:\n", script_name, "\n",
 	"	-i <input summary_table.tsv file>\n",
 	"	-t <offset file>\n",
 	"	[-o <output file root name>]\n",
+	"	[-d <diversity, default=", DEF_DIVERSITY, ".]\n",
 	"\n",
 	"	This script will read in the summary table\n",
 	"	and a file describing the time from the first\n",
@@ -32,6 +36,8 @@ usage = paste(
 	"\n",
 	"	<sample id> \\t <sample (individual) grouping id> \\t <time stamp> \\t <sample (cohort) group id>\\n",
 	"\n",
+	"	Diversity types include:\n",
+	"		shannon, tail, simpson, invsimpson\n",
 	"\n");
 
 if(!length(opt$input_file) || !length(opt$offset_file)){
@@ -41,6 +47,11 @@ if(!length(opt$input_file) || !length(opt$offset_file)){
 
 InputFileName=opt$input_file;
 OffsetFileName=opt$offset_file;
+
+DiversityType=DEF_DIVERSITY;
+if(length(opt$diversity_type)){
+	DiversityType=opt$diversity_type;
+}
 
 if(length(opt$output_file)>0){
 	OutputFileRoot=opt$output_file;
@@ -52,6 +63,8 @@ if(length(opt$output_file)>0){
 }
 
 ###############################################################################
+
+OutputFileRoot=paste(OutputFileRoot, ".", substr(DiversityType, 1, 4), sep="");
 
 OutputPDF = paste(OutputFileRoot, ".div_ts.pdf", sep="");
 cat("Output PDF file name: ", OutputPDF, "\n", sep="");
@@ -173,7 +186,7 @@ plot_dist=function(x, y, width=20, abundances){
 		
 }
 
-plot_sample_distributions_by_individual=function(diversity_arr, normalized_mat, offsets_mat, col_assign, category_colors, ind_colors){
+plot_sample_distributions_by_individual=function(diversity_arr, div_type, normalized_mat, offsets_mat, col_assign, category_colors, ind_colors){
 	sorted_sids=sort(rownames(offsets_mat));
 	offsets_mat=offsets_mat[sorted_sids,];
 
@@ -236,7 +249,7 @@ plot_sample_distributions_by_individual=function(diversity_arr, normalized_mat, 
 		# Plot Diversity
 		palette(ind_colors);
 		plot(offset_info[,"Offsets"], subset_diversity, main=groups[i],
-			 xlab="Time", ylab="Diversity", type="l", col=col_assign[groups[i]], lwd=2.5,
+			 xlab="Time", ylab=paste("Diversity (", div_type, ")", sep=""), type="l", col=col_assign[groups[i]], lwd=2.5,
 			 xlim=offset_ranges, ylim=diversity_ranges);
 
 		points(offset_info[c(1,1, num_members),"Offsets"], subset_diversity[c(1,1, num_members)], 
@@ -277,7 +290,7 @@ plot_sample_distributions_by_individual=function(diversity_arr, normalized_mat, 
 
 ###############################################################################
 
-plot_sample_diversity_by_group=function(diversity_arr, normalized_mat, offsets_mat, col_assign, ind_colors){
+plot_sample_diversity_by_group=function(diversity_arr, div_type, normalized_mat, offsets_mat, col_assign, ind_colors){
 	sorted_sids=sort(rownames(offsets_mat));
 	offsets_mat=offsets_mat[sorted_sids,];
 
@@ -309,7 +322,7 @@ plot_sample_diversity_by_group=function(diversity_arr, normalized_mat, offsets_m
 
 		cat("Plotting: ", cohorts[g], "\n");
 		plot(0, 0, main=cohorts[g],
-			 xlab="Time", ylab="Diversity", type="n", 
+			 xlab="Time", ylab=paste("Diversity (", div_type,")",sep=""), type="n", 
 			 xlim=offset_ranges, ylim=diversity_ranges);
 
 		coh_offset_mat=offsets_mat[ offsets_mat[,"Group ID"]==cohorts[g], ];
@@ -563,6 +576,17 @@ plot_change_scatter=function(diversity_arr, offset_mat){
 
 }
 
+tail_statistic=function(x){
+        sorted=sort(x, decreasing=TRUE);
+        norm=sorted/sum(x);
+        n=length(norm);
+        tail=0;
+        for(i in 1:n){
+                tail=tail + norm[i]*((i-1)^2);
+        }
+        return(sqrt(tail));
+}
+
 ###############################################################################
 ###############################################################################
 
@@ -597,7 +621,11 @@ num_indiv=length(indiv_ids);
 normalized_mat=normalize(counts_mat);
 #print(normalized_mat);
 
-diversity_arr=diversity(normalized_mat, "shannon");
+if(DiversityType=="tail"){
+	diversity_arr=apply(normalized_mat, 1, tail_statistic);
+}else{
+	diversity_arr=diversity(normalized_mat, DiversityType);
+}
 #print(diversity_arr);
 
 ###############################################################################
@@ -617,8 +645,8 @@ names(col_assign)=indiv_ids;
 ###############################################################################
 
 
-plot_sample_distributions_by_individual(diversity_arr, simplified_mat, offset_mat, col_assign, category_colors, ind_colors);
-plot_sample_diversity_by_group(diversity_arr, simplified_mat, offset_mat, col_assign, ind_colors);
+plot_sample_distributions_by_individual(diversity_arr, DiversityType, simplified_mat, offset_mat, col_assign, category_colors, ind_colors);
+plot_sample_diversity_by_group(diversity_arr, DiversityType, simplified_mat, offset_mat, col_assign, ind_colors);
 plot_sample_distributions_by_group(simplified_mat, offset_mat, category_colors);
 
 plot_change_scatter(diversity_arr, offset_mat);
