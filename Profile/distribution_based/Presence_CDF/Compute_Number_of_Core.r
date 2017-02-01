@@ -196,6 +196,7 @@ core_idx=which(prop_core_members>=(1-Alpha));
 
 cat("Significant Core Taxa: \n");
 print(taxa_names[core_idx]);
+sig_core=taxa_names[core_idx];
 cat("\n");
 
 # Compute observed core
@@ -238,6 +239,13 @@ fh=file(paste(OutputRoot, ".observed_core.tsv", sep=""), "w");
 obs_core_members=taxa_names[num_instance_core_rec$members];
 for(i in 1:num_obs_core){
         cat(file=fh, obs_core_members[i], "\n");
+}
+close(fh);
+
+# Significant Core Taxa
+fh=file(paste(OutputRoot, ".significant_core.tsv", sep=""), "w");
+for(i in 1:length(sig_core)){
+	cat(file=fh, sig_core[i], "\n", sep="");
 }
 close(fh);
 
