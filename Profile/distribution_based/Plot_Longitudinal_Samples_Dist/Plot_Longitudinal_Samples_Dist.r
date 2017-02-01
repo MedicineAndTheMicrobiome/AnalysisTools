@@ -421,7 +421,7 @@ plot_sample_distributions_by_group=function(normalized_mat, offsets_mat, cat_col
 		cat("\n");
 
 		par(mfrow=c(num_indivs,1));
-		par(oma=c(3,0,2,0));
+		par(oma=c(3,1,2,0));
 		par(mar=c(0.1, 4.1, 0.1, 2.1)); # bot, left, top, right
 
 		# Plot individual samples
@@ -476,6 +476,69 @@ plot_sample_distributions_by_group=function(normalized_mat, offsets_mat, cat_col
 
 ###############################################################################
 
+paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_is_hot=T){
+	num_row=nrow(mat);
+	num_col=ncol(mat);
+
+	cat("Num Rows: ", num_row, "\n");
+	cat("Num Cols: ", num_col, "\n");
+
+	mat=mat[rev(1:num_row),];
+
+	num_colors=50;
+	color_arr=rainbow(num_colors, start=0, end=4/6);
+	if(high_is_hot){
+		color_arr=rev(color_arr);
+	}
+	
+	remap=function(in_val, in_range, out_range){
+		in_prop=(in_val-in_range[1])/(in_range[2]-in_range[1])	
+		out_val=in_prop*(out_range[2]-out_range[1])+out_range[1];
+		return(out_val);
+	}
+
+	if(is.na(plot_min)){
+		plot_min=min(mat);	
+	}
+	if(is.na(plot_max)){
+		plot_max=max(mat);
+	}
+	cat("Plot min/max: ", plot_min, "/", plot_max, "\n");
+
+	par(oma=c(12,12,0,1));
+	par(mar=c(0, 0, 2, 0));
+	plot(0, type="n", xlim=c(0,num_col), ylim=c(0,num_row), xaxt="n", yaxt="n", bty="n", xlab="", ylab="", main=title);
+	
+	# x-axis
+	axis(side=1, at=seq(.5, num_col-.5, 1), labels=colnames(mat), las=2);
+	axis(side=2, at=seq(.5, num_row-.5, 1), labels=rownames(mat), las=2);
+
+	if(log_col){
+		plot_min=log10(plot_min+.0125);
+		plot_max=log10(plot_max+.0125);
+	}
+
+	for(x in 1:num_col){
+		for(y in 1:num_row){
+			
+			if(log_col){
+				col_val=log10(mat[y,x]+.0125);
+			}else{
+				col_val=mat[y,x];
+			}
+
+			remap_val=remap(col_val, c(plot_min, plot_max), c(1, num_colors));
+			col_ix=ceiling(remap_val);
+	
+			rect(x-1, y-1, (x-1)+1, (y-1)+1, border=NA, col=color_arr[col_ix]);
+			text(x-.5, y-.5, sprintf("%0.4f", mat[y,x]), srt=45);
+		}
+	}
+	
+}
+
+###############################################################################
+
 plot_change_scatter=function(diversity_arr, offset_mat){
 
 	cat("Plotting Change Scatter:\n");
@@ -506,11 +569,14 @@ plot_change_scatter=function(diversity_arr, offset_mat){
 		#print(ends);
 	}
 
-	end_ranges=range(ends);
+	end_ranges=range(ends);	
+	axis_ticks=round(seq(end_ranges[1], end_ranges[2], length.out=10), 3);
 
 	grp_col_transp=get_colors(num_trt, alpha=.2);
 	grp_col_opaque=get_colors(num_trt, alpha=1);
 
+
+	par(mar=c(5,6,3,2));
 	# Plot by treatment group
 	par(mfrow=c(num_trt+1, 1));
 	for(trt_ix in 1:num_trt){
@@ -521,12 +587,23 @@ plot_change_scatter=function(diversity_arr, offset_mat){
 		print(trt_ends);
 		plot(0,0, type="n",
 			main=trt,
-			xlab="Start", ylab="End",
-			xlim=end_ranges, ylim=end_ranges);
+			xlab="", ylab="",
+			xlim=end_ranges, ylim=end_ranges, 
+			xaxt="n", yaxt="n");
+		axis(side=1, at=axis_ticks, label=axis_ticks);
+		axis(side=2, at=axis_ticks, label=axis_ticks, las=2);
 		abline(a=0, b=1, col="grey", lwd=2);
+		title(xlab="Start", line=3);
+		title(ylab="End", line=4);
 
-		abline(h=median(trt_ends[,"end"]), col=grp_col_opaque[trt_ix]);
-		abline(v=median(trt_ends[,"start"]), col=grp_col_opaque[trt_ix]);
+		median_end=median(trt_ends[,"end"]);
+		median_start=median(trt_ends[,"start"]);
+
+		abline(h=median_end, col=grp_col_opaque[trt_ix]);
+		abline(v=median_start, col=grp_col_opaque[trt_ix]);
+
+		axis(side=3, at=median_start, label=round(median_start, 3), line=-1, tick=F, cex.axis=.75, col.axis=grp_col_opaque[trt_ix]);
+		axis(side=4, at=median_end, label=round(median_end, 3), line=-1, tick=F, cex.axis=.75, col.axis=grp_col_opaque[trt_ix]);
 
 		points(trt_ends, col=grp_col_transp[trt_ix], cex=2, pch=19);
 		points(trt_ends, col=grp_col_opaque[trt_ix], cex=.25, pch=19);
@@ -536,9 +613,15 @@ plot_change_scatter=function(diversity_arr, offset_mat){
 	# Plot groups in single plot
 	plot(0,0, type="n",
 		main="Combined",
-		xlab="Start", ylab="End",
-		xlim=end_ranges, ylim=end_ranges);
+		xlab="", ylab="",
+		xlim=end_ranges, ylim=end_ranges,
+		xaxt="n", yaxt="n");
 	abline(a=0, b=1, col="grey", lwd=2);
+	axis(side=1, at=axis_ticks, label=axis_ticks);
+	axis(side=2, at=axis_ticks, label=axis_ticks, las=2);
+	title(xlab="Start", line=3);
+	title(ylab="End", line=4);
+
 
 	all_ends_and_groups=list();
 	for(trt_ix in 1:num_trt){
@@ -549,8 +632,13 @@ plot_change_scatter=function(diversity_arr, offset_mat){
 		all_ends_and_groups[[paste(trt, ":start", sep="")]]=trt_ends[,"start"];
 		all_ends_and_groups[[paste(trt, ":end", sep="")]]=trt_ends[,"end"];
 
-		abline(h=median(trt_ends[,"end"]), col=grp_col_opaque[trt_ix]);
-		abline(v=median(trt_ends[,"start"]), col=grp_col_opaque[trt_ix]);
+		median_end=median(trt_ends[,"end"]);
+		median_start=median(trt_ends[,"start"]);
+
+		abline(h=median_end, col=grp_col_opaque[trt_ix]);
+		abline(v=median_start, col=grp_col_opaque[trt_ix]);
+		axis(side=3, at=median_start, label=round(median_start, 3), line=-1, tick=F, cex.axis=.75, col.axis=grp_col_opaque[trt_ix]);
+		axis(side=4, at=median_end, label=round(median_end, 3), line=-1, tick=F, cex.axis=.75, col.axis=grp_col_opaque[trt_ix]);
 
 		points(trt_ends, col=grp_col_transp[trt_ix], cex=2, pch=19);
 		points(trt_ends, col=grp_col_opaque[trt_ix], cex=.25, pch=19);
@@ -566,13 +654,20 @@ plot_change_scatter=function(diversity_arr, offset_mat){
 	}
 
 	pval_matrix=matrix(NA, nrow=num_trt*2, ncol=num_trt*2, dimnames=list(aeag_names, aeag_names));
+	diff_matrix=matrix(NA, nrow=num_trt*2, ncol=num_trt*2, dimnames=list(aeag_names, aeag_names));
 	for(aeag_idx_A in aeag_names){
 		for(aeag_idx_B in aeag_names){
 			res=wilcox.test(all_ends_and_groups[[aeag_idx_A]], all_ends_and_groups[[aeag_idx_B]]);
 			pval_matrix[aeag_idx_A, aeag_idx_B]=res$p.value;
+			diff_matrix[aeag_idx_A, aeag_idx_B]=(abs(diff(c(mean(c(all_ends_and_groups[[aeag_idx_A]])), mean(all_ends_and_groups[[aeag_idx_B]])))));
 		}
 	}
 	print(pval_matrix);
+	print(diff_matrix);
+
+	par(mfrow=c(1,1))
+	paint_matrix(pval_matrix, 0, 1, log_col=T, title="End Point Difference: p-values", high_is_hot=F);
+	paint_matrix(diff_matrix, log_col=F, title="End Point Differences: Effect Sizes", high_is_hot=T);
 
 }
 
