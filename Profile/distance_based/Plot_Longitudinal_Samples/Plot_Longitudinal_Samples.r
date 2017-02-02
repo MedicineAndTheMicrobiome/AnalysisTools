@@ -9,16 +9,20 @@ library('getopt');
 params=c(
 	"input_file", "i", 1, "character",
 	"offset_file", "t", 1, "character",
-	"output_file", "o", 2, "character"
+	"output_file", "o", 2, "character",
+	"distance_type", "d", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
 script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
 
+DEF_DIST="euclidean";
+
 usage = paste(
 	"\nUsage:\n", script_name, "\n",
 	"	-i <input summary_table.tsv file>\n",
 	"	-t <offset file>\n",
+	"	-d <distance type, def=", DEF_DIST, ">\n",
 	"	[-o <output file root name>]\n",
 	"\n",
 	"	This script will read in the summary table\n",
@@ -27,8 +31,10 @@ usage = paste(
 	"\n",
 	"	The format of the offset file is:\n",
 	"\n",
-	"	<sample id> \\t <sample grouping id> \\t <time stamp> \\n",
+	"	<sample id> \\t <sample grouping/individual id> \\t <time stamp> \\t <cohort (treat/group) id>\\n",
 	"\n",
+	"	Distance Types:\n",	
+	"		euclidean, manhattan, wrd, ...\n",
 	"\n");
 
 if(!length(opt$input_file) || !length(opt$offset_file)){
@@ -48,7 +54,18 @@ if(length(opt$output_file)>0){
 	cat("No output file root specified.  Using input file name as root.\n");
 }
 
+DistanceType=DEF_DIST;
+if(length(opt$distance_type)){
+	DistanceType=opt$distance_type;
+}
+
+if(DistanceType=="wrd"){
+	source("../../SummaryTableUtilities/WeightedRankDifference.r");
+}
+
 ###############################################################################
+
+OutputFileRoot=paste(OutputFileRoot, ".", substr(DistanceType, 1,3), sep="");
 
 OutputPDF = paste(OutputFileRoot, ".mds_ts.pdf", sep="");
 cat("Output PDF file name: ", OutputPDF, "\n", sep="");
@@ -204,7 +221,7 @@ plot_connected_figure=function(coordinates, offsets_mat, groups_per_plot=3, col_
 
 ###############################################################################
 
-plot_sample_distances=function(distmat, offsets_mat, col_assign, ind_colors, title=""){
+plot_sample_distances=function(distmat, offsets_mat, col_assign, ind_colors, title="", dist_type=""){
 	sorted_sids=sort(rownames(offsets_mat));
 	offsets_mat=offsets_mat[sorted_sids,];
 
@@ -246,7 +263,7 @@ plot_sample_distances=function(distmat, offsets_mat, col_assign, ind_colors, tit
 
 		# Plot colored lines
 		plot(offset_info[,"Offsets"], subset_dist, main=indiv_ids[i],
-			 xlab="Time", ylab="Distance", type="l", col=col_assign[indiv_ids[i]], lwd=2.5,
+			 xlab="Time", ylab=paste("Distance (", dist_type, ")", sep=""), type="l", col=col_assign[indiv_ids[i]], lwd=2.5,
 			 xlim=offset_ranges, ylim=dist_ranges);
 		# Plot ends
 		points(offset_info[c(1,1, num_samples),"Offsets"], subset_dist[c(1,1, num_samples)], 
@@ -260,7 +277,7 @@ plot_sample_distances=function(distmat, offsets_mat, col_assign, ind_colors, tit
 
 ###############################################################################
 
-plot_sample_dist_by_group=function(dist_mat, offsets_mat, col_assign, ind_colors){
+plot_sample_dist_by_group=function(dist_mat, offsets_mat, col_assign, ind_colors, dist_type=""){
 	
 	dist_mat=as.matrix(dist_mat);
 
@@ -291,13 +308,15 @@ plot_sample_dist_by_group=function(dist_mat, offsets_mat, col_assign, ind_colors
         # Set palette for individuals
         palette(ind_colors);
 
+	x_plot_range=c(offset_ranges[1], offset_ranges[2]+(diff(offset_ranges)/10));
+
         for(g in 1:num_cohorts){
 	
 		cat("--------------------------------------------------------------------\n");
                 cat("Plotting: ", as.character(cohorts[g]), "\n");
                 plot(0, 0, main=cohorts[g],
-                         xlab="Time", ylab="Distance", type="n",
-                         xlim=offset_ranges, ylim=dist_ranges);
+                         xlab="Time", ylab=paste("Distance (", dist_type, ")", sep=""), type="n",
+                         xlim=x_plot_range, ylim=dist_ranges);
 
                 coh_offset_mat=offsets_mat[ offsets_mat[,"Cohort ID"]==cohorts[g], ];
                 print(coh_offset_mat);
@@ -407,7 +426,12 @@ names(col_assign)=indiv_names;
 
 normalized_mat=normalize(counts_mat);
 #print(normalized_mat);
-dist_mat=vegdist(normalized_mat, method="euclidean");
+
+if(DistanceType=="wrd"){
+	dist_mat=weight_rank_dist_opt(normalized_mat, 2);
+}else{
+	dist_mat=vegdist(normalized_mat, method=DistanceType);
+}
 #dist_mat=dist(normalized_mat);
 #print(dist_mat);
 
@@ -425,12 +449,12 @@ mds2_coord=isomds$points;
 ###############################################################################
 
 
-plot_connected_figure(mds_coord, offset_mat, groups_per_plot=5, col_assign, ind_colors, title="Metric MDS");
-plot_connected_figure(mds2_coord, offset_mat, groups_per_plot=5, col_assign, ind_colors, title="IsoMetric MDS");
+plot_connected_figure(mds_coord, offset_mat, groups_per_plot=5, col_assign, ind_colors, title=paste("Metric MDS (", DistanceType,")", sep=""));
+plot_connected_figure(mds2_coord, offset_mat, groups_per_plot=5, col_assign, ind_colors, title=paste("IsoMetric MDS (", DistanceType, ")", sep=""));
 
-plot_sample_distances(dist_mat, offset_mat, col_assign, ind_colors);
+plot_sample_distances(dist_mat, offset_mat, col_assign, ind_colors, dist_type=DistanceType);
 
-plot_sample_dist_by_group(dist_mat, offset_mat, col_assign, ind_colors);
+plot_sample_dist_by_group(dist_mat, offset_mat, col_assign, ind_colors, dist_type=DistanceType);
 
 ##############################################################################
 
