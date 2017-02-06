@@ -397,7 +397,7 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
         }
         cat("Plot min/max: ", plot_min, "/", plot_max, "\n");
 
-        par(oma=c(12,12,0,1));
+        par(oma=c(12,12,6,6));
         par(mar=c(0, 0, 2, 0));
         plot(0, type="n", xlim=c(0,num_col), ylim=c(0,num_row), xaxt="n", yaxt="n", bty="n", xlab="", ylab="", main=title);
 
@@ -587,18 +587,43 @@ for(num_cl in 2:max_clusters){
 	
 	print(cont_tab);
 	print(cont_tab/num_shared_samples);
-	ft=fisher.test(cont_tab, workspace=200000*1000);
+	ft=fisher.test(cont_tab, workspace=200000*10000);
 	pvalues[i]=ft$p.value;
 
 	par(mfrow=c(1,1));
 	paint_matrix(cont_tab, title=paste("Contigency Table: p-value = ", pvalues[i], sep=""), plot_min=0, counts=T);
+	title(xlab="Cluster Number", ylab="Grouping");
+
+	group_sums=apply(cont_tab, 1, sum);
+	norm_tab=matrix(0, nrow=num_groups, ncol=num_cl, dimnames=list(groups, 1:num_cl));
+	for(grp_ix in 1:num_groups){
+		norm_tab[grp_ix,]=cont_tab[grp_ix,]/group_sums[grp_ix];	
+	}
+
+	paint_matrix(norm_tab, title="Normalized by Group Size", plot_min=0, counts=F);
+	title(xlab="Cluster Number", ylab="Grouping");
 
 	i=i+1;	
 	
 }
 
-par(oma=c(2,2,2,2));
-plot(2:max_clusters, pvalues, lty="b", xlab="Num Clusters", ylab="p-value");
+par(oma=c(2,2,1,1));
+par(mar=c(4,4,4,4));
+print(2:max_clusters);
+print(pvalues);
+
+log_pval=log(pvalues);
+min_pval_ix=which(min(log_pval)==log_pval);
+plot(cbind(2:max_clusters, log_pval), type="b", 
+	xaxt="n",
+	xlab="Num Clusters", ylab="Log10(p-value)", main="Log10(p-value) vs. Num Clusters");
+points(min_pval_ix+1, log_pval[min_pval_ix], pch="O", col="red", cex=1);
+points(min_pval_ix+1, log_pval[min_pval_ix], pch="O", col="red", cex=2);
+points(min_pval_ix+1, log_pval[min_pval_ix], pch="O", col="red", cex=3);
+
+axis(side=1, at=2:max_clusters, labels=2:max_clusters);
+
+
 
 
 ###############################################################################
