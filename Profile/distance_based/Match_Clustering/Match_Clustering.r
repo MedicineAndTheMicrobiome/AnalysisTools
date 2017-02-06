@@ -397,8 +397,8 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
         }
         cat("Plot min/max: ", plot_min, "/", plot_max, "\n");
 
-        par(oma=c(12,12,6,6));
-        par(mar=c(0, 0, 2, 0));
+        #par(oma=c(12,12,6,6));
+        par(mar=c(12, 12, 8, 6));
         plot(0, type="n", xlim=c(0,num_col), ylim=c(0,num_row), xaxt="n", yaxt="n", bty="n", xlab="", ylab="", main=title);
 
         # x-axis
@@ -560,22 +560,30 @@ for(num_cl in 2:max_clusters){
 
 	plot(tweaked_dendro, horiz=F);
 	ranges=par()$usr;
-	legend(ranges[1], ranges[4], fill=c(1:num_cl, group_color_palette) , legend=c(as.character(1:num_cl), groups), bty="n");
-	mtext(paste("Distance Type: ", dist_type), side=3, line=1, outer=T);
-	mtext(paste("Num Clusters: ", num_cl), side=3, line=0, outer=T);
+	legend(ranges[1], ranges[4], 
+		fill=c("white", 1:num_cl, "white", "white", group_color_palette), 
+		legend=c("Cluster IDs:", as.character(1:num_cl), "", "Groups:", groups), 
+		border=c("white", rep("black", num_cl), "white", "white", rep("black", num_groups)),
+		text.font=c(2, rep(1, num_cl), 1, 2, rep(1, num_groups)),
+		bty="n");
+	mtext(paste("Distance Type: ", dist_type), side=3, line=0, outer=T);
+	mtext(paste("Num Clusters: ", num_cl), side=3, line=1, outer=T);
 
 	# Generate MDS plots
-	par(oma=c(0,0,2,0));
+	par(oma=c(0,0,4,0));
 	par(mar=c(5.1,4.1,4.1,2.1));
 	layout(mds_layout);
 	plot(nonparm_mds_res, col=memberships, xlab="Dim 1", ylab="Dim 2", main="non-metric MDS");
 	plot(classic_mds_res, type="n", col=memberships, xlab="Dim 1", ylab="Dim 2", main="classical MDS");
 	points(classic_mds_res, col=memberships);
-
+	
+	# MDS Legend
 	par(mar=c(0,0,0,0));
 	plot(0, type="n", xlab="", ylab="", main="", bty="n", xaxt="n", yaxt="n", xlim=c(0,1), ylim=c(0,1));
 	legend(0,1, fill=1:num_cl, legend=c(as.character(1:num_cl)), bty="n", cex=2);
-	mtext(paste("Num Clusters: ", num_cl), side=3, outer=T);
+
+	mtext(paste("Distance Type: ", dist_type, sep=""), side=3, outer=T, line=0);
+	mtext(paste("Num Clusters: ", num_cl, sep=""), side=3, outer=T, line=1);
 
 	# Generate contigency table
 	cont_tab=matrix(0, nrow=num_groups, ncol=num_cl, dimnames=list(groups, 1:num_cl));
@@ -590,9 +598,12 @@ for(num_cl in 2:max_clusters){
 	ft=fisher.test(cont_tab, workspace=200000*10000);
 	pvalues[i]=ft$p.value;
 
+	par(oma=c(0,0,1,0));
 	par(mfrow=c(1,1));
-	paint_matrix(cont_tab, title=paste("Contigency Table: p-value = ", pvalues[i], sep=""), plot_min=0, counts=T);
+	paint_matrix(cont_tab, title=paste("Contingency Table: p-value = ", sprintf("%.3g", pvalues[i]), sep=""), plot_min=0, counts=T);
 	title(xlab="Cluster Number", ylab="Grouping");
+	mtext(paste("Distance Type: ", dist_type, sep=""), side=3, outer=T, 1);
+	mtext(paste("Num Clusters: ", num_cl, sep=""), side=3, outer=T, line=2);
 
 	group_sums=apply(cont_tab, 1, sum);
 	norm_tab=matrix(0, nrow=num_groups, ncol=num_cl, dimnames=list(groups, 1:num_cl));
@@ -600,8 +611,11 @@ for(num_cl in 2:max_clusters){
 		norm_tab[grp_ix,]=cont_tab[grp_ix,]/group_sums[grp_ix];	
 	}
 
+	par(oma=c(0,0,1,0));
 	paint_matrix(norm_tab, title="Normalized by Group Size", plot_min=0, counts=F);
 	title(xlab="Cluster Number", ylab="Grouping");
+	mtext(paste("Distance Type: ", dist_type, sep=""), side=3, outer=T, 1);
+	mtext(paste("Num Clusters: ", num_cl, sep=""), side=3, outer=T, line=2);
 
 	i=i+1;	
 	
@@ -614,12 +628,15 @@ print(pvalues);
 
 log_pval=log(pvalues);
 min_pval_ix=which(min(log_pval)==log_pval);
+par(oma=c(0,0,1,0));
 plot(cbind(2:max_clusters, log_pval), type="b", 
 	xaxt="n",
 	xlab="Num Clusters", ylab="Log10(p-value)", main="Log10(p-value) vs. Num Clusters");
-points(min_pval_ix+1, log_pval[min_pval_ix], pch="O", col="red", cex=1);
-points(min_pval_ix+1, log_pval[min_pval_ix], pch="O", col="red", cex=2);
-points(min_pval_ix+1, log_pval[min_pval_ix], pch="O", col="red", cex=3);
+points(min_pval_ix+1, log_pval[min_pval_ix], pch=1, col="red", cex=1, lwd=2);
+points(min_pval_ix+1, log_pval[min_pval_ix], pch=1, col="red", cex=2.5, lwd=2);
+points(min_pval_ix+1, log_pval[min_pval_ix], pch=1, col="red", cex=4, lwd=2);
+points(min_pval_ix+1, log_pval[min_pval_ix], pch=1, col="red", cex=5.5, lwd=2);
+mtext(paste("Distance Type: ", dist_type, sep=""), side=3, outer=T, 1);
 
 axis(side=1, at=2:max_clusters, labels=2:max_clusters);
 
