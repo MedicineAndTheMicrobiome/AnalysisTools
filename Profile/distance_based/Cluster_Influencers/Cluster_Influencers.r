@@ -11,7 +11,7 @@ library('plotrix');
 
 
 DEF_DISTTYPE="euc";
-DEF_NUM_TOP_CAT=10;
+DEF_NUM_TOP_CAT=35;
 DEF_NUM_CLUS=8;
 DEF_SPLIT_CHAR=";";
 
