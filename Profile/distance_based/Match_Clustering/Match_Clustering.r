@@ -375,7 +375,7 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
         cat("Num Rows: ", num_row, "\n");
         cat("Num Cols: ", num_col, "\n");
 
-        mat=mat[rev(1:num_row),];
+        mat=mat[rev(1:num_row),, drop=F];
 
         num_colors=50;
         color_arr=rainbow(num_colors, start=0, end=4/6);
@@ -397,8 +397,6 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
         }
         cat("Plot min/max: ", plot_min, "/", plot_max, "\n");
 
-        #par(oma=c(12,12,6,6));
-        par(mar=c(12, 12, 8, 6));
         plot(0, type="n", xlim=c(0,num_col), ylim=c(0,num_row), xaxt="n", yaxt="n", bty="n", xlab="", ylab="", main=title);
 
         # x-axis
@@ -429,7 +427,7 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 			}else{
 				text_lab=sprintf("%0.4f", mat[y,x]);
 			}
-			text(x-.5, y-.5, text_lab, srt=45);
+			text(x-.5, y-.5, text_lab, srt=45, cex=2, font=2);
                 }
         }
 
@@ -537,6 +535,13 @@ classic_mds_res=cmdscale(full_dist_mat);
 mds_layout=matrix(c(
 	1,1,1,1,2,2,2,2,3), byrow=T, nrow=1, ncol=9);
 
+cont_tab_layout=matrix(c(
+	1,1,1,1,1,2,
+	1,1,1,1,1,2,
+	1,1,1,1,1,2,
+	3,3,3,3,3,4),
+	byrow=T, nrow=4, ncol=6);
+
 denfun.label_scale=min(2,55/num_samples);
 denfun.label_col_map=group_colors;
 
@@ -598,20 +603,31 @@ for(num_cl in 2:max_clusters){
 	ft=fisher.test(cont_tab, workspace=200000*10000);
 	pvalues[i]=ft$p.value;
 
-	par(oma=c(0,0,1,0));
-	par(mfrow=c(1,1));
+	# Plot contigency table 
+	par(oma=c(0,0,5,0));
+	layout(cont_tab_layout);
+	par(mar=c(2,5,1,1));
 	paint_matrix(cont_tab, title=paste("Contingency Table: p-value = ", sprintf("%.3g", pvalues[i]), sep=""), plot_min=0, counts=T);
-	title(xlab="Cluster Number", ylab="Grouping");
+	title(ylab="Grouping");
+	par(mar=c(2,0,1,0));
+	paint_matrix(matrix(apply(cont_tab, 1, sum), ncol=1, dimnames=list(dimnames(cont_tab)[[1]],"total")), plot_min=0, counts=T);
+	par(mar=c(5,5,1,1));
+	paint_matrix(matrix(apply(cont_tab, 2, sum), nrow=1, dimnames=list("total",dimnames(cont_tab)[[2]])), plot_min=0, counts=T);
+	title(xlab="Cluster Number")
+
 	mtext(paste("Distance Type: ", dist_type, sep=""), side=3, outer=T, 1);
 	mtext(paste("Num Clusters: ", num_cl, sep=""), side=3, outer=T, line=2);
 
+	# Compute probabilities across each group
 	group_sums=apply(cont_tab, 1, sum);
 	norm_tab=matrix(0, nrow=num_groups, ncol=num_cl, dimnames=list(groups, 1:num_cl));
 	for(grp_ix in 1:num_groups){
 		norm_tab[grp_ix,]=cont_tab[grp_ix,]/group_sums[grp_ix];	
 	}
 
+	# Plot probabilities across each group
 	par(oma=c(0,0,1,0));
+	par(mfrow=c(1,1));
 	paint_matrix(norm_tab, title="Normalized by Group Size", plot_min=0, counts=F);
 	title(xlab="Cluster Number", ylab="Grouping");
 	mtext(paste("Distance Type: ", dist_type, sep=""), side=3, outer=T, 1);
