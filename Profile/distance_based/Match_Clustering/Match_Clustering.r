@@ -435,6 +435,22 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 
 ###############################################################################
 
+find_height_at_k=function(hclust, k){
+# Computes the height on the dendrogram for a particular k
+
+        heights=hclust$height;
+        num_heights=length(heights);
+        num_clust=numeric(num_heights);
+        for(i in 1:num_heights){
+                num_clust[i]=length(unique(cutree(hclust, h=heights[i])));
+        }
+        height_idx=which(num_clust==k);
+        midpoint=(heights[height_idx+1]+heights[height_idx])/2;
+        return(midpoint);
+}
+
+###############################################################################
+
 output_fname_root = paste(OutputFileRoot, ".", dist_type, sep="");
 cat("\n");
 cat("Input Summary Table Name: ", InputFileName, "\n", sep="");
@@ -513,6 +529,11 @@ full_dist_mat=compute_dist(norm_mat, dist_type);
 
 hcl=hclust(full_dist_mat, method="ward.D2");
 
+cut_midpoints=numeric(max_clusters);
+for(k in 2:max_clusters){
+	cut_midpoints[k]=find_height_at_k(hcl, k);
+}
+
 print(hcl);
 
 orig_dendr=as.dendrogram(hcl);
@@ -536,11 +557,19 @@ mds_layout=matrix(c(
 	1,1,1,1,2,2,2,2,3), byrow=T, nrow=1, ncol=9);
 
 cont_tab_layout=matrix(c(
-	1,1,1,1,1,2,
-	1,1,1,1,1,2,
-	1,1,1,1,1,2,
-	3,3,3,3,3,4),
-	byrow=T, nrow=4, ncol=6);
+	1,1,1,1,1,1,1,2,
+	1,1,1,1,1,1,1,2,
+	1,1,1,1,1,1,1,2,
+	3,3,3,3,3,3,3,4),
+	byrow=T, nrow=4, ncol=8);
+
+indiv_pval_layout=matrix(c(
+	1,1,1,1,1,1,
+	1,1,1,1,1,1,
+	1,1,1,1,1,1,
+	1,1,1,1,1,1,
+	2,2,2,2,2,2),
+	byrow=T, nrow=5, ncol=6);
 
 denfun.label_scale=min(2,55/num_samples);
 denfun.label_col_map=group_colors;
@@ -554,7 +583,7 @@ for(num_cl in 2:max_clusters){
 	memberships=cutree(hcl, k=num_cl);
 
 	# Plot Dendrogram
-	par(oma=c(0,0,2,0));
+	par(oma=c(0,0,5,0));
 	par(mar=c(5.1,4.1,4.1,2.1));
 	par(mfrow=c(1,1));
 	sample_to_color_map=as.list(memberships);
@@ -564,13 +593,14 @@ for(num_cl in 2:max_clusters){
 	tweaked_dendro=dendrapply(tweaked_dendro, color_leaves);
 
 	plot(tweaked_dendro, horiz=F);
+	abline(h=cut_midpoints[num_cl], col="red", lty=2);
 	ranges=par()$usr;
-	legend(ranges[1], ranges[4], 
+	legend(ranges[1]+(ranges[2]-ranges[1])/100, ranges[4], 
 		fill=c("white", 1:num_cl, "white", "white", group_color_palette), 
 		legend=c("Cluster IDs:", as.character(1:num_cl), "", "Groups:", groups), 
 		border=c("white", rep("black", num_cl), "white", "white", rep("black", num_groups)),
 		text.font=c(2, rep(1, num_cl), 1, 2, rep(1, num_groups)),
-		bty="n");
+		box.col="white", bg="white");
 	mtext(paste("Distance Type: ", dist_type), side=3, line=0, outer=T);
 	mtext(paste("Num Clusters: ", num_cl), side=3, line=1, outer=T);
 
@@ -587,8 +617,8 @@ for(num_cl in 2:max_clusters){
 	plot(0, type="n", xlab="", ylab="", main="", bty="n", xaxt="n", yaxt="n", xlim=c(0,1), ylim=c(0,1));
 	legend(0,1, fill=1:num_cl, legend=c(as.character(1:num_cl)), bty="n", cex=2);
 
-	mtext(paste("Distance Type: ", dist_type, sep=""), side=3, outer=T, line=0);
-	mtext(paste("Num Clusters: ", num_cl, sep=""), side=3, outer=T, line=1);
+	mtext(paste("Distance Type: ", dist_type, sep=""), side=3, outer=T, line=.5);
+	mtext(paste("Num Clusters: ", num_cl, sep=""), side=3, outer=T, line=2);
 
 	# Generate contigency table
 	cont_tab=matrix(0, nrow=num_groups, ncol=num_cl, dimnames=list(groups, 1:num_cl));
@@ -606,17 +636,28 @@ for(num_cl in 2:max_clusters){
 	# Plot contigency table 
 	par(oma=c(0,0,5,0));
 	layout(cont_tab_layout);
-	par(mar=c(2,5,1,1));
+	par(mar=c(2,15,1,1));
 	paint_matrix(cont_tab, title=paste("Contingency Table: p-value = ", sprintf("%.3g", pvalues[i]), sep=""), plot_min=0, counts=T);
 	title(ylab="Grouping");
-	par(mar=c(2,0,1,0));
+	par(mar=c(2,0,1,1));
 	paint_matrix(matrix(apply(cont_tab, 1, sum), ncol=1, dimnames=list(dimnames(cont_tab)[[1]],"total")), plot_min=0, counts=T);
-	par(mar=c(5,5,1,1));
+	par(mar=c(5,15,1,1));
 	paint_matrix(matrix(apply(cont_tab, 2, sum), nrow=1, dimnames=list("total",dimnames(cont_tab)[[2]])), plot_min=0, counts=T);
 	title(xlab="Cluster Number")
 
-	mtext(paste("Distance Type: ", dist_type, sep=""), side=3, outer=T, 1);
+	mtext(paste("Distance Type: ", dist_type, sep=""), side=3, outer=T, line=.5);
 	mtext(paste("Num Clusters: ", num_cl, sep=""), side=3, outer=T, line=2);
+
+	# Compute p-values for each cluster
+	cl_pval=matrix(0, nrow=1, ncol=num_cl, dimnames=list("p-values", 1:num_cl));
+	for(cl_ix in 1:num_cl){
+		# Extract 2x2 from complete contigency table to test single cluster
+		two_by_two=matrix(0, nrow=2, ncol=2);
+		two_by_two[,1]=cont_tab[,cl_ix];
+		two_by_two[,2]=apply(cont_tab[,-cl_ix, drop=F], 1, sum);
+		res=fisher.test(two_by_two);
+		cl_pval[1,cl_ix]=res$p.val;
+	}
 
 	# Compute probabilities across each group
 	group_sums=apply(cont_tab, 1, sum);
@@ -626,25 +667,25 @@ for(num_cl in 2:max_clusters){
 	}
 
 	# Plot probabilities across each group
-	par(oma=c(0,0,1,0));
-	par(mfrow=c(1,1));
+	par(oma=c(0,0,5,0));
+	par(mar=c(5,15,1,1));
+	layout(indiv_pval_layout);
 	paint_matrix(norm_tab, title="Normalized by Group Size", plot_min=0, counts=F);
-	title(xlab="Cluster Number", ylab="Grouping");
-	mtext(paste("Distance Type: ", dist_type, sep=""), side=3, outer=T, 1);
+	title(ylab="Grouping");
+	par(mar=c(5,15,1,1));
+	paint_matrix(cl_pval, plot_min=0, plot_max=1, counts=F, log_col=F, high_is_hot=F);
+	title(xlab="Cluster Number");
+	mtext(paste("Distance Type: ", dist_type, sep=""), side=3, outer=T, line=.5);
 	mtext(paste("Num Clusters: ", num_cl, sep=""), side=3, outer=T, line=2);
 
 	i=i+1;	
 	
 }
 
-par(oma=c(2,2,1,1));
-par(mar=c(4,4,4,4));
-print(2:max_clusters);
-print(pvalues);
-
 log_pval=log(pvalues);
 min_pval_ix=which(min(log_pval)==log_pval);
-par(oma=c(0,0,1,0));
+par(oma=c(0,0,4,0));
+par(mar=c(5,5,5,1));
 plot(cbind(2:max_clusters, log_pval), type="b", 
 	xaxt="n",
 	xlab="Num Clusters", ylab="Log10(p-value)", main="Log10(p-value) vs. Num Clusters");
@@ -652,7 +693,7 @@ points(min_pval_ix+1, log_pval[min_pval_ix], pch=1, col="red", cex=1, lwd=2);
 points(min_pval_ix+1, log_pval[min_pval_ix], pch=1, col="red", cex=2.5, lwd=2);
 points(min_pval_ix+1, log_pval[min_pval_ix], pch=1, col="red", cex=4, lwd=2);
 points(min_pval_ix+1, log_pval[min_pval_ix], pch=1, col="red", cex=5.5, lwd=2);
-mtext(paste("Distance Type: ", dist_type, sep=""), side=3, outer=T, 1);
+mtext(paste("Distance Type: ", dist_type, sep=""), side=3, outer=T, line=1);
 
 axis(side=1, at=2:max_clusters, labels=2:max_clusters);
 
