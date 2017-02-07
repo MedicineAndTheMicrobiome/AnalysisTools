@@ -652,7 +652,8 @@ for(num_cl in 2:max_clusters){
 
 	plot(tweaked_dendro, horiz=F);
 	for(cl_ix in 1:num_cl){
-		axis(side=1, outer=T, at=grp_mids[cl_ix], labels=cl_ix, cex.axis=3, col.ticks=cl_ix, 
+		lab_size=3/ceiling(log10(cl_ix+1));
+		axis(side=1, outer=T, at=grp_mids[cl_ix], labels=cl_ix, cex.axis=lab_size, col.ticks=cl_ix, 
 			lend=1, lwd=10, padj=1, line=-3);
 	}
 
