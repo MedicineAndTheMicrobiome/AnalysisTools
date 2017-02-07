@@ -560,21 +560,25 @@ full_dist_mat=compute_dist(norm_mat, dist_type);
 
 ###############################################################################
 
+# Generate hierarchical clustering
 hcl=hclust(full_dist_mat, method="ward.D2");
 
+# Find height where cuts are made
 cut_midpoints=numeric(max_clusters);
 for(k in 2:max_clusters){
 	cut_midpoints[k]=find_height_at_k(hcl, k);
 }
 
-print(hcl);
-
+# Convert to dendrogram
 orig_dendr=as.dendrogram(hcl);
 
+# Exactract names of leaves from left to right
 lf_names=get_clstrd_leaf_names(orig_dendr);
 
+# Open output PDF file
 pdf(paste(output_fname_root, ".cl_match.pdf", sep=""), height=8.5, width=14);
 
+# Assign cluster colors
 palette_col=c("red", "green", "blue", "cyan", "magenta", "orange", "gray", "pink", "black", "purple");
 palette(palette_col);
 
@@ -582,11 +586,16 @@ palette(palette_col);
 nonparm_mds_res=matrix(0,nrow=num_samples,ncol=2);
 classic_mds_res=matrix(0,nrow=num_samples,ncol=2);
 
+# -- ISO MDS
 imds_res=isoMDS(full_dist_mat);
 nonparm_mds_res[,1]=imds_res$points[,1]
 nonparm_mds_res[,2]=imds_res$points[,2]
 
+# -- Classical MDS
 classic_mds_res=cmdscale(full_dist_mat);
+
+###############################################################################
+# Define layout for multiple plot pages
 
 mds_layout=matrix(c(
 	1,1,1,1,2,2,2,2,3), byrow=T, nrow=1, ncol=9);
@@ -606,6 +615,7 @@ indiv_pval_layout=matrix(c(
 	2,2,2,2,2,2),
 	byrow=T, nrow=5, ncol=6);
 
+# Define static variables used by dendro call back functions
 denfun.label_scale=min(2,55/num_samples);
 denfun.label_col_map=group_colors;
 
@@ -614,8 +624,21 @@ pvalues=numeric(max_clusters-1);
 i=1;
 for(num_cl in 2:max_clusters){
 
+	# Cut tree at target number of clusters
 	cat("Cutting for ", num_cl, " clusters...\n", sep="");
 	memberships=cutree(hcl, k=num_cl);
+	grp_mids=get_middle_of_groups(lf_names, memberships);
+
+	# Reorder cluster assignments to match dendrogram left/right
+	plot_order=order(grp_mids);
+	mem_tmp=numeric(num_shared_samples);
+	for(gr_ix in 1:num_cl){
+		old_id=(memberships==plot_order[gr_ix]);
+		mem_tmp[old_id]=gr_ix;
+	}
+	names(mem_tmp)=names(memberships);
+	memberships=mem_tmp;
+	grp_mids=grp_mids[plot_order];
 
 	# Plot Dendrogram
 	par(oma=c(4,0,5,0));
@@ -628,7 +651,6 @@ for(num_cl in 2:max_clusters){
 	tweaked_dendro=dendrapply(tweaked_dendro, color_leaves);
 
 	plot(tweaked_dendro, horiz=F);
-	grp_mids=get_middle_of_groups(lf_names, memberships);
 	for(cl_ix in 1:num_cl){
 		axis(side=1, outer=T, at=grp_mids[cl_ix], labels=cl_ix, cex.axis=3, col.ticks=cl_ix, 
 			lend=1, lwd=10, padj=1, line=-3);
@@ -668,9 +690,11 @@ for(num_cl in 2:max_clusters){
 		cell_cont=cont_tab[grouping_map[sample_id], memberships[sample_id]];
 		cont_tab[grouping_map[sample_id], memberships[sample_id]]=cell_cont+1;
 	}
-	
+	cat("Contingency Table:\n");
 	print(cont_tab);
-	print(cont_tab/num_shared_samples);
+	
+	#-----------------------------------------------------------------------------
+	# Compute fisher exact for the ngrps x nclusters table
 	ft=fisher.test(cont_tab, workspace=200000*10000);
 	pvalues[i]=ft$p.value;
 
@@ -699,7 +723,8 @@ for(num_cl in 2:max_clusters){
 		res=fisher.test(two_by_two);
 		cl_pval[1,cl_ix]=res$p.val;
 	}
-
+	
+	#-----------------------------------------------------------------------------
 	# Compute probabilities across each group
 	group_sums=apply(cont_tab, 1, sum);
 	norm_tab=matrix(0, nrow=num_groups, ncol=num_cl, dimnames=list(groups, 1:num_cl));
@@ -723,14 +748,17 @@ for(num_cl in 2:max_clusters){
 	
 }
 
+# Generate p-value vs. cluster count plot
 log_pval=log(pvalues);
 min_pval_ix=which(min(log_pval)==log_pval);
+
 par(oma=c(0,0,4,0));
 par(mar=c(5,5,5,1));
-
 plot(cbind(2:max_clusters, log_pval), type="b", 
 	xaxt="n",
 	xlab="Num Clusters", ylab="Log10(p-value)", main="Log10(p-value) vs. Num Clusters");
+
+# Draw bulls eye for min pvalue
 points(min_pval_ix+1, log_pval[min_pval_ix], pch=1, col="red", cex=1, lwd=2);
 points(min_pval_ix+1, log_pval[min_pval_ix], pch=1, col="red", cex=2.5, lwd=2);
 points(min_pval_ix+1, log_pval[min_pval_ix], pch=1, col="red", cex=4, lwd=2);
@@ -738,9 +766,6 @@ points(min_pval_ix+1, log_pval[min_pval_ix], pch=1, col="red", cex=5.5, lwd=2);
 mtext(paste("Distance Type: ", dist_type, sep=""), side=3, outer=T, line=1);
 
 axis(side=1, at=2:max_clusters, labels=2:max_clusters);
-
-
-
 
 ###############################################################################
 
