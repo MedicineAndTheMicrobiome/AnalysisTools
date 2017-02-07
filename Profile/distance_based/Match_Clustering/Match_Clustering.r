@@ -579,7 +579,7 @@ lf_names=get_clstrd_leaf_names(orig_dendr);
 pdf(paste(output_fname_root, ".cl_match.pdf", sep=""), height=8.5, width=14);
 
 # Assign cluster colors
-palette_col=c("red", "green", "blue", "cyan", "magenta", "orange", "gray", "pink", "black", "purple");
+palette_col=c("red", "green", "blue", "cyan", "magenta", "orange", "gray", "pink", "black", "purple", "brown", "aquamarine");
 palette(palette_col);
 
 # Compute ISO and classical MDS
