@@ -449,6 +449,39 @@ find_height_at_k=function(hclust, k){
         return(midpoint);
 }
 
+get_clstrd_leaf_names=function(den){
+# Get a list of the leaf names, from left to right
+	den_info=attributes(den);
+	if(!is.null(den_info$leaf) && den_info$leaf==T){
+		return(den_info$label);
+	}else{
+		lf_names=character();
+		for(i in 1:2){
+			lf_names=c(lf_names, get_clstrd_leaf_names(den[[i]]));
+		}
+		return(lf_names);
+	}
+}
+
+get_middle_of_groups=function(clustered_leaf_names, group_asgn){
+# Finds middle of each group in the plot
+	num_leaves=length(group_asgn);
+	groups=sort(unique(group_asgn));	
+	num_groups=length(groups);
+
+	reord_grps=numeric(num_leaves);
+	names(reord_grps)=clustered_leaf_names;
+	reord_grps[clustered_leaf_names]=group_asgn[clustered_leaf_names];
+
+	mids=numeric(num_groups);
+	names(mids)=1:num_groups;
+	for(i in 1:num_groups){
+		mids[i]=mean(range(which(reord_grps==i)));
+	}
+	return(mids);
+
+}
+
 ###############################################################################
 
 output_fname_root = paste(OutputFileRoot, ".", dist_type, sep="");
@@ -538,6 +571,8 @@ print(hcl);
 
 orig_dendr=as.dendrogram(hcl);
 
+lf_names=get_clstrd_leaf_names(orig_dendr);
+
 pdf(paste(output_fname_root, ".cl_match.pdf", sep=""), height=8.5, width=14);
 
 palette_col=c("red", "green", "blue", "cyan", "magenta", "orange", "gray", "pink", "black", "purple");
@@ -583,7 +618,7 @@ for(num_cl in 2:max_clusters){
 	memberships=cutree(hcl, k=num_cl);
 
 	# Plot Dendrogram
-	par(oma=c(0,0,5,0));
+	par(oma=c(4,0,5,0));
 	par(mar=c(5.1,4.1,4.1,2.1));
 	par(mfrow=c(1,1));
 	sample_to_color_map=as.list(memberships);
@@ -593,6 +628,12 @@ for(num_cl in 2:max_clusters){
 	tweaked_dendro=dendrapply(tweaked_dendro, color_leaves);
 
 	plot(tweaked_dendro, horiz=F);
+	grp_mids=get_middle_of_groups(lf_names, memberships);
+	for(cl_ix in 1:num_cl){
+		axis(side=1, outer=T, at=grp_mids[cl_ix], labels=cl_ix, cex.axis=3, col.ticks=cl_ix, 
+			lend=1, lwd=10, padj=1, line=-3);
+	}
+
 	abline(h=cut_midpoints[num_cl], col="red", lty=2);
 	ranges=par()$usr;
 	legend(ranges[1]+(ranges[2]-ranges[1])/100, ranges[4], 
@@ -686,6 +727,7 @@ log_pval=log(pvalues);
 min_pval_ix=which(min(log_pval)==log_pval);
 par(oma=c(0,0,4,0));
 par(mar=c(5,5,5,1));
+
 plot(cbind(2:max_clusters, log_pval), type="b", 
 	xaxt="n",
 	xlab="Num Clusters", ylab="Log10(p-value)", main="Log10(p-value) vs. Num Clusters");
