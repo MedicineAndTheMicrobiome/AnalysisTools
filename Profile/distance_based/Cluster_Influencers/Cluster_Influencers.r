@@ -345,6 +345,55 @@ text_scale_denfun=function(n){
 
 ###############################################################################
 
+find_height_at_k=function(hclust, k){
+# Computes the height on the dendrogram for a particular k
+
+        heights=hclust$height;
+        num_heights=length(heights);
+        num_clust=numeric(num_heights);
+        for(i in 1:num_heights){
+                num_clust[i]=length(unique(cutree(hclust, h=heights[i])));
+        }
+        height_idx=which(num_clust==k);
+        midpoint=(heights[height_idx+1]+heights[height_idx])/2;
+        return(midpoint);
+}
+
+get_clstrd_leaf_names=function(den){
+# Get a list of the leaf names, from left to right
+        den_info=attributes(den);
+        if(!is.null(den_info$leaf) && den_info$leaf==T){
+                return(den_info$label);
+        }else{
+                lf_names=character();
+                for(i in 1:2){
+                        lf_names=c(lf_names, get_clstrd_leaf_names(den[[i]]));
+                }
+                return(lf_names);
+        }
+}
+
+get_middle_of_groups=function(clustered_leaf_names, group_asgn){
+# Finds middle of each group in the plot
+        num_leaves=length(group_asgn);
+        groups=sort(unique(group_asgn));
+        num_groups=length(groups);
+
+        reord_grps=numeric(num_leaves);
+        names(reord_grps)=clustered_leaf_names;
+        reord_grps[clustered_leaf_names]=group_asgn[clustered_leaf_names];
+
+        mids=numeric(num_groups);
+        names(mids)=1:num_groups;
+        for(i in 1:num_groups){
+                mids[i]=mean(range(which(reord_grps==i)));
+        }
+        return(mids);
+
+}
+
+###############################################################################
+
 output_fname_root = paste(OutputFileRoot, ".", dist_type, sep="");
 cat("\n");
 cat("Input Summary Table Name: ", InputFileName, "\n", sep="");
@@ -409,12 +458,19 @@ dist_mat_list[["full"]]=full_dist_mat;
 
 hcl=hclust(full_dist_mat, method="ward.D2");
 
-print(hcl);
+# Find height where cuts are made
+cut_midpoints=numeric(max_clusters);
+for(k in 2:max_clusters){
+        cut_midpoints[k]=find_height_at_k(hcl, k);
+}
 
 orig_dendr=as.dendrogram(hcl);
 
+# Exactract names of leaves from left to right
+lf_names=get_clstrd_leaf_names(orig_dendr);
+
 pdf(paste(output_fname_root, ".cl_inf.pdf", sep=""), height=8.5, width=14);
-palette_col=c("black", "red", "green", "blue", "cyan", "magenta", "orange", "gray");
+palette_col=c("red", "green", "blue", "cyan", "magenta", "orange", "gray", "pink", "black", "purple", "brown", "aquamarine");
 palette(palette_col);
 
 # Compute ISO and classical MDS
@@ -451,15 +507,35 @@ for(num_cl in 2:max_clusters){
 
 	cat("Cutting for ", num_cl, " clusters...\n", sep="");
 	memberships=cutree(hcl, k=num_cl);
+	grp_mids=get_middle_of_groups(lf_names, memberships);
+
+	# Reorder cluster assignments to match dendrogram left/right
+        plot_order=order(grp_mids);
+        mem_tmp=numeric(num_samples);
+        for(gr_ix in 1:num_cl){
+                old_id=(memberships==plot_order[gr_ix]);
+                mem_tmp[old_id]=gr_ix;
+        }
+        names(mem_tmp)=names(memberships);
+        memberships=mem_tmp;
+        grp_mids=grp_mids[plot_order];
 
 	# Plot Dendrogram
-	par(oma=c(0,0,2,0));
+	par(oma=c(5,0,2,0));
 	par(mar=c(5.1,4.1,4.1,2.1));
 	par(mfrow=c(1,1));
 	sample_to_color_map=as.list(memberships);
 	tweaked_dendro=dendrapply(orig_dendr, color_denfun_bySample);
 	tweaked_dendro=dendrapply(tweaked_dendro, text_scale_denfun);
 	plot(tweaked_dendro);
+	
+	for(cl_ix in 1:num_cl){
+                lab_size=3/ceiling(log10(cl_ix+1));
+                axis(side=1, outer=T, at=grp_mids[cl_ix], labels=cl_ix, cex.axis=lab_size, col.ticks=cl_ix,
+                        lend=1, lwd=10, padj=1, line=-3);
+        }
+        abline(h=cut_midpoints[num_cl], col="red", lty=2);
+
 	ranges=par()$usr;
 	legend(ranges[1], ranges[4], fill=1:num_cl, legend=c(as.character(1:num_cl)), bty="n");
 	mtext(paste("Distance Type: ", dist_type), side=3, line=1, outer=T);
