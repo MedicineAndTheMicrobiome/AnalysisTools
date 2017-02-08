@@ -279,6 +279,26 @@ compute_anova=function(dist_mat, members_a, members_b){
 
 }
 
+shannon_entropy=function(counts, num_bs=1000){
+	tot=sum(counts);
+	prob=counts/tot;
+
+	resamples=t(rmultinom(num_bs, tot, prob));
+
+	ent=function(cts){
+		cts=cts[cts>0];
+		tot=sum(cts);
+		pr=cts/tot;
+		return(-sum(pr*log2(pr)));
+	}
+
+	se_arr=apply(resamples, 1, ent);
+
+	ci=quantile(se_arr, c(.5, .025, .975));
+	return(ci);
+	
+}
+
 ###############################################################################
 
 analyze_cluster_pairs=function(st, members_a, members_b, num_cat_to_probe, dist_mat_list){
@@ -601,19 +621,19 @@ mds_layout=matrix(c(
 	1,1,1,1,2,2,2,2,3), byrow=T, nrow=1, ncol=9);
 
 cont_tab_layout=matrix(c(
-	1,1,1,1,1,1,1,2,
-	1,1,1,1,1,1,1,2,
-	1,1,1,1,1,1,1,2,
-	3,3,3,3,3,3,3,4),
-	byrow=T, nrow=4, ncol=8);
+	1,1,1,1,1,1,2,
+	1,1,1,1,1,1,2,
+	1,1,1,1,1,1,2,
+	3,3,3,3,3,3,4),
+	byrow=T, nrow=4, ncol=7);
 
 indiv_pval_layout=matrix(c(
-	1,1,1,1,1,1,
-	1,1,1,1,1,1,
-	1,1,1,1,1,1,
-	1,1,1,1,1,1,
-	2,2,2,2,2,2),
-	byrow=T, nrow=5, ncol=6);
+	1,1,1,1,1,1,2,
+	1,1,1,1,1,1,2,
+	1,1,1,1,1,1,2,
+	1,1,1,1,1,1,2,
+	3,3,3,3,3,3,4),
+	byrow=T, nrow=5, ncol=7);
 
 # Define static variables used by dendro call back functions
 denfun.label_scale=min(2,55/num_samples);
@@ -715,7 +735,7 @@ for(num_cl in 2:max_clusters){
 	mtext(paste("Num Clusters: ", num_cl, sep=""), side=3, outer=T, line=2);
 
 	# Compute p-values for each cluster
-	cl_pval=matrix(0, nrow=1, ncol=num_cl, dimnames=list("p-values", 1:num_cl));
+	cl_pval=matrix(0, nrow=1, ncol=num_cl, dimnames=list("Fisher Exact 2-way p-values", 1:num_cl));
 	for(cl_ix in 1:num_cl){
 		# Extract 2x2 from complete contigency table to test single cluster
 		two_by_two=matrix(0, nrow=2, ncol=2);
@@ -729,16 +749,23 @@ for(num_cl in 2:max_clusters){
 	# Compute probabilities across each group
 	group_sums=apply(cont_tab, 1, sum);
 	norm_tab=matrix(0, nrow=num_groups, ncol=num_cl, dimnames=list(groups, 1:num_cl));
+	shan_ent_mat=matrix(0, nrow=num_groups, ncol=3, dimnames=list(groups, c("Median", "95 LB", "95 UB")));
 	for(grp_ix in 1:num_groups){
 		norm_tab[grp_ix,]=cont_tab[grp_ix,]/group_sums[grp_ix];	
+		shan_ent_mat[grp_ix,]=shannon_entropy(cont_tab[grp_ix,]);
 	}
 
 	# Plot probabilities across each group
 	par(oma=c(0,0,5,0));
 	par(mar=c(5,15,1,1));
 	layout(indiv_pval_layout);
+
 	paint_matrix(norm_tab, title="Normalized by Group Size", plot_min=0, counts=F);
 	title(ylab="Grouping");
+
+	par(mar=c(5,0,1,1));
+	paint_matrix(shan_ent_mat, title="Shan. Ent.", counts=F);
+
 	par(mar=c(5,15,1,1));
 	paint_matrix(cl_pval, plot_min=0, plot_max=1, counts=F, log_col=F, high_is_hot=F);
 	title(xlab="Cluster Number");
