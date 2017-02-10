@@ -603,11 +603,12 @@ palette_col=c("red", "green", "blue", "cyan", "magenta", "orange", "gray", "pink
 palette(palette_col);
 
 # Compute ISO and classical MDS
-nonparm_mds_res=matrix(0,nrow=num_samples,ncol=2);
-classic_mds_res=matrix(0,nrow=num_samples,ncol=2);
+nonparm_mds_res=matrix(0,nrow=num_shared_samples,ncol=2);
+classic_mds_res=matrix(0,nrow=num_shared_samples,ncol=2);
 
 # -- ISO MDS
 imds_res=isoMDS(full_dist_mat);
+#print(imds_res$points);
 nonparm_mds_res[,1]=imds_res$points[,1]
 nonparm_mds_res[,2]=imds_res$points[,2]
 
@@ -636,7 +637,7 @@ indiv_pval_layout=matrix(c(
 	byrow=T, nrow=5, ncol=7);
 
 # Define static variables used by dendro call back functions
-denfun.label_scale=min(2,55/num_samples);
+denfun.label_scale=min(2,55/num_shared_samples);
 denfun.label_col_map=group_colors;
 
 # Begin per cluster count analyses
@@ -738,8 +739,8 @@ for(num_cl in 2:max_clusters){
 	cl_pval=matrix(0, nrow=1, ncol=num_cl, dimnames=list("Fisher Exact 2-way p-values", 1:num_cl));
 	for(cl_ix in 1:num_cl){
 		# Extract 2x2 from complete contigency table to test single cluster
-		two_by_two=matrix(0, nrow=2, ncol=2);
-		two_by_two[,1]=cont_tab[,cl_ix];
+		two_by_two=matrix(0, nrow=num_groups, ncol=2);
+		two_by_two[,1]=cont_tab[,cl_ix, drop=F];
 		two_by_two[,2]=apply(cont_tab[,-cl_ix, drop=F], 1, sum);
 		res=fisher.test(two_by_two);
 		cl_pval[1,cl_ix]=res$p.val;
