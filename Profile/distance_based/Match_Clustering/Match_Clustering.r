@@ -182,7 +182,7 @@ normalize=function(st){
 load_mapping=function(fn, target_col=1){
 	inmat=as.matrix(read.delim(fn, sep="\t", header=TRUE, row.names=1, check.names=F, comment.char="", quote=""));
 	map_val=inmat[,target_col, drop=F];
-	map_val=map_val[!is.na(map_val), drop=F];
+	map_val=map_val[!is.na(map_val),, drop=F];
 	return(map_val);
 }
 
@@ -722,7 +722,8 @@ for(num_cl in 2:max_clusters){
 	
 	#-----------------------------------------------------------------------------
 	# Compute fisher exact for the ngrps x nclusters table
-	ft=fisher.test(cont_tab, workspace=200000*10000);
+	#ft=fisher.test(cont_tab, workspace=200000*10000);
+	ft=fisher.test(cont_tab, simulate.p.value=T, B=20000*max_clusters)
 	pvalues[i]=ft$p.value;
 
 	# Plot contigency table 
@@ -747,7 +748,8 @@ for(num_cl in 2:max_clusters){
 		two_by_two=matrix(0, nrow=num_groups, ncol=2);
 		two_by_two[,1]=cont_tab[,cl_ix, drop=F];
 		two_by_two[,2]=apply(cont_tab[,-cl_ix, drop=F], 1, sum);
-		res=fisher.test(two_by_two);
+		#res=fisher.test(two_by_two);
+		res=fisher.test(two_by_two, simulate.p.value=T, B=20000*max_clusters);
 		cl_pval[1,cl_ix]=res$p.val;
 	}
 	
@@ -783,16 +785,24 @@ for(num_cl in 2:max_clusters){
 }
 
 # Generate p-value vs. cluster count plot
-log_pval=log(pvalues);
+log_pval=log10(pvalues);
 min_pval_ix=which(min(log_pval)==log_pval);
+
+pval_ticks=c(.1, .05, .025, .0125);
+log_pval_ticks=log10(pval_ticks);
+
+pval_range=range(c(log_pval, log_pval_ticks));
 
 par(oma=c(0,0,4,0));
 par(mar=c(5,5,5,1));
 plot(cbind(2:max_clusters, log_pval), type="b", 
+	ylim=pval_range,
 	xaxt="n",
 	xlab="Num Clusters", ylab="Log10(p-value)", main="Log10(p-value) vs. Num Clusters");
 
 # Draw bulls eye for min pvalue
+abline(h=log_pval_ticks, col="blue", lty=3);
+axis(side=4, at=log_pval_ticks, label=pval_ticks);
 points(min_pval_ix+1, log_pval[min_pval_ix], pch=1, col="red", cex=1, lwd=2);
 points(min_pval_ix+1, log_pval[min_pval_ix], pch=1, col="red", cex=2.5, lwd=2);
 points(min_pval_ix+1, log_pval[min_pval_ix], pch=1, col="red", cex=4, lwd=2);
