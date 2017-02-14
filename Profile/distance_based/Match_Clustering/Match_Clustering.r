@@ -181,7 +181,9 @@ normalize=function(st){
 
 load_mapping=function(fn, target_col=1){
 	inmat=as.matrix(read.delim(fn, sep="\t", header=TRUE, row.names=1, check.names=F, comment.char="", quote=""));
-	return(inmat[,target_col]);
+	map_val=inmat[,target_col, drop=F];
+	map_val=map_val[!is.na(map_val), drop=F];
+	return(map_val);
 }
 
 #------------------------------------------------------------------------------
@@ -529,7 +531,10 @@ num_samples=nrow(norm_mat);
 num_categories=ncol(norm_mat);
 
 # Group Information
-grouping_map=load_mapping(InputGroupingFile, GroupingColumn);
+grouping_info=load_mapping(InputGroupingFile, GroupingColumn);
+group_name=colnames(grouping_info);
+grouping_map=grouping_info[,1];
+cat("Group Name: ", group_name, "\n");
 print(grouping_map);
 num_group_samples=length(grouping_map);
 groups=sort(unique(grouping_map));
@@ -542,7 +547,7 @@ group_id=1:num_groups;
 names(group_id)=groups;
 cat("Group IDs:\n");
 print(group_id);
-group_color_palette=c("aquamarine", "coral", "cornflowerblue", "gold", "deeppink", "limegreen");
+group_color_palette=c("aquamarine", "coral", "cornflowerblue", "gold", "deeppink", "limegreen", "chocolate", "cornsilk4", "blueviolet");
 group_color_palette=group_color_palette[1:num_groups];
 group_colors=character(num_group_samples);
 
@@ -596,7 +601,7 @@ orig_dendr=as.dendrogram(hcl);
 lf_names=get_clstrd_leaf_names(orig_dendr);
 
 # Open output PDF file
-pdf(paste(output_fname_root, ".cl_match.pdf", sep=""), height=8.5, width=14);
+pdf(paste(output_fname_root, ".", group_name, ".cl_match.pdf", sep=""), height=8.5, width=14);
 
 # Assign cluster colors
 palette_col=c("red", "green", "blue", "cyan", "magenta", "orange", "gray", "pink", "black", "purple", "brown", "aquamarine");
@@ -723,12 +728,12 @@ for(num_cl in 2:max_clusters){
 	# Plot contigency table 
 	par(oma=c(0,0,5,0));
 	layout(cont_tab_layout);
-	par(mar=c(2,15,1,1));
+	par(mar=c(2,15,1,2));
 	paint_matrix(cont_tab, title=paste("Contingency Table: p-value = ", sprintf("%.3g", pvalues[i]), sep=""), plot_min=0, counts=T);
-	title(ylab="Grouping");
-	par(mar=c(2,0,1,1));
+	title(ylab=group_name, line=8, cex.lab=3);
+	par(mar=c(2,0,1,2));
 	paint_matrix(matrix(apply(cont_tab, 1, sum), ncol=1, dimnames=list(dimnames(cont_tab)[[1]],"total")), plot_min=0, counts=T);
-	par(mar=c(5,15,1,1));
+	par(mar=c(5,15,1,2));
 	paint_matrix(matrix(apply(cont_tab, 2, sum), nrow=1, dimnames=list("total",dimnames(cont_tab)[[2]])), plot_min=0, counts=T);
 	title(xlab="Cluster Number")
 
@@ -758,16 +763,16 @@ for(num_cl in 2:max_clusters){
 
 	# Plot probabilities across each group
 	par(oma=c(0,0,5,0));
-	par(mar=c(5,15,1,1));
+	par(mar=c(5,15,1,2));
 	layout(indiv_pval_layout);
 
 	paint_matrix(norm_tab, title="Normalized by Group Size", plot_min=0, counts=F);
-	title(ylab="Grouping");
+	title(ylab=group_name, line=8, cex.lab=3);
 
-	par(mar=c(5,0,1,1));
+	par(mar=c(5,0,1,2));
 	paint_matrix(shan_ent_mat, title="Shan. Ent.", counts=F);
 
-	par(mar=c(5,15,1,1));
+	par(mar=c(5,15,1,2));
 	paint_matrix(cl_pval, plot_min=0, plot_max=1, counts=F, log_col=F, high_is_hot=F);
 	title(xlab="Cluster Number");
 	mtext(paste("Distance Type: ", dist_type, sep=""), side=3, outer=T, line=.5);
