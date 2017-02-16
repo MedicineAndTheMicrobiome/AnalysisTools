@@ -474,25 +474,27 @@ execute_mothur_cmd(
 	"
 );
 # Makes
-#	IN.unique.good.filter.unique.precluster.pick.an.sabund
-#	IN.unique.good.filter.unique.precluster.pick.an.rabund
-#	IN.unique.good.filter.unique.precluster.pick.an.list
+#	IN.unique.good.filter.unique.precluster.pick.opti_mcc.steps
+#	IN.unique.good.filter.unique.precluster.pick.opti_mcc.list
+#	IN.unique.good.filter.unique.precluster.pick.opti_mcc.sensspec
+#	IN.unique.good.filter.unique.precluster.pick.opti_mcc.sabund
+#	IN.unique.good.filter.unique.precluster.pick.opti_mcc.rabund
 
 
 execute_mothur_cmd(
 	"make.shared",
-	"list=$in.unique.good.filter.unique.precluster.pick.an.list, 
+	"list=$in.unique.good.filter.unique.precluster.pick.opti_mcc.list, 
 	group=$group.good.pick.groups, 
 	label=0.03"
 );
 # Makes
-#	IN.unique.good.filter.unique.precluster.pick.an.<per groups>.rabund
-#	IN.unique.good.filter.unique.precluster.pick.an.shared
+#	IN.unique.good.filter.unique.precluster.pick.opti_mcc.<per groups>.rabund
+#	IN.unique.good.filter.unique.precluster.pick.opti_mcc.shared
 
 execute_mothur_cmd(
 	"classify.otu",
 	"taxonomy=$in.unique.good.filter.unique.precluster.pick.$reference_name.wang.taxonomy,
-	list=$in.unique.good.filter.unique.precluster.pick.an.list,
+	list=$in.unique.good.filter.unique.precluster.pick.opti_mcc.list,
 	name=$in.unique.good.filter.unique.precluster.pick.names,
 	group=$group.good.pick.groups,
 	label=0.03"
@@ -518,7 +520,7 @@ mkdir $st_dir;
 
 my $exec_string="
 	$OTU_TO_ST_BIN
-		-i $in.unique.good.filter.unique.precluster.pick.an.shared
+		-i $in.unique.good.filter.unique.precluster.pick.opti_mcc.shared
 		-o $st_dir/$out_root.otu
 ";
 exec_cmd($exec_string, "$st_dir/shared_to_summary_table");
@@ -550,4 +552,3 @@ log_time($date, $time, \@overall_begin_time, \@overall_end_time, "Completion", "
 ###############################################################################
 
 print STDERR "done.\n";
-
