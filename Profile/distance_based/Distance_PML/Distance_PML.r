@@ -8,12 +8,19 @@ library('getopt');
 options(useFancyQuotes=F);
 options(digits=5)
 
+DEF_COR_EFF_CUTOFF=0.5;
+DEF_COR_PVL_CUTOFF=0.05;
+DEF_MAX_INTERACT=10;
+
 params=c(
 	"distmat", "d", 1, "character",
 	"factors", "f", 1, "character",
 	"replaceNAs", "n", 2, "logical",
 	"model_formula", "m", 2, "character",
-	"outputroot", "o", 2, "character"
+	"outputroot", "o", 2, "character",
+	"cor_pval_cutoff", "c", 2, "numeric",
+	"cor_eff_cutoff", "e", 2, "numeric",
+	"num_max_interact", "i", 2, "numeric"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -27,9 +34,16 @@ usage = paste(
 	"	[-m \"model formula string\"]\n",
 	"	[-o <output filename root>]\n",
 	"\n",
+	"	[-c <correlation magnitude effect cutoff, default=", DEF_COR_EFF_CUTOFF, ">]\n",
+	"	[-e <correlation pvalue cutoff, default=", DEF_COR_PVL_CUTOFF, ">]\n",
+	"	[-i <maximum interactions terms to add, default=", DEF_MAX_INTERACT,">]\n",
+	"\n",
 	"This script will utilize Penalized Maximal Likelihood regresssion\n",
 	"in order to perform variable selection on a set of factors\n",
 	"with the response being a distance matrix.\n",
+	"\n",
+	"The interactions terms to include will be based on selecting factors in the order\n",
+	"of the pairs that are the least correlated to each other.\n",
 	"\n",
 	"Essentially, it is using LASSO to select variables PERMANOVA.\n",
 	"\n");
@@ -56,6 +70,21 @@ if(!length(opt$replaceNAs)){
 	RemoveSamples_wNA_Factors=F;
 }else{
 	RemoveSamples_wNA_Factors=T
+}
+
+CorPvalCutoff=DEF_COR_PVL_CUTOFF;
+if(length(opt$cor_pval_cutoff)){
+	CorPvalCutoff=opt$cor_pval_cutoff;
+}
+
+CorEffCutoff=DEF_COR_EFF_CUTOFF;
+if(length(opt$cor_eff_cutoff)){
+	CorEffCutoff=opt$cor_eff_cutoff;
+}
+
+NumMaxInteractions=DEF_MAX_INTERACT;
+if(length(opt$num_max_interact)){
+	NumMaxInteractions=opt$num_max_interact;
 }
 
 DistmatFname=opt$distmat;
@@ -243,6 +272,107 @@ check_factors=function(factor){
 
 }
 
+compute_correl=function(factors, pval_cutoff=0.05, abs_correl_cutoff=0.5){
+# This function will calculate the correlation and pvalue between all
+# factors and then recommend interaction terms 
+
+	num_factors=ncol(factors);
+	factor_names=colnames(factors);
+	pvalue_mat=matrix(1, nrow=num_factors, ncol=num_factors, dimnames=list(factor_names,factor_names));
+	correl_mat=matrix(0, nrow=num_factors, ncol=num_factors, dimnames=list(factor_names,factor_names));
+	corrltd_mat=matrix("", nrow=num_factors, ncol=num_factors, dimnames=list(factor_names,factor_names));
+
+	for(i in 1:num_factors){
+		for(j in 1:num_factors){
+			if(i<j){
+				# Remove NAs and then compute correl 
+				not_na_ix=!(is.na(factors[,i] | is.na(factors[,j])));
+				test_res=cor.test(factors[not_na_ix,i], factors[not_na_ix,j]);
+				correl_mat[i,j]=test_res$estimate;
+				pvalue_mat[i,j]=test_res$p.value;
+				is_cor=abs(test_res$estimate)>abs_correl_cutoff && test_res$p.value<=pval_cutoff;
+				corrltd_mat[i,j]=ifelse(is_cor, "X", ".");
+
+				# Copy over symmetric values
+				correl_mat[j,i]=correl_mat[i,j];
+				pvalue_mat[j,i]=pvalue_mat[i,j];
+				corrltd_mat[j,i]=corrltd_mat[i,j];
+			}
+		}
+	}	
+
+	results=list();
+	results$pval_cutoff=pval_cutoff;
+	results$correl_cutoff=abs_correl_cutoff;
+	results$corrltd_mat=corrltd_mat;
+	results$correl_mat=correl_mat;
+	results$pvalue_mat=pvalue_mat;
+
+	return(results);
+
+}
+
+add_interactions=function(factors, correl_results, max_interactions=10){
+	
+	# Convert correlations to magnitudes
+	asymmetric=abs(correl_results$correl_mat);
+
+	# Set the other side of the correlation to 1, so we don't count it
+	num_factors=ncol(asymmetric);
+	for(i in 1:num_factors){
+		for(j in 1:num_factors){
+			if(i<=j){
+				asymmetric[i,j]=1;
+			}
+		}
+	}
+	
+	print(asymmetric);
+
+	# Order the correlations from smallest to 1
+	correl_ord=order(as.vector(asymmetric));
+
+	# Convert 1D position to 2D correlation matrix position
+	to2D=function(x, side_len){
+		x=x-1;
+		return(c(x %% side_len, x %/% side_len)+1);
+	}	
+
+	# Compute max pos correl values
+	max_correl_val=num_factors*(num_factors-1)/2;
+	max_interactions=min(max_interactions, max_correl_val);
+
+	# Store new interaction values:
+	num_samples=nrow(factors);
+	interact_mat=matrix(0, ncol=max_interactions, nrow=num_samples);
+	rownames(interact_mat)=rownames(factors);
+
+	# Compute interactions
+	interact_names=character(max_interactions);
+	factor_names=colnames(factors);
+	least_correl_mat=correl_results$corrltd_mat;
+	for(i in 1:max_interactions){
+		#print(to2D(correl_ord[i], num_factors));
+		fact_ix=to2D(correl_ord[i], num_factors);
+		
+		a=fact_ix[1];
+		b=fact_ix[2];
+		interact_mat[,i]=factors[,a]*factors[,b];
+		interact_names[i]=paste(factor_names[a], "_x_", factor_names[b], sep="");
+		least_correl_mat[a,b]=i;
+		least_correl_mat[b,a]=i;
+
+	}
+	colnames(interact_mat)=interact_names;
+
+	results=list();
+	results$least_corrltd_mat=least_correl_mat;
+	results$interaction_mat=interact_mat;
+	
+	return(results);
+
+}
+
 ##############################################################################
 
 pdf(paste(OutputFnameRoot, ".pdf", sep=""), height=8.5, width=11);
@@ -332,16 +462,20 @@ intro_text=c(
 #plot_text(intro_text);
 
 ##############################################################################
+# Describe factors and recommend transfomrations
 
 check_res=check_factors(factors);
 
 #print(check_res);
 
 factor_file_desc_text=c(
+	"Normal Summary:",
 	capture.output(print(check_res$info[,c("Avg", "Stdev", "Min", "Max", "NormDist")])),
 	"",
+	"Non-Parametric Summary:",
 	capture.output(print(check_res$info[,c("Med", "LB95", "UB95", "PropNonNAs")])),
 	"",
+	"Inferred Data Types and Transformation Recommendation:",
 	capture.output(print(check_res$info[,c("Proportion", "Lognormal", "PropUnique", "RecTrans")]))
 );
 
@@ -352,6 +486,41 @@ plot_text(factor_file_desc_text);
 
 factors=cbind(factors, check_res$transf);
 #print(factors);
+
+##############################################################################
+# Compute correlation matrices even with NAs
+
+correl_res=compute_correl(factors, CorPvalCutoff, CorEffCutoff);
+plot_text(c(
+	"Significantly Correlated Factors:",
+	paste("P-value Cutoff: ", CorPvalCutoff, "  Effect Size Cutoff: ", CorEffCutoff, sep=""),
+	"",
+	capture.output(print(correl_res$corrltd_mat, quote=F))
+));
+
+##############################################################################
+# Insert interaction terms for those factors least correlated
+
+interactions_res=add_interactions(factors, correl_res, NumMaxInteractions);
+num_interaction_terms_added=ncol(interactions_res$interaction_mat);
+
+plot_text(c(
+	"Automatically Generate Interations:",
+	"(Based on pairs of factors with the least correlation.)",
+	"",
+	paste("Num of Terms Added: ", num_interaction_terms_added, sep=""),
+	"",
+	paste("    ", 1:num_interaction_terms_added, ".) ", colnames(interactions_res$interaction_mat), sep="")
+));
+
+plot_text(c(
+	"Least Correlated Factors Matrix:",
+	"(1 least correlated ... N most correlated)",
+	"",
+	capture.output(print(interactions_res$least_corrltd_mat, quote=F))
+));
+
+factors=cbind(factors, interactions_res$interaction_mat);
 
 ##############################################################################
 
@@ -368,13 +537,13 @@ fit=glmnet(x=factors_mod_matrix, y=distmat, family="mgaussian", standardize=T, a
 print(fit);
 
 # Plot of Coefficients vs. L1Norm(Coefficients)
-plot(fit, xvar="norm", label=TRUE, ylim=c(-.3,.3))
+plot(fit, xvar="norm", label=TRUE, ylim=c(-2,2))
 
 # Plot of Coefficients vs. penalty strength>
 #plot(fit, xvar="lambda", label=TRUE, ylim=c(-.3,.3))
 
 # Plot of Coefficients vs R^2?
-plot(fit, xvar="dev", label=TRUE, ylim=c(-.3,.3))
+plot(fit, xvar="dev", label=TRUE, ylim=c(-2,2))
 
 cvfit=cv.glmnet(x=factors_mod_matrix, y=distmat, family="mgaussian", standardize=T, alpha=1);
 print(cvfit)
