@@ -92,7 +92,7 @@ sub process_record{
 		$mapped++;
 	}
 
-	$defline=join / /, @defarr;
+	$defline=join " ", @defarr;
 
 	print OUT ">$defline\n";
 
