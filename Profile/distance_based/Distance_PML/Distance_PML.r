@@ -5,12 +5,18 @@
 library(MASS);
 library(glmnet);
 library('getopt');
+library(plotrix);
+library(doMC);
+
+registerDoMC(cores=8);
+
 options(useFancyQuotes=F);
 options(digits=5)
 
 DEF_COR_EFF_CUTOFF=0.5;
 DEF_COR_PVL_CUTOFF=0.05;
 DEF_MAX_INTERACT=10;
+DEF_ADD_TRANS=T;
 
 params=c(
 	"distmat", "d", 1, "character",
@@ -37,6 +43,7 @@ usage = paste(
 	"	[-c <correlation magnitude effect cutoff, default=", DEF_COR_EFF_CUTOFF, ">]\n",
 	"	[-e <correlation pvalue cutoff, default=", DEF_COR_PVL_CUTOFF, ">]\n",
 	"	[-i <maximum interactions terms to add, default=", DEF_MAX_INTERACT,">]\n",
+	"	[-t <don't add recommended transforms, default=", DEF_ADD_TRANS,">]\n",
 	"\n",
 	"This script will utilize Penalized Maximal Likelihood regresssion\n",
 	"in order to perform variable selection on a set of factors\n",
@@ -531,24 +538,151 @@ factors=cbind(factors, interactions_res$interaction_mat);
 # ||b||p is the l-normal penalty, it is a function of the coefficients
 
 factors_mod_matrix=as.matrix(factors);
+factor_names=colnames(factors_mod_matrix);
 print(factors_mod_matrix);
+num_xs=ncol(factors_mod_matrix);
 
+cat("Computing GLMNET Fit:\n");
 fit=glmnet(x=factors_mod_matrix, y=distmat, family="mgaussian", standardize=T, alpha=1);
 print(fit);
 
 # Plot of Coefficients vs. L1Norm(Coefficients)
-plot(fit, xvar="norm", label=TRUE, ylim=c(-2,2))
+par(mfrow=c(5,3));
+par(mar=c(0,1,0,1));
+plot(fit, xvar="norm", label=TRUE, ylim=c(-10,30))
 
 # Plot of Coefficients vs. penalty strength>
 #plot(fit, xvar="lambda", label=TRUE, ylim=c(-.3,.3))
 
 # Plot of Coefficients vs R^2?
-plot(fit, xvar="dev", label=TRUE, ylim=c(-2,2))
+#plot(fit, xvar="dev", label=TRUE, ylim=c(-2,2))
 
-cvfit=cv.glmnet(x=factors_mod_matrix, y=distmat, family="mgaussian", standardize=T, alpha=1);
-print(cvfit)
-plot(cvfit);
+cat("Running Cross Validation...\n");
+cvfit=cv.glmnet(x=factors_mod_matrix, y=distmat, family="mgaussian", standardize=T, alpha=1, parallel=T);
 
+cv_num_var=cvfit$nzero;
+cv_mean_cv_err=cvfit$cvm;
+
+coefficients=fit$beta;
+df=fit$df;
+lambdas=fit$lambda;
+
+y_idx_names=names(coefficients);
+cat("Response Names: ");
+print(y_idx_names);
+num_lambdas=fit$dim[2];
+
+# Compute median coefficient across samples at each Lambda for each x
+median_coeff=matrix(0, nrow=num_lambdas, ncol=num_xs);
+colnames(median_coeff)=factor_names;
+# rows =x's
+# col  =lambda's
+
+#print(coefficients);
+# The number of y's is the number of samples
+for(lamb_ix in 1:num_lambdas){
+	for(x_ix in 1:num_xs){
+	
+		# Accumulate coefficients across samples before calculating median
+		across_samp=numeric(num_samples);
+		for(y_ix in 1:num_samples){
+			across_samp[y_ix]=coefficients[[y_idx_names[y_ix]]][x_ix, lamb_ix];
+		}
+		median_coeff[lamb_ix, x_ix]=median(abs(across_samp));
+	}
+}
+
+plot_coefficients=function(coeff_mat, title){
+
+	num_lambdas=nrow(coeff_mat);
+	num_xs=ncol(coeff_mat);
+
+	coef_range=range(coeff_mat);
+	coef_span=diff(coef_range);
+	extra_buf=coef_span/10;
+
+	# Set up plot
+	plot(0, xlim=c(0, num_lambdas), ylim=c(coef_range[1]-extra_buf, coef_range[2]+extra_buf), type="n",
+		xaxt="n",
+		ylab="Coefficients of Standardized Predictors",
+		xlab="ML Penalty: Log10(Lambda)"
+	);
+
+	# Plot curves
+	for(x_ix in 1:num_xs){
+		points(median_coeff[,x_ix], col=x_ix, type="l");
+	} 
+
+	# Label lambda/DFs positions
+	x_axis_pos=floor(seq(1, num_lambdas, length.out=20));
+
+	axis(side=3, at=x_axis_pos, labels=df[x_axis_pos], cex.axis=.5);
+	axis(side=1, at=x_axis_pos, labels=round(log10(lambdas[x_axis_pos]),2), las=2, cex.axis=.5);
+	axis(side=4, at=median_coeff[num_lambdas, ], labels=factor_names, las=2, cex.axis=.5);
+	title(main="Number of Variables", cex.main=1, font.main=1, line=2)
+	title(main=title, cex.main=2, line=4)
+}
+
+par(mfrow=c(1,1));
+par(mar=c(5, 5, 7, 10));
+
+# Plot median coefficients across samples (y's) across all variables
+plot_coefficients(median_coeff, "Median Magnitude of Coefficients Across All Samples");
+
+# Plot median coefficients across samples (y's) across all variables zoomed
+lt10_df=df<10;
+plot_coefficients(median_coeff[lt10_df,], "Median Magnitude of Coefficients Across All Samples (DF < 10)");
+
+# Plot cross validation error vs num variables
+cv_num_lambdas=length(cvfit$lambda);
+cv_num_var=cvfit$nzero;
+cv_mean_err=cvfit$cvm;
+cv_min_err=min(cv_mean_err);
+cv_min_err_ix=which(cv_min_err==cv_mean_err);
+cv_min_err_num_var=cvfit$nzero[cv_min_err_ix];
+cv_min_err_lambda=cvfit$lambda[cv_min_err_ix];
+
+plot(cv_num_var, cv_mean_cv_err, main="Influence of Variable Inclusion on Prediction Error", xlab="Number of Variables Included", ylab="Mean CV Error");
+
+plotCI(log10(cvfit$lambda), cvfit$cvm, ui=cvfit$cvup, li=cvfit$cvlo, col="red", scol="grey",
+	pch=16, 
+	xlab="Log10(Lambda)",
+	ylab="Mean Cross-Validated Error"	
+);
+
+abline(h=cv_min_err, col="blue", lty=2);
+abline(v=log10(cv_min_err_lambda), col="blue", lty=2);
+x_axis_pos=floor(seq(1, cv_num_lambdas, length.out=20));
+axis(side=3, at=log10(cvfit$lambda[x_axis_pos]), labels=cvfit$nzero[x_axis_pos], cex.axis=.5);
+title(main="Number of Variables", cex.main=1, font.main=1, line=2)
+title(main="Influence of ML Penalty on Prediction Error ", cex.main=2, line=4)
+
+# Get Variables at min error
+all_min_error_coeff=numeric();
+for(samp_ix in 1:num_samples){
+	cv_min_err_coeff=cvfit$glmnet.fit$beta[[y_idx_names[samp_ix]]][,cv_min_err_ix];
+	all_min_error_coeff=rbind(all_min_error_coeff, cv_min_err_coeff);
+}
+rownames(all_min_error_coeff)=sample_names;
+print(all_min_error_coeff);
+
+non_zero_xs=apply(all_min_error_coeff, 2, function(x){ return(!all(x==0))});
+non_zero_coeff=all_min_error_coeff[,non_zero_xs, drop=F];
+num_nonzero_coeff=ncol(non_zero_coeff);
+print(num_nonzero_coeff);
+non_zero_x_names=colnames(non_zero_coeff);
+par(mfrow=c(3,3));
+for(x_ix in 1:num_nonzero_coeff){
+	hist(non_zero_coeff[,x_ix], xlim=c(-2, 2), main=non_zero_x_names[x_ix]);
+}
+
+
+
+# For each sample, plot coefficients
+
+# For each x, plot coefficients across all samples
+
+#
 
 ##############################################################################
 
