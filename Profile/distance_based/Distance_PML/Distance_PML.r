@@ -542,6 +542,11 @@ factor_names=colnames(factors_mod_matrix);
 print(factors_mod_matrix);
 num_xs=ncol(factors_mod_matrix);
 
+plot_text(c(
+	paste(num_xs, " predictors/factors/variables entering into LASSO:", sep=""),
+	paste("   ", 1:num_xs, ".) ", factor_names, sep="")
+));
+
 cat("Computing GLMNET Fit:\n");
 fit=glmnet(x=factors_mod_matrix, y=distmat, family="mgaussian", standardize=T, alpha=1);
 print(fit);
@@ -592,7 +597,7 @@ for(lamb_ix in 1:num_lambdas){
 	}
 }
 
-plot_coefficients=function(coeff_mat, title){
+plot_coefficients=function(coeff_mat, lambdas, mark_lambda_ix=NA, title=""){
 
 	num_lambdas=nrow(coeff_mat);
 	num_xs=ncol(coeff_mat);
@@ -605,12 +610,18 @@ plot_coefficients=function(coeff_mat, title){
 	plot(0, xlim=c(0, num_lambdas), ylim=c(coef_range[1]-extra_buf, coef_range[2]+extra_buf), type="n",
 		xaxt="n",
 		ylab="Coefficients of Standardized Predictors",
-		xlab="ML Penalty: Log10(Lambda)"
+		xlab="ML Penalty: Log10(Lambda)",
+		bty="c"
 	);
+
+	# Mark the best lambda value
+	if(!is.na(mark_lambda_ix)){
+		abline(v=mark_lambda_ix, lty=2, col="black");
+	}
 
 	# Plot curves
 	for(x_ix in 1:num_xs){
-		points(median_coeff[,x_ix], col=x_ix, type="l");
+		points(coeff_mat[,x_ix], col=x_ix, type="l");
 	} 
 
 	# Label lambda/DFs positions
@@ -618,20 +629,17 @@ plot_coefficients=function(coeff_mat, title){
 
 	axis(side=3, at=x_axis_pos, labels=df[x_axis_pos], cex.axis=.5);
 	axis(side=1, at=x_axis_pos, labels=round(log10(lambdas[x_axis_pos]),2), las=2, cex.axis=.5);
-	axis(side=4, at=median_coeff[num_lambdas, ], labels=factor_names, las=2, cex.axis=.5);
+	axis(side=4, at=coeff_mat[num_lambdas, ], labels=factor_names, las=2, cex.axis=.5, lwd=0, lwd.tick=1, line=-1);
 	title(main="Number of Variables", cex.main=1, font.main=1, line=2)
 	title(main=title, cex.main=2, line=4)
 }
 
 par(mfrow=c(1,1));
-par(mar=c(5, 5, 7, 10));
+par(mar=c(5, 5, 7, 8));
 
 # Plot median coefficients across samples (y's) across all variables
-plot_coefficients(median_coeff, "Median Magnitude of Coefficients Across All Samples");
+plot_coefficients(median_coeff, lambdas, title="Median Magnitude of Coefficients Across All Samples");
 
-# Plot median coefficients across samples (y's) across all variables zoomed
-lt10_df=df<10;
-plot_coefficients(median_coeff[lt10_df,], "Median Magnitude of Coefficients Across All Samples (DF < 10)");
 
 # Plot cross validation error vs num variables
 cv_num_lambdas=length(cvfit$lambda);
@@ -666,11 +674,36 @@ for(samp_ix in 1:num_samples){
 rownames(all_min_error_coeff)=sample_names;
 print(all_min_error_coeff);
 
+# Extract the predictor names based on the coefficients that were non zero
 non_zero_xs=apply(all_min_error_coeff, 2, function(x){ return(!all(x==0))});
 non_zero_coeff=all_min_error_coeff[,non_zero_xs, drop=F];
 num_nonzero_coeff=ncol(non_zero_coeff);
 print(num_nonzero_coeff);
 non_zero_x_names=colnames(non_zero_coeff);
+print(non_zero_x_names);
+
+# Output which coefficients were selected:
+plot_text(c(
+	"Top Selected Predictors Based on Mimimum Mean CV Error:",
+	paste("   ", 1:num_nonzero_coeff, ".)", non_zero_x_names, sep="")
+));
+
+
+# Plot median coefficients across samples (y's) across all variables zoomed
+zoom_ix=df <= (num_nonzero_coeff+1);
+plot_coefficients(
+	median_coeff[zoom_ix,], 
+	lambdas,
+	mark_lambda_ix=cv_min_err_ix,
+	title=paste("Median Magnitude of Coefficients Across All Samples (DF < ", num_nonzero_coeff, "+1 )", sep="")
+);
+
+
+
+
+
+
+
 par(mfrow=c(3,3));
 for(x_ix in 1:num_nonzero_coeff){
 	hist(non_zero_coeff[,x_ix], xlim=c(-2, 2), main=non_zero_x_names[x_ix]);
