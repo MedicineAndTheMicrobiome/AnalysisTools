@@ -382,6 +382,47 @@ add_interactions=function(factors, correl_results, max_interactions=10){
 
 ##############################################################################
 
+plot_coefficients=function(coeff_mat, lambdas, mark_lambda_ix=NA, title=""){
+# Rows Lambda values
+# Columns variables
+
+	num_lambdas=nrow(coeff_mat);
+	num_xs=ncol(coeff_mat);
+
+	coef_range=range(coeff_mat);
+	coef_span=diff(coef_range);
+	extra_buf=coef_span/10;
+
+	# Set up plot
+	plot(0, xlim=c(0, num_lambdas), ylim=c(coef_range[1]-extra_buf, coef_range[2]+extra_buf), type="n",
+		xaxt="n",
+		ylab="Coefficients of Standardized Predictors",
+		xlab="ML Penalty: Log10(Lambda)",
+		bty="c"
+	);
+
+	# Mark the best lambda value
+	if(!is.na(mark_lambda_ix)){
+		abline(v=mark_lambda_ix, lty=2, col="black");
+	}
+
+	# Plot curves
+	for(x_ix in 1:num_xs){
+		points(coeff_mat[,x_ix], col=x_ix, type="l");
+	} 
+
+	# Label lambda/DFs positions
+	x_axis_pos=floor(seq(1, num_lambdas, length.out=20));
+
+	axis(side=3, at=x_axis_pos, labels=df[x_axis_pos], cex.axis=.5);
+	axis(side=1, at=x_axis_pos, labels=round(log10(lambdas[x_axis_pos]),2), las=2, cex.axis=.5);
+	axis(side=4, at=coeff_mat[num_lambdas, ], labels=factor_names, las=2, cex.axis=.5, lwd=0, lwd.tick=1, line=-1);
+	title(main="Number of Variables", cex.main=1, font.main=1, line=2)
+	title(main=title, cex.main=2, line=4)
+}
+
+##############################################################################
+
 pdf(paste(OutputFnameRoot, ".pdf", sep=""), height=8.5, width=11);
 
 # Load distance matrix
@@ -451,7 +492,7 @@ for(i in 1:num_factors){
 
 ##############################################################################
 
-intro_text=c(
+plot_text(c(
 	"Distance Matrix Penalized Maximum Likelihood",
 	"",
 	paste("Distance Matrix Filename: ", DistmatFname, sep=""),
@@ -462,11 +503,11 @@ intro_text=c(
 	paste("Num Samples in Factor File: ", num_factor_orig_samples, sep=""),
 	paste("Num Shared/Common Samples: ", num_common_samples, sep=""),
 	"",
-	paste("Num Factors in Factor File: ", num_factors, sep="")
-
-);
-
-#plot_text(intro_text);
+	paste("Num Factors in Factor File: ", num_factors, sep=""),
+	"",
+	"Example of Sample IDs:",
+	paste("   ", capture.output(print(head(common_sample_names,n=20))))
+));
 
 ##############################################################################
 # Describe factors and recommend transfomrations
@@ -502,6 +543,8 @@ plot_text(c(
 	"Significantly Correlated Factors:",
 	paste("P-value Cutoff: ", CorPvalCutoff, "  Effect Size Cutoff: ", CorEffCutoff, sep=""),
 	"",
+	"(X's are significantly correlated)",
+	"",
 	capture.output(print(correl_res$corrltd_mat, quote=F))
 ));
 
@@ -512,7 +555,7 @@ interactions_res=add_interactions(factors, correl_res, NumMaxInteractions);
 num_interaction_terms_added=ncol(interactions_res$interaction_mat);
 
 plot_text(c(
-	"Automatically Generate Interations:",
+	"Automatically Generated Interactions:",
 	"(Based on pairs of factors with the least correlation.)",
 	"",
 	paste("Num of Terms Added: ", num_interaction_terms_added, sep=""),
@@ -523,6 +566,7 @@ plot_text(c(
 plot_text(c(
 	"Least Correlated Factors Matrix:",
 	"(1 least correlated ... N most correlated)",
+	paste("Maximimum number of interaction terms (user permitted) to add: ", NumMaxInteractions, sep=""),
 	"",
 	capture.output(print(interactions_res$least_corrltd_mat, quote=F))
 ));
@@ -543,48 +587,42 @@ print(factors_mod_matrix);
 num_xs=ncol(factors_mod_matrix);
 
 plot_text(c(
-	paste(num_xs, " predictors/factors/variables entering into LASSO:", sep=""),
+	paste("Total number of predictors/factors/variables entering into LASSO: ", num_xs, sep=""),
+	"",
 	paste("   ", 1:num_xs, ".) ", factor_names, sep="")
 ));
 
-cat("Computing GLMNET Fit:\n");
-fit=glmnet(x=factors_mod_matrix, y=distmat, family="mgaussian", standardize=T, alpha=1);
-print(fit);
+#cat("Computing GLMNET Fit:\n");
+#fit=glmnet(x=factors_mod_matrix, y=distmat, family="mgaussian", standardize=T, alpha=1);
 
-# Plot of Coefficients vs. L1Norm(Coefficients)
-par(mfrow=c(5,3));
-par(mar=c(0,1,0,1));
-plot(fit, xvar="norm", label=TRUE, ylim=c(-10,30))
-
-# Plot of Coefficients vs. penalty strength>
-#plot(fit, xvar="lambda", label=TRUE, ylim=c(-.3,.3))
-
-# Plot of Coefficients vs R^2?
-#plot(fit, xvar="dev", label=TRUE, ylim=c(-2,2))
-
+# Run cross validation compute
 cat("Running Cross Validation...\n");
 cvfit=cv.glmnet(x=factors_mod_matrix, y=distmat, family="mgaussian", standardize=T, alpha=1, parallel=T);
+cat("ok.\n");
 
+# Pull out commonly used part of results
 cv_num_var=cvfit$nzero;
 cv_mean_cv_err=cvfit$cvm;
+cv_num_lambdas=length(cvfit$lambda);
+cv_num_var=cvfit$nzero;
+cv_mean_err=cvfit$cvm;
+cv_min_err=min(cv_mean_err);
+cv_min_err_ix=which(cv_min_err==cv_mean_err);
+cv_min_err_num_var=cvfit$nzero[cv_min_err_ix];
+cv_min_err_lambda=cvfit$lambda[cv_min_err_ix];
 
-coefficients=fit$beta;
-df=fit$df;
-lambdas=fit$lambda;
+coefficients=cvfit$glmnet.fit$beta;
+df=cvfit$glmnet.fit$df;
+lambdas=cvfit$glmnet.fit$lambda;
 
 y_idx_names=names(coefficients);
-cat("Response Names: ");
+cat("Response Names: \n");
 print(y_idx_names);
-num_lambdas=fit$dim[2];
+num_lambdas=cvfit$glmnet.fit$dim[2];
 
 # Compute median coefficient across samples at each Lambda for each x
 median_coeff=matrix(0, nrow=num_lambdas, ncol=num_xs);
 colnames(median_coeff)=factor_names;
-# rows =x's
-# col  =lambda's
-
-#print(coefficients);
-# The number of y's is the number of samples
 for(lamb_ix in 1:num_lambdas){
 	for(x_ix in 1:num_xs){
 	
@@ -597,61 +635,19 @@ for(lamb_ix in 1:num_lambdas){
 	}
 }
 
-plot_coefficients=function(coeff_mat, lambdas, mark_lambda_ix=NA, title=""){
-
-	num_lambdas=nrow(coeff_mat);
-	num_xs=ncol(coeff_mat);
-
-	coef_range=range(coeff_mat);
-	coef_span=diff(coef_range);
-	extra_buf=coef_span/10;
-
-	# Set up plot
-	plot(0, xlim=c(0, num_lambdas), ylim=c(coef_range[1]-extra_buf, coef_range[2]+extra_buf), type="n",
-		xaxt="n",
-		ylab="Coefficients of Standardized Predictors",
-		xlab="ML Penalty: Log10(Lambda)",
-		bty="c"
-	);
-
-	# Mark the best lambda value
-	if(!is.na(mark_lambda_ix)){
-		abline(v=mark_lambda_ix, lty=2, col="black");
-	}
-
-	# Plot curves
-	for(x_ix in 1:num_xs){
-		points(coeff_mat[,x_ix], col=x_ix, type="l");
-	} 
-
-	# Label lambda/DFs positions
-	x_axis_pos=floor(seq(1, num_lambdas, length.out=20));
-
-	axis(side=3, at=x_axis_pos, labels=df[x_axis_pos], cex.axis=.5);
-	axis(side=1, at=x_axis_pos, labels=round(log10(lambdas[x_axis_pos]),2), las=2, cex.axis=.5);
-	axis(side=4, at=coeff_mat[num_lambdas, ], labels=factor_names, las=2, cex.axis=.5, lwd=0, lwd.tick=1, line=-1);
-	title(main="Number of Variables", cex.main=1, font.main=1, line=2)
-	title(main=title, cex.main=2, line=4)
-}
-
-par(mfrow=c(1,1));
 par(mar=c(5, 5, 7, 8));
 
 # Plot median coefficients across samples (y's) across all variables
 plot_coefficients(median_coeff, lambdas, title="Median Magnitude of Coefficients Across All Samples");
 
-
 # Plot cross validation error vs num variables
-cv_num_lambdas=length(cvfit$lambda);
-cv_num_var=cvfit$nzero;
-cv_mean_err=cvfit$cvm;
-cv_min_err=min(cv_mean_err);
-cv_min_err_ix=which(cv_min_err==cv_mean_err);
-cv_min_err_num_var=cvfit$nzero[cv_min_err_ix];
-cv_min_err_lambda=cvfit$lambda[cv_min_err_ix];
+plot(cv_num_var, cv_mean_cv_err, main="Influence of Variable Inclusion on Prediction Error", xlab="Number of Variables Included", ylab="Mean CV Error", xaxt="n");
+max_var=max(cv_num_var);
+axis(1, at=0:max_var, labels=0:max_var);
+abline(v=cv_num_var[cv_min_err_ix], col="blue", lty=2);
+abline(h=cv_mean_cv_err[cv_min_err_ix], col="blue", lty=2);
 
-plot(cv_num_var, cv_mean_cv_err, main="Influence of Variable Inclusion on Prediction Error", xlab="Number of Variables Included", ylab="Mean CV Error");
-
+# Plot valication error vs lambda
 plotCI(log10(cvfit$lambda), cvfit$cvm, ui=cvfit$cvup, li=cvfit$cvlo, col="red", scol="grey",
 	pch=16, 
 	xlab="Log10(Lambda)",
@@ -665,7 +661,7 @@ axis(side=3, at=log10(cvfit$lambda[x_axis_pos]), labels=cvfit$nzero[x_axis_pos],
 title(main="Number of Variables", cex.main=1, font.main=1, line=2)
 title(main="Influence of ML Penalty on Prediction Error ", cex.main=2, line=4)
 
-# Get Variables at min error
+# Get variables at min error
 all_min_error_coeff=numeric();
 for(samp_ix in 1:num_samples){
 	cv_min_err_coeff=cvfit$glmnet.fit$beta[[y_idx_names[samp_ix]]][,cv_min_err_ix];
@@ -682,14 +678,7 @@ print(num_nonzero_coeff);
 non_zero_x_names=colnames(non_zero_coeff);
 print(non_zero_x_names);
 
-# Output which coefficients were selected:
-plot_text(c(
-	"Top Selected Predictors Based on Mimimum Mean CV Error:",
-	paste("   ", 1:num_nonzero_coeff, ".)", non_zero_x_names, sep="")
-));
-
-
-# Plot median coefficients across samples (y's) across all variables zoomed
+# Plot median coefficients across samples (y's) across all variables, zoomed into the variables selected
 zoom_ix=df <= (num_nonzero_coeff+1);
 plot_coefficients(
 	median_coeff[zoom_ix,], 
@@ -698,24 +687,38 @@ plot_coefficients(
 	title=paste("Median Magnitude of Coefficients Across All Samples (DF < ", num_nonzero_coeff, "+1 )", sep="")
 );
 
+# List variables and coefficients, ordered by strength of selection
+xs_by_coeff_order_ix=order(median_coeff[cv_min_err_ix,], decreasing=T);
+std_coeff=t(median_coeff[cv_min_err_ix,xs_by_coeff_order_ix, drop=F]);
+std_coeff=std_coeff[1:num_nonzero_coeff,,drop=F];
+colnames(std_coeff)="Median(|Coef of Standzd Factors|)";
+plot_text(c(
+	"Median Abs(Coefficients) at Best Lambda/Minimum CV Error, Sorted By Greatest Contribution",
+	paste(num_nonzero_coeff, " of ", num_xs, " Predictors Kept (", round(num_nonzero_coeff/num_xs*100,2), "%)", sep=""),
+	"",
+	capture.output(print(std_coeff))
+));
 
+# Plot the amount of deviance explained
+deviances=cvfit$glmnet.fit$dev.ratio
+plot(log10(lambdas), deviances, 
+	ylim=c(0,1),
+	xlab="Log10(Lambda)", ylab="Proportion of Null Deviance Explained");
+axis(side=3, at=log10(cvfit$lambda[x_axis_pos]), labels=cvfit$nzero[x_axis_pos], cex.axis=.5);
+title(main="Number of Variables", cex.main=1, font.main=1, line=2)
+abline(v=log10(cv_min_err_lambda), col="blue", lty=2);
+title(main="Effect of Variable Inclusion on Explaining Deviance", cex.main=2, line=4)
 
-
-
-
-
-par(mfrow=c(3,3));
-for(x_ix in 1:num_nonzero_coeff){
-	hist(non_zero_coeff[,x_ix], xlim=c(-2, 2), main=non_zero_x_names[x_ix]);
+# Output new factor table
+out_factors=factors_mod_matrix[,non_zero_x_names];
+out_samp_ids=rownames(out_factors);
+fh=file(paste(OutputFnameRoot, ".kept_factors.tsv", sep=""), "w");
+cat(file=fh, paste(c("sample_id", colnames(out_factors)), collapse="\t"), "\n", sep="");
+for(i in 1:nrow(out_factors)){
+	cat(file=fh, out_samp_ids[i],"\t", paste(out_factors[i,], collapse="\t"), "\n", sep="");
 }
+close(fh);
 
-
-
-# For each sample, plot coefficients
-
-# For each x, plot coefficients across all samples
-
-#
 
 ##############################################################################
 
