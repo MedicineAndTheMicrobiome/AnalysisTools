@@ -17,11 +17,14 @@ DEF_COR_EFF_CUTOFF=0.5;
 DEF_COR_PVL_CUTOFF=0.05;
 DEF_MAX_INTERACT=10;
 DEF_ADD_TRANS=T;
+DEF_MIN_NONNA_PROP=.75;
 
 params=c(
 	"distmat", "d", 1, "character",
 	"factors", "f", 1, "character",
-	"replaceNAs", "n", 2, "logical",
+
+	"min_nonna_prop", "n", 2, "numeric",
+
 	"model_formula", "m", 2, "character",
 	"outputroot", "o", 2, "character",
 	"cor_pval_cutoff", "c", 2, "numeric",
@@ -36,14 +39,21 @@ usage = paste(
 	"\nUsage:\n", script_name, "\n",
 	"	-d <distance matrix>\n",
 	"	-f <factors>\n",
-	"	[-n (replace NAs with something)]\n",
+	"\n",
+	"	NA Handling:\n",
+	"	[-p <min nonNA proportion, default=", DEF_MIN_NONNA_PROP, ">]\n",
+	"	Note: if you allow NAs, they will be replaced with average across nonNA\n",
+	"\n",
 	"	[-m \"model formula string\"]\n",
 	"	[-o <output filename root>]\n",
 	"\n",
+	"	Automatic transformating adding:\n",
+	"	[-t <don't add recommended transforms, default=", DEF_ADD_TRANS,">]\n",
+	"\n",
+	"	Automatic interaction adding:\n",
 	"	[-c <correlation magnitude effect cutoff, default=", DEF_COR_EFF_CUTOFF, ">]\n",
 	"	[-e <correlation pvalue cutoff, default=", DEF_COR_PVL_CUTOFF, ">]\n",
 	"	[-i <maximum interactions terms to add, default=", DEF_MAX_INTERACT,">]\n",
-	"	[-t <don't add recommended transforms, default=", DEF_ADD_TRANS,">]\n",
 	"\n",
 	"This script will utilize Penalized Maximal Likelihood regresssion\n",
 	"in order to perform variable selection on a set of factors\n",
@@ -73,10 +83,10 @@ if(!length(opt$model_formula)){
 	ModelFormula=opt$model_formula;
 }
 
-if(!length(opt$replaceNAs)){
-	RemoveSamples_wNA_Factors=F;
+if(!length(opt$min_nonna_pro)){
+	MinNonNAProp=DEF_MIN_NONNA_PROP;
 }else{
-	RemoveSamples_wNA_Factors=T
+	MinNonNAProp=opt$min_nonna_pro;
 }
 
 CorPvalCutoff=DEF_COR_PVL_CUTOFF;
@@ -100,7 +110,7 @@ FactorsFname=opt$factors;
 cat("Distance Matrix Filename: ", DistmatFname, "\n", sep="");
 cat("Factors Filename: ", FactorsFname, "\n", sep="");
 cat("Output Filename Root: ", OutputFnameRoot, "\n", sep="");
-cat("Remove Samples with NAs in Factors: ", RemoveSamples_wNA_Factors, "\n", sep=""); 
+cat("Minimum Non-NA Proportion: ", MinNonNAProp, "\n", sep="");
 cat("\n");
 
 if(ModelFormula!=""){
@@ -159,19 +169,44 @@ plot_text=function(strings){
 
 ##############################################################################
 
-remove_samples_wNA=function(factors){
+process_factor_NAs=function(factors, min_non_NA_prop=.95){
 	num_factors=ncol(factors);
 	num_samples=nrow(factors);
-	
-	keepers=numeric();
-	for(i in 1:num_samples){
-		if(!any(is.na(factors[i,]))){
-			keepers=c(keepers, i);
+
+	keep=rep(F, num_factors);
+	factor_names=colnames(factors);
+	cat("Processing factors for NAs...\n");
+	for(fact_ix in 1:num_factors){
+		vals=factors[,fact_ix];
+		na_ix=is.na(vals);	
+		numNAs=sum(na_ix);
+		propNA=1-numNAs/num_samples;
+		if(propNA>=min_non_NA_prop){
+			keep[fact_ix]=TRUE;
+			if(numNAs>0){
+				cat(factor_names[fact_ix], ": \n\t", sep="");
+				non_nas_val=vals[!na_ix];
+				num_unique=length(unique(non_nas_val));
+		
+				if(is.numeric(vals) && num_unique>2){
+					# If values appear to be continuous
+					med_val=median(non_nas_val);
+					factors[na_ix, fact_ix]=med_val;
+					cat(numNAs, " NA values replaced with: ", med_val, "\n", sep="");
+				}else{
+					# If values appear to be categorical
+					resampled=sample(non_nas_val, numNAs, replace=TRUE);
+					factors[na_ix, fact_ix]=resampled;
+					cat(numNAs, " NA values replaced from: ", paste(head(resampled), collapse=", "), "\n", sep="");
+				}
+			}
 		}
 	}
-	num_keepers=length(keepers);
-	cat("Kept ", num_keepers, " of ", num_samples, " samples.\n");
-	return(factors[keepers,, drop=F]);
+
+	num_kept=sum(keep);
+	cat(num_kept, "/", num_factors, " Factors Kept.\n\n", sep="");
+
+	return(factors[, keep]);
 }
 
 check_factors=function(factor){
@@ -197,6 +232,10 @@ check_factors=function(factor){
 
 	for(i in 1:num_factors){
 		cur_fact=factor[,i, drop=F];
+
+		if(!is.numeric(cur_fact)){
+			next;
+		}
 
 		# Find NAs
 		blank_ix=(cur_fact=="");
@@ -285,13 +324,15 @@ compute_correl=function(factors, pval_cutoff=0.05, abs_correl_cutoff=0.5){
 
 	num_factors=ncol(factors);
 	factor_names=colnames(factors);
-	pvalue_mat=matrix(1, nrow=num_factors, ncol=num_factors, dimnames=list(factor_names,factor_names));
-	correl_mat=matrix(0, nrow=num_factors, ncol=num_factors, dimnames=list(factor_names,factor_names));
+	pvalue_mat=matrix(NA, nrow=num_factors, ncol=num_factors, dimnames=list(factor_names,factor_names));
+	correl_mat=matrix(NA, nrow=num_factors, ncol=num_factors, dimnames=list(factor_names,factor_names));
 	corrltd_mat=matrix("", nrow=num_factors, ncol=num_factors, dimnames=list(factor_names,factor_names));
 
 	for(i in 1:num_factors){
+
 		for(j in 1:num_factors){
 			if(i<j){
+
 				# Remove NAs and then compute correl 
 				not_na_ix=!(is.na(factors[,i] | is.na(factors[,j])));
 				test_res=cor.test(factors[not_na_ix,i], factors[not_na_ix,j]);
@@ -380,6 +421,55 @@ add_interactions=function(factors, correl_results, max_interactions=10){
 
 }
 
+recode_non_numeric_factors=function(factors){
+	num_factors=ncol(factors);
+	num_samples=nrow(factors);
+	fact_names=colnames(factors);
+		
+	out_factors=numeric();
+	for(i in 1:num_factors){
+
+		fact_val=factors[,i];
+		nonNAix=!is.na(fact_val);
+
+		if(!is.numeric(fact_val)){
+			
+			cat("Recoding: ", fact_names[i], "\n", sep="");
+
+			unique_types=sort(unique(fact_val[nonNAix]));
+			num_unique=length(unique_types);
+
+			if(num_unique==1){
+				cat("No information, all available types are the same.\n");
+				next;
+			}else if(num_unique==0){
+				cat("No information, no available types that are not NA.\n");
+				next;
+			}
+
+			cat("Unique types:\n");
+			print(unique_types);
+
+			recoded_mat=numeric();
+			# Put reference and type in new variable name
+			for(type_ix in 2:num_unique){
+				recoded_mat=cbind(recoded_mat, unique_types[type_ix]==fact_val);	
+			}
+			new_label=paste(fact_names[i], "_ref", unique_types[1], "_is", unique_types[2:num_unique], sep="");
+			colnames(recoded_mat)=new_label;
+
+			out_factors=cbind(out_factors, recoded_mat);
+
+		}else{
+			out_factors=cbind(out_factors, factors[,i, drop=F]);
+		}
+	}
+
+	print(head(out_factors));
+	
+	return(out_factors);
+}
+
 ##############################################################################
 
 plot_coefficients=function(coeff_mat, lambdas, mark_lambda_ix=NA, title=""){
@@ -455,10 +545,6 @@ if(ModelFormula!=""){
 	model_var=factor_names;
 }
 
-if(RemoveSamples_wNA_Factors){
-	factors=remove_samples_wNA(factors);
-}
-
 factor_sample_names=rownames(factors);
 num_factor_samples=length(factor_sample_names);
 
@@ -483,12 +569,29 @@ sample_names=colnames(distmat);
 cat("Num Samples used: ", num_samples, "\n\n");
 
 factors=factors[common_sample_names, , drop=F];
+
+cat("Recoding Non-Numeric Factors...\n");
+factors=recode_non_numeric_factors(factors);
+
+head(factors);
+
+quit();
+
 for(i in 1:num_factors){
 	categories=unique(unique(factors[,i]));
-	cat("'", factor_names[i], "' has ", length(categories), " categories.\n", sep="");
-	cat("\t", paste(categories, collapse=", "), sep="");
+	num_cat= length(categories);
+	numNAs=sum(is.na(factors[,i]));
+	percNA=round(numNAs/num_samples*100, 2);
+	cat("'", factor_names[i], "' has ", num_cat, " unique values, ", numNAs, " (", percNA, "%) NAs\n", sep="");
+	cat("\t", paste(head(categories, n=10), collapse=", "), sep="");
+	if(num_cat>10){
+		cat("...");
+	}
 	cat("\n");
 }
+
+factors=process_factor_NAs(factors, MinNonNAProp);
+
 
 ##############################################################################
 
