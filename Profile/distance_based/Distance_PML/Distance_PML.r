@@ -360,6 +360,8 @@ compute_correl=function(factors, pval_cutoff=0.05, abs_correl_cutoff=0.5){
 
 }
 
+#------------------------------------------------------------------------------
+
 add_interactions=function(factors, correl_results, max_interactions=10){
 	
 	# Convert correlations to magnitudes
@@ -421,12 +423,14 @@ add_interactions=function(factors, correl_results, max_interactions=10){
 
 }
 
+#------------------------------------------------------------------------------
+
 recode_non_numeric_factors=function(factors){
 	num_factors=ncol(factors);
 	num_samples=nrow(factors);
 	fact_names=colnames(factors);
 		
-	out_factors=numeric();
+	out_factors=matrix(nrow=num_samples, ncol=0);
 	for(i in 1:num_factors){
 
 		fact_val=factors[,i];
@@ -434,7 +438,7 @@ recode_non_numeric_factors=function(factors){
 
 		if(!is.numeric(fact_val)){
 			
-			cat("Recoding: ", fact_names[i], "\n", sep="");
+			cat(fact_names[i], ": Recoding.\n", sep="");
 
 			unique_types=sort(unique(fact_val[nonNAix]));
 			num_unique=length(unique_types);
@@ -461,6 +465,7 @@ recode_non_numeric_factors=function(factors){
 			out_factors=cbind(out_factors, recoded_mat);
 
 		}else{
+			cat(fact_names[i], ": Leaving as is.\n", sep="");
 			out_factors=cbind(out_factors, factors[,i, drop=F]);
 		}
 	}
@@ -570,12 +575,10 @@ cat("Num Samples used: ", num_samples, "\n\n");
 
 factors=factors[common_sample_names, , drop=F];
 
+##############################################################################
+
 cat("Recoding Non-Numeric Factors...\n");
 factors=recode_non_numeric_factors(factors);
-
-head(factors);
-
-quit();
 
 for(i in 1:num_factors){
 	categories=unique(unique(factors[,i]));
@@ -590,8 +593,8 @@ for(i in 1:num_factors){
 	cat("\n");
 }
 
+cat("Processing NAs in factors...\n");
 factors=process_factor_NAs(factors, MinNonNAProp);
-
 
 ##############################################################################
 
