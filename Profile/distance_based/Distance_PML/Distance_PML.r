@@ -144,27 +144,41 @@ load_factors=function(fname){
 
 ##############################################################################
 
-plot_text=function(strings){
-	orig_par=par(no.readonly=T);
+plot_text=function(strings, max_lines=50){
 
-        par(mfrow=c(1,1));
-        par(family="Courier");
-        par(oma=rep(.5,4));
-        par(mar=rep(0,4));
+	plot_page=function(strings){
+		orig_par=par(no.readonly=T);
 
-        num_lines=length(strings);
+		par(mfrow=c(1,1));
+		par(family="Courier");
+		par(oma=rep(.5,4));
+		par(mar=rep(0,4));
 
-        top=max(as.integer(num_lines), 40);
+		num_lines=length(strings);
 
-        plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
-                xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
-                );
-        for(i in 1:num_lines){
-                #cat(strings[i], "\n", sep="");
-                text(0, top-i, strings[i], pos=4, cex=.8);
-        }
+		top=max(as.integer(num_lines), 40);
 
-	par(orig_par);
+		plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
+			xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
+			);
+		for(i in 1:num_lines){
+			#cat(strings[i], "\n", sep="");
+			text(0, top-i, strings[i], pos=4, cex=.8);
+		}
+
+		par(orig_par);
+	}
+
+	num_lines=length(strings);
+	num_pages=ceiling(num_lines / max_lines);
+	#cat("Num Pages: ", num_pages, "\n");
+	for(page_ix in 1:num_pages){
+		start=(page_ix-1)*max_lines+1;
+		end=start+max_lines-1;
+		end=min(end, num_lines);
+		##print(c(start,end));
+		plot_page(strings[start:end]);
+	}
 }
 
 ##############################################################################
@@ -232,10 +246,9 @@ check_factors=function(factor){
 
 	for(i in 1:num_factors){
 		cur_fact=factor[,i, drop=F];
-
-		if(!is.numeric(cur_fact)){
-			next;
-		}
+		#if(!is.numeric(cur_fact)){
+		#	next;
+		#}
 
 		# Find NAs
 		blank_ix=(cur_fact=="");
@@ -258,8 +271,15 @@ check_factors=function(factor){
 		factor_info[i, "Max"]=qs[5];
 
 		# Test for normality
-		st=shapiro.test(cur_fact);
-		if(st$p.value>.05){
+		tryCatch({
+			st=shapiro.test(cur_fact);
+			pval=st$p.value;
+		}, error=function(err){
+			print(err);				
+			pval=0;
+		});
+
+		if(pval>.05){
 			factor_info[i, "NormDist"]=TRUE;
 		}
 
@@ -267,8 +287,15 @@ check_factors=function(factor){
 		if(!factor_info[i, "NormDist"]){
 			if(factor_info[i, "Min"]>0){
 				transf=log(cur_fact+1);
-				st=shapiro.test(transf);
-				if(st$p.value>.05){
+
+				tryCatch({
+					st=shapiro.test(transf);
+				}, error=function(err){
+					print(err);
+					pval=0;
+				});
+				
+				if(pval>.05){
 					factor_info[i, "Lognormal"]=1;
 					factor_info[i, "RecTrans"]=TRUE;
 					transform_name[i]=paste("log_", factor_names[i], sep="");
@@ -619,6 +646,7 @@ plot_text(c(
 # Describe factors and recommend transfomrations
 
 check_res=check_factors(factors);
+print(check_res);
 
 #print(check_res);
 
