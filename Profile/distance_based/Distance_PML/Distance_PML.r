@@ -236,7 +236,8 @@ check_factors=function(factor){
 	factor_info=matrix(0, nrow=num_factors, ncol=num_types, dimnames=list(factor_names, trans_types));
 	
 	shrink=function(x){
-		shrink_factor=min(0.0001, min(diff(sort(x))));
+		# This function will shrink x, so that the max and min can not be 0, because this would screw up the logit transform
+		shrink_factor=min(0.0001, min(diff(unique(sort(x)))));
 		shrunk=x*(1-shrink_factor)+shrink_factor/2;
 		return(shrunk);
 	}
@@ -290,6 +291,7 @@ check_factors=function(factor){
 
 				tryCatch({
 					st=shapiro.test(transf);
+					pval=st$p.value;
 				}, error=function(err){
 					print(err);
 					pval=0;
@@ -314,9 +316,18 @@ check_factors=function(factor){
 			factor_info[i, "Proportion"]=TRUE;
 			
 			shrunk=shrink(cur_fact);
+
 			logit=log(shrunk/(1-shrunk));
-			st=shapiro.test(logit);
-			if(st$p.value>.05){
+		
+			tryCatch({
+				st=shapiro.test(logit);
+				pval=st$p.value;
+			}, error=function(err){
+				print(err);
+				pval=0;
+			});
+
+			if(pval>.05){
 				factor_info[i, "RecTrans"]=TRUE;
 				transform_name[i]=paste("logit_", factor_names[i], sep="");
 				transformed_matrix[!NA_ix, i]=logit;
