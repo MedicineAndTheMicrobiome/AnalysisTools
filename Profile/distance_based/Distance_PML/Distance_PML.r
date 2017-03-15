@@ -223,7 +223,7 @@ process_factor_NAs=function(factors, min_non_NA_prop=.95){
 	return(factors[, keep]);
 }
 
-check_factors=function(factor){
+transform_factors=function(factor){
 	# This function will try to transform the data to be more normally distributed	
 
 	num_factors=ncol(factor);
@@ -623,16 +623,16 @@ for(i in 1:num_factors){
 	num_cat= length(categories);
 	numNAs=sum(is.na(factors[,i]));
 	percNA=round(numNAs/num_samples*100, 2);
+	
+	cat("\n");
 	cat("'", factor_names[i], "' has ", num_cat, " unique values, ", numNAs, " (", percNA, "%) NAs\n", sep="");
 	cat("\t", paste(head(categories, n=10), collapse=", "), sep="");
 	if(num_cat>10){
-		cat("...");
+		cat(", ...");
 	}
 	cat("\n");
 }
 
-cat("Processing NAs in factors...\n");
-factors=process_factor_NAs(factors, MinNonNAProp);
 
 ##############################################################################
 
@@ -656,7 +656,8 @@ plot_text(c(
 ##############################################################################
 # Describe factors and recommend transfomrations
 
-check_res=check_factors(factors);
+cat("Identifying factors to transform...\n");
+check_res=transform_factors(factors);
 print(check_res);
 
 #print(check_res);
@@ -718,6 +719,11 @@ plot_text(c(
 
 factors=cbind(factors, interactions_res$interaction_mat);
 
+cat("Processing NAs in factors...\n");
+factors_preNAproc=factors;
+factors=process_factor_NAs(factors, MinNonNAProp);
+
+##############################################################################
 ##############################################################################
 
 # alpha=1 is lasso (i.e. solve for minimizing l1-norm) "sum of abs values"
@@ -855,7 +861,7 @@ abline(v=log10(cv_min_err_lambda), col="blue", lty=2);
 title(main="Effect of Variable Inclusion on Explaining Deviance", cex.main=2, line=4)
 
 # Output new factor table
-out_factors=factors_mod_matrix[,non_zero_x_names];
+out_factors=factors_preNAproc[,non_zero_x_names];
 out_samp_ids=rownames(out_factors);
 fh=file(paste(OutputFnameRoot, ".kept_factors.tsv", sep=""), "w");
 cat(file=fh, paste(c("sample_id", colnames(out_factors)), collapse="\t"), "\n", sep="");
