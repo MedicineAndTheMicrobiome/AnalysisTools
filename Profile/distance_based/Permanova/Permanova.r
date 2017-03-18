@@ -139,6 +139,13 @@ load_distance_matrix=function(fname){
 
 load_factors=function(fname){
 	factors=data.frame(read.table(fname,  header=TRUE, row.names=1, check.names=FALSE, sep="\t"));
+
+	print(factors);
+
+	dimen=dim(factors);
+	cat("Rows Loaded: ", dimen[1], "\n");
+	cat("Cols Loaded: ", dimen[2], "\n");
+
 	return(factors);
 }
 
@@ -332,11 +339,113 @@ plot_text=function(strings){
 
 ##############################################################################
 
-remove_samples_wNA=function(factors){
-	nas=is.na(factors);
-	remove_ix=apply(nas, 1, any);
-	kept=(factors[!remove_ix,, drop=F]);
-	return(kept);
+remove_sample_or_factors_wNA=function(factors, num_trials=1000){
+
+        num_col=ncol(factors);
+        num_row=nrow(factors);
+
+        # Find rows and columns with NAs
+        row_na_ix=which(apply(factors, 1, anyNA));
+        col_na_ix=which(apply(factors, 2, anyNA));
+
+        num_row_na=length(row_na_ix);
+        num_col_na=length(col_na_ix);
+
+        if((num_row_na+num_col_na) == 0){
+                return(factors);
+        }
+
+        # Assign an ID to rows and columns, so when we remove them, we won't have to
+        # remap the indices
+        na_ix=c(paste("r", row_na_ix, sep=""), paste("c", col_na_ix, sep=""));
+        dim_ix=c(rep(1, num_row_na), rep(2, num_col_na));
+
+        cat("NAs found in these rows/columns:\n");
+        print(na_ix);
+
+        num_rowcol=sum(num_row_na, num_col_na);
+
+        # Rename rows/columns
+        renamed_factors=factors;
+        colnames(renamed_factors)=paste("c", 1:num_col, sep="");
+        rownames(renamed_factors)=paste("r", 1:num_row, sep="");
+
+        # Keep track of the sequence of row/col removals that maximize the remaining data
+        best_sequence_nonna=0;
+        best_sequence_ix=numeric();
+
+	max_no_improvement=0.1*num_trials;
+
+        # Repeatedly search for alternative sets that maximize remaining data
+	last_improvement=0;
+        for(i in 1:num_trials){
+
+                random_ix=sample(num_rowcol);
+
+                tmp_matrix=renamed_factors;
+                cur_ix_sequence=numeric();
+
+                # Step through a random sequence rows/columns to remove
+                for(ix in random_ix){
+
+                        rm_ix=na_ix[ix];
+                        cur_ix_sequence=c(cur_ix_sequence, ix);
+
+                        if(dim_ix[ix]==1){
+                                names=rownames(tmp_matrix);
+                                new_ix=which(names==rm_ix);
+                                tmp_matrix=tmp_matrix[-new_ix,];
+                        }else{
+                                names=colnames(tmp_matrix);
+                                new_ix=which(names==rm_ix);
+                                tmp_matrix=tmp_matrix[,-new_ix];
+                        }
+
+                        # Count up number of NAs
+                        num_na=sum(is.na(tmp_matrix));
+
+                        # If there are no more NAs, stop
+                        if(num_na==0){
+                                break;
+                        }
+                }
+
+                # Count up number of non NAs
+                num_non_na=sum(!is.na(tmp_matrix));
+
+                # If the number of non NAs is greater than before keep it
+                if(num_non_na>best_sequence_nonna){
+                        best_sequence_nonna=num_non_na;
+                        best_sequence_ix=cur_ix_sequence;
+			last_improvement=0;
+			cat("Num Non NAs: ", best_sequence_nonna, "\n");
+                }
+
+		last_improvement=last_improvement+1;
+
+		if(last_improvement>max_no_improvement){
+			break;
+		}
+        }
+
+        best_na_ix=na_ix[best_sequence_ix];
+        best_dim_ix=dim_ix[best_sequence_ix];
+
+        # Strip r/c from name to recover original index
+        rm_row=as.integer(gsub("r","", best_na_ix[best_dim_ix==1]));
+        rm_col=as.integer(gsub("c","", best_na_ix[best_dim_ix==2]));
+
+        # Remove rows/columns
+        fact_subset=factors;
+        if(length(rm_row)){
+                fact_subset=fact_subset[-rm_row,,drop=F];
+        }
+        if(length(rm_col)){
+                fact_subset=fact_subset[,-rm_col,drop=F];
+        }
+
+        return(fact_subset);
+
 }
 
 ##############################################################################
@@ -369,11 +478,19 @@ if(ModelFormula!=""){
 	model_var=factor_names;
 }
 
-factors=remove_samples_wNA(factors);
+factors=remove_sample_or_factors_wNA(factors);
 factor_sample_names=rownames(factors);
+print(colnames(factors));
+print(rownames(factors));
+
 num_factor_samples=length(factor_sample_names);
 
 # Confirm/Reconcile that the samples in the matrix and factors file match
+cat("DistMat Samples:\n");
+print(distmat_sample_names);
+cat("Factor Samples:\n");
+print(factor_sample_names);
+
 common_sample_names=intersect(distmat_sample_names, factor_sample_names);
 num_common_samples=length(common_sample_names);
 if(num_common_samples < num_distmat_samples || num_common_samples < num_factor_samples){
