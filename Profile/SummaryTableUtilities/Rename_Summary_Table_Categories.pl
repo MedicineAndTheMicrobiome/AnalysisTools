@@ -5,7 +5,7 @@ use Getopt::Std;
 use File::Basename;
 use FileHandle;
 use vars qw($opt_i $opt_m $opt_o $opt_r $opt_l);
-getopts("i:m:o:r:l:");
+getopts("i:m:o:rl:");
 
 my $usage = "usage:
 $0
