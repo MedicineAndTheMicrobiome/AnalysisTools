@@ -7,7 +7,7 @@ library('getopt');
 params=c(
         "input_file", "i", 1, "character",
         "output_file", "o", 2, "character",
-	"shorten_names", "s", 2, "logical"
+	"shorten_name_char", "s", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -18,7 +18,7 @@ usage = paste (
         "\n",
         "	-i <input summary table.xls>\n",
 	"	[-o <output file name root>]\n",
-	"	[-s (shorten names flag)]\n",
+	"	[-s \"<name splitter character, e.g. ;>\"]\n",
         "\n",
 	"This script will read in a summary table and generate\n",
 	"rank abundance plots, diversity indices, and confidence intervals\n",
@@ -42,9 +42,11 @@ if(!length(opt$output_file)){
         OutputFileName=opt$output_file;
 }
 
-ShortenNames=F;
-if(length(opt$shorten_names)){
-	ShortenNames=T;
+ShortenNameChar="";
+if(length(opt$shorten_name_char)){
+	ShortenNameChar=opt$shorten_name_char;
+	cat("Shortening names by splitting by: ", ShortenNameChar, "\n");
+	OutputFileName=paste(OutputFileName, ".shrt", sep="");
 }
 
 ###############################################################################
@@ -95,7 +97,7 @@ cat("        Confidence Intervals: ", CIFile, "\n");
 cat("Confidence Intervals (1 row): ", CI1LFile, "\n");
 cat("         Index Distributions: ", IDPlot, "\n");
 cat("\n");
-cat("Shortening Category Names?: ", ShortenNames, "\n");
+cat("Shortening Category Char: ", ShortenNameChar, "\n");
 cat("\n");
 
 ###############################################################################
@@ -122,9 +124,10 @@ sample_names=rownames(counts);
 
 # Shorten display name if requested
 display_name=character(num_categories);
-if(ShortenNames){
+if(ShortenNameChar!=""){
 	for(i in 1:length(category_names)){
-		display_name[i]=utils::tail(unlist(strsplit(category_names[i], " ")));
+		display_name[i]=utils::tail(unlist(strsplit(category_names[i], ShortenNameChar)),1);
+		display_name[i]=gsub("_unclassified", "", display_name[i]);
 	}
 }else{
 	display_name=category_names;
@@ -225,7 +228,7 @@ plot_rank_abundance=function(
 
 	cat("\n");
 	cat("Generating Rank Abundance Plot in: ", output_filename, "\n");
-	pdf(output_filename, width=11, height=8.5);
+	pdf(output_filename, width=11, height=9.5);
 
 	num_categories=length(display_name);
 	sample_names=names(normalize_sorted_abundances);

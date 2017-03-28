@@ -9,6 +9,8 @@ echo "Root output name:" $rootfname
 
 $binpath/RankAbundance_Analysis.r -i $rootfname
 
+$binpath/RankAbundance_Analysis.r -i $rootfname -s ";"
+
 $binpath/RankAbundance_BoxPlot.r $rootfname -r
 
 $binpath/RankAbundance_StackedBarplot.r $rootfname
