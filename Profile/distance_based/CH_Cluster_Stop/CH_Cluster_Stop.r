@@ -402,7 +402,8 @@ full_dist_mat=compute_dist(norm_mat, dist_type);
 hcl=hclust(full_dist_mat, method="ward.D2");
 
 # Find height where cuts are made
-max_clusters=num_samples-1;
+max_clusters=as.integer(num_samples*.75);
+cat("Max Clusters to compute: ", max_clusters, "\n");
 cut_midpoints=numeric(max_clusters);
 for(k in 2:max_clusters){
         cut_midpoints[k]=find_height_at_k(hcl, k);
@@ -447,7 +448,6 @@ mds_layout=matrix(c(
 ), byrow=T, ncol=9);
 	
 
-max_clusters=20;
 pseudoF_mat=matrix(0, nrow=max_clusters, ncol=3);
 colnames(pseudoF_mat)=c("2.5%", "Median", "97.5%");
 rownames(pseudoF_mat)=paste("k=",1:max_clusters, sep="");
@@ -519,15 +519,33 @@ for(num_cl in 2:max_clusters){
 }
 
 
+cat("\n");
+print(pseudoF_mat);
+cat("\n");
+
+# Set new max_clusters if Inf statistics found
+na_ix=min(which(apply(pseudoF_mat, 1, function(x){any(!is.finite(x))})));
+
+if(length(na_ix)){
+	max_clusters=na_ix-1;
+	pseudoF_mat=pseudoF_mat[1:max_clusters,];
+	cat("Adjusted Max Clusters: ", max_clusters, "\n");
+}
+
 med_pseudoF=pseudoF_mat[2:max_clusters,2];
 lb_pseudoF=pseudoF_mat[2:max_clusters,1];
 ub_pseudoF=pseudoF_mat[2:max_clusters,3];
 
+# Find max median CH
 max_med_ix=which(med_pseudoF==max(med_pseudoF));
-print(pseudoF_mat);
 
+# Plot CH over clusters
 par(mfrow=c(1,1));
 par(mar=c(8,8,3,3));
+
+print(2:max_clusters);
+print(med_pseudoF);
+
 plotCI(x=2:max_clusters, y=med_pseudoF, li=lb_pseudoF, ui=ub_pseudoF,
 	xaxt="n",
 	main="Cluster Separation",
