@@ -371,7 +371,7 @@ cat("Loading summary table...\n");
 counts_mat=load_summary_table(InputFileName);
 
 cat("******************************************************************\n");
-counts_mat=counts_mat[sample(nrow(counts_mat),100),];
+counts_mat=counts_mat[sample(nrow(counts_mat),20),];
 #print(counts_mat);
 
 # Normalize counts
@@ -526,7 +526,7 @@ cat("\n");
 # Set new max_clusters if Inf statistics found
 na_ix=min(which(apply(pseudoF_mat, 1, function(x){any(!is.finite(x))})));
 
-if(length(na_ix)){
+if(is.finite(na_ix)){
 	max_clusters=na_ix-1;
 	pseudoF_mat=pseudoF_mat[1:max_clusters,];
 	cat("Adjusted Max Clusters: ", max_clusters, "\n");
@@ -547,6 +547,7 @@ print(2:max_clusters);
 print(med_pseudoF);
 
 plotCI(x=2:max_clusters, y=med_pseudoF, li=lb_pseudoF, ui=ub_pseudoF,
+	sfrac=0.01,
 	xaxt="n",
 	main="Cluster Separation",
 	xlab="Number of Clusters (k)", ylab="Calinski-Harabasz Pseudo-F Statistic");
