@@ -15,10 +15,14 @@ DEF_NUM_TOP_CAT=35;
 DEF_NUM_CLUS=8;
 DEF_SPLIT_CHAR=";";
 
+DEF_NUM_BS=80;
+
 params=c(
 	"input_summary_table", "i", 1, "character",
 	"output_filename_root", "o", 2, "character",
-	"dist_type", "d", 2, "character"
+	"dist_type", "d", 2, "character",
+	"num_sub_samp", "s", 2, "numeric",
+	"num_bootstraps", "b", 2, "numeric"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -29,6 +33,9 @@ usage = paste(
 	"	-i <input summary_table.tsv file>\n",
 	"	[-o <output file root name, default is input file base name>]\n",
 	"	[-d <euc/wrd/man/bray/horn/bin/gow/tyc/minkp5/minkp3, default =", DEF_DISTTYPE, ">]\n",
+	"\n",
+	"	[-s <sub sample size, default=all>]\n",
+	"	[-b <num bootstraps, default=", DEF_NUM_BS, ">]\n",
 	"\n",
 	"This script will:\n",
 	"	1.) Read in a summary table and compute a full/complete distance matrix.\n",
@@ -59,6 +66,16 @@ if(length(opt$output_file)>0){
 dist_type=DEF_DISTTYPE;
 if(length(opt$dist_type)){
 	dist_type=opt$dist_type;
+}
+
+num_bootstraps=DEF_NUM_BS;
+if(length(opt$num_bootstraps)){
+	num_bs=opt$num_bootstraps;
+}
+
+sub_sample=0;
+if(length(opt$num_sub_samp)){
+	sub_sample=opt$num_sub_samp;
 }
 
 if(!any(dist_type == c("wrd","man","bray","horn","bin","gow","euc","tyc","minkp3","minkp5"))){
@@ -182,7 +199,7 @@ compute_dist=function(norm_st, type){
 	return(dist_mat);
 }
 
-compute_pseudoF=function(dist_mat, memberships, num_bs=40){
+compute_pseudoF=function(dist_mat, memberships, resample_sequence){
 
 	dist_mat=as.matrix(dist_mat);
 
@@ -193,6 +210,8 @@ compute_pseudoF=function(dist_mat, memberships, num_bs=40){
 	k=num_clusters;
 
 	sample_list=names(memberships);
+
+	num_bs=nrow(resample_sequence);
 	pseudo_f=numeric(num_bs);
 
 	for(bs_ix in 1:num_bs){
@@ -200,7 +219,7 @@ compute_pseudoF=function(dist_mat, memberships, num_bs=40){
 		SSW=0;
 
 		# Resample
-		resamp_ix=sample(num_samples, replace=T);
+		resamp_ix=resample_sequence[bs_ix,]; #sample(num_samples, replace=T);
 
 		# Compute SSB and SSW
 		for(i in 1:num_samples){
@@ -231,9 +250,7 @@ compute_pseudoF=function(dist_mat, memberships, num_bs=40){
 		pseudo_f[bs_ix]=SSB/(k-1)*(n-k)/SSW;
 	}
 
-	print(pseudo_f);
-
-	return(quantile(pseudo_f, c(.025, .5, .975)));
+	return(pseudo_f);
 }
 
 ###############################################################################
@@ -365,14 +382,16 @@ cat("\n");
 cat("Input Summary Table Name: ", InputFileName, "\n", sep="");
 cat("Output Filename Root: ", output_fname_root, "\n", sep="");
 cat("Distance Type: ", dist_type, "\n", sep="");
+cat("Num Bootstraps: ", num_bs, "\n", sep="");
 cat("\n");
 
 cat("Loading summary table...\n");
 counts_mat=load_summary_table(InputFileName);
 
-cat("******************************************************************\n");
-counts_mat=counts_mat[sample(nrow(counts_mat),20),];
-#print(counts_mat);
+if(sub_sample>0){
+	cat("Subsampling counts table to: ", sub_sample, "\n", sep="");
+	counts_mat=counts_mat[sample(nrow(counts_mat),sub_sample),];
+}
 
 # Normalize counts
 cat("Normalizing counts...\n");
@@ -402,7 +421,7 @@ full_dist_mat=compute_dist(norm_mat, dist_type);
 hcl=hclust(full_dist_mat, method="ward.D2");
 
 # Find height where cuts are made
-max_clusters=as.integer(num_samples*.75);
+max_clusters=min(as.integer((num_samples-1)*2/3), 30);
 cat("Max Clusters to compute: ", max_clusters, "\n");
 cut_midpoints=numeric(max_clusters);
 for(k in 2:max_clusters){
@@ -446,11 +465,22 @@ mds_layout=matrix(c(
 	1,1,1,1,2,2,2,2,3,
 	1,1,1,1,2,2,2,2,3
 ), byrow=T, ncol=9);
-	
 
-pseudoF_mat=matrix(0, nrow=max_clusters, ncol=3);
-colnames(pseudoF_mat)=c("2.5%", "Median", "97.5%");
-rownames(pseudoF_mat)=paste("k=",1:max_clusters, sep="");
+
+#------------------------------------------------------------------------------
+
+# Pre-randomize samples across all cluster sizes so finding max will be consistent
+resample_sequence=matrix(0, nrow=num_bs, ncol=num_samples);
+# Rows are each BS instance
+# Columns are the selected samples
+for(i in 1:num_bs){
+	resample_sequence[i,]=sample(num_samples, replace=T);
+}
+#print(resample_sequence);
+
+pseudoF_mat=matrix(0, nrow=num_bs, ncol=max_clusters);
+
+#------------------------------------------------------------------------------
 
 for(num_cl in 2:max_clusters){
 
@@ -459,8 +489,8 @@ for(num_cl in 2:max_clusters){
         memberships=cutree(hcl, k=num_cl);
 
 	# Compute CH stats
-	pseudoF_res=compute_pseudoF(full_dist_mat, memberships);
-	pseudoF_mat[num_cl,]=pseudoF_res;
+	pseudoF_res=compute_pseudoF(full_dist_mat, memberships, resample_sequence);
+	pseudoF_mat[,num_cl]=pseudoF_res;
 
         grp_mids=get_middle_of_groups(lf_names, memberships);
 
@@ -523,36 +553,36 @@ cat("\n");
 print(pseudoF_mat);
 cat("\n");
 
-# Set new max_clusters if Inf statistics found
-na_ix=min(which(apply(pseudoF_mat, 1, function(x){any(!is.finite(x))})));
+med_pseudoF=apply(pseudoF_mat, 2, function(x){quantile(x, .5)});
+lb_pseudoF=apply(pseudoF_mat, 2, function(x){quantile(x, .025)});
+ub_pseudoF=apply(pseudoF_mat, 2, function(x){quantile(x, .975)});
+max_pseudoF=apply(pseudoF_mat, 1, function(x){min(which(max(x)==x))});
 
-if(is.finite(na_ix)){
-	max_clusters=na_ix-1;
-	pseudoF_mat=pseudoF_mat[1:max_clusters,];
-	cat("Adjusted Max Clusters: ", max_clusters, "\n");
-}
+max_med_ix=which(max(med_pseudoF)==med_pseudoF);
 
-med_pseudoF=pseudoF_mat[2:max_clusters,2];
-lb_pseudoF=pseudoF_mat[2:max_clusters,1];
-ub_pseudoF=pseudoF_mat[2:max_clusters,3];
-
-# Find max median CH
-max_med_ix=which(med_pseudoF==max(med_pseudoF));
+###############################################################################
 
 # Plot CH over clusters
 par(mfrow=c(1,1));
 par(mar=c(8,8,3,3));
 
-print(2:max_clusters);
-print(med_pseudoF);
-
-plotCI(x=2:max_clusters, y=med_pseudoF, li=lb_pseudoF, ui=ub_pseudoF,
+plotCI(x=2:max_clusters, y=med_pseudoF[2:max_clusters], li=lb_pseudoF[2:max_clusters], ui=ub_pseudoF[2:max_clusters],
 	sfrac=0.01,
 	xaxt="n",
-	main="Cluster Separation",
+	main="Cluster Separation w/ 95% CI",
 	xlab="Number of Clusters (k)", ylab="Calinski-Harabasz Pseudo-F Statistic");
 axis(side=1, at=2:max_clusters, labels=2:max_clusters);
 abline(h=med_pseudoF[max_med_ix], lty=2, col="red");
+
+# Plot Histogram for best
+#print(max_pseudoF);
+quants=quantile(max_pseudoF, c(.025, .5, .975));
+hist(max_pseudoF, breaks=(1:max_clusters)+.5, 
+	xlab="Num Clusters at Max(CH PseudoF)",
+	main="Recommended Number of Clusters", xaxt="n");
+axis(side=1, at=1:max_clusters, labels=1:max_clusters);
+abline(v=quants[2], lwd=2, col="blue4");
+abline(v=quants[c(1,3)], lty=2, col="blue");
 
 
 ###############################################################################
