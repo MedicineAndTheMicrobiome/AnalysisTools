@@ -68,7 +68,7 @@ if(length(opt$dist_type)){
 	dist_type=opt$dist_type;
 }
 
-num_bootstraps=DEF_NUM_BS;
+num_bs=DEF_NUM_BS;
 if(length(opt$num_bootstraps)){
 	num_bs=opt$num_bootstraps;
 }
