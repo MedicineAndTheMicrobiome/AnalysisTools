@@ -70,22 +70,28 @@ pull_otus=function(taxa_arr, name_matrix){
 
 plot_otus=function(taxa_name, level_ix, associated_otus, otu_sizes){
 	cat("Plotting: ", taxa_name, "\n");
-	num_col=ncol(associated_otus);
 
+	num_col=ncol(associated_otus);
+	otu_names=rownames(otu_sizes);
+
+	# Based on taxonomic level, determine what part of name can be truncated
 	if(num_col==level_ix){
-		shortened_names=rownames(otu_sizes);
+		shortened_names=otu_names;
 	}else{
 		shortened_names=apply(associated_otus[, (level_ix+1):num_col, drop=F], 1, function(x){paste(x, collapse=";")} );
+		shortened_names=paste(shortened_names, " (", otu_names, ")", sep=""); 
 	}
 
+	# Abbreviate/renamed undetermined/unclassified levels
 	undetermined_ix=(shortened_names=="");
 	if(any(undetermined_ix)){
 		shortened_names[undetermined_ix]="(Undetermined)";
 	}
-
 	shortened_names=gsub("_unclassified", "(U)", shortened_names);
 	
+	# If there are too many categories to plot, reduce to MAX_CAT
 	num_categories=nrow(associated_otus);
+	num_otus=num_categories;
 	if(num_categories>MAX_CAT){
 		num_categories=MAX_CAT;
 		associated_otus=associated_otus[1:MAX_CAT, , drop=F];
@@ -96,20 +102,48 @@ plot_otus=function(taxa_name, level_ix, associated_otus, otu_sizes){
 		is_only_top="";
 	}
 
-	
+	# Identify max OTU size, so we can resize the OTU size
+	max_y_axis=max(10, max(otu_sizes));
+	total_otu_seq=sum(otu_sizes);
+	otu_prop=otu_sizes/total_otu_seq;
 
-	max_otu_size=max(otu_sizes);
-	print(shortened_names);
-	mids=barplot(height=otu_sizes[,"Size"], names.arg=shortened_names, main=paste(taxa_name, is_only_top, sep=" "), xaxt="n",
-		ylab="Counts", ylim=c(0, max(10, max_otu_size)));
+	# Generate barplot
+	mids=barplot(height=otu_sizes[,"Size"], names.arg=shortened_names, main=paste(taxa_name, is_only_top, sep=" "), 
+		xaxt="n", yaxt="n",
+		ylab="Counts", ylim=c(0, max_y_axis*1.1));
+
+	# y axis (count and proportion)
+	y_ticks=round(seq(0,max_y_axis, length.out=5));
+	axis(side=2, at=y_ticks, labels=y_ticks, las=2);
+	prop_labels=round(y_ticks/total_otu_seq, 2);
+	prop_lteq1=prop_labels<=1;
+	axis(side=4, at=y_ticks[prop_lteq1], labels=prop_labels[prop_lteq1], las=2, cex.axis=.75);
+	mtext("Proportion", side=4, line=3, cex=.75);
 	
+	# Compute and put down labels
 	bar_width=mids[2]-mids[1];
 	plot_range=par()$usr;
 	plot_height=plot_range[4];
 	label_size=min(c(1,.7*bar_width/par()$cxy[1]));
-	cat("Label Size: ", label_size, "\n");
 	text(mids-par()$cxy[1]/2, rep(-par()$cxy[2]/2, num_col), shortened_names, srt=-45, xpd=T, pos=4, cex=label_size);
 
+	div=diversity(otu_prop[,"Size"]);	
+
+	# Print other stats under title
+	offset=1;
+	title(paste("Total OTUs: ", num_otus, sep=""), line=offset, cex.main=.75, font.main=1);
+	title(paste("Total Sequences: ", total_otu_seq, sep=""), line=offset-.75, cex.main=.75, font.main=1);
+	title(paste("Shannon: ", round(div[1],4), sep=""), line=offset-1.5, cex.main=.75, font.main=1);
+	title(paste("Evenness: ", round(div[2],4), sep=""), line=offset-2.25, cex.main=.75, font.main=1);
+
+}
+
+diversity=function(prob){
+	num_cat=length(prob);
+	equi_prob=rep(1/num_cat, num_cat);
+	shan=-sum(prob*log(prob));
+	shan_max=-sum(equi_prob*log(equi_prob));
+	return(c(shan, shan/shan_max));
 }
 
 ###############################################################################
@@ -162,14 +196,14 @@ for(row_ix in 1:num_unique_taxa){
 }
 #print(unique_taxa_mat);
 
-plots_per_level=c(1,1,3,4,5,6);
-space_for_names=c(20, 20, 20, 15, 10, 5);
+plots_per_level=c(1,1,3,4,4,4);
+space_for_names=c(15, 20, 20, 15, 10, 5);
 
 
 for(level_ix in 1:6){
 
 	par(mfrow=c(plots_per_level[level_ix], 1));
-	par(mar=c(space_for_names[level_ix],4,4,space_for_names[level_ix]/sqrt(2)));
+	par(mar=c(space_for_names[level_ix],4,5,space_for_names[level_ix]/sqrt(2)+1));
 	par(oma=c(0,0,2,0));
 
 	cat("Accumulating OTUs at Level: ", LEVELS[level_ix], "\n");
