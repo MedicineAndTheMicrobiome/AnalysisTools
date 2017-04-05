@@ -139,6 +139,7 @@ plot_otus=function(taxa_name, level_ix, associated_otus, otu_sizes){
 }
 
 diversity=function(prob){
+	# Compute shannon diversity index and evenness
 	prob=as.matrix(prob);
 	num_cat=length(prob);
 	equi_prob=rep(1/num_cat, num_cat);
@@ -234,8 +235,8 @@ for(row_ix in 1:num_unique_taxa){
 }
 #print(unique_taxa_mat);
 
-plots_per_level=c(1,1,3,4,4,4);
-space_for_names=c(15, 20, 20, 15, 10, 5);
+plots_per_level=c(1,1,3,3,3,4);
+space_for_names=c(15, 25, 20, 15, 10, 5);
 options(width=240);
 
 for(level_ix in 1:6){
@@ -252,7 +253,7 @@ for(level_ix in 1:6){
 	unique_cur_taxa=unique(cur_taxa);
 
 	#-----------------------------------------------------------------------------
-	# Summary contents
+	# Summary Statistics
 	par(mfrow=c(1,1));
 	par(oma=c(1,0,1,0));
 	lines=character();
@@ -265,20 +266,20 @@ for(level_ix in 1:6){
 		otu_names=rownames(otus);
 		otu_sizes=as.vector(inmat[otu_names, "Size", drop=F]);
 		
+		# Compute stats on this set of OTUs
 		total_seq=sum(otu_sizes);
-
 		otu_prop=otu_sizes/total_seq;
-		
 		total_otus=nrow(otu_sizes);
 		max_abund=max(otu_prop);
 		seq_per_otu=total_seq/total_otus;
 		div=diversity(otu_prop);
 
+		# Add to line buffer
 		stat_mat=rbind(stat_mat, 
 			c(total_seq, total_otus, round(seq_per_otu,2), round(max_abund,2), round(div[1],3), round(div[2],3))
 		);
 
-
+		# Only keep up to the 2 lowest taxonomic names
 		taxa_names=c(taxa_names, paste(tail(splits,2), collapse=";"));
 	}
 	rownames(stat_mat)=taxa_names;
@@ -291,7 +292,6 @@ for(level_ix in 1:6){
 	par(mar=c(space_for_names[level_ix],4,5,space_for_names[level_ix]/sqrt(2)+1));
 	par(oma=c(0,0,2,0));
 	for(taxa in unique_cur_taxa){
-		cat("\n  Working on: ", taxa, "\n");
 		splits=strsplit(taxa, ";")[[1]];
 		#print(splits);
 		otus=pull_otus(splits, taxa_mat);
@@ -305,8 +305,6 @@ for(level_ix in 1:6){
 	}
 
 	cat("\n");
-
-
 
 }
 
