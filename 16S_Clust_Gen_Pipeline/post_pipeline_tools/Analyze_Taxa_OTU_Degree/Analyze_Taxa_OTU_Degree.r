@@ -139,11 +139,49 @@ plot_otus=function(taxa_name, level_ix, associated_otus, otu_sizes){
 }
 
 diversity=function(prob){
+	prob=as.matrix(prob);
 	num_cat=length(prob);
 	equi_prob=rep(1/num_cat, num_cat);
 	shan=-sum(prob*log(prob));
 	shan_max=-sum(equi_prob*log(equi_prob));
 	return(c(shan, shan/shan_max));
+}
+
+plot_text=function(strings, max_lines=50){
+
+        plot_page=function(strings){
+                orig_par=par(no.readonly=T);
+
+                par(mfrow=c(1,1));
+                par(family="Courier");
+                par(oma=rep(.5,4));
+                par(mar=rep(0,4));
+
+                num_lines=length(strings);
+
+                top=max(as.integer(num_lines), 40);
+
+                plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
+                        xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
+                        );
+                for(i in 1:num_lines){
+                        #cat(strings[i], "\n", sep="");
+                        text(0, top-i, strings[i], pos=4, cex=.7);
+                }
+
+                par(orig_par);
+        }
+
+        num_lines=length(strings);
+        num_pages=ceiling(num_lines / max_lines);
+        #cat("Num Pages: ", num_pages, "\n");
+        for(page_ix in 1:num_pages){
+                start=(page_ix-1)*max_lines+1;
+                end=start+max_lines-1;
+                end=min(end, num_lines);
+                ##print(c(start,end));
+                plot_page(strings[start:end]);
+        }
 }
 
 ###############################################################################
@@ -198,16 +236,14 @@ for(row_ix in 1:num_unique_taxa){
 
 plots_per_level=c(1,1,3,4,4,4);
 space_for_names=c(15, 20, 20, 15, 10, 5);
-
+options(width=240);
 
 for(level_ix in 1:6){
 
-	par(mfrow=c(plots_per_level[level_ix], 1));
-	par(mar=c(space_for_names[level_ix],4,5,space_for_names[level_ix]/sqrt(2)+1));
-	par(oma=c(0,0,2,0));
-
 	cat("Accumulating OTUs at Level: ", LEVELS[level_ix], "\n");
 
+	#-----------------------------------------------------------------------------
+	# Get current taxa name by joining components to current level
 	cur_taxa=apply(unique_taxa_mat[,1:level_ix, drop=F], 1, function(x){paste(x, collapse=";")});
 	null_taxa=grep(";$", cur_taxa);
 	if(length(null_taxa)){
@@ -215,17 +251,62 @@ for(level_ix in 1:6){
 	}
 	unique_cur_taxa=unique(cur_taxa);
 
+	#-----------------------------------------------------------------------------
+	# Summary contents
+	par(mfrow=c(1,1));
+	par(oma=c(1,0,1,0));
+	lines=character();
+	stat_mat=matrix(0, nrow=0, ncol=6, dimnames=list(c(), c("NumSeq", "NumOTUs", "Seq/OTU", "GreatestProp", "Shannon", "Evenness")));
+	taxa_names=character();
+	for(taxa in unique_cur_taxa){
+		splits=strsplit(taxa, ";")[[1]];
+
+		otus=pull_otus(splits, taxa_mat);
+		otu_names=rownames(otus);
+		otu_sizes=as.vector(inmat[otu_names, "Size", drop=F]);
+		
+		total_seq=sum(otu_sizes);
+
+		otu_prop=otu_sizes/total_seq;
+		
+		total_otus=nrow(otu_sizes);
+		max_abund=max(otu_prop);
+		seq_per_otu=total_seq/total_otus;
+		div=diversity(otu_prop);
+
+		stat_mat=rbind(stat_mat, 
+			c(total_seq, total_otus, round(seq_per_otu,2), round(max_abund,2), round(div[1],3), round(div[2],3))
+		);
+
+
+		taxa_names=c(taxa_names, paste(tail(splits,2), collapse=";"));
+	}
+	rownames(stat_mat)=taxa_names;
+	plot_text(capture.output(stat_mat));
+	mtext(paste("[",LEVELS[level_ix],"]", sep=""), outer=T, col="blue");
+
+	#-----------------------------------------------------------------------------
+	# Plot Barcharts
+	par(mfrow=c(plots_per_level[level_ix], 1));
+	par(mar=c(space_for_names[level_ix],4,5,space_for_names[level_ix]/sqrt(2)+1));
+	par(oma=c(0,0,2,0));
 	for(taxa in unique_cur_taxa){
 		cat("\n  Working on: ", taxa, "\n");
 		splits=strsplit(taxa, ";")[[1]];
 		#print(splits);
 		otus=pull_otus(splits, taxa_mat);
 		otu_name=rownames(otus);
-		plot_otus(taxa, level_ix, otus, inmat[otu_name,"Size", drop=F]);
+		otu_info=inmat[otu_name,"Size", drop=F];
+		tot_seq=sum(otu_info[,"Size"]);
+		if(nrow(otus)>1){
+			plot_otus(taxa, level_ix, otus, otu_info);
+		}
 		mtext(paste("[",LEVELS[level_ix],"]", sep=""), outer=T, col="blue");
 	}
 
 	cat("\n");
+
+
 
 }
 
