@@ -15,7 +15,7 @@ options(digits=5)
 
 DEF_COR_EFF_CUTOFF=0.5;
 DEF_COR_PVL_CUTOFF=0.05;
-DEF_MAX_INTERACT=10;
+DEF_MAX_INTERACT=15;
 DEF_ADD_TRANS=T;
 DEF_MIN_NONNA_PROP=.75;
 
@@ -144,7 +144,7 @@ load_factors=function(fname){
 
 ##############################################################################
 
-plot_text=function(strings, max_lines=50){
+plot_text=function(strings, max_lines=75){
 
 	plot_page=function(strings){
 		orig_par=par(no.readonly=T);
@@ -156,7 +156,7 @@ plot_text=function(strings, max_lines=50){
 
 		num_lines=length(strings);
 
-		top=max(as.integer(num_lines), 40);
+		top=max_lines;
 
 		plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
 			xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
@@ -183,22 +183,94 @@ plot_text=function(strings, max_lines=50){
 
 ##############################################################################
 
+paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_is_hot=T, counts=F){
+        num_row=nrow(mat);
+        num_col=ncol(mat);
+
+        cat("Num Rows: ", num_row, "\n");
+        cat("Num Cols: ", num_col, "\n");
+
+        mat=mat[rev(1:num_row),, drop=F];
+
+        num_colors=50;
+        color_arr=rainbow(num_colors, start=0, end=4/6);
+        if(high_is_hot){
+                color_arr=rev(color_arr);
+        }
+
+        remap=function(in_val, in_range, out_range){
+                in_prop=(in_val-in_range[1])/(in_range[2]-in_range[1])
+                out_val=in_prop*(out_range[2]-out_range[1])+out_range[1];
+                return(out_val);
+        }
+
+        if(is.na(plot_min)){
+                plot_min=min(mat);
+        }
+        if(is.na(plot_max)){
+                plot_max=max(mat);
+        }
+        cat("Plot min/max: ", plot_min, "/", plot_max, "\n");
+	par(mar=c(10,10,1,1));
+        plot(0, type="n", xlim=c(0,num_col), ylim=c(0,num_row), xaxt="n", yaxt="n", bty="n", xlab="", ylab="", main=title);
+
+        # x-axis
+        axis(side=1, at=seq(.5, num_col-.5, 1), labels=colnames(mat), las=2, cex.axis=.7);
+        axis(side=2, at=seq(.5, num_row-.5, 1), labels=rownames(mat), las=2, cex.axis=.7);
+
+        if(log_col){
+                plot_min=log10(plot_min+.0125);
+                plot_max=log10(plot_max+.0125);
+        }
+
+	text_size=min(1, 17.5/num_row);
+	cat("Text Size: ", text_size, "\n");
+
+        for(x in 1:num_col){
+                for(y in 1:num_row){
+
+                        if(log_col){
+                                col_val=log10(mat[y,x]+.0125);
+                        }else{
+                                col_val=mat[y,x];
+                        }
+
+                        remap_val=remap(col_val, c(plot_min, plot_max), c(1, num_colors));
+                        col_ix=ceiling(remap_val);
+
+                        rect(x-1, y-1, (x-1)+1, (y-1)+1, border=NA, col=color_arr[col_ix]);
+
+                        if(counts){
+                                text_lab=sprintf("%i", mat[y,x]);
+                        }else{
+                                text_lab=mat[y,x];
+                        }
+                        text(x-.5, y-.5, text_lab, srt=45, cex=text_size, font=2);
+                }
+        }
+
+}
+
+##############################################################################
+
 process_factor_NAs=function(factors, min_non_NA_prop=.95){
 	num_factors=ncol(factors);
 	num_samples=nrow(factors);
 
+	max_accetable_na=1-min_non_NA_prop;
 	keep=rep(F, num_factors);
 	factor_names=colnames(factors);
-	cat("Processing factors for NAs...\n");
+	cat("Processing factors for NAs:\n");
+	cat("  Max percentage of NAs allowed: ", round(max_accetable_na*100, 1) , "%\n\n", sep="");
 	for(fact_ix in 1:num_factors){
 		vals=factors[,fact_ix];
 		na_ix=is.na(vals);	
 		numNAs=sum(na_ix);
-		propNA=1-numNAs/num_samples;
-		if(propNA>=min_non_NA_prop){
+		propNA=numNAs/num_samples;
+		if(propNA<max_accetable_na){
 			keep[fact_ix]=TRUE;
 			if(numNAs>0){
-				cat(factor_names[fact_ix], ": \n\t", sep="");
+				cat(factor_names[fact_ix], ": \n     ", sep="");
 				non_nas_val=vals[!na_ix];
 				num_unique=length(unique(non_nas_val));
 		
@@ -214,10 +286,20 @@ process_factor_NAs=function(factors, min_non_NA_prop=.95){
 					cat(numNAs, " NA values replaced from: ", paste(head(resampled), collapse=", "), "\n", sep="");
 				}
 			}
+		}else{
+			cat(factor_names[fact_ix], ":\n     Removed for too many NAs (", round(propNA*100,1) , "% NA)\n", sep="");
+		}
+
+		# Check to see if filling in NAs lead to single value
+		num_unique=length(unique(factors[, fact_ix]));
+		if(num_unique==1){
+			keep[fact_ix]=F;	
+			cat(factor_names[fact_ix], ":\n     Removed for having no variance (identical values).\n", sep="");
 		}
 	}
 
 	num_kept=sum(keep);
+	cat("\n");
 	cat(num_kept, "/", num_factors, " Factors Kept.\n\n", sep="");
 
 	return(factors[, keep]);
@@ -563,7 +645,7 @@ plot_coefficients=function(coeff_mat, lambdas, mark_lambda_ix=NA, title=""){
 
 ##############################################################################
 
-pdf(paste(OutputFnameRoot, ".pdf", sep=""), height=8.5, width=11);
+pdf(paste(OutputFnameRoot, ".pdf", sep=""), height=11, width=8.5);
 
 # Load distance matrix
 distmat=load_distance_matrix(DistmatFname);
@@ -657,7 +739,9 @@ plot_text(c(
 	paste("Num Factors in Factor File: ", num_factors, sep=""),
 	"",
 	"Example of Sample IDs:",
-	paste("   ", capture.output(print(head(common_sample_names,n=20))))
+	paste("   ", capture.output(print(head(common_sample_names,n=20)))),
+	"",
+	paste("Min nonNA cutoff: ", MinNonNAProp, sep="")
 ));
 
 ##############################################################################
@@ -689,17 +773,19 @@ factors=cbind(factors, check_res$transf);
 #print(factors);
 
 ##############################################################################
-# Compute correlation matrices even with NAs
+
+cat("\nProcessing NAs in factors...\n");
+factors_preNAproc=factors; # Keep track of values before filling in values
+
+NA_info=capture.output(invisible({factors=process_factor_NAs(factors, MinNonNAProp)}));
+plot_text(NA_info);
+
+##############################################################################
 
 correl_res=compute_correl(factors, CorPvalCutoff, CorEffCutoff);
-plot_text(c(
-	"Significantly Correlated Factors:",
-	paste("P-value Cutoff: ", CorPvalCutoff, "  Effect Size Cutoff: ", CorEffCutoff, sep=""),
-	"",
-	"(X's are significantly correlated)",
-	"",
-	capture.output(print(correl_res$corrltd_mat, quote=F))
-));
+correl=apply(correl_res$correl_mat,c(1,2), function(x){ ifelse(is.na(x),1,x)});
+correl=apply(correl, c(1,2), function(x){ round(x,2)});
+paint_matrix(correl);
 
 ##############################################################################
 # Insert interaction terms for those factors least correlated
@@ -726,10 +812,6 @@ plot_text(c(
 
 factors=cbind(factors, interactions_res$interaction_mat);
 
-cat("Processing NAs in factors...\n");
-factors_preNAproc=factors;
-factors=process_factor_NAs(factors, MinNonNAProp);
-
 ##############################################################################
 ##############################################################################
 
@@ -741,7 +823,7 @@ factors=process_factor_NAs(factors, MinNonNAProp);
 
 factors_mod_matrix=as.matrix(factors);
 factor_names=colnames(factors_mod_matrix);
-print(factors_mod_matrix);
+#print(factors_mod_matrix);
 num_xs=ncol(factors_mod_matrix);
 
 plot_text(c(
@@ -754,6 +836,7 @@ plot_text(c(
 #fit=glmnet(x=factors_mod_matrix, y=distmat, family="mgaussian", standardize=T, alpha=1);
 
 # Run cross validation compute
+dev.off();quit();
 cat("Running Cross Validation...\n");
 cvfit=cv.glmnet(x=factors_mod_matrix, y=distmat, family="mgaussian", standardize=T, alpha=1, parallel=T);
 cat("ok.\n");
