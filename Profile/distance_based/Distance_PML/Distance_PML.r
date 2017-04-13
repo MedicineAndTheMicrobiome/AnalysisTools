@@ -372,12 +372,19 @@ compute_correl=function(factors, pval_cutoff=0.05, abs_correl_cutoff=0.5){
 			if(i<j){
 
 				# Remove NAs and then compute correl 
-				not_na_ix=!(is.na(factors[,i] | is.na(factors[,j])));
-				test_res=cor.test(factors[not_na_ix,i], factors[not_na_ix,j]);
-				correl_mat[i,j]=test_res$estimate;
-				pvalue_mat[i,j]=test_res$p.value;
-				is_cor=abs(test_res$estimate)>abs_correl_cutoff && test_res$p.value<=pval_cutoff;
-				corrltd_mat[i,j]=ifelse(is_cor, "X", ".");
+				not_na_ix=!(is.na(factors[,i]) | is.na(factors[,j]));
+
+				if(sum(not_na_ix)>2){
+					test_res=cor.test(factors[not_na_ix,i], factors[not_na_ix,j]);
+					correl_mat[i,j]=test_res$estimate;
+					pvalue_mat[i,j]=test_res$p.value;
+					is_cor=abs(test_res$estimate)>abs_correl_cutoff && test_res$p.value<=pval_cutoff;
+					corrltd_mat[i,j]=ifelse(is_cor, "X", ".");
+				}else{
+					correl_mat[i,j]=0;
+					pvalue_mat[i,j]=1;
+					corrltd_mat[i,j]=".";
+				}
 
 				# Copy over symmetric values
 				correl_mat[j,i]=correl_mat[i,j];
@@ -861,7 +868,7 @@ abline(v=log10(cv_min_err_lambda), col="blue", lty=2);
 title(main="Effect of Variable Inclusion on Explaining Deviance", cex.main=2, line=4)
 
 # Output new factor table
-out_factors=factors_preNAproc[,non_zero_x_names];
+out_factors=factors_preNAproc[,non_zero_x_names, drop=F];
 out_samp_ids=rownames(out_factors);
 fh=file(paste(OutputFnameRoot, ".kept_factors.tsv", sep=""), "w");
 cat(file=fh, paste(c("sample_id", colnames(out_factors)), collapse="\t"), "\n", sep="");
