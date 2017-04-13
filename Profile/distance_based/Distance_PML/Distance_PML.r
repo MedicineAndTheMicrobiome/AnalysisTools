@@ -753,18 +753,20 @@ print(check_res);
 
 #print(check_res);
 
-factor_file_desc_text=c(
+plot_text(c(
 	"Normal Summary:",
-	capture.output(print(check_res$info[,c("Avg", "Stdev", "Min", "Max", "NormDist")])),
-	"",
+	capture.output(print(check_res$info[,c("Avg", "Stdev", "Min", "Max", "NormDist")]))
+));
+
+plot_text(c(
 	"Non-Parametric Summary:",
-	capture.output(print(check_res$info[,c("Med", "LB95", "UB95", "PropNonNAs")])),
-	"",
+	capture.output(print(check_res$info[,c("Med", "LB95", "UB95", "PropNonNAs")]))
+));
+
+plot_text(c(
 	"Inferred Data Types and Transformation Recommendation:",
 	capture.output(print(check_res$info[,c("Proportion", "Lognormal", "PropUnique", "RecTrans")]))
-);
-
-plot_text(factor_file_desc_text);
+));
 
 ##############################################################################
 # Add recommended transformations to factors
@@ -836,7 +838,7 @@ plot_text(c(
 #fit=glmnet(x=factors_mod_matrix, y=distmat, family="mgaussian", standardize=T, alpha=1);
 
 # Run cross validation compute
-dev.off();quit();
+#dev.off();quit();
 cat("Running Cross Validation...\n");
 cvfit=cv.glmnet(x=factors_mod_matrix, y=distmat, family="mgaussian", standardize=T, alpha=1, parallel=T);
 cat("ok.\n");
