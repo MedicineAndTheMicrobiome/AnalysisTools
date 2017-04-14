@@ -8,7 +8,7 @@ library('getopt');
 library(plotrix);
 library(doMC);
 
-registerDoMC(cores=8);
+registerDoMC(cores=16);
 
 options(useFancyQuotes=F);
 options(digits=5)
@@ -604,7 +604,7 @@ recode_non_numeric_factors=function(factors){
 
 ##############################################################################
 
-plot_coefficients=function(coeff_mat, lambdas, mark_lambda_ix=NA, title=""){
+plot_coefficients=function(coeff_mat, lambdas, mark_lambda_ix=NA, lambda_color="black", title=""){
 # Rows Lambda values
 # Columns variables
 
@@ -625,7 +625,7 @@ plot_coefficients=function(coeff_mat, lambdas, mark_lambda_ix=NA, title=""){
 
 	# Mark the best lambda value
 	if(!is.na(mark_lambda_ix)){
-		abline(v=mark_lambda_ix, lty=2, col="black");
+		abline(v=mark_lambda_ix, lty=2, col=lambda_color);
 	}
 
 	# Plot curves
@@ -649,9 +649,19 @@ pdf(paste(OutputFnameRoot, ".pdf", sep=""), height=11, width=8.5);
 
 # Load distance matrix
 distmat=load_distance_matrix(DistmatFname);
+
+# Subsample for testing
+testing=T;
+if(testing){
+	num_mat_samples=ncol(distmat);
+	sample_ix=sample(num_mat_samples, 10);
+	distmat=distmat[sample_ix, sample_ix];
+}
+
 num_distmat_samples=ncol(distmat);
 distmat_sample_names=colnames(distmat);
 cat("\n");
+
 #print(distmat):
 
 # Load factors
@@ -834,8 +844,7 @@ plot_text(c(
 	paste("   ", 1:num_xs, ".) ", factor_names, sep="")
 ));
 
-#cat("Computing GLMNET Fit:\n");
-#fit=glmnet(x=factors_mod_matrix, y=distmat, family="mgaussian", standardize=T, alpha=1);
+###############################################################################
 
 # Run cross validation compute
 #dev.off();quit();
@@ -843,7 +852,9 @@ cat("Running Cross Validation...\n");
 cvfit=cv.glmnet(x=factors_mod_matrix, y=distmat, family="mgaussian", standardize=T, alpha=1, parallel=T);
 cat("ok.\n");
 
+###############################################################################
 # Pull out commonly used part of results
+
 cv_num_var=cvfit$nzero;
 cv_mean_cv_err=cvfit$cvm;
 cv_num_lambdas=length(cvfit$lambda);
@@ -857,6 +868,14 @@ cv_min_err_lambda=cvfit$lambda[cv_min_err_ix];
 coefficients=cvfit$glmnet.fit$beta;
 df=cvfit$glmnet.fit$df;
 lambdas=cvfit$glmnet.fit$lambda;
+
+cv_min_err_ub=cvfit$cvup[cv_min_err_ix];
+cv_min_err_lo=cvfit$cvlo[cv_min_err_ix];
+
+overlapping_min_err_ix=max(which(cv_min_err_ub>cvfit$cvlo));
+cat("Upper / Lower Bound of CV Min Error: (", cv_min_err_lo, ", ", cv_min_err_ub, ")\n");
+overlapping_df=df[overlapping_min_err_ix];
+cv_overlapping_lambda=lambdas[overlapping_min_err_ix];
 
 y_idx_names=names(coefficients);
 cat("Response Names: \n");
@@ -876,21 +895,26 @@ for(lamb_ix in 1:num_lambdas){
 		}
 		median_coeff[lamb_ix, x_ix]=median(abs(across_samp));
 	}
-}
+} 
 
-par(mar=c(5, 5, 7, 8));
+###############################################################################
 
 # Plot median coefficients across samples (y's) across all variables
-plot_coefficients(median_coeff, lambdas, title="Median Magnitude of Coefficients Across All Samples");
+par(mar=c(5, 5, 7, 8));
+plot_coefficients(median_coeff, lambdas, title="Medn Magntd of Coeff Across All Samples");
 
 # Plot cross validation error vs num variables
+par(mar=c(5, 5, 7, 1));
 plot(cv_num_var, cv_mean_cv_err, main="Influence of Variable Inclusion on Prediction Error", xlab="Number of Variables Included", ylab="Mean CV Error", xaxt="n");
 max_var=max(cv_num_var);
 axis(1, at=0:max_var, labels=0:max_var);
 abline(v=cv_num_var[cv_min_err_ix], col="blue", lty=2);
 abline(h=cv_mean_cv_err[cv_min_err_ix], col="blue", lty=2);
+abline(v=cv_num_var[overlapping_min_err_ix], col="orange", lty=2);
 
-# Plot valication error vs lambda
+###############################################################################
+# Plot validation error vs lambda
+par(mar=c(5,5,7,1));
 plotCI(log10(cvfit$lambda), cvfit$cvm, ui=cvfit$cvup, li=cvfit$cvlo, col="red", scol="grey",
 	pch=16, 
 	xlab="Log10(Lambda)",
@@ -899,19 +923,28 @@ plotCI(log10(cvfit$lambda), cvfit$cvm, ui=cvfit$cvup, li=cvfit$cvlo, col="red", 
 
 abline(h=cv_min_err, col="blue", lty=2);
 abline(v=log10(cv_min_err_lambda), col="blue", lty=2);
+abline(h=cv_min_err_ub, col="orange", lty=3, lwd=.5);
+abline(v=log10(cv_overlapping_lambda), col="orange", lty=3, lwd=.5);
 x_axis_pos=floor(seq(1, cv_num_lambdas, length.out=20));
 axis(side=3, at=log10(cvfit$lambda[x_axis_pos]), labels=cvfit$nzero[x_axis_pos], cex.axis=.5);
 title(main="Number of Variables", cex.main=1, font.main=1, line=2)
 title(main="Influence of ML Penalty on Prediction Error ", cex.main=2, line=4)
 
+###############################################################################
 # Get variables at min error
 all_min_error_coeff=numeric();
+all_overlapping_error_coeff=numeric();
+
 for(samp_ix in 1:num_samples){
 	cv_min_err_coeff=cvfit$glmnet.fit$beta[[y_idx_names[samp_ix]]][,cv_min_err_ix];
 	all_min_error_coeff=rbind(all_min_error_coeff, cv_min_err_coeff);
+	
+	cv_min_err_coeff=cvfit$glmnet.fit$beta[[y_idx_names[samp_ix]]][,overlapping_min_err_ix];
+	all_overlapping_error_coeff=rbind(all_overlapping_error_coeff, cv_min_err_coeff);
+
 }
 rownames(all_min_error_coeff)=sample_names;
-print(all_min_error_coeff);
+rownames(all_overlapping_error_coeff)=sample_names;
 
 # Extract the predictor names based on the coefficients that were non zero
 non_zero_xs=apply(all_min_error_coeff, 2, function(x){ return(!all(x==0))});
@@ -921,49 +954,94 @@ print(num_nonzero_coeff);
 non_zero_x_names=colnames(non_zero_coeff);
 print(non_zero_x_names);
 
-# Plot median coefficients across samples (y's) across all variables, zoomed into the variables selected
+# Plot median coefficients across samples (y's) across all variables, zoomed into the variables selected for conservative inclusion
 zoom_ix=df <= (num_nonzero_coeff+1);
+par(mar=c(5, 5, 7, 8));
 plot_coefficients(
 	median_coeff[zoom_ix,], 
 	lambdas,
-	mark_lambda_ix=cv_min_err_ix,
-	title=paste("Median Magnitude of Coefficients Across All Samples (DF < ", num_nonzero_coeff, "+1 )", sep="")
+	mark_lambda_ix=cv_min_err_ix, lambda_color="blue",
+	title=paste("Conservative Coeff Cutoff: DF<(", num_nonzero_coeff, "+1)", sep="")
 );
 
+# Plot median coefficients across samples (y's) across all variables, zoomed into the variables selected for liberal inclusion
+zoom_ix=df <= (overlapping_df+1);
+par(mar=c(5, 5, 7, 8));
+plot_coefficients(
+	median_coeff[zoom_ix,], 
+	lambdas,
+	mark_lambda_ix=overlapping_min_err_ix, lambda_color="orange",
+	title=paste("Liberal Coeff Cutoff: DF<(", overlapping_df, "+1)", sep="")
+);
+
+###############################################################################
 # List variables and coefficients, ordered by strength of selection
 xs_by_coeff_order_ix=order(median_coeff[cv_min_err_ix,], decreasing=T);
 std_coeff=t(median_coeff[cv_min_err_ix,xs_by_coeff_order_ix, drop=F]);
 std_coeff=std_coeff[1:num_nonzero_coeff,,drop=F];
 colnames(std_coeff)="Median(|Coef of Standzd Factors|)";
 plot_text(c(
-	"Median Abs(Coefficients) at Best Lambda/Minimum CV Error, Sorted By Greatest Contribution",
+	"Conservative Cutoff:",
+	"Median Abs(Coefficients) at Best Lambda/Minimum CV Error",
+	"Sorted By Greatest Contribution",
 	paste(num_nonzero_coeff, " of ", num_xs, " Predictors Kept (", round(num_nonzero_coeff/num_xs*100,2), "%)", sep=""),
 	"",
 	capture.output(print(std_coeff))
 ));
 
+xs_by_coeff_order_ix=order(median_coeff[overlapping_min_err_ix,], decreasing=T);
+std_coeff=t(median_coeff[overlapping_min_err_ix,xs_by_coeff_order_ix, drop=F]);
+std_coeff=std_coeff[1:overlapping_df,,drop=F];
+colnames(std_coeff)="Median(|Coef of Standzd Factors|)";
+plot_text(c(
+	"Liberal Cutoff:",
+	"Median Abs(Coefficients) at Min Lambda Overlapping w/ Upperbound of Min CV Error",
+	"Sorted By Greatest Contribution",
+	paste(overlapping_df, " of ", num_xs, " Predictors Kept (", round(overlapping_df/num_xs*100,2), "%)", sep=""),
+	"",
+	capture.output(print(std_coeff))
+));
+
+###############################################################################
 # Plot the amount of deviance explained
+par(mar=c(5,5,7,1));
 deviances=cvfit$glmnet.fit$dev.ratio
 plot(log10(lambdas), deviances, 
-	ylim=c(0,1),
+	ylim=c(0,1.2),
 	xlab="Log10(Lambda)", ylab="Proportion of Null Deviance Explained");
 axis(side=3, at=log10(cvfit$lambda[x_axis_pos]), labels=cvfit$nzero[x_axis_pos], cex.axis=.5);
 title(main="Number of Variables", cex.main=1, font.main=1, line=2)
+title(main="Effect of Var Incl on Explaining Deviance", cex.main=2, line=4)
+
 abline(v=log10(cv_min_err_lambda), col="blue", lty=2);
-title(main="Effect of Variable Inclusion on Explaining Deviance", cex.main=2, line=4)
+text(x=log10(cv_min_err_lambda), y=1.05, labels="Conservative", srt=90, pos=4, col="blue");
+abline(v=log10(cv_overlapping_lambda), col="orange", lty=2);
+text(x=log10(cv_overlapping_lambda), y=1.05, labels="Liberal", srt=90, pos=4, col="orange");
 
+###############################################################################
 # Output new factor table
-out_factors=factors_preNAproc[,non_zero_x_names, drop=F];
-out_samp_ids=rownames(out_factors);
-fh=file(paste(OutputFnameRoot, ".kept_factors.tsv", sep=""), "w");
-cat(file=fh, paste(c("sample_id", colnames(out_factors)), collapse="\t"), "\n", sep="");
-for(i in 1:nrow(out_factors)){
-	cat(file=fh, out_samp_ids[i],"\t", paste(out_factors[i,], collapse="\t"), "\n", sep="");
-}
-close(fh);
-
+#out_factors=factors_preNAproc[,non_zero_x_names, drop=F];
+#out_samp_ids=rownames(out_factors);
+#fh=file(paste(OutputFnameRoot, ".kept_factors.tsv", sep=""), "w");
+#cat(file=fh, paste(c("sample_id", colnames(out_factors)), collapse="\t"), "\n", sep="");
+#for(i in 1:nrow(out_factors)){
+#	cat(file=fh, out_samp_ids[i],"\t", paste(out_factors[i,], collapse="\t"), "\n", sep="");
+#}
+#close(fh);
 
 ##############################################################################
+
+if(testing){
+	cat("****************************************************************************\n");
+	cat("*  WARNING:  Run was in Testing Mode, where only a subsample was used.!!!  *\n");
+	cat("****************************************************************************\n");
+
+	plot_text(c(
+	"****************************************************************************",
+	"*  WARNING:  Run was in Testing Mode, where only a subsample was used.!!!  *",
+	"****************************************************************************")
+	);
+}
 
 cat("Done.\n");
 dev.off();
