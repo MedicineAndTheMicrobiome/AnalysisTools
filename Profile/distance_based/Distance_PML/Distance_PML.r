@@ -651,7 +651,7 @@ pdf(paste(OutputFnameRoot, ".pdf", sep=""), height=11, width=8.5);
 distmat=load_distance_matrix(DistmatFname);
 
 # Subsample for testing
-testing=T;
+testing=F;
 if(testing){
 	num_mat_samples=ncol(distmat);
 	sample_ix=sample(num_mat_samples, 10);
@@ -915,16 +915,20 @@ abline(v=cv_num_var[overlapping_min_err_ix], col="orange", lty=2);
 ###############################################################################
 # Plot validation error vs lambda
 par(mar=c(5,5,7,1));
+ylimit=max(cvfit$cvup);
 plotCI(log10(cvfit$lambda), cvfit$cvm, ui=cvfit$cvup, li=cvfit$cvlo, col="red", scol="grey",
 	pch=16, 
 	xlab="Log10(Lambda)",
-	ylab="Mean Cross-Validated Error"	
+	ylab="Mean Cross-Validated Error",
+	ylim=c(0, ylimit*1.2)
 );
 
 abline(h=cv_min_err, col="blue", lty=2);
 abline(v=log10(cv_min_err_lambda), col="blue", lty=2);
 abline(h=cv_min_err_ub, col="orange", lty=3, lwd=.5);
 abline(v=log10(cv_overlapping_lambda), col="orange", lty=3, lwd=.5);
+text(x=log10(cv_min_err_lambda), y=ylimit*1.05, labels="Conservative", srt=90, pos=4, col="blue");
+text(x=log10(cv_overlapping_lambda), y=ylimit*1.05, labels="Liberal", srt=90, pos=4, col="orange");
 x_axis_pos=floor(seq(1, cv_num_lambdas, length.out=20));
 axis(side=3, at=log10(cvfit$lambda[x_axis_pos]), labels=cvfit$nzero[x_axis_pos], cex.axis=.5);
 title(main="Number of Variables", cex.main=1, font.main=1, line=2)
