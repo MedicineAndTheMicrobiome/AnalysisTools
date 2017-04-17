@@ -438,7 +438,7 @@ transform_factors=function(factor){
 
 	results=list();
 	results[["info"]]=factor_info;
-	results[["transf"]]=transformed_matrix[,transformed_factors];
+	results[["transf"]]=transformed_matrix[,transformed_factors, drop=F];
 	return(results);	
 
 }
@@ -1036,7 +1036,7 @@ text(x=log10(cv_min_err_lambda), y=1.05, labels="Conservative", srt=90, pos=4, c
 abline(v=log10(cv_overlapping_lambda), col="orange", lty=2);
 text(x=log10(cv_overlapping_lambda), y=1.05, labels="Liberal", srt=90, pos=4, col="orange");
 abline(h=1.0, col="black");
-text(min(log10(lambdas)), 1, adj=c(0,-.5), label="Maximum Explainable", col="black");
+text(min(log10(lambdas)), 1, adj=c(0,-.5), label="Maximum Explainable", cex=.7, col="black");
 
 ###############################################################################
 # Output new factor table
