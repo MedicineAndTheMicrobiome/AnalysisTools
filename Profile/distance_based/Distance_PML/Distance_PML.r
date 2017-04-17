@@ -604,7 +604,7 @@ recode_non_numeric_factors=function(factors){
 
 ##############################################################################
 
-plot_coefficients=function(coeff_mat, lambdas, mark_lambda_ix=NA, lambda_color="black", title=""){
+plot_coefficients=function(coeff_mat, lambdas, mark_lambda_ix=NA, lambda_color="black", lambda_label="", title=""){
 # Rows Lambda values
 # Columns variables
 
@@ -613,10 +613,10 @@ plot_coefficients=function(coeff_mat, lambdas, mark_lambda_ix=NA, lambda_color="
 
 	coef_range=range(coeff_mat);
 	coef_span=diff(coef_range);
-	extra_buf=coef_span/10;
+	extra_buf=coef_span/5;
 
 	# Set up plot
-	plot(0, xlim=c(0, num_lambdas), ylim=c(coef_range[1]-extra_buf, coef_range[2]+extra_buf), type="n",
+	plot(0, xlim=c(0, num_lambdas), ylim=c(0, coef_range[2]+extra_buf), type="n",
 		xaxt="n",
 		ylab="Coefficients of Standardized Predictors",
 		xlab="ML Penalty: Log10(Lambda)",
@@ -626,6 +626,7 @@ plot_coefficients=function(coeff_mat, lambdas, mark_lambda_ix=NA, lambda_color="
 	# Mark the best lambda value
 	if(!is.na(mark_lambda_ix)){
 		abline(v=mark_lambda_ix, lty=2, col=lambda_color);
+		text(x=mark_lambda_ix, y=coef_range[2]+extra_buf/3, labels=lambda_label, srt=90, pos=4, col=lambda_color);
 	}
 
 	# Plot curves
@@ -905,12 +906,19 @@ plot_coefficients(median_coeff, lambdas, title="Medn Magntd of Coeff Across All 
 
 # Plot cross validation error vs num variables
 par(mar=c(5, 5, 7, 1));
-plot(cv_num_var, cv_mean_cv_err, main="Influence of Variable Inclusion on Prediction Error", xlab="Number of Variables Included", ylab="Mean CV Error", xaxt="n");
+max_mean_cv_err=max(cv_mean_cv_err);
+plot(cv_num_var, cv_mean_cv_err, 
+	ylim=c(0, max_mean_cv_err*1.2),
+	main="Influence of Variable Inclusion on Prediction Error", xlab="Number of Variables Included", ylab="Mean CV Error", xaxt="n");
 max_var=max(cv_num_var);
 axis(1, at=0:max_var, labels=0:max_var);
-abline(v=cv_num_var[cv_min_err_ix], col="blue", lty=2);
 abline(h=cv_mean_cv_err[cv_min_err_ix], col="blue", lty=2);
+
+abline(v=cv_num_var[cv_min_err_ix], col="blue", lty=2);
+text(x=cv_num_var[cv_min_err_ix], y=max_mean_cv_err*1.05, labels="Conservative", srt=90, pos=4, col="blue");
+
 abline(v=cv_num_var[overlapping_min_err_ix], col="orange", lty=2);
+text(x=cv_num_var[overlapping_min_err_ix], y=max_mean_cv_err*1.05, labels="Liberal", srt=90, pos=4, col="orange");
 
 ###############################################################################
 # Plot validation error vs lambda
@@ -964,7 +972,7 @@ par(mar=c(5, 5, 7, 8));
 plot_coefficients(
 	median_coeff[zoom_ix,], 
 	lambdas,
-	mark_lambda_ix=cv_min_err_ix, lambda_color="blue",
+	mark_lambda_ix=cv_min_err_ix, lambda_color="blue", lambda_label="Conservative",
 	title=paste("Conservative Coeff Cutoff: DF<(", num_nonzero_coeff, "+1)", sep="")
 );
 
@@ -974,7 +982,7 @@ par(mar=c(5, 5, 7, 8));
 plot_coefficients(
 	median_coeff[zoom_ix,], 
 	lambdas,
-	mark_lambda_ix=overlapping_min_err_ix, lambda_color="orange",
+	mark_lambda_ix=overlapping_min_err_ix, lambda_color="orange", lambda_label="Liberal",
 	title=paste("Liberal Coeff Cutoff: DF<(", overlapping_df, "+1)", sep="")
 );
 
@@ -1021,6 +1029,8 @@ abline(v=log10(cv_min_err_lambda), col="blue", lty=2);
 text(x=log10(cv_min_err_lambda), y=1.05, labels="Conservative", srt=90, pos=4, col="blue");
 abline(v=log10(cv_overlapping_lambda), col="orange", lty=2);
 text(x=log10(cv_overlapping_lambda), y=1.05, labels="Liberal", srt=90, pos=4, col="orange");
+abline(h=1.0, col="black");
+text(min(log10(lambdas)), 1, adj=c(0,-.5), label="Maximum Explainable", col="black");
 
 ###############################################################################
 # Output new factor table
