@@ -23,6 +23,8 @@ params=c(
 	"distmat", "d", 1, "character",
 	"factors", "f", 1, "character",
 
+	"var_list", "v", 2, "character",
+
 	"min_nonna_prop", "n", 2, "numeric",
 
 	"model_formula", "m", 2, "character",
@@ -39,6 +41,9 @@ usage = paste(
 	"\nUsage:\n", script_name, "\n",
 	"	-d <distance matrix>\n",
 	"	-f <factors>\n",
+	"\n",
+	"	User specify which subset of variables to LASSO:\n",
+	"	[-v <subset variables list filename>]\n",
 	"\n",
 	"	NA Handling:\n",
 	"	[-p <min nonNA proportion, default=", DEF_MIN_NONNA_PROP, ">]\n",
@@ -77,10 +82,10 @@ if(!length(opt$outputroot)){
 }
 OutputFnameRoot=paste(OutputFnameRoot, ".dist_pml", sep="");
 
-if(!length(opt$model_formula)){
-	ModelFormula="";
+if(!length(opt$var_list)){
+	VariableListFname="";
 }else{
-	ModelFormula=opt$model_formula;
+	VariableListFname=opt$var_list;
 }
 
 if(!length(opt$min_nonna_pro)){
@@ -113,8 +118,8 @@ cat("Output Filename Root: ", OutputFnameRoot, "\n", sep="");
 cat("Minimum Non-NA Proportion: ", MinNonNAProp, "\n", sep="");
 cat("\n");
 
-if(ModelFormula!=""){
-	cat("Model Formula specified: ", ModelFormula, "\n\n");
+if(VariableListFname!=""){
+	cat("Using subset of variables from: ", VariableListFname, "\n\n");
 }
 
 ###############################################################################
@@ -665,6 +670,7 @@ cat("\n");
 
 #print(distmat):
 
+
 # Load factors
 factors=load_factors(FactorsFname);
 factor_names=colnames(factors);
@@ -674,18 +680,18 @@ cat(num_factors, " Factor(s) Loaded:\n", sep="");
 print(factor_names);
 cat("\n");
 
-if(ModelFormula!=""){
-	# Based on factors in model string, identity which factors are used
-	model_var=gsub("\\+", " ", ModelFormula);
-	model_var=gsub("\\:", " ", model_var);
-	model_var=gsub("\\*", " ", model_var);
-	model_var=unique(strsplit(model_var, " ")[[1]]);
-	model_var=intersect(model_var, factor_names);
-	factors=factors[,model_var, drop=F];
+# Subset factors
+variable_subset=c();
+if(VariableListFname!=""){
+	variable_subset=scan(VariableListFname, what=character());
+	cat("Variables Subset List:\n");
+	print(variable_subset);
+	cat("\n");
+	shared_variables=intersect(factor_names, variable_subset);
+
+	factors=factors[,shared_variables];
+	factor_names=colnames(factors);
 	num_factors=ncol(factors);
-	
-}else{
-	model_var=factor_names;
 }
 
 factor_sample_names=rownames(factors);
