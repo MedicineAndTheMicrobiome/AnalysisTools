@@ -23,7 +23,8 @@ params=c(
 	"distmat", "d", 1, "character",
 	"factors", "f", 1, "character",
 
-	"var_list", "v", 2, "character",
+	"include", "v", 2, "character",
+	"exclude", "x", 2, "character",
 
 	"min_nonna_prop", "n", 2, "numeric",
 
@@ -43,7 +44,8 @@ usage = paste(
 	"	-f <factors>\n",
 	"\n",
 	"	User specify which subset of variables to LASSO:\n",
-	"	[-v <subset variables list filename>]\n",
+	"	[--include <subset variables list filename>]\n",
+	"	[--exclude <file with variables to exclude>]\n",
 	"\n",
 	"	NA Handling:\n",
 	"	[-p <min nonNA proportion, default=", DEF_MIN_NONNA_PROP, ">]\n",
@@ -82,10 +84,16 @@ if(!length(opt$outputroot)){
 }
 OutputFnameRoot=paste(OutputFnameRoot, ".dist_pml", sep="");
 
-if(!length(opt$var_list)){
-	VariableListFname="";
+if(!length(opt$include)){
+	VariableIncludeListFname="";
 }else{
-	VariableListFname=opt$var_list;
+	VariableIncludeListFname=opt$include;
+}
+
+if(!length(opt$exclude)){
+	VariableExcludeListFname="";
+}else{
+	VariableExcludeListFname=opt$exclude;
 }
 
 if(!length(opt$min_nonna_pro)){
@@ -118,8 +126,12 @@ cat("Output Filename Root: ", OutputFnameRoot, "\n", sep="");
 cat("Minimum Non-NA Proportion: ", MinNonNAProp, "\n", sep="");
 cat("\n");
 
-if(VariableListFname!=""){
-	cat("Using subset of variables from: ", VariableListFname, "\n\n");
+if(VariableIncludeListFname!=""){
+	cat("Using subset of variables from: ", VariableIncludeListFname, " (Inclusion List)\n");
+}
+
+if(VariableExcludeListFname!=""){
+	cat("Exlcuding subset of variables from: ", VariableExcludeListFname, " (Exclusion List)\n");
 }
 
 ###############################################################################
@@ -636,7 +648,7 @@ plot_coefficients=function(coeff_mat, lambdas, mark_lambda_ix=NA, lambda_color="
 
 	# Plot curves
 	for(x_ix in 1:num_xs){
-		points(coeff_mat[,x_ix], col=x_ix, type="l");
+		points(coeff_mat[,x_ix], col=x_ix, type="l", lwd=4);
 	} 
 
 	# Label lambda/DFs positions
@@ -681,15 +693,27 @@ print(factor_names);
 cat("\n");
 
 # Subset factors
-variable_subset=c();
-if(VariableListFname!=""){
-	variable_subset=scan(VariableListFname, what=character());
-	cat("Variables Subset List:\n");
+
+if(VariableIncludeListFname!=""){
+	variable_subset=scan(VariableIncludeListFname, what=character());
+	cat("Variable Inclusion List:\n");
 	print(variable_subset);
 	cat("\n");
 	shared_variables=intersect(factor_names, variable_subset);
 
 	factors=factors[,shared_variables];
+	factor_names=colnames(factors);
+	num_factors=ncol(factors);
+}
+
+if(VariableExcludeListFname!=""){
+	variable_subset=scan(VariableExcludeListFname, what=character());
+	cat("Variable Exclusion List:\n");
+	print(variable_subset);
+	cat("\n");
+	remaining_variables=setdiff(factor_names, variable_subset);
+
+	factors=factors[,remaining_variables];
 	factor_names=colnames(factors);
 	num_factors=ncol(factors);
 }
