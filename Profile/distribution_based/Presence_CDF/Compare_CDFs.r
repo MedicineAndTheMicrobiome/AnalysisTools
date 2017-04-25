@@ -39,7 +39,10 @@ params=c(
 	"height", "h", 2, "numeric",
 	"width", "w", 2, "numeric",
 	"keep_list_file", "k", 2, "character",
-	"top_names", "t", 2, "numeric"
+	"top_names", "t", 2, "numeric",
+
+	"shorten", "s", 2, "logical",
+	"label_size", "l", 2, "numeric"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -67,6 +70,8 @@ usage= paste(
 	"	[-o <output filename root>]\n",
 	"	[-h <paper height, default=", PaperHeight, " in>]\n",
 	"	[-w <paper width, default=", PaperWidth, " in>]\n",
+	"	[-s (shorten category/taxa names flag, default=F)]\n",
+	"	[-l <label size, default=1>]\n",
 	"\n",
 	"This script will generate a Ubiquit-Ubiquity (U-U) Plot, that\n",
 	"compares the ubiquities between two cohorts at matching abundances.\n",
@@ -148,6 +153,16 @@ if(length(opt$top_names)){
 	NumTopNamesToPlot=opt$top_names;
 }
 
+ShortenNames=F;
+if(length(opt$shorten)){
+	ShortenNames=T;
+}
+
+LabelSize=1;
+if(length(opt$label_size)){
+	LabelSize=opt$label_size;
+}
+
 ################################################################################
 
 cat("Input PDF File A: ", InputFileNameA, "\n");
@@ -222,7 +237,9 @@ read_cdf_from_file=function(cdf_fn){
 
 ################################################################################
 
-plot_compare_cdf=function(cdf_infoA, cdf_infoB, min_ubiq_diff=0, min_avg_abund=0, interpolation_method="average", id_mapping_info=NULL){
+plot_compare_cdf=function(cdf_infoA, cdf_infoB, min_ubiq_diff=0, min_avg_abund=0, 
+	interpolation_method="average", id_mapping_info=NULL,
+	label_size=1, shorten_names=F){
 # Plot the CDF
 
 	num_taxaA=length(cdf_infoA$taxa);
@@ -364,6 +381,9 @@ plot_compare_cdf=function(cdf_infoA, cdf_infoB, min_ubiq_diff=0, min_avg_abund=0
 					display_name=id_mapping_info[[shared_taxa[t]]];
 				}else{
 					display_name=shared_taxa[t];
+					if(shorten_names){
+						display_name=tail(strsplit(display_name, ";")[[1]],1);
+					}
 				}
 
 				if(any(t==label_indices)){
@@ -387,7 +407,8 @@ plot_compare_cdf=function(cdf_infoA, cdf_infoB, min_ubiq_diff=0, min_avg_abund=0
 					coordinate_string=sprintf(" (%2.2f,%2.2f)", ptsA[max_diff_idx], ptsB[max_diff_idx]);
 					text(ptsA[max_diff_idx], ptsB[max_diff_idx], 
 						label=paste(sep="", display_name, coordinate_string), srt=45, 
-						col=cdf_infoA$colors[idx_A], cex=.5, adj=c(.5, rel_pos), font=3);
+						col=cdf_infoA$colors[idx_A], adj=c(.5, rel_pos), 
+						cex=label_size, font=3);
 				}
 
 				num_plotted=num_plotted+1;
@@ -587,7 +608,9 @@ pdf(paste(OutputFileRoot, ".UU.pdf", sep=""), height=PaperHeight, width=PaperWid
 
 cat("Plotting comparisons:\n");
 
-plot_compare_cdf(cdf_infoA, cdf_infoB, min_ubiq_diff=MinUbiqDiff, min_avg_abund=MinAvgAbund, id_mapping_info=idmapping);
+plot_compare_cdf(cdf_infoA, cdf_infoB, 
+	min_ubiq_diff=MinUbiqDiff, min_avg_abund=MinAvgAbund, id_mapping_info=idmapping,
+	label_size=LabelSize, shorten_names=ShortenNames);
 
 dev.off();
 
