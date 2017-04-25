@@ -377,11 +377,18 @@ plot_compare_cdf=function(cdf_infoA, cdf_infoB, min_ubiq_diff=0, min_avg_abund=0
 
 			if((max > min_ubiq_diff) && (abund_at_diff > min_avg_abund)){
 
+				# Draw a thicker line, if we're going to label it
+				if(any(t==label_indices)){
+					line_width=3;	
+				}else{
+					line_width=1;
+				}	
+
 				# Draw lines
 				lines(ptsA, ptsB, 
 					col=cdf_infoA$colors[idx_A], 
 					lty=cdf_infoA$line_type[idx_A],
-					lwd=1.5);
+					lwd=line_width);
 
 				# Change ID's to descriptions
 				if(!is.null(id_mapping_info)){
@@ -408,7 +415,7 @@ plot_compare_cdf=function(cdf_infoA, cdf_infoB, min_ubiq_diff=0, min_avg_abund=0
 
 					# Place a "pin" over the line of the same color as the text
 					points(ptsA[max_diff_idx], ptsB[max_diff_idx], 
-						col=cdf_infoA$colors[idx_A], pch=20, cex=1); 
+						col=cdf_infoA$colors[idx_A], pch=19, cex=label_size); 
 
 					# Label the line
 					coordinate_string="";
