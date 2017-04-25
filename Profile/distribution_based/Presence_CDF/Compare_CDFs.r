@@ -42,6 +42,7 @@ params=c(
 	"top_names", "t", 2, "numeric",
 
 	"shorten", "s", 2, "logical",
+	"suppress_coordinates", "q", 2, "logical",
 	"label_size", "l", 2, "numeric"
 );
 
@@ -71,6 +72,7 @@ usage= paste(
 	"	[-h <paper height, default=", PaperHeight, " in>]\n",
 	"	[-w <paper width, default=", PaperWidth, " in>]\n",
 	"	[-s (shorten category/taxa names flag, default=F)]\n",
+	"	[-q (suppress printing coordinates next to category/taxa, default=F)]\n",
 	"	[-l <label size, default=1>]\n",
 	"\n",
 	"This script will generate a Ubiquit-Ubiquity (U-U) Plot, that\n",
@@ -151,6 +153,11 @@ if(length(opt$color_map)){
 NumTopNamesToPlot=-1;
 if(length(opt$top_names)){
 	NumTopNamesToPlot=opt$top_names;
+}
+
+SuppressCoordinates=F;
+if(length(opt$suppress_coordinates)){
+	SuppressCoordinates=T;
 }
 
 ShortenNames=F;
@@ -404,7 +411,10 @@ plot_compare_cdf=function(cdf_infoA, cdf_infoB, min_ubiq_diff=0, min_avg_abund=0
 						col=cdf_infoA$colors[idx_A], pch=20, cex=1); 
 
 					# Label the line
-					coordinate_string=sprintf(" (%2.2f,%2.2f)", ptsA[max_diff_idx], ptsB[max_diff_idx]);
+					coordinate_string="";
+					if(!SuppressCoordinates){
+						coordinate_string=sprintf(" (%2.2f,%2.2f)", ptsA[max_diff_idx], ptsB[max_diff_idx]);
+					}
 					text(ptsA[max_diff_idx], ptsB[max_diff_idx], 
 						label=paste(sep="", display_name, coordinate_string), srt=45, 
 						col=cdf_infoA$colors[idx_A], adj=c(.5, rel_pos), 

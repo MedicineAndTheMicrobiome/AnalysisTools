@@ -136,6 +136,10 @@ sub generate_UU_plot{
 	my $color_sch=shift;
 	my $keep_list=shift;
 	my $fn_ext=shift;
+	my $label_size=shift;
+	my $shorten_flag=shift;
+	my $num_cat_to_plot=shift;
+	my $plot_coord=shift;
 
 	#----------------------------------------------------------------------
 	# Generate CDFs
@@ -182,6 +186,18 @@ sub generate_UU_plot{
 	}
 	if($keep_list ne ""){
 		$options.=" -k $keep_list";
+	}
+	if($label_size ne ""){
+		$options.=" -l $label_size";
+	}
+	if($shorten_flag eq "shorten"){
+		$options.=" -s";
+	}
+	if($num_cat_to_plot ne ""){
+		$options.=" -t $num_cat_to_plot";
+	}
+	if($plot_coord eq "no_coord"){
+		$options.=" -q";
 	}
 
 	$output.=".$fn_ext";
@@ -250,6 +266,23 @@ generate_UU_plot(
 );
 # Generates:
 # 	$output_root.smoothed.UU.pdf
+
+generate_UU_plot(
+	$sample_a_summary_table,
+	$sample_b_summary_table,
+	$output_root,
+	1,
+	"",
+	"$output_root.uncor_pval_lt05.colormap",
+	"$output_root.uncor_pval_lt10",
+	"smoothed.shortened.top06",
+	1.75, # label size
+	"shorten", # parse 
+	3, # max top to plot
+	"no_coord"
+);
+# Generates:
+# 	$output_root.smoothed.shortened.top06.UU.pdf
 
 #----------------------------------------------------------------
 
