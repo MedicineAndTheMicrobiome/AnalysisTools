@@ -406,10 +406,14 @@ plot_compare_cdf=function(cdf_infoA, cdf_infoB, min_ubiq_diff=0, min_avg_abund=0
 
 					# Decide if label goes above or below the line
 					if(ptsA[max_diff_idx]<ptsB[max_diff_idx]){
-						rel_pos=-.75;
+						#rel_pos=c(.5,-.75);
+						adj_val=c(-.1,.35);
+						rotation=90;
 						cat(" (above)\n");
 					}else{
-						rel_pos=2
+						#rel_pos=c(.5,2);
+						adj_val=c(-0.1,.35);
+						rotation=0;
 						cat(" (below)\n");
 					}
 
@@ -423,8 +427,8 @@ plot_compare_cdf=function(cdf_infoA, cdf_infoB, min_ubiq_diff=0, min_avg_abund=0
 						coordinate_string=sprintf(" (%2.2f,%2.2f)", ptsA[max_diff_idx], ptsB[max_diff_idx]);
 					}
 					text(ptsA[max_diff_idx], ptsB[max_diff_idx], 
-						label=paste(sep="", display_name, coordinate_string), srt=45, 
-						col=cdf_infoA$colors[idx_A], adj=c(.5, rel_pos), 
+						label=paste(sep="", display_name, coordinate_string), srt=rotation, 
+						col=cdf_infoA$colors[idx_A], adj=adj_val, 
 						cex=label_size, font=3);
 				}
 
