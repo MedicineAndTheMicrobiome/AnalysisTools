@@ -16,7 +16,7 @@ params=c(
 	"outputroot", "o", 2, "character",
 	"model", "m", 2, "character",
 	"contains_remaining", "R", 2, "logical",
-	"shorten_category_names", "x", 2, "logical",
+	"shorten_category_names", "x", 2, "character",
 	"test_run", "t", 2, "logical"
 );
 
@@ -33,7 +33,7 @@ usage = paste(
 	"	[-m <model formula string>]\n",
 	"	[-R (pay attention to 'remaining' category)]\n",
 	"\n",
-	"	[-x (shorten category names)]\n",
+	"	[-x <shorten category names, with separator in double quotes (default=\"\")>]\n",
 	"	[-t (test run flag)]\n",
 	"\n",
 	"This script will read in the summary file table, then perform\n",
@@ -55,7 +55,7 @@ usage = paste(
 	"\n",
 	"If the -R flag is set, a 'remaining' category will be be included in the denominator\n",
 	"	independent of how large it is.  I.e., do not use it as one of the response variables.\n",
-	"\n");
+	"\n", sep="");
 
 if(!length(opt$summary_file) || !length(opt$factors)){
 	cat(usage);
@@ -93,9 +93,9 @@ if(length(opt$contains_remaining)){
 }
 
 if(length(opt$shorten_category_names)){
-	ShortenCategoryNames=T;
+	ShortenCategoryNames=opt$shorten_category_names;
 }else{
-	ShortenCategoryNames=F;
+	ShortenCategoryNames="";
 }
 
 if(length(opt$test_run)){
@@ -115,6 +115,7 @@ cat("Reference Levels File: ", ReferenceLevelsFile, "\n", sep="");
 cat("Output File: ", OutputRoot, "\n", sep="");
 cat("Model: ", Model, "\n", sep="");
 cat("Use Remaining? ", UseRemaining, "\n");
+cat("Shorten Category Names: ", ShortenCategoryNames, "\n");
 cat("\n");
 
 if(TestRun){
@@ -200,19 +201,9 @@ plot_correl_heatmap=function(mat, title="", noPrintZeros=F, guideLines=F){
 
 	cat("Plotting: ", title, "\n");
 
-	par(family="Courier");
-	par(oma=c(10, 10, 1, .5));
-	par(mar=c(6.1, 5.1, .5, .5));
 
 	# Generate colors from red to blue
         colors=(rainbow(2^16, start=0, end=0.65));
-
-	# Remember that rows and columsn are reversed in the image
-	image(1:nrow(mat),1:ncol(mat), mat,
-                xaxt="n", yaxt="n",
-                xlab="", ylab="",
-                col=colors
-        );
 
 	# Pad strings
 	cnames=paste(colnames(mat), " ", sep="");
@@ -229,12 +220,24 @@ plot_correl_heatmap=function(mat, title="", noPrintZeros=F, guideLines=F){
 	cscale=min(c(45/cname_max_len, 55/ncols));
 	rscale=min(c(45/rname_max_len, 55/nrows));
 
-	cscale=min(3, cscale);
-	rscale=min(3, rscale);
+	cscale=min(1, cscale);
+	rscale=min(1, rscale);
 
         max_width=max(nchar(sprintf("%.2f",mat)));
 	#cell_cex=sqrt(min(c(cscale, rscale))^2);
-	cell_cex=(1/max_width)*sqrt(cscale^2 +  rscale^2);
+	cell_cex=2*(1/max_width)*sqrt(cscale^2 +  rscale^2);
+
+	par(family="Courier");
+	par(oma=c(.5, .5, 1.5, .5));
+	par(mar=c(rname_max_len/2, cname_max_len/2, .5, .5));
+
+	# Remember that rows and columsn are reversed in the image
+	image(1:nrow(mat),1:ncol(mat), mat,
+                xaxt="n", yaxt="n",
+                xlab="", ylab="",
+                col=colors
+        );
+
 
         for(i in 1:nrow(mat)){
                 for(j in 1:ncol(mat)){
@@ -279,7 +282,7 @@ plot_correl_heatmap=function(mat, title="", noPrintZeros=F, guideLines=F){
         mtext(rnames, at=1:nrows, side=1, las=2, cex=rscale);
 
 	# Plot the title
-	mtext(title, line=0, at=nrows*.5, side=3, font=2);
+	mtext(title, line=0, outer=T, side=3, font=2);
 
 }
 
@@ -378,6 +381,18 @@ num_taxa=ncol(counts);
 num_samples=nrow(counts);
 #print(counts);
 
+# Shorten cateogry names
+if(ShortenCategoryNames!=""){
+	full_names=colnames(counts);
+	splits=strsplit(full_names, ShortenCategoryNames);
+	short_names=character();
+	for(i in 1:length(full_names)){
+		short_names[i]=tail(splits[[i]], 1);
+	}
+	colnames(counts)=short_names;
+	cat("Names have been shortened.\n");
+}
+
 # Normalize
 normalized=normalize(counts);
 #print(normalized);
@@ -396,18 +411,6 @@ if(UseRemaining){
 		normalized_remaining_col_dat=normalized[,remaining_ix, drop=F];
 		normalized=normalized[,-remaining_ix];
 	}
-}
-
-# Shorten cateogry names
-if(ShortenCategoryNames){
-	full_names=colnames(counts);
-	splits=strsplit(full_names, " ");
-	short_names=character();
-	for(i in 1:length(full_names)){
-		short_names[i]=tail(splits[[i]], 1);
-	}
-	colnames(counts)=short_names;
-	cat("Names have been shortened.\n");
 }
 
 
@@ -904,11 +907,13 @@ if(ncol(log_uv_pval_mat)>=2 && nrow(log_uv_pval_mat)>=2){
 	par_oma_before=par()$oma;
 	par_mar_before=par()$mar;
 
-	par(oma=c(3, 0, 0, 10));
-	par(mar=c(0, 0, 0, 0));
+        cname_max_len=max(nchar(colnames(log_uv_pval_mat)));
+        rname_max_len=max(nchar(rownames(log_uv_pval_mat)));
+
+	par(oma=c(1,1,1,1));
 	num_hm_colors=20;
 	cl_hm_colors=(rainbow(num_hm_colors, start=0, end=0.65));
-	heatmap(log_uv_pval_mat, col=cl_hm_colors, margins=c(27, 7));
+	heatmap(log_uv_pval_mat, col=cl_hm_colors, margins=c(rname_max_len/3, cname_max_len/2));
 
 	# Plot Legend
 	par(mar=c(10,1,10,1), oma=c(0,0,0,0),  mfrow=c(2,1));
