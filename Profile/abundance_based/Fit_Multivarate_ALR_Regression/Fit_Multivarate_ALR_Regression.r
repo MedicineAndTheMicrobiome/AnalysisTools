@@ -168,12 +168,19 @@ load_reference_levels_file=function(fname){
 relevel_factors=function(factors, ref_lev_mat){
         num_factors_to_relevel=nrow(ref_lev_mat);
         relevel_names=rownames(ref_lev_mat);
+	factor_names=colnames(factors);
         for(i in 1:num_factors_to_relevel){
-                tmp=factors[,relevel_names[i]];
-                #print(tmp);
-                tmp=relevel(tmp, ref_lev_mat[i, 1]);
-                #print(tmp);
-                factors[,relevel_names[i]]=tmp;
+		
+		target_relev_name=relevel_names[i];
+		if(any(target_relev_name==factor_names)){
+			tmp=factors[,target_relev_name];
+			#print(tmp);
+			tmp=relevel(tmp, ref_lev_mat[i, 1]);
+			#print(tmp);
+			factors[,target_relev_name]=tmp;
+		}else{
+			cat("Note: ", target_relev_name, " not in model.  Ignoring reference releveling.\n\n", sep="");
+		}
         }
         return(factors);
 }
@@ -468,12 +475,14 @@ if(Model!="All Factors"){
 	num_factors=ncol(factors);
 }
 
+cat("**************************************************************\n");
+
 # Relevel factor levels
 if(ReferenceLevelsFile!=""){
         ref_lev_mat=load_reference_levels_file(ReferenceLevelsFile)
         factors=relevel_factors(factors, ref_lev_mat);
 }else{
-        cat("No Reference Levels File specified.\n");
+        cat("* No Reference Levels File specified.                        *\n");
 }
 
 continuous_factors=factors;
@@ -493,6 +502,14 @@ for(f in 1:num_factors){
 		is_continous_factor[f]=FALSE;
 	}
 }
+
+cat("* Reference levels:                                          *\n");
+for(f in 1:num_factors){
+	cat("*  ", factor_names[f], ":\n*   ", sep="");
+	print(levels(factors[,f]));
+}
+cat("**************************************************************\n");
+
 
 continuous_factors=continuous_factors[,is_continous_factor, drop=F];
 print(continuous_factors);
@@ -701,6 +718,9 @@ cat("\nFitting this multivariate model: ", model_string, "\n");
 text=character();
 
 mv_fit=tryCatch({
+print(factors);
+print(levels(factors[,1]));
+print(levels(factors[,2]));
 	mv_fit=lm(as.formula(model_string), data=factors);
 }, error = function(e){
 	print(e);
