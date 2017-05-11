@@ -101,17 +101,55 @@ num_samp=nrow(prof_matrix);
 
 ################################################################################
 
-print(prof_matrix);
+compute_nuc_distmat_1=function(){
+	codes=c("A","C","G","T","U","M","R","W","S","Y","K","V","H","D","B","N");
+	num_codes=length(codes);
+	
+	map=list();
+	map[["A"]]=c("A");
+	map[["C"]]=c("C");
+	map[["G"]]=c("G");
+	map[["T"]]=c("T");
+	map[["U"]]=c("T");
 
+	map[["M"]]=c("A","C");
+	map[["R"]]=c("A","G");
+	map[["W"]]=c("A","T");
+	map[["S"]]=c("C","G");
+	map[["Y"]]=c("C","T");
+	map[["K"]]=c("G","T");
+
+	map[["V"]]=c("A","C","G");
+	map[["H"]]=c("A","C","T");
+	map[["D"]]=c("A","G","T");
+	map[["B"]]=c("C","G","T");
+
+	map[["N"]]=c("G","A","T","C");
+
+	nuc_distmat=matrix(0, nrow=num_codes, ncol=num_codes, dimnames=list(codes, codes));
+
+	for(nuc1 in codes){
+		for(nuc2 in codes){
+			possibilities=unique(c(map[[nuc1]], map[[nuc2]]));
+			intersecting=intersect(map[[nuc1]], map[[nuc2]]);
+			nuc_distmat[nuc1, nuc2]=1-length(intersecting)/length(possibilities);	
+		}
+	}
+
+	return(nuc_distmat);
+
+}
+
+cat("Computing Nucleotide Penalty Matrix:\n");
+penalty_matrix=compute_nuc_distmat_1();
+print(penalty_matrix);
 
 nuc_dist=function(a, b){
 	len=length(a);
 	
 	tot=0;
 	for(i in 1:len){
-		if(a[i]!=b[i]){
-			tot=tot+1;
-		}
+		tot=tot+penalty_matrix[a[i], b[i]];
 	}
 
 	dist=tot/len;
