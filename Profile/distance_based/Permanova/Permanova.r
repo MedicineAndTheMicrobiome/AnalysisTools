@@ -25,9 +25,11 @@ usage = paste(
 	"\nUsage:\n", script_name, "\n",
 	"	-d <distance matrix>\n",
 	"	-f <factors>\n",
-	"	[-m \"model formula string\"]\n",
-	"	[-b <factor to use as blocking variable>]\n",
+	"\n",
 	"	[-o <output filename root>]\n",
+	"	[-m \"model formula string\"]\n",
+	"\n",
+	"	[-b <factor to use as blocking variable>]\n",
 	"	[--xrange=<MDS Dim1 Range, eg. -2,2>]\n",
 	"	[--yrange=<MDS Dim2 Rnage, eg. -2,2>]\n",
 	"	[-t (testing flag)]\n",
@@ -102,6 +104,7 @@ if(length(opt$testing)){
 	rand="";
 }
 
+###############################################################################
 
 cat("\n");
 cat("Distance Matrix Filename: ", DistmatFname, "\n", sep="");
@@ -115,7 +118,6 @@ cat("\n");
 if(ModelFormula!=""){
 	cat("Model Formula specified: ", ModelFormula, "\n\n");
 }
-
 
 ###############################################################################
 
@@ -140,7 +142,7 @@ load_distance_matrix=function(fname){
 load_factors=function(fname){
 	factors=data.frame(read.table(fname,  header=TRUE, row.names=1, check.names=FALSE, sep="\t"));
 
-	print(factors);
+	#print(factors);
 
 	dimen=dim(factors);
 	cat("Rows Loaded: ", dimen[1], "\n");
@@ -339,14 +341,52 @@ plot_text=function(strings){
 
 ##############################################################################
 
+remove_factors_with_no_data=function(factors){
+	num_factors=ncol(factors);
+	fact_names=colnames(factors);
+	keep_ix=c();
+	cat("Looking for no-info factors...\n");
+	for(i in 1:num_factors){
+		fact_val=factors[,i];
+		na_ix=is.na(fact_val);
+		fact_val=fact_val[!na_ix];
+		uniq_vals=unique(fact_val);
+		num_unique=length(uniq_vals);
+		if(num_unique>1){
+			keep_ix=c(keep_ix, i);	
+		}else{
+			if(num_unique==0){
+				uniq_vals="NA";
+			}
+			cat("Removing: ", fact_names[i], ", all ", uniq_vals, "'s\n", sep="");
+		}
+	}
+	cat("ok.\n\n");
+	return(factors[,keep_ix, drop=F]);
+}
+
+##############################################################################
+
 remove_sample_or_factors_wNA=function(factors, num_trials=1000){
 
+	cat("Identifying Samples or Factors to remove to remove all NAs:\n");
+	
         num_col=ncol(factors);
         num_row=nrow(factors);
+
+	cat("Categories before:\n");
+	print(colnames(factors));
+
+	cat("Num Factors Entering: ", num_col, "\n");
+	cat("Num Samples Entering: ", num_row, "\n");
 
         # Find rows and columns with NAs
         row_na_ix=which(apply(factors, 1, anyNA));
         col_na_ix=which(apply(factors, 2, anyNA));
+
+	row_na_counts=apply(factors[row_na_ix,], 1, function(x){sum(is.na(x))/num_col});
+	col_na_counts=apply(factors[,col_na_ix], 2, function(x){sum(is.na(x))/num_row});
+	combined_na_counts=c(row_na_counts, col_na_counts);
 
         num_row_na=length(row_na_ix);
         num_col_na=length(col_na_ix);
@@ -362,6 +402,10 @@ remove_sample_or_factors_wNA=function(factors, num_trials=1000){
 
         cat("NAs found in these rows/columns:\n");
         print(na_ix);
+
+        num_non_na=sum(!is.na(factors));
+	#print(factors);
+	cat("Maximum Number of non-NAs: ", num_non_na, "\n");
 
         num_rowcol=sum(num_row_na, num_col_na);
 
@@ -380,7 +424,8 @@ remove_sample_or_factors_wNA=function(factors, num_trials=1000){
 	last_improvement=0;
         for(i in 1:num_trials){
 
-                random_ix=sample(num_rowcol);
+                random_ix=sample(num_rowcol, replace=F, prob=combined_na_counts);
+		#random_ix=sample(num_rowcol, replace=F);
 
                 tmp_matrix=renamed_factors;
                 cur_ix_sequence=numeric();
@@ -394,11 +439,11 @@ remove_sample_or_factors_wNA=function(factors, num_trials=1000){
                         if(dim_ix[ix]==1){
                                 names=rownames(tmp_matrix);
                                 new_ix=which(names==rm_ix);
-                                tmp_matrix=tmp_matrix[-new_ix,];
+                                tmp_matrix=tmp_matrix[-new_ix,, drop=F];
                         }else{
                                 names=colnames(tmp_matrix);
                                 new_ix=which(names==rm_ix);
-                                tmp_matrix=tmp_matrix[,-new_ix];
+                                tmp_matrix=tmp_matrix[,-new_ix, drop=F];
                         }
 
                         # Count up number of NAs
@@ -444,9 +489,35 @@ remove_sample_or_factors_wNA=function(factors, num_trials=1000){
                 fact_subset=fact_subset[,-rm_col,drop=F];
         }
 
+	cat("Categories after:\n");
+	print(colnames(fact_subset));
+
+	cat("Num Factors Left: ", ncol(fact_subset), "\n");
+	cat("Num Samples Left: ", nrow(fact_subset), "\n");
+
         return(fact_subset);
 
 }
+
+##############################################################################
+
+subset_model_string=function(model_string, avail_factors){
+	lin_var_str=gsub(" ", "", model_string);
+	lin_comp=strsplit(lin_var_str, "\\+")[[1]];
+	num_components=length(lin_comp);
+	keep_comp=c();
+	for(i in 1:num_components){
+		vars=strsplit(lin_comp[i], "[\\*\\:]")[[1]];
+		shared=intersect(vars, avail_factors);
+		if(setequal(shared, vars)){
+			keep_comp=c(keep_comp, lin_comp[i]);
+		}
+	}
+	new_model=paste(keep_comp, collapse="+");
+	return(new_model);
+}
+
+#subset_model_string("This+ is + a:test + yes + it:is+This:test:yes", c("This", "test", "yes"));
 
 ##############################################################################
 
@@ -458,36 +529,22 @@ distmat_sample_names=colnames(distmat);
 
 # Load factors
 factors=load_factors(FactorsFname);
+factor_sample_names=rownames(factors);
+num_factor_samples=length(factor_sample_names);
 factor_names=colnames(factors);
 num_factors=ncol(factors);
 cat(num_factors, " Factor(s) Loaded:\n", sep="");
 print(factor_names);
+num_factor_samples=length(factor_sample_names);
+cat(num_factor_samples, " Samples in factor file.\n", sep="");
 cat("\n");
 
-if(ModelFormula!=""){
-	# Based on factors in model string, identity which factors are used
-	model_var=gsub("\\+", " ", ModelFormula);
-	model_var=gsub("\\:", " ", model_var);
-	model_var=gsub("\\*", " ", model_var);
-	model_var=unique(strsplit(model_var, " ")[[1]]);
-	model_var=intersect(model_var, factor_names);
-	factors=factors[,model_var, drop=F];
-	num_factors=ncol(factors);
-	
-}else{
-	model_var=factor_names;
-}
-
-factors=remove_sample_or_factors_wNA(factors);
-factor_sample_names=rownames(factors);
-print(colnames(factors));
-print(rownames(factors));
-
-num_factor_samples=length(factor_sample_names);
+###############################################################################
 
 # Confirm/Reconcile that the samples in the matrix and factors file match
 cat("DistMat Samples:\n");
 print(distmat_sample_names);
+cat("\n");
 cat("Factor Samples:\n");
 print(factor_sample_names);
 
@@ -504,13 +561,57 @@ if(num_common_samples < num_distmat_samples || num_common_samples < num_factor_s
 	cat("\n");
 }
 
+
 # Set the working distance matrix to the same order
 distmat=distmat[common_sample_names, common_sample_names];
+factors=factors[common_sample_names, , drop=F];
+
+###############################################################################
+
+if(ModelFormula!=""){
+	# Based on factors in model string, identity which factors are used
+	model_vars_str=ModelFormula;
+	model_vars_str=gsub(" ", "", model_vars_str);
+	model_vars_str=gsub("[\\+\\:\\*]", " ", model_vars_str);
+	model_var=unique(strsplit(model_vars_str, " ")[[1]]);
+
+	avail_factors=colnames(factors);
+	if(!setequal(model_var, intersect(model_var, avail_factors))){
+		cat("ERROR: Could not find model variables in factor file.\n\n");
+		cat("Missing Model Variables:\n");
+		print(setdiff(model_var, avail_factors));
+		cat("\nFactor File Variables:\n");
+		print(avail_factors);
+		cat("\n");
+		quit(status=-1);
+	}
+
+	factors=factors[,model_var, drop=F];
+	num_factors=ncol(factors);
+}else{
+	model_var=factor_names;
+}
+
+# Remove factors or samples that have NAs
+factors=remove_factors_with_no_data(factors);
+factors=remove_sample_or_factors_wNA(factors, 20000);
+factor_names=colnames(factors);
+num_factors=ncol(factors);
+factor_sample_names=rownames(factors);
+
+if(ModelFormula!=""){
+	ModelFormula=subset_model_string(ModelFormula, factor_names);
+	cat("Adjusted Model Formula: ", ModelFormula, "\n");
+}
+
+# Reconcile samples between distance matrix and factor file again
+common_sample_names=intersect(distmat_sample_names, factor_sample_names);
+distmat=distmat[common_sample_names, common_sample_names];
+
 num_samples=ncol(distmat);
 sample_names=colnames(distmat);
 cat("Num Samples used: ", num_samples, "\n\n");
 
-factors=factors[common_sample_names, , drop=F];
 for(i in 1:num_factors){
 	categories=unique(unique(factors[,i]));
 	cat("'", factor_names[i], "' has ", length(categories), " categories.\n", sep="");
@@ -522,18 +623,19 @@ for(i in 1:num_factors){
 
 # Perform Permanova
 dist=(as.dist(distmat));
-#dist=as.matrix(as.dist(distmat));
 
 if(ModelFormula==""){
-	model_string= paste("dist ~", paste(factor_names, collapse=" + "));
+	model_string=paste("dist ~", paste(factor_names, collapse=" + "));
 }else{
-	model_string= paste("dist ~", ModelFormula);
+	model_string=paste("dist ~", ModelFormula);
 }
+
+num_linear_components=length(strsplit(model_string, "\\+")[[1]]);
+
 cat("\nFitting this model: ", model_string, "\n");
 
 cat("\n--------------------------------------------------------------------------\n");
 cat("Before invoking Adonis:\n");
-print(factors);
 #print(dist);
 #res=adonis(as.formula(model_string), data=factors, permutations=2000);
 if(Blocking!=""){
@@ -541,7 +643,7 @@ if(Blocking!=""){
 }else{
 	stratify=NULL;
 }
-res=adonis(as.formula(model_string), data=factors, strata=stratify, permutations=2000);
+res=adonis(as.formula(model_string), data=factors, strata=stratify, permutations=num_linear_components*1000);
 cat("After invoking Adonis:\n");
 print(res);
 
@@ -700,8 +802,6 @@ mm_var_names=colnames(res$model.matrix);
 print(mm_var_names);
 
 par(oma=c(0,0,4,0));
-
-print(factors);
 
 for(fact_id in 1:num_anova_terms){
 
