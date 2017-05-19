@@ -679,7 +679,9 @@ if(Blocking!=""){
 }else{
 	stratify=NULL;
 }
-res=adonis(as.formula(model_string), data=factors, strata=stratify, permutations=10*1000);
+
+perm_factor=max(10, num_linear_components);
+res=adonis(as.formula(model_string), data=factors, strata=stratify, permutations=perm_factor*1000);
 cat("After invoking Adonis:\n");
 print(res);
 
@@ -837,6 +839,18 @@ num_anova_terms=length(anova_terms);
 mm_var_names=colnames(res$model.matrix);
 print(mm_var_names);
 
+bin_continuous_values=function(values, num_bins=10){
+	minv=min(values);	
+	maxv=max(values);
+	range=maxv-minv;
+	# Map values between 0 and 1
+	prop=(values-minv)/range;
+	# Scale value up to bin, and round, to quantize
+	closest=round(prop*num_bins,0);
+	# Remap values to original range and location
+	return(closest/num_bins*range+minv);
+}
+
 par(oma=c(0,0,4,0));
 
 for(fact_id in 1:num_anova_terms){
@@ -877,18 +891,33 @@ for(fact_id in 1:num_anova_terms){
 	}else{
 		# Get factor information
 		cur_factor=factors[,term_name];
+		is_factor=is.factor(cur_factor);
+		is_ordered=is.ordered(cur_factor);
 		names(cur_factor)=rownames(factors);
-		factor_levels=sort(unique(cur_factor));
+
+		if(!is_factor){
+			num_unique=length(unique(cur_factor));
+			if(num_unique>2){
+				#cur_factor=round(cur_factor,0);
+				cur_factor=bin_continuous_values(cur_factor, num_bins=10);
+				factor_levels=sort(unique(cur_factor));
+			}
+			factor_levels=sort(unique(cur_factor));
+		}else{
+			factor_levels=unique(cur_factor);
+		}
 		num_levels=length(factor_levels);
 
 	}
 
 	cat("Factor Levels for ", term_name, "\n");
+	cat("Is Factor? ", is_factor, "\n");
+	cat("Is Ordered? ", is_ordered, "\n");
 	print(factor_levels);
 	cat("\n");
 
 	# allocate/assign colors to palette
-	if(num_levels>num_simple_colors){
+	if(num_levels>num_simple_colors || !is_factor){
 		palette(rainbow(num_levels));
 	}else{
 		palette(simple_colors);
@@ -985,7 +1014,11 @@ for(fact_id in 1:num_anova_terms){
 	);
 	points(mds1_reori, mds2_reori, cex=1, col=fact_col[sample_names]);
 	points(mds1_centoid, mds2_centoid, cex=3, col=1:num_levels, font=2);
-	text(mds1_centoid, mds2_centoid, labels=factor_levels, cex=.7, font=2);
+
+	# Only plot category labels if the labels are factors, i.e. no continuous values
+	if(is_factor || is_ordered){
+		text(mds1_centoid, mds2_centoid, labels=factor_levels, cex=.7, font=2);
+	}
 
 	# Plot Legend
 	mar=par()$mar;
