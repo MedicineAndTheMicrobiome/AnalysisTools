@@ -15,7 +15,8 @@ params=c(
 	"outputroot", "o", 2, "character",
 	"xrange", "x", 2, "character",
 	"yrange", "y", 2, "character",
-	"testing", "t", 2, "logical"
+	"testing", "t", 2, "logical",
+	"strip_samples_nas", "s", 2, "logical"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -34,6 +35,8 @@ usage = paste(
 	"	[--yrange=<MDS Dim2 Rnage, eg. -2,2>]\n",
 	"	[-t (testing flag)]\n",
 	"\n",
+	"	[-s (Flag to strip samples with NAs, default=F)]\n",
+	"\n",
 	"This script will run Permutational Analysis of Variance (PERMANOVA)\n",
 	"on your specified distance matrix, with the factors that are available.\n",
 	"\n",
@@ -50,6 +53,10 @@ usage = paste(
 	"variable in the blocking variable.\n",
 	"\n",
 	"If using the -t flag is for testing, so don't use it for production runs.\n",
+	"\n",
+	"If -s flag is set, samples are removed if any factors have NAs.\n",
+	"By default, samples/factors are removed automatically to maximize the\n",	
+	"the number of non-NA values.\n",
 	"\n");
 
 if(!length(opt$distmat) || !length(opt$factors)){
@@ -104,6 +111,11 @@ if(length(opt$testing)){
 	rand="";
 }
 
+StripSamplesWithNAs=F;
+if(length(opt$strip_samples_nas)){
+	StripSamplesWithNAs=T;
+}
+
 ###############################################################################
 
 cat("\n");
@@ -117,6 +129,13 @@ cat("\n");
 
 if(ModelFormula!=""){
 	cat("Model Formula specified: ", ModelFormula, "\n\n");
+}
+
+cat("NAs in Metadata Policy:\n");
+if(StripSamplesWithNAs){
+	cat("Stripping out samples with NAs.\n");
+}else{
+	cat("Maximizing non-NAs.\n");
 }
 
 ###############################################################################
@@ -367,6 +386,17 @@ remove_factors_with_no_data=function(factors){
 
 ##############################################################################
 
+remove_samples_wNA=function(factors){
+	
+	cat("Identifying Samples to remove because factors have NAs.\n");
+	isnas=is.na(factors);
+		isnas=is.na(factors);
+	samples_wNAs=apply(isnas, 1, any);
+	return(factors[!samples_wNAs,,drop=F]);
+}
+
+##############################################################################
+
 remove_sample_or_factors_wNA=function(factors, num_trials=1000){
 
 	cat("Identifying Samples or Factors to remove to remove all NAs:\n");
@@ -594,7 +624,13 @@ if(ModelFormula!=""){
 
 # Remove factors or samples that have NAs
 factors=remove_factors_with_no_data(factors);
-factors=remove_sample_or_factors_wNA(factors, 20000);
+
+# Decide what to do with NAs.
+if(StripSamplesWithNAs){
+	factors=remove_samples_wNA(factors);
+}else{
+	factors=remove_sample_or_factors_wNA(factors, 20000);
+}
 factor_names=colnames(factors);
 num_factors=ncol(factors);
 factor_sample_names=rownames(factors);
@@ -643,7 +679,7 @@ if(Blocking!=""){
 }else{
 	stratify=NULL;
 }
-res=adonis(as.formula(model_string), data=factors, strata=stratify, permutations=num_linear_components*1000);
+res=adonis(as.formula(model_string), data=factors, strata=stratify, permutations=10*1000);
 cat("After invoking Adonis:\n");
 print(res);
 
