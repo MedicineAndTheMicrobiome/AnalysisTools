@@ -292,8 +292,80 @@ get_main_effects_from_formula_string=function(formula_string){
 }
 
 ###############################################################################
+draw_mean_ses=function(mean_matrix, stderr_matrix, title="Mean/SEs Plot", grp_col=NULL){
 
-paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_is_hot=T, counts=F){
+	cat("Plotting Mean and Std Errors:\n");
+	print(mean_matrix);
+	print(stderr_matrix);
+
+	num_groups=nrow(mean_matrix);
+	num_stats=ncol(mean_matrix);
+
+	stat_names=colnames(mean_matrix);
+
+	par(mar=c(15,4,1,2));
+
+	if(is.null(grp_col)){
+		grp_col=1:num_groups;
+	}
+
+	extra_pad=.2;
+	num_dens_points=100;
+
+	plot(0, xlim=c(0, num_stats), ylim=c(-extra_pad,1+extra_pad), xaxt="n", yaxt="n", xlab="", ylab="", type="n",
+		bty="n");
+	title(main=title, outer=T);
+        axis(side=1, at=1:num_stats, labels=stat_names, las=2, lwd=0);
+        axis(side=2, at=c(0,1), labels=c("Min", "Max"), las=2, lwd=0);
+	abline(h=c(0,1), lwd=.5, col="grey", lty=2);
+
+	pl_range=par()$usr; # x1, x2, y1, y2
+	points(c(0, num_stats), c(0-extra_pad,0-extra_pad), type="l", lwd=2); # Horizontal
+	#points(c(0,0), c(0,1), type="l", lwd=2); # Verticle
+
+	for(stt in 1:num_stats){
+		stat_min=min(mean_matrix[,stt]);
+		stat_max=max(mean_matrix[,stt]);
+		stat_rng=stat_max-stat_min;
+
+		orig_val=mean_matrix[,stt];
+		norm_val=(mean_matrix[,stt]-stat_min)/stat_rng;
+
+		dens_mat=matrix(0, nrow=num_groups, ncol=num_dens_points);
+		for(grp in 1:num_groups){
+			dens_x=seq(stat_min-extra_pad*stat_rng, stat_max+extra_pad*stat_rng, length.out=num_dens_points);
+			dens_mat[grp,]=dnorm(dens_x, mean_matrix[grp,stt], stderr_matrix[grp,stt]);
+		}
+		max_dens=max(dens_mat);
+		dens_mat=dens_mat/max_dens;
+
+		for(grp in 1:num_groups){
+
+			# Translate/Scale curves to new location and scale
+			dens_curv=stt-(dens_mat[grp,])*.5;
+
+			# Label values on axis
+			text(stt, norm_val[grp], round(orig_val[grp],2), cex=.65, pos=4);
+
+			# Label group at top of curve
+			text(min(dens_curv), norm_val[grp], grp, cex=.75, adj=c(1.5,.5), col=grp_col[grp], font=2);
+
+			# Draw ticks for values
+			points(stt, norm_val[grp], col="black", pch=3, cex=1.5);
+
+			# Draw graph separators
+			abline(v=stt, col="black", lwd=2);
+
+			# Draw density curves
+			points(dens_curv, seq(0-extra_pad,1+extra_pad,length.out=100), type="l", col=grp_col[grp], lwd=1.75);
+		}
+	}
+	
+	cat("Done.\n");
+
+}
+
+paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_is_hot=T, label_zeros=T, counts=F){
         num_row=nrow(mat);
         num_col=ncol(mat);
 
@@ -347,12 +419,14 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 
                         rect(x-1, y-1, (x-1)+1, (y-1)+1, border=NA, col=color_arr[col_ix]);
 
-			if(counts){
-				text_lab=sprintf("%i", mat[y,x]);
-			}else{
-				text_lab=sprintf("%0.4f", mat[y,x]);
+			if(mat[y,x]!=0 || label_zeros){
+				if(counts){
+					text_lab=sprintf("%i", mat[y,x]);
+				}else{
+					text_lab=sprintf("%0.4f", mat[y,x]);
+				}
+				text(x-.5, y-.5, text_lab, srt=45, cex=1, font=2);
 			}
-			text(x-.5, y-.5, text_lab, srt=45, cex=1, font=2);
                 }
         }
 
@@ -544,6 +618,28 @@ indiv_pval_layout=matrix(c(
 # Define static variables used by dendro call back functions
 denfun.label_scale=min(2,55/num_shared_samples);
 
+
+mean_summary=function(x){
+	if(is.character(x)){
+		if(length(levels(x))==2){
+			return(mean(as.numeric(x)));
+		}
+	}else{
+		return(mean(x));
+	}
+}
+
+se_summary=function(x){
+	if(is.factor(x)){
+		if(length(levels(x))==2){
+			return(sd(as.numeric(x))/sqrt(n));
+		}
+	}else{
+		n=length(x);
+		return(sd(x)/sqrt(n));
+	}
+}
+
 # Begin per cluster count analyses
 aics=numeric(max_clusters-1);
 i=1;
@@ -620,14 +716,16 @@ for(num_cl in 2:max_clusters){
 	
 	coeff_matrix=numeric();
 	pval_matrix=numeric();
+	mean_matrix=numeric();
+	se_matrix=numeric();
 
-	aic=0;
+	aic=NULL;
 	for(cl_ix in 1:num_cl){
 
 		cat("Computing Logistic Regression for: ", cl_ix, "\n");
 	
-		in_group_id = (memberships==cl_ix);
-		out_group_id = !in_group_id;
+		in_group_id = names(memberships[(memberships==cl_ix)]);
+		out_group_id = names(memberships[(memberships!=cl_ix)]);
 
 		response=rep(1, num_shared_samples);
 		names(response)=shared_samples;
@@ -636,14 +734,29 @@ for(num_cl in 2:max_clusters){
 		#print(response);
 
 		mll_formula=paste("response~", ModelString, sep="");
+		mm=model.matrix(as.formula(paste("~", ModelString)), data=factors);
+		in_group_id=sort(intersect(in_group_id, rownames(mm)));
 
 		fit=glm(mll_formula, family=binomial, data=factors, control=list(trace=T, maxit=100));
 		sum_fit=summary(fit);
 		print(sum_fit);
 		coeff_matrix=rbind(coeff_matrix, sum_fit$coefficients[,"Estimate"]);
 		pval_matrix=rbind(pval_matrix, sum_fit$coefficients[,"Pr(>|z|)"]);
+
+		means=apply(mm[in_group_id,,drop=F], 2, mean_summary);
+		mean_matrix=rbind(mean_matrix, means);
+
+		ses=apply(mm[in_group_id,,drop=F], 2, se_summary);
+		se_matrix=rbind(se_matrix, ses);
 	
-		aic=aic+fit$aic;	
+		#if(cl_ix!=1){
+		#	aic=aic+fit$aic;	
+		#}
+		if(is.null(aic)){
+			aic=fit$aic;
+		}else{
+			aic=min(c(aic, fit$aic));
+		}
 	}
 	
 	aics[i]=aic;
@@ -651,20 +764,37 @@ for(num_cl in 2:max_clusters){
 	# Remove Intercept
 	coeff_matrix=coeff_matrix[, -1];
 	pval_matrix=pval_matrix[, -1];
+	mean_matrix=mean_matrix[, -1];
+	se_matrix=se_matrix[, -1];
 	
 	rownames(coeff_matrix)=1:num_cl;
 	rownames(pval_matrix)=1:num_cl;
+	rownames(mean_matrix)=1:num_cl;
+	rownames(se_matrix)=1:num_cl;
 	
 	cat("Coefficients:\n");
 	print(coeff_matrix);
 	cat("\n");
 	cat("P-values:\n");
 	print(pval_matrix);
+	cat("\n");
+	cat("Means:\n");
+	print(mean_matrix);
+	cat("\n");
+	cat("SEs:\n");
+	print(se_matrix);
+	cat("\n");
+
+	signif_coeff_matrix=coeff_matrix * (pval_matrix <= .05);
 
 	par(mfrow=c(1,1));
 	par(mar=c(10,10,1,1));
-	paint_matrix(coeff_matrix, title=paste(num_cl, " Clusters, Coefficients", sep=""));
-	paint_matrix(pval_matrix, title=paste(num_cl, " Clusters, P-values", sep=""), high_is_hot=F, plot_max=1, plot_min=0);
+	paint_matrix(mean_matrix, title=paste(num_cl, " Clusters: Means", sep=""));
+	draw_mean_ses(mean_matrix, se_matrix, title=paste(num_cl, " Clusters: Means and Standard Errors", sep=""), grp_col=palette_col);
+	#paint_matrix(coeff_matrix, title=paste(num_cl, " Clusters, Coefficients", sep=""));
+	paint_matrix(coeff_matrix, title=paste(num_cl, " Clusters: Coefficients", sep=""));
+	paint_matrix(pval_matrix, title=paste(num_cl, " Clusters: P-values", sep=""), high_is_hot=F, plot_max=1, plot_min=0);
+	paint_matrix(signif_coeff_matrix, title=paste(num_cl, " Clusters: Significient Coefficients (Uncorrected p-value < 0.05)", sep=""), label_zeros=F);
 
 	cat("*********************************************************************************************************\n");
 	i=i+1;	
