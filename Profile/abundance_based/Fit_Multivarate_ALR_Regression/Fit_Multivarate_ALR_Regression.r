@@ -92,6 +92,7 @@ if(length(opt$contains_remaining)){
 	UseRemaining=F;
 }
 
+
 if(length(opt$shorten_category_names)){
 	ShortenCategoryNames=opt$shorten_category_names;
 }else{
@@ -115,8 +116,14 @@ cat("Reference Levels File: ", ReferenceLevelsFile, "\n", sep="");
 cat("Output File: ", OutputRoot, "\n", sep="");
 cat("Model: ", Model, "\n", sep="");
 cat("Use Remaining? ", UseRemaining, "\n");
-cat("Shorten Category Names: ", ShortenCategoryNames, "\n");
+cat("Shorten Category Names: '", ShortenCategoryNames, "'\n", sep="");
 cat("\n");
+
+if(ShortenCategoryNames==TRUE){
+	cat("Error:  You need to specify a delimitor to split the category names.\n");
+	cat("        i.e., this -x option is not a flag, it requires a parameter.\n");
+	quit(status=-1);
+}
 
 if(TestRun){
 	cat("***********************************************\n");
