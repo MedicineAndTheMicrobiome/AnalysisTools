@@ -292,11 +292,11 @@ get_main_effects_from_formula_string=function(formula_string){
 }
 
 ###############################################################################
-draw_mean_ses=function(mean_matrix, stderr_matrix, title="Mean/SEs Plot", grp_col=NULL){
+draw_mean_ses=function(mean_matrix, stderr_matrix, title="Mean/SEs Plot", grp_col=NULL, include_zero_ref=F){
 
 	cat("Plotting Mean and Std Errors:\n");
-	print(mean_matrix);
-	print(stderr_matrix);
+	#print(mean_matrix);
+	#print(stderr_matrix);
 
 	num_groups=nrow(mean_matrix);
 	num_stats=ncol(mean_matrix);
@@ -310,7 +310,8 @@ draw_mean_ses=function(mean_matrix, stderr_matrix, title="Mean/SEs Plot", grp_co
 	}
 
 	extra_pad=.2;
-	num_dens_points=100;
+	num_dens_points=200;
+	dens_plot_scale=.5; # to keep curves within plot space
 
 	plot(0, xlim=c(0, num_stats), ylim=c(-extra_pad,1+extra_pad), xaxt="n", yaxt="n", xlab="", ylab="", type="n",
 		bty="n");
@@ -324,8 +325,14 @@ draw_mean_ses=function(mean_matrix, stderr_matrix, title="Mean/SEs Plot", grp_co
 	#points(c(0,0), c(0,1), type="l", lwd=2); # Verticle
 
 	for(stt in 1:num_stats){
-		stat_min=min(mean_matrix[,stt]);
-		stat_max=max(mean_matrix[,stt]);
+
+		if(include_zero_ref){
+			zero_ref=0;
+		}else{
+			zero_ref=c();
+		}
+		stat_min=min(c(mean_matrix[,stt], zero_ref));
+		stat_max=max(c(mean_matrix[,stt], zero_ref));
 		stat_rng=stat_max-stat_min;
 
 		orig_val=mean_matrix[,stt];
@@ -339,16 +346,21 @@ draw_mean_ses=function(mean_matrix, stderr_matrix, title="Mean/SEs Plot", grp_co
 		max_dens=max(dens_mat);
 		dens_mat=dens_mat/max_dens;
 
+		if(include_zero_ref){
+			zero_pos=-stat_min/stat_rng;
+			# Label values on axis
+			text(stt, zero_pos, 0, cex=.65, pos=4, col="grey");
+			# Draw ticks for values
+			points(stt, zero_pos, col="grey", pch=3, cex=1.5);
+		}
+
 		for(grp in 1:num_groups){
 
 			# Translate/Scale curves to new location and scale
-			dens_curv=stt-(dens_mat[grp,])*.5;
+			dens_curv=stt-(dens_mat[grp,])*dens_plot_scale;
 
 			# Label values on axis
-			text(stt, norm_val[grp], round(orig_val[grp],2), cex=.65, pos=4);
-
-			# Label group at top of curve
-			text(min(dens_curv), norm_val[grp], grp, cex=.75, adj=c(1.5,.5), col=grp_col[grp], font=2);
+			text(stt, norm_val[grp], sprintf("%+-0.4f", orig_val[grp]), cex=.65, pos=4);
 
 			# Draw ticks for values
 			points(stt, norm_val[grp], col="black", pch=3, cex=1.5);
@@ -356,8 +368,14 @@ draw_mean_ses=function(mean_matrix, stderr_matrix, title="Mean/SEs Plot", grp_co
 			# Draw graph separators
 			abline(v=stt, col="black", lwd=2);
 
-			# Draw density curves
-			points(dens_curv, seq(0-extra_pad,1+extra_pad,length.out=100), type="l", col=grp_col[grp], lwd=1.75);
+			# Draw density curves and label group at peak of curve
+			if(stderr_matrix[grp,stt]==0){
+				points(c(stt, stt-1*dens_plot_scale), c(norm_val[grp], norm_val[grp]), col=grp_col[grp], lwd=2, type="l");
+				text(stt-1*dens_plot_scale, norm_val[grp], grp, cex=.75, adj=c(1.5,.5), col=grp_col[grp], font=2);
+			}else{
+				points(dens_curv, seq(0-extra_pad,1+extra_pad,length.out=num_dens_points), type="l", col=grp_col[grp], lwd=1.75);
+				text(min(dens_curv), norm_val[grp], grp, cex=.75, adj=c(1.5,.5), col=grp_col[grp], font=2);
+			}
 		}
 	}
 	
@@ -644,6 +662,8 @@ se_summary=function(x){
 aics=numeric(max_clusters-1);
 i=1;
 
+min_pval_matrix=numeric();
+
 for(num_cl in 2:max_clusters){
 #for(num_cl in 4){
 
@@ -715,6 +735,7 @@ for(num_cl in 2:max_clusters){
 	#print(memberships);
 	
 	coeff_matrix=numeric();
+	coef_se_matrix=numeric();
 	pval_matrix=numeric();
 	mean_matrix=numeric();
 	se_matrix=numeric();
@@ -741,11 +762,14 @@ for(num_cl in 2:max_clusters){
 		sum_fit=summary(fit);
 		print(sum_fit);
 		coeff_matrix=rbind(coeff_matrix, sum_fit$coefficients[,"Estimate"]);
+		coef_se_matrix=rbind(coef_se_matrix, sum_fit$coefficients[,"Std. Error"]);
 		pval_matrix=rbind(pval_matrix, sum_fit$coefficients[,"Pr(>|z|)"]);
 
+		# Compute Group Means
 		means=apply(mm[in_group_id,,drop=F], 2, mean_summary);
 		mean_matrix=rbind(mean_matrix, means);
 
+		# Compute Group SE
 		ses=apply(mm[in_group_id,,drop=F], 2, se_summary);
 		se_matrix=rbind(se_matrix, ses);
 	
@@ -763,27 +787,31 @@ for(num_cl in 2:max_clusters){
 
 	# Remove Intercept
 	coeff_matrix=coeff_matrix[, -1];
+	coef_se_matrix=coef_se_matrix[, -1];
 	pval_matrix=pval_matrix[, -1];
 	mean_matrix=mean_matrix[, -1];
 	se_matrix=se_matrix[, -1];
 	
 	rownames(coeff_matrix)=1:num_cl;
+	rownames(coef_se_matrix)=1:num_cl;
 	rownames(pval_matrix)=1:num_cl;
 	rownames(mean_matrix)=1:num_cl;
 	rownames(se_matrix)=1:num_cl;
 	
-	cat("Coefficients:\n");
-	print(coeff_matrix);
-	cat("\n");
-	cat("P-values:\n");
-	print(pval_matrix);
-	cat("\n");
-	cat("Means:\n");
-	print(mean_matrix);
-	cat("\n");
-	cat("SEs:\n");
-	print(se_matrix);
-	cat("\n");
+	if(0){
+		cat("Coefficients:\n");
+		print(coeff_matrix);
+		cat("\n");
+		cat("P-values:\n");
+		print(pval_matrix);
+		cat("\n");
+		cat("Means:\n");
+		print(mean_matrix);
+		cat("\n");
+		cat("SEs:\n");
+		print(se_matrix);
+		cat("\n");
+	}
 
 	signif_coeff_matrix=coeff_matrix * (pval_matrix <= .05);
 
@@ -792,34 +820,61 @@ for(num_cl in 2:max_clusters){
 	paint_matrix(mean_matrix, title=paste(num_cl, " Clusters: Means", sep=""));
 	draw_mean_ses(mean_matrix, se_matrix, title=paste(num_cl, " Clusters: Means and Standard Errors", sep=""), grp_col=palette_col);
 	#paint_matrix(coeff_matrix, title=paste(num_cl, " Clusters, Coefficients", sep=""));
-	paint_matrix(coeff_matrix, title=paste(num_cl, " Clusters: Coefficients", sep=""));
+	paint_matrix(coeff_matrix, title=paste(num_cl, " Clusters: Logistic Regression Coefficients", sep=""));
+	draw_mean_ses(coeff_matrix, coef_se_matrix, title=paste(num_cl, " Clusters: Logistic Regression Coefficient Standard Errors", sep=""), grp_col=palette_col, include_zero_ref=T);
 	paint_matrix(pval_matrix, title=paste(num_cl, " Clusters: P-values", sep=""), high_is_hot=F, plot_max=1, plot_min=0);
 	paint_matrix(signif_coeff_matrix, title=paste(num_cl, " Clusters: Significient Coefficients (Uncorrected p-value < 0.05)", sep=""), label_zeros=F);
+
+	# Keep min value for each coefficient
+	print(pval_matrix);
+	min_pvalues=apply(pval_matrix, 2, min);
+	min_pval_matrix=rbind(min_pval_matrix, min_pvalues);
 
 	cat("*********************************************************************************************************\n");
 	i=i+1;	
 	
 }
 
+rownames(min_pval_matrix)=2:max_clusters;
+num_coefficients=ncol(min_pval_matrix);
+print(min_pval_matrix);
 
-min_aic_ix=which(aics==min(aics))[1];
-aic_range=range(aics);
+# Plot P-values across clusters
+log_min_pval_matrix=log10(min_pval_matrix);
+print(log_min_pval_matrix);
+log_references=log10(c(0.1, 0.05, 0.025));
+min_log_pval=min(c(log_min_pval_matrix, log_references));
+max_log_pval=max(c(log_min_pval_matrix, log_references));
+cat("Min/Max P-value: ", min_log_pval, "/", max_log_pval, "\n");
 
-par(oma=c(0,0,4,0));
-par(mar=c(5,5,5,1));
-plot(cbind(2:max_clusters, aics), type="b", 
-	ylim=aic_range,
+par(mar=c(4, 4, 2, 2));
+plot(0, type="n", xlim=c(2, max_clusters+3), ylim=c(min_log_pval, max_log_pval),
+	xlab="Number of Clusters", ylab="Log10(P-values)",
 	xaxt="n",
-	xlab="Num Clusters", ylab="AIC", main="AIC vs. Num Clusters");
+	main="Min(P-value) by Cluster Divisions");
 
-# Draw bulls eye for min pvalue
-points(min_aic_ix+1, aics[min_aic_ix], pch=1, col="red", cex=1, lwd=2);
-points(min_aic_ix+1, aics[min_aic_ix], pch=1, col="red", cex=2.5, lwd=2);
-points(min_aic_ix+1, aics[min_aic_ix], pch=1, col="red", cex=4, lwd=2);
-points(min_aic_ix+1, aics[min_aic_ix], pch=1, col="red", cex=5.5, lwd=2);
-mtext(paste("Distance Type: ", dist_type, sep=""), side=3, outer=T, line=1);
+points(c(1, max_clusters), rep(log_references[1],2), col="grey", type="l", lwd=.5, lty=2);
+points(c(1, max_clusters), rep(log_references[2],2), col="grey", type="l", lwd=.5, lty=2);
+points(c(1, max_clusters), rep(log_references[3],2), col="grey", type="l", lwd=.5, lty=2);
 
+for(i in 1:num_coefficients){
+	points(2:max_clusters, log_min_pval_matrix[,i], col=i, type="b", pch=16);
+}
 axis(side=1, at=2:max_clusters, labels=2:max_clusters);
+
+print(log_min_pval_matrix);
+max_clust_pvals=log_min_pval_matrix[as.character(max_clusters),,drop=F];
+order_ix=order(max_clust_pvals);
+coeff_names=colnames(log_min_pval_matrix);
+
+label_y_pos=seq(min_log_pval, max_log_pval, length.out=num_coefficients);
+text(rep(max_clusters+1, num_coefficients), label_y_pos, 
+	pos=4, coeff_names[order_ix], col=order_ix);
+
+for(i in 1:num_coefficients){
+	points(c(max_clusters+.1, max_clusters+1-.1), c(max_clust_pvals[order_ix[i]], label_y_pos[i]), type="l", col=order_ix[i], lty=3, lwd=.5);
+}
+
 
 ###############################################################################
 
