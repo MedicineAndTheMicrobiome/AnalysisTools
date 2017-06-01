@@ -723,7 +723,8 @@ for(num_cl in 2:max_clusters){
 	#-----------------------------------------------------------------------------
 	# Compute fisher exact for the ngrps x nclusters table
 	#ft=fisher.test(cont_tab, workspace=200000*10000);
-	ft=fisher.test(cont_tab, simulate.p.value=T, B=20000*max_clusters)
+	#ft=fisher.test(cont_tab, simulate.p.value=T, B=4000000*max_clusters)
+	ft=chisq.test(cont_tab);
 	pvalues[i]=ft$p.value;
 
 	# Plot contigency table 
@@ -749,7 +750,7 @@ for(num_cl in 2:max_clusters){
 		two_by_two[,1]=cont_tab[,cl_ix, drop=F];
 		two_by_two[,2]=apply(cont_tab[,-cl_ix, drop=F], 1, sum);
 		#res=fisher.test(two_by_two);
-		res=fisher.test(two_by_two, simulate.p.value=T, B=20000*max_clusters);
+		res=fisher.test(two_by_two, simulate.p.value=T, B=2000000*max_clusters);
 		cl_pval[1,cl_ix]=res$p.val;
 	}
 	

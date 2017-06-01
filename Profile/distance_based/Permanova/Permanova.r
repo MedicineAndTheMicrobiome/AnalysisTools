@@ -15,7 +15,8 @@ params=c(
 	"outputroot", "o", 2, "character",
 	"xrange", "x", 2, "character",
 	"yrange", "y", 2, "character",
-	"testing", "t", 2, "logical"
+	"testing", "t", 2, "logical",
+	"strip_samples_nas", "s", 2, "logical"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -34,6 +35,8 @@ usage = paste(
 	"	[--yrange=<MDS Dim2 Rnage, eg. -2,2>]\n",
 	"	[-t (testing flag)]\n",
 	"\n",
+	"	[-s (Flag to strip samples with NAs, default=F)]\n",
+	"\n",
 	"This script will run Permutational Analysis of Variance (PERMANOVA)\n",
 	"on your specified distance matrix, with the factors that are available.\n",
 	"\n",
@@ -50,6 +53,10 @@ usage = paste(
 	"variable in the blocking variable.\n",
 	"\n",
 	"If using the -t flag is for testing, so don't use it for production runs.\n",
+	"\n",
+	"If -s flag is set, samples are removed if any factors have NAs.\n",
+	"By default, samples/factors are removed automatically to maximize the\n",	
+	"the number of non-NA values.\n",
 	"\n");
 
 if(!length(opt$distmat) || !length(opt$factors)){
@@ -104,6 +111,11 @@ if(length(opt$testing)){
 	rand="";
 }
 
+StripSamplesWithNAs=F;
+if(length(opt$strip_samples_nas)){
+	StripSamplesWithNAs=T;
+}
+
 ###############################################################################
 
 cat("\n");
@@ -117,6 +129,13 @@ cat("\n");
 
 if(ModelFormula!=""){
 	cat("Model Formula specified: ", ModelFormula, "\n\n");
+}
+
+cat("NAs in Metadata Policy:\n");
+if(StripSamplesWithNAs){
+	cat("Stripping out samples with NAs.\n");
+}else{
+	cat("Maximizing non-NAs.\n");
 }
 
 ###############################################################################
@@ -367,6 +386,17 @@ remove_factors_with_no_data=function(factors){
 
 ##############################################################################
 
+remove_samples_wNA=function(factors){
+	
+	cat("Identifying Samples to remove because factors have NAs.\n");
+	isnas=is.na(factors);
+		isnas=is.na(factors);
+	samples_wNAs=apply(isnas, 1, any);
+	return(factors[!samples_wNAs,,drop=F]);
+}
+
+##############################################################################
+
 remove_sample_or_factors_wNA=function(factors, num_trials=1000){
 
 	cat("Identifying Samples or Factors to remove to remove all NAs:\n");
@@ -594,7 +624,13 @@ if(ModelFormula!=""){
 
 # Remove factors or samples that have NAs
 factors=remove_factors_with_no_data(factors);
-factors=remove_sample_or_factors_wNA(factors, 20000);
+
+# Decide what to do with NAs.
+if(StripSamplesWithNAs){
+	factors=remove_samples_wNA(factors);
+}else{
+	factors=remove_sample_or_factors_wNA(factors, 20000);
+}
 factor_names=colnames(factors);
 num_factors=ncol(factors);
 factor_sample_names=rownames(factors);
@@ -643,7 +679,9 @@ if(Blocking!=""){
 }else{
 	stratify=NULL;
 }
-res=adonis(as.formula(model_string), data=factors, strata=stratify, permutations=num_linear_components*1000);
+
+perm_factor=max(10, num_linear_components);
+res=adonis(as.formula(model_string), data=factors, strata=stratify, permutations=perm_factor*1000);
 cat("After invoking Adonis:\n");
 print(res);
 
@@ -801,6 +839,18 @@ num_anova_terms=length(anova_terms);
 mm_var_names=colnames(res$model.matrix);
 print(mm_var_names);
 
+bin_continuous_values=function(values, num_bins=10){
+	minv=min(values);	
+	maxv=max(values);
+	range=maxv-minv;
+	# Map values between 0 and 1
+	prop=(values-minv)/range;
+	# Scale value up to bin, and round, to quantize
+	closest=round(prop*num_bins,0);
+	# Remap values to original range and location
+	return(closest/num_bins*range+minv);
+}
+
 par(oma=c(0,0,4,0));
 
 for(fact_id in 1:num_anova_terms){
@@ -841,18 +891,33 @@ for(fact_id in 1:num_anova_terms){
 	}else{
 		# Get factor information
 		cur_factor=factors[,term_name];
+		is_factor=is.factor(cur_factor);
+		is_ordered=is.ordered(cur_factor);
 		names(cur_factor)=rownames(factors);
-		factor_levels=sort(unique(cur_factor));
+
+		if(!is_factor){
+			num_unique=length(unique(cur_factor));
+			if(num_unique>2){
+				#cur_factor=round(cur_factor,0);
+				cur_factor=bin_continuous_values(cur_factor, num_bins=10);
+				factor_levels=sort(unique(cur_factor));
+			}
+			factor_levels=sort(unique(cur_factor));
+		}else{
+			factor_levels=unique(cur_factor);
+		}
 		num_levels=length(factor_levels);
 
 	}
 
 	cat("Factor Levels for ", term_name, "\n");
+	cat("Is Factor? ", is_factor, "\n");
+	cat("Is Ordered? ", is_ordered, "\n");
 	print(factor_levels);
 	cat("\n");
 
 	# allocate/assign colors to palette
-	if(num_levels>num_simple_colors){
+	if(num_levels>num_simple_colors || !is_factor){
 		palette(rainbow(num_levels));
 	}else{
 		palette(simple_colors);
@@ -949,7 +1014,11 @@ for(fact_id in 1:num_anova_terms){
 	);
 	points(mds1_reori, mds2_reori, cex=1, col=fact_col[sample_names]);
 	points(mds1_centoid, mds2_centoid, cex=3, col=1:num_levels, font=2);
-	text(mds1_centoid, mds2_centoid, labels=factor_levels, cex=.7, font=2);
+
+	# Only plot category labels if the labels are factors, i.e. no continuous values
+	if(is_factor || is_ordered){
+		text(mds1_centoid, mds2_centoid, labels=factor_levels, cex=.7, font=2);
+	}
 
 	# Plot Legend
 	mar=par()$mar;

@@ -18,6 +18,7 @@ DEF_SPLIT_CHAR=";";
 params=c(
 	"input_summary_table", "i", 1, "character",
 	"output_filename_root", "o", 2, "character",
+	"sample_id_list", "l", 2, "character",
 	"dist_type", "d", 2, "character",
 	"num_top_cat", "p", 2, "numeric",
 	"num_clus", "k", 2, "numeric",
@@ -31,6 +32,7 @@ usage = paste(
 	"\n\nUsage:\n", script_name, "\n",
 	"	-i <input summary_table.tsv file>\n",
 	"	[-o <output file root name, default is input file base name>]\n",
+	"	[-l <sample id list, otherwise use all samples in summary table>]\n",
 	"	[-d <euc/wrd/man/bray/horn/bin/gow/tyc/minkp5/minkp3, default =", DEF_DISTTYPE, ">]\n",
 	"	[-p <num of top categories to probe, default =", DEF_NUM_TOP_CAT, " >\n",
 	"	[-k <num of clusters to split into, default =", DEF_NUM_CLUS, ">\n",
@@ -65,6 +67,12 @@ if(length(opt$output_file)>0){
 	OutputFileRoot=gsub(".summary_table.xls$", "", OutputFileRoot);
 	OutputFileRoot=gsub(".summary_table.tsv$", "", OutputFileRoot);
 	cat("No output file root specified.  Using input file name as root.\n");
+}
+
+if(length(opt$sample_id_list)){
+	SampleIDListFname=opt$sample_id_list;
+}else{
+	SampleIDListFname="";
 }
 
 dist_type=DEF_DISTTYPE;
@@ -161,6 +169,11 @@ load_summary_table=function(st_fname){
 	countsmat=inmat[,2:(num_categories+1)];
 
 	return(countsmat);
+}
+
+load_list=function(list_fname){
+	list=read.delim(list_fname, sep="\t", header=F, row.names=NULL, check.names=F, comment.char="", quote="");
+	return(list[,1]);
 }
 
 #------------------------------------------------------------------------------
@@ -406,6 +419,13 @@ cat("\n");
 cat("Loading summary table...\n");
 counts_mat=load_summary_table(InputFileName);
 #print(counts_mat);
+
+if(SampleIDListFname!=""){
+	sample_keep_list=load_list(SampleIDListFname);
+	st_sample_ids=rownames(counts_mat);
+	keep_list=intersect(st_sample_ids, sample_keep_list);
+	counts_mat=counts_mat[keep_list,,drop=F];
+}
 
 # Normalize counts
 cat("Normalizing counts...\n");
