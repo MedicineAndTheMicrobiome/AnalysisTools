@@ -570,6 +570,15 @@ if(length(excl_gr_samples)){
 	print(excl_gr_samples);
 }
 
+# Output list of used samples
+cat("Writing used/shared samples list to file:\n");
+fh=file(paste(output_fname_root, ".cl_mll.used_samp.lst", sep=""), "w");
+for(samp_id in shared_samples){
+	cat(file=fh, samp_id, "\n", sep="");
+}
+close(fh);
+cat("done.\n");
+
 ###############################################################################
 # Precompute distances and perform clustering
 
