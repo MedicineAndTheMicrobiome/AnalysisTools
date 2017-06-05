@@ -738,19 +738,30 @@ non_na_coeff=apply(res$coef.sites, 1, function(x){all(!is.na(x))});
 # Generate a correlation table between non-estimable and estiable factor values for diagnostics
 unestimable_correlations=character();
 if(any(!non_na_coeff)){
-	cat("Unestimable coefficients:\n");
+
 	coef_names=rownames(res$coef.sites);
 
+	# Get names of estimable and non-estimable coefficients, exclude the intercept
 	na_coeff_names=coef_names[!non_na_coeff];
 	nonna_coeff_names=setdiff(coef_names[non_na_coeff], "(Intercept)");
 
-	est_nonest_correl_matrix=matrix(0, nrow=length(na_coeff_names), ncol=length(nonna_coeff_names),
+	cat("Unestimable coefficients:\n");
+	print(na_coeff_names);
+	cat("\n");
+
+	# Exclude interaction coefficients
+	main_na_coeff_ix=grep("\\:", na_coeff_names, invert=T);
+
+	# Store a matrix of est vs non-est correlations
+	est_nonest_correl_matrix=matrix(NA, nrow=length(na_coeff_names), ncol=length(nonna_coeff_names),
 					dimnames=list(na_coeff_names, nonna_coeff_names));
-	
-	for(unest_var in na_coeff_names){
+
+	for(unest_var in na_coeff_names[main_na_coeff_ix]){
+		cat("Unest: ", unest_var, "\n");
 		ue_factor_val=factors[common_sample_names, unest_var];
+
 		for(est_var in nonna_coeff_names){
-			cat(est_var, "\n");
+			cat("Est: ", est_var, "\n");
 			cor_val=cor(ue_factor_val, res$model.matrix[common_sample_names, est_var]);
 			est_nonest_correl_matrix[unest_var, est_var]=cor_val;
 		}
