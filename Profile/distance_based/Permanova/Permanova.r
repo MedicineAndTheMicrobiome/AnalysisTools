@@ -726,7 +726,43 @@ cat("Multiplying the model matrix by the estimated coefficients, would equal 0 f
 cat("if all the components of inter sample distances for that sample of interest could be accounted for.\n");
 cat("We don't really have residuals for each sample, but these values capture their essence.\n\n");
 
-fit=res$coef.sites * t(res$model.matrix);
+#cat("Coefficients:\n");
+#print(res$coef.sites);
+
+#cat("Model Matrix:\n");
+#print(t(res$model.matrix));
+
+cat("Removing coefficients that were not estimable...\n");
+non_na_coeff=apply(res$coef.sites, 1, function(x){all(!is.na(x))});
+
+# Generate a correlation table between non-estimable and estiable factor values for diagnostics
+unestimable_correlations=character();
+if(any(!non_na_coeff)){
+	cat("Unestimable coefficients:\n");
+	coef_names=rownames(res$coef.sites);
+
+	na_coeff_names=coef_names[!non_na_coeff];
+	nonna_coeff_names=setdiff(coef_names[non_na_coeff], "(Intercept)");
+
+	est_nonest_correl_matrix=matrix(0, nrow=length(na_coeff_names), ncol=length(nonna_coeff_names),
+					dimnames=list(na_coeff_names, nonna_coeff_names));
+	
+	for(unest_var in na_coeff_names){
+		ue_factor_val=factors[common_sample_names, unest_var];
+		for(est_var in nonna_coeff_names){
+			cat(est_var, "\n");
+			cor_val=cor(ue_factor_val, res$model.matrix[common_sample_names, est_var]);
+			est_nonest_correl_matrix[unest_var, est_var]=cor_val;
+		}
+	}
+	
+	unestimable_correlations=capture.output(t(round(est_nonest_correl_matrix, 3)));
+}
+
+non_na_coef.sites=res$coef.sites[non_na_coeff,,drop=F];
+
+cat("Calculating residuals...\n");
+fit=non_na_coef.sites * t(res$model.matrix);
 variation=apply(fit, 2, function(x){ abs(sum(x))});
 names(variation)=rownames(res$model.matrix);
 variation_order=order(variation, decreasing=T);
@@ -771,6 +807,15 @@ out_text=c(
 	anova_lines
 );
 plot_text(out_text);
+
+# Output unestimable coefficients/variables
+if(length(unestimable_correlations)){
+	plot_text(c(
+		"Correlation between factors with Unestimable (columns) and Estimable (rows) Coefficients:", 
+		"", 
+		unestimable_correlations)
+	);
+}
 
 ##############################################################################
 # Pre-Compute PCA and MDS
