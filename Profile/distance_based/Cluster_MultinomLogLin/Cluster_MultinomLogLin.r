@@ -723,9 +723,22 @@ for(num_cl in 2:max_clusters){
 	par(oma=c(0,0,4,0));
 	par(mar=c(5.1,4.1,4.1,2.1));
 	layout(mds_layout);
+
+        label_centroids=function(points, memberships){
+                members=sort(unique(memberships));
+                for(i in members){
+                        cur_grp=(i==memberships);
+                        midx=mean(points[cur_grp,1]);
+                        midy=mean(points[cur_grp,2]);
+                        text(midx, midy, label=i, col="black", cex=3/ceiling(log10(i+1)));
+                }
+
+        }
+
 	plot(nonparm_mds_res, col=memberships, xlab="Dim 1", ylab="Dim 2", main="non-metric MDS");
-	plot(classic_mds_res, type="n", col=memberships, xlab="Dim 1", ylab="Dim 2", main="classical MDS");
-	points(classic_mds_res, col=memberships);
+	label_centroids(nonparm_mds_res, memberships);
+	plot(classic_mds_res, col=memberships, xlab="Dim 1", ylab="Dim 2", main="classical MDS");
+	label_centroids(classic_mds_res, memberships);
 	
 	# MDS Legend
 	par(mar=c(0,0,0,0));
