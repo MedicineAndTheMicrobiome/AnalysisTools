@@ -565,12 +565,26 @@ for(num_cl in 2:max_clusters){
 	par(oma=c(0,0,2,0));
 	par(mar=c(5.1,4.1,4.1,2.1));
 	layout(mds_layout);
+
+	label_centroids=function(points, memberships){
+                members=sort(unique(memberships));
+                for(i in members){
+                        cur_grp=(i==memberships);
+                        midx=mean(points[cur_grp,1]);
+                        midy=mean(points[cur_grp,2]);
+                        text(midx, midy, label=i, col="black", cex=3/ceiling(log10(i+1)));
+                }
+
+        }
+
 	plot(nonparm_mds_res, col=memberships, xlab="Dim 1", ylab="Dim 2", main="non-metric MDS");
+	label_centroids(nonparm_mds_res, memberships);
 	plot(classic_mds_res, type="n", col=memberships, xlab="Dim 1", ylab="Dim 2", main="classical MDS");
 	for(grid_radius in grid_lines){
 		draw.ellipse(0,0, a=grid_radius, b=grid_radius, border="grey90");
 	}
 	points(classic_mds_res, col=memberships);
+	label_centroids(classic_mds_res, memberships);
 
 	par(mar=c(0,0,0,0));
 	plot(0, type="n", xlab="", ylab="", main="", bty="n", xaxt="n", yaxt="n", xlim=c(0,1), ylim=c(0,1));
