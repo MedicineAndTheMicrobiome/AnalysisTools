@@ -147,6 +147,22 @@ sample_counts=apply(countsMat, 1, sum);
 cat("Sample Total:\n");
 print(sample_counts);
 
+# Removing zero count samples
+nonzero_count_samples=(sample_counts!=0);
+if(!all(nonzero_count_samples)){
+
+	cat("Warning: Zero count samples found in summary table.\n");
+	cat("Removing zero count samples:\n");
+	print(SampleNames[!nonzero_count_samples]);
+	cat("\n");
+
+	countsMat=countsMat[nonzero_count_samples,, drop=F];
+	sample_counts=apply(countsMat, 1, sum);
+	SampleNames=rownames(countsMat);
+	num_samples=nrow(countsMat);
+	cat("New number of sampels: ", num_samples, "\n");
+}
+
 # Normalize counts
 cat("Normalizing counts...\n");
 normalized=matrix(0, nrow=num_samples, ncol=num_categories);
