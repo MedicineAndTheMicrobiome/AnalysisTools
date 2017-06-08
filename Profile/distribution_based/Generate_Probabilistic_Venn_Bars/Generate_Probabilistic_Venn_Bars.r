@@ -242,6 +242,7 @@ compute_shared_matrix=function(a_counts_mat, b_counts_mat){
 
 	if(!setequal(colnames(a_counts_mat), colnames(b_counts_mat))){
 		cat("Error: categories in A and B, do not match.\n");
+		quit(-1);
 	}
 
 	# Sort by names
@@ -534,15 +535,37 @@ prof_b_count_mat=load_summary_file(ProfBFname);
 cat("\n");
 num_a_samples=nrow(prof_a_count_mat);
 num_a_categories=ncol(prof_a_count_mat);
+a_sample_names=rownames(prof_a_count_mat);
+a_categories=colnames(prof_a_count_mat);
 cat("A: Num Samples:", num_a_samples, "\n");
 cat("A: Num Categories: ", num_a_categories, "\n");
 cat("\n");
 
 num_b_samples=nrow(prof_b_count_mat);
 num_b_categories=ncol(prof_b_count_mat);
+b_sample_names=rownames(prof_b_count_mat);
+b_categories=colnames(prof_b_count_mat);
 cat("B: Num Samples:", num_b_samples, "\n");
 cat("B: Num Categories: ", num_b_categories, "\n");
 cat("\n");
+
+# Merge profiles
+all_categories=sort(union(a_categories, b_categories));
+num_all_cat=length(all_categories);
+
+# Allocate padded matrices
+padded_a_mat=matrix(0, nrow=num_a_samples, ncol=num_all_cat,
+	dimnames=list(a_sample_names, all_categories));
+
+padded_b_mat=matrix(0, nrow=num_b_samples, ncol=num_all_cat,
+	dimnames=list(b_sample_names, all_categories));
+
+# Copy over values
+padded_a_mat[a_sample_names, a_categories]=prof_a_count_mat[a_sample_names, a_categories];
+padded_b_mat[b_sample_names, b_categories]=prof_b_count_mat[b_sample_names, b_categories];
+
+prof_a_count_mat=padded_a_mat;
+prof_b_count_mat=padded_b_mat;
 
 in_A=apply(prof_a_count_mat, 2, function(x){sum(x)>0});
 in_B=apply(prof_b_count_mat, 2, function(x){sum(x)>0});
