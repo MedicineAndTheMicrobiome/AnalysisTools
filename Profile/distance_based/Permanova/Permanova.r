@@ -147,6 +147,14 @@ load_distance_matrix=function(fname){
 	cat("Read in distance matrix: \n");
 	cat("  Rows: ", mat_dim[1], "\n");
 	cat("  Cols: ", mat_dim[2], "\n");
+
+	# Remove NAs
+	diag(distmat)=NA;
+	non_na_rows=apply(distmat, 1, function(x){!all(is.na(x))});
+	non_na_cols=apply(distmat, 2, function(x){!all(is.na(x))});
+	diag(distmat)=0;
+	distmat=distmat[non_na_rows, non_na_cols];
+
 	if(mat_dim[1]!=mat_dim[2]){
 		cat("Error: Distance Matrix is not squared.\n");
 		print(colnames(distmat));
@@ -414,7 +422,7 @@ remove_sample_or_factors_wNA=function(factors, num_trials=1000){
         row_na_ix=which(apply(factors, 1, anyNA));
         col_na_ix=which(apply(factors, 2, anyNA));
 
-	row_na_counts=apply(factors[row_na_ix,], 1, function(x){sum(is.na(x))/num_col});
+	row_na_counts=apply(factors[row_na_ix,, drop=F], 1, function(x){sum(is.na(x))/num_col});
 	col_na_counts=apply(factors[,col_na_ix], 2, function(x){sum(is.na(x))/num_row});
 	combined_na_counts=c(row_na_counts, col_na_counts);
 
@@ -681,6 +689,7 @@ if(Blocking!=""){
 }
 
 perm_factor=max(10, num_linear_components);
+
 res=adonis(as.formula(model_string), data=factors, strata=stratify, permutations=perm_factor*1000);
 cat("After invoking Adonis:\n");
 print(res);
