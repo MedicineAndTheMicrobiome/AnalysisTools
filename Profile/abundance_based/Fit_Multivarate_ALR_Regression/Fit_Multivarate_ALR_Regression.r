@@ -391,6 +391,18 @@ write_top_categorical_effects_by_factor=function(output_fn, coeff_mat, pval_mat,
 
 # Load summary file table counts 
 counts=load_summary_file(SummaryFile);
+
+# Remove zero count samples
+tot=apply(counts, 1, sum);
+nonzero=tot>0;
+if(!(all(nonzero))){
+	cat("WARNING: Zero count samples found:\n");
+	samp_names=rownames(counts);
+	print(samp_names[!nonzero]);
+	cat("\n");
+	counts=counts[nonzero,,drop=F];
+}
+
 num_taxa=ncol(counts);
 num_samples=nrow(counts);
 #print(counts);
@@ -774,6 +786,7 @@ plot_text(text);
 
 # Compute and Plot Taxonomic correlations
 cor_mat=cor(transformed);
+print(cor_mat);
 plot_correl_heatmap(cor_mat, title="Category Correlations");
 
 # Compute pvalues for correlations, Null Hypothesis is cor=0
