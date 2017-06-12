@@ -359,7 +359,8 @@ write_top_categorical_effects_by_factor=function(output_fn, coeff_mat, pval_mat,
 
 		# Output Top N
 		ix=1;
-		while(mat_buf[ix,"ALR"]>0 && ix<=top_n){
+
+		while(ix<=top_n && mat_buf[ix,"ALR"]>0){
 			vals=c(paste(ix,"+", sep=""), sort_cat[ix], mat_buf[ix,"ALR"], mat_buf[ix, "p-value"], signif[ix]);
 			cat(file=fh, paste(vals, collapse=","), "\n");	
 			ix=ix+1;
