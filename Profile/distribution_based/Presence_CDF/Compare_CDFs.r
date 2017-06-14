@@ -2,6 +2,8 @@
 
 ###############################################################################
 #                                                                             #
+#       Copyright (c) 2017 Center for Medicine and the Microbiome             #
+#			   University of Pittsburgh                           #
 #       Copyright (c) 2013 J. Craig Venter Institute.                         #
 #       All rights reserved.                                                  #
 #                                                                             #
@@ -445,6 +447,62 @@ plot_compare_cdf=function(cdf_infoA, cdf_infoB, min_ubiq_diff=0, min_avg_abund=0
 
 ################################################################################
 
+plot_quick_ubab=function(cdf_info, taxa_list, title){
+	
+	num_taxa=length(taxa_list);
+	plots_per_page=20;
+	
+	def_par=par(no.readonly=T);
+	par(oma=c(2,0,2,0));
+	
+	# Define layout
+	layout_mat=matrix(0, nrow=plots_per_page, ncol=4);
+	layout_mat[,c(1,2,3)]= 1+seq(0,(plots_per_page*2-1),2);
+	layout_mat[,4]=2+seq(0,(plots_per_page*2-1),2);
+	layout(layout_mat);
+	
+	# Find min log abundance
+	min_nz=min(cdf_info$cutoffs[cdf_info$cutoffs>0]);
+	log_min=log10(min_nz);
+
+	log10_cutoffs=log10(cdf_info$cutoffs);
+	
+	i=1;	
+	for(taxa in taxa_list){
+
+		# Plot name of taxa
+		par(mar=c(.5,1,0,0));
+		plot(0,0, type="n", bty="n", xaxt="n", yaxt="n");
+		text(0,0, taxa, cex=.75);
+
+		# Plot stripped down Ub-Ab plot
+		par(mar=c(.5,1,0,1));
+		plot(log10_cutoffs, cdf_info$cdf_val[taxa,], 
+			ylim=c(0,1), xlim=c(log_min, 0),
+			col="blue",
+			type="l", bty="l", xaxt="n", yaxt="n");
+		abline(h=1, col="grey");
+		axis(side=2, at=.5, labels="Ub", las=2, cex.axis=.75);
+
+		# Label abundance for bottom/last plot
+		if(i%%plots_per_page==0 || i==num_taxa){
+			axis(side=1, at=log_min:0, labels=log_min:0, cex.axis=.75, lwd=0, lwd.ticks=0, line=-1);
+		}
+
+		# Label x axis and title of set of plots
+		if(i%%plots_per_page==1){
+			axis(side=3, at=log_min/2, labels="log10(Ab)", cex.axis=.75, tick=F, line=-1);
+			mtext(side=3, outer=T, text=title, col="pink", cex=.75);
+		}
+
+		i=i+1;
+	}
+	par(def_par);	
+
+}
+
+################################################################################
+
 load_color_map=function(colormapfn){
 # Load a color mapping from a file
 
@@ -492,6 +550,7 @@ filter_cdfs_byKeeplist=function(cdf_info, keeplist_vector){
 	cdf_info$cdf_val=cdf_info$cdf_val[keep_index,,drop=F];
 	cdf_info$taxa=cdf_info$taxa[keep_index];
 	cdf_info$num_taxa=sum(keep_index);
+	par(def_par)
 
 	return(cdf_info);
 }
@@ -567,6 +626,33 @@ interpolate=function(x, y, new_x, method="linear"){
 
 ################################################################################
 
+plot_text=function(strings){
+	def_par=par(no.readonly=T);
+        par(family="Courier");
+        par(oma=rep(.5,4));
+        par(mar=rep(0,4));
+
+        num_lines=length(strings);
+
+        top=max(as.integer(num_lines), 52);
+
+        plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
+                xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
+                );
+
+        text_size=max(.01, min(.6, .6 - .003*(num_lines-52)));
+        #print(text_size);
+
+        for(i in 1:num_lines){
+                #cat(strings[i], "\n", sep="");
+                strings[i]=gsub("\t", "", strings[i]);
+                text(0, top-i, strings[i], pos=4, cex=text_size);
+        }
+	par(def_par);
+}
+
+################################################################################
+
 # Read in color map
 color_map=NULL;
 if(!is.null(ColorMap)){
@@ -625,13 +711,53 @@ cdf_infoB$line_type=line_types;
 
 ################################################################################
 
+# Determine which taxa are shared
+taxaA=cdf_infoA$taxa;
+taxaB=cdf_infoB$taxa;
+
+taxaShared=intersect(taxaA, taxaB);
+taxaAExcl=setdiff(taxaA, taxaShared);
+taxaBExcl=setdiff(taxaB, taxaShared);
+
 pdf(paste(OutputFileRoot, ".UU.pdf", sep=""), height=PaperHeight, width=PaperWidth);
 
-cat("Plotting comparisons:\n");
+# UU Plot shared:
+plot_text(c(
+	"Shared Taxa:",
+	capture.output(print(taxaShared))
+));
 
 plot_compare_cdf(cdf_infoA, cdf_infoB, 
 	min_ubiq_diff=MinUbiqDiff, min_avg_abund=MinAvgAbund, id_mapping_info=idmapping,
 	label_size=LabelSize, shorten_names=ShortenNames);
+
+# Quick Ub-Ab Plot Exclusive to A:
+if(length(taxaAExcl)==0){
+	plot_text("Nothing exclusive to ", InputFileNameA, sep="");
+}else{
+	plot_text(c(
+		paste("Exclusive to ", InputFileNameA, sep=""),
+		capture.output(print(taxaAExcl))
+	));
+	plot_quick_ubab(cdf_infoA, taxaAExcl, paste("Exclusive to ", InputFileNameA, sep=""));
+}
+
+# Quick Ub-Ab Plot Exclusive to B:
+if(length(taxaBExcl)==0){
+	plot_text("Nothing exclusive to ", InputFileNameB, sep="");
+}else{
+	plot_text(c(
+		paste("Exclusive to ", InputFileNameB, sep=""),
+		capture.output(print(taxaBExcl))
+	));
+	plot_quick_ubab(cdf_infoB, taxaBExcl, paste("Exclusive to ", InputFileNameB, sep=""));
+}
+
+#------------------------------------------------------------------------------
+
+
+
+
 
 dev.off();
 
