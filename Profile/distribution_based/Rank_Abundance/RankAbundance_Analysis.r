@@ -111,6 +111,20 @@ inmat=as.matrix(read.delim(InputFileName, sep="\t", header=TRUE, check.names=FAL
 #print(inmat)
 
 counts=inmat[,2:ncol(inmat)];
+
+# Remove zero count samples
+tot=apply(counts, 1, sum);
+non_zero_samp=tot>0;
+if(!all(non_zero_samp)){
+	samp_names=rownames(counts);
+	removed_samp_names=samp_names[!non_zero_samp];
+	cat("WARNING: Zero Counts Samples Found:\n");
+	print(removed_samp_names);
+	cat("\n");	
+	counts=counts[non_zero_samp,, drop=F];	
+}
+
+
 norm=normalize(counts);
 
 num_samples=nrow(counts);
