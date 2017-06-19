@@ -486,8 +486,8 @@ identify_most_likely_category=function(shared_matrix){
 
 plot_square_venn=function(venn_cat, aname="A", bname="B", title="Square Venn"){
 
-	margin=.25;
-	par(mar=c(7,1,7,1));
+	margin=.5;
+	par(mar=c(4,4,4,4));
 	plot(0,0, xlim=c(0-margin, 1+margin), ylim=c(0-margin, 1+margin), type="n",
 		xlab="", ylab="", bty="n", yaxt="n", xaxt="n"
 	);
@@ -507,15 +507,29 @@ plot_square_venn=function(venn_cat, aname="A", bname="B", title="Square Venn"){
 	rect(a, n, a+ab, 1, col="purple");
 	rect(a+ab, n, 1, 1, col="blue");
 
-	legend(0, -.05, paste(
+	legend(.5, -.05, paste(
 		c(aname, bname, "Both", "Unrecovered"), " (",
 		c(venn_cat["A"], venn_cat["B"], venn_cat["AB"], venn_cat["Neither"]),
 		")", sep=""
 		),
-		fill=c("red", "blue", "purple", "black")
+		fill=c("red", "blue", "purple", "black"),
+		cex=.7,
+		xjust=.5
+	);
+
+	legend(.5, -.30, paste(
+		c(aname, bname, "Both", "Unrecovered"), " (",
+		round(100.0*c(norm_cat["A"], norm_cat["B"], norm_cat["AB"], norm_cat["Neither"]),2),
+		rep("%",4),
+		")", sep=""
+		),
+		fill=c("red", "blue", "purple", "black"),
+		cex=.7,
+		xjust=.5
 	);
 
 	text(.5, 1.2, title, cex=2, font=2);
+	text(.5, 1.1, paste("Total Categories: ", sum, sep=""), cex=1, font=1);
 }
 
 ###############################################################################
@@ -634,6 +648,8 @@ shared_matrix=shared_matrix[ix,];
 plot_shared_matrix_skewer(shared_matrix, nameA, nameB, exp_fact);
 plot_shared_matrix_compressed(shared_matrix, nameA, nameB, exp_fact);
 
+dev.off();
+
 ###############################################################################
 # Identify most likely venn category for each taxa
 
@@ -644,7 +660,10 @@ missing_venn_cat=setdiff(c("A", "B", "AB", "Neither"), names(venn_cat_counts));
 venn_cat_counts[missing_venn_cat]=0;
 
 print(venn_cat_counts);
+
+pdf(paste(OutputRoot, ".sqr_venn.pdf", sep=""), height=8.5, width=8.5);
 plot_square_venn(venn_cat_counts, nameA, nameB, "Most Likely Outcomes Upon Resampling");
+dev.off();
 
 ###############################################################################
 # Output values gone into the skewer and compressed plot
@@ -725,18 +744,28 @@ write_summary_file=function(out_mat, fname){
         close(fc);
 }
 
+plot_kept_removed=function(count_mat, keep_categories){
+	
+	
+
+}
+
+
 cat_names=rownames(shared_matrix);
 for(lik in seq(.50,1.00,.10)){
 
 	cat("Extracting categories with likelihoods greater than ", lik, "\n", sep="");
-
 	lik_str=sprintf("%03.0f", lik*100);
+
+	pdf(paste(OutputRoot, ".filt_plt.", lik_str, ".pdf", sep=""), height=11, width=8.5);
 	stname=paste(OutputRoot, ".", lik_str, ".summary_table.tsv", sep="");
 	
 	keep_categories=cat_names[shared_matrix[ , "A"]>=lik];
-
 	num_kept_cat=length(keep_categories);
 	cat("Number of categories found: ", num_kept_cat, "\n", sep=""); 
+
+	plot_kept_removed(prof_a_count_mat, keep_categories);
+	
 	keep_counts=prof_a_count_mat[, keep_categories, drop=F];
 
 	write_summary_file(keep_counts, stname);
