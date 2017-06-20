@@ -744,9 +744,136 @@ write_summary_file=function(out_mat, fname){
         close(fc);
 }
 
-plot_kept_removed=function(count_mat, keep_categories){
+plot_kept_removed=function(count_mat, keep_categories, shorten_char=";"){
 	
+	sample_names=rownames(count_mat);
+	num_samples=nrow(count_mat);
+	all_categories=colnames(count_mat);
+	removed_categories=setdiff(all_categories, keep_categories);
 	
+	# Split kept/removed
+	kept_count_mat=count_mat[,keep_categories, drop=F];
+	removed_count_mat=count_mat[,removed_categories, drop=F]; 	
+	
+	# Normalize
+	norm_kept_mat=normalize(kept_count_mat);
+	norm_removed_mat=normalize(removed_count_mat);
+
+	# Compute mean abund
+	mean_kept_abund=apply(norm_kept_mat, 2, function(x){mean(x, na.rm=T)});
+	mean_removed_abund=apply(norm_removed_mat, 2, function(x){mean(x, na.rm=T)});
+
+	# Idenfity order by mean abund
+	kept_order=order(mean_kept_abund, decreasing=T);
+	removed_order=order(mean_removed_abund, decreasing=T);
+
+	# Reorder counts and normalized profiles
+	kept_count_mat=kept_count_mat[,kept_order,drop=F];
+	removed_count_mat=removed_count_mat[,removed_order,drop=F];
+	norm_kept_mat=norm_kept_mat[,kept_order, drop=F];
+	norm_removed_mat=norm_removed_mat[,removed_order, drop=F];
+
+	# Shorten names
+	shorten=function(name, delim){
+		unlist(lapply(strsplit(name, delim), function(x){tail(x,1)}));
+	}
+	colnames(norm_kept_mat)=shorten(colnames(norm_kept_mat), shorten_char);
+	colnames(norm_removed_mat)=shorten(colnames(norm_removed_mat), shorten_char);
+
+	samp_per_page=10;
+	max_kept_cat_plot=min(40, length(keep_categories));
+	max_removed_cat_plot=min(40, length(removed_categories));
+
+	par(mfrow=c(samp_per_page, 2));
+	par(oma=c(20,2,1,1));
+	par(mar=c(0,0,1,1));
+
+	kept_labels=colnames(norm_kept_mat)[1:max_kept_cat_plot];
+	removed_labels=colnames(norm_removed_mat)[1:max_removed_cat_plot];
+
+	kept_col=c(rgb(.3,.3,1), rgb(.3,.3,.8), rgb(.3,.3,.6));
+	removed_col=c(rgb(1,.3,.3), rgb(.8,.3,.3), rgb(.6,.3,.3));
+
+	i=0;
+	for(samp_id in sample_names){
+		kept_prof=norm_kept_mat[samp_id,,drop=F];
+		removed_prof=norm_removed_mat[samp_id,,drop=F];
+
+		plot_kept=(length(kept_prof)>0 && !is.na(sum(kept_prof)));
+		plot_removed=(length(removed_prof)>0 && !is.na(sum(removed_prof)>0));
+
+		first_plot=!(i%%samp_per_page);
+		last_plot=(i%%samp_per_page==(samp_per_page-1)) || (i==(num_samples-1));
+		
+		# Compute proportions/counts
+		total_removed=sum(removed_count_mat[samp_id,]);
+		total_kept=sum(kept_count_mat[samp_id,]);
+		total_all=total_removed+total_kept;
+		percent_removed=round(100*total_removed/total_all,2);
+		percent_kept=round(100*total_kept/total_all,2);
+
+		total_cat_removed=sum(removed_count_mat[samp_id,]>0);
+		total_cat_kept=sum(kept_count_mat[samp_id,]>0);
+		total_cat_all=total_cat_removed+total_cat_kept;
+		percent_cat_removed=round(100*total_cat_removed/total_cat_all,2);
+		percent_cat_kept=round(100*total_cat_kept/total_cat_all,2);
+
+		if(plot_kept){
+			if(!last_plot){
+				cat_names="";	
+			}
+			kept_mids=barplot(norm_kept_mat[samp_id, 1:max_kept_cat_plot], names.arg=cat_names, yaxt="n", col=kept_col);
+
+			plot_range=par()$usr;
+			top=plot_range[4];
+			right=plot_range[2]
+
+			text(right*5/6, top*7/8, paste("     Reads Kept: ", total_kept,  " (", percent_kept, "%)", sep=""), cex=.6);
+			text(right*5/6, top*6/8, paste("Categories Kept: ", total_cat_kept, " (", percent_cat_kept, "%)", sep=""), cex=.6);
+			
+		}else{
+			plot(0,0, type="n", bty="n", xaxt="n", yaxt="n");
+			text(0,0, "No categories kept.");
+		}
+
+		# Label Sample
+		mtext(samp_id, side=2, cex=.35);
+	
+		# Label info in margins
+		if(first_plot){
+			title(main="Kept");
+		}
+		if(last_plot){
+			axis(1, at=kept_mids, labels=kept_labels, las=2, col=kept_col);
+		}
+
+		if(plot_removed){
+			if(!last_plot){
+				cat_names="";	
+			}
+			removed_mids=barplot(norm_removed_mat[samp_id, 1:max_removed_cat_plot], names.arg=cat_names, yaxt="n", col=removed_col);
+
+			plot_range=par()$usr;
+			top=plot_range[4];
+			right=plot_range[2]
+
+			text(right*5/6, top*7/8, paste("     Reads Removed: ", total_removed,  " (", percent_removed, "%)", sep=""), cex=.6);
+			text(right*5/6, top*6/8, paste("Categories Removed: ", total_cat_removed, " (", percent_cat_removed, "%)", sep=""), cex=.6);
+		}else{
+			plot(0,0, type="n", bty="n", xaxt="n", yaxt="n");
+			text(0,0, "No categories removed.", xaxt="n", yaxt="n");
+		}
+
+		# Label info in margins
+		if(last_plot){
+			axis(1, at=removed_mids, labels=removed_labels, las=2, col=removed_col);
+		}
+		if(first_plot){
+			title(main="Removed");
+		}
+
+		i=i+1;
+	}
 
 }
 
@@ -756,6 +883,12 @@ for(lik in seq(.50,1.00,.10)){
 
 	cat("Extracting categories with likelihoods greater than ", lik, "\n", sep="");
 	lik_str=sprintf("%03.0f", lik*100);
+
+	
+	setHook("plot.new", function(){mtext(
+		paste(OutputRoot, ": " , round(lik*100,2), "%"),
+		outer=T, line=0, cex=.5);},
+		"replace");
 
 	pdf(paste(OutputRoot, ".filt_plt.", lik_str, ".pdf", sep=""), height=11, width=8.5);
 	stname=paste(OutputRoot, ".", lik_str, ".summary_table.tsv", sep="");
