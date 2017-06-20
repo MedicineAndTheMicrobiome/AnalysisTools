@@ -791,8 +791,8 @@ plot_kept_removed=function(count_mat, keep_categories, shorten_char=";"){
 	kept_labels=colnames(norm_kept_mat)[1:max_kept_cat_plot];
 	removed_labels=colnames(norm_removed_mat)[1:max_removed_cat_plot];
 
-	kept_col=c(rgb(.3,.3,1), rgb(.3,.3,.8), rgb(.3,.3,.6));
-	removed_col=c(rgb(1,.3,.3), rgb(.8,.3,.3), rgb(.6,.3,.3));
+	kept_col=c(rgb(.3,.3,1), rgb(.3,.3,.8), rgb(.3,.3,.6), rgb(.3,.3,.9), rgb(.3,.3,.7));
+	removed_col=c(rgb(1,.3,.3), rgb(.8,.3,.3), rgb(.6,.3,.3), rgb(.9,.3,.3), rgb(.7,.3,.3));
 
 	i=0;
 	for(samp_id in sample_names){
