@@ -217,6 +217,8 @@ for(i in 1:num_samp){
 	}
 }
 
+distmat[distmat==0]=1e-323;
+diag(distmat)=0;
 dist=as.dist(distmat);
 
 ################################################################################
