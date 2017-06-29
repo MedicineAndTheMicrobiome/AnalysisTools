@@ -223,7 +223,7 @@ dist=as.dist(distmat);
 
 ################################################################################
 
-pdf(paste(OutputFilenameRoot, ".snp.dist.pdf", sep=""), height=8.5, width=11);
+pdf(paste(OutputFilenameRoot, ".snp.dist.pdf", sep=""), height=8.5, width=(num_samp*3/16)+1);
 
 hcl=hclust(dist, method="ward.D");
 plot(hcl, xlab="", main="Ward's Minimum Variance");
