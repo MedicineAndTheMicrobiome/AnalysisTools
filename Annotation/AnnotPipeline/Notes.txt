@@ -1,0 +1,50 @@
+
+Set Up:
+1.) Download Uniprot 90 FASTA file
+	a.) prepare blast database
+2.) Download TrEMBL
+	a.) Extract_Uniprot_Descriptions 
+		(~/git/AnalysisTools/Annotation/Extract_Uniprot_Descriptions/Extract_Uniprot_Descriptions.pl)
+3.) Download NCBI Taxonomy
+	a.) extract nodes/levels files 
+		(~/git/AnalysisTools/Annotation/Extract_Taxa/extract_nodes_and_names.csh)
+
+###############################################################################
+
+
+* Extract query lengths from FASTA
+	~/git/AnalysisTools/FASTA/Compute_Sequence_Lengths_For_FASTA.pl -i < (reads.fasta)
+
+* Strip UniRef90_ from ID's
+
+* Compute Composite ID
+	~/git/AnalysisTools/Column/generate_perc_max_id_on_BLAST_results.pl -p (blast.out) -r (read.lengths)
+
+* Join Composite ID with UniPro Descriptions
+	~/git/AnalysisTools/Column/remap_column_values.pl \
+		-i blast.wCompID.out
+		-m uniprot.descriptions
+		-p # append
+		-c 0
+		-f 
+
+-------------------------------------------------------------------------------
+
+* Accumulate_Evidence_Across_Hits: uses composite perc id to generate annotation at cutoffs
+
+
+
+* Estimate_Taxa_from_Alignment
+	Takes comp id / 
+
+* TaxaLevels_to_SummaryTable
+
+-------------------------------------------------------------------------------
+
+* Host (or other) contaminant filtering
+
+Filter_Annotation_By_TaxaID
+
+###############################################################################
+
+Pull 
