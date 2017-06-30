@@ -8,6 +8,7 @@ use Getopt::Std;
 use FileHandle;
 use Config::IniFiles;
 use POSIX; # for ceil function
+use Cwd;
 
 use vars qw ($opt_l $opt_p $opt_o $opt_r $opt_s $opt_e);
 
@@ -188,15 +189,23 @@ sub align{
 	my $cfg_bl_num_threads=get_config_val($config, "blast_options", "num_threads");
 	my $cfg_bl_tool=get_config_val($config, "blast_options", "aligner");
 
-	my $cmd;
+	my $aln_cmd;
 	my $cfg_bl_db;
+
+	my $cwd=cwd();
+	my $out_dir_w_wd=$output_directory;
+	if($output_directory=~/^\.\//){
+		my $clean_od=$output_directory;
+		$clean_od=~s/\.\///;
+		$out_dir_w_wd="\$working_directory/$clean_od";
+	}
 
 	if($cfg_bl_tool eq "ncbi_blast"){
 
 		my $cfg_bl_program_bin=get_config_val($config, "blast_options", "program");
 		$cfg_bl_db=get_config_val($config, "blast_options", "blast_db");
 
-		$cmd="
+		$aln_cmd="
 		$cfg_bl_program_bin
 		-query $query_fasta_file
 		-db $cfg_bl_db
@@ -213,12 +222,12 @@ sub align{
 		my $cfg_bl_program=get_config_val($config, "blast_options", "program");
 		$cfg_bl_db=get_config_val($config, "blast_options", "diamond_db");
 
-		$cmd="
+		$aln_cmd="
 		$cfg_bl_diamond_bin
 		$cfg_bl_program
 		--query $query_fasta_file
 		--db $cfg_bl_db
-		--out $output_directory/blastx.out
+		--out $out_dir_w_wd/blastx.out
 		--evalue $cfg_bl_eval
 		--outfmt 6
 		--dbsize $cfg_bl_dbsize
@@ -227,23 +236,47 @@ sub align{
 
 	}
 
-	$cmd=~s/\s+/ /g;
+	$aln_cmd=~s/\s+/ /g;
 	print STDERR "Command:\n";
-	print STDERR "$cmd\n";
+	print STDERR "$aln_cmd\n";
+
+	# Compuate percent composite identity
+	my $cfg_perc_comp_id_bin=get_config_val($config, "tools", "perc_comp_id_bin");
+	my $cmpos_cmd="
+		perl $cfg_perc_comp_id_bin
+		-q $query_fasta_file 
+		-p $out_dir_w_wd/blastx.out 
+	";
+	$cmpos_cmd=~s/\s+/ /g;
+        print STDERR "Command:\n";
+        print STDERR "$cmpos_cmd\n";
+	
+	
 
 	# Output shell script
 	my $algn_cmd_shsc="$output_directory/align.csh";
 	open(FH, ">$algn_cmd_shsc") || die "Could not open $algn_cmd_shsc\n";
 	print FH "#!/bin/csh\n";
+	print FH "\n";
+	print FH "set working_directory=$cwd\n";
+	print FH "\n";
 	print FH "echo Starting alignment of:\n";
 	print FH "echo '\t' $query_fasta_file\n";
 	print FH "echo against\n";
 	print FH "echo '\t' $cfg_bl_db...\n";
 	print FH "\n";
-	print FH "$cmd\n";
+	print FH "$aln_cmd\n";
 	print FH "\n";
 	print FH "echo alignment finished.\n";
+	print FH "\n";
+	print FH "echo 'Computing Percent Composite Identity (CPI).'\n";
+	print FH "$cmpos_cmd\n";
+	print FH "\n";
+	print FH "echo PCI compute completed.\n";
+	print FH "\n";
+	print FH "done.\n";
 	close(FH);
+
 	`chmod +x $algn_cmd_shsc`;
 
 	# Execute
