@@ -260,21 +260,21 @@ sub align{
 	print FH "\n";
 	print FH "set working_directory=$cwd\n";
 	print FH "\n";
-	print FH "echo Starting alignment of:\n";
+	print FH "echo 'Starting alignment of:'\n";
 	print FH "echo '\t' $query_fasta_file\n";
-	print FH "echo against\n";
+	print FH "echo 'against:'\n";
 	print FH "echo '\t' $cfg_bl_db...\n";
 	print FH "\n";
 	print FH "$aln_cmd\n";
 	print FH "\n";
-	print FH "echo alignment finished.\n";
+	print FH "echo 'alignment finished.'\n";
 	print FH "\n";
 	print FH "echo 'Computing Percent Composite Identity (CPI).'\n";
 	print FH "$cmpos_cmd\n";
 	print FH "\n";
-	print FH "echo PCI compute completed.\n";
+	print FH "echo 'PCI compute completed.'\n";
 	print FH "\n";
-	print FH "done.\n";
+	print FH "echo 'done.'\n";
 	close(FH);
 
 	`chmod +x $algn_cmd_shsc`;
