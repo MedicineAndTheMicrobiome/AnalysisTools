@@ -183,18 +183,18 @@ sub align{
 
 
 	my $cfg_bl_program=get_config_val($config, "blast_options", "program");
-	my $cfg_bl_db=get_config_val($config, "blast_options", "db");
 	my $cfg_bl_eval=get_config_val($config, "blast_options", "eval");
 	my $cfg_bl_dbsize=get_config_val($config, "blast_options", "dbsize");
 	my $cfg_bl_num_threads=get_config_val($config, "blast_options", "num_threads");
-
-	my $tool=get_config_val($config, "blast_options", "aligner");
+	my $cfg_bl_tool=get_config_val($config, "blast_options", "aligner");
 
 	my $cmd;
+	my $cfg_bl_db;
 
-	if($tool eq "ncbi_blast"){
+	if($cfg_bl_tool eq "ncbi_blast"){
 
 		my $cfg_bl_program_bin=get_config_val($config, "blast_options", "program");
+		$cfg_bl_db=get_config_val($config, "blast_options", "blast_db");
 
 		$cmd="
 		$cfg_bl_program_bin
@@ -207,10 +207,11 @@ sub align{
 		-num_threads $cfg_bl_num_threads
 		";
 
-	}elsif($tool eq "diamond"){
+	}elsif($cfg_bl_tool eq "diamond"){
 
 		my $cfg_bl_diamond_bin=get_config_val($config, "blast_options", "diamond_bin");
 		my $cfg_bl_program=get_config_val($config, "blast_options", "program");
+		$cfg_bl_db=get_config_val($config, "blast_options", "diamond_db");
 
 		$cmd="
 		$cfg_bl_diamond_bin
@@ -221,7 +222,7 @@ sub align{
 		--evalue $cfg_bl_eval
 		--outfmt 6
 		--dbsize $cfg_bl_dbsize
-		-threads $cfg_bl_num_threads
+		--threads $cfg_bl_num_threads
 		";
 
 	}
@@ -234,9 +235,14 @@ sub align{
 	my $algn_cmd_shsc="$output_directory/align.csh";
 	open(FH, ">$algn_cmd_shsc") || die "Could not open $algn_cmd_shsc\n";
 	print FH "#!/bin/csh\n";
-	print FH "echo Starting alignment of $query_fasta_file against $cfg_bl_db...";
-	print FH "$algn_cmd_shsc\n";
-	print FH "echo alignment finished.";
+	print FH "echo Starting alignment of:\n";
+	print FH "echo '\t' $query_fasta_file\n";
+	print FH "echo against\n";
+	print FH "echo '\t' $cfg_bl_db...\n";
+	print FH "\n";
+	print FH "$cmd\n";
+	print FH "\n";
+	print FH "echo alignment finished.\n";
 	close(FH);
 	`chmod +x $algn_cmd_shsc`;
 
@@ -280,6 +286,10 @@ for(my $idx=$Offset; $idx<$num_records; $idx+=$Multiplier){
 
 	my $sample_output_dir="$Output_Directory/$sample_id";
 	make_dir($sample_output_dir);
+
+	if($Input_FASTA_Root_Directory ne ""){
+		$fname="$Input_FASTA_Root_Directory/$fname";
+	}
 
 	align($fname, $sample_output_dir, $Launch, $cfg);
 
