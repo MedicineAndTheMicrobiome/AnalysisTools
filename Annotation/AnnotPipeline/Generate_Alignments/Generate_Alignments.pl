@@ -140,6 +140,7 @@ sub get_config_val{
 
 	my $value=$config->val($group, $field);
 	
+	# Dereference variable pointing elsewhere
 	if($value=~/\[(\w+)\]:(\w+)/){
 		$value=get_config_val($config, $1, $2);
 		print STDERR "Resolved [$1]:$2 to $value\n";
@@ -250,8 +251,6 @@ sub align{
 	$cmpos_cmd=~s/\s+/ /g;
         print STDERR "Command:\n";
         print STDERR "$cmpos_cmd\n";
-	
-	
 
 	# Output shell script
 	my $algn_cmd_shsc="$output_directory/align.csh";
@@ -269,7 +268,8 @@ sub align{
 	print FH "\n";
 	print FH "echo 'alignment finished.'\n";
 	print FH "\n";
-	print FH "echo 'Computing Percent Composite Identity (CPI).'\n";
+	print FH "echo 'Computing Percent Composite Identity (PCI).'\n";
+	print FH "\n";
 	print FH "$cmpos_cmd\n";
 	print FH "\n";
 	print FH "echo 'PCI compute completed.'\n";
