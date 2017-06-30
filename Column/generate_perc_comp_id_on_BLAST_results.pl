@@ -168,7 +168,8 @@ foreach my $file(@files){
 			$subject_comp_id="NA";
 		}else{
 			$sub_seq_length=$seq_length_hash{$Subject_id};
-			$subject_comp_id=sprintf("%3.2f", $perc_identity*$alignment_length/$sub_seq_length);
+			#$subject_comp_id=sprintf("%3.2f", $perc_identity*$alignment_length/$sub_seq_length);
+			$subject_comp_id=sprintf("%3.2f", $perc_identity*(abs($send-$sstart)+1)/$sub_seq_length);
 		}
 
 		if(!defined($seq_length_hash{$Query_id})){
@@ -176,7 +177,8 @@ foreach my $file(@files){
 			$query_comp_id="NA";
 		}else{
 			$qry_seq_length=$seq_length_hash{$Query_id};
-			$query_comp_id=sprintf("%3.2f", $perc_identity*$alignment_length/$qry_seq_length);
+			#$query_comp_id=sprintf("%3.2f", $perc_identity*$alignment_length/$qry_seq_length);
+			$query_comp_id=sprintf("%3.2f", $perc_identity*(abs($qend-$qstart)+1)/$qry_seq_length);
 		}
 		
 
