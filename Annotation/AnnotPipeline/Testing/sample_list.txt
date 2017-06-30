@@ -1,0 +1,3 @@
+samp1	sample1.fasta
+samp2	sample2.fasta
+samp3	sample3.fasta
