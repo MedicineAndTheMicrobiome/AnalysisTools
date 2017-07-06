@@ -423,7 +423,8 @@ my $ID_COL=0;
 my $PERC_COL=1;
 my $TAXA_COL=2;
 
-open(FH, "cut -f $alignments_file_columns $alignments_file | ") || die "Could not open $alignments_file\n";
+open(FH, "cut -f $alignments_file_columns $alignments_file | sort -k 1,1 -k2,2nr |") || die "Could not open $alignments_file\n";
+# Sort by column1, then column2 (numerically in reverse)
 
 my @records=();
 my $last_rec="";
