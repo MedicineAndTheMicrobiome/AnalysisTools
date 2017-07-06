@@ -2,14 +2,15 @@
 
 use strict;
 use Getopt::Std;
-use vars qw ($opt_t $opt_m $opt_d $opt_l $opt_o $opt_h);
+use vars qw ($opt_t $opt_T $opt_m $opt_d $opt_l $opt_o $opt_h);
 
-getopts("t:m:d:l:o:h");
+getopts("t:T:m:d:l:o:h");
 
 my $usage = "
 	usage:
 	$0
 	-t <taxa file (read_id, taxa_id) >
+	-T <taxa file columns, eg. \"1,7\", for read_id and taxa_id, respectively, counting from 1>
 
 	-m <taxa names file (taxa_id, name) >
 	-d <taxa nodes file (parent_id, child_id) >
@@ -39,12 +40,13 @@ my $usage = "
 
 ###############################################################################
 
-if(!defined($opt_t) || !defined($opt_m) || !defined($opt_d) || 
+if(!defined($opt_t) || !defined($opt_T) ||  !defined($opt_m) || !defined($opt_d) || 
 	!defined($opt_d) || !defined($opt_o)){
 	die $usage;
 }
 
 my $taxa_ids_file=$opt_t;
+my $taxa_ids_file_columns=$opt_T;
 my $taxa_names_file=$opt_m;
 my $taxa_nodes_file=$opt_d;
 my $taxa_levels_file=$opt_l;
@@ -256,7 +258,7 @@ if(!$suppress_header){
 
 ###############################################################################
 
-open(FH, "<$taxa_ids_file") || die "Could not open $taxa_ids_file\n";
+open(FH, "cut -f $taxa_ids_file_columns $taxa_ids_file |") || die "Could not open $taxa_ids_file\n";
 
 my @records=();
 my $last_rec="";
