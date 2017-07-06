@@ -2,14 +2,15 @@
 
 use strict;
 use Getopt::Std;
-use vars qw ($opt_a $opt_t $opt_n $opt_o $opt_h);
+use vars qw ($opt_a $opt_A $opt_t $opt_n $opt_o $opt_h);
 
-getopts("a:t:n:o:h");
+getopts("a:A:t:n:o:h");
 
 my $usage = "
 	usage:
 	$0
 	-a <alignment file (read_id, comp_ident, taxa_id) >
+	-A <alignment columns for read_id, comp_ident and taxa_id, respectively, eg. \"1,2,6\">
 	-t <taxa nodes file (parent_id, child_id) >
 	-n <taxa names file (taxa_id, taxa_name) >
 	-o <output file>
@@ -37,11 +38,12 @@ my $usage = "
 
 ###############################################################################
 
-if(!defined($opt_a) || !defined($opt_t) || !defined($opt_n) || !defined($opt_o)){
+if(!defined($opt_a) || !defined($opt_A) || !defined($opt_t) || !defined($opt_n) || !defined($opt_o)){
 	die $usage;
 }
 
 my $alignments_file=$opt_a;
+my $alignments_file_columns=$opt_A;
 my $taxa_nodes_file=$opt_t;
 my $taxa_names_file=$opt_n;
 my $output_file=$opt_o;
@@ -419,9 +421,9 @@ sub process_records{
 ###############################################################################
 my $ID_COL=0;
 my $PERC_COL=1;
-my $TAXA_COL=4;
+my $TAXA_COL=2;
 
-open(FH, "<$alignments_file") || die "Could not open $alignments_file\n";
+open(FH, "cut -f $alignments_file_columns $alignments_file | ") || die "Could not open $alignments_file\n";
 
 my @records=();
 my $last_rec="";
