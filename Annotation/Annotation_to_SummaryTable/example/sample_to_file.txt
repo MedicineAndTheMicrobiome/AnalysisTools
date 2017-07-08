@@ -1,0 +1,10 @@
+BC-HS-Shield-2	/mnt/data/projects/0133_RNA_Seq_Test/Annotation/Results/BC-HS-Shield-2/blast.out.comp_id.trembl.accum.45.taxa_filt.kept
+BC-HS-Shield	/mnt/data/projects/0133_RNA_Seq_Test/Annotation/Results/BC-HS-Shield/blast.out.comp_id.trembl.accum.45.taxa_filt.kept
+BC-NoHS-Shield	/mnt/data/projects/0133_RNA_Seq_Test/Annotation/Results/BC-NoHS-Shield/blast.out.comp_id.trembl.accum.45.taxa_filt.kept
+CF90000-NoShield	/mnt/data/projects/0133_RNA_Seq_Test/Annotation/Results/CF90000-NoShield/blast.out.comp_id.trembl.accum.45.taxa_filt.kept
+CF90000-Shield	/mnt/data/projects/0133_RNA_Seq_Test/Annotation/Results/CF90000-Shield/blast.out.comp_id.trembl.accum.45.taxa_filt.kept
+EC-HS-Shield	/mnt/data/projects/0133_RNA_Seq_Test/Annotation/Results/EC-HS-Shield/blast.out.comp_id.trembl.accum.45.taxa_filt.kept
+EC-NoHS-Shield	/mnt/data/projects/0133_RNA_Seq_Test/Annotation/Results/EC-NoHS-Shield/blast.out.comp_id.trembl.accum.45.taxa_filt.kept
+JG3	/mnt/data/projects/0133_RNA_Seq_Test/Annotation/Results/JG3/blast.out.comp_id.trembl.accum.45.taxa_filt.kept
+JG5	/mnt/data/projects/0133_RNA_Seq_Test/Annotation/Results/JG5/blast.out.comp_id.trembl.accum.45.taxa_filt.kept
+JG7	/mnt/data/projects/0133_RNA_Seq_Test/Annotation/Results/JG7/blast.out.comp_id.trembl.accum.45.taxa_filt.kept
