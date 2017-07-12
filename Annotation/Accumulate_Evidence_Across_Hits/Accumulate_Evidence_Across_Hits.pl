@@ -23,15 +23,23 @@ my $usage = "
 
 	1.) Read ID
 	2.) Percent Composite Identity
-	3.) UniRef ID
-	4.) Description
-	5.) Length
+	3.) Read Length
+	4.) UniRef ID
+	5.) Description
 	6.) Taxa ID
-	7.) PFam IDs
-	8.) TIGRFam IDs
-	9.) GO Process
-	10.) GO Function
-	11.) EC
+	7.) Subject Length
+	8.) PFam IDs
+	9.) TIGRFam IDs
+	10.) GO Process
+	11.) GO Function
+	12.) EC
+
+	[Unused]
+	12.) NA (Subject composite idenity)
+	13.) NA (Subject length)
+	14.) Alignment Identity
+	15.) Alignment Bit Score
+	16.) Alignment E-val
 
 	Output selects the best non-null results across the annotations:
 
@@ -59,12 +67,12 @@ my $suppress_header=($opt_h eq "1");
 
 ###############################################################################
 
-my @cutoffs=(.45, .60, .75, .90);
+my @cutoffs=(45, 60, 75, 90);
 my $num_cutoffs=$#cutoffs+1;
 my %fh_hash;
 
 foreach my $cutoff(@cutoffs){
-	my $ext=sprintf("%.2f", $cutoff);
+	my $ext=sprintf("%2.0f", $cutoff);
 	$ext=~s/^0\.//;
 	my $fname="$output_file\.$ext\.tsv";
 	$fh_hash{$cutoff}=FileHandle->new;
@@ -101,15 +109,16 @@ if(!$suppress_header){
 
 my $ID_COL=0;
 my $PERC_ID_COL=1;
-my $UNIRER_COL=2;
-my $DESC_COL=3;
-my $TAXA_COL=4;
-my $LEN_COL=5;
-my $PFAM_COL=6;
-my $TIGRFAM_COL=7;
-my $GO_PROC_COL=8;
-my $GO_FUNC_COL=9;
-my $EC_COL=10;
+my $READ_LEN=2;
+my $UNIREF_COL=3;
+my $DESC_COL=4;
+my $TAXA_COL=5;
+my $LEN_COL=6;
+my $PFAM_COL=7;
+my $TIGRFAM_COL=8;
+my $GO_PROC_COL=9;
+my $GO_FUNC_COL=10;
+my $EC_COL=11;
 
 ###############################################################################
 
@@ -265,14 +274,24 @@ sub process_records{
 # Process alignments file
 
 
-open(FH, "<$alignments_file") || die "Could not open $alignments_file\n";
+#open(FH, "<$alignments_file") || die "Could not open $alignments_file\n";
+open(FH, "sort -k 1,1 -k2,2nr $alignments_file |") || die "Could not open $alignments_file\n";
 
 my @records=();
 my $last_rec="";
+
+my $num_incomplete_records=0;
 while(<FH>){
 	chomp;
 
 	my @fields=split "\t", $_;
+
+	my $num_fields=$#fields+1;
+	if($num_fields<12){
+		$num_incomplete_records++;
+		#print STDERR "Incomplete Record: '$_'\n";
+		next;
+	}
 	
 	if(($fields[$ID_COL] ne $last_rec)){
 		process_records(\@records);
@@ -286,6 +305,8 @@ while(<FH>){
 process_records(\@records);
 
 close(FH);
+
+print STDERR "Number of Incomplete Records Discarded: $num_incomplete_records\n";
 
 ###############################################################################
 
