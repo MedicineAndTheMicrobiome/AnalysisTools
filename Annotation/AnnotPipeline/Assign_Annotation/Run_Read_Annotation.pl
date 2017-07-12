@@ -10,6 +10,7 @@ use Getopt::Std;
 use vars qw($opt_l $opt_P $opt_r $opt_p $opt_c $opt_s);
 use File::Basename;
 use POSIX; # for ceil function
+use Config::IniFiles;
 
 getopts("l:P:r:p:c:s:");
 my $usage = "usage: 
@@ -177,6 +178,20 @@ sub lookup{
 	return($val);
 }
 
+sub execute{
+	my $desc=shift;
+	my $cmd=shift;
+
+	print STDERR "*************************************************************************\n";
+	print STDERR "*  $desc\n";
+	print STDERR "*************************************************************************\n";
+
+	$cmd=~s/\s+/ /g;
+	my $err=system($cmd);
+	print STDERR "$err\n";
+
+}
+
 ###############################################################################
 
 #[annotation_data]
@@ -212,11 +227,11 @@ my $offset_str=sprintf("%0$offset_str_width"."i", $offset);
 my $num_records=$#{$sample_info_arr_ref}+1;
 $offset--; # Start offset from 1 less than specified, so we start from 0, instead of 1
 
-my $blast_out="blast.out.comp_id";
+my $blast_out="blast.out";
 
 for(my $idx=$offset; $idx<$num_records; $idx+=$multiplier){
 
-	print STDERR "\nWorking on record: $idx.";
+	print STDERR "\nWorking on record: $idx.\n";
 	my $samp_info=${$sample_info_arr_ref}[$idx];
 	my ($samp_name)=split "\t", $samp_info;
 	
@@ -226,61 +241,69 @@ for(my $idx=$offset; $idx<$num_records; $idx+=$multiplier){
 
 	#perl ~/git/AnalysisTools/Column/remap_column_values.pl \
 	execute(
-	"$join_aln_w_clst_anno_bin
-		-i $blast_out\.comp_id \
-		-m $TrEMBL_annotation \
-		-p \
-		-c 3 \
-		-f > \
-		$blast_out\.comp_id.trmbl 
+	"Joining composite alignment results with TrEMBL via UniRef ID",
+	"$join_aln_w_clst_anno_bin 
+		-i $result_dir/$samp_name/$blast_out\.comp_id 
+		-m $TrEMBL_annotation 
+		-p 
+		-c 3 
+		-f > 
+		$result_dir/$samp_name/$blast_out\.comp_id.trmbl 
 	"
 	);
 
 	#perl ~/git/AnalysisTools/Annotation/Accumulate_Evidence_Across_Hits/Accumulate_Evidence_Across_Hits.pl \
-	execute("$accumulate_annot_bin
-		-a $blast_out\.comp_id.trmbl \
-		-o $blast_out\.comp_id.trmbl.accm
+	execute(
+	"Accumulating evidence across all annotation/hits for each read",
+	"$accumulate_annot_bin 
+		-a $result_dir/$samp_name/$blast_out\.comp_id.trmbl 
+		-o $result_dir/$samp_name/$blast_out\.comp_id.trmbl.accm
 	");
-	# Generates $blast_out\.comp_id.trmbl.accm.45.tsv
-	# Generates $blast_out\.comp_id.trmbl.accm.60.tsv
-	# Generates $blast_out\.comp_id.trmbl.accm.75.tsv
-	# Generates $blast_out\.comp_id.trmbl.accm.90.tsv
+	# Generates cutoffs at 45, 60, 75 and 90.
+		
+	#perl ~/git/AnalysisTools/Annotation/Estimate_Taxa_from_Alignment/Estimate_Taxa_from_Alignment.pl \
+	execute(
+	"Estimating greatest common ancestor taxonomy across annotation",
+	"$estimate_taxa_bin 
+		-a $result_dir/$samp_name/$blast_out\.comp_id.trmbl 
+		-A \"1,2,6\" 
+		-t $ncbi_taxa_nodes 
+		-n $ncbi_taxa_names 
+		-o $result_dir/$samp_name/$blast_out\.comp_id.trmbl.taxa_est
+	");
+
+	#perl ~/git/AnalysisTools/Annotation/Estimate_Taxa_from_Alignment/Get_Higher_Levels.pl \
+	execute(
+	"Looking up higher level taxonomic classifications for each read",
+	"$get_high_taxa_levels_bin 
+		-t $result_dir/$samp_name/$blast_out\.comp_id.trmbl.taxa_est 
+		-T \"1,7\" 
+		-m $ncbi_taxa_names 
+		-d $ncbi_taxa_nodes 
+		-l $ncbi_taxa_levels 
+		-o $result_dir/$samp_name/$blast_out\.comp_id.trmbl.taxa_est.hghr
+	");
 
 	foreach my $cutoff (@cutoff_arr){
 
 		print STDERR "Working on cutoff: $cutoff %\n";
 		make_dir("$result_dir/$samp_name/$cutoff");
 
-		#perl ~/git/AnalysisTools/Annotation/Estimate_Taxa_from_Alignment/Estimate_Taxa_from_Alignment.pl \
-		execute("$estimate_taxa_bin \
-			-a $blast_out\.comp_id.trembl.accm.$cutoff\.tsv \
-			-A \"1,2,6\" \
-			-t $ncbi_taxa_nodes \
-			-n $ncbi_taxa_names \
-			-o $result_dir/$samp_name\.comp_id.trmbl.taxa_est
-		");
-
-		#perl ~/git/AnalysisTools/Annotation/Estimate_Taxa_from_Alignment/Get_Higher_Levels.pl \
-		execute("$get_high_taxa_levels_bin
-			-t $result_dir/$samp_name\.comp_id.trembl.taxa_est \
-			-T \"1,7\" \
-			-m $ncbi_taxa_names \
-			-d $ncbi_taxa_nodes \
-			-l $ncbi_taxa_levels \
-			-o $blast_out\.comp_id.trembl.taxa_est.hghr
-		");
+		`mv $result_dir/$samp_name/$blast_out\.comp_id.trmbl.accm.$cutoff\.tsv $result_dir/$samp_name/$cutoff`;
 
 		#perl ~/git/AnalysisTools/Annotation/Filter_Annotation_By_TaxaID/Filter_Annotation_By_TaxaID.pl \
-		execute("$filter_annot_by_taxa_bin
-			-t $blast_out\.comp_id.trembl.taxa_est.highest.taxa_ids.tsv \
-			-a $blast_out\.comp_id.trembl.accum.$cutoff\.tsv \
-			-f $contam_file \
-			-o $blast_out\.comp_id.trembl.accum.$cutoff\.taxa_filt
+		execute(
+		"Filtering reads by assigned taxa",
+		"$filter_annot_by_taxa_bin 
+			-t $result_dir/$samp_name/$cutoff/$blast_out\.comp_id.trmbl.taxa_est.hghr.taxa_ids.tsv 
+			-a $result_dir/$samp_name/$cutoff/$blast_out\.comp_id.trmbl.accm.$cutoff\.tsv 
+			-f $contam_file 
+			-o $result_dir/$samp_name/$cutoff/$blast_out\.comp_id.trmbl.accm.$cutoff\.taxa_filt
 		");
 
 	}
 
-	`touch "completed."`;
+	`touch "$result_dir/$samp_name/completed."`;
 
 
 }
