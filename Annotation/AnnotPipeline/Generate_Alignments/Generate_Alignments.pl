@@ -21,7 +21,7 @@ usage:
 	-l <Filename for List of Query FASTA files>
 	
 	-p <parameter .ini file>
-	-o <output directory>
+	-o <output directory, named something like 'AlignResults'>
 	
 	[-r <input fasta root directory>]
 	[-s <Offset, default=1>,<Multiplier, default=1>]
@@ -210,7 +210,7 @@ sub align{
 		$cfg_bl_program_bin
 		-query $query_fasta_file
 		-db $cfg_bl_db
-		-out $output_directory/blastx.out
+		-out $out_dir_w_wd/blast.out
 		-evalue $cfg_bl_eval
 		-outfmt 6
 		-dbsize $cfg_bl_dbsize
@@ -228,7 +228,7 @@ sub align{
 		$cfg_bl_program
 		--query $query_fasta_file
 		--db $cfg_bl_db
-		--out $out_dir_w_wd/blastx.out
+		--out $out_dir_w_wd/blast.out
 		--evalue $cfg_bl_eval
 		--outfmt 6
 		--dbsize $cfg_bl_dbsize
@@ -246,7 +246,7 @@ sub align{
 	my $cmpos_cmd="
 		perl $cfg_perc_comp_id_bin
 		-q $query_fasta_file 
-		-p $out_dir_w_wd/blastx.out 
+		-p $out_dir_w_wd/blast.out 
 	";
 	$cmpos_cmd=~s/\s+/ /g;
         print STDERR "Command:\n";
