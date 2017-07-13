@@ -275,8 +275,9 @@ for(my $idx=$offset; $idx<$num_records; $idx+=$multiplier){
 	"$accumulate_annot_bin 
 		-a $output_dir/$samp_name/blst.cpsid.trmbl 
 		-o $output_dir/$samp_name/blst.cpsid.trmbl.accm
+		-c \"$cutoffs\"
 	");
-	# Generates cutoffs at 45, 60, 75 and 90.
+	# Accumulates at various cutoffs, eg. at 45, 60, 75 and 90.
 		
 	#perl ~/git/AnalysisTools/Annotation/Estimate_Taxa_from_Alignment/Estimate_Taxa_from_Alignment.pl \
 	execute(
