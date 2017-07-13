@@ -203,7 +203,7 @@ my @sample_ids=@{$sample_info_arr_ref};
 
 # Build list of hghr.taxa_name.tsv files
 print STDERR "Building taxa target list...\n";
-open(FH, ">$sumtab_dir/$TAX_SUM_TAB_LIST_FN") || die "Could not open $sumtab_dir/$TAX_SUM_TAB_LIST_FN\n";
+open(FH, ">$sumtab_dir/$TAXONOMY_DIR/$TAX_SUM_TAB_LIST_FN") || die "Could not open $sumtab_dir/$TAXONOMY_DIR/$TAX_SUM_TAB_LIST_FN\n";
 foreach my $samp_id (@sample_ids){
 	my $hgh_taxa_fn="$annot_dir/$samp_id/blst.cpsid.trmbl.taxa_est.hghr.taxa_names.tsv";
 	print FH "$samp_id\t$hgh_taxa_fn\n";
@@ -214,7 +214,7 @@ close(FH);
 execute(
 "Accumulating taxa info into Summary Tables",
 "$taxa_levels_to_st_bin
-	-l $sumtab_dir/$TAX_SUM_TAB_LIST_FN
+	-l $sumtab_dir/$TAXONOMY_DIR/$TAX_SUM_TAB_LIST_FN
 	-o $sumtab_dir/$TAXONOMY_DIR/$project_name
 ");
 
@@ -224,10 +224,10 @@ execute(
 foreach my $cutoff (@cutoff_arr){
 
 	print STDERR "Working on cutoff: $cutoff %\n";
-
 	make_dir("$sumtab_dir/$FUNCTIONAL_DIR/$cutoff");
 
-	print STDERR "Building taxa target list...\n";
+	# Build target annotation file list
+	print STDERR "Building target annotation file list...\n";
 	open(FH, ">$sumtab_dir/$FUNCTIONAL_DIR/$cutoff/$FUNCT_TARGETS_SUM_TAB_LIST_FN") || die "Could not open $sumtab_dir/$FUNCTIONAL_DIR/$FUNCT_TARGETS_SUM_TAB_LIST_FN\n";
 	foreach my $samp_id (@sample_ids){
 		my $hgh_taxa_fn="$annot_dir/$samp_id/$cutoff/blst.cpsid.trmbl.accm.$cutoff.taxa_filt.kept";
@@ -235,6 +235,7 @@ foreach my $cutoff (@cutoff_arr){
 	}
 	close(FH);
 
+	# Build functional summary tables
 	#perl ~/git/AnalysisTools/Annotation/Annotation_to_SummaryTable/Annotation_to_SummaryTable.pl \
 	execute(
 	"Accumulating annotation into Summary Tables",
@@ -242,10 +243,8 @@ foreach my $cutoff (@cutoff_arr){
 		-l $sumtab_dir/$FUNCTIONAL_DIR/$cutoff/$FUNCT_TARGETS_SUM_TAB_LIST_FN
 		-o $sumtab_dir/$FUNCTIONAL_DIR/$cutoff/$project_name\.$cutoff
 	");
-	
 
 	print STDERR "Translating/Renaming ID's to display names...\n";
-
 	foreach my $funct_type(@function_types){
 
 		my $map_file=$function_map{$funct_type};
