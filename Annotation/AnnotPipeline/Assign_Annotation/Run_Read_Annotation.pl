@@ -7,19 +7,21 @@ use FindBin;
 use lib "$FindBin::Bin";
 use lib "$FindBin::Bin/../Annotation_Lib";
 use Getopt::Std;
-use vars qw($opt_l $opt_P $opt_r $opt_p $opt_c $opt_s);
+use vars qw($opt_l $opt_P $opt_I $opt_O $opt_p $opt_c $opt_s);
 use File::Basename;
 use POSIX; # for ceil function
 use Config::IniFiles;
 
-getopts("l:P:r:p:c:s:");
+getopts("l:P:I:O:p:c:s:");
 my $usage = "usage: 
 
 $0 
 
 	-l <List of sample ids to process, should be from alignment step>
 	[-P <project name, default=sample id fname w/o extension>]
-	-r <Result/root directory of blast output, should be output directory of alignment step>
+	-I <Input Directory:  read-to-uniprot blastx results, should be output directory of alignment step>
+		(Input file will blast.out)
+	-O <Result/root directory of blast output, should be output directory of alignment step>
 		(output will be saved here, input file will blast.out)
 
 	-p <Annotation parameter file (mostly database and bin directories)>
@@ -33,13 +35,13 @@ $0
 	be applied to accumulate all the samples together.
 
 	
-	List Format (-l option):
+	List Format (-l parameter):
 		<library/sample name> \\t <library/sample fasta file>
 
 		Each column is tab separated.
 
 
-	Input/Output directory (-r option):
+	Input directory (-I parameter):
 		The directory will contains a subdirectory for each sample id in the
 		list file.  Each sample will have a blast output.
 
@@ -64,13 +66,14 @@ $0
 	
 ";
 
-if(!defined($opt_l)||!defined($opt_r)||!defined($opt_p)){
+if(!defined($opt_l)||!defined($opt_I)||!defined($opt_O)||!defined($opt_p)){
 	die $usage;
 }
 
 # required
 my $sample_list=$opt_l;
-my $result_dir=$opt_r;
+my $input_dir=$opt_I;
+my $output_dir=$opt_O;
 my $parameter_fname=$opt_p;
 
 # optional
@@ -99,7 +102,8 @@ if(!defined($project_name) || $project_name eq ""){
 print STDERR "\n";
 print STDERR "Sample List: $sample_list\n";
 print STDERR "Project Name: $project_name\n";
-print STDERR "Results Dir: $result_dir\n";
+print STDERR "Input Blast Dir: $input_dir\n";
+print STDERR "Output Annotation Dir: $output_dir\n";
 print STDERR "Parameter/Ini File: $parameter_fname\n";
 print STDERR "Subset Paramters: Offset=$offset Multiplier=$multiplier\n";
 print STDERR "Contam/Host Filter: $contam_file\n";
@@ -182,13 +186,16 @@ sub execute{
 	my $desc=shift;
 	my $cmd=shift;
 
+	print STDERR "\n";
 	print STDERR "*************************************************************************\n";
 	print STDERR "*  $desc\n";
 	print STDERR "*************************************************************************\n";
+	print STDERR "\n";
 
 	$cmd=~s/\s+/ /g;
 	my $err=system($cmd);
-	print STDERR "$err\n";
+	if($err!=0){ die "Error in $cmd\n";}
+
 
 }
 
@@ -196,7 +203,6 @@ sub execute{
 
 #[annotation_data]
 my $TrEMBL_annotation=lookup("annotation_data","TrEMBL_annotation");
-
 my $ncbi_taxa_nodes=lookup("annotation_data","ncbi_taxa_nodes");
 my $ncbi_taxa_names=lookup("annotation_data","ncbi_taxa_names");
 my $ncbi_taxa_levels=lookup("annotation_data","ncbi_taxa_levels");
@@ -229,13 +235,24 @@ $offset--; # Start offset from 1 less than specified, so we start from 0, instea
 
 my $blast_out="blast.out";
 
+make_dir($output_dir);
+
+
 for(my $idx=$offset; $idx<$num_records; $idx+=$multiplier){
 
+	print STDERR "#########################################################################################\n";
 	print STDERR "\nWorking on record: $idx.\n";
 	my $samp_info=${$sample_info_arr_ref}[$idx];
 	my ($samp_name)=split "\t", $samp_info;
 	
 	print STDERR "Sample Name: $samp_name\n\n";
+	print STDERR "#########################################################################################\n";
+
+	make_dir("$output_dir/$samp_name");
+	execute(
+	"Linking input blast.out.comp_id results to output directory...",
+	"ln -s $input_dir/$samp_name/$blast_out\.comp_id $output_dir/$samp_name/blst.cpsid"
+	);
 
 	#----------------------------------------------------------------------
 
@@ -243,12 +260,12 @@ for(my $idx=$offset; $idx<$num_records; $idx+=$multiplier){
 	execute(
 	"Joining composite alignment results with TrEMBL via UniRef ID",
 	"$join_aln_w_clst_anno_bin 
-		-i $result_dir/$samp_name/$blast_out\.comp_id 
+		-i $output_dir/$samp_name/blst.cpsid
 		-m $TrEMBL_annotation 
 		-p 
 		-c 3 
 		-f > 
-		$result_dir/$samp_name/$blast_out\.comp_id.trmbl 
+		$output_dir/$samp_name/blst.cpsid.trmbl 
 	"
 	);
 
@@ -256,8 +273,8 @@ for(my $idx=$offset; $idx<$num_records; $idx+=$multiplier){
 	execute(
 	"Accumulating evidence across all annotation/hits for each read",
 	"$accumulate_annot_bin 
-		-a $result_dir/$samp_name/$blast_out\.comp_id.trmbl 
-		-o $result_dir/$samp_name/$blast_out\.comp_id.trmbl.accm
+		-a $output_dir/$samp_name/blst.cpsid.trmbl 
+		-o $output_dir/$samp_name/blst.cpsid.trmbl.accm
 	");
 	# Generates cutoffs at 45, 60, 75 and 90.
 		
@@ -265,45 +282,45 @@ for(my $idx=$offset; $idx<$num_records; $idx+=$multiplier){
 	execute(
 	"Estimating greatest common ancestor taxonomy across annotation",
 	"$estimate_taxa_bin 
-		-a $result_dir/$samp_name/$blast_out\.comp_id.trmbl 
+		-a $output_dir/$samp_name/blst.cpsid.trmbl 
 		-A \"1,2,6\" 
 		-t $ncbi_taxa_nodes 
 		-n $ncbi_taxa_names 
-		-o $result_dir/$samp_name/$blast_out\.comp_id.trmbl.taxa_est
+		-o $output_dir/$samp_name/blst.cpsid.trmbl.taxa_est
 	");
 
 	#perl ~/git/AnalysisTools/Annotation/Estimate_Taxa_from_Alignment/Get_Higher_Levels.pl \
 	execute(
 	"Looking up higher level taxonomic classifications for each read",
 	"$get_high_taxa_levels_bin 
-		-t $result_dir/$samp_name/$blast_out\.comp_id.trmbl.taxa_est 
+		-t $output_dir/$samp_name/blst.cpsid.trmbl.taxa_est 
 		-T \"1,7\" 
 		-m $ncbi_taxa_names 
 		-d $ncbi_taxa_nodes 
 		-l $ncbi_taxa_levels 
-		-o $result_dir/$samp_name/$blast_out\.comp_id.trmbl.taxa_est.hghr
+		-o $output_dir/$samp_name/blst.cpsid.trmbl.taxa_est.hghr
 	");
 
 	foreach my $cutoff (@cutoff_arr){
 
 		print STDERR "Working on cutoff: $cutoff %\n";
-		make_dir("$result_dir/$samp_name/$cutoff");
+		make_dir("$output_dir/$samp_name/$cutoff");
 
-		`mv $result_dir/$samp_name/$blast_out\.comp_id.trmbl.accm.$cutoff\.tsv $result_dir/$samp_name/$cutoff`;
+		`mv $output_dir/$samp_name/blst.cpsid.trmbl.accm.$cutoff\.tsv $output_dir/$samp_name/$cutoff`;
 
 		#perl ~/git/AnalysisTools/Annotation/Filter_Annotation_By_TaxaID/Filter_Annotation_By_TaxaID.pl \
 		execute(
 		"Filtering reads by assigned taxa",
 		"$filter_annot_by_taxa_bin 
-			-t $result_dir/$samp_name/$cutoff/$blast_out\.comp_id.trmbl.taxa_est.hghr.taxa_ids.tsv 
-			-a $result_dir/$samp_name/$cutoff/$blast_out\.comp_id.trmbl.accm.$cutoff\.tsv 
+			-t $output_dir/$samp_name/blst.cpsid.trmbl.taxa_est.hghr.taxa_ids.tsv 
+			-a $output_dir/$samp_name/$cutoff/blst.cpsid.trmbl.accm.$cutoff\.tsv 
 			-f $contam_file 
-			-o $result_dir/$samp_name/$cutoff/$blast_out\.comp_id.trmbl.accm.$cutoff\.taxa_filt
+			-o $output_dir/$samp_name/$cutoff/blst.cpsid.trmbl.accm.$cutoff\.taxa_filt
 		");
 
 	}
 
-	`touch "$result_dir/$samp_name/completed."`;
+	`touch "$output_dir/$samp_name/completed."`;
 
 
 }
