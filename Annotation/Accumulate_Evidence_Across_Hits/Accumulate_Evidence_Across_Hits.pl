@@ -264,8 +264,10 @@ sub process_records{
 		#print_rec($grouped_hash{$cutoff});
 		my @best=get_best_function($grouped_hash{$cutoff});
 
-		my $best_str=join "\t", @best;
-		print {$fh_hash{$cutoff}} "$read_id\t$best_str\n";
+		if($best[0]!=0){
+			my $best_str=join "\t", @best;
+			print {$fh_hash{$cutoff}} "$read_id\t$best_str\n";
+		}
 	}
 
 }
