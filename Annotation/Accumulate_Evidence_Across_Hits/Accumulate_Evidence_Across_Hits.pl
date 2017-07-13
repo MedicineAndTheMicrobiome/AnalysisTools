@@ -3,15 +3,16 @@
 use strict;
 use Getopt::Std;
 use FileHandle;
-use vars qw ($opt_a $opt_o $opt_h);
+use vars qw ($opt_a $opt_o $opt_h $opt_c);
 
-getopts("a:o:h");
+getopts("a:o:hc:");
 
 my $usage = "
 	usage:
 	$0
 	-a <uniref alignments info (query_id, perc_comp, uniref_id, ... ) >
 	-o <output file>
+	-c <cutoffs, eg. \"45,60,75,90\">
 	[-h (suppress header flag)]
 
 	This script will read in a uniref alignment info file and generate a
@@ -57,17 +58,18 @@ my $usage = "
 
 ###############################################################################
 
-if(!defined($opt_a) || !defined($opt_o)){
+if(!defined($opt_a) || !defined($opt_o) || !defined($opt_c)){
 	die $usage;
 }
 
 my $alignments_file=$opt_a;
 my $output_file=$opt_o;
 my $suppress_header=($opt_h eq "1");
+my @cutoffs=split ",", $opt_c;
 
 ###############################################################################
 
-my @cutoffs=(45, 60, 75, 90);
+#my @cutoffs=(45, 60, 75, 90);
 my $num_cutoffs=$#cutoffs+1;
 my %fh_hash;
 
