@@ -1,8 +1,10 @@
 #!/bin/csh
 
+set wd = $PWD
+
 ../Generate_Summary_Tables.pl \
-        -l ~/testing/Results/sample_ids.txt \
-	-A ~/testing/AnnotResults \
-	-S ~/testing/SummaryTables \
-        -p /home/kelvinli/git/AnalysisTools/Annotation/AnnotPipeline/Assign_Annotation/annot_pipeline.ini \
+        -l $wd/BlastResults/sample_ids.txt \
+	-A $wd/AnnotResults \
+	-S $wd/SummaryTables \
+	-p ~/git/AnalysisTools/Annotation/AnnotPipeline/Assign_Annotation/annot_pipeline.ini
 
