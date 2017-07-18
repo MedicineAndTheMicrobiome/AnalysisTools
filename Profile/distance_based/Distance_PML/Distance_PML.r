@@ -8,7 +8,10 @@ library('getopt');
 library(plotrix);
 library(doMC);
 
-registerDoMC(cores=16);
+#registerDoMC(cores=32);
+registerDoMC();
+num_core_acquired=getDoParWorkers();
+cat("Num cores available: ", num_core_acquired, "\n");
 
 options(useFancyQuotes=F);
 options(digits=5)
@@ -757,6 +760,7 @@ for(i in 1:num_factors){
 	cat("\n");
 	cat("'", factor_names[i], "' has ", num_cat, " unique values, ", numNAs, " (", percNA, "%) NAs\n", sep="");
 	cat("\t", paste(head(categories, n=10), collapse=", "), sep="");
+	cat("\t", paste(head(factors[,i], n=10), collapse=", "), sep="");
 	if(num_cat>10){
 		cat(", ...");
 	}
@@ -833,27 +837,30 @@ paint_matrix(correl);
 ##############################################################################
 # Insert interaction terms for those factors least correlated
 
-interactions_res=add_interactions(factors, correl_res, NumMaxInteractions);
-num_interaction_terms_added=ncol(interactions_res$interaction_mat);
+if(NumMaxInteractions>0){
+	interactions_res=add_interactions(factors, correl_res, NumMaxInteractions);
+	num_interaction_terms_added=ncol(interactions_res$interaction_mat);
 
-plot_text(c(
-	"Automatically Generated Interactions:",
-	"(Based on pairs of factors with the least correlation.)",
-	"",
-	paste("Num of Terms Added: ", num_interaction_terms_added, sep=""),
-	"",
-	paste("    ", 1:num_interaction_terms_added, ".) ", colnames(interactions_res$interaction_mat), sep="")
-));
+	plot_text(c(
+		"Automatically Generated Interactions:",
+		"(Based on pairs of factors with the least correlation.)",
+		"",
+		paste("Num of Terms Added: ", num_interaction_terms_added, sep=""),
+		"",
+		paste("    ", 1:num_interaction_terms_added, ".) ", colnames(interactions_res$interaction_mat), sep="")
+	));
 
-plot_text(c(
-	"Least Correlated Factors Matrix:",
-	"(1 least correlated ... N most correlated)",
-	paste("Maximimum number of interaction terms (user permitted) to add: ", NumMaxInteractions, sep=""),
-	"",
-	capture.output(print(interactions_res$least_corrltd_mat, quote=F))
-));
+	plot_text(c(
+		"Least Correlated Factors Matrix:",
+		"(1 least correlated ... N most correlated)",
+		paste("Maximimum number of interaction terms (user permitted) to add: ", NumMaxInteractions, sep=""),
+		"",
+		capture.output(print(interactions_res$least_corrltd_mat, quote=F))
+	));
 
-factors=cbind(factors, interactions_res$interaction_mat);
+	factors=cbind(factors, interactions_res$interaction_mat);
+}
+
 
 ##############################################################################
 ##############################################################################
@@ -877,9 +884,20 @@ plot_text(c(
 
 ###############################################################################
 
+# Output Modified Factor Matrix
+write.table(
+	factors_mod_matrix,
+	paste(OutputFnameRoot, ".mod_factr.tsv", sep=""),
+	quote=F, sep="\t", row.names=T, col.names=NA);
+
 # Run cross validation compute
 #dev.off();quit();
 cat("Running Cross Validation...\n");
+
+print(dim(factors_mod_matrix));
+print(rownames(factors_mod_matrix));
+print(dim(distmat));
+print(rownames(distmat));
 cvfit=cv.glmnet(x=factors_mod_matrix, y=distmat, family="mgaussian", standardize=T, alpha=1, parallel=T);
 cat("ok.\n");
 
