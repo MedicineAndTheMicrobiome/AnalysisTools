@@ -750,6 +750,8 @@ factors=factors[common_sample_names, , drop=F];
 
 cat("Recoding Non-Numeric Factors...\n");
 factors=recode_non_numeric_factors(factors);
+factor_names=colnames(factors);
+num_factors=ncol(factors);
 
 for(i in 1:num_factors){
 	categories=unique(unique(factors[,i]));
@@ -759,13 +761,18 @@ for(i in 1:num_factors){
 	
 	cat("\n");
 	cat("'", factor_names[i], "' has ", num_cat, " unique values, ", numNAs, " (", percNA, "%) NAs\n", sep="");
-	cat("\t", paste(head(categories, n=10), collapse=", "), sep="");
-	cat("\t", paste(head(factors[,i], n=10), collapse=", "), sep="");
+	cat("\tUnique: ", paste(head(categories, n=10), collapse=", "), sep="");
+	if(num_cat>10){
+		cat(", ...");
+	}
+	cat("\tExample: ", paste(head(factors[,i], n=10), collapse=", "), sep="");
 	if(num_cat>10){
 		cat(", ...");
 	}
 	cat("\n");
 }
+
+cat("after\n");
 
 
 ##############################################################################
@@ -817,6 +824,8 @@ plot_text(c(
 # Add recommended transformations to factors
 
 factors=cbind(factors, check_res$transf);
+factor_names=colnames(factors);
+num_factors=ncol(factors);
 #print(factors);
 
 ##############################################################################
@@ -859,6 +868,8 @@ if(NumMaxInteractions>0){
 	));
 
 	factors=cbind(factors, interactions_res$interaction_mat);
+	factor_names=colnames(factors);
+	num_factors=ncol(factors);
 }
 
 
@@ -893,11 +904,6 @@ write.table(
 # Run cross validation compute
 #dev.off();quit();
 cat("Running Cross Validation...\n");
-
-print(dim(factors_mod_matrix));
-print(rownames(factors_mod_matrix));
-print(dim(distmat));
-print(rownames(distmat));
 cvfit=cv.glmnet(x=factors_mod_matrix, y=distmat, family="mgaussian", standardize=T, alpha=1, parallel=T);
 cat("ok.\n");
 
