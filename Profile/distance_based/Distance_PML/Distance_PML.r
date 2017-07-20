@@ -1091,7 +1091,7 @@ get_original_variables=function(transformed_var_name, var_dep){
 				rep=T;
 			}
 		}
-		target_list=new_target_list
+		target_list=unique(new_target_list);
 	}
 	return(target_list);
 }
