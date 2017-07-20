@@ -325,7 +325,9 @@ process_factor_NAs=function(factors, min_non_NA_prop=.95){
 	return(factors[, keep]);
 }
 
-transform_factors=function(factor){
+##############################################################################
+
+transform_factors=function(factor, var_dep){
 	# This function will try to transform the data to be more normally distributed	
 
 	num_factors=ncol(factor);
@@ -404,6 +406,7 @@ transform_factors=function(factor){
 					factor_info[i, "RecTrans"]=TRUE;
 					transform_name[i]=paste("log_", factor_names[i], sep="");
 					transformed_matrix[!NA_ix, i]=transf;
+					var_dep[[transform_name[i]]]=factor_names[i];
 				}
 			}
 		}
@@ -433,6 +436,7 @@ transform_factors=function(factor){
 				factor_info[i, "RecTrans"]=TRUE;
 				transform_name[i]=paste("logit_", factor_names[i], sep="");
 				transformed_matrix[!NA_ix, i]=logit;
+				var_dep[[transform_name[i]]]=factor_names[i];
 			}
 		}
 
@@ -443,6 +447,7 @@ transform_factors=function(factor){
 			factor_info[i, "RecTrans"]=TRUE;
 			transform_name[i]=paste("sqrt_", factor_names[i], sep="");
 			transformed_matrix[!NA_ix, i]=transf;
+			var_dep[[transform_name[i]]]=factor_names[i];
 		}
 
 	}
@@ -454,9 +459,12 @@ transform_factors=function(factor){
 	results=list();
 	results[["info"]]=factor_info;
 	results[["transf"]]=transformed_matrix[,transformed_factors, drop=F];
+	results[["var_dep"]]=var_dep;
 	return(results);	
 
 }
+
+##############################################################################
 
 compute_correl=function(factors, pval_cutoff=0.05, abs_correl_cutoff=0.5){
 # This function will calculate the correlation and pvalue between all
@@ -507,9 +515,9 @@ compute_correl=function(factors, pval_cutoff=0.05, abs_correl_cutoff=0.5){
 
 }
 
-#------------------------------------------------------------------------------
+##############################################################################
 
-add_interactions=function(factors, correl_results, max_interactions=10){
+add_interactions=function(factors, correl_results, max_interactions=10, var_dep){
 	
 	# Convert correlations to magnitudes
 	asymmetric=abs(correl_results$correl_mat);
@@ -558,21 +566,23 @@ add_interactions=function(factors, correl_results, max_interactions=10){
 		interact_names[i]=paste(factor_names[a], "_x_", factor_names[b], sep="");
 		least_correl_mat[a,b]=i;
 		least_correl_mat[b,a]=i;
-
+	
+		var_dep[[interact_names[i]]]=c(factor_names[a], factor_names[b]);
 	}
 	colnames(interact_mat)=interact_names;
 
 	results=list();
 	results$least_corrltd_mat=least_correl_mat;
 	results$interaction_mat=interact_mat;
+	results$var_dep=var_dep;
 	
 	return(results);
 
 }
 
-#------------------------------------------------------------------------------
+##############################################################################
 
-recode_non_numeric_factors=function(factors){
+recode_non_numeric_factors=function(factors, var_dependencies){
 	num_factors=ncol(factors);
 	num_samples=nrow(factors);
 	fact_names=colnames(factors);
@@ -609,6 +619,9 @@ recode_non_numeric_factors=function(factors){
 			new_label=paste(fact_names[i], "_ref", unique_types[1], "_is", unique_types[2:num_unique], sep="");
 			colnames(recoded_mat)=new_label;
 
+			for(new_name in new_label){
+				var_dependencies[[new_name]]=fact_names[i];
+			}
 			out_factors=cbind(out_factors, recoded_mat);
 
 		}else{
@@ -616,10 +629,10 @@ recode_non_numeric_factors=function(factors){
 			out_factors=cbind(out_factors, factors[,i, drop=F]);
 		}
 	}
-
-	print(head(out_factors));
-	
-	return(out_factors);
+	results=list();
+	results[["factors"]]=out_factors;
+	results[["var_dep"]]=var_dependencies;
+	return(results);
 }
 
 ##############################################################################
@@ -665,17 +678,21 @@ plot_coefficients=function(coeff_mat, lambdas, mark_lambda_ix=NA, lambda_color="
 }
 
 ##############################################################################
+# Main Program Starts Here!
+##############################################################################
 
 pdf(paste(OutputFnameRoot, ".pdf", sep=""), height=11, width=8.5);
 
 # Load distance matrix
+cat("Loading Distance Matrix...\n");
 distmat=load_distance_matrix(DistmatFname);
 
 # Subsample for testing
-testing=F;
+testing=T;
 if(testing){
+	cat("Subsampling (testing mode)\n");
 	num_mat_samples=ncol(distmat);
-	sample_ix=sample(num_mat_samples, 10);
+	sample_ix=sample(num_mat_samples, 30);
 	distmat=distmat[sample_ix, sample_ix];
 }
 
@@ -683,11 +700,10 @@ num_distmat_samples=ncol(distmat);
 distmat_sample_names=colnames(distmat);
 cat("\n");
 
-#print(distmat):
-
-
 # Load factors
+cat("Loading Factors...\n");
 factors=load_factors(FactorsFname);
+original_factors=factors;
 factor_names=colnames(factors);
 num_factors=ncol(factors);
 num_factor_orig_samples=nrow(factors);
@@ -696,13 +712,14 @@ print(factor_names);
 cat("\n");
 
 # Subset factors
-
 if(VariableIncludeListFname!=""){
 	variable_subset=scan(VariableIncludeListFname, what=character());
 	cat("Variable Inclusion List:\n");
 	print(variable_subset);
 	cat("\n");
 	shared_variables=intersect(factor_names, variable_subset);
+	cat("Identified:\n");
+	print(shared_variables);
 
 	factors=factors[,shared_variables];
 	factor_names=colnames(factors);
@@ -715,6 +732,8 @@ if(VariableExcludeListFname!=""){
 	print(variable_subset);
 	cat("\n");
 	remaining_variables=setdiff(factor_names, variable_subset);
+	cat("Remaining:\n");
+	print(remaining_variables);
 
 	factors=factors[,remaining_variables];
 	factor_names=colnames(factors);
@@ -724,6 +743,7 @@ if(VariableExcludeListFname!=""){
 factor_sample_names=rownames(factors);
 num_factor_samples=length(factor_sample_names);
 
+#------------------------------------------------------------------------------
 # Confirm/Reconcile that the samples in the matrix and factors file match
 common_sample_names=intersect(distmat_sample_names, factor_sample_names);
 num_common_samples=length(common_sample_names);
@@ -748,8 +768,36 @@ factors=factors[common_sample_names, , drop=F];
 
 ##############################################################################
 
-cat("Recoding Non-Numeric Factors...\n");
-factors=recode_non_numeric_factors(factors);
+plot_text(c(
+	"Distance Matrix Penalized Maximum Likelihood",
+	"",
+	paste("Distance Matrix Filename: ", DistmatFname, sep=""),
+	paste("Factors Filename: ", FactorsFname, sep=""),
+	paste("Output Filename Root: ", OutputFnameRoot, sep=""),
+	"",
+	paste("Num Samples in Dist Mat: ", num_distmat_samples, sep=""),
+	paste("Num Samples in Factor File: ", num_factor_orig_samples, sep=""),
+	paste("Num Shared/Common Samples: ", num_common_samples, sep=""),
+	"",
+	paste("Num Factors in Factor File: ", num_factors, sep=""),
+	"",
+	"Example of Sample IDs:",
+	paste("   ", capture.output(print(head(common_sample_names,n=20)))),
+	"",
+	paste("Min nonNA cutoff: ", MinNonNAProp, sep="")
+));
+
+##############################################################################
+# Start autotransforms and recoding
+##############################################################################
+
+# Keep track of new variables introduced in preprocessing:
+var_dep=list();
+
+cat("Step 1: Recoding Non-Numeric Factors...\n");
+results=recode_non_numeric_factors(factors, var_dep);
+factors=results[["factors"]];
+var_dep=results[["var_dep"]];
 factor_names=colnames(factors);
 num_factors=ncol(factors);
 
@@ -772,58 +820,32 @@ for(i in 1:num_factors){
 	cat("\n");
 }
 
-cat("after\n");
-
-
 ##############################################################################
-
-plot_text(c(
-	"Distance Matrix Penalized Maximum Likelihood",
-	"",
-	paste("Distance Matrix Filename: ", DistmatFname, sep=""),
-	paste("Factors Filename: ", FactorsFname, sep=""),
-	paste("Output Filename Root: ", OutputFnameRoot, sep=""),
-	"",
-	paste("Num Samples in Dist Mat: ", num_distmat_samples, sep=""),
-	paste("Num Samples in Factor File: ", num_factor_orig_samples, sep=""),
-	paste("Num Shared/Common Samples: ", num_common_samples, sep=""),
-	"",
-	paste("Num Factors in Factor File: ", num_factors, sep=""),
-	"",
-	"Example of Sample IDs:",
-	paste("   ", capture.output(print(head(common_sample_names,n=20)))),
-	"",
-	paste("Min nonNA cutoff: ", MinNonNAProp, sep="")
-));
-
-##############################################################################
-# Describe factors and recommend transfomrations
+# Describe factors and recommend transformations
 
 cat("Identifying factors to transform...\n");
-check_res=transform_factors(factors);
-print(check_res);
-
-#print(check_res);
+trans_results=transform_factors(factors, var_dep);
+var_dep=trans_results[["var_dep"]];
 
 plot_text(c(
 	"Normal Summary:",
-	capture.output(print(check_res$info[,c("Avg", "Stdev", "Min", "Max", "NormDist")]))
+	capture.output(print(trans_results$info[,c("Avg", "Stdev", "Min", "Max", "NormDist")]))
 ));
 
 plot_text(c(
 	"Non-Parametric Summary:",
-	capture.output(print(check_res$info[,c("Med", "LB95", "UB95", "PropNonNAs")]))
+	capture.output(print(trans_results$info[,c("Med", "LB95", "UB95", "PropNonNAs")]))
 ));
 
 plot_text(c(
 	"Inferred Data Types and Transformation Recommendation:",
-	capture.output(print(check_res$info[,c("Proportion", "Lognormal", "PropUnique", "RecTrans")]))
+	capture.output(print(trans_results$info[,c("Proportion", "Lognormal", "PropUnique", "RecTrans")]))
 ));
 
 ##############################################################################
 # Add recommended transformations to factors
 
-factors=cbind(factors, check_res$transf);
+factors=cbind(factors, trans_results$transf);
 factor_names=colnames(factors);
 num_factors=ncol(factors);
 #print(factors);
@@ -847,7 +869,7 @@ paint_matrix(correl);
 # Insert interaction terms for those factors least correlated
 
 if(NumMaxInteractions>0){
-	interactions_res=add_interactions(factors, correl_res, NumMaxInteractions);
+	interactions_res=add_interactions(factors, correl_res, NumMaxInteractions, var_dep);
 	num_interaction_terms_added=ncol(interactions_res$interaction_mat);
 
 	plot_text(c(
@@ -870,10 +892,12 @@ if(NumMaxInteractions>0){
 	factors=cbind(factors, interactions_res$interaction_mat);
 	factor_names=colnames(factors);
 	num_factors=ncol(factors);
+
+	var_dep=interactions_res$var_dep;
 }
 
-
 ##############################################################################
+# STARTING LASSO 
 ##############################################################################
 
 # alpha=1 is lasso (i.e. solve for minimizing l1-norm) "sum of abs values"
@@ -933,8 +957,6 @@ overlapping_df=df[overlapping_min_err_ix];
 cv_overlapping_lambda=lambdas[overlapping_min_err_ix];
 
 y_idx_names=names(coefficients);
-cat("Response Names: \n");
-print(y_idx_names);
 num_lambdas=cvfit$glmnet.fit$dim[2];
 
 # Compute median coefficient across samples at each Lambda for each x
@@ -1016,9 +1038,7 @@ rownames(all_overlapping_error_coeff)=sample_names;
 non_zero_xs=apply(all_min_error_coeff, 2, function(x){ return(!all(x==0))});
 non_zero_coeff=all_min_error_coeff[,non_zero_xs, drop=F];
 num_nonzero_coeff=ncol(non_zero_coeff);
-print(num_nonzero_coeff);
 non_zero_x_names=colnames(non_zero_coeff);
-print(non_zero_x_names);
 
 # Plot median coefficients across samples (y's) across all variables, zoomed into the variables selected for conservative inclusion
 zoom_ix=df <= (num_nonzero_coeff+1);
@@ -1041,10 +1061,41 @@ plot_coefficients(
 );
 
 ###############################################################################
+
+get_original_variables=function(transformed_var_name, var_dep){
+
+	target_list=rownames(transformed_var_name);
+
+	rep=T;
+	while(rep){
+		rep=F;
+		new_target_list=character();
+		for(target in target_list){
+			ovar=var_dep[[target]];
+			if(is.null(ovar)){
+				# Keep old
+				new_target_list=c(new_target_list, target);
+			}else{
+				# Replace with new
+				new_target_list=c(new_target_list, ovar);
+				rep=T;
+			}
+		}
+		target_list=new_target_list
+	}
+	return(target_list);
+}
+
+###############################################################################
 # List variables and coefficients, ordered by strength of selection
+
+kept_variables=list();
+
+# Conservative
 xs_by_coeff_order_ix=order(median_coeff[cv_min_err_ix,], decreasing=T);
 std_coeff=t(median_coeff[cv_min_err_ix,xs_by_coeff_order_ix, drop=F]);
 std_coeff=std_coeff[1:num_nonzero_coeff,,drop=F];
+kept_variables[["conserv"]]=get_original_variables(std_coeff, var_dep);
 colnames(std_coeff)="Median(|Coef of Standzd Factors|)";
 plot_text(c(
 	"Conservative Cutoff:",
@@ -1055,9 +1106,11 @@ plot_text(c(
 	capture.output(print(std_coeff))
 ));
 
+# Liberal
 xs_by_coeff_order_ix=order(median_coeff[overlapping_min_err_ix,], decreasing=T);
 std_coeff=t(median_coeff[overlapping_min_err_ix,xs_by_coeff_order_ix, drop=F]);
 std_coeff=std_coeff[1:overlapping_df,,drop=F];
+kept_variables[["liberal"]]=get_original_variables(std_coeff, var_dep);
 colnames(std_coeff)="Median(|Coef of Standzd Factors|)";
 plot_text(c(
 	"Liberal Cutoff:",
@@ -1067,6 +1120,17 @@ plot_text(c(
 	"",
 	capture.output(print(std_coeff))
 ));
+
+# Output original variables names (pre-transformed)
+plot_text(c(
+	"Conservative Original Variables:",
+	capture.output(print(kept_variables[["conserv"]])),
+	"",
+	"Liberal Original Variables:",
+	capture.output(print(kept_variables[["liberal"]]))
+	)
+);
+	
 
 ###############################################################################
 # Plot the amount of deviance explained
@@ -1088,14 +1152,23 @@ text(min(log10(lambdas)), 1, adj=c(0,-.5), label="Maximum Explainable", cex=.7, 
 
 ###############################################################################
 # Output new factor table
-#out_factors=factors_preNAproc[,non_zero_x_names, drop=F];
-#out_samp_ids=rownames(out_factors);
-#fh=file(paste(OutputFnameRoot, ".kept_factors.tsv", sep=""), "w");
-#cat(file=fh, paste(c("sample_id", colnames(out_factors)), collapse="\t"), "\n", sep="");
-#for(i in 1:nrow(out_factors)){
-#	cat(file=fh, out_samp_ids[i],"\t", paste(out_factors[i,], collapse="\t"), "\n", sep="");
-#}
-#close(fh);
+
+cat("Outputing subset factor tables...\n");
+for(cutoff in c("liberal", "conserv")){
+
+	print(colnames(factors_preNAproc));
+	print(kept_variables[[cutoff]]);
+	print(setdiff(kept_variables[[cutoff]],colnames(factors_preNAproc)));
+
+	out_factors=original_factors[,kept_variables[[cutoff]], drop=F];
+	out_samp_ids=rownames(out_factors);
+	fh=file(paste(OutputFnameRoot, ".", cutoff, ".kept_factors.tsv", sep=""), "w");
+	cat(file=fh, paste(c("sample_id", colnames(out_factors)), collapse="\t"), "\n", sep="");
+	for(i in 1:nrow(out_factors)){
+		cat(file=fh, out_samp_ids[i],"\t", paste(out_factors[i,], collapse="\t"), "\n", sep="");
+	}
+	close(fh);
+}
 
 ##############################################################################
 
@@ -1110,6 +1183,9 @@ if(testing){
 	"****************************************************************************")
 	);
 }
+
+##############################################################################
+##############################################################################
 
 cat("Done.\n");
 dev.off();
