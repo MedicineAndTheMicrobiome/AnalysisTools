@@ -35,7 +35,9 @@ params=c(
 	"outputroot", "o", 2, "character",
 	"cor_pval_cutoff", "c", 2, "numeric",
 	"cor_eff_cutoff", "e", 2, "numeric",
-	"num_max_interact", "i", 2, "numeric"
+	"num_max_interact", "i", 2, "numeric",
+
+	"test_subsample", "T", 2, "numeric"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -64,6 +66,8 @@ usage = paste(
 	"	[-c <correlation magnitude effect cutoff, default=", DEF_COR_EFF_CUTOFF, ">]\n",
 	"	[-e <correlation pvalue cutoff, default=", DEF_COR_PVL_CUTOFF, ">]\n",
 	"	[-i <maximum interactions terms to add, default=", DEF_MAX_INTERACT,">]\n",
+	"\n",
+	"	[-T <subsample size to speed up result generation for TESTING!>]\n",
 	"\n",
 	"This script will utilize Penalized Maximal Likelihood regresssion\n",
 	"in order to perform variable selection on a set of factors\n",
@@ -118,6 +122,11 @@ if(length(opt$cor_eff_cutoff)){
 NumMaxInteractions=DEF_MAX_INTERACT;
 if(length(opt$num_max_interact)){
 	NumMaxInteractions=opt$num_max_interact;
+}
+
+Subsample=0;
+if(length(opt$test_subsample)){
+	Subsample=opt$test_subsample;
 }
 
 DistmatFname=opt$distmat;
@@ -688,11 +697,12 @@ cat("Loading Distance Matrix...\n");
 distmat=load_distance_matrix(DistmatFname);
 
 # Subsample for testing
-testing=T;
-if(testing){
-	cat("Subsampling (testing mode)\n");
+if(Subsample>0){
+	cat("********************************************************************\n");
+	cat("* Subsampling (testing mode)                                       *\n");
+	cat("********************************************************************\n");
 	num_mat_samples=ncol(distmat);
-	sample_ix=sample(num_mat_samples, 30);
+	sample_ix=sample(num_mat_samples, Subsample);
 	distmat=distmat[sample_ix, sample_ix];
 }
 
@@ -927,7 +937,7 @@ write.table(
 
 # Run cross validation compute
 #dev.off();quit();
-cat("Running Cross Validation...\n");
+cat("\n\nRunning Cross Validation...\n");
 cvfit=cv.glmnet(x=factors_mod_matrix, y=distmat, family="mgaussian", standardize=T, alpha=1, parallel=T);
 cat("ok.\n");
 
