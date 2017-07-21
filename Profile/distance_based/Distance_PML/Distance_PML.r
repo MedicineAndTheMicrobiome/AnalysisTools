@@ -974,6 +974,7 @@ y_idx_names=names(coefficients);
 num_lambdas=cvfit$glmnet.fit$dim[2];
 
 # Compute median coefficient across samples at each Lambda for each x
+cat("Computing median coefficients across samples at each lambda for each predictor...\n");
 median_coeff=matrix(0, nrow=num_lambdas, ncol=num_xs);
 colnames(median_coeff)=factor_names;
 for(lamb_ix in 1:num_lambdas){
@@ -987,6 +988,7 @@ for(lamb_ix in 1:num_lambdas){
 		median_coeff[lamb_ix, x_ix]=median(abs(across_samp));
 	}
 } 
+cat("Phew...\n");
 
 ###############################################################################
 
@@ -995,6 +997,7 @@ par(mar=c(5, 5, 7, 8));
 plot_coefficients(median_coeff, lambdas, title="Medn Magntd of Coeff Across All Samples");
 
 # Plot cross validation error vs num variables
+cat("Plotting cross-validation error vs. number of variables...\n");
 par(mar=c(5, 5, 7, 1));
 max_mean_cv_err=max(cv_mean_cv_err);
 plot(cv_num_var, cv_mean_cv_err, 
@@ -1012,6 +1015,7 @@ text(x=cv_num_var[overlapping_min_err_ix], y=max_mean_cv_err*1.05, labels="Liber
 
 ###############################################################################
 # Plot validation error vs lambda
+cat("Plotting validation error vs lambda...\n");
 par(mar=c(5,5,7,1));
 ylimit=max(cvfit$cvup);
 plotCI(log10(cvfit$lambda), cvfit$cvm, ui=cvfit$cvup, li=cvfit$cvlo, col="red", scol="grey",
@@ -1034,6 +1038,7 @@ title(main="Influence of ML Penalty on Prediction Error ", cex.main=2, line=4)
 
 ###############################################################################
 # Get variables at min error
+cat("Looking for selected variables at minimum cross validation error...\n");
 all_min_error_coeff=numeric();
 all_overlapping_error_coeff=numeric();
 
@@ -1102,7 +1107,7 @@ get_original_variables=function(transformed_var_name, var_dep){
 
 ###############################################################################
 # List variables and coefficients, ordered by strength of selection
-
+cat("Extracting Conservative/Liberal variable selections...\n");
 kept_variables=list();
 
 # Conservative
@@ -1167,6 +1172,7 @@ text(min(log10(lambdas)), 1, adj=c(0,-.5), label="Maximum Explainable", cex=.7, 
 ###############################################################################
 # Output new factor table
 
+cat("Outputing factor table with convervative/liberal variables extracted.\n");
 original_factors=load_factors_as_text(FactorsFname);
 cat("Outputing subset factor tables...\n");
 
