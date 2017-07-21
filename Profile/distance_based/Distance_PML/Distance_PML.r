@@ -171,6 +171,11 @@ load_factors=function(fname){
 	return(factors);
 }
 
+load_factors_as_text=function(fname){
+	factors=read.delim(fname,  header=TRUE, row.names=1, check.names=FALSE, sep="\t", colClasses="character");
+	return(factors);
+}
+
 ##############################################################################
 
 plot_text=function(strings, max_lines=75){
@@ -713,7 +718,6 @@ cat("\n");
 # Load factors
 cat("Loading Factors...\n");
 factors=load_factors(FactorsFname);
-original_factors=factors;
 factor_names=colnames(factors);
 num_factors=ncol(factors);
 num_factor_orig_samples=nrow(factors);
@@ -1163,7 +1167,9 @@ text(min(log10(lambdas)), 1, adj=c(0,-.5), label="Maximum Explainable", cex=.7, 
 ###############################################################################
 # Output new factor table
 
+original_factors=load_factors_as_text(FactorsFname);
 cat("Outputing subset factor tables...\n");
+
 for(cutoff in c("liberal", "conserv")){
 
 	print(colnames(factors_preNAproc));
