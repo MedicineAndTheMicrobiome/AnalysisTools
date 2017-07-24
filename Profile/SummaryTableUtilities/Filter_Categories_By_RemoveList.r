@@ -35,6 +35,8 @@ if(!length(opt$output_file)){
 	outputroot=gsub("\\.summary_table\\.tsv", "", opt$input_file);
 	OutputFileName = paste(outputroot, ".list_filtered.summary_table.tsv", sep="");
 }else{
+	outputroot=gsub("\\.summary_table\\.xls", "", opt$output_file);
+	outputroot=gsub("\\.summary_table\\.tsv", "", opt$output_file);
 	OutputFileName=opt$output_file;
 }
 
@@ -119,16 +121,30 @@ cat("Num remaining categories: ", num_remaining_categories, "\n");
 cat("\nWriting New Matrix...\n");
 fc=file(OutputFileName, "w");
 
+removed_samples=character();
+
 write(paste("sample_id", "total", paste(colnames(outmat), collapse="\t"), sep="\t"), file=fc);
 sample_names=rownames(counts_mat);
 for(samp_idx in 1:num_samples){
 	total=sum(outmat[samp_idx,]);
-	outline=paste(sample_names[samp_idx],total,paste(outmat[samp_idx,], collapse="\t"), sep="\t");
-	write(outline, file=fc);
+
+	if(total==0){
+		cat("WARNING: ", sample_names[samp_idx], " was removed because total equaled zero (after filtering).\n", sep="");
+		removed_samples=c(removed_samples, sample_names[samp_idx]);
+	}else{
+		outline=paste(sample_names[samp_idx],total,paste(outmat[samp_idx,], collapse="\t"), sep="\t");
+		write(outline, file=fc);
+	}
 }
 close(fc);	
 
 ###############################################################################
+
+if(length(removed_samples)>0){
+	fc=file(paste(outputroot, ".removed_samples.list", sep=""), "w");
+	write(file=fc, removed_samples);
+	close(fc);
+}
 
 cat("Done.\n")
 warns=warnings();
