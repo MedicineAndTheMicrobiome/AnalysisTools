@@ -20,7 +20,7 @@ DEF_COLUMN=1;
 params=c(
 	"input_summary_table", "i", 1, "character",
 	"input_factor_file", "f", 1, "character",
-	"model_string", "m", 1, "character",
+	"model_string", "m", 2, "character",
 	"output_filename_root", "o", 2, "character",
 	"dist_type", "d", 2, "character",
 	"num_clus", "k", 2, "numeric"
@@ -33,7 +33,7 @@ usage = paste(
 	"\n\nUsage:\n", script_name, "\n",
 	"	-i <input summary_table.tsv file>\n",
 	"	-f <input factor file>\n",
-	"	-m <\"model string\">\n",
+	"	[-m <\"model string\">]\n",
 	"\n",
 	"	[-o <output file root name, default is input file base name>]\n",
 	"	[-d <euc/wrd/man/bray/horn/bin/gow/tyc/minkp5/minkp3, default =", DEF_DISTTYPE, ">]\n",
