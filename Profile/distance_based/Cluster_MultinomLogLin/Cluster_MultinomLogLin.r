@@ -181,6 +181,12 @@ normalize=function(st){
 
 load_factor_file=function(fn){
 	inmat=read.delim(fn, sep="\t", header=TRUE, row.names=1, check.names=F, comment.char="", quote="");
+
+	# Changes spaces to underscore
+	var_names=colnames(inmat);
+	var_names=gsub(" ", "_", var_names);
+	colnames(inmat)=var_names;
+
 	cat("  Num Factors: ", ncol(inmat), "\n", sep="");
 	cat("  Num Samples: ", nrow(inmat), "\n", sep="");
 	return(inmat);
@@ -556,6 +562,7 @@ cat("Num Shared Samples between Groupings/Summary Table: ", num_shared_samples, 
 
 norm_mat=norm_mat[shared_samples,, drop=F];
 factors=main_factors[shared_samples,, drop=F];
+num_factors=ncol(factors);
 
 excl_st_samples=setdiff(sample_names, shared_samples);
 excl_gr_samples=setdiff(factor_samples, shared_samples);
@@ -602,7 +609,8 @@ orig_dendr=as.dendrogram(hcl);
 lf_names=get_clstrd_leaf_names(orig_dendr);
 
 # Open output PDF file
-pdf(paste(output_fname_root, ".cl_mll.pdf", sep=""), height=8.5, width=14);
+paper_width=max(14, 2+num_factors/1.75);
+pdf(paste(output_fname_root, ".cl_mll.pdf", sep=""), height=8.5, width=paper_width);
 
 # Assign cluster colors
 palette_col=c("red", "green", "blue", "cyan", "magenta", "orange", "gray", "pink", "black", "purple", "brown", "aquamarine");
@@ -869,6 +877,10 @@ min_log_pval=min(c(log_min_pval_matrix, log_references));
 max_log_pval=max(c(log_min_pval_matrix, log_references));
 cat("Min/Max P-value: ", min_log_pval, "/", max_log_pval, "\n");
 
+cat("Plotting Number of Clusters vs Log10(P-values)\n");
+if(min_log_pval==-Inf){
+	min_log_pval=min(log_min_pval_matrix[log_min_pval_matrix!=-Inf])-1;
+}
 par(mar=c(4, 4, 2, 2));
 plot(0, type="n", xlim=c(2, max_clusters+3), ylim=c(min_log_pval, max_log_pval),
 	xlab="Number of Clusters", ylab="Log10(P-values)",
