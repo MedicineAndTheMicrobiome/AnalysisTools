@@ -7,7 +7,7 @@ use FindBin ();
 use lib "$FindBin::Bin";
 use Getopt::Std;
 use FileHandle;
-use vars qw($opt_l $opt_p $opt_i $opt_r $opt_o);
+use vars qw($opt_l $opt_p $opt_i $opt_r $opt_o $opt_t);
 use Sys::Hostname;
 use File::Basename;
 
@@ -31,6 +31,7 @@ $0
 	[-i (for an interleaved fastq file)]
 	[-r <relative path to append to fastq file lists>]
 	-o <output directory>
+	[-t <number of processors, default=$NUM_PROC>]
 
 	This script will call Mothur's make.contig() function
 	on all the pairs of files specified.  If the input
@@ -80,6 +81,10 @@ if(!(-e $output_dir)){
 }
 if(!(-e $output_dir)){
 	die "Could not make or find $output_dir.\n";
+}
+
+if(defined($opt_t)){
+	$NUM_PROC=$opt_t;
 }
 
 print STDERR "File List: $file_list\n";
