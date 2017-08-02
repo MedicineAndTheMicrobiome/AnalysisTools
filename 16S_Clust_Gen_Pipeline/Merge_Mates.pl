@@ -21,7 +21,7 @@ my $NUM_PROC=8;
 my $MATE_SCREEN_BIN="$FindBin::Bin/pipeline_utilities/Screen_MergedMates.r";
 my $EXTRACT_SEQ_BIN="$FindBin::Bin/pipeline_utilities/Extract_Record_From_FASTA_By_List.pl";
 
-getopts("l:pio:r:");
+getopts("l:pio:r:t:");
 my $usage = "usage: 
 
 $0 
