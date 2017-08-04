@@ -4,9 +4,9 @@
 
 use strict;
 use Getopt::Std;
-use vars qw ($opt_i $opt_m $opt_k $opt_s $opt_o);
+use vars qw ($opt_i $opt_m $opt_k $opt_s $opt_o $opt_v);
 
-getopts("i:m:k:s:o:");
+getopts("i:m:k:s:o:v");
 
 my $usage = "
 	usage:
@@ -16,6 +16,8 @@ my $usage = "
 		-k <key column in input file, starting from 0>
 		-s <insert columns in input file, starting from 0>
 		-o <output file>
+
+		[-v (show keys flag)]
 
 	This script will merge the input file with the map file.
 	The map file is read in in its entirety into a hash
@@ -41,6 +43,7 @@ my $MapFile=$opt_m;
 my $KeyCol=$opt_k;
 my $InsertCol=$opt_s;
 my $OutputFile=$opt_o;
+my $Verbose=defined($opt_v);
 
 ###############################################################################
 
@@ -53,6 +56,39 @@ while(<MAP_FH>){
 	$map_hash{$array[0]}=$array[1];
 }
 close(KEEP_FH);
+
+###############################################################################
+
+if($Verbose){
+	sub print_arr{
+		my $arr_ref=shift;
+		my $num_out=10;
+		for(my $i=0; $i<$num_out; $i++){
+			print STDERR "${$arr_ref}[$i]\n";
+		}
+	}
+
+	# Output Map Keys
+	my @map_keys=keys %map_hash;
+	print STDERR "Map Keys:\n";
+	print_arr(\@map_keys);
+
+	print STDERR "\n";
+
+	# Output File Keys
+	my @in_keys;
+	open(IN_FH, "head -n 10 $InputFile |") || die "Could not open $InputFile\n";
+	while(<IN_FH>){
+		chomp;
+		my @arr=split /\t/, $_;
+		push @in_keys, $arr[$KeyCol];
+	}
+	close(IN_FH);
+	
+	print STDERR "Input Keys:\n";
+	print_arr(\@in_keys);
+
+}
 
 ###############################################################################
 
