@@ -169,7 +169,7 @@ open(IN_FH, "<$InputFile") || die "Could not open input file $InputFile\n";
 
 while(<IN_FH>){
 	chomp;
-	my @array=split /$Delimitor/, $_;
+	my @array=split /$Delimitor/, $_, -1;
 
 	my $num_col=$#array+1;
 
@@ -185,7 +185,7 @@ while(<IN_FH>){
 
 		if($ListSep ne ""){
 
-			my @list=split /$ListSep/, $field;
+			my @list=split /$ListSep/, $field, -1;
 			my $num_items=$#list+1;
 			for(my $j=0; $j<$num_items; $j++){
 				$list[$j]=clean_item($list[$j]);
