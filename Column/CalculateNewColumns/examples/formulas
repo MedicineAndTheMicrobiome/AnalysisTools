@@ -1,0 +1,6 @@
+fev1.over.fvc=pft.bdfev1/pft.bdfvc
+age=(bal.baldate-demog.dob)/365
+smoke=(env.cigrete=="Yes" | env.cigar=="Yes" | env.pipe=="Yes")
+delete env.cigrete
+  delete env.cigar
+delete env.pipe
