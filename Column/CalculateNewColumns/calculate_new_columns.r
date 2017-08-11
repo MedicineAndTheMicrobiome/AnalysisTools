@@ -99,6 +99,10 @@ for(cmd in commands){
 	cmd=gsub("^\\s+", "", cmd);
 	cmd=gsub("\\s+$", "", cmd);
 
+	if(cmd == ""){
+		next;
+	}
+
 	if(length(grep("^delete ", cmd))==1){
 		# Delete variable from factors
 		var=strsplit(cmd, "\\s+")[[1]][2];
