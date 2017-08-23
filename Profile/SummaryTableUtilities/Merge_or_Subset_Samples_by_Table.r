@@ -104,7 +104,7 @@ if(length(opt$force_ignore)){
 	ForceIgnore=T;
 }
 
-OutputDirectory=NULL;
+OutputDirectory="./";
 # If output directory is specified, then override/truncate path of the OutputFileNameRoot
 
 ofnr_components=strsplit(OutputFileNameRoot, "/")[[1]];
@@ -117,6 +117,10 @@ if(length(opt$output_dir)){
 	# If output dir not specified
 	OutputDirectory=paste(head(ofnr_components, num_ofnr_comp-1), collapse="/");
 	OutputFileNameRoot=ofnr_components[num_ofnr_comp];
+}
+
+if(OutputDirectory==""){
+	OutputDirectory="./";
 }
 
 if(!file.exists(OutputDirectory)){
