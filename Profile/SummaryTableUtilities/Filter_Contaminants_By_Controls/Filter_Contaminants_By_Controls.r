@@ -21,7 +21,7 @@ opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
 
 script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
 
-DEFAULT_PLEVEL=.5;
+DEFAULT_PLEVEL=2;
 DEFAULT_DELIM=";";
 DEFAULT_COUNTS=400;
 DEFAULT_NUM_BS=8000;
@@ -552,9 +552,13 @@ names(bs_prop_removed)=experm_samples;
 
 #num_exp_samples=length(exp_ids);
 fits=list();
+
+num_samp=length(experm_samples);
+counter=1;
+
 for(exp_samp_id in experm_samples){
 
-	cat("Working on: ", exp_samp_id, "\n");
+	cat("\nWorking on: ", exp_samp_id, " (", counter, "/", num_samp, ")\n", sep="");
 	exp_dist=normalized_mat[exp_samp_id,];
 
 	if(doPaired){
@@ -634,7 +638,7 @@ for(exp_samp_id in experm_samples){
 		breaks=seq(0,1,.025), xlim=c(0,1));
 	abline(v=fits$stat[perc95_ix,"proportion"], col="blue");
 
-
+	counter=counter+1;
 }
 
 ###############################################################################
