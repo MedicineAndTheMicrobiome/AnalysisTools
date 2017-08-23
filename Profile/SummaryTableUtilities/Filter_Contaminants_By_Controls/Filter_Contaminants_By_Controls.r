@@ -183,7 +183,7 @@ if(SimAnneal){
 	cat("Just taking the best resample...\n");
 }
 
-percentile_str=sprintf("%3.2f%", 100*(1-Quantile));
+percentile_str=sprintf("%3.2f%%", 100*(1-Quantile));
 
 cat("\n")
 cat("Input Summary File Table: ", InputSummaryTable, "\n", sep="");
@@ -389,6 +389,22 @@ if(doPaired){
 	pairs=load_pairs(PairedContamFName);
 	experm_samples=intersect(names(pairs), summary_table_sample_ids);
 	contam_samples=intersect(pairs, summary_table_sample_ids);
+
+	# Remove pairs not complete in summary table
+	valid_pairs_list=list();
+	for(exp in experm_samples){
+		if(any(pairs[exp]==contam_samples)){
+			valid_pairs_list[[exp]]=pairs[[exp]];
+		}else{
+			cat("Missing contaminant id for experimental id: ", exp, "\n");
+		}
+	}
+	pairs=unlist(valid_pairs_list);
+
+	experm_samples=names(pairs);
+	contam_samples=pairs;
+	names(contam_samples)=NULL;
+
 }else{
 	ids_array=load_ids(AvgContamFName);
 	overlapping_ids=intersect(ids_array, summary_table_sample_ids);
@@ -408,8 +424,6 @@ print(contam_samples);
 
 # Reorder the normalized matrix so that we'll see both exp and ctl 
 # categories in the rank abundance plot
-print(experm_samples);
-print(rownames(normalized_mat));
 mean_exp_abund=apply(normalized_mat[experm_samples,,drop=F], 2, mean);
 mean_con_abund=apply(normalized_mat[contam_samples,,drop=F], 2, mean);
 mean_both_abund=(mean_exp_abund+mean_con_abund)/2;
