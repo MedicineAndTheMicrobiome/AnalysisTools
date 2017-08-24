@@ -10,6 +10,7 @@ remove_sample_or_factors_wNA=function(factors, num_trials=500000){
 
         cat("Num Factors Entering: ", num_col, "\n");
         cat("Num Samples Entering: ", num_row, "\n");
+	cat("\n");
 
 	# Remove columns with no information
 	no_info=c();
@@ -24,9 +25,9 @@ remove_sample_or_factors_wNA=function(factors, num_trials=500000){
 			print(uniqs);
 		}
 	}
-	cat("Columns with no variance/info:\n");
 	factors=factors[,-no_info];
 	num_col=ncol(factors);
+	cat("\n");
 		
         # Find rows and columns with NAs
         row_na_ix=which(apply(factors, 1, anyNA));
@@ -67,10 +68,16 @@ remove_sample_or_factors_wNA=function(factors, num_trials=500000){
         best_sequence_ix=numeric();
 
         max_no_improvement=0.1*num_trials;
+	cat("Max allowable trials without improvement: ", max_no_improvement, "\n");
+	heartbeat_periodicity=ceiling(num_trials/100);
 
         # Repeatedly search for alternative sets that maximize remaining data
         last_improvement=0;
         for(i in 1:num_trials){
+
+		if((i %% heartbeat_periodicity)==0){
+			cat(".");
+		}
 
                 random_ix=sample(num_rowcol, replace=F, prob=combined_na_counts);
                 #random_ix=sample(num_rowcol, replace=F);
@@ -120,6 +127,7 @@ remove_sample_or_factors_wNA=function(factors, num_trials=500000){
                         break;
                 }
         }
+	cat("\n");
 
         best_na_ix=na_ix[best_sequence_ix];
         best_dim_ix=dim_ix[best_sequence_ix];
