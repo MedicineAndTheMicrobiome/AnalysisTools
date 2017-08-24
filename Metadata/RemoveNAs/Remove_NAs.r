@@ -1,16 +1,20 @@
-remove_sample_or_factors_wNA=function(factors, num_trials=500000){
+remove_sample_or_factors_wNA=function(factors, num_trials=500000, verbose=T){
 
-        cat("Identifying Samples or Factors to remove to remove all NAs:\n");
+	if(verbose){
+		cat("Identifying Samples or Factors to remove to remove all NAs:\n");
+	}
 
         num_col=ncol(factors);
         num_row=nrow(factors);
 
-        cat("Categories before:\n");
-        print(colnames(factors));
+	if(verbose){
+		cat("Categories before:\n");
+		print(colnames(factors));
 
-        cat("Num Factors Entering: ", num_col, "\n");
-        cat("Num Samples Entering: ", num_row, "\n");
-	cat("\n");
+		cat("Num Factors Entering: ", num_col, "\n");
+		cat("Num Samples Entering: ", num_row, "\n");
+		cat("\n");
+	}
 
 	# Remove columns with no information
 	no_info=c();
@@ -21,14 +25,15 @@ remove_sample_or_factors_wNA=function(factors, num_trials=500000){
 		uniqs=unique(val);
 		if(length(uniqs)==1){
 			no_info=c(no_info, i);
-			cat(cnames[i], ": Has no useful information.  It is all:\n");
-			print(uniqs);
+			if(verbose){
+				cat(cnames[i], ": Has no useful information.  It is all:\n");
+				print(uniqs);
+			}
 		}
 	}
 	factors=factors[,-no_info];
 	num_col=ncol(factors);
-	cat("\n");
-		
+
         # Find rows and columns with NAs
         row_na_ix=which(apply(factors, 1, anyNA));
         col_na_ix=which(apply(factors, 2, anyNA));
@@ -49,12 +54,16 @@ remove_sample_or_factors_wNA=function(factors, num_trials=500000){
         na_ix=c(paste("r", row_na_ix, sep=""), paste("c", col_na_ix, sep=""));
         dim_ix=c(rep(1, num_row_na), rep(2, num_col_na));
 
-        cat("NAs found in these rows/columns:\n");
-        print(na_ix);
+	if(verbose){
+		cat("NAs found in these rows/columns:\n");
+		print(na_ix);
+	}
 
         num_non_na=sum(!is.na(factors));
         #print(factors);
-        cat("Maximum Number of non-NAs: ", num_non_na, "\n");
+	if(verbose){
+		cat("Maximum Number of non-NAs: ", num_non_na, "\n");
+	}
 
         num_rowcol=sum(num_row_na, num_col_na);
 
@@ -68,8 +77,10 @@ remove_sample_or_factors_wNA=function(factors, num_trials=500000){
         best_sequence_ix=numeric();
 
         max_no_improvement=0.1*num_trials;
-	cat("Max allowable trials without improvement: ", max_no_improvement, "\n");
-	heartbeat_periodicity=ceiling(num_trials/100);
+	if(verbose){
+		cat("Max allowable trials without improvement: ", max_no_improvement, "\n");
+	}
+	heartbeat_periodicity=ceiling(num_trials/10);
 
         # Repeatedly search for alternative sets that maximize remaining data
         last_improvement=0;
@@ -145,13 +156,60 @@ remove_sample_or_factors_wNA=function(factors, num_trials=500000){
                 fact_subset=fact_subset[,-rm_col,drop=F];
         }
 
-        cat("Categories after:\n");
-        print(colnames(fact_subset));
+	if(verbose){
+		cat("Categories after:\n");
+		print(colnames(fact_subset));
 
-        cat("Num Factors Left: ", ncol(fact_subset), "\n");
-        cat("Num Samples Left: ", nrow(fact_subset), "\n");
+		cat("Num Factors Left: ", ncol(fact_subset), "\n");
+		cat("Num Samples Left: ", nrow(fact_subset), "\n");
+	}
 
         return(fact_subset);
 
 }
+
+
+library(foreach);
+library(doMC);
+
+remove_sample_or_factors_wNA_parallel=function(factors, num_trials=500000, num_cores=16){
+
+	nsamples=nrow(factors);
+	nfactors=ncol(factors);
+	numNAs=sum(is.na(factors));
+
+	cat("Num Samples Entering: ", nsamples, "\n");
+	cat("Num Factors Entering: ", nfactors, "\n");
+	cat("Num NAs Entering:\n", numNAs);
+
+	registerDoMC(num_cores);
+	core_trials=ceiling(num_trials/num_cores);
+	results=foreach(i = 1:num_cores) %dopar% {
+		remove_sample_or_factors_wNA(factors, core_trials, verbose=F);
+	}	
+
+	sizes=numeric(num_cores);
+	for(i in 1:num_cores){
+		matdim=dim(results[[i]]);
+		sizes[i]=matdim[1]*matdim[2];
+	}
+
+	cat("Non-NA Matrix Sizes: \n");
+	print(sizes);
+
+	which_max=which(max(sizes)==sizes);
+	cat("Largest Matrix size: ", sizes[which_max], "\n");
+
+	best_matrix=results[[which_max]];
+
+	nsamples=nrow(best_matrix);
+	nfactors=ncol(best_matrix);
+	
+	cat("Num Samples Leaving: ", nsamples, "\n");
+	cat("Num Factors Leaving: ", nfactors, "\n");
+	
+	return(best_matrix);
+}
+
+
 
