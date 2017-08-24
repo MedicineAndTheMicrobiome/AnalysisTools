@@ -587,6 +587,17 @@ close(fh);
 cat("done.\n");
 
 ###############################################################################
+
+if(any(is.na(main_factors))){
+	cat("NAs's found in factors...\n");
+	
+	script_path=paste(head(strsplit(script_name, "/")[[1]], -1), collapse="/");
+	source(paste(script_path, "/../../../Metadata/RemoveNAs/Remove_NAs.r", sep=""));
+	main_factors=remove_sample_or_factors_wNA(main_factors);
+	norm_mat=norm_mat[rownames(main_factors),];
+}
+
+###############################################################################
 # Precompute distances and perform clustering
 
 # Compute full distances
