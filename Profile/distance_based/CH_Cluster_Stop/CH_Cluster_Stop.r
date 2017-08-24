@@ -15,7 +15,7 @@ DEF_NUM_TOP_CAT=35;
 DEF_NUM_CLUS=8;
 DEF_SPLIT_CHAR=";";
 
-DEF_NUM_BS=80;
+DEF_NUM_BS=160;
 
 params=c(
 	"input_summary_table", "i", 1, "character",
@@ -594,6 +594,8 @@ quants=quantile(max_pseudoF, c(.025, .5, .975));
 hist(max_pseudoF, breaks=(1:max_clusters)+.5, 
 	xlab="Num Clusters at Max(CH PseudoF)",
 	main="Recommended Number of Clusters", xaxt="n");
+mtext(paste("Median = ", quants[2], sep=""), side=3, line=-1, cex=.75);
+mtext(paste("95% CI = (", quants[1], ", ", quants[3], ")", sep=""), side=3, line=-2, cex=.75);
 axis(side=1, at=1:max_clusters, labels=1:max_clusters);
 abline(v=quants[2], lwd=2, col="blue4");
 abline(v=quants[c(1,3)], lty=2, col="blue");
