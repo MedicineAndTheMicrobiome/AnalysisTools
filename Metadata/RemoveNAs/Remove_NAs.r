@@ -1,3 +1,4 @@
+
 remove_sample_or_factors_wNA=function(factors, num_trials=500000, verbose=T){
 
 	if(verbose){
@@ -167,6 +168,34 @@ remove_sample_or_factors_wNA=function(factors, num_trials=500000, verbose=T){
         return(fact_subset);
 
 }
+
+###############################################################################
+
+rem_missing_var_from_modelstring=function(model_string, kept_variables){
+
+	# Split formula into linear components
+	lin_comp_arr=strsplit(model_string, "\\+")[[1]];
+
+	# Split interaction terms into main effects
+	kept_comp=character();
+	for(lin_comp in lin_comp_arr){
+		int_term_arr=unique(strsplit(lin_comp, "[:\\*]")[[1]]);
+		num_terms=length(int_term_arr);
+		num_intersect=length(unique(intersect(int_term_arr, kept_variables)));
+		if(num_intersect==num_terms){
+			kept_comp=c(kept_comp, lin_comp);	
+		}
+	}
+
+	# Rebuilt model string
+	model_string=paste(kept_comp, collapse="+");
+	return(model_string);
+
+}
+
+# rem_missing_var_from_modelstring("apples+oranges+apples*oranges+grapes+grapes:oranges+grapes*oranges", c("apples", "oranges"));
+
+###############################################################################
 
 
 library(foreach);
