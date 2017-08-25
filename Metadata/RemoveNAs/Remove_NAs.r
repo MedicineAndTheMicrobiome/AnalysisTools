@@ -1,5 +1,7 @@
 
+
 remove_sample_or_factors_wNA=function(factors, num_trials=500000, verbose=T){
+	verbose=T;
 
 	if(verbose){
 		cat("Identifying Samples or Factors to remove to remove all NAs:\n");
@@ -17,6 +19,9 @@ remove_sample_or_factors_wNA=function(factors, num_trials=500000, verbose=T){
 		cat("\n");
 	}
 
+	if(verbose){
+		cat("Removing columns/factors with no variation/information...\n");
+	}
 	# Remove columns with no information
 	no_info=c();
 	cnames=colnames(factors);
@@ -32,8 +37,10 @@ remove_sample_or_factors_wNA=function(factors, num_trials=500000, verbose=T){
 			}
 		}
 	}
-	factors=factors[,-no_info];
-	num_col=ncol(factors);
+	if(length(no_info)>0){
+		factors=factors[,-no_info];
+		num_col=ncol(factors);
+	}
 
         # Find rows and columns with NAs
         row_na_ix=which(apply(factors, 1, anyNA));
