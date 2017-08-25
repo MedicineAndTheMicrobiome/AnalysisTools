@@ -22,6 +22,7 @@ params=c(
 	"output_filename_root", "o", 2, "character",
 	"dist_type", "d", 2, "character",
 	"num_sub_samp", "s", 2, "numeric",
+	"sample_inclusion_fname", "c", 2, "character",
 	"num_bootstraps", "b", 2, "numeric"
 );
 
@@ -35,6 +36,7 @@ usage = paste(
 	"	[-d <euc/wrd/man/bray/horn/bin/gow/tyc/minkp5/minkp3, default =", DEF_DISTTYPE, ">]\n",
 	"\n",
 	"	[-s <sub sample size, default=all>]\n",
+	"	[-c <sample inClusion filename>]\n",
 	"	[-b <num bootstraps, default=", DEF_NUM_BS, ">]\n",
 	"\n",
 	"This script identifies the recommended number of clusters to split the data\n",
@@ -60,6 +62,9 @@ usage = paste(
 	"For the distance types:\n",
 	" minkp5 is the minkowski with p=.5, i.e. sum((x_i-y_i)^1/2)^2\n",
 	" minkp3 is the minkowski with p=.3, i.e. sum((x_i-y_i)^1/3)^3\n",
+	"\n",
+	"The sample inclusion filename -c option specifies a file that contains all the\n",
+	"sample names to include.\n",
 	"\n");
 
 if(!length(opt$input_summary_table)){
@@ -95,6 +100,11 @@ if(length(opt$num_sub_samp)){
 if(!any(dist_type == c("wrd","man","bray","horn","bin","gow","euc","tyc","minkp3","minkp5"))){
 	cat("Error: Specified distance type: ", dist_type, " not recognized.\n");
 	quit(status=-1);
+}
+
+SampleIncFname="";
+if(length(opt$sample_inclusion_fname)){
+	SampleIncFname=opt$sample_inclusion_fname;
 }
 
 ###############################################################################
@@ -401,6 +411,16 @@ cat("\n");
 
 cat("Loading summary table...\n");
 counts_mat=load_summary_table(InputFileName);
+
+if(SampleIncFname!=""){
+	cat("Loading sample inclusion list...\n");
+	samp_incl_list=scan(SampleIncFname, "character");
+	sumtab_samp_ids=rownames(counts_mat);
+	shared_samp_ids=intersect(samp_incl_list, sumtab_samp_ids);
+	num_shared=length(shared_samp_ids);
+	cat("Num samples overlapping summary table and inclusion list: ", num_shared, "\n");
+	counts_mat=counts_mat[shared_samp_ids,,drop=F];
+}
 
 if(sub_sample>0){
 	cat("Subsampling counts table to: ", sub_sample, "\n", sep="");
