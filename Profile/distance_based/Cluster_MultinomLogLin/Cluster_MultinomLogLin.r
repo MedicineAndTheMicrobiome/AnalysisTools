@@ -593,8 +593,19 @@ if(any(is.na(main_factors))){
 	
 	script_path=paste(head(strsplit(script_name, "/")[[1]], -1), collapse="/");
 	source(paste(script_path, "/../../../Metadata/RemoveNAs/Remove_NAs.r", sep=""));
-	main_factors=remove_sample_or_factors_wNA(main_factors);
-	norm_mat=norm_mat[rownames(main_factors),];
+	factors=remove_sample_or_factors_wNA_parallel(factors, 6400, 64);
+	#print(rownames(factors));
+	#print(rownames(norm_mat));
+	shared_samples=sort(rownames(factors));
+
+	num_factors=ncol(factors);
+	factor_names=colnames(factors);
+	factors=factors[shared_samples,, drop=F];
+	norm_mat=norm_mat[shared_samples,, drop=F];
+	num_shared_samples=nrow(norm_mat);
+
+	ModelString=rem_missing_var_from_modelstring(ModelString, factor_names);
+	main_effects=factor_names;
 }
 
 ###############################################################################
