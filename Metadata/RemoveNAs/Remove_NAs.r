@@ -235,7 +235,7 @@ remove_sample_or_factors_wNA_parallel=function(factors, num_trials=500000, num_c
 	cat("Non-NA Matrix Sizes: \n");
 	print(sizes);
 
-	which_max=which(max(sizes)==sizes);
+	which_max=min(which(max(sizes)==sizes));
 	cat("Largest Matrix size: ", sizes[which_max], "\n");
 
 	best_matrix=results[[which_max]];
