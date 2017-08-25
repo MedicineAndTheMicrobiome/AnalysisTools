@@ -1,7 +1,6 @@
 
 
 remove_sample_or_factors_wNA=function(factors, num_trials=500000, verbose=T){
-	verbose=T;
 
 	if(verbose){
 		cat("Identifying Samples or Factors to remove to remove all NAs:\n");
