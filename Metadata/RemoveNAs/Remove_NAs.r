@@ -209,12 +209,15 @@ remove_sample_or_factors_wNA_parallel=function(factors, num_trials=500000, num_c
 
 	cat("Num Samples Entering: ", nsamples, "\n");
 	cat("Num Factors Entering: ", nfactors, "\n");
-	cat("Num NAs Entering:\n", numNAs);
+	cat("Num NAs Entering:", numNAs, "\n");
 
-	registerDoMC(num_cores);
+	res=registerDoMC(num_cores);
 	core_trials=ceiling(num_trials/num_cores);
+
+	cat("Trials per core: ", core_trials, "\n");
+
 	results=foreach(i = 1:num_cores) %dopar% {
-		remove_sample_or_factors_wNA(factors, core_trials, verbose=F);
+		remove_sample_or_factors_wNA(factors=factors, num_trials=core_trials, verbose=F);
 	}	
 
 	sizes=numeric(num_cores);
