@@ -38,6 +38,12 @@ usage = paste(
 	"of the existing columns.  If the formula line is \"delete\"\n",
 	"Then the column will be deleted.\n",
 	"\n",
+	"In addition, the following non-standard R functions have been implemented:\n",
+	"	remap(x, key, value):  This will remap the keys in x to the corresponding values.\n",
+	"\n",
+	"	example:\n",
+	"	   gpa=remap(grade, c(\"A\", \"B\", \"C\", \"D\", \"E\"), c(4, 3, 2, 1, 0))\n",
+	"\n",
 	"\n");
 
 if(!length(opt$input) || !length(opt$formulas) || !length(opt$output)){
@@ -80,6 +86,27 @@ write_factors=function(fname, table){
 load_commands=function(fname){
 	commands=readLines(fname);	
 	return(commands);
+}
+
+##############################################################################
+# Additional Functions
+
+remap=function(x, key, value){
+	len=length(x);
+	if(length(key)!=length(value)){
+		cat("Error!  Key/Value lengths are not the same for 'remap'\n");
+		quit(-1);
+	}
+	new=numeric();
+	for(i in 1:len){
+		ix=which(x[i]==key);
+		if(length(ix)==0){
+			new[i]=NA;
+		}else{
+			new[i]=value[ix];
+		}
+	}
+	return(new);
 }
 
 ##############################################################################
