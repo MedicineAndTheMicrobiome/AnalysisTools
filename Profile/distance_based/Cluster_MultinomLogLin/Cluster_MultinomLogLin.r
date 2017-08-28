@@ -639,6 +639,7 @@ if(any(is.na(main_factors))){
 	before_num_factors=ncol(factors);
 	before_num_samples=nrow(factors);
 
+	orig_factor_names=colnames(factors);
 	factors=remove_sample_or_factors_wNA_parallel(factors, 640000, 64);
 
 	after_num_factors=ncol(factors);
@@ -654,6 +655,8 @@ if(any(is.na(main_factors))){
 	norm_mat=norm_mat[shared_samples,, drop=F];
 	num_shared_samples=nrow(norm_mat);
 
+	removed_factors=setdiff(orig_factor_names, colnames(factors));
+
 	ModelString=rem_missing_var_from_modelstring(ModelString, factor_names);
 	main_effects=factor_names;
 
@@ -664,7 +667,10 @@ if(any(is.na(main_factors))){
 		paste("  Num Factors: ", before_num_factors),	
 		"After NA Removal:",
 		paste("  Num Samples: ", after_num_samples),	
-		paste("  Num Factors: ", after_num_factors)
+		paste("  Num Factors: ", after_num_factors),
+		"",
+		"Factors removed:",
+		capture.output(print(removed_factors))
 	);
 
 }else{
@@ -973,49 +979,64 @@ for(num_cl in 2:max_clusters){
 	
 }
 
+plot_coeff_pvalues=function(pval_matrix, line_col){
+
+	num_coefficients=ncol(pval_matrix);
+
+	# Plot P-values across clusters
+	log_min_pval_matrix=log10(pval_matrix);
+	print(log_min_pval_matrix);
+	log_references=log10(c(0.1, 0.05, 0.025));
+	min_log_pval=min(c(log_min_pval_matrix, log_references));
+	max_log_pval=max(c(log_min_pval_matrix, log_references));
+	cat("Min/Max P-value: ", min_log_pval, "/", max_log_pval, "\n");
+
+	cat("Plotting Number of Clusters vs Log10(P-values)\n");
+	if(min_log_pval==-Inf){
+		min_log_pval=min(log_min_pval_matrix[log_min_pval_matrix!=-Inf])-1;
+	}
+	par(mar=c(4, 4, 2, 2));
+	plot(0, type="n", xlim=c(2, max_clusters+3), ylim=c(min_log_pval, max_log_pval),
+		xlab="Number of Clusters", ylab="Log10(P-values)",
+		xaxt="n",
+		main="Min(P-value) by Cluster Divisions");
+
+	points(c(1, max_clusters), rep(log_references[1],2), col="grey", type="l", lwd=.5, lty=2);
+	points(c(1, max_clusters), rep(log_references[2],2), col="grey", type="l", lwd=.5, lty=2);
+	points(c(1, max_clusters), rep(log_references[3],2), col="grey", type="l", lwd=.5, lty=2);
+
+	for(i in 1:num_coefficients){
+		points(2:max_clusters, log_min_pval_matrix[,i], col=line_col[i], type="b", pch=16);
+	}
+	axis(side=1, at=2:max_clusters, labels=2:max_clusters);
+
+	print(log_min_pval_matrix);
+	max_clust_pvals=log_min_pval_matrix[as.character(max_clusters),,drop=F];
+	order_ix=order(max_clust_pvals);
+	coeff_names=colnames(log_min_pval_matrix);
+
+	label_y_pos=seq(min_log_pval, max_log_pval, length.out=num_coefficients);
+	text(rep(max_clusters+1, num_coefficients), label_y_pos, 
+		pos=4, coeff_names[order_ix], col=line_col[order_ix]);
+
+	for(i in 1:num_coefficients){
+		points(c(max_clusters+.1, max_clusters+1-.1), c(max_clust_pvals[order_ix[i]], label_y_pos[i]), 
+			type="l", col=line_col[order_ix[i]], lty=3, lwd=.5);
+	}
+}
+
+num_coeff=ncol(min_pval_matrix);
+coef_colors=1:num_coeff;
 rownames(min_pval_matrix)=2:max_clusters;
-num_coefficients=ncol(min_pval_matrix);
-print(min_pval_matrix);
+plot_coeff_pvalues(min_pval_matrix, coef_colors);
 
-# Plot P-values across clusters
-log_min_pval_matrix=log10(min_pval_matrix);
-print(log_min_pval_matrix);
-log_references=log10(c(0.1, 0.05, 0.025));
-min_log_pval=min(c(log_min_pval_matrix, log_references));
-max_log_pval=max(c(log_min_pval_matrix, log_references));
-cat("Min/Max P-value: ", min_log_pval, "/", max_log_pval, "\n");
-
-cat("Plotting Number of Clusters vs Log10(P-values)\n");
-if(min_log_pval==-Inf){
-	min_log_pval=min(log_min_pval_matrix[log_min_pval_matrix!=-Inf])-1;
-}
-par(mar=c(4, 4, 2, 2));
-plot(0, type="n", xlim=c(2, max_clusters+3), ylim=c(min_log_pval, max_log_pval),
-	xlab="Number of Clusters", ylab="Log10(P-values)",
-	xaxt="n",
-	main="Min(P-value) by Cluster Divisions");
-
-points(c(1, max_clusters), rep(log_references[1],2), col="grey", type="l", lwd=.5, lty=2);
-points(c(1, max_clusters), rep(log_references[2],2), col="grey", type="l", lwd=.5, lty=2);
-points(c(1, max_clusters), rep(log_references[3],2), col="grey", type="l", lwd=.5, lty=2);
-
-for(i in 1:num_coefficients){
-	points(2:max_clusters, log_min_pval_matrix[,i], col=i, type="b", pch=16);
-}
-axis(side=1, at=2:max_clusters, labels=2:max_clusters);
-
-print(log_min_pval_matrix);
-max_clust_pvals=log_min_pval_matrix[as.character(max_clusters),,drop=F];
-order_ix=order(max_clust_pvals);
-coeff_names=colnames(log_min_pval_matrix);
-
-label_y_pos=seq(min_log_pval, max_log_pval, length.out=num_coefficients);
-text(rep(max_clusters+1, num_coefficients), label_y_pos, 
-	pos=4, coeff_names[order_ix], col=order_ix);
-
-for(i in 1:num_coefficients){
-	points(c(max_clusters+.1, max_clusters+1-.1), c(max_clust_pvals[order_ix[i]], label_y_pos[i]), type="l", col=order_ix[i], lty=3, lwd=.5);
-}
+log_min_pval=log10(min_pval_matrix);
+min_val=apply(log_min_pval, 2, min);
+max_val=apply(log_min_pval, 2, max);
+range=(max_val-min_val);
+keep=range>.5;
+salient_min_pval_matrix=min_pval_matrix[,keep];
+plot_coeff_pvalues(salient_min_pval_matrix, coef_colors[keep]);
 
 
 ###############################################################################
