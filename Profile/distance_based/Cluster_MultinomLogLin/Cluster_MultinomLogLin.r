@@ -21,6 +21,7 @@ params=c(
 	"input_summary_table", "i", 1, "character",
 	"input_factor_file", "f", 1, "character",
 	"model_string", "m", 2, "character",
+	"model_filename", "M", 2, "character",
 	"output_filename_root", "o", 2, "character",
 	"dist_type", "d", 2, "character",
 	"num_clus", "k", 2, "numeric"
@@ -33,6 +34,7 @@ usage = paste(
 	"\n\nUsage:\n", script_name, "\n",
 	"	-i <input summary_table.tsv file>\n",
 	"	-f <input factor file>\n",
+	"	[-M <model variables list file>\n",
 	"	[-m <\"model string\">]\n",
 	"\n",
 	"	[-o <output file root name, default is input file base name>]\n",
@@ -88,6 +90,11 @@ if(length(opt$num_clus)){
 ModelString="";
 if(length(opt$model_string)){
 	ModelString=opt$model_string;
+}
+
+ModelFilename="";
+if(length(opt$model_filename)){
+	ModelFilename=opt$model_filename;
 }
 
 ###############################################################################
@@ -389,7 +396,40 @@ draw_mean_ses=function(mean_matrix, stderr_matrix, title="Mean/SEs Plot", grp_co
 
 }
 
+plot_text=function(strings){
+
+	orig_par=par(no.readonly=T);	
+
+        par(family="Courier");
+        par(oma=rep(.5,4));
+        par(mar=rep(0,4));
+
+        num_lines=length(strings);
+
+        top=max(as.integer(num_lines), 52);
+
+        plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
+                xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
+                );
+
+        text_size=max(.01, min(.8, .8 - .003*(num_lines-52)));
+        #print(text_size);
+
+        for(i in 1:num_lines){
+                #cat(strings[i], "\n", sep="");
+                strings[i]=gsub("\t", "", strings[i]);
+                text(0, top-i, strings[i], pos=4, cex=text_size);
+        }
+
+	par(orig_par);
+
+}
+
+
 paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_is_hot=T, label_zeros=T, counts=F){
+
+	orig_par=par(no.readonly=T);
+
         num_row=nrow(mat);
         num_col=ncol(mat);
 
@@ -451,8 +491,10 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 				}
 				text(x-.5, y-.5, text_lab, srt=45, cex=1, font=2);
 			}
-                }
+        	        }
         }
+
+	par(orig_par);
 
 }
 
@@ -537,8 +579,16 @@ factor_names=colnames(all_factors);
 ###############################################################################
 
 if(ModelString==""){
-	ModelString=paste(factor_names, collapse="+");
-	main_effects=factor_names;
+	if(ModelFilename==""){
+		ModelString=paste(factor_names, collapse="+");
+		main_effects=factor_names;
+	}else{
+		filelist_var=scan(ModelFilename, "character");
+		filelist_var=gsub("^\\s*","", filelist_var);
+		filelist_var=gsub("\\s*$","", filelist_var);
+		ModelString=paste(filelist_var, collapse="+");
+		main_effects=intersect(factor_names, filelist_var);
+	}
 }else{
 	main_effects=get_main_effects_from_formula_string(ModelString);
 }
@@ -577,23 +627,23 @@ if(length(excl_gr_samples)){
 	print(excl_gr_samples);
 }
 
-# Output list of used samples
-cat("Writing used/shared samples list to file:\n");
-fh=file(paste(output_fname_root, ".cl_mll.used_samp.lst", sep=""), "w");
-for(samp_id in shared_samples){
-	cat(file=fh, samp_id, "\n", sep="");
-}
-close(fh);
-cat("done.\n");
-
 ###############################################################################
 
+na_info=c();
 if(any(is.na(main_factors))){
 	cat("NAs's found in factors...\n");
 	
 	script_path=paste(head(strsplit(script_name, "/")[[1]], -1), collapse="/");
 	source(paste(script_path, "/../../../Metadata/RemoveNAs/Remove_NAs.r", sep=""));
-	factors=remove_sample_or_factors_wNA_parallel(factors, 6400, 64);
+
+	before_num_factors=ncol(factors);
+	before_num_samples=nrow(factors);
+
+	factors=remove_sample_or_factors_wNA_parallel(factors, 640000, 64);
+
+	after_num_factors=ncol(factors);
+	after_num_samples=nrow(factors);
+
 	#print(rownames(factors));
 	#print(rownames(norm_mat));
 	shared_samples=sort(rownames(factors));
@@ -606,7 +656,47 @@ if(any(is.na(main_factors))){
 
 	ModelString=rem_missing_var_from_modelstring(ModelString, factor_names);
 	main_effects=factor_names;
+
+	na_info=c(
+		"NAs were found and removed:",
+		"Original:",
+		paste("  Num Samples: ", before_num_samples),	
+		paste("  Num Factors: ", before_num_factors),	
+		"After NA Removal:",
+		paste("  Num Samples: ", after_num_samples),	
+		paste("  Num Factors: ", after_num_factors)
+	);
+
+}else{
+	na_info=c("No relevant NAs found in metadata.");
 }
+
+# Open output PDF file
+paper_width=max(28, 2+num_factors/1.75);
+pdf(paste(output_fname_root, ".cl_mll.pdf", sep=""), height=8.5, width=paper_width);
+
+# Output run info
+plot_text(c(
+	paste("Input Summary Table: ", InputFileName, sep=""),
+	paste("Input Factor File: ", InputFactorFile, sep=""),
+	"",
+	paste("Num Shared Samples: ", num_shared_samples, sep=""),
+	"",
+	paste("Distance Type: ", dist_type, sep=""),
+	"",
+	na_info
+));
+
+###############################################################################
+
+# Output list of used samples
+cat("Writing used/shared samples list to file:\n");
+fh=file(paste(output_fname_root, ".cl_mll.used_samp.lst", sep=""), "w");
+for(samp_id in shared_samples){
+	cat(file=fh, samp_id, "\n", sep="");
+}
+close(fh);
+cat("done.\n");
 
 ###############################################################################
 # Precompute distances and perform clustering
@@ -629,10 +719,6 @@ orig_dendr=as.dendrogram(hcl);
 
 # Exactract names of leaves from left to right
 lf_names=get_clstrd_leaf_names(orig_dendr);
-
-# Open output PDF file
-paper_width=max(14, 2+num_factors/1.75);
-pdf(paste(output_fname_root, ".cl_mll.pdf", sep=""), height=8.5, width=paper_width);
 
 # Assign cluster colors
 palette_col=c("red", "green", "blue", "cyan", "magenta", "orange", "gray", "pink", "black", "purple", "brown", "aquamarine");
