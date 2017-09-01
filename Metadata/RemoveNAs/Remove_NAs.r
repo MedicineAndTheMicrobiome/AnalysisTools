@@ -45,8 +45,11 @@ remove_sample_or_factors_wNA=function(factors, num_trials=500000, verbose=T){
         row_na_ix=which(apply(factors, 1, anyNA));
         col_na_ix=which(apply(factors, 2, anyNA));
 
-        row_na_counts=apply(factors[row_na_ix,, drop=F], 1, function(x){sum(is.na(x))/num_col});
-        col_na_counts=apply(factors[,col_na_ix], 2, function(x){sum(is.na(x))/num_row});
+        row_na_counts=apply(factors[row_na_ix,, drop=F], 1, function(x){sum(is.na(x))});
+        col_na_counts=apply(factors[,col_na_ix], 2, function(x){sum(is.na(x))});
+
+        #row_na_counts=apply(factors[row_na_ix,, drop=F], 1, function(x){sum(is.na(x))/num_col});
+        #col_na_counts=apply(factors[,col_na_ix], 2, function(x){sum(is.na(x))/num_row});
         combined_na_counts=c(row_na_counts, col_na_counts);
 
         num_row_na=length(row_na_ix);
@@ -97,8 +100,8 @@ remove_sample_or_factors_wNA=function(factors, num_trials=500000, verbose=T){
 			cat(".");
 		}
 
-                random_ix=sample(num_rowcol, replace=F, prob=combined_na_counts);
-                #random_ix=sample(num_rowcol, replace=F);
+		random_ix=sample(num_rowcol, replace=F, prob=combined_na_counts);
+                # random_ix=sample(num_rowcol, replace=F);
 
                 tmp_matrix=renamed_factors;
                 cur_ix_sequence=numeric();
