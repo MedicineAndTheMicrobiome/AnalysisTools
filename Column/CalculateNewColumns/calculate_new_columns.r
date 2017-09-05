@@ -41,8 +41,15 @@ usage = paste(
 	"In addition, the following non-standard R functions have been implemented:\n",
 	"	remap(x, key, value):  This will remap the keys in x to the corresponding values.\n",
 	"\n",
-	"	example:\n",
-	"	   gpa=remap(grade, c(\"A\", \"B\", \"C\", \"D\", \"E\"), c(4, 3, 2, 1, 0))\n",
+	"	  example:\n",
+	"	     gpa=remap(grade, c(\"A\", \"B\", \"C\", \"D\", \"E\"), c(4, 3, 2, 1, 0))\n",
+	"\n",
+	"	min.list(list(x, y, ...), na.rm=T):  This will take the minimum value between the pairs x, y, ...\n",
+	"	max.list(list(x, y, ...), na.rm=T):  This will take the maximum value between the pairs x, y, ...\n",
+	"	  * Note that this is necessary because R's min and max builtin function will return a scalar for min(x, y)\n",
+	"\n",
+	"	  example:\n",
+	"	     max_long_weekend_smokes=min.list(list(saturday, sunday, monday)); \n",
 	"\n",
 	"\n");
 
@@ -109,15 +116,18 @@ remap=function(x, key, value){
 	return(new);
 }
 
-max_2p=function(x, y){
-	len=length(x);
-	z=numeric(len);
-	for(i in 1:len){
-		z[i]=max(c(x[i], y[i]), na.rm=T);
-	}
-	return(z);
+min.list=function(arglist, na.rm=T){
+	m=matrix(unlist(arglist), byrow=F, ncol=length(arglist));
+	out=apply(m, 1, function(x){min(x, na.rm=na.rm)});	
+	return(out);
 }
-	
+
+max.list=function(arglist, na.rm=T){
+	m=matrix(unlist(arglist), byrow=F, ncol=length(arglist));
+	out=apply(m, 1, function(x){max(x, na.rm=na.rm)});	
+	return(out);
+}
+
 
 ##############################################################################
 
