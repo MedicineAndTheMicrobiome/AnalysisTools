@@ -46,7 +46,7 @@ remove_sample_or_factors_wNA=function(factors, num_trials=500000, verbose=T){
         col_na_ix=which(apply(factors, 2, anyNA));
 
         row_na_counts=apply(factors[row_na_ix,, drop=F], 1, function(x){sum(is.na(x))});
-        col_na_counts=apply(factors[,col_na_ix], 2, function(x){sum(is.na(x))});
+        col_na_counts=apply(factors[,col_na_ix, drop=F], 2, function(x){sum(is.na(x))});
 
         #row_na_counts=apply(factors[row_na_ix,, drop=F], 1, function(x){sum(is.na(x))/num_col});
         #col_na_counts=apply(factors[,col_na_ix], 2, function(x){sum(is.na(x))/num_row});
@@ -210,7 +210,7 @@ rem_missing_var_from_modelstring=function(model_string, kept_variables){
 library(foreach);
 library(doMC);
 
-remove_sample_or_factors_wNA_parallel=function(factors, num_trials=500000, num_cores=16){
+remove_sample_or_factors_wNA_parallel=function(factors, num_trials=500000, num_cores=16, outfile=""){
 
 	nsamples=nrow(factors);
 	nfactors=ncol(factors);
@@ -248,6 +248,14 @@ remove_sample_or_factors_wNA_parallel=function(factors, num_trials=500000, num_c
 	
 	cat("Num Samples Leaving: ", nsamples, "\n");
 	cat("Num Factors Leaving: ", nfactors, "\n");
+
+	if(outfile!=""){
+		outfile=gsub("\\.tsv$", "", outfile);
+		write.table(
+        		best_matrix,
+			paste(outfile, ".noNAs.tsv", sep=""),
+			quote=F, sep="\t", row.names=T, col.names=NA);
+	}
 	
 	return(best_matrix);
 }
