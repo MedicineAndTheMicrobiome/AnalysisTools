@@ -109,6 +109,16 @@ remap=function(x, key, value){
 	return(new);
 }
 
+max_2p=function(x, y){
+	len=length(x);
+	z=numeric(len);
+	for(i in 1:len){
+		z[i]=max(c(x[i], y[i]), na.rm=T);
+	}
+	return(z);
+}
+	
+
 ##############################################################################
 
 # Load factors
