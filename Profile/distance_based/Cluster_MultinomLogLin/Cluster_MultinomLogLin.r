@@ -382,13 +382,26 @@ draw_mean_ses=function(mean_matrix, stderr_matrix, title="Mean/SEs Plot", grp_co
 			abline(v=stt, col="black", lwd=2);
 
 			# Draw density curves and label group at peak of curve
-			if(stderr_matrix[grp,stt]==0){
-				points(c(stt, stt-1*dens_plot_scale), c(norm_val[grp], norm_val[grp]), col=grp_col[grp], lwd=2, type="l");
-				text(stt-1*dens_plot_scale, norm_val[grp], grp, cex=.75, adj=c(1.5,.5), col=grp_col[grp], font=2);
+			# If stderr is 0, because N=1, set it to zero
+			if(is.na(stderr_matrix[grp,stt])){
+				stderr_matrix[grp,stt]=0;
+				line_type=3;
 			}else{
-				points(dens_curv, seq(0-extra_pad,1+extra_pad,length.out=num_dens_points), type="l", col=grp_col[grp], lwd=1.75);
-				text(min(dens_curv), norm_val[grp], grp, cex=.75, adj=c(1.5,.5), col=grp_col[grp], font=2);
+				line_type=1;
 			}
+			
+			if(stderr_matrix[grp,stt]==0){
+				points(x=c(stt, stt-1*dens_plot_scale), y=c(norm_val[grp], norm_val[grp]), 
+					col=grp_col[grp], lwd=2, type="l", lty=line_type);
+				text(stt-1*dens_plot_scale, norm_val[grp], 
+					grp, cex=.75, adj=c(1.5,.5), col=grp_col[grp], font=2);
+			}else{
+				points(x=dens_curv, y=seq(0-extra_pad,1+extra_pad,length.out=num_dens_points), 
+					type="l", col=grp_col[grp], lwd=1.75, lty=line_type);
+				text(min(dens_curv), norm_val[grp],	
+					grp, cex=.75, adj=c(1.5,.5), col=grp_col[grp], font=2);
+			}
+
 		}
 	}
 	
@@ -583,7 +596,7 @@ if(ModelString==""){
 		ModelString=paste(factor_names, collapse="+");
 		main_effects=factor_names;
 	}else{
-		filelist_var=scan(ModelFilename, "character");
+		filelist_var=scan(ModelFilename, "character", comment.char="#");
 		filelist_var=gsub("^\\s*","", filelist_var);
 		filelist_var=gsub("\\s*$","", filelist_var);
 		ModelString=paste(filelist_var, collapse="+");
@@ -640,7 +653,7 @@ if(any(is.na(main_factors))){
 	before_num_samples=nrow(factors);
 
 	orig_factor_names=colnames(factors);
-	factors=remove_sample_or_factors_wNA_parallel(factors, 640000, 64);
+	factors=remove_sample_or_factors_wNA_parallel(factors, 640000, 64, OutputFileRoot);
 
 	after_num_factors=ncol(factors);
 	after_num_samples=nrow(factors);
@@ -793,7 +806,14 @@ se_summary=function(x){
 aics=numeric(max_clusters-1);
 i=1;
 
+
+
 min_pval_matrix=numeric();
+geom_pval_matrix=numeric();
+
+geomean=function(x){
+	return(exp(mean(log(x))));
+}
 
 for(num_cl in 2:max_clusters){
 #for(num_cl in 4){
@@ -816,7 +836,7 @@ for(num_cl in 2:max_clusters){
 
 	# Plot Dendrogram
 	par(oma=c(4,0,5,0));
-	par(mar=c(5.1,4.1,4.1,2.1));
+	par(mar=c(10.1,4.1,4.1,2.1));
 	par(mfrow=c(1,1));
 	sample_to_color_map=as.list(memberships);
 
@@ -887,7 +907,7 @@ for(num_cl in 2:max_clusters){
 	aic=NULL;
 	for(cl_ix in 1:num_cl){
 
-		cat("Computing Logistic Regression for: ", cl_ix, "\n");
+		cat("Computing Logistic Regression for: ", cl_ix, " of ", num_cl, "\n");
 	
 		in_group_id = names(memberships[(memberships==cl_ix)]);
 		out_group_id = names(memberships[(memberships!=cl_ix)]);
@@ -903,11 +923,23 @@ for(num_cl in 2:max_clusters){
 		in_group_id=sort(intersect(in_group_id, rownames(mm)));
 
 		fit=glm(mll_formula, family=binomial, data=factors, control=list(trace=T, maxit=100));
+
 		sum_fit=summary(fit);
-		print(sum_fit);
-		coeff_matrix=rbind(coeff_matrix, sum_fit$coefficients[,"Estimate"]);
-		coef_se_matrix=rbind(coef_se_matrix, sum_fit$coefficients[,"Std. Error"]);
-		pval_matrix=rbind(pval_matrix, sum_fit$coefficients[,"Pr(>|z|)"]);
+
+		# Check p-values for degeneracy
+		pvals=sum_fit$coefficients[,"Pr(>|z|)"];
+
+		if(all(pvals==0)){
+			num_coeff=length(pvals);
+			cat("WARNING: glm.fit: fitted probabilities numerically 0 or 1 occurred\n");
+			pval_matrix=rbind(pval_matrix, rep(1, num_coeff));
+			coeff_matrix=rbind(coeff_matrix, rep(0, num_coeff));
+			coef_se_matrix=rbind(coef_se_matrix, rep(0, num_coeff));
+		}else{
+			pval_matrix=rbind(pval_matrix, pvals);
+			coeff_matrix=rbind(coeff_matrix, sum_fit$coefficients[,"Estimate"]);
+			coef_se_matrix=rbind(coef_se_matrix, sum_fit$coefficients[,"Std. Error"]);
+		}
 
 		# Compute Group Means
 		means=apply(mm[in_group_id,,drop=F], 2, mean_summary);
@@ -972,14 +1004,16 @@ for(num_cl in 2:max_clusters){
 	# Keep min value for each coefficient
 	print(pval_matrix);
 	min_pvalues=apply(pval_matrix, 2, min);
+	geomean_pvalues=apply(pval_matrix, 2, geomean);
 	min_pval_matrix=rbind(min_pval_matrix, min_pvalues);
+	geom_pval_matrix=rbind(geom_pval_matrix, geomean_pvalues);
 
 	cat("*********************************************************************************************************\n");
 	i=i+1;	
 	
 }
 
-plot_coeff_pvalues=function(pval_matrix, line_col){
+plot_coeff_pvalues=function(pval_matrix, line_col, title){
 
 	num_coefficients=ncol(pval_matrix);
 
@@ -998,15 +1032,26 @@ plot_coeff_pvalues=function(pval_matrix, line_col){
 	par(mar=c(4, 4, 2, 2));
 	plot(0, type="n", xlim=c(2, max_clusters+3), ylim=c(min_log_pval, max_log_pval),
 		xlab="Number of Clusters", ylab="Log10(P-values)",
-		xaxt="n",
-		main="Min(P-value) by Cluster Divisions");
+		xaxt="n");
+
+	mtext(title, side=3, outer=T, line=2, cex=2, font=2);
+	mtext(paste("Num Coefficients Displayed: ", num_coefficients, sep=""), side=3, outer=T, line=0);
 
 	points(c(1, max_clusters), rep(log_references[1],2), col="grey", type="l", lwd=.5, lty=2);
 	points(c(1, max_clusters), rep(log_references[2],2), col="grey", type="l", lwd=.5, lty=2);
 	points(c(1, max_clusters), rep(log_references[3],2), col="grey", type="l", lwd=.5, lty=2);
 
+print(log_min_pval_matrix);
+print(dim(log_min_pval_matrix));
 	for(i in 1:num_coefficients){
-		points(2:max_clusters, log_min_pval_matrix[,i], col=line_col[i], type="b", pch=16);
+print(i);
+		cur_pvals=log_min_pval_matrix[,i];
+		points(2:max_clusters, cur_pvals, col=line_col[i], type="l", pch=16);
+		
+		first_lowest=min(which(min(cur_pvals)==cur_pvals));
+		points(first_lowest+1, cur_pvals[first_lowest], col=line_col[i], pch=19, cex=3);
+		points(first_lowest+1, cur_pvals[first_lowest], col="white",     pch=19, cex=2);
+		points(first_lowest+1, cur_pvals[first_lowest], col=line_col[i], pch=19, cex=1);
 	}
 	axis(side=1, at=2:max_clusters, labels=2:max_clusters);
 
@@ -1027,16 +1072,38 @@ plot_coeff_pvalues=function(pval_matrix, line_col){
 
 num_coeff=ncol(min_pval_matrix);
 coef_colors=1:num_coeff;
-rownames(min_pval_matrix)=2:max_clusters;
-plot_coeff_pvalues(min_pval_matrix, coef_colors);
 
-log_min_pval=log10(min_pval_matrix);
-min_val=apply(log_min_pval, 2, min);
-max_val=apply(log_min_pval, 2, max);
-range=(max_val-min_val);
-keep=range>.5;
-salient_min_pval_matrix=min_pval_matrix[,keep];
-plot_coeff_pvalues(salient_min_pval_matrix, coef_colors[keep]);
+rownames(min_pval_matrix)=2:max_clusters;
+rownames(geom_pval_matrix)=2:max_clusters;
+
+remove_low_variability_coeff=function(pvmat, delta=.5){
+	log_pval=log10(pvmat);
+	min_val=apply(log_pval, 2, min);
+	max_val=apply(log_pval, 2, max);
+	range=(max_val-min_val);
+	keep=range>=delta;
+	return(keep);
+}
+
+remove_coeff_never_below_thres=function(pvmat, thres=.05){
+	min_val=apply(pvmat, 2, min);
+	keep=min_val<=thres;
+	return(keep);
+}
+
+# Min P-values across clusters
+plot_coeff_pvalues(min_pval_matrix, coef_colors, "All Coefficient Min P-Values");
+keep=remove_low_variability_coeff(min_pval_matrix);
+plot_coeff_pvalues(min_pval_matrix[,keep, drop=F], coef_colors[keep], "Most Dynamic Coefficient Min P-Values");
+keep=remove_coeff_never_below_thres(min_pval_matrix);
+plot_coeff_pvalues(min_pval_matrix[,keep, drop=F], coef_colors[keep], "Coefficient P-Values Sometime Significant");
+
+# Geometric Mean P-values across clusters
+plot_coeff_pvalues(geom_pval_matrix, coef_colors, "All Coefficient Geometric Mean P-Values");
+keep=remove_low_variability_coeff(geom_pval_matrix);
+plot_coeff_pvalues(geom_pval_matrix[,keep, drop=F], coef_colors[keep], "Most Dynamic Geometric Mean P-Values");
+keep=remove_coeff_never_below_thres(geom_pval_matrix);
+plot_coeff_pvalues(geom_pval_matrix[,keep, drop=F], coef_colors[keep], "Coefficient Geometric Mean P-Values Sometime Significant");
 
 
 ###############################################################################
