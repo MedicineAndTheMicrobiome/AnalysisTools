@@ -275,14 +275,14 @@ generate_UU_plot(
 	"",
 	"$output_root.uncor_pval_lt05.colormap",
 	"$output_root.uncor_pval_lt10",
-	"smoothed.shortened.top06",
+	"smoothed.shortened.top10",
 	1.75, # label size
 	"shorten", # parse 
-	3, # max top to plot
+	5, # max top to plot
 	"no_coord"
 );
 # Generates:
-# 	$output_root.smoothed.shortened.top06.UU.pdf
+# 	$output_root.smoothed.shortened.top10.UU.pdf
 
 #----------------------------------------------------------------
 
