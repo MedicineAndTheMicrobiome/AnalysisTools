@@ -550,7 +550,6 @@ filter_cdfs_byKeeplist=function(cdf_info, keeplist_vector){
 	cdf_info$cdf_val=cdf_info$cdf_val[keep_index,,drop=F];
 	cdf_info$taxa=cdf_info$taxa[keep_index];
 	cdf_info$num_taxa=sum(keep_index);
-	par(def_par)
 
 	return(cdf_info);
 }
@@ -733,7 +732,7 @@ plot_compare_cdf(cdf_infoA, cdf_infoB,
 
 # Quick Ub-Ab Plot Exclusive to A:
 if(length(taxaAExcl)==0){
-	plot_text("Nothing exclusive to ", InputFileNameA, sep="");
+	plot_text(paste("Nothing exclusive to ", InputFileNameA, sep=""));
 }else{
 	plot_text(c(
 		paste("Exclusive to ", InputFileNameA, sep=""),
@@ -744,7 +743,7 @@ if(length(taxaAExcl)==0){
 
 # Quick Ub-Ab Plot Exclusive to B:
 if(length(taxaBExcl)==0){
-	plot_text("Nothing exclusive to ", InputFileNameB, sep="");
+	plot_text(paste("Nothing exclusive to ", InputFileNameB, sep=""));
 }else{
 	plot_text(c(
 		paste("Exclusive to ", InputFileNameB, sep=""),
