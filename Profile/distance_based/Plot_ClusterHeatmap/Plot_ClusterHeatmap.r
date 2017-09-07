@@ -357,7 +357,7 @@ get_middle_of_groups=function(clustered_leaf_names, group_asgn){
 
 ###############################################################################
 
-plot_heatmap=function(sample_names, factors){
+plot_heatmap=function(sample_names, factors, guide_lines){
 
 	orig_par=par(no.readonly=T);
 
@@ -376,6 +376,12 @@ plot_heatmap=function(sample_names, factors){
 	# Define number of different colors
         num_colors=50;
         color_arr=rev(rainbow(num_colors, start=0, end=4/6));
+	inv_color_arr=character(num_colors);
+	
+	inv_rgb=abs(col2rgb(color_arr)-255)/255;
+	for(i in 1:num_colors){
+		inv_color_arr[i]=rgb(inv_rgb[1,i], inv_rgb[2,i], inv_rgb[3,i]);
+	}
 
 	# Compute ranges
 	var_ranges=matrix(NA, nrow=num_variables, ncol=3, dimnames=list(variable_names, c("Min", "Mean", "Max")));
@@ -398,27 +404,45 @@ plot_heatmap=function(sample_names, factors){
 	variable_names=colnames(factors);
 	sample_names=rownames(factors);
 
-	color_mat=matrix(0, nrow=num_samples, ncol=num_factors);
-	for(i in 1:num_factors){
-		color_mat[,i]=color_arr[round(remap(factors[,i], c(var_ranges[i, "Min"], var_ranges[i, "Max"]), c(1, num_colors)))];
+	color_ix=matrix(0, nrow=num_samples, ncol=num_variables);
+	range_col_ix=matrix(0, nrow=num_variables, ncol=3);
+	for(i in 1:num_variables){
+		color_ix[,i]=round(remap(factors[,i], c(var_ranges[i, "Min"], var_ranges[i, "Max"]), c(1, num_colors)));
+		range_col_ix[i,]=round(remap(var_ranges[i,], c(var_ranges[i, "Min"], var_ranges[i, "Max"]), c(1, num_colors)));
 	}
-	print(color_mat);
 
-        plot(0,0, type="n", xlim=c(0,num_samples), ylim=c(0,num_factors), xaxt="n", yaxt="n", bty="n", xlab="", ylab="");
+	par(mar=c(0,0,0,0));
+        plot(0,0, type="n", xlim=c(0,num_samples), ylim=c(-1,num_variables+1), xaxt="n", yaxt="n", bty="n", xlab="", ylab="");
 
+	# Label variable names
         axis(side=2, at=seq(.5, num_variables-.5, 1), labels=variable_names, las=2);
 
+	# Color in cells with colors and labels
+	cat("Plotting heat map cells...\n");
         for(x in 1:num_samples){
-                for(y in 1:num_factors){
-
-                        rect(x-1, y-1, (x-1)+1, (y-1)+1, border=NA, col=color_mat[x, y]);
-
-			#text_lab=sprintf("%1.1g", color_mat[x,y]);
+                for(y in 1:num_variables){
+                        rect(x-1, y-1, (x-1)+1, (y-1)+1, border=NA, col=color_arr[color_ix[x, y]]);
 			text_lab=signif(factors[x,y], 2);
-			text(x-.5, y-.5, text_lab, srt=45, cex=.5, font=2);
+			lab_len=nchar(gsub("\\.", "", text_lab));
+			text(x-.5, y-.5, text_lab, srt=45, cex=.5/lab_len, font=2, col=inv_color_arr[color_ix[x,y]]);
 		}
         }
+	# Plot guidelines
+	abline(v=guide_lines, col="black", lwd=1.5);
 
+	# Plot Heat Values
+	cat("Plotting heat map legend...\n");
+	plot(0,0, type="n", xlim=c(0, 4), ylim=c(-1,num_variables+1),  xaxt="n", yaxt="n", bty="n", xlab="", ylab="");
+	axis(side=3, at=(1:3)-.5, labels=c("Min", "Mean", "Max"), las=1, line=-2);
+	for(x in 1:3){
+		for(y in 1:num_variables){
+			rect(x-1, y-1, (x-1)+1, (y-1)+1, border=NA, col=color_arr[range_col_ix[y,x]]);
+			text_lab=signif(var_ranges[y,x], 2);
+			lab_len=nchar(gsub("\\.", "", text_lab));
+			
+			text(x-.5, y-.5, text_lab, srt=0, cex=1, font=2, col=inv_color_arr[range_col_ix[y,x]]);
+		}
+        }
 
 }
 
@@ -477,8 +501,8 @@ if(length(excl_gr_samples)){
 
 ###############################################################################
 
-fact_per_inch=15;
-samp_per_inch=10;
+fact_per_inch=12;
+samp_per_inch=8;
 
 pdf(paste(OutputFileRoot, ".clhm.pdf", sep=""), height=5+num_factors/fact_per_inch, width=1+num_shared_samples/samp_per_inch);
 par(oma=c(1,1,1,1));
@@ -524,9 +548,9 @@ palette_col=c("red", "green", "blue", "cyan", "magenta", "orange", "gray", "pink
 palette(palette_col);
 
 ###############################################################################
-dend_height=5;
+dend_height=4;
 dend_width=10; #num_shared_samples;
-hmap_height=15; #num_factors;
+hmap_height=25; #num_factors;
 key_width=3;
 
 layout_mat=matrix(c(
@@ -549,9 +573,9 @@ layout(layout_mat);
 denfun.label_scale=min(2,50/num_shared_samples);
 
 
-par(oma=c(1,10,4,1));
-for(num_cl in 1:1){
-#for(num_cl in 2:max_clusters){
+par(oma=c(1,15,4,1));
+#for(num_cl in 1:1){
+for(num_cl in 2:max_clusters){
 
 	# Cut tree at target number of clusters
 	cat("Cutting for ", num_cl, " clusters...\n", sep="");
@@ -568,6 +592,9 @@ for(num_cl in 1:1){
 	names(mem_tmp)=names(memberships);
 	memberships=mem_tmp;
 	grp_mids=grp_mids[plot_order];
+
+	members_per_group=table(memberships[lf_names]); #
+	print(members_per_group);
 
 	# Plot Dendrogram
 	sample_to_color_map=as.list(memberships);
@@ -588,19 +615,21 @@ for(num_cl in 1:1){
 
 	par(mar=c(0,0,0,0));
         plot(0,0, xlim=c(0,10), ylim=c(0,10), type="n",  xaxt="n", yaxt="n", bty="n", xlab="", ylab="");
+	if(0){
 	legend(0, 10, 
 		fill=c("white", 1:num_cl), 
 		legend=c("Cluster IDs:", as.character(1:num_cl)), 
 		border=c("white", rep("black", num_cl)),
 		text.font=c(2, rep(1, num_cl)),
 		box.col="white", bg="white");
+	}
 	mtext(paste("Distance Type: ", dist_type), side=3, line=0, outer=T);
 	mtext(paste("Num Clusters: ", num_cl), side=3, line=1, outer=T);
 
 	# Plot heatmap and key
-	plot_heatmap(lf_names, shared_factors[lf_names,, drop=F]);
+	plot_heatmap(lf_names, shared_factors[lf_names,, drop=F], guide_lines=cumsum(members_per_group));
 	#plot(0,0, type="n"); text(0,0, "1", cex=5);
-	plot(0,0, type="n"); text(0,0, "2", cex=5);
+	#plot(0,0, type="n"); text(0,0, "2", cex=5);
 
 
 }
