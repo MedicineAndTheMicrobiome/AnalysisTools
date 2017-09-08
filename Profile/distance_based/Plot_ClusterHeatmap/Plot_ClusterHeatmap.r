@@ -78,6 +78,11 @@ if(length(opt$num_clus)){
 	max_clusters=opt$num_clus;
 }
 
+ModelString="";
+if(length(opt$model_string)){
+	ModelString=opt$model_string;
+}
+
 ###############################################################################
 # See http://www.mothur.org/wiki/Thetayc for formula
 
@@ -357,15 +362,11 @@ get_middle_of_groups=function(clustered_leaf_names, group_asgn){
 
 ###############################################################################
 
-plot_heatmap=function(sample_names, factors, guide_lines){
+plot_heatmap=function(sample_names, factors, guide_lines, model_string){
 
 	orig_par=par(no.readonly=T);
 
-	# Create dummy variables out of factors
-	model_string=paste("~ ", paste(colnames(factors), collapse="+"), " -1", sep="");
-	print(model_string);
-	factors=model.matrix(as.formula(model_string), data=factors);
-	
+
         num_samples=nrow(factors);
         num_variables=ncol(factors);
 	variable_names=colnames(factors);
@@ -392,8 +393,8 @@ plot_heatmap=function(sample_names, factors, guide_lines){
 		var_ranges[i,"Max"]=max(val, na.rm=T);
 	}
 
-	cat("Variable Ranges:\n");
-	print(var_ranges);
+	#cat("Variable Ranges:\n");
+	#print(var_ranges);
 
         remap=function(in_val, in_range, out_range){
                 in_prop=(in_val-in_range[1])/(in_range[2]-in_range[1])
@@ -412,10 +413,13 @@ plot_heatmap=function(sample_names, factors, guide_lines){
 	}
 
 	par(mar=c(0,0,0,0));
-        plot(0,0, type="n", xlim=c(0,num_samples), ylim=c(-1,num_variables+1), xaxt="n", yaxt="n", bty="n", xlab="", ylab="");
+	overhang=num_variables*.025;
+        plot(0,0, type="n", xlim=c(0,num_samples), ylim=c(-overhang,num_variables+overhang), 
+		xaxt="n", yaxt="n", bty="n", xlab="", ylab="");
 
 	# Label variable names
         axis(side=2, at=seq(.5, num_variables-.5, 1), labels=variable_names, las=2);
+
 
 	# Color in cells with colors and labels
 	cat("Plotting heat map cells...\n");
@@ -428,11 +432,22 @@ plot_heatmap=function(sample_names, factors, guide_lines){
 		}
         }
 	# Plot guidelines
+	guide_lines=c(0, guide_lines);
 	abline(v=guide_lines, col="black", lwd=1.5);
+	num_cl=length(guide_lines)-1;
+	#cat("Guide Lines:\n");
+	#print(guide_lines);
+	#cat("Halves:\n");
+	halves=diff(guide_lines)/2;
+	#print(halves);
+	#cat("Mids: \n");
+	mids=guide_lines+c(halves,0);
+	#print(mids);
+	axis(side=3, at=mids[1:num_cl], labels=1:num_cl, line=-2, cex=2, font=2, lwd=0);
 
 	# Plot Heat Values
 	cat("Plotting heat map legend...\n");
-	plot(0,0, type="n", xlim=c(0, 4), ylim=c(-1,num_variables+1),  xaxt="n", yaxt="n", bty="n", xlab="", ylab="");
+	plot(0,0, type="n", xlim=c(0, 4), ylim=c(-overhang,num_variables+overhang),  xaxt="n", yaxt="n", bty="n", xlab="", ylab="");
 	axis(side=3, at=(1:3)-.5, labels=c("Min", "Mean", "Max"), las=1, line=-2);
 	for(x in 1:3){
 		for(y in 1:num_variables){
@@ -475,15 +490,23 @@ all_factors=load_factor_file(InputFactorFile);
 factor_samples=rownames(all_factors);
 factor_names=colnames(all_factors);
 
+# Create dummy variables out of factors
+if(ModelString==""){
+	ModelString=paste(paste(colnames(all_factors), collapse="+"));
+}
+all_factors=model.matrix(as.formula(paste("~", ModelString, "-1")), data=all_factors);
+print(all_factors);
+
 ###############################################################################
 
 # Reconcile samples between groupings and summary table
-shared_samples=sort(intersect(sample_names, factor_samples));
+shared_samples=sort(intersect(sample_names, rownames(all_factors)));
 num_shared_samples=length(shared_samples);
 cat("Num Shared Samples between Groupings/Summary Table: ", num_shared_samples, "\n");
 
 norm_mat=norm_mat[shared_samples,, drop=F];
 shared_factors=all_factors[shared_samples,, drop=F];
+
 num_factors=ncol(shared_factors);
 
 excl_st_samples=setdiff(sample_names, shared_samples);
@@ -502,9 +525,22 @@ if(length(excl_gr_samples)){
 ###############################################################################
 
 fact_per_inch=12;
-samp_per_inch=8;
+samp_per_inch=10;
+sample_name_len=max(nchar(sample_names));
 
-pdf(paste(OutputFileRoot, ".clhm.pdf", sep=""), height=5+num_factors/fact_per_inch, width=1+num_shared_samples/samp_per_inch);
+cat("\n");
+cat("Num Factors: ", num_factors, "\n");
+cat("Num Shared Samples: ", num_shared_samples, "\n");
+cat("Max Sample Name Length: ", sample_name_len, "\n");
+
+pdf_height=7+num_factors/fact_per_inch+sample_name_len/7;
+pdf_width=3+num_shared_samples/samp_per_inch;
+
+cat("PDF Height: ", pdf_height, "\n");
+cat("PDF Width:  ", pdf_width, "\n");
+cat("\n");
+
+pdf(paste(OutputFileRoot, ".clhm.pdf", sep=""), height=pdf_height, width=pdf_width);
 par(oma=c(1,1,1,1));
 
 ###############################################################################
@@ -548,10 +584,12 @@ palette_col=c("red", "green", "blue", "cyan", "magenta", "orange", "gray", "pink
 palette(palette_col);
 
 ###############################################################################
-dend_height=4;
-dend_width=10; #num_shared_samples;
-hmap_height=25; #num_factors;
-key_width=3;
+
+
+dend_width=num_shared_samples; #num_shared_samples;
+hmap_height=num_factors; #num_factors;
+key_width=max(10, dend_width/8);
+dend_height=max(1, hmap_height/12);
 
 layout_mat=matrix(c(
 	rep(
@@ -570,10 +608,10 @@ layout(layout_mat);
 ###############################################################################
 
 # Define static variables used by dendro call back functions
-denfun.label_scale=min(2,50/num_shared_samples);
+denfun.label_scale=max(1,15/num_shared_samples);
 
 
-par(oma=c(1,15,4,1));
+par(oma=c(1,10,4,1));
 #for(num_cl in 1:1){
 for(num_cl in 2:max_clusters){
 
@@ -602,13 +640,14 @@ for(num_cl in 2:max_clusters){
 	tweaked_dendro=dendrapply(orig_dendr, color_denfun_bySample);
 	tweaked_dendro=dendrapply(tweaked_dendro, text_scale_denfun);
 
-	par(mar=c(4,0,0,0));
+	par(mar=c(sample_name_len*.55,0,0,0));
 	plot(tweaked_dendro, horiz=F);
-	for(cl_ix in 1:num_cl){
-		lab_size=2/ceiling(log10(cl_ix+1));
-		axis(side=1, outer=F, at=grp_mids[cl_ix], labels=cl_ix, cex.axis=lab_size, col.ticks=cl_ix, 
-			lend=1, lwd=10, padj=1, line=2);
-	}
+
+	#for(cl_ix in 1:num_cl){
+	#	lab_size=2/ceiling(log10(cl_ix+1));
+	#	axis(side=1, outer=F, at=grp_mids[cl_ix], labels=cl_ix, cex.axis=lab_size, col.ticks=cl_ix, 
+	#		lend=1, lwd=10, padj=1, line=2);
+	#}
 
 	abline(h=cut_midpoints[num_cl], col="red", lty=2);
 	ranges=par()$usr;
@@ -627,7 +666,7 @@ for(num_cl in 2:max_clusters){
 	mtext(paste("Num Clusters: ", num_cl), side=3, line=1, outer=T);
 
 	# Plot heatmap and key
-	plot_heatmap(lf_names, shared_factors[lf_names,, drop=F], guide_lines=cumsum(members_per_group));
+	plot_heatmap(lf_names, shared_factors[lf_names,, drop=F], guide_lines=cumsum(members_per_group), ModelString);
 	#plot(0,0, type="n"); text(0,0, "1", cex=5);
 	#plot(0,0, type="n"); text(0,0, "2", cex=5);
 
