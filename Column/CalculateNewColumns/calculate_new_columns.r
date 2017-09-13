@@ -193,6 +193,17 @@ for(cmd in commands){
 
 cat("\n");
 
+# Report any columns with no information
+num_factors=ncol(factors);
+factor_names=colnames(factors);
+for(i in 1:num_factors){
+	uniqs=unique(factors[,i]);
+	if(length(uniqs)<=1){
+		cat("Warning: \"", factor_names[i], "\" has no information. (All \"", uniqs, "\")\n", sep="");
+	}	
+}
+cat("\n");
+
 write_factors(OutputFName, factors);
 
 ##############################################################################
