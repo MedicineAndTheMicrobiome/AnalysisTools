@@ -197,7 +197,9 @@ cat("\n");
 num_factors=ncol(factors);
 factor_names=colnames(factors);
 for(i in 1:num_factors){
-	uniqs=unique(factors[,i]);
+	na_ix=is.na(factors[,i]);
+	uniqs=unique(factors[!na_ix,i]);
+	
 	if(length(uniqs)<=1){
 		cat("Warning: \"", factor_names[i], "\" has no information. (All \"", uniqs, "\")\n", sep="");
 	}	
