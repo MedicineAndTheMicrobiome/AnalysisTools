@@ -140,18 +140,21 @@ num_commands=length(commands);
 
 cat("Number of Commands: ", num_commands, "\n");
 
+print(commands);
 for(cmd in commands){
 	cat("\n");
-	cat("Working on: ", cmd, "\n");
 
 	cmd=strsplit(cmd, "#")[[1]][1]; # Strip off comments
+	if(is.na(cmd) || length(cmd)==0 || cmd == ""){
+		next;
+	}
 
 	cmd=gsub("^\\s+", "", cmd);
 	cmd=gsub("\\s+$", "", cmd);
 
-	if(cmd == ""){
-		next;
-	}
+	print(cmd);
+
+	cat("Working on: ", cmd, "\n");
 
 	if(length(grep("^delete ", cmd))==1){
 		# Delete variable from factors
