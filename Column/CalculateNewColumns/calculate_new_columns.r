@@ -143,6 +143,9 @@ cat("Number of Commands: ", num_commands, "\n");
 for(cmd in commands){
 	cat("\n");
 	cat("Working on: ", cmd, "\n");
+
+	cmd=strsplit(cmd, "#")[[1]][1]; # Strip off comments
+
 	cmd=gsub("^\\s+", "", cmd);
 	cmd=gsub("\\s+$", "", cmd);
 
