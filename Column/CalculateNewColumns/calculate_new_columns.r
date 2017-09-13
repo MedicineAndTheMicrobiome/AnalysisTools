@@ -33,10 +33,17 @@ usage = paste(
 	"	delete env.cigrete\n",
 	"	delete env.cigar\n",
 	"	delete env.pipe\n",
+	"	good.ids=!is.na(subj_ids)\n",
+	"	keep good.ids\n",
 	"\n",
 	"Additional columns will be added to the end\n",
 	"of the existing columns.  If the formula line is \"delete\"\n",
 	"Then the column will be deleted.\n",
+	"\n",
+	"Rows/Samples can be conditionally kept/removed by using\n",
+	"the \"keep\" command.  First create/identify a variable/column that is T/F\n",
+	"then specify that variable as parameter for the keep command.  Rows that\n",
+	"are F will be excluded.\n",
 	"\n",
 	"In addition, the following non-standard R functions have been implemented:\n",
 	"	remap(x, key, value):  This will remap the keys in x to the corresponding values.\n",
@@ -162,7 +169,15 @@ for(cmd in commands){
 		cat("Deleting: ", var, "\n"); 
 		cnames=colnames(factors);
 		cnames=setdiff(cnames, var);
-		factors=factors[,cnames];
+		factors=factors[,cnames, drop=F];
+	}else if(length(grep("^keep ", cmd))==1){
+		# Remove rows with factors that are F
+		var=strsplit(cmd, "\\s+")[[1]][2];
+                cat("Keeping Rows where ", var, " is TRUE\n", sep="");
+		keep_ix=factors[,var];
+		factors=factors[keep_ix,, drop=F];
+		rowcol=dim(factors);
+		cat("Rows: ", rowcol[1], " x Cols: ", rowcol[2], "\n", sep="");
 	}else{
 		# Add variable to factors
 		cmd=gsub("\\s+", "", cmd);
