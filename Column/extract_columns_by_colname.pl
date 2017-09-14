@@ -26,6 +26,19 @@ my $usage = "
 		[-d <column delimiter, default=tab>]
 		
 	Output goes into STDOUT.
+
+	You can put comments in our keep/remove file.  Anything after and including a # will be 
+	considered comment.
+
+	For example:
+
+	Variable1
+	# Ignore
+	Variable2 # Ignore
+
+	Is the same was:
+	Variable1
+	Variable2
 	
 ";
 
@@ -47,7 +60,16 @@ sub read_file{
 	open(FH, "<$file") || die "Could not open $file for reading.\n";
 	while(<FH>){
 		chomp;
-		push @list, $_;
+
+		# Remove comments
+		my @values=split "#", $_;
+		
+		# Remove leading/trailing spaces
+		my $item=$values[0];
+		$item=~s/^\s+//;
+		$item=~s/\s+$//;
+
+		push @list, $item;
 	}
 	close(FH);
 	return(\@list);
