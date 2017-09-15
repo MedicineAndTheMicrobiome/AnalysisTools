@@ -557,7 +557,7 @@ cat("PDF Height: ", pdf_height, "\n");
 cat("PDF Width:  ", pdf_width, "\n");
 cat("\n");
 
-pdf(paste(OutputFileRoot, ".clhm.pdf", sep=""), height=pdf_height, width=pdf_width);
+pdf(paste(OutputFileRoot, ".cl_hmp.pdf", sep=""), height=pdf_height, width=pdf_width);
 par(oma=c(1,1,2,1));
 
 ###############################################################################
