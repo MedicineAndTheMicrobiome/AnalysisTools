@@ -83,6 +83,11 @@ if(length(opt$model_string)){
 	ModelString=opt$model_string;
 }
 
+ModelFile="";
+if(length(opt$model_filename)){
+	ModelFile=opt$model_filename;
+}
+
 ###############################################################################
 # See http://www.mothur.org/wiki/Thetayc for formula
 
@@ -412,13 +417,12 @@ plot_heatmap=function(sample_names, factors, guide_lines, model_string){
 		range_col_ix[i,]=round(remap(var_ranges[i,], c(var_ranges[i, "Min"], var_ranges[i, "Max"]), c(1, num_colors)));
 	}
 
-	par(mar=c(0,0,0,0));
-	overhang=num_variables*.025;
-        plot(0,0, type="n", xlim=c(0,num_samples), ylim=c(-overhang,num_variables+overhang), 
+	par(mar=c(0,0,2,0));
+        plot(0,0, type="n", xlim=c(0,num_samples), ylim=c(0,num_variables), 
 		xaxt="n", yaxt="n", bty="n", xlab="", ylab="");
 
 	# Label variable names
-        axis(side=2, at=seq(.5, num_variables-.5, 1), labels=variable_names, las=2);
+        axis(side=2, at=seq(.5, num_variables-.5, 1), labels=variable_names, las=2, line=-3);
 
 
 	# Color in cells with colors and labels
@@ -431,24 +435,19 @@ plot_heatmap=function(sample_names, factors, guide_lines, model_string){
 			text(x-.5, y-.5, text_lab, srt=45, cex=.5/lab_len, font=2, col=inv_color_arr[color_ix[x,y]]);
 		}
         }
-	# Plot guidelines
+	# Draw guidelines
 	guide_lines=c(0, guide_lines);
 	abline(v=guide_lines, col="black", lwd=1.5);
-	num_cl=length(guide_lines)-1;
-	#cat("Guide Lines:\n");
-	#print(guide_lines);
-	#cat("Halves:\n");
-	halves=diff(guide_lines)/2;
-	#print(halves);
-	#cat("Mids: \n");
-	mids=guide_lines+c(halves,0);
-	#print(mids);
-	axis(side=3, at=mids[1:num_cl], labels=1:num_cl, line=-2, cex=2, font=2, lwd=0);
 
-	# Plot Heat Values
-	cat("Plotting heat map legend...\n");
-	plot(0,0, type="n", xlim=c(0, 4), ylim=c(-overhang,num_variables+overhang),  xaxt="n", yaxt="n", bty="n", xlab="", ylab="");
-	axis(side=3, at=(1:3)-.5, labels=c("Min", "Mean", "Max"), las=1, line=-2);
+	# Label cluster IDs
+	num_cl=length(guide_lines)-1;
+	halves=diff(guide_lines)/2;
+	mids=guide_lines+c(halves,0);
+	axis(side=3, at=mids[1:num_cl], labels=1:num_cl, line=-1, cex.axis=2.5, font.axis=2, lwd=0);
+
+	# Plot Heatmap legend
+	plot(0,0, type="n", xlim=c(0, 4), ylim=c(0,num_variables),  xaxt="n", yaxt="n", bty="n", xlab="", ylab="");
+	axis(side=3, at=(1:3)-.5, labels=c("Min", "Mean", "Max"), las=2, line=0);
 	for(x in 1:3){
 		for(y in 1:num_variables){
 			rect(x-1, y-1, (x-1)+1, (y-1)+1, border=NA, col=color_arr[range_col_ix[y,x]]);
@@ -491,6 +490,11 @@ factor_samples=rownames(all_factors);
 factor_names=colnames(all_factors);
 
 # Create dummy variables out of factors
+if(ModelFile!=""){
+	model_var=scan(ModelFile, what=character());
+	print(model_var);
+	ModelString=paste(model_var, collapse="+");	
+}
 if(ModelString==""){
 	ModelString=paste(paste(colnames(all_factors), collapse="+"));
 }
@@ -524,24 +528,37 @@ if(length(excl_gr_samples)){
 
 ###############################################################################
 
-fact_per_inch=12;
-samp_per_inch=10;
-sample_name_len=max(nchar(sample_names));
 
 cat("\n");
 cat("Num Factors: ", num_factors, "\n");
 cat("Num Shared Samples: ", num_shared_samples, "\n");
-cat("Max Sample Name Length: ", sample_name_len, "\n");
 
-pdf_height=7+num_factors/fact_per_inch+sample_name_len/7;
-pdf_width=3+num_shared_samples/samp_per_inch;
+# Height is composed of:
+# dendrogram, sample names, cluster labels, heatmap
+
+# Width is composed of:
+# factor names, heatmap, legend 
+
+fact_per_inch=8;
+samp_per_inch=8;
+max_sample_name_len=max(nchar(sample_names));
+max_factor_name_len=max(nchar(factor_names));
+char_per_inch=10;
+
+dendrogram_inch=3;
+cluster_labels_inch=.25;
+legend_inch=.5;
+
+
+pdf_height= dendrogram_inch + max_sample_name_len/char_per_inch + cluster_labels_inch + num_factors/fact_per_inch;
+pdf_width=max_factor_name_len/char_per_inch + num_shared_samples/samp_per_inch + legend_inch;
 
 cat("PDF Height: ", pdf_height, "\n");
 cat("PDF Width:  ", pdf_width, "\n");
 cat("\n");
 
 pdf(paste(OutputFileRoot, ".clhm.pdf", sep=""), height=pdf_height, width=pdf_width);
-par(oma=c(1,1,1,1));
+par(oma=c(1,1,2,1));
 
 ###############################################################################
 
@@ -586,21 +603,21 @@ palette(palette_col);
 ###############################################################################
 
 
-dend_width=num_shared_samples; #num_shared_samples;
-hmap_height=num_factors; #num_factors;
-key_width=max(10, dend_width/8);
-dend_height=max(1, hmap_height/12);
+dend_width=num_shared_samples/samp_per_inch;
+hmap_height=num_factors/fact_per_inch;
+key_width=legend_inch;
+dend_height=dendrogram_inch;
 
 layout_mat=matrix(c(
 	rep(
-		c(rep(1, dend_width), rep(2, key_width))
-	, dend_height),
+		c(rep(1, ceiling(dend_width)), rep(2, ceiling(key_width)))
+	, ceiling(dend_height)),
 	
 	rep(
-		c(rep(3, dend_width), rep(4, key_width))
-	, hmap_height)),
+		c(rep(3, ceiling(dend_width)), rep(4, ceiling(key_width)))
+	, ceiling(hmap_height))),
 	
-	byrow=T, ncol=dend_width+key_width);
+	byrow=T, ncol=ceiling(dend_width)+ceiling(key_width));
 
 print(layout_mat);
 layout(layout_mat);
@@ -611,8 +628,7 @@ layout(layout_mat);
 denfun.label_scale=max(1,15/num_shared_samples);
 
 
-par(oma=c(1,10,4,1));
-#for(num_cl in 1:1){
+par(oma=c(1,max_factor_name_len,3,1));
 for(num_cl in 2:max_clusters){
 
 	# Cut tree at target number of clusters
@@ -637,38 +653,30 @@ for(num_cl in 2:max_clusters){
 	# Plot Dendrogram
 	sample_to_color_map=as.list(memberships);
 
+	# Prepare dendrogram leaves
 	tweaked_dendro=dendrapply(orig_dendr, color_denfun_bySample);
 	tweaked_dendro=dendrapply(tweaked_dendro, text_scale_denfun);
 
-	par(mar=c(sample_name_len*.55,0,0,0));
+	# Make room for sample ids below dendrogram
+	par(mar=c(max_sample_name_len/3,0,0,0));
+
+	# PLOT DENDROGRAM
 	plot(tweaked_dendro, horiz=F);
 
-	#for(cl_ix in 1:num_cl){
-	#	lab_size=2/ceiling(log10(cl_ix+1));
-	#	axis(side=1, outer=F, at=grp_mids[cl_ix], labels=cl_ix, cex.axis=lab_size, col.ticks=cl_ix, 
-	#		lend=1, lwd=10, padj=1, line=2);
-	#}
-
+	# Draw cut line
 	abline(h=cut_midpoints[num_cl], col="red", lty=2);
 	ranges=par()$usr;
 
+	# Top/Right Place holder 
 	par(mar=c(0,0,0,0));
         plot(0,0, xlim=c(0,10), ylim=c(0,10), type="n",  xaxt="n", yaxt="n", bty="n", xlab="", ylab="");
-	if(0){
-	legend(0, 10, 
-		fill=c("white", 1:num_cl), 
-		legend=c("Cluster IDs:", as.character(1:num_cl)), 
-		border=c("white", rep("black", num_cl)),
-		text.font=c(2, rep(1, num_cl)),
-		box.col="white", bg="white");
-	}
+
+	# Label each page with dist type and number of cuts
 	mtext(paste("Distance Type: ", dist_type), side=3, line=0, outer=T);
 	mtext(paste("Num Clusters: ", num_cl), side=3, line=1, outer=T);
 
 	# Plot heatmap and key
 	plot_heatmap(lf_names, shared_factors[lf_names,, drop=F], guide_lines=cumsum(members_per_group), ModelString);
-	#plot(0,0, type="n"); text(0,0, "1", cex=5);
-	#plot(0,0, type="n"); text(0,0, "2", cex=5);
 
 
 }
