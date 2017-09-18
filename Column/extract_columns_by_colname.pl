@@ -69,7 +69,9 @@ sub read_file{
 		$item=~s/^\s+//;
 		$item=~s/\s+$//;
 
-		push @list, $item;
+		if($item ne ""){
+			push @list, $item;
+		}
 	}
 	close(FH);
 	return(\@list);
