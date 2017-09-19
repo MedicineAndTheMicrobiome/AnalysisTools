@@ -7,9 +7,10 @@ library(vegan);
 library('getopt');
 library(car);
 
-source('../remove_nas.r');
+source('~/git/AnalysisTools/Metadata/RemoveNAs/Remove_NAs.r');
 
 options(useFancyQuotes=F);
+
 
 params=c(
 	"summary_file", "s", 1, "character",
@@ -252,7 +253,7 @@ additive_log_rato=function(ordered_matrix){
 
 plot_text=function(strings){
 	par(family="Courier");
-	par(oma=rep(.5,4));
+	par(oma=rep(.1,4));
 	par(mar=rep(0,4));
 
 	num_lines=length(strings);
@@ -273,7 +274,7 @@ plot_text=function(strings){
 	}
 }
 
-paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_is_hot=T, label_zeros=T, counts=F){
+paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_is_hot=T, deci_pts=4, label_zeros=T, counts=F, value.cex=1){
         num_row=nrow(mat);
         num_col=ncol(mat);
 
@@ -334,9 +335,9 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
                                 if(counts){
                                         text_lab=sprintf("%i", mat[y,x]);
                                 }else{
-                                        text_lab=sprintf("%0.4f", mat[y,x]);
+                                        text_lab=sprintf(paste("%0.", deci_pts, "f", sep=""), mat[y,x]);
                                 }
-                                text(x-.5, y-.5, text_lab, srt=45, cex=1, font=2);
+                                text(x-.5, y-.5, text_lab, srt=atan(num_col/num_row)/pi*180, cex=value.cex, font=2);
                         }
                 }
         }
@@ -367,10 +368,34 @@ plot_histograms=function(table){
 	par(orig.par);
 }
 
+add_sign_col=function(coeff){
+	cnames=colnames(coeff);
+	pval_ix=which(cnames=="Pr(>|t|)");
+	pval=coeff[,pval_ix];
+
+	sig_char=function(val){
+		if(val == 0){ return("***");}
+		if(val <= .001){ return("** ");}
+		if(val <= .01){ return("*  ");}
+		if(val <= .05){ return(".  ");}
+		return(" ");
+	}
+
+	sig_arr=sapply(pval, sig_char);
+	fdr=round(p.adjust(pval, method="fdr"), 4);
+	fdr_sig_char=sapply(fdr, sig_char);
+	#out_mat=cbind(coeff, fdr);
+	out_mat=cbind(coeff, sig_arr, fdr, fdr_sig_char);
+	colnames(out_mat)=c(cnames, "Signf", "FDR", "Signf");
+	
+	return(formatC(out_mat, format="f", digits=5,));
+	
+}
+
 ##############################################################################
 ##############################################################################
 
-pdf(paste(OutputRoot, ".mvr_alrp.pdf", sep=""), height=11, width=8.5);
+pdf(paste(OutputRoot, ".mvr_alrp.pdf", sep=""), height=11, width=9.5);
 
 # Load summary file table counts 
 cat("Loading summary table...\n");
@@ -477,6 +502,16 @@ cat("Covariates Variables:\n");
 print(covariates_arr);
 cat("\n");
 
+plot_text(c(
+	"Variables Targeted:",
+	"",
+	"Responses:",
+	capture.output(print(responses_arr)),
+	"",
+	"Covariates:",
+	capture.output(print(covariates_arr))
+));
+
 print(setdiff(covariates_arr, factor_names));
 print(setdiff(responses_arr, factor_names));
 
@@ -536,7 +571,8 @@ normalized=normalized[shared_sample_ids,];
 num_samples=nrow(normalized);
 recon_factors=resp_cov_factors[shared_sample_ids,,drop=F];
 
-factors_wo_nas=remove_sample_or_factors_wNA(recon_factors);
+#factors_wo_nas=remove_sample_or_factors_wNA(recon_factors);
+factors_wo_nas=remove_sample_or_factors_wNA_parallel(recon_factors, num_trials=640000, num_cores=64, outfile=paste(OutputRoot, ".noNAs", sep=""));
 factor_names_wo_nas=colnames(factors_wo_nas);
 factor_sample_ids=rownames(factors_wo_nas);
 normalized=normalized[factor_sample_ids,];
@@ -567,16 +603,22 @@ if(num_top_taxa>= num_taxa){
 cat_abundances=extract_top_categories(normalized, num_top_taxa);
 resp_alr_struct=additive_log_rato(cat_abundances);
 alr_categories_val=resp_alr_struct$transformed;
-
 alr_cat_names=colnames(alr_categories_val);
 
-covariate_formula_str=paste(covariates_arr, collapse=" + ");
-alr_category_formula_str=paste(alr_cat_names, collapse=" + ");
-cat("\n");
-cat("Covariates: \n", covariate_formula_str, "\n", sep="");
-cat("\n");
-cat("ALR Predictors: \n", alr_category_formula_str, "\n", sep="");
-cat("\n");
+plot_text(c(
+	"Acceptable Variables after NA Removal:",
+	"",
+	"Responses:",
+	capture.output(print(responses_arr)),
+	"",
+	"Covariates:",
+	capture.output(print(covariates_arr))
+));
+
+plot_text(c(
+	paste("ALR Categories (Top ", num_top_taxa, ")", sep=""),
+	capture.output(print(alr_cat_names))
+));
 
 #print(response_factors);
 response_factors=as.matrix(response_factors);
@@ -615,7 +657,16 @@ plot_text(c(
 ));
 plot_histograms(alr_categories_val);
 
+###############################################################################
+# Set up and run univariate and manova
 
+covariate_formula_str=paste(covariates_arr, collapse=" + ");
+alr_category_formula_str=paste(alr_cat_names, collapse=" + ");
+cat("\n");
+cat("Covariates: \n", covariate_formula_str, "\n", sep="");
+cat("\n");
+cat("ALR Predictors: \n", alr_category_formula_str, "\n", sep="");
+cat("\n");
 
 formula_str=paste("response_factors ~ ", covariate_formula_str, " + ", alr_category_formula_str, sep="");
 
@@ -624,13 +675,74 @@ lm_summaries=summary(lmfit);
 manova=anova(lmfit);
 responses=names(lm_summaries);
 
-for(resp in responses){
-	cat("\n\nWorking on: ", resp, "\n");
-	print(lm_summaries[[resp]]);
+response_fit_names=gsub("^Response ", "", names(lm_summaries));
+
+###############################################################################
+# Accumulate univariate results into matrix and generate heat map
+
+num_responses=length(lm_summaries);
+num_coefficients=nrow(lm_summaries[[1]]$coefficients);
+coefficient_names=rownames(lm_summaries[[1]]$coefficients);
+summary_var_names=rownames(lm_summaries[[1]]$coefficients);
+covariate_coefficients=setdiff(coefficient_names, c("(Intercept)", alr_cat_names));
+
+summary_res_coeff=matrix(0, nrow=num_coefficients, ncol=num_responses, dimnames=list(coefficient_names, response_fit_names));
+summary_res_pval=matrix(0, nrow=num_coefficients, ncol=num_responses, dimnames=list(coefficient_names, response_fit_names));
+
+for(i in 1:num_responses){
+	cat("\n\nWorking on: ", responses[i], "\n");
+	univar_summary=round(lm_summaries[[i]]$coefficients, 4);
+
+	plot_text(c(
+		paste("Univariate: ", responses[i], sep=""),
+		"Covariates:",
+		"\n",
+		capture.output(print(univar_summary[covariate_coefficients,]))
+	));
+
+	plot_text(c(
+		paste("Univariate: ", responses[i], sep=""),
+		"ALR Predictors:",
+		"\n",
+		capture.output(print(add_sign_col(univar_summary[alr_cat_names,]), quote=F))
+	));
+
+	summary_res_coeff[,i]=univar_summary[,"Estimate"];
+	summary_res_pval[,i]=univar_summary[,"Pr(>|t|)"];
 }
 
+summary_res_coeff=round(summary_res_coeff,2);
+summary_res_pval=round(summary_res_pval,2);
+
+cat("Coefficients Matrix:\n");
+print(summary_res_coeff);
+par(oma=c(10,14,5,1));
+paint_matrix(summary_res_coeff[covariate_coefficients,], title="Covariate Coefficients",value.cex=.75, deci_pts=2);
+paint_matrix(summary_res_coeff[alr_cat_names,], title="ALR Predictors Coefficients", value.cex=.75, deci_pts=2);
+
+cat("\nP-values:\n");
+print(summary_res_pval);
+par(oma=c(10,14,5,1));
+paint_matrix(summary_res_pval[covariate_coefficients,], title="Covariate P-values", plot_min=0, plot_max=1, high_is_hot=F, value.cex=.5, deci_pts=2);
+paint_matrix(summary_res_pval[alr_cat_names,], title="ALR Predictors P-values", plot_min=0, plot_max=1, high_is_hot=F, value.cex=.5, deci_pts=2);
+
+###############################################################################
 
 print(manova);
+plot_text(c(
+	"MANOVA",
+	capture.output(print(manova))
+));
+
+manova_pval_mat=matrix(0, nrow=length(alr_cat_names), ncol=1, dimnames=list(alr_cat_names, "Pr(>F)"));
+manova_pval=manova[,"Pr(>F)", drop=F]
+manova_pval_mat[alr_cat_names,]=manova_pval[alr_cat_names,];
+print(manova_pval_mat);
+par(oma=c(10,14,5,1));
+paint_matrix(manova_pval_mat[alr_cat_names,,drop=F], title="ALR Predictors MANOVA", plot_min=0, plot_max=1, high_is_hot=F, value.cex=.5, deci_pts=3);
+
+
+
 
 #manova_trial=tryCatch({
 #	manova_res=anova(lmfit);
