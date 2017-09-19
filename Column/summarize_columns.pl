@@ -150,6 +150,7 @@ for(my $i=0; $i<$num_hdr_cols; $i++){
 	my $out_string= join ", ", @summary;
 
 	# Output string
-	print "$i $colname:  $out_string\n";
+	my $colnum=$i+1;
+	print "$colnum $colname:  $out_string\n";
 }
 
