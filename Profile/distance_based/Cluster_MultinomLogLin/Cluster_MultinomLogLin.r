@@ -16,6 +16,7 @@ DEF_NUM_TOP_CAT=35;
 DEF_NUM_CLUS=8;
 DEF_SPLIT_CHAR=";";
 DEF_COLUMN=1;
+RM_NA_TRIALS=10000*64;
 
 params=c(
 	"input_summary_table", "i", 1, "character",
@@ -24,7 +25,8 @@ params=c(
 	"model_filename", "M", 2, "character",
 	"output_filename_root", "o", 2, "character",
 	"dist_type", "d", 2, "character",
-	"num_clus", "k", 2, "numeric"
+	"num_clus", "k", 2, "numeric",
+	"rm_na_trials", "N", 2, "numeric"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -41,6 +43,8 @@ usage = paste(
 	"	[-d <euc/wrd/man/bray/horn/bin/gow/tyc/minkp5/minkp3, default =", DEF_DISTTYPE, ">]\n",
 	"	[-k <max num of clusters to split into, default =", DEF_NUM_CLUS, ">\n",
 	"	[-r <reference file>]\n",
+	"\n",
+	"	[-N <remova NA trials, trials=", RM_NA_TRIALS, "\n",
 	"\n",
 	"This script will:\n",
 	"	1.) Load metadata.\n",
@@ -95,6 +99,11 @@ if(length(opt$model_string)){
 ModelFilename="";
 if(length(opt$model_filename)){
 	ModelFilename=opt$model_filename;
+}
+
+Num_Remove_NA_Trials=RM_NA_TRIALS;
+if(length(opt$rm_na_trials)){
+	Num_Remove_NA_Trials=opt$rm_na_trials;
 }
 
 ###############################################################################
@@ -653,7 +662,7 @@ if(any(is.na(main_factors))){
 	before_num_samples=nrow(factors);
 
 	orig_factor_names=colnames(factors);
-	factors=remove_sample_or_factors_wNA_parallel(factors, 6400000, 64, OutputFileRoot);
+	factors=remove_sample_or_factors_wNA_parallel(factors, Num_Remove_NA_Trials, 64, OutputFileRoot);
 
 	after_num_factors=ncol(factors);
 	after_num_samples=nrow(factors);
