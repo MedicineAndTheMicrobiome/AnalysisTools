@@ -13,7 +13,7 @@ library('nnet');
 
 DEF_DISTTYPE="euc";
 DEF_NUM_TOP_CAT=35;
-DEF_NUM_CLUS=10;
+DEF_NUM_CLUS=8;
 DEF_SPLIT_CHAR=";";
 DEF_COLUMN=1;
 
@@ -653,7 +653,7 @@ if(any(is.na(main_factors))){
 	before_num_samples=nrow(factors);
 
 	orig_factor_names=colnames(factors);
-	factors=remove_sample_or_factors_wNA_parallel(factors, 640000, 64, OutputFileRoot);
+	factors=remove_sample_or_factors_wNA_parallel(factors, 6400000, 64, OutputFileRoot);
 
 	after_num_factors=ncol(factors);
 	after_num_samples=nrow(factors);
@@ -1041,10 +1041,7 @@ plot_coeff_pvalues=function(pval_matrix, line_col, title){
 	points(c(1, max_clusters), rep(log_references[2],2), col="grey", type="l", lwd=.5, lty=2);
 	points(c(1, max_clusters), rep(log_references[3],2), col="grey", type="l", lwd=.5, lty=2);
 
-print(log_min_pval_matrix);
-print(dim(log_min_pval_matrix));
 	for(i in 1:num_coefficients){
-print(i);
 		cur_pvals=log_min_pval_matrix[,i];
 		points(2:max_clusters, cur_pvals, col=line_col[i], type="l", pch=16);
 		
