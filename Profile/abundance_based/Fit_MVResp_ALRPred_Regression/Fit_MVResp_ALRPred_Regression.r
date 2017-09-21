@@ -114,7 +114,7 @@ if(ShortenCategoryNames==TRUE){
 	quit(status=-1);
 }
 
-options(width=80);
+options(width=100);
 cat("Text Line Width: ", options()$width, "\n", sep="");
 
 ##############################################################################
@@ -741,37 +741,77 @@ print(manova_pval_mat);
 par(oma=c(10,14,5,1));
 paint_matrix(manova_pval_mat[alr_cat_names,,drop=F], title="ALR Predictors MANOVA", plot_min=0, plot_max=1, high_is_hot=F, value.cex=.5, deci_pts=3);
 
-
-
-
-#manova_trial=tryCatch({
-#	manova_res=anova(lmfit);
-#	res=list();
-#	res[["manova"]]=manova_res;
-#	res[["error"]]=NULL;
-#	res;
-#}, error = function(e){
-#	res=list();
-#	res[["manova"]]=NULL;
-#	res[["error"]]=e;
-#	res;
-#});
-#
-#manova_success=ifelse(is.null(manova_trial[["manova"]]), F, T);
-#
-#if(manova_success){
-#	manova_res=manova_trial[["manova"]];
-#	print(manova_res);
-#	cat("\n");
-#	manova_txt=capture.output(manova_res);
-#}else{
-#	manova_txt=paste("Error performing MANOVA: ", manova_trial[["error"]], sep="");
-#}
-#
-#plot_text(text);
-
 ###############################################################################
-# Compute taxonomic correlations and pvalues
+
+#print(cat_abundances);
+#print(alr_cat_names);
+#print(manova_pval_mat);
+#print(mean_abund);
+
+plot_rank_abund=function(abundances, pvals, range=c(1,10), title="", ylim=NULL){
+
+	num_colors=50;
+	color_arr=rainbow(num_colors, start=0, end=4/6);
+
+        remap=function(in_val, in_range, out_range){
+                in_prop=(in_val-in_range[1])/(in_range[2]-in_range[1])
+                out_val=in_prop*(out_range[2]-out_range[1])+out_range[1];
+                return(out_val);
+        }
+
+	if(is.null(ylim)){
+		ylim=c(0, max(abundances)*1.1);
+	}
+	
+	category_colors=remap(pvals, c(0,1), c(1, num_colors));
+	category_names=names(abundances);
+
+	range_arr=range[1]:range[2];
+	num_cat=range[2]-range[1];
+	mids=barplot(abundances[range_arr], col=color_arr[category_colors[range_arr]], names.arg="", main=title, ylim=ylim);
+	spacing=mids[2]-mids[1];
+	gpar=par();
+
+	dims=gpar$usr;
+	cxy=gpar$cxy;
+
+	resize=min(1,35/num_cat);
+	text(mids-cxy[1]*.75, -cxy[2]/2, category_names[range_arr], srt=-45, xpd=T, cex=resize, pos=4);
+	legend_colors=remap(c(.05, .1, .5, 1), c(0,1), c(1, num_colors));
+
+	legend(dims[2]-(dims[2]-dims[1])/5, dims[4]-(dims[4]-dims[3])/5,
+		legend=c("0.05", "0.10", "0.50", "1.00"),
+		fill=color_arr[legend_colors],
+		cex=.75,
+		title="p-value colors:",
+		bty="n"
+	);
+	
+}
+
+par(oma=c(1,1,1,1));
+par(mar=c(15,2,4,15));
+max_mean_abund=max(mean_abund)*1.2;
+plot_rank_abund(mean_abund, manova_pval_mat, range=c(1,num_top_taxa), "All Top Categories", ylim=c(0, max_mean_abund));
+
+if(num_top_taxa>=10){
+	plot_rank_abund(mean_abund, manova_pval_mat, range=c(1,10), "Top 10 Categories", ylim=c(0, max_mean_abund));
+}
+
+if(num_top_taxa>=20){
+	plot_rank_abund(mean_abund, manova_pval_mat, range=c(1,20), "Top 20 Categories", ylim=c(0, max_mean_abund));
+}
+
+if(num_top_taxa>=40){
+	plot_rank_abund(mean_abund, manova_pval_mat, range=c(1,40), "Top 40 Categories", ylim=c(0, max_mean_abund));
+}
+
+par(mfrow=c(2,1));
+plot_rank_abund(mean_abund, manova_pval_mat, range=c(1,floor(num_top_taxa/2)), 
+	"Top Half of Categories", ylim=c(0, max_mean_abund));
+plot_rank_abund(mean_abund, manova_pval_mat, range=c(ceiling(num_top_taxa/2),num_top_taxa), 
+	"Bottom Half of Categories", ylim=c(0, max_mean_abund));
+
 
 ##############################################################################
 
