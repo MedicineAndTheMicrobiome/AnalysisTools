@@ -767,18 +767,30 @@ plot_rank_abund=function(abundances, pvals, range=c(1,10), title="", ylim=NULL){
 	category_names=names(abundances);
 
 	range_arr=range[1]:range[2];
+
+	proportion_rep=sum(abundances[range_arr]);
 	num_cat=range[2]-range[1];
-	mids=barplot(abundances[range_arr], col=color_arr[category_colors[range_arr]], names.arg="", main=title, ylim=ylim);
+	mids=barplot(abundances[range_arr], col=color_arr[category_colors[range_arr]], names.arg="", 
+		yaxt="n",
+		main=title, ylim=ylim);
+	mtext(paste("Percent Represented: ", round(proportion_rep*100,2), "%", sep=""), side=3, line=0);
+
+	# Calculate labels sizes/positions
 	spacing=mids[2]-mids[1];
+
 	gpar=par();
+	dims=gpar$usr; # xlim/xlim of plot
+	cxy=gpar$cxy;  # character size in plot dimensions
 
-	dims=gpar$usr;
-	cxy=gpar$cxy;
-
-	resize=min(1,35/num_cat);
+	# Labels
+	resize=min(1,30/num_cat);
 	text(mids-cxy[1]*.75, -cxy[2]/2, category_names[range_arr], srt=-45, xpd=T, cex=resize, pos=4);
-	legend_colors=remap(c(.05, .1, .5, 1), c(0,1), c(1, num_colors));
 
+	# y axis
+	axis(2, at=seq(0,1,.05), las=2)
+
+	# Legend
+	legend_colors=remap(c(.05, .1, .5, 1), c(0,1), c(1, num_colors));
 	legend(dims[2]-(dims[2]-dims[1])/5, dims[4]-(dims[4]-dims[3])/5,
 		legend=c("0.05", "0.10", "0.50", "1.00"),
 		fill=color_arr[legend_colors],
@@ -790,7 +802,9 @@ plot_rank_abund=function(abundances, pvals, range=c(1,10), title="", ylim=NULL){
 }
 
 par(oma=c(1,1,1,1));
-par(mar=c(15,2,4,15));
+par(mar=c(15,3,4,15));
+par(mfrow=c(2,1));
+
 max_mean_abund=max(mean_abund)*1.2;
 plot_rank_abund(mean_abund, manova_pval_mat, range=c(1,num_top_taxa), "All Top Categories", ylim=c(0, max_mean_abund));
 
@@ -806,10 +820,9 @@ if(num_top_taxa>=40){
 	plot_rank_abund(mean_abund, manova_pval_mat, range=c(1,40), "Top 40 Categories", ylim=c(0, max_mean_abund));
 }
 
-par(mfrow=c(2,1));
 plot_rank_abund(mean_abund, manova_pval_mat, range=c(1,floor(num_top_taxa/2)), 
 	"Top Half of Categories", ylim=c(0, max_mean_abund));
-plot_rank_abund(mean_abund, manova_pval_mat, range=c(ceiling(num_top_taxa/2),num_top_taxa), 
+plot_rank_abund(mean_abund, manova_pval_mat, range=c(floor(num_top_taxa/2)+1,num_top_taxa), 
 	"Bottom Half of Categories", ylim=c(0, max_mean_abund));
 
 
