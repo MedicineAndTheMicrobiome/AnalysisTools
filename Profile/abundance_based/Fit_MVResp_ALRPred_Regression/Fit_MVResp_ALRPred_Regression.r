@@ -274,29 +274,41 @@ plot_text=function(strings){
 	}
 }
 
-paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_is_hot=T, deci_pts=4, label_zeros=T, counts=F, value.cex=1){
+paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_is_hot=T, deci_pts=4, 
+	label_zeros=T, counts=F, value.cex=1, 
+	plot_col_dendr=F,
+	plot_row_dendr=F
+){
+
         num_row=nrow(mat);
         num_col=ncol(mat);
+
+	row_names=rownames(mat);
+	col_names=colnames(mat);
 
 	orig.par=par(no.readonly=T);
 
         cat("Num Rows: ", num_row, "\n");
         cat("Num Cols: ", num_col, "\n");
 
+	# Flips the rows, so becuase origin is bottom left
         mat=mat[rev(1:num_row),, drop=F];
 
+	# Generate a column scheme
         num_colors=50;
         color_arr=rainbow(num_colors, start=0, end=4/6);
         if(high_is_hot){
                 color_arr=rev(color_arr);
         }
 
+	# Provide a means to map values to an (color) index 
         remap=function(in_val, in_range, out_range){
                 in_prop=(in_val-in_range[1])/(in_range[2]-in_range[1])
                 out_val=in_prop*(out_range[2]-out_range[1])+out_range[1];
                 return(out_val);
         }
 
+	# If range is not specified, find it based on the data
         if(is.na(plot_min)){
                 plot_min=min(mat);
         }
@@ -305,12 +317,100 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
         }
         cat("Plot min/max: ", plot_min, "/", plot_max, "\n");
 
-	par(mar=c(1,1,2,1));
-        plot(0, type="n", xlim=c(0,num_col), ylim=c(0,num_row), xaxt="n", yaxt="n", bty="n", xlab="", ylab="", main=title);
+	# Get Label lengths
+	row_max_nchar=max(nchar(row_names));
+	col_max_nchar=max(nchar(col_names));
+	cat("Max Row Names Length: ", row_max_nchar, "\n");
+	cat("Max Col Names Length: ", col_max_nchar, "\n");
+
+	##################################################################################################
+	
+	get_dendrogram=function(in_mat, type){
+		if(type=="row"){
+			dendist=dist(in_mat);
+		}else{
+			dendist=dist(t(in_mat));
+		}
+		
+		get_clstrd_leaf_names=function(den){
+		# Get a list of the leaf names, from left to right
+			den_info=attributes(den);
+			if(!is.null(den_info$leaf) && den_info$leaf==T){
+				return(den_info$label);
+			}else{
+				lf_names=character();
+				for(i in 1:2){
+					lf_names=c(lf_names, get_clstrd_leaf_names(den[[i]]));
+				}
+				return(lf_names);
+			}
+		}
+
+
+		hcl=hclust(dendist, method="ward.D2");
+		dend=list();
+		dend[["tree"]]=as.dendrogram(hcl);
+		dend[["names"]]=get_clstrd_leaf_names(dend[["tree"]]);
+		return(dend);
+	}
+
+
+	##################################################################################################
+	# Comput Layouts
+	col_dend_height=ceiling(num_row*.1);
+	row_dend_width=ceiling(num_col*.2);
+	
+	heatmap_height=num_row;
+	heatmap_width=num_col;
+
+	if(plot_col_dendr && plot_row_dendr){
+		layoutmat=matrix(
+			c(
+			rep(c(rep(4, row_dend_width), rep(3, heatmap_width)), col_dend_height),
+			rep(c(rep(2, row_dend_width), rep(1, heatmap_width)), heatmap_height)
+			), byrow=T, ncol=row_dend_width+heatmap_width);
+
+		col_dendr=get_dendrogram(mat, type="col");
+		row_dendr=get_dendrogram(mat, type="row");
+
+		mat=mat[row_dendr[["names"]], col_dendr[["names"]]];
+		
+	}else if(plot_col_dendr){
+		layoutmat=matrix(
+			c(
+			rep(rep(2, heatmap_width), col_dend_height),
+			rep(rep(1, heatmap_width), heatmap_height)
+			), byrow=T, ncol=heatmap_width); 
+
+		col_dendr=get_dendrogram(mat, type="col");
+		mat=mat[, col_dendr[["names"]]];
+		
+	}else if(plot_row_dendr){
+		layoutmat=matrix(
+			rep(c(rep(2, row_dend_width), rep(1, heatmap_width)), heatmap_height),
+			byrow=T, ncol=row_dend_width+heatmap_width);
+
+		row_dendr=get_dendrogram(mat, type="row");
+		mat=mat[row_dendr[["names"]],];
+	}else{
+		layoutmat=matrix(
+			rep(1, heatmap_height*heatmap_width), 
+			byrow=T, ncol=heatmap_width);
+	}
+
+	#print(layoutmat);
+	layout(layoutmat);
+
+	##################################################################################################
+	
+	par(oma=c(col_max_nchar*.60, 0, 3, row_max_nchar*.60));
+	par(mar=c(0,0,0,0));
+        plot(0, type="n", xlim=c(0,num_col), ylim=c(0,num_row), xaxt="n", yaxt="n", bty="n", xlab="", ylab="");
+	mtext(title, side=3, line=0, outer=T, font=2);
 
         # x-axis
-        axis(side=1, at=seq(.5, num_col-.5, 1), labels=colnames(mat), las=2);
-        axis(side=2, at=seq(.5, num_row-.5, 1), labels=rownames(mat), las=2);
+        axis(side=1, at=seq(.5, num_col-.5, 1), labels=colnames(mat), las=2, line=-1.75);
+        axis(side=4, at=seq(.5, num_row-.5, 1), labels=rownames(mat), las=2, line=-1.75);
 
         if(log_col){
                 plot_min=log10(plot_min+.0125);
@@ -341,6 +441,27 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
                         }
                 }
         }
+
+	##################################################################################################
+
+	par(mar=c(0, 0, 0, 0));
+
+	if(plot_row_dendr && plot_col_dendr){
+		rdh=row_dendr[["tree"]]$height;
+		cdh=col_dendr[["tree"]]$height;
+		plot(row_dendr[["tree"]], leaflab="none", horiz=T, xaxt="n", yaxt="n", bty="n", xlim=c(-.5, rdh));
+		plot(col_dendr[["tree"]], leaflab="none",xaxt="n", yaxt="n", bty="n", ylim=c(-.5, cdh));
+		plot(0,0, type="n", bty="n", xaxt="n", yaxt="n");
+		#text(0,0, "Placeholder");
+	}else if(plot_row_dendr){
+		cdh=col_dendr[["tree"]]$height;
+		plot(row_dendr[["tree"]], leaflab="none", horiz=T, xaxt="n", yaxt="n", bty="n", ylim=c(-.5, cdh));
+		#text(0,0, "Row Dendrogram");
+	}else if(plot_col_dendr){
+		rdh=row_dendr[["tree"]]$height;
+		plot(col_dendr[["tree"]], leaflab="none", xaxt="n", yaxt="n", bty="n", xlim=c(-.5, rdh));
+		#text(0,0, "Col Dendrogram");
+	}
 
 	par(orig.par);
 
@@ -634,7 +755,7 @@ plot_text(c(
 plot_histograms(response_factors);
 
 cor_mat=cor(response_factors);
-par(oma=c(10,10,3,1));
+par(oma=c(1,1,1,1));
 paint_matrix(cor_mat, title="Response Correlations");
 
 cat("\n");
@@ -716,15 +837,28 @@ summary_res_pval=round(summary_res_pval,2);
 
 cat("Coefficients Matrix:\n");
 print(summary_res_coeff);
-par(oma=c(10,14,5,1));
+#par(oma=c(10,14,5,1));
 paint_matrix(summary_res_coeff[covariate_coefficients,], title="Covariate Coefficients",value.cex=.75, deci_pts=2);
 paint_matrix(summary_res_coeff[alr_cat_names,], title="ALR Predictors Coefficients", value.cex=.75, deci_pts=2);
 
 cat("\nP-values:\n");
 print(summary_res_pval);
-par(oma=c(10,14,5,1));
+#par(oma=c(10,14,5,1));
 paint_matrix(summary_res_pval[covariate_coefficients,], title="Covariate P-values", plot_min=0, plot_max=1, high_is_hot=F, value.cex=.5, deci_pts=2);
-paint_matrix(summary_res_pval[alr_cat_names,], title="ALR Predictors P-values", plot_min=0, plot_max=1, high_is_hot=F, value.cex=.5, deci_pts=2);
+paint_matrix(summary_res_pval[alr_cat_names,], title="ALR Predictors P-values (By Decreasing Abundance)", plot_min=0, plot_max=1, high_is_hot=F, value.cex=.5, deci_pts=2);
+
+paint_matrix(summary_res_pval[alr_cat_names,], title="ALR Predictors P-values (ALR Clusters)", 
+	plot_min=0, plot_max=1, high_is_hot=F, value.cex=.5, deci_pts=2,
+	plot_row_dendr=T
+);
+paint_matrix(summary_res_pval[alr_cat_names,], title="ALR Predictors P-values (Response Clusters)", 
+	plot_min=0, plot_max=1, high_is_hot=F, value.cex=.5, deci_pts=2,
+	plot_col_dendr=T
+);
+paint_matrix(summary_res_pval[alr_cat_names,], title="ALR Predictors P-values (ALR and Response Clusters)", 
+	plot_min=0, plot_max=1, high_is_hot=F, value.cex=.5, deci_pts=2,
+	plot_row_dendr=T, plot_col_dendr=T
+);
 
 ###############################################################################
 
@@ -738,7 +872,7 @@ manova_pval_mat=matrix(0, nrow=length(alr_cat_names), ncol=1, dimnames=list(alr_
 manova_pval=manova[,"Pr(>F)", drop=F]
 manova_pval_mat[alr_cat_names,]=manova_pval[alr_cat_names,];
 print(manova_pval_mat);
-par(oma=c(10,14,5,1));
+#par(oma=c(10,14,5,1));
 paint_matrix(manova_pval_mat[alr_cat_names,,drop=F], title="ALR Predictors MANOVA", plot_min=0, plot_max=1, high_is_hot=F, value.cex=.5, deci_pts=3);
 
 ###############################################################################
