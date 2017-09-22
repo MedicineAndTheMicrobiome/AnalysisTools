@@ -447,19 +447,19 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 	par(mar=c(0, 0, 0, 0));
 
 	if(plot_row_dendr && plot_col_dendr){
-		rdh=row_dendr[["tree"]]$height;
-		cdh=col_dendr[["tree"]]$height;
-		plot(row_dendr[["tree"]], leaflab="none", horiz=T, xaxt="n", yaxt="n", bty="n", xlim=c(-.5, rdh));
-		plot(col_dendr[["tree"]], leaflab="none",xaxt="n", yaxt="n", bty="n", ylim=c(-.5, cdh));
+		rdh=attributes(row_dendr[["tree"]])$height;
+		cdh=attributes(col_dendr[["tree"]])$height;
+		plot(row_dendr[["tree"]], leaflab="none", horiz=T, xaxt="n", yaxt="n", bty="n", xlim=c(rdh, 0));
+		plot(col_dendr[["tree"]], leaflab="none",xaxt="n", yaxt="n", bty="n", ylim=c(0, cdh));
 		plot(0,0, type="n", bty="n", xaxt="n", yaxt="n");
 		#text(0,0, "Placeholder");
 	}else if(plot_row_dendr){
-		cdh=col_dendr[["tree"]]$height;
-		plot(row_dendr[["tree"]], leaflab="none", horiz=T, xaxt="n", yaxt="n", bty="n", ylim=c(-.5, cdh));
+		rdh=attributes(row_dendr[["tree"]])$height;
+		plot(row_dendr[["tree"]], leaflab="none", horiz=T, xaxt="n", yaxt="n", bty="n", xlim=c(rdh, 0));
 		#text(0,0, "Row Dendrogram");
 	}else if(plot_col_dendr){
-		rdh=row_dendr[["tree"]]$height;
-		plot(col_dendr[["tree"]], leaflab="none", xaxt="n", yaxt="n", bty="n", xlim=c(-.5, rdh));
+		cdh=attributes(col_dendr[["tree"]])$height;
+		plot(col_dendr[["tree"]], leaflab="none", xaxt="n", yaxt="n", bty="n", ylim=c(0, cdh));
 		#text(0,0, "Col Dendrogram");
 	}
 
