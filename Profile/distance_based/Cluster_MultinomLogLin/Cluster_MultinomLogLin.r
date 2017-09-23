@@ -931,9 +931,13 @@ for(num_cl in 2:max_clusters){
 		mm=model.matrix(as.formula(paste("~", ModelString)), data=factors);
 		in_group_id=sort(intersect(in_group_id, rownames(mm)));
 
+		print(response);
+		print(factors);
+
 		fit=glm(mll_formula, family=binomial, data=factors, control=list(trace=T, maxit=100));
 
 		sum_fit=summary(fit);
+		print(sum_fit);
 
 		# Check p-values for degeneracy
 		pvals=sum_fit$coefficients[,"Pr(>|z|)"];
@@ -1041,38 +1045,52 @@ plot_coeff_pvalues=function(pval_matrix, line_col, title){
 	par(mar=c(4, 4, 2, 2));
 	plot(0, type="n", xlim=c(2, max_clusters+3), ylim=c(min_log_pval, max_log_pval),
 		xlab="Number of Clusters", ylab="Log10(P-values)",
-		xaxt="n");
+		xaxt="n", bty="l"
+	);
 
 	mtext(title, side=3, outer=T, line=2, cex=2, font=2);
 	mtext(paste("Num Coefficients Displayed: ", num_coefficients, sep=""), side=3, outer=T, line=0);
 
+	# Reference lines
 	points(c(1, max_clusters), rep(log_references[1],2), col="grey", type="l", lwd=.5, lty=2);
 	points(c(1, max_clusters), rep(log_references[2],2), col="grey", type="l", lwd=.5, lty=2);
 	points(c(1, max_clusters), rep(log_references[3],2), col="grey", type="l", lwd=.5, lty=2);
 
 	for(i in 1:num_coefficients){
 		cur_pvals=log_min_pval_matrix[,i];
-		points(2:max_clusters, cur_pvals, col=line_col[i], type="l", pch=16);
+		points(2:max_clusters, cur_pvals, col=line_col[i], lwd=4, type="l", pch=16);
 		
 		first_lowest=min(which(min(cur_pvals)==cur_pvals));
 		points(first_lowest+1, cur_pvals[first_lowest], col=line_col[i], pch=19, cex=3);
 		points(first_lowest+1, cur_pvals[first_lowest], col="white",     pch=19, cex=2);
 		points(first_lowest+1, cur_pvals[first_lowest], col=line_col[i], pch=19, cex=1);
 	}
-	axis(side=1, at=2:max_clusters, labels=2:max_clusters);
+	axis(side=1, at=2:max_clusters, labels=2:max_clusters, cex.axis=2);
 
 	print(log_min_pval_matrix);
 	max_clust_pvals=log_min_pval_matrix[as.character(max_clusters),,drop=F];
 	order_ix=order(max_clust_pvals);
 	coeff_names=colnames(log_min_pval_matrix);
 
-	label_y_pos=seq(min_log_pval, max_log_pval, length.out=num_coefficients);
-	text(rep(max_clusters+1, num_coefficients), label_y_pos, 
-		pos=4, coeff_names[order_ix], col=line_col[order_ix]);
+	# Calculate space for labels
+	param=par();
+	plot_range=param$usr;
+	plot_dim=c(plot_range[2]-plot_range[1], plot_range[4]-plot_range[3]);
+	char_size=param$cxy;
+	max_lines_per_plot=plot_dim[2]/char_size[2];
 
+	# Labels
+	padding=abs(min_log_pval-max_log_pval)*.1
+	label_y_pos=seq(min_log_pval+padding, max_log_pval-padding, length.out=num_coefficients);
+	text(rep(max_clusters+.5, num_coefficients), label_y_pos, 
+		pos=4, coeff_names[order_ix], col=line_col[order_ix],
+		cex=(max_lines_per_plot/4)/num_coefficients
+	);
+
+	# Draw lines from end of plot to label
 	for(i in 1:num_coefficients){
-		points(c(max_clusters+.1, max_clusters+1-.1), c(max_clust_pvals[order_ix[i]], label_y_pos[i]), 
-			type="l", col=line_col[order_ix[i]], lty=3, lwd=.5);
+		points(c(max_clusters+.1, max_clusters+.5-.1), c(max_clust_pvals[order_ix[i]], label_y_pos[i]), 
+			type="l", col=line_col[order_ix[i]], lty=3, lwd=1);
 	}
 }
 
