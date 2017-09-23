@@ -422,7 +422,7 @@ plot_heatmap=function(sample_names, factors, guide_lines, model_string){
 		xaxt="n", yaxt="n", bty="n", xlab="", ylab="");
 
 	# Label variable names
-        axis(side=2, at=seq(.5, num_variables-.5, 1), labels=variable_names, las=2, line=-3);
+        axis(side=2, at=seq(.5, num_variables-.5, 1), labels=variable_names, las=2, line=0);
 
 
 	# Color in cells with colors and labels
@@ -454,7 +454,7 @@ plot_heatmap=function(sample_names, factors, guide_lines, model_string){
 			text_lab=signif(var_ranges[y,x], 2);
 			lab_len=nchar(gsub("\\.", "", text_lab));
 			
-			text(x-.5, y-.5, text_lab, srt=0, cex=1, font=2, col=inv_color_arr[range_col_ix[y,x]]);
+			text(x-.5, y-.5, text_lab, srt=0, cex=.5, font=2, col=inv_color_arr[range_col_ix[y,x]]);
 		}
         }
 
@@ -658,7 +658,7 @@ for(num_cl in 2:max_clusters){
 	tweaked_dendro=dendrapply(tweaked_dendro, text_scale_denfun);
 
 	# Make room for sample ids below dendrogram
-	par(mar=c(max_sample_name_len/3,0,0,0));
+	par(mar=c(max_sample_name_len/2,0,0,0));
 
 	# PLOT DENDROGRAM
 	plot(tweaked_dendro, horiz=F);
