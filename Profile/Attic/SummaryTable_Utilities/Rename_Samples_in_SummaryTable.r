@@ -17,12 +17,14 @@ script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
 usage = paste (
 	"\nUsage:\n\n", script_name,
 	"\n",
-	"	-i <input summary table.xls>\n",
+	"	-i <input summary_table.tsv>\n",
 	"	-m <rename mapping file, tab-separated>\n",
-	"	[-o <output summary table file name>\n",
+	"	[-o <output summary table file name, e.g. renamed.summary_table.tsv>\n",
 	"\n",	
-	"This script will rename your sample names based on your mapping file.\n",
+	"This script will rename your sample names in (-i) based on your mapping file (-m).\n",
 	"\n",
+	"Mapping File format:\n",
+	"	<current sample id>\\t<new sample id>\\n\n",
 	"\n");
 
 if(!length(opt$input_file) || !length(opt$mapping)){
@@ -34,8 +36,8 @@ InputFileName=opt$input_file;
 MappingFileName=opt$mapping;
 
 if(!length(opt$output_file)){
-	output_root=gsub("\\.summary_table\\.xls", "", opt$input_file);
-	OutputFileName = paste(output_root, ".renamed.summary_table.xls", sep="");
+	output_root=gsub("\\.summary_table\\.tsv", "", opt$input_file);
+	OutputFileName = paste(output_root, ".renamed.summary_table.tsv", sep="");
 }else{
 	OutputFileName=opt$output_file;
 }
