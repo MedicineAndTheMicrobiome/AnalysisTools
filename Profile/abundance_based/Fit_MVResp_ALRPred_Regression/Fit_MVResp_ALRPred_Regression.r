@@ -17,6 +17,7 @@ params=c(
 	"factors", "f", 1, "character",
 	"covariates", "c", 1, "character",
 	"responses", "y", 1, "character",
+	"required", "q", 2, "character",
 
 	"num_variables", "p", 2, "numeric",
 	"reference_levels", "r", 2, "character",
@@ -37,7 +38,8 @@ usage = paste(
 	"	-f <factors file, contains covariates and multivariate Y>\n",
 	"	-c <list of covariate X's names to select from factor file>\n",
 	"	-y <list of response Y's names to select from factor file>\n",
-
+	"	[-q <required list of variables to include after NA removal>]\n",
+	"\n",
 	"	[-p <number of top taxonomic/categorical variables, default=", NUM_TOP_CAT, ">]\n",
 	"	[-r <reference levels file for Y's in factor file>]\n",
 	"	[-o <output filename root>]\n",
@@ -89,6 +91,12 @@ if(length(opt$shorten_category_names)){
 	ShortenCategoryNames="";
 }
 
+if(length(opt$required)){
+	RequiredFile=opt$required;
+}else{
+	RequiredFile="";
+}
+
 SummaryFile=opt$summary_file;
 FactorsFile=opt$factors;
 CovariatesFile=opt$covariates;
@@ -99,6 +107,7 @@ cat("   Summary File: ", SummaryFile, "\n", sep="");
 cat("   Factors File: ", FactorsFile, "\n", sep="");
 cat("Covariates File: ", CovariatesFile, "\n", sep="");
 cat("  Response File: ", ResponseFile, "\n", sep="");
+cat("  Required File: ", RequiredFile, "\n", sep="");
 cat("\n");
 cat("Output File: ", OutputRoot, "\n", sep="");
 cat("\n");
@@ -623,6 +632,11 @@ cat("Covariates Variables:\n");
 print(covariates_arr);
 cat("\n");
 
+required_arr=load_list(RequiredFile);
+cat("Required Variables:\n");
+print(required_arr);
+cat("\n");
+
 plot_text(c(
 	"Variables Targeted:",
 	"",
@@ -630,7 +644,10 @@ plot_text(c(
 	capture.output(print(responses_arr)),
 	"",
 	"Covariates:",
-	capture.output(print(covariates_arr))
+	capture.output(print(covariates_arr)),
+	"",
+	"Required Variables:",
+	 capture.output(print(required_arr))
 ));
 
 print(setdiff(covariates_arr, factor_names));
@@ -693,10 +710,14 @@ num_samples=nrow(normalized);
 recon_factors=resp_cov_factors[shared_sample_ids,,drop=F];
 
 #factors_wo_nas=remove_sample_or_factors_wNA(recon_factors);
-factors_wo_nas=remove_sample_or_factors_wNA_parallel(recon_factors, num_trials=640000, num_cores=64, outfile=paste(OutputRoot, ".noNAs", sep=""));
+num_samples_recon=nrow(recon_factors);
+num_factors_recon=ncol(recon_factors);
+factors_wo_nas=remove_sample_or_factors_wNA_parallel(recon_factors, required=required_arr, num_trials=640000, num_cores=64, outfile=paste(OutputRoot, ".noNAs", sep=""));
 factor_names_wo_nas=colnames(factors_wo_nas);
 factor_sample_ids=rownames(factors_wo_nas);
 normalized=normalized[factor_sample_ids,];
+num_samples_wo_nas=nrow(factors_wo_nas);
+num_factors_wo_nas=ncol(factors_wo_nas);
 
 responses_arr=intersect(responses_arr, factor_names_wo_nas);
 covariates_arr=intersect(covariates_arr, factor_names_wo_nas);
@@ -733,7 +754,14 @@ plot_text(c(
 	capture.output(print(responses_arr)),
 	"",
 	"Covariates:",
-	capture.output(print(covariates_arr))
+	capture.output(print(covariates_arr)),
+	"",
+	"",
+	paste("Num Reconciled Samples: ", num_samples_recon, sep=""),
+	paste("Num Reconciled Factors: ", num_factors_recon, sep=""),
+	"",
+	paste("Num Samples w/o NAs: ", num_samples_wo_nas, sep=""),
+	paste("Num Factors w/o NAs: ", num_factors_wo_nas, sep="")
 ));
 
 plot_text(c(
