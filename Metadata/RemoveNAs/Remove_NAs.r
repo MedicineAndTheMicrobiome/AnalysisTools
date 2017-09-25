@@ -211,15 +211,33 @@ rem_missing_var_from_modelstring=function(model_string, kept_variables){
 library(foreach);
 library(doMC);
 
-remove_sample_or_factors_wNA_parallel=function(factors, num_trials=500000, num_cores=16, outfile=""){
+
+remove_samples_for_req_var=function(factors, req_var){
+	# This function will remove all samples necessary to keep the required variables.
+	req_var_mat=factors[, req_var, drop=F];
+	na_mat=is.na(req_var_mat);
+	rows_wnas=apply(na_mat, 1, any);
+	return(factors[!rows_wnas,, drop=F]);
+}
+
+remove_sample_or_factors_wNA_parallel=function(factors, required_variables=NULL, num_trials=500000, num_cores=16, outfile=""){
 
 	nsamples=nrow(factors);
 	nfactors=ncol(factors);
 	numNAs=sum(is.na(factors));
+	nreqvar=length(required_variables);
 
 	cat("Num Samples Entering: ", nsamples, "\n");
 	cat("Num Factors Entering: ", nfactors, "\n");
 	cat("Num NAs Entering:", numNAs, "\n");
+	cat("Num Required Variables: ", nreqvar, "\n");
+	cat("\n");
+	if(nreqvar>0){
+		cat("Required Variables:\n");
+		print(required_variables);
+
+		factors=remove_samples_for_req_var(factors, required_variables);
+	}
 
 	res=registerDoMC(num_cores);
 	core_trials=ceiling(num_trials/num_cores);
