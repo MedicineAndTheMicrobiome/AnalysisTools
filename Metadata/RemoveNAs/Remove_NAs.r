@@ -86,7 +86,7 @@ remove_sample_or_factors_wNA=function(factors, num_trials=500000, verbose=T){
         best_sequence_nonna=0;
         best_sequence_ix=numeric();
 
-        max_no_improvement=0.1*num_trials;
+        max_no_improvement=0.05*num_trials;
 	if(verbose){
 		cat("Max allowable trials without improvement: ", max_no_improvement, "\n");
 	}
@@ -145,6 +145,7 @@ remove_sample_or_factors_wNA=function(factors, num_trials=500000, verbose=T){
                 last_improvement=last_improvement+1;
 
                 if(last_improvement>max_no_improvement){
+			cat("No more significant improvements...\n");
                         break;
                 }
         }
