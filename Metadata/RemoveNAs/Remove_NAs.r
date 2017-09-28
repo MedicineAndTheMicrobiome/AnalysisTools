@@ -214,6 +214,14 @@ library(doMC);
 
 remove_samples_for_req_var=function(factors, req_var){
 	# This function will remove all samples necessary to keep the required variables.
+	fact_avail=colnames(factors);
+	missing_var=setdiff(req_var, fact_avail);
+	if(length(missing_var)>0){
+		cat("\nError: Required variable(s) missing...\n");	
+		print(missing_var);
+		cat("\n");
+		quit(status=-1);
+	}
 	req_var_mat=factors[, req_var, drop=F];
 	na_mat=is.na(req_var_mat);
 	rows_wnas=apply(na_mat, 1, any);
