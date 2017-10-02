@@ -632,10 +632,13 @@ cat("Covariates Variables:\n");
 print(covariates_arr);
 cat("\n");
 
-required_arr=load_list(RequiredFile);
-cat("Required Variables:\n");
-print(required_arr);
-cat("\n");
+required_arr=NULL;
+if(""==RequiredFile){
+	required_arr=load_list(RequiredFile);
+	cat("Required Variables:\n");
+	print(required_arr);
+	cat("\n");
+}
 
 plot_text(c(
 	"Variables Targeted:",
@@ -818,11 +821,17 @@ cat("ALR Predictors: \n", alr_category_formula_str, "\n", sep="");
 cat("\n");
 
 formula_str=paste("response_factors ~ ", covariate_formula_str, " + ", alr_category_formula_str, sep="");
+reduced_formula_str=paste("response_factors ~ ", covariate_formula_str, sep="");
 
 lmfit=lm(as.formula(formula_str), data=dafr_predictors_factors);
+reduced_lmfit=lm(as.formula(reduced_formula_str), data=dafr_predictors_factors);
+
 lm_summaries=summary(lmfit);
+reduced_lm_summaries=summary(reduced_lmfit);
+
 manova=anova(lmfit);
 responses=names(lm_summaries);
+reduced_responses=names(reduced_lm_summaries);
 
 response_fit_names=gsub("^Response ", "", names(lm_summaries));
 
@@ -837,27 +846,59 @@ covariate_coefficients=setdiff(coefficient_names, c("(Intercept)", alr_cat_names
 
 summary_res_coeff=matrix(0, nrow=num_coefficients, ncol=num_responses, dimnames=list(coefficient_names, response_fit_names));
 summary_res_pval=matrix(0, nrow=num_coefficients, ncol=num_responses, dimnames=list(coefficient_names, response_fit_names));
+summary_res_rsqrd=matrix(0, nrow=num_responses, ncol=3, dimnames=list(response_fit_names, 
+	c("Full Model", "Reduced Model", "Difference")));
 
 for(i in 1:num_responses){
 	cat("\n\nWorking on: ", responses[i], "\n");
 	univar_summary=round(lm_summaries[[i]]$coefficients, 4);
 
+	rsquared=signif(c(lm_summaries[[i]]$r.squared, lm_summaries[[i]]$adj.r.squared),4);
+	reduced_rsquared=signif(c(reduced_lm_summaries[[i]]$r.squared, reduced_lm_summaries[[i]]$adj.r.squared),4);
+	
+	fstat=lm_summaries[[i]]$fstatistic;
+	pval=1-pf(fstat[["value"]], fstat[["numdf"]], fstat[["dendf"]]);
+
+	rsqrd_diff=rsquared[1]-reduced_rsquared[1];
+	adj_rsqrd_diff=signif(rsquared[2]-reduced_rsquared[2], 4);
+
 	plot_text(c(
 		paste("Univariate: ", responses[i], sep=""),
-		"Covariates:",
-		"\n",
+		"Covariates portion of Full Model (Covariates + ALR):",
+		"",
 		capture.output(print(univar_summary[covariate_coefficients,]))
 	));
 
 	plot_text(c(
 		paste("Univariate: ", responses[i], sep=""),
-		"ALR Predictors:",
+		"ALR Predictors portion of Full Model (Covariates + ALR):",
 		"\n",
 		capture.output(print(add_sign_col(univar_summary[alr_cat_names,]), quote=F))
 	));
 
+	plot_text(c(
+		paste("Univariate: ", responses[i], sep=""),
+		"Full Model (covariates + ALR) Summary:",
+		paste("Multiple R-squared: ", rsquared[1], ", Adjusted R-squared: ", rsquared[2], sep=""),
+		paste("F-statistic: ", fstat[["value"]], " on ", 
+					fstat[["numdf"]], " and ", 
+					fstat[["dendf"]], " DF, p-value: ", pval, sep=""),
+		"",
+		"",
+		"Reduced Model (covariates only) Summary:",
+		paste("Multiple R-squared: ", reduced_rsquared[1], ", Adjusted R-squared: ", reduced_rsquared[2], sep=""),
+		"",
+		"Difference (contribution of ALR):",
+		paste("Multiple R-squared: ", rsqrd_diff, 
+			", Adjusted R-squared: ", adj_rsqrd_diff, sep=""),
+		"",
+		"(Positive Adjusted R-squared differences suggests that including ALR predictors improved the model)"
+	));
+
+
 	summary_res_coeff[,i]=univar_summary[,"Estimate"];
 	summary_res_pval[,i]=univar_summary[,"Pr(>|t|)"];
+	summary_res_rsqrd[i,]=c(rsquared[2], reduced_rsquared[2], adj_rsqrd_diff);
 }
 
 summary_res_coeff=round(summary_res_coeff,2);
@@ -902,6 +943,8 @@ paint_matrix(summary_res_pval[alr_cat_names,], title="ALR Predictors P-values (A
 );
 
 ###############################################################################
+
+paint_matrix(summary_res_rsqrd, title="Univariate Adjusted R-Squared");
 
 print(manova);
 plot_text(c(
