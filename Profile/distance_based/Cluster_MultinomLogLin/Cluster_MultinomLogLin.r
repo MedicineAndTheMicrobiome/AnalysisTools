@@ -26,7 +26,8 @@ params=c(
 	"output_filename_root", "o", 2, "character",
 	"dist_type", "d", 2, "character",
 	"num_clus", "k", 2, "numeric",
-	"rm_na_trials", "N", 2, "numeric"
+	"rm_na_trials", "N", 2, "numeric",
+	"required", "q", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -43,6 +44,7 @@ usage = paste(
 	"	[-d <euc/wrd/man/bray/horn/bin/gow/tyc/minkp5/minkp3, default =", DEF_DISTTYPE, ">]\n",
 	"	[-k <max num of clusters to split into, default =", DEF_NUM_CLUS, ">\n",
 	"	[-r <reference file>]\n",
+	"	[-q <required variables>]\n",
 	"\n",
 	"	[-N <remova NA trials, trials=", RM_NA_TRIALS, "\n",
 	"\n",
@@ -104,6 +106,12 @@ if(length(opt$model_filename)){
 Num_Remove_NA_Trials=RM_NA_TRIALS;
 if(length(opt$rm_na_trials)){
 	Num_Remove_NA_Trials=opt$rm_na_trials;
+}
+
+if(length(opt$required)){
+        RequiredFile=opt$required;
+}else{
+        RequiredFile="";
 }
 
 ###############################################################################
@@ -206,6 +214,11 @@ load_factor_file=function(fn){
 	cat("  Num Factors: ", ncol(inmat), "\n", sep="");
 	cat("  Num Samples: ", nrow(inmat), "\n", sep="");
 	return(inmat);
+}
+
+load_list=function(filename){
+        val=scan(filename, what=character(), comment.char="#");
+        return(val);
 }
 
 #------------------------------------------------------------------------------
@@ -578,6 +591,7 @@ cat("Input Factor File: ", InputFactorFile, "\n", sep="");
 cat("Output Filename Root: ", output_fname_root, "\n", sep="");
 cat("Distance Type: ", dist_type, "\n", sep="");
 cat("Max Num clusters: ", max_clusters, "\n", sep="");
+cat("Required Variables File: ", RequiredFile, "\n", sep="");
 cat("\n");
 
 cat("Loading summary table...\n");
@@ -597,6 +611,14 @@ cat("Loading factor file...\n");
 all_factors=load_factor_file(InputFactorFile);
 factor_samples=rownames(all_factors);
 factor_names=colnames(all_factors);
+
+required_arr=NULL;
+if(RequiredFile != ""){
+	required_arr=load_list(RequiredFile);
+	cat("Required Variables:\n");
+	print(required_arr);
+	cat("\n");
+}
 
 ###############################################################################
 
@@ -662,7 +684,7 @@ if(any(is.na(main_factors))){
 	before_num_samples=nrow(factors);
 
 	orig_factor_names=colnames(factors);
-	factors=remove_sample_or_factors_wNA_parallel(factors, num_trials=Num_Remove_NA_Trials, num_cores=64, outfile=OutputFileRoot);
+	factors=remove_sample_or_factors_wNA_parallel(factors, required=required_arr, num_trials=Num_Remove_NA_Trials, num_cores=64, outfile=OutputFileRoot);
 
 	after_num_factors=ncol(factors);
 	after_num_samples=nrow(factors);
