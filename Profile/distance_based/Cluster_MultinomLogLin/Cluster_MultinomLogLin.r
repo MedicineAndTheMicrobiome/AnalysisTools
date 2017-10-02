@@ -662,7 +662,7 @@ if(any(is.na(main_factors))){
 	before_num_samples=nrow(factors);
 
 	orig_factor_names=colnames(factors);
-	factors=remove_sample_or_factors_wNA_parallel(factors, Num_Remove_NA_Trials, 64, OutputFileRoot);
+	factors=remove_sample_or_factors_wNA_parallel(factors, num_trials=Num_Remove_NA_Trials, num_cores=64, outfile=OutputFileRoot);
 
 	after_num_factors=ncol(factors);
 	after_num_samples=nrow(factors);
