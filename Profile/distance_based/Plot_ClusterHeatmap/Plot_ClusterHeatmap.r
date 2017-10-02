@@ -24,7 +24,8 @@ params=c(
 	"model_filename", "M", 2, "character",
 	"output_filename_root", "o", 2, "character",
 	"dist_type", "d", 2, "character",
-	"num_clus", "k", 2, "numeric"
+	"num_clus", "k", 2, "numeric",
+	"sample_inclusion_fname", "c", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -39,6 +40,7 @@ usage = paste(
 	"	[-o <output file root name, default is input file base name>]\n",
 	"	[-d <euc/wrd/man/bray/horn/bin/gow/tyc/minkp5/minkp3, default =", DEF_DISTTYPE, ">]\n",
 	"	[-k <max num of clusters to split into, default =", DEF_NUM_CLUS, ">\n",
+	"	[-c <sample inClusion filename>]\n",
 	"\n",
 	"This script will:\n",
 	"	1.) Load metadata.\n",
@@ -87,6 +89,12 @@ ModelFile="";
 if(length(opt$model_filename)){
 	ModelFile=opt$model_filename;
 }
+
+SampleIncFname="";
+if(length(opt$sample_inclusion_fname)){
+        SampleIncFname=opt$sample_inclusion_fname;
+}
+
 
 ###############################################################################
 # See http://www.mothur.org/wiki/Thetayc for formula
@@ -474,6 +482,16 @@ cat("\n");
 cat("Loading summary table...\n");
 counts_mat=load_summary_table(InputFileName);
 
+if(SampleIncFname!=""){
+        cat("Loading sample inclusion list...\n");
+        samp_incl_list=scan(SampleIncFname, "character");
+        sumtab_samp_ids=rownames(counts_mat);
+        shared_samp_ids=intersect(samp_incl_list, sumtab_samp_ids);
+        num_shared=length(shared_samp_ids);
+        cat("Num samples overlapping summary table and inclusion list: ", num_shared, "\n");
+        counts_mat=counts_mat[shared_samp_ids,,drop=F];
+}
+
 # Normalize counts
 cat("Normalizing counts...\n");
 norm_mat=normalize(counts_mat);
@@ -491,15 +509,18 @@ factor_names=colnames(all_factors);
 
 # Create dummy variables out of factors
 if(ModelFile!=""){
+	cat("Creating Model Matrix out of variables in: ", ModelFile, "\n");
 	model_var=scan(ModelFile, what=character());
 	print(model_var);
 	ModelString=paste(model_var, collapse="+");	
 }
 if(ModelString==""){
+	cat("Creating Model Matrix out of all variables in: ", InputFactorFile, "\n");
 	ModelString=paste(paste(colnames(all_factors), collapse="+"));
 }
+
+cat("Model String: ", ModelString, "\n", sep="");
 all_factors=model.matrix(as.formula(paste("~", ModelString, "-1")), data=all_factors);
-print(all_factors);
 
 ###############################################################################
 
