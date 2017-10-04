@@ -23,8 +23,8 @@ usage = paste (
 	"	-i <Input summary_table.tsv file>\n",
 	"	[-o <Output filename root>]\n",
 	"	-p <input grouP table tsv file>\n",
-	"	-s <column of Sample identifiers in group table>\n",
-	"	-r <Column of gRoup identifiers in group table>\n",
+	"	-s <column of Sample identifiers in group table, starting from column 1>\n",
+	"	-r <Column of gRoup identifiers in group table, starting from column 1>\n",
 	"	[-f (force split to finish even on ID mismatch error)\n",
 	"\n",
 	"This script will read in a summary_table and a group table\n",
@@ -74,6 +74,9 @@ ofnr_components=strsplit(OutputFileNameRoot, "/")[[1]];
 num_ofnr_comp=length(ofnr_components);
 
 OutputRootDir=paste(head(ofnr_components, num_ofnr_comp-1), collapse="/");
+if(OutputRootDir==""){
+	OutputRootDir="./";
+}
 OutputRootFname=ofnr_components[num_ofnr_comp];
 
 ForceOnError=ifelse(length(opt$force_on_error), T, F);
