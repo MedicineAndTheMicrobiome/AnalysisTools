@@ -385,7 +385,7 @@ if(TestingMode){
 }else{
 	rand="";
 }
-pdf(paste(OutputRoot, rand, ".div_reg.pdf", sep=""), height=11, width=8.5);
+pdf(paste(OutputRoot, rand, ".div_reg.pdf", sep=""), height=14, width=8.5);
 
 # Output the factor correlations
 if(nrow(factor_correlations)>0){
@@ -645,6 +645,92 @@ plot_diversity_with_factors=function(raw, factors, model_string){
 	}
 }
 
+###############################################################################
+
+plot_overlapping_histograms=function(raw, factors, model_string, title){
+
+	orig.par=par(no.readonly=T);
+	palette(c(
+		"red",
+		"green",
+		"blue",
+		"orange",
+		"purple",
+		"black",
+		"brown",
+		"darkgoldenrod3"
+	));
+
+	# Extract out predictors
+	predictor_string=strsplit(model_string, "~")[[1]][2];
+	pred_arr=strsplit(predictor_string, "\\+")[[1]];
+	pred_arr=gsub(" ", "", pred_arr);
+	num_pred=length(pred_arr);
+	num_values=length(raw);
+	raw_range=range(raw);
+
+	cat("Num Predictors:", num_pred, "\n");
+	cat("Range: ", raw_range[1], " - ", raw_range[2], "\n");
+
+	factor_names=colnames(factors);
+
+	par(mfrow=c(4,1));
+
+	for(pix in 1:num_pred){
+		cur_pred=pred_arr[pix];
+		cat("  Working on: ", cur_pred, "\n");
+
+		if(any(cur_pred==factor_names)){
+
+			# Get levels for each value
+			cur_fact_val=factors[,cur_pred];
+			is_factor=is.factor(cur_fact_val);
+			if(is_factor){
+
+				#num_bins=nclass.Sturges(raw)*2;			
+				#overall_hist=hist(raw, breaks=num_bins, plot=F);
+				#print(overall_hist);
+				#cat("  Num bins: ", num_bins, "\n");
+
+				levels=levels(cur_fact_val);
+				num_levels=length(levels);
+				
+				# Compute the density for each level
+				dens_list=list();
+				max_dens=0;
+				for(lix in 1:num_levels){
+					level_val=raw[cur_fact_val==levels[lix]];
+					#hist_list[[levels[lix]]]=hist(level_val, breaks=overall_hist$breaks, plot=F);
+					dens_list[[lix]]=density(level_val);
+					max_dens=max(max_dens, dens_list[[lix]]$y);	
+				}
+
+				# Plot the legend for each factor
+				plot(0,0, type="n", xlim=c(0,1), ylim=c(0,1), xlab="", ylab="", xaxt="n", yaxt="n", bty="n");
+				legend(0,1, legend=levels, fill=1:num_levels, bty="n");
+
+				# Open a blank plot
+				plot(0,0, type="n", xlim=raw_range, ylim=c(0,max_dens), 
+					main=cur_pred,
+					xlab=title, ylab="Density");
+
+				# Draw the curves for each factor level
+				for(lix in 1:num_levels){
+					points(dens_list[[lix]], type="l", col=lix);
+				}
+
+			}else{
+				cat("Not plotting continuous metadata.\n");
+			}
+		}else{
+			cat("Not ploting interactions...\n");
+		}
+	}
+
+	par(orig.par);
+	
+}
+
 ##############################################################################
 
 # Matrix to store R^2's
@@ -683,6 +769,7 @@ for(i in 1:num_div_idx){
 
 	raw=div_mat[, div_names[i]];
 	plot_diversity_with_factors(raw, factors, model_string);
+	plot_overlapping_histograms(raw, factors, model_string, title=div_names[i]);
 
 	trans=transformed[, div_names[i]];
 	fit=lm(as.formula(model_string), data=factors);
