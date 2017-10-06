@@ -13,8 +13,8 @@ library('nnet');
 
 DEF_DISTTYPE="euc";
 DEF_NUM_TOP_CAT=35;
-DEF_NUM_CLUS=8;
 DEF_SPLIT_CHAR=";";
+DEF_NUM_CLUS=-1;
 DEF_COLUMN=1;
 RM_NA_TRIALS=10000*64;
 
@@ -42,7 +42,7 @@ usage = paste(
 	"\n",
 	"	[-o <output file root name, default is input file base name>]\n",
 	"	[-d <euc/wrd/man/bray/horn/bin/gow/tyc/minkp5/minkp3, default =", DEF_DISTTYPE, ">]\n",
-	"	[-k <max num of clusters to split into, default =", DEF_NUM_CLUS, ">\n",
+	"	[-k <max num of clusters to split into, default = ceiling(log2(num_samples))>\n",
 	"	[-r <reference file>]\n",
 	"	[-q <required variables>]\n",
 	"\n",
@@ -759,6 +759,9 @@ full_dist_mat=compute_dist(norm_mat, dist_type);
 hcl=hclust(full_dist_mat, method="ward.D2");
 
 # Find height where cuts are made
+if(max_clusters==-1){
+	max_clusters=ceiling(log(num_shared_samples, 2));
+}
 cut_midpoints=numeric(max_clusters);
 for(k in 2:max_clusters){
 	cut_midpoints[k]=find_height_at_k(hcl, k);
