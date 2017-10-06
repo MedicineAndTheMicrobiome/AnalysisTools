@@ -12,10 +12,10 @@ library('plotrix');
 
 DEF_DISTTYPE="euc";
 DEF_NUM_TOP_CAT=35;
-DEF_NUM_CLUS=8;
+DEF_NUM_CLUS=-1;
 DEF_SPLIT_CHAR=";";
 
-DEF_NUM_BS=160;
+DEF_NUM_BS=320;
 
 params=c(
 	"input_summary_table", "i", 1, "character",
@@ -455,7 +455,7 @@ full_dist_mat=compute_dist(norm_mat, dist_type);
 hcl=hclust(full_dist_mat, method="ward.D2");
 
 # Find height where cuts are made
-max_clusters=min(as.integer((num_samples-1)*2/3), 30);
+max_clusters=ceiling(log(num_samples, 2));
 cat("Max Clusters to compute: ", max_clusters, "\n");
 cut_midpoints=numeric(max_clusters);
 for(k in 2:max_clusters){
@@ -548,7 +548,7 @@ for(num_cl in 2:max_clusters){
         tweaked_dendro=dendrapply(orig_dendr, color_denfun_bySample);
         tweaked_dendro=dendrapply(tweaked_dendro, text_scale_denfun);
 
-        plot(tweaked_dendro, horiz=F);
+        plot(tweaked_dendro, horiz=F, lwd=2);
         for(cl_ix in 1:num_cl){
                 lab_size=3/ceiling(log10(cl_ix+1));
                 axis(side=1, outer=T, at=grp_mids[cl_ix], labels=cl_ix, cex.axis=lab_size, col.ticks=cl_ix,
@@ -568,9 +568,9 @@ for(num_cl in 2:max_clusters){
         # Generate MDS plots
         par(oma=c(0,0,4,0));
         par(mar=c(5.1,4.1,4.1,2.1));
-        plot(nonparm_mds_res, col=memberships, xlab="Dim 1", ylab="Dim 2", main="non-metric MDS");
+        plot(nonparm_mds_res, col=memberships, xlab="Dim 1", ylab="Dim 2", main="non-metric MDS", cex=2);
         plot(classic_mds_res, type="n", col=memberships, xlab="Dim 1", ylab="Dim 2", main="classical MDS");
-        points(classic_mds_res, col=memberships);
+        points(classic_mds_res, col=memberships, cex=2);
 
         # MDS Legend
         par(mar=c(0,0,0,0));
