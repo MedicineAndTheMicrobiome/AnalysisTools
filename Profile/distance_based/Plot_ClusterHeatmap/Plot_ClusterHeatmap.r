@@ -13,7 +13,7 @@ library('nnet');
 
 DEF_DISTTYPE="euc";
 DEF_NUM_TOP_CAT=35;
-DEF_NUM_CLUS=10;
+DEF_NUM_CLUS=-1;
 DEF_SPLIT_CHAR=";";
 DEF_COLUMN=1;
 
@@ -603,6 +603,10 @@ full_dist_mat=compute_dist(norm_mat, dist_type);
 # Generate hierarchical clustering
 cat("Clustering...\n");
 hcl=hclust(full_dist_mat, method="ward.D2");
+
+if(max_clusters==-1){
+	max_clusters=ceiling(log(num_shared_samples, 2));
+}
 
 # Find height where cuts are made
 cat("Finding Midpoints...\n");
