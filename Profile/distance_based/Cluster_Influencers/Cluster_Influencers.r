@@ -12,7 +12,7 @@ library('plotrix');
 
 DEF_DISTTYPE="euc";
 DEF_NUM_TOP_CAT=35;
-DEF_NUM_CLUS=8;
+DEF_NUM_CLUS=-1;
 DEF_SPLIT_CHAR=";";
 
 params=c(
@@ -479,6 +479,9 @@ dist_mat_list[["full"]]=full_dist_mat;
 hcl=hclust(full_dist_mat, method="ward.D2");
 
 # Find height where cuts are made
+if(max_clusters==-1){
+	max_clusters=ceiling(log(num_samples,2));
+}
 cut_midpoints=numeric(max_clusters);
 for(k in 2:max_clusters){
         cut_midpoints[k]=find_height_at_k(hcl, k);
