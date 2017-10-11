@@ -292,9 +292,12 @@ write_summary_file(new_summary_table, output_fname);
 #print(full_mapping_table);
 collapse_entries=function(in_mat){
 	num_col=ncol(in_mat);
+	if(num_col==0){
+		return(in_mat);
+	}
 	collapsed=character(num_col);
 	for(i in 1:num_col){
-		col_val=gsub("^ *", "", in_mat[,i]);
+		col_val=gsub("^ *", "", in_mat[,i, drop=F]);
 		collapsed[i]=paste(unique(col_val), collapse=";");
 	}
 	return(collapsed);
