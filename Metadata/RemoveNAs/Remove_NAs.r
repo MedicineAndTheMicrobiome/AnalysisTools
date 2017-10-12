@@ -203,6 +203,31 @@ rem_missing_var_from_modelstring=function(model_string, kept_variables){
 
 }
 
+get_var_from_modelstring=function(model_string){
+
+	# Split formula into linear components
+	formula_parts=strsplit(model_string, "~")[[1]];
+	if(length(formula_parts==2)){
+		rhs=formula_parts[2];		
+	}else{
+		rhs=formula_parts[1];
+	}
+
+	lin_comp_arr=strsplit(rhs, "\\+")[[1]];
+
+	# Split interaction terms into main effects
+	variables=character();
+	for(lin_comp in lin_comp_arr){
+		int_term_arr=unique(strsplit(lin_comp, "[:\\*]")[[1]]);
+		int_term_arr=gsub("^\\s+","", int_term_arr);
+		int_term_arr=gsub("\\s+$","", int_term_arr);
+		variables=c(int_term_arr, variables);
+	}
+
+	return(unique(variables));
+
+}
+
 # rem_missing_var_from_modelstring("apples+oranges+apples*oranges+grapes+grapes:oranges+grapes*oranges", c("apples", "oranges"));
 
 ###############################################################################
