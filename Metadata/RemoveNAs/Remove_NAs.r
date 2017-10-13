@@ -183,8 +183,20 @@ remove_sample_or_factors_wNA=function(factors, num_trials=500000, verbose=T){
 
 rem_missing_var_from_modelstring=function(model_string, kept_variables){
 
+	model_string=gsub("\\s+","", model_string);
+	# In case LHS was specified removed it
+	formula_parts=strsplit(model_string, "~")[[1]];
+	if(length(formula_parts==2)){
+		rhs=formula_parts[2];		
+		lhs=formula_parts[1];
+	}else{
+		rhs=formula_parts[1];
+		lhs="";
+	}
+
 	# Split formula into linear components
-	lin_comp_arr=strsplit(model_string, "\\+")[[1]];
+	lin_comp_arr=strsplit(rhs, "\\+")[[1]];
+	print(lin_comp_arr);
 
 	# Split interaction terms into main effects
 	kept_comp=character();
@@ -197,15 +209,20 @@ rem_missing_var_from_modelstring=function(model_string, kept_variables){
 		}
 	}
 
-	# Rebuilt model string
-	model_string=paste(kept_comp, collapse="+");
+	# Rebuild model string
+	model_string=paste(lhs, " ~ ", paste(kept_comp, collapse=" + "), sep="");
 	return(model_string);
 
 }
 
+rem_missing_var_from_modelstring("this ~ is + a + a*test+ b", c("is"))
+
+
 get_var_from_modelstring=function(model_string){
 
-	# Split formula into linear components
+	model_string=gsub("\\s+","", model_string);
+
+	# In case LHS was specified removed it
 	formula_parts=strsplit(model_string, "~")[[1]];
 	if(length(formula_parts==2)){
 		rhs=formula_parts[2];		
@@ -213,6 +230,8 @@ get_var_from_modelstring=function(model_string){
 		rhs=formula_parts[1];
 	}
 
+	# Split formula into linear components
+	rhs=gsub("\\s+","", rhs);
 	lin_comp_arr=strsplit(rhs, "\\+")[[1]];
 
 	# Split interaction terms into main effects
