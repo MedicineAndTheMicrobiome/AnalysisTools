@@ -8,9 +8,12 @@ library('getopt');
 library(car);
 options(useFancyQuotes=F);
 
+source('~/git/AnalysisTools/Metadata/RemoveNAs/Remove_NAs.r');
+
 params=c(
 	"summary_file", "s", 1, "character",
 	"factors", "f", 1, "character",
+	"model_filename", "M", 2, "character",
 	"reference_levels", "r", 2, "character",
 	"outputroot", "o", 2, "character",
 	"model_formula", "m", 2, "character",
@@ -24,6 +27,7 @@ usage = paste(
 	"\nUsage:\n", script_name, "\n",
 	"	-s <summary file table>\n",
 	"	-f <factors>\n",
+	"	-M <model variables in a list file>\n",
 	"	[-r <reference levels file>]\n",
 	"	[-o <output filename root>]\n",
 	"	[-m \"<model formula string>\"]\n",
@@ -67,6 +71,11 @@ if(!length(opt$model_formula)){
 	ModelFormula=opt$model_formula;
 }
 
+ModelFilename="";
+if(length(opt$model_filename)){
+        ModelFilename=opt$model_filename;
+}
+
 SummaryFile=opt$summary_file;
 FactorsFile=opt$factors;
 
@@ -78,13 +87,6 @@ cat("Reference Levels File: ", ReferenceLevelsFile, "\n", sep="");
 cat("\n");
 
 TestingMode=ifelse(length(opt$testing_flag)>0, T, F);
-
-if(ModelFormula!=""){
-	cat("Model Formula: ", ModelFormula, "\n", sep="");
-
-	RegressionFormula=gsub("\\+\\s*Error\\(.*\\)", "", ModelFormula);
-	cat("Regression Formula: ", RegressionFormula, "\n", sep="");
-}
 
 ##############################################################################
 
@@ -339,6 +341,48 @@ normalized=normalized[shared_sample_ids,];
 num_samples=nrow(normalized);
 factors=factors[shared_sample_ids,, drop=F];
 
+# Build model and select variables
+if(ModelFormula!=""){
+	cat("Model Formula: ", ModelFormula, "\n", sep="");
+	model_string=paste("raw ~ ", ModelFormula);
+}
+
+if(ModelFilename!=""){
+	cat("Model Variables Filename: ", ModelFilename, "\n");
+	variables=scan(ModelFilename, what=character(), comment.char="#");
+	shared=intersect(variables, factor_names);
+	if(length(shared)!=length(variables)){
+		cat("Missing variables specified in Model File:\n");
+		print(setdiff(variables, shared));
+	}
+	model_string=paste("raw ~", paste(shared,  collapse=" + "), sep="");
+}else{
+	model_string= paste("raw ~", 
+		paste(factor_names, collapse=" + "));
+}
+
+cat("Model String used for Regression: \n");
+print(model_string);
+model_var=get_var_from_modelstring(model_string);
+print(model_var);
+factors=factors[,model_var, drop=F];
+
+# Handle NAs
+factors=remove_sample_or_factors_wNA_parallel(factors, required=NULL, num_trials=6400, num_cores=64, outfile=paste(OutputRoot, ".noNAs", sep=""));
+#factors=remove_sample_or_factors_wNA_parallel(factors, required=NULL, num_trials=640000, num_cores=64, outfile=paste(OutputRoot, ".noNAs", sep=""));
+samp_wo_nas=rownames(factors);
+factor_names=colnames(factors);
+num_factors=length(factor_names);
+normalized=normalized[samp_wo_nas,];
+num_samples=length(samp_wo_nas);
+
+print(model_string);
+print(factor_names);
+model_string=rem_missing_var_from_modelstring(model_string, factor_names);
+cat("New Model String with Factors with NAs removed:\n");
+print(model_string);
+
+
 ##############################################################################
 
 plot_text=function(strings){
@@ -429,6 +473,8 @@ for(i in 1:num_div_idx){
 mtext("Sample Diversity Indices Distributions", outer=T);
 
 ##############################################################################
+
+##############################################################################
 # Perform Box-Cox transformation
 
 lambda=numeric(num_div_idx);
@@ -445,15 +491,6 @@ for(i in 1:num_div_idx){
 
 	raw=div_mat[, div_names[i]];
 
-	if(ModelFormula==""){
-		model_string= paste("raw ~", 
-			paste(factor_names, collapse=" + "));
-	}else{
-		model_string= paste("raw ~", RegressionFormula);
-	}
-
-	#cat("Model used in Box-Cox transformation: ", model_string, "\n", sep="");
-
 	# Look for lambda approximately
 	lambda_found=FALSE;
 	lambda_start=-BOX_COX_SEARCH_RANGE;
@@ -466,6 +503,7 @@ for(i in 1:num_div_idx){
 		# Perform trial boxcox search
 		cat("[", search_trial, "] Search range: ", lambda_start, " to ", lambda_end, "\n", sep="");
 		cat("Model: ", model_string, "\n");
+
 		bc=boxcox(as.formula(model_string), data=factors, 
 			lambda=seq(lambda_start, lambda_end, length.out=SEARCH_FREQUENCY),
 			plotit=FALSE
@@ -511,6 +549,7 @@ for(i in 1:num_div_idx){
 }
 mtext("Box-Cox Lambda Intervals", outer=T);
 
+cat("Plotting transformed histograms...\n");
 par(mfrow=c(3,2));
 par(oma=c(1, 1, 1, 1));
 par(mar=c(5,4,4,2));
@@ -529,6 +568,7 @@ text=character();
 text[1]="Reference factor levels:";
 text[2]="";
 
+cat("Outputing factor levels...\n");
 for(i in 1:num_factors){
 	fact_levels=levels(factors[,i]);
 	if(!is.null(fact_levels)){
@@ -549,7 +589,7 @@ plot_text(text);
 
 ##############################################################################
 
-plot_diversity_with_factors=function(raw, factors, model_string){
+plot_diversity_with_factors=function(raw, factors, model_string, stat_name){
 
 	palette(c(
 		"red",
@@ -614,35 +654,51 @@ plot_diversity_with_factors=function(raw, factors, model_string){
 	#print(adj_pos);
 
 	extra_sample_space=2;
-
+	predictors_per_plot=5;
+	pred_names=colnames(factors);
 	raw_adj_range=range(c(raw, adj_pos));
-	plot(0, xlab="", ylab=div_names[i], type="n", xaxt="n", main=div_names[i],
-		ylim=c(raw_adj_range[1], raw_adj_range[2]),
-		xlim=c(-1, num_pred+1+extra_sample_space));
 
-	for(i in 1:num_values){
-		lines(x=c(-1, -.75), y=c(raw[i], raw[i]));
-		lines(x=c(-.75, -.25), y=c(raw[i], adj_pos[i]));
+	num_plots=num_pred %/% predictors_per_plot;
 
-	}
-	# Label samples
-	text(zeros-.20, adj_pos, label=names(raw), pos=4, cex=.5);
+	for(plot_ix in 1:num_plots){
+		# Plot the samples on the y axis
+		plot(0, xlab="", ylab=stat_name, type="n", xaxt="n", main=stat_name,
+			ylim=c(raw_adj_range[1], raw_adj_range[2]),
+			xlim=c(-1, predictors_per_plot+1+extra_sample_space));
 
-	# Label predictors
-	tot_levels=0;	
-	for(j in 1:num_pred){
-		if(!length(grep(":", pred_arr[j]))){
-			factor=as.factor(factors[, pred_arr[j]]);
+		# Plot 
+		for(i in 1:num_values){
+			lines(x=c(-1, -.75), y=c(raw[i], raw[i]));
+			lines(x=c(-.75, -.25), y=c(raw[i], adj_pos[i]));
 
-			abbreviate=substr(factors[,pred_arr[j]], 1, 10);
+		}
+		# Label samples
+		text(zeros-.20, adj_pos, label=names(raw), pos=4, cex=.5);
 
-			text(zeros+j+extra_sample_space, adj_pos, label=abbreviate, 
-				col=tot_levels+as.numeric(factor),
-				cex=.5
-				);
-			tot_levels=tot_levels+length(levels(factor));
+		# Label predictors
+		tot_levels=0;	
+		for(j in 1:predictors_per_plot){
+			pred_ix=((plot_ix-1)*predictors_per_plot)+(j-1)+1;
+			if(!length(grep(":", pred_arr[pred_ix]))){
+				factor=as.factor(factors[, pred_arr[pred_ix]]);
+
+				abbreviate=substr(factors[,pred_arr[pred_ix]], 1, 10);
+
+				text(zeros+j+extra_sample_space, adj_pos, label=abbreviate, 
+					col=tot_levels+as.numeric(factor),
+					cex=.5
+					);
+				tot_levels=tot_levels+length(levels(factor));
+			}
+
+			# label predictor/factor name
+			lab_cex=min(1, 8/nchar(pred_names[pred_ix]));
+			text(j+extra_sample_space, raw_adj_range[2], 
+				pred_names[pred_ix], cex=lab_cex*.75, col="black", family="", font=2, pos=3);
 		}
 	}
+
+
 }
 
 ###############################################################################
@@ -674,7 +730,9 @@ plot_overlapping_histograms=function(raw, factors, model_string, title){
 
 	factor_names=colnames(factors);
 
-	par(mfrow=c(4,1));
+	#par(mfrow=c(4,1));
+	layout_mat=matrix(c(1,1,2,3,3,4,5,5,6), ncol=1);
+	layout(layout_mat);
 
 	for(pix in 1:num_pred){
 		cur_pred=pred_arr[pix];
@@ -701,23 +759,39 @@ plot_overlapping_histograms=function(raw, factors, model_string, title){
 				for(lix in 1:num_levels){
 					level_val=raw[cur_fact_val==levels[lix]];
 					#hist_list[[levels[lix]]]=hist(level_val, breaks=overall_hist$breaks, plot=F);
-					dens_list[[lix]]=density(level_val);
-					max_dens=max(max_dens, dens_list[[lix]]$y);	
+					num_samp_at_level=length(level_val);
+					if(num_samp_at_level==0){
+						dens_list[[lix]]=NULL;
+					}else{
+						if(num_samp_at_level==1){
+							level_val=c(level_val, level_val);
+						}
+
+						dens_list[[lix]]=density(level_val);
+						max_dens=max(max_dens, dens_list[[lix]]$y);	
+					}
 				}
 
-				# Plot the legend for each factor
-				plot(0,0, type="n", xlim=c(0,1), ylim=c(0,1), xlab="", ylab="", xaxt="n", yaxt="n", bty="n");
-				legend(0,1, legend=levels, fill=1:num_levels, bty="n");
-
 				# Open a blank plot
+				par(mar=c(4,3,2,1));
 				plot(0,0, type="n", xlim=raw_range, ylim=c(0,max_dens), 
 					main=cur_pred,
-					xlab=title, ylab="Density");
+					xlab=title, ylab="Density",
+					bty="l");
 
 				# Draw the curves for each factor level
 				for(lix in 1:num_levels){
-					points(dens_list[[lix]], type="l", col=lix);
+					dens=dens_list[[lix]];
+					if(!is.null(dens)){
+						points(dens, type="l", col=lix);
+					}
 				}
+
+				# Plot the legend for each factor
+				par(mar=c(0,0,0,0));
+				plot(0,0, type="n", xlim=c(0,1), ylim=c(0,1), xlab="", ylab="", xaxt="n", yaxt="n", bty="n");
+				legend(0,1, legend=levels, fill=1:num_levels, bty="n");
+
 
 			}else{
 				cat("Not plotting continuous metadata.\n");
@@ -734,6 +808,7 @@ plot_overlapping_histograms=function(raw, factors, model_string, title){
 ##############################################################################
 
 # Matrix to store R^2's
+cat("Allocating R^2 Matrix...\n");
 rsqrd_mat=matrix(0, nrow=num_div_idx, ncol=2);
 colnames(rsqrd_mat)=c("R^2", "Adj. R^2");
 rownames(rsqrd_mat)=div_names;
@@ -753,6 +828,7 @@ model_matrix=model.matrix(as.formula(model_string), data=factors);
 num_coeff=ncol(model_matrix);
 
 # Matrices to store coefficents and p-values
+cat("Allocating coeff and pval matrices...\n");
 coeff_matrix=matrix(NA, nrow=num_coeff, ncol=num_div_idx);
 pval_matrix=matrix(NA, nrow=num_coeff, ncol=num_div_idx);
 
@@ -763,12 +839,13 @@ colnames(pval_matrix)=div_names;
 rownames(pval_matrix)=colnames(model_matrix);
 
 
+# Fit regression model and ANOVA analysis
 for(i in 1:num_div_idx){
 
 	cat("Working on: ", div_names[i], "\n", sep="");
 
 	raw=div_mat[, div_names[i]];
-	plot_diversity_with_factors(raw, factors, model_string);
+	plot_diversity_with_factors(raw, factors, model_string, div_names[i]);
 	plot_overlapping_histograms(raw, factors, model_string, title=div_names[i]);
 
 	trans=transformed[, div_names[i]];
