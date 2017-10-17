@@ -197,7 +197,9 @@ rem_missing_var_from_modelstring=function(model_string, kept_variables){
 	model_string=gsub("\\s+","", model_string);
 	# In case LHS was specified removed it
 	formula_parts=strsplit(model_string, "~")[[1]];
-	if(length(formula_parts)==2){
+	num_parts=length(formula_parts);
+
+	if(num_parts==2){
 		rhs=formula_parts[2];		
 		lhs=formula_parts[1];
 	}else{
@@ -207,7 +209,6 @@ rem_missing_var_from_modelstring=function(model_string, kept_variables){
 
 	# Split formula into linear components
 	lin_comp_arr=strsplit(rhs, "\\+")[[1]];
-	print(lin_comp_arr);
 
 	# Split interaction terms into main effects
 	kept_comp=character();
@@ -221,7 +222,13 @@ rem_missing_var_from_modelstring=function(model_string, kept_variables){
 	}
 
 	# Rebuild model string
-	model_string=paste(lhs, " ~ ", paste(kept_comp, collapse=" + "), sep="");
+	if(num_parts==2){
+		# Attach response (LHS) to predictors (RHS)
+		model_string=paste(lhs, " ~ ", paste(kept_comp, collapse=" + "), sep="");
+	}else{
+		# Only build RHS
+		model_string=paste(kept_comp, collapse=" + ");
+	}		
 	return(model_string);
 
 }
