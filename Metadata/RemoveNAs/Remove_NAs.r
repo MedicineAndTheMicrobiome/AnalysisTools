@@ -22,24 +22,9 @@ remove_sample_or_factors_wNA=function(factors, num_trials=500000, verbose=T){
 		cat("Removing columns/factors with no variation/information...\n");
 	}
 	# Remove columns with no information
-	no_info=c();
-	cnames=colnames(factors);
-	for(i in 1:num_col){
-		val=factors[,i];
-		val=val[!is.na(val)];
-		uniqs=unique(val);
-		if(length(uniqs)==1){
-			no_info=c(no_info, i);
-			if(verbose){
-				cat(cnames[i], ": Has no useful information.  It is all:\n");
-				print(uniqs);
-			}
-		}
-	}
-	if(length(no_info)>0){
-		factors=factors[,-no_info];
-		num_col=ncol(factors);
-	}
+	factors=remove_no_variation_factors(factors, verbose);
+	num_col=ncol(factors);
+        num_row=nrow(factors);
 
         # Find rows and columns with NAs
         row_na_ix=which(apply(factors, 1, anyNA));
@@ -167,6 +152,8 @@ remove_sample_or_factors_wNA=function(factors, num_trials=500000, verbose=T){
                 fact_subset=fact_subset[,-rm_col,drop=F];
         }
 
+	fact_subset=remove_no_variation_factors(fact_subset, verbose);
+
 	if(verbose){
 		cat("Categories after:\n");
 		print(colnames(fact_subset));
@@ -180,6 +167,30 @@ remove_sample_or_factors_wNA=function(factors, num_trials=500000, verbose=T){
 }
 
 ###############################################################################
+
+remove_no_variation_factors=function(factors, verbose=T){
+	no_info=c();
+	cnames=colnames(factors);
+	num_col=ncol(factors);
+
+	for(i in 1:num_col){
+		val=factors[,i];
+		val=val[!is.na(val)];
+		uniqs=unique(val);
+		if(length(uniqs)==1){
+			no_info=c(no_info, i);
+			if(verbose){
+				cat(cnames[i], ": Has no useful information.  It is all:\n");
+				print(uniqs);
+			}
+		}
+	}
+	if(length(no_info)>0){
+		factors=factors[,-no_info, drop=F];
+	}
+
+	return(factors);
+}
 
 rem_missing_var_from_modelstring=function(model_string, kept_variables){
 
