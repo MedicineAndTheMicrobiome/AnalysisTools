@@ -197,7 +197,7 @@ rem_missing_var_from_modelstring=function(model_string, kept_variables){
 	model_string=gsub("\\s+","", model_string);
 	# In case LHS was specified removed it
 	formula_parts=strsplit(model_string, "~")[[1]];
-	if(length(formula_parts==2)){
+	if(length(formula_parts)==2){
 		rhs=formula_parts[2];		
 		lhs=formula_parts[1];
 	}else{
