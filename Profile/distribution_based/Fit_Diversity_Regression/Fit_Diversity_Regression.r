@@ -589,7 +589,25 @@ plot_text(text);
 
 ##############################################################################
 
-plot_diversity_with_factors=function(raw, factors, model_string, stat_name){
+bin_continuous_values=function(values, num_bins=10){
+        minv=min(values);
+        maxv=max(values);
+        range=maxv-minv;
+        # Map values between 0 and 1
+        prop=(values-minv)/range;
+        # Scale value up to bin, and round, to quantize
+        closest=round(prop*(num_bins-1),0);
+        log10range=log10(range);
+        trunc=signif(closest/(num_bins-1)*range+minv, 5)
+	bin_range=mean(diff(sort(unique(trunc))))/2;
+
+	lb=trunc-bin_range;
+	ub=trunc+bin_range;
+        # Remap values to original range and location
+        return(paste("(", lb, ", ", ub, ")", sep=""));
+}
+
+plot_diversity_with_factors=function(raw, factors, model_string, stat_name, bin_cont=5){
 
 	palette(c(
 		"red",
@@ -676,19 +694,29 @@ plot_diversity_with_factors=function(raw, factors, model_string, stat_name){
 		text(zeros-.20, adj_pos, label=names(raw), pos=4, cex=.5);
 
 		# Label predictors
-		tot_levels=0;	
 		for(j in 1:predictors_per_plot){
 			pred_ix=((plot_ix-1)*predictors_per_plot)+(j-1)+1;
 			if(!length(grep(":", pred_arr[pred_ix]))){
-				factor=as.factor(factors[, pred_arr[pred_ix]]);
 
-				abbreviate=substr(factors[,pred_arr[pred_ix]], 1, 10);
+				fact_val=factors[, pred_arr[pred_ix]];
+				uniq_val=unique(fact_val);
 
-				text(zeros+j+extra_sample_space, adj_pos, label=abbreviate, 
-					col=tot_levels+as.numeric(factor),
+				if(length(uniq_val)>=bin_cont && !is.factor(fact_val)){
+					factor=signif(fact_val, 4);
+					coloring=as.numeric(as.factor(bin_continuous_values(fact_val, num_bins=bin_cont)));
+				}else{
+					factor=as.factor(fact_val);
+					coloring=as.numeric(factor);
+				}
+
+				if(is.factor(factor)){
+					factor=substr(factor, 1, 10);
+				}
+
+				text(zeros+j+extra_sample_space, adj_pos, label=factor, 
+					col=coloring,
 					cex=.5
 					);
-				tot_levels=tot_levels+length(levels(factor));
 			}
 
 			# label predictor/factor name
@@ -703,7 +731,7 @@ plot_diversity_with_factors=function(raw, factors, model_string, stat_name){
 
 ###############################################################################
 
-plot_overlapping_histograms=function(raw, factors, model_string, title){
+plot_overlapping_histograms=function(raw, factors, model_string, title, bin_cont=5){
 
 	orig.par=par(no.readonly=T);
 	palette(c(
@@ -743,6 +771,14 @@ plot_overlapping_histograms=function(raw, factors, model_string, title){
 			# Get levels for each value
 			cur_fact_val=factors[,cur_pred];
 			is_factor=is.factor(cur_fact_val);
+
+			num_uniq=length(unique(cur_fact_val));
+			if(num_uniq>=bin_cont && !is_factor){
+				cur_fact_val=as.factor(bin_continuous_values(cur_fact_val, num_bins=bin_cont));
+				is_factor=T;
+                        }
+
+			print(cur_fact_val);
 			if(is_factor){
 
 				#num_bins=nclass.Sturges(raw)*2;			
@@ -752,9 +788,10 @@ plot_overlapping_histograms=function(raw, factors, model_string, title){
 
 				levels=levels(cur_fact_val);
 				num_levels=length(levels);
+				cat("Num Levels: ", num_levels, "\n");
 				
 				# Compute the density for each level
-				dens_list=list();
+				dens_list=list(num_levels);
 				max_dens=0;
 				for(lix in 1:num_levels){
 					level_val=raw[cur_fact_val==levels[lix]];
