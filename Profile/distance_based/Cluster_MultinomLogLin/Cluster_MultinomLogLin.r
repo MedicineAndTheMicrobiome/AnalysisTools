@@ -754,6 +754,11 @@ cat("done.\n");
 # Compute full distances
 cat("Computing distances...\n");
 full_dist_mat=compute_dist(norm_mat, dist_type);
+for(i in 1:length(full_dist_mat)){
+        if(full_dist_mat[i]==0){
+                full_dist_mat[i]=1e-323;
+        }
+}
 
 # Generate hierarchical clustering
 hcl=hclust(full_dist_mat, method="ward.D2");
