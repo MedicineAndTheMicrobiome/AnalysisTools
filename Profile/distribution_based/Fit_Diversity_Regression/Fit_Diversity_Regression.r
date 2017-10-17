@@ -775,64 +775,66 @@ plot_overlapping_histograms=function(raw, factors, model_string, title, bin_cont
 			num_uniq=length(unique(cur_fact_val));
 			if(num_uniq>=bin_cont && !is_factor){
 				cur_fact_val=as.factor(bin_continuous_values(cur_fact_val, num_bins=bin_cont));
-				is_factor=T;
-                        }
-
-			print(cur_fact_val);
-			if(is_factor){
-
-				#num_bins=nclass.Sturges(raw)*2;			
-				#overall_hist=hist(raw, breaks=num_bins, plot=F);
-				#print(overall_hist);
-				#cat("  Num bins: ", num_bins, "\n");
-
-				levels=levels(cur_fact_val);
-				num_levels=length(levels);
-				cat("Num Levels: ", num_levels, "\n");
-				
-				# Compute the density for each level
-				dens_list=list(num_levels);
-				max_dens=0;
-				for(lix in 1:num_levels){
-					level_val=raw[cur_fact_val==levels[lix]];
-					#hist_list[[levels[lix]]]=hist(level_val, breaks=overall_hist$breaks, plot=F);
-					num_samp_at_level=length(level_val);
-					if(num_samp_at_level==0){
-						dens_list[[lix]]=NULL;
-					}else{
-						if(num_samp_at_level==1){
-							level_val=c(level_val, level_val);
-						}
-
-						dens_list[[lix]]=density(level_val);
-						max_dens=max(max_dens, dens_list[[lix]]$y);	
-					}
-				}
-
-				# Open a blank plot
-				par(mar=c(4,3,2,1));
-				plot(0,0, type="n", xlim=raw_range, ylim=c(0,max_dens), 
-					main=cur_pred,
-					xlab=title, ylab="Density",
-					bty="l");
-
-				# Draw the curves for each factor level
-				for(lix in 1:num_levels){
-					dens=dens_list[[lix]];
-					if(!is.null(dens)){
-						points(dens, type="l", col=lix);
-					}
-				}
-
-				# Plot the legend for each factor
-				par(mar=c(0,0,0,0));
-				plot(0,0, type="n", xlim=c(0,1), ylim=c(0,1), xlab="", ylab="", xaxt="n", yaxt="n", bty="n");
-				legend(0,1, legend=levels, fill=1:num_levels, bty="n");
-
-
-			}else{
-				cat("Not plotting continuous metadata.\n");
+                        }else{
+				cur_fact_val=as.factor(cur_fact_val);
 			}
+
+			#num_bins=nclass.Sturges(raw)*2;			
+			#overall_hist=hist(raw, breaks=num_bins, plot=F);
+			#print(overall_hist);
+			#cat("  Num bins: ", num_bins, "\n");
+
+			levels=levels(cur_fact_val);
+			num_levels=length(levels);
+			print(cur_fact_val);
+			cat("Num Levels: ", num_levels, "\n");
+			
+			# Compute the density for each level
+			dens_list=list(num_levels);
+			level_samp_size=numeric();
+			max_dens=0;
+			for(lix in 1:num_levels){
+				level_val=raw[cur_fact_val==levels[lix]];
+				#hist_list[[levels[lix]]]=hist(level_val, breaks=overall_hist$breaks, plot=F);
+				num_samp_at_level=length(level_val);
+				level_samp_size[lix]=num_samp_at_level;
+				if(num_samp_at_level==0){
+					dens_list[[lix]]=NULL;
+				}else{
+					if(num_samp_at_level==1){
+						level_val=c(level_val, level_val);
+					}
+
+					dens_list[[lix]]=density(level_val);
+					max_dens=max(max_dens, dens_list[[lix]]$y);	
+				}
+			}
+
+			# Open a blank plot
+			par(mar=c(4,3,2,1));
+			plot(0,0, type="n", xlim=raw_range, ylim=c(0,max_dens), 
+				main=cur_pred,
+				xlab=title, ylab="Density",
+				bty="l");
+
+			# Draw the curves for each factor level
+			for(lix in 1:num_levels){
+				dens=dens_list[[lix]];
+				if(!is.null(dens)){
+					points(dens, type="l", col=lix);
+				}
+			}
+
+			# Plot the legend for each factor
+			legend_labels=character();
+			for(lix in 1:num_levels){
+				legend_labels[lix]=paste(levels[lix], " [n=", level_samp_size[lix], "] ", sep="");
+			}
+
+			par(mar=c(0,0,0,0));
+			plot(0,0, type="n", xlim=c(0,1), ylim=c(0,1), xlab="", ylab="", xaxt="n", yaxt="n", bty="n");
+			legend(0,1, legend=legend_labels, fill=1:num_levels, bty="n");
+
 		}else{
 			cat("Not ploting interactions...\n");
 		}
@@ -882,8 +884,8 @@ for(i in 1:num_div_idx){
 	cat("Working on: ", div_names[i], "\n", sep="");
 
 	raw=div_mat[, div_names[i]];
-	plot_diversity_with_factors(raw, factors, model_string, div_names[i]);
-	plot_overlapping_histograms(raw, factors, model_string, title=div_names[i]);
+	plot_diversity_with_factors(raw, factors, model_string, div_names[i], 6);
+	plot_overlapping_histograms(raw, factors, model_string, title=div_names[i], 6);
 
 	trans=transformed[, div_names[i]];
 	fit=lm(as.formula(model_string), data=factors);
