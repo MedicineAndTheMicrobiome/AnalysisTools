@@ -215,7 +215,7 @@ rem_missing_var_from_modelstring=function(model_string, kept_variables){
 
 }
 
-rem_missing_var_from_modelstring("this ~ is + a + a*test+ b", c("is"))
+#rem_missing_var_from_modelstring("this ~ is + a + a*test+ b", c("is"))
 
 
 get_var_from_modelstring=function(model_string){
