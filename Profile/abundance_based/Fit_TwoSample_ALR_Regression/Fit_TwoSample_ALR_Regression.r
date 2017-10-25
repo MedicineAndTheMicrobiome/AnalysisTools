@@ -401,11 +401,17 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 
 	# If range is not specified, find it based on the data
         if(is.na(plot_min)){
-                plot_min=min(mat);
+                plot_min=min(mat, na.rm=T);
         }
         if(is.na(plot_max)){
-                plot_max=max(mat);
+                plot_max=max(mat, na.rm=T);
         }
+
+	if(plot_min>=-1 && plot_max<=1){
+		fractions_only=T;	
+	}else{
+		fractions_only=F;
+	}
         cat("Plot min/max: ", plot_min, "/", plot_max, "\n");
 
 	# Get Label lengths
@@ -527,6 +533,15 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
                                         text_lab=sprintf("%i", mat[y,x]);
                                 }else{
                                         text_lab=sprintf(paste("%0.", deci_pts, "f", sep=""), mat[y,x]);
+					if(fractions_only){
+						if(!is.na(mat[y,x])){
+							if(mat[y,x]==-1 || mat[y,x]==1){
+								text_lab=as.integer(mat[y,x]);	
+							}else{
+								text_lab=gsub("0\\.","\\.", text_lab);
+							}
+						}
+					}
                                 }
                                 text(x-.5, y-.5, text_lab, srt=atan(num_col/num_row)/pi*180, cex=value.cex, font=2);
                         }
@@ -858,19 +873,24 @@ recon_factors=factors[shared_sample_ids,,drop=F];
 cat("Identifying samples/factors to keep with NAs...\n");
 num_samples_recon=nrow(recon_factors);
 num_factors_recon=ncol(recon_factors);
+num_samples_before_na_removal=num_samples_recon;
+num_factors_before_na_removal=num_factors_recon;
 factors_wo_nas=remove_sample_or_factors_wNA_parallel(recon_factors, 
 	required=required_arr, num_trials=640, num_cores=64, outfile=paste(OutputRoot, ".noNAs", sep=""));
 
 factor_names_wo_nas=colnames(factors_wo_nas);
 factor_sample_ids_wo_nas=rownames(factors_wo_nas);
+model_var_arr=intersect(model_var_arr, factor_names_wo_nas);
 
+# Subset pairing map based on factor sample IDs
 rownames(pairings_map)=pairings_map[,FactorSampleIDName];
 pairings_map=pairings_map[factor_sample_ids_wo_nas,];
 paired_responses=pairings_map[,1];
 paired_predictors=pairings_map[,2];
 paired_samples=sort(c(paired_responses, paired_predictors));
 
-normalized=normalized[factor_sample_ids_wo_nas,, drop=F];
+# Subset the normalized counts based on pairing map
+normalized=normalized[paired_samples,, drop=F];
 num_samples_wo_nas=nrow(factors_wo_nas);
 num_factors_wo_nas=ncol(factors_wo_nas);
 
@@ -879,22 +899,32 @@ num_factors_wo_nas=ncol(factors_wo_nas);
 #cat("\n");
 
 ##############################################################################
+# Prepping for ALR calculations
 
-if(num_top_taxa >= num_taxa){
-	num_top_taxa = (num_taxa-1);
-	cat("Number of taxa to work on was changed to: ", num_top_taxa, "\n");
+if(NumMaxALRVariables >= num_taxa){
+	NumMaxALRVariables = (num_taxa-1);
+	cat("Number of taxa to work on was changed to: ", NumMaxALRVariables, "\n");
+	
+	NumRespVariables=min(NumMaxALRVariables, NumRespVariables);
+	NumPredVariables=min(NumMaxALRVariables, NumPredVariables);
+
+	cat("Number of ALR Predictors to include: ", NumPredVariables, "\n");
+	cat("Number of ALR Responses to analyze: ", NumRespVariables, "\n");
 }
 
 ##############################################################################
 
 cat("\n");
-cat("Extracting Top categories: ", num_top_taxa, " from amongst ", ncol(normalized), "\n", sep="");
-cat_abundances=extract_top_categories(normalized, num_top_taxa);
+cat("Extracting Top categories: ", NumMaxALRVariables, " from amongst ", ncol(normalized), "\n", sep="");
+cat_abundances=extract_top_categories(normalized, NumMaxALRVariables);
 resp_alr_struct=additive_log_rato(cat_abundances);
 alr_categories_val=resp_alr_struct$transformed;
 alr_cat_names=colnames(alr_categories_val);
 
 plot_text(c(
+	paste("Num (Reconciled) Samples before NA removal: ", num_samples_before_na_removal, sep=""),
+	paste("Num Factors before NA removal: ", num_factors_before_na_removal, sep=""),
+	"",
 	"Acceptable Variables after NA Removal:",
 	"",
 	capture.output(print(factor_names_wo_nas)),
@@ -904,7 +934,7 @@ plot_text(c(
 ));
 
 plot_text(c(
-	paste("ALR Categories (Top ", num_top_taxa, ")", sep=""),
+	paste("ALR Categories (Top ", NumMaxALRVariables, ")", sep=""),
 	capture.output(print(alr_cat_names))
 ));
 
@@ -920,8 +950,154 @@ plot_text(c(
 ));
 plot_histograms(alr_categories_val);
 
-
 ##############################################################################
+
+# Order/Split the data....
+
+# Order the pairings map by response sample IDs
+rownames(pairings_map)=pairings_map[,ResponseName];
+sorted_response_ids=sort(rownames(pairings_map));
+pairings_map=pairings_map[sorted_response_ids,];
+
+# Get the ordered response and predictor sample IDs
+response_sample_ids=pairings_map[,ResponseName];
+predictor_sample_ids=pairings_map[,PredictorName];
+
+# Extract the response/predictor ALR and factors values in the right order
+response_alr=alr_categories_val[response_sample_ids,,drop=F];
+predictor_alr=alr_categories_val[predictor_sample_ids,,drop=F];
+factors=factors_wo_nas[pairings_map[,FactorSampleIDName],];
+
+#print(response_alr);
+#print(predictor_alr);
+#print(factors);
+
+
+# Store the results
+num_model_pred=length(model_var_arr);
+
+cov_model_string=paste(model_var_arr, collapse="+");
+mmat=model.matrix(as.formula(paste("~", cov_model_string, "-1")), data=as.data.frame(factors));
+cov_coeff_names=colnames(mmat);
+num_cov_coeff_names=length(cov_coeff_names);
+
+cat("Anticipated Coefficient Names:\n");
+print(cov_coeff_names);
+cat("\n");
+
+category_alr_coef_mat=matrix(NA, nrow=NumRespVariables, ncol=NumRespVariables,
+	dimnames=list(alr_cat_names, alr_cat_names));
+category_alr_pval_mat=matrix(NA, nrow=NumRespVariables, ncol=NumRespVariables,
+	dimnames=list(alr_cat_names, alr_cat_names));
+
+covariates_coef_mat  =matrix(NA, nrow=NumRespVariables, ncol=num_cov_coeff_names, 
+	dimnames=list(alr_cat_names, cov_coeff_names));
+covariates_pval_mat  =matrix(NA, nrow=NumRespVariables, ncol=num_cov_coeff_names, 
+	dimnames=list(alr_cat_names, cov_coeff_names));
+
+rsqrd_mat             =matrix(NA, nrow=NumRespVariables, ncol=2, 
+	dimnames=list(alr_cat_names[1:NumRespVariables], c("R^2", "Adj-R^2")));
+
+# Fit the regression model
+
+for(resp_ix in 1:NumRespVariables){
+	alr_resp=response_alr[,resp_ix,drop=F];
+	resp_cat_name=colnames(alr_resp);
+	alr_resp=as.vector(alr_resp);
+	
+	cat("Fitting: ", resp_cat_name, "\n");
+
+	if(resp_ix<=NumPredVariables){
+		# Response category is already in predictors
+		alr_pred=predictor_alr[,1:NumPredVariables];
+	}else{
+		# Include response category in predictor
+		alr_pred=cbind(predictor_alr[,resp_cat_name, drop=F], predictor_alr[,1:NumPredVariables]);
+	}
+	alr_pred_names=colnames(alr_pred);
+	
+	model_pred_df=as.data.frame(cbind(alr_pred, factors));
+
+	#print(resp);
+	#print(model_pred_df);
+	model_str=paste("alr_resp ~ ", paste(c(alr_pred_names,model_var_arr), collapse="+"), sep="");
+	cat("Model String: \n");
+	print(model_str);
+	lm_fit=lm(as.formula(model_str), data=model_pred_df);
+	sum_fit=summary(lm_fit);
+	#print(lm_fit);
+	plot_text(c(
+		paste(resp_cat_name, ":", sep=""),
+		"",
+		capture.output(print(sum_fit))
+		)
+	);
+
+	model_coef_names=setdiff(rownames(sum_fit$coefficients), "(Intercept)");
+
+	cat_names=intersect(model_coef_names, alr_pred_names);
+	category_alr_coef_mat[resp_cat_name, cat_names]=sum_fit$coefficients[cat_names,"Estimate"];
+	category_alr_pval_mat[resp_cat_name, cat_names]=sum_fit$coefficients[cat_names,"Pr(>|t|)"];
+
+	cat_names=intersect(model_coef_names, cov_coeff_names);
+	covariates_coef_mat[resp_cat_name, cat_names]=sum_fit$coefficients[cat_names,"Estimate"];
+	covariates_pval_mat[resp_cat_name, cat_names]=sum_fit$coefficients[cat_names,"Pr(>|t|)"];
+
+	rsqrd_mat[resp_cat_name, "R^2"]=sum_fit$r.squared;
+	rsqrd_mat[resp_cat_name, "Adj-R^2"]=sum_fit$adj.r.squared;
+
+	cat("*************************************************\n");
+
+}
+
+#print(category_alr_coef_mat);
+#print(category_alr_pval_mat);
+
+#print(covariates_coef_mat);
+#print(covariates_pval_mat);
+
+all.nas=apply(covariates_coef_mat, 2, function(x){all(is.na(x))});
+covariates_coef_mat=covariates_coef_mat[,!all.nas,drop=F];
+
+all.nas=apply(covariates_pval_mat, 2, function(x){all(is.na(x))});
+covariates_pval_mat=covariates_pval_mat[,!all.nas,drop=F];
+
+print(rsqrd_mat);
+
+#paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_is_hot=T, deci_pts=4,
+#       label_zeros=T, counts=F, value.cex=1,
+#        plot_col_dendr=F,
+#        plot_row_dendr=F
+
+par(oma=c(2,1,5,2));
+paint_matrix(category_alr_coef_mat, 
+	title=paste("Top ", NumPredVariables, " ", PredictorName," Predictor ALR Coefficients for Top ", NumRespVariables, " ", ResponseName, " Responses ALR", sep=""), 
+	deci_pts=2, value.cex=.8);
+mtext(PredictorName, side=1, cex=2, font=2, line=.75);
+mtext(ResponseName, side=4, cex=2, font=2, line=.75);
+
+paint_matrix(category_alr_pval_mat, plot_min=0, plot_max=1,
+	title=paste("Top ", NumPredVariables, " ", PredictorName," Predictor ALR P-Values for Top ", NumRespVariables, " ", ResponseName, " Responses ALR", sep=""), 
+	high_is_hot=F, deci_pts=2, value.cex=.8);
+mtext(PredictorName, side=1, cex=2, font=2, line=.75);
+mtext(ResponseName, side=4, cex=2, font=2, line=.75);
+
+paint_matrix(covariates_coef_mat, 
+	title=paste("Covariates Coefficients for Top ", NumRespVariables, " ", ResponseName, " Categories", sep=""),
+	deci_pts=2);
+mtext("Covariates", side=1, cex=2, font=2, line=.75);
+mtext(ResponseName, side=4, cex=2, font=2, line=.75);
+
+paint_matrix(covariates_pval_mat, plot_min=0, plot_max=1, 
+	title=paste("Covariates P-Values for Top ", NumRespVariables, " ", ResponseName, " Categories", sep=""),
+	high_is_hot=F, deci_pts=2);
+mtext("Covariates", side=1, cex=2, font=2, line=.75);
+mtext(ResponseName, side=4, cex=2, font=2, line=.75);
+
+paint_matrix(rsqrd_mat, plot_min=0, plot_max=1, title=paste("Explained Variation for Top ", NumRespVariables, " Responses: R^2", sep=""));
+mtext(ResponseName, side=4, cex=2, font=2, line=.75);
+
+
 
 cat("Done.\n");
 #dev.off();
