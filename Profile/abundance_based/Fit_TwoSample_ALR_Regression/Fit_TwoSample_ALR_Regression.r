@@ -810,6 +810,9 @@ num_factors=ncol(factors);
 factor_sample_names=rownames(factors);
 num_factor_samples=length(factor_sample_names);
 
+num_loaded_factors=num_factors;
+num_loaded_factor_samp=num_factor_samples;
+
 cat("\n");
 cat(num_factors, " Factor(s) Loaded:\n", sep="");
 print(factor_names);
@@ -892,7 +895,8 @@ cat("Num shared sample IDs: ", num_shared_sample_ids, "\n");
 cat("\n");
 
 cat("Samples missing from factor information:\n");
-print(setdiff(counts_sample_ids, factor_sample_ids));
+samples_missing_factor_info=(setdiff(counts_sample_ids, factor_sample_ids));
+num_samp_missing_fact_info=length(samples_missing_factor_info);
 cat("\n");
 cat("Total samples shared: ", num_shared_sample_ids, "\n");
 
@@ -910,6 +914,22 @@ paired_samples=sort(c(paired_responses, paired_predictors));
 normalized=normalized[paired_samples,];
 num_samples=nrow(normalized);
 recon_factors=factors[shared_sample_ids,,drop=F];
+
+factor_file_info=c(
+	paste("Factor File Name: ", FactorsFile, sep=""),
+	"",
+	paste("Num Loaded Factors/Variables: ", num_loaded_factors, sep=""),
+	paste("Num Samples in Factor File: ", num_loaded_factor_samp, sep=""),
+	"",
+	paste("Num Samples Shared between Factors and Pairable Samples: ", num_shared_sample_ids, sep=""),
+	"",
+	paste("Num Samples Missing Factor Information: ", num_samp_missing_fact_info, sep=""),
+	"",
+	"Samples missing info: ",
+	capture.output(print(samples_missing_factor_info))
+);
+
+plot_text(factor_file_info);
 
 ##############################################################################
 # Remove samples with NAs
@@ -1071,7 +1091,7 @@ for(resp_ix in 1:NumRespVariables){
 	sum_fit=summary(lm_fit);
 	#print(lm_fit);
 	plot_text(c(
-		paste(resp_cat_name, ":", sep=""),
+		paste(resp_ix, ".) ", resp_cat_name, ":", sep=""),
 		"",
 		capture.output(print(sum_fit))
 		)
