@@ -627,13 +627,14 @@ pdf(paste(OutputRoot, ".2smp_alr.pdf", sep=""), height=11, width=9.5);
 # Load summary file table counts 
 cat("\n");
 cat("Loading summary table...\n");
-counts=load_summary_file(SummaryFile);
+counts1=load_summary_file(SummaryFile);
 
+counts2=NULL;
 if(SecondSummaryTable!=""){
 	cat("Loading second summary table...\n");
 	counts2=load_summary_file(SecondSummaryTable);	
 	cat("Merging second summary table..\n");
-	counts=merge_summary_tables(counts, counts2);
+	counts=merge_summary_tables(counts1, counts2);
 	cat("Merged Summary Table Samples: ", nrow(counts), "\n", sep="");
 	cat("Merged Summary Table Categories: ", ncol(counts), "\n", sep="");
 }
@@ -649,26 +650,36 @@ if(!(all(nonzero))){
 	counts=counts[nonzero,,drop=F];
 }
 
-num_taxa=ncol(counts);
-num_samples=nrow(counts);
+num_st_categories=ncol(counts);
+num_st_samples=nrow(counts);
 
 # Load resp/pred sample mappings
-pairings_map=load_mapping(PairingsFile, ResponseName, PredictorName);
+all_pairings_map=load_mapping(PairingsFile, ResponseName, PredictorName);
 st_samples=rownames(counts);
-num_pairings_loaded=nrow(pairings_map);
+num_pairings_loaded=nrow(all_pairings_map);
 cat("\n");
 cat("Pairing entries loaded: ", num_pairings_loaded, "\n");
 
-available_pairings=matrix(F, nrow=nrow(pairings_map), ncol=2);
-rownames(available_pairings)=pairings_map[,1];
-available_pairings[intersect(st_samples, pairings_map[,1]),1]=T;
-rownames(available_pairings)=pairings_map[,2];
-available_pairings[intersect(st_samples, pairings_map[,2]),2]=T;
+available_pairings=matrix(F, nrow=nrow(all_pairings_map), ncol=2, dimnames=dimnames(all_pairings_map));
+rownames(available_pairings)=all_pairings_map[,1];
+available_pairings[intersect(st_samples, all_pairings_map[,1]),1]=T;
+rownames(available_pairings)=all_pairings_map[,2];
+available_pairings[intersect(st_samples, all_pairings_map[,2]),2]=T;
 
+print(available_pairings);
+num_resp_avail=sum(available_pairings[,ResponseName]);
+num_pred_avail=sum(available_pairings[,PredictorName]);
+
+# Extract complete pairs
 pairs_complete=apply(available_pairings, 1, function(x){all(x)});
 pairs_complete_samples=names(pairs_complete[pairs_complete]);
-pairings_map=pairings_map[pairs_complete,];
+pairings_map=all_pairings_map[pairs_complete,];
 num_complete_pairings=sum(pairs_complete);
+
+pairs_incomplete=apply(available_pairings, 1, function(x){any(!x)});
+pairs_incomplete_samples=names(pairs_complete[pairs_incomplete]);
+pairings_incomplete_map=all_pairings_map[pairs_incomplete,];
+num_incomplete_pairings=sum(pairs_incomplete);
 
 cat("Number of complete pairings: ", num_complete_pairings, "\n");
 #print(pairs_complete_samples);
@@ -682,6 +693,39 @@ cat("Count Matrix:\n");
 cat("  Num Samples: ", num_samples, "\n");
 cat("  Num Categories: ", num_categories, "\n");
 cat("\n");
+
+loaded_sample_info=c(
+	"Summary Table Info:",
+	paste(" 1st Summary Table Name: ", SummaryFile, sep=""),
+	paste("    Samples: ", nrow(counts1), " Categories: ", ncol(counts1), sep=""),
+	paste(" 2nd Summary Table Name: ", SecondSummaryTable, sep=""),
+	paste("    Samples: ", nrow(counts2), " Categories: ", ncol(counts2), sep=""),
+	"",
+	paste("  Total Number Samples Loaded: ", num_st_samples, sep=""),
+	paste("  Total Number Categories Loaded: ", num_st_categories, sep=""),
+	"",
+	"Sample Pairing Info:",
+	paste("  Mapping Name: ", PairingsFile, sep=""),
+	paste("  Number of Possible Pairings Loaded: ", num_pairings_loaded, sep=""),
+	paste("  Number of ", ResponseName, " Samples: ", num_resp_avail, sep=""),
+	paste("  Number of ", PredictorName, " Samples: ", num_pred_avail, sep=""),
+	"",
+	paste("Number of Complete/Matched Pairings: ", num_complete_pairings, sep=""),
+	paste("Number of InComplete/UnMatched Pairings: ", num_incomplete_pairings, sep="")
+);
+
+incomplete_pairing_info=c(
+	"Incomplete Pairings: ",
+	"",
+	"Missing Sample Info Availability:",
+	capture.output(print(available_pairings[pairs_incomplete,])),
+	"",
+	"Missing Sample Pairing:",
+	capture.output(print(pairings_incomplete_map))
+);
+
+plot_text(loaded_sample_info);
+plot_text(incomplete_pairing_info);
 
 ##############################################################################
 
@@ -744,7 +788,7 @@ if(UseRemaining){
 sorted_taxa_names=colnames(normalized);
 
 num_top_taxa=NumMaxALRVariables;
-num_top_taxa=min(c(num_top_taxa, num_taxa));
+num_top_taxa=min(c(num_top_taxa, num_st_categories));
 prop_abundance_represented=sum(mean_abund[1:num_top_taxa]);
 
 cat("\nThe top ", num_top_taxa, " taxa are:\n", sep="");
@@ -901,8 +945,8 @@ num_factors_wo_nas=ncol(factors_wo_nas);
 ##############################################################################
 # Prepping for ALR calculations
 
-if(NumMaxALRVariables >= num_taxa){
-	NumMaxALRVariables = (num_taxa-1);
+if(NumMaxALRVariables >= num_st_categories){
+	NumMaxALRVariables = (num_st_categories-1);
 	cat("Number of taxa to work on was changed to: ", NumMaxALRVariables, "\n");
 	
 	NumRespVariables=min(NumMaxALRVariables, NumRespVariables);
@@ -1005,7 +1049,7 @@ for(resp_ix in 1:NumRespVariables){
 	resp_cat_name=colnames(alr_resp);
 	alr_resp=as.vector(alr_resp);
 	
-	cat("Fitting: ", resp_cat_name, "\n");
+	cat("Fitting: ", resp_ix, ".) ", resp_cat_name, "\n");
 
 	if(resp_ix<=NumPredVariables){
 		# Response category is already in predictors
