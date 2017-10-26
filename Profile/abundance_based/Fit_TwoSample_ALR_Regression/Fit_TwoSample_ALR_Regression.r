@@ -876,7 +876,7 @@ num_factors_recon=ncol(recon_factors);
 num_samples_before_na_removal=num_samples_recon;
 num_factors_before_na_removal=num_factors_recon;
 factors_wo_nas=remove_sample_or_factors_wNA_parallel(recon_factors, 
-	required=required_arr, num_trials=640, num_cores=64, outfile=paste(OutputRoot, ".noNAs", sep=""));
+	required=required_arr, num_trials=64000, num_cores=64, outfile=paste(OutputRoot, ".noNAs", sep=""));
 
 factor_names_wo_nas=colnames(factors_wo_nas);
 factor_sample_ids_wo_nas=rownames(factors_wo_nas);
@@ -1070,32 +1070,126 @@ print(rsqrd_mat);
 #        plot_row_dendr=F
 
 par(oma=c(2,1,5,2));
+
+# ALR Coefficients
 paint_matrix(category_alr_coef_mat, 
 	title=paste("Top ", NumPredVariables, " ", PredictorName," Predictor ALR Coefficients for Top ", NumRespVariables, " ", ResponseName, " Responses ALR", sep=""), 
 	deci_pts=2, value.cex=.8);
 mtext(PredictorName, side=1, cex=2, font=2, line=.75);
 mtext(ResponseName, side=4, cex=2, font=2, line=.75);
 
+# ALR Coefficients Clustered
+paint_matrix(category_alr_coef_mat[,1:NumPredVariables], 
+	title=paste("Top ", NumPredVariables, " ", PredictorName," Predictor ALR Coefficients for Top ", NumRespVariables, " ", ResponseName, " Responses ALR", sep=""), 
+	 plot_col_dendr=T, plot_row_dendr=T,
+	deci_pts=2, value.cex=.8);
+mtext(PredictorName, side=1, cex=2, font=2, line=.75);
+mtext(ResponseName, side=4, cex=2, font=2, line=.75);
+
+# ALR P-Values
 paint_matrix(category_alr_pval_mat, plot_min=0, plot_max=1,
 	title=paste("Top ", NumPredVariables, " ", PredictorName," Predictor ALR P-Values for Top ", NumRespVariables, " ", ResponseName, " Responses ALR", sep=""), 
 	high_is_hot=F, deci_pts=2, value.cex=.8);
 mtext(PredictorName, side=1, cex=2, font=2, line=.75);
 mtext(ResponseName, side=4, cex=2, font=2, line=.75);
 
+# ALR P-Values Clustered
+paint_matrix(category_alr_pval_mat[,1:NumPredVariables], plot_min=0, plot_max=1,
+	title=paste("Top ", NumPredVariables, " ", PredictorName," Predictor ALR P-Values for Top ", NumRespVariables, " ", ResponseName, " Responses ALR", sep=""), 
+	plot_col_dendr=T, plot_row_dendr=T,
+	high_is_hot=F, deci_pts=2, value.cex=.8);
+mtext(PredictorName, side=1, cex=2, font=2, line=.75);
+mtext(ResponseName, side=4, cex=2, font=2, line=.75);
+
+# Covariate Coefficients
 paint_matrix(covariates_coef_mat, 
 	title=paste("Covariates Coefficients for Top ", NumRespVariables, " ", ResponseName, " Categories", sep=""),
 	deci_pts=2);
 mtext("Covariates", side=1, cex=2, font=2, line=.75);
 mtext(ResponseName, side=4, cex=2, font=2, line=.75);
 
+# Covariate Coefficients w/ Clustering
+paint_matrix(covariates_coef_mat, 
+	title=paste("Covariates Coefficients for Top ", NumRespVariables, " ", ResponseName, " Categories", sep=""),
+	plot_col_dendr=T, plot_row_dendr=T,
+	deci_pts=2);
+mtext("Covariates", side=1, cex=2, font=2, line=.75);
+mtext(ResponseName, side=4, cex=2, font=2, line=.75);
+
+# Covariate P-Values
 paint_matrix(covariates_pval_mat, plot_min=0, plot_max=1, 
 	title=paste("Covariates P-Values for Top ", NumRespVariables, " ", ResponseName, " Categories", sep=""),
 	high_is_hot=F, deci_pts=2);
 mtext("Covariates", side=1, cex=2, font=2, line=.75);
 mtext(ResponseName, side=4, cex=2, font=2, line=.75);
 
+# Covariate P-Values Clustered
+paint_matrix(covariates_pval_mat, plot_min=0, plot_max=1, 
+	title=paste("Covariates P-Values for Top ", NumRespVariables, " ", ResponseName, " Categories", sep=""),
+	plot_col_dendr=T, plot_row_dendr=T,
+	high_is_hot=F, deci_pts=2);
+mtext("Covariates", side=1, cex=2, font=2, line=.75);
+mtext(ResponseName, side=4, cex=2, font=2, line=.75);
+
+# R^2
 paint_matrix(rsqrd_mat, plot_min=0, plot_max=1, title=paste("Explained Variation for Top ", NumRespVariables, " Responses: R^2", sep=""));
 mtext(ResponseName, side=4, cex=2, font=2, line=.75);
+
+# Plot Pred->Resp for ALR
+plot_pred_resp_bar=function(coef_mat, pval_mat, title=""){
+	val=diag(coef_mat);
+	pval=diag(pval_mat);
+	cat_names=rownames(coef_mat);
+
+	ord=order(val, decreasing=T);
+
+	val=val[ord];
+	pval=pval[ord];
+	cat_names=cat_names[ord];
+
+        num_colors=50;
+        color_arr=rainbow(num_colors, start=0, end=4/6);
+
+        # Provide a means to map values to an (color) index
+        remap=function(in_val, in_range, out_range){
+                in_prop=(in_val-in_range[1])/(in_range[2]-in_range[1])
+                out_val=in_prop*(out_range[2]-out_range[1])+out_range[1];
+                return(out_val);
+        }
+
+	colors=ceiling(remap(pval, c(0,1), c(1,num_colors)));
+
+	barplot(val, names.arg=cat_names, las=2, col=color_arr[colors],
+		main=title
+		);
+}
+
+par(oma=c(20, 5, 5, 1));
+plot_pred_resp_bar(category_alr_coef_mat, category_alr_pval_mat);
+mtext(paste("Predictability of ", ResponseName, " ALR based on ", PredictorName, " ALR", sep=""),
+	side=3, font=2, line=2
+	);
+mtext("After Controlling for Covariates", side=3, font=2, line=1);
+mtext("Regression Coefficient", side=2, font=1, line=3.75);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
