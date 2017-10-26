@@ -736,6 +736,7 @@ if(ShortenCategoryNames!=""){
 	short_names=character();
 	for(i in 1:length(full_names)){
 		short_names[i]=tail(splits[[i]], 1);
+		short_names[i]=gsub("_unclassified$", "_uncl", short_names[i]);
 	}
 	colnames(counts)=short_names;
 	cat("Names have been shortened.\n");
@@ -1032,6 +1033,54 @@ response_alr=alr_categories_val[response_sample_ids,,drop=F];
 predictor_alr=alr_categories_val[predictor_sample_ids,,drop=F];
 factors=factors_wo_nas[pairings_map[,FactorSampleIDName],];
 
+##############################################################################
+
+alr_names=colnames(alr_categories_val);
+plots_per_page=6
+par(mfrow=c(plots_per_page,2));
+par(oma=c(0,0,0,0));
+par(mar=c(4,4,2,2));
+median_delta=numeric(NumRespVariables);
+names(median_delta)=alr_names;
+for(cat_ix in 1:NumRespVariables){
+
+	cur_alr_resp=response_alr[,cat_ix];
+	cur_alr_pred=predictor_alr[,cat_ix];
+
+
+	if((cat_ix %% plots_per_page)==0){
+		bottom_label=PredictorName;
+	}else{
+		bottom_label="";
+	}
+
+	# Plot matching pred/resp off reference line
+	plot(cur_alr_pred, cur_alr_resp, type="n", main=alr_names[cat_ix],
+		xlab=bottom_label, ylab=ResponseName);
+	abline(0, 1, col="blue");
+	points(cur_alr_pred, cur_alr_resp, main=alr_names[cat_ix]);
+
+	deltas=cur_alr_resp-cur_alr_pred;
+	median_delta[cat_ix]=median(deltas);
+	hist(deltas, main=paste(alr_names[cat_ix], " ALR: ", ResponseName, " - ", PredictorName, sep=""), 
+		xlab="");
+	
+}
+
+par(mfrow=c(2,1));
+par(mar=c(20,4,3,1));
+color_arr=rainbow(NumRespVariables, start=0, end=4/6);
+barplot(median_delta, horiz=F, las=2, 
+	main=paste("Median Difference between ", ResponseName, " and ", PredictorName, sep=""),
+	col=color_arr);
+
+dec_del_ix=order(median_delta, decreasing=F);
+barplot(median_delta[dec_del_ix], horiz=F, las=2, 
+	main=paste("Median Difference between ", ResponseName, " and ", PredictorName, sep=""),
+	col=color_arr[dec_del_ix]
+	);
+
+par(mfrow=c(1,1));
 #print(response_alr);
 #print(predictor_alr);
 #print(factors);
