@@ -237,7 +237,7 @@ merge_summary_tables=function(st1, st2){
 	samp_names=sort(c(st1_samp, st2_samp));
 	num_samp=length(samp_names);
 
-	cat_names=sort(unique(st1_cat_names, st2_cat_names));
+	cat_names=sort(unique(c(st1_cat_names, st2_cat_names)));
 	num_cat=length(cat_names);
 	
 	# Allocate
@@ -637,6 +637,8 @@ if(SecondSummaryTable!=""){
 	counts=merge_summary_tables(counts1, counts2);
 	cat("Merged Summary Table Samples: ", nrow(counts), "\n", sep="");
 	cat("Merged Summary Table Categories: ", ncol(counts), "\n", sep="");
+}else{
+	counts=counts1;
 }
 
 # Remove zero count samples
@@ -857,9 +859,10 @@ plot_text(c(
 ));
 
 # Confirm we can find all the factors
-missing_fact=setdiff(model_var_arr, model_var_arr);
+missing_fact=setdiff(model_var_arr, factor_names);
 if(length(missing_fact)>0){
 	cat("Error: Factors in model, missing Factor File.\n");
+	print(missing_fact);
 	quit(status=-1);
 }else{
 	cat("All model variables found in factor file...\n");
