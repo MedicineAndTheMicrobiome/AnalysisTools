@@ -1117,8 +1117,8 @@ covariates_coef_mat  =matrix(NA, nrow=NumRespVariables, ncol=num_cov_coeff_names
 covariates_pval_mat  =matrix(NA, nrow=NumRespVariables, ncol=num_cov_coeff_names, 
 	dimnames=list(alr_cat_names, cov_coeff_names));
 
-rsqrd_mat             =matrix(NA, nrow=NumRespVariables, ncol=2, 
-	dimnames=list(alr_cat_names[1:NumRespVariables], c("R^2", "Adj-R^2")));
+rsqrd_mat             =matrix(NA, nrow=NumRespVariables, ncol=4, 
+	dimnames=list(alr_cat_names[1:NumRespVariables], c("R^2", "Adj-R^2", "Reduced Adj-R^2", "ALR Contrib")));
 
 # Fit the regression model
 
@@ -1143,17 +1143,28 @@ for(resp_ix in 1:NumRespVariables){
 	#print(resp);
 	#print(model_pred_df);
 	model_str=paste("alr_resp ~ ", paste(c(alr_pred_names,model_var_arr), collapse="+"), sep="");
+	model_reduced_str=paste("alr_resp ~ ", paste(model_var_arr, collapse="+"), sep="");
+
 	cat("Model String: \n");
+	cat("Full:\n");
 	print(model_str);
+	cat("Reduced:\n");
+	print(model_reduced_str);
+
 	lm_fit=lm(as.formula(model_str), data=model_pred_df);
+	lm_reduced_fit=lm(as.formula(model_reduced_str), data=model_pred_df);
+
 	sum_fit=summary(lm_fit);
-	#print(lm_fit);
+	sum_reduced_fit=summary(lm_reduced_fit);
+
 	plot_text(c(
 		paste(resp_ix, ".) ", resp_cat_name, ":", sep=""),
 		"",
 		capture.output(print(sum_fit))
 		)
 	);
+
+	mmps(lm_fit);
 
 	model_coef_names=setdiff(rownames(sum_fit$coefficients), "(Intercept)");
 
@@ -1167,6 +1178,9 @@ for(resp_ix in 1:NumRespVariables){
 
 	rsqrd_mat[resp_cat_name, "R^2"]=sum_fit$r.squared;
 	rsqrd_mat[resp_cat_name, "Adj-R^2"]=sum_fit$adj.r.squared;
+	rsqrd_mat[resp_cat_name, "Reduced Adj-R^2"]=sum_reduced_fit$adj.r.squared;
+	rsqrd_mat[resp_cat_name, "ALR Contrib"]=sum_fit$adj.r.squared-sum_reduced_fit$adj.r.squared;
+
 
 	cat("*************************************************\n");
 
