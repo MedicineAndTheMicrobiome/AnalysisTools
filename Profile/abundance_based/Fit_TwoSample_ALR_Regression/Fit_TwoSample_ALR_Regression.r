@@ -1120,6 +1120,9 @@ covariates_pval_mat  =matrix(NA, nrow=NumRespVariables, ncol=num_cov_coeff_names
 rsqrd_mat             =matrix(NA, nrow=NumRespVariables, ncol=4, 
 	dimnames=list(alr_cat_names[1:NumRespVariables], c("R^2", "Adj-R^2", "Reduced Adj-R^2", "ALR Contrib")));
 
+model_pval_mat             =matrix(NA, nrow=NumRespVariables, ncol=1, 
+	dimnames=list(alr_cat_names[1:NumRespVariables], c("F-statistic P-value")));
+
 # Fit the regression model
 
 for(resp_ix in 1:NumRespVariables){
@@ -1157,10 +1160,19 @@ for(resp_ix in 1:NumRespVariables){
 	sum_fit=summary(lm_fit);
 	sum_reduced_fit=summary(lm_reduced_fit);
 
+	anova_res=anova(lm_fit);
+
 	plot_text(c(
 		paste(resp_ix, ".) ", resp_cat_name, ":", sep=""),
 		"",
 		capture.output(print(sum_fit))
+		)
+	);
+
+	plot_text(c(
+		paste(resp_ix, ".) ", resp_cat_name, ":", sep=""),
+                "",
+		capture.output(print(anova_res))
 		)
 	);
 
@@ -1181,6 +1193,7 @@ for(resp_ix in 1:NumRespVariables){
 	rsqrd_mat[resp_cat_name, "Reduced Adj-R^2"]=sum_reduced_fit$adj.r.squared;
 	rsqrd_mat[resp_cat_name, "ALR Contrib"]=sum_fit$adj.r.squared-sum_reduced_fit$adj.r.squared;
 
+	model_pval_mat[resp_cat_name, "F-statistic P-value"]=1-pf(sum_fit$fstatistic[1], sum_fit$fstatistic[2], sum_fit$fstatistic[3]);
 
 	cat("*************************************************\n");
 
@@ -1301,6 +1314,11 @@ mtext(ResponseName, side=4, cex=2, font=2, line=.75);
 paint_matrix(rsqrd_mat, plot_min=0, plot_max=1, title=paste("Explained Variation for Top ", NumRespVariables, " Responses: R^2", sep=""));
 mtext(ResponseName, side=4, cex=2, font=2, line=.75);
 
+# Model pval
+paint_matrix(model_pval_mat, plot_min=0, plot_max=1, high_is_hot=F, 
+	title=paste("Model F-Statistic P-Values for Top ", NumRespVariables, sep=""));
+mtext(ResponseName, side=4, cex=2, font=2, line=.75);
+
 # Plot Pred->Resp for ALR
 plot_pred_resp_bar=function(coef_mat, pval_mat, title=""){
 	val=diag(coef_mat);
@@ -1337,26 +1355,6 @@ mtext(paste("Predictability of ", ResponseName, " ALR based on ", PredictorName,
 	);
 mtext("After Controlling for Covariates", side=3, font=2, line=1);
 mtext("Regression Coefficient", side=2, font=1, line=3.75);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 cat("Done.\n");
