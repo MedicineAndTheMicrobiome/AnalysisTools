@@ -342,6 +342,12 @@ additive_log_rato=function(ordered_matrix){
 	return(alr_struct);
 }
 
+mask_matrix=function(val_mat, mask_mat, mask_thres, mask_val){
+	masked_matrix=val_mat;
+	masked_matrix[mask_mat>mask_thres]=mask_val;
+	return(masked_matrix);
+}
+
 plot_text=function(strings){
 	par(family="Courier");
 	par(oma=rep(.1,4));
@@ -528,7 +534,7 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 
                         rect(x-1, y-1, (x-1)+1, (y-1)+1, border=NA, col=color_arr[col_ix]);
 
-                        if(mat[y,x]!=0 || label_zeros){
+                        if(is.na(mat[y,x]) || mat[y,x]!=0 || label_zeros){
                                 if(counts){
                                         text_lab=sprintf("%i", mat[y,x]);
                                 }else{
@@ -1209,6 +1215,21 @@ paint_matrix(category_alr_pval_mat, plot_min=0, plot_max=1,
 mtext(PredictorName, side=1, cex=2, font=2, line=.75);
 mtext(ResponseName, side=4, cex=2, font=2, line=.75);
 
+# ALR Coefficients w/ P-value masked
+limit=max(abs(range(category_alr_coef_mat)));
+category_alr_coef_masked_mat=mask_matrix(
+	val_mat=category_alr_coef_mat, 
+	mask_mat=category_alr_pval_mat, 
+	mask_thres=0.05, 
+	mask_val=0.0);
+paint_matrix(category_alr_coef_masked_mat,
+	title=paste("Top ", NumPredVariables, " ", 
+		PredictorName," Predictor ALR Coeff for Top ", NumRespVariables, " ", ResponseName,
+		" Responses ALR P-Val(<.05) Maskd", sep=""), 
+	label_zeros=F, high_is_hot=F, deci_pts=2, value.cex=.8);
+mtext(PredictorName, side=1, cex=2, font=2, line=.75);
+mtext(ResponseName, side=4, cex=2, font=2, line=.75);
+
 # ALR P-Values Clustered
 paint_matrix(category_alr_pval_mat[,1:NumPredVariables], plot_min=0, plot_max=1,
 	title=paste("Top ", NumPredVariables, " ", PredictorName," Predictor ALR P-Values for Top ", NumRespVariables, " ", ResponseName, " Responses ALR", sep=""), 
@@ -1220,7 +1241,7 @@ mtext(ResponseName, side=4, cex=2, font=2, line=.75);
 # Covariate Coefficients
 paint_matrix(covariates_coef_mat, 
 	title=paste("Covariates Coefficients for Top ", NumRespVariables, " ", ResponseName, " Categories", sep=""),
-	deci_pts=2);
+	deci_pts=2, value.cex=.8);
 mtext("Covariates", side=1, cex=2, font=2, line=.75);
 mtext(ResponseName, side=4, cex=2, font=2, line=.75);
 
@@ -1228,22 +1249,37 @@ mtext(ResponseName, side=4, cex=2, font=2, line=.75);
 paint_matrix(covariates_coef_mat, 
 	title=paste("Covariates Coefficients for Top ", NumRespVariables, " ", ResponseName, " Categories", sep=""),
 	plot_col_dendr=T, plot_row_dendr=T,
-	deci_pts=2);
+	deci_pts=2, value.cex=.8);
 mtext("Covariates", side=1, cex=2, font=2, line=.75);
 mtext(ResponseName, side=4, cex=2, font=2, line=.75);
 
 # Covariate P-Values
 paint_matrix(covariates_pval_mat, plot_min=0, plot_max=1, 
 	title=paste("Covariates P-Values for Top ", NumRespVariables, " ", ResponseName, " Categories", sep=""),
-	high_is_hot=F, deci_pts=2);
+	high_is_hot=F, deci_pts=2, value.cex=.8);
 mtext("Covariates", side=1, cex=2, font=2, line=.75);
 mtext(ResponseName, side=4, cex=2, font=2, line=.75);
+
+# Covariate Coefficients w/ P-value masked
+covariates_coef_masked_mat=mask_matrix(
+        val_mat=covariates_coef_mat,
+        mask_mat=covariates_pval_mat,
+        mask_thres=0.05,
+        mask_val=0.0);
+paint_matrix(covariates_coef_masked_mat,,
+        title=paste("Top ", NumPredVariables, " ",
+                PredictorName," Covariates Coeff for Top ", NumRespVariables, " ", ResponseName,
+                " Responses ALR P-Val(<.05) Maskd", sep=""),
+        label_zeros=F, high_is_hot=F, deci_pts=2, value.cex=.8);
+mtext("Covariates", side=1, cex=2, font=2, line=.75);
+mtext(ResponseName, side=4, cex=2, font=2, line=.75);
+
 
 # Covariate P-Values Clustered
 paint_matrix(covariates_pval_mat, plot_min=0, plot_max=1, 
 	title=paste("Covariates P-Values for Top ", NumRespVariables, " ", ResponseName, " Categories", sep=""),
 	plot_col_dendr=T, plot_row_dendr=T,
-	high_is_hot=F, deci_pts=2);
+	high_is_hot=F, deci_pts=2, value.cex=.8);
 mtext("Covariates", side=1, cex=2, font=2, line=.75);
 mtext(ResponseName, side=4, cex=2, font=2, line=.75);
 
