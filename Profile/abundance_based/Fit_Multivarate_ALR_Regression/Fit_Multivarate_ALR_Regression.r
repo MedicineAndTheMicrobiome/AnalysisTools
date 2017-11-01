@@ -472,9 +472,23 @@ cat(num_factors, " Factor(s) Loaded:\n", sep="");
 print(factor_names);
 cat("\n");
 
+input_info_text=c(
+	paste("Summary File: ", SummaryFile, sep=""),
+	paste("  Num Samples: ", nrow(counts), sep=""),
+	paste("  Num Categories: ", ncol(counts), sep=""),
+	"",
+	paste("Factor File: ", FactorsFile, sep=""),
+	paste("  Num Samples: ", nrow(factors), sep=""),
+	paste("  Num Factors: ", ncol(factors), sep="")
+);
+
+##############################################################################
+
+# Remove factors from table that aren't specified in model
 model_var_arr=get_var_from_modelstring(Model);
 if(length(model_var_arr)){
 	factors=factors[,model_var_arr];
+	num_factors=ncol(factors);
 }
 
 # Load variables to require after NA removal
@@ -493,6 +507,19 @@ if(""!=RequiredFile){
         cat("No Required Variables specified...\n");
 }
 
+
+plot_text(c(
+	input_info_text,
+	"",
+	paste("Original Model: ", Model, sep=""),
+	"",
+	"Required Variables:",
+	paste("  File: ", RequiredFile, sep=""),
+	paste("  Variable(s): "),
+	capture.output(print(required_arr))
+));
+
+
 ##############################################################################
 # Remove NAs samples/factors
 
@@ -501,11 +528,16 @@ if(any(is.na(factors))){
 	rm_na_res=remove_sample_or_factors_wNA_parallel(factors, required=required_arr, 
 		num_trials=Num_Remove_NA_Trials, num_cores=64, outfile=OutputRoot);
 
+	# Update factors, summary table, and model
 	factors=rm_na_res$factors;
+	num_factors=ncol(factors);
 	counts=remove_samples_from_st(rm_na_res, counts);
-
-	print(rm_na_res$summary_text);
-	plot_text(rm_na_res$summary_text);
+	Model=rem_missing_var_from_modelstring(Model, colnames(factors));
+	plot_text(c(
+		rm_na_res$summary_text,
+		"",
+		paste("New Model: ", Model, sep="")
+	));
 
 }
 
@@ -571,21 +603,6 @@ cat("\n");
 
 ##############################################################################
 ##############################################################################
-
-# Remove factors not in model
-if(Model!="All Factors"){
-	model_pred_vars=gsub("\\+", " ", Model);
-	model_pred_vars=gsub("\\*", " ", model_pred_vars);
-	model_pred_vars=gsub("\\:", " ", model_pred_vars);
-	model_pred_vars=unique(strsplit(model_pred_vars, " ")[[1]]);
-	used_factors=intersect(model_pred_vars, factor_names);
-
-	factors=factors[, used_factors, drop=F];
-	factor_names=colnames(factors);
-	num_factors=ncol(factors);
-}
-
-cat("**************************************************************\n");
 
 # Relevel factor levels
 if(ReferenceLevelsFile!=""){
@@ -802,9 +819,6 @@ cat("\nFitting this multivariate model: ", model_string, "\n");
 text=character();
 
 mv_fit=tryCatch({
-print(factors);
-print(levels(factors[,1]));
-print(levels(factors[,2]));
 	mv_fit=lm(as.formula(model_string), data=factors);
 }, error = function(e){
 	print(e);
