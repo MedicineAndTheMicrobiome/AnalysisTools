@@ -20,7 +20,6 @@ usage = paste(
 	"	-i <input tab-separated column data file>\n",
 	"	-f <formulas file>\n",
 	"	-o <output tab_separated column data file>\n",
-	"	[-r <replace/overwrite columns>]\n", 
 	"\n",
 	"This script will read in a metadata file\n",
 	"and run through the list of formulas to add\n",
@@ -35,6 +34,7 @@ usage = paste(
 	"	delete env.pipe\n",
 	"	good.ids=!is.na(subj_ids)\n",
 	"	keep good.ids\n",
+	"	make_key subj_ids\n",
 	"\n",
 	"Additional columns will be added to the end\n",
 	"of the existing columns.  If the formula line is \"delete\"\n",
@@ -44,6 +44,9 @@ usage = paste(
 	"the \"keep\" command.  First create/identify a variable/column that is T/F\n",
 	"then specify that variable as parameter for the keep command.  Rows that\n",
 	"are F will be excluded.\n",
+	"\n",
+	"A column can be moved to the first column position perhaps making it a\n",
+	"primary key or sample id for the matrix with the \"make_key\" command.\n",
 	"\n",
 	"In addition, the following non-standard R functions have been implemented:\n",
 	"	remap(x, key, value):  This will remap the keys in x to the corresponding values.\n",
@@ -76,7 +79,7 @@ cat("Output Filename: ", OutputFName, "\n");
 ##############################################################################
 
 load_factors=function(fname){
-	factors=data.frame(read.table(fname,  header=TRUE, check.names=FALSE, sep="\t"));
+	factors=data.frame(read.table(fname,  header=TRUE, check.names=FALSE, comment.char="", quote="", sep="\t"));
 
 	#print(factors);
 
@@ -178,6 +181,14 @@ for(cmd in commands){
 		factors=factors[keep_ix,, drop=F];
 		rowcol=dim(factors);
 		cat("Rows: ", rowcol[1], " x Cols: ", rowcol[2], "\n", sep="");
+	}else if(length(grep("^make_key ", cmd))==1){
+		# move column to first position
+		var=strsplit(cmd, "\\s+")[[1]][2];
+		cat("Making ", var, " key column.\n", sep="");
+		key_col_val=factors[, var, drop=F];
+		cnames=colnames(factors);
+		cnames=setdiff(cnames, var);
+		factors=cbind(key_col_val, factors[,cnames,drop=F]);
 	}else{
 		# Add variable to factors
 		cmd=gsub("\\s+", "", cmd);
