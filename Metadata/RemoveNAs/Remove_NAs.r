@@ -158,31 +158,28 @@ remove_sample_or_factors_wNA=function(factors, num_trials=500000, verbose=T){
 
 ###############################################################################
 
-summarize_as_text=function(before_factors, after_factors){
+summarize_as_text=function(orig_factors, after_req_var, after_na_removal){
 
-	before_rows=nrow(before_factors);
-	after_rows=nrow(after_factors);
-
-	before_cols=nrow(before_factors);
-	after_cols=nrow(after_factors);
-
-	before_factors=colnames(before_factors);
-	after_factors=colnames(after_factors);
-	removed_factors=setdiff(before_factors, after_factors);
+	original_var=colnames(orig_factors);
+	final_var=colnames(after_na_removal);
+	removed_var=setdiff(original_var, final_var);
 
 	text=c(
-		"Before NA Removal:",
-		paste("  Num Samples: ", before_rows, sep=""),
-		paste("  Num Factors: ", before_cols, sep=""),
-		"After NA Removal:",
-		paste("  Num Samples: ", after_rows, sep=""),
-		paste("  Num Factors: ", after_cols, sep=""),
+		"Original Factors Variables:",
+		paste("  Num Samples: ", nrow(orig_factors), sep=""),
+		paste("  Num Factors: ", ncol(orig_factors), sep=""),
+		"After Requiring Variables:",
+		paste("  Num Samples: ", nrow(after_req_var), sep=""),
+		paste("  Num Factors: ", ncol(after_req_var), sep=""),
+		"After NA Removal Variables:",
+		paste("  Num Samples: ", nrow(after_na_removal), sep=""),
+		paste("  Num Factors: ", ncol(after_na_removal), sep=""),
 		"",
-		"Kept Factors:",
-		capture.output(print(after_factors)),
+		"Kept Variables:",
+		capture.output(print(final_var)),
 		"",
 		"Removed Factors:",
-		capture.output(print(removed_factors))
+		capture.output(print(removed_var))
 	);
 
 	return(text);
@@ -329,6 +326,8 @@ remove_sample_or_factors_wNA_parallel=function(factors, required_variables=NULL,
 	cat("Num NAs Entering:", numNAs, "\n");
 	cat("Num Required Variables: ", nreqvar, "\n");
 	cat("\n");
+
+	orig_factors=factors;
 	if(nreqvar>0){
 		cat("Required Variables:\n");
 		print(required_variables);
@@ -376,7 +375,7 @@ remove_sample_or_factors_wNA_parallel=function(factors, required_variables=NULL,
 	# Prep return values
 	results=list();
 	results$factors=best_matrix;
-	results$summary_text=summarize_as_text(factors, best_matrix);
+	results$summary_text=summarize_as_text(orig_factors, factors, best_matrix);
 
 	return(results);
 }
