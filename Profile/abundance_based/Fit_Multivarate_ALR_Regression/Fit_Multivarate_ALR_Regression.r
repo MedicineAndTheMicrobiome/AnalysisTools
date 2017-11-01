@@ -8,6 +8,8 @@ library('getopt');
 library(car);
 options(useFancyQuotes=F);
 
+RM_NA_TRIALS=10000*64;
+
 params=c(
 	"summary_file", "s", 1, "character",
 	"factors", "f", 1, "character",
@@ -17,11 +19,16 @@ params=c(
 	"model", "m", 2, "character",
 	"contains_remaining", "R", 2, "logical",
 	"shorten_category_names", "x", 2, "character",
-	"test_run", "t", 2, "logical"
+	"test_run", "t", 2, "logical",
+	"rm_na_trials", "N", 2, "numeric",
+	"required_var", "q", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
 script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
+
+script_path=paste(head(strsplit(script_name, "/")[[1]], -1), collapse="/");
+source(paste(script_path, "/../../../Metadata/RemoveNAs/Remove_NAs.r", sep=""));
 
 usage = paste(
 	"\nUsage:\n", script_name, "\n",
@@ -32,6 +39,8 @@ usage = paste(
 	"	[-o <output filename root>]\n",
 	"	[-m <model formula string>]\n",
 	"	[-R (pay attention to 'remaining' category)]\n",
+	"	[-N <remove NA trials, trials=", RM_NA_TRIALS, "\n",
+	"	[-q <required variables>]\n",
 	"\n",
 	"	[-x <shorten category names, with separator in double quotes (default=\"\")>]\n",
 	"	[-t (test run flag)]\n",
@@ -63,7 +72,8 @@ if(!length(opt$summary_file) || !length(opt$factors)){
 }
 
 if(!length(opt$outputroot)){
-	OutputRoot=gsub(".summary_table.xls", "", opt$summary_file);
+	OutputRoot=gsub("\\.summary_table\\.xls$", "", opt$summary_file);
+	OutputRoot=gsub("\\.summary_table\\.tsv$", "", OutputRoot);
 }else{
 	OutputRoot=opt$outputroot;
 }
@@ -103,6 +113,16 @@ if(length(opt$test_run)){
 	TestRun=T;
 }else{
 	TestRun=F;
+}
+
+RequiredFile="";
+if(length(opt$required_var)){
+	RequiredFile=opt$required_var;
+}
+
+Num_Remove_NA_Trials=RM_NA_TRIALS;
+if(length(opt$rm_na_trials)){
+	Num_Remove_NA_Trials=opt$rm_na_trials;
 }
 
 SummaryFile=opt$summary_file;
@@ -205,6 +225,31 @@ normalize=function(counts){
 	rownames(normalized)=rownames(counts);	
 	return(normalized);
 }
+
+plot_text=function(strings){
+	par(family="Courier");
+	par(oma=rep(.5,4));
+	par(mar=rep(0,4));
+
+	num_lines=length(strings);
+	
+	top=max(as.integer(num_lines), 52);
+
+	plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
+		xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
+		);
+
+	text_size=max(.01, min(.8, .8 - .003*(num_lines-52)));
+	#print(text_size);
+
+	for(i in 1:num_lines){
+		#cat(strings[i], "\n", sep="");
+		strings[i]=gsub("\t", "", strings[i]);
+		text(0, top-i, strings[i], pos=4, cex=text_size); 
+	}
+}
+
+##############################################################################
 
 plot_correl_heatmap=function(mat, title="", noPrintZeros=F, guideLines=F){
 
@@ -387,8 +432,15 @@ write_top_categorical_effects_by_factor=function(output_fn, coeff_mat, pval_mat,
 
 }
 
+load_list=function(filename){
+        val=scan(filename, what=character(), comment.char="#");
+        return(val);
+}
 
 ##############################################################################
+
+# Open PDF output
+pdf(paste(OutputRoot, rnd, ".mlr.mmp.pdf", sep=""), height=11, width=8.5);
 
 # Load summary file table counts 
 counts=load_summary_file(SummaryFile);
@@ -407,6 +459,55 @@ if(!(all(nonzero))){
 num_taxa=ncol(counts);
 num_samples=nrow(counts);
 #print(counts);
+
+# Load factors
+factors=load_factors(FactorsFile);
+factor_names=colnames(factors);
+num_factors=ncol(factors);
+factor_sample_names=rownames(factors);
+num_factor_samples=length(factor_sample_names);
+
+cat("\n");
+cat(num_factors, " Factor(s) Loaded:\n", sep="");
+print(factor_names);
+cat("\n");
+
+model_var_arr=get_var_from_modelstring(Model);
+if(length(model_var_arr)){
+	factors=factors[,model_var_arr];
+}
+
+# Load variables to require after NA removal
+required_arr=NULL;
+if(""!=RequiredFile){
+        required_arr=load_list(RequiredFile);
+        cat("Required Variables:\n");
+        print(required_arr);
+        cat("\n");
+        missing_var=setdiff(required_arr, factor_names);
+        if(length(missing_var)>0){
+                cat("Error: Missing required variables from factor file:\n");
+                print(missing_var);
+        }
+}else{
+        cat("No Required Variables specified...\n");
+}
+
+##############################################################################
+# Remove NAs samples/factors
+
+if(any(is.na(factors))){
+
+	rm_na_res=remove_sample_or_factors_wNA_parallel(factors, required=required_arr, 
+		num_trials=Num_Remove_NA_Trials, num_cores=64, outfile=OutputRoot);
+
+	factors=rm_na_res$factors;
+	counts=remove_samples_from_st(rm_na_res, counts);
+
+	print(rm_na_res$summary_text);
+	plot_text(rm_na_res$summary_text);
+
+}
 
 # Shorten cateogry names
 if(ShortenCategoryNames!=""){
@@ -469,18 +570,7 @@ cat("Accounting for ", prop_abundance_represented, " of taxa.\n", sep="");
 cat("\n");
 
 ##############################################################################
-
-# Load factors
-factors=load_factors(FactorsFile);
-factor_names=colnames(factors);
-num_factors=ncol(factors);
-factor_sample_names=rownames(factors);
-num_factor_samples=length(factor_sample_names);
-
-cat("\n");
-cat(num_factors, " Factor(s) Loaded:\n", sep="");
-print(factor_names);
-cat("\n");
+##############################################################################
 
 # Remove factors not in model
 if(Model!="All Factors"){
@@ -651,32 +741,6 @@ responses=extract_top_categories(normalized, num_top_taxa);
 resp_alr=additive_log_rato(responses)$transformed;
 
 ##############################################################################
-
-plot_text=function(strings){
-	par(family="Courier");
-	par(oma=rep(.5,4));
-	par(mar=rep(0,4));
-
-	num_lines=length(strings);
-	
-	top=max(as.integer(num_lines), 52);
-
-	plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
-		xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
-		);
-
-	text_size=max(.01, min(.8, .8 - .003*(num_lines-52)));
-	#print(text_size);
-
-	for(i in 1:num_lines){
-		#cat(strings[i], "\n", sep="");
-		strings[i]=gsub("\t", "", strings[i]);
-		text(0, top-i, strings[i], pos=4, cex=text_size); 
-	}
-}
-
-##############################################################################
-pdf(paste(OutputRoot, rnd, ".mlr.mmp.pdf", sep=""), height=11, width=8.5);
 
 # Output the factor correlations
 if(ncol(factor_correlations)>0){
