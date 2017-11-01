@@ -128,7 +128,6 @@ remove_sample_or_factors_wNA=function(factors, num_trials=500000, verbose=T){
                 }
 
                 last_improvement=last_improvement+1;
-
                 if(last_improvement>max_no_improvement){
 			cat("No more significant improvements...\n");
                         break;
@@ -154,19 +153,40 @@ remove_sample_or_factors_wNA=function(factors, num_trials=500000, verbose=T){
 
 	fact_subset=remove_no_variation_factors(fact_subset, verbose);
 
-	if(verbose){
-		cat("Categories after:\n");
-		print(colnames(fact_subset));
-
-		cat("Num Factors Left: ", ncol(fact_subset), "\n");
-		cat("Num Samples Left: ", nrow(fact_subset), "\n");
-	}
-
-        return(fact_subset);
-
+	return(fact_subset);
 }
 
 ###############################################################################
+
+summarize_as_text=function(before_factors, after_factors){
+
+	before_rows=nrow(before_factors);
+	after_rows=nrow(after_factors);
+
+	before_cols=nrow(before_factors);
+	after_cols=nrow(after_factors);
+
+	before_factors=colnames(before_factors);
+	after_factors=colnames(after_factors);
+	removed_factors=setdiff(before_factors, after_factors);
+
+	text=c(
+		"Before NA Removal:",
+		paste("  Num Samples: ", before_rows, sep=""),
+		paste("  Num Factors: ", before_cols, sep=""),
+		"After NA Removal:",
+		paste("  Num Samples: ", after_rows, sep=""),
+		paste("  Num Factors: ", after_cols, sep=""),
+		"",
+		"Kept Factors:",
+		capture.output(print(after_factors)),
+		"",
+		"Removed Factors:",
+		capture.output(print(removed_factors))
+	);
+
+	return(text);
+}
 
 remove_no_variation_factors=function(factors, verbose=T){
 	no_info=c();
@@ -242,7 +262,7 @@ get_var_from_modelstring=function(model_string){
 
 	# In case LHS was specified removed it
 	formula_parts=strsplit(model_string, "~")[[1]];
-	if(length(formula_parts==2)){
+	if(length(formula_parts)==2){
 		rhs=formula_parts[2];		
 	}else{
 		rhs=formula_parts[1];
@@ -263,6 +283,13 @@ get_var_from_modelstring=function(model_string){
 
 	return(unique(variables));
 
+}
+
+remove_samples_from_st=function(rm_na_result, summary_table){
+	factor_samp_ids=rownames(rm_na_result$factors);
+	summary_table_samp_ids=rownames(summary_table);
+	shared_samp_ids=sort(intersect(factor_samp_ids, summary_table_samp_ids));
+	return(summary_table[shared_samp_ids,,drop=F]);
 }
 
 # rem_missing_var_from_modelstring("apples+oranges+apples*oranges+grapes+grapes:oranges+grapes*oranges", c("apples", "oranges"));
@@ -345,8 +372,13 @@ remove_sample_or_factors_wNA_parallel=function(factors, required_variables=NULL,
 			paste(outfile, ".noNAs.tsv", sep=""),
 			quote=F, sep="\t", row.names=T, col.names=NA);
 	}
-	
-	return(best_matrix);
+
+	# Prep return values
+	results=list();
+	results$factors=best_matrix;
+	results$summary_text=summarize_as_text(factors, best_matrix);
+
+	return(results);
 }
 
 
