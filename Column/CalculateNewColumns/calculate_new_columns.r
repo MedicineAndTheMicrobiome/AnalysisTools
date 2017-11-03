@@ -61,6 +61,14 @@ usage = paste(
 	"	  example:\n",
 	"	     max_long_weekend_smokes=min.list(list(saturday, sunday, monday)); \n",
 	"\n",
+	"	to.bool(x):  This will convert x to upper case and then to 0/1 so R won't treat them as factors:\n",
+	"			FALSE / TRUE\n",
+	"			F / T\n",
+	"			NO / YES\n",
+	"			OFF / ON\n",
+	"		For other less commonly used boolean pairs, use the remap function.\n",
+	"",
+	"\n",
 	"\n");
 
 if(!length(opt$input) || !length(opt$formulas) || !length(opt$output)){
@@ -138,6 +146,27 @@ max.list=function(arglist, na.rm=T){
 	return(out);
 }
 
+to.bool=function(x){
+	uppered=toupper(x);
+
+	bools=rep(NA, length(x));
+
+	ones=grep("YES", uppered);
+	ones=c(ones, grep("TRUE", uppered));
+	ones=c(ones, grep("ON", uppered));
+	ones=c(ones, grep("T", uppered));
+
+	zeros=grep("NO", uppered);
+	zeros=c(zeros, grep("FALSE", uppered));
+	zeros=c(zeros, grep("OFF", uppered));
+	zeros=c(zeros, grep("F", uppered));
+
+	bools[zeros]=0;
+	bools[ones]=1;
+
+	return(bools);
+
+}
 
 ##############################################################################
 
