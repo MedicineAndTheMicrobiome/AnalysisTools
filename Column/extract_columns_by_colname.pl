@@ -140,9 +140,12 @@ my $num_col=$#header_arr+1;
 
 # Determine which columsn to keep:
 my @keep_ix;
+my %found;
+my %notfound;
 for(my $i=0; $i<$num_col; $i++){
 	my $hdr=$header_arr[$i];
 	if($colname_hash{$hdr}){
+		$found{$hdr}=1;
 		if($keep==1){
 			push @keep_ix, $i;			
 		}
@@ -151,6 +154,7 @@ for(my $i=0; $i<$num_col; $i++){
 			push @keep_ix, $i;
 		}
 	}
+	
 }
 
 my $num_kept=$#keep_ix +1;
@@ -164,6 +168,30 @@ foreach my $i (@keep_ix){
 print STDOUT (join $DELIM, @out_arr) . "\n";
 
 ###############################################################################
+
+print STDERR "\n\n";
+print STDERR "Found:\n";
+my $num_found=0;
+foreach my $col(sort keys %found){
+	print STDERR "$col\n";
+	$num_found++;
+}
+
+print STDERR "\n\n";
+
+print STDERR "Not Found:\n";
+my $num_notfound=0;
+foreach my $col(sort keys %colname_hash){
+	if(!defined($found{$col})){
+		print STDERR "$col\n";
+		$num_notfound++;
+	}
+}
+
+print STDERR "\n\n";
+print STDERR "Num Found: $num_found\n";
+print STDERR "Num Not Found: $num_notfound\n";
+print STDERR "\n\n";
 
 # Output values
 while(<IN_FH>){
