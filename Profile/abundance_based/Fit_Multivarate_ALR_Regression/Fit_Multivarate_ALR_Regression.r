@@ -9,13 +9,16 @@ library(car);
 options(useFancyQuotes=F);
 
 RM_NA_TRIALS=10000*64;
+NUM_TOP_CATEGORIES=25;
 
 params=c(
 	"summary_file", "s", 1, "character",
 	"factors", "f", 1, "character",
 	"num_variables", "p", 2, "numeric",
-	"reference_levels", "r", 2, "character",
+	"additional_variables_fname", "c", 2, "character",
 	"outputroot", "o", 2, "character",
+
+	"reference_levels", "r", 2, "character",
 	"model", "m", 2, "character",
 	"contains_remaining", "R", 2, "logical",
 	"shorten_category_names", "x", 2, "character",
@@ -34,11 +37,16 @@ usage = paste(
 	"\nUsage:\n", script_name, "\n",
 	"	-s <summary file table>\n",
 	"	-f <factors>\n",
-	"	[-r <reference levels file>]\n",
-	"	[-p <number of variables>]\n",
+	"	[-p <number of variables, in top abundances, default=", NUM_TOP_CATEGORIES, ">]\n",
+	"	[-c <additional categories of interest filename>\n",
 	"	[-o <output filename root>]\n",
+	"\n",
+	"	Model building options:\n",
+	"	[-r <reference levels file>]\n",
 	"	[-m <model formula string>]\n",
 	"	[-R (pay attention to 'remaining' category)]\n",
+	"\n",
+	"	NA removal options:\n",
 	"	[-N <remove NA trials, trials=", RM_NA_TRIALS, "\n",
 	"	[-q <required variables>]\n",
 	"\n",
@@ -79,9 +87,15 @@ if(!length(opt$outputroot)){
 }
 
 if(!length(opt$num_variables)){
-	NumVariables=20;
+	NumVariables=NUM_TOP_CATEGORIES;
 }else{
 	NumVariables=opt$num_variables;
+}
+
+if(!length(opt$additional_variables_fname)){
+	AdditionalVariablesFname="";
+}else{
+	AdditionalVariablesFname=opt$additional_variables_fname;
 }
 
 if(!length(opt$reference_levels)){
@@ -507,8 +521,17 @@ if(""!=RequiredFile){
         cat("No Required Variables specified...\n");
 }
 
+# Read in additional categories
+if(AdditionalVariablesFname!=""){
+	cat("Loading Additional ALR Categories...\n");
+	additional_categories=load_list(AdditionalVariablesFname);
+}else{
+	additional_categories=c();
+}
 
 plot_text(c(
+	"Multivariate ALR Response Regression:",
+	"",
 	input_info_text,
 	"",
 	paste("Original Model: ", Model, sep=""),
@@ -516,7 +539,10 @@ plot_text(c(
 	"Required Variables:",
 	paste("  File: ", RequiredFile, sep=""),
 	paste("  Variable(s): "),
-	capture.output(print(required_arr))
+	capture.output(print(required_arr)),
+	"",
+	"Additional MALR Categories:",
+	capture.output(print(additional_categories))
 ));
 
 
@@ -683,7 +709,7 @@ factors=factors[shared_sample_ids,,drop=F];
 
 ##############################################################################
 
-extract_top_categories=function(ordered_normalized, top){
+extract_top_categories=function(ordered_normalized, top, additional_cat=c()){
 
 	num_samples=nrow(ordered_normalized);
 	num_categories=ncol(ordered_normalized);
@@ -691,26 +717,50 @@ extract_top_categories=function(ordered_normalized, top){
 	cat("Samples: ", num_samples, "\n");
 	cat("Categories: ", num_categories, "\n");
 	
-	num_saved=min(c(num_categories, top+1));
+	num_top_to_extract=min(num_categories-1, top);
 
 	cat("Top Requested to Extract: ", top, "\n");
-	cat("Columns to Extract: ", num_saved, "\n");
-
-	top_cat=matrix(0, nrow=num_samples, ncol=num_saved);
-	top=num_saved-1;
+	cat("Columns to Extract: ", num_top_to_extract, "\n");
 
 	# Extract top categories requested
-	top_cat[,1:top]=ordered_normalized[,1:top];
+	top_cat=ordered_normalized[,1:num_top_to_extract];
 
-	# Included remaineder as sum of remaining categories
-	top_cat[,(top+1)]=apply(
-		ordered_normalized[,(top+1):num_categories, drop=F],
-		1, sum);
+	if(length(additional_cat)){
+		cat("Additional Categories to Include:\n");
+		print(additional_cat);
+	}else{
+		cat("No Additional Categories to Extract.\n");
+	}
 
-	rownames(top_cat)=rownames(ordered_normalized);
-	colnames(top_cat)=c(colnames(ordered_normalized)[1:top], "Remaining");
+	# Extract additional categories
+	# :: Make sure we can find the categories
+	available_cat=colnames(ordered_normalized);
+	missing_cat=setdiff(additional_cat, available_cat);
+	if(length(missing_cat)){
+		cat("Error: Could not find categories: \n");
+		print(missing_cat);
+		quit(status=-1);
+	}
 
-	return(top_cat);
+	# :: Remove categories we have already extracted in the top N
+	already_extracted_cat=colnames(top_cat);
+	extra_cat=setdiff(additional_cat, already_extracted_cat);
+
+	num_extra_to_extract=length(extra_cat);
+	cat("Num Extra Categories to Extract: ", num_extra_to_extract, "\n");
+	
+	# Allocate/Prepare output matrix
+	num_out_mat_cols=num_top_to_extract+num_extra_to_extract+1;
+	out_mat=matrix(0, nrow=num_samples, ncol=num_out_mat_cols);
+	rownames(out_mat)=rownames(ordered_normalized);
+	colnames(out_mat)=c(already_extracted_cat, extra_cat, "Remaining");
+
+	# Copy over top and additional categories, and compute remainding
+	all_cat_names=c(already_extracted_cat, extra_cat);
+	out_mat[,all_cat_names]=ordered_normalized[,all_cat_names];
+	out_mat[,"Remaining"]=apply(out_mat, 1, function(x){1-sum(x)});
+
+	return(out_mat);
 			
 }
 
@@ -753,9 +803,6 @@ if(num_top_taxa>= num_taxa){
 	cat("Number of taxa to work on was changed to: ", num_top_taxa, "\n");
 }
 
-# Perform ALR transform
-responses=extract_top_categories(normalized, num_top_taxa);
-resp_alr=additive_log_rato(responses)$transformed;
 
 ##############################################################################
 
@@ -798,20 +845,23 @@ plot_text(text);
 
 ##############################################################################
 
-cat("Performing regression.\n");
-cat("Extracting: ", num_top_taxa, " + 1 (remaining) categories.\n", sep="");
+cat("Extracting: ", num_top_taxa, " + 1 (remaining) categories and additional categories.\n", sep="");
 
-responses=extract_top_categories(normalized, num_top_taxa);
+# Perform ALR transform
+responses=extract_top_categories(normalized, num_top_taxa, additional_cat=additional_categories);
 resp_alr_struct=additive_log_rato(responses);
 transformed=resp_alr_struct$transformed;
+num_cat_to_analyze=ncol(transformed);
+sorted_taxa_names=colnames(transformed);
+cat("Num ALR Categories to Analyze: ", num_cat_to_analyze, sep="");
 
-
+# Building Model
 if(Model!="All Factors"){
 	model_pred_str=Model;
 }else{
 	model_pred_str=paste(factor_names, collapse=" + ");
 }
-
+cat("Model: ", model_pred_str, "\n");
 
 # Try to perform MANOVA
 model_string= paste("transformed ~", model_pred_str);
@@ -852,8 +902,8 @@ if(manova_success){
 	manova_txt=paste("Error performing MANOVA: ", manova_trial[["error"]], sep="");
 }
 
-text[1]=paste("Multivariate Regression with ", num_top_taxa, " top taxa", sep="");
-text[2]=paste("Proportion of overall mean abundance represented: ", prop_abundance_represented, sep="");
+text[1]=paste("Multivariate Regression with ", num_cat_to_analyze, " taxa", sep="");
+text[2]=paste("Proportion of top overall mean abundance represented: ", prop_abundance_represented, sep="");
 text[3]="";
 text=c(text, strsplit(model_string, "(?<=.{80})", perl=T)[[1]]);
 text=c(text, "");
@@ -870,14 +920,14 @@ plot_correl_heatmap(cor_mat, title="Category Correlations");
 
 # Compute pvalues for correlations, Null Hypothesis is cor=0
 cat("Computing P-values for Category Correlations...\n");
-pval_matrix=matrix(NA, ncol=num_top_taxa, nrow=num_top_taxa);
+pval_matrix=matrix(NA, ncol=num_cat_to_analyze, nrow=num_cat_to_analyze);
 colnames(pval_matrix)=colnames(transformed);
 rownames(pval_matrix)=colnames(transformed);
 
-pval_vect=numeric(num_top_taxa*(num_top_taxa-1)/2);
+pval_vect=numeric(num_cat_to_analyze*(num_cat_to_analyze-1)/2);
 
 num_corr_to_test=0;
-for(i in 2:num_top_taxa){
+for(i in 2:num_cat_to_analyze){
 	for(j in 1:(i-1)){
 		pval=cor.test(transformed[,i],transformed[,j])$p.value;
 		pval_matrix[i,j]=pval;
@@ -895,12 +945,12 @@ plot_correl_heatmap(log10(pval_matrix), title="Unadjusted Correlation Log10(P-va
 # FDR adjust pvalues
 cat("Adjusting P-values for Multiple Testing using Holm.\n");
 adjust_pval_vect=p.adjust(pval_vect, method="holm");
-fdr_pval_matrix=matrix(NA, ncol=num_top_taxa, nrow=num_top_taxa);
+fdr_pval_matrix=matrix(NA, ncol=num_cat_to_analyze, nrow=num_cat_to_analyze);
 colnames(fdr_pval_matrix)=colnames(transformed);
 rownames(fdr_pval_matrix)=colnames(transformed);
 
 num_corr_to_test=0;
-for(i in 2:num_top_taxa){
+for(i in 2:num_cat_to_analyze){
 	for(j in 1:(i-1)){
 		num_corr_to_test=num_corr_to_test+1;	
 		fdr_pval_matrix[i,j]=adjust_pval_vect[num_corr_to_test];
@@ -932,11 +982,11 @@ num_coeff=ncol(model_matrix);
 cat("Number of Coefficients Expected: ", num_coeff, "\n");
 coeff_names=colnames(model_matrix);
 
-uv_pval_mat=matrix(NA, nrow=num_coeff, ncol=num_top_taxa,
-		dimnames=list(coeff_names, sorted_taxa_names[1:num_top_taxa]));
+uv_pval_mat=matrix(NA, nrow=num_coeff, ncol=num_cat_to_analyze,
+		dimnames=list(coeff_names, sorted_taxa_names[1:num_cat_to_analyze]));
 
-uv_coeff_mat=matrix(NA, nrow=num_coeff, ncol=num_top_taxa,
-		dimnames=list(coeff_names, sorted_taxa_names[1:num_top_taxa]));
+uv_coeff_mat=matrix(NA, nrow=num_coeff, ncol=num_cat_to_analyze,
+		dimnames=list(coeff_names, sorted_taxa_names[1:num_cat_to_analyze]));
 
 
 tmp_model_string= paste("transformed[,1] ~", model_pred_str);
@@ -944,15 +994,15 @@ test_uv_fit=lm(as.formula(tmp_model_string), data=factors);
 anova_factor_names=setdiff(rownames(anova(test_uv_fit)), c("Residuals", "(Intercept)"));
 print(anova_factor_names);
 
-uv_anova_pval_mat=matrix(NA, nrow=length(anova_factor_names), ncol=num_top_taxa,
-		dimnames=list(anova_factor_names, sorted_taxa_names[1:num_top_taxa]));
+uv_anova_pval_mat=matrix(NA, nrow=length(anova_factor_names), ncol=num_cat_to_analyze,
+		dimnames=list(anova_factor_names, sorted_taxa_names[1:num_cat_to_analyze]));
 
 
 # Store R^2 for each taxa
-rsqrd=numeric(num_top_taxa);
-adj_rsqrd=numeric(num_top_taxa);
+rsqrd=numeric(num_cat_to_analyze);
+adj_rsqrd=numeric(num_cat_to_analyze);
 
-for(var_ix in 1:num_top_taxa){
+for(var_ix in 1:num_cat_to_analyze){
 	summary_txt=character();
 
 	cat("\n");
@@ -1059,7 +1109,7 @@ plot_correl_heatmap(log_uv_pval_mat[pred_ix, taxa_ix, drop=F], title="Sorted Uni
 # Plot R^2
 rsqrd_mat=rbind(rsqrd, adj_rsqrd);
 rownames(rsqrd_mat)=c("R^2", "Adjusted R^2");
-colnames(rsqrd_mat)=sorted_taxa_names[1:num_top_taxa];
+colnames(rsqrd_mat)=sorted_taxa_names[1:num_cat_to_analyze];
 plot_correl_heatmap(rsqrd_mat, title="Univariate R Squared");
 
 # Plot univariate coefficients
@@ -1165,7 +1215,7 @@ reg_coef_power=function(uv_reg_fit, factor=10, alpha=.05, power=.8){
 # Plot univariate analyses
 
 par(oma=c(0,0,3,0));
-for(var_ix in 1:num_top_taxa){
+for(var_ix in 1:num_cat_to_analyze){
 
 	setHook("plot.new", function(){mtext(sorted_taxa_names[var_ix], outer=T, line=-.5);});
 
@@ -1244,8 +1294,8 @@ for(var_ix in 1:num_top_taxa){
 
 	# Generate sideways histogram
 	par(mar=c(5.1,6.1,1,1));
-	h=hist(resp_alr[,var_ix], breaks=20, plot=F);
-	barplot(h$counts, horiz=T, names.arg=h$mids, space=0, las=2, cex.names=.75,
+	h=hist(resp_alr_struct$transformed[,var_ix], breaks=20, plot=F);
+	barplot(h$counts, horiz=T, names.arg=signif(h$mids, 3), space=0, las=2, cex.names=.75,
 		ylab="ALR Transformed Abundance", xlab="Counts", main="");
 	
 	#, main=paste(var_ix, ".) ", sorted_taxa_names[var_ix], 
