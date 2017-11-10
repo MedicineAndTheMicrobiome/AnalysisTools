@@ -116,7 +116,6 @@ if(length(opt$contains_remaining)){
 	UseRemaining=F;
 }
 
-
 if(length(opt$shorten_category_names)){
 	ShortenCategoryNames=opt$shorten_category_names;
 }else{
@@ -788,6 +787,99 @@ additive_log_rato=function(ordered_matrix){
 	return(alr_struct);
 }
 
+plot_overlapping_density=function(mat, title=""){
+
+	cat("Plotting overlapping densities...\n");
+
+	num_cat=ncol(mat);
+	range=range(mat);
+
+	cat("Ranges: ", range[1], " - ", range[2], "\n", sep="");
+
+	# Compute the density for each category
+	density_list=list();
+	max_density=0;
+	for(i in 1:num_cat){
+		density_list[[i]]=density(mat[,i]);
+		max_density=max(max_density, density_list[[i]]$y);
+	}
+	cat("Max Density: ", max_density, "\n");
+
+	# Open a blank plot
+	par(mar=c(5,5,5,1));
+	range_span=diff(range);
+	plot(0,0, type="n", xlim=c(range[1]-range_span*.3, range[2]+range_span*.3), ylim=c(0, max_density*3), 
+		xlab="ALR Value", ylab="Density", main="ALR Density for Extracted Categories (Mode Labelled)");
+	title(main=title, outer=F, line=.5, cex.main=.85);
+	
+	cat_names=colnames(mat);
+
+        colors=rainbow(num_cat, start=0, end=0.65);
+
+	# Plot Densities
+	label_pos=numeric(num_cat);
+	for(i in 1:num_cat){
+		xs=density_list[[i]]$x;
+		ys=density_list[[i]]$y;
+		max_y=max(ys);
+		max_y_ix=max(which(ys==max_y));
+		x_at_max_y=xs[max_y_ix];
+		label_pos[i]=x_at_max_y;
+		points(xs,ys, type="l", col=colors[i], lwd=3);
+		points(xs,ys, type="l", col="black", lwd=.5);
+		#text(x_at_max_y, max_y, cat_names[i], col=colors[i]);
+		points(x_at_max_y, max_y, cex=1, pch=16, col=colors[i]);
+	}
+
+	# Tweak label positions so they don't overlap
+	sort_ix=order(label_pos);
+	label_pos=label_pos[sort_ix]; # Original position
+	cat_names=cat_names[sort_ix];
+	colors=colors[sort_ix];
+
+	char_size=par()$cxy[1];
+	modified=label_pos;	# Tweaked position
+	tweaked=T;
+	tol=.5;
+	while(tweaked){
+		tweaked=F;
+
+		max_tweak=max(min(diff(modified)), 0);
+		if(max_tweak==0){
+			max_tweak=tol/10;
+		}
+		max_tweak=min(tol/2, max_tweak);
+
+		# Forward adjust
+		for(i in 1:(num_cat-1)){
+			if(abs(modified[i]-modified[i+1])<tol){
+				modified[i+1]=modified[i+1]+max_tweak;	
+				tweaked=T;
+			}
+		}
+
+		# Backward adjust
+		for(i in num_cat:2){
+			if(abs(modified[i]-modified[i-1])<tol){
+				modified[i-1]=modified[i-1]-max_tweak;	
+				tweaked=T;
+			}
+		}
+
+	}	
+
+	# Plot ticks, labels, and connectors
+	for(i in 1:num_cat){
+		# vertical tick
+		points(c(label_pos[i], label_pos[i]), c(max_density*1.05, max_density*1.10), type="l", col=colors[i]);
+		# tick to label
+		points(c(label_pos[i], modified[i]), c(max_density*1.1, max_density*1.2), type="l", col=colors[i]);
+		text(modified[i]-char_size/2, max_density*1.25, cat_names[i], srt=90, pos=4, xpd=T, col=colors[i]);
+	}
+
+}
+
+
 ##############################################################################
 
 # Assign 0's to values smaller than smallest abundance across entire dataset
@@ -853,7 +945,16 @@ resp_alr_struct=additive_log_rato(responses);
 transformed=resp_alr_struct$transformed;
 num_cat_to_analyze=ncol(transformed);
 sorted_taxa_names=colnames(transformed);
-cat("Num ALR Categories to Analyze: ", num_cat_to_analyze, sep="");
+cat("Num ALR Categories to Analyze: ", num_cat_to_analyze, "\n", sep="");
+
+
+plot_overlapping_density(transformed, title="All");
+bottom_half=ceiling(num_cat_to_analyze/2) : num_cat_to_analyze;
+top_half=1:floor(num_cat_to_analyze/2);
+plot_overlapping_density(transformed[,top_half], title="Top Half by Avg Abundance");
+plot_overlapping_density(transformed[,bottom_half], title="Bottom Half by Avg Abundance");
+
+##############################################################################
 
 # Building Model
 if(Model!="All Factors"){
