@@ -12,6 +12,7 @@ params=c(
 	"distmat", "d", 1, "character",
 	"factors", "f", 1, "character",
 	"model_formula", "m", 2, "character",
+	"required_var", "q", 2, "character",
 	"blocking", "b", 2, "character",
 	"outputroot", "o", 2, "character",
 	"xrange", "x", 2, "character",
@@ -23,6 +24,9 @@ params=c(
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
 script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
 
+script_path=paste(head(strsplit(script_name, "/")[[1]], -1), collapse="/");
+source(paste(script_path, "/../../../Metadata/RemoveNAs/Remove_NAs.r", sep=""));
+
 usage = paste(
 	"\nUsage:\n", script_name, "\n",
 	"	-d <distance matrix>\n",
@@ -30,6 +34,8 @@ usage = paste(
 	"\n",
 	"	[-o <output filename root>]\n",
 	"	[-m \"model formula string\"]\n",
+	"\n",
+	"	[-q <required variables list>]\n",
 	"\n",
 	"	[-b <factor to use as blocking variable>]\n",
 	"	[--xrange=<MDS Dim1 Range, eg. -2,2>]\n",
@@ -115,6 +121,11 @@ if(length(opt$testing)){
 StripSamplesWithNAs=F;
 if(length(opt$strip_samples_nas)){
 	StripSamplesWithNAs=T;
+}
+
+RequiredFile="";
+if(length(opt$required_var)){
+        RequiredFile=opt$required_var;
 }
 
 ###############################################################################
@@ -406,6 +417,13 @@ remove_samples_wNA=function(factors){
 
 ##############################################################################
 
+load_list=function(filename){
+        val=scan(filename, what=character(), comment.char="#");
+        return(val);
+}
+
+##############################################################################
+
 subset_model_string=function(model_string, avail_factors){
 	lin_var_str=gsub(" ", "", model_string);
 	lin_comp=strsplit(lin_var_str, "\\+")[[1]];
@@ -423,6 +441,10 @@ subset_model_string=function(model_string, avail_factors){
 }
 
 #subset_model_string("This+ is + a:test + yes + it:is+This:test:yes", c("This", "test", "yes"));
+
+##############################################################################
+
+pdf(paste(OutputFnameRoot, rand, ".pdf", sep=""), height=5.5, width=11);
 
 ##############################################################################
 
@@ -500,14 +522,31 @@ if(ModelFormula!=""){
 # Remove factors or samples that have NAs
 factors=remove_factors_with_no_data(factors);
 
+# Load variables to require after NA removal
+required_arr=NULL;
+if(""!=RequiredFile){
+        required_arr=load_list(RequiredFile);
+        cat("Required Variables:\n");
+        print(required_arr);
+        cat("\n");
+        missing_var=setdiff(required_arr, factor_names);
+        if(length(missing_var)>0){
+                cat("Error: Missing required variables from factor file:\n");
+                print(missing_var);
+        }
+}else{
+        cat("No Required Variables specified...\n");
+}
+
 # Decide what to do with NAs.
 if(StripSamplesWithNAs){
 	factors=remove_samples_wNA(factors);
 }else{
-	script_path=paste(head(strsplit(script_name, "/")[[1]], -1), collapse="/");
-        source(paste(script_path, "/../../../Metadata/RemoveNAs/Remove_NAs.r", sep=""));
 
-	factors=remove_sample_or_factors_wNA_parallel(factors, num_trials=500000, num_cores=64, outfile=OutputFnameRoot);
+	noNA_result=remove_sample_or_factors_wNA_parallel(factors, required=required_arr,
+		num_trials=500000, num_cores=64, outfile=OutputFnameRoot);
+	factors=noNA_result$factors;
+	plot_text(noNA_result$summary_text);
 }
 factor_names=colnames(factors);
 num_factors=ncol(factors);
@@ -519,6 +558,8 @@ if(ModelFormula!=""){
 }
 
 # Reconcile samples between distance matrix and factor file again
+print(distmat_sample_names);
+print(factor_sample_names);
 common_sample_names=intersect(distmat_sample_names, factor_sample_names);
 distmat=distmat[common_sample_names, common_sample_names];
 
@@ -662,8 +703,6 @@ cat("\n");
 
 ##############################################################################
 
-pdf(paste(OutputFnameRoot, rand, ".pdf", sep=""), height=5.5, width=11);
-
 ##############################################################################
 # Output summary input and results
 
@@ -782,8 +821,10 @@ bin_continuous_values=function(values, num_bins=10){
 	prop=(values-minv)/range;
 	# Scale value up to bin, and round, to quantize
 	closest=round(prop*num_bins,0);
+	log10range=log10(range);
+	trunc=signif(closest/num_bins*range+minv, 5)
 	# Remap values to original range and location
-	return(closest/num_bins*range+minv);
+	return(trunc);
 }
 
 par(oma=c(0,0,4,0));
@@ -947,12 +988,23 @@ for(fact_id in 1:num_anova_terms){
 		xlim=xrange,
 		ylim=yrange
 	);
-	points(mds1_reori, mds2_reori, cex=1, col=fact_col[sample_names]);
-	points(mds1_centoid, mds2_centoid, cex=3, col=1:num_levels, font=2);
+
+	if(num_samples>100){
+		pt_size=.5;
+	}else if(num_samples>50){
+		pt_size=.75;
+	}else{
+		pt_size=1;
+	}
+	points(mds1_reori, mds2_reori, cex=pt_size, col=fact_col[sample_names]);
+
+	# bull eye
+	points(mds1_centoid, mds2_centoid, cex=2, col=1:num_levels, pch=19);
+	points(mds1_centoid, mds2_centoid, cex=2, col="black", pch=21);
 
 	# Only plot category labels if the labels are factors, i.e. no continuous values
 	if(is_factor || is_ordered){
-		text(mds1_centoid, mds2_centoid, labels=factor_levels, cex=.7, font=2);
+		text(mds1_centoid, mds2_centoid, labels=factor_levels, cex=1.2, font=2, pos=1);
 	}
 
 	# Plot Legend
