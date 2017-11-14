@@ -14,6 +14,7 @@ params=c(
 	"summary_file", "s", 1, "character",
 	"factors", "f", 1, "character",
 	"model_filename", "M", 2, "character",
+	"required_var", "q", 2, "character",
 	"reference_levels", "r", 2, "character",
 	"outputroot", "o", 2, "character",
 	"model_formula", "m", 2, "character",
@@ -27,7 +28,8 @@ usage = paste(
 	"\nUsage:\n", script_name, "\n",
 	"	-s <summary file table>\n",
 	"	-f <factors>\n",
-	"	-M <model variables in a list file>\n",
+	"	[-M <model variables in a list file>]\n",
+	"	[-q <required variables>]\n",
 	"	[-r <reference levels file>]\n",
 	"	[-o <output filename root>]\n",
 	"	[-m \"<model formula string>\"]\n",
@@ -55,6 +57,7 @@ if(!length(opt$summary_file) || !length(opt$factors)){
 
 if(!length(opt$outputroot)){
 	OutputRoot=gsub(".summary_table.xls", "", opt$summary_file);
+	OutputRoot=gsub(".summary_table.tsv", "", OutputRoot);
 }else{
 	OutputRoot=opt$outputroot;
 }
@@ -76,6 +79,11 @@ if(length(opt$model_filename)){
         ModelFilename=opt$model_filename;
 }
 
+RequiredFile="";
+if(length(opt$required_var)){
+        RequiredFile=opt$required_var;
+}
+
 SummaryFile=opt$summary_file;
 FactorsFile=opt$factors;
 
@@ -84,6 +92,7 @@ cat("Summary File : ", SummaryFile, "\n", sep="");
 cat("Factors File: ", FactorsFile, "\n", sep="");
 cat("Output File: ", OutputRoot, "\n", sep="");
 cat("Reference Levels File: ", ReferenceLevelsFile, "\n", sep="");
+cat("Required Variables File: ", RequiredFile, "\n", sep="");
 cat("\n");
 
 TestingMode=ifelse(length(opt$testing_flag)>0, T, F);
@@ -341,6 +350,22 @@ normalized=normalized[shared_sample_ids,];
 num_samples=nrow(normalized);
 factors=factors[shared_sample_ids,, drop=F];
 
+# Load variables to require after NA removal
+required_arr=NULL;
+if(""!=RequiredFile){
+	required_arr=scan(ModelFilename, what=character(), comment.char="#");
+        cat("Required Variables:\n");
+        print(required_arr);
+        cat("\n");
+        missing_var=setdiff(required_arr, factor_names);
+        if(length(missing_var)>0){
+                cat("Error: Missing required variables from factor file:\n");
+                print(missing_var);
+        }
+}else{
+        cat("No Required Variables specified...\n");
+}
+
 # Build model and select variables
 if(ModelFormula!=""){
 	cat("Model Formula: ", ModelFormula, "\n", sep="");
@@ -368,8 +393,9 @@ print(model_var);
 factors=factors[,model_var, drop=F];
 
 # Handle NAs
-factors=remove_sample_or_factors_wNA_parallel(factors, required=NULL, num_trials=6400, num_cores=64, outfile=paste(OutputRoot, ".noNAs", sep=""));
-#factors=remove_sample_or_factors_wNA_parallel(factors, required=NULL, num_trials=640000, num_cores=64, outfile=paste(OutputRoot, ".noNAs", sep=""));
+#factors=remove_sample_or_factors_wNA_parallel(factors, required=NULL, num_trials=6400, num_cores=64, outfile=paste(OutputRoot, ".noNAs", sep=""));
+remove_na_res=remove_sample_or_factors_wNA_parallel(factors, required=required_arr, num_trials=640000, num_cores=64, outfile=paste(OutputRoot, ".noNAs", sep=""));
+factors=remove_na_res$factors;
 samp_wo_nas=rownames(factors);
 factor_names=colnames(factors);
 num_factors=length(factor_names);
@@ -504,6 +530,8 @@ for(i in 1:num_div_idx){
 		cat("[", search_trial, "] Search range: ", lambda_start, " to ", lambda_end, "\n", sep="");
 		cat("Model: ", model_string, "\n");
 
+print(factors);
+print(raw);
 		bc=boxcox(as.formula(model_string), data=factors, 
 			lambda=seq(lambda_start, lambda_end, length.out=SEARCH_FREQUENCY),
 			plotit=FALSE
