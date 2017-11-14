@@ -12,6 +12,7 @@ params=c(
 	"distmat", "d", 1, "character",
 	"factors", "f", 1, "character",
 	"model_formula", "m", 2, "character",
+	"model_variables_file", "M", 2, "character",
 	"required_var", "q", 2, "character",
 	"blocking", "b", 2, "character",
 	"outputroot", "o", 2, "character",
@@ -34,6 +35,7 @@ usage = paste(
 	"\n",
 	"	[-o <output filename root>]\n",
 	"	[-m \"model formula string\"]\n",
+	"	[-M <model variables filename>]\n",
 	"\n",
 	"	[-q <required variables list>]\n",
 	"\n",
@@ -82,6 +84,12 @@ if(!length(opt$model_formula)){
 	ModelFormula="";
 }else{
 	ModelFormula=opt$model_formula;
+}
+
+if(length(opt$model_variables_file)){
+        ModelVariablesFile=opt$model_variables_file;
+}else{
+        ModelVariablesFile="";
 }
 
 DistmatFname=opt$distmat;
@@ -494,6 +502,11 @@ distmat=distmat[common_sample_names, common_sample_names];
 factors=factors[common_sample_names, , drop=F];
 
 ###############################################################################
+
+if(ModelVariablesFile!=""){
+        model_variables_file_list=load_list(ModelVariablesFile);
+        model_vars_str=paste(model_variables_file_list, collapse=" + ");
+}
 
 if(ModelFormula!=""){
 	# Based on factors in model string, identity which factors are used
