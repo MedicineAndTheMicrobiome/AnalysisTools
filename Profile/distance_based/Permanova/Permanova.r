@@ -505,7 +505,7 @@ factors=factors[common_sample_names, , drop=F];
 
 if(ModelVariablesFile!=""){
         model_variables_file_list=load_list(ModelVariablesFile);
-        model_vars_str=paste(model_variables_file_list, collapse=" + ");
+        ModelFormula=paste(model_variables_file_list, collapse=" + ");
 }
 
 if(ModelFormula!=""){
@@ -571,8 +571,6 @@ if(ModelFormula!=""){
 }
 
 # Reconcile samples between distance matrix and factor file again
-print(distmat_sample_names);
-print(factor_sample_names);
 common_sample_names=intersect(distmat_sample_names, factor_sample_names);
 distmat=distmat[common_sample_names, common_sample_names];
 
