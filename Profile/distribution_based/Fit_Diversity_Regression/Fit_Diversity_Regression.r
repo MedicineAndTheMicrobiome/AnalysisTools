@@ -370,9 +370,8 @@ if(""!=RequiredFile){
 if(ModelFormula!=""){
 	cat("Model Formula: ", ModelFormula, "\n", sep="");
 	model_string=paste("raw ~ ", ModelFormula);
-}
-
-if(ModelFilename!=""){
+	
+}else if(ModelFilename!=""){
 	cat("Model Variables Filename: ", ModelFilename, "\n");
 	variables=scan(ModelFilename, what=character(), comment.char="#");
 	shared=intersect(variables, factor_names);
@@ -651,8 +650,17 @@ plot_diversity_with_factors=function(raw, factors, model_string, stat_name, bin_
 	# Extract out predictors
 	predictor_string=strsplit(model_string, "~")[[1]][2];
 	pred_arr=strsplit(predictor_string, "\\+")[[1]];
+	
+	# Remove interaction terms
+	interact_ix=grep(":", pred_arr);
+	if(length(interact_ix)){
+		pred_arr=pred_arr[-interact_ix]
+	}
+
 	pred_arr=gsub(" ", "", pred_arr);
 	num_pred=length(pred_arr);
+
+
 	num_values=length(raw);
 	raw_range=range(raw);
 
@@ -704,7 +712,7 @@ plot_diversity_with_factors=function(raw, factors, model_string, stat_name, bin_
 	pred_names=colnames(factors);
 	raw_adj_range=range(c(raw, adj_pos));
 
-	num_plots=num_pred %/% predictors_per_plot;
+	num_plots=num_pred %/% predictors_per_plot + 1;
 
 	for(plot_ix in 1:num_plots){
 		# Plot the samples on the y axis
@@ -722,6 +730,7 @@ plot_diversity_with_factors=function(raw, factors, model_string, stat_name, bin_
 		text(zeros-.20, adj_pos, label=names(raw), pos=4, cex=.5);
 
 		# Label predictors
+		predictors_per_plot=min(predictors_per_plot, num_pred);
 		for(j in 1:predictors_per_plot){
 			pred_ix=((plot_ix-1)*predictors_per_plot)+(j-1)+1;
 			if(!length(grep(":", pred_arr[pred_ix]))){
@@ -884,10 +893,8 @@ rownames(rsqrd_mat)=div_names;
 if(ModelFormula==""){
 	model_string= paste("trans ~", 
 	paste(factor_names, collapse=" + "));
-}else{
-	model_string= paste("trans ~", 
-		RegressionFormula);
 }
+
 cat("\nFitting this regression model: ", model_string, "\n");
 
 trans=rep(0, nrow(factors));
@@ -912,6 +919,7 @@ for(i in 1:num_div_idx){
 	cat("Working on: ", div_names[i], "\n", sep="");
 
 	raw=div_mat[, div_names[i]];
+
 	plot_diversity_with_factors(raw, factors, model_string, div_names[i], 6);
 	plot_overlapping_histograms(raw, factors, model_string, title=div_names[i], 6);
 
