@@ -153,6 +153,35 @@ plot_text=function(strings){
 	par(orig.par);
 }
 
+compute_correlations=function(mat){
+	num_col=ncol(mat);
+	cor_mat=matrix(0, nrow=num_col, ncol=num_col);
+	pval_mat=matrix(0, nrow=num_col, ncol=num_col);
+	rownames(cor_mat)=colnames(mat);
+	colnames(cor_mat)=colnames(mat);
+	rownames(pval_mat)=colnames(mat);
+	colnames(pval_mat)=colnames(mat);
+	for(i in 1:num_col){
+		for(j in 1:i){
+			v1=mat[,i];
+			v2=mat[,j];
+			notna=!(is.na(v1) | is.na(v2));
+			#cor_mat[i,j]=cor(v1[notna], v2[notna]);
+			test=cor.test(v1[notna], v2[notna]);
+			pval_mat[i,j]=test$p.value;
+			pval_mat[j,i]=test$p.value;
+			cor_mat[i,j]=test$estimate;
+			cor_mat[j,i]=test$estimate;
+		}
+	}
+	res=list();
+	res[["val"]]=cor_mat;
+	res[["pval"]]=pval_mat;;
+	res[["dist"]]=as.dist(1-abs(cor_mat));
+	return(res);
+}
+
+
 ##############################################################################
 # Main Program Starts Here!
 ##############################################################################
@@ -301,33 +330,23 @@ for(pred in predictors_arr){
 
 ##############################################################################
 
-compute_correlations=function(mat){
-	num_col=ncol(mat);
-	cor_mat=matrix(0, nrow=num_col, ncol=num_col);
-	pval_mat=matrix(0, nrow=num_col, ncol=num_col);
-	rownames(cor_mat)=colnames(mat);
-	colnames(cor_mat)=colnames(mat);
-	rownames(pval_mat)=colnames(mat);
-	colnames(pval_mat)=colnames(mat);
-	for(i in 1:num_col){
-		for(j in 1:i){
-			v1=mat[,i];
-			v2=mat[,j];
-			notna=!(is.na(v1) | is.na(v2));
-			#cor_mat[i,j]=cor(v1[notna], v2[notna]);
-			test=cor.test(v1[notna], v2[notna]);
-			pval_mat[i,j]=test$p.value;
-			pval_mat[j,i]=test$p.value;
-			cor_mat[i,j]=test$estimate;
-			cor_mat[j,i]=test$estimate;
-		}
-	}
-	res=list();
-	res[["val"]]=cor_mat;
-	res[["pval"]]=pval_mat;;
-	res[["dist"]]=as.dist(1-abs(cor_mat));
-	return(res);
-}
+# Compute the dendrogram, clustering based on the correlation between responses and predictors
+
+plot_text(c(
+	"The following dendrogram illustrates the relationship between the",
+	"  response and predictor variables based on their correlation.",
+	"",
+	"The greater the magnitude of the correlation, i.e. abs(cor),",
+	"  the shorter the distance between variables.",
+	"",
+	"The Euclidean distance is still used to compare the correlation profiles",
+	"  between variables to satisfy the 'triangle inequality'.",
+	"",
+	"The predictor variables are colored red.",
+	"Note that the relationship between variables is actually closer to R^2",
+	"  than the estimated coefficient magnitudes because the scale/unit for",
+	"  each of the variables may not be the same."
+));
 
 correl=compute_correlations(cbind(pred_mat, resp_mat));
 
