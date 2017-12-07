@@ -264,6 +264,14 @@ plot_sample_distributions_by_individual=function(diversity_arr, div_type, normal
 			type="p", pch=c(17, 1, 15), cex=c(1, 2, 1.25));
 		points(offset_info[,"Offsets"], subset_diversity, type="b", pch=16, cex=.5, lwd=.1);
 
+		# Mark Events
+		mark_event=rep(0, num_members);
+		mark_event[offset_info[, "Events"]==T]=2;
+		points(offset_info[,"Offsets"], subset_diversity, type="p", pch="*", 
+			font=2, cex=mark_event*1.5, col=col_assign[groups[i]]);
+		points(offset_info[,"Offsets"], subset_diversity, type="p", pch="*", 
+			cex=mark_event);
+
 		###############################################################
 
 		# Plot abundances
@@ -271,11 +279,20 @@ plot_sample_distributions_by_individual=function(diversity_arr, div_type, normal
 		subset_norm=normalized_mat[subset_samples,];
 		plot(offset_info[,"Offsets"], subset_diversity, main=groups[i],
 			 xlab="Time", ylab="Taxa", type="n", col=i, lwd=2,
-			 xlim=offset_ranges, ylim=c(0,1));
+			 xlim=offset_ranges, ylim=c(0,1+.15));
 
+		# Plot stacked abundances
 		for(t in 1:num_members){
 			plot_dist(offset_info[subset_samples[t],"Offsets"], y=0, 
 				abundances=normalized_mat[subset_samples[t],], width=min_period);
+		}
+
+		# Mark Events
+		for(t in 1:num_members){
+			has_event=(offset_info[subset_samples[t], "Events"]);
+			if(!is.na(has_event) && has_event==T){
+				points(offset_info[subset_samples[t], "Offsets"], y=1.075, pch=8);
+			}
 		}
 
 		###############################################################
@@ -371,6 +388,14 @@ plot_sample_diversity_by_group=function(diversity_arr, div_type, normalized_mat,
 			points(offset_info[,"Offsets"], subset_diversity, type="l", lwd=2.5, col=col_assign[indivs[i]]);
 			points(offset_info[,"Offsets"], subset_diversity, type="l", lwd=.1, col="black");
 
+			# Mark Events
+			mark_event=rep(0, num_timepts);
+			mark_event[offset_info[, "Events"]==T]=2;
+			points(offset_info[,"Offsets"], subset_diversity, type="p", pch="*", 
+				font=2, cex=mark_event*1.5, col=col_assign[indivs[i]]);
+			points(offset_info[,"Offsets"], subset_diversity, type="p", pch="*", 
+				cex=mark_event);
+
 		}
 	}
 	par(def_par);
@@ -458,7 +483,7 @@ plot_sample_distributions_by_group=function(normalized_mat, offsets_mat, cat_col
 			plot(0, 0, main="",
 				xlab="", ylab=indivs[i], type="n", bty="n",
 				xaxt=xaxt_setting, yaxt="n",
-				xlim=offset_ranges, ylim=c(0,1));
+				xlim=offset_ranges, ylim=c(0,1+.15));
 
 			subset_samples=rownames(offset_info);
 
@@ -471,10 +496,17 @@ plot_sample_distributions_by_group=function(normalized_mat, offsets_mat, cat_col
 
 			# Draw stacked barplot
 			for(t in 1:num_timepts){
-				cat("sample: ", subset_samples[t], "\n");
 				plot_dist(offset_info[t,"Offsets"], y=0, 
 					abundances=normalized_mat[subset_samples[t],], width=min_period);
 
+			}
+
+			# Mark Events
+			for(t in 1:num_timepts){
+				has_event=(offset_info[subset_samples[t], "Events"]);
+				if(!is.na(has_event) && has_event==T){
+					points(offset_info[subset_samples[t], "Offsets"], y=1.075, pch=8);
+				}
 			}
 		}
 
