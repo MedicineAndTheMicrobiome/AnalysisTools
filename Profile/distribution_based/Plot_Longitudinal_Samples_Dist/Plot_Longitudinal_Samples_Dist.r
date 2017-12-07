@@ -76,9 +76,13 @@ load_offset=function(fname){
         cat("Loading Offsets: ", fname, "\n");
         offsets_mat=read.delim(fname,  header=FALSE, row.names=1, sep="\t", comment.char="#", quote="");
 
-	colnames(offsets_mat)=c("Indiv ID", "Offsets", "Group ID");
+	num_col=ncol(offsets_mat);
+	colnames(offsets_mat)=c("Indiv ID", "Offsets", "Group ID", "Events")[1:num_col];
 
 	# reset offsets
+	if(is.numeric(offsets_mat[,"Indiv ID"])){
+		offsets_mat[,"Indiv ID"]=paste("#", offsets_mat[,"Indiv ID"], sep="");
+	}
 	groups=unique(offsets_mat[,"Indiv ID"]);
 	
 	cat("Groups:\n");
@@ -87,9 +91,10 @@ load_offset=function(fname){
 
 	# Reset offsets so they are relative to the first/smallest sample
 	for(gid in groups){
-		offsets=offsets_mat[gid==offsets_mat[,"Indiv ID"], "Offsets"];
+		group_ix=(gid==offsets_mat[,"Indiv ID"]);
+		offsets=offsets_mat[group_ix, "Offsets"];
 		min_off=min(offsets);
-		offsets_mat[gid==offsets_mat[,"Indiv ID"], "Offsets"]=offsets-min_off;
+		offsets_mat[group_ix, "Offsets"]=offsets-min_off;
 	}
 
 	return(offsets_mat);
@@ -197,7 +202,6 @@ plot_sample_distributions_by_individual=function(diversity_arr, div_type, normal
 	groups=sort(unique(offsets_mat[,"Indiv ID"]));
 	num_groups=length(groups);
 
-
 	def_par=par(no.readonly=T);
 	par(mfrow=c(3,1));
 
@@ -215,7 +219,7 @@ plot_sample_distributions_by_individual=function(diversity_arr, div_type, normal
 	for(i in 1:num_groups){
 		grp_subset=which(offsets_mat[,"Indiv ID"]==groups[i]);
                 offsets=offsets_mat[grp_subset, "Offsets"];
-		periods=c(diff(offsets), periods);
+		periods=c(diff(sort(offsets)), periods);
 	}
 	periods_sorted=sort(unique(periods));
 	if(periods_sorted[1]==0){
@@ -398,9 +402,10 @@ plot_sample_distributions_by_group=function(normalized_mat, offsets_mat, cat_col
 	for(i in 1:num_indivs){
 		grp_subset=which(offsets_mat[,"Indiv ID"]==indivs[i]);
                 offsets=offsets_mat[grp_subset, "Offsets"];
-		periods=c(diff(offsets), periods);
+		periods=c(diff(sort(offsets)), periods);
 	}
 	periods_sorted=sort(unique(periods));
+
 	if(periods_sorted[1]==0){
 		min_period=periods_sorted[2];
 	}else{
@@ -549,8 +554,8 @@ plot_change_scatter=function(diversity_arr, offset_mat){
 	print(diversity_arr);
 	print(offset_mat);
 
-	trt_levels=levels(offset_mat[,"Group ID"]);
-	ind_ids=levels(offset_mat[,"Indiv ID"]);
+	trt_levels=unique(offset_mat[,"Group ID"]);
+	ind_ids=unique(offset_mat[,"Indiv ID"]);
 	
 	num_indiv=length(ind_ids);
 	num_trt=length(trt_levels);
@@ -569,8 +574,6 @@ plot_change_scatter=function(diversity_arr, offset_mat){
 		num_offsets=nrow(offset_subset);
 		ends[ind_ix, "start"]=diversity_arr[samp_names[1]];
 		ends[ind_ix, "end"]=diversity_arr[samp_names[num_offsets]];
-		#print(offset_subset);
-		#print(ends);
 	}
 
 	end_ranges=range(ends);	
