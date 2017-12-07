@@ -142,10 +142,11 @@ my $num_col=$#header_arr+1;
 my @keep_ix;
 my %found;
 my %notfound;
+
 for(my $i=0; $i<$num_col; $i++){
 	my $hdr=$header_arr[$i];
 	if($colname_hash{$hdr}){
-		$found{$hdr}=1;
+		$found{$hdr}=$i;
 		if($keep==1){
 			push @keep_ix, $i;			
 		}
@@ -194,17 +195,45 @@ print STDERR "Num Not Found: $num_notfound\n";
 print STDERR "\n\n";
 
 # Output values
-while(<IN_FH>){
 
-	chomp;
-	my @cols_arr=split /$DELIM/, $_;
-
-	my @out_arr;
-	foreach my $i (@keep_ix){
-		push @out_arr, $cols_arr[$i];
+if($keep){
+	# Order the keep indices according to specified column names
+	my @keep_ix;
+	foreach my $name (@{$colnames_ref}){
+		if(defined($found{$name})){
+			push @keep_ix, $found{$name};	
+		}
 	}
-	
-	print STDOUT (join $DELIM, @out_arr) . "\n";
+
+	# Keep in order of list
+	while(<IN_FH>){
+
+		chomp;
+		my @cols_arr=split /$DELIM/, $_;
+
+		my @out_arr;
+		foreach my $i (@keep_ix){
+			push @out_arr, $cols_arr[$i];
+		}
+		
+		print STDOUT (join $DELIM, @out_arr) . "\n";
+
+	}
+}else{
+	# Keep original order found in the input file
+	while(<IN_FH>){
+
+		chomp;
+		my @cols_arr=split /$DELIM/, $_;
+
+		my @out_arr;
+		foreach my $i (@keep_ix){
+			push @out_arr, $cols_arr[$i];
+		}
+		
+		print STDOUT (join $DELIM, @out_arr) . "\n";
+
+	}
 
 }
 
