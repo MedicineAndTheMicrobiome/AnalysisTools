@@ -75,6 +75,7 @@ pdf(OutputPDF,width=8.5,height=11)
 load_offset=function(fname){
         cat("Loading Offsets: ", fname, "\n");
         offsets_mat=read.delim(fname,  header=FALSE, row.names=1, sep="\t", comment.char="#", quote="");
+
 	colnames(offsets_mat)=c("Indiv ID", "Offsets", "Group ID");
 
 	# reset offsets
@@ -186,7 +187,9 @@ plot_dist=function(x, y, width=20, abundances){
 		
 }
 
-plot_sample_distributions_by_individual=function(diversity_arr, div_type, normalized_mat, offsets_mat, col_assign, category_colors, ind_colors){
+plot_sample_distributions_by_individual=function(diversity_arr, div_type, normalized_mat, 
+	offsets_mat, col_assign, category_colors, ind_colors){
+
 	sorted_sids=sort(rownames(offsets_mat));
 	offsets_mat=offsets_mat[sorted_sids,];
 
@@ -249,8 +252,9 @@ plot_sample_distributions_by_individual=function(diversity_arr, div_type, normal
 		# Plot Diversity
 		palette(ind_colors);
 		plot(offset_info[,"Offsets"], subset_diversity, main=groups[i],
-			 xlab="Time", ylab=paste("Diversity (", div_type, ")", sep=""), type="l", col=col_assign[groups[i]], lwd=2.5,
-			 xlim=offset_ranges, ylim=diversity_ranges);
+			xlab="Time", ylab=paste("Diversity (", div_type, ")", sep=""), type="l", 
+			col=col_assign[groups[i]], lwd=2.5,
+			xlim=offset_ranges, ylim=diversity_ranges);
 
 		points(offset_info[c(1,1, num_members),"Offsets"], subset_diversity[c(1,1, num_members)], 
 			type="p", pch=c(17, 1, 15), cex=c(1, 2, 1.25));
@@ -602,8 +606,10 @@ plot_change_scatter=function(diversity_arr, offset_mat){
 		abline(h=median_end, col=grp_col_opaque[trt_ix]);
 		abline(v=median_start, col=grp_col_opaque[trt_ix]);
 
-		axis(side=3, at=median_start, label=round(median_start, 3), line=-1, tick=F, cex.axis=.75, col.axis=grp_col_opaque[trt_ix]);
-		axis(side=4, at=median_end, label=round(median_end, 3), line=-1, tick=F, cex.axis=.75, col.axis=grp_col_opaque[trt_ix]);
+		axis(side=3, at=median_start, label=round(median_start, 3), 
+			line=-1, tick=F, cex.axis=.75, col.axis=grp_col_opaque[trt_ix]);
+		axis(side=4, at=median_end, label=round(median_end, 3), 
+			line=-1, tick=F, cex.axis=.75, col.axis=grp_col_opaque[trt_ix]);
 
 		points(trt_ends, col=grp_col_transp[trt_ix], cex=2, pch=19);
 		points(trt_ends, col=grp_col_opaque[trt_ix], cex=.25, pch=19);
@@ -637,8 +643,10 @@ plot_change_scatter=function(diversity_arr, offset_mat){
 
 		abline(h=median_end, col=grp_col_opaque[trt_ix]);
 		abline(v=median_start, col=grp_col_opaque[trt_ix]);
-		axis(side=3, at=median_start, label=round(median_start, 3), line=-1, tick=F, cex.axis=.75, col.axis=grp_col_opaque[trt_ix]);
-		axis(side=4, at=median_end, label=round(median_end, 3), line=-1, tick=F, cex.axis=.75, col.axis=grp_col_opaque[trt_ix]);
+		axis(side=3, at=median_start, label=round(median_start, 3), line=-1, 
+			tick=F, cex.axis=.75, col.axis=grp_col_opaque[trt_ix]);
+		axis(side=4, at=median_end, label=round(median_end, 3), line=-1, 
+			tick=F, cex.axis=.75, col.axis=grp_col_opaque[trt_ix]);
 
 		points(trt_ends, col=grp_col_transp[trt_ix], cex=2, pch=19);
 		points(trt_ends, col=grp_col_opaque[trt_ix], cex=.25, pch=19);
@@ -659,7 +667,9 @@ plot_change_scatter=function(diversity_arr, offset_mat){
 		for(aeag_idx_B in aeag_names){
 			res=wilcox.test(all_ends_and_groups[[aeag_idx_A]], all_ends_and_groups[[aeag_idx_B]]);
 			pval_matrix[aeag_idx_A, aeag_idx_B]=res$p.value;
-			diff_matrix[aeag_idx_A, aeag_idx_B]=(abs(diff(c(mean(c(all_ends_and_groups[[aeag_idx_A]])), mean(all_ends_and_groups[[aeag_idx_B]])))));
+			diff_matrix[aeag_idx_A, aeag_idx_B]=(
+				abs(diff(c(mean(c(all_ends_and_groups[[aeag_idx_A]])), 
+				mean(all_ends_and_groups[[aeag_idx_B]])))));
 		}
 	}
 	print(pval_matrix);
@@ -740,7 +750,8 @@ names(col_assign)=indiv_ids;
 ###############################################################################
 
 
-plot_sample_distributions_by_individual(diversity_arr, DiversityType, simplified_mat, offset_mat, col_assign, category_colors, ind_colors);
+plot_sample_distributions_by_individual(diversity_arr, DiversityType, 
+	simplified_mat, offset_mat, col_assign, category_colors, ind_colors);
 plot_sample_diversity_by_group(diversity_arr, DiversityType, simplified_mat, offset_mat, col_assign, ind_colors);
 plot_sample_distributions_by_group(simplified_mat, offset_mat, category_colors);
 
