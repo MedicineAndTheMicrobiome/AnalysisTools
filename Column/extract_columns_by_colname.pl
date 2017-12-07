@@ -161,12 +161,6 @@ for(my $i=0; $i<$num_col; $i++){
 my $num_kept=$#keep_ix +1;
 print STDERR "Number of Columns to Keep: $num_kept\n";
 
-# Output header
-my @out_arr;
-foreach my $i (@keep_ix){
-	push @out_arr, $header_arr[$i];
-}
-print STDOUT (join $DELIM, @out_arr) . "\n";
 
 ###############################################################################
 
@@ -198,42 +192,33 @@ print STDERR "\n\n";
 
 if($keep){
 	# Order the keep indices according to specified column names
-	my @keep_ix;
+	@keep_ix=();
 	foreach my $name (@{$colnames_ref}){
 		if(defined($found{$name})){
 			push @keep_ix, $found{$name};	
 		}
 	}
+}
 
-	# Keep in order of list
-	while(<IN_FH>){
+# Output header
+my @out_arr;
+foreach my $i (@keep_ix){
+	push @out_arr, $header_arr[$i];
+}
+print STDOUT (join $DELIM, @out_arr) . "\n";
 
-		chomp;
-		my @cols_arr=split /$DELIM/, $_;
+# Keep in order of list
+while(<IN_FH>){
 
-		my @out_arr;
-		foreach my $i (@keep_ix){
-			push @out_arr, $cols_arr[$i];
-		}
-		
-		print STDOUT (join $DELIM, @out_arr) . "\n";
+	chomp;
+	my @cols_arr=split /$DELIM/, $_;
 
+	my @out_arr;
+	foreach my $i (@keep_ix){
+		push @out_arr, $cols_arr[$i];
 	}
-}else{
-	# Keep original order found in the input file
-	while(<IN_FH>){
-
-		chomp;
-		my @cols_arr=split /$DELIM/, $_;
-
-		my @out_arr;
-		foreach my $i (@keep_ix){
-			push @out_arr, $cols_arr[$i];
-		}
-		
-		print STDOUT (join $DELIM, @out_arr) . "\n";
-
-	}
+	
+	print STDOUT (join $DELIM, @out_arr) . "\n";
 
 }
 
