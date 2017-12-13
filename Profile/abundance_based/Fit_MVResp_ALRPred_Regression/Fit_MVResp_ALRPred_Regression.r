@@ -633,11 +633,13 @@ print(covariates_arr);
 cat("\n");
 
 required_arr=NULL;
-if(""==RequiredFile){
+if(""!=RequiredFile){
 	required_arr=load_list(RequiredFile);
 	cat("Required Variables:\n");
 	print(required_arr);
 	cat("\n");
+}else{
+	cat("No Required Variables specified...\n");
 }
 
 plot_text(c(
@@ -674,9 +676,9 @@ if(ReferenceLevelsFile!=""){
         cat("No Reference Levels File specified.\n");
 }
 
-response_factors=kept_factors[,responses_arr];
+response_factors=kept_factors[,responses_arr, drop=F];
 summary(response_factors);
-covariate_factors=kept_factors[,covariates_arr];
+covariate_factors=kept_factors[,covariates_arr, drop=F];
 resp_cov_factors=cbind(response_factors, covariate_factors);
 
 ##############################################################################
@@ -715,7 +717,9 @@ recon_factors=resp_cov_factors[shared_sample_ids,,drop=F];
 #factors_wo_nas=remove_sample_or_factors_wNA(recon_factors);
 num_samples_recon=nrow(recon_factors);
 num_factors_recon=ncol(recon_factors);
-factors_wo_nas=remove_sample_or_factors_wNA_parallel(recon_factors, required=required_arr, num_trials=640000, num_cores=64, outfile=paste(OutputRoot, ".noNAs", sep=""));
+factors_wo_nas_res=remove_sample_or_factors_wNA_parallel(recon_factors, required=required_arr, num_trials=640000, num_cores=64, outfile=paste(OutputRoot, ".noNAs", sep=""));
+
+factors_wo_nas=factors_wo_nas_res$factors;
 factor_names_wo_nas=colnames(factors_wo_nas);
 factor_sample_ids=rownames(factors_wo_nas);
 normalized=normalized[factor_sample_ids,];
@@ -724,8 +728,10 @@ num_factors_wo_nas=ncol(factors_wo_nas);
 
 responses_arr=intersect(responses_arr, factor_names_wo_nas);
 covariates_arr=intersect(covariates_arr, factor_names_wo_nas);
-response_factors=factors_wo_nas[,responses_arr];
-covariate_factors=factors_wo_nas[,covariates_arr];
+
+print(factors_wo_nas);
+response_factors=factors_wo_nas[,responses_arr, drop=F];
+covariate_factors=factors_wo_nas[,covariates_arr, drop=F];
 
 ##############################################################################
 
