@@ -782,7 +782,13 @@ extract_top_categories=function(ordered_normalized, top, additional_cat=c()){
 	# Copy over top and additional categories, and compute remainding
 	all_cat_names=c(already_extracted_cat, extra_cat);
 	out_mat[,all_cat_names]=ordered_normalized[,all_cat_names];
-	out_mat[,"Remaining"]=apply(out_mat, 1, function(x){1-sum(x)});
+
+	normalized_sums=apply(ordered_normalized, 1, sum);
+	for(i in 1:num_samples){
+		out_mat[i,"Remaining"]=normalized_sums[i]-sum(out_mat[i,]);
+	}
+	#out_mat[,"Remaining"]=apply(out_mat, 1, function(x){1-sum(x)});
+	print(out_mat);
 
 	return(out_mat);
 			
@@ -968,10 +974,10 @@ cat("Extracting: ", num_top_taxa, " + 1 (remaining) categories and additional ca
 responses=extract_top_categories(normalized, num_top_taxa, additional_cat=additional_categories);
 resp_alr_struct=additive_log_rato(responses);
 transformed=resp_alr_struct$transformed;
+
 num_cat_to_analyze=ncol(transformed);
 sorted_taxa_names=colnames(transformed);
 cat("Num ALR Categories to Analyze: ", num_cat_to_analyze, "\n", sep="");
-
 
 plot_overlapping_density(transformed, title="All");
 bottom_half=ceiling(num_cat_to_analyze/2) : num_cat_to_analyze;
