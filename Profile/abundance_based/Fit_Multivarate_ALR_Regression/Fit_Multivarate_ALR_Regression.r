@@ -370,6 +370,8 @@ write_top_categorical_effects_by_factor=function(output_fn, coeff_mat, pval_mat,
 
 	cat("Writing top category effects by factor...\n");
 
+	top_n=min(top_n, nrow(pval_mat));
+
 	pval_cat=colnames(pval_mat);
 	pval_fac=rownames(pval_mat);
 	
