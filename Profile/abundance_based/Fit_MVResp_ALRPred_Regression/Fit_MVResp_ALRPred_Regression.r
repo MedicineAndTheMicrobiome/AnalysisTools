@@ -20,6 +20,7 @@ params=c(
 	"required", "q", 2, "character",
 
 	"num_variables", "p", 2, "numeric",
+	"additional_categories", "a", 2, "character",
 	"reference_levels", "r", 2, "character",
 	"outputroot", "o", 2, "character",
 
@@ -36,11 +37,12 @@ usage = paste(
 	"\nUsage:\n", script_name, "\n",
 	"	-s <summary file table for taxa/function (used as Predictor/X's)>\n",
 	"	-f <factors file, contains covariates and multivariate Y>\n",
-	"	-c <list of covariate X's names to select from factor file>\n",
-	"	-y <list of response Y's names to select from factor file>\n",
+	"	-c <list of covariate X's names to select from factor file (filename)>\n",
+	"	-y <list of response Y's names to select from factor file (filename)>\n",
 	"	[-q <required list of variables to include after NA removal>]\n",
 	"\n",
 	"	[-p <number of top taxonomic/categorical variables, default=", NUM_TOP_CAT, ">]\n",
+	"	[-a <list of additional categories (from summary table) to include (filename)>]\n",
 	"	[-r <reference levels file for Y's in factor file>]\n",
 	"	[-o <output filename root>]\n",
 	"\n",
@@ -97,6 +99,12 @@ if(length(opt$required)){
 	RequiredFile="";
 }
 
+if(length(opt$additional_categories)){
+	AdditionalCatFile=opt$additional_categories;
+}else{
+	AdditionalCatFile="";
+}
+
 SummaryFile=opt$summary_file;
 FactorsFile=opt$factors;
 CovariatesFile=opt$covariates;
@@ -108,6 +116,7 @@ cat("   Factors File: ", FactorsFile, "\n", sep="");
 cat("Covariates File: ", CovariatesFile, "\n", sep="");
 cat("  Response File: ", ResponseFile, "\n", sep="");
 cat("  Required File: ", RequiredFile, "\n", sep="");
+cat("Additional File: ", AdditionalCatFile, "\n", sep="");
 cat("\n");
 cat("Output File: ", OutputRoot, "\n", sep="");
 cat("\n");
@@ -205,35 +214,59 @@ load_list=function(filename){
 	return(val);
 }
 
-extract_top_categories=function(ordered_normalized, top){
+extract_top_categories=function(ordered_normalized, top, additional_cat=c()){
 
-	num_samples=nrow(ordered_normalized);
-	num_categories=ncol(ordered_normalized);
+        num_samples=nrow(ordered_normalized);
+        num_categories=ncol(ordered_normalized);
 
-	cat("Samples: ", num_samples, "\n");
-	cat("Categories: ", num_categories, "\n");
-	
-	num_saved=min(c(num_categories, top+1));
+        cat("Samples: ", num_samples, "\n");
+        cat("Categories: ", num_categories, "\n");
 
-	cat("Top Requested to Extract: ", top, "\n");
-	cat("Columns to Extract: ", num_saved, "\n");
+        num_top_to_extract=min(num_categories-1, top);
 
-	top_cat=matrix(0, nrow=num_samples, ncol=num_saved);
-	top=num_saved-1;
+        cat("Top Requested to Extract: ", top, "\n");
+        cat("Columns to Extract: ", num_top_to_extract, "\n");
 
-	# Extract top categories requested
-	top_cat[,1:top]=ordered_normalized[,1:top];
+        # Extract top categories requested
+        top_cat=ordered_normalized[,1:num_top_to_extract];
 
-	# Included remaineder as sum of remaining categories
-	top_cat[,(top+1)]=apply(
-		ordered_normalized[,(top+1):num_categories, drop=F],
-		1, sum);
+        if(length(additional_cat)){
+                cat("Additional Categories to Include:\n");
+                print(additional_cat);
+        }else{
+                cat("No Additional Categories to Extract.\n");
+        }
 
-	rownames(top_cat)=rownames(ordered_normalized);
-	colnames(top_cat)=c(colnames(ordered_normalized)[1:top], "Remaining");
+        # Extract additional categories
+        # :: Make sure we can find the categories
+        available_cat=colnames(ordered_normalized);
+        missing_cat=setdiff(additional_cat, available_cat);
+        if(length(missing_cat)){
+                cat("Error: Could not find categories: \n");
+                print(missing_cat);
+                quit(status=-1);
+        }
 
-	return(top_cat);
-			
+        # :: Remove categories we have already extracted in the top N
+        already_extracted_cat=colnames(top_cat);
+        extra_cat=setdiff(additional_cat, already_extracted_cat);
+
+        num_extra_to_extract=length(extra_cat);
+        cat("Num Extra Categories to Extract: ", num_extra_to_extract, "\n");
+
+        # Allocate/Prepare output matrix
+        num_out_mat_cols=num_top_to_extract+num_extra_to_extract+1;
+        out_mat=matrix(0, nrow=num_samples, ncol=num_out_mat_cols);
+        rownames(out_mat)=rownames(ordered_normalized);
+        colnames(out_mat)=c(already_extracted_cat, extra_cat, "Remaining");
+
+        # Copy over top and additional categories, and compute remainding
+        all_cat_names=c(already_extracted_cat, extra_cat);
+        out_mat[,all_cat_names]=ordered_normalized[,all_cat_names];
+        out_mat[,"Remaining"]=apply(out_mat, 1, function(x){1-sum(x)});
+
+        return(out_mat);
+
 }
 
 additive_log_rato=function(ordered_matrix){
@@ -751,7 +784,13 @@ if(num_top_taxa>= num_taxa){
 
 ##############################################################################
 
-cat_abundances=extract_top_categories(normalized, num_top_taxa);
+if(AdditionalCatFile!=""){
+	additional_categories=load_list(AdditionalCatFile);
+}else{
+	additional_categories=c();
+}
+
+cat_abundances=extract_top_categories(normalized, num_top_taxa, additional_cat=additional_categories);
 resp_alr_struct=additive_log_rato(cat_abundances);
 alr_categories_val=resp_alr_struct$transformed;
 alr_cat_names=colnames(alr_categories_val);
@@ -803,7 +842,9 @@ plot_text(c(
 	"\n",
 	capture.output(print(s))
 ));
-plot_histograms(covariate_factors);
+if(length(covariates_arr)>0){
+	plot_histograms(covariate_factors);
+}
 
 cat("\n");
 cat("ALR Category Summary:\n");
@@ -826,8 +867,13 @@ cat("\n");
 cat("ALR Predictors: \n", alr_category_formula_str, "\n", sep="");
 cat("\n");
 
-formula_str=paste("response_factors ~ ", covariate_formula_str, " + ", alr_category_formula_str, sep="");
-reduced_formula_str=paste("response_factors ~ ", covariate_formula_str, sep="");
+if(nchar(covariate_formula_str)){
+	formula_str=paste("response_factors ~ ", covariate_formula_str, " + ", alr_category_formula_str, sep="");
+	reduced_formula_str=paste("response_factors ~ ", covariate_formula_str, sep="");
+}else{
+	formula_str=paste("response_factors ~ ", alr_category_formula_str, sep="");
+	reduced_formula_str=paste("response_factors ~ 1", sep="");
+}
 
 lmfit=lm(as.formula(formula_str), data=dafr_predictors_factors);
 reduced_lmfit=lm(as.formula(reduced_formula_str), data=dafr_predictors_factors);
@@ -835,7 +881,14 @@ reduced_lmfit=lm(as.formula(reduced_formula_str), data=dafr_predictors_factors);
 lm_summaries=summary(lmfit);
 reduced_lm_summaries=summary(reduced_lmfit);
 
-manova=anova(lmfit);
+print(lmfit);
+print(lm_summaries);
+
+if(length(responses_arr) < lmfit$df.residual){
+	manova_res=anova(lmfit);
+}else{
+	manova_res=c();
+}
 responses=names(lm_summaries);
 reduced_responses=names(reduced_lm_summaries);
 
@@ -913,7 +966,9 @@ summary_res_pval=round(summary_res_pval,2);
 cat("Coefficients Matrix:\n");
 print(summary_res_coeff);
 #par(oma=c(10,14,5,1));
-paint_matrix(summary_res_coeff[covariate_coefficients,], title="Covariate Coefficients",value.cex=.75, deci_pts=2);
+if(length(covariate_coefficients)>0){
+	paint_matrix(summary_res_coeff[covariate_coefficients,,drop=F], title="Covariate Coefficients",value.cex=.75, deci_pts=2);
+}
 
 # Variations of ALR Predictor Coefficients
 paint_matrix(summary_res_coeff[alr_cat_names,], title="ALR Predictors Coefficients (By Decreasing Abundance)", 
@@ -928,8 +983,11 @@ paint_matrix(summary_res_coeff[alr_cat_names,], title="ALR Predictors Coefficien
 cat("\nP-values:\n");
 print(summary_res_pval);
 #par(oma=c(10,14,5,1));
-paint_matrix(summary_res_pval[covariate_coefficients,], title="Covariate P-values", plot_min=0, plot_max=1, high_is_hot=F, value.cex=.5, deci_pts=2);
 
+if(length(covariate_coefficients)>0){
+	paint_matrix(summary_res_pval[covariate_coefficients,,drop=F], title="Covariate P-values", 
+		plot_min=0, plot_max=1, high_is_hot=F, value.cex=.5, deci_pts=2);
+}
 
 # Variations of ALR Predictor P-values
 paint_matrix(summary_res_pval[alr_cat_names,], title="ALR Predictors P-values (By Decreasing Abundance)", 
@@ -952,19 +1010,22 @@ paint_matrix(summary_res_pval[alr_cat_names,], title="ALR Predictors P-values (A
 
 paint_matrix(summary_res_rsqrd, title="Univariate Adjusted R-Squared");
 
-print(manova);
-plot_text(c(
-	"MANOVA",
-	capture.output(print(manova))
-));
+if(length(manova_res)>0){
+	print(manova_res);
+	plot_text(c(
+		"MANOVA",
+		capture.output(print(manova_res))
+	));
 
-manova_pval_mat=matrix(0, nrow=length(alr_cat_names), ncol=1, dimnames=list(alr_cat_names, "Pr(>F)"));
-manova_pval=manova[,"Pr(>F)", drop=F]
-manova_pval_mat[alr_cat_names,]=manova_pval[alr_cat_names,];
-print(manova_pval_mat);
-#par(oma=c(10,14,5,1));
-paint_matrix(manova_pval_mat[alr_cat_names,,drop=F], title="ALR Predictors MANOVA", plot_min=0, plot_max=1, high_is_hot=F, value.cex=.5, deci_pts=3);
+	manova_pval_mat=matrix(0, nrow=length(alr_cat_names), ncol=1, dimnames=list(alr_cat_names, "Pr(>F)"));
+	manova_pval=manova[,"Pr(>F)", drop=F]
+	manova_pval_mat[alr_cat_names,]=manova_pval[alr_cat_names,];
+	print(manova_pval_mat);
+	#par(oma=c(10,14,5,1));
+	paint_matrix(manova_pval_mat[alr_cat_names,,drop=F], title="ALR Predictors MANOVA", 
+		plot_min=0, plot_max=1, high_is_hot=F, value.cex=.5, deci_pts=3);
 
+}
 ###############################################################################
 
 #print(cat_abundances);
@@ -1025,29 +1086,32 @@ plot_rank_abund=function(abundances, pvals, range=c(1,10), title="", ylim=NULL){
 	
 }
 
-par(oma=c(1,1,1,1));
-par(mar=c(15,3,4,15));
-par(mfrow=c(2,1));
+if(length(manova_res)>0){
 
-max_mean_abund=max(mean_abund)*1.2;
-plot_rank_abund(mean_abund, manova_pval_mat, range=c(1,num_top_taxa), "All Top Categories", ylim=c(0, max_mean_abund));
+	par(oma=c(1,1,1,1));
+	par(mar=c(15,3,4,15));
+	par(mfrow=c(2,1));
 
-if(num_top_taxa>=10){
-	plot_rank_abund(mean_abund, manova_pval_mat, range=c(1,10), "Top 10 Categories", ylim=c(0, max_mean_abund));
+	max_mean_abund=max(mean_abund)*1.2;
+	plot_rank_abund(mean_abund, manova_pval_mat, range=c(1,num_top_taxa), "All Top Categories", ylim=c(0, max_mean_abund));
+
+	if(num_top_taxa>=10){
+		plot_rank_abund(mean_abund, manova_pval_mat, range=c(1,10), "Top 10 Categories", ylim=c(0, max_mean_abund));
+	}
+
+	if(num_top_taxa>=20){
+		plot_rank_abund(mean_abund, manova_pval_mat, range=c(1,20), "Top 20 Categories", ylim=c(0, max_mean_abund));
+	}
+
+	if(num_top_taxa>=40){
+		plot_rank_abund(mean_abund, manova_pval_mat, range=c(1,40), "Top 40 Categories", ylim=c(0, max_mean_abund));
+	}
+
+	plot_rank_abund(mean_abund, manova_pval_mat, range=c(1,floor(num_top_taxa/2)), 
+		"Top Half of Categories", ylim=c(0, max_mean_abund));
+	plot_rank_abund(mean_abund, manova_pval_mat, range=c(floor(num_top_taxa/2)+1,num_top_taxa), 
+		"Bottom Half of Categories", ylim=c(0, max_mean_abund));
 }
-
-if(num_top_taxa>=20){
-	plot_rank_abund(mean_abund, manova_pval_mat, range=c(1,20), "Top 20 Categories", ylim=c(0, max_mean_abund));
-}
-
-if(num_top_taxa>=40){
-	plot_rank_abund(mean_abund, manova_pval_mat, range=c(1,40), "Top 40 Categories", ylim=c(0, max_mean_abund));
-}
-
-plot_rank_abund(mean_abund, manova_pval_mat, range=c(1,floor(num_top_taxa/2)), 
-	"Top Half of Categories", ylim=c(0, max_mean_abund));
-plot_rank_abund(mean_abund, manova_pval_mat, range=c(floor(num_top_taxa/2)+1,num_top_taxa), 
-	"Bottom Half of Categories", ylim=c(0, max_mean_abund));
 
 
 ##############################################################################
