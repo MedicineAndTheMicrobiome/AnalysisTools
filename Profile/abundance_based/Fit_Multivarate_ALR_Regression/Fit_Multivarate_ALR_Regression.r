@@ -20,6 +20,7 @@ params=c(
 
 	"reference_levels", "r", 2, "character",
 	"model", "m", 2, "character",
+	"model_variables_file", "M", 2, "character",
 	"contains_remaining", "R", 2, "logical",
 	"shorten_category_names", "x", 2, "character",
 	"test_run", "t", 2, "logical",
@@ -45,6 +46,7 @@ usage = paste(
 	"	[-r <reference levels file>]\n",
 	"	[-m <model formula string>]\n",
 	"	[-R (pay attention to 'remaining' category)]\n",
+	"	[-M <model variables file>]\n",
 	"\n",
 	"	NA removal options:\n",
 	"	[-N <remove NA trials, trials=", RM_NA_TRIALS, "\n",
@@ -108,6 +110,12 @@ if(length(opt$model)){
 	Model=opt$model;
 }else{
 	Model="All Factors";
+}
+
+if(length(opt$model_variables_file)){
+	ModelVariablesFile=opt$model_variables_file;
+}else{
+	ModelVariablesFile="";
 }
 
 if(length(opt$contains_remaining)){
@@ -497,10 +505,24 @@ input_info_text=c(
 
 ##############################################################################
 
+# Building Model
+if(ModelVariablesFile!=""){
+	model_variables_file_list=load_list(ModelVariablesFile);	
+	Model=paste(model_variables_file_list, collapse=" + ");
+}
+
+if(Model!="All Factors"){
+	model_pred_str=Model;
+}else{
+	model_pred_str=paste(factor_names, collapse=" + ");
+}
+cat("Model: ", model_pred_str, "\n");
+
+
 # Remove factors from table that aren't specified in model
-model_var_arr=get_var_from_modelstring(Model);
+model_var_arr=get_var_from_modelstring(model_pred_str);
 if(length(model_var_arr)){
-	factors=factors[,model_var_arr];
+	factors=factors[,model_var_arr, drop=F];
 	num_factors=ncol(factors);
 }
 
@@ -557,11 +579,11 @@ if(any(is.na(factors))){
 	factors=rm_na_res$factors;
 	num_factors=ncol(factors);
 	counts=remove_samples_from_st(rm_na_res, counts);
-	Model=rem_missing_var_from_modelstring(Model, colnames(factors));
+	model_pred_str=rem_missing_var_from_modelstring(model_pred_str, colnames(factors));
 	plot_text(c(
 		rm_na_res$summary_text,
 		"",
-		paste("New Model: ", Model, sep="")
+		paste("New Model: ", model_pred_str, sep="")
 	));
 
 }
@@ -629,14 +651,8 @@ cat("\n");
 ##############################################################################
 ##############################################################################
 
-# Relevel factor levels
-if(ReferenceLevelsFile!=""){
-        ref_lev_mat=load_reference_levels_file(ReferenceLevelsFile)
-        factors=relevel_factors(factors, ref_lev_mat);
-}else{
-        cat("* No Reference Levels File specified.                        *\n");
-}
 
+num_factors=ncol(factors);
 continuous_factors=factors;
 is_continous_factor=logical(num_factors);
 
@@ -704,6 +720,15 @@ shared_sample_ids=sort(shared_sample_ids);
 normalized=normalized[shared_sample_ids,];
 num_samples=nrow(normalized);
 factors=factors[shared_sample_ids,,drop=F];
+
+# Relevel factor levels
+if(ReferenceLevelsFile!=""){
+        ref_lev_mat=load_reference_levels_file(ReferenceLevelsFile)
+print(factors);
+        factors=relevel_factors(factors, ref_lev_mat);
+}else{
+        cat("* No Reference Levels File specified.                        *\n");
+}
 
 
 ##############################################################################
@@ -956,13 +981,6 @@ plot_overlapping_density(transformed[,bottom_half], title="Bottom Half by Avg Ab
 
 ##############################################################################
 
-# Building Model
-if(Model!="All Factors"){
-	model_pred_str=Model;
-}else{
-	model_pred_str=paste(factor_names, collapse=" + ");
-}
-cat("Model: ", model_pred_str, "\n");
 
 # Try to perform MANOVA
 model_string= paste("transformed ~", model_pred_str);
