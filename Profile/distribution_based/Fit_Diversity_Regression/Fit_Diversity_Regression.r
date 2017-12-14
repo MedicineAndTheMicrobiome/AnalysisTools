@@ -353,7 +353,7 @@ factors=factors[shared_sample_ids,, drop=F];
 # Load variables to require after NA removal
 required_arr=NULL;
 if(""!=RequiredFile){
-	required_arr=scan(ModelFilename, what=character(), comment.char="#");
+	required_arr=scan(RequiredFile, what=character(), comment.char="#");
         cat("Required Variables:\n");
         print(required_arr);
         cat("\n");
@@ -529,8 +529,6 @@ for(i in 1:num_div_idx){
 		cat("[", search_trial, "] Search range: ", lambda_start, " to ", lambda_end, "\n", sep="");
 		cat("Model: ", model_string, "\n");
 
-print(factors);
-print(raw);
 		bc=boxcox(as.formula(model_string), data=factors, 
 			lambda=seq(lambda_start, lambda_end, length.out=SEARCH_FREQUENCY),
 			plotit=FALSE
@@ -836,7 +834,7 @@ plot_overlapping_histograms=function(raw, factors, model_string, title, bin_cont
 				num_samp_at_level=length(level_val);
 				level_samp_size[lix]=num_samp_at_level;
 				if(num_samp_at_level==0){
-					dens_list[[lix]]=NULL;
+					dens_list[[lix]]=NA;
 				}else{
 					if(num_samp_at_level==1){
 						level_val=c(level_val, level_val);
@@ -857,7 +855,7 @@ plot_overlapping_histograms=function(raw, factors, model_string, title, bin_cont
 			# Draw the curves for each factor level
 			for(lix in 1:num_levels){
 				dens=dens_list[[lix]];
-				if(!is.null(dens)){
+				if(!is.na(dens)){
 					points(dens, type="l", col=lix);
 				}
 			}
@@ -924,9 +922,12 @@ for(i in 1:num_div_idx){
 	plot_overlapping_histograms(raw, factors, model_string, title=div_names[i], 6);
 
 	trans=transformed[, div_names[i]];
+	print(model.matrix(as.formula(model_string), data=factors));
 	fit=lm(as.formula(model_string), data=factors);
+	print(fit);
 
 	summ=summary(fit);
+	print(summ);
 
 	rsqrd_mat[i, 1]=summ$r.squared;
 	rsqrd_mat[i, 2]=summ$adj.r.squared;
