@@ -317,7 +317,7 @@ plot_text=function(strings){
 }
 
 paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_is_hot=T, deci_pts=4, 
-	label_zeros=T, counts=F, value.cex=1, 
+	label_zeros=T, counts=F, value.cex=2, 
 	plot_col_dendr=F,
 	plot_row_dendr=F
 ){
@@ -537,10 +537,11 @@ add_sign_col=function(coeff){
 	pval=coeff[,pval_ix];
 
 	sig_char=function(val){
-		if(val == 0){ return("***");}
-		if(val <= .001){ return("** ");}
-		if(val <= .01){ return("*  ");}
-		if(val <= .05){ return(".  ");}
+		if(val <= .0001){ return("***");}
+		if(val <= .001 ){ return("** ");}
+		if(val <= .01  ){ return("*  ");}
+		if(val <= .05  ){ return(":  ");}
+		if(val <= .1   ){ return(".  ");}
 		return(" ");
 	}
 
@@ -553,6 +554,32 @@ add_sign_col=function(coeff){
 	
 	return(formatC(out_mat, format="f", digits=5,));
 	
+}
+
+
+plot_fit=function(fit, sumfit, i=1){
+	par.orig=par(no.readonly=T);
+
+	observed=as.matrix(fit$model)[,i, drop=F];
+	predicted=(fit$fitted.values[,i, drop=F]);
+
+	adjsqrd=signif(sumfit[[i]]$adj.r.squared, 4);
+	fstat=sumfit[[i]]$fstatistic;
+	pval=signif(1-pf(fstat["value"], fstat["numdf"], fstat["dendf"]), 4);
+
+	name=colnames(predicted);
+
+	par(mar=c(15, 15, 15, 15));
+	plot(observed, predicted, main="", xlab="Observed", ylab="Predicted");
+
+	mtext(name, line=5.5, font=2, cex=3);
+	mtext("Predicted vs. Observed", line=4, font=2, cex=1.1);
+	mtext(paste("Adjusted R^2 = ", adjsqrd, sep=""),line=2, cex=.9);
+	mtext(paste("Model F-stat p-value = ", pval, sep=""), line=1, cex=.9);
+
+	abline(a=0, b=1, col="blue");
+
+	par(par.orig);
 }
 
 ##############################################################################
@@ -954,6 +981,7 @@ for(i in 1:num_responses){
 		"(Positive Adjusted R-squared differences suggests that including ALR predictors improved the model)"
 	));
 
+	plot_fit(lmfit, lm_summaries, i);
 
 	summary_res_coeff[,i]=univar_summary[,"Estimate"];
 	summary_res_pval[,i]=univar_summary[,"Pr(>|t|)"];
