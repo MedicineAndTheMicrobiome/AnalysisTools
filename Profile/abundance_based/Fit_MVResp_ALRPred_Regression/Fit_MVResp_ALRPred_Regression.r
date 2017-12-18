@@ -1027,18 +1027,18 @@ cat("Coefficients Matrix:\n");
 print(summary_res_coeff);
 #par(oma=c(10,14,5,1));
 if(length(covariate_coefficients)>0){
-	paint_matrix(summary_res_coeff[covariate_coefficients,,drop=F], title="Covariate Coefficients",value.cex=.75, deci_pts=2);
+	paint_matrix(summary_res_coeff[covariate_coefficients,,drop=F], title="Covariate Coefficients",value.cex=2, deci_pts=2);
 }
 
 # Variations of ALR Predictor Coefficients
 paint_matrix(summary_res_coeff[alr_cat_names,,drop=F], title="ALR Predictors Coefficients (By Decreasing Abundance)", 
-	value.cex=.75, deci_pts=2, plot_row_dendr=F, plot_col_dendr=F);
+	value.cex=2, deci_pts=2, plot_row_dendr=F, plot_col_dendr=F);
 paint_matrix(summary_res_coeff[alr_cat_names,,drop=F], title="ALR Predictors Coefficients (ALR Clusters)", 
-	value.cex=.75, deci_pts=2, plot_row_dendr=T, plot_col_dendr=F);
+	value.cex=2, deci_pts=2, plot_row_dendr=T, plot_col_dendr=F);
 paint_matrix(summary_res_coeff[alr_cat_names,,drop=F], title="ALR Predictors Coefficients (Response Clusters)", 
-	value.cex=.75, deci_pts=2, plot_row_dendr=F, plot_col_dendr=T);
+	value.cex=2, deci_pts=2, plot_row_dendr=F, plot_col_dendr=T);
 paint_matrix(summary_res_coeff[alr_cat_names,,drop=F], title="ALR Predictors Coefficients (ALR and Response Clusters)", 
-	value.cex=.75, deci_pts=2, plot_row_dendr=T, plot_col_dendr=T);
+	value.cex=2, deci_pts=2, plot_row_dendr=T, plot_col_dendr=T);
 
 cat("\nP-values:\n");
 print(summary_res_pval);
@@ -1046,23 +1046,23 @@ print(summary_res_pval);
 
 if(length(covariate_coefficients)>0){
 	paint_matrix(summary_res_pval[covariate_coefficients,,drop=F], title="Covariate P-values", 
-		plot_min=0, plot_max=1, high_is_hot=F, value.cex=.5, deci_pts=2);
+		plot_min=0, plot_max=1, high_is_hot=F, value.cex=2, deci_pts=2);
 }
 
 # Variations of ALR Predictor P-values
 paint_matrix(summary_res_pval[alr_cat_names,,drop=F], title="ALR Predictors P-values (By Decreasing Abundance)", 
-	plot_min=0, plot_max=1, high_is_hot=F, value.cex=.5, deci_pts=2);
+	plot_min=0, plot_max=1, high_is_hot=F, value.cex=2, deci_pts=2);
 
 paint_matrix(summary_res_pval[alr_cat_names,,drop=F], title="ALR Predictors P-values (ALR Clusters)", 
-	plot_min=0, plot_max=1, high_is_hot=F, value.cex=.5, deci_pts=2,
+	plot_min=0, plot_max=1, high_is_hot=F, value.cex=2, deci_pts=2,
 	plot_row_dendr=T
 );
 paint_matrix(summary_res_pval[alr_cat_names,,drop=F], title="ALR Predictors P-values (Response Clusters)", 
-	plot_min=0, plot_max=1, high_is_hot=F, value.cex=.5, deci_pts=2,
+	plot_min=0, plot_max=1, high_is_hot=F, value.cex=2, deci_pts=2,
 	plot_col_dendr=T
 );
 paint_matrix(summary_res_pval[alr_cat_names,,drop=F], title="ALR Predictors P-values (ALR and Response Clusters)", 
-	plot_min=0, plot_max=1, high_is_hot=F, value.cex=.5, deci_pts=2,
+	plot_min=0, plot_max=1, high_is_hot=F, value.cex=2, deci_pts=2,
 	plot_row_dendr=T, plot_col_dendr=T
 );
 
@@ -1083,7 +1083,7 @@ if(length(manova_res)>0){
 	print(manova_pval_mat);
 	#par(oma=c(10,14,5,1));
 	paint_matrix(manova_pval_mat[alr_cat_names,,drop=F], title="ALR Predictors MANOVA", 
-		plot_min=0, plot_max=1, high_is_hot=F, value.cex=.5, deci_pts=3);
+		plot_min=0, plot_max=1, high_is_hot=F, value.cex=1, deci_pts=3);
 
 }
 ###############################################################################
