@@ -330,6 +330,7 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 
 	orig.par=par(no.readonly=T);
 
+	cat("Painting Matrix: ", title, "\n");
         cat("Num Rows: ", num_row, "\n");
         cat("Num Cols: ", num_col, "\n");
 
@@ -405,6 +406,13 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 	heatmap_height=num_row;
 	heatmap_width=num_col;
 
+	if(num_row==1){
+		plot_row_dendr=F;
+	}
+	if(num_col==1){
+		plot_col_dendr=F;
+	}
+
 	if(plot_col_dendr && plot_row_dendr){
 		layoutmat=matrix(
 			c(
@@ -415,7 +423,7 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 		col_dendr=get_dendrogram(mat, type="col");
 		row_dendr=get_dendrogram(mat, type="row");
 
-		mat=mat[row_dendr[["names"]], col_dendr[["names"]]];
+		mat=mat[row_dendr[["names"]], col_dendr[["names"]], drop=F];
 		
 	}else if(plot_col_dendr){
 		layoutmat=matrix(
@@ -425,7 +433,7 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 			), byrow=T, ncol=heatmap_width); 
 
 		col_dendr=get_dendrogram(mat, type="col");
-		mat=mat[, col_dendr[["names"]]];
+		mat=mat[, col_dendr[["names"]], drop=F];
 		
 	}else if(plot_row_dendr){
 		layoutmat=matrix(
@@ -433,7 +441,7 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 			byrow=T, ncol=row_dend_width+heatmap_width);
 
 		row_dendr=get_dendrogram(mat, type="row");
-		mat=mat[row_dendr[["names"]],];
+		mat=mat[row_dendr[["names"]],,drop=F];
 	}else{
 		layoutmat=matrix(
 			rep(1, heatmap_height*heatmap_width), 
@@ -561,7 +569,7 @@ plot_fit=function(fit, sumfit, i=1){
 	par.orig=par(no.readonly=T);
 
 	observed=as.matrix(fit$model)[,i, drop=F];
-	predicted=(fit$fitted.values[,i, drop=F]);
+	predicted=as.matrix(fit$fitted.values)[,i, drop=F];
 
 	adjsqrd=signif(sumfit[[i]]$adj.r.squared, 4);
 	fstat=sumfit[[i]]$fstatistic;
@@ -726,7 +734,7 @@ if(length(overlapping_variables)!=0){
 }
 
 kept_variables=union(responses_arr, covariates_arr);
-kept_factors=factors[,kept_variables];
+kept_factors=factors[,kept_variables, drop=F];
 
 # Relevel factor levels
 if(ReferenceLevelsFile!=""){
@@ -911,20 +919,44 @@ reduced_lm_summaries=summary(reduced_lmfit);
 print(lmfit);
 print(lm_summaries);
 
-if(length(responses_arr) < lmfit$df.residual){
+num_responses=length(responses_arr);
+
+if(num_responses > 1 && (num_responses < lmfit$df.residual)){
 	manova_res=anova(lmfit);
 }else{
 	manova_res=c();
 }
+
+if(num_responses==1){
+
+	#tmp=lmfit;
+	#lmfit=list();
+	#lmfit[[1]]=tmp;
+
+	tmp=lm_summaries;
+	lm_summaries=list();
+	lm_summaries[[1]]=tmp;
+	names(lm_summaries)=paste("Response", responses_arr[1]);
+
+	tmp=reduced_lm_summaries;
+	reduced_lm_summaries=list();
+	reduced_lm_summaries[[1]]=tmp;
+	names(reduced_lm_summaries)=paste("Response", responses_arr[1]);
+	
+}
+
+#print(lm_summaries[[1]]$adj.r.squared);
+#quit();
+		
 responses=names(lm_summaries);
 reduced_responses=names(reduced_lm_summaries);
 
+print(names(lm_summaries));
 response_fit_names=gsub("^Response ", "", names(lm_summaries));
 
 ###############################################################################
 # Accumulate univariate results into matrix and generate heat map
 
-num_responses=length(lm_summaries);
 num_coefficients=nrow(lm_summaries[[1]]$coefficients);
 coefficient_names=rownames(lm_summaries[[1]]$coefficients);
 summary_var_names=rownames(lm_summaries[[1]]$coefficients);
@@ -952,14 +984,14 @@ for(i in 1:num_responses){
 		paste("Univariate: ", responses[i], sep=""),
 		"Covariates portion of Full Model (Covariates + ALR):",
 		"",
-		capture.output(print(univar_summary[covariate_coefficients,]))
+		capture.output(print(univar_summary[covariate_coefficients,,drop=F]))
 	));
 
 	plot_text(c(
 		paste("Univariate: ", responses[i], sep=""),
 		"ALR Predictors portion of Full Model (Covariates + ALR):",
 		"\n",
-		capture.output(print(add_sign_col(univar_summary[alr_cat_names,]), quote=F))
+		capture.output(print(add_sign_col(univar_summary[alr_cat_names,,drop=F]), quote=F))
 	));
 
 	plot_text(c(
@@ -999,13 +1031,13 @@ if(length(covariate_coefficients)>0){
 }
 
 # Variations of ALR Predictor Coefficients
-paint_matrix(summary_res_coeff[alr_cat_names,], title="ALR Predictors Coefficients (By Decreasing Abundance)", 
+paint_matrix(summary_res_coeff[alr_cat_names,,drop=F], title="ALR Predictors Coefficients (By Decreasing Abundance)", 
 	value.cex=.75, deci_pts=2, plot_row_dendr=F, plot_col_dendr=F);
-paint_matrix(summary_res_coeff[alr_cat_names,], title="ALR Predictors Coefficients (ALR Clusters)", 
+paint_matrix(summary_res_coeff[alr_cat_names,,drop=F], title="ALR Predictors Coefficients (ALR Clusters)", 
 	value.cex=.75, deci_pts=2, plot_row_dendr=T, plot_col_dendr=F);
-paint_matrix(summary_res_coeff[alr_cat_names,], title="ALR Predictors Coefficients (Response Clusters)", 
+paint_matrix(summary_res_coeff[alr_cat_names,,drop=F], title="ALR Predictors Coefficients (Response Clusters)", 
 	value.cex=.75, deci_pts=2, plot_row_dendr=F, plot_col_dendr=T);
-paint_matrix(summary_res_coeff[alr_cat_names,], title="ALR Predictors Coefficients (ALR and Response Clusters)", 
+paint_matrix(summary_res_coeff[alr_cat_names,,drop=F], title="ALR Predictors Coefficients (ALR and Response Clusters)", 
 	value.cex=.75, deci_pts=2, plot_row_dendr=T, plot_col_dendr=T);
 
 cat("\nP-values:\n");
@@ -1018,18 +1050,18 @@ if(length(covariate_coefficients)>0){
 }
 
 # Variations of ALR Predictor P-values
-paint_matrix(summary_res_pval[alr_cat_names,], title="ALR Predictors P-values (By Decreasing Abundance)", 
+paint_matrix(summary_res_pval[alr_cat_names,,drop=F], title="ALR Predictors P-values (By Decreasing Abundance)", 
 	plot_min=0, plot_max=1, high_is_hot=F, value.cex=.5, deci_pts=2);
 
-paint_matrix(summary_res_pval[alr_cat_names,], title="ALR Predictors P-values (ALR Clusters)", 
+paint_matrix(summary_res_pval[alr_cat_names,,drop=F], title="ALR Predictors P-values (ALR Clusters)", 
 	plot_min=0, plot_max=1, high_is_hot=F, value.cex=.5, deci_pts=2,
 	plot_row_dendr=T
 );
-paint_matrix(summary_res_pval[alr_cat_names,], title="ALR Predictors P-values (Response Clusters)", 
+paint_matrix(summary_res_pval[alr_cat_names,,drop=F], title="ALR Predictors P-values (Response Clusters)", 
 	plot_min=0, plot_max=1, high_is_hot=F, value.cex=.5, deci_pts=2,
 	plot_col_dendr=T
 );
-paint_matrix(summary_res_pval[alr_cat_names,], title="ALR Predictors P-values (ALR and Response Clusters)", 
+paint_matrix(summary_res_pval[alr_cat_names,,drop=F], title="ALR Predictors P-values (ALR and Response Clusters)", 
 	plot_min=0, plot_max=1, high_is_hot=F, value.cex=.5, deci_pts=2,
 	plot_row_dendr=T, plot_col_dendr=T
 );
