@@ -319,43 +319,163 @@ if(DiversityType=="tail"){
 # simplify matrix
 simplified_mat=simplify_matrix_categories(normalized_mat, top=NumTopCategories);
 num_simp_cat=ncol(simplified_mat);
-simp_categories=colnames(simplified_mat);
-
 cat("Number of Simplified Abundances: ", num_simp_cat, "\n");
 
 category_colors=get_colors(num_simp_cat);
 palette(category_colors);
 
-plot_cols=8;
-plot_rows=4;
-tot_plots_per_page=plot_cols*plot_rows;
-layout_mat=matrix(1:tot_plots_per_page, byrow=T, nrow=plot_rows, ncol=plot_cols);
-layout_mat=rbind(layout_mat, rep(tot_plots_per_page+1, plot_cols));
-layout_mat=rbind(layout_mat, rep(tot_plots_per_page+1, plot_cols));
-print(layout_mat);
-layout(layout_mat);
+plot_abundance_matrix=function(abd_mat, title="", plot_cols=8, plot_rows=4){
+	num_cat=ncol(abd_mat);
+	num_samples=nrow(abd_mat);
+	sample_names=rownames(abd_mat);
+	cat_names=colnames(abd_mat);
 
-par(oma=c(.5,.5,.5,.5));
-par(mar=c(1,1,1,1));
+	# Set up layout
+	tot_plots_per_page=plot_cols*plot_rows;
+	layout_mat=matrix(1:tot_plots_per_page, byrow=T, nrow=plot_rows, ncol=plot_cols);
+	layout_mat=rbind(layout_mat, rep(tot_plots_per_page+1, plot_cols));
+	layout_mat=rbind(layout_mat, rep(tot_plots_per_page+1, plot_cols));
+	cat("Layout Matrix:\n");
+	print(layout_mat);
+	layout(layout_mat);
 
-i=0;
-while(i<num_shared){
-	for(y in 1:plot_rows){
-		for(x in 1:plot_cols){
-			if(i<num_shared){
-				sample=shared[i+1];
-				plot(0,0, c(-1,1), ylim=c(0,1), type="n", bty="n", xaxt="n", yaxt="n");
-				title(main=sample, cex.main=.7);
-				abundances=simplified_mat[sample,,drop=F];
-				plot_dist(0, 0, width=1, abundances);
-			}else{
-				plot(0,0, c(-1,1), ylim=c(0,1), type="n", bty="n", xaxt="n", yaxt="n");
+	orig.par=par(no.readonly=T);
+	par(oma=c(.5,.5,3.5,.5));
+	par(mar=c(1,1,1,1));
+
+	i=0;
+	while(i<num_samples){
+		for(y in 1:plot_rows){
+			for(x in 1:plot_cols){
+				if(i<num_samples){
+					sample=sample_names[i+1];
+					plot(0,0, c(-1,1), ylim=c(0,1), type="n", bty="n", xaxt="n", yaxt="n");
+					title(main=sample, cex.main=.7);
+					abundances=abd_mat[sample,,drop=F];
+					plot_dist(0, 0, width=1, abundances);
+				}else{
+					plot(0,0, c(-1,1), ylim=c(0,1), type="n", bty="n", xaxt="n", yaxt="n");
+				}
+				i=i+1;
 			}
-			i=i+1;
 		}
+		cat("Plotting legend...\n");
+		plot_legend(cat_names);
+		mtext(text=title, side=3, outer=T, cex=2, font=2, line=.5);
 	}
-	cat("Plotting legend...\n");
-	plot_legend(simp_categories);
+	par(orig.par);
+}
+
+plot_abundance_matrix(simplified_mat, title="By Sample ID");
+
+###############################################################################
+
+print(factors_mat);
+
+map_val_to_grp=function(fact_mat){
+
+	num_factors=ncol(factors_mat);
+	num_values=nrow(factors_mat);
+	fact_names=colnames(factors_mat);
+	map_mat=as.data.frame(fact_mat);
+
+	for(fidx in 1:num_factors){
+		fact_name=fact_names[fidx];
+		cat("\nMapping on: ", fact_name, "\n");
+
+		fact_val=factors_mat[,fidx];
+		print(fact_val);
+		non_na_ix=!is.na(fact_val);
+		fact_val=fact_val[non_na_ix];
+		num_fact_val=length(fact_val);
+
+		if(is.factor(fact_val)){
+			cat(fact_name, " is a factor.\n", sep="");
+			fact_lev=levels(fact_val);
+			print(fact_lev);
+		}else{
+			unique_val=unique(fact_val);
+			num_unique=length(unique_val);
+
+			if(num_unique<=2){
+				cat(fact_name, ": few enough unique values, NOT grouping\n", sep="");
+				map_mat[,fidx]=as.character(map_mat[,fidx]);
+			}else{
+				cat(fact_name, ": too many unique values, grouping...\n", sep="");
+				hist_res=hist(fact_val,breaks=nclass.Sturges(fact_val), plot=F);
+				cat("Values\n");
+				print(fact_val);
+				num_grps=length(hist_res$breaks);
+				cat("Num Groups: ", num_grps, "\n");
+				grp_levels=paste(hist_res$breaks[1:(num_grps-1)], "-", hist_res$breaks[2:num_grps], sep="");
+				cat("Group:\n");
+				print(grp_levels);
+
+				grp_asn=character(num_fact_val);
+				lowerbounds=hist_res$breaks[1:(num_grps-1)];
+				for(i in 1:num_fact_val){
+					grp_asn[i]=grp_levels[max(which(fact_val[i]>=lowerbounds))];
+					#cat(fact_val[i], "->", grp_levels[grp_asn[i]],"\n");	
+				}
+				cat("Assigned Groups:\n");
+				print(grp_asn);
+
+				# Convert strings to factors
+				grp_as_factor=factor(grp_asn, levels=grp_levels, ordered=F);
+				# Initialize an array
+				tmp=rep(grp_as_factor[1],num_values);
+				# Copy values over
+				tmp[non_na_ix]=grp_asn;
+				# Replace NAs
+				tmp[setdiff(1:num_values, which(non_na_ix))]=NA;
+				map_mat[,fidx]=tmp;
+			}
+
+			cat("Unique Val:", unique_val, "\n");
+		
+		}	
+	}
+	return(map_mat);
+}
+
+###############################################################################
+
+grp_mat=map_val_to_grp(factors_mat);
+print(grp_mat);
+
+sample_names=rownames(grp_mat);
+grp_names=colnames(grp_mat);
+for(i in 1:ncol(grp_mat)){
+		
+	values=(grp_mat[,i]);
+	all_levels=levels(values);
+	groups=sort(unique(values[!is.na(values)]));
+	grp_name=grp_names[i];
+	num_grps=length(groups);
+	cat("Plotting: ", grp_name, "\n");
+	cat("Available Groups: \n");
+	print(groups);
+	cat("Num Available Groups: ", num_grps, "\n");
+	cat("Possible Groups (levels): \n");
+	print(all_levels);
+
+	combined_abd=matrix(0, nrow=num_grps, ncol=num_simp_cat);
+	rownames(combined_abd)=groups;
+	colnames(combined_abd)=colnames(simplified_mat);
+	for(grp in groups){
+		cat("Extracting: ", grp, "\n");
+		samp_ix=(which(grp==values));
+		sample_arr=sample_names[samp_ix];
+		print(sample_arr);
+
+		combined_abd[grp,]=apply(simplified_mat[sample_arr,,drop=F], 2, mean);
+		#print(combined_abd);	
+	}
+	print(combined_abd);
+	plot_abundance_matrix(combined_abd, title=grp_name);
+
+	cat("\n");
+	
 }
 
 ###############################################################################
