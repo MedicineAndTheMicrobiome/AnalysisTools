@@ -1,0 +1,680 @@
+#!/usr/bin/env Rscript
+
+###############################################################################
+
+library(MASS);
+library(vegan);
+library('getopt');
+options(useFancyQuotes=F);
+
+source('~/git/AnalysisTools/Metadata/RemoveNAs/Remove_NAs.r');
+
+params=c(
+	"summary_file", "s", 1, "character",
+	"factors", "f", 1, "character",
+	"outputroot", "o", 2, "character",
+
+	"model_formula", "m", 2, "character",
+
+	"response_var", "r", 2, "character",
+	"covariates_var", "c", 2, "character",
+	"required_var", "q", 2, "character",
+
+	"reference_levels", "l", 2, "character"
+);
+
+opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
+script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
+
+usage = paste(
+	"\nUsage:\n", script_name, "\n",
+	"	-s <summary table file (.tsv)>\n",
+	"	-f <factors/metadata file>\n",
+	"	[-o <output filename root>]\n",
+	"\n",
+	"	Model Specification:\n",
+	"	[-m \"<model formula string>\"]\n",
+	"\n",
+	"	Variable Specification:\n",
+	"	[-r <response variables>]\n",
+	"	[-c <covariates variables>]\n",
+	"	[-q <required variables>]\n",
+	"	[-l <reference levels file>]\n",
+	"\n",
+	"This script will fit the following types of models:\n",
+	"	<responses> = <covariates> + <microbiome diversity>\n",	
+	"\n",
+	"The analysis will cycle through the various diversity\n",
+	"indices.\n",
+	"\n");
+
+if(!length(opt$summary_file) || !length(opt$factors)){
+	cat(usage);
+	q(status=-1);
+}
+
+if(!length(opt$outputroot)){
+	OutputRoot=gsub(".summary_table.xls", "", opt$summary_file);
+	OutputRoot=gsub(".summary_table.tsv", "", OutputRoot);
+}else{
+	OutputRoot=opt$outputroot;
+}
+
+if(!length(opt$reference_levels)){
+	ReferenceLevelsFile="";
+}else{
+	ReferenceLevelsFile=opt$reference_levels;
+}
+
+if(!length(opt$model_formula)){
+	ModelFormula="";
+}else{
+	ModelFormula=opt$model_formula;
+}
+
+ModelFilename="";
+if(length(opt$model_filename)){
+        ModelFilename=opt$model_filename;
+}
+
+RequiredFile="";
+if(length(opt$required_var)){
+        RequiredFile=opt$required_var;
+}
+ResponseFile="";
+if(length(opt$response_var)){
+        ResponseFile=opt$response_var;
+}
+CovariatesFile="";
+if(length(opt$covariates_var)){
+        CovariatesFile=opt$covariates_var;
+}
+
+SummaryFile=opt$summary_file;
+FactorsFile=opt$factors;
+
+cat("\n");
+cat("Summary File : ", SummaryFile, "\n", sep="");
+cat("Factors File: ", FactorsFile, "\n", sep="");
+cat("Output File: ", OutputRoot, "\n", sep="");
+cat("\n");
+cat("Reference Levels File: ", ReferenceLevelsFile, "\n", sep="");
+cat("Required Variables File: ", RequiredFile, "\n", sep="");
+cat("Response Variables File: ", ResponseFile, "\n", sep="");
+cat("Covariates Variables File: ", CovariatesFile, "\n", sep="");
+cat("\n");
+
+
+##############################################################################
+
+load_factors=function(fname){
+	cat("Loading Factors: ", fname, "\n");
+	factors=data.frame(read.table(fname,  header=TRUE, row.names=1, check.names=FALSE, comment.char="", quote=""));
+	factor_names=colnames(factors);
+
+	ignore_idx=grep("^IGNORE\\.", factor_names);
+
+	if(length(ignore_idx)!=0){
+		return(factors[-ignore_idx]);
+	}else{
+		return(factors);
+	}
+}
+
+load_summary_file=function(fname){
+	cat("Loading Summary Table: ", fname, "\n");
+	inmat=as.matrix(read.table(fname, sep="\t", header=TRUE, check.names=FALSE, comment.char="", row.names=1))
+	counts_mat=inmat[,2:(ncol(inmat))];
+	return(counts_mat);
+}
+
+load_reference_levels_file=function(fname){
+	cat("Loading Reference Levels: ", fname, "\n");
+	inmat=as.matrix(read.table(fname, sep="\t", header=F, check.names=FALSE, comment.char="#", row.names=1))
+	colnames(inmat)=c("ReferenceLevel");
+	print(inmat);
+	cat("\n");
+	if(ncol(inmat)!=1){
+		cat("Error reading in reference level file: ", fname, "\n");
+		quit(status=-1);
+	}
+	return(inmat);	
+}
+
+relevel_factors=function(factors, ref_lev_mat){
+	num_factors_to_relevel=nrow(ref_lev_mat);
+	relevel_names=rownames(ref_lev_mat);
+	for(i in 1:num_factors_to_relevel){
+		tmp=factors[,relevel_names[i]];
+		#print(tmp);
+		tmp=relevel(tmp, ref_lev_mat[i, 1]);
+		#print(tmp);
+		factors[,relevel_names[i]]=tmp;
+	}
+	return(factors);
+}
+
+normalize=function(counts){
+	totals=apply(counts, 1, sum);
+	num_samples=nrow(counts);
+	normalized=matrix(0, nrow=nrow(counts), ncol=ncol(counts));
+
+	for(i in 1:num_samples){
+		normalized[i,]=counts[i,]/totals[i];
+	}
+	
+	colnames(normalized)=colnames(counts);
+	rownames(normalized)=rownames(counts);	
+	return(normalized);
+}
+
+paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_is_hot=T, deci_pts=4,
+        label_zeros=T, counts=F, value.cex=1,
+        plot_col_dendr=F,
+        plot_row_dendr=F
+){
+
+        num_row=nrow(mat);
+        num_col=ncol(mat);
+
+        row_names=rownames(mat);
+        col_names=colnames(mat);
+
+        orig.par=par(no.readonly=T);
+
+        cat("Num Rows: ", num_row, "\n");
+        cat("Num Cols: ", num_col, "\n");
+
+        # Flips the rows, so becuase origin is bottom left
+        mat=mat[rev(1:num_row),, drop=F];
+
+        # Generate a column scheme
+        num_colors=50;
+        color_arr=rainbow(num_colors, start=0, end=4/6);
+        if(high_is_hot){
+                color_arr=rev(color_arr);
+        }
+
+        # Provide a means to map values to an (color) index
+        remap=function(in_val, in_range, out_range){
+                in_prop=(in_val-in_range[1])/(in_range[2]-in_range[1])
+                out_val=in_prop*(out_range[2]-out_range[1])+out_range[1];
+                return(out_val);
+        }
+
+        # If range is not specified, find it based on the data
+        if(is.na(plot_min)){
+                plot_min=min(mat, na.rm=T);
+        }
+        if(is.na(plot_max)){
+                plot_max=max(mat, na.rm=T);
+        }
+
+        if(plot_min>=-1 && plot_max<=1){
+                fractions_only=T;
+        }else{
+                fractions_only=F;
+        }
+        cat("Plot min/max: ", plot_min, "/", plot_max, "\n");
+
+        # Get Label lengths
+        row_max_nchar=max(nchar(row_names));
+        col_max_nchar=max(nchar(col_names));
+        cat("Max Row Names Length: ", row_max_nchar, "\n");
+        cat("Max Col Names Length: ", col_max_nchar, "\n");
+
+        ##################################################################################################
+
+        get_dendrogram=function(in_mat, type){
+                if(type=="row"){
+                        dendist=dist(in_mat);
+                }else{
+                        dendist=dist(t(in_mat));
+                }
+
+                get_clstrd_leaf_names=function(den){
+                # Get a list of the leaf names, from left to right
+                        den_info=attributes(den);
+                        if(!is.null(den_info$leaf) && den_info$leaf==T){
+                                return(den_info$label);
+                        }else{
+                                lf_names=character();
+                                for(i in 1:2){
+                                        lf_names=c(lf_names, get_clstrd_leaf_names(den[[i]]));
+                                }
+                                return(lf_names);
+                        }
+                }
+
+
+                hcl=hclust(dendist, method="ward.D2");
+                dend=list();
+                dend[["tree"]]=as.dendrogram(hcl);
+                dend[["names"]]=get_clstrd_leaf_names(dend[["tree"]]);
+                return(dend);
+        }
+
+
+        ##################################################################################################
+        # Comput Layouts
+        col_dend_height=ceiling(num_row*.1);
+        row_dend_width=ceiling(num_col*.2);
+
+        heatmap_height=num_row;
+        heatmap_width=num_col;
+
+        if(plot_col_dendr && plot_row_dendr){
+                layoutmat=matrix(
+                        c(
+                        rep(c(rep(4, row_dend_width), rep(3, heatmap_width)), col_dend_height),
+                        rep(c(rep(2, row_dend_width), rep(1, heatmap_width)), heatmap_height)
+                        ), byrow=T, ncol=row_dend_width+heatmap_width);
+
+                col_dendr=get_dendrogram(mat, type="col");
+                row_dendr=get_dendrogram(mat, type="row");
+
+                mat=mat[row_dendr[["names"]], col_dendr[["names"]]];
+
+        }else if(plot_col_dendr){
+                layoutmat=matrix(
+                        rep(c(rep(2, row_dend_width), rep(1, heatmap_width)), heatmap_height),
+                        byrow=T, ncol=row_dend_width+heatmap_width);
+
+                row_dendr=get_dendrogram(mat, type="row");
+                mat=mat[row_dendr[["names"]],];
+        }else{
+                layoutmat=matrix(
+                        rep(1, heatmap_height*heatmap_width),
+                        byrow=T, ncol=heatmap_width);
+        }
+
+        #print(layoutmat);
+        layout(layoutmat);
+
+        ##################################################################################################
+
+        par(oma=c(col_max_nchar*.60, 0, 3, row_max_nchar*.60));
+        par(mar=c(0,0,0,0));
+        plot(0, type="n", xlim=c(0,num_col), ylim=c(0,num_row), xaxt="n", yaxt="n", bty="n", xlab="", ylab="");
+        mtext(title, side=3, line=0, outer=T, font=2);
+
+        # x-axis
+        axis(side=1, at=seq(.5, num_col-.5, 1), labels=colnames(mat), las=2, line=-1.75);
+        axis(side=4, at=seq(.5, num_row-.5, 1), labels=rownames(mat), las=2, line=-1.75);
+
+        if(log_col){
+                plot_min=log10(plot_min+.0125);
+                plot_max=log10(plot_max+.0125);
+        }
+
+        for(x in 1:num_col){
+                for(y in 1:num_row){
+
+                        if(log_col){
+                                col_val=log10(mat[y,x]+.0125);
+                        }else{
+                                col_val=mat[y,x];
+                        }
+
+                        remap_val=remap(col_val, c(plot_min, plot_max), c(1, num_colors));
+                        col_ix=ceiling(remap_val);
+
+                        rect(x-1, y-1, (x-1)+1, (y-1)+1, border=NA, col=color_arr[col_ix]);
+
+                        if(is.na(mat[y,x]) || mat[y,x]!=0 || label_zeros){
+                                if(counts){
+                                        text_lab=sprintf("%i", mat[y,x]);
+                                }else{
+                                        text_lab=sprintf(paste("%0.", deci_pts, "f", sep=""), mat[y,x]);
+                                        if(fractions_only){
+                                                if(!is.na(mat[y,x])){
+                                                        if(mat[y,x]==-1 || mat[y,x]==1){
+                                                                text_lab=as.integer(mat[y,x]);
+                                                        }else{
+                                                                text_lab=gsub("0\\.","\\.", text_lab);
+                                                        }
+                                                }
+                                        }
+                                }
+                                text(x-.5, y-.5, text_lab, srt=atan(num_col/num_row)/pi*180, cex=value.cex, font=2);
+                        }
+                }
+        }
+
+        ##################################################################################################
+
+        par(mar=c(0, 0, 0, 0));
+
+        if(plot_row_dendr && plot_col_dendr){
+                rdh=attributes(row_dendr[["tree"]])$height;
+                cdh=attributes(col_dendr[["tree"]])$height;
+                plot(row_dendr[["tree"]], leaflab="none", horiz=T, xaxt="n", yaxt="n", bty="n", xlim=c(rdh, 0));
+                plot(col_dendr[["tree"]], leaflab="none",xaxt="n", yaxt="n", bty="n", ylim=c(0, cdh));
+                plot(0,0, type="n", bty="n", xaxt="n", yaxt="n");
+                #text(0,0, "Placeholder");
+        }else if(plot_row_dendr){
+                rdh=attributes(row_dendr[["tree"]])$height;
+                plot(row_dendr[["tree"]], leaflab="none", horiz=T, xaxt="n", yaxt="n", bty="n", xlim=c(rdh, 0));
+                #text(0,0, "Row Dendrogram");
+        }else if(plot_col_dendr){
+                cdh=attributes(col_dendr[["tree"]])$height;
+                plot(col_dendr[["tree"]], leaflab="none", xaxt="n", yaxt="n", bty="n", ylim=c(0, cdh));
+                #text(0,0, "Col Dendrogram");
+        }
+
+        par(orig.par);
+
+}
+
+load_list=function(filename){
+	arr=scan(filename, what=character(), comment.char="#");
+	return(arr);
+}
+
+plot_text=function(strings){
+	par(mfrow=c(1,1));
+        par(family="Courier");
+        par(oma=rep(.5,4));
+        par(mar=rep(0,4));
+
+        num_lines=length(strings);
+
+        top=max(as.integer(num_lines), 52);
+
+        plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
+                xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
+                );
+
+        text_size=max(.01, min(.8, .8 - .003*(num_lines-52)));
+        #print(text_size);
+
+        for(i in 1:num_lines){
+                #cat(strings[i], "\n", sep="");
+                strings[i]=gsub("\t", "", strings[i]);
+                text(0, top-i, strings[i], pos=4, cex=text_size);
+        }
+}
+
+tail_statistic=function(x){
+        sorted=sort(x, decreasing=TRUE);
+        norm=sorted/sum(x);
+        n=length(norm);
+        tail=0;
+        for(i in 1:n){
+                tail=tail + norm[i]*((i-1)^2);
+        }
+        return(sqrt(tail));
+}
+
+##############################################################################
+
+pdf(paste(OutputRoot, ".div_pred.pdf", sep=""), height=8.5, width=11);
+
+##############################################################################
+# Load matrix
+
+counts=load_summary_file(SummaryFile);
+num_categories=ncol(counts);
+num_samples=nrow(counts);
+#print(counts);
+
+# Normalize
+normalized=normalize(counts);
+#print(normalized);
+
+cat("Summary Table:\n");
+cat("  Original Num Samples: ", num_samples, "\n");
+cat("  Original Num Categories: ", num_categories, "\n");
+
+##############################################################################
+# Load factors
+
+factors=load_factors(FactorsFile);
+factor_names=colnames(factors);
+num_factors=ncol(factors);
+factor_sample_names=rownames(factors);
+num_factor_samples=length(factor_sample_names);
+
+cat("\n");
+cat("Factors:\n");
+cat("  Original Num Samples: ", num_factor_samples, "\n");
+cat("  Original Num Factors: ", num_factors, "\n");
+cat("\n");
+
+##############################################################################
+# Relevel factor levels
+
+if(ReferenceLevelsFile!=""){
+	ref_lev_mat=load_reference_levels_file(ReferenceLevelsFile)
+	factors=relevel_factors(factors, ref_lev_mat);
+}else{
+	cat("No Reference Levels File specified.\n");
+}
+
+##############################################################################
+# Reconcile factors with samples
+
+cat("Reconciling samples between factor file and summary table:\n");
+factor_sample_ids=rownames(factors);
+counts_sample_ids=rownames(counts);
+
+shared_sample_ids=intersect(factor_sample_ids, counts_sample_ids);
+num_shared_sample_ids=length(shared_sample_ids);
+num_factor_sample_ids=length(factor_sample_ids);
+num_counts_sample_ids=length(counts_sample_ids);
+
+cat("Num counts sample IDs: ", num_counts_sample_ids, "\n");
+cat("Num factor sample IDs: ", num_factor_sample_ids, "\n");
+cat("Num shared sample IDs: ", num_shared_sample_ids, "\n");
+cat("\n");
+
+cat("Samples missing from count information:\n");
+print(setdiff(factor_sample_ids, counts_sample_ids));
+cat("\n");
+cat("Samples missing from factor information:\n");
+print(setdiff(counts_sample_ids, factor_sample_ids));
+cat("\n");
+cat("Total samples shared: ", num_shared_sample_ids, "\n");
+
+shared_sample_ids=sort(shared_sample_ids);
+
+# Reorder data by sample id
+normalized=normalized[shared_sample_ids,];
+num_samples=nrow(normalized);
+factors=factors[shared_sample_ids,, drop=F];
+
+# Load variables to require after NA removal
+required_arr=NULL;
+if(""!=RequiredFile){
+	required_arr=load_list(RequiredFile);
+        cat("Required Variables:\n");
+        print(required_arr);
+        cat("\n");
+        missing_var=setdiff(required_arr, factor_names);
+        if(length(missing_var)>0){
+                cat("Error: Missing required variables from factor file:\n");
+                print(missing_var);
+        }
+}else{
+        cat("No Required Variables specified...\n");
+}
+
+##############################################################################
+# Build model and select variables
+
+if(ModelFormula!=""){
+	cat("Model Formula: ", ModelFormula, "\n", sep="");
+	model_string=ModelFormula;
+	
+}else if(CovariatesFile!=""){
+	cat("Model Covariates Filename: ", CovariatesFile, "\n");
+	variables=load_list(CovariatesFile);
+	shared=intersect(variables, factor_names);
+	if(length(shared)!=length(variables)){
+		cat("Missing variables specified in Covariates File:\n");
+		print(setdiff(variables, shared));
+	}
+	model_string=paste(shared,  collapse=" + ");
+}else{
+	cat("No Model Specified, using all variables.\n");
+	model_string= paste(factor_names, collapse=" + ");
+}
+
+cat("Model String used for Regression: \n");
+print(model_string);
+model_var=get_var_from_modelstring(model_string);
+cat("Predictors:\n");
+print(model_var);
+
+cat("\n");
+cat("Response Variables:\n");
+responses_arr=load_list(ResponseFile);
+print(responses_arr);
+cat("\n");
+
+cat("Extracting predictors+responses from available factors...\n");
+all_var=c(model_var, responses_arr);
+factors=factors[,all_var, drop=F];
+cat("\n");
+
+##############################################################################
+# Handle NAs
+
+cat("Working on NA Removal...\n");
+remove_na_res=remove_sample_or_factors_wNA_parallel(factors, required=required_arr, 
+	num_trials=640000, num_cores=64, outfile=paste(OutputRoot, ".noNAs", sep=""));
+
+factors=remove_na_res$factors;
+samp_wo_nas=rownames(factors);
+factor_names=colnames(factors);
+num_factors=length(factor_names);
+normalized=normalized[samp_wo_nas,];
+num_samples=length(samp_wo_nas);
+
+print(model_string);
+print(factor_names);
+model_string=rem_missing_var_from_modelstring(model_string, factor_names);
+cat("\n");
+cat("New Model String with Factors with NAs removed:\n");
+print(model_string);
+cat("\n");
+responses_arr=intersect(responses_arr, factor_names);
+
+##############################################################################
+# Compute diversity indices
+cat("Computing diversity indices:\n");
+
+div_names=c("Tail", "Shannon", "Simpson", "Evenness", "SimpsonsRecip");
+num_div_idx=length(div_names);
+
+div_mat=matrix(0, nrow=num_samples, ncol=num_div_idx);
+colnames(div_mat)=div_names;
+rownames(div_mat)=rownames(normalized);
+
+cat("Computing diversity indices across samples.\n");
+for(i in 1:num_samples){
+	curNorm=normalized[i,];
+	zeroFreeNorm=curNorm[curNorm>0]
+	div_mat[i,"Tail"]=tail_statistic(zeroFreeNorm);
+	div_mat[i,"Shannon"]=-sum(zeroFreeNorm*log(zeroFreeNorm));
+	div_mat[i,"Simpson"]=1-sum(curNorm^2);
+	div_mat[i,"Evenness"]=div_mat[i,"Shannon"]/log(length(zeroFreeNorm));
+	div_mat[i,"SimpsonsRecip"]=1/sum(curNorm^2);
+}
+
+cat("Plotting histograms of raw diversity indices.\n");
+par(mfrow=c(3,2));
+par(oma=c(1, 1, 1, 1));
+par(mar=c(5,4,4,2));
+for(i in 1:num_div_idx){
+	hist(div_mat[, div_names[i]], main=div_names[i], xlab=div_names[i], 
+		breaks=15);
+}
+mtext("Sample Diversity Indices Distributions", outer=T);
+
+##############################################################################
+# Output reference factor levels
+
+predictors_mat=factors[samp_wo_nas,model_var,drop=F];
+responses_mat=as.matrix(factors[samp_wo_nas,responses_arr,drop=F]);
+num_resp_var=ncol(responses_mat);
+
+# Allocation matrices 
+resp=rep(1, length(samp_wo_nas));
+model_matrix=model.matrix(as.formula(paste("resp ~", model_string)),data=predictors_mat);
+regression_variables=setdiff(colnames(model_matrix), "(Intercept)");
+cat("Expected Regression Variables:\n");
+print(regression_variables);
+num_regression_variables=length(regression_variables);
+cat("\n");
+
+pval_list=list();
+coeff_list=list();
+diversity_coef=matrix(NA, nrow=num_resp_var, ncol=num_div_idx,
+		dimnames=list(responses_arr, div_names));
+diversity_pval=matrix(NA, nrow=num_resp_var, ncol=num_div_idx,
+		dimnames=list(responses_arr, div_names));
+
+for(i in 1:num_div_idx){
+
+	cat("Working on: ", div_names[i], "\n", sep="");
+
+	diversity=div_mat[samp_wo_nas, div_names[i], drop=F];
+	all_predictors_mat=cbind(diversity[samp_wo_nas,,drop=F], predictors_mat[samp_wo_nas,,drop=F]);
+
+	full_model_string=paste("responses_mat ~ diversity + ", model_string, sep="");
+	print(full_model_string);
+
+	mv_fit=lm(as.formula(full_model_string), data=as.data.frame(all_predictors_mat));
+	sum_fit=summary(mv_fit);
+
+	estimates_matrix=matrix(NA, nrow=num_regression_variables, ncol=num_resp_var,
+			dimnames=list(regression_variables, responses_arr));
+	pvalues_matrix=matrix(NA, nrow=num_regression_variables, ncol=num_resp_var,
+			dimnames=list(regression_variables, responses_arr));
+
+	sum_resp_names=paste("Response ", responses_arr, sep="");
+
+	for(resp_ix in 1:num_resp_var){
+
+		# Store covariates
+		estimates_matrix[regression_variables, resp_ix]=
+			sum_fit[[sum_resp_names[resp_ix]]]$coefficients[regression_variables, "Estimate"];
+		pvalues_matrix[regression_variables, resp_ix]=
+			sum_fit[[sum_resp_names[resp_ix]]]$coefficients[regression_variables, "Pr(>|t|)"];
+
+		# Store diversity
+		diversity_coef[resp_ix, div_names[i]]=
+			sum_fit[[sum_resp_names[resp_ix]]]$coefficients["diversity", "Estimate"];
+		diversity_pval[resp_ix, div_names[i]]=
+			sum_fit[[sum_resp_names[resp_ix]]]$coefficients["diversity", "Pr(>|t|)"];
+	}
+
+	coeff_list[[div_names[i]]]=estimates_matrix;
+	pval_list[[div_names[i]]]=pvalues_matrix;
+	
+	#paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_is_hot=T, deci_pts=4,
+	paint_matrix(estimates_matrix, title=paste(div_names[i], " Covariates", sep=""));
+	paint_matrix(pvalues_matrix, title=paste(div_names[i], " Covariates", sep=""), high_is_hot=T, plot_min=0, plot_max=1);
+
+
+}
+
+print(coeff_list);
+print(pval_list);
+
+print(diversity_coef);
+print(diversity_pval);
+
+paint_matrix(diversity_coef, title="Diversity Coefficients");
+paint_matrix(diversity_pval, title="Diversity P-values", high_is_hot=F, plot_min=0, plot_max=1);
+
+##############################################################################
+	
+dev.off();
+
+##############################################################################
+
+cat("Done.\n");
+print(warnings());
+q(status=0);
