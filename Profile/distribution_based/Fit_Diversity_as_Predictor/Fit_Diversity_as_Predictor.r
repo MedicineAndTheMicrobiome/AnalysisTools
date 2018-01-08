@@ -93,17 +93,23 @@ if(length(opt$covariates_var)){
 SummaryFile=opt$summary_file;
 FactorsFile=opt$factors;
 
-cat("\n");
-cat("Summary File : ", SummaryFile, "\n", sep="");
-cat("Factors File: ", FactorsFile, "\n", sep="");
-cat("Output File: ", OutputRoot, "\n", sep="");
-cat("\n");
-cat("Reference Levels File: ", ReferenceLevelsFile, "\n", sep="");
-cat("Required Variables File: ", RequiredFile, "\n", sep="");
-cat("Response Variables File: ", ResponseFile, "\n", sep="");
-cat("Covariates Variables File: ", CovariatesFile, "\n", sep="");
-cat("\n");
 
+summary_text=c();
+
+out=capture.output({
+		cat("\n");
+		cat("Summary File : ", SummaryFile, "\n", sep="");
+		cat("Factors File: ", FactorsFile, "\n", sep="");
+		cat("Output File: ", OutputRoot, "\n", sep="");
+		cat("\n");
+		cat("Reference Levels File: ", ReferenceLevelsFile, "\n", sep="");
+		cat("Required Variables File: ", RequiredFile, "\n", sep="");
+		cat("Response Variables File: ", ResponseFile, "\n", sep="");
+		cat("Covariates Variables File: ", CovariatesFile, "\n", sep="");
+		cat("\n");
+});
+cat(out, sep="\n");
+summary_text=c(summary_text, "\n", out);
 
 ##############################################################################
 
@@ -366,12 +372,91 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 
 }
 
+plot_pred_vs_obs=function(lmfit_ful, lmfit_red, title=""){
+
+	par.orig=par(no.readonly=T);
+
+	#print(lmfit$fitted.values);
+	#print(lmfit$y);
+
+	obs=lmfit_ful$y;
+
+	pred_red=lmfit_red$fitted.values;
+	pred_ful=lmfit_ful$fitted.values;
+
+	sum_ful=summary(lmfit_ful);
+	sum_red=summary(lmfit_red);
+
+
+	if(is.null(ncol(obs))){
+		obs=matrix(obs, nrow=length(obs), ncol=1, dimnames=list(names(pred_red), "obs"));
+		pred_red=matrix(pred_red, nrow=length(pred_red), ncol=1, dimnames=list(names(pred_red), "y"));
+		pred_ful=matrix(pred_ful, nrow=length(pred_ful), ncol=1, dimnames=list(names(pred_ful), "y"));
+
+		sum_ful=list(sum_ful);
+		sum_red=list(sum_red);
+	}
+
+	num_mv_resp=ncol(pred_ful);
+	response_names=colnames(pred_ful);
+
+	plot_row=2;
+	plot_col=4;
+	plots_per_page=(plot_row*plot_col)/2;
+	par(mfcol=c(plot_row, plot_col));
+	
+	for(resp_ix in 1:num_mv_resp){
+
+		obs_cur=obs[,resp_ix];
+		rngs=range(c(obs_cur, pred_red[,resp_ix], pred_ful[,resp_ix]));	
+
+		# P-values
+		red_pval=1-pf(sum_red[[resp_ix]]$fstatistic["value"], 
+			sum_red[[resp_ix]]$fstatistic["numdf"], sum_red[[resp_ix]]$fstatistic["dendf"]);
+		ful_pval=1-pf(sum_ful[[resp_ix]]$fstatistic["value"], 
+			sum_ful[[resp_ix]]$fstatistic["numdf"], sum_ful[[resp_ix]]$fstatistic["dendf"]);
+
+		red_pval=round(red_pval,4);
+		ful_pval=round(ful_pval,4);
+	
+		# R-sqrds
+		red_adjsqrd=sum_red[[resp_ix]]$adj.r.squared;
+		ful_adjsqrd=sum_ful[[resp_ix]]$adj.r.squared;
+
+		red_adjsqrd=round(red_adjsqrd,3);
+		ful_adjsqrd=round(ful_adjsqrd,3);
+
+		# Plot Reduced
+		plot(obs_cur, pred_red[,resp_ix], main=response_names[resp_ix], 
+			xlim=rngs, ylim=rngs,
+			xlab="", ylab="Reduced Predicted");
+		mtext(paste("adj. R^2=",red_adjsqrd, "  p-val=", red_pval, sep=""), line=0, cex=.7)
+		abline(a=0, b=1, col="blue");
+
+		# Plot Full
+		plot(obs_cur, pred_ful[,resp_ix], main="", 
+			xlim=rngs, ylim=rngs,
+			xlab="Observed", ylab="Full Predicted (w/ Diversity)");
+		mtext(paste("adj. R^2=",ful_adjsqrd, "  p-val=", ful_pval, sep=""), line=0, cex=.7)
+		abline(a=0, b=1, col="blue");
+
+		# Label page
+		if((resp_ix-1)%%(plots_per_page)==0){
+			mtext(title, outer=T);
+		}
+	}
+
+	par(par.orig);
+}
+
 load_list=function(filename){
 	arr=scan(filename, what=character(), comment.char="#");
 	return(arr);
 }
 
 plot_text=function(strings){
+	par.orig=par(no.readonly=T);
+
 	par(mfrow=c(1,1));
         par(family="Courier");
         par(oma=rep(.5,4));
@@ -393,6 +478,7 @@ plot_text=function(strings){
                 strings[i]=gsub("\t", "", strings[i]);
                 text(0, top-i, strings[i], pos=4, cex=text_size);
         }
+	par(par.orig);
 }
 
 tail_statistic=function(x){
@@ -422,9 +508,13 @@ num_samples=nrow(counts);
 normalized=normalize(counts);
 #print(normalized);
 
-cat("Summary Table:\n");
-cat("  Original Num Samples: ", num_samples, "\n");
-cat("  Original Num Categories: ", num_categories, "\n");
+out=capture.output({
+	cat("Summary Table:\n");
+	cat("  Original Num Samples: ", num_samples, "\n");
+	cat("  Original Num Categories: ", num_categories, "\n");
+});
+cat(out, sep="\n");
+summary_text=c(summary_text, "\n", out);
 
 ##############################################################################
 # Load factors
@@ -435,11 +525,15 @@ num_factors=ncol(factors);
 factor_sample_names=rownames(factors);
 num_factor_samples=length(factor_sample_names);
 
-cat("\n");
-cat("Factors:\n");
-cat("  Original Num Samples: ", num_factor_samples, "\n");
-cat("  Original Num Factors: ", num_factors, "\n");
-cat("\n");
+out=capture.output({
+	cat("\n");
+	cat("Factors:\n");
+	cat("  Original Num Samples: ", num_factor_samples, "\n");
+	cat("  Original Num Factors: ", num_factors, "\n");
+	cat("\n");
+});
+cat(out, sep="\n");
+summary_text=c(summary_text, "\n", out);
 
 ##############################################################################
 # Relevel factor levels
@@ -463,10 +557,14 @@ num_shared_sample_ids=length(shared_sample_ids);
 num_factor_sample_ids=length(factor_sample_ids);
 num_counts_sample_ids=length(counts_sample_ids);
 
-cat("Num counts sample IDs: ", num_counts_sample_ids, "\n");
-cat("Num factor sample IDs: ", num_factor_sample_ids, "\n");
-cat("Num shared sample IDs: ", num_shared_sample_ids, "\n");
-cat("\n");
+out=capture.output({
+	cat("Num counts sample IDs: ", num_counts_sample_ids, "\n");
+	cat("Num factor sample IDs: ", num_factor_sample_ids, "\n");
+	cat("Num shared sample IDs: ", num_shared_sample_ids, "\n");
+	cat("\n");
+});
+cat(out, sep="\n");
+summary_text=c(summary_text, "\n", out);
 
 cat("Samples missing from count information:\n");
 print(setdiff(factor_sample_ids, counts_sample_ids));
@@ -560,6 +658,12 @@ print(model_string);
 cat("\n");
 responses_arr=intersect(responses_arr, factor_names);
 
+summary_text=c(summary_text, "\n", remove_na_res$summary_text);
+
+##############################################################################
+
+plot_text(summary_text);
+
 ##############################################################################
 # Compute diversity indices
 cat("Computing diversity indices:\n");
@@ -584,7 +688,7 @@ for(i in 1:num_samples){
 
 cat("Plotting histograms of raw diversity indices.\n");
 par(mfrow=c(3,2));
-par(oma=c(1, 1, 1, 1));
+par(oma=c(1, 1, 1.5, 1));
 par(mar=c(5,4,4,2));
 for(i in 1:num_div_idx){
 	hist(div_mat[, div_names[i]], main=div_names[i], xlab=div_names[i], 
@@ -610,10 +714,18 @@ cat("\n");
 
 pval_list=list();
 coeff_list=list();
+adjrsqrd_list=list();
+
 diversity_coef=matrix(NA, nrow=num_resp_var, ncol=num_div_idx,
 		dimnames=list(responses_arr, div_names));
 diversity_pval=matrix(NA, nrow=num_resp_var, ncol=num_div_idx,
 		dimnames=list(responses_arr, div_names));
+
+diversity_adj.rsqrd=matrix(NA, nrow=num_resp_var, ncol=num_div_idx,
+                dimnames=list(responses_arr, div_names));
+diversity_adj.rsqrd_delta=matrix(NA, nrow=num_resp_var, ncol=num_div_idx,
+                dimnames=list(responses_arr, div_names));
+
 
 for(i in 1:num_div_idx){
 
@@ -622,12 +734,22 @@ for(i in 1:num_div_idx){
 	diversity=div_mat[samp_wo_nas, div_names[i], drop=F];
 	all_predictors_mat=cbind(diversity[samp_wo_nas,,drop=F], predictors_mat[samp_wo_nas,,drop=F]);
 
+
+	# Full
 	full_model_string=paste("responses_mat ~ diversity + ", model_string, sep="");
 	print(full_model_string);
 
-	mv_fit=lm(as.formula(full_model_string), data=as.data.frame(all_predictors_mat));
+	mv_fit=lm(as.formula(full_model_string), data=as.data.frame(all_predictors_mat), y=T);
 	sum_fit=summary(mv_fit);
 
+	# Reduced
+	red_model_string=paste("responses_mat ~ ", model_string, sep="");
+	print(red_model_string);
+
+	red_mv_fit=lm(as.formula(red_model_string), data=as.data.frame(all_predictors_mat), y=T);
+	red_sum_fit=summary(red_mv_fit);
+
+	# Allocate data structures
 	estimates_matrix=matrix(NA, nrow=num_regression_variables, ncol=num_resp_var,
 			dimnames=list(regression_variables, responses_arr));
 	pvalues_matrix=matrix(NA, nrow=num_regression_variables, ncol=num_resp_var,
@@ -648,14 +770,31 @@ for(i in 1:num_div_idx){
 			sum_fit[[sum_resp_names[resp_ix]]]$coefficients["diversity", "Estimate"];
 		diversity_pval[resp_ix, div_names[i]]=
 			sum_fit[[sum_resp_names[resp_ix]]]$coefficients["diversity", "Pr(>|t|)"];
+
+		# Store Adj-Rsqrd
+		diversity_adj.rsqrd[resp_ix, div_names[i]]=
+			sum_fit[[sum_resp_names[resp_ix]]]$adj.r.squared;
+		diversity_adj.rsqrd_delta[resp_ix, div_names[i]]=
+                        sum_fit[[sum_resp_names[resp_ix]]]$adj.r.squared-
+                        red_sum_fit[[sum_resp_names[resp_ix]]]$adj.r.squared;
 	}
 
 	coeff_list[[div_names[i]]]=estimates_matrix;
 	pval_list[[div_names[i]]]=pvalues_matrix;
 	
 	#paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_is_hot=T, deci_pts=4,
-	paint_matrix(estimates_matrix, title=paste(div_names[i], " Covariates", sep=""));
-	paint_matrix(pvalues_matrix, title=paste(div_names[i], " Covariates", sep=""), high_is_hot=T, plot_min=0, plot_max=1);
+	paint_matrix(estimates_matrix, title=paste("Coefficients: ", div_names[i], " Covariates", sep=""),
+		plot_col_dendr=T, plot_row_dendr=T);
+	paint_matrix(pvalues_matrix, title=paste("P-values: ", div_names[i], " Covariates", sep=""), 
+		plot_col_dendr=T, plot_row_dendr=T,
+		high_is_hot=F, plot_min=0, plot_max=1);
+
+
+	# Plot predicted vs observed
+	orig.par=par(no.readonly=T);
+	par(mfrow=c(1,2));
+	plot_pred_vs_obs(red_mv_fit, mv_fit, title=div_names[i]);
+	par(orig.par);
 
 
 }
@@ -666,8 +805,15 @@ print(pval_list);
 print(diversity_coef);
 print(diversity_pval);
 
-paint_matrix(diversity_coef, title="Diversity Coefficients");
-paint_matrix(diversity_pval, title="Diversity P-values", high_is_hot=F, plot_min=0, plot_max=1);
+# With dendrograms
+paint_matrix(diversity_coef, title="Diversity Coefficients", plot_col_dendr=T, plot_row_dendr=T);
+paint_matrix(diversity_pval, title="Diversity P-values", high_is_hot=F, plot_min=0, plot_max=1,
+	plot_col_dendr=T, plot_row_dendr=T);
+paint_matrix(diversity_adj.rsqrd, title="Diversity Adjusted R^2", high_is_hot=F, plot_min=0, plot_max=1,
+	plot_col_dendr=T, plot_row_dendr=T);
+paint_matrix(diversity_adj.rsqrd_delta, title="Diversity Delta Adjusted R^2", high_is_hot=F,
+	plot_col_dendr=T, plot_row_dendr=T);
+
 
 ##############################################################################
 	
