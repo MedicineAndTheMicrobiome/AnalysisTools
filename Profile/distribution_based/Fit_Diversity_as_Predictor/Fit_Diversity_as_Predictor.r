@@ -731,8 +731,8 @@ diversity_adj.rsqrd_delta=matrix(NA, nrow=num_resp_var, ncol=num_div_idx,
                 dimnames=list(responses_arr, div_names));
 
 
-anova_pval=matrix(NA, nrow=num_pred_var, ncol=num_div_idx,
-		dimnames=list(model_var, div_names));
+anova_pval=matrix(NA, nrow=num_pred_var+1, ncol=num_div_idx,
+		dimnames=list(c("diversity",model_var), div_names));
 
 
 for(i in 1:num_div_idx){
@@ -753,7 +753,7 @@ for(i in 1:num_div_idx){
 	mv_anova=anova(mv_fit);
 	plot_text(capture.output(print(mv_anova)), title=div_names[i]);
 
-	anova_pval[model_var,div_names[i]]=mv_anova[model_var,"Pr(>F)"];
+	anova_pval[c("diversity",model_var),div_names[i]]=mv_anova[c("diversity",model_var),"Pr(>F)"];
 
 	# Reduced
 	red_model_string=paste("responses_mat ~ ", model_string, sep="");
@@ -827,7 +827,7 @@ paint_matrix(diversity_adj.rsqrd, title="Diversity Adjusted R^2", high_is_hot=F,
 paint_matrix(diversity_adj.rsqrd_delta, title="Diversity Delta Adjusted R^2", high_is_hot=F,
 	plot_col_dendr=T, plot_row_dendr=T);
 
-paint_matrix(anova_pval, title="Full Model MANOVAs (Diversity+Covariates)", high_is_hot=F, plot_min=0, plot_max=1);
+paint_matrix(anova_pval, title="Full Model MANOVAs (Diversity+Covariates) P-values", high_is_hot=F, plot_min=0, plot_max=1);
 
 ##############################################################################
 	
