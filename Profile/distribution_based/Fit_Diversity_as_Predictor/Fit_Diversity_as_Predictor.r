@@ -454,12 +454,12 @@ load_list=function(filename){
 	return(arr);
 }
 
-plot_text=function(strings){
+plot_text=function(strings, title=""){
 	par.orig=par(no.readonly=T);
 
 	par(mfrow=c(1,1));
         par(family="Courier");
-        par(oma=rep(.5,4));
+        par(oma=c(.5, .5, 1.5, .5));
         par(mar=rep(0,4));
 
         num_lines=length(strings);
@@ -469,6 +469,9 @@ plot_text=function(strings){
         plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
                 xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
                 );
+	if(title!=""){
+		mtext(title, outer=T, font=2);
+	}
 
         text_size=max(.01, min(.8, .8 - .003*(num_lines-52)));
         #print(text_size);
@@ -700,6 +703,7 @@ mtext("Sample Diversity Indices Distributions", outer=T);
 # Output reference factor levels
 
 predictors_mat=factors[samp_wo_nas,model_var,drop=F];
+num_pred_var=ncol(predictors_mat);
 responses_mat=as.matrix(factors[samp_wo_nas,responses_arr,drop=F]);
 num_resp_var=ncol(responses_mat);
 
@@ -727,6 +731,10 @@ diversity_adj.rsqrd_delta=matrix(NA, nrow=num_resp_var, ncol=num_div_idx,
                 dimnames=list(responses_arr, div_names));
 
 
+anova_pval=matrix(NA, nrow=num_pred_var, ncol=num_div_idx,
+		dimnames=list(model_var, div_names));
+
+
 for(i in 1:num_div_idx){
 
 	cat("Working on: ", div_names[i], "\n", sep="");
@@ -734,13 +742,18 @@ for(i in 1:num_div_idx){
 	diversity=div_mat[samp_wo_nas, div_names[i], drop=F];
 	all_predictors_mat=cbind(diversity[samp_wo_nas,,drop=F], predictors_mat[samp_wo_nas,,drop=F]);
 
-
 	# Full
 	full_model_string=paste("responses_mat ~ diversity + ", model_string, sep="");
 	print(full_model_string);
 
 	mv_fit=lm(as.formula(full_model_string), data=as.data.frame(all_predictors_mat), y=T);
 	sum_fit=summary(mv_fit);
+
+	# Compute ANOVA full model
+	mv_anova=anova(mv_fit);
+	plot_text(capture.output(print(mv_anova)), title=div_names[i]);
+
+	anova_pval[model_var,div_names[i]]=mv_anova[model_var,"Pr(>F)"];
 
 	# Reduced
 	red_model_string=paste("responses_mat ~ ", model_string, sep="");
@@ -814,6 +827,7 @@ paint_matrix(diversity_adj.rsqrd, title="Diversity Adjusted R^2", high_is_hot=F,
 paint_matrix(diversity_adj.rsqrd_delta, title="Diversity Delta Adjusted R^2", high_is_hot=F,
 	plot_col_dendr=T, plot_row_dendr=T);
 
+paint_matrix(anova_pval, title="Full Model MANOVAs (Diversity+Covariates)", high_is_hot=F, plot_min=0, plot_max=1);
 
 ##############################################################################
 	
