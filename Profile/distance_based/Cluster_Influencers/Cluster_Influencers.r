@@ -21,8 +21,10 @@ params=c(
 	"sample_id_list", "l", 2, "character",
 	"dist_type", "d", 2, "character",
 	"num_top_cat", "p", 2, "numeric",
+	"split_char", "s", 2, "character",
 	"num_clus", "k", 2, "numeric",
-	"split_char", "s", 2, "character"
+	"factor_filename", "f", 2, "character",
+	"factor_names_list", "n", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -35,15 +37,26 @@ usage = paste(
 	"	[-l <sample id list, otherwise use all samples in summary table>]\n",
 	"	[-d <euc/wrd/man/bray/horn/bin/gow/tyc/minkp5/minkp3, default =", DEF_DISTTYPE, ">]\n",
 	"	[-p <num of top categories to probe, default =", DEF_NUM_TOP_CAT, " >\n",
-	"	[-k <num of clusters to split into, default =", DEF_NUM_CLUS, ">\n",
 	"	[-s <split char for long category names, default =", DEF_SPLIT_CHAR, ">]\n",
+	"\n",
+	"	Clustering-Based (Hierarchical Clustering) Options:\n",
+	"	[-k <num of clusters to split into, default =", DEF_NUM_CLUS, ">\n",
+	"\n",
+	"	Metadata-Based (User-defined Factors) Options:\n",
+	"	[-f <factor/metadata file]\n",
+	"	[-n <column names to analyze in factor file>]\n",
 	"\n",
 	"This script will:\n",
 	"	1.) Read in a summary table and compute a full/complete distance matrix.\n",
 	"	2.) Precompute reduced distance matrices for each of the top categories to probe.\n",
 	"	3.) Cluster full distance matrix hierarchically.\n",
-	"	3.) Iteratively cut tree until max_c clusters.\n",
-	"	4.) For each pair of clusters, compute:\n",
+	"\n",
+	"	If Clustering-based:\n",
+	"	4.) Iteratively cut tree until max_c clusters.\n",
+	"	If Metadata-based:\n",
+	"	4.) Step through each of the groupings specified in the metadata.\n",
+	"\n",
+	"	5.) For each pair of clusters, compute:\n",
 	"		a.) compute complete and reduced R^2=SSB/SST\n",
 	"		b.) compute log10 Ratio between reduced(R^2)/complete(R^2)\n",
 	"		c.) compute which cluster has greater amount of that category\n",
@@ -98,6 +111,21 @@ if(length(opt$num_top_cat)){
 SplitChar=DEF_SPLIT_CHAR;
 if(length(opt$split_char)){
 	SplitChar=opt$split_char;
+}
+
+FactorFilename="";
+if(length(opt$factor_filename)){
+	FactorFilename=opt$factor_filename;
+}
+
+FactorListFile="";
+if(length(opt$factor_names_list)){
+	FactorListFile=opt$factor_names_list;
+}
+
+useMetadata=T;
+if(FactorFilename==""){
+	useMetadata=F;
 }
 
 
@@ -172,7 +200,7 @@ load_summary_table=function(st_fname){
 }
 
 load_list=function(list_fname){
-	list=read.delim(list_fname, sep="\t", header=F, row.names=NULL, check.names=F, comment.char="", quote="");
+	list=read.delim(list_fname, sep="\t", header=F, row.names=NULL, check.names=F, comment.char="#", quote="");
 	return(list[,1]);
 }
 
@@ -405,6 +433,52 @@ get_middle_of_groups=function(clustered_leaf_names, group_asgn){
 
 }
 
+load_factor_file=function(fn){
+        inmat=read.delim(fn, sep="\t", header=TRUE, row.names=1, check.names=F, comment.char="", quote="");
+
+        # Changes spaces to underscore
+        var_names=colnames(inmat);
+        var_names=gsub(" ", "_", var_names);
+        colnames(inmat)=var_names;
+
+        cat("  Num Factors: ", ncol(inmat), "\n", sep="");
+        cat("  Num Samples: ", nrow(inmat), "\n", sep="");
+        return(inmat);
+}
+
+reconcile_factors_and_summary_table=function(fact, st){
+
+	cat("\nReconciling Factor and Summary Tables...\n");
+	num_fact_samp=nrow(fact);	
+	num_st_samp=nrow(st);	
+
+	fact_samp_ids=rownames(fact);
+	st_samp_ids=rownames(st);
+
+	shared_samp_ids=intersect(fact_samp_ids, st_samp_ids);
+	fact_only_sample_ids=setdiff(fact_samp_ids, shared_samp_ids);
+	st_only_sample_ids=setdiff(st_samp_ids, shared_samp_ids);
+	num_shared_samp=length(shared_samp_ids);
+
+	results=list();
+	results[["summary_table"]]=st[shared_samp_ids,, drop=F];
+	results[["factors_table"]]=fact[shared_samp_ids,, drop=F];
+	results[["summary"]]=c(
+		"Original Number of Samples:",
+		paste("  Summary Table: ", num_st_samp, sep=""),
+		paste("  Factors Table: ", num_fact_samp, sep=""),
+		"",
+		paste("Shared Number of Samples: ",  num_shared_samp, sep=""),
+		"",
+		"Samples exclusive to Summary Table:",
+		capture.output(print(st_only_sample_ids)),
+		"Samples exclusive to Factors Table:",
+		capture.output(print(fact_only_sample_ids)),
+		""
+	);
+	return(results);
+}
+
 ###############################################################################
 
 output_fname_root = paste(OutputFileRoot, ".", dist_type, sep="");
@@ -412,9 +486,27 @@ cat("\n");
 cat("Input Summary Table Name: ", InputFileName, "\n", sep="");
 cat("Output Filename Root: ", output_fname_root, "\n", sep="");
 cat("Distance Type: ", dist_type, "\n", sep="");
-cat("Max Num clusters: ", max_clusters, "\n", sep="");
 cat("Num Top categories to analyze: ", num_top_cat, "\n", sep="");
 cat("\n");
+
+if(useMetadata){
+	cat("Loading Factor Table...\n");
+	factors_matrix=load_factor_file(FactorFilename);
+	
+	if(FactorListFile!=""){
+		cat("Loading Targeted Factor List...\n");
+		target_factors=load_list(FactorListFile);
+		cat("Extracting factors of interest:\n");
+		print(target_factors);
+		factors_matrix=factors_matrix[,target_factors];
+	}
+	target_factors=colnames(factors_matrix);
+	num_target_factors=ncol(factors_matrix);
+}else{
+	cat("Max Num clusters: ", max_clusters, "\n", sep="");
+}
+
+###############################################################################
 
 cat("Loading summary table...\n");
 counts_mat=load_summary_table(InputFileName);
@@ -425,6 +517,14 @@ if(SampleIDListFname!=""){
 	st_sample_ids=rownames(counts_mat);
 	keep_list=intersect(st_sample_ids, sample_keep_list);
 	counts_mat=counts_mat[keep_list,,drop=F];
+}
+
+# Reconcile
+if(useMetadata){
+	reconciliation_res=reconcile_factors_and_summary_table(factors_matrix, counts_mat);
+	counts_mat=reconciliation_res$summary_table;
+	factors_matrix=reconciliation_res$factors_table;
+	cat(reconciliation_res$summary, sep="\n");
 }
 
 # Normalize counts
@@ -458,6 +558,7 @@ cat("Shorted Top Categories: \n");
 print(short_cat_names[1:num_top_cat]);
 cat("\n");
 
+###############################################################################
 ###############################################################################
 
 # Compute full distances
@@ -506,8 +607,14 @@ nonparm_mds_res[,2]=imds_res$points[,2]
 
 classic_mds_res=cmdscale(full_dist_mat);
 
-mds_layout=matrix(c(
-	1,1,1,1,2,2,2,2,3), byrow=T, nrow=1, ncol=9);
+if(useMetadata){
+	# Give more room for factor level names
+	mds_layout=matrix(c(
+		1,1,1,1,2,2,2,2,3,3), byrow=T, nrow=1, ncol=10);
+}else{
+	mds_layout=matrix(c(
+		1,1,1,1,2,2,2,2,3), byrow=T, nrow=1, ncol=9);
+}
 
 barplot_layout=matrix(c(
 	1,3,5,7,9,11,
@@ -525,25 +632,72 @@ grid_lines=(1:num_grid_lines)*(mds_range[2]-mds_range[1])/((num_grid_lines-2)*2)
 cat("Grid Line radii:\n");
 print(grid_lines);
 
+# For a run with metadata, we'll look across the number of factors.
+# For a run without metadata, we'll cut the tree until the max clusters.
+
+if(useMetadata){
+	num_iterations=num_target_factors;
+	target_factors=colnames(factors_matrix);
+	num_target_factors=ncol(factors_matrix);
+}else{
+	num_iterations=max_clusters-1;
+}
+
+cat("Using Metadata:", useMetadata, "\n");
+
 # Begin pair-wise cluster analyses
-for(num_cl in 2:max_clusters){
+for(ix in 1:num_iterations){
 
-	cat("Cutting for ", num_cl, " clusters...\n", sep="");
-	memberships=cutree(hcl, k=num_cl);
-	grp_mids=get_middle_of_groups(lf_names, memberships);
+	if(useMetadata){
+		fact_val=factors_matrix[,ix];
+		fact_name=colnames(factors_matrix)[ix];
+		num_samps=length(fact_val);
 
-	# Reorder cluster assignments to match dendrogram left/right
-        plot_order=order(grp_mids);
-        mem_tmp=numeric(num_samples);
-        for(gr_ix in 1:num_cl){
-                old_id=(memberships==plot_order[gr_ix]);
-                mem_tmp[old_id]=gr_ix;
-        }
-        names(mem_tmp)=names(memberships);
-        memberships=mem_tmp;
-        grp_mids=grp_mids[plot_order];
+		memberships=rep(NA, num_samples);
+		names(memberships)=rownames(factors_matrix);
+		levels=sort(unique(fact_val));
+
+		num_levels=length(levels);
+		if(num_levels>10){
+			cat("Factor has ", num_unique, " levels.\n", sep="");
+			print(levels);
+			cat("Error: Too many factor levels!\n");
+			next;
+		}
+
+		for(lix in 1:num_levels){
+			memberships[levels[lix]==fact_val]=lix;
+		}
+
+		memberships=memberships[!is.na(memberships)];
+		num_cl=num_levels;
+		grp_mids=NA;
+
+		legend_labels=paste(1:num_cl, ": ", levels, sep="");
+	}else{
+		#for(num_cl in 2:max_clusters):
+		num_cl=ix+1;
+
+		cat("Cutting for ", num_cl, " clusters...\n", sep="");
+		memberships=cutree(hcl, k=num_cl);
+		grp_mids=get_middle_of_groups(lf_names, memberships);
+
+		# Reorder cluster assignments to match dendrogram left/right
+		plot_order=order(grp_mids);
+		mem_tmp=numeric(num_samples);
+		for(gr_ix in 1:num_cl){
+			old_id=(memberships==plot_order[gr_ix]);
+			mem_tmp[old_id]=gr_ix;
+		}
+		names(mem_tmp)=names(memberships);
+		memberships=mem_tmp;
+		grp_mids=grp_mids[plot_order];
+
+		legend_labels=as.character(1:num_cl);
+	}
 
 	# Plot Dendrogram
+	cat("Prepping dendrogram...\n");
 	par(oma=c(5,0,2,0));
 	par(mar=c(5.1,4.1,4.1,2.1));
 	par(mfrow=c(1,1));
@@ -552,17 +706,26 @@ for(num_cl in 2:max_clusters){
 	tweaked_dendro=dendrapply(tweaked_dendro, text_scale_denfun);
 	plot(tweaked_dendro);
 	
-	for(cl_ix in 1:num_cl){
-                lab_size=3/ceiling(log10(cl_ix+1));
-                axis(side=1, outer=T, at=grp_mids[cl_ix], labels=cl_ix, cex.axis=lab_size, col.ticks=cl_ix,
-                        lend=1, lwd=10, padj=1, line=-3);
-        }
-        abline(h=cut_midpoints[num_cl], col="red", lty=2);
+	if(!useMetadata){
+		# Label cluster numbers underneath the samples
+		for(cl_ix in 1:num_cl){
+			lab_size=3/ceiling(log10(cl_ix+1));
+			axis(side=1, outer=T, at=grp_mids[cl_ix], labels=cl_ix, cex.axis=lab_size, col.ticks=cl_ix,
+				lend=1, lwd=10, padj=1, line=-3);
+		}
+		abline(h=cut_midpoints[num_cl], col="red", lty=2);
+	}
 
+	# Legend at top left of dendrogram
 	ranges=par()$usr;
-	legend(ranges[1], ranges[4], fill=1:num_cl, legend=c(as.character(1:num_cl)), bty="n");
+	legend(ranges[1], ranges[4], fill=1:num_cl, legend=legend_labels, bty="n");
+
+	# Label page with cut/factor specific info
 	mtext(paste("Distance Type: ", dist_type), side=3, line=1, outer=T);
 	mtext(paste("Num Clusters: ", num_cl), side=3, line=0, outer=T);
+	if(useMetadata){
+		mtext(paste("Factor Name: ", fact_name), side=3, line=-1, outer=T);
+	}
 
 	# Generate MDS plots
 	par(oma=c(0,0,2,0));
@@ -589,9 +752,11 @@ for(num_cl in 2:max_clusters){
 	points(classic_mds_res, col=memberships);
 	label_centroids(classic_mds_res, memberships);
 
+	# Plot legend in far right
 	par(mar=c(0,0,0,0));
 	plot(0, type="n", xlab="", ylab="", main="", bty="n", xaxt="n", yaxt="n", xlim=c(0,1), ylim=c(0,1));
-	legend(0,1, fill=1:num_cl, legend=c(as.character(1:num_cl)), bty="n", cex=2);
+
+	legend(0,1, fill=1:num_cl, legend=legend_labels, bty="n", cex=2);
 	mtext(paste("Num Clusters: ", num_cl), side=3, outer=T);
 	
 	# Compute R^2 pairwise between clusters
@@ -610,6 +775,7 @@ for(num_cl in 2:max_clusters){
 			cat("Working on cluster[", i, "] vs cluster[", j, "]\n");
 
 			members_j=names(memberships[memberships==j]);
+
 			sub_mat=norm_mat[c(members_i, members_j),,drop=F];
 			results=analyze_cluster_pairs(sub_mat, members_i, members_j, num_top_cat, dist_mat_list);
 
@@ -770,7 +936,8 @@ for(num_cl in 2:max_clusters){
 		#print(ratios_by_cluster);
 
 		# Compute the mean ratios only cross the categories that have a greater abundance
-		cluster_unifiers_matrix=matrix(0, nrow=num_cl-1, ncol=num_top_cat, dimnames=list(1:(num_cl-1),short_cat_names[1:num_top_cat]));	
+		cluster_unifiers_matrix=matrix(0, nrow=num_cl-1, ncol=num_top_cat, 
+			dimnames=list(1:(num_cl-1),short_cat_names[1:num_top_cat]));	
 
 		for(cl_ix in 1:(num_cl-1)){
 			for(cat_ix in 1:num_top_cat){
