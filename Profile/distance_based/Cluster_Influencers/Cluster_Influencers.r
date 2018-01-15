@@ -200,7 +200,7 @@ load_summary_table=function(st_fname){
 }
 
 load_list=function(list_fname){
-	list=read.delim(list_fname, sep="\t", header=F, row.names=NULL, check.names=F, comment.char="#", quote="");
+	list=read.delim(list_fname, sep="\t", header=F, row.names=NULL, as.is=T, check.names=F, comment.char="#", quote="");
 	return(list[,1]);
 }
 
@@ -487,6 +487,7 @@ cat("Input Summary Table Name: ", InputFileName, "\n", sep="");
 cat("Output Filename Root: ", output_fname_root, "\n", sep="");
 cat("Distance Type: ", dist_type, "\n", sep="");
 cat("Num Top categories to analyze: ", num_top_cat, "\n", sep="");
+cat("Targeted Variables: ", FactorListFile, "\n", sep="");
 cat("\n");
 
 if(useMetadata){
@@ -498,7 +499,7 @@ if(useMetadata){
 		target_factors=load_list(FactorListFile);
 		cat("Extracting factors of interest:\n");
 		print(target_factors);
-		factors_matrix=factors_matrix[,target_factors];
+		factors_matrix=factors_matrix[,target_factors, drop=F];
 	}
 	target_factors=colnames(factors_matrix);
 	num_target_factors=ncol(factors_matrix);
@@ -552,6 +553,7 @@ cat("\n");
 short_cat_names=character();
 for(i in 1:num_categories){
 	short_cat_names[i]=tail(strsplit(category_names[i], SplitChar)[[1]],1);
+	short_cat_names[i]=gsub("_unclassified$", "_uncl", short_cat_names[i]);
 }
 colnames(norm_mat)=short_cat_names;
 cat("Shorted Top Categories: \n");
@@ -623,7 +625,6 @@ barplot_layout=matrix(c(
 	2,4,6,8,10,12), byrow=T, nrow=4, ncol=6);
 barplots_per_page=6;
 
-label_scale=min(2,50/num_samples);
 
 # Compute necessary radii of grid lines based on range of MDS points
 mds_range=range(classic_mds_res);
@@ -645,6 +646,7 @@ if(useMetadata){
 
 cat("Using Metadata:", useMetadata, "\n");
 
+print(factors_matrix);
 # Begin pair-wise cluster analyses
 for(ix in 1:num_iterations){
 
@@ -659,7 +661,7 @@ for(ix in 1:num_iterations){
 
 		num_levels=length(levels);
 		if(num_levels>10){
-			cat("Factor has ", num_unique, " levels.\n", sep="");
+			cat("Factor has ", num_levels, " levels.\n", sep="");
 			print(levels);
 			cat("Error: Too many factor levels!\n");
 			next;
@@ -698,8 +700,11 @@ for(ix in 1:num_iterations){
 
 	# Plot Dendrogram
 	cat("Prepping dendrogram...\n");
-	par(oma=c(5,0,2,0));
-	par(mar=c(5.1,4.1,4.1,2.1));
+	max_sample_name_length=max(nchar(sample_names));
+	cat("Max sample name length: ", max_sample_name_length, "\n");
+	label_scale=min(2,20/max_sample_name_length);
+	par(oma=c(0,0,0,0));
+	par(mar=c(max_sample_name_length/2,4.1,4.1,2.1));
 	par(mfrow=c(1,1));
 	sample_to_color_map=as.list(memberships);
 	tweaked_dendro=dendrapply(orig_dendr, color_denfun_bySample);
