@@ -787,6 +787,7 @@ num_samples_recon=nrow(recon_factors);
 num_factors_recon=ncol(recon_factors);
 factors_wo_nas_res=remove_sample_or_factors_wNA_parallel(recon_factors, required=required_arr, num_trials=640000, num_cores=64, outfile=paste(OutputRoot, ".noNAs", sep=""));
 
+
 factors_wo_nas=factors_wo_nas_res$factors;
 factor_names_wo_nas=colnames(factors_wo_nas);
 factor_sample_ids=rownames(factors_wo_nas);
@@ -797,7 +798,14 @@ num_factors_wo_nas=ncol(factors_wo_nas);
 responses_arr=intersect(responses_arr, factor_names_wo_nas);
 covariates_arr=intersect(covariates_arr, factor_names_wo_nas);
 
-print(factors_wo_nas);
+if(length(responses_arr)==0){
+	cat("Error: None of your response variables survived NA remove.  You need to make some of them required.\n");
+	quit(status=-1);
+}
+if(length(covariates_arr)==0){
+	cat("Warning: None of your covariates survived NA remove.  You need to make some of them required.\n");
+}
+
 response_factors=factors_wo_nas[,responses_arr, drop=F];
 covariate_factors=factors_wo_nas[,covariates_arr, drop=F];
 
@@ -863,6 +871,8 @@ plot_text(c(
 	"\n",
 	capture.output(print(s))
 ));
+cat("Plotting Response Histograms:\n");
+print(response_factors);
 plot_histograms(response_factors);
 
 cor_mat=cor(response_factors);
@@ -878,6 +888,8 @@ plot_text(c(
 	capture.output(print(s))
 ));
 if(length(covariates_arr)>0){
+	cat("Plotting Covariate Histograms:\n");
+	print(covariate_factors);
 	plot_histograms(covariate_factors);
 }
 
@@ -889,6 +901,8 @@ plot_text(c(
 	"\n",
 	capture.output(print(s))
 ));
+cat("Plotting ALR Category Histograms:\n");
+print(alr_categories_val);
 plot_histograms(alr_categories_val);
 
 ###############################################################################
@@ -1078,7 +1092,7 @@ if(length(manova_res)>0){
 	));
 
 	manova_pval_mat=matrix(0, nrow=length(alr_cat_names), ncol=1, dimnames=list(alr_cat_names, "Pr(>F)"));
-	manova_pval=manova[,"Pr(>F)", drop=F]
+	manova_pval=manova_res[,"Pr(>F)", drop=F]
 	manova_pval_mat[alr_cat_names,]=manova_pval[alr_cat_names,];
 	print(manova_pval_mat);
 	#par(oma=c(10,14,5,1));
