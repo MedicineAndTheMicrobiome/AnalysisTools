@@ -621,8 +621,12 @@ if(ShortenCategoryNames!=""){
 	short_names=character();
 	for(i in 1:length(full_names)){
 		short_names[i]=tail(splits[[i]], 1);
+
+		short_names[i]=gsub("_unclassified$", "_uncl", short_names[i]);
+		short_names[i]=gsub("_group", "_grp", short_names[i]);
 	}
 	colnames(counts)=short_names;
+	
 	cat("Names have been shortened.\n");
 }
 
@@ -877,7 +881,7 @@ plot_histograms(response_factors);
 
 cor_mat=cor(response_factors);
 par(oma=c(1,1,1,1));
-paint_matrix(cor_mat, title="Response Correlations");
+paint_matrix(cor_mat, title="Response Correlations", value.cex=.7, plot_min=-1, plot_max=1 );
 
 cat("\n");
 cat("Covariate Summary:\n");
@@ -930,15 +934,24 @@ reduced_lmfit=lm(as.formula(reduced_formula_str), data=dafr_predictors_factors);
 lm_summaries=summary(lmfit);
 reduced_lm_summaries=summary(reduced_lmfit);
 
-print(lmfit);
-print(lm_summaries);
+#print(lmfit);
+#print(lm_summaries);
 
 num_responses=length(responses_arr);
 
+manova_res=c();
 if(num_responses > 1 && (num_responses < lmfit$df.residual)){
-	manova_res=anova(lmfit);
+	tryCatch({
+		manova_res=anova(lmfit);
+	}, error=function(e){
+		cat("ERROR: MANOVA Could not be perfomred.\n");
+		print(e);
+		cat("Things to do:\n");
+		cat(" 1.) Check for high correlations amongst response variables.\n");
+	});
+		
 }else{
-	manova_res=c();
+	cat("WARNING: MANOVA Could not be performed because too many responses for number of samples...\n");
 }
 
 if(num_responses==1){
@@ -1046,13 +1059,13 @@ if(length(covariate_coefficients)>0){
 
 # Variations of ALR Predictor Coefficients
 paint_matrix(summary_res_coeff[alr_cat_names,,drop=F], title="ALR Predictors Coefficients (By Decreasing Abundance)", 
-	value.cex=2, deci_pts=2, plot_row_dendr=F, plot_col_dendr=F);
+	value.cex=1, deci_pts=2, plot_row_dendr=F, plot_col_dendr=F);
 paint_matrix(summary_res_coeff[alr_cat_names,,drop=F], title="ALR Predictors Coefficients (ALR Clusters)", 
-	value.cex=2, deci_pts=2, plot_row_dendr=T, plot_col_dendr=F);
+	value.cex=1, deci_pts=2, plot_row_dendr=T, plot_col_dendr=F);
 paint_matrix(summary_res_coeff[alr_cat_names,,drop=F], title="ALR Predictors Coefficients (Response Clusters)", 
-	value.cex=2, deci_pts=2, plot_row_dendr=F, plot_col_dendr=T);
+	value.cex=1, deci_pts=2, plot_row_dendr=F, plot_col_dendr=T);
 paint_matrix(summary_res_coeff[alr_cat_names,,drop=F], title="ALR Predictors Coefficients (ALR and Response Clusters)", 
-	value.cex=2, deci_pts=2, plot_row_dendr=T, plot_col_dendr=T);
+	value.cex=1, deci_pts=2, plot_row_dendr=T, plot_col_dendr=T);
 
 cat("\nP-values:\n");
 print(summary_res_pval);
@@ -1065,18 +1078,18 @@ if(length(covariate_coefficients)>0){
 
 # Variations of ALR Predictor P-values
 paint_matrix(summary_res_pval[alr_cat_names,,drop=F], title="ALR Predictors P-values (By Decreasing Abundance)", 
-	plot_min=0, plot_max=1, high_is_hot=F, value.cex=2, deci_pts=2);
+	plot_min=0, plot_max=1, high_is_hot=F, value.cex=1, deci_pts=2);
 
 paint_matrix(summary_res_pval[alr_cat_names,,drop=F], title="ALR Predictors P-values (ALR Clusters)", 
-	plot_min=0, plot_max=1, high_is_hot=F, value.cex=2, deci_pts=2,
+	plot_min=0, plot_max=1, high_is_hot=F, value.cex=1, deci_pts=2,
 	plot_row_dendr=T
 );
 paint_matrix(summary_res_pval[alr_cat_names,,drop=F], title="ALR Predictors P-values (Response Clusters)", 
-	plot_min=0, plot_max=1, high_is_hot=F, value.cex=2, deci_pts=2,
+	plot_min=0, plot_max=1, high_is_hot=F, value.cex=1, deci_pts=2,
 	plot_col_dendr=T
 );
 paint_matrix(summary_res_pval[alr_cat_names,,drop=F], title="ALR Predictors P-values (ALR and Response Clusters)", 
-	plot_min=0, plot_max=1, high_is_hot=F, value.cex=2, deci_pts=2,
+	plot_min=0, plot_max=1, high_is_hot=F, value.cex=1, deci_pts=2,
 	plot_row_dendr=T, plot_col_dendr=T
 );
 
