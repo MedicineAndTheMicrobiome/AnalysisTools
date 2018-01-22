@@ -115,7 +115,7 @@ summary_text=c(summary_text, "\n", out);
 
 load_factors=function(fname){
 	cat("Loading Factors: ", fname, "\n");
-	factors=data.frame(read.table(fname,  header=TRUE, row.names=1, check.names=FALSE, comment.char="", quote=""));
+	factors=data.frame(read.table(fname,  sep="\t", header=TRUE, row.names=1, check.names=FALSE, comment.char="", quote=""));
 	factor_names=colnames(factors);
 
 	ignore_idx=grep("^IGNORE\\.", factor_names);
@@ -387,7 +387,6 @@ plot_pred_vs_obs=function(lmfit_ful, lmfit_red, title=""){
 	sum_ful=summary(lmfit_ful);
 	sum_red=summary(lmfit_red);
 
-
 	if(is.null(ncol(obs))){
 		obs=matrix(obs, nrow=length(obs), ncol=1, dimnames=list(names(pred_red), "obs"));
 		pred_red=matrix(pred_red, nrow=length(pred_red), ncol=1, dimnames=list(names(pred_red), "y"));
@@ -427,6 +426,7 @@ plot_pred_vs_obs=function(lmfit_ful, lmfit_red, title=""){
 		ful_adjsqrd=round(ful_adjsqrd,3);
 
 		# Plot Reduced
+		cat("Plotting Reduced:\n");
 		plot(obs_cur, pred_red[,resp_ix], main=response_names[resp_ix], 
 			xlim=rngs, ylim=rngs,
 			xlab="", ylab="Reduced Predicted");
@@ -434,6 +434,7 @@ plot_pred_vs_obs=function(lmfit_ful, lmfit_red, title=""){
 		abline(a=0, b=1, col="blue");
 
 		# Plot Full
+		cat("Plotting Full:\n");
 		plot(obs_cur, pred_ful[,resp_ix], main="", 
 			xlim=rngs, ylim=rngs,
 			xlab="Observed", ylab="Full Predicted (w/ Diversity)");
@@ -822,9 +823,9 @@ print(diversity_pval);
 paint_matrix(diversity_coef, title="Diversity Coefficients", plot_col_dendr=T, plot_row_dendr=T);
 paint_matrix(diversity_pval, title="Diversity P-values", high_is_hot=F, plot_min=0, plot_max=1,
 	plot_col_dendr=T, plot_row_dendr=T);
-paint_matrix(diversity_adj.rsqrd, title="Diversity Adjusted R^2", high_is_hot=F, plot_min=0, plot_max=1,
+paint_matrix(diversity_adj.rsqrd, title="Diversity Adjusted R^2 (Full Model)", high_is_hot=F, plot_min=0, plot_max=1,
 	plot_col_dendr=T, plot_row_dendr=T);
-paint_matrix(diversity_adj.rsqrd_delta, title="Diversity Delta Adjusted R^2", high_is_hot=F,
+paint_matrix(diversity_adj.rsqrd_delta, title="Diversity Delta Adjusted R^2 (Full-Reduced Model)", high_is_hot=F,
 	plot_col_dendr=T, plot_row_dendr=T);
 
 paint_matrix(anova_pval, title="Full Model MANOVAs (Diversity+Covariates) P-values", high_is_hot=F, plot_min=0, plot_max=1);
