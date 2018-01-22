@@ -21,7 +21,7 @@ usage = paste (
 	"	-i <input summary table.xls>\n",
 	"	-c <cutoff>\n",
 	"	[-o <output summary table file name>\n",
-	"	[-p <generate plot>]\n",
+	"	[-p (generate plot)]\n",
 	"\n",	
 	"This script will read in the summary table, and recompute the total for each sample,\n",
 	"then only output the samples with total reads greater than the specified cutoff.\n",
@@ -44,9 +44,13 @@ MinimumTotalCutoff=opt$minimum_total;
 GeneratePlot=opt$generate_plot;
 
 if(length(OutputFileName)==0){
-	OutputFileName=paste(gsub("\\.summary_table\\.xls$", "", InputFileName), ".TotFilt_", MinimumTotalCutoff, ".summary_table.xls", sep="");
-	OutputPDFFileName=paste(gsub("\\.summary_table\\.xls$", "", InputFileName), ".TotFilt_", MinimumTotalCutoff, ".pdf", sep="");
+	OutputNameRoot=paste(gsub("\\summary_table\\.tsv$", "", InputFileName), ".min", MinimumTotalCutoff, sep="");
+	OutputFileName=paste(OutputNameRoot, ".summary_table.tsv", sep="");
+}else{
+	OutputNameRoot=OutputFileName;
 }
+
+OutputPDFFileName=paste(OutputNameRoot, ".hist.pdf", sep="");
 
 if(length(GeneratePlot)==0){
 	GeneratePlot=FALSE;
@@ -100,7 +104,7 @@ if(GeneratePlot){
 keep_idx=total>=MinimumTotalCutoff;
 num_samples_to_keep=sum(keep_idx);
 cat("Number of Samples to Remove: ", num_samples-num_samples_to_keep, "\n", sep="");
-cat("Number of Sampels to Keep  : ", num_samples_to_keep, "\n", sep="");
+cat("Number of Samples to Keep  : ", num_samples_to_keep, "\n", sep="");
 
 # Subset out rows to keep
 outmat=counts_mat[keep_idx,];
