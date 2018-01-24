@@ -1112,6 +1112,17 @@ if(length(manova_res)>0){
 	paint_matrix(manova_pval_mat[alr_cat_names,,drop=F], title="ALR Predictors MANOVA", 
 		plot_min=0, plot_max=1, high_is_hot=F, value.cex=1, deci_pts=3);
 
+	# Write F-stat pvalues to file
+	fh=file(paste(OutputRoot, ".mvr_alrp.manout.tsv", sep=""), "w");
+	cat(file=fh, c("ALR Categories", "MANOVA P-values"), sep="\t");
+	cat(file=fh, "\n");
+	category_names=rownames(manova_pval_mat);
+	for(i in 1:nrow(manova_pval_mat)){
+		cat(file=fh, c(category_names[i], manova_pval_mat[i,]), sep="\t");
+		cat(file=fh, "\n");
+	}
+	close(fh);
+
 }
 ###############################################################################
 
