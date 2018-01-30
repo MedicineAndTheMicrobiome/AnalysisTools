@@ -236,41 +236,94 @@ get_colors=function(num_col, alpha=1){
 
 ###############################################################################
 
-plot_dist=function(x, y, width=20, abundances){
+plot_dist=function(x, y, width=20, abundances, num_ticks=3){
 	# This function will plot a stack box plot
 	# The location is center around x, and over y, with a bar height of 1
 	
-	rect(
-		xleft=x-width/2,
-		ybottom=y,
-		xright=x+width/2,
-		ytop=y+1,
-		lwd=.01,
-		col="grey"
-	);
+	if(all(is.na(abundances))){
 
-	num_abund=length(abundances);
-	prev=y;
-	for(i in 1:num_abund){
+		points(
+			c(x-width/2, x+width/2),
+			c(y, y),
+			lwd=.1, type="l"
+		);
+
+		points(
+			c(x-width/2, x-width/2),
+			c(y, y+.1),
+			lwd=.1, type="l"
+		);
+
+		points(
+			c(x+width/2, x+width/2),
+			c(y, y+.1),
+			lwd=.1, type="l"
+		);
+
+	}else{
+		
 		rect(
 			xleft=x-width/2,
-			ybottom=prev,
+			ybottom=y,
 			xright=x+width/2,
-			ytop=prev+abundances[i],
+			ytop=y+1,
 			lwd=.01,
-			col=i
-		);	
-		prev=prev+abundances[i];
+			col="grey"
+		);
+
+		num_abund=length(abundances);
+		tick_pos=seq(1, num_abund, length.out=num_ticks+2);
+		tick_pos=ceiling(tick_pos[2:(num_ticks+1)]);
+
+		prev=y;
+		for(i in 1:num_abund){
+			rect(
+				xleft=x-width/2,
+				ybottom=prev,
+				xright=x+width/2,
+				ytop=prev+abundances[i],
+				lwd=.01,
+				col=i
+			);	
+			if(any(i==tick_pos)){
+				xleft=x-width/2;
+				ymid=prev+abundances[i]/2;
+
+				points(
+					c(xleft-width/20, xleft), 
+					c(ymid, ymid),
+					type="l", lwd=.5, col="black"
+				);
+			}
+
+
+			prev=prev+abundances[i];
+		}
 	}
 		
 }
 
-plot_legend=function(categories, size=.7){
+plot_legend=function(categories, size=.7, num_ticks=3){
+
 	orig.par=par(no.readonly=T);
+
 	par(mar=c(0,0,0,0));
 	num_cat=length(categories);
 	plot(0,0, type="n", ylim=c(-10,0), xlim=c(0,30), bty="n", xaxt="n", yaxt="n");
-	legend(0,0, legend=rev(c(categories, "Remaining")), fill=rev(c(1:num_cat, "grey")), cex=size, pt.lwd=.1);
+	leg_info=legend(0,0, legend=rev(c(categories, "Remaining")), 
+		fill=rev(c(1:num_cat, "grey")), cex=size, pt.lwd=.1);
+
+	# Compute tick positions
+	tick_pos=seq(1, num_cat, length.out=num_ticks+2);
+	tick_pos=ceiling(tick_pos[2:(num_ticks+1)])
+	xleft=leg_info$rect$left;
+	xright=(xleft+leg_info$text$x[1])/4;
+
+	for(i in 1:num_ticks){
+		ypos=leg_info$text$y[tick_pos[num_ticks-i+1]];	
+		points(c(xleft, xright), c(ypos, ypos), type="l", lwd=1);
+	}
+
 	par(mar=orig.par$mar);
 }
 
@@ -336,8 +389,6 @@ plot_abundance_matrix=function(abd_mat, title="", plot_cols=8, plot_rows=4, samp
 
 					abundances=abd_mat[sample,,drop=F];
 					plot_dist(0, 0, width=1, abundances);
-				}else{
-					plot(0,0, c(-1,1), ylim=c(0,1), type="n", bty="n", xaxt="n", yaxt="n");
 				}
 				i=i+1;
 			}
@@ -624,10 +675,10 @@ if(num_crossings>0){
 				v1_x_v2_samp_id=(v1_samp_id & v2_samp_id);
 				num_samp=sum(v1_x_v2_samp_id);
 
-				if(num_samp){
-					combined_abd=apply(simplfd_sumtab[samp_ids[v1_x_v2_samp_id],,drop=F], 2, mean);
-					plot_dist(0, 0, width=1, combined_abd);
-				}
+				combined_abd=apply(simplfd_sumtab[samp_ids[v1_x_v2_samp_id],,drop=F], 2, mean);
+				plot_dist(0, 0, width=1, combined_abd);
+
+				# Label number of samples
 				text(0, 0, pos=1, paste("n=", num_samp, sep=""), cex=.6);
 				
 
