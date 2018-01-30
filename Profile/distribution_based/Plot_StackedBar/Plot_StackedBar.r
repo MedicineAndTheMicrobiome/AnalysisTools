@@ -11,7 +11,9 @@ params=c(
 	"factor_file", "f", 2, "character",
 	"top_categories", "t", 2, "character",
 	"output_file", "o", 2, "character",
-	"diversity_type", "d", 2, "character"
+	"diversity_type", "d", 2, "character",
+	"shorten_category_names", "s", 2, "character",
+	"crossing_string", "c", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -27,6 +29,9 @@ usage = paste(
 	"	[-t <top categories to display, default=", TOP_CATEGORIES, ">]\n",
 	"	[-o <output file root name>]\n",
 	"	[-d <diversity, default=", DEF_DIVERSITY, ".]\n",
+	"	[-s <shorten category names, with separator in double quotes (default=\"\")>]\n",
+	"\n",
+	"	[-c <crossing/interactions list, e.g., \"var1,var2,var3\" >]\n",
 	"\n",
 	"	This script will read in the summary table\n",
 	"	and the factor file.\n",
@@ -41,6 +46,20 @@ usage = paste(
 	"\n",
 	"	Each stacked barplot will be labeled with median and 95%CI\n",
 	"	of the diversity index\n",
+	"\n",
+	"\n",
+	"	Specifying the -c cross/interactions list, creates an\n",
+	"	extra pdf file that slices the data according to the\n",
+	"	underlying factor levels. For example, if you had variables\n",
+	"	A, B, and C, with levels Aa, Ab, Ac, and Ba, Bb, and Ca, Cb,\n",
+	"	respectively, plots for AxB, AxC, and BxC, would be generated.\n",
+	"	Two sets of plots (PDFs) will be produced:\n",
+	"		1.) AxB, AxC, BxC: Assuming the missing variable\n",
+	"			doesn't matter.  i.e. in AxB, C is collapsed\n",
+	"		2.) C(AxB), B(AxC), A(BxC): First split by the missing\n",
+	"			variable's levels, then produced the cross plots.\n",
+	"			i.e. if C has 5 levels, then there will be 5.\n",
+	"			AxB plots.\n",
 	"\n",
 	"\n", sep="");
 
@@ -71,12 +90,43 @@ if(length(opt$output_file)>0){
 	cat("No output file root specified.  Using input file name as root.\n");
 }
 
+if(length(opt$crossing_string)>0){
+	CrossingString=opt$crossing_string;
+}else{
+	CrossingString=NA;
+}
+
+if(length(opt$shorten_category_names)){
+        ShortenCategoryNames=opt$shorten_category_names;
+}else{
+        ShortenCategoryNames="";
+}
+
+if(ShortenCategoryNames==TRUE){
+        cat("Error:  You need to specify a delimitor to split the category names.\n");
+        cat("        i.e., this -x option is not a flag, it requires a parameter.\n");
+        quit(status=-1);
+}
+
+
 ###############################################################################
 
 OutputFileRoot=paste(OutputFileRoot, ".", substr(DiversityType, 1, 4), sep="");
 OutputPDF = paste(OutputFileRoot, ".div_ts.pdf", sep="");
 cat("Output PDF file name: ", OutputPDF, "\n", sep="");
 pdf(OutputPDF,width=8.5,height=14)
+
+if(!is.na(CrossingString)){
+	cat("Crossing String Specified: ", CrossingString, "\n");
+	crossing_var=strsplit(CrossingString, ",")[[1]];
+	num_crossings=length(crossing_var);
+	for(i in 1:num_crossings){
+		crossing_var[i]=gsub("^\\s+", "", crossing_var[i]);
+		crossing_var[i]=gsub("\\s+$", "", crossing_var[i]);
+	}
+}else{
+	num_crossings=0;
+}
 
 ###############################################################################
 
@@ -192,15 +242,15 @@ plot_dist=function(x, y, width=20, abundances){
 	
 	rect(
 		xleft=x-width/2,
-		ybottom=0,
+		ybottom=y,
 		xright=x+width/2,
-		ytop=1,
+		ytop=y+1,
 		lwd=.01,
 		col="grey"
 	);
 
 	num_abund=length(abundances);
-	prev=0;
+	prev=y;
 	for(i in 1:num_abund){
 		rect(
 			xleft=x-width/2,
@@ -215,12 +265,12 @@ plot_dist=function(x, y, width=20, abundances){
 		
 }
 
-plot_legend=function(categories){
+plot_legend=function(categories, size=.7){
 	orig.par=par(no.readonly=T);
 	par(mar=c(0,0,0,0));
 	num_cat=length(categories);
 	plot(0,0, type="n", ylim=c(-10,0), xlim=c(0,30), bty="n", xaxt="n", yaxt="n");
-	legend(0,0, legend=rev(c(categories, "Remaining")), fill=rev(c(1:num_cat, "grey")), cex=.7);
+	legend(0,0, legend=rev(c(categories, "Remaining")), fill=rev(c(1:num_cat, "grey")), cex=size, pt.lwd=.1);
 	par(mar=orig.par$mar);
 }
 
@@ -331,6 +381,21 @@ factors_mat=orig_factors_mat[shared,];
 counts_mat=orig_counts_mat[shared,];
 
 ###############################################################################
+
+if(ShortenCategoryNames!=""){
+        full_names=colnames(counts_mat);
+        splits=strsplit(full_names, ShortenCategoryNames);
+        short_names=character();
+        for(i in 1:length(full_names)){
+                short_names[i]=tail(splits[[i]], 1);
+
+                short_names[i]=gsub("_unclassified$", "_uncl", short_names[i]);
+                short_names[i]=gsub("_group", "_grp", short_names[i]);
+        }
+        colnames(counts_mat)=short_names;
+
+        cat("Names have been shortened.\n");
+}
 
 normalized_mat=normalize(counts_mat);
 #print(normalized_mat);
@@ -459,6 +524,7 @@ print(grp_mat);
 
 sample_names=rownames(grp_mat);
 grp_names=colnames(grp_mat);
+
 for(i in 1:ncol(grp_mat)){
 		
 	values=(grp_mat[,i]);
@@ -508,11 +574,154 @@ for(i in 1:ncol(grp_mat)){
 	cat("\n");
 	
 }
+dev.off();
+
+cat("Completed per variable plots.\n");
+
+###############################################################################
+
+if(num_crossings>0){
+
+	plot_2D_stacked=function(var1, var2, title_arr, grpd_factors, simplfd_sumtab){
+		# This function will plot a matrix of stacked bar plots
+		# Var1 levels will be the number of columns
+		# Var2 levels will be the nubmer of rows
+
+		fact_nonnas=!is.na(grpd_factors[,var1]) & !is.na(grpd_factors[,var2]);
+		nonna_samp_id=rownames(grpd_factors)[fact_nonnas];
+		grpd_factors=grpd_factors[nonna_samp_id,];
+		simplfd_sumtab=simplfd_sumtab[nonna_samp_id,];
+
+		v1_levels=sort(levels(grpd_factors[,var1]));
+		v2_levels=sort(levels(grpd_factors[,var2]));
+
+		num_v1_levels=length(v1_levels);
+		num_v2_levels=length(v2_levels);
+
+		samp_ids=rownames(grpd_factors);
+
+		par(mar=c(.25,.25,.25,.25));
+		par(oma=c(3,3,5,1));
+		par(mfrow=c(num_v2_levels, num_v1_levels));
+
+
+		for(j in 1:num_v2_levels){
+			v2_lev=v2_levels[j];
+			cat("Rows: ", v2_lev, "\n");
+			v2_samp_id=(grpd_factors[,var2]==v2_lev);
+
+			for(i in 1:num_v1_levels){
+				v1_lev=v1_levels[i];
+				cat("Cols: ", v1_lev, "\n");
+			
+				# Pull IDs
+				v1_samp_id=(grpd_factors[,var1]==v1_lev);
+
+				plot(0,0, type="n", 
+					bty="n", yaxt="n", xaxt="n",
+					xlim=c(-.5,.5), ylim=c(-.15,1));
+
+				v1_x_v2_samp_id=(v1_samp_id & v2_samp_id);
+				num_samp=sum(v1_x_v2_samp_id);
+
+				if(num_samp){
+					combined_abd=apply(simplfd_sumtab[samp_ids[v1_x_v2_samp_id],,drop=F], 2, mean);
+					plot_dist(0, 0, width=1, combined_abd);
+				}
+				text(0, 0, pos=1, paste("n=", num_samp, sep=""), cex=.6);
+				
+
+				# Label levels on side and top
+				if(i==1){
+					axis(2, at=.5, labels=v2_lev, tick=F, font=2);
+				}
+				if(j==num_v2_levels){
+					axis(1, at=0, labels=v1_lev, tick=F, font=2);
+				}
+				if(j==1 && i==1){
+					mtext(title_arr[1], side=3, line=3, outer=T, font=2, cex=.7);
+					mtext("x",          side=3, line=2, outer=T, font=1, cex=.5);
+					mtext(title_arr[2], side=3, line=1, outer=T, font=2, cex=.7);
+					mtext(title_arr[3], side=3, line=0, outer=T, font=1, cex=.5);
+				}
+
+			}
+		}
+	}
+
+	cat("Starting crossed variable plots:\n");
+	print(crossing_var);
+
+
+	num_uniq=integer(num_crossings);
+	cat("Num of Levels:\n");
+	for(i in 1:num_crossings){
+		#print(grp_mat[,crossing_var[i]]);
+		num_uniq[i]=length(unique(grp_mat[,crossing_var[i]]));
+		cat(crossing_var[i], ": ", num_uniq[i], "\n");
+	}
+	names(num_uniq)=crossing_var;
+	
+	if(num_crossings==3){
+
+		samp_ids=rownames(simplified_mat);
+		
+		for(excl_var in crossing_var){
+			rem_cros_var=setdiff(crossing_var, excl_var);
+
+			cat("PDF Width: ", num_uniq[1], " Height: ", num_uniq[2], "\n");
+			pdf(paste(OutputFileRoot, ".", rem_cros_var[1], "_x_", rem_cros_var[2], ".pdf", sep=""),
+				width=max(num_uniq[rem_cros_var[1]], 3),
+				height=num_uniq[rem_cros_var[2]]*2
+			);
+
+			# Plot combined
+			plot_2D_stacked(rem_cros_var[1], rem_cros_var[2], 
+				c(crossing_var[1], crossing_var[2]),
+				grp_mat, simplified_mat);	
+
+			
+			# Plot split by excluded variable
+			levels=sort(unique(grp_mat[,excl_var]));
+			cat("Splitting by: ", levels, "\n");
+			for(lev in levels){
+				keep_ix=(grp_mat[,excl_var]==lev);
+				plot_2D_stacked(rem_cros_var[1], rem_cros_var[2], 
+					c(crossing_var[1], crossing_var[2], lev),
+					grp_mat[keep_ix,,drop=F], simplified_mat);	
+			}
+
+			# Plot legend	
+			par(mfrow=c(1,1), mar=c(0,0,0,0), oma=c(0,0,0,0));
+			plot_legend(colnames(simplified_mat), size=.5);
+
+			dev.off();
+
+		}
+
+	}else if(num_crossings==2){
+		# do AxB crossings
+		cat("PDF Width: ", num_uniq[1], " Height: ", num_uniq[2], "\n");
+		pdf(paste(OutputFileRoot, ".", crossing_var[1], "_x_", crossing_var[2], ".pdf", sep=""),
+			width=max(num_uniq[1], 3),
+			height=num_uniq[2]*2
+		);
+		
+		plot_2D_stacked(crossing_var[1], crossing_var[2], 
+			c(crossing_var[1],  crossing_var[2], ""),
+			grp_mat, simplified_mat);	
+
+		# Plot legend
+		par(mfrow=c(1,1), mar=c(0,0,0,0), oma=c(0,0,0,0));
+		plot_legend(colnames(simplified_mat), size=.5);
+
+		dev.off();
+	}
+}
 
 ###############################################################################
 
 cat("Done.\n")
-dev.off();
 warn=warnings();
 if(length(warn)){
 	print(warn);
