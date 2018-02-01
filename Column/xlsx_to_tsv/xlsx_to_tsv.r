@@ -10,7 +10,8 @@ options(width=120);
 
 params=c(
 	"input", "x", 1, "character",
-	"output", "o", 1, "character"
+	"sheetnum", "s", 2, "character",
+	"output", "o", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -19,6 +20,7 @@ script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
 usage = paste(
 	"\nUsage:\n", script_name, "\n",
 	"	-x <Input .xlsx file>\n",
+	"	[-s <sheet numbers (counting from 1) to extract>, eg. 1,4>]\n",
 	"	[-o <Output Filename Root>]\n",
 	"\n",
 	"This script will read in an Excel spreadsheet and\n",
@@ -36,14 +38,28 @@ if(!length(opt$input)){
 
 InputFile=opt$input;
 OutputFileRoot=opt$output;
+SheetNumList=opt$sheetnum;
 
 if(length(OutputFileRoot)==0){
 	OutputFileRoot=gsub(".xlsx", "", InputFile);
 	OutputFileRoot=gsub(".xls", "", OutputFileRoot);
 }
 
+num_sheets_to_extract=NA;
+if(length(SheetNumList)){
+	SheetNumArr=as.numeric(strsplit(SheetNumList, ",")[[1]]);
+	num_sheets_to_extract=length(SheetNumArr);
+}
+
 cat("Input XLSX Filename: ", InputFile, "\n");
 cat("Output Filename Root: ", OutputFileRoot, "\n");
+
+if(!is.na(num_sheets_to_extract)){
+	cat("Sheets to extract:\n");
+	print(SheetNumArr);
+}else{
+	cat("Extracting all sheets.\n");
+}
 cat("\n");
 
 ##############################################################################
@@ -80,27 +96,42 @@ output_sheet=function(data, outputfname){
 	return(0);
 }
 
-i=1;
-keep_reading=T;
+##############################################################################
 
-while(keep_reading){
-	cat("Reading sheet: ", i, "\n");
-	keep_reading=tryCatch({
+if(!is.na(num_sheets_to_extract)){
+
+	cat("Trying to extract specified sheets.\n");
+
+	for(i in SheetNumArr){
 		data=read.xlsx(InputFile, i);
-		#gc();
 		output_sheet(data, paste(OutputFileRoot, ".", i, ".tsv", sep=""));
-		keep_reading=T;
-	}, error=function(e){
-		cat("\nError Detected...\n");
-		cat("Probably no more sheets left to read.\n");
-		print(e);
-		keep_reading=F;	
-	}, warning=function(w){
-		cat("Warning Detected...\n");
-		print(w);
-		keep_reading=F;
-	});
-	i=i+1;
+	}
+
+}else{
+
+	cat("Trying to extract all sheets...\n");
+
+	i=1;
+	keep_reading=T;
+	while(keep_reading){
+		
+		keep_reading=tryCatch({
+			cat("Reading sheet: ", i, "\n");
+			data=read.xlsx(InputFile, i);
+			output_sheet(data, paste(OutputFileRoot, ".", i, ".tsv", sep=""));
+			keep_reading=T;
+		}, error=function(e){
+			cat("\nError Detected...\n");
+			cat("Probably no more sheets left to read.\n");
+			print(e);
+			keep_reading=F;	
+		}, warning=function(w){
+			cat("Warning Detected...\n");
+			print(w);
+			keep_reading=F;
+		});
+		i=i+1;
+	}
 }
 
 ##############################################################################
