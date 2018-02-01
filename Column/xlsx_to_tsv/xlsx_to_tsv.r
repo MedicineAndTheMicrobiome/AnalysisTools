@@ -29,6 +29,8 @@ usage = paste(
 	"\n",
 	"Output will not need to be dos2unix'd and any\n",
 	"excess rows and columns will be trimmed.\n",
+	"\n",
+	"Note that if a value is empty, it will be filled in with NAs.\n",
 	"\n");
 
 if(!length(opt$input)){
@@ -83,11 +85,18 @@ output_sheet=function(data, outputfname){
 	num_cols=ncol(data);
 	cat("Cleaned: Rows: ", num_rows, " Cols: ", num_cols, "\n");
 
+	out_mat=matrix("", nrow=num_rows, ncol=num_cols);;
+	for(i in 1:num_rows){
+		for(j in 1:num_cols){
+			out_mat[i,j]=as.character(data[i,j]);
+		}
+	}
+
 	cat("Writing: ", outputfname, "\n");
 	fh=file(outputfname, "w");
 	cat(file=fh, paste(colnames(data), collapse="\t"), "\n", sep="");
 	for(i in 1:num_rows){
-		cat(file=fh, paste(data[i,], collapse="\t"), "\n", sep="");
+		cat(file=fh, paste(out_mat[i,], collapse="\t"), "\n", sep="");
 	}
 	close(fh);
 
@@ -103,7 +112,7 @@ if(!is.na(num_sheets_to_extract)){
 	cat("Trying to extract specified sheets.\n");
 
 	for(i in SheetNumArr){
-		data=read.xlsx(InputFile, i);
+		data=read.xlsx(InputFile, i, check.names=F);
 		output_sheet(data, paste(OutputFileRoot, ".", i, ".tsv", sep=""));
 	}
 
@@ -117,7 +126,7 @@ if(!is.na(num_sheets_to_extract)){
 		
 		keep_reading=tryCatch({
 			cat("Reading sheet: ", i, "\n");
-			data=read.xlsx(InputFile, i);
+			data=read.xlsx(InputFile, i, check.names=F);
 			output_sheet(data, paste(OutputFileRoot, ".", i, ".tsv", sep=""));
 			keep_reading=T;
 		}, error=function(e){
