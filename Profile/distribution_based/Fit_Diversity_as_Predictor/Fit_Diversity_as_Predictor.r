@@ -496,6 +496,16 @@ tail_statistic=function(x){
         return(sqrt(tail));
 }
 
+sig_char=function(val){
+	if(val <= .0001){ return("***");}
+	if(val <= .001 ){ return("** ");}
+	if(val <= .01  ){ return("*  ");}
+	if(val <= .05  ){ return(":  ");}
+	if(val <= .1   ){ return(".  ");}
+	return("   ");
+}
+
+
 ##############################################################################
 
 pdf(paste(OutputRoot, ".div_pred.pdf", sep=""), height=8.5, width=11);
@@ -830,11 +840,11 @@ for(i in 1:num_div_idx){
 
 }
 
-print(coeff_list);
-print(pval_list);
+#print(coeff_list);
+#print(pval_list);
 
-print(diversity_coef);
-print(diversity_pval);
+#print(diversity_coef);
+#print(diversity_pval);
 
 # With dendrograms
 paint_matrix(diversity_coef, title="Diversity Coefficients", plot_col_dendr=T, plot_row_dendr=T);
@@ -846,6 +856,45 @@ paint_matrix(diversity_adj.rsqrd_delta, title="Diversity Delta Adjusted R^2 (Ful
 	plot_col_dendr=T, plot_row_dendr=T);
 
 paint_matrix(anova_pval, title="Full Model MANOVAs (Diversity+Covariates) P-values", high_is_hot=F, plot_min=0, plot_max=1);
+
+
+# Output
+# MANOVA
+div_ix="Tail";
+sigdig=5;
+
+fh=file(paste(OutputRoot, ".", div_ix, ".ovrvw.tsv", sep=""), "w");
+
+cat(file=fh, paste("Name:", OutputRoot, "", "", sep="\t"), "\n", sep="");
+cat(file=fh, paste("Diversity:", div_ix, "", "", sep="\t"), "\n", sep="");
+
+# Output MANOVA (1 row per predictor)
+anova_var=rownames(anova_pval);
+cat(file=fh, "\t\t\t\n");
+cat(file=fh, "Predictors:\t\tMANOVA p-values:\tsignf:\n");
+for(i in 1:nrow(anova_pval)){
+	cat(file=fh, paste(
+		anova_var[i], 
+		"",
+		signif(anova_pval[i, "Tail"], sigdig), 
+		sig_char(anova_pval[i, "Tail"]), 
+		sep="\t"), "\n", sep="");
+}
+cat(file=fh, "\t\t\t\n");
+
+cat(file=fh, "Responses:\t", div_ix, "univar coeff:\t", div_ix, "univar p-values:\tsignf:\n");
+response_names=rownames(diversity_coef);
+for(i in 1:nrow(diversity_coef)){ 
+	cat(file=fh, paste(
+		response_names[i], 
+		signif(diversity_coef[i, "Tail"], sigdig), 
+		signif(diversity_pval[i, "Tail"], sigdig),
+		sig_char(diversity_pval[i, "Tail"]),
+		sep="\t"), "\n", sep="");
+}
+
+close(fh);
+
 
 ##############################################################################
 	
