@@ -644,7 +644,7 @@ cat("\n");
 
 cat("Working on NA Removal...\n");
 remove_na_res=remove_sample_or_factors_wNA_parallel(factors, required=required_arr, 
-	num_trials=640000, num_cores=64, outfile=paste(OutputRoot, ".noNAs", sep=""));
+	num_trials=640000, num_cores=64, outfile=OutputRoot);
 
 factors=remove_na_res$factors;
 samp_wo_nas=rownames(factors);
@@ -667,6 +667,7 @@ summary_text=c(summary_text, "\n", remove_na_res$summary_text);
 ##############################################################################
 
 plot_text(summary_text);
+
 
 ##############################################################################
 # Compute diversity indices
@@ -707,6 +708,12 @@ predictors_mat=factors[samp_wo_nas,model_var,drop=F];
 num_pred_var=ncol(predictors_mat);
 responses_mat=as.matrix(factors[samp_wo_nas,responses_arr,drop=F]);
 num_resp_var=ncol(responses_mat);
+
+##############################################################################
+# Plot Response Correlations
+paint_matrix(cor(responses_mat), title="Response Correlations", plot_min=-1, plot_max=1, deci_pts=2);
+
+##############################################################################
 
 # Allocation matrices 
 resp=rep(1, length(samp_wo_nas));
@@ -773,7 +780,17 @@ for(i in 1:num_div_idx){
 
 	for(resp_ix in 1:num_resp_var){
 
-		# Store covariates
+
+		missing=setdiff(regression_variables, rownames(sum_fit[[sum_resp_names[resp_ix]]]$coefficients));
+		if(length(missing)>0){
+			cat("***************************************************\n");
+			cat("Warning: Not all regression coefficient calculable:\n");
+			print(missing);
+			cat("***************************************************\n");
+			regression_variables=setdiff(regression_variables, missing);
+		}
+		
+
 		estimates_matrix[regression_variables, resp_ix]=
 			sum_fit[[sum_resp_names[resp_ix]]]$coefficients[regression_variables, "Estimate"];
 		pvalues_matrix[regression_variables, resp_ix]=
