@@ -1099,7 +1099,6 @@ paint_matrix(summary_res_rsqrd, title="Univariate Adjusted R-Squared");
 
 manova_pval_mat=matrix(NA, nrow=length(alr_cat_names), ncol=1, dimnames=list(alr_cat_names, "Pr(>F)"));
 if(length(manova_res)>0){
-	print(manova_res);
 	plot_text(c(
 		"MANOVA",
 		capture.output(print(manova_res))
@@ -1107,21 +1106,21 @@ if(length(manova_res)>0){
 
 	manova_pval=manova_res[,"Pr(>F)", drop=F]
 	manova_pval_mat[alr_cat_names,]=manova_pval[alr_cat_names,];
-	print(manova_pval_mat);
 	#par(oma=c(10,14,5,1));
 	paint_matrix(manova_pval_mat[alr_cat_names,,drop=F], title="ALR Predictors MANOVA", 
 		plot_min=0, plot_max=1, high_is_hot=F, value.cex=1, deci_pts=3);
 }
 
+###############################################################################
+# Write summary to file
+fh=file(paste(OutputRoot, ".mvr_alrp.review.tsv", sep=""), "w");
+cat(file=fh, c("Name:", OutputRoot, ""), sep="\t");
+cat(file=fh, "\n");
+cat(file=fh, "\n");
+cat(file=fh, c("Predictors:"), sep="\t");
+cat(file=fh, "\n");
 
-# Write F-stat pvalues to file
-fh=file(paste(OutputRoot, ".mvr_alrp.manout.tsv", sep=""), "w");
-cat(file=fh, c("Name", OutputRoot, ""), sep="\t");
-cat(file=fh, "\n");
-cat(file=fh, c("ALR Categories", "MANOVA P-values", "Signf"), sep="\t");
-cat(file=fh, "\n");
 category_names=rownames(manova_pval_mat);
-
 
 sig_char=function(val){
 	if(val <= .0001){ return("***");}
@@ -1132,9 +1131,11 @@ sig_char=function(val){
 	return(" ");
 }
 
+# MANOVA Covariates pvalues
+cat(file=fh, paste("[Covariates]", "p-value:", "signif:", sep="\t"), "\n", sep="");
 for(cov in covariates_arr){
 	if(length(manova_res>0)){
-		pv=manova_res[cov,"Pr(>F)"];
+		pv=signif(manova_res[cov,"Pr(>F)"], 5);
 		cat(file=fh, c(cov, pv, sig_char(pv)), sep="\t");
 	}else{
 		cat(file=fh, c(cov, NA, ""), sep="\t");
@@ -1142,15 +1143,31 @@ for(cov in covariates_arr){
 	cat(file=fh, "\n");
 }
 
+# MANOVA ALR pvalues
+cat(file=fh, c("[ALR Categories]", "p-value:", "signif:"), sep="\t");
 cat(file=fh, "\n");
 for(cat_name in alr_cat_names){
 	if(length(manova_res>0)){
-		pv=manova_res[cat_name,"Pr(>F)"];
+		pv=signif(manova_res[cat_name,"Pr(>F)"], 5);
 		cat(file=fh, c(cat_name, pv, sig_char(pv)), sep="\t");
 	}else{
 		cat(file=fh, c(cat_name, NA, ""), sep="\t");
 	}
 	cat(file=fh, "\n");
+}
+cat(file=fh, "\n");
+
+# Response pvalues, R^2,  
+num_resp=nrow(summary_res_rsqrd);
+resp_name=rownames(summary_res_rsqrd);
+cat(file=fh, c("Univariate Adj R-Sqrd:"),"\n");
+cat(file=fh, paste("Resp Name:", "Full Model:", "ALR Contrib:", sep="\t"), "\n", sep="");
+for(i in 1:num_resp){
+	cat(file=fh, paste(
+		resp_name[i], 
+		summary_res_rsqrd[i, "Full Model"],
+		summary_res_rsqrd[i, "Difference"],
+	sep="\t"), "\n", sep="");
 }
 close(fh);
 
