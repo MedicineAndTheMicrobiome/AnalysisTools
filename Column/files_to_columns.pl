@@ -12,12 +12,13 @@ my $usage = "
 	usage:
 	$0
 		[-d <delimitor, default is tab>]
-		[-e (flag to exclude files names as first row)]
-		[-p <place holder text>]
 		<file1> <file2> ... <filen>
 
 	This script will read in multiple text files, and output them in different columns.
 	Useful for merging data to read into excel.
+
+	Even if the number of columns per file are not consistent, the
+	script will try to pad out the delimitors so everything still lines up.
 
 ";
 
@@ -32,56 +33,84 @@ my $print_header=!defined($opt_e);
 
 ###############################################################################
 
-my $file;
-my @buffer;
-my $column=0;
-my $row=0;
-my $max_row=0;
-my $max_col=0;
-my @filenames;
-while($file=shift){
+my %buffer; # Contains text
+my %delims; # Contins num delims per line
 
-	open(FH, "<$file") || die "Could not open $file\n";
+my @filenames;
+my $max_lines_across_files=0;
+my %max_delim_per_file;
+my %lines_per_file;
+
+# First read in all files into memory
+while(my $file=shift){
+
 	push @filenames, $file;
 
-	$row=0;
+	open(FH, "<$file") || die "Could not open $file\n";
+
+	my $num_lines=0;
+	my $max_delim=0;
 	while(<FH>){
-		chomp;
-		$buffer[$row][$column]=$_;
-		$row++;
-		if($max_row<$row){
-			$max_row=$row;
-		}
-	}
-	$column++;
-	if($max_col<$column){
-		$max_col=$column;
-	}
+		$_=~s/\n//;
+		my $line=$_;
+		push @{$buffer{$file}}, $line;
+		
+		# Count max delim per file
+		my @tmp=split "$delim", $line, -1;
+		my $num_delim=$#tmp;
+		push @{$delims{$file}}, $num_delim;
 
-	close(FH);
-}
-
-if($column==0){
-	print $usage;
-}
-
-if($print_header){
-	my $header_str=join $delim, @filenames;
-	print "$header_str\n";
-}
-
-for(my $i=0; $i<$max_row; $i++){
-	for(my $j=0; $j<$max_col; $j++){
-
-		if($buffer[$i][$j] eq ""){
-			print $place_holder;
-		}else{
-			print $buffer[$i][$j];
-		}
+		if($num_delim>$max_delim){
+			$max_delim=$num_delim
+		}	
 	
-		if($j+1 != $max_col){
-			print "$delim";
-		}
+		$num_lines++;
 	}
-	print "\n";
+	close(FH);
+
+	print STDERR "Max delim/line: $max_delim  Num lines: $num_lines ($file)\n";
+
+	$max_delim_per_file{$file}=$max_delim;
+	$lines_per_file{$file}=$num_lines;
+
+	if($num_lines>$max_lines_across_files){
+		$max_lines_across_files=$num_lines;
+	}
+	
 }
+
+print STDERR "Max lines across all files: $max_lines_across_files\n";
+
+my @combined_buffer;
+my $num_files=$#filenames + 1;
+
+
+# Padding Loops
+for(my $col=0; $col<$num_files; $col++){
+		
+	my $file=$filenames[$col];
+
+	# Pad lines with text with extra delim if necessary
+	for(my $row=0; $row<$lines_per_file{$file}; $row++){
+		$combined_buffer[$row][$col]=${$buffer{$file}}[$row] .
+			$delim x ($max_delim_per_file{$file}-${$delims{$file}}[$row]);
+	}
+	
+	# Fill out remaining lines with delim
+	for(my $row=($lines_per_file{$file}); $row<$max_lines_across_files; $row++){
+		$combined_buffer[$row][$col]=$delim x ($max_delim_per_file{$file})
+	}
+}
+
+# Output Loops
+for(my $row=0; $row<$max_lines_across_files; $row++){
+	my @outline;
+	for(my $col=0; $col<$num_files; $col++){
+		push @outline, $combined_buffer[$row][$col]
+	}
+	print STDOUT (join $delim, @outline) . "\n";
+
+}
+
+print STDERR "Done.\n";
+
