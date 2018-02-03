@@ -1097,6 +1097,7 @@ paint_matrix(summary_res_pval[alr_cat_names,,drop=F], title="ALR Predictors P-va
 
 paint_matrix(summary_res_rsqrd, title="Univariate Adjusted R-Squared");
 
+manova_pval_mat=matrix(NA, nrow=length(alr_cat_names), ncol=1, dimnames=list(alr_cat_names, "Pr(>F)"));
 if(length(manova_res)>0){
 	print(manova_res);
 	plot_text(c(
@@ -1104,26 +1105,56 @@ if(length(manova_res)>0){
 		capture.output(print(manova_res))
 	));
 
-	manova_pval_mat=matrix(0, nrow=length(alr_cat_names), ncol=1, dimnames=list(alr_cat_names, "Pr(>F)"));
 	manova_pval=manova_res[,"Pr(>F)", drop=F]
 	manova_pval_mat[alr_cat_names,]=manova_pval[alr_cat_names,];
 	print(manova_pval_mat);
 	#par(oma=c(10,14,5,1));
 	paint_matrix(manova_pval_mat[alr_cat_names,,drop=F], title="ALR Predictors MANOVA", 
 		plot_min=0, plot_max=1, high_is_hot=F, value.cex=1, deci_pts=3);
-
-	# Write F-stat pvalues to file
-	fh=file(paste(OutputRoot, ".mvr_alrp.manout.tsv", sep=""), "w");
-	cat(file=fh, c("ALR Categories", "MANOVA P-values"), sep="\t");
-	cat(file=fh, "\n");
-	category_names=rownames(manova_pval_mat);
-	for(i in 1:nrow(manova_pval_mat)){
-		cat(file=fh, c(category_names[i], manova_pval_mat[i,]), sep="\t");
-		cat(file=fh, "\n");
-	}
-	close(fh);
-
 }
+
+
+# Write F-stat pvalues to file
+fh=file(paste(OutputRoot, ".mvr_alrp.manout.tsv", sep=""), "w");
+cat(file=fh, c("Name", OutputRoot, ""), sep="\t");
+cat(file=fh, "\n");
+cat(file=fh, c("ALR Categories", "MANOVA P-values", "Signf"), sep="\t");
+cat(file=fh, "\n");
+category_names=rownames(manova_pval_mat);
+
+
+sig_char=function(val){
+	if(val <= .0001){ return("***");}
+	if(val <= .001 ){ return("** ");}
+	if(val <= .01  ){ return("*  ");}
+	if(val <= .05  ){ return(":  ");}
+	if(val <= .1   ){ return(".  ");}
+	return(" ");
+}
+
+for(cov in covariates_arr){
+	if(length(manova_res>0)){
+		pv=manova_res[cov,"Pr(>F)"];
+		cat(file=fh, c(cov, pv, sig_char(pv)), sep="\t");
+	}else{
+		cat(file=fh, c(cov, NA, ""), sep="\t");
+	}
+	cat(file=fh, "\n");
+}
+
+cat(file=fh, "\n");
+for(cat_name in alr_cat_names){
+	if(length(manova_res>0)){
+		pv=manova_res[cat_name,"Pr(>F)"];
+		cat(file=fh, c(cat_name, pv, sig_char(pv)), sep="\t");
+	}else{
+		cat(file=fh, c(cat_name, NA, ""), sep="\t");
+	}
+	cat(file=fh, "\n");
+}
+close(fh);
+
+
 ###############################################################################
 
 #print(cat_abundances);
