@@ -536,7 +536,15 @@ map_val_to_grp=function(fact_mat){
 				print(fact_val);
 				num_grps=length(hist_res$breaks);
 				cat("Num Groups: ", num_grps, "\n");
-				grp_levels=paste(hist_res$breaks[1:(num_grps-1)], "-", hist_res$breaks[2:num_grps], sep="");
+
+				# Attach an order to the grp level to keep sorting correct
+				order_pad=sprintf(paste("%0",floor(log10(num_grps))+1, "i", sep=""), 1:(num_grps-1));
+				print(order_pad);
+			
+				grp_levels=paste(
+					paste("(", order_pad, ") ", sep=""),
+					hist_res$breaks[1:(num_grps-1)], 
+					"-", hist_res$breaks[2:num_grps], sep="");
 				cat("Group:\n");
 				print(grp_levels);
 
