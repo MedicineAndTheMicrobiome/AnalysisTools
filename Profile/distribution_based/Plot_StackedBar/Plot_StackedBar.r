@@ -344,7 +344,8 @@ tail_statistic=function(x){
 
 ###############################################################################
 
-plot_abundance_matrix=function(abd_mat, title="", plot_cols=8, plot_rows=4, samp_size=c(), divname=c(), diversity=c()){
+plot_abundance_matrix=function(abd_mat, title="", plot_cols=8, plot_rows=4, 
+	samp_size=c(), divname="diversity", median_diversity=c(), mean_diversity=c()){
 	# This function will plot a sample x abundance (summary table)
 	# There will be one plot for row (sample) in the matrix
 
@@ -353,7 +354,7 @@ plot_abundance_matrix=function(abd_mat, title="", plot_cols=8, plot_rows=4, samp
 	sample_names=rownames(abd_mat);
 	cat_names=colnames(abd_mat);
 	label_samp_size=(length(samp_size)>0);
-	label_diversity=(length(diversity)>0);
+	label_diversity=(length(median_diversity)>0);
 
 	# Set up layout
 	tot_plots_per_page=plot_cols*plot_rows;
@@ -374,7 +375,7 @@ plot_abundance_matrix=function(abd_mat, title="", plot_cols=8, plot_rows=4, samp
 			for(x in 1:plot_cols){
 				if(i<num_samples){
 					sample=sample_names[i+1];
-					plot(0,0, c(-1,1), ylim=c(0,1), type="n", bty="n", xaxt="n", yaxt="n");
+					plot(0,0, xlim=c(-1.5,1.5), ylim=c(0,1), type="n", bty="n", xaxt="n", yaxt="n");
 
 					mtext(sample, line=0, cex=.5, font=2);
 
@@ -382,13 +383,23 @@ plot_abundance_matrix=function(abd_mat, title="", plot_cols=8, plot_rows=4, samp
 						n=samp_size[i+1];
 						mtext(paste("n=",n,sep=""), line=-.5, cex=.4, font=3);
 					}
-					if(label_diversity){
-						text(0-.7, 0, paste(divname[i+1]," = ",signif(diversity[i+1], 4),sep=""),
+					if(length(samp_size) && samp_size[i+1]>1){
+						text(0-.7, 0, paste("Median ", divname, " = ",
+							signif(median_diversity[i+1], 4),sep=""),
+							srt=90, adj=0, cex=.7);
+						text(0-1.05, 0, paste("Mean ", divname, " = ",
+							signif(mean_diversity[i+1], 4),sep=""),
+							srt=90, adj=0, cex=.7);
+					}else{
+						text(0-.7, 0, paste(divname, " = ",
+							signif(median_diversity[i+1], 4),sep=""),
 							srt=90, adj=0, cex=.7);
 					}
 
 					abundances=abd_mat[sample,,drop=F];
 					plot_dist(0, 0, width=1, abundances);
+				}else{
+					plot(0,0, type="n", bty="n", xaxt="n", yaxt="n");
 				}
 				i=i+1;
 			}
@@ -399,6 +410,55 @@ plot_abundance_matrix=function(abd_mat, title="", plot_cols=8, plot_rows=4, samp
 	}
 	par(orig.par);
 }
+
+plot_diversity_barplot=function(title, diversity_name, samp_size,
+	mean_diversity, diversity_95lb, diversity_95ub){
+
+	grp_names=names(mean_diversity);
+	num_grps=length(grp_names);
+
+	par(mar=c(10, 5, 4, 1));
+	mids=barplot(mean_diversity, main=title, las=2, 
+		ylim=c(0, max(diversity_95ub[!is.na(diversity_95ub)])*1.1),
+		ylab=paste("Mean ", diversity_name, " w/ 95% CI", sep=""), 
+		names.arg=rep("", num_grps));
+	bar_width=mids[2]-mids[1];
+
+	# Label sample sizes per group
+	ylim=par()$usr[4];
+	text(mids, ylim/20, paste("n=", samp_size, sep=""), font=3,
+		cex=min(c(1,.5*bar_width/par()$cxy[1])));
+
+	# Label x-axis
+	text(mids-par()$cxy[1]/2, rep(-par()$cxy[2]/2, num_grps),
+		grp_names, srt=-45, xpd=T, pos=4,
+		cex=min(c(1,.7*bar_width/par()$cxy[1])));
+
+	# mark 95lb/95ub
+	intvl_col="blue";
+	for(i in 1:num_grps){
+		if(!is.na(diversity_95lb[i])){
+			m=mids[i];
+			lb=diversity_95lb[i];
+			ub=diversity_95ub[i];
+			points(
+				c(m-bar_width/6, m+bar_width/6),
+				c(lb, lb),
+				type="l", col=intvl_col, lwd=.75);
+			points(
+				c(m-bar_width/6, m+bar_width/6),
+				c(ub, ub),
+				type="l", col=intvl_col, lwd=.75);
+			points(
+				c(m, m),
+				c(lb, ub),
+				type="l", col=intvl_col, lwd=.5);
+		}
+	}
+
+
+}
+
 
 ###############################################################################
 
@@ -495,7 +555,9 @@ plot_text(c(
 category_colors=get_colors(num_simp_cat);
 palette(category_colors);
 
-plot_abundance_matrix(simplified_mat, title="By Sample ID", divname=rep(DiversityType, num_shared), diversity=diversity_arr);
+plot_abundance_matrix(simplified_mat, title="By Sample ID", 
+	divname=DiversityType, 
+	median_diversity=diversity_arr, mean_diversity=diversity_arr);
 
 ###############################################################################
 
@@ -600,12 +662,19 @@ for(i in 1:ncol(grp_mat)){
 	cat("Possible Groups (levels): \n");
 	print(all_levels);
 
+	if(num_grps==0){
+		cat("No informations... skipping...\n");
+		next;
+	}
+
 	combined_abd=matrix(0, nrow=num_grps, ncol=num_simp_cat);
 	rownames(combined_abd)=groups;
 	colnames(combined_abd)=colnames(simplified_mat);
 	sample_sizes=numeric(num_grps);
-	grp_div=numeric(num_grps);
-	divname=character(num_grps);
+	diversity_median=numeric(num_grps);
+	diversity_95lb=numeric(num_grps);
+	diversity_95ub=numeric(num_grps);
+	diversity_mean=numeric(num_grps);
 	grp_i=1;
 	for(grp in groups){
 		cat("Extracting: ", grp, "\n");
@@ -613,22 +682,49 @@ for(i in 1:ncol(grp_mat)){
 		sample_sizes[grp_i]=length(samp_ix);
 		sample_arr=sample_names[samp_ix];
 
+		diversity_median[grp_i]=median(diversity_arr[sample_arr]);
+		diversity_mean[grp_i]=mean(diversity_arr[sample_arr]);
 		if(sample_sizes[grp_i]>1){
-			grp_div[grp_i]=median(diversity_arr[sample_arr]);
-			divname[grp_i]=paste("median ", DiversityType, sep="");
+			se=sd(diversity_arr[sample_arr])/sqrt(length(sample_arr));
+			diversity_95lb[grp_i]=diversity_mean[grp_i]-se*1.96;
+			diversity_95ub[grp_i]=diversity_mean[grp_i]+se*1.96;
 		}else{
-			grp_div[grp_i]=diversity_arr[sample_arr];
-			divname[grp_i]=DiversityType;
+			diversity_95lb[grp_i]=NA;
+			diversity_95ub[grp_i]=NA;
 		}
 
 		combined_abd[grp,]=apply(simplified_mat[sample_arr,,drop=F], 2, mean);
 		#print(combined_abd);	
 		grp_i=grp_i+1;
 	}
+	names(sample_sizes)=groups;
+	names(diversity_median)=groups;
+	names(diversity_mean)=groups;
+
 	#print(combined_abd);
 	#print(sample_sizes);
 	plot_abundance_matrix(combined_abd, title=grp_name, samp_size=sample_sizes, 
-		divname=divname, diversity=grp_div);
+		divname=DiversityType, median_diversity=diversity_median, mean_diversity=diversity_mean);
+
+
+	par(mfrow=c(3,1));
+	plot_diversity_barplot(title=paste(grp_name, ": Ordered by Category", sep=""), 
+		diversity_name=DiversityType, samp_size=sample_sizes,
+                mean_diversity=diversity_mean, 
+		diversity_95lb, diversity_95ub);
+
+	order_ix=order(diversity_mean);
+	plot_diversity_barplot(title=paste(grp_name, ": Ordered by Diversity", sep=""), 
+		diversity_name=DiversityType, samp_size=sample_sizes[order_ix],
+                mean_diversity=diversity_mean[order_ix], 
+		diversity_95lb[order_ix], diversity_95ub[order_ix]);
+
+	order_ix=order(sample_sizes);
+	plot_diversity_barplot(title=paste(grp_name, ": Ordered by Sample Size", sep=""), 
+		diversity_name=DiversityType, samp_size=sample_sizes[order_ix],
+                mean_diversity=diversity_mean[order_ix], 
+		diversity_95lb[order_ix], diversity_95ub[order_ix]);
+
 
 	cat("\n");
 	
