@@ -46,10 +46,10 @@ usage = paste(
 	"\n",
 	"	-p <pairings map, pairing Resp and Pred sample IDs>\n",
 	"	-f <factors file, contains covariates and factors>\n",
-	"	-F <sample ids in factors, should be either response or predictor ALR name>\n",
+	"	-F <column name of sample ids in factors, should be either response or predictor ALR name>\n",
 	"	-M <list of covariate X's names to include in the model from the factor file>\n",
 	"	-e <response ALR name, (column name in pairings file)\n",
-	"	-f <predictor ALR name, (column name in pairings file)\n",
+	"	-g <predictor ALR name, (column name in pairings file)\n",
 	"	[-q <required list of variables to include after NA removal>]\n",
 	"\n",
 	"	[-u <number of top response categories to analyze, default=", NUM_TOP_RESP_CAT, ">]\n",
@@ -147,6 +147,7 @@ cat("Factor Sample ID Name: ", FactorSampleIDName, "\n", sep="");
 cat(" Model Variables File: ", ModelVarFile, "\n", sep="");
 cat("        Pairings File: ", PairingsFile, "\n", sep="");
 cat("        Response Name: ", ResponseName, "\n", sep="");
+cat("       Predictor Name: ", PredictorName, "\n", sep="");
 cat("          Output File: ", OutputRoot, "\n", sep="");
 cat("\n");
 cat("Number of Predictor Variables: ", NumPredVariables, "\n", sep="");
@@ -949,9 +950,10 @@ num_samples_recon=nrow(recon_factors);
 num_factors_recon=ncol(recon_factors);
 num_samples_before_na_removal=num_samples_recon;
 num_factors_before_na_removal=num_factors_recon;
-factors_wo_nas=remove_sample_or_factors_wNA_parallel(recon_factors, 
+factors_wo_nas_res=remove_sample_or_factors_wNA_parallel(recon_factors, 
 	required=required_arr, num_trials=64000, num_cores=64, outfile=paste(OutputRoot, ".noNAs", sep=""));
 
+factors_wo_nas=factors_wo_nas_res$factors;
 factor_names_wo_nas=colnames(factors_wo_nas);
 factor_sample_ids_wo_nas=rownames(factors_wo_nas);
 model_var_arr=intersect(model_var_arr, factor_names_wo_nas);
@@ -990,6 +992,7 @@ if(NumMaxALRVariables >= num_st_categories){
 
 cat("\n");
 cat("Extracting Top categories: ", NumMaxALRVariables, " from amongst ", ncol(normalized), "\n", sep="");
+
 cat_abundances=extract_top_categories(normalized, NumMaxALRVariables);
 resp_alr_struct=additive_log_rato(cat_abundances);
 alr_categories_val=resp_alr_struct$transformed;
