@@ -13,7 +13,8 @@ params=c(
 	"output_file", "o", 2, "character",
 	"diversity_type", "d", 2, "character",
 	"shorten_category_names", "s", 2, "character",
-	"crossing_string", "c", 2, "character"
+	"crossing_string", "c", 2, "character",
+	"label_threshold", "l", 2, "numeric"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -30,6 +31,7 @@ usage = paste(
 	"	[-o <output file root name>]\n",
 	"	[-d <diversity, default=", DEF_DIVERSITY, ".]\n",
 	"	[-s <shorten category names, with separator in double quotes (default=\"\")>]\n",
+	"	[-l <label abundances greater than specified threshold, default=1.0, recommended 0.01]\n",
 	"\n",
 	"	[-c <crossing/interactions list, e.g., \"var1,var2,var3\" >]\n",
 	"\n",
@@ -107,6 +109,13 @@ if(ShortenCategoryNames==TRUE){
         cat("        i.e., this -x option is not a flag, it requires a parameter.\n");
         quit(status=-1);
 }
+
+LabelThreshold=1.0;
+if(length(opt$label_threshold)){
+	LabelThreshold=opt$label_threshold;
+}
+
+cat("Label Threshold: ", LabelThreshold, "\n");
 
 
 ###############################################################################
@@ -236,9 +245,10 @@ get_colors=function(num_col, alpha=1){
 
 ###############################################################################
 
-plot_dist=function(x, y, width=20, abundances, num_ticks=3){
+plot_dist=function(x, y, width=20, abundances, num_ticks=3, label_abund=0){
 	# This function will plot a stack box plot
 	# The location is center around x, and over y, with a bar height of 1
+	# If the abundance is less than label_abund, it will be labeled
 	
 	if(all(is.na(abundances))){
 
@@ -272,6 +282,12 @@ plot_dist=function(x, y, width=20, abundances, num_ticks=3){
 		);
 
 		num_abund=length(abundances);
+		if(is.null(dim(abundances))){
+			cat_name=names(abundances);
+		}else{
+			cat_name=colnames(abundances);
+		}
+
 		tick_pos=seq(1, num_abund, length.out=num_ticks+2);
 		tick_pos=ceiling(tick_pos[2:(num_ticks+1)]);
 
@@ -285,6 +301,8 @@ plot_dist=function(x, y, width=20, abundances, num_ticks=3){
 				lwd=.01,
 				col=i
 			);	
+
+			# Plot tick marks on the left
 			if(any(i==tick_pos)){
 				xleft=x-width/2;
 				ymid=prev+abundances[i]/2;
@@ -296,9 +314,15 @@ plot_dist=function(x, y, width=20, abundances, num_ticks=3){
 				);
 			}
 
+			# Label abundance if greater than label_abund
+			if(abundances[i]>label_abund){
+				text(x, prev+abundances[i]/2, 
+					paste(cat_name[i], " [", round(abundances[i], 4), "]" , sep=""), cex=.1);
+			}
 
 			prev=prev+abundances[i];
 		}
+
 	}
 		
 }
@@ -345,7 +369,8 @@ tail_statistic=function(x){
 ###############################################################################
 
 plot_abundance_matrix=function(abd_mat, title="", plot_cols=8, plot_rows=4, 
-	samp_size=c(), divname="diversity", median_diversity=c(), mean_diversity=c()){
+	samp_size=c(), divname="diversity", median_diversity=c(), mean_diversity=c(),
+	label_threshold=0){
 	# This function will plot a sample x abundance (summary table)
 	# There will be one plot for row (sample) in the matrix
 
@@ -369,6 +394,10 @@ plot_abundance_matrix=function(abd_mat, title="", plot_cols=8, plot_rows=4,
 	par(oma=c(.5,.5,3.5,.5));
 	par(mar=c(1,1,1,1));
 
+	dist_bar_width=2;
+	label_offset1=-(dist_bar_width/2 + .20);
+	label_offset2=-(dist_bar_width/2 + .5);
+
 	i=0;
 	while(i<num_samples){
 		for(y in 1:plot_rows){
@@ -384,20 +413,20 @@ plot_abundance_matrix=function(abd_mat, title="", plot_cols=8, plot_rows=4,
 						mtext(paste("n=",n,sep=""), line=-.5, cex=.4, font=3);
 					}
 					if(length(samp_size) && samp_size[i+1]>1){
-						text(0-.7, 0, paste("Median ", divname, " = ",
+						text(label_offset1, 0, paste("Median ", divname, " = ",
 							signif(median_diversity[i+1], 4),sep=""),
 							srt=90, adj=0, cex=.7);
-						text(0-1.05, 0, paste("Mean ", divname, " = ",
+						text(label_offset2, 0, paste("Mean ", divname, " = ",
 							signif(mean_diversity[i+1], 4),sep=""),
 							srt=90, adj=0, cex=.7);
 					}else{
-						text(0-.7, 0, paste(divname, " = ",
+						text(label_offset1, 0, paste(divname, " = ",
 							signif(median_diversity[i+1], 4),sep=""),
 							srt=90, adj=0, cex=.7);
 					}
 
 					abundances=abd_mat[sample,,drop=F];
-					plot_dist(0, 0, width=1, abundances);
+					plot_dist(0, 0, width=dist_bar_width, abundances, label_abund=label_threshold);
 				}else{
 					plot(0,0, type="n", bty="n", xaxt="n", yaxt="n");
 				}
@@ -557,7 +586,8 @@ palette(category_colors);
 
 plot_abundance_matrix(simplified_mat, title="By Sample ID", 
 	divname=DiversityType, 
-	median_diversity=diversity_arr, mean_diversity=diversity_arr);
+	median_diversity=diversity_arr, mean_diversity=diversity_arr,
+	label_threshold=LabelThreshold);
 
 ###############################################################################
 
@@ -704,7 +734,8 @@ for(i in 1:ncol(grp_mat)){
 	#print(combined_abd);
 	#print(sample_sizes);
 	plot_abundance_matrix(combined_abd, title=grp_name, samp_size=sample_sizes, 
-		divname=DiversityType, median_diversity=diversity_median, mean_diversity=diversity_mean);
+		divname=DiversityType, median_diversity=diversity_median, mean_diversity=diversity_mean,
+		label_threshold=LabelThreshold);
 
 
 	par(mfrow=c(3,1));
@@ -737,7 +768,7 @@ cat("Completed per variable plots.\n");
 
 if(num_crossings>0){
 
-	plot_2D_stacked=function(var1, var2, title_arr, grpd_factors, simplfd_sumtab){
+	plot_2D_stacked=function(var1, var2, title_arr, grpd_factors, simplfd_sumtab, label_threshold=0){
 		# This function will plot a matrix of stacked bar plots
 		# Var1 levels will be the number of columns
 		# Var2 levels will be the nubmer of rows
@@ -780,7 +811,7 @@ if(num_crossings>0){
 				num_samp=sum(v1_x_v2_samp_id);
 
 				combined_abd=apply(simplfd_sumtab[samp_ids[v1_x_v2_samp_id],,drop=F], 2, mean);
-				plot_dist(0, 0, width=1, combined_abd);
+				plot_dist(0, 0, width=1, combined_abd, label_abund=label_threshold);
 
 				# Label number of samples
 				text(0, 0, pos=1, paste("n=", num_samp, sep=""), cex=.6);
@@ -833,7 +864,7 @@ if(num_crossings>0){
 			# Plot combined
 			plot_2D_stacked(rem_cros_var[1], rem_cros_var[2], 
 				c(crossing_var[1], crossing_var[2]),
-				grp_mat, simplified_mat);	
+				grp_mat, simplified_mat, LabelThreshold);	
 
 			
 			# Plot split by excluded variable
@@ -843,7 +874,7 @@ if(num_crossings>0){
 				keep_ix=(grp_mat[,excl_var]==lev);
 				plot_2D_stacked(rem_cros_var[1], rem_cros_var[2], 
 					c(crossing_var[1], crossing_var[2], lev),
-					grp_mat[keep_ix,,drop=F], simplified_mat);	
+					grp_mat[keep_ix,,drop=F], simplified_mat, LabelThreshold);	
 			}
 
 			# Plot legend	
@@ -864,7 +895,7 @@ if(num_crossings>0){
 		
 		plot_2D_stacked(crossing_var[1], crossing_var[2], 
 			c(crossing_var[1],  crossing_var[2], ""),
-			grp_mat, simplified_mat);	
+			grp_mat, simplified_mat, LabelThreshold);	
 
 		# Plot legend
 		par(mfrow=c(1,1), mar=c(0,0,0,0), oma=c(0,0,0,0));
