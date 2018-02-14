@@ -161,7 +161,8 @@ if(StripSamplesWithNAs){
 ###############################################################################
 
 load_distance_matrix=function(fname){
-	distmat=as.matrix(read.delim(fname, sep=" ",  header=TRUE, row.names=1, check.names=FALSE, comment.char="", quote=""));
+	distmat=as.matrix(read.delim(fname, sep=" ",  header=TRUE, row.names=1, 
+		check.names=FALSE, comment.char="", quote=""));
 	#print(distmat);
 	mat_dim=dim(distmat);
 	cat("Read in distance matrix: \n");
@@ -187,7 +188,10 @@ load_distance_matrix=function(fname){
 ##############################################################################
 
 load_factors=function(fname){
-	factors=data.frame(read.table(fname,  header=TRUE, row.names=1, check.names=FALSE, sep="\t"));
+
+	cat("Loading factor file: ", fname, "\n");
+	factors=data.frame(read.table(fname,  header=TRUE, row.names=1, 
+		check.names=FALSE, sep="\t", quote="", comment.char=""));
 
 	#print(factors);
 
