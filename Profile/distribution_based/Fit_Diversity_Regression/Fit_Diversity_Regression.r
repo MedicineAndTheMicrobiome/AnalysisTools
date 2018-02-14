@@ -101,7 +101,7 @@ TestingMode=ifelse(length(opt$testing_flag)>0, T, F);
 
 load_factors=function(fname){
 	cat("Loading Factors: ", fname, "\n");
-	factors=data.frame(read.table(fname,  header=TRUE, row.names=1, check.names=FALSE, comment.char="", quote=""));
+	factors=data.frame(read.table(fname, sep="\t",  header=TRUE, row.names=1, check.names=FALSE, comment.char="", quote=""));
 	factor_names=colnames(factors);
 
 	ignore_idx=grep("^IGNORE\\.", factor_names);
@@ -657,6 +657,7 @@ plot_diversity_with_factors=function(raw, factors, model_string, stat_name, bin_
 
 	pred_arr=gsub(" ", "", pred_arr);
 	num_pred=length(pred_arr);
+print(pred_arr);
 
 
 	num_values=length(raw);
@@ -731,7 +732,8 @@ plot_diversity_with_factors=function(raw, factors, model_string, stat_name, bin_
 		predictors_per_plot=min(predictors_per_plot, num_pred);
 		for(j in 1:predictors_per_plot){
 			pred_ix=((plot_ix-1)*predictors_per_plot)+(j-1)+1;
-			if(!length(grep(":", pred_arr[pred_ix]))){
+		
+			if(!is.na(pred_arr[pred_ix]) && !length(grep(":", pred_arr[pred_ix]))){
 
 				fact_val=factors[, pred_arr[pred_ix]];
 				uniq_val=unique(fact_val);
