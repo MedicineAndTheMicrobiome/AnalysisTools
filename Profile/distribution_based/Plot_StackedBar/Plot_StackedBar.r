@@ -121,7 +121,7 @@ cat("Label Threshold: ", LabelThreshold, "\n");
 ###############################################################################
 
 OutputFileRoot=paste(OutputFileRoot, ".", substr(DiversityType, 1, 4), sep="");
-OutputPDF = paste(OutputFileRoot, ".div_ts.pdf", sep="");
+OutputPDF = paste(OutputFileRoot, ".stckd_bp.pdf", sep="");
 cat("Output PDF file name: ", OutputPDF, "\n", sep="");
 pdf(OutputPDF,width=8.5,height=14)
 
@@ -446,9 +446,17 @@ plot_diversity_barplot=function(title, diversity_name, samp_size,
 	grp_names=names(mean_diversity);
 	num_grps=length(grp_names);
 
+	# Calculate max diversity for ylim
+	div_max=max(diversity_95ub[!is.na(diversity_95ub)]);
+	if(is.na(div_max) || !is.finite(div_max)){
+		cat("95% CI Upperbound not finite...\n");
+		div_max=max(mean_diversity);
+	}	
+
+
 	par(mar=c(10, 5, 4, 1));
 	mids=barplot(mean_diversity, main=title, las=2, 
-		ylim=c(0, max(diversity_95ub[!is.na(diversity_95ub)])*1.1),
+		ylim=c(0, div_max*1.1),
 		ylab=paste("Mean ", diversity_name, " w/ 95% CI", sep=""), 
 		names.arg=rep("", num_grps));
 	bar_width=mids[2]-mids[1];
