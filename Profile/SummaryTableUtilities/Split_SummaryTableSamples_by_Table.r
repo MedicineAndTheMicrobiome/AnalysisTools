@@ -115,7 +115,7 @@ cat("\n");
 ###############################################################################
 
 load_group_file=function(fname, sample_col, group_col){
-	mapping_table=as.matrix(read.table(fname, sep="\t", check.names=FALSE, header=T));
+	mapping_table=as.matrix(read.table(fname, sep="\t", check.names=FALSE, header=T, comment.char=""));
 
 	group_map=mapping_table[,group_col, drop=F];	
 	rownames(group_map)=mapping_table[,sample_col];
@@ -206,18 +206,25 @@ for(i in 1:num_groups){
 			cur_grp_samples=intersect(cur_grp_samples,rownames(counts_mat));
 		}
 	}
-	group_counts=counts_mat[cur_grp_samples,, drop=F];
-	#print(group_counts);
 
 	# Make directory to store summary table
 	cur_grp=gsub(" ","_", cur_grp);
 	dir_wgrp_wtype=paste(dir_wgrpname, "/", cur_grp, sep="");
 	dir.create(dir_wgrp_wtype);
-	
-	# Write out file
-	full_output_fname=paste(dir_wgrp_wtype, "/", OutputRootFname, ".", cur_grp, ".summary_table.tsv", sep="");
-	cat("Writing Summary Table: ", full_output_fname, "\n");
-	write_summary_file(group_counts, full_output_fname);
+
+	num_grp_samples=length(cur_grp_samples);
+	cat("Num samples in group: ", num_grp_samples, "\n");	
+	if(num_grp_samples>0){
+
+		# Extract samples
+		group_counts=counts_mat[cur_grp_samples,, drop=F];
+		
+		# Write out file
+		full_output_fname=paste(dir_wgrp_wtype, "/", OutputRootFname, ".", cur_grp, ".summary_table.tsv", sep="");
+		cat("Writing Summary Table: ", full_output_fname, "\n");
+
+		write_summary_file(group_counts, full_output_fname);
+	}
 
 }
 
