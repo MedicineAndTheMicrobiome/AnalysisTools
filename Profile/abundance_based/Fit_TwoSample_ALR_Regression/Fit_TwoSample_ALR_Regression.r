@@ -44,9 +44,9 @@ usage = paste(
 	"	-s <summary file table>\n",
 	"	[-S <second summary file table, in case Resp and Pred were in different files.>]\n",
 	"\n",
-	"	-p <pairings map, pairing Resp and Pred sample IDs>\n",
+	"	-p <pairings map, pairing Resp and Pred sample IDs. Must have header/column names>\n",
 	"	-f <factors file, contains covariates and factors>\n",
-	"	-F <column name of sample ids in factors, should be either response or predictor ALR name>\n",
+	"	-F <column name of sample ids in factor file>\n",
 	"	-M <list of covariate X's names to include in the model from the factor file>\n",
 	"	-e <response ALR name, (column name in pairings file)\n",
 	"	-g <predictor ALR name, (column name in pairings file)\n",
@@ -65,8 +65,6 @@ usage = paste(
 	"  where the top P=", NUM_TOP_PRED_CAT, " categories are included.\n",
 	"\n",
 	"	1.) ALR_Resp[i] = ALR_Pred[i] + ALR_Pred[top-p] + covariates\n",
-	"\n",
-	" 	2.) (ALR_Resp[i]-ALR_Pred[i]) = ALR_Pred[top-p] + covariates\n",
 	"\n",
 	"If the -R flag is set, a 'remaining' category will be be included in the denominator\n",
 	"	independent of how large it is.  I.e., do not use it as one of the response variables.\n",
@@ -172,7 +170,7 @@ cat("Text Line Width: ", options()$width, "\n", sep="");
 ##############################################################################
 
 load_factors=function(fname){
-	factors=data.frame(read.table(fname,  sep="\t", header=TRUE, row.names=1, check.names=FALSE));
+	factors=data.frame(read.table(fname,  sep="\t", header=TRUE, row.names=1, check.names=FALSE, comment.char=""));
 	factor_names=colnames(factors);
 
 	ignore_idx=grep("^IGNORE\\.", factor_names);
@@ -286,6 +284,36 @@ load_mapping=function(filename, src, dst){
 	map=cbind(as.character(mapping[,src]), as.character(mapping[,dst]));
 	colnames(map)=c(src, dst);
 	return(map);
+}
+
+intersect_pairings_map=function(pairs_map, keepers){
+	# Sets mappings to NA if they don't exist in the keepers array
+	num_rows=nrow(pairs_map);
+	for(cix in 1:2){
+		for(rix in 1:num_rows){
+			if(!any(pairs_map[rix, cix]==keepers)){
+				pairs_map[rix, cix]=NA;
+			}
+		}
+	}
+	return(pairs_map);
+}
+
+split_goodbad_pairings_map=function(pairs_map){
+	
+	num_rows=nrow(pairs_map);
+	keepers=apply(pairs_map, 1, function(x){ all(!is.na(x))});
+
+	good_pairs_map=pairs_map[keepers,,drop=F];
+	bad_pairs_map=pairs_map[!keepers,,drop=F];
+	num_good_collapsed_rows=nrow(good_pairs_map);
+	cat("Collapsed ", num_rows, " pairs to ", num_good_collapsed_rows, " complete pairs.\n");
+
+	res=list();
+	res[["good_pairs"]]=good_pairs_map;
+	res[["bad_pairs"]]=bad_pairs_map;
+	return(res);
+	
 }
 
 extract_top_categories=function(ordered_normalized, top){
@@ -668,40 +696,20 @@ st_samples=rownames(counts);
 num_pairings_loaded=nrow(all_pairings_map);
 cat("\n");
 cat("Pairing entries loaded: ", num_pairings_loaded, "\n");
+print(all_pairings_map);
 
-available_pairings=matrix(F, nrow=nrow(all_pairings_map), ncol=2, dimnames=dimnames(all_pairings_map));
-rownames(available_pairings)=all_pairings_map[,1];
-available_pairings[intersect(st_samples, all_pairings_map[,1]),1]=T;
-rownames(available_pairings)=all_pairings_map[,2];
-available_pairings[intersect(st_samples, all_pairings_map[,2]),2]=T;
+cat("Intersecting with samples in summary table:\n");
+intersect_res=intersect_pairings_map(all_pairings_map, st_samples);
+split_res=split_goodbad_pairings_map(intersect_res);
+good_pairs_map=split_res$good_pairs;
+bad_pairs_map=split_res$bad_pairs;
 
-print(available_pairings);
-num_resp_avail=sum(available_pairings[,ResponseName]);
-num_pred_avail=sum(available_pairings[,PredictorName]);
-
-# Extract complete pairs
-pairs_complete=apply(available_pairings, 1, function(x){all(x)});
-pairs_complete_samples=names(pairs_complete[pairs_complete]);
-pairings_map=all_pairings_map[pairs_complete,];
-num_complete_pairings=sum(pairs_complete);
-
-pairs_incomplete=apply(available_pairings, 1, function(x){any(!x)});
-pairs_incomplete_samples=names(pairs_complete[pairs_incomplete]);
-pairings_incomplete_map=all_pairings_map[pairs_incomplete,];
-num_incomplete_pairings=sum(pairs_incomplete);
-
-cat("Number of complete pairings: ", num_complete_pairings, "\n");
-#print(pairs_complete_samples);
-paired_responses=pairings_map[,1];
-paired_predictors=pairings_map[,2];
-paired_samples=c(paired_responses, paired_predictors);
-counts=counts[paired_samples,];
-num_samples=nrow(counts);
-num_categories=ncol(counts);
-cat("Count Matrix:\n");
-cat("  Num Samples: ", num_samples, "\n");
-cat("  Num Categories: ", num_categories, "\n");
-cat("\n");
+cat("Available pairs:\n");
+print(good_pairs_map);
+num_complete_pairings=nrow(good_pairs_map);
+num_incomplete_pairings=nrow(bad_pairs_map);
+cat("  Number of complete pairings: ", num_complete_pairings, "\n");
+cat("Number of incomplete pairings: ", num_incomplete_pairings, "\n");
 
 loaded_sample_info=c(
 	"Summary Table Info:",
@@ -716,8 +724,6 @@ loaded_sample_info=c(
 	"Sample Pairing Info:",
 	paste("  Mapping Name: ", PairingsFile, sep=""),
 	paste("  Number of Possible Pairings Loaded: ", num_pairings_loaded, sep=""),
-	paste("  Number of ", ResponseName, " Samples: ", num_resp_avail, sep=""),
-	paste("  Number of ", PredictorName, " Samples: ", num_pred_avail, sep=""),
 	"",
 	paste("Number of Complete/Matched Pairings: ", num_complete_pairings, sep=""),
 	paste("Number of InComplete/UnMatched Pairings: ", num_incomplete_pairings, sep="")
@@ -725,12 +731,8 @@ loaded_sample_info=c(
 
 incomplete_pairing_info=c(
 	"Incomplete Pairings: ",
-	"",
-	"Missing Sample Info Availability:",
-	capture.output(print(available_pairings[pairs_incomplete,])),
-	"",
-	"Missing Sample Pairing:",
-	capture.output(print(pairings_incomplete_map))
+	capture.output(print(bad_pairs_map)),
+	""
 );
 
 plot_text(loaded_sample_info);
@@ -889,10 +891,9 @@ if(ReferenceLevelsFile!=""){
 ##############################################################################
 # Reconcile factors with samples
 
-cat("\nReconciling samples between factor file and (paired responses) summary table...\n");
+cat("\nReconciling samples between factor file and paired mapping...\n");
 factor_sample_ids=rownames(factors);
-
-counts_sample_ids=pairings_map[,FactorSampleIDName];
+counts_sample_ids=rownames(counts);
 
 shared_sample_ids=sort(intersect(factor_sample_ids, counts_sample_ids));
 
@@ -911,20 +912,19 @@ num_samp_missing_fact_info=length(samples_missing_factor_info);
 cat("\n");
 cat("Total samples shared: ", num_shared_sample_ids, "\n");
 
-# Remove samples not in summary table
-rownames(pairings_map)=pairings_map[,FactorSampleIDName];
-pairings_map=pairings_map[shared_sample_ids,];
-
-paired_responses=pairings_map[,1];
-paired_predictors=pairings_map[,2];
-
-
-paired_samples=sort(c(paired_responses, paired_predictors));
+# Remove samples not in summary table 
+cat("Adjusting pairings map based on factor/summary table reconciliation...\n");
+intersect_res=intersect_pairings_map(good_pairs_map, shared_sample_ids);
+split_res=split_goodbad_pairings_map(intersect_res);
+good_pairs_map=split_res$good_pairs;
+bad_pairs_map=split_res$bad_pairs;
+paired_samples=as.vector(good_pairs_map);
+num_shared_sample_ids=length(paired_samples);
 
 # Reorder data by sample id
 normalized=normalized[paired_samples,];
 num_samples=nrow(normalized);
-recon_factors=factors[shared_sample_ids,,drop=F];
+recon_factors=factors[paired_samples,,drop=F];
 
 factor_file_info=c(
 	paste("Factor File Name: ", FactorsFile, sep=""),
@@ -959,11 +959,13 @@ factor_sample_ids_wo_nas=rownames(factors_wo_nas);
 model_var_arr=intersect(model_var_arr, factor_names_wo_nas);
 
 # Subset pairing map based on factor sample IDs
-rownames(pairings_map)=pairings_map[,FactorSampleIDName];
-pairings_map=pairings_map[factor_sample_ids_wo_nas,];
-paired_responses=pairings_map[,1];
-paired_predictors=pairings_map[,2];
-paired_samples=sort(c(paired_responses, paired_predictors));
+cat("Adjusting pairings map based on post-NA removal samples...\n");
+intersect_res=intersect_pairings_map(good_pairs_map, factor_sample_ids_wo_nas);
+split_res=split_goodbad_pairings_map(intersect_res);
+good_pairs_map=split_res$good_pairs;
+bad_pairs_map=split_res$bad_pairs;
+paired_samples=as.vector(good_pairs_map);
+num_shared_sample_ids=length(paired_samples);
 
 # Subset the normalized counts based on pairing map
 normalized=normalized[paired_samples,, drop=F];
@@ -1030,23 +1032,18 @@ plot_histograms(alr_categories_val);
 ##############################################################################
 
 # Order/Split the data....
-
 # Order the pairings map by response sample IDs
-rownames(pairings_map)=pairings_map[,ResponseName];
-sorted_response_ids=sort(rownames(pairings_map));
-pairings_map=pairings_map[sorted_response_ids,];
+response_sample_ids=good_pairs_map[,ResponseName];
+predictor_sample_ids=good_pairs_map[,PredictorName];
 
-# Get the ordered response and predictor sample IDs
-response_sample_ids=pairings_map[,ResponseName];
-predictor_sample_ids=pairings_map[,PredictorName];
-
-# Extract the response/predictor ALR and factors values in the right order
+# Extract the predictor ALR and factors values in the right order
 response_alr=alr_categories_val[response_sample_ids,,drop=F];
 predictor_alr=alr_categories_val[predictor_sample_ids,,drop=F];
-factors=factors_wo_nas[pairings_map[,FactorSampleIDName],];
+factors=factors_wo_nas[predictor_sample_ids,];
 
 ##############################################################################
 
+# Plot relationship between predictors and response from same taxa
 alr_names=colnames(alr_categories_val);
 plots_per_page=6
 par(mfrow=c(plots_per_page,2));
@@ -1079,6 +1076,7 @@ for(cat_ix in 1:NumRespVariables){
 	
 }
 
+# Generate bar plots for differences between response and predictors
 par(mfrow=c(2,1));
 par(mar=c(20,4,3,1));
 color_arr=rainbow(NumRespVariables, start=0, end=4/6);
@@ -1135,6 +1133,8 @@ for(resp_ix in 1:NumRespVariables){
 	
 	cat("Fitting: ", resp_ix, ".) ", resp_cat_name, "\n");
 
+	# For the top responses, the top ALR predictors are already included in the model, but for the
+	#   remaining make sure the predictor ALR is also included.
 	if(resp_ix<=NumPredVariables){
 		# Response category is already in predictors
 		alr_pred=predictor_alr[,1:NumPredVariables];
@@ -1146,8 +1146,7 @@ for(resp_ix in 1:NumRespVariables){
 	
 	model_pred_df=as.data.frame(cbind(alr_pred, factors));
 
-	#print(resp);
-	#print(model_pred_df);
+	# Build formula string for full and reduced model
 	model_str=paste("alr_resp ~ ", paste(c(alr_pred_names,model_var_arr), collapse="+"), sep="");
 	model_reduced_str=paste("alr_resp ~ ", paste(model_var_arr, collapse="+"), sep="");
 
@@ -1157,12 +1156,15 @@ for(resp_ix in 1:NumRespVariables){
 	cat("Reduced:\n");
 	print(model_reduced_str);
 
+	# Fit full and reduced model
 	lm_fit=lm(as.formula(model_str), data=model_pred_df);
 	lm_reduced_fit=lm(as.formula(model_reduced_str), data=model_pred_df);
 
+	# Summarize full and reduced model
 	sum_fit=summary(lm_fit);
 	sum_reduced_fit=summary(lm_reduced_fit);
 
+	# ANOVA on full model
 	anova_res=anova(lm_fit);
 
 	plot_text(c(
@@ -1183,10 +1185,12 @@ for(resp_ix in 1:NumRespVariables){
 
 	model_coef_names=setdiff(rownames(sum_fit$coefficients), "(Intercept)");
 
+	# Save the ALR result stats
 	cat_names=intersect(model_coef_names, alr_pred_names);
 	category_alr_coef_mat[resp_cat_name, cat_names]=sum_fit$coefficients[cat_names,"Estimate"];
 	category_alr_pval_mat[resp_cat_name, cat_names]=sum_fit$coefficients[cat_names,"Pr(>|t|)"];
 
+	# Save the covariate result stats
 	cat_names=intersect(model_coef_names, cov_coeff_names);
 	covariates_coef_mat[resp_cat_name, cat_names]=sum_fit$coefficients[cat_names,"Estimate"];
 	covariates_pval_mat[resp_cat_name, cat_names]=sum_fit$coefficients[cat_names,"Pr(>|t|)"];
@@ -1196,17 +1200,14 @@ for(resp_ix in 1:NumRespVariables){
 	rsqrd_mat[resp_cat_name, "Reduced Adj-R^2"]=sum_reduced_fit$adj.r.squared;
 	rsqrd_mat[resp_cat_name, "ALR Contrib"]=sum_fit$adj.r.squared-sum_reduced_fit$adj.r.squared;
 
-	model_pval_mat[resp_cat_name, "F-statistic P-value"]=1-pf(sum_fit$fstatistic[1], sum_fit$fstatistic[2], sum_fit$fstatistic[3]);
+	model_pval_mat[resp_cat_name, "F-statistic P-value"]=
+		1-pf(sum_fit$fstatistic[1], sum_fit$fstatistic[2], sum_fit$fstatistic[3]);
 
 	cat("*************************************************\n");
 
 }
 
-#print(category_alr_coef_mat);
-#print(category_alr_pval_mat);
-
-#print(covariates_coef_mat);
-#print(covariates_pval_mat);
+###############################################################################
 
 all.nas=apply(covariates_coef_mat, 2, function(x){all(is.na(x))});
 covariates_coef_mat=covariates_coef_mat[,!all.nas,drop=F];
@@ -1215,11 +1216,6 @@ all.nas=apply(covariates_pval_mat, 2, function(x){all(is.na(x))});
 covariates_pval_mat=covariates_pval_mat[,!all.nas,drop=F];
 
 print(rsqrd_mat);
-
-#paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_is_hot=T, deci_pts=4,
-#       label_zeros=T, counts=F, value.cex=1,
-#        plot_col_dendr=F,
-#        plot_row_dendr=F
 
 par(oma=c(2,1,5,2));
 
@@ -1359,6 +1355,7 @@ mtext(paste("Predictability of ", ResponseName, " ALR based on ", PredictorName,
 mtext("After Controlling for Covariates", side=3, font=2, line=1);
 mtext("Regression Coefficient", side=2, font=1, line=3.75);
 
+###############################################################################
 
 cat("Done.\n");
 #dev.off();
