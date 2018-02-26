@@ -49,6 +49,9 @@ usage = paste(
 	"primary key or sample id for the matrix with the \"make_key\" command.\n",
 	"\n",
 	"In addition, the following non-standard R functions have been implemented:\n",
+	"	bin(x, range_name, breaks): \n",
+	"		This will assign the range name to the values that fall between and outside the breaks\n",
+	"\n",	
 	"	remap(x, key, value):  This will remap the keys in x to the corresponding values.\n",
 	"\n",
 	"	  example:\n",
@@ -116,7 +119,45 @@ load_commands=function(fname){
 ##############################################################################
 # Additional Functions
 
+bin=function(x, range_names, breaks){
+	len=length(x);
+	num_ranges=length(range_names);
+	num_breaks=length(breaks);
+
+	if(num_ranges!=(num_breaks+1)){
+		cat("Error! Range names and breaks don't agree. (num_breaks + 1) = num_ranges\n");
+		cat("Num Ranges: ", num_ranges, "\n");
+		print(range_names);
+		cat("Num Breaks: ", num_breaks, "\n");
+		print(breaks);
+		quit(-1);
+	}
+
+	if(!all(breaks==sort(breaks))){
+		cat("Error! Your breaks are out of order.  Are your range names ok?\n");
+		quit(-1);
+	}
+
+	new=character(len);
+	for(i in 1:len){
+		if(!is.na(x[i])){
+			if(x[i]>=breaks[num_breaks]){
+				ix=num_ranges;
+			}else{
+				ix=min(which(x[i]<breaks));
+			}
+			new[i]=range_names[ix];
+		}else{
+			new[i]=NA;
+		}
+	}
+	print(new);
+	return(new);
+}
+
+
 remap=function(x, key, value){
+
 	len=length(x);
 	if(length(key)!=length(value)){
 		cat("Error!  Key/Value lengths are not the same for 'remap'\n");
@@ -220,7 +261,7 @@ for(cmd in commands){
 		factors=cbind(key_col_val, factors[,cnames,drop=F]);
 	}else{
 		# Add variable to factors
-		cmd=gsub("\\s+", "", cmd);
+		#cmd=gsub("\\s+", "", cmd);
 		lhs=strsplit(cmd, "=")[[1]][1];
 		cat("LHS: ", lhs, "\n");
 		results=eval(parse(text=cmd), envir=factors);
@@ -229,6 +270,8 @@ for(cmd in commands){
 		factors=cbind(factors, results);
 		colnames(factors)=c(cnames, lhs);
 	}
+	
+	cat("ok.\n");
 }
 
 cat("\n");
