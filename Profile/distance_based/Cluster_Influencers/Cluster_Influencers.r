@@ -44,7 +44,7 @@ usage = paste(
 	"\n",
 	"	Metadata-Based (User-defined Factors) Options:\n",
 	"	[-f <factor/metadata file]\n",
-	"	[-n <column names to analyze in factor file>]\n",
+	"	[-n <file containing column names to analyze in factor file>]\n",
 	"\n",
 	"This script will:\n",
 	"	1.) Read in a summary table and compute a full/complete distance matrix.\n",
@@ -554,6 +554,7 @@ short_cat_names=character();
 for(i in 1:num_categories){
 	short_cat_names[i]=tail(strsplit(category_names[i], SplitChar)[[1]],1);
 	short_cat_names[i]=gsub("_unclassified$", "_uncl", short_cat_names[i]);
+	short_cat_names[i]=gsub("_group", "_grp", short_cat_names[i]);
 }
 colnames(norm_mat)=short_cat_names;
 cat("Shorted Top Categories: \n");
@@ -596,7 +597,8 @@ orig_dendr=as.dendrogram(hcl);
 lf_names=get_clstrd_leaf_names(orig_dendr);
 
 pdf(paste(output_fname_root, ".cl_inf.pdf", sep=""), height=8.5, width=14);
-palette_col=c("red", "green", "blue", "cyan", "magenta", "orange", "gray", "pink", "black", "purple", "brown", "aquamarine");
+#palette_col=c("red", "green", "blue", "cyan", "magenta", "orange", "gray", "pink", "black", "purple", "brown", "aquamarine");
+#palette_col=c("blue", "red", "green", "cyan", "magenta", "orange", "gray", "pink", "black", "purple", "brown", "aquamarine");
 palette(palette_col);
 
 # Compute ISO and classical MDS
@@ -646,7 +648,6 @@ if(useMetadata){
 
 cat("Using Metadata:", useMetadata, "\n");
 
-print(factors_matrix);
 # Begin pair-wise cluster analyses
 for(ix in 1:num_iterations){
 
@@ -794,7 +795,7 @@ for(ix in 1:num_iterations){
 
 	# Generate R^2 Ratio Plots
 	layout(barplot_layout);
-	par(oma=c(.5,10,3,1));
+	par(oma=c(.5,13,3,1));
 	plot_count=0;
 	for(i in 1:num_cl){
 
@@ -884,7 +885,7 @@ for(ix in 1:num_iterations){
 
 	# Compute cluster unifiers
 	layout(barplot_layout);
-	par(oma=c(.5,10,3,1));
+	par(oma=c(.5,13,3,1));
 
 	plot_count=0;
 	pairs_names=names(ratios_list);
