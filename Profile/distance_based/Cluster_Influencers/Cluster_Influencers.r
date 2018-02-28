@@ -597,7 +597,7 @@ orig_dendr=as.dendrogram(hcl);
 lf_names=get_clstrd_leaf_names(orig_dendr);
 
 pdf(paste(output_fname_root, ".cl_inf.pdf", sep=""), height=8.5, width=14);
-#palette_col=c("red", "green", "blue", "cyan", "magenta", "orange", "gray", "pink", "black", "purple", "brown", "aquamarine");
+palette_col=c("red", "green", "blue", "cyan", "magenta", "orange", "gray", "pink", "black", "purple", "brown", "aquamarine");
 #palette_col=c("blue", "red", "green", "cyan", "magenta", "orange", "gray", "pink", "black", "purple", "brown", "aquamarine");
 palette(palette_col);
 
