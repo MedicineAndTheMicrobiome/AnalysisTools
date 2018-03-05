@@ -113,6 +113,9 @@ if(ShortenCategoryNames==TRUE){
 LabelThreshold=1.0;
 if(length(opt$label_threshold)){
 	LabelThreshold=opt$label_threshold;
+	if(LabelThreshold<1.0){
+		OutputFileRoot=paste(OutputFileRoot, ".lbl", sep="");
+	}
 }
 
 cat("Label Threshold: ", LabelThreshold, "\n");
