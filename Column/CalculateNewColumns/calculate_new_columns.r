@@ -70,7 +70,15 @@ usage = paste(
 	"			NO / YES\n",
 	"			OFF / ON\n",
 	"		For other less commonly used boolean pairs, use the remap function.\n",
-	"",
+	"\n",
+	"	String Manipulation Functions:\n",
+	"		left/right will extract the number of characters from the string.\n",
+	"		chop_left/chop_right will remove the number of characters from the string.\n",
+	"\n",
+	"		str.left(x, n)\n",
+	"		str.right(x, n)\n",
+	"		str.chop_left(x, n)\n",
+	"		str.chop_right(x, n)\n",
 	"\n",
 	"\n");
 
@@ -208,6 +216,30 @@ to.bool=function(x){
 	return(bools);
 
 }
+
+str.left=function(x, n){
+	x=as.character(x);
+	substr(x, 1, n);	
+}
+
+str.right=function(x, n){
+	x=as.character(x);
+	last=nchar(x);
+	substr(x, last-n+1, last);	
+}
+
+str.chop_left=function(x, n){
+	x=as.character(x);
+	last=nchar(x);
+	substr(x, n+1, last);	
+}
+
+str.chop_right=function(x, n){
+	x=as.character(x);
+	last=nchar(x);
+	substr(x, 1, last-n);	
+}
+
 
 ##############################################################################
 
