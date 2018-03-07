@@ -80,6 +80,9 @@ usage = paste(
 	"		str.chop_left(x, n)\n",
 	"		str.chop_right(x, n)\n",
 	"\n",
+	"	Indexing:\n",
+	"		index(start=1) will assign a number from start to number of rows.\n",
+	"\n",
 	"\n");
 
 if(!length(opt$input) || !length(opt$formulas) || !length(opt$output)){
@@ -217,6 +220,8 @@ to.bool=function(x){
 
 }
 
+#------------------------------------------------------------------------------
+
 str.left=function(x, n){
 	x=as.character(x);
 	substr(x, 1, n);	
@@ -240,11 +245,18 @@ str.chop_right=function(x, n){
 	substr(x, 1, last-n);	
 }
 
+#------------------------------------------------------------------------------
+
+index=function(start=1){
+	# This will generate an index for each row in the input file
+	return(seq(start, num_samples));
+}
 
 ##############################################################################
 
 # Load factors
 factors=load_factors(InputFName);
+num_samples=nrow(factors);
 
 # Load commands
 commands=load_commands(Formulas);
