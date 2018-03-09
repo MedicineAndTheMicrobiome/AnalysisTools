@@ -34,7 +34,9 @@ usage = paste(
 	"\n",
 	"	The format of the offset file is:\n",
 	"\n",
-	"	<sample id> \\t <sample (individual) grouping id> \\t <time stamp> \\t <sample (cohort) group id>\\n",
+	"	<sample id> \\t <subj id> \\t <time stamp> \\t <cohort/grp id> \\t <events> [\\t <add'l events>]\\n\n",
+	"\n",
+	"	Column Names are required.\n",
 	"\n",
 	"	Diversity types include:\n",
 	"		shannon, tail, simpson, invsimpson\n",
@@ -74,10 +76,14 @@ pdf(OutputPDF,width=8.5,height=11)
 
 load_offset=function(fname){
         cat("Loading Offsets: ", fname, "\n");
-        offsets_mat=read.delim(fname,  header=FALSE, row.names=1, sep="\t", comment.char="#", quote="");
+        offsets_mat=read.delim(fname,  header=TRUE, row.names=1, sep="\t", comment.char="#", quote="");
 
 	num_col=ncol(offsets_mat);
-	colnames(offsets_mat)=c("Indiv ID", "Offsets", "Group ID", "Events")[1:num_col];
+	cat("Num Columns Found: ", num_col, "\n");
+	
+	extra_colnames=colnames(offsets_mat);
+	print(extra_colnames);
+	colnames(offsets_mat)=c("Indiv ID", "Offsets", "Group ID", extra_colnames[4:num_col])[1:num_col];
 
 	# reset offsets
 	if(is.numeric(offsets_mat[,"Indiv ID"])){
@@ -192,6 +198,22 @@ plot_dist=function(x, y, width=20, abundances){
 		
 }
 
+###############################################################################
+
+plot_event=function(x, y, events, col="black"){
+	nl=length(levels(events));
+	nsamp=length(events);
+	if(nl==0){
+		pts=which(events==1);
+		points(x[pts], y[pts], type="p", pch="*", font=2, cex=1.5, col=col);
+		points(x[pts], y[pts], type="p", pch="*", cex=1, col="black");
+	}else{
+		text(x, y, as.character(events), col=col, cex=.7);
+	}
+}
+
+###############################################################################
+
 plot_sample_distributions_by_individual=function(diversity_arr, div_type, normalized_mat, 
 	offsets_mat, col_assign, category_colors, ind_colors){
 
@@ -231,6 +253,9 @@ plot_sample_distributions_by_individual=function(diversity_arr, div_type, normal
 
 	cat_names=colnames(normalized_mat);
 
+	events_range=4:ncol(offsets_mat);
+	num_event_types=length(events_range);;
+	
 	# Plot individual samples
 	for(i in 1:num_groups){
 
@@ -243,6 +268,8 @@ plot_sample_distributions_by_individual=function(diversity_arr, div_type, normal
 		offset_info=offsets_mat[grp_subset,];
 		sort_ix=order(offset_info[,"Offsets"]);
 		offset_info=offset_info[sort_ix,];
+		events_mat=offset_info[, events_range, drop=F];
+
 		print(offset_info);
 
 		###############################################################
@@ -253,33 +280,43 @@ plot_sample_distributions_by_individual=function(diversity_arr, div_type, normal
 		print(subset_diversity);
 
 
-		# Plot Diversity
+		# Plot Diversity lines
 		palette(ind_colors);
 		plot(offset_info[,"Offsets"], subset_diversity, main=groups[i],
 			xlab="Time", ylab=paste("Diversity (", div_type, ")", sep=""), type="l", 
 			col=col_assign[groups[i]], lwd=2.5,
-			xlim=offset_ranges, ylim=diversity_ranges);
+			xlim=offset_ranges, 
+			ylim=c(diversity_ranges[1], diversity_ranges[2]+(diff(diversity_ranges)*.2))
+		);
+
+		char_height=par()$cxy[2]*.75;
 
 		points(offset_info[c(1,1, num_members),"Offsets"], subset_diversity[c(1,1, num_members)], 
 			type="p", pch=c(17, 1, 15), cex=c(1, 2, 1.25));
 		points(offset_info[,"Offsets"], subset_diversity, type="b", pch=16, cex=.5, lwd=.1);
 
 		# Mark Events
-		mark_event=rep(0, num_members);
-		mark_event[offset_info[, "Events"]==T]=2;
-		points(offset_info[,"Offsets"], subset_diversity, type="p", pch="*", 
-			font=2, cex=mark_event*1.5, col=col_assign[groups[i]]);
-		points(offset_info[,"Offsets"], subset_diversity, type="p", pch="*", 
-			cex=mark_event);
+		for(e_ix in 1:num_event_types){
+			plot_event(offset_info[,"Offsets"], subset_diversity+char_height*e_ix, events_mat[, e_ix]);
+		}
 
 		###############################################################
 
-		# Plot abundances
+		# Plot abundances bar plots
 		palette(category_colors);
 		subset_norm=normalized_mat[subset_samples,];
 		plot(offset_info[,"Offsets"], subset_diversity, main=groups[i],
-			 xlab="Time", ylab="Taxa", type="n", col=i, lwd=2,
-			 xlim=offset_ranges, ylim=c(0,1+.15));
+			 xlab="Time", ylab="", type="n", col=i, lwd=2,
+			 yaxt="n",
+			 xlim=offset_ranges, ylim=c(0,1+.25));
+
+		abd_pos=c(0, .25, .33, .5, .66, .75, 1);
+		axis(side=2, at=abd_pos, labels=sprintf("%2.2f", abd_pos), las=2, cex.axis=.75);
+		abline(h=c(0, 1), lwd=.5, col="grey75");
+		abline(h=c(.25, .5, .75), lwd=.4, col="grey85");
+		abline(h=c(.33, .66), lwd=.4, col="grey95");
+
+		char_height=par()$cxy[2]*.75;
 
 		# Plot stacked abundances
 		for(t in 1:num_members){
@@ -288,11 +325,9 @@ plot_sample_distributions_by_individual=function(diversity_arr, div_type, normal
 		}
 
 		# Mark Events
-		for(t in 1:num_members){
-			has_event=(offset_info[subset_samples[t], "Events"]);
-			if(!is.na(has_event) && has_event==T){
-				points(offset_info[subset_samples[t], "Offsets"], y=1.075, pch=8);
-			}
+		for(e_ix in 1:num_event_types){
+			plot_event(offset_info[subset_samples, "Offsets"], 
+				rep(1.075+(e_ix-1)*char_height, num_members), events_mat[, e_ix]);
 		}
 
 		###############################################################
@@ -343,6 +378,9 @@ plot_sample_diversity_by_group=function(diversity_arr, div_type, normalized_mat,
 	# Set palette for individuals
 	palette(ind_colors);
 
+	events_range=4:ncol(offsets_mat);
+	num_event_types=length(events_range);
+
 	for(g in 1:num_cohorts){
 
 		cat("Plotting: ", cohorts[g], "\n");
@@ -351,6 +389,7 @@ plot_sample_diversity_by_group=function(diversity_arr, div_type, normalized_mat,
 			 xlim=offset_ranges, ylim=diversity_ranges);
 
 		coh_offset_mat=offsets_mat[ offsets_mat[,"Group ID"]==cohorts[g], ];
+		events_mat=coh_offset_mat[, events_range, drop=F];
 		print(coh_offset_mat);
 
 		# Get Unique Inidividuals
@@ -389,12 +428,12 @@ plot_sample_diversity_by_group=function(diversity_arr, div_type, normalized_mat,
 			points(offset_info[,"Offsets"], subset_diversity, type="l", lwd=.1, col="black");
 
 			# Mark Events
-			mark_event=rep(0, num_timepts);
-			mark_event[offset_info[, "Events"]==T]=2;
-			points(offset_info[,"Offsets"], subset_diversity, type="p", pch="*", 
-				font=2, cex=mark_event*1.5, col=col_assign[indivs[i]]);
-			points(offset_info[,"Offsets"], subset_diversity, type="p", pch="*", 
-				cex=mark_event);
+			#mark_event=rep(0, num_timepts);
+			#mark_event[offset_info[, "Events"]==T]=2;
+			#points(offset_info[,"Offsets"], subset_diversity, type="p", pch="*", 
+		#		font=2, cex=mark_event*1.5, col=col_assign[indivs[i]]);
+			#points(offset_info[,"Offsets"], subset_diversity, type="p", pch="*", 
+			#	cex=mark_event);
 
 		}
 	}
@@ -439,6 +478,8 @@ plot_sample_distributions_by_group=function(normalized_mat, offsets_mat, cat_col
 	cat("Minimum period: ", min_period, "\n");
 
 	palette(cat_colors);
+	events_range=4:ncol(offsets_mat);
+	num_event_types=length(events_range);
 
 	# Set up plots per page
 	def_par=par(no.readonly=T);
@@ -471,6 +512,7 @@ plot_sample_distributions_by_group=function(normalized_mat, offsets_mat, cat_col
 			offset_info=coh_offset_mat[ind_subset,];
 			sort_ix=order(offset_info[,"Offsets"]);
 			offset_info=offset_info[sort_ix,];
+			events_mat=offset_info[, events_range, drop=F];
 			print(offset_info);
 
 			###############################################################
@@ -483,7 +525,9 @@ plot_sample_distributions_by_group=function(normalized_mat, offsets_mat, cat_col
 			plot(0, 0, main="",
 				xlab="", ylab=indivs[i], type="n", bty="n",
 				xaxt=xaxt_setting, yaxt="n",
-				xlim=offset_ranges, ylim=c(0,1+.15));
+				xlim=offset_ranges, ylim=c(0, 1+.5*num_event_types));
+
+			char_height=par()$cxy[2]*.5;
 
 			subset_samples=rownames(offset_info);
 
@@ -502,11 +546,9 @@ plot_sample_distributions_by_group=function(normalized_mat, offsets_mat, cat_col
 			}
 
 			# Mark Events
-			for(t in 1:num_timepts){
-				has_event=(offset_info[subset_samples[t], "Events"]);
-				if(!is.na(has_event) && has_event==T){
-					points(offset_info[subset_samples[t], "Offsets"], y=1.075, pch=8);
-				}
+			for(e_ix in 1:num_event_types){
+				plot_event(offset_info[subset_samples, "Offsets"], 
+					rep(1.15+(e_ix-1)*char_height, num_timepts), events_mat[, e_ix]);
 			}
 		}
 
