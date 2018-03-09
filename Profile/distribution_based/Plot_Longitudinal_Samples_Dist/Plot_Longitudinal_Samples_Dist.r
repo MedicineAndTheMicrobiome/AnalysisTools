@@ -703,8 +703,8 @@ plot_change_scatter=function(diversity_arr, offset_mat){
 			res=wilcox.test(all_ends_and_groups[[aeag_idx_A]], all_ends_and_groups[[aeag_idx_B]]);
 			pval_matrix[aeag_idx_A, aeag_idx_B]=res$p.value;
 			diff_matrix[aeag_idx_A, aeag_idx_B]=(
-				abs(diff(c(mean(c(all_ends_and_groups[[aeag_idx_A]])), 
-				mean(all_ends_and_groups[[aeag_idx_B]])))));
+				abs(diff(c(median(c(all_ends_and_groups[[aeag_idx_A]])), 
+				median(all_ends_and_groups[[aeag_idx_B]])))));
 		}
 	}
 	print(pval_matrix);
