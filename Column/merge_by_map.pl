@@ -95,13 +95,16 @@ print STDERR "Verbose? $Verbose\n";
 print STDERR "\n";
 
 ###############################################################################
+# Load the mapping file
 
 my %map_hash;
 
 print STDERR "Loading Map File...\n";
 open(MAP_FH, "<$MapFile") || die "Could not open map file: $MapFile\n";
+
 my $line=0;
 my $map_header="";
+
 while(<MAP_FH>){
 	chomp;
 	my @array=split /\t/, $_, -1;
@@ -113,7 +116,7 @@ while(<MAP_FH>){
 	my $key=$array[$MapFileKeyCol];
 
 	# Store header line separately
-	if($line==0 && $MapFileHeader=="Y"){
+	if($line==0 && $MapFileHeader eq "Y"){
 		$map_header=$key;
 	}else{
 		$map_hash{$key}=$out_str;
@@ -123,7 +126,7 @@ while(<MAP_FH>){
 }
 close(MAP_FH);
 
-if($map_header==""){
+if($map_header eq ""){
 	$map_header=fileparse($MapFile);
 }
 if(defined($OuputHeaderName)){
@@ -151,7 +154,6 @@ if($Verbose){
 	my @map_keys=keys %map_hash;
 	print STDERR "Map Keys:\n";
 	print_arr(\@map_keys);
-
 	print STDERR "\n";
 
 	# Output File Keys
@@ -188,7 +190,7 @@ while(<INPUT_FH>){
 		$InsertCol=$#array+1;
 	}
 
-	if($line==0 && $InputFileHeader=="Y"){
+	if($line==0 && $InputFileHeader eq "Y"){
 		# Output header with new columns inserted in
 		print STDERR "Inserting $map_header into column $InsertCol...\n";
 		splice @out_array, $InsertCol, 0, $map_header;
