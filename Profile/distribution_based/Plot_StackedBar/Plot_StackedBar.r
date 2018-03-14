@@ -867,7 +867,7 @@ if(num_crossings>0){
 			rem_cros_var=setdiff(crossing_var, excl_var);
 
 			cat("PDF Width: ", num_uniq[1], " Height: ", num_uniq[2], "\n");
-			pdf(paste(OutputFileRoot, ".", rem_cros_var[1], "_x_", rem_cros_var[2], ".pdf", sep=""),
+			pdf(paste(OutputFileRoot, ".", rem_cros_var[1], "_x_", rem_cros_var[2], "_x_", excl_var, ".pdf", sep=""),
 				width=max(num_uniq[rem_cros_var[1]], 3),
 				height=num_uniq[rem_cros_var[2]]*2
 			);
@@ -884,7 +884,7 @@ if(num_crossings>0){
 			for(lev in levels){
 				keep_ix=(grp_mat[,excl_var]==lev);
 				plot_2D_stacked(rem_cros_var[1], rem_cros_var[2], 
-					c(crossing_var[1], crossing_var[2], lev),
+					c(rem_cros_var[1], rem_cros_var[2], lev),
 					grp_mat[keep_ix,,drop=F], simplified_mat, LabelThreshold);	
 			}
 
