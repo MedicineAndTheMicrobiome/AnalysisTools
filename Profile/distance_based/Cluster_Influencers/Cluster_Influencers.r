@@ -124,8 +124,11 @@ if(length(opt$factor_names_list)){
 }
 
 useMetadata=T;
+w_meta_ext="";
 if(FactorFilename==""){
 	useMetadata=F;
+}else{
+	w_meta_ext=".meta";
 }
 
 
@@ -481,7 +484,7 @@ reconcile_factors_and_summary_table=function(fact, st){
 
 ###############################################################################
 
-output_fname_root = paste(OutputFileRoot, ".", dist_type, sep="");
+output_fname_root = paste(OutputFileRoot, ".", dist_type, w_meta_ext, sep="");
 cat("\n");
 cat("Input Summary Table Name: ", InputFileName, "\n", sep="");
 cat("Output Filename Root: ", output_fname_root, "\n", sep="");
