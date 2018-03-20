@@ -344,14 +344,15 @@ analyze_qv_list=function(qvint_list, max_len, name){
 
 #------------------------------------------------------------------------------
 
-plot_reads_per_sample=function(num_reads, sample_names){
+plot_reads_per_sample=function(num_reads, sample_names, label.cex=1){
 	barplot(num_reads, names.arg=sample_names, las=2, col="white",
 		ylab="Number of Reads",
-		main="Reads per Sample"
+		main="Reads per Sample",
+		cex.names=label.cex
 	);
 }
 
-plot_qv=function(qv_ci, sample_names){
+plot_qv=function(qv_ci, sample_names, label.cex=1){
 
 	max_qv=max(qv_ci);
 
@@ -369,14 +370,15 @@ plot_qv=function(qv_ci, sample_names){
 	barplot(qv_ci[,2], names.arg=sample_names, las=2, col="white",
 		ylab="Median QV",
 		main="Median Quality Values",
-		add=T
+		add=T,
+		cex.names=label.cex
 	);
 	points(mids, qv_ci[,1], pch="+", cex=2, col="red");
 	points(mids, qv_ci[,3], pch="+", cex=2, col="green");
 
 }
 
-plot_len=function(len_ci, sample_names){
+plot_len=function(len_ci, sample_names, label.cex=1){
 	max_len=max(len_ci);
 
 	num_samples=nrow(len_ci);
@@ -392,7 +394,8 @@ plot_len=function(len_ci, sample_names){
 	barplot(len_ci[,2], names.arg=sample_names, las=2, col="white",
 		ylab="Length (bps)",
 		main="Median Lengths",
-		add=T
+		add=T,
+		cex.names=label.cex
 	);
 	points(mids, len_ci[,1], pch="+", cex=2, col="red");
 	points(mids, len_ci[,3], pch="+", cex=2, col="green");
@@ -450,11 +453,18 @@ def_mar=par()$mar;
 fat_bottom=def_mar;
 
 fat_bottom[1]=fat_bottom[1]*max(1, max_samp_name_len/7);
+if(fat_bottom[1]>10){
+	label.cex=(cex=10/fat_bottom[1]);
+	fat_bottom[1]=10;
+}else{
+	label.cex=1;
+}
+
 par(mar=fat_bottom);
 
-plot_reads_per_sample(num_reads_per_sample, sample_names);
-plot_qv(qv_ci, sample_names);
-plot_len(len_ci, sample_names);
+plot_reads_per_sample(num_reads_per_sample, sample_names, label.cex=label.cex);
+plot_qv(qv_ci, sample_names, label.cex=label.cex);
+plot_len(len_ci, sample_names, label.cex=label.cex);
 
 # Generate QQ plot for median read lengths
 par(mfrow=c(3,1));
