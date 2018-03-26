@@ -1124,6 +1124,9 @@ print(anova_factor_names);
 uv_anova_pval_mat=matrix(NA, nrow=length(anova_factor_names), ncol=num_cat_to_analyze,
 		dimnames=list(anova_factor_names, sorted_taxa_names[1:num_cat_to_analyze]));
 
+uv_model_fit_pval_mat=matrix(NA, ncol=num_cat_to_analyze, nrow=1,
+		dimnames=list("p-value", sorted_taxa_names[1:num_cat_to_analyze]));
+
 
 # Store R^2 for each taxa
 rsqrd=numeric(num_cat_to_analyze);
@@ -1165,6 +1168,10 @@ for(var_ix in 1:num_cat_to_analyze){
 	uv_coeff_mat[avail_coef_names ,var_ix]=regress_table[avail_coef_names, "Estimate"];
 	uv_pval_mat[avail_coef_names ,var_ix]=regress_table[avail_coef_names, "Pr(>|t|)"];
 
+	# Model p-values
+	print(uv_summ$fstatistic);
+	uv_model_fit_pval_mat[1, var_ix]=1-pf(uv_summ$fstatistic["value"], uv_summ$fstatistic["numdf"], uv_summ$fstatistic["dendf"]);
+
 }
 
 cat("\nUnivariate Regression Coefficients:\n");
@@ -1173,7 +1180,8 @@ cat("\nUnivariate Regression P-values:\n");
 print(uv_pval_mat)
 cat("\nUnivariate ANOVA P-values:\n");
 print(uv_anova_pval_mat);
-cat("\n");
+cat("\nUnivariate Model P-values:\n");
+print(uv_model_fit_pval_mat);
 
 # Plot univariate ANOVA F tests
 anova_factors=rownames(uv_anova_pval_mat);
@@ -1238,6 +1246,9 @@ rsqrd_mat=rbind(rsqrd, adj_rsqrd);
 rownames(rsqrd_mat)=c("R^2", "Adjusted R^2");
 colnames(rsqrd_mat)=sorted_taxa_names[1:num_cat_to_analyze];
 plot_correl_heatmap(rsqrd_mat, title="Univariate R Squared");
+
+# Plot Univariate Model F-stat
+plot_correl_heatmap(uv_model_fit_pval_mat, title="Univariate Model Fit F-stat P-values");
 
 # Plot univariate coefficients
 not_na_coeff=apply(uv_coeff_mat, 1, function(x){!any(is.na(x))});
