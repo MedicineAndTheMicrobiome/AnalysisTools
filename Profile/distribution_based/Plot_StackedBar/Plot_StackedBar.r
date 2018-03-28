@@ -799,8 +799,19 @@ if(num_crossings>0){
 
 		par(mar=c(.25,.25,.25,.25));
 		par(oma=c(3,3,5,1));
-		par(mfrow=c(num_v2_levels, num_v1_levels));
 
+		if(num_v1_levels==0){
+			cat(var1, ": does not contain levels.\n");
+			v1_levels=unique(grpd_factors[,var1]);
+			num_v1_levels=length(v1_levels);
+		}
+		if(num_v2_levels==0){
+			cat(var2, ": does not contain levels.\n");
+			v2_levels=unique(grpd_factors[,var2]);
+			num_v2_levels=length(v2_levels);
+		}
+		
+		par(mfrow=c(num_v2_levels, num_v1_levels));
 
 		for(j in 1:num_v2_levels){
 			v2_lev=v2_levels[j];
@@ -904,6 +915,7 @@ if(num_crossings>0){
 			height=num_uniq[2]*2
 		);
 		
+		cat("Generating plot for 2-way crossings...\n");
 		plot_2D_stacked(crossing_var[1], crossing_var[2], 
 			c(crossing_var[1],  crossing_var[2], ""),
 			grp_mat, simplified_mat, LabelThreshold);	
