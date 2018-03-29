@@ -407,7 +407,7 @@ plot_qnorm=function(values, sample_names, data_name){
 		xlab="Normal Standard Deviations",
 		ylab=data_name,
 		main=paste("Sample ", data_name, " Normal Q-Q Plot", sep=""),
-		xlim=range(pts$x)*c(1.2, 1.2), ylim=range(pts$y)*c(1/1.2, 1.2), cex=.5, col="red");
+		xlim=range(pts$x, na.rm=T)*c(1.2, 1.2), ylim=range(pts$y, na.rm=T)*c(1/1.2, 1.2), cex=.5, col="red");
 	qqline(values, col="blue");
 	text(pts$x, pts$y, sample_names, col="black", cex=.5, pos=1);
 }
