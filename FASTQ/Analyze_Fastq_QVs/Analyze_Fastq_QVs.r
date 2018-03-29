@@ -354,7 +354,7 @@ plot_reads_per_sample=function(num_reads, sample_names, label.cex=1){
 
 plot_qv=function(qv_ci, sample_names, label.cex=1){
 
-	max_qv=max(qv_ci);
+	max_qv=max(qv_ci, na.rm=T);
 
 	num_samples=nrow(qv_ci);
 	mids=barplot(qv_ci[,2], plot=F);
@@ -379,7 +379,7 @@ plot_qv=function(qv_ci, sample_names, label.cex=1){
 }
 
 plot_len=function(len_ci, sample_names, label.cex=1){
-	max_len=max(len_ci);
+	max_len=max(len_ci, na.rm=T);
 
 	num_samples=nrow(len_ci);
 	mids=barplot(len_ci[,2], plot=F);
@@ -432,13 +432,18 @@ for(i in 1:num_samples){
 	max_samp_name_len=max(max_samp_name_len, nchar(sample_names[i]));
 
 	data=read_fastq_file(filepaths[i], keep_qual=T, head=Head, quick=NoValidation);
-	qv_int=qvstr_to_int_list(data[["qual"]], Offset);
 
-	summary=analyze_qv_list(qv_int, data[["max_len"]], sample_names[i]);
+	if(data[["num_recs"]]>0){
+		qv_int=qvstr_to_int_list(data[["qual"]], Offset);
+		summary=analyze_qv_list(qv_int, data[["max_len"]], sample_names[i]);
+		qv_ci[i,]=summary[["qv_ci"]];
+		len_ci[i,]=summary[["len_ci"]];
+	}else{
+		qv_ci[i,]=c(NA,NA,NA);
+		len_ci[i,]=c(NA,NA,NA);
+	}
 
 	num_reads_per_sample[i]=data[["num_recs"]];
-	qv_ci[i,]=summary[["qv_ci"]];
-	len_ci[i,]=summary[["len_ci"]];
 	
 	cat("\n");
 }
