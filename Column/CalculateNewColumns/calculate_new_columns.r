@@ -49,6 +49,7 @@ usage = paste(
 	"primary key or sample id for the matrix with the \"make_key\" command.\n",
 	"\n",
 	"In addition, the following non-standard R functions have been implemented:\n",
+	"\n",
 	"	bin(x, range_name, breaks): \n",
 	"		This will assign the range name to the values that fall between and outside the breaks\n",
 	"\n",	
@@ -82,6 +83,13 @@ usage = paste(
 	"\n",
 	"	Indexing:\n",
 	"		index(start=1) will assign a number from start to number of rows.\n",
+	"\n",
+	"	days_from_date(x):\n",
+	"		This will convert a date string, e.g. 2014-05-16, into the number of days\n",
+	"		since Thursday, 1 1970.  If it is before then, the number will be negative\n",
+	"		The function is a wrapper for as.Date, so you can check that to see what\n",	
+	"		formats it can handle.  The value may not be useful by itself, but should\n",
+	"		be used when calculating days between two events.\n",
 	"\n",
 	"\n");
 
@@ -250,6 +258,13 @@ str.chop_right=function(x, n){
 index=function(start=1){
 	# This will generate an index for each row in the input file
 	return(seq(start, num_samples));
+}
+
+#------------------------------------------------------------------------------
+
+days_from_date=function(x){
+	# This will convert a date string to the number of days since Jan 1, 1970.
+	return(as.numeric(as.Date(x)));
 }
 
 ##############################################################################

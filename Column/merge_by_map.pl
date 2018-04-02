@@ -104,6 +104,7 @@ open(MAP_FH, "<$MapFile") || die "Could not open map file: $MapFile\n";
 
 my $line=0;
 my $map_header="";
+my $num_fields_to_insert;
 
 while(<MAP_FH>){
 	chomp;
@@ -112,12 +113,13 @@ while(<MAP_FH>){
 
 	# Remove key column
 	splice @out_arr, $MapFileKeyCol, 1;
+	$num_fields_to_insert=$#out_arr+1;
 	my $out_str=join "\t", @out_arr;
 	my $key=$array[$MapFileKeyCol];
 
 	# Store header line separately
 	if($line==0 && $MapFileHeader eq "Y"){
-		$map_header=$key;
+		$map_header=$out_str;
 	}else{
 		$map_hash{$key}=$out_str;
 	}
@@ -134,7 +136,7 @@ if(defined($OuputHeaderName)){
 }
 
 print STDERR "Output Column Name: $map_header\n";
-
+print STDERR "Num columns to insert from map file: $num_fields_to_insert\n";
 
 ###############################################################################
 
@@ -158,7 +160,14 @@ if($Verbose){
 
 	# Output File Keys
 	my @in_keys;
-	open(IN_FH, "head -n 11 $InputFile |") || die "Could not open $InputFile\n";
+	my $skip;
+
+	if($InputFileHeader){
+		open(IN_FH, "tail -n +2 $InputFile | head -n 10 |") || die "Could not open $InputFile\n";
+	}else{
+		open(IN_FH, "head -n 10 $InputFile |") || die "Could not open $InputFile\n";
+	}
+
 	while(<IN_FH>){
 		chomp;
 		my @arr=split /\t/, $_;
@@ -173,6 +182,10 @@ if($Verbose){
 }
 
 ###############################################################################
+
+my $undef_str="NA" . ("\tNA" x  ($num_fields_to_insert-1));
+print STDERR "String used when mapping not possible: '$undef_str'\n";
+
 
 open(INPUT_FH, "<$InputFile") || die "Could not open input file: $InputFile\n";
 open(OUTPUT_FH, ">$OutputFile") || die "Could not open output file: $OutputFile\n";
@@ -192,7 +205,7 @@ while(<INPUT_FH>){
 
 	if($line==0 && $InputFileHeader eq "Y"){
 		# Output header with new columns inserted in
-		print STDERR "Inserting $map_header into column $InsertCol...\n";
+		print STDERR "Inserting '$map_header' into column $InsertCol...\n";
 		splice @out_array, $InsertCol, 0, $map_header;
 	}else{
 
@@ -200,7 +213,7 @@ while(<INPUT_FH>){
 		my $map_val=$map_hash{$key};
 
 		if(!defined($map_val)){
-			$map_val="UNDEFINED";			
+			$map_val=$undef_str;
 			if($Verbose && !defined($unmapped_hash{$key})){
 				$unmapped_hash{$key}=1;
 				print STDERR "No Mapping for: $key\n";
