@@ -225,7 +225,10 @@ for(i in 1:num_factors){
 			par(mar=c(max(bottom_pad, max_lablen/1.7),5,1,1));
 		}
 
-		barplot(t, xlab="", ylab="Frequency", main=factor_names[i], col="white", las=2);
+		max_freq=max(t);
+		barplot(t, 
+			ylim=c(0, max_freq*1.2),
+			xlab="", ylab="Frequency", main=factor_names[i], col="white", las=2);
 
 		if(max_lablen>5){
 			par(mar=c(bottom_pad,5,1,1));
