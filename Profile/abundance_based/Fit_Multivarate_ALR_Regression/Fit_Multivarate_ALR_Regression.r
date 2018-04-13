@@ -945,15 +945,16 @@ text=character();
 text[1]="Reference factor levels:";
 text[2]="";
 
+factor_names=colnames(factors);
 for(i in 1:num_factors){
         fact_levels=levels(factors[,i]);
+
         if(!is.null(fact_levels)){
                 fact_info=paste(factor_names[i], ": ", fact_levels[1], sep="");
         }else{
                 fact_info=paste(factor_names[i], ": None (ordered factor)", sep="");
         }
         text=c(text, fact_info);
-
 }
 
 text=c(text, "");
