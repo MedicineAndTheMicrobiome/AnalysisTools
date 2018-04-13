@@ -5,9 +5,9 @@
 use strict;
 use Getopt::Std;
 use File::Temp;
-use vars qw ($opt_i $opt_b $opt_n $opt_s $opt_c $opt_l $opt_d $opt_t $opt_a);
+use vars qw ($opt_i $opt_b $opt_n $opt_s $opt_e $opt_N $opt_c $opt_l $opt_d $opt_t $opt_a);
 
-getopts("i:bn:sc:l:dta");
+getopts("i:bn:seNc:l:dta");
 
 my $usage = "
 	usage:
@@ -18,6 +18,8 @@ my $usage = "
 		[-b (blanks (\"\") to NA flag)]
 		[-n \"<comma-separated list of values to convert to NA>\"]
 		[-s (convert spaces to underscore)]
+		[-e (convert Excel errors to NA)]
+		[-N (convert N/A and n/a to NA)]
 
 		Target Columns:
 		[-c <list of Columns to translate, starting from 0, default ALL columns>]
@@ -39,8 +41,11 @@ my $usage = "
 
 	-b will convert blanks to NA
 	-n will convert everything in the specified list to an NA
-		e.g. -n \"-2,null\" will convert the strings -2 and null to NA.
+		e.g. -n \"-2,null!\" will convert the strings -2 and null to NA.
 	-s will convert spaces (' ') to underscore ('_')
+
+	-e will convert Excel spreadsheet errors to NA:
+		#DIV/0, #N/A, #NAME?, #NULL!, #NUM!, #REF!, #VALUE!
 	
 ";
 
@@ -55,6 +60,8 @@ my $InputFile=$opt_i;
 my $ConvBlanks=defined($opt_b);
 my @ConvList=split ",", $opt_n;
 my $ConvSpaces=defined($opt_s);
+my $ConvExcelErr=defined($opt_e);
+my $ConvNsA=defined($opt_N);
 
 my @Columns;
 if(defined($opt_c)){
@@ -141,23 +148,49 @@ if($Delimitor eq ""){
 
 ###############################################################################
 
+my %excel_error_hash;
+$excel_error_hash{"#DIV/0"}=1;
+$excel_error_hash{"#N/A"}=1;
+$excel_error_hash{"#NAME?"}=1;
+$excel_error_hash{"#NULL!"}=1;
+$excel_error_hash{"#NUM!"}=1;
+$excel_error_hash{"#REF!"}=1;
+$excel_error_hash{"#VALUE!"}=1;
+
+my %changes_hash;
+
 sub clean_item{
 	my $item=shift;
 
 	if($ConvSpaces){
 		$item=~s/ /_/g;
+		$changes_hash{"Spaces Converted"}++;
 	}
 
 	if($ConvBlanks){
 		if($item eq ""){
-			$item="NA";
+			return("NA");
 		}
+		$changes_hash{"Blanks"}++;
 	}
 
 	if(defined($map{$item})){
-		$item="NA";
+		$changes_hash{$item}++;
+		return("NA");
 	}
 
+	if($ConvExcelErr){
+		if(defined($excel_error_hash{$item})){
+			$changes_hash{$item}++;
+			return("NA");
+		}
+	}
+
+	if($ConvNsA && (uc($item) eq "N/A")){
+		$changes_hash{$item}++;
+		return("NA");	
+	}
+	
 	return($item);
 }
 
@@ -207,6 +240,12 @@ while(<IN_FH>){
 close(IN_FH);
 
 ###############################################################################
+
+print STDERR "Changes made:\n";
+foreach my $items (sort keys %changes_hash){
+	print STDERR "\t$items: $changes_hash{$items}\n";
+}
+print STDERR "\n";
 
 print STDERR "Num Lines Processed: $input_lines\n";
 print STDERR "Done.\n";
