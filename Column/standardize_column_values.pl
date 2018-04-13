@@ -5,9 +5,9 @@
 use strict;
 use Getopt::Std;
 use File::Temp;
-use vars qw ($opt_i $opt_b $opt_n $opt_s $opt_e $opt_N $opt_c $opt_l $opt_d $opt_t $opt_a);
+use vars qw ($opt_i $opt_b $opt_n $opt_s $opt_e $opt_N $opt_q $opt_D $opt_h $opt_p $opt_c $opt_l $opt_d $opt_t $opt_a);
 
-getopts("i:bn:seNc:l:dta");
+getopts("i:bn:seNqDhpc:l:dta");
 
 my $usage = "
 	usage:
@@ -21,6 +21,13 @@ my $usage = "
 		[-e (convert Excel errors to NA)]
 		[-N (convert N/A and n/a to NA)]
 
+		Special conversion options:
+		[-q (remove ? marks from end, adds 'had_' to beginning)]
+		[-D (convert % to pct)]
+		[-h (convert - hyphen to .)]
+		[-p (convert + plus to 'p')]
+	
+		
 		Target Columns:
 		[-c <list of Columns to translate, starting from 0, default ALL columns>]
 
@@ -62,6 +69,10 @@ my @ConvList=split ",", $opt_n;
 my $ConvSpaces=defined($opt_s);
 my $ConvExcelErr=defined($opt_e);
 my $ConvNsA=defined($opt_N);
+my $ConvQuestionMarks=defined($opt_q);
+my $ConvPercentMarks=defined($opt_D);
+my $ConvHyphenMarks=defined($opt_h);
+my $ConvPlusMarks=defined($opt_p);
 
 my @Columns;
 if(defined($opt_c)){
@@ -189,6 +200,24 @@ sub clean_item{
 	if($ConvNsA && (uc($item) eq "N/A")){
 		$changes_hash{$item}++;
 		return("NA");	
+	}
+
+	if($ConvQuestionMarks){
+		if($item=~s/\?$//){
+			$item="had_".$item;
+		}
+	}
+
+	if($ConvPercentMarks){
+		$item=~s/\%/pct/g;
+	}
+
+	if($ConvHyphenMarks){
+		$item=~s/\-/\./g;
+	}
+
+	if($ConvPlusMarks){
+		$item=~s/\+/p/g;
 	}
 	
 	return($item);
