@@ -18,8 +18,8 @@ script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
 usage = paste (
 	"\nUsage:\n\n", script_name,
 	"\n",
-	"	-i <input summary table.xls>\n",
-	"	-k <list of keywords look for>\n",
+	"	-i <input summary_table.tsv file name>\n",
+	"	-k <file name for list of keywords look for>\n",
 	"	[-c <case sensitive, default = not>]\n",
 	"	[-w <stand alone word, default = not>]\n",
 	"	[-o <output file name root>]\n",
