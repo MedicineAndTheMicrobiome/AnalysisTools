@@ -261,6 +261,11 @@ open(IN_FH, "<$InputFile") || die "Could not open input file $InputFile\n";
 
 while(<IN_FH>){
 	chomp;
+
+	if($_ eq ""){
+		next;
+	}
+	
 	my @array=split /$Delimitor/, $_, -1;
 
 	my $num_col=$#array+1;
