@@ -5,28 +5,36 @@
 use strict;
 use Getopt::Std;
 use File::Temp;
-use vars qw ($opt_i $opt_b $opt_n $opt_s $opt_e $opt_N $opt_q $opt_D $opt_h $opt_p $opt_c $opt_l $opt_d $opt_t $opt_a);
+use vars qw ($opt_i $opt_b $opt_n $opt_e $opt_N $opt_g $opt_c $opt_l $opt_d $opt_t $opt_a);
 
-getopts("i:bn:seNqDhpc:l:dta");
+getopts("i:bn:eNgcl:dta");
 
 my $usage = "
 	usage:
 	$0
 		-i <Input char-delimited file name>
 		
-		Conversion options:
+		NA conversion options:
 		[-b (blanks (\"\") to NA flag)]
 		[-n \"<comma-separated list of values to convert to NA>\"]
-		[-s (convert spaces to underscore)]
 		[-e (convert Excel errors to NA)]
 		[-N (convert N/A and n/a to NA)]
 
 		Special conversion options:
-		[-q (remove ? marks from end, adds 'had_' to beginning)]
-		[-D (convert % to pct)]
-		[-h (convert - hyphen to .)]
-		[-p (convert + plus to 'p')]
-	
+		[-g (agGressive special character conversion)]
+
+		  1.) convert internal ? to '.'
+		  2.) convert % to 'pct'
+		  3.) convert - hyphen to '.'
+		  4.) convert + plus to 'p'
+		  5.) convert = to '.eq.'
+		  6.) convert spaces to '_', underscore
+		  7.) remove parenthesis 
+		  8.) convert / to '.'
+		  9.) convert , to '_'
+		  10.) Remove trailing and leading underscores, as well as repeated underscores
+		  11.) remove end ? marks, adds 'had_' to beginning
+		
 		
 		Target Columns:
 		[-c <list of Columns to translate, starting from 0, default ALL columns>]
@@ -46,10 +54,8 @@ my $usage = "
 	use it to update a metadata file where you need to convert some values
 	to NA if they were coded using an arbitrary value.
 
-	-b will convert blanks to NA
 	-n will convert everything in the specified list to an NA
 		e.g. -n \"-2,null!\" will convert the strings -2 and null to NA.
-	-s will convert spaces (' ') to underscore ('_')
 
 	-e will convert Excel spreadsheet errors to NA:
 		#DIV/0, #N/A, #NAME?, #NULL!, #NUM!, #REF!, #VALUE!
@@ -66,13 +72,9 @@ my $InputFile=$opt_i;
 # Conversion Options
 my $ConvBlanks=defined($opt_b);
 my @ConvList=split ",", $opt_n;
-my $ConvSpaces=defined($opt_s);
 my $ConvExcelErr=defined($opt_e);
 my $ConvNsA=defined($opt_N);
-my $ConvQuestionMarks=defined($opt_q);
-my $ConvPercentMarks=defined($opt_D);
-my $ConvHyphenMarks=defined($opt_h);
-my $ConvPlusMarks=defined($opt_p);
+my $ConvAggressive=defined($opt_g);
 
 my @Columns;
 if(defined($opt_c)){
@@ -173,10 +175,6 @@ my %changes_hash;
 sub clean_item{
 	my $item=shift;
 
-	if($ConvSpaces){
-		$item=~s/ /_/g;
-		$changes_hash{"Spaces Converted"}++;
-	}
 
 	if($ConvBlanks){
 		if($item eq ""){
@@ -202,22 +200,54 @@ sub clean_item{
 		return("NA");	
 	}
 
-	if($ConvQuestionMarks){
+	if($ConvAggressive){
+		
+		# Convert characters to underscores first
+		$item=~s/,/_/g;
+		$item=~s/ /_/g;
+		$item=~s/\(/_/g;
+		$item=~s/\)/_/g;
+		$item=~s/_+/_/g;
+		$item=~s/^_//;
+		$item=~s/_$//;
+
+
 		if($item=~s/\?$//){
-			$item="had_".$item;
+
+
+			my $lc_item=lc($item);
+			my $skip_append=0;
+			if($lc_item=~/^is/){ $skip_append=1; }
+			elsif($lc_item=~/^who/){ $skip_append=1; }
+			elsif($lc_item=~/^what/){ $skip_append=1; }
+			elsif($lc_item=~/^how/){ $skip_append=1; }
+			elsif($lc_item=~/^when/){ $skip_append=1; }
+			elsif($lc_item=~/^where/){ $skip_append=1; }
+			elsif($lc_item=~/^are/){ $skip_append=1; }
+			elsif($lc_item=~/^are/){ $skip_append=1; }
+			elsif($lc_item=~/^was/){ $skip_append=1; }
+			elsif($lc_item=~/^were/){ $skip_append=1; }
+			elsif($lc_item=~/^do/){ $skip_append=1; }
+			elsif($lc_item=~/^does/){ $skip_append=1; }
+			elsif($lc_item=~/^did/){ $skip_append=1; }
+			elsif($lc_item=~/^has/){ $skip_append=1; }
+			elsif($lc_item=~/^have/){ $skip_append=1; }
+			elsif($lc_item=~/^had/){ $skip_append=1; }
+
+			if(!$skip_append){
+				$item="had_".$item;
+			}
 		}
-	}
-
-	if($ConvPercentMarks){
-		$item=~s/\%/pct/g;
-	}
-
-	if($ConvHyphenMarks){
+		
+		# Convert characters to .
+		$item=~s/\?/\./g;
+		$item=~s/\//\./g;
 		$item=~s/\-/\./g;
-	}
 
-	if($ConvPlusMarks){
+		# Convert characters to string
 		$item=~s/\+/p/g;
+		$item=~s/\%/pct/g;
+		$item=~s/\=/.eq./g;
 	}
 	
 	return($item);
