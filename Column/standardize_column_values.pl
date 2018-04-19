@@ -207,6 +207,8 @@ sub clean_item{
 		$item=~s/ /_/g;
 		$item=~s/\(/_/g;
 		$item=~s/\)/_/g;
+
+		# Remove excess underscores
 		$item=~s/_+/_/g;
 		$item=~s/^_//;
 		$item=~s/_$//;
@@ -238,6 +240,10 @@ sub clean_item{
 				$item="had_".$item;
 			}
 		}
+
+		# Remove characters
+		$item=~s/"//g;
+		$item=~s/'//g;
 		
 		# Convert characters to .
 		$item=~s/\?/\./g;
