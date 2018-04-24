@@ -58,12 +58,14 @@ usage = paste(
 	"	  example:\n",
 	"	     gpa=remap(grade, c(\"A\", \"B\", \"C\", \"D\", \"E\"), c(4, 3, 2, 1, 0))\n",
 	"\n",
-	"	min.list(list(x, y, ...), na.rm=T):  This will take the minimum value between the pairs x, y, ...\n",
-	"	max.list(list(x, y, ...), na.rm=T):  This will take the maximum value between the pairs x, y, ...\n",
-	"	  * Note that this is necessary because R's min and max builtin function will return a scalar for min(x, y)\n",
+	"	function.list(fun, list(x, y, ...), na.rm=T): This a generic function that will apply the 'fun' command\n",
+	"		across the rows for each of the columns specificed in the list.\n",
 	"\n",
-	"	  example:\n",
-	"	     max_long_weekend_smokes=min.list(list(saturday, sunday, monday)); \n",
+	"	Examples of Functions that need this to work properly:\n",
+	"		min, max, sum, etc.\n",
+	"\n",
+	"	Example Usage:\n",
+	"	     max_long_weekend_smokes=function.list(max, list(saturday, sunday, monday)); \n",
 	"\n",
 	"	to.bool(x):  This will convert x to upper case and then to 0/1 so R won't treat them as factors:\n",
 	"			FALSE / TRUE\n",
@@ -194,17 +196,12 @@ remap=function(x, key, value){
 	return(new);
 }
 
-min.list=function(arglist, na.rm=T){
+function.list=function(fun, arglist, na.rm=T){
 	m=matrix(unlist(arglist), byrow=F, ncol=length(arglist));
-	out=apply(m, 1, function(x){min(x, na.rm=na.rm)});	
+	out=apply(m, 1, function(x){fun(x, na.rm=na.rm)});	
 	return(out);
 }
 
-max.list=function(arglist, na.rm=T){
-	m=matrix(unlist(arglist), byrow=F, ncol=length(arglist));
-	out=apply(m, 1, function(x){max(x, na.rm=na.rm)});	
-	return(out);
-}
 
 to.bool=function(x){
 	uppered=toupper(x);
