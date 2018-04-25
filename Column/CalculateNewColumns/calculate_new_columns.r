@@ -93,6 +93,15 @@ usage = paste(
 	"		formats it can handle.  The value may not be useful by itself, but should\n",
 	"		be used when calculating days between two events.\n",
 	"\n",
+	"	offsets_by_group(values, grouping)\n",
+	"		This will compute the relative offsets starting from 0, for all the values\n",
+	"		in the same group.  The group may be a subject ID and the values may be\n",
+	"		a time/date value.\n",
+	"\n",
+	"	indices_by_group(values, grouping)\n",
+	"		This will compute an index starting from 1, for all the values in the\n",
+	"		same group.  The groups may be a subject ID and the values may be a time/date\n",
+	"		value.  You can think of these as ordered visits.\n",
 	"\n");
 
 if(!length(opt$input) || !length(opt$formulas) || !length(opt$output)){
@@ -202,6 +211,32 @@ function.list=function(fun, arglist, na.rm=T){
 	return(out);
 }
 
+offsets_by_group=function(abs, grp){
+	uniq_grps=unique(grp);
+	num_uniq_grp=length(uniq_grps);
+	num_rows=length(abs);
+	out=rep(0, num_rows);
+	for(i in 1:num_uniq_grp){
+		grp_ix=(grp==uniq_grps[i]);
+		grp_val=abs[grp_ix];
+		min_val=min(grp_val);
+		out[grp_ix]=grp_val-min_val;
+	}
+	return(out);
+}
+
+indices_by_group=function(abs, grp){
+	uniq_grps=unique(grp);
+	num_uniq_grp=length(uniq_grps);
+	num_rows=length(abs);
+	out=rep(0, num_rows);
+	for(i in 1:num_uniq_grp){
+		grp_ix=which(grp==uniq_grps[i]);
+		grp_val=abs[grp_ix];
+		out[grp_ix]=rank(grp_val);
+	}
+	return(out);
+}
 
 to.bool=function(x){
 	uppered=toupper(x);
