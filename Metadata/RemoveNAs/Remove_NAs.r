@@ -196,10 +196,10 @@ remove_no_variation_factors=function(factors, verbose=T){
 		uniqs=unique(val);
 		if(length(uniqs)==1){
 			no_info=c(no_info, i);
-			if(verbose){
-				cat(cnames[i], ": Has no useful information.  It is all:\n");
-				print(uniqs);
-			}
+			#if(verbose){
+			cat(cnames[i], ": Has no useful information.  It is all:\n");
+			print(uniqs);
+			#}
 		}
 	}
 	if(length(no_info)>0){
@@ -334,6 +334,8 @@ remove_sample_or_factors_wNA_parallel=function(factors, required_variables=NULL,
 
 		factors=remove_samples_for_req_var(factors, required_variables);
 	}
+
+	factors=remove_no_variation_factors(factors, verbose);
 
 	res=registerDoMC(num_cores);
 	core_trials=ceiling(num_trials/num_cores);
