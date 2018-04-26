@@ -76,6 +76,13 @@ pdf(OutputPDF,width=8.5,height=8.5)
 load_offset=function(fname){
         cat("Loading Offsets: ", fname, "\n");
         offsets_mat=read.delim(fname,  header=FALSE, row.names=1, sep="\t", comment.char="#", quote="");
+
+		
+	ncol=ncol(offsets_mat);
+	if(ncol==2){
+		cat("Offsets file is missing Cohort ID.  Assuming all in the same cohort.\n");
+		offsets_mat=cbind(offsets_mat, rep(0, nrow(offsets_mat)));
+	}
 	colnames(offsets_mat)=c("Indiv ID", "Offsets", "Cohort ID");
 
 	# reset offsets
