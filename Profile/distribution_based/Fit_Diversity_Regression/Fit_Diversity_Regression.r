@@ -529,6 +529,28 @@ for(i in 1:num_div_idx){
 		cat("[", search_trial, "] Search range: ", lambda_start, " to ", lambda_end, "\n", sep="");
 		cat("Model: ", model_string, "\n");
 
+
+		degenerates=which(is.nan(raw));
+		if(length(degenerates)){
+			cat("*************************************\n");
+			cat("*  Degenerate diversities: \n");
+			print(raw[degenerates]);
+			cat("*************************************\n");
+			raw[degenerates]=0;
+		}
+
+		zero_ix=(raw==0);
+		if(any(zero_ix)){
+			cat("Zeros found in diversity:\n");
+			print(raw[zero_ix]);
+			min_nonzero=min(raw[!zero_ix]);
+			min_subst=min_nonzero/10;
+			cat("Adding ", min_nonzero, " / 10 = ", min_subst, " to all responses...\n", sep="");
+			raw=raw+min_subst;
+			print(sort(raw));
+		}
+
+
 		bc=boxcox(as.formula(model_string), data=factors, 
 			lambda=seq(lambda_start, lambda_end, length.out=SEARCH_FREQUENCY),
 			plotit=FALSE
