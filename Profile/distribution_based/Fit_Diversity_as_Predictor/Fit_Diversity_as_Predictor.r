@@ -427,7 +427,9 @@ plot_pred_vs_obs=function(lmfit_ful, lmfit_red, title=""){
 
 		# Plot Reduced
 		cat("Plotting Reduced:\n");
-		plot(obs_cur, pred_red[,resp_ix], main=response_names[resp_ix], 
+		shrd=intersect(names(obs_cur), names(pred_red[,resp_ix]));
+
+		plot(obs_cur[shrd], pred_red[shrd,resp_ix], main=response_names[resp_ix], 
 			xlim=rngs, ylim=rngs,
 			xlab="", ylab="Reduced Predicted");
 		mtext(paste("adj. R^2=",red_adjsqrd, "  p-val=", red_pval, sep=""), line=0, cex=.7)
@@ -435,7 +437,7 @@ plot_pred_vs_obs=function(lmfit_ful, lmfit_red, title=""){
 
 		# Plot Full
 		cat("Plotting Full:\n");
-		plot(obs_cur, pred_ful[,resp_ix], main="", 
+		plot(obs_cur[shrd], pred_ful[shrd,resp_ix], main="", 
 			xlim=rngs, ylim=rngs,
 			xlab="Observed", ylab="Full Predicted (w/ Diversity)");
 		mtext(paste("adj. R^2=",ful_adjsqrd, "  p-val=", ful_pval, sep=""), line=0, cex=.7)
@@ -663,9 +665,9 @@ num_factors=length(factor_names);
 normalized=normalized[samp_wo_nas,];
 num_samples=length(samp_wo_nas);
 
-print(model_string);
-print(factor_names);
 model_string=rem_missing_var_from_modelstring(model_string, factor_names);
+model_var=intersect(model_var, factor_names);
+
 cat("\n");
 cat("New Model String with Factors with NAs removed:\n");
 print(model_string);
@@ -677,7 +679,6 @@ summary_text=c(summary_text, "\n", remove_na_res$summary_text);
 ##############################################################################
 
 plot_text(summary_text);
-
 
 ##############################################################################
 # Compute diversity indices
@@ -705,10 +706,12 @@ cat("Plotting histograms of raw diversity indices.\n");
 par(mfrow=c(3,2));
 par(oma=c(1, 1, 1.5, 1));
 par(mar=c(5,4,4,2));
+
 for(i in 1:num_div_idx){
 	hist(div_mat[, div_names[i]], main=div_names[i], xlab=div_names[i], 
 		breaks=15);
 }
+
 mtext("Sample Diversity Indices Distributions", outer=T);
 
 ##############################################################################
@@ -721,6 +724,7 @@ num_resp_var=ncol(responses_mat);
 
 ##############################################################################
 # Plot Response Correlations
+cat("Plotting correlations among responses...\n");
 paint_matrix(cor(responses_mat), title="Response Correlations", plot_min=-1, plot_max=1, deci_pts=2);
 
 ##############################################################################
