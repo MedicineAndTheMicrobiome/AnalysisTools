@@ -864,8 +864,7 @@ plot_text(c(
 	capture.output(print(alr_cat_names))
 ));
 
-#print(response_factors);
-response_factors=as.matrix(response_factors);
+#response_factors=as.matrix(response_factors);
 dafr_predictors_factors=as.data.frame(cbind(covariate_factors, alr_categories_val));
 
 cat("Response Summary:\n");
@@ -879,7 +878,11 @@ cat("Plotting Response Histograms:\n");
 print(response_factors);
 plot_histograms(response_factors);
 
-cor_mat=cor(response_factors);
+is_numeric_response_factors=logical();
+for(i in 1:ncol(response_factors)){
+	is_numeric_response_factors[i]=is.numeric(response_factors[,i]);
+}
+cor_mat=cor(response_factors[, is_numeric_response_factors]);
 par(oma=c(1,1,1,1));
 paint_matrix(cor_mat, title="Response Correlations", value.cex=.7, plot_min=-1, plot_max=1 );
 
@@ -921,21 +924,21 @@ cat("ALR Predictors: \n", alr_category_formula_str, "\n", sep="");
 cat("\n");
 
 if(nchar(covariate_formula_str)){
-	formula_str=paste("response_factors ~ ", covariate_formula_str, " + ", alr_category_formula_str, sep="");
-	reduced_formula_str=paste("response_factors ~ ", covariate_formula_str, sep="");
+	formula_str=paste("response_factors_dfr ~ ", covariate_formula_str, " + ", alr_category_formula_str, sep="");
+	reduced_formula_str=paste("response_factors_dfr ~ ", covariate_formula_str, sep="");
 }else{
-	formula_str=paste("response_factors ~ ", alr_category_formula_str, sep="");
-	reduced_formula_str=paste("response_factors ~ 1", sep="");
+	formula_str=paste("response_factors_dfr ~ ", alr_category_formula_str, sep="");
+	reduced_formula_str=paste("response_factors_dfr ~ 1", sep="");
 }
 
+response_factors_dfr=as.matrix(response_factors);
+
 lmfit=lm(as.formula(formula_str), data=dafr_predictors_factors);
+
 reduced_lmfit=lm(as.formula(reduced_formula_str), data=dafr_predictors_factors);
 
 lm_summaries=summary(lmfit);
 reduced_lm_summaries=summary(reduced_lmfit);
-
-#print(lmfit);
-#print(lm_summaries);
 
 num_responses=length(responses_arr);
 
@@ -989,6 +992,9 @@ coefficient_names=rownames(lm_summaries[[1]]$coefficients);
 summary_var_names=rownames(lm_summaries[[1]]$coefficients);
 covariate_coefficients=setdiff(coefficient_names, c("(Intercept)", alr_cat_names));
 
+# In case some alr categories are not calculable...
+shrd_alr_names=intersect(alr_cat_names, coefficient_names);
+
 summary_res_coeff=matrix(0, nrow=num_coefficients, ncol=num_responses, dimnames=list(coefficient_names, response_fit_names));
 summary_res_pval=matrix(0, nrow=num_coefficients, ncol=num_responses, dimnames=list(coefficient_names, response_fit_names));
 summary_res_rsqrd=matrix(0, nrow=num_responses, ncol=3, dimnames=list(response_fit_names, 
@@ -1014,11 +1020,14 @@ for(i in 1:num_responses){
 		capture.output(print(univar_summary[covariate_coefficients,,drop=F]))
 	));
 
+
+
 	plot_text(c(
 		paste("Univariate: ", responses[i], sep=""),
 		"ALR Predictors portion of Full Model (Covariates + ALR):",
 		"\n",
-		capture.output(print(add_sign_col(univar_summary[alr_cat_names,,drop=F]), quote=F))
+
+		capture.output(print(add_sign_col(univar_summary[shrd_alr_names,,drop=F]), quote=F))
 	));
 
 	plot_text(c(
@@ -1058,13 +1067,13 @@ if(length(covariate_coefficients)>0){
 }
 
 # Variations of ALR Predictor Coefficients
-paint_matrix(summary_res_coeff[alr_cat_names,,drop=F], title="ALR Predictors Coefficients (By Decreasing Abundance)", 
+paint_matrix(summary_res_coeff[shrd_alr_names,,drop=F], title="ALR Predictors Coefficients (By Decreasing Abundance)", 
 	value.cex=1, deci_pts=2, plot_row_dendr=F, plot_col_dendr=F);
-paint_matrix(summary_res_coeff[alr_cat_names,,drop=F], title="ALR Predictors Coefficients (ALR Clusters)", 
+paint_matrix(summary_res_coeff[shrd_alr_names,,drop=F], title="ALR Predictors Coefficients (ALR Clusters)", 
 	value.cex=1, deci_pts=2, plot_row_dendr=T, plot_col_dendr=F);
-paint_matrix(summary_res_coeff[alr_cat_names,,drop=F], title="ALR Predictors Coefficients (Response Clusters)", 
+paint_matrix(summary_res_coeff[shrd_alr_names,,drop=F], title="ALR Predictors Coefficients (Response Clusters)", 
 	value.cex=1, deci_pts=2, plot_row_dendr=F, plot_col_dendr=T);
-paint_matrix(summary_res_coeff[alr_cat_names,,drop=F], title="ALR Predictors Coefficients (ALR and Response Clusters)", 
+paint_matrix(summary_res_coeff[shrd_alr_names,,drop=F], title="ALR Predictors Coefficients (ALR and Response Clusters)", 
 	value.cex=1, deci_pts=2, plot_row_dendr=T, plot_col_dendr=T);
 
 cat("\nP-values:\n");
@@ -1077,18 +1086,18 @@ if(length(covariate_coefficients)>0){
 }
 
 # Variations of ALR Predictor P-values
-paint_matrix(summary_res_pval[alr_cat_names,,drop=F], title="ALR Predictors P-values (By Decreasing Abundance)", 
+paint_matrix(summary_res_pval[shrd_alr_names,,drop=F], title="ALR Predictors P-values (By Decreasing Abundance)", 
 	plot_min=0, plot_max=1, high_is_hot=F, value.cex=1, deci_pts=2);
 
-paint_matrix(summary_res_pval[alr_cat_names,,drop=F], title="ALR Predictors P-values (ALR Clusters)", 
+paint_matrix(summary_res_pval[shrd_alr_names,,drop=F], title="ALR Predictors P-values (ALR Clusters)", 
 	plot_min=0, plot_max=1, high_is_hot=F, value.cex=1, deci_pts=2,
 	plot_row_dendr=T
 );
-paint_matrix(summary_res_pval[alr_cat_names,,drop=F], title="ALR Predictors P-values (Response Clusters)", 
+paint_matrix(summary_res_pval[shrd_alr_names,,drop=F], title="ALR Predictors P-values (Response Clusters)", 
 	plot_min=0, plot_max=1, high_is_hot=F, value.cex=1, deci_pts=2,
 	plot_col_dendr=T
 );
-paint_matrix(summary_res_pval[alr_cat_names,,drop=F], title="ALR Predictors P-values (ALR and Response Clusters)", 
+paint_matrix(summary_res_pval[shrd_alr_names,,drop=F], title="ALR Predictors P-values (ALR and Response Clusters)", 
 	plot_min=0, plot_max=1, high_is_hot=F, value.cex=1, deci_pts=2,
 	plot_row_dendr=T, plot_col_dendr=T
 );
@@ -1191,7 +1200,7 @@ for(var in covariate_coefficients){
 
 cat(file=fh, "\n");
 
-for(var in alr_cat_names){
+for(var in shrd_alr_names){
 	cat(file=fh, var, paste(
 		round(summary_res_coeff[var, response_names], 4), collapse="\t"), sep="\t");
 	cat(file=fh, "\n");
