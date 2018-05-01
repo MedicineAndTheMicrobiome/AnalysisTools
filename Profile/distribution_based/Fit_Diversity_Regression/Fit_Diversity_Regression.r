@@ -777,14 +777,12 @@ print(pred_arr);
 					cex=.5
 					);
 			}
-
 			# label predictor/factor name
-			lab_cex=min(1, 8/nchar(pred_names[pred_ix]));
+			lab_cex=min(1, 8/nchar(pred_arr[pred_ix]));
 			text(j+extra_sample_space, raw_adj_range[2], 
-				pred_names[pred_ix], cex=lab_cex*.75, col="black", family="", font=2, pos=3);
+				pred_arr[pred_ix], cex=lab_cex*.75, col="black", family="", font=2, pos=3);
 		}
 	}
-
 
 }
 
