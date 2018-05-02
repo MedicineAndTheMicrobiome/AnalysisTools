@@ -123,7 +123,7 @@ cat("Label Threshold: ", LabelThreshold, "\n");
 
 ###############################################################################
 
-OutputFileRoot=paste(OutputFileRoot, ".", substr(DiversityType, 1, 4), sep="");
+OutputFileRoot=paste(OutputFileRoot, ".", substr(DiversityType, 1, 4), ".t", NumTopCategories,  sep="");
 OutputPDF = paste(OutputFileRoot, ".stckd_bp.pdf", sep="");
 cat("Output PDF file name: ", OutputPDF, "\n", sep="");
 pdf(OutputPDF,width=8.5,height=14)
