@@ -72,7 +72,7 @@ if(ShortenCategoryNames==TRUE){
 ###############################################################################
 
 OutputPDF = paste(OutputFileRoot, ".pw_cmp.pdf", sep="");
-pdf(OutputPDF,width=8.5,height=14)
+pdf(OutputPDF,width=8.5,height=11)
 
 param_txt=capture.output(
 	{
@@ -261,18 +261,35 @@ plot_ratios=function(ratio_rec, samp_a_name, samp_b_name, title, which){
 	medians=ratio_rec[["medians"]][which];
 	LB95=ratio_rec[["LB95"]][which];
 	UB95=ratio_rec[["UB95"]][which];
+	num_cat_to_plot=sum(which);
 
+	# Compute plot ranges
 	ymin=min(LB95, UB95, medians);
 	ymax=max(LB95, UB95, medians);
 	yrange=ymax-ymin
 
+	# If we don't go above or below zero at all, then don't pad with 20%
+	ylimits=c(ymin-yrange*.05, ymax+yrange*.05);
+	if(ymax==0){
+		ylimits[2]=.01;
+	}
+	if(ymin==0){
+		ylimits[1]=-.01;
+	}
+
+	label_size=40/num_cat_to_plot
+	label_size=min(1, label_size);
 
 	plot_name=paste(samp_a_name, " vs. ", samp_b_name, ": ", title, sep="");
 	mids=barplot(medians, names.arg=category_names, 
-		main=plot_name, ylim=c(ymin-yrange*.2, ymax+yrange*.2),
+		main=plot_name, ylim=ylimits, cex.names=label_size,
 		las=2);
-	points(mids, UB95, pch="+");
-	points(mids, LB95, pch="+");
+
+	
+	for(i in 1:num_cat_to_plot){
+		points(c(mids[i], mids[i]), c(LB95[i], UB95[i]), 
+		cex=label_size, type="b", lwd=.5, col="grey");
+	}
 	
 }
 
@@ -327,6 +344,8 @@ idx=1:num_categories;
 cat("Generating bootstrapped samples:\n");
 bs_samp_list=make_bootstrap_samples(counts_mat, num_bs=2000, normalize=F);
 
+par(mar=c(40,4,4,1));
+
 cat("Starting pairwise comparisons:\n");
 for(samp_a_ix in 1:num_samples){
 
@@ -344,8 +363,15 @@ for(samp_a_ix in 1:num_samples){
 
 		ratios=calc_sorted_pair_ratios(bs_samp_list[[samp_a_name]], bs_samp_list[[samp_b_name]]);
 
+
+		plot(0,0, type="n", bty="n", xaxt="n", yaxt="n", xlab="", ylab="");
+		text(0,0, paste(samp_a_name, "\nvs.\n", samp_b_name, sep=""), cex=4);
+
 		cat("Plotting histogram...\n");
-		hist(ratios[["medians"]], main="Histogram of all Log Ratios", xlab="Log2 Ratios");
+		hist(ratios[["medians"]], 
+			xlab="Log2 Ratios",
+			main=paste(samp_a_name, " vs. ", samp_b_name, 
+				": Histogram of all Log Ratios", sep=""));
 
 		cat("Plotting top...\n");
 		for(top in c(10, 15, 25, 40, 100, 101)){
@@ -379,14 +405,14 @@ for(samp_a_ix in 1:num_samples){
 
 		plot_ratios(
 			ratios, samp_a_name, samp_b_name,
-			title="Log Ratio UB 95 < 0",
-			which=ratios[["UB95"]]<0
+			title="Log Ratio LB < 0 and UB > 0",
+			which=(ratios[["LB95"]]<0) & (ratios[["UB95"]]>0)
 		);
 
 		plot_ratios(
 			ratios, samp_a_name, samp_b_name,
-			title="Log Ratio LB < 0 and UB < 0",
-			which=(ratios[["LB95"]]<0) & (ratios[["UB95"]]>0)
+			title="Log Ratio UB 95 < 0",
+			which=ratios[["UB95"]]<0
 		);
 
 		
