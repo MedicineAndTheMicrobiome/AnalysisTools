@@ -3,6 +3,7 @@
 ###############################################################################
 #                                                                             #
 #       Copyright (c) 2013 J. Craig Venter Institute.                         #
+#       Copyright (c) 2018 University of Pittsburgh                           #
 #       All rights reserved.                                                  #
 #                                                                             #
 ###############################################################################
@@ -36,9 +37,9 @@ script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
 usage = paste (
 	"\nUsage:\n\n", script_name,
 	"\n",
-	"	-i <input summary table.xls>\n",
+	"	-i <input summary_table.tsv>\n",
 	"\n",	
-	"This script will report a quick summary of the contents of your summary_table.xls file.\n",
+	"This script will report a quick summary of the contents of your summary_table.tsv file.\n",
 	"\n",
 	"\n");
 
