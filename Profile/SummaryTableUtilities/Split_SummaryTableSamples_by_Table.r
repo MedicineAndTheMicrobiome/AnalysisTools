@@ -97,7 +97,7 @@ cat("Force on Error: ", ForceOnError, "\n");
 ###############################################################################
 
 # Load data
-inmat=as.matrix(read.table(InputFileName, sep="\t", header=TRUE, check.names=FALSE, row.names=1))
+inmat=as.matrix(read.table(InputFileName, sep="\t", header=TRUE, check.names=FALSE, comment.char="", quote="", row.names=1))
 #cat("\nOriginal Matrix:\n")
 #print(inmat);
 
