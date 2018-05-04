@@ -330,8 +330,8 @@ get_main_effects_from_formula_string=function(formula_string){
 draw_mean_ses=function(mean_matrix, stderr_matrix, title="Mean/SEs Plot", grp_col=NULL, include_zero_ref=F){
 
 	cat("Plotting Mean and Std Errors:\n");
-	#print(mean_matrix);
-	#print(stderr_matrix);
+	print(mean_matrix);
+	print(stderr_matrix);
 
 	num_groups=nrow(mean_matrix);
 	num_stats=ncol(mean_matrix);
@@ -645,7 +645,7 @@ cat("Main Effects:\n");
 print(main_effects);
 cat("\n");
 
-main_factors=all_factors[,main_effects];
+main_factors=all_factors[,main_effects, drop=F];
 
 ###############################################################################
 
@@ -655,6 +655,7 @@ num_shared_samples=length(shared_samples);
 cat("Num Shared Samples between Groupings/Summary Table: ", num_shared_samples, "\n");
 
 norm_mat=norm_mat[shared_samples,, drop=F];
+
 factors=main_factors[shared_samples,, drop=F];
 num_factors=ncol(factors);
 
@@ -684,7 +685,11 @@ if(any(is.na(main_factors))){
 	before_num_samples=nrow(factors);
 
 	orig_factor_names=colnames(factors);
-	factors=remove_sample_or_factors_wNA_parallel(factors, required=required_arr, num_trials=Num_Remove_NA_Trials, num_cores=64, outfile=OutputFileRoot);
+	noNA_result=remove_sample_or_factors_wNA_parallel(
+			factors, required=required_arr, num_trials=Num_Remove_NA_Trials, 
+			num_cores=64, outfile=OutputFileRoot);
+	factors=noNA_result$factors;
+	plot_text(noNA_result$summary_text);
 
 	after_num_factors=ncol(factors);
 	after_num_samples=nrow(factors);
@@ -956,9 +961,8 @@ for(num_cl in 2:max_clusters){
 		response[out_group_id]=0;
 	
 		#print(response);
-
 		mll_formula=paste("response~", ModelString, sep="");
-		mm=model.matrix(as.formula(paste("~", ModelString)), data=factors);
+		mm=model.matrix(as.formula(paste("~", ModelString, sep="")), data=factors);
 		in_group_id=sort(intersect(in_group_id, rownames(mm)));
 
 		print(response);
@@ -1005,11 +1009,11 @@ for(num_cl in 2:max_clusters){
 	aics[i]=aic;
 
 	# Remove Intercept
-	coeff_matrix=coeff_matrix[, -1];
-	coef_se_matrix=coef_se_matrix[, -1];
-	pval_matrix=pval_matrix[, -1];
-	mean_matrix=mean_matrix[, -1];
-	se_matrix=se_matrix[, -1];
+	coeff_matrix=coeff_matrix[, -1, drop=F];
+	coef_se_matrix=coef_se_matrix[, -1, drop=F];
+	pval_matrix=pval_matrix[, -1, drop=F];
+	mean_matrix=mean_matrix[, -1, drop=F];
+	se_matrix=se_matrix[, -1, drop=F];
 	
 	rownames(coeff_matrix)=1:num_cl;
 	rownames(coef_se_matrix)=1:num_cl;
@@ -1058,6 +1062,9 @@ for(num_cl in 2:max_clusters){
 
 plot_coeff_pvalues=function(pval_matrix, line_col, title){
 
+	cat("Plotting: ", title, "\n", sep="");
+	matrix_dim=dim(pval_matrix);
+	
 	num_coefficients=ncol(pval_matrix);
 
 	# Plot P-values across clusters
@@ -1086,41 +1093,44 @@ plot_coeff_pvalues=function(pval_matrix, line_col, title){
 	points(c(1, max_clusters), rep(log_references[2],2), col="grey", type="l", lwd=.5, lty=2);
 	points(c(1, max_clusters), rep(log_references[3],2), col="grey", type="l", lwd=.5, lty=2);
 
-	for(i in 1:num_coefficients){
-		cur_pvals=log_min_pval_matrix[,i];
-		points(2:max_clusters, cur_pvals, col=line_col[i], lwd=4, type="l", pch=16);
-		
-		first_lowest=min(which(min(cur_pvals)==cur_pvals));
-		points(first_lowest+1, cur_pvals[first_lowest], col=line_col[i], pch=19, cex=3);
-		points(first_lowest+1, cur_pvals[first_lowest], col="white",     pch=19, cex=2);
-		points(first_lowest+1, cur_pvals[first_lowest], col=line_col[i], pch=19, cex=1);
-	}
-	axis(side=1, at=2:max_clusters, labels=2:max_clusters, cex.axis=2);
+	if(matrix_dim[2]>0){
+		for(i in 1:num_coefficients){
+			cur_pvals=log_min_pval_matrix[,i];
+			points(2:max_clusters, cur_pvals, col=line_col[i], lwd=4, type="l", pch=16);
+			
+			first_lowest=min(which(min(cur_pvals)==cur_pvals));
+			points(first_lowest+1, cur_pvals[first_lowest], col=line_col[i], pch=19, cex=3);
+			points(first_lowest+1, cur_pvals[first_lowest], col="white",     pch=19, cex=2);
+			points(first_lowest+1, cur_pvals[first_lowest], col=line_col[i], pch=19, cex=1);
+		}
+		axis(side=1, at=2:max_clusters, labels=2:max_clusters, cex.axis=2);
 
-	print(log_min_pval_matrix);
-	max_clust_pvals=log_min_pval_matrix[as.character(max_clusters),,drop=F];
-	order_ix=order(max_clust_pvals);
-	coeff_names=colnames(log_min_pval_matrix);
+		print(log_min_pval_matrix);
+		max_clust_pvals=log_min_pval_matrix[as.character(max_clusters),,drop=F];
+		order_ix=order(max_clust_pvals);
+		coeff_names=colnames(log_min_pval_matrix);
 
-	# Calculate space for labels
-	param=par();
-	plot_range=param$usr;
-	plot_dim=c(plot_range[2]-plot_range[1], plot_range[4]-plot_range[3]);
-	char_size=param$cxy;
-	max_lines_per_plot=plot_dim[2]/char_size[2];
+		# Calculate space for labels
+		param=par();
+		plot_range=param$usr;
+		plot_dim=c(plot_range[2]-plot_range[1], plot_range[4]-plot_range[3]);
+		char_size=param$cxy;
+		max_lines_per_plot=plot_dim[2]/char_size[2];
 
-	# Labels
-	padding=abs(min_log_pval-max_log_pval)*.1
-	label_y_pos=seq(min_log_pval+padding, max_log_pval-padding, length.out=num_coefficients);
-	text(rep(max_clusters+.5, num_coefficients), label_y_pos, 
-		pos=4, coeff_names[order_ix], col=line_col[order_ix],
-		cex=(max_lines_per_plot/4)/num_coefficients
-	);
+		# Labels
+		padding=abs(min_log_pval-max_log_pval)*.1
+		label_y_pos=seq(min_log_pval+padding, max_log_pval-padding, length.out=num_coefficients);
+		text(rep(max_clusters+.5, num_coefficients), label_y_pos, 
+			pos=4, coeff_names[order_ix], col=line_col[order_ix],
+			cex=(max_lines_per_plot/4)/num_coefficients
+		);
 
-	# Draw lines from end of plot to label
-	for(i in 1:num_coefficients){
-		points(c(max_clusters+.1, max_clusters+.5-.1), c(max_clust_pvals[order_ix[i]], label_y_pos[i]), 
-			type="l", col=line_col[order_ix[i]], lty=3, lwd=1);
+		# Draw lines from end of plot to label
+		for(i in 1:num_coefficients){
+			points(c(max_clusters+.1, max_clusters+.5-.1), 
+				c(max_clust_pvals[order_ix[i]], label_y_pos[i]), 
+				type="l", col=line_col[order_ix[i]], lty=3, lwd=1);
+		}
 	}
 }
 
