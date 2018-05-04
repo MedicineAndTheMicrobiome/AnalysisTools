@@ -80,9 +80,12 @@ normalize=function(x){
 RA_All_Plot= paste(OutputFileName, ".rnk_abn.all.pdf", sep="")
 RA_Top40_Plot= paste(OutputFileName, ".rnk_abn.top40.pdf", sep="")
 RA_AllNr_Plot= paste(OutputFileName, ".rnk_abn.all.nr.pdf", sep="")
+RA_Top100Nr_Plot= paste(OutputFileName, ".rnk_abn.top100.nr.pdf", sep="")
+RA_Top75Nr_Plot= paste(OutputFileName, ".rnk_abn.top75.nr.pdf", sep="")
 RA_Top40Nr_Plot= paste(OutputFileName, ".rnk_abn.top40.nr.pdf", sep="")
 RA_Top25Nr_Plot= paste(OutputFileName, ".rnk_abn.top25.nr.pdf", sep="")
 RA_Top15Nr_Plot= paste(OutputFileName, ".rnk_abn.top15.nr.pdf", sep="")
+RA_Top10Nr_Plot= paste(OutputFileName, ".rnk_abn.top10.nr.pdf", sep="")
 
 # Indices
 DIFile= paste(OutputFileName, ".indices.csv", sep="")
@@ -335,12 +338,18 @@ plot_rank_abundance=function(
 		mtext(paste("Representing ", sprintf("%3.2f",cumul_rep*100), "% of all data", sep=""), 
 			side=3, line=-1);
 
-		mtext(paste("Shannon:  ", sprintf("%4.4f", indices[["Entropy"]][i])), side=3, line=-3, cex=.8);
-		mtext(paste("Simpson:  ", sprintf("%4.4f", indices[["Simpsons"]][i])), side=3, line=-4, cex=.8);
-		mtext(paste("Evenness: ", sprintf("%4.4f", indices[["Evenness"]][i])), side=3, line=-5, cex=.8);
-		mtext(paste("Simpson's Recip: ", sprintf("%4.4f", indices[["SimpsonsRecip"]][i])), side=3, line=-6, cex=.8);
-		mtext(paste("Tail: ", sprintf("%4.4f", indices[["Tail"]][i])), side=3, line=-7, cex=.8);
-		mtext(paste("DiscTaxa: ", sprintf("%i", indices[["DiscTaxa"]][i])), side=3, line=-8, cex=.8);
+		mtext(paste("Shannon:  ", sprintf("%4.4f", indices[["Entropy"]][i])), 
+			side=3, line=-3, cex=.8);
+		mtext(paste("Simpson:  ", sprintf("%4.4f", indices[["Simpsons"]][i])), 
+			side=3, line=-4, cex=.8);
+		mtext(paste("Evenness: ", sprintf("%4.4f", indices[["Evenness"]][i])), 
+			side=3, line=-5, cex=.8);
+		mtext(paste("Simpson's Recip: ", sprintf("%4.4f", indices[["SimpsonsRecip"]][i])), 
+			side=3, line=-6, cex=.8);
+		mtext(paste("Tail: ", sprintf("%4.4f", indices[["Tail"]][i])), 
+			side=3, line=-7, cex=.8);
+		mtext(paste("DiscTaxa: ", sprintf("%i", indices[["DiscTaxa"]][i])), 
+			side=3, line=-8, cex=.8);
 
 	}
 
@@ -353,10 +362,20 @@ plot_rank_abundance(RA_All_Plot, -1, samp_norm_sorted_list, div_indices, color_m
 plot_rank_abundance(RA_Top40_Plot, 40, samp_norm_sorted_list, div_indices, color_map, display_name, F);
 
 # Remove remaining/remainder/unknown
-plot_rank_abundance(RA_AllNr_Plot, -1, samp_norm_sorted_list, div_indices, color_map, display_name, T);
-plot_rank_abundance(RA_Top40Nr_Plot, 40, samp_norm_sorted_list, div_indices, color_map, display_name, T);
-plot_rank_abundance(RA_Top25Nr_Plot, 25, samp_norm_sorted_list, div_indices, color_map, display_name, T);
-plot_rank_abundance(RA_Top15Nr_Plot, 15, samp_norm_sorted_list, div_indices, color_map, display_name, T);
+plot_rank_abundance(RA_AllNr_Plot, -1, samp_norm_sorted_list, div_indices, 
+	color_map, display_name, T);
+plot_rank_abundance(RA_Top100Nr_Plot, 100, samp_norm_sorted_list, div_indices, 
+	color_map, display_name, T);
+plot_rank_abundance(RA_Top75Nr_Plot, 75, samp_norm_sorted_list, div_indices, 
+	color_map, display_name, T);
+plot_rank_abundance(RA_Top40Nr_Plot, 40, samp_norm_sorted_list, div_indices, 
+	color_map, display_name, T);
+plot_rank_abundance(RA_Top25Nr_Plot, 25, samp_norm_sorted_list, div_indices, 
+	color_map, display_name, T);
+plot_rank_abundance(RA_Top15Nr_Plot, 15, samp_norm_sorted_list, div_indices, 
+	color_map, display_name, T);
+plot_rank_abundance(RA_Top10Nr_Plot, 10, samp_norm_sorted_list, div_indices, 
+	color_map, display_name, T);
 
 ###############################################################################
 
@@ -364,7 +383,9 @@ plot_rank_abundance(RA_Top15Nr_Plot, 15, samp_norm_sorted_list, div_indices, col
 
 fc=file(DIFile, "w")
 
-outline=paste("Sample ID", "Shannon", "Simpson", "Evenness", "SimpsonsRecip", "Tail", "DiscTaxa", sep=",");
+outline=paste("Sample ID", "Shannon", "Simpson", "Evenness", 
+	"SimpsonsRecip", "Tail", "DiscTaxa", sep=",");
+
 write(outline, file=fc);
 
 sorted_by_entropy=sort(Entropy, decreasing=TRUE, method="shell", index.return=TRUE);
