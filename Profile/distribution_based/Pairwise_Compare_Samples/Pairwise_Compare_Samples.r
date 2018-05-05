@@ -73,6 +73,8 @@ if(length(opt$output_file)>0){
 	cat("No output file root specified.  Using input file name as root.\n");
 }
 
+OutputFileRoot=paste(OutputFileRoot, ".pw_cmp", sep="");
+
 if(length(opt$shorten_category_names)){
         ShortenCategoryNames=opt$shorten_category_names;
 }else{
@@ -88,7 +90,7 @@ if(ShortenCategoryNames==TRUE){
 
 ###############################################################################
 
-OutputPDF = paste(OutputFileRoot, ".pw_cmp.pdf", sep="");
+OutputPDF = paste(OutputFileRoot, ".pdf", sep="");
 pdf(OutputPDF,width=8.5,height=11)
 
 param_txt=capture.output(
@@ -246,6 +248,7 @@ calc_sorted_pair_ratios=function(counts_a, counts_b){
 	medians=rep(0, num_categories);
 	lb95=rep(0, num_categories);
 	ub95=rep(0, num_categories);
+	pval=rep(0, num_categories);
 	
 	# Calculate median and bounds across categories
 	for(cat_ix in 1:num_categories){
@@ -261,11 +264,25 @@ calc_sorted_pair_ratios=function(counts_a, counts_b){
 
 		}
 		
-		# Calculate mediand and 95% CI
+		# Calculate median and 95% CI
 		stats=quantile(lograt, c(.025, .5, .975));
 		lb95[cat_ix]=stats[1];
 		medians[cat_ix]=stats[2];
 		ub95[cat_ix]=stats[3];
+
+		# Calculate 2-tailed p-value
+		above_zero_pval=2*(1-sum(lograt>0)/num_samples);
+		below_zero_pval=2*(1-sum(lograt<0)/num_samples);
+
+		if(stats[2]<0){
+			nonzero_pval=below_zero_pval;
+		}else{
+			nonzero_pval=above_zero_pval;
+		}
+
+		nonzero_pval=min(1, nonzero_pval);
+		pval[cat_ix]=nonzero_pval;
+
 	}
 
 	# Sort
@@ -277,6 +294,7 @@ calc_sorted_pair_ratios=function(counts_a, counts_b){
 	return_list[["medians"]]=medians[ix];
 	return_list[["LB95"]]=lb95[ix];
 	return_list[["UB95"]]=ub95[ix];
+	return_list[["pval"]]=pval[ix];
 
 	return(return_list);
 
@@ -327,6 +345,65 @@ plot_ratios=function(ratio_rec, samp_a_name, samp_b_name, title, which){
 	
 }
 
+write_comparisons=function(comparison_results, comp_out_fname){
+	
+	comparison_names=names(comparison_results);
+	num_comparisons=length(comparison_names);
+
+	categories=comparison_results[[comparison_names[1]]][["categories"]];
+	num_categories=length(categories);
+	cat("Num Categories: ", num_categories, "\n");
+
+	# Output:
+	#
+	# comparison name
+	# categories \t ratios \t pvalue \t LB \t UB \t \t (next category)
+	out_mat=matrix("", nrow=num_categories, ncol=0);
+
+	for(i in 1:num_comparisons){
+
+		tmp_mat=matrix("X", nrow=num_categories, ncol=6);
+		tmp_mat[,1]=comparison_results[[comparison_names[i]]][["categories"]];
+		tmp_mat[,2]=round(comparison_results[[comparison_names[i]]][["medians"]], 3);
+		tmp_mat[,3]=round(comparison_results[[comparison_names[i]]][["pval"]], 3);
+		tmp_mat[,4]=round(comparison_results[[comparison_names[i]]][["LB95"]], 3);
+		tmp_mat[,5]=round(comparison_results[[comparison_names[i]]][["UB95"]], 3);
+		tmp_mat[,6]=rep("", num_categories);
+
+		out_mat=cbind(out_mat, tmp_mat);
+	}
+
+	labels=c("Categories", "Medians", "P-value", "LB95CI", "UB95CI", "");
+
+	title="";
+	for(i in 1:num_comparisons){
+		str=paste(comparison_names[i], paste(rep("", 6), collapse="\t"), sep="\t");
+		title=paste(title, str, sep="");	
+	}
+
+	fh=file(comp_out_fname, "w");
+
+	last_useful_col=num_comparisons*6-1;
+
+	cat(file=fh, title);
+	cat(file=fh, "\n");
+	cat(file=fh, rep(labels, num_comparisons)[1:last_useful_col], sep="\t");
+	cat(file=fh, "\n");
+
+
+	mat_rows=nrow(out_mat);
+	mat_cols=ncol(out_mat);
+	for(i in 1:mat_rows){
+		out_str=paste(out_mat[i,], collapse="\t");
+		cat(file=fh, out_str, "\n", sep="");
+	}
+	
+	close(fh);
+
+
+}
+
+
 ###############################################################################
 
 counts_mat=load_summary_file(InputFileName);
@@ -370,7 +447,10 @@ print(group_lists);
 plot_text(c(
 	param_txt,
 	"",
-	st_info_txt
+	st_info_txt,
+	"",
+	"Groupings:",
+	capture.output(print(group_lists))
 	));
 
 ###############################################################################
@@ -396,84 +476,117 @@ normalized_mat=normalize(counts_mat);
 ###############################################################################
 
 idx=1:num_categories;
-
-cat("Generating bootstrapped samples:\n");
-bs_samp_list=make_bootstrap_samples(counts_mat, num_bs=2000, normalize=F);
-
 par(mar=c(40,4,4,1));
 
-cat("Starting pairwise comparisons:\n");
-for(samp_a_ix in 1:num_samples){
+cat("Generating bootstrapped samples:\n");
+bs_samp_list=make_bootstrap_samples(counts_mat, num_bs=4000, normalize=F);
 
-	samp_a_name=sample_names[samp_a_ix];
+grps=names(group_lists);
 
-	for(samp_b_ix in 1:num_samples){
+for(cur_grp in grps){
 
-		if(samp_b_ix==samp_a_ix){
-			next;
-		}
+	cur_grp_samples=group_lists[[cur_grp]];
+	num_grp_samples=length(cur_grp_samples);
 
-		samp_b_name=sample_names[samp_b_ix];
+	cat("\n\n");
+	cat("----------------------------------------------------------------------------\n");
+	cat("\n\n");
+	cat("Working on Group:", cur_grp, "\n");
+	print(cur_grp_samples);
+	cat("\n");
 
-		cat(samp_a_name, " vs. ", samp_b_name, "\n", sep="");
+	# Cover page for groups
+	plot(0,0, type="n", bty="n", xaxt="n", yaxt="n", xlab="", ylab="");
+	text(0,0, cur_grp, font=2, cex=6);
 
-		ratios=calc_sorted_pair_ratios(bs_samp_list[[samp_a_name]], bs_samp_list[[samp_b_name]]);
+	comparison_results=list();
+
+	cat("Starting pairwise comparisons:\n");
+	for(samp_a_ix in 1:num_grp_samples){
+
+		samp_a_name=cur_grp_samples[samp_a_ix];
+
+		for(samp_b_ix in 1:num_grp_samples){
+
+			# Skips self-self analysis
+			if(samp_b_ix==samp_a_ix){
+				next;
+			}
 
 
-		plot(0,0, type="n", bty="n", xaxt="n", yaxt="n", xlab="", ylab="");
-		text(0,0, paste(samp_a_name, "\nvs.\n", samp_b_name, sep=""), cex=4);
+			samp_b_name=cur_grp_samples[samp_b_ix];
 
-		cat("Plotting histogram...\n");
-		hist(ratios[["medians"]], 
-			xlab="Log2 Ratios",
-			main=paste(samp_a_name, " vs. ", samp_b_name, 
-				": Histogram of all Log Ratios", sep=""));
+			cat("\n");
+			comparison_name=paste(samp_a_name, " vs. ", samp_b_name, sep="");
+			cat(comparison_name, "\n", sep="");
 
-		cat("Plotting top...\n");
-		for(top in c(10, 15, 25, 40, 100)){
+			ratios=calc_sorted_pair_ratios(
+				bs_samp_list[[samp_a_name]], 
+				bs_samp_list[[samp_b_name]]);
+
+
+			# Cover page for pairwise comparison
+			plot(0,0, type="n", bty="n", xaxt="n", yaxt="n", xlab="", ylab="");
+			text(0,0, paste(samp_a_name, "\nvs.\n", samp_b_name, sep=""), cex=4);
+
+			cat("Plotting histogram...\n");
+			hist(ratios[["medians"]], 
+				xlab="Log2 Ratios",
+				main=paste(samp_a_name, " vs. ", samp_b_name, 
+					": Histogram of all Log Ratios", sep=""));
+
+			cat("Plotting top...\n");
+			for(top in c(10, 15, 25, 40, 100)){
+
+				plot_ratios(
+					ratios, samp_a_name, samp_b_name,
+					title=sprintf("Top %i", top),
+					which=(idx<=top)
+				);
+
+			}
+
+			cat("Plotting subsets...\n");
+			plot_ratios(
+				ratios, samp_a_name, samp_b_name,
+				title="Log Ratio Medians > 0",
+				which=ratios[["medians"]]>0
+			);
 
 			plot_ratios(
 				ratios, samp_a_name, samp_b_name,
-				title=sprintf("Top %i", top),
-				which=(idx<=top)
+				title="Log Ratio Medians < 0",
+				which=ratios[["medians"]]<0
 			);
 
+			plot_ratios(
+				ratios, samp_a_name, samp_b_name,
+				title="Significant: Log Ratio LB 95 > 0",
+				which=ratios[["LB95"]]>0
+			);
+
+			plot_ratios(
+				ratios, samp_a_name, samp_b_name,
+				title="Not Significant: Log Ratio LB < 0 and UB > 0",
+				which=(ratios[["LB95"]]<0) & (ratios[["UB95"]]>0)
+			);
+
+			plot_ratios(
+				ratios, samp_a_name, samp_b_name,
+				title="Significant: Log Ratio UB 95 < 0",
+				which=ratios[["UB95"]]<0
+			);
+
+			# Store results
+			comparison_results[[comparison_name]]=ratios;
+
 		}
-
-		cat("Plotting subsets...\n");
-		plot_ratios(
-			ratios, samp_a_name, samp_b_name,
-			title="Log Ratio Medians > 0",
-			which=ratios[["medians"]]>0
-		);
-
-		plot_ratios(
-			ratios, samp_a_name, samp_b_name,
-			title="Log Ratio Medians < 0",
-			which=ratios[["medians"]]<0
-		);
-
-		plot_ratios(
-			ratios, samp_a_name, samp_b_name,
-			title="Log Ratio LB 95 > 0",
-			which=ratios[["LB95"]]>0
-		);
-
-		plot_ratios(
-			ratios, samp_a_name, samp_b_name,
-			title="Log Ratio LB < 0 and UB > 0",
-			which=(ratios[["LB95"]]<0) & (ratios[["UB95"]]>0)
-		);
-
-		plot_ratios(
-			ratios, samp_a_name, samp_b_name,
-			title="Log Ratio UB 95 < 0",
-			which=ratios[["UB95"]]<0
-		);
-
-		
-		
 	}
+
+	comp_out_fname=paste(OutputFileRoot, ".", cur_grp, ".tsv", sep="");
+	write_comparisons(comparison_results, comp_out_fname);
+	
+
 }
 
 
