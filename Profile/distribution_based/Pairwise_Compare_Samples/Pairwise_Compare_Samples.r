@@ -10,7 +10,9 @@ params=c(
 	"input_file", "i", 1, "character",
 	"top_categories", "t", 2, "character",
 	"output_file", "o", 2, "character",
-	"shorten_category_names", "s", 2, "character"
+	"shorten_category_names", "s", 2, "character",
+	"factor_file", "f", 2, "character",
+	"column_ix", "c", 2, "numeric"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -25,6 +27,9 @@ usage = paste(
 	"	[-t <top categories to display, default=", TOP_CATEGORIES, ">]\n",
 	"	[-o <output file root name>]\n",
 	"	[-s <shorten category names, with separator in double quotes (default=\"\")>]\n",
+	"\n",
+	"	[-f <factor file>]\n",
+	"	[-c <column to group samples for comparison>]\n",
 	"\n",
 	"	This script will readin the summary table and generate pair-wise\n",
 	"	comparisons across all samples.\n",
@@ -41,7 +46,18 @@ if(!length(opt$input_file)){
 }
 
 InputFileName=opt$input_file;
-FactorFileName=opt$factor_file;
+
+if(length(opt$factor_file)){
+	FactorFileName=opt$factor_file;
+}else{
+	FactorFileName="";
+}
+
+if(length(opt$column_ix)){
+	FactorColumnIx=opt$column_ix;
+}else{
+	FactorColumnIx=NA;
+}
 
 NumTopCategories=TOP_CATEGORIES;
 if(length(opt$top_categories)){
@@ -69,6 +85,7 @@ if(ShortenCategoryNames==TRUE){
         quit(status=-1);
 }
 
+
 ###############################################################################
 
 OutputPDF = paste(OutputFileRoot, ".pw_cmp.pdf", sep="");
@@ -82,6 +99,9 @@ param_txt=capture.output(
 	cat("  Shorten Categories: ", ShortenCategoryNames, "\n", sep="");
 	cat("  Output PDF file name: ", OutputPDF, "\n", sep="");
 	cat("\n");
+	cat("  Factor File:", FactorFileName, "\n", sep="");
+	cat("  Column Index: ", FactorColumnIx, "\n", sep="");
+	cat("\n");
 	});
 cat(paste(param_txt, collapse="\n"));
 
@@ -93,6 +113,20 @@ load_summary_file=function(fname){
         counts_mat=inmat[,2:(ncol(inmat))];
         return(counts_mat);
 }
+
+load_factor_file=function(fn){
+        inmat=read.delim(fn, sep="\t", header=TRUE, row.names=1, check.names=F, comment.char="", quote="");
+
+        # Changes spaces to underscore
+        var_names=colnames(inmat);
+        var_names=gsub(" ", "_", var_names);
+        colnames(inmat)=var_names;
+
+        cat("  Num Factors: ", ncol(inmat), "\n", sep="");
+        cat("  Num Samples: ", nrow(inmat), "\n", sep="");
+        return(inmat);
+}
+
 
 normalize=function(counts){
         totals=apply(counts, 1, sum);
@@ -298,6 +332,7 @@ plot_ratios=function(ratio_rec, samp_a_name, samp_b_name, title, which){
 counts_mat=load_summary_file(InputFileName);
 num_samples=nrow(counts_mat);
 num_categories=ncol(counts_mat);
+sample_names=rownames(counts_mat);
 
 st_info_txt=capture.output(
 	{
@@ -310,6 +345,28 @@ st_info_txt=capture.output(
 
 cat(paste(st_info_txt, collapse="\n"));
 
+
+# Break samples in to groups to minimize unnecessary pair-wise comparisons
+group_lists=list();
+if(FactorFileName!=""){
+	factors=load_factor_file(FactorFileName);
+	target_factor=factors[,FactorColumnIx];
+
+	target_factor=as.character(target_factor);
+	
+	uniq_levels=setdiff(unique(target_factor), NA);
+	num_levels=length(uniq_levels);
+	for(lvl in uniq_levels){
+		members=(target_factor==lvl);
+		group_lists[[lvl]]=rownames(factors[members, FactorColumnIx, drop=F]);
+	}
+}else{
+	group_lists[["all"]]=sample_names;
+}
+
+cat("\nSample Groups based on targeted factor:\n");
+print(group_lists);
+
 plot_text(c(
 	param_txt,
 	"",
@@ -318,7 +375,6 @@ plot_text(c(
 
 ###############################################################################
 
-sample_names=rownames(counts_mat);
 
 if(ShortenCategoryNames!=""){
         full_names=colnames(counts_mat);
@@ -374,7 +430,7 @@ for(samp_a_ix in 1:num_samples){
 				": Histogram of all Log Ratios", sep=""));
 
 		cat("Plotting top...\n");
-		for(top in c(10, 15, 25, 40, 100, 101)){
+		for(top in c(10, 15, 25, 40, 100)){
 
 			plot_ratios(
 				ratios, samp_a_name, samp_b_name,
