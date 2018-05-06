@@ -111,7 +111,7 @@ cat(paste(param_txt, collapse="\n"));
 
 load_summary_file=function(fname){
         cat("Loading Summary Table: ", fname, "\n");
-        inmat=as.matrix(read.table(fname, sep="\t", header=TRUE, check.names=FALSE, comment.char="", row.names=1))
+        inmat=as.matrix(read.table(fname, sep="\t", header=TRUE, check.names=FALSE, quote="", comment.char="", row.names=1))
         counts_mat=inmat[,2:(ncol(inmat))];
         return(counts_mat);
 }
