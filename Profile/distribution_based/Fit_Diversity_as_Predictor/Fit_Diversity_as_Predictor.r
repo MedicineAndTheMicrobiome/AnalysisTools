@@ -179,6 +179,11 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
         plot_col_dendr=F,
         plot_row_dendr=F
 ){
+	# Remove any rows with NAs in them
+	any_nas=apply(mat, 1, function(x){all(is.na(x))});
+	mat=mat[!any_nas,,drop=F];
+	any_nas=apply(mat, 2, function(x){all(is.na(x))});
+	mat=mat[,!any_nas,drop=F];
 
         num_row=nrow(mat);
         num_col=ncol(mat);
@@ -188,6 +193,7 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 
         orig.par=par(no.readonly=T);
 
+	cat("Working on: ", title, "\n"); 
         cat("Num Rows: ", num_row, "\n");
         cat("Num Cols: ", num_col, "\n");
 
@@ -232,11 +238,13 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
         ##################################################################################################
 
         get_dendrogram=function(in_mat, type){
+
                 if(type=="row"){
-                        dendist=dist(in_mat);
+                        #noop;
                 }else{
-                        dendist=dist(t(in_mat));
+                        in_mat=t(in_mat);
                 }
+		dendist=dist(in_mat);
 
                 get_clstrd_leaf_names=function(den){
                 # Get a list of the leaf names, from left to right
@@ -251,7 +259,6 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
                                 return(lf_names);
                         }
                 }
-
 
                 hcl=hclust(dendist, method="ward.D2");
                 dend=list();
@@ -648,6 +655,7 @@ cat("\n");
 
 cat("Extracting predictors+responses from available factors...\n");
 all_var=c(model_var, responses_arr);
+
 factors=factors[,all_var, drop=F];
 cat("\n");
 
