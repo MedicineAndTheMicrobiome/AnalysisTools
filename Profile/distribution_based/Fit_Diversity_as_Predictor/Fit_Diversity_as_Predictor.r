@@ -115,7 +115,8 @@ summary_text=c(summary_text, "\n", out);
 
 load_factors=function(fname){
 	cat("Loading Factors: ", fname, "\n");
-	factors=data.frame(read.table(fname,  sep="\t", header=TRUE, row.names=1, check.names=FALSE, comment.char="", quote=""));
+	factors=data.frame(read.table(fname,  sep="\t", header=TRUE, row.names=1, 
+		check.names=FALSE, comment.char="", quote=""));
 	factor_names=colnames(factors);
 
 	ignore_idx=grep("^IGNORE\\.", factor_names);
@@ -129,14 +130,16 @@ load_factors=function(fname){
 
 load_summary_file=function(fname){
 	cat("Loading Summary Table: ", fname, "\n");
-	inmat=as.matrix(read.table(fname, sep="\t", header=TRUE, check.names=FALSE, comment.char="", row.names=1))
+	inmat=as.matrix(read.table(fname, sep="\t", header=TRUE, check.names=FALSE, 
+		comment.char="", row.names=1))
 	counts_mat=inmat[,2:(ncol(inmat))];
 	return(counts_mat);
 }
 
 load_reference_levels_file=function(fname){
 	cat("Loading Reference Levels: ", fname, "\n");
-	inmat=as.matrix(read.table(fname, sep="\t", header=F, check.names=FALSE, comment.char="#", row.names=1))
+	inmat=as.matrix(read.table(fname, sep="\t", header=F, check.names=FALSE, 
+		comment.char="#", row.names=1))
 	colnames(inmat)=c("ReferenceLevel");
 	print(inmat);
 	cat("\n");
@@ -308,7 +311,8 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 
         par(oma=c(col_max_nchar*.60, 0, 3, row_max_nchar*.60));
         par(mar=c(0,0,0,0));
-        plot(0, type="n", xlim=c(0,num_col), ylim=c(0,num_row), xaxt="n", yaxt="n", bty="n", xlab="", ylab="");
+        plot(0, type="n", xlim=c(0,num_col), ylim=c(0,num_row), xaxt="n", yaxt="n", 
+		bty="n", xlab="", ylab="");
         mtext(title, side=3, line=0, outer=T, font=2);
 
         # x-axis
@@ -349,7 +353,8 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
                                                 }
                                         }
                                 }
-                                text(x-.5, y-.5, text_lab, srt=atan(num_col/num_row)/pi*180, cex=value.cex, font=2);
+                                text(x-.5, y-.5, text_lab, srt=atan(num_col/num_row)/pi*180, 
+					cex=value.cex, font=2);
                         }
                 }
         }
@@ -361,13 +366,15 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
         if(plot_row_dendr && plot_col_dendr){
                 rdh=attributes(row_dendr[["tree"]])$height;
                 cdh=attributes(col_dendr[["tree"]])$height;
-                plot(row_dendr[["tree"]], leaflab="none", horiz=T, xaxt="n", yaxt="n", bty="n", xlim=c(rdh, 0));
+                plot(row_dendr[["tree"]], leaflab="none", horiz=T, xaxt="n", yaxt="n", bty="n", 
+			xlim=c(rdh, 0));
                 plot(col_dendr[["tree"]], leaflab="none",xaxt="n", yaxt="n", bty="n", ylim=c(0, cdh));
                 plot(0,0, type="n", bty="n", xaxt="n", yaxt="n");
                 #text(0,0, "Placeholder");
         }else if(plot_row_dendr){
                 rdh=attributes(row_dendr[["tree"]])$height;
-                plot(row_dendr[["tree"]], leaflab="none", horiz=T, xaxt="n", yaxt="n", bty="n", xlim=c(rdh, 0));
+                plot(row_dendr[["tree"]], leaflab="none", horiz=T, xaxt="n", yaxt="n", bty="n", 
+			xlim=c(rdh, 0));
                 #text(0,0, "Row Dendrogram");
         }else if(plot_col_dendr){
                 cdh=attributes(col_dendr[["tree"]])$height;
@@ -396,8 +403,10 @@ plot_pred_vs_obs=function(lmfit_ful, lmfit_red, title=""){
 
 	if(is.null(ncol(obs))){
 		obs=matrix(obs, nrow=length(obs), ncol=1, dimnames=list(names(pred_red), "obs"));
-		pred_red=matrix(pred_red, nrow=length(pred_red), ncol=1, dimnames=list(names(pred_red), "y"));
-		pred_ful=matrix(pred_ful, nrow=length(pred_ful), ncol=1, dimnames=list(names(pred_ful), "y"));
+		pred_red=matrix(pred_red, nrow=length(pred_red), ncol=1, 
+			dimnames=list(names(pred_red), "y"));
+		pred_ful=matrix(pred_ful, nrow=length(pred_ful), ncol=1, 
+			dimnames=list(names(pred_ful), "y"));
 
 		sum_ful=list(sum_ful);
 		sum_red=list(sum_red);
@@ -665,6 +674,8 @@ cat("\n");
 cat("Working on NA Removal...\n");
 remove_na_res=remove_sample_or_factors_wNA_parallel(factors, required=required_arr, 
 	num_trials=640000, num_cores=64, outfile=OutputRoot);
+#remove_na_res=remove_sample_or_factors_wNA_parallel(factors, required=required_arr, 
+#	num_trials=1000, num_cores=64, outfile=OutputRoot);
 
 factors=remove_na_res$factors;
 samp_wo_nas=rownames(factors);
@@ -803,7 +814,9 @@ for(i in 1:num_div_idx){
 	for(resp_ix in 1:num_resp_var){
 
 
-		missing=setdiff(regression_variables, rownames(sum_fit[[sum_resp_names[resp_ix]]]$coefficients));
+		missing=setdiff(regression_variables, 
+			rownames(sum_fit[[sum_resp_names[resp_ix]]]$coefficients));
+
 		if(length(missing)>0){
 			cat("***************************************************\n");
 			cat("Warning: Not all regression coefficient calculable:\n");
@@ -862,12 +875,15 @@ for(i in 1:num_div_idx){
 paint_matrix(diversity_coef, title="Diversity Coefficients", plot_col_dendr=T, plot_row_dendr=T);
 paint_matrix(diversity_pval, title="Diversity P-values", high_is_hot=F, plot_min=0, plot_max=1,
 	plot_col_dendr=T, plot_row_dendr=T);
-paint_matrix(diversity_adj.rsqrd, title="Diversity Adjusted R^2 (Full Model)", high_is_hot=F, plot_min=0, plot_max=1,
+paint_matrix(diversity_adj.rsqrd, title="Diversity Adjusted R^2 (Full Model)", 
+	high_is_hot=F, plot_min=0, plot_max=1,
 	plot_col_dendr=T, plot_row_dendr=T);
-paint_matrix(diversity_adj.rsqrd_delta, title="Diversity Delta Adjusted R^2 (Full-Reduced Model)", high_is_hot=F,
+paint_matrix(diversity_adj.rsqrd_delta, title="Diversity Delta Adjusted R^2 (Full-Reduced Model)", 
+	high_is_hot=F,
 	plot_col_dendr=T, plot_row_dendr=T);
 
-paint_matrix(anova_pval, title="Full Model MANOVAs (Diversity+Covariates) P-values", high_is_hot=F, plot_min=0, plot_max=1);
+paint_matrix(anova_pval, title="Full Model MANOVAs (Diversity+Covariates) P-values", 
+	high_is_hot=F, plot_min=0, plot_max=1);
 
 
 # Output
