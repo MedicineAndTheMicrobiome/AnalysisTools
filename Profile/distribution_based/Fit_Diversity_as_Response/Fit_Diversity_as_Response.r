@@ -454,7 +454,7 @@ if(TestingMode){
 }else{
 	rand="";
 }
-pdf(paste(OutputRoot, rand, ".div_reg.pdf", sep=""), height=14, width=8.5);
+pdf(paste(OutputRoot, rand, ".div_resp.pdf", sep=""), height=14, width=8.5);
 
 # Output the factor correlations
 if(nrow(factor_correlations)>0){
