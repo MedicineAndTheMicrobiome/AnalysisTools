@@ -593,7 +593,7 @@ plot_fit=function(fit, sumfit, i=1){
 ##############################################################################
 ##############################################################################
 
-pdf(paste(OutputRoot, ".mvr_alrp.pdf", sep=""), height=11, width=9.5);
+pdf(paste(OutputRoot, ".alr_as_pred.pdf", sep=""), height=11, width=9.5);
 
 # Load summary file table counts 
 cat("Loading summary table...\n");
