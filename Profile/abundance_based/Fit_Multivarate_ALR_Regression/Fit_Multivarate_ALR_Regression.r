@@ -463,7 +463,7 @@ load_list=function(filename){
 ##############################################################################
 
 # Open PDF output
-pdf(paste(OutputRoot, rnd, ".mlr.mmp.pdf", sep=""), height=11, width=8.5);
+pdf(paste(OutputRoot, rnd, ".alr_as_resp.pdf", sep=""), height=11, width=8.5);
 
 # Load summary file table counts 
 counts=load_summary_file(SummaryFile);
