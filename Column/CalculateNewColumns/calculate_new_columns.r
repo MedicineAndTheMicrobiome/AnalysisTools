@@ -67,6 +67,11 @@ usage = paste(
 	"	Example Usage:\n",
 	"	     max_long_weekend_smokes=function.list(max, list(saturday, sunday, monday)); \n",
 	"\n",
+	"\n",
+	"	mask(x, bool_arr, mask_value): This will return the values in x masked with the values\n",
+	"		in the mask_value.  The rows in bool_arr will be used as the mask condition.\n",
+	"\n",
+	"\n",
 	"	to.bool(x):  This will convert x to upper case and then to 0/1 so R won't treat them as factors:\n",
 	"			FALSE / TRUE\n",
 	"			F / T\n",
@@ -258,6 +263,21 @@ to.bool=function(x){
 
 	return(bools);
 
+}
+
+mask=function(x, bool_arr, mask_val){
+	if(is.numeric(bool_arr)){
+		bool_arr=bool_arr>0;
+	}
+	if(!is.numeric(x)){
+		x=as.character(x);
+		x[bool_arr]=mask_val;
+		x=as.factor(x);
+	}else{
+		x[bool_arr]=mask_val;
+	}
+	
+	return(x);
 }
 
 #------------------------------------------------------------------------------
