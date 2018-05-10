@@ -16,7 +16,7 @@ params=c(
 
 	"model_formula", "m", 2, "character",
 
-	"response_var", "r", 2, "character",
+	"response_var", "y", 2, "character",
 	"covariates_var", "c", 2, "character",
 	"required_var", "q", 2, "character",
 
@@ -36,7 +36,7 @@ usage = paste(
 	"	[-m \"<model formula string>\"]\n",
 	"\n",
 	"	Variable Specification:\n",
-	"	[-r <response variables>]\n",
+	"	[-y <response variables>]\n",
 	"	[-c <covariates variables>]\n",
 	"	[-q <required variables>]\n",
 	"	[-l <reference levels file>]\n",

@@ -18,7 +18,7 @@ foreach gr ($var_grp)
 	~/git/AnalysisTools/Profile/distribution_based/Fit_Diversity_as_Predictor/Fit_Diversity_as_Predictor.r \
 		-s $sum_tab \
 		-f $factors \
-		-r $root_dir/$gr \
+		-y $root_dir/$gr \
 		-o ./$gr:t\.out \
 		-c $covar \
 		-q $root_dir/$gr
