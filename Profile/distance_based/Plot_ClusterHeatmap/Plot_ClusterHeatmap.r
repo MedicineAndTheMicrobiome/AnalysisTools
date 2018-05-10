@@ -200,6 +200,13 @@ load_factor_file=function(fn){
 
 #------------------------------------------------------------------------------
 
+load_list=function(filename){
+        val=scan(filename, what=character(), comment.char="#");
+        return(val);
+}
+
+#------------------------------------------------------------------------------
+
 compute_dist=function(norm_st, type){
 
 	if(type=="euc"){
@@ -510,7 +517,7 @@ factor_names=colnames(all_factors);
 # Create dummy variables out of factors
 if(ModelFile!=""){
 	cat("Creating Model Matrix out of variables in: ", ModelFile, "\n");
-	model_var=scan(ModelFile, what=character());
+	model_var=load_list(ModelFile);
 	print(model_var);
 	ModelString=paste(model_var, collapse="+");	
 }
