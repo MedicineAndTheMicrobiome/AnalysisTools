@@ -330,8 +330,8 @@ get_main_effects_from_formula_string=function(formula_string){
 draw_mean_ses=function(mean_matrix, stderr_matrix, title="Mean/SEs Plot", grp_col=NULL, include_zero_ref=F){
 
 	cat("Plotting Mean and Std Errors:\n");
-	print(mean_matrix);
-	print(stderr_matrix);
+	#print(mean_matrix);
+	#print(stderr_matrix);
 
 	num_groups=nrow(mean_matrix);
 	num_stats=ncol(mean_matrix);
@@ -689,7 +689,6 @@ if(any(is.na(main_factors))){
 			factors, required=required_arr, num_trials=Num_Remove_NA_Trials, 
 			num_cores=64, outfile=OutputFileRoot);
 	factors=noNA_result$factors;
-	plot_text(noNA_result$summary_text);
 
 	after_num_factors=ncol(factors);
 	after_num_samples=nrow(factors);
@@ -965,8 +964,8 @@ for(num_cl in 2:max_clusters){
 		mm=model.matrix(as.formula(paste("~", ModelString, sep="")), data=factors);
 		in_group_id=sort(intersect(in_group_id, rownames(mm)));
 
-		print(response);
-		print(factors);
+		#print(response);
+		#print(factors);
 
 		fit=glm(mll_formula, family=binomial, data=factors, control=list(trace=T, maxit=100));
 
