@@ -1171,7 +1171,8 @@ for(var_ix in 1:num_cat_to_analyze){
 
 	# Model p-values
 	print(uv_summ$fstatistic);
-	uv_model_fit_pval_mat[1, var_ix]=1-pf(uv_summ$fstatistic["value"], uv_summ$fstatistic["numdf"], uv_summ$fstatistic["dendf"]);
+	uv_model_fit_pval_mat[1, var_ix]=
+		1-pf(uv_summ$fstatistic["value"], uv_summ$fstatistic["numdf"], uv_summ$fstatistic["dendf"]);
 
 }
 
@@ -1240,7 +1241,8 @@ if(ncol(log_uv_pval_mat)>=2 && nrow(log_uv_pval_mat)>=2){
 # Plot log pvalues sorted by most signficiant predictor and taxa
 pred_ix=order(apply(log_uv_pval_mat, 1, mean));
 taxa_ix=order(apply(log_uv_pval_mat, 2, mean));
-plot_correl_heatmap(log_uv_pval_mat[pred_ix, taxa_ix, drop=F], title="Sorted Univariate Coefficients Log10[Pr(>|t|)]", guideLines=T);
+plot_correl_heatmap(log_uv_pval_mat[pred_ix, taxa_ix, drop=F], 
+	title="Sorted Univariate Coefficients Log10[Pr(>|t|)]", guideLines=T);
 
 # Plot R^2
 rsqrd_mat=rbind(rsqrd, adj_rsqrd);
@@ -1274,6 +1276,11 @@ if(length(coef_names_not_estimable)){
 
 # Write Top categories that have changed to file
 write_top_categorical_effects_by_factor(paste(OutputRoot,".top_effects.csv", sep=""), uv_coeff_mat, uv_pval_mat, top_n=20);
+
+
+# Write coefficient p-values to file
+write.table(t(uv_pval_mat), file=paste(OutputRoot, ".alr_as_resp.pvals.tsv", sep=""), 
+	sep="\t", quote=F, col.names=NA, row.names=T);
 
 ##############################################################################
 
