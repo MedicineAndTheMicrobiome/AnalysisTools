@@ -875,7 +875,7 @@ plot_text(c(
 	capture.output(print(s))
 ));
 cat("Plotting Response Histograms:\n");
-print(response_factors);
+#print(response_factors);
 plot_histograms(response_factors);
 
 is_numeric_response_factors=logical();
@@ -909,7 +909,7 @@ plot_text(c(
 	capture.output(print(s))
 ));
 cat("Plotting ALR Category Histograms:\n");
-print(alr_categories_val);
+#print(alr_categories_val);
 plot_histograms(alr_categories_val);
 
 ###############################################################################
@@ -1057,7 +1057,7 @@ for(i in 1:num_responses){
 }
 
 summary_res_coeff=round(summary_res_coeff,2);
-summary_res_pval=round(summary_res_pval,2);
+summary_res_pval_rnd=round(summary_res_pval,2);
 
 cat("Coefficients Matrix:\n");
 print(summary_res_coeff);
@@ -1077,27 +1077,27 @@ paint_matrix(summary_res_coeff[shrd_alr_names,,drop=F], title="ALR Predictors Co
 	value.cex=1, deci_pts=2, plot_row_dendr=T, plot_col_dendr=T);
 
 cat("\nP-values:\n");
-print(summary_res_pval);
+#print(summary_res_pval);
 #par(oma=c(10,14,5,1));
 
 if(length(covariate_coefficients)>0){
-	paint_matrix(summary_res_pval[covariate_coefficients,,drop=F], title="Covariate P-values", 
+	paint_matrix(summary_res_pval_rnd[covariate_coefficients,,drop=F], title="Covariate P-values", 
 		plot_min=0, plot_max=1, high_is_hot=F, value.cex=2, deci_pts=2);
 }
 
 # Variations of ALR Predictor P-values
-paint_matrix(summary_res_pval[shrd_alr_names,,drop=F], title="ALR Predictors P-values (By Decreasing Abundance)", 
+paint_matrix(summary_res_pval_rnd[shrd_alr_names,,drop=F], title="ALR Predictors P-values (By Decreasing Abundance)", 
 	plot_min=0, plot_max=1, high_is_hot=F, value.cex=1, deci_pts=2);
 
-paint_matrix(summary_res_pval[shrd_alr_names,,drop=F], title="ALR Predictors P-values (ALR Clusters)", 
+paint_matrix(summary_res_pval_rnd[shrd_alr_names,,drop=F], title="ALR Predictors P-values (ALR Clusters)", 
 	plot_min=0, plot_max=1, high_is_hot=F, value.cex=1, deci_pts=2,
 	plot_row_dendr=T
 );
-paint_matrix(summary_res_pval[shrd_alr_names,,drop=F], title="ALR Predictors P-values (Response Clusters)", 
+paint_matrix(summary_res_pval_rnd[shrd_alr_names,,drop=F], title="ALR Predictors P-values (Response Clusters)", 
 	plot_min=0, plot_max=1, high_is_hot=F, value.cex=1, deci_pts=2,
 	plot_col_dendr=T
 );
-paint_matrix(summary_res_pval[shrd_alr_names,,drop=F], title="ALR Predictors P-values (ALR and Response Clusters)", 
+paint_matrix(summary_res_pval_rnd[shrd_alr_names,,drop=F], title="ALR Predictors P-values (ALR and Response Clusters)", 
 	plot_min=0, plot_max=1, high_is_hot=F, value.cex=1, deci_pts=2,
 	plot_row_dendr=T, plot_col_dendr=T
 );
@@ -1122,7 +1122,7 @@ if(length(manova_res)>0){
 
 ###############################################################################
 # Write summary to file
-fh=file(paste(OutputRoot, ".mvr_alrp.review.tsv", sep=""), "w");
+fh=file(paste(OutputRoot, ".alr_as_pred.review.tsv", sep=""), "w");
 cat(file=fh, c("Name:", OutputRoot, ""), sep="\t");
 cat(file=fh, "\n");
 cat(file=fh, "\n");
@@ -1183,7 +1183,7 @@ close(fh);
 ###############################################################################
 # Write ALR Predictor Coefficients to file
 
-fh=file(paste(OutputRoot, ".mvr_alrp.coefficients.tsv", sep=""), "w");
+fh=file(paste(OutputRoot, ".alr_as_pred.coefficients.tsv", sep=""), "w");
 num_out_col=ncol(summary_res_coeff);
 response_names=colnames(summary_res_coeff);
 
@@ -1208,6 +1208,13 @@ for(var in shrd_alr_names){
 
 close(fh);
 
+
+###############################################################################
+# Write ALR p-values to file
+# Format: Factors as columns, taxa (predictor) as rows
+
+exp_tab=summary_res_pval[shrd_alr_names,,drop=F];
+write.table(exp_tab,  file=paste(OutputRoot, ".alr_as_pred.pvals.tsv", sep=""), sep="\t", quote=F, col.names=NA, row.names=T);
 
 ###############################################################################
 
