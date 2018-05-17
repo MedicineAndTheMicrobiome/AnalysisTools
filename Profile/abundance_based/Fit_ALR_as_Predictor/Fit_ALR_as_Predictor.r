@@ -1002,7 +1002,7 @@ summary_res_rsqrd=matrix(0, nrow=num_responses, ncol=3, dimnames=list(response_f
 
 for(i in 1:num_responses){
 	cat("\n\nWorking on: ", responses[i], "\n");
-	univar_summary=round(lm_summaries[[i]]$coefficients, 4);
+	univar_summary=lm_summaries[[i]]$coefficients;
 
 	rsquared=signif(c(lm_summaries[[i]]$r.squared, lm_summaries[[i]]$adj.r.squared),4);
 	reduced_rsquared=signif(c(reduced_lm_summaries[[i]]$r.squared, reduced_lm_summaries[[i]]$adj.r.squared),4);
