@@ -31,7 +31,7 @@ params=c(
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
 script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
 
-NUM_TOP_CAT=35;
+NUM_TOP_CAT=30;
 
 usage = paste(
 	"\nUsage:\n", script_name, "\n",
