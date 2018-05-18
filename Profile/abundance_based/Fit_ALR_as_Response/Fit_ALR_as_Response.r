@@ -9,7 +9,7 @@ library(car);
 options(useFancyQuotes=F);
 
 RM_NA_TRIALS=10000*64;
-NUM_TOP_CATEGORIES=25;
+NUM_TOP_CATEGORIES=30;
 
 params=c(
 	"summary_file", "s", 1, "character",
