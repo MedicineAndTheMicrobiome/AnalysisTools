@@ -141,7 +141,6 @@ plot_resp_pred_scatter=function(factor_name, categories, as_pred_mat, as_resp_ma
 
 
 	par(family="");
-	par(mar=c(5,5,8,3));
 	x_val=-log10(as_pred_mat[categories, factor_name]);
 	y_val=-log10(as_resp_mat[categories, factor_name]);
 
@@ -155,7 +154,9 @@ plot_resp_pred_scatter=function(factor_name, categories, as_pred_mat, as_resp_ma
 	plot(x_val, y_val, xlab="As Predictor", ylab="As Response",
 		main=factor_name,
 		xlim=c(xrange[1]-.25, xrange[2]+1), 
-		ylim=c(yrange[1]-.25, yrange[2]+1)
+		ylim=c(yrange[1]-.25, yrange[2]+1),
+		type="n",
+		cex.main=2
 	);
 
 	# Above untransformed p-values
@@ -166,8 +167,13 @@ plot_resp_pred_scatter=function(factor_name, categories, as_pred_mat, as_resp_ma
 	abline(h=siglines_pos, col="grey");
 	abline(v=siglines_pos, col="grey");
 
-	# Grow label size if it is more significant
+	# Size based on log pvalues
 	labelsize=sqrt(x_val^2 + y_val^2)/2;
+
+	# plots points
+	points(x_val, y_val, col="red", pch=16, cex=labelsize);
+
+	# Grow label size if it is more significant
 	num_cat=length(categories);
 	for(i in 1:num_cat){
 		labelsize[i]=max(labelsize[i], .4);
@@ -179,11 +185,213 @@ plot_resp_pred_scatter=function(factor_name, categories, as_pred_mat, as_resp_ma
 
 }
 
+#############################################################################
+
+sgn_chr=function(x){
+
+	num_val=length(x);
+	result=character(num_val);
+
+	for(i in 1:num_val){
+		p=x[i];
+
+		if(p<=.000001){	
+			char="*****";
+		}else if(p<=.00001){
+			char="****";
+		}else if(p<=.0001){
+			char="*** ";
+		}else if(p<=.001){
+			char="**  ";
+		}else if(p<=.01){
+			char="*   ";
+		}else if(p<=.05){
+			char=":   ";
+		}else if(p<=.10){
+			char=".   ";
+		}else{
+			char="    ";
+		}
+
+		result[i]=char;
+	}
+	return(result);
+}
+
+#############################################################################
+
+summarize_comparisons=function(factor_name, categories, as_pred_mat, as_resp_mat, cutoff){
+	
+	# Extract factors
+	kept_pred_arr=as_pred_mat[categories, factor_name, drop=F];
+	kept_resp_arr=as_resp_mat[categories, factor_name, drop=F];
+
+	#print(kept_pred_arr);
+	#print(kept_resp_arr);
+	
+	# Extract categories above cutoff
+	above_cutoff_ix=(kept_pred_arr<=cutoff) | (kept_resp_arr<=cutoff);
+	pred_abv=kept_pred_arr[above_cutoff_ix,];
+	resp_abv=kept_resp_arr[above_cutoff_ix,];
+	cat_abv=categories[above_cutoff_ix];
+	#print(pred_abv);
+	#print(resp_abv);
+
+	comb_score=exp(-sqrt(log(pred_abv)^2+log(resp_abv)^2));
+	#print(comb_score);
+	num_kept=sum(above_cutoff_ix);
+
+	# Sort by increasing score
+	sort_ix=order(comb_score, decreasing=F);
+	pred_abv=pred_abv[sort_ix];
+	resp_abv=resp_abv[sort_ix];
+	comb_score=comb_score[sort_ix];
+	cat_abv=cat_abv[sort_ix];
+	log_pval_ratio=log2(pred_abv/resp_abv);
+
+	# Place into value matrix
+	val_mat=matrix(numeric(), nrow=num_kept, ncol=4);
+	rownames(val_mat)=cat_abv;
+	colnames(val_mat)=c(
+		"As_Response",
+		"As_Predictor",
+		"Combined_Score",
+		"LogPvalRat"
+		);
+
+	val_mat[,"As_Response"]=resp_abv;
+	val_mat[,"As_Predictor"]=pred_abv;
+	val_mat[,"Combined_Score"]=comb_score;
+	val_mat[,"LogPvalRat"]=log_pval_ratio;
+
+
+	# Place into a formatted text matrix
+	text_mat=matrix(character(), nrow=num_kept, ncol=7);
+	rownames(text_mat)=cat_abv;
+	colnames(text_mat)=c(
+		"As_Response", "rsgn", 
+		"As_Predictor", "psgn",
+		"Combined_Score", "csgn",
+		"LogPvalRat"
+		);
+
+	text_mat[,"As_Response"]=sprintf("%6.4f", resp_abv);
+	text_mat[,"rsgn"]=sgn_chr(resp_abv);
+	text_mat[,"As_Predictor"]=sprintf("%6.4f", pred_abv);
+	text_mat[,"psgn"]=sgn_chr(pred_abv);
+	text_mat[,"Combined_Score"]=sprintf("%6.4f", comb_score);
+	text_mat[,"csgn"]=sgn_chr(comb_score);
+	text_mat[,"LogPvalRat"]=sprintf("%+2.4f", log_pval_ratio);
+	
+
+	# Prepare return values
+	result=list();
+	result[["values"]]=val_mat;
+	result[["formatted"]]=text_mat;
+	
+	if(num_kept==0){
+		return("No categories of significance.");
+	}else{
+		return(result);
+	}
+
+}
 
 #############################################################################	
 
+plot_ratio_comparisons=function(comparison_mat, title=""){
+
+	#print(comparison_mat);
+
+	x=comparison_mat[,"LogPvalRat"];
+	y=-log10(comparison_mat[,"Combined_Score"]);
+	cat_names=rownames(comparison_mat);
+
+	x_mag=max(abs(range(x)));
+	x_range=c(-x_mag*1.2, x_mag*1.2);
+
+	y_max=max(y)*1.1;
+	y_range=c(0, y_max);
+
+	num_pred=sum(x<0);
+	num_resp=sum(x>0);
+
+
+	plot(x, y,
+		xlim=x_range, ylim=y_range,
+		xlab="Log P-value Ratio", ylab="Combined P-value Score",
+		type="n",
+		main=title,
+		cex.main=2
+	);
+
+	abline(v=0, col="#BBBBFF", lwd=5);
+	abline(v=0, col="#8888FF", lwd=2);
+
+	sig_cutoffs=c(.1, .05, .1, .01, .001);
+	log_sig_cut=-log10(sig_cutoffs);
+
+	# Top
+	axis(side=3, at=c(-(x_mag*1.2)/2, (x_mag*1.2)/2), 
+		labels=c(num_pred, num_resp), 
+		cex.axis=1.4, font=2,
+		tick=F, line=0);
+
+	pred_txt=ifelse(num_pred==1, "Predictor", "Predictors");
+	resp_txt=ifelse(num_resp==1, "Responder", "Responders");
+	axis(side=3, at=c(-(x_mag*1.2)/2, (x_mag*1.2)/2), 
+		labels=c(pred_txt, resp_txt), 
+		cex.axis=1.4, font=2,
+		tick=F, line=-1);
+
+	# Right
+	abline(h=log_sig_cut, col="black", lwd=1, lty="dotted");
+	axis(side=4, at=log_sig_cut, labels=sig_cutoffs, cex.axis=.7);
+
+	# 
+	points(x,y, col="red", pch=16);
+	text(x, y, label=cat_names, pos=3);
+
+}
+
+#############################################################################	
+
+options(width=200);
+
 for(cur_fact in shrd_fact_names){
+
+	# Plot resp vs pred
+	par(mar=c(5,5,6,3));
 	plot_resp_pred_scatter(cur_fact, shrd_cat_names, as_pred, as_resp);
+	
+	# Summary comparisons
+	result=summarize_comparisons(cur_fact, shrd_cat_names, as_pred, as_resp, .1);
+
+	# Plot summary (transformed stats)
+	par(mar=c(5,5,6,3));
+	plot_ratio_comparisons(result[["values"]], title=cur_fact);
+
+	values_mat=result[["values"]];
+	formatted_mat=result[["formatted"]];
+
+	# Plot tables in PDF
+	# Ordered by combined score
+	sorted_ix=order(values_mat[,"Combined_Score"]);
+	summary_txt_byScore=capture.output(noquote(formatted_mat[sorted_ix,,drop=F]));
+
+	# Ordered by Log Pvalue Ratio
+	sorted_ix=order(values_mat[,"LogPvalRat"]);
+	summary_txt_byRatio=capture.output(noquote(formatted_mat[sorted_ix,,drop=F]));
+	
+	plot_text(c(
+		"Sorted By Combined Significance Score:",
+		"",
+		summary_txt_byScore,
+		"",
+		"",
+		"Sorted By Log P-Value Ratio:",
+		"",
+		summary_txt_byRatio));
 }
 
 
