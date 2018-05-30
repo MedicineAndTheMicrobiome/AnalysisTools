@@ -8,18 +8,23 @@ options(useFancyQuotes=F);
 params=c(
 	"pred_file", "x", 1, "character",
 	"resp_file", "y", 1, "character",
-	"output_file", "o", 1, "character"
+	"output_file", "o", 1, "character",
+	"sig_cutoff", "p", 2, "numeric"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
 script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
 script_path=paste(head(strsplit(script_name, "/")[[1]], -1), collapse="/");
 
+
+CUTOFF=0.1;
+
 usage = paste(
 	"\nUsage:\n", script_name, "\n",
 	"	-x <as_pred p-value matrix input file>\n",
 	"	-y <as_resp p-value matrix input file>\n",
 	"	-o <output file name root>\n",
+	"	-p <significance cutoff, default=", CUTOFF, "\n",
 	"\n",
 	"This script will read in two matrices:\n",
 	" 1.) Predictor p-values\n",
@@ -44,6 +49,12 @@ if(!length(opt$pred_file) || !length(opt$resp_file) || !length(opt$output_file))
 PredFile=opt$pred_file;
 RespFile=opt$resp_file;
 OutputRoot=opt$output_file;
+
+if(length(opt$sig_cutoff)){
+	signif_cutoff=opt$sig_cutoff;
+}else{
+	signif_cutoff=CUTOFF;
+}
 
 input_summary=capture.output({
 	cat("\n");
@@ -231,27 +242,10 @@ summarize_comparisons=function(factor_name, categories, as_pred_mat, as_resp_mat
 	
 	# Extract categories above cutoff
 	above_cutoff_ix=(kept_pred_arr<=cutoff) | (kept_resp_arr<=cutoff);
-	pred_abv=kept_pred_arr[above_cutoff_ix,];
-	resp_abv=kept_resp_arr[above_cutoff_ix,];
-	cat_abv=categories[above_cutoff_ix];
-	#print(pred_abv);
-	#print(resp_abv);
-
-	comb_score=exp(-sqrt(log(pred_abv)^2+log(resp_abv)^2));
-	#print(comb_score);
 	num_kept=sum(above_cutoff_ix);
 
-	# Sort by increasing score
-	sort_ix=order(comb_score, decreasing=F);
-	pred_abv=pred_abv[sort_ix];
-	resp_abv=resp_abv[sort_ix];
-	comb_score=comb_score[sort_ix];
-	cat_abv=cat_abv[sort_ix];
-	log_pval_ratio=log2(pred_abv/resp_abv);
-
-	# Place into value matrix
+	# Allocate matrices
 	val_mat=matrix(numeric(), nrow=num_kept, ncol=4);
-	rownames(val_mat)=cat_abv;
 	colnames(val_mat)=c(
 		"As_Response",
 		"As_Predictor",
@@ -259,15 +253,7 @@ summarize_comparisons=function(factor_name, categories, as_pred_mat, as_resp_mat
 		"LogPvalRat"
 		);
 
-	val_mat[,"As_Response"]=resp_abv;
-	val_mat[,"As_Predictor"]=pred_abv;
-	val_mat[,"Combined_Score"]=comb_score;
-	val_mat[,"LogPvalRat"]=log_pval_ratio;
-
-
-	# Place into a formatted text matrix
 	text_mat=matrix(character(), nrow=num_kept, ncol=7);
-	rownames(text_mat)=cat_abv;
 	colnames(text_mat)=c(
 		"As_Response", "rsgn", 
 		"As_Predictor", "psgn",
@@ -275,25 +261,53 @@ summarize_comparisons=function(factor_name, categories, as_pred_mat, as_resp_mat
 		"LogPvalRat"
 		);
 
-	text_mat[,"As_Response"]=sprintf("%6.4f", resp_abv);
-	text_mat[,"rsgn"]=sgn_chr(resp_abv);
-	text_mat[,"As_Predictor"]=sprintf("%6.4f", pred_abv);
-	text_mat[,"psgn"]=sgn_chr(pred_abv);
-	text_mat[,"Combined_Score"]=sprintf("%6.4f", comb_score);
-	text_mat[,"csgn"]=sgn_chr(comb_score);
-	text_mat[,"LogPvalRat"]=sprintf("%+2.4f", log_pval_ratio);
-	
+	if(num_kept>0){
+
+		pred_abv=kept_pred_arr[above_cutoff_ix,];
+		resp_abv=kept_resp_arr[above_cutoff_ix,];
+		cat_abv=categories[above_cutoff_ix];
+		#print(pred_abv);
+		#print(resp_abv);
+
+		comb_score=exp(-sqrt(log(pred_abv)^2+log(resp_abv)^2));
+		#print(comb_score);
+
+		# Sort by increasing score
+		sort_ix=order(comb_score, decreasing=F);
+		pred_abv=pred_abv[sort_ix];
+		resp_abv=resp_abv[sort_ix];
+		comb_score=comb_score[sort_ix];
+		cat_abv=cat_abv[sort_ix];
+		log_pval_ratio=log2(pred_abv/resp_abv);
+
+		# Place into value matrix
+		rownames(val_mat)=cat_abv;
+
+		val_mat[,"As_Response"]=resp_abv;
+		val_mat[,"As_Predictor"]=pred_abv;
+		val_mat[,"Combined_Score"]=comb_score;
+		val_mat[,"LogPvalRat"]=log_pval_ratio;
+
+
+		# Place into a formatted text matrix
+		rownames(text_mat)=cat_abv;
+
+		text_mat[,"As_Response"]=sprintf("%6.4f", resp_abv);
+		text_mat[,"rsgn"]=sgn_chr(resp_abv);
+		text_mat[,"As_Predictor"]=sprintf("%6.4f", pred_abv);
+		text_mat[,"psgn"]=sgn_chr(pred_abv);
+		text_mat[,"Combined_Score"]=sprintf("%6.4f", comb_score);
+		text_mat[,"csgn"]=sgn_chr(comb_score);
+		text_mat[,"LogPvalRat"]=sprintf("%+2.4f", log_pval_ratio);
+
+	}
 
 	# Prepare return values
 	result=list();
 	result[["values"]]=val_mat;
 	result[["formatted"]]=text_mat;
 	
-	if(num_kept==0){
-		return("No categories of significance.");
-	}else{
-		return(result);
-	}
+	return(result);
 
 }
 
@@ -302,6 +316,20 @@ summarize_comparisons=function(factor_name, categories, as_pred_mat, as_resp_mat
 plot_ratio_comparisons=function(comparison_mat, title=""){
 
 	#print(comparison_mat);
+	if(nrow(comparison_mat)==0){
+
+		plot(0, 0,
+			xlim=c(-2,2), ylim=c(0,1),
+			xlab="Log P-value Ratio", ylab="Combined P-value Score",
+			type="n",
+			main=title,
+			cex.main=2
+		);
+		text(0,.5, "No categories above cutoff");
+		
+		return();
+	}
+
 
 	x=comparison_mat[,"LogPvalRat"];
 	y=-log10(comparison_mat[,"Combined_Score"]);
@@ -354,9 +382,193 @@ plot_ratio_comparisons=function(comparison_mat, title=""){
 
 }
 
+#############################################################################
+
+plot_combined_ratio_comparisons=function(
+	comparison_list,
+	label_factor_centroid=T,
+	label_categories=T,
+	draw_lines=T
+){
+
+	factor_names=names(comparison_list);
+	num_factors=length(factor_names);
+
+	# Pre transform the combined scores
+	for(cur_fact in factor_names){
+		comparison_list[[cur_fact]][,"Combined_Score"]=
+			-log10(comparison_list[[cur_fact]][,"Combined_Score"]);
+	}
+	
+
+	# Store centroids
+	means=matrix(0, nrow=num_factors, ncol=2);
+	rownames(means)=factor_names;
+	colnames(means)=c("Combined_Score", "LogPvalRat");
+
+	x_mag=0;
+	y_max=0;
+	y_min=1;
+
+	# Calculate means and identify ranges
+	for(cur_fact in factor_names){
+		means[cur_fact, "Combined_Score"]=mean(comparison_list[[cur_fact]][,"Combined_Score"]);
+		means[cur_fact, "LogPvalRat"]=mean(comparison_list[[cur_fact]][,"LogPvalRat"]);
+
+		x_mag=max(x_mag, abs(comparison_list[[cur_fact]][,"LogPvalRat"]));
+		y_max=max(y_max, comparison_list[[cur_fact]][,"Combined_Score"]);
+		y_min=min(y_min, comparison_list[[cur_fact]][,"Combined_Score"]);
+
+	}
+
+	cat("Centroids:\n");
+	print(means);
+
+	x_range=c(-(x_mag*1.2), x_mag*1.2);
+	y_range=c(y_min*.95, y_max*1.05);
+	cat("X Range:\n");
+	print(x_range);
+	cat("Y Range:\n");
+	print(y_range);
+
+	par(family="");
+	plot(0,0,
+		xlim=x_range, ylim=y_range,
+		type="n",
+		xlab="Log P-value Ratio", ylab="Combined P-value Score",
+		main="Combined",
+		cex.main=2
+		);
+
+	abline(v=0, col="#BBBBFF", lwd=5);
+	abline(v=0, col="#8888FF", lwd=2);
+
+	sig_cutoffs=c(.1, .05, .1, .01, .001);
+	log_sig_cut=-log10(sig_cutoffs);
+
+	axis(side=3, at=c(-(x_mag*1.2)/2, (x_mag*1.2)/2), 
+		labels=c("Predictors", "Responders"), 
+		cex.axis=1.4, font=2,
+		tick=F, line=-1);
+
+	# Right
+	abline(h=log_sig_cut, col="black", lwd=1, lty="dotted");
+	axis(side=4, at=log_sig_cut, labels=sig_cutoffs, cex.axis=.7);
+
+	#----------------------------------------------------------------------
+	# Optional Section:
+
+	if(draw_lines){
+		for(i in 1:num_factors){
+			cur_fact=factor_names[i];
+			cat_names=rownames(comparison_list[[cur_fact]]);
+			num_rows=length(cat_names);
+			if(num_rows==0){
+				next;
+			}
+			for(cat_ix in 1:num_rows){
+				points(
+					c(means[cur_fact, "LogPvalRat"],
+					comparison_list[[cur_fact]][cat_ix,"LogPvalRat"]),
+					c(means[cur_fact, "Combined_Score"],
+					comparison_list[[cur_fact]][cat_ix,"Combined_Score"]),
+					col=i,
+					type="l"
+				);
+			}
+		}
+
+
+	}
+	
+	if(label_categories){
+		for(i in 1:num_factors){
+			cur_fact=factor_names[i];
+			cat_names=rownames(comparison_list[[cur_fact]]);
+			num_rows=length(cat_names);
+			if(num_rows==0){
+				next;
+			}
+			for(cat_ix in 1:num_rows){
+
+				xpos=comparison_list[[cur_fact]][cat_ix,"LogPvalRat"];
+				ypos=comparison_list[[cur_fact]][cat_ix,"Combined_Score"];
+
+				adj_x=.5;
+				adj_y=.5;
+
+				if(draw_lines){
+					# Move labels away from lines
+
+					if(xpos>means[cur_fact, "LogPvalRat"]){
+						adj_x=-.5
+					}else if(xpos<means[cur_fact, "LogPvalRat"]){
+						adj_x=1
+					}
+
+					if(ypos>means[cur_fact, "Combined_Score"]){
+						adj_y=-.5
+					}else if(ypos<means[cur_fact, "Combined_Score"]){
+						adj_y=1
+					}
+				}
+			
+
+				text(
+					xpos, ypos,
+					label=substr(cat_names[cat_ix],1,4),
+					cex=.5,
+					col=i,
+					adj=c(adj_x, adj_y)
+				);
+			}
+		}
+	}
+	
+
+	if(label_factor_centroid){
+	# Label centroids with factor names
+		for(i in 1:num_factors){
+			cur_fact=factor_names[i];
+			if(is.nan(means[cur_fact, "LogPvalRat"])){
+				next;
+			}
+			legend(
+				means[cur_fact, "LogPvalRat"],
+				means[cur_fact, "Combined_Score"],
+				legend=cur_fact,
+				xjust=.5, yjust=.5,
+				x.intersp=-.4, y.intersp=.2,
+				text.col=i, bg="white"
+			);
+		}
+	}
+	
+}
+
+#############################################################################	
+
+# Get color assignments
+get_colors=function(num_col, alpha=1){
+        colors=hsv(seq(0,1,length.out=num_col+1), c(1,.5), c(1,.75,.5), alpha=alpha);
+        color_mat_dim=ceiling(sqrt(num_col));
+        color_pad=rep("grey", color_mat_dim^2);
+        color_pad[1:num_col]=colors[1:num_col];
+        color_mat=matrix(color_pad, nrow=color_mat_dim, ncol=color_mat_dim);
+        colors=as.vector(t(color_mat));
+        colors=colors[colors!="grey"];
+}
+
 #############################################################################	
 
 options(width=200);
+
+combined_records=list();
+
+num_shrd_factors=length(shrd_fact_names);
+factor_colors=get_colors(num_shrd_factors, alpha=1);
+
+palette(factor_colors);
 
 for(cur_fact in shrd_fact_names){
 
@@ -365,7 +577,7 @@ for(cur_fact in shrd_fact_names){
 	plot_resp_pred_scatter(cur_fact, shrd_cat_names, as_pred, as_resp);
 	
 	# Summary comparisons
-	result=summarize_comparisons(cur_fact, shrd_cat_names, as_pred, as_resp, .1);
+	result=summarize_comparisons(cur_fact, shrd_cat_names, as_pred, as_resp, signif_cutoff);
 
 	# Plot summary (transformed stats)
 	par(mar=c(5,5,6,3));
@@ -392,7 +604,24 @@ for(cur_fact in shrd_fact_names){
 		"Sorted By Log P-Value Ratio:",
 		"",
 		summary_txt_byRatio));
+
+	# Store summarized for combined
+	combined_records[[cur_fact]]=values_mat;
 }
+
+
+#############################################################################	
+
+print(combined_records);
+
+par(mar=c(5,5,6,3));
+
+plot_combined_ratio_comparisons(combined_records, 
+	label_factor_centroid=F, label_categories=T, draw_lines=F);
+plot_combined_ratio_comparisons(combined_records, 
+	label_factor_centroid=F, label_categories=T, draw_lines=T);
+plot_combined_ratio_comparisons(combined_records, 
+	label_factor_centroid=T, label_categories=T, draw_lines=T);
 
 
 #############################################################################	
