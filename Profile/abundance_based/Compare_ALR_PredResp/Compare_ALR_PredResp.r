@@ -98,7 +98,7 @@ plot_text=function(strings){
 ##############################################################################
 # Open PDF output
 
-pdf(paste(OutputRoot,".pred_vs_resp.pdf", sep=""), height=8.5, width=8.5);
+pdf(paste(OutputRoot,".pred_vs_resp.pdf", sep=""), height=7, width=14);
 
 plot_text(input_summary);
 
@@ -390,6 +390,7 @@ plot_ratio_comparisons=function(comparison_mat, title=""){
 
 plot_combined_ratio_comparisons=function(
 	comparison_list,
+	title="",
 	abbrev=0,
 	label_factor_centroid=T,
 	label_categories=T,
@@ -441,7 +442,7 @@ plot_combined_ratio_comparisons=function(
 		xlim=x_range, ylim=y_range,
 		type="n",
 		xlab="Log P-value Ratio", ylab="Combined P-value Score",
-		main="Combined",
+		main=title,
 		cex.main=2
 		);
 
@@ -560,6 +561,41 @@ plot_combined_ratio_comparisons=function(
 
 #############################################################################	
 
+plot_legend_for_combined_ratio_comparisons=function(comparison_list, abbrev=0){
+
+	factor_names=names(comparison_list);
+	num_factors=length(factor_names);
+		
+	plot(0,0, ylim=c(-.25,1), xlim=c(0,1),
+		xlab="", ylab="", main="",
+		type="n", bty="n", xaxt="n", yaxt="n");
+
+	#legend(0,1, bty="n", legend=factor_names, fill=1:num_factors, y.intersp=0);
+
+	splits=max(num_factors, 20);
+
+	divisions=2/splits;
+	label_size=divisions*10;	
+
+	for(i in 1:num_factors){
+		# Plot glyph
+		points(0,1-i*divisions, col="black", bg=i, pch=22, cex=label_size*1.75); 
+
+		# Plot Grouping name
+		text(.03, 1-i*divisions, factor_names[i], cex=label_size, pos=4);
+
+		members=rownames(comparison_list[[factor_names[i]]]);
+		if(abbrev>0){
+			members=substr(members, 1, abbrev);
+		}
+		members_str=paste(members, collapse=", ");
+		text(.06, 1-(i*divisions+divisions/2), members_str, cex=label_size*.75, pos=4, font=3);
+	}
+
+}
+
+#############################################################################	
+
 # Get color assignments
 get_colors=function(num_col, alpha=1){
         colors=hsv(seq(0,1,length.out=num_col+1), c(1,.5), c(1,.75,.5), alpha=alpha);
@@ -644,10 +680,14 @@ num_shrd_factors=length(shrd_fact_names);
 factor_colors=get_colors(num_shrd_factors, alpha=1);
 palette(factor_colors);
 
+layout_mat=matrix(c(1,2), nrow=1, ncol=2);
+
+
 for(cur_fact in shrd_fact_names){
 
 	# Plot resp vs pred
 	par(mar=c(5,5,6,3));
+	layout(layout_mat);
 	plot_resp_pred_scatter(cur_fact, shrd_cat_names, as_pred, as_resp);
 	
 	# Summary comparisons
@@ -669,6 +709,7 @@ for(cur_fact in shrd_fact_names){
 	sorted_ix=order(values_mat[,"LogPvalRat"]);
 	summary_txt_byRatio=capture.output(noquote(formatted_mat[sorted_ix,,drop=F]));
 	
+	par(mfrow=c(1,1));
 	plot_text(c(
 		"Factor:",
 		cur_fact,
@@ -694,12 +735,23 @@ plot_text(capture.output(combined_records));
 
 par(mar=c(5,5,6,3));
 
-plot_combined_ratio_comparisons(combined_records, abbrev=4,
+layout(layout_mat);
+plot_combined_ratio_comparisons(combined_records, title="Combined: Scattered Categories", abbrev=4,
 	label_factor_centroid=F, label_categories=T, draw_lines=F);
-plot_combined_ratio_comparisons(combined_records, abbrev=4,
+plot_legend_for_combined_ratio_comparisons(combined_records, abbrev=6);
+
+
+layout(layout_mat);
+plot_combined_ratio_comparisons(combined_records, title="Combined: Connected Categories", abbrev=4,
 	label_factor_centroid=F, label_categories=T, draw_lines=T);
-plot_combined_ratio_comparisons(combined_records, abbrev=4,
+plot_legend_for_combined_ratio_comparisons(combined_records, abbrev=6);
+
+
+layout(layout_mat);
+plot_combined_ratio_comparisons(combined_records, title="Combined: Factors Labeled", abbrev=4,
 	label_factor_centroid=T, label_categories=T, draw_lines=T);
+plot_legend_for_combined_ratio_comparisons(combined_records, abbrev=6);
+
 
 
 # Merge records
@@ -711,12 +763,21 @@ palette(category_colors);
 
 plot_text(capture.output(inverted_records));
 
-plot_combined_ratio_comparisons(inverted_records, abbrev=0,
+layout(layout_mat);
+plot_combined_ratio_comparisons(inverted_records, title="Combined: Scattered Factors", abbrev=0,
 	label_factor_centroid=F, label_categories=T, draw_lines=F);
-plot_combined_ratio_comparisons(inverted_records, abbrev=0,
+plot_legend_for_combined_ratio_comparisons(inverted_records);
+
+layout(layout_mat);
+plot_combined_ratio_comparisons(inverted_records, title="Combined: Connected Factors", abbrev=0,
 	label_factor_centroid=F, label_categories=T, draw_lines=T);
-plot_combined_ratio_comparisons(inverted_records, abbrev=0,
+plot_legend_for_combined_ratio_comparisons(inverted_records);
+
+layout(layout_mat);
+plot_combined_ratio_comparisons(inverted_records, title="Combined: Categories Labeled", abbrev=0,
 	label_factor_centroid=T, label_categories=T, draw_lines=T);
+plot_legend_for_combined_ratio_comparisons(inverted_records);
+
 
 #############################################################################	
 # Close PDF output
