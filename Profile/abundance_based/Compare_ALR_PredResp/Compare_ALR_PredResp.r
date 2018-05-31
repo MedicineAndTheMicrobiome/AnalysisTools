@@ -68,6 +68,8 @@ cat(input_summary, sep="\n");
 ##############################################################################
 
 plot_text=function(strings){
+
+	orig_par=par(no.readonly=T);
 	par(family="Courier");
 	par(oma=rep(.5,4));
 	par(mar=rep(0,4));
@@ -88,6 +90,8 @@ plot_text=function(strings){
 		strings[i]=gsub("\t", "", strings[i]);
 		text(0, top-i, strings[i], pos=4, cex=text_size); 
 	}
+
+	par(orig_par);
 }
 
 
@@ -386,6 +390,7 @@ plot_ratio_comparisons=function(comparison_mat, title=""){
 
 plot_combined_ratio_comparisons=function(
 	comparison_list,
+	abbrev=0,
 	label_factor_centroid=T,
 	label_categories=T,
 	draw_lines=T
@@ -496,7 +501,8 @@ plot_combined_ratio_comparisons=function(
 
 				adj_x=.5;
 				adj_y=.5;
-
+				label_size=1;
+			
 				if(draw_lines){
 					# Move labels away from lines
 
@@ -511,13 +517,19 @@ plot_combined_ratio_comparisons=function(
 					}else if(ypos<means[cur_fact, "Combined_Score"]){
 						adj_y=1
 					}
+					
+					label_size=.75;
 				}
 			
+				label=cat_names[cat_ix];
+				if(abbrev>0){
+					label=substr(label,1,abbrev);
+				}
 
 				text(
 					xpos, ypos,
-					label=substr(cat_names[cat_ix],1,4),
-					cex=.5,
+					label=label,
+					cex=label_size,
 					col=i,
 					adj=c(adj_x, adj_y)
 				);
@@ -561,13 +573,75 @@ get_colors=function(num_col, alpha=1){
 
 #############################################################################	
 
+invert_records=function(comparison_list){
+	factor_names=names(comparison_list);
+	num_factors=length(factor_names);
+
+	categories=c();
+	for(i in 1:num_factors){
+		cur_factor=factor_names[i];
+		cur_mat=comparison_list[[cur_factor]];
+		categories=c(categories, rownames(cur_mat));
+	}
+
+	categories=unique(categories);
+
+	cat("Unique Categories in Comparison List:\n");
+	print(categories);
+
+	inverted_list=list();
+
+	for(i in 1:num_factors){
+		cur_factor=factor_names[i];
+                cur_mat=comparison_list[[cur_factor]];
+
+		num_rows=nrow(cur_mat);
+		if(num_rows>0){
+			row_names=rownames(cur_mat);
+
+			for(row_ix in 1:num_rows){
+				row_name=row_names[row_ix];
+				if(is.null(inverted_list[[row_name]])){
+			
+					cat("Allocating for: ", row_name, "\n");
+					val_mat=matrix(numeric(), nrow=0, ncol=4);
+					colnames(val_mat)=c(
+						"As_Response",
+						"As_Predictor",
+						"Combined_Score",
+						"LogPvalRat");
+				
+					inverted_list[[row_name]]=val_mat;
+				}
+
+				cat("Saving for: ", cur_factor, "\n");
+
+				prev_rownames=rownames(inverted_list[[row_name]]);
+
+				inverted_list[[row_name]]=
+					rbind(inverted_list[[row_name]], cur_mat[row_ix,]);
+
+				
+				rownames(inverted_list[[row_name]])=c(
+					prev_rownames,
+					cur_factor
+				);
+
+			}
+		}
+	}		
+	return(inverted_list);
+
+}
+
+#############################################################################	
+
 options(width=200);
 
 combined_records=list();
 
 num_shrd_factors=length(shrd_fact_names);
 factor_colors=get_colors(num_shrd_factors, alpha=1);
-
 palette(factor_colors);
 
 for(cur_fact in shrd_fact_names){
@@ -596,6 +670,9 @@ for(cur_fact in shrd_fact_names){
 	summary_txt_byRatio=capture.output(noquote(formatted_mat[sorted_ix,,drop=F]));
 	
 	plot_text(c(
+		"Factor:",
+		cur_fact,
+		"",
 		"Sorted By Combined Significance Score:",
 		"",
 		summary_txt_byScore,
@@ -613,16 +690,33 @@ for(cur_fact in shrd_fact_names){
 #############################################################################	
 
 print(combined_records);
+plot_text(capture.output(combined_records));
 
 par(mar=c(5,5,6,3));
 
-plot_combined_ratio_comparisons(combined_records, 
+plot_combined_ratio_comparisons(combined_records, abbrev=4,
 	label_factor_centroid=F, label_categories=T, draw_lines=F);
-plot_combined_ratio_comparisons(combined_records, 
+plot_combined_ratio_comparisons(combined_records, abbrev=4,
 	label_factor_centroid=F, label_categories=T, draw_lines=T);
-plot_combined_ratio_comparisons(combined_records, 
+plot_combined_ratio_comparisons(combined_records, abbrev=4,
 	label_factor_centroid=T, label_categories=T, draw_lines=T);
 
+
+# Merge records
+inverted_records=invert_records(combined_records);
+print(inverted_records);
+num_categories=length(names(inverted_records));
+category_colors=get_colors(num_categories, alpha=1);
+palette(category_colors);
+
+plot_text(capture.output(inverted_records));
+
+plot_combined_ratio_comparisons(inverted_records, abbrev=0,
+	label_factor_centroid=F, label_categories=T, draw_lines=F);
+plot_combined_ratio_comparisons(inverted_records, abbrev=0,
+	label_factor_centroid=F, label_categories=T, draw_lines=T);
+plot_combined_ratio_comparisons(inverted_records, abbrev=0,
+	label_factor_centroid=T, label_categories=T, draw_lines=T);
 
 #############################################################################	
 # Close PDF output
