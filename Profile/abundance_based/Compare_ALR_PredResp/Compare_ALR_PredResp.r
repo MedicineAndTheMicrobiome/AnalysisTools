@@ -392,6 +392,7 @@ plot_combined_ratio_comparisons=function(
 	comparison_list,
 	title="",
 	abbrev=0,
+	draw_symbol_centroid=T,
 	label_factor_centroid=T,
 	label_categories=T,
 	draw_lines=T
@@ -464,6 +465,20 @@ plot_combined_ratio_comparisons=function(
 	#----------------------------------------------------------------------
 	# Optional Section:
 
+	if(draw_symbol_centroid){
+		for(i in 1:num_factors){
+			cur_fact=factor_names[i];
+			if(is.nan(means[cur_fact, "LogPvalRat"])){
+				next;
+			}
+			points(
+				means[cur_fact, "LogPvalRat"],
+				means[cur_fact, "Combined_Score"],
+				bg=i, cex=2, col="black", pch=21
+			)
+		}
+	}
+
 	if(draw_lines){
 		for(i in 1:num_factors){
 			cur_fact=factor_names[i];
@@ -481,11 +496,21 @@ plot_combined_ratio_comparisons=function(
 					col=i,
 					type="l"
 				);
+
+				points(
+					comparison_list[[cur_fact]][cat_ix,"LogPvalRat"],
+					comparison_list[[cur_fact]][cat_ix,"Combined_Score"],
+					col=i,
+					type="p",
+					pch=15,
+					cex=.25
+				);
 			}
 		}
 
 
 	}
+
 	
 	if(label_categories){
 		for(i in 1:num_factors){
@@ -508,7 +533,7 @@ plot_combined_ratio_comparisons=function(
 					# Move labels away from lines
 
 					if(xpos>means[cur_fact, "LogPvalRat"]){
-						adj_x=-.5
+						adj_x=-.25
 					}else if(xpos<means[cur_fact, "LogPvalRat"]){
 						adj_x=1
 					}
@@ -566,7 +591,9 @@ plot_legend_for_combined_ratio_comparisons=function(comparison_list, abbrev=0){
 	factor_names=names(comparison_list);
 	num_factors=length(factor_names);
 		
-	plot(0,0, ylim=c(-.25,1), xlim=c(0,1),
+	orig_par=par(no.readonly=T);
+	par(mar=c(1,1,.5,1));
+	plot(0,0, ylim=c(0,1), xlim=c(0,1),
 		xlab="", ylab="", main="",
 		type="n", bty="n", xaxt="n", yaxt="n");
 
@@ -574,23 +601,26 @@ plot_legend_for_combined_ratio_comparisons=function(comparison_list, abbrev=0){
 
 	splits=max(num_factors, 20);
 
-	divisions=2/splits;
+	divisions=1/splits;
 	label_size=divisions*10;	
 
 	for(i in 1:num_factors){
 		# Plot glyph
-		points(0,1-i*divisions, col="black", bg=i, pch=22, cex=label_size*1.75); 
+		points(0,1-i*divisions, col="black", bg=i, pch=22, cex=label_size*4); 
 
 		# Plot Grouping name
-		text(.03, 1-i*divisions, factor_names[i], cex=label_size, pos=4);
+		text(.03, 1-i*divisions, factor_names[i], cex=label_size*1.25, pos=4);
 
+		# Plot Group members
 		members=rownames(comparison_list[[factor_names[i]]]);
 		if(abbrev>0){
 			members=substr(members, 1, abbrev);
 		}
+
 		members_str=paste(members, collapse=", ");
-		text(.06, 1-(i*divisions+divisions/2), members_str, cex=label_size*.75, pos=4, font=3);
+		text(.06, 1-(i*divisions+divisions/2), members_str, cex=label_size*.85, pos=4, font=3);
 	}
+	par(orig_par);
 
 }
 
@@ -737,19 +767,25 @@ par(mar=c(5,5,6,3));
 
 layout(layout_mat);
 plot_combined_ratio_comparisons(combined_records, title="Combined: Scattered Categories", abbrev=4,
-	label_factor_centroid=F, label_categories=T, draw_lines=F);
+	label_factor_centroid=F, draw_symbol_centroid=F, label_categories=T, draw_lines=F);
 plot_legend_for_combined_ratio_comparisons(combined_records, abbrev=6);
 
 
 layout(layout_mat);
 plot_combined_ratio_comparisons(combined_records, title="Combined: Connected Categories", abbrev=4,
-	label_factor_centroid=F, label_categories=T, draw_lines=T);
+	label_factor_centroid=F, draw_symbol_centroid=F, label_categories=T, draw_lines=T);
+plot_legend_for_combined_ratio_comparisons(combined_records, abbrev=6);
+
+
+layout(layout_mat);
+plot_combined_ratio_comparisons(combined_records, title="Combined: Scattered Categories", abbrev=4,
+	label_factor_centroid=F, draw_symbol_centroid=T, label_categories=T, draw_lines=T);
 plot_legend_for_combined_ratio_comparisons(combined_records, abbrev=6);
 
 
 layout(layout_mat);
 plot_combined_ratio_comparisons(combined_records, title="Combined: Factors Labeled", abbrev=4,
-	label_factor_centroid=T, label_categories=T, draw_lines=T);
+	label_factor_centroid=T, draw_symbol_centroid=F, label_categories=T, draw_lines=T);
 plot_legend_for_combined_ratio_comparisons(combined_records, abbrev=6);
 
 
@@ -765,17 +801,25 @@ plot_text(capture.output(inverted_records));
 
 layout(layout_mat);
 plot_combined_ratio_comparisons(inverted_records, title="Combined: Scattered Factors", abbrev=0,
-	label_factor_centroid=F, label_categories=T, draw_lines=F);
+	label_factor_centroid=F, draw_symbol_centroid=F, label_categories=T, draw_lines=F);
 plot_legend_for_combined_ratio_comparisons(inverted_records);
+
 
 layout(layout_mat);
 plot_combined_ratio_comparisons(inverted_records, title="Combined: Connected Factors", abbrev=0,
-	label_factor_centroid=F, label_categories=T, draw_lines=T);
+	label_factor_centroid=F, draw_symbol_centroid=F, label_categories=T, draw_lines=T);
 plot_legend_for_combined_ratio_comparisons(inverted_records);
+
+
+layout(layout_mat);
+plot_combined_ratio_comparisons(inverted_records, title="Combined: Scattered Factors", abbrev=0,
+	label_factor_centroid=F, draw_symbol_centroid=T, label_categories=T, draw_lines=T);
+plot_legend_for_combined_ratio_comparisons(inverted_records);
+
 
 layout(layout_mat);
 plot_combined_ratio_comparisons(inverted_records, title="Combined: Categories Labeled", abbrev=0,
-	label_factor_centroid=T, label_categories=T, draw_lines=T);
+	label_factor_centroid=T, draw_symbol_centroid=F, label_categories=T, draw_lines=T);
 plot_legend_for_combined_ratio_comparisons(inverted_records);
 
 
