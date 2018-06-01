@@ -597,6 +597,8 @@ if(ShortenCategoryNames!=""){
 	short_names=character();
 	for(i in 1:length(full_names)){
 		short_names[i]=tail(splits[[i]], 1);
+                short_names[i]=gsub("_unclassified$", "_uncl", short_names[i]);
+                short_names[i]=gsub("_group", "_grp", short_names[i]);
 	}
 	colnames(counts)=short_names;
 	cat("Names have been shortened.\n");
