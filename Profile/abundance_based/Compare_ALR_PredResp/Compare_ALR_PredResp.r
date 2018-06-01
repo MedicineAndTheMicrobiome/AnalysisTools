@@ -56,6 +56,8 @@ if(length(opt$sig_cutoff)){
 	signif_cutoff=CUTOFF;
 }
 
+OutputRoot=paste(OutputRoot, ".pred_vs_resp", sep="");
+
 input_summary=capture.output({
 	cat("\n");
 	cat("Input As Predictor File: ", PredFile, "\n");
@@ -98,7 +100,7 @@ plot_text=function(strings){
 ##############################################################################
 # Open PDF output
 
-pdf(paste(OutputRoot,".pred_vs_resp.pdf", sep=""), height=7, width=14);
+pdf(paste(OutputRoot,".pdf", sep=""), height=7, width=14);
 
 plot_text(input_summary);
 
@@ -702,9 +704,70 @@ invert_records=function(comparison_list){
 
 #############################################################################	
 
+output_text_summary=function(comparison_list, root_filename){
+	factor_names=names(comparison_list);
+        num_factors=length(factor_names);
+
+	fh=file(paste(root_filename, ".stats.tsv", sep=""), "w");
+
+	outstr=paste(
+		"Group", 
+		"Factor",
+		"Category",
+		"As_Resp_Pval",
+		"As_Resp_Signf",
+		"As_Pred_Pval",
+		"As_Pred_Signf",
+		"Combined_Score",
+		"Combined_Signf",
+		"LogPvalRatio",
+		sep="\t");
+
+	cat(file=fh, "#", outstr, "\n", sep="");
+
+	for(i in 1:num_factors){
+
+		fact_name=factor_names[i];
+
+		mat=comparison_list[[fact_name]];
+		cat_names=rownames(mat);
+		num_cat=nrow(mat);
+
+		if(num_cat>0){
+			for(cat_ix in 1:num_cat){
+				outstr=paste(
+					root_filename,
+					fact_name,
+					cat_names[cat_ix],
+					mat[cat_ix, "As_Response"],		
+					mat[cat_ix, "rsgn"],		
+					mat[cat_ix, "As_Predictor"],		
+					mat[cat_ix, "psgn"],		
+					mat[cat_ix, "Combined_Score"],		
+					mat[cat_ix, "csgn"],		
+					mat[cat_ix, "LogPvalRat"],
+					sep="\t"
+					);
+
+			cat(file=fh, outstr, "\n");
+			}
+		}else{
+			cat("No records for: ", fact_name, "\n", sep="");
+		}
+
+
+	}
+
+
+}
+
+
+#############################################################################	
+
 options(width=200);
 
 combined_records=list();
+combined_records_txt=list();
 
 num_shrd_factors=length(shrd_fact_names);
 factor_colors=get_colors(num_shrd_factors, alpha=1);
@@ -755,6 +818,7 @@ for(cur_fact in shrd_fact_names){
 
 	# Store summarized for combined
 	combined_records[[cur_fact]]=values_mat;
+	combined_records_txt[[cur_fact]]=formatted_mat;
 }
 
 
@@ -827,6 +891,11 @@ plot_legend_for_combined_ratio_comparisons(inverted_records);
 # Close PDF output
 
 dev.off();
+
+cat("Writing statistics to text file...\n");
+output_text_summary(combined_records_txt, OutputRoot);
+cat("Done...\n");
+
 
 #############################################################################
 
