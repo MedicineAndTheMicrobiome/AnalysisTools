@@ -557,10 +557,16 @@ add_sign_col=function(coeff){
 	fdr=round(p.adjust(pval, method="fdr"), 4);
 	fdr_sig_char=sapply(fdr, sig_char);
 	#out_mat=cbind(coeff, fdr);
-	out_mat=cbind(coeff, sig_arr, fdr, fdr_sig_char);
+
+	fmt=function(x){
+		return(formatC(x, format="f", digits=4, width=7));
+	}
+
+	out_mat=cbind(
+		fmt(coeff), sig_arr, fmt(fdr), fdr_sig_char);
 	colnames(out_mat)=c(cnames, "Signf", "FDR", "Signf");
 	
-	return(formatC(out_mat, format="f", digits=5,));
+	return(out_mat);
 	
 }
 
@@ -1017,7 +1023,9 @@ for(i in 1:num_responses){
 		paste("Univariate: ", responses[i], sep=""),
 		"Covariates portion of Full Model (Covariates + ALR):",
 		"",
-		capture.output(print(univar_summary[covariate_coefficients,,drop=F]))
+		capture.output(
+			print(univar_summary[covariate_coefficients,,drop=F], digits=4)
+		)
 	));
 
 
@@ -1027,7 +1035,10 @@ for(i in 1:num_responses){
 		"ALR Predictors portion of Full Model (Covariates + ALR):",
 		"\n",
 
-		capture.output(print(add_sign_col(univar_summary[shrd_alr_names,,drop=F]), quote=F))
+		capture.output(print(
+				add_sign_col(univar_summary[shrd_alr_names,,drop=F]),
+			quote=F)
+		)
 	));
 
 	plot_text(c(
@@ -1056,7 +1067,7 @@ for(i in 1:num_responses){
 	summary_res_rsqrd[i,]=c(rsquared[2], reduced_rsquared[2], adj_rsqrd_diff);
 }
 
-summary_res_coeff=round(summary_res_coeff,2);
+#summary_res_coeff=round(summary_res_coeff,2);
 summary_res_pval_rnd=round(summary_res_pval,2);
 
 cat("Coefficients Matrix:\n");
@@ -1183,7 +1194,7 @@ close(fh);
 ###############################################################################
 # Write ALR Predictor Coefficients to file
 
-fh=file(paste(OutputRoot, ".alr_as_pred.coefficients.tsv", sep=""), "w");
+fh=file(paste(OutputRoot, ".alr_as_pred.alr.covr.coefficients.tsv", sep=""), "w");
 num_out_col=ncol(summary_res_coeff);
 response_names=colnames(summary_res_coeff);
 
@@ -1215,6 +1226,9 @@ close(fh);
 
 exp_tab=summary_res_pval[shrd_alr_names,,drop=F];
 write.table(exp_tab,  file=paste(OutputRoot, ".alr_as_pred.pvals.tsv", sep=""), sep="\t", quote=F, col.names=NA, row.names=T);
+
+exp_tab=summary_res_coeff[shrd_alr_names,,drop=F];
+write.table(exp_tab,  file=paste(OutputRoot, ".alr_as_pred.coefs.tsv", sep=""), sep="\t", quote=F, col.names=NA, row.names=T);
 
 ###############################################################################
 
