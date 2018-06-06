@@ -1284,6 +1284,9 @@ write_top_categorical_effects_by_factor(paste(OutputRoot,".top_effects.csv", sep
 write.table(t(uv_pval_mat), file=paste(OutputRoot, ".alr_as_resp.pvals.tsv", sep=""), 
 	sep="\t", quote=F, col.names=NA, row.names=T);
 
+write.table(t(uv_coeff_mat), file=paste(OutputRoot, ".alr_as_resp.coefs.tsv", sep=""),
+	sep="\t", quote=F, col.names=NA, row.names=T);
+
 ##############################################################################
 
 reg_coef_power=function(uv_reg_fit, factor=10, alpha=.05, power=.8){
