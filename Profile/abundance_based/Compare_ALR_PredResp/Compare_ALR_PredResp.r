@@ -723,12 +723,15 @@ invert_records=function(comparison_list){
 				if(is.null(inverted_list[[row_name]])){
 			
 					cat("Allocating for: ", row_name, "\n");
-					val_mat=matrix(numeric(), nrow=0, ncol=4);
+					val_mat=matrix(numeric(), nrow=0, ncol=6);
 					colnames(val_mat)=c(
 						"As_Response",
 						"As_Predictor",
 						"Combined_Score",
-						"LogPvalRat");
+						"LogPvalRat",
+						"As_Resp_Dir",
+						"As_Pred_Dir"
+						);
 				
 					inverted_list[[row_name]]=val_mat;
 				}
