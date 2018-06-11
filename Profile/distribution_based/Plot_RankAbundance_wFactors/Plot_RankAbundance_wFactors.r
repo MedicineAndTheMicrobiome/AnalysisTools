@@ -13,7 +13,9 @@ params=c(
 	"output_file", "o", 2, "character",
 	"diversity_type", "d", 2, "character",
 	"shorten_category_names", "s", 2, "character",
-	"crossing_string", "c", 2, "character"
+	"num_rows", "r", 2, "numeric",
+	"num_cols", "c", 2, "numeric",
+	"crossing_string", "x", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -21,6 +23,8 @@ script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
 
 DEF_DIVERSITY="tail";
 TOP_CATEGORIES=20;
+NUM_ROWS=2;
+NUM_COLS=3;
 
 usage = paste(
 	"\nUsage:\n", script_name, "\n",
@@ -32,7 +36,10 @@ usage = paste(
 	"	[-s <shorten category names, with separator in double quotes (default=\"\")>]\n",
 	"	[-l <label abundances greater than specified threshold, default=1.0, recommended 0.01]\n",
 	"\n",
-	"	[-c <crossing/interactions list, e.g., \"var1,var2,var3\" >]\n",
+	"	[-r <number of rows per page, default=", NUM_ROWS, "\n",
+	"	[-c <number of rows per page, default=", NUM_COLS, "\n",
+	"\n",
+	"	[-x <crossing/interactions list, e.g., \"var1,var2,var3\" >]\n",
 	"\n",
 	"	This script will read in the summary table\n",
 	"	and the factor file.\n",
@@ -112,6 +119,17 @@ if(length(opt$top_categories)){
 	NumTopCategories=opt$top_categories;
 }
 
+NumRows=NUM_ROWS;
+if(length(opt$num_rows)){
+	NumRows=opt$num_rows;
+}
+
+NumCols=NUM_COLS;
+if(length(opt$num_cols)){
+	NumCols=opt$num_cols;
+}
+
+
 
 ###############################################################################
 
@@ -119,10 +137,11 @@ OutputFileRoot=paste(OutputFileRoot, ".", substr(DiversityType, 1, 4), ".t", Num
 OutputPDF = paste(OutputFileRoot, ".rnk_abnd.pdf", sep="");
 cat("Output PDF file name: ", OutputPDF, "\n", sep="");
 
-page_width=max(8.5, (1+3+NumTopCategories/5));
-cat("Page with based on number of categories to plot: ", page_width, "\n");
+page_width=(2+(1+NumTopCategories/5)*NumCols);
+page_height=(2+NumRows*3);
+cat("Page page dimensions: Height=", page_height, " x Width=", page_width, "\n");
 
-pdf(OutputPDF,width=8.5,height=14)
+pdf(OutputPDF,width=page_width, height=page_height)
 
 if(!is.na(CrossingString)){
 	cat("Crossing String Specified: ", CrossingString, "\n");
@@ -209,19 +228,68 @@ tail_statistic=function(x){
 
 ###############################################################################
 
-plot_ra=function(abundances, num_top_categories=10, category_colors, ymax){
+plot_ra=function(abundances, num_top_categories=10, category_colors, ymax, title, subtitle){
 	# This draws a single Rank Abundance Plot
 
-	category_names=rownames(abundances);	
-	print(abundances);
+	if(!is.null(dim(abundances))){
+		abundances=abundances[1,];
+	}
 
-	#barplot(abundances);
+	# Sort abundances in decreasing order
+	sort_ix=order(abundances, decreasing=T);
+
+	# Grab abundances/names of top categories
+	top=abundances[sort_ix[1:num_top_categories]];
+	cat_names=names(top);
+
+	# Remove labels if abundance is 0
+	cat_names[top==0]="";
+
+	# Grab colors by names in top
+	reordered_colors=category_colors[cat_names];
+
+	# Calc percent represented
+	prop_draw=sum(top);
+	rep_title=paste("Percentage Represented: ", 
+			round(prop_draw*100.0, 2),
+			"%");
+
+	mids=barplot(top, col=reordered_colors, names.arg="", ylim=c(0, ymax*1.05));
+	title(main=title, font.main=2, cex.main=1.75, line=-1);
+	title(main=rep_title, font.main=1, cex.main=1.1, line=-2)
+	title(main=subtitle, font.main=3, cex.main=1, line=-3)
+
+	# Compute and label categories beneath barplot
+	bar_width=mids[2]-mids[1];
+        plot_range=par()$usr;
+        plot_height=plot_range[4];
+        label_size=min(c(1,.7*bar_width/par()$cxy[1]));
+        text(mids-par()$cxy[1]/2, rep(-par()$cxy[2]/2, num_top_categories), cat_names, srt=-45, xpd=T, pos=4, cex=label_size);
+
+
 
 }
 
 ###############################################################################
 
-plot_rank_abundance_matrix=function(abd_mat, title="", plot_cols=8, plot_rows=4, 
+get_unique_top_categories=function(abd_mat, num_top){
+	# Extracts the names of the top N categories across all samples.
+
+	num_samples=nrow(abd_mat);
+	cat_names=colnames(abd_mat);
+	categories=character();
+	for(i in 1:num_samples){
+		sort_ix=order(abd_mat[i,], decreasing=T);
+		categories=c(categories, cat_names[sort_ix[1:num_top]]);
+	}
+
+	return(unique(categories));
+}
+
+
+###############################################################################
+
+plot_rank_abundance_matrix=function(abd_mat, title="", plot_cols=3, plot_rows=4, 
 	num_top_categories=10,
 	samp_size=c(), divname="diversity", median_diversity=c(), mean_diversity=c()
 	){
@@ -235,33 +303,48 @@ plot_rank_abundance_matrix=function(abd_mat, title="", plot_cols=8, plot_rows=4,
 	label_samp_size=(length(samp_size)>0);
 	label_diversity=(length(median_diversity)>0);
 
-	colors=rainbow(num_cat, start=0, end=4/6);
+	uniq_top_cat=get_unique_top_categories(abd_mat, num_top_categories);
+	num_uniq_top_cat=length(uniq_top_cat);
+	cat("Groups:\n");
+	print(sample_names);
+	cat("Unique Categories in Top:\n");
+	print(uniq_top_cat);	
+
+	colors_map=rainbow(num_uniq_top_cat, start=0, end=4/6);
+
+	max_abd=max(abd_mat);
+	abd_avg=apply(abd_mat[,uniq_top_cat], 2, mean);
+	ord_avg_ix=order(abd_avg, decreasing=T);
+	names(colors_map)=uniq_top_cat[ord_avg_ix];
 
 	orig.par=par(no.readonly=T);
-
 	par(mfrow=c(plot_rows, plot_cols));
 	par(oma=c(.5,.5,3.5,.5));
-	par(mar=c(1,1,1,1));
+	par(mar=c(10,2,2,5));
+	par(lwd=.25);
+	setHook("plot.new", function(){
+		if(par()$page){
+			mtext(text=title, side=3, outer=T, cex=2, font=2, line=.5);
+		}
+		}
+	);
+		
 
-	abd_avg=apply(abd_mat, 2, mean);
-	avg_ix=order(abd_avg, decreasing=T);
-	
+	plot_ra(abd_avg, num_uniq_top_cat, colors_map, ymax=max_abd,
+		title="Average/Reference", subtitle=paste(num_samples, " Groups", sep=""));
 
-	i=0;
-	while(i<num_samples){
+	i=1;
+	while(i<=num_samples){
 		for(y in 1:plot_rows){
 			for(x in 1:plot_cols){
-				if(i<num_samples){
-					sample=sample_names[i+1];
-
-
-					mtext(sample, line=0, cex=.5, font=2);
+				if(i<=num_samples){
+					sample=sample_names[i];
+					n=samp_size[i];
 
 					if(label_samp_size){
-						n=samp_size[i+1];
 						#mtext(paste("n=",n,sep=""), line=-.5, cex=.4, font=3);
 					}
-					if(length(samp_size) && samp_size[i+1]>1){
+					if(length(samp_size) && samp_size[i]>1){
 						#text(label_offset1, 0, paste("Median ", divname, " = ",
 						#	signif(median_diversity[i+1], 4),sep=""),
 						#	srt=90, adj=0, cex=.7);
@@ -276,15 +359,25 @@ plot_rank_abundance_matrix=function(abd_mat, title="", plot_cols=8, plot_rows=4,
 
 					abundances=abd_mat[sample,,drop=F];
 
-					plot_ra(abd_mat[i,], num_top_categories, colors, ymax);
+					if(n==1){
+						samp_size_subtitle="";
+					}else{
+						samp_size_subtitle=paste("n = ", n, sep="");
+					}
+
+					plot_ra(abundances, num_top_categories, colors_map, ymax=max_abd, 
+						title=sample, subtitle=samp_size_subtitle);
+
 				}else{
-					plot(0,0, type="n", bty="n", xaxt="n", yaxt="n");
+					plot(0,0, type="n", bty="n", xaxt="n", yaxt="n", 
+						main="", xlab="", ylab="");
 				}
 				i=i+1;
 			}
 		}
-		mtext(text=title, side=3, outer=T, cex=2, font=2, line=.5);
 	}
+
+	setHook("plot.new", NULL, "replace");
 	par(orig.par);
 }
 
@@ -356,12 +449,12 @@ plot_text(c(
 	paste("Diversity Index:", DiversityType),
 	"",
 	"Summary Table:",
-	paste("    Num Samples:", nrow(orig_counts_mat)),
-	paste(" Num Categories:", ncol(orig_counts_mat)),
+	paste("      Num Samples:", nrow(orig_counts_mat)),
+	paste("   Num Categories:", ncol(orig_counts_mat)),
 	"",
 	"Factor Table:",
-	paste("    Num Samples:", nrow(orig_factors_mat)),
-	paste("    Num Factors:", ncol(orig_factors_mat)),
+	paste("      Num Samples:", nrow(orig_factors_mat)),
+	paste("      Num Factors:", ncol(orig_factors_mat)),
 	"",
 	paste("Shared Samples:", num_shared),
 	"",
@@ -528,11 +621,13 @@ for(i in 1:ncol(grp_mat)){
 	plot_rank_abundance_matrix(
 		abd_mat=combined_abd, 
 		title=grp_name, 
-		num_top_categories=NumCategoriesToPlot,
+		num_top_categories=NumTopCategories,
 		samp_size=sample_sizes, 
 		divname=DiversityType, 
 		median_diversity=diversity_median, 
-		mean_diversity=diversity_mean
+		mean_diversity=diversity_mean,
+		plot_rows=NumRows,
+		plot_cols=NumCols
 	);
 
 
