@@ -454,7 +454,7 @@ if(TestingMode){
 }else{
 	rand="";
 }
-pdf(paste(OutputRoot, rand, ".div_resp.pdf", sep=""), height=14, width=8.5);
+pdf(paste(OutputRoot, rand, ".div_as_resp.pdf", sep=""), height=14, width=8.5);
 
 # Output the factor correlations
 if(nrow(factor_correlations)>0){
@@ -877,7 +877,7 @@ plot_overlapping_histograms=function(raw, factors, model_string, title, bin_cont
 			# Draw the curves for each factor level
 			for(lix in 1:num_levels){
 				dens=dens_list[[lix]];
-				if(!is.na(dens)){
+				if(!any(is.na(dens))){
 					points(dens, type="l", col=lix);
 				}
 			}
@@ -1006,9 +1006,11 @@ significant_coeff=(pval_matrix<0.05)*coeff_matrix;
 plot_correl_heatmap(significant_coeff, title="Significant Coefficients", noPrintZeros=T);
 
 
+dev.off();
+
 ##############################################################################
 
-fh=file(paste(OutputRoot, ".coeff.tsv", sep=""), "w");
+fh=file(paste(OutputRoot, ".div_as_resp.regr_stats.tsv", sep=""), "w");
 
 # Output Header
 cat(file=fh, paste(c("Coefficients", "Estimates:", div_names, "p-values:", div_names), collapse="\t"));
@@ -1030,8 +1032,14 @@ for(i in 1:length(coeff_names)){
 close(fh);
 
 ##############################################################################
+
+# Write coefficient p-values to file
+write.table(t(pval_matrix), file=paste(OutputRoot, ".div_as_resp.pvals.tsv", sep=""),
+        sep="\t", quote=F, col.names=NA, row.names=T);
+
+write.table(t(coeff_matrix), file=paste(OutputRoot, ".div_as_resp.coefs.tsv", sep=""),
+        sep="\t", quote=F, col.names=NA, row.names=T);
 	
-dev.off();
 
 ##############################################################################
 
