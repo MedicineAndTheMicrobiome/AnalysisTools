@@ -454,6 +454,13 @@ plot_combined_ratio_comparisons=function(
 	factor_names=names(comparison_list);
 	num_factors=length(factor_names);
 
+
+	if(num_factors==0){
+		plot(0,0, xlab="", ylab="", main=title, xaxt="n", yaxt="n");
+		text(0,0, "No factors to plot.");	
+		return();
+	}
+
 	# Pre transform the combined scores
 	for(cur_fact in factor_names){
 		comparison_list[[cur_fact]][,"Combined_Score"]=
@@ -643,6 +650,14 @@ plot_legend_for_combined_ratio_comparisons=function(comparison_list, abbrev=0){
 
 	factor_names=names(comparison_list);
 	num_factors=length(factor_names);
+
+	if(num_factors==0){
+		plot(0,0, ylim=c(0,1), xlim=c(0,1),
+			xlab="", ylab="", main="",
+			type="n", bty="n", xaxt="n", yaxt="n");
+		text(.5,.5, "No colors assigned.");
+		return();
+	}
 		
 	orig_par=par(no.readonly=T);
 	par(mar=c(1,1,.5,1));
@@ -824,7 +839,7 @@ combined_records=list();
 combined_records_txt=list();
 
 num_shrd_factors=length(shrd_fact_names);
-factor_colors=get_colors(num_shrd_factors, alpha=1);
+factor_colors=get_colors(max(2,num_shrd_factors), alpha=1);
 palette(factor_colors);
 
 layout_mat=matrix(c(1,2), nrow=1, ncol=2);
@@ -915,7 +930,7 @@ plot_legend_for_combined_ratio_comparisons(combined_records, abbrev=6);
 inverted_records=invert_records(combined_records);
 print(inverted_records);
 num_categories=length(names(inverted_records));
-category_colors=get_colors(num_categories, alpha=1);
+category_colors=get_colors(max(2,num_categories), alpha=1);
 palette(category_colors);
 
 plot_text(capture.output(inverted_records));
