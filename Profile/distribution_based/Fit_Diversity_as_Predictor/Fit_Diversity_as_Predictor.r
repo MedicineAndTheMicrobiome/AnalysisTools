@@ -526,7 +526,7 @@ sig_char=function(val){
 
 ##############################################################################
 
-pdf(paste(OutputRoot, ".div_pred.pdf", sep=""), height=8.5, width=11);
+pdf(paste(OutputRoot, ".div_as_pred.pdf", sep=""), height=8.5, width=11);
 
 ##############################################################################
 # Load matrix
@@ -885,13 +885,16 @@ paint_matrix(diversity_adj.rsqrd_delta, title="Diversity Delta Adjusted R^2 (Ful
 paint_matrix(anova_pval, title="Full Model MANOVAs (Diversity+Covariates) P-values", 
 	high_is_hot=F, plot_min=0, plot_max=1);
 
+dev.off();
+
+##############################################################################
 
 # Output
 # MANOVA
 div_ix="Tail";
 sigdig=5;
 
-fh=file(paste(OutputRoot, ".", div_ix, ".ovrvw.tsv", sep=""), "w");
+fh=file(paste(OutputRoot, ".div_as_pred.model_stats.", div_ix, ".tsv", sep=""), "w");
 
 cat(file=fh, paste("Name:", OutputRoot, "", "", sep="\t"), "\n", sep="");
 cat(file=fh, paste("Diversity:", div_ix, "", "", sep="\t"), "\n", sep="");
@@ -923,11 +926,19 @@ for(i in 1:nrow(diversity_coef)){
 
 close(fh);
 
+##############################################################################
+
+# Export coefficience and p-values for pred/resp analysis
+
+write.table(t(diversity_pval), file=paste(OutputRoot, ".div_as_pred.pvals.tsv", sep=""),
+        sep="\t", quote=F, col.names=NA, row.names=T);
+
+write.table(t(diversity_coef), file=paste(OutputRoot, ".div_as_pred.coefs.tsv", sep=""),
+        sep="\t", quote=F, col.names=NA, row.names=T);
+
 
 ##############################################################################
 	
-dev.off();
-
 ##############################################################################
 
 cat("Done.\n");
