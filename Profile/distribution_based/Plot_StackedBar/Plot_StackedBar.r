@@ -689,7 +689,9 @@ map_val_to_grp=function(fact_mat){
 # Plot stacked bar plots across each of the factors
 
 if(!is.null(FactorSubset)){
-	fact_subset_arr=scan(FactorSubset, what=character());
+	fact_subset_arr=scan(FactorSubset, what=character(), comment.char="#");
+	cat("Focusing on these factors:\n");
+	print(fact_subset_arr);
 	factors_mat=factors_mat[,fact_subset_arr];
 }
 
