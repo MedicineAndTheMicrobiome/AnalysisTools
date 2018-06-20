@@ -191,7 +191,6 @@ sub run_abundance_based{
 	mkdir "$output_dir/abundance/$RESP_OUT_DIR";
 	mkdir "$output_dir/abundance/$PRED_OUT_DIR";
 	mkdir "$output_dir/abundance/$COMP_DIR";
-
 	
 	$cmd=
 	"~/git/AnalysisTools/Profile/abundance_based/Fit_ALR_as_Response/Fit_ALR_as_Response.r \
@@ -246,6 +245,8 @@ sub run_distribution_based{
 	my $PRED_OUT_DIR="div_as_pred";
 	my $RESP_OUT_DIR="div_as_resp";
 	my $COMP_DIR="div_pred_resp_comp";
+	my $STCK_BAR_DIR="stackedbar_plot";
+	my $RANK_ABND_DIR="rank_abund_plot";
 	my $cmd;
 
 
@@ -256,7 +257,12 @@ sub run_distribution_based{
 	mkdir "$output_dir/distribution/$RESP_OUT_DIR";
 	mkdir "$output_dir/distribution/$PRED_OUT_DIR";
 	mkdir "$output_dir/distribution/$COMP_DIR";
+	mkdir "$output_dir/distribution/$STCK_BAR_DIR";
+	mkdir "$output_dir/distribution/$RANK_ABND_DIR";
 
+
+	#######################################################################
+	# Diversity
 	$cmd=
 	 "~/git/AnalysisTools/Profile/distribution_based/Fit_Diversity_as_Response/Fit_Diversity_as_Response.r \
                 -s $summary_table \
@@ -289,6 +295,27 @@ sub run_distribution_based{
 	";
 	run_command("Compare Diversity Pred/Resp", "div_pred_resp_comp", $cmd, "$output_dir/distribution/$COMP_DIR");
 
+	#######################################################################
+	# Plots
+	$cmd=
+	"~/git/AnalysisTools/Profile/distribution_based/Plot_StackedBar/Plot_StackedBar.r \
+		-i $summary_table \
+		-f $factor_file \
+		-M $output_dir/cov_var \
+		-o $output_dir/distribution/$STCK_BAR_DIR/$model_name \
+		-s \";\" \
+	";
+	run_command("Plot Stacked Bar Plots", "stacked_bp", $cmd, "$output_dir/distribution/$STCK_BAR_DIR");
+
+	$cmd=
+	"~/git/AnalysisTools/Profile/distribution_based/Plot_RankAbundance_wFactors/Plot_RankAbundance_wFactors.r \
+		-i $summary_table \
+		-f $factor_file \
+		-M $output_dir/cov_var \
+		-o $output_dir/distribution/$RANK_ABND_DIR/$model_name \
+		-s \";\" \
+	";
+	run_command("Plot Rank Abundance Plots", "rank_abnd", $cmd, "$output_dir/distribution/$RANK_ABND_DIR");
 
 }
 
