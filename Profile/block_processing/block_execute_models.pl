@@ -69,6 +69,10 @@ my $FactorFile=$opt_f;
 my $Covariates=$opt_c;
 my $GroupVar=$opt_g;
 my $OutputDir=$opt_o;
+my $AnalysisName=$GroupVar;
+
+$AnalysisName=~s/\.txt$//;
+$AnalysisName=File::Basename::fileparse($AnalysisName);
 
 my $ABDNC_DIR="abundance_based";
 my $DSTRB_DIR="distribution_based";
@@ -89,6 +93,7 @@ print STDERR "Factor File:          $FactorFile\n";
 print STDERR "Covariates List:      $Covariates\n";
 print STDERR "Group Variables List: $GroupVar\n";
 print STDERR "Output Directory:     $OutputDir\n";
+print STDERR "Analysis Name:        $AnalysisName\n";
 print STDERR "\n";
 
 ###############################################################################
@@ -113,8 +118,8 @@ sub run_command{
 		open(CHK_FH, "<$checkpt_file") || die "Could not open $checkpt_file.\n";
 		my $first_line=<CHK_FH>;
 		close(CHK_FH);
-
-		$first_line=chomp($first_line);
+		
+		$first_line=~s/\s+//g;
 		if($first_line eq "Completed."){
 			print STDERR "$cmd_name ($checkpt_file) was successfully completed previous. Skipping.\n";
 			return;
@@ -128,6 +133,12 @@ sub run_command{
 	print STDERR "'$clean_cmd'\n";
 	my $result=`$clean_cmd`;
 	my $exit_code=$?;
+
+	# Save output to file
+	my $logname="$chkpt_dir/$cmd_name_shrt\.LOG.TXT";
+	open(LOG_FH, ">$logname") || die "Could not open $logname.\n";
+	print LOG_FH "$result";
+	close(LOG_FH);
 
 	# Write checkpoint file
 	if($exit_code==0){
@@ -159,11 +170,15 @@ sub run_abundance_based{
 
 	my $PRED_OUT_DIR="alr_as_pred";
 	my $RESP_OUT_DIR="alr_as_resp";
+	my $COMP_DIR="alr_pred_resp_cmp";
 	my $cmd;
 
 	$cmd="cat $covariates $variable_list > $output_dir/cov_var";
+	run_command("Concatenate variables into full model list", "concat", $cmd, $output_dir);
 
-	run_command("Concatenate variables into full model list", "make_full_model", $cmd, $output_dir);
+	mkdir "$output_dir/$RESP_OUT_DIR";
+	mkdir "$output_dir/$PRED_OUT_DIR";
+	mkdir "$output_dir/$COMP_DIR";
 
 	
 	$cmd=
@@ -173,7 +188,7 @@ sub run_abundance_based{
                 -M $output_dir/cov_var \
                 -q $output_dir/cov_var \
                 -p $num_alr \
-                -o $output_dir/$model_name  \
+                -o $output_dir/$RESP_OUT_DIR/$model_name  \
                 -x \";\"
 	";
 	run_command("Fit ALR as Response", "alr_as_resp", $cmd, $output_dir);
@@ -186,7 +201,7 @@ sub run_abundance_based{
                 -c $covariates \
                 -q $output_dir/cov_var \
                 -p $num_alr \
-                -o $output_dir/$model_name \
+                -o $output_dir/$PRED_OUT_DIR/$model_name \
                 -x \";\"
 	";
 	run_command("Fit ALR as Predictor", "alr_as_pred", $cmd, $output_dir);
@@ -194,11 +209,11 @@ sub run_abundance_based{
 
 	$cmd=
       	"~/git/AnalysisTools/Profile/abundance_based/Compare_ALR_PredResp/Compare_ALR_PredResp.r \
-                -x $output_dir/$model_name.alr_as_pred.pvals.tsv \
-                -y $output_dir/$model_name.alr_as_resp.pvals.tsv \
-                -u $output_dir/$model_name.alr_as_pred.coefs.tsv \
-                -v $output_dir/$model_name.alr_as_resp.coefs.tsv \
-                -o $output_dir/$model_name \
+                -x $output_dir/$PRED_OUT_DIR/$model_name.alr_as_pred.pvals.tsv \
+                -y $output_dir/$RESP_OUT_DIR/$model_name.alr_as_resp.pvals.tsv \
+                -u $output_dir/$PRED_OUT_DIR/$model_name.alr_as_pred.coefs.tsv \
+                -v $output_dir/$RESP_OUT_DIR/$model_name.alr_as_resp.coefs.tsv \
+                -o $output_dir/$COMP_DIR/$model_name.alr \
                 -p .025
 	";
 	run_command("Compare ALR Pred/Resp", "alr_pred_resp_comp", $cmd, $output_dir);	
@@ -218,11 +233,16 @@ sub run_distribution_based{
 
 	my $PRED_OUT_DIR="div_as_pred";
 	my $RESP_OUT_DIR="div_as_resp";
+	my $COMP_DIR="div_pred_resp_cmp";
 	my $cmd;
 
 
 	$cmd="cat $covariates $variable_list > $output_dir/cov_var";
-	run_command("Concatenate variables into full model list", $cmd, $output_dir);
+	run_command("Concatenate variables into full model list", "concat", $cmd, $output_dir);
+
+	mkdir "$output_dir/$RESP_OUT_DIR";
+	mkdir "$output_dir/$PRED_OUT_DIR";
+	mkdir "$output_dir/$COMP_DIR";
 
 	$cmd=
 	 "~/git/AnalysisTools/Profile/distribution_based/Fit_Diversity_as_Response/Fit_Diversity_as_Response.r \
@@ -230,7 +250,7 @@ sub run_distribution_based{
                 -f $factor_file \
                 -M $output_dir/cov_var \
                 -q $output_dir/cov_var \
-             	-o $output_dir/$model_name 
+             	-o $output_dir/$RESP_OUT_DIR/$model_name 
 	";
 	run_command("Fit Diversity as Response", "div_as_resp", $cmd, $output_dir);
 
@@ -241,17 +261,17 @@ sub run_distribution_based{
                 -y $variable_list \
                 -c $covariates \
                 -q $output_dir/cov_var \
-                -o $output_dir/$model_name
+                -o $output_dir/$PRED_OUT_DIR/$model_name
 	";
 	run_command("Fit Diversity as Predictor", "div_as_pred", $cmd, $output_dir);
 
 	$cmd=
         "~/git/AnalysisTools/Profile/abundance_based/Compare_ALR_PredResp/Compare_ALR_PredResp.r \
-                -x $output_dir/$model_name.div_as_pred.pvals.tsv \
-                -y $output_dir/$model_name.div_as_resp.pvals.tsv \
-                -u $output_dir/$model_name.div_as_pred.coefs.tsv \
-                -v $output_dir/$model_name.div_as_resp.coefs.tsv \
-                -o $output_dir/$model_name \
+                -x $output_dir/$PRED_OUT_DIR/$model_name.div_as_pred.pvals.tsv \
+                -y $output_dir/$RESP_OUT_DIR/$model_name.div_as_resp.pvals.tsv \
+                -u $output_dir/$PRED_OUT_DIR/$model_name.div_as_pred.coefs.tsv \
+                -v $output_dir/$RESP_OUT_DIR/$model_name.div_as_resp.coefs.tsv \
+                -o $output_dir/$COMP_DIR/$model_name.div \
                 -p .025
 	";
 	run_command("Compare Diversity Pred/Resp", "div_pred_resp_comp", $cmd, $output_dir);
@@ -295,10 +315,20 @@ run_abundance_based(
 	$FactorFile,
 	$Covariates,
 	$GroupVar,
-	"temp",
+	$AnalysisName,
 	35
 );
-	
+
+
+run_distribution_based(
+	$OutputDir,
+	$SummaryTable,
+	$FactorFile,
+	$Covariates,
+	$GroupVar,
+	$AnalysisName
+);
+
 
 
 
