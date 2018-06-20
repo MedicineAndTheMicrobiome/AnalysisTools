@@ -170,7 +170,7 @@ sub run_abundance_based{
 
 	my $PRED_OUT_DIR="alr_as_pred";
 	my $RESP_OUT_DIR="alr_as_resp";
-	my $COMP_DIR="alr_pred_resp_cmp";
+	my $COMP_DIR="alr_pred_resp_comp";
 	my $cmd;
 
 	$cmd="cat $covariates $variable_list > $output_dir/cov_var";
@@ -233,7 +233,7 @@ sub run_distribution_based{
 
 	my $PRED_OUT_DIR="div_as_pred";
 	my $RESP_OUT_DIR="div_as_resp";
-	my $COMP_DIR="div_pred_resp_cmp";
+	my $COMP_DIR="div_pred_resp_comp";
 	my $cmd;
 
 
@@ -284,6 +284,48 @@ sub run_distribution_based{
 
 sub run_distance_based{
 
+	my $output_dir=shift;
+	my $summary_table=shift;
+	my $factor_file=shift;
+	my $covariates=shift;
+	my $variable_list=shift;
+	my $model_name=shift;
+
+	my $DISTMAT_DIR="dist_mat";
+	my $PERMA_DIR="permanova";
+	my $CLUST_MLL_DIR="clust_mll";
+	my $cmd;
+
+
+	$cmd="cat $covariates $variable_list > $output_dir/cov_var";
+	run_command("Concatenate variables into full model list", "concat", $cmd, $output_dir);
+
+	mkdir "$output_dir/$DISTMAT_DIR";
+	mkdir "$output_dir/$PERMA_DIR";
+	mkdir "$output_dir/$CLUST_MLL_DIR";
+
+	my ($st_root_name)=File::Basename::fileparse($summary_table);
+	$st_root_name=~s/\.summary_table\.tsv$//;
+
+	$cmd=
+	"~/git/AnalysisTools/Profile/SummaryTableUtilities/Create_Distance_Matrix.r \
+                -i $summary_table \
+                -d man \
+             	-o $output_dir/$DISTMAT_DIR/$st_root_name
+	";
+	run_command("Compute Distance Matrix", "dist_mat", $cmd, $output_dir);
+
+	$cmd=
+	"~/git/AnalysisTools/Profile/distance_based/Permanova/Permanova.r \
+                -d $output_dir/$DISTMAT_DIR/$st_root_name.man.distmat \
+                -f $factor_file \
+		-M $output_dir/cov_var \
+		-o $output_dir/$PERMA_DIR/$model_name \
+		-q $output_dir/cov_var
+	";
+	run_command("Permanova", "perma", $cmd, $output_dir);
+		
+
 
 	#compute distance matrix
 
@@ -321,6 +363,15 @@ run_abundance_based(
 
 
 run_distribution_based(
+	$OutputDir,
+	$SummaryTable,
+	$FactorFile,
+	$Covariates,
+	$GroupVar,
+	$AnalysisName
+);
+
+run_distance_based(
 	$OutputDir,
 	$SummaryTable,
 	$FactorFile,
