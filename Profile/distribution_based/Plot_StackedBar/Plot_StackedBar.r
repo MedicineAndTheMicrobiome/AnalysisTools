@@ -9,6 +9,7 @@ library('getopt');
 params=c(
 	"input_file", "i", 1, "character",
 	"factor_file", "f", 2, "character",
+	"factor_subset", "M", 2, "character",
 	"top_categories", "t", 2, "character",
 	"output_file", "o", 2, "character",
 	"diversity_type", "d", 2, "character",
@@ -27,6 +28,7 @@ usage = paste(
 	"\nUsage:\n", script_name, "\n",
 	"	-i <input summary_table.tsv file>\n",
 	"	[-f <factor file>]\n",
+	"	[-M <list of factors/variables to focus on>]\n",
 	"	[-t <top categories to display, default=", TOP_CATEGORIES, ">]\n",
 	"	[-o <output file root name>]\n",
 	"	[-d <diversity, default=", DEF_DIVERSITY, ".]\n",
@@ -81,6 +83,11 @@ if(length(opt$diversity_type)){
 NumTopCategories=TOP_CATEGORIES;
 if(length(opt$top_categories)){
 	NumTopCategories=opt$top_categories;
+}
+
+FactorSubset=NULL;
+if(length(opt$factor_subset)){
+	FactorSubset=opt$factor_subset;
 }
 
 if(length(opt$output_file)>0){
@@ -680,6 +687,11 @@ map_val_to_grp=function(fact_mat){
 
 ###############################################################################
 # Plot stacked bar plots across each of the factors
+
+if(!is.null(FactorSubset)){
+	fact_subset_arr=scan(FactorSubset, what=character());
+	factors_mat=factors_mat[,fact_subset_arr];
+}
 
 grp_mat=map_val_to_grp(factors_mat);
 print(grp_mat);
