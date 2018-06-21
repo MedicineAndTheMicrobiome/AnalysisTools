@@ -392,32 +392,6 @@ plot_text=function(strings){
 
 ##############################################################################
 
-remove_factors_with_no_data=function(factors){
-	num_factors=ncol(factors);
-	fact_names=colnames(factors);
-	keep_ix=c();
-	cat("Looking for no-info factors...\n");
-	for(i in 1:num_factors){
-		fact_val=factors[,i];
-		na_ix=is.na(fact_val);
-		fact_val=fact_val[!na_ix];
-		uniq_vals=unique(fact_val);
-		num_unique=length(uniq_vals);
-		if(num_unique>1){
-			keep_ix=c(keep_ix, i);	
-		}else{
-			if(num_unique==0){
-				uniq_vals="NA";
-			}
-			cat("Removing: ", fact_names[i], ", all ", uniq_vals, "'s\n", sep="");
-		}
-	}
-	cat("ok.\n\n");
-	return(factors[,keep_ix, drop=F]);
-}
-
-##############################################################################
-
 remove_samples_wNA=function(factors){
 	
 	cat("Identifying Samples to remove because factors have NAs.\n");
@@ -535,9 +509,6 @@ if(ModelFormula!=""){
 }else{
 	model_var=factor_names;
 }
-
-# Remove factors or samples that have NAs
-factors=remove_factors_with_no_data(factors);
 
 # Load variables to require after NA removal
 required_arr=NULL;
