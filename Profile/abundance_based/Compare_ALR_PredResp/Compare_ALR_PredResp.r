@@ -124,6 +124,23 @@ as_resp_pval=read.table(RespPvalFile);
 as_pred_coef=read.table(PredCoefFile);
 as_resp_coef=read.table(RespCoefFile);
 
+if(all(is.na(as_pred_pval))){
+	plot_text(c(
+		"All 'As Predictor' coefficient p-values were NA.",
+		"Perhaps sample size was too small for number of covariates + predictors fit."
+	));	
+	quit(status=0);
+}
+
+if(all(is.na(as_resp_pval))){
+	plot_text(c(
+		"All 'As Response' coefficients p-values were NA.",
+		"Perhaps sample size was too small for number of covariates fit."
+	));	
+	quit(status=0);
+}
+
+
 num_pred_fact=ncol(as_pred_pval);
 num_pred_cat=nrow(as_pred_pval);
 pred_fact_names=colnames(as_pred_pval);
