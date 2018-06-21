@@ -151,9 +151,14 @@ sub run_command{
 		open(CHK_FH, ">>$checkpt_file") || die "Could not open $checkpt_file.\n";
 		print CHK_FH "\nCompleted.\n";
 		close(CHK_FH);
+
+		if(-e "$checkpt_file\.failed"){
+			unlink "$checkpt_file\.failed"
+		}
+
 		return;
 	}else{
-		open(CHK_FH, ">>$checkpt_file") || die "Could not open $checkpt_file.\n";
+		open(CHK_FH, ">>$checkpt_file\.failed") || die "Could not open $checkpt_file.\n";
 		print CHK_FH "\nFailed.\n";
 		close(CHK_FH);
 
