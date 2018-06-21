@@ -320,7 +320,7 @@ plot_rank_abundance_matrix=function(abd_mat, title="", plot_cols=3, plot_rows=4,
 	colors_map=rainbow(num_uniq_top_cat, start=0, end=4/6);
 
 	max_abd=max(abd_mat);
-	abd_avg=apply(abd_mat[,uniq_top_cat], 2, mean);
+	abd_avg=apply(abd_mat[,uniq_top_cat, drop=F], 2, mean);
 	ord_avg_ix=order(abd_avg, decreasing=T);
 	names(colors_map)=uniq_top_cat[ord_avg_ix];
 
