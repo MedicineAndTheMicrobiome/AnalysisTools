@@ -389,7 +389,6 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 			}
 		}
 
-
 		hcl=hclust(dendist, method="ward.D2");
 		dend=list();
 		dend[["tree"]]=as.dendrogram(hcl);
@@ -411,6 +410,12 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 	}
 	if(num_col==1){
 		plot_col_dendr=F;
+	}
+
+	# Don't plot dendrogram if there are any NAs in the matrix
+	if(any(is.na(mat))){
+		plot_col_dendr=F;
+		plot_row_dendr=F;
 	}
 
 	if(plot_col_dendr && plot_row_dendr){
@@ -545,12 +550,16 @@ add_sign_col=function(coeff){
 	pval=coeff[,pval_ix];
 
 	sig_char=function(val){
-		if(val <= .0001){ return("***");}
-		if(val <= .001 ){ return("** ");}
-		if(val <= .01  ){ return("*  ");}
-		if(val <= .05  ){ return(":  ");}
-		if(val <= .1   ){ return(".  ");}
-		return(" ");
+		if(!is.null(val) && !is.nan(val)){
+			if(val <= .0001){ return("***");}
+			if(val <= .001 ){ return("** ");}
+			if(val <= .01  ){ return("*  ");}
+			if(val <= .05  ){ return(":  ");}
+			if(val <= .1   ){ return(".  ");}
+			return(" ");
+		}else{
+			return(" ");
+		}
 	}
 
 	sig_arr=sapply(pval, sig_char);
@@ -1028,13 +1037,10 @@ for(i in 1:num_responses){
 		)
 	));
 
-
-
 	plot_text(c(
 		paste("Univariate: ", responses[i], sep=""),
 		"ALR Predictors portion of Full Model (Covariates + ALR):",
 		"\n",
-
 		capture.output(print(
 				add_sign_col(univar_summary[shrd_alr_names,,drop=F]),
 			quote=F)
