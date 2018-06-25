@@ -1,0 +1,5 @@
+Package: Bookmarker
+Title:  Tool for creating, tracking, and documenting bookmarks for paged analyses
+Version: 0.1
+Authors@R: person("Kelvin", "Li", email="lik2@upmc.edu", role=c("aut", "cre"))
+Description: Tool for documenting and creating bookmarks for dynamically generated PDF files
