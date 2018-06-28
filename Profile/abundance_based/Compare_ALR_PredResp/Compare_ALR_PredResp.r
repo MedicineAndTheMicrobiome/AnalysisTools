@@ -850,6 +850,152 @@ output_text_summary=function(comparison_list, root_filename){
 
 #############################################################################	
 
+transform_to_matrix=function(combined_ratio_coef, shrd_fact_names, shrd_cat_names){
+
+	cat("Plot summary matrices:\n");
+	#print(combined_ratio_coef);
+	#print(shrd_fact_names);
+	#print(shrd_cat_names);
+
+	shrd_fact_names=sort(shrd_fact_names);
+	shrd_cat_names=sort(shrd_cat_names);
+
+	num_shrd_fact_names=length(shrd_fact_names);
+	num_shrd_cat_names=length(shrd_cat_names);
+
+	fact_cat_mat_coefdir=matrix(0, nrow=num_shrd_cat_names, ncol=num_shrd_fact_names);
+	rownames(fact_cat_mat_coefdir)=shrd_cat_names;
+	colnames(fact_cat_mat_coefdir)=shrd_fact_names;
+
+	fact_cat_mat_predresp=matrix("", nrow=num_shrd_cat_names, ncol=num_shrd_fact_names);
+	rownames(fact_cat_mat_predresp)=shrd_cat_names;
+	colnames(fact_cat_mat_predresp)=shrd_fact_names;
+
+
+	#print(fact_cat_mat_coefdir);
+	#print(fact_cat_mat_predresp);
+
+	#print(combined_ratio_coef);
+	signf_fact=names(combined_ratio_coef);
+
+	for(fact in signf_fact){
+		cat_table=combined_ratio_coef[[fact]];
+		categories=rownames(cat_table);
+	
+		for(cat in categories){
+			directionality=0;
+
+			if(cat_table[cat, "LogPvalRat"]>0){
+				# Responder
+				fact_cat_mat_predresp[cat, fact]="R";
+				if(cat_table[cat, "As_Resp_Dir"]>0){
+					directionality=1;
+				}else if(cat_table[cat, "As_Resp_Dir"]<0){
+					directionality=-1;
+				}
+			}else if(cat_table[cat, "LogPvalRat"]<0){
+				# Predictor	
+				fact_cat_mat_predresp[cat, fact]="P";
+				if(cat_table[cat, "As_Pred_Dir"]>0){
+					directionality=1;
+				}else if(cat_table[cat, "As_Pred_Dir"]<0){
+					directionality=-1;
+				}
+			}else{
+				fact_cat_mat_predresp[cat, fact]="";
+			}
+
+			fact_cat_mat_coefdir[cat, fact]=directionality;
+		}
+	}
+
+	#print(fact_cat_mat_predresp);
+	#print(fact_cat_mat_coefdir);
+	res=list();
+	res[["pred.resp"]]=fact_cat_mat_predresp;
+	res[["coeff.dir"]]=fact_cat_mat_coefdir;
+	return(res);
+}
+
+#############################################################################
+
+plot_matrices=function(matrices){
+	
+	pr_mat=matrices[["pred.resp"]];
+	dir_mat=matrices[["coeff.dir"]];
+
+	print(pr_mat);
+
+	num_facts=ncol(pr_mat);
+	num_cat=nrow(pr_mat);
+
+	cat_names=rownames(pr_mat);
+	fact_names=colnames(pr_mat);
+
+
+	# Look for rows/columns with associations
+	hl=function(x){
+		return(any(x!=""));
+	}	
+
+	col_highlight=apply(pr_mat, 2, hl);
+	row_highlight=apply(pr_mat, 1, hl);
+	col_hl_ix=which(col_highlight);
+	row_hl_ix=which(row_highlight);
+
+
+	# Start plot
+	par(mar=c(2,12,10,2));
+	off=.25;
+	plot(0,0, xlim=c(1, num_facts+1), ylim=c(1, num_cat+1), xaxt="n", yaxt="n",
+		xlab="", ylab="", type="n");
+
+	# Comput locations for glyphs
+	horiz=(1:num_cat)+off;
+	vert=(1:num_facts)+off;
+
+	# Draw guide lines for empty associations
+	abline(h=horiz, lwd=2, col="grey97");
+	abline(v=vert, lwd=3, col="grey97");
+	# Draw guid lines for associations
+	abline(h=horiz[row_highlight], lwd=1, col="grey80");
+	abline(v=vert[col_highlight], lwd=1, col="grey80");
+
+	for(x in 1:num_facts){
+		for(y in 1:num_cat){
+
+			if(pr_mat[y,x]=="P"){
+				text(x+off,y+off, "P", col="blue");
+			}else if(pr_mat[y,x]=="R"){
+				text(x+off,y+off, "R", col="orange");
+			}
+
+			if(dir_mat[y,x]==1){
+				points(x+1.5*off,y+off, pch=24, col="green", bg="green");
+			}else if(dir_mat[y,x]==-1){
+				points(x+1.5*off,y+off, pch=25, col="red", bg="red");
+			}
+
+		}
+
+	}
+
+	# Draw axes labels with associations darker
+	axis(side=2, at=horiz[row_highlight], labels=cat_names[row_highlight], 
+		las=2, col.axis="black", col="black");
+	axis(side=3, at=vert[col_highlight], labels=fact_names[col_highlight], 
+		las=2, col.axis="black", col="black");
+	# Draw axes labels without associations lighter
+	axis(side=2, at=horiz[!row_highlight], labels=cat_names[!row_highlight], 
+		las=2, col.axis="grey80", col="grey80");
+	axis(side=3, at=vert[!col_highlight], labels=fact_names[!col_highlight], 
+		las=2, col.axis="grey80", col="grey80");
+
+}
+
+
+#############################################################################	
+
 options(width=200);
 
 combined_records=list();
@@ -975,6 +1121,12 @@ plot_combined_ratio_comparisons(inverted_records, title="Combined: Categories La
 	label_factor_centroid=T, draw_symbol_centroid=F, label_categories=T, draw_lines=T);
 plot_legend_for_combined_ratio_comparisons(inverted_records);
 
+
+#############################################################################	
+
+res_mat=transform_to_matrix(combined_records, shrd_fact_names, shrd_cat_names);
+par(mfrow=c(1,1));
+plot_matrices(res_mat);
 
 #############################################################################	
 # Close PDF output
