@@ -1022,7 +1022,7 @@ plot_venn=function(matrices){
 	}
 
 
-	plot_venn=function(x, title){
+	plot_venn_table=function(x, title){
 		
 		width=4;
 
@@ -1049,8 +1049,10 @@ plot_venn=function(matrices){
 
 		plot_list=function(varlist, x, y){
 			llen=length(varlist);
-			for(i in 1:llen){
-				text(x, y-i, varlist[i]); 
+			if(llen>0){
+				for(i in 1:llen){
+					text(x, y-i, varlist[i]); 
+				}
 			}
 		}
 
@@ -1070,8 +1072,8 @@ plot_venn=function(matrices){
 	
 	par(mar=c(1,1,5,1));
 
-	plot_venn(cat_pr_venn, "categories");
-	plot_venn(fact_pr_venn, "factors");
+	plot_venn_table(cat_pr_venn, "categories");
+	plot_venn_table(fact_pr_venn, "factors");
 
 	#print(cat_pr_venn);
 	#print(fact_pr_venn);
