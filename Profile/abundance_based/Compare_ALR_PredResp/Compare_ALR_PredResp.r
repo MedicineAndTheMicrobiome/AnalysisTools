@@ -924,7 +924,7 @@ plot_matrices=function(matrices){
 	pr_mat=matrices[["pred.resp"]];
 	dir_mat=matrices[["coeff.dir"]];
 
-	print(pr_mat);
+	#print(pr_mat);
 
 	num_facts=ncol(pr_mat);
 	num_cat=nrow(pr_mat);
@@ -993,6 +993,91 @@ plot_matrices=function(matrices){
 
 }
 
+
+#############################################################################	
+
+plot_venn=function(matrices){
+
+	pr_mat=matrices[["pred.resp"]];
+	dir_mat=matrices[["coeff.dir"]];
+
+	fact_names=colnames(pr_mat);
+	cat_names=rownames(pr_mat);
+
+	num_factors=length(fact_names);
+	num_categories=length(cat_names);
+
+	vennize=function(x){
+		preds=any(x=="P");
+		resps=any(x=="R");
+		if(preds && resps){
+			return("Both");
+		}else if(preds){
+			return("Predictor");
+		}else if(resps){
+			return("Responder");
+		}else{
+			return("Neither");
+		}
+	}
+
+
+	plot_venn=function(x, title){
+		
+		width=4;
+
+		pred_ix=(x=="Predictor");
+		resp_ix=(x=="Responder");
+		both_ix=(x=="Both");
+		neit_ix=(x=="Neither");
+
+		num_pred=sum(pred_ix);
+		num_resp=sum(resp_ix);
+		num_both=sum(both_ix);
+		num_neit=sum(neit_ix);
+
+		var_names=names(x);
+
+		max_list_length=max(c(num_pred, num_resp, num_both, num_neit, 15));
+
+		plot(0,0, type="n", xaxt="n", yaxt="n", xlab="", ylab="",
+			xlim=c(-1,4), ylim=c(0, max_list_length));
+
+		axis(3, at=c(0,1,2,3), labels=c("Predictor", "Both", "Responder", "Neither"),
+			font.axis=2, cex.axis=1.5
+		);
+
+		plot_list=function(varlist, x, y){
+			llen=length(varlist);
+			for(i in 1:llen){
+				text(x, y-i, varlist[i]); 
+			}
+		}
+
+		plot_list(var_names[pred_ix], 0, max_list_length);
+		plot_list(var_names[both_ix], 1, max_list_length);
+		plot_list(var_names[resp_ix], 2, max_list_length);
+		plot_list(var_names[neit_ix], 3, max_list_length);
+
+
+	}
+
+	#print(pr_mat);
+
+	cat_pr_venn=apply(pr_mat, 1, vennize);
+	fact_pr_venn=apply(pr_mat, 2, vennize);
+
+	
+	par(mar=c(1,1,5,1));
+
+	plot_venn(cat_pr_venn, "categories");
+	plot_venn(fact_pr_venn, "factors");
+
+	#print(cat_pr_venn);
+	#print(fact_pr_venn);
+
+	
+}
 
 #############################################################################	
 
@@ -1127,6 +1212,8 @@ plot_legend_for_combined_ratio_comparisons(inverted_records);
 res_mat=transform_to_matrix(combined_records, shrd_fact_names, shrd_cat_names);
 par(mfrow=c(1,1));
 plot_matrices(res_mat);
+
+plot_venn(res_mat);
 
 #############################################################################	
 # Close PDF output
