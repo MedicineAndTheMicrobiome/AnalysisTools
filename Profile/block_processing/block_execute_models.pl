@@ -137,7 +137,7 @@ sub run_command{
 	close(CHK_FH);
 
 	# Execute command
-	my $result=`$clean_cmd`;
+	my $result=`$clean_cmd 2>&1`;
 	my $exit_code=$?;
 
 	# Save output to file
