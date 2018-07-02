@@ -406,6 +406,7 @@ print(factor_names);
 model_string=rem_missing_var_from_modelstring(model_string, factor_names);
 cat("New Model String with Factors with NAs removed:\n");
 print(model_string);
+num_model_variables=length(strsplit(model_string, "\\+")[[1]]);
 
 
 ##############################################################################
@@ -549,43 +550,67 @@ for(i in 1:num_div_idx){
 			raw=raw+min_subst;
 			print(sort(raw));
 		}
+		
+		bc=tryCatch({
+			boxcox(as.formula(model_string), data=factors, 
+				lambda=seq(lambda_start, lambda_end, length.out=SEARCH_FREQUENCY),
+				plotit=FALSE);
+			}, 
+			error=function(cond){
+				cat("Error finding Box-Cox transform lambda value.\n");
+				print(cond);
+				return(NULL);
+			});
 
-
-		bc=boxcox(as.formula(model_string), data=factors, 
-			lambda=seq(lambda_start, lambda_end, length.out=SEARCH_FREQUENCY),
-			plotit=FALSE
-		);
-
-		# Determine where to expand search depending if peak is on left or right
-		max_idx=which(bc$y==max(bc$y));
-		if(max_idx==1){
-			#lambda_end=lambda_start+1;
-			lambda_start=lambda_start-(BOX_COX_SEARCH_RANGE^search_trial);
-		}else if(max_idx==length(bc$y)){
-			#lambda_start=lambda_end-1;
-			lambda_end=lambda_end+BOX_COX_SEARCH_RANGE^search_trial;
-		}else{
-			search_tolerance=(lambda_end-lambda_start)/SEARCH_FREQUENCY;
-			approx_lambda=bc$x[max_idx];
+		if(is.null(bc)){
+			approx_lambda=1;
 			lambda_found=TRUE;
-			cat("Lambda found around: ", approx_lambda, "\n");	
-			cat("   Search tolerance: ", search_tolerance, "\n");	
+		}else{
+
+			# Determine where to expand search depending if peak is on left or right
+			max_idx=which(bc$y==max(bc$y));
+			if(max_idx==1){
+				#lambda_end=lambda_start+1;
+				lambda_start=lambda_start-(BOX_COX_SEARCH_RANGE^search_trial);
+			}else if(max_idx==length(bc$y)){
+				#lambda_start=lambda_end-1;
+				lambda_end=lambda_end+BOX_COX_SEARCH_RANGE^search_trial;
+			}else{
+				search_tolerance=(lambda_end-lambda_start)/SEARCH_FREQUENCY;
+				approx_lambda=bc$x[max_idx];
+				lambda_found=TRUE;
+				cat("Lambda found around: ", approx_lambda, "\n");	
+				cat("   Search tolerance: ", search_tolerance, "\n");	
+			}
 		}
 	}
 
-	# Rerun and plot the lambda search with a smaller increments
-	par(mar=c(5,4,4,2));
-	cat("Refining search around: ", approx_lambda-search_tolerance, " - ", approx_lambda+search_tolerance, "\n");
-	bc=boxcox(as.formula(model_string), data=factors, 
-		lambda=seq(approx_lambda-search_tolerance, approx_lambda+search_tolerance, length.out=40));
-	title(main=div_names[i]);
 
-	# Store find grain results
-	max_idx=which(bc$y==max(bc$y));
-	lambda[i]=bc$x[max_idx];
+	if(approx_lambda!=1){
+		# Rerun and plot the lambda search with a smaller increments
+		par(mar=c(5,4,4,2));
+		cat("Refining search around: ", approx_lambda-search_tolerance, " - ", approx_lambda+search_tolerance, "\n");
+		bc=boxcox(as.formula(model_string), data=factors, 
+			lambda=seq(approx_lambda-search_tolerance, approx_lambda+search_tolerance, length.out=40));
+		title(main=div_names[i]);
+
+		# Store find grain results
+		max_idx=which(bc$y==max(bc$y));
+		lambda[i]=bc$x[max_idx];
+	}else{
+		cat("Warning: Box-Cox Lambda value not found.  Going with 1 (i.e. no transform)\n");
+		cat("\n");
+		cat("If the sample size was close to the number of variables in the model, it is likely\n");
+		cat("that the model was overfit, so it was not possible to find lambda that minimizes the residuals.\n");
+		cat("\n");
+		cat("Num Model Variables: ", num_model_variables, "\n");
+		cat("Num Samples: ", num_samples, "\n");
+		cat("\n");
+		lambda[i]=1;
+
+	}
 	
-	cat(div_names[i], ": Box-Cox Transformation Lambda = ", 
-		lambda[i], "\n\n", sep="");
+	cat(div_names[i], ": Box-Cox Transformation Lambda = ", lambda[i], "\n\n", sep="");
 
 	# Apply transform to raw data
 	if(lambda[i]==0){
