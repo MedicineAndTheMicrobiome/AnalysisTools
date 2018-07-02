@@ -364,6 +364,8 @@ plot_correl_heatmap=function(mat, title="", noPrintZeros=F, guideLines=F){
 	# Plot the title
 	mtext(title, line=0, outer=T, side=3, font=2);
 
+	cat("Done plotting: ", title, "\n");
+
 }
 
 write_top_categorical_effects_by_factor=function(output_fn, coeff_mat, pval_mat, top_n=10){
@@ -393,18 +395,20 @@ write_top_categorical_effects_by_factor=function(output_fn, coeff_mat, pval_mat,
 
 
 	sig_fun_str=function(x){
-		if(x <= 0.0001){
-			return("****");
-		}else if(x <= 0.001){
-			return("***");
-		}else if(x <= 0.01){
-			return("**");
-		}else if(x <= 0.05){
-			return("*");
-		}else if(x <= 0.1){
-			return(".")
-		}else{
-			return("");
+		if(!is.null(x) && !is.nan(x) && !is.na(x)){
+			if(x <= 0.0001){
+				return("****");
+			}else if(x <= 0.001){
+				return("***");
+			}else if(x <= 0.01){
+				return("**");
+			}else if(x <= 0.05){
+				return("*");
+			}else if(x <= 0.1){
+				return(".")
+			}else{
+				return("");
+			}
 		}
 	}
 
@@ -1208,8 +1212,9 @@ plot_correl_heatmap(uv_pval_mat, title="Univariate Coefficients Pr(>|t|)");
 log_uv_pval_mat=log(uv_pval_mat,10);
 plot_correl_heatmap(log_uv_pval_mat, title="Univariate Coefficients Log10[Pr(>|t|)]");
 
+
 # Plot Heatmap
-if(ncol(log_uv_pval_mat)>=2 && nrow(log_uv_pval_mat)>=2){
+if(ncol(log_uv_pval_mat)>=2 && nrow(log_uv_pval_mat)>=2 && all(!is.nan(log_uv_pval_mat))){
 
 	# Get current graphic settings so we can restore them.
 	par_oma_before=par()$oma;
@@ -1237,7 +1242,7 @@ if(ncol(log_uv_pval_mat)>=2 && nrow(log_uv_pval_mat)>=2){
 	par(oma=par_oma_before, mar=par_mar_before, mfrow=c(1,1));
 
 }else{
-	cat("No heatmap generated because p-value matrix is not multi-dimensional.\n");
+	cat("No heatmap generated because p-value matrix is not multi-dimensional or all Nan.\n");
 }
 
 # Plot log pvalues sorted by most signficiant predictor and taxa
