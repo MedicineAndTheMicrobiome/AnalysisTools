@@ -550,7 +550,7 @@ add_sign_col=function(coeff){
 	pval=coeff[,pval_ix];
 
 	sig_char=function(val){
-		if(!is.null(val) && !is.nan(val)){
+		if(!is.null(val) && !is.nan(val) && !is.na(val)){
 			if(val <= .0001){ return("***");}
 			if(val <= .001 ){ return("** ");}
 			if(val <= .01  ){ return("*  ");}
@@ -1149,11 +1149,13 @@ cat(file=fh, "\n");
 category_names=rownames(manova_pval_mat);
 
 sig_char=function(val){
-	if(val <= .0001){ return("***");}
-	if(val <= .001 ){ return("** ");}
-	if(val <= .01  ){ return("*  ");}
-	if(val <= .05  ){ return(":  ");}
-	if(val <= .1   ){ return(".  ");}
+	if(!is.null(val) && !is.nan(val) && !is.na(val)){
+		if(val <= .0001){ return("***");}
+		if(val <= .001 ){ return("** ");}
+		if(val <= .01  ){ return("*  ");}
+		if(val <= .05  ){ return(":  ");}
+		if(val <= .1   ){ return(".  ");}
+	}
 	return(" ");
 }
 
