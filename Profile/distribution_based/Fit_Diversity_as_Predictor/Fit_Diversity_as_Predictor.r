@@ -196,7 +196,7 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 
         orig.par=par(no.readonly=T);
 
-	cat("Working on: ", title, "\n"); 
+	cat("Painting Matrix for: ", title, "\n"); 
         cat("Num Rows: ", num_row, "\n");
         cat("Num Cols: ", num_col, "\n");
 
@@ -515,11 +515,13 @@ tail_statistic=function(x){
 }
 
 sig_char=function(val){
-	if(val <= .0001){ return("***");}
-	if(val <= .001 ){ return("** ");}
-	if(val <= .01  ){ return("*  ");}
-	if(val <= .05  ){ return(":  ");}
-	if(val <= .1   ){ return(".  ");}
+	if(!is.null(val) && !is.nan(val) && !is.na(val)){
+		if(val <= .0001){ return("***");}
+		if(val <= .001 ){ return("** ");}
+		if(val <= .01  ){ return("*  ");}
+		if(val <= .05  ){ return(":  ");}
+		if(val <= .1   ){ return(".  ");}
+	}
 	return("   ");
 }
 
@@ -791,10 +793,21 @@ for(i in 1:num_div_idx){
 	sum_fit=summary(mv_fit);
 
 	# Compute ANOVA full model
-	mv_anova=anova(mv_fit);
-	plot_text(capture.output(print(mv_anova)), title=div_names[i]);
+	num_resid_df=mv_fit$df.residual;
+	num_responses=length(mv_fit);
+	if(num_resid_df<num_responses){
+		msg=paste("There are not enough residual degrees of freedom (",
+			num_resid_df, ") for the number of responses (", num_responses, 
+			") to perform MANOVA.", sep="");
+		plot_text(msg);
+		mv_anova=NULL;
+	}else{
 
-	anova_pval[c("diversity",model_var),div_names[i]]=mv_anova[c("diversity",model_var),"Pr(>F)"];
+		mv_anova=anova(mv_fit);
+		plot_text(capture.output(print(mv_anova)), title=div_names[i]);
+
+		anova_pval[c("diversity",model_var),div_names[i]]=mv_anova[c("diversity",model_var),"Pr(>F)"];
+	}
 
 	# Reduced
 	red_model_string=paste("responses_mat ~ ", model_string, sep="");
@@ -882,8 +895,12 @@ paint_matrix(diversity_adj.rsqrd_delta, title="Diversity Delta Adjusted R^2 (Ful
 	high_is_hot=F,
 	plot_col_dendr=T, plot_row_dendr=T);
 
-paint_matrix(anova_pval, title="Full Model MANOVAs (Diversity+Covariates) P-values", 
-	high_is_hot=F, plot_min=0, plot_max=1);
+if(!is.null(mv_anova)){
+	paint_matrix(anova_pval, title="Full Model MANOVAs (Diversity+Covariates) P-values", 
+		high_is_hot=F, plot_min=0, plot_max=1);
+}else{
+	plot_text("Full Model MANOVAs (Diversity+Covariates) P-values are not available.");
+}
 
 dev.off();
 
