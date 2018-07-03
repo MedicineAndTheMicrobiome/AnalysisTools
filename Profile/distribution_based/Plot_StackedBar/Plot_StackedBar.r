@@ -457,7 +457,7 @@ plot_diversity_barplot=function(title, diversity_name, samp_size,
 	num_grps=length(grp_names);
 
 	# Calculate max diversity for ylim
-	div_max=max(diversity_95ub[!is.na(diversity_95ub)]);
+	div_max=max(diversity_95ub[!is.na(diversity_95ub)], mean_diversity);
 	if(is.na(div_max) || !is.finite(div_max)){
 		cat("95% CI Upperbound not finite...\n");
 		div_max=max(mean_diversity);
