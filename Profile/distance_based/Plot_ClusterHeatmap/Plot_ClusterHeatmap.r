@@ -475,6 +475,26 @@ plot_heatmap=function(sample_names, factors, guide_lines, model_string){
 
 }
 
+remove_no_info_factors=function(factor_table){
+	num_factors=ncol(factor_table);
+	fact_names=colnames(factor_table);
+	keep_ix=c();
+	cat("\nRemoving factors with no information:\n");
+	for(i in 1:num_factors){
+		factor_data=factor_table[,i, drop=F];
+		nonNAs=!is.na(factor_data);
+		num_unique=length(unique(factor_data[nonNAs]));
+		if(num_unique>1){
+			keep_ix=c(keep_ix, i);
+		}else{
+			cat("  Removed ", fact_names[i], "\n", sep="");
+		}
+	}
+	cat("\n");
+	return(factor_table[, keep_ix, drop=F]);
+}
+
+
 ###############################################################################
 
 output_fname_root = paste(OutputFileRoot, ".", dist_type, sep="");
@@ -511,6 +531,8 @@ num_categories=ncol(norm_mat);
 # Factor Files
 cat("Loading factor file...\n");
 all_factors=load_factor_file(InputFactorFile);
+all_factors=remove_no_info_factors(all_factors);
+
 factor_samples=rownames(all_factors);
 factor_names=colnames(all_factors);
 
@@ -519,7 +541,8 @@ if(ModelFile!=""){
 	cat("Creating Model Matrix out of variables in: ", ModelFile, "\n");
 	model_var=load_list(ModelFile);
 	print(model_var);
-	ModelString=paste(model_var, collapse="+");	
+	kept_model_var=intersect(factor_names, model_var);
+	ModelString=paste(kept_model_var, collapse="+");	
 }
 if(ModelString==""){
 	cat("Creating Model Matrix out of all variables in: ", InputFactorFile, "\n");
@@ -527,6 +550,8 @@ if(ModelString==""){
 }
 
 cat("Model String: ", ModelString, "\n", sep="");
+
+
 all_factors=model.matrix(as.formula(paste("~", ModelString, "-1")), data=all_factors);
 
 ###############################################################################
