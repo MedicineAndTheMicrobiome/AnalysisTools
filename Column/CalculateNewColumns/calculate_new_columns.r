@@ -107,6 +107,11 @@ usage = paste(
 	"		This will compute an index starting from 1, for all the values in the\n",
 	"		same group.  The groups may be a subject ID and the values may be a time/date\n",
 	"		value.  You can think of these as ordered visits.\n",
+	"\n",
+	"\n",
+	"For debugging you can also do:\n",
+	"	print <variable name>\n",
+	"	quit\n",
 	"\n");
 
 if(!length(opt$input) || !length(opt$formulas) || !length(opt$output)){
@@ -370,6 +375,13 @@ for(cmd in commands){
 		cnames=colnames(factors);
 		cnames=setdiff(cnames, var);
 		factors=cbind(key_col_val, factors[,cnames,drop=F]);
+	}else if(length(grep("^print ", cmd))==1){
+		var=strsplit(cmd, "\\s+")[[1]][2];
+		cat("Printing ", var, "\n", sep="");
+		print(factors[, var, drop=F]);
+	}else if(length(grep("^quit", cmd))==1){
+		cat("Forcing quit...\n");
+		quit(-1);
 	}else{
 		# Add variable to factors
 		#cmd=gsub("\\s+", "", cmd);
