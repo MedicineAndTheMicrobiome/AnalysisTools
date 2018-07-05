@@ -130,7 +130,7 @@ cat("Output Filename: ", OutputFName, "\n");
 ##############################################################################
 
 load_factors=function(fname){
-	factors=data.frame(read.table(fname,  header=TRUE, check.names=FALSE, comment.char="", quote="", sep="\t"));
+	factors=data.frame(read.table(fname,  header=TRUE, check.names=FALSE, as.is=T, comment.char="", quote="", sep="\t"));
 
 	#print(factors);
 
@@ -381,7 +381,7 @@ for(cmd in commands){
 		print(factors[, var, drop=F]);
 	}else if(length(grep("^quit", cmd))==1){
 		cat("Forcing quit...\n");
-		quit(-1);
+		quit("yes");
 	}else{
 		# Add variable to factors
 		#cmd=gsub("\\s+", "", cmd);
@@ -390,7 +390,7 @@ for(cmd in commands){
 		results=eval(parse(text=cmd), envir=factors);
 		print(results);
 		cnames=colnames(factors);
-		factors=cbind(factors, results);
+		factors=cbind(factors, results, stringsAsFactors=F);
 		colnames(factors)=c(cnames, lhs);
 	}
 	
