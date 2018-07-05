@@ -554,9 +554,12 @@ sample_names=colnames(distmat);
 cat("Num Samples used: ", num_samples, "\n\n");
 
 for(i in 1:num_factors){
-	categories=unique(unique(factors[,i]));
+	categories=sort(unique(unique(factors[,i])));
 	cat("'", factor_names[i], "' has ", length(categories), " categories.\n", sep="");
-	cat("\t", paste(categories, collapse=", "), sep="");
+	cat("\t", paste(head(categories), collapse=", "), sep="");
+	if(length(categories)>10){
+		cat(" ...");
+	}
 	cat("\n");
 }
 
@@ -859,9 +862,18 @@ for(fact_id in 1:num_anova_terms){
 
 		if(!is_factor){
 			num_unique=length(unique(cur_factor));
+			cat("Number of unique 'levels':", num_unique, "\n");
 			if(num_unique>2){
-				#cur_factor=round(cur_factor,0);
-				cur_factor=bin_continuous_values(cur_factor, num_bins=10);
+
+				if(num_unique<=5 && length(unique(diff(sort(unique(cur_factor)))))==1){
+					# If fewer than 5 levels/choices and they are equally spaced out
+					#   just let them all show up distinctly.
+					# So do nothing...
+				}else{
+					# Assume fully continuous
+					cur_factor=bin_continuous_values(cur_factor, num_bins=10);
+				}
+
 				factor_levels=sort(unique(cur_factor));
 			}
 			factor_levels=sort(unique(cur_factor));
