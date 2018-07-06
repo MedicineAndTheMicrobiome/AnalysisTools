@@ -727,12 +727,15 @@ shared_sample_ids=sort(shared_sample_ids);
 # Reorder data by sample id
 normalized=normalized[shared_sample_ids,];
 num_samples=nrow(normalized);
+
 factors=factors[shared_sample_ids,,drop=F];
+factors=remove_no_variation_factors(factors);
+model_pred_str=rem_missing_var_from_modelstring(model_pred_str, colnames(factors)); 
+num_factors=ncol(factors);
 
 # Relevel factor levels
 if(ReferenceLevelsFile!=""){
         ref_lev_mat=load_reference_levels_file(ReferenceLevelsFile)
-print(factors);
         factors=relevel_factors(factors, ref_lev_mat);
 }else{
         cat("* No Reference Levels File specified.                        *\n");
@@ -1125,6 +1128,7 @@ uv_coeff_mat=matrix(NA, nrow=num_coeff, ncol=num_cat_to_analyze,
 
 tmp_model_string= paste("transformed[,1] ~", model_pred_str);
 test_uv_fit=lm(as.formula(tmp_model_string), data=factors);
+
 anova_factor_names=setdiff(rownames(anova(test_uv_fit)), c("Residuals", "(Intercept)"));
 print(anova_factor_names);
 
