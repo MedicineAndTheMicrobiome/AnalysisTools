@@ -334,6 +334,14 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
         cat("Num Rows: ", num_row, "\n");
         cat("Num Cols: ", num_col, "\n");
 
+
+	if(num_row==0 || num_col==0){
+		plot(0, type="n", xlim=c(-1,1), ylim=c(-1,1), xaxt="n", yaxt="n", bty="n", xlab="", ylab="",
+			main=title);
+		text(0,0, "No data to plot...");
+		return();
+	}
+
 	# Flips the rows, so becuase origin is bottom left
         mat=mat[rev(1:num_row),, drop=F];
 
