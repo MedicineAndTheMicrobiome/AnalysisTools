@@ -837,19 +837,20 @@ for(i in 1:num_div_idx){
 		missing=setdiff(regression_variables, 
 			rownames(sum_fit[[sum_resp_names[resp_ix]]]$coefficients));
 
+		avail_regression_variables=regression_variables;
 		if(length(missing)>0){
 			cat("***************************************************\n");
 			cat("Warning: Not all regression coefficient calculable:\n");
 			print(missing);
 			cat("***************************************************\n");
-			regression_variables=setdiff(regression_variables, missing);
+			avail_regression_variables=setdiff(regression_variables, missing);
 		}
 		
 
-		estimates_matrix[regression_variables, resp_ix]=
-			sum_fit[[sum_resp_names[resp_ix]]]$coefficients[regression_variables, "Estimate"];
-		pvalues_matrix[regression_variables, resp_ix]=
-			sum_fit[[sum_resp_names[resp_ix]]]$coefficients[regression_variables, "Pr(>|t|)"];
+		estimates_matrix[avail_regression_variables, resp_ix]=
+			sum_fit[[sum_resp_names[resp_ix]]]$coefficients[avail_regression_variables, "Estimate"];
+		pvalues_matrix[avail_regression_variables, resp_ix]=
+			sum_fit[[sum_resp_names[resp_ix]]]$coefficients[avail_regression_variables, "Pr(>|t|)"];
 
 		# Store diversity
 		diversity_coef[resp_ix, div_names[i]]=
