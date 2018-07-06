@@ -191,6 +191,13 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
         num_row=nrow(mat);
         num_col=ncol(mat);
 
+	if(num_row==0 || num_col==0){
+		plot(0, type="n", xlim=c(-1,1), ylim=c(-1,1), xaxt="n", yaxt="n", bty="n", xlab="", ylab="",
+                        main=title);
+                text(0,0, "No data to plot...");
+		return();
+	}
+
         row_names=rownames(mat);
         col_names=colnames(mat);
 
