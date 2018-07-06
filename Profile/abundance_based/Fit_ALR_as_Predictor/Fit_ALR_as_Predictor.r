@@ -545,38 +545,43 @@ plot_histograms=function(table){
 }
 
 add_sign_col=function(coeff){
-	cnames=colnames(coeff);
-	pval_ix=which(cnames=="Pr(>|t|)");
-	pval=coeff[,pval_ix];
 
-	sig_char=function(val){
-		if(!is.null(val) && !is.nan(val) && !is.na(val)){
-			if(val <= .0001){ return("***");}
-			if(val <= .001 ){ return("** ");}
-			if(val <= .01  ){ return("*  ");}
-			if(val <= .05  ){ return(":  ");}
-			if(val <= .1   ){ return(".  ");}
-			return(" ");
-		}else{
-			return(" ");
+	if(nrow(coeff)==0){
+		return(coeff);
+	}else{
+
+		cnames=colnames(coeff);
+		pval_ix=which(cnames=="Pr(>|t|)");
+		pval=coeff[,pval_ix];
+
+		sig_char=function(val){
+			if(!is.null(val) && !is.nan(val) && !is.na(val)){
+				if(val <= .0001){ return("***");}
+				if(val <= .001 ){ return("** ");}
+				if(val <= .01  ){ return("*  ");}
+				if(val <= .05  ){ return(":  ");}
+				if(val <= .1   ){ return(".  ");}
+				return(" ");
+			}else{
+				return(" ");
+			}
 		}
-	}
 
-	sig_arr=sapply(pval, sig_char);
-	fdr=round(p.adjust(pval, method="fdr"), 4);
-	fdr_sig_char=sapply(fdr, sig_char);
-	#out_mat=cbind(coeff, fdr);
+		sig_arr=sapply(pval, sig_char);
+		fdr=round(p.adjust(pval, method="fdr"), 4);
+		fdr_sig_char=sapply(fdr, sig_char);
+		#out_mat=cbind(coeff, fdr);
 
-	fmt=function(x){
-		return(formatC(x, format="f", digits=4, width=7));
-	}
+		fmt=function(x){
+			return(formatC(x, format="f", digits=4, width=7));
+		}
 
-	out_mat=cbind(
-		fmt(coeff), sig_arr, fmt(fdr), fdr_sig_char);
-	colnames(out_mat)=c(cnames, "Signf", "FDR", "Signf");
-	
-	return(out_mat);
-	
+		out_mat=cbind(
+			fmt(coeff), sig_arr, fmt(fdr), fdr_sig_char);
+		colnames(out_mat)=c(cnames, "Signf", "FDR", "Signf");
+		
+		return(out_mat);
+	}	
 }
 
 
@@ -930,6 +935,9 @@ plot_histograms(alr_categories_val);
 ###############################################################################
 # Set up and run univariate and manova
 
+# Remove variables with no information
+
+
 covariate_formula_str=paste(covariates_arr, collapse=" + ");
 alr_category_formula_str=paste(alr_cat_names, collapse=" + ");
 cat("\n");
@@ -1028,6 +1036,9 @@ for(i in 1:num_responses){
 	rsqrd_diff=rsquared[1]-reduced_rsquared[1];
 	adj_rsqrd_diff=signif(rsquared[2]-reduced_rsquared[2], 4);
 
+
+	univar_summary_wsignf=add_sign_col(univar_summary[shrd_alr_names,,drop=F]);
+
 	plot_text(c(
 		paste("Univariate: ", responses[i], sep=""),
 		"Covariates portion of Full Model (Covariates + ALR):",
@@ -1041,10 +1052,7 @@ for(i in 1:num_responses){
 		paste("Univariate: ", responses[i], sep=""),
 		"ALR Predictors portion of Full Model (Covariates + ALR):",
 		"\n",
-		capture.output(print(
-				add_sign_col(univar_summary[shrd_alr_names,,drop=F]),
-			quote=F)
-		)
+		capture.output(print(univar_summary_wsignf, quote=F))
 	));
 
 	plot_text(c(
