@@ -159,7 +159,12 @@ sub run_command{
 		return;
 	}else{
 		open(CHK_FH, ">>$checkpt_file\.failed") || die "Could not open $checkpt_file.\n";
+
+		my $tail_log=`tail -n 10 $logname`;
+
+		print(CHK_FH "$tail_log\n");
 		print CHK_FH "\nFailed.\n";
+
 		close(CHK_FH);
 
 		print STDERR "Error: $cmd_name returned with non-zero error code.\n";
