@@ -1147,6 +1147,8 @@ for(cur_fact in shrd_fact_names){
 #############################################################################	
 
 print(combined_records);
+
+par(mfrow=c(1,1));
 plot_text(capture.output(combined_records));
 
 par(mar=c(5,5,6,3));
@@ -1183,6 +1185,7 @@ num_categories=length(names(inverted_records));
 category_colors=get_colors(max(2,num_categories), alpha=1);
 palette(category_colors);
 
+par(mfrow=c(1,1));
 plot_text(capture.output(inverted_records));
 
 layout(layout_mat);
