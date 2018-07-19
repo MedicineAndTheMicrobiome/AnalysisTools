@@ -944,7 +944,6 @@ if(num_crossings>0){
 		num_plots=var2_num_lev*var1_num_lev;
 		colors=rev(rainbow(num_plots, start=0, end=4/6));
 		cum_med_rank=rank(cum_med);
-		palette(colors);
 
 		cat("Group medians:\n");
 		cum_med=cum_med[!is.na(cum_med)];
@@ -969,11 +968,11 @@ if(num_crossings>0){
 					xaxt="n", yaxt="n", bty="n", xlab="", ylab=""
 				);
 
-				abline(h=sort(cum_med), col=1:num_plots, lwd=.25);
+				abline(h=sort(cum_med), col=colors, lwd=.25);
 				abline(h=0, col="black", lwd=1.5);
 
 				mid=barplot(grpd_members[[grp_idx]][["median"]],
-					add=T, xaxt="n", yaxt="n", col=cum_med_rank[grp_idx]
+					add=T, xaxt="n", yaxt="n", col=colors[cum_med_rank[grp_idx]]
 				);
 
 				num_cross_level=grpd_members[[grp_idx]][["n"]];
