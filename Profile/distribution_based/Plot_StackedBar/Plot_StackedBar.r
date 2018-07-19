@@ -980,12 +980,22 @@ if(num_crossings>0){
 				str=paste("n=", num_cross_level, "  median=", round(grpd_members[[grp_idx]][["median"]],2), sep="");
 				mtext(str, side=1, line=-.5, cex=.5, font=3);
 
+				if(num_cross_level>=20){
+					str=paste("95% CI = (", 
+						round(grpd_members[[grp_idx]][["lb95"]],2),
+						", ",
+						round(grpd_members[[grp_idx]][["ub95"]],2),
+					")", sep="");
+					mtext(str, side=1, line=0,  cex=.5, font=3);
+
+				}
+
 
 				jitter=rnorm(num_cross_level, 0, .06);
 				jitter=jitter-mean(jitter);
 				points(jitter + rep(mid, num_cross_level),
 					 grpd_members[[grp_idx]][["diversity"]],
-					bg="white", col="black", pch=21);
+					bg="white", col="black", pch=21, cex=.7);
 
 				grp_idx=grp_idx+1;
 
