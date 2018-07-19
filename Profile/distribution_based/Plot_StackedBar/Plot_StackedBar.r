@@ -869,7 +869,151 @@ if(num_crossings>0){
 
 			}
 		}
+	}	
+
+	#----------------------------------------------------------------------
+
+	plot_2D_diversity=function(var1, var2, title_arr, grpd_factors, diversity_arr){
+
+		cat("\n\n");
+		cat("Generating Diversity Plot for: ", var1, " x ", var2, "\n");
+		num_rows=nrow(grpd_factors);
+		cat("Number of samples: ", num_rows, "\n");
+
+		var1_val=grpd_factors[,var1];
+		var2_val=grpd_factors[,var2];
+
+		var1_lev=unique(var1_val[!is.na(var1_val)]);
+		var2_lev=unique(var2_val[!is.na(var2_val)]);
+
+		var1_num_lev=length(var1_lev);
+		var2_num_lev=length(var2_lev);
+
+		cat(var1, ": ", var1_num_lev, " levels.\n", sep="");
+		cat(var2, ": ", var2_num_lev, " levels.\n", sep="");
+
+		samp_names=rownames(grpd_factors);
+		
+		cum_med=c();
+		cum_val=c();
+
+		grpd_members=list();
+		grp_idx=1;
+
+		for(j in 1:var2_num_lev){
+			v2_samp_ix=(var2_val==var2_lev[j]);
+
+			for(i in 1:var1_num_lev){
+				v1_samp_ix=(var1_val==var1_lev[i]);
+				
+				mutual_samp_ix=(v1_samp_ix & v2_samp_ix);
+				mutual_samp_names=samp_names[mutual_samp_ix];
+
+				#cat("V1:", var1_val, "\n")
+				#print(v1_samp_ix);
+				#cat("V2:", var2_val, "\n")
+				#print(v2_samp_ix);
+
+				#cat("Mutual:\n");
+				#print(mutual_samp_ix);
+				#print(mutual_samp_names);
+
+				mutual_samp_names=mutual_samp_names[!is.na(mutual_samp_names)];
+				diversity_subset=diversity_arr[mutual_samp_names];
+				quant=quantile(diversity_subset, c(.025,.5,.975));
+
+				#print(diversity_subset);
+
+				memb_info=list();
+				memb_info[["cross"]]=paste(var1_lev[i], " x ", var2_val[j], sep="");
+				memb_info[["diversity"]]=diversity_subset;
+				memb_info[["lb95"]]=quant[1];
+				memb_info[["median"]]=quant[2];
+				memb_info[["ub95"]]=quant[3]
+				memb_info[["n"]]=length(diversity_subset);
+
+				cum_med=c(cum_med, quant[2]);
+				cum_val=c(cum_val, diversity_subset);
+
+				grpd_members[[grp_idx]]=memb_info;
+				grp_idx=grp_idx+1;
+
+			}
+		}
+
+		num_plots=var2_num_lev*var1_num_lev;
+		colors=rev(rainbow(num_plots, start=0, end=4/6));
+		cum_med_rank=rank(cum_med);
+		palette(colors);
+
+		cat("Group medians:\n");
+		cum_med=cum_med[!is.na(cum_med)];
+		print(cum_med);
+		cat("\n");
+
+		cum_val=cum_val[!is.na(cum_val)];
+		div_rang=range(cum_val);
+		mid_y=mean(div_rang);
+		cat("Plot diversity range:\n");
+		print(div_rang);
+
+		grp_idx=1;
+		par(mfrow=c(var2_num_lev, var1_num_lev));
+		par(mar=c(1,1,1,2));
+		yticks=pretty(c(0, div_rang[2]), 8);
+
+		for(j in 1:var2_num_lev){
+			for(i in 1:var1_num_lev){
+				
+				plot(0, type="n", xlim=c(0,1.5), ylim=c(0, div_rang[2]),
+					xaxt="n", yaxt="n", bty="n", xlab="", ylab=""
+				);
+
+				abline(h=sort(cum_med), col=1:num_plots, lwd=.25);
+				abline(h=0, col="black", lwd=1.5);
+
+				mid=barplot(grpd_members[[grp_idx]][["median"]],
+					add=T, xaxt="n", yaxt="n", col=cum_med_rank[grp_idx]
+				);
+
+				num_cross_level=grpd_members[[grp_idx]][["n"]];
+
+				str=paste("n=", num_cross_level, "  median=", round(grpd_members[[grp_idx]][["median"]],2), sep="");
+				mtext(str, side=1, line=-.5, cex=.5, font=3);
+
+
+				jitter=rnorm(num_cross_level, 0, .06);
+				jitter=jitter-mean(jitter);
+				points(jitter + rep(mid, num_cross_level),
+					 grpd_members[[grp_idx]][["diversity"]],
+					bg="white", col="black", pch=21);
+
+				grp_idx=grp_idx+1;
+
+				# Label levels on side and top
+				if(i==1){
+					axis(2, at=div_rang[2]/2, labels=var2_lev[j], tick=F, font=2);
+				}
+				if(i==var1_num_lev){
+					axis(4, at=yticks, labels=yticks, tick=T, cex.axis=.75, las=2);
+				}
+				if(j==var2_num_lev){
+					axis(1, at=.75, labels=var1_lev[i], tick=F, font=2);
+				}
+				if(j==1 && i==1){
+					mtext(title_arr[1], side=3, line=3, outer=T, font=2, cex=.7);
+					mtext("x",          side=3, line=2, outer=T, font=1, cex=.5);
+					mtext(title_arr[2], side=3, line=1, outer=T, font=2, cex=.7);
+					mtext(title_arr[3], side=3, line=0, outer=T, font=1, cex=.5);
+				}
+			}
+		}
+
+		cat("\n\n");
+		quit();
 	}
+
+	#----------------------------------------------------------------------
 
 	cat("Starting crossed variable plots:\n");
 	print(crossing_var);
@@ -902,6 +1046,10 @@ if(num_crossings>0){
 				c(crossing_var[1], crossing_var[2]),
 				grp_mat, simplified_mat, LabelThreshold);	
 
+			plot_2D_diversity(rem_cros_var[1], rem_cros_var[2], 
+				c(crossing_var[1], crossing_var[2]),
+				grp_mat, diversity_arr);
+
 			
 			# Plot split by excluded variable
 			levels=sort(unique(grp_mat[,excl_var]));
@@ -911,6 +1059,9 @@ if(num_crossings>0){
 				plot_2D_stacked(rem_cros_var[1], rem_cros_var[2], 
 					c(rem_cros_var[1], rem_cros_var[2], lev),
 					grp_mat[keep_ix,,drop=F], simplified_mat, LabelThreshold);	
+				plot_2D_diversity(rem_cros_var[1], rem_cros_var[2], 
+					c(rem_cros_var[1], rem_cros_var[2], lev),
+					grp_mat[keep_ix,,drop=F], diversity_arr);
 			}
 
 			# Plot legend	
@@ -933,6 +1084,9 @@ if(num_crossings>0){
 		plot_2D_stacked(crossing_var[1], crossing_var[2], 
 			c(crossing_var[1],  crossing_var[2], ""),
 			grp_mat, simplified_mat, LabelThreshold);	
+
+		plot_2D_diversity(crossing_var[1], crossing_var[2], 
+			c(crossing_var[1],  crossing_var[2], ""), grp_mat, diversity_arr);
 
 		# Plot legend
 		par(mfrow=c(1,1), mar=c(0,0,0,0), oma=c(0,0,0,0));
