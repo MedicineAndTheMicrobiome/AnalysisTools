@@ -5,13 +5,15 @@
 use strict;
 use Getopt::Std;
 use File::Temp;
-use vars qw ($opt_s $opt_f $opt_c $opt_g $opt_o);
+use vars qw ($opt_s $opt_f $opt_c $opt_g $opt_p $opt_o);
 use File::Basename;
 use Cwd;
 use Digest::MD5;
 use Sys::Hostname;
 
-getopts("s:f:c:g:o:");
+getopts("s:f:c:g:p:o:");
+
+my $NUM_ALR_VARIABLES=35;
 
 my $usage = "
 	usage:
@@ -21,6 +23,7 @@ my $usage = "
 	-f <factor file>
 	-c <covariates list>
 	-g <\"grouped\" variables list>
+	[-p <number of ALR variables (for abundance-based analyses), default=$NUM_ALR_VARIABLES>]
 	
 	-o <output directory>
 
@@ -69,6 +72,11 @@ my $Covariates=$opt_c;
 my $GroupVar=$opt_g;
 my $OutputDir=$opt_o;
 my $AnalysisName=$GroupVar;
+my $NumALRVariables=$NUM_ALR_VARIABLES;
+
+if(defined($opt_p)){
+	$NumALRVariables=$opt_p
+}
 
 $AnalysisName=~s/\.txt$//;
 $AnalysisName=File::Basename::fileparse($AnalysisName);
@@ -93,6 +101,8 @@ print STDERR "Covariates List:      $Covariates\n";
 print STDERR "Group Variables List: $GroupVar\n";
 print STDERR "Output Directory:     $OutputDir\n";
 print STDERR "Analysis Name:        $AnalysisName\n";
+print STDERR "\n";
+print STDERR "Num ALR Variables:    $NumALRVariables\n";
 print STDERR "\n";
 
 ###############################################################################
@@ -449,7 +459,7 @@ run_abundance_based(
 	$Covariates,
 	$GroupVar,
 	$AnalysisName,
-	35
+	$NumALRVariables
 );
 
 
