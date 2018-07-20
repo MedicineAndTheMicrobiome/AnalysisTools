@@ -197,6 +197,14 @@ load_factors=function(fname){
 load_summary_file=function(fname){
 	inmat=as.matrix(read.table(fname, sep="\t", header=TRUE, check.names=FALSE, comment.char="", quote="", row.names=1))
 	counts_mat=inmat[,2:(ncol(inmat))];
+
+	# Clean category names a little
+	cat_names=colnames(counts_mat);
+	cat_names=gsub("-", "_", cat_names);
+        cat_names=gsub("\\[", "", cat_names);
+        cat_names=gsub("\\]", "", cat_names);
+	colnames(counts_mat)=cat_names;
+
 	cat("Num Categories in Summary Table: ", ncol(counts_mat), "\n", sep="");
 	return(counts_mat);
 }
