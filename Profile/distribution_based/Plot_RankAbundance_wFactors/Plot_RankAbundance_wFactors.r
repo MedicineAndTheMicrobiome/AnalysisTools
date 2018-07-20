@@ -571,6 +571,32 @@ grp_names=colnames(grp_mat);
 
 num_categories=ncol(normalized_mat);
 
+#------------------------------------------------------------------------------
+# Plot average across all samples
+
+avg_norm_mat=matrix(0, nrow=1, ncol=ncol(normalized_mat));
+colnames(avg_norm_mat)=colnames(normalized_mat);
+rownames(avg_norm_mat)="average";
+samp_ids=rownames(normalized_mat);
+avg_norm_mat[1,]=apply(normalized_mat, 2, mean);
+num_samples=nrow(normalized_mat);
+
+
+plot_rank_abundance_matrix(
+	abd_mat=avg_norm_mat,
+	title="Mean abundances across all samples",
+	num_top_categories=NumTopCategories,
+	samp_size=num_samples,
+	divname=DiversityType,
+	median_diversity=median(diversity_arr[samp_ids]),
+	mean_diversity=mean(diversity_arr[samp_ids]),
+	plot_rows=1,
+	plot_cols=1
+);
+
+
+#------------------------------------------------------------------------------
+
 for(i in 1:ncol(grp_mat)){
 		
 	values=grp_mat[,i];
