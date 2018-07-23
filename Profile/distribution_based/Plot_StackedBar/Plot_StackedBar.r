@@ -883,8 +883,8 @@ if(num_crossings>0){
 		var1_val=grpd_factors[,var1];
 		var2_val=grpd_factors[,var2];
 
-		var1_lev=unique(var1_val[!is.na(var1_val)]);
-		var2_lev=unique(var2_val[!is.na(var2_val)]);
+		var1_lev=sort(unique(var1_val[!is.na(var1_val)]));
+		var2_lev=sort(unique(var2_val[!is.na(var2_val)]));
 
 		var1_num_lev=length(var1_lev);
 		var2_num_lev=length(var2_lev);
@@ -964,7 +964,7 @@ if(num_crossings>0){
 		for(j in 1:var2_num_lev){
 			for(i in 1:var1_num_lev){
 				
-				plot(0, type="n", xlim=c(0,1.5), ylim=c(0, div_rang[2]),
+				plot(0, type="n", xlim=c(0,1.75), ylim=c(0, div_rang[2]),
 					xaxt="n", yaxt="n", bty="n", xlab="", ylab=""
 				);
 
@@ -988,14 +988,37 @@ if(num_crossings>0){
 					")", sep="");
 					mtext(str, side=1, line=0,  cex=.5, font=3);
 
+					# draw CI bands
+					endlen=1/16;
+					points(
+						c(mid+3/4, mid+3/4), 
+						c(grpd_members[[grp_idx]][["lb95"]], grpd_members[[grp_idx]][["ub95"]]),
+						type="l", lwd=.5
+					);
+					points(
+						c(mid+3/4-endlen, mid+3/4+endlen), 
+						c(grpd_members[[grp_idx]][["lb95"]], grpd_members[[grp_idx]][["lb95"]]),
+						type="l", lwd=.5
+					);
+					points(
+						c(mid+3/4-endlen, mid+3/4+endlen), 
+						c(grpd_members[[grp_idx]][["ub95"]], grpd_members[[grp_idx]][["ub95"]]),
+						type="l", lwd=.5
+					);
+
+					text(mid+3/4, grpd_members[[grp_idx]][["ub95"]],
+						"95% CI", cex=.35, font=3, adj=c(.5, -.2));
+		
 				}
 
 
 				jitter=rnorm(num_cross_level, 0, .06);
 				jitter=jitter-mean(jitter);
+
+				sym_size=.7*seq(.90,1.1, length.out=num_cross_level);
 				points(jitter + rep(mid, num_cross_level),
 					 grpd_members[[grp_idx]][["diversity"]],
-					bg="white", col="black", pch=21, cex=.7);
+					bg="white", col="black", pch=21, cex=sym_size, lwd=.5);
 
 				grp_idx=grp_idx+1;
 
