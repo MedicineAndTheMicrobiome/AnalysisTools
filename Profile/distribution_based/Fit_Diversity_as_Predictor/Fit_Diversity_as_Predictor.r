@@ -198,6 +198,11 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 		return();
 	}
 
+	if(num_row==1 || num_col==1){
+		plot_row_dendr=F;
+		plot_col_dendr=F;
+	}
+
         row_names=rownames(mat);
         col_names=colnames(mat);
 
@@ -831,6 +836,20 @@ for(i in 1:num_div_idx){
 
 	sum_resp_names=paste("Response ", responses_arr, sep="");
 
+	if(num_resp_var==1){
+		cat("Putting single variate response into list...\n");
+		tmp=list();
+		tmp[[sum_resp_names[1]]]=sum_fit;
+		sum_fit=tmp;
+		class(sum_fit)="listof";
+
+		tmp=list();
+		tmp[[sum_resp_names[1]]]=red_sum_fit;
+		red_sum_fit=tmp;
+		class(red_sum_fit)="listof";
+	}
+
+
 	for(resp_ix in 1:num_resp_var){
 
 
@@ -858,9 +877,11 @@ for(i in 1:num_div_idx){
 		diversity_pval[resp_ix, div_names[i]]=
 			sum_fit[[sum_resp_names[resp_ix]]]$coefficients["diversity", "Pr(>|t|)"];
 
+
 		# Store Adj-Rsqrd
 		diversity_adj.rsqrd[resp_ix, div_names[i]]=
 			sum_fit[[sum_resp_names[resp_ix]]]$adj.r.squared;
+
 		diversity_adj.rsqrd_delta[resp_ix, div_names[i]]=
                         sum_fit[[sum_resp_names[resp_ix]]]$adj.r.squared-
                         red_sum_fit[[sum_resp_names[resp_ix]]]$adj.r.squared;
