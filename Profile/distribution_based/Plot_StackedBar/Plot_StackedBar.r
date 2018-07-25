@@ -981,7 +981,7 @@ if(num_crossings>0){
 				mtext(str, side=1, line=-.5, cex=.5, font=3);
 
 				if(num_cross_level>=20){
-					str=paste("95% CI = (", 
+					str=paste("95% PI = (", 
 						round(grpd_members[[grp_idx]][["lb95"]],2),
 						", ",
 						round(grpd_members[[grp_idx]][["ub95"]],2),
@@ -1007,7 +1007,7 @@ if(num_crossings>0){
 					);
 
 					text(mid+3/4, grpd_members[[grp_idx]][["ub95"]],
-						"95% CI", cex=.35, font=3, adj=c(.5, -.2));
+						"95% PI", cex=.35, font=3, adj=c(.5, -.2));
 		
 				}
 
