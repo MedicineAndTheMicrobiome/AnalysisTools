@@ -912,7 +912,7 @@ is_numeric_response_factors=logical();
 for(i in 1:ncol(response_factors)){
 	is_numeric_response_factors[i]=is.numeric(response_factors[,i]);
 }
-cor_mat=cor(response_factors[, is_numeric_response_factors]);
+cor_mat=cor(response_factors[, is_numeric_response_factors, drop=F]);
 par(oma=c(1,1,1,1));
 paint_matrix(cor_mat, title="Response Correlations", value.cex=.7, plot_min=-1, plot_max=1 );
 
