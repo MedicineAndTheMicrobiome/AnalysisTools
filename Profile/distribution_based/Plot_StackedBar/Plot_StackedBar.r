@@ -1044,6 +1044,240 @@ if(num_crossings>0){
 		cat("\n\n");
 	}
 
+
+	compute_95CI_median=function(x, num_bs=200){
+		bs_med=numeric(num_bs);
+		for(i in 1:num_bs){
+			resamp=sample(x, replace=T);
+			bs_med[i]=median(resamp);
+		}	
+		bnds=quantile(bs_med, c(.025, .975));
+		return(bnds);
+	}
+
+	plot_2D_diversity_comparisons=function(var1, var2, title_arr, grpd_factors, diversity_arr){
+
+		cat("\n\n");
+		cat("Generating Diversity Comparison Plots for: (x-axis) ", var1, " x (y-axis)", var2, "\n");
+		num_rows=nrow(grpd_factors);
+		cat("Number of samples: ", num_rows, "\n");
+
+		var1_val=grpd_factors[,var1];
+		var2_val=grpd_factors[,var2];
+
+		var1_lev=sort(unique(var1_val[!is.na(var1_val)]));
+		var2_lev=sort(unique(var2_val[!is.na(var2_val)]));
+
+		var1_num_lev=length(var1_lev);
+		var2_num_lev=length(var2_lev);
+
+		cat(var1, ": ", var1_num_lev, " levels.\n", sep="");
+		cat(var2, ": ", var2_num_lev, " levels.\n", sep="");
+
+		samp_names=rownames(grpd_factors);
+		
+		par(mfrow=c(3,var1_num_lev));
+		par(oma=c(3, 2, 4, 5));
+		par(mar=c(5,3,.5,1));
+	
+		grpd_info=list();
+		max_div=0;
+		# Extract data
+		for(i in 1:var1_num_lev){
+			v1_samp_ix=(var1_val==var1_lev[i]);
+			cat("Var1 X-axis:", var1_lev[i], "\n");
+
+			for(j in 1:var2_num_lev){
+				v2_samp_ix=(var2_val==var2_lev[j]);
+				cat("  Var2 Y-axis:", var2_lev[j], "\n");
+
+				mutual_samp_ix=(v1_samp_ix & v2_samp_ix);
+				#print(mutual_samp_ix);
+
+				mutual_samp_names=samp_names[mutual_samp_ix];
+				mutual_samp_names=mutual_samp_names[!is.na(mutual_samp_names)];
+				print(mutual_samp_names);
+
+				div=diversity_arr[mutual_samp_names];
+				memb_info=list();
+				memb_info[["diversity"]]=div;
+				max_div=max(max_div, div);
+		
+				key=paste(var1_lev[i], "_x_", var2_lev[j], sep="");
+				grpd_info[[key]]=memb_info;		
+
+			}
+		}
+
+		cat("Generating Barplots...\n");
+		for(i in 1:var1_num_lev){
+
+			med_div=numeric();
+			div=list();
+			
+			for(j in 1:var2_num_lev){
+				key=paste(var1_lev[i], "_x_", var2_lev[j], sep="");
+				div[[var2_lev[j]]]=grpd_info[[key]]$diversity;
+				med_div[j]=median(grpd_info[[key]]$diversity);
+			}
+
+			print(div);
+
+			#bar_mids=barplot(med_div, xaxt="n", yaxt="n", ylim=c(0, max_div*1.1));
+			mlw=.75;
+
+			plot(0,0, type="n", bty="n", 
+				xaxt="n", yaxt="n", 
+				xlab="", ylab="",
+				xlim=c(0, var2_num_lev), ylim=c(0, max_div*1.1));
+
+			# Plot median bar, 95%CI of Median, and scatter
+			for(j in 1:var2_num_lev){
+				points(	c(j-.5-mlw/2, j-.5+mlw/2),
+					c(med_div[j], med_div[j]), type="l", lwd=1, lend=2, col="blue"); 
+
+				ci=compute_95CI_median(div[[var2_lev[j]]]);
+				points(	c(j-.5-mlw/3, j-.5+mlw/3),
+					c(ci[1], ci[1]), type="l", lwd=.75, lend=2, col="red"); 
+				points(	c(j-.5-mlw/3, j-.5+mlw/3),
+					c(ci[2], ci[2]), type="l", lwd=.75, lend=2, col="red"); 
+
+				jitter=rnorm(length(div[[var2_lev[j]]]), 0, .10);
+				jitter-mean(jitter);
+				points(j-.5+jitter,
+					div[[var2_lev[j]]],
+					bg="white", col="grey15", pch=21, cex=.2, lwd=.25);
+
+				abline(h=0);
+
+				
+			}
+	
+			# Label x-axis
+			for(j in 1:var2_num_lev){
+				text(
+					(j-.5)-par()$cxy[1]/2, 
+					0-par()$cxy[2]/2,
+					labels=var2_lev[j], srt=-45, xpd=T, pos=4, cex=.75);
+			}
+
+			if(i==1){
+				title(ylab="Diversity", line=1, font.lab=2);
+			}
+			if(i==var1_num_lev){
+				ats=pretty(c(0, max_div));
+				axis(4, at=ats, labels=ats, las=2, cex.axis=.7);	
+			}
+		}
+
+		cat("Generating Pairwise Differences...\n");
+		pos=(1:var2_num_lev)-.5;
+		for(i in 1:var1_num_lev){
+			for(j in 1:var2_num_lev){
+				key=paste(var1_lev[i], "_x_", var2_lev[j], sep="");
+				div[[var2_lev[j]]]=grpd_info[[key]]$diversity;
+				med_div[j]=median(grpd_info[[key]]$diversity);
+			}
+				
+			plot(0,0, type="n", bty="n", xaxt="n", yaxt="n",
+				xlim=c(0, var2_num_lev), ylim=c(0, var2_num_lev),
+				main="", xlab="", ylab="");
+
+			abline(h=1:(var2_num_lev-1), col="grey80");
+			abline(v=1:(var2_num_lev-1), col="grey80");
+
+			for(x in 1:var2_num_lev){
+				for(y in 1:var2_num_lev){
+					text(x-.5, y-.5, labels=round(med_div[x]-med_div[y], 2), cex=.75, srt=45);
+				}
+			}
+
+			
+			for(j in 1:var2_num_lev){
+				text(
+					pos[j]-par()$cxy[1]/2, 
+					0-par()$cxy[2]/2,
+					labels=var2_lev[j], srt=-45, xpd=T, pos=4, cex=.75);
+			}
+
+			if(i==1){
+				title(ylab="Differences in Median", line=2, font.lab=2);
+				title(ylab="if (Bottom-Right) < 0, then R>B", line=1, font.lab=1, cex.lab=.75);
+			}
+			if(i==var1_num_lev){
+				axis(4, at=pos, labels=var2_lev, las=2, cex.lab=.70, lty=c(0,1));
+			}
+		}
+			
+		cat("Generating Significances Matrix...\n");
+		for(i in 1:var1_num_lev){
+			for(j in 1:var2_num_lev){
+				key=paste(var1_lev[i], "_x_", var2_lev[j], sep="");
+				div[[var2_lev[j]]]=grpd_info[[key]]$diversity;
+			}
+
+			plot(0,0, type="n", bty="n", xaxt="n", yaxt="n",
+				xlim=c(0, var2_num_lev), ylim=c(0, var2_num_lev),
+				main="", xlab="", ylab="");
+
+			abline(h=1:(var2_num_lev-1), col="grey80");
+			abline(v=1:(var2_num_lev-1), col="grey80");
+
+			for(x in 1:var2_num_lev){
+				for(y in 1:var2_num_lev){
+					if(x==y){
+						next;
+					}
+
+					wcres=wilcox.test(div[[var2_lev[x]]], div[[var2_lev[y]]]);
+
+					color="grey50";
+					font=1;
+					if(wcres$p.value<.1){
+						color="black";
+					}
+					if(wcres$p.value<.05){
+						color="blue";
+						font=2;
+					}
+					if(wcres$p.value<.01){
+						color="red";
+						font=2;
+					}
+					
+					text(x-.5, y-.5, labels=round(wcres$p.value, 2), cex=.75, srt=45,
+						font=font, col=color);
+				}
+			}
+			
+			for(j in 1:var2_num_lev){
+				text(
+					pos[j]-par()$cxy[1]/2, 
+					0-par()$cxy[2]/2,
+					labels=var2_lev[j], srt=-45, xpd=T, pos=4, cex=.75);
+			}
+
+			if(i==var1_num_lev){
+				axis(4, at=pos, labels=var2_lev, las=2, cex.lab=.70, lty=c(0,1));
+			}
+
+			title(xlab=var1_lev[i], font.lab=2, line=3);
+
+			if(i==1){
+				title(ylab="Significance of Difference", line=2, font.lab=2);
+				title(ylab="(Wilcoxon Rank Sum Test)", line=1, font.lab=1, cex.lab=.75);
+			}
+		}
+		
+
+	        mtext(title_arr[1], side=3, line=3, outer=T, font=2, cex=.7);
+		mtext("x",          side=3, line=2, outer=T, font=1, cex=.5);
+		mtext(title_arr[2], side=3, line=1, outer=T, font=2, cex=.7);
+		mtext(title_arr[3], side=3, line=0, outer=T, font=1, cex=.5);
+
+		cat("\n\n");
+	}
+
 	#----------------------------------------------------------------------
 
 	cat("Starting crossed variable plots:\n");
@@ -1081,6 +1315,10 @@ if(num_crossings>0){
 				c(crossing_var[1], crossing_var[2]),
 				grp_mat, diversity_arr);
 
+			plot_2D_diversity_comparisons(rem_cros_var[1], rem_cros_var[2], 
+				c(crossing_var[1], crossing_var[2]),
+				grp_mat, diversity_arr);
+
 			
 			# Plot split by excluded variable
 			levels=sort(unique(grp_mat[,excl_var]));
@@ -1091,6 +1329,9 @@ if(num_crossings>0){
 					c(rem_cros_var[1], rem_cros_var[2], lev),
 					grp_mat[keep_ix,,drop=F], simplified_mat, LabelThreshold);	
 				plot_2D_diversity(rem_cros_var[1], rem_cros_var[2], 
+					c(rem_cros_var[1], rem_cros_var[2], lev),
+					grp_mat[keep_ix,,drop=F], diversity_arr);
+				plot_2D_diversity_comparisons(rem_cros_var[1], rem_cros_var[2], 
 					c(rem_cros_var[1], rem_cros_var[2], lev),
 					grp_mat[keep_ix,,drop=F], diversity_arr);
 			}
@@ -1117,6 +1358,9 @@ if(num_crossings>0){
 			grp_mat, simplified_mat, LabelThreshold);	
 
 		plot_2D_diversity(crossing_var[1], crossing_var[2], 
+			c(crossing_var[1],  crossing_var[2], ""), grp_mat, diversity_arr);
+
+		plot_2D_diversity_comparisons(crossing_var[1], crossing_var[2], 
 			c(crossing_var[1],  crossing_var[2], ""), grp_mat, diversity_arr);
 
 		# Plot legend
