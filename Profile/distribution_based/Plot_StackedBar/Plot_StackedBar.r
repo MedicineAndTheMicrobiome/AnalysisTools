@@ -920,7 +920,7 @@ if(num_crossings>0){
 
 				mutual_samp_names=mutual_samp_names[!is.na(mutual_samp_names)];
 				diversity_subset=diversity_arr[mutual_samp_names];
-				quant=quantile(diversity_subset, c(.025,.5,.975));
+				quant=quantile(diversity_subset, c(.025,.5,.975), na.rm=T);
 
 				#print(diversity_subset);
 
@@ -1046,6 +1046,8 @@ if(num_crossings>0){
 
 
 	compute_95CI_median=function(x, num_bs=200){
+		if(length(x)==0){return(c(NA,NA))};
+
 		bs_med=numeric(num_bs);
 		for(i in 1:num_bs){
 			resamp=sample(x, replace=T);
@@ -1077,8 +1079,12 @@ if(num_crossings>0){
 		samp_names=rownames(grpd_factors);
 		
 		par(mfrow=c(3,var1_num_lev));
-		par(oma=c(3, 2, 4, 5));
-		par(mar=c(5,3,.5,1));
+		par(oma=c(.5, .5, 4, 3));
+
+		glob_margins=c(3,.15,.15,.15);
+		bottom_margin=4;
+		left_margin=1.75;
+		right_margin=1;
 	
 		grpd_info=list();
 		max_div=0;
@@ -1096,7 +1102,7 @@ if(num_crossings>0){
 
 				mutual_samp_names=samp_names[mutual_samp_ix];
 				mutual_samp_names=mutual_samp_names[!is.na(mutual_samp_names)];
-				print(mutual_samp_names);
+				#print(mutual_samp_names);
 
 				div=diversity_arr[mutual_samp_names];
 				memb_info=list();
@@ -1126,6 +1132,16 @@ if(num_crossings>0){
 			#bar_mids=barplot(med_div, xaxt="n", yaxt="n", ylim=c(0, max_div*1.1));
 			mlw=.75;
 
+			# Set up margins for
+			tmp_mar=glob_margins;
+			if(i==var1_num_lev){
+				tmp_mar[4]=right_margin;
+			}else if(i==1){
+				tmp_mar[2]=left_margin;
+			}
+			par(mar=tmp_mar);
+
+			# Generate plot area
 			plot(0,0, type="n", bty="n", 
 				xaxt="n", yaxt="n", 
 				xlab="", ylab="",
@@ -1158,11 +1174,12 @@ if(num_crossings>0){
 				text(
 					(j-.5)-par()$cxy[1]/2, 
 					0-par()$cxy[2]/2,
-					labels=var2_lev[j], srt=-45, xpd=T, pos=4, cex=.75);
+					labels=var2_lev[j], srt=-45, xpd=T, pos=4, cex=.5);
 			}
 
 			if(i==1){
-				title(ylab="Diversity", line=1, font.lab=2);
+				title(ylab="Diversity", line=.75, font.lab=2, cex.lab=.75);
+				title(ylab="(Medians w/ 95%CI)", line=0, font.lab=1, cex.lab=.5);
 			}
 			if(i==var1_num_lev){
 				ats=pretty(c(0, max_div));
@@ -1178,16 +1195,30 @@ if(num_crossings>0){
 				div[[var2_lev[j]]]=grpd_info[[key]]$diversity;
 				med_div[j]=median(grpd_info[[key]]$diversity);
 			}
-				
+
+			# Set up margins for
+			tmp_mar=glob_margins;
+			if(i==var1_num_lev){
+				tmp_mar[4]=right_margin;
+			}else if(i==1){
+				tmp_mar[2]=left_margin;
+			}
+			par(mar=tmp_mar);
+
+			# Generate plot area
 			plot(0,0, type="n", bty="n", xaxt="n", yaxt="n",
 				xlim=c(0, var2_num_lev), ylim=c(0, var2_num_lev),
 				main="", xlab="", ylab="");
 
+			# Draw grid lines
 			abline(h=1:(var2_num_lev-1), col="grey80");
 			abline(v=1:(var2_num_lev-1), col="grey80");
 
 			for(x in 1:var2_num_lev){
 				for(y in 1:var2_num_lev){
+					if(x==y){
+						next;
+					}
 					text(x-.5, y-.5, labels=round(med_div[x]-med_div[y], 2), cex=.75, srt=45);
 				}
 			}
@@ -1197,17 +1228,18 @@ if(num_crossings>0){
 				text(
 					pos[j]-par()$cxy[1]/2, 
 					0-par()$cxy[2]/2,
-					labels=var2_lev[j], srt=-45, xpd=T, pos=4, cex=.75);
+					labels=var2_lev[j], srt=-45, xpd=T, pos=4, cex=.5);
 			}
 
 			if(i==1){
-				title(ylab="Differences in Median", line=2, font.lab=2);
-				title(ylab="if (Bottom-Right) < 0, then R>B", line=1, font.lab=1, cex.lab=.75);
+				title(ylab="Differences", line=.75, font.lab=2, cex.lab=.75);
+				title(ylab="if(Bottom-Right)<0, then R>B", line=0, font.lab=1, cex.lab=.5);
 			}
 			if(i==var1_num_lev){
-				axis(4, at=pos, labels=var2_lev, las=2, cex.lab=.70, lty=c(0,1));
+				axis(4, at=pos, labels=var2_lev, las=2, cex.axis=.5, lty=c(0,1));
 			}
 		}
+
 			
 		cat("Generating Significances Matrix...\n");
 		for(i in 1:var1_num_lev){
@@ -1216,36 +1248,57 @@ if(num_crossings>0){
 				div[[var2_lev[j]]]=grpd_info[[key]]$diversity;
 			}
 
+			# Set up margins for
+			tmp_mar=glob_margins;
+			tmp_mar[1]=bottom_margin;
+			if(i==var1_num_lev){
+				tmp_mar[4]=right_margin;
+			}else if(i==1){
+				tmp_mar[2]=left_margin;
+			}
+			par(mar=tmp_mar);
+
+			# Generate plot area
 			plot(0,0, type="n", bty="n", xaxt="n", yaxt="n",
 				xlim=c(0, var2_num_lev), ylim=c(0, var2_num_lev),
 				main="", xlab="", ylab="");
 
+			# Draw grid lines
 			abline(h=1:(var2_num_lev-1), col="grey80");
 			abline(v=1:(var2_num_lev-1), col="grey80");
 
 			for(x in 1:var2_num_lev){
 				for(y in 1:var2_num_lev){
+
+					# Skip self-self comparisons
 					if(x==y){
 						next;
 					}
 
-					wcres=wilcox.test(div[[var2_lev[x]]], div[[var2_lev[y]]]);
+					# Compute wilcoxon difference in medians
+					if(length(div[[var2_lev[x]]])==0 || length(div[[var2_lev[y]]])==0){
+						pvalue=1;
+					}else{
+						wcres=wilcox.test(div[[var2_lev[x]]], div[[var2_lev[y]]]);
+						pvalue=wcres$p.value;
+					}
 
+					# Assign text color based on p-value
 					color="grey50";
 					font=1;
-					if(wcres$p.value<.1){
+					if(pvalue<.1){
 						color="black";
 					}
-					if(wcres$p.value<.05){
+					if(pvalue<.05){
 						color="blue";
 						font=2;
 					}
-					if(wcres$p.value<.01){
+					if(pvalue<.01){
 						color="red";
 						font=2;
 					}
 					
-					text(x-.5, y-.5, labels=round(wcres$p.value, 2), cex=.75, srt=45,
+					text(x-.5, y-.5, labels=round(pvalue, 2), cex=.75, srt=45,
 						font=font, col=color);
 				}
 			}
@@ -1254,18 +1307,21 @@ if(num_crossings>0){
 				text(
 					pos[j]-par()$cxy[1]/2, 
 					0-par()$cxy[2]/2,
-					labels=var2_lev[j], srt=-45, xpd=T, pos=4, cex=.75);
+					labels=var2_lev[j], srt=-45, xpd=T, pos=4, cex=.5);
 			}
 
 			if(i==var1_num_lev){
-				axis(4, at=pos, labels=var2_lev, las=2, cex.lab=.70, lty=c(0,1));
+				axis(4, at=pos, labels=var2_lev, las=2, cex.axis=.5, lty=c(0,1));
 			}
 
+
+			# Bottom margin variable 1 factor levels
 			title(xlab=var1_lev[i], font.lab=2, line=3);
 
+			# Left margin labels
 			if(i==1){
-				title(ylab="Significance of Difference", line=2, font.lab=2);
-				title(ylab="(Wilcoxon Rank Sum Test)", line=1, font.lab=1, cex.lab=.75);
+				title(ylab="Significances", line=.75, font.lab=2, cex.lab=.75);
+				title(ylab="(Wilcoxon R.S.T.)", line=0, font.lab=1, cex.lab=.5);
 			}
 		}
 		
