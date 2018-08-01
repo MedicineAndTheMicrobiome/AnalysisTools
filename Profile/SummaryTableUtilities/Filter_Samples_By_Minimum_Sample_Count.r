@@ -39,18 +39,18 @@ if(opt$minimum_total<0){
 }
 
 InputFileName=opt$input_file;
-OutputFileName=opt$output_file;
 MinimumTotalCutoff=opt$minimum_total;
 GeneratePlot=opt$generate_plot;
+OutputFileRoot=opt$output_file;
 
-if(length(OutputFileName)==0){
-	OutputNameRoot=paste(gsub("\\summary_table\\.tsv$", "", InputFileName), ".min", MinimumTotalCutoff, sep="");
-	OutputFileName=paste(OutputNameRoot, ".summary_table.tsv", sep="");
-}else{
-	OutputNameRoot=OutputFileName;
+if(length(OutputFileRoot)==0){
+	OutputFileRoot=InputFileName;
 }
 
-OutputPDFFileName=paste(OutputNameRoot, ".hist.pdf", sep="");
+OutputFileRoot=gsub("\\.summary_table\\.tsv$", "", OutputFileRoot);
+OutputFileRoot=gsub("\\.summary_table\\.xls$", "", OutputFileRoot);
+
+OutputPDFFileName=paste(OutputFileRoot, ".hist.pdf", sep="");
 
 if(length(GeneratePlot)==0){
 	GeneratePlot=FALSE;
@@ -63,7 +63,7 @@ if(length(GeneratePlot)==0){
 
 cat("\n")
 cat("Input File Name: ", InputFileName, "\n");
-cat("Output File Name: ", OutputFileName, "\n");       
+cat("Output File Name Root: ", OutputFileRoot, "\n");       
 cat("Minimum Total Cutoff: ", MinimumTotalCutoff, "\n");
 cat("Generate Plot: ", GeneratePlot, "\n");
 cat("\n");
@@ -113,7 +113,7 @@ outmat=counts_mat[keep_idx,];
 ###############################################################################
 # Output
 cat("Writing New Matrix...\n");
-fc=file(OutputFileName, "w");
+fc=file(paste(OutputFileRoot, ".min", MinimumTotalCutoff, ".summary_table.tsv", sep=""), "w");
 
 write(paste("sample_id", "total", paste(colnames(outmat), collapse="\t"), sep="\t"), file=fc);
 out_num_samples=nrow(outmat);
