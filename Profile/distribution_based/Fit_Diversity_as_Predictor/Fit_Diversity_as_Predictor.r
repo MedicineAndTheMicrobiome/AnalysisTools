@@ -815,10 +815,22 @@ for(i in 1:num_div_idx){
 		mv_anova=NULL;
 	}else{
 
-		mv_anova=anova(mv_fit);
-		plot_text(capture.output(print(mv_anova)), title=div_names[i]);
+		try_res=try({mv_anova=anova(mv_fit)});
+		
+		if(class(try_res)=="try-error"){
+			mv_anova=NULL;
+			
+			msg=c(
+				"Error occured while computed MANOVA: ",
+				paste(try_res)
+			);
+			plot_text(msg);
 
-		anova_pval[c("diversity",model_var),div_names[i]]=mv_anova[c("diversity",model_var),"Pr(>F)"];
+		}else{
+
+			plot_text(capture.output(print(mv_anova)), title=div_names[i]);
+			anova_pval[c("diversity",model_var),div_names[i]]=mv_anova[c("diversity",model_var),"Pr(>F)"];
+		}
 	}
 
 	# Reduced
