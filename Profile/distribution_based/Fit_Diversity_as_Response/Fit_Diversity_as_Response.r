@@ -704,8 +704,6 @@ plot_diversity_with_factors=function(raw, factors, model_string, stat_name, bin_
 
 	pred_arr=gsub(" ", "", pred_arr);
 	num_pred=length(pred_arr);
-print(pred_arr);
-
 
 	num_values=length(raw);
 	raw_range=range(raw);
@@ -777,35 +775,38 @@ print(pred_arr);
 
 		# Label predictors
 		predictors_per_plot=min(predictors_per_plot, num_pred);
-		for(j in 1:predictors_per_plot){
-			pred_ix=((plot_ix-1)*predictors_per_plot)+(j-1)+1;
-		
-			if(!is.na(pred_arr[pred_ix]) && !length(grep(":", pred_arr[pred_ix]))){
 
-				fact_val=factors[, pred_arr[pred_ix]];
-				uniq_val=unique(fact_val);
+		if(predictors_per_plot>0){
+			for(j in 1:predictors_per_plot){
+				pred_ix=((plot_ix-1)*predictors_per_plot)+(j-1)+1;
+			
+				if(!is.na(pred_arr[pred_ix]) && !length(grep(":", pred_arr[pred_ix]))){
 
-				if(length(uniq_val)>=bin_cont && !is.factor(fact_val)){
-					factor=signif(fact_val, 4);
-					coloring=as.numeric(as.factor(bin_continuous_values(fact_val, num_bins=bin_cont)));
-				}else{
-					factor=as.factor(fact_val);
-					coloring=as.numeric(factor);
+					fact_val=factors[, pred_arr[pred_ix]];
+					uniq_val=unique(fact_val);
+
+					if(length(uniq_val)>=bin_cont && !is.factor(fact_val)){
+						factor=signif(fact_val, 4);
+						coloring=as.numeric(as.factor(bin_continuous_values(fact_val, num_bins=bin_cont)));
+					}else{
+						factor=as.factor(fact_val);
+						coloring=as.numeric(factor);
+					}
+
+					if(is.factor(factor)){
+						factor=substr(factor, 1, 10);
+					}
+
+					text(zeros+j+extra_sample_space, adj_pos, label=factor, 
+						col=coloring,
+						cex=.5
+						);
 				}
-
-				if(is.factor(factor)){
-					factor=substr(factor, 1, 10);
-				}
-
-				text(zeros+j+extra_sample_space, adj_pos, label=factor, 
-					col=coloring,
-					cex=.5
-					);
+				# label predictor/factor name
+				lab_cex=min(1, 8/nchar(pred_arr[pred_ix]));
+				text(j+extra_sample_space, raw_adj_range[2], 
+					pred_arr[pred_ix], cex=lab_cex*.75, col="black", family="", font=2, pos=3);
 			}
-			# label predictor/factor name
-			lab_cex=min(1, 8/nchar(pred_arr[pred_ix]));
-			text(j+extra_sample_space, raw_adj_range[2], 
-				pred_arr[pred_ix], cex=lab_cex*.75, col="black", family="", font=2, pos=3);
 		}
 	}
 
