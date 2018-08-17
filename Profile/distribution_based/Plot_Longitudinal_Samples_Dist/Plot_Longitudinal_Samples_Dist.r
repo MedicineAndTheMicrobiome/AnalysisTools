@@ -103,7 +103,13 @@ load_offset=function(fname){
 		offsets_mat[group_ix, "Offsets"]=offsets-min_off;
 	}
 
-	return(offsets_mat);
+	offsets_data=list();
+	offsets_data[["matrix"]]=offsets_mat;
+	offsets_data[["IndivID"]]=extra_colnames[1];
+	offsets_data[["Offsets"]]=extra_colnames[2];
+	offsets_data[["GroupID"]]=extra_colnames[3];
+	
+	return(offsets_data);
 }
 
 load_summary_file=function(fname){
@@ -350,7 +356,9 @@ plot_sample_distributions_by_individual=function(diversity_arr, div_type, normal
 
 ###############################################################################
 
-plot_sample_diversity_by_group=function(diversity_arr, div_type, normalized_mat, offsets_mat, col_assign, ind_colors){
+plot_sample_diversity_by_group=function(diversity_arr, div_type, normalized_mat, 
+	offsets_mat, col_assign, ind_colors, grp_name=""){
+
 	sorted_sids=sort(rownames(offsets_mat));
 	offsets_mat=offsets_mat[sorted_sids,];
 
@@ -384,7 +392,7 @@ plot_sample_diversity_by_group=function(diversity_arr, div_type, normalized_mat,
 	for(g in 1:num_cohorts){
 
 		cat("Plotting: ", cohorts[g], "\n");
-		plot(0, 0, main=cohorts[g],
+		plot(0, 0, main=paste(grp_name, ": ", cohorts[g], sep=""),
 			 xlab="Time", ylab=paste("Diversity (", div_type,")",sep=""), type="n", 
 			 xlim=offset_ranges, ylim=diversity_ranges);
 
@@ -451,7 +459,9 @@ bootstrap_med=function(x, num_bs=2000){
 	return(meds);
 }
 
-plot_average_sample_diversity_by_group=function(diversity_arr, div_type, normalized_mat, offsets_mat, col_assign, ind_colors){
+plot_average_sample_diversity_by_group=function(diversity_arr, div_type, 
+	normalized_mat, offsets_mat, col_assign, ind_colors, grp_name=""){
+
 	sorted_sids=sort(rownames(offsets_mat));
 	offsets_mat=offsets_mat[sorted_sids,];
 
@@ -663,7 +673,7 @@ plot_average_sample_diversity_by_group=function(diversity_arr, div_type, normali
 	#----------------------------------------------------------------------
 	# Plot group legend
 	plot(0,0, type="n", xlim=c(0,1), ylim=c(0,1), xlab="", ylab="", bty="n", xaxt="n", yaxt="n");
-	legend(0, 1, cohorts, fill=colors_full, bty="n", cex=2);
+	legend(0, 1, cohorts, fill=colors_full, bty="n", cex=2, title=grp_name);
 	
 	par(def_par);
 
@@ -671,7 +681,7 @@ plot_average_sample_diversity_by_group=function(diversity_arr, div_type, normali
 
 ###############################################################################
 
-plot_sample_distributions_by_group=function(normalized_mat, offsets_mat, cat_colors){
+plot_sample_distributions_by_group=function(normalized_mat, offsets_mat, cat_colors, grp_name=""){
 
 	sorted_sids=sort(rownames(offsets_mat));
 	offsets_mat=offsets_mat[sorted_sids,];
@@ -781,7 +791,7 @@ plot_sample_distributions_by_group=function(normalized_mat, offsets_mat, cat_col
 			}
 		}
 
-		mtext(cohorts[g], side=3, outer=T, font=2);
+		mtext(paste(grp_name, ": ", cohorts[g], sep=""), side=3, outer=T, font=2);
 	}
 	par(def_par);
 }
@@ -851,7 +861,7 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 
 ###############################################################################
 
-plot_change_scatter=function(diversity_arr, offset_mat){
+plot_change_scatter=function(diversity_arr, offset_mat, grp_name=""){
 
 	cat("Plotting Change Scatter:\n");
 	#print(diversity_arr);
@@ -1030,8 +1040,9 @@ plot_text=function(strings){
 ###############################################################################
 ###############################################################################
 
-offset_mat=load_offset(OffsetFileName);
-print(offset_mat);
+offset_data=load_offset(OffsetFileName);
+offset_mat=offset_data[["matrix"]];
+print(offset_data);
 
 ###############################################################################
 
@@ -1084,21 +1095,25 @@ names(col_assign)=indiv_ids;
 
 ###############################################################################
 
-plot_text(c("By Subject:  Diversity and Composition"));
+plot_text(c(paste("By Subject (", offset_data[["IndivID"]], "):  Diversity and Composition", sep="")));
 plot_sample_distributions_by_individual(diversity_arr, DiversityType, 
 	simplified_mat, offset_mat, col_assign, category_colors, ind_colors);
 
-plot_text(c("By Group:  Diversity"));
-plot_sample_diversity_by_group(diversity_arr, DiversityType, simplified_mat, offset_mat, col_assign, ind_colors);
+plot_text(c(paste("By Group (", offset_data[["GroupID"]], "):  Diversity", sep="")));
+plot_sample_diversity_by_group(diversity_arr, DiversityType, simplified_mat, 
+	offset_mat, col_assign, ind_colors, grp_name=offset_data[["GroupID"]]);
 
-plot_text(c("By Group: Median Sample Diversity"));
-plot_average_sample_diversity_by_group(diversity_arr, DiversityType, simplified_mat, offset_mat, col_assign, ind_colors);
+plot_text(c(paste("By Group (", offset_data[["GroupID"]], "):  Median Sample Diversity", sep="")));
+plot_average_sample_diversity_by_group(diversity_arr, DiversityType, simplified_mat, 
+	offset_mat, col_assign, ind_colors, grp_name=offset_data[["GroupID"]]);
 
-plot_text(c("By Group:  Composition"));
-plot_sample_distributions_by_group(simplified_mat, offset_mat, category_colors);
+plot_text(c(paste("By Group (", offset_data[["GroupID"]], "):  Composition", sep="")));
+plot_sample_distributions_by_group(simplified_mat, offset_mat, category_colors,
+	grp_name=offset_data[["GroupID"]]);
 
-plot_text(c("By Group:  Delta Scatter Plots"));
-plot_change_scatter(diversity_arr, offset_mat);
+plot_text(c(paste("By Group (", offset_data[["GroupID"]], "):  Delta Scatter Plots", sep="")));
+plot_change_scatter(diversity_arr, offset_mat,
+	grp_name=offset_data[["GroupID"]]);
 
 ##############################################################################
 
