@@ -906,7 +906,7 @@ plot_change_scatter=function(diversity_arr, offset_mat, grp_name=""){
 
 		#print(trt_ends);
 		plot(0,0, type="n",
-			main=trt,
+			main=paste(grp_name, ": ", trt, sep=""),
 			xlab="", ylab="",
 			xlim=end_ranges, ylim=end_ranges, 
 			xaxt="n", yaxt="n");
