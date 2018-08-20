@@ -459,7 +459,7 @@ bootstrap_med=function(x, num_bs=2000){
 	return(meds);
 }
 
-plot_average_sample_diversity_by_group=function(diversity_arr, div_type, 
+plot_median_sample_diversity_by_group=function(diversity_arr, div_type, 
 	normalized_mat, offsets_mat, col_assign, ind_colors, grp_name=""){
 
 	sorted_sids=sort(rownames(offsets_mat));
@@ -798,6 +798,139 @@ plot_sample_distributions_by_group=function(normalized_mat, offsets_mat, cat_col
 
 ###############################################################################
 
+plot_mean_distributions_by_group=function(normalized_mat, offsets_mat, cat_colors, grp_name=""){
+
+
+	num_categories=ncol(normalized_mat);
+
+	sorted_sids=sort(rownames(offsets_mat));
+	offsets_mat=offsets_mat[sorted_sids,];
+
+	# Get Num Cohorts
+	cohorts=sort(unique(offsets_mat[,"Group ID"]));	
+	num_cohorts=length(cohorts);
+	cat("\nNumber of Cohorts: ", num_cohorts, "\n");
+	print(cohorts);
+	cat("\n");
+
+	# Get range of offsets
+	uniq_offsets=sort(unique(offsets_mat[,"Offsets"]));
+	num_uniq_offsets=length(uniq_offsets);
+	offset_ranges=range(uniq_offsets);
+	cat("Offset Range:\n");
+	print(offset_ranges);
+
+	# Get closest between offsets
+	periods=numeric();
+	indivs=unique(offsets_mat[,"Indiv ID"]);
+	num_indivs=length(indivs);
+	for(i in 1:num_indivs){
+		grp_subset=which(offsets_mat[,"Indiv ID"]==indivs[i]);
+                offsets=offsets_mat[grp_subset, "Offsets"];
+		periods=c(diff(sort(offsets)), periods);
+	}
+	periods_sorted=sort(unique(periods));
+
+	if(periods_sorted[1]==0){
+		min_period=periods_sorted[2];
+	}else{
+		min_period=periods_sorted[1];
+	}
+	cat("Minimum period: ", min_period, "\n");
+
+	palette(cat_colors);
+	events_range=4:ncol(offsets_mat);
+	num_event_types=length(events_range);
+
+
+	cat("Offsets:\n");
+	print(uniq_offsets);
+	cat("\n");
+
+	# Set up plots per page
+	def_par=par(no.readonly=T);
+	par(oma=c(0,0,2,0));
+	par(mfrow=c(num_cohorts+1, 1));
+
+	for(g in 1:num_cohorts){
+
+		# Extract offset for cohort
+		coh_offset_mat=offsets_mat[offsets_mat[,"Group ID"]==cohorts[g],,drop=F];
+		#print(coh_offset_mat);
+
+		# Save mean abundances in matrix
+		avg_off_comp=matrix(0, nrow=num_uniq_offsets, ncol=num_categories);
+		rownames(avg_off_comp)=as.numeric(uniq_offsets);
+		colnames(avg_off_comp)=colnames(normalized_mat);
+
+		# Save num samples per offset in array
+		samp_size_at_offset=numeric(num_uniq_offsets);
+		names(samp_size_at_offset)=uniq_offsets;
+
+		# Calculate means and sample size per offset
+		for(cur_off in uniq_offsets){
+			#cat("Offset Val: ", cur_off, "\n");
+			off_mat_ix=coh_offset_mat[,"Offsets"]==cur_off;
+			subj_id=rownames(coh_offset_mat[off_mat_ix,,drop=F]);
+
+			offset_key=as.character(cur_off);
+			avg_off_comp[offset_key, ]=apply(normalized_mat[subj_id,,drop=F], 2, mean);
+			samp_size_at_offset[offset_key]=length(subj_id);
+		
+		}
+
+		#--------------------------------------------------------------
+		# Plot times series for cohort
+		plot(0, 0, main="",
+			xlab="", 
+			ylab=paste(grp_name, ": ", cohorts[g]), 
+			type="n", bty="n",
+			xaxt="s", yaxt="n",
+			xlim=offset_ranges, ylim=c(0, 1.1));
+
+		# Draw guide lines
+		abline(h=.5, col="grey", lwd=20);
+		xaxp=par()$xaxp;
+		cxy=par()$cxy;
+		xguides=seq(xaxp[1], xaxp[2], (xaxp[2]-xaxp[1])/xaxp[3]);
+		abline(v=xguides, col="grey", lwd=.5);
+
+		# Draw stacked barplot
+		for(t in 1:num_uniq_offsets){
+			cur_off=uniq_offsets[t];
+			offset_key=as.character(cur_off);
+			plot_dist(cur_off, y=0, 
+				abundances=avg_off_comp[offset_key,,drop=F], width=min_period);
+
+			text(cur_off, 1+cxy[2]/2, 
+				paste("n=",samp_size_at_offset[offset_key], sep=""), cex=.75, font=3);
+
+		}
+
+		#--------------------------------------------------------------
+
+	}
+
+	mtext("Mean Abundances by Group", side=3, outer=T, font=2);
+
+	# Plot color key/legend
+	cat_names=colnames(normalized_mat);
+	num_in_key=min(35, length(cat_names));
+	plot(0, 0, 
+		 xlab="", ylab="", type="n", lwd=2,
+		 xlim=c(0,10), ylim=c(0,num_in_key), xaxt="n", yaxt="n");
+
+	for(j in 1:num_in_key){
+		rect(0, j-1, .9, j+.9-1, col=j, lwd=.1);
+		text(1, j-1+.4, labels=cat_names[j], pos=4, cex=.8);
+	}
+
+	par(def_par);
+
+}
+
+###############################################################################
+
 paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_is_hot=T){
 	num_row=nrow(mat);
 	num_col=ncol(mat);
@@ -1104,11 +1237,15 @@ plot_sample_diversity_by_group(diversity_arr, DiversityType, simplified_mat,
 	offset_mat, col_assign, ind_colors, grp_name=offset_data[["GroupID"]]);
 
 plot_text(c(paste("By Group (", offset_data[["GroupID"]], "):  Median Sample Diversity", sep="")));
-plot_average_sample_diversity_by_group(diversity_arr, DiversityType, simplified_mat, 
+plot_median_sample_diversity_by_group(diversity_arr, DiversityType, simplified_mat, 
 	offset_mat, col_assign, ind_colors, grp_name=offset_data[["GroupID"]]);
 
 plot_text(c(paste("By Group (", offset_data[["GroupID"]], "):  Composition", sep="")));
 plot_sample_distributions_by_group(simplified_mat, offset_mat, category_colors,
+	grp_name=offset_data[["GroupID"]]);
+
+plot_text(c(paste("By Group (", offset_data[["GroupID"]], "):  Mean Composition", sep="")));
+plot_mean_distributions_by_group(simplified_mat, offset_mat, category_colors,
 	grp_name=offset_data[["GroupID"]]);
 
 plot_text(c(paste("By Group (", offset_data[["GroupID"]], "):  Delta Scatter Plots", sep="")));
