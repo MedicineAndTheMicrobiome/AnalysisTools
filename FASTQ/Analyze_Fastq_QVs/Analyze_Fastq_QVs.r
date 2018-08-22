@@ -29,6 +29,10 @@ usage = paste (
 	"and generate statistics and plots in order to\n",
 	"compare the quality of reads between samples.\n",
 	"\n",
+	"You can specify a list with one of two formats:\n",
+	"  1.) A list of fastq files (1 column)\n",
+	"  2.) A mapping of sample ID and fastq files (2 columns)\n",
+	"\n",
 	"Note that QV's should be between 0 and 40ish.\n",
 	"If the wrong offset encoding is specified, you will\n",
 	"get QV's out of that range, and the problem should\n",
@@ -69,14 +73,33 @@ cat("\n");
 ###############################################################################
 
 read_file_list=function(filelist_fname){
-	filelist=as.matrix(read.table(filelist_fname, sep="\t", header=T, row.names=1));
-	return(filelist);
+
+	filelist=as.matrix(read.table(filelist_fname, sep="\t", header=F));
+
+	filelist_dim=dim(filelist);
+	cat("File List Dimensions:\n");
+	print(filelist_dim);
+	cat("\n");
+
+	# If sample names have not been specified,
+	# then use the sample paths without the fastq extension
+	if(filelist_dim[2]==1){
+		cat("Sample names not specified.\n");
+		clean_filelist=gsub("\\.fastq", "", filelist);
+		filelist=cbind(clean_filelist, filelist);
+	}
+	
+	out_list=matrix(filelist[,2], ncol=1);
+	rownames(out_list)=filelist[,1];
+
+	return(out_list);
 }
 ###############################################################################
 
 read_fastq_file=function(fastq_fname, keep_ids=F, keep_seq=F, keep_qual=F, quick=T, head=-1){
 
 	cat("File Name: ", fastq_fname, "\n");
+	
 	fh=file(fastq_fname);
 	open(fh);
 
@@ -332,7 +355,9 @@ analyze_qv_list=function(qvint_list, max_len, name){
 	plot_counts_by_pos(cts, max_len);
 	plot_frequency_of_qv(all_qv);
 	plot_len_vs_qv(seq_len, med_per_seq, max_len);
-	mtext(name, side=3, outer=T, cex=2);
+
+	title_size=2-nchar(name)/40;
+	mtext(name, side=3, outer=T, cex=title_size);
 		
 	# Generate per sample statistics
 	sample_qv_ci=quantile(all_qv, probs=c(0.025, .5, 0.975));
@@ -433,7 +458,12 @@ for(i in 1:num_samples){
 	cat("Working on loading: ", sample_names[i], "\n");
 	max_samp_name_len=max(max_samp_name_len, nchar(sample_names[i]));
 
-	data=read_fastq_file(filepaths[i], keep_qual=T, head=Head, quick=NoValidation);
+	try_res=try({data=read_fastq_file(filepaths[i], keep_qual=T, head=Head, quick=NoValidation)});
+	if(class(try_res)=="try-error"){
+		cat("Could not open:", filepaths[i], "\n");
+		cat("Skipping...\n\n");
+		next;
+	}
 
 	if(data[["num_recs"]]>0){
 		qv_int=qvstr_to_int_list(data[["qual"]], Offset);
