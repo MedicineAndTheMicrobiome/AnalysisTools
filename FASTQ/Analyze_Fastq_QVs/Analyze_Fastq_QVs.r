@@ -247,8 +247,10 @@ plot_qv_by_pos=function(pos_med_ci, max_len){
 
 plot_counts_by_pos=function(cts, max_len){
 
+	max_cts=max(cts);
 	plot(cts,
 		xlim=c(0, max_len),
+		ylim=c(0, max_cts),
 		xlab="Position (bp)",
 		ylab="Counts",
 		pch=15,
@@ -260,7 +262,7 @@ plot_counts_by_pos=function(cts, max_len){
 
 	if(sd(cts)/mean(cts)<.05){
 		transparent_red=rgb(1,0,0, alpha=.25);
-		text(max_len/2, mean(cts), 
+		text(max_len/2, max_cts/2, 
 			cex=3.5,
 			col=transparent_red, font=2,
 			labels="WARNING: Homogenous Lengths!"
@@ -478,6 +480,24 @@ plot_qnorm(qv_ci[,2], sample_names, "Read QVs");
 plot_qnorm(len_ci[,2], sample_names, "Read Lengths");
 
 mtext("Across All Samples", side=3, outer=T, cex=2);
+
+# Generate histograms across samples
+#print(num_reads_per_sample);
+h=hist(num_reads_per_sample, main="Distribution of Reads/Sample", xlab="Reads/Sample", ylab="Counts");
+#print(h);
+cxy=par()$cxy;
+if(Head!=-1){
+	abline(v=Head, col="blue");
+	max_bin_height=max(h$counts);
+	text(Head-cxy[1]/4, max_bin_height/2, paste("Req Max Subs Size: ", Head, sep=""), cex=.7, srt=90, pos=3, col="blue");
+}
+
+#print(qv_ci);
+hist(qv_ci[,2], main="Distribution of Median Sample QVs", xlab="Median Sample QV", ylab="Counts");
+
+#print(len_ci);
+hist(len_ci[,2], main="Distribution of Median Sample Lengths", xlab="Median Sample Lengths", ylab="Counts");
+
 
 ###############################################################################
 # Output Spreadsheets
