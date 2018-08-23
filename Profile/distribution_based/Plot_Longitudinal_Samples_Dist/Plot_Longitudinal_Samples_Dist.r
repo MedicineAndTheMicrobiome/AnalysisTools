@@ -268,6 +268,10 @@ plot_sample_distributions_by_individual=function(diversity_arr, div_type, normal
 		# Grab members from group
 		cat("Plotting: ", groups[i], "\n");
 		grp_subset=which(offsets_mat[,"Indiv ID"]==groups[i]);
+
+		cohort_id=unique(as.character(offsets_mat[grp_subset,"Group ID"]));
+		#cat("Cohort ID:", cohort_id, "\n");
+
 		num_members=length(grp_subset);
 
 		# Subset offsets, and sort by offset
@@ -285,10 +289,13 @@ plot_sample_distributions_by_individual=function(diversity_arr, div_type, normal
 		subset_diversity=diversity_arr[subset_samples];
 		#print(subset_diversity);
 
+		title=paste(groups[i], " [", cohort_id, "]", sep="");
+
 
 		# Plot Diversity lines
 		palette(ind_colors);
-		plot(offset_info[,"Offsets"], subset_diversity, main=groups[i],
+		plot(offset_info[,"Offsets"], subset_diversity,
+			main=paste(title, "Diversity"),
 			xlab="Time", ylab=paste("Diversity (", div_type, ")", sep=""), type="l", 
 			col=col_assign[groups[i]], lwd=2.5,
 			xlim=offset_ranges, 
@@ -311,7 +318,7 @@ plot_sample_distributions_by_individual=function(diversity_arr, div_type, normal
 		# Plot abundances bar plots
 		palette(category_colors);
 		subset_norm=normalized_mat[subset_samples,];
-		plot(offset_info[,"Offsets"], subset_diversity, main=groups[i],
+		plot(offset_info[,"Offsets"], subset_diversity, main=paste(title, "Composition"),
 			 xlab="Time", ylab="", type="n", col=i, lwd=2,
 			 yaxt="n",
 			 xlim=offset_ranges, ylim=c(0,1+.25));
@@ -340,7 +347,7 @@ plot_sample_distributions_by_individual=function(diversity_arr, div_type, normal
 
 		# Plot color key/legend
 		num_in_key=min(35, length(cat_names));
-		plot(0, 0, main=groups[i],
+		plot(0, 0, main="",
 			 xlab="", ylab="", type="n", col=i, lwd=2,
 			 xlim=c(0,10), ylim=c(0,num_in_key), xaxt="n", yaxt="n");
 
@@ -351,6 +358,7 @@ plot_sample_distributions_by_individual=function(diversity_arr, div_type, normal
 		
 	
 	}
+
 	par(def_par);
 }
 
@@ -551,7 +559,7 @@ plot_median_sample_diversity_by_group=function(diversity_arr, div_type,
 		
 
 		for(offset in offset_pos){
-			div_arr=numeric(num_indv)
+			div_arr=rep(NA,num_indv)
 			
 			for(i in 1:num_indv){
 
@@ -559,14 +567,14 @@ plot_median_sample_diversity_by_group=function(diversity_arr, div_type,
 				ind_off=cohort_data[[cohort_id]][[idv]]		
 				samp_names=rownames(ind_off);	
 				targ_off_ix=which(ind_off[,"Offsets"]==offset);
-				cat(samp_names[targ_off_ix], "\n");
 
-				div_arr[i]=diversity_arr[samp_names[targ_off_ix]];
-				div_offs_mat=rbind(div_offs_mat, c(offset, div_arr[i]));
+				if(length(targ_off_ix)==1){
+					div_arr[i]=diversity_arr[samp_names[targ_off_ix]];
+					div_offs_mat=rbind(div_offs_mat, c(offset, div_arr[i]));
+				}
 			}	
 
-			cat("Offset: ", offset, "\n");
-
+			#cat("Offset: ", offset, "\n");
 
 			bs_med=bootstrap_med(div_arr);
 			qtl=quantile(bs_med, na.rm=T, probs=c(0.025, .5, 0.975));
