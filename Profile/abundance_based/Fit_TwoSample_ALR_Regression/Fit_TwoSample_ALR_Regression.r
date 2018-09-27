@@ -950,6 +950,7 @@ num_samples_recon=nrow(recon_factors);
 num_factors_recon=ncol(recon_factors);
 num_samples_before_na_removal=num_samples_recon;
 num_factors_before_na_removal=num_factors_recon;
+
 factors_wo_nas_res=remove_sample_or_factors_wNA_parallel(recon_factors, 
 	required=required_arr, num_trials=64000, num_cores=64, outfile=paste(OutputRoot, ".noNAs", sep=""));
 
@@ -1155,6 +1156,14 @@ for(resp_ix in 1:NumRespVariables){
 	print(model_str);
 	cat("Reduced:\n");
 	print(model_reduced_str);
+
+	if(grep("[^a-zA-Z0-9]", model_str)){
+		cat("\n\n");
+		cat("WARNING: Model string contains non alphanumerics. This may cause errors.\n");
+		cat("Check the variables (covariates or categories) for illegal characters.\n");
+		cat("Semi-colons in the categories may indicate you need to use the -x \";\" option.\n");
+		cat("\n\n");
+	}
 
 	# Fit full and reduced model
 	lm_fit=lm(as.formula(model_str), data=model_pred_df);
