@@ -123,10 +123,14 @@ import_tsv_header=function(filename){
 	variable_lists<<-variable_lists;
 }
 
+rename_group=function(old_grpname, new_grpname){
+	variable_lists[["groups"]][[new_grpname]]=variable_lists[["groups"]][[old_grpname]];	
+	variable_lists[["groups"]][[old_grpname]]=c();	
+	variable_lists<<-variable_lists;
+}
+
 
 move_variables=function(src, dst, src_grp=NULL, dst_grp=NULL, var_list, win){
-
-	print(variable_lists);
 
 	cat("Moving from: ", src, " to: ", dst, "\n");
 
@@ -170,8 +174,6 @@ move_variables=function(src, dst, src_grp=NULL, dst_grp=NULL, var_list, win){
 		update_list_box("groups",src_grp);
 		update_list_box("available");
 	}
-
-	print(variable_lists);
 
 	model_changed<<-TRUE;
 	update_title(win);
@@ -311,13 +313,6 @@ add_and_select_groups_dialog=function(variables_to_add){
 				variable_lists[["groups"]][[gn]]=newlist;
 			}
 			variable_lists<<-variable_lists;
-
-			#tk_messageBox(type="ok",
-			#	caption="Variables added...",
-			#	message=paste("The variables: \n\n     ", 
-			#		      paste(variables_to_add, collapse=", "), 
-			#		      "\n\nwere added to the groups: \n\n    ", 
-			#		      paste(dst_groups, collapse=", "), sep=""));
 			tkdestroy(dlg);
 		}
 	}
@@ -329,7 +324,7 @@ add_and_select_groups_dialog=function(variables_to_add){
 	avail_group_name_label=tk2label(dlg, text="Currently Available Groups:");
 	avail_group_listbox=tk2listbox(dlg, height=10, selectmode="extended", scroll="both");
 	add_to_groups_button=tk2button(dlg, text="Add Variables to Group(s)", width=-6, command=onAddToGroup);
-	done_button=tk2button(dlg, text="Cancel", width=-6, command=onDone);
+	done_button=tk2button(dlg, text="Ok", width=-6, command=onDone);
 
 	tkgrid(add_new_group_label, sticky="w", pady=c(10,0));
 	tkgrid(new_group_name_entry, add_group_button, padx=c(10,10), sticky="ew");
@@ -349,7 +344,6 @@ add_and_select_groups_dialog=function(variables_to_add){
 	tkfocus(dlg);
 	tkwait.window(dlg);
 
-	cat("before add and select return\n");
 	return(num_groups_added);
 
 }
@@ -437,7 +431,15 @@ draw_available_ctls=function(win, row, col){
 		update_list_box("groups");
 	}
 
+	onSelect=function(){
+		select_ix=(as.numeric(tkcurselection(listbox_h)))+1;
+		target_var=variable_lists[["available"]][select_ix];
+		set_selection(target_var);
+	}
+
 	listbox_h=tk2listbox(win, height = 10, selectmode = "extended", scroll="both");
+
+	tkbind(listbox_h, "<<ListboxSelect>>", onSelect);
 
 	tkgrid(tk2label(win, text="Available", justify="left"), row=1+row, column=col, 
 		padx=c(5,5), pady=c(5,5));
@@ -459,7 +461,6 @@ draw_covariates_ctls=function(win, row, col){
 
 	onButt=function(){
 		select_ix=(as.numeric(tkcurselection(listbox_h)));
-		print(variable_lists[select_ix+1]);
 		move_variables("covariates", "available", NULL, NULL, variable_lists[["covariates"]][select_ix+1], win);
 	}
 
@@ -497,11 +498,52 @@ draw_groups_ctls=function(group_name, win, row, col){
 		update_list_box("_all");
 	}
 
+	onClick=function(){
+
+		onFocusOut=function(){
+			new_name=tclvalue(gname);
+			cat("New Name: ", new_name, "\n");
+
+			cur_grps=names(variable_lists[["groups"]]);
+			if(new_name==group_name){
+				cat("No change to group name.\n");
+			}
+			else if(any(new_name==cur_grps)){
+				msg=paste("This group name already exists.  Reverting to original name.");
+				res=tkmessageBox(type="ok", message=msg);
+			}else{
+				rename_group(group_name, new_name);
+				list_box_list[["groups"]][[new_name]]=list_box_list[["groups"]][[group_name]];
+				list_box_list[["groups"]][[group_name]]=c();	
+				list_box_list<<-list_box_list;
+				model_changed<<-T;
+				update_title(win);
+				tkconfigure(grp_label_h, text=paste("Group: ", new_name, sep=""));
+			}
+			tkdestroy(entry_h);
+		}
+
+		cat("Group name clicked: ", group_name, "\n");
+		gname=tclVar(group_name);
+		entry_h=tk2entry(win, textvariable=gname);
+
+		tkfocus(entry_h);
+		tkgrid(entry_h, row=1+row, column=col);
+		tkbind(entry_h, "<FocusOut>", onFocusOut);
+		tkbind(entry_h, "<Return>", onFocusOut);
+	}
+
 
 	listbox_h=tk2listbox(win, height = 10, selectmode = "extended");
 
-	tkgrid(tk2label(win, text=paste("Group: ", group_name, sep=""), justify="left"), row=1+row, column=col, 
-		padx=c(5,5), pady=c(5,5));
+	grp_label_h=tk2label(win, text=paste("Group: ", group_name, sep=""), justify="left");
+	tkbind(grp_label_h, "<Button-1>", onClick);
+
+	tkgrid(
+	       	grp_label_h,
+		row=1+row, column=col,
+		padx=c(5,5), pady=c(5,5)
+		);
 	tkgrid(listbox_h, row=2+row, column=col, 
 		padx=c(5,5), pady=c(5,5), sticky="nsew");
 	tkgrid(tk2button(win, text = "Remove from Group", width = -6, command = onRemButt), row=3+row, column=col, 
@@ -509,6 +551,7 @@ draw_groups_ctls=function(group_name, win, row, col){
 
 	tkgrid(tk2button(win, text = "Delete Group", width = -6, command = onDeleteGroupButt), row=5+row, column=col, 
 		padx=c(5,5), pady=c(5,5));
+
 
 	return(listbox_h);
 }
@@ -545,7 +588,6 @@ init_menus=function(win){
 		if(filename!=""){ # cancel/noop 
 			status=load_variable_list(filename);
 			if(status==0){
-				print(variable_lists);
 				x=(tkwinfo("x", win));
 				y=(tkwinfo("y", win));
 				loc=paste("+",x,"+",y, sep="");
@@ -662,6 +704,26 @@ init_menus=function(win){
 	tkadd(help_menu, "separator");
 	tkadd(help_menu, "command", label="About", command=onAbout);
 	tkadd(menu_obj, "cascade", label="Help", menu=help_menu);
+}
+
+set_selection=function(target_var, which_textbox){
+
+	#cat("Selected variables:\n");
+	#print(target_var);
+
+	#cat("Available Groups:\n");
+	group_names=names(list_box_list[["groups"]]);
+
+	for(grp in group_names){
+		var_list=variable_lists[["groups"]][[grp]];
+		tkselection.clear(list_box_list[["groups"]][[grp]], 0, length(var_list)-1);
+		for(tar in target_var){
+			idx=which(tar==var_list);
+			if(length(idx)){
+				tkselection.set(list_box_list[["groups"]][[grp]], idx-1);
+			}
+		}
+	}
 }
 
 update_list_box=function(target, group_name=NULL){
