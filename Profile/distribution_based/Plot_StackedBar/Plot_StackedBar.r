@@ -344,6 +344,7 @@ plot_legend=function(categories, size=.7, num_ticks=3, max_labels=40){
 	par(mar=c(0,0,0,0));
 	num_cat=length(categories);
 	orig_num_cat=num_cat;
+	orig_categories=categories;
 
 	cat("Legend: Num categories:", num_cat, "\n");
 	orig_v_plot_diff=0;
@@ -367,8 +368,9 @@ plot_legend=function(categories, size=.7, num_ticks=3, max_labels=40){
 
 	# Get categories of original tick pos
 	ticked_cat_names=character(num_ticks);
+
 	for(i in 1:num_ticks){
-		ticked_cat_names[i]=categories[tick_pos[num_ticks-i+1]];
+		ticked_cat_names[i]=orig_categories[tick_pos[num_ticks-i+1]];
 	}
 	cat("Ticked Category Names:\n");
 	print(ticked_cat_names);
