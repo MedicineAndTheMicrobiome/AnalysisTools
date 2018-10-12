@@ -378,9 +378,9 @@ plot_correl_heatmap=function(mat, title="", noPrintZeros=F, guideLines=F){
 
 write_top_categorical_effects_by_factor=function(output_fn, coeff_mat, pval_mat, top_n=10){
 
-	cat("Writing top category effects by factor...\n");
+	cat("Writing top category effects by factor: ", output_fn, "\n");
 
-	top_n=min(top_n, nrow(pval_mat));
+	top_n=min(top_n, ncol(pval_mat));
 
 	pval_cat=colnames(pval_mat);
 	pval_fac=rownames(pval_mat);
@@ -423,6 +423,8 @@ write_top_categorical_effects_by_factor=function(output_fn, coeff_mat, pval_mat,
 	fh=file(output_fn, "w");
 	
 
+
+
 	for(cur_factor in factors){
 		cat("Working on: ", cur_factor, "\n");
 
@@ -438,8 +440,8 @@ write_top_categorical_effects_by_factor=function(output_fn, coeff_mat, pval_mat,
 		cat(file=fh, cur_factor, ":,Category,ALR,p-value,Signif\n");
 
 		# Output Top N
+		cat("Writing Top ", top_n, "\n");
 		ix=1;
-
 		while(ix<=top_n && mat_buf[ix,"ALR"]>0){
 			vals=c(paste(ix,"+", sep=""), sort_cat[ix], mat_buf[ix,"ALR"], mat_buf[ix, "p-value"], signif[ix]);
 			cat(file=fh, paste(vals, collapse=","), "\n");	
@@ -450,9 +452,11 @@ write_top_categorical_effects_by_factor=function(output_fn, coeff_mat, pval_mat,
 		cat(file=fh, "...\n");
 
 		# Output Bottom N
+
 		num_cats=nrow(mat_buf);
+		cat("Writing Bottom ", top_n, "\n");
 		ix=0;
-		while(mat_buf[num_cats-ix,"ALR"]<0 && (ix<top_n)){
+		while((ix<top_n) &&  mat_buf[num_cats-ix,"ALR"]<0 ){
 			vals=c(paste(ix+1, "-", sep=""), sort_cat[num_cats-ix], mat_buf[num_cats-ix,"ALR"], 
 				mat_buf[num_cats-ix, "p-value"], signif[num_cats-ix]);
 			cat(file=fh, paste(vals, collapse=","), "\n");	
