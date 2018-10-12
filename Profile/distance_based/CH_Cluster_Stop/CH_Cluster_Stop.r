@@ -611,7 +611,7 @@ abline(h=med_pseudoF[max_med_ix], lty=2, col="red");
 # Plot Histogram for best
 #print(max_pseudoF);
 quants=quantile(max_pseudoF, c(.025, .5, .975));
-hist(max_pseudoF, breaks=(1:max_clusters)+.5, 
+hist(max_pseudoF, breaks=c(1, (1:max_clusters)+.5), 
 	xlab="Num Clusters at Max(CH PseudoF)",
 	main="Recommended Number of Clusters", xaxt="n");
 mtext(paste("Median = ", quants[2], sep=""), side=3, line=-1, cex=.75);
