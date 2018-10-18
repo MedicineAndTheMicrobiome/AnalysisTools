@@ -55,13 +55,17 @@ $0
 	Possible Commands:
 
 		subsample:	Subsample
-		contam:		(Host) Contaminant Screen
 		dust:		Low Complexity Filter
 		qvtrim:		Quality Value
 		barcode_trim:	Barcode Trimming
 		seq_adapt_trim:	Adapter Trimming
 		primer_trim:	Primer Trimming
 		ribo:		Ribosomal Screening
+
+		contam.hs:	Human (Homo Sapiens) Contaminant Screen
+		contam.rn:	Rat (Rattus norvegicus) Contaminant Screen
+		contam.ec:	E. Coli (Escherichia Coli K 12 DH10B) Contaminant Screen
+		contam.px:	Phi X Contaminant Screen
 
 	An example of a quick QC run would be:
 		subsample,contam,dust,qvtrim,adapt,ribo
@@ -275,13 +279,17 @@ sub execute_module{
 	my $mod;
 
 	# Set up the QC module based on the command
-	if($command eq "contam"){
+	if($command=~/^contam\.(.+)/){
 
 		$mod=new Read_QC_Lib::ContaminantFilter;
 		$mod->set_executable_path($config->val("contaminant_screen", "bin"));
-		$mod->set_reference_srprism($config->val("contaminant_screen", "reference_srprism"));
-		$mod->set_reference_bitmask($config->val("contaminant_screen", "reference_bitmask"));
-		$mod->set_reference_blastdb($config->val("contaminant_screen", "reference_blastdb"));
+
+
+		my $lib_tag=$1;
+		print STDERR "Contaminant Tag: $lib_tag\n";
+		$mod->set_reference_srprism($config->val("contaminant_screen", "reference_srprism.$lib_tag"));
+		$mod->set_reference_bitmask($config->val("contaminant_screen", "reference_bitmask.$lib_tag"));
+		$mod->set_reference_blastdb($config->val("contaminant_screen", "reference_blastdb.$lib_tag"));
 
 	}elsif($command eq "dust"){
 
