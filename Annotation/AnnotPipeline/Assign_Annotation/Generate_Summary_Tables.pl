@@ -79,7 +79,8 @@ sub load_file_list{
 	while(<IN_FH>){
 		chomp;
 		if(substr($_, 0, 1) eq "#"){ next;} # Skip comments
-		push @load_file, $_;
+		my @fields=split "\t", $_;
+		push @load_file, $fields[0];
 	}
 	close(IN_FH);	
 	return(\@load_file);
