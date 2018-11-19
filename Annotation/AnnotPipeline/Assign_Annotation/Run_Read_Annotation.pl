@@ -309,15 +309,18 @@ for(my $idx=$offset; $idx<$num_records; $idx+=$multiplier){
 
 		`mv $output_dir/$samp_name/blst.cpsid.trmbl.accm.$cutoff\.tsv $output_dir/$samp_name/$cutoff`;
 
-		#perl ~/git/AnalysisTools/Annotation/Filter_Annotation_By_TaxaID/Filter_Annotation_By_TaxaID.pl \
-		execute(
-		"Filtering reads by assigned taxa",
-		"$filter_annot_by_taxa_bin 
-			-t $output_dir/$samp_name/blst.cpsid.trmbl.taxa_est.hghr.taxa_ids.tsv 
-			-a $output_dir/$samp_name/$cutoff/blst.cpsid.trmbl.accm.$cutoff\.tsv 
-			-f $contam_file 
-			-o $output_dir/$samp_name/$cutoff/blst.cpsid.trmbl.accm.$cutoff\.taxa_filt
-		");
+		if($contam_file ne ""){
+
+			#perl ~/git/AnalysisTools/Annotation/Filter_Annotation_By_TaxaID/Filter_Annotation_By_TaxaID.pl \
+			execute(
+			"Filtering reads by assigned taxa",
+			"$filter_annot_by_taxa_bin 
+				-t $output_dir/$samp_name/blst.cpsid.trmbl.taxa_est.hghr.taxa_ids.tsv 
+				-a $output_dir/$samp_name/$cutoff/blst.cpsid.trmbl.accm.$cutoff\.tsv 
+				-f $contam_file 
+				-o $output_dir/$samp_name/$cutoff/blst.cpsid.trmbl.accm.$cutoff\.taxa_filt
+			");
+		}
 
 	}
 
