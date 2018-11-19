@@ -5,13 +5,13 @@
 use strict;
 use Getopt::Std;
 use File::Temp;
-use vars qw ($opt_s $opt_f $opt_c $opt_g $opt_p $opt_o);
+use vars qw ($opt_s $opt_f $opt_c $opt_g $opt_p $opt_o $opt_E);
 use File::Basename;
 use Cwd;
 use Digest::MD5;
 use Sys::Hostname;
 
-getopts("s:f:c:g:p:o:");
+getopts("s:f:c:g:p:o:E");
 
 my $NUM_ALR_VARIABLES=35;
 
@@ -26,6 +26,8 @@ my $usage = "
 	[-p <number of ALR variables (for abundance-based analyses), default=$NUM_ALR_VARIABLES>]
 	
 	-o <output directory>
+
+	[-E (Do not abort on error.  Keep going on other analyses)]
 
 	This script will run a suite of analyses that use the following
 	inputs:
@@ -73,9 +75,16 @@ my $GroupVar=$opt_g;
 my $OutputDir=$opt_o;
 my $AnalysisName=$GroupVar;
 my $NumALRVariables=$NUM_ALR_VARIABLES;
+my $DontAbort;
 
 if(defined($opt_p)){
 	$NumALRVariables=$opt_p
+}
+
+if(defined($opt_E)){
+	$DontAbort=1;
+}else{
+	$DontAbort=0;
 }
 
 $AnalysisName=~s/\.txt$//;
@@ -103,6 +112,8 @@ print STDERR "Output Directory:     $OutputDir\n";
 print STDERR "Analysis Name:        $AnalysisName\n";
 print STDERR "\n";
 print STDERR "Num ALR Variables:    $NumALRVariables\n";
+print STDERR "\n";
+print STDERR "Don't Abort on Errors: $DontAbort\n";
 print STDERR "\n";
 
 ###############################################################################
@@ -180,7 +191,10 @@ sub run_command{
 		print STDERR "Error: $cmd_name returned with non-zero error code.\n";
 		print STDERR "\n";
 		print STDERR "$cmd_str\n";
-		exit;
+		
+		if(!$DontAbort){
+			exit;
+		}
 	}
 	
 }
