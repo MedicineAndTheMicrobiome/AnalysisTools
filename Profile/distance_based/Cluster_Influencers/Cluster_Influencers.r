@@ -250,6 +250,8 @@ compute_dist=function(norm_st, type){
 		dist_mat=dist(norm_st, method="minkowski", p=1/2);
 	}
 
+	dist_mat[dist_mat==0]=1e-323;
+
 	return(dist_mat);
 }
 
