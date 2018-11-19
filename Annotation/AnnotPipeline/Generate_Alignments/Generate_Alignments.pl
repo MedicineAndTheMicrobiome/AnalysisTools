@@ -12,7 +12,7 @@ use Cwd;
 
 use vars qw ($opt_l $opt_p $opt_o $opt_r $opt_s $opt_e);
 
-getopts("l:p:o:r:s:");
+getopts("l:p:o:r:s:e");
 
 my $usage = "
 usage:
