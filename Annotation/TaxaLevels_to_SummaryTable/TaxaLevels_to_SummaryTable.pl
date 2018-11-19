@@ -159,9 +159,14 @@ for(my $lev_ix=0; $lev_ix<$TOT_LEVELS; $lev_ix++){
 	print STDERR "\n\n";
 
 	my $outputfname="$OutputFnameRoot.$level_names[$lev_ix].summary_table.tsv";
-	open(OUT_FH, ">$outputfname") || die "Coudl not open $outputfname\n";
+	open(OUT_FH, ">$outputfname") || die "Could not open $outputfname\n";
 
 	my $category_str=join "\t", @masterkeys_arr;
+	
+	# Remove parenthesis from column header
+	$category_str=~s/\(//g;
+	$category_str=~s/\)//g;
+
 	print OUT_FH "Sample_ID\tTotal\t$category_str\n";
 	foreach my $sample_id(@sample_ids){
 
