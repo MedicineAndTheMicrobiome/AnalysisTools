@@ -96,6 +96,10 @@ sub get_counts_from_taxa_file{
 
 	while(<TAX_FH>){
 		chomp;
+		if($_=~/^#/){
+			# Skip comments
+			next;
+		}
 		my @col=split "\t", $_;
 		for(my $level=$DOMAIN_COL; $level<=$SPECIES_COL; $level++){
 			if(!defined(${$level_hash_arr[$level-$DOMAIN_COL]}{$col[$level]})){
