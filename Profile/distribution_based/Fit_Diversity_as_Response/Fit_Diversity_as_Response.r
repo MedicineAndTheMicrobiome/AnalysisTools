@@ -491,7 +491,7 @@ for(i in 1:num_samples){
 # Set evenness for NAs to 0.  Assume evenness is very low, but it's degenerate
 # because of insufficient sequencing depth.
 evenness=div_mat[,"Evenness"];
-div_mat[is.na(evenness),"Evennes"]=0;
+div_mat[is.na(evenness),"Evenness"]=0;
 
 cat("Plotting histograms of raw diversity indices.\n");
 par(mfrow=c(3,2));
