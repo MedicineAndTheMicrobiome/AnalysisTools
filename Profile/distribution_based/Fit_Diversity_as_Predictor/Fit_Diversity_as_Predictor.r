@@ -735,6 +735,10 @@ for(i in 1:num_samples){
 	div_mat[i,"SimpsonsRecip"]=1/sum(curNorm^2);
 }
 
+# Set evenness to 0 if there is only 1 category.
+evenness=div_mat[,"Evenness"];
+div_mat[is.na(evenness),"Evenness"]=0;
+
 cat("Plotting histograms of raw diversity indices.\n");
 par(mfrow=c(3,2));
 par(oma=c(1, 1, 1.5, 1));
