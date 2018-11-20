@@ -488,6 +488,11 @@ for(i in 1:num_samples){
 	div_mat[i,"SimpsonsRecip"]=1/sum(curNorm^2);
 }
 
+# Set evenness for NAs to 0.  Assume evenness is very low, but it's degenerate
+# because of insufficient sequencing depth.
+evenness=div_mat[,"Evenness"];
+div_mat[is.na(evenness),"Evennes"]=0;
+
 cat("Plotting histograms of raw diversity indices.\n");
 par(mfrow=c(3,2));
 par(oma=c(1, 1, 1, 1));
@@ -723,7 +728,7 @@ plot_diversity_with_factors=function(raw, factors, model_string, stat_name, bin_
 	adj=min_spacing/10;
 	cat("Adjustment Increment: ", adj, "\n");
 	adj_pos=raw;
-	
+
 	for(adj_ix in 1:10000){
 		adjusted=F
 		for(forw in 1:(num_values-1)){
