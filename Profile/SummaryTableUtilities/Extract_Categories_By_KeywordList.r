@@ -45,7 +45,7 @@ if(!length(opt$input_file) || !length(opt$keyword_file)){
 
 if(!length(opt$output_file)){
 	outputroot=gsub("\\.summary_table\\.xls", "", opt$input_file);
-	outputroot=gsub("\\.summary_table\\.tsv", "", opt$input_file);
+	outputroot=gsub("\\.summary_table\\.tsv", "", outputroot);
 	OutputFileName = paste(outputroot, ".kextrct", sep="");
 }else{
 	OutputFileName=opt$output_file;
