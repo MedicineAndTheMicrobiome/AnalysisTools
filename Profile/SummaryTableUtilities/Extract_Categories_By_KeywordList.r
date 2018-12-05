@@ -9,7 +9,8 @@ params=c(
 	"keyword_file", "k", 1, "character",
 	"case_sensitive", "c", 2, "logical",
 	"stand_alone_word", "w", 2, "logical",
-	"output_file", "o", 2, "character"
+	"output_file", "o", 2, "character",
+	"exclude_remaining", "R", 2, "logical"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -23,6 +24,7 @@ usage = paste (
 	"	[-c <case sensitive, default = not>]\n",
 	"	[-w <stand alone word, default = not>]\n",
 	"	[-o <output file name root>]\n",
+	"	[-R (Do not include 'Remaining' Category)]\n",
 	"\n",	
 	"This script will search through the summary table's categories\n",
 	"and extract the columns that match the keywords in your keyword\n",
@@ -47,7 +49,10 @@ if(!length(opt$output_file)){
 	OutputFileName = paste(outputroot, ".kextrct", sep="");
 }else{
 	OutputFileName=opt$output_file;
+	OutputFileName=gsub("\\.summary_table\\.xls$", "", OutputFileName);
+	OutputFileName=gsub("\\.summary_table\\.tsv$", "", OutputFileName);
 }
+
 
 ###############################################################################
 
@@ -65,6 +70,11 @@ if(length(opt$case_sensitive)){
 	CaseSensitive=opt$case_sensitive;
 }
 
+IncludeRemaining=T;
+if(length(opt$exclude_remaining)){
+	IncludeRemaining=F
+}
+
 cat("\n")
 cat("Input File Name: ", InputFileName, "\n");
 cat("Keyword List: ", KeywordList, "\n");
@@ -72,6 +82,7 @@ cat("Output File Name: ", OutputFileName, "\n");
 cat("\n");
 cat("Case Sensitive: ", CaseSensitive, "\n");
 cat("Stand Alone Words: ", StandAlone, "\n");
+cat("Include 'Remaining' Category: ", IncludeRemaining, "\n");
 cat("\n");
 
 ###############################################################################
@@ -165,14 +176,16 @@ keep_idx=sort(unique(keep_idx));
 # Extract columns
 outmat=counts_mat[,keep_idx, drop=F];
 
-# Compute Remaining
-totals=apply(counts_mat, 1, sum);
-extr_totals=apply(outmat, 1, sum);
-remaining_totals=totals-extr_totals;
+if(IncludeRemaining){
+	# Compute Remaining
+	totals=apply(counts_mat, 1, sum);
+	extr_totals=apply(outmat, 1, sum);
+	remaining_totals=totals-extr_totals;
 
-# Append remaining to outmat
-outmat=cbind(outmat, remaining_totals);
-colnames(outmat)=c(category_names[keep_idx], "Remaining");
+	# Append remaining to outmat
+	outmat=cbind(outmat, remaining_totals);
+	colnames(outmat)=c(category_names[keep_idx], "Remaining");
+}
 
 ###############################################################################
 
