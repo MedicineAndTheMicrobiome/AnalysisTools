@@ -459,7 +459,9 @@ compare_pseudof=function(dista, distb, grp_hcla, grp_hclb, max_k, namea, nameb){
 	plot(2:max_k, amsd_byB, xlab="Num Clusters, k", ylab="Pseudo F-Stat", main=paste("Pseudo F-Stat: ", namea, sep=""), type="b", ylim=asmd_range);
 	mtext(paste("Clustered by Optimal ", nameb, " Groupings", sep=""), cex=.6);
 
-	plot(2:max_k, log(amsd_byB/amsd_byA), xlab="Num Clusters, k", ylab=paste("Pseudo F-Stat LogRatio(", namea, ")", sep=""),  main=paste("Pseudo F-stat Ratio"), type="b");
+	lograt=log(amsd_byB/amsd_byA);
+	lims=c(-1,1)*max(abs(lograt));
+	plot(2:max_k, lograt, xlab="Num Clusters, k", ylab=paste("Pseudo F-Stat LogRatio(", namea, ")", sep=""),  main=paste("Pseudo F-stat Ratio"), type="b", ylim=lims);
 	abline(h=0, col="blue");
 	mtext(paste(namea, ": By ", nameb, "/", namea, " Groupings", sep=""), cex=.6);
 
@@ -473,7 +475,9 @@ compare_pseudof=function(dista, distb, grp_hcla, grp_hclb, max_k, namea, nameb){
 	plot(2:max_k, bmsd_byA, xlab="Num Clusters, k", ylab="Pseudo F-Stat", main=paste("Pseudo F-stat: ", nameb, sep=""), type="b", ylim=bsmd_range);
 	mtext(paste("Clustered by Optimal ", namea, " Groupings", sep=""), cex=.6);
 
-	plot(2:max_k, log(bmsd_byA/bmsd_byB), xlab="Num Clusters, k", ylab=paste("Pseudo F-Stat LogRatio(", nameb, ")", sep=""),  main=paste("Pseudo F-stat Ratio"), type="b");
+	lograt=log(bmsd_byA/bmsd_byB);
+	lims=c(-1,1)*max(abs(lograt));
+	plot(2:max_k, lograt, xlab="Num Clusters, k", ylab=paste("Pseudo F-Stat LogRatio(", nameb, ")", sep=""),  main=paste("Pseudo F-stat Ratio"), type="b", ylim=lims);
 	abline(h=0, col="blue");
 	mtext(paste(nameb, ": By ", namea, "/", nameb, " Groupings", sep=""), cex=.6);
 
