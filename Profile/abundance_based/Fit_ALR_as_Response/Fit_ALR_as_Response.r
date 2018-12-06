@@ -15,7 +15,7 @@ params=c(
 	"summary_file", "s", 1, "character",
 	"factors", "f", 1, "character",
 	"num_variables", "p", 2, "numeric",
-	"additional_variables_fname", "c", 2, "character",
+	"additional_variables_fname", "a", 2, "character",
 	"outputroot", "o", 2, "character",
 
 	"reference_levels", "r", 2, "character",
@@ -39,7 +39,7 @@ usage = paste(
 	"	-s <summary file table>\n",
 	"	-f <factors>\n",
 	"	[-p <number of variables, in top abundances, default=", NUM_TOP_CATEGORIES, ">]\n",
-	"	[-c <additional categories of interest filename>\n",
+	"	[-a <additional categories of interest filename>\n",
 	"	[-o <output filename root>]\n",
 	"\n",
 	"	Model building options:\n",
