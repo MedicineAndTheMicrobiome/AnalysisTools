@@ -356,6 +356,40 @@ if(!test){
 
 ##############################################################################
 
+find_extremes=function(pts){
+
+	num_pts=nrow(pts);
+
+	pts_sorted_by_x=sort(pts[,1]);
+	pts_sorted_by_y=sort(pts[,2]);
+
+	# Find distances from center
+	centroid=apply(pts, 2, median);
+	print(centroid);
+	dc=dist_from_centr=apply(pts, 1, function(x){
+		sqrt((x[1]-centroid[1])^2+(x[2]-centroid[2])^2)})
+	dc_sort=sort(dc, decreasing=T);
+
+	sample_ids=unique(c(
+		names(pts_sorted_by_x[1]),
+		names(pts_sorted_by_y[1]),
+		names(pts_sorted_by_x[num_pts]),
+		names(pts_sorted_by_y[num_pts]),
+		names(dc_sort[1:4])
+	));
+
+	return(sample_ids);
+
+}
+
+expand_range=function(x, fact=.1){
+	mn=min(x);
+	mx=max(x);
+	diff=(mx-mn);
+	return(c(mn-fact*diff, mx+fact*diff));
+	
+}
+
 compare_mds=function(apts, bpts, type, aclus, bclus, aname, bname){
 
 	palette_col=c("red", "green", "blue", "cyan", "magenta", "orange", "gray", "pink", "black", "purple", "brown", "aquamarine");
@@ -366,16 +400,42 @@ compare_mds=function(apts, bpts, type, aclus, bclus, aname, bname){
 		palette_col=rainbow(n=num_clus, start=0, end=4/6);
 	}
 
+
+	num_samp=nrow(apts);
+	
+	aout=find_extremes(apts);
+	bout=find_extremes(bpts);
+
+	ax=1:num_samp;
+	bx=1:num_samp;
+
+	names(ax)=rownames(apts);
+	names(bx)=rownames(bpts);
+
+	ax=ax[aout];
+	bx=bx[bout];
+
+	bothx=unique(c(ax, bx));
+
+	cat("Extremes/Outliers Labeled:\n");
+	aoutnames=rownames(apts)[bothx];
+	boutnames=rownames(bpts)[bothx];
+	print(aoutnames);
+	print(boutnames);
+
 	par(mfrow=c(2,2));
 
-	plot(apts, main=paste(type, ": ", aname, sep=""), xlab="Dim 1", ylab="Dim 2", col=aclus);
+	plot(apts, main=paste(type, ": ", aname, sep=""), xlab="Dim 1", ylab="Dim 2", col=aclus, xlim=expand_range(apts));
+	text(apts[bothx,], aoutnames, cex=.3);
 	mtext(paste("Colored by ", aname, sep=""));
-	plot(bpts, main=paste(type, ": ", bname, sep=""), xlab="Dim 1", ylab="Dim 2", col=aclus);
+	plot(bpts, main=paste(type, ": ", bname, sep=""), xlab="Dim 1", ylab="Dim 2", col=aclus, xlim=expand_range(bpts));
+	text(bpts[bothx,], boutnames, cex=.3);
 
-	plot(apts, main=paste(type, ": ", aname, sep=""), xlab="Dim 1", ylab="Dim 2", col=bclus);
-	plot(bpts, main=paste(type, ": ", bname, sep=""), xlab="Dim 1", ylab="Dim 2", col=bclus);
+	plot(apts, main=paste(type, ": ", aname, sep=""), xlab="Dim 1", ylab="Dim 2", col=bclus, xlim=expand_range(apts));
+	text(apts[bothx,], aoutnames, cex=.3);
+	plot(bpts, main=paste(type, ": ", bname, sep=""), xlab="Dim 1", ylab="Dim 2", col=bclus, xlim=expand_range(bpts));
+	text(bpts[bothx,], boutnames, cex=.3);
 	mtext(paste("Colored by ", bname, sep=""));
-
 
 }
 
@@ -680,6 +740,9 @@ analyze_subclusters=function(hclA, hclB, distmatA, distmatB, num_cuts, namea, na
 
 	msd_mat_a=matrix(NA, nrow=num_cuts, ncol=num_cuts);
 	msd_mat_b=matrix(NA, nrow=num_cuts, ncol=num_cuts);
+	cor_mat=matrix(NA, nrow=num_cuts, ncol=num_cuts);
+
+	par(mfrow=c(3,3));
 
 	for(clx in 1:num_cuts){
 		cat("Analyzing ", clx, " cuts to: ", namea, "\n");
@@ -694,36 +757,48 @@ analyze_subclusters=function(hclA, hclB, distmatA, distmatB, num_cuts, namea, na
 
 			cl_dista=dist2da[memids, memids];
 			cl_distb=dist2db[memids, memids];
-
 			
 			arange=range(cl_dista);
 			
 			msdA=msd(cl_dista);
 			msdB=msd(cl_distb);
 
-			cor=distcorel(as.dist(cl_dista), as.dist(cl_distb));
+			dist_arr_a=as.dist(cl_dista);
+			dist_arr_b=as.dist(cl_distb);
+			cor=distcorel(dist_arr_a, dist_arr_b);
+
+			plot(dist_arr_a, dist_arr_b, main=paste(clid, "/", clx, ": distances"),  xlab=namea, ylab=nameb, cex=.5);
 		
 			cat("  MSD A: ", msdA, ", Range: ", arange[1], "-", arange[2], " MSD B: ", msdB, "    Cor: ", cor, "\n");
 
 			msd_mat_a[clx, clid]=msdA;
 			msd_mat_b[clx, clid]=msdB;
-			
+			cor_mat[clx, clid]=cor;
 		}
 
 	}
 
-	par(mfrow=c(2,1));
+	par(mfrow=c(3,1));
 	maxmsd=max(msd_mat_a, na.rm=T);
 	plot(0,0, type="n", xlim=c(1, num_cuts), ylim=c(0, maxmsd), xlab="Cluster Cuts", ylab="MSD", main=paste(namea, " clustered by ", namea, sep=""));
 	abline(h=msd_mat_a[1,1], col="blue", lty=2);
 	for(clx in 1:num_cuts){
 		points(rep(clx, clx), msd_mat_a[clx, 1:clx], col=1:clx);	
 	}
+
 	maxmsd=max(msd_mat_b, na.rm=T);
 	plot(0,0, type="n", xlim=c(1, num_cuts), ylim=c(0, maxmsd), xlab="Cluster Cuts", ylab="MSD", main=paste(nameb, " clustered by ", namea, sep=""));
 	abline(h=msd_mat_b[1,1], col="blue", lty=2);
 	for(clx in 1:num_cuts){
 		points(rep(clx, clx), msd_mat_b[clx, 1:clx], col=1:clx);	
+	}
+
+	cor_range=c(-1,1)*max(abs(cor_mat), na.rm=T);
+	plot(0,0, type="n", xlim=c(1, num_cuts), ylim=cor_range, xlab="Cluster Cuts", ylab="Distance Correlation", main=paste(nameb, " clustered by ", namea, sep=""));
+	abline(h=cor_mat[1,1], col="blue", lty=2);
+	abline(h=0, col="grey");
+	for(clx in 1:num_cuts){
+		points(rep(clx, clx), cor_mat[clx, 1:clx], col=1:clx);	
 	}
 
 }
