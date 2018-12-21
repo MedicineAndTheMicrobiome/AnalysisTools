@@ -1469,6 +1469,7 @@ analyze_subcluster_distances=function(hclA, hclB, distmatA, distmatB, num_cuts, 
 	msd_mat_a=matrix(NA, nrow=num_cuts, ncol=num_cuts);
 	msd_mat_b=matrix(NA, nrow=num_cuts, ncol=num_cuts);
 	cor_mat=matrix(NA, nrow=num_cuts, ncol=num_cuts);
+	cpv_mat=matrix(NA, nrow=num_cuts, ncol=num_cuts);
 
 	for(clx in 1:num_cuts){
 		cat("Analyzing ", clx, " cuts to: ", namea, "\n");
@@ -1478,6 +1479,7 @@ analyze_subcluster_distances=function(hclA, hclB, distmatA, distmatB, num_cuts, 
 		msd_mat_a[clx, 1:clx]=res$msdA;
 		msd_mat_b[clx, 1:clx]=res$msdB;
 		cor_mat[clx, 1:clx]=res$mantel_corr;
+		cpv_mat[clx, 1:clx]=res$mantel_pval;
 
 		print(msd_mat_a);
 		print(msd_mat_b);
@@ -1488,7 +1490,8 @@ analyze_subcluster_distances=function(hclA, hclB, distmatA, distmatB, num_cuts, 
 	# Plot optimal cluster cuts
 	par(mfrow=c(3,1));
 	maxmsd=max(msd_mat_a, na.rm=T);
-	plot(0,0, type="n", xlim=c(1, num_cuts), ylim=c(0, maxmsd), xlab="Cluster Cuts", ylab="MSD", main=paste(namea, " clustered by ", namea, sep=""));
+	plot(0,0, type="n", xlim=c(1, num_cuts), ylim=c(0, maxmsd), xlab="Cluster Cuts", ylab="MSD", main=paste(namea, " clustered by ", namea, sep=""), xaxt="n");
+	axis(side=1, at=1:num_cuts, labels=T);
 	abline(h=msd_mat_a[1,1], col="blue", lty=2);
 	for(clx in 1:num_cuts){
 		points(rep(clx, clx), msd_mat_a[clx, 1:clx], col=1:clx);	
@@ -1497,7 +1500,8 @@ analyze_subcluster_distances=function(hclA, hclB, distmatA, distmatB, num_cuts, 
 
 	# Plot alternative cluster cuts
 	maxmsd=max(msd_mat_b, na.rm=T);
-	plot(0,0, type="n", xlim=c(1, num_cuts), ylim=c(0, maxmsd), xlab="Cluster Cuts", ylab="MSD", main=paste(nameb, " clustered by ", namea, sep=""));
+	plot(0,0, type="n", xlim=c(1, num_cuts), ylim=c(0, maxmsd), xlab="Cluster Cuts", ylab="MSD", main=paste(nameb, " clustered by ", namea, sep=""), xaxt="n");
+	axis(side=1, at=1:num_cuts, labels=T);
 	abline(h=msd_mat_b[1,1], col="blue", lty=2);
 	for(clx in 1:num_cuts){
 		points(rep(clx, clx), msd_mat_b[clx, 1:clx], col=1:clx);	
@@ -1506,12 +1510,19 @@ analyze_subcluster_distances=function(hclA, hclB, distmatA, distmatB, num_cuts, 
 
 	# Plot cluster correlation across cuts
 	cor_range=c(-1,1)*max(abs(cor_mat), na.rm=T);
-	plot(0,0, type="n", xlim=c(1, num_cuts), ylim=cor_range, xlab="Cluster Cuts", ylab="Distance Correlation", main=paste(nameb, " clustered by ", namea, sep=""));
+	plot(0,0, type="n", xlim=c(1, num_cuts), ylim=cor_range, xlab="Cluster Cuts", ylab="Distance Correlation", main=paste(nameb, " clustered by ", namea, sep=""), xaxt="n");
+	axis(side=1, at=1:num_cuts, labels=T);
 	abline(h=cor_mat[1,1], col="blue", lty=2);
 	abline(h=0, col="grey");
+
 	for(clx in 1:num_cuts){
 		points(rep(clx, clx), cor_mat[clx, 1:clx], col=1:clx);	
-		text(rep(clx, clx), cor_mat[clx, 1:clx], labels=1:clx, col="black", pos=4, cex=.7);
+
+		sigchar=rep("", clx);
+		sigchar[cpv_mat[clx,1:clx]<=0.05]="*";
+		cl_label=paste(as.character(1:clx), sigchar, sep="");
+
+		text(rep(clx, clx), cor_mat[clx, 1:clx], labels=cl_label, col="black", pos=4, cex=.7);
 	}
 
 }
