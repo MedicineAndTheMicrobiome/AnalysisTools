@@ -80,6 +80,8 @@ if(!any(DistType== c("wrd","man","bray","horn","bin","gow","euc","tyc","minkp3",
 	quit(status=-1);
 }
 
+OutputFileRoot=paste(OutputFileRoot, ".", DistType, sep="");
+
 ###############################################################################
 
 cat("Input Summary Table A:", InputSumTabA, "\n");
@@ -250,7 +252,6 @@ plot_text=function(strings){
 	options(width=100);
 
         par(family="Courier");
-        par(oma=rep(.5,4));
         par(mar=rep(0,4));
 
         num_lines=length(strings);
@@ -269,7 +270,12 @@ plot_text=function(strings){
                 strings[i]=gsub("\t", "", strings[i]);
                 text(0, top-i, strings[i], pos=4, cex=text_size);
         }
+	
+	if(orig_par$fig[1]<0){
+		orig_par$fig[1]=0;
+	}
 
+	#print(orig_par);
         par(orig_par);
 
 }
@@ -330,32 +336,21 @@ plot_text(param_summary);
 
 ###############################################################################
 
-test=1;
+test=F;
 
-###############################################################################
+max_cuts=log2(num_samples);
 
-if(!test){
-	cat("Bootstrapping Mantel Correlation...\n");
-	mantel_res=mantel(dist_mat_A, dist_mat_B, permutations=10000);
-	print(mantel_res);
+palette_col=c("red", "green", "blue", "cyan", "magenta", "orange", "gray", "pink", "black", "purple", "brown", "aquamarine");
+num_pref_col=length(palette_col);
+num_clus=length(unique(max_cuts));	
 
-	mantel_cor=mantel_res[["statistic"]];
-	mantel_pval=mantel_res[["signif"]];
-	cat("\n");
-	cat("Correlation: ", mantel_cor, " ", "P-val: ", mantel_pval, "\n");
-	cat("\n");
-
-	plot_text(c(
-		"Mantel Test based on Pearson's Product-Moment Correlation:",
-		paste("Correlation:", mantel_cor, sep=""),
-		paste("    P-value:", mantel_pval, sep=""),
-		"",
-		"Note: Correl Range is -1.0 to 1.0, and Null Hypothesis is 0.0 correlation."
-
-	));
+if(max_cuts>num_pref_col){
+	palette_col=rainbow(n=max_cuts, start=0, end=4/6);
 }
 
-##############################################################################
+palette(palette_col);
+
+###############################################################################
 
 find_extremes=function(pts){
 
@@ -392,15 +387,6 @@ expand_range=function(x, fact=.1){
 }
 
 compare_mds=function(apts, bpts, type, aclus, bclus, aname, bname){
-
-	palette_col=c("red", "green", "blue", "cyan", "magenta", "orange", "gray", "pink", "black", "purple", "brown", "aquamarine");
-	num_pref_col=length(palette_col);
-	num_clus=length(unique(aclus));	
-
-	if(num_clus>num_pref_col){
-		palette_col=rainbow(n=num_clus, start=0, end=4/6);
-	}
-
 
 	num_samp=nrow(apts);
 	
@@ -1045,8 +1031,20 @@ plot_dendro_contigency=function(hclA, hclB, acuts, bcuts, namea, nameb, idsb){
 			fish_exact_mat[rix, cix]=ind_cst_res$p.value;
 		}
 	}
-
 	#print(fish_exact_mat);
+
+	# Calculate conditional probabilities
+	cnd_pr_agb=matrix(0, nrow=bcuts, ncol=acuts);
+	cnd_pr_bga=matrix(0, nrow=bcuts, ncol=acuts);
+
+	for(rix in 1:bcuts){
+		cnd_pr_agb[rix,]=ab_prop_obs_mat[rix,]/grp_prop_b[rix];
+	}
+
+	for(cix in 1:acuts){
+		cnd_pr_bga[,cix]=ab_prop_obs_mat[,cix]/grp_prop_a[cix];
+	}
+		
 
 	##########################################
 	# Plot
@@ -1128,6 +1126,9 @@ plot_dendro_contigency=function(hclA, hclB, acuts, bcuts, namea, nameb, idsb){
 				"ex ct: ", round(ab_cnts_exp_mat[rowx, colx], 1), "\n",
 				"ex pr: ", round(ab_prop_exp_mat[rowx, colx], 3), "\n",
 				"fe pv: ", sprintf("%3.3g", cur_pval), "\n",
+				"\n",
+				"Pr(", namea, "|", nameb, ")=\n", sprintf("%3.3g", cnd_pr_agb[rowx, colx]), "\n",
+				"Pr(", nameb, "|", namea, ")=\n", sprintf("%3.3g", cnd_pr_bga[rowx, colx]), "\n",
 				sep="");
 
 			
@@ -1175,9 +1176,8 @@ nonparm_mds_pts_B=nonpr_mdsB_res$points;
 hcl_A=hclust(dist_mat_A, method="ward.D");
 hcl_B=hclust(dist_mat_B, method="ward.D");
 
-cuts=log2(num_samples);
-clus4_A=cutree(hcl_A, k=cuts);
-clus4_B=cutree(hcl_B, k=cuts);
+clus4_A=cutree(hcl_A, k=max_cuts);
+clus4_B=cutree(hcl_B, k=max_cuts);
 
 cat("Comparing MDS plots:\n");
 par(mfrow=c(2,2));
@@ -1186,50 +1186,48 @@ compare_mds(nonparm_mds_pts_A, nonparm_mds_pts_B, "NonMetric MDS", clus4_A, clus
 
 ##############################################################################
 
-#for(cix in 2:cuts){
-#	compare_dendrograms(hcl_A, hcl_B, cix, map_info[["a"]], map_info[["b"]], map_info[["b_id"]]);
-#	compare_dendrograms(hcl_B, hcl_A, cix, map_info[["b"]], map_info[["a"]], map_info[["a_id"]]);
-#}
+analyze_dendro_cont=T;
 
-cuts=7;
+if(analyze_dendro_cont){
 
-pval_mat=matrix(0, nrow=cuts, ncol=cuts);
-rownames(pval_mat)=c(paste(map_info[["b"]], 1:cuts));
-colnames(pval_mat)=c(paste(map_info[["a"]], 1:cuts));
-for(acuts in 2:cuts){
-	for(bcuts in 2:cuts){
-		pval_mat[bcuts, acuts]=plot_dendro_contigency(hcl_A, hcl_B, acuts, bcuts, map_info[["a"]], map_info[["b"]], map_info[["b_id"]]);
+	pval_mat=matrix(0, nrow=max_cuts, ncol=max_cuts);
+	rownames(pval_mat)=c(paste(map_info[["b"]], 1:max_cuts));
+	colnames(pval_mat)=c(paste(map_info[["a"]], 1:max_cuts));
+	for(acuts in 2:max_cuts){
+		for(bcuts in 2:max_cuts){
+			pval_mat[bcuts, acuts]=plot_dendro_contigency(hcl_A, hcl_B, acuts, bcuts, map_info[["a"]], map_info[["b"]], map_info[["b_id"]]);
+		}
 	}
+
+	pval_mat=pval_mat[2:max_cuts, 2:max_cuts];
+
+	print(pval_mat);
+	min_cont_pval=min(pval_mat);
+	min_idx=which(pval_mat==min_cont_pval, arr.ind=T);
+
+	anames=colnames(pval_mat);
+	bnames=rownames(pval_mat);
+
+	paint_matrix(-log10(pval_mat), title="Contigency Table Dimension Log10(P-Values)");
+
+	par(mfrow=c(1,1));
+	plot_text(c(
+		"Contingency Table Chi-Squared Tests by Num Clusters, p-value:",
+		"",
+		capture.output(print(signif(pval_mat, 3))),
+		"",
+		"",
+		"",
+		"Contingency Table Chi-Squared Tests by Num Clusters, -log10(p-value):",
+		"",
+		capture.output(print(-log10(pval_mat))),
+		"",
+		"",
+		paste("Min P-Value: ", sprintf("%3.3g", min_cont_pval), " at (", anames[min_idx[1]], ", ", bnames[min_idx[2]], ")", sep="")
+	));
+
+	plot_dendro_contigency(hcl_A, hcl_B, min_idx[1]+1, min_idx[2]+1, map_info[["a"]], map_info[["b"]], map_info[["b_id"]]);
 }
-
-pval_mat=pval_mat[2:cuts, 2:cuts];
-
-print(pval_mat);
-min_cont_pval=min(pval_mat);
-min_idx=which(pval_mat==min_cont_pval, arr.ind=T);
-
-anames=colnames(pval_mat);
-bnames=rownames(pval_mat);
-
-paint_matrix(-log10(pval_mat), title="Contigency Table Dimension Log10(P-Values)");
-
-par(mfrow=c(1,1));
-plot_text(c(
-	"Contingency Table Chi-Squared Tests by Num Clusters, p-value:",
-	"",
-	capture.output(print(signif(pval_mat, 3))),
-	"",
-	"",
-	"",
-	"Contingency Table Chi-Squared Tests by Num Clusters, -log10(p-value):",
-	"",
-	capture.output(print(-log10(pval_mat))),
-	"",
-	"",
-	paste("Min P-Value: ", sprintf("%3.3g", min_cont_pval), " at (", anames[min_idx[1]], ", ", bnames[min_idx[2]], ")", sep="")
-));
-
-plot_dendro_contigency(hcl_A, hcl_B, min_idx[1]+1, min_idx[2]+1, map_info[["a"]], map_info[["b"]], map_info[["b_id"]]);
 
 
 ##############################################################################
@@ -1265,7 +1263,33 @@ num_dist=length(dist_mat_A);
 
 cat("Analyze sub-cluster statistics\n");
 
-analyze_subclusters=function(hclA, hclB, distmatA, distmatB, num_cuts, namea, nameb, idsb){
+plot_subcluster_cuts=function(hclA, hclB, distmatA, distmatB, num_cuts, namea, nameb, idsb){
+
+	color_denfun_bySample=function(n){
+		if(is.leaf(n)){
+			leaf_attr=attributes(n);
+			leaf_name=leaf_attr$label;
+			ind_color=sample_to_color_map[leaf_name];
+			if(is.null(ind_color)){
+				ind_color="black";
+			}
+
+			attr(n, "nodePar") = c(leaf_attr$nodePar,
+							list(lab.col=ind_color));
+		}
+		return(n);
+	}
+
+	text_scale_denfun=function(n){
+		if(is.leaf(n)){
+			leaf_attr=attributes(n);
+			leaf_name=leaf_attr$label;
+			attr(n, "nodePar") = c(leaf_attr$nodePar,
+						cex=0,
+						lab.cex=label_scale);
+		}
+		return(n);
+	}
 
 	# Mean sum of squared distances 
 	msd=function(dist){
@@ -1282,6 +1306,163 @@ analyze_subclusters=function(hclA, hclB, distmatA, distmatB, num_cuts, namea, na
 		return(cor(dista, distb, method="spearman"));	
 	}
 
+	# Compute
+	cat("Working on: ", namea, ": ", num_cuts, "\n", sep="");
+
+	dendra=as.dendrogram(hclA);
+	memb_byA=cutree(hclA, k=num_cuts);
+	dendr_names_a=get_clstrd_leaf_names(dendra);
+	memb_byA=reorder_member_ids(memb_byA, dendr_names_a);
+	dend_mids_a=get_middle_of_groups(dendr_names_a, memb_byA);
+	num_members=length(memb_byA);
+
+
+	results=list();
+	#msd_mat_a[clx, 1:num_cuts]=res$msdA;
+	#msd_mat_b[clx, 1:num_cuts]=res$msdB;
+	#cor_mat[clx, 1:num_cuts]=res$cor;
+
+	memnamesa=names(memb_byA);
+	memnamesb=idsb;
+
+	msdA=numeric();
+	msdB=numeric();
+	man_corr=numeric();
+	man_pval=numeric();
+
+	##########################################
+	# Plot
+
+	orig_par=par(no.readonly=T);
+
+	par(oma=c(1,1,1,1));
+
+	den_spacing=2;
+	hst_spacing=1;
+	txt_spacing=1;
+	cor_spacing=2;
+
+	seqs=seq(0, num_cuts-1);
+
+	layout_mat=matrix(c(
+		rep(rep(1, num_cuts),den_spacing),
+		rep((seqs*4)+2, hst_spacing),
+		rep((seqs*4)+3, hst_spacing),
+		rep((seqs*4)+4, txt_spacing),
+		rep((seqs*4)+5, cor_spacing)
+		),
+		ncol=num_cuts, 
+		byrow=T);
+	#print(layout_mat);
+	print(layout_mat);
+	layout(layout_mat);
+
+	# Scale leaf sample IDs
+	label_scale=.2;
+	dendra=dendrapply(dendra, text_scale_denfun);
+	
+	# Color both dendrograms by A clustering
+	sample_to_color_map=memb_byA;
+	dendra=dendrapply(dendra, color_denfun_bySample);
+	
+	# Find height where clusters separate
+	acutheight=find_height_at_k(hclA, num_cuts);
+
+	top_label_spc=4;
+	left_label_spc=4;
+	title_spc=2;
+
+	# Plot A Dendrogram
+	par(mar=c(5,left_label_spc,title_spc,0));
+	plot(dendra, main=paste(namea, ", k=", num_cuts, sep=""), horiz=F, yaxt="n", xaxt="n", xlab="", ylab="", xlim=c(-1,num_members+1));
+	axis(side=1, at=dend_mids_a, labels=1:num_cuts, font=2, tick=F);
+	abline(h=acutheight, col="blue", lty=2, lwd=.7);
+
+	dist_max_a=max(distmatA);
+	dist_max_b=max(distmatB);
+
+	abreaks=seq(0, dist_max_a, length.out=15);
+	bbreaks=seq(0, dist_max_b, length.out=15);
+
+	for(clx in 1:num_cuts){
+		membersA=memnamesa[memb_byA==clx];
+		membersB=memnamesb[memb_byA==clx];
+
+		dista=distmatA[membersA, membersA];
+		distb=distmatB[membersB, membersB];
+
+		dist_arr_a=as.dist(dista);
+		dist_arr_b=as.dist(distb);
+
+		# Calcuate Ststs
+		msdA[clx]=msd(dista);
+		msdB[clx]=msd(distb);
+	        mantel_res=mantel(dista, distb, permutations=100);
+        	man_corr[clx]=mantel_res[["statistic"]];
+        	man_pval[clx]=mantel_res[["signif"]];
+		num_cls_samples=length(membersA);
+
+		par(mar=c(.5,1,.5,0));
+		hist(dist_arr_a, xlim=c(0, dist_max_a), xlab="", ylab="", main="", xaxt="n", yaxt="n", breaks=abreaks);
+		if(clx==1){
+			title(ylab=namea, line=0, cex.lab=1);
+		}
+		hist(dist_arr_b, xlim=c(0, dist_max_b), xlab="", ylab="", main="", xaxt="n", yaxt="n", breaks=bbreaks);
+		if(clx==1){
+			title(ylab=nameb, line=0, cex.lab=1);
+		}
+
+		par(mar=c(0,0,0,0));
+		if(man_pval[clx]<.05){
+			statcol="blue";
+			statfon=2;
+		}else{
+			statcol="grey";	
+			statfon=1;
+		}
+		plot(0,0, type="n", xlab="", ylab="", main="", xaxt="n", yaxt="n", bty="n");
+		text(0,0, paste(
+			c(
+			paste("N=", num_cls_samples, sep=""),
+			"",
+			"Mantel:",
+			sprintf("Cor: %2.3f", man_corr[clx]),
+			sprintf("Pvl: %1.3g", man_pval[clx]),
+			"",
+			"MSD:",
+			sprintf("%s: %1.2f", namea, msdA[clx]),
+			sprintf("%s: %1.2f", nameb, msdB[clx])
+		), collapse="\n"), cex=.7, col=statcol, font=statfon);
+
+		par(mar=c(3,1,.5,0));
+		fit=lm(dist_arr_b~dist_arr_a);
+		plot(dist_arr_a, dist_arr_b, xaxt="n", yaxt="n", ylab="", main="", xlim=c(0, dist_max_a), ylim=c(0, dist_max_b), col=clx);
+		abline(fit, col="grey", lty=2);
+		title(xlab=clx, line=1.5, font.lab=2, cex.lab=2);
+		title(xlab=namea, line=0, cex.lab=1);
+
+		if(clx==1){
+			title(ylab=nameb, line=0, cex.lab=1);
+		}
+
+
+
+	}
+
+	results[["msdA"]]=msdA;
+	results[["msdB"]]=msdB;
+        results[["mantel_corr"]]=man_corr;
+        results[["mantel_pval"]]=man_pval;
+
+	par(orig_par);
+
+	return(results);
+
+}
+
+analyze_subcluster_distances=function(hclA, hclB, distmatA, distmatB, num_cuts, namea, nameb, idsb){
+
+
 	dist2da=as.matrix(distmatA);
 	dist2db=as.matrix(distmatB);
 
@@ -1289,70 +1470,55 @@ analyze_subclusters=function(hclA, hclB, distmatA, distmatB, num_cuts, namea, na
 	msd_mat_b=matrix(NA, nrow=num_cuts, ncol=num_cuts);
 	cor_mat=matrix(NA, nrow=num_cuts, ncol=num_cuts);
 
-	par(mfrow=c(3,3));
-
 	for(clx in 1:num_cuts){
 		cat("Analyzing ", clx, " cuts to: ", namea, "\n");
-		memA=cutree(hclA, k=clx);
-		
-		#memB=memA;
-		#names(memB)=idsb;
 
-		for(clid in 1:clx){
-			cat("	Cluster ", clid, " of ", clx, "\n");
-			memids=(memA==clid);
+		res=plot_subcluster_cuts(hclA, clx, dist2da, dist2db, clx, namea, nameb, idsb);	
 
-			cl_dista=dist2da[memids, memids];
-			cl_distb=dist2db[memids, memids];
-			
-			arange=range(cl_dista);
-			
-			msdA=msd(cl_dista);
-			msdB=msd(cl_distb);
+		msd_mat_a[clx, 1:clx]=res$msdA;
+		msd_mat_b[clx, 1:clx]=res$msdB;
+		cor_mat[clx, 1:clx]=res$mantel_corr;
 
-			dist_arr_a=as.dist(cl_dista);
-			dist_arr_b=as.dist(cl_distb);
-			cor=distcorel(dist_arr_a, dist_arr_b);
-
-			plot(dist_arr_a, dist_arr_b, main=paste(clid, "/", clx, ": distances"),  xlab=namea, ylab=nameb, cex=.5);
-		
-			cat("  MSD A: ", msdA, ", Range: ", arange[1], "-", arange[2], " MSD B: ", msdB, "    Cor: ", cor, "\n");
-
-			msd_mat_a[clx, clid]=msdA;
-			msd_mat_b[clx, clid]=msdB;
-			cor_mat[clx, clid]=cor;
-		}
+		print(msd_mat_a);
+		print(msd_mat_b);
+		print(cor_mat);
 
 	}
 
+	# Plot optimal cluster cuts
 	par(mfrow=c(3,1));
 	maxmsd=max(msd_mat_a, na.rm=T);
 	plot(0,0, type="n", xlim=c(1, num_cuts), ylim=c(0, maxmsd), xlab="Cluster Cuts", ylab="MSD", main=paste(namea, " clustered by ", namea, sep=""));
 	abline(h=msd_mat_a[1,1], col="blue", lty=2);
 	for(clx in 1:num_cuts){
 		points(rep(clx, clx), msd_mat_a[clx, 1:clx], col=1:clx);	
+		text(rep(clx, clx), msd_mat_a[clx, 1:clx], labels=1:clx, col="black", pos=4, cex=.7);
 	}
 
+	# Plot alternative cluster cuts
 	maxmsd=max(msd_mat_b, na.rm=T);
 	plot(0,0, type="n", xlim=c(1, num_cuts), ylim=c(0, maxmsd), xlab="Cluster Cuts", ylab="MSD", main=paste(nameb, " clustered by ", namea, sep=""));
 	abline(h=msd_mat_b[1,1], col="blue", lty=2);
 	for(clx in 1:num_cuts){
 		points(rep(clx, clx), msd_mat_b[clx, 1:clx], col=1:clx);	
+		text(rep(clx, clx), msd_mat_b[clx, 1:clx], labels=1:clx, col="black", pos=4, cex=.7);
 	}
 
+	# Plot cluster correlation across cuts
 	cor_range=c(-1,1)*max(abs(cor_mat), na.rm=T);
 	plot(0,0, type="n", xlim=c(1, num_cuts), ylim=cor_range, xlab="Cluster Cuts", ylab="Distance Correlation", main=paste(nameb, " clustered by ", namea, sep=""));
 	abline(h=cor_mat[1,1], col="blue", lty=2);
 	abline(h=0, col="grey");
 	for(clx in 1:num_cuts){
 		points(rep(clx, clx), cor_mat[clx, 1:clx], col=1:clx);	
+		text(rep(clx, clx), cor_mat[clx, 1:clx], labels=1:clx, col="black", pos=4, cex=.7);
 	}
 
 }
 
 
-analyze_subclusters(hcl_A, hcl_B, dist_mat_A, dist_mat_B, cuts, map_info[["a"]],  map_info[["b"]], map_info[["b_id"]]);
-analyze_subclusters(hcl_B, hcl_A, dist_mat_B, dist_mat_A, cuts, map_info[["b"]],  map_info[["a"]], map_info[["a_id"]]);
+analyze_subcluster_distances(hcl_A, hcl_B, dist_mat_A, dist_mat_B, max_cuts, map_info[["a"]],  map_info[["b"]], map_info[["b_id"]]);
+analyze_subcluster_distances(hcl_B, hcl_A, dist_mat_B, dist_mat_A, max_cuts, map_info[["b"]],  map_info[["a"]], map_info[["a_id"]]);
 
 
 ##############################################################################
