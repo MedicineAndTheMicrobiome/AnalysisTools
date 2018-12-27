@@ -1045,7 +1045,11 @@ plot_dendro_contigency=function(hclA, hclB, acuts, bcuts, namea, nameb, idsb){
 	for(cix in 1:acuts){
 		cnd_pr_bga[,cix]=ab_prop_obs_mat[,cix]/grp_prop_a[cix];
 	}
-		
+
+	# Calculate cumulative probability for highest probability mapping
+	cum_pr_bga=sum(apply(ab_prop_obs_mat, 2, max));
+	cum_pr_agb=sum(apply(ab_prop_obs_mat, 1, max));
+	
 
 	##########################################
 	# Plot
@@ -1065,7 +1069,12 @@ plot_dendro_contigency=function(hclA, hclB, acuts, bcuts, namea, nameb, idsb){
 	# plot top/left spacer
 	par(mar=c(0,0,0,0));
 	plot(0,0,type="n", bty="n", xlab="", ylab="", main="", xaxt="n", yaxt="n");
-	text(0,0, paste(nameb, ": ", bcuts, "\n x \n", namea, ": ", acuts, "\n\nX^2 Test p-value:\n", sprintf("%1.3g", ct_cst_pval), sep=""), cex=1, font=2);
+	text(0,0, paste
+		(nameb, ": ", bcuts, "\n x \n", namea, ": ", acuts, 
+		"\n\nX^2 Test p-value:\n", sprintf("%1.3g", ct_cst_pval),
+		"\n\nCumulative Top:\nPr(", nameb, "|", namea, ")=\n", round(cum_pr_bga, 3), "\nPr(", namea, "|", nameb, ")=\n", round(cum_pr_agb, 3),
+		 sep=""), cex=.8, font=2);
+
 
 
 	# Scale leaf sample IDs
@@ -1153,7 +1162,12 @@ plot_dendro_contigency=function(hclA, hclB, acuts, bcuts, namea, nameb, idsb){
 
 	par(orig_par);
 
-	return(ct_cst_pval);
+	result=list();
+	result[["chisqr_test_pval"]]=ct_cst_pval;
+	result[["cumulative_cond_prob_agb"]]=cum_pr_agb;
+	result[["cumulative_cond_prob_bga"]]=cum_pr_bga;
+
+	return(result);
 
 }
 
@@ -1191,16 +1205,29 @@ analyze_dendro_cont=T;
 
 if(analyze_dendro_cont){
 
-	pval_mat=matrix(0, nrow=max_cuts, ncol=max_cuts);
-	rownames(pval_mat)=c(paste(map_info[["b"]], 1:max_cuts));
-	colnames(pval_mat)=c(paste(map_info[["a"]], 1:max_cuts));
+	probmat=matrix(0, nrow=max_cuts, ncol=max_cuts);
+	rownames(probmat)=c(paste(map_info[["b"]], 1:max_cuts));
+	colnames(probmat)=c(paste(map_info[["a"]], 1:max_cuts));
+
+	pval_mat=probmat;
+	cum_agb_mat=probmat;
+	cum_bga_mat=probmat;
+
 	for(acuts in 2:max_cuts){
 		for(bcuts in 2:max_cuts){
-			pval_mat[bcuts, acuts]=plot_dendro_contigency(hcl_A, hcl_B, acuts, bcuts, map_info[["a"]], map_info[["b"]], map_info[["b_id"]]);
+			cont_res=plot_dendro_contigency(hcl_A, hcl_B, acuts, bcuts, map_info[["a"]], map_info[["b"]], map_info[["b_id"]]);
+			pval_mat[bcuts, acuts]=cont_res[["chisqr_test_pval"]];
+			cum_agb_mat[bcuts, acuts]=cont_res[["cumulative_cond_prob_agb"]];
+			cum_bga_mat[bcuts, acuts]=cont_res[["cumulative_cond_prob_bga"]];
 		}
 	}
 
 	pval_mat=pval_mat[2:max_cuts, 2:max_cuts];
+	cum_agb_mat=cum_agb_mat[2:max_cuts, 2:max_cuts];
+	cum_bga_mat=cum_bga_mat[2:max_cuts, 2:max_cuts];
+
+	logodds=log2(cum_agb_mat/cum_bga_mat);
+
 
 	print(pval_mat);
 	min_cont_pval=min(pval_mat);
@@ -1224,10 +1251,29 @@ if(analyze_dendro_cont){
 		capture.output(print(-log10(pval_mat))),
 		"",
 		"",
-		paste("Min P-Value: ", sprintf("%3.3g", min_cont_pval), " at (", anames[min_idx[1]], ", ", bnames[min_idx[2]], ")", sep="")
+		paste("Min P-Value: ", sprintf("%3.3g", min_cont_pval), " at (", bnames[min_idx[1]], ", ", anames[min_idx[2]], ")", sep="")
 	));
 
-	plot_dendro_contigency(hcl_A, hcl_B, min_idx[1]+1, min_idx[2]+1, map_info[["a"]], map_info[["b"]], map_info[["b_id"]]);
+	plot_text(c(
+		paste("Given a sample from ", map_info[["b"]], " what's the probability classifying it in ",  map_info[["a"]], "?", sep=""),
+		paste("Cumulative Pr(", map_info[["a"]], "|", map_info[["b"]], "):", sep=""),
+		"",
+		capture.output(print(round(cum_agb_mat,3))),
+		"",
+		"",
+		paste("Given a sample from ", map_info[["a"]], " what's the probability classifying it in ",  map_info[["b"]], "?", sep=""),
+		paste("Cumulative Pr(", map_info[["b"]], "|", map_info[["a"]], "):", sep=""),
+		"",
+		capture.output(print(round(cum_bga_mat,3))),
+		"",
+		"",
+		paste("Log(Pr(", map_info[["a"]], "|", map_info[["b"]], ")/Pr(", map_info[["b"]], "|", map_info[["a"]], ")):", sep=""),
+		paste("  Positive Log Prob Ratio implies ", map_info[["b"]], " predicts ", map_info[["a"]], " better than vice versa.", sep=""),
+		"",
+		capture.output(print(round(logodds, 2)))
+	));
+
+	plot_dendro_contigency(hcl_A, hcl_B, min_idx[2]+1, min_idx[1]+1, map_info[["a"]], map_info[["b"]], map_info[["b_id"]]);
 }
 
 
