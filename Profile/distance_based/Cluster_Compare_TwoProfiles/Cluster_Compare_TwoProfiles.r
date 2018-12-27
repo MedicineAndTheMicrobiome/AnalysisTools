@@ -80,7 +80,9 @@ if(!any(DistType== c("wrd","man","bray","horn","bin","gow","euc","tyc","minkp3",
 	quit(status=-1);
 }
 
+OutputFileRoot_nodist=OutputFileRoot;
 OutputFileRoot=paste(OutputFileRoot, ".", DistType, sep="");
+
 
 ###############################################################################
 
@@ -628,7 +630,7 @@ compare_dendrograms=function(hclA, hclB, num_cuts, namea, nameb, idsb){
 		}
 	}
 	
-	print(shared_mat);
+	#print(shared_mat);
 
 	par(orig_par);
 
@@ -1010,7 +1012,6 @@ plot_dendro_contigency=function(hclA, hclB, acuts, bcuts, namea, nameb, idsb){
 	
 	# Compute pvalue for contingency table
 	cst=chisq.test(ab_cnts_obs_mat);
-	print(names(cst));
 	ct_cst_pval=cst$p.value;
 
 	#print(cst);
@@ -1531,6 +1532,19 @@ analyze_subcluster_distances=function(hclA, hclB, distmatA, distmatB, num_cuts, 
 analyze_subcluster_distances(hcl_A, hcl_B, dist_mat_A, dist_mat_B, max_cuts, map_info[["a"]],  map_info[["b"]], map_info[["b_id"]]);
 analyze_subcluster_distances(hcl_B, hcl_A, dist_mat_B, dist_mat_A, max_cuts, map_info[["b"]],  map_info[["a"]], map_info[["a_id"]]);
 
+
+##############################################################################
+
+cat("Exporting shared summary tables...\n");
+
+write_list=function(data, fname){
+	fh=file(fname, "w");
+	cat(file=fh, data, sep="\n");
+	close(fh);
+}
+
+write_list(map_info[["a_id"]], paste(OutputFileRoot_nodist, ".", map_info[["a"]], ".shrd_w", map_info[["b"]], ".lst", sep=""));
+write_list(map_info[["b_id"]], paste(OutputFileRoot_nodist, ".", map_info[["b"]], ".shrd_w", map_info[["a"]], ".lst", sep=""));
 
 ##############################################################################
 
