@@ -16,6 +16,8 @@ params=c(
 	"input_summary_table_A", "a", 1, "character",
 	"input_summary_table_B", "b", 1, "character",
 	"mapping_file", "m", 1, "character",
+	"include_list_A", "i", 2, "character",
+	"include_list_B", "j", 2, "character",
 	"output_filename_root", "o", 1, "character",
 	"dist_type", "d", 2, "character"
 );
@@ -32,6 +34,8 @@ usage = paste(
 	"\n",
 	"	Options:\n",
 	"	[-d <euc/wrd/man/bray/horn/bin/gow/tyc/minkp5/minkp3, default =", DEF_DISTTYPE, ">]\n",
+	"	[-i <include list of IDs for summary_table.tsv A, may be a factor file>]\n",
+	"	[-j <include list of IDs for summary_table.tsv B, may be a factor file>]\n",
 	"\n",
 	"This script will compute distance matrices for the two summary tables independently, then\n",
 	"compare them using Mantel's statistic.  The summary tables do not have to have matching\n",
@@ -83,6 +87,15 @@ if(!any(DistType== c("wrd","man","bray","horn","bin","gow","euc","tyc","minkp3",
 OutputFileRoot_nodist=OutputFileRoot;
 OutputFileRoot=paste(OutputFileRoot, ".", DistType, sep="");
 
+Include_A_list="";
+Include_B_list="";
+if(length(opt$include_list_A)){
+	Include_A_list=opt$include_list_A;
+}
+if(length(opt$include_list_B)){
+	Include_B_list=opt$include_list_B;
+}
+
 
 ###############################################################################
 
@@ -91,6 +104,13 @@ cat("Input Summary Table B:", InputSumTabB, "\n");
 cat("Mapping File         :", MappingFile, "\n");
 cat("Output File          :", OutputFileRoot, "\n");
 cat("Distance Type        :", DistType, "\n");
+cat("\n");
+if(Include_A_list!=""){
+	cat("Include List for A:", Include_A_list, "\n");
+}
+if(Include_B_list!=""){
+	cat("Include List for B:", Include_B_list, "\n");
+}
 
 ###############################################################################
 # See http://www.mothur.org/wiki/Thetayc for formula
@@ -282,6 +302,14 @@ plot_text=function(strings){
 
 }
 
+load_list=function(fn){
+	cat("Loading ", fn, " as list...\n");
+	data=read.delim(fn, header=F, sep="\t", quote="", as.is=T);
+	res=data[,1];
+	cat(" Number of ID's loaded: ", length(res), "\n");
+	return(res);
+}
+
 
 ###############################################################################
 
@@ -292,6 +320,24 @@ cat("Loading summary table A:", InputSumTabA, "\n");
 counts_mat_A=load_summary_table(InputSumTabA);
 cat("Loading summary table B:", InputSumTabB, "\n");
 counts_mat_B=load_summary_table(InputSumTabB);
+
+if(Include_A_list!=""){
+	cat("Include List for A:", Include_A_list, "\n");
+	include_a_arr=load_list(Include_A_list);
+	nsamp_before=nrow(counts_mat_A);
+	counts_mat_A=counts_mat_A[intersect(include_a_arr, rownames(counts_mat_A)),,drop=F];
+	nsamp_after=nrow(counts_mat_A);
+	cat("Num Samples kept: ", nsamp_after, "/", nsamp_before, "\n", sep="");
+}
+if(Include_B_list!=""){
+	cat("Include List for B:", Include_B_list, "\n");
+	include_b_arr=load_list(Include_B_list);
+	nsamp_before=nrow(counts_mat_A);
+	counts_mat_B=counts_mat_B[intersect(include_b_arr, rownames(counts_mat_B)),,drop=F];
+	nsamp_after=nrow(counts_mat_A);
+	cat("Num Samples kept: ", nsamp_after, "/", nsamp_before, "\n", sep="");
+}
+cat("\n\n");
 
 # Reconcile summary table IDs through mapping file
 samples_stA=rownames(counts_mat_A);
@@ -1447,6 +1493,9 @@ plot_subcluster_cuts=function(hclA, hclB, distmatA, distmatB, num_cuts, namea, n
 	        mantel_res=mantel(dista, distb, permutations=100);
         	man_corr[clx]=mantel_res[["statistic"]];
         	man_pval[clx]=mantel_res[["signif"]];
+		if(is.na(man_pval[clx])){
+			man_pval[clx]=1;
+		}	
 		num_cls_samples=length(membersA);
 
 		par(mar=c(.5,1,.5,0));
@@ -1460,6 +1509,7 @@ plot_subcluster_cuts=function(hclA, hclB, distmatA, distmatB, num_cuts, namea, n
 		}
 
 		par(mar=c(0,0,0,0));
+
 		if(man_pval[clx]<.05){
 			statcol="blue";
 			statfon=2;
@@ -1482,9 +1532,13 @@ plot_subcluster_cuts=function(hclA, hclB, distmatA, distmatB, num_cuts, namea, n
 		), collapse="\n"), cex=.7, col=statcol, font=statfon);
 
 		par(mar=c(3,1,.5,0));
+
+		# Draw regresson line for correlation
 		fit=lm(dist_arr_b~dist_arr_a);
 		plot(dist_arr_a, dist_arr_b, xaxt="n", yaxt="n", ylab="", main="", xlim=c(0, dist_max_a), ylim=c(0, dist_max_b), col=clx);
-		abline(fit, col="grey", lty=2);
+		if(!is.na((fit$coefficients[2]))){
+			abline(fit, col="grey", lty=2);
+		}
 		title(xlab=clx, line=1.5, font.lab=2, cex.lab=2);
 		title(xlab=namea, line=0, cex.lab=1);
 
