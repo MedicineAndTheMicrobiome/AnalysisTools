@@ -1481,8 +1481,13 @@ plot_subcluster_cuts=function(hclA, hclB, distmatA, distmatB, num_cuts, namea, n
 		membersA=memnamesa[memb_byA==clx];
 		membersB=memnamesb[memb_byA==clx];
 
-		dista=distmatA[membersA, membersA];
-		distb=distmatB[membersB, membersB];
+		num_members=length(membersA);
+		cat("Cluster Cuts: ", clx, " of ", num_cuts, "\n");
+		cat("Num A Members: ", length(membersA), "\n");
+		cat("Num B Members: ", length(membersB), "\n");
+
+		dista=distmatA[membersA, membersA, drop=F];
+		distb=distmatB[membersB, membersB, drop=F];
 
 		dist_arr_a=as.dist(dista);
 		dist_arr_b=as.dist(distb);
@@ -1490,13 +1495,19 @@ plot_subcluster_cuts=function(hclA, hclB, distmatA, distmatB, num_cuts, namea, n
 		# Calcuate Ststs
 		msdA[clx]=msd(dista);
 		msdB[clx]=msd(distb);
-	        mantel_res=mantel(dista, distb, permutations=100);
-        	man_corr[clx]=mantel_res[["statistic"]];
-        	man_pval[clx]=mantel_res[["signif"]];
-		if(is.na(man_pval[clx])){
+
+		if(num_members>1){
+			mantel_res=mantel(dista, distb, permutations=100);
+			man_corr[clx]=mantel_res[["statistic"]];
+			man_pval[clx]=mantel_res[["signif"]];
+			if(is.na(man_pval[clx])){
+				man_pval[clx]=1;
+			}	
+		}else{
+			man_corr[clx]=1;
 			man_pval[clx]=1;
-		}	
-		num_cls_samples=length(membersA);
+		}
+
 
 		par(mar=c(.5,1,.5,0));
 		hist(dist_arr_a, xlim=c(0, dist_max_a), xlab="", ylab="", main="", xaxt="n", yaxt="n", breaks=abreaks);
@@ -1520,7 +1531,7 @@ plot_subcluster_cuts=function(hclA, hclB, distmatA, distmatB, num_cuts, namea, n
 		plot(0,0, type="n", xlab="", ylab="", main="", xaxt="n", yaxt="n", bty="n");
 		text(0,0, paste(
 			c(
-			paste("N=", num_cls_samples, sep=""),
+			paste("N=", num_members, sep=""),
 			"",
 			"Mantel:",
 			sprintf("Cor: %2.3f", man_corr[clx]),
@@ -1534,10 +1545,12 @@ plot_subcluster_cuts=function(hclA, hclB, distmatA, distmatB, num_cuts, namea, n
 		par(mar=c(3,1,.5,0));
 
 		# Draw regresson line for correlation
-		fit=lm(dist_arr_b~dist_arr_a);
 		plot(dist_arr_a, dist_arr_b, xaxt="n", yaxt="n", ylab="", main="", xlim=c(0, dist_max_a), ylim=c(0, dist_max_b), col=clx);
-		if(!is.na((fit$coefficients[2]))){
-			abline(fit, col="grey", lty=2);
+		if(num_members>1){
+			fit=lm(dist_arr_b~dist_arr_a);
+			if(!is.na((fit$coefficients[2]))){
+				abline(fit, col="grey", lty=2);
+			}
 		}
 		title(xlab=clx, line=1.5, font.lab=2, cex.lab=2);
 		title(xlab=namea, line=0, cex.lab=1);
