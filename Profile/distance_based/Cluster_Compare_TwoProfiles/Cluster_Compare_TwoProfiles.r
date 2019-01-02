@@ -1326,7 +1326,7 @@ if(analyze_dendro_cont){
 ##############################################################################
 
 cat("Comparing cluster separation:\n");
-compare_pseudof(dist_mat_A, dist_mat_B, hcl_A, hcl_B,  max_k=22, map_info[["a"]], map_info[["b"]]);
+compare_pseudof(dist_mat_A, dist_mat_B, hcl_A, hcl_B,  max_k=max_cuts, map_info[["a"]], map_info[["b"]]);
 
 
 ##############################################################################
