@@ -1234,8 +1234,8 @@ nonpr_mdsB_res=isoMDS(dist_mat_B, k=2);
 nonparm_mds_pts_A=nonpr_mdsA_res$points;
 nonparm_mds_pts_B=nonpr_mdsB_res$points;
 
-hcl_A=hclust(dist_mat_A, method="ward.D");
-hcl_B=hclust(dist_mat_B, method="ward.D");
+hcl_A=hclust(dist_mat_A, method="ward.D2");
+hcl_B=hclust(dist_mat_B, method="ward.D2");
 
 clus4_A=cutree(hcl_A, k=max_cuts);
 clus4_B=cutree(hcl_B, k=max_cuts);
