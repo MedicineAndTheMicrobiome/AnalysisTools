@@ -1497,7 +1497,7 @@ plot_subcluster_cuts=function(hclA, hclB, distmatA, distmatB, num_cuts, namea, n
 		msdB[clx]=msd(distb);
 
 		if(num_members>1){
-			mantel_res=mantel(dista, distb, permutations=100);
+			mantel_res=mantel(dista, distb, permutations=10000);
 			man_corr[clx]=mantel_res[["statistic"]];
 			man_pval[clx]=mantel_res[["signif"]];
 			if(is.na(man_pval[clx])){
@@ -1602,7 +1602,7 @@ analyze_subcluster_distances=function(hclA, hclB, distmatA, distmatB, num_cuts, 
 	}
 
 	# Plot optimal cluster cuts
-	par(mfrow=c(3,1));
+	par(mfrow=c(2,1));
 	maxmsd=max(msd_mat_a, na.rm=T);
 	plot(0,0, type="n", xlim=c(1, num_cuts), ylim=c(0, maxmsd), xlab="Cluster Cuts", ylab="MSD", main=paste(namea, " clustered by ", namea, sep=""), xaxt="n");
 	axis(side=1, at=1:num_cuts, labels=T);
@@ -1624,7 +1624,7 @@ analyze_subcluster_distances=function(hclA, hclB, distmatA, distmatB, num_cuts, 
 
 	# Plot cluster correlation across cuts
 	cor_range=c(-1,1)*max(abs(cor_mat), na.rm=T);
-	plot(0,0, type="n", xlim=c(1, num_cuts), ylim=cor_range, xlab="Cluster Cuts", ylab="Distance Correlation", main=paste(nameb, " clustered by ", namea, sep=""), xaxt="n");
+	plot(0,0, type="n", xlim=c(1, num_cuts), ylim=cor_range, xlab="Cluster Cuts", ylab="Distance Correlation", main=paste("Distance Correlation: ", nameb, " clustered by ", namea, sep=""), xaxt="n");
 	axis(side=1, at=1:num_cuts, labels=T);
 	abline(h=cor_mat[1,1], col="blue", lty=2);
 	abline(h=0, col="grey");
@@ -1638,6 +1638,20 @@ analyze_subcluster_distances=function(hclA, hclB, distmatA, distmatB, num_cuts, 
 
 		text(rep(clx, clx), cor_mat[clx, 1:clx], labels=cl_label, col="black", pos=4, cex=.7);
 	}
+
+	# Plot cluster correlation pvalues
+	pval_ladder= c(1,.1,.05,.01,.001);
+	nlog_cpv_mat=-log10(cpv_mat);
+	nlog_pval_range=c(0, max(max(nlog_cpv_mat, na.rm=T), -log10(pval_ladder)));
+	plot(0,0, type="n", xlim=c(1, num_cuts), ylim=nlog_pval_range, xlab="Cluster Cuts", ylab="-log(pval)", main=paste("Mantel P-Value: ", nameb, " clustered by ", namea, sep=""), xaxt="n");
+	axis(side=1, at=1:num_cuts, labels=T);
+	axis(side=4, at=-log10(pval_ladder), labels=pval_ladder, cex.axis=.7, tick=F, line=-.5, las=2);
+	abline(h=-log10(pval_ladder), col="grey", lwd=.5, lty=2);
+	for(clx in 1:num_cuts){
+		points(rep(clx, clx), nlog_cpv_mat[clx, 1:clx], col=1:clx);
+		text(rep(clx, clx), nlog_cpv_mat[clx, 1:clx], labels=1:clx, col="black", pos=4, cex=.7);
+	}
+
 
 }
 
