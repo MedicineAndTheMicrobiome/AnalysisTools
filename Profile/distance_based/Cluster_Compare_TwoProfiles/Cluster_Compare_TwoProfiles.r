@@ -1320,6 +1320,15 @@ if(analyze_dendro_cont){
 	));
 
 	plot_dendro_contigency(hcl_A, hcl_B, min_idx[2]+1, min_idx[1]+1, map_info[["a"]], map_info[["b"]], map_info[["b_id"]]);
+
+	# Write optimal cuts to file
+	cnt_fh=file(paste(OutputFileRoot, ".", map_info[["a"]], ".cuts", sep=""), "w");
+	cat(file=cnt_fh, min_idx[2]+1, "\n", sep="");
+	close(cnt_fh);
+
+	cnt_fh=file(paste(OutputFileRoot, ".", map_info[["b"]], ".cuts", sep=""), "w");
+	cat(file=cnt_fh, min_idx[1]+1, "\n", sep="");
+	close(cnt_fh);
 }
 
 
