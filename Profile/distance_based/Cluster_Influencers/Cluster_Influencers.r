@@ -495,13 +495,23 @@ reconcile_factors_and_summary_table=function(fact, st){
 
 ###############################################################################
 
-output_fname_root = paste(OutputFileRoot, ".", dist_type, w_meta_ext, sep="");
+if(OnlyAtK){
+	kext=paste(".k", OnlyAtK, sep="");
+}else{
+	kext="";
+}
+
+output_fname_root = paste(OutputFileRoot, ".", dist_type, w_meta_ext, kext, sep="");
 cat("\n");
 cat("Input Summary Table Name: ", InputFileName, "\n", sep="");
 cat("Output Filename Root: ", output_fname_root, "\n", sep="");
 cat("Distance Type: ", dist_type, "\n", sep="");
 cat("Num Top categories to analyze: ", num_top_cat, "\n", sep="");
 cat("Targeted Variables: ", FactorListFile, "\n", sep="");
+
+if(OnlyAtK){
+	cat("Only computing at: ", OnlyAtK, "\n", sep="");
+}
 cat("\n");
 
 if(useMetadata){
