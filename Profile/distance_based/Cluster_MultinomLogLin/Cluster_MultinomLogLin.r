@@ -23,9 +23,11 @@ params=c(
 	"input_factor_file", "f", 1, "character",
 	"model_string", "m", 2, "character",
 	"model_filename", "M", 2, "character",
+	"subset_samp_ids_fname", "l", 2, "character",
 	"output_filename_root", "o", 2, "character",
 	"dist_type", "d", 2, "character",
 	"num_clus", "k", 2, "numeric",
+	"only_at_k", "K", 2, "numeric",
 	"rm_na_trials", "N", 2, "numeric",
 	"required", "q", 2, "character"
 );
@@ -40,11 +42,13 @@ usage = paste(
 	"	[-M <model variables list file>\n",
 	"	[-m <\"model string\">]\n",
 	"\n",
+	"	[-l <list of sample IDs to focus on>\n",
 	"	[-o <output file root name, default is input file base name>]\n",
 	"	[-d <euc/wrd/man/bray/horn/bin/gow/tyc/minkp5/minkp3, default =", DEF_DISTTYPE, ">]\n",
 	"	[-k <max num of clusters to split into, default = ceiling(log2(num_samples))>\n",
 	"	[-r <reference file>]\n",
 	"	[-q <required variables>]\n",
+	"	[-K <only compute at K cuts>]\n",
 	"\n",
 	"	[-N <remova NA trials, trials=", RM_NA_TRIALS, "\n",
 	"\n",
@@ -112,6 +116,18 @@ if(length(opt$required)){
         RequiredFile=opt$required;
 }else{
         RequiredFile="";
+}
+
+if(length(opt$subset_samp_ids_fname)){
+	SubsetSampIDFname=opt$subset_samp_ids_fname;
+}else{
+	SubsetSampIDFname="";
+}
+
+if(length(opt$only_at_k)){
+	OnlyAtK=opt$only_at_k;
+}else{
+	OnlyAtK=0;
 }
 
 ###############################################################################
@@ -217,7 +233,7 @@ load_factor_file=function(fn){
 }
 
 load_list=function(filename){
-        val=scan(filename, what=character(), comment.char="#");
+        val=scan(filename, what=character(), sep="\t", header=F, row.names=NULL, as.is=T, check.names=F, comment.char="#", quote="");
         return(val);
 }
 
@@ -597,6 +613,13 @@ cat("\n");
 cat("Loading summary table...\n");
 counts_mat=load_summary_table(InputFileName);
 
+if(SubsetSampIDFname!=""){
+        sample_keep_list=load_list(SubsetSampIDFname);
+        st_sample_ids=rownames(counts_mat);
+        keep_list=intersect(st_sample_ids, sample_keep_list);
+        counts_mat=counts_mat[keep_list,,drop=F];
+}
+
 # Normalize counts
 cat("Normalizing counts...\n");
 norm_mat=normalize(counts_mat);
@@ -853,13 +876,19 @@ i=1;
 
 min_pval_matrix=numeric();
 geom_pval_matrix=numeric();
+cluster_labels=numeric();
 
 geomean=function(x){
 	return(exp(mean(log(x))));
 }
 
-for(num_cl in 2:max_clusters){
-#for(num_cl in 4){
+if(OnlyAtK==0){
+	cl_cuts=2:max_clusters;
+}else{
+	cl_cuts=OnlyAtK;
+}
+
+for(num_cl in cl_cuts){
 
 	# Cut tree at target number of clusters
 	cat("Cutting for ", num_cl, " clusters...\n", sep="");
@@ -1043,16 +1072,19 @@ for(num_cl in 2:max_clusters){
 	draw_mean_ses(mean_matrix, se_matrix, title=paste(num_cl, " Clusters: Means and Standard Errors", sep=""), grp_col=palette_col);
 	#paint_matrix(coeff_matrix, title=paste(num_cl, " Clusters, Coefficients", sep=""));
 	paint_matrix(coeff_matrix, title=paste(num_cl, " Clusters: Logistic Regression Coefficients", sep=""));
-	draw_mean_ses(coeff_matrix, coef_se_matrix, title=paste(num_cl, " Clusters: Logistic Regression Coefficient Standard Errors", sep=""), grp_col=palette_col, include_zero_ref=T);
+	draw_mean_ses(coeff_matrix, coef_se_matrix, 
+		title=paste(num_cl, " Clusters: Logistic Regression Coefficient Standard Errors", sep=""), 
+		grp_col=palette_col, include_zero_ref=T);
 	paint_matrix(pval_matrix, title=paste(num_cl, " Clusters: P-values", sep=""), high_is_hot=F, plot_max=1, plot_min=0);
-	paint_matrix(signif_coeff_matrix, title=paste(num_cl, " Clusters: Significient Coefficients (Uncorrected p-value < 0.05)", sep=""), label_zeros=F);
+	paint_matrix(signif_coeff_matrix,
+		title=paste(num_cl, " Clusters: Significient Coefficients (Uncorrected p-value < 0.05)", sep=""), label_zeros=F);
 
 	# Keep min value for each coefficient
-	print(pval_matrix);
 	min_pvalues=apply(pval_matrix, 2, min);
 	geomean_pvalues=apply(pval_matrix, 2, geomean);
 	min_pval_matrix=rbind(min_pval_matrix, min_pvalues);
 	geom_pval_matrix=rbind(geom_pval_matrix, geomean_pvalues);
+	cluster_labels=cbind(cluster_labels, num_cl);
 
 	cat("*********************************************************************************************************\n");
 	i=i+1;	
@@ -1065,6 +1097,9 @@ plot_coeff_pvalues=function(pval_matrix, line_col, title){
 	matrix_dim=dim(pval_matrix);
 	
 	num_coefficients=ncol(pval_matrix);
+	clus_pts=as.numeric(rownames(pval_matrix));
+	max_clusters=max(clus_pts);
+	cat("Max Clusters:", max_clusters, "\n");
 
 	# Plot P-values across clusters
 	log_min_pval_matrix=log10(pval_matrix);
@@ -1095,14 +1130,14 @@ plot_coeff_pvalues=function(pval_matrix, line_col, title){
 	if(matrix_dim[2]>0){
 		for(i in 1:num_coefficients){
 			cur_pvals=log_min_pval_matrix[,i];
-			points(2:max_clusters, cur_pvals, col=line_col[i], lwd=4, type="l", pch=16);
+			points(clus_pts, cur_pvals, col=line_col[i], lwd=4, type="l", pch=16);
 			
 			first_lowest=min(which(min(cur_pvals)==cur_pvals));
 			points(first_lowest+1, cur_pvals[first_lowest], col=line_col[i], pch=19, cex=3);
 			points(first_lowest+1, cur_pvals[first_lowest], col="white",     pch=19, cex=2);
 			points(first_lowest+1, cur_pvals[first_lowest], col=line_col[i], pch=19, cex=1);
 		}
-		axis(side=1, at=2:max_clusters, labels=2:max_clusters, cex.axis=2);
+		axis(side=1, at=clus_pts, labels=clus_pts, cex.axis=2);
 
 		print(log_min_pval_matrix);
 		max_clust_pvals=log_min_pval_matrix[as.character(max_clusters),,drop=F];
@@ -1136,8 +1171,8 @@ plot_coeff_pvalues=function(pval_matrix, line_col, title){
 num_coeff=ncol(min_pval_matrix);
 coef_colors=1:num_coeff;
 
-rownames(min_pval_matrix)=2:max_clusters;
-rownames(geom_pval_matrix)=2:max_clusters;
+rownames(min_pval_matrix)=cluster_labels;
+rownames(geom_pval_matrix)=cluster_labels;
 
 remove_low_variability_coeff=function(pvmat, delta=.5){
 	log_pval=log10(pvmat);
@@ -1153,6 +1188,7 @@ remove_coeff_never_below_thres=function(pvmat, thres=.05){
 	keep=min_val<=thres;
 	return(keep);
 }
+
 
 # Min P-values across clusters
 plot_coeff_pvalues(min_pval_matrix, coef_colors, "All Coefficient Min P-Values");
