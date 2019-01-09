@@ -22,7 +22,8 @@ params=c(
 	"dist_type", "d", 2, "character",
 	"num_top_cat", "p", 2, "numeric",
 	"split_char", "s", 2, "character",
-	"num_clus", "k", 2, "numeric",
+	"max_cuts", "k", 2, "numeric",
+	"only_at_k", "K", 2, "numeric",
 	"factor_filename", "f", 2, "character",
 	"factor_names_list", "n", 2, "character"
 );
@@ -40,7 +41,8 @@ usage = paste(
 	"	[-s <split char for long category names, default =", DEF_SPLIT_CHAR, ">]\n",
 	"\n",
 	"	Clustering-Based (Hierarchical Clustering) Options:\n",
-	"	[-k <num of clusters to split into, default =", DEF_NUM_CLUS, ">\n",
+	"	[-k <max number of clusters to split into, default =", DEF_NUM_CLUS, ">\n",
+	"	[-K <only compute at K cuts>\n",
 	"\n",
 	"	Metadata-Based (User-defined Factors) Options:\n",
 	"	[-f <factor/metadata file]\n",
@@ -99,9 +101,16 @@ if(!any(dist_type == c("wrd","man","bray","horn","bin","gow","euc","tyc","minkp3
 }
 
 max_clusters=DEF_NUM_CLUS;
-if(length(opt$num_clus)){
-	max_clusters=opt$num_clus;
+if(length(opt$max_cuts)){
+	max_clusters=opt$max_cuts;
 }
+
+if(length(opt$only_at_k)){
+	OnlyAtK=opt$only_at_k;
+}else{
+	OnlyAtK=0;
+}	
+
 
 num_top_cat=DEF_NUM_TOP_CAT;
 if(length(opt$num_top_cat)){
@@ -651,10 +660,16 @@ if(useMetadata){
 	num_iterations=max_clusters-1;
 }
 
+if(OnlyAtK!=0){
+	iterations=OnlyAtK;
+}else{
+	iterations=1:num_iterations;
+}
+
 cat("Using Metadata:", useMetadata, "\n");
 
 # Begin pair-wise cluster analyses
-for(ix in 1:num_iterations){
+for(ix in iterations){
 
 	if(useMetadata){
 		fact_val=factors_matrix[,ix];
@@ -684,7 +699,11 @@ for(ix in 1:num_iterations){
 		legend_labels=paste(1:num_cl, ": ", levels, sep="");
 	}else{
 		#for(num_cl in 2:max_clusters):
-		num_cl=ix+1;
+		if(OnlyAtK>0){
+			num_cl=OnlyAtK;
+		}else{
+			num_cl=ix+1;
+		}
 
 		cat("Cutting for ", num_cl, " clusters...\n", sep="");
 		memberships=cutree(hcl, k=num_cl);
