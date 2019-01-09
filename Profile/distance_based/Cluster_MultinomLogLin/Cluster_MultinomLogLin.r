@@ -233,8 +233,8 @@ load_factor_file=function(fn){
 }
 
 load_list=function(filename){
-        val=scan(filename, what=character(), sep="\t", header=F, row.names=NULL, as.is=T, check.names=F, comment.char="#", quote="");
-        return(val);
+	list=read.delim(list_fname, sep="\t", header=F, row.names=NULL, as.is=T, check.names=F, comment.char="#", quote="");
+        return(list[,1]);
 }
 
 #------------------------------------------------------------------------------
