@@ -600,7 +600,13 @@ get_middle_of_groups=function(clustered_leaf_names, group_asgn){
 
 ###############################################################################
 
-output_fname_root = paste(OutputFileRoot, ".", dist_type, sep="");
+if(OnlyAtK>0){
+	ext_k=paste(".k", OnlyAtK, sep="");
+}else{
+	ext_k="";
+}
+
+output_fname_root = paste(OutputFileRoot, ".", dist_type, ext_k, sep="");
 cat("\n");
 cat("Input Summary Table Name: ", InputFileName, "\n", sep="");
 cat("Input Factor File: ", InputFactorFile, "\n", sep="");
@@ -609,6 +615,10 @@ cat("Distance Type: ", dist_type, "\n", sep="");
 cat("Max Num clusters: ", max_clusters, "\n", sep="");
 cat("Required Variables File: ", RequiredFile, "\n", sep="");
 cat("\n");
+
+if(OnlyAtK>0){
+	cat("Only computing at k=", OnlyAtK, "\n");
+}
 
 cat("Loading summary table...\n");
 counts_mat=load_summary_table(InputFileName);
