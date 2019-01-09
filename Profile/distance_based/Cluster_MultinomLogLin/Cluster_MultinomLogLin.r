@@ -232,7 +232,7 @@ load_factor_file=function(fn){
 	return(inmat);
 }
 
-load_list=function(filename){
+load_list=function(list_fname){
 	list=read.delim(list_fname, sep="\t", header=F, row.names=NULL, as.is=T, check.names=F, comment.char="#", quote="");
         return(list[,1]);
 }
