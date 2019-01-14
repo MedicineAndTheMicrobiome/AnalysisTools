@@ -55,14 +55,14 @@ usage = paste(
 	"\n",
 	"The output will be the following:\n",
 	"	If 1 file specified:\n",
-	"		<output directory>/<data A>.noNA.tsv\n",
-	"		<output directory>/<factor file>.noNA.tsv\n",
+	"		<output directory>/<data A>.prescr.tsv\n",
+	"		<output directory>/<factor file>.prescr.tsv\n",
 	"\n",
 	"	If 2 file specified:\n",
-	"		<output directory>/<data A>.<A_name>.noNA.tsv\n",
-	"		<output directory>/<factor file>.<A_name>.noNA.tsv\n",
-	"		<output directory>/<data B>.<B_name>.noNA.tsv\n",
-	"		<output directory>/<factor file>.<B_name>.noNA.tsv\n",
+	"		<output directory>/<data A>.<A_name>.prescr.tsv\n",
+	"		<output directory>/<factor file>.<A_name>.prescr.tsv\n",
+	"		<output directory>/<data B>.<B_name>.prescr.tsv\n",
+	"		<output directory>/<factor file>.<B_name>.prescr.tsv\n",
 	"\n",
         "\n");
 
@@ -401,17 +401,6 @@ if(!file.exists(OutputDir)){
 	quit(-1);
 }
 
-# Output Summary Table A
-cat("Writing Presreened Summary Table A...\n");
-stA_root=tail(strsplit(SummaryTableA, "/")[[1]],1);
-stA_root=gsub("\\.summary_table\\.tsv$", "", stA_root);
-
-recon_samp_ids=rownames(factors);
-stA_recon=stA[recon_samp_ids,,drop=F];
-write_summary_table(stA_recon, paste(OutputDir, "/", stA_root, ".prescr.summary_table.tsv", sep=""));
-
-
-print(map_info);
 
 if(MapFile!=""){
 	aname_ext=paste(".", map_info[["a"]], sep="");
@@ -420,15 +409,24 @@ if(MapFile!=""){
 	aname_ext="";
 	bname_ext="";
 }
-
 cat("Output File Extensions: ", aname_ext, " and ", bname_ext, "\n", sep="");
+
+# Output Summary Table A
+cat("Writing Presreened Summary Table A...\n");
+stA_root=tail(strsplit(SummaryTableA, "/")[[1]],1);
+stA_root=gsub("\\.summary_table\\.tsv$", "", stA_root);
+
+recon_samp_ids=rownames(factors);
+stA_recon=stA[recon_samp_ids,,drop=F];
+write_summary_table(stA_recon, paste(OutputDir, "/", stA_root, aname_ext,".prescr.summary_table.tsv", sep=""));
+
 
 
 # Output Factor File A
 cat("Writing Factor File with A IDs as the primary key...\n");
 factorf_root=tail(strsplit(FactorFile, "/")[[1]],1);
 factorf_root=gsub("\\.tsv$", "", factorf_root);
-write_factors(paste(factorf_root, aname_ext, ".prescr.tsv", sep=""), factors);
+write_factors(paste(OutputDir, "/", factorf_root, aname_ext, ".prescr.tsv", sep=""), factors);
 
 
 if(SummaryTableB!=""){
@@ -446,7 +444,7 @@ if(SummaryTableB!=""){
 		recon_samp_ids=b_ids[recon_samp_ids];
 	}
 	stB_recon=stB[recon_samp_ids,,drop=F];
-	write_summary_table(stB_recon, paste(OutputDir, "/", stB_root, ".prescr.summary_table.tsv", sep=""));
+	write_summary_table(stB_recon, paste(OutputDir, "/", stB_root, bname_ext, ".prescr.summary_table.tsv", sep=""));
 
 	if(MapFile!=""){
 		factor_a_ids=rownames(factors);
@@ -459,7 +457,7 @@ if(SummaryTableB!=""){
 	cat("Writing Factor File with B IDs as the primary key...\n");
 	factorf_root=tail(strsplit(FactorFile, "/")[[1]],1);
 	factorf_root=gsub("\\.tsv$", "", factorf_root);
-	write_factors(paste(factorf_root, bname_ext, ".prescr.tsv", sep=""), factors);
+	write_factors(paste(OutputDir, "/", factorf_root, bname_ext, ".prescr.tsv", sep=""), factors);
 }
 
 
