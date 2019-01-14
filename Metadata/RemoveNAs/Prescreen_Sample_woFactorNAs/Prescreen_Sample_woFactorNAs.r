@@ -154,11 +154,12 @@ load_factor_file=function(fn){
 
 write_factors=function(fname, table){
 
+	cat("Writing: ", fname, " as factor file.\n", sep="");
         dimen=dim(factors);
         cat("Rows Exporting: ", dimen[1], "\n");
         cat("Cols Exporting: ", dimen[2], "\n");
 
-        write.table(table, fname, quote=F, row.names=F, sep="\t");
+        write.table(table, fname, quote=F, row.names=T, col.names=NA, sep="\t");
 
 }
 
@@ -178,6 +179,8 @@ load_summary_table=function(st_fname){
 }
 
 write_summary_table=function(out_mat, fname){
+
+	cat("Writing: ", fname, " as summary table.\n");
         fc=file(fname, "w");
         cat(file=fc, paste("sample_id\ttotal", paste(colnames(out_mat), collapse="\t"), sep="\t"));
         cat(file=fc, "\n");
@@ -408,30 +411,58 @@ stA_recon=stA[recon_samp_ids,,drop=F];
 write_summary_table(stA_recon, paste(OutputDir, "/", stA_root, ".prescr.summary_table.tsv", sep=""));
 
 
-if(SummaryTableB!=""){
+print(map_info);
 
-	# Output Summary Table B
-	cat("Writing Presreened Summary Table B...\n");
-	stB_root=tail(strsplit(SummaryTableB, "/")[[1]],1);
-	stB_root=gsub("\\.summary_table\\.tsv$", "", stB_root);
-
-	if(MapFile!=""){
-		cat("Remapping A's IDs to B's IDs before writing screened Summary Tble B.\n");
-		b_ids=map_info[["b_id"]]		
-		names(b_ids)=map_info[["a_id"]];
-		recon_samp_ids=b_ids[recon_samp_ids];
-		print(recon_samp_ids);
-	}
-	stB_recon=stB[recon_samp_ids,,drop=F];
-	write_summary_table(stB_recon, paste(OutputDir, "/", stB_root, ".prescr.summary_table.tsv", sep=""));
+if(MapFile!=""){
+	aname_ext=paste(".", map_info[["a"]], sep="");
+	bname_ext=paste(".", map_info[["b"]], sep="");
+}else{
+	aname_ext="";
+	bname_ext="";
 }
+
+cat("Output File Extensions: ", aname_ext, " and ", bname_ext, "\n", sep="");
 
 
 # Output Factor File A
 cat("Writing Factor File with A IDs as the primary key...\n");
 factorf_root=tail(strsplit(FactorFile, "/")[[1]],1);
 factorf_root=gsub("\\.tsv$", "", factorf_root);
-write_factors(paste(factorf_root, ".prescr.tsv", sep=""), factors);
+write_factors(paste(factorf_root, aname_ext, ".prescr.tsv", sep=""), factors);
+
+
+if(SummaryTableB!=""){
+
+	# Output Summary Table B
+	cat("\n");
+	cat("Writing Presreened Summary Table B...\n");
+	stB_root=tail(strsplit(SummaryTableB, "/")[[1]],1);
+	stB_root=gsub("\\.summary_table\\.tsv$", "", stB_root);
+
+	if(MapFile!=""){
+		cat("Remapping A's IDs to B's IDs before writing screened Summary Table B.\n");
+		b_ids=map_info[["b_id"]]		
+		names(b_ids)=map_info[["a_id"]];
+		recon_samp_ids=b_ids[recon_samp_ids];
+	}
+	stB_recon=stB[recon_samp_ids,,drop=F];
+	write_summary_table(stB_recon, paste(OutputDir, "/", stB_root, ".prescr.summary_table.tsv", sep=""));
+
+	if(MapFile!=""){
+		factor_a_ids=rownames(factors);
+		factor_b_ids=b_ids[factor_a_ids];
+		rownames(factors)=factor_b_ids;
+	}	
+
+	# Output Factor File B
+	cat("\n");
+	cat("Writing Factor File with B IDs as the primary key...\n");
+	factorf_root=tail(strsplit(FactorFile, "/")[[1]],1);
+	factorf_root=gsub("\\.tsv$", "", factorf_root);
+	write_factors(paste(factorf_root, bname_ext, ".prescr.tsv", sep=""), factors);
+}
+
+
 
 
 cat("done.\n");
