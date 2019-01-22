@@ -659,10 +659,104 @@ venn_cat_counts=table(most_likely);
 missing_venn_cat=setdiff(c("A", "B", "AB", "Neither"), names(venn_cat_counts));
 venn_cat_counts[missing_venn_cat]=0;
 
-print(venn_cat_counts);
+#print(venn_cat_counts);
 
 pdf(paste(OutputRoot, ".sqr_venn.pdf", sep=""), height=8.5, width=8.5);
 plot_square_venn(venn_cat_counts, nameA, nameB, "Most Likely Outcomes Upon Resampling");
+
+###############################################################################
+# Identify proportion of taxa represented by each of the Venn categories
+
+plot_text=function(strings){
+
+        orig_par=par(no.readonly=T);
+        options(width=100);
+
+        par(family="Courier");
+        par(mar=rep(0,4));
+
+        num_lines=length(strings);
+
+        top=max(as.integer(num_lines), 50);
+
+        plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
+                xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
+                );
+
+        text_size=max(.01, min(.8, .8 - .003*(num_lines-52)));
+        #print(text_size);
+
+        for(i in 1:num_lines){
+                #cat(strings[i], "\n", sep="");
+                strings[i]=gsub("\t", "", strings[i]);
+                text(0, top-i, strings[i], pos=4, cex=text_size);
+        }
+
+        if(orig_par$fig[1]<0){
+                orig_par$fig[1]=0;
+        }
+
+        #print(orig_par);
+        par(orig_par);
+
+}
+
+
+analyze_venn_category_proportions=function(shrd_mat, acount, bcount, aname, bname){
+
+	a_norm=normalize(acount);
+	b_norm=normalize(bcount);
+
+	a_avg=apply(a_norm, 2, mean);
+	b_avg=apply(b_norm, 2, mean);
+
+	comb_avg=apply(rbind(a_avg, b_avg), 2, mean);
+
+	cat_names=rownames(shrd_mat);
+	venn_cat_names=colnames(shrd_mat);
+	
+	a_ex_cuml=0;
+	b_ex_cuml=0;
+	a_sh_cuml=0;
+	b_sh_cuml=0;
+	a_ne_cuml=0;
+	b_ne_cuml=0;
+
+	for(cat_ix in cat_names){
+		probs=shrd_mat[cat_ix,];
+		max_prob=max(which(probs==max(probs)));
+		venn_cat=venn_cat_names[max_prob];
+		if(venn_cat=="A"){
+			a_ex_cuml=a_ex_cuml+a_avg[cat_ix];
+		}else if(venn_cat=="B"){
+			b_ex_cuml=b_ex_cuml+b_avg[cat_ix];
+		}else if(venn_cat=="AB"){
+			a_sh_cuml=a_sh_cuml+a_avg[cat_ix];
+			b_sh_cuml=b_sh_cuml+b_avg[cat_ix];
+		}else if(venn_cat=="Neither"){
+			a_ne_cuml=a_ne_cuml+a_avg[cat_ix];
+			b_ne_cuml=b_ne_cuml+b_avg[cat_ix];
+		}
+	}
+	
+	text=capture.output({
+		cat("Proportion of ", aname, " categories likely\n", sep="");
+		cat("       exclusive: ", a_ex_cuml, "\n", sep="");
+		cat("          shared: ", a_sh_cuml, "\n", sep="");
+		cat("   unrecoverable: ", a_ne_cuml, "\n", sep="");
+		cat("\n");
+		cat("Proportion of ", bname, " categories likely\n", sep="");
+		cat("       exclusive: ", b_ex_cuml, "\n", sep="");
+		cat("          shared: ", b_sh_cuml, "\n", sep="");
+		cat("   unrecoverable: ", b_ne_cuml, "\n", sep="");
+	});
+
+	plot_text(text);
+
+}
+
+analyze_venn_category_proportions(shared_matrix, prof_a_count_mat, prof_b_count_mat, nameA, nameB);
+
 dev.off();
 
 ###############################################################################
