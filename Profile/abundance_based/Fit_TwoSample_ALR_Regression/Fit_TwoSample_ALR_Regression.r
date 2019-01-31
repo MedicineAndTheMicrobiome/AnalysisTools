@@ -409,6 +409,13 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
         num_row=nrow(mat);
         num_col=ncol(mat);
 
+	if(num_row==1){
+		plot_row_dendr=F;
+	}
+	if(num_col==1){
+		plot_col_dendr=F;
+	}
+
 	row_names=rownames(mat);
 	col_names=colnames(mat);
 
@@ -505,7 +512,7 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 		col_dendr=get_dendrogram(mat, type="col");
 		row_dendr=get_dendrogram(mat, type="row");
 
-		mat=mat[row_dendr[["names"]], col_dendr[["names"]]];
+		mat=mat[row_dendr[["names"]], col_dendr[["names"]], drop=F];
 		
 	}else if(plot_col_dendr){
 		layoutmat=matrix(
@@ -515,7 +522,7 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 			), byrow=T, ncol=heatmap_width); 
 
 		col_dendr=get_dendrogram(mat, type="col");
-		mat=mat[, col_dendr[["names"]]];
+		mat=mat[, col_dendr[["names"]], drop=F];
 		
 	}else if(plot_row_dendr){
 		layoutmat=matrix(
@@ -523,7 +530,7 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 			byrow=T, ncol=row_dend_width+heatmap_width);
 
 		row_dendr=get_dendrogram(mat, type="row");
-		mat=mat[row_dendr[["names"]],];
+		mat=mat[row_dendr[["names"]],, drop=F];
 	}else{
 		layoutmat=matrix(
 			rep(1, heatmap_height*heatmap_width), 
@@ -1040,7 +1047,7 @@ predictor_sample_ids=good_pairs_map[,PredictorName];
 # Extract the predictor ALR and factors values in the right order
 response_alr=alr_categories_val[response_sample_ids,,drop=F];
 predictor_alr=alr_categories_val[predictor_sample_ids,,drop=F];
-factors=factors_wo_nas[predictor_sample_ids,];
+factors=factors_wo_nas[predictor_sample_ids,,drop=F];
 
 ##############################################################################
 
