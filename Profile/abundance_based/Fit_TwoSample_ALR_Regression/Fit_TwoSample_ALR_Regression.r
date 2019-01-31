@@ -287,16 +287,22 @@ load_mapping=function(filename, src, dst){
 }
 
 intersect_pairings_map=function(pairs_map, keepers){
+
+	missing=character();
 	# Sets mappings to NA if they don't exist in the keepers array
 	num_rows=nrow(pairs_map);
 	for(cix in 1:2){
 		for(rix in 1:num_rows){
 			if(!any(pairs_map[rix, cix]==keepers)){
+				missing=c(missing, pairs_map[rix, cix]);
 				pairs_map[rix, cix]=NA;
 			}
 		}
 	}
-	return(pairs_map);
+	results=list();
+	results[["pairs"]]=pairs_map;
+	results[["missing"]]=missing;
+	return(results);
 }
 
 split_goodbad_pairings_map=function(pairs_map){
@@ -707,7 +713,8 @@ print(all_pairings_map);
 
 cat("Intersecting with samples in summary table:\n");
 intersect_res=intersect_pairings_map(all_pairings_map, st_samples);
-split_res=split_goodbad_pairings_map(intersect_res);
+pairs=intersect_res[["pairs"]];
+split_res=split_goodbad_pairings_map(pairs);
 good_pairs_map=split_res$good_pairs;
 bad_pairs_map=split_res$bad_pairs;
 
@@ -736,10 +743,22 @@ loaded_sample_info=c(
 	paste("Number of InComplete/UnMatched Pairings: ", num_incomplete_pairings, sep="")
 );
 
+if(length(intersect_res[["missing"]])){
+	missing_info=c(
+		"",
+		"Missing:",
+		capture.output(print(intersect_res[["missing"]]))
+	);
+}else{
+	missing_info=c();
+}
+
 incomplete_pairing_info=c(
 	"Incomplete Pairings: ",
 	capture.output(print(bad_pairs_map)),
-	""
+	"",
+	"(Double NA entries mean that the samples are missing from both groups.)",
+	missing_info
 );
 
 plot_text(loaded_sample_info);
@@ -922,7 +941,8 @@ cat("Total samples shared: ", num_shared_sample_ids, "\n");
 # Remove samples not in summary table 
 cat("Adjusting pairings map based on factor/summary table reconciliation...\n");
 intersect_res=intersect_pairings_map(good_pairs_map, shared_sample_ids);
-split_res=split_goodbad_pairings_map(intersect_res);
+pairs=intersect_res[["pairs"]];
+split_res=split_goodbad_pairings_map(pairs);
 good_pairs_map=split_res$good_pairs;
 bad_pairs_map=split_res$bad_pairs;
 paired_samples=as.vector(good_pairs_map);
@@ -969,7 +989,8 @@ model_var_arr=intersect(model_var_arr, factor_names_wo_nas);
 # Subset pairing map based on factor sample IDs
 cat("Adjusting pairings map based on post-NA removal samples...\n");
 intersect_res=intersect_pairings_map(good_pairs_map, factor_sample_ids_wo_nas);
-split_res=split_goodbad_pairings_map(intersect_res);
+pairs=intersect_res[["pairs"]]
+split_res=split_goodbad_pairings_map(pairs);
 good_pairs_map=split_res$good_pairs;
 bad_pairs_map=split_res$bad_pairs;
 paired_samples=as.vector(good_pairs_map);
