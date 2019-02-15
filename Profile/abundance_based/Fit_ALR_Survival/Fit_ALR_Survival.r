@@ -566,7 +566,7 @@ add_sign_col=function(coeff){
 ##############################################################################
 
 # Open main output file
-pdf(paste(OutputRoot, ".surival.pdf", sep=""), height=11, width=9.5);
+pdf(paste(OutputRoot, ".surival.pdf", sep=""), height=14, width=8.5);
 
 # Load summary file table counts 
 cat("\n");
@@ -742,6 +742,12 @@ if(NumALRPredictors >= num_st_categories){
 cat("Normalizing counts...\n");
 normalized=normalize(counts);
 
+cat("Reordering normalized...\n");
+mean_norm=apply(normalized, 2, mean);
+ord_ix=order(mean_norm, decreasing=T);
+normalized=normalized[,ord_ix, drop=F];
+counts=counts[,ord_ix, drop=F];
+
 # Assign 0's to values smaller than smallest abundance across entire dataset
 min_assay=min(normalized[normalized!=0]);
 cat("Lowest non-zero value: ", min_assay, "\n", sep="");
@@ -815,6 +821,8 @@ cat("Last Measured Time: ", last_measured_time, "\n");
 
 ###############################################################################
 
+cat("Building data structures for cohort/subject/times...\n");
+
 group_structure=list();
 
 for(sbj_ix in uniq_subj_ids){
@@ -832,10 +840,261 @@ for(sbj_ix in uniq_subj_ids){
 	group_structure[[coht]][[sbj_ix]]=list();
 	group_structure[[coht]][[sbj_ix]][["sample_id"]]=rownames(ordered);
 	group_structure[[coht]][[sbj_ix]][["times"]]=ordered[,TimeVarName];
+	group_structure[[coht]][[sbj_ix]][["death"]]=death_times[sbj_ix];
 }
 
-print(group_structure);
+#print(group_structure);
 
+###############################################################################
+
+plot_alr_over_time=function(ids, times, end_time, alrs, time_range, alr_range, colors, title=""){
+
+	max_m=3;
+	min_m=.25;
+	mult=max_m-min_m;
+	
+	par(mar=c(2, 4, .5, 4));
+
+	pad=function(rng, amt){
+		pad=abs(diff(rng))*amt;
+		return(c(rng[1]-pad, rng[2]+pad));
+	}
+	
+	xrang=pad(time_range,.05);
+	yrang=pad(alr_range,.1);
+
+	plot(0,0, type="n", xlim=xrang, ylim=yrang, ylab=title); 
+	
+	num_alrs=ncol(alrs);
+	for(cat_ix in 1:num_alrs){
+		points(times, alrs[ids, cat_ix], type="l", col=colors[cat_ix], lwd=max_m-(cat_ix/num_alrs)*mult);
+		#points(times, alrs[ids, cat_ix], type="l", col="black", lwd=.05);
+	}
+	for(cat_ix in 1:num_alrs){
+		points(times, alrs[ids, cat_ix], type="p", pch=16, cex=max_m-(cat_ix/num_alrs)*mult, col=colors[cat_ix]);
+	}
+	
+	for(et in end_time){
+		if(!is.na(et)){
+			abline(v=et, col="grey");
+		}
+	}
+
+}
+
+plot_death_over_time=function(deaths, time_range, title){
+
+
+	pad=function(rng, amt){
+		pad=abs(diff(rng))*amt;
+		return(c(rng[1]-pad, rng[2]+pad));
+	}
+	xrang=pad(time_range, .05);
+
+	num_subj=length(deaths);
+	deaths=deaths[order(deaths)];
+
+	cat("Deaths: \n");
+	print(deaths);
+
+	deaths_noNA=deaths[!is.na(deaths)];
+
+	uniq_times=unique(c(0,deaths_noNA));	
+	num_utimes=length(uniq_times);
+
+	alive=numeric(num_utimes);
+	times=numeric(num_utimes);
+
+	cur_alive=num_subj;
+	
+	for(i in 1:num_utimes){
+
+		curtime=uniq_times[i];	
+		num_died=sum(curtime==deaths_noNA)
+
+		cur_alive=cur_alive-num_died;
+		alive[i]=cur_alive;
+						
+		times[i]=curtime;
+	}
+
+	prop_alive=alive/num_subj;
+
+	prop_alive=c(prop_alive, prop_alive[num_utimes], prop_alive[num_utimes]);
+	times=c(times, times[num_utimes], time_range[2]);
+
+
+	par(mar=c(2, 4, .5, 4));
+	plot(0,0, type="n", xlim=xrang, ylim=c(-.05, 1.05), ylab=title); 
+	axis(4, at=(0:num_subj)/num_subj, labels=0:num_subj, las=2);
+	for(i in 1:length(times)){
+		points(c(times[i], times[i+1]), c(prop_alive[i], prop_alive[i]), type="l");
+	}
+	
+
+	
+}
+
+plot_category_colors=function(alrs, colors){
+	
+	cat("Plotting category colors...\n");
+	names=colnames(alrs);
+	num_cat=ncol(alrs);
+
+	par(mar=c(2, 4, .5, 4));
+	plot(0,0, type="n", xlim=c(0,10), ylim=c(0,1), ylab="", xlab="", bty="n", xaxt="n", yaxt="n");
+	print(names);
+	for(i in 1:num_cat){
+		points(0, 1-(i/num_cat), col=colors[i], pch=16);
+		text(0, 1-(i/num_cat), names[i], pos=4);
+	}
+	
+
+}
+
+get_colors=function(num_col, alpha=1){
+        colors=hsv(seq(0,1,length.out=num_col+1), c(1,.5), c(1,.75,.5), alpha=alpha);
+        color_mat_dim=ceiling(sqrt(num_col));
+        color_pad=rep("grey", color_mat_dim^2);
+        color_pad[1:num_col]=colors[1:num_col];
+        color_mat=matrix(color_pad, nrow=color_mat_dim, ncol=color_mat_dim);
+        colors=as.vector(t(color_mat));
+        colors=colors[colors!="grey"];
+}
+
+###############################################################################
+
+alr_range=range(alr_categories_val);
+
+#colors=rainbow(NumALRPredictors, end=0.66);
+colors=get_colors(NumALRPredictors);
+
+plots_per_page=6;
+
+par(oma=c(1,0,4,1));
+
+for(coht_ix in uniq_coht_ids){
+	par(mfrow=c(plots_per_page,1));
+
+	cat("Working on Cohort: ", coht_ix, "\n");
+	subj_in_coht=names(group_structure[[coht_ix]])
+	plot_ix=1;
+
+	for(subj_ix in subj_in_coht){
+
+		cat("  Subject: ", subj_ix, "\n");
+		samp_ids=group_structure[[coht_ix]][[subj_ix]][["sample_id"]];
+		times=group_structure[[coht_ix]][[subj_ix]][["times"]];
+		death=group_structure[[coht_ix]][[subj_ix]][["death"]];
+		plot_alr_over_time(samp_ids, times, death, 
+			alr_categories_val[samp_ids,,drop=F], 
+			c(0, last_measured_time), alr_range, colors,
+			title=subj_ix);
+
+		if(plot_ix==1){
+			mtext(coht_ix, side=3, line=0, outer=T, font=2, cex=2);
+		}
+
+		if(plot_ix==plots_per_page-1 || subj_ix==tail(subj_in_coht,1)){
+			plot_category_colors(alr_categories_val, colors);
+			plot_ix=1;
+		}else{
+			plot_ix=plot_ix+1;
+		}
+	}
+}
+
+# Collapse individuals into groups
+alr_by_coht=list();
+num_alr_cat=ncol(alr_categories_val);
+
+for(coht_ix in uniq_coht_ids){
+
+	cat("Working on Cohort: ", coht_ix, "\n");
+	subj_in_coht=names(group_structure[[coht_ix]])
+	num_subj_in_coht=length(subj_in_coht);
+
+	alr_by_coht[[coht_ix]]=list();
+	alr_by_coht[[coht_ix]][["death"]]=numeric();
+	alr_by_coht[[coht_ix]][["alr"]]=list();
+	for(time_ix in uniq_times){
+		alr_by_coht[[coht_ix]][["alr"]][[as.character(time_ix)]]=numeric();
+	}
+
+	# Rearrange samples by time
+	for(subj_ix in subj_in_coht){
+		times=group_structure[[coht_ix]][[subj_ix]][["times"]];
+		samp_ids=group_structure[[coht_ix]][[subj_ix]][["sample_id"]];
+		death=group_structure[[coht_ix]][[subj_ix]][["death"]];
+		alr_by_coht[[coht_ix]][["death"]]=c(alr_by_coht[[coht_ix]][["death"]], death);
+		
+		num_times=length(times);
+
+		for(time_ix in 1:num_times){
+			cur_time=as.character(times[time_ix]);	
+			cur_samp=samp_ids[time_ix];
+
+			old_name=rownames(alr_by_coht[[coht_ix]][["alr"]][[cur_time]]);	
+
+			alr_by_coht[[coht_ix]][["alr"]][[cur_time]]=rbind(
+				alr_by_coht[[coht_ix]][["alr"]][[cur_time]],
+				alr_categories_val[cur_samp,]
+				);
+
+			rownames(alr_by_coht[[coht_ix]][["alr"]][[cur_time]])=c(
+				old_name, cur_samp);
+			
+		}
+	}
+}
+
+#print(alr_by_coht);
+
+avg_alr_by_coht=list();
+
+num_uniq_time_pts=length(uniq_times);
+
+for(coht_ix in uniq_coht_ids){
+	cat("Working on Cohort: ", coht_ix, "\n");
+	cur_coht=alr_by_coht[[coht_ix]];
+
+	tmp_avg=matrix(NA, nrow=num_uniq_time_pts, ncol=num_alr_cat);
+	rownames(tmp_avg)=uniq_times;
+	colnames(tmp_avg)=colnames(alr_categories_val);
+
+	for(time_ix in as.character(uniq_times)){
+		tmp_avg[time_ix,]=apply(cur_coht[["alr"]][[time_ix]], 2, mean);
+	}
+
+	avg_alr_by_coht[[coht_ix]]=tmp_avg;
+
+}
+print(avg_alr_by_coht);
+
+
+plots_per_age=6;
+par(mfrow=c(plots_per_page,1));
+plot_ix=0;
+for(coht_ix in uniq_coht_ids){
+
+	plot_alr_over_time(
+		as.character(uniq_times), 
+		uniq_times, 
+		alr_by_coht[[coht_ix]][["death"]],
+		avg_alr_by_coht[[coht_ix]],
+		c(0, last_measured_time), alr_range, colors,
+		title=coht_ix);
+	
+	plot_death_over_time(
+		alr_by_coht[[coht_ix]][["death"]], c(0, last_measured_time), coht_ix
+	);
+
+	if((plot_ix %% plots_per_page)==0){
+		mtext("Combined by Cohort", side=3, line=0, outer=T, font=2, cex=2);
+	}
+
+	plot_ix=plot_ix+1;
+}
 
 ###############################################################################
 
