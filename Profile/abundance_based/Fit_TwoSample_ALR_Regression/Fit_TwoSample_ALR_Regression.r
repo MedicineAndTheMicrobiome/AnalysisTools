@@ -1394,6 +1394,18 @@ mtext("Regression Coefficient", side=2, font=1, line=3.75);
 
 ###############################################################################
 
+# Write out predictor ALR predictors
+write.table(category_alr_pval_mat[,1:NumPredVariables, drop=F],
+	file=paste(OutputRoot, ".", PredictorName, ".alr_as_pred.pvals.tsv", sep=""), 
+	sep="\t", quote=F, col.names=NA, row.names=T);
+
+write.table(category_alr_coef_mat[,1:NumPredVariables, drop=F],
+	file=paste(OutputRoot, ".", PredictorName, ".alr_as_pred.coefs.tsv", sep=""), 
+	sep="\t", quote=F, col.names=NA, row.names=T);
+
+
+###############################################################################
+
 cat("Done.\n");
 #dev.off();
 print(warnings());
