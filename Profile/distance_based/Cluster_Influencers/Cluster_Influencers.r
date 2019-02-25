@@ -696,6 +696,9 @@ for(ix in iterations){
 			print(levels);
 			cat("Error: Too many factor levels!\n");
 			next;
+		}else if(num_levels==1){
+			cat("Factor has only 1 level.  Skipping...\n");
+			next;
 		}
 
 		for(lix in 1:num_levels){
