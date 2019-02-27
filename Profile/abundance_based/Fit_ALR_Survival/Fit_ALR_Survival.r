@@ -302,7 +302,6 @@ additive_log_rato=function(ordered_matrix){
 
 plot_text=function(strings){
 	par(family="Courier");
-	par(oma=rep(.1,4));
 	par(mar=rep(0,4));
 
 	num_lines=length(strings);
@@ -566,7 +565,7 @@ add_sign_col=function(coeff){
 ##############################################################################
 
 # Open main output file
-pdf(paste(OutputRoot, ".surival.pdf", sep=""), height=14, width=8.5);
+pdf(paste(OutputRoot, ".survival.pdf", sep=""), height=14, width=8.5);
 
 # Load summary file table counts 
 cat("\n");
@@ -627,12 +626,14 @@ cat("\n");
 
 # Load predictors to include in model
 model_var_arr=c(TimeVarName, SubjVarName, CohtVarName);
+model_pred=c();
 if(ModelVarFile!=""){
-	model_var_arr=c(model_var_arr, load_list(ModelVarFile));
+	model_pred=load_list(ModelVarFile);
 	cat("Model Variables:\n");
-	print(model_var_arr);
+	print(model_pred);
 	cat("\n");
 }
+model_var_arr=c(model_var_arr, model_pred);
 
 # Load variables to require after NA removal
 required_arr=NULL;
@@ -847,7 +848,7 @@ for(sbj_ix in uniq_subj_ids){
 
 ###############################################################################
 
-plot_alr_over_time=function(ids, times, end_time, alrs, time_range, alr_range, colors, title=""){
+plot_alr_over_time=function(ids, times, end_time, alrs, time_range, alr_range, colors, title="", keep=NULL){
 
 	max_m=3;
 	min_m=.25;
@@ -863,15 +864,21 @@ plot_alr_over_time=function(ids, times, end_time, alrs, time_range, alr_range, c
 	xrang=pad(time_range,.05);
 	yrang=pad(alr_range,.1);
 
+	cat_names=colnames(alrs);
+
 	plot(0,0, type="n", xlim=xrang, ylim=yrang, ylab=title); 
 	
 	num_alrs=ncol(alrs);
 	for(cat_ix in 1:num_alrs){
-		points(times, alrs[ids, cat_ix], type="l", col=colors[cat_ix], lwd=max_m-(cat_ix/num_alrs)*mult);
+		if(is.null(keep) || any(cat_names[cat_ix]==keep)){
+			points(times, alrs[ids, cat_ix], type="l", col=colors[cat_ix], lwd=max_m-(cat_ix/num_alrs)*mult);
+		}
 		#points(times, alrs[ids, cat_ix], type="l", col="black", lwd=.05);
 	}
 	for(cat_ix in 1:num_alrs){
-		points(times, alrs[ids, cat_ix], type="p", pch=16, cex=max_m-(cat_ix/num_alrs)*mult, col=colors[cat_ix]);
+		if(is.null(keep) || any(cat_names[cat_ix]==keep)){
+			points(times, alrs[ids, cat_ix], type="p", pch=16, cex=max_m-(cat_ix/num_alrs)*mult, col=colors[cat_ix]);
+		}
 	}
 	
 	for(et in end_time){
@@ -1098,8 +1105,302 @@ for(coht_ix in uniq_coht_ids){
 
 ###############################################################################
 
-#print(rownames(alr_categories_val));
-#print(alr_categories_val);
+# Add subject ID and Time to ALR
+samp_ids=rownames(factors);
+factors_w_alr=cbind(factors, alr_categories_val[samp_ids,]);
+
+# Estimate last study time
+last_study_time=max(c(death_times, factors[,TimeVarName]), na.rm=T);
+
+cat("Last Recorded Time of Study: ", last_study_time, "\n");
+last_study_time=last_study_time+1;
+cat("  Using last study time of: ", last_study_time, "\n");
+
+# Add death 
+event_df=as.data.frame(matrix(0, nrow=length(death_times), ncol=3));
+colnames(event_df)=c(TimeVarName, SubjVarName, "Status");
+rownames(event_df)=names(death_times);
+
+for(sbj in names(death_times)){
+	if(is.na(death_times[sbj])){
+		dora=0;
+		st_time=last_study_time;
+	}else{
+		dora=1;
+		st_time=death_times[sbj];
+	}
+	event_df[sbj,]=c(st_time, sbj, dora);
+}
+
+
+change_variable_name=function(current, new, df){
+	cat("Changing variable name from: ", current, " to: ", new, "\n");
+	cur_names=colnames(df);
+	ix=which(cur_names==current);
+	cur_names[ix]=new;
+	colnames(df)=cur_names;
+	return(df);
+}
+
+times_ge_zero=factors_w_alr[,TimeVarName]>0;
+times_eq_zero=factors_w_alr[,TimeVarName]==0;
+
+
+print(head(event_df));
+print(head(factors_w_alr));
+
+
+merge_events_w_factors=function(fact_alr, events, time_var_name, subj_var_name){
+	# Add tstart, tstop, and endpt 
+	
+	num_rows=nrow(fact_alr);
+	
+	tstart=rep(0, num_rows);
+	tend=rep(0, num_rows);
+	endpt=rep(0, num_rows);
+	appended_table=cbind(tstart, tend, endpt, fact_alr);
+
+	subjects=unique(events[,subj_var_name]);
+	cat("Subjects:\n");
+	print(subjects);
+	
+	out_table=c();
+
+	for(sbj_id in subjects){
+		#cat("\n\nWorking on: ", sbj_id, "\n");
+		rows_ix=(appended_table[,subj_var_name]==sbj_id);
+		sbj_data=appended_table[rows_ix,];
+		times=sbj_data[,time_var_name];
+		sort_ix=order(times);
+		sbj_data=sbj_data[sort_ix,];
+
+		sbj_event=events[sbj_id,];
+
+		num_times=nrow(sbj_data);
+		#cat("Num Time Pts: ", num_times, "\n");
+
+		# Set status
+		if(sbj_event["Status"]==1){
+			sbj_data[num_times, "endpt"]=1;
+		}
+
+		# Set tend to the measure time
+		for(i in 1:num_times){
+			sbj_data[i, "tstart"]=sbj_data[i, time_var_name];
+		}
+
+		for(i in 1:(num_times-1)){
+			sbj_data[i, "tend"]=sbj_data[i+1, "tstart"];
+		}
+
+		sbj_data[num_times, "tend"]=as.numeric(sbj_event[time_var_name]);
+
+		#print(sbj_event);
+		#print(sbj_data);
+
+		out_table=rbind(out_table, sbj_data);
+	}
+
+	return(out_table);
+}
+
+merged_table=merge_events_w_factors(factors_w_alr, event_df, TimeVarName, SubjVarName);
+
+#print(merged_table);
+
+tstarts=merged_table[,"tstart"];
+tend=merged_table[,"tend"];
+degen_ix=which(tstarts==tend);
+
+if(length(degen_ix)){
+	cat("Adjusting degenerate time...\n");
+
+	min_time_step=min(diff(uniq_times));
+	time_adj=min_time_step/10;
+
+	cat("Adding: ", time_adj, "\n");
+
+	for(dix in degen_ix){
+		merged_table[,"tend"]=merged_table[,"tend"]+time_adj;
+	}
+}
+
+###############################################################################
+
+cat("Fitting Full Model: Covariates + ALR Categories\n");
+full_form_string=paste("Surv(tstart, tend, endpt)~", paste(c(model_pred, CohtVarName, alr_cat_names), collapse="+"));
+cat("Cox Proportional Hazards Formula: ", full_form_string, "\n");
+full_surv_form=as.formula(full_form_string);
+full_coxph_fit=coxph(full_surv_form, data=merged_table);
+full_coxph_fit_summ=summary(full_coxph_fit);
+
+
+cat("Fitting Reduced Model: Covariates (only)\n");
+reduced_form_string=paste("Surv(tstart, tend, endpt)~", paste(c(model_pred, CohtVarName), collapse="+"));
+cat("Cox Proportional Hazards Formula: ", reduced_form_string, "\n");
+reduced_surv_form=as.formula(reduced_form_string);
+reduced_coxph_fit=coxph(reduced_surv_form, data=merged_table);
+reduced_coxph_fit_summ=summary(reduced_coxph_fit);
+
+
+full_coxph_res_text=capture.output(summary(full_coxph_fit));
+reduced_coxph_res_text=capture.output(summary(reduced_coxph_fit));
+
+###############################################################################
+
+notes=c(
+	"Positive 'coef' increase risk, 0 means no change in risk.",
+	"exp(coef) are the the hazard ratios. A hazard ratio of 1 means no change.",
+	"Likelihood, Wald and Score are global stat signf of model. They should converge for large N."
+);
+
+par(mfrow=c(1,1));
+
+par(oma=c(0,0,2,0));
+plot_text(c(
+	notes,
+	"",
+	full_coxph_res_text)
+);
+mtext("Full Model", outer=T, font=2, cex=2);
+
+par(oma=c(0,0,2,0));
+plot_text(c(
+	notes,
+	"",
+	reduced_coxph_res_text)
+);
+mtext("Reduced Model", outer=T, font=2, cex=2);
+
+###############################################################################
+
+number_cohts=length(uniq_coht_ids);
+
+par(mfrow=c(number_cohts,2));
+par(mar=c(4,4,1,1));
+
+lowess_interval=min(diff(uniq_times))/2;
+
+for(coht_ix in uniq_coht_ids){
+	cat("Subsetting for: ", coht_ix, "\n");
+	sub_merged=merged_table[merged_table[,CohtVarName]==coht_ix,, drop=F];
+
+	# Survival probability
+	full_pred=predict(full_coxph_fit, sub_merged, type="expected");
+	reduced_pred=predict(reduced_coxph_fit, sub_merged, type="expected");
+
+	plot(sub_merged[,"tend"], exp(-full_pred), ylim=c(0,1), main="Full", ylab=coht_ix, xlab="");
+	points(lowess(sub_merged[,"tend"], exp(-full_pred), delta=lowess_interval), type="l", col="blue");
+
+	plot(sub_merged[,"tend"], exp(-reduced_pred), ylim=c(0,1), main="Reduced", ylab="", xlab="");
+	points(lowess(sub_merged[,"tend"], exp(-reduced_pred), delta=lowess_interval), type="l", col="blue");
+
+	mtext("Survival Probability", outer=T, font=2, cex=1.2);
+}
+
+for(coht_ix in uniq_coht_ids){
+
+	cat("Subsetting for: ", coht_ix, "\n");
+	sub_merged=merged_table[merged_table[,CohtVarName]==coht_ix,, drop=F];
+
+	# Expected number of events
+	full_pred=predict(full_coxph_fit, sub_merged, type="expected");
+	reduced_pred=predict(reduced_coxph_fit, sub_merged, type="expected");
+
+	plot(sub_merged[,"tend"], full_pred, main="Full", xlab="", ylab=coht_ix, ylim=c(0, 3));
+	points(lowess(sub_merged[,"tend"], full_pred, delta=lowess_interval), type="l", col="blue");
+
+	plot(sub_merged[,"tend"], reduced_pred, main="Reduced", xlab="", ylab="", ylim=c(0,3));
+	points(lowess(sub_merged[,"tend"], reduced_pred, delta=lowess_interval), type="l", col="blue");
+
+	mtext("Expected Number of Events", outer=T, font=2, cex=1.2);
+
+}
+
+
+###############################################################################
+
+full_coef_table=full_coxph_fit_summ$coefficients;
+
+signif_coefficients=(full_coef_table[,"Pr(>|z|)"]<=.05)
+signif_categories=full_coef_table[signif_coefficients,,drop=F];
+signif_cat_coef_table=signif_categories[intersect(rownames(signif_categories), alr_cat_names),];
+print(signif_cat_coef_table);
+
+signif_cat=rownames(signif_cat_coef_table);
+
+par(mfrow=c(1,1));
+plot_text(c(
+	"Significant ALR Categories:",
+	capture.output(print(signif_cat_coef_table)),
+	"",
+	"Subsequent time series plots only illustrate significant categories."
+));
+
+par(mfrow=c(plots_per_page,1));
+
+for(coht_ix in uniq_coht_ids){
+	par(mfrow=c(plots_per_page,1));
+
+	cat("Working on Cohort: ", coht_ix, "\n");
+	subj_in_coht=names(group_structure[[coht_ix]])
+	plot_ix=1;
+
+	for(subj_ix in subj_in_coht){
+
+		cat("  Subject: ", subj_ix, "\n");
+		samp_ids=group_structure[[coht_ix]][[subj_ix]][["sample_id"]];
+		times=group_structure[[coht_ix]][[subj_ix]][["times"]];
+		death=group_structure[[coht_ix]][[subj_ix]][["death"]];
+		plot_alr_over_time(samp_ids, times, death, 
+			alr_categories_val[samp_ids, ,drop=F], 
+			c(0, last_measured_time), alr_range, colors,
+			title=subj_ix, keep=signif_cat);
+
+		if(plot_ix==1){
+			mtext(coht_ix, side=3, line=0, outer=T, font=2, cex=2);
+		}
+
+		if(plot_ix==plots_per_page-1 || subj_ix==tail(subj_in_coht,1)){
+			plot_category_colors(alr_categories_val, colors);
+			plot_ix=1;
+		}else{
+			plot_ix=plot_ix+1;
+		}
+	}
+}
+
+
+print(head(merged_table));
+
+
+
+###############################################################################
+
+if(0){
+
+#pred_res=predict(coxph_fit, type="response", se.fit=T);
+#print(pred_res);
+lp_red=predict(coxph_fit,type="lp")
+exp_pred=predict(coxph_fit,type="expected")
+risk_pred=predict(coxph_fit,type="risk",se.fit=TRUE)
+terms_pred=predict(coxph_fit,type="terms",se.fit=TRUE)
+
+
+print(coxph_fit$y);
+print(coxph_fit$linear.predictors);
+
+print(summary(lp_red));
+
+print(summary(exp_pred));
+
+print(summary(risk_pred));
+
+print(summary(terms_pred));
+}
+
+
+###############################################################################
 
 
 cat("Done.\n");
