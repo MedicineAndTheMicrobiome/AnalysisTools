@@ -1370,12 +1370,128 @@ for(coht_ix in uniq_coht_ids){
 	}
 }
 
+###############################################################################
 
-print(head(merged_table));
+print(last_measured_time);
+print(death_times);
+death_time_nona=death_times[!is.na(death_times)];
+print(death_time_nona);
+num_death_time_nona=length(death_time_nona);
+death_time_95pi=quantile(death_time_nona, c(.025, .5, .975));
 
+par(mfrow=c(2,2));
+plot(0,0, type="n", 
+	xlim=c(-.5,.5), ylim=c(0, last_measured_time), 
+	ylab="Event Times", xaxt="n");
+abline(h=death_time_95pi[c(1,3)], col="blue", lty=2);
+abline(h=death_time_95pi[2], col="blue", lwd=2);
+axis(4, death_time_95pi, labels=c("95% LB", "Median", "95% UB"));
+points(rnorm(num_death_time_nona, 0, .05), death_time_nona);
 
+cat("Prediction Intervals around Death Times:\n");
+print(death_time_95pi);
+
+hist(death_time_nona, xlim=c(0, last_measured_time), xlab="Death Times",
+	main="Event Times");
+
+print(factors);
+
+epochs=list();
+epochs[["Start"]]=c(0,0);
+epochs[["Before"]]=c(0, death_time_95pi[1]);
+epochs[["During"]]=c(death_time_95pi[1], death_time_95pi[2]);
+epochs[["After"]]=c(death_time_95pi[2], last_measured_time);
+epochs[["End"]]=c(last_measured_time, last_measured_time);
+
+print(epochs);
+epoch_names=names(epochs);
 
 ###############################################################################
+
+plot_alr_diff=function(alrA, alrB, nameA, nameB, title, y_range){
+
+	mean_alra=mean(alrA[,1]);
+	mean_alrb=mean(alrB[,1]);
+
+	tt_res=t.test(alrA[,1], alrB[,1]);
+
+	plot(0,0, type="n", xlim=c(0,1), ylim=y_range, main="",
+		xlab="", ylab="ALR", xaxt="n");
+
+	mtext(text=title, line=1.8, cex=1.2, font=2);
+	mtext(text=paste(nameA, ": u=", round(mean_alra,4), sep=""), line=1.2, cex=.6);
+	mtext(text=paste(nameB, ": u=", round(mean_alrb,4), sep=""), line=.6, cex=.6);
+	mtext(text=paste("T-Test p-value: ", round(tt_res$p.value, 4), sep=""), line=0, cex=.6, font=3);
+
+	axis(1, at=c(.25, .75), labels=c(nameA, nameB));
+
+	alrA_len=nrow(alrA);
+	alrB_len=nrow(alrB);
+
+	points(c(.15,.35), c(mean_alra, mean_alra), type="l", col="blue");
+	points(c(.65,.85), c(mean_alrb, mean_alrb), type="l", col="blue");
+
+	points(rep(.25, alrA_len), alrA[,1]);
+	points(rep(.75, alrB_len), alrB[,1]);
+
+}
+
+num_uniq_cohts=length(uniq_coht_ids);
+num_epochs=length(epoch_names);
+
+samp_tpt=factors[,TimeVarName];
+samp_cht=factors[,CohtVarName];
+samp_names=rownames(factors);
+
+# Compare the cohorts by epochs
+par(mar=c(1,3,5,1));
+par(oma=c(1,1,2,1));
+
+for(cat_ix in signif_cat){
+
+	alr_range=range(alr_categories_val[, cat_ix]);
+
+	for(ep_nm in epoch_names){
+
+		par(mfrow=c(3,3));
+		cat("Look at epoch: ", ep_nm, "\n");
+
+		ep_range=epochs[[ep_nm]];
+		ep_ix=(samp_tpt>=ep_range[1] & samp_tpt<=ep_range[2]);
+		
+		for(chtA_ix in 1:num_uniq_cohts){
+			chtA=uniq_coht_ids[chtA_ix];
+			a_pts_ix=(samp_cht==chtA) & ep_ix;
+		
+
+			for(chtB_ix in 1:num_uniq_cohts){
+				chtB=uniq_coht_ids[chtB_ix];
+				b_pts_ix=(samp_cht==chtB) & ep_ix;
+
+				if(chtA_ix<chtB_ix){
+					cat("Comparing: ", chtA, " vs ", 
+						chtB, "\n");
+
+					plot_alr_diff(
+						alr_categories_val[a_pts_ix, cat_ix, drop=F], 
+						alr_categories_val[b_pts_ix, cat_ix, drop=F],
+						nameA=as.character(chtA),
+						nameB=as.character(chtB),
+						title=cat_ix,
+						y_range=alr_range
+					);
+				}
+			}
+		}
+
+		mtext(paste(ep_nm, ": [", epochs[[ep_nm]][1], ", ", epochs[[ep_nm]][2], "]", sep="") , side=3, outer=T, font=2);
+
+	}
+}
+
+par(mfrow=c(num_epochs, num_epochs));
+# Compare epochs by cohorts
+
 
 if(0){
 
