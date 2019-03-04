@@ -101,7 +101,7 @@ ssd=sd(as.vector(counts_mat));
 cat("Num Categories: ", num_categories, "\n");
 cat("Top Categories:\n");
 for(i in 1:(min(num_categories, 150))){
-	cat("\t[", sprintf("%0.4f",nca_sort$x[i]), "]\t", category_names[nca_sort$ix[i]], "\n", sep="");
+	cat("(", i, ")\t[", sprintf("%0.4f",nca_sort$x[i]), "]\t", category_names[nca_sort$ix[i]], "\n", sep="");
 } 
 cat("\n");
 cat("Data Depth Min: ", smin, "\n", sep="");
