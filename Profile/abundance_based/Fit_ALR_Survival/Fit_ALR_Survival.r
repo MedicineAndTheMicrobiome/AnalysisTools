@@ -1379,32 +1379,58 @@ print(death_time_nona);
 num_death_time_nona=length(death_time_nona);
 death_time_95pi=quantile(death_time_nona, c(.025, .5, .975));
 
+jitter=rnorm(num_death_time_nona, 0, .1);
+
+par(mar=c(4,4,4,4));
 par(mfrow=c(2,2));
 plot(0,0, type="n", 
 	xlim=c(-.5,.5), ylim=c(0, last_measured_time), 
-	ylab="Event Times", xaxt="n");
+	ylab="Event Times", xlab="", xaxt="n", main="Event Prediction Intervals");
 abline(h=death_time_95pi[c(1,3)], col="blue", lty=2);
 abline(h=death_time_95pi[2], col="blue", lwd=2);
 axis(4, death_time_95pi, labels=c("95% LB", "Median", "95% UB"));
-points(rnorm(num_death_time_nona, 0, .05), death_time_nona);
+points(jitter, death_time_nona);
 
 cat("Prediction Intervals around Death Times:\n");
 print(death_time_95pi);
 
-hist(death_time_nona, xlim=c(0, last_measured_time), xlab="Death Times",
-	main="Event Times");
-
-print(factors);
-
 epochs=list();
 epochs[["Start"]]=c(0,0);
 epochs[["Before"]]=c(0, death_time_95pi[1]);
-epochs[["During"]]=c(death_time_95pi[1], death_time_95pi[2]);
-epochs[["After"]]=c(death_time_95pi[2], last_measured_time);
+epochs[["During"]]=c(death_time_95pi[1], death_time_95pi[3]);
+epochs[["After"]]=c(death_time_95pi[3], last_measured_time);
 epochs[["End"]]=c(last_measured_time, last_measured_time);
 
 print(epochs);
 epoch_names=names(epochs);
+num_epochs=length(epoch_names);
+
+###############################################################################
+
+plot(0,0, type="n", 
+	xlim=c(-.5,.5+num_epochs+2), ylim=c(0, last_measured_time), 
+	ylab="Event Times", xlab="", xaxt="n", main="Defined Epochs");
+
+for(i in 1:num_epochs){
+	ep_nm=epoch_names[i];
+	points(
+		c(i,i),
+		c(epochs[[ep_nm]][1], epochs[[ep_nm]][2]), 
+		lwd=5, type="l",
+		col="green");
+}
+
+for(i in 1:num_epochs){
+	ep_nm=epoch_names[i];
+	text(i, mean(epochs[[ep_nm]]), labels=ep_nm, font=2, pos=4 );
+}
+
+points(jitter, death_time_nona);
+
+###############################################################################
+
+hist(death_time_nona, xlim=c(0, last_measured_time), xlab="Event Times",
+	main="Event Times");
 
 ###############################################################################
 
@@ -1418,7 +1444,18 @@ plot_alr_diff=function(alrA, alrB, nameA, nameB, title, y_range){
 	plot(0,0, type="n", xlim=c(0,1), ylim=y_range, main="",
 		xlab="", ylab="ALR", xaxt="n");
 
-	mtext(text=title, line=1.8, cex=1.2, font=2);
+	if(tt_res$p.value<.001){
+		sig_char="***";
+	}else if(tt_res$p.value<.01){
+		sig_char="**";
+	}else if(tt_res$p.value<.05){
+		sig_char="*";
+	}else{
+		sig_char="";
+	}
+
+	mtext(text=paste(title, sig_char, sep=""), line=1.8, cex=1.2, font=2);
+
 	mtext(text=paste(nameA, ": u=", round(mean_alra,4), sep=""), line=1.2, cex=.6);
 	mtext(text=paste(nameB, ": u=", round(mean_alrb,4), sep=""), line=.6, cex=.6);
 	mtext(text=paste("T-Test p-value: ", round(tt_res$p.value, 4), sep=""), line=0, cex=.6, font=3);
@@ -1489,8 +1526,156 @@ for(cat_ix in signif_cat){
 	}
 }
 
-par(mfrow=c(num_epochs, num_epochs));
+
+###############################################################################
+
 # Compare epochs by cohorts
+#print(factors)
+
+avg_by_subj=function(comb_fact, subj_id_colname, coht_id_colname, alr_id_colname){
+
+	uniq_subj_ids=unique(comb_fact[,subj_id_colname]);
+	out_mat=as.data.frame(matrix(NA, nrow=length(uniq_subj_ids), ncol=2));
+	colnames(out_mat)=c(coht_id_colname, alr_id_colname);
+	rownames(out_mat)=uniq_subj_ids;
+
+	for(sbj in uniq_subj_ids){
+		subj_rec_ix=comb_fact[,subj_id_colname]==sbj;
+		subj_rec=comb_fact[subj_rec_ix,];
+		mean=mean(subj_rec[,alr_id_colname]);
+		out_mat[sbj, coht_id_colname]=as.character(subj_rec[1,coht_id_colname]);
+		out_mat[sbj, alr_id_colname]=mean;
+	}
+
+	return(out_mat);
+}
+
+
+plot_epoch_comp=function(alr_a_table, alr_b_table, nameA, nameB, alr_colname, cht_colname, cht_colors, alr_ranges){
+
+	subjects=sort(unique(rownames(alr_a_table), rownames(alr_b_table)));
+	num_subjects=length(subjects);
+
+	cat("Plotting: ", nameA, " vs. ", nameB, "\n", sep="");
+
+	shrd_sbj=intersect(rownames(alr_a_table), rownames(alr_b_table));
+	shrd_a=alr_a_table[shrd_sbj,,drop=F];
+	shrd_b=alr_b_table[shrd_sbj,,drop=F];
+
+	# Compute p-values within each cohort
+	chts=sort(unique(alr_a_table[,cht_colname]));
+	num_chts=length(chts);
+	legend_info=character(num_chts);
+	names(legend_info)=chts;
+	for(i in 1:num_chts){
+		cc=chts[i];
+		c_ix=(shrd_a[,cht_colname]==cc);
+		tres=t.test(shrd_a[c_ix,alr_colname], shrd_b[c_ix,alr_colname], paired=T);
+		pval=tres$p.value;
+
+		sigchar="";
+		if(!is.na(pval)){
+			if(pval<.001){
+				sigchar="***";
+			}else if(pval<.01){
+				sigchar="**";
+			}else if(pval<.05){
+				sigchar="*";
+			}
+		}
+
+		legend_info[cc]=paste(cc, sigchar, ", p=", round(pval,3), sep="");
+	}
+
+	# Setup plot area
+	alr_diff=diff(alr_ranges);
+	pad=alr_diff*.05;
+	plot_rang=c(alr_ranges[1]-pad, alr_ranges[2]+pad);
+
+	plot(0,0, type="n", xlim=plot_rang, ylim=plot_rang, xlab="", ylab="");
+
+	title(xlab=nameA, ylab=nameB, line=2, font.lab=2);
+	abline(a=0, b=1, col="grey", lty=1, lwd=2);
+
+	legend(plot_rang[1], plot_rang[2], 
+		legend=legend_info[chts],
+		fill=cht_colors[chts], bty="n");
+
+	# Plot each subject
+	for(i in 1:num_subjects){
+		subj_id=subjects[i];
+
+		a_alr=alr_a_table[subj_id, alr_colname];
+		b_alr=alr_b_table[subj_id, alr_colname];
+
+		pt_col=cht_colors[alr_a_table[subj_id, cht_colname]];
+
+		if(!is.na(a_alr) && is.na(b_alr)){
+			#abline(v=a_alr, col=pt_col, lwd=.5);
+			points(a_alr, alr_ranges[1]-pad, pch=4, col=pt_col);
+		}else if(is.na(a_alr) && !is.na(b_alr)){
+			#abline(h=b_alr, col=pt_col, lwd=.5);
+			points(alr_ranges[1]-pad, b_alr, pch=4, col=pt_col);
+		}else{
+			points(a_alr, b_alr, pch=19, col=pt_col);
+			points(a_alr, b_alr, cex=.2, col="black");
+		}
+
+	}
+
+}
+
+cht_colors=rainbow(num_uniq_cohts, start=0, end=2/3);
+names(cht_colors)=uniq_coht_ids;
+
+for(cat_ix in signif_cat){
+	cat("\nWorking on: ", cat_ix, "\n");	
+
+	par(mfrow=c(3,3));
+	par(mar=c(4,4,3,1));
+
+	alr_ranges=range(alr_categories_val[,cat_ix]);
+
+	for(ep_ix_A in 1:(num_epochs-1)){
+
+
+		ep_nm_A=epoch_names[ep_ix_A];
+		ep_range=epochs[[ep_nm_A]];
+                ep_ix=(samp_tpt>=ep_range[1] & samp_tpt<=ep_range[2]);
+		fact_A=factors[ep_ix,];
+
+		cur_alr_cat=alr_categories_val[rownames(fact_A), cat_ix];
+		combined_A=cbind(fact_A, cur_alr_cat);
+		#print(combined_A);
+
+		collapsed_A=avg_by_subj(combined_A, SubjVarName, CohtVarName, "cur_alr_cat");
+	
+		for(ep_ix_B in (ep_ix_A+1):num_epochs){
+
+			ep_nm_B=epoch_names[ep_ix_B];
+
+			cat("Comparing: ", ep_nm_A, " and ", ep_nm_B, "\n", sep="");
+
+			ep_range=epochs[[ep_nm_B]];
+			ep_ix=(samp_tpt>=ep_range[1] & samp_tpt<=ep_range[2]);
+			fact_B=factors[ep_ix,];
+
+			cur_alr_cat=alr_categories_val[rownames(fact_B), cat_ix];
+			combined_B=cbind(fact_B, cur_alr_cat);
+			#print(combined_B);
+
+			collapsed_B=avg_by_subj(combined_B, SubjVarName, CohtVarName, "cur_alr_cat");
+
+			plot_epoch_comp(collapsed_A, collapsed_B, ep_nm_A, ep_nm_B, 
+				"cur_alr_cat", CohtVarName, cht_colors, alr_ranges);
+			mtext(cat_ix, side=3, outer=T, font=2);
+		}
+	}
+
+
+
+}
+
 
 
 if(0){
