@@ -28,6 +28,7 @@ params=c(
 	
 	"timeofdeath_file", "d", 1, "character",
 
+	"pvalue_cutoff", "p", 2, "numeric",
 	"output_root", "o", 1, "character"
 );
 
@@ -35,6 +36,7 @@ opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
 script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
 
 NUM_TOP_PRED_CAT=20;
+PVAL_CUTOFF=.1;
 
 usage = paste(
 	"\nUsage:\n", script_name, "\n",
@@ -54,6 +56,7 @@ usage = paste(
 	"\n",
 	"	-d <time of death/status change file>\n",
 	"\n",
+	"	[-p <pvalue cutoff, default=", PVAL_CUTOFF, ">]\n",
 	"	-o <output filename root>\n",
 	"\n",
 	"\n",
@@ -98,6 +101,7 @@ ShortenCategoryNames="";
 RequiredFile="";
 ReferenceLevelsFile="";
 ModelVarFile="";
+PvalCutoff=PVAL_CUTOFF;
 
 if(length(opt$num_top_pred)){
 	NumALRPredictors=opt$num_top_pred;
@@ -123,6 +127,10 @@ if(length(opt$reference_levels)){
         ReferenceLevelsFile=opt$reference_levels;
 }
 
+if(length(opt$pvalue_cutoff)){
+	PvalCutoff=opt$pvalue_cutoff;	
+}
+
 ###############################################################################
 
 input_param=capture.output({
@@ -141,6 +149,7 @@ input_param=capture.output({
 	cat("  Reference Levels File: ", ReferenceLevelsFile, "\n", sep="");
 	cat("\n");
 	cat("Time of Death/Event File: ", TimeOfDeathFile, "\n", sep="");
+	cat("P-value Cutoff: ", PvalCutoff, "\n", sep="");
 	cat("Output File Root: ", OutputRoot, "\n", sep="");
 	cat("\n");
 });
@@ -871,7 +880,7 @@ plot_alr_over_time=function(ids, times, end_time, alrs, time_range, alr_range, c
 	num_alrs=ncol(alrs);
 	for(cat_ix in 1:num_alrs){
 		if(is.null(keep) || any(cat_names[cat_ix]==keep)){
-			points(times, alrs[ids, cat_ix], type="l", col=colors[cat_ix], lwd=max_m-(cat_ix/num_alrs)*mult);
+			points(times, alrs[ids, cat_ix], type="l", col=colors[cat_names[cat_ix]], lwd=max_m-(cat_ix/num_alrs)*mult);
 		}
 		#points(times, alrs[ids, cat_ix], type="l", col="black", lwd=.05);
 	}
@@ -942,18 +951,24 @@ plot_death_over_time=function(deaths, time_range, title){
 	
 }
 
-plot_category_colors=function(alrs, colors){
+plot_category_colors=function(alrs, colors, keep=NULL){
 	
+	if(!is.null(keep)){
+		alrs=alrs[,keep,drop=F];
+	}
+
 	cat("Plotting category colors...\n");
 	names=colnames(alrs);
 	num_cat=ncol(alrs);
+
+	denom_scale=max(num_cat, 10);
 
 	par(mar=c(2, 4, .5, 4));
 	plot(0,0, type="n", xlim=c(0,10), ylim=c(0,1), ylab="", xlab="", bty="n", xaxt="n", yaxt="n");
 	print(names);
 	for(i in 1:num_cat){
-		points(0, 1-(i/num_cat), col=colors[i], pch=16);
-		text(0, 1-(i/num_cat), names[i], pos=4);
+		points(0, 1-(i/denom_scale), col=colors[names[i]], pch=16);
+		text(0, 1-(i/denom_scale), names[i], pos=4);
 	}
 	
 
@@ -975,6 +990,7 @@ alr_range=range(alr_categories_val);
 
 #colors=rainbow(NumALRPredictors, end=0.66);
 colors=get_colors(NumALRPredictors);
+names(colors)=colnames(alr_categories_val);
 
 plots_per_page=6;
 
@@ -1322,16 +1338,16 @@ for(coht_ix in uniq_coht_ids){
 
 full_coef_table=full_coxph_fit_summ$coefficients;
 
-signif_coefficients=(full_coef_table[,"Pr(>|z|)"]<=.05)
+signif_coefficients=(full_coef_table[,"Pr(>|z|)"]<=PvalCutoff)
 signif_categories=full_coef_table[signif_coefficients,,drop=F];
-signif_cat_coef_table=signif_categories[intersect(rownames(signif_categories), alr_cat_names),];
+signif_cat_coef_table=signif_categories[intersect(rownames(signif_categories), alr_cat_names),,drop=F];
 print(signif_cat_coef_table);
 
 signif_cat=rownames(signif_cat_coef_table);
 
 par(mfrow=c(1,1));
 plot_text(c(
-	"Significant ALR Categories:",
+	paste("Significant ALR Categories (alpha = ", PvalCutoff, "):", sep=""),
 	capture.output(print(signif_cat_coef_table)),
 	"",
 	"Subsequent time series plots only illustrate significant categories."
@@ -1362,7 +1378,7 @@ for(coht_ix in uniq_coht_ids){
 		}
 
 		if(plot_ix==plots_per_page-1 || subj_ix==tail(subj_in_coht,1)){
-			plot_category_colors(alr_categories_val, colors);
+			plot_category_colors(alr_categories_val, colors, keep=signif_cat);
 			plot_ix=1;
 		}else{
 			plot_ix=plot_ix+1;
@@ -1590,14 +1606,15 @@ plot_epoch_comp=function(alr_a_table, alr_b_table, nameA, nameB, alr_colname, ch
 	# Setup plot area
 	alr_diff=diff(alr_ranges);
 	pad=alr_diff*.05;
-	plot_rang=c(alr_ranges[1]-pad, alr_ranges[2]+pad);
+	x_plot_rang=c(alr_ranges[1]-pad, alr_ranges[2]+pad);
+	y_plot_rang=c(alr_ranges[1]-pad, alr_ranges[2]+4*pad);
 
-	plot(0,0, type="n", xlim=plot_rang, ylim=plot_rang, xlab="", ylab="");
+	plot(0,0, type="n", xlim=x_plot_rang, ylim=y_plot_rang, xlab="", ylab="");
 
 	title(xlab=nameA, ylab=nameB, line=2, font.lab=2);
 	abline(a=0, b=1, col="grey", lty=1, lwd=2);
 
-	legend(plot_rang[1], plot_rang[2], 
+	legend(x_plot_rang[1], y_plot_rang[2], 
 		legend=legend_info[chts],
 		fill=cht_colors[chts], bty="n");
 
