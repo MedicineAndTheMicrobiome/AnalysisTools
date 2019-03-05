@@ -27,6 +27,7 @@ params=c(
 	"reference_levels", "r", 2, "character",
 	
 	"timeofdeath_file", "d", 1, "character",
+	"epoch_file", "e", 2, "character",
 
 	"pvalue_cutoff", "p", 2, "numeric",
 	"output_root", "o", 1, "character"
@@ -55,6 +56,7 @@ usage = paste(
 	"	[-r <reference levels (file name) for Y's in factor file>]\n",
 	"\n",
 	"	-d <time of death/status change file>\n",
+	"	[-e <epoch definitions file>\n",
 	"\n",
 	"	[-p <pvalue cutoff, default=", PVAL_CUTOFF, ">]\n",
 	"	-o <output filename root>\n",
@@ -70,6 +72,13 @@ usage = paste(
 	"\n",
 	"If the -R flag is set, a 'remaining' category will be be included in the denominator\n",
 	"	independent of how large it is.  I.e., do not use it as one of the response variables.\n",
+	"\n",
+	"The epoch file (-e) should be of the follow format.  Note that all ranges are inclusive.\n",
+	"# Begin  End  Name\n",
+	"      0    1  Start\n",
+	"     1.1   2  Second\n",
+	"     ...\n",
+	"\n",	
 	"\n", sep="");
 
 if(
@@ -102,6 +111,7 @@ RequiredFile="";
 ReferenceLevelsFile="";
 ModelVarFile="";
 PvalCutoff=PVAL_CUTOFF;
+EpochFile="";
 
 if(length(opt$num_top_pred)){
 	NumALRPredictors=opt$num_top_pred;
@@ -131,6 +141,10 @@ if(length(opt$pvalue_cutoff)){
 	PvalCutoff=opt$pvalue_cutoff;	
 }
 
+if(length(opt$epoch_file)){
+	EpochFile=opt$epoch_file;
+}
+
 ###############################################################################
 
 input_param=capture.output({
@@ -149,6 +163,7 @@ input_param=capture.output({
 	cat("  Reference Levels File: ", ReferenceLevelsFile, "\n", sep="");
 	cat("\n");
 	cat("Time of Death/Event File: ", TimeOfDeathFile, "\n", sep="");
+	cat("Epoch File: ", EpochFile, "\n", sep="");
 	cat("P-value Cutoff: ", PvalCutoff, "\n", sep="");
 	cat("Output File Root: ", OutputRoot, "\n", sep="");
 	cat("\n");
@@ -252,6 +267,17 @@ load_death_times=function(filename){
 	dtimes=as.numeric(inmat);
 	names(dtimes)=rownames(inmat);
 	return(dtimes);
+}
+
+load_epochs=function(filename){
+        inmat=as.matrix(read.table(filename, sep="\t", header=F, check.names=FALSE, comment.char="#"))
+	epochs=list();
+	num_rows=nrow(inmat);
+	cat("Loading: ", num_rows, " rows from ", filename, "\n");
+	for(i in 1:num_rows){
+		epochs[[inmat[i,3]]]=as.numeric(inmat[i,c(1,2)]);		
+	}
+	return(epochs);	
 }
 
 extract_top_categories=function(ordered_normalized, top){
@@ -1433,12 +1459,16 @@ points(jitter, death_time_nona);
 cat("Prediction Intervals around Death Times:\n");
 print(death_time_95pi);
 
-epochs=list();
-epochs[["Start"]]=c(0,0);
-epochs[["Before"]]=c(0, death_time_95pi[1]);
-epochs[["During"]]=c(death_time_95pi[1], death_time_95pi[3]);
-epochs[["After"]]=c(death_time_95pi[3], last_measured_time);
-epochs[["End"]]=c(last_measured_time, last_measured_time);
+if(EpochFile!=""){
+	epochs=load_epochs(EpochFile);
+}else{
+	epochs=list();
+	epochs[["Start"]]=c(0,0);
+	epochs[["Before"]]=c(0, death_time_95pi[1]);
+	epochs[["During"]]=c(death_time_95pi[1], death_time_95pi[3]);
+	epochs[["After"]]=c(death_time_95pi[3], last_measured_time);
+	epochs[["End"]]=c(last_measured_time, last_measured_time);
+}
 
 print(epochs);
 epoch_names=names(epochs);
@@ -1574,14 +1604,15 @@ for(cat_ix in signif_cat){
 			collapsed_A=avg_by_subj(combined_A, SubjVarName, CohtVarName, "cur_alr_cat");
 
 			for(chtB_ix in 1:num_uniq_cohts){
-				chtB=uniq_coht_ids[chtB_ix];
-				b_pts_ix=(samp_cht==chtB) & ep_ix;
-				fact_B=factors[b_pts_ix,];
-				cur_alr_cat=alr_categories_val[rownames(fact_B), cat_ix];
-				combined_B=cbind(fact_B, cur_alr_cat);
-				collapsed_B=avg_by_subj(combined_B, SubjVarName, CohtVarName, "cur_alr_cat");
 
 				if(chtA_ix<chtB_ix){
+
+					chtB=uniq_coht_ids[chtB_ix];
+					b_pts_ix=(samp_cht==chtB) & ep_ix;
+					fact_B=factors[b_pts_ix,];
+					cur_alr_cat=alr_categories_val[rownames(fact_B), cat_ix];
+					combined_B=cbind(fact_B, cur_alr_cat);
+					collapsed_B=avg_by_subj(combined_B, SubjVarName, CohtVarName, "cur_alr_cat");
 
 					cat("Comparing: ", chtA, " vs ", 
 						chtB, "\n");
@@ -1600,7 +1631,8 @@ for(cat_ix in signif_cat){
 			}
 		}
 
-		mtext(paste(ep_nm, ": [", epochs[[ep_nm]][1], ", ", epochs[[ep_nm]][2], "]", sep="") , side=3, outer=T, font=2);
+		mtext(paste(ep_nm, ": [", epochs[[ep_nm]][1], ", ", 
+			epochs[[ep_nm]][2], "]", sep="") , side=3, outer=T, font=2);
 
 	}
 }
