@@ -1290,6 +1290,29 @@ mtext("Reduced Model", outer=T, font=2, cex=2);
 
 ###############################################################################
 
+reduced_rsq=reduced_coxph_fit_summ$rsq;
+full_rsq=full_coxph_fit_summ$rsq;
+
+reduced_concord=reduced_coxph_fit_summ$concordance["C"];
+full_concord=full_coxph_fit_summ$concordance["C"];
+
+par(mfrow=c(2,1));
+par(oma=c(1,1,1,1));
+par(mar=c(4,4,4,1));
+barplot(c(full_rsq[1], full_rsq[2], reduced_rsq[1], reduced_rsq[2]), 
+	names.arg=c("Full Model", "Full Maximum", "Reduced Model", "Reduced Maximum"),
+	ylim=c(0,1),
+	main="R^2"
+);
+
+barplot(c(full_concord, reduced_concord),
+	names.arg=c("Full Model", "Reduced Model"),
+	ylim=c(0,1),
+	main="Concordance (Ability to predict order of events)"
+);
+
+###############################################################################
+
 number_cohts=length(uniq_coht_ids);
 
 par(mfrow=c(number_cohts,2));
@@ -1450,6 +1473,26 @@ hist(death_time_nona, xlim=c(0, last_measured_time), xlab="Event Times",
 
 ###############################################################################
 
+avg_by_subj=function(comb_fact, subj_id_colname, coht_id_colname, alr_id_colname){
+
+	uniq_subj_ids=unique(comb_fact[,subj_id_colname]);
+	out_mat=as.data.frame(matrix(NA, nrow=length(uniq_subj_ids), ncol=2));
+	colnames(out_mat)=c(coht_id_colname, alr_id_colname);
+	rownames(out_mat)=uniq_subj_ids;
+
+	for(sbj in uniq_subj_ids){
+		subj_rec_ix=comb_fact[,subj_id_colname]==sbj;
+		subj_rec=comb_fact[subj_rec_ix,];
+		mean=mean(subj_rec[,alr_id_colname]);
+		out_mat[sbj, coht_id_colname]=as.character(subj_rec[1,coht_id_colname]);
+		out_mat[sbj, alr_id_colname]=mean;
+	}
+
+	return(out_mat);
+}
+
+###############################################################################
+
 plot_alr_diff=function(alrA, alrB, nameA, nameB, title, y_range){
 
 	mean_alra=mean(alrA[,1]);
@@ -1470,7 +1513,12 @@ plot_alr_diff=function(alrA, alrB, nameA, nameB, title, y_range){
 		sig_char="";
 	}
 
-	mtext(text=paste(title, sig_char, sep=""), line=1.8, cex=1.2, font=2);
+	if(nchar(title)>18){
+		title_size=1.2*18/nchar(title);
+	}else{
+		title_size=1.2;
+	}
+	mtext(text=paste(title, sig_char, sep=""), line=1.8, cex=title_size, font=2);
 
 	mtext(text=paste(nameA, ": u=", round(mean_alra,4), sep=""), line=1.2, cex=.6);
 	mtext(text=paste(nameB, ": u=", round(mean_alrb,4), sep=""), line=.6, cex=.6);
@@ -1496,6 +1544,11 @@ samp_tpt=factors[,TimeVarName];
 samp_cht=factors[,CohtVarName];
 samp_names=rownames(factors);
 
+par(mfrow=c(1,1));
+par(mar=c(0,0,0,0));
+plot(0,0, type="n", xlab="", ylab="", xaxt="n", yaxt="n", main="", bty="n");
+text(0,0, paste("Comparisons of ", CohtVarName,"\nby Epoch",sep=""), font=2, cex=2);
+
 # Compare the cohorts by epochs
 par(mar=c(1,3,5,1));
 par(oma=c(1,1,2,1));
@@ -1515,19 +1568,29 @@ for(cat_ix in signif_cat){
 		for(chtA_ix in 1:num_uniq_cohts){
 			chtA=uniq_coht_ids[chtA_ix];
 			a_pts_ix=(samp_cht==chtA) & ep_ix;
-		
+			fact_A=factors[a_pts_ix,];
+			cur_alr_cat=alr_categories_val[rownames(fact_A), cat_ix];
+			combined_A=cbind(fact_A, cur_alr_cat);
+			collapsed_A=avg_by_subj(combined_A, SubjVarName, CohtVarName, "cur_alr_cat");
 
 			for(chtB_ix in 1:num_uniq_cohts){
 				chtB=uniq_coht_ids[chtB_ix];
 				b_pts_ix=(samp_cht==chtB) & ep_ix;
+				fact_B=factors[b_pts_ix,];
+				cur_alr_cat=alr_categories_val[rownames(fact_B), cat_ix];
+				combined_B=cbind(fact_B, cur_alr_cat);
+				collapsed_B=avg_by_subj(combined_B, SubjVarName, CohtVarName, "cur_alr_cat");
 
 				if(chtA_ix<chtB_ix){
+
 					cat("Comparing: ", chtA, " vs ", 
 						chtB, "\n");
 
 					plot_alr_diff(
-						alr_categories_val[a_pts_ix, cat_ix, drop=F], 
-						alr_categories_val[b_pts_ix, cat_ix, drop=F],
+						#alr_categories_val[a_pts_ix, cat_ix, drop=F], 
+						#alr_categories_val[b_pts_ix, cat_ix, drop=F],
+						collapsed_A[,"cur_alr_cat",drop=F],
+						collapsed_B[,"cur_alr_cat",drop=F],
 						nameA=as.character(chtA),
 						nameB=as.character(chtB),
 						title=cat_ix,
@@ -1547,25 +1610,6 @@ for(cat_ix in signif_cat){
 
 # Compare epochs by cohorts
 #print(factors)
-
-avg_by_subj=function(comb_fact, subj_id_colname, coht_id_colname, alr_id_colname){
-
-	uniq_subj_ids=unique(comb_fact[,subj_id_colname]);
-	out_mat=as.data.frame(matrix(NA, nrow=length(uniq_subj_ids), ncol=2));
-	colnames(out_mat)=c(coht_id_colname, alr_id_colname);
-	rownames(out_mat)=uniq_subj_ids;
-
-	for(sbj in uniq_subj_ids){
-		subj_rec_ix=comb_fact[,subj_id_colname]==sbj;
-		subj_rec=comb_fact[subj_rec_ix,];
-		mean=mean(subj_rec[,alr_id_colname]);
-		out_mat[sbj, coht_id_colname]=as.character(subj_rec[1,coht_id_colname]);
-		out_mat[sbj, alr_id_colname]=mean;
-	}
-
-	return(out_mat);
-}
-
 
 plot_epoch_comp=function(alr_a_table, alr_b_table, nameA, nameB, alr_colname, cht_colname, cht_colors, alr_ranges){
 
@@ -1641,6 +1685,12 @@ plot_epoch_comp=function(alr_a_table, alr_b_table, nameA, nameB, alr_colname, ch
 	}
 
 }
+
+par(mfrow=c(1,1));
+par(mar=c(0,0,0,0));
+plot(0,0, type="n", xlab="", ylab="", xaxt="n", yaxt="n", main="", bty="n");
+text(0,0, paste("Comparisons of Epochs\nby ", CohtVarName, "\nMatched Paired by ", SubjVarName, sep=""), 
+	font=2, cex=2);
 
 cht_colors=rainbow(num_uniq_cohts, start=0, end=2/3);
 names(cht_colors)=uniq_coht_ids;
