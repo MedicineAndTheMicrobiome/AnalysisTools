@@ -906,13 +906,15 @@ plot_alr_over_time=function(ids, times, end_time, alrs, time_range, alr_range, c
 	num_alrs=ncol(alrs);
 	for(cat_ix in 1:num_alrs){
 		if(is.null(keep) || any(cat_names[cat_ix]==keep)){
-			points(times, alrs[ids, cat_ix], type="l", col=colors[cat_names[cat_ix]], lwd=max_m-(cat_ix/num_alrs)*mult);
+			points(times, alrs[ids, cat_ix], type="l", 
+				col=colors[cat_names[cat_ix]], lwd=max_m-(cat_ix/num_alrs)*mult);
 		}
 		#points(times, alrs[ids, cat_ix], type="l", col="black", lwd=.05);
 	}
 	for(cat_ix in 1:num_alrs){
 		if(is.null(keep) || any(cat_names[cat_ix]==keep)){
-			points(times, alrs[ids, cat_ix], type="p", pch=16, cex=max_m-(cat_ix/num_alrs)*mult, col=colors[cat_ix]);
+			points(times, alrs[ids, cat_ix], type="p", pch=16, 
+				cex=max_m-(cat_ix/num_alrs)*mult, col=colors[cat_ix]);
 		}
 	}
 	
@@ -1298,7 +1300,7 @@ notes=c(
 
 par(mfrow=c(1,1));
 
-par(oma=c(0,0,2,0));
+par(oma=c(0,0,3,0));
 plot_text(c(
 	notes,
 	"",
@@ -1306,7 +1308,7 @@ plot_text(c(
 );
 mtext("Full Model", outer=T, font=2, cex=2);
 
-par(oma=c(0,0,2,0));
+par(oma=c(0,0,3,0));
 plot_text(c(
 	notes,
 	"",
@@ -1323,7 +1325,7 @@ reduced_concord=reduced_coxph_fit_summ$concordance["C"];
 full_concord=full_coxph_fit_summ$concordance["C"];
 
 par(mfrow=c(2,1));
-par(oma=c(1,1,1,1));
+par(oma=c(1,1,3,1));
 par(mar=c(4,4,4,1));
 barplot(c(full_rsq[1], full_rsq[2], reduced_rsq[1], reduced_rsq[2]), 
 	names.arg=c("Full Model", "Full Maximum", "Reduced Model", "Reduced Maximum"),
@@ -1486,7 +1488,7 @@ for(i in 1:num_epochs){
 		c(i,i),
 		c(epochs[[ep_nm]][1], epochs[[ep_nm]][2]), 
 		lwd=5, type="l",
-		col="green");
+		col="darkgreen");
 }
 
 for(i in 1:num_epochs){
@@ -1500,6 +1502,44 @@ points(jitter, death_time_nona);
 
 hist(death_time_nona, xlim=c(0, last_measured_time), xlab="Event Times",
 	main="Event Times");
+
+###############################################################################
+
+# Plot number of samples over time
+
+hist_res=hist(factors[,TimeVarName], plot=F, breaks=seq(-.5, last_measured_time+.5, 1));
+print(hist_res);
+
+max_count=max(hist_res$counts);
+plot(0,0, type="n", xlim=c(0, max_count*2), ylim=c(0, last_measured_time),
+	yaxt="n", xlab="Counts", ylab="Time", main="Number of Samples Over Time");
+
+num_bins=length(hist_res$counts);
+for(i in 1:num_bins){
+	rect(0, hist_res$breaks[i], hist_res$counts[i], hist_res$breaks[i+1], col="grey");
+}
+
+num_labels=10;
+axis_ticks=round(seq(0, last_measured_time, length.out=num_labels), 0);
+axis(side=2, 
+	at=axis_ticks, 
+	labels=axis_ticks,
+	las=2);
+
+for(i in 1:num_epochs){
+	ep_nm=epoch_names[i];
+	points(
+		c(i*2+max_count+3,i*2+max_count+3),
+		c(epochs[[ep_nm]][1], epochs[[ep_nm]][2]), 
+		lwd=5, type="l", 
+		col="darkgreen");
+}
+
+for(i in 1:num_epochs){
+	ep_nm=epoch_names[i];
+	text(i*2+max_count+3, mean(epochs[[ep_nm]]), labels=ep_nm, 
+		font=2, pos=4, cex=.7 );
+}
 
 ###############################################################################
 
@@ -1581,7 +1621,7 @@ text(0,0, paste("Comparisons of ", CohtVarName,"\nby Epoch",sep=""), font=2, cex
 
 # Compare the cohorts by epochs
 par(mar=c(1,3,5,1));
-par(oma=c(1,1,2,1));
+par(oma=c(1,1,3,1));
 
 for(cat_ix in signif_cat){
 
