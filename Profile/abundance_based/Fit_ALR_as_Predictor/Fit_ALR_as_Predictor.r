@@ -966,8 +966,10 @@ if(nchar(covariate_formula_str)){
 
 response_factors_dfr=as.matrix(response_factors);
 
+cat("Fitting Full Model...\n");
 lmfit=lm(as.formula(formula_str), data=dafr_predictors_factors);
 
+cat("Fitting Reduced Model..\n");
 reduced_lmfit=lm(as.formula(reduced_formula_str), data=dafr_predictors_factors);
 
 lm_summaries=summary(lmfit);
