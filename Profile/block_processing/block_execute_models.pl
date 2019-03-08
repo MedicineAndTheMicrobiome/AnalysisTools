@@ -5,13 +5,13 @@
 use strict;
 use Getopt::Std;
 use File::Temp;
-use vars qw ($opt_s $opt_f $opt_c $opt_g $opt_p $opt_o $opt_E);
+use vars qw ($opt_s $opt_f $opt_c $opt_g $opt_p $opt_a $opt_o $opt_E);
 use File::Basename;
 use Cwd;
 use Digest::MD5;
 use Sys::Hostname;
 
-getopts("s:f:c:g:p:o:E");
+getopts("s:f:c:g:p:a:o:E");
 
 my $NUM_ALR_VARIABLES=35;
 
@@ -23,7 +23,10 @@ my $usage = "
 	-f <factor file>
 	-c <covariates list>
 	-g <\"grouped\" variables list>
+
+	ALR (Abundance-Based) Related Options
 	[-p <number of ALR variables (for abundance-based analyses), default=$NUM_ALR_VARIABLES>]
+	[-a <filename for list of additional categories to include>]
 	
 	-o <output directory>
 
@@ -76,9 +79,16 @@ my $OutputDir=$opt_o;
 my $AnalysisName=$GroupVar;
 my $NumALRVariables=$NUM_ALR_VARIABLES;
 my $DontAbort;
+my $AdditionalALRFile;
 
 if(defined($opt_p)){
 	$NumALRVariables=$opt_p
+}
+
+if(defined($opt_a)){
+	$AdditionalALRFile=$opt_a;
+}else{
+	$AdditionalALRFile="";
 }
 
 if(defined($opt_E)){
@@ -112,6 +122,7 @@ print STDERR "Output Directory:     $OutputDir\n";
 print STDERR "Analysis Name:        $AnalysisName\n";
 print STDERR "\n";
 print STDERR "Num ALR Variables:    $NumALRVariables\n";
+print STDERR "Additional ALR File:  $AdditionalALRFile\n";
 print STDERR "\n";
 print STDERR "Don't Abort on Errors: $DontAbort\n";
 print STDERR "\n";
@@ -226,6 +237,11 @@ sub run_abundance_based{
 	mkdir "$output_dir/abundance/$PRED_OUT_DIR";
 	mkdir "$output_dir/abundance/$COMP_DIR";
 	
+	my $add_alr="";
+	if($AdditionalALRFile ne ""){
+		$add_alr="-a $AdditionalALRFile";
+	}
+	
 	$cmd=
 	"~/git/AnalysisTools/Profile/abundance_based/Fit_ALR_as_Response/Fit_ALR_as_Response.r \
                 -s $summary_table \
@@ -234,7 +250,8 @@ sub run_abundance_based{
                 -q $output_dir/cov_var \
                 -p $num_alr \
                 -o $output_dir/abundance/$RESP_OUT_DIR/$model_name  \
-                -x \";\"
+                -x \";\" \
+		$add_alr
 	";
 	run_command("Fit ALR as Response", "alr_as_resp", $cmd, "$output_dir/abundance/$RESP_OUT_DIR");
 
@@ -247,7 +264,8 @@ sub run_abundance_based{
                 -q $output_dir/cov_var \
                 -p $num_alr \
                 -o $output_dir/abundance/$PRED_OUT_DIR/$model_name \
-                -x \";\"
+                -x \";\" \
+		$add_alr
 	";
 	run_command("Fit ALR as Predictor", "alr_as_pred", $cmd, "$output_dir/abundance/$PRED_OUT_DIR");
 
@@ -368,6 +386,7 @@ sub run_distance_based{
 	my $DISTMAT_DIR="dist_mat";
 	my $PERMA_DIR="permanova";
 	my $CLUST_MLL_DIR="clust_mll";
+	my $INFL_BY_FACTOR="infl_by_factors";
 	my $cmd;
 	my $dist_type="man";
 
@@ -379,6 +398,7 @@ sub run_distance_based{
 	mkdir "$output_dir/distance/$DISTMAT_DIR";
 	mkdir "$output_dir/distance/$PERMA_DIR";
 	mkdir "$output_dir/distance/$CLUST_MLL_DIR";
+	mkdir "$output_dir/distance/$INFL_BY_FACTOR";
 
 	my ($st_root_name)=File::Basename::fileparse($summary_table);
 	$st_root_name=~s/\.summary_table\.tsv$//;
@@ -446,6 +466,20 @@ sub run_distance_based{
 		-o $output_dir/distance/$CLUST_MLL_DIR/$model_name
 	";
 	run_command("Compute Cluster Influencers", "cl_inf", $cmd, "$output_dir/distance/$CLUST_MLL_DIR");
+	
+	#######################################################################
+	# Cluster influencers by factors
+
+	$cmd=
+	"~/git/AnalysisTools/Profile/distance_based/Cluster_Influencers/Cluster_Influencers.r \
+		-i $summary_table \
+		-d $dist_type \
+		-o $output_dir/distance/$INFL_BY_FACTOR/$model_name \
+		-n $output_dir/cov_var \
+		-f $factor_file
+	";
+	run_command("Compute Cluster Influencers by Factors", "cl_inf_by_factors",
+		$cmd, "$output_dir/distance/$INFL_BY_FACTOR");
 
 
 }
