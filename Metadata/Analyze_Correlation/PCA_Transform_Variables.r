@@ -11,12 +11,17 @@ options(digits=5)
 params=c(
 	"factors", "f", 1, "character",
 	"outputroot", "o", 1, "character",
-	"response", "r", 1, "character",
-	"predictor", "p", 2, "character",
-	"pc_coverage", "c", 2, "numeric"
+	"predictor", "p", 1, "character",
+	"response", "r", 2, "character",
+	"pc_coverage", "c", 2, "numeric",
+	"export_orig", "e", 2, "character",
+	"donnot_transform", "t", 2, "character"
 );
 
+NORM_PVAL_CUTOFF=.2;
 PCA_COVERAGE=.95;
+CURATED_PREFIX="crtd";
+NO_CHANGE="orig"
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
 script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
@@ -26,27 +31,24 @@ usage = paste(
 	"	-f <factors/metadata file name>\n",
 	"	-o <output filename root.\n",
 	"\n",
-	"	-r <response variable list>\n",
-	"	[-p <predictor variable list>]\n",
+	"	-p <targeted predictor variable list>\n",
+	"	[-r <targeted response variable to plot against]\n",
 	"\n",
 	"	[-c PC Coverage, default=", PCA_COVERAGE, "\n",
+	"	[-e (export original predictor variable list, default: remove from output)\n",
+	"	[-t (do not transform/autocurate predictors, default: transform if necessary)\n",
 	"\n",
-	"This script will perform a PCA analysis\n",
-	"across the response variables and\n",
-	"recommend a set of principal coordinates.\n",
+	"This script will take in the specified predictor variable\n",
+	"list and perform a PCA, keeping the top PCs.\n",
 	"\n",
-	"If the predictor variable list is specified\n",
-	"then plots between each predictor (x) and\n",
-	"all the responses (y) will be made.\n",
-	"\n",
-	"The predictors will be clustered based on\n",
-	"their correlation magnitude.\n",
+	"If the -t option is not selected, the variables will be\n",
+	"automatically checked for non-normality and log'd for improvement.\n",
 	"\n");
 
 if(
 	!length(opt$factors) || 
 	!length(opt$outputroot) || 
-	!length(opt$response)
+	!length(opt$predictor)
 ){
 	cat(usage);
 	q(status=-1);
@@ -56,25 +58,42 @@ FactorsFname=opt$factors;
 OutputFnameRoot=opt$outputroot;
 ResponseListName=opt$response;
 
+PredictorListName="";
+PCCoverage=PCA_COVERAGE;
+DonnotTransform=F;
+ExportOrig=F;
+
 if(length(opt$predictor)){
 	PredictorListName=opt$predictor;
-}else{
-	PredictorListName="";
 }
 
 if(length(opt$pc_coverage)){
 	PCCoverage=opt$pc_coverage;
-}else{
-	PCCoverage=PCA_COVERAGE;
 }
 
-cat("\n");
-cat("Factor File Name: ", FactorsFname, "\n");
-cat("Output File Name Root: ", OutputFnameRoot, "\n");
-cat("Response List Name: ", ResponseListName, "\n");
-cat("Predictor List Name: ", PredictorListName, "\n");
-cat("PC Min Coverage: ", PCCoverage, "\n");
-cat("\n");
+if(length(opt$donnot_transform)){
+	DonnotTransform=T;
+}
+
+if(length(opt$export_orig)){
+	ExportOrig=T;
+}
+
+
+param_text=capture.output({
+	cat("\n");
+	cat("Factor File Name: ", FactorsFname, "\n");
+	cat("Output File Name Root: ", OutputFnameRoot, "\n");
+	cat("Response List Name: ", ResponseListName, "\n");
+	cat("Predictor List Name: ", PredictorListName, "\n");
+	cat("PC Min Coverage: ", PCCoverage, "\n");
+	cat("\n");
+	cat("Donnot Transform Variables: ", DonnotTransform, "\n");
+	cat("Export original variables: ", ExportOrig, "\n");
+	cat("\n");
+});
+
+cat(param_text);
 
 ###############################################################################
 
@@ -88,7 +107,7 @@ load_list=function(fname){
 	return(lst);	
 }
 
-test_log=function(mat_val){
+test_and_apply_log_transform=function(mat_val, pval_cutoff=.2){
 	nrows=nrow(mat_val);
 	ncols=ncol(mat_val);
 
@@ -100,23 +119,28 @@ test_log=function(mat_val){
 		values=mat_val[,var];
 
 		num_unique_val=length(setdiff(unique(values), NA));
-		cat(var, ": Num Unique Values: ", num_unique_val, "\n");
+		cat("\n", var, ": Num Unique Values: ", num_unique_val, "\n");
 
 		test_res=shapiro.test(values);
 
-		if(test_res$p.value<.20 && num_unique_val>2){
+		if(test_res$p.value<=pval_cutoff && num_unique_val>2){
+			cat(" Not normal: ", test_res$p.value, "\n");
+
 			log_values=log(values+1);
 			test_log_res=shapiro.test(log_values);
 
 			if(test_log_res$p.value < test_res$p.value){
 				# Keep original
-				new_colnames=c(new_colnames, var);
+				cat("  No Improvement: ", test_log_res$p.value, "\n");
+				new_colnames=c(new_colnames, paste("orig_", var, sep=""));
 			}else{
 				# Keep log transformed
-				new_colnames=c(new_colnames, paste("log(", var, ")", sep=""));
+				cat("  Transformation Effective: ", test_log_res$p.value, "\n");
+				new_colnames=c(new_colnames, paste("log_", var, sep=""));
 				trans_mat[, var]=log_values;
 			}
 		}else{
+			cat(" Normal enough. ", test_res$p.value, "\n");
 			new_colnames=c(new_colnames, var);
 		}
 	}
@@ -188,6 +212,8 @@ compute_correlations=function(mat){
 
 pdf(paste(OutputFnameRoot, ".pdf", sep=""), height=11, width=8.5);
 
+plot_text(param_text);
+
 # Load factors
 cat("Loading Factors...\n");
 loaded_factors=load_factors(FactorsFname);
@@ -202,8 +228,15 @@ print(loaded_sample_names);
 cat("\n");
 
 # Subset factors
-responses_arr=load_list(ResponseListName);
 predictors_arr=load_list(PredictorListName);
+
+responses_arr=c();
+if(ResponseListName!=""){
+	responses_arr=load_list(ResponseListName);
+}else{
+	cat("Response variable list not specified.\n");
+}
+
 
 cat("\n");
 cat("Targeted Responses:\n");
@@ -235,25 +268,16 @@ resp_mat=loaded_factors[, responses_arr, drop=F];
 orig_pred_names=predictors_arr;
 orig_resp_names=responses_arr;
 
-pred_mat=test_log(pred_mat);
-resp_mat=test_log(resp_mat);
+cat("Testing Predictor Variables for normality.\n");
+curated_pred_mat=test_and_apply_log_transform(pred_mat, NORM_PVAL_CUTOFF);
 
-predictors_arr=colnames(pred_mat);
-responses_arr=colnames(resp_mat);
+cat("Testing Response Variables for normality.\n");
+curated_resp_mat=test_and_apply_log_transform(resp_mat, NORM_PVAL_CUTOFF);
 
-plot_text(c(
-	paste("Factor File Name: ", FactorsFname),
-	paste("Output File Name Root: ", OutputFnameRoot),
-	paste("Response List Name: ", ResponseListName),
-	paste("Predictor List Name: ", PredictorListName),
-	paste("PC Min Coverage: ", PCCoverage),
-	"",
-	"Targeted Responses:",
-	capture.output(responses_arr),
-	"",
-	"Targeted Predictors:",
-	capture.output(predictors_arr)
-));
+##############################################################################
+
+curated_predictors_arr=colnames(curated_pred_mat);
+curated_responses_arr=colnames(curated_resp_mat);
 
 ##############################################################################
 
@@ -266,7 +290,7 @@ plot_text(c(
 	"  the following algorithm was applied:",
 	"",
 	"  If the Shapiro-Wilks (SW) Test for normality rejects the distribution as normal",
-	"  at alpha<.2, then the log transform is attempted.",
+	"  at alpha<", NORM_PVAL_CUTOFF, ", then the log transform is attempted.",
 	"  If the SW Test p-value on the transformed distribution is greater than that of",
 	"  the untransformed distribution, then the transformed distribution is retained,",
 	"  else the untransformed distribution is retained."
@@ -275,7 +299,7 @@ plot_text(c(
 par(oma=c(1,1,4,1));
 
 pred_ix=1;
-for(pred in predictors_arr){
+for(pred_name in curated_predictors_arr){
 	par(mfrow=c(4,3));
 
 	pval_arr=numeric(num_resp);
@@ -283,12 +307,14 @@ for(pred in predictors_arr){
 	rsqd_arr=numeric(num_resp);
 	fit_arr=list();
 
-	i=1;
-	for(resp in responses_arr){
+	pred_val=curated_pred_mat[,pred_name];
 
-		cat("Working on: ", resp, " vs ", pred, "\n");
-		pred_val=pred_mat[,pred];
-		resp_val=resp_mat[,resp];
+	# Fit against each response variable
+	i=1;
+	for(resp_name in curated_responses_arr){
+
+		cat("Working on: ", resp_name, " vs ", pred_name, "\n");
+		resp_val=curated_resp_mat[,resp_name];
 
 		# Fit and summarize
 		fit=lm(resp_val~pred_val);
@@ -306,12 +332,24 @@ for(pred in predictors_arr){
 	# Sort by increasing pvalue 
 	sort_ix=order(pval_arr, decreasing=F);
 
-	# Plot
+	# Plot each fit by decreasing significance
 	for(i in sort_ix){
-		resp_val=resp_mat[,i];
-		resp_name=responses_arr[i];
+		resp_val=curated_resp_mat[,i];
+		resp_name=curated_responses_arr[i];
 
-		plot(pred_val, resp_val, xlab=pred, ylab=resp_name, main=orig_resp_names[i]);
+		signf_char="";
+		if(pval_arr[i]<=.001){
+			signf_char=" ***";
+		}else if(pval_arr[i]<=.01){
+                        signf_char=" **";
+		}else if(pval_arr[i]<=.05){
+                        signf_char=" *";
+		}else if(pval_arr[i]<=.1){
+                        signf_char=" '";
+		}
+
+		plot(pred_val, resp_val, xlab=pred_name, ylab=resp_name, 
+			main=paste(orig_resp_names[i], signf_char, sep=""));
 
 		# Draw regression line
 		abline(fit_arr[[i]], col="blue");
@@ -327,6 +365,8 @@ for(pred in predictors_arr){
 
 	pred_ix=pred_ix+1;
 }
+
+quit();
 
 ##############################################################################
 
