@@ -290,7 +290,7 @@ plot_text(c(
 	"  the following algorithm was applied:",
 	"",
 	"  If the Shapiro-Wilks (SW) Test for normality rejects the distribution as normal",
-	"  at alpha<", NORM_PVAL_CUTOFF, ", then the log transform is attempted.",
+	paste("  at alpha<", NORM_PVAL_CUTOFF, ", then the log transform is attempted.", sep=""),
 	"  If the SW Test p-value on the transformed distribution is greater than that of",
 	"  the untransformed distribution, then the transformed distribution is retained,",
 	"  else the untransformed distribution is retained."
@@ -366,7 +366,147 @@ for(pred_name in curated_predictors_arr){
 	pred_ix=pred_ix+1;
 }
 
-quit();
+#############################################################################
+
+
+impute_cell=function(target_predictors, responses, predictors, verbose=F){
+
+	num_samples=nrow(responses);
+	avail_predictors=ncol(predictors);
+
+	num_pred_to_use=min(num_samples, avail_predictors)-2;
+	
+	cat("Num Samples Available for Imputation: ", num_samples, "\n");
+	cat("Num Available Predictors: ", avail_predictors, "\n");
+	cat("Num Predictors to Use: ", num_pred_to_use, "\n");
+	
+	# Compute correlation between response and predictors
+	corr=apply(predictors, 2, function(x){ 
+		non_na=!is.na(x); 
+		cor(x[non_na], responses[non_na,]);}
+		);
+
+	# Order predictors by decreasing correlation
+	corr_order=order(abs(corr), decreasing=T);
+	corr_ordered=(corr[corr_order]);
+	#print(corr_ordered);
+	top_pred=names(corr_ordered)[1:num_pred_to_use];
+
+
+	# Replace NAs with median value from the same column/predictor
+	predictors_nona=predictors;
+	for(j in 1:ncol(predictors_nona)){
+		cur_median=median(predictors[,j], na.rm=T);	
+		predictors_nona[is.na(predictors[,j]),j]=cur_median;
+	}
+
+	# Create model with the predictors with greatest correlaton with response first
+	form_str=paste(colnames(responses), "~", paste(top_pred, collapse="+"));
+	print(form_str);
+	fit=lm(formula(form_str), data=cbind(responses, predictors_nona));
+
+	# Predict NA with the values that we have
+	imputed_val=predict(fit, new=target_predictors[top_pred]);
+
+	#print(fit);
+	if(verbose){
+		print(summary(fit));
+	}
+	#eg=rbind(predictors, target_predictors);
+	#print(eg);
+	#x=predict(fit, new=eg);
+	obs_resp_range=range(responses);
+	cat("--------------------------------------------------------\n");
+	cat("Name: ", colnames(responses), "\n");
+	cat("Response Range: ", obs_resp_range[1], " - ", obs_resp_range[2], "\n");
+	cat("Inputed Value: ", imputed_val, "\n");
+	if(imputed_val<obs_resp_range[1] || imputed_val>obs_resp_range[2]){
+		cat("WARNING: Inputed Value Outside Range of Observed Values\n");
+	}
+	cat("--------------------------------------------------------\n");
+	return(imputed_val);
+} 
+
+impute_matrix=function(mat_wna){
+
+	num_rows=nrow(mat_wna);
+	num_cols=ncol(mat_wna);
+
+	cat("Original Matrix Dimensions: ", num_rows, " x ", num_cols, 
+		" matrix. (", num_rows*num_cols, ")\n", sep="");
+
+	# remove rows with all NAs
+	usable_rows=apply(mat_wna, 1, function(x){!all(is.na(x))});
+	usable_cols=apply(mat_wna, 2, function(x){!all(is.na(x))});
+	usable_mat_wna=mat_wna[usable_rows,usable_cols];
+
+	usable_num_rows=nrow(usable_mat_wna);
+	usable_num_cols=ncol(usable_mat_wna);
+
+	cat("Removed rows/cols with all NAs: ", usable_num_rows, " x ", usable_num_cols, 
+		" matrix. (", usable_num_rows * usable_num_cols,")\n", sep="");
+
+	#print(mat_wna);
+
+	cat("Looking for NAs...\n");
+	na_pos=numeric();
+
+	if(1){
+		for(rix in 1:usable_num_rows){
+			for(cix in 1:usable_num_cols){
+				if(is.na(usable_mat_wna[rix, cix])){
+					na_pos=rbind(na_pos, c(rix, cix));
+				}
+			}
+		}
+	}else{
+		# For validation
+		for(rix in 1:usable_num_rows){
+			for(cix in 1:usable_num_cols){
+				na_pos=rbind(na_pos, c(rix, cix));
+			}
+		}
+	}
+	
+	num_nas_to_impute=nrow(na_pos);
+	cat("Num NAs to try to impute:",  num_nas_to_impute, "\n");
+
+	filled_matrix=usable_mat_wna;
+	for(na_ix in 1:num_nas_to_impute){
+
+		target_row=na_pos[na_ix,1];
+		target_column=na_pos[na_ix,2];
+
+		cell=usable_mat_wna[target_row, target_column, drop=F];
+
+		if(!is.na(cell)){
+			cat("Error:  Trying to input cell not NA.\n");
+			quit();
+		}
+	
+		cat("(", na_ix, "/", num_nas_to_impute, ") Imputing: ", rownames(cell), " / ", colnames(cell), "\n");
+
+		non_na_row=!is.na(usable_mat_wna[,target_column,drop=F]);
+		non_na_col=!is.na(usable_mat_wna[target_row,,drop=F]);
+
+		imputed_val=impute_cell(
+			target_predictors=usable_mat_wna[target_row, non_na_col, drop=F], 
+			responses=usable_mat_wna[non_na_row, target_column, drop=F],
+			predictors=usable_mat_wna[non_na_row, non_na_col, drop=F]
+			);
+
+		filled_matrix[target_row, target_column]=imputed_val;
+
+	}
+
+	repl_rows=rownames(filled_matrix);
+	mat_wna[repl_rows,]=filled_matrix[repl_rows,];
+	return(mat_wna);
+	
+}
+
+imputed_mat=impute_matrix(curated_pred_mat);
+print(imputed_mat);
 
 ##############################################################################
 
@@ -388,7 +528,7 @@ plot_text(c(
 	"  each of the variables may not be the same."
 ));
 
-correl=compute_correlations(cbind(pred_mat, resp_mat));
+correl=compute_correlations(cbind(curated_pred_mat, curated_resp_mat));
 
 par(mfrow=c(1,1));
 par(mar=c(15,2,1,2));
@@ -400,11 +540,11 @@ highlight_predictors=function(x){
 		leaf_attr=attributes(x);
 		label=leaf_attr$label;
 		print(label);
-		if(any(label==predictors_arr)){
-			color="red";
+		if(any(label==curated_predictors_arr)){
+			color="black";
 			font=2;
 		}else{
-			color="black";
+			color="red";
 			font=1;
 		}
 		attr(x, "nodePar")=c(leaf_attr$nodePar, list(lab.font=font, lab.col=color, cex=0));
@@ -419,7 +559,7 @@ plot(dend, main="Ward's Minimum Variance: dist(1-abs(cor))");
 
 ##############################################################################
 
-resp_correl=compute_correlations(resp_mat);
+pred_correl=compute_correlations(curated_pred_mat);
 
 # Note that the princomp R function takes the resp values directly and the Standard Deviations
 # are the squareroot of the eigenvalues
@@ -432,15 +572,15 @@ resp_correl=compute_correlations(resp_mat);
 #	scale(pred_mat, center, scale) %*% loadings
 
 # Compute PCA
-eigen=eigen(resp_correl$val);
+eigen=eigen(pred_correl$val);
 
 # Compute variance contribution of each PC
 pca_propvar=eigen$values/sum(eigen$values);
 pca_propcumsum=cumsum(pca_propvar);
-num_pc_at_cutoff=sum(pca_propcumsum<PCCoverage)+1;
+num_pc_at_cutoff=sum(pca_propcumsum<PCCoverage);
 
 # Compute per sample scores
-scores=(scale(resp_mat, center=T, scale=T) %*% eigen$vectors);
+scores=(scale(imputed_mat, center=T, scale=T) %*% eigen$vectors);
 
 plot_text(c(
 	"Principal Components Analysis:",
@@ -459,23 +599,24 @@ plot_text(c(
 # Plot bar plots of PC variance explanation
 par(mfrow=c(2,1));
 par(mar=c(7,4,2,2));
-colors=rep("grey",num_resp);
+colors=rep("grey",num_pred);
 colors[1:num_pc_at_cutoff]="darkcyan";
 
-mids=barplot(pca_propvar, las=2, names.arg=1:num_resp, xlab="PCs", 
+mids=barplot(pca_propvar, las=2, names.arg=1:num_pred, xlab="PCs", 
 	col=colors,
 	ylab="Proportion", main="PCA Proportion of Variance");
 
-mids=barplot(pca_propcumsum, las=2, names.arg=1:num_resp, xlab="PCs", 
+mids=barplot(pca_propcumsum, las=2, names.arg=1:num_pred, xlab="PCs", 
 	col=colors,
 	ylab="Proportion", main="PCA Cumulative Variance");
 abline(h=PCCoverage, col="blue", lty=2);
 
 # Plot sample ordination based on scores
 sample_ids=rownames(resp_mat);
-par(mfrow=c(1,1));
+par(mfrow=c(3,2));
+par(mar=c(3,3,1,1));
 
-for(i in 1:(num_pc_at_cutoff-1)){
+for(i in seq(1,num_pc_at_cutoff+1,2)){
 	xpos=scores[,i];
 	ypos=scores[,i+1];
 	xrange=range(xpos, na.rm=T);
@@ -484,16 +625,44 @@ for(i in 1:(num_pc_at_cutoff-1)){
 	xspan=diff(xrange);
 	yspan=diff(yrange);
 
+	# Plot labelled samples
 	plot(xpos, ypos, type="n", 
 		xlim=c(xrange[1]-xspan/10, xrange[2]+xspan/10),
 		ylim=c(yrange[1]-yspan/10, yrange[2]+yspan/10),
+		xlab="", ylab="", main=""
+	)
+
+	title(
 		xlab=paste("PC",i,sep=""), 
 		ylab=paste("PC",i+1,sep=""), 
-		main="PCA Ordination Plot");
-	text(xpos, ypos, sample_ids);
+		line=2
+	);
+	text(xpos, ypos, sample_ids, cex=.7);
+
+	# Plot points
+	plot(xpos, ypos, type="p", 
+		xlim=c(xrange[1]-xspan/10, xrange[2]+xspan/10),
+		ylim=c(yrange[1]-yspan/10, yrange[2]+yspan/10),
+		xlab="", ylab="", main=""
+	)
+
+	title(
+		xlab=paste("PC",i,sep=""), 
+		ylab=paste("PC",i+1,sep=""), 
+		line=2
+	);
 
 }
 
+##############################################################################
+
+
+
+
+
+
+
+quit();
 ##############################################################################
 
 clean_resp_mat=resp_mat;
