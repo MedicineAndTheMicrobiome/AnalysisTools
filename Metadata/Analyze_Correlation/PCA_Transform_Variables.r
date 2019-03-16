@@ -542,10 +542,10 @@ highlight_predictors=function(x){
 		print(label);
 		if(any(label==curated_predictors_arr)){
 			color="black";
-			font=2;
+			font=1;
 		}else{
 			color="red";
-			font=1;
+			font=2;
 		}
 		attr(x, "nodePar")=c(leaf_attr$nodePar, list(lab.font=font, lab.col=color, cex=0));
 	}
@@ -656,11 +656,76 @@ for(i in seq(1,num_pc_at_cutoff+1,2)){
 
 ##############################################################################
 
+# Calculate correlation between each PC and the predictors
+
+
+par(mar=c(6,3,2,1));
+positive_scores=scores;
+
+pc_name=paste("PC", 1:num_pred, sep="");
+for(i in 1:num_pc_at_cutoff){
+	
+	pc=scores[,i];
+	nonna_pc=!is.na(pc);
+
+	pc_pred_cor=numeric(num_pred);
+	names(pc_pred_cor)=colnames(curated_pred_mat)
+	for(pix in 1:num_pred){
+
+		prd=curated_pred_mat[,pix];
+		nonna_prd=!is.na(prd);
+		both_nonna=(nonna_pc & nonna_prd);
+
+		pc_pred_cor[pix]=cor(pc[both_nonna], prd[both_nonna]);
+
+	}
+
+	
+	mag_order=order(abs(pc_pred_cor), decreasing=T);
+	pc_pred_cor_ordered=pc_pred_cor[mag_order];
+
+	flipped="";
+	if(pc_pred_cor_ordered[1]<0){
+		positive_scores[,i]=positive_scores[,i]*-1;
+		pc_pred_cor_ordered=pc_pred_cor_ordered*-1
+		flipped=" (flipped)";
+	}
+	
+	ordered_names=names(pc_pred_cor_ordered);
+	
+	proxyname=paste(
+		"PC", i, "_", 
+		round(pc_pred_cor_ordered[1]*100, 0), "_", 
+		ordered_names[1], sep="");
+
+	barplot(pc_pred_cor_ordered, 
+		names.arg=names(pc_pred_cor_ordered), 
+		ylim=c(-1,1),
+		ylab="Correlation",
+		las=2, cex.names=.7,
+		main=paste(proxyname, flipped, sep="")
+		);
+
+	pc_name[i]=proxyname;
+
+}
 
 
 
+##############################################################################
 
+colnames(positive_scores)=pc_name;
 
+correl_wpca=compute_correlations(cbind(positive_scores[,1:num_pc_at_cutoff], curated_pred_mat, curated_resp_mat));
+print(correl_wpca);
+hcl=hclust(correl_wpca$dist, method="ward.D2");
+dend=as.dendrogram(hcl);
+
+par(mfrow=c(1,1));
+par(mar=c(2,1,1,7));
+plot(dend, horiz=T);
+
+print(cor(positive_scores));
 
 quit();
 ##############################################################################
