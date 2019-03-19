@@ -13,9 +13,12 @@ params=c(
 	"outputroot", "o", 1, "character",
 	"predictor", "p", 1, "character",
 	"response", "r", 2, "character",
+	"donnot_transform", "t", 2, "character",
 	"pc_coverage", "c", 2, "numeric",
-	"export_orig", "e", 2, "character",
-	"donnot_transform", "t", 2, "character"
+	"export_orig", "O", 2, "logical",
+	"export_curated", "C", 2, "logical",
+	"export_imputed", "I", 2, "logical",
+	"export_PC", "P", 2, "logical"
 );
 
 NORM_PVAL_CUTOFF=.2;
@@ -34,9 +37,14 @@ usage = paste(
 	"	-p <targeted predictor variable list>\n",
 	"	[-r <targeted response variable to plot against]\n",
 	"\n",
-	"	[-c PC Coverage, default=", PCA_COVERAGE, "\n",
-	"	[-e (export original predictor variable list, default: remove from output)\n",
 	"	[-t (do not transform/autocurate predictors, default: transform if necessary)\n",
+	"	[-c PC Coverage, default=", PCA_COVERAGE, "\n",
+	"\n",
+	"Output Options:\n",
+	"	[-O (export Original predictor variable list)\n",
+	"	[-C (export 'Curated', i.e. log and orig values depending on Shapiro-Wilkes)\n",
+	"	[-I (export Imputed values)\n",
+	"	[-P (export Principal Components)\n",
 	"\n",
 	"This script will take in the specified predictor variable\n",
 	"list and perform a PCA, keeping the top PCs.\n",
@@ -61,7 +69,11 @@ ResponseListName=opt$response;
 PredictorListName="";
 PCCoverage=PCA_COVERAGE;
 DonnotTransform=F;
+
 ExportOrig=F;
+ExportCurated=F;
+ExportImputed=F;
+ExportPC=F;
 
 if(length(opt$predictor)){
 	PredictorListName=opt$predictor;
@@ -77,6 +89,15 @@ if(length(opt$donnot_transform)){
 
 if(length(opt$export_orig)){
 	ExportOrig=T;
+}
+if(length(opt$export_orig)){
+	ExportCurated=T;
+}
+if(length(opt$export_orig)){
+	ExportImputed=T;
+}
+if(length(opt$export_orig)){
+	ExportPC=T;
 }
 
 
@@ -506,7 +527,7 @@ impute_matrix=function(mat_wna){
 }
 
 imputed_mat=impute_matrix(curated_pred_mat);
-print(imputed_mat);
+#print(imputed_mat);
 
 ##############################################################################
 
@@ -662,7 +683,7 @@ for(i in seq(1,num_pc_at_cutoff+1,2)){
 par(mar=c(6,3,2,1));
 positive_scores=scores;
 
-pc_name=paste("PC", 1:num_pred, sep="");
+pc_name=paste("PC", sprintf("%02g", 1:num_pred), sep="");
 for(i in 1:num_pc_at_cutoff){
 	
 	pc=scores[,i];
@@ -684,6 +705,7 @@ for(i in 1:num_pc_at_cutoff){
 	mag_order=order(abs(pc_pred_cor), decreasing=T);
 	pc_pred_cor_ordered=pc_pred_cor[mag_order];
 
+	# If the most correlated is negative, flip the PC values
 	flipped="";
 	if(pc_pred_cor_ordered[1]<0){
 		positive_scores[,i]=positive_scores[,i]*-1;
@@ -694,7 +716,7 @@ for(i in 1:num_pc_at_cutoff){
 	ordered_names=names(pc_pred_cor_ordered);
 	
 	proxyname=paste(
-		"PC", i, "_", 
+		pc_name[i], "_",
 		round(pc_pred_cor_ordered[1]*100, 0), "_", 
 		ordered_names[1], sep="");
 
@@ -717,39 +739,100 @@ for(i in 1:num_pc_at_cutoff){
 colnames(positive_scores)=pc_name;
 
 correl_wpca=compute_correlations(cbind(positive_scores[,1:num_pc_at_cutoff], curated_pred_mat, curated_resp_mat));
-print(correl_wpca);
 hcl=hclust(correl_wpca$dist, method="ward.D2");
 dend=as.dendrogram(hcl);
 
+highlight_pcs=function(x){
+	if(is.leaf(x)){
+		leaf_attr=attributes(x);
+		label=leaf_attr$label;
+		print(label);
+		if(any(label==pc_name)){
+			color="red";
+			font=2;
+		}else{
+			color="black";
+			font=1;
+		}
+		attr(x, "nodePar")=c(leaf_attr$nodePar, list(lab.font=font, lab.col=color, cex=0));
+	}
+	return(x);
+}
+
+dend=dendrapply(dend, highlight_pcs);
+
 par(mfrow=c(1,1));
-par(mar=c(2,1,1,7));
-plot(dend, horiz=T);
-
-print(cor(positive_scores));
-
-quit();
-##############################################################################
-
-clean_resp_mat=resp_mat;
-clean_resp_names=gsub("\\(","_", colnames(resp_mat));
-clean_resp_names=gsub("\\)","", clean_resp_names);
-colnames(clean_resp_mat)=clean_resp_names;
-
-clean_pred_mat=pred_mat;
-clean_pred_names=gsub("\\(","_", colnames(pred_mat));
-clean_pred_names=gsub("\\)","", clean_pred_names);
-colnames(clean_pred_mat)=clean_pred_names;
+par(mar=c(2,1,1,9));
+plot(dend, horiz=T, main="Ward's Minimum Variance: dist(1-abs(cor)) with PCs");
 
 ##############################################################################
 
-cat("Outputing Factor file with PCs included and Resp Variables removed...\n");
+out_factors=loaded_factors;
 
-orig_factor_variables=colnames(loaded_factors);
-new_factor_variables=setdiff(orig_factor_variables, orig_resp_names);
+if(!ExportOrig){
+	cn=colnames(out_factors);
+	orig_names=c(colnames(curated_pred_mat), colnames(curated_resp_mat));
+	kept=setdiff(cn, orig_names);
+	out_factors=out_factors[,kept];
+}
 
-colnames(scores)=paste("PC",1:num_resp, sep="_");
-out_factors=cbind(loaded_factors[,new_factor_variables], scores[,1:num_pc_at_cutoff]);
+append_columns=function(original_mat, additional_mat){
 
+	origmat_dim=dim(original_mat);
+	addmat_dim=dim(additional_mat);
+
+	cat("Inserting: ", addmat_dim[1], "x", addmat_dim[2], " into ", origmat_dim[1], "x", origmat_dim[2], "\n");
+
+	orig_cnames=colnames(original_mat);
+	add_cnames=colnames(additional_mat);	
+	samp_ids=rownames(original_mat);
+	add_ids=rownames(additional_mat);
+
+	comb_mat=matrix(NA, nrow=origmat_dim[1], ncol=origmat_dim[2]+addmat_dim[2]);
+
+	rownames(comb_mat)=samp_ids;
+	colnames(comb_mat)=c(orig_cnames, add_cnames);
+
+	#comb_mat[samp_ids, orig_cnames]=original_mat[samp_ids, orig_cnames];
+
+	# Copy original mat over
+	for(cnames in orig_cnames){
+		comb_mat[,cnames]=original_mat[,cnames];
+	}
+
+	# Copy addition mat over
+	avail_ids=intersect(samp_ids, add_ids);
+	for(cnames in add_cnames){
+		comb_mat[avail_ids, cnames]=additional_mat[avail_ids, cnames];
+	}
+
+	dim_return=dim(comb_mat);
+	cat("Returning Matrix: ", dim_return[1], " x ", dim_return[2], "\n"); 
+	return(comb_mat);
+}
+
+
+if(ExportCurated){
+	cat("Appending Curated Predictors...\n");
+	out_factors=append_columns(out_factors, curated_pred_mat)	
+	cat("Appending Curated Responders...\n");
+	out_factors=append_columns(out_factors, curated_resp_mat)	
+}
+
+if(ExportImputed){
+	cat("Appending Imputed Variables\n");
+	colnames(imputed_mat)=paste("imp.", colnames(imputed_mat), sep="");
+	out_factors=append_columns(out_factors, imputed_mat);
+}
+
+if(ExportPC){
+	cat("Appending Computed PCs\n");
+	out_factors=append_columns(out_factors, positive_scores[,1:num_pc_at_cutoff, drop=F]);
+}
+
+##############################################################################
+
+cat("Outputing New Factor File Values:\n");
 fname=paste(OutputFnameRoot, ".pca.tsv", sep="");
 fh=file(fname, "w");
 cat(file=fh, "SampleID");
