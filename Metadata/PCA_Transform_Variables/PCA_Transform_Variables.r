@@ -788,7 +788,7 @@ append_columns=function(original_mat, additional_mat){
 	samp_ids=rownames(original_mat);
 	add_ids=rownames(additional_mat);
 
-	comb_mat=matrix(NA, nrow=origmat_dim[1], ncol=origmat_dim[2]+addmat_dim[2]);
+	comb_mat=as.data.frame(matrix(NA, nrow=origmat_dim[1], ncol=origmat_dim[2]+addmat_dim[2]));
 
 	rownames(comb_mat)=samp_ids;
 	colnames(comb_mat)=c(orig_cnames, add_cnames);
