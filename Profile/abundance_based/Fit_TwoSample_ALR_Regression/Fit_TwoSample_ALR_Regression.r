@@ -1462,7 +1462,7 @@ plot_pred_resp_bar=function(coef_mat, pval_mat, title=""){
 
 par(oma=c(20, 5, 5, 1));
 plot_pred_resp_bar(category_alr_coef_mat, category_alr_pval_mat);
-mtext(paste("Predictability of ", ResponseName, " ALR based on ", PredictorName, " ALR", sep=""),
+mtext(paste("Predictability of '", ResponseName, "' ALR based on '", PredictorName, "' ALR", sep=""),
 	side=3, font=2, line=2
 	);
 mtext("After Controlling for Covariates", side=3, font=2, line=1);
