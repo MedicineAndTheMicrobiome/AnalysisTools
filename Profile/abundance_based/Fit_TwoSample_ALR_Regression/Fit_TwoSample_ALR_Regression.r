@@ -138,7 +138,7 @@ PredictorName=opt$predictor;
 FactorSampleIDName=opt$factor_samp_id_name;
 ALRCategListFile=opt$alr_list_file;
 
-OutputRoot=paste(OutputRoot, ".p", PredictorName, ".r", ResponseName, sep="");
+OutputRoot=paste(OutputRoot, ".p_", PredictorName, ".r_", ResponseName, sep="");
 
 cat("\n");
 cat("         Summary File: ", SummaryFile, "\n", sep="");
@@ -452,6 +452,11 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 
         num_row=nrow(mat);
         num_col=ncol(mat);
+
+	if(num_row==0 || num_col==0){
+		cat("Nothing to plot.\n");
+		return();
+	}
 
 	any_nas=any(is.na(mat));
 
@@ -1127,7 +1132,7 @@ alr_names=colnames(alr_categories_val);
 plots_per_page=6
 par(mfrow=c(plots_per_page,2));
 par(oma=c(0,0,0,0));
-par(mar=c(4,4,2,2));
+par(mar=c(4,4,3,2));
 median_delta=numeric(NumRespVariables);
 names(median_delta)=alr_names;
 for(cat_ix in 1:NumRespVariables){
@@ -1136,7 +1141,7 @@ for(cat_ix in 1:NumRespVariables){
 	cur_alr_pred=predictor_alr[,cat_ix];
 
 
-	if((cat_ix %% plots_per_page)==0){
+	if((cat_ix %% plots_per_page)==0 || cat_ix==NumRespVariables){
 		bottom_label=PredictorName;
 	}else{
 		bottom_label="";
@@ -1159,15 +1164,15 @@ for(cat_ix in 1:NumRespVariables){
 par(mfrow=c(2,1));
 par(mar=c(20,4,3,1));
 color_arr=rainbow(NumRespVariables, start=0, end=4/6);
-barplot(median_delta, horiz=F, las=2, 
-	main=paste("Median Difference between ", ResponseName, " and ", PredictorName, sep=""),
-	col=color_arr);
+barplot(median_delta, horiz=F, las=2, main="", col=color_arr);
+title(main=paste("Median Difference between ", ResponseName, " and ", PredictorName, sep=""), line=2);
+title(main="(Ordered by decreasing abundance)", line=1, cex=.7);
 
-dec_del_ix=order(median_delta, decreasing=F);
-barplot(median_delta[dec_del_ix], horiz=F, las=2, 
-	main=paste("Median Difference between ", ResponseName, " and ", PredictorName, sep=""),
-	col=color_arr[dec_del_ix]
-	);
+
+dec_del_ix=order(median_delta, decreasing=T);
+barplot(median_delta[dec_del_ix], horiz=F, las=2, main="", col=color_arr[dec_del_ix]);
+title(main=paste("Median Difference between ", ResponseName, " and ", PredictorName, sep=""), line=2);
+title(main="(Ordered by decreasing median difference)", line=1, cex=.7);
 
 par(mfrow=c(1,1));
 #print(response_alr);
