@@ -802,7 +802,11 @@ incomplete_pairing_info=c(
 	"Incomplete Pairings: ",
 	capture.output(print(bad_pairs_map)),
 	"",
+	paste("  Num complete pairings: ", num_complete_pairings, sep=""),
+	paste("Num incomplete pairings: ", num_incomplete_pairings, sep=""),
+	"",
 	"(Double NA entries mean that the samples are missing from both groups.)",
+	"(Known incomplete pairings (i.e. NAs in map file) are not included.)",
 	missing_info
 );
 
@@ -829,6 +833,7 @@ if(ShortenCategoryNames!=""){
 # Normalize
 cat("Normalizing counts...\n");
 normalized=normalize(counts);
+print(normalized);
 
 # Assign 0's to values smaller than smallest abundance across entire dataset
 min_assay=min(normalized[normalized!=0]);
@@ -1097,7 +1102,8 @@ plot_text(c(
 ));
 
 plot_text(c(
-	paste("ALR Categories (Top ", NumMaxALRVariables, ")", sep=""),
+	paste("ALR Response Categories (Top: ", NumRespVariables, 
+		", or Additional: ", length(additional_categories),")", sep=""),
 	capture.output(print(alr_cat_names))
 ));
 
