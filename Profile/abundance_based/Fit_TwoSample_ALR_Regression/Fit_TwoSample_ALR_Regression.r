@@ -138,6 +138,8 @@ PredictorName=opt$predictor;
 FactorSampleIDName=opt$factor_samp_id_name;
 ALRCategListFile=opt$alr_list_file;
 
+OutputRoot=paste(OutputRoot, ".p", PredictorName, ".r", ResponseName, sep="");
+
 cat("\n");
 cat("         Summary File: ", SummaryFile, "\n", sep="");
 if(SecondSummaryTable!=""){
@@ -288,6 +290,11 @@ load_mapping=function(filename, src, dst){
 
 	map=cbind(as.character(mapping[,src]), as.character(mapping[,dst]));
 	colnames(map)=c(src, dst);
+
+	# Remove pairings with NAs
+	incomp=apply(map, 1, function(x){any(is.na(x))});
+	map=map[!incomp,];
+
 	return(map);
 }
 
@@ -441,13 +448,17 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 	plot_row_dendr=F
 ){
 
+	cat("Working on: ", title, "\n");
+
         num_row=nrow(mat);
         num_col=ncol(mat);
 
-	if(num_row==1){
+	any_nas=any(is.na(mat));
+
+	if(num_row==1 || any_nas){
 		plot_row_dendr=F;
 	}
-	if(num_col==1){
+	if(num_col==1 || any_nas){
 		plot_col_dendr=F;
 	}
 
@@ -500,6 +511,7 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 	##################################################################################################
 	
 	get_dendrogram=function(in_mat, type){
+
 		if(type=="row"){
 			dendist=dist(in_mat);
 		}else{
@@ -519,7 +531,6 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 				return(lf_names);
 			}
 		}
-
 
 		hcl=hclust(dendist, method="ward.D2");
 		dend=list();
@@ -1319,7 +1330,7 @@ mtext(PredictorName, side=1, cex=2, font=2, line=.75);
 mtext(ResponseName, side=4, cex=2, font=2, line=.75);
 
 # ALR Coefficients Clustered
-paint_matrix(category_alr_coef_mat[,1:NumPredVariables], 
+paint_matrix(category_alr_coef_mat[,1:NumPredVariables, drop=F], 
 	title=paste("Top ", NumPredVariables, " ", PredictorName," Predictor ALR Coefficients for Top ", NumRespVariables, " ", ResponseName, " Responses ALR", sep=""), 
 	 plot_col_dendr=T, plot_row_dendr=T,
 	deci_pts=2, value.cex=.8);
@@ -1349,7 +1360,7 @@ mtext(PredictorName, side=1, cex=2, font=2, line=.75);
 mtext(ResponseName, side=4, cex=2, font=2, line=.75);
 
 # ALR P-Values Clustered
-paint_matrix(category_alr_pval_mat[,1:NumPredVariables], plot_min=0, plot_max=1,
+paint_matrix(category_alr_pval_mat[,1:NumPredVariables, drop=F], plot_min=0, plot_max=1,
 	title=paste("Top ", NumPredVariables, " ", PredictorName," Predictor ALR P-Values for Top ", NumRespVariables, " ", ResponseName, " Responses ALR", sep=""), 
 	plot_col_dendr=T, plot_row_dendr=T,
 	high_is_hot=F, deci_pts=2, value.cex=.8);
@@ -1457,19 +1468,19 @@ rownames(category_alr_coef_mat)=paste(ResponseName,".",rownames(category_alr_coe
 colnames(category_alr_coef_mat)=paste(PredictorName,".",colnames(category_alr_coef_mat), sep="");
 
 write.table(category_alr_pval_mat[,1:NumPredVariables, drop=F],
-	file=paste(OutputRoot, ".", PredictorName, ".alr_as_pred.pvals.tsv", sep=""), 
+	file=paste(OutputRoot, ".alr_as_pred.pvals.tsv", sep=""), 
 	sep="\t", quote=F, col.names=NA, row.names=T);
 
 write.table(category_alr_coef_mat[,1:NumPredVariables, drop=F],
-	file=paste(OutputRoot, ".", PredictorName, ".alr_as_pred.coefs.tsv", sep=""), 
+	file=paste(OutputRoot, ".alr_as_pred.coefs.tsv", sep=""), 
 	sep="\t", quote=F, col.names=NA, row.names=T);
 
 write.table(t(category_alr_pval_mat[,1:NumPredVariables, drop=F]),
-	file=paste(OutputRoot, ".", PredictorName, ".alr_as_pred.tp.pvals.tsv", sep=""), 
+	file=paste(OutputRoot, ".alr_as_pred.tp.pvals.tsv", sep=""), 
 	sep="\t", quote=F, col.names=NA, row.names=T);
 
 write.table(t(category_alr_coef_mat[,1:NumPredVariables, drop=F]),
-	file=paste(OutputRoot, ".", PredictorName, ".alr_as_pred.tp.coefs.tsv", sep=""), 
+	file=paste(OutputRoot, ".alr_as_pred.tp.coefs.tsv", sep=""), 
 	sep="\t", quote=F, col.names=NA, row.names=T);
 
 
