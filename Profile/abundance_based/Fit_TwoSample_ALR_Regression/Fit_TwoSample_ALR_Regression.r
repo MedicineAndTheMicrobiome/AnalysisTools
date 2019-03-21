@@ -25,6 +25,7 @@ params=c(
 
 	"num_resp_var", "u", 2, "numeric",
 	"num_pred_var", "v", 2, "numeric",
+	"alr_list_file", "a", 2, "character",
 
 	"reference_levels", "c", 2, "character",
 	"outputroot", "o", 2, "character",
@@ -54,6 +55,7 @@ usage = paste(
 	"\n",
 	"	[-u <number of top response categories to analyze, default=", NUM_TOP_RESP_CAT, ">]\n",
 	"	[-v <number of top predictor (as ALR) categories to include, default=", NUM_TOP_PRED_CAT, ">]\n",
+	"	[-a <list of ALR categories to use in additon to top>]\n",
 	"\n",
 	"	[-o <output filename root>]\n",
 	"\n",
@@ -134,6 +136,7 @@ PairingsFile=opt$pairings;
 ResponseName=opt$response;
 PredictorName=opt$predictor;
 FactorSampleIDName=opt$factor_samp_id_name;
+ALRCategListFile=opt$alr_list_file;
 
 cat("\n");
 cat("         Summary File: ", SummaryFile, "\n", sep="");
@@ -151,6 +154,8 @@ cat("\n");
 cat("Number of Predictor Variables: ", NumPredVariables, "\n", sep="");
 cat(" Number of Response Variables: ", NumRespVariables, "\n", sep="");
 cat("           Max ALR Var to Fit: ", NumMaxALRVariables, "\n", sep="");
+cat("\n");
+cat("List of ALR Categories to Include (instead of using Top):", ALRCategListFile, "\n", sep="");
 cat("\n");
 cat("Reference Levels File: ", ReferenceLevelsFile, "\n", sep="");
 cat("Use Remaining? ", UseRemaining, "\n");
@@ -322,35 +327,59 @@ split_goodbad_pairings_map=function(pairs_map){
 	
 }
 
-extract_top_categories=function(ordered_normalized, top){
+extract_top_categories=function(ordered_normalized, top, additional_cat=c()){
 
-	num_samples=nrow(ordered_normalized);
-	num_categories=ncol(ordered_normalized);
+        num_samples=nrow(ordered_normalized);
+        num_categories=ncol(ordered_normalized);
 
-	cat("Samples: ", num_samples, "\n");
-	cat("Categories: ", num_categories, "\n");
-	
-	num_saved=min(c(num_categories, top+1));
+        cat("Samples: ", num_samples, "\n");
+        cat("Categories: ", num_categories, "\n");
 
-	cat("Top Requested to Extract: ", top, "\n");
-	cat("Columns to Extract: ", num_saved, "\n");
+        num_top_to_extract=min(num_categories-1, top);
 
-	top_cat=matrix(0, nrow=num_samples, ncol=num_saved);
-	top=num_saved-1;
+        cat("Top Requested to Extract: ", top, "\n");
+        cat("Columns to Extract: ", num_top_to_extract, "\n");
 
-	# Extract top categories requested
-	top_cat[,1:top]=ordered_normalized[,1:top];
+        # Extract top categories requested
+        top_cat=ordered_normalized[,1:num_top_to_extract, drop=F];
 
-	# Included remaineder as sum of remaining categories
-	top_cat[,(top+1)]=apply(
-		ordered_normalized[,(top+1):num_categories, drop=F],
-		1, sum);
+        if(length(additional_cat)){
+                cat("Additional Categories to Include:\n");
+                print(additional_cat);
+        }else{
+                cat("No Additional Categories to Extract.\n");
+        }
 
-	rownames(top_cat)=rownames(ordered_normalized);
-	colnames(top_cat)=c(colnames(ordered_normalized)[1:top], "Remaining");
+        # Extract additional categories
+        # :: Make sure we can find the categories
+        available_cat=colnames(ordered_normalized);
+        missing_cat=setdiff(additional_cat, available_cat);
+        if(length(missing_cat)){
+                cat("Error: Could not find categories: \n");
+                print(missing_cat);
+                quit(status=-1);
+        }
 
-	return(top_cat);
-			
+        # :: Remove categories we have already extracted in the top N
+        already_extracted_cat=colnames(top_cat);
+        extra_cat=setdiff(additional_cat, already_extracted_cat);
+
+        num_extra_to_extract=length(extra_cat);
+        cat("Num Extra Categories to Extract: ", num_extra_to_extract, "\n");
+
+        # Allocate/Prepare output matrix
+        num_out_mat_cols=num_top_to_extract+num_extra_to_extract+1;
+        out_mat=matrix(0, nrow=num_samples, ncol=num_out_mat_cols);
+        rownames(out_mat)=rownames(ordered_normalized);
+        colnames(out_mat)=c(already_extracted_cat, extra_cat, "Remaining");
+
+        # Copy over top and additional categories, and compute remainding
+        all_cat_names=c(already_extracted_cat, extra_cat);
+        out_mat[,all_cat_names]=ordered_normalized[,all_cat_names];
+        out_mat[,"Remaining"]=apply(out_mat, 1, function(x){1-sum(x)});
+
+        return(out_mat);
+
 }
 
 additive_log_rato=function(ordered_matrix){
@@ -1024,10 +1053,20 @@ if(NumMaxALRVariables >= num_st_categories){
 cat("\n");
 cat("Extracting Top categories: ", NumMaxALRVariables, " from amongst ", ncol(normalized), "\n", sep="");
 
-cat_abundances=extract_top_categories(normalized, NumMaxALRVariables);
+additional_categories=c();
+if(ALRCategListFile!=""){
+	additional_categories=load_list(ALRCategListFile);	
+	cat("Additional ALRs Categories Specified: \n");
+	print(additional_categories);
+}
+
+cat_abundances=extract_top_categories(normalized, NumMaxALRVariables, additional_cat=additional_categories);
+
+print(cat_abundances);
 resp_alr_struct=additive_log_rato(cat_abundances);
 alr_categories_val=resp_alr_struct$transformed;
 alr_cat_names=colnames(alr_categories_val);
+NumRespVariables=ncol(alr_categories_val);
 
 plot_text(c(
 	paste("Num (Reconciled) Samples before NA removal: ", num_samples_before_na_removal, sep=""),
@@ -1155,6 +1194,21 @@ model_pval_mat             =matrix(NA, nrow=NumRespVariables, ncol=1,
 
 # Fit the regression model
 
+cat("Num Response ALR Variables: ", NumRespVariables, "\n");
+cat("Num Predictor ALR Variables: ", NumPredVariables, "\n");
+
+all_pred_alr_names=colnames(predictor_alr);
+
+if(NumPredVariables>0){
+	top_alr_pred_names=all_pred_alr_names[1:NumPredVariables];
+}else{
+	top_alr_pred_names=c();
+}
+cat("Top ALR Predictors Available: \n");
+print(top_alr_pred_names);
+
+cat("*************************************************\n\n");
+
 for(resp_ix in 1:NumRespVariables){
 	alr_resp=response_alr[,resp_ix,drop=F];
 	resp_cat_name=colnames(alr_resp);
@@ -1162,36 +1216,37 @@ for(resp_ix in 1:NumRespVariables){
 	
 	cat("Fitting: ", resp_ix, ".) ", resp_cat_name, "\n");
 
-	# For the top responses, the top ALR predictors are already included in the model, but for the
-	#   remaining make sure the predictor ALR is also included.
-	if(resp_ix<=NumPredVariables){
-		# Response category is already in predictors
-		alr_pred=predictor_alr[,1:NumPredVariables];
+	# Always include the response ALR category in the predictor
+
+	if(any(resp_cat_name == top_alr_pred_names)){
+		cat("Current response variable is in list of top predictors to include.\n");
+		alr_predictors=top_alr_pred_names;
 	}else{
-		# Include response category in predictor
-		alr_pred=cbind(predictor_alr[,resp_cat_name, drop=F], predictor_alr[,1:NumPredVariables]);
+		cat("Current response variable is NOT in list of top predictors to include,\n");
+		cat("  so including Top N-1 categories as well.\n");
+		if(NumPredVariables>1){
+			alr_predictors=c(resp_cat_name, top_alr_pred_names[1:(NumPredVariables-1)]);
+		}else{
+			alr_predictors=resp_cat_name;
+		}
 	}
+	cat("ALR Predictors to include: \n");
+	print(alr_predictors);
+
+	alr_pred=predictor_alr[,alr_predictors, drop=F];
 	alr_pred_names=colnames(alr_pred);
-	
 	model_pred_df=as.data.frame(cbind(alr_pred, factors));
 
 	# Build formula string for full and reduced model
-	model_str=paste("alr_resp ~ ", paste(c(alr_pred_names,model_var_arr), collapse="+"), sep="");
-	model_reduced_str=paste("alr_resp ~ ", paste(model_var_arr, collapse="+"), sep="");
+
+	model_str=paste("alr_resp ~ ", paste(c(alr_pred_names,model_var_arr), collapse=" + "), sep="");
+	model_reduced_str=paste("alr_resp ~ ", paste(model_var_arr, collapse=" + "), sep="");
 
 	cat("Model String: \n");
 	cat("Full:\n");
 	print(model_str);
 	cat("Reduced:\n");
 	print(model_reduced_str);
-
-	if(grep("[^a-zA-Z0-9]", model_str)){
-		cat("\n\n");
-		cat("WARNING: Model string contains non alphanumerics. This may cause errors.\n");
-		cat("Check the variables (covariates or categories) for illegal characters.\n");
-		cat("Semi-colons in the categories may indicate you need to use the -x \";\" option.\n");
-		cat("\n\n");
-	}
 
 	# Fit full and reduced model
 	lm_fit=lm(as.formula(model_str), data=model_pred_df);
@@ -1240,7 +1295,7 @@ for(resp_ix in 1:NumRespVariables){
 	model_pval_mat[resp_cat_name, "F-statistic P-value"]=
 		1-pf(sum_fit$fstatistic[1], sum_fit$fstatistic[2], sum_fit$fstatistic[3]);
 
-	cat("*************************************************\n");
+	cat("\n\n*************************************************\n\n");
 
 }
 
