@@ -1165,13 +1165,13 @@ par(mfrow=c(2,1));
 par(mar=c(20,4,3,1));
 color_arr=rainbow(NumRespVariables, start=0, end=4/6);
 barplot(median_delta, horiz=F, las=2, main="", col=color_arr);
-title(main=paste("Median Difference between ", ResponseName, " and ", PredictorName, sep=""), line=2);
+title(main=paste("Median Difference between '", ResponseName, "' and '", PredictorName, "'", sep=""), line=2);
 title(main="(Ordered by decreasing abundance)", line=1, cex=.7);
 
 
 dec_del_ix=order(median_delta, decreasing=T);
 barplot(median_delta[dec_del_ix], horiz=F, las=2, main="", col=color_arr[dec_del_ix]);
-title(main=paste("Median Difference between ", ResponseName, " and ", PredictorName, sep=""), line=2);
+title(main=paste("Median Difference between '", ResponseName, "' and '", PredictorName, "'", sep=""), line=2);
 title(main="(Ordered by decreasing median difference)", line=1, cex=.7);
 
 par(mfrow=c(1,1));
@@ -1329,14 +1329,16 @@ par(oma=c(2,1,5,2));
 
 # ALR Coefficients
 paint_matrix(category_alr_coef_mat, 
-	title=paste("Top ", NumPredVariables, " ", PredictorName," Predictor ALR Coefficients for Top ", NumRespVariables, " ", ResponseName, " Responses ALR", sep=""), 
+	title=paste("Top ", NumPredVariables, " '", PredictorName,"' Predictor ALR Coefficients for Top ", 
+		NumRespVariables, " '", ResponseName, "' Responses ALR", sep=""), 
 	deci_pts=2, value.cex=.8);
 mtext(PredictorName, side=1, cex=2, font=2, line=.75);
 mtext(ResponseName, side=4, cex=2, font=2, line=.75);
 
 # ALR Coefficients Clustered
 paint_matrix(category_alr_coef_mat[,1:NumPredVariables, drop=F], 
-	title=paste("Top ", NumPredVariables, " ", PredictorName," Predictor ALR Coefficients for Top ", NumRespVariables, " ", ResponseName, " Responses ALR", sep=""), 
+	title=paste("Top ", NumPredVariables, " '", PredictorName,"' Predictor ALR Coefficients for Top ",
+		NumRespVariables, " '", ResponseName, "' Responses ALR", sep=""), 
 	 plot_col_dendr=T, plot_row_dendr=T,
 	deci_pts=2, value.cex=.8);
 mtext(PredictorName, side=1, cex=2, font=2, line=.75);
@@ -1344,7 +1346,8 @@ mtext(ResponseName, side=4, cex=2, font=2, line=.75);
 
 # ALR P-Values
 paint_matrix(category_alr_pval_mat, plot_min=0, plot_max=1,
-	title=paste("Top ", NumPredVariables, " ", PredictorName," Predictor ALR P-Values for Top ", NumRespVariables, " ", ResponseName, " Responses ALR", sep=""), 
+	title=paste("Top ", NumPredVariables, " '", PredictorName,"' Predictor ALR P-Values for Top ", 
+		NumRespVariables, " '", ResponseName, "' Responses ALR", sep=""), 
 	high_is_hot=F, deci_pts=2, value.cex=.8);
 mtext(PredictorName, side=1, cex=2, font=2, line=.75);
 mtext(ResponseName, side=4, cex=2, font=2, line=.75);
@@ -1357,16 +1360,17 @@ category_alr_coef_masked_mat=mask_matrix(
 	mask_thres=0.05, 
 	mask_val=0.0);
 paint_matrix(category_alr_coef_masked_mat,
-	title=paste("Top ", NumPredVariables, " ", 
-		PredictorName," Predictor ALR Coeff for Top ", NumRespVariables, " ", ResponseName,
-		" Responses ALR P-Val(<.05) Maskd", sep=""), 
+	title=paste("Top ", NumPredVariables, " '", 
+		PredictorName,"' Predictor ALR Coeff for Top ", NumRespVariables, " '", ResponseName,
+		"' Responses ALR P-Val(<.05) Maskd", sep=""), 
 	label_zeros=F, high_is_hot=F, deci_pts=2, value.cex=.8);
 mtext(PredictorName, side=1, cex=2, font=2, line=.75);
 mtext(ResponseName, side=4, cex=2, font=2, line=.75);
 
 # ALR P-Values Clustered
 paint_matrix(category_alr_pval_mat[,1:NumPredVariables, drop=F], plot_min=0, plot_max=1,
-	title=paste("Top ", NumPredVariables, " ", PredictorName," Predictor ALR P-Values for Top ", NumRespVariables, " ", ResponseName, " Responses ALR", sep=""), 
+	title=paste("Top ", NumPredVariables, " '", PredictorName,"' Predictor ALR P-Values for Top ", 
+		NumRespVariables, " '", ResponseName, "' Responses ALR", sep=""), 
 	plot_col_dendr=T, plot_row_dendr=T,
 	high_is_hot=F, deci_pts=2, value.cex=.8);
 mtext(PredictorName, side=1, cex=2, font=2, line=.75);
@@ -1374,14 +1378,14 @@ mtext(ResponseName, side=4, cex=2, font=2, line=.75);
 
 # Covariate Coefficients
 paint_matrix(covariates_coef_mat, 
-	title=paste("Covariates Coefficients for Top ", NumRespVariables, " ", ResponseName, " Categories", sep=""),
+	title=paste("Covariates Coefficients for Top ", NumRespVariables, " '", ResponseName, "' Categories", sep=""),
 	deci_pts=2, value.cex=.8);
 mtext("Covariates", side=1, cex=2, font=2, line=.75);
 mtext(ResponseName, side=4, cex=2, font=2, line=.75);
 
 # Covariate Coefficients w/ Clustering
 paint_matrix(covariates_coef_mat, 
-	title=paste("Covariates Coefficients for Top ", NumRespVariables, " ", ResponseName, " Categories", sep=""),
+	title=paste("Covariates Coefficients for Top ", NumRespVariables, " '", ResponseName, "' Categories", sep=""),
 	plot_col_dendr=T, plot_row_dendr=T,
 	deci_pts=2, value.cex=.8);
 mtext("Covariates", side=1, cex=2, font=2, line=.75);
@@ -1389,7 +1393,7 @@ mtext(ResponseName, side=4, cex=2, font=2, line=.75);
 
 # Covariate P-Values
 paint_matrix(covariates_pval_mat, plot_min=0, plot_max=1, 
-	title=paste("Covariates P-Values for Top ", NumRespVariables, " ", ResponseName, " Categories", sep=""),
+	title=paste("Covariates P-Values for Top ", NumRespVariables, " '", ResponseName, "' Categories", sep=""),
 	high_is_hot=F, deci_pts=2, value.cex=.8);
 mtext("Covariates", side=1, cex=2, font=2, line=.75);
 mtext(ResponseName, side=4, cex=2, font=2, line=.75);
@@ -1401,9 +1405,9 @@ covariates_coef_masked_mat=mask_matrix(
         mask_thres=0.05,
         mask_val=0.0);
 paint_matrix(covariates_coef_masked_mat,,
-        title=paste("Top ", NumPredVariables, " ",
-                PredictorName," Covariates Coeff for Top ", NumRespVariables, " ", ResponseName,
-                " Responses ALR P-Val(<.05) Maskd", sep=""),
+        title=paste("Top ", NumPredVariables, " '",
+                PredictorName,"' Covariates Coeff for Top ", NumRespVariables, " '", ResponseName,
+                "' Responses ALR P-Val(<.05) Maskd", sep=""),
         label_zeros=F, high_is_hot=F, deci_pts=2, value.cex=.8);
 mtext("Covariates", side=1, cex=2, font=2, line=.75);
 mtext(ResponseName, side=4, cex=2, font=2, line=.75);
@@ -1411,14 +1415,15 @@ mtext(ResponseName, side=4, cex=2, font=2, line=.75);
 
 # Covariate P-Values Clustered
 paint_matrix(covariates_pval_mat, plot_min=0, plot_max=1, 
-	title=paste("Covariates P-Values for Top ", NumRespVariables, " ", ResponseName, " Categories", sep=""),
+	title=paste("Covariates P-Values for Top ", NumRespVariables, " '", ResponseName, "' Categories", sep=""),
 	plot_col_dendr=T, plot_row_dendr=T,
 	high_is_hot=F, deci_pts=2, value.cex=.8);
 mtext("Covariates", side=1, cex=2, font=2, line=.75);
 mtext(ResponseName, side=4, cex=2, font=2, line=.75);
 
 # R^2
-paint_matrix(rsqrd_mat, plot_min=0, plot_max=1, title=paste("Explained Variation for Top ", NumRespVariables, " Responses: R^2", sep=""));
+paint_matrix(rsqrd_mat, plot_min=0, plot_max=1, 
+	title=paste("Explained Variation for Top ", NumRespVariables, " Responses: R^2", sep=""));
 mtext(ResponseName, side=4, cex=2, font=2, line=.75);
 
 # Model pval
