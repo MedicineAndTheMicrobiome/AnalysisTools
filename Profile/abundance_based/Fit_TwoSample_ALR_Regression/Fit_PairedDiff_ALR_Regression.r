@@ -1075,6 +1075,15 @@ num_used_alr_cat=length(alr_cat_names);
 NumRespVariables=ncol(alr_categories_val);
 
 plot_text(c(
+	"Additional ALR Categories Requested:\n",
+	capture.output(print(additional_categories)),
+	"\n",
+	"Top Categories Included:\n",
+	capture.output(print(setdiff(alr_cat_names, additional_categories)))
+));
+
+
+plot_text(c(
 	paste("Num (Reconciled) Samples before NA removal: ", num_samples_before_na_removal, sep=""),
 	paste("Num Factors before NA removal: ", num_factors_before_na_removal, sep=""),
 	"",
