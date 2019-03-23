@@ -1131,6 +1131,9 @@ cat("Anticipated Coefficient Names:\n");
 print(cov_coeff_names);
 cat("\n");
 
+wilcoxon_pval_mat=matrix(NA, nrow=num_used_alr_cat, ncol=1,
+	dimnames=list(alr_cat_names, "Wilcoxon Paired"));
+
 covariates_coef_mat  =matrix(NA, nrow=num_used_alr_cat, ncol=num_cov_coeff_names, 
 	dimnames=list(alr_cat_names, cov_coeff_names));
 covariates_pval_mat  =matrix(NA, nrow=num_used_alr_cat, ncol=num_cov_coeff_names, 
@@ -1207,6 +1210,7 @@ for(cat_ix in 1:num_used_alr_cat){
 
 	print(sum_fit);
 	ab_wilcox_res=wilcox.test(A_alr_val, B_alr_val, paired=T);
+	wilcoxon_pval_mat[cur_cat_name, 1]=ab_wilcox_res$p.value;
 
 
 	plot_ab_comparisons(A_alr_val, B_alr_val, A_subtrahend, B_minuend, 
@@ -1283,6 +1287,10 @@ covariates_coef_mat=rename_intercept(covariates_coef_mat, "(Intercept)", "\"Diff
 covariates_pval_mat=rename_intercept(covariates_pval_mat, "(Intercept)", "\"Difference\"");
 
 print(covariates_coef_mat);
+
+paint_matrix(wilcoxon_pval_mat, plot_min=0, plot_max=1,
+	title="Wilcoxon Difference in ALR P-values",
+	high_is_hot=F, deci_pts=2, value.cex=.8); 
 
 paint_matrix(covariates_coef_mat, 
         title="Model Coefficients",
