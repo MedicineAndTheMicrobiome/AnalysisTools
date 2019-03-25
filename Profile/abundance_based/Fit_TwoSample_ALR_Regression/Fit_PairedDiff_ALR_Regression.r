@@ -1289,24 +1289,27 @@ covariates_pval_mat=rename_intercept(covariates_pval_mat, "(Intercept)", "\"Diff
 print(covariates_coef_mat);
 
 paint_matrix(wilcoxon_pval_mat, plot_min=0, plot_max=1,
-	title="Wilcoxon Difference in ALR P-values",
+	title="Wilcoxon Difference in ALR: P-values",
 	high_is_hot=F, deci_pts=2, value.cex=.8); 
+mtext(text="(No controlling for covariates)", side=3, cex=.8, font=3, line=2, outer=T);
 
 paint_matrix(covariates_coef_mat, 
-        title="Model Coefficients",
+        title="Regression Model Coefficient Values",
         high_is_hot=T, deci_pts=2, value.cex=.8);
 
 paint_matrix(covariates_pval_mat, plot_min=0, plot_max=1,
-        title="P-Values (H1: Non-zero Coefficients)", 
+        title="Regression Model Coeff P-Values", 
         high_is_hot=F, deci_pts=2, value.cex=.8);
+mtext(text="(H0: Coefficients equal zero, H1: Non-zero Coefficients)", side=3, cex=.9, font=3, line=2, outer=T);
 
 paint_matrix(rsqrd_mat, plot_min=0, plot_max=1,
-        title="R^2", 
+        title="Regression R^2's", 
         high_is_hot=T, deci_pts=2, value.cex=.8);
 
 paint_matrix(model_pval_mat, plot_min=0, plot_max=1,
-        title="Model P-values", 
+        title="Regression Model Fit P-values", 
         high_is_hot=F, deci_pts=2, value.cex=.8);
+mtext(text="(H0: Predictors have no contribution to model fit)", side=3, cex=.8, font=3, line=2, outer=T);
 
 
 
