@@ -1214,6 +1214,45 @@ plot_coeff_pvalues(geom_pval_matrix[,keep, drop=F], coef_colors[keep], "Most Dyn
 keep=remove_coeff_never_below_thres(geom_pval_matrix);
 plot_coeff_pvalues(geom_pval_matrix[,keep, drop=F], coef_colors[keep], "Coefficient Geometric Mean P-Values Sometime Significant");
 
+# Extract min pvalues
+best_cl_cut=as.data.frame(matrix(NA, nrow=ncol(min_pval_matrix), ncol=3));
+colnames(best_cl_cut)=c("cluster_cut", "p-value", "signf_char");
+rownames(best_cl_cut)=colnames(min_pval_matrix);
+cl_cuts=rownames(min_pval_matrix);
+
+sig_char=function(val){
+	if(val == 0){ return("***");}
+	if(val <= .001){ return("** ");}
+	if(val <= .01){ return("*  ");}
+	if(val <= .05){ return(".  ");}
+	return(" ");
+}
+
+for(i in 1:ncol(min_pval_matrix)){
+	min_pv_ix=min(which(min_pval_matrix[,i]==min(min_pval_matrix[,i])));
+	best_cl_cut[i, "p-value"]=min_pval_matrix[min_pv_ix, i];
+	best_cl_cut[i, "cluster_cut"]=as.numeric(cl_cuts[min_pv_ix]);
+	best_cl_cut[i, "signf_char"]=sig_char(min_pval_matrix[min_pv_ix, i]);
+}
+
+pval_ord_ix=order(best_cl_cut[,"p-value"]);
+best_cl_cut=best_cl_cut[pval_ord_ix,];
+print(best_cl_cut);
+
+vnam_ord_ix=order(rownames(best_cl_cut));
+clct_ord_ix=order(best_cl_cut[pval_ord_ix, "cluster_cut"]);
+
+plot_text(c(
+	"Ordered By: Variable Name",
+	capture.output(print(best_cl_cut[vnam_ord_ix,], quote=F)),
+	"",
+	"Ordered By: Min P-Value",
+	capture.output(print(best_cl_cut, quote=F)),
+	"",
+	"Ordered By: Cluster Cuts",
+	capture.output(print(best_cl_cut[clct_ord_ix,], quote=F)),
+	""
+));
 
 ###############################################################################
 
