@@ -1240,7 +1240,7 @@ best_cl_cut=best_cl_cut[pval_ord_ix,];
 print(best_cl_cut);
 
 vnam_ord_ix=order(rownames(best_cl_cut));
-clct_ord_ix=order(best_cl_cut[pval_ord_ix, "cluster_cut"]);
+clct_ord_ix=order(best_cl_cut[, "cluster_cut"]);
 
 plot_text(c(
 	"Ordered By: Variable Name",
