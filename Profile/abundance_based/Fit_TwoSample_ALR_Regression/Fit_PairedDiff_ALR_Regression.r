@@ -129,6 +129,13 @@ if(length(opt$required)){
 	RequiredFile="";
 }
 
+if(length(opt$alr_list_file)){
+	ALRCategListFile=opt$alr_list_file;
+}else{
+	ALRCategListFile="";
+}
+
+
 SummaryFile=opt$summary_file;
 FactorsFile=opt$factors;
 ModelVarFile=opt$model_var;
@@ -137,7 +144,6 @@ A_subtrahend=opt$A_subtrahend;
 B_minuend=opt$B_minuend;
 
 FactorSampleIDName=opt$factor_samp_id_name;
-ALRCategListFile=opt$alr_list_file;
 
 OutputRoot=paste(OutputRoot, ".a_", A_subtrahend, ".b_", B_minuend, sep="");
 
@@ -708,6 +714,13 @@ add_sign_col=function(coeff){
 	return(formatC(out_mat, format="f", digits=5,));
 	
 }
+
+mask_matrix=function(val_mat, mask_mat, mask_thres, mask_val){
+        masked_matrix=val_mat;
+        masked_matrix[mask_mat>mask_thres]=mask_val;
+        return(masked_matrix);
+}
+
 
 ##############################################################################
 ##############################################################################
@@ -1301,6 +1314,12 @@ paint_matrix(covariates_pval_mat, plot_min=0, plot_max=1,
         title="Regression Model Coeff P-Values", 
         high_is_hot=F, deci_pts=2, value.cex=.8);
 mtext(text="(H0: Coefficients equal zero, H1: Non-zero Coefficients)", side=3, cex=.9, font=3, line=2, outer=T);
+
+signf_coef_mat=mask_matrix(covariates_coef_mat, covariates_pval_mat, .1, 0);
+paint_matrix(signf_coef_mat,
+        title="Regression Model Significant Coefficients", 
+        high_is_hot=T, deci_pts=2, value.cex=.8, label_zeros=F);
+mtext(text="(P-Values < 0.10 Shown)", side=3, cex=.9, font=3, line=2, outer=T);
 
 paint_matrix(rsqrd_mat, plot_min=0, plot_max=1,
         title="Regression R^2's", 
