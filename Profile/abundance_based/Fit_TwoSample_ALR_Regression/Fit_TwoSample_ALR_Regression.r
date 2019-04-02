@@ -129,6 +129,13 @@ if(length(opt$required)){
 	RequiredFile="";
 }
 
+if(length(opt$alr_list_file)){
+	ALRCategListFile=opt$alr_list_file;
+}else{
+	ALRCategListFile="";
+}
+	
+
 SummaryFile=opt$summary_file;
 FactorsFile=opt$factors;
 ModelVarFile=opt$model_var;
@@ -136,7 +143,6 @@ PairingsFile=opt$pairings;
 ResponseName=opt$response;
 PredictorName=opt$predictor;
 FactorSampleIDName=opt$factor_samp_id_name;
-ALRCategListFile=opt$alr_list_file;
 
 OutputRoot=paste(OutputRoot, ".p_", PredictorName, ".r_", ResponseName, sep="");
 
