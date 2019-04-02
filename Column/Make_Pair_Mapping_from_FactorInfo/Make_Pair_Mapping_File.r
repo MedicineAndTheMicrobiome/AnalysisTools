@@ -25,6 +25,10 @@ usage = paste(
 	"\n",
 	"This script will read in a factor file, then based on the subject\n",
 	"id, look for the corresponding sample with a different sample type.\n",
+	"\n",
+	"A 2D matrix is created with the subject ID as rows, and the\n",	
+	"sample type as columns.  If there are any missing pairings\n",
+	"the sample ID missing will have an NA.\n",
 	"\n", sep="");
 
 if(
@@ -96,78 +100,44 @@ sample_types=factors[,SampleTypeColname];
 uniq_sample_types=sort(unique(sample_types));
 num_samp_types=length(uniq_sample_types);
 
+if(all(!is.na(as.numeric(uniq_sample_types)))){
+	initial_char=substr(SampleTypeColname,1,1);
+	cat("Numbers found as sample type.  Appending ", initial_char, " in front.\n");
+	sample_types=paste(initial_char, sprintf("%02i", sample_types), sep="");
+	uniq_sample_types=sort(unique(sample_types));
+	num_samp_types=length(uniq_sample_types);
+}
+
+
+
 cat("\nNum Sample Types (", SampleTypeColname, "):", num_samp_types, "\n");
 print(head(uniq_sample_types));
+cat("\n");
 
 cat("\nNum Subject IDs (", SubjectIDColname, "): ",  num_subj_ids, "\n");
 print(head(uniq_subj_ids)); 
+cat("\n");
 
-if(num_samp_types!=2){
-	cat("Cannot build mapping file when there are not exactly 2 sample types.\n");	
-	quit(-1);
+
+mapping=matrix(NA, nrow=num_subj_ids, ncol=num_samp_types);
+rownames(mapping)=uniq_subj_ids;
+colnames(mapping)=uniq_sample_types;
+
+samp_ids=rownames(factors);
+for(i in 1:num_factor_samples){
+	mapping[subj_ids[i], sample_types[i]]=samp_ids[i];
 }
-
-sample_ids=rownames(factors);
-
-# Split 
-
-type1_samples_ix=(sample_types==uniq_sample_types[1]);
-type2_samples_ix=(sample_types==uniq_sample_types[2]);
-
-num_type1=sum(type1_samples_ix);
-num_type2=sum(type2_samples_ix);
-
-cat("\n");
-cat("Num samples from ", SampleTypeColname, "(", uniq_sample_types[1], ")", num_type1, "\n");
-cat("Num samples from ", SampleTypeColname, "(", uniq_sample_types[2], ")", num_type2, "\n");
-cat("\n");
 
 ###############################################################################
 
-unmatched_sample_ids=character();
+mapping_column_names=c(SubjectIDColname, colnames(mapping));
+mapping=cbind(as.character(uniq_subj_ids), mapping);
+colnames(mapping)=mapping_column_names;
 
-sample_map=c();
-
-for(si in uniq_subj_ids){
-	#cat("\n");
-	#cat("Working on: ", si, "\n");
-	cur_ic=(si==subj_ids);
-
-	#print(sample_ids[cur_ic]);
-	#print(sample_types[cur_ic]);
-
-	num_samps_from_subj=sum(cur_ic);
-	if(num_samps_from_subj==1){
-		cat("Unmatched: ", si, "\n");
-		unmatched_sample_ids=c(unmatched_sample_ids, sample_ids[cur_ic]);
-	}else if(num_samps_from_subj>2){
-		cat("Error:  Ambiguous mapping for: ", si, "\n");
-		print(sample_ids[cur_ic]);	
-		quit(-1);
-	}else{
-		cur_samp_ids=sample_ids[cur_ic];
-		cur_samp_types=sample_types[cur_ic];
-		s1=which(cur_samp_types[1]==uniq_sample_types);
-		s2=which(cur_samp_types[2]==uniq_sample_types);
-		sample_map=rbind(sample_map, c(cur_samp_ids[s1], cur_samp_ids[s2]));
-	}
-
-}
-
-cat("Unmatched Samples (", length(unmatched_sample_ids), "):\n");
-print(unmatched_sample_ids);
-
-cat("\n");
-colnames(sample_map)=uniq_sample_types;
-cat("Matched Samples (", nrow(sample_map), "):\n");
-print(sample_map);
+print(mapping);
+write.table(mapping, paste(OutputRoot, ".", SampleTypeColname, ".map.tsv", sep=""), quote=F, sep="\t", row.names=F);
 
 ###############################################################################
-
-#fh=open(OutputRoot, "w");
-write.table(sample_map, paste(OutputRoot, ".", SampleTypeColname, ".map.tsv", sep=""), quote=F, sep="\t", row.names=F);
-
-#print(mapping_info);
 
 cat("Done.\n");
 #dev.off();
