@@ -1278,7 +1278,6 @@ full_surv_form=as.formula(full_form_string);
 full_coxph_fit=coxph(full_surv_form, data=merged_table);
 full_coxph_fit_summ=summary(full_coxph_fit);
 
-
 cat("Fitting Reduced Model: Covariates (only)\n");
 reduced_form_string=paste("Surv(tstart, tend, endpt)~", paste(c(model_pred, CohtVarName), collapse="+"));
 cat("Cox Proportional Hazards Formula: ", reduced_form_string, "\n");
@@ -1735,6 +1734,40 @@ plot_epoch_comp=function(alr_a_table, alr_b_table, nameA, nameB, alr_colname, ch
 		fill=cht_colors[chts], bty="n");
 
 	# Plot each subject
+	a_only=c();
+	b_only=c();
+	a_compl=c();
+	b_compl=c();
+	
+	# Fine/Draw lines through centroids
+	for(i in 1:num_subjects){
+		subj_id=subjects[i];
+
+		a_alr=alr_a_table[subj_id, alr_colname];
+		b_alr=alr_b_table[subj_id, alr_colname];
+
+		pt_col=cht_colors[alr_a_table[subj_id, cht_colname]];
+
+		if(!is.na(a_alr) && is.na(b_alr)){
+			#abline(v=a_alr, col=pt_col, lwd=.5);
+			a_only=c(a_only, a_alr);
+		}else if(is.na(a_alr) && !is.na(b_alr)){
+			#abline(h=b_alr, col=pt_col, lwd=.5);
+			b_only=c(b_only, b_alr);
+		}else{
+			a_compl=c(a_compl, a_alr);
+			b_compl=c(b_compl, b_alr);
+		}
+
+	}
+
+	abline(v=mean(a_only), lty=3, col="gray50");
+	abline(h=mean(b_only), lty=3, col="gray50");
+	abline(v=mean(a_compl), lty=2, lwd=1,col="grey40");
+	abline(h=mean(b_compl), lty=2, lwd=1, col="grey40");
+
+	
+	# Draw Points
 	for(i in 1:num_subjects){
 		subj_id=subjects[i];
 
@@ -1746,12 +1779,16 @@ plot_epoch_comp=function(alr_a_table, alr_b_table, nameA, nameB, alr_colname, ch
 		if(!is.na(a_alr) && is.na(b_alr)){
 			#abline(v=a_alr, col=pt_col, lwd=.5);
 			points(a_alr, alr_ranges[1]-pad, pch=4, col=pt_col);
+			a_only=c(a_only, a_alr);
 		}else if(is.na(a_alr) && !is.na(b_alr)){
 			#abline(h=b_alr, col=pt_col, lwd=.5);
 			points(alr_ranges[1]-pad, b_alr, pch=4, col=pt_col);
+			b_only=c(b_only, b_alr);
 		}else{
 			points(a_alr, b_alr, pch=19, col=pt_col);
 			points(a_alr, b_alr, cex=.2, col="black");
+			a_compl=c(a_compl, a_alr);
+			b_compl=c(b_compl, b_alr);
 		}
 
 	}
