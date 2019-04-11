@@ -1684,14 +1684,18 @@ for(cat_ix in signif_cat){
 
 plot_epoch_comp=function(alr_a_table, alr_b_table, nameA, nameB, alr_colname, cht_colname, cht_colors, alr_ranges){
 
+	orig_par=par(no.readonly=T);
+
 	subjects=sort(unique(rownames(alr_a_table), rownames(alr_b_table)));
 	num_subjects=length(subjects);
 
 	cat("Plotting: ", nameA, " vs. ", nameB, "\n", sep="");
 
 	shrd_sbj=intersect(rownames(alr_a_table), rownames(alr_b_table));
+	num_shrd_sbj=length(shrd_sbj);
 	shrd_a=alr_a_table[shrd_sbj,,drop=F];
 	shrd_b=alr_b_table[shrd_sbj,,drop=F];
+	num_censored=num_subjects-num_shrd_sbj;
 
 	# Compute p-values within each cohort
 	chts=sort(unique(alr_a_table[,cht_colname]));
@@ -1724,14 +1728,6 @@ plot_epoch_comp=function(alr_a_table, alr_b_table, nameA, nameB, alr_colname, ch
 	x_plot_rang=c(alr_ranges[1]-pad, alr_ranges[2]+pad);
 	y_plot_rang=c(alr_ranges[1]-pad, alr_ranges[2]+4*pad);
 
-	plot(0,0, type="n", xlim=x_plot_rang, ylim=y_plot_rang, xlab="", ylab="");
-
-	title(xlab=nameA, ylab=nameB, line=2, font.lab=2);
-	abline(a=0, b=1, col="grey", lty=1, lwd=2);
-
-	legend(x_plot_rang[1], y_plot_rang[2], 
-		legend=legend_info[chts],
-		fill=cht_colors[chts], bty="n");
 
 	# Plot each subject
 	a_only=c();
@@ -1739,7 +1735,7 @@ plot_epoch_comp=function(alr_a_table, alr_b_table, nameA, nameB, alr_colname, ch
 	a_compl=c();
 	b_compl=c();
 	
-	# Fine/Draw lines through centroids
+	# lines through centroids
 	for(i in 1:num_subjects){
 		subj_id=subjects[i];
 
@@ -1760,6 +1756,17 @@ plot_epoch_comp=function(alr_a_table, alr_b_table, nameA, nameB, alr_colname, ch
 		}
 
 	}
+
+	##############################################################################
+	# Generate pairwise scatter plots
+	plot(0,0, type="n", xlim=x_plot_rang, ylim=y_plot_rang, xlab="", ylab="");
+
+	title(xlab=nameA, ylab=nameB, line=2, font.lab=2);
+	abline(a=0, b=1, col="grey", lty=1, lwd=2);
+
+	legend(x_plot_rang[1], y_plot_rang[2], 
+		legend=legend_info[chts],
+		fill=cht_colors[chts], bty="n");
 
 	abline(v=mean(a_only), lty=3, col="gray50");
 	abline(h=mean(b_only), lty=3, col="gray50");
@@ -1792,6 +1799,86 @@ plot_epoch_comp=function(alr_a_table, alr_b_table, nameA, nameB, alr_colname, ch
 		}
 
 	}
+
+	##############################################################################
+	# Generate difference bar plots
+
+	shrd_diff=as.data.frame(matrix(NA, nrow=num_shrd_sbj, ncol=2));
+	alr_diff_colname=paste(alr_colname, "_diff", sep="");
+	colnames(shrd_diff)=c(cht_colname, alr_diff_colname);
+	rownames(shrd_diff)=rownames(shrd_a);
+	shrd_diff[,cht_colname]=shrd_a[,cht_colname];
+	shrd_diff[,alr_diff_colname]=shrd_b[,alr_colname]-shrd_a[,alr_colname];
+	num_shrd_diff=length(shrd_diff[,alr_diff_colname]);
+	cat("Number of Shared Differences: ", num_shrd_diff, "\n");
+	print(shrd_diff[,alr_diff_colname]);
+
+	cht_shrd=shrd_a[,cht_colname];
+
+	mean_comb_diff=mean(shrd_diff[,alr_diff_colname]);
+	max_mag_diff=max(abs(shrd_diff[,alr_diff_colname]));
+	cat("Maximum difference: ", max_mag_diff, "\n");
+	mean_comb_barwidth=2;
+	spacer_width=1;
+
+	orig_mar=orig_par$mar;
+	cur_mar=orig_mar;
+	cur_mar[1]=orig_mar[1]+5;
+	par(mar=cur_mar);
+	plot(0,0, type="n", 
+		xlim=c(0, num_chts+spacer_width+mean_comb_barwidth+1),
+		ylim=c(-max_mag_diff, max_mag_diff),
+		xaxt="n",
+		xlab="", ylab="", main="");
+	title(ylab=paste("Difference: ", nameB, " - ", nameA), line=2, font.lab=2);
+	abline(h=0, col="grey", lwd=2);
+
+	bar_pos=1;
+	mean_line_width=.75;
+	for(ch_id in chts){
+		ch_ix=(cht_shrd==ch_id);
+		ch_diff=shrd_diff[ch_ix,alr_diff_colname,drop=F];
+		num_ch_smp=nrow(ch_diff);
+		mean_diff=mean(ch_diff[,alr_diff_colname]);
+
+		pt_col=cht_colors[ch_id];
+
+		# mean line
+		points(c(bar_pos-mean_line_width/2, bar_pos+mean_line_width/2), rep(mean_diff, 2),
+			type="l", lwd=1.5, col=pt_col, lend="square");
+		points(c(bar_pos-mean_line_width/2, bar_pos-mean_line_width/2), c(mean_diff, 0),
+			type="l", lwd=1.2, col=pt_col, lend="square");
+		points(c(bar_pos+mean_line_width/2, bar_pos+mean_line_width/2), c(mean_diff, 0),
+			type="l", lwd=1.2, col=pt_col, lend="square");
+
+		points(rep(bar_pos, num_ch_smp), ch_diff[,alr_diff_colname], pch=19, col=pt_col);
+		points(rep(bar_pos, num_ch_smp), ch_diff[,alr_diff_colname], cex=.2, col="black");
+
+		axis(side=1, at=bar_pos, labels=ch_id, las=2, font.axis=2);
+		bar_pos=bar_pos+1;
+	}
+
+	# overall mean line
+	bar_pos=num_chts+spacer_width+1;
+	jitter=rnorm(num_shrd_diff, 0, .1*mean_comb_barwidth);
+	points(c(bar_pos-mean_comb_barwidth/2, bar_pos+mean_comb_barwidth/2), rep(mean_comb_diff, 2),
+		type="l", lwd=1.5, col="black", lty=2, lend="square");
+	points(c(bar_pos-mean_comb_barwidth/2, bar_pos-mean_comb_barwidth/2), c(mean_comb_diff, 0),
+		type="l", lwd=1.2, col="black", lty=2, lend="square");
+	points(c(bar_pos+mean_comb_barwidth/2, bar_pos+mean_comb_barwidth/2), c(mean_comb_diff, 0),
+		type="l", lwd=1.2, col="black", lty=2, lend="square");
+	points(bar_pos+jitter, 
+		shrd_diff[,alr_diff_colname], pch=1, col="grey40");
+	axis(side=1, at=bar_pos, labels="Combined", las=2, font.axis=2);
+	mtext(text=paste("Num Censored Meas.: ", num_censored, sep=""), side=3, line=0, cex=.5, font=3);
+
+	# Reset original margins
+	par(mar=orig_mar);
+
+	##############################################################################
+	# Generate connected lines plot
+
+	
 
 }
 
