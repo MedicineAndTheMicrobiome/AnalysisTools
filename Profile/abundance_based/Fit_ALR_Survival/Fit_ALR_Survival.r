@@ -1919,32 +1919,37 @@ plot_epoch_comp=function(alr_a_table, alr_b_table, nameA, nameB, alr_colname, ch
 	# Highlight A and B column
 	abline(v=c(apos, bpos), lwd=30, col="grey90", lend=2);
 
+	a_shrd_mean=mean(shrd_a[,alr_colname]);
+	b_shrd_mean=mean(shrd_b[,alr_colname]);
+	abline(h=c(a_shrd_mean, b_shrd_mean), lwd=.5, col="grey90");
+
 	# Label A column depending on whether there any censored samples
 	if(plot_excl_a){
 		axis(side=1, at=xpos, labels="later\ncensored", 
 			las=1, font.axis=3, cex.axis=.75, line=0);
 		axis(side=1, at=apos, labels="later\nsurvived", 
 			las=1, font.axis=3, cex.axis=.75, line=0);
-		abline(v=c(xpos), lwd=20, col="grey90", lend=2);
+		abline(v=c(xpos), lwd=20, col="grey90", lend=1);
 		axis(side=1, at=c((xpos+apos)/2), labels=c(nameA), 
 			las=1, font.axis=2, tick=F, line=1.1);
+
+		abline(h=c(mean_excl_a), lwd=.5, col="grey90");
+
 	}else{
 		axis(side=1, at=c(apos), labels=c(nameA), 
 			las=1, font.axis=2, tick=F, line=0);
 	}
 
-	# Label means on left side of axis
-	a_shrd_mean=mean(shrd_a[,alr_colname]);
-	b_shrd_mean=mean(shrd_b[,alr_colname]);
+	# Draw line through means
 	points(c(apos-a_colwid/2, apos+a_colwid/2), c(a_shrd_mean, a_shrd_mean), 
-		lty=2, lwd=2, type="l");
+		lty=1, lwd=2, type="l");
 	points(c(bpos-b_colwid/2, bpos+b_colwid/2), c(b_shrd_mean, b_shrd_mean), 
-		lty=2, lwd=2, type="l");
+		lty=1, lwd=2, type="l");
 
 	# Label mean of censored
 	if(plot_excl_a){
 		points(c(xpos-censor_colwid/2, xpos+censor_colwid/2), c(mean_excl_a, mean_excl_a), 
-			lty=3, lwd=2, type="l");
+			lty=1, lwd=2, type="l");
 	}
 	
 	# Draw points by color	
@@ -1958,7 +1963,7 @@ plot_epoch_comp=function(alr_a_table, alr_b_table, nameA, nameB, alr_colname, ch
 		num_ch_smp=length(a_pts);
 
 		# Draw lines between A and B points 
-		jitter=rnorm(num_ch_smp, 0, .15);
+		jitter=rnorm(num_ch_smp, 0, .10);
 		for(i in 1:num_ch_smp){
 			points(
 				c(apos+jitter[i], bpos+jitter[i]), 
