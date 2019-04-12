@@ -1696,6 +1696,9 @@ plot_epoch_comp=function(alr_a_table, alr_b_table, nameA, nameB, alr_colname, ch
 	shrd_a=alr_a_table[shrd_sbj,,drop=F];
 	shrd_b=alr_b_table[shrd_sbj,,drop=F];
 	num_censored=num_subjects-num_shrd_sbj;
+	alr_range=range(alr_a_table[,alr_colname], alr_b_table[,alr_colname]);
+
+	excl_a_sbj=setdiff(rownames(alr_a_table),shrd_sbj);
 
 	# Compute p-values within each cohort
 	chts=sort(unique(alr_a_table[,cht_colname]));
@@ -1877,10 +1880,116 @@ plot_epoch_comp=function(alr_a_table, alr_b_table, nameA, nameB, alr_colname, ch
 
 	##############################################################################
 	# Generate connected lines plot
+	
+	# Plot positions and widths
+	censor_colwid=1;
+	a_colwid=1;
+	b_colwid=1;
+	xpos=1;
+	apos=2;
+	bpos=4;
 
+	# Plot specific margins
+	cur_mar=orig_mar;
+	cur_mar[2]=2;
+	cur_mar[1]=2.5;
+	par(mar=cur_mar);
+
+	# Extract out samples in A, censored in B
+	excl_a_sbj=setdiff(rownames(alr_a_table),shrd_sbj);
+	plot_excl_a=F;
+	if(length(excl_a_sbj)){
+		excl_a=alr_a_table[excl_a_sbj,];
+		mean_excl_a=mean(excl_a[,alr_colname]);
+		plot_excl_a=T;
+	}
+
+	# Setup plot
+	plot_wid=censor_colwid+a_colwid+b_colwid+.5;
+	plot(0,0, type="n",
+		xlim=c(0, plot_wid+1),
+		ylim=alr_ranges,
+		xaxt="n",
+		xlab="", ylab=""
+		);
+
+	# Label B column
+	axis(side=1, at=c(bpos), labels=c(nameB), 
+		las=1, font.axis=2, tick=F, line=0);
+	# Highlight A and B column
+	abline(v=c(apos, bpos), lwd=30, col="grey90", lend=2);
+
+	# Label A column depending on whether there any censored samples
+	if(plot_excl_a){
+		axis(side=1, at=xpos, labels="later\ncensored", 
+			las=1, font.axis=3, cex.axis=.75, line=0);
+		axis(side=1, at=apos, labels="later\nsurvived", 
+			las=1, font.axis=3, cex.axis=.75, line=0);
+		abline(v=c(xpos), lwd=20, col="grey90", lend=2);
+		axis(side=1, at=c((xpos+apos)/2), labels=c(nameA), 
+			las=1, font.axis=2, tick=F, line=1.1);
+	}else{
+		axis(side=1, at=c(apos), labels=c(nameA), 
+			las=1, font.axis=2, tick=F, line=0);
+	}
+
+	# Label means on left side of axis
+	a_shrd_mean=mean(shrd_a[,alr_colname]);
+	b_shrd_mean=mean(shrd_b[,alr_colname]);
+	points(c(apos-a_colwid/2, apos+a_colwid/2), c(a_shrd_mean, a_shrd_mean), 
+		lty=2, lwd=2, type="l");
+	points(c(bpos-b_colwid/2, bpos+b_colwid/2), c(b_shrd_mean, b_shrd_mean), 
+		lty=2, lwd=2, type="l");
+
+	# Label mean of censored
+	if(plot_excl_a){
+		points(c(xpos-censor_colwid/2, xpos+censor_colwid/2), c(mean_excl_a, mean_excl_a), 
+			lty=3, lwd=2, type="l");
+	}
+	
+	# Draw points by color	
+	bar_pos=1;
+	for(ch_id in chts){
+
+		ch_ix=(cht_shrd==ch_id);
+		a_pts=shrd_a[ch_ix,alr_colname];
+		b_pts=shrd_b[ch_ix,alr_colname];
+		pt_col=cht_colors[ch_id];
+		num_ch_smp=length(a_pts);
+
+		# Draw lines between A and B points 
+		jitter=rnorm(num_ch_smp, 0, .15);
+		for(i in 1:num_ch_smp){
+			points(
+				c(apos+jitter[i], bpos+jitter[i]), 
+				c(a_pts[i], b_pts[i]),
+				type="l", lwd=.2, col=pt_col
+			); 
+		}
+
+		# Draw points for A and B
+		points(apos+jitter, a_pts, pch=19, col=pt_col);
+		points(apos+jitter, a_pts, cex=.1, col="black");
+
+		points(bpos+jitter, b_pts, pch=19, col=pt_col);
+		points(bpos+jitter, b_pts, cex=.1, col="black");
+
+		# Draw censored points if there are any
+		if(plot_excl_a){
+			ch_ix=(ch_id==excl_a[,cht_colname]);
+			excl=excl_a[ch_ix, alr_colname];
+			points(rep(xpos, length(excl)), excl, col=pt_col, pch=4);
+		}
+
+
+	}
+	
+	par(mar=orig_mar);
 	
 
 }
+
+###############################################################################
 
 par(mfrow=c(1,1));
 par(mar=c(0,0,0,0));
