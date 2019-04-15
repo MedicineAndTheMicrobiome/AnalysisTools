@@ -1806,6 +1806,17 @@ plot_epoch_comp=function(alr_a_table, alr_b_table, nameA, nameB, alr_colname, ch
 	##############################################################################
 	# Generate difference bar plots
 
+	ci95=function(values){
+		stdev=sd(values);
+		mean=mean(values);
+
+		num_smp=length(values);
+		intvl=stdev/sqrt(num_smp)*1.96;
+		ub=mean+intvl;
+		lb=mean-intvl;
+		return(c(lb,ub));
+	}
+
 	shrd_diff=as.data.frame(matrix(NA, nrow=num_shrd_sbj, ncol=2));
 	alr_diff_colname=paste(alr_colname, "_diff", sep="");
 	colnames(shrd_diff)=c(cht_colname, alr_diff_colname);
@@ -1819,6 +1830,7 @@ plot_epoch_comp=function(alr_a_table, alr_b_table, nameA, nameB, alr_colname, ch
 	cht_shrd=shrd_a[,cht_colname];
 
 	mean_comb_diff=mean(shrd_diff[,alr_diff_colname]);
+	ci95_comb_diff=ci95(shrd_diff[,alr_diff_colname]);
 	max_mag_diff=max(abs(shrd_diff[,alr_diff_colname]));
 	cat("Maximum difference: ", max_mag_diff, "\n");
 	mean_comb_barwidth=2;
@@ -1875,8 +1887,80 @@ plot_epoch_comp=function(alr_a_table, alr_b_table, nameA, nameB, alr_colname, ch
 	axis(side=1, at=bar_pos, labels="Combined", las=2, font.axis=2);
 	mtext(text=paste("Num Censored Meas.: ", num_censored, sep=""), side=3, line=0, cex=.5, font=3);
 
+	##############################################################################
+	# Generate bar plot without CI bars only
+
+	orig_mar=orig_par$mar;
+	cur_mar=orig_mar;
+	cur_mar[1]=orig_mar[1]+5;
+	par(mar=cur_mar);
+	plot(0,0, type="n", 
+		xlim=c(0, num_chts+spacer_width+mean_comb_barwidth+1),
+		ylim=c(-max_mag_diff, max_mag_diff),
+		xaxt="n",
+		xlab="", ylab="", main="");
+	title(ylab=paste("Difference: ", nameB, " - ", nameA), line=2, font.lab=2);
+	abline(h=0, col="grey", lwd=2);
+
+	bar_pos=1;
+	mean_line_width=.75;
+	for(ch_id in chts){
+		ch_ix=(cht_shrd==ch_id);
+		ch_diff=shrd_diff[ch_ix,alr_diff_colname,drop=F];
+		num_ch_smp=nrow(ch_diff);
+
+		mean_diff=mean(ch_diff[,alr_diff_colname]);
+		ch_diff_ci95=ci95(ch_diff[,alr_diff_colname]);
+
+		pt_col=cht_colors[ch_id];
+
+		# mean line
+		points(c(bar_pos-mean_line_width/2, bar_pos+mean_line_width/2), rep(mean_diff, 2),
+			type="l", lwd=1.5, col=pt_col, lend="square");
+		points(c(bar_pos-mean_line_width/2, bar_pos-mean_line_width/2), c(mean_diff, 0),
+			type="l", lwd=1.2, col=pt_col, lend="square");
+		points(c(bar_pos+mean_line_width/2, bar_pos+mean_line_width/2), c(mean_diff, 0),
+			type="l", lwd=1.2, col=pt_col, lend="square");
+
+		# 95% CI bar
+		points(c(bar_pos-mean_line_width/4, bar_pos+mean_line_width/4), rep(ch_diff_ci95[1], 2),
+			type="l", lwd=1, col="grey25", lend="square");
+		points(c(bar_pos-mean_line_width/4, bar_pos+mean_line_width/4), rep(ch_diff_ci95[2], 2),
+			type="l", lwd=1, col="grey25", lend="square");
+		points(c(bar_pos, bar_pos), ch_diff_ci95,
+			type="l", lwd=1, col="grey25", lend="square");
+		
+
+		axis(side=1, at=bar_pos, labels=ch_id, las=2, font.axis=2);
+		bar_pos=bar_pos+1;
+	}
+
+	# overall mean line
+	bar_pos=num_chts+spacer_width+1;
+
+	# Plot bars
+	points(c(bar_pos-mean_comb_barwidth/2, bar_pos+mean_comb_barwidth/2), rep(mean_comb_diff, 2),
+		type="l", lwd=1.5, col="black", lty=2, lend="square");
+	points(c(bar_pos-mean_comb_barwidth/2, bar_pos-mean_comb_barwidth/2), c(mean_comb_diff, 0),
+		type="l", lwd=1.2, col="black", lty=2, lend="square");
+	points(c(bar_pos+mean_comb_barwidth/2, bar_pos+mean_comb_barwidth/2), c(mean_comb_diff, 0),
+		type="l", lwd=1.2, col="black", lty=2, lend="square");
+
+	# Annotate 95% CI
+	points(c(bar_pos-mean_line_width/4, bar_pos+mean_line_width/4), rep(ci95_comb_diff[1], 2),
+		type="l", lwd=1, col="grey25", lend="square");
+	points(c(bar_pos-mean_line_width/4, bar_pos+mean_line_width/4), rep(ci95_comb_diff[2], 2),
+		type="l", lwd=1, col="grey25", lend="square");
+	points(c(bar_pos, bar_pos), ci95_comb_diff,
+		type="l", lwd=1, col="grey25", lend="square");
+
+	axis(side=1, at=bar_pos, labels="Combined", las=2, font.axis=2);
+	mtext(text=paste("Num Censored Meas.: ", num_censored, sep=""), side=3, line=0, cex=.5, font=3);
+	mtext(text=paste("Mean Difference\nw/ 95% CI around Means"), side=3, line=-2.5, cex=.75, font=2);
+
 	# Reset original margins
 	par(mar=orig_mar);
+
 
 	##############################################################################
 	# Generate connected lines plot
