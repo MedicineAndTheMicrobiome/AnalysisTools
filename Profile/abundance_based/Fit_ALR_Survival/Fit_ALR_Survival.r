@@ -1969,7 +1969,7 @@ plot_epoch_comp=function(alr_a_table, alr_b_table, nameA, nameB, alr_colname, ch
 	censor_colwid=1;
 	a_colwid=1;
 	b_colwid=1;
-	xpos=1;
+	xpos=.75;
 	apos=2;
 	bpos=4;
 
@@ -2009,10 +2009,10 @@ plot_epoch_comp=function(alr_a_table, alr_b_table, nameA, nameB, alr_colname, ch
 
 	# Label A column depending on whether there any censored samples
 	if(plot_excl_a){
-		axis(side=1, at=xpos, labels="later\ncensored", 
-			las=1, font.axis=3, cex.axis=.75, line=0);
-		axis(side=1, at=apos, labels="later\nsurvived", 
-			las=1, font.axis=3, cex.axis=.75, line=0);
+		axis(side=1, at=xpos, labels=paste("died before\n",nameB,sep=""), 
+			las=1, font.axis=3, cex.axis=.60, line=0);
+		axis(side=1, at=apos, labels=paste("survived to\n",nameB,sep=""), 
+			las=1, font.axis=3, cex.axis=.60, line=0);
 		abline(v=c(xpos), lwd=20, col="grey90", lend=1);
 		axis(side=1, at=c((xpos+apos)/2), labels=c(nameA), 
 			las=1, font.axis=2, tick=F, line=1.1);
@@ -2072,6 +2072,153 @@ plot_epoch_comp=function(alr_a_table, alr_b_table, nameA, nameB, alr_colname, ch
 
 
 	}
+
+	##############################################################################
+	# Plot means and CI only
+	
+	# Setup plot
+	plot_wid=censor_colwid+a_colwid+b_colwid+.5;
+	plot(0,0, type="n",
+		xlim=c(0, plot_wid+1),
+		ylim=alr_ranges,
+		xaxt="n",
+		xlab="", ylab=""
+		);
+
+	# Label B column
+	axis(side=1, at=c(bpos), labels=c(nameB), 
+		las=1, font.axis=2, tick=F, line=0);
+	# Highlight A and B column
+	abline(v=c(apos, bpos), lwd=40, col="grey90", lend=2);
+
+	a_shrd_mean=mean(shrd_a[,alr_colname]);
+	b_shrd_mean=mean(shrd_b[,alr_colname]);
+	abline(h=c(a_shrd_mean, b_shrd_mean), lwd=.5, col="grey90");
+
+	# Label A column depending on whether there any censored samples
+	if(plot_excl_a){
+		axis(side=1, at=xpos, labels=paste("died before\n",nameB,sep=""), 
+			las=1, font.axis=3, cex.axis=.60, line=0);
+		axis(side=1, at=apos, labels=paste("survived to\n",nameB,sep=""),
+			las=1, font.axis=3, cex.axis=.60, line=0);
+		abline(v=c(xpos), lwd=40, col="grey90", lend=1);
+		axis(side=1, at=c((xpos+apos)/2), labels=c(nameA), 
+			las=1, font.axis=2, tick=F, line=1.1);
+
+		abline(h=c(mean_excl_a), lwd=.5, col="grey90");
+
+	}else{
+		axis(side=1, at=c(apos), labels=c(nameA), 
+			las=1, font.axis=2, tick=F, line=0);
+	}
+
+	# Draw line through means
+	#points(c(apos-a_colwid/2, apos+a_colwid/2), c(a_shrd_mean, a_shrd_mean), 
+	#	lty=1, lwd=2, type="l");
+	#points(c(bpos-b_colwid/2, bpos+b_colwid/2), c(b_shrd_mean, b_shrd_mean), 
+	#	lty=1, lwd=2, type="l");
+
+	# Label mean of censored
+	#if(plot_excl_a){
+	#	points(c(xpos-censor_colwid/2, xpos+censor_colwid/2), c(mean_excl_a, mean_excl_a), 
+	#		lty=1, lwd=2, type="l");
+	#}
+	
+	colwid=a_colwid;
+	cht_pos=seq(0, colwid, length.out=num_chts+4)[2:(num_chts+3)];
+	
+
+	# Draw points by color	
+	cht_ix=1;
+	for(ch_id in chts){
+
+		ch_ix=(cht_shrd==ch_id);
+		a_pts=shrd_a[ch_ix,alr_colname];
+		b_pts=shrd_b[ch_ix,alr_colname];
+		pt_col=cht_colors[ch_id];
+		num_ch_smp=length(a_pts);
+	
+		ci95a_pts=ci95(a_pts);
+		ci95b_pts=ci95(b_pts);
+
+		#points(rep(apos-colwid/2+cht_pos[cht_ix],2), ci95a_pts, col=pt_col, type="l", lwd=2);
+		#points(rep(bpos-colwid/2+cht_pos[cht_ix],2), ci95b_pts, col=pt_col, type="l", lwd=2);
+
+		if(length(a_pts)>=2){
+			ci95a_pts=ci95(a_pts);
+			points(rep(apos-colwid/2+cht_pos[cht_ix],2), ci95a_pts, col=pt_col, type="l", lwd=2);
+			points(apos-colwid/2+cht_pos[cht_ix], mean(ci95a_pts), col=pt_col, type="p");
+			
+		}else if(length(a_pts)==1){
+			points(apos-colwid/2+cht_pos[cht_ix], a_pts, col=pt_col, type="p");
+		}
+
+		if(length(b_pts)>=2){
+			ci95b_pts=ci95(b_pts);
+			points(rep(bpos-colwid/2+cht_pos[cht_ix],2), ci95b_pts, col=pt_col, type="l", lwd=2);
+			points(bpos-colwid/2+cht_pos[cht_ix], mean(ci95b_pts), col=pt_col, type="p");
+		}else if(length(b_pts)==1){
+			points(bpos-colwid/2+cht_pos[cht_ix], b_pts, col=pt_col, type="p");
+		}
+
+		# Draw censored points if there are any
+		if(plot_excl_a){
+			ch_ix=(ch_id==excl_a[,cht_colname]);
+			excl=excl_a[ch_ix, alr_colname];
+
+			if(length(excl)>=2){
+				ci95x_pts=ci95(excl);
+				points(rep(xpos-colwid/2+cht_pos[cht_ix],2), ci95x_pts, col=pt_col, type="l", lwd=2);
+				points(xpos-colwid/2+cht_pos[cht_ix], mean(ci95x_pts), col=pt_col, type="p");
+			}else if(length(excl)==1){
+				points(xpos-colwid/2+cht_pos[cht_ix], excl, col=pt_col, type="p");
+			}
+		}
+
+		cht_ix=cht_ix+1;
+
+	}
+
+	cht_ix=num_chts+2;
+	a_pts=shrd_a[,alr_colname];
+
+	pt_col="black";
+	if(length(a_pts)>=2){
+		ci95a_pts=ci95(a_pts);
+		points(rep(apos-colwid/2+cht_pos[cht_ix],2), ci95a_pts, col=pt_col, type="l", lwd=3);
+		points(apos-colwid/2+cht_pos[cht_ix], mean(ci95a_pts), col=pt_col, type="p");
+		
+	}else if(length(a_pts)==1){
+		points(apos-colwid/2+cht_pos[cht_ix], a_pts, col=pt_col, type="p");
+	}
+
+	b_pts=shrd_b[,alr_colname];
+	if(length(b_pts)>=2){
+		ci95b_pts=ci95(b_pts);
+		points(rep(bpos-colwid/2+cht_pos[cht_ix],2), ci95b_pts, col=pt_col, type="l", lwd=3);
+		points(bpos-colwid/2+cht_pos[cht_ix], mean(ci95b_pts), col=pt_col, type="p");
+	}else if(length(b_pts)==1){
+		points(bpos-colwid/2+cht_pos[cht_ix], b_pts, col=pt_col, type="p");
+	}
+
+	# Draw censored points if there are any
+	if(plot_excl_a){
+		excl=excl_a[, alr_colname];
+
+		if(length(excl)>=2){
+			ci95x_pts=ci95(excl);
+			points(rep(xpos-colwid/2+cht_pos[cht_ix],2), ci95x_pts, col=pt_col, type="l", lwd=3);
+			points(xpos-colwid/2+cht_pos[cht_ix], mean(ci95x_pts), col=pt_col, type="p");
+		}else if(length(excl)==1){
+			points(xpos-colwid/2+cht_pos[cht_ix], excl, col=pt_col, type="p");
+		}
+	}
+
+	mtext(text="Mean ALR Abundance\nw/ 95% CI's", side=3, line=0, cex=.9, font=2);
+
+	##############################################################################
+
+	plot(0,0, type="n", xlab="", ylab="", main="", xaxt="n", yaxt="n", bty="n");
 	
 	par(mar=orig_mar);
 	
