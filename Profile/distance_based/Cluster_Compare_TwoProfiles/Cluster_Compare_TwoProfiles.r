@@ -168,7 +168,8 @@ weight_rank_dist_opt=function(M, deg){
 ###############################################################################
 
 load_summary_table=function(st_fname){
-	inmat=as.matrix(read.delim(st_fname, sep="\t", header=TRUE, row.names=1, check.names=FALSE, comment.char="", quote=""))
+	inmat=as.matrix(read.delim(st_fname, sep="\t", header=TRUE, row.names=1, 
+		check.names=FALSE, comment.char="", quote=""))
 
 	num_categories=ncol(inmat)-1;
 	num_samples=nrow(inmat);
@@ -388,7 +389,8 @@ test=F;
 
 max_cuts=log2(num_samples);
 
-palette_col=c("red", "green", "blue", "cyan", "magenta", "orange", "gray", "pink", "black", "purple", "brown", "aquamarine");
+palette_col=c("red", "green", "blue", "cyan", "magenta", "orange", "gray", 
+	"pink", "black", "purple", "brown", "aquamarine");
 num_pref_col=length(palette_col);
 num_clus=length(unique(max_cuts));	
 
@@ -460,15 +462,19 @@ compare_mds=function(apts, bpts, type, aclus, bclus, aname, bname){
 
 	par(mfrow=c(2,2));
 
-	plot(apts, main=paste(type, ": ", aname, sep=""), xlab="Dim 1", ylab="Dim 2", col=aclus, xlim=expand_range(apts));
+	plot(apts, main=paste(type, ": ", aname, sep=""), xlab="Dim 1", ylab="Dim 2", 
+		col=aclus, xlim=expand_range(apts));
 	text(apts[bothx,], aoutnames, cex=.3);
 	mtext(paste("Colored by ", aname, sep=""));
-	plot(bpts, main=paste(type, ": ", bname, sep=""), xlab="Dim 1", ylab="Dim 2", col=aclus, xlim=expand_range(bpts));
+	plot(bpts, main=paste(type, ": ", bname, sep=""), xlab="Dim 1", ylab="Dim 2", 
+		col=aclus, xlim=expand_range(bpts));
 	text(bpts[bothx,], boutnames, cex=.3);
 
-	plot(apts, main=paste(type, ": ", aname, sep=""), xlab="Dim 1", ylab="Dim 2", col=bclus, xlim=expand_range(apts));
+	plot(apts, main=paste(type, ": ", aname, sep=""), xlab="Dim 1", ylab="Dim 2", 
+		col=bclus, xlim=expand_range(apts));
 	text(apts[bothx,], aoutnames, cex=.3);
-	plot(bpts, main=paste(type, ": ", bname, sep=""), xlab="Dim 1", ylab="Dim 2", col=bclus, xlim=expand_range(bpts));
+	plot(bpts, main=paste(type, ": ", bname, sep=""), xlab="Dim 1", ylab="Dim 2", 
+		col=bclus, xlim=expand_range(bpts));
 	text(bpts[bothx,], boutnames, cex=.3);
 	mtext(paste("Colored by ", bname, sep=""));
 
@@ -570,31 +576,39 @@ compare_pseudof=function(dista, distb, grp_hcla, grp_hclb, max_k, namea, nameb){
 
 
 	# Clustering from A's perspective
-	plot(2:max_k, amsd_byA, xlab="Num Clusters, k", ylab="Pseudo F-Stat", main=paste("Pseudo F-Stat: ", namea, sep=""), type="b", ylim=asmd_range);
+	plot(2:max_k, amsd_byA, xlab="Num Clusters, k", ylab="Pseudo F-Stat", 
+		main=paste("Pseudo F-Stat: ", namea, sep=""), type="b", ylim=asmd_range);
 	mtext(paste("Clustered by Optimal ", namea, " Groupings", sep=""), cex=.6);
 
-	plot(2:max_k, amsd_byB, xlab="Num Clusters, k", ylab="Pseudo F-Stat", main=paste("Pseudo F-Stat: ", namea, sep=""), type="b", ylim=asmd_range);
+	plot(2:max_k, amsd_byB, xlab="Num Clusters, k", ylab="Pseudo F-Stat", 
+		main=paste("Pseudo F-Stat: ", namea, sep=""), type="b", ylim=asmd_range);
 	mtext(paste("Clustered by Optimal ", nameb, " Groupings", sep=""), cex=.6);
 
 	lograt=log(amsd_byB/amsd_byA);
 	lograt[!is.finite(lograt)]=0;
 	lims=c(-1,1)*max(abs(lograt), rm.na=T);
-	plot(2:max_k, lograt, xlab="Num Clusters, k", ylab=paste("Pseudo F-Stat LogRatio(", namea, ")", sep=""),  main=paste("Pseudo F-stat Ratio"), type="b", ylim=lims);
+	plot(2:max_k, lograt, xlab="Num Clusters, k", 
+		ylab=paste("Pseudo F-Stat LogRatio(", namea, ")", sep=""),  
+		main=paste("Pseudo F-stat Ratio"), type="b", ylim=lims);
 	abline(h=0, col="blue");
 	mtext(paste(namea, ": By ", nameb, "/", namea, " Groupings", sep=""), cex=.6);
 
 
 	# Clustering from B's perspective
-	plot(2:max_k, bmsd_byB, xlab="Num Clusters, k", ylab="Pseudo F-Stat", main=paste("Pseudo F-stat: ", nameb, sep=""), type="b", ylim=bsmd_range);
+	plot(2:max_k, bmsd_byB, xlab="Num Clusters, k", ylab="Pseudo F-Stat", 
+		main=paste("Pseudo F-stat: ", nameb, sep=""), type="b", ylim=bsmd_range);
 	mtext(paste("Clustered by Optimal ", nameb, " Groupings", sep=""), cex=.6);
 
-	plot(2:max_k, bmsd_byA, xlab="Num Clusters, k", ylab="Pseudo F-Stat", main=paste("Pseudo F-stat: ", nameb, sep=""), type="b", ylim=bsmd_range);
+	plot(2:max_k, bmsd_byA, xlab="Num Clusters, k", ylab="Pseudo F-Stat", 
+		main=paste("Pseudo F-stat: ", nameb, sep=""), type="b", ylim=bsmd_range);
 	mtext(paste("Clustered by Optimal ", namea, " Groupings", sep=""), cex=.6);
 
 	lograt=log(bmsd_byA/bmsd_byB);
 	lograt[!is.finite(lograt)]=0;
 	lims=c(-1,1)*max(abs(lograt), rm.na=T);
-	plot(2:max_k, lograt, xlab="Num Clusters, k", ylab=paste("Pseudo F-Stat LogRatio(", nameb, ")", sep=""),  main=paste("Pseudo F-stat Ratio"), type="b", ylim=lims);
+	plot(2:max_k, lograt, xlab="Num Clusters, k", 
+		ylab=paste("Pseudo F-Stat LogRatio(", nameb, ")", sep=""),  
+		main=paste("Pseudo F-stat Ratio"), type="b", ylim=lims);
 	abline(h=0, col="blue");
 	mtext(paste(nameb, ": By ", namea, "/", nameb, " Groupings", sep=""), cex=.6);
 
@@ -1118,7 +1132,8 @@ plot_dendro_contigency=function(hclA, hclB, acuts, bcuts, namea, nameb, idsb){
 	text(0,0, paste
 		(nameb, ": ", bcuts, "\n x \n", namea, ": ", acuts, 
 		"\n\nX^2 Test p-value:\n", sprintf("%1.3g", ct_cst_pval),
-		"\n\nCumulative Top:\nPr(", nameb, "|", namea, ")=\n", round(cum_pr_bga, 3), "\nPr(", namea, "|", nameb, ")=\n", round(cum_pr_agb, 3),
+		"\n\nCumulative Top:\nPr(", nameb, "|", namea, ")=\n", round(cum_pr_bga, 3), 
+		"\nPr(", namea, "|", nameb, ")=\n", round(cum_pr_agb, 3),
 		 sep=""), cex=.8, font=2);
 
 
@@ -1196,8 +1211,10 @@ plot_dendro_contigency=function(hclA, hclB, acuts, bcuts, namea, nameb, idsb){
 			}
 			if(cur_pval<=minpval){
 				font=2;
-				points(c(cell_bounds_x[colx], cell_bounds_x[colx], cell_bounds_x[colx+1], cell_bounds_x[colx+1], cell_bounds_x[colx]),
-					c(cell_bounds_y[rowx], cell_bounds_y[rowx+1], cell_bounds_y[rowx+1], cell_bounds_y[rowx], cell_bounds_y[rowx]), 
+				points(c(cell_bounds_x[colx], cell_bounds_x[colx], cell_bounds_x[colx+1], 
+					cell_bounds_x[colx+1], cell_bounds_x[colx]),
+					c(cell_bounds_y[rowx], cell_bounds_y[rowx+1], cell_bounds_y[rowx+1], 
+					cell_bounds_y[rowx], cell_bounds_y[rowx]), 
 					col="cornflowerblue", type="l");
 			}
 				
@@ -1242,8 +1259,10 @@ clus4_B=cutree(hcl_B, k=max_cuts);
 
 cat("Comparing MDS plots:\n");
 par(mfrow=c(2,2));
-compare_mds(classic_mds_pts_A, classic_mds_pts_B, "Classical MDS", clus4_A, clus4_B, map_info[["a"]], map_info[["b"]]);
-compare_mds(nonparm_mds_pts_A, nonparm_mds_pts_B, "NonMetric MDS", clus4_A, clus4_B, map_info[["a"]], map_info[["b"]]);
+compare_mds(classic_mds_pts_A, classic_mds_pts_B, "Classical MDS", 
+	clus4_A, clus4_B, map_info[["a"]], map_info[["b"]]);
+compare_mds(nonparm_mds_pts_A, nonparm_mds_pts_B, "NonMetric MDS", 
+	clus4_A, clus4_B, map_info[["a"]], map_info[["b"]]);
 
 ##############################################################################
 
@@ -1261,7 +1280,8 @@ if(analyze_dendro_cont){
 
 	for(acuts in 2:max_cuts){
 		for(bcuts in 2:max_cuts){
-			cont_res=plot_dendro_contigency(hcl_A, hcl_B, acuts, bcuts, map_info[["a"]], map_info[["b"]], map_info[["b_id"]]);
+			cont_res=plot_dendro_contigency(hcl_A, hcl_B, acuts, bcuts, 
+				map_info[["a"]], map_info[["b"]], map_info[["b_id"]]);
 			pval_mat[bcuts, acuts]=cont_res[["chisqr_test_pval"]];
 			cum_agb_mat[bcuts, acuts]=cont_res[["cumulative_cond_prob_agb"]];
 			cum_bga_mat[bcuts, acuts]=cont_res[["cumulative_cond_prob_bga"]];
@@ -1297,29 +1317,35 @@ if(analyze_dendro_cont){
 		capture.output(print(-log10(pval_mat))),
 		"",
 		"",
-		paste("Min P-Value: ", sprintf("%3.3g", min_cont_pval), " at (", bnames[min_idx[1]], ", ", anames[min_idx[2]], ")", sep="")
+		paste("Min P-Value: ", sprintf("%3.3g", min_cont_pval), 
+			" at (", bnames[min_idx[1]], ", ", anames[min_idx[2]], ")", sep="")
 	));
 
 	plot_text(c(
-		paste("Given a sample from ", map_info[["b"]], " what's the probability classifying it in ",  map_info[["a"]], "?", sep=""),
+		paste("Given a sample from ", map_info[["b"]], 
+			" what's the probability classifying it in ",  map_info[["a"]], "?", sep=""),
 		paste("Cumulative Pr(", map_info[["a"]], "|", map_info[["b"]], "):", sep=""),
 		"",
 		capture.output(print(round(cum_agb_mat,3))),
 		"",
 		"",
-		paste("Given a sample from ", map_info[["a"]], " what's the probability classifying it in ",  map_info[["b"]], "?", sep=""),
+		paste("Given a sample from ", map_info[["a"]], 
+			" what's the probability classifying it in ",  map_info[["b"]], "?", sep=""),
 		paste("Cumulative Pr(", map_info[["b"]], "|", map_info[["a"]], "):", sep=""),
 		"",
 		capture.output(print(round(cum_bga_mat,3))),
 		"",
 		"",
-		paste("Log(Pr(", map_info[["a"]], "|", map_info[["b"]], ")/Pr(", map_info[["b"]], "|", map_info[["a"]], ")):", sep=""),
-		paste("  Positive Log Prob Ratio implies ", map_info[["b"]], " predicts ", map_info[["a"]], " better than vice versa.", sep=""),
+		paste("Log(Pr(", map_info[["a"]], "|", map_info[["b"]], ")/Pr(", 
+			map_info[["b"]], "|", map_info[["a"]], ")):", sep=""),
+		paste("  Positive Log Prob Ratio implies ", map_info[["b"]], 
+			" predicts ", map_info[["a"]], " better than vice versa.", sep=""),
 		"",
 		capture.output(print(round(logodds, 2)))
 	));
 
-	plot_dendro_contigency(hcl_A, hcl_B, min_idx[2]+1, min_idx[1]+1, map_info[["a"]], map_info[["b"]], map_info[["b_id"]]);
+	plot_dendro_contigency(hcl_A, hcl_B, min_idx[2]+1, min_idx[1]+1, 
+		map_info[["a"]], map_info[["b"]], map_info[["b_id"]]);
 
 	# Write optimal cuts to file
 	cnt_fh=file(paste(OutputFileRoot, ".", map_info[["a"]], ".cuts", sep=""), "w");
@@ -1476,7 +1502,8 @@ plot_subcluster_cuts=function(hclA, hclB, distmatA, distmatB, num_cuts, namea, n
 
 	# Plot A Dendrogram
 	par(mar=c(5,left_label_spc,title_spc,0));
-	plot(dendra, main=paste(namea, ", k=", num_cuts, sep=""), horiz=F, yaxt="n", xaxt="n", xlab="", ylab="", xlim=c(-1,num_members+1));
+	plot(dendra, main=paste(namea, ", k=", num_cuts, sep=""), horiz=F, 
+		yaxt="n", xaxt="n", xlab="", ylab="", xlim=c(-1,num_members+1));
 	axis(side=1, at=dend_mids_a, labels=1:num_cuts, font=2, tick=F);
 	abline(h=acutheight, col="blue", lty=2, lwd=.7);
 
@@ -1554,7 +1581,8 @@ plot_subcluster_cuts=function(hclA, hclB, distmatA, distmatB, num_cuts, namea, n
 		par(mar=c(3,1,.5,0));
 
 		# Draw regresson line for correlation
-		plot(dist_arr_a, dist_arr_b, xaxt="n", yaxt="n", ylab="", main="", xlim=c(0, dist_max_a), ylim=c(0, dist_max_b), col=clx);
+		plot(dist_arr_a, dist_arr_b, xaxt="n", yaxt="n", ylab="", main="", 
+			xlim=c(0, dist_max_a), ylim=c(0, dist_max_b), col=clx);
 		if(num_members>1){
 			fit=lm(dist_arr_b~dist_arr_a);
 			if(!is.na((fit$coefficients[2]))){
@@ -1613,7 +1641,8 @@ analyze_subcluster_distances=function(hclA, hclB, distmatA, distmatB, num_cuts, 
 	# Plot optimal cluster cuts
 	par(mfrow=c(2,1));
 	maxmsd=max(msd_mat_a, na.rm=T);
-	plot(0,0, type="n", xlim=c(1, num_cuts), ylim=c(0, maxmsd), xlab="Cluster Cuts", ylab="MSD", main=paste(namea, " clustered by ", namea, sep=""), xaxt="n");
+	plot(0,0, type="n", xlim=c(1, num_cuts), ylim=c(0, maxmsd), 
+		xlab="Cluster Cuts", ylab="MSD", main=paste(namea, " clustered by ", namea, sep=""), xaxt="n");
 	axis(side=1, at=1:num_cuts, labels=T);
 	abline(h=msd_mat_a[1,1], col="blue", lty=2);
 	for(clx in 1:num_cuts){
@@ -1623,7 +1652,8 @@ analyze_subcluster_distances=function(hclA, hclB, distmatA, distmatB, num_cuts, 
 
 	# Plot alternative cluster cuts
 	maxmsd=max(msd_mat_b, na.rm=T);
-	plot(0,0, type="n", xlim=c(1, num_cuts), ylim=c(0, maxmsd), xlab="Cluster Cuts", ylab="MSD", main=paste(nameb, " clustered by ", namea, sep=""), xaxt="n");
+	plot(0,0, type="n", xlim=c(1, num_cuts), ylim=c(0, maxmsd), 
+		xlab="Cluster Cuts", ylab="MSD", main=paste(nameb, " clustered by ", namea, sep=""), xaxt="n");
 	axis(side=1, at=1:num_cuts, labels=T);
 	abline(h=msd_mat_b[1,1], col="blue", lty=2);
 	for(clx in 1:num_cuts){
@@ -1633,7 +1663,9 @@ analyze_subcluster_distances=function(hclA, hclB, distmatA, distmatB, num_cuts, 
 
 	# Plot cluster correlation across cuts
 	cor_range=c(-1,1)*max(abs(cor_mat), na.rm=T);
-	plot(0,0, type="n", xlim=c(1, num_cuts), ylim=cor_range, xlab="Cluster Cuts", ylab="Distance Correlation", main=paste("Distance Correlation: ", nameb, " clustered by ", namea, sep=""), xaxt="n");
+	plot(0,0, type="n", xlim=c(1, num_cuts), ylim=cor_range, 
+		xlab="Cluster Cuts", ylab="Distance Correlation", 
+		main=paste("Distance Correlation: ", nameb, " clustered by ", namea, sep=""), xaxt="n");
 	axis(side=1, at=1:num_cuts, labels=T);
 	abline(h=cor_mat[1,1], col="blue", lty=2);
 	abline(h=0, col="grey");
@@ -1652,7 +1684,9 @@ analyze_subcluster_distances=function(hclA, hclB, distmatA, distmatB, num_cuts, 
 	pval_ladder= c(1,.1,.05,.01,.001);
 	nlog_cpv_mat=-log10(cpv_mat);
 	nlog_pval_range=c(0, max(max(nlog_cpv_mat, na.rm=T), -log10(pval_ladder)));
-	plot(0,0, type="n", xlim=c(1, num_cuts), ylim=nlog_pval_range, xlab="Cluster Cuts", ylab="-log(pval)", main=paste("Mantel P-Value: ", nameb, " clustered by ", namea, sep=""), xaxt="n");
+	plot(0,0, type="n", xlim=c(1, num_cuts), ylim=nlog_pval_range, 
+		xlab="Cluster Cuts", ylab="-log(pval)", 
+		main=paste("Mantel P-Value: ", nameb, " clustered by ", namea, sep=""), xaxt="n");
 	axis(side=1, at=1:num_cuts, labels=T);
 	axis(side=4, at=-log10(pval_ladder), labels=pval_ladder, cex.axis=.7, tick=F, line=-.5, las=2);
 	abline(h=-log10(pval_ladder), col="grey", lwd=.5, lty=2);
