@@ -1236,6 +1236,154 @@ plot_dendro_contigency=function(hclA, hclB, acuts, bcuts, namea, nameb, idsb){
 
 ##############################################################################
 
+plot_dendro_group_compare=function(hclA, hclB, acuts, bcuts, namea, nameb, idsb){
+
+	color_denfun_bySample=function(n){
+		if(is.leaf(n)){
+			leaf_attr=attributes(n);
+			leaf_name=leaf_attr$label;
+			ind_color=sample_to_color_map[leaf_name];
+			if(is.null(ind_color)){
+				ind_color="black";
+			}
+
+			attr(n, "nodePar") = c(leaf_attr$nodePar,
+							list(lab.col=ind_color));
+		}
+		return(n);
+	}
+
+	text_scale_denfun=function(n){
+		if(is.leaf(n)){
+			leaf_attr=attributes(n);
+			leaf_name=leaf_attr$label;
+			attr(n, "nodePar") = c(leaf_attr$nodePar,
+						cex=0,
+						lab.cex=label_scale);
+		}
+		return(n);
+	}
+
+	# Compute
+	cat("Working on: ", nameb, ": ", bcuts, " x ", namea, ": ", acuts, "\n", sep="");
+
+	dendra=as.dendrogram(hclA);
+	dendrb=as.dendrogram(hclB);
+
+	memb_byA=cutree(hclA, k=acuts);
+	memb_byB=cutree(hclB, k=bcuts);
+
+	dendr_names_a=get_clstrd_leaf_names(dendra);
+	dendr_names_b=get_clstrd_leaf_names(dendrb);
+
+	memb_byA=reorder_member_ids(memb_byA, dendr_names_a);
+	memb_byB=reorder_member_ids(memb_byB, dendr_names_b);
+
+	dend_mids_a=get_middle_of_groups(dendr_names_a, memb_byA);
+	dend_mids_b=get_middle_of_groups(dendr_names_b, memb_byB);
+
+	num_members=length(memb_byA);
+
+	grp_cnts_a=(table(memb_byA)[1:acuts]);
+	grp_cnts_b=(table(memb_byB)[1:bcuts]);;
+	
+	grp_prop_a=grp_cnts_a/num_members;
+	grp_prop_b=grp_cnts_b/num_members;;
+
+	cat("Group Proportions A:\n");
+	print(grp_prop_a);
+
+	cat("Group Proportions B:\n");
+	print(grp_prop_b);
+
+	##########################################
+
+	orig_par=par(no.readonly=T);
+	#par(mfrow=c(4,1));
+	plsz=3;
+	layout_mat=matrix(c(
+		rep(1, plsz),
+		rep(2, plsz),
+		3,
+		rep(4, plsz),
+		rep(5, plsz)
+		), byrow=T, ncol=1);
+	layout(layout_mat);
+
+	# Find height where clusters separate
+	acutheight=find_height_at_k(hclA, acuts);
+	bcutheight=find_height_at_k(hclB, bcuts);
+
+	top_label_spc=4;
+	left_label_spc=1;
+	title_spc=2;
+
+	#-----------------------------------------------------------------------------
+
+	# Scale leaf sample IDs
+	label_scale=.2;
+	dendraA=dendrapply(dendra, text_scale_denfun);
+	dendrbA=dendrapply(dendrb, text_scale_denfun);
+	
+	# Color both dendrograms by A clustering
+	sample_to_color_map=memb_byA;
+	dendraA=dendrapply(dendraA, color_denfun_bySample);
+	idsa=names(sample_to_color_map);
+	names(sample_to_color_map)=idsb;
+	dendrbA=dendrapply(dendrbA, color_denfun_bySample);
+
+	# Plot A Dendrogram
+	par(mar=c(5,left_label_spc,title_spc,0));
+	plot(dendraA, main=paste(namea, ": ", acuts, " cuts", sep=""), 
+		horiz=F, yaxt="n", xaxt="n", xlab="", ylab="", xlim=c(-1,num_members+1));
+	abline(h=acutheight, col="blue", lty=2, lwd=.7);
+	abline(v=c(0,cumsum(grp_cnts_a)+.5), col="grey75", lwd=.5);
+
+	# Plot B Dendrogram
+	par(mar=c(5,left_label_spc,title_spc,0));
+	plot(dendrbA, main=paste(nameb, ": colored by ", namea, sep=""), 
+		horiz=F, xaxt="n", yaxt="n", xlab="", ylab="", xlim=c(-1,num_members+1));
+	abline(h=bcutheight, col="blue", lty=2, lwd=.7);
+	abline(v=c(0, cumsum(grp_cnts_b)+.5), col="grey75", lwd=.5);
+
+	#-----------------------------------------------------------------------------
+	par(mar=c(0,0,0,0));
+	plot(0,0, type="n", main="", xlab="", ylab="", bty="n", xaxt="n", yaxt="n");
+	abline(h=0, col="grey", lwd=5);
+
+	#-----------------------------------------------------------------------------
+
+	# Color both dendrograms by B clustering
+	label_scale=.2;
+	dendraB=dendrapply(dendra, text_scale_denfun);
+	dendrbB=dendrapply(dendrb, text_scale_denfun);
+
+	sample_to_color_map=memb_byB;
+	dendrbB=dendrapply(dendrbB, color_denfun_bySample);
+	names(sample_to_color_map)=idsa;
+	dendraB=dendrapply(dendraB, color_denfun_bySample);
+
+	# Plot B Dendrogram
+	par(mar=c(5,left_label_spc,title_spc,0));
+	plot(dendrbB, main=paste(nameb, ": ", bcuts, " cuts", sep=""),
+		horiz=F, xaxt="n", yaxt="n", xlab="", ylab="", xlim=c(-1,num_members+1));
+	abline(h=bcutheight, col="blue", lty=2, lwd=.7);
+	abline(v=c(0, cumsum(grp_cnts_b)+.5), col="grey75", lwd=.5);
+
+	# Plot A Dendrogram
+	par(mar=c(5,left_label_spc,title_spc,0));
+	plot(dendraB, main=paste(namea, ": colored by ", nameb, sep=""),
+		horiz=F, yaxt="n", xaxt="n", xlab="", ylab="", xlim=c(-1,num_members+1));
+	abline(h=acutheight, col="blue", lty=2, lwd=.7);
+	abline(v=c(0,cumsum(grp_cnts_a)+.5), col="grey75", lwd=.5);
+
+	par(orig_par);
+
+
+}
+
+##############################################################################
+
 classic_mds_pts_A=matrix(0, nrow=num_samples, ncol=2); 
 nonparm_mds_pts_A=matrix(0, nrow=num_samples, ncol=2); 
 classic_mds_pts_B=matrix(0, nrow=num_samples, ncol=2); 
@@ -1280,8 +1428,13 @@ if(analyze_dendro_cont){
 
 	for(acuts in 2:max_cuts){
 		for(bcuts in 2:max_cuts){
+
 			cont_res=plot_dendro_contigency(hcl_A, hcl_B, acuts, bcuts, 
 				map_info[["a"]], map_info[["b"]], map_info[["b_id"]]);
+
+			plot_dendro_group_compare(hcl_A, hcl_B, acuts, bcuts,
+                                map_info[["a"]], map_info[["b"]], map_info[["b_id"]]);
+
 			pval_mat[bcuts, acuts]=cont_res[["chisqr_test_pval"]];
 			cum_agb_mat[bcuts, acuts]=cont_res[["cumulative_cond_prob_agb"]];
 			cum_bga_mat[bcuts, acuts]=cont_res[["cumulative_cond_prob_bga"]];
@@ -1346,6 +1499,9 @@ if(analyze_dendro_cont){
 
 	plot_dendro_contigency(hcl_A, hcl_B, min_idx[2]+1, min_idx[1]+1, 
 		map_info[["a"]], map_info[["b"]], map_info[["b_id"]]);
+
+	plot_dendro_group_compare(hcl_A, hcl_B, min_idx[2]+1, min_idx[1]+1,
+                map_info[["a"]], map_info[["b"]], map_info[["b_id"]]);
 
 	# Write optimal cuts to file
 	cnt_fh=file(paste(OutputFileRoot, ".", map_info[["a"]], ".cuts", sep=""), "w");
