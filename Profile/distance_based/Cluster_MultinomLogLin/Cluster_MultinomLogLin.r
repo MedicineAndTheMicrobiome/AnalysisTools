@@ -1242,16 +1242,21 @@ print(best_cl_cut);
 vnam_ord_ix=order(rownames(best_cl_cut));
 clct_ord_ix=order(best_cl_cut[, "cluster_cut"]);
 
+
+options(width=200);
 plot_text(c(
 	"Ordered By: Variable Name",
-	capture.output(print(best_cl_cut[vnam_ord_ix,], quote=F)),
-	"",
+	capture.output(print(best_cl_cut[vnam_ord_ix,], quote=F))
+));
+
+plot_text(c(
 	"Ordered By: Min P-Value",
-	capture.output(print(best_cl_cut, quote=F)),
-	"",
+	capture.output(print(best_cl_cut, quote=F))
+));
+
+plot_text(c(
 	"Ordered By: Cluster Cuts",
-	capture.output(print(best_cl_cut[clct_ord_ix,], quote=F)),
-	""
+	capture.output(print(best_cl_cut[clct_ord_ix,], quote=F))
 ));
 
 ###############################################################################
