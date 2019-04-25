@@ -882,11 +882,14 @@ se_summary=function(x){
 aics=numeric(max_clusters-1);
 i=1;
 
-
-
 min_pval_matrix=numeric();
 geom_pval_matrix=numeric();
 cluster_labels=numeric();
+
+
+# Store all coefficients and pvalues for building phenotype tree
+pvalue_mat_list=list();
+coeff_mat_list=list();
 
 geomean=function(x){
 	return(exp(mean(log(x))));
@@ -986,6 +989,13 @@ for(num_cl in cl_cuts){
 	mean_matrix=numeric();
 	se_matrix=numeric();
 
+	#pvalue_mat_list[[num_cl]]=matrix(NA, ncol=num_cl, nrow=num_coeff);
+	#coeff_mat_list[[num_cl]]=matrix(NA, ncol=num_cl, nrow=num_coeff);
+
+	pvalue_tmp=c();
+	coeff_tmp=c();
+
+
 	aic=NULL;
 	for(cl_ix in 1:num_cl){
 
@@ -1042,8 +1052,33 @@ for(num_cl in cl_cuts){
 		}else{
 			aic=min(c(aic, fit$aic));
 		}
+
+		if(length(pvalue_tmp)==0){
+			num_coeff=length(sum_fit$coefficients[,"Pr(>|z|)"]);
+			pvalue_tmp=matrix(0, nrow=num_coeff, ncol=num_cl);
+			coeff_tmp=matrix(0, nrow=num_coeff, ncol=num_cl);
+			
+			var_names=rownames(sum_fit$coefficients);
+			rownames(pvalue_tmp)=var_names;
+			rownames(coeff_tmp)=var_names;
+			colnames(pvalue_tmp)=1:num_cl;
+			colnames(coeff_tmp)=1:num_cl;
+
+			pvalue_tmp[var_names,cl_ix]=sum_fit$coefficients[var_names,"Pr(>|z|)"];
+			coeff_tmp[var_names,cl_ix]=sum_fit$coefficients[var_names,"Estimate"];
+		}else{
+			var_names=rownames(sum_fit$coefficients);
+			pvalue_tmp[var_names, cl_ix]=sum_fit$coefficients[var_names,"Pr(>|z|)"];
+			coeff_tmp[var_names, cl_ix] =sum_fit$coefficients[var_names,"Estimate"];
+		}
+
 	}
-	
+
+	print(pvalue_tmp);
+	print(coeff_tmp);
+	pvalue_mat_list[[num_cl]]=pvalue_tmp;
+	coeff_mat_list[[num_cl]]=coeff_tmp;
+
 	aics[i]=aic;
 
 	# Remove Intercept
@@ -1059,7 +1094,7 @@ for(num_cl in cl_cuts){
 	rownames(mean_matrix)=1:num_cl;
 	rownames(se_matrix)=1:num_cl;
 	
-	if(0){
+	if(1){
 		cat("Coefficients:\n");
 		print(coeff_matrix);
 		cat("\n");
@@ -1079,15 +1114,18 @@ for(num_cl in cl_cuts){
 	par(mfrow=c(1,1));
 	par(mar=c(10,10,1,1));
 	paint_matrix(mean_matrix, title=paste(num_cl, " Clusters: Means", sep=""));
-	draw_mean_ses(mean_matrix, se_matrix, title=paste(num_cl, " Clusters: Means and Standard Errors", sep=""), grp_col=palette_col);
+	draw_mean_ses(mean_matrix, se_matrix, 
+		title=paste(num_cl, " Clusters: Means and Standard Errors", sep=""), grp_col=palette_col);
 	#paint_matrix(coeff_matrix, title=paste(num_cl, " Clusters, Coefficients", sep=""));
 	paint_matrix(coeff_matrix, title=paste(num_cl, " Clusters: Logistic Regression Coefficients", sep=""));
 	draw_mean_ses(coeff_matrix, coef_se_matrix, 
 		title=paste(num_cl, " Clusters: Logistic Regression Coefficient Standard Errors", sep=""), 
 		grp_col=palette_col, include_zero_ref=T);
-	paint_matrix(pval_matrix, title=paste(num_cl, " Clusters: P-values", sep=""), high_is_hot=F, plot_max=1, plot_min=0);
+	paint_matrix(pval_matrix, title=paste(num_cl, " Clusters: P-values", sep=""), 
+		high_is_hot=F, plot_max=1, plot_min=0);
 	paint_matrix(signif_coeff_matrix,
-		title=paste(num_cl, " Clusters: Significient Coefficients (Uncorrected p-value < 0.05)", sep=""), label_zeros=F);
+		title=paste(num_cl, " Clusters: Significient Coefficients (Uncorrected p-value < 0.05)", 
+			sep=""), label_zeros=F);
 
 	# Keep min value for each coefficient
 	min_pvalues=apply(pval_matrix, 2, min);
@@ -1100,6 +1138,7 @@ for(num_cl in cl_cuts){
 	i=i+1;	
 	
 }
+
 
 plot_coeff_pvalues=function(pval_matrix, line_col, title){
 
@@ -1261,8 +1300,210 @@ plot_text(c(
 
 ###############################################################################
 
-cat("\nDone.\n")
 dev.off();
+
+plot_tree_phenotypes=function(hcl, coef_mat_list, pval_mat_list, alpha=.10){
+
+	print(coeff_mat_list);
+	print(pvalue_mat_list);
+
+	color_denfun_bySample=function(n){
+		if(is.leaf(n)){
+			leaf_attr=attributes(n);
+			leaf_name=leaf_attr$label;
+			ind_color=sample_to_color_map[[leaf_name]];
+			if(is.null(ind_color)){
+				ind_color="black";
+			}
+
+			attr(n, "nodePar") = c(leaf_attr$nodePar,
+							list(lab.col=ind_color));
+		}
+		return(n);
+	}
+
+	text_scale_denfun=function(n){
+		if(is.leaf(n)){
+			leaf_attr=attributes(n);
+			leaf_name=leaf_attr$label;
+			attr(n, "nodePar") = c(leaf_attr$nodePar,
+						lab.cex=denfun.label_scale);
+		}
+		return(n);
+	}
+
+	num_cuts=length(coeff_mat_list);
+	num_variables=nrow(coeff_mat_list[[2]]);
+	
+	cat("Num Cuts:", num_cuts, "\n");
+	cat("Num Variables:", num_variables, "\n");
+
+	best_cut_mat=matrix(NA, nrow=num_variables, ncol=4);
+	rownames(best_cut_mat)=rownames(coeff_mat_list[[2]]);
+	colnames(best_cut_mat)=c("pvalue", "coeff", "cut", "cluster");
+	best_cut_mat[,"pvalue"]=1;
+	best_cut_mat[,"coeff"]=0;
+	
+	# Find cluster cut with lowest pvalue for each variable
+	for(cut_ix in 2:num_cuts){
+		cur_cut_mat=pval_mat_list[[cut_ix]];
+		for(var_ix in 1:num_variables){
+			for(cl_ix in 1:cut_ix){
+				if(cur_cut_mat[var_ix, cl_ix] < best_cut_mat[var_ix, "pvalue"]){
+					best_cut_mat[var_ix, "pvalue"]=cur_cut_mat[var_ix, cl_ix];
+					best_cut_mat[var_ix, "coeff"]=coef_mat_list[[cut_ix]][var_ix, cl_ix];
+					best_cut_mat[var_ix, "cut"]=cut_ix;
+					best_cut_mat[var_ix, "cluster"]=cl_ix;
+				}
+			}	
+		}		
+	}
+	
+	cat("\n\nAll Minimums:\n");
+	print(best_cut_mat);
+
+	# Remove non-significant
+	signf_ix=best_cut_mat[,"pvalue"]<=alpha;
+	best_cut_mat=best_cut_mat[signf_ix,,drop=F];	
+	cat("\n\nSignificant Minimums:\n");
+	print(best_cut_mat);
+	
+	# Sort by cut
+	cluster_order=order(best_cut_mat[,"cluster"]);
+	best_cut_mat_byClust=best_cut_mat[cluster_order,,drop=F];
+
+	cut_order=order(best_cut_mat_byClust[,"cut"]);
+	best_cut_mat=best_cut_mat_byClust[cut_order,,drop=F];
+
+	cat("\n\nSorted by Cut:\n");
+	print(best_cut_mat);
+	plot_text(capture.output(best_cut_mat));
+	num_kept_signf_var=nrow(best_cut_mat);	
+	cat("Num Significant Variables:", num_kept_signf_var, "\n");
+
+	samp_dendro=as.dendrogram(hcl);
+	lf_names=get_clstrd_leaf_names(samp_dendro);
+	num_dendro_samples=length(lf_names);
+	
+	max_cuts=max(best_cut_mat[,"cut"]);
+	cat("Max Cuts to Plot:", max_cuts, "\n");
+
+	layout_mat=matrix(c(
+		1,
+		rep(2, 4)), ncol=1);
+	layout(layout_mat);
+
+	left_mar=15;
+	right_mar=5;
+
+	clst_sizes=list();
+
+	for(cut_ix in 2:max_cuts){
+
+		# Cut tree at target number of clusters
+		cat("Cutting for ", cut_ix, " clusters...\n", sep="");
+		memberships=cutree(hcl, k=cut_ix);
+		grp_mids=get_middle_of_groups(lf_names, memberships);
+
+		# Reorder cluster assignments to match dendrogram left/right
+		plot_order=order(grp_mids);
+		mem_tmp=numeric(num_dendro_samples);
+		for(gr_ix in 1:cut_ix){
+			old_id=(memberships==plot_order[gr_ix]);
+			mem_tmp[old_id]=gr_ix;
+		}
+		names(mem_tmp)=names(memberships);
+		memberships=mem_tmp;
+		grp_mids=grp_mids[plot_order];
+
+		if(cut_ix==max_cuts){
+
+			# Plot Dendrogram
+			par(mar=c(8,left_mar,2,right_mar));
+			sample_to_color_map=as.list(memberships);
+
+			tweaked_dendroT=dendrapply(samp_dendro, color_denfun_bySample);
+			tweaked_dendroT=dendrapply(tweaked_dendroT, text_scale_denfun);
+			plot(tweaked_dendroT, horiz=F);
+			for(cl_ix in 1:cut_ix){
+				lab_size=3/ceiling(log10(cl_ix+1));
+				axis(side=1, at=grp_mids[cl_ix], labels=cl_ix, 
+					cex.axis=lab_size, col.ticks=cl_ix, 
+					lend=1, lwd=10, padj=1, line=4);
+			}
+
+			#points((1:num_dendro_samples), rep(2, num_dendro_samples));
+		}
+
+		clst_sizes[[cut_ix]]=table(memberships);
+
+	}
+
+	par(mar=c(4,left_mar,1,right_mar));
+	plot(0,0, type="n", 
+		xlab="", ylab="", bty="n", xaxt="n", yaxt="n",
+		xlim=c(0,num_dendro_samples), ylim=c(0, num_kept_signf_var));
+
+	var_y_pos=rev(1:num_kept_signf_var);
+	axis(side=2, at=var_y_pos, labels=rownames(best_cut_mat),
+		las=2);
+
+
+	signf_char=sapply(best_cut_mat[,"pvalue"], 
+		function(x){
+			if(x<=.001){return("***");}
+			if(x<=.01){return("**");}
+			if(x<=.05){return("*");}
+			return("");
+		});
+
+
+	axis(side=4, at=var_y_pos, labels=signf_char,
+		las=2, font.axis=2, cex.axis=3);
+
+	abline(h=var_y_pos, col="grey80");
+
+	for(var_ix in 1:num_kept_signf_var){
+	
+		pval=best_cut_mat[var_ix, "pvalue"];	
+		coef=best_cut_mat[var_ix, "coeff"];
+		cut=best_cut_mat[var_ix, "cut"];	
+		clus=best_cut_mat[var_ix, "cluster"];	
+
+		cat("P-val: ", pval, "\n");
+		cat("Coeff: ", coef, "\n");
+		cat("Cuts : ", cut, "\n");
+		cat("Clust: ", clus, "\n");
+
+		cur_clst_size=clst_sizes[[cut]];
+		stst_pos=c(0, cumsum(cur_clst_size));
+
+		bar_pos=c(stst_pos[clus], stst_pos[clus+1]);
+
+		if(coef>0){
+			bar_col="red";
+		}else{
+			bar_col="blue";
+		}
+		points(bar_pos, rep(var_y_pos[var_ix],2), type="l", col=bar_col, lwd=5);
+		
+		if(var_ix==num_kept_signf_var){
+			abline(v=stst_pos, col="grey90");
+		}
+
+	}
+	
+}
+
+pdf(paste(output_fname_root, ".cl_mll.phenotree.pdf", sep=""), height=11, width=8.5);
+
+plot_tree_phenotypes(hcl=hcl, coef_mat_list=coeff_mat_list, pval_mat_list=pvalue_mat_list);
+
+dev.off();
+
+###############################################################################
+
+cat("\nDone.\n")
 warn=warnings();
 if(length(warn)){
         print(warn);
