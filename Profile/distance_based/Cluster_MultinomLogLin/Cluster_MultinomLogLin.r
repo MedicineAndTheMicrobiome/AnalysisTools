@@ -1331,6 +1331,8 @@ plot_tree_phenotypes=function(hcl, coef_mat_list, pval_mat_list, alpha=.10){
 		}
 		return(n);
 	}
+	
+	#-----------------------------------------------------------------------------
 
 	num_cuts=length(coeff_mat_list);
 	num_variables=nrow(coeff_mat_list[[2]]);
@@ -1420,6 +1422,8 @@ plot_tree_phenotypes=function(hcl, coef_mat_list, pval_mat_list, alpha=.10){
 	left_mar=15;
 	right_mar=5;
 
+	membership_matrix=numeric();
+
 	clst_sizes=list();
 
 	for(cut_ix in 2:max_cuts){
@@ -1439,6 +1443,8 @@ plot_tree_phenotypes=function(hcl, coef_mat_list, pval_mat_list, alpha=.10){
 		names(mem_tmp)=names(memberships);
 		memberships=mem_tmp;
 		grp_mids=grp_mids[plot_order];
+
+		membership_matrix=cbind(membership_matrix, memberships);
 
 		if(cut_ix==max_cuts){
 
@@ -1462,6 +1468,19 @@ plot_tree_phenotypes=function(hcl, coef_mat_list, pval_mat_list, alpha=.10){
 		clst_sizes[[cut_ix]]=table(memberships);
 
 	}
+
+	# Compute cluster evolution
+	memb_map=unique(apply(membership_matrix, 1, function(x){paste(x, collapse=",")}));
+	membership_matrix=c();
+	for(i in 1:length(memb_map)){
+		membership_matrix=rbind(membership_matrix, as.numeric(strsplit(memb_map[i], ",")[[1]]));
+	}
+	colnames(membership_matrix)=paste("k=", 2:(ncol(membership_matrix)+1), sep="");
+	sort_ix=order(membership_matrix[, ncol(membership_matrix)]);
+	membership_matrix=membership_matrix[sort_ix,];
+	print(membership_matrix);
+
+	#-----------------------------------------------------------------------------
 
 	par(mar=c(1,left_mar,1,right_mar));
 	plot(0,0, type="n", 
@@ -1554,6 +1573,66 @@ plot_tree_phenotypes=function(hcl, coef_mat_list, pval_mat_list, alpha=.10){
 			"  *, p < 0.05", 
 			"   , p < 0.1"));	
 	par(family=orig_fam);
+
+	#-----------------------------------------------------------------------------
+	# Output table:
+	# variable name, pval, coeff, cut, clusters_inv, propo
+	
+	print(membership_matrix);
+	summary_matrix=character();
+	varnames=names(additional_cuts_list);
+	for(var_ix in 1:num_kept_signf_var){
+		
+		cur_var_rec=additional_cuts_list[[var_ix]];
+		cut=cur_var_rec[["cut"]];
+		num_cl=length(cur_var_rec$cluster);
+		varname=names(cur_var_rec);
+
+		cur_clst_size=clst_sizes[[cut]];
+
+		for(cl in 1:num_cl){
+
+			clus=cur_var_rec[["cluster"]][cl];
+
+			# Look up subclusters
+			cutrow=membership_matrix[, paste("k=",cut,sep="")];
+			subcl=membership_matrix[cutrow==clus, paste("k=", max_cuts, sep="")];
+			subcl_str=paste(subcl, collapse=",");
+
+			summary_matrix=rbind(summary_matrix,
+				c(
+					varnames[var_ix],
+					sprintf("%8.3f", cur_var_rec[["coeff"]][cl]),
+					sprintf("%5.3f", cur_var_rec[["pvalue"]][cl]),
+					get_signf_char(cur_var_rec[["pvalue"]][cl]),
+					cut,
+					subcl_str,
+					cur_clst_size[clus],
+					round(cur_clst_size[clus]/num_dendro_samples, 3)
+			));
+
+		
+		}
+	}
+
+	colnames(summary_matrix)=c(
+		"Variable",
+		"Coeff",
+		"P-Val",
+		"Signf",
+		"k",
+		"SubclstInc",
+		"NumSamp",
+		"PropSamp");
+
+	rownames(summary_matrix)=1:nrow(summary_matrix);
+
+	# Truncate long variable names
+	summary_matrix[,"Variable"]=substr(summary_matrix[,"Variable"],1,35);
+
+	table=capture.output(print(summary_matrix, quote=F));
+	par(mfrow=c(1,1));
+	plot_text(table);
 }
 
 pdf(paste(output_fname_root, ".cl_mll.phenotree.pdf", sep=""), height=11, width=8.5);
