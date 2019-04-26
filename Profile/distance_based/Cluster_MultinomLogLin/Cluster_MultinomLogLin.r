@@ -1367,7 +1367,7 @@ plot_tree_phenotypes=function(hcl, coef_mat_list, pval_mat_list, alpha=.10){
 	best_cut_mat=best_cut_mat[signf_ix,,drop=F];	
 	cat("\n\nSignificant Minimums:\n");
 	print(best_cut_mat);
-	
+
 	# Sort by cut
 	cluster_order=order(best_cut_mat[,"cluster"]);
 	best_cut_mat_byClust=best_cut_mat[cluster_order,,drop=F];
@@ -1381,6 +1381,29 @@ plot_tree_phenotypes=function(hcl, coef_mat_list, pval_mat_list, alpha=.10){
 	num_kept_signf_var=nrow(best_cut_mat);	
 	cat("Num Significant Variables:", num_kept_signf_var, "\n");
 
+	# Look for addition clusters with significant associations in same cut
+	additional_cuts_list=list();
+	num_signf_var=nrow(best_cut_mat);
+	signf_var_names=rownames(best_cut_mat);
+	add_ix=1;
+	for(var_ix in 1:num_signf_var){
+		cur_cut=best_cut_mat[var_ix,"cut"];
+		cur_var_name=signf_var_names[var_ix];
+		all_cuts_pval=pval_mat_list[[cur_cut]][cur_var_name,,drop=F];
+
+		signf_cuts=all_cuts_pval<=alpha;
+
+		add_rec=list();
+		add_rec[["cut"]]=cur_cut;
+		add_rec[["cluster"]]=which(signf_cuts);
+		add_rec[["pvalue"]]=pval_mat_list[[cur_cut]][cur_var_name,signf_cuts];
+		add_rec[["coeff"]]=coef_mat_list[[cur_cut]][cur_var_name,signf_cuts];
+		additional_cuts_list[[cur_var_name]]=add_rec;
+	}
+	print(additional_cuts_list);
+
+	#-----------------------------------------------------------------------------
+
 	samp_dendro=as.dendrogram(hcl);
 	lf_names=get_clstrd_leaf_names(samp_dendro);
 	num_dendro_samples=length(lf_names);
@@ -1390,7 +1413,8 @@ plot_tree_phenotypes=function(hcl, coef_mat_list, pval_mat_list, alpha=.10){
 
 	layout_mat=matrix(c(
 		1,
-		rep(2, 4)), ncol=1);
+		rep(2, 4),
+		3), ncol=1);
 	layout(layout_mat);
 
 	left_mar=15;
@@ -1439,7 +1463,7 @@ plot_tree_phenotypes=function(hcl, coef_mat_list, pval_mat_list, alpha=.10){
 
 	}
 
-	par(mar=c(4,left_mar,1,right_mar));
+	par(mar=c(1,left_mar,1,right_mar));
 	plot(0,0, type="n", 
 		xlab="", ylab="", bty="n", xaxt="n", yaxt="n",
 		xlim=c(0,num_dendro_samples), ylim=c(0, num_kept_signf_var));
@@ -1448,51 +1472,88 @@ plot_tree_phenotypes=function(hcl, coef_mat_list, pval_mat_list, alpha=.10){
 	axis(side=2, at=var_y_pos, labels=rownames(best_cut_mat),
 		las=2);
 
-
-	signf_char=sapply(best_cut_mat[,"pvalue"], 
-		function(x){
-			if(x<=.001){return("***");}
-			if(x<=.01){return("**");}
-			if(x<=.05){return("*");}
-			return("");
-		});
+	axis(side=4, at=var_y_pos, labels=paste("k=",best_cut_mat[,"cut"]), las=2);
 
 
-	axis(side=4, at=var_y_pos, labels=signf_char,
-		las=2, font.axis=2, cex.axis=3);
+	get_signf_char= function(x){
+		if(x<=.001){return("***");}
+		if(x<=.01){return("**");}
+		if(x<=.05){return("*");}
+		return("");
+	};
+
 
 	abline(h=var_y_pos, col="grey80");
 
 	for(var_ix in 1:num_kept_signf_var){
-	
-		pval=best_cut_mat[var_ix, "pvalue"];	
-		coef=best_cut_mat[var_ix, "coeff"];
-		cut=best_cut_mat[var_ix, "cut"];	
-		clus=best_cut_mat[var_ix, "cluster"];	
 
-		cat("P-val: ", pval, "\n");
-		cat("Coeff: ", coef, "\n");
-		cat("Cuts : ", cut, "\n");
-		cat("Clust: ", clus, "\n");
+		cur_var_rec=additional_cuts_list[[var_ix]];
+		cut=cur_var_rec[["cut"]];
+		num_cl=length(cur_var_rec$cluster);
 
 		cur_clst_size=clst_sizes[[cut]];
 		stst_pos=c(0, cumsum(cur_clst_size));
+		points(stst_pos, rep(var_y_pos[var_ix], cut+1), cex=2);
 
-		bar_pos=c(stst_pos[clus], stst_pos[clus+1]);
+		for(cl in 1:num_cl){
+	
+			#pval=best_cut_mat[var_ix, "pvalue"];	
+			#coef=best_cut_mat[var_ix, "coeff"];
+			#cut=best_cut_mat[var_ix, "cut"];	
+			#clus=best_cut_mat[var_ix, "cluster"];	
 
-		if(coef>0){
-			bar_col="red";
-		}else{
-			bar_col="blue";
-		}
-		points(bar_pos, rep(var_y_pos[var_ix],2), type="l", col=bar_col, lwd=5);
+			pval=cur_var_rec[["pvalue"]][cl];
+			coef=cur_var_rec[["coeff"]][cl];
+			clus=cur_var_rec[["cluster"]][cl];
+
+			cat("\n");
+			cat("P-val: ", pval, "\n");
+			cat("Coeff: ", coef, "\n");
+			cat("Cuts : ", cut, "\n");
+			cat("Clust: ", clus, "\n");
+
 		
-		if(var_ix==num_kept_signf_var){
-			abline(v=stst_pos, col="grey90");
+			bar_pos=c(stst_pos[clus], stst_pos[clus+1]);
+
+			if(coef>0){
+				bar_col="red";
+			}else{
+				bar_col="blue";
+			}
+
+			# Draw bar
+			points(bar_pos, rep(var_y_pos[var_ix],2), type="l", col=bar_col, lend="butt", lwd=5);
+
+			# Draw bar line ends
+			points(rep(bar_pos[1],2), var_y_pos[var_ix]+c(.25, -.25), 
+				col="black", type="l", lwd=2); 
+			points(rep(bar_pos[2],2), var_y_pos[var_ix]+c(.25, -.25), 
+				col="black", type="l", lwd=2); 
+
+			# Draw asterisks over center of bar
+			text(mean(bar_pos), var_y_pos[var_ix], get_signf_char(pval), font=2, adj=c(.5,.3), cex=2);
+		
 		}
 
 	}
-	
+
+	par(mar=c(0,0,0,0));
+
+	orig_fam=par()$family;
+	par(family="mono");
+
+	plot(0,0, type="n", xlim=c(0,1), ylim=c(0,1), bty="n", xaxt="n", yaxt="n", main="", xlab="", ylab="");
+	legend(0, 1, title="Associations:", bty="n", cex=1.7,
+		legend=c("Positive", "Negative"),
+		fill=c("red", "blue"));
+
+	legend(.25, 1, title="Significance:", bty="n", cex=1.7,
+		legend=c(
+			"***, p < 0.001", 
+			" **, p < 0.01", 
+			"  *, p < 0.05", 
+			"   , p < 0.1"));	
+	par(family=orig_fam);
 }
 
 pdf(paste(output_fname_root, ".cl_mll.phenotree.pdf", sep=""), height=11, width=8.5);
