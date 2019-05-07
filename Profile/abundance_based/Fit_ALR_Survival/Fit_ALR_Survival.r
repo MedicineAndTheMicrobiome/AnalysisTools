@@ -1682,7 +1682,14 @@ for(cat_ix in signif_cat){
 # Compare epochs by cohorts
 #print(factors)
 
-plot_epoch_comp=function(alr_a_table, alr_b_table, nameA, nameB, alr_colname, cht_colname, cht_colors, alr_ranges){
+plot_epoch_comp=function(alr_a_table, alr_b_table, nameA, nameB, 
+	alr_colname, cht_colname, cht_colors, alr_ranges, mtitle){
+
+	laymat=matrix(c(
+		1,1,1,1,
+		2,2,3,3,
+		4,4,5,5), ncol=4, byrow=T);
+	layout(laymat);
 
 	orig_par=par(no.readonly=T);
 
@@ -2089,11 +2096,11 @@ plot_epoch_comp=function(alr_a_table, alr_b_table, nameA, nameB, alr_colname, ch
 	axis(side=1, at=c(bpos), labels=c(nameB), 
 		las=1, font.axis=2, tick=F, line=0);
 	# Highlight A and B column
-	abline(v=c(apos, bpos), lwd=40, col="grey90", lend=2);
+	abline(v=(apos+bpos)/2, lwd=2, col="grey50", lend=2);
 
 	a_shrd_mean=mean(shrd_a[,alr_colname]);
 	b_shrd_mean=mean(shrd_b[,alr_colname]);
-	abline(h=c(a_shrd_mean, b_shrd_mean), lwd=.5, col="grey90");
+	#abline(h=c(a_shrd_mean, b_shrd_mean), lwd=.5, col="grey90");
 
 	# Label A column depending on whether there any censored samples
 	if(plot_excl_a){
@@ -2101,11 +2108,11 @@ plot_epoch_comp=function(alr_a_table, alr_b_table, nameA, nameB, alr_colname, ch
 			las=1, font.axis=3, cex.axis=.60, line=0);
 		axis(side=1, at=apos, labels=paste("survived to\n",nameB,sep=""),
 			las=1, font.axis=3, cex.axis=.60, line=0);
-		abline(v=c(xpos), lwd=40, col="grey90", lend=1);
+		abline(v=(xpos+apos)/2, lwd=1, col="grey60", lend=1);
 		axis(side=1, at=c((xpos+apos)/2), labels=c(nameA), 
 			las=1, font.axis=2, tick=F, line=1.1);
 
-		abline(h=c(mean_excl_a), lwd=.5, col="grey90");
+		#abline(h=c(mean_excl_a), lwd=.5, col="grey90");
 
 	}else{
 		axis(side=1, at=c(apos), labels=c(nameA), 
@@ -2218,10 +2225,10 @@ plot_epoch_comp=function(alr_a_table, alr_b_table, nameA, nameB, alr_colname, ch
 
 	##############################################################################
 
-	plot(0,0, type="n", xlab="", ylab="", main="", xaxt="n", yaxt="n", bty="n");
+	#plot(0,0, type="n", xlab="", ylab="", main="", xaxt="n", yaxt="n", bty="n");
 	
 	par(mar=orig_mar);
-	
+	mtext(mtitle, side=3, outer=T, font=2);
 
 }
 
@@ -2275,8 +2282,8 @@ for(cat_ix in signif_cat){
 			collapsed_B=avg_by_subj(combined_B, SubjVarName, CohtVarName, "cur_alr_cat");
 
 			plot_epoch_comp(collapsed_A, collapsed_B, ep_nm_A, ep_nm_B, 
-				"cur_alr_cat", CohtVarName, cht_colors, alr_ranges);
-			mtext(cat_ix, side=3, outer=T, font=2);
+				"cur_alr_cat", CohtVarName, cht_colors, alr_ranges,
+				mtitle=cat_ix);
 		}
 	}
 
