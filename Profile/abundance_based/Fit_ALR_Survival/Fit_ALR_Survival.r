@@ -2234,6 +2234,127 @@ plot_epoch_comp=function(alr_a_table, alr_b_table, nameA, nameB,
 
 ###############################################################################
 
+plot_epochs_as_strip=function(avgs_list, epoch_names, 
+	alr_colname, cht_colname, cht_colors, alr_ranges, mtitle){
+
+	num_epochs=length(epoch_names);
+	cht_names=names(cht_colors);
+	num_chts=length(cht_names);
+
+	cat("Num Epochs:", num_epochs, "\n");
+	print(epoch_names);
+	cat("Num Cohorts:", num_chts, "\n");
+	print(cht_names);
+
+	# Store cohort averages over time
+	na_matrix=matrix(NA, nrow=num_epochs, ncol=num_chts);
+	rownames(na_matrix)=epoch_names;
+	colnames(na_matrix)=cht_names;
+
+	mean_matrix=na_matrix;
+	sd_matrix=na_matrix;
+	n_matrix=na_matrix;
+	all_val=c();
+
+	# Average individuals together by cohort
+	for(ep_id in epoch_names){
+		ep_info=avgs_list[[ep_id]];
+
+		for(cht_id in cht_names){
+			ch_ix=ep_info[,cht_colname]==cht_id;
+			mean_matrix[ep_id, cht_id]=mean(ep_info[ch_ix, alr_colname]);
+			sd_matrix[ep_id, cht_id]=sd(ep_info[ch_ix, alr_colname]);
+			n_matrix[ep_id, cht_id]=length(ep_info[ch_ix, alr_colname]);
+			all_val=c(all_val, ep_info[ch_ix, alr_colname]);
+		}
+		
+	}
+
+	# Calculate stats
+	bnd_matrix=sd_matrix*1.96/sqrt(n_matrix);
+	ub_matrix=mean_matrix+bnd_matrix;
+	lb_matrix=mean_matrix-bnd_matrix;
+	min_max=range(all_val);
+	bound_range=range(ub_matrix, lb_matrix);
+
+	# Calculate auto spacing between cohorts in the same epoch
+	max_width=.75;
+	cht_x_offset=(((1:num_chts)/(num_chts+1))-.5)*max_width;
+	spacing=diff(cht_x_offset);
+
+	par(mfrow=c(3,1));
+
+	# Points/lines only ##################################
+	plot(0,0, type="n", xlim=c(1-.5,num_epochs+.5), ylim=range(mean_matrix), 
+		xlab="", ylab="ALR Transformed Abundance", xaxt="n");
+	title(main="Epoch Means by Cohort", line=0.25);
+	axis(side=1, at=1:num_epochs, labels=epoch_names);
+	for(cht_id in cht_names){
+		points(1:num_epochs, mean_matrix[, cht_id], col=cht_colors[cht_id], type="b");
+	}
+
+	# Side by side with 95% CI ##########################
+	plot(0,0, type="n", xlim=c(1-.5,num_epochs+.5), ylim=bound_range, 
+		xlab="", ylab="ALR Transformed Abundance", xaxt="n");
+	title(main="Epoch Means with 95% CI by Cohort", line=0.25);
+	axis(side=1, at=1:num_epochs, labels=epoch_names);
+	abline(v=(2:num_epochs)-.5, lwd=2, col="grey75");
+
+	ci=1;
+	for(cht_id in cht_names){
+		
+		for(ei in 1:num_epochs){
+			points(
+				rep(ei+cht_x_offset[ci], 2),
+				c(lb_matrix[ei, cht_id], ub_matrix[ei, cht_id]),
+				col=cht_colors[cht_id], type="l", cex=2, lwd=2, pch=19);
+		}
+
+		points((1:num_epochs)+cht_x_offset[ci], mean_matrix[, cht_id], 
+			col=cht_colors[cht_id], type="p", cex=2, lwd=2, pch=19);
+		points((1:num_epochs)+cht_x_offset[ci], mean_matrix[, cht_id], 
+			col="black", type="p", cex=.5, lwd=.5, pch=19);
+		ci=ci+1;
+	}
+
+	# Side by side with individual values plotted #####
+	plot(0,0, type="n", xlim=c(1-.5,num_epochs+.5), ylim=min_max, 
+		xlab="", ylab="ALR Transformed Abundance", xaxt="n");
+	title(main="Epoch Subject Values by Cohort", line=0.25);
+	axis(side=1, at=1:num_epochs, labels=epoch_names);
+	abline(v=(2:num_epochs)-.5, lwd=2, col="grey75");
+
+	# Plot means
+	ci=1;
+	for(cht_id in cht_names){
+		points((1:num_epochs)+cht_x_offset[ci], mean_matrix[, cht_id], 
+			col=cht_colors[cht_id], type="p", cex=3, lwd=2, pch="-");
+		ci=ci+1;
+	}
+
+	# Overlap individual subject values
+	ei=1;
+	for(ep_id in epoch_names){
+		ep_info=avgs_list[[ep_id]];
+		ci=1;
+		for(cht_id in cht_names){
+			ch_ix=ep_info[,cht_colname]==cht_id;	
+			num_pts=sum(ch_ix);
+			points(
+				rep(ei + cht_x_offset[ci], num_pts), 
+				ep_info[ch_ix, alr_colname],
+				col=cht_colors[cht_id],
+				type="p", cex=1);
+			ci=ci+1;
+		}	
+		ei=ei+1;
+	}
+
+	mtext(mtitle, side=3, outer=T, font=2);
+}
+
+###############################################################################
+
 par(mfrow=c(1,1));
 par(mar=c(0,0,0,0));
 plot(0,0, type="n", xlab="", ylab="", xaxt="n", yaxt="n", main="", bty="n");
@@ -2251,41 +2372,40 @@ for(cat_ix in signif_cat){
 
 	alr_ranges=range(alr_categories_val[,cat_ix]);
 
+	collapse_list=list();
+
+	# Precompute averages
+	for(i in 1:num_epochs){
+		ep_nm=epoch_names[i];
+		ep_range=epochs[[ep_nm]];
+		ep_ix=(samp_tpt>=ep_range[1] & samp_tpt<=ep_range[2]);
+		fact=factors[ep_ix,];
+
+		cur_alr_cat=alr_categories_val[rownames(fact), cat_ix];
+		combined_A=cbind(fact, cur_alr_cat);
+
+		collapse_list[[i]]=avg_by_subj(combined_A, SubjVarName, CohtVarName, "cur_alr_cat");
+	}
+
+
 	for(ep_ix_A in 1:(num_epochs-1)){
 
+		collapsed_A=collapse_list[[ep_ix_A]];
 
-		ep_nm_A=epoch_names[ep_ix_A];
-		ep_range=epochs[[ep_nm_A]];
-                ep_ix=(samp_tpt>=ep_range[1] & samp_tpt<=ep_range[2]);
-		fact_A=factors[ep_ix,];
-
-		cur_alr_cat=alr_categories_val[rownames(fact_A), cat_ix];
-		combined_A=cbind(fact_A, cur_alr_cat);
-		#print(combined_A);
-
-		collapsed_A=avg_by_subj(combined_A, SubjVarName, CohtVarName, "cur_alr_cat");
-	
 		for(ep_ix_B in (ep_ix_A+1):num_epochs){
 
-			ep_nm_B=epoch_names[ep_ix_B];
+			collapsed_B=collapse_list[[ep_ix_B]];
 
-			cat("Comparing: ", ep_nm_A, " and ", ep_nm_B, "\n", sep="");
-
-			ep_range=epochs[[ep_nm_B]];
-			ep_ix=(samp_tpt>=ep_range[1] & samp_tpt<=ep_range[2]);
-			fact_B=factors[ep_ix,];
-
-			cur_alr_cat=alr_categories_val[rownames(fact_B), cat_ix];
-			combined_B=cbind(fact_B, cur_alr_cat);
-			#print(combined_B);
-
-			collapsed_B=avg_by_subj(combined_B, SubjVarName, CohtVarName, "cur_alr_cat");
-
-			plot_epoch_comp(collapsed_A, collapsed_B, ep_nm_A, ep_nm_B, 
+			plot_epoch_comp(collapsed_A, collapsed_B, epoch_names[ep_ix_A], epoch_names[ep_ix_B], 
 				"cur_alr_cat", CohtVarName, cht_colors, alr_ranges,
 				mtitle=cat_ix);
 		}
 	}
+
+	# Plot survivors across all time point in one figure
+
+	names(collapse_list)=epoch_names;
+	plot_epochs_as_strip(collapse_list, epoch_names, "cur_alr_cat", CohtVarName, cht_colors, alr_ranges, cat_ix);
 
 
 
