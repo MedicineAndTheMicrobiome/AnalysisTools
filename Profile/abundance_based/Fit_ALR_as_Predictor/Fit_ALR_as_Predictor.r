@@ -271,7 +271,7 @@ extract_top_categories=function(ordered_normalized, top, additional_cat=c()){
 
 }
 
-additive_log_rato=function(ordered_matrix){
+additive_log_ratio=function(ordered_matrix){
 # Assumes last column will be the denominator
 
 	num_cat=ncol(ordered_matrix);
@@ -282,7 +282,6 @@ additive_log_rato=function(ordered_matrix){
 	
 	for(i in 1:num_samp){
 		alr_mat[i,]=log(ordered_matrix[i,1:(num_cat-1)]/denominator[i]);
-		#print(alr_mat[i,]);
 	}
 
 	rownames(alr_mat)=rownames(ordered_matrix)
@@ -594,6 +593,16 @@ add_sign_col=function(coeff){
 	}	
 }
 
+sig_char=function(val){
+	if(!is.null(val) && !is.nan(val) && !is.na(val)){
+		if(val <= .0001){ return("***");}
+		if(val <= .001 ){ return("** ");}
+		if(val <= .01  ){ return("*  ");}
+		if(val <= .05  ){ return(":  ");}
+		if(val <= .1   ){ return(".  ");}
+	}
+	return(" ");
+}
 
 plot_fit=function(fit, sumfit, i=1){
 	par.orig=par(no.readonly=T);
@@ -661,6 +670,7 @@ if(ShortenCategoryNames!=""){
 }
 
 # Normalize
+counts=counts+.5;
 normalized=normalize(counts);
 #print(normalized);
 
@@ -819,8 +829,8 @@ recon_factors=resp_cov_factors[shared_sample_ids,,drop=F];
 #factors_wo_nas=remove_sample_or_factors_wNA(recon_factors);
 num_samples_recon=nrow(recon_factors);
 num_factors_recon=ncol(recon_factors);
-factors_wo_nas_res=remove_sample_or_factors_wNA_parallel(recon_factors, required=required_arr, num_trials=640000, num_cores=64, outfile=paste(OutputRoot, ".noNAs", sep=""));
 
+factors_wo_nas_res=remove_sample_or_factors_wNA_parallel(recon_factors, required=required_arr, num_trials=640000, num_cores=64, outfile=paste(OutputRoot, ".noNAs", sep=""));
 
 factors_wo_nas=factors_wo_nas_res$factors;
 factor_names_wo_nas=colnames(factors_wo_nas);
@@ -846,11 +856,11 @@ covariate_factors=factors_wo_nas[,covariates_arr, drop=F];
 ##############################################################################
 
 # Assign 0's to values smaller than smallest abundance across entire dataset
-min_assay=min(normalized[normalized!=0]);
-cat("Lowest non-zero value: ", min_assay, "\n", sep="");
-zero_replacment=min_assay/10;
-cat("Substituting 0's with: ", zero_replacment, "\n", sep="");
-normalized[normalized==0]=zero_replacment;
+#min_assay=min(normalized[normalized!=0]);
+#cat("Lowest non-zero value: ", min_assay, "\n", sep="");
+#zero_replacment=min_assay/10;
+#cat("Substituting 0's with: ", zero_replacment, "\n", sep="");
+#normalized[normalized==0]=zero_replacment;
 
 ##############################################################################
 
@@ -868,7 +878,7 @@ if(AdditionalCatFile!=""){
 }
 
 cat_abundances=extract_top_categories(normalized, num_top_taxa, additional_cat=additional_categories);
-resp_alr_struct=additive_log_rato(cat_abundances);
+resp_alr_struct=additive_log_ratio(cat_abundances);
 alr_categories_val=resp_alr_struct$transformed;
 alr_cat_names=colnames(alr_categories_val);
 
@@ -1019,6 +1029,53 @@ reduced_responses=names(reduced_lm_summaries);
 print(names(lm_summaries));
 response_fit_names=gsub("^Response ", "", names(lm_summaries));
 
+# Calculate reduced/full model pvalues
+calc_model_imprv=function(mv_resp_name, reduced_form_str, full_form_str, pred_datafr, resp_datafr){
+	#print(reduced_form_str);
+	#print(full_form_str);
+	#print(pred_datafr);
+	#print(resp_datafr);
+
+	reduced_form_str=gsub("response_factors_dfr", "tmp_resp", reduced_form_str);
+	full_form_str=gsub("response_factors_dfr", "tmp_resp", full_form_str);
+
+	num_resp=ncol(resp_datafr);
+	resp_names=colnames(resp_datafr);
+
+	improv_mat=matrix(NA, nrow=num_resp, ncol=7);
+	rownames(improv_mat)=resp_names;
+	colnames(improv_mat)=c("Full R^2", "Reduced R^2", "Full Adj R^2", "Reduced Adj R^2",
+		"Diff Adj. R^2", "Perc Improvement", "Diff ANOVA P-Value"); 
+
+	for(i in 1:num_resp){
+		tmp_resp=resp_datafr[,i];
+		all_data=cbind(tmp_resp, pred_datafr);
+		full_fit=lm(as.formula(full_form_str), data=all_data);
+		full_sum=summary(full_fit);
+		reduced_fit=lm(as.formula(reduced_form_str), data=all_data);
+		reduced_sum=summary(reduced_fit);
+
+		anova_res=anova(reduced_fit, full_fit);
+		anova_pval=anova_res["2", "Pr(>F)"];
+
+		improv_mat[i,]=c(
+			full_sum$r.squared,
+			reduced_sum$r.squared,
+			full_sum$adj.r.squared,
+			reduced_sum$adj.r.squared,
+			full_sum$adj.r.squared-reduced_sum$adj.r.squared,
+			100*(full_sum$adj.r.squared-reduced_sum$adj.r.squared)/reduced_sum$adj.r.squared,
+			anova_pval);
+
+	}
+
+	return(improv_mat);
+
+}
+
+improv_mat=calc_model_imprv("response_factors_dfr", reduced_formula_str, formula_str, 
+	dafr_predictors_factors, response_factors_dfr);
+
 ###############################################################################
 # Accumulate univariate results into matrix and generate heat map
 
@@ -1143,6 +1200,19 @@ paint_matrix(summary_res_pval_rnd[shrd_alr_names,,drop=F], title="ALR Predictors
 
 paint_matrix(summary_res_rsqrd, title="Univariate Adjusted R-Squared");
 
+# Report Full/Reduced Improvement ANOVA P-values
+Signf=sapply(improv_mat[,"Diff ANOVA P-Value"], sig_char);
+plot_text(c(
+	"ANOVA Comparing Full (Cov + ALR) and Reduced (Cov only) Models for Improvement",
+	"",
+	capture.output(print(round(improv_mat[,c(1,2)], 3))),
+	"",
+	capture.output(print(round(improv_mat[,c(3,4)], 3))),
+	"",
+	capture.output(print(cbind(round(improv_mat[,c(5,6,7)], 3), Signf), quote=F))
+));
+
+# Report MANOVA
 manova_pval_mat=matrix(NA, nrow=length(alr_cat_names), ncol=1, dimnames=list(alr_cat_names, "Pr(>F)"));
 if(length(manova_res)>0){
 	plot_text(c(
@@ -1167,17 +1237,6 @@ cat(file=fh, c("Predictors:"), sep="\t");
 cat(file=fh, "\n");
 
 category_names=rownames(manova_pval_mat);
-
-sig_char=function(val){
-	if(!is.null(val) && !is.nan(val) && !is.na(val)){
-		if(val <= .0001){ return("***");}
-		if(val <= .001 ){ return("** ");}
-		if(val <= .01  ){ return("*  ");}
-		if(val <= .05  ){ return(":  ");}
-		if(val <= .1   ){ return(".  ");}
-	}
-	return(" ");
-}
 
 # MANOVA Covariates pvalues
 cat(file=fh, paste("[Covariates]", "p-value:", "signif:", sep="\t"), "\n", sep="");
@@ -1259,6 +1318,11 @@ exp_tab=summary_res_coeff[shrd_alr_names,,drop=F];
 write.table(exp_tab,  file=paste(OutputRoot, ".alr_as_pred.coefs.tsv", sep=""), sep="\t", quote=F, col.names=NA, row.names=T);
 
 ###############################################################################
+# Write R^2 Reduced/Full Model stats
+
+write.table(improv_mat, file=paste(OutputRoot, ".alr_as_pred.rsqrd.tsv", sep=""), sep="\t", quote=F, col.names=NA, row.names=T);
+
+###############################################################################
 
 #print(cat_abundances);
 #print(alr_cat_names);
@@ -1325,18 +1389,22 @@ if(length(manova_res)>0){
 	par(mfrow=c(2,1));
 
 	max_mean_abund=max(mean_abund)*1.2;
-	plot_rank_abund(mean_abund, manova_pval_mat, range=c(1,num_top_taxa), "All Top Categories", ylim=c(0, max_mean_abund));
+	plot_rank_abund(mean_abund, manova_pval_mat, range=c(1,num_top_taxa), 
+		"All Top Categories", ylim=c(0, max_mean_abund));
 
 	if(num_top_taxa>=10){
-		plot_rank_abund(mean_abund, manova_pval_mat, range=c(1,10), "Top 10 Categories", ylim=c(0, max_mean_abund));
+		plot_rank_abund(mean_abund, manova_pval_mat, range=c(1,10), 
+			"Top 10 Categories", ylim=c(0, max_mean_abund));
 	}
 
 	if(num_top_taxa>=20){
-		plot_rank_abund(mean_abund, manova_pval_mat, range=c(1,20), "Top 20 Categories", ylim=c(0, max_mean_abund));
+		plot_rank_abund(mean_abund, manova_pval_mat, range=c(1,20), 
+			"Top 20 Categories", ylim=c(0, max_mean_abund));
 	}
 
 	if(num_top_taxa>=40){
-		plot_rank_abund(mean_abund, manova_pval_mat, range=c(1,40), "Top 40 Categories", ylim=c(0, max_mean_abund));
+		plot_rank_abund(mean_abund, manova_pval_mat, range=c(1,40), 
+		"Top 40 Categories", ylim=c(0, max_mean_abund));
 	}
 
 	plot_rank_abund(mean_abund, manova_pval_mat, range=c(1,floor(num_top_taxa/2)), 
