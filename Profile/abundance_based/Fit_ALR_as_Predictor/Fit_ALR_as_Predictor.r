@@ -1036,8 +1036,8 @@ calc_model_imprv=function(mv_resp_name, reduced_form_str, full_form_str, pred_da
 	#print(pred_datafr);
 	#print(resp_datafr);
 
-	reduced_form_str=gsub("response_factors_dfr", "tmp_resp", reduced_form_str);
-	full_form_str=gsub("response_factors_dfr", "tmp_resp", full_form_str);
+	reduced_form_str=gsub(mv_resp_name, "tmp_resp", reduced_form_str);
+	full_form_str=gsub(mv_resp_name, "tmp_resp", full_form_str);
 
 	num_resp=ncol(resp_datafr);
 	resp_names=colnames(resp_datafr);
