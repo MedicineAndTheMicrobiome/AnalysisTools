@@ -537,6 +537,45 @@ sig_char=function(val){
 	return("   ");
 }
 
+calc_model_imprv=function(mv_resp_name, reduced_form_str, full_form_str, pred_datafr, resp_datafr){
+
+        reduced_form_str=gsub(mv_resp_name, "tmp_resp", reduced_form_str);
+        full_form_str=gsub(mv_resp_name, "tmp_resp", full_form_str);
+
+        num_resp=ncol(resp_datafr);
+        resp_names=colnames(resp_datafr);
+
+        improv_mat=matrix(NA, nrow=num_resp, ncol=7);
+        rownames(improv_mat)=resp_names;
+        colnames(improv_mat)=c("Full R^2", "Reduced R^2", "Full Adj R^2", "Reduced Adj R^2",
+                "Diff Adj. R^2", "Perc Improvement", "Diff ANOVA P-Value");
+
+        for(i in 1:num_resp){
+                tmp_resp=resp_datafr[,i];
+                all_data=cbind(tmp_resp, pred_datafr);
+                full_fit=lm(as.formula(full_form_str), data=all_data);
+                full_sum=summary(full_fit);
+                reduced_fit=lm(as.formula(reduced_form_str), data=all_data);
+                reduced_sum=summary(reduced_fit);
+
+                anova_res=anova(reduced_fit, full_fit);
+                anova_pval=anova_res["2", "Pr(>F)"];
+
+                improv_mat[i,]=c(
+                        full_sum$r.squared,
+                        reduced_sum$r.squared,
+                        full_sum$adj.r.squared,
+                        reduced_sum$adj.r.squared,
+                        full_sum$adj.r.squared-reduced_sum$adj.r.squared,
+                        100*(full_sum$adj.r.squared-reduced_sum$adj.r.squared)/reduced_sum$adj.r.squared,
+                        anova_pval);
+
+        }
+
+        return(improv_mat);
+
+}
+
 
 ##############################################################################
 
@@ -778,6 +817,7 @@ cat("\n");
 pval_list=list();
 coeff_list=list();
 adjrsqrd_list=list();
+full_red_anova_list=list();
 
 diversity_coef=matrix(NA, nrow=num_resp_var, ncol=num_div_idx,
 		dimnames=list(responses_arr, div_names));
@@ -788,7 +828,6 @@ diversity_adj.rsqrd=matrix(NA, nrow=num_resp_var, ncol=num_div_idx,
                 dimnames=list(responses_arr, div_names));
 diversity_adj.rsqrd_delta=matrix(NA, nrow=num_resp_var, ncol=num_div_idx,
                 dimnames=list(responses_arr, div_names));
-
 
 anova_pval=matrix(NA, nrow=num_pred_var+1, ncol=num_div_idx,
 		dimnames=list(c("diversity",model_var), div_names));
@@ -843,6 +882,10 @@ for(i in 1:num_div_idx){
 
 	red_mv_fit=lm(as.formula(red_model_string), data=as.data.frame(all_predictors_mat), y=T);
 	red_sum_fit=summary(red_mv_fit);
+
+	# Full/Reduced ANOVA
+	improv_matrix=calc_model_imprv("responses_mat", red_model_string, full_model_string,
+		predictors_mat, responses_mat);
 
 	# Allocate data structures
 	estimates_matrix=matrix(NA, nrow=num_regression_variables, ncol=num_resp_var,
@@ -901,18 +944,32 @@ for(i in 1:num_div_idx){
 		diversity_adj.rsqrd_delta[resp_ix, div_names[i]]=
                         sum_fit[[sum_resp_names[resp_ix]]]$adj.r.squared-
                         red_sum_fit[[sum_resp_names[resp_ix]]]$adj.r.squared;
+
 	}
 
 	coeff_list[[div_names[i]]]=estimates_matrix;
 	pval_list[[div_names[i]]]=pvalues_matrix;
+	full_red_anova_list[[div_names[i]]]=improv_matrix;
 	
-	#paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_is_hot=T, deci_pts=4,
 	paint_matrix(estimates_matrix, title=paste("Coefficients: ", div_names[i], " Covariates", sep=""),
 		plot_col_dendr=T, plot_row_dendr=T);
 	paint_matrix(pvalues_matrix, title=paste("P-values: ", div_names[i], " Covariates", sep=""), 
 		plot_col_dendr=T, plot_row_dendr=T,
 		high_is_hot=F, plot_min=0, plot_max=1);
 
+	# Output model improvment statistics
+	signf=sapply(improv_matrix[,"Diff ANOVA P-Value"], sig_char);
+	plot_text(c(
+		paste("Full/Reduced Model Improvement Analysis for ", div_names[i], ":", sep=""),
+		"",
+		capture.output(print(round(improv_matrix[,c(1,2)], 4))),
+		"",
+		capture.output(print(round(improv_matrix[,c(3,4)], 4))),
+		"",
+		capture.output(print(cbind(
+			apply(improv_matrix[,c(5,6,7)], 1:2, function(x){sprintf("%8.4f",x)}), 
+			signf), quote=F))
+	));
 
 	# Plot predicted vs observed
 	orig.par=par(no.readonly=T);
@@ -997,6 +1054,27 @@ write.table(t(diversity_pval), file=paste(OutputRoot, ".div_as_pred.pvals.tsv", 
 
 write.table(t(diversity_coef), file=paste(OutputRoot, ".div_as_pred.coefs.tsv", sep=""),
         sep="\t", quote=F, col.names=NA, row.names=T);
+
+
+# Export Full/Reduced ANOVA P-values and R^2's
+fh=file(paste(OutputRoot, ".div_as_pred.rsqrd.tsv", sep=""), "w");
+
+cat(file=fh, "\t", paste(colnames(full_red_anova_list[[1]]), collapse="\t"),  "\n");
+
+for(dnm in div_names){
+	mat=full_red_anova_list[[dnm]];
+
+	nrow=nrow(mat);
+	rnames=rownames(mat);
+	cat(file=fh, dnm, ":\n", sep="");
+	for(rix in 1:nrow){
+		cat(file=fh, paste(c(rnames[rix], round(mat[rix,], 4)), collapse="\t"), "\n", sep="");
+	}
+	cat(file=fh, "\n");
+
+}
+
+close(fh);
 
 
 ##############################################################################
