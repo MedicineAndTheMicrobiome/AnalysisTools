@@ -494,7 +494,7 @@ impute_matrix=function(mat_wna){
 
 	filled_matrix=usable_mat_wna;
 
-	if(!is.na(num_nas_to_impute) && num_nas_to_impute>0){
+	if(!is.null(num_nas_to_impute) && num_nas_to_impute>0){
 		for(na_ix in 1:num_nas_to_impute){
 
 			target_row=na_pos[na_ix,1];
