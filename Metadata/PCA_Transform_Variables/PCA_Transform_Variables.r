@@ -493,31 +493,34 @@ impute_matrix=function(mat_wna){
 	cat("Num NAs to try to impute:",  num_nas_to_impute, "\n");
 
 	filled_matrix=usable_mat_wna;
-	for(na_ix in 1:num_nas_to_impute){
 
-		target_row=na_pos[na_ix,1];
-		target_column=na_pos[na_ix,2];
+	if(!is.na(num_nas_to_impute) && num_nas_to_impute>0){
+		for(na_ix in 1:num_nas_to_impute){
 
-		cell=usable_mat_wna[target_row, target_column, drop=F];
+			target_row=na_pos[na_ix,1];
+			target_column=na_pos[na_ix,2];
 
-		if(!is.na(cell)){
-			cat("Error:  Trying to input cell not NA.\n");
-			quit();
+			cell=usable_mat_wna[target_row, target_column, drop=F];
+
+			if(!is.na(cell)){
+				cat("Error:  Trying to input cell not NA.\n");
+				quit();
+			}
+		
+			cat("(", na_ix, "/", num_nas_to_impute, ") Imputing: ", rownames(cell), " / ", colnames(cell), "\n");
+
+			non_na_row=!is.na(usable_mat_wna[,target_column,drop=F]);
+			non_na_col=!is.na(usable_mat_wna[target_row,,drop=F]);
+
+			imputed_val=impute_cell(
+				target_predictors=usable_mat_wna[target_row, non_na_col, drop=F], 
+				responses=usable_mat_wna[non_na_row, target_column, drop=F],
+				predictors=usable_mat_wna[non_na_row, non_na_col, drop=F]
+				);
+
+			filled_matrix[target_row, target_column]=imputed_val;
+
 		}
-	
-		cat("(", na_ix, "/", num_nas_to_impute, ") Imputing: ", rownames(cell), " / ", colnames(cell), "\n");
-
-		non_na_row=!is.na(usable_mat_wna[,target_column,drop=F]);
-		non_na_col=!is.na(usable_mat_wna[target_row,,drop=F]);
-
-		imputed_val=impute_cell(
-			target_predictors=usable_mat_wna[target_row, non_na_col, drop=F], 
-			responses=usable_mat_wna[non_na_row, target_column, drop=F],
-			predictors=usable_mat_wna[non_na_row, non_na_col, drop=F]
-			);
-
-		filled_matrix[target_row, target_column]=imputed_val;
-
 	}
 
 	repl_rows=rownames(filled_matrix);
