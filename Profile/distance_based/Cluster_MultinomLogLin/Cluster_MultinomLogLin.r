@@ -1370,6 +1370,15 @@ plot_tree_phenotypes=function(hcl, coef_mat_list, pval_mat_list, alpha=.10){
 	cat("\n\nSignificant Minimums:\n");
 	print(best_cut_mat);
 
+	if(nrow(best_cut_mat)==0){
+		plot(0,0, type="n", xlim=c(0,1), ylim=c(0,1), 
+			bty="n", xaxt="n", yaxt="n", main="", xlab="", ylab="");	
+		msg=paste("No variables with signficant cuts at alpha<=", alpha, sep="");
+		text(0,0, msg, cex=2, font=2);
+		cat(msg, "\n");
+		return();
+	}
+
 	# Sort by cut
 	cluster_order=order(best_cut_mat[,"cluster"]);
 	best_cut_mat_byClust=best_cut_mat[cluster_order,,drop=F];
