@@ -1211,7 +1211,7 @@ plot_text(c(
 	"",
 	capture.output(print(cbind(
 		apply(improv_mat[,c(5,6,7)], 1:2, function(x){sprintf("%8.4f",x)}), 
-		Signf, quote=F)))
+		Signf), quote=F))
 ));
 
 # Report MANOVA
