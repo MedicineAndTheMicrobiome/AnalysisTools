@@ -135,6 +135,8 @@ OutputPDF = paste(OutputFileRoot, ".stckd_bp.pdf", sep="");
 cat("Output PDF file name: ", OutputPDF, "\n", sep="");
 pdf(OutputPDF,width=8.5,height=14)
 
+output_grouped_abundances_fh=file(paste(OutputFileRoot, ".stckd_bp.abd.tsv", sep=""), "w");
+
 if(!is.na(CrossingString)){
 	cat("Crossing String Specified: ", CrossingString, "\n");
 	crossing_var=strsplit(CrossingString, ",")[[1]];
@@ -531,6 +533,51 @@ plot_diversity_barplot=function(title, diversity_name, samp_size,
 
 }
 
+#------------------------------------------------------------------------------
+
+write_abundances_to_fh=function(abundances_fh, abd_mat, title="",
+	samp_size=c(), divname="diversity", median_diversity=c(), mean_diversity=c()){
+
+	cat(file=abundances_fh, title, "\n", sep="");
+	cat("Writing: ", title, "\n", sep="");
+
+	Remaining=apply(abd_mat, 1, function(x){1-sum(x)});
+	abd_mat=cbind(abd_mat, Remaining);
+
+	num_grps=nrow(abd_mat);
+	num_cats=ncol(abd_mat);
+	grp_names=rownames(abd_mat);
+	cat_names=colnames(abd_mat);
+
+	# Spacer
+	cat(file=abundances_fh, "\n");
+
+	# Column Headers
+	cat(file=abundances_fh, "\t", paste(c(
+		paste(cat_names, collapse="\t"), 
+		"n", 
+		paste("median(", divname, ")", sep=""),
+		paste("mean(", divname, ")", sep="")
+	 ), collapse="\t"), "\n", sep="");
+
+	# Sample Group values
+	for(i in 1:num_grps){
+		cat(file=abundances_fh, 
+			paste(c(grp_names[i], sprintf("%.4g", abd_mat[i,])), collapse="\t"), sep="");
+
+		cat(file=abundances_fh, 
+			"\t",
+			paste(c(
+				sprintf("%i", samp_size[i]), 
+				sprintf("%5.3f", median_diversity[i]), 
+				sprintf("%5.3f", mean_diversity[i])
+			),  collapse="\t"),
+			"\n", sep="");
+	}
+	
+	cat(file=abundances_fh, "\n");
+
+}
 
 ###############################################################################
 
@@ -560,8 +607,8 @@ cat("\n\n");
 num_shared=length(shared);
 cat("Number of Shared Samples: ", num_shared, "\n");
 
-factors_mat=orig_factors_mat[shared,];
-counts_mat=orig_counts_mat[shared,];
+factors_mat=orig_factors_mat[shared,, drop=F];
+counts_mat=orig_counts_mat[shared,, drop=F];
 
 ###############################################################################
 
@@ -620,7 +667,8 @@ plot_text(c(
 	"",
 	"Samples exclusive to Factor Table:",
 	capture.output(print(excl_to_fct))
-));
+
+));	
 
 ###############################################################################
 
@@ -631,6 +679,10 @@ plot_abundance_matrix(simplified_mat, title="By Sample ID",
 	divname=DiversityType, 
 	median_diversity=diversity_arr, mean_diversity=diversity_arr,
 	label_threshold=LabelThreshold);
+
+write_abundances_to_fh(output_grouped_abundances_fh, simplified_mat, title="By Sample ID",
+	samp_size=rep(1, nrow(simplified_mat)), divname=DiversityType, 
+	median_diversity=diversity_arr, mean_diversity=diversity_arr);
 
 ###############################################################################
 
@@ -717,7 +769,7 @@ if(!is.null(FactorSubset)){
 	fact_subset_arr=scan(FactorSubset, what=character(), comment.char="#");
 	cat("Focusing on these factors:\n");
 	print(fact_subset_arr);
-	factors_mat=factors_mat[,fact_subset_arr];
+	factors_mat=factors_mat[,fact_subset_arr, drop=F];
 }
 
 grp_mat=map_val_to_grp(factors_mat);
@@ -783,11 +835,16 @@ for(i in 1:ncol(grp_mat)){
 
 	#print(combined_abd);
 	#print(sample_sizes);
+	cat("Plotting Abundances:\n");
 	plot_abundance_matrix(combined_abd, title=grp_name, samp_size=sample_sizes, 
 		divname=DiversityType, median_diversity=diversity_median, mean_diversity=diversity_mean,
 		label_threshold=LabelThreshold);
 
-
+	cat("Writing Abundances to File:\n");
+	write_abundances_to_fh(output_grouped_abundances_fh, combined_abd, title=grp_name, samp_size=sample_sizes, 
+		divname=DiversityType, median_diversity=diversity_median, mean_diversity=diversity_mean);
+	
+	cat("Plotting Diversity Bar Plots:\n");
 	par(mfrow=c(3,1));
 	plot_diversity_barplot(title=paste(grp_name, ": Ordered by Category", sep=""), 
 		diversity_name=DiversityType, samp_size=sample_sizes,
@@ -810,6 +867,8 @@ for(i in 1:ncol(grp_mat)){
 	cat("\n");
 	
 }
+
+close(output_grouped_abundances_fh);
 dev.off();
 
 cat("Completed per variable plots.\n");
