@@ -356,10 +356,11 @@ plot_legend=function(categories, size=.7, num_ticks=3, max_labels=40){
 		orig_v_plot_diff=(num_cat-max_labels);
 	}
 
-	plot(0,0, type="n", ylim=c(-10,0), xlim=c(0,30), bty="n", xaxt="n", yaxt="n");
+	plot(0,0, type="n", ylim=c(-10,0), xlim=c(0,30), 
+		bty="n", 
+		xaxt="n", yaxt="n");
 
-
-	leg_info=legend(0,0, legend=rev(c(categories, "Remaining")), 
+	leg_info=legend(0, 0, legend=rev(c(categories, "Remaining")), 
 		fill=rev(c(1:num_cat, "grey")), cex=size, pt.lwd=.1);
 
 	# Compute tick positions
@@ -471,7 +472,8 @@ plot_abundance_matrix=function(abd_mat, title="", plot_cols=8, plot_rows=4,
 			}
 		}
 		cat("Plotting legend...\n");
-		plot_legend(cat_names);
+
+		plot_legend(cat_names, size=min(2, 30/num_cat));
 		mtext(text=title, side=3, outer=T, cex=2, font=2, line=.5);
 	}
 	par(orig.par);
