@@ -586,15 +586,19 @@ for(num_cl in 2:max_clusters){
 
 
 cat("\n");
+cat("PseudoF Matrix:\n");
 print(pseudoF_mat);
 cat("\n");
 
-med_pseudoF=apply(pseudoF_mat, 2, function(x){quantile(x, .5)});
-lb_pseudoF=apply(pseudoF_mat, 2, function(x){quantile(x, .025)});
-ub_pseudoF=apply(pseudoF_mat, 2, function(x){quantile(x, .975)});
-max_pseudoF=apply(pseudoF_mat, 1, function(x){min(which(max(x)==x))});
+# Remove infinite values, probably due to low sample size
+pseudoF_mat=apply(pseudoF_mat, 1:2, function(x){ if(is.infinite(x)){return(NA);}else{return(x);}});
 
-max_med_ix=which(max(med_pseudoF)==med_pseudoF);
+med_pseudoF=apply(pseudoF_mat, 2, function(x){quantile(x, .5, na.rm=T)});
+lb_pseudoF=apply(pseudoF_mat, 2, function(x){quantile(x, .025, na.rm=T)});
+ub_pseudoF=apply(pseudoF_mat, 2, function(x){quantile(x, .975, na.rm=T)});
+max_pseudoF=apply(pseudoF_mat, 1, function(x){min(which(max(x,na.rm=T)==x))});
+
+max_med_ix=which(max(med_pseudoF, na.rm=T)==med_pseudoF);
 
 ###############################################################################
 
