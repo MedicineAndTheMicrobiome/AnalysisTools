@@ -518,7 +518,7 @@ input_info_text=c(
 	"",
 	paste("Factor File: ", FactorsFile, sep=""),
 	paste("  Num Samples: ", nrow(factors), sep=""),
-	paste("  Num Factors: ", ncol(factors), sep="")
+	paste("  Num Factors: ", ncol(factors), sep=""),
 	"",
 	paste("Output File Root: ", OutputRoot, sep="") 
 );
