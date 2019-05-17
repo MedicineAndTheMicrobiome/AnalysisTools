@@ -457,6 +457,15 @@ if(TestingMode){
 }
 pdf(paste(OutputRoot, rand, ".div_as_resp.pdf", sep=""), height=14, width=8.5);
 
+plot_text(c(
+	paste("Summary File : ", SummaryFile, sep=""),
+	paste("Factors File: ", FactorsFile, sep=""),
+	paste("Output File: ", OutputRoot, sep=""),
+	paste("Reference Levels File: ", ReferenceLevelsFile, sep=""),
+	paste("Required Variables File: ", RequiredFile, sep="")
+));
+
+
 # Output the factor correlations
 if(nrow(factor_correlations)>0){
 	plot_correl_heatmap(factor_correlations, title="Factor Correlations");
