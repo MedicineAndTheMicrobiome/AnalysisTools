@@ -452,6 +452,7 @@ print(diversity_arr);
 plot_text(c(
 	paste("Summary Table File: ", InputFileName),
 	paste("Factor File: ", FactorFileName),
+	paste("Output File Root: ", OutputFileRoot),
 	"",
 	paste("Diversity Index:", DiversityType),
 	"",
