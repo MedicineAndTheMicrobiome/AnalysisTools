@@ -519,6 +519,8 @@ input_info_text=c(
 	paste("Factor File: ", FactorsFile, sep=""),
 	paste("  Num Samples: ", nrow(factors), sep=""),
 	paste("  Num Factors: ", ncol(factors), sep="")
+	"",
+	paste("Output File Root: ", OutputRoot, sep="") 
 );
 
 ##############################################################################
@@ -811,7 +813,6 @@ extract_top_categories=function(ordered_normalized, top, additional_cat=c()){
 		out_mat[i,"Remaining"]=normalized_sums[i]-sum(out_mat[i,]);
 	}
 	#out_mat[,"Remaining"]=apply(out_mat, 1, function(x){1-sum(x)});
-	print(out_mat);
 
 	return(out_mat);
 			
