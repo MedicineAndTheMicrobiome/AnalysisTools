@@ -776,6 +776,7 @@ if(NumALRPredictors >= num_st_categories){
 
 # Normalize
 cat("Normalizing counts...\n");
+counts=counts+.5;
 normalized=normalize(counts);
 
 cat("Reordering normalized...\n");
@@ -785,11 +786,11 @@ normalized=normalized[,ord_ix, drop=F];
 counts=counts[,ord_ix, drop=F];
 
 # Assign 0's to values smaller than smallest abundance across entire dataset
-min_assay=min(normalized[normalized!=0]);
-cat("Lowest non-zero value: ", min_assay, "\n", sep="");
-zero_replacment=min_assay/10;
-cat("Substituting 0's with: ", zero_replacment, "\n", sep="");
-normalized[normalized==0]=zero_replacment;
+#min_assay=min(normalized[normalized!=0]);
+#cat("Lowest non-zero value: ", min_assay, "\n", sep="");
+#zero_replacment=min_assay/10;
+#cat("Substituting 0's with: ", zero_replacment, "\n", sep="");
+#normalized[normalized==0]=zero_replacment;
 
 if(UseRemaining){
 	category_names=colnames(counts);	
@@ -2282,7 +2283,7 @@ plot_epochs_as_strip=function(avgs_list, epoch_names,
 	cht_x_offset=(((1:num_chts)/(num_chts+1))-.5)*max_width;
 	spacing=diff(cht_x_offset);
 
-	par(mfrow=c(3,1));
+	par(mfrow=c(5,1));
 
 	# Points/lines only ##################################
 	plot(0,0, type="n", xlim=c(1-.5,num_epochs+.5), ylim=range(mean_matrix), 
@@ -2349,6 +2350,9 @@ plot_epochs_as_strip=function(avgs_list, epoch_names,
 		}	
 		ei=ei+1;
 	}
+
+	plot(0,0, type="n", xlab="", ylab="", bty="n", xaxt="n", yaxt="n");
+	plot(0,0, type="n", xlab="", ylab="", bty="n", xaxt="n", yaxt="n");
 
 	mtext(mtitle, side=3, outer=T, font=2);
 }
