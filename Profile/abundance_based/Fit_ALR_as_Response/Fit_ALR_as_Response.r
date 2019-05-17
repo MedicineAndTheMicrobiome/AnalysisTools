@@ -623,6 +623,7 @@ if(ShortenCategoryNames!=""){
 }
 
 # Normalize
+counts=counts+.5;
 normalized=normalize(counts);
 #print(normalized);
 
@@ -938,10 +939,10 @@ plot_overlapping_density=function(mat, title=""){
 ##############################################################################
 
 # Assign 0's to values smaller than smallest abundance across entire dataset
-min_assay=min(normalized[normalized!=0]);
-cat("Lowest non-zero value: ", min_assay, "\n\n", sep="");
-zero_replacment=min_assay/10;
-normalized[normalized==0]=zero_replacment;
+#min_assay=min(normalized[normalized!=0]);
+#cat("Lowest non-zero value: ", min_assay, "\n\n", sep="");
+#zero_replacment=min_assay/10;
+#normalized[normalized==0]=zero_replacment;
 
 ##############################################################################
 
