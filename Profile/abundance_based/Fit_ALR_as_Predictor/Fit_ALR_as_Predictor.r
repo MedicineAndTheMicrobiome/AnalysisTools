@@ -755,6 +755,22 @@ if(""!=RequiredFile){
 }
 
 plot_text(c(
+	paste("   Summary File: ", SummaryFile, sep=""),
+	paste("   Factors File: ", FactorsFile, sep=""),
+	paste("Covariates File: ", CovariatesFile, sep=""),
+	paste("  Response File: ", ResponseFile, sep=""),
+	paste("  Required File: ", RequiredFile, sep=""),
+	paste("Additional File: ", AdditionalCatFile, sep=""),
+	"\n",
+	paste("Output File: ", OutputRoot, sep=""),
+	"\n",
+	paste("Number of MALR Variables: ", NumVariables, sep=""),
+	paste("Reference Levels File: ", ReferenceLevelsFile, sep=""),
+	paste("Use Remaining? ", UseRemaining, "\n"),
+	paste("Shorten Category Names: ", ShortenCategoryNames, sep="")
+));
+	
+plot_text(c(
 	"Variables Targeted:",
 	"",
 	"Responses:",
