@@ -766,6 +766,7 @@ pdf(paste(output_fname_root, ".cl_mll.pdf", sep=""), height=8.5, width=paper_wid
 plot_text(c(
 	paste("Input Summary Table: ", InputFileName, sep=""),
 	paste("Input Factor File: ", InputFactorFile, sep=""),
+	paste("Output Root File Root: ", OutputFileRoot, sep=""),
 	"",
 	paste("Num Shared Samples: ", num_shared_samples, sep=""),
 	"",
@@ -1379,6 +1380,16 @@ plot_tree_phenotypes=function(hcl, coef_mat_list, pval_mat_list, alpha=.10){
 		return();
 	}
 
+	# Remove intercept
+	pred_names=rownames(best_cut_mat);
+	intercept_ix=which(pred_names=="(Intercept)");
+	if(length(intercept_ix)!=0){
+		best_cut_mat=best_cut_mat[-intercept_ix,];
+		cat("Removed Intercept from list of predictors.\n");
+	}else{
+		cat("Intercept was not in list of predictors to remove.\n");
+	}
+
 	# Sort by cut
 	cluster_order=order(best_cut_mat[,"cluster"]);
 	best_cut_mat_byClust=best_cut_mat[cluster_order,,drop=F];
@@ -1645,6 +1656,19 @@ plot_tree_phenotypes=function(hcl, coef_mat_list, pval_mat_list, alpha=.10){
 }
 
 pdf(paste(output_fname_root, ".cl_mll.phenotree.pdf", sep=""), height=11, width=8.5);
+
+# Output run info
+plot_text(c(
+	paste("Input Summary Table: ", InputFileName, sep=""),
+	paste("Input Factor File: ", InputFactorFile, sep=""),
+	paste("Output Root File Root: ", OutputFileRoot, sep=""),
+	"",
+	paste("Num Shared Samples: ", num_shared_samples, sep=""),
+	"",
+	paste("Distance Type: ", dist_type, sep=""),
+	"",
+	na_info
+));
 
 plot_tree_phenotypes(hcl=hcl, coef_mat_list=coeff_mat_list, pval_mat_list=pvalue_mat_list);
 
