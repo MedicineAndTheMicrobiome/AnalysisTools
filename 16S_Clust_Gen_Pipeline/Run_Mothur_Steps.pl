@@ -17,6 +17,7 @@ print STDERR "Path of Pipeline Utilities: $PIPELINE_UTIL_PATH\n";
 my $OTU_TO_ST_BIN="$PIPELINE_UTIL_PATH/OTU_To_SummaryTable/Convert_MothurSharedFile_to_SummaryTable.r";
 my $TAXA_TO_ST_BIN="$PIPELINE_UTIL_PATH/Taxonomy_To_SummaryTable/Convert_MothurTaxonomy_to_SummaryTable.pl";
 my $COUNT_NAMES_BIN="$PIPELINE_UTIL_PATH/Count_Names/Count_Names.pl";
+my $ANNOTATE_OTU_WITH_GENUS_BIN="$PIPELINE_UTIL_PATH/Annotate_OTU_SummaryTable_Genera/Annotate_OTU_SummaryTable_Genera.pl";
 
 my $POSTPIPELINE_TOOL_PATH="$FindBin::Bin/post_pipeline_tools";
 my $OTU_TAXA_DEGREE_BIN="$POSTPIPELINE_TOOL_PATH/Analyze_Taxa_OTU_Degree/Analyze_Taxa_OTU_Degree.r";
@@ -527,6 +528,15 @@ my $exec_string="
 		-o $st_dir/$out_root.otu
 ";
 exec_cmd($exec_string, "$st_dir/shared_to_summary_table");
+
+# Annotate OTUs with Genus
+$exec_string="
+	$ANNOTATE_OTU_WITH_GENUS_BIN
+		-s $st_dir/$out_root.otu.97.summary_table.tsv
+		-m $in.unique.good.filter.unique.precluster.pick.opti_mcc.0.03.cons.taxonomy
+		-o $st_dir/$out_root.otu.97.genus.summary_table.tsv
+";
+exec_cmd($exec_string, "$st_dir/annotate_otu_with_genera");	
 
 # Convert Taxonomy files into Summary Table
 #	Will need IN.unique.good.filter.unique.precluster.pick.REFERENCE.wang.taxonomy
