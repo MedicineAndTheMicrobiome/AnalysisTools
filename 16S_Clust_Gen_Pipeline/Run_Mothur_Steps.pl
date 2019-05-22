@@ -18,6 +18,9 @@ my $OTU_TO_ST_BIN="$PIPELINE_UTIL_PATH/OTU_To_SummaryTable/Convert_MothurSharedF
 my $TAXA_TO_ST_BIN="$PIPELINE_UTIL_PATH/Taxonomy_To_SummaryTable/Convert_MothurTaxonomy_to_SummaryTable.pl";
 my $COUNT_NAMES_BIN="$PIPELINE_UTIL_PATH/Count_Names/Count_Names.pl";
 
+my $POSTPIPELINE_TOOL_PATH="$FindBin::Bin/post_pipeline_tools";
+my $OTU_TAXA_DEGREE_BIN="$POSTPIPELINE_TOOL_PATH/Analyze_Taxa_OTU_Degree/Analyze_Taxa_OTU_Degree.r";
+
 #my $CURRENT_16S_ALIGNMENT=
 #	"/usr/local/devel/DAS/users/kli/SVN/DAS/16sDataAnalysis/trunk/16S_OTU_Generation/silva.nr_v119.align";
 
@@ -542,6 +545,18 @@ exec_cmd($exec_string, "$st_dir/taxonomy_to_summary_table");
 my @sumtab_end_time=time;
 
 log_time($date, $time, \@sumtab_start_time, \@sumtab_end_time, "generate.summary_tables", "");
+
+###############################################################################
+
+# Compute OTU to taxa degrees
+# 	Will need IN.unique.good.filter.unique.precluster.pick.opti_mcc.0.03.cons.taxonomy
+
+my $exec_string="
+	$OTU_TAXA_DEGREE_BIN
+		-i $in.unique.good.filter.unique.precluster.pick.opti_mcc.0.03.cons.taxonomy
+		-o $st_dir/0.03.cons.taxonomy
+";
+exec_cmd($exec_string, "$st_dir/otu_taxa_degree");
 
 ###############################################################################
 
