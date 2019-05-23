@@ -603,8 +603,8 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 	mtext(title, side=3, line=0, outer=T, font=2);
 
         # x-axis
-        axis(side=1, at=seq(.5, num_col-.5, 1), labels=colnames(mat), las=2, line=-1.75);
-        axis(side=4, at=seq(.5, num_row-.5, 1), labels=rownames(mat), las=2, line=-1.75);
+        axis(side=1, at=seq(.5, num_col-.5, 1), labels=colnames(mat), las=2, line=-1.75, cex.axis=value.cex);
+        axis(side=4, at=seq(.5, num_row-.5, 1), labels=rownames(mat), las=2, line=-1.75, cex.axis=value.cex);
 
         if(log_col){
                 plot_min=log10(plot_min+.0125);
@@ -843,15 +843,16 @@ if(ShortenCategoryNames!=""){
 
 # Normalize
 cat("Normalizing counts...\n");
+counts=counts+.5;
 normalized=normalize(counts);
 #print(normalized);
 
 # Assign 0's to values smaller than smallest abundance across entire dataset
-min_assay=min(normalized[normalized!=0]);
-cat("Lowest non-zero value: ", min_assay, "\n", sep="");
-zero_replacment=min_assay/10;
-cat("Substituting 0's with: ", zero_replacment, "\n", sep="");
-normalized[normalized==0]=zero_replacment;
+#min_assay=min(normalized[normalized!=0]);
+#cat("Lowest non-zero value: ", min_assay, "\n", sep="");
+#zero_replacment=min_assay/10;
+#cat("Substituting 0's with: ", zero_replacment, "\n", sep="");
+#normalized[normalized==0]=zero_replacment;
 
 if(UseRemaining){
 	category_names=colnames(counts);	
@@ -1184,7 +1185,7 @@ plot_ab_comparisons=function(a, b, aname, bname, pval, title){
 
 	# Plot difference
 	alr_dif=b-a;
-	magn=abs(max(alr_dif));
+	magn=max(abs(alr_dif));
 	diff_plot_range=c(-magn*1.2, magn*1.2);
 	print(diff_plot_range);
 	hist(alr_dif, xlim=diff_plot_range,
@@ -1318,7 +1319,7 @@ mtext(text="(H0: Coefficients equal zero, H1: Non-zero Coefficients)", side=3, c
 signf_coef_mat=mask_matrix(covariates_coef_mat, covariates_pval_mat, .1, 0);
 paint_matrix(signf_coef_mat,
         title="Regression Model Significant Coefficients", 
-        high_is_hot=T, deci_pts=2, value.cex=.8, label_zeros=F);
+        high_is_hot=T, deci_pts=2, value.cex=2.5, label_zeros=F);
 mtext(text="(P-Values < 0.10 Shown)", side=3, cex=.9, font=3, line=2, outer=T);
 
 paint_matrix(rsqrd_mat, plot_min=0, plot_max=1,

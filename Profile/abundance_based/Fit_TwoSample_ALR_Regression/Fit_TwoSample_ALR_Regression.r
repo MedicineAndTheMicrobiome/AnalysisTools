@@ -838,15 +838,16 @@ if(ShortenCategoryNames!=""){
 
 # Normalize
 cat("Normalizing counts...\n");
+counts=counts+.5;
 normalized=normalize(counts);
 print(normalized);
 
 # Assign 0's to values smaller than smallest abundance across entire dataset
-min_assay=min(normalized[normalized!=0]);
-cat("Lowest non-zero value: ", min_assay, "\n", sep="");
-zero_replacment=min_assay/10;
-cat("Substituting 0's with: ", zero_replacment, "\n", sep="");
-normalized[normalized==0]=zero_replacment;
+#min_assay=min(normalized[normalized!=0]);
+#cat("Lowest non-zero value: ", min_assay, "\n", sep="");
+#zero_replacment=min_assay/10;
+#cat("Substituting 0's with: ", zero_replacment, "\n", sep="");
+#normalized[normalized==0]=zero_replacment;
 
 if(UseRemaining){
 	category_names=colnames(counts);	
@@ -1423,7 +1424,6 @@ paint_matrix(covariates_coef_masked_mat,,
         label_zeros=F, high_is_hot=F, deci_pts=2, value.cex=.8);
 mtext("Covariates", side=1, cex=2, font=2, line=.75);
 mtext(ResponseName, side=4, cex=2, font=2, line=.75);
-
 
 # Covariate P-Values Clustered
 paint_matrix(covariates_pval_mat, plot_min=0, plot_max=1, 
