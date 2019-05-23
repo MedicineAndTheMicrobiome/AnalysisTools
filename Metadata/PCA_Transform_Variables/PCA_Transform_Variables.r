@@ -64,8 +64,10 @@ if(
 
 FactorsFname=opt$factors;
 OutputFnameRoot=opt$outputroot;
-ResponseListName=opt$response;
+PredictorListName=opt$predictor;
 
+
+ResponseListName="";
 PredictorListName="";
 PCCoverage=PCA_COVERAGE;
 DonnotTransform=F;
@@ -75,8 +77,8 @@ ExportCurated=F;
 ExportImputed=F;
 ExportPC=F;
 
-if(length(opt$predictor)){
-	PredictorListName=opt$predictor;
+if(length(opt$response)){
+	ResponseListName=opt$response;
 }
 
 if(length(opt$pc_coverage)){
