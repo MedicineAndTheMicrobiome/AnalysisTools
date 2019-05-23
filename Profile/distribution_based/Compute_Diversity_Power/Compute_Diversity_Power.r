@@ -224,6 +224,16 @@ if(N==0){
 ###############################################################################
 
 out_fh=file(paste(OutputFileRoot, ".div_power.csv", sep=""), "w");
+
+ci95=quantile(diversity_arr, c(.025, .975));
+
+cat(file=out_fh,
+	"Median:,", median(diversity_arr), "\n",
+	"95% CI:(,", ci95[1], ",", ci95[2], ",)\n",
+	"\n",
+	sep=""
+);
+
 cat(file=out_fh,
 	paste("eta_sqrd", "effect", "N1", "N2", "alpha", "1-beta", sep=","), "\n", sep="");
 
