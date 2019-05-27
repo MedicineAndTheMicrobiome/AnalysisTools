@@ -535,6 +535,200 @@ plot_diversity_barplot=function(title, diversity_name, samp_size,
 
 }
 
+plot_diversity_barplot_signf=function(title, diversity_name, grpd_div_list, alpha=.05, sample_glyps=F){
+
+	
+	group_names=names(grpd_div_list);
+	num_grps=length(group_names);
+
+	# Precompute pairwise wilcoxon pvalues
+	pval_mat=matrix(1, nrow=num_grps, ncol=num_grps);
+	#diag(pval_mat)=1;
+	signf=numeric();
+	for(grp_ix_A in 1:num_grps){
+		for(grp_ix_B in 1:num_grps){
+			if(grp_ix_A<grp_ix_B){
+				res=wilcox.test(grpd_div_list[[grp_ix_A]], grpd_div_list[[grp_ix_B]]);
+				pval_mat[grp_ix_A, grp_ix_B]=res$p.value;
+				#pval_mat[grp_ix_B, grp_ix_A]=res$p.value;
+
+				if(res$p.value<=alpha){
+					signf=rbind(signf, c(grp_ix_A, grp_ix_B, res$p.value));
+				}
+			}
+		}	
+	}
+
+	num_signf=nrow(signf);
+
+	signf_by_row=apply(pval_mat, 1, function(x){sum(x<alpha)});
+	
+	cat("Alpha", alpha, "\n");
+	cat("Significance by Row:\n");
+	print(signf_by_row);
+	
+	num_signf_rows=sum(signf_by_row>0);
+	cat("Num Rows to plot:", num_signf_rows, "\n");
+	
+	#print(signf);
+	cat("Num Significant: ", num_signf, "\n");
+
+	#signf_mat=apply(pval_mat, 1:2, 
+	#	function(x){ 
+	#		if(x<.001){return("***")}
+	#		if(x<.01){return("**")}
+	#		if(x<.05){return("*")}
+	#		else{return("")}
+	#	}
+	#);
+	
+	#print(signf_mat, quote=F);	
+
+	# Compute 95% CI around mean
+	num_bs=320;
+	grp_means=numeric(num_grps);
+	ci95=matrix(NA, nrow=num_grps, ncol=2);
+	samp_size=numeric(num_grps);
+	for(grp_ix in 1:num_grps){
+		grp_means[grp_ix]=mean(grpd_div_list[[grp_ix]]);
+
+		meds=numeric(num_bs);
+		for(i in 1:num_bs){
+			meds[i]=mean(sample(grpd_div_list[[grp_ix]], replace=T));
+		}
+		ci95[grp_ix,]=quantile(meds, c(.025, .975));
+		samp_size[grp_ix]=length(grpd_div_list[[grp_ix]]);
+	}
+
+	cat("Group Means:\n");
+	print(grp_means);
+	cat("Group Median 95% CI:\n");
+	print(ci95);
+
+	# Estimate spacing for annotations
+	annot_line_prop=1/10; # proportion of pl
+	max_95ci=max(ci95[,2]);
+	datamax=max_95ci;
+	space_for_annotations=datamax*annot_line_prop*(num_signf_rows+1);
+	horiz_spacing=annot_line_prop*datamax;
+
+	# Start plot
+	par(mar=c(8,5,4,3));
+	mids=barplot(grp_means, ylim=c(0, datamax+space_for_annotations));
+	title(ylab=paste("Mean ", diversity_name, " with Bootstrapped 95% CI", sep=""));
+	title(main=title, cex.main=1.5);
+	title(main="with Wilcoxon rank sum test (difference between group means) p-values", 
+		line=.25, cex.main=1, font.main=3);
+
+	bar_width=mean(diff(mids));
+	qbw=bar_width/4;
+
+	# Label x-axis
+	text(mids-par()$cxy[1]/2, rep(-par()$cxy[2]/2, num_grps),
+		group_names, srt=-45, xpd=T, pos=4,
+		cex=min(c(1,.7*bar_width/par()$cxy[1])));
+	
+	# Scatter
+	if(sample_glyps){
+		for(grp_ix in 1:num_grps){
+			pts=grpd_div_list[[grp_ix]];
+			numpts=length(pts);
+			points(
+				#rep(mids[grp_ix], numpts),
+				mids[grp_ix]+rnorm(numpts, 0, bar_width/8),
+				pts, col="grey25", cex=.5, type="p");
+		}
+	}
+
+	# label CI's
+	for(grp_ix in 1:num_grps){
+		points(
+			c(mids[grp_ix]-qbw, mids[grp_ix]+qbw),
+			rep(ci95[grp_ix, 2],2), type="l", col="blue");
+		points(
+			c(mids[grp_ix]-qbw, mids[grp_ix]+qbw),
+			rep(ci95[grp_ix, 1],2), type="l", col="blue");
+		points(
+			rep(mids[grp_ix],2),
+			c(ci95[grp_ix, 1], ci95[grp_ix,2]), type="l", col="blue");
+	}
+
+	# label sample size
+	for(grp_ix in 1:num_grps){
+		text(mids[grp_ix], 0, paste("n =",samp_size[grp_ix]), cex=.85, font=3, adj=c(.5,-1));
+	}
+
+	connect_significant=function(A, B, ypos, pval){
+		abline(h=ypos);
+	}
+
+	print(pval_mat);
+
+	#abline(h=datamax+(horiz_spacing*1:num_signf_rows), col="grey80");
+
+	sigchar=function(x){
+		if(x<=.0001){
+			return("***");
+		}else if(x<=.001){
+			return("**");
+		}else if(x<=.01){
+			return("*");
+		}else{
+			return("");
+		}
+	}
+	
+	row_ix=1;
+	for(i in 1:(num_grps-1)){
+	
+		pvalrow=pval_mat[i,];
+		#print(pvalrow);
+		
+		signf_pairs=(pvalrow<alpha);
+		if(any(signf_pairs)){
+			signf_grps=which(signf_pairs);
+			cat("Pairs: ", i, " to:\n");
+			print(signf_grps);
+
+			y_offset=datamax+horiz_spacing*row_ix;
+
+			# Draw line between left/reference to each paired signf grp
+			points(c(
+				mids[i], mids[max(signf_grps)]), 
+				rep(y_offset,2),
+				type="l", lend="square"
+			);
+
+			# Mark left/ref group
+			points(
+				rep(mids[i],2),
+				c(y_offset,y_offset-horiz_spacing/4),
+				type="l", lwd=3, lend="butt");
+
+			# Mark each signf paired reference group
+			for(pair_ix in signf_grps){
+				points(
+					rep(mids[pair_ix],2),
+					c(y_offset,y_offset-horiz_spacing/4),
+					type="l", lwd=1, lend="butt");
+
+				
+				# label pvalue
+				paird_pval=sprintf("%5.4f", pvalrow[pair_ix]);
+				text(mids[pair_ix], y_offset, paird_pval, 
+					adj=c(.5, -1), cex=.7);
+				text(mids[pair_ix], y_offset, sigchar(pvalrow[pair_ix]), 
+					adj=c(.5, -1.25), cex=1);
+			}
+
+			row_ix=row_ix+1;
+
+		}
+
+	}
+
+}
+
 #------------------------------------------------------------------------------
 
 write_abundances_to_fh=function(abundances_fh, abd_mat, title="",
@@ -810,12 +1004,17 @@ for(i in 1:ncol(grp_mat)){
 	diversity_95lb=numeric(num_grps);
 	diversity_95ub=numeric(num_grps);
 	diversity_mean=numeric(num_grps);
+
+	diversity_by_group=list();
+
 	grp_i=1;
 	for(grp in groups){
 		cat("Extracting: ", grp, "\n");
 		samp_ix=(which(grp==values));
 		sample_sizes[grp_i]=length(samp_ix);
 		sample_arr=sample_names[samp_ix];
+
+		diversity_by_group[[grp]]=diversity_arr[sample_arr];
 
 		diversity_median[grp_i]=median(diversity_arr[sample_arr]);
 		diversity_mean[grp_i]=mean(diversity_arr[sample_arr]);
@@ -865,6 +1064,19 @@ for(i in 1:ncol(grp_mat)){
 		diversity_name=DiversityType, samp_size=sample_sizes[order_ix],
                 mean_diversity=diversity_mean[order_ix], 
 		diversity_95lb[order_ix], diversity_95ub[order_ix]);
+
+
+	if(num_grps<=20){
+		par(mfrow=c(1,1));
+		plot_diversity_barplot_signf(
+			title=paste(grp_name, ": Ordered by Category", sep=""),
+			diversity_name=DiversityType,
+			diversity_by_group
+		);
+	}else{
+		cat("Not generating for such a large number of groups.\n");
+	}
+		
 
 
 	cat("\n");
