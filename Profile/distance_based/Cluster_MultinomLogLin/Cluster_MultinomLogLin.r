@@ -1497,7 +1497,7 @@ plot_tree_phenotypes=function(hcl, coef_mat_list, pval_mat_list, alpha=.10){
 	}
 	colnames(membership_matrix)=paste("k=", 2:(ncol(membership_matrix)+1), sep="");
 	sort_ix=order(membership_matrix[, ncol(membership_matrix)]);
-	membership_matrix=membership_matrix[sort_ix,];
+	membership_matrix=membership_matrix[sort_ix,,drop=F];
 	print(membership_matrix);
 
 	#-----------------------------------------------------------------------------
