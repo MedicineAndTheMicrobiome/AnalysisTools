@@ -592,12 +592,20 @@ plot_diversity_barplot_signf=function(title, diversity_name, grpd_div_list, alph
 	for(grp_ix in 1:num_grps){
 		grp_means[grp_ix]=mean(grpd_div_list[[grp_ix]]);
 
-		meds=numeric(num_bs);
-		for(i in 1:num_bs){
-			meds[i]=mean(sample(grpd_div_list[[grp_ix]], replace=T));
+		num_samp=length(grpd_div_list[[grp_ix]]);
+		
+		if(num_samp>=40){	
+			meds=numeric(num_bs);
+			for(i in 1:num_bs){
+				meds[i]=mean(sample(grpd_div_list[[grp_ix]], replace=T));
+				
+			}
+			ci95[grp_ix,]=quantile(meds, c(.025, .975));
+		}else{
+			ci95[grp_ix,]=rep(NA,2);
 		}
-		ci95[grp_ix,]=quantile(meds, c(.025, .975));
-		samp_size[grp_ix]=length(grpd_div_list[[grp_ix]]);
+
+		samp_size[grp_ix]=num_samp;
 	}
 
 	cat("Group Means:\n");
@@ -607,7 +615,7 @@ plot_diversity_barplot_signf=function(title, diversity_name, grpd_div_list, alph
 
 	# Estimate spacing for annotations
 	annot_line_prop=1/10; # proportion of pl
-	max_95ci=max(ci95[,2]);
+	max_95ci=max(ci95[,2], na.rm=T);
 	datamax=max_95ci;
 	space_for_annotations=datamax*annot_line_prop*(num_signf_rows+1);
 	horiz_spacing=annot_line_prop*datamax;
@@ -642,15 +650,17 @@ plot_diversity_barplot_signf=function(title, diversity_name, grpd_div_list, alph
 
 	# label CI's
 	for(grp_ix in 1:num_grps){
-		points(
-			c(mids[grp_ix]-qbw, mids[grp_ix]+qbw),
-			rep(ci95[grp_ix, 2],2), type="l", col="blue");
-		points(
-			c(mids[grp_ix]-qbw, mids[grp_ix]+qbw),
-			rep(ci95[grp_ix, 1],2), type="l", col="blue");
-		points(
-			rep(mids[grp_ix],2),
-			c(ci95[grp_ix, 1], ci95[grp_ix,2]), type="l", col="blue");
+		if(samp_size[grp_ix]>=40){
+			points(
+				c(mids[grp_ix]-qbw, mids[grp_ix]+qbw),
+				rep(ci95[grp_ix, 2],2), type="l", col="blue");
+			points(
+				c(mids[grp_ix]-qbw, mids[grp_ix]+qbw),
+				rep(ci95[grp_ix, 1],2), type="l", col="blue");
+			points(
+				rep(mids[grp_ix],2),
+				c(ci95[grp_ix, 1], ci95[grp_ix,2]), type="l", col="blue");
+		}
 	}
 
 	# label sample size
