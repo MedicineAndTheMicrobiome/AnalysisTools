@@ -602,7 +602,7 @@ plot_diversity_barplot_signf=function(title, diversity_name, grpd_div_list, alph
 			}
 			ci95[grp_ix,]=quantile(meds, c(.025, .975));
 		}else{
-			ci95[grp_ix,]=rep(NA,2);
+			ci95[grp_ix,]=rep(mean(grpd_div_list[[grp_ix]]),2);
 		}
 
 		samp_size[grp_ix]=num_samp;
