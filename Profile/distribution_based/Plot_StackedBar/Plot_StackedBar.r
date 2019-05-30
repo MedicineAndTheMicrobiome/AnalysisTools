@@ -1643,6 +1643,219 @@ if(num_crossings>0){
 		cat("\n\n");
 	}
 
+	plot_2D_diversity_comparisons_signf_annot=function(var1, var2, title_arr, grpd_factors, diversity_arr){
+		#print(var1);
+		#print(var2);
+		#print(title_arr);
+		print(grpd_factors);
+		#print(diversity_arr);
+
+		var1_levels=sort(setdiff(unique(grpd_factors[,var1]), NA));
+		var2_levels=sort(setdiff(unique(grpd_factors[,var2]), NA));
+
+		num_var1_levels=length(var1_levels);
+		num_var2_levels=length(var2_levels);
+
+		cat(var1, " levels (", num_var1_levels, "):\n");
+		print(var1_levels);
+
+		cat(var2, " levels (", num_var2_levels, "):\n");
+		print(var2_levels);
+
+		stat_matrix=matrix(NA, nrow=num_var1_levels, ncol=num_var2_levels, 
+			dimnames=list(var1_levels, var2_levels));
+
+		mean_mat=stat_matrix;	
+		lb95_mat=stat_matrix;	
+		ub95_mat=stat_matrix;	
+		cnt_mat=stat_matrix;
+
+		# Split diversity into 2D list of lists
+		grpd_div_12=list();
+		grpd_div_21=list();
+		samp_ids=rownames(grpd_factors);
+		num_bs=320;
+	
+		for(v1_lvl in var1_levels){
+			grpd_div_12[[v1_lvl]]=list();
+			l1_ix=grpd_factors[,var1]==v1_lvl;
+			for(v2_lvl in var2_levels){
+				l2_ix=grpd_factors[,var2]==v2_lvl;
+				samp_ix=setdiff(unique(samp_ids[l1_ix&l2_ix]), NA);
+				cat(v1_lvl, " x ", v2_lvl, ":\n", sep="");
+				print(samp_ix);
+				div=diversity_arr[samp_ix];
+				grpd_div_12[[v1_lvl]][[v2_lvl]]=div;
+				
+				grp_size=length(div);
+				mean_mat[v1_lvl, v2_lvl]=mean(div);
+				cnt_mat[v1_lvl, v2_lvl]=grp_size;
+				
+				# Bootstrap calculate 95% CI of mean
+				if(grp_size>=40){
+					bs_means=numeric(num_bs)
+					for(bs_ix in 1:num_bs){
+						bs_means[bs_ix]=mean(sample(div, replace=T));
+					}
+
+					ci95=quantile(bs_means, c(.025, .975));
+					lb95_mat[v1_lvl, v2_lvl]=ci95[1];
+					ub95_mat[v1_lvl, v2_lvl]=ci95[2];
+				}
+				
+
+			}
+
+		}
+
+		for(v2_lvl in var2_levels){
+			for(v1_lvl in var1_levels){
+				grpd_div_21[[v2_lvl]][[v1_lvl]]=grpd_div_12[[v1_lvl]][[v2_lvl]];
+			}
+		}
+
+		print(mean_mat);
+		print(lb95_mat);
+		print(ub95_mat);
+		print(cnt_mat);
+		#print(grpd_div);
+
+		plot_bar_annot=function(v1, v2, div, means, lb95s, ub95s, cnts){
+
+			cat("Plotting barplots:\n");
+
+			v1_levels=rownames(means);
+			v2_levels=colnames(means);
+			num_v1_lvls=length(v1_levels);
+			num_v2_lvls=length(v2_levels);
+
+			tot_bars=num_v1_lvls*num_v2_lvls;
+			cat("Number of Bars: ", tot_bars, "\n");
+
+			stat_mat=matrix(NA, nrow=tot_bars, ncol=4);
+			colnames(stat_mat)=c("means", "lb95s", "ub95s", "cnts");
+
+			inner_levels=character(tot_bars);
+			outer_levels=character(tot_bars);
+
+
+			print(v1_levels);
+			print(v2_levels);
+			
+			i=1;
+			for(v1_lvl in v1_levels){
+		
+				for(v2_lvl in v2_levels){
+					outer_levels[i]=v1_lvl;
+					inner_levels[i]=v2_lvl;
+					stat_mat[i, "means"]=means[v1_lvl, v2_lvl];		
+					stat_mat[i, "lb95s"]=lb95s[v1_lvl, v2_lvl];		
+					stat_mat[i, "ub95s"]=ub95s[v1_lvl, v2_lvl];		
+					stat_mat[i, "cnts"]=cnts[v1_lvl, v2_lvl];		
+					i=i+1;
+
+
+
+				}
+			}
+
+			pval_list=list();
+			for(v1_lvl in v1_levels){
+
+				pval_list[[v1_lvl]]=matrix(1, nrow=num_v2_lvls, ncol=num_v2_lvls,
+					dimnames=list(v2_levels, v2_levels));
+				
+
+				for(i in 1:num_v2_lvls){
+					idiv=div[[v1_lvl]][[v2_levels[i]]];
+
+					for(j in 1:num_v2_lvls){
+
+						if(i<j){
+							jdiv=div[[v1_lvl]][[v2_levels[j]]];
+
+							cat(v1_lvl, ":", v2_levels[i], " vs. ", v2_levels[j], "\n");
+							wcres=wilcox.test(idiv, jdiv);
+
+							pval_list[[v1_lvl]][i,j]=wcres$p.value;
+						}
+				
+					}
+				}
+			}
+
+			print(pval_list);
+
+			
+
+			maxplot_val=max(stat_mat[, "ub95s"], na.rm=T);
+			annot_space=maxplot_val/6;
+			ymax_wannot=maxplot_val+annot_space;
+
+			par(mar=c(8, 4, 2, 2));
+			mids=barplot(stat_mat[, "means"], ylim=c(0, ymax_wannot), xlab="", ylab="Diversity");
+
+			bar_spacing=(mids[2]-mids[1]);
+			bs_div4=bar_spacing/6;
+			
+			# Label plots
+			for(i in 1:tot_bars){
+				# LBs
+				points(
+					c(mids[i]-bs_div4, mids[i]+bs_div4),
+					rep(stat_mat[i, "lb95s"],2),
+					col="blue", type="l"
+				);
+
+				# UBs
+				points(
+					c(mids[i]-bs_div4, mids[i]+bs_div4),
+					rep(stat_mat[i, "ub95s"],2),
+					col="blue", type="l"
+				);
+		
+				# mids
+				points(
+					rep(mids[i],2),
+					c(stat_mat[i, "lb95s"],stat_mat[i, "ub95s"]),
+					col="blue", type="l"
+				);
+
+				# counts
+				text(mids[i], 0, 
+					labels=paste("n=", stat_mat[i, "cnts"], sep=""),
+					adj=c(.5,-.5), font=3, cex=.5
+				);
+			}
+			
+			outer_mids=bar_spacing*num_v2_lvls/2 + num_v2_lvls*bar_spacing*(0:(num_v1_lvls-1));
+			print(outer_mids);
+
+			# Label outer levels
+			text(
+				outer_mids, 
+				rep(0-par()$cxy[2], num_v1_lvls), 
+				labels=v1_levels, xpd=T, cex=1.25, font=2);
+
+			# Label inner levels
+			text(
+				mids-par()$cxy[1]/2, 
+				0-par()$cxy[2]*2,
+				labels=inner_levels, srt=-45, xpd=T, pos=4, cex=1);
+			
+
+		}
+
+		# plot grouped by var 1
+		par(mfrow=c(2,1));
+		plot_bar_annot(var1, var2, grpd_div_12, mean_mat, lb95_mat, ub95_mat, cnt_mat);
+		plot_bar_annot(var2, var1, grpd_div_21, t(mean_mat), t(lb95_mat), t(ub95_mat), t(cnt_mat));
+	
+
+		quit();		
+
+	}
+
 	#----------------------------------------------------------------------
 
 	cat("Starting crossed variable plots:\n");
@@ -1666,8 +1879,9 @@ if(num_crossings>0){
 			rem_cros_var=setdiff(crossing_var, excl_var);
 
 			cat("PDF Width: ", num_uniq[1], " Height: ", num_uniq[2], "\n");
-			pdf(paste(OutputFileRoot, ".", rem_cros_var[1], "_x_", rem_cros_var[2], "_x_", excl_var, ".pdf", sep=""),
-				width=max(num_uniq[rem_cros_var[1]], 3),
+			pdf(paste(OutputFileRoot, ".", 
+				rem_cros_var[1], "_x_", rem_cros_var[2], "_x_", excl_var, ".pdf", sep=""),
+				width=max(num_uniq[rem_cros_var[1]], 3)*2,
 				height=num_uniq[rem_cros_var[2]]*2
 			);
 
@@ -1681,6 +1895,10 @@ if(num_crossings>0){
 				grp_mat, diversity_arr);
 
 			plot_2D_diversity_comparisons(rem_cros_var[1], rem_cros_var[2], 
+				c(crossing_var[1], crossing_var[2]),
+				grp_mat, diversity_arr);
+
+			plot_2D_diversity_comparisons_signf_annot(rem_cros_var[1], rem_cros_var[2], 
 				c(crossing_var[1], crossing_var[2]),
 				grp_mat, diversity_arr);
 
@@ -1699,6 +1917,9 @@ if(num_crossings>0){
 				plot_2D_diversity_comparisons(rem_cros_var[1], rem_cros_var[2], 
 					c(rem_cros_var[1], rem_cros_var[2], lev),
 					grp_mat[keep_ix,,drop=F], diversity_arr);
+				plot_2D_diversity_comparisons_signf_annot(rem_cros_var[1], rem_cros_var[2], 
+					c(rem_cros_var[1], rem_cros_var[2], lev),
+					grp_mat[keep_ix,,drop=F], diversity_arr);
 			}
 
 			# Plot legend	
@@ -1713,7 +1934,7 @@ if(num_crossings>0){
 		# do AxB crossings
 		cat("PDF Width: ", num_uniq[1], " Height: ", num_uniq[2], "\n");
 		pdf(paste(OutputFileRoot, ".", crossing_var[1], "_x_", crossing_var[2], ".pdf", sep=""),
-			width=max(num_uniq[1], 3),
+			width=max(num_uniq[1], 3)*2,
 			height=num_uniq[2]*2
 		);
 		
@@ -1726,6 +1947,9 @@ if(num_crossings>0){
 			c(crossing_var[1],  crossing_var[2], ""), grp_mat, diversity_arr);
 
 		plot_2D_diversity_comparisons(crossing_var[1], crossing_var[2], 
+			c(crossing_var[1],  crossing_var[2], ""), grp_mat, diversity_arr);
+
+		plot_2D_diversity_comparisons_signf_annot(crossing_var[1], crossing_var[2], 
 			c(crossing_var[1],  crossing_var[2], ""), grp_mat, diversity_arr);
 
 		# Plot legend
