@@ -1023,6 +1023,7 @@ plot_ab_comparisons=function(a, b, aname, bname, pval, title){
 
 	val_max=max(c(a, b));
 	mids=barplot(c(amean, bmean), ylim=c(0, val_max*1.2), col="white");
+	title(ylab="Bootstrapped 95% CI around Mean", line=2, cex.lab=.8, col.lab="blue");
 	axis(1, at=mids, labels=c(aname, bname));
 	barsep=diff(mids);
 	
