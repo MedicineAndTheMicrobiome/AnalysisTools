@@ -970,7 +970,7 @@ plot_ab_comparisons=function(a, b, aname, bname, pval, title){
 	layout_mat=matrix(c(
 		1,2,
 		3,3,
-		4,4
+		4,5
 	), ncol=2, byrow=T);
 	layout(layout_mat);
 	par(oma=c(1,1,3,1));
@@ -1002,6 +1002,69 @@ plot_ab_comparisons=function(a, b, aname, bname, pval, title){
 	plot(a,b, xlim=ranges, ylim=ranges, xlab=aname, ylab=bname, cex=1.2);
 	abline(a=0, b=1, col="blue", lty=2);
 
+	# Plot barplot
+	amean=mean(a);
+	bmean=mean(b);
+
+	bs_mean=function(x){
+		if(length(x)<40){
+			return(rep(mean(x),2));
+		}
+		num_bs=160;
+		means=numeric(num_bs);
+		for(i in 1:num_bs){
+			means[i]=mean(sample(x, replace=T));
+		}
+		return(quantile(means, c(.025, .975)));
+	}
+	
+	a95ci=bs_mean(a);
+	b95ci=bs_mean(b);
+
+	val_max=max(c(a, b));
+	mids=barplot(c(amean, bmean), ylim=c(0, val_max*1.2), col="white");
+	axis(1, at=mids, labels=c(aname, bname));
+	barsep=diff(mids);
+	
+	draw95ci=function(ci95, x, width){
+		if(ci95[1]==ci95[2]){return};
+		points(c(x,x), ci95, type="l", col="blue", lwd=.7);
+		points(c(x-width/2,x+width/2), rep(ci95[1],2), type="l", col="blue", lwd=.8);
+		points(c(x-width/2,x+width/2), rep(ci95[2],2), type="l", col="blue", lwd=.8);
+	}
+
+	drawsamples=function(val, x, width){
+		points(x+rnorm(length(val),0,width/5), val, cex=.5, col="grey");
+	}
+
+	drawsigbar=function(xs, height, pval){
+		if(pval<=.1){
+			if(pval<=.001){
+				sigch="***";
+			}else if(pval<=.01){
+				sigch="**";
+			}else if(pval<=.05){
+				sigch="*";
+			}else if(pval<=.1){
+				sigch="";
+			}
+	
+			points(xs, rep(height,2), type="l", col="black", lwd=.9);
+			points(rep(xs[1],2), c(height,height*.97), type="l", col="black", lwd=.9);
+			points(rep(xs[2],2), c(height,height*.97), type="l", col="black", lwd=.9);
+			text(mean(xs), height, sigch, adj=c(.5,-1.2));
+	
+		}
+	}
+
+	drawsamples(a, mids[1], barsep/2);
+	drawsamples(b, mids[2], barsep/2);
+
+	draw95ci(a95ci, mids[1], barsep/2);
+	draw95ci(b95ci, mids[2], barsep/2);
+
+	drawsigbar(mids, val_max*1.1, pval);
+	
 	mtext(title, side=3, line=0, outer=T, font=2, cex=2);
 }
 
