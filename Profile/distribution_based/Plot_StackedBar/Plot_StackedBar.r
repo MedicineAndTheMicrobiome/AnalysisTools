@@ -1565,8 +1565,9 @@ if(num_crossings>0){
 			}else if(i==1){
 				tmp_mar[2]=left_margin;
 			}
-			par(mar=tmp_mar);
-
+			par(mar=tmp_mar/2);
+			cat("Margins for Plot:\n");
+			print(tmp_mar);
 			# Generate plot area
 			plot(0,0, type="n", bty="n", xaxt="n", yaxt="n",
 				xlim=c(0, var2_num_lev), ylim=c(0, var2_num_lev),
@@ -1784,18 +1785,23 @@ if(num_crossings>0){
 				}
 			}
 
-			print(pval_list);
-
-			
-
 			maxplot_val=max(stat_mat[, "ub95s"], na.rm=T);
-			annot_space=maxplot_val/6;
+			annot_space=maxplot_val/1;
+			annot_start=maxplot_val*1.05;
 			ymax_wannot=maxplot_val+annot_space;
 
-			par(mar=c(8, 4, 2, 2));
+
+			
+			
+			par(mar=c(8, 3, 1, 1));
 			mids=barplot(stat_mat[, "means"], ylim=c(0, ymax_wannot), xlab="", ylab="Diversity");
 
 			bar_spacing=(mids[2]-mids[1]);
+
+			# Add dashed lines between grouped bars
+			between_bars=mids-bar_spacing/2;	
+			abline(v=between_bars[seq(1+num_v2_lvls,tot_bars,num_v2_lvls)], col="grey50", lty=2);
+
 			bs_div4=bar_spacing/6;
 			
 			# Label plots
@@ -1832,28 +1838,100 @@ if(num_crossings>0){
 			print(outer_mids);
 
 			# Label outer levels
+			outer_label_cex=3/num_v1_lvls;
 			text(
 				outer_mids, 
 				rep(0-par()$cxy[2], num_v1_lvls), 
-				labels=v1_levels, xpd=T, cex=1.25, font=2);
+				labels=v1_levels, xpd=T, cex=outer_label_cex, font=2);
 
 			# Label inner levels
 			text(
 				mids-par()$cxy[1]/2, 
 				0-par()$cxy[2]*2,
-				labels=inner_levels, srt=-45, xpd=T, pos=4, cex=1);
+				labels=inner_levels, srt=-45, xpd=T, pos=4, cex=.8);
 			
+			print(pval_list);
+
+			for(v1_ix in 1:num_v1_lvls){
+
+				v1_lvl=v1_levels[v1_ix];
+				cat("Within group:", v1_lvl, "\n");
+
+				for(v2_ix in 1:num_v2_lvls){
+					from=v2_levels[v2_ix];
+					pvalrow=pval_list[[v1_lvl]][v2_ix,];
+					signfrow=pvalrow<.1;
+					print(signfrow);
+
+					if(any(signfrow)){
+						to=which(signfrow);
+
+						fromx=mids[(v1_ix-1)*num_v2_lvls+v2_ix];
+						ypos=annot_start+annot_space*v2_ix/num_v2_lvls;
+
+						# Draw lines between from/to
+						points(
+							c(fromx,
+							mids[(v1_ix-1)*num_v2_lvls+max(to)]), 
+							rep(ypos, 2),
+							type="l");
+
+						# From tick
+						points(
+							rep(fromx,2),
+							c(ypos, ypos*.97), type="l", lwd=1.5, lend="butt");
+
+
+						# Draw 'to' ticks and pvalues
+						for(i in 1:num_v2_lvls){
+							if(pvalrow[i]<.1){
+
+								xpos=mids[(v1_ix-1)*num_v2_lvls+i];
+							
+								points(
+									rep(xpos,2),
+									c(ypos, ypos*.98),
+									type="l", lwd=1, lend="butt");
+
+								sigch="";
+								if(pvalrow[i]<=.001){
+									sigch="***";
+								}else if(pvalrow[i]<=.01){
+									sigch="**";
+								}else if(pvalrow[i]<=.05){
+									sigch="*";
+								}
+								text(xpos, ypos, sigch, adj=c(.5,.1), cex=1);
+							}
+						}
+					}
+
+				}
+			}
 
 		}
 
 		# plot grouped by var 1
-		par(mfrow=c(2,1));
-		plot_bar_annot(var1, var2, grpd_div_12, mean_mat, lb95_mat, ub95_mat, cnt_mat);
+		par(oma=c(1,1,1,1));
+		par(mfrow=c(1,1));
 		plot_bar_annot(var2, var1, grpd_div_21, t(mean_mat), t(lb95_mat), t(ub95_mat), t(cnt_mat));
+		plot_bar_annot(var1, var2, grpd_div_12, mean_mat, lb95_mat, ub95_mat, cnt_mat);
+		
+		plot_text(c(
+			"Notes:",
+			"",
+			"p-values:",
+			"          ***: p <= .001",
+			"           **: p <= .01",
+			"            *: p <= .05",
+			" (tick only) : p <= .10",
+			"",
+			"P-values are calculated pairwise using Wilcoxon Rank Sum Test.",
+			"",
+			"Bar heights are mean diversity.",
+			"Intervals are bootstrapped 95% CI around mean."
+		));
 	
-
-		quit();		
-
 	}
 
 	#----------------------------------------------------------------------
@@ -1865,7 +1943,6 @@ if(num_crossings>0){
 	num_uniq=integer(num_crossings);
 	cat("Num of Levels:\n");
 	for(i in 1:num_crossings){
-		#print(grp_mat[,crossing_var[i]]);
 		num_uniq[i]=length(unique(grp_mat[,crossing_var[i]]));
 		cat(crossing_var[i], ": ", num_uniq[i], "\n");
 	}
@@ -1881,8 +1958,8 @@ if(num_crossings>0){
 			cat("PDF Width: ", num_uniq[1], " Height: ", num_uniq[2], "\n");
 			pdf(paste(OutputFileRoot, ".", 
 				rem_cros_var[1], "_x_", rem_cros_var[2], "_x_", excl_var, ".pdf", sep=""),
-				width=max(num_uniq[rem_cros_var[1]], 3)*2,
-				height=num_uniq[rem_cros_var[2]]*2
+				width=num_uniq[rem_cros_var[1]]*5,
+				height=num_uniq[rem_cros_var[2]]*5
 			);
 
 			# Plot combined
@@ -1934,8 +2011,8 @@ if(num_crossings>0){
 		# do AxB crossings
 		cat("PDF Width: ", num_uniq[1], " Height: ", num_uniq[2], "\n");
 		pdf(paste(OutputFileRoot, ".", crossing_var[1], "_x_", crossing_var[2], ".pdf", sep=""),
-			width=max(num_uniq[1], 3)*2,
-			height=num_uniq[2]*2
+			width=num_uniq[1]*5,
+			height=num_uniq[2]*5
 		);
 		
 		cat("Generating plot for 2-way crossings...\n");
