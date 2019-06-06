@@ -1786,7 +1786,7 @@ if(num_crossings>0){
 			}
 
 			maxplot_val=max(stat_mat[, "ub95s"], na.rm=T);
-			annot_space=maxplot_val/1;
+			annot_space=maxplot_val/3;
 			annot_start=maxplot_val*1.05;
 			ymax_wannot=maxplot_val+annot_space;
 
@@ -1913,7 +1913,7 @@ if(num_crossings>0){
 
 		# plot grouped by var 1
 		par(oma=c(1,1,1,1));
-		par(mfrow=c(1,1));
+		par(mfrow=c(2,1));
 		plot_bar_annot(var2, var1, grpd_div_21, t(mean_mat), t(lb95_mat), t(ub95_mat), t(cnt_mat));
 		plot_bar_annot(var1, var2, grpd_div_12, mean_mat, lb95_mat, ub95_mat, cnt_mat);
 		
@@ -1958,8 +1958,8 @@ if(num_crossings>0){
 			cat("PDF Width: ", num_uniq[1], " Height: ", num_uniq[2], "\n");
 			pdf(paste(OutputFileRoot, ".", 
 				rem_cros_var[1], "_x_", rem_cros_var[2], "_x_", excl_var, ".pdf", sep=""),
-				width=num_uniq[rem_cros_var[1]]*5,
-				height=num_uniq[rem_cros_var[2]]*5
+				width=num_uniq[rem_cros_var[1]]*3,
+				height=num_uniq[rem_cros_var[2]]*3
 			);
 
 			# Plot combined
@@ -2011,8 +2011,8 @@ if(num_crossings>0){
 		# do AxB crossings
 		cat("PDF Width: ", num_uniq[1], " Height: ", num_uniq[2], "\n");
 		pdf(paste(OutputFileRoot, ".", crossing_var[1], "_x_", crossing_var[2], ".pdf", sep=""),
-			width=num_uniq[1]*5,
-			height=num_uniq[2]*5
+			width=num_uniq[1]*3,
+			height=num_uniq[2]*3
 		);
 		
 		cat("Generating plot for 2-way crossings...\n");
