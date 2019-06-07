@@ -1821,9 +1821,11 @@ if(num_crossings>0){
 			# Draw scatter
 			if(scat==T){
 				for(i in 1:tot_bars){
-					points(rnorm(length(serial_div_list[[i]]), mids[i], bs_div6/2), 
+					num_samp=length(serial_div_list[[i]]);
+					scat_size=.7*seq(.9,1.1, length.out=num_samp);
+					points(rnorm(num_samp, mids[i], bs_div6/2), 
 						serial_div_list[[i]],
-						cex=.5, col="darkgreen");
+						cex=scat_size, bg="white", pch=21, col="darkgreen", lwd=.5);
 				}
 			}
 			
