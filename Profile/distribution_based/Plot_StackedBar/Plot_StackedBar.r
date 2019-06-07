@@ -1799,7 +1799,7 @@ if(num_crossings>0){
 				maxplot_val=max(maxplot_val, max_div);
 			}
 
-			annot_space=maxplot_val/3;
+			annot_space=maxplot_val/2;
 			annot_start=maxplot_val*1.05;
 			ymax_wannot=annot_start+annot_space;
 
@@ -1823,7 +1823,7 @@ if(num_crossings>0){
 				for(i in 1:tot_bars){
 					points(rnorm(length(serial_div_list[[i]]), mids[i], bs_div6/2), 
 						serial_div_list[[i]],
-						cex=.5, col="grey20");
+						cex=.5, col="darkgreen");
 				}
 			}
 			
@@ -1938,7 +1938,7 @@ if(num_crossings>0){
 
 		# plot grouped by var 1
 		par(oma=c(1,1,1,1));
-		par(mfrow=c(2,1));
+		par(mfrow=c(1,1));
 		plot_bar_annot(var2, var1, grpd_div_21, t(mean_mat), t(lb95_mat), t(ub95_mat), t(cnt_mat), scat=F);
 		plot_bar_annot(var1, var2, grpd_div_12, mean_mat, lb95_mat, ub95_mat, cnt_mat, scat=F);
 
