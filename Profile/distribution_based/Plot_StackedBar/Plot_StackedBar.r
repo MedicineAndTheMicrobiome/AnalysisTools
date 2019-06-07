@@ -1719,7 +1719,7 @@ if(num_crossings>0){
 		print(cnt_mat);
 		#print(grpd_div);
 
-		plot_bar_annot=function(v1, v2, div, means, lb95s, ub95s, cnts){
+		plot_bar_annot=function(v1, v2, div, means, lb95s, ub95s, cnts, scat=F){
 
 			cat("Plotting barplots:\n");
 
@@ -1737,13 +1737,12 @@ if(num_crossings>0){
 			inner_levels=character(tot_bars);
 			outer_levels=character(tot_bars);
 
-
 			print(v1_levels);
 			print(v2_levels);
 			
+			# Serialize the 2D matrix into Array
 			i=1;
 			for(v1_lvl in v1_levels){
-		
 				for(v2_lvl in v2_levels){
 					outer_levels[i]=v1_lvl;
 					inner_levels[i]=v2_lvl;
@@ -1752,9 +1751,6 @@ if(num_crossings>0){
 					stat_mat[i, "ub95s"]=ub95s[v1_lvl, v2_lvl];		
 					stat_mat[i, "cnts"]=cnts[v1_lvl, v2_lvl];		
 					i=i+1;
-
-
-
 				}
 			}
 
@@ -1764,7 +1760,6 @@ if(num_crossings>0){
 				pval_list[[v1_lvl]]=matrix(1, nrow=num_v2_lvls, ncol=num_v2_lvls,
 					dimnames=list(v2_levels, v2_levels));
 				
-
 				for(i in 1:num_v2_lvls){
 					idiv=div[[v1_lvl]][[v2_levels[i]]];
 
@@ -1789,13 +1784,26 @@ if(num_crossings>0){
 			}
 
 			maxplot_val=max(stat_mat[, c("ub95s", "means")], na.rm=T);
+
+			if(scat==T){
+				serial_div_list=list();
+				i=1;
+				max_div=0;
+				for(v1_lvl in v1_levels){
+					for(v2_lvl in v2_levels){
+						serial_div_list[[i]]=div[[v1_lvl]][[v2_lvl]];		
+						max_div=max(max_div, serial_div_list[[i]]);
+						i=i+1;
+					}
+				}
+				maxplot_val=max(maxplot_val, max_div);
+			}
+
 			annot_space=maxplot_val/3;
 			annot_start=maxplot_val*1.05;
-			ymax_wannot=maxplot_val+annot_space;
+			ymax_wannot=annot_start+annot_space;
 
-
-			
-			
+			# Start the plot
 			par(mar=c(8, 3, 1, 1));
 			mids=barplot(stat_mat[, "means"], ylim=c(0, ymax_wannot), xlab="", ylab="Diversity");
 
@@ -1807,20 +1815,30 @@ if(num_crossings>0){
 				abline(v=between_bars[seq(1+num_v2_lvls,tot_bars,num_v2_lvls)], col="grey50", lty=2);
 			}
 
-			bs_div4=bar_spacing/6;
+			# Proportion of intervals annotation width
+			bs_div6=bar_spacing/6;
+		
+			# Draw scatter
+			if(scat==T){
+				for(i in 1:tot_bars){
+					points(rnorm(length(serial_div_list[[i]]), mids[i], bs_div6/2), 
+						serial_div_list[[i]],
+						cex=.5, col="grey20");
+				}
+			}
 			
 			# Label plots
 			for(i in 1:tot_bars){
 				# LBs
 				points(
-					c(mids[i]-bs_div4, mids[i]+bs_div4),
+					c(mids[i]-bs_div6, mids[i]+bs_div6),
 					rep(stat_mat[i, "lb95s"],2),
 					col="blue", type="l"
 				);
 
 				# UBs
 				points(
-					c(mids[i]-bs_div4, mids[i]+bs_div4),
+					c(mids[i]-bs_div6, mids[i]+bs_div6),
 					rep(stat_mat[i, "ub95s"],2),
 					col="blue", type="l"
 				);
@@ -1839,8 +1857,8 @@ if(num_crossings>0){
 				);
 			}
 			
+			# Calculate begin/end of outer group bar spacing
 			outer_mids=bar_spacing*num_v2_lvls/2 + num_v2_lvls*bar_spacing*(0:(num_v1_lvls-1));
-			print(outer_mids);
 
 			# Label outer levels
 			outer_label_cex=3/num_v1_lvls;
@@ -1857,6 +1875,8 @@ if(num_crossings>0){
 			
 			print(pval_list);
 
+
+			# Draw annotation for significance between members of same group
 			for(v1_ix in 1:num_v1_lvls){
 
 				v1_lvl=v1_levels[v1_ix];
@@ -1906,7 +1926,7 @@ if(num_crossings>0){
 								}else if(pvalrow[i]<=.05){
 									sigch="*";
 								}
-								text(xpos, ypos, sigch, adj=c(.5,.1), cex=1);
+								text(xpos, ypos, sigch, adj=c(.5,.25), cex=1);
 							}
 						}
 					}
@@ -1919,8 +1939,11 @@ if(num_crossings>0){
 		# plot grouped by var 1
 		par(oma=c(1,1,1,1));
 		par(mfrow=c(2,1));
-		plot_bar_annot(var2, var1, grpd_div_21, t(mean_mat), t(lb95_mat), t(ub95_mat), t(cnt_mat));
-		plot_bar_annot(var1, var2, grpd_div_12, mean_mat, lb95_mat, ub95_mat, cnt_mat);
+		plot_bar_annot(var2, var1, grpd_div_21, t(mean_mat), t(lb95_mat), t(ub95_mat), t(cnt_mat), scat=F);
+		plot_bar_annot(var1, var2, grpd_div_12, mean_mat, lb95_mat, ub95_mat, cnt_mat, scat=F);
+
+		plot_bar_annot(var2, var1, grpd_div_21, t(mean_mat), t(lb95_mat), t(ub95_mat), t(cnt_mat), scat=T);
+		plot_bar_annot(var1, var2, grpd_div_12, mean_mat, lb95_mat, ub95_mat, cnt_mat, scat=T);
 		
 		plot_text(c(
 			"Notes:",
