@@ -907,7 +907,6 @@ map_val_to_grp=function(fact_mat){
 		cat("\nMapping on: ", fact_name, "\n");
 
 		fact_val=factors_mat[,fidx];
-		print(fact_val);
 		non_na_ix=!is.na(fact_val);
 		fact_val=fact_val[non_na_ix];
 		num_fact_val=length(fact_val);
@@ -915,7 +914,6 @@ map_val_to_grp=function(fact_mat){
 		if(is.factor(fact_val)){
 			cat(fact_name, " is a factor.\n", sep="");
 			fact_lev=levels(fact_val);
-			print(fact_lev);
 		}else{
 			unique_val=unique(fact_val);
 			num_unique=length(unique_val);
@@ -948,8 +946,8 @@ map_val_to_grp=function(fact_mat){
 					grp_asn[i]=grp_levels[max(which(fact_val[i]>=lowerbounds))];
 					#cat(fact_val[i], "->", grp_levels[grp_asn[i]],"\n");	
 				}
-				cat("Assigned Groups:\n");
-				print(grp_asn);
+				#cat("Assigned Groups:\n");
+				#print(grp_asn);
 
 				# Convert strings to factors
 				grp_as_factor=factor(grp_asn, levels=grp_levels, ordered=F);
@@ -980,7 +978,6 @@ if(!is.null(FactorSubset)){
 }
 
 grp_mat=map_val_to_grp(factors_mat);
-print(grp_mat);
 
 sample_names=rownames(grp_mat);
 grp_names=colnames(grp_mat);
@@ -1648,7 +1645,7 @@ if(num_crossings>0){
 		#print(var1);
 		#print(var2);
 		#print(title_arr);
-		print(grpd_factors);
+		#print(grpd_factors);
 		#print(diversity_arr);
 
 		var1_levels=sort(setdiff(unique(grpd_factors[,var1]), NA));
@@ -1710,6 +1707,7 @@ if(num_crossings>0){
 		}
 
 		for(v2_lvl in var2_levels){
+			grpd_div_21[[v2_lvl]]=list();
 			for(v1_lvl in var1_levels){
 				grpd_div_21[[v2_lvl]][[v1_lvl]]=grpd_div_12[[v1_lvl]][[v2_lvl]];
 			}
@@ -1776,16 +1774,21 @@ if(num_crossings>0){
 							jdiv=div[[v1_lvl]][[v2_levels[j]]];
 
 							cat(v1_lvl, ":", v2_levels[i], " vs. ", v2_levels[j], "\n");
-							wcres=wilcox.test(idiv, jdiv);
 
-							pval_list[[v1_lvl]][i,j]=wcres$p.value;
+							if(length(idiv)>0 && length(jdiv>0)){
+								wcres=wilcox.test(idiv, jdiv);
+								pval_list[[v1_lvl]][i,j]=wcres$p.value;
+							}else{
+								pval_list[[v1_lvl]][i,j]=1;
+							}
+
 						}
 				
 					}
 				}
 			}
 
-			maxplot_val=max(stat_mat[, "ub95s"], na.rm=T);
+			maxplot_val=max(stat_mat[, c("ub95s", "means")], na.rm=T);
 			annot_space=maxplot_val/3;
 			annot_start=maxplot_val*1.05;
 			ymax_wannot=maxplot_val+annot_space;
@@ -1800,7 +1803,9 @@ if(num_crossings>0){
 
 			# Add dashed lines between grouped bars
 			between_bars=mids-bar_spacing/2;	
-			abline(v=between_bars[seq(1+num_v2_lvls,tot_bars,num_v2_lvls)], col="grey50", lty=2);
+			if((1+num_v2_lvls)<tot_bars){
+				abline(v=between_bars[seq(1+num_v2_lvls,tot_bars,num_v2_lvls)], col="grey50", lty=2);
+			}
 
 			bs_div4=bar_spacing/6;
 			
