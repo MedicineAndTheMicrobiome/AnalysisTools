@@ -30,7 +30,8 @@ params=c(
 	"dist_type", "d", 2, "character",
 	"outputroot", "o", 2, "character",
 
-	"reference_levels", "c", 2, "character"
+	"reference_levels", "c", 2, "character",
+	"shorten_category_names", "x", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -57,6 +58,7 @@ usage = paste(
 	"	[-o <output filename root>]\n",
 	"\n",
 	"	[-c <reference levels file for Y's in factor file>]\n",
+        "       [-x <shorten category names, with separator in double quotes (default=\"\")>]\n",
 	"\n",
 	"This script will fit the following model for diversity:\n",
 	"\n",
@@ -108,6 +110,12 @@ if(length(opt$dist_type)){
 }else{
 	DistType=DEF_DISTTYPE;
 
+}
+
+if(length(opt$shorten_category_names)){
+        ShortenCategoryNames=opt$shorten_category_names;
+}else{
+        ShortenCategoryNames="";
 }
 
 SummaryFile=opt$summary_file;
@@ -951,6 +959,7 @@ for(i in 1:length(distmat)){
 }
 
 paired_dist=diag(distmat[A_sample_ids,B_sample_ids]);
+names(paired_dist)=A_sample_ids;
 #print(paired_dist);
 
 mds=cmdscale(distmat);
@@ -1117,7 +1126,10 @@ model_str=paste("paired_dist~ ", paste(model_var_arr, collapse=" + "), sep="");
 
 NUM_BS=2000+length(model_var_arr)*250;
 
-#NUM_BS=200;
+NUM_BS=200;
+if(NUM_BS<500){
+	plot_text(paste("WARNING: Number of Bootstraps is <500.  (", NUM_BS));
+}
 
 num_data_rows=nrow(model_data);
 
@@ -1216,7 +1228,247 @@ paint_matrix(signf_coef_mat,
         high_is_hot=T, deci_pts=2, value.cex=.8, label_zeros=F);
 mtext(text="(P-Values < 0.10 Shown)", side=3, cex=.9, font=3, line=2, outer=T);
 
-###############################################################################
+################################################################################
+
+plot_abund_wCI=function(abundances, lb, ub, num_top_categories=10, category_colors, ymax, title, ylab){
+        # This draws a single Rank Abundance Plot
+
+        if(!is.null(dim(abundances))){
+                abundances=abundances[1,];
+        }
+
+	cat_names=names(abundances);
+        mids=barplot(abundances, col=category_colors, names.arg="", ylim=c(0, ymax*1.05), ylab=ylab);
+
+	dist_bt_mids=mids[2]-mids[1];
+	error_bar_half_wid=dist_bt_mids/8;
+
+	for(catix in 1:num_top_categories){
+		if(ub[catix]!=lb[catix]){
+			points(
+				c(mids[catix]-error_bar_half_wid, mids[catix]+error_bar_half_wid),
+				rep(ub[catix],2), lwd=.8, type="l");
+			points(
+				c(mids[catix]-error_bar_half_wid, mids[catix]+error_bar_half_wid),
+				rep(lb[catix],2), lwd=.8, type="l");
+			points(
+				rep(mids[catix], 2),
+				c(ub[catix], lb[catix]), lwd=.8, type="l");
+		}
+
+	}
+
+        title(main=title, font.main=2, cex.main=1.75, line=-1);
+
+        # Compute and label categories beneath barplot
+        bar_width=mids[2]-mids[1];
+        plot_range=par()$usr;
+        plot_height=plot_range[4];
+        label_size=min(c(1,.7*bar_width/par()$cxy[1]));
+        text(mids-par()$cxy[1]/2, rep(-par()$cxy[2]/2, num_top_categories), 
+		cat_names, srt=-45, xpd=T, pos=4, cex=label_size);
+
+}
+
+plot_lograt_wCI=function(lrat, lb, ub, num_top_categories=10, ymax, category_colors, title, ylab){
+        # This draws a single Rank Abundance Plot
+
+	cat_names=names(lrat);
+        plot(0,0, type="n", ylim=c(-ymax*1.05, ymax*1.05), xlim=c(0, num_top_categories+2), ylab=ylab,
+		bty="n", xaxt="n", yaxt="n");
+	abline(h=c(-1, 1), col="grey75", lty="dotted", lwd=.7);
+	abline(h=c(-2, 2), col="grey50", lty="dashed", lwd=.8);
+        mids=barplot(lrat, col=category_colors, names.arg="", add=T);
+
+	dist_bt_mids=mids[2]-mids[1];
+	error_bar_half_wid=dist_bt_mids/8;
+
+	for(catix in 1:num_top_categories){
+		if(ub[catix]!=lb[catix]){
+			points(
+				c(mids[catix]-error_bar_half_wid, mids[catix]+error_bar_half_wid),
+				rep(ub[catix],2), lwd=.8, type="l");
+			points(
+				c(mids[catix]-error_bar_half_wid, mids[catix]+error_bar_half_wid),
+				rep(lb[catix],2), lwd=.8, type="l");
+			points(
+				rep(mids[catix], 2),
+				c(ub[catix], lb[catix]), lwd=.8, type="l");
+		}
+
+	}
+
+        title(main=title, font.main=2, cex.main=1.75, line=0);
+
+        # Compute and label categories beneath barplot
+        bar_width=mids[2]-mids[1];
+        plot_range=par()$usr;
+        plot_height=plot_range[4];
+        label_size=min(c(1,.7*bar_width/par()$cxy[1]));
+        text(mids-par()$cxy[1]/2, -ymax+rep(-par()$cxy[2]/2, num_top_categories), 
+		cat_names, srt=-45, xpd=T, pos=4, cex=label_size);
+
+}
+
+plot_comparisons=function(a_profs, b_profs, global_colormap, title, a_name, b_name, topN=15, ylab, max_abs_lr){
+	cat("Plotting: ", ylab, "\n");
+
+	avg_prof=apply(rbind(a_profs, b_profs), 2, mean);
+	
+	sort_ix=order(avg_prof, decreasing=T);
+
+	avg_prof=avg_prof[sort_ix[1:topN]];
+	a_profs=a_profs[,sort_ix[1:topN]];
+	b_profs=b_profs[,sort_ix[1:topN]];
+
+	top_categories=names(avg_prof);
+	bar_col=global_colormap[top_categories];
+	bar_col[is.na(bar_col)]="grey";
+
+	minabund=min(a_profs, b_profs);
+	a_mean_prof=apply(a_profs, 2, mean);
+	b_mean_prof=apply(b_profs, 2, mean);
+	lrab_prof=log10((a_mean_prof+minabund)/(b_mean_prof+minabund));
+
+	# Compute 95% CI
+	num_samp=nrow(a_profs);
+	if(num_samp>=38){
+
+		NUMBS=1000;
+		a_bs_means=matrix(NA, nrow=NUMBS, ncol=topN);
+		b_bs_means=matrix(NA, nrow=NUMBS, ncol=topN);
+		lrab_bs=matrix(NA, nrow=NUMBS, ncol=topN);
+
+		for(bsix in 1:NUMBS){
+			samples=sample(num_samp, replace=T);
+			a_bs_means[bsix,]=apply(a_profs[samples,], 2, mean);
+			b_bs_means[bsix,]=apply(b_profs[samples,], 2, mean);
+			lrab_bs[bsix,]=log10((a_bs_means[bsix,]+minabund)/(b_bs_means[bsix,]+minabund));
+		}
+
+		a_95ci_ub=apply(a_bs_means, 2, function(x){ quantile(x, .975);});
+		a_95ci_lb=apply(a_bs_means, 2, function(x){ quantile(x, .025);});
+
+		b_95ci_ub=apply(b_bs_means, 2, function(x){ quantile(x, .975);});
+		b_95ci_lb=apply(b_bs_means, 2, function(x){ quantile(x, .025);});
+
+		lrab_95ci_ub=apply(lrab_bs, 2, function(x){ quantile(x, .975);});
+		lrab_95ci_lb=apply(lrab_bs, 2, function(x){ quantile(x, .025);});
+	}else{
+		a_95ci_ub=a_mean_prof;
+		a_95ci_lb=a_mean_prof;
+		b_95ci_ub=b_mean_prof;
+		b_95ci_lb=b_mean_prof;
+		lrab_95ci_ub=lrab_prof;
+		lrab_95ci_lb=lrab_prof;
+	}
+
+	ymax=max(a_95ci_ub, b_95ci_ub);
+	lr_ymax=max(abs(c(lrab_95ci_ub, lrab_95ci_lb, max_abs_lr)));
+
+	par(mar=c(6,6,2,1));
+	plot_abund_wCI(a_mean_prof, a_95ci_lb, a_95ci_ub, num_top_categories=15, 
+		ymax=ymax, bar_col, title=a_name, ylab=ylab);
+
+	par(mar=c(6,2,2,1));
+	plot_abund_wCI(b_mean_prof, b_95ci_lb, b_95ci_ub, num_top_categories=15, 
+		ymax=ymax, bar_col, title=b_name, ylab="");
+
+	par(mar=c(6,2,2,3));
+	plot_lograt_wCI(lrab_prof, lb=lrab_95ci_lb, ub=lrab_95ci_ub, num_top_categories=15, 
+		ymax=lr_ymax, bar_col, title=paste("Log10(", a_name, "/", b_name,")", sep=""), ylab="");
+
+	stats=list();
+	stats[["max_abs_lrab"]]=max(abs(c(lrab_95ci_ub, lrab_95ci_lb)));
+	stats[["max_ub_abund"]]=max(a_95ci_ub, b_95ci_ub);
+	return(stats);
+
+}
+
+################################################################################
+
+rownames(good_pairs_map)=good_pairs_map[,1];
+sorted_paired_dist=sort(paired_dist, decreasing=T);
+sorted_A_samp_ids=names(sorted_paired_dist);
+sorted_good_pairs_map=good_pairs_map[sorted_A_samp_ids,];
+
+print(sorted_paired_dist)
+print(sorted_good_pairs_map);
+
+num_dist=length(sorted_paired_dist);
+splits_arr=c(1,2,3,4,5,6);
+num_splits=length(splits_arr);
+
+if(ShortenCategoryNames!=""){
+        full_names=colnames(normalized);
+        splits=strsplit(full_names, ShortenCategoryNames);
+        short_names=character();
+        for(i in 1:length(full_names)){
+                short_names[i]=tail(splits[[i]], 1);
+
+                short_names[i]=gsub("_unclassified$", "_uncl", short_names[i]);
+                short_names[i]=gsub("_group", "_grp", short_names[i]);
+        }
+        colnames(normalized)=short_names;
+
+        cat("Names have been shortened.\n");
+}
+
+num_cat_to_plot=15;
+num_colors_to_asgn=round(num_cat_to_plot*1.1)
+num_categories=ncol(normalized);
+color_map=rainbow(num_colors_to_asgn, start=0, end=2/3);
+
+all_means=apply(normalized, 2, mean);
+all_means_sorted=sort(all_means, decreasing=T);
+names(color_map)=names(all_means_sorted[1:num_colors_to_asgn]);
+
+glob_max_abs_lr=0;
+for(spix in 1:num_splits){
+
+	splits=splits_arr[spix];
+	cat("Splitting data to: ", splits, "\n");
+	split_pts=unique(c(as.integer(seq(1, num_dist, num_dist/splits)), num_dist));
+
+	cat("Ranges:\n");
+	print(split_pts);
+
+	par(mfrow=c(splits,3));
+
+	for(spl_pts in 1:splits){
+		sidx=split_pts[spl_pts];
+		eidx=split_pts[spl_pts+1];
+		
+		quantile_lb=round(100*(sidx-1)/(num_dist-1));
+		quantile_ub=round(100*(eidx-1)/(num_dist-1));
+
+		if(spl_pts==splits){
+			eidx=eidx+1;
+		}
+	
+		cat("Grabbing data from ", sidx, "<= i <", eidx, "\n");	
+
+		mean_dist=mean(sorted_paired_dist[sidx:(eidx-1)]);
+		stats=plot_comparisons(
+			a_profs=normalized[sorted_good_pairs_map[sidx:(eidx-1), 1],, drop=F],
+			b_profs=normalized[sorted_good_pairs_map[sidx:(eidx-1), 2],, drop=F],
+			global_colormap=color_map,
+			a_name=A_subtrahend,
+			b_name=B_minuend,
+			topN=num_cat_to_plot,
+			ylab=paste("Mean Dist = ", round(mean_dist,3), 
+				"\nQuantile : ", quantile_lb, "% - ", quantile_ub, "%", 
+				"\nN = ", (eidx-sidx), sep=""),
+			max_abs_lr=glob_max_abs_lr
+			);
+
+		glob_max_abs_lr=max(glob_max_abs_lr, stats[["max_abs_lrab"]]);
+	}
+	#plot_compare_plot(
+
+}
+
+################################################################################
 
 cat("Done.\n");
 #dev.off();
