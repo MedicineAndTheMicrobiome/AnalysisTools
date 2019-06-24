@@ -652,7 +652,7 @@ compute_dist=function(norm_st, type){
 ##############################################################################
 
 # Open main output file
-pdf(paste(OutputRoot, ".paird_diff.", DistType, ".pdf", sep=""), height=11, width=9.5);
+pdf(paste(OutputRoot, ".paird_dist.", DistType, ".pdf", sep=""), height=11, width=9.5);
 
 # Load summary file table counts 
 cat("\n");
@@ -1126,9 +1126,8 @@ model_str=paste("paired_dist~ ", paste(model_var_arr, collapse=" + "), sep="");
 
 NUM_BS=2000+length(model_var_arr)*250;
 
-NUM_BS=200;
 if(NUM_BS<500){
-	plot_text(paste("WARNING: Number of Bootstraps is <500.  (", NUM_BS));
+	plot_text(paste("WARNING: Number of Bootstraps is <500.  (", NUM_BS, ")"));
 }
 
 num_data_rows=nrow(model_data);
@@ -1325,7 +1324,8 @@ plot_comparisons=function(a_profs, b_profs, global_colormap, title, a_name, b_na
 	bar_col=global_colormap[top_categories];
 	bar_col[is.na(bar_col)]="grey";
 
-	minabund=min(a_profs, b_profs);
+
+	minabund=min(a_profs[a_profs>0], b_profs[b_profs>0])/10;
 	a_mean_prof=apply(a_profs, 2, mean);
 	b_mean_prof=apply(b_profs, 2, mean);
 	lrab_prof=log10((a_mean_prof+minabund)/(b_mean_prof+minabund));
