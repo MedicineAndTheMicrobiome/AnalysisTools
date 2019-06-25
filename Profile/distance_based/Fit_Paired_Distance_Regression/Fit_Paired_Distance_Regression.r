@@ -1153,10 +1153,6 @@ for(bs_ix in 1:NUM_BS){
 		colnames(coefficients)=names(obs_lm_fit$coefficients);
 	}
 
-	if(length(lm_fit$coefficients)!=ncol(coefficients)){
-		print(lm_fit$coefficients);
-	}
-
 	coefficients[bs_ix, names(lm_fit$coefficients)]=lm_fit$coefficients;
 }
 
