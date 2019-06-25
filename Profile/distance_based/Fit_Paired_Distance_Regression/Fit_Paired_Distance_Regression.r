@@ -1136,7 +1136,6 @@ obs_lm_fit=lm(as.formula(model_str), data=model_data);
 obs_lm_fit_sum=summary(obs_lm_fit);
 obs_lm_fit_sum_text=capture.output(print(obs_lm_fit_sum));
 
-coefficients=numeric();
 
 cat("Running regression bootstraps on:\n");
 cat("Num Bootstraps: ", NUM_BS, "\n");
@@ -1144,7 +1143,21 @@ cat(model_str, "\n");
 for(bs_ix in 1:NUM_BS){
 	bs_data=model_data[sample(num_data_rows, replace=T),];
 	lm_fit=lm(as.formula(model_str), data=bs_data);
-	coefficients=rbind(coefficients, lm_fit$coefficients);
+
+	if(bs_ix==1){
+		# Allocated matrix based on observed samples, to ensure we have
+		# columns for all coefficients.
+		# It's possible for a bootstrap outcome to be missing categories for a
+		# categorical variable, so dummy variables (and thus coefficients) are missing.
+		coefficients=matrix(NA, nrow=NUM_BS, ncol=length(obs_lm_fit$coefficients));
+		colnames(coefficients)=names(obs_lm_fit$coefficients);
+	}
+
+	if(length(lm_fit$coefficients)!=ncol(coefficients)){
+		print(lm_fit$coefficients);
+	}
+
+	coefficients[bs_ix, names(lm_fit$coefficients)]=lm_fit$coefficients;
 }
 
 #print(coefficients);
