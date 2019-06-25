@@ -999,7 +999,7 @@ par(mar=c(4,4,4,4));
 plot(0,0, type="n", xlab="Dim 1", ylab="Dim 2", 
 	xlim=c(mds_x_range[1]-mds_x_width*.1, mds_x_range[2]+mds_x_width*.1),
 	ylim=c(mds_y_range[1]-mds_y_height*.1, mds_y_range[2]+mds_y_height*.1),
-	main="");
+	main="Points Only");
 
 points(mds[,1], mds[,2], col=colors)
 
@@ -1008,16 +1008,37 @@ points(mds[,1], mds[,2], col=colors)
 plot(0,0, type="n", xlab="Dim 1", ylab="Dim 2", 
 	xlim=c(mds_x_range[1]-mds_x_width*.1, mds_x_range[2]+mds_x_width*.1),
 	ylim=c(mds_y_range[1]-mds_y_height*.1, mds_y_range[2]+mds_y_height*.1),
-	main="");
+	main="Labelled by Sample Type");
 
 text(mds[,1], mds[,2], glyphs, col=colors);
+
+#------------------------------------------------------------------------------
+# Plot with sample IDs 
+plot(0,0, type="n", xlab="Dim 1", ylab="Dim 2", 
+	xlim=c(mds_x_range[1]-mds_x_width*.1, mds_x_range[2]+mds_x_width*.1),
+	ylim=c(mds_y_range[1]-mds_y_height*.1, mds_y_range[2]+mds_y_height*.1),
+	main=paste("Labelled by ", A_subtrahend, sep=""));
+
+label_by_A=glyphs;
+label_by_A[A_sample_ids]=A_sample_ids;
+text(mds[,1], mds[,2], label_by_A, col=colors, cex=.75);
+
+# Plot with sample IDs 
+plot(0,0, type="n", xlab="Dim 1", ylab="Dim 2", 
+	xlim=c(mds_x_range[1]-mds_x_width*.1, mds_x_range[2]+mds_x_width*.1),
+	ylim=c(mds_y_range[1]-mds_y_height*.1, mds_y_range[2]+mds_y_height*.1),
+	main=paste("Labelled by ", B_minuend, sep=""));
+
+label_by_B=glyphs;
+label_by_B[B_sample_ids]=B_sample_ids;
+text(mds[,1], mds[,2], label_by_B, col=colors, cex=.75);
 
 #------------------------------------------------------------------------------
 # Plot connected unweighted
 plot(0,0, type="n", xlab="Dim 1", ylab="Dim 2", 
 	xlim=c(mds_x_range[1]-mds_x_width*.1, mds_x_range[2]+mds_x_width*.1),
 	ylim=c(mds_y_range[1]-mds_y_height*.1, mds_y_range[2]+mds_y_height*.1),
-	main="");
+	main="Pairs Connected");
 
 for(ix in 1:(num_shared_sample_ids/2)){
 	aid=A_sample_ids[ix];
@@ -1034,7 +1055,7 @@ text(mds[,1], mds[,2], glyphs, col=colors);
 plot(0,0, type="n", xlab="Dim 1", ylab="Dim 2", 
 	xlim=c(mds_x_range[1]-mds_x_width*.1, mds_x_range[2]+mds_x_width*.1),
 	ylim=c(mds_y_range[1]-mds_y_height*.1, mds_y_range[2]+mds_y_height*.1),
-	main="");
+	main="Closer Pairs Connected with Thicker Lines");
 
 line_wts=remap_val(paired_dist, c(4,.25));
 for(ix in 1:(num_shared_sample_ids/2)){
@@ -1051,7 +1072,7 @@ text(mds[,1], mds[,2], glyphs, col=colors);
 
 # Plot Histogram
 par(mfrow=c(1,1));
-par(oma=c(0,0,0,0));
+par(oma=c(0,0,2,0));
 par(mar=c(4,4,1,1));
 
 cutoffs=quantile(paired_dist, c(0,.25,.75, 1));
@@ -1077,7 +1098,7 @@ for(i in 1:3){
 		main=plot_labl[i]);
 	
 	for(ix in 1:(num_shared_sample_ids/2)){
-		if(paired_dist[ix]>=cutoffs[i] && paired_dist[ix]<cutoffs[i+1]){
+		if(paired_dist[ix]>=cutoffs[i] && paired_dist[ix]<=cutoffs[i+1]){
 			aid=A_sample_ids[ix];
 			bid=B_sample_ids[ix];
 			points(
@@ -1223,17 +1244,17 @@ pval_mat=rename_intercept(pval_mat, "(Intercept)", "\"Difference\"");
 
 paint_matrix(coef_mat, 
         title="Regression Model Bootstrapped Coefficient Values",
-        high_is_hot=T, deci_pts=2, value.cex=.8);
+        high_is_hot=T, deci_pts=2, value.cex=1);
 
 paint_matrix(pval_mat, 
         title="Regression Model Bootstrapped Coeff. P-values",
 	plot_min=0, plot_max=1,
-        high_is_hot=F, deci_pts=2, value.cex=.8);
+        high_is_hot=F, deci_pts=2, value.cex=1);
 
 signf_coef_mat=mask_matrix(coef_mat, pval_mat, .1, 0);
 paint_matrix(signf_coef_mat,
         title="Regression Model Bootstrapped Significant Coefficients", 
-        high_is_hot=T, deci_pts=2, value.cex=.8, label_zeros=F);
+        high_is_hot=T, deci_pts=2, value.cex=1, label_zeros=F);
 mtext(text="(P-Values < 0.10 Shown)", side=3, cex=.9, font=3, line=2, outer=T);
 
 ################################################################################
