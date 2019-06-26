@@ -1,0 +1,9 @@
+pft.fvcpred
+pft.fev1pred
+pft.hemog
+pft.preddlco
+pft.predva
+fev1.over.fvc
+BD_rsp_FEV1
+BD_rsp_FEV
+BD_rsp_DLCOVA

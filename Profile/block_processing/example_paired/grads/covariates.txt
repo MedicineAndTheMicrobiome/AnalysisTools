@@ -1,0 +1,6 @@
+age
+smoke
+bmi
+isFemale
+predniso
+race
