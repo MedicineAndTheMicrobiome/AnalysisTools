@@ -254,8 +254,8 @@ sub run_abundance_based{
 	print STDERR "  B ColumnName: $B_colname\n";
 	print STDERR "\n";
 
-	my $A_pred_B_OUT_DIR="alr_a_resp_b_pred";
-	my $B_pred_A_OUT_DIR="alr_b_resp_a_pred";
+	my $A_pred_B_OUT_DIR="alr_b_resp_a_pred";
+	my $B_pred_A_OUT_DIR="alr_a_resp_b_pred";
 	my $DIFF_OUT_DIR="alr_diff";
 	my $cmd;
 
@@ -286,7 +286,7 @@ sub run_abundance_based{
 		-g $B_colname \
 		-q $output_dir/cov_var \
 		-x \";\" \
-		-o $output_dir/abundance/$A_pred_B_OUT_DIR
+		-o $output_dir/abundance/$B_pred_A_OUT_DIR/$model_name
 	";
 	run_command("Fit $A_colname as Response", "A_as_resp", $cmd, "$output_dir/abundance/$B_pred_A_OUT_DIR");
 
@@ -302,7 +302,7 @@ sub run_abundance_based{
 		-g $A_colname \
 		-q $output_dir/cov_var \
 		-x \";\" \
-		-o $output_dir/abundance/$A_pred_B_OUT_DIR
+		-o $output_dir/abundance/$A_pred_B_OUT_DIR/$model_name
 	";
 	run_command("Fit $B_colname as Response", "B_as_resp", $cmd, "$output_dir/abundance/$A_pred_B_OUT_DIR");
 
@@ -318,7 +318,7 @@ sub run_abundance_based{
 		-A $A_colname \
 		-q $output_dir/cov_var \
 		-x \";\" \
-		-o $output_dir/abundance/$DIFF_OUT_DIR
+		-o $output_dir/abundance/$DIFF_OUT_DIR/$model_name
 	";
 	run_command("Fit B-A Difference", "paired_diff", $cmd, "$output_dir/abundance/$DIFF_OUT_DIR");
 
@@ -386,8 +386,9 @@ sub run_distance_based{
 		-B $B_colname \
 		-A $A_colname \
 		-q $covariates \
+		-d man \
 		-x \";\" \
-		-o $output_dir/distance/$DIST_DIFF
+		-o $output_dir/distance/$DIST_DIFF/$model_name
 	";
 	run_command("Fit Paired Distance Regression", "paired_dist_regr",
 		$cmd, "$output_dir/distance/$DIST_DIFF");
