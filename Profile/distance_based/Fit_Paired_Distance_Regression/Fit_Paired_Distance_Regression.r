@@ -1145,7 +1145,7 @@ model_data=cbind(factors, paired_dist);
 
 model_str=paste("paired_dist~ ", paste(model_var_arr, collapse=" + "), sep="");
 
-NUM_BS=2000+length(model_var_arr)*250;
+NUM_BS=2000+length(model_var_arr)*350;
 
 if(NUM_BS<500){
 	plot_text(paste("WARNING: Number of Bootstraps is <500.  (", NUM_BS, ")"));
@@ -1205,7 +1205,8 @@ regression_table[,"P-value"]=not0_pval;
 reg_tab_char=apply(regression_table, 1:2, function(x){sprintf("%7.4f",x)});
 
 Signf=sapply(regression_table[,"P-value"], function(x){
-	if(x<=.001){return("***");}
+	if(is.na(x)){ return("");}
+	else if(x<=.001){return("***");}
 	else if(x<=.01){return("**");}
 	else if(x<=.05){return("*");}
 	else if(x<=.1){return(".");}
