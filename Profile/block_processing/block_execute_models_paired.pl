@@ -382,10 +382,10 @@ sub run_distance_based{
 		-p $pair_map \
 		-f $factor_file \
 		-F 1 \
-		-M $covariates \
+		-M $output_dir/cov_var \
 		-B $B_colname \
 		-A $A_colname \
-		-q $covariates \
+		-q $output_dir/cov_var \
 		-d man \
 		-x \";\" \
 		-o $output_dir/distance/$DIST_DIFF/$model_name
