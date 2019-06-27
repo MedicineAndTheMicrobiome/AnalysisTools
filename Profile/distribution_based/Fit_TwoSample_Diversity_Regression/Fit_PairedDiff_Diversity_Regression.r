@@ -1064,6 +1064,15 @@ plot_ab_comparisons=function(a, b, aname, bname, pval, title){
 	draw95ci(a95ci, mids[1], barsep/2);
 	draw95ci(b95ci, mids[2], barsep/2);
 
+	#label mean and CI
+	text(mids[1], a95ci[2], sprintf("mean = %5.3f", amean), col="blue", adj=c(.5,-2.4));
+	text(mids[1], a95ci[2], sprintf("95%% CI = (%5.3f, %5.3f)", a95ci[1], a95ci[2]), 
+		col="blue", adj=c(.5,-.8), cex=.8);
+
+	text(mids[2], b95ci[2], sprintf("mean = %5.3f", bmean), col="blue", adj=c(.5,-2.4));
+	text(mids[2], b95ci[2], sprintf("95%% CI = (%5.3f, %4.3f)", b95ci[1], b95ci[2]), 
+		col="blue", adj=c(.5,-.8), cex=.8);
+
 	drawsigbar(mids, val_max*1.1, pval);
 	
 	mtext(title, side=3, line=0, outer=T, font=2, cex=2);
@@ -1170,31 +1179,31 @@ print(covariates_coef_mat);
 
 paint_matrix(wilcoxon_pval_mat, plot_min=0, plot_max=1,
 	title="Wilcoxon Difference in ALR: P-values",
-	high_is_hot=F, deci_pts=2, value.cex=.8); 
+	high_is_hot=F, deci_pts=2, value.cex=1); 
 mtext(text="(No controlling for covariates)", side=3, cex=.8, font=3, line=2, outer=T);
 
 paint_matrix(covariates_coef_mat, 
         title="Regression Model Coefficient Values",
-        high_is_hot=T, deci_pts=2, value.cex=.8);
+        high_is_hot=T, deci_pts=2, value.cex=1);
 
 paint_matrix(covariates_pval_mat, plot_min=0, plot_max=1,
         title="Regression Model Coeff P-Values", 
-        high_is_hot=F, deci_pts=2, value.cex=.8);
+        high_is_hot=F, deci_pts=2, value.cex=1);
 mtext(text="(H0: Coefficients equal zero, H1: Non-zero Coefficients)", side=3, cex=.9, font=3, line=2, outer=T);
 
 signf_coef_mat=mask_matrix(covariates_coef_mat, covariates_pval_mat, .1, 0);
 paint_matrix(signf_coef_mat,
         title="Regression Model Significant Coefficients", 
-        high_is_hot=T, deci_pts=2, value.cex=.8, label_zeros=F);
+        high_is_hot=T, deci_pts=2, value.cex=1, label_zeros=F);
 mtext(text="(P-Values < 0.10 Shown)", side=3, cex=.9, font=3, line=2, outer=T);
 
 paint_matrix(rsqrd_mat, plot_min=0, plot_max=1,
         title="Regression R^2's", 
-        high_is_hot=T, deci_pts=2, value.cex=.8);
+        high_is_hot=T, deci_pts=2, value.cex=1);
 
 paint_matrix(model_pval_mat, plot_min=0, plot_max=1,
         title="Regression Model Fit P-values", 
-        high_is_hot=F, deci_pts=2, value.cex=.8);
+        high_is_hot=F, deci_pts=2, value.cex=1);
 mtext(text="(H0: Predictors have no contribution to model fit)", side=3, cex=.8, font=3, line=2, outer=T);
 
 
