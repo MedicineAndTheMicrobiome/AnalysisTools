@@ -256,6 +256,7 @@ sub run_abundance_based{
 
 	my $A_pred_B_OUT_DIR="alr_b_resp_a_pred";
 	my $B_pred_A_OUT_DIR="alr_a_resp_b_pred";
+	my $PRED_RESP_ANALYSIS="pred_resp_analysis";
 	my $DIFF_OUT_DIR="alr_diff";
 	my $cmd;
 
@@ -265,6 +266,7 @@ sub run_abundance_based{
 	mkdir "$output_dir/abundance";
 	mkdir "$output_dir/abundance/$A_pred_B_OUT_DIR";
 	mkdir "$output_dir/abundance/$B_pred_A_OUT_DIR";
+	mkdir "$output_dir/abundance/$PRED_RESP_ANALYSIS";
 	mkdir "$output_dir/abundance/$DIFF_OUT_DIR";
 
 	my $sumtabs;
@@ -305,6 +307,16 @@ sub run_abundance_based{
 		-o $output_dir/abundance/$A_pred_B_OUT_DIR/$model_name
 	";
 	run_command("Fit $B_colname as Response", "B_as_resp", $cmd, "$output_dir/abundance/$A_pred_B_OUT_DIR");
+
+	$cmd=
+	"~/git/AnalysisTools/Profile/abundance_based/Compare_ALR_PredResp/Compare_ALR_PredResp.r \
+	  -u $output_dir/abundance/$B_pred_A_OUT_DIR/$model_name.p_$B_colname.r_$A_colname.alr_as_pred.coefs.tsv \
+	  -v $output_dir/abundance/$A_pred_B_OUT_DIR/$model_name.p_$A_colname.r_$B_colname.alr_as_pred.tp.coefs.tsv \
+	  -x $output_dir/abundance/$B_pred_A_OUT_DIR/$model_name.p_$B_colname.r_$A_colname.alr_as_pred.pvals.tsv \
+	  -y $output_dir/abundance/$A_pred_B_OUT_DIR/$model_name.p_$A_colname.r_$B_colname.alr_as_pred.tp.pvals.tsv \
+	  -o $output_dir/abundance/$PRED_RESP_ANALYSIS/$model_name
+	";
+	run_command("Predictor/Response Analysis", "pred_resp_analysis", $cmd, "$output_dir/abundance/$PRED_RESP_ANALYSIS");
 
 
 	$cmd=
