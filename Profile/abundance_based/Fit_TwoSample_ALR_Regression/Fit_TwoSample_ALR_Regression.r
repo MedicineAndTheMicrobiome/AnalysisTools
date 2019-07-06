@@ -1414,10 +1414,30 @@ mtext(ResponseName, side=4, cex=2, font=2, line=.75);
 # Covariate Coefficients w/ P-value masked
 covariates_coef_masked_mat=mask_matrix(
         val_mat=covariates_coef_mat, mask_mat=covariates_pval_mat,
+        mask_thres=0.1, mask_val=0.0);
+paint_matrix(covariates_coef_masked_mat,,
+        title=paste("Predictor Coeff for Top ", NumRespVariables, " '", ResponseName,
+                "' Responses ALR P-Val(<.10) Maskd", sep=""),
+        label_zeros=F, high_is_hot=F, deci_pts=2, value.cex=.8);
+mtext("Covariates & Predictors", side=1, cex=2, font=2, line=.75);
+mtext(ResponseName, side=4, cex=2, font=2, line=.75);
+
+covariates_coef_masked_mat=mask_matrix(
+        val_mat=covariates_coef_mat, mask_mat=covariates_pval_mat,
         mask_thres=0.05, mask_val=0.0);
 paint_matrix(covariates_coef_masked_mat,,
         title=paste("Predictor Coeff for Top ", NumRespVariables, " '", ResponseName,
                 "' Responses ALR P-Val(<.05) Maskd", sep=""),
+        label_zeros=F, high_is_hot=F, deci_pts=2, value.cex=.8);
+mtext("Covariates & Predictors", side=1, cex=2, font=2, line=.75);
+mtext(ResponseName, side=4, cex=2, font=2, line=.75);
+
+covariates_coef_masked_mat=mask_matrix(
+        val_mat=covariates_coef_mat, mask_mat=covariates_pval_mat,
+        mask_thres=0.01, mask_val=0.0);
+paint_matrix(covariates_coef_masked_mat,,
+        title=paste("Predictor Coeff for Top ", NumRespVariables, " '", ResponseName,
+                "' Responses ALR P-Val(<.01) Maskd", sep=""),
         label_zeros=F, high_is_hot=F, deci_pts=2, value.cex=.8);
 mtext("Covariates & Predictors", side=1, cex=2, font=2, line=.75);
 mtext(ResponseName, side=4, cex=2, font=2, line=.75);
