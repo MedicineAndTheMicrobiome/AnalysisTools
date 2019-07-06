@@ -914,12 +914,18 @@ cat("Computing diversity indices:\n");
 div_names=c("Tail", "Shannon", "Simpson", "Evenness", "SimpsonsRecip");
 num_div_idx=length(div_names);
 
-div_mat=matrix(0, nrow=num_samples, ncol=num_div_idx);
+div_mat=matrix(0, nrow=num_samples_wo_nas, ncol=num_div_idx);
+
+print(div_mat);
+
 colnames(div_mat)=div_names;
+print(div_mat);
+print(rownames(normalized));
 rownames(div_mat)=rownames(normalized);
+print(div_mat);
 
 cat("Computing diversity indices across samples.\n");
-for(i in 1:num_samples){
+for(i in 1:num_samples_wo_nas){
         curNorm=normalized[i,];
         zeroFreeNorm=curNorm[curNorm>0]
         div_mat[i,"Tail"]=tail_statistic(zeroFreeNorm);
