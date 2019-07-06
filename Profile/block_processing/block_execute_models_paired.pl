@@ -327,6 +327,73 @@ sub run_abundance_based{
 
 ###############################################################################
 
+sub run_distribution_based{
+
+	my $output_dir=shift;
+	my $summary_table=shift;
+	my $summary_table2=shift;
+	my $factor_file=shift;
+	my $covariates=shift;
+	my $variable_list=shift;
+	my $model_name=shift;
+	my $pair_map=shift;
+	my $A_colname=shift;
+	my $B_colname=shift;
+
+	print STDERR "\n";
+	print STDERR "Running Distribution Based Analyses:\n";
+	print STDERR "  Output Dir: $output_dir\n";
+	print STDERR "  Summary Table 1: $summary_table\n";
+	print STDERR "  Summary Table 2: $summary_table2\n";
+	print STDERR "  Factor File: $factor_file\n";
+	print STDERR "  Covariates File: $covariates\n";
+	print STDERR "  Grouped Variable Fle: $variable_list\n";
+	print STDERR "  Model Name: $model_name\n";
+	print STDERR "  Pair Map: $pair_map\n";
+	print STDERR "  A ColumnName: $A_colname\n";
+	print STDERR "  B ColumnName: $B_colname\n";
+	print STDERR "\n";
+
+	my $cmd;
+	my $DIV_DIFF="paired_div_diff_regr";
+
+	$cmd="cat $covariates $variable_list > $output_dir/cov_var";
+	run_command("Concatenate variables into full model list", "concat", $cmd, $output_dir);
+
+	mkdir "$output_dir/distribution";
+	mkdir "$output_dir/distribution/$DIV_DIFF";
+
+	my $sumtabs;
+	if($summary_table2 eq ""){
+		$sumtabs="-s $summary_table";
+	}else{
+		$sumtabs="-s $summary_table -S $summary_table2";
+	}
+
+	my ($st_root_name)=File::Basename::fileparse($summary_table);
+	$st_root_name=~s/\.summary_table\.tsv$//;
+
+	#######################################################################
+
+	$cmd=
+	"~/git/AnalysisTools/Profile/distribution_based/Fit_TwoSample_Diversity_Regression/Fit_PairedDiff_Diversity_Regression.r \
+		$sumtabs \
+		-p $pair_map \
+		-f $factor_file \
+		-F 1 \
+		-M $output_dir/cov_var \
+		-B $B_colname \
+		-A $A_colname \
+		-q $output_dir/cov_var \
+		-o $output_dir/distribution/$DIV_DIFF/$model_name
+	";
+	run_command("Fit Paired Diversity Difference Regression", "paired_div_diff_regr",
+		$cmd, "$output_dir/distribution/$DIV_DIFF");
+
+}
+
+###############################################################################
+
 sub run_distance_based{
 
 	my $output_dir=shift;
@@ -421,6 +488,19 @@ run_abundance_based(
 	$GroupVar,
 	$AnalysisName,
 	$NumALRVariables,
+	$PairingMap,
+	$Aname,
+	$Bname
+);
+
+run_distribution_based(
+	$OutputDir,
+	$SummaryTable,
+	$SummaryTable2,
+	$FactorFile,
+	$Covariates,
+	$GroupVar,
+	$AnalysisName,
 	$PairingMap,
 	$Aname,
 	$Bname
