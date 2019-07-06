@@ -1391,9 +1391,9 @@ mtext(ResponseName, side=4, cex=2, font=2, line=.75);
 
 # Covariate Coefficients
 paint_matrix(covariates_coef_mat, 
-	title=paste("Covariates Coefficients for Top ", NumRespVariables, " '", ResponseName, "' Categories", sep=""),
+	title=paste("Predictor Coefficients for Top ", NumRespVariables, " '", ResponseName, "' Categories", sep=""),
 	deci_pts=2, value.cex=.8);
-mtext("Covariates", side=1, cex=2, font=2, line=.75);
+mtext("Covariates & Predictors", side=1, cex=2, font=2, line=.75);
 mtext(ResponseName, side=4, cex=2, font=2, line=.75);
 
 # Covariate Coefficients w/ Clustering
@@ -1401,28 +1401,25 @@ paint_matrix(covariates_coef_mat,
 	title=paste("Covariates Coefficients for Top ", NumRespVariables, " '", ResponseName, "' Categories", sep=""),
 	plot_col_dendr=T, plot_row_dendr=T,
 	deci_pts=2, value.cex=.8);
-mtext("Covariates", side=1, cex=2, font=2, line=.75);
+mtext("Covariates & Predictors", side=1, cex=2, font=2, line=.75);
 mtext(ResponseName, side=4, cex=2, font=2, line=.75);
 
 # Covariate P-Values
 paint_matrix(covariates_pval_mat, plot_min=0, plot_max=1, 
 	title=paste("Covariates P-Values for Top ", NumRespVariables, " '", ResponseName, "' Categories", sep=""),
 	high_is_hot=F, deci_pts=2, value.cex=.8);
-mtext("Covariates", side=1, cex=2, font=2, line=.75);
+mtext("Covariates & Predictors", side=1, cex=2, font=2, line=.75);
 mtext(ResponseName, side=4, cex=2, font=2, line=.75);
 
 # Covariate Coefficients w/ P-value masked
 covariates_coef_masked_mat=mask_matrix(
-        val_mat=covariates_coef_mat,
-        mask_mat=covariates_pval_mat,
-        mask_thres=0.05,
-        mask_val=0.0);
+        val_mat=covariates_coef_mat, mask_mat=covariates_pval_mat,
+        mask_thres=0.05, mask_val=0.0);
 paint_matrix(covariates_coef_masked_mat,,
-        title=paste("Top ", NumPredVariables, " '",
-                PredictorName,"' Covariates Coeff for Top ", NumRespVariables, " '", ResponseName,
+        title=paste("Predictor Coeff for Top ", NumRespVariables, " '", ResponseName,
                 "' Responses ALR P-Val(<.05) Maskd", sep=""),
         label_zeros=F, high_is_hot=F, deci_pts=2, value.cex=.8);
-mtext("Covariates", side=1, cex=2, font=2, line=.75);
+mtext("Covariates & Predictors", side=1, cex=2, font=2, line=.75);
 mtext(ResponseName, side=4, cex=2, font=2, line=.75);
 
 # Covariate P-Values Clustered
@@ -1430,7 +1427,7 @@ paint_matrix(covariates_pval_mat, plot_min=0, plot_max=1,
 	title=paste("Covariates P-Values for Top ", NumRespVariables, " '", ResponseName, "' Categories", sep=""),
 	plot_col_dendr=T, plot_row_dendr=T,
 	high_is_hot=F, deci_pts=2, value.cex=.8);
-mtext("Covariates", side=1, cex=2, font=2, line=.75);
+mtext("Covariates & Predictors", side=1, cex=2, font=2, line=.75);
 mtext(ResponseName, side=4, cex=2, font=2, line=.75);
 
 # R^2
@@ -1477,7 +1474,7 @@ plot_pred_resp_bar(category_alr_coef_mat, category_alr_pval_mat);
 mtext(paste("Predictability of '", ResponseName, "' ALR based on '", PredictorName, "' ALR", sep=""),
 	side=3, font=2, line=2
 	);
-mtext("After Controlling for Covariates", side=3, font=2, line=1);
+mtext("After Controlling for Covariates & Predictors", side=3, font=2, line=1);
 mtext("Regression Coefficient", side=2, font=1, line=3.75);
 
 ###############################################################################
