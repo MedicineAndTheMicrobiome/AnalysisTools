@@ -1319,8 +1319,20 @@ mtext(text="(H0: Coefficients equal zero, H1: Non-zero Coefficients)", side=3, c
 signf_coef_mat=mask_matrix(covariates_coef_mat, covariates_pval_mat, .1, 0);
 paint_matrix(signf_coef_mat,
         title="Regression Model Significant Coefficients", 
-        high_is_hot=T, deci_pts=2, value.cex=2.5, label_zeros=F);
+        high_is_hot=T, deci_pts=2, value.cex=.8, label_zeros=F);
 mtext(text="(P-Values < 0.10 Shown)", side=3, cex=.9, font=3, line=2, outer=T);
+
+signf_coef_mat=mask_matrix(covariates_coef_mat, covariates_pval_mat, .05, 0);
+paint_matrix(signf_coef_mat,
+        title="Regression Model Significant Coefficients", 
+        high_is_hot=T, deci_pts=2, value.cex=.8, label_zeros=F);
+mtext(text="(P-Values < 0.05 Shown)", side=3, cex=.9, font=3, line=2, outer=T);
+
+signf_coef_mat=mask_matrix(covariates_coef_mat, covariates_pval_mat, .01, 0);
+paint_matrix(signf_coef_mat,
+        title="Regression Model Significant Coefficients", 
+        high_is_hot=T, deci_pts=2, value.cex=.8, label_zeros=F);
+mtext(text="(P-Values < 0.01 Shown)", side=3, cex=.9, font=3, line=2, outer=T);
 
 paint_matrix(rsqrd_mat, plot_min=0, plot_max=1,
         title="Regression R^2's", 
