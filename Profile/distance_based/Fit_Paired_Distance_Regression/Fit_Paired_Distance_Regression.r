@@ -1161,9 +1161,21 @@ obs_lm_fit_sum_text=capture.output(print(obs_lm_fit_sum));
 cat("Running regression bootstraps on:\n");
 cat("Num Bootstraps: ", NUM_BS, "\n");
 cat(model_str, "\n");
-for(bs_ix in 1:NUM_BS){
+
+bs_ix=1;
+while(bs_ix <=NUM_BS){
 	bs_data=model_data[sample(num_data_rows, replace=T),];
-	lm_fit=lm(as.formula(model_str), data=bs_data);
+
+	result=tryCatch({
+		lm_fit=lm(as.formula(model_str), data=bs_data);
+		}, error=function(e){ cat("Degenerate bootstrap:, ", as.character(e), "\n")}
+	);
+
+	if(is.null(result)){
+		next;
+	}else{
+		lm_fit=result;
+	}
 
 	if(bs_ix==1){
 		# Allocated matrix based on observed samples, to ensure we have
@@ -1175,6 +1187,7 @@ for(bs_ix in 1:NUM_BS){
 	}
 
 	coefficients[bs_ix, names(lm_fit$coefficients)]=lm_fit$coefficients;
+	bs_ix=bs_ix+1;
 }
 
 #print(coefficients);
