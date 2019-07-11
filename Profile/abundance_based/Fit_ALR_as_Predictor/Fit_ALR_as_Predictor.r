@@ -1199,6 +1199,28 @@ if(length(covariate_coefficients)>0){
 paint_matrix(summary_res_pval_rnd[shrd_alr_names,,drop=F], title="ALR Predictors P-values (By Decreasing Abundance)", 
 	plot_min=0, plot_max=1, high_is_hot=F, value.cex=1, deci_pts=2);
 
+
+mask_matrix=function(val_mat, mask_mat, mask_thres, mask_val){
+        masked_matrix=val_mat;
+        masked_matrix[mask_mat>mask_thres]=mask_val;
+        return(masked_matrix);
+}
+
+
+# Mask coefficients at various pvalue
+signf_coef=mask_matrix(summary_res_coeff[shrd_alr_names,,drop=F], summary_res_pval_rnd[shrd_alr_names,,drop=F], .10, 0);
+paint_matrix(signf_coef, title="Significant ALR Predictors Coefficients (p-value < .10)", 
+	value.cex=1, deci_pts=2, plot_row_dendr=F, plot_col_dendr=F, label_zeros=F);
+
+signf_coef=mask_matrix(summary_res_coeff[shrd_alr_names,,drop=F], summary_res_pval_rnd[shrd_alr_names,,drop=F], .05, 0);
+paint_matrix(signf_coef, title="Significant ALR Predictors Coefficients (p-value < .05)", 
+	value.cex=1, deci_pts=2, plot_row_dendr=F, plot_col_dendr=F, label_zeros=F);
+
+signf_coef=mask_matrix(summary_res_coeff[shrd_alr_names,,drop=F], summary_res_pval_rnd[shrd_alr_names,,drop=F], .01, 0);
+paint_matrix(signf_coef, title="Significant ALR Predictors Coefficients (p-value < .01)", 
+	value.cex=1, deci_pts=2, plot_row_dendr=F, plot_col_dendr=F, label_zeros=F);
+
+
 paint_matrix(summary_res_pval_rnd[shrd_alr_names,,drop=F], title="ALR Predictors P-values (ALR Clusters)", 
 	plot_min=0, plot_max=1, high_is_hot=F, value.cex=1, deci_pts=2,
 	plot_row_dendr=T
