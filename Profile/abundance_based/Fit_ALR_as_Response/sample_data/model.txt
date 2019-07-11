@@ -1,0 +1,9 @@
+Host_Age
+Host_Gender
+Sudden_Onset
+Medical_complications
+Post_visit_treament
+Type
+Vacc_status
+SYMPTOM_COUGH
+SYMPTOM_HEADACHE
