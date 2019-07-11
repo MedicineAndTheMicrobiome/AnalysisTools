@@ -436,12 +436,14 @@ sub run_distance_based{
 	my $cmd;
 	my $dist_type="man";
 	my $DIST_DIFF="paired_dist_regr";
+	my $CLUST_CMP="clust_cmp";
 
 	$cmd="cat $covariates $variable_list > $output_dir/cov_var";
 	run_command("Concatenate variables into full model list", "concat", $cmd, $output_dir);
 
 	mkdir "$output_dir/distance";
 	mkdir "$output_dir/distance/$DIST_DIFF";
+	mkdir "$output_dir/distance/$CLUST_CMP";
 
 	my $sumtabs;
 	if($summary_table2 eq ""){
@@ -469,8 +471,20 @@ sub run_distance_based{
 		-x \";\" \
 		-o $output_dir/distance/$DIST_DIFF/$model_name
 	";
-	run_command("Fit Paired Distance Regression", "paired_dist_regr",
+	run_command("Fit Paired Distance Regression", $DIST_DIFF,
 		$cmd, "$output_dir/distance/$DIST_DIFF");
+	
+	#######################################################################
+
+	$cmd=
+	"~/git/AnalysisTools/Profile/distance_based/Cluster_Compare_TwoProfiles/Cluster_Compare_TwoProfiles.r \
+		-a $summary_table \
+		-b $summary_table2 \
+		-m $pair_map \
+		-o $output_dir/distance/$CLUST_CMP/$model_name \
+		-d man
+	";
+	run_command("Cluster Compare", $CLUST_CMP, $cmd, "$output_dir/distance/$CLUST_CMP");
 
 
 }
