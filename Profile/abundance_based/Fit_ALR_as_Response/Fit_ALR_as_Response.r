@@ -1282,6 +1282,21 @@ plot_correl_heatmap(uv_model_fit_pval_mat, title="Univariate Model Fit F-stat P-
 not_na_coeff=apply(uv_coeff_mat, 1, function(x){!any(is.na(x))});
 plot_correl_heatmap(uv_coeff_mat[not_na_coeff,, drop=F], title="Univariate Coefficients", guideLines=T);
 
+mask_matrix=function(val_mat, mask_mat, mask_thres, mask_val){
+        masked_matrix=val_mat;
+        masked_matrix[mask_mat>mask_thres]=mask_val;
+        return(masked_matrix);
+}
+
+# Plot significant coefficients at various pvalue cutoffs
+signf_coef=mask_matrix(uv_coeff_mat, uv_pval_mat, .1, 0);
+plot_correl_heatmap(signf_coef, "Significant Coefficients at p-value < 0.10", noPrintZeros=T, guideLines=T);
+signf_coef=mask_matrix(uv_coeff_mat, uv_pval_mat, .05, 0);
+plot_correl_heatmap(signf_coef, "Significant Coefficients at p-value < 0.05", noPrintZeros=T, guideLines=T);
+signf_coef=mask_matrix(uv_coeff_mat, uv_pval_mat, .01, 0);
+plot_correl_heatmap(signf_coef, "Significant Coefficients at p-value < 0.01", noPrintZeros=T, guideLines=T);
+
+
 # Significant Univariate Coefficients
 uv_pval_vect=as.vector(uv_pval_mat);
 adj_uv_pval_vect=p.adjust(uv_pval_vect, method="fdr");
