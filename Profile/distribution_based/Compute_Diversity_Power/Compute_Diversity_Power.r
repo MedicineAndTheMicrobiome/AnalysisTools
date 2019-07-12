@@ -248,7 +248,7 @@ for(effect_size in effect_sizes){
 	ss_total=sum((comb-mean(comb))^2);
 	r_sqrd=1-(ss_residual/ss_total);
 
-	cat("Cohen's Eta^2: ", r_sqrd, "\n");
+	cat("Diversity Effect Size: ", effect_size, "  Cohen's Eta^2: ", r_sqrd, "\n");
 	
 	for(N1 in N1_range){
 		
@@ -259,7 +259,7 @@ for(effect_size in effect_sizes){
 		#cat("Effect Size: ", effect_size, " N1: ", N1, "  N2: ", N2, " (1-beta): ", 1-beta_at_alpha, "\n", sep="");
 
 		if(beta_at_alpha < Beta){
-			cat("Effect Size: ", effect_size, " N1: ", N1, "  N2: ", N2, " (1-beta): ", 1-beta_at_alpha, "\n", sep="");
+			cat("\tEffect Size: ", effect_size, " N1: ", N1, "  N2: ", N2, " (1-beta): ", 1-beta_at_alpha, "\n", sep="");
 			cat(file=out_fh,
 				paste(r_sqrd, effect_size,  N1, N2, Alpha, 1-beta_at_alpha, sep=","), "\n", sep="");
 			next;
