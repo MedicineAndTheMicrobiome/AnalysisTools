@@ -55,20 +55,6 @@ usage = paste(
 	"	Each rank abundance barplot will be labeled with median and 95%CI\n",
 	"	of the diversity index\n",
 	"\n",
-	"\n",
-	"	Specifying the -c cross/interactions list, creates an\n",
-	"	extra pdf file that slices the data according to the\n",
-	"	underlying factor levels. For example, if you had variables\n",
-	"	A, B, and C, with levels Aa, Ab, Ac, and Ba, Bb, and Ca, Cb,\n",
-	"	respectively, plots for AxB, AxC, and BxC, would be generated.\n",
-	"	Two sets of plots (PDFs) will be produced:\n",
-	"		1.) AxB, AxC, BxC: Assuming the missing variable\n",
-	"			doesn't matter.  i.e. in AxB, C is collapsed\n",
-	"		2.) C(AxB), B(AxC), A(BxC): First split by the missing\n",
-	"			variable's levels, then produced the cross plots.\n",
-	"			i.e. if C has 5 levels, then there will be 5.\n",
-	"			AxB plots.\n",
-	"\n",
 	"\n", sep="");
 
 if(!length(opt$input_file) || !length(opt$factor_file)){
