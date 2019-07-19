@@ -74,7 +74,7 @@ OutputPDF = paste(OutputFileRoot, ".mds.pdf", sep="");
 cat("Output PDF file name: ", OutputPDF, "\n", sep="");
 
 inch_p_plot=3;
-pdf(OutputPDF,width=inch_p_plot*(3+.5), height=inch_p_plot*3)
+pdf(OutputPDF,width=inch_p_plot*(3+.6), height=inch_p_plot*3)
 
 ###############################################################################
 
@@ -242,7 +242,7 @@ plot_text(c(
 
 ###############################################################################
 
-map_val_to_grp=function(fact_mat){
+map_val_to_grp=function(fact_mat, max_breaks){
 	# This function will convert a factor matrix, into
 	# a grouping matrix to reduce the number of continous values
 
@@ -274,7 +274,18 @@ map_val_to_grp=function(fact_mat){
 				map_mat[,fidx]=as.character(map_mat[,fidx]);
 			}else{
 				cat(fact_name, ": too many unique values, grouping...\n", sep="");
-				hist_res=hist(fact_val,breaks=nclass.Sturges(fact_val), plot=F);
+				
+				num_breaks=min(max_breaks, nclass.Sturges(fact_val));
+				fact_range=range(fact_val);
+				bins=seq(fact_range[1],fact_range[2], length.out=num_breaks);
+				bins[1]=floor(bins[1]);
+				bins[num_breaks]=ceiling(bins[num_breaks]);
+				bins=round(bins,2);
+
+				hist_res=hist(fact_val,
+					breaks=bins, 
+					plot=F);
+				#hist_res=hist(fact_val,breaks=nclass.Sturges(fact_val), plot=F);
 				cat("Values\n");
 				print(fact_val);
 				num_grps=length(hist_res$breaks);
@@ -328,7 +339,12 @@ if(!is.null(FactorSubset)){
 	factors_mat=factors_mat[,fact_subset_arr, drop=F];
 }
 
-grp_mat=map_val_to_grp(factors_mat);
+simple_colors=c(
+        "blue", "red", "green", "orange", "violet", "pink", "deepskyblue", "black");
+num_cat_colors=length(simple_colors);
+palette(simple_colors);
+
+grp_mat=map_val_to_grp(factors_mat, num_cat_colors);
 print(grp_mat);
 
 sample_names=rownames(grp_mat);
@@ -371,7 +387,6 @@ plot_mds=function(x, y, samp_grp_map, title, lab=F, cntrd=F){
 
 	cat("Plotting MDS:\n");
 	samp_ids=names(x);	
-	print(samp_grp_map);
 
 	xrange=range(x);
 	yrange=range(y);
@@ -432,10 +447,6 @@ plot_legend=function(levels, counts){
 
 #------------------------------------------------------------------------------
 
-simple_colors=c(
-        "blue", "red", "green", "orange", "violet", "pink", "deepskyblue", "black");
-num_simple_colors=length(simple_colors);
-palette(simple_colors);
 
 par(oma=c(0,0,2,0));
 
@@ -468,8 +479,9 @@ for(i in 1:ncol(grp_mat)){
 	cat("Available Groups: \n");
 	print(groups);
 
-	if(num_grps>num_simple_colors){
-		cat("Num groups (", num_grps, ") exceeded max (", num_simple_colors, ")\n\n", sep="");
+	num_levels=length(all_levels);
+	if(num_levels>num_cat_colors){
+		cat("Num levels (", num_levels, ") greater than num category colors (", num_cat_colors, ")\n",sep="");
 		next;
 	}
 
