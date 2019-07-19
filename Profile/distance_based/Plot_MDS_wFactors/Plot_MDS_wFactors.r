@@ -73,8 +73,8 @@ OutputFileRoot=paste(OutputFileRoot, ".", substr(DistanceType, 1, 4), sep="");
 OutputPDF = paste(OutputFileRoot, ".mds.pdf", sep="");
 cat("Output PDF file name: ", OutputPDF, "\n", sep="");
 
-inch_p_plot=4
-pdf(OutputPDF,width=inch_p_plot*(3+.5), height=inch_p_plot*2)
+inch_p_plot=3;
+pdf(OutputPDF,width=inch_p_plot*(3+.5), height=inch_p_plot*3)
 
 ###############################################################################
 
@@ -367,7 +367,7 @@ mds=cmdscale(distmat);
 mds1_pcoa=mds[,1];
 mds2_pcoa=mds[,2];
 
-plot_mds=function(x, y, samp_grp_map, title, lab=F){
+plot_mds=function(x, y, samp_grp_map, title, lab=F, cntrd=F){
 
 	cat("Plotting MDS:\n");
 	samp_ids=names(x);	
@@ -386,17 +386,21 @@ plot_mds=function(x, y, samp_grp_map, title, lab=F){
 	ngrps=length(grps)
 	centroids=matrix(NA, nrow=ngrps, ncol=2);
 
-	for(i in 1:ngrps){
-		gr_ix=which(samp_grp_map==grps[i]);
-		centroids[i,]=c(mean(x[gr_ix]), mean(y[gr_ix]));
+	if(cntrd){
+		for(i in 1:ngrps){
+			gr_ix=which(samp_grp_map==grps[i]);
+			centroids[i,]=c(mean(x[gr_ix]), mean(y[gr_ix]));
+		}
 	}
 
 	plot(0, type="n", xlim=xlim, ylim=ylim, 
 		main=title,
 		xlab="", ylab="");
 
-	for(i in 1:ngrps){
-		points(centroids[i,1], centroids[i,2], cex=3, pch=21, bg=grps[i], col="black");
+	if(cntrd){
+		for(i in 1:ngrps){
+			points(centroids[i,1], centroids[i,2], cex=3, pch=21, bg=grps[i], col="black");
+		}
 	}
 
 
@@ -436,8 +440,9 @@ palette(simple_colors);
 par(oma=c(0,0,2,0));
 
 layout_mat=matrix(c(
-	1,1,2,2,3,3,7,
-	4,4,5,5,6,6,7), nrow=2, byrow=T);
+	1,1,2,2,3,3,10,
+	4,4,5,5,6,6,10,
+	7,7,8,8,9,9,10), nrow=3, byrow=T);
 layout(layout_mat);
 
 for(i in 1:ncol(grp_mat)){
@@ -479,14 +484,19 @@ for(i in 1:ncol(grp_mat)){
 	}
 
 	par(mar=c(3,3,4,1));
-	plot_mds(pc1, pc2, colmap, title="PCA (Principal Comp Analysis)", lab=F);
-	plot_mds(mds1_nonmet, mds2_nonmet, colmap, title="Non-metric MDS", lab=F);
-	plot_mds(mds1_pcoa, mds2_pcoa, colmap, title="PCoA (Classical MDS)", lab=F);
+	plot_mds(pc1, pc2, colmap, title="PCA (Principal Comp Analysis)", lab=F, cntrd=F);
+	plot_mds(mds1_nonmet, mds2_nonmet, colmap, title="Non-metric MDS", lab=F, cntrd=F);
+	plot_mds(mds1_pcoa, mds2_pcoa, colmap, title="PCoA (Classical MDS)", lab=F, cntrd=F);
 
 	par(mar=c(3,3,1,1));
-	plot_mds(pc1, pc2, colmap, title="", lab=T);
-	plot_mds(mds1_nonmet, mds2_nonmet, colmap, title="", lab=T);
-	plot_mds(mds1_pcoa, mds2_pcoa, colmap, title="", lab=T);
+	plot_mds(pc1, pc2, colmap, title="", lab=F, cntrd=T);
+	plot_mds(mds1_nonmet, mds2_nonmet, colmap, title="", lab=F, cntrd=T);
+	plot_mds(mds1_pcoa, mds2_pcoa, colmap, title="", lab=F, cntrd=T);
+
+	par(mar=c(3,3,1,1));
+	plot_mds(pc1, pc2, colmap, title="", lab=T, cntrd=F);
+	plot_mds(mds1_nonmet, mds2_nonmet, colmap, title="", lab=T, cntrd=F);
+	plot_mds(mds1_pcoa, mds2_pcoa, colmap, title="", lab=T, cntrd=F);
 
 	mtext(grp_name, side=3, line=0, outer=T, font=2);
 	
