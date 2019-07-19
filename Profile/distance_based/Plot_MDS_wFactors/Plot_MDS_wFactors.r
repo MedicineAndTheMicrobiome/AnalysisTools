@@ -271,7 +271,7 @@ map_val_to_grp=function(fact_mat, max_breaks){
 
 			if(num_unique<=2){
 				cat(fact_name, ": few enough unique values, NOT grouping\n", sep="");
-				map_mat[,fidx]=as.character(map_mat[,fidx]);
+				map_mat[,fidx]=as.factor(map_mat[,fidx]);
 			}else{
 				cat(fact_name, ": too many unique values, grouping...\n", sep="");
 				
@@ -458,13 +458,11 @@ layout(layout_mat);
 
 for(i in 1:ncol(grp_mat)){
 		
+	# These values are all factors now
 	values=grp_mat[,i];
 
-	if(is.factor(values)){
-		all_levels=levels(values);
-	}else{
-		all_levels=sort(as.numeric(unique(values)));
-	}
+	all_levels=levels(values);
+
 	colmap=as.numeric(values);
 	if(min(colmap, na.rm=T)==0){
 		colmap=colmap+1;
