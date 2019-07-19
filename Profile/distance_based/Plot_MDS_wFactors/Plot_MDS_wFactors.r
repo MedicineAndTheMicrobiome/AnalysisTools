@@ -442,18 +442,19 @@ plot_legend=function(levels, counts, perm_res){
 	
 	leg_text=paste(levels, " [n=", counts, "]", sep="");
 
-	text(.1, .9, paste(
+	text(.05, .90, paste(
 		perm_res[["name"]], ":", "\n",
+		"\n",
 		"n = ", perm_res[["n"]], "\n",
-		"DF = ", perm_res[["df"]], "\n",
+		"df = ", perm_res[["df"]], "\n",
 		"R^2 = ", round(perm_res[["rsqrd"]], 4), "\n", 
-		"(", perm_res[["effsz"]], ")\n",
+		"Effect Size: ", perm_res[["effsz"]], "\n",
 		"p-value = ", round(perm_res[["pval"]], 4), "\n",
 		perm_res[["signf"]], 
 		sep=""),
 		pos=4);
 
-	legend(0,.75, legend=leg_text, fill=1:length(levels), bty="n");
+	legend(0,.80, legend=leg_text, fill=1:length(levels), bty="n");
 }
 
 run_permanova=function(dm_sqr, fact_values){
