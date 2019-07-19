@@ -369,7 +369,9 @@ mds2_pcoa=mds[,2];
 
 plot_mds=function(x, y, samp_grp_map, title, lab=F){
 
+	cat("Plotting MDS:\n");
 	samp_ids=names(x);	
+	print(samp_grp_map);
 
 	xrange=range(x);
 	yrange=range(y);
@@ -380,12 +382,26 @@ plot_mds=function(x, y, samp_grp_map, title, lab=F){
 	xlim=c(xrange[1]-xspan*.15, xrange[2]+xspan*.15);
 	ylim=c(yrange[1]-yspan*.1, yrange[2]+yspan*.1);
 
+	grps=unique(samp_grp_map[!is.na(samp_grp_map)]);
+	ngrps=length(grps)
+	centroids=matrix(NA, nrow=ngrps, ncol=2);
+
+	for(i in 1:ngrps){
+		gr_ix=which(samp_grp_map==grps[i]);
+		centroids[i,]=c(mean(x[gr_ix]), mean(y[gr_ix]));
+	}
+
 	plot(0, type="n", xlim=xlim, ylim=ylim, 
 		main=title,
 		xlab="", ylab="");
 
+	for(i in 1:ngrps){
+		points(centroids[i,1], centroids[i,2], cex=3, pch=21, bg=grps[i], col="black");
+	}
+
+
 	if(lab==F){
-		points(x, y, col=samp_grp_map[samp_ids]);
+		points(x, y, col=samp_grp_map[samp_ids], cex=1.1, pch=1, bg="white");
 		#text(x, y, samp_grp_map[samp_ids]);
 	}else{
 		for(cur_samp in samp_ids){
