@@ -486,7 +486,7 @@ run_permanova=function(dm_sqr, fact_values){
 
 	# Run PERMANOVA
 	model=paste("dm_dist ~ ", fact_name, sep="");
-	adon_res=adonis(as.formula(model), data=fact_values, permutations=1000)
+	adon_res=adonis(as.formula(model), data=fact_values, permutations=10000)
 
 	df=adon_res$aov.tab[fact_name, "Df"];
 	rsqrd=adon_res$aov.tab[fact_name, "R2"];
@@ -495,7 +495,7 @@ run_permanova=function(dm_sqr, fact_values){
 	# Interpret R^2 (based on .01/.06/.14, as small/medium/large)
 	effect_string="";
 	thres=1.3
-	if(rsqrd<.001*thres){
+	if(rsqrd<.0025*thres){
 		effect_string="negligible";
 	}else if(rsqrd<.005*thres){
 		effect_string="very small";
@@ -558,6 +558,12 @@ if(ncol(factors_mat)!=ncol(grp_mat)){
 }
 
 
+num_var=ncol(grp_mat);
+perm_pval=numeric(num_var);
+perm_r2=numeric(num_var);
+perm_factname=character(num_var);
+perm_i=1;
+
 for(i in 1:ncol(grp_mat)){
 	
 	# These values are all factors now
@@ -575,8 +581,13 @@ for(i in 1:ncol(grp_mat)){
 	num_grps=length(groups);
 
 	cat("Plotting: ", grp_name, "\n");
+	cat("Num Available Groups: ", num_grps, "\n");
 	cat("Available Groups: \n");
 	print(groups);
+	if(num_grps==0){
+		cat("No informations... skipping...\n");
+		next;
+	}
 
 	num_levels=length(all_levels);
 	if(num_levels>num_cat_colors){
@@ -584,18 +595,17 @@ for(i in 1:ncol(grp_mat)){
 		next;
 	}
 
+	# Count up samples sizes per group
+	group_counts=table(values);
+	print(group_counts);
+
 	# Calculate permanova for factor
 	perm_res=run_permanova(dmsqr, factors_mat[,i, drop=F]);
 
-	group_counts=table(values);
-
-	cat("Num Available Groups: ", num_grps, "\n");
-	print(group_counts);
-
-	if(num_grps==0){
-		cat("No informations... skipping...\n");
-		next;
-	}
+	perm_pval[perm_i]=perm_res[["pval"]];
+	perm_r2[perm_i]=perm_res[["rsqrd"]];
+	perm_factname[perm_i]=perm_res[["name"]];
+	perm_i=perm_i+1;
 
 	par(mar=c(3,3,4,1));
 	plot_mds(pc1, pc2, colmap, title="PCA (Principal Comp Analysis)", lab=F, cntrd=F);
@@ -620,6 +630,59 @@ for(i in 1:ncol(grp_mat)){
 	cat("\n");
 
 }
+
+perm_pval=perm_pval[1:(perm_i-1)];
+perm_r2=perm_r2[1:(perm_i-1)];
+perm_factname=perm_factname[1:(perm_i-1)];
+
+names(perm_pval)=perm_factname;
+names(perm_r2)=perm_factname;
+
+
+plot_pval_r2=function(pval, r2, title){
+
+	laym=matrix(c(1,2,3), nrow=3);
+	layout(laym);
+	par(oma=c(0,0,2,0));
+
+	pval_thres=c(.001, .01, .05, .1);
+	r2_thres=c(.01, .06, .14);
+
+	num_var=length(pval);
+	pval_col=rep("grey", num_var);
+	pval_col[pval<.1]="green";
+	pval_col[pval<.05]="blue";
+	pval_col[pval<.01]="red";
+	pval_col[pval<.001]="purple";
+
+	r2_col=rep("grey", num_var);
+	r2_col[r2>.01]="green";
+	r2_col[r2>.06]="blue";
+	r2_col[r2>.14]="red";
+
+	par(mar=c(0,4,3,5));
+	barplot(-log10(pval), names.arg=rep("",num_var), col=pval_col, las=2, xlab="", ylab="-log10(p-value)");
+	abline(h=-log10(pval_thres), col="blue", lty=2);
+	axis(side=4, at=-log10(pval_thres), labels=pval_thres, las=2, cex.axis=.8);
+
+	par(mar=c(0,4,3,5));
+	barplot(r2, las=2, col=r2_col, xlab="", ylab="R^2");
+	abline(h=r2_thres, col="blue", lty=2);
+	axis(side=4, at=r2_thres, labels=c("small", "medium", "large"), las=2, cex.axis=.8);
+
+	plot(0, type="n", xaxt="n", yaxt="n", bty="n", xlab="", ylab="", main="");
+	mtext(title, outer=T, font=2, cex=1.25);
+}
+
+plot_pval_r2(perm_pval, perm_r2, "Sorted By Factor File Order");
+
+ix=order(perm_pval, decreasing=F);
+plot_pval_r2(perm_pval[ix], perm_r2[ix], "Sorted by Decreasing Significance");
+
+ix=order(perm_r2, decreasing=T);
+plot_pval_r2(perm_pval[ix], perm_r2[ix], "Sorted by Decreasing Effect Size");
+
+
 
 dev.off();
 
