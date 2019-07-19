@@ -492,19 +492,22 @@ run_permanova=function(dm_sqr, fact_values){
 	rsqrd=adon_res$aov.tab[fact_name, "R2"];
 	pval=adon_res$aov.tab[fact_name, "Pr(>F)"];
 	
-	# Interpret R^2
+	# Interpret R^2 (based on .01/.06/.14, as small/medium/large)
 	effect_string="";
-	if(rsqrd<.005){
+	thres=1.3
+	if(rsqrd<.001*thres){
+		effect_string="negligible";
+	}else if(rsqrd<.005*thres){
 		effect_string="very small";
-	}else if(rsqrd<=.01){
+	}else if(rsqrd<=.01*thres){
 		effect_string="small";
-	}else if(rsqrd<=.035){
+	}else if(rsqrd<=.035*thres){
 		effect_string="medium-small";
-	}else if(rsqrd<=.06){
+	}else if(rsqrd<=.06*thres){
 		effect_string="medium";
-	}else if(rsqrd<=.10){
+	}else if(rsqrd<=.10*thres){
 		effect_string="medium-large";
-	}else if(rsqrd<=.14){
+	}else if(rsqrd<=.14*thres){
 		effect_string="large";
 	}else{
 		effect_string="very large";
