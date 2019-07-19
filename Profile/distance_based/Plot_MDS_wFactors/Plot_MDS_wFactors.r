@@ -354,6 +354,7 @@ grp_names=colnames(grp_mat);
 
 cat("Computing distance matrix...\n");
 distmat=compute_dist(normalized_mat, DistanceType);
+dmsqr=as.matrix(distmat);
 
 for(i in 1:length(distmat)){
         if(distmat[i]==0){
@@ -433,7 +434,7 @@ plot_mds=function(x, y, samp_grp_map, title, lab=F, cntrd=F){
 
 }
 
-plot_legend=function(levels, counts){
+plot_legend=function(levels, counts, perm_res){
 	plot(0,0, type="n", bty="n", 
 		xaxt="n", yaxt="n",
 		xlab="", ylab="", main="", 
@@ -441,9 +442,96 @@ plot_legend=function(levels, counts){
 	
 	leg_text=paste(levels, " [n=", counts, "]", sep="");
 
-	legend(0,1, legend=leg_text, fill=1:length(levels), bty="n");
+	text(.1, .9, paste(
+		perm_res[["name"]], ":", "\n",
+		"n = ", perm_res[["n"]], "\n",
+		"DF = ", perm_res[["df"]], "\n",
+		"R^2 = ", round(perm_res[["rsqrd"]], 4), "\n", 
+		"(", perm_res[["effsz"]], ")\n",
+		"p-value = ", round(perm_res[["pval"]], 4), "\n",
+		perm_res[["signf"]], 
+		sep=""),
+		pos=4);
+
+	legend(0,.75, legend=leg_text, fill=1:length(levels), bty="n");
 }
 
+run_permanova=function(dm_sqr, fact_values){
+
+	cat("Running PERMANOVA...\n");
+
+	# Remove NAs from metadata and associated samples from distance matrix
+	fact_values=fact_values[!is.na(fact_values), 1, drop=F];	
+	fact_name=colnames(fact_values);
+	samp_ids=rownames(fact_values);
+	dm_sqr=dm_sqr[samp_ids, samp_ids];
+	dm_dist=as.dist(dm_sqr);
+	perm_samp_size=nrow(fact_values);
+	cat("Sample size: ", perm_samp_size, "\n");
+
+	# If only one value for this factor, skip PERMANOVA
+	num_levels=length(unique(as.vector(fact_values[,1])));
+	if(num_levels==1 || perm_samp_size<=1){
+		res=list();
+		res["name"]=fact_name;
+		res["n"]=perm_samp_size;
+		res["df"]="NA";
+		res["rsqrd"]=0;
+		res["pval"]=1;
+		res["effsz"]="Undefined";
+		res["signf"]="";
+		return(res);
+	}
+
+	# Run PERMANOVA
+	model=paste("dm_dist ~ ", fact_name, sep="");
+	adon_res=adonis(as.formula(model), data=fact_values, permutations=1000)
+
+	df=adon_res$aov.tab[fact_name, "Df"];
+	rsqrd=adon_res$aov.tab[fact_name, "R2"];
+	pval=adon_res$aov.tab[fact_name, "Pr(>F)"];
+	
+	# Interpret R^2
+	effect_string="";
+	if(rsqrd<.005){
+		effect_string="very small";
+	}else if(rsqrd<=.01){
+		effect_string="small";
+	}else if(rsqrd<=.035){
+		effect_string="medium-small";
+	}else if(rsqrd<=.06){
+		effect_string="medium";
+	}else if(rsqrd<=.10){
+		effect_string="medium-large";
+	}else if(rsqrd<=.14){
+		effect_string="large";
+	}else{
+		effect_string="very large";
+	}
+
+	signf_string="";
+	if(pval<.001){
+		signf_string="***";
+	}else if(pval<.01){
+		signf_string="**";
+	}else if(pval<.05){
+		signf_string="*";
+	}else if(pval<.1){
+		signf_string="'";
+	}
+
+	res=list();
+	res["name"]=fact_name;
+	res["n"]=perm_samp_size;
+	res["df"]=df;
+	res["rsqrd"]=rsqrd;
+	res["pval"]=pval;
+	res["effsz"]=effect_string;
+	res["signf"]=signf_string;
+
+	return(res);
+
+}
 
 #------------------------------------------------------------------------------
 
@@ -451,16 +539,25 @@ plot_legend=function(levels, counts){
 par(oma=c(0,0,2,0));
 
 layout_mat=matrix(c(
-	1,1,2,2,3,3,10,
-	4,4,5,5,6,6,10,
-	7,7,8,8,9,9,10), nrow=3, byrow=T);
+	1,1,1,2,2,2,3,3,3,10,10,
+	4,4,4,5,5,5,6,6,6,10,10,
+	7,7,7,8,8,8,9,9,9,10,10), nrow=3, byrow=T);
 layout(layout_mat);
 
+if(nrow(factors_mat)!=nrow(grp_mat)){
+	cat("Error: Rows do not match up between grouped and original values.\n");
+	quit();
+}
+if(ncol(factors_mat)!=ncol(grp_mat)){
+	cat("Error: Cols do not match up between grouped and original values.\n");
+	quit();
+}
+
+
 for(i in 1:ncol(grp_mat)){
-		
+	
 	# These values are all factors now
 	values=grp_mat[,i];
-
 	all_levels=levels(values);
 
 	colmap=as.numeric(values);
@@ -482,6 +579,9 @@ for(i in 1:ncol(grp_mat)){
 		cat("Num levels (", num_levels, ") greater than num category colors (", num_cat_colors, ")\n",sep="");
 		next;
 	}
+
+	# Calculate permanova for factor
+	perm_res=run_permanova(dmsqr, factors_mat[,i, drop=F]);
 
 	group_counts=table(values);
 
@@ -511,7 +611,7 @@ for(i in 1:ncol(grp_mat)){
 	mtext(grp_name, side=3, line=0, outer=T, font=2);
 	
 	par(mar=c(3,0,4,0));
-	plot_legend(all_levels, group_counts);
+	plot_legend(all_levels, group_counts, perm_res);
 
 	cat("\n");
 
