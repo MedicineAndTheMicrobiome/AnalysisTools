@@ -401,6 +401,7 @@ plot_mds=function(x, y, samp_grp_map, title, lab=F, cntrd=F){
 	grps=unique(samp_grp_map[!is.na(samp_grp_map)]);
 	ngrps=length(grps)
 	centroids=matrix(NA, nrow=ngrps, ncol=2);
+	num_points=length(x);
 
 	if(cntrd){
 		for(i in 1:ngrps){
@@ -413,7 +414,7 @@ plot_mds=function(x, y, samp_grp_map, title, lab=F, cntrd=F){
 		main=title,
 		xlab="", ylab="");
 
-	if(cntrd){
+	if(cntrd && num_points<=40){
 		for(i in 1:ngrps){
 			points(centroids[i,1], centroids[i,2], cex=3, pch=21, bg=grps[i], col="black");
 		}
@@ -422,6 +423,12 @@ plot_mds=function(x, y, samp_grp_map, title, lab=F, cntrd=F){
 
 	if(lab==F){
 		points(x, y, col=samp_grp_map[samp_ids], cex=1.1, pch=1, bg="white");
+		if(cntrd && num_points>40){
+			for(i in 1:ngrps){
+				points(centroids[i,1], centroids[i,2], cex=3, pch=21, bg=grps[i], col="black");
+			}
+		}
+
 		#text(x, y, samp_grp_map[samp_ids]);
 	}else{
 		for(cur_samp in samp_ids){
@@ -486,7 +493,11 @@ run_permanova=function(dm_sqr, fact_values){
 
 	# Run PERMANOVA
 	model=paste("dm_dist ~ ", fact_name, sep="");
-	adon_res=adonis(as.formula(model), data=fact_values, permutations=10000)
+	adon_res=adonis(as.formula(model), data=fact_values, permutations=1000)
+	if(adon_res$aov.tab[fact_name, "Pr(>F)"]<0.002){
+		cat("Since p-value was significant at <0.002, rerunning at higher precision.\n");
+		adon_res=adonis(as.formula(model), data=fact_values, permutations=100000)
+	}
 
 	df=adon_res$aov.tab[fact_name, "Df"];
 	rsqrd=adon_res$aov.tab[fact_name, "R2"];
