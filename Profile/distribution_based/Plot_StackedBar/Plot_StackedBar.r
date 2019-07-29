@@ -1805,7 +1805,7 @@ if(num_crossings>0){
 			ymax_wannot=annot_start+annot_space;
 
 			# Start the plot
-			par(mar=c(8, 3, 1, 1));
+			par(mar=c(8, 4, 1, 1));
 			mids=barplot(stat_mat[, "means"], ylim=c(0, ymax_wannot), xlab="", ylab="Diversity");
 
 			bar_spacing=(mids[2]-mids[1]);
@@ -1855,7 +1855,10 @@ if(num_crossings>0){
 
 				# counts
 				text(mids[i], 0, 
-					labels=paste("n=", stat_mat[i, "cnts"], sep=""),
+					labels=paste(
+						"n=", stat_mat[i, "cnts"], 
+						"  mean=", round(stat_mat[i, "means"], 2), 
+						sep=""),
 					adj=c(.5,-.5), font=3, cex=.5
 				);
 			}
