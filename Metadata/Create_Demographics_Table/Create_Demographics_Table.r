@@ -191,7 +191,8 @@ num_samples=num_factor_samples;
 if(SplitVarName==""){
 	sp_ix=matrix(rep(T, num_samples), nrow=num_samples, ncol=1);
 	rownames(sp_ix)=rownames(factors);
-	colnames(sp_ix)=SplitVarName;
+	colnames(sp_ix)="All";
+	split_vals="All";
 }else{
 	split_vals=factors[,SplitVarName];
 	splt_tab=table(split_vals);
@@ -308,14 +309,28 @@ for(f_ix in 1:num_factors){
 			prop_mat[,i]=counts_mat[,i]/colcounts[i];
 		}
 		#print(prop_mat);
-		chisq_res=chisq.test(counts_mat);
+
+		if(num_splits>1){
+			chisq_res=tryCatch({
+				chisq.test(counts_mat);
+			}, error=function(e){
+			});
+
+			if(!is.null(chisq_res)){
+				pval=chisq_res$p.value;
+			}else{
+				pval=NA;
+			}
+		}else{
+			pval=NA;
+		}
 		#print(chisq_res);
 
 		res=list();
 		res[["type"]]="categorical";
 		res[["counts"]]=counts_mat;
 		res[["prop"]]=prop_mat;
-		res[["pval"]]=chisq_res$p.value;
+		res[["pval"]]=pval;
 		res[["lb"]]=binom_ci[["lb"]];
 		res[["ub"]]=binom_ci[["ub"]];
 
@@ -356,11 +371,16 @@ for(f_ix in 1:num_factors){
 		}
 
 		# overall anova
-		nona=!is.na(cur_factor) & !is.na(split_vals);
-		xval=split_vals[nona];
-		yval=cur_factor[nona];
-		fit=lm(yval~xval);
-		anova_res=anova(fit);
+		if(num_splits>1){
+			nona=!is.na(cur_factor) & !is.na(split_vals);
+			xval=split_vals[nona];
+			yval=cur_factor[nona];
+			fit=lm(yval~xval);
+			anova_res=anova(fit);
+			pval=anova_res[["Pr(>F)"]][1];
+		}else{
+			pval=NA;
+		}
 
 		res=list();
 		res[["type"]]="continuous";
@@ -368,7 +388,7 @@ for(f_ix in 1:num_factors){
 		res[["counts"]]=counts;
 		res[["lb"]]=lb;
 		res[["ub"]]=ub;
-		res[["pval"]]=anova_res[["Pr(>F)"]][1];
+		res[["pval"]]=pval;
 
 		demo_list[[cur_factname]]=res;
 
