@@ -1384,7 +1384,7 @@ plot_tree_phenotypes=function(hcl, coef_mat_list, pval_mat_list, alpha=.10){
 	pred_names=rownames(best_cut_mat);
 	intercept_ix=which(pred_names=="(Intercept)");
 	if(length(intercept_ix)!=0){
-		best_cut_mat=best_cut_mat[-intercept_ix,];
+		best_cut_mat=best_cut_mat[-intercept_ix,,drop=F];
 		cat("Removed Intercept from list of predictors.\n");
 	}else{
 		cat("Intercept was not in list of predictors to remove.\n");
