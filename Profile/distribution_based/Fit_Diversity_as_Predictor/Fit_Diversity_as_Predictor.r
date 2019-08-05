@@ -967,7 +967,7 @@ for(i in 1:num_div_idx){
 		capture.output(print(round(improv_matrix[,c(3,4)], 4))),
 		"",
 		capture.output(print(cbind(
-			apply(improv_matrix[,c(5,6,7)], 1:2, function(x){sprintf("%8.4f",x)}), 
+			apply(improv_matrix[,c(5,6,7), drop=F], 1:2, function(x){sprintf("%8.4f",x)}), 
 			signf), quote=F))
 	));
 
