@@ -298,7 +298,7 @@ plot_sample_distributions_by_individual=function(diversity_arr, div_type, normal
 			main=paste(title, "Diversity"),
 			xlab="Time", ylab=paste("Diversity (", div_type, ")", sep=""), type="l", 
 			col=col_assign[groups[i]], lwd=2.5,
-			xlim=offset_ranges, 
+			xlim=c(offset_ranges[1]-min_period/2, offset_ranges[2]+min_period/2), 
 			ylim=c(diversity_ranges[1], diversity_ranges[2]+(diff(diversity_ranges)*.2))
 		);
 
@@ -321,7 +321,7 @@ plot_sample_distributions_by_individual=function(diversity_arr, div_type, normal
 		plot(offset_info[,"Offsets"], subset_diversity, main=paste(title, "Composition"),
 			 xlab="Time", ylab="", type="n", col=i, lwd=2,
 			 yaxt="n",
-			 xlim=offset_ranges, ylim=c(0,1+.25));
+			 xlim=c(offset_ranges[1]-min_period/2, offset_ranges[2]+min_period/2), ylim=c(0,1+.25));
 
 		abd_pos=c(0, .25, .33, .5, .66, .75, 1);
 		axis(side=2, at=abd_pos, labels=sprintf("%2.2f", abd_pos), las=2, cex.axis=.75);
@@ -334,7 +334,7 @@ plot_sample_distributions_by_individual=function(diversity_arr, div_type, normal
 		# Plot stacked abundances
 		for(t in 1:num_members){
 			plot_dist(offset_info[subset_samples[t],"Offsets"], y=0, 
-				abundances=normalized_mat[subset_samples[t],], width=min_period);
+				abundances=normalized_mat[subset_samples[t],], width=min_period*.95);
 		}
 
 		# Mark Events
@@ -772,7 +772,8 @@ plot_sample_distributions_by_group=function(normalized_mat, offsets_mat, cat_col
 			plot(0, 0, main="",
 				xlab="", ylab=indivs[i], type="n", bty="n",
 				xaxt=xaxt_setting, yaxt="n",
-				xlim=offset_ranges, ylim=c(0, 1+.5*num_event_types));
+				xlim=c(offset_ranges[1]-min_period/2, offset_ranges[2]+min_period/2), 
+				ylim=c(0, 1+.5*num_event_types));
 
 			char_height=par()$cxy[2]*.5;
 
@@ -788,7 +789,7 @@ plot_sample_distributions_by_group=function(normalized_mat, offsets_mat, cat_col
 			# Draw stacked barplot
 			for(t in 1:num_timepts){
 				plot_dist(offset_info[t,"Offsets"], y=0, 
-					abundances=normalized_mat[subset_samples[t],], width=min_period);
+					abundances=normalized_mat[subset_samples[t],], width=min_period*.95);
 
 			}
 
@@ -894,7 +895,7 @@ plot_mean_distributions_by_group=function(normalized_mat, offsets_mat, cat_color
 			ylab=paste(grp_name, ": ", cohorts[g]), 
 			type="n", bty="n",
 			xaxt="s", yaxt="n",
-			xlim=offset_ranges, ylim=c(0, 1.1));
+			xlim=c(offset_ranges[1]-min_period/2, offset_ranges[2]+min_period/2), ylim=c(0, 1.1));
 
 		# Draw guide lines
 		abline(h=.5, col="grey", lwd=20);
@@ -908,7 +909,7 @@ plot_mean_distributions_by_group=function(normalized_mat, offsets_mat, cat_color
 			cur_off=uniq_offsets[t];
 			offset_key=as.character(cur_off);
 			plot_dist(cur_off, y=0, 
-				abundances=avg_off_comp[offset_key,,drop=F], width=min_period);
+				abundances=avg_off_comp[offset_key,,drop=F], width=min_period*.95);
 
 			text(cur_off, 1+cxy[2]/2, 
 				paste("n=",samp_size_at_offset[offset_key], sep=""), cex=.75, font=3);
