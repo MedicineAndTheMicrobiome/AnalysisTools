@@ -1209,9 +1209,9 @@ counts_mat_samples=rownames(counts_mat);
 shared=intersect(offset_mat_samples, counts_mat_samples);
 
 cat("\n\n");
-cat("Samples not represented in summary table file:\n");
-print(setdiff(counts_mat_samples, shared));
 cat("Samples not represented in offsets file:\n");
+print(setdiff(counts_mat_samples, shared));
+cat("Samples not represented in summary table:\n");
 print(setdiff(offset_mat_samples, shared));
 cat("\n\n");
 
