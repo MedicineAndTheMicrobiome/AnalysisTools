@@ -589,11 +589,22 @@ plot_median_sample_diversity_by_group=function(diversity_arr, div_type,
 		diversity_tmp=div_offs_mat[,2];
 
 		loess_res=loess(diversity_tmp~offset_tmp);
-		loess_fit_x=sort(unique(c(offset_pos, 
-					seq(offset_ranges[1], offset_ranges[2], length.out=num_offset_positions*2))));
-		loess_fit_y=predict(loess_res, loess_fit_x);
-		loess[[cohort_id]]=cbind(loess_fit_x, loess_fit_y);
 
+		loess_fit_x=sort(unique(c(offset_pos, 
+			seq(offset_ranges[1], offset_ranges[2], length.out=num_offset_positions*2))));
+		loess_fit_y=tryCatch({
+				predict(loess_res, loess_fit_x);
+			}, error=function(e){
+				return(NULL);
+			});
+
+		if(is.null(loess_fit_y)){
+			# If loess not possible, just use original values.
+			loess_fit_x=offset_tmp;
+			loess_fit_y=diversity_tmp;
+		}
+
+		loess[[cohort_id]]=cbind(loess_fit_x, loess_fit_y);
 		medians[[cohort_id]]=med_mat;
 
 	}
