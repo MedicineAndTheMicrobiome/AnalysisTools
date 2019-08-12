@@ -74,32 +74,43 @@ pdf(OutputPDF,width=8.5,height=8.5)
 ###############################################################################
 
 load_offset=function(fname){
+
         cat("Loading Offsets: ", fname, "\n");
-        offsets_mat=read.delim(fname,  header=FALSE, row.names=1, sep="\t", comment.char="#", quote="");
+        offsets_mat=read.delim(fname,  header=TRUE, row.names=1, sep="\t", comment.char="#", quote="");
 
-		
-	ncol=ncol(offsets_mat);
-	if(ncol==2){
-		cat("Offsets file is missing Cohort ID.  Assuming all in the same cohort.\n");
-		offsets_mat=cbind(offsets_mat, rep(0, nrow(offsets_mat)));
-	}
-	colnames(offsets_mat)=c("Indiv ID", "Offsets", "Cohort ID");
+        num_col=ncol(offsets_mat);
+        cat("Num Columns Found: ", num_col, "\n");
 
-	# reset offsets
-	groups=unique(offsets_mat[,"Indiv ID"]);
-	
-	cat("Groups:\n");
-	print(groups);
-	cat("\n");
+        extra_colnames=colnames(offsets_mat);
+        print(extra_colnames);
+        colnames(offsets_mat)=c("Indiv ID", "Offsets", "Group ID", extra_colnames[4:num_col])[1:num_col];
 
-	# Reset offsets so they are relative to the first/smallest sample
-	for(gid in groups){
-		offsets=offsets_mat[gid==offsets_mat[,"Indiv ID"], "Offsets"];
-		min_off=min(offsets);
-		offsets_mat[gid==offsets_mat[,"Indiv ID"], "Offsets"]=offsets-min_off;
-	}
+        # reset offsets
+        if(is.numeric(offsets_mat[,"Indiv ID"])){
+                offsets_mat[,"Indiv ID"]=paste("#", offsets_mat[,"Indiv ID"], sep="");
+        }
+        groups=unique(offsets_mat[,"Indiv ID"]);
 
-	return(offsets_mat);
+        cat("Groups:\n");
+        print(groups);
+        cat("\n");
+
+        # Reset offsets so they are relative to the first/smallest sample
+        for(gid in groups){
+                group_ix=(gid==offsets_mat[,"Indiv ID"]);
+                offsets=offsets_mat[group_ix, "Offsets"];
+                min_off=min(offsets);
+                offsets_mat[group_ix, "Offsets"]=offsets-min_off;
+        }
+
+        offsets_data=list();
+        offsets_data[["matrix"]]=offsets_mat;
+        offsets_data[["IndivID"]]=extra_colnames[1];
+        offsets_data[["Offsets"]]=extra_colnames[2];
+        offsets_data[["GroupID"]]=extra_colnames[3];
+
+        return(offsets_data);
+
 }
 
 load_summary_file=function(fname){
@@ -292,7 +303,7 @@ plot_sample_dist_by_group=function(dist_mat, offsets_mat, col_assign, ind_colors
         offsets_mat=offsets_mat[sorted_sids,, drop=F];
 
         # Get Num Cohorts
-        cohorts=sort(unique(offsets_mat[,"Cohort ID"]));
+        cohorts=sort(unique(offsets_mat[,"Group ID"]));
         num_cohorts=length(cohorts);
         cat("Number of Cohorts: ", num_cohorts, "\n");
         print(cohorts);
@@ -325,7 +336,7 @@ plot_sample_dist_by_group=function(dist_mat, offsets_mat, col_assign, ind_colors
                          xlab="Time", ylab=paste("Distance (", dist_type, ")", sep=""), type="n",
                          xlim=x_plot_range, ylim=dist_ranges);
 
-                coh_offset_mat=offsets_mat[ offsets_mat[,"Cohort ID"]==cohorts[g], ];
+                coh_offset_mat=offsets_mat[ offsets_mat[,"Group ID"]==cohorts[g], ];
                 print(coh_offset_mat);
 
                 # Get Unique Inidividuals
@@ -380,8 +391,8 @@ get_colors=function(num_col, alpha=1){
 
 ###############################################################################
 
-offset_mat=load_offset(OffsetFileName);
-#print(offset_mat);
+offset_data=load_offset(OffsetFileName);
+offset_mat=offset_data[["matrix"]];
 
 ###############################################################################
 
@@ -394,10 +405,13 @@ offset_mat_samples=rownames(offset_mat);
 counts_mat_samples=rownames(counts_mat);
 shared=intersect(offset_mat_samples, counts_mat_samples);
 
+cat("Shared:\n");
+print(shared);
+
 cat("\n\n");
-cat("Samples not represented in summary table file:\n");
-print(setdiff(counts_mat_samples, shared));
 cat("Samples not represented in offsets file:\n");
+print(setdiff(counts_mat_samples, shared));
+cat("Samples not represented in summary table file:\n");
 print(setdiff(offset_mat_samples, shared));
 cat("\n\n");
 
@@ -407,7 +421,7 @@ counts_mat=counts_mat[shared,];
 ###############################################################################
 
 # Get Cohort info
-cohort_names=sort(unique(offset_mat[,"Cohort ID"]));
+cohort_names=sort(unique(offset_mat[,"Group ID"]));
 num_cohorts=length(cohort_names);
 cat("Cohorts:\n");
 print(cohort_names);
