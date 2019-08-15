@@ -281,7 +281,8 @@ plot_sample_distances=function(distmat, offsets_mat, col_assign, ind_colors, tit
 
 		# Plot colored lines
 		plot(offset_info[,"Offsets"], subset_dist, main=indiv_ids[i],
-			 xlab="Time", ylab=paste("Distance (", dist_type, ")", sep=""), type="l", col=col_assign[indiv_ids[i]], lwd=2.5,
+			 xlab="Time", ylab=paste("Distance (", dist_type, ")", sep=""), 
+			type="l", col=col_assign[indiv_ids[i]], lwd=2.5,
 			 xlim=offset_ranges, ylim=dist_ranges);
 		# Plot ends
 		points(offset_info[c(1,1, num_samples),"Offsets"], subset_dist[c(1,1, num_samples)], 
@@ -391,6 +392,202 @@ get_colors=function(num_col, alpha=1){
 
 ###############################################################################
 
+calculate_stats_on_series=function(offset_mat, dist_mat){
+
+	avg_dist=function(dist_arr, time_arr){
+
+		# Average distance sample spent away from home (0)
+		num_pts=length(dist_arr);
+
+		acc_dist=0;
+		for(i in 1:(num_pts-1)){
+			avg_dist=(dist_arr[i+1]+dist_arr[i])/2;
+			dtime=(time_arr[i+1]-time_arr[i]);
+			acc_dist=acc_dist+avg_dist*dtime;	
+		}
+		
+		overall_avg_dist=acc_dist/time_arr[num_pts];
+		return(overall_avg_dist);
+	}
+
+	avg_speed=function(dist_arr, time_arr){
+		# total distance traveled divided by time
+		num_pts=length(dist_arr);
+		acc_dist=0;
+		for(i in 1:(num_pts-1)){
+			ddist=abs(dist_arr[i+1]-dist_arr[i]);
+			acc_dist=acc_dist+ddist;
+		}
+		average_speed=acc_dist/time_arr[num_pts];
+		return(average_speed);
+	}
+
+	mean_reversion=function(dist_arr, time_arr){
+		fit=lm(dist_arr~time_arr);
+		res=list();
+		res[["first_dist"]]=fit$coefficients[["(Intercept)"]];
+		res[["slope"]]=fit$coefficients[["time_arr"]];
+		res[["last_dist"]]=res[["first_dist"]]+res[["slope"]]*tail(time_arr,1);
+		res[["sd_res"]]=sd(fit$residuals);
+		return(res);
+	}
+
+	closest_travel=function(dist_arr, time_arr){
+		
+		dist_arr=dist_arr[-1];
+		time_arr=time_arr[-1];
+
+		min_dist=min(dist_arr);
+		ix=min(which(min_dist==dist_arr));
+		
+		res=list();
+		res[["dist"]]=min_dist;
+		res[["time"]]=time_arr[ix];
+		return(res);
+	}
+
+	furthest_travel=function(dist_arr, time_arr){
+		
+		dist_arr=dist_arr[-1];
+		time_arr=time_arr[-1];
+
+		max_dist=max(dist_arr);
+		ix=min(which(max_dist==dist_arr));
+		
+		res=list();
+		res[["dist"]]=max_dist;
+		res[["time"]]=time_arr[ix];
+		return(res);
+	}
+
+	closest_return=function(dist_arr, time_arr){
+
+		while(length(dist_arr)>1 && dist_arr[1]<=dist_arr[2]){
+			dist_arr=dist_arr[-1];
+			time_arr=time_arr[-1];
+		}
+		dist_arr=dist_arr[-1];
+		time_arr=time_arr[-1];
+
+                res=list();
+		if(length(dist_arr)){
+			min_dist=min(dist_arr);
+			ix=min(which(min_dist==dist_arr));
+			res[["dist"]]=min_dist;
+			res[["time"]]=time_arr[ix];
+		}else{
+			res[["dist"]]=NA;
+			res[["time"]]=NA;
+		}
+
+                return(res);
+	}
+
+	first_return=function(dist_arr, time_arr){
+
+		while(length(dist_arr)>1 && dist_arr[1]<=dist_arr[2]){
+			dist_arr=dist_arr[-1];
+			time_arr=time_arr[-1];
+		}
+		dist_arr=dist_arr[-1];
+		time_arr=time_arr[-1];
+
+                res=list();
+		if(length(dist_arr)){
+			res[["dist"]]=dist_arr[1];
+			res[["time"]]=time_arr[1];
+		}else{
+			res[["dist"]]=NA;
+			res[["time"]]=NA;
+		}
+
+                return(res);
+	}
+
+
+	cat("Calculating average distance over time...\n");
+
+	uniq_indiv_ids=sort(unique(offset_mat[,"Indiv ID"]));
+	num_ind=length(uniq_indiv_ids);
+
+	cat("IDs:\n");
+	print(uniq_indiv_ids);
+	cat("Num Individuals: ", num_ind, "\n");
+
+	stat_names=c(
+		"last_time", "num_time_pts",
+		"average_dist", 
+		"average_speed",
+		"mean_reversion_first_dist", "mean_reversion_last_dist", 
+		"mean_reversion_stdev_residuals", "mean_reversion_slope",
+		"closest_travel_dist", "closest_travel_time",
+		"furthest_travel_dist", "furthest_travel_time",
+		"closest_return_dist", "closest_return_time",
+		"first_return_dist", "first_return_time");
+
+	out_mat=matrix(NA, nrow=num_ind, ncol=length(stat_names));
+	rownames(out_mat)=uniq_indiv_ids;
+	colnames(out_mat)=stat_names;
+
+	dist_mat=as.matrix(dist_mat);
+
+	for(cur_id in uniq_indiv_ids){
+		
+		row_ix=(offset_mat[,"Indiv ID"]==cur_id);
+		cur_offsets=offset_mat[row_ix,,drop=F];
+
+		# Order offsets
+		ord=order(cur_offsets[,"Offsets"]);
+		cur_offsets=cur_offsets[ord,,drop=F];
+
+		num_timepts=nrow(cur_offsets);
+		out_mat[cur_id, "last_time"]=cur_offsets[num_timepts, "Offsets"];
+		out_mat[cur_id, "num_time_pts"]=num_timepts;
+
+		samp_ids=rownames(cur_offsets);
+
+		if(num_timepts>1){
+			cur_dist=dist_mat[samp_ids[1], samp_ids];
+			cur_times=cur_offsets[,"Offsets"];
+
+			out_mat[cur_id, "average_dist"]=avg_dist(cur_dist, cur_times);
+			out_mat[cur_id, "average_speed"]=avg_speed(cur_dist, cur_times);
+
+			res=mean_reversion(cur_dist, cur_times);
+			out_mat[cur_id, "mean_reversion_first_dist"]=res[["first_dist"]];
+			out_mat[cur_id, "mean_reversion_last_dist"]=res[["last_dist"]];
+			out_mat[cur_id, "mean_reversion_stdev_residuals"]=res[["sd_res"]];
+			out_mat[cur_id, "mean_reversion_slope"]=res[["slope"]];
+
+			res=closest_travel(cur_dist, cur_times);
+			out_mat[cur_id, "closest_travel_dist"]=res[["dist"]];
+			out_mat[cur_id, "closest_travel_time"]=res[["time"]];
+
+			res=furthest_travel(cur_dist, cur_times);
+			out_mat[cur_id, "furthest_travel_dist"]=res[["dist"]];
+			out_mat[cur_id, "furthest_travel_time"]=res[["time"]];
+
+			res=closest_return(cur_dist, cur_times);
+			out_mat[cur_id, "closest_return_dist"]=res[["dist"]];
+			out_mat[cur_id, "closest_return_time"]=res[["time"]];
+
+			res=first_return(cur_dist, cur_times);
+			out_mat[cur_id, "first_return_dist"]=res[["dist"]];
+			out_mat[cur_id, "first_return_time"]=res[["time"]];
+		}	
+	}
+
+	return(out_mat);	
+}
+
+###############################################################################
+
+plot_stats_mat=function(sm){
+
+}
+
+###############################################################################
+
 offset_data=load_offset(OffsetFileName);
 offset_mat=offset_data[["matrix"]];
 
@@ -469,13 +666,32 @@ mds2_coord=isomds$points;
 
 ###############################################################################
 
+stats_mat=calculate_stats_on_series(offset_mat, dist_mat);
 
-plot_connected_figure(mds_coord, offset_mat, groups_per_plot=5, col_assign, ind_colors, title=paste("Metric MDS (", DistanceType,")", sep=""));
-plot_connected_figure(mds2_coord, offset_mat, groups_per_plot=5, col_assign, ind_colors, title=paste("IsoMetric MDS (", DistanceType, ")", sep=""));
+plot_connected_figure(mds_coord, offset_mat, groups_per_plot=5, col_assign, 
+	ind_colors, title=paste("Metric MDS (", DistanceType,")", sep=""));
+plot_connected_figure(mds2_coord, offset_mat, groups_per_plot=5, col_assign, 
+	ind_colors, title=paste("IsoMetric MDS (", DistanceType, ")", sep=""));
 
-plot_sample_distances(dist_mat, offset_mat, col_assign, ind_colors, dist_type=DistanceType);
+plot_sample_distances(dist_mat, offset_mat, col_assign, ind_colors, 
+	dist_type=DistanceType);
 
-plot_sample_dist_by_group(dist_mat, offset_mat, col_assign, ind_colors, dist_type=DistanceType);
+plot_sample_dist_by_group(dist_mat, offset_mat, col_assign, ind_colors, 
+	dist_type=DistanceType);
+
+
+uniq_group_ids=sort(unique(offset_mat[,"Group ID"]));
+cat("Num Groups: ", length(uniq_group_ids), "\n");
+group_map=list();
+for(grpid in uniq_group_ids){
+	cat("Extracting members of: ", grpid, "\n");
+	gix=offset_mat[,"Group ID"]==grpid;
+	tmp=sort(unique(offset_mat[gix,"Indiv ID"]));
+	group_map[[as.character(grpid)]]=tmp;
+}
+print(group_map);
+
+plot_stats_mat(stats_mat);
 
 ##############################################################################
 
