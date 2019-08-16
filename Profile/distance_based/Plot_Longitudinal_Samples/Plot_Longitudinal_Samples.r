@@ -85,9 +85,12 @@ load_offset=function(fname){
         print(extra_colnames);
         colnames(offsets_mat)=c("Indiv ID", "Offsets", "Group ID", extra_colnames[4:num_col])[1:num_col];
 
-        # reset offsets
+	# Change number IDs to strings
         if(is.numeric(offsets_mat[,"Indiv ID"])){
-                offsets_mat[,"Indiv ID"]=paste("#", offsets_mat[,"Indiv ID"], sep="");
+		numdigits=log10(max(offsets_mat[,"Indiv ID"]))+1;
+		prtf_str=paste("%0",numdigits,"d", sep="");
+                offsets_mat[,"Indiv ID"]=paste("#",
+			 sprintf(prtf_str, offsets_mat[,"Indiv ID"]), sep="");
         }
         groups=unique(offsets_mat[,"Indiv ID"]);
 
@@ -582,8 +585,306 @@ calculate_stats_on_series=function(offset_mat, dist_mat){
 
 ###############################################################################
 
-plot_stats_mat=function(sm){
+plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.05, samp_gly=T){
+	# Generate a barplot based on stats and groupings
+	# Annotat barplot with signficance
 
+	cat("Making Barplot with Significance annotated...\n");
+        cat("  Alpha", alpha, "\n");
+        group_names=names(grps);
+        num_grps=length(group_names);
+
+	# Convert matrix into array, if necessary
+	if(!is.null(dim(stat))){
+		stat_name=colnames(stat);
+		stat=stat[,1];
+	}else{
+		stat_name="value";
+	}
+
+	# Remove NAs
+	na_ix=is.na(stat);
+	subj=names(stat);
+	stat=stat[!na_ix];
+	na_subj=names(stat);
+	for(grnm in group_names){
+		grps[[grnm]]=intersect(grps[[grnm]], na_subj);
+		print(stat[grps[[grnm]]]);
+	}
+	print(grps);
+
+        # Precompute pairwise wilcoxon pvalues
+	cat("\n  Precomputing group pairwise p-values...\n");
+        pval_mat=matrix(1, nrow=num_grps, ncol=num_grps);
+	rownames(pval_mat)=group_names;
+	colnames(pval_mat)=group_names;
+        signf=numeric();
+        for(grp_ix_A in 1:num_grps){
+                for(grp_ix_B in 1:num_grps){
+                        if(grp_ix_A<grp_ix_B){
+
+				grpAnm=group_names[grp_ix_A];
+				grpBnm=group_names[grp_ix_B];
+
+                                res=wilcox.test(stat[grps[[grpAnm]]], stat[grps[[grpBnm]]]);
+                                pval_mat[grpAnm, grpBnm]=res$p.value;
+                                if(res$p.value<=alpha){
+                                        signf=rbind(signf, c(grpAnm, grpBnm, res$p.value));
+                                }
+                        }
+                }
+        }
+
+	cat("p-value matrix:\n");
+	print(pval_mat);
+
+	# Count how many rows have significant pairings
+        num_signf=nrow(signf);
+        cat("  Num Significant: ", num_signf, "\n");
+        signf_by_row=apply(pval_mat, 1, function(x){sum(x<alpha)});
+        cat("  Num Significant by Row:\n");
+        print(signf_by_row);
+
+        num_signf_rows=sum(signf_by_row>0);
+        cat("  Num Rows to plot:", num_signf_rows, "\n");
+
+        #signf_mat=apply(pval_mat, 1:2,
+        #       function(x){
+        #               if(x<.001){return("***")}
+        #               if(x<.01){return("**")}
+        #               if(x<.05){return("*")}
+        #               else{return("")}
+        #       }
+        #);
+
+        #print(signf_mat, quote=F);
+
+        # Compute 95% CI around mean
+	cat("\n  Precomputing group means and 95% CI...\n");
+        num_bs=320;
+
+        grp_means=numeric(num_grps);
+	names(grp_means)=group_names;
+
+        ci95=matrix(NA, nrow=num_grps, ncol=2);
+	rownames(ci95)=group_names;
+	colnames(ci95)=c("LB", "UB");
+        samp_size=numeric(num_grps);
+        for(grp_ix in 1:num_grps){
+
+		grpnm=group_names[grp_ix];
+                grp_means[grpnm]=mean(stat[grps[[grpnm]]]);
+                num_samp=length(grps[[grpnm]]);
+
+                if(num_samp>=40){
+                        meds=numeric(num_bs);
+                        for(i in 1:num_bs){
+                                meds[i]=mean(sample(stat[grps[[grpnm]]], replace=T));
+
+                        }
+                        ci95[grp_ix,]=quantile(meds, c(.025, .975));
+                }else{
+                        ci95[grp_ix,]=rep(mean(stat[grps[[grpnm]]]),2);
+                }
+
+                samp_size[grp_ix]=num_samp;
+        }
+
+        cat("Group Means:\n");
+        print(grp_means);
+	print(length(grp_means));
+        cat("Group Median 95% CI:\n");
+        print(ci95);
+
+        # Estimate spacing for annotations
+        annot_line_prop=1/5; # proportion of pl
+        min_95ci=min(c(ci95[,1], stat), na.rm=T);
+        max_95ci=max(c(ci95[,2], stat), na.rm=T);
+	minmax_span=max_95ci-min_95ci;
+        plotdatamax=max_95ci+minmax_span*0.3;
+	plotdatamin=min_95ci-minmax_span*0.3;;
+        space_for_annotations=minmax_span*annot_line_prop*(num_signf_rows+2);
+        horiz_spacing=annot_line_prop*plotdatamax;
+
+        # Start plot
+        par(mar=c(8,5,4,3));
+	cat("  Plot Limits: (", plotdatamin, ", ", plotdatamax, ")\n"); 
+	plot(0, type="n", 
+		ylim=c(plotdatamin, plotdatamax+space_for_annotations),
+		xlim=c(0, num_grps+1),
+                yaxt="n", xaxt="n", xlab="", ylab="", bty="n");
+	for(grp_ix in 1:num_grps){
+		points(c(grp_ix-.25, grp_ix+.25), rep(grp_means[grp_ix],2), type="l", lwd=3);
+	}
+	mids=1:num_grps;
+	yticks=unique(round(seq(min_95ci, max_95ci, length.out=5),1));
+	axis(side=2, at=yticks, labels=sprintf("%2.0f", yticks));
+        title(ylab=paste("Mean ", stat_name, "\nwith Bootstrapped 95% CI", sep=""));
+        title(main=title, cex.main=1.5);
+        title(main="with Wilcoxon rank sum test (difference between group means) p-values",
+                line=.25, cex.main=.7, font.main=3);
+
+        bar_width=mean(diff(mids));
+        qbw=bar_width/6;
+
+	# Label x-axis
+        text(mids-par()$cxy[1]/2, rep(6*-par()$cxy[2]/2, num_grps),
+                group_names, srt=-45, xpd=T, pos=4,
+                cex=min(c(1,.7*bar_width/par()$cxy[1])));
+
+        # Scatter
+        if(samp_gly){
+                for(grp_ix in 1:num_grps){
+			grpnm=group_names[grp_ix];
+                        pts=stat[grps[[grpnm]]];
+                        numpts=length(pts);
+                        points(
+                                #rep(mids[grp_ix], numpts),
+                                mids[grp_ix]+rnorm(numpts, 0, bar_width/10),
+                                pts, col="darkblue", cex=.5, type="p");
+                }
+        }
+
+        # label CI's
+        for(grp_ix in 1:num_grps){
+                if(samp_size[grp_ix]>=40){
+                        points(
+                                c(mids[grp_ix]-qbw, mids[grp_ix]+qbw),
+                                rep(ci95[grp_ix, 2],2), type="l", col="blue");
+                        points(
+                                c(mids[grp_ix]-qbw, mids[grp_ix]+qbw),
+                                rep(ci95[grp_ix, 1],2), type="l", col="blue");
+                        points(
+                                rep(mids[grp_ix],2),
+                                c(ci95[grp_ix, 1], ci95[grp_ix,2]), type="l", col="blue");
+                }
+        }
+
+        # label sample size
+        for(grp_ix in 1:num_grps){
+                text(mids[grp_ix], 3*-par()$cxy[2]/2, paste("mean =", round(grp_means[grp_ix], 2)), 
+			cex=.95, xpd=T, font=3, adj=c(.5,-1));
+
+                text(mids[grp_ix], 4*-par()$cxy[2]/2, paste("n =",samp_size[grp_ix]), 
+			cex=.85, xpd=T, font=3, adj=c(.5,-1));
+        }
+
+        connect_significant=function(A, B, ypos, pval){
+                abline(h=ypos);
+        }
+
+        sigchar=function(x){
+                if(x<=.0001){
+                        return("***");
+                }else if(x<=.001){
+                        return("**");
+                }else if(x<=.01){
+                        return("*");
+                }else{
+                        return("");
+                }
+        }
+
+        row_ix=1;
+        for(i in 1:(num_grps-1)){
+
+                pvalrow=pval_mat[i,];
+                #print(pvalrow);
+
+                signf_pairs=(pvalrow<alpha);
+                if(any(signf_pairs)){
+                        signf_grps=which(signf_pairs);
+                        cat("Pairs: ", i, " to:\n");
+                        print(signf_grps);
+
+                        y_offset=plotdatamax+horiz_spacing*row_ix;
+
+                        # Draw line between left/reference to each paired signf grp
+                        points(c(
+                                mids[i], mids[max(signf_grps)]),
+                                rep(y_offset,2),
+                                type="l", lend="square"
+                        );
+
+                        # Mark left/ref group
+                        points(
+                                rep(mids[i],2),
+                                c(y_offset,y_offset-horiz_spacing/4),
+                                type="l", lwd=3, lend="butt");
+
+                        # Mark each signf paired reference group
+                        for(pair_ix in signf_grps){
+                                points(
+                                        rep(mids[pair_ix],2),
+                                        c(y_offset,y_offset-horiz_spacing/4),
+                                        type="l", lwd=1, lend="butt");
+
+
+                                # label pvalue
+                                paird_pval=sprintf("%5.4f", pvalrow[pair_ix]);
+                                text(mids[pair_ix], y_offset, paird_pval,
+                                        adj=c(.5, -1), cex=.7);
+                                text(mids[pair_ix], y_offset, sigchar(pvalrow[pair_ix]),
+                                        adj=c(.5, -1.25), cex=1);
+                        }
+
+                        row_ix=row_ix+1;
+
+                }
+
+        }
+}
+
+###############################################################################
+
+plot_stats_mat=function(sm, grp_map){
+
+	cat("Plotting Stats Matrix...\n");
+	num_groups=length(grp_map);
+	num_stats=ncol(sm);
+	num_indiv=nrow(sm);
+	stat_name=colnames(sm);
+
+	cat("Num Groups: ", num_groups, "\n");
+	cat("Num Indiv: ", num_indiv, "\n");
+	cat("Num Stats: ", num_stats, "\n");
+
+	par(mfrow=c(2,1));
+
+	for(stat_ix in 1:num_stats){
+		cat("---------------------------------------------------------\n");
+		cat("Plotting: ", stat_name[stat_ix], "\n");
+		plot_barplot_wsignf_annot(
+			title=stat_name[stat_ix], 
+			stat=sm[,stat_ix, drop=F],
+			grps=grp_map);
+	}
+
+}
+
+###############################################################################
+
+plot_text=function(strings){
+        par(family="Courier");
+        par(oma=rep(.1,4));
+        par(mar=rep(0,4));
+
+        num_lines=length(strings);
+
+        top=max(as.integer(num_lines), 52);
+
+        plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
+                xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
+                );
+
+        text_size=max(.01, min(.8, .8 - .003*(num_lines-52)));
+        #print(text_size);
+
+        for(i in 1:num_lines){
+                #cat(strings[i], "\n", sep="");
+                strings[i]=gsub("\t", "", strings[i]);
+                text(0, top-i, strings[i], pos=4, cex=text_size);
+        }
 }
 
 ###############################################################################
@@ -680,6 +981,7 @@ plot_sample_dist_by_group(dist_mat, offset_mat, col_assign, ind_colors,
 	dist_type=DistanceType);
 
 
+# Extract individual membership
 uniq_group_ids=sort(unique(offset_mat[,"Group ID"]));
 cat("Num Groups: ", length(uniq_group_ids), "\n");
 group_map=list();
@@ -689,9 +991,55 @@ for(grpid in uniq_group_ids){
 	tmp=sort(unique(offset_mat[gix,"Indiv ID"]));
 	group_map[[as.character(grpid)]]=tmp;
 }
-print(group_map);
 
-plot_stats_mat(stats_mat);
+print(stats_mat);
+num_stats=ncol(stats_mat);
+cols_per_page=4;
+num_pages=ceiling(num_stats/cols_per_page);
+
+cat("Printing Stats to PDF...\n");
+cat("Num Stats: ", num_stats, "\n");
+cat("Num Pages: ", num_pages, "\n");
+cat("Num Stats/Page: ", cols_per_page, "\n");
+for(page_ix in 1:num_pages){
+	start_col=((page_ix-1)*cols_per_page)+1;
+	end_col=min(start_col+cols_per_page-1, num_stats);
+	cat("Printing columns: ", start_col, " to ", end_col, "\n", sep="");	
+	plot_text(capture.output(print(stats_mat[, start_col:end_col, drop=F])));
+}
+
+plot_stats_mat(stats_mat, group_map);
+
+stat_description=c(
+	"DESCRIPTION OF STATISTICS:",
+	"",
+	"",
+	"last_time: Last recorded time", 
+	"num_time_pts: Number of time points",
+	"",
+	"average_dist: Average distance samples spent away from 1st sample", 
+	"average_speed: (Total changes in distance)/(Last recorded time)",
+	"",
+	"mean_reversion variables:  Fit linear model across all data points",
+	"  mean_reversion_first_dist: expected distance of first sample (y-intercept)", 
+	"  mean_reversion_last_dist: expected distance of last sample", 
+	"  mean_reversion_stdev_residuals: standard deviation of residuals", 
+	"  mean_reversion_slope: slope of linear model",
+	"",
+	"closest_travel_dist: Distance sample came closest to 1st sample", 
+	"closest_travel_time: Time when sample came closest to 1st sample",
+	"",
+	"furthest_travel_dist: Distance of sample furthest from 1st sample", 
+	"furthest_travel_time: Time when sample went furthest from 1st sample",
+	"",
+	"closest_return_dist: Closest distance sample came to 1st sample after rebounding", 
+	"closest_return_time: Time when sample came closest to 1st ample after rebounding",
+	"",
+	"first_return_dist: Distance when sample first rebounds",
+	"first_return_time: Time when sample first rebounds");
+
+par(mfrow=c(1,1));
+plot_text(stat_description);
 
 ##############################################################################
 
