@@ -425,6 +425,17 @@ calculate_stats_on_series=function(offset_mat, dist_mat){
 		return(average_speed);
 	}
 
+	tot_dist_travelled=function(dist_arr, time_arr){
+		# total distance traveled 
+		num_pts=length(dist_arr);
+		acc_dist=0;
+		for(i in 1:(num_pts-1)){
+			ddist=abs(dist_arr[i+1]-dist_arr[i]);
+			acc_dist=acc_dist+ddist;
+		}
+		return(acc_dist);
+	}
+
 	mean_reversion=function(dist_arr, time_arr){
 		fit=lm(dist_arr~time_arr);
 		res=list();
@@ -521,6 +532,7 @@ calculate_stats_on_series=function(offset_mat, dist_mat){
 		"last_time", "num_time_pts",
 		"average_dist", 
 		"average_speed",
+		"total_dist_travelled",
 		"mean_reversion_first_dist", "mean_reversion_last_dist", 
 		"mean_reversion_stdev_residuals", "mean_reversion_slope",
 		"closest_travel_dist", "closest_travel_time",
@@ -555,6 +567,7 @@ calculate_stats_on_series=function(offset_mat, dist_mat){
 
 			out_mat[cur_id, "average_dist"]=avg_dist(cur_dist, cur_times);
 			out_mat[cur_id, "average_speed"]=avg_speed(cur_dist, cur_times);
+			out_mat[cur_id, "total_dist_travelled"]=tot_dist_travelled(cur_dist, cur_times);
 
 			res=mean_reversion(cur_dist, cur_times);
 			out_mat[cur_id, "mean_reversion_first_dist"]=res[["first_dist"]];
@@ -1017,8 +1030,10 @@ stat_description=c(
 	"last_time: Last recorded time", 
 	"num_time_pts: Number of time points",
 	"",
-	"average_dist: Average distance samples spent away from 1st sample", 
-	"average_speed: (Total changes in distance)/(Last recorded time)",
+	"Changes, relative to 1st sample:",
+	"  average_dist: Average distance samples spent away from 1st sample", 
+	"  average_speed: (Total changes in distance)/(Last recorded time)",
+	"  total_dist_travelled: Sum of distance travelled",
 	"",
 	"mean_reversion variables:  Fit linear model across all data points",
 	"  mean_reversion_first_dist: expected distance of first sample (y-intercept)", 
