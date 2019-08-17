@@ -11,7 +11,9 @@ params=c(
 	"pred_coef_file", "u", 1, "character",
 	"resp_coef_file", "v", 1, "character",
 	"output_file", "o", 1, "character",
-	"sig_cutoff", "p", 2, "numeric"
+	"sig_cutoff", "p", 2, "numeric",
+	"ratio_cutoff", "r", 2, "numeric",
+	"highlight_diag", "d", 2, "logical"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -19,7 +21,8 @@ script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
 script_path=paste(head(strsplit(script_name, "/")[[1]], -1), collapse="/");
 
 
-CUTOFF=0.1;
+DEF_SIGNF_CUTOFF=0.01;
+DEF_RATIO_CUTOFF=1; # Log2(2)=1
 
 usage = paste(
 	"\nUsage:\n", script_name, "\n",
@@ -28,7 +31,9 @@ usage = paste(
 	"	-u <as_pred coefficients matrix input file>\n",
 	"	-v <as_resp coefficients matrix input file>\n",
 	"	-o <output file name root>\n",
-	"	-p <significance cutoff, default=", CUTOFF, "\n",
+	"	-p <significance cutoff, default=", DEF_SIGNF_CUTOFF, ">\n",
+	"	[-r <ratio cutoff for reporting P/R, default=", DEF_RATIO_CUTOFF, ">]\n",
+	"	[-d (highlight diagonal for symmetric P/R analyses)]\n",
 	"\n",
 	"This script will read in two pairs of matrices:\n",
 	" 1.) Predictor p-values and coefficients\n",
@@ -58,10 +63,23 @@ RespCoefFile=opt$resp_coef_file;
 OutputRoot=opt$output_file;
 
 if(length(opt$sig_cutoff)){
-	signif_cutoff=opt$sig_cutoff;
+	SignifCutoff=opt$sig_cutoff;
 }else{
-	signif_cutoff=CUTOFF;
+	SignifCutoff=DEF_SIGNF_CUTOFF;
 }
+
+if(length(opt$ratio_cutoff)){
+        RatioCutoff=opt$ratio_cutoff;
+}else{
+        RatioCutoff=DEF_RATIO_CUTOFF;
+}
+
+if(length(opt$highlight_diag)){
+        HighlightDiag=T;
+}else{
+	HighlightDiag=F;
+}
+
 
 OutputRoot=paste(OutputRoot, ".pred_vs_resp", sep="");
 
@@ -77,6 +95,8 @@ input_summary=capture.output({
 	cat("\n");
 	cat("Output File Root: ", OutputRoot, "\n", sep="");
 	cat("\n");
+	cat("Significant Cutoff: ", SignifCutoff, "\n", sep="");
+	cat("Highlight Diagonal: ", HighlightDiag, "\n", sep="");
 });
 cat(input_summary, sep="\n");
 
@@ -850,12 +870,14 @@ output_text_summary=function(comparison_list, root_filename){
 
 #############################################################################	
 
-transform_to_matrix=function(combined_ratio_coef, shrd_fact_names, shrd_cat_names){
+summarize_to_matrix=function(combined_ratio_coef, shrd_fact_names, shrd_cat_names, ratio_thres){
 
-	cat("Plot summary matrices:\n");
+	cat("Plot summary matrices with ratio > ", ratio_thres, ".\n");
 	#print(combined_ratio_coef);
 	#print(shrd_fact_names);
 	#print(shrd_cat_names);
+
+	absthres=abs(ratio_thres);
 
 	shrd_fact_names=sort(shrd_fact_names);
 	shrd_cat_names=sort(shrd_cat_names);
@@ -885,23 +907,45 @@ transform_to_matrix=function(combined_ratio_coef, shrd_fact_names, shrd_cat_name
 		for(cat in categories){
 			directionality=0;
 
-			if(cat_table[cat, "LogPvalRat"]>0){
+			# Assign to predictor or responder
+			if(cat_table[cat, "LogPvalRat"]>absthres){
+
 				# Responder
 				fact_cat_mat_predresp[cat, fact]="R";
+
 				if(cat_table[cat, "As_Resp_Dir"]>0){
 					directionality=1;
 				}else if(cat_table[cat, "As_Resp_Dir"]<0){
 					directionality=-1;
 				}
-			}else if(cat_table[cat, "LogPvalRat"]<0){
+
+			}else if(cat_table[cat, "LogPvalRat"]<(-absthres)){
+
 				# Predictor	
 				fact_cat_mat_predresp[cat, fact]="P";
+
 				if(cat_table[cat, "As_Pred_Dir"]>0){
 					directionality=1;
 				}else if(cat_table[cat, "As_Pred_Dir"]<0){
 					directionality=-1;
 				}
+
 			}else{
+
+				# If directionality is ambiguous, just report
+				# directionality if it is consistent
+				if(
+					cat_table[cat, "As_Pred_Dir"]>0 &&
+					cat_table[cat, "As_Resp_Dir"]>0){
+						directionality=1;
+				}else if(
+					cat_table[cat, "As_Pred_Dir"]<0 &&
+					cat_table[cat, "As_Resp_Dir"]<0){
+						directionality=-1;
+				}else{
+					directionality=0;
+				}
+
 				fact_cat_mat_predresp[cat, fact]="";
 			}
 
@@ -919,7 +963,7 @@ transform_to_matrix=function(combined_ratio_coef, shrd_fact_names, shrd_cat_name
 
 #############################################################################
 
-plot_matrices=function(matrices){
+plot_predresp_matrix=function(matrices, highlight_diag=F, ratio_thres, signf_thres){
 	
 	pr_mat=matrices[["pred.resp"]];
 	dir_mat=matrices[["coeff.dir"]];
@@ -945,10 +989,16 @@ plot_matrices=function(matrices){
 
 
 	# Start plot
-	par(mar=c(2,12,10,2));
+	par(mar=c(4,12,10,2));
 	off=.25;
 	plot(0,0, xlim=c(1, num_facts+1), ylim=c(1, num_cat+1), xaxt="n", yaxt="n",
 		xlab="", ylab="", type="n");
+	title(xlab=paste("p-values < ", signf_thres, "      |log2(p-value ratio)| > ", ratio_thres, sep=""),
+		line=1);
+
+	if(highlight_diag){
+		abline(a=0, b=1, lwd=12, col="grey80");
+	}
 
 	# Comput locations for glyphs
 	horiz=(1:num_cat)+off;
@@ -1106,7 +1156,7 @@ for(cur_fact in shrd_fact_names){
 	result=summarize_comparisons(cur_fact, shrd_cat_names, 
 		as_pred_pval, as_resp_pval, 
 		as_pred_coef, as_resp_coef, 
-		signif_cutoff);
+		SignifCutoff);
 
 	# Plot summary (transformed stats)
 	par(mar=c(5,5,6,3));
@@ -1213,12 +1263,22 @@ plot_legend_for_combined_ratio_comparisons(inverted_records);
 
 
 #############################################################################	
-
-res_mat=transform_to_matrix(combined_records, shrd_fact_names, shrd_cat_names);
+print(combined_records);
 par(mfrow=c(1,1));
-plot_matrices(res_mat);
 
-plot_venn(res_mat);
+# Loose cutoffs
+pred_resp_mat=summarize_to_matrix(combined_records, shrd_fact_names, shrd_cat_names, 
+	ratio_thres=0);
+plot_predresp_matrix(pred_resp_mat, highlight_diag=HighlightDiag, 
+	ratio_thres=0, signf_thres=SignifCutoff);
+plot_venn(pred_resp_mat);
+
+# More stringent/user defined cutoff
+pred_resp_mat=summarize_to_matrix(combined_records, shrd_fact_names, shrd_cat_names, 
+	ratio_thres=RatioCutoff);
+plot_predresp_matrix(pred_resp_mat, highlight_diag=HighlightDiag, 
+	ratio_thres=RatioCutoff, signf_thres=SignifCutoff);
+plot_venn(pred_resp_mat);
 
 #############################################################################	
 # Close PDF output
