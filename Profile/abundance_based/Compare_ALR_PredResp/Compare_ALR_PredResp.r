@@ -80,8 +80,9 @@ if(length(opt$highlight_diag)){
 	HighlightDiag=F;
 }
 
+signf_ext=sprintf("p%02i", SignifCutoff*100);
 
-OutputRoot=paste(OutputRoot, ".pred_vs_resp", sep="");
+OutputRoot=paste(OutputRoot, ".pred_vs_resp.", signf_ext, sep="");
 
 input_summary=capture.output({
 	cat("\n");
