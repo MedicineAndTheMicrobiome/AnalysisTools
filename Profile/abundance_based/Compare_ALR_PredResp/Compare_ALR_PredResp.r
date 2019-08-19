@@ -1011,19 +1011,20 @@ plot_predresp_matrix=function(matrices, highlight_diag=F, ratio_thres, signf_thr
 	abline(h=horiz[row_highlight], lwd=1, col="grey80");
 	abline(v=vert[col_highlight], lwd=1, col="grey80");
 
+	glyph_size=1.2;
 	for(x in 1:num_facts){
 		for(y in 1:num_cat){
 
 			if(pr_mat[y,x]=="P"){
-				text(x+off,y+off, "P", col="blue");
+				text(x+off,y+off, "P", col="blue", cex=glyph_size);
 			}else if(pr_mat[y,x]=="R"){
-				text(x+off,y+off, "R", col="orange");
+				text(x+off,y+off, "R", col="orange", cex=glyph_size);
 			}
 
 			if(dir_mat[y,x]==1){
-				points(x+1.5*off,y+off, pch=24, col="green", bg="green");
+				points(x+1.5*off,y+off, pch=24, col="green", bg="green", cex=glyph_size);
 			}else if(dir_mat[y,x]==-1){
-				points(x+1.5*off,y+off, pch=25, col="red", bg="red");
+				points(x+1.5*off,y+off, pch=25, col="red", bg="red", cex=glyph_size);
 			}
 
 		}
