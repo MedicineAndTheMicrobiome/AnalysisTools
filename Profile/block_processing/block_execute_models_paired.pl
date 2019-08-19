@@ -314,6 +314,19 @@ sub run_abundance_based{
 	  -v $output_dir/abundance/$A_pred_B_OUT_DIR/$model_name.p_$A_colname.r_$B_colname.alr_as_pred.tp.coefs.tsv \
 	  -x $output_dir/abundance/$B_pred_A_OUT_DIR/$model_name.p_$B_colname.r_$A_colname.alr_as_pred.pvals.tsv \
 	  -y $output_dir/abundance/$A_pred_B_OUT_DIR/$model_name.p_$A_colname.r_$B_colname.alr_as_pred.tp.pvals.tsv \
+	  -p 0.01 \
+	  -d \
+	  -o $output_dir/abundance/$PRED_RESP_ANALYSIS/$model_name
+	";
+	run_command("Predictor/Response Analysis", "pred_resp_analysis", $cmd, "$output_dir/abundance/$PRED_RESP_ANALYSIS");
+
+	$cmd=
+	"~/git/AnalysisTools/Profile/abundance_based/Compare_ALR_PredResp/Compare_ALR_PredResp.r \
+	  -u $output_dir/abundance/$B_pred_A_OUT_DIR/$model_name.p_$B_colname.r_$A_colname.alr_as_pred.coefs.tsv \
+	  -v $output_dir/abundance/$A_pred_B_OUT_DIR/$model_name.p_$A_colname.r_$B_colname.alr_as_pred.tp.coefs.tsv \
+	  -x $output_dir/abundance/$B_pred_A_OUT_DIR/$model_name.p_$B_colname.r_$A_colname.alr_as_pred.pvals.tsv \
+	  -y $output_dir/abundance/$A_pred_B_OUT_DIR/$model_name.p_$A_colname.r_$B_colname.alr_as_pred.tp.pvals.tsv \
+	  -p 0.05 \
 	  -d \
 	  -o $output_dir/abundance/$PRED_RESP_ANALYSIS/$model_name
 	";
@@ -476,6 +489,10 @@ sub run_distance_based{
 		$cmd, "$output_dir/distance/$DIST_DIFF");
 	
 	#######################################################################
+	
+	if($summary_table2 eq ""){
+		$summary_table2=$summary_table;
+	}
 
 	$cmd=
 	"~/git/AnalysisTools/Profile/distance_based/Cluster_Compare_TwoProfiles/Cluster_Compare_TwoProfiles.r \
