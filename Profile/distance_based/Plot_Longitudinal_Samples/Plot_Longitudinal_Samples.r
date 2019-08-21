@@ -730,8 +730,14 @@ plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.05, samp_gly=T){
 		points(c(grp_ix-.25, grp_ix+.25), rep(grp_means[grp_ix],2), type="l", lwd=3);
 	}
 	mids=1:num_grps;
-	yticks=unique(round(seq(min_95ci, max_95ci, length.out=5),1));
-	axis(side=2, at=yticks, labels=sprintf("%2.0f", yticks));
+
+	yticks=seq(min_95ci, max_95ci, length.out=5);
+	cat("Y ticks:\n");
+	print(yticks);
+	signf_digits=max(ceiling(abs(log10(abs(yticks)))));
+	yticks=signif(yticks, signf_digits);
+	
+	axis(side=2, at=yticks, labels=sprintf("%3.2f", yticks), cex.axis=.5, las=2);
         title(ylab=paste("Mean ", stat_name, "\nwith Bootstrapped 95% CI", sep=""));
         title(main=title, cex.main=1.5);
         title(main="with Wilcoxon rank sum test (difference between group means) p-values",
