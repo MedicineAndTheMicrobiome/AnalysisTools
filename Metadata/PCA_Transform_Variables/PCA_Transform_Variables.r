@@ -66,9 +66,7 @@ FactorsFname=opt$factors;
 OutputFnameRoot=opt$outputroot;
 PredictorListName=opt$predictor;
 
-
 ResponseListName="";
-PredictorListName="";
 PCCoverage=PCA_COVERAGE;
 DonnotTransform=F;
 
@@ -126,6 +124,7 @@ load_factors=function(fname){
 }
 
 load_list=function(fname){
+	cat("Loading: ", fname, "\n");
 	lst=scan(fname, what=character());
 	return(lst);	
 }
