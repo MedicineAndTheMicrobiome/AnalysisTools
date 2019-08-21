@@ -91,12 +91,16 @@ usage = paste(
 	"	Indexing:\n",
 	"		index(start=1) will assign a number from start to number of rows.\n",
 	"\n",
-	"	days_from_date(x):\n",
+	"	days_from_date(x, format):\n",
 	"		This will convert a date string, e.g. 2014-05-16, into the number of days\n",
 	"		since Thursday, 1 1970.  If it is before then, the number will be negative\n",
 	"		The function is a wrapper for as.Date, so you can check that to see what\n",	
 	"		formats it can handle.  The value may not be useful by itself, but should\n",
-	"		be used when calculating days between two events.\n",
+	"		be used when calculating days between two events.  Make sure you specify\n",
+	"		the format string. \n",
+	"			For example: \n",
+	"				\"%m/%d/%Y\" for mm/dd/yyyy\n",
+	"				\"%Y-%m-%d\" for yyyy-mm-dd\n",
 	"\n",
 	"	offsets_by_group(values, grouping)\n",
 	"		This will compute the relative offsets starting from 0, for all the values\n",
@@ -277,7 +281,6 @@ mask=function(x, bool_arr, mask_val){
 	if(!is.numeric(x)){
 		x=as.character(x);
 		x[bool_arr]=mask_val;
-		x=as.factor(x);
 	}else{
 		x[bool_arr]=mask_val;
 	}
@@ -319,9 +322,13 @@ index=function(start=1){
 
 #------------------------------------------------------------------------------
 
-days_from_date=function(x){
+days_from_date=function(x, format){
 	# This will convert a date string to the number of days since Jan 1, 1970.
-	return(as.numeric(as.Date(x)));
+	if(is.null(format)){
+		cat("Error:  days_from_date requires a date string format definition.\n");
+		quit(-1);
+	}
+	return(as.numeric(as.Date(x, format)));
 }
 
 ##############################################################################
