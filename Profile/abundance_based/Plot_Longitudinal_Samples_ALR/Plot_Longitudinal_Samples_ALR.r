@@ -238,6 +238,66 @@ plot_alr_time_indv=function(tar_cat, tar_subj, offsets_rec, alr_categories_val, 
 
 }
 
+plot_alr_time_grpd=function(tar_cat, subj_arr, grouping, grouping_name, offsets_rec, alr_categories_val, 
+	offset_range, alr_range, subj_cols){
+
+	plot(0, type="n", ylim=alr_range, xlim=offset_range, ylab=paste(grouping_name, ": ", grouping));
+
+	for(tar_subj in subj_arr){
+
+		cat("Working on: ", tar_cat, " for ", tar_subj, "\n");
+
+		indv_offsets=offsets_rec[["OffsetsByIndiv"]][[tar_subj]];
+		samp_ids=rownames(indv_offsets);
+
+		x_val=indv_offsets[,"Offsets"];
+		y_val=alr_categories_val[samp_ids, tar_cat];
+
+		points(x_val, y_val, type="l", lwd=5, col=subj_cols[tar_subj]);
+		points(x_val, y_val, type="l", lwd=.5, col="black");
+		points(x_val, y_val, type="p", cex=1, col="black");
+	}
+
+}
+
+compute_and_plot_loess=function(tar_cat, subj_arr, grouping, grouping_name, offsets_rec, alr_categories_val, 
+	offset_range, alr_range, subj_cols){
+
+	plot(0, type="n", ylim=alr_range, xlim=offset_range, ylab=paste(grouping_name, ": ", grouping));
+
+	all_x=numeric();
+	all_y=numeric();
+	for(tar_subj in subj_arr){
+
+		cat("Working on: ", tar_cat, " for ", tar_subj, "\n");
+
+		indv_offsets=offsets_rec[["OffsetsByIndiv"]][[tar_subj]];
+		samp_ids=rownames(indv_offsets);
+
+		x_val=indv_offsets[,"Offsets"];
+		y_val=alr_categories_val[samp_ids, tar_cat];
+
+		all_x=c(all_x, x_val);
+		all_y=c(all_y, y_val);
+
+		points(x_val, y_val, type="p", cex=1.5, col=subj_cols[tar_subj]);
+	}
+
+	order_x=order(all_x);
+	all_x=all_x[order_x];
+	all_y=all_y[order_x];
+
+	loess_res=loess(all_y~all_x);
+
+	grp_loess=cbind(loess_res[["x"]], loess_res[["fitted"]]);
+	colnames(grp_loess)=c("x", "y");
+
+	points(grp_loess[,"x"], grp_loess[,"y"], type="l", col="blue");
+
+	return(grp_loess);
+
+}
+
 ##############################################################################
 ##############################################################################
 
@@ -370,13 +430,18 @@ names(subj_col)=subj_ids;
 
 plots_per_page=6;
 group_name=offset_raw[["GroupID"]];
+num_groups=length(offset_info[["Groups"]]);
 
-# Plot individuals grouped by their group ID
 par(mar=c(2,4,1,1));
 par(oma=c(.5,.5,5,.5));
+
+cat_loess=list();
+
 for(cat_ix in alr_cat_names){
 	cat("Plotting: ", cat_ix, "\n");
 	alr_range=c(alr_min[cat_ix], alr_max[cat_ix]);
+
+	# Plotting individuals by group
 	for(grp_ix in offset_info[["Groups"]]){
 		cat("For group: ", grp_ix, "\n");
 	
@@ -398,9 +463,83 @@ for(cat_ix in alr_cat_names){
 			mtext(cat_ix, side=3, outer=T, font=2, cex=2, line=2);
 			mtext(paste(group_name, ": ", grp_ix, sep=""), 
 				side=3, outer=T, font=1, cex=1, line=.25);
-
 		}
 	}
+
+	# Plot individuals in single plot
+	par(mfrow=c(num_groups, 1));
+	for(grp_ix in offset_info[["Groups"]]){
+		cat("For group: ", grp_ix, "\n");
+
+		subj_in_grp=offset_info[["IndivByGrp"]][[grp_ix]];
+		plot_alr_time_grpd(cat_ix, subj_in_grp, grp_ix, group_name,  offset_info, alr_categories_val,
+			offset_ranges, alr_range, subj_col);
+	}
+	mtext(cat_ix, side=3, outer=T, font=2, cex=2, line=2);
+
+	# plot loess
+	par(mfrow=c(num_groups, 1));
+	grp_loess=list();
+	for(grp_ix in offset_info[["Groups"]]){
+		cat("For group: ", grp_ix, "\n");
+
+		subj_in_grp=offset_info[["IndivByGrp"]][[grp_ix]];
+		grp_loess[[grp_ix]]=compute_and_plot_loess(cat_ix, subj_in_grp, grp_ix,
+			group_name, offset_info, alr_categories_val,
+			offset_ranges, alr_range, subj_col);
+	}
+	#plot_grp_loess(grp_loess);
+	mtext(cat_ix, side=3, outer=T, font=2, cex=2, line=2);
+
+	cat_loess[[cat_ix]]=grp_loess;
+
+}
+
+print(cat_loess);
+
+num_rows_pp=6;
+par(oma=c(6,6,4,1));
+par(mar=c(.5,.5,.5,.5));
+par(mfrow=c(num_rows_pp,num_groups));
+
+rownum=1;
+last_cat=tail(alr_cat_names,1);
+for(cat_ix in alr_cat_names){
+	alr_range=c(alr_min[cat_ix], alr_max[cat_ix]);
+
+	colnum=1;
+	for(grp_ix in offset_info[["Groups"]]){
+
+
+		plot(0, type="n", ylim=alr_range, xlim=offset_ranges, ylab=cat_ix, xaxt="n", yaxt="n");
+		grp_loess=cat_loess[[cat_ix]][[grp_ix]];
+		x=grp_loess[,"x"];
+		y=grp_loess[,"y"];
+		points(x,y, type="l", col="blue");
+
+		# Label bottom
+		if(rownum==num_rows_pp || cat_ix==last_cat){
+			axis(side=1);
+		}
+
+		# Label to row with group IDs
+		if(rownum==1){
+			axis(side=3, at=mean(offset_ranges), labels=grp_ix, cex.axis=2, line=1, outer=T, tick=F);
+		}
+
+		# Label left side with category and alr scale
+		if(colnum==1){
+			axis(side=2);
+			axis(side=2, at=mean(alr_range), labels=cat_ix, cex.axis=1.5, line=2, outer=T, tick=F);
+		}
+
+		colnum=colnum+1;
+	}
+
+	if(rownum==num_rows_pp){
+		rownum=0;
+	}
+	rownum=rownum+1;
 
 }
 
