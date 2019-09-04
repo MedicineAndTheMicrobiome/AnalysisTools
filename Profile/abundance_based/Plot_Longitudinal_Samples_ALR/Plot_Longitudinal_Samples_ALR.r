@@ -221,7 +221,8 @@ get_colors=function(num_col, alpha=1){
         colors=colors[colors!="grey"];
 }
 
-plot_alr_time_indv=function(tar_cat, tar_subj, offsets_rec, alr_categories_val, offset_range, alr_range, col="black"){
+plot_alr_time_indv=function(tar_cat, tar_subj, offsets_rec, alr_categories_val, 
+	offset_range, alr_range, alr_med, col="black"){
 
 	indv_offsets=offsets_rec[["OffsetsByIndiv"]][[tar_subj]];
 	samp_ids=rownames(indv_offsets);
@@ -232,16 +233,18 @@ plot_alr_time_indv=function(tar_cat, tar_subj, offsets_rec, alr_categories_val, 
 	y_val=alr_categories_val[samp_ids, tar_cat];
 
 	plot(0, type="n", ylim=alr_range, xlim=offset_range, ylab=tar_subj);
+	abline(h=alr_med, col="grey", lty="dotdash");
 	points(x_val, y_val, type="l", lwd=5, col=col);
 	points(x_val, y_val, type="l", lwd=.5, col="black");
-	points(x_val, y_val, type="p", cex=1, col="black");
+	points(x_val, y_val, type="p", cex=3, col="black");
 
 }
 
 plot_alr_time_grpd=function(tar_cat, subj_arr, grouping, grouping_name, offsets_rec, alr_categories_val, 
-	offset_range, alr_range, subj_cols){
+	offset_range, alr_range, alr_med, subj_cols){
 
 	plot(0, type="n", ylim=alr_range, xlim=offset_range, ylab=paste(grouping_name, ": ", grouping));
+	abline(h=alr_med, col="grey", lty="dotdash");
 
 	for(tar_subj in subj_arr){
 
@@ -261,9 +264,10 @@ plot_alr_time_grpd=function(tar_cat, subj_arr, grouping, grouping_name, offsets_
 }
 
 compute_and_plot_loess=function(tar_cat, subj_arr, grouping, grouping_name, offsets_rec, alr_categories_val, 
-	offset_range, alr_range, subj_cols){
+	offset_range, alr_range, alr_med, subj_cols){
 
 	plot(0, type="n", ylim=alr_range, xlim=offset_range, ylab=paste(grouping_name, ": ", grouping));
+	abline(h=alr_med, col="grey", lty="dotdash");
 
 	all_x=numeric();
 	all_y=numeric();
@@ -303,6 +307,11 @@ compute_and_plot_loess=function(tar_cat, subj_arr, grouping, grouping_name, offs
 
 # Open main output file
 pdf(paste(OutputRoot, ".alr_ts.pdf", sep=""), height=14, width=8.5);
+
+# Load offset file
+offset_raw=load_offset(OffsetFile);
+print(offset_raw);
+offset_samp_ids=rownames(offset_raw[["matrix"]]);
 
 # Load summary file table counts 
 cat("\n");
@@ -352,6 +361,12 @@ if(NumALRPredictors >= num_st_categories){
 
 ##############################################################################
 
+sumtab_samp_ids=rownames(counts);
+shared_samp_ids=sort(intersect(offset_samp_ids, sumtab_samp_ids));
+
+counts=counts[shared_samp_ids,];
+offset_raw[["matrix"]]=offset_raw[["matrix"]][shared_samp_ids,];
+
 # Normalize
 cat("Normalizing counts...\n");
 counts=counts+.5;
@@ -399,21 +414,22 @@ plot_text(c(
 
 ##############################################################################
 
-offset_raw=load_offset(OffsetFile);
-print(offset_raw);
-
 offset_info=group_offsets(offset_raw);
 
 ###############################################################################
 
 alr_min=apply(alr_categories_val, 2, min);
 alr_max=apply(alr_categories_val, 2, max);
+alr_med=apply(alr_categories_val, 2, median);
 
 cat("ALR Minimums:\n");
 print(alr_min);
 
 cat("ALR Maximums:\n");
 print(alr_max);
+
+cat("ALR Medians:\n");
+print(alr_med);
 
 cat("ALR Categories:\n");
 print(alr_cat_names);
@@ -450,7 +466,7 @@ for(cat_ix in alr_cat_names){
 		plot_ix=0;
 		for(subj_ix in offset_info[["IndivByGrp"]][[grp_ix]]){
 			plot_alr_time_indv(cat_ix, subj_ix, offset_info, alr_categories_val, 
-				offset_ranges, alr_range, subj_col[subj_ix]);
+				offset_ranges, alr_range, alr_med[cat_ix], subj_col[subj_ix]);
 			plot_ix=plot_ix+1;
 			if(plot_ix==plots_per_page){
 				mtext(cat_ix, side=3, outer=T, font=2, cex=2, line=2);
@@ -473,7 +489,7 @@ for(cat_ix in alr_cat_names){
 
 		subj_in_grp=offset_info[["IndivByGrp"]][[grp_ix]];
 		plot_alr_time_grpd(cat_ix, subj_in_grp, grp_ix, group_name,  offset_info, alr_categories_val,
-			offset_ranges, alr_range, subj_col);
+			offset_ranges, alr_range, alr_med[cat_ix], subj_col);
 	}
 	mtext(cat_ix, side=3, outer=T, font=2, cex=2, line=2);
 
@@ -486,7 +502,7 @@ for(cat_ix in alr_cat_names){
 		subj_in_grp=offset_info[["IndivByGrp"]][[grp_ix]];
 		grp_loess[[grp_ix]]=compute_and_plot_loess(cat_ix, subj_in_grp, grp_ix,
 			group_name, offset_info, alr_categories_val,
-			offset_ranges, alr_range, subj_col);
+			offset_ranges, alr_range, alr_med[cat_ix], subj_col);
 	}
 	#plot_grp_loess(grp_loess);
 	mtext(cat_ix, side=3, outer=T, font=2, cex=2, line=2);
@@ -512,6 +528,7 @@ for(cat_ix in alr_cat_names){
 
 
 		plot(0, type="n", ylim=alr_range, xlim=offset_ranges, ylab=cat_ix, xaxt="n", yaxt="n");
+		abline(h=alr_med[cat_ix], col="grey", lty="dotdash");
 		grp_loess=cat_loess[[cat_ix]][[grp_ix]];
 		x=grp_loess[,"x"];
 		y=grp_loess[,"y"];
