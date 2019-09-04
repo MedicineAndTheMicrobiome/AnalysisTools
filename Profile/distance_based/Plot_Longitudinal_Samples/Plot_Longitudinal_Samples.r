@@ -908,6 +908,45 @@ plot_text=function(strings){
 
 ###############################################################################
 
+export_distances_from_start=function(fname, offset_mat, dist_mat){
+
+	cat("Exporting distances from start into: ", fname, "\n", sep="");
+	
+	uniq_indiv_ids=sort(unique(offset_mat[,"Indiv ID"]));
+	num_ind=length(uniq_indiv_ids);
+	dist_mat=as.matrix(dist_mat);
+
+	fh=file(fname, "w");
+
+	for(cur_id in uniq_indiv_ids){
+		
+		row_ix=(offset_mat[,"Indiv ID"]==cur_id);
+		cur_offsets=offset_mat[row_ix,,drop=F];
+
+		# Order offsets
+		ord=order(cur_offsets[,"Offsets"]);
+		cur_offsets=cur_offsets[ord,,drop=F];
+
+		samp_ids=rownames(cur_offsets);
+
+		# Grab distances from first sample
+		cur_dist=dist_mat[samp_ids[1], samp_ids];
+		cur_times=cur_offsets[,"Offsets"];
+
+		cat(file=fh, "Subject:,", cur_id, "\n", sep="");
+		cat(file=fh, "Offset:,", paste(cur_times, collapse=","), "\n", sep="");
+		cat(file=fh, "Sample ID:,", paste(samp_ids, collapse=","), "\n", sep="");
+		cat(file=fh, "Distance:,", paste(round(cur_dist,4), collapse=","), "\n", sep="");
+		cat(file=fh, "\n");
+
+	}
+	
+	close(fh);
+
+}
+
+###############################################################################
+
 offset_data=load_offset(OffsetFileName);
 offset_mat=offset_data[["matrix"]];
 
@@ -1061,6 +1100,11 @@ stat_description=c(
 
 par(mfrow=c(1,1));
 plot_text(stat_description);
+
+##############################################################################
+
+export_distances_from_start(paste(OutputFileRoot,".dist_from_start.tsv", sep=""),
+	offset_mat, dist_mat);
 
 ##############################################################################
 
