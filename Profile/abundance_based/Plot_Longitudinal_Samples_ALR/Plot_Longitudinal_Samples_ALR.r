@@ -670,6 +670,10 @@ plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.05, samp_gly=T){
                 line=.25, cex.main=.7, font.main=3);
 
         bar_width=mean(diff(mids));
+	if(is.na(bar_width)){
+		bar_width=1;
+	}
+	
         qbw=bar_width/6;
 
 	plot_bottom=par()$usr[3];
