@@ -1075,6 +1075,12 @@ calc_longitudinal_stats=function(offset_rec, alr_cat_val){
 		span=abs(r[1]-r[2]);
 		return(span);
 	}
+	l_N=function(x, y){
+		return(length(x));
+	}
+	l_last_time=function(x, y){
+		return(max(x));
+	}
 
 	l_volatility=function(x, y){
 		if(length(x)>1){
@@ -1150,7 +1156,8 @@ calc_longitudinal_stats=function(offset_rec, alr_cat_val){
 	#       individual:	 
 
 	stat_name=c(
-		"min", "max", "median", "mean", "stdev", "range",
+		"min", "max", "median", "mean", "stdev", "range", "N",
+		"last_time", 
 		"volatility", "slope", "time_weighted_average",
 		"time_at_max", "time_at_min",
 		"time_closest_to_start", "time_furthest_from_start"
@@ -1260,6 +1267,33 @@ for(stat_ix in stat_names){
 		mtext(stat_ix, outer=T, cex=1.5, col="blue", font=2);
 	}
 }
+
+
+par(mfrow=c(1,1));
+plot_text(c(
+	"Explanation of Longitudinal Statistics:",
+	"",
+	"These stats are calculated independent of the time component:",
+	"  min: minimum value", 
+	"  max: maximum value", 
+	"  median: median value",
+	"  mean: average value", 
+	"  stdev: standard deviation of values", 
+	"  range: (max-min) of values",
+	"  N: number of samples",
+	"  last_time: last recorded sample",
+	"",
+	"These stats are based on fitting a linear model (value = intercept + time + error):",
+	"  volatility:  standard deviation of residuals", 
+	"  slope: slope of line", 
+	"",
+	"These stats take time into account:",
+	"  time_weighted_average: average between two time points weighted by time between points",
+	"  time_at_max: time at value's maximum", 
+	"  time_at_min: time at value's minimum",
+	"  time_closest_to_start: time when value is closest to first time value", 
+	"  time_furthest_from_start: time when value is furthest from first time value"
+));
 
 ###############################################################################
 
