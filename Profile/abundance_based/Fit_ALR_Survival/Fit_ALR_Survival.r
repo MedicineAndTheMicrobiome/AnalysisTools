@@ -206,6 +206,8 @@ load_summary_file=function(fname){
 	# Clean category names a little
 	cat_names=colnames(counts_mat);
 	cat_names=gsub("-", "_", cat_names);
+	cat_names=gsub("\\[", "", cat_names);
+	cat_names=gsub("\\]", "", cat_names);
 	colnames(counts_mat)=cat_names;
 	
 	return(counts_mat);
@@ -835,8 +837,8 @@ print(death_times);
 ##############################################################################
 
 times=factors[,TimeVarName];
-subj_ids=factors[,SubjVarName];
-coht_ids=factors[,CohtVarName];
+subj_ids=as.character(factors[,SubjVarName]);
+coht_ids=as.character(factors[,CohtVarName]);
 
 uniq_times=sort(unique(times));
 uniq_subj_ids=sort(unique(subj_ids));
@@ -1100,8 +1102,6 @@ for(coht_ix in uniq_coht_ids){
 	}
 }
 
-#print(alr_by_coht);
-
 avg_alr_by_coht=list();
 
 num_uniq_time_pts=length(uniq_times);
@@ -1114,15 +1114,16 @@ for(coht_ix in uniq_coht_ids){
 	rownames(tmp_avg)=uniq_times;
 	colnames(tmp_avg)=colnames(alr_categories_val);
 
+
 	for(time_ix in as.character(uniq_times)){
-		tmp_avg[time_ix,]=apply(cur_coht[["alr"]][[time_ix]], 2, mean);
+		if(length(cur_coht[["alr"]][[time_ix]])>0){
+			tmp_avg[time_ix,]=apply(cur_coht[["alr"]][[time_ix]], 2, mean);
+		}
 	}
 
 	avg_alr_by_coht[[coht_ix]]=tmp_avg;
 
 }
-print(avg_alr_by_coht);
-
 
 plots_per_age=6;
 par(mfrow=c(plots_per_page,1));
@@ -1190,14 +1191,10 @@ change_variable_name=function(current, new, df){
 times_ge_zero=factors_w_alr[,TimeVarName]>0;
 times_eq_zero=factors_w_alr[,TimeVarName]==0;
 
-
-print(head(event_df));
-print(head(factors_w_alr));
-
-
 merge_events_w_factors=function(fact_alr, events, time_var_name, subj_var_name){
 	# Add tstart, tstop, and endpt 
-	
+
+	cat("Merging events data with factor and ALR data...\n");	
 	num_rows=nrow(fact_alr);
 	
 	tstart=rep(0, num_rows);
@@ -1212,7 +1209,7 @@ merge_events_w_factors=function(fact_alr, events, time_var_name, subj_var_name){
 	out_table=c();
 
 	for(sbj_id in subjects){
-		#cat("\n\nWorking on: ", sbj_id, "\n");
+		cat("\n\nWorking on: ", sbj_id, "\n");
 		rows_ix=(appended_table[,subj_var_name]==sbj_id);
 		sbj_data=appended_table[rows_ix,];
 		times=sbj_data[,time_var_name];
@@ -1220,9 +1217,15 @@ merge_events_w_factors=function(fact_alr, events, time_var_name, subj_var_name){
 		sbj_data=sbj_data[sort_ix,];
 
 		sbj_event=events[sbj_id,];
+		sbj_event_time=as.numeric(sbj_event[time_var_name]);
+
+		# if event occurs during series, truncate at that time point.
+		cat("Event time:", sbj_event_time, "\n\n");
+		keep_times_before_event=sbj_data[,time_var_name]<=sbj_event_time;
+		sbj_data=sbj_data[keep_times_before_event,, drop=F];
 
 		num_times=nrow(sbj_data);
-		#cat("Num Time Pts: ", num_times, "\n");
+		cat("Num Included Time Pts: ", num_times, "\n");
 
 		# Set status
 		if(sbj_event["Status"]==1){
@@ -1238,10 +1241,7 @@ merge_events_w_factors=function(fact_alr, events, time_var_name, subj_var_name){
 			sbj_data[i, "tend"]=sbj_data[i+1, "tstart"];
 		}
 
-		sbj_data[num_times, "tend"]=as.numeric(sbj_event[time_var_name]);
-
-		#print(sbj_event);
-		#print(sbj_data);
+		sbj_data[num_times, "tend"]=sbj_event_time;
 
 		out_table=rbind(out_table, sbj_data);
 	}
@@ -1251,12 +1251,19 @@ merge_events_w_factors=function(fact_alr, events, time_var_name, subj_var_name){
 
 merged_table=merge_events_w_factors(factors_w_alr, event_df, TimeVarName, SubjVarName);
 
-#print(merged_table);
-
 tstarts=merged_table[,"tstart"];
 tend=merged_table[,"tend"];
-degen_ix=which(tstarts==tend);
 
+# Look for starts after ends
+startend_errors_ix=(tstarts>tend);
+if(any(startend_errors_ix)){
+	cat("ERROR:  Start(s) found greater than End(s)...\n");
+	print(merged_table[startend_errors_ix,]);
+	quit();
+}
+
+# Look for starts==ends
+degen_ix=which(tstarts==tend);
 if(length(degen_ix)){
 	cat("Adjusting degenerate time...\n");
 
@@ -1271,14 +1278,7 @@ if(length(degen_ix)){
 }
 
 ###############################################################################
-
-cat("Fitting Full Model: Covariates + ALR Categories\n");
-full_form_string=paste("Surv(tstart, tend, endpt)~", paste(c(model_pred, CohtVarName, alr_cat_names), collapse="+"));
-cat("Cox Proportional Hazards Formula: ", full_form_string, "\n");
-full_surv_form=as.formula(full_form_string);
-full_coxph_fit=coxph(full_surv_form, data=merged_table);
-full_coxph_fit_summ=summary(full_coxph_fit);
-
+cat("\n\n");
 cat("Fitting Reduced Model: Covariates (only)\n");
 reduced_form_string=paste("Surv(tstart, tend, endpt)~", paste(c(model_pred, CohtVarName), collapse="+"));
 cat("Cox Proportional Hazards Formula: ", reduced_form_string, "\n");
@@ -1286,6 +1286,12 @@ reduced_surv_form=as.formula(reduced_form_string);
 reduced_coxph_fit=coxph(reduced_surv_form, data=merged_table);
 reduced_coxph_fit_summ=summary(reduced_coxph_fit);
 
+cat("Fitting Full Model: Covariates + ALR Categories\n");
+full_form_string=paste("Surv(tstart, tend, endpt)~", paste(c(model_pred, CohtVarName, alr_cat_names), collapse="+"));
+cat("Cox Proportional Hazards Formula: ", full_form_string, "\n");
+full_surv_form=as.formula(full_form_string);
+full_coxph_fit=coxph(full_surv_form, data=merged_table);
+full_coxph_fit_summ=summary(full_coxph_fit);
 
 full_coxph_res_text=capture.output(summary(full_coxph_fit));
 reduced_coxph_res_text=capture.output(summary(reduced_coxph_fit));
