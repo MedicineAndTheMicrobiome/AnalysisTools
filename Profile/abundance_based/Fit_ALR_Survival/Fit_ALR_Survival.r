@@ -145,6 +145,9 @@ if(length(opt$epoch_file)){
 	EpochFile=opt$epoch_file;
 }
 
+
+OutputRoot=paste(OutputRoot, ".p", NumALRPredictors, ".", CohtVarName, sep="");
+
 ###############################################################################
 
 input_param=capture.output({
@@ -1046,7 +1049,9 @@ for(coht_ix in uniq_coht_ids){
 			title=subj_ix);
 
 		if(plot_ix==1){
-			mtext(coht_ix, side=3, line=0, outer=T, font=2, cex=2);
+			mtext(
+				paste(CohtVarName, ": ", coht_ix, sep=""), 
+				side=3, line=0, outer=T, font=2, cex=2);
 		}
 
 		if(plot_ix==plots_per_page-1 || subj_ix==tail(subj_in_coht,1)){
@@ -1431,7 +1436,8 @@ for(coht_ix in uniq_coht_ids){
 			title=subj_ix, keep=signif_cat);
 
 		if(plot_ix==1){
-			mtext(coht_ix, side=3, line=0, outer=T, font=2, cex=2);
+			mtext(paste(CohtVarName, ": ", coht_ix, sep=""), 
+				side=3, line=0, outer=T, font=2, cex=2);
 		}
 
 		if(plot_ix==plots_per_page-1 || subj_ix==tail(subj_in_coht,1)){
