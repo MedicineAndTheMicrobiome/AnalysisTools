@@ -525,7 +525,7 @@ compute_and_plot_loess=function(tar_cat, subj_arr, grouping, grouping_name, offs
 
 }
 
-plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.05, samp_gly=T){
+plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.1, samp_gly=T){
         # Generate a barplot based on stats and groupings
         # Annotat barplot with signficance
 
@@ -569,7 +569,12 @@ plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.05, samp_gly=T){
                                 res=wilcox.test(stat[grps[[grpAnm]]], stat[grps[[grpBnm]]]);
                                 pval_mat[grpAnm, grpBnm]=res$p.value;
                                 if(res$p.value<=alpha){
-                                        signf=rbind(signf, c(grpAnm, grpBnm, res$p.value));
+					amean=mean(stat[grps[[grpAnm]]]);
+					bmean=mean(stat[grps[[grpBnm]]]);
+                                        signf=rbind(signf, c(
+						grpAnm, signif(amean, 4), 
+						grpBnm, signif(bmean, 4), 
+						signif(res$p.value,5)));
                                 }
                         }
                 }
@@ -783,6 +788,8 @@ plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.05, samp_gly=T){
 
                 }
 	}
+
+	return(signf);
 }
 
 
@@ -1102,7 +1109,7 @@ calc_longitudinal_stats=function(offset_rec, alr_cat_val){
 		}
 	}
 
-	l_time_weighted_average=function(x, y){
+	l_time_wght_avg=function(x, y){
 		npts=length(x);
 		if(npts>1){
 
@@ -1156,9 +1163,9 @@ calc_longitudinal_stats=function(offset_rec, alr_cat_val){
 	#       individual:	 
 
 	stat_name=c(
-		"min", "max", "median", "mean", "stdev", "range", "N",
+		"min", "max", "median", "mean", "stdev", "range",
 		"last_time", 
-		"volatility", "slope", "time_weighted_average",
+		"volatility", "slope", "time_wght_avg",
 		"time_at_max", "time_at_min",
 		"time_closest_to_start", "time_furthest_from_start"
 	);
@@ -1227,6 +1234,8 @@ for(stat_ix in stat_names){
 
 }
 
+stat_table=c();
+
 for(stat_ix in stat_names){
 
 	grps=offset_info[["Groups"]];
@@ -1252,11 +1261,17 @@ for(stat_ix in stat_names){
 	label_oma=F
 	plot_ix=0;
 	for(cat_ix in alr_cat_names){
-		plot_barplot_wsignf_annot(
+		signf=plot_barplot_wsignf_annot(
 			title=cat_ix,
 			long_stats[[stat_ix]][,cat_ix],
 			offset_info[["IndivByGrp"]]
 		);
+
+		
+		if(length(signf)){
+			stat_table=rbind(stat_table, c(stat_ix, cat_ix, signf));
+		}
+
 		plot_ix=plot_ix+1;
 		if(plot_ix==plots_pp){
 			mtext(stat_ix, outer=T, cex=1.5, col="blue", font=2);
@@ -1296,6 +1311,74 @@ plot_text(c(
 ));
 
 ###############################################################################
+
+sigchar=function(x){
+	if(x<=.0001){
+		return("***");
+	}else if(x<=.001){
+		return("**");
+	}else if(x<=.01){
+		return("*");
+	}else if(x<=.05){
+		return(".");
+	}else{
+		return("");
+	}
+}
+
+
+colnames(stat_table)=c(
+	"Statistic", 
+	"Category", 
+	"Gr1",
+	"mean(Gr1)",
+	"Gr2",
+	"mean(Gr2)",
+	"p-value");
+
+pvals=as.numeric(stat_table[,"p-value"]);
+signf=sapply(pvals, sigchar);
+stat_table=cbind(stat_table, signf);
+
+row_idx_str=paste(1:nrow(stat_table), ".", sep="");
+
+#------------------------------------------------
+
+stat_order_ix=order(stat_table[,"Statistic"]);
+out_stat_table=stat_table[stat_order_ix,];
+rownames(out_stat_table)=row_idx_str;
+out=capture.output(print(out_stat_table, quote=F));
+
+plot_text(c(
+	"By Statistic:",
+	"",
+	out));
+
+#------------------------------------------------
+
+stat_order_ix=order(stat_table[,"Category"]);
+out_stat_table=stat_table[stat_order_ix,];
+rownames(out_stat_table)=row_idx_str;
+out=capture.output(print(out_stat_table, quote=F));
+
+plot_text(c(
+	"By Category:",
+	"",
+	out));
+
+#------------------------------------------------
+
+stat_order_ix=order(pvals);
+out_stat_table=stat_table[stat_order_ix,];
+rownames(out_stat_table)=row_idx_str;
+out=capture.output(print(out_stat_table, quote=F));
+
+plot_text(c(
+	"By P-value:",
+	"",
+	out));
+
+#------------------------------------------------
 
 cat("Done.\n");
 #dev.off();
