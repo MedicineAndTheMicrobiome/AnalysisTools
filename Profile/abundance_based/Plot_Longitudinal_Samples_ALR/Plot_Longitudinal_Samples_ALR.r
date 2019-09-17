@@ -567,8 +567,14 @@ plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.1, samp_gly=T){
                                 grpBnm=group_names[grp_ix_B];
 
                                 res=wilcox.test(stat[grps[[grpAnm]]], stat[grps[[grpBnm]]]);
-                                pval_mat[grpAnm, grpBnm]=res$p.value;
-                                if(res$p.value<=alpha){
+
+				if(is.na(res$p.value)){
+					pval=1;
+				}else{
+					pval=res$p.value;
+				}
+                                pval_mat[grpAnm, grpBnm]=pval;
+                                if(pval<=alpha){
 					amean=mean(stat[grps[[grpAnm]]]);
 					bmean=mean(stat[grps[[grpBnm]]]);
                                         signf=rbind(signf, c(
@@ -1266,10 +1272,11 @@ for(stat_ix in stat_names){
 			long_stats[[stat_ix]][,cat_ix],
 			offset_info[["IndivByGrp"]]
 		);
-
 		
 		if(length(signf)){
-			stat_table=rbind(stat_table, c(stat_ix, cat_ix, signf));
+			num_sig_rows=nrow(signf);
+			newrows=cbind(rep(stat_ix, num_sig_rows), rep(cat_ix, num_sig_rows), signf);
+			stat_table=rbind(stat_table, newrows);
 		}
 
 		plot_ix=plot_ix+1;
@@ -1325,7 +1332,6 @@ sigchar=function(x){
 		return("");
 	}
 }
-
 
 colnames(stat_table)=c(
 	"Statistic", 
