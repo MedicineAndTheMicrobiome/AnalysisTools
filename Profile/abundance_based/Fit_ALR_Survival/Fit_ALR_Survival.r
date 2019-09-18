@@ -1580,16 +1580,24 @@ plot_alr_diff=function(alrA, alrB, nameA, nameB, title, y_range){
 	mean_alra=mean(alrA[,1]);
 	mean_alrb=mean(alrB[,1]);
 
-	tt_res=t.test(alrA[,1], alrB[,1]);
+	a_len=nrow(alrA);
+	b_len=nrow(alrB);
+
+	if(a_len==0 || b_len==0){
+		pval=1;
+	}else{
+		tt_res=t.test(alrA[,1], alrB[,1]);
+		pval=tt_res$p.value;
+	}
 
 	plot(0,0, type="n", xlim=c(0,1), ylim=y_range, main="",
 		xlab="", ylab="ALR", xaxt="n");
 
-	if(tt_res$p.value<.001){
+	if(pval<.001){
 		sig_char="***";
-	}else if(tt_res$p.value<.01){
+	}else if(pval<.01){
 		sig_char="**";
-	}else if(tt_res$p.value<.05){
+	}else if(pval<.05){
 		sig_char="*";
 	}else{
 		sig_char="";
@@ -1604,9 +1612,20 @@ plot_alr_diff=function(alrA, alrB, nameA, nameB, title, y_range){
 
 	mtext(text=paste(nameA, ": u=", round(mean_alra,4), sep=""), line=1.2, cex=.6);
 	mtext(text=paste(nameB, ": u=", round(mean_alrb,4), sep=""), line=.6, cex=.6);
-	mtext(text=paste("T-Test p-value: ", round(tt_res$p.value, 4), sep=""), line=0, cex=.6, font=3);
+	mtext(text=paste("T-Test p-value: ", round(pval, 4), sep=""), line=0, cex=.6, font=3);
 
-	axis(1, at=c(.25, .75), labels=c(nameA, nameB));
+	alablen=nchar(nameA);
+	if(alablen>13){
+		asize=13/alablen;
+	}
+
+	blablen=nchar(nameB);
+	if(blablen>13){
+		bsize=13/blablen;
+	}
+
+	axis(1, at=c(.25), labels=nameA, cex.axis=asize);
+	axis(1, at=c(.75), labels=nameB, cex.axis=bsize);
 
 	alrA_len=nrow(alrA);
 	alrB_len=nrow(alrB);
@@ -1728,8 +1747,16 @@ plot_epoch_comp=function(alr_a_table, alr_b_table, nameA, nameB,
 	for(i in 1:num_chts){
 		cc=chts[i];
 		c_ix=(shrd_a[,cht_colname]==cc);
-		tres=t.test(shrd_a[c_ix,alr_colname], shrd_b[c_ix,alr_colname], paired=T);
-		pval=tres$p.value;
+
+		alen=length(shrd_a[c_ix,alr_colname]);
+		blen=length(shrd_b[c_ix,alr_colname]);
+
+		if(alen==0 || blen==0){
+			pval=1;
+		}else{
+			tres=t.test(shrd_a[c_ix,alr_colname], shrd_b[c_ix,alr_colname], paired=T);
+			pval=tres$p.value;
+		}
 
 		sigchar="";
 		if(!is.na(pval)){
@@ -1809,10 +1836,12 @@ plot_epoch_comp=function(alr_a_table, alr_b_table, nameA, nameB,
 		if(!is.na(a_alr) && is.na(b_alr)){
 			#abline(v=a_alr, col=pt_col, lwd=.5);
 			points(a_alr, alr_ranges[1]-pad, pch=4, col=pt_col);
+			points(a_alr, alr_ranges[1]-pad, pch=1, col="black", cex=.15);
 			a_only=c(a_only, a_alr);
 		}else if(is.na(a_alr) && !is.na(b_alr)){
 			#abline(h=b_alr, col=pt_col, lwd=.5);
 			points(alr_ranges[1]-pad, b_alr, pch=4, col=pt_col);
+			points(alr_ranges[1]-pad, b_alr, pch=1, col="black", cex=.15);
 			b_only=c(b_only, b_alr);
 		}else{
 			points(a_alr, b_alr, pch=19, col=pt_col);
@@ -2088,6 +2117,7 @@ plot_epoch_comp=function(alr_a_table, alr_b_table, nameA, nameB,
 			ch_ix=(ch_id==excl_a[,cht_colname]);
 			excl=excl_a[ch_ix, alr_colname];
 			points(rep(xpos, length(excl)), excl, col=pt_col, pch=4);
+			points(rep(xpos, length(excl)), excl, col="black", pch=1, cex=.15);
 		}
 
 
@@ -2275,10 +2305,14 @@ plot_epochs_as_strip=function(avgs_list, epoch_names,
 
 		for(cht_id in cht_names){
 			ch_ix=ep_info[,cht_colname]==cht_id;
-			mean_matrix[ep_id, cht_id]=mean(ep_info[ch_ix, alr_colname]);
-			sd_matrix[ep_id, cht_id]=sd(ep_info[ch_ix, alr_colname]);
-			n_matrix[ep_id, cht_id]=length(ep_info[ch_ix, alr_colname]);
-			all_val=c(all_val, ep_info[ch_ix, alr_colname]);
+	
+			cht_ep_info=ep_info[ch_ix, alr_colname];
+			cht_ep_info=cht_ep_info[!is.na(cht_ep_info)];
+
+			mean_matrix[ep_id, cht_id]=mean(cht_ep_info);
+			sd_matrix[ep_id, cht_id]=sd(cht_ep_info);
+			n_matrix[ep_id, cht_id]=length(cht_ep_info);
+			all_val=c(all_val, cht_ep_info);
 		}
 		
 	}
@@ -2288,7 +2322,7 @@ plot_epochs_as_strip=function(avgs_list, epoch_names,
 	ub_matrix=mean_matrix+bnd_matrix;
 	lb_matrix=mean_matrix-bnd_matrix;
 	min_max=range(all_val);
-	bound_range=range(ub_matrix, lb_matrix);
+	bound_range=range(ub_matrix, lb_matrix, na.rm=T);
 
 	# Calculate auto spacing between cohorts in the same epoch
 	max_width=.75;
@@ -2298,7 +2332,7 @@ plot_epochs_as_strip=function(avgs_list, epoch_names,
 	par(mfrow=c(5,1));
 
 	# Points/lines only ##################################
-	plot(0,0, type="n", xlim=c(1-.5,num_epochs+.5), ylim=range(mean_matrix), 
+	plot(0,0, type="n", xlim=c(1-.5,num_epochs+.5), ylim=range(mean_matrix, na.rm=T), 
 		xlab="", ylab="ALR Transformed Abundance", xaxt="n");
 	title(main="Epoch Means by Cohort", line=0.25);
 	axis(side=1, at=1:num_epochs, labels=epoch_names);
