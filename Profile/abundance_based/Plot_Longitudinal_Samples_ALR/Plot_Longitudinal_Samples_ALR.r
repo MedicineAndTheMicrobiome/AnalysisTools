@@ -19,13 +19,16 @@ params=c(
 	"shorten_category_names", "x", 2, "character",
 
 	"offset_file", "t", 1, "character",
-	"output_root", "o", 1, "character"
+	"output_root", "o", 1, "character",
+
+	"alpha", "a", 2, "numeric"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
 script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
 
 NUM_TOP_PRED_CAT=20;
+ALPHA=0.1;
 
 usage = paste(
 	"\nUsage:\n", script_name, "\n",
@@ -37,6 +40,8 @@ usage = paste(
 	"\n",
 	"	-t <offset file>\n",
 	"	-o <output root>\n",
+	"\n",
+	"	[-a <p-value cutoff for non parametric longitudinal statistics, default=", ALPHA, ">]\n",
 	"\n",
 	"\n",	
 	"\n", sep="");
@@ -59,6 +64,7 @@ OutputRoot=opt$output_root;
 NumALRPredictors=NUM_TOP_PRED_CAT;
 UseRemaining=F;
 ShortenCategoryNames="";
+Alpha=ALPHA;
 
 if(length(opt$num_top_pred)){
 	NumALRPredictors=opt$num_top_pred;
@@ -70,6 +76,10 @@ if(length(opt$contains_remaining)){
 
 if(length(opt$shorten_category_names)){
 	ShortenCategoryNames=opt$shorten_category_names;
+}
+
+if(length(opt$alpha)){
+	Alpha=opt$alpha;
 }
 
 ###############################################################################
@@ -194,6 +204,7 @@ plot_text=function(strings){
 	par(mar=rep(0,4));
 
 	num_lines=length(strings);
+	cat("Num Plot Text lines:", num_lines, "\n");
 	
 	top=max(as.integer(num_lines), 52);
 
@@ -1170,7 +1181,7 @@ calc_longitudinal_stats=function(offset_rec, alr_cat_val){
 
 	stat_name=c(
 		"min", "max", "median", "mean", "stdev", "range",
-		"last_time", 
+		#"last_time", 
 		"volatility", "slope", "time_wght_avg",
 		"time_at_max", "time_at_min",
 		"time_closest_to_start", "time_furthest_from_start"
@@ -1270,7 +1281,8 @@ for(stat_ix in stat_names){
 		signf=plot_barplot_wsignf_annot(
 			title=cat_ix,
 			long_stats[[stat_ix]][,cat_ix],
-			offset_info[["IndivByGrp"]]
+			offset_info[["IndivByGrp"]],
+			alpha=Alpha
 		);
 		
 		if(length(signf)){
@@ -1348,6 +1360,8 @@ stat_table=cbind(stat_table, signf);
 
 row_idx_str=paste(1:nrow(stat_table), ".", sep="");
 
+
+options(width=1000);
 #------------------------------------------------
 
 stat_order_ix=order(stat_table[,"Statistic"]);
