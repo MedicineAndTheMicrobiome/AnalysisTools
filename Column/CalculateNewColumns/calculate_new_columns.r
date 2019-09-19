@@ -225,7 +225,8 @@ function.list=function(fun, arglist, na.rm=T){
 	return(out);
 }
 
-offsets_by_group=function(abs, grp){
+offsets_by_group=function(abs, ref, grp){
+# This function will calculate the offsets (min(c(abs,ref)) is 0) for abs.  
 	uniq_grps=unique(grp);
 	num_uniq_grp=length(uniq_grps);
 	num_rows=length(abs);
@@ -233,7 +234,11 @@ offsets_by_group=function(abs, grp){
 	for(i in 1:num_uniq_grp){
 		grp_ix=(grp==uniq_grps[i]);
 		grp_val=abs[grp_ix];
-		min_val=min(grp_val);
+		if(is.null(ref)){
+			min_val=min(grp_val, na.rm=T);
+		}else{
+			min_val=min(c(grp_val, ref[grp_ix]), na.rm=T);
+		}
 		out[grp_ix]=grp_val-min_val;
 	}
 	return(out);
