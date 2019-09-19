@@ -1358,6 +1358,7 @@ par(mfrow=c(number_cohts,2));
 par(mar=c(4,4,1,1));
 
 lowess_interval=min(diff(uniq_times))/2;
+time_range=range(uniq_times);
 
 for(coht_ix in uniq_coht_ids){
 	cat("Subsetting for: ", coht_ix, "\n");
@@ -1367,10 +1368,10 @@ for(coht_ix in uniq_coht_ids){
 	full_pred=predict(full_coxph_fit, sub_merged, type="expected");
 	reduced_pred=predict(reduced_coxph_fit, sub_merged, type="expected");
 
-	plot(sub_merged[,"tend"], exp(-full_pred), ylim=c(0,1), main="Full", ylab=coht_ix, xlab="");
+	plot(sub_merged[,"tend"], exp(-full_pred), xlim=time_range, ylim=c(0,1), main="Full", ylab=coht_ix, xlab="");
 	points(lowess(sub_merged[,"tend"], exp(-full_pred), delta=lowess_interval), type="l", col="blue");
 
-	plot(sub_merged[,"tend"], exp(-reduced_pred), ylim=c(0,1), main="Reduced", ylab="", xlab="");
+	plot(sub_merged[,"tend"], exp(-reduced_pred), xlim=time_range, ylim=c(0,1), main="Reduced", ylab="", xlab="");
 	points(lowess(sub_merged[,"tend"], exp(-reduced_pred), delta=lowess_interval), type="l", col="blue");
 
 	mtext("Survival Probability", outer=T, font=2, cex=1.2);
@@ -1385,10 +1386,10 @@ for(coht_ix in uniq_coht_ids){
 	full_pred=predict(full_coxph_fit, sub_merged, type="expected");
 	reduced_pred=predict(reduced_coxph_fit, sub_merged, type="expected");
 
-	plot(sub_merged[,"tend"], full_pred, main="Full", xlab="", ylab=coht_ix, ylim=c(0, 3));
+	plot(sub_merged[,"tend"], full_pred, main="Full", xlab="", ylab=coht_ix, xlim=time_range, ylim=c(0, 3));
 	points(lowess(sub_merged[,"tend"], full_pred, delta=lowess_interval), type="l", col="blue");
 
-	plot(sub_merged[,"tend"], reduced_pred, main="Reduced", xlab="", ylab="", ylim=c(0,3));
+	plot(sub_merged[,"tend"], reduced_pred, main="Reduced", xlab="", ylab="", xlim=time_range, ylim=c(0,3));
 	points(lowess(sub_merged[,"tend"], reduced_pred, delta=lowess_interval), type="l", col="blue");
 
 	mtext("Expected Number of Events", outer=T, font=2, cex=1.2);
