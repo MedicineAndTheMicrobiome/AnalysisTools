@@ -1728,6 +1728,7 @@ plot_epoch_comp=function(alr_a_table, alr_b_table, nameA, nameB,
 	subjects=sort(unique(rownames(alr_a_table), rownames(alr_b_table)));
 	num_subjects=length(subjects);
 
+	cat("Title: ", mtitle, "\n");
 	cat("Plotting: ", nameA, " vs. ", nameB, "\n", sep="");
 
 	shrd_sbj=intersect(rownames(alr_a_table), rownames(alr_b_table));
@@ -2271,7 +2272,8 @@ plot_epoch_comp=function(alr_a_table, alr_b_table, nameA, nameB,
 	#plot(0,0, type="n", xlab="", ylab="", main="", xaxt="n", yaxt="n", bty="n");
 	
 	par(mar=orig_mar);
-	mtext(mtitle, side=3, outer=T, font=2);
+	mtext(mtitle, side=3, outer=T, font=2, cex=1.1);
+	mtext(paste(nameA, " vs. ", nameB, sep=""), side=3, outer=T, font=1, cex=.85, line=-2);
 
 }
 
@@ -2330,6 +2332,11 @@ plot_epochs_as_strip=function(avgs_list, epoch_names,
 	spacing=diff(cht_x_offset);
 
 	par(mfrow=c(5,1));
+
+	# Legend #############################################
+	plot(0, type="n", ylim=c(0,1), xlim=c(0,1), xlab="", ylab="", xaxt="n", yaxt="n", main="", bty="n");
+	legend(0, 1, legend=cht_names, fill=cht_colors, bty="n", cex=1.5);
+	
 
 	# Points/lines only ##################################
 	plot(0,0, type="n", xlim=c(1-.5,num_epochs+.5), ylim=range(mean_matrix, na.rm=T), 
