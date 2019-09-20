@@ -199,26 +199,34 @@ additive_log_rato=function(ordered_matrix){
 	return(alr_struct);
 }
 
-plot_text=function(strings){
-	par(family="Courier");
-	par(mar=rep(0,4));
+plot_text=function(strings, maxlpp=100){
 
-	num_lines=length(strings);
-	cat("Num Plot Text lines:", num_lines, "\n");
-	
-	top=max(as.integer(num_lines), 52);
+	nlines=length(strings);
+	if(nlines>maxlpp){
+		plot_text(strings[1:maxlpp]);
+		plot_text(strings[(maxlpp+1):nlines]);
+	}else{
 
-	plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
-		xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
-		);
+		par(family="Courier");
+		par(mar=rep(0,4));
 
-	text_size=max(.01, min(.8, .8 - .003*(num_lines-52)));
-	#print(text_size);
+		num_lines=length(strings);
+		cat("Num Plot Text lines:", num_lines, "\n");
+		
+		top=maxlpp;
 
-	for(i in 1:num_lines){
-		#cat(strings[i], "\n", sep="");
-		strings[i]=gsub("\t", "", strings[i]);
-		text(0, top-i, strings[i], pos=4, cex=text_size); 
+		plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
+			xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
+			);
+
+		text_size=max(.01, min(.8, .8 - .003*(num_lines-52)));
+		#print(text_size);
+
+		for(i in 1:num_lines){
+			#cat(strings[i], "\n", sep="");
+			strings[i]=gsub("\t", "", strings[i]);
+			text(0, top-i, strings[i], pos=4, cex=text_size); 
+		}
 	}
 }
 
@@ -589,9 +597,9 @@ plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.1, samp_gly=T){
 					amean=mean(stat[grps[[grpAnm]]]);
 					bmean=mean(stat[grps[[grpBnm]]]);
                                         signf=rbind(signf, c(
-						grpAnm, signif(amean, 4), 
-						grpBnm, signif(bmean, 4), 
-						signif(res$p.value,5)));
+						grpAnm, signif(amean, 3), 
+						grpBnm, signif(bmean, 3), 
+						signif(res$p.value,3)));
                                 }
                         }
                 }
@@ -852,7 +860,10 @@ if(ShortenCategoryNames!=""){
 	short_names=character();
 	for(i in 1:length(full_names)){
 		short_names[i]=tail(splits[[i]], 1);
-		short_names[i]=gsub("_unclassified$", "_uncl", short_names[i]);
+		short_names[i]=gsub("_unclassified$", "_uc", short_names[i]);
+		short_names[i]=gsub("_group", "_gr", short_names[i]);
+		short_names[i]=gsub("\\[", "", short_names[i]);
+		short_names[i]=gsub("\\]", "", short_names[i]);
 	}
 	colnames(counts)=short_names;
 	cat("Names have been shortened.\n");
@@ -1047,15 +1058,26 @@ for(cat_ix in alr_cat_names){
 			axis(side=1);
 		}
 
-		# Label to row with group IDs
+		# Label top row with group IDs
 		if(rownum==1){
-			axis(side=3, at=mean(offset_ranges), labels=grp_ix, cex.axis=2, line=1, outer=T, tick=F);
+			if(nchar(grp_ix)>10){
+				cex_adj=20/nchar(grp_ix);
+			}else{
+				cex_adj=2;
+			}
+			axis(side=3, at=mean(offset_ranges), labels=grp_ix, cex.axis=cex_adj, 
+				line=1, outer=T, tick=F);
 		}
 
 		# Label left side with category and alr scale
 		if(colnum==1){
+			if(nchar(cat_ix)>14){
+				cex_adj=1.5*14/nchar(cat_ix);
+			}else{
+				cex_adj=1.5;
+			}
 			axis(side=2);
-			axis(side=2, at=mean(alr_range), labels=cat_ix, cex.axis=1.5, line=2, outer=T, tick=F);
+			axis(side=2, at=mean(alr_range), labels=cat_ix, cex.axis=cex_adj, line=2, outer=T, tick=F);
 		}
 
 		colnum=colnum+1;
@@ -1157,7 +1179,7 @@ calc_longitudinal_stats=function(offset_rec, alr_cat_val){
 		return(x[ix]);
 	}
 
-	l_time_closest_to_start=function(x, y){
+	l_time_closest_to_t0=function(x, y){
 		starty=y[1];
 		y=y[-1];
 		dist=abs(y-starty);
@@ -1166,13 +1188,44 @@ calc_longitudinal_stats=function(offset_rec, alr_cat_val){
 		return(x[min_ix+1]);
 	}
 
-	l_time_furthest_from_start=function(x, y){
+	l_time_furthest_fr_t0=function(x, y){
 		starty=y[1];
 		y=y[-1];
 		dist=abs(y-starty);
 		max_dist=max(dist);
 		max_ix=max(which(max_dist==dist));
 		return(x[max_ix+1]);
+	}
+
+	l_start_end_diff=function(x,y){
+		start=y[1];
+		end=tail(y,1);
+		return(end-start);
+	}
+
+	l_convexcave=function(x, y){
+		num_pts=length(x);
+		# y=mx+b
+		# b=y-mx
+
+		m=(y[num_pts]-y[1])/(x[num_pts]-x[1]);
+		b=y[1]-m*x[1];
+
+		lvl_y=numeric(num_pts);
+		for(i in 1:num_pts){
+			lvl_y[i]=y[i]-(m*x[i]+b);
+		}
+
+		cum_sum=0;
+		for(i in 1:(num_pts-1)){
+			dx=x[i+1]-x[i];
+			avgy=(lvl_y[i+1]+lvl_y[i])/2;
+			avg=dx*avgy/2;
+			cum_sum=cum_sum+avg;
+		}
+		vexcav=cum_sum/(x[num_pts]-x[1]);
+			
+		return(vexcav);
 	}
 
 	# statistic:
@@ -1184,7 +1237,9 @@ calc_longitudinal_stats=function(offset_rec, alr_cat_val){
 		#"last_time", 
 		"volatility", "slope", "time_wght_avg",
 		"time_at_max", "time_at_min",
-		"time_closest_to_start", "time_furthest_from_start"
+		"time_closest_to_t0", "time_furthest_fr_t0",
+		"start_end_diff",
+		"convexcave"
 	);
 
 	results=list();
@@ -1325,8 +1380,12 @@ plot_text(c(
 	"  time_weighted_average: average between two time points weighted by time between points",
 	"  time_at_max: time at value's maximum", 
 	"  time_at_min: time at value's minimum",
-	"  time_closest_to_start: time when value is closest to first time value", 
-	"  time_furthest_from_start: time when value is furthest from first time value"
+	"  time_closest_to_t0: time when value is closest to first time value", 
+	"  time_furthest_fr_t0: time when value is furthest from first time value",
+	"  start_end_diff: difference between first and last time points (end-start)",
+	"  convexcave: if curve is convex or conave, stat will be <0 or >0, respectively",
+	"  	A concave curve looks like a hill, a convex curve looks like a pit" 
+	
 ));
 
 ###############################################################################
@@ -1362,13 +1421,22 @@ row_idx_str=paste(1:nrow(stat_table), ".", sep="");
 
 
 options(width=1000);
+
 #------------------------------------------------
 
-stat_order_ix=order(stat_table[,"Statistic"]);
+# First order by pvalue, then do stable sort
+stat_order_ix=order(pvals);
+stat_table=stat_table[stat_order_ix,];
+print(stat_table);
+
+#------------------------------------------------
+
+stat_order_ix=order(stat_table[,"Statistic"], method="shell");
 out_stat_table=stat_table[stat_order_ix,];
 rownames(out_stat_table)=row_idx_str;
 out=capture.output(print(out_stat_table, quote=F));
 
+cat("Writing by statistic:\n");
 plot_text(c(
 	"By Statistic:",
 	"",
@@ -1376,11 +1444,12 @@ plot_text(c(
 
 #------------------------------------------------
 
-stat_order_ix=order(stat_table[,"Category"]);
+stat_order_ix=order(stat_table[,"Category"], method="shell");
 out_stat_table=stat_table[stat_order_ix,];
 rownames(out_stat_table)=row_idx_str;
 out=capture.output(print(out_stat_table, quote=F));
 
+cat("Writing by category:\n");
 plot_text(c(
 	"By Category:",
 	"",
@@ -1388,11 +1457,11 @@ plot_text(c(
 
 #------------------------------------------------
 
-stat_order_ix=order(pvals);
-out_stat_table=stat_table[stat_order_ix,];
+out_stat_table=stat_table;
 rownames(out_stat_table)=row_idx_str;
 out=capture.output(print(out_stat_table, quote=F));
 
+cat("Writing by p-value:\n");
 plot_text(c(
 	"By P-value:",
 	"",
