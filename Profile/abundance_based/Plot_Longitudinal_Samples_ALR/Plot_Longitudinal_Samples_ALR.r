@@ -21,7 +21,11 @@ params=c(
 	"offset_file", "t", 1, "character",
 	"output_root", "o", 1, "character",
 
-	"alpha", "a", 2, "numeric"
+	"alpha", "a", 2, "numeric",
+
+	"factor_file", "f", 2, "character",
+	"model_file", "m", 2, "character",
+	"subject_id_col", "i", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -43,6 +47,9 @@ usage = paste(
 	"\n",
 	"	[-a <p-value cutoff for non parametric longitudinal statistics, default=", ALPHA, ">]\n",
 	"\n",
+	"	[-f <factor file name>]\n",
+	"	[-m <model variable list>]\n",
+	"	[-i <subject identifier column name>]\n",
 	"\n",	
 	"\n", sep="");
 
@@ -65,6 +72,9 @@ NumALRPredictors=NUM_TOP_PRED_CAT;
 UseRemaining=F;
 ShortenCategoryNames="";
 Alpha=ALPHA;
+FactorFile="";
+ModelFile="";
+SubjectIdentifierColumn="";
 
 if(length(opt$num_top_pred)){
 	NumALRPredictors=opt$num_top_pred;
@@ -80,6 +90,18 @@ if(length(opt$shorten_category_names)){
 
 if(length(opt$alpha)){
 	Alpha=opt$alpha;
+}
+
+if(length(opt$factor_file)){
+	FactorFile=opt$factor_file;
+}
+
+if(length(opt$model_file)){
+	ModelFile=opt$model_file;
+}
+
+if(length(opt$subject_id_col)){
+	SubjectIdentifierColumn=opt$subject_id_col;
 }
 
 ###############################################################################
@@ -124,6 +146,21 @@ load_summary_file=function(fname){
 	
 	return(counts_mat);
 }
+
+load_factors=function(fname){
+        factors=data.frame(read.table(fname,  sep="\t", header=TRUE, row.names=1,
+                check.names=FALSE, comment.char=""));
+        factor_names=colnames(factors);
+
+        ignore_idx=grep("^IGNORE\\.", factor_names);
+
+        if(length(ignore_idx)!=0){
+                return(factors[-ignore_idx]);
+        }else{
+                return(factors);
+        }
+}
+
 
 normalize=function(counts){
 	totals=apply(counts, 1, sum);
@@ -199,6 +236,16 @@ additive_log_rato=function(ordered_matrix){
 	return(alr_struct);
 }
 
+title_page=function(string){
+
+	plot(0,0, xlim=c(-1,1), ylim=c(-1,1), type="n",  xaxt="n", yaxt="n",
+		xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
+		);
+
+	text(0,0, string, font=2, cex=2);
+
+}
+
 plot_text=function(strings, maxlpp=100){
 
 	nlines=length(strings);
@@ -219,7 +266,7 @@ plot_text=function(strings, maxlpp=100){
 			xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
 			);
 
-		text_size=max(.01, min(.8, .8 - .003*(num_lines-52)));
+		text_size=max(.01, min(.8, .8 - .003*(maxlpp-52)));
 		#print(text_size);
 
 		for(i in 1:num_lines){
@@ -229,6 +276,13 @@ plot_text=function(strings, maxlpp=100){
 		}
 	}
 }
+
+mask_matrix=function(val_mat, mask_mat, mask_thres, mask_val){
+        masked_matrix=val_mat;
+        masked_matrix[mask_mat>mask_thres]=mask_val;
+        return(masked_matrix);
+}
+
 
 paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_is_hot=T, deci_pts=4,
         label_zeros=T, counts=F, value.cex=1,
@@ -1193,7 +1247,7 @@ calc_longitudinal_stats=function(offset_rec, alr_cat_val){
 		y=y[-1];
 		dist=abs(y-starty);
 		max_dist=max(dist);
-		max_ix=max(which(max_dist==dist));
+		max_ix=min(which(max_dist==dist));
 		return(x[max_ix+1]);
 	}
 
@@ -1233,8 +1287,7 @@ calc_longitudinal_stats=function(offset_rec, alr_cat_val){
 	#       individual:	 
 
 	stat_name=c(
-		"min", "max", "median", "mean", "stdev", "range",
-		#"last_time", 
+		"min", "max", "range",
 		"volatility", "slope", "time_wght_avg",
 		"time_at_max", "time_at_min",
 		"time_closest_to_t0", "time_furthest_fr_t0",
@@ -1468,6 +1521,215 @@ plot_text(c(
 	out));
 
 #------------------------------------------------
+
+###############################################################################
+# Export stats table
+
+write.table(out_stat_table, file=paste(OutputRoot,".lngt_stats.comp.tsv", sep=""), quote=F, sep="\t");
+
+###############################################################################
+
+regress_longitudinal_stats=function(longit_stats, variable_list, factors){
+
+	subj_ids=rownames(factors);
+	stat_names=names(longit_stats);
+	num_variables=length(variable_list);
+
+	all_regr_res=list();
+
+	for(stat_ix in stat_names){
+		cat("Working on: ", stat_ix, "\n");
+		
+		stat_mat=longit_stats[[stat_ix]];
+		cat_names=colnames(stat_mat);
+		num_cat=length(cat_names);
+
+		pval_mat=matrix(NA, nrow=num_variables, ncol=num_cat);
+		rownames(pval_mat)=variable_list;
+		colnames(pval_mat)=cat_names;
+		coef_mat=pval_mat;
+
+		for(cat_ix  in cat_names){
+		
+			cat("Regression Analsis for: ", stat_ix, " of ", cat_ix, "\n", sep="");	
+
+			resp=stat_mat[subj_ids, cat_ix, drop=F];
+			
+			form_str=paste("resp ~ ", paste(variable_list, collapse=" + "), sep="");
+
+			cat("Model: ", form_str, "\n");
+
+			fit=lm(as.formula(form_str), data=factors);
+
+			sumfit=summary(fit);
+			
+			pval_mat[variable_list, cat_ix]=sumfit$coefficients[variable_list, "Pr(>|t|)"];
+			coef_mat[variable_list, cat_ix]=sumfit$coefficients[variable_list, "Estimate"];
+	
+		}
+
+		reg_res=list();
+		reg_res[["pval"]]=pval_mat;
+		reg_res[["coef"]]=coef_mat;
+
+		all_regr_res[[stat_ix]]=reg_res;
+	}
+
+	return(all_regr_res);
+}
+
+cat("Fitting regression models with longitudinal stats are response:\n");
+cat("Factor File: ", FactorFile, "\n");
+cat("Model File: ", ModelFile, "\n");
+
+if(FactorFile!=""){
+	factor_info=load_factors(FactorFile);	
+}
+
+if(ModelFile!=""){
+	model_var_list=load_list(ModelFile);
+	cat("Model variables in: ", ModelFile, "\n");
+};
+
+# collapse
+kept_fact=factor_info[,c(SubjectIdentifierColumn,model_var_list)];
+uniq_subj=sort(unique(factor_info[,SubjectIdentifierColumn]));
+
+num_subj=length(uniq_subj);
+num_model_var=length(model_var_list);
+
+#colpsd_factors=matrix(0, nrow=num_subj, ncol=num_model_var);
+#colnames(colpsd_factors)=model_var_list;
+#rownames(colpsd_factors)=uniq_subj;
+
+colpsd_factors=numeric();
+for(subj_id in uniq_subj){
+	ix=(subj_id==factor_info[,SubjectIdentifierColumn]);
+	first_found=min(which(ix));
+	val=factor_info[first_found, model_var_list];
+	colpsd_factors=rbind(colpsd_factors, val);
+}
+
+rownames(colpsd_factors)=uniq_subj;
+colnames(colpsd_factors)=model_var_list;
+
+regres=regress_longitudinal_stats(long_stats, model_var_list, colpsd_factors);
+options(width=200);
+print(regres);
+
+stat_names=names(regres);
+
+plot_heat_maps=function(coef_mat, pval_mat, title){
+
+	title_page(title);
+	
+	paint_matrix(
+		coef_mat, 
+		title=paste(title, ": Coefficients", sep=""));
+
+	min_coef=min(coef_mat);
+	max_coef=max(coef_mat);
+
+	paint_matrix(
+		pval_mat, 
+		title=paste(title, ": P-values", sep=""),
+		plot_min=0, plot_max=1, high_is_hot=F);
+	
+	coef_at_10=mask_matrix(coef_mat, pval_mat, 0.1, 0);
+	coef_at_05=mask_matrix(coef_mat, pval_mat, 0.05, 0);
+	coef_at_01=mask_matrix(coef_mat, pval_mat, 0.01, 0);
+
+	paint_matrix(
+		coef_at_10,
+		label_zeros=F, plot_min=min_coef, plot_max=max_coef,
+		title=paste(title, ": Coeff with p-val < 0.10", sep=""));
+	paint_matrix(
+		coef_at_05,
+		label_zeros=F, plot_min=min_coef, plot_max=max_coef,
+		title=paste(title, ": Coeff with p-val < 0.05", sep=""));
+	paint_matrix(
+		coef_at_01,
+		label_zeros=F, plot_min=min_coef, plot_max=max_coef,
+		title=paste(title, ": Coeff with p-val < 0.01", sep=""));
+	
+	
+	
+}
+
+for(stat_ix in stat_names){
+	plot_heat_maps(
+		regres[[stat_ix]][["coef"]],
+		regres[[stat_ix]][["pval"]],
+		stat_ix);
+}
+
+###############################################################################
+
+regr_stat_summary=character();
+
+for(stat_ix in stat_names){
+	coef_mat=regres[[stat_ix]][["coef"]];
+	pval_mat=regres[[stat_ix]][["pval"]];
+
+	predictors=rownames(coef_mat);
+	categories=colnames(coef_mat);
+
+	for(pred_ix in predictors){
+		for(cat_ix in categories){
+
+			pval=pval_mat[pred_ix, cat_ix];
+		
+			if(pval<=0.1){
+				coef=signif(coef_mat[pred_ix, cat_ix], 3);
+				pval=signif(pval_mat[pred_ix, cat_ix], 3);
+
+				row_info=c(
+					stat_ix, pred_ix, cat_ix, 
+					coef,
+					pval,
+					sigchar(pval)	
+				);
+
+				regr_stat_summary=rbind(regr_stat_summary, row_info);
+			}	
+		}
+
+	}
+}
+
+
+colnames(regr_stat_summary)=c("Statistic", "Predictor", "Category", "Coefficient", "P-value", "Significance");
+
+pval_numeric=as.numeric(regr_stat_summary[,"P-value"]);
+pval_ord_ix=order(pval_numeric);
+
+regr_stat_summary=regr_stat_summary[pval_ord_ix,];
+num_sigf_reg_assoc=nrow(regr_stat_summary);
+
+#---------------------------------------------------------------
+
+for(ordering in c("Statistic", "Predictor", "Category", "P-value")){
+
+	if(ordering=="P-value"){
+		out_stat_table=regr_stat_summary;
+	}else{
+		stat_order=order(regr_stat_summary[,ordering], method="shell");
+		out_stat_table=regr_stat_summary[stat_order,];
+	}
+	rownames(out_stat_table)=paste(1:num_sigf_reg_assoc, ".", sep="");
+
+	cat("Outputing by: ", ordering, "\n");
+
+	out=capture.output(print(out_stat_table, quote=F));
+
+	plot_text(c(
+		paste("By ", ordering, ":", sep=""), 
+		"",
+		out));
+
+}
+
+###############################################################################
 
 cat("Done.\n");
 #dev.off();
