@@ -22,6 +22,7 @@ params=c(
 	"time_varname", "t", 1, "character",
 	"subj_varname", "i", 1, "character",
 	"coht_varname", "c", 1, "character",
+	"exclude_coht_from_model", "C", 2, "logical",
 
 	"required_varname", "q", 2, "character",
 	"reference_levels", "r", 2, "character",
@@ -51,6 +52,7 @@ usage = paste(
 	"	-t <time point variable name (from time 0)>\n",
 	"	-i <subject/individual identifier variable name (i.e. grouping of individuals)>\n",
 	"	-c <cohort identifier variable name (e.g. control, treatment, disease)>\n",
+	"	[-C (exclude cohort identifier from survival model)]\n",
 
 	"	[-q <required list of variables (file name) to include after NA removal>]\n",
 	"	[-r <reference levels (file name) for Y's in factor file>]\n",
@@ -112,6 +114,7 @@ ReferenceLevelsFile="";
 ModelVarFile="";
 PvalCutoff=PVAL_CUTOFF;
 EpochFile="";
+ExcludeCohtIDFromModel=F;
 
 if(length(opt$num_top_pred)){
 	NumALRPredictors=opt$num_top_pred;
@@ -143,6 +146,10 @@ if(length(opt$pvalue_cutoff)){
 
 if(length(opt$epoch_file)){
 	EpochFile=opt$epoch_file;
+}
+
+if(length(opt$exclude_coht_from_model)){
+	ExcludeCohtIDFromModel=T;
 }
 
 
@@ -861,6 +868,29 @@ print(uniq_coht_ids);
 cat("\n");
 cat("Last Measured Time: ", last_measured_time, "\n");
 
+num_uniq_cohts=length(uniq_coht_ids);
+cht_colors=rainbow(num_uniq_cohts, start=0, end=2/3);
+names(cht_colors)=uniq_coht_ids;
+
+# Create subject to cohort and reverse mapping, and subject and cohort colormaps
+num_uniq_subj_ids=length(uniq_subj_ids);
+coht_to_sbj_list=list();
+subj_to_cht_map=character(num_uniq_subj_ids);
+names(subj_to_cht_map)=uniq_subj_ids;
+subj_colors=subj_to_cht_map;
+for(coht_ix in uniq_coht_ids){
+	coht_to_sbj_list[[coht_ix]] = unique(subj_ids[coht_ix == coht_ids]);
+	for(sbj in coht_to_sbj_list[[coht_ix]]){
+		subj_to_cht_map[sbj]=coht_ix;
+		subj_colors[sbj]=cht_colors[coht_ix];
+	}
+}
+
+#print(coht_to_sbj_list);
+#print(subj_to_cht_map);
+#print(cht_colors);
+#print(subj_colors);
+
 ###############################################################################
 
 cat("Building data structures for cohort/subject/times...\n");
@@ -1285,14 +1315,23 @@ if(length(degen_ix)){
 ###############################################################################
 cat("\n\n");
 cat("Fitting Reduced Model: Covariates (only)\n");
-reduced_form_string=paste("Surv(tstart, tend, endpt)~", paste(c(model_pred, CohtVarName), collapse="+"));
+if(ExcludeCohtIDFromModel){
+	reduced_form_string=paste("Surv(tstart, tend, endpt)~", paste(model_pred, collapse="+"));
+}else{
+	reduced_form_string=paste("Surv(tstart, tend, endpt)~", paste(c(model_pred, CohtVarName), collapse="+"));
+}
 cat("Cox Proportional Hazards Formula: ", reduced_form_string, "\n");
 reduced_surv_form=as.formula(reduced_form_string);
 reduced_coxph_fit=coxph(reduced_surv_form, data=merged_table);
 reduced_coxph_fit_summ=summary(reduced_coxph_fit);
 
 cat("Fitting Full Model: Covariates + ALR Categories\n");
-full_form_string=paste("Surv(tstart, tend, endpt)~", paste(c(model_pred, CohtVarName, alr_cat_names), collapse="+"));
+
+if(ExcludeCohtIDFromModel){
+	full_form_string=paste("Surv(tstart, tend, endpt)~", paste(c(model_pred, alr_cat_names), collapse="+"));
+}else{
+	full_form_string=paste("Surv(tstart, tend, endpt)~", paste(c(model_pred, CohtVarName, alr_cat_names), collapse="+"));
+}
 cat("Cox Proportional Hazards Formula: ", full_form_string, "\n");
 full_surv_form=as.formula(full_form_string);
 full_coxph_fit=coxph(full_surv_form, data=merged_table);
@@ -1459,7 +1498,7 @@ print(death_time_nona);
 num_death_time_nona=length(death_time_nona);
 death_time_95pi=quantile(death_time_nona, c(.025, .5, .975));
 
-jitter=rnorm(num_death_time_nona, 0, .1);
+jitter=rnorm(num_death_time_nona, 0, .2);
 
 par(mar=c(4,4,4,4));
 par(mfrow=c(2,2));
@@ -1469,7 +1508,7 @@ plot(0,0, type="n",
 abline(h=death_time_95pi[c(1,3)], col="blue", lty=2);
 abline(h=death_time_95pi[2], col="blue", lwd=2);
 axis(4, death_time_95pi, labels=c("95% LB", "Median", "95% UB"));
-points(jitter, death_time_nona);
+points(jitter, death_time_nona, col=subj_colors[names(death_time_nona)]);
 
 cat("Prediction Intervals around Death Times:\n");
 print(death_time_95pi);
@@ -1509,7 +1548,7 @@ for(i in 1:num_epochs){
 	text(i, mean(epochs[[ep_nm]]), labels=ep_nm, font=2, pos=4 );
 }
 
-points(jitter, death_time_nona);
+points(jitter, death_time_nona, col=subj_colors[names(death_time_nona)]);
 
 ###############################################################################
 
@@ -1616,11 +1655,13 @@ plot_alr_diff=function(alrA, alrB, nameA, nameB, title, y_range){
 	mtext(text=paste("T-Test p-value: ", round(pval, 4), sep=""), line=0, cex=.6, font=3);
 
 	alablen=nchar(nameA);
+	asize=1;
 	if(alablen>13){
 		asize=13/alablen;
 	}
 
 	blablen=nchar(nameB);
+	bsize=1;
 	if(blablen>13){
 		bsize=13/blablen;
 	}
@@ -2419,9 +2460,6 @@ plot(0,0, type="n", xlab="", ylab="", xaxt="n", yaxt="n", main="", bty="n");
 text(0,0, paste("Comparisons of Epochs\nby ", CohtVarName, "\nMatched Paired by ", SubjVarName, sep=""), 
 	font=2, cex=2);
 
-cht_colors=rainbow(num_uniq_cohts, start=0, end=2/3);
-names(cht_colors)=uniq_coht_ids;
-
 for(cat_ix in signif_cat){
 	cat("\nWorking on: ", cat_ix, "\n");	
 
@@ -2469,33 +2507,7 @@ for(cat_ix in signif_cat){
 
 }
 
-
-
-if(0){
-
-#pred_res=predict(coxph_fit, type="response", se.fit=T);
-#print(pred_res);
-lp_red=predict(coxph_fit,type="lp")
-exp_pred=predict(coxph_fit,type="expected")
-risk_pred=predict(coxph_fit,type="risk",se.fit=TRUE)
-terms_pred=predict(coxph_fit,type="terms",se.fit=TRUE)
-
-
-print(coxph_fit$y);
-print(coxph_fit$linear.predictors);
-
-print(summary(lp_red));
-
-print(summary(exp_pred));
-
-print(summary(risk_pred));
-
-print(summary(terms_pred));
-}
-
-
 ###############################################################################
-
 
 cat("Done.\n");
 #dev.off();
