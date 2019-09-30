@@ -259,8 +259,17 @@ plot_sample_distributions_by_individual=function(diversity_arr, div_type, normal
 
 	cat_names=colnames(normalized_mat);
 
-	events_range=4:ncol(offsets_mat);
-	num_event_types=length(events_range);;
+	num_offsets_mat_col=ncol(offsets_mat);
+
+	if(num_offsets_mat_col>3){
+		num_event_types=length(events_range);
+		events_range=4:num_offsets_mat_col;
+		cat("Events to Plot: ", paste(events_range, sep=", "), "\n");
+	}else{
+		num_event_types=0;
+		events_range=NULL;
+		cat("No events to Plot.\n");
+	}
 	
 	# Plot individual samples
 	for(i in 1:num_groups){
@@ -278,9 +287,10 @@ plot_sample_distributions_by_individual=function(diversity_arr, div_type, normal
 		offset_info=offsets_mat[grp_subset,];
 		sort_ix=order(offset_info[,"Offsets"]);
 		offset_info=offset_info[sort_ix,];
-		events_mat=offset_info[, events_range, drop=F];
 
-		#print(offset_info);
+		if(!is.null(events_range)){
+			events_mat=offset_info[, events_range, drop=F];
+		}
 
 		###############################################################
 
@@ -309,8 +319,11 @@ plot_sample_distributions_by_individual=function(diversity_arr, div_type, normal
 		points(offset_info[,"Offsets"], subset_diversity, type="b", pch=16, cex=.5, lwd=.1);
 
 		# Mark Events
-		for(e_ix in 1:num_event_types){
-			plot_event(offset_info[,"Offsets"], subset_diversity+char_height*e_ix, events_mat[, e_ix]);
+		if(num_event_types>0){
+			for(e_ix in 1:num_event_types){
+				plot_event(offset_info[,"Offsets"], 
+					subset_diversity+char_height*e_ix, events_mat[, e_ix]);
+			}
 		}
 
 		###############################################################
@@ -338,9 +351,11 @@ plot_sample_distributions_by_individual=function(diversity_arr, div_type, normal
 		}
 
 		# Mark Events
-		for(e_ix in 1:num_event_types){
-			plot_event(offset_info[subset_samples, "Offsets"], 
-				rep(1.075+(e_ix-1)*char_height, num_members), events_mat[, e_ix]);
+		if(num_event_types>0){
+			for(e_ix in 1:num_event_types){
+				plot_event(offset_info[subset_samples, "Offsets"], 
+					rep(1.075+(e_ix-1)*char_height, num_members), events_mat[, e_ix]);
+			}
 		}
 
 		###############################################################
@@ -394,8 +409,16 @@ plot_sample_diversity_by_group=function(diversity_arr, div_type, normalized_mat,
 	# Set palette for individuals
 	palette(ind_colors);
 
-	events_range=4:ncol(offsets_mat);
-	num_event_types=length(events_range);
+	num_offsets_mat_col=ncol(offsets_mat);
+	if(num_offsets_mat_col>3){
+		num_event_types=length(events_range);
+		events_range=4:num_offsets_mat_col;
+		cat("Events to Plot: ", paste(events_range, sep=", "), "\n");
+	}else{
+		num_event_types=0;
+		events_range=NULL;
+		cat("No events to Plot.\n");
+	}
 
 	for(g in 1:num_cohorts){
 
@@ -405,8 +428,11 @@ plot_sample_diversity_by_group=function(diversity_arr, div_type, normalized_mat,
 			 xlim=offset_ranges, ylim=diversity_ranges);
 
 		coh_offset_mat=offsets_mat[ offsets_mat[,"Group ID"]==cohorts[g], ];
-		events_mat=coh_offset_mat[, events_range, drop=F];
-		#print(coh_offset_mat);
+
+
+		if(num_event_types>0){
+			events_mat=coh_offset_mat[, events_range, drop=F];
+		}
 
 		# Get Unique Inidividuals
 		indivs=sort(unique(coh_offset_mat[,"Indiv ID"]));
@@ -736,8 +762,17 @@ plot_sample_distributions_by_group=function(normalized_mat, offsets_mat, cat_col
 	cat("Minimum period: ", min_period, "\n");
 
 	palette(cat_colors);
-	events_range=4:ncol(offsets_mat);
-	num_event_types=length(events_range);
+
+	num_offsets_mat_col=ncol(offsets_mat);
+	if(num_offsets_mat_col>3){
+		num_event_types=length(events_range);
+		events_range=4:num_offsets_mat_col;
+		cat("Events to Plot: ", paste(events_range, sep=", "), "\n");
+	}else{
+		num_event_types=0;
+		events_range=NULL;
+		cat("No events to Plot.\n");
+	}
 
 	# Set up plots per page
 	def_par=par(no.readonly=T);
@@ -805,9 +840,11 @@ plot_sample_distributions_by_group=function(normalized_mat, offsets_mat, cat_col
 			}
 
 			# Mark Events
-			for(e_ix in 1:num_event_types){
-				plot_event(offset_info[subset_samples, "Offsets"], 
-					rep(1.15+(e_ix-1)*char_height, num_timepts), events_mat[, e_ix]);
+			if(num_event_types>0){
+				for(e_ix in 1:num_event_types){
+					plot_event(offset_info[subset_samples, "Offsets"], 
+						rep(1.15+(e_ix-1)*char_height, num_timepts), events_mat[, e_ix]);
+				}
 			}
 		}
 
