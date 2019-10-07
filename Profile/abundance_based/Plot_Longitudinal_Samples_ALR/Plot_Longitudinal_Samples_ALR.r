@@ -1537,6 +1537,14 @@ regress_longitudinal_stats=function(longit_stats, variable_list, factors){
 
 	all_regr_res=list();
 
+	# Get coefficient names from model matrix
+	resp=rep(0, length(subj_ids));
+	form_str=paste("resp ~ ", paste(variable_list, collapse=" + "), sep="");
+	mm=model.matrix(as.formula(form_str), data=factors);
+	coef_names=setdiff(colnames(mm), "(Intercept)");
+	cat("Coefficient Names:\n");
+	print(coef_names);
+
 	for(stat_ix in stat_names){
 		cat("Working on: ", stat_ix, "\n");
 		
@@ -1544,10 +1552,11 @@ regress_longitudinal_stats=function(longit_stats, variable_list, factors){
 		cat_names=colnames(stat_mat);
 		num_cat=length(cat_names);
 
-		pval_mat=matrix(NA, nrow=num_variables, ncol=num_cat);
-		rownames(pval_mat)=variable_list;
+		pval_mat=matrix(NA, nrow=length(coef_names), ncol=num_cat);
+		rownames(pval_mat)=coef_names;
 		colnames(pval_mat)=cat_names;
 		coef_mat=pval_mat;
+
 
 		for(cat_ix  in cat_names){
 		
@@ -1560,11 +1569,11 @@ regress_longitudinal_stats=function(longit_stats, variable_list, factors){
 			cat("Model: ", form_str, "\n");
 
 			fit=lm(as.formula(form_str), data=factors);
-
 			sumfit=summary(fit);
 			
-			pval_mat[variable_list, cat_ix]=sumfit$coefficients[variable_list, "Pr(>|t|)"];
-			coef_mat[variable_list, cat_ix]=sumfit$coefficients[variable_list, "Estimate"];
+			kept=intersect(coef_names, rownames(sumfit$coefficients));
+			pval_mat[kept, cat_ix]=sumfit$coefficients[kept, "Pr(>|t|)"];
+			coef_mat[kept, cat_ix]=sumfit$coefficients[kept, "Estimate"];
 	
 		}
 
@@ -1578,7 +1587,8 @@ regress_longitudinal_stats=function(longit_stats, variable_list, factors){
 	return(all_regr_res);
 }
 
-cat("Fitting regression models with longitudinal stats are response:\n");
+cat("--------------------------------------------------------------------------------\n");
+cat("Fitting regression models with longitudinal stats as response:\n");
 cat("Factor File: ", FactorFile, "\n");
 cat("Model File: ", ModelFile, "\n");
 
@@ -1591,6 +1601,14 @@ if(ModelFile!=""){
 	cat("Model variables in: ", ModelFile, "\n");
 };
 
+if(FactorFile=="" || ModelFile=="" || SubjectIdentifierColumn==""){
+	cat("Error: Incomplete specification for model/factor regression analysis.\n");
+	cat("Factor File: ", FactorFile, "\n");
+	cat("Model File:  ", ModelFile, "\n");
+	cat("Subject Identifier Column Name: ", ModelFile, "\n");
+	quit(-1);
+}
+
 # collapse
 kept_fact=factor_info[,c(SubjectIdentifierColumn,model_var_list)];
 uniq_subj=sort(unique(factor_info[,SubjectIdentifierColumn]));
@@ -1598,11 +1616,9 @@ uniq_subj=sort(unique(factor_info[,SubjectIdentifierColumn]));
 num_subj=length(uniq_subj);
 num_model_var=length(model_var_list);
 
-#colpsd_factors=matrix(0, nrow=num_subj, ncol=num_model_var);
-#colnames(colpsd_factors)=model_var_list;
-#rownames(colpsd_factors)=uniq_subj;
-
+# Collapse factor info and only keep those with offset info
 colpsd_factors=numeric();
+uniq_subj=intersect(uniq_subj, offset_info[["Individuals"]]);
 for(subj_id in uniq_subj){
 	ix=(subj_id==factor_info[,SubjectIdentifierColumn]);
 	first_found=min(which(ix));
@@ -1679,7 +1695,7 @@ for(stat_ix in stat_names){
 
 			pval=pval_mat[pred_ix, cat_ix];
 		
-			if(pval<=0.1){
+			if(!is.na(pval) && pval<=0.1){
 				coef=signif(coef_mat[pred_ix, cat_ix], 3);
 				pval=signif(pval_mat[pred_ix, cat_ix], 3);
 
