@@ -86,8 +86,18 @@ read_file_list=function(filelist_fname){
 	if(filelist_dim[2]==1){
 		cat("Sample names not specified.\n");
 		clean_filelist=gsub("\\.fastq", "", filelist);
+
+		num_files=length(clean_filelist);
+		for(fix in 1:num_files){
+			clean_filelist[fix]=tail(strsplit(clean_filelist[fix], "/")[[1]],1);
+		}
+
 		filelist=cbind(clean_filelist, filelist);
+
+		
 	}
+
+	
 	
 	out_list=matrix(filelist[,2], ncol=1);
 	rownames(out_list)=filelist[,1];
@@ -371,7 +381,15 @@ analyze_qv_list=function(qvint_list, max_len, name){
 
 #------------------------------------------------------------------------------
 
-plot_reads_per_sample=function(num_reads, sample_names, label.cex=1){
+plot_reads_per_sample=function(num_reads, sample_names, label.cex=1, sorted=F){
+
+	if(sorted){
+		samp_ix=order(num_reads, decreasing=T);
+		num_reads=num_reads[samp_ix];
+		sample_names=sample_names[samp_ix];
+	}
+
+	par(lwd=.05);
 	barplot(num_reads, names.arg=sample_names, las=2, col="white",
 		ylab="Number of Reads",
 		main="Reads per Sample",
@@ -379,7 +397,7 @@ plot_reads_per_sample=function(num_reads, sample_names, label.cex=1){
 	);
 }
 
-plot_qv=function(qv_ci, sample_names, label.cex=1){
+plot_qv=function(qv_ci, sample_names, label.cex=1, sorted=F){
 
 	max_qv=max(qv_ci, na.rm=T);
 
@@ -394,6 +412,14 @@ plot_qv=function(qv_ci, sample_names, label.cex=1){
 		xlim=c(0, (num_samples+.25)*spacing), ylim=c(0, max_qv*1.2),
 		xaxt="n", yaxt="n", xlab="", ylab="");
 
+	if(sorted){
+		samp_ix=order(qv_ci[,2], decreasing=T);
+		qv_ci=qv_ci[samp_ix,];
+		sample_names=sample_names[samp_ix];
+	}
+
+
+	par(lwd=.05);
 	barplot(qv_ci[,2], names.arg=sample_names, las=2, col="white",
 		ylab="Median QV",
 		main="Median Quality Values",
@@ -405,7 +431,7 @@ plot_qv=function(qv_ci, sample_names, label.cex=1){
 
 }
 
-plot_len=function(len_ci, sample_names, label.cex=1){
+plot_len=function(len_ci, sample_names, label.cex=1, sorted=F){
 	max_len=max(len_ci, na.rm=T);
 
 	num_samples=nrow(len_ci);
@@ -418,6 +444,13 @@ plot_len=function(len_ci, sample_names, label.cex=1){
 		xlim=c(0, (num_samples+.25)*spacing), ylim=c(0, max_len*1.2),
 		xaxt="n", yaxt="n", xlab="", ylab="");
 
+	if(sorted){
+		samp_ix=order(len_ci[,2]);
+		len_ci=len_ci[samp_ix,];
+		sample_names=sample_names[samp_ix];
+	}
+
+	par(lwd=.05);
 	barplot(len_ci[,2], names.arg=sample_names, las=2, col="white",
 		ylab="Length (bps)",
 		main="Median Lengths",
@@ -439,9 +472,51 @@ plot_qnorm=function(values, sample_names, data_name){
 	text(pts$x, pts$y, sample_names, col="black", cex=.5, pos=1);
 }
 
+plot_cdf_and_thresholds=function(num_readspersamp){
+
+	ord_ix=order(num_readspersamp, decreasing=T);
+	num_readspersamp=num_readspersamp[ord_ix];
+	num_samps=length(num_readspersamp);
+
+	key_counts=c(500, 1000, 3000, 10000, 50000);
+	key_colors=c("red", "orange", "green", "blue", "purple");
+	num_key_counts=length(key_counts);
+	log_kc=log10(key_counts);
+	
+	plot_ymax=max(log_kc, log10(num_readspersamp));
+
+	par(mfrow=c(2,1));
+
+	# Plot CDF
+	par(mar=c(5,5,5,7));
+	plot(100*((1:num_samps)/num_samps), log10(num_readspersamp),
+		xlab="Percent of Samples",
+		ylab="Log10(Reads/Sample)",
+		ylim=c(0, plot_ymax),
+		type="l",
+		);
+
+	abline(h=log_kc, col="blue", lwd=.5, lty="dotted");
+	axis(side=4, at=log_kc, labels=key_counts, cex.axis=.7, las=2);
+
+	# Plot a few key bar plots
+	perc=numeric(num_key_counts);
+	for(i in 1:num_key_counts){
+		perc[i]=100*sum(num_readspersamp>key_counts[i])/num_samps;
+		abline(v=perc[i], col=key_colors[i]);
+	}
+
+	bmids=barplot(perc, names.arg=paste(">",key_counts, "r/s"), 
+		ylim=c(0,105), col=key_colors,
+		xlab="Reads/Sample Thresholds", ylab="Percent Meeting/Exceeding Threshold");
+	text(bmids, perc, paste(round(perc, 1), "%", sep=""), pos=3, cex=1);
+	abline(h=100, col="grey", lty="dotted");
+
+}
+
 ###############################################################################
 
-pdf(paste(OutputFilenameRoot, ".qv.pdf", sep=""), height=11, width=8.5);
+pdf(paste(OutputFilenameRoot, ".indiv.qv.pdf", sep=""), height=11, width=8.5);
 
 file_list=read_file_list(InputFileList);
 sample_names=rownames(file_list);
@@ -480,6 +555,12 @@ for(i in 1:num_samples){
 	cat("\n");
 }
 
+dev.off();
+
+###############################################################################
+
+pdf(paste(OutputFilenameRoot, ".overall.qv.pdf", sep=""), height=11, width=8.5);
+
 #print(num_reads_per_sample);
 #print(qv_ci)
 #print(len_ci);
@@ -491,7 +572,7 @@ fat_bottom=def_mar;
 
 fat_bottom[1]=fat_bottom[1]*max(1, max_samp_name_len/7);
 if(fat_bottom[1]>10){
-	label.cex=(cex=10/fat_bottom[1]);
+	label.cex=(cex=9/fat_bottom[1]);
 	fat_bottom[1]=10;
 }else{
 	label.cex=1;
@@ -499,9 +580,21 @@ if(fat_bottom[1]>10){
 
 par(mar=fat_bottom);
 
+# Plot by name order
 plot_reads_per_sample(num_reads_per_sample, sample_names, label.cex=label.cex);
 plot_qv(qv_ci, sample_names, label.cex=label.cex);
 plot_len(len_ci, sample_names, label.cex=label.cex);
+mtext(OutputFilenameRoot, side=3, outer=T, cex=2);
+
+#-------------------------------------------------------------------------------
+
+# Plot sorted by metric
+plot_reads_per_sample(num_reads_per_sample, sample_names, label.cex=label.cex, sorted=T);
+plot_qv(qv_ci, sample_names, label.cex=label.cex, sorted=T);
+plot_len(len_ci, sample_names, label.cex=label.cex, sorted=T);
+mtext(OutputFilenameRoot, side=3, outer=T, cex=2);
+
+#-------------------------------------------------------------------------------
 
 # Generate QQ plot for median read lengths
 par(mfrow=c(3,1));
@@ -509,7 +602,9 @@ plot_qnorm(num_reads_per_sample, sample_names, "Reads/Sample");
 plot_qnorm(qv_ci[,2], sample_names, "Read QVs");
 plot_qnorm(len_ci[,2], sample_names, "Read Lengths");
 
-mtext("Across All Samples", side=3, outer=T, cex=2);
+mtext(OutputFilenameRoot, side=3, outer=T, cex=2);
+
+#-------------------------------------------------------------------------------
 
 # Generate histograms across samples
 #print(num_reads_per_sample);
@@ -528,6 +623,12 @@ hist(qv_ci[,2], main="Distribution of Median Sample QVs", xlab="Median Sample QV
 #print(len_ci);
 hist(len_ci[,2], main="Distribution of Median Sample Lengths", xlab="Median Sample Lengths", ylab="Counts");
 
+mtext(OutputFilenameRoot, side=3, outer=T, cex=2);
+
+#-------------------------------------------------------------------------------
+
+plot_cdf_and_thresholds(num_reads_per_sample);
+mtext(OutputFilenameRoot, side=3, outer=T, cex=2);
 
 ###############################################################################
 # Output Spreadsheets
