@@ -511,6 +511,7 @@ plot_cdf_and_thresholds=function(num_readspersamp){
 		axis(side=3, at=num_abv_keycts[i]/num_samps*100, labels=num_abv_keycts[i], cex.axis=.7, las=2);
 	}
 
+	par(mar=c(5,5,5,7));
 	bmids=barplot(perc, names.arg=paste(">",key_counts, sep=""), 
 		ylim=c(0,105), col=key_colors,
 		xlab="Reads/Sample Thresholds", ylab="Percent Meeting/Exceeding Threshold");
