@@ -488,11 +488,13 @@ plot_cdf_and_thresholds=function(num_readspersamp){
 	par(mfrow=c(2,1));
 
 	# Plot CDF
-	par(mar=c(5,5,5,7));
+	par(mar=c(5,5,10,7));
 	plot(100*((1:num_samps)/num_samps), log10(num_readspersamp),
 		xlab="Percent of Samples",
 		ylab="Log10(Reads/Sample)",
+		main=paste("Total Samples: ", num_samps, sep=""),
 		ylim=c(0, plot_ymax),
+		xlim=c(0, 100),
 		type="l",
 		);
 
@@ -501,16 +503,21 @@ plot_cdf_and_thresholds=function(num_readspersamp){
 
 	# Plot a few key bar plots
 	perc=numeric(num_key_counts);
+	num_abv_keycts=numeric(num_key_counts);
 	for(i in 1:num_key_counts){
-		perc[i]=round(100*sum(num_readspersamp>key_counts[i])/num_samps, 2);
+		num_abv_keycts[i]=sum(num_readspersamp>key_counts[i])
+		perc[i]=round(100*num_abv_keycts[i]/num_samps, 2);
 		abline(v=perc[i], col=key_colors[i]);
+		axis(side=3, at=num_abv_keycts[i]/num_samps*100, labels=num_abv_keycts[i], cex.axis=.7, las=2);
 	}
 
-	bmids=barplot(perc, names.arg=paste(">",key_counts, "r/s"), 
+	bmids=barplot(perc, names.arg=paste(">",key_counts, sep=""), 
 		ylim=c(0,105), col=key_colors,
 		xlab="Reads/Sample Thresholds", ylab="Percent Meeting/Exceeding Threshold");
-	text(bmids, perc, paste(round(perc, 1), "%", sep=""), pos=3, cex=1);
 	abline(h=100, col="grey", lty="dotted");
+	text(bmids, perc, 
+		paste(num_abv_keycts, " rds\n",round(perc, 1), "%", sep=""), 
+		pos=3, cex=.75, font=2);
 
 	names(perc)=key_counts;
 
