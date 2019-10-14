@@ -478,8 +478,8 @@ plot_cdf_and_thresholds=function(num_readspersamp){
 	num_readspersamp=num_readspersamp[ord_ix];
 	num_samps=length(num_readspersamp);
 
-	key_counts=c(500, 1000, 3000, 10000, 50000);
-	key_colors=c("red", "orange", "green", "blue", "purple");
+	key_counts=c(500, 1000, 3000, 10000, 50000, 100000);
+	key_colors=c("red", "orange", "green", "blue", "purple", "pink");
 	num_key_counts=length(key_counts);
 	log_kc=log10(key_counts);
 	
@@ -502,7 +502,7 @@ plot_cdf_and_thresholds=function(num_readspersamp){
 	# Plot a few key bar plots
 	perc=numeric(num_key_counts);
 	for(i in 1:num_key_counts){
-		perc[i]=100*sum(num_readspersamp>key_counts[i])/num_samps;
+		perc[i]=round(100*sum(num_readspersamp>key_counts[i])/num_samps, 2);
 		abline(v=perc[i], col=key_colors[i]);
 	}
 
@@ -511,6 +511,10 @@ plot_cdf_and_thresholds=function(num_readspersamp){
 		xlab="Reads/Sample Thresholds", ylab="Percent Meeting/Exceeding Threshold");
 	text(bmids, perc, paste(round(perc, 1), "%", sep=""), pos=3, cex=1);
 	abline(h=100, col="grey", lty="dotted");
+
+	names(perc)=key_counts;
+
+	return(perc);
 
 }
 
@@ -627,8 +631,13 @@ mtext(OutputFilenameRoot, side=3, outer=T, cex=2);
 
 #-------------------------------------------------------------------------------
 
-plot_cdf_and_thresholds(num_reads_per_sample);
+key_cts=plot_cdf_and_thresholds(num_reads_per_sample);
 mtext(OutputFilenameRoot, side=3, outer=T, cex=2);
+
+out_tab=t(c(OutputFilenameRoot, key_cts));
+
+write.table(out_tab, paste(OutputFilenameRoot, ".key_counts.tsv", sep=""), quote=F, 
+	sep="\t", row.names=F);
 
 ###############################################################################
 # Output Spreadsheets
