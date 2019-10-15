@@ -17,11 +17,13 @@ script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
 usage = paste (
 	"\nUsage:\n\n", script_name,
 	"\n",
-	"	-l <input fastq file list>\n",
+	"	-l <input fasta file list>\n",
 	"	-o <output filename root>\n",
 	"\n",	
 	"This script will read in a list of fasta files\n",
-	"and generate statistical plots on run quality.\n",
+	"and generate statistical plots on run quality\n",
+	"based on sequencing depth.  For example, the list of the\n",
+	"fasta files can be from the same sequencing run.\n",
 	"\n");
 
 if(
