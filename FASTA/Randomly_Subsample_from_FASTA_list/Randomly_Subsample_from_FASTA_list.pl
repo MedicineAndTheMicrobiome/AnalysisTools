@@ -134,6 +134,12 @@ sub select_samples{
 
 	my @selected_arr;
 
+	# If num samples requested is less than half
+	# of what is available, randomly pick which samples to keep	
+	#
+	# If num samples needed is more than half of 
+	# of the available, randomly pick what to remove
+
 	if(1.0*$num_samples/$num_records < .5){
 
 		for(my $i=0; $i<$num_records; $i++){
@@ -192,6 +198,8 @@ sub process_record{
 	my $fh = shift;
 
 	if(!defined($select_arr) || ${$select_arr}[$offset]){
+		# Output record if the selection array is defined
+		# or it the record has been selected
 
 		print $fh "$defline\n";
 
