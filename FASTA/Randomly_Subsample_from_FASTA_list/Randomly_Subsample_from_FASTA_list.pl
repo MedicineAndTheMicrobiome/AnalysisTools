@@ -197,6 +197,11 @@ sub process_record{
 	my $select_arr= shift;
 	my $fh = shift;
 
+	if($defline eq "" && $sequence eq ""){
+		print STDERR "Empty Record.\n";
+		return;
+	}
+
 	if(!defined($select_arr) || ${$select_arr}[$offset]){
 		# Output record if the selection array is defined
 		# or it the record has been selected
