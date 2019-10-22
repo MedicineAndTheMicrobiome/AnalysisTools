@@ -1083,6 +1083,13 @@ write.table(t(coeff_matrix), file=paste(OutputRoot, ".div_as_resp.coefs.tsv", se
 
 ##############################################################################
 
+# Write diversity matrix to file
+write.table(div_mat, file=paste(OutputRoot, ".diversity_indices.tsv", sep=""),
+	sep="\t", quote=F, col.names=NA, row.names=T);
+
+
+##############################################################################
+
 cat("Done.\n");
 print(warnings());
 q(status=0);
