@@ -1152,6 +1152,8 @@ uv_anova_pval_mat=matrix(NA, nrow=length(anova_factor_names), ncol=num_cat_to_an
 uv_model_fit_pval_mat=matrix(NA, ncol=num_cat_to_analyze, nrow=1,
 		dimnames=list("p-value", sorted_taxa_names[1:num_cat_to_analyze]));
 
+alr_mean=numeric(num_cat_to_analyze);
+alr_stderr=numeric(num_cat_to_analyze);
 
 # Store R^2 for each taxa
 rsqrd=numeric(num_cat_to_analyze);
@@ -1170,6 +1172,9 @@ for(var_ix in 1:num_cat_to_analyze){
 	ALR_Abundance=transformed[,var_ix];
 	model_string= paste("ALR_Abundance ~", model_pred_str);
 	cat("Fitting: ", model_string, "\n");
+
+	alr_mean[var_ix]=mean(ALR_Abundance);
+	alr_stderr[var_ix]=sd(ALR_Abundance)/sqrt(length(ALR_Abundance));
 
 	# Compute Univariate fit
 	uv_fit[[var_ix]]=lm(as.formula(model_string), data=factors);
@@ -1468,6 +1473,10 @@ for(var_ix in 1:num_cat_to_analyze){
 	 
 	# Build page contents
 	summary_txt=c(
+		"Intercept-only Fit:",
+		paste("  ALR Mean: ", round(alr_mean[var_ix], 4)),
+		paste("  ALR Standard Error: ", round(alr_stderr[var_ix], 4)),
+		"",
 		"Univariate Regression Coefficients for: ", 
 		paste("     ", sorted_taxa_names[var_ix], sep=""),
 		"",
