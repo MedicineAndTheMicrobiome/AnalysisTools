@@ -204,7 +204,7 @@ print(diversity_arr);
 # Determine which effect sizes to try
 range=range(diversity_arr);
 span=diff(range);
-effect_sizes=seq(0, span/3, length.out=40);
+effect_sizes=seq(0, span, length.out=40);
 
 cat("The range of diversity: ", range[1], "-", range[2], "\n");
 cat("The span: ", span, "\n");
@@ -228,6 +228,7 @@ out_fh=file(paste(OutputFileRoot, ".div_power.csv", sep=""), "w");
 ci95=quantile(diversity_arr, c(.025, .975));
 
 cat(file=out_fh,
+	"N:,", length(diversity_arr), "\n",
 	"Median:,", median(diversity_arr), "\n",
 	"95% CI:(,", ci95[1], ",", ci95[2], ",)\n",
 	"\n",
@@ -250,6 +251,7 @@ for(effect_size in effect_sizes){
 
 	cat("Diversity Effect Size: ", effect_size, "  Cohen's Eta^2: ", r_sqrd, "\n");
 	
+	calc_next_effect=F;
 	for(N1 in N1_range){
 		
 		N2=ifelse(M==0,N1,M);
@@ -261,7 +263,16 @@ for(effect_size in effect_sizes){
 		if(beta_at_alpha < Beta){
 			cat("\tEffect Size: ", effect_size, " N1: ", N1, "  N2: ", N2, " (1-beta): ", 1-beta_at_alpha, "\n", sep="");
 			cat(file=out_fh,
-				paste(r_sqrd, effect_size,  N1, N2, Alpha, 1-beta_at_alpha, sep=","), "\n", sep="");
+				paste(
+					round(r_sqrd, 4),
+					round(effect_size, 4),
+					N1, N2, Alpha, 1-beta_at_alpha, sep=","), "\n", sep="");
+
+			calc_next_effect=T;
+			next;
+		}
+
+		if(calc_next_effect==T){
 			next;
 		}
 
