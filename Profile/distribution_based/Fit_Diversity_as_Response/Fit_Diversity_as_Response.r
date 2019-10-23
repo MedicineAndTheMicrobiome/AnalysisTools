@@ -1015,6 +1015,9 @@ for(i in 1:num_div_idx){
 		paste("Multiple Regression for: ", div_names[i]), 
 		"",
 		model_string,
+		"",
+		paste("Diversity Mean: ", mean(raw)),
+		paste("Diversity Stderr: ", sd(raw)/sqrt(length(raw))),
 		"", sumtext));
 
 	# Generate marginal model plots
