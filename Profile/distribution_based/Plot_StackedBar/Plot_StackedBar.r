@@ -424,7 +424,7 @@ plot_abundance_matrix=function(abd_mat, title="", plot_cols=8, plot_rows=4,
 	tot_plots_per_page=plot_cols*plot_rows;
 	layout_mat=matrix(1:tot_plots_per_page, byrow=T, nrow=plot_rows, ncol=plot_cols);
 	layout_mat=rbind(layout_mat, rep(tot_plots_per_page+1, plot_cols));
-	layout_mat=rbind(layout_mat, rep(tot_plots_per_page+1, plot_cols));
+	#layout_mat=rbind(layout_mat, rep(tot_plots_per_page+1, plot_cols));
 	#cat("Layout Matrix:\n");
 	#print(layout_mat);
 	layout(layout_mat);
@@ -445,7 +445,9 @@ plot_abundance_matrix=function(abd_mat, title="", plot_cols=8, plot_rows=4,
 					sample=sample_names[i+1];
 					plot(0,0, xlim=c(-1.5,1.5), ylim=c(0,1), type="n", bty="n", xaxt="n", yaxt="n");
 
-					mtext(sample, line=0, cex=.5, font=2);
+					smp_nm_len=nchar(sample);
+					smp_nm_cex=.5*min(1, 21/smp_nm_len);
+					mtext(sample, line=0, cex=smp_nm_cex, font=2);
 
 					if(label_samp_size){
 						n=samp_size[i+1];
@@ -474,7 +476,7 @@ plot_abundance_matrix=function(abd_mat, title="", plot_cols=8, plot_rows=4,
 		}
 		cat("Plotting legend...\n");
 
-		plot_legend(cat_names, size=min(2, 30/num_cat));
+		plot_legend(cat_names, size=min(1, 45/num_cat));
 		mtext(text=title, side=3, outer=T, cex=2, font=2, line=.5);
 	}
 	par(orig.par);
