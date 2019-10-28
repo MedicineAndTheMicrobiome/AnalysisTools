@@ -22,7 +22,7 @@ my $usage = "
 	-s <summary table>
 	-f <factor file>
 	-c <covariates list>
-	-g <\"grouped\" variables list>
+	[-g <\"grouped\" variables list>]
 
 	ALR (Abundance-Based) Related Options
 	[-p <number of ALR variables (for abundance-based analyses), default=$NUM_ALR_VARIABLES>]
@@ -64,7 +64,6 @@ if(
 	!defined($opt_s) || 
 	!defined($opt_f) || 
 	!defined($opt_c) || 
-	!defined($opt_g) || 
 	!defined($opt_o)
 ){
 	die $usage;
@@ -74,15 +73,20 @@ if(
 my $SummaryTable=$opt_s;
 my $FactorFile=$opt_f;
 my $Covariates=$opt_c;
-my $GroupVar=$opt_g;
 my $OutputDir=$opt_o;
+
+my $GroupVar="";
 my $AnalysisName=$GroupVar;
 my $NumALRVariables=$NUM_ALR_VARIABLES;
 my $DontAbort;
 my $AdditionalALRFile;
 
+if(defined($opt_g)){
+	$GroupVar=$opt_g;
+}
+
 if(defined($opt_p)){
-	$NumALRVariables=$opt_p
+	$NumALRVariables=$opt_p;
 }
 
 if(defined($opt_a)){
@@ -99,6 +103,10 @@ if(defined($opt_E)){
 
 $AnalysisName=~s/\.txt$//;
 $AnalysisName=File::Basename::fileparse($AnalysisName);
+
+if($AnalysisName eq ""){
+	$AnalysisName="result";
+}
 
 my $ABDNC_DIR="abundance_based";
 my $DSTRB_DIR="distribution_based";
@@ -255,31 +263,35 @@ sub run_abundance_based{
 	";
 	run_command("Fit ALR as Response", "alr_as_resp", $cmd, "$output_dir/abundance/$RESP_OUT_DIR");
 
-	$cmd=
-        "~/git/AnalysisTools/Profile/abundance_based/Fit_ALR_as_Predictor/Fit_ALR_as_Predictor.r \
-                -s $summary_table \
-                -f $factor_file \
-                -y $variable_list \
-                -c $covariates \
-                -q $output_dir/cov_var \
-                -p $num_alr \
-                -o $output_dir/abundance/$PRED_OUT_DIR/$model_name \
-                -x \";\" \
-		$add_alr
-	";
-	run_command("Fit ALR as Predictor", "alr_as_pred", $cmd, "$output_dir/abundance/$PRED_OUT_DIR");
+	if($variable_list ne ""){
+
+		$cmd=
+		"~/git/AnalysisTools/Profile/abundance_based/Fit_ALR_as_Predictor/Fit_ALR_as_Predictor.r \
+			-s $summary_table \
+			-f $factor_file \
+			-y $variable_list \
+			-c $covariates \
+			-q $output_dir/cov_var \
+			-p $num_alr \
+			-o $output_dir/abundance/$PRED_OUT_DIR/$model_name \
+			-x \";\" \
+			$add_alr
+		";
+		run_command("Fit ALR as Predictor", "alr_as_pred", $cmd, "$output_dir/abundance/$PRED_OUT_DIR");
 
 
-	$cmd=
-      	"~/git/AnalysisTools/Profile/abundance_based/Compare_ALR_PredResp/Compare_ALR_PredResp.r \
-                -x $output_dir/abundance/$PRED_OUT_DIR/$model_name.alr_as_pred.pvals.tsv \
-                -y $output_dir/abundance/$RESP_OUT_DIR/$model_name.alr_as_resp.pvals.tsv \
-                -u $output_dir/abundance/$PRED_OUT_DIR/$model_name.alr_as_pred.coefs.tsv \
-                -v $output_dir/abundance/$RESP_OUT_DIR/$model_name.alr_as_resp.coefs.tsv \
-                -o $output_dir/abundance/$COMP_DIR/$model_name.alr \
-                -p .025
-	";
-	run_command("Compare ALR Pred/Resp", "alr_pred_resp_comp", $cmd, "$output_dir/abundance/$COMP_DIR");	
+		$cmd=
+		"~/git/AnalysisTools/Profile/abundance_based/Compare_ALR_PredResp/Compare_ALR_PredResp.r \
+			-x $output_dir/abundance/$PRED_OUT_DIR/$model_name.alr_as_pred.pvals.tsv \
+			-y $output_dir/abundance/$RESP_OUT_DIR/$model_name.alr_as_resp.pvals.tsv \
+			-u $output_dir/abundance/$PRED_OUT_DIR/$model_name.alr_as_pred.coefs.tsv \
+			-v $output_dir/abundance/$RESP_OUT_DIR/$model_name.alr_as_resp.coefs.tsv \
+			-o $output_dir/abundance/$COMP_DIR/$model_name.alr \
+			-p .025
+		";
+		run_command("Compare ALR Pred/Resp", "alr_pred_resp_comp", $cmd, "$output_dir/abundance/$COMP_DIR");	
+
+	}
 
 }
 
@@ -325,27 +337,30 @@ sub run_distribution_based{
 	";
 	run_command("Fit Diversity as Response", "div_as_resp", $cmd, "$output_dir/distribution/$RESP_OUT_DIR");
 
-	$cmd=
-        "~/git/AnalysisTools/Profile/distribution_based/Fit_Diversity_as_Predictor/Fit_Diversity_as_Predictor.r \
-                -s $summary_table \
-                -f $factor_file \
-                -y $variable_list \
-                -c $covariates \
-                -q $output_dir/cov_var \
-                -o $output_dir/distribution/$PRED_OUT_DIR/$model_name
-	";
-	run_command("Fit Diversity as Predictor", "div_as_pred", $cmd, "$output_dir/distribution/$PRED_OUT_DIR");
 
-	$cmd=
-        "~/git/AnalysisTools/Profile/abundance_based/Compare_ALR_PredResp/Compare_ALR_PredResp.r \
-                -x $output_dir/distribution/$PRED_OUT_DIR/$model_name.div_as_pred.pvals.tsv \
-                -y $output_dir/distribution/$RESP_OUT_DIR/$model_name.div_as_resp.pvals.tsv \
-                -u $output_dir/distribution/$PRED_OUT_DIR/$model_name.div_as_pred.coefs.tsv \
-                -v $output_dir/distribution/$RESP_OUT_DIR/$model_name.div_as_resp.coefs.tsv \
-                -o $output_dir/distribution/$COMP_DIR/$model_name.div \
-                -p .025
-	";
-	run_command("Compare Diversity Pred/Resp", "div_pred_resp_comp", $cmd, "$output_dir/distribution/$COMP_DIR");
+	if($variable_list ne ""){
+		$cmd=
+		"~/git/AnalysisTools/Profile/distribution_based/Fit_Diversity_as_Predictor/Fit_Diversity_as_Predictor.r \
+			-s $summary_table \
+			-f $factor_file \
+			-y $variable_list \
+			-c $covariates \
+			-q $output_dir/cov_var \
+			-o $output_dir/distribution/$PRED_OUT_DIR/$model_name
+		";
+		run_command("Fit Diversity as Predictor", "div_as_pred", $cmd, "$output_dir/distribution/$PRED_OUT_DIR");
+
+		$cmd=
+		"~/git/AnalysisTools/Profile/abundance_based/Compare_ALR_PredResp/Compare_ALR_PredResp.r \
+			-x $output_dir/distribution/$PRED_OUT_DIR/$model_name.div_as_pred.pvals.tsv \
+			-y $output_dir/distribution/$RESP_OUT_DIR/$model_name.div_as_resp.pvals.tsv \
+			-u $output_dir/distribution/$PRED_OUT_DIR/$model_name.div_as_pred.coefs.tsv \
+			-v $output_dir/distribution/$RESP_OUT_DIR/$model_name.div_as_resp.coefs.tsv \
+			-o $output_dir/distribution/$COMP_DIR/$model_name.div \
+			-p .025
+		";
+		run_command("Compare Diversity Pred/Resp", "div_pred_resp_comp", $cmd, "$output_dir/distribution/$COMP_DIR");
+	}
 
 	#######################################################################
 	# Plots
