@@ -422,7 +422,7 @@ signf_char=function(x){
 	}
 }
 
-plot_diff_from_group=function(diff_rec, ind_cols){
+plot_diff_from_group=function(diff_rec, ind_cols, repl_ids){
 	print(diff_rec);
 
 	ind_nm=names(diff_rec);
@@ -441,6 +441,7 @@ plot_diff_from_group=function(diff_rec, ind_cols){
 	min_diff=min(diff_arr);
 	range=max_diff-min_diff
 	mids=barplot(diff_arr, col=ind_cols[ind_nm], 
+		names.arg=repl_ids[ind_nm],
 		ylim=c(min_diff-range/10, max_diff+range/10),
 		ylab="Difference from Mean\n(Excluding Sample of Interest)");
 
@@ -457,12 +458,25 @@ plot_diff_from_group=function(diff_rec, ind_cols){
 
 }
 
+kept_sample_depth_vals =list();
+replicate_differences_tail=list();
+replicate_differences_shan=list();
+for(repnm in uniq_repl_names){
+	replicate_differences_tail[[repnm]]=numeric();
+	replicate_differences_shan[[repnm]]=numeric();
+	kept_sample_depth_vals[[repnm]]=numeric();
+}
+
+iter=0;
 for(cur_sample_name in uniq_samp_names){
 
 	cat("Analyzing Sample Group: ", cur_sample_name, "\n");
 	
 	samp_ix=(sample_names==cur_sample_name);
 	samp_ids=sample_ids[samp_ix];
+	repl_ids=replicate_group[samp_ix];
+	names(repl_ids)=samp_ids;
+
 	num_samp=length(samp_ids);
 	if(num_samp<2){
 		next;
@@ -519,665 +533,86 @@ for(cur_sample_name in uniq_samp_names){
 	par(mar=c(4,4,3,1));
 	plot_combined_rarefaction(depth_range, raref_95ci_shannon_list, read_depths, colors);
 	title(main="Shannon Bootstrapped Rarefaction Curve");
-	plot_diff_from_group(shan_diff, colors);
+	plot_diff_from_group(shan_diff, colors, repl_ids);
 
 	plot_combined_rarefaction(depth_range, raref_95ci_tail_list, read_depths, colors);
 	title(main="Tail Bootstrapped Rarefaction Curve");
-	plot_diff_from_group(tail_diff, colors);
+	plot_diff_from_group(tail_diff, colors, repl_ids);
 
 	mtext(cur_sample_name, outer=T, font=2, cex=1.5);
 
+	# Accumulate
+
+	for(s in samp_ids){
+		rep_id=repl_ids[s];
+
+		sdff=shan_diff[[s]][["diff"]];
+		replicate_differences_shan[[rep_id]]=c(replicate_differences_shan[[rep_id]], sdff);
+
+		sdff=tail_diff[[s]][["diff"]];
+		replicate_differences_tail[[rep_id]]=c(replicate_differences_tail[[rep_id]], sdff);
+
+		kept_sample_depth_vals[[rep_id]] =c(kept_sample_depth_vals[[rep_id]], read_depths[s]);
+	}
+
 	cat("\n");
 
-}
- 
-
-
-# Bootstrap/Rarefy Samples
-# Plot overlapping curves
-# Perform pairwise comparison between replicates, relative to smaller depth and relative to larger depth
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-quit();
-
-
-##############################################################################
-# Compute diversity indices
-
-div_names=c("Tail", "Shannon", "Simpson", "Evenness", "SimpsonsRecip");
-num_div_idx=length(div_names);
-
-div_mat=matrix(0, nrow=num_samples, ncol=num_div_idx);
-colnames(div_mat)=div_names;
-rownames(div_mat)=rownames(normalized);
-
-cat("Computing diversity indices across samples.\n");
-for(i in 1:num_samples){
-	curNorm=normalized[i,];
-	zeroFreeNorm=curNorm[curNorm>0]
-	div_mat[i,"Tail"]=tail_statistic(zeroFreeNorm);
-	div_mat[i,"Shannon"]=-sum(zeroFreeNorm*log(zeroFreeNorm));
-	div_mat[i,"Simpson"]=1-sum(curNorm^2);
-	div_mat[i,"Evenness"]=div_mat[i,"Shannon"]/log(length(zeroFreeNorm));
-	div_mat[i,"SimpsonsRecip"]=1/sum(curNorm^2);
+	iter=iter+1;
+	if(iter==20){
+		#break;
+	}
 }
 
-# Set evenness for NAs to 0.  Assume evenness is very low, but it's degenerate
-# because of insufficient sequencing depth.
-evenness=div_mat[,"Evenness"];
-div_mat[is.na(evenness),"Evenness"]=0;
+plot_repl_diff=function(rep_diff_list, divname){
+	
+	rep_nms=names(rep_diff_list);
+	num_rps=length(rep_nms);
+	par(mfrow=c(num_rps,1));
 
-cat("Plotting histograms of raw diversity indices.\n");
-par(mfrow=c(3,2));
-par(oma=c(1, 1, 1, 1));
-par(mar=c(5,4,4,2));
-for(i in 1:num_div_idx){
-	hist(div_mat[, div_names[i]], main=div_names[i], xlab=div_names[i], 
-		breaks=15);
-}
-mtext("Sample Diversity Indices Distributions", outer=T);
+	min_diff=NA;
+	max_diff=NA;
+	for(rpnm in rep_nms){
+		min_diff=min(rep_diff_list[[rpnm]], min_diff, na.rm=T);
+		max_diff=max(rep_diff_list[[rpnm]], max_diff, na.rm=T);
+	}
 
-##############################################################################
+	cat("Diff Range: ", min_diff, " - ", max_diff, "\n");
 
-##############################################################################
-# Perform Box-Cox transformation
+	# Plot Histograms
+	for(rpnm in rep_nms){
+		hist(rep_diff_list[[rpnm]], xlim=c(min_diff, max_diff), breaks=20,
+			xlab="Difference of diversity from Other Group Members",
+			main=rpnm);
+		abline(v=0, col="blue");
+	}
+	mtext(divname, outer=T, font=2, cex=2);
 
-lambda=numeric(num_div_idx);
-transformed=matrix(0, nrow=num_samples, ncol=num_div_idx);
-colnames(transformed)=div_names;
+	# Plot depth vs diversity difference
+	for(rpnm in rep_nms){
+		plot(kept_sample_depth_vals[[rep_id]], rep_diff_list[[rpnm]], type="n",
+			main=rpnm,
+			ylim=c(min_diff, max_diff),
+			xlab="Reads/Sample", ylab="Difference from Other Group Members"	
+			);
+		fit=lm(rep_diff_list[[rpnm]]~kept_sample_depth_vals[[rep_id]]);
+		sumfit=summary(fit);
+		slope=sumfit$coefficients[2,"Estimate"];
+		pval=sumfit$coefficients[2,"Pr(>|t|)"];
 
-cat("Computing and plotting Box-Cox transformations.\n\n");
-BOX_COX_SEARCH_RANGE=2;
-SEARCH_FREQUENCY=10;
-par(mfrow=c(3,2));
-for(i in 1:num_div_idx){
-
-	cat("Computing lambda for: ", div_names[i], "\n", sep="");
-
-	raw=div_mat[, div_names[i]];
-
-	# Look for lambda approximately
-	lambda_found=FALSE;
-	lambda_start=-BOX_COX_SEARCH_RANGE;
-	lambda_end=BOX_COX_SEARCH_RANGE;
-	search_trial=0;
-	while(!lambda_found){
-
-		search_trial=search_trial+1;
-
-		# Perform trial boxcox search
-		cat("[", search_trial, "] Search range: ", lambda_start, " to ", lambda_end, "\n", sep="");
-		cat("Model: ", model_string, "\n");
-
-
-		degenerates=which(is.nan(raw));
-		if(length(degenerates)){
-			cat("*************************************\n");
-			cat("*  Degenerate diversities: \n");
-			print(raw[degenerates]);
-			cat("*************************************\n");
-			raw[degenerates]=0;
-		}
-
-		zero_ix=(raw==0);
-		if(any(zero_ix)){
-			cat("Zeros found in diversity:\n");
-			print(raw[zero_ix]);
-			min_nonzero=min(raw[!zero_ix]);
-			min_subst=min_nonzero/10;
-			cat("Adding ", min_nonzero, " / 10 = ", min_subst, " to all responses...\n", sep="");
-			raw=raw+min_subst;
-			print(sort(raw));
-		}
+		title(main=paste("Slope: ", signif(slope, 4), "  p-value: ", signif(pval, 3), sep=""), 
+			line=.5, font.main=1);
 		
-		bc=tryCatch({
-			boxcox(as.formula(model_string), data=factors, 
-				lambda=seq(lambda_start, lambda_end, length.out=SEARCH_FREQUENCY),
-				plotit=FALSE);
-			}, 
-			error=function(cond){
-				cat("Error finding Box-Cox transform lambda value.\n");
-				print(cond);
-				return(NULL);
-			});
-
-		if(is.null(bc)){
-			approx_lambda=1;
-			lambda_found=TRUE;
-		}else{
-
-			# Determine where to expand search depending if peak is on left or right
-			max_idx=which(bc$y==max(bc$y));
-			if(max_idx==1){
-				#lambda_end=lambda_start+1;
-				lambda_start=lambda_start-(BOX_COX_SEARCH_RANGE^search_trial);
-			}else if(max_idx==length(bc$y)){
-				#lambda_start=lambda_end-1;
-				lambda_end=lambda_end+BOX_COX_SEARCH_RANGE^search_trial;
-			}else{
-				search_tolerance=(lambda_end-lambda_start)/SEARCH_FREQUENCY;
-				approx_lambda=bc$x[max_idx];
-				lambda_found=TRUE;
-				cat("Lambda found around: ", approx_lambda, "\n");	
-				cat("   Search tolerance: ", search_tolerance, "\n");	
-			}
-		}
+		abline(fit, col="red");
+		abline(h=0, col="blue");
+		points(kept_sample_depth_vals[[rep_id]], rep_diff_list[[rpnm]]);
 	}
-
-
-	if(approx_lambda!=1){
-		# Rerun and plot the lambda search with a smaller increments
-		par(mar=c(5,4,4,2));
-		cat("Refining search around: ", approx_lambda-search_tolerance, " - ", approx_lambda+search_tolerance, "\n");
-		bc=boxcox(as.formula(model_string), data=factors, 
-			lambda=seq(approx_lambda-search_tolerance, approx_lambda+search_tolerance, length.out=40));
-		title(main=div_names[i]);
-
-		# Store find grain results
-		max_idx=which(bc$y==max(bc$y));
-		lambda[i]=bc$x[max_idx];
-	}else{
-		cat("Warning: Box-Cox Lambda value not found.  Going with 1 (i.e. no transform)\n");
-		cat("\n");
-		cat("If the sample size was close to the number of variables in the model, it is likely\n");
-		cat("that the model was overfit, so it was not possible to find lambda that minimizes the residuals.\n");
-		cat("\n");
-		cat("Num Model Variables: ", num_model_variables, "\n");
-		cat("Num Samples: ", num_samples, "\n");
-		cat("\n");
-		lambda[i]=1;
-
-	}
-	
-	cat(div_names[i], ": Box-Cox Transformation Lambda = ", lambda[i], "\n\n", sep="");
-
-	# Apply transform to raw data
-	if(lambda[i]==0){
-		transformed[, div_names[i]]=log(raw);
-	}else{
-		transformed[, div_names[i]]=((raw^lambda[i])-1)/lambda[i];
-	}
-}
-mtext("Box-Cox Lambda Intervals", outer=T);
-
-cat("Plotting transformed histograms...\n");
-par(mfrow=c(3,2));
-par(oma=c(1, 1, 1, 1));
-par(mar=c(5,4,4,2));
-for(i in 1:num_div_idx){
-	hist(transformed[, div_names[i]], 
-		main=paste(div_names[i], " (lambda=", sprintf("%3.2f", lambda[i]), ")", sep=""),
-		xlab=div_names[i], 
-		breaks=15);
-}
-mtext("Transformed Sample Diversity Indices Distributions", outer=T);
-
-##############################################################################
-# Output reference factor levels
-
-text=character();
-text[1]="Reference factor levels:";
-text[2]="";
-
-cat("Outputing factor levels...\n");
-for(i in 1:num_factors){
-	fact_levels=levels(factors[,i]);
-	if(!is.null(fact_levels)){
-		fact_info=paste(factor_names[i], ": ", fact_levels[1], sep="");	
-	}else{
-		fact_info=paste(factor_names[i], ": None (ordered factor)", sep="");	
-	}
-	text=c(text, fact_info);
-}
-
-text=c(text, "");
-text=c(text, paste("Number of Samples: ", num_samples, sep=""));
-text=c(text, "");
-text=c(text, "Description of Factor Levels and Samples:");
-text=c(text, capture.output(summary(factors)));
-
-plot_text(text);
-
-##############################################################################
-
-bin_continuous_values=function(values, num_bins=10){
-        minv=min(values);
-        maxv=max(values);
-        range=maxv-minv;
-        # Map values between 0 and 1
-        prop=(values-minv)/range;
-        # Scale value up to bin, and round, to quantize
-        closest=round(prop*(num_bins-1),0);
-        log10range=log10(range);
-        trunc=signif(closest/(num_bins-1)*range+minv, 5)
-	bin_range=mean(diff(sort(unique(trunc))))/2;
-
-	lb=trunc-bin_range;
-	ub=trunc+bin_range;
-        # Remap values to original range and location
-        return(paste("(", lb, ", ", ub, ")", sep=""));
-}
-
-plot_diversity_with_factors=function(raw, factors, model_string, stat_name, bin_cont=5){
-
-	palette(c(
-		"red",
-		"green",
-		"blue",
-		"orange",
-		"purple",
-		"black",
-		"brown",
-		"darkgoldenrod3"
-	));
-	
-	# Extract out predictors
-	predictor_string=strsplit(model_string, "~")[[1]][2];
-	pred_arr=strsplit(predictor_string, "\\+")[[1]];
-	
-	# Remove interaction terms
-	interact_ix=grep(":", pred_arr);
-	if(length(interact_ix)){
-		pred_arr=pred_arr[-interact_ix]
-	}
-
-	pred_arr=gsub(" ", "", pred_arr);
-	num_pred=length(pred_arr);
-
-	num_values=length(raw);
-	raw_range=range(raw);
-
-	# Sort records by magnitude of raw values
-	sort_ix=order(raw);
-	raw=raw[sort_ix];
-	factors=factors[sort_ix, , drop=F];
-
-	par(mar=c(5,5,5,5));
-	zeros=rep(0, num_values);
-	
-	min_spacing=(raw_range[2]-raw_range[1])/60;
-	cat("Min spacing: ", min_spacing, "\n");
-	#abline(h=seq(raw_range[1], raw_range[2], length.out=50));
-
-	adj=min_spacing/10;
-	cat("Adjustment Increment: ", adj, "\n");
-	adj_pos=raw;
-
-	for(adj_ix in 1:10000){
-		adjusted=F
-		for(forw in 1:(num_values-1)){
-			if(abs(adj_pos[forw]-adj_pos[forw+1])<min_spacing){
-				adj_pos[forw]=adj_pos[forw]-adj;
-				adjusted=T;
-				break;
-			}	
-		}
-		for(rev in (num_values:2)){
-			if(abs(adj_pos[rev]-adj_pos[rev-1])<min_spacing){
-				adj_pos[rev]=adj_pos[rev]+adj;
-				adjusted=T;
-				break;
-			}	
-		}
-		if(!adjusted){
-			cat("Done adjusting at iteration: ", adj, "\n");
-			break;	
-		}
-	}
-	
-	#cat("Raw:\n");
-	#print(raw);
-	#cat("Adj:\n");
-	#print(adj_pos);
-
-	extra_sample_space=2;
-	predictors_per_plot=5;
-	pred_names=colnames(factors);
-	raw_adj_range=range(c(raw, adj_pos));
-
-	num_plots=num_pred %/% predictors_per_plot + 1;
-
-	for(plot_ix in 1:num_plots){
-		# Plot the samples on the y axis
-		plot(0, xlab="", ylab=stat_name, type="n", xaxt="n", main=stat_name,
-			ylim=c(raw_adj_range[1], raw_adj_range[2]),
-			xlim=c(-1, predictors_per_plot+1+extra_sample_space));
-
-		# Plot 
-		for(i in 1:num_values){
-			lines(x=c(-1, -.75), y=c(raw[i], raw[i]));
-			lines(x=c(-.75, -.25), y=c(raw[i], adj_pos[i]));
-
-		}
-		# Label samples
-		text(zeros-.20, adj_pos, label=names(raw), pos=4, cex=.5);
-
-		# Label predictors
-		predictors_per_plot=min(predictors_per_plot, num_pred);
-
-		if(predictors_per_plot>0){
-			for(j in 1:predictors_per_plot){
-				pred_ix=((plot_ix-1)*predictors_per_plot)+(j-1)+1;
-			
-				if(!is.na(pred_arr[pred_ix]) && !length(grep(":", pred_arr[pred_ix]))){
-
-					fact_val=factors[, pred_arr[pred_ix]];
-					uniq_val=unique(fact_val);
-
-					if(length(uniq_val)>=bin_cont && !is.factor(fact_val)){
-						factor=signif(fact_val, 4);
-						coloring=as.numeric(as.factor(bin_continuous_values(fact_val, num_bins=bin_cont)));
-					}else{
-						factor=as.factor(fact_val);
-						coloring=as.numeric(factor);
-					}
-
-					if(is.factor(factor)){
-						factor=substr(factor, 1, 10);
-					}
-
-					text(zeros+j+extra_sample_space, adj_pos, label=factor, 
-						col=coloring,
-						cex=.5
-						);
-				}
-				# label predictor/factor name
-				lab_cex=min(1, 8/nchar(pred_arr[pred_ix]));
-				text(j+extra_sample_space, raw_adj_range[2], 
-					pred_arr[pred_ix], cex=lab_cex*.75, col="black", family="", font=2, pos=3);
-			}
-		}
-	}
+	mtext(divname, outer=T, font=2, cex=2);
 
 }
 
-###############################################################################
-
-plot_overlapping_histograms=function(raw, factors, model_string, title, bin_cont=5){
-
-	orig.par=par(no.readonly=T);
-	palette(c(
-		"red",
-		"green",
-		"blue",
-		"orange",
-		"purple",
-		"black",
-		"brown",
-		"darkgoldenrod3"
-	));
-
-	# Extract out predictors
-	predictor_string=strsplit(model_string, "~")[[1]][2];
-	pred_arr=strsplit(predictor_string, "\\+")[[1]];
-	pred_arr=gsub(" ", "", pred_arr);
-	num_pred=length(pred_arr);
-	num_values=length(raw);
-	raw_range=range(raw);
-
-	cat("Num Predictors:", num_pred, "\n");
-	cat("Range: ", raw_range[1], " - ", raw_range[2], "\n");
-
-	factor_names=colnames(factors);
-
-	#par(mfrow=c(4,1));
-	layout_mat=matrix(c(1,1,2,3,3,4,5,5,6), ncol=1);
-	layout(layout_mat);
-
-	for(pix in 1:num_pred){
-		cur_pred=pred_arr[pix];
-		cat("  Working on: ", cur_pred, "\n");
-
-		if(any(cur_pred==factor_names)){
-
-			# Get levels for each value
-			cur_fact_val=factors[,cur_pred];
-			is_factor=is.factor(cur_fact_val);
-
-			num_uniq=length(unique(cur_fact_val));
-			if(num_uniq>=bin_cont && !is_factor){
-				cur_fact_val=as.factor(bin_continuous_values(cur_fact_val, num_bins=bin_cont));
-                        }else{
-				cur_fact_val=as.factor(cur_fact_val);
-			}
-
-			#num_bins=nclass.Sturges(raw)*2;			
-			#overall_hist=hist(raw, breaks=num_bins, plot=F);
-			#print(overall_hist);
-			#cat("  Num bins: ", num_bins, "\n");
-
-			levels=levels(cur_fact_val);
-			num_levels=length(levels);
-			print(cur_fact_val);
-			cat("Num Levels: ", num_levels, "\n");
-			
-			# Compute the density for each level
-			dens_list=list(num_levels);
-			level_samp_size=numeric();
-			max_dens=0;
-			for(lix in 1:num_levels){
-				level_val=raw[cur_fact_val==levels[lix]];
-				#hist_list[[levels[lix]]]=hist(level_val, breaks=overall_hist$breaks, plot=F);
-				num_samp_at_level=length(level_val);
-				level_samp_size[lix]=num_samp_at_level;
-				if(num_samp_at_level==0){
-					dens_list[[lix]]=NA;
-				}else{
-					if(num_samp_at_level==1){
-						level_val=c(level_val, level_val);
-					}
-
-					dens_list[[lix]]=density(level_val);
-					max_dens=max(max_dens, dens_list[[lix]]$y);	
-				}
-			}
-
-			# Open a blank plot
-			par(mar=c(4,3,2,1));
-			plot(0,0, type="n", xlim=raw_range, ylim=c(0,max_dens), 
-				main=cur_pred,
-				xlab=title, ylab="Density",
-				bty="l");
-
-			# Draw the curves for each factor level
-			for(lix in 1:num_levels){
-				dens=dens_list[[lix]];
-				if(!any(is.na(dens))){
-					points(dens, type="l", col=lix);
-				}
-			}
-
-			# Plot the legend for each factor
-			legend_labels=character();
-			for(lix in 1:num_levels){
-				legend_labels[lix]=paste(levels[lix], " [n=", level_samp_size[lix], "] ", sep="");
-			}
-
-			par(mar=c(0,0,0,0));
-			plot(0,0, type="n", xlim=c(0,1), ylim=c(0,1), xlab="", ylab="", xaxt="n", yaxt="n", bty="n");
-			legend(0,1, legend=legend_labels, fill=1:num_levels, bty="n");
-
-		}else{
-			cat("Not ploting interactions...\n");
-		}
-	}
-
-	par(orig.par);
-	
-}
-
-##############################################################################
-
-# Matrix to store R^2's
-cat("Allocating R^2 Matrix...\n");
-rsqrd_mat=matrix(0, nrow=num_div_idx, ncol=2);
-colnames(rsqrd_mat)=c("R^2", "Adj. R^2");
-rownames(rsqrd_mat)=div_names;
-
-# Build model matrix so we know how many coefficients to expect.
-if(ModelFormula==""){
-	model_string= paste("trans ~", 
-	paste(factor_names, collapse=" + "));
-}
-
-cat("\nFitting this regression model: ", model_string, "\n");
-
-trans=rep(0, nrow(factors));
-model_matrix=model.matrix(as.formula(model_string), data=factors);
-num_coeff=ncol(model_matrix);
-
-# Matrices to store coefficents and p-values
-cat("Allocating coeff and pval matrices...\n");
-coeff_matrix=matrix(NA, nrow=num_coeff, ncol=num_div_idx);
-pval_matrix=matrix(NA, nrow=num_coeff, ncol=num_div_idx);
-
-colnames(coeff_matrix)=div_names;
-rownames(coeff_matrix)=colnames(model_matrix);
-
-colnames(pval_matrix)=div_names;
-rownames(pval_matrix)=colnames(model_matrix);
-
-
-# Fit regression model and ANOVA analysis
-for(i in 1:num_div_idx){
-
-	cat("Working on: ", div_names[i], "\n", sep="");
-
-	raw=div_mat[, div_names[i]];
-
-	plot_diversity_with_factors(raw, factors, model_string, div_names[i], 6);
-	plot_overlapping_histograms(raw, factors, model_string, title=div_names[i], 6);
-
-	trans=transformed[, div_names[i]];
-	print(model.matrix(as.formula(model_string), data=factors));
-	fit=lm(as.formula(model_string), data=factors);
-	print(fit);
-
-	summ=summary(fit);
-	print(summ);
-
-	rsqrd_mat[i, 1]=summ$r.squared;
-	rsqrd_mat[i, 2]=summ$adj.r.squared;
-
-	# Output ANOVA
-	if(ModelFormula!=""){
-		aov_model=paste("trans ~", ModelFormula);
-	}else{
-		aov_model=model_string;
-	}
-
-	aov_sumtext=capture.output(summary(aov(as.formula(aov_model), data=factors)));
-
-	plot_text(c(
-		paste("ANOVA for: ", div_names[i]),
-		"",
-		aov_model,
-		"", aov_sumtext));
-
-	# Output regression coefficients and significance
-	sumtext=(capture.output(summary(fit)));
-	plot_text(c(
-		paste("Multiple Regression for: ", div_names[i]), 
-		"",
-		model_string,
-		"",
-		paste("Diversity Mean: ", mean(raw)),
-		paste("Diversity Stderr: ", sd(raw)/sqrt(length(raw))),
-		"", sumtext));
-
-	# Generate marginal model plots
-	mmps(fit);
-
-
-
-	sum_fit=summary(fit);
-
-	computable_coef_names=names(sum_fit$coefficients[,"Estimate"]);
-
-	coeff_matrix[computable_coef_names,i]=sum_fit$coefficients[computable_coef_names,"Estimate"];
-	pval_matrix[computable_coef_names,i]=sum_fit$coefficients[computable_coef_names,"Pr(>|t|)"];
-}
-
-# R-squred summary
-print(rsqrd_mat);
-plot_correl_heatmap(t(rsqrd_mat), title="R^2 Values");
-
-# Remove intercept from matrix
-intercept_ix=which(rownames(coeff_matrix)=="(Intercept)");
-coeff_matrix=coeff_matrix[-intercept_ix, , drop=F];
-pval_matrix=pval_matrix[-intercept_ix, , drop=F];
-
-plot_correl_heatmap(coeff_matrix, title="Coefficients");
-plot_correl_heatmap(pval_matrix, title="P-values");
-
-significant_coeff=(pval_matrix<0.05)*coeff_matrix;
-plot_correl_heatmap(significant_coeff, title="Significant Coefficients", noPrintZeros=T);
-
-
-dev.off();
-
-##############################################################################
-
-fh=file(paste(OutputRoot, ".div_as_resp.regr_stats.tsv", sep=""), "w");
-
-# Output Header
-cat(file=fh, paste(c("Coefficients", "Estimates:", div_names, "p-values:", div_names), collapse="\t"));
-cat(file=fh, "\n");
-
-# Output values
-coeff_names=rownames(pval_matrix);
-for(i in 1:length(coeff_names)){
-	cat(file=fh, 
-		coeff_names[i], 
-		"",
-		paste(coeff_matrix[i,], collapse="\t"),
-		"",
-		paste(pval_matrix[i,], collapse="\t"),
-		sep="\t");
-	cat(file=fh, "\n");
-}
-
-close(fh);
-
-##############################################################################
-
-# Write coefficient p-values to file
-write.table(t(pval_matrix), file=paste(OutputRoot, ".div_as_resp.pvals.tsv", sep=""),
-        sep="\t", quote=F, col.names=NA, row.names=T);
-
-write.table(t(coeff_matrix), file=paste(OutputRoot, ".div_as_resp.coefs.tsv", sep=""),
-        sep="\t", quote=F, col.names=NA, row.names=T);
-	
-
-##############################################################################
-
-# Write diversity matrix to file
-write.table(div_mat, file=paste(OutputRoot, ".diversity_indices.tsv", sep=""),
-	sep="\t", quote=F, col.names=NA, row.names=T);
-
+par(mar=c(5,4,4,1));
+plot_repl_diff(replicate_differences_shan, "Shannon");
+plot_repl_diff(replicate_differences_tail, "Tail");
 
 ##############################################################################
 
