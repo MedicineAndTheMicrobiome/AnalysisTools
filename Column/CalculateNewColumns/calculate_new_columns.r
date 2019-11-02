@@ -307,6 +307,12 @@ mask=function(x, bool_arr, mask_val){
 	return(x);
 }
 
+mean_center=function(x){
+	meanx=mean(x);
+	cat("Mean was: ", meanx, "\n");
+	return(x-meanx);
+}
+
 #------------------------------------------------------------------------------
 
 str.left=function(x, n){
