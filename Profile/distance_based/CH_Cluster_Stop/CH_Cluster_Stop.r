@@ -516,6 +516,11 @@ for(i in 1:num_bs){
 
 pseudoF_mat=matrix(0, nrow=num_bs, ncol=max_clusters);
 
+membership_matrix=matrix(1, nrow=num_samples, ncol=max_clusters);
+rownames(membership_matrix)=lf_names;
+colnames(membership_matrix)=1:max_clusters;
+print(membership_matrix);
+
 #------------------------------------------------------------------------------
 
 for(num_cl in 2:max_clusters){
@@ -540,6 +545,9 @@ for(num_cl in 2:max_clusters){
         names(mem_tmp)=names(memberships);
         memberships=mem_tmp;
         grp_mids=grp_mids[plot_order];
+
+	# Store memberships for later export
+	membership_matrix[lf_names, num_cl]=memberships[lf_names];
 
         # Plot Dendrogram
         par(oma=c(4,0,5,0));
@@ -626,6 +634,12 @@ axis(side=1, at=1:max_clusters, labels=1:max_clusters);
 abline(v=quants[2], lwd=2, col="blue4");
 abline(v=quants[c(1,3)], lty=2, col="blue");
 
+###############################################################################
+
+membership_matrix[lf_names, num_cl]=memberships[lf_names];
+
+write.table(membership_matrix, file=paste(OutputFileRoot, ".cls_mem.tsv", sep=""),
+	quote=F, sep=",", row.names=TRUE, col.names=NA);
 
 ###############################################################################
 
