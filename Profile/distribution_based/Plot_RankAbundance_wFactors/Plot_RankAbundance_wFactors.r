@@ -435,6 +435,20 @@ if(DiversityType=="tail"){
 cat("Diversity:\n");
 print(diversity_arr);
 
+max_excl_show=50;
+
+if(length(excl_to_st)>max_excl_show){
+       excl_to_st_andmore="...(more)";
+}else{
+       excl_to_st_andmore="";
+}
+
+if(length(excl_to_fct)>max_excl_show){
+       excl_to_fct_andmore="...(more)";
+}else{
+       excl_to_fct_andmore="";
+}
+
 plot_text(c(
 	paste("Summary Table File: ", InputFileName),
 	paste("Factor File: ", FactorFileName),
@@ -455,10 +469,12 @@ plot_text(c(
 	paste("Number of Top Categories from each sample to summarize:", NumTopCategories),
 	"",
 	"Samples exclusive to Summary Table:",
-	capture.output(print(excl_to_st)),
+	capture.output(print(head(excl_to_st, max_excl_show))),
+	excl_to_st_andmore,
 	"",
 	"Samples exclusive to Factor Table:",
-	capture.output(print(excl_to_fct))
+	capture.output(print(head(excl_to_fct, max_excl_show))),
+	excl_to_fct_andmore
 ));
 
 ###############################################################################
