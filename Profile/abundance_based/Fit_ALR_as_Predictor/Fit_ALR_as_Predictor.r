@@ -617,7 +617,15 @@ plot_fit=function(fit, sumfit, i=1){
 	name=colnames(predicted);
 
 	par(mar=c(15, 15, 15, 15));
-	plot(observed, predicted, main="", xlab="Observed", ylab="Predicted");
+
+	obs_pred_range=range(c(observed, predicted));
+	span=diff(obs_pred_range);
+	pad=span*.07;
+
+	plot(observed, predicted, 
+		xlim=c(obs_pred_range[1]-pad, obs_pred_range[2]+pad),
+		ylim=c(obs_pred_range[1]-pad, obs_pred_range[2]+2*pad),
+		main="", xlab="Observed", ylab="Predicted");
 
 	mtext(name, line=5.5, font=2, cex=3);
 	mtext("Predicted vs. Observed", line=4, font=2, cex=1.1);
@@ -625,6 +633,11 @@ plot_fit=function(fit, sumfit, i=1){
 	mtext(paste("Model F-stat p-value = ", pval, sep=""), line=1, cex=.9);
 
 	abline(a=0, b=1, col="blue");
+	points(lowess(observed, predicted), type="l", col="red");
+
+	
+	legend(obs_pred_range[1]+pad, obs_pred_range[2]+pad, legend=c("Model", "Ideal"), 
+		fill=c("red", "blue"), bty="n");
 
 	par(par.orig);
 }
