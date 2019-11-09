@@ -638,7 +638,7 @@ abline(v=quants[c(1,3)], lty=2, col="blue");
 
 membership_matrix[lf_names, num_cl]=memberships[lf_names];
 
-write.table(membership_matrix, file=paste(OutputFileRoot, ".cls_mem.tsv", sep=""),
+write.table(membership_matrix, file=paste(OutputFileRoot, ".cls_mem.csv", sep=""),
 	quote=F, sep=",", row.names=TRUE, col.names=NA);
 
 ###############################################################################
