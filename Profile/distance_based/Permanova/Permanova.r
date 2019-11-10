@@ -789,6 +789,17 @@ for(fact_id in 1:num_anova_terms){
 	pval=res$aov.tab[term_name,"Pr(>F)"];
 	eta_sqrd=SS/res$aov.tab["Total","SumsOfSqs"]; # eta^2: .1 small, .25 medium, .4 large
 
+	signf_char="";
+	if(pval<.001){
+		signf_char=" ***";
+	}else if(pval<0.01){
+		signf_char=" **";
+	}else if(pval<0.05){
+		signf_char=" *";
+	}else if(pval<0.10){
+		signf_char=" .";
+	}
+
 	cur_factor=term_name;
 	if(length(grep(":", term_name))){
 
@@ -895,8 +906,8 @@ for(fact_id in 1:num_anova_terms){
 	par(mar=c(0,0,0,0));
 	plot(0,0, type="n", xlim=c(0,10), ylim=c(0,10), ylab="", xlab="", xaxt="n", yaxt="n", bty="n");
 	legend(0,9, legend=factor_levels, fill=1:num_levels, bty="n", title=term_name);
-	text(5,2, sprintf("df = %i\nSS = %5.4f\nMS = %5.4f\nF = %5.4f\nR^2 = %5.4f\np-value = %5.4f\neta^2 = %5.4f", 
-		df, SS, MS, F, R2, pval, eta_sqrd));
+	text(5,2, sprintf("df = %i\nSS = %5.4f\nMS = %5.4f\nF = %5.4f\nR^2 = %5.4f\np-value = %5.4f%s\neta^2 = %5.4f", 
+		df, SS, MS, F, R2, pval, signf_char, eta_sqrd));
 	par(mar=mar);
 
 	# Label this page with the input file name
@@ -961,13 +972,14 @@ for(fact_id in 1:num_anova_terms){
 		text(mds1_centoid, mds2_centoid, labels=factor_levels, cex=1.2, font=2, pos=1);
 	}
 
+
 	# Plot Legend
 	mar=par()$mar;
 	par(mar=c(0,0,0,0));
 	plot(0,0, type="n", xlim=c(0,10), ylim=c(0,10), ylab="", xlab="", xaxt="n", yaxt="n", bty="n");
 	legend(0,9, legend=factor_levels, fill=1:num_levels, bty="n", title=term_name);
-	text(5,2, sprintf("df = %i\nSS = %5.4f\nMS = %5.4f\nF = %5.4f\nR^2 = %5.4f\np-value = %5.4f\neta^2 = %5.4f", 
-		df, SS, MS, F, R2, pval, eta_sqrd));
+	text(5,2, sprintf("df = %i\nSS = %5.4f\nMS = %5.4f\nF = %5.4f\nR^2 = %5.4f\np-value = %5.4f%s\neta^2 = %5.4f", 
+		df, SS, MS, F, R2, pval, signf_char, eta_sqrd));
 	par(mar=mar);
 
 	###############################################################################
