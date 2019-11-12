@@ -1214,6 +1214,185 @@ for(sbj in names(death_times)){
 }
 
 
+
+cat("\n\n");
+cat("------------------------------------------------------------------------\n");
+cat("Plotting Combined Kaplan-Meier Curves:\n");
+cat("Grouping variable name: ", CohtVarName, "\n");
+cat("Groups: ", uniq_coht_ids, "\n");
+cat("Group to Subject Mapping:\n");
+print(coht_to_sbj_list);
+print(event_df);
+
+run_km_surv_analysis=function(event_info, grp_to_sbj_map, time_varname, subj_varname){
+	
+	print(event_info);
+	nsbj=nrow(event_info);
+	nevtcol=ncol(event_info);
+	
+	surv_data=as.data.frame(matrix(0, nrow=nsbj, ncol=nevtcol));
+	colnames(surv_data)=c("times", "status", "group");
+	rownames(surv_data)=rownames(event_info);
+	surv_data[,"times"]=as.numeric(event_info[,time_varname]);
+	surv_data[,"status"]=as.numeric(event_info[,"Status"]);
+
+
+	cht_list=names(grp_to_sbj_map);
+	for(cht_ix in cht_list){
+		surv_data[grp_to_sbj_map[[cht_ix]], "group"]=cht_ix;
+	}
+
+	print(surv_data);
+
+	combined_sd_res=survdiff(Surv(times, status)~group, data=surv_data);
+	
+	cat("Combined LogRank:\n");
+	print(combined_sd_res);
+
+
+	cat("Pairwise\n");
+	num_grps=length(cht_list);
+	
+	log_rank_pval_mat=matrix(1, nrow=num_grps, ncol=num_grps);
+	rownames(log_rank_pval_mat)=cht_list;
+	colnames(log_rank_pval_mat)=cht_list;
+
+	signf_summ_mat=matrix(character(), nrow=0, ncol=3);
+	colnames(signf_summ_mat)=c("Group A", "Group B", "LogRank P-Values");
+
+	for(gixa in 1:num_grps){
+
+		gra=cht_list[gixa];
+
+		for(gixb in 1:num_grps){
+
+			grb=cht_list[gixb];
+
+			if(gixa<gixb){
+
+				a_ix=which(surv_data[,"group"]==gra);
+				b_ix=which(surv_data[,"group"]==grb);
+
+				sub_surv_data=surv_data[c(a_ix, b_ix),];
+		
+				sd_res=survdiff(Surv(times, status)~group, data=sub_surv_data);
+				chisq_pvalue=1-pchisq(sd_res$chisq, 1);
+				log_rank_pval_mat[gra, grb]=chisq_pvalue;
+				log_rank_pval_mat[grb, gra]=chisq_pvalue;
+
+				if(chisq_pvalue<0.1){
+					signf_summ_mat=rbind(signf_summ_mat, c(gra, grb, signif(chisq_pvalue,3)));
+				}
+			}
+		}
+	}
+
+	print(log_rank_pval_mat);
+
+	paint_matrix(
+		log_rank_pval_mat,
+		"Log Rank Pairwise Comparision of Groups",
+		plot_min=0, plot_max=1, high_is_hot=F, deci_pts=3,
+		value.cex=5
+		);
+
+	rownames(signf_summ_mat)=paste(1:nrow(signf_summ_mat), ".", sep="");
+
+	plot_text(c(
+		"Combined LogRank:\n",
+		capture.output(print(combined_sd_res, quote=F)),
+		"",
+		"Summary of Significant Pairwise LogRank Comparisons:",
+		"",
+		capture.output(print(signf_summ_mat, quote=F))
+	));
+
+}
+
+plot_km=function(events_info, grp_to_sbj_map, grp_colors, time_varname, sbj_varname){
+
+	layout_mat=matrix(c(1,1,2,2,2,3), ncol=1);
+	layout(layout_mat);
+	# Plot group with most survivors first with thickest line
+	grp_list=names(grp_to_sbj_map);
+	num_grps=length(grp_list);
+	num_surv=numeric(num_grps);
+	grp_size=numeric(num_grps);
+	
+	# Count up number of suvivors per group
+	names(num_surv)=grp_list;
+	names(grp_size)=grp_list;
+	for(grp_ix in grp_list){
+		grp_mem=grp_to_sbj_map[[grp_ix]];
+		grp_size[grp_ix]=length(grp_mem);
+		num_surv[grp_ix]=sum(0==events_info[grp_mem,"Status"]);
+	}
+
+	# Order by proportion of survivors
+	prop_surv=num_surv/grp_size;
+	grp_plot_order=order(prop_surv, decreasing=T);
+	prop_surv=prop_surv[grp_plot_order];
+	cat("(Ordered) Proportion of Survivors:\n");
+	print(prop_surv);
+	ordgrp=names(prop_surv);
+
+	max_event_time=max(as.numeric(events_info[,time_varname]));
+	cat("Max Event Time: ", max_event_time, "\n");
+
+	# Plot legend
+	plot(0,0, type="n", xlim=c(0, 1), ylim=c(0,1), xaxt="n", yaxt="n",
+		xlab="", ylab="", main="", bty="n");
+	legend(0,.5, legend=ordgrp, fill=grp_colors[ordgrp], bty="n");
+
+	# Setup plot for curves
+	par(mar=c(5,5,5,5));
+	plot(0,0, type="n", xlim=c(0, max_event_time), ylim=c(0,110),
+		cex.axis=2, cex.lab=2, cex.main=3,
+		main="Kaplan-Meier Plot",
+		xlab=time_varname, ylab="Percent Survival");
+
+
+	# Draw lines for each group
+	ix=0;
+	for(grix in ordgrp){
+		
+		grp_mem=grp_to_sbj_map[[grix]];
+		grp_evt=sort(as.numeric(events_info[grp_mem, time_varname]));
+
+		surv_time=c(0, grp_evt);
+		surv_prop=(grp_size[grix]:0)/grp_size[grix];
+		surv_prop[surv_prop<prop_surv[grix]]=prop_surv[grix];
+
+		print(surv_prop);
+		print(surv_time);
+
+		x=numeric();
+		y=numeric();
+
+		for(i in 1:length(surv_prop)){
+			x=c(x, surv_time[i], surv_time[i+1]);
+			y=c(y, surv_prop[i], surv_prop[i]);
+		}
+
+	
+		linewidth=(num_grps-ix)*2-1;
+		cat("Line Width:", linewidth, "\n");
+
+		points(x,y*100, cex=linewidth/2, type="p", pch=20, col=grp_colors[grix]);
+		points(x,y*100, lwd=linewidth, type="l", col=grp_colors[grix]);
+
+		ix=ix+1;
+	}
+
+}
+
+plot_km(event_df, coht_to_sbj_list, cht_colors, TimeVarName, SubjVarName);
+par(mfrow=c(1,1));
+run_km_surv_analysis(event_df, coht_to_sbj_list, TimeVarName, SubjVarName);
+#quit();
+
+###############################################################################
+
 change_variable_name=function(current, new, df){
 	cat("Changing variable name from: ", current, " to: ", new, "\n");
 	cur_names=colnames(df);
