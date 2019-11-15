@@ -281,6 +281,7 @@ shared_sample_ids=sort(shared_sample_ids);
 
 ##############################################################################
 
+
 # Reorder data by sample id
 counts=counts[shared_sample_ids,];
 num_samples=nrow(counts);
@@ -304,7 +305,7 @@ plot_text(c(
 ##############################################################################
 # For each sample name
 
-replicate_group=factors[, Replicate_ColumnName];
+replicate_group=as.character(factors[, Replicate_ColumnName]);
 sample_names=factors[, Sample_ColumnName];
 sample_ids=rownames(factors);
 
@@ -357,117 +358,218 @@ bootstrap_profiles=function(depths_arr, norm_arr, num_bs){
 		samp_ix=samp_ix+1;
 	}
 	
-	print(bs_dm_rownames);
 	rownames(bs_dm)=bs_dm_rownames;
 
 	return(bs_dm);
 
 } 
 
+plot_smp_vs_grp_barplots=function(bootstrapped_distmat, num_bootstraps, sample_ids, replicate_ids, sample_colors){
+	sqr_dm=as.matrix(bootstrapped_distmat);
+	num_samps=length(sample_ids);
 
+	medians=numeric(num_samps);
+	lb=numeric(num_samps);
+	ub=numeric(num_samps);
 
+	for(i in 1:num_samps){
+		tar_smp=sample_ids[i];
+		tar_bs_ix=(i-1)*num_bootstraps+1:num_bootstraps;
+		#print(tar_bs_ix);
 
-diversity_95ci_rarefaction=function(depth_range, distribution, div_fun, num_bs=80){
+		sub_mat=apply(sqr_dm[tar_bs_ix, -tar_bs_ix], 1, mean);
 
-        num_depths=length(depth_range);
-        ci95_matrix=matrix(NA, ncol=3, nrow=num_depths);
-        colnames(ci95_matrix)=c("lb95", "median", "ub95");
+		
+		#print(rownames(sub_mat));
+		#print(colnames(sub_mat));
+	
+		qres=quantile(sub_mat, c(0.025, .5, 0.975));
+		medians[i]=qres[2];
+		lb[i]=qres[1];
+		ub[i]=qres[3];
+	}	
 
-        dpix=1;
-        bs_div_vals=numeric(num_bs);
-        for(dep in depth_range){
+	
+	max_dist=max(ub);
+	mids=barplot(medians, names.arg=replicate_ids[sample_ids], col=sample_colors[sample_ids], 
+		main="Median and 95%CI Distance to Centroid of Others",
+		ylab="Distance",
+		ylim=c(0, max_dist*1.2),
+		las=2);
 
-                bs_div_vals=diversity_bs(dep, distribution, div_fun, num_bs);
-                ci95_matrix[dpix,]=quantile(bs_div_vals, c(.025, .5, .975));
+	ep=.15;
+	for(i in 1:num_samps){
+		points(c(mids[i]-ep, mids[i]+ep), rep(ub[i],2), type="l");
+		points(c(mids[i]-ep, mids[i]+ep), rep(lb[i],2), type="l");
+		points(rep(mids[i],2), c(ub[i], lb[i]), type="l");
+	}
 
-                dpix=dpix+1;
-        }
+	result=list();
+	result[["medians"]]=medians;
+	result[["repl_ids"]]=as.character(replicate_ids);
 
-        raref_results=list();
-        raref_results[["ci95_matrix"]]=ci95_matrix;
-        raref_results[["div_at_max"]]=bs_div_vals;
-        # Store bs values at greatest depth
-
-        return(raref_results);
+	return(result);
 
 }
 
-
-
 ##############################################################################
 
+# Number of points to bootstrap each replicate
 nbs=80;
-iter=0;
 
+# Prepare reference samples for MDS
+mds_neutral=rep("black", num_shared_sample_ids);
+names(mds_neutral)=rownames(normalized);
+mds_ones=rep(1, num_shared_sample_ids);
+names(mds_ones)=rownames(normalized);
+
+distmat=compute_dist(normalized, DistanceType);
+cl_mds=cmdscale(distmat);
+
+acc_distance_from_other=numeric();
+acc_replicate_id_arr=character();
+acc_depth=numeric();
+
+iter=0;
 for(cur_sample_name in uniq_samp_names){
 
-	cat("Analyzing Sample Group: ", cur_sample_name, "\n");
+	cat("\n", iter, ": Analyzing Sample Group: ", cur_sample_name, "\n", sep="");
 	
 	samp_ix=(sample_names==cur_sample_name);
 	samp_ids=sample_ids[samp_ix];
+
+	cat("Samples ID in Sample Group:\n");
+	print(samp_ids);
+
 	repl_ids=replicate_group[samp_ix];
 	names(repl_ids)=samp_ids;
-
 	num_samp=length(samp_ids);
+
+	# Abort if no replicate
 	if(num_samp<2){
 		next;
 	}
 
+	# Assign colors
 	colors=rainbow(num_samp, start=0, end=.8);
 	names(colors)=samp_ids;
 
-	cat("Samples ID in Sample Group:\n");
-	print(samp_ids);
+	# Profile
 	cur_counts=counts[samp_ids,, drop=F];
 	cur_normal=normalized[samp_ids,, drop=F];
-	cur_centroid=apply(cur_normal, 2, mean);
-	combined_norm=rbind(cur_normal, cur_centroid);
 
+	# Depth
 	read_depths=apply(cur_counts, 1, sum);
 	print(read_depths);
 	max_depth=max(read_depths);
 
-	cat("Bootstraping Profile Distribution...\n");
-	bs_profs=bootstrap_profiles(read_depths, cur_normal, num_bs=nbs);
-
-	cat("Calculating Distributions...\n");
-	distmat=compute_dist(bs_profs, DistanceType);
-
-	cat("Performing MDS...\n");
-	clmds=cmdscale(distmat);
-
+	#-----------------------------------------------------------------------------
+	# Read Depth Bar Plot
 
 	par(oma=c(1,1,4,1));
-        par(mfrow=c(2,1));
+        par(mfrow=c(4,1));
         par(mar=c(5,20,5,1));
         barplot(read_depths, horiz=T, las=1, col=colors, xlab="Reads/Sample", main="Replicate Sequencing Depth");
 
+	#-----------------------------------------------------------------------------
+	# Plot replicates in context
 
-	par(mar=c(10,4,10,4));
-	rang=range(clmds);
+	par(mar=c(5,4,5,4));
+	ref_mds_range=range(cl_mds);
+	mds_colors=mds_neutral;
+	mds_colors[samp_ids]=colors[samp_ids];
+	mds_size=mds_ones;
+	mds_size[samp_ids]=2;
+	mds_char=mds_ones;
+	mds_char[samp_ids]=19;
+	plot(cl_mds[,1], cl_mds[,2], xlim=ref_mds_range, ylim=ref_mds_range, 
+		pch=mds_char,
+		col=mds_colors, cex=mds_size,
+		main="Replicates Relative to Other Samples",
+		xlab="Dim 1", ylab="Dim2");
 
-	bscol=as.vector(matrix(rep(colors,nbs), byrow=T, nrow=nbs));
-	plot(clmds[,1], clmds[,2], xlim=rang, ylim=rang, col=bscol);
+	#-----------------------------------------------------------------------------
+	# Plot replicatea out of context
+
+	cat("Bootstraping Profile Distribution...\n");
+	bs_profs=bootstrap_profiles(read_depths, cur_normal, num_bs=nbs);
+	bs_distmat=compute_dist(bs_profs, DistanceType);
+	bs_cl_mds=cmdscale(bs_distmat);
+	bs_mds_range=range(bs_cl_mds);
+
+	bs_mds_colors=character();
+	for(sid in samp_ids){
+		bs_mds_colors=c(bs_mds_colors, rep(colors[sid],nbs));
+	}
+	plot(bs_cl_mds[,1], bs_cl_mds[,2], xlim=bs_mds_range, ylim=bs_mds_range,
+		col=bs_mds_colors,
+		main="Replicates Bootstrapped Relative to Each Other",
+		xlab="Dim 1", ylab="Dim 2");
+
+	#-----------------------------------------------------------------------------
+	# Plot bar for distance between replicate and mean
+
+	med_dist=plot_smp_vs_grp_barplots(bs_distmat, nbs, samp_ids, repl_ids, colors);
+	acc_distance_from_other=c(acc_distance_from_other, med_dist[["medians"]]);
+	acc_replicate_id_arr=c(acc_replicate_id_arr, med_dist[["repl_ids"]]);
+	acc_depth=c(acc_depth, read_depths);
 
 	cat("ok.\n");
 
-
-	#gap=150;
-	#if(max_depth<gap){
-#		gap=max_depth/10;
-	#}
-	#depth_range=sort(unique(c(seq(gap, max_depth, gap), read_depths)));
-	#cat("Rarefying at: \n");
-	#print(depth_range);
-
-	#cat("\n");
+	#-----------------------------------------------------------------------------
+	mtext(cur_sample_name, outer=T, font=2, cex=1.5);
 
 	iter=iter+1;
-	if(iter==20){
-		break;
+	if(iter==10){
+		#break;
 	}
 }
 
+repcolors=rainbow(num_uniq_repl, start=0, end=.8);
+names(repcolors)=uniq_repl_names;
+
+#-----------------------------------------------------------------------------
+# Plot histogram of distance from other others' centroids
+par(mfrow=c(num_uniq_repl, 1));
+max_dist=max(acc_distance_from_other);
+for(rid in uniq_repl_names){
+	rix=(rid==acc_replicate_id_arr);
+	hist(acc_distance_from_other[rix], breaks=seq(0, max_dist, length.out=20),
+		xlim=c(0, max_dist), main=rid, 
+		ylab="Frequency",
+		xlab="Distance from Others' Centroid");
+	abline(v=median(acc_distance_from_other[rix]), col="black", lwd=4);
+	abline(v=0, col="blue", lwd=2);
+}
+mtext("Distribution of Distances from Other's Centroids", outer=T, font=2, cex=1.5);
+
+
+#-----------------------------------------------------------------------------
+# Plot depth/error relationship
+par(mfrow=c(num_uniq_repl+1, 1));
+
+
+# Plot Combined
+plot(acc_depth, acc_distance_from_other, 
+	main="Combined",
+	xlab="Reads/Sample", ylab="Distance from Centroid");
+lp=lowess(acc_distance_from_other~acc_depth);
+points(lp$x, lp$y, col="grey", type="l", lwd=3);
+
+minlowess=min(lp$y);
+abline(h=minlowess, lty=2, col="black");
+
+# Plot by replicate group
+for(rid in uniq_repl_names){
+	rix=(rid==acc_replicate_id_arr);
+	plot(acc_depth[rix], acc_distance_from_other[rix], 
+		main=rid,
+		xlab="Reads/Sample", ylab="Distance from Centroid");
+	lp=lowess(acc_distance_from_other[rix]~acc_depth[rix]);
+	points(lp$x, lp$y, col=repcolors[rix], type="l", lwd=3);
+	abline(h=minlowess, lty=2, col="black");
+}
+mtext("Effect of Sequence Depth on Distance from Others' Centroids", outer=T, font=2, cex=1.5);
 
 ##############################################################################
 
