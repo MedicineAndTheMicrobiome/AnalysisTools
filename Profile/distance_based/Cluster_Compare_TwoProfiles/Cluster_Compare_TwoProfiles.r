@@ -210,6 +210,20 @@ load_mapping_file=function(mp_fname, keep_a_ids, keep_b_ids){
 
 	inmat=as.matrix(read.delim(mp_fname, sep="\t", header=TRUE, check.names=F, comment.char="", quote=""));
 
+	if(ncol(inmat)==3){
+		cat("\nWarning: 3 Columns Found in Mapping File.  Assuming First Column is Subject ID\n");
+		cat("As Seen:\n");
+		print(inmat);
+		inmat=inmat[,c(2,3)];
+		cat("\nAs Interpretted:\n");
+		print(inmat);
+		cat("\n");
+	}
+
+	# Remove unpaired
+	keep_ix=apply(inmat, 1, function(x){ all(!is.na(x))});
+	inmat=inmat[keep_ix,,drop=F];
+
 	# Keep Entry if record is in both lists
 	keep_ix=c();
 	orig_mat_rows=nrow(inmat);
@@ -1457,9 +1471,9 @@ if(analyze_dendro_cont){
 		}
 	}
 
-	pval_mat=pval_mat[2:max_cuts, 2:max_cuts];
-	cum_agb_mat=cum_agb_mat[2:max_cuts, 2:max_cuts];
-	cum_bga_mat=cum_bga_mat[2:max_cuts, 2:max_cuts];
+	pval_mat=pval_mat[2:max_cuts, 2:max_cuts, drop=F];
+	cum_agb_mat=cum_agb_mat[2:max_cuts, 2:max_cuts, drop=F];
+	cum_bga_mat=cum_bga_mat[2:max_cuts, 2:max_cuts, drop=F];
 
 	logodds=log2(cum_agb_mat/cum_bga_mat);
 
