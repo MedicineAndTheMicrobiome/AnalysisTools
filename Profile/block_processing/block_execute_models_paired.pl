@@ -28,8 +28,8 @@ my $usage = "
 	-F <column name of sample ids>
 
 	Variable Lists:
-	-c <covariates list>
-	-g <\"grouped\" variables list>
+	[-c <covariates list>]
+	[-g <\"grouped\" variables list>]
 
 	Pairing:
 	-p <pairings map>
@@ -68,8 +68,6 @@ if(
 	!defined($opt_s) || 
 	!defined($opt_f) || 
 	!defined($opt_F) || 
-	!defined($opt_c) || 
-	!defined($opt_g) || 
 	!defined($opt_p) || 
 	!defined($opt_A) || 
 	!defined($opt_B) || 
@@ -83,8 +81,6 @@ my $SummaryTable=$opt_s;
 my $SummaryTable2=$opt_S;
 my $FactorFile=$opt_f;
 my $SampID_Colname=$opt_F;
-my $Covariates=$opt_c;
-my $GroupVar=$opt_g;
 my $PairingMap=$opt_p;
 my $Aname=$opt_A;
 my $Bname=$opt_B;
@@ -92,7 +88,17 @@ my $NumALRVariables=$opt_P;
 my $OutputDir=$opt_o;
 my $DontAbort=$opt_E;
 
-my $AnalysisName=$GroupVar;
+
+my $Covariates=$opt_c;
+my $GroupVar=$opt_g;
+
+if(!defined($Covariates)){
+	$Covariates="";
+}
+
+if(!defined($GroupVar)){
+	$GroupVar="";
+}
 
 if(!defined($SummaryTable2)){
 	$SummaryTable2="";
@@ -106,6 +112,11 @@ if(!defined($opt_E)){
 	$DontAbort=0;
 }else{
 	$DontAbort=1;
+}
+
+my $AnalysisName=$GroupVar;
+if($AnalysisName eq ""){
+	$AnalysisName="result";
 }
 
 $AnalysisName=~s/\.txt$//;
@@ -260,7 +271,11 @@ sub run_abundance_based{
 	my $DIFF_OUT_DIR="alr_diff";
 	my $cmd;
 
-	$cmd="cat $covariates $variable_list > $output_dir/cov_var";
+	if($covariates eq "" && $variable_list eq ""){
+		$cmd="cat /dev/null > $output_dir/cov_var";
+	}else{
+		$cmd="cat $covariates $variable_list > $output_dir/cov_var";
+	}
 	run_command("Concatenate variables into full model list", "concat", $cmd, $output_dir);
 
 	mkdir "$output_dir/abundance";
@@ -383,7 +398,11 @@ sub run_distribution_based{
 	my $cmd;
 	my $DIV_DIFF="paired_div_diff_regr";
 
-	$cmd="cat $covariates $variable_list > $output_dir/cov_var";
+	if($covariates=="" && $variable_list==""){
+		$cmd="touch $output_dir/cov_var"
+	}else{
+		$cmd="cat $covariates $variable_list > $output_dir/cov_var";
+	}
 	run_command("Concatenate variables into full model list", "concat", $cmd, $output_dir);
 
 	mkdir "$output_dir/distribution";
