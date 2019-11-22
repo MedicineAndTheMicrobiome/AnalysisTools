@@ -471,7 +471,11 @@ sub run_distance_based{
 	my $DIST_DIFF="paired_dist_regr";
 	my $CLUST_CMP="clust_cmp";
 
-	$cmd="cat $covariates $variable_list > $output_dir/cov_var";
+	if($covariates=="" && $variable_list==""){
+		$cmd="touch $output_dir/cov_var";
+	}else{
+		$cmd="cat $covariates $variable_list > $output_dir/cov_var";
+	}
 	run_command("Concatenate variables into full model list", "concat", $cmd, $output_dir);
 
 	mkdir "$output_dir/distance";
