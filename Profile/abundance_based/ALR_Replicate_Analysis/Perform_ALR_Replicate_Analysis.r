@@ -500,6 +500,7 @@ plot_smp_vs_grp_barplots=function(bootstrapped_distmat, num_bootstraps, sample_i
 
 ##############################################################################
 
+# Precompute the densities for all the samples are reference
 dens_bw_adj=1;
 densities=list();
 xranges=list();
@@ -511,9 +512,19 @@ for(alr_ix in alr_cat_names){
 	ymaxes[[alr_ix]]=max(densities[[alr_ix]]$y);
 }
 
+# Variables for accumulate differences across all samples
+cum_differences=list();
+cum_depths=list();
+for(alr_ix in alr_cat_names){
+	cum_differences[[alr_ix]]=list();
+	for(repix in uniq_repl_names){
+		cum_differences[[alr_ix]][[repix]]=numeric();
+	}
+}
+cum_depths[[repix]]=numeric();
+
 # Number of points to bootstrap each replicate
 nbs=320;
-#nbs=80;
 iter=0;
 for(cur_sample_name in uniq_samp_names){
 
@@ -553,6 +564,13 @@ for(cur_sample_name in uniq_samp_names){
 	print(read_depths);
 	max_depth=max(read_depths);
 
+	# Store rep to depth for later global analysis
+	for(sid in samp_ids){
+		rep=repl_ids[sid];
+		cum_depths[[rep]]=c(cum_depths[[rep]], read_depths[sid]);
+	}
+	
+
 	# Bootstrap
 	bs_profs=bootstrap_profiles(read_depths, cur_prof, nbs);
 	bs_alr_struct=additive_log_rato(bs_profs);
@@ -561,12 +579,18 @@ for(cur_sample_name in uniq_samp_names){
 	#-----------------------------------------------------------------------------
 	# Read Depth Bar Plot
 
-	par(oma=c(1,1,4,1));
-        par(mfrow=c(4,2));
+	par(oma=c(1,1,5,1));
+        #par(mfrow=c(4,2));
+	layout(
+		matrix(c(
+			1,1,
+			2,3,
+			4,5,
+			6,7), byrow=T, nrow=4));	
+
         par(mar=c(5,20,5,1));
         barplot(read_depths, horiz=T, las=1, col=colors, xlab="Reads/Sample", main="Repl Seq Depth");
-	mtext(cur_sample_name, outer=T, font=2, cex=1.5);
-	plot(0, type="n", xlab="", ylab="", bty="n", xaxt="n", yaxt="n", main="");
+	#plot(0, type="n", xlab="", ylab="", bty="n", xaxt="n", yaxt="n", main="");
 
 
 	#-----------------------------------------------------------------------------
@@ -574,6 +598,11 @@ for(cur_sample_name in uniq_samp_names){
 
         par(mar=c(3,3,4,1));
 	for(alr_ix in alr_cat_names){
+
+		if(par()$page){
+			mtext(cur_sample_name, outer=T, font=2, cex=1.5, line=1.5);
+			par(mfrow=c(4,2));
+		}
 
 		# Calculate densities and find max
 		max_density=0;
@@ -629,17 +658,20 @@ for(cur_sample_name in uniq_samp_names){
 			i=i+1;
 		}
 
-
+		# calculate ranges of differences
 		diff_min=min(diff_matrix[,1]);
 		diff_max=max(diff_matrix[,3]);
 		diff_range=diff_max-diff_min;
 
+		# Plot differences in barplot	
+		par(mar=c(5,3,3,1));
 		mids=barplot(diff_matrix[,2], col=colors, 
+			names.arg=repl_ids[samp_ids],
 			main=alr_ix,
 			ylim=c(diff_min-diff_range/8, diff_max+diff_range/8));
 
+		# Draw with 95%CI error bars
 		pad=1/8;
-		
 		names(mids)=samp_ids;
 		for(samp_ix in samp_ids){
 			# lb bar
@@ -653,17 +685,73 @@ for(cur_sample_name in uniq_samp_names){
 				type="l");
 				
 		}
-		
 
+		#-----------------------------------------------------------------------------
 
+		# Store differences cum_differences[[alr_ix]][[repix]]=numeric();
+		for(sid in samp_ids){
+			rep=repl_ids[sid];
+			cum_differences[[alr_ix]][[rep]]=
+				c(cum_differences[[alr_ix]][[rep]], diff_matrix[sid, 2]);
+		}
 	}
+	mtext(cur_sample_name, outer=T, font=2, cex=1.5, line=1.5);
 	
-
-
-	if(iter==10){
-		break;
+	if(iter==20){
+		#break;
 	}
 	iter=iter+1;
+
+}
+
+#print(cum_depths);
+#print(cum_differences);
+
+# Plot biases in ALR by for each category by run
+
+for(repid in uniq_repl_names){
+	
+	par(mfrow=c(4,2));
+
+	for(alrix in alr_cat_names){
+		vals=cum_differences[[alrix]][[repid]];
+		mags=max(abs(vals));
+		medn=median(vals);
+		pad=mags/10;
+		hist(vals, breaks=seq(-mags-pad, mags+pad, length.out=20), 
+			main=alrix, xlim=c(-mags, mags));
+		abline(v=0, col="black", lty=2, lwd=2);
+		
+		tres=t.test(vals, alternative="two.sided");
+		if(tres$p.value<.05){
+			if(medn>0){
+				dircol="red";
+			}else{
+				dircol="blue";
+			}
+		}else{
+			dircol="grey";
+		}
+
+		abline(v=medn, col=dircol, lwd=3);
+		if(par()$page){
+			mtext(repid, outer=T, font=2, cex=1.5, line=1.5);
+		}
+	}
+
+	mtext(repid, outer=T, font=2, cex=1.5, line=1.5);
+}
+
+for(repid in uniq_repl_names){
+	
+	par(mfrow=c(4,1));
+
+	for(alrix in alr_cat_names){
+		plot(cum_depths[[repid]], cum_differences[[alrix]][[repid]], main=alrix, 
+			xlab="reads/sample", ylab="Diff from Others");
+		abline(h=0, lty=2, col="blue");
+
+	}
 
 }
 
