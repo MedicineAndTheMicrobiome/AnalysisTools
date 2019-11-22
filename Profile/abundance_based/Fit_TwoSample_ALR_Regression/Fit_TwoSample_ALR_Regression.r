@@ -829,6 +829,8 @@ if(ShortenCategoryNames!=""){
 	for(i in 1:length(full_names)){
 		short_names[i]=tail(splits[[i]], 1);
 		short_names[i]=gsub("_unclassified$", "_uncl", short_names[i]);
+		short_names[i]=gsub("\\[", "", short_names[i]);
+		short_names[i]=gsub("\\]", "", short_names[i]);
 	}
 	colnames(counts)=short_names;
 	cat("Names have been shortened.\n");
@@ -1034,6 +1036,7 @@ num_samples_recon=nrow(recon_factors);
 num_factors_recon=ncol(recon_factors);
 num_samples_before_na_removal=num_samples_recon;
 num_factors_before_na_removal=num_factors_recon;
+
 
 factors_wo_nas_res=remove_sample_or_factors_wNA_parallel(recon_factors, 
 	required=required_arr, num_trials=64000, num_cores=64, outfile=paste(OutputRoot, ".noNAs", sep=""));
@@ -1269,7 +1272,12 @@ for(resp_ix in 1:NumRespVariables){
 	# Build formula string for full and reduced model
 
 	model_str=paste("alr_resp ~ ", paste(c(alr_pred_names,model_var_arr), collapse=" + "), sep="");
-	model_reduced_str=paste("alr_resp ~ ", paste(model_var_arr, collapse=" + "), sep="");
+
+	if(length(model_var_arr)==0){
+		model_reduced_str=paste("alr_resp ~ 1", sep="");
+	}else{
+		model_reduced_str=paste("alr_resp ~ ", paste(model_var_arr, collapse=" + "), sep="");
+	}
 
 	cat("Model String: \n");
 	cat("Full:\n");
