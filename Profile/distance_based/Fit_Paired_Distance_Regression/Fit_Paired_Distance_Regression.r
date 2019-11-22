@@ -1143,7 +1143,11 @@ model_pval_mat	=matrix(NA, nrow=1, ncol=1,
 
 model_data=cbind(factors, paired_dist);
 
-model_str=paste("paired_dist~ ", paste(model_var_arr, collapse=" + "), sep="");
+if(length(model_var_arr)==0){
+	model_str=paste("paired_dist ~ 1");
+}else{
+	model_str=paste("paired_dist ~ ", paste(model_var_arr, collapse=" + "), sep="");
+}
 
 NUM_BS=2000+length(model_var_arr)*350;
 
@@ -1164,7 +1168,7 @@ cat(model_str, "\n");
 
 bs_ix=1;
 while(bs_ix <=NUM_BS){
-	bs_data=model_data[sample(num_data_rows, replace=T),];
+	bs_data=model_data[sample(num_data_rows, replace=T),, drop=F];
 
 	result=tryCatch({
 		lm_fit=lm(as.formula(model_str), data=bs_data);
@@ -1356,13 +1360,15 @@ plot_lograt_wCI=function(lrat, lb, ub, num_top_categories=10, ymax, category_col
 plot_comparisons=function(a_profs, b_profs, global_colormap, title, a_name, b_name, topN=15, ylab, max_abs_lr){
 	cat("Plotting: ", ylab, "\n");
 
-	avg_prof=apply(rbind(a_profs, b_profs), 2, mean);
+
+	comb_prof=rbind(a_profs, b_profs);
+	avg_prof=apply(comb_prof, 2, mean);
 	
 	sort_ix=order(avg_prof, decreasing=T);
 
 	avg_prof=avg_prof[sort_ix[1:topN]];
-	a_profs=a_profs[,sort_ix[1:topN]];
-	b_profs=b_profs[,sort_ix[1:topN]];
+	a_profs=a_profs[,sort_ix[1:topN], drop=F];
+	b_profs=b_profs[,sort_ix[1:topN], drop=F];
 
 	top_categories=names(avg_prof);
 	bar_col=global_colormap[top_categories];
@@ -1385,8 +1391,8 @@ plot_comparisons=function(a_profs, b_profs, global_colormap, title, a_name, b_na
 
 		for(bsix in 1:NUMBS){
 			samples=sample(num_samp, replace=T);
-			a_bs_means[bsix,]=apply(a_profs[samples,], 2, mean);
-			b_bs_means[bsix,]=apply(b_profs[samples,], 2, mean);
+			a_bs_means[bsix,]=apply(a_profs[samples,,drop=F], 2, mean);
+			b_bs_means[bsix,]=apply(b_profs[samples,,drop=F], 2, mean);
 			lrab_bs[bsix,]=log10((a_bs_means[bsix,]+minabund)/(b_bs_means[bsix,]+minabund));
 		}
 
@@ -1440,7 +1446,7 @@ print(sorted_paired_dist)
 print(sorted_good_pairs_map);
 
 num_dist=length(sorted_paired_dist);
-splits_arr=c(1,2,3,4,5,6);
+splits_arr=1:(min(6,num_dist-1));
 num_splits=length(splits_arr);
 
 if(ShortenCategoryNames!=""){
@@ -1508,7 +1514,6 @@ for(spix in 1:num_splits){
 
 		glob_max_abs_lr=max(glob_max_abs_lr, stats[["max_abs_lrab"]]);
 	}
-	#plot_compare_plot(
 
 }
 
