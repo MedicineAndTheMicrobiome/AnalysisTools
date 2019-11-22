@@ -190,20 +190,22 @@ remove_no_variation_factors=function(factors, verbose=T){
 	cnames=colnames(factors);
 	num_col=ncol(factors);
 
-	for(i in 1:num_col){
-		val=factors[,i];
-		val=val[!is.na(val)];
-		uniqs=unique(val);
-		if(length(uniqs)==1){
-			no_info=c(no_info, i);
-			#if(verbose){
-			cat(cnames[i], ": Has no useful information.  It is all:\n");
-			print(uniqs);
-			#}
+	if(ncol(factors)>0){
+		for(i in 1:num_col){
+			val=factors[,i];
+			val=val[!is.na(val)];
+			uniqs=unique(val);
+			if(length(uniqs)==1){
+				no_info=c(no_info, i);
+				#if(verbose){
+				cat(cnames[i], ": Has no useful information.  It is all:\n");
+				print(uniqs);
+				#}
+			}
 		}
-	}
-	if(length(no_info)>0){
-		factors=factors[,-no_info, drop=F];
+		if(length(no_info)>0){
+			factors=factors[,-no_info, drop=F];
+		}
 	}
 
 	return(factors);
