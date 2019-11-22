@@ -1099,7 +1099,11 @@ for(div_ix in 1:num_div_idx){
 
 	model_pred=cbind(factors, div_dif);
 
-	model_str=paste("div_dif ~ ", paste(model_var_arr, collapse=" + "), sep="");
+	if(length(model_var_arr)==0){
+		model_str=paste("div_dif ~ 1");
+	}else{
+		model_str=paste("div_dif ~ ", paste(model_var_arr, collapse=" + "), sep="");
+	}
 
 	lm_fit=lm(as.formula(model_str), data=model_pred);
 	sum_fit=summary(lm_fit);
@@ -1148,8 +1152,12 @@ for(div_ix in 1:num_div_idx){
 	rsqrd_mat[cur_div_name, "R^2"]=sum_fit$r.squared;
 	rsqrd_mat[cur_div_name, "Adj-R^2"]=sum_fit$adj.r.squared;
 
-	model_pval_mat[cur_div_name, "F-statistic P-value"]=
-		1-pf(sum_fit$fstatistic[1], sum_fit$fstatistic[2], sum_fit$fstatistic[3]);
+	if(is.null(sum_fit$fstatistic)){
+		model_pval_mat[cur_div_name, "F-statistic P-value"]=NA;
+	}else{
+		model_pval_mat[cur_div_name, "F-statistic P-value"]=
+			1-pf(sum_fit$fstatistic[1], sum_fit$fstatistic[2], sum_fit$fstatistic[3]);
+	}
 
 	cat("\n\n*************************************************\n\n");
 
