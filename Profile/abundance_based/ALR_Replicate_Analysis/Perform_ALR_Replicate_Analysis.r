@@ -709,6 +709,13 @@ for(cur_sample_name in uniq_samp_names){
 
 # Plot biases in ALR by for each category by run
 
+sd_repcat_cnames=c("Replicate", "Category")
+sd_effpv_cnames=c("Effect", "P-value");
+sd_repcat_mat=matrix(NA, nrow=0, ncol=length(sd_repcat_cnames));
+sd_effpv_mat=matrix(NA, nrow=0, ncol=length(sd_effpv_cnames));
+colnames(sd_repcat_mat)=sd_repcat_cnames
+colnames(sd_effpv_mat)=sd_effpv_cnames;
+
 for(repid in uniq_repl_names){
 	
 	par(mfrow=c(4,2));
@@ -729,9 +736,17 @@ for(repid in uniq_repl_names){
 			}else{
 				dircol="blue";
 			}
+
+			sd_repcat_mat=rbind(sd_repcat_mat, 
+				c(repid, alrix));
+			sd_effpv_mat=rbind(sd_effpv_mat, 
+				c(mean(vals), tres$p.value));
+
 		}else{
 			dircol="grey";
 		}
+
+		
 
 		abline(v=medn, col=dircol, lwd=3);
 		if(par()$page){
@@ -742,66 +757,81 @@ for(repid in uniq_repl_names){
 	mtext(repid, outer=T, font=2, cex=1.5, line=1.5);
 }
 
+###############################################################################
+# Output Tables
+
+pval_order=order(sd_effpv_mat[,"P-value"]);
+sd_effpv_mat=sd_effpv_mat[pval_order,,drop=F];
+sd_repcat_mat=sd_repcat_mat[pval_order,,drop=F];
+
+cat_order=order(sd_repcat_mat[,"Category"]);
+repl_order=order(sd_repcat_mat[,"Replicate"]);
+effect_order=order(sd_effpv_mat[,"Effect"]);
+
+num_signf=nrow(sd_effpv_mat);
+linenum=paste(1:num_signf, ".)", sep="");
+
+outmat_bypv=cbind(sd_repcat_mat, signif(sd_effpv_mat, 4));
+colnames(outmat_bypv)=c(sd_repcat_cnames, sd_effpv_cnames);
+
+# By pvalue
+rownames(outmat_bypv)=linenum;
+plot_text(c(
+	capture.output(print(outmat_bypv, quote=F))
+	));
+mtext("By P-value", outer=T, font=2, cex=1.5, line=1.5);
+
+# By category
+outmat=outmat_bypv[cat_order,,drop=F];
+rownames(outmat)=linenum;
+plot_text(c(
+	capture.output(print(outmat, quote=F))
+	));
+mtext("By Category", outer=T, font=2, cex=1.5, line=1.5);
+
+# By Effect 
+outmat=outmat_bypv[effect_order,,drop=F];
+rownames(outmat)=linenum;
+plot_text(c(
+	capture.output(print(outmat, quote=F))
+	));
+mtext("By Effect", outer=T, font=2, cex=1.5, line=1.5);
+
+# By Replicate 
+outmat=outmat_bypv[repl_order,,drop=F];
+rownames(outmat)=linenum;
+plot_text(c(
+	capture.output(print(outmat, quote=F))
+	));
+mtext("By Replicate", outer=T, font=2, cex=1.5, line=1.5);
+
+###############################################################################
+# Plot depth vs Error
+
+par(mar=c(5, 4, 3, 1));
 for(repid in uniq_repl_names){
 	
 	par(mfrow=c(4,1));
 
 	for(alrix in alr_cat_names){
-		plot(cum_depths[[repid]], cum_differences[[alrix]][[repid]], main=alrix, 
-			xlab="reads/sample", ylab="Diff from Others");
+		vals=cum_differences[[alrix]][[repid]];
+		mags=max(abs(vals));
+
+		plot(cum_depths[[repid]], vals, main=alrix, ylim=c(-mags*1.1, mags*1.1),
+			xlab="reads/sample", ylab="estimated error");
+
+		lws=lowess(cum_depths[[repid]], vals);
+		points(lws$x, lws$y, type="l", col="red");
 		abline(h=0, lty=2, col="blue");
 
+		if(par()$page){
+			mtext(repid, outer=T, font=2, cex=1.5, line=1.5);
+		}
 	}
 
-}
+	mtext(repid, outer=T, font=2, cex=1.5, line=1.5);
 
-#
-#
-#repcolors=rainbow(num_uniq_repl, start=0, end=.8);
-#names(repcolors)=uniq_repl_names;
-#
-##-----------------------------------------------------------------------------
-## Plot histogram of distance from other others' centroids
-#par(mfrow=c(num_uniq_repl, 1));
-#max_dist=max(acc_distance_from_other);
-#for(rid in uniq_repl_names){
-#	rix=(rid==acc_replicate_id_arr);
-#	hist(acc_distance_from_other[rix], breaks=seq(0, max_dist, length.out=20),
-#		xlim=c(0, max_dist), main=rid, 
-#		ylab="Frequency",
-#		xlab="Distance from Others' Centroid");
-#	abline(v=median(acc_distance_from_other[rix]), col="black", lwd=4);
-#	abline(v=0, col="blue", lwd=2);
-#}
-#mtext("Distribution of Distances from Other's Centroids", outer=T, font=2, cex=1.5);
-#
-#
-##-----------------------------------------------------------------------------
-## Plot depth/error relationship
-#par(mfrow=c(num_uniq_repl+1, 1));
-#
-#
-## Plot Combined
-#plot(acc_depth, acc_distance_from_other, 
-#	main="Combined",
-#	xlab="Reads/Sample", ylab="Distance from Centroid");
-#lp=lowess(acc_distance_from_other~acc_depth);
-#points(lp$x, lp$y, col="grey", type="l", lwd=3);
-#
-#minlowess=min(lp$y);
-#abline(h=minlowess, lty=2, col="black");
-#
-## Plot by replicate group
-#for(rid in uniq_repl_names){
-#	rix=(rid==acc_replicate_id_arr);
-#	plot(acc_depth[rix], acc_distance_from_other[rix], 
-#		main=rid,
-#		xlab="Reads/Sample", ylab="Distance from Centroid");
-#	lp=lowess(acc_distance_from_other[rix]~acc_depth[rix]);
-#	points(lp$x, lp$y, col=repcolors[rix], type="l", lwd=3);
-#	abline(h=minlowess, lty=2, col="black");
-#}
-#mtext("Effect of Sequence Depth on Distance from Others' Centroids", outer=T, font=2, cex=1.5);
+}
 
 ##############################################################################
 
