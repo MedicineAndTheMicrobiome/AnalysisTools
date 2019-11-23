@@ -502,12 +502,13 @@ plot_smp_vs_grp_barplots=function(bootstrapped_distmat, num_bootstraps, sample_i
 
 # Precompute the densities for all the samples are reference
 dens_bw_adj=1;
+density_precision=30; # Default is 512
 densities=list();
 xranges=list();
 ymaxes=list();
 alr_categories_val=alr_struct$transformed;
 for(alr_ix in alr_cat_names){
-	densities[[alr_ix]]=density(alr_categories_val[,alr_ix], adjust=dens_bw_adj);
+	densities[[alr_ix]]=density(alr_categories_val[,alr_ix], adjust=dens_bw_adj, n=density_precision);
 	xranges[[alr_ix]]=range(alr_categories_val[,alr_ix]);
 	ymaxes[[alr_ix]]=max(densities[[alr_ix]]$y);
 }
@@ -610,7 +611,7 @@ for(cur_sample_name in uniq_samp_names){
 		dens_list=list();
 		for(samp_ix in samp_ids){
 			alrval=bs_alr_values[(1:nbs)+(i-1)*nbs, alr_ix];
-			dens_list[[samp_ix]]=density(alrval, adjust=dens_bw_adj);
+			dens_list[[samp_ix]]=density(alrval, adjust=dens_bw_adj, n=density_precision);
 			max_density=max(c(max_density,dens_list[[samp_ix]]$y));
 			i=i+1;
 		}
