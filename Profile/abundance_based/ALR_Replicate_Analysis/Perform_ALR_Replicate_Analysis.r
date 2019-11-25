@@ -502,7 +502,7 @@ plot_smp_vs_grp_barplots=function(bootstrapped_distmat, num_bootstraps, sample_i
 
 # Precompute the densities for all the samples are reference
 dens_bw_adj=1;
-density_precision=30; # Default is 512
+density_precision=40; # Default is 512
 densities=list();
 xranges=list();
 ymaxes=list();
@@ -810,6 +810,7 @@ mtext("By Replicate", outer=T, font=2, cex=1.5, line=1.5);
 # Plot depth vs Error
 
 par(mar=c(5, 4, 3, 1));
+par(oma=c(0,0,4,0));
 for(repid in uniq_repl_names){
 	
 	par(mfrow=c(4,1));
