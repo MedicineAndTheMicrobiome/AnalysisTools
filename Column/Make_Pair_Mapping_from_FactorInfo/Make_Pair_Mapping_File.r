@@ -92,6 +92,13 @@ num_factor_samples=length(factor_sample_names);
 
 cat("Num Samples to pair: ", nrow(factors), "\n");
 
+if(length(intersect(SubjectIDColname, factor_names))==0){
+	cat("\nCould not find Subject ID column: ", SubjectIDColname, "\n");
+	cat("Available Columns: \n");
+	print(factor_names);	
+	quit();
+}
+
 subj_ids=factors[,SubjectIDColname];
 uniq_subj_ids=unique(subj_ids);
 num_subj_ids=length(uniq_subj_ids);
