@@ -108,19 +108,21 @@ uniq_sample_types=sort(unique(sample_types));
 num_samp_types=length(uniq_sample_types);
 
 # Make sure sample types are not numeric
-if(all(!is.na(as.numeric(uniq_sample_types)))){
+if(all(!is.na(as.numeric(as.character(uniq_sample_types))))){
 	initial_char=substr(SampleTypeColname,1,1);
 	cat("Numbers found as sample type.  Appending ", initial_char, " in front.\n");
-	sample_types=paste(initial_char, sprintf("%02i", sample_types), sep="");
+	asn_sample_types=as.numeric(as.character(sample_types));
+	fmt_str=paste("%0", log10(asn_sample_types+1)+1, "i", sep="");
+	sample_types=paste(initial_char, sprintf(fmt_str, asn_sample_types), sep="");
 	uniq_sample_types=sort(unique(sample_types));
 	num_samp_types=length(uniq_sample_types);
 }
 
 # Make sure sample IDs are not numeric
-if(all(!is.na(as.numeric(uniq_subj_ids)))){
+if(all(!is.na(as.numeric(as.character(uniq_subj_ids))))){
 	initial_char=substr(SubjectIDColname,1,1);
 	cat("Numbers found as Subject ID.  Appending ", initial_char, " in front.\n");
-	fmt_str=paste("%0", log10(subj_ids)+1, "i", sep="");
+	fmt_str=paste("%0", log10(as.numeric(as.character(subj_ids))+1)+1, "i", sep="");
 	subj_ids=paste(initial_char, sprintf(fmt_str, subj_ids), sep="");
 	uniq_subj_ids=sort(unique(subj_ids));
 	num_subj_ids=length(uniq_subj_ids);
