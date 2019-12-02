@@ -126,6 +126,10 @@ usage = paste(
 	"		same group.  The groups may be a subject ID and the values may be a time/date\n",
 	"		value.  You can think of these as ordered visits.\n",
 	"\n",
+	"	num_to_str_id(numeric_id, prefix=\"s\")\n",
+	"		This will convert the numeric id into a string.  By default, a prefix is prepended\n",
+	"		to the number to make it a string.\n",
+	"\n",
 	"\n",
 	"For debugging you can also do:\n",
 	"	print <variable name>\n",
@@ -354,6 +358,17 @@ days_from_date=function(x, format){
 		quit(-1);
 	}
 	return(as.numeric(as.Date(x, format)));
+}
+
+num_to_str_id=function(numeric_id, prefix="s"){
+print(names(numeric_id));
+	max_val=max(numeric_id);
+	num_digits=log10(max_val+1)+1;
+	print(numeric_id);
+	template_str=paste(prefix, "%0", num_digits, "g", sep="");
+	num_char=sprintf(template_str, numeric_id);
+	return(num_char);
+
 }
 
 ##############################################################################
