@@ -495,6 +495,7 @@ if(ShortenCategoryNames!=""){
 
 # Normalize
 cat("Normalizing counts to proportions.\n");
+counts=counts+.5;
 normalized=normalize(counts);
 #print(normalized);
 
@@ -550,12 +551,12 @@ cat("\n");
 
 # Assign 0's to values smaller than smallest abundance across entire dataset
 min_assay=min(normalized[normalized!=0]);
-cat("Lowest non-zero value: ", min_assay, "\n", sep="");
-zero_replacment=min_assay/10;
-cat("\tSubstituting 0's with: ", zero_replacment, "\n", sep="");
-normalized[normalized==0]=zero_replacment;
-cat("Renormalizing to remove zero replacement artifacts.\n");
-normalized=normalize(normalized);
+#cat("Lowest non-zero value: ", min_assay, "\n", sep="");
+#zero_replacment=min_assay/10;
+#cat("\tSubstituting 0's with: ", zero_replacment, "\n", sep="");
+#normalized[normalized==0]=zero_replacment;
+#cat("Renormalizing to remove zero replacement artifacts.\n");
+#normalized=normalize(normalized);
 
 ##############################################################################
 
@@ -576,8 +577,8 @@ coverpage_info=c(
 	paste("Number of Top ALR to include: ", NumVariables),
 	paste("  Look for 'Remaining' category column? ", UseRemaining),
 	"",
-	paste("Lowest non-zero value: ", min_assay),
-	paste("Substituting 0's with: ", zero_replacment, ", i.e. 1/10th of Lowest non-zero = ", min_assay, "/10.", sep="")
+	paste("Lowest non-zero value: ", min_assay)
+	#paste("Substituting 0's with: ", zero_replacment, ", i.e. 1/10th of Lowest non-zero = ", min_assay, "/10.", sep="")
 );
 plot_text(coverpage_info);
 
