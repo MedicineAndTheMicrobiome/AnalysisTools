@@ -1,5 +1,5 @@
 
-load_offset=function(fname){
+load_offset=function(fname, reset_offsets=T){
 
         cat("Loading Offsets: ", fname, "\n");
         offsets_mat=read.delim(fname,  header=TRUE, row.names=1, sep="\t", comment.char="#", quote="");
@@ -30,13 +30,14 @@ load_offset=function(fname){
         cat("\n");
 
         # Reset offsets so they are relative to the first/smallest sample
-        for(gid in groups){
-                group_ix=(gid==offsets_mat[,"Indiv ID"]);
-                offsets=offsets_mat[group_ix, "Offsets"];
-                min_off=min(offsets);
-                offsets_mat[group_ix, "Offsets"]=offsets-min_off;
-        }
-
+	if(reset_offsets){
+		for(gid in groups){
+			group_ix=(gid==offsets_mat[,"Indiv ID"]);
+			offsets=offsets_mat[group_ix, "Offsets"];
+			min_off=min(offsets);
+			offsets_mat[group_ix, "Offsets"]=offsets-min_off;
+		}
+	}
 
         offsets_data=list();
         offsets_data[["matrix"]]=offsets_mat;
