@@ -25,7 +25,9 @@ params=c(
 
 	"factor_file", "f", 2, "character",
 	"model_file", "m", 2, "character",
-	"subject_id_col", "i", 2, "character"
+	"subject_id_col", "i", 2, "character",
+
+	"dont_reset_offsets", "n", 2, "logical"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -50,6 +52,8 @@ usage = paste(
 	"	[-f <factor file name>]\n",
 	"	[-m <model variable list>]\n",
 	"	[-i <subject identifier column name>]\n",
+	"\n",
+	"	[-n (do not reset earliest offsets to 0 to line up time points, default=reset offsets)]\n",
 	"\n",	
 	"\n", sep="");
 
@@ -75,6 +79,7 @@ Alpha=ALPHA;
 FactorFile="";
 ModelFile="";
 SubjectIdentifierColumn="";
+ResetOffsets=T;
 
 if(length(opt$num_top_pred)){
 	NumALRPredictors=opt$num_top_pred;
@@ -104,6 +109,10 @@ if(length(opt$subject_id_col)){
 	SubjectIdentifierColumn=opt$subject_id_col;
 }
 
+if(length(opt$dont_reset_offsets)){
+	ResetOffsets=F;
+}
+
 ###############################################################################
 
 input_param=capture.output({
@@ -114,6 +123,7 @@ input_param=capture.output({
 	cat("  Shorten Categories: ", ShortenCategoryNames, "\n", sep="");
 	cat("\n");
 	cat("Offset File: ", OffsetFile, "\n", sep="");
+	cat("   Reset Offsets? ", ResetOffsets, "\n", sep="");
 	cat("\n");
 	cat("Output File Root: ", OutputRoot, "\n", sep="");
 	cat("\n");
@@ -529,10 +539,16 @@ plot_alr_time_indv=function(tar_cat, tar_subj, offsets_rec, alr_categories_val,
 	y_val=alr_categories_val[samp_ids, tar_cat];
 
 	plot(0, type="n", ylim=alr_range, xlim=offset_range, ylab=tar_subj);
+
+	if(min(offset_range)<0){
+		abline(v=0, col="blue", lty=3, lwd=3, lend="butt");
+	}
+
 	abline(h=alr_med, col="grey", lty="dotdash");
 	points(x_val, y_val, type="l", lwd=5, col=col);
 	points(x_val, y_val, type="l", lwd=.5, col="black");
 	points(x_val, y_val, type="p", cex=3, col="black");
+
 
 }
 
@@ -541,6 +557,10 @@ plot_alr_time_grpd=function(tar_cat, subj_arr, grouping, grouping_name, offsets_
 
 	plot(0, type="n", ylim=alr_range, xlim=offset_range, ylab=paste(grouping_name, ": ", grouping));
 	abline(h=alr_med, col="grey", lty="dotdash");
+
+	if(min(offset_range)<0){
+		abline(v=0, col="blue", lty=3, lwd=3, lend="butt");
+	}
 
 	for(tar_subj in subj_arr){
 
@@ -564,6 +584,10 @@ compute_and_plot_loess=function(tar_cat, subj_arr, grouping, grouping_name, offs
 
 	plot(0, type="n", ylim=alr_range, xlim=offset_range, ylab=paste(grouping_name, ": ", grouping));
 	abline(h=alr_med, col="grey", lty="dotdash");
+
+	if(min(offset_range)<0){
+		abline(v=0, col="blue", lty=3, lwd=3, lend="butt");
+	}
 
 	all_x=numeric();
 	all_y=numeric();
@@ -879,7 +903,7 @@ plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.1, samp_gly=T){
 pdf(paste(OutputRoot, ".alr_ts.pdf", sep=""), height=14, width=8.5);
 
 # Load offset file
-offset_raw=load_offset(OffsetFile);
+offset_raw=load_offset(OffsetFile, ResetOffsets);
 print(offset_raw);
 offset_samp_ids=rownames(offset_raw[["matrix"]]);
 
