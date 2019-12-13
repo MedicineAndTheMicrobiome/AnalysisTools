@@ -918,7 +918,7 @@ offset_raw=load_offset(OffsetFile, ResetOffsets, BeginOffset, EndOffset);
 print(offset_raw);
 offset_samp_ids=rownames(offset_raw[["matrix"]]);
 
-OutputRoot=paste(OutputRoot, ".", offset_raw$RangeTam, sep="");
+OutputRoot=paste(OutputRoot, ".", offset_raw$RangeTag, sep="");
 
 # Load summary file table counts 
 cat("\n");
