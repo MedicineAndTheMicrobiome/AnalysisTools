@@ -52,6 +52,25 @@ load_offset=function(fname, reset_offsets=T, start=-Inf, end=Inf){
         offsets_data[["Offsets"]]=extra_colnames[2];
         offsets_data[["GroupID"]]=extra_colnames[3];
 
+	# Store range information
+	if(start==-Inf){
+		stag="start";
+	}else{
+		stag=as.character(start);
+	}
+
+	if(end==Inf){
+		etag="end";
+	}else{
+		etag=as.character(end);
+	}
+
+	range_tag=paste(stag, "_to_", etag, sep="");
+	range_tag=gsub("-", "n", range_tag);
+	offsets_data[["RangeTag"]]=range_tag;
+	offsets_data[["Start"]]=start;
+	offsets_data[["End"]]=end;
+
         return(offsets_data);
 
 }
