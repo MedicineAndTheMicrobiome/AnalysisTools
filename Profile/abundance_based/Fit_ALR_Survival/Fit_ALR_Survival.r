@@ -846,6 +846,12 @@ print(death_times);
 
 ##############################################################################
 
+#factor_cnames=colnames(factors);
+#if(!any(TimeVarName==factor_cnames)){
+#	factors=cbind(factors, 0);
+#	colnames(factors)=c(factor_cnames, TimeVarName);
+#}
+
 times=factors[,TimeVarName];
 subj_ids=as.character(factors[,SubjVarName]);
 coht_ids=as.character(factors[,CohtVarName]);
@@ -914,8 +920,6 @@ for(sbj_ix in uniq_subj_ids){
 	group_structure[[coht]][[sbj_ix]][["times"]]=ordered[,TimeVarName];
 	group_structure[[coht]][[sbj_ix]][["death"]]=death_times[sbj_ix];
 }
-
-#print(group_structure);
 
 ###############################################################################
 
@@ -1160,9 +1164,10 @@ for(coht_ix in uniq_coht_ids){
 
 }
 
-plots_per_age=6;
+plots_per_page=6;
 par(mfrow=c(plots_per_page,1));
 plot_ix=0;
+
 for(coht_ix in uniq_coht_ids){
 
 	plot_alr_over_time(
@@ -1576,6 +1581,11 @@ par(mfrow=c(number_cohts,2));
 par(mar=c(4,4,1,1));
 
 lowess_interval=min(diff(uniq_times))/2;
+
+if(!is.finite(lowess_interval)){
+	lowess_interval=1;
+}
+
 time_range=range(uniq_times);
 
 for(coht_ix in uniq_coht_ids){
@@ -1587,6 +1597,7 @@ for(coht_ix in uniq_coht_ids){
 	reduced_pred=predict(reduced_coxph_fit, sub_merged, type="expected");
 
 	plot(sub_merged[,"tend"], exp(-full_pred), xlim=time_range, ylim=c(0,1), main="Full", ylab=coht_ix, xlab="");
+
 	points(lowess(sub_merged[,"tend"], exp(-full_pred), delta=lowess_interval), type="l", col="blue");
 
 	plot(sub_merged[,"tend"], exp(-reduced_pred), xlim=time_range, ylim=c(0,1), main="Reduced", ylab="", xlab="");
