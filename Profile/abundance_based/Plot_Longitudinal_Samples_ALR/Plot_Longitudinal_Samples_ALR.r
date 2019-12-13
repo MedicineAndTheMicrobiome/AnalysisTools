@@ -27,7 +27,9 @@ params=c(
 	"model_file", "m", 2, "character",
 	"subject_id_col", "i", 2, "character",
 
-	"dont_reset_offsets", "n", 2, "logical"
+	"dont_reset_offsets", "n", 2, "logical",
+	"begin_offset", "b", 2, "numeric",
+	"end_offset", "e", 2, "numeric"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -54,6 +56,8 @@ usage = paste(
 	"	[-i <subject identifier column name>]\n",
 	"\n",
 	"	[-n (do not reset earliest offsets to 0 to line up time points, default=reset offsets)]\n",
+	"	[-b <begin offset, default=-Inf>]\n",
+	"	[-e <end offset, default=Inf>]\n",
 	"\n",	
 	"\n", sep="");
 
@@ -80,6 +84,8 @@ FactorFile="";
 ModelFile="";
 SubjectIdentifierColumn="";
 ResetOffsets=T;
+BeginOffset=-Inf;
+EndOffset=Inf;
 
 if(length(opt$num_top_pred)){
 	NumALRPredictors=opt$num_top_pred;
@@ -111,6 +117,14 @@ if(length(opt$subject_id_col)){
 
 if(length(opt$dont_reset_offsets)){
 	ResetOffsets=F;
+}
+
+if(length(opt$begin_offset)){
+	BeginOffset=opt$begin_offset;
+}
+
+if(length(opt$end_offset)){
+	EndOffset=opt$end_offset;
 }
 
 ###############################################################################
@@ -899,18 +913,20 @@ plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.1, samp_gly=T){
 ##############################################################################
 ##############################################################################
 
-# Open main output file
-pdf(paste(OutputRoot, ".alr_ts.pdf", sep=""), height=14, width=8.5);
-
 # Load offset file
-offset_raw=load_offset(OffsetFile, ResetOffsets);
+offset_raw=load_offset(OffsetFile, ResetOffsets, BeginOffset, EndOffset);
 print(offset_raw);
 offset_samp_ids=rownames(offset_raw[["matrix"]]);
+
+OutputRoot=paste(OutputRoot, ".", offset_raw$RangeTam, sep="");
 
 # Load summary file table counts 
 cat("\n");
 cat("Loading summary table...\n");
 counts=load_summary_file(SummaryFile);
+
+# Open main output file
+pdf(paste(OutputRoot, ".alr_ts.pdf", sep=""), height=14, width=8.5);
 
 # Remove zero count samples
 tot=apply(counts, 1, sum);
