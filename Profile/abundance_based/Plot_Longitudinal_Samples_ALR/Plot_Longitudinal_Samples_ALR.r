@@ -1126,7 +1126,9 @@ for(cat_ix in alr_cat_names){
 
 print(cat_loess);
 
-num_rows_pp=6;
+# Plot loess thumbnails
+
+num_rows_pp=5;
 par(oma=c(6,6,4,1));
 par(mar=c(.5,.5,.5,.5));
 par(mfrow=c(num_rows_pp,num_groups));
@@ -1170,9 +1172,9 @@ for(cat_ix in alr_cat_names){
 		# Label left side with category and alr scale
 		if(colnum==1){
 			if(nchar(cat_ix)>14){
-				cex_adj=1.5*14/nchar(cat_ix);
+				cex_adj=2*14/nchar(cat_ix);
 			}else{
-				cex_adj=1.5;
+				cex_adj=2;
 			}
 			axis(side=2);
 			axis(side=2, at=mean(alr_range), labels=cat_ix, cex.axis=cex_adj, line=2, outer=T, tick=F);
