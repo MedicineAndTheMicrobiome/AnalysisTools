@@ -1,5 +1,5 @@
 
-load_offset=function(fname, reset_offsets=T){
+load_offset=function(fname, reset_offsets=T, start=-Inf, end=Inf){
 
         cat("Loading Offsets: ", fname, "\n");
         offsets_mat=read.delim(fname,  header=TRUE, row.names=1, sep="\t", comment.char="#", quote="");
@@ -38,6 +38,12 @@ load_offset=function(fname, reset_offsets=T){
 			offsets_mat[group_ix, "Offsets"]=offsets-min_off;
 		}
 	}
+
+	# Filter offsets by start and end inclusive
+	keep_ix=(offsets_mat[, "Offsets"]>=start & offsets_mat[, "Offsets"]<=end)	
+	offsets_mat=offsets_mat[keep_ix,];
+
+	cat("Number of Rows in Offset Matrix: ", nrow(offsets_mat), "\n");
 
         offsets_data=list();
         offsets_data[["matrix"]]=offsets_mat;
