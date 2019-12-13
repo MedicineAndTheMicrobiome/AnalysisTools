@@ -1123,8 +1123,12 @@ for(cat_ix in alr_cat_names){
 	colnum=1;
 	for(grp_ix in offset_info[["Groups"]]){
 
-
 		plot(0, type="n", ylim=alr_range, xlim=offset_ranges, ylab=cat_ix, xaxt="n", yaxt="n");
+
+		if(min(offset_ranges)<0){
+			abline(v=0, col="blue", lty=3, lwd=3, lend="butt");
+		}
+
 		abline(h=alr_med[cat_ix], col="grey", lty="dotdash");
 		grp_loess=cat_loess[[cat_ix]][[grp_ix]];
 		x=grp_loess[,"x"];
@@ -1630,7 +1634,9 @@ if(FactorFile=="" || ModelFile=="" || SubjectIdentifierColumn==""){
 	cat("Factor File: ", FactorFile, "\n");
 	cat("Model File:  ", ModelFile, "\n");
 	cat("Subject Identifier Column Name: ", ModelFile, "\n");
-	quit(-1);
+	cat("\n");
+	cat("Skipping regression analysis.\n");
+	quit(status=-1);
 }
 
 # collapse
