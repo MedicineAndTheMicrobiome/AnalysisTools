@@ -220,8 +220,8 @@ plot_resp_pred_scatter=function(factor_name, categories, as_pred_mat, as_resp_ma
 	siglines_val=c(.1, .05, .01, .001);
 	siglines_pos=-log10(siglines_val);
 
-	xrange=range(c(x_val, siglines_pos));
-	yrange=range(c(y_val, siglines_pos));
+	xrange=range(c(x_val[!is.na(x_val)], siglines_pos));
+	yrange=range(c(y_val[!is.na(y_val)], siglines_pos));
 
 	plot(x_val, y_val, xlab="As Predictor", ylab="As Response",
 		main=factor_name,
@@ -309,8 +309,11 @@ summarize_comparisons=function(factor_name, categories,
 	print(kept_resp_coef_arr);
 	
 	# Extract categories above cutoff
-	above_cutoff_ix=(kept_pred_pval_arr<=cutoff) | (kept_resp_pval_arr<=cutoff);
+	above_cutoff_ix=!is.na(kept_pred_pval_arr) & ((kept_pred_pval_arr<=cutoff) | (kept_resp_pval_arr<=cutoff));
 	num_kept=sum(above_cutoff_ix);
+	if(is.na(num_kept)){
+		num_kept=0;
+	}
 
 	# Allocate matrices
 	val_mat=matrix(numeric(), nrow=num_kept, ncol=6);
