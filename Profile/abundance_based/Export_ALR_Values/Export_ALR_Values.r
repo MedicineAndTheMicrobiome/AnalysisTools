@@ -66,6 +66,8 @@ if(length(opt$shorten_category_names)){
 
 SummaryFile=opt$summary_file;
 
+OutputRoot=paste(OutputRoot, ".alr", sep="");
+
 cat("\n");
 cat("Summary File: ", SummaryFile, "\n", sep="");
 cat("Output File: ", OutputRoot, "\n", sep="");
