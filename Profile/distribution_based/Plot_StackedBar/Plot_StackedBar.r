@@ -133,7 +133,7 @@ cat("Label Threshold: ", LabelThreshold, "\n");
 OutputFileRoot=paste(OutputFileRoot, ".", substr(DiversityType, 1, 4), ".t", NumTopCategories,  sep="");
 OutputPDF = paste(OutputFileRoot, ".stckd_bp.pdf", sep="");
 cat("Output PDF file name: ", OutputPDF, "\n", sep="");
-pdf(OutputPDF,width=8.5,height=14)
+pdf(OutputPDF,width=8.5*1.25,height=14)
 
 output_grouped_abundances_fh=file(paste(OutputFileRoot, ".stckd_bp.abd.tsv", sep=""), "w");
 
@@ -344,7 +344,7 @@ plot_legend=function(categories, size=.7, num_ticks=3, max_labels=40){
 
 	orig.par=par(no.readonly=T);
 
-	par(mar=c(0,0,0,0));
+	par(mar=c(0,2,0,0));
 	num_cat=length(categories);
 	orig_num_cat=num_cat;
 	orig_categories=categories;
@@ -357,7 +357,7 @@ plot_legend=function(categories, size=.7, num_ticks=3, max_labels=40){
 		orig_v_plot_diff=(num_cat-max_labels);
 	}
 
-	plot(0,0, type="n", ylim=c(-10,0), xlim=c(0,30), 
+	plot(0,0, type="n", ylim=c(15,0), xlim=c(0,30), 
 		bty="n", 
 		xaxt="n", yaxt="n");
 
@@ -407,7 +407,7 @@ tail_statistic=function(x){
 
 ###############################################################################
 
-plot_abundance_matrix=function(abd_mat, title="", plot_cols=8, plot_rows=4, 
+plot_abundance_matrix=function(abd_mat, title="", plot_cols=8, plot_rows=5, 
 	samp_size=c(), divname="diversity", median_diversity=c(), mean_diversity=c(),
 	label_threshold=0){
 	# This function will plot a sample x abundance (summary table)
@@ -423,7 +423,9 @@ plot_abundance_matrix=function(abd_mat, title="", plot_cols=8, plot_rows=4,
 	# Set up layout
 	tot_plots_per_page=plot_cols*plot_rows;
 	layout_mat=matrix(1:tot_plots_per_page, byrow=T, nrow=plot_rows, ncol=plot_cols);
-	layout_mat=rbind(layout_mat, rep(tot_plots_per_page+1, plot_cols));
+
+	layout_mat=cbind(layout_mat, matrix(tot_plots_per_page+1, nrow=plot_rows, ncol=3));
+
 	#layout_mat=rbind(layout_mat, rep(tot_plots_per_page+1, plot_cols));
 	#cat("Layout Matrix:\n");
 	#print(layout_mat);
