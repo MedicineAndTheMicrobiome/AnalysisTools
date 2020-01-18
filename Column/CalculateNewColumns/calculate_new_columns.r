@@ -130,6 +130,16 @@ usage = paste(
 	"		This will convert the numeric id into a string.  By default, a prefix is prepended\n",
 	"		to the number to make it a string.\n",
 	"\n",
+	"	set_LOQ(x, detection_limit_value, method)\n",
+	"		This will reset the detection_limit value in the column to a new value.\n",
+	"		For example, if the detection_limit value is 0 or -1, then that will be converted.\n",
+	"		The goal is to differentiate detecton limit from NA (missing data)\n",
+	"		Specify the methods:\n",
+	"			zero:  set LOQ to 0\n",
+	"			min_div10:  find min, then divide by 10\n",
+	"			min_div02:  find min, then divide by 2\n",
+	"			expected:  Assume X is normal, set LOQ to Exp[X: X<LOQ]\n",
+	"\n",
 	"\n",
 	"For debugging you can also do:\n",
 	"	print <variable name>\n",
@@ -368,6 +378,92 @@ print(names(numeric_id));
 	template_str=paste(prefix, "%0", num_digits, "g", sep="");
 	num_char=sprintf(template_str, numeric_id);
 	return(num_char);
+
+}
+
+#------------------------------------------------------------------------------
+
+set_LOQ=function(x, detection_limit_value, method){
+
+	dl_pos=(x==detection_limit_value);
+	values=x[!dl_pos];
+	min_avail=min(values);
+	num_abv_dl=length(values);
+	cat("Num values above DL: ", num_abv_dl, "\n");
+
+	if(method=="zero"){
+		x[dl_pos]=0;
+	}else if(method=="min_div10"){
+		x[dl_pos]=min_avail/10;
+	}else if(method=="min_div02"){
+		x[dl_pos]=min_avail/2;
+	}else if(method=="expected"){
+
+		# Test for normality
+		shap.res=shapiro.test(values);
+		
+		# Add 1 if any 0's
+		if(any(values==0)){
+			log_val=log(values+1);
+			p1=T;
+		}else{
+			log_val=log(values);
+			p1=F;
+		}
+
+		# Test transform for normality
+		shap.res.log=shapiro.test(log_val);
+
+		# If transform pvalue is greater than untransformed, then keep transform
+		if(shap.res$p.value<shap.res.log$p.value){
+			cat("Transforming for normality.\n");
+			keep_trans=T;	
+			calc_val=log_val;
+		}else{
+			keep_trans=F;
+			calc_val=values;
+		}
+
+		min_calc_val=min(calc_val);
+
+		# If there are many DL values not represented, 
+		# mean will be over estimated, so use mode
+		dens=density(calc_val);
+		mode=dens$x[which.max(dens$y)];
+		cat("Estimated Mode: ", mode, "\n");
+
+		# Estimate sd based values above mode
+		ab_mod_ix=(calc_val>=mode);
+		num_abv=sum(ab_mod_ix);
+		sum_sqr=sum((calc_val[ab_mod_ix]-mode)^2);
+		sd=sqrt(sum_sqr/num_abv);
+		cat("Estimated SD: ", sd, " (n=", num_abv, ")\n");
+			
+		pr_x_lt_dl=pnorm(min_calc_val, mode, sd);
+		exp_val_below_dl=qnorm(pr_x_lt_dl/2, mode, sd);
+
+		cat("Detection Limit: ", min_calc_val, "\n");
+		cat("Prob(X<DL): ", pr_x_lt_dl, "\n");
+		cat("E[X<DL]: ", exp_val_below_dl, "\n");
+
+		# Undo transform
+		if(keep_trans){
+			loqv=exp(exp_val_below_dl);
+			if(p1){
+				loqv=loqv-1;
+			}	
+			cat("Estimated Untransformed LOQ: ", loqv, "\n");
+		}else{
+			loqv=exp_val_below_dl;
+		}
+
+		x[dl_pos]=loqv;
+
+		cat("After LOQ Analysis:\n");
+		print(x);
+		cat("\n");
+	}
+	return(x);
 
 }
 
