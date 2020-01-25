@@ -607,8 +607,8 @@ sig_char=function(val){
 plot_fit=function(fit, sumfit, i=1){
 	par.orig=par(no.readonly=T);
 
-	observed=as.matrix(fit$model)[,i, drop=F];
-	predicted=as.matrix(fit$fitted.values)[,i, drop=F];
+	observed=as.numeric(as.matrix(fit$model)[,i, drop=F]);
+	predicted=as.numeric(as.matrix(fit$fitted.values)[,i, drop=F]);
 
 	adjsqrd=signif(sumfit[[i]]$adj.r.squared, 4);
 	fstat=sumfit[[i]]$fstatistic;
