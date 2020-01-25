@@ -114,7 +114,7 @@ param_text=capture.output({
 	cat("\n");
 });
 
-cat(param_text);
+print(param_text, quote=F);
 
 ###############################################################################
 
@@ -129,7 +129,7 @@ load_list=function(fname){
 	return(lst);	
 }
 
-test_and_apply_log_transform=function(mat_val, pval_cutoff=.2){
+test_and_apply_log_transform=function(mat_val, pval_cutoff=.2, plot_before_after=T){
 	nrows=nrow(mat_val);
 	ncols=ncol(mat_val);
 
@@ -137,18 +137,43 @@ test_and_apply_log_transform=function(mat_val, pval_cutoff=.2){
 	orig_colnames=colnames(mat_val);
 	new_colnames=character();
 
+	if(plot_before_after){
+		orig_par=par(no.readonly=T);
+		par(mfrow=c(5,2));
+	}
+
 	for(var in orig_colnames){
 		values=mat_val[,var];
+		transformed=F;
 
 		num_unique_val=length(setdiff(unique(values), NA));
+		values_nona=values[!is.na(values)];
+		num_nona=length(values_nona);
+
+		if(num_nona<=3){
+			cat("Not enough non NA values to measure normality.\n");
+			new_colnames=c(new_colnames, var);
+			next;
+		}
+
+		if(any(values_nona<0)){
+			cat("Negative values.  Skipping transformation.\n");
+			new_colnames=c(new_colnames, var);
+			next;
+		}
+
 		cat("\n", var, ": Num Unique Values: ", num_unique_val, "\n");
 
 		test_res=shapiro.test(values);
 
 		if(test_res$p.value<=pval_cutoff && num_unique_val>2){
 			cat(" Not normal: ", test_res$p.value, "\n");
+			if(any(values_nona==0)){
+				log_values=log(values+1);
+			}else{
+				log_values=log(values);
+			}
 
-			log_values=log(values+1);
 			test_log_res=shapiro.test(log_values);
 
 			if(test_log_res$p.value < test_res$p.value){
@@ -160,71 +185,95 @@ test_and_apply_log_transform=function(mat_val, pval_cutoff=.2){
 				cat("  Transformation Effective: ", test_log_res$p.value, "\n");
 				new_colnames=c(new_colnames, paste("log_", var, sep=""));
 				trans_mat[, var]=log_values;
+				transformed=T;		
 			}
 		}else{
 			cat(" Normal enough. ", test_res$p.value, "\n");
 			new_colnames=c(new_colnames, var);
 		}
+
+		if(plot_before_after){
+			nclass=nclass.Sturges(values)*4;
+
+			hist(values, main=var, breaks=nclass);
+			title(main=sprintf("p-value: %4.4f", test_res$p.value), cex.main=.8, line=.5);
+			
+			if(transformed){
+				hist(log_values, breaks=nclass, main=paste("log(", var,")", sep=""));
+				title(main=sprintf("p-value: %4.4f", test_log_res$p.value), cex.main=.8, line=.5);
+			}else{
+				plot(0,0, xlab="", ylab="", main="", xaxt="n", yaxt="n", bty="n", type="n");
+				title(main=sprintf("p-value: %4.4f", test_log_res$p.value), cex.main=.8, line=.5);
+				text(0,0, "Transform not beneficial");
+			}
+		}
+
 	}
 	colnames(trans_mat)=new_colnames;
+
+
+	if(plot_before_after){
+		par(orig_par);
+	}
+
 	return(trans_mat);
 }
 
 plot_text=function(strings){
 
-	orig.par=par(no.readonly=T);
-	
-        par(mfrow=c(1,1));
-        par(family="Courier");
-        par(oma=rep(.5,4));
-        par(mar=rep(0,4));
+orig.par=par(no.readonly=T);
 
-        num_lines=length(strings);
+par(mfrow=c(1,1));
+par(family="Courier");
+par(oma=rep(.5,4));
+par(mar=rep(0,4));
 
-        top=max(as.integer(num_lines), 52);
+num_lines=length(strings);
 
-        plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
-                xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
-                );
+top=max(as.integer(num_lines), 52);
 
-        text_size=max(.01, min(.8, .8 - .003*(num_lines-52)));
-        #print(text_size);
+plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
+	xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
+	);
 
-        for(i in 1:num_lines){
-                #cat(strings[i], "\n", sep="");
-                strings[i]=gsub("\t", "", strings[i]);
-                text(0, top-i, strings[i], pos=4, cex=text_size);
-        }
+text_size=max(.01, min(.8, .8 - .003*(num_lines-52)));
+#print(text_size);
 
-	par(orig.par);
+for(i in 1:num_lines){
+	#cat(strings[i], "\n", sep="");
+	strings[i]=gsub("\t", "", strings[i]);
+	text(0, top-i, strings[i], pos=4, cex=text_size);
+}
+
+par(orig.par);
 }
 
 compute_correlations=function(mat){
-	num_col=ncol(mat);
-	cor_mat=matrix(0, nrow=num_col, ncol=num_col);
-	pval_mat=matrix(0, nrow=num_col, ncol=num_col);
-	rownames(cor_mat)=colnames(mat);
-	colnames(cor_mat)=colnames(mat);
-	rownames(pval_mat)=colnames(mat);
-	colnames(pval_mat)=colnames(mat);
-	for(i in 1:num_col){
-		for(j in 1:i){
-			v1=mat[,i];
-			v2=mat[,j];
-			notna=!(is.na(v1) | is.na(v2));
-			#cor_mat[i,j]=cor(v1[notna], v2[notna]);
-			test=cor.test(v1[notna], v2[notna]);
-			pval_mat[i,j]=test$p.value;
-			pval_mat[j,i]=test$p.value;
-			cor_mat[i,j]=test$estimate;
-			cor_mat[j,i]=test$estimate;
-		}
+num_col=ncol(mat);
+cor_mat=matrix(0, nrow=num_col, ncol=num_col);
+pval_mat=matrix(0, nrow=num_col, ncol=num_col);
+rownames(cor_mat)=colnames(mat);
+colnames(cor_mat)=colnames(mat);
+rownames(pval_mat)=colnames(mat);
+colnames(pval_mat)=colnames(mat);
+for(i in 1:num_col){
+	for(j in 1:i){
+		v1=mat[,i];
+		v2=mat[,j];
+		notna=!(is.na(v1) | is.na(v2));
+		#cor_mat[i,j]=cor(v1[notna], v2[notna]);
+		test=cor.test(v1[notna], v2[notna]);
+		pval_mat[i,j]=test$p.value;
+		pval_mat[j,i]=test$p.value;
+		cor_mat[i,j]=test$estimate;
+		cor_mat[j,i]=test$estimate;
 	}
-	res=list();
-	res[["val"]]=cor_mat;
-	res[["pval"]]=pval_mat;;
-	res[["dist"]]=as.dist(1-abs(cor_mat));
-	return(res);
+}
+res=list();
+res[["val"]]=cor_mat;
+res[["pval"]]=pval_mat;;
+res[["dist"]]=as.dist(1-abs(cor_mat));
+return(res);
 }
 
 
@@ -254,9 +303,9 @@ predictors_arr=load_list(PredictorListName);
 
 responses_arr=c();
 if(ResponseListName!=""){
-	responses_arr=load_list(ResponseListName);
+responses_arr=load_list(ResponseListName);
 }else{
-	cat("Response variable list not specified.\n");
+cat("Response variable list not specified.\n");
 }
 
 
@@ -265,9 +314,9 @@ cat("Targeted Responses:\n");
 print(responses_arr);
 missing=setdiff(responses_arr, loaded_factor_names);
 if(length(missing)>0){
-	cat("Missing:\n");
-	print(missing);
-	quit(status=-1);
+cat("Missing:\n");
+print(missing);
+quit(status=-1);
 }
 cat("\n");
 
