@@ -90,13 +90,13 @@ if(length(opt$donnot_transform)){
 if(length(opt$export_orig)){
 	ExportOrig=T;
 }
-if(length(opt$export_orig)){
+if(length(opt$export_curated)){
 	ExportCurated=T;
 }
-if(length(opt$export_orig)){
+if(length(opt$export_imputed)){
 	ExportImputed=T;
 }
-if(length(opt$export_orig)){
+if(length(opt$export_PC)){
 	ExportPC=T;
 }
 
