@@ -9,6 +9,7 @@ library('getopt');
 params=c(
 	"input_file", "i", 1, "character",
 	"offset_file", "t", 1, "character",
+	"no_offset_reset", "T", 2, "logical",
 	"output_file", "o", 2, "character",
 	"distance_type", "d", 2, "character"
 );
@@ -22,6 +23,7 @@ usage = paste(
 	"\nUsage:\n", script_name, "\n",
 	"	-i <input summary_table.tsv file>\n",
 	"	-t <offset file>\n",
+	"	[-T (do not reset offsets to 0)]\n",
 	"	-d <distance type, def=", DEF_DIST, ">\n",
 	"	[-o <output file root name>]\n",
 	"\n",
@@ -63,6 +65,11 @@ if(DistanceType=="wrd"){
 	source("../../SummaryTableUtilities/WeightedRankDifference.r");
 }
 
+ResetOffsets=T;
+if(length(opt$no_offset_reset) && opt$no_offset_reset==T){
+	ResetOffsets=F;
+}
+
 ###############################################################################
 
 OutputFileRoot=paste(OutputFileRoot, ".", substr(DistanceType, 1,3), sep="");
@@ -73,7 +80,7 @@ pdf(OutputPDF,width=8.5,height=8.5)
 
 ###############################################################################
 
-load_offset=function(fname){
+load_offset=function(fname, reset_offsets=T){
 
         cat("Loading Offsets: ", fname, "\n");
         offsets_mat=read.delim(fname,  header=TRUE, row.names=1, sep="\t", comment.char="#", quote="");
@@ -98,13 +105,15 @@ load_offset=function(fname){
         print(groups);
         cat("\n");
 
-        # Reset offsets so they are relative to the first/smallest sample
-        for(gid in groups){
-                group_ix=(gid==offsets_mat[,"Indiv ID"]);
-                offsets=offsets_mat[group_ix, "Offsets"];
-                min_off=min(offsets);
-                offsets_mat[group_ix, "Offsets"]=offsets-min_off;
-        }
+	if(ResetOffsets==T){
+		# Reset offsets so they are relative to the first/smallest sample
+		for(gid in groups){
+			group_ix=(gid==offsets_mat[,"Indiv ID"]);
+			offsets=offsets_mat[group_ix, "Offsets"];
+			min_off=min(offsets);
+			offsets_mat[group_ix, "Offsets"]=offsets-min_off;
+		}
+	}
 
         offsets_data=list();
         offsets_data[["matrix"]]=offsets_mat;
@@ -947,7 +956,7 @@ export_distances_from_start=function(fname, offset_mat, dist_mat){
 
 ###############################################################################
 
-offset_data=load_offset(OffsetFileName);
+offset_data=load_offset(OffsetFileName, reset_offsets=ResetOffsets);
 offset_mat=offset_data[["matrix"]];
 
 ###############################################################################
