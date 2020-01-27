@@ -859,7 +859,7 @@ plot_overlapping_density=function(mat, title=""){
 	density_list=list();
 	max_density=0;
 	for(i in 1:num_cat){
-		density_list[[i]]=density(mat[,i]);
+		density_list[[i]]=density(mat[,i], p=64);
 		max_density=max(max_density, density_list[[i]]$y);
 	}
 	cat("Max Density: ", max_density, "\n");
