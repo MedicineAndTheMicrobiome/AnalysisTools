@@ -291,17 +291,32 @@ plot_sample_distances=function(distmat, offsets_mat, col_assign, ind_colors, tit
 		subset_dist=distmat2d[subset_samples[1], subset_samples];
 		print(subset_dist);
 
+		y_pad=diff(dist_ranges)*.15;
+
 		# Plot colored lines
 		plot(offset_info[,"Offsets"], subset_dist, main=indiv_ids[i],
 			 xlab="Time", ylab=paste("Distance (", dist_type, ")", sep=""), 
 			type="l", col=col_assign[indiv_ids[i]], lwd=2.5,
-			 xlim=offset_ranges, ylim=dist_ranges);
+			xaxt="n",
+			 xlim=offset_ranges, ylim=c(dist_ranges[1]-y_pad, dist_ranges[2]+y_pad));
+
+		# accentuation where points are
+		if(num_samples>2){
+			middle_points_ix=2:(num_samples-1);
+			points(offset_info[middle_points_ix,"Offsets"], subset_dist[middle_points_ix],
+				type="p", pch=20, cex=2);
+		}
+
 		# Plot ends
 		points(offset_info[c(1,1, num_samples),"Offsets"], subset_dist[c(1,1, num_samples)], 
 			col=col_assign[indiv_ids[i]],
-			type="p", pch=c(17, 1, 15), cex=c(1, 2, 1.25));
+			type="p", pch=c(17, 1, 15), cex=c(2, 4, 2.5));
 		# Plot reinforcement thin black lines
-		points(offset_info[,"Offsets"], subset_dist, type="b", pch=16, cex=.1, lwd=.1);
+		points(offset_info[,"Offsets"], subset_dist, type="l", pch=16, cex=.1, lwd=.1);
+
+		# Generate axis
+		tick_pos=sort(unique(c(offset_ranges, offset_info[,"Offsets"])));
+		axis(1, at=tick_pos);
 	}
 	par(def_par);
 }
