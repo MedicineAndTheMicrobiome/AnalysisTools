@@ -1151,8 +1151,14 @@ if(length(model_var_arr)==0){
 
 NUM_BS=2000+length(model_var_arr)*350;
 
+NUM_BS=40;
+
 if(NUM_BS<500){
-	plot_text(paste("WARNING: Number of Bootstraps is <500.  (", NUM_BS, ")"));
+	plot_text(c(
+		"***************************************************************",
+		paste("WARNING: Number of Bootstraps is <500.  (", NUM_BS, ")"),
+		"***************************************************************"
+		));
 }
 
 num_data_rows=nrow(model_data);
@@ -1516,6 +1522,169 @@ for(spix in 1:num_splits){
 	}
 
 }
+
+################################################################################
+# Perform statistics on dispersion
+
+plot_mds=function(mds, title="", label=F, col="black"){
+
+	x=mds[,1];
+	y=mds[,2];
+	samp_ids=rownames(mds);
+
+	xcentroid=mean(x);
+	ycentroid=mean(y);
+
+	xrange=range(x);
+	yrange=range(y);
+
+	xpad=diff(xrange)*.2;
+	ypad=diff(yrange)*.1;
+
+	plot(0, type="n",
+		xlim=c(xrange[1]-xpad, xrange[2]+xpad),
+		ylim=c(yrange[1]-ypad, yrange[2]+ypad),
+		main=title
+	)
+
+	points(xcentroid, ycentroid, type="p", bg=col, col="black", cex=3, pch=21);
+
+	if(label==F){
+		points(x,y, type="p", col=col);
+	}else{
+		text(x,y, samp_ids, cex=.7, col=col);
+	}
+
+}
+
+plot_dist_bars=function(Adist_arr, Bdist_arr, AtoBMap, title="", acol="black", bcol="black"){
+
+	Bnames_map=AtoBMap[,2];
+	names(Bnames_map)=AtoBMap[,1];
+
+	par(mfrow=c(2,1));
+	
+
+	a_order_ix=order(Adist_arr, decreasing=T);
+	Adist_arr_sorted=Adist_arr[a_order_ix];
+	Anames=names(Adist_arr_sorted);
+	Bnames=Bnames_map[Anames];
+
+	num_samp=length(Adist_arr);
+
+	cexadj=min(1,60/num_samp);
+	cat("cex adj: ", cexadj, "\n");
+
+	par(mar=c(13,4,4,1));
+	barplot(Adist_arr_sorted, names.arg=Anames, las=2, main=title, col=acol, cex.names=cexadj);
+
+	par(mar=c(13,4,0,1));
+	barplot(Bdist_arr[Bnames], names.arg=Bnames, las=2, col=bcol, cex.names=cexadj);
+
+}
+
+plot_dist_diff=function(Adist_arr, Bdist_arr, AtoBMap, Aname, Bname, acol, bcol){
+	
+	diff=Bdist_arr-Adist_arr;
+	cor_pear=cor.test(Adist_arr, Bdist_arr, method="pearson");
+	cor_spear=cor.test(Adist_arr, Bdist_arr, method="spearman");
+
+	print(cor_pear);
+	print(cor_spear);
+
+	par(mfrow=c(1,1));
+	par(mar=c(4,13,4,13));
+	rngs=range(diff);
+	max_diff=max(abs(rngs));
+
+	diff_sorted=sort(diff, decreasing=F);
+	
+
+	mids=barplot(diff_sorted, horiz=T, xlim=c(-max_diff*1.03, max_diff*1.03),  names.arg="",
+		main=paste("Ordered by Differences from Centroid: ", Bname, "-", Aname));
+
+	title(main=paste("Pearson's Cor: ", round(cor_pear$estimate, 3), 
+		", p-value: ", round(cor_pear$p.value,3), sep=""), line=0, cex.main=.8, font.main=1);
+	title(main=paste("Spearman's Cor: ", round(cor_spear$estimate, 3), 
+		", p-value: ", round(cor_spear$p.value,3), sep=""), line=-.8, cex.main=.8, font.main=1);
+
+	sorted_names=names(diff_sorted);
+
+	a_to_b=AtoBMap[,1];
+	names(a_to_b)=AtoBMap[,2];
+
+	num_samp=length(Adist_arr);
+	cexadj=min(1,60/num_samp);
+
+	axis(4, mids, sorted_names, las=2, cex.axis=cexadj);
+	axis(2, mids, a_to_b[sorted_names], las=2, cex.axis=cexadj);
+
+	axis(4, -3, paste(Bname, "\nfurther from centroid"), 
+		cex.axis=1, font.axis=2, las=2, line=-2, tick=F, col.axis=bcol);
+
+	axis(2, -3, paste(Aname, "\nfurther from centroid"), 
+		cex.axis=1, font.axis=2, las=2, line=-2, tick=F, col.axis=acol);
+
+}
+
+################################################################################
+
+par(mfrow=c(1,1));
+plot(0,0, xlim=c(-1,1), ylim=c(-1,1), bty="n", xaxt="n", yaxt="n", xlab="", ylab="", type="n");
+text(0,0, "Dispersion Analysis", cex=3, font=2);
+
+
+Anorm=normalized[A_sample_ids,];
+Bnorm=normalized[B_sample_ids,];
+
+Amean=apply(Anorm, 2, mean);
+Bmean=apply(Bnorm, 2, mean);
+
+Anorm=rbind(Anorm, Amean);
+Bnorm=rbind(Bnorm, Bmean);
+
+Adistmat=as.matrix(compute_dist(Anorm, DistType));
+Bdistmat=as.matrix(compute_dist(Bnorm, DistType));
+
+numAsamp=length(A_sample_ids);
+numBsamp=length(B_sample_ids);
+
+for(i in 1:length(Adistmat)){
+        if(Adistmat[i]==0){
+                Adistmat[i]=1e-323;
+        }
+}
+
+for(i in 1:length(Bdistmat)){
+        if(Bdistmat[i]==0){
+                Bdistmat[i]=1e-323;
+        }
+}
+
+Amds=cmdscale(Adistmat);
+Bmds=cmdscale(Bdistmat);
+
+par(mfrow=c(2,2));
+plot_mds(Amds[1:numAsamp,], title=A_subtrahend, label=F, col="green");
+plot_mds(Amds[1:numAsamp,], title=A_subtrahend, label=T, col="green");
+plot_mds(Bmds[1:numBsamp,], title=B_minuend, label=F, col="blue");
+plot_mds(Bmds[1:numBsamp,], title=B_minuend, label=T, col="blue");
+
+A_dist_fr_centr=Adistmat["Amean", 1:numAsamp];
+B_dist_fr_centr=Bdistmat["Bmean", 1:numBsamp];
+
+plot_dist_bars(A_dist_fr_centr, B_dist_fr_centr, good_pairs_map[,c(1,2)], 
+	paste("Ordered By", A_subtrahend), acol="green", bcol="blue");
+
+plot_dist_bars(B_dist_fr_centr, A_dist_fr_centr, good_pairs_map[,c(2,1)], 
+	paste("Ordered By", B_minuend), acol="blue", bcol="green");
+
+
+plot_dist_diff(A_dist_fr_centr, B_dist_fr_centr, good_pairs_map[,c(1,2)],
+	A_subtrahend, B_minuend, acol="blue", bcol="green");
+
+
+
 
 ################################################################################
 
