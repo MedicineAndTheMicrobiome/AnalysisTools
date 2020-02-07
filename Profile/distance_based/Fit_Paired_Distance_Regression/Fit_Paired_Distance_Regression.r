@@ -1565,6 +1565,8 @@ plot_dist_bars=function(Adist_arr, Bdist_arr, AtoBMap, title="", acol="black", b
 	par(mfrow=c(2,1));
 	
 
+	max_dist=max(c(Adist_arr, Bdist_arr));
+
 	a_order_ix=order(Adist_arr, decreasing=T);
 	Adist_arr_sorted=Adist_arr[a_order_ix];
 	Anames=names(Adist_arr_sorted);
@@ -1576,21 +1578,22 @@ plot_dist_bars=function(Adist_arr, Bdist_arr, AtoBMap, title="", acol="black", b
 	cat("cex adj: ", cexadj, "\n");
 
 	par(mar=c(13,4,4,1));
-	barplot(Adist_arr_sorted, names.arg=Anames, las=2, main=title, col=acol, cex.names=cexadj);
+	mids=barplot(Adist_arr_sorted, ylim=c(0, max_dist*1.05), 
+		names.arg=Anames, las=2, main=title, col=acol, cex.names=cexadj);
+	points(mids, Bdist_arr[a_order_ix], type="p", pch=3, cex=cexadj*.9, col=bcol);
 
 	par(mar=c(13,4,0,1));
-	barplot(Bdist_arr[Bnames], names.arg=Bnames, las=2, col=bcol, cex.names=cexadj);
+	mids=barplot(Bdist_arr[Bnames], ylim=c(0, max_dist*1.05),
+		names.arg=Bnames, las=2, col=bcol, cex.names=cexadj);
+	points(mids, Adist_arr[a_order_ix], type="p", pch=3, cex=cexadj*.9, col=acol);
 
 }
 
-plot_dist_diff=function(Adist_arr, Bdist_arr, AtoBMap, Aname, Bname, acol, bcol){
+plot_indiv_dist_diff=function(Adist_arr, Bdist_arr, AtoBMap, Aname, Bname, acol, bcol){
 	
 	diff=Bdist_arr-Adist_arr;
 	cor_pear=cor.test(Adist_arr, Bdist_arr, method="pearson");
 	cor_spear=cor.test(Adist_arr, Bdist_arr, method="spearman");
-
-	print(cor_pear);
-	print(cor_spear);
 
 	par(mfrow=c(1,1));
 	par(mar=c(4,13,4,13));
@@ -1626,6 +1629,33 @@ plot_dist_diff=function(Adist_arr, Bdist_arr, AtoBMap, Aname, Bname, acol, bcol)
 		cex.axis=1, font.axis=2, las=2, line=-2, tick=F, col.axis=acol);
 
 }
+
+plot_grp_diff=function(Adist_arr, Bdist_arr, Aname, Bname, acol, bcol){
+
+	diff=Bdist_arr-Adist_arr;
+
+	wt_res=wilcox.test(Adist_arr, Bdist_arr, alternative=c("two.sided"));
+	mean_diff=mean(diff);
+	med_diff=median(diff);
+	diff_range=range(diff);
+	max_diff=max(abs(diff(diff_range)));
+
+	par(mfrow=c(1,1));
+	par(mar=c(4.1,4.1,7,1));
+	hist(diff, breaks=2*nclass.Sturges(diff),
+		xlim=c(-max_diff*1.1, max_diff*1.1),
+		main=paste("Difference of Dispersion: ", Bname, " - ", Aname, sep=""),
+		xlab="Differences in Distance from Centroid"
+		);
+	abline(v=0, col="red", lwd=2);
+	title(main=paste("Mean: ", round(mean_diff, 4), "  Median: ", round(med_diff,4), sep=""), 
+		cex.main=.8, font.main=1, line=2);
+	title(main=paste("Wilcoxon Difference in Dispersion: p-value = ", round(wt_res$p.value, 4), sep=""),
+		cex.main=.8, font.main=1, line=1);
+	
+	
+}
+
 
 ################################################################################
 
@@ -1680,11 +1710,11 @@ plot_dist_bars(B_dist_fr_centr, A_dist_fr_centr, good_pairs_map[,c(2,1)],
 	paste("Ordered By", B_minuend), acol="blue", bcol="green");
 
 
-plot_dist_diff(A_dist_fr_centr, B_dist_fr_centr, good_pairs_map[,c(1,2)],
+plot_indiv_dist_diff(A_dist_fr_centr, B_dist_fr_centr, good_pairs_map[,c(1,2)],
 	A_subtrahend, B_minuend, acol="blue", bcol="green");
 
-
-
+plot_grp_diff(A_dist_fr_centr, B_dist_fr_centr,
+	A_subtrahend, B_minuend, acol="blue", bcol="green");
 
 ################################################################################
 
