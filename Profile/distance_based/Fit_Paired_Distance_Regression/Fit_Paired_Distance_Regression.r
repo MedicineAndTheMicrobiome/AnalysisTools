@@ -1641,13 +1641,34 @@ plot_grp_diff=function(Adist_arr, Bdist_arr, Aname, Bname, acol, bcol){
 	max_diff=max(abs(diff(diff_range)));
 
 	par(mfrow=c(1,1));
-	par(mar=c(4.1,4.1,7,1));
+	par(mar=c(4.1,4.1,6,1));
 	hist(diff, breaks=2*nclass.Sturges(diff),
 		xlim=c(-max_diff*1.1, max_diff*1.1),
-		main=paste("Difference of Dispersion: ", Bname, " - ", Aname, sep=""),
-		xlab="Differences in Distance from Centroid"
+		xlab="Differences in Distance from Centroid", 
+		main=""
 		);
-	abline(v=0, col="red", lwd=2);
+
+	cur_par=par();
+	plot_limits=cur_par$usr;
+	max_yplot=plot_limits[4];
+
+	# Annotate with vertical lines
+	abline(v=0, col="grey", lwd=3);
+	abline(v=med_diff, col="blue", lwd=2);
+	abline(v=mean_diff, col="purple", lwd=2);
+
+	# Label vertical lines
+	if(med_diff>mean_diff){
+		tpos=c(4,2);
+	}else{
+		tpos=c(2,4);
+	}
+	text(med_diff, max_yplot, "\nMedian", col="blue", pos=tpos[1]);
+	text(mean_diff, max_yplot, "\nMean", col="purple", pos=tpos[2]);
+	
+	# Label statistics
+	title(main=paste("Difference of Dispersion: ", Bname, " - ", Aname, sep=""),
+		cex.main=1.5, font.main=2, line=4);
 	title(main=paste("Mean: ", round(mean_diff, 4), "  Median: ", round(med_diff,4), sep=""), 
 		cex.main=.8, font.main=1, line=2);
 	title(main=paste("Wilcoxon Difference in Dispersion: p-value = ", round(wt_res$p.value, 4), sep=""),
