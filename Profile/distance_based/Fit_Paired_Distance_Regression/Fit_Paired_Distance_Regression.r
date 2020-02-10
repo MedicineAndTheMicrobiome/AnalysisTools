@@ -1677,6 +1677,185 @@ plot_grp_diff=function(Adist_arr, Bdist_arr, Aname, Bname, acol, bcol){
 	
 }
 
+plot_dist_hist=function(a_dist_arr, b_dist_arr, a_name, b_name, acol, bcol){
+
+	comb_arr=c(a_dist_arr, b_dist_arr);
+	comb_range=range(comb_arr);
+	comb_breaks=2*nclass.Sturges(comb_arr);
+	hist_res=hist(comb_arr, comb_breaks, plot=F);
+
+	a_hist_res=hist(a_dist_arr, hist_res$breaks, plot=F);
+	b_hist_res=hist(b_dist_arr, hist_res$breaks, plot=F);
+	print(hist_res);
+
+	a_mean=mean(a_dist_arr);
+	b_mean=mean(b_dist_arr);
+
+	par(mfrow=c(2,1));
+	par(mar=c(4.1,4,4,2));
+
+	# Plot and Label for A
+	hist(a_dist_arr, breaks=hist_res$breaks,
+		xlim=c(0, comb_range[2]),
+		xlab=paste("Distances from ", a_name, "'s Centroid", sep=""),
+		main=a_name, col=acol
+		);
+	title(main=paste("Avg Distance from Centroid: ", round(a_mean,3), sep=""), 
+		font.main=1, cex.main=.8, line=1);
+	abline(v=a_mean, col="black", lwd=2);
+	abline(v=b_mean, col=bcol, lwd=1, lty=3);
+
+	# Plot and Label for B
+	hist(b_dist_arr, breaks=hist_res$breaks,
+		xlim=c(0, comb_range[2]),
+		xlab=paste("Distances from ", b_name, "'s Centroid", sep=""),
+		main=b_name, col=bcol
+		);
+	title(main=paste("Avg Distance from Centroid: ", round(b_mean,3), sep=""), 
+		font.main=1, cex.main=.8, line=1);
+	abline(v=b_mean, col="black", lwd=2);
+	abline(v=a_mean, col=acol, lwd=1, lty=3);
+
+}
+
+regress_dispersion=function(Adist_arr, Bdist_arr, Aname, Bname, model_var, factors){
+
+	A_samp_ids=names(Adist_arr);
+	factors=factors[A_sample_ids,];
+	
+	num_model_var=length(model_var);
+	cat("Number of Predictors: ", num_model_var, "\n");
+
+	pred_string=paste(model_var, collapse=" + ");
+	A_disp_model_string=paste("Adist_arr ~ ", pred_string, sep="");
+	B_disp_model_string=paste("Bdist_arr ~ ", pred_string, sep="");
+
+	Adisp_fit=lm(as.formula(A_disp_model_string), data=factors);
+	print(Adisp_fit);
+	print(summary(Adisp_fit));
+
+	Bdisp_fit=lm(as.formula(B_disp_model_string), data=factors);
+	print(Bdisp_fit);
+	print(summary(Bdisp_fit));
+
+	skip=function(arr, n){
+		len=length(arr);
+		return(arr[(n+1):len]);
+	}
+
+	par(mfrow=c(1,1));
+	plot_text(c(
+		"Associations on Dispersion (Assuming Normally Distributed Residuals)",
+		"",
+		paste("[", Aname, "]", sep=""),
+		skip(capture.output({print(summary(Adisp_fit))}), 8),
+		"",
+		"",
+		paste("[", Bname, "]", sep=""),
+		skip(capture.output({print(summary(Bdisp_fit))}), 8)
+	));
+
+}
+
+regress_diff_dispersion=function(Adist_arr, Bdist_arr, Aname, Bname, model_var, factors){
+
+	centr_diff=Bdist_arr-Adist_arr;
+	A_samp_ids=names(centr_diff);
+	factors=factors[A_sample_ids,];
+	
+	num_model_var=length(model_var);
+	cat("Number of Predictors: ", num_model_var, "\n");
+
+	pred_string=paste(model_var, collapse=" + ");
+	diff_disp_model_string=paste("centr_diff ~ ", pred_string, sep="");
+
+	diff_fit=lm(as.formula(diff_disp_model_string), data=factors);
+	print(diff_fit);
+	print(summary(diff_fit));
+
+	skip=function(arr, n){
+		len=length(arr);
+		return(arr[(n+1):len]);
+	}
+
+	par(mfrow=c(1,1));
+	plot_text(c(
+		paste("Associations on Difference of Dispersion: ", Bname, " - ", Aname, sep=""),
+		"",
+		skip(capture.output({print(summary(diff_fit))}), 7)
+	));
+}
+
+
+bootstrap_regression_dispersion=function(dist_arr, name, model_var, factors, num_bs){
+
+	bs_ix=1;
+	num_samp=length(dist_arr);
+	while(bs_ix <=num_bs){
+
+		bs_samp_ix=sample(num_samp, replace=T)
+
+		bs_dists=dist_arr[bs_samp_ix];
+		bs_factors=factors[bs_samp_ix,, drop=F];
+		bs_data=cbind(bs_dists, bs_factors);
+
+		model_str=paste("bs_dists ~ ", paste(model_var, collapse=" + ", sep=""), sep="");
+
+		#cat("Model String: ", model_str, "\n");
+		#cat("BS Idx: ", bs_samp_ix, "\n");
+
+		result=tryCatch({
+			lm_fit=lm(as.formula(model_str), data=bs_data);
+			}, error=function(e){ cat("Degenerate bootstrap:, ", as.character(e), "\n")}
+		);
+
+		if(is.null(result)){
+			next;
+		}else{
+			lm_fit=result;
+		}
+
+		if(bs_ix==1){
+			# Allocated matrix based on observed samples, to ensure we have
+			# columns for all coefficients.
+			# It's possible for a bootstrap outcome to be missing categories for a
+			# categorical variable, so dummy variables (and thus coefficients) are missing.
+			coefficients=matrix(NA, nrow=num_bs, ncol=length(obs_lm_fit$coefficients));
+			colnames(coefficients)=names(obs_lm_fit$coefficients);
+		}
+
+		coefficients[bs_ix, names(lm_fit$coefficients)]=lm_fit$coefficients;
+		bs_ix=bs_ix+1;
+	}
+
+	means=apply(coefficients, 2, function(x){mean(x, na.rm=T)});
+	lb95=apply(coefficients, 2, function(x){quantile(x, .025, na.rm=T)});
+	ub95=apply(coefficients, 2, function(x){quantile(x, .975, na.rm=T)});
+	prob_gt0=apply(coefficients, 2, function(x){ notna=!is.na(x); x=x[notna]; mean(x<=0) });
+
+	not0_pval=sapply(prob_gt0, function(x){ min(min(x, 1-x)*2,1)});
+
+	regression_table[,"Estimate"]=means;
+	regression_table[,"LB 95%"]=lb95;
+	regression_table[,"UB 95%"]=ub95;
+	regression_table[,"P-value"]=not0_pval;
+
+	reg_tab_char=apply(regression_table, 1:2, function(x){sprintf("%7.4f",x)});
+
+	Signf=sapply(regression_table[,"P-value"], function(x){
+		if(is.na(x)){ return("");}
+		else if(x<=.001){return("***");}
+		else if(x<=.01){return("**");}
+		else if(x<=.05){return("*");}
+		else if(x<=.1){return(".");}
+		return("");
+	});
+
+	regression_table_text=capture.output(print(cbind(reg_tab_char, Signf), quote=F));
+
+	return(regression_table_text);
+}
+
 
 ################################################################################
 
@@ -1730,12 +1909,37 @@ plot_dist_bars(A_dist_fr_centr, B_dist_fr_centr, good_pairs_map[,c(1,2)],
 plot_dist_bars(B_dist_fr_centr, A_dist_fr_centr, good_pairs_map[,c(2,1)], 
 	paste("Ordered By", B_minuend), acol="blue", bcol="green");
 
+plot_dist_hist(A_dist_fr_centr, B_dist_fr_centr, A_subtrahend, B_minuend, acol="blue", bcol="green");
+
+regress_dispersion(A_dist_fr_centr, B_dist_fr_centr, A_subtrahend, B_minuend, model_var_arr, factors);
+
+A_bs_reg_tab=bootstrap_regression_dispersion(A_dist_fr_centr, A_subtrahend, model_var_arr, factors, NUM_BS);
+B_bs_reg_tab=bootstrap_regression_dispersion(B_dist_fr_centr, B_minuend, model_var_arr, factors, NUM_BS);
+
+plot_text(c(
+	paste("Associations on Dispersion (Bootstrapped Regression, num bootstraps: ", NUM_BS, ")", sep=""),
+	"",
+	paste("[", A_subtrahend, "]", sep=""),
+	"Coefficients:",
+	A_bs_reg_tab,
+	"",
+	"",
+	paste("[", B_minuend, "]", sep=""),
+	"Coefficients:",
+	B_bs_reg_tab
+));
+
+par(mfrow=c(1,1));
+plot(0,0, xlim=c(-1,1), ylim=c(-1,1), bty="n", xaxt="n", yaxt="n", xlab="", ylab="", type="n");
+text(0,0, "Differences in\nDispersion Analysis", cex=3, font=2);
 
 plot_indiv_dist_diff(A_dist_fr_centr, B_dist_fr_centr, good_pairs_map[,c(1,2)],
 	A_subtrahend, B_minuend, acol="blue", bcol="green");
 
 plot_grp_diff(A_dist_fr_centr, B_dist_fr_centr,
 	A_subtrahend, B_minuend, acol="blue", bcol="green");
+
+regress_diff_dispersion(A_dist_fr_centr, B_dist_fr_centr, A_subtrahend, B_minuend, model_var_arr, factors);
 
 ################################################################################
 
