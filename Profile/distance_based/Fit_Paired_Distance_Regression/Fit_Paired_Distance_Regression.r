@@ -1151,7 +1151,7 @@ if(length(model_var_arr)==0){
 
 NUM_BS=2000+length(model_var_arr)*350;
 
-NUM_BS=40;
+#NUM_BS=40;
 
 if(NUM_BS<500){
 	plot_text(c(
@@ -1783,7 +1783,7 @@ regress_diff_dispersion=function(Adist_arr, Bdist_arr, Aname, Bname, model_var, 
 		paste("Associations on Difference of Dispersion: ", Bname, " - ", Aname, sep=""),
 		paste("  (Assuming normally distributed residuals)"),
 		"",
-		skip(capture.output({print(summary(diff_fit))}), 7)
+		skip(capture.output({print(summary(diff_fit))}), 8)
 	));
 }
 
