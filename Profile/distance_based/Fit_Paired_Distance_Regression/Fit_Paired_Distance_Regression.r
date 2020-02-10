@@ -1781,6 +1781,7 @@ regress_diff_dispersion=function(Adist_arr, Bdist_arr, Aname, Bname, model_var, 
 	par(mfrow=c(1,1));
 	plot_text(c(
 		paste("Associations on Difference of Dispersion: ", Bname, " - ", Aname, sep=""),
+		paste("  (Assuming normally distributed residuals)"),
 		"",
 		skip(capture.output({print(summary(diff_fit))}), 7)
 	));
@@ -1940,6 +1941,19 @@ plot_grp_diff(A_dist_fr_centr, B_dist_fr_centr,
 	A_subtrahend, B_minuend, acol="blue", bcol="green");
 
 regress_diff_dispersion(A_dist_fr_centr, B_dist_fr_centr, A_subtrahend, B_minuend, model_var_arr, factors);
+diff_bs_reg_tab=bootstrap_regression_dispersion(
+	B_dist_fr_centr-A_dist_fr_centr, 
+	paste(B_minuend, "-", A_subtrahend), model_var_arr, factors, NUM_BS);
+
+par(mfrow=c(1,1));
+plot_text(c(
+	paste("Associations on Difference of Dispersion: ", B_minuend, " - ", A_subtrahend, sep=""),
+	paste("  (Bootstrapped Regression, num bootstraps: ", NUM_BS, ")", sep=""),
+	"",
+	"Coefficients:",
+	diff_bs_reg_tab
+));
+
 
 ################################################################################
 
