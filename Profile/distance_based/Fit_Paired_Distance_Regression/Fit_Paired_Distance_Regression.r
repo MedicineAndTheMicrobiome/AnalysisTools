@@ -1739,8 +1739,9 @@ regress_dispersion=function(Adist_arr, Bdist_arr, Aname, Bname, model_var, facto
 	print(summary(Bdisp_fit));
 
 	skip=function(arr, n){
+		coef_ix=min(which(arr=="Coefficients:"));
 		len=length(arr);
-		return(arr[(n+1):len]);
+		return(arr[coef_ix:len]);
 	}
 
 	par(mfrow=c(1,1));
@@ -1774,8 +1775,9 @@ regress_diff_dispersion=function(Adist_arr, Bdist_arr, Aname, Bname, model_var, 
 	print(summary(diff_fit));
 
 	skip=function(arr, n){
+		coef_ix=min(which(arr=="Coefficients:"));
 		len=length(arr);
-		return(arr[(n+1):len]);
+		return(arr[coef_ix:len]);
 	}
 
 	par(mfrow=c(1,1));
