@@ -101,15 +101,27 @@ cat("Num categories to remove: ", num_removal, "\n");
 category_names=colnames(counts_mat);
 
 # Get indices for the columns we want to remove
-rem_idx=num_removal;
+rem_idx=numeric();
+num_not_found=0;
+num_found=0;
 cat("\nRemoval Categories:\n");
 for(i in 1:num_removal){
 	cat("\t", remove_id_list[i]);
-	rem_idx[i]=which(remove_id_list[i]==category_names);
-	cat(" / ", rem_idx[i], "\n", sep="");
+	rm_ix=which(remove_id_list[i]==category_names);
+
+	if(length(rm_ix)==0){
+		cat("\n\t\t ** Not Found. **\n", sep="");
+		num_not_found=num_not_found+1;
+	}else{
+		num_found=num_found+1;
+		rem_idx[num_found]=rm_ix;
+		cat(" / column idx = ", rem_idx[num_found], "\n", sep="");
+	}
 }
 
 # Remove the columns
+cat("Columns to Remove:\n");
+print(rem_idx);
 outmat=counts_mat[,-rem_idx];
 
 # Remove num categories left
@@ -129,7 +141,8 @@ for(samp_idx in 1:num_samples){
 	total=sum(outmat[samp_idx,]);
 
 	if(total==0){
-		cat("WARNING: ", sample_names[samp_idx], " was removed because total equaled zero (after filtering).\n", sep="");
+		cat("WARNING: ", sample_names[samp_idx], 
+			" was removed because total equaled zero (after filtering).\n", sep="");
 		removed_samples=c(removed_samples, sample_names[samp_idx]);
 	}else{
 		outline=paste(sample_names[samp_idx],total,paste(outmat[samp_idx,], collapse="\t"), sep="\t");
@@ -145,6 +158,13 @@ if(length(removed_samples)>0){
 	write(file=fc, removed_samples);
 	close(fc);
 }
+
+cat("\n\n");
+if(num_not_found>=1){
+	cat("WARNING: ", num_not_found, " categories not found.\n", sep="");
+}
+cat(num_found, " categories removed.\n", sep="");
+cat("\n\n");
 
 cat("Done.\n")
 warns=warnings();
