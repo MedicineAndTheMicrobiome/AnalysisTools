@@ -46,7 +46,7 @@ if(!length(opt$input_file)){
 if(!length(opt$output_file)){
 	outputroot=gsub("\\.summary_table\\.xls", "", opt$input_file);
 	outputroot=gsub("\\.summary_table\\.tsv", "", opt$input_file);
-	OutputFileName = paste(outputroot, ".ct_cln", sep="");
+	OutputFileName = paste(outputroot, ".tx_cln.summary_table.tsv", sep="");
 }else{
 	outputroot=gsub("\\.summary_table\\.xls", "", opt$output_file);
 	outputroot=gsub("\\.summary_table\\.tsv", "", opt$output_file);
@@ -180,7 +180,7 @@ outmat=counts_mat;
 ###############################################################################
 # Output
 cat("\nWriting New Matrix...\n");
-fc=file(paste(OutputFileName, ".summary_table.tsv", sep=""), "w");
+fc=file(paste(OutputFileName), "w");
 
 write(paste("sample_id", "total", paste(colnames(outmat), collapse="\t"), sep="\t"), file=fc);
 sample_names=rownames(counts_mat);
