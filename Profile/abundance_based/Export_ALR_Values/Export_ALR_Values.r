@@ -43,7 +43,7 @@ if(!length(opt$output_file_root)){
 	OutputRoot=gsub(".summary_table.xls", "", opt$summary_file);
 	OutputRoot=gsub(".summary_table.tsv", "", OutputRoot);
 }else{
-	OutputRoot=opt$outputroot;
+	OutputRoot=opt$output_file_root;
 }
 
 if(!length(opt$num_variables)){
