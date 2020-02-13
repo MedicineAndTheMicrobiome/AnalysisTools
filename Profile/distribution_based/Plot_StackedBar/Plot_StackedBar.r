@@ -45,6 +45,10 @@ usage = paste(
 	"	If there is no factor file specified, then\n",
 	"	then the average distribution will be plotted\n",
 	"\n",
+	"	Note if a factor file is not specified, the code will\n",
+	"	try to guess the categories by parsing the sample IDs based\n",
+	"	on periods (.) and underscore (_).",
+	"\n",
 	"	Diversity types include:\n",
 	"		shannon, tail, simpson, invsimpson\n",
 	"\n",
@@ -809,28 +813,26 @@ if(!is.null(FactorFileName)){
 	
 	num_sumtab_samp=nrow(orig_counts_mat);
 	samp_ids=rownames(orig_counts_mat);
-	guess_mat=as.data.frame(matrix(nrow=num_sumtab_samp, ncol=5));
-	rownames(guess_mat)=samp_ids;
+	max_tokens=0;
 	
+	split_list=list();
 	for(i in 1:num_sumtab_samp){
-		splits=strsplit(samp_ids[i], "\\.")[[1]];
-		guess_mat[i,1]=samp_ids[i];
-		guess_mat[i,2]=splits[1];
-
-		if(as.numeric(splits[1])>=100){
-			guess_mat[i,3]=splits[2];
-			guess_mat[i,4]=splits[3];
-			guess_mat[i,5]=splits[4];
-		}else{
-			guess_mat[i,3]=NA;
-			guess_mat[i,4]=NA;
-			guess_mat[i,5]=NA;
-		}
+		split_list[[i]]=strsplit(samp_ids[i], "[\\.\\_]")[[1]];
+		max_tokens=max(max_tokens, length(split_list[[i]]));
 	}
 
-	colnames(guess_mat)=c("SampleID", "ID1", "ID2", "ID3", "ID4");
+	guess_mat=as.data.frame(matrix(NA, nrow=num_sumtab_samp, ncol=max_tokens));
+	rownames(guess_mat)=samp_ids;
+
+	for(i in 1:num_sumtab_samp){
+		sp=split_list[[i]];
+		guess_mat[i, 1:length(sp)]=sp;
+	}
+
+	colnames(guess_mat)=paste("ID", 1:max_tokens, sep="");
 	orig_factors_mat=guess_mat;
 	print(orig_factors_mat);
+
 		
 }
 #print(factors_mat);
