@@ -67,13 +67,18 @@ usage = paste(
 	"\n",
 	"\n", sep="");
 
-if(!length(opt$input_file) || !length(opt$factor_file)){
+if(!length(opt$input_file)){
 	cat(usage);
 	q(status=-1);
 }
 
 InputFileName=opt$input_file;
-FactorFileName=opt$factor_file;
+
+if(length(opt$factor_file)){
+	FactorFileName=opt$factor_file;
+}else{
+	FactorFileName=NULL;
+}
 
 DiversityType=DEF_DIVERSITY;
 if(length(opt$diversity_type)){
@@ -424,7 +429,7 @@ plot_abundance_matrix=function(abd_mat, title="", plot_cols=8, plot_rows=5,
 	tot_plots_per_page=plot_cols*plot_rows;
 	layout_mat=matrix(1:tot_plots_per_page, byrow=T, nrow=plot_rows, ncol=plot_cols);
 
-	layout_mat=cbind(layout_mat, matrix(tot_plots_per_page+1, nrow=plot_rows, ncol=3));
+	layout_mat=cbind(layout_mat, matrix(tot_plots_per_page+1, nrow=plot_rows, ncol=4));
 
 	#layout_mat=rbind(layout_mat, rep(tot_plots_per_page+1, plot_cols));
 	#cat("Layout Matrix:\n");
@@ -792,13 +797,45 @@ write_abundances_to_fh=function(abundances_fh, abd_mat, title="",
 
 ###############################################################################
 
-orig_factors_mat=load_factors(FactorFileName);
-#print(factors_mat);
+orig_counts_mat=load_summary_file(InputFileName);
+#print(counts_mat);
 
 ###############################################################################
 
-orig_counts_mat=load_summary_file(InputFileName);
-#print(counts_mat);
+if(!is.null(FactorFileName)){
+	orig_factors_mat=load_factors(FactorFileName);
+}else{
+	cat("WARNING:  No factor file specified.  Just guessing at groupings now.\n");
+	
+	num_sumtab_samp=nrow(orig_counts_mat);
+	samp_ids=rownames(orig_counts_mat);
+	guess_mat=as.data.frame(matrix(nrow=num_sumtab_samp, ncol=5));
+	rownames(guess_mat)=samp_ids;
+	
+	for(i in 1:num_sumtab_samp){
+		splits=strsplit(samp_ids[i], "\\.")[[1]];
+		guess_mat[i,1]=samp_ids[i];
+		guess_mat[i,2]=splits[1];
+
+		if(as.numeric(splits[1])>=100){
+			guess_mat[i,3]=splits[2];
+			guess_mat[i,4]=splits[3];
+			guess_mat[i,5]=splits[4];
+		}else{
+			guess_mat[i,3]=NA;
+			guess_mat[i,4]=NA;
+			guess_mat[i,5]=NA;
+		}
+	}
+
+	colnames(guess_mat)=c("SampleID", "ID1", "ID2", "ID3", "ID4");
+	orig_factors_mat=guess_mat;
+	print(orig_factors_mat);
+		
+}
+#print(factors_mat);
+
+
 
 ###############################################################################
 
@@ -939,7 +976,7 @@ map_val_to_grp=function(fact_mat){
 			unique_val=unique(fact_val);
 			num_unique=length(unique_val);
 
-			if(num_unique<=2){
+			if(num_unique<=2 || is.character(unique_val)){
 				cat(fact_name, ": few enough unique values, NOT grouping\n", sep="");
 				map_mat[,fidx]=as.character(map_mat[,fidx]);
 			}else{
