@@ -22,6 +22,15 @@ my $ANNOTATE_OTU_WITH_GENUS_BIN="$PIPELINE_UTIL_PATH/Annotate_OTU_SummaryTable_G
 my $POSTPIPELINE_TOOL_PATH="$FindBin::Bin/post_pipeline_tools";
 my $OTU_TAXA_DEGREE_BIN="$POSTPIPELINE_TOOL_PATH/Analyze_Taxa_OTU_Degree/Analyze_Taxa_OTU_Degree.r";
 
+my $TAXA_SUMTAB_FILTER_BIN="$FindBin::Bin/../Profile/SummaryTableUtilities/Filter_Categories_By_RemoveList.r";
+my $TAXA_FILTER_LIST="$POSTPIPELINE_TOOL_PATH/Remove_Chloro_Mito/chloro_mito_genus.lst";
+
+my $TAXA_SUMTAB_CLEANER_BIN="$FindBin::Bin/../Profile/SummaryTableUtilities/Clean_SummaryTable_Categories/Clean_SummaryTable_Categories.r";
+
+my $DESC_DISTANCE_ANALYSIS_BIN="$FindBin::Bin/../Profile/distance_based/Cluster_Influencers/Cluster_Influencers.r";
+my $DESC_DISTRIBUTION_ANALYSIS_BIN="$FindBin::Bin/../Profile/distribution_based/Plot_StackedBar/Plot_StackedBar.r";
+my $DESC_ABUNDANCE_ANALYSIS_BIN="$FindBin::Bin/../Profile/abundance_based/Export_ALR_Values/Export_ALR_Values.r";
+
 #my $CURRENT_16S_ALIGNMENT=
 #	"/usr/local/devel/DAS/users/kli/SVN/DAS/16sDataAnalysis/trunk/16S_OTU_Generation/silva.nr_v119.align";
 
@@ -290,9 +299,11 @@ sub exec_cmd{
 	print STDERR "***************************************************************\n";
 	print STDERR "*  Executing $command_only ...\n";
 	print STDERR "***************************************************************\n";
+	print STDERR "$exec_string\n";
+	print STDERR "\n";
 
 	my $res=`$exec_string 2>&1`;
-	
+
 	open(LOG, ">$log_fname.log") || die "Could not open $log_fname.log for writing.\n";
 	print LOG "$exec_string\n\n";
 	print LOG "$res";
@@ -527,7 +538,7 @@ my $exec_string="
 		-i $in.unique.good.filter.unique.precluster.pick.opti_mcc.shared
 		-o $st_dir/$out_root.otu
 ";
-exec_cmd($exec_string, "$st_dir/shared_to_summary_table");
+exec_cmd($exec_string, "$st_dir/01_shared_to_summary_table");
 
 # Annotate OTUs with Genus
 $exec_string="
@@ -536,7 +547,7 @@ $exec_string="
 		-m $in.unique.good.filter.unique.precluster.pick.opti_mcc.0.03.cons.taxonomy
 		-o $st_dir/$out_root.otu.97.genus.summary_table.tsv
 ";
-exec_cmd($exec_string, "$st_dir/annotate_otu_with_genera");	
+exec_cmd($exec_string, "$st_dir/02_annotate_otu_with_genera");	
 
 # Convert Taxonomy files into Summary Table
 #	Will need IN.unique.good.filter.unique.precluster.pick.REFERENCE.wang.taxonomy
@@ -550,12 +561,13 @@ my $exec_string="
 		-g $group.good.pick.groups
 		-o $st_dir/$out_root.taxa
 ";
-exec_cmd($exec_string, "$st_dir/taxonomy_to_summary_table");
+exec_cmd($exec_string, "$st_dir/03_taxonomy_to_summary_table");
 
 my @sumtab_end_time=time;
 
 log_time($date, $time, \@sumtab_start_time, \@sumtab_end_time, "generate.summary_tables", "");
 
+###############################################################################
 ###############################################################################
 
 # Compute OTU to taxa degrees
@@ -566,9 +578,61 @@ my $exec_string="
 		-i $in.unique.good.filter.unique.precluster.pick.opti_mcc.0.03.cons.taxonomy
 		-o $st_dir/0.03.cons.taxonomy
 ";
-exec_cmd($exec_string, "$st_dir/otu_taxa_degree");
+exec_cmd($exec_string, "$st_dir/04_otu_taxa_degree");
 
 ###############################################################################
+
+# Filter out mito, chlr and unknown
+# 	Input is IN.
+
+my $exec_string="
+	$TAXA_SUMTAB_FILTER_BIN
+		-i $st_dir/$out_root.taxa.genus.summary_table.tsv
+		-l $TAXA_FILTER_LIST \
+		-o $st_dir/$out_root.taxa.genus.no_cm.summary_table.tsv
+";
+exec_cmd($exec_string, "$st_dir/05_remove_chl_mit_from_sumtab");
+
+my $exec_string="
+	$TAXA_SUMTAB_CLEANER_BIN
+		-i $st_dir/$out_root.taxa.genus.no_cm.summary_table.tsv
+		-o $st_dir/$out_root.taxa.genus.no_cm.tx_cln.summary_table.tsv
+";
+exec_cmd($exec_string, "$st_dir/06_clean_sumtab_taxa_names");
+
+###############################################################################
+
+# Descriptive statistics
+my $desc_stat_dir="$st_dir/Descriptive";
+mkdir $desc_stat_dir;
+
+my $exec_string="
+	$DESC_DISTANCE_ANALYSIS_BIN
+		-i $st_dir/$out_root.taxa.genus.no_cm.tx_cln.summary_table.tsv
+		-o $desc_stat_dir/$out_root
+		-d man
+		-p 15
+		-k 6
+		-s \";\"
+";
+exec_cmd($exec_string, "$desc_stat_dir/07_distance_desc_analysis");
+
+my $exec_string="
+	$DESC_DISTRIBUTION_ANALYSIS_BIN
+		-i $st_dir/$out_root.taxa.genus.no_cm.tx_cln.summary_table.tsv
+		-o $desc_stat_dir/$out_root
+";
+exec_cmd($exec_string, "$desc_stat_dir/08_distribution_desc_analysis");
+
+
+my $exec_string="
+	$DESC_ABUNDANCE_ANALYSIS_BIN
+		-s $st_dir/$out_root.taxa.genus.no_cm.tx_cln.summary_table.tsv
+		-o $desc_stat_dir/$out_root
+";
+exec_cmd($exec_string, "$desc_stat_dir/09_abundance_desc_analysis");
+
+##############################################################################
 
 my ($date, $time)=format_datetime();
 my @overall_end_time=times;
