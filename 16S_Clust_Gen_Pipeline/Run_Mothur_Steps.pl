@@ -26,6 +26,9 @@ my $TAXA_SUMTAB_FILTER_BIN="$FindBin::Bin/../Profile/SummaryTableUtilities/Filte
 my $TAXA_FILTER_LIST="$POSTPIPELINE_TOOL_PATH/Remove_Chloro_Mito/chloro_mito_genus.lst";
 
 my $TAXA_SUMTAB_CLEANER_BIN="$FindBin::Bin/../Profile/SummaryTableUtilities/Clean_SummaryTable_Categories/Clean_SummaryTable_Categories.r";
+my $SAMPLE_GREP_BIN="$FindBin::Bin/../Profile/SummaryTableUtilities/Filter_Samples_by_RegEx/Filter_Samples_by_RegEx.r";
+my $READ_DEPTH_CUTOFF_BIN="$FindBin::Bin/../Profile/SummaryTableUtilities/Filter_Samples_By_Minimum_Sample_Count/Filter_Samples_By_Minimum_Sample_Count.r";
+
 
 my $DESC_DISTANCE_ANALYSIS_BIN="$FindBin::Bin/../Profile/distance_based/Cluster_Influencers/Cluster_Influencers.r";
 my $DESC_DISTRIBUTION_ANALYSIS_BIN="$FindBin::Bin/../Profile/distribution_based/Plot_StackedBar/Plot_StackedBar.r";
@@ -284,8 +287,11 @@ sub execute_mothur_cmd{
 	return;
 }
 
+my $exec_cmd_ix=0;
+
 sub exec_cmd{
 	my $exec_string=shift;
+	my $dir_name=shift;
 	my $log_fname=shift;
 
 	$exec_string=~s/\n//g;
@@ -304,7 +310,10 @@ sub exec_cmd{
 
 	my $res=`$exec_string 2>&1`;
 
-	open(LOG, ">$log_fname.log") || die "Could not open $log_fname.log for writing.\n";
+	$exec_cmd_ix++;
+	my $exec_ix_str=sprintf("%02i", $exec_cmd_ix);
+
+	open(LOG, ">$dir_name/$exec_ix_str\_$log_fname.log") || die "Could not open $dir_name/$exec_ix_str\_$log_fname.log for writing.\n";
 	print LOG "$exec_string\n\n";
 	print LOG "$res";
 	close(LOG);
@@ -538,7 +547,7 @@ my $exec_string="
 		-i $in.unique.good.filter.unique.precluster.pick.opti_mcc.shared
 		-o $st_dir/$out_root.otu
 ";
-exec_cmd($exec_string, "$st_dir/01_shared_to_summary_table");
+exec_cmd($exec_string, "$st_dir", "shared_to_summary_table");
 
 # Annotate OTUs with Genus
 $exec_string="
@@ -547,7 +556,7 @@ $exec_string="
 		-m $in.unique.good.filter.unique.precluster.pick.opti_mcc.0.03.cons.taxonomy
 		-o $st_dir/$out_root.otu.97.genus.summary_table.tsv
 ";
-exec_cmd($exec_string, "$st_dir/02_annotate_otu_with_genera");	
+exec_cmd($exec_string, "$st_dir", "annotate_otu_with_genera");	
 
 # Convert Taxonomy files into Summary Table
 #	Will need IN.unique.good.filter.unique.precluster.pick.REFERENCE.wang.taxonomy
@@ -561,7 +570,7 @@ my $exec_string="
 		-g $group.good.pick.groups
 		-o $st_dir/$out_root.taxa
 ";
-exec_cmd($exec_string, "$st_dir/03_taxonomy_to_summary_table");
+exec_cmd($exec_string, "$st_dir", "taxonomy_to_summary_table");
 
 my @sumtab_end_time=time;
 
@@ -578,27 +587,47 @@ my $exec_string="
 		-i $in.unique.good.filter.unique.precluster.pick.opti_mcc.0.03.cons.taxonomy
 		-o $st_dir/0.03.cons.taxonomy
 ";
-exec_cmd($exec_string, "$st_dir/04_otu_taxa_degree");
+exec_cmd($exec_string, "$st_dir", "otu_taxa_degree");
 
 ###############################################################################
 
 # Filter out mito, chlr and unknown
-# 	Input is IN.
-
 my $exec_string="
 	$TAXA_SUMTAB_FILTER_BIN
 		-i $st_dir/$out_root.taxa.genus.summary_table.tsv
 		-l $TAXA_FILTER_LIST \
-		-o $st_dir/$out_root.taxa.genus.no_cm.summary_table.tsv
+		-o $st_dir/$out_root.taxa.genus.cmF.summary_table.tsv
 ";
-exec_cmd($exec_string, "$st_dir/05_remove_chl_mit_from_sumtab");
+exec_cmd($exec_string, "$st_dir", "remove_chl_mit_from_sumtab");
 
+
+# Clean the summary table taxa names
 my $exec_string="
 	$TAXA_SUMTAB_CLEANER_BIN
-		-i $st_dir/$out_root.taxa.genus.no_cm.summary_table.tsv
-		-o $st_dir/$out_root.taxa.genus.no_cm.tx_cln.summary_table.tsv
+		-i $st_dir/$out_root.taxa.genus.cmF.summary_table.tsv
+		-o $st_dir/$out_root.taxa.genus.cmF.cln.summary_table.tsv
 ";
-exec_cmd($exec_string, "$st_dir/06_clean_sumtab_taxa_names");
+exec_cmd($exec_string, "$st_dir", "clean_sumtab_taxa_names");
+
+
+# Split experimental samples
+my $exec_string="
+	$SAMPLE_GREP_BIN
+		-i $st_dir/$out_root.taxa.genus.cmF.cln.summary_table.tsv
+		-r \"^00[0-9][0-9]\\.\"
+		-o $st_dir/$out_root.taxa.genus.cmF.cln.exp
+";
+exec_cmd($exec_string, "$st_dir", "extract_experimental_samples");
+
+# Remove low count samples
+my $exec_string="
+	$READ_DEPTH_CUTOFF_BIN
+		-i $st_dir/$out_root.taxa.genus.cmF.cln.exp.summary_table.tsv
+		-c 750,1000,2000,3000
+		-o $st_dir/$out_root.taxa.genus.cmF.cln.exp
+";
+exec_cmd($exec_string, "$st_dir", "filter_samples_by_read_depth");
+
 
 ###############################################################################
 
@@ -608,29 +637,29 @@ mkdir $desc_stat_dir;
 
 my $exec_string="
 	$DESC_DISTANCE_ANALYSIS_BIN
-		-i $st_dir/$out_root.taxa.genus.no_cm.tx_cln.summary_table.tsv
+		-i $st_dir/$out_root.taxa.genus.cmF.cln.summary_table.tsv
 		-o $desc_stat_dir/$out_root
 		-d man
 		-p 15
 		-k 6
 		-s \";\"
 ";
-exec_cmd($exec_string, "$desc_stat_dir/07_distance_desc_analysis");
+exec_cmd($exec_string, "$desc_stat_dir", "distance_desc_analysis");
 
 my $exec_string="
 	$DESC_DISTRIBUTION_ANALYSIS_BIN
-		-i $st_dir/$out_root.taxa.genus.no_cm.tx_cln.summary_table.tsv
+		-i $st_dir/$out_root.taxa.genus.cmF.cln.summary_table.tsv
 		-o $desc_stat_dir/$out_root
 ";
-exec_cmd($exec_string, "$desc_stat_dir/08_distribution_desc_analysis");
+exec_cmd($exec_string, "$desc_stat_dir", "distribution_desc_analysis");
 
 
 my $exec_string="
 	$DESC_ABUNDANCE_ANALYSIS_BIN
-		-s $st_dir/$out_root.taxa.genus.no_cm.tx_cln.summary_table.tsv
+		-s $st_dir/$out_root.taxa.genus.cmF.cln.summary_table.tsv
 		-o $desc_stat_dir/$out_root
 ";
-exec_cmd($exec_string, "$desc_stat_dir/09_abundance_desc_analysis");
+exec_cmd($exec_string, "$desc_stat_dir", "abundance_desc_analysis");
 
 ##############################################################################
 
