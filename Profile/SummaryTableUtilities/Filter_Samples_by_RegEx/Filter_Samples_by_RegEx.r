@@ -5,7 +5,7 @@
 library('getopt');
 
 params=c(
-	"input_file", "s", 1, "character",
+	"input_file", "i", 1, "character",
 	"keep_regex", "k", 2, "character",
 	"remove_regex", "r", 2, "character",
 	"output_file", "o", 2, "character"
@@ -18,7 +18,7 @@ script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
 usage = paste (
 	"\nUsage:\n\n", script_name,
 	"\n",
-	"	-s <input summary_table.tsv>\n",
+	"	-i <input summary_table.tsv>\n",
 	"	[-k \"<keep regular expression\"]\n",
 	"	[-r \"<remove regular expression\"]\n",
 	"	[-o <output summary_table file name>]\n",
