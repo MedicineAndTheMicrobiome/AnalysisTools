@@ -121,10 +121,12 @@ write_summary_table=function(outname, counts_matrix){
 	write(paste("Sample_ID", "Total", paste(colnames(outmat), collapse="\t"), sep="\t"), file=fc);
 	out_num_samples=nrow(outmat);
 	sample_names=rownames(outmat);
-	for(samp_idx in 1:out_num_samples){
-		total=sum(outmat[samp_idx,]);
-		outline=paste(sample_names[samp_idx],total,paste(outmat[samp_idx,], collapse="\t"), sep="\t");
-		write(outline, file=fc);
+	if(out_num_samples>0){
+		for(samp_idx in 1:out_num_samples){
+			total=sum(outmat[samp_idx,]);
+			outline=paste(sample_names[samp_idx],total,paste(outmat[samp_idx,], collapse="\t"), sep="\t");
+			write(outline, file=fc);
+		}
 	}
 	close(fc);	
 }
