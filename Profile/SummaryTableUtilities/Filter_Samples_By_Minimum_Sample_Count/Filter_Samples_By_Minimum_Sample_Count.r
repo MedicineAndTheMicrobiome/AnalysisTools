@@ -131,17 +131,17 @@ write_summary_table=function(outname, counts_matrix){
 	close(fc);	
 }
 
-write_list=function(fname, char_arr){
+write_list=function(fname, char_arr, cts_arr){
 	cat("Writing list...\n");
 	fc=file(fname, "w");
 
 	list_len=length(char_arr);
 	if(list_len>=1){
 		for(i in 1:list_len){
-			write(char_arr[i], file=fc);
+			cat(char_arr[i], "\t", cts_arr[i], "\n", sep="", file=fc);
 		}
 	}else{
-		write("<EOF>", file=fc);
+		cat("<EOF>\n", file=fc);
 	}
 	close(fc);
 }
@@ -160,14 +160,16 @@ for(cutoff in minimums_arr){
 	#Subset out rows to keep
 	samp_ids=rownames(counts_mat);
 	outmat=counts_mat[keep_idx,];
-	excluded=samp_ids[!keep_idx];
+
+	excl_ids=samp_ids[!keep_idx];
+	excl_cts=totals[!keep_idx];
 
 	zpad=paste("%0", floor(log10(max_cutoff))+1, "g", sep="");
 	sumtab_name=paste(OutputFileRoot, ".min_", sprintf(zpad, cutoff), ".summary_table.tsv", sep=""); 
 	write_summary_table(sumtab_name, outmat);
 
 	list_out_name=paste(OutputFileRoot, ".lt_", sprintf(zpad, cutoff), ".exclusion.tsv", sep="");
-	write_list(list_out_name, excluded);
+	write_list(list_out_name, excl_ids, excl_cts);
 
 	cat("\n");
 }
