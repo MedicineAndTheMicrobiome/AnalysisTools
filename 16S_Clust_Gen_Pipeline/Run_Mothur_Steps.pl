@@ -309,14 +309,23 @@ sub exec_cmd{
 	print STDERR "\n";
 
 	my $res=`$exec_string 2>&1`;
+	my $err=$!; # $! must be read immediate after ``'s
 
 	$exec_cmd_ix++;
 	my $exec_ix_str=sprintf("%02i", $exec_cmd_ix);
 
-	open(LOG, ">$dir_name/$exec_ix_str\_$log_fname.log") || die "Could not open $dir_name/$exec_ix_str\_$log_fname.log for writing.\n";
+	my $log_fullfilename="$dir_name/$exec_ix_str\_$log_fname.log";
+
+	open(LOG, ">$log_fullfilename") || die "Could not open $log_fullfilename for writing.\n";
 	print LOG "$exec_string\n\n";
 	print LOG "$res";
 	close(LOG);
+
+	if($err ne ""){
+		print STDERR "!! ERROR Detected: !!\n$err\n";
+		print STDERR "Check log file: $log_fullfilename\n\n";
+		exit(-1);
+	}
 
 	return;
 }
