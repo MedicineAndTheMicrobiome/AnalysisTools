@@ -33,8 +33,8 @@ usage = paste (
 	"\n",
 	"For sake of brevity, these components will also be abbreviated:\n",
 	"	Unknown_	to Unk\n",
-	"	_unclassified	to _uncla \n",
-	"	_group		to _grp \n",
+	"	_unclassified	to _uncl\n",
+	"	_group		to _grp\n",
 	"\n",
 	"\n");
 
