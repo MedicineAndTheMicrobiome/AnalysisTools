@@ -29,6 +29,7 @@ my $TAXA_SUMTAB_CLEANER_BIN="$FindBin::Bin/../Profile/SummaryTableUtilities/Clea
 my $SAMPLE_GREP_BIN="$FindBin::Bin/../Profile/SummaryTableUtilities/Filter_Samples_by_RegEx/Filter_Samples_by_RegEx.r";
 my $READ_DEPTH_CUTOFF_BIN="$FindBin::Bin/../Profile/SummaryTableUtilities/Filter_Samples_By_Minimum_Sample_Count/Filter_Samples_By_Minimum_Sample_Count.r";
 
+my $SUMMARIZE_SUMTAB_BIN="$FindBin::Bin/../Profile/SummaryTableUtilities/Summarize_SummaryTable.r";
 
 my $DESC_DISTANCE_ANALYSIS_BIN="$FindBin::Bin/../Profile/distance_based/Cluster_Influencers/Cluster_Influencers.r";
 my $DESC_DISTRIBUTION_ANALYSIS_BIN="$FindBin::Bin/../Profile/distribution_based/Plot_StackedBar/Plot_StackedBar.r";
@@ -303,7 +304,7 @@ sub exec_cmd{
 
 	print STDERR "\n";
 	print STDERR "***************************************************************\n";
-	print STDERR "*  Executing $command_only ...\n";
+	print STDERR "*  Executing $log_fname ($command_only) ...\n";
 	print STDERR "***************************************************************\n";
 	print STDERR "$exec_string\n";
 	print STDERR "\n";
@@ -628,6 +629,15 @@ my $exec_string="
 ";
 exec_cmd($exec_string, "$st_dir", "extract_experimental_samples");
 
+# Split control samples
+my $exec_string="
+	$SAMPLE_GREP_BIN
+		-i $st_dir/$out_root.taxa.genus.cmF.cln.summary_table.tsv
+		-k \"^00[0-9][0-9]\\.\"
+		-o $st_dir/$out_root.taxa.genus.cmF.cln.ctl
+";
+exec_cmd($exec_string, "$st_dir", "extract_control_samples");
+
 # Remove low count samples
 my $exec_string="
 	$READ_DEPTH_CUTOFF_BIN
@@ -637,6 +647,32 @@ my $exec_string="
 ";
 exec_cmd($exec_string, "$st_dir", "filter_samples_by_read_depth");
 
+
+###############################################################################
+
+# Summarize all before filtering
+my $exec_string="
+	$SUMMARIZE_SUMTAB_BIN
+		-i $st_dir/$out_root.taxa.genus.summary_table.tsv
+		> $st_dir/$out_root.taxa.genus.summary.txt
+";
+exec_cmd($exec_string, "$st_dir", "summarize_all_before_filtering");
+#
+# Summarize Experimental after filtering (750)
+my $exec_string="
+	$SUMMARIZE_SUMTAB_BIN
+		-i $st_dir/$out_root.taxa.genus.cmF.cln.exp.min_0750.summary_table.tsv
+		> $st_dir/$out_root.taxa.genus.cmF.cln.exp.min_0750.summary.txt
+";
+exec_cmd($exec_string, "$st_dir", "summarize_experimental_after_filtering");
+#
+# Summarize Control before filtering
+my $exec_string="
+	$SUMMARIZE_SUMTAB_BIN
+		-i $st_dir/$out_root.taxa.genus.cmF.cln.ctl.summary_table.tsv
+		> $st_dir/$out_root.taxa.genus.cmF.cln.ctl.summary.txt
+";
+exec_cmd($exec_string, "$st_dir", "summarize_control_before_filtering");
 
 ###############################################################################
 
