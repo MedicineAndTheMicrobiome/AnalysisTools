@@ -161,7 +161,7 @@ qc_steps=forw_steps;
 cat("Step Order Identified:\n");
 print(qc_steps);
 
-plot_step_histograms=function(table, target_ids, directions, steps, target_stats, title){
+plot_step_histograms=function(table, directions, steps, target_stats){
 
 	num_steps=length(steps);
 
@@ -181,7 +181,12 @@ plot_step_histograms=function(table, target_ids, directions, steps, target_stats
 
 		cat("Stat:", stat_ix, "\n", sep="");
 
-		par(mfcol=c(num_steps,length(directions)));
+		if(num_steps>1){
+			par(mfcol=c(num_steps,length(directions)));
+		}else{
+			par(mfcol=c(length(directions), 1));
+		}
+
 		par(mar=c(3,4,4,1));
 		par(oma=c(0,0,3,0));
 	
@@ -203,7 +208,7 @@ plot_step_histograms=function(table, target_ids, directions, steps, target_stats
 					hist(values, 
 						breaks=seq(0, maxs[stat_ix]*1.025, length.out=40), 
 						xlab="",
-						main=paste(step_ix, "\nmedian = ", med_val, sep=""));
+						main=paste(cur_dir, ": ", step_ix, "\nmedian = ", med_val, sep=""));
 					abline(v=median(values, na.rm=T), col="blue");
 				}
 
@@ -215,20 +220,66 @@ plot_step_histograms=function(table, target_ids, directions, steps, target_stats
 }
 
 
-
-
 pdf(paste(LOG_FILE_NAME, ".qc_log_summary.pdf", sep=""), height=11, width=8.5);
 
 partial_tab=exp_tab[,
 	c("SampleID", "Direction", "QCStep", "NumRecords", "NumBases", "LB95Len", "LB95QV")];
 
 target_stats=c("NumRecords", "NumBases", "LB95Len", "LB95QV");
+
+###############################################################################
 	
-plot_step_histograms(partial_tab, exp_ids, c("F", "R"), qc_steps, target_stats, "Experimental Samples: Forward");
+par(mfrow=c(1,1));
+plot(0, xlim=c(-1,1), ylim=c(-1,1), type="n", bty="n", xaxt="n", yaxt="n", main="", xlab="", ylab="");
+text(0,0, "Forward vs. Reverse Reads", font=2, cex=3);
+
+plot_step_histograms(partial_tab, c("F", "R"), qc_steps, target_stats);
+
+par(mfrow=c(1,1));
+plot(0, xlim=c(-1,1), ylim=c(-1,1), type="n", bty="n", xaxt="n", yaxt="n", main="", xlab="", ylab="");
+text(0,0, "Pairability Results", font=2, cex=3);
+plot_step_histograms(partial_tab, c("for_frag", "rev_frag", "paired"), "merged", target_stats);
 
 ###############################################################################
 
+paired_merged_ix=((partial_tab[,"Direction"]=="paired") & (partial_tab[,"QCStep"]=="merged"));
+paired_merged_num_records=partial_tab[paired_merged_ix, "NumRecords"];
+paired_merged_samp_id=partial_tab[paired_merged_ix, "SampleID"];
 
+plot_bar_cutoffs=function(values, cutoffs){
+	
+	num_cutoffs=length(cutoffs);
+
+	num_exceeding=numeric();
+	num_under=numeric();
+	for(i in 1:num_cutoffs){
+		num_exceeding[i]=sum(values>=cutoffs[i])
+		num_under[i]=sum(values<cutoffs[i]);
+	}
+
+	max_counts=max(c(num_exceeding, num_under));	
+
+	par(mfrow=c(2,1));
+	par(oma=c(0,0,0,0));
+	mids=barplot(num_exceeding, names.arg=paste(">=", cutoffs), 
+		ylim=c(0, max_counts*1.1),
+		main="Samples (NumRecords/2) Exceeding Depth Cutoffs",
+		xlab="Paired Cutoffs", ylab="Num Samples");
+	text(mids, num_exceeding, num_exceeding, font=3, cex=.7, pos=3);
+	
+
+	mids=barplot(num_under, names.arg=paste("<", cutoffs), 
+		ylim=c(0, max_counts*1.1),
+		main="Samples (NumRecords/2) Below Depth Cutoffs",
+		xlab="Paired Cutoffs", ylab="Num Samples");
+	text(mids, num_under, num_under, font=3, cex=.7, pos=3);
+
+}
+
+num_pairable_sequences=paired_merged_num_records/2;
+
+targeted_cutoffs=c(750, 1000, 2000, 3000, 10000, 20000, 50000, 10^ceiling(log10(max(num_pairable_sequences))));
+plot_bar_cutoffs(num_pairable_sequences, targeted_cutoffs);
 
 ###############################################################################
 
