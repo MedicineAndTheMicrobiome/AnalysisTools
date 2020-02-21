@@ -15,6 +15,7 @@ script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
 LOG_FILE_NAME="fastq_qc_log";
 LOG_FILE_EXT="tsv";
 CTL_REGEX="^00[0-9][0-9]\\.";
+POSTQC_DIR="PostQC";
 
 usage = paste (
 	"\nUsage:\n\n", script_name,
@@ -72,9 +73,13 @@ plot_text=function(strings){
 ###############################################################################
 
 QC_LogDir=opt$directory;
+post_qc_res_dir=paste(QC_LogDir, "/PostQC", sep="");
 
 cat("\n")
 cat("QC Result Directory: ", QC_LogDir, "\n");
+cat("Post QC Result Directory: ", post_qc_res_dir, "\n");
+
+dir.create(post_qc_res_dir);
 
 ###############################################################################
 
@@ -113,7 +118,7 @@ if(all(indices_found==(1:num_log_files))){
 
 ###############################################################################
 
-full_file_fname=paste(QC_LogDir, "/",LOG_FILE_NAME, "._ALL_.", LOG_FILE_EXT, sep="");
+full_file_fname=paste(post_qc_res_dir, "/",LOG_FILE_NAME, "._ALL_.", LOG_FILE_EXT, sep="");
 cat("Concatenating all files into: ", full_file_fname, "\n", sep="");
 
 full_tab=data.frame();
@@ -268,7 +273,7 @@ plot_step_histograms=function(table, directions, steps, target_stats){
 }
 
 
-pdf(paste(LOG_FILE_NAME, ".qc_log_summary.pdf", sep=""), height=11, width=8.5);
+pdf(paste(post_qc_res_dir, "/", LOG_FILE_NAME, ".summary.pdf", sep=""), height=11, width=8.5);
 
 partial_tab=exp_tab[,
 	c("SampleID", "Direction", "QCStep", "NumRecords", "NumBases", "LB95Len", "LB95QV")];
@@ -286,6 +291,7 @@ plot_text(c(
 	"",
 	paste("Working Directory: ", getwd()),
 	paste("Target Directory: ", QC_LogDir, sep=""),
+	paste("Output Directory: ", post_qc_res_dir, sep=""),
 	"",
 	paste("Num Log Files Detected: ", num_log_files, sep=""),
 	paste("Num Sample IDs Detected: ", num_samp_ids, sep=""),
@@ -315,6 +321,7 @@ plot_step_histograms(partial_tab, c("for_frag", "rev_frag", "paired"), "merged",
 paired_merged_ix=((partial_tab[,"Direction"]=="paired") & (partial_tab[,"QCStep"]=="merged"));
 paired_merged_num_records=partial_tab[paired_merged_ix, "NumRecords"];
 paired_merged_samp_id=partial_tab[paired_merged_ix, "SampleID"];
+names(paired_merged_num_records)=paired_merged_samp_id;
 
 plot_bar_cutoffs=function(values, cutoffs){
 	
@@ -348,10 +355,44 @@ plot_bar_cutoffs=function(values, cutoffs){
 
 }
 
+
 num_pairable_sequences=paired_merged_num_records/2;
 
 targeted_cutoffs=c(750, 1000, 2000, 3000, 10000, 20000, 50000, 10^ceiling(log10(max(num_pairable_sequences))));
 plot_bar_cutoffs(num_pairable_sequences, targeted_cutoffs);
+
+###############################################################################
+
+export_redos=function(fname_root, counts_wnames, cutoffs){
+
+	num_cutoff=length(cutoffs);
+	cutoffs=sort(cutoffs);
+	maxcutoff=max(cutoffs);
+	
+	numdigits=floor(log10(maxcutoff))+1;
+	spf_str=paste("%0", numdigits, "g", sep="");
+	
+	for(cutix in cutoffs){
+		fname=paste(fname_root, ".lt_", sprintf(spf_str, cutix), ".tsv", sep="");
+		below=counts_wnames[counts_wnames<cutix];
+		cat("Exporting to: ", fname, "\n");
+		cat("   Num Samples: ", length(below), "\n");
+		write.table(below, fname, quote=F, sep="\t", col.names=F);
+	}
+
+}
+
+cat("\n");
+
+export_redos(paste(post_qc_res_dir, "/", LOG_FILE_NAME, sep=""), 
+	sort(num_pairable_sequences), c(750,1000,2000,3000));
+
+dev.off();
+
+###############################################################################
+
+cat("Tar'ing Output...\n");
+system(paste("tar -C ", QC_LogDir, " -cvzf ", QC_LogDir, "/QC.tgz PostQC", sep=""));
 
 ###############################################################################
 
