@@ -47,6 +47,30 @@ if(
 
 ###############################################################################
 
+plot_text=function(strings){
+        par(family="Courier");
+        par(mar=rep(0,4));
+
+        num_lines=length(strings);
+
+        top=max(as.integer(num_lines), 52);
+
+        plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
+                xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
+                );
+
+        text_size=max(.01, min(.8, .8 - .003*(num_lines-52)));
+        #print(text_size);
+
+        for(i in 1:num_lines){
+                #cat(strings[i], "\n", sep="");
+                strings[i]=gsub("\t", "", strings[i]);
+                text(0, top-i, strings[i], pos=4, cex=text_size);
+        }
+}
+
+###############################################################################
+
 QC_LogDir=opt$directory;
 
 cat("\n")
@@ -127,6 +151,9 @@ exp_ids=as.character(exp_tab[,"SampleID"]);
 uniq_ctl_ids=sort(unique(ctl_ids));
 uniq_exp_ids=sort(unique(exp_ids));
 
+num_uniq_ctl_ids=length(uniq_ctl_ids);
+num_uniq_exp_ids=length(uniq_exp_ids);
+
 cat("Control IDs:\n");
 print(uniq_ctl_ids);
 cat("\n");
@@ -169,6 +196,10 @@ plot_step_histograms=function(table, directions, steps, target_stats){
 	cat("Maxes:\n");
 	print(maxs);
 
+	ac=function(x){
+		return(prettyNum(x, big.mark=",", scientific=F));
+	}
+
 	for(stat_ix in target_stats){
 
 		if(length(intersect(stat_ix, c("NumRecords", "NumBases")))){
@@ -191,6 +222,10 @@ plot_step_histograms=function(table, directions, steps, target_stats){
 		par(oma=c(0,0,3,0));
 	
 		for(cur_dir in directions){
+
+			prev_med=NA;
+			first_med=NA;
+
 			for(step_ix in steps){
 				cat("\tStep:", step_ix, "(", cur_dir, ")\n", sep="");
 
@@ -198,20 +233,33 @@ plot_step_histograms=function(table, directions, steps, target_stats){
 				values=table[srows, stat_ix];
 				med_val=median(values, na.rm=T);
 
+				if(is.na(first_med)){
+					first_med=med_val;	
+				}
+				if(is.na(prev_med)){
+					prev_med=med_val;
+				}
+
+				perc_tot=paste(round(100*med_val/first_med, 2), "%", sep="");
+				perc_prev=paste(round(100*med_val/prev_med, 2), "%", sep="");
+
 				if(log_trans){
 					hist(log10(values+1), 
 						breaks=seq(0, log10(maxs[stat_ix])*1.025, length.out=40), 
-						xlab="", 
-						main=paste(cur_dir, ": ", step_ix, "\nmedian = ", med_val, sep=""));
+						xlab="", main=""); 
 					abline(v=median(log10(values+1)), col="blue");
 				}else{
 					hist(values, 
 						breaks=seq(0, maxs[stat_ix]*1.025, length.out=40), 
-						xlab="",
-						main=paste(cur_dir, ": ", step_ix, "\nmedian = ", med_val, sep=""));
+						xlab="", main="");
 					abline(v=median(values, na.rm=T), col="blue");
 				}
+				title(main=paste(cur_dir, ": ", step_ix, ", median = ", ac(med_val), sep=""),
+					cex.main=1);
+				title(main=paste("Of All: ", perc_tot, "   Of Previous Step: ", perc_prev, sep=""), 
+					font=3, line=1, cex.main=.8);
 
+				prev_med=med_val;
 			}
 		}
 		mtext(disp_stat, side=3, outer=T, cex=2, font=2);
@@ -226,6 +274,28 @@ partial_tab=exp_tab[,
 	c("SampleID", "Direction", "QCStep", "NumRecords", "NumBases", "LB95Len", "LB95QV")];
 
 target_stats=c("NumRecords", "NumBases", "LB95Len", "LB95QV");
+
+plot_text(c(
+	"QC Run Post-Analysis:",
+	"",
+	paste("Run on: ", date(), sep=""),
+	paste("Run by: ", system("whoami", intern=T), sep=""),
+	"",
+	paste("Command: "),
+	paste("\t", commandArgs()),
+	"",
+	paste("Working Directory: ", getwd()),
+	paste("Target Directory: ", QC_LogDir, sep=""),
+	"",
+	paste("Num Log Files Detected: ", num_log_files, sep=""),
+	paste("Num Sample IDs Detected: ", num_samp_ids, sep=""),
+	paste("Control Regular Expression: ", CTL_REGEX, sep=""),
+	paste("Num Controls Detected: ", num_uniq_ctl_ids, sep=""),
+	paste("Num Experimentals Detected: ", num_uniq_exp_ids, sep=""),
+	"",
+	paste("Num QC Steps Detected: ", length(qc_steps)),
+	paste(capture.output(print(qc_steps, quote=F)))
+));
 
 ###############################################################################
 	
@@ -257,22 +327,24 @@ plot_bar_cutoffs=function(values, cutoffs){
 		num_under[i]=sum(values<cutoffs[i]);
 	}
 
-	max_counts=max(c(num_exceeding, num_under));	
+	max_counts=length(values);;	
 
 	par(mfrow=c(2,1));
 	par(oma=c(0,0,0,0));
 	mids=barplot(num_exceeding, names.arg=paste(">=", cutoffs), 
 		ylim=c(0, max_counts*1.1),
 		main="Samples (NumRecords/2) Exceeding Depth Cutoffs",
-		xlab="Paired Cutoffs", ylab="Num Samples");
-	text(mids, num_exceeding, num_exceeding, font=3, cex=.7, pos=3);
+		xlab="Paired Cutoffs", ylab="Num Samples", cex.names=.8);
+	perc_excd=round(100*num_exceeding/max_counts, 2);
+	text(mids, num_exceeding, paste(num_exceeding, "\n(", perc_excd, "%)", sep=""), font=3, cex=.7, pos=3);
 	
 
 	mids=barplot(num_under, names.arg=paste("<", cutoffs), 
 		ylim=c(0, max_counts*1.1),
 		main="Samples (NumRecords/2) Below Depth Cutoffs",
-		xlab="Paired Cutoffs", ylab="Num Samples");
-	text(mids, num_under, num_under, font=3, cex=.7, pos=3);
+		xlab="Paired Cutoffs", ylab="Num Samples", cex.names=.8);
+	perc_under=round(100*num_under/max_counts, 2);
+	text(mids, num_under, paste(num_under, "\n(", perc_under, "%)", sep=""), font=3, cex=.7, pos=3);
 
 }
 
