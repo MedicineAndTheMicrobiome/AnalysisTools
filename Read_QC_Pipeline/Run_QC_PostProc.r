@@ -379,10 +379,10 @@ export_redos=function(fname_root, counts_wnames, cutoffs){
 	
 	for(cutix in cutoffs){
 		fname=paste(fname_root, ".lt_", sprintf(spf_str, cutix), ".tsv", sep="");
-		below=counts_wnames[counts_wnames<cutix];
+		below=as.matrix(counts_wnames[counts_wnames<cutix]);
 		cat("Exporting to: ", fname, "\n");
 		cat("   Num Samples: ", length(below), "\n");
-		write.table(below, fname, quote=F, sep="\t", col.names=F);
+		write.table(below, fname, quote=F, sep="\t", row.names=T, col.names=F);
 	}
 
 }
