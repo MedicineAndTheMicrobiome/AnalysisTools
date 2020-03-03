@@ -4,6 +4,8 @@ test_code=T;
 
 sample_sheet_validator=function(df){
 
+	BC_PLATEMAP="barcode_plateloc.tsv";
+
 	first_col=df[,1];	
 
 	# get experiment name:
@@ -13,6 +15,14 @@ sample_sheet_validator=function(df){
 	# get experiment date:
 	exp_date_ix=which(first_col=="Date");
 	date=df[exp_date_ix, 2];
+
+	# get investigator name:
+	investigator_name_ix=which(first_col=="Investigator Name");
+	if(length(investigator_name_ix)==0){
+		investigator_name="<Not Specified>";
+	}else{
+		investigator_name=df[investigator_name_ix, 2];
+	}
 
 	# get [Data] and Sample_ID position
 	data_ix=which(first_col=="[Data]");
@@ -24,7 +34,7 @@ sample_sheet_validator=function(df){
 		return("Error:  Could not find [Data] and Sample_ID row.\n");
 	}
 
-	cat("Sample information should start on line: ", sample_begin_ix, "\n"); 
+	cat("Sample information detected to start on line: ", sample_begin_ix, "\n"); 
 
 	df_rows=nrow(df);
 	df_cols=ncol(df);
@@ -35,20 +45,22 @@ sample_sheet_validator=function(df){
 	hdr=as.matrix(df[sample_id_header_ix,]);
 	colnames(samp_mat)=hdr;
 
+	#print(samp_mat)
 	num_samples=nrow(samp_mat);
 	samp_ids=samp_mat[,"Sample_ID"];
 	samp_names=samp_mat[,"Sample_Name"];
-	bc=samp_mat[,"index"];
+	barcodes=samp_mat[,"index"];
+	plate_map=samp_mat[,"I7_Index_ID"];
 
 	#----------------------------------------------------------------------
 	# Look for dup barcodes
-	bc_uniq=unique(bc);
+	bc_uniq=unique(barcodes);
 	num_uniq_bc=length(bc_uniq);
 	bc_are_uniq=T;
 	if(num_uniq_bc>num_samples){
 		bc_uniq_msg="ERROR: More barcodes than samples";
 	}else if(num_uniq_bc<num_samples){
-		counts=table(bc);
+		counts=table(barcodes);
 		dup_ids=paste(names(counts[counts>1]), collapse=",");
 		bc_uniq_msg=c("ERROR: Barcodes are not unique:", dup_ids);
 	}else{
@@ -58,7 +70,7 @@ sample_sheet_validator=function(df){
 	#----------------------------------------------------------------------
 	# Look for invalid barcodes characters;
 	inval_bc_msg=c();
-	for(b in bc){
+	for(b in barcodes){
 		out=gsub("[ATGC]", "", b);
 		if(nchar(out)>0){
 			inval_bc_msg=c(inval_bc_msg, b);	
@@ -75,7 +87,7 @@ sample_sheet_validator=function(df){
 	incons_bc_len_msg=c();
 	bc_lengths=numeric();
 	for(i in 1:num_samples){
-		bc_lengths[i]=nchar(bc[i]);
+		bc_lengths[i]=nchar(barcodes[i]);
 	}
 	uniq_lengths=unique(bc_lengths);
 	if(length(uniq_lengths)>1){
@@ -154,6 +166,10 @@ sample_sheet_validator=function(df){
 	rownames(prj_mat)=names(prj_tab);
 	colnames(prj_mat)="counts";
 	pcode_tab=capture.output(print(prj_mat, quote=F));
+	pcode_tot=sum(prj_tab);
+	pcode_tab=c(pcode_tab, 
+		"--------------------", 
+		paste("Total", pcode_tot));
 
 	#----------------------------------------------------------------------
 	# project code lengths	
@@ -174,9 +190,61 @@ sample_sheet_validator=function(df){
 
 
 	#----------------------------------------------------------------------
+	# cross check Sample_Project (which is the plate_id/well for the barcode) with Barcode
+
+	# Load barcodes
+	plate_map_ref=as.matrix(read.table(BC_PLATEMAP, header=T, sep=","));	
+	num_pm_entries=nrow(plate_map_ref);
+	pm_list=list();
+	for(i in 1:num_pm_entries){
+		key=plate_map_ref[i,1];
+		if(key==""){
+			next;
+		}
+		pm_list[[key]]=plate_map_ref[i,2];
+	}
+	cat("Number of Plate Map Entries Read from ", BC_PLATEMAP, ": ", num_pm_entries, "\n", sep="");
+	#print(pm_list);
+
+	no_info_cnt=0;
+	no_info_lst=c();
+	mism_cnt=0;
+	mism_info_lst=c();
+	for(i in 1:num_samples){
+		pm=plate_map[i];
+		bc=barcodes[i];
+
+		exp_bc=pm_list[[pm]];
+
+		if(length(exp_bc)==0){
+			no_info_lst=c(no_info_lst,
+				paste("Line: ", i, ", has no plate map information: ", pm, " / ", bc, sep=""));
+			no_info_cnt=no_info_cnt+1;
+		}else if(exp_bc!=bc){
+			mism_info_lst=c(mism_info_lst,
+			paste("Line: ", i, ", PlateMap/Barcode Mismatch:", pm, "/", bc, sep=""),
+			paste(" Expected: ", pm, "/", pm_list[[pm]], sep=""));
+			mism_cnt=mism_cnt+1;
+		}
+	}
+
+	if(no_info_cnt>0){
+		plate_info_msg=c("ERROR: Missing plate info:", no_info_lst);
+	}else{
+		plate_info_msg="OK: Plate Info and Barcodes Accounted For ";
+	}
+
+	if(mism_cnt>0){
+		plate_match_msg=c("ERROR: Mismatching plate info:", mism_info_lst);
+	}else{
+		plate_match_msg="OK: Plate Info and Barcodes Match";
+	}
+
+	#----------------------------------------------------------------------
 	
 	msg_arr=c(	
 		paste("Experiment Name: ", experiment_name, sep=""),
+		paste("Investigator Name: ", investigator_name, sep=""),
 		paste("Date: ", date, sep=""),
 		"",
 		paste("Overall Sheet Dimensions: ", df_rows, " r x ", df_cols, " c", sep=""),
@@ -190,6 +258,8 @@ sample_sheet_validator=function(df){
 		mixcase_msg,
 		bad_char_msg,
 		non_stnd_len_pcodes_msg,
+		plate_info_msg,
+		plate_match_msg,
 		"",
 		"Project Summary:",
 		pcode_tab,
@@ -199,23 +269,25 @@ sample_sheet_validator=function(df){
 }
 
 
-if(test_code){
+if(test_code && F){
 
 	cat("-----------------------------------------------------------------\n");
 
 	df=read.csv("example/0159_20200131_samplesheet.noErrors.csv", header=F);
 	msgs=sample_sheet_validator(df);
 	cat(paste(msgs, collapse="\n"));
+}
 
+
+if(test_code && F){
 	cat("-----------------------------------------------------------------\n");
-
 	df=read.csv("example/0159_20200131_samplesheet.wErrors.csv", header=F);
 	msgs=sample_sheet_validator(df);
 	cat(paste(msgs, collapse="\n"));
 
 	cat("-----------------------------------------------------------------\n");
-
-	print(warnings());
 }
+
+print(warnings());
 
 
