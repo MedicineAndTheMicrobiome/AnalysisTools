@@ -4,19 +4,23 @@ test_code=T;
 
 sample_sheet_validator=function(df){
 
+	cat("Sample Sheet Validator Started...\n");
 	BC_PLATEMAP="barcode_plateloc.tsv";
 
 	first_col=df[,1];	
 
 	# get experiment name:
+	cat("Getting Experiment Name...\n");
 	exp_name_ix=which(first_col=="Experiment Name");
 	experiment_name=df[exp_name_ix, 2];
 
 	# get experiment date:
+	cat("Getting Experiment Date...\n");
 	exp_date_ix=which(first_col=="Date");
 	date=df[exp_date_ix, 2];
 
 	# get investigator name:
+	cat("Getting Investigator Name...\n");
 	investigator_name_ix=which(first_col=="Investigator Name");
 	if(length(investigator_name_ix)==0){
 		investigator_name="<Not Specified>";
@@ -25,6 +29,7 @@ sample_sheet_validator=function(df){
 	}
 
 	# get [Data] and Sample_ID position
+	cat("Getting Data Line Number...\n");
 	data_ix=which(first_col=="[Data]");
 	sample_id_header_ix=which(first_col=="Sample_ID");
 
@@ -52,8 +57,11 @@ sample_sheet_validator=function(df){
 	barcodes=samp_mat[,"index"];
 	plate_map=samp_mat[,"I7_Index_ID"];
 
+	cat("Starting individual checks...\n");
+
 	#----------------------------------------------------------------------
 	# Look for dup barcodes
+	cat("Looking for duplicate barcodes...\n");
 	bc_uniq=unique(barcodes);
 	num_uniq_bc=length(bc_uniq);
 	bc_are_uniq=T;
@@ -69,6 +77,7 @@ sample_sheet_validator=function(df){
 
 	#----------------------------------------------------------------------
 	# Look for invalid barcodes characters;
+	cat("Looking for invalid barcode characters...\n");
 	inval_bc_msg=c();
 	for(b in barcodes){
 		out=gsub("[ATGC]", "", b);
@@ -84,6 +93,7 @@ sample_sheet_validator=function(df){
 
 	#----------------------------------------------------------------------
 	# Look for inconsistent bc lengths
+	cat("Looking for inconsistent barcode lengths...\n");
 	incons_bc_len_msg=c();
 	bc_lengths=numeric();
 	for(i in 1:num_samples){
@@ -99,6 +109,7 @@ sample_sheet_validator=function(df){
 
 	#----------------------------------------------------------------------
 	# Look for duplicate sample IDs
+	cat("Looking for duplicate sample IDs...\n");
 	uniq_samp_ids=unique(samp_names);
 	num_uniq_samp_ids=length(uniq_samp_ids);
 	uniq_samp_ids_msg=character();
@@ -112,6 +123,7 @@ sample_sheet_validator=function(df){
 
 	#----------------------------------------------------------------------
 	# Confirm sample ids match sample names
+	cat("Confirming that Sample IDs match Sample Names...\n");
 	pairs_match=(samp_ids==samp_names);
 	if(all(pairs_match)){
 		samp_id_and_names_match_msg="OK: All Sample IDs match the Sample Names";
@@ -122,6 +134,7 @@ sample_sheet_validator=function(df){
 
 	#----------------------------------------------------------------------
 	# Check sample IDs for lowercase characters
+	cat("Checking Sample IDs for lowercase characters...\n");
 	uc_samp_ids=toupper(samp_ids);
 	non_uc_ix=!(uc_samp_ids==samp_ids)
 	if(any(non_uc_ix)){
@@ -135,6 +148,7 @@ sample_sheet_validator=function(df){
 	
 	#----------------------------------------------------------------------
 	# Check sample IDs for invalid characters
+	cat("Checking Sample IDs for invalid characters...\n");
 	bad_samp_ids=character();
 	bad_char=character();
 	for(i in 1:num_samples){
@@ -154,7 +168,7 @@ sample_sheet_validator=function(df){
 
 	#----------------------------------------------------------------------
 	# Report on project codes	
-	
+	cat("Reporting on Project Codes...\n");
 	project_codes=character(num_samples);
 
 	splits=strsplit(samp_ids, "_");
@@ -173,6 +187,7 @@ sample_sheet_validator=function(df){
 
 	#----------------------------------------------------------------------
 	# project code lengths	
+	cat("Checking Project Code lengths...\n");
 	uniq_pcodes=names(prj_tab);
 	non_stnd_len_pcodes=c();
 	for(i in 1:length(uniq_pcodes)){
@@ -206,6 +221,7 @@ sample_sheet_validator=function(df){
 	cat("Number of Plate Map Entries Read from ", BC_PLATEMAP, ": ", num_pm_entries, "\n", sep="");
 	#print(pm_list);
 
+	cat("Checking Plate Map consistency...\n");
 	no_info_cnt=0;
 	no_info_lst=c();
 	mism_cnt=0;
@@ -241,7 +257,7 @@ sample_sheet_validator=function(df){
 	}
 
 	#----------------------------------------------------------------------
-	
+	cat("Generating output lines...\n");	
 	msg_arr=c(	
 		paste("Experiment Name: ", experiment_name, sep=""),
 		paste("Investigator Name: ", investigator_name, sep=""),
@@ -266,10 +282,12 @@ sample_sheet_validator=function(df){
 		""
 	);	
 
+	cat("Exiting Validator...\n");
+	return(msg_arr);
 }
 
 
-if(test_code && F){
+if(test_code && T){
 
 	cat("-----------------------------------------------------------------\n");
 
