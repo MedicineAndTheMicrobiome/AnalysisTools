@@ -21,8 +21,9 @@ sample_sheet_validator=function(df){
 
 	# get investigator name:
 	cat("Getting Investigator Name...\n");
-	investigator_name_ix=which(first_col=="Investigator Name");
-	if(length(investigator_name_ix)==0){
+	
+	investigator_name_ix=(first_col=="Investigator Name");
+	if(all(!investigator_name_ix)){
 		investigator_name="<Not Specified>";
 	}else{
 		investigator_name=df[investigator_name_ix, 2];
@@ -287,7 +288,7 @@ sample_sheet_validator=function(df){
 }
 
 
-if(test_code && T){
+if(test_code && F){
 
 	cat("-----------------------------------------------------------------\n");
 
