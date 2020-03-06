@@ -372,13 +372,19 @@ export_redos=function(fname_root, counts_wnames, cutoffs){
 
 	num_cutoff=length(cutoffs);
 	cutoffs=sort(cutoffs);
-	maxcutoff=max(cutoffs);
+	maxcutoff=max(cutoffs[is.finite(cutoffs)]);
 	
 	numdigits=floor(log10(maxcutoff))+1;
 	spf_str=paste("%0", numdigits, "g", sep="");
 	
 	for(cutix in cutoffs){
-		fname=paste(fname_root, ".lt_", sprintf(spf_str, cutix), ".tsv", sep="");
+
+		if(is.infinite(cutix)){
+			fname=paste(fname_root, ".paird_cnts.ALL", ".tsv", sep="");
+		}else{
+			fname=paste(fname_root, ".paird_cnts.lt_", sprintf(spf_str, cutix), ".tsv", sep="");
+		}
+
 		below=as.matrix(counts_wnames[counts_wnames<cutix]);
 		cat("Exporting to: ", fname, "\n");
 		cat("   Num Samples: ", length(below), "\n");
@@ -390,7 +396,7 @@ export_redos=function(fname_root, counts_wnames, cutoffs){
 cat("\n");
 
 export_redos(paste(post_qc_res_dir, "/", LOG_FILE_NAME, sep=""), 
-	sort(num_pairable_sequences), c(750,1000,2000,3000));
+	sort(num_pairable_sequences), c(750,1000,2000,3000,Inf));
 
 dev.off();
 
