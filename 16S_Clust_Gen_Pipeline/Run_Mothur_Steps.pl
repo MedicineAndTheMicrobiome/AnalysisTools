@@ -695,6 +695,7 @@ my $exec_string="
 	$DESC_DISTRIBUTION_ANALYSIS_BIN
 		-i $st_dir/$out_root.taxa.genus.cmF.cln.summary_table.tsv
 		-o $desc_stat_dir/$out_root
+		-s \";\"
 ";
 exec_cmd($exec_string, "$desc_stat_dir", "distribution_desc_analysis");
 
@@ -703,6 +704,7 @@ my $exec_string="
 	$DESC_ABUNDANCE_ANALYSIS_BIN
 		-s $st_dir/$out_root.taxa.genus.cmF.cln.summary_table.tsv
 		-o $desc_stat_dir/$out_root
+		-x \";\"
 ";
 exec_cmd($exec_string, "$desc_stat_dir", "abundance_desc_analysis");
 
