@@ -29,7 +29,8 @@ params=c(
 	"num_clus", "k", 2, "numeric",
 	"only_at_k", "K", 2, "numeric",
 	"rm_na_trials", "N", 2, "numeric",
-	"required", "q", 2, "character"
+	"required", "q", 2, "character",
+	"reference_levels", "r", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -46,7 +47,7 @@ usage = paste(
 	"	[-o <output file root name, default is input file base name>]\n",
 	"	[-d <euc/wrd/man/bray/horn/bin/gow/tyc/minkp5/minkp3, default =", DEF_DISTTYPE, ">]\n",
 	"	[-k <max num of clusters to split into, default = ceiling(log2(num_samples))>\n",
-	"	[-r <reference file>]\n",
+	"	[-r <reference releveling file>]\n",
 	"	[-q <required variables>]\n",
 	"	[-K <only compute at K cuts>]\n",
 	"\n",
@@ -129,6 +130,14 @@ if(length(opt$only_at_k)){
 }else{
 	OnlyAtK=0;
 }
+
+ReferenceLevelsFile="";
+if(length(opt$reference_levels)){
+       ReferenceLevelsFile=opt$reference_levels;
+}else{
+       ReferenceLevelsFile="";
+}
+
 
 ###############################################################################
 # See http://www.mothur.org/wiki/Thetayc for formula
@@ -235,6 +244,41 @@ load_factor_file=function(fn){
 load_list=function(list_fname){
 	list=read.delim(list_fname, sep="\t", header=F, row.names=NULL, as.is=T, check.names=F, comment.char="#", quote="");
         return(list[,1]);
+}
+
+#------------------------------------------------------------------------------
+
+load_reference_levels_file=function(fname){
+        inmat=as.matrix(read.table(fname, sep="\t", header=F, check.names=FALSE, comment.char="#", row.names=1))
+        colnames(inmat)=c("ReferenceLevel");
+        print(inmat);
+        cat("\n");
+        if(ncol(inmat)!=1){
+                cat("Error reading in reference level file: ", fname, "\n");
+                quit(status=-1);
+        }
+        return(inmat);
+}
+
+relevel_factors=function(factors, ref_lev_mat){
+        num_factors_to_relevel=nrow(ref_lev_mat);
+        relevel_names=rownames(ref_lev_mat);
+        factor_names=colnames(factors);
+        for(i in 1:num_factors_to_relevel){
+
+                target_relev_name=relevel_names[i];
+                if(any(target_relev_name==factor_names)){
+                        tmp=factors[,target_relev_name];
+                        #print(tmp);
+                        tmp=relevel(tmp, ref_lev_mat[i, 1]);
+                        #print(tmp);
+                        factors[,target_relev_name]=tmp;
+                }else{
+                        cat("Note: ", target_relev_name,
+                                " not in model.  Ignoring reference releveling.\n\n", sep="");
+                }
+        }
+        return(factors);
 }
 
 #------------------------------------------------------------------------------
@@ -757,6 +801,17 @@ if(any(is.na(main_factors))){
 }else{
 	na_info=c("No relevant NAs found in metadata.");
 }
+
+# Relevel factor levels
+if(ReferenceLevelsFile!=""){
+        ref_lev_mat=load_reference_levels_file(ReferenceLevelsFile)
+        print(ref_lev_mat);
+        factors=relevel_factors(factors, ref_lev_mat);
+        cat("Releveling factors levels to specified reference.\n");
+}else{
+        cat("No Reference Levels File specified.\n");
+}
+
 
 # Open output PDF file
 paper_width=max(28, 2+num_factors/1.75);
