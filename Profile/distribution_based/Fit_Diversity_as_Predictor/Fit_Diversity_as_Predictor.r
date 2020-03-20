@@ -20,7 +20,7 @@ params=c(
 	"covariates_var", "c", 2, "character",
 	"required_var", "q", 2, "character",
 
-	"reference_levels", "l", 2, "character"
+	"reference_levels", "r", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -39,7 +39,7 @@ usage = paste(
 	"	[-y <response variables>]\n",
 	"	[-c <covariates variables>]\n",
 	"	[-q <required variables>]\n",
-	"	[-l <reference levels file>]\n",
+	"	[-r <reference levels file>]\n",
 	"\n",
 	"This script will fit the following types of models:\n",
 	"	<responses> = <covariates> + <microbiome diversity>\n",	
