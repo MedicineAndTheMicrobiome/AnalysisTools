@@ -5,13 +5,13 @@
 use strict;
 use Getopt::Std;
 use File::Temp;
-use vars qw ($opt_s $opt_f $opt_c $opt_g $opt_p $opt_a $opt_o $opt_E);
+use vars qw ($opt_s $opt_f $opt_c $opt_g $opt_p $opt_a $opt_o $opt_E $opt_r);
 use File::Basename;
 use Cwd;
 use Digest::MD5;
 use Sys::Hostname;
 
-getopts("s:f:c:g:p:a:o:E");
+getopts("s:f:c:g:p:a:o:E:r:");
 
 my $NUM_ALR_VARIABLES=35;
 
@@ -19,14 +19,17 @@ my $usage = "
 	usage:
 	$0
 
-	-s <summary table>
+	-s <summary table file>
 	-f <factor file>
-	-c <covariates list>
-	[-g <\"grouped\" variables list>]
+	-c <covariates list file>
+	[-g <\"grouped\" variables list file>]
 
 	ALR (Abundance-Based) Related Options
 	[-p <number of ALR variables (for abundance-based analyses), default=$NUM_ALR_VARIABLES>]
 	[-a <filename for list of additional categories to include>]
+
+	Factor Levels
+	[-r <reference leveling file name (tsv file)>]  (Two columns, 1. Factor Name, 2. Reference Level)
 	
 	-o <output directory>
 
@@ -80,6 +83,7 @@ my $AnalysisName=$GroupVar;
 my $NumALRVariables=$NUM_ALR_VARIABLES;
 my $DontAbort;
 my $AdditionalALRFile;
+my $ReferenceRelevelingFile;
 
 if(defined($opt_g)){
 	$GroupVar=$opt_g;
@@ -99,6 +103,12 @@ if(defined($opt_E)){
 	$DontAbort=1;
 }else{
 	$DontAbort=0;
+}
+
+if(defined($opt_r)){
+	$ReferenceRelevelingFile=$opt_r;
+}else{
+	$ReferenceRelevelingFile="";
 }
 
 $AnalysisName=~s/\.txt$//;
@@ -122,17 +132,19 @@ my $CLST_MLL="cluster_mll";
 ###############################################################################
 
 print STDERR "\n";
-print STDERR "Summary Table:        $SummaryTable\n";
-print STDERR "Factor File:          $FactorFile\n";
-print STDERR "Covariates List:      $Covariates\n";
-print STDERR "Group Variables List: $GroupVar\n";
-print STDERR "Output Directory:     $OutputDir\n";
-print STDERR "Analysis Name:        $AnalysisName\n";
+print STDERR "Summary Table:           $SummaryTable\n";
+print STDERR "Factor File:             $FactorFile\n";
+print STDERR "Covariates List:         $Covariates\n";
+print STDERR "Group Variables List:    $GroupVar\n";
+print STDERR "Output Directory:        $OutputDir\n";
+print STDERR "Analysis Name:           $AnalysisName\n";
 print STDERR "\n";
-print STDERR "Num ALR Variables:    $NumALRVariables\n";
-print STDERR "Additional ALR File:  $AdditionalALRFile\n";
+print STDERR "Reference Leveling File: $ReferenceRelevelingFile";
 print STDERR "\n";
-print STDERR "Don't Abort on Errors: $DontAbort\n";
+print STDERR "Num ALR Variables:       $NumALRVariables\n";
+print STDERR "Additional ALR File:     $AdditionalALRFile\n";
+print STDERR "\n";
+print STDERR "Don't Abort on Errors:   $DontAbort\n";
 print STDERR "\n";
 
 ###############################################################################
@@ -249,6 +261,11 @@ sub run_abundance_based{
 	if($AdditionalALRFile ne ""){
 		$add_alr="-a $AdditionalALRFile";
 	}
+
+	my $add_reflev="";
+	if($ReferenceRelevelingFile ne ""){
+		$add_reflev="-r $ReferenceRelevelingFile";
+	}
 	
 	$cmd=
 	"~/git/AnalysisTools/Profile/abundance_based/Fit_ALR_as_Response/Fit_ALR_as_Response.r \
@@ -259,7 +276,7 @@ sub run_abundance_based{
                 -p $num_alr \
                 -o $output_dir/abundance/$RESP_OUT_DIR/$model_name  \
                 -x \";\" \
-		$add_alr
+		$add_alr $add_reflev
 	";
 	run_command("Fit ALR as Response", "alr_as_resp", $cmd, "$output_dir/abundance/$RESP_OUT_DIR");
 
@@ -275,7 +292,7 @@ sub run_abundance_based{
 			-p $num_alr \
 			-o $output_dir/abundance/$PRED_OUT_DIR/$model_name \
 			-x \";\" \
-			$add_alr
+			$add_alr $add_reflev
 		";
 		run_command("Fit ALR as Predictor", "alr_as_pred", $cmd, "$output_dir/abundance/$PRED_OUT_DIR");
 
@@ -324,6 +341,10 @@ sub run_distribution_based{
 	mkdir "$output_dir/distribution/$STCK_BAR_DIR";
 	mkdir "$output_dir/distribution/$RANK_ABND_DIR";
 
+	my $add_reflev="";
+	if($ReferenceRelevelingFile ne ""){
+		$add_reflev="-r $ReferenceRelevelingFile";
+	}
 
 	#######################################################################
 	# Diversity
@@ -333,7 +354,8 @@ sub run_distribution_based{
                 -f $factor_file \
                 -M $output_dir/cov_var \
                 -q $output_dir/cov_var \
-             	-o $output_dir/distribution/$RESP_OUT_DIR/$model_name 
+             	-o $output_dir/distribution/$RESP_OUT_DIR/$model_name \
+		$add_reflev
 	";
 	run_command("Fit Diversity as Response", "div_as_resp", $cmd, "$output_dir/distribution/$RESP_OUT_DIR");
 
@@ -346,7 +368,9 @@ sub run_distribution_based{
 			-y $variable_list \
 			-c $covariates \
 			-q $output_dir/cov_var \
-			-o $output_dir/distribution/$PRED_OUT_DIR/$model_name
+			-o $output_dir/distribution/$PRED_OUT_DIR/$model_name \
+			$add_reflev
+			
 		";
 		run_command("Fit Diversity as Predictor", "div_as_pred", $cmd, "$output_dir/distribution/$PRED_OUT_DIR");
 
@@ -405,6 +429,10 @@ sub run_distance_based{
 	my $cmd;
 	my $dist_type="man";
 
+	my $add_reflev="";
+	if($ReferenceRelevelingFile ne ""){
+		$add_reflev="-r $ReferenceRelevelingFile";
+	}
 
 	$cmd="cat $covariates $variable_list > $output_dir/cov_var";
 	run_command("Concatenate variables into full model list", "concat", $cmd, $output_dir);
@@ -449,7 +477,8 @@ sub run_distance_based{
 		-M $output_dir/cov_var \
 		-q $output_dir/cov_var \
 		-o $output_dir/distance/$CLUST_MLL_DIR/$model_name \
-		-d $dist_type
+		-d $dist_type \
+		$add_reflev
 	";
 	run_command("Fit Multinomial Log-Linear Model", "clust_mll", $cmd, "$output_dir/distance/$CLUST_MLL_DIR");
 
