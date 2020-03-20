@@ -222,6 +222,7 @@ load_reference_levels_file=function(fname){
 }
 
 relevel_factors=function(factors, ref_lev_mat){
+
         num_factors_to_relevel=nrow(ref_lev_mat);
         relevel_names=rownames(ref_lev_mat);
 	factor_names=colnames(factors);
@@ -235,7 +236,8 @@ relevel_factors=function(factors, ref_lev_mat){
 			#print(tmp);
 			factors[,target_relev_name]=tmp;
 		}else{
-			cat("Note: ", target_relev_name, " not in model.  Ignoring reference releveling.\n\n", sep="");
+			cat("Note: ", target_relev_name, 
+				" not in model.  Ignoring reference releveling.\n\n", sep="");
 		}
         }
         return(factors);
@@ -758,7 +760,6 @@ if(ReferenceLevelsFile!=""){
 }else{
         cat("* No Reference Levels File specified.                        *\n");
 }
-
 
 ##############################################################################
 
