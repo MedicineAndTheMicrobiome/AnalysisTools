@@ -1050,6 +1050,7 @@ print(subject_ids);
 
 unique_time_ids=sort(unique(time_ids));
 unique_subject_ids=sort(unique(subject_ids));
+unique_responses=sort(unique(factors_wo_nas[,ResponseColname]));
 
 cat("\n");
 cat("Unique Time Points:\n");
@@ -1057,6 +1058,8 @@ print(unique_time_ids);
 cat("Unique Subject IDs:\n");
 print(unique_subject_ids);
 cat("\n");
+cat("Unique Response Groups:\n");
+print(unique_responses);
 
 ###############################################################################
 
@@ -1134,6 +1137,10 @@ for(cur_time_id in unique_time_ids){
 	fit_info[[cur_time_str]][["combined"]]=process_model(comb_mlr_fit, cur_responses);
 	cat("\n");
 
+	# Overall statistics
+	fit_info[[cur_time_str]][["responses"]]=table(as.character(cur_responses));
+	fit_info[[cur_time_str]][["num_responses"]]=length(cur_responses);
+
 	#print(fit_info[[cur_time_str]][["combined"]][["pvalues"]]);
 
 }
@@ -1152,17 +1159,33 @@ time_str_ids=sprintf("%02g", unique_time_ids);
 
 num_time_pts=length(unique_time_ids);
 num_modeltypes=length(model_types);
+num_unique_responses=length(unique_responses);
 
-aic_matrix=matrix(NA, nrow=num_modeltypes, ncol=num_time_pts);
-colnames(aic_matrix)=time_str_ids;
-rownames(aic_matrix)=model_types;
+# Define generic matrix, so we can copy it empty for different variables
+stat_matrix=matrix(NA, nrow=num_modeltypes, ncol=num_time_pts);
+stat_arr=rep(NA, num_time_pts);
+
+colnames(stat_matrix)=time_str_ids;
+rownames(stat_matrix)=model_types;
+names(stat_arr)=time_str_ids;
+
+aic_matrix=stat_matrix;
+sampsize_arr=stat_arr;
+
+resp_grps=matrix(NA, ncol=num_time_pts, nrow=num_unique_responses);
+colnames(resp_grps)=time_str_ids;
+rownames(resp_grps)=unique_responses;
 
 for(cur_time_str  in time_str_ids){
 
 	cat("Extracting Time: ", cur_time_str, "\n");
 
+	sampsize_arr[cur_time_str]=fit_info[[cur_time_str]][["num_responses"]];
+	resp_grps[unique_responses, cur_time_str]=fit_info[[cur_time_str]][["responses"]][unique_responses];
+
 	for(modix in model_types){
 		aic_matrix[modix, cur_time_str]=fit_info[[cur_time_str]][[modix]][["fit"]][["AIC"]];
+		#sampsize_matrix[modix, cur_time_str]=fit_info[[cur_time_str]][[modix]][["fit"]][["n"]];
 	}
 
 
@@ -1170,6 +1193,14 @@ for(cur_time_str  in time_str_ids){
 
 cat("AIC:\n");
 print(aic_matrix);
+
+cat("\n");
+cat("Sample Sizes:\n");
+print(sampsize_arr);
+
+cat("\n");
+cat("Response Group Sizes:\n");
+print(resp_grps);
 
 quit();
 
