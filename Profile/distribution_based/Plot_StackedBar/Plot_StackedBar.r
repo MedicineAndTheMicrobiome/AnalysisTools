@@ -28,7 +28,7 @@ usage = paste(
 	"\nUsage:\n", script_name, "\n",
 	"	-i <input summary_table.tsv file>\n",
 	"	[-f <factor file>]\n",
-	"	[-M <list of factors/variables to focus on>]\n",
+	"	[-M <list of factors/variables to focus on (filename)>]\n",
 	"	[-t <top categories to display, default=", TOP_CATEGORIES, ">]\n",
 	"	[-o <output file root name>]\n",
 	"	[-d <diversity, default=", DEF_DIVERSITY, ".]\n",
