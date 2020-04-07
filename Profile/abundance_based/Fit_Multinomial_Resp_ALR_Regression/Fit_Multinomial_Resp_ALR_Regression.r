@@ -222,9 +222,9 @@ relevel_factors=function(factors, ref_lev_mat){
 			tmp=relevel(tmp, ref_lev_mat[i, 1]);
 			#print(tmp);
 			factors[,target_relev_name]=tmp;
-print(factors[,target_relev_name]);
 		}else{
-			cat("Note: ", target_relev_name, " not in model.  Ignoring reference releveling.\n\n", sep="");
+			cat("Note: ", target_relev_name, 
+				" not in model.  Ignoring reference releveling.\n\n", sep="");
 		}
         }
         return(factors);
@@ -348,6 +348,20 @@ plot_text=function(strings){
 		#cat(strings[i], "\n", sep="");
 		strings[i]=gsub("\t", "", strings[i]);
 		text(0, top-i, strings[i], pos=4, cex=text_size); 
+	}
+}
+
+title_page=function(title, subtitle=""){
+
+	plot(0,0, xlim=c(0,1), ylim=c(0,1), type="n",  xaxt="n", yaxt="n",
+		xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
+		);
+
+	if(subtitle!=""){
+		text(.5, .5, title, adj=c(.5,-1), cex=4, font=2); 
+		text(.5, .5, subtitle, adj=c(.5, 1), cex=2); 
+	}else{
+		text(.5, .5, title, adj=c(.5,.5), cex=4, font=2); 
 	}
 }
 
@@ -674,6 +688,106 @@ plot_fit=function(fit, sumfit, i=1){
 		fill=c("red", "blue"), bty="n");
 
 	par(par.orig);
+}
+
+plot_ts_stat_table=function(stat_mat, 
+	title="", subtitle="",
+	grp_colors=NULL, 
+	plot_tmax=NULL, plot_tmin=NULL,
+	plot_ymax=NULL, plot_ymin=NULL,
+	nlog10_reflines=F,
+	zero_refline=F
+	){
+
+	#print(stat_mat);
+	num_times=ncol(stat_mat);
+	num_groups=nrow(stat_mat);
+
+	grp_names=rownames(stat_mat);
+	time_names=colnames(stat_mat)
+	time_values=as.numeric(time_names);
+
+	cat("Times:\n");
+	print(time_values);
+
+	stat_range=range(stat_mat, na.rm=T);
+	time_range=range(time_values, na.rm=T);
+
+
+	if(is.null(plot_ymax)){
+		plot_ymax=stat_range[2];
+	}
+	if(is.null(plot_ymin)){
+		plot_ymin=stat_range[1];
+	}
+
+	if(is.null(plot_tmax)){
+		plot_xmax=time_range[2];
+	}
+	if(is.null(plot_tmin)){
+		plot_xmin=time_range[1];
+	}
+
+	if(nlog10_reflines){
+		ref_lines=-log10(c(.1,.05,.01));
+		plot_ymax=max(plot_ymax, ref_lines);
+	}
+
+
+	if(is.null(grp_colors)){
+		grp_colors=rainbow(num_groups, start=0, end=5/6, alpha=0.33);
+		names(grp_colors)=grp_names;
+		print(grp_colors);
+	}
+
+	if(nlog10_reflines){
+		par(mar=c(4, 4, 4, 4));
+	}else{
+		par(mar=c(4, 4, 4, 1));
+	}
+
+	plot(0, type="n", xlab="Time", ylab="", 
+		xlim=c(plot_xmin, plot_xmax), ylim=c(plot_ymin, plot_ymax));
+
+	title(main=title);
+	title(main=subtitle, line=.8, cex.main=.85);
+
+	if(nlog10_reflines){
+		abline(h=ref_lines, lty=c(3,2,5), col="grey");
+		axis(side=4, at=ref_lines, labels=c("0.10", "0.05", "0.01"), las=2);
+	}
+
+	if(zero_refline){
+		abline(h=0, col="grey");
+	}
+
+
+	for(i in 1:num_groups){
+		points(time_values, stat_mat[i,], type="b", col=grp_colors[i], lwd=4);
+	}
+
+}
+
+plot_group_legend=function(color_map){
+	par(mar=c(0,0,0,0));
+	plot(0, type="n", xlab="", ylab="", xlim=c(0,1), ylim=c(0,1), bty="n", xaxt="n", yaxt="n");
+
+	num_entries=length(color_map);
+	leg_nam=names(color_map);
+
+	if(num_entries>12){
+		cutoff=floor(seq(1,num_entries, length.out=4));
+
+		c1r=cutoff[1]:cutoff[2];
+		c2r=(cutoff[2]+1):cutoff[3];
+		c3r=(cutoff[3]+1):cutoff[4];
+		
+		legend(0,1, legend=leg_nam[c1r], fill=color_map[c1r], bty="n");
+		legend(.33,1, legend=leg_nam[c2r], fill=color_map[c2r], bty="n");
+		legend(.66,1, legend=leg_nam[c3r], fill=color_map[c3r], bty="n");
+	}else{
+		legend(0,1, legend=leg_nam, fill=color_map, bty="n");
+	}
 }
 
 ##############################################################################
@@ -1120,21 +1234,21 @@ for(cur_time_id in unique_time_ids){
 	cat("Covariates Only:\n");
 	cov_model_str=paste("cur_responses ~ ", paste(covariates_arr, collapse=" + ", sep=""));
 	cov_mlr_fit=multinom(as.formula(cov_model_str), data=cur_factors);
-	fit_info[[cur_time_str]][["covariate"]]=process_model(cov_mlr_fit, cur_responses);
+	fit_info[[cur_time_str]][["covariates_only"]]=process_model(cov_mlr_fit, cur_responses);
 	cat("\n");
 
 	# Fit alr categories
 	cat("ALR Categories Only:\n");
 	alr_model_str=paste("cur_responses ~ ", paste(alr_cat_names, collapse=" + ", sep=""));
 	alr_mlr_fit=multinom(as.formula(alr_model_str), data=cur_alr);
-	fit_info[[cur_time_str]][["alr"]]=process_model(alr_mlr_fit, cur_responses);
+	fit_info[[cur_time_str]][["alr_only"]]=process_model(alr_mlr_fit, cur_responses);
 	cat("\n");
 
 	# Fit combined 
 	cat("Full Combined:\n");
 	comb_model_str=paste("cur_responses ~ ", paste(c(covariates_arr, alr_cat_names), collapse=" + ", sep=""));
 	comb_mlr_fit=multinom(as.formula(comb_model_str), data=cbind(cur_factors, cur_alr));
-	fit_info[[cur_time_str]][["combined"]]=process_model(comb_mlr_fit, cur_responses);
+	fit_info[[cur_time_str]][["alr_and_covariates"]]=process_model(comb_mlr_fit, cur_responses);
 	cat("\n");
 
 	# Overall statistics
@@ -1154,12 +1268,22 @@ for(cur_time_id in unique_time_ids){
 
 
 # Extract out key statistics into simpler data structures
-model_types=c("intercept_only", "covariate", "alr", "combined");
+model_types=c("covariates_only", "alr_only", "alr_and_covariates");
+#model_types=c("intercept_only", "covariates_only", "alr_only", "alr_and_covariates");
 time_str_ids=sprintf("%02g", unique_time_ids);
 
 num_time_pts=length(unique_time_ids);
 num_modeltypes=length(model_types);
 num_unique_responses=length(unique_responses);
+
+# Assign group colors
+grp_colors=rainbow(num_unique_responses, start=0, end=5/6, alpha=3/8);
+names(grp_colors)=unique_responses;
+
+# Assign model colors
+model_colors=rainbow(num_modeltypes, start=0+1/12, end=5/6+1/12, alpha=3/8);
+names(model_colors)=model_types;
+
 
 # Define generic matrix, so we can copy it empty for different variables
 stat_matrix=matrix(NA, nrow=num_modeltypes, ncol=num_time_pts);
@@ -1176,23 +1300,31 @@ resp_grps=matrix(NA, ncol=num_time_pts, nrow=num_unique_responses);
 colnames(resp_grps)=time_str_ids;
 rownames(resp_grps)=unique_responses;
 
+pvalues=list();
+coefficients=list();
+
 for(cur_time_str  in time_str_ids){
 
 	cat("Extracting Time: ", cur_time_str, "\n");
 
 	sampsize_arr[cur_time_str]=fit_info[[cur_time_str]][["num_responses"]];
+
 	resp_grps[unique_responses, cur_time_str]=fit_info[[cur_time_str]][["responses"]][unique_responses];
 
+	pvalues[[cur_time_str]]=list();
+	coefficients[[cur_time_str]]=list();
 	for(modix in model_types){
+		cat("Extracting: ", modix, "\n");
+
 		aic_matrix[modix, cur_time_str]=fit_info[[cur_time_str]][[modix]][["fit"]][["AIC"]];
-		#sampsize_matrix[modix, cur_time_str]=fit_info[[cur_time_str]][[modix]][["fit"]][["n"]];
+
+		pvalues[[cur_time_str]][[modix]]=fit_info[[cur_time_str]][[modix]][["pvalues"]];
+		coefficients[[cur_time_str]][[modix]]=fit_info[[cur_time_str]][[modix]][["Coefficients"]]=
+			summary(fit_info[[cur_time_str]][[modix]][["fit"]])$coefficients;
+
 	}
 
-
 }
-
-cat("AIC:\n");
-print(aic_matrix);
 
 cat("\n");
 cat("Sample Sizes:\n");
@@ -1202,7 +1334,166 @@ cat("\n");
 cat("Response Group Sizes:\n");
 print(resp_grps);
 
+layout_m=matrix(c(1,1,1,1,1,2), nrow=6, ncol=1);
+layout(layout_m);
+plot_ts_stat_table(resp_grps, title="Response Group Sizes", subtitle="Number of Samples per Group Over Time", grp_colors=grp_colors);
+plot_group_legend(grp_colors);
+
+# Plot model fits
+
+cat("AIC:\n");
+print(aic_matrix);
+layout_m=matrix(c(1,1,1,1,1,2), nrow=6, ncol=1);
+layout(layout_m);
+plot_ts_stat_table(aic_matrix, title="AIC", subtitle="Lower Values, Better Fit", grp_colors=model_colors);
+plot_group_legend(model_colors);
+
+
+# Plot all coefficients 
+# Plot all pvalues
+# Plot coefficients at .1, .05, and .01
+
+cat("----------------------------------------------------------------------------\n");
+
+#print(coefficients);
+
+first_time_pt=time_str_ids[1];
+cat("First Time Point:", first_time_pt, "\n");
+
+cat("Excluding Reference: ", as.character(unique_responses)[1], "\n\n");
+response_no_reference=unique_responses[-1];
+
+coef_bytime_list=list();
+pval_bytime_list=list();
+
+
+# for each response category
+for(resp_ix in response_no_reference){
+	cat("Extracting Response: ", resp_ix, "\n");
+	# for each 4 model types
+
+	coef_bytime_list[[resp_ix]]=list();
+	pval_bytime_list[[resp_ix]]=list();
+
+	for(model_ix in model_types){
+
+		cat("Extracting Model: ", model_ix, "\n");
+
+		cur_tab=coefficients[[first_time_pt]][[model_ix]];
+		
+		inc_var_names=colnames(cur_tab);
+		num_ivn=length(inc_var_names);
+
+		coef_by_time_matrix=matrix(NA, nrow=num_ivn, ncol=num_time_pts);
+		rownames(coef_by_time_matrix)=inc_var_names;
+		colnames(coef_by_time_matrix)=time_str_ids;
+
+		pval_by_time_matrix=matrix(NA, nrow=num_ivn, ncol=num_time_pts);
+		rownames(pval_by_time_matrix)=inc_var_names;
+		colnames(pval_by_time_matrix)=time_str_ids;
+
+
+		for(time_ix in time_str_ids){
+			for(ivn_ix in inc_var_names){
+
+				#cat("Transfering: ", time_ix, "/", ivn_ix, "/", resp_ix, "\n");
+
+				cur_coef_tab=coefficients[[time_ix]][[model_ix]]
+				responses_available=rownames(cur_coef_tab);
+
+				if(any(resp_ix==responses_available)){
+					coef_by_time_matrix[ivn_ix, time_ix]=
+						coefficients[[time_ix]][[model_ix]][resp_ix, ivn_ix];
+
+					pval_by_time_matrix[ivn_ix, time_ix]=
+						pvalues[[time_ix]][[model_ix]][resp_ix, ivn_ix];
+				}else{
+					coef_by_time_matrix[ivn_ix, time_ix]=
+						NA;
+					pval_by_time_matrix[ivn_ix, time_ix]=
+						NA;
+				}
+			}
+		}
+
+		coef_bytime_list[[resp_ix]][[model_ix]]=coef_by_time_matrix;
+		pval_bytime_list[[resp_ix]][[model_ix]]=pval_by_time_matrix;
+	}
+}
+
+for(resp_ix in response_no_reference){
+		
+	title_page(paste("Response:\n", resp_ix));
+
+	for(model_ix in model_types){
+
+		cur_coef_by_time_matrix=coef_bytime_list[[resp_ix]][[model_ix]];
+		cur_pval_by_time_matrix=pval_bytime_list[[resp_ix]][[model_ix]];
+
+		num_model_coeff=nrow(cur_coef_by_time_matrix);
+
+		var_colors=rainbow(num_model_coeff, start=0+1/12, end=5/6+1/12, alpha=3/8);
+		names(var_colors)=rownames(cur_coef_by_time_matrix);
+
+		layout_m=matrix(c(1,1,1,2), nrow=4, ncol=1);
+		layout(layout_m);
+
+		plot_ts_stat_table(cur_coef_by_time_matrix, title=paste(resp_ix, ", Coefficients: ", model_ix, "\n"),
+			grp_colors=var_colors, zero_refline=T);
+		plot_group_legend(var_colors);
+
+		minnonzero=min(cur_pval_by_time_matrix[cur_pval_by_time_matrix!=0], na.rm=T);		
+		cat("Min Nonzero Pvalue: ", minnonzero, "\n");
+		cur_pval_by_time_matrix[cur_pval_by_time_matrix==0]=minnonzero/10;
+		nlog10pval=-log10(cur_pval_by_time_matrix);
+		plot_ts_stat_table(nlog10pval, title=paste(resp_ix, ", -log10(P-Values): ", model_ix, "\n"),
+			grp_colors=var_colors, plot_ymin=0, nlog10_reflines=T);
+		plot_group_legend(var_colors);
+
+	}
+}
+
 quit();
+
+hereend
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 covariate_formula_str=paste(covariates_arr, collapse=" + ");
