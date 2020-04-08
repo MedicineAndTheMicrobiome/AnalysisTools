@@ -10,6 +10,7 @@ library(car);
 source('~/git/AnalysisTools/Metadata/RemoveNAs/Remove_NAs.r');
 
 options(useFancyQuotes=F);
+options(width=200);
 
 
 params=c(
@@ -593,7 +594,7 @@ plot_histograms=function(table){
 		vals=table[,i];
 		if(mode(vals)!="numeric" || is.factor(vals)){
 			vals=as.factor(vals);
-			barplot(prop.table(table(vals)), main=colname[i], col="white");
+			barplot(prop.table(table(vals)), main=colname[i], col="white", las=2);
 		}else{
 			hist(vals, main=colname[i], xlab="values", ylab="");
 		}
@@ -656,6 +657,10 @@ sig_char=function(val){
 add_signf_char_to_matrix=function(mat){
 	numrows=nrow(mat);
 	numcols=ncol(mat);
+
+	if(numrows==0){
+		return(mat);
+	}
 
 	outmat=matrix(sprintf("%0.4f",mat), ncol=numcols);
 	colnames(outmat)=colnames(mat);
@@ -721,7 +726,8 @@ plot_ts_stat_table=function(stat_mat,
 	plot_tmax=NULL, plot_tmin=NULL,
 	plot_ymax=NULL, plot_ymin=NULL,
 	nlog10_reflines=F,
-	zero_refline=F
+	zero_refline=F,
+	label=F
 	){
 
 	#print(stat_mat);
@@ -797,6 +803,29 @@ plot_ts_stat_table=function(stat_mat,
 			points(time_values, stat_mat[i,], type="b", col=grp_colors[i], lwd=4);
 		}
 	}
+
+	if(label==T){
+		stat_mag_mat=abs(stat_mat);
+		max_time=apply(stat_mag_mat, 1, function(x){ min(which(max(abs(x), na.rm=T)==x))});
+
+		if(num_rows>0){
+			for(i in 1:num_rows){
+				varname=grp_names[i];
+				cat(time_values[max_time[i]], " / ", 
+					stat_mat[i, max_time[i]], "/", varname, "\n");
+
+
+				xpos=time_values[max_time[i]];
+				ypos=stat_mat[i, max_time[i]];
+
+				relpos=c(xpos/plot_xmax, ypos/plot_ymax);
+
+				text(xpos, ypos, varname, adj=relpos); 
+			}
+		}
+
+	}
+
 
 }
 
@@ -1450,6 +1479,12 @@ for(resp_ix in response_no_reference){
 			}
 		}
 
+
+		# remove intercept
+		itcp_ix=which("(Intercept)"==rownames(coef_by_time_matrix));
+		coef_by_time_matrix=coef_by_time_matrix[-itcp_ix,];
+		pval_by_time_matrix=pval_by_time_matrix[-itcp_ix,];
+
 		coef_bytime_list[[resp_ix]][[model_ix]]=coef_by_time_matrix;
 		pval_bytime_list[[resp_ix]][[model_ix]]=pval_by_time_matrix;
 	}
@@ -1462,6 +1497,8 @@ neglog10_trans_mat=function(mat){
 	nlog10pval=-log10(mat);
 	return(nlog10pval);
 }
+
+outwidth=2000;
 
 for(resp_ix in response_no_reference){
 		
@@ -1482,7 +1519,7 @@ for(resp_ix in response_no_reference){
 		#----------------------------------------------------------------------------
 		# Plot coefficients
 		par(mfrow=c(1,1));
-		coef_tab=capture.output(print(cur_coef_by_time_matrix, digits=4));
+		coef_tab=capture.output(print(cur_coef_by_time_matrix, digits=4, width=outwidth));
 		plot_text(c(
 			paste("Reponse: ", resp_ix, "  Model: ", model_ix),
 			"Coefficients:",
@@ -1500,7 +1537,7 @@ for(resp_ix in response_no_reference){
 		# Plot p-values
 		par(mfrow=c(1,1));
 		pval_signf_mat=add_signf_char_to_matrix(cur_pval_by_time_matrix);
-		pval_tab=capture.output(print(pval_signf_mat, quote=F));
+		pval_tab=capture.output(print(pval_signf_mat, quote=F, width=outwidth));
 		plot_text(c(
 			paste("Reponse: ", resp_ix, "  Model: ", model_ix),
 			"P-Values:",
@@ -1526,20 +1563,41 @@ for(resp_ix in response_no_reference){
 		signf_pval=cur_pval_by_time_matrix[signf_coef_ix,,drop=F];
 		signf_colr=var_colors[signf_coef_ix];
 
+		par(mfrow=c(1,1));
+		coef_tab=capture.output(print(signf_coef, digits=4, width=outwidth));
+		plot_text(c(
+			paste("Reponse: ", resp_ix, "  Model: ", model_ix),
+			"Significant Coefficients:",
+			"",
+			coef_tab
+		));
 		
 		layout_m=matrix(c(1,1,1,2), nrow=4, ncol=1);
 		layout(layout_m);
 		plot_ts_stat_table(signf_coef, 
 			title=paste(resp_ix, ", Significant Coefficients: ", model_ix, "\n"),
-			grp_colors=signf_colr, zero_refline=T);
+			grp_colors=signf_colr, zero_refline=T,
+			label=T);
 		plot_group_legend(signf_colr);
+
+
+		par(mfrow=c(1,1));
+		pval_signf_mat=add_signf_char_to_matrix(signf_pval);
+		pval_tab=capture.output(print(pval_signf_mat, quote=F, width=outwidth));
+		plot_text(c(
+			paste("Reponse: ", resp_ix, "  Model: ", model_ix),
+			"Significant P-Values:",
+			"",
+			pval_tab
+		));
 		
 		layout_m=matrix(c(1,1,1,2), nrow=4, ncol=1);
 		layout(layout_m);
 		nlog10pval=neglog10_trans_mat(signf_pval);
 		plot_ts_stat_table(nlog10pval, 
 			title=paste(resp_ix, ", Significant -log10(P-Values): ", model_ix, "\n"),
-			grp_colors=signf_colr, plot_ymin=0, nlog10_reflines=T);
+			grp_colors=signf_colr, plot_ymin=0, nlog10_reflines=T,
+			label=T);
 		plot_group_legend(signf_colr);
 
 
