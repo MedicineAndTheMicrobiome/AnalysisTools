@@ -353,6 +353,7 @@ plot_text=function(strings){
 
 title_page=function(title, subtitle=""){
 
+	par(mfrow=c(1,1));
 	plot(0,0, xlim=c(0,1), ylim=c(0,1), type="n",  xaxt="n", yaxt="n",
 		xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
 		);
@@ -652,6 +653,30 @@ sig_char=function(val){
 	return(" ");
 }
 
+add_signf_char_to_matrix=function(mat){
+	numrows=nrow(mat);
+	numcols=ncol(mat);
+
+	outmat=matrix(sprintf("%0.4f",mat), ncol=numcols);
+	colnames(outmat)=colnames(mat);
+	rownames(outmat)=rownames(mat);
+	outmat=cbind(rbind(outmat, "", ""),"", "");
+
+	sigfun=function(x){
+		mx=min(x, na.rm=T);
+		return(sig_char(mx));
+	}
+
+	sigrow=apply(mat, 1, sigfun);
+	sigcol=apply(mat, 2, sigfun);
+
+	outmat[1:numrows, numcols+2]=sigrow;
+	outmat[numrows+2, 1:numcols]=sigcol;
+
+	return(outmat);
+
+}
+
 plot_fit=function(fit, sumfit, i=1){
 	par.orig=par(no.readonly=T);
 
@@ -701,7 +726,7 @@ plot_ts_stat_table=function(stat_mat,
 
 	#print(stat_mat);
 	num_times=ncol(stat_mat);
-	num_groups=nrow(stat_mat);
+	num_rows=nrow(stat_mat);
 
 	grp_names=rownames(stat_mat);
 	time_names=colnames(stat_mat)
@@ -721,6 +746,11 @@ plot_ts_stat_table=function(stat_mat,
 		plot_ymin=stat_range[1];
 	}
 
+	if(num_rows==0){
+		plot_ymax=0;
+		plot_ymin=0;
+	}
+
 	if(is.null(plot_tmax)){
 		plot_xmax=time_range[2];
 	}
@@ -735,7 +765,7 @@ plot_ts_stat_table=function(stat_mat,
 
 
 	if(is.null(grp_colors)){
-		grp_colors=rainbow(num_groups, start=0, end=5/6, alpha=0.33);
+		grp_colors=rainbow(num_rows, start=0, end=5/6, alpha=0.33);
 		names(grp_colors)=grp_names;
 		print(grp_colors);
 	}
@@ -762,8 +792,10 @@ plot_ts_stat_table=function(stat_mat,
 	}
 
 
-	for(i in 1:num_groups){
-		points(time_values, stat_mat[i,], type="b", col=grp_colors[i], lwd=4);
+	if(num_rows>0){
+		for(i in 1:num_rows){
+			points(time_values, stat_mat[i,], type="b", col=grp_colors[i], lwd=4);
+		}
 	}
 
 }
@@ -786,7 +818,9 @@ plot_group_legend=function(color_map){
 		legend(.33,1, legend=leg_nam[c2r], fill=color_map[c2r], bty="n");
 		legend(.66,1, legend=leg_nam[c3r], fill=color_map[c3r], bty="n");
 	}else{
-		legend(0,1, legend=leg_nam, fill=color_map, bty="n");
+		if(num_entries>0){
+			legend(0,1, legend=leg_nam, fill=color_map, bty="n");
+		}
 	}
 }
 
@@ -1421,11 +1455,21 @@ for(resp_ix in response_no_reference){
 	}
 }
 
+neglog10_trans_mat=function(mat){
+	minnonzero=min(mat[mat!=0], na.rm=T);		
+	cat("Min Nonzero Pvalue: ", minnonzero, "\n");
+	mat[mat==0]=minnonzero/10;
+	nlog10pval=-log10(mat);
+	return(nlog10pval);
+}
+
 for(resp_ix in response_no_reference){
 		
 	title_page(paste("Response:\n", resp_ix));
 
 	for(model_ix in model_types){
+
+		title_page(resp_ix, subtitle=paste("Model Type:", model_ix));
 
 		cur_coef_by_time_matrix=coef_bytime_list[[resp_ix]][[model_ix]];
 		cur_pval_by_time_matrix=pval_bytime_list[[resp_ix]][[model_ix]];
@@ -1435,20 +1479,69 @@ for(resp_ix in response_no_reference){
 		var_colors=rainbow(num_model_coeff, start=0+1/12, end=5/6+1/12, alpha=3/8);
 		names(var_colors)=rownames(cur_coef_by_time_matrix);
 
+		#----------------------------------------------------------------------------
+		# Plot coefficients
+		par(mfrow=c(1,1));
+		coef_tab=capture.output(print(cur_coef_by_time_matrix, digits=4));
+		plot_text(c(
+			paste("Reponse: ", resp_ix, "  Model: ", model_ix),
+			"Coefficients:",
+			"",
+			coef_tab
+		));
+
 		layout_m=matrix(c(1,1,1,2), nrow=4, ncol=1);
 		layout(layout_m);
-
 		plot_ts_stat_table(cur_coef_by_time_matrix, title=paste(resp_ix, ", Coefficients: ", model_ix, "\n"),
 			grp_colors=var_colors, zero_refline=T);
 		plot_group_legend(var_colors);
 
-		minnonzero=min(cur_pval_by_time_matrix[cur_pval_by_time_matrix!=0], na.rm=T);		
-		cat("Min Nonzero Pvalue: ", minnonzero, "\n");
-		cur_pval_by_time_matrix[cur_pval_by_time_matrix==0]=minnonzero/10;
-		nlog10pval=-log10(cur_pval_by_time_matrix);
+		#----------------------------------------------------------------------------
+		# Plot p-values
+		par(mfrow=c(1,1));
+		pval_signf_mat=add_signf_char_to_matrix(cur_pval_by_time_matrix);
+		pval_tab=capture.output(print(pval_signf_mat, quote=F));
+		plot_text(c(
+			paste("Reponse: ", resp_ix, "  Model: ", model_ix),
+			"P-Values:",
+			"",
+			pval_tab
+		));
+
+		nlog10pval=neglog10_trans_mat(cur_pval_by_time_matrix);
+
+		layout_m=matrix(c(1,1,1,2), nrow=4, ncol=1);
+		layout(layout_m);
 		plot_ts_stat_table(nlog10pval, title=paste(resp_ix, ", -log10(P-Values): ", model_ix, "\n"),
 			grp_colors=var_colors, plot_ymin=0, nlog10_reflines=T);
 		plot_group_legend(var_colors);
+
+		#----------------------------------------------------------------------------
+		# Pull out predictors that were significant p<.1
+
+		signf_coef_ix=apply(cur_pval_by_time_matrix, 1, function(x){ min(x, na.rm=T)<0.1 });
+		print(signf_coef_ix);
+		
+		signf_coef=cur_coef_by_time_matrix[signf_coef_ix,,drop=F];
+		signf_pval=cur_pval_by_time_matrix[signf_coef_ix,,drop=F];
+		signf_colr=var_colors[signf_coef_ix];
+
+		
+		layout_m=matrix(c(1,1,1,2), nrow=4, ncol=1);
+		layout(layout_m);
+		plot_ts_stat_table(signf_coef, 
+			title=paste(resp_ix, ", Significant Coefficients: ", model_ix, "\n"),
+			grp_colors=signf_colr, zero_refline=T);
+		plot_group_legend(signf_colr);
+		
+		layout_m=matrix(c(1,1,1,2), nrow=4, ncol=1);
+		layout(layout_m);
+		nlog10pval=neglog10_trans_mat(signf_pval);
+		plot_ts_stat_table(nlog10pval, 
+			title=paste(resp_ix, ", Significant -log10(P-Values): ", model_ix, "\n"),
+			grp_colors=signf_colr, plot_ymin=0, nlog10_reflines=T);
+		plot_group_legend(signf_colr);
+
 
 	}
 }
