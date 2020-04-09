@@ -1399,7 +1399,8 @@ print(resp_grps);
 
 layout_m=matrix(c(1,1,1,1,1,2), nrow=6, ncol=1);
 layout(layout_m);
-plot_ts_stat_table(resp_grps, title="Response Group Sizes", subtitle="Number of Samples per Group Over Time", grp_colors=grp_colors);
+plot_ts_stat_table(resp_grps, title="Response Group Sizes", 
+	subtitle="Number of Samples per Group Over Time", grp_colors=grp_colors, label=T);
 plot_group_legend(grp_colors);
 
 # Plot model fits
@@ -1408,7 +1409,8 @@ cat("AIC:\n");
 print(aic_matrix);
 layout_m=matrix(c(1,1,1,1,1,2), nrow=6, ncol=1);
 layout(layout_m);
-plot_ts_stat_table(aic_matrix, title="AIC", subtitle="Lower Values, Better Fit", grp_colors=model_colors);
+plot_ts_stat_table(aic_matrix, title="AIC", subtitle="Lower Values, Better Fit", 
+	grp_colors=model_colors, label=T);
 plot_group_legend(model_colors);
 
 
@@ -1504,6 +1506,9 @@ for(resp_ix in response_no_reference){
 		
 	title_page(paste("Response:\n", resp_ix));
 
+	signf_coef_by_model=list();
+	signf_pval_by_model=list();
+
 	for(model_ix in model_types){
 
 		title_page(resp_ix, subtitle=paste("Model Type:", model_ix));
@@ -1562,6 +1567,7 @@ for(resp_ix in response_no_reference){
 		signf_coef=cur_coef_by_time_matrix[signf_coef_ix,,drop=F];
 		signf_pval=cur_pval_by_time_matrix[signf_coef_ix,,drop=F];
 		signf_colr=var_colors[signf_coef_ix];
+		num_signf=sum(signf_coef_ix);
 
 		par(mfrow=c(1,1));
 		coef_tab=capture.output(print(signf_coef, digits=4, width=outwidth));
@@ -1583,7 +1589,7 @@ for(resp_ix in response_no_reference){
 
 		par(mfrow=c(1,1));
 		pval_signf_mat=add_signf_char_to_matrix(signf_pval);
-		pval_tab=capture.output(print(pval_signf_mat, quote=F, width=outwidth));
+		pval_tab=capture.output(print(pval_signf_mat, quote=F, width=outwidth, row.names=F));
 		plot_text(c(
 			paste("Reponse: ", resp_ix, "  Model: ", model_ix),
 			"Significant P-Values:",
@@ -1600,8 +1606,33 @@ for(resp_ix in response_no_reference){
 			label=T);
 		plot_group_legend(signf_colr);
 
+		#----------------------------------------------------------------------------
 
+		if(num_signf>0){
+			signf_coef_by_model[[model_ix]]=signf_coef;
+			signf_pval_by_model[[model_ix]]=pval_tab;
+		}else{
+			signf_coef_by_model[[model_ix]]="No significant variables";
+			signf_pval_by_model[[model_ix]]="No significant variables";
+		}
 	}
+
+
+	par(mfrow=c(1,1));
+	plot_text(c(
+		paste("Comparison of Models for Response: ", resp_ix, sep=""),
+		"",
+		"-------------------------------------------------------------------------------------",
+		"",
+		"Significant Coefficients:",
+		capture.output(print(signf_coef_by_model, digits=4, quote=F)),
+		"-------------------------------------------------------------------------------------",
+		"",
+		"Significant P-Values:",
+		capture.output(print(signf_pval_by_model, quote=F, row.names=F))
+	));
+	
+
 }
 
 quit();
