@@ -1229,6 +1229,10 @@ unique_time_ids=sort(unique(time_ids));
 unique_subject_ids=sort(unique(subject_ids));
 unique_responses=sort(unique(factors_wo_nas[,ResponseColname]));
 
+num_unique_time_ids=length(unique_time_ids);
+num_unique_subject_ids=length(unique_subject_ids);
+num_unique_responses=length(unique_responses);
+
 cat("\n");
 cat("Unique Time Points:\n");
 print(unique_time_ids);
@@ -1237,6 +1241,25 @@ print(unique_subject_ids);
 cat("\n");
 cat("Unique Response Groups:\n");
 print(unique_responses);
+
+# Setup sample to subject map
+sample_id_to_subject_map=factors_wo_nas[, c(SubjectColumn, ResponseColname)];
+cat("Sample to Subject Map:\n");
+print(sample_id_to_subject_map);
+
+# Setup subject response map
+subject_id_to_response_map=rep(NA, num_unique_subject_ids);
+names(subject_id_to_response_map)=unique_subject_ids;
+
+for(sbj_ix in unique_subject_ids){
+	ix=min(which(sbj_ix==factors_wo_nas[, SubjectColumn]));
+	subject_id_to_response_map[sbj_ix]=as.character(factors_wo_nas[ix,ResponseColname]);
+}
+
+cat("\n");
+cat("Subject to Response Map:\n");
+print(subject_id_to_response_map);
+
 
 ###############################################################################
 
@@ -1259,7 +1282,7 @@ process_model=function(fit, resp){
 	# Null distribution is if there was a good fit, so low p-values are bad fits.
 	#res[["gof"]]=logitgof(resp, fitted(fit));
 	res[["NegLogLikelihood"]]=res[["summary"]]$value;
-	
+
 	return(res);
 
 }
@@ -1365,6 +1388,7 @@ rownames(resp_grps)=unique_responses;
 
 pvalues=list();
 coefficients=list();
+predicted=list();
 
 for(cur_time_str  in time_str_ids){
 
@@ -1376,14 +1400,21 @@ for(cur_time_str  in time_str_ids){
 
 	pvalues[[cur_time_str]]=list();
 	coefficients[[cur_time_str]]=list();
+	predicted[[cur_time_str]]=list();
+
 	for(modix in model_types){
 		cat("Extracting: ", modix, "\n");
 
 		aic_matrix[modix, cur_time_str]=fit_info[[cur_time_str]][[modix]][["fit"]][["AIC"]];
 
 		pvalues[[cur_time_str]][[modix]]=fit_info[[cur_time_str]][[modix]][["pvalues"]];
+
 		coefficients[[cur_time_str]][[modix]]=fit_info[[cur_time_str]][[modix]][["Coefficients"]]=
 			summary(fit_info[[cur_time_str]][[modix]][["fit"]])$coefficients;
+
+
+		predicted[[cur_time_str]][[modix]]=
+			fit_info[[cur_time_str]][[modix]][["fit"]][["fitted.values"]];
 
 	}
 
@@ -1400,7 +1431,7 @@ print(resp_grps);
 layout_m=matrix(c(1,1,1,1,1,2), nrow=6, ncol=1);
 layout(layout_m);
 plot_ts_stat_table(resp_grps, title="Response Group Sizes", 
-	subtitle="Number of Samples per Group Over Time", grp_colors=grp_colors, label=T);
+	subtitle="Number of Samples per Group Over Time", grp_colors=grp_colors, plot_ymin=0, label=T);
 plot_group_legend(grp_colors);
 
 # Plot model fits
@@ -1430,7 +1461,7 @@ response_no_reference=unique_responses[-1];
 
 coef_bytime_list=list();
 pval_bytime_list=list();
-
+pred_bytime_list=list();
 
 # for each response category
 for(resp_ix in response_no_reference){
@@ -1439,6 +1470,7 @@ for(resp_ix in response_no_reference){
 
 	coef_bytime_list[[resp_ix]]=list();
 	pval_bytime_list[[resp_ix]]=list();
+	pred_bytime_list[[resp_ix]]=list();
 
 	for(model_ix in model_types){
 
@@ -1457,6 +1489,9 @@ for(resp_ix in response_no_reference){
 		rownames(pval_by_time_matrix)=inc_var_names;
 		colnames(pval_by_time_matrix)=time_str_ids;
 
+		pred_by_time_matrix=matrix(NA, nrow=num_unique_subject_ids, ncol=num_time_pts);
+		rownames(pred_by_time_matrix)=unique_subject_ids;
+		colnames(pred_by_time_matrix)=time_str_ids;
 
 		for(time_ix in time_str_ids){
 			for(ivn_ix in inc_var_names){
@@ -1479,8 +1514,19 @@ for(resp_ix in response_no_reference){
 						NA;
 				}
 			}
-		}
 
+			cur_pred_mat=predicted[[time_ix]][[model_ix]];
+			cur_samp_ids=rownames(cur_pred_mat);
+
+			avail_responses=colnames(cur_pred_mat);
+			if(any(resp_ix==avail_responses)){
+				for(smp_ix in cur_samp_ids){
+					sbj_id=sample_id_to_subject_map[smp_ix, SubjectColumn];
+					pred_by_time_matrix[sbj_id, time_ix]=cur_pred_mat[smp_ix, resp_ix];
+				}
+			}
+
+		}
 
 		# remove intercept
 		itcp_ix=which("(Intercept)"==rownames(coef_by_time_matrix));
@@ -1489,6 +1535,7 @@ for(resp_ix in response_no_reference){
 
 		coef_bytime_list[[resp_ix]][[model_ix]]=coef_by_time_matrix;
 		pval_bytime_list[[resp_ix]][[model_ix]]=pval_by_time_matrix;
+		pred_bytime_list[[resp_ix]][[model_ix]]=pred_by_time_matrix;
 	}
 }
 
@@ -1515,6 +1562,7 @@ for(resp_ix in response_no_reference){
 
 		cur_coef_by_time_matrix=coef_bytime_list[[resp_ix]][[model_ix]];
 		cur_pval_by_time_matrix=pval_bytime_list[[resp_ix]][[model_ix]];
+		cur_pred_by_time_matrix=pred_bytime_list[[resp_ix]][[model_ix]];
 
 		num_model_coeff=nrow(cur_coef_by_time_matrix);
 
@@ -1615,6 +1663,8 @@ for(resp_ix in response_no_reference){
 			signf_coef_by_model[[model_ix]]="No significant variables";
 			signf_pval_by_model[[model_ix]]="No significant variables";
 		}
+
+		plot_text(capture.output(print(cur_pred_by_time_matrix)));
 	}
 
 
