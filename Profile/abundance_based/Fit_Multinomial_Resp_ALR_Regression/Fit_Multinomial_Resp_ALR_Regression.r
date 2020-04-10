@@ -853,6 +853,97 @@ plot_group_legend=function(color_map){
 	}
 }
 
+plot_predictions_over_time=function(pred_time_mat, subj_resp_map, resp_name, model_name, resp_colors){
+
+	cat("Plotting Predictions Over Time:\n");
+
+	print(pred_time_mat);
+	print(subj_resp_map);
+	print(resp_name);
+	print(model_name);
+	print(resp_colors);
+
+	num_time_pts=ncol(pred_time_mat);
+	num_samples=nrow(pred_time_mat);
+
+	time_pts=colnames(pred_time_mat);
+	sample_ids=rownames(pred_time_mat);
+
+	time_vals=as.numeric(time_pts);
+	time_min=min(time_vals);
+	time_max=max(time_vals);
+	time_diff=(time_max-time_min);
+	xpad=time_diff*.05;
+
+	min_time_sep=min(diff(time_vals));
+
+	layout_mat=matrix(c(1,1,2,2,3), ncol=1);
+	layout(layout_mat);
+	par(mar=c(4,4,4,1));
+	
+	jitter=rnorm(num_samples, 0, min_time_sep/6); 
+
+	#############################################################################
+
+	plot(0,0, type="n", 
+		xlim=c(time_min-xpad, time_max+xpad),
+		ylim=c(0,1),
+		xlab="Time",
+		ylab="Probability"
+	);
+
+	abline(h=c(0,.5,1), col="grey", lty=2);
+
+	for(t in time_pts){
+		tval=as.numeric(t);
+
+		abline(v=tval, col="grey");
+
+		for(s in 1:num_samples){	
+			color=resp_colors[subj_resp_map[sample_ids[s]]];
+			points(tval+jitter[s], pred_time_mat[s,t], col=color);
+		}
+	}
+	title(main=paste(model_name, " Model's Prediction of ", resp_name, " in Probabilities", sep=""));
+
+	#############################################################################
+
+	logit_matrix=log(pred_time_mat/(1-pred_time_mat));
+	numeric_ix=is.finite(logit_matrix);	
+	numeric_val=logit_matrix[numeric_ix];
+
+	logit_mag=max(abs(numeric_val));
+	logit_matrix[logit_matrix==Inf]=logit_mag+1;
+	logit_matrix[logit_matrix==-Inf]=logit_mag-1;
+	logit_max=logit_mag+1;
+
+	plot(0,0, type="n", 
+		xlim=c(time_min-xpad, time_max+xpad),
+		ylim=c(-logit_max,logit_max),
+		xlab="Time",
+		ylab="Logit(Probability)"
+	);
+
+	abline(h=0, col="grey", lty=2);
+
+	for(t in time_pts){
+		tval=as.numeric(t);
+
+		abline(v=tval, col="grey");
+
+		for(s in 1:num_samples){	
+			color=resp_colors[subj_resp_map[sample_ids[s]]];
+			lo=logit_matrix[s,t];
+			points(tval+jitter[s], lo, col=color);
+		}
+	}
+	title(main=paste(model_name, " Model's Prediction of ", resp_name, " in logit(Probability)s", sep=""));
+
+	#############################################################################
+
+	plot_group_legend(resp_colors)
+}
+
 ##############################################################################
 ##############################################################################
 
@@ -1246,6 +1337,13 @@ print(unique_responses);
 sample_id_to_subject_map=factors_wo_nas[, c(SubjectColumn, ResponseColname)];
 cat("Sample to Subject Map:\n");
 print(sample_id_to_subject_map);
+plot_text(c(
+	paste("Sample ID to Subject (", SubjectColumn, ") Map:", sep=""),
+	"",
+	capture.output(print(sample_id_to_subject_map, quotes=F))
+));
+
+
 
 # Setup subject response map
 subject_id_to_response_map=rep(NA, num_unique_subject_ids);
@@ -1259,6 +1357,11 @@ for(sbj_ix in unique_subject_ids){
 cat("\n");
 cat("Subject to Response Map:\n");
 print(subject_id_to_response_map);
+plot_text(c(
+	paste("Subject (", SubjectColumn, ") to Response (", ResponseColname, ") Map:", sep=""),
+	"",
+	capture.output(print(subject_id_to_response_map, quotes=F))
+));
 
 
 ###############################################################################
@@ -1664,7 +1767,9 @@ for(resp_ix in response_no_reference){
 			signf_pval_by_model[[model_ix]]="No significant variables";
 		}
 
-		plot_text(capture.output(print(cur_pred_by_time_matrix)));
+		plot_predictions_over_time(
+			cur_pred_by_time_matrix, 
+			subject_id_to_response_map, resp_ix, model_ix, grp_colors);
 	}
 
 
