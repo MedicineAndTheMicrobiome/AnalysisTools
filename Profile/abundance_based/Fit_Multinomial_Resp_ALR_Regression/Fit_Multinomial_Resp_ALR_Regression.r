@@ -853,7 +853,7 @@ plot_group_legend=function(color_map){
 	}
 }
 
-plot_predictions_over_time=function(pred_time_mat, subj_resp_map, resp_name, model_name, resp_colors){
+plot_predictions_over_time=function(pred_time_mat, subj_resp_map, resp_name, model_name, resp_colors, grp_tick=F){
 
 	cat("Plotting Predictions Over Time:\n");
 
@@ -868,6 +868,8 @@ plot_predictions_over_time=function(pred_time_mat, subj_resp_map, resp_name, mod
 
 	time_pts=colnames(pred_time_mat);
 	sample_ids=rownames(pred_time_mat);
+
+	uniq_resp_names=unique(subj_resp_map);
 
 	time_vals=as.numeric(time_pts);
 	time_min=min(time_vals);
@@ -927,7 +929,22 @@ plot_predictions_over_time=function(pred_time_mat, subj_resp_map, resp_name, mod
 	abline(h=0, col="grey", lty=2);
 
 	for(t in time_pts){
+
 		tval=as.numeric(t);
+
+		if(grp_tick){
+			cur_time_val=logit_matrix[,t,drop=F];
+			
+			for(rpix in uniq_resp_names){
+				rp_sbj=names(subj_resp_map[subj_resp_map==rpix]);
+				mn=mean(cur_time_val[rp_sbj,], na.rm=T);
+
+				points(c(tval-min_time_sep/8, tval+min_time_sep/8), 
+					c(mn, mn), col=resp_colors[rpix], lwd=2, type="l");
+			}
+
+		}
+
 
 		abline(v=tval, col="grey");
 
@@ -1769,7 +1786,7 @@ for(resp_ix in response_no_reference){
 
 		plot_predictions_over_time(
 			cur_pred_by_time_matrix, 
-			subject_id_to_response_map, resp_ix, model_ix, grp_colors);
+			subject_id_to_response_map, resp_ix, model_ix, grp_colors, grp_tick=T);
 	}
 
 
