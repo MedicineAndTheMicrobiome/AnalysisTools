@@ -448,6 +448,9 @@ plot_abundance_matrix=function(abd_mat, title="", plot_cols=8, plot_rows=5,
 	label_offset1=-(dist_bar_width/2 + .20);
 	label_offset2=-(dist_bar_width/2 + .5);
 
+	mean_sample_name_length=mean(nchar(sample_names));
+	stagger_labels=(mean_sample_name_length>20)
+
 	i=0;
 	while(i<num_samples){
 		for(y in 1:plot_rows){
@@ -458,7 +461,19 @@ plot_abundance_matrix=function(abd_mat, title="", plot_cols=8, plot_rows=5,
 
 					smp_nm_len=nchar(sample);
 					smp_nm_cex=.5*min(1, 21/smp_nm_len);
-					mtext(sample, line=0, cex=smp_nm_cex, font=2);
+					
+					if(stagger_labels){
+						if(i%%2){
+							l=.3;
+						}else{
+							l=-.3;
+						}
+					}else{
+						l=0;
+					}
+		
+					mtext(sample, line=l, cex=smp_nm_cex, font=2);
+					
 
 					if(label_samp_size){
 						n=samp_size[i+1];
