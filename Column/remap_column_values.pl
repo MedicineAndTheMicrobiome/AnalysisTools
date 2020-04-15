@@ -5,9 +5,9 @@
 use strict;
 use Getopt::Std;
 use File::Temp;
-use vars qw ($opt_i $opt_c $opt_m $opt_l $opt_o $opt_r $opt_p $opt_h $opt_d $opt_t $opt_a $opt_f);
+use vars qw ($opt_i $opt_c $opt_m $opt_l $opt_o $opt_r $opt_p $opt_h $opt_d $opt_t $opt_a $opt_C $opt_f);
 
-getopts("i:c:m:orphdtafl:");
+getopts("i:c:m:orphdtaC:fl:");
 
 my $usage = "
 	usage:
@@ -30,6 +30,9 @@ my $usage = "
 		[-t (Tab delimited)]
 		[-a (commA delimited)]
 
+		Maps File Options
+		[-C <old key>,<new value>]
+
 		Optimization options
 		[-f (Build hash out of ID's in specified column, then only load those IDs from the Map file)]
 
@@ -38,10 +41,14 @@ my $usage = "
 
 	If a mapping can not be made for the column, then it is left alone.
 
-	Map file should have the format:
+	Map file should have the format, unless the -C option is specified:
 		<key>\\t<new value>\\n
 
-	If the map file has more than 2 columns, the remaining columns will also be used as the new value.
+	If the -C option is specified, then then alternative columns will be selected for
+	the key to new value.
+
+	For example -C 1,0 will swap the key to the second column (1) and the first column (0) will be the
+	new value.
 
 	Output goes to STDOUT.
 
@@ -99,6 +106,12 @@ if(defined($opt_l)){
 	$ListSep=$opt_l;
 }
 
+my $AltColKey=0;
+my $AltColNew=1;
+if(defined($opt_C)){
+	($AltColKey, $AltColNew)=split /,/, $opt_C;
+}
+
 ###############################################################################
 
 print STDERR "Input: $InputFile\n";
@@ -107,6 +120,10 @@ print STDERR "Action: $Action\n";
 print STDERR "Delimitor: '$Delimitor'\n";
 print STDERR "Overwrite Original: $Overwrite\n";
 print STDERR "List Separator: $ListSep\n";
+
+if($AltColKey!=-1){
+	print STDERR "Alternative Key/Map Columns Specified: Key=$AltColKey Map=$AltColNew\n";
+}
 
 print STDERR "Columns to Map:\n";
 if($#Columns==-1){
@@ -190,8 +207,9 @@ if(!$Preread){
 	while(<MAP_FH>){
 		chomp;
 		my @fields=split /\t/, $_;
-		my $key=shift @fields;
-		my $val=join "\t", @fields;
+
+		my $key=$fields[$AltColKey];
+		my $val=$fields[$AltColNew];
 
 		if($val ne ""){
 			$map{$key}=$val;
@@ -208,8 +226,9 @@ if(!$Preread){
 	while(<MAP_FH>){
 		chomp;
 		my @fields=split /\t/, $_;
-		my $key=shift @fields;
-		my $val=join "\t", @fields;
+
+		my $key=$fields[$AltColKey];
+		my $val=$fields[$AltColNew];
 
 		if(defined($map{$key})){
 			if($val ne ""){
