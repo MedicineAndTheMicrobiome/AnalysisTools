@@ -961,6 +961,74 @@ plot_predictions_over_time=function(pred_time_mat, subj_resp_map, resp_name, mod
 	plot_group_legend(resp_colors)
 }
 
+plot_signif_variables_over_time=function(factors, resp_cnm, time_cnm, sbj_cnm, 
+	resp, targ_var, times, sbj_to_resp_map, resp_to_color_map){
+
+	if(length(targ_var)==0){
+		plot(0,0, type="n",
+			xlim=c(-1,1), ylim=c(-1,1),
+			xlab="", ylab="", xaxt="n", yaxt="n",
+			main="", bty="n");
+		text(0,0, "No significant variables.", cex=3);
+	}
+
+	signf_factors=factors[,targ_var,drop=F];
+	responses_val=as.character(factors[,resp_cnm]);
+	time_val=factors[,time_cnm];
+	uniq_times=sort(unique(time_val));
+	min_time_span=min(diff(uniq_times));
+
+	sbj_val=factors[,sbj_cnm];
+	num_sbj=length(unique(sbj_val));
+
+	#print(signf_factors);
+	#print(responses_val);
+	#print(time_val);
+	#print(sbj_val);
+
+	time_range=range(times);
+	xpad=(time_range[2]-time_range[1])*.05;
+
+	num_plots=length(targ_var);
+
+	par(mfrow=c(4,1));
+	par(mar=c(2,2,4,1));
+
+	jitter=rnorm(num_sbj, 0, min_time_span/8);
+
+	for(var_ix in targ_var){
+
+		vals=signf_factors[,var_ix];
+
+		val_rng=range(vals);
+		rng_spn=val_rng[2]-val_rng[1];
+		ypad=rng_spn*.1;
+
+		plot(0,0, type="n", 
+			xlim=c(time_range[1]-xpad, time_range[2]+xpad),
+			ylim=c(val_rng[1]-ypad, val_rng[2]+ypad),
+			main=var_ix, xlab="time", ylab="");
+
+		abline(v=uniq_times, col="grey");
+
+		for(sbj_ix in sbj_val){
+			cur_sbj=(sbj_val==sbj_ix);			
+
+			cur_vals=vals[cur_sbj];
+			cur_time=time_val[cur_sbj];
+
+			time_order=order(cur_time);
+			cur_vals=cur_vals[time_order];
+			cur_time=cur_time[time_order];
+
+			resp_grp=sbj_to_resp_map[sbj_ix];
+			sbj_col=resp_to_color_map[resp_grp];
+
+			points(cur_time+jitter[sbj_ix], cur_vals, type="p", col=sbj_col);
+		}
+	}
+}
+
 ##############################################################################
 ##############################################################################
 
@@ -1669,6 +1737,15 @@ neglog10_trans_mat=function(mat){
 
 outwidth=2000;
 
+
+#factors_wo_nas,alr_categories_val
+if(rownames(factors_wo_nas)!=rownames(alr_categories_val)){
+	cat("Error: Factor sample IDs don't match ALR sample IDs\n");
+	quit(-1)
+}else{
+	alr_and_covariates_matrix=cbind(factors_wo_nas,alr_categories_val);	
+}
+
 for(resp_ix in response_no_reference){
 		
 	title_page(paste("Response:\n", resp_ix));
@@ -1787,6 +1864,19 @@ for(resp_ix in response_no_reference){
 		plot_predictions_over_time(
 			cur_pred_by_time_matrix, 
 			subject_id_to_response_map, resp_ix, model_ix, grp_colors, grp_tick=T);
+
+		plot_signif_variables_over_time(
+			alr_and_covariates_matrix,
+			ResponseColname,
+			TimeColumn,
+			SubjectColumn,
+			resp_ix,
+			rownames(signf_coef_by_model[[model_ix]]),
+			unique_time_ids,
+			subject_id_to_response_map,
+			grp_colors
+		);
+	
 	}
 
 
