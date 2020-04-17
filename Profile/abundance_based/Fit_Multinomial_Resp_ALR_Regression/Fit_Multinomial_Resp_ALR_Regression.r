@@ -730,7 +730,8 @@ plot_ts_stat_table=function(stat_mat,
 	label=F
 	){
 
-	#print(stat_mat);
+print(stat_mat);
+
 	num_times=ncol(stat_mat);
 	num_rows=nrow(stat_mat);
 
@@ -825,7 +826,6 @@ plot_ts_stat_table=function(stat_mat,
 		}
 
 	}
-
 
 }
 
@@ -970,16 +970,24 @@ plot_signif_variables_over_time=function(factors, resp_cnm, time_cnm, sbj_cnm,
 			xlab="", ylab="", xaxt="n", yaxt="n",
 			main="", bty="n");
 		text(0,0, "No significant variables.", cex=3);
+		return();
 	}
 
 	signf_factors=factors[,targ_var,drop=F];
 	responses_val=as.character(factors[,resp_cnm]);
 	time_val=factors[,time_cnm];
 	uniq_times=sort(unique(time_val));
+	num_uniq_times=length(uniq_times);
 	min_time_span=min(diff(uniq_times));
 
 	sbj_val=factors[,sbj_cnm];
+	uniq_sbj=unique(sbj_val);
 	num_sbj=length(unique(sbj_val));
+
+	resp_group_val=sbj_to_resp_map[sbj_val];
+	uniq_resp_grps=sort(unique(resp_group_val));
+	num_uniq_resp_grps=length(uniq_resp_grps);
+
 
 	#print(signf_factors);
 	#print(responses_val);
@@ -991,19 +999,37 @@ plot_signif_variables_over_time=function(factors, resp_cnm, time_cnm, sbj_cnm,
 
 	num_plots=length(targ_var);
 
-	par(mfrow=c(4,1));
-	par(mar=c(2,2,4,1));
+
+	num_rows_per_page=5;
+
+	par(mfrow=c(num_rows_per_page,1));
 
 	jitter=rnorm(num_sbj, 0, min_time_span/8);
 
+	plot_ix=0;
 	for(var_ix in targ_var){
 
 		vals=signf_factors[,var_ix];
 
+		grp_by_time_means=matrix(NA, nrow=num_uniq_resp_grps, ncol=num_uniq_times);
+		colnames(grp_by_time_means)=as.character(uniq_times);
+		rownames(grp_by_time_means)=uniq_resp_grps;
+		
+		# Calculate means for groups over time
+		for(rgrp in uniq_resp_grps){
+			for(t in uniq_times){
+				cur_time_ix=(time_val==t);
+				cur_rgrp_ix=(resp_group_val==rgrp);
+				grp_by_time_means[rgrp, as.character(t)]=
+					mean(vals[cur_time_ix & cur_rgrp_ix], na.rm=T);
+			}
+		}
+		
 		val_rng=range(vals);
 		rng_spn=val_rng[2]-val_rng[1];
 		ypad=rng_spn*.1;
 
+		par(mar=c(2,2,4,1));
 		plot(0,0, type="n", 
 			xlim=c(time_range[1]-xpad, time_range[2]+xpad),
 			ylim=c(val_rng[1]-ypad, val_rng[2]+ypad),
@@ -1011,7 +1037,13 @@ plot_signif_variables_over_time=function(factors, resp_cnm, time_cnm, sbj_cnm,
 
 		abline(v=uniq_times, col="grey");
 
-		for(sbj_ix in sbj_val){
+		# Plot mean lines
+		for(rgrp in uniq_resp_grps){
+			points(uniq_times, grp_by_time_means[rgrp,], type="l", col=resp_to_color_map[rgrp]);
+		}
+
+		# Plot scattered points
+		for(sbj_ix in uniq_sbj){
 			cur_sbj=(sbj_val==sbj_ix);			
 
 			cur_vals=vals[cur_sbj];
@@ -1025,8 +1057,20 @@ plot_signif_variables_over_time=function(factors, resp_cnm, time_cnm, sbj_cnm,
 			sbj_col=resp_to_color_map[resp_grp];
 
 			points(cur_time+jitter[sbj_ix], cur_vals, type="p", col=sbj_col);
+
+		}
+
+		plot_ix=plot_ix+1;
+		if(plot_ix == (num_rows_per_page-1)){
+			plot_group_legend(resp_to_color_map);
+			plot_ix=0;	
 		}
 	}
+
+	if(plot_ix<num_rows_per_page){
+		plot_group_legend(resp_to_color_map);
+	}
+
 }
 
 ##############################################################################
@@ -1401,9 +1445,11 @@ print(time_ids);
 cat("All Subject IDs:\n");
 print(subject_ids);
 
+responses=factors_wo_nas[,ResponseColname];
+
 unique_time_ids=sort(unique(time_ids));
 unique_subject_ids=sort(unique(subject_ids));
-unique_responses=sort(unique(factors_wo_nas[,ResponseColname]));
+unique_responses=sort(unique(responses));
 
 num_unique_time_ids=length(unique_time_ids);
 num_unique_subject_ids=length(unique_subject_ids);
@@ -1428,8 +1474,6 @@ plot_text(c(
 	capture.output(print(sample_id_to_subject_map, quotes=F))
 ));
 
-
-
 # Setup subject response map
 subject_id_to_response_map=rep(NA, num_unique_subject_ids);
 names(subject_id_to_response_map)=unique_subject_ids;
@@ -1448,6 +1492,23 @@ plot_text(c(
 	capture.output(print(subject_id_to_response_map, quotes=F))
 ));
 
+
+###############################################################################
+
+sample_sizes_resp_time=matrix(NA, nrow=num_unique_responses, ncol=num_unique_time_ids);
+rownames(sample_sizes_resp_time)=unique_responses;
+colnames(sample_sizes_resp_time)=as.character(unique_time_ids);
+
+for(rix in unique_responses){
+	for(tix in as.character(unique_time_ids)){
+		cur_resp_ix=(rix==responses);
+		cur_time_ix=(as.numeric(tix)==time_ids);
+		tm_rsp_ix=(cur_time_ix & cur_resp_ix);
+
+		cat(rix, " ", tix, " ", tm_rsp_ix, "\n");
+		sample_sizes_resp_time[rix,tix]=sum(tm_rsp_ix);
+	}
+}
 
 ###############################################################################
 
@@ -1614,11 +1675,12 @@ print(sampsize_arr);
 
 cat("\n");
 cat("Response Group Sizes:\n");
-print(resp_grps);
+print(sample_sizes_resp_time);
 
 layout_m=matrix(c(1,1,1,1,1,2), nrow=6, ncol=1);
 layout(layout_m);
-plot_ts_stat_table(resp_grps, title="Response Group Sizes", 
+
+plot_ts_stat_table(sample_sizes_resp_time, title="Response Group Sizes", 
 	subtitle="Number of Samples per Group Over Time", grp_colors=grp_colors, plot_ymin=0, label=T);
 plot_group_legend(grp_colors);
 
@@ -1631,7 +1693,6 @@ layout(layout_m);
 plot_ts_stat_table(aic_matrix, title="AIC", subtitle="Lower Values, Better Fit", 
 	grp_colors=model_colors, label=T);
 plot_group_legend(model_colors);
-
 
 # Plot all coefficients 
 # Plot all pvalues
@@ -1896,6 +1957,8 @@ for(resp_ix in response_no_reference){
 	
 
 }
+
+print(warnings());
 
 quit();
 
