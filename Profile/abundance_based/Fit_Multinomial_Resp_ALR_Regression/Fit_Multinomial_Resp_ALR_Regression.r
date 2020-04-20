@@ -1067,7 +1067,7 @@ plot_signif_variables_over_time=function(factors, resp_cnm, time_cnm, sbj_cnm,
 		}
 	}
 
-	if(plot_ix<num_rows_per_page){
+	if(plot_ix<num_rows_per_page && plot_ix!=0){
 		plot_group_legend(resp_to_color_map);
 	}
 
@@ -1957,6 +1957,112 @@ for(resp_ix in response_no_reference){
 	
 
 }
+
+plot_variables_by_response_venn=function(coef_bytime, pval_bytime){
+
+	responses=names(coef_bytime);
+	models=names(coef_bytime[[responses[1]]]);
+
+	print(responses);
+	print(models);
+
+	#print(names(coef_bytime));
+	#print(coef_bytime[["AlloTx_noTAC"]][["covariates_only");
+
+
+	# Get the variable list from each model 
+	model_variable_list=list();
+	for(model_ix in models){
+		model_variable_list[[model_ix]]=rownames(coef_bytime[[responses[1]]][[model_ix]]);
+	}
+
+
+	var_by_resp_list=list();
+	for(model_ix in models){
+
+		resp_var_mat=
+			matrix(NA, nrow=length(model_variable_list[[model_ix]]), ncol=length(responses));
+		rownames(resp_var_mat)=model_variable_list[[model_ix]];
+		colnames(resp_var_mat)=responses;
+
+		for(resp_ix in responses){
+
+			coef_tab=coef_bytime[[resp_ix]][[model_ix]];
+			pval_tab=pval_bytime[[resp_ix]][[model_ix]];
+			
+			variables=rownames(coef_tab);
+
+			signf=apply(pval_tab, 1,  
+				function(x){
+					min(x,na.rm=T);
+				});
+
+			resp_var_mat[variables, resp_ix]=signf[variables];
+
+		}
+
+		var_by_resp_list[[model_ix]]=resp_var_mat;
+	}
+
+	print(var_by_resp_list, quote=F);
+	#paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_is_hot=T, deci_pts=4,
+	#label_zeros=T, counts=F, value.cex=2, 
+	#plot_col_dendr=F,
+	#plot_row_dendr=F
+
+	title_page("Comparison of\nAssociations\nAcross Responses", "p-values");
+	for(model_ix in models){
+		paint_matrix(
+			mat=var_by_resp_list[[model_ix]], 
+			title=paste(model_ix, ": p-values", sep=""),
+			plot_min=0, plot_max=1,
+			high_is_hot=F
+		);
+	}
+
+	title_page("Comparison of\nSignif. Assoc.\nAcross Response Groups", "p-values < 0.1");
+	for(model_ix in models){
+
+		signf_mat=var_by_resp_list[[model_ix]] < .1;
+		print(signf_mat);
+
+		var_names=rownames(signf_mat);
+		excl_to_resp_list=list();
+		incl_to_all_resp=character();
+	
+		# Inclusive to all responses
+		incl_all_ix=apply(signf_mat, 1, all);
+		incl_to_all_resp=var_names[incl_all_ix];
+	
+		# Exclusive to one response
+		tot_incl_resp=apply(signf_mat, 1, function(x){sum(x)==1});
+		for(resp_ix in response_no_reference){
+			excl_to_resp_list[[resp_ix]]=var_names[tot_incl_resp & signf_mat[,resp_ix]];
+		}
+
+		paint_matrix(
+			mat=signf_mat, 
+			title=paste(model_ix, ": p-values < 0.1", sep=""),
+			counts=T, label_zeros=F,
+			plot_min=0, plot_max=1,
+			high_is_hot=T
+		);
+
+		plot_text(c(
+			"Exclusivity of Predictors:",
+			"",
+			capture.output(print(excl_to_resp_list)),
+			"",
+			"",
+			"Shared Across All Response Groups:",
+			"",
+			incl_to_all_resp
+		));
+	}
+	
+}
+
+plot_variables_by_response_venn(coef_bytime_list, pval_bytime_list);
 
 print(warnings());
 
