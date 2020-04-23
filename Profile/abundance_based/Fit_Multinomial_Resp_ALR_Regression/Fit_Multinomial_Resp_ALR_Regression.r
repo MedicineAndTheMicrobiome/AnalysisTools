@@ -727,6 +727,7 @@ plot_ts_stat_table=function(stat_mat,
 	plot_ymax=NULL, plot_ymin=NULL,
 	nlog10_reflines=F,
 	zero_refline=F,
+	one_refline=F,
 	label=F
 	){
 
@@ -741,6 +742,7 @@ print(stat_mat);
 
 	cat("Times:\n");
 	print(time_values);
+
 
 	stat_range=range(stat_mat, na.rm=T);
 	time_range=range(time_values, na.rm=T);
@@ -770,6 +772,15 @@ print(stat_mat);
 		plot_ymax=max(plot_ymax, ref_lines);
 	}
 
+	if(zero_refline){
+		plot_ymax=max(plot_ymax, 0);
+		plot_ymin=min(plot_ymin, 0);
+	}
+	if(one_refline){
+		plot_ymax=max(plot_ymax, 1);
+		plot_ymin=min(plot_ymin, 1);
+	}
+
 
 	if(is.null(grp_colors)){
 		grp_colors=rainbow(num_rows, start=0, end=5/6, alpha=0.33);
@@ -796,6 +807,10 @@ print(stat_mat);
 
 	if(zero_refline){
 		abline(h=0, col="grey");
+	}
+
+	if(one_refline){
+		abline(h=1, col="grey");
 	}
 
 
@@ -1515,7 +1530,7 @@ for(rix in unique_responses){
 require(nnet);
 require(generalhoslem);
 
-process_model=function(fit, resp){
+process_model=function(fit, null_fit=NULL, num_samples=NULL){
 	
 	res=list();
 	res[["fit"]]=fit;
@@ -1526,11 +1541,38 @@ process_model=function(fit, resp){
 	z=coeff/stderr;
 	res[["pvalues"]]=(1-pnorm(abs(z), 0, 1))*2;
 
+	res[["num_coeff"]]=nrow(coeff);
+	res[["num_respGrps"]]=ncol(coeff);
+	res[["num_predictors_exclIntercept"]]=(res[["num_coeff"]]-1)*res[["num_respGrps"]];
+	res[["num_predictors"]]=(res[["num_coeff"]])*res[["num_respGrps"]];
+	res[["num_samples"]]=num_samples;
+
 	# See M. W. Fagerland and D. W. Hosmer,
 	# "A generalized Hosmer–Lemeshowgoodness-of-fit test for multinomial logisticregression models"
 	# Null distribution is if there was a good fit, so low p-values are bad fits.
 	#res[["gof"]]=logitgof(resp, fitted(fit));
 	res[["NegLogLikelihood"]]=res[["summary"]]$value;
+	res[["PackageAIC"]]=fit["AIC"];
+
+	# McFadden's Adj pseudo-R^2 is 1-((LLfull-K)/LLintercep), but out of the computational
+	# fit we get -LL, so the formula below is modified.
+
+	if(!is.null(null_fit)){
+	
+		full_negLL=res[["NegLogLikelihood"]];
+		rcdc_negLL=null_fit[["NegLogLikelihood"]];
+
+		res[["R2_McFadden"]]=1-(full_negLL/rcdc_negLL);
+
+		K=res[["num_predictors_exclIntercept"]];
+
+		res[["R2_McFadden_Adj"]]=1-(full_negLL+K)/rcdc_negLL;
+	
+		res[["R2_CoxSnell"]]=1-(exp(full_negLL-rcdc_negLL))^(2/num_samples);
+
+	}else{
+		cat("Pseudo-R^2's not calculated for Intercept-Only (NULL) Model.\n");
+	}
 
 	return(res);
 
@@ -1562,28 +1604,31 @@ for(cur_time_id in unique_time_ids){
 	cat("Intercept Only:\n");
 	null_model_str=paste("cur_responses ~ 1");
 	null_mlr_fit=multinom(as.formula(null_model_str), data=cur_factors);
-	fit_info[[cur_time_str]][["intercept_only"]]=process_model(null_mlr_fit, cur_responses);
+	fit_info[[cur_time_str]][["intercept_only"]]=process_model(null_mlr_fit, NULL, num_samples_at_curtime);
 	cat("\n");
 
 	# Fit covariates
 	cat("Covariates Only:\n");
 	cov_model_str=paste("cur_responses ~ ", paste(covariates_arr, collapse=" + ", sep=""));
 	cov_mlr_fit=multinom(as.formula(cov_model_str), data=cur_factors);
-	fit_info[[cur_time_str]][["covariates_only"]]=process_model(cov_mlr_fit, cur_responses);
+	fit_info[[cur_time_str]][["covariates_only"]]=
+		process_model(cov_mlr_fit, fit_info[[cur_time_str]][["intercept_only"]], num_samples_at_curtime);
 	cat("\n");
 
 	# Fit alr categories
 	cat("ALR Categories Only:\n");
 	alr_model_str=paste("cur_responses ~ ", paste(alr_cat_names, collapse=" + ", sep=""));
 	alr_mlr_fit=multinom(as.formula(alr_model_str), data=cur_alr);
-	fit_info[[cur_time_str]][["alr_only"]]=process_model(alr_mlr_fit, cur_responses);
+	fit_info[[cur_time_str]][["alr_only"]]=
+		process_model(alr_mlr_fit, fit_info[[cur_time_str]][["intercept_only"]], num_samples_at_curtime);
 	cat("\n");
 
 	# Fit combined 
 	cat("Full Combined:\n");
 	comb_model_str=paste("cur_responses ~ ", paste(c(covariates_arr, alr_cat_names), collapse=" + ", sep=""));
 	comb_mlr_fit=multinom(as.formula(comb_model_str), data=cbind(cur_factors, cur_alr));
-	fit_info[[cur_time_str]][["alr_and_covariates"]]=process_model(comb_mlr_fit, cur_responses);
+	fit_info[[cur_time_str]][["alr_and_covariates"]]=
+		process_model(comb_mlr_fit, fit_info[[cur_time_str]][["intercept_only"]], num_samples_at_curtime);
 	cat("\n");
 
 	# Overall statistics
@@ -1593,6 +1638,8 @@ for(cur_time_id in unique_time_ids){
 	#print(fit_info[[cur_time_str]][["combined"]][["pvalues"]]);
 
 }
+
+print(fit_info);
 
 # Fit variables:
 # [1] "n"             "nunits"        "nconn"         "conn"          "nsunits"       "decay"
@@ -1629,6 +1676,10 @@ rownames(stat_matrix)=model_types;
 names(stat_arr)=time_str_ids;
 
 aic_matrix=stat_matrix;
+mcfadden_r2_mat=stat_matrix;
+mcfadden_r2adj_mat=stat_matrix;
+coxsnell_r2_mat=stat_matrix;
+
 sampsize_arr=stat_arr;
 
 resp_grps=matrix(NA, ncol=num_time_pts, nrow=num_unique_responses);
@@ -1638,6 +1689,7 @@ rownames(resp_grps)=unique_responses;
 pvalues=list();
 coefficients=list();
 predicted=list();
+
 
 for(cur_time_str  in time_str_ids){
 
@@ -1661,9 +1713,15 @@ for(cur_time_str  in time_str_ids){
 		coefficients[[cur_time_str]][[modix]]=fit_info[[cur_time_str]][[modix]][["Coefficients"]]=
 			summary(fit_info[[cur_time_str]][[modix]][["fit"]])$coefficients;
 
-
 		predicted[[cur_time_str]][[modix]]=
 			fit_info[[cur_time_str]][[modix]][["fit"]][["fitted.values"]];
+
+		mcfadden_r2_mat[modix, cur_time_str]=
+			fit_info[[cur_time_str]][[modix]][["R2_McFadden"]];
+		mcfadden_r2adj_mat[modix, cur_time_str]=
+			fit_info[[cur_time_str]][[modix]][["R2_McFadden_Adj"]];
+		coxsnell_r2_mat[modix, cur_time_str]=
+			fit_info[[cur_time_str]][[modix]][["R2_CoxSnell"]];
 
 	}
 
@@ -1690,7 +1748,27 @@ cat("AIC:\n");
 print(aic_matrix);
 layout_m=matrix(c(1,1,1,1,1,2), nrow=6, ncol=1);
 layout(layout_m);
-plot_ts_stat_table(aic_matrix, title="AIC", subtitle="Lower Values, Better Fit", 
+
+plot_ts_stat_table(aic_matrix, 
+	title="AIC", subtitle="Lower Values, Better Fit", 
+	grp_colors=model_colors, label=T);
+plot_group_legend(model_colors);
+
+plot_ts_stat_table(mcfadden_r2_mat, 
+	zero_refline=T,one_refline=T,
+	title="McFadden's Pseudo-R^2", subtitle="Closer to 1 the better", 
+	grp_colors=model_colors, label=T);
+plot_group_legend(model_colors);
+
+plot_ts_stat_table(mcfadden_r2adj_mat, 
+	zero_refline=T,one_refline=T,
+	title="McFadden's (Adjusted) Pseudo-R^2", subtitle="(Adjusted for Num Predictors)", 
+	grp_colors=model_colors, label=T);
+plot_group_legend(model_colors);
+
+plot_ts_stat_table(coxsnell_r2_mat, 
+	zero_refline=T,one_refline=T,
+	title="Cox & Snell's Pseudo-R^2", subtitle="(Adjusted for Sample Size)", 
 	grp_colors=model_colors, label=T);
 plot_group_legend(model_colors);
 
