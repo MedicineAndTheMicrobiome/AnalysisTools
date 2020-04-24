@@ -2148,6 +2148,46 @@ plot_variables_by_response_venn=function(coef_bytime, pval_bytime){
 
 plot_variables_by_response_venn(coef_bytime_list, pval_bytime_list);
 
+###############################################################################
+
+title_page("Comparison\nof Reponse Groups\nover Time");
+
+mask_matrix=function(val_mat, mask_mat, mask_thres, mask_val){
+        masked_matrix=val_mat;
+        masked_matrix[mask_mat>mask_thres]=mask_val;
+        return(masked_matrix);
+}
+
+for(model_ix in model_types){
+
+	title_page(paste("Model:\n", model_ix, sep=""));
+
+	for(time_ix in time_str_ids){
+
+		coef_mat=t(fit_info[[time_ix]][[model_ix]][["Coefficients"]]);
+		pval_mat=t(fit_info[[time_ix]][[model_ix]][["pvalues"]]);
+		
+		title=paste("Model: ", model_ix, "  Time: ", time_ix);
+
+		plot_text(c(
+			title,
+			"Coefficients",
+			capture.output(print(coef_mat)),
+			"",
+			"P-Values",
+			capture.output(print(pval_mat))
+		));
+
+		paint_matrix(coef_mat, title=paste(title, " Coeficients"));
+
+
+		filt_coef_mat=mask_matrix(coef_mat, pval_mat, .1, 0);
+		paint_matrix(filt_coef_mat, title=paste(title, " Coeficients (P-values < 0.1)"), label_zeros=F);
+
+	}
+}
+
+###############################################################################
 
 cat("Done.\n");
 #dev.off();
