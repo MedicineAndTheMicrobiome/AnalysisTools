@@ -412,10 +412,10 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 
 	# If range is not specified, find it based on the data
         if(is.na(plot_min)){
-                plot_min=min(mat);
+                plot_min=min(mat, na.rm=T);
         }
         if(is.na(plot_max)){
-                plot_max=max(mat);
+                plot_max=max(mat, na.rm=T);
         }
         cat("Plot min/max: ", plot_min, "/", plot_max, "\n");
 
@@ -428,6 +428,7 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 	##################################################################################################
 	
 	get_dendrogram=function(in_mat, type){
+
 		if(type=="row"){
 			dendist=dist(in_mat);
 		}else{
@@ -472,10 +473,10 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 	}
 
 	# Don't plot dendrogram if there are any NAs in the matrix
-	if(any(is.na(mat))){
-		plot_col_dendr=F;
-		plot_row_dendr=F;
-	}
+	#if(any(is.na(mat))){
+	#	plot_col_dendr=F;
+	#	plot_row_dendr=F;
+	#}
 
 	if(plot_col_dendr && plot_row_dendr){
 		layoutmat=matrix(
@@ -541,6 +542,7 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
                         }
 
                         remap_val=remap(col_val, c(plot_min, plot_max), c(1, num_colors));
+
                         col_ix=ceiling(remap_val);
 
                         rect(x-1, y-1, (x-1)+1, (y-1)+1, border=NA, col=color_arr[col_ix]);
@@ -1910,11 +1912,16 @@ for(resp_ix in response_no_reference){
 		par(mfrow=c(1,1));
 		coef_tab=capture.output(print(cur_coef_by_time_matrix, digits=4, width=outwidth));
 		plot_text(c(
-			paste("Reponse: ", resp_ix, "  Model: ", model_ix),
+			paste("Response: ", resp_ix, "  Model: ", model_ix, " Coefficients"),
 			"Coefficients:",
 			"",
 			coef_tab
 		));
+
+		paint_matrix(
+			mat=cur_coef_by_time_matrix, 
+			title=paste("Response: ", resp_ix, "  Model: ", model_ix, "  Coefficients", sep=""), 
+			value.cex=1.5, plot_row_dendr=T);
 
 		layout_m=matrix(c(1,1,1,2), nrow=4, ncol=1);
 		layout(layout_m);
@@ -1933,6 +1940,11 @@ for(resp_ix in response_no_reference){
 			"",
 			pval_tab
 		));
+
+		paint_matrix(
+			mat=cur_pval_by_time_matrix, 
+			title=paste("Response: ", resp_ix, "  Model: ", model_ix, "  P-Values", sep=""), 
+			value.cex=1.5, plot_row_dendr=T, high_is_hot=F);
 
 		nlog10pval=neglog10_trans_mat(cur_pval_by_time_matrix);
 
@@ -2082,12 +2094,6 @@ plot_variables_by_response_venn=function(coef_bytime, pval_bytime){
 		var_by_resp_list[[model_ix]]=resp_var_mat;
 	}
 
-	print(var_by_resp_list, quote=F);
-	#paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_is_hot=T, deci_pts=4,
-	#label_zeros=T, counts=F, value.cex=2, 
-	#plot_col_dendr=F,
-	#plot_row_dendr=F
-
 	title_page("Comparison of\nAssociations\nAcross Responses", "p-values");
 	for(model_ix in models){
 		paint_matrix(
@@ -2142,436 +2148,6 @@ plot_variables_by_response_venn=function(coef_bytime, pval_bytime){
 
 plot_variables_by_response_venn(coef_bytime_list, pval_bytime_list);
 
-print(warnings());
-
-quit();
-
-hereend
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-covariate_formula_str=paste(covariates_arr, collapse=" + ");
-alr_category_formula_str=paste(alr_cat_names, collapse=" + ");
-cat("\n");
-cat("Covariates: \n", covariate_formula_str, "\n", sep="");
-cat("\n");
-cat("ALR Predictors: \n", alr_category_formula_str, "\n", sep="");
-cat("\n");
-
-if(nchar(covariate_formula_str)){
-	formula_str=paste("response_factors_dfr ~ ", covariate_formula_str, " + ", alr_category_formula_str, sep="");
-	reduced_formula_str=paste("response_factors_dfr ~ ", covariate_formula_str, sep="");
-}else{
-	formula_str=paste("response_factors_dfr ~ ", alr_category_formula_str, sep="");
-	reduced_formula_str=paste("response_factors_dfr ~ 1", sep="");
-}
-
-response_factors_dfr=as.matrix(response_factors);
-
-cat("Fitting Full Model...\n");
-lmfit=lm(as.formula(formula_str), data=dafr_predictors_factors);
-
-cat("Fitting Reduced Model..\n");
-reduced_lmfit=lm(as.formula(reduced_formula_str), data=dafr_predictors_factors);
-
-lm_summaries=summary(lmfit);
-reduced_lm_summaries=summary(reduced_lmfit);
-
-num_responses=length(responses_arr);
-
-manova_res=c();
-if(num_responses > 1 && (num_responses < lmfit$df.residual)){
-	tryCatch({
-		manova_res=anova(lmfit);
-	}, error=function(e){
-		cat("ERROR: MANOVA Could not be perfomred.\n");
-		print(e);
-		cat("Things to do:\n");
-		cat(" 1.) Check for high correlations amongst response variables.\n");
-	});
-		
-}else{
-	cat("WARNING: MANOVA Could not be performed because too many responses for number of samples...\n");
-}
-
-if(num_responses==1){
-
-	#tmp=lmfit;
-	#lmfit=list();
-	#lmfit[[1]]=tmp;
-
-	tmp=lm_summaries;
-	lm_summaries=list();
-	lm_summaries[[1]]=tmp;
-	names(lm_summaries)=paste("Response", responses_arr[1]);
-
-	tmp=reduced_lm_summaries;
-	reduced_lm_summaries=list();
-	reduced_lm_summaries[[1]]=tmp;
-	names(reduced_lm_summaries)=paste("Response", responses_arr[1]);
-	
-}
-
-#print(lm_summaries[[1]]$adj.r.squared);
-#quit();
-		
-responses=names(lm_summaries);
-reduced_responses=names(reduced_lm_summaries);
-
-print(names(lm_summaries));
-response_fit_names=gsub("^Response ", "", names(lm_summaries));
-
-# Calculate reduced/full model pvalues
-calc_model_imprv=function(mv_resp_name, reduced_form_str, full_form_str, pred_datafr, resp_datafr){
-	#print(reduced_form_str);
-	#print(full_form_str);
-	#print(pred_datafr);
-	#print(resp_datafr);
-
-	reduced_form_str=gsub(mv_resp_name, "tmp_resp", reduced_form_str);
-	full_form_str=gsub(mv_resp_name, "tmp_resp", full_form_str);
-
-	num_resp=ncol(resp_datafr);
-	resp_names=colnames(resp_datafr);
-
-	improv_mat=matrix(NA, nrow=num_resp, ncol=7);
-	rownames(improv_mat)=resp_names;
-	colnames(improv_mat)=c("Full R^2", "Reduced R^2", "Full Adj R^2", "Reduced Adj R^2",
-		"Diff Adj. R^2", "Perc Improvement", "Diff ANOVA P-Value"); 
-
-	for(i in 1:num_resp){
-		tmp_resp=resp_datafr[,i];
-		all_data=cbind(tmp_resp, pred_datafr);
-		full_fit=lm(as.formula(full_form_str), data=all_data);
-		full_sum=summary(full_fit);
-		reduced_fit=lm(as.formula(reduced_form_str), data=all_data);
-		reduced_sum=summary(reduced_fit);
-
-		anova_res=anova(reduced_fit, full_fit);
-		anova_pval=anova_res["2", "Pr(>F)"];
-
-		improv_mat[i,]=c(
-			full_sum$r.squared,
-			reduced_sum$r.squared,
-			full_sum$adj.r.squared,
-			reduced_sum$adj.r.squared,
-			full_sum$adj.r.squared-reduced_sum$adj.r.squared,
-			100*(full_sum$adj.r.squared-reduced_sum$adj.r.squared)/reduced_sum$adj.r.squared,
-			anova_pval);
-
-	}
-
-	return(improv_mat);
-
-}
-
-improv_mat=calc_model_imprv("response_factors_dfr", reduced_formula_str, formula_str, 
-	dafr_predictors_factors, response_factors_dfr);
-
-###############################################################################
-# Accumulate univariate results into matrix and generate heat map
-
-num_coefficients=nrow(lm_summaries[[1]]$coefficients);
-coefficient_names=rownames(lm_summaries[[1]]$coefficients);
-summary_var_names=rownames(lm_summaries[[1]]$coefficients);
-covariate_coefficients=setdiff(coefficient_names, c("(Intercept)", alr_cat_names));
-
-# In case some alr categories are not calculable...
-shrd_alr_names=intersect(alr_cat_names, coefficient_names);
-
-summary_res_coeff=matrix(0, nrow=num_coefficients, ncol=num_responses, dimnames=list(coefficient_names, response_fit_names));
-summary_res_pval=matrix(0, nrow=num_coefficients, ncol=num_responses, dimnames=list(coefficient_names, response_fit_names));
-summary_res_rsqrd=matrix(0, nrow=num_responses, ncol=3, dimnames=list(response_fit_names, 
-	c("Full Model", "Reduced Model", "Difference")));
-
-for(i in 1:num_responses){
-	cat("\n\nWorking on: ", responses[i], "\n");
-	univar_summary=lm_summaries[[i]]$coefficients;
-
-	rsquared=signif(c(lm_summaries[[i]]$r.squared, lm_summaries[[i]]$adj.r.squared),4);
-	reduced_rsquared=signif(c(reduced_lm_summaries[[i]]$r.squared, reduced_lm_summaries[[i]]$adj.r.squared),4);
-	
-	fstat=lm_summaries[[i]]$fstatistic;
-	pval=1-pf(fstat[["value"]], fstat[["numdf"]], fstat[["dendf"]]);
-
-	rsqrd_diff=rsquared[1]-reduced_rsquared[1];
-	adj_rsqrd_diff=signif(rsquared[2]-reduced_rsquared[2], 4);
-
-
-	univar_summary_wsignf=add_sign_col(univar_summary[shrd_alr_names,,drop=F]);
-
-	plot_text(c(
-		paste("Univariate: ", responses[i], sep=""),
-		"Covariates portion of Full Model (Covariates + ALR):",
-		"",
-		capture.output(
-			print(univar_summary[covariate_coefficients,,drop=F], digits=4)
-		)
-	));
-
-	plot_text(c(
-		paste("Univariate: ", responses[i], sep=""),
-		"ALR Predictors portion of Full Model (Covariates + ALR):",
-		"\n",
-		capture.output(print(univar_summary_wsignf, quote=F))
-	));
-
-	plot_text(c(
-		paste("Univariate: ", responses[i], sep=""),
-		"Full Model (covariates + ALR) Summary:",
-		paste("Multiple R-squared: ", rsquared[1], ", Adjusted R-squared: ", rsquared[2], sep=""),
-		paste("F-statistic: ", fstat[["value"]], " on ", 
-					fstat[["numdf"]], " and ", 
-					fstat[["dendf"]], " DF, p-value: ", pval, sep=""),
-		"",
-		"",
-		"Reduced Model (covariates only) Summary:",
-		paste("Multiple R-squared: ", reduced_rsquared[1], ", Adjusted R-squared: ", reduced_rsquared[2], sep=""),
-		"",
-		"Difference (contribution of ALR):",
-		paste("Multiple R-squared: ", rsqrd_diff, 
-			", Adjusted R-squared: ", adj_rsqrd_diff, sep=""),
-		"",
-		"(Positive Adjusted R-squared differences suggests that including ALR predictors improved the model)"
-	));
-
-	plot_fit(lmfit, lm_summaries, i);
-
-	summary_res_coeff[,i]=univar_summary[,"Estimate"];
-	summary_res_pval[,i]=univar_summary[,"Pr(>|t|)"];
-	summary_res_rsqrd[i,]=c(rsquared[2], reduced_rsquared[2], adj_rsqrd_diff);
-}
-
-#summary_res_coeff=round(summary_res_coeff,2);
-summary_res_pval_rnd=round(summary_res_pval,2);
-
-cat("Coefficients Matrix:\n");
-print(summary_res_coeff);
-#par(oma=c(10,14,5,1));
-if(length(covariate_coefficients)>0){
-	paint_matrix(summary_res_coeff[covariate_coefficients,,drop=F], title="Covariate Coefficients",value.cex=2, deci_pts=2);
-}
-
-# Variations of ALR Predictor Coefficients
-paint_matrix(summary_res_coeff[shrd_alr_names,,drop=F], title="ALR Predictors Coefficients (By Decreasing Abundance)", 
-	value.cex=1, deci_pts=2, plot_row_dendr=F, plot_col_dendr=F);
-paint_matrix(summary_res_coeff[shrd_alr_names,,drop=F], title="ALR Predictors Coefficients (ALR Clusters)", 
-	value.cex=1, deci_pts=2, plot_row_dendr=T, plot_col_dendr=F);
-paint_matrix(summary_res_coeff[shrd_alr_names,,drop=F], title="ALR Predictors Coefficients (Response Clusters)", 
-	value.cex=1, deci_pts=2, plot_row_dendr=F, plot_col_dendr=T);
-paint_matrix(summary_res_coeff[shrd_alr_names,,drop=F], title="ALR Predictors Coefficients (ALR and Response Clusters)", 
-	value.cex=1, deci_pts=2, plot_row_dendr=T, plot_col_dendr=T);
-
-cat("\nP-values:\n");
-#print(summary_res_pval);
-#par(oma=c(10,14,5,1));
-
-if(length(covariate_coefficients)>0){
-	paint_matrix(summary_res_pval_rnd[covariate_coefficients,,drop=F], title="Covariate P-values", 
-		plot_min=0, plot_max=1, high_is_hot=F, value.cex=2, deci_pts=2);
-}
-
-# Variations of ALR Predictor P-values
-paint_matrix(summary_res_pval_rnd[shrd_alr_names,,drop=F], title="ALR Predictors P-values (By Decreasing Abundance)", 
-	plot_min=0, plot_max=1, high_is_hot=F, value.cex=1, deci_pts=2);
-
-
-mask_matrix=function(val_mat, mask_mat, mask_thres, mask_val){
-        masked_matrix=val_mat;
-        masked_matrix[mask_mat>mask_thres]=mask_val;
-        return(masked_matrix);
-}
-
-
-# Mask coefficients at various pvalue
-signf_coef=mask_matrix(summary_res_coeff[shrd_alr_names,,drop=F], summary_res_pval_rnd[shrd_alr_names,,drop=F], .10, 0);
-paint_matrix(signf_coef, title="Significant ALR Predictors Coefficients (p-value < .10)", 
-	value.cex=1, deci_pts=2, plot_row_dendr=F, plot_col_dendr=F, label_zeros=F);
-
-signf_coef=mask_matrix(summary_res_coeff[shrd_alr_names,,drop=F], summary_res_pval_rnd[shrd_alr_names,,drop=F], .05, 0);
-paint_matrix(signf_coef, title="Significant ALR Predictors Coefficients (p-value < .05)", 
-	value.cex=1, deci_pts=2, plot_row_dendr=F, plot_col_dendr=F, label_zeros=F);
-
-signf_coef=mask_matrix(summary_res_coeff[shrd_alr_names,,drop=F], summary_res_pval_rnd[shrd_alr_names,,drop=F], .01, 0);
-paint_matrix(signf_coef, title="Significant ALR Predictors Coefficients (p-value < .01)", 
-	value.cex=1, deci_pts=2, plot_row_dendr=F, plot_col_dendr=F, label_zeros=F);
-
-
-paint_matrix(summary_res_pval_rnd[shrd_alr_names,,drop=F], title="ALR Predictors P-values (ALR Clusters)", 
-	plot_min=0, plot_max=1, high_is_hot=F, value.cex=1, deci_pts=2,
-	plot_row_dendr=T
-);
-paint_matrix(summary_res_pval_rnd[shrd_alr_names,,drop=F], title="ALR Predictors P-values (Response Clusters)", 
-	plot_min=0, plot_max=1, high_is_hot=F, value.cex=1, deci_pts=2,
-	plot_col_dendr=T
-);
-paint_matrix(summary_res_pval_rnd[shrd_alr_names,,drop=F], title="ALR Predictors P-values (ALR and Response Clusters)", 
-	plot_min=0, plot_max=1, high_is_hot=F, value.cex=1, deci_pts=2,
-	plot_row_dendr=T, plot_col_dendr=T
-);
-
-###############################################################################
-
-paint_matrix(summary_res_rsqrd, title="Univariate Adjusted R-Squared");
-
-# Report Full/Reduced Improvement ANOVA P-values
-Signf=sapply(improv_mat[,"Diff ANOVA P-Value"], sig_char);
-plot_text(c(
-	"ANOVA Comparing Full (Cov + ALR) and Reduced (Cov only) Models for Improvement",
-	"",
-	capture.output(print(round(improv_mat[,c(1,2)], 3))),
-	"",
-	capture.output(print(round(improv_mat[,c(3,4)], 3))),
-	"",
-	capture.output(print(cbind(
-		apply(improv_mat[,c(5,6,7), drop=F], 1:2, function(x){sprintf("%8.4f",x)}), 
-		Signf), quote=F))
-));
-
-# Report MANOVA
-manova_pval_mat=matrix(NA, nrow=length(alr_cat_names), ncol=1, dimnames=list(alr_cat_names, "Pr(>F)"));
-if(length(manova_res)>0){
-	plot_text(c(
-		"MANOVA",
-		capture.output(print(manova_res))
-	));
-
-	manova_pval=manova_res[,"Pr(>F)", drop=F]
-	manova_pval_mat[alr_cat_names,]=manova_pval[alr_cat_names,];
-	#par(oma=c(10,14,5,1));
-	paint_matrix(manova_pval_mat[alr_cat_names,,drop=F], title="ALR Predictors MANOVA", 
-		plot_min=0, plot_max=1, high_is_hot=F, value.cex=1, deci_pts=3);
-}
-
-###############################################################################
-# Write summary to file
-fh=file(paste(OutputRoot, ".alr_as_pred.review.tsv", sep=""), "w");
-cat(file=fh, c("Name:", OutputRoot, ""), sep="\t");
-cat(file=fh, "\n");
-cat(file=fh, "\n");
-cat(file=fh, c("Predictors:"), sep="\t");
-cat(file=fh, "\n");
-
-category_names=rownames(manova_pval_mat);
-
-# MANOVA Covariates pvalues
-cat(file=fh, paste("[Covariates]", "p-value:", "signif:", sep="\t"), "\n", sep="");
-for(cov in covariates_arr){
-	if(length(manova_res>0)){
-		pv=signif(manova_res[cov,"Pr(>F)"], 5);
-		cat(file=fh, c(cov, pv, sig_char(pv)), sep="\t");
-	}else{
-		cat(file=fh, c(cov, NA, ""), sep="\t");
-	}
-	cat(file=fh, "\n");
-}
-
-# MANOVA ALR pvalues
-cat(file=fh, c("[ALR Categories]", "p-value:", "signif:"), sep="\t");
-cat(file=fh, "\n");
-for(cat_name in alr_cat_names){
-	if(length(manova_res>0)){
-		pv=signif(manova_res[cat_name,"Pr(>F)"], 5);
-		cat(file=fh, c(cat_name, pv, sig_char(pv)), sep="\t");
-	}else{
-		cat(file=fh, c(cat_name, NA, ""), sep="\t");
-	}
-	cat(file=fh, "\n");
-}
-cat(file=fh, "\n");
-
-# Response pvalues, R^2,  
-num_resp=nrow(summary_res_rsqrd);
-resp_name=rownames(summary_res_rsqrd);
-cat(file=fh, c("Univariate Adj R-Sqrd:"),"\n");
-cat(file=fh, paste("Resp Name:", "Full Model:", "ALR Contrib:", sep="\t"), "\n", sep="");
-for(i in 1:num_resp){
-	cat(file=fh, paste(
-		resp_name[i], 
-		summary_res_rsqrd[i, "Full Model"],
-		summary_res_rsqrd[i, "Difference"],
-	sep="\t"), "\n", sep="");
-}
-close(fh);
-
-###############################################################################
-# Write ALR Predictor Coefficients to file
-
-fh=file(paste(OutputRoot, ".alr_as_pred.alr.covr.coefficients.tsv", sep=""), "w");
-num_out_col=ncol(summary_res_coeff);
-response_names=colnames(summary_res_coeff);
-
-cat(file=fh, "Grouping:\t", paste(rep(OutputRoot, num_out_col), collapse="\t"), sep="");
-cat(file=fh, "\n");
-cat(file=fh, "Responses:\t", paste(response_names, collapse="\t"), sep="");
-cat(file=fh, "\n\n");
-
-for(var in covariate_coefficients){
-	cat(file=fh, var, paste(
-		round(summary_res_coeff[var, response_names], 4), collapse="\t"), sep="\t");
-	cat(file=fh, "\n");
-}
-
-cat(file=fh, "\n");
-
-for(var in shrd_alr_names){
-	cat(file=fh, var, paste(
-		round(summary_res_coeff[var, response_names], 4), collapse="\t"), sep="\t");
-	cat(file=fh, "\n");
-}
-
-close(fh);
-
-
-###############################################################################
-# Write ALR p-values to file
-# Format: Factors as columns, taxa (predictor) as rows
-
-exp_tab=summary_res_pval[shrd_alr_names,,drop=F];
-write.table(exp_tab,  file=paste(OutputRoot, ".alr_as_pred.pvals.tsv", sep=""), sep="\t", quote=F, col.names=NA, row.names=T);
-
-exp_tab=summary_res_coeff[shrd_alr_names,,drop=F];
-write.table(exp_tab,  file=paste(OutputRoot, ".alr_as_pred.coefs.tsv", sep=""), sep="\t", quote=F, col.names=NA, row.names=T);
-
-
-##############################################################################
 
 cat("Done.\n");
 #dev.off();
