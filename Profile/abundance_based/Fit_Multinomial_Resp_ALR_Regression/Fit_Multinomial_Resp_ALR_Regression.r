@@ -1598,6 +1598,26 @@ process_model=function(fit, null_fit=NULL, num_samples=NULL){
 
 fit_info=list();
 
+standardardize_columns=function(datamat, target_var){
+	out_mat=datamat;
+
+	for(v in target_var){
+		val=datamat[,v];
+		mean=mean(val);
+		sd=sd(val);
+		if(sd==0){
+			norm=val-mean;
+		}else{
+			norm=(val-mean)/sd;
+		}
+		out_mat[,v]=norm;
+	}
+	
+	return(out_mat);
+}
+
+standardize=T;
+
 for(cur_time_id in unique_time_ids){
 
 	cat("\n*******************************************************************\n");
@@ -1609,12 +1629,17 @@ for(cur_time_id in unique_time_ids){
 	cur_factors=factors_wo_nas[cur_time_ix,,drop=F];
 	cur_alr=as.data.frame(alr_categories_val[cur_time_ix,,drop=F]);
 
+	cur_responses=cur_factors[,ResponseColname];
+	cur_predictors=cur_factors[,covariates_arr];
+
+	if(standardize){
+		cur_factors=standardardize_columns(cur_factors, target=covariates_arr);
+		cur_alr=standardardize_columns(cur_alr, target=alr_cat_names);
+	}
+
 	num_samples_at_curtime=nrow(cur_factors);
 	cat("Num Samples: ", num_samples_at_curtime, "\n", sep="");
 	cat("\n");
-
-	cur_responses=cur_factors[,ResponseColname];
-	cur_predictors=cur_factors[,covariates_arr];
 
 	fit_info[[cur_time_str]]=list();
 
