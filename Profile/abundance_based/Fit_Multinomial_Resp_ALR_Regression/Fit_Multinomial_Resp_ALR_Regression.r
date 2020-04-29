@@ -749,8 +749,6 @@ plot_ts_stat_table=function(stat_mat,
 	label=F
 	){
 
-print(stat_mat);
-
 	num_times=ncol(stat_mat);
 	num_rows=nrow(stat_mat);
 
@@ -1565,6 +1563,12 @@ process_model=function(fit, null_fit=NULL, num_samples=NULL){
 	res[["num_predictors"]]=(res[["num_coeff"]])*res[["num_respGrps"]];
 	res[["num_samples"]]=num_samples;
 
+	pred_names=colnames(res[["pvalues"]]);
+	pred_names=setdiff(pred_names, "(Intercept)");
+
+	signf_counts=res[["pvalues"]][,pred_names]<0.1;
+	res[["num_signif"]]=apply(signf_counts, 1, function(x){sum(x, na.rm=T);});
+
 	# See M. W. Fagerland and D. W. Hosmer,
 	# "A generalized Hosmer–Lemeshowgoodness-of-fit test for multinomial logisticregression models"
 	# Null distribution is if there was a good fit, so low p-values are bad fits.
@@ -2233,6 +2237,49 @@ for(model_ix in model_types){
 
 	}
 }
+
+###############################################################################
+
+title_page("Summary\nof Significant Predictors\nAcross Responses");
+
+
+signf_mat=matrix(0, nrow=num_modeltypes, ncol=length(response_no_reference));
+rownames(signf_mat)=model_types;
+colnames(signf_mat)=response_no_reference;
+
+signf_mat_wtime=matrix("", nrow=num_modeltypes, ncol=length(response_no_reference));
+rownames(signf_mat_wtime)=model_types;
+colnames(signf_mat_wtime)=response_no_reference;
+
+for(model_ix in model_types){
+	for(time_ix in time_str_ids){
+		for(rsp_ix in response_no_reference){
+
+			# cumulative
+			num_sig=fit_info[[time_ix]][[model_ix]][["num_signif"]][rsp_ix];
+			if(is.finite(num_sig)){
+				signf_mat[model_ix, rsp_ix]=num_sig+signf_mat[model_ix, rsp_ix];
+			}
+
+			# by time
+			if(signf_mat_wtime[model_ix, rsp_ix]==""){
+				signf_str=num_sig;
+			}else{
+				signf_str=paste(signf_mat_wtime[model_ix, rsp_ix], ",", num_sig, sep="");
+			}
+			signf_mat_wtime[model_ix, rsp_ix]=signf_str;
+		}
+	}
+}
+
+plot_text(c(
+	"Number of Significant Predictors:",
+	capture.output(print(signf_mat)),
+	"",
+	"Number of Significant Predictors by Time:",
+	capture.output(print(signf_mat_wtime, quote=F))
+));
+
 
 ###############################################################################
 
