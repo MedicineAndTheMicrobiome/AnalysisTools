@@ -656,31 +656,47 @@ sig_char=function(val){
 	return(" ");
 }
 
-add_signf_char_to_matrix=function(mat){
-	numrows=nrow(mat);
-	numcols=ncol(mat);
+add_signf_char_to_matrix=function(pval_mat, coef_mat){
+	numrows=nrow(pval_mat);
+	numcols=ncol(pval_mat);
+
+	out_list=list();
 
 	if(numrows==0){
-		return(mat);
+		out_list[["pvalue"]]=pval_mat;
+		out_list[["coeff"]]=coef_mat;
+		return(out_list);
+	}else{
+
+		pval_outmat=matrix(sprintf("%6.3f",pval_mat), ncol=numcols);
+		colnames(pval_outmat)=colnames(pval_mat);
+		rownames(pval_outmat)=rownames(pval_mat);
+		pval_outmat=cbind(rbind(pval_outmat, "", ""),"", "");
+
+		coef_outmat=matrix(sprintf("%6.3f",coef_mat), ncol=numcols);
+		colnames(coef_outmat)=colnames(coef_mat);
+		rownames(coef_outmat)=rownames(coef_mat);
+		coef_outmat=cbind(rbind(coef_outmat, "", ""),"", "");
+
+		sigfun=function(x){
+			mx=min(x, na.rm=T);
+			return(sig_char(mx));
+		}
+
+		sigrow=apply(pval_mat, 1, sigfun);
+		sigcol=apply(pval_mat, 2, sigfun);
+
+		pval_outmat[1:numrows, numcols+2]=sigrow;
+		pval_outmat[numrows+2, 1:numcols]=sigcol;
+
+		coef_outmat[1:numrows, numcols+2]=sigrow;
+		coef_outmat[numrows+2, 1:numcols]=sigcol;
+
+		out_list[["pvalue"]]=pval_outmat;
+		out_list[["coeff"]]=coef_outmat;
+
+		return(out_list);
 	}
-
-	outmat=matrix(sprintf("%0.4f",mat), ncol=numcols);
-	colnames(outmat)=colnames(mat);
-	rownames(outmat)=rownames(mat);
-	outmat=cbind(rbind(outmat, "", ""),"", "");
-
-	sigfun=function(x){
-		mx=min(x, na.rm=T);
-		return(sig_char(mx));
-	}
-
-	sigrow=apply(mat, 1, sigfun);
-	sigcol=apply(mat, 2, sigfun);
-
-	outmat[1:numrows, numcols+2]=sigrow;
-	outmat[numrows+2, 1:numcols]=sigcol;
-
-	return(outmat);
 
 }
 
@@ -1902,6 +1918,11 @@ for(resp_ix in response_no_reference){
 		cur_pval_by_time_matrix=pval_bytime_list[[resp_ix]][[model_ix]];
 		cur_pred_by_time_matrix=pred_bytime_list[[resp_ix]][[model_ix]];
 
+		annotated_signf_mat_list=
+			add_signf_char_to_matrix(cur_pval_by_time_matrix, cur_coef_by_time_matrix);
+	
+		print(annotated_signf_mat_list);
+
 		num_model_coeff=nrow(cur_coef_by_time_matrix);
 
 		var_colors=rainbow(num_model_coeff, start=0+1/12, end=5/6+1/12, alpha=3/8);
@@ -1910,7 +1931,7 @@ for(resp_ix in response_no_reference){
 		#----------------------------------------------------------------------------
 		# Plot coefficients
 		par(mfrow=c(1,1));
-		coef_tab=capture.output(print(cur_coef_by_time_matrix, digits=4, width=outwidth));
+		coef_tab=capture.output(print(annotated_signf_mat_list[["coeff"]], quote=F, width=outwidth));
 		plot_text(c(
 			paste("Response: ", resp_ix, "  Model: ", model_ix, " Coefficients"),
 			"Coefficients:",
@@ -1932,8 +1953,7 @@ for(resp_ix in response_no_reference){
 		#----------------------------------------------------------------------------
 		# Plot p-values
 		par(mfrow=c(1,1));
-		pval_signf_mat=add_signf_char_to_matrix(cur_pval_by_time_matrix);
-		pval_tab=capture.output(print(pval_signf_mat, quote=F, width=outwidth));
+		pval_tab=capture.output(print(annotated_signf_mat_list[["pvalue"]], quote=F, width=outwidth));
 		plot_text(c(
 			paste("Reponse: ", resp_ix, "  Model: ", model_ix),
 			"P-Values:",
@@ -1965,8 +1985,11 @@ for(resp_ix in response_no_reference){
 		signf_colr=var_colors[signf_coef_ix];
 		num_signf=sum(signf_coef_ix);
 
+		annotated_signf_mat_list=
+			add_signf_char_to_matrix(signf_pval, signf_coef);
+
 		par(mfrow=c(1,1));
-		coef_tab=capture.output(print(signf_coef, digits=4, width=outwidth));
+		coef_tab=capture.output(print(annotated_signf_mat_list[["coeff"]], digits=4, quote=F, width=outwidth));
 		plot_text(c(
 			paste("Reponse: ", resp_ix, "  Model: ", model_ix),
 			"Significant Coefficients:",
@@ -1984,8 +2007,7 @@ for(resp_ix in response_no_reference){
 
 
 		par(mfrow=c(1,1));
-		pval_signf_mat=add_signf_char_to_matrix(signf_pval);
-		pval_tab=capture.output(print(pval_signf_mat, quote=F, width=outwidth, row.names=F));
+		pval_tab=capture.output(print(annotated_signf_mat_list[["pvalue"]], quote=F, width=outwidth, row.names=F));
 		plot_text(c(
 			paste("Reponse: ", resp_ix, "  Model: ", model_ix),
 			"Significant P-Values:",
