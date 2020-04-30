@@ -228,7 +228,7 @@ bin=function(x, range_names, breaks){
 }
 
 
-remap=function(x, key, value){
+remap=function(x, key, value, leave_unmapped_alone=T){
 
 	len=length(x);
 	if(length(key)!=length(value)){
@@ -239,7 +239,11 @@ remap=function(x, key, value){
 	for(i in 1:len){
 		ix=which(x[i]==key);
 		if(length(ix)==0){
-			new[i]=NA;
+			if(leave_unmapped_alone){
+				new[i]=x[i];
+			}else{
+				new[i]=NA;
+			}
 		}else{
 			new[i]=value[ix];
 		}
@@ -533,8 +537,15 @@ for(cmd in commands){
 		results=eval(parse(text=cmd), envir=factors);
 		print(results);
 		cnames=colnames(factors);
-		factors=cbind(factors, results, stringsAsFactors=F);
-		colnames(factors)=c(cnames, lhs);
+
+		if(any(lhs==cnames)){
+			# Replace
+			factors[,lhs]=results;
+		}else{
+			# Append
+			factors=cbind(factors, results, stringsAsFactors=F);
+			colnames(factors)=c(cnames, lhs);
+		}
 	}
 	
 	cat("ok.\n");
