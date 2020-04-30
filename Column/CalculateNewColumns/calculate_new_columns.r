@@ -248,6 +248,17 @@ remap=function(x, key, value, leave_unmapped_alone=T){
 			new[i]=value[ix];
 		}
 	}
+	
+	# Determine whether to convert results to numeric
+	non_na_ix=!is.na(new);
+	numeric_try=as.numeric(new[non_na_ix]);
+	if(any(is.na(numeric_try))){
+		# leave alone, it still looks like it's non-numeric
+	}else{
+		# convert to numeric
+		new=as.numeric(new);
+	}
+
 	return(new);
 }
 
