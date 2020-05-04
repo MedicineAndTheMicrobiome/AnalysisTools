@@ -135,23 +135,28 @@ remove_sample_or_factors_wNA=function(factors, num_trials=500000, verbose=T){
         }
 	cat("\n");
 
-        best_na_ix=na_ix[best_sequence_ix];
-        best_dim_ix=dim_ix[best_sequence_ix];
+	if(best_sequence_nonna==0){
+		# If no solution found, return empty matrix
+		fact_subset=fact_subset[c(),c(),drop=F];
+	}else{
+		best_na_ix=na_ix[best_sequence_ix];
+		best_dim_ix=dim_ix[best_sequence_ix];
 
-        # Strip r/c from name to recover original index
-        rm_row=as.integer(gsub("r","", best_na_ix[best_dim_ix==1]));
-        rm_col=as.integer(gsub("c","", best_na_ix[best_dim_ix==2]));
+		# Strip r/c from name to recover original index
+		rm_row=as.integer(gsub("r","", best_na_ix[best_dim_ix==1]));
+		rm_col=as.integer(gsub("c","", best_na_ix[best_dim_ix==2]));
 
-        # Remove rows/columns
-        fact_subset=factors;
-        if(length(rm_row)){
-                fact_subset=fact_subset[-rm_row,,drop=F];
-        }
-        if(length(rm_col)){
-                fact_subset=fact_subset[,-rm_col,drop=F];
-        }
+		# Remove rows/columns
+		fact_subset=factors;
+		if(length(rm_row)){
+			fact_subset=fact_subset[-rm_row,,drop=F];
+		}
+		if(length(rm_col)){
+			fact_subset=fact_subset[,-rm_col,drop=F];
+		}
 
-	fact_subset=remove_no_variation_factors(fact_subset, verbose);
+		fact_subset=remove_no_variation_factors(fact_subset, verbose);
+	}
 
 	return(fact_subset);
 }
