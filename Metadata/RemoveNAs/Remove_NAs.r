@@ -137,7 +137,7 @@ remove_sample_or_factors_wNA=function(factors, num_trials=500000, verbose=T){
 
 	if(best_sequence_nonna==0){
 		# If no solution found, return empty matrix
-		fact_subset=fact_subset[c(),c(),drop=F];
+		fact_subset=factors[c(),c(),drop=F];
 	}else{
 		best_na_ix=na_ix[best_sequence_ix];
 		best_dim_ix=dim_ix[best_sequence_ix];
