@@ -50,7 +50,7 @@ usage = paste(
 	"  Factor/Metadata Parameters:\n",
 	"	-f <factors file, contains covariates and multinomial Y>\n",
 	"	-c <list of covariate X's names to select from factor file (filename)>\n",
-	"	-y <Categorical (multinomial) response Y's to select from factor file (filename)>\n",
+	"	-y <Categorical (multinomial) response Y's to select from factor file (column name)>\n",
 	"	[-q <required list of variables to include after NA removal>]\n",
 	"	[-r <reference levels file for variables in factor file>]\n",
 	"	[-t <time variable>]\n",
@@ -124,13 +124,13 @@ if(length(opt$additional_categories)){
 if(length(opt$time_column)){
 	TimeColumn=opt$time_column;
 }else{
-	TimeColumn=character(0);
+	TimeColumn=character();
 }
 
 if(length(opt$subject_column)){
 	SubjectColumn=opt$subject_column;
 }else{
-	SubjectColumn=character(0);
+	SubjectColumn=character();
 }
 
 SummaryFile=opt$summary_file;
@@ -908,7 +908,11 @@ plot_predictions_over_time=function(pred_time_mat, subj_resp_map, resp_name, mod
 	time_diff=(time_max-time_min);
 	xpad=time_diff*.05;
 
-	min_time_sep=min(diff(time_vals));
+	if(num_time_pts==1){
+		min_time_sep=1;
+	}else{
+		min_time_sep=min(diff(time_vals));
+	}
 
 	layout_mat=matrix(c(1,1,2,2,3), ncol=1);
 	layout(layout_mat);
@@ -917,7 +921,6 @@ plot_predictions_over_time=function(pred_time_mat, subj_resp_map, resp_name, mod
 	jitter=rnorm(num_samples, 0, min_time_sep/6); 
 
 	#############################################################################
-
 	plot(0,0, type="n", 
 		xlim=c(time_min-xpad, time_max+xpad),
 		ylim=c(0,1),
@@ -990,6 +993,7 @@ plot_predictions_over_time=function(pred_time_mat, subj_resp_map, resp_name, mod
 	#############################################################################
 
 	plot_group_legend(resp_colors)
+
 }
 
 plot_signif_variables_over_time=function(factors, resp_cnm, time_cnm, sbj_cnm, 
@@ -1004,21 +1008,28 @@ plot_signif_variables_over_time=function(factors, resp_cnm, time_cnm, sbj_cnm,
 		return();
 	}
 
+	targ_var=intersect(targ_var, colnames(factors));
 	signf_factors=factors[,targ_var,drop=F];
+
 	responses_val=as.character(factors[,resp_cnm]);
-	time_val=factors[,time_cnm];
+
+	time_val=as.numeric(as.character(factors[,time_cnm]));
 	uniq_times=sort(unique(time_val));
 	num_uniq_times=length(uniq_times);
-	min_time_span=min(diff(uniq_times));
 
-	sbj_val=factors[,sbj_cnm];
+	if(num_uniq_times>1){
+		min_time_span=min(diff(uniq_times));
+	}else{
+		min_time_span=1;
+	}
+
+	sbj_val=as.character(factors[,sbj_cnm]);
 	uniq_sbj=unique(sbj_val);
 	num_sbj=length(unique(sbj_val));
 
 	resp_group_val=sbj_to_resp_map[sbj_val];
 	uniq_resp_grps=sort(unique(resp_group_val));
 	num_uniq_resp_grps=length(uniq_resp_grps);
-
 
 	#print(signf_factors);
 	#print(responses_val);
@@ -1030,14 +1041,15 @@ plot_signif_variables_over_time=function(factors, resp_cnm, time_cnm, sbj_cnm,
 
 	num_plots=length(targ_var);
 
-
 	num_rows_per_page=5;
 
 	par(mfrow=c(num_rows_per_page,1));
 
 	jitter=rnorm(num_sbj, 0, min_time_span/8);
 
+
 	plot_ix=0;
+
 	for(var_ix in targ_var){
 
 		vals=signf_factors[,var_ix];
@@ -1087,8 +1099,7 @@ plot_signif_variables_over_time=function(factors, resp_cnm, time_cnm, sbj_cnm,
 			resp_grp=sbj_to_resp_map[sbj_ix];
 			sbj_col=resp_to_color_map[resp_grp];
 
-			points(cur_time+jitter[sbj_ix], cur_vals, type="p", col=sbj_col);
-
+			points(cur_time+jitter[cur_sbj], cur_vals, type="p", col=sbj_col);
 		}
 
 		plot_ix=plot_ix+1;
@@ -1230,16 +1241,19 @@ if(length(intersect(ResponseColname, factor_names))){
 	quit(-1);
 }
 
+required_arr=ResponseColname;
 
-required_arr=NULL;
 if(""!=RequiredFile){
-	required_arr=load_list(RequiredFile);
-	cat("Required Variables:\n");
-	print(required_arr);
+	list_required=load_list(RequiredFile);
+	cat("List Required Variables:\n");
+	print(list_required);
 	cat("\n");
+	required_arr=c(required_arr, list_required);
 }else{
 	cat("No Required Variables specified...\n");
 }
+
+
 
 plot_text(c(
 	paste("     Summary File: ", SummaryFile, sep=""),
@@ -1299,9 +1313,14 @@ response_factors=kept_factors[,ResponseColname, drop=F];
 summary(response_factors);
 covariate_factors=kept_factors[,covariates_arr, drop=F];
 subject_ids=kept_factors[,SubjectColumn, drop=F];
-time_ids=kept_factors[,TimeColumn, drop=F];
 
-resp_cov_factors=cbind(subject_ids, time_ids, response_factors, covariate_factors);
+if(length(TimeColumn)==0){
+	time_ids=rep(0, length(subject_ids));
+	resp_cov_factors=cbind(subject_ids, response_factors, covariate_factors);
+}else{
+	time_ids=kept_factors[,TimeColumn, drop=F];
+	resp_cov_factors=cbind(subject_ids, time_ids, response_factors, covariate_factors);
+}
 
 
 ##############################################################################
@@ -1449,26 +1468,23 @@ plot_histograms(alr_categories_val);
 
 ###############################################################################
 
-# Remove variables with no information
+cat("Setting up time id variable...\n");
+if(length(TimeColumn)==0){
+	time_ids=rep(0, nrow(factors_wo_nas));
+	factors_wo_nas=cbind(factors_wo_nas, time_ids);
+	TimeColumn="time_ids";
+}
+
 subject_ids=character();
-time_ids=numeric();
-
-
 cat("Setting up subject id variable...\n");
 if(length(SubjectColumn)){
 	subject_ids=factors_wo_nas[, SubjectColumn];
 }else{
 	cat("Subject IDs not specified, using sample IDs.\n");
 	subject_ids=rownames(factors_wo_nas);
+	factors_wo_nas=cbind(factors_wo_nas, subject_ids);
+	SubjectColumn="subject_ids";
 }	
-
-cat("Setting up times series variable...\n");
-if(length(TimeColumn)){
-	time_ids=factors_wo_nas[, TimeColumn];
-}else{
-	cat("Time IDs not specified, assuming single cross-section.\n");
-	time_ids=rep(0, length(subject_ids));
-}
 
 cat("\n");
 cat("All Time IDs:\n");
@@ -1496,7 +1512,7 @@ cat("Unique Response Groups:\n");
 print(unique_responses);
 
 # Setup sample to subject map
-sample_id_to_subject_map=factors_wo_nas[, c(SubjectColumn, ResponseColname)];
+sample_id_to_subject_map=factors_wo_nas[, c(SubjectColumn, ResponseColname), drop=F];
 cat("Sample to Subject Map:\n");
 print(sample_id_to_subject_map);
 plot_text(c(
@@ -1522,7 +1538,6 @@ plot_text(c(
 	"",
 	capture.output(print(subject_id_to_response_map, quotes=F))
 ));
-
 
 ###############################################################################
 
@@ -1602,19 +1617,23 @@ process_model=function(fit, null_fit=NULL, num_samples=NULL){
 
 fit_info=list();
 
-standardardize_columns=function(datamat, target_var){
+standardize_columns=function(datamat, target_var){
 	out_mat=datamat;
 
 	for(v in target_var){
 		val=datamat[,v];
-		mean=mean(val);
-		sd=sd(val);
-		if(sd==0){
-			norm=val-mean;
+		if(is.numeric(val)){
+			mean=mean(val);
+			sd=sd(val);
+			if(sd==0){
+				norm=val-mean;
+			}else{
+				norm=(val-mean)/sd;
+			}
+			out_mat[,v]=norm;
 		}else{
-			norm=(val-mean)/sd;
+			out_mat[,v]=val;
 		}
-		out_mat[,v]=norm;
 	}
 	
 	return(out_mat);
@@ -1637,8 +1656,8 @@ for(cur_time_id in unique_time_ids){
 	cur_predictors=cur_factors[,covariates_arr];
 
 	if(standardize){
-		cur_factors=standardardize_columns(cur_factors, target=covariates_arr);
-		cur_alr=standardardize_columns(cur_alr, target=alr_cat_names);
+		cur_factors=standardize_columns(cur_factors, target=covariates_arr);
+		cur_alr=standardize_columns(cur_alr, target=alr_cat_names);
 	}
 
 	num_samples_at_curtime=nrow(cur_factors);
@@ -1904,8 +1923,8 @@ for(resp_ix in response_no_reference){
 
 		# remove intercept
 		itcp_ix=which("(Intercept)"==rownames(coef_by_time_matrix));
-		coef_by_time_matrix=coef_by_time_matrix[-itcp_ix,];
-		pval_by_time_matrix=pval_by_time_matrix[-itcp_ix,];
+		coef_by_time_matrix=coef_by_time_matrix[-itcp_ix,,drop=F];
+		pval_by_time_matrix=pval_by_time_matrix[-itcp_ix,,drop=F];
 
 		coef_bytime_list[[resp_ix]][[model_ix]]=coef_by_time_matrix;
 		pval_bytime_list[[resp_ix]][[model_ix]]=pval_by_time_matrix;
@@ -1932,6 +1951,20 @@ if(rownames(factors_wo_nas)!=rownames(alr_categories_val)){
 	alr_and_covariates_matrix=cbind(factors_wo_nas,alr_categories_val);	
 }
 
+list_to_text=function(lis){
+	groups=names(lis);
+	out_line=c();
+	for(g in groups){
+		out_line=c(out_line, g);
+		arr=lis[[g]];
+		for(a in arr){
+			out_line=c(out_line, paste("   ", a));
+		}	
+		out_line=c(out_line, "");
+	}
+	return(out_line);
+}
+
 for(resp_ix in response_no_reference){
 		
 	title_page(paste("Response:\n", resp_ix));
@@ -1950,8 +1983,6 @@ for(resp_ix in response_no_reference){
 		annotated_signf_mat_list=
 			add_signf_char_to_matrix(cur_pval_by_time_matrix, cur_coef_by_time_matrix);
 	
-		print(annotated_signf_mat_list);
-
 		num_model_coeff=nrow(cur_coef_by_time_matrix);
 
 		var_colors=rainbow(num_model_coeff, start=0+1/12, end=5/6+1/12, alpha=3/8);
@@ -1960,7 +1991,7 @@ for(resp_ix in response_no_reference){
 		#----------------------------------------------------------------------------
 		# Plot coefficients
 		par(mfrow=c(1,1));
-		coef_tab=capture.output(print(annotated_signf_mat_list[["coeff"]], quote=F, width=outwidth));
+		coef_tab=capture.output(print(annotated_signf_mat_list[["coeff"]], quote=F));
 		plot_text(c(
 			paste("Response: ", resp_ix, "  Model: ", model_ix, " Coefficients"),
 			"Coefficients:",
@@ -1982,7 +2013,8 @@ for(resp_ix in response_no_reference){
 		#----------------------------------------------------------------------------
 		# Plot p-values
 		par(mfrow=c(1,1));
-		pval_tab=capture.output(print(annotated_signf_mat_list[["pvalue"]], quote=F, width=outwidth));
+		pval_tab=capture.output(print(annotated_signf_mat_list[["pvalue"]], quote=F));
+
 		plot_text(c(
 			paste("Reponse: ", resp_ix, "  Model: ", model_ix),
 			"P-Values:",
@@ -2018,7 +2050,9 @@ for(resp_ix in response_no_reference){
 			add_signf_char_to_matrix(signf_pval, signf_coef);
 
 		par(mfrow=c(1,1));
-		coef_tab=capture.output(print(annotated_signf_mat_list[["coeff"]], digits=4, quote=F, width=outwidth));
+		coef_tab=capture.output(
+			print(annotated_signf_mat_list[["coeff"]], digits=4, quote=F, width=outwidth));
+
 		plot_text(c(
 			paste("Reponse: ", resp_ix, "  Model: ", model_ix),
 			"Significant Coefficients:",
@@ -2036,7 +2070,9 @@ for(resp_ix in response_no_reference){
 
 
 		par(mfrow=c(1,1));
-		pval_tab=capture.output(print(annotated_signf_mat_list[["pvalue"]], quote=F, width=outwidth, row.names=F));
+		pval_tab=capture.output(
+			print(annotated_signf_mat_list[["pvalue"]], quote=F, width=outwidth, row.names=F));
+
 		plot_text(c(
 			paste("Reponse: ", resp_ix, "  Model: ", model_ix),
 			"Significant P-Values:",
@@ -2056,7 +2092,7 @@ for(resp_ix in response_no_reference){
 		#----------------------------------------------------------------------------
 
 		if(num_signf>0){
-			signf_coef_by_model[[model_ix]]=signf_coef;
+			signf_coef_by_model[[model_ix]]=coef_tab;
 			signf_pval_by_model[[model_ix]]=pval_tab;
 		}else{
 			signf_coef_by_model[[model_ix]]="No significant variables";
@@ -2081,19 +2117,26 @@ for(resp_ix in response_no_reference){
 	
 	}
 
+	# Output 
+
 
 	par(mfrow=c(1,1));
+
+	signf_coef_as_text=list_to_text(signf_coef_by_model);
+	signf_pval_as_text=list_to_text(signf_pval_by_model);
 	plot_text(c(
 		paste("Comparison of Models for Response: ", resp_ix, sep=""),
 		"",
 		"-------------------------------------------------------------------------------------",
 		"",
 		"Significant Coefficients:",
-		capture.output(print(signf_coef_by_model, digits=4, quote=F)),
+		"",
+		signf_coef_as_text,
 		"-------------------------------------------------------------------------------------",
 		"",
 		"Significant P-Values:",
-		capture.output(print(signf_pval_by_model, quote=F, row.names=F))
+		"",
+		signf_pval_as_text
 	));
 	
 
@@ -2240,7 +2283,7 @@ for(model_ix in model_types){
 
 ###############################################################################
 
-title_page("Summary\nof Significant Predictors\nAcross Responses");
+title_page("Summary of\nSignificant Predictors\nAcross Responses");
 
 
 signf_mat=matrix(0, nrow=num_modeltypes, ncol=length(response_no_reference));
