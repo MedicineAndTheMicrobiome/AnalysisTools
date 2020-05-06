@@ -997,14 +997,16 @@ plot_predictions_over_time=function(pred_time_mat, subj_resp_map, resp_name, mod
 }
 
 plot_signif_variables_over_time=function(factors, resp_cnm, time_cnm, sbj_cnm, 
-	resp, targ_var, times, sbj_to_resp_map, resp_to_color_map){
+	resp, targ_var, times, sbj_to_resp_map, resp_to_color_map, model_ix){
 
 	if(length(targ_var)==0){
 		plot(0,0, type="n",
 			xlim=c(-1,1), ylim=c(-1,1),
 			xlab="", ylab="", xaxt="n", yaxt="n",
 			main="", bty="n");
-		text(0,0, "No significant variables.", cex=3);
+		text(0,0, 
+			paste(model_ix, " / ", resp, ":\n\nNo significant variables.", sep=""), 
+			cex=3);
 		return();
 	}
 
@@ -1076,13 +1078,21 @@ plot_signif_variables_over_time=function(factors, resp_cnm, time_cnm, sbj_cnm,
 		plot(0,0, type="n", 
 			xlim=c(time_range[1]-xpad, time_range[2]+xpad),
 			ylim=c(val_rng[1]-ypad, val_rng[2]+ypad),
-			main=var_ix, xlab="time", ylab="");
+			main=paste(model_ix, "/", resp, ":  ", var_ix, sep=""), 
+			xlab="time", ylab="");
 
 		abline(v=uniq_times, col="grey");
 
 		# Plot mean lines
 		for(rgrp in uniq_resp_grps){
-			points(uniq_times, grp_by_time_means[rgrp,], type="l", col=resp_to_color_map[rgrp]);
+			if(num_uniq_times>1){
+				points(uniq_times, grp_by_time_means[rgrp,], type="l", col=resp_to_color_map[rgrp]);
+			}else{
+				points(
+					c(uniq_times-1/8, uniq_times+1/8),
+					rep(grp_by_time_means[rgrp,],2),
+					 type="l", col=resp_to_color_map[rgrp], lwd=2);
+			}
 		}
 
 		# Plot scattered points
@@ -1953,9 +1963,14 @@ if(rownames(factors_wo_nas)!=rownames(alr_categories_val)){
 
 list_to_text=function(lis){
 	groups=names(lis);
+	
+	if(length(groups)==0){
+		return("No Values.");
+	}
+
 	out_line=c();
 	for(g in groups){
-		out_line=c(out_line, g);
+		out_line=c(out_line, paste("[", g, "]"));
 		arr=lis[[g]];
 		for(a in arr){
 			out_line=c(out_line, paste("   ", a));
@@ -2016,7 +2031,7 @@ for(resp_ix in response_no_reference){
 		pval_tab=capture.output(print(annotated_signf_mat_list[["pvalue"]], quote=F));
 
 		plot_text(c(
-			paste("Reponse: ", resp_ix, "  Model: ", model_ix),
+			paste("Response: ", resp_ix, "  Model: ", model_ix),
 			"P-Values:",
 			"",
 			pval_tab
@@ -2039,7 +2054,6 @@ for(resp_ix in response_no_reference){
 		# Pull out predictors that were significant p<.1
 
 		signf_coef_ix=apply(cur_pval_by_time_matrix, 1, function(x){ min(x, na.rm=T)<0.1 });
-		print(signf_coef_ix);
 		
 		signf_coef=cur_coef_by_time_matrix[signf_coef_ix,,drop=F];
 		signf_pval=cur_pval_by_time_matrix[signf_coef_ix,,drop=F];
@@ -2109,10 +2123,11 @@ for(resp_ix in response_no_reference){
 			TimeColumn,
 			SubjectColumn,
 			resp_ix,
-			rownames(signf_coef_by_model[[model_ix]]),
+			rownames(signf_coef),
 			unique_time_ids,
 			subject_id_to_response_map,
-			grp_colors
+			grp_colors,
+			model_ix
 		);
 	
 	}
@@ -2227,14 +2242,15 @@ plot_variables_by_response_venn=function(coef_bytime, pval_bytime){
 		);
 
 		plot_text(c(
+			paste("Model: ", model_ix, sep=""),
 			"Exclusivity of Predictors:",
 			"",
-			capture.output(print(excl_to_resp_list)),
+			list_to_text(excl_to_resp_list),
 			"",
 			"",
 			"Shared Across All Response Groups:",
 			"",
-			incl_to_all_resp
+			list_to_text(incl_to_all_resp)
 		));
 	}
 	
