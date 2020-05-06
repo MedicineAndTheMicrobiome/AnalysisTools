@@ -834,6 +834,8 @@ plot_ts_stat_table=function(stat_mat,
 		for(i in 1:num_rows){
 			points(time_values, stat_mat[i,], type="b", col=grp_colors[i], lwd=4);
 		}
+	}else{
+		text((plot_xmin+plot_xmax)/2, (plot_ymin+plot_ymax)/2, "[This plot intentionally left blank.]", cex=2);
 	}
 
 	if(label==T){
@@ -925,7 +927,7 @@ plot_predictions_over_time=function(pred_time_mat, subj_resp_map, resp_name, mod
 		xlim=c(time_min-xpad, time_max+xpad),
 		ylim=c(0,1),
 		xlab="Time",
-		ylab="Probability"
+		ylab=paste("Probability of Being Classified as ", resp_name, sep="")
 	);
 
 	abline(h=c(0,.5,1), col="grey", lty=2);
@@ -940,7 +942,7 @@ plot_predictions_over_time=function(pred_time_mat, subj_resp_map, resp_name, mod
 			points(tval+jitter[s], pred_time_mat[s,t], col=color);
 		}
 	}
-	title(main=paste(model_name, " Model's Prediction of ", resp_name, " in Probabilities", sep=""));
+	title(main=paste("Response: ", resp_name, " / Model: ", model_name, " Prediction in Probabilities", sep=""));
 
 	#############################################################################
 
@@ -957,7 +959,7 @@ plot_predictions_over_time=function(pred_time_mat, subj_resp_map, resp_name, mod
 		xlim=c(time_min-xpad, time_max+xpad),
 		ylim=c(-logit_max,logit_max),
 		xlab="Time",
-		ylab="Logit(Probability)"
+		ylab=paste("Logit(Probability of ", resp_name, " Classification)", sep="")
 	);
 
 	abline(h=0, col="grey", lty=2);
@@ -988,7 +990,8 @@ plot_predictions_over_time=function(pred_time_mat, subj_resp_map, resp_name, mod
 			points(tval+jitter[s], lo, col=color);
 		}
 	}
-	title(main=paste(model_name, " Model's Prediction of ", resp_name, " in logit(Probability)s", sep=""));
+	title(main=paste("Response: ", resp_name, " / Model: ", model_name, 
+		" Predictions in logit(Probability)s", sep=""));
 
 	#############################################################################
 
@@ -1005,7 +1008,7 @@ plot_signif_variables_over_time=function(factors, resp_cnm, time_cnm, sbj_cnm,
 			xlab="", ylab="", xaxt="n", yaxt="n",
 			main="", bty="n");
 		text(0,0, 
-			paste(model_ix, " / ", resp, ":\n\nNo significant variables.", sep=""), 
+			paste(resp, " / ", model_ix, ":\n\nNo significant Predictors\nto Plot.", sep=""), 
 			cex=3);
 		return();
 	}
@@ -1078,7 +1081,7 @@ plot_signif_variables_over_time=function(factors, resp_cnm, time_cnm, sbj_cnm,
 		plot(0,0, type="n", 
 			xlim=c(time_range[1]-xpad, time_range[2]+xpad),
 			ylim=c(val_rng[1]-ypad, val_rng[2]+ypad),
-			main=paste(model_ix, "/", resp, ":  ", var_ix, sep=""), 
+			main=paste(resp, "/", model_ix, ":  ", var_ix, " Values", sep=""), 
 			xlab="time", ylab="");
 
 		abline(v=uniq_times, col="grey");
@@ -2008,7 +2011,8 @@ for(resp_ix in response_no_reference){
 		par(mfrow=c(1,1));
 		coef_tab=capture.output(print(annotated_signf_mat_list[["coeff"]], quote=F));
 		plot_text(c(
-			paste("Response: ", resp_ix, "  Model: ", model_ix, " Coefficients"),
+			paste("Response: ", resp_ix, "  Model: ", model_ix),
+			"",
 			"Coefficients:",
 			"",
 			coef_tab
@@ -2016,12 +2020,13 @@ for(resp_ix in response_no_reference){
 
 		paint_matrix(
 			mat=cur_coef_by_time_matrix, 
-			title=paste("Response: ", resp_ix, "  Model: ", model_ix, "  Coefficients", sep=""), 
+			title=paste("Response: ", resp_ix, " / Model:  ", model_ix, " :  Coefficients", sep=""), 
 			value.cex=1.5, plot_row_dendr=T);
 
 		layout_m=matrix(c(1,1,1,2), nrow=4, ncol=1);
 		layout(layout_m);
-		plot_ts_stat_table(cur_coef_by_time_matrix, title=paste(resp_ix, ", Coefficients: ", model_ix, "\n"),
+		plot_ts_stat_table(cur_coef_by_time_matrix, 
+			title=paste("Response: ", resp_ix, " / Model:  ", model_ix, " :  Coefficients", sep=""),
 			grp_colors=var_colors, zero_refline=T);
 		plot_group_legend(var_colors);
 
@@ -2031,7 +2036,8 @@ for(resp_ix in response_no_reference){
 		pval_tab=capture.output(print(annotated_signf_mat_list[["pvalue"]], quote=F));
 
 		plot_text(c(
-			paste("Response: ", resp_ix, "  Model: ", model_ix),
+			paste("Response: ", resp_ix, " / Model:  ", model_ix, sep=""),
+			"",
 			"P-Values:",
 			"",
 			pval_tab
@@ -2039,14 +2045,15 @@ for(resp_ix in response_no_reference){
 
 		paint_matrix(
 			mat=cur_pval_by_time_matrix, 
-			title=paste("Response: ", resp_ix, "  Model: ", model_ix, "  P-Values", sep=""), 
+			title=paste("Response: ", resp_ix, " / Model:  ", model_ix, "  P-Values", sep=""), 
 			value.cex=1.5, plot_row_dendr=T, high_is_hot=F);
 
 		nlog10pval=neglog10_trans_mat(cur_pval_by_time_matrix);
 
 		layout_m=matrix(c(1,1,1,2), nrow=4, ncol=1);
 		layout(layout_m);
-		plot_ts_stat_table(nlog10pval, title=paste(resp_ix, ", -log10(P-Values): ", model_ix, "\n"),
+		plot_ts_stat_table(nlog10pval, 
+			title=paste("Response: ", resp_ix, " / Model: ", model_ix, ":  -log10(P-Values)", sep=""),
 			grp_colors=var_colors, plot_ymin=0, nlog10_reflines=T);
 		plot_group_legend(var_colors);
 
@@ -2068,7 +2075,8 @@ for(resp_ix in response_no_reference){
 			print(annotated_signf_mat_list[["coeff"]], digits=4, quote=F, width=outwidth));
 
 		plot_text(c(
-			paste("Reponse: ", resp_ix, "  Model: ", model_ix),
+			paste("Response: ", resp_ix, " / Model: ", model_ix),
+			"",
 			"Significant Coefficients:",
 			"",
 			coef_tab
@@ -2077,7 +2085,8 @@ for(resp_ix in response_no_reference){
 		layout_m=matrix(c(1,1,1,2), nrow=4, ncol=1);
 		layout(layout_m);
 		plot_ts_stat_table(signf_coef, 
-			title=paste(resp_ix, ", Significant Coefficients: ", model_ix, "\n"),
+			title=paste("Response: ", resp_ix, " / Model: ", model_ix, 
+				":  Significant Coefficients:", sep=""),
 			grp_colors=signf_colr, zero_refline=T,
 			label=T);
 		plot_group_legend(signf_colr);
@@ -2088,7 +2097,8 @@ for(resp_ix in response_no_reference){
 			print(annotated_signf_mat_list[["pvalue"]], quote=F, width=outwidth, row.names=F));
 
 		plot_text(c(
-			paste("Reponse: ", resp_ix, "  Model: ", model_ix),
+			paste("Response: ", resp_ix, " / Model: ", model_ix, sep=""),
+			"",
 			"Significant P-Values:",
 			"",
 			pval_tab
@@ -2098,7 +2108,8 @@ for(resp_ix in response_no_reference){
 		layout(layout_m);
 		nlog10pval=neglog10_trans_mat(signf_pval);
 		plot_ts_stat_table(nlog10pval, 
-			title=paste(resp_ix, ", Significant -log10(P-Values): ", model_ix, "\n"),
+			title=paste("Response: ", resp_ix, " / Model: ", model_ix, 
+				":  Significant -log10(P-Values)", sep=""),
 			grp_colors=signf_colr, plot_ymin=0, nlog10_reflines=T,
 			label=T);
 		plot_group_legend(signf_colr);
@@ -2140,7 +2151,9 @@ for(resp_ix in response_no_reference){
 	signf_coef_as_text=list_to_text(signf_coef_by_model);
 	signf_pval_as_text=list_to_text(signf_pval_by_model);
 	plot_text(c(
-		paste("Comparison of Models for Response: ", resp_ix, sep=""),
+		paste("Response: ", resp_ix),
+		"",
+		"Comparison of Models:",
 		"",
 		"-------------------------------------------------------------------------------------",
 		"",
@@ -2281,6 +2294,7 @@ for(model_ix in model_types){
 
 		plot_text(c(
 			title,
+			"",
 			"Coefficients",
 			capture.output(print(coef_mat)),
 			"",
@@ -2331,13 +2345,20 @@ for(model_ix in model_types){
 	}
 }
 
-plot_text(c(
-	"Number of Significant Predictors:",
-	capture.output(print(signf_mat)),
-	"",
-	"Number of Significant Predictors by Time:",
-	capture.output(print(signf_mat_wtime, quote=F))
-));
+if(num_unique_time_ids>1){
+	plot_text(c(
+		"Number of Significant Predictors:",
+		capture.output(print(signf_mat)),
+		"",
+		"Number of Significant Predictors by Time (comma-separated):",
+		capture.output(print(signf_mat_wtime, quote=F))
+	));
+}else{
+	plot_text(c(
+		"Number of Significant Predictors:",
+		capture.output(print(signf_mat))
+	));
+}
 
 
 ###############################################################################
