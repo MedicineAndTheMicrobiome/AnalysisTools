@@ -1057,6 +1057,12 @@ plot_signif_variables_over_time=function(factors, resp_cnm, time_cnm, sbj_cnm,
 
 	plot_ix=0;
 
+	if(max(nchar(uniq_sbj))<=3){
+		label_pts=T;
+	}else{
+		label_pts=F;
+	}
+
 	for(var_ix in targ_var){
 
 		vals=signf_factors[,var_ix];
@@ -1115,7 +1121,10 @@ plot_signif_variables_over_time=function(factors, resp_cnm, time_cnm, sbj_cnm,
 			sbj_col=resp_to_color_map[resp_grp];
 
 			points(cur_time+jitter[sbj_ix], cur_vals, type="p", col=sbj_col);
-			text(cur_time+jitter[sbj_ix], cur_vals, sbj_ix, cex=.3);
+
+			if(label_pts){
+				text(cur_time+jitter[sbj_ix], cur_vals, sbj_ix, cex=.3);
+			}
 		}
 
 		plot_ix=plot_ix+1;
