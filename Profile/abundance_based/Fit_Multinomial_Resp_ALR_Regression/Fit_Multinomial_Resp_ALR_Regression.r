@@ -2319,11 +2319,11 @@ for(model_ix in model_types){
 			capture.output(print(pval_mat))
 		));
 
-		paint_matrix(coef_mat, title=paste(title, " Coeficients"));
+		paint_matrix(coef_mat, title=paste(title, " Coefficients (All)"));
 
 
 		filt_coef_mat=mask_matrix(coef_mat, pval_mat, .1, 0);
-		paint_matrix(filt_coef_mat, title=paste(title, " Coeficients (P-values < 0.1)"), label_zeros=F);
+		paint_matrix(filt_coef_mat, title=paste(title, " Coefficients (P-values < 0.1)"), label_zeros=F);
 
 	}
 }
