@@ -1441,12 +1441,15 @@ plot_text(c(
 #response_factors=as.matrix(response_factors);
 dafr_predictors_factors=as.data.frame(cbind(covariate_factors, alr_categories_val));
 
+response_reference_level=as.character(levels(response_factors[,1])[1]);
 cat("Response Summary:\n");
 s=summary(response_factors);
 plot_text(c(
 	"Response Summary:",
 	"\n",
-	capture.output(print(s))
+	capture.output(print(s)),
+	"",
+	paste("Reference Level: ", response_reference_level, "\n", sep="")
 ));
 
 cat("Plotting Response Histograms:\n");
@@ -1523,6 +1526,7 @@ print(unique_subject_ids);
 cat("\n");
 cat("Unique Response Groups:\n");
 print(unique_responses);
+
 
 # Setup sample to subject map
 sample_id_to_subject_map=factors_wo_nas[, c(SubjectColumn, ResponseColname), drop=F];
@@ -2013,6 +2017,7 @@ for(resp_ix in response_no_reference){
 		plot_text(c(
 			paste("Response: ", resp_ix, "  Model: ", model_ix),
 			"",
+			paste("Reference Level: ", response_reference_level, sep=""),
 			"Coefficients:",
 			"",
 			coef_tab
@@ -2151,7 +2156,7 @@ for(resp_ix in response_no_reference){
 	signf_coef_as_text=list_to_text(signf_coef_by_model);
 	signf_pval_as_text=list_to_text(signf_pval_by_model);
 	plot_text(c(
-		paste("Response: ", resp_ix),
+		paste("Response: ", resp_ix, "    Reference: ", response_reference_level),
 		"",
 		"Comparison of Models:",
 		"",
