@@ -1051,7 +1051,9 @@ plot_signif_variables_over_time=function(factors, resp_cnm, time_cnm, sbj_cnm,
 	par(mfrow=c(num_rows_per_page,1));
 
 	jitter=rnorm(num_sbj, 0, min_time_span/8);
-
+	names(jitter)=uniq_sbj;
+	cat("Jitter:\n");
+	print(jitter);
 
 	plot_ix=0;
 
@@ -1112,7 +1114,8 @@ plot_signif_variables_over_time=function(factors, resp_cnm, time_cnm, sbj_cnm,
 			resp_grp=sbj_to_resp_map[sbj_ix];
 			sbj_col=resp_to_color_map[resp_grp];
 
-			points(cur_time+jitter[cur_sbj], cur_vals, type="p", col=sbj_col);
+			points(cur_time+jitter[sbj_ix], cur_vals, type="p", col=sbj_col);
+			text(cur_time+jitter[sbj_ix], cur_vals, sbj_ix, cex=.3);
 		}
 
 		plot_ix=plot_ix+1;
