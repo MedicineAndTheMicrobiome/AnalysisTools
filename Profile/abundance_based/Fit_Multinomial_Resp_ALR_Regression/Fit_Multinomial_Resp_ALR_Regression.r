@@ -1332,8 +1332,9 @@ subject_ids=kept_factors[,SubjectColumn, drop=F];
 
 if(length(TimeColumn)){
 	resp_cov_factors=cbind(subject_ids, kept_factors[,TimeColumn, drop=F], response_factors, covariate_factors);
+}else{
+	resp_cov_factors=cbind(subject_ids, response_factors, covariate_factors);
 }
-
 
 ##############################################################################
 # Reconcile factors with samples
