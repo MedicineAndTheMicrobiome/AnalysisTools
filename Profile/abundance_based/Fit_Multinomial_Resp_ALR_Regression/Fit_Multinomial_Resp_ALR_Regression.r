@@ -1327,12 +1327,8 @@ summary(response_factors);
 covariate_factors=kept_factors[,covariates_arr, drop=F];
 subject_ids=kept_factors[,SubjectColumn, drop=F];
 
-if(length(TimeColumn)==0){
-	time_ids=rep(0, length(subject_ids));
-	resp_cov_factors=cbind(subject_ids, response_factors, covariate_factors);
-}else{
-	time_ids=kept_factors[,TimeColumn, drop=F];
-	resp_cov_factors=cbind(subject_ids, time_ids, response_factors, covariate_factors);
+if(length(TimeColumn)){
+	resp_cov_factors=cbind(subject_ids, kept_factors[,TimeColumn, drop=F], response_factors, covariate_factors);
 }
 
 
@@ -1486,9 +1482,12 @@ plot_histograms(alr_categories_val);
 
 cat("Setting up time id variable...\n");
 if(length(TimeColumn)==0){
+	cat("No Time Column Specified... Assuming Cross-sectional Analysis.\n");
 	time_ids=rep(0, nrow(factors_wo_nas));
 	factors_wo_nas=cbind(factors_wo_nas, time_ids);
 	TimeColumn="time_ids";
+}else{
+	time_ids=factors_wo_nas[,TimeColumn];
 }
 
 subject_ids=character();
@@ -1568,7 +1567,7 @@ for(rix in unique_responses){
 		cur_time_ix=(as.numeric(tix)==time_ids);
 		tm_rsp_ix=(cur_time_ix & cur_resp_ix);
 
-		cat(rix, " ", tix, " ", tm_rsp_ix, "\n");
+		#cat(rix, " ", tix, " ", tm_rsp_ix, "\n");
 		sample_sizes_resp_time[rix,tix]=sum(tm_rsp_ix);
 	}
 }
