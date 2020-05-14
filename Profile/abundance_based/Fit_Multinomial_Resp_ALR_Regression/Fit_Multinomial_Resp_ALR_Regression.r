@@ -352,19 +352,16 @@ plot_text=function(strings){
 	}
 }
 
-title_page=function(title, subtitle=""){
+title_page=function(title, subtitle="", notes=""){
 
 	par(mfrow=c(1,1));
 	plot(0,0, xlim=c(0,1), ylim=c(0,1), type="n",  xaxt="n", yaxt="n",
 		xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
 		);
 
-	if(subtitle!=""){
-		text(.5, .5, title, adj=c(.5,-1), cex=4, font=2); 
-		text(.5, .5, subtitle, adj=c(.5, 1), cex=2); 
-	}else{
-		text(.5, .5, title, adj=c(.5,.5), cex=4, font=2); 
-	}
+	text(.5, .8, title, adj=c(.5, -1), cex=4, font=2); 
+	text(.5, .5, subtitle, adj=c(.5, 0), cex=2, font=1); 
+	text(.5, .4, notes, adj=c(.5, 1), cex=1, font=3); 
 }
 
 paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_is_hot=T, deci_pts=4, 
@@ -805,15 +802,15 @@ plot_ts_stat_table=function(stat_mat,
 	}
 
 	if(nlog10_reflines){
-		par(mar=c(4, 4, 4, 4));
+		par(mar=c(4, 4, 5, 4));
 	}else{
-		par(mar=c(4, 4, 4, 1));
+		par(mar=c(4, 4, 5, 1));
 	}
 
 	plot(0, type="n", xlab="Time", ylab="", 
 		xlim=c(plot_xmin, plot_xmax), ylim=c(plot_ymin, plot_ymax));
 
-	title(main=title);
+	title(main=title, cex.main=3, font.main=2);
 	title(main=subtitle, line=.8, cex.main=.85);
 
 	if(nlog10_reflines){
@@ -2001,14 +1998,37 @@ list_to_text=function(lis){
 
 for(resp_ix in response_no_reference){
 		
-	title_page(paste("Response:\n", resp_ix));
+	title_page(
+		resp_ix, 
+		subtitle="as a response", 
+		notes=paste("Model Diagnostics:", "", paste(model_types, collapse="\n"), "", 
+			paste("Comparison of Models for ", resp_ix, sep=""), sep="\n")
+	);
 
 	signf_coef_by_model=list();
 	signf_pval_by_model=list();
 
 	for(model_ix in model_types){
 
-		title_page(resp_ix, subtitle=paste("Model Type:", model_ix));
+		title_page(resp_ix, 
+			subtitle=paste("Model:", model_ix),
+			note=paste(c(
+				"All Coefficients Table", 
+				"All Coefficients Dendrogram/Heatmap",
+				"All Coefficients Plot",
+				"All P-Values Table", 
+				"All P-Values Dendrogram/Heatmap",
+				"All -log10(P-Values) Plot", 
+				"",
+				"Only Significant Coefficients Table", 
+				"Only Significant Coefficients Plot", 
+				"Only Significant P-Values Table", 
+				"Only Significant P-Values Plot", 
+				"",
+				"Predictions (Probability & Logit)", 
+				"Significant Predictors Plots"
+			), collapse="\n")
+		);
 
 		cur_coef_by_time_matrix=coef_bytime_list[[resp_ix]][[model_ix]];
 		cur_pval_by_time_matrix=pval_bytime_list[[resp_ix]][[model_ix]];
@@ -2043,7 +2063,8 @@ for(resp_ix in response_no_reference){
 		layout_m=matrix(c(1,1,1,2), nrow=4, ncol=1);
 		layout(layout_m);
 		plot_ts_stat_table(cur_coef_by_time_matrix, 
-			title=paste("Response: ", resp_ix, " / Model:  ", model_ix, " :  Coefficients", sep=""),
+			title=paste("All Coefficients"),
+			subtitle=paste("Response: ", resp_ix, " / Model:  ", model_ix, sep=""),
 			grp_colors=var_colors, zero_refline=T);
 		plot_group_legend(var_colors);
 
@@ -2070,7 +2091,8 @@ for(resp_ix in response_no_reference){
 		layout_m=matrix(c(1,1,1,2), nrow=4, ncol=1);
 		layout(layout_m);
 		plot_ts_stat_table(nlog10pval, 
-			title=paste("Response: ", resp_ix, " / Model: ", model_ix, ":  -log10(P-Values)", sep=""),
+			title=paste("All -log10(P-Values)"),
+			subtitle=paste("Response: ", resp_ix, " / Model:  ", model_ix, sep=""),
 			grp_colors=var_colors, plot_ymin=0, nlog10_reflines=T);
 		plot_group_legend(var_colors);
 
@@ -2102,8 +2124,8 @@ for(resp_ix in response_no_reference){
 		layout_m=matrix(c(1,1,1,2), nrow=4, ncol=1);
 		layout(layout_m);
 		plot_ts_stat_table(signf_coef, 
-			title=paste("Response: ", resp_ix, " / Model: ", model_ix, 
-				":  Significant Coefficients:", sep=""),
+			title=paste("Only Significant Coefficients:", sep=""),
+			subtitle=paste("Response: ", resp_ix, " / Model:  ", model_ix, sep=""),
 			grp_colors=signf_colr, zero_refline=T,
 			label=T);
 		plot_group_legend(signf_colr);
@@ -2125,8 +2147,8 @@ for(resp_ix in response_no_reference){
 		layout(layout_m);
 		nlog10pval=neglog10_trans_mat(signf_pval);
 		plot_ts_stat_table(nlog10pval, 
-			title=paste("Response: ", resp_ix, " / Model: ", model_ix, 
-				":  Significant -log10(P-Values)", sep=""),
+			title=paste("Only Significant -log10(P-Values)", sep=""),
+			subtitle=paste("Response: ", resp_ix, " / Model:  ", model_ix, sep=""),
 			grp_colors=signf_colr, plot_ymin=0, nlog10_reflines=T,
 			label=T);
 		plot_group_legend(signf_colr);
@@ -2233,7 +2255,13 @@ plot_variables_by_response_venn=function(coef_bytime, pval_bytime){
 		var_by_resp_list[[model_ix]]=resp_var_mat;
 	}
 
-	title_page("Comparison of\nAssociations\nAcross Responses", "p-values");
+	title_page(
+		"Heatmap Comparisons", 
+		paste("\nAll P-Values\n\nBetween Response Groups:", "", 
+		paste(response_no_reference, collapse="\n"), sep="\n"),
+		paste("Across Models:", "", paste(models, collapse="\n"), sep="\n")
+	);
+
 	for(model_ix in models){
 		paint_matrix(
 			mat=var_by_resp_list[[model_ix]], 
@@ -2243,7 +2271,13 @@ plot_variables_by_response_venn=function(coef_bytime, pval_bytime){
 		);
 	}
 
-	title_page("Comparison of\nSignif. Assoc.\nAcross Response Groups", "p-values < 0.1");
+	title_page(
+		"Exclusivity Heatmaps",
+		paste("\nSignificant P-values (p<0.1)\n\nBetween Response Groups:",
+			paste(response_no_reference, collapse="\n"), sep="\n"),
+		paste("Across Models:", paste(models, collapse="\n"), sep="\n")
+	);
+
 	for(model_ix in models){
 
 		signf_mat=var_by_resp_list[[model_ix]] < .1;
@@ -2290,7 +2324,7 @@ plot_variables_by_response_venn(coef_bytime_list, pval_bytime_list);
 
 ###############################################################################
 
-title_page("Comparison\nof Reponse Groups\nover Time");
+title_page("Association Comparisons", "Between Responses", "Over Time");
 
 mask_matrix=function(val_mat, mask_mat, mask_thres, mask_val){
         masked_matrix=val_mat;
@@ -2300,12 +2334,21 @@ mask_matrix=function(val_mat, mask_mat, mask_thres, mask_val){
 
 for(model_ix in model_types){
 
-	title_page(paste("Model:\n", model_ix, sep=""));
+	title_page(
+		model_ix,
+		paste("Responses: ", "", paste(response_no_reference, collapse="\n"), sep="\n"),
+		paste(c("All Coefficients / P-Values Table", "All Coefficient Heatmap", "Significant Coefficients"),
+			collapse="\n")
+	)
 
 	for(time_ix in time_str_ids){
 
 		coef_mat=t(fit_info[[time_ix]][[model_ix]][["Coefficients"]]);
 		pval_mat=t(fit_info[[time_ix]][[model_ix]][["pvalues"]]);
+
+		pred_names_noIntc=setdiff(rownames(coef_mat), "(Intercept)");
+		coef_mat=coef_mat[pred_names_noIntc,, drop=F];
+		pval_mat=pval_mat[pred_names_noIntc,, drop=F];
 		
 		title=paste("Model: ", model_ix, "  Time: ", time_ix);
 
@@ -2329,8 +2372,6 @@ for(model_ix in model_types){
 }
 
 ###############################################################################
-
-title_page("Summary of\nSignificant Predictors\nAcross Responses");
 
 
 signf_mat=matrix(0, nrow=num_modeltypes, ncol=length(response_no_reference));
