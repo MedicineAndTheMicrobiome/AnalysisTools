@@ -1970,7 +1970,7 @@ outwidth=2000;
 
 
 #factors_wo_nas,alr_categories_val
-if(rownames(factors_wo_nas)!=rownames(alr_categories_val)){
+if(any(rownames(factors_wo_nas)!=rownames(alr_categories_val))){
 	cat("Error: Factor sample IDs don't match ALR sample IDs\n");
 	quit(-1)
 }else{
