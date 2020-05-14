@@ -18,14 +18,16 @@ params=c(
 	"contains_remaining", "R", 2, "logical",
 	"shorten_category_names", "x", 2, "character",
 
-	"offset_file", "t", 1, "character",
+	"factor_file", "f", 1, "character",
+	"offset_col", "t", 1, "character",
+	"subject_id_col", "i", 1, "character",
+
 	"output_root", "o", 1, "character",
 
 	"alpha", "a", 2, "numeric",
 
-	"factor_file", "f", 2, "character",
 	"model_file", "m", 2, "character",
-	"subject_id_col", "i", 2, "character",
+	"group_col", "g", 2, "character",
 
 	"dont_reset_offsets", "n", 2, "logical",
 	"begin_offset", "b", 2, "numeric",
@@ -46,14 +48,16 @@ usage = paste(
 	"	[-R (pay attention to 'remaining' category)]\n",
 	"	[-x <shorten category names, with separator in double quotes (default=\"\")>]\n",
 	"\n",
-	"	-t <offset file>\n",
+	"	-f <factor file name>\n",
+	"	-t <offset column name>\n",
+	"	-i <subject identifier column name>\n",
+
 	"	-o <output root>\n",
 	"\n",
 	"	[-a <p-value cutoff for non parametric longitudinal statistics, default=", ALPHA, ">]\n",
 	"\n",
-	"	[-f <factor file name>]\n",
 	"	[-m <model variable list>]\n",
-	"	[-i <subject identifier column name>]\n",
+	"	[-g <group/cohort variable column name>]\n",
 	"\n",
 	"	[-n (do not reset earliest offsets to 0 to line up time points, default=reset offsets)]\n",
 	"	[-b <begin offset, default=-Inf>]\n",
@@ -63,7 +67,9 @@ usage = paste(
 
 if(
 	!length(opt$summary_file) || 
-	!length(opt$offset_file) || 
+	!length(opt$factor_file) || 
+	!length(opt$offset_col) || 
+	!length(opt$subject_id_col) || 
 	!length(opt$output_root)
 	){
 	cat(usage);
@@ -72,20 +78,21 @@ if(
 
 # Required
 SummaryFile=opt$summary_file;
-OffsetFile=opt$offset_file;
+FactorFile=opt$factor_file;
 OutputRoot=opt$output_root;
+SubjectIDCol=opt$subject_id_col;
+TimeOffsetCol=opt$offset_col;
 
 # Optional, i.e. with defaults
 NumALRPredictors=NUM_TOP_PRED_CAT;
 UseRemaining=F;
 ShortenCategoryNames="";
 Alpha=ALPHA;
-FactorFile="";
 ModelFile="";
-SubjectIdentifierColumn="";
 ResetOffsets=T;
 BeginOffset=-Inf;
 EndOffset=Inf;
+GroupCol="";
 
 if(length(opt$num_top_pred)){
 	NumALRPredictors=opt$num_top_pred;
@@ -103,16 +110,8 @@ if(length(opt$alpha)){
 	Alpha=opt$alpha;
 }
 
-if(length(opt$factor_file)){
-	FactorFile=opt$factor_file;
-}
-
 if(length(opt$model_file)){
 	ModelFile=opt$model_file;
-}
-
-if(length(opt$subject_id_col)){
-	SubjectIdentifierColumn=opt$subject_id_col;
 }
 
 if(length(opt$dont_reset_offsets)){
@@ -127,6 +126,10 @@ if(length(opt$end_offset)){
 	EndOffset=opt$end_offset;
 }
 
+if(length(opt$group_col)){
+	GroupCol=opt$group_col;
+}
+
 ###############################################################################
 
 input_param=capture.output({
@@ -136,8 +139,11 @@ input_param=capture.output({
 	cat("  Contains 'Remaining': ", UseRemaining, "\n", sep="");
 	cat("  Shorten Categories: ", ShortenCategoryNames, "\n", sep="");
 	cat("\n");
-	cat("Offset File: ", OffsetFile, "\n", sep="");
-	cat("   Reset Offsets? ", ResetOffsets, "\n", sep="");
+	cat("Factor File: ", FactorFile, "\n", sep="");
+	cat("  Subject ID Column Name: ", SubjectIDCol, "\n", sep="");
+	cat("  Time Offsets Column Name: ", TimeOffsetCol, "\n", sep="");
+	cat("  Group Column Name: ", GroupCol, "\n", sep="");
+	cat("  Reset Offsets? ", ResetOffsets, "\n", sep="");
 	cat("\n");
 	cat("Output File Root: ", OutputRoot, "\n", sep="");
 	cat("\n");
@@ -157,6 +163,8 @@ cat("Text Line Width: ", options()$width, "\n", sep="");
 
 ##############################################################################
 ##############################################################################
+
+# General functions
 
 load_summary_file=function(fname){
 	inmat=as.matrix(read.table(fname, sep="\t", header=TRUE, check.names=FALSE, 
@@ -541,10 +549,13 @@ get_colors=function(num_col, alpha=1){
         colors=colors[colors!="grey"];
 }
 
+#------------------------------------------------------------------------------
+# Analysis specific functions
+
 plot_alr_time_indv=function(tar_cat, tar_subj, offsets_rec, alr_categories_val, 
 	offset_range, alr_range, alr_med, col="black"){
 
-	indv_offsets=offsets_rec[["OffsetsByIndiv"]][[tar_subj]];
+	indv_offsets=offsets_rec[["OffsetsBySubject"]][[tar_subj]];
 	samp_ids=rownames(indv_offsets);
 
 	cat("Working on: ", tar_cat, " for ", tar_subj, "\n");
@@ -580,7 +591,7 @@ plot_alr_time_grpd=function(tar_cat, subj_arr, grouping, grouping_name, offsets_
 
 		cat("Working on: ", tar_cat, " for ", tar_subj, "\n");
 
-		indv_offsets=offsets_rec[["OffsetsByIndiv"]][[tar_subj]];
+		indv_offsets=offsets_rec[["OffsetsSubject"]][[tar_subj]];
 		samp_ids=rownames(indv_offsets);
 
 		x_val=indv_offsets[,"Offsets"];
@@ -609,7 +620,7 @@ compute_and_plot_loess=function(tar_cat, subj_arr, grouping, grouping_name, offs
 
 		cat("Working on: ", tar_cat, " for ", tar_subj, "\n");
 
-		indv_offsets=offsets_rec[["OffsetsByIndiv"]][[tar_subj]];
+		indv_offsets=offsets_rec[["OffsetsBySubject"]][[tar_subj]];
 		samp_ids=rownames(indv_offsets);
 
 		x_val=indv_offsets[,"Offsets"];
@@ -909,289 +920,6 @@ plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.1, samp_gly=T){
 	return(signf);
 }
 
-
-##############################################################################
-##############################################################################
-
-# Load offset file
-offset_raw=load_offset(OffsetFile, ResetOffsets, BeginOffset, EndOffset);
-print(offset_raw);
-offset_samp_ids=rownames(offset_raw[["matrix"]]);
-
-OutputRoot=paste(OutputRoot, ".", offset_raw$RangeTag, sep="");
-
-# Load summary file table counts 
-cat("\n");
-cat("Loading summary table...\n");
-counts=load_summary_file(SummaryFile);
-
-# Open main output file
-pdf(paste(OutputRoot, ".alr_ts.pdf", sep=""), height=14, width=8.5);
-
-# Remove zero count samples
-tot=apply(counts, 1, sum);
-nonzero=tot>0;
-if(!(all(nonzero))){
-	cat("WARNING: Zero count samples found:\n");
-	samp_names=rownames(counts);
-	print(samp_names[!nonzero]);
-	cat("\n");
-	counts=counts[nonzero,,drop=F];
-}
-
-num_st_categories=ncol(counts);
-num_st_samples=nrow(counts);
-
-cat("Num Categories: ", num_st_categories, "\n");
-cat("   Num Samples: ", num_st_samples, "\n");
-
-##############################################################################
-
-# Shorten cateogry names
-if(ShortenCategoryNames!=""){
-	full_names=colnames(counts);
-	splits=strsplit(full_names, ShortenCategoryNames);
-	short_names=character();
-	for(i in 1:length(full_names)){
-		short_names[i]=tail(splits[[i]], 1);
-		short_names[i]=gsub("_unclassified$", "_uc", short_names[i]);
-		short_names[i]=gsub("_group", "_gr", short_names[i]);
-		short_names[i]=gsub("\\[", "", short_names[i]);
-		short_names[i]=gsub("\\]", "", short_names[i]);
-	}
-	colnames(counts)=short_names;
-	cat("Names have been shortened.\n");
-}else{
-	cat("Keeping original category names...\n");
-}
-
-##############################################################################
-
-if(NumALRPredictors >= num_st_categories){
-	NumALRPredictors= (num_st_categories-1);
-	cat("Number of taxa to work on was changed to: ", NumALRPredictors, "\n");
-}
-
-##############################################################################
-
-sumtab_samp_ids=rownames(counts);
-shared_samp_ids=sort(intersect(offset_samp_ids, sumtab_samp_ids));
-
-counts=counts[shared_samp_ids,];
-offset_raw[["matrix"]]=offset_raw[["matrix"]][shared_samp_ids,];
-
-# Normalize
-cat("Normalizing counts...\n");
-counts=counts+.5;
-normalized=normalize(counts);
-
-cat("Reordering normalized...\n");
-mean_norm=apply(normalized, 2, mean);
-ord_ix=order(mean_norm, decreasing=T);
-normalized=normalized[,ord_ix, drop=F];
-counts=counts[,ord_ix, drop=F];
-
-if(UseRemaining){
-	category_names=colnames(counts);	
-	uc_cat_names=toupper(category_names);
-	remaining_ix=which(uc_cat_names=="REMAINDER" | uc_cat_names=="REMAINING");
-	if(length(remaining_ix)!=1){
-		cat("*******************************************************\n");
-		cat("*  WARNING:  Could not identify remaining column.     *\n");
-		cat("*******************************************************\n");
-		UseRemaining=F;
-	}else{
-		cat("Remaining original column: ", remaining_ix, "\n");
-		# Take out "remaining" column so it doesn't end up as a top column
-		normalized_remaining_col_dat=normalized[,remaining_ix, drop=F];
-		normalized=normalized[,-remaining_ix];
-	}
-}else{
-	cat("Assuming no categories called 'remainder' or 'remaining'\n");
-}
-
-##############################################################################
-
-cat("\n");
-cat("Extracting Top categories: ", NumALRPredictors, " from amongst ", ncol(normalized), "\n", sep="");
-
-cat_abundances=extract_top_categories(normalized, NumALRPredictors);
-resp_alr_struct=additive_log_rato(cat_abundances);
-alr_categories_val=resp_alr_struct$transformed;
-alr_cat_names=colnames(alr_categories_val);
-
-plot_text(c(
-	paste("ALR Categories (Top ", NumALRPredictors, ")", sep=""),
-	capture.output(print(alr_cat_names))
-));
-
-##############################################################################
-
-offset_info=group_offsets(offset_raw);
-
-###############################################################################
-
-alr_min=apply(alr_categories_val, 2, min);
-alr_max=apply(alr_categories_val, 2, max);
-alr_med=apply(alr_categories_val, 2, median);
-
-cat("ALR Minimums:\n");
-print(alr_min);
-
-cat("ALR Maximums:\n");
-print(alr_max);
-
-cat("ALR Medians:\n");
-print(alr_med);
-
-cat("ALR Categories:\n");
-print(alr_cat_names);
-
-offset_ranges=range(offset_info[["Offsets"]]);
-cat("Offset Range:\n");
-print(offset_ranges);
-	
-print(offset_info);
-subj_ids=offset_info[["Individuals"]];
-num_subj=length(subj_ids);
-subj_col=get_colors(num_subj);
-names(subj_col)=subj_ids;
-
-plots_per_page=6;
-group_name=offset_raw[["GroupID"]];
-num_groups=length(offset_info[["Groups"]]);
-
-par(mar=c(2,4,1,1));
-par(oma=c(.5,.5,5,.5));
-
-cat_loess=list();
-
-for(cat_ix in alr_cat_names){
-	cat("Plotting: ", cat_ix, "\n");
-	alr_range=c(alr_min[cat_ix], alr_max[cat_ix]);
-
-	# Plotting individuals by group
-	for(grp_ix in offset_info[["Groups"]]){
-		cat("For group: ", grp_ix, "\n");
-	
-		
-		par(mfrow=c(plots_per_page, 1));	
-		plot_ix=0;
-		for(subj_ix in offset_info[["IndivByGrp"]][[grp_ix]]){
-			plot_alr_time_indv(cat_ix, subj_ix, offset_info, alr_categories_val, 
-				offset_ranges, alr_range, alr_med[cat_ix], subj_col[subj_ix]);
-			plot_ix=plot_ix+1;
-			if(plot_ix==plots_per_page){
-				mtext(cat_ix, side=3, outer=T, font=2, cex=2, line=2);
-				mtext(paste(group_name, ": ", grp_ix, sep=""), 
-					side=3, outer=T, font=1, cex=1, line=.25);
-				plot_ix=0;
-			}
-		}
-		if(plot_ix<plots_per_page){
-			mtext(cat_ix, side=3, outer=T, font=2, cex=2, line=2);
-			mtext(paste(group_name, ": ", grp_ix, sep=""), 
-				side=3, outer=T, font=1, cex=1, line=.25);
-		}
-	}
-
-	# Plot individuals in single plot
-	par(mfrow=c(num_groups, 1));
-	for(grp_ix in offset_info[["Groups"]]){
-		cat("For group: ", grp_ix, "\n");
-
-		subj_in_grp=offset_info[["IndivByGrp"]][[grp_ix]];
-		plot_alr_time_grpd(cat_ix, subj_in_grp, grp_ix, group_name,  offset_info, alr_categories_val,
-			offset_ranges, alr_range, alr_med[cat_ix], subj_col);
-	}
-	mtext(cat_ix, side=3, outer=T, font=2, cex=2, line=2);
-
-	# plot loess
-	par(mfrow=c(num_groups, 1));
-	grp_loess=list();
-	for(grp_ix in offset_info[["Groups"]]){
-		cat("For group: ", grp_ix, "\n");
-
-		subj_in_grp=offset_info[["IndivByGrp"]][[grp_ix]];
-		grp_loess[[grp_ix]]=compute_and_plot_loess(cat_ix, subj_in_grp, grp_ix,
-			group_name, offset_info, alr_categories_val,
-			offset_ranges, alr_range, alr_med[cat_ix], subj_col);
-	}
-	#plot_grp_loess(grp_loess);
-	mtext(cat_ix, side=3, outer=T, font=2, cex=2, line=2);
-
-	cat_loess[[cat_ix]]=grp_loess;
-
-}
-
-print(cat_loess);
-
-# Plot loess thumbnails
-
-num_rows_pp=5;
-par(oma=c(6,6,4,1));
-par(mar=c(.5,.5,.5,.5));
-par(mfrow=c(num_rows_pp,num_groups));
-
-rownum=1;
-last_cat=tail(alr_cat_names,1);
-for(cat_ix in alr_cat_names){
-	alr_range=c(alr_min[cat_ix], alr_max[cat_ix]);
-
-	colnum=1;
-	for(grp_ix in offset_info[["Groups"]]){
-
-		plot(0, type="n", ylim=alr_range, xlim=offset_ranges, ylab=cat_ix, xaxt="n", yaxt="n");
-
-		if(min(offset_ranges)<0){
-			abline(v=0, col="blue", lty=3, lwd=3, lend="butt");
-		}
-
-		abline(h=alr_med[cat_ix], col="grey", lty="dotdash");
-		grp_loess=cat_loess[[cat_ix]][[grp_ix]];
-		x=grp_loess[,"x"];
-		y=grp_loess[,"y"];
-		points(x,y, type="l", col="blue");
-
-		# Label bottom
-		if(rownum==num_rows_pp || cat_ix==last_cat){
-			axis(side=1);
-		}
-
-		# Label top row with group IDs
-		if(rownum==1){
-			if(nchar(grp_ix)>10){
-				cex_adj=20/nchar(grp_ix);
-			}else{
-				cex_adj=2;
-			}
-			axis(side=3, at=mean(offset_ranges), labels=grp_ix, cex.axis=cex_adj, 
-				line=1, outer=T, tick=F);
-		}
-
-		# Label left side with category and alr scale
-		if(colnum==1){
-			if(nchar(cat_ix)>14){
-				cex_adj=2*14/nchar(cat_ix);
-			}else{
-				cex_adj=2;
-			}
-			axis(side=2);
-			axis(side=2, at=mean(alr_range), labels=cat_ix, cex.axis=cex_adj, line=2, outer=T, tick=F);
-		}
-
-		colnum=colnum+1;
-	}
-
-	if(rownum==num_rows_pp){
-		rownum=0;
-	}
-	rownum=rownum+1;
-
-}
-
-###############################################################################
-
 calc_longitudinal_stats=function(offset_rec, alr_cat_val){
 
 	cat("Calculating Longitudinal Statistics...\n");
@@ -1344,7 +1072,7 @@ calc_longitudinal_stats=function(offset_rec, alr_cat_val){
 	results=list();
 
 	alrcat=colnames(alr_cat_val);
-	individuals=as.character(offset_rec[["Individuals"]]);
+	individuals=as.character(offset_rec[["SubjectIDs"]]);
 
 	cat("\n");
 	cat("Individuals:\n");
@@ -1370,7 +1098,7 @@ calc_longitudinal_stats=function(offset_rec, alr_cat_val){
 
 			for(ind_ix in individuals){
 					
-				indv_offsets=offset_rec[["OffsetsByIndiv"]][[ind_ix]];
+				indv_offsets=offset_rec[["OffsetsBySubject"]][[ind_ix]];
                 		samp_ids=rownames(indv_offsets);
 
 				time=indv_offsets[,"Offsets"];
@@ -1393,38 +1121,417 @@ calc_longitudinal_stats=function(offset_rec, alr_cat_val){
 	return(results);
 }
 
-long_stats=calc_longitudinal_stats(offset_info, alr_categories_val);
-print(long_stats);
+regress_longitudinal_stats=function(longit_stats, variable_list, factors){
 
+	subj_ids=rownames(factors);
+	stat_names=names(longit_stats);
+	num_variables=length(variable_list);
+
+	all_regr_res=list();
+	df.factors=as.data.frame(factors);
+
+	# Get coefficient names from model matrix
+	resp=rep(0, length(subj_ids));
+	form_str=paste("resp ~ ", paste(variable_list, collapse=" + "), sep="");
+	mm=model.matrix(as.formula(form_str), data=df.factors);
+	coef_names=setdiff(colnames(mm), "(Intercept)");
+	cat("Coefficient Names:\n");
+	print(coef_names);
+
+	for(stat_ix in stat_names){
+		cat("Working on: ", stat_ix, "\n");
+		
+		stat_mat=longit_stats[[stat_ix]];
+		cat_names=colnames(stat_mat);
+		num_cat=length(cat_names);
+
+		pval_mat=matrix(NA, nrow=length(coef_names), ncol=num_cat);
+		rownames(pval_mat)=coef_names;
+		colnames(pval_mat)=cat_names;
+		coef_mat=pval_mat;
+
+
+		for(cat_ix  in cat_names){
+		
+			cat("Regression Analsis for: ", stat_ix, " of ", cat_ix, "\n", sep="");	
+
+			resp=stat_mat[subj_ids, cat_ix, drop=F];
+			
+			form_str=paste("resp ~ ", paste(variable_list, collapse=" + "), sep="");
+
+			cat("Model: ", form_str, "\n");
+			fit=lm(as.formula(form_str), data=df.factors);
+			sumfit=summary(fit);
+			
+			kept=intersect(coef_names, rownames(sumfit$coefficients));
+			pval_mat[kept, cat_ix]=sumfit$coefficients[kept, "Pr(>|t|)"];
+			coef_mat[kept, cat_ix]=sumfit$coefficients[kept, "Estimate"];
+	
+		}
+
+		reg_res=list();
+		reg_res[["pval"]]=pval_mat;
+		reg_res[["coef"]]=coef_mat;
+
+		all_regr_res[[stat_ix]]=reg_res;
+	}
+
+	return(all_regr_res);
+}
+
+create_GrpToSbj_map=function(subjects_arr, groups_arr){
+	map=list();
+	if(length(subjects_arr) != length(groups_arr)){
+		cat("Error: Subj/Grp array lengths do no match.\n");
+		cat("Subjects:\n");
+		print(subjects_arr);
+		cat("\nGroups:\n");
+		print(groups_arr);
+		quit(-1);
+	}
+	uniq_grps=sort(unique(groups_arr));
+	for(grp_ix in uniq_grps){
+		map[[grp_ix]]=unique(sort(as.character(subjects_arr[groups_arr==grp_ix])));
+	}
+	return(map);
+}
+
+##############################################################################
+##############################################################################
+
+# Load Factor File
+cat("Loading Factor File:\n");
+factor_info=load_factors(FactorFile);	
+factor_samp_ids=rownames(factor_info);
+
+# Load summary file table counts 
+cat("Loading summary table...\n");
+counts=load_summary_file(SummaryFile);
+
+# Remove zero count samples
+cat("Looking for zero count samples...\n");
+tot=apply(counts, 1, sum);
+nonzero=tot>0;
+if(!(all(nonzero))){
+	cat("WARNING: Zero count samples found:\n");
+	samp_names=rownames(counts);
+	print(samp_names[!nonzero]);
+	cat("\n");
+	cat("Removing...\n");
+	counts=counts[nonzero,,drop=F];
+}
+
+num_st_categories=ncol(counts);
+num_st_samples=nrow(counts);
+
+cat("Num Categories: ", num_st_categories, "\n");
+cat("   Num Samples: ", num_st_samples, "\n");
+
+##############################################################################
+
+# Shorten cateogry names
+if(ShortenCategoryNames!=""){
+	full_names=colnames(counts);
+	splits=strsplit(full_names, ShortenCategoryNames);
+	short_names=character();
+	for(i in 1:length(full_names)){
+		short_names[i]=tail(splits[[i]], 1);
+		short_names[i]=gsub("_unclassified$", "_uc", short_names[i]);
+		short_names[i]=gsub("_group", "_gr", short_names[i]);
+		short_names[i]=gsub("\\[", "", short_names[i]);
+		short_names[i]=gsub("\\]", "", short_names[i]);
+	}
+	colnames(counts)=short_names;
+	cat("Names have been shortened.\n");
+}else{
+	cat("Keeping original category names...\n");
+}
+
+##############################################################################
+
+if(NumALRPredictors >= num_st_categories){
+	NumALRPredictors= (num_st_categories-1);
+	cat("Number of taxa to work on was changed to: ", NumALRPredictors, "\n");
+}
+
+##############################################################################
+
+# Reconciling Sample IDs
+cat("Reconciling Summary Table samples with Factor File.\n");
+sumtab_samp_ids=rownames(counts);
+shared_samp_ids=sort(intersect(factor_samp_ids, sumtab_samp_ids));
+
+# Remove exclusive samples
+counts=counts[shared_samp_ids,,drop=F];
+factor_info=factor_info[shared_samp_ids,,drop=F];
+
+if(GroupCol==""){
+	group_names=rep("All", nrow(factor_info));
+	GroupCol="Group";
+}else{
+	group_names=factor_info[,GroupCol,drop=F];
+}
+grp_to_sbj=create_GrpToSbj_map(factor_info[,SubjectIDCol], group_names);
+unique_group_names=sort(unique(group_names));
+print(grp_to_sbj);
+
+# Extract offset info
+offset_rec=extract_offset(factor_info, SubjectIDCol, TimeOffsetCol);
+print(offset_rec);
+
+# Normalize
+cat("Normalizing counts...\n");
+counts=counts+.5;
+normalized=normalize(counts);
+
+cat("Reordering normalized...\n");
+mean_norm=apply(normalized, 2, mean);
+ord_ix=order(mean_norm, decreasing=T);
+normalized=normalized[,ord_ix, drop=F];
+counts=counts[,ord_ix, drop=F];
+
+if(UseRemaining){
+	category_names=colnames(counts);	
+	uc_cat_names=toupper(category_names);
+	remaining_ix=which(uc_cat_names=="REMAINDER" | uc_cat_names=="REMAINING");
+	if(length(remaining_ix)!=1){
+		cat("*******************************************************\n");
+		cat("*  WARNING:  Could not identify remaining column.     *\n");
+		cat("*******************************************************\n");
+		UseRemaining=F;
+	}else{
+		cat("Remaining original column: ", remaining_ix, "\n");
+		# Take out "remaining" column so it doesn't end up as a top column
+		normalized_remaining_col_dat=normalized[,remaining_ix, drop=F];
+		normalized=normalized[,-remaining_ix];
+	}
+}else{
+	cat("Assuming no categories called 'remainder' or 'remaining'\n");
+}
+
+##############################################################################
+
+# Open main output file
+OutputRoot=paste(OutputRoot, ".", offset_rec[["RangeTag"]], sep="");
+pdf(paste(OutputRoot, ".alr_ts.pdf", sep=""), height=14, width=8.5);
+
+##############################################################################
+
+cat("\n");
+cat("Extracting Top categories: ", NumALRPredictors, " from amongst ", ncol(normalized), "\n", sep="");
+
+cat_abundances=extract_top_categories(normalized, NumALRPredictors);
+resp_alr_struct=additive_log_rato(cat_abundances);
+alr_categories_val=resp_alr_struct$transformed;
+alr_cat_names=colnames(alr_categories_val);
+
+plot_text(c(
+	paste("ALR Categories (Top ", NumALRPredictors, ")", sep=""),
+	capture.output(print(alr_cat_names))
+));
+
+##############################################################################
+
+alr_min=apply(alr_categories_val, 2, min);
+alr_max=apply(alr_categories_val, 2, max);
+alr_med=apply(alr_categories_val, 2, median);
+
+cat("ALR Minimums:\n");
+print(alr_min);
+
+cat("ALR Maximums:\n");
+print(alr_max);
+
+cat("ALR Medians:\n");
+print(alr_med);
+
+cat("ALR Categories:\n");
+print(alr_cat_names);
+
+offset_ranges=c(offset_rec[["Earliest"]], offset_rec[["Latest"]]);
+cat("Offset Range:\n");
+print(offset_ranges);
+	
+subj_ids=offset_rec[["SubjectIDs"]];
+num_subj=length(subj_ids);
+subj_col=get_colors(num_subj);
+names(subj_col)=subj_ids;
+
+plots_per_page=6;
+num_groups=length(unique_group_names);
+
+par(mar=c(2,4,1,1));
+par(oma=c(.5,.5,5,.5));
+
+cat_loess=list();
+
+for(cat_ix in alr_cat_names){
+	cat("Plotting: ", cat_ix, "\n");
+	alr_range=c(alr_min[cat_ix], alr_max[cat_ix]);
+
+	# Plotting individuals by group
+	cat("Plotting Individuals by Group:\n");
+	for(grp_ix in unique_group_names){
+		cat("For group: ", grp_ix, "\n");
+	
+		
+		par(mfrow=c(plots_per_page, 1));	
+		plot_ix=0;
+		for(subj_ix in grp_to_sbj[[grp_ix]]){
+
+			plot_alr_time_indv(cat_ix, subj_ix, offset_rec, alr_categories_val, 
+				offset_ranges, alr_range, alr_med[cat_ix], subj_col[subj_ix]);
+			plot_ix=plot_ix+1;
+			if(plot_ix==plots_per_page){
+				mtext(cat_ix, side=3, outer=T, font=2, cex=2, line=2);
+				mtext(paste(GroupCol, ": ", grp_ix, sep=""), 
+					side=3, outer=T, font=1, cex=1, line=.25);
+				plot_ix=0;
+			}
+		}
+		if(plot_ix<plots_per_page){
+			mtext(cat_ix, side=3, outer=T, font=2, cex=2, line=2);
+			mtext(paste(GroupCol, ": ", grp_ix, sep=""), 
+				side=3, outer=T, font=1, cex=1, line=.25);
+		}
+	}
+
+	# Plot individuals in single plot
+	cat("Plotting Individuals in Single Plot:\n");
+	par(mfrow=c(num_groups, 1));
+	for(grp_ix in unique_group_names){
+		cat("For group: ", grp_ix, "\n");
+
+		subj_in_grp=grp_to_sbj[[grp_ix]];
+		plot_alr_time_grpd(cat_ix, subj_in_grp, grp_ix, GroupCol,  offset_rec, alr_categories_val,
+			offset_ranges, alr_range, alr_med[cat_ix], subj_col);
+	}
+	mtext(cat_ix, side=3, outer=T, font=2, cex=2, line=2);
+
+	# plot loess
+	cat("Plotting Loess:\n");
+	par(mfrow=c(num_groups, 1));
+	grp_loess=list();
+	for(grp_ix in unique_group_names){
+		cat("For group: ", grp_ix, "\n");
+
+		subj_in_grp=grp_to_sbj[[grp_ix]];
+		grp_loess[[grp_ix]]=compute_and_plot_loess(cat_ix, subj_in_grp, grp_ix,
+			GroupCol, offset_rec, alr_categories_val,
+			offset_ranges, alr_range, alr_med[cat_ix], subj_col);
+	}
+	#plot_grp_loess(grp_loess);
+	mtext(cat_ix, side=3, outer=T, font=2, cex=2, line=2);
+
+	cat_loess[[cat_ix]]=grp_loess;
+
+}
+
+#print(cat_loess);
+
+# Plot loess thumbnails
+
+num_rows_pp=5;
+par(oma=c(6,6,4,1));
+par(mar=c(.5,.5,.5,.5));
+par(mfrow=c(num_rows_pp,num_groups));
+
+rownum=1;
+last_cat=tail(alr_cat_names,1);
+for(cat_ix in alr_cat_names){
+	alr_range=c(alr_min[cat_ix], alr_max[cat_ix]);
+
+	colnum=1;
+	for(grp_ix in unique_group_names){
+
+		plot(0, type="n", ylim=alr_range, xlim=offset_ranges, ylab=cat_ix, xaxt="n", yaxt="n");
+
+		if(min(offset_ranges)<0){
+			abline(v=0, col="blue", lty=3, lwd=3, lend="butt");
+		}
+
+		abline(h=alr_med[cat_ix], col="grey", lty="dotdash");
+		grp_loess=cat_loess[[cat_ix]][[grp_ix]];
+		x=grp_loess[,"x"];
+		y=grp_loess[,"y"];
+		points(x,y, type="l", col="blue");
+
+		# Label bottom
+		if(rownum==num_rows_pp || cat_ix==last_cat){
+			axis(side=1);
+		}
+
+		# Label top row with group IDs
+		if(rownum==1){
+			if(nchar(grp_ix)>10){
+				cex_adj=20/nchar(grp_ix);
+			}else{
+				cex_adj=2;
+			}
+			axis(side=3, at=mean(offset_ranges), labels=grp_ix, cex.axis=cex_adj, 
+				line=1, outer=T, tick=F);
+		}
+
+		# Label left side with category and alr scale
+		if(colnum==1){
+			if(nchar(cat_ix)>14){
+				cex_adj=2*14/nchar(cat_ix);
+			}else{
+				cex_adj=2;
+			}
+			axis(side=2);
+			axis(side=2, at=mean(alr_range), labels=cat_ix, cex.axis=cex_adj, line=2, outer=T, tick=F);
+		}
+
+		colnum=colnum+1;
+	}
+
+	if(rownum==num_rows_pp){
+		rownum=0;
+	}
+	rownum=rownum+1;
+
+}
+
+###############################################################################
+
+
+long_stats=calc_longitudinal_stats(offset_rec, alr_categories_val);
+print(long_stats);
 stat_names=names(long_stats);
 
 for(stat_ix in stat_names){
 	mat=long_stats[[stat_ix]];
-
 	paint_matrix(mat, stat_ix);
-
 }
 
-stat_table=c();
+stat_table=matrix(NA, nrow=0, ncol=7);
+colnames(stat_table)=c(
+	"Statistic", 
+	"Category", 
+	"Gr1",
+	"mean(Gr1)",
+	"Gr2",
+	"mean(Gr2)",
+	"p-value");
 
 for(stat_ix in stat_names){
 
-	grps=offset_info[["Groups"]];
-	num_grps=length(grps);
+	num_grps=length(unique_group_names);
 	num_alr_cat=ncol(alr_categories_val);
 
 	grp_mat=matrix(NA, nrow=num_grps, ncol=num_alr_cat);
-	rownames(grp_mat)=grps;
+	rownames(grp_mat)=unique_group_names;
 	colnames(grp_mat)=colnames(alr_categories_val);
 
-	for(grp_ix in grps){
-		grp_members=offset_info[["IndivByGrp"]][[grp_ix]];
+	for(grp_ix in unique_group_names){
+		grp_members=grp_to_sbj[[grp_ix]];
 		grp_mat[grp_ix,]=apply(
 			long_stats[[stat_ix]][grp_members,,drop=F], 2, 
 			function(x){mean(x, na.rm=T)});
 	}
 
-	paint_matrix(grp_mat, paste("mean(", stat_ix, ") for Grouping: ", offset_raw$GroupID, sep=""));
+	paint_matrix(grp_mat, paste("mean(", stat_ix, ") for Grouping: ", GroupCol, sep=""));
 
 	plots_pp=5;
 	par(mfrow=c(plots_pp,1));
@@ -1435,7 +1542,7 @@ for(stat_ix in stat_names){
 		signf=plot_barplot_wsignf_annot(
 			title=cat_ix,
 			long_stats[[stat_ix]][,cat_ix],
-			offset_info[["IndivByGrp"]],
+			grp_to_sbj,
 			alpha=Alpha
 		);
 		
@@ -1455,7 +1562,6 @@ for(stat_ix in stat_names){
 		mtext(stat_ix, outer=T, cex=1.5, col="blue", font=2);
 	}
 }
-
 
 par(mfrow=c(1,1));
 plot_text(c(
@@ -1503,172 +1609,109 @@ sigchar=function(x){
 	}
 }
 
-colnames(stat_table)=c(
-	"Statistic", 
-	"Category", 
-	"Gr1",
-	"mean(Gr1)",
-	"Gr2",
-	"mean(Gr2)",
-	"p-value");
+if(nrow(stat_table)>0){
 
-pvals=as.numeric(stat_table[,"p-value"]);
-signf=sapply(pvals, sigchar);
-stat_table=cbind(stat_table, signf);
+	pvals=as.numeric(stat_table[,"p-value"]);
+	signf=sapply(pvals, sigchar);
+	stat_table=cbind(stat_table, signf);
+	row_idx_str=paste(1:nrow(stat_table), ".", sep="");
 
-row_idx_str=paste(1:nrow(stat_table), ".", sep="");
+	options(width=1000);
 
+	#------------------------------------------------
+	cat("Ordering by P-value...\n");
+	# First order by pvalue, then do stable sort
+	stat_order_ix=order(pvals);
+	stat_table=stat_table[stat_order_ix,];
+	print(stat_table);
 
-options(width=1000);
+	#------------------------------------------------
+	cat("Ordering by Stat Name...\n");
 
-#------------------------------------------------
+	stat_order_ix=order(stat_table[,"Statistic"], method="shell");
+	out_stat_table=stat_table[stat_order_ix,];
+	rownames(out_stat_table)=row_idx_str;
+	out=capture.output(print(out_stat_table, quote=F));
 
-# First order by pvalue, then do stable sort
-stat_order_ix=order(pvals);
-stat_table=stat_table[stat_order_ix,];
-print(stat_table);
+	cat("Writing by statistic:\n");
+	plot_text(c(
+		"By Statistic:",
+		"",
+		out));
 
-#------------------------------------------------
+	#------------------------------------------------
+	cat("Ordering by ALR Category...\n");
 
-stat_order_ix=order(stat_table[,"Statistic"], method="shell");
-out_stat_table=stat_table[stat_order_ix,];
-rownames(out_stat_table)=row_idx_str;
-out=capture.output(print(out_stat_table, quote=F));
+	stat_order_ix=order(stat_table[,"Category"], method="shell");
+	out_stat_table=stat_table[stat_order_ix,];
+	rownames(out_stat_table)=row_idx_str;
+	out=capture.output(print(out_stat_table, quote=F));
 
-cat("Writing by statistic:\n");
-plot_text(c(
-	"By Statistic:",
-	"",
-	out));
+	cat("Writing by category:\n");
+	plot_text(c(
+		"By Category:",
+		"",
+		out));
 
-#------------------------------------------------
+	#------------------------------------------------
+	cat("Outputing by P-Value...\n");
 
-stat_order_ix=order(stat_table[,"Category"], method="shell");
-out_stat_table=stat_table[stat_order_ix,];
-rownames(out_stat_table)=row_idx_str;
-out=capture.output(print(out_stat_table, quote=F));
+	out_stat_table=stat_table;
+	rownames(out_stat_table)=row_idx_str;
+	out=capture.output(print(out_stat_table, quote=F));
 
-cat("Writing by category:\n");
-plot_text(c(
-	"By Category:",
-	"",
-	out));
+	cat("Writing by p-value:\n");
+	plot_text(c(
+		"By P-value:",
+		"",
+		out));
 
-#------------------------------------------------
+	#------------------------------------------------
 
-out_stat_table=stat_table;
-rownames(out_stat_table)=row_idx_str;
-out=capture.output(print(out_stat_table, quote=F));
-
-cat("Writing by p-value:\n");
-plot_text(c(
-	"By P-value:",
-	"",
-	out));
-
-#------------------------------------------------
+	cat("Writing stat table...\n");
+	write.table(out_stat_table, file=paste(OutputRoot,".lngt_stats.comp.tsv", sep=""), quote=F, sep="\t");
+}else{
+	plot_text(c(
+		"No Significant Differences Identified Between Groups."
+	));
+	fh=file(paste(OutputRoot,".lngt_stats.comp.tsv", sep=""), "w");
+	cat(file=fh, "Sorry.  No significant differences identified between groups.\n");
+	close(fh);
+}
 
 ###############################################################################
 # Export stats table
 
-write.table(out_stat_table, file=paste(OutputRoot,".lngt_stats.comp.tsv", sep=""), quote=F, sep="\t");
 
 ###############################################################################
 
-regress_longitudinal_stats=function(longit_stats, variable_list, factors){
 
-	subj_ids=rownames(factors);
-	stat_names=names(longit_stats);
-	num_variables=length(variable_list);
+#cat("--------------------------------------------------------------------------------\n");
+#cat("Fitting regression models with longitudinal stats as response:\n");
+#cat("Factor File: ", FactorFile, "\n");
+#cat("Model File: ", ModelFile, "\n");
 
-	all_regr_res=list();
-
-	# Get coefficient names from model matrix
-	resp=rep(0, length(subj_ids));
-	form_str=paste("resp ~ ", paste(variable_list, collapse=" + "), sep="");
-	mm=model.matrix(as.formula(form_str), data=factors);
-	coef_names=setdiff(colnames(mm), "(Intercept)");
-	cat("Coefficient Names:\n");
-	print(coef_names);
-
-	for(stat_ix in stat_names){
-		cat("Working on: ", stat_ix, "\n");
-		
-		stat_mat=longit_stats[[stat_ix]];
-		cat_names=colnames(stat_mat);
-		num_cat=length(cat_names);
-
-		pval_mat=matrix(NA, nrow=length(coef_names), ncol=num_cat);
-		rownames(pval_mat)=coef_names;
-		colnames(pval_mat)=cat_names;
-		coef_mat=pval_mat;
-
-
-		for(cat_ix  in cat_names){
-		
-			cat("Regression Analsis for: ", stat_ix, " of ", cat_ix, "\n", sep="");	
-
-			resp=stat_mat[subj_ids, cat_ix, drop=F];
-			
-			form_str=paste("resp ~ ", paste(variable_list, collapse=" + "), sep="");
-
-			cat("Model: ", form_str, "\n");
-
-			fit=lm(as.formula(form_str), data=factors);
-			sumfit=summary(fit);
-			
-			kept=intersect(coef_names, rownames(sumfit$coefficients));
-			pval_mat[kept, cat_ix]=sumfit$coefficients[kept, "Pr(>|t|)"];
-			coef_mat[kept, cat_ix]=sumfit$coefficients[kept, "Estimate"];
-	
-		}
-
-		reg_res=list();
-		reg_res[["pval"]]=pval_mat;
-		reg_res[["coef"]]=coef_mat;
-
-		all_regr_res[[stat_ix]]=reg_res;
-	}
-
-	return(all_regr_res);
-}
-
-cat("--------------------------------------------------------------------------------\n");
-cat("Fitting regression models with longitudinal stats as response:\n");
-cat("Factor File: ", FactorFile, "\n");
-cat("Model File: ", ModelFile, "\n");
-
-if(FactorFile!=""){
-	factor_info=load_factors(FactorFile);	
-}
 
 if(ModelFile!=""){
 	model_var_list=load_list(ModelFile);
 	cat("Model variables in: ", ModelFile, "\n");
-};
-
-if(FactorFile=="" || ModelFile=="" || SubjectIdentifierColumn==""){
-	cat("Error: Incomplete specification for model/factor regression analysis.\n");
-	cat("Factor File: ", FactorFile, "\n");
-	cat("Model File:  ", ModelFile, "\n");
-	cat("Subject Identifier Column Name: ", ModelFile, "\n");
-	cat("\n");
-	cat("Skipping regression analysis.\n");
+}else{
+	cat("Model File was not specified. Skipping analyses with factors.\n");
 	quit(status=-1);
 }
 
 # collapse
-kept_fact=factor_info[,c(SubjectIdentifierColumn,model_var_list)];
-uniq_subj=sort(unique(factor_info[,SubjectIdentifierColumn]));
+kept_fact=factor_info[,c(SubjectIDCol,model_var_list)];
+uniq_subj=sort(unique(factor_info[,SubjectIDCol]));
 
 num_subj=length(uniq_subj);
 num_model_var=length(model_var_list);
 
 # Collapse factor info and only keep those with offset info
 colpsd_factors=numeric();
-uniq_subj=intersect(uniq_subj, offset_info[["Individuals"]]);
+uniq_subj=intersect(uniq_subj, offset_rec[["SubjectIDs"]]);
 for(subj_id in uniq_subj){
-	ix=(subj_id==factor_info[,SubjectIdentifierColumn]);
+	ix=(subj_id==factor_info[,SubjectIDCol]);
 	first_found=min(which(ix));
 	val=factor_info[first_found, model_var_list];
 	colpsd_factors=rbind(colpsd_factors, val);
@@ -1715,8 +1758,6 @@ plot_heat_maps=function(coef_mat, pval_mat, title){
 		coef_at_01,
 		label_zeros=F, plot_min=min_coef, plot_max=max_coef,
 		title=paste(title, ": Coeff with p-val < 0.01", sep=""));
-	
-	
 	
 }
 
