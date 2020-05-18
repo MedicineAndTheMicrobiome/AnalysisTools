@@ -2406,9 +2406,12 @@ for(model_ix in model_types){
 	}
 }
 
+total_signf=sum(signf_mat);
 
 if(num_unique_time_ids>1){
 	out_arr=c(
+		paste("Total Significant Predictors: ", total_signf, sep=""),
+		"",
 		"Number of Significant Predictors:",
 		capture.output(print(signf_mat)),
 		"",
@@ -2420,6 +2423,8 @@ if(num_unique_time_ids>1){
 
 }else{
 	out_arr=c(
+		paste("Total Significant Predictors: ", total_signf, sep=""),
+		"",
 		"Number of Significant Predictors:",
 		capture.output(print(signf_mat))
 	);
