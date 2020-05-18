@@ -409,10 +409,10 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 
 	# If range is not specified, find it based on the data
         if(is.na(plot_min)){
-                plot_min=min(mat, na.rm=T);
+                plot_min=min(c(mat,Inf), na.rm=T);
         }
         if(is.na(plot_max)){
-                plot_max=max(mat, na.rm=T);
+                plot_max=max(c(mat,-Inf), na.rm=T);
         }
         cat("Plot min/max: ", plot_min, "/", plot_max, "\n");
 
@@ -676,7 +676,7 @@ add_signf_char_to_matrix=function(pval_mat, coef_mat){
 		coef_outmat=cbind(rbind(coef_outmat, "", ""),"", "");
 
 		sigfun=function(x){
-			mx=min(x, na.rm=T);
+			mx=min(c(x, Inf), na.rm=T);
 			return(sig_char(mx));
 		}
 
@@ -1959,7 +1959,7 @@ for(resp_ix in response_no_reference){
 }
 
 neglog10_trans_mat=function(mat){
-	minnonzero=min(mat[mat!=0], na.rm=T);		
+	minnonzero=min(c(mat[mat!=0], Inf), na.rm=T);		
 	cat("Min Nonzero Pvalue: ", minnonzero, "\n");
 	mat[mat==0]=minnonzero/10;
 	nlog10pval=-log10(mat);
@@ -2099,7 +2099,7 @@ for(resp_ix in response_no_reference){
 		#----------------------------------------------------------------------------
 		# Pull out predictors that were significant p<.1
 
-		signf_coef_ix=apply(cur_pval_by_time_matrix, 1, function(x){ min(x, na.rm=T)<0.1 });
+		signf_coef_ix=apply(cur_pval_by_time_matrix, 1, function(x){ min(c(x, Inf), na.rm=T)<0.1 });
 		
 		signf_coef=cur_coef_by_time_matrix[signf_coef_ix,,drop=F];
 		signf_pval=cur_pval_by_time_matrix[signf_coef_ix,,drop=F];
@@ -2245,7 +2245,7 @@ plot_variables_by_response_venn=function(coef_bytime, pval_bytime){
 
 			signf=apply(pval_tab, 1,  
 				function(x){
-					min(x,na.rm=T);
+					min(c(x,Inf),na.rm=T);
 				});
 
 			resp_var_mat[variables, resp_ix]=signf[variables];
