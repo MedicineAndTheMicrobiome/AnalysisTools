@@ -854,7 +854,7 @@ plot_ts_stat_table=function(stat_mat,
 
 				relpos=c(xpos/plot_xmax, ypos/plot_ymax);
 
-				text(xpos, ypos, varname, adj=relpos); 
+				text(xpos, ypos, paste(varname, " [", signif(ypos, 2), "]", sep=""), adj=relpos); 
 			}
 		}
 
@@ -2406,20 +2406,34 @@ for(model_ix in model_types){
 	}
 }
 
+
 if(num_unique_time_ids>1){
-	plot_text(c(
+	out_arr=c(
 		"Number of Significant Predictors:",
 		capture.output(print(signf_mat)),
 		"",
 		"Number of Significant Predictors by Time (comma-separated):",
 		capture.output(print(signf_mat_wtime, quote=F))
-	));
+	);
+
+	
+
 }else{
-	plot_text(c(
+	out_arr=c(
 		"Number of Significant Predictors:",
 		capture.output(print(signf_mat))
-	));
+	);
 }
+
+plot_text(out_arr);
+
+# Output summary in text
+fh=file(paste(OutputRoot, ".signf_summary.txt", sep=""), "w");
+cat(file=fh, "\nRun Name: ", OutputRoot, "\n", sep="");	
+cat(file=fh, "\n");	
+cat(file=fh, paste(out_arr, collapse="\n"));
+cat(file=fh, "\n\n");	
+close(fh);
 
 
 ###############################################################################
