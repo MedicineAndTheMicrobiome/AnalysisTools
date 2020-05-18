@@ -756,8 +756,11 @@ plot_ts_stat_table=function(stat_mat,
 	cat("Times:\n");
 	print(time_values);
 
-
-	stat_range=range(stat_mat, na.rm=T);
+	if(nrow(stat_mat)==0){
+		stat_range=c(Inf, -Inf);
+	}else{
+		stat_range=range(stat_mat, na.rm=T);
+	}
 	time_range=range(time_values, na.rm=T);
 
 
