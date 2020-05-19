@@ -591,7 +591,7 @@ plot_alr_time_grpd=function(tar_cat, subj_arr, grouping, grouping_name, offsets_
 
 		cat("Working on: ", tar_cat, " for ", tar_subj, "\n");
 
-		indv_offsets=offsets_rec[["OffsetsSubject"]][[tar_subj]];
+		indv_offsets=offsets_rec[["OffsetsBySubject"]][[tar_subj]];
 		samp_ids=rownames(indv_offsets);
 
 		x_val=indv_offsets[,"Offsets"];
@@ -1378,7 +1378,6 @@ for(cat_ix in alr_cat_names){
 		par(mfrow=c(plots_per_page, 1));	
 		plot_ix=0;
 		for(subj_ix in grp_to_sbj[[grp_ix]]){
-
 			plot_alr_time_indv(cat_ix, subj_ix, offset_rec, alr_categories_val, 
 				offset_ranges, alr_range, alr_med[cat_ix], subj_col[subj_ix]);
 			plot_ix=plot_ix+1;
