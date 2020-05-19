@@ -1,20 +1,111 @@
 
-load_offset=function(fname, reset_offsets=T, start=-Inf, end=Inf){
 
-        cat("Loading Offsets: ", fname, "\n");
-        offsets_mat=read.delim(fname,  header=TRUE, row.names=1, sep="\t", comment.char="#", quote="");
 
-        num_col=ncol(offsets_mat);
-        cat("Num Columns Found: ", num_col, "\n");
-
-	if(num_col==2){
-		offsets_mat=cbind(offsets_mat, "NoGroup");
-		num_col=3;
+extract_offset=function(factor_mat, sbj_cname, timeoffset_cname, start=-Inf, end=Inf){
+	
+	var_names=colnames(factor_mat);
+	if(!any(sbj_cname==var_names)){
+		cat("Error: Could not find ", sbj_cname, " in factors.\n");
+		quit(-1);
+	}
+	if(!any(timeoffset_cname==var_names)){
+		cat("Error: Could not find ", timeoffset_cname, " in factors.\n");
+		quit(-1);
 	}
 
-        extra_colnames=colnames(offsets_mat);
-        print(extra_colnames);
-        colnames(offsets_mat)=c("Indiv ID", "Offsets", "Group ID", extra_colnames[4:num_col])[1:num_col];
+	offsets_mat=as.data.frame(factor_mat[,c(sbj_cname, timeoffset_cname)]);
+	colnames(offsets_mat)=c("SubjectID", "Offsets");
+
+        # Change number IDs to strings
+        if(is.numeric(offsets_mat[,"SubjectID"])){
+                numdigits=log10(max(offsets_mat[,"SubjectID"]))+1;
+                prtf_str=paste("%0",numdigits,"d", sep="");
+                offsets_mat[,"SubjectID"]=paste("#",
+                         sprintf(prtf_str, offsets_mat[,"SubjectID"]), sep="");
+        }else{
+		offsets_mat[,"SubjectID"]=as.character(offsets_mat[,"SubjectID"]);
+	}
+
+	# Filter offsets by start and end inclusive
+	keep_ix=(offsets_mat[, "Offsets"]>=start & offsets_mat[, "Offsets"]<=end)	
+	offsets_mat=offsets_mat[keep_ix,];
+
+	cat("Number of Rows in Offset Matrix: ", nrow(offsets_mat), "\n");
+
+        offsets_data=list();
+        offsets_data[["matrix"]]=offsets_mat;
+        offsets_data[["SampleIDs"]]=sort(rownames(offsets_mat));
+        offsets_data[["SubjectIDs"]]=sort(unique(offsets_mat[, "SubjectID"]));
+        offsets_data[["Offsets"]]=sort(unique(offsets_mat[, "Offsets"]));
+	
+	# Offsets by subject
+	offsets_by_sbj=list()
+	for(sbj in offsets_data[["SubjectIDs"]]){
+		sbj_ix=offsets_mat[,"SubjectID"]==sbj;
+		offsets_by_sbj[[sbj]]=offsets_mat[sbj_ix,,drop=F];
+	}
+	offsets_data[["OffsetsBySubject"]]=offsets_by_sbj;
+
+	# Store range information
+	if(start==-Inf){
+		stag="start";
+	}else{
+		stag=as.character(start);
+	}
+
+	if(end==Inf){
+		etag="end";
+	}else{
+		etag=as.character(end);
+	}
+
+	range_tag=paste(stag, "_to_", etag, sep="");
+	range_tag=gsub("-", "n", range_tag);
+
+	offsets_data[["RangeTag"]]=range_tag;
+	offsets_data[["Start"]]=start;
+	offsets_data[["End"]]=end;
+	offsets_data[["Earliest"]]=min(offsets_data[["Offsets"]]);
+	offsets_data[["Latest"]]=max(offsets_data[["Offsets"]]);
+	offsets_data[["Range"]]=offsets_data[["Latest"]]-offsets_data[["Earliest"]];
+	offsets_data[["MinOffsetSep"]]=min(diff(offsets_data[["Offsets"]]));
+	offsets_data[["NumUniqOffsets"]]=length(offsets_data[["Offsets"]]);
+	offsets_data[["OffsetsAsChar"]]=as.character(offsets_data[["Offsets"]]);
+
+	widths=max(ceiling(log10(offsets_data[["Latest"]])+1));
+	format=paste("%0",widths+1,".1f", sep="");
+	offsets_data[["OffsetsAsCharZeroPad"]]=sprintf(format,offsets_data[["Offsets"]]);
+
+	print(offsets_data);
+        return(offsets_data);
+
+}
+
+
+load_offset=function(fname, subject_id_colname, offsets_colname, reset_offsets=T, start=-Inf, end=Inf){
+
+        cat("Loading Offsets: ", fname, "\n");
+        in_mat=read.delim(fname,  header=TRUE, row.names=F, sep="\t", comment.char="#", quote="");
+
+        num_col=ncol(in_mat);
+        cat("Num Columns Found: ", num_col, "\n");
+
+	cat("Subject ID Column Name: ", subject_id_colname, "\n");
+	cat("Offsets Column Name: ", offsets_colname, "\n");
+
+	input_colnames=colnames(in_mat);
+
+	if(length(intersect(subject_id_colname, input_colnames))==0){
+		cat("Error: Could not find: ", subject_id_colname, ", in ", fname, "\n", sep="");
+	}
+
+	if(length(intersect(offsets_colname, input_colnames))==0){
+		cat("Error: Could not find: ", offsets_colname, ", in ", fname, "\n", sep="");
+	}
+
+        colnames(offsets_mat)=c("Indiv ID", "Offsets");
+
+	offsets_mat[,]=in_mat[,c(subject_id_colname, offsets_colname)]
 
         # Change number IDs to strings
         if(is.numeric(offsets_mat[,"Indiv ID"])){
