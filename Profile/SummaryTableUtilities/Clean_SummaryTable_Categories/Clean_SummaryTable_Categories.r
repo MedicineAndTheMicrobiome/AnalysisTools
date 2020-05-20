@@ -113,6 +113,19 @@ for(i in 1:num_categories){
 	res=gsub("\\(", "", res); 
 	res=gsub("\\)", "", res); 
 
+	res=gsub(",", "_", res); 
+	res=gsub(";", "_", res); 
+	res=gsub("'", "p", res); 
+	res=gsub("\\+", "p", res); 
+	res=gsub("/", "_", res); 
+	res=gsub(":", "_", res); 
+	res=gsub(" ", "_", res); 
+	res=gsub("_+", "_", res);
+
+	if(length(grep("^[0-9]", res))){
+		res=paste("n",res, sep="");
+	}
+
 	res=gsub("_unclassified", "_uncl", res); 
 	res=gsub("_group", "_grp", res); 
 
