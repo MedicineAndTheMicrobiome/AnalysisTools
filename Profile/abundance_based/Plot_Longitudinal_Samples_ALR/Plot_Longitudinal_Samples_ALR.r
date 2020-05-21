@@ -1179,23 +1179,6 @@ regress_longitudinal_stats=function(longit_stats, variable_list, factors){
 	return(all_regr_res);
 }
 
-create_GrpToSbj_map=function(subjects_arr, groups_arr){
-	map=list();
-	if(length(subjects_arr) != length(groups_arr)){
-		cat("Error: Subj/Grp array lengths do no match.\n");
-		cat("Subjects:\n");
-		print(subjects_arr);
-		cat("\nGroups:\n");
-		print(groups_arr);
-		quit(-1);
-	}
-	uniq_grps=sort(unique(groups_arr));
-	for(grp_ix in uniq_grps){
-		map[[grp_ix]]=unique(sort(as.character(subjects_arr[groups_arr==grp_ix])));
-	}
-	return(map);
-}
-
 ##############################################################################
 ##############################################################################
 
@@ -1271,8 +1254,10 @@ if(GroupCol==""){
 }else{
 	group_names=factor_info[,GroupCol,drop=F];
 }
-grp_to_sbj=create_GrpToSbj_map(factor_info[,SubjectIDCol], group_names);
+subject_grouping_rec=create_GrpToSbj_map(factor_info[,SubjectIDCol], group_names);
 unique_group_names=sort(unique(group_names));
+
+grp_to_sbj=subject_grouping_rec[["GrpToSbj"]];
 print(grp_to_sbj);
 
 # Extract offset info
