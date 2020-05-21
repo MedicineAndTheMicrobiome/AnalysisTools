@@ -319,7 +319,9 @@ plot_correl_heatmap=function(mat, title="", noPrintZeros=F, guideLines=F){
 
 	par(family="Courier");
 	par(oma=c(.5, .5, 1.5, .5));
-	par(mar=c(rname_max_len/2, cname_max_len/2, .5, .5));
+
+	override_length=10;
+	par(mar=c(min(rname_max_len/2, override_length), min(cname_max_len/2, override_length), .5, .5));
 
 	# Remember that rows and columsn are reversed in the image
 	image(1:nrow(mat),1:ncol(mat), mat,
@@ -327,7 +329,6 @@ plot_correl_heatmap=function(mat, title="", noPrintZeros=F, guideLines=F){
                 xlab="", ylab="",
                 col=colors
         );
-
 
         for(i in 1:nrow(mat)){
                 for(j in 1:ncol(mat)){
@@ -860,7 +861,7 @@ plot_overlapping_density=function(mat, title=""){
 	density_list=list();
 	max_density=0;
 	for(i in 1:num_cat){
-		density_list[[i]]=density(mat[,i], p=64);
+		density_list[[i]]=density(mat[,i], n=64);
 		max_density=max(max_density, density_list[[i]]$y);
 	}
 	cat("Max Density: ", max_density, "\n");
@@ -1253,7 +1254,9 @@ if(ncol(log_uv_pval_mat)>=2 && nrow(log_uv_pval_mat)>=2 && all(!is.nan(log_uv_pv
 	par(oma=c(1,1,1,1));
 	num_hm_colors=20;
 	cl_hm_colors=(rainbow(num_hm_colors, start=0, end=0.65));
-	heatmap(log_uv_pval_mat, col=cl_hm_colors, margins=c(rname_max_len/3, cname_max_len/2));
+
+	override_length=10;
+	heatmap(log_uv_pval_mat, col=cl_hm_colors, margins=c(min(rname_max_len/3, override_length), min(cname_max_len/2, override_length)));
 
 	# Plot Legend
 	par(mar=c(10,1,10,1), oma=c(0,0,0,0),  mfrow=c(2,1));
