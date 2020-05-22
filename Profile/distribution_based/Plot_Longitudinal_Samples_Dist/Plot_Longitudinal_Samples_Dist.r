@@ -6,11 +6,23 @@ library(MASS);
 library(vegan);
 library('getopt');
 
+source("~/git/AnalysisTools/Longitudinal/Longitudinal.r");
+
 params=c(
-	"input_file", "i", 1, "character",
-	"offset_file", "t", 1, "character",
-	"output_file", "o", 2, "character",
-	"diversity_type", "d", 2, "character"
+	"summary_file", "s", 1, "character",
+
+	"factor_file", "f", 1, "character",
+	"offset_col", "t", 1, "character",
+	"subject_id_col", "i", 1, "character",
+	"output_root", "o", 1, "character",
+
+	"diversity_type", "d", 2, "character",
+
+	"group_col", "g", 2, "character",
+
+        "dont_reset_offsets", "n", 2, "logical",
+        "begin_offset", "b", 2, "numeric",
+        "end_offset", "e", 2, "numeric"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -20,97 +32,75 @@ DEF_DIVERSITY="tail";
 
 usage = paste(
 	"\nUsage:\n", script_name, "\n",
-	"	-i <input summary_table.tsv file>\n",
-	"	-t <offset file>\n",
-	"	[-o <output file root name>]\n",
+	"	-s <input summary_table.tsv file>\n",
+	"\n",
+	"	-f <factor file name>\n",
+	"	-t <offset column name>\n",
+	"	-i <subject identifier column name>\n", 
+	"	-o <output file root name>\n",
+	"\n",
 	"	[-d <diversity, default=", DEF_DIVERSITY, ".]\n",
 	"\n",
-	"	This script will read in the summary table\n",
-	"	and a file describing the time from the first\n",
-	"	sample.\n",
+	"	[-g <group/cohort variable column name>]\n",
 	"\n",
-	"	For each sample a time series bar plot and\n",
-	"	and diversity will be generated.\n",
-	"\n",
-	"	The format of the offset file is:\n",
-	"\n",
-	"	<sample id> \\t <subj id> \\t <time stamp> \\t <cohort/grp id> \\t <events> [\\t <add'l events>]\\n\n",
-	"\n",
-	"	Column Names are required.\n",
+	"	[-n (do not reset earliest offsets to 0 to line up time points, default=reset offsets)]\n",
+	"	[-b <begin offset, default=-Inf>]\n",
+	"	[-e <end offset, default=Inf>]\n",
 	"\n",
 	"	Diversity types include:\n",
 	"		shannon, tail, simpson, invsimpson\n",
 	"\n");
 
-if(!length(opt$input_file) || !length(opt$offset_file)){
+if(
+	!length(opt$summary_file) || 
+	!length(opt$factor_file) || 
+	!length(opt$offset_col) || 
+	!length(opt$subject_id_col) || 
+	!length(opt$output_root)
+){
 	cat(usage);
 	q(status=-1);
 }
 
-InputFileName=opt$input_file;
-OffsetFileName=opt$offset_file;
+# Required
+SummaryFile=opt$summary_file;
+FactorFile=opt$factor_file;
+OutputRoot=opt$output_root;
+SubjectIDCol=opt$subject_id_col;
+TimeOffsetCol=opt$offset_col;
 
+# Optional, i.e. with defaults
 DiversityType=DEF_DIVERSITY;
+GroupCol="";
+ResetOffsets=T;
+BeginOffset=-Inf;
+EndOffset=Inf;
+
 if(length(opt$diversity_type)){
 	DiversityType=opt$diversity_type;
 }
-
-if(length(opt$output_file)>0){
-	OutputFileRoot=opt$output_file;
-}else{
-	OutputFileRoot=InputFileName;
-	OutputFileRoot=gsub("\\.summary_table\\.tsv$", "", OutputFileRoot);
-	OutputFileRoot=gsub("\\.summary_table\\.xls$", "", OutputFileRoot);
-	cat("No output file root specified.  Using input file name as root.\n");
+if(length(opt$group_col)){
+	GroupCol=opt$group_col;
+}
+if(length(opt$dont_reset_offsets)){
+	ResetOffsets=opt$dont_reset_offsets;
+}
+if(length(opt$begin_offset)){
+	BeginOffset=opt$begin_offset;
+}
+if(length(opt$end_offset)){
+	EndOffset=opt$end_offset;
 }
 
 ###############################################################################
 
-OutputFileRoot=paste(OutputFileRoot, ".", substr(DiversityType, 1, 4), sep="");
+OutputRoot=paste(OutputRoot, ".", substr(DiversityType, 1, 4), sep="");
 
-OutputPDF = paste(OutputFileRoot, ".div_ts.pdf", sep="");
+OutputPDF = paste(OutputRoot, ".div_ts.pdf", sep="");
 cat("Output PDF file name: ", OutputPDF, "\n", sep="");
 pdf(OutputPDF,width=8.5,height=11)
 
 ###############################################################################
-
-load_offset=function(fname){
-        cat("Loading Offsets: ", fname, "\n");
-        offsets_mat=read.delim(fname,  header=TRUE, row.names=1, sep="\t", comment.char="#", quote="");
-
-	num_col=ncol(offsets_mat);
-	cat("Num Columns Found: ", num_col, "\n");
-	
-	extra_colnames=colnames(offsets_mat);
-	print(extra_colnames);
-	colnames(offsets_mat)=c("Indiv ID", "Offsets", "Group ID", extra_colnames[4:num_col])[1:num_col];
-
-	# reset offsets
-	if(is.numeric(offsets_mat[,"Indiv ID"])){
-		offsets_mat[,"Indiv ID"]=paste("#", offsets_mat[,"Indiv ID"], sep="");
-	}
-	groups=unique(offsets_mat[,"Indiv ID"]);
-	
-	cat("Groups:\n");
-	print(groups);
-	cat("\n");
-
-	# Reset offsets so they are relative to the first/smallest sample
-	for(gid in groups){
-		group_ix=(gid==offsets_mat[,"Indiv ID"]);
-		offsets=offsets_mat[group_ix, "Offsets"];
-		min_off=min(offsets);
-		offsets_mat[group_ix, "Offsets"]=offsets-min_off;
-	}
-
-	offsets_data=list();
-	offsets_data[["matrix"]]=offsets_mat;
-	offsets_data[["IndivID"]]=extra_colnames[1];
-	offsets_data[["Offsets"]]=extra_colnames[2];
-	offsets_data[["GroupID"]]=extra_colnames[3];
-	
-	return(offsets_data);
-}
 
 load_summary_file=function(fname){
         cat("Loading Summary Table: ", fname, "\n");
@@ -160,6 +150,20 @@ simplify_matrix_categories=function(normalized_mat, top=4){
 	keep_mat=keep_mat[, sort_ix];
 	return(keep_mat);
 	
+}
+
+load_factors=function(fname){
+        factors=data.frame(read.table(fname,  sep="\t", header=TRUE, row.names=1,
+                check.names=FALSE, comment.char=""));
+        factor_names=colnames(factors);
+
+        ignore_idx=grep("^IGNORE\\.", factor_names);
+
+        if(length(ignore_idx)!=0){
+                return(factors[-ignore_idx]);
+        }else{
+                return(factors);
+        }
 }
 
 ###############################################################################
@@ -221,20 +225,18 @@ plot_event=function(x, y, events, col="black"){
 ###############################################################################
 
 plot_sample_distributions_by_individual=function(diversity_arr, div_type, normalized_mat, 
-	offsets_mat, col_assign, category_colors, ind_colors){
+	offsets_rec, grp_to_sbj_info, col_assign, category_colors, ind_colors){
 
-	sorted_sids=sort(rownames(offsets_mat));
-	offsets_mat=offsets_mat[sorted_sids,];
-
-	# Get Unique Groups
-	groups=sort(unique(offsets_mat[,"Indiv ID"]));
-	num_groups=length(groups);
+	offsets_mat=offsets_rec[["matrix"]];
+	sorted_sids=offsets_rec[["SampleIDs"]];
+	subject_ids=offsets_rec[["SubjectIDs"]];
+	num_subjects=offsets_rec[["NumSubjects"]];
 
 	def_par=par(no.readonly=T);
 	par(mfrow=c(3,1));
 
 	# Get range of offsets
-	offset_ranges=range(offsets_mat[,"Offsets"]);
+	offset_ranges=range(offsets_rec[["Offsets"]]);
 	cat("Offset Range:\n");
 	print(offset_ranges);
 
@@ -242,55 +244,25 @@ plot_sample_distributions_by_individual=function(diversity_arr, div_type, normal
 	cat("Diversity Range:\n");
 	print(diversity_ranges);
 
-	# Get closest between offsets
-	periods=numeric();
-	for(i in 1:num_groups){
-		grp_subset=which(offsets_mat[,"Indiv ID"]==groups[i]);
-                offsets=offsets_mat[grp_subset, "Offsets"];
-		periods=c(diff(sort(offsets)), periods);
-	}
-	periods_sorted=sort(unique(periods));
-	if(periods_sorted[1]==0){
-		min_period=periods_sorted[2];
-	}else{
-		min_period=periods_sorted[1];
-	}
+	min_period=offsets_rec[["MinOffsetSep"]];
 	cat("Minimum period: ", min_period, "\n");
 
 	cat_names=colnames(normalized_mat);
 
-	num_offsets_mat_col=ncol(offsets_mat);
-
-	if(num_offsets_mat_col>3){
-		num_event_types=length(events_range);
-		events_range=4:num_offsets_mat_col;
-		cat("Events to Plot: ", paste(events_range, sep=", "), "\n");
-	}else{
-		num_event_types=0;
-		events_range=NULL;
-		cat("No events to Plot.\n");
-	}
-	
 	# Plot individual samples
-	for(i in 1:num_groups){
+	for(i in 1:num_subjects){
 
 		# Grab members from group
-		cat("Plotting: ", groups[i], "\n");
-		grp_subset=which(offsets_mat[,"Indiv ID"]==groups[i]);
+		cat("Plotting: ", subject_ids[i], "\n");
+		sbj_subset=which(offsets_mat[,"SubjectID"]==subject_ids[i]);
 
-		cohort_id=unique(as.character(offsets_mat[grp_subset,"Group ID"]));
+		grp_id=grp_to_sbj_info[["SbjToGrp"]][subject_ids[i]];
 		#cat("Cohort ID:", cohort_id, "\n");
 
-		num_members=length(grp_subset);
+		num_members=length(sbj_subset);
 
 		# Subset offsets, and sort by offset
-		offset_info=offsets_mat[grp_subset,];
-		sort_ix=order(offset_info[,"Offsets"]);
-		offset_info=offset_info[sort_ix,];
-
-		if(!is.null(events_range)){
-			events_mat=offset_info[, events_range, drop=F];
-		}
+		offset_info=offsets_rec[["OffsetsBySubject"]][[subject_ids[i]]];
 
 		###############################################################
 
@@ -299,15 +271,14 @@ plot_sample_distributions_by_individual=function(diversity_arr, div_type, normal
 		subset_diversity=diversity_arr[subset_samples];
 		#print(subset_diversity);
 
-		title=paste(groups[i], " [", cohort_id, "]", sep="");
-
+		title=paste(subject_ids[i], " [", grp_id, "]", sep="");
 
 		# Plot Diversity lines
 		palette(ind_colors);
 		plot(offset_info[,"Offsets"], subset_diversity,
 			main=paste(title, "Diversity"),
 			xlab="Time", ylab=paste("Diversity (", div_type, ")", sep=""), type="l", 
-			col=col_assign[groups[i]], lwd=2.5,
+			col=col_assign[subject_ids[i]], lwd=2.5,
 			xlim=c(offset_ranges[1]-min_period/2, offset_ranges[2]+min_period/2), 
 			ylim=c(diversity_ranges[1], diversity_ranges[2]+(diff(diversity_ranges)*.2))
 		);
@@ -319,12 +290,12 @@ plot_sample_distributions_by_individual=function(diversity_arr, div_type, normal
 		points(offset_info[,"Offsets"], subset_diversity, type="b", pch=16, cex=.5, lwd=.1);
 
 		# Mark Events
-		if(num_event_types>0){
-			for(e_ix in 1:num_event_types){
-				plot_event(offset_info[,"Offsets"], 
-					subset_diversity+char_height*e_ix, events_mat[, e_ix]);
-			}
-		}
+		#if(num_event_types>0){
+		#	for(e_ix in 1:num_event_types){
+		#		plot_event(offset_info[,"Offsets"], 
+		#			subset_diversity+char_height*e_ix, events_mat[, e_ix]);
+		#	}
+		#}
 
 		###############################################################
 
@@ -351,12 +322,12 @@ plot_sample_distributions_by_individual=function(diversity_arr, div_type, normal
 		}
 
 		# Mark Events
-		if(num_event_types>0){
-			for(e_ix in 1:num_event_types){
-				plot_event(offset_info[subset_samples, "Offsets"], 
-					rep(1.075+(e_ix-1)*char_height, num_members), events_mat[, e_ix]);
-			}
-		}
+		#if(num_event_types>0){
+		#	for(e_ix in 1:num_event_types){
+		#		plot_event(offset_info[subset_samples, "Offsets"], 
+		#			rep(1.075+(e_ix-1)*char_height, num_members), events_mat[, e_ix]);
+		#	}
+		#}
 
 		###############################################################
 
@@ -380,93 +351,62 @@ plot_sample_distributions_by_individual=function(diversity_arr, div_type, normal
 ###############################################################################
 
 plot_sample_diversity_by_group=function(diversity_arr, div_type, normalized_mat, 
-	offsets_mat, col_assign, ind_colors, grp_name=""){
+	offsets_rec, grp_to_sbj_info, col_assign, ind_colors, grp_name=""){
 
-	sorted_sids=sort(rownames(offsets_mat));
-	offsets_mat=offsets_mat[sorted_sids,];
-
-	# Get Num Cohorts
-	cohorts=sort(unique(offsets_mat[,"Group ID"]));	
-	num_cohorts=length(cohorts);
-	cat("Number of Cohorts: ", num_cohorts, "\n");
-	print(cohorts);
-	cat("\n");
-
-	# Get range of offsets
-	offset_ranges=range(offsets_mat[,"Offsets"]);
-	cat("Offset Range:\n");
-	print(offset_ranges);
+	offsets_mat=offsets_rec[["matrix"]];
+	sorted_sids=offsets_rec[["SampleIDs"]];
+	subject_ids=offsets_rec[["SubjectIDs"]];
+	num_subjects=offsets_rec[["NumSubjects"]];
 
 	# Get range of diversity
 	diversity_ranges=range(diversity_arr);
 	cat("Diversity Range:\n");
 	print(diversity_ranges);
 
-	# Set up plots per page
-	def_par=par(no.readonly=T);
-	par(mfrow=c(num_cohorts,1));
+	offset_ranges=range(offsets_rec[["Offsets"]]);
 
 	# Set palette for individuals
 	palette(ind_colors);
 
-	num_offsets_mat_col=ncol(offsets_mat);
-	if(num_offsets_mat_col>3){
-		num_event_types=length(events_range);
-		events_range=4:num_offsets_mat_col;
-		cat("Events to Plot: ", paste(events_range, sep=", "), "\n");
-	}else{
-		num_event_types=0;
-		events_range=NULL;
-		cat("No events to Plot.\n");
-	}
+	num_groups=grp_to_sbj_info[["NumGroups"]];
+	group_ids=grp_to_sbj_info[["Groups"]];
 
-	for(g in 1:num_cohorts){
+	# Set up plots per page
+	def_par=par(no.readonly=T);
+	par(mfrow=c(num_groups,1));
 
-		cat("Plotting: ", cohorts[g], "\n");
-		plot(0, 0, main=paste(grp_name, ": ", cohorts[g], sep=""),
+	for(g in 1:num_groups){
+
+		cat("Plotting: ", group_ids[g], "\n");
+		plot(0, 0, main=paste(grp_name, ": ", group_ids[g], sep=""),
 			 xlab="Time", ylab=paste("Diversity (", div_type,")",sep=""), type="n", 
 			 xlim=offset_ranges, ylim=diversity_ranges);
 
-		coh_offset_mat=offsets_mat[ offsets_mat[,"Group ID"]==cohorts[g], ];
-
-
-		if(num_event_types>0){
-			events_mat=coh_offset_mat[, events_range, drop=F];
-		}
-
 		# Get Unique Inidividuals
-		indivs=sort(unique(coh_offset_mat[,"Indiv ID"]));
-		num_indivs=length(indivs);
+		indivs=offsets_rec[["SubjectIDs"]];
+		num_indivs=offset_rec[["NumSubjects"]];
 		cat("Number of Individuals: ", num_indivs, "\n");
-		print(indivs);
-		cat("\n");
 
 		# Plot individual samples
 		for(i in 1:num_indivs){
 
 			# Grab from group
 			cat("Plotting: ", indivs[i], "\n");
-			ind_subset=which(coh_offset_mat[,"Indiv ID"]==indivs[i]);
-			num_timepts=length(ind_subset);
 
-			# Subset offsets, and sort by offset
-			offset_info=coh_offset_mat[ind_subset,];
-			sort_ix=order(offset_info[,"Offsets"]);
-			offset_info=offset_info[sort_ix,];
-			#print(offset_info);
+			offset_info=offsets_rec[["OffsetsBySubject"]][[indivs[i]]];
+			num_timepts=nrow(offset_info);
 
 			###############################################################
 
 			# Subset diversity
 			subset_samples=rownames(offset_info);
 			subset_diversity=diversity_arr[subset_samples];
-			#print(subset_diversity);
 
 			# Plot Diversity
-
 			points(offset_info[c(1,1, num_timepts),"Offsets"], subset_diversity[c(1,1, num_timepts)], 
 				type="p", pch=c(17, 1, 15), cex=c(1, 2, 1.25), col=col_assign[indivs[i]]);
-			points(offset_info[,"Offsets"], subset_diversity, type="l", lwd=2.5, col=col_assign[indivs[i]]);
+			points(offset_info[,"Offsets"], subset_diversity, type="l", 
+				lwd=2.5, col=col_assign[indivs[i]]);
 			points(offset_info[,"Offsets"], subset_diversity, type="l", lwd=.1, col="black");
 
 			# Mark Events
@@ -494,32 +434,21 @@ bootstrap_med=function(x, num_bs=2000){
 }
 
 plot_median_sample_diversity_by_group=function(diversity_arr, div_type, 
-	normalized_mat, offsets_mat, col_assign, ind_colors, grp_name=""){
+	normalized_mat, offsets_rec, grp_to_sbj_info, col_assign, ind_colors, grp_name=""){
 
-	sorted_sids=sort(rownames(offsets_mat));
-	offsets_mat=offsets_mat[sorted_sids,];
+	offsets_mat=offsets_rec[["matrix"]];
+        sorted_sids=offsets_rec[["SampleIDs"]];
+        subject_ids=offsets_rec[["SubjectIDs"]];
+        num_subjects=offsets_rec[["NumSubjects"]];
 
 	def_par=par(no.readonly=T);
 
 	# Get Num Cohorts
-	cohorts=sort(unique(offsets_mat[,"Group ID"]));	
-	num_cohorts=length(cohorts);
-	cat("Number of Cohorts: ", num_cohorts, "\n");
-	print(cohorts);
-	cat("\n");
-
-	cohort_data=list();
-
-	# Get range of offsets
-	offset_pos=sort(unique(offsets_mat[,"Offsets"]));
+	groups=grp_to_sbj_info[["Groups"]];
+	num_groups=grp_to_sbj_info[["NumGroups"]];
+	offset_pos=offsets_rec[["Offsets"]];
 	offset_ranges=range(offset_pos);
-	num_offset_positions=length(offset_pos);
-	cat("Offset Range:\n");
-	print(offset_ranges);
-	cat("Offset Positions:\n");
-	print(offset_pos);
-	cat("Num Offset Positions:\n");
-	num_offset_positions=length(offset_pos);	
+	num_offset_positions=offsets_rec[["NumUniqOffsets"]];
 
 	# Get range of diversity
 	diversity_ranges=range(diversity_arr);
@@ -527,51 +456,44 @@ plot_median_sample_diversity_by_group=function(diversity_arr, div_type,
 	print(diversity_ranges);
 	cat("\n\n");
 
-
+	group_data=list();
 	# Build data structure
-	for(g in 1:num_cohorts){
+	for(g in 1:num_groups){
 
-		cat("Extracting: ", cohorts[g], "\n");
-
-		coh_offset_mat=offsets_mat[ offsets_mat[,"Group ID"]==cohorts[g], ];
+		cat("Extracting: ", groups[g], "\n");
 
 		# Get Unique Inidividuals
-		indivs=sort(unique(coh_offset_mat[,"Indiv ID"]));
-		num_indivs=length(indivs);
-		cat("Number of Subjects: ", num_indivs, "\n");
+		ind_in_grp=grp_to_sbj_info[["GrpToSbj"]][[groups[g]]];
+		num_indivs_in_grp=length(ind_in_grp);
+		cat("Number of Subjects: ", num_indivs_in_grp, "\n");
 		cat("Subjects:\n");
-		print(indivs);
+		print(ind_in_grp);
 		cat("\n");
 
-		cohort_id=as.character(cohorts[g]);
-		cohort_data[[cohort_id]]=list();
+		group_id=as.character(groups[g]);
+		group_data[[group_id]]=list();
 
 		# Plot individual samples
-		for(i in 1:num_indivs){
-
-			ind_subset=which(coh_offset_mat[,"Indiv ID"]==indivs[i]);
+		for(i in 1:num_indivs_in_grp){
 
 			# Subset offsets, and sort by offset
-			offset_info=coh_offset_mat[ind_subset,];
-			sort_ix=order(offset_info[,"Offsets"]);
-			offset_info=offset_info[sort_ix,];
-
-			indiv_id=as.character(indivs[i]);
-			cohort_data[[g]][[indiv_id]]=offset_info;
+			offset_info=offsets_rec[["OffsetsBySubject"]][[ind_in_grp[i]]];
+			indiv_id=as.character(ind_in_grp[i]);
+			group_data[[g]][[indiv_id]]=offset_info;
 		}
 	}
 
-	print(cohort_data);
+	#print(group_data);
 
 	medians=list();
 	loess=list();
 	samps=list();
 	
 	# Compute Medians and compute loess per cohort
-	for(g in 1:num_cohorts){
+	for(g in 1:num_groups){
 
-		cohort_id=as.character(cohorts[g]);
-		indiv_ids=names(cohort_data[[cohort_id]]);
+		group_id=as.character(groups[g]);
+		indiv_ids=grp_to_sbj_info[["GrpToSbj"]][[group_id]];
 		num_indv=length(indiv_ids);
 
 		# per cohort medians across time
@@ -590,7 +512,7 @@ plot_median_sample_diversity_by_group=function(diversity_arr, div_type,
 			for(i in 1:num_indv){
 
 				idv=indiv_ids[i];
-				ind_off=cohort_data[[cohort_id]][[idv]]		
+				ind_off=group_data[[group_id]][[idv]]		
 				samp_names=rownames(ind_off);	
 				targ_off_ix=which(ind_off[,"Offsets"]==offset);
 
@@ -608,7 +530,7 @@ plot_median_sample_diversity_by_group=function(diversity_arr, div_type,
 		}
 
 		#print(div_offs_mat);
-		samps[[cohort_id]]=div_offs_mat;
+		samps[[group_id]]=div_offs_mat;
 
 		# Fit loess	
 		offset_tmp=div_offs_mat[,1];
@@ -630,21 +552,21 @@ plot_median_sample_diversity_by_group=function(diversity_arr, div_type,
 			loess_fit_y=diversity_tmp;
 		}
 
-		loess[[cohort_id]]=cbind(loess_fit_x, loess_fit_y);
-		medians[[cohort_id]]=med_mat;
+		loess[[group_id]]=cbind(loess_fit_x, loess_fit_y);
+		medians[[group_id]]=med_mat;
 
 	}
 
-	print(medians);
-	print(loess);
-	print(samps);
+	#print(medians);
+	#print(loess);
+	#print(samps);
 
 	# Set up plots per page
 	def_par=par(no.readonly=T);
 	par(mfrow=c(3,1));
 
-	colors_full  =rainbow(num_cohorts, start=0, end=4/6, s=1);
-	colors_pastel=rainbow(num_cohorts, start=0, end=4/6, s=.3, alpha=.85);
+	colors_full  =rainbow(num_groups, start=0, end=4/6, s=1);
+	colors_pastel=rainbow(num_groups, start=0, end=4/6, s=.3, alpha=.85);
 
 	#----------------------------------------------------------------------
 	# Plot Medians and PI's
@@ -656,9 +578,9 @@ plot_median_sample_diversity_by_group=function(diversity_arr, div_type,
 	);
 
 	chwd=par()$cxy[1]/4;
-	for(g in 1:num_cohorts){
-		cohort_id=as.character(cohorts[g]);
-		cur_med=medians[[cohort_id]]		
+	for(g in 1:num_groups){
+		group_id=as.character(groups[g]);
+		cur_med=medians[[group_id]]		
 
 		# Prediction intervals
 		x=as.numeric(rownames(cur_med));
@@ -696,9 +618,9 @@ plot_median_sample_diversity_by_group=function(diversity_arr, div_type,
 	);
 
 	# Plot individuals points
-	for(g in 1:num_cohorts){
-		cohort_id=as.character(cohorts[g]);
-		cur_samps=samps[[cohort_id]];
+	for(g in 1:num_groups){
+		group_id=as.character(groups[g]);
+		cur_samps=samps[[group_id]];
 
 		x=cur_samps[,"Offsets"];
 		y=cur_samps[,"Diversity"];
@@ -706,9 +628,9 @@ plot_median_sample_diversity_by_group=function(diversity_arr, div_type,
 	}
 	
 	# Draw loess line
-	for(g in 1:num_cohorts){
-		cohort_id=as.character(cohorts[g]);
-		cur_loess=loess[[cohort_id]];
+	for(g in 1:num_groups){
+		group_id=as.character(groups[g]);
+		cur_loess=loess[[group_id]];
 
 		x=cur_loess[,"loess_fit_x"];
 		y=cur_loess[,"loess_fit_y"];
@@ -718,7 +640,7 @@ plot_median_sample_diversity_by_group=function(diversity_arr, div_type,
 	#----------------------------------------------------------------------
 	# Plot group legend
 	plot(0,0, type="n", xlim=c(0,1), ylim=c(0,1), xlab="", ylab="", bty="n", xaxt="n", yaxt="n");
-	legend(0, 1, cohorts, fill=colors_full, bty="n", cex=2, title=grp_name);
+	legend(0, 1, groups, fill=colors_full, bty="n", cex=2, title=grp_name);
 	
 	par(def_par);
 
@@ -726,67 +648,31 @@ plot_median_sample_diversity_by_group=function(diversity_arr, div_type,
 
 ###############################################################################
 
-plot_sample_distributions_by_group=function(normalized_mat, offsets_mat, cat_colors, grp_name=""){
+plot_sample_distributions_by_group=function(normalized_mat, offsets_rec, grp_to_sbj_info, cat_colors, grp_name=""){
 
-	sorted_sids=sort(rownames(offsets_mat));
-	offsets_mat=offsets_mat[sorted_sids,];
 
-	# Get Num Cohorts
-	cohorts=sort(unique(offsets_mat[,"Group ID"]));	
-	num_cohorts=length(cohorts);
-	cat("\nNumber of Cohorts: ", num_cohorts, "\n");
-	print(cohorts);
-	cat("\n");
+        offsets_mat=offsets_rec[["matrix"]];
+        sorted_sids=offsets_rec[["SampleIDs"]];
+        subject_ids=offsets_rec[["SubjectIDs"]];
+        num_subjects=offsets_rec[["NumSubjects"]];
 
-	# Get range of offsets
-	offset_ranges=range(offsets_mat[,"Offsets"]);
+	groups=grp_to_sbj_info[["Groups"]];
+	num_groups=grp_to_sbj_info[["NumGroups"]];
+	offset_ranges=range(offsets_rec[["Offsets"]]);
 	cat("Offset Range:\n");
 	print(offset_ranges);
 
-	# Get closest between offsets
-	periods=numeric();
-	indivs=unique(offsets_mat[,"Indiv ID"]);
-	num_indivs=length(indivs);
-	for(i in 1:num_indivs){
-		grp_subset=which(offsets_mat[,"Indiv ID"]==indivs[i]);
-                offsets=offsets_mat[grp_subset, "Offsets"];
-		periods=c(diff(sort(offsets)), periods);
-	}
-	periods_sorted=sort(unique(periods));
-
-	if(periods_sorted[1]==0){
-		min_period=periods_sorted[2];
-	}else{
-		min_period=periods_sorted[1];
-	}
+	min_period=offsets_rec[["MinOffsetSep"]];
 	cat("Minimum period: ", min_period, "\n");
 
 	palette(cat_colors);
 
-	num_offsets_mat_col=ncol(offsets_mat);
-	if(num_offsets_mat_col>3){
-		num_event_types=length(events_range);
-		events_range=4:num_offsets_mat_col;
-		cat("Events to Plot: ", paste(events_range, sep=", "), "\n");
-	}else{
-		num_event_types=0;
-		events_range=NULL;
-		cat("No events to Plot.\n");
-	}
-
 	# Set up plots per page
 	def_par=par(no.readonly=T);
-	for(g in 1:num_cohorts){
+	for(g in 1:num_groups){
 
-		coh_offset_mat=offsets_mat[ offsets_mat[,"Group ID"]==cohorts[g], ];
-		#print(coh_offset_mat);
-
-		# Get Unique Inidividuals
-		indivs=sort(unique(coh_offset_mat[,"Indiv ID"]));
+		indivs=grp_to_sbj_info[["GrpToSbj"]][[groups[g]]];
 		num_indivs=length(indivs);
-		cat("Number of Individuals: ", num_indivs, "\n");
-		print(indivs);
-		cat("\n");
 
 		par(mfrow=c(num_indivs,1));
 		par(oma=c(3,1,2,0));
@@ -797,16 +683,10 @@ plot_sample_distributions_by_group=function(normalized_mat, offsets_mat, cat_col
 
 			# Grab from group
 			cat("\n\nPlotting: ", as.character(indivs[i]), "\n");
-			ind_subset=which(coh_offset_mat[,"Indiv ID"]==indivs[i]);
-			num_timepts=length(ind_subset);
-			cat("Num Time Pts: ", num_timepts, "\n");
 
-			# Subset offsets, and sort by offset
-			offset_info=coh_offset_mat[ind_subset,];
-			sort_ix=order(offset_info[,"Offsets"]);
-			offset_info=offset_info[sort_ix,];
-			events_mat=offset_info[, events_range, drop=F];
-			#print(offset_info);
+			ind_offset=offsets_rec[["OffsetsBySubject"]][[indivs[i]]];
+			num_timepts=nrow(ind_offset);
+			cat("Num Time Pts: ", num_timepts, "\n");
 
 			###############################################################
 			if(i==num_indivs){
@@ -815,6 +695,8 @@ plot_sample_distributions_by_group=function(normalized_mat, offsets_mat, cat_col
 				xaxt_setting="n";
 			}
 		
+			num_event_types=0;
+
 			plot(0, 0, main="",
 				xlab="", ylab=indivs[i], type="n", bty="n",
 				xaxt=xaxt_setting, yaxt="n",
@@ -823,7 +705,7 @@ plot_sample_distributions_by_group=function(normalized_mat, offsets_mat, cat_col
 
 			char_height=par()$cxy[2]*.5;
 
-			subset_samples=rownames(offset_info);
+			subset_samples=rownames(ind_offset);
 
 			# Draw guide lines
 			abline(h=.5, col="grey", lwd=20);
@@ -834,7 +716,7 @@ plot_sample_distributions_by_group=function(normalized_mat, offsets_mat, cat_col
 
 			# Draw stacked barplot
 			for(t in 1:num_timepts){
-				plot_dist(offset_info[t,"Offsets"], y=0, 
+				plot_dist(ind_offset[t,"Offsets"], y=0, 
 					abundances=normalized_mat[subset_samples[t],], width=min_period*.95);
 
 			}
@@ -842,20 +724,20 @@ plot_sample_distributions_by_group=function(normalized_mat, offsets_mat, cat_col
 			# Mark Events
 			if(num_event_types>0){
 				for(e_ix in 1:num_event_types){
-					plot_event(offset_info[subset_samples, "Offsets"], 
+					plot_event(ind_offset[subset_samples, "Offsets"], 
 						rep(1.15+(e_ix-1)*char_height, num_timepts), events_mat[, e_ix]);
 				}
 			}
 		}
 
-		mtext(paste(grp_name, ": ", cohorts[g], sep=""), side=3, outer=T, font=2);
+		mtext(paste(grp_name, ": ", groups[g], sep=""), side=3, outer=T, font=2);
 	}
 	par(def_par);
 }
 
 ###############################################################################
 
-plot_mean_distributions_by_group=function(normalized_mat, offsets_mat, cat_colors, grp_name=""){
+plot_mean_distributions_by_group=function(normalized_mat, offsets_mat, grp_to_sbj_info, cat_colors, grp_name=""){
 
 
 	num_categories=ncol(normalized_mat);
@@ -879,10 +761,10 @@ plot_mean_distributions_by_group=function(normalized_mat, offsets_mat, cat_color
 
 	# Get closest between offsets
 	periods=numeric();
-	indivs=unique(offsets_mat[,"Indiv ID"]);
+	indivs=unique(offsets_mat[,"SubjectID"]);
 	num_indivs=length(indivs);
 	for(i in 1:num_indivs){
-		grp_subset=which(offsets_mat[,"Indiv ID"]==indivs[i]);
+		grp_subset=which(offsets_mat[,"SubjectID"]==indivs[i]);
                 offsets=offsets_mat[grp_subset, "Offsets"];
 		periods=c(diff(sort(offsets)), periods);
 	}
@@ -1058,7 +940,7 @@ plot_change_scatter=function(diversity_arr, offset_mat, grp_name=""){
 	#print(offset_mat);
 
 	trt_levels=unique(offset_mat[,"Group ID"]);
-	ind_ids=unique(offset_mat[,"Indiv ID"]);
+	ind_ids=unique(offset_mat[,"SubjectID"]);
 	
 	num_indiv=length(ind_ids);
 	num_trt=length(trt_levels);
@@ -1071,7 +953,7 @@ plot_change_scatter=function(diversity_arr, offset_mat, grp_name=""){
 	# Extract start/end diversity
 	ends=matrix(NA, nrow=num_indiv, ncol=2, dimnames=list(ind_ids, c("start", "end")));
 	for(ind_ix in ind_ids){
-		offset_subset=offset_mat[offset_mat[,"Indiv ID"]==ind_ix,];
+		offset_subset=offset_mat[offset_mat[,"SubjectID"]==ind_ix,];
 		offset_subset=offset_subset[order(offset_subset[,"Offsets"], decreasing=F),];
 		samp_names=rownames(offset_subset)
 		num_offsets=nrow(offset_subset);
@@ -1091,7 +973,7 @@ plot_change_scatter=function(diversity_arr, offset_mat, grp_name=""){
 	par(mfrow=c(num_trt+1, 1));
 	for(trt_ix in 1:num_trt){
 		trt=trt_levels[trt_ix];
-		trt_ind_ids=unique(offset_mat[trt==offset_mat[,"Group ID"], "Indiv ID"]);
+		trt_ind_ids=unique(offset_mat[trt==offset_mat[,"Group ID"], "SubjectID"]);
 		trt_ends=ends[trt_ind_ids,, drop=F];
 
 		#print(trt_ends);
@@ -1138,7 +1020,7 @@ plot_change_scatter=function(diversity_arr, offset_mat, grp_name=""){
 	all_ends_and_groups=list();
 	for(trt_ix in 1:num_trt){
                 trt=trt_levels[trt_ix];
-                trt_ind_ids=unique(offset_mat[trt==offset_mat[,"Group ID"], "Indiv ID"]);
+                trt_ind_ids=unique(offset_mat[trt==offset_mat[,"Group ID"], "SubjectID"]);
                 trt_ends=ends[trt_ind_ids,, drop=F];
 
 		all_ends_and_groups[[paste(trt, ":start", sep="")]]=trt_ends[,"start"];
@@ -1230,31 +1112,45 @@ plot_text=function(strings){
 ###############################################################################
 ###############################################################################
 
-offset_data=load_offset(OffsetFileName);
-offset_mat=offset_data[["matrix"]];
-print(offset_data);
+factor_info=load_factors(FactorFile);
 
 ###############################################################################
 
-counts_mat=load_summary_file(InputFileName);
+counts_mat=load_summary_file(SummaryFile);
 #print(counts_mat);
 
 ###############################################################################
 
-offset_mat_samples=rownames(offset_mat);
+factors_mat_samples=rownames(factor_info);
 counts_mat_samples=rownames(counts_mat);
-shared=intersect(offset_mat_samples, counts_mat_samples);
+shared=intersect(factors_mat_samples, counts_mat_samples);
 
 cat("\n\n");
-cat("Samples not represented in offsets file:\n");
+cat("Samples not represented in factor file:\n");
 print(setdiff(counts_mat_samples, shared));
 cat("Samples not represented in summary table:\n");
-print(setdiff(offset_mat_samples, shared));
+print(setdiff(factors_mat_samples, shared));
 cat("\n\n");
 
-offset_mat=offset_mat[shared,];
-counts_mat=counts_mat[shared,];
-indiv_ids=unique(offset_mat[,"Indiv ID"]);
+factor_info=factor_info[shared,,drop=F];
+counts_mat=counts_mat[shared,,drop=F];
+
+if(GroupCol==""){
+        group_names=rep("All", nrow(factor_info));
+        GroupCol="Group";
+}else{
+        group_names=factor_info[,GroupCol,drop=F];
+}
+grp_to_sbj_info=create_GrpToSbj_map(factor_info[,SubjectIDCol], group_names);
+unique_group_names=grp_to_sbj_info[["Groups"]];
+
+# Extract offset info
+offset_rec=extract_offset(factor_info, SubjectIDCol, TimeOffsetCol);
+print(offset_rec);
+
+print(grp_to_sbj_info);
+
+indiv_ids=offset_rec[["SubjectIDs"]];
 num_indiv=length(indiv_ids);
 
 ###############################################################################
@@ -1275,39 +1171,39 @@ if(DiversityType=="tail"){
 simplified_mat=simplify_matrix_categories(normalized_mat, top=3);
 num_simp_cat=ncol(simplified_mat);
 
-
 category_colors=get_colors(num_simp_cat);
 ind_colors=get_colors(num_indiv);
 
 col_assign=1:num_indiv;
 names(col_assign)=indiv_ids;
 
-
 ###############################################################################
 
-plot_text(c(paste("By Subject (", offset_data[["IndivID"]], "):  Diversity and Composition", sep="")));
+plot_text(c(paste("By Subject (", SubjectIDCol, "):  Diversity and Composition", sep="")));
 plot_sample_distributions_by_individual(diversity_arr, DiversityType, 
-	simplified_mat, offset_mat, col_assign, category_colors, ind_colors);
+	simplified_mat, offset_rec, grp_to_sbj_info, col_assign, category_colors, ind_colors);
 
-plot_text(c(paste("By Group (", offset_data[["GroupID"]], "):  Diversity", sep="")));
+plot_text(c(paste("By Group (", GroupCol, "):  Diversity", sep="")));
 plot_sample_diversity_by_group(diversity_arr, DiversityType, simplified_mat, 
-	offset_mat, col_assign, ind_colors, grp_name=offset_data[["GroupID"]]);
+	offset_rec, grp_to_sbj_info, col_assign, ind_colors, grp_name=GroupCol);
 
-plot_text(c(paste("By Group (", offset_data[["GroupID"]], "):  Median Sample Diversity", sep="")));
+plot_text(c(paste("By Group (", GroupCol, "):  Median Sample Diversity", sep="")));
 plot_median_sample_diversity_by_group(diversity_arr, DiversityType, simplified_mat, 
-	offset_mat, col_assign, ind_colors, grp_name=offset_data[["GroupID"]]);
+	offset_rec, grp_to_sbj_info, col_assign, ind_colors, grp_name=GroupCol);
 
-plot_text(c(paste("By Group (", offset_data[["GroupID"]], "):  Composition", sep="")));
-plot_sample_distributions_by_group(simplified_mat, offset_mat, category_colors,
-	grp_name=offset_data[["GroupID"]]);
+plot_text(c(paste("By Group (", GroupCol, "):  Composition", sep="")));
+plot_sample_distributions_by_group(simplified_mat, offset_rec, grp_to_sbj_info, category_colors,
+	grp_name=GroupCol);
 
-plot_text(c(paste("By Group (", offset_data[["GroupID"]], "):  Mean Composition", sep="")));
-plot_mean_distributions_by_group(simplified_mat, offset_mat, category_colors,
-	grp_name=offset_data[["GroupID"]]);
+plot_text(c(paste("By Group (", GroupCol, "):  Mean Composition", sep="")));
+plot_mean_distributions_by_group(simplified_mat, offset_rec, grp_to_sbj_info, category_colors,
+	grp_name=GroupCol);
 
-plot_text(c(paste("By Group (", offset_data[["GroupID"]], "):  Delta Scatter Plots", sep="")));
-plot_change_scatter(diversity_arr, offset_mat,
-	grp_name=offset_data[["GroupID"]]);
+quit();
+
+plot_text(c(paste("By Group (", GroupCol, "):  Delta Scatter Plots", sep="")));
+plot_change_scatter(diversity_arr, offset_rec, grp_to_sbj_info,
+	grp_name=GroupCol);
 
 ##############################################################################
 
