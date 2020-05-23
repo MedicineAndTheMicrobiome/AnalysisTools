@@ -6,11 +6,24 @@ library(MASS);
 library(vegan);
 library('getopt');
 
+source('~/git/AnalysisTools/Longitudinal/Longitudinal.r');
+
 params=c(
-	"input_file", "i", 1, "character",
-	"offset_file", "t", 1, "character",
-	"no_offset_reset", "T", 2, "logical",
-	"output_file", "o", 2, "character",
+        "summary_file", "s", 1, "character",
+
+        "factor_file", "f", 1, "character",
+        "offset_col", "t", 1, "character",
+        "subject_id_col", "i", 1, "character",
+
+        "output_root", "o", 1, "character",
+
+        "model_file", "m", 2, "character",
+        "group_col", "g", 2, "character",
+
+        "dont_reset_offsets", "n", 2, "logical",
+        "begin_offset", "b", 2, "numeric",
+        "end_offset", "e", 2, "numeric",
+
 	"distance_type", "d", 2, "character"
 );
 
@@ -21,53 +34,68 @@ DEF_DIST="euclidean";
 
 usage = paste(
 	"\nUsage:\n", script_name, "\n",
-	"	-i <input summary_table.tsv file>\n",
-	"	-t <offset file>\n",
-	"	[-T (do not reset offsets to 0)]\n",
-	"	-d <distance type, def=", DEF_DIST, ">\n",
-	"	[-o <output file root name>]\n",
-	"\n",
-	"	This script will read in the summary table\n",
-	"	and a file describing the time from the first\n",
-	"	sample.\n",
-	"\n",
-	"	The format of the offset file is:\n",
-	"\n",
-	"	<sample id> \\t <sample grouping/individual id> \\t <time stamp> \\t <cohort (treat/group) id>\\n",
-	"\n",
-	"	Distance Types:\n",	
-	"		euclidean, manhattan, wrd, ...\n",
+        "       -s <summary file table>\n",
+        "\n",
+        "       -f <factor file name>\n",
+        "       -t <offset column name>\n",
+        "       -i <subject identifier column name>\n",
+        "       -o <output root>\n",
+        "\n",
+        "       [-g <group/cohort variable column name>]\n",
+        "\n",
+        "       [-n (do not reset earliest offsets to 0 to line up time points, default=reset offsets)]\n",
+        "       [-b <begin offset, default=-Inf>]\n",
+        "       [-e <end offset, default=Inf>]\n",
+	"	[-d <distance type, def=", DEF_DIST, ">]\n",
 	"\n");
 
-if(!length(opt$input_file) || !length(opt$offset_file)){
+if(
+        !length(opt$summary_file) ||
+        !length(opt$factor_file) ||
+        !length(opt$offset_col) ||
+        !length(opt$subject_id_col) ||
+        !length(opt$output_root)
+){
 	cat(usage);
 	q(status=-1);
 }
 
-InputFileName=opt$input_file;
-OffsetFileName=opt$offset_file;
+# Required
+SummaryFile=opt$summary_file;
+FactorFile=opt$factor_file;
+OutputFileRoot=opt$output_root;
+SubjectIDCol=opt$subject_id_col;
+TimeOffsetCol=opt$offset_col;
 
-if(length(opt$output_file)>0){
-	OutputFileRoot=opt$output_file;
-}else{
-	OutputFileRoot=InputFileName;
-	OutputFileRoot=gsub("\\.summary_table\\.tsv$", "", OutputFileRoot);
-	OutputFileRoot=gsub("\\.summary_table\\.xls$", "", OutputFileRoot);
-	cat("No output file root specified.  Using input file name as root.\n");
-}
-
+# Optional, i.e. with defaults
 DistanceType=DEF_DIST;
+ResetOffsets=T;
+BeginOffset=-Inf;
+EndOffset=Inf;
+GroupCol="";
+
 if(length(opt$distance_type)){
 	DistanceType=opt$distance_type;
 }
 
-if(DistanceType=="wrd"){
-	source("../../SummaryTableUtilities/WeightedRankDifference.r");
+if(length(opt$dont_reset_offsets)){
+        ResetOffsets=F;
 }
 
-ResetOffsets=T;
-if(length(opt$no_offset_reset) && opt$no_offset_reset==T){
-	ResetOffsets=F;
+if(length(opt$begin_offset)){
+        BeginOffset=opt$begin_offset;
+}
+
+if(length(opt$end_offset)){
+        EndOffset=opt$end_offset;
+}
+
+if(length(opt$group_col)){
+        GroupCol=opt$group_col;
+}
+
+if(DistanceType=="wrd"){
+	source("../../SummaryTableUtilities/WeightedRankDifference.r");
 }
 
 ###############################################################################
@@ -80,56 +108,25 @@ pdf(OutputPDF,width=8.5,height=8.5)
 
 ###############################################################################
 
-load_offset=function(fname, reset_offsets=T){
-
-        cat("Loading Offsets: ", fname, "\n");
-        offsets_mat=read.delim(fname,  header=TRUE, row.names=1, sep="\t", comment.char="#", quote="");
-
-        num_col=ncol(offsets_mat);
-        cat("Num Columns Found: ", num_col, "\n");
-
-        extra_colnames=colnames(offsets_mat);
-        print(extra_colnames);
-        colnames(offsets_mat)=c("Indiv ID", "Offsets", "Group ID", extra_colnames[4:num_col])[1:num_col];
-
-	# Change number IDs to strings
-        if(is.numeric(offsets_mat[,"Indiv ID"])){
-		numdigits=log10(max(offsets_mat[,"Indiv ID"]))+1;
-		prtf_str=paste("%0",numdigits,"d", sep="");
-                offsets_mat[,"Indiv ID"]=paste("#",
-			 sprintf(prtf_str, offsets_mat[,"Indiv ID"]), sep="");
-        }
-        groups=unique(offsets_mat[,"Indiv ID"]);
-
-        cat("Groups:\n");
-        print(groups);
-        cat("\n");
-
-	if(ResetOffsets==T){
-		# Reset offsets so they are relative to the first/smallest sample
-		for(gid in groups){
-			group_ix=(gid==offsets_mat[,"Indiv ID"]);
-			offsets=offsets_mat[group_ix, "Offsets"];
-			min_off=min(offsets);
-			offsets_mat[group_ix, "Offsets"]=offsets-min_off;
-		}
-	}
-
-        offsets_data=list();
-        offsets_data[["matrix"]]=offsets_mat;
-        offsets_data[["IndivID"]]=extra_colnames[1];
-        offsets_data[["Offsets"]]=extra_colnames[2];
-        offsets_data[["GroupID"]]=extra_colnames[3];
-
-        return(offsets_data);
-
-}
-
 load_summary_file=function(fname){
         cat("Loading Summary Table: ", fname, "\n");
         inmat=as.matrix(read.table(fname, sep="\t", header=TRUE, check.names=FALSE, comment.char="", row.names=1))
         counts_mat=inmat[,2:(ncol(inmat))];
         return(counts_mat);
+}
+
+load_factors=function(fname){
+        factors=data.frame(read.table(fname,  sep="\t", header=TRUE, row.names=1,
+                check.names=FALSE, comment.char=""));
+        factor_names=colnames(factors);
+
+        ignore_idx=grep("^IGNORE\\.", factor_names);
+
+        if(length(ignore_idx)!=0){
+                return(factors[-ignore_idx]);
+        }else{
+                return(factors);
+        }
 }
 
 normalize=function(counts){
@@ -146,17 +143,13 @@ normalize=function(counts){
         return(normalized);
 }
 
-plot_connected_figure=function(coordinates, offsets_mat, groups_per_plot=3, col_assign, ind_colors, title=""){
-	sorted_sids=sort(rownames(offsets_mat));
-	coordinates=coordinates[sorted_sids,];
-	offsets_mat=offsets_mat[sorted_sids,];
+plot_connected_figure=function(coordinates, offsets_rec, subject_grouping_rec, subjects_per_plot=3, 
+	col_assign, ind_colors, title=""){
 
-	#print(offsets_mat);
-	#print(coordinates);
-
-	# Get Unique Groups
-	groups=sort(unique(offsets_mat[,"Indiv ID"]));
-	num_groups=length(groups);
+	subject_ids=offsets_rec[["SubjectIDs"]];
+	num_subjects=offsets_rec[["NumSubjects"]];
+	groups=subject_grouping_rec[["Groups"]];
+	num_groups=subject_grouping_rec[["NumGroups"]];
 
 	palette(ind_colors);
 
@@ -182,68 +175,56 @@ plot_connected_figure=function(coordinates, offsets_mat, groups_per_plot=3, col_
 
 	# Plot all samples
 	plot(0, main=title, xlab="Dim 1", ylab="Dim 2", type="n", xlim=xlim, ylim=ylim);
-	for(i in 1:num_groups){
-		grp_subset=which(offsets_mat[,"Indiv ID"]==groups[i]);
-		num_members=length(grp_subset);
-		print(grp_subset);
+	title(main="All Subjects", line=.3, cex.main=.75);
+	for(i in 1:num_subjects){
 
-		offsets_subset=offsets_mat[grp_subset,, drop=F];
-		coord_subset=coordinates[grp_subset,, drop=F];
+		sbj_offset=offsets_rec[["OffsetsBySubject"]][[subject_ids[i]]];
+		samp_ids=rownames(sbj_offset);
+		num_samples=length(samp_ids);
 
-		sort_ix=order(offsets_subset[,"Offsets"], decreasing=F);
-
-		offsets_subset=offsets_subset[sort_ix,, drop=F];
-		coord_subset=coord_subset[sort_ix,, drop=F];
-
-		#print(offsets_subset);
-		#print(coord_subset);
+		coord_subset=coordinates[samp_ids,, drop=F];
 
 		#--------------------------------------------------------------------------------
 			
 		# Draw colored lines
-		points(coord_subset, type="l", col=col_assign[groups[i]], pch=20, lwd=2.5);
+		points(coord_subset, type="l", col=col_assign[subject_ids[i]], pch=20, lwd=2.5);
 		# Draw reinforcement black lines
 		points(coord_subset, type="b", col="black", pch=20, cex=.1);
 		# Draw start/stop glyphs
-		points(coord_subset[c(1, 1, num_members),], type="p", col=col_assign[groups[i]], 
+		points(coord_subset[c(1, 1, num_samples),], type="p", col=col_assign[subject_ids[i]], 
 			pch=c(17, 1, 15), cex=c(1, 2, 1.25));
 	}
 
 	# Plot subset of samples
-	for(i in 1:num_groups){
-		if(((i-1) %% groups_per_plot)==0){
+	for(i in 1:num_subjects){
+		if(((i-1) %% subjects_per_plot)==0){
+			cat("Opening new plot...\n");
 			plot(0, main=title, xlab="Dim 1", ylab="Dim 2", type="n", xlim=xlim, ylim=ylim);
+			title(main="(Subset of Subjects)", line=.3, cex.main=.75);
 		}
 
-		#cat("Plotting: ", groups[i], "\n");
-		grp_subset=which(offsets_mat[,"Indiv ID"]==groups[i]);
-		num_members=length(grp_subset);
-		#print(grp_subset);
+		cat("Subject: ", subject_ids[i], "\n");	
+		sbj_offset=offsets_rec[["OffsetsBySubject"]][[subject_ids[i]]];
+		samp_ids=rownames(sbj_offset);
+                num_samples=length(samp_ids);
+		coord_subset=coordinates[samp_ids,, drop=F];
 
-		offsets_subset=offsets_mat[grp_subset,, drop=F];
-		coord_subset=coordinates[grp_subset,, drop=F];
-
-		sort_ix=order(offsets_subset[,"Offsets"], decreasing=F);
-
-		offsets_subset=offsets_subset[sort_ix,, drop=F];
-		coord_subset=coord_subset[sort_ix,, drop=F];
-			
 		#--------------------------------------------------------------------------------
 		# Draw colored lines
-		points(coord_subset, type="l", col=col_assign[groups[i]], pch=20, cex=.5, lwd=2.5);
+		points(coord_subset, type="l", col=col_assign[subject_ids[i]], pch=20, cex=.5, lwd=2.5);
 		# Draw reinforcement black lines
 		points(coord_subset, type="l", col="black", lwd=.1);
 		# Draw start/stop glyphs
-		points(coord_subset[c(1, 1, num_members),], type="p", col=col_assign[groups[i]], 
+		points(coord_subset[c(1, 1, num_samples),], type="p", col=col_assign[subject_ids[i]], 
 			pch=c(17, 1, 15), cex=c(1, 2, 1.25));
 		# Label individual id
-		text(coord_subset[1,1], coord_subset[1,2], labels=groups[i], col="black", pos=1, cex=.75, font=2);
+		text(coord_subset[1,1], coord_subset[1,2], labels=subject_ids[i], col="black", pos=1, cex=.75, font=2);
 
 		# Label offsets
-		if(num_members>1){
-			offset_ix=2:num_members;
+		if(num_samples>1){
+			offset_ix=2:num_samples;
 			text(coord_subset[offset_ix,1], coord_subset[offset_ix,2], 
-				labels=offsets_subset[offset_ix,"Offsets"], col="black", 
+				labels=sbj_offset[offset_ix,"Offsets"], col="black", 
 				adj=c(.5,-.75), cex=.5, font=3);
 		}
 	}
@@ -251,13 +232,12 @@ plot_connected_figure=function(coordinates, offsets_mat, groups_per_plot=3, col_
 
 ###############################################################################
 
-plot_sample_distances=function(distmat, offsets_mat, col_assign, ind_colors, title="", dist_type=""){
-	sorted_sids=sort(rownames(offsets_mat));
-	offsets_mat=offsets_mat[sorted_sids,];
+plot_sample_distances=function(distmat, offsets_rec, subject_grouping_rec, col_assign, 
+	ind_colors, title="", dist_type=""){
 
 	# Get Unique Groups
-	indiv_ids=sort(unique(offsets_mat[,"Indiv ID"]));
-	num_indiv=length(indiv_ids);
+	subject_ids=offsets_rec[["SubjectIDs"]];
+	num_subjects=offsets_rec[["NumSubjects"]];
 
 	palette(ind_colors);
 
@@ -265,40 +245,34 @@ plot_sample_distances=function(distmat, offsets_mat, col_assign, ind_colors, tit
 	par(mfrow=c(4,1));
 
 	# Get range of offsets
-	offset_ranges=range(offsets_mat[,"Offsets"]);
-	cat("Offset Range:\n");
-	print(offset_ranges);
+	offset_ranges=range(offsets_rec[["Offsets"]]);
 
-	#print(offsets_mat);
 	distmat2d=as.matrix(distmat);
 	dist_ranges=range(distmat2d);
 	cat("Distance Ranges:\n");
 	print(dist_ranges);
 
 	# Plot subset of samples
-	for(i in 1:num_indiv){
+	for(i in 1:num_subjects){
 
-		cat("Plotting: ", indiv_ids[i], "\n");
-		ind_subset=which(offsets_mat[,"Indiv ID"]==indiv_ids[i]);
-		num_samples=length(ind_subset);
+		cat("Plotting: ", subject_ids[i], "\n");
+		cur_sbj=subject_ids[i];
+		offset_info=offsets_rec[["OffsetsBySubject"]][[cur_sbj]];
+		sample_ids=rownames(offset_info);
+		num_samples=length(sample_ids);
 
-		offset_info=offsets_mat[ind_subset,];
-		sort_ix=order(offset_info[,"Offsets"]);
-		offset_info=offset_info[sort_ix,];
-		print(offset_info);
-
-		subset_samples=rownames(offset_info);
-		subset_dist=distmat2d[subset_samples[1], subset_samples];
+		subset_dist=distmat2d[sample_ids[1], sample_ids];
 		print(subset_dist);
+		dist_ranges=range(subset_dist);
 
 		y_pad=diff(dist_ranges)*.15;
 
 		# Plot colored lines
-		plot(offset_info[,"Offsets"], subset_dist, main=indiv_ids[i],
-			 xlab="Time", ylab=paste("Distance (", dist_type, ")", sep=""), 
-			type="l", col=col_assign[indiv_ids[i]], lwd=2.5,
+		plot(offset_info[,"Offsets"], subset_dist, main=subject_ids[i],
+			xlab="Time", ylab=paste("Distance (", dist_type, ")", sep=""), 
+			type="l", col=col_assign[subject_ids[i]], lwd=2.5,
 			xaxt="n",
-			 xlim=offset_ranges, ylim=c(dist_ranges[1]-y_pad, dist_ranges[2]+y_pad));
+			xlim=offset_ranges, ylim=c(dist_ranges[1]-y_pad, dist_ranges[2]+y_pad));
 
 		# accentuation where points are
 		if(num_samples>2){
@@ -309,7 +283,7 @@ plot_sample_distances=function(distmat, offsets_mat, col_assign, ind_colors, tit
 
 		# Plot ends
 		points(offset_info[c(1,1, num_samples),"Offsets"], subset_dist[c(1,1, num_samples)], 
-			col=col_assign[indiv_ids[i]],
+			col=col_assign[subject_ids[i]],
 			type="p", pch=c(17, 1, 15), cex=c(2, 4, 2.5));
 		# Plot reinforcement thin black lines
 		points(offset_info[,"Offsets"], subset_dist, type="l", pch=16, cex=.1, lwd=.1);
@@ -323,24 +297,15 @@ plot_sample_distances=function(distmat, offsets_mat, col_assign, ind_colors, tit
 
 ###############################################################################
 
-plot_sample_dist_by_group=function(dist_mat, offsets_mat, col_assign, ind_colors, dist_type=""){
-	
+plot_sample_dist_by_group=function(dist_mat, offsets_rec, subject_grouping_rec, col_assign, 
+	ind_colors, dist_type=""){
+
 	dist_mat=as.matrix(dist_mat);
-
-        sorted_sids=sort(rownames(offsets_mat));
-        offsets_mat=offsets_mat[sorted_sids,, drop=F];
-
-        # Get Num Cohorts
-        cohorts=sort(unique(offsets_mat[,"Group ID"]));
-        num_cohorts=length(cohorts);
-        cat("Number of Cohorts: ", num_cohorts, "\n");
-        print(cohorts);
-        cat("\n");
-
-        # Get range of offsets
-        offset_ranges=range(offsets_mat[,"Offsets"]);
-        cat("Offset Range:\n");
-        print(offset_ranges);
+	subjects_ids=offsets_rec[["SubjectIDs"]];
+	num_subjects=offsets_rec[["NumSubjects"]];
+	group_ids=subject_grouping_rec[["Groups"]];
+	num_groups=subject_grouping_rec[["NumGroups"]];
+	offset_ranges=range(offsets_rec[["Offsets"]]);
 
         # Get range of diversity
         dist_ranges=range(dist_mat);
@@ -349,55 +314,45 @@ plot_sample_dist_by_group=function(dist_mat, offsets_mat, col_assign, ind_colors
 
         # Set up plots per page
         def_par=par(no.readonly=T);
-        par(mfrow=c(num_cohorts,1));
+        par(mfrow=c(num_groups,1));
 
         # Set palette for individuals
         palette(ind_colors);
 
 	x_plot_range=c(offset_ranges[1], offset_ranges[2]+(diff(offset_ranges)/10));
 
-        for(g in 1:num_cohorts){
+        for(g in 1:num_groups){
 	
 		cat("--------------------------------------------------------------------\n");
-                cat("Plotting: ", as.character(cohorts[g]), "\n");
-                plot(0, 0, main=cohorts[g],
+                cat("Plotting: ", as.character(group_ids[g]), "\n");
+                plot(0, 0, main=group_ids[g],
                          xlab="Time", ylab=paste("Distance (", dist_type, ")", sep=""), type="n",
                          xlim=x_plot_range, ylim=dist_ranges);
 
-                coh_offset_mat=offsets_mat[ offsets_mat[,"Group ID"]==cohorts[g], ];
-                print(coh_offset_mat);
-
-                # Get Unique Inidividuals
-                indivs=sort(unique(coh_offset_mat[,"Indiv ID"]));
-                num_indivs=length(indivs);
-                cat("Number of Individuals: ", num_indivs, "\n");
-                print(indivs);
-                cat("\n");
+		cur_grp=group_ids[g];
+		subj_in_grp=subject_grouping_rec[["GrpToSbj"]][[cur_grp]];
+		num_sbj_in_grp=length(subj_in_grp);
 
                 # Plot individual samples
-                for(i in 1:num_indivs){
+                for(i in 1:num_sbj_in_grp){
 
                         # Grab from individual cohort 
-                        cat("Plotting: ", as.character(indivs[i]), "\n");
-                        ind_subset=which(coh_offset_mat[,"Indiv ID"]==indivs[i]);
-                        num_timepts=length(ind_subset);
-
-                        # Subset offsets, and sort by offset
-                        offset_info=coh_offset_mat[ind_subset,,drop=F];
-                        sort_ix=order(offset_info[,"Offsets"]);
-                        offset_info=offset_info[sort_ix,];
+                        cat("Plotting: ", as.character(subj_in_grp[i]), "\n");
+			offset_info=offsets_rec[["OffsetsBySubject"]][[subj_in_grp[i]]];
+                        num_timepts=nrow(offset_info);
 
                         # Subset distances
-                        subset_samples=rownames(offset_info);
-			subset_dist=dist_mat[subset_samples[1], subset_samples];
+                        sample_ids=rownames(offset_info);
+			subset_dist=dist_mat[sample_ids[1], sample_ids];
 
                         # Plot distances
                         points(offset_info[c(1,1, num_timepts),"Offsets"], subset_dist[c(1,1, num_timepts)],
-                                type="p", pch=c(17, 1, 15), cex=c(1, 2, 1.25), col=col_assign[indivs[i]]);
-                        points(offset_info[,"Offsets"], subset_dist, type="l", lwd=2.5, col=col_assign[indivs[i]]);
+                                type="p", pch=c(17, 1, 15), cex=c(1, 2, 1.25), col=col_assign[subject_ids[i]]);
+                        points(offset_info[,"Offsets"], subset_dist, type="l", lwd=2.5,
+				 col=col_assign[subject_ids[i]]);
                         points(offset_info[,"Offsets"], subset_dist, type="l", lwd=.1, col="black");
 			text(offset_info[num_timepts, "Offsets"], subset_dist[num_timepts], adj=c(-.5,-1),
-				labels=indivs[i], col="black", cex=.5);
+				labels=subject_ids[i], col="black", cex=.5);
 
                 }
         }
@@ -419,7 +374,7 @@ get_colors=function(num_col, alpha=1){
 
 ###############################################################################
 
-calculate_stats_on_series=function(offset_mat, dist_mat){
+calculate_stats_on_series=function(offset_rec, dist_mat){
 
 	avg_dist=function(dist_arr, time_arr){
 
@@ -545,13 +500,9 @@ calculate_stats_on_series=function(offset_mat, dist_mat){
 
 	cat("Calculating average distance over time...\n");
 
-	uniq_indiv_ids=sort(unique(offset_mat[,"Indiv ID"]));
-	num_ind=length(uniq_indiv_ids);
-
-	cat("IDs:\n");
-	print(uniq_indiv_ids);
-	cat("Num Individuals: ", num_ind, "\n");
-
+	uniq_indiv_ids=offset_rec[["SubjectIDs"]];
+	num_ind=offset_rec[["NumSubjects"]];
+	
 	stat_names=c(
 		"last_time", "num_time_pts",
 		"average_dist", 
@@ -572,14 +523,9 @@ calculate_stats_on_series=function(offset_mat, dist_mat){
 
 	for(cur_id in uniq_indiv_ids){
 		
-		row_ix=(offset_mat[,"Indiv ID"]==cur_id);
-		cur_offsets=offset_mat[row_ix,,drop=F];
-
-		# Order offsets
-		ord=order(cur_offsets[,"Offsets"]);
-		cur_offsets=cur_offsets[ord,,drop=F];
-
+		cur_offsets=offset_rec[["OffsetsBySubject"]][[cur_id]];
 		num_timepts=nrow(cur_offsets);
+
 		out_mat[cur_id, "last_time"]=cur_offsets[num_timepts, "Offsets"];
 		out_mat[cur_id, "num_time_pts"]=num_timepts;
 
@@ -971,57 +917,63 @@ export_distances_from_start=function(fname, offset_mat, dist_mat){
 
 ###############################################################################
 
-offset_data=load_offset(OffsetFileName, reset_offsets=ResetOffsets);
-offset_mat=offset_data[["matrix"]];
+# Load Factor File
+cat("Loading Factor File:\n");
+factor_info=load_factors(FactorFile);
+factor_samp_ids=rownames(factor_info);
 
 ###############################################################################
 
-counts_mat=load_summary_file(InputFileName);
-#print(counts_mat);
+counts_mat=load_summary_file(SummaryFile);
 
 ###############################################################################
 
-offset_mat_samples=rownames(offset_mat);
+factor_mat_samples=rownames(factor_info);
 counts_mat_samples=rownames(counts_mat);
-shared=intersect(offset_mat_samples, counts_mat_samples);
+shared_samp_ids=intersect(factor_mat_samples, counts_mat_samples);
 
 cat("Shared:\n");
-print(shared);
+print(shared_samp_ids);
 
 cat("\n\n");
 cat("Samples not represented in offsets file:\n");
-print(setdiff(counts_mat_samples, shared));
+print(setdiff(counts_mat_samples, shared_samp_ids));
 cat("Samples not represented in summary table file:\n");
-print(setdiff(offset_mat_samples, shared));
+print(setdiff(factor_mat_samples, shared_samp_ids));
 cat("\n\n");
 
-offset_mat=offset_mat[shared,];
-counts_mat=counts_mat[shared,];
+counts_mat=counts_mat[shared_samp_ids,,drop=F];
+factor_info=factor_info[shared_samp_ids,,drop=F];
+
+# Set up grouping information
+if(GroupCol==""){
+        group_names=rep("All", nrow(factor_info));
+        GroupCol="Group";
+}else{
+        group_names=factor_info[,GroupCol,drop=F];
+}
+subject_grouping_rec=create_GrpToSbj_map(factor_info[,SubjectIDCol], group_names);
+unique_group_names=sort(unique(group_names));
+
+# Extract offset info
+offset_rec=extract_offset(factor_info, SubjectIDCol, TimeOffsetCol);
+
+print(offset_rec);
+print(subject_grouping_rec);
 
 ###############################################################################
 
-# Get Cohort info
-cohort_names=sort(unique(offset_mat[,"Group ID"]));
-num_cohorts=length(cohort_names);
-cat("Cohorts:\n");
-print(cohort_names);
-cat("Num Cohorts: ", num_cohorts, "\n");
-cat("\n");
-
-# Get Individuals info
-indiv_names=sort(unique(offset_mat[,"Indiv ID"]));
-num_indiv=length(indiv_names);
-cat("Individuals:\n");
-print(indiv_names);
-cat("Num Individuals: ", num_indiv, "\n");
-cat("\n");
+groups=subject_grouping_rec[["Groups"]];
+num_groups=subject_grouping_rec[["NumGroups"]];
+subject_ids=offset_rec[["SubjectIDs"]];
+num_subjects=offset_rec[["NumSubjects"]];
 
 ###############################################################################
 
 # Assign colors
-ind_colors=get_colors(num_indiv);
-col_assign=1:num_indiv;
-names(col_assign)=indiv_names;
+ind_colors=get_colors(num_subjects);
+col_assign=1:num_subjects;
+names(col_assign)=subject_ids;
 
 ###############################################################################
 
@@ -1049,30 +1001,23 @@ mds2_coord=isomds$points;
 
 ###############################################################################
 
-stats_mat=calculate_stats_on_series(offset_mat, dist_mat);
+stats_mat=calculate_stats_on_series(offset_rec, dist_mat);
 
-plot_connected_figure(mds_coord, offset_mat, groups_per_plot=5, col_assign, 
+plot_connected_figure(mds_coord, offset_rec, subject_grouping_rec, 
+	subjects_per_plot=as.integer(num_subjects/5), col_assign, 
 	ind_colors, title=paste("Metric MDS (", DistanceType,")", sep=""));
-plot_connected_figure(mds2_coord, offset_mat, groups_per_plot=5, col_assign, 
+plot_connected_figure(mds2_coord, offset_rec, subject_grouping_rec, 
+	subjects_per_plot=as.integer(num_subjects/5), col_assign, 
 	ind_colors, title=paste("IsoMetric MDS (", DistanceType, ")", sep=""));
 
-plot_sample_distances(dist_mat, offset_mat, col_assign, ind_colors, 
+plot_sample_distances(dist_mat, offset_rec, subject_grouping_rec, col_assign, ind_colors, 
 	dist_type=DistanceType);
 
-plot_sample_dist_by_group(dist_mat, offset_mat, col_assign, ind_colors, 
+plot_sample_dist_by_group(dist_mat, offset_rec, subject_grouping_rec, col_assign, ind_colors, 
 	dist_type=DistanceType);
 
 
 # Extract individual membership
-uniq_group_ids=sort(unique(offset_mat[,"Group ID"]));
-cat("Num Groups: ", length(uniq_group_ids), "\n");
-group_map=list();
-for(grpid in uniq_group_ids){
-	cat("Extracting members of: ", grpid, "\n");
-	gix=offset_mat[,"Group ID"]==grpid;
-	tmp=sort(unique(offset_mat[gix,"Indiv ID"]));
-	group_map[[as.character(grpid)]]=tmp;
-}
 
 print(stats_mat);
 num_stats=ncol(stats_mat);
@@ -1090,7 +1035,7 @@ for(page_ix in 1:num_pages){
 	plot_text(capture.output(print(stats_mat[, start_col:end_col, drop=F])));
 }
 
-plot_stats_mat(stats_mat, group_map);
+plot_stats_mat(stats_mat, subject_grouping_rec);
 
 stat_description=c(
 	"DESCRIPTION OF STATISTICS:",
@@ -1128,7 +1073,7 @@ plot_text(stat_description);
 ##############################################################################
 
 export_distances_from_start(paste(OutputFileRoot,".dist_from_start.tsv", sep=""),
-	offset_mat, dist_mat);
+	offset_rec, dist_mat);
 
 ##############################################################################
 
