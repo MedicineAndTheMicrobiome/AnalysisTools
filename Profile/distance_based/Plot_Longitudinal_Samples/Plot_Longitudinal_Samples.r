@@ -714,6 +714,9 @@ plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.05, samp_gly=T){
                 line=.25, cex.main=.7, font.main=3);
 
         bar_width=mean(diff(mids));
+	if(is.na(bar_width)){
+		bar_width=.5;
+	}
         qbw=bar_width/6;
 
 	# Label x-axis
@@ -723,10 +726,13 @@ plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.05, samp_gly=T){
 
         # Scatter
         if(samp_gly){
+		cat("Plotting point scatter...\n");
+
                 for(grp_ix in 1:num_grps){
 			grpnm=group_names[grp_ix];
                         pts=stat[grps[[grpnm]]];
                         numpts=length(pts);
+print(cbind(mids[grp_ix]+rnorm(numpts, 0, bar_width/10), pts));
                         points(
                                 #rep(mids[grp_ix], numpts),
                                 mids[grp_ix]+rnorm(numpts, 0, bar_width/10),
@@ -737,6 +743,8 @@ plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.05, samp_gly=T){
         # label CI's
         for(grp_ix in 1:num_grps){
                 if(samp_size[grp_ix]>=40){
+			cat("Plotting 95% CI Lines...\n");
+
                         points(
                                 c(mids[grp_ix]-qbw, mids[grp_ix]+qbw),
                                 rep(ci95[grp_ix, 2],2), type="l", col="blue");
@@ -826,10 +834,10 @@ plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.05, samp_gly=T){
 
 ###############################################################################
 
-plot_stats_mat=function(sm, grp_map){
+plot_stats_mat=function(sm, subject_grouping_rec){
 
 	cat("Plotting Stats Matrix...\n");
-	num_groups=length(grp_map);
+	num_groups=subject_grouping_rec[["NumGroups"]];
 	num_stats=ncol(sm);
 	num_indiv=nrow(sm);
 	stat_name=colnames(sm);
@@ -846,7 +854,7 @@ plot_stats_mat=function(sm, grp_map){
 		plot_barplot_wsignf_annot(
 			title=stat_name[stat_ix], 
 			stat=sm[,stat_ix, drop=F],
-			grps=grp_map);
+			grps=subject_grouping_rec[["GrpToSbj"]]);
 	}
 
 }
@@ -878,34 +886,28 @@ plot_text=function(strings){
 
 ###############################################################################
 
-export_distances_from_start=function(fname, offset_mat, dist_mat){
+export_distances_from_start=function(fname, offset_rec, dist_mat){
 
 	cat("Exporting distances from start into: ", fname, "\n", sep="");
 	
-	uniq_indiv_ids=sort(unique(offset_mat[,"Indiv ID"]));
-	num_ind=length(uniq_indiv_ids);
+	subject_ids=offset_rec[["SubjectIDs"]];
+	num_subjects=length(subject_ids);
 	dist_mat=as.matrix(dist_mat);
 
 	fh=file(fname, "w");
 
-	for(cur_id in uniq_indiv_ids){
+	for(cur_id in subject_ids){
 		
-		row_ix=(offset_mat[,"Indiv ID"]==cur_id);
-		cur_offsets=offset_mat[row_ix,,drop=F];
-
-		# Order offsets
-		ord=order(cur_offsets[,"Offsets"]);
-		cur_offsets=cur_offsets[ord,,drop=F];
-
-		samp_ids=rownames(cur_offsets);
+		cur_offsets=offset_rec[["OffsetsBySubject"]][[cur_id]];
+		sample_ids=rownames(cur_offsets);
 
 		# Grab distances from first sample
-		cur_dist=dist_mat[samp_ids[1], samp_ids];
+		cur_dist=dist_mat[sample_ids[1], sample_ids];
 		cur_times=cur_offsets[,"Offsets"];
 
 		cat(file=fh, "Subject:,", cur_id, "\n", sep="");
 		cat(file=fh, "Offset:,", paste(cur_times, collapse=","), "\n", sep="");
-		cat(file=fh, "Sample ID:,", paste(samp_ids, collapse=","), "\n", sep="");
+		cat(file=fh, "Sample ID:,", paste(sample_ids, collapse=","), "\n", sep="");
 		cat(file=fh, "Distance:,", paste(round(cur_dist,4), collapse=","), "\n", sep="");
 		cat(file=fh, "\n");
 
