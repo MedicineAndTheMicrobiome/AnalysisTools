@@ -1,6 +1,4 @@
 
-
-
 extract_offset=function(factor_mat, sbj_cname, timeoffset_cname, start=-Inf, end=Inf){
 	
 	var_names=colnames(factor_mat);
@@ -36,6 +34,7 @@ extract_offset=function(factor_mat, sbj_cname, timeoffset_cname, start=-Inf, end
         offsets_data[["matrix"]]=offsets_mat;
         offsets_data[["SampleIDs"]]=sort(rownames(offsets_mat));
         offsets_data[["SubjectIDs"]]=sort(unique(offsets_mat[, "SubjectID"]));
+	offsets_data[["NumSubjects"]]=length(offsets_data[["SubjectIDs"]]);
         offsets_data[["Offsets"]]=sort(unique(offsets_mat[, "Offsets"]));
 	
 	# Offsets by subject
@@ -82,89 +81,36 @@ extract_offset=function(factor_mat, sbj_cname, timeoffset_cname, start=-Inf, end
 }
 
 
-load_offset=function(fname, subject_id_colname, offsets_colname, reset_offsets=T, start=-Inf, end=Inf){
-
-        cat("Loading Offsets: ", fname, "\n");
-        in_mat=read.delim(fname,  header=TRUE, row.names=F, sep="\t", comment.char="#", quote="");
-
-        num_col=ncol(in_mat);
-        cat("Num Columns Found: ", num_col, "\n");
-
-	cat("Subject ID Column Name: ", subject_id_colname, "\n");
-	cat("Offsets Column Name: ", offsets_colname, "\n");
-
-	input_colnames=colnames(in_mat);
-
-	if(length(intersect(subject_id_colname, input_colnames))==0){
-		cat("Error: Could not find: ", subject_id_colname, ", in ", fname, "\n", sep="");
-	}
-
-	if(length(intersect(offsets_colname, input_colnames))==0){
-		cat("Error: Could not find: ", offsets_colname, ", in ", fname, "\n", sep="");
-	}
-
-        colnames(offsets_mat)=c("Indiv ID", "Offsets");
-
-	offsets_mat[,]=in_mat[,c(subject_id_colname, offsets_colname)]
-
-        # Change number IDs to strings
-        if(is.numeric(offsets_mat[,"Indiv ID"])){
-                numdigits=log10(max(offsets_mat[,"Indiv ID"]))+1;
-                prtf_str=paste("%0",numdigits,"d", sep="");
-                offsets_mat[,"Indiv ID"]=paste("#",
-                         sprintf(prtf_str, offsets_mat[,"Indiv ID"]), sep="");
+create_GrpToSbj_map=function(subjects_arr, groups_arr){
+        if(length(subjects_arr) != length(groups_arr)){
+                cat("Error: Subj/Grp array lengths do no match.\n");
+                cat("Subjects:\n");
+                print(subjects_arr);
+                cat("\nGroups:\n");
+                print(groups_arr);
+                quit(-1);
         }
-        groups=unique(offsets_mat[,"Indiv ID"]);
 
-        cat("Groups:\n");
-        print(groups);
-        cat("\n");
+	# Create subject lookup by group
+        uniq_grps=sort(unique(groups_arr));
+        grp_to_sbj_map=list();
+        for(grp_ix in uniq_grps){
+                grp_to_sbj_map[[grp_ix]]=unique(sort(as.character(subjects_arr[groups_arr==grp_ix])));
+        }
 
-        # Reset offsets so they are relative to the first/smallest sample
-	if(reset_offsets){
-		for(gid in groups){
-			group_ix=(gid==offsets_mat[,"Indiv ID"]);
-			offsets=offsets_mat[group_ix, "Offsets"];
-			min_off=min(offsets);
-			offsets_mat[group_ix, "Offsets"]=offsets-min_off;
-		}
-	}
+	# Create map from subject to group
+	sbj_to_grp_map=groups_arr;
+	names(sbj_to_grp_map)=subjects_arr;
 
-	# Filter offsets by start and end inclusive
-	keep_ix=(offsets_mat[, "Offsets"]>=start & offsets_mat[, "Offsets"]<=end)	
-	offsets_mat=offsets_mat[keep_ix,];
+	rec=list();
+	rec[["Groups"]]=uniq_grps;
+	rec[["NumGroups"]]=length(uniq_grps);
+	rec[["GrpToSbj"]]=grp_to_sbj_map;
+	rec[["SbjToGrp"]]=sbj_to_grp_map;	
 
-	cat("Number of Rows in Offset Matrix: ", nrow(offsets_mat), "\n");
-
-        offsets_data=list();
-        offsets_data[["matrix"]]=offsets_mat;
-
-        offsets_data[["IndivID"]]=extra_colnames[1];
-        offsets_data[["Offsets"]]=extra_colnames[2];
-        offsets_data[["GroupID"]]=extra_colnames[3];
-
-	# Store range information
-	if(start==-Inf){
-		stag="start";
-	}else{
-		stag=as.character(start);
-	}
-
-	if(end==Inf){
-		etag="end";
-	}else{
-		etag=as.character(end);
-	}
-
-	range_tag=paste(stag, "_to_", etag, sep="");
-	range_tag=gsub("-", "n", range_tag);
-	offsets_data[["RangeTag"]]=range_tag;
-	offsets_data[["Start"]]=start;
-	offsets_data[["End"]]=end;
-
-        return(offsets_data);
-
+        return(rec);
 }
+
 
 group_offsets=function(offsets_data){
 	
