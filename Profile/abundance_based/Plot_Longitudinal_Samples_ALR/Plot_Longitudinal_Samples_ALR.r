@@ -1681,7 +1681,7 @@ if(ModelFile!=""){
 	cat("Model variables in: ", ModelFile, "\n");
 }else{
 	cat("Model File was not specified. Skipping analyses with factors.\n");
-	quit(status=-1);
+	quit();
 }
 
 # collapse
