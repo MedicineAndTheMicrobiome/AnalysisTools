@@ -386,9 +386,9 @@ plot_sample_diversity_by_group=function(diversity_arr, div_type, normalized_mat,
 			 xlab="Time", ylab=paste("Diversity (", div_type,")",sep=""), type="n", 
 			 xlim=offset_ranges, ylim=diversity_ranges);
 
-		# Get Unique Inidividuals
-		indivs=offsets_rec[["SubjectIDs"]];
-		num_indivs=offset_rec[["NumSubjects"]];
+		# Get Unique Inidividuals in group
+		indivs=grp_to_sbj_info[["GrpToSbj"]][[group_ids[g]]];
+		num_indivs=length(indivs);
 		cat("Number of Individuals: ", num_indivs, "\n");
 
 		# Plot individual samples
@@ -971,7 +971,7 @@ plot_change_scatter=function(diversity_arr, offsets_rec, grp_to_sbj_info, grp_na
 		grp_ends=ends[grp_subject_ids,, drop=F];
 
 		plot(0,0, type="n",
-			main=paste(grp_name, ": ", grp_ix, sep=""),
+			main=paste(grp_name, ": ", cur_grp, sep=""),
 			xlab="", ylab="",
 			xlim=end_ranges, ylim=end_ranges, 
 			xaxt="n", yaxt="n");
@@ -1150,6 +1150,14 @@ num_indiv=length(indiv_ids);
 
 ###############################################################################
 
+plot_text(c(
+	"Subject-Group Mapping:",
+	"",
+	capture.output(print(grp_to_sbj_info))
+));
+
+###############################################################################
+
 normalized_mat=normalize(counts_mat);
 #print(normalized_mat);
 
@@ -1186,11 +1194,11 @@ plot_text(c(paste("By Group (", GroupCol, "):  Median Sample Diversity", sep="")
 plot_median_sample_diversity_by_group(diversity_arr, DiversityType, simplified_mat, 
 	offset_rec, grp_to_sbj_info, col_assign, ind_colors, grp_name=GroupCol);
 
-plot_text(c(paste("By Group (", GroupCol, "):  Composition", sep="")));
+plot_text(c(paste("By Group (", GroupCol, "):  Composition as Stacked Bar Plots", sep="")));
 plot_sample_distributions_by_group(simplified_mat, offset_rec, grp_to_sbj_info, category_colors,
 	grp_name=GroupCol);
 
-plot_text(c(paste("By Group (", GroupCol, "):  Mean Composition", sep="")));
+plot_text(c(paste("By Group (", GroupCol, "):  Mean Composition as Stacked Bar Plots", sep="")));
 plot_mean_distributions_by_group(simplified_mat, offset_rec, grp_to_sbj_info, category_colors,
 	grp_name=GroupCol);
 
