@@ -1252,8 +1252,9 @@ if(GroupCol==""){
 	group_names=rep("All", nrow(factor_info));
 	GroupCol="Group";
 }else{
-	group_names=factor_info[,GroupCol,drop=F];
+	group_names=factor_info[,GroupCol];
 }
+
 subject_grouping_rec=create_GrpToSbj_map(factor_info[,SubjectIDCol], group_names);
 unique_group_names=sort(unique(group_names));
 
