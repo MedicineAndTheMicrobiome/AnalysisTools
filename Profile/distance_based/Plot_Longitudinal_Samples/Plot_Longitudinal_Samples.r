@@ -610,8 +610,13 @@ plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.05, samp_gly=T){
 				grpBnm=group_names[grp_ix_B];
 
                                 res=wilcox.test(stat[grps[[grpAnm]]], stat[grps[[grpBnm]]]);
-                                pval_mat[grpAnm, grpBnm]=res$p.value;
-                                if(res$p.value<=alpha){
+
+				if(is.na(res$p.value)){
+					pval_mat[grpAnm, grpBnm]=1;
+				}else{
+					pval_mat[grpAnm, grpBnm]=res$p.value;
+				}
+                                if(pval_mat[grpAnm, grpBnm]<=alpha){
                                         signf=rbind(signf, c(grpAnm, grpBnm, res$p.value));
                                 }
                         }
