@@ -732,7 +732,6 @@ plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.05, samp_gly=T){
 			grpnm=group_names[grp_ix];
                         pts=stat[grps[[grpnm]]];
                         numpts=length(pts);
-print(cbind(mids[grp_ix]+rnorm(numpts, 0, bar_width/10), pts));
                         points(
                                 #rep(mids[grp_ix], numpts),
                                 mids[grp_ix]+rnorm(numpts, 0, bar_width/10),
@@ -952,7 +951,7 @@ if(GroupCol==""){
         group_names=rep("All", nrow(factor_info));
         GroupCol="Group";
 }else{
-        group_names=factor_info[,GroupCol,drop=F];
+        group_names=factor_info[,GroupCol];
 }
 subject_grouping_rec=create_GrpToSbj_map(factor_info[,SubjectIDCol], group_names);
 unique_group_names=sort(unique(group_names));
