@@ -347,15 +347,116 @@ plot_sample_dist_by_group=function(dist_mat, offsets_rec, subject_grouping_rec, 
 
                         # Plot distances
                         points(offset_info[c(1,1, num_timepts),"Offsets"], subset_dist[c(1,1, num_timepts)],
-                                type="p", pch=c(17, 1, 15), cex=c(1, 2, 1.25), col=col_assign[subject_ids[i]]);
+                                type="p", pch=c(17, 1, 15), cex=c(1, 2, 1.25), col=col_assign[subj_in_grp[i]]);
                         points(offset_info[,"Offsets"], subset_dist, type="l", lwd=2.5,
-				 col=col_assign[subject_ids[i]]);
+				 col=col_assign[subj_in_grp[i]]);
                         points(offset_info[,"Offsets"], subset_dist, type="l", lwd=.1, col="black");
 			text(offset_info[num_timepts, "Offsets"], subset_dist[num_timepts], adj=c(-.5,-1),
-				labels=subject_ids[i], col="black", cex=.5);
+				labels=subj_in_grp[i], col="black", cex=.5);
 
                 }
         }
+        par(def_par);
+}
+
+###############################################################################
+
+plot_sample_dist_by_group_loess=function(dist_mat, offsets_rec, subject_grouping_rec, col_assign, 
+	ind_colors, dist_type=""){
+
+	dist_mat=as.matrix(dist_mat);
+	group_ids=subject_grouping_rec[["Groups"]];
+	num_groups=subject_grouping_rec[["NumGroups"]];
+	offset_ranges=range(offsets_rec[["Offsets"]]);
+	num_offsets=offsets_rec[["NumUniqOffsets"]];
+
+        # Get range of diversity
+        dist_ranges=range(dist_mat);
+        cat("Distance Range:\n");
+        print(dist_ranges);
+
+        # Set up plots per page
+        def_par=par(no.readonly=T);
+        par(mfrow=c(num_groups,1));
+
+        # Set palette for individuals
+        palette(ind_colors);
+
+	x_plot_range=c(offset_ranges[1], offset_ranges[2]+(diff(offset_ranges)/10));
+
+	loess_rec=list();
+	subj_points_rec=list();
+	max_subj_dist=0;
+        for(g in 1:num_groups){
+	
+		# Get subjects in group
+		cur_grp=as.character(group_ids[g]);
+		subj_in_grp=as.character(subject_grouping_rec[["GrpToSbj"]][[cur_grp]]);
+		num_sbj_in_grp=length(subj_in_grp);
+
+		# Prep for loess
+		group_xs=c();
+		group_ys=c();
+		for(i in 1:num_sbj_in_grp){
+
+			offset_info=offsets_rec[["OffsetsBySubject"]][[subj_in_grp[i]]];
+                        sample_ids=rownames(offset_info);
+			subset_dist=dist_mat[sample_ids[1], sample_ids];
+			time_vals=offset_info[,"Offsets"];
+		
+			group_xs=c(group_xs, time_vals);
+			group_ys=c(group_ys, subset_dist);
+			subj_points_rec[[subj_in_grp[i]]]=cbind(time_vals, subset_dist);
+
+			max_subj_dist=max(max_subj_dist, subset_dist);
+		}
+
+		# Compute loess for group
+		loess_res=loess(group_ys~group_xs);
+			
+		loess_fit_x=seq(offset_ranges[1], offset_ranges[2], length.out=num_offsets*2);
+		loess_fit_y=tryCatch({
+				predict(loess_res, loess_fit_x);
+			}, error=function(e){
+				return(NULL);
+			});
+
+		if(is.null(loess_fit_y)){
+			loess_fit_x=time_vals;
+			loess_fit_y=subset_dist;
+		}
+
+		loess_rec[[cur_grp]]=cbind(loess_fit_x, loess_fit_y);
+
+	}
+
+	#print(loess_rec);
+	#print(subj_points_rec);
+
+	# Create plot
+	plot(0,0, xlim=offset_ranges, ylim=c(0, max_subj_dist), xlab="Time", ylab="Distance");
+
+	# Plot scatter for all 
+	subjects=names(subj_points_rec);
+	for(sbj_ix in subjects){
+		points(subj_points_rec[[sbj_ix]][,1], subj_points_rec[[sbj_ix]][,2],
+			col=col_assign[sbj_ix]);	
+	} 
+
+	# Plot loess lines
+	groups=names(loess_rec);
+	grp_colors=terrain.colors(num_groups+2)[2:(num_groups-1)];
+	names(grp_colors)=groups;
+
+	for(grp_ix in groups){
+		cur_loess=loess_rec[[grp_ix]];
+		points(cur_loess[,1], cur_loess[,2], type="l", lwd=2, col=grp_colors[grp_ix]);
+	}	
+
+	# Plot legend
+	plot(0,0, xlim=c(0,1), ylim=c(0,1), xlab="", ylab="", xaxt="n", yaxt="n", main="", type="n", bty="n");
+	legend(0,1, fill=grp_colors, legend=groups);
+
         par(def_par);
 }
 
@@ -1020,6 +1121,9 @@ plot_sample_distances(dist_mat, offset_rec, subject_grouping_rec, col_assign, in
 	dist_type=DistanceType);
 
 plot_sample_dist_by_group(dist_mat, offset_rec, subject_grouping_rec, col_assign, ind_colors, 
+	dist_type=DistanceType);
+
+plot_sample_dist_by_group_loess(dist_mat, offset_rec, subject_grouping_rec, col_assign, ind_colors, 
 	dist_type=DistanceType);
 
 
