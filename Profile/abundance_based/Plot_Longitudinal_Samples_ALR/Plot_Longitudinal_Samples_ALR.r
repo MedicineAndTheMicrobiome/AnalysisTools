@@ -580,7 +580,11 @@ plot_alr_time_indv=function(tar_cat, tar_subj, offsets_rec, alr_categories_val,
 plot_alr_time_grpd=function(tar_cat, subj_arr, grouping, grouping_name, offsets_rec, alr_categories_val, 
 	offset_range, alr_range, alr_med, subj_cols){
 
-	plot(0, type="n", ylim=alr_range, xlim=offset_range, ylab=paste(grouping_name, ": ", grouping));
+	offset_span=offset_range[2]-offset_range[1];
+
+
+	plot(0, type="n", ylim=alr_range, xlim=c(offset_range[1], offset_range[2]+0.2*offset_span), 
+		ylab=paste(grouping_name, ": ", grouping));
 	abline(h=alr_med, col="grey", lty="dotdash");
 
 	if(min(offset_range)<0){
@@ -600,12 +604,14 @@ plot_alr_time_grpd=function(tar_cat, subj_arr, grouping, grouping_name, offsets_
 		points(x_val, y_val, type="l", lwd=5, col=subj_cols[tar_subj]);
 		points(x_val, y_val, type="l", lwd=.5, col="black");
 		points(x_val, y_val, type="p", cex=1, col="black");
+
+		text(tail(x_val, 1), tail(y_val, 1), tar_subj, cex=1.2, adj=c(-0.25, .5));
 	}
 
 }
 
 compute_and_plot_loess=function(tar_cat, subj_arr, grouping, grouping_name, offsets_rec, alr_categories_val, 
-	offset_range, alr_range, alr_med, subj_cols){
+	offset_range, alr_range, alr_med, subj_cols, grp_cols){
 
 	plot(0, type="n", ylim=alr_range, xlim=offset_range, ylab=paste(grouping_name, ": ", grouping));
 	abline(h=alr_med, col="grey", lty="dotdash");
@@ -638,10 +644,25 @@ compute_and_plot_loess=function(tar_cat, subj_arr, grouping, grouping_name, offs
 
 	loess_res=loess(all_y~all_x);
 
-	grp_loess=cbind(loess_res[["x"]], loess_res[["fitted"]]);
+	offsets_range=range(offsets_rec[["Offsets"]]);
+	num_offsets=offsets_rec[["NumUniqOffsets"]];
+	loess_fit_x=seq(offsets_range[1], offsets_range[2], length.out=num_offsets*2);
+	loess_fit_y=tryCatch({
+			predict(loess_res, loess_fit_x);
+		}, error=function(e){
+			return(NULL);
+		});
+	if(is.null(loess_fit_y)){
+		loess_fit_x=all_x;
+		loess_fit_y=all_y;
+	}
+	
+
+	grp_loess=cbind(loess_fit_x, loess_fit_y);
 	colnames(grp_loess)=c("x", "y");
 
-	points(grp_loess[,"x"], grp_loess[,"y"], type="l", col="blue");
+	points(grp_loess[,"x"], grp_loess[,"y"], type="l", lwd=3, col=grp_cols[grouping]);
+	#points(grp_loess[,"x"], grp_loess[,"y"], type="l", lwd=.4, col="black");
 
 	return(grp_loess);
 
@@ -1346,6 +1367,9 @@ names(subj_col)=subj_ids;
 plots_per_page=6;
 num_groups=length(unique_group_names);
 
+grp_col=terrain.colors(num_groups+1)[1:num_groups];
+names(grp_col)=unique_group_names;
+
 par(mar=c(2,4,1,1));
 par(oma=c(.5,.5,5,.5));
 
@@ -1403,10 +1427,25 @@ for(cat_ix in alr_cat_names){
 		subj_in_grp=grp_to_sbj[[grp_ix]];
 		grp_loess[[grp_ix]]=compute_and_plot_loess(cat_ix, subj_in_grp, grp_ix,
 			GroupCol, offset_rec, alr_categories_val,
-			offset_ranges, alr_range, alr_med[cat_ix], subj_col);
+			offset_ranges, alr_range, alr_med[cat_ix], subj_col, grp_col);
 	}
 	#plot_grp_loess(grp_loess);
 	mtext(cat_ix, side=3, outer=T, font=2, cex=2, line=2);
+
+	# plot multiple overlapping
+	cat("Plotting Overlapping Loess:\n");
+	print(grp_loess);
+	plot(0, type="n", xlim=offset_ranges, ylim=alr_range, xlab="", ylab="", main=cat_ix);
+	abline(h=alr_med[cat_ix], col="grey", lty="dotdash");
+	for(grp_ix in unique_group_names){
+		points(grp_loess[[grp_ix]][,"x"], grp_loess[[grp_ix]][,"y"], type="l", lwd=3, col=grp_col[grp_ix]);
+	}
+	
+	# plot legend
+	plot(0, type="n", bty="n", xlab="", ylab="", main="", xaxt="n", yaxt="n", xlim=c(0,1), ylim=c(0,1));
+	legend(0, 1, fill=grp_col, legend=names(grp_col), bty="n");	
+
+	
 
 	cat_loess[[cat_ix]]=grp_loess;
 
@@ -1439,7 +1478,7 @@ for(cat_ix in alr_cat_names){
 		grp_loess=cat_loess[[cat_ix]][[grp_ix]];
 		x=grp_loess[,"x"];
 		y=grp_loess[,"y"];
-		points(x,y, type="l", col="blue");
+		points(x,y, type="l", col=grp_col[grp_ix], lwd=3);
 
 		# Label bottom
 		if(rownum==num_rows_pp || cat_ix==last_cat){
@@ -1469,6 +1508,50 @@ for(cat_ix in alr_cat_names){
 		}
 
 		colnum=colnum+1;
+	}
+
+	if(rownum==num_rows_pp){
+		rownum=0;
+	}
+	rownum=rownum+1;
+
+}
+
+# Plot combined loess
+
+num_rows_pp=5;
+par(oma=c(6,6,4,1));
+par(mar=c(.5,.5,.5,.5));
+par(mfrow=c(num_rows_pp, 1));
+
+rownum=1;
+for(cat_ix in alr_cat_names){
+	alr_range=c(alr_min[cat_ix], alr_max[cat_ix]);
+	plot(0, type="n", ylim=alr_range, xlim=offset_ranges, ylab=cat_ix, xaxt="n", yaxt="n");
+
+	for(grp_ix in unique_group_names){
+
+		abline(h=alr_med[cat_ix], col="grey", lty="dotdash");
+
+		grp_loess=cat_loess[[cat_ix]][[grp_ix]];
+		x=grp_loess[,"x"];
+		y=grp_loess[,"y"];
+		points(x,y, type="l", col=grp_col[grp_ix], lwd=3);
+
+		# Label bottom
+		if(rownum==num_rows_pp || cat_ix==last_cat){
+			axis(side=1);
+		}
+
+		# Label left side with category and alr scale
+		if(nchar(cat_ix)>14){
+			cex_adj=2*14/nchar(cat_ix);
+		}else{
+			cex_adj=2;
+		}
+		axis(side=2);
+		axis(side=2, at=mean(alr_range), labels=cat_ix, cex.axis=cex_adj, line=2, outer=T, tick=F);
+
 	}
 
 	if(rownum==num_rows_pp){
