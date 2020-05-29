@@ -143,6 +143,22 @@ normalize=function(counts){
         return(normalized);
 }
 
+sigchar=function(x){
+	if(x<=.0001){
+		return("***");
+	}else if(x<=.001){
+		return("**");
+	}else if(x<=.01){
+		return("*");
+	}else if(x<=.05){
+		return(":");
+	}else if(x<=.1){
+		return(".");
+	}else{
+		return("");
+	}
+}
+
 plot_connected_figure=function(coordinates, offsets_rec, subject_grouping_rec, subjects_per_plot=3, 
 	col_assign, ind_colors, grp_colors, title=""){
 
@@ -947,17 +963,6 @@ plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.05, samp_gly=T){
                 abline(h=ypos);
         }
 
-        sigchar=function(x){
-                if(x<=.0001){
-                        return("***");
-                }else if(x<=.001){
-                        return("**");
-                }else if(x<=.01){
-                        return("*");
-                }else{
-                        return("");
-                }
-        }
 
         row_ix=1;
         for(i in 1:(num_grps-1)){
@@ -1008,6 +1013,81 @@ plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.05, samp_gly=T){
 
         }
 }
+
+###############################################################################
+
+calculate_group_comparisons=function(subject_grouping_rec, stats_mat){
+
+	print(subject_grouping_rec);
+	print(stats_mat);
+
+	stat_names=colnames(stats_mat);
+	groups=as.character(subject_grouping_rec[["Groups"]]);
+	num_groups=subject_grouping_rec[["NumGroups"]];
+
+	grp_comp_colnames=c(
+		"Statistic",
+		"Gr1",
+		"mean(Gr1)",
+		"Gr2",
+		"mean(Gr2)",
+		"diff(Gr2-Gr1)",
+		"p-value",
+		"signif"
+	);
+	num_grp_comp_cols=length(grp_comp_colnames);
+
+	grp_comp_table=(matrix(NA, nrow=0, ncol=num_grp_comp_cols));
+	colnames(grp_comp_table)=grp_comp_colnames;
+
+	for(i in 1:num_groups){
+
+		grp_i=groups[i];
+		grp_i_members=subject_grouping_rec[["GrpToSbj"]][[grp_i]];
+
+		for(j in i:num_groups){
+			grp_j=groups[j];
+
+			if(i==j){
+				next;
+			}
+
+			cat("Comparing: ", grp_i, " vs. ", grp_j, ":\n");
+
+			grp_j_members=subject_grouping_rec[["GrpToSbj"]][[grp_j]];
+
+			for(cur_stat in stat_names){
+				cat("   Analyzing: ", cur_stat, "\n");
+
+				stat_val_i=stats_mat[grp_i_members, cur_stat];
+				stat_val_j=stats_mat[grp_j_members, cur_stat];
+
+				med_stat_val_i=mean(stat_val_i);
+				med_stat_val_j=mean(stat_val_j);
+
+				wc_res=wilcox.test(stat_val_i, stat_val_j);
+				pval=wc_res$p.value;	
+
+				if(!is.na(pval) && pval<=0.2){
+
+					grp_comp_table=rbind(grp_comp_table, c(
+						cur_stat,
+						grp_i,
+						sprintf("%7.3f", med_stat_val_i),
+						grp_j,
+						sprintf("%7.3f", med_stat_val_j),
+						sprintf("%7.2f", med_stat_val_j-med_stat_val_i),
+						sprintf("%4.3f", pval),
+						sigchar(pval)
+						 ));	
+				}
+			}
+		}
+	}
+
+	print(grp_comp_table);
+}
+
 
 ###############################################################################
 
@@ -1202,6 +1282,8 @@ plot_sample_dist_by_group(dist_mat, offset_rec, subject_grouping_rec, col_assign
 plot_sample_dist_by_group_loess(dist_mat, offset_rec, subject_grouping_rec, col_assign, ind_colors, 
 	dist_type=DistanceType);
 
+group_stat_comparisons=calculate_group_comparisons(subject_grouping_rec, stats_mat);
+
 
 # Extract individual membership
 
@@ -1255,6 +1337,41 @@ stat_description=c(
 
 par(mfrow=c(1,1));
 plot_text(stat_description);
+
+##############################################################################
+
+pval_order=order(as.numeric(group_stat_comparisons[,"p-value"]));
+stat_order=order(group_stat_comparisons[,"Statistic"]);
+num_gsc_rows=nrow(group_stat_comparisons);
+rownames(group_stat_comparisons)=rep("",num_gsc_rows);
+
+options(width=200);
+
+if(num_gsc_rows>0){
+
+	plot_text(c(
+		"Ordered By Group:",
+		"",
+		capture.output(print(cbind(1:num_gsc_rows, group_stat_comparisons), quote=F))
+	));
+
+	plot_text(c(
+		"Ordered By P-value:",
+		"",
+		capture.output(print(cbind(1:num_gsc_rows, group_stat_comparisons[pval_order,,drop=F]), quote=F))
+	));
+
+	plot_text(c(
+		"Ordered By Statistic Name:",
+		"",
+		capture.output(print(cbind(1:num_gsc_rows, group_stat_comparisons[stat_order,,drop=F]), quote=F))
+	));
+
+}else{
+	plot_text(c(
+		"No significant differences between groups identified."
+	));
+}
 
 ##############################################################################
 
