@@ -144,7 +144,7 @@ normalize=function(counts){
 }
 
 plot_connected_figure=function(coordinates, offsets_rec, subject_grouping_rec, subjects_per_plot=3, 
-	col_assign, ind_colors, title=""){
+	col_assign, ind_colors, grp_colors, title=""){
 
 	subject_ids=offsets_rec[["SubjectIDs"]];
 	num_subjects=offsets_rec[["NumSubjects"]];
@@ -175,7 +175,7 @@ plot_connected_figure=function(coordinates, offsets_rec, subject_grouping_rec, s
 
 	# Plot all samples
 	plot(0, main=title, xlab="Dim 1", ylab="Dim 2", type="n", xlim=xlim, ylim=ylim);
-	title(main="All Subjects", line=.3, cex.main=.75);
+	title(main="All Subjects, Colored by Subject", line=.3, cex.main=.75);
 	for(i in 1:num_subjects){
 
 		sbj_offset=offsets_rec[["OffsetsBySubject"]][[subject_ids[i]]];
@@ -195,13 +195,81 @@ plot_connected_figure=function(coordinates, offsets_rec, subject_grouping_rec, s
 			pch=c(17, 1, 15), cex=c(1, 2, 1.25));
 	}
 
+	# compute smoothed mds points
+	smoothed_sbj_mds=list();
+	for(i in 1:num_subjects){
+
+		sbj_offset=offsets_rec[["OffsetsBySubject"]][[subject_ids[i]]];
+		samp_ids=rownames(sbj_offset);
+		num_samples=length(samp_ids);
+
+		coord_subset=coordinates[samp_ids,, drop=F];
+		num_coords=nrow(coord_subset);
+		smoothed_x=ksmooth(1:num_coords, coord_subset[,1], kernel="normal", bandwidth=1.2);
+		smoothed_y=ksmooth(1:num_coords, coord_subset[,2], kernel="normal", bandwidth=1.2);
+
+		# Append first/last point, the smoothed coorindates never reach begin/end points
+		lastx=coord_subset[num_coords,1];
+		lasty=coord_subset[num_coords,2];
+		firstx=coord_subset[1,1];
+		firsty=coord_subset[1,2];
+
+		sm_crds=cbind(
+			c(firstx, smoothed_x$y, lastx),
+			c(firsty, smoothed_y$y, lasty)
+		);
+		smoothed_sbj_mds[[subject_ids[i]]]=sm_crds;
+	}
+
+	# Plot individually colored smoothed individuals
+	plot(0, main=title, xlab="Dim 1", ylab="Dim 2", type="n", xlim=xlim, ylim=ylim);
+	title(main="All Subjects, Colored by Subject: Lightly Smoothed", line=.3, cex.main=.75);
+	for(i in 1:num_subjects){
+
+		cur_sbj=subject_ids[i];
+		cur_sm_coords=smoothed_sbj_mds[[cur_sbj]];
+		cur_num_coords=nrow(cur_sm_coords);
+
+		# Draw colored lines
+		points(cur_sm_coords[,1], cur_sm_coords[,2],
+			type="l", col=col_assign[subject_ids[i]], pch=20, lwd=2.5);
+		# Draw reinforcement black lines
+		points(cur_sm_coords[,1], cur_sm_coords[,2],
+			type="l", col="black", pch=20, cex=.1);
+
+		# Draw start/stop glyphs
+		points(cur_sm_coords[c(1, 1, cur_num_coords),], type="p", col=col_assign[cur_sbj], 
+			pch=c(17, 1, 15), cex=c(1, 2, 1.25));
+	}
+
+	# Plot with group colors
+	plot(0, main=title, xlab="Dim 1", ylab="Dim 2", type="n", xlim=xlim, ylim=ylim);
+	title(main="All Subjects, Colored by Group: Lightly Smoothed", line=.3, cex.main=.75);
+	for(i in 1:num_subjects){
+
+		cur_sbj=subject_ids[i];
+		cur_sm_coords=smoothed_sbj_mds[[cur_sbj]];
+		cur_num_coords=nrow(cur_sm_coords);
+
+		cur_grp_col=grp_colors[subject_grouping_rec[["SbjToGrp"]][[cur_sbj]]];
+
+		# Draw colored lines
+		points(cur_sm_coords[,1], cur_sm_coords[,2],
+			type="l", col=cur_grp_col, pch=20, lwd=2.5);
+		# Draw reinforcement black lines
+		points(cur_sm_coords[,1], cur_sm_coords[,2],
+			type="l", col="black", pch=20, cex=.1);
+
+		# Draw start/stop glyphs
+		points(cur_sm_coords[c(1, 1, cur_num_coords),], type="p", col=cur_grp_col, 
+			pch=c(17, 1, 15), cex=c(1, 2, 1.25));
+	}
+	legend(xlim[1], ylim[2], fill=grp_colors, legend=names(grp_colors), bty="n");
+
 	# Plot subset of samples
 	for(i in 1:num_subjects){
-		if(((i-1) %% subjects_per_plot)==0){
-			cat("Opening new plot...\n");
-			plot(0, main=title, xlab="Dim 1", ylab="Dim 2", type="n", xlim=xlim, ylim=ylim);
-			title(main="(Subset of Subjects)", line=.3, cex.main=.75);
-		}
+
+		cur_sbj=subject_ids[i]
 
 		cat("Subject: ", subject_ids[i], "\n");	
 		sbj_offset=offsets_rec[["OffsetsBySubject"]][[subject_ids[i]]];
@@ -209,7 +277,10 @@ plot_connected_figure=function(coordinates, offsets_rec, subject_grouping_rec, s
                 num_samples=length(samp_ids);
 		coord_subset=coordinates[samp_ids,, drop=F];
 
-		#--------------------------------------------------------------------------------
+		plot(0, main=title, xlab="Dim 1", ylab="Dim 2", type="n", xlim=xlim, ylim=ylim);
+		title(main=paste("By Subject: ", cur_sbj, ", Num Time Pts Labeled: ", num_samples, sep=""), 
+			line=.3, cex.main=.75);
+
 		# Draw colored lines
 		points(coord_subset, type="l", col=col_assign[subject_ids[i]], pch=20, cex=.5, lwd=2.5);
 		# Draw reinforcement black lines
@@ -218,7 +289,8 @@ plot_connected_figure=function(coordinates, offsets_rec, subject_grouping_rec, s
 		points(coord_subset[c(1, 1, num_samples),], type="p", col=col_assign[subject_ids[i]], 
 			pch=c(17, 1, 15), cex=c(1, 2, 1.25));
 		# Label individual id
-		text(coord_subset[1,1], coord_subset[1,2], labels=subject_ids[i], col="black", pos=1, cex=.75, font=2);
+		text(coord_subset[1,1], coord_subset[1,2], labels=subject_ids[i], 
+			col="black", pos=1, cex=.75, font=2);
 
 		# Label offsets
 		if(num_samples>1){
@@ -445,7 +517,7 @@ plot_sample_dist_by_group_loess=function(dist_mat, offsets_rec, subject_grouping
 
 	# Plot loess lines
 	groups=names(loess_rec);
-	grp_colors=terrain.colors(num_groups+2)[2:(num_groups-1)];
+	grp_colors=terrain.colors(num_groups+1)[1:num_groups];
 	names(grp_colors)=groups;
 
 	for(grp_ix in groups){
@@ -1082,6 +1154,9 @@ ind_colors=get_colors(num_subjects);
 col_assign=1:num_subjects;
 names(col_assign)=subject_ids;
 
+group_colors=terrain.colors(num_groups+1)[1:num_groups];
+names(group_colors)=groups;
+
 ###############################################################################
 
 normalized_mat=normalize(counts_mat);
@@ -1112,10 +1187,11 @@ stats_mat=calculate_stats_on_series(offset_rec, dist_mat);
 
 plot_connected_figure(mds_coord, offset_rec, subject_grouping_rec, 
 	subjects_per_plot=as.integer(num_subjects/5), col_assign, 
-	ind_colors, title=paste("Metric MDS (", DistanceType,")", sep=""));
+	ind_colors, group_colors, title=paste("Metric MDS (", DistanceType,")", sep=""));
+
 plot_connected_figure(mds2_coord, offset_rec, subject_grouping_rec, 
 	subjects_per_plot=as.integer(num_subjects/5), col_assign, 
-	ind_colors, title=paste("IsoMetric MDS (", DistanceType, ")", sep=""));
+	ind_colors, group_colors, title=paste("IsoMetric MDS (", DistanceType, ")", sep=""));
 
 plot_sample_distances(dist_mat, offset_rec, subject_grouping_rec, col_assign, ind_colors, 
 	dist_type=DistanceType);
