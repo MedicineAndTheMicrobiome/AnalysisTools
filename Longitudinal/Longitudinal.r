@@ -4,11 +4,11 @@ extract_offset=function(factor_mat, sbj_cname, timeoffset_cname, start=-Inf, end
 	var_names=colnames(factor_mat);
 	if(!any(sbj_cname==var_names)){
 		cat("Error: Could not find ", sbj_cname, " in factors.\n");
-		quit(-1);
+		quit(status=-1);
 	}
 	if(!any(timeoffset_cname==var_names)){
 		cat("Error: Could not find ", timeoffset_cname, " in factors.\n");
-		quit(-1);
+		quit(status=-1);
 	}
 
 	offsets_mat=as.data.frame(factor_mat[,c(sbj_cname, timeoffset_cname)]);
@@ -88,7 +88,7 @@ create_GrpToSbj_map=function(subjects_arr, groups_arr){
                 print(subjects_arr);
                 cat("\nGroups:\n");
                 print(groups_arr);
-                quit(-1);
+                quit(status=-1);
         }
 
 	# Create subject lookup by group
