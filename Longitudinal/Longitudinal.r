@@ -541,7 +541,7 @@ calc_longitudinal_stats=function(offset_rec, alr_cat_val){
                                 samp_ids=rownames(indv_offsets);
 
                                 time=indv_offsets[,"Offsets"];
-                                val=alr_categories_val[samp_ids, cat_ix];
+                                val=alr_cat_val[samp_ids, cat_ix];
 
                                 funct_name=paste("l_", stat_ix, sep="");
 
@@ -604,10 +604,20 @@ plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.05, samp_gly=T){
                                 grpAnm=group_names[grp_ix_A];
                                 grpBnm=group_names[grp_ix_B];
 
-                                res=wilcox.test(stat[grps[[grpAnm]]], stat[grps[[grpBnm]]]);
+				grpAval=stat[grps[[grpAnm]]];
+				grpBval=stat[grps[[grpBnm]]];
+
+				grpAmean=mean(grpAval);
+				grpBmean=mean(grpBval);
+
+                                res=wilcox.test(grpAval, grpBval);
                                 pval_mat[grpAnm, grpBnm]=res$p.value;
                                 if(res$p.value<=alpha){
-                                        signf=rbind(signf, c(grpAnm, grpBnm, res$p.value));
+                                        signf=rbind(signf, 
+						c(grpAnm, sprintf("%8.4f",grpAmean), 
+						grpBnm, sprintf("%8.4f",grpBmean), 
+						sprintf("%8.4f", (grpBmean-grpAmean)),
+						sprintf("%5.3f",res$p.value)));
                                 }
                         }
                 }
@@ -817,5 +827,8 @@ plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.05, samp_gly=T){
                 }
 
         }
+	
+	return(signf);
+
 }
 
