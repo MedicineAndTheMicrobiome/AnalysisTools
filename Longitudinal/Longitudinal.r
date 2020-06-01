@@ -356,6 +356,212 @@ calculate_stats_on_series_distance=function(offset_rec, dist_mat){
         return(out_mat);
 }
 
+###############################################################################
+
+calc_longitudinal_stats=function(offset_rec, alr_cat_val){
+
+        cat("Calculating Longitudinal Statistics...\n");
+
+        l_min=function(x, y){
+                res=min(y);
+                return(res);
+        }
+        l_max=function(x, y){
+                res=max(y);
+                return(res);
+        }
+        l_median=function(x, y){
+                res=median(y);
+                return(res);
+        }
+        l_mean=function(x, y){
+                res=mean(y);
+                return(res);
+        }
+        l_stdev=function(x, y){
+                res=sd(y);
+                return(res);
+        }
+        l_range=function(x, y){
+                r=range(y);
+                span=abs(r[1]-r[2]);
+                return(span);
+        }
+        l_N=function(x, y){
+                return(length(x));
+        }
+        l_last_time=function(x, y){
+                return(max(x));
+        }
+
+        l_volatility=function(x, y){
+                if(length(x)>1){
+                        fit=lm(y~x);
+                        sumfit=summary(fit);
+                        vol=sd(sumfit$residuals);
+                        return(vol);
+                }else{
+                        return(NA);
+                }
+        }
+        l_slope=function(x, y){
+                if(length(x)>1){
+                        fit=lm(y~x);
+                        slope=fit$coefficients["x"];
+                        return(slope);
+                }else{
+                        return(NA);
+                }
+        }
+
+        l_time_wght_avg=function(x, y){
+                npts=length(x);
+                if(npts>1){
+
+                        tot_avg=0;
+
+                        for(i in 1:(npts-1)){
+                                avg_val=(y[i]+y[i+1])/2;
+                                duration=(x[i+1]-x[i]);
+                                tot_avg=tot_avg+(avg_val*duration);
+                        }
+
+                        norm=tot_avg/(x[npts]-x[1]);
+                        return(norm);
+                }else{
+                        return(NA);
+                }
+        }
+
+        l_time_at_max=function(x, y){
+                max_val=max(y);
+                ix=min(which(y==max_val));
+                return(x[ix]);
+        }
+
+        l_time_at_min=function(x, y){
+                min_val=min(y);
+                ix=min(which(y==min_val));
+                return(x[ix]);
+        }
+
+        l_time_closest_to_t0=function(x, y){
+                starty=y[1];
+                y=y[-1];
+                dist=abs(y-starty);
+                min_dist=min(dist);
+                min_ix=min(which(min_dist==dist));
+                return(x[min_ix+1]);
+        }
+
+        l_time_furthest_fr_t0=function(x, y){
+                starty=y[1];
+                y=y[-1];
+                dist=abs(y-starty);
+                max_dist=max(dist);
+                max_ix=min(which(max_dist==dist));
+                return(x[max_ix+1]);
+        }
+
+        l_start_end_diff=function(x,y){
+                start=y[1];
+                end=tail(y,1);
+                return(end-start);
+        }
+
+        l_convexcave=function(x, y){
+                num_pts=length(x);
+                # y=mx+b
+                # b=y-mx
+
+                m=(y[num_pts]-y[1])/(x[num_pts]-x[1]);
+                b=y[1]-m*x[1];
+
+                lvl_y=numeric(num_pts);
+                for(i in 1:num_pts){
+                        lvl_y[i]=y[i]-(m*x[i]+b);
+                }
+
+                cum_sum=0;
+                for(i in 1:(num_pts-1)){
+                        dx=x[i+1]-x[i];
+                        avgy=(lvl_y[i+1]+lvl_y[i])/2;
+                        avg=dx*avgy/2;
+                        cum_sum=cum_sum+avg;
+                }
+                vexcav=cum_sum/(x[num_pts]-x[1]);
+
+                return(vexcav);
+        }
+
+
+        # statistic:
+        #    ALR:
+        #       individual:
+
+        stat_name=c(
+                "min", "max", "range",
+                "volatility", "slope", "time_wght_avg",
+                "time_at_max", "time_at_min",
+                "time_closest_to_t0", "time_furthest_fr_t0",
+                "start_end_diff",
+                "convexcave"
+        );
+
+        results=list();
+
+        alrcat=colnames(alr_cat_val);
+        individuals=as.character(offset_rec[["SubjectIDs"]]);
+
+        cat("\n");
+        cat("Individuals:\n");
+        print(individuals);
+
+        cat("\n");
+        cat("Categories:\n");
+        print(alrcat);
+
+        num_cat=ncol(alr_cat_val);
+        num_ind=length(individuals);
+
+
+        for(stat_ix in stat_name){
+
+                results[[stat_ix]]=list();
+
+                tmp_mat=matrix(NA, nrow=num_ind, ncol=num_cat);
+                rownames(tmp_mat)=individuals;
+                colnames(tmp_mat)=alrcat;
+
+                for(cat_ix in alrcat){
+
+                        for(ind_ix in individuals){
+
+                                indv_offsets=offset_rec[["OffsetsBySubject"]][[ind_ix]];
+                                samp_ids=rownames(indv_offsets);
+
+                                time=indv_offsets[,"Offsets"];
+                                val=alr_categories_val[samp_ids, cat_ix];
+
+                                funct_name=paste("l_", stat_ix, sep="");
+
+                                call_res=do.call(funct_name, list(x=time, y=val));
+
+                                tmp_mat[ind_ix, cat_ix]=call_res;
+
+                        }
+
+                }
+
+                results[[stat_ix]]=tmp_mat;
+
+        }
+
+        return(results);
+}
+
+###############################################################################
+
 
 plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.05, samp_gly=T){
         # Generate a barplot based on stats and groupings
