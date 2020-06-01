@@ -832,3 +832,83 @@ plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.05, samp_gly=T){
 
 }
 
+###############################################################################
+
+plot_pairwise_grp_comparisons=function(longit_stats, grp_to_sbj_info_rec, plots_pp=4){
+
+        stat_colnames=c(
+                "Statistic",
+                "Category",
+                "Gr1",
+                "mean(Gr1)",
+                "Gr2",
+                "mean(Gr2)",
+                "diff(Gr2-Gr2)",
+                "p-value"
+        );
+
+        stat_table=matrix(NA, nrow=0, ncol=length(stat_colnames));
+        colnames(stat_table)=stat_colnames;
+
+        unique_group_names=as.character(grp_to_sbj_info_rec[["Groups"]]);
+        num_grps=grp_to_sbj_info_rec[["NumGroups"]];
+        group_to_subject_map=grp_to_sbj_info_rec[["GrpToSbj"]];
+
+        stat_names=names(longit_stats);
+        for(stat_ix in stat_names){
+
+                num_target_cat=ncol(longit_stats[[stat_ix]]);
+                cat_names=colnames(longit_stats[[stat_ix]]);
+
+                grp_mat=matrix(NA, nrow=num_grps, ncol=num_target_cat);
+                rownames(grp_mat)=unique_group_names;
+                colnames(grp_mat)=cat_names;
+
+                # Compute means by group
+                for(grp_ix in unique_group_names){
+                        grp_members=group_to_subject_map[[grp_ix]];
+                        grp_mat[grp_ix,]=apply(
+                                long_stats[[stat_ix]][grp_members,,drop=F], 2,
+                                function(x){mean(x, na.rm=T)});
+                }
+
+                # Plot heatmap
+                paint_matrix(grp_mat, paste("mean(", stat_ix, ") for Grouping: ", GroupCol, sep=""));
+
+                par(mfrow=c(plots_pp,1));
+                par(oma=c(0,0,2,0));
+                label_oma=F
+                plot_ix=0;
+                for(cat_ix in num_target_cat){
+                        signf=plot_barplot_wsignf_annot(
+                                title=cat_names[cat_ix],
+                                long_stats[[stat_ix]][,cat_ix,drop=F],
+                                group_to_subject_map,
+                                alpha=0.1
+                        );
+
+                        if(length(signf)){
+                                num_sig_rows=nrow(signf);
+                                newrows=cbind(
+                                        rep(stat_ix, num_sig_rows),
+                                        rep(cat_names[cat_ix], num_sig_rows),
+                                        signf);
+                                stat_table=rbind(stat_table, newrows);
+                        }
+
+                        plot_ix=plot_ix+1;
+                        if(plot_ix==plots_pp){
+                                mtext(stat_ix, outer=T, cex=1.5, col="blue", font=2);
+                                plot_ix=0;
+                        }
+                }
+                if(plot_ix!=plots_pp){
+                        mtext(stat_ix, outer=T, cex=1.5, col="blue", font=2);
+                }
+
+
+
+        }
+        return(stat_table);
+}
+
