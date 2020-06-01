@@ -162,7 +162,9 @@ group_offsets=function(offsets_data){
 	return(res);
 }
 
-calculate_stats_on_series=function(offset_mat, dist_mat){
+###############################################################################
+
+calculate_stats_on_series_distance=function(offset_rec, dist_mat){
 
         avg_dist=function(dist_arr, time_arr){
 
@@ -288,12 +290,8 @@ calculate_stats_on_series=function(offset_mat, dist_mat){
 
         cat("Calculating average distance over time...\n");
 
-        uniq_indiv_ids=sort(unique(offset_mat[,"Indiv ID"]));
-        num_ind=length(uniq_indiv_ids);
-
-        cat("IDs:\n");
-        print(uniq_indiv_ids);
-        cat("Num Individuals: ", num_ind, "\n");
+        uniq_indiv_ids=offset_rec[["SubjectIDs"]];
+        num_ind=offset_rec[["NumSubjects"]];
 
         stat_names=c(
                 "last_time", "num_time_pts",
@@ -315,18 +313,14 @@ calculate_stats_on_series=function(offset_mat, dist_mat){
 
         for(cur_id in uniq_indiv_ids){
 
-                row_ix=(offset_mat[,"Indiv ID"]==cur_id);
-                cur_offsets=offset_mat[row_ix,,drop=F];
-
-                # Order offsets
-                ord=order(cur_offsets[,"Offsets"]);
-                cur_offsets=cur_offsets[ord,,drop=F];
-
+                cur_offsets=offset_rec[["OffsetsBySubject"]][[cur_id]];
                 num_timepts=nrow(cur_offsets);
+
                 out_mat[cur_id, "last_time"]=cur_offsets[num_timepts, "Offsets"];
                 out_mat[cur_id, "num_time_pts"]=num_timepts;
 
                 samp_ids=rownames(cur_offsets);
+
                 if(num_timepts>1){
                         cur_dist=dist_mat[samp_ids[1], samp_ids];
                         cur_times=cur_offsets[,"Offsets"];
@@ -361,6 +355,7 @@ calculate_stats_on_series=function(offset_mat, dist_mat){
 
         return(out_mat);
 }
+
 
 plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.05, samp_gly=T){
         # Generate a barplot based on stats and groupings
