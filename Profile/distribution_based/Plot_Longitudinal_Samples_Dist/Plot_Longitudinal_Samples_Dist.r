@@ -869,7 +869,7 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 	cat("Num Rows: ", num_row, "\n");
 	cat("Num Cols: ", num_col, "\n");
 
-	mat=mat[rev(1:num_row),];
+	mat=mat[rev(1:num_row),,drop=F];
 
 	num_colors=50;
 	color_arr=rainbow(num_colors, start=0, end=4/6);
@@ -1205,6 +1205,33 @@ plot_mean_distributions_by_group(simplified_mat, offset_rec, grp_to_sbj_info, ca
 plot_text(c(paste("By Group (", GroupCol, "):  Delta Scatter Plots", sep="")));
 plot_change_scatter(diversity_arr, offset_rec, grp_to_sbj_info,
 	grp_name=GroupCol);
+
+##############################################################################
+
+#print(diversity_arr);
+#print(offset_rec);
+
+diversity_mat=matrix(diversity_arr, nrow=length(diversity_arr), ncol=1);
+colnames(diversity_mat)=c("diversity");
+rownames(diversity_mat)=names(diversity_arr);
+
+long_stats=calc_longitudinal_stats(offset_rec, diversity_mat);
+
+#print(long_stats);
+
+stat_names=names(long_stats);
+for(stat_ix in stat_names){
+        mat=long_stats[[stat_ix]];
+        paint_matrix(mat, stat_ix);
+}
+
+#print(grp_to_sbj_info);
+
+stat_table_grp_cmp=plot_pairwise_grp_comparisons(long_stats, grp_to_sbj_info, plots_pp=1);
+
+#print(stat_table_grp_cmp);
+
+output_stat_table_alternate_ordering(stat_table_grp_cmp);
 
 ##############################################################################
 
