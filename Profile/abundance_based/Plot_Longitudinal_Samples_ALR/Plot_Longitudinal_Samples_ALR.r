@@ -1671,6 +1671,8 @@ sigchar=function(x){
 	}else if(x<=.01){
 		return("*");
 	}else if(x<=.05){
+		return(":");
+	}else if(x<=.1){
 		return(".");
 	}else{
 		return("");
