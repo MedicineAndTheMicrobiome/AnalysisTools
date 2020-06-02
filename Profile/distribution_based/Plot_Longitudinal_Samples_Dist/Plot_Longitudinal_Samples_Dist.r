@@ -368,6 +368,8 @@ plot_sample_diversity_by_group=function(diversity_arr, div_type, normalized_mat,
 	print(diversity_ranges);
 
 	offset_ranges=range(offsets_rec[["Offsets"]]);
+	offset_span=diff(offset_ranges);
+	x_plot_range=c(offset_ranges[1], offset_ranges[2]+offset_span*.15);
 
 	# Set palette for individuals
 	palette(ind_colors);
@@ -384,7 +386,7 @@ plot_sample_diversity_by_group=function(diversity_arr, div_type, normalized_mat,
 		cat("Plotting: ", group_ids[g], "\n");
 		plot(0, 0, main=paste(grp_name, ": ", group_ids[g], sep=""),
 			 xlab="Time", ylab=paste("Diversity (", div_type,")",sep=""), type="n", 
-			 xlim=offset_ranges, ylim=diversity_ranges);
+			 xlim=x_plot_range, ylim=diversity_ranges);
 
 		# Get Unique Inidividuals in group
 		indivs=grp_to_sbj_info[["GrpToSbj"]][[group_ids[g]]];
@@ -412,6 +414,10 @@ plot_sample_diversity_by_group=function(diversity_arr, div_type, normalized_mat,
 			points(offset_info[,"Offsets"], subset_diversity, type="l", 
 				lwd=2.5, col=col_assign[indivs[i]]);
 			points(offset_info[,"Offsets"], subset_diversity, type="l", lwd=.1, col="black");
+
+			# Label on subject ID on right hand side
+			text(offset_info[num_timepts, "Offsets"], subset_diversity[num_timepts],
+				 indivs[i], pos=4);
 
 			# Mark Events
 			#mark_event=rep(0, num_timepts);
