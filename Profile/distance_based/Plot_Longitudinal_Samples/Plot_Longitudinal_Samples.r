@@ -1088,7 +1088,10 @@ plot_sample_dist_by_group(dist_mat, offset_rec, subject_grouping_rec, col_assign
 plot_sample_dist_by_group_loess(dist_mat, offset_rec, subject_grouping_rec, col_assign, ind_colors, 
 	dist_type=DistanceType);
 
-group_stat_comparisons=calculate_group_comparisons(subject_grouping_rec, stats_mat);
+#group_stat_comparisons=calculate_group_comparisons(subject_grouping_rec, stats_mat);
+
+print(subject_grouping_rec);
+group_stat_comparisons=plot_pairwise_grp_comparisons(stats_mat, subject_grouping_rec);
 
 
 # Extract individual membership
@@ -1111,73 +1114,12 @@ for(page_ix in 1:num_pages){
 
 plot_stats_mat(stats_mat, subject_grouping_rec);
 
-stat_description=c(
-	"DESCRIPTION OF STATISTICS:",
-	"",
-	"",
-	"last_time: Last recorded time", 
-	"num_time_pts: Number of time points",
-	"",
-	"Changes, relative to 1st sample:",
-	"  average_dist: Average distance samples spent away from 1st sample", 
-	"  average_speed: (Total changes in distance)/(Last recorded time)",
-	"  total_dist_travelled: Sum of distance travelled",
-	"",
-	"mean_reversion variables:  Fit linear model across all data points",
-	"  mean_reversion_first_dist: expected distance of first sample (y-intercept)", 
-	"  mean_reversion_last_dist: expected distance of last sample", 
-	"  mean_reversion_stdev_residuals: standard deviation of residuals", 
-	"  mean_reversion_slope: slope of linear model",
-	"",
-	"closest_travel_dist: Distance sample came closest to 1st sample", 
-	"closest_travel_time: Time when sample came closest to 1st sample",
-	"",
-	"furthest_travel_dist: Distance of sample furthest from 1st sample", 
-	"furthest_travel_time: Time when sample went furthest from 1st sample",
-	"",
-	"closest_return_dist: Closest distance sample came to 1st sample after rebounding", 
-	"closest_return_time: Time when sample came closest to 1st ample after rebounding",
-	"",
-	"first_return_dist: Distance when sample first rebounds",
-	"first_return_time: Time when sample first rebounds");
-
 par(mfrow=c(1,1));
-plot_text(stat_description);
+plot_text(longit_stat_description_distance);
 
 ##############################################################################
 
-pval_order=order(as.numeric(group_stat_comparisons[,"p-value"]));
-stat_order=order(group_stat_comparisons[,"Statistic"]);
-num_gsc_rows=nrow(group_stat_comparisons);
-rownames(group_stat_comparisons)=rep("",num_gsc_rows);
-
-options(width=200);
-
-if(num_gsc_rows>0){
-
-	plot_text(c(
-		"Ordered By Group:",
-		"",
-		capture.output(print(cbind(1:num_gsc_rows, group_stat_comparisons), quote=F))
-	));
-
-	plot_text(c(
-		"Ordered By P-value:",
-		"",
-		capture.output(print(cbind(1:num_gsc_rows, group_stat_comparisons[pval_order,,drop=F]), quote=F))
-	));
-
-	plot_text(c(
-		"Ordered By Statistic Name:",
-		"",
-		capture.output(print(cbind(1:num_gsc_rows, group_stat_comparisons[stat_order,,drop=F]), quote=F))
-	));
-
-}else{
-	plot_text(c(
-		"No significant differences between groups identified."
-	));
-}
+output_stat_table_alternate_ordering(group_stat_comparisons, OutputFileRoot);
 
 ##############################################################################
 
