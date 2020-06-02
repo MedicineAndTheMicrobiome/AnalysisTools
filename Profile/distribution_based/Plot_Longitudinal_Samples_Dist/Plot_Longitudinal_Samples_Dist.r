@@ -1231,7 +1231,7 @@ stat_table_grp_cmp=plot_pairwise_grp_comparisons(long_stats, grp_to_sbj_info, pl
 
 #print(stat_table_grp_cmp);
 
-output_stat_table_alternate_ordering(stat_table_grp_cmp);
+output_stat_table_alternate_ordering(stat_table_grp_cmp, OutputRoot);
 
 ##############################################################################
 
