@@ -80,6 +80,15 @@ extract_offset=function(factor_mat, sbj_cname, timeoffset_cname, start=-Inf, end
 
 }
 
+get_colors=function(num_col, alpha=1){
+        colors=hsv(seq(0,1,length.out=num_col+1), c(1,.5), c(1,.75,.5), alpha=alpha);
+        color_mat_dim=ceiling(sqrt(num_col));
+        color_pad=rep("grey", color_mat_dim^2);
+        color_pad[1:num_col]=colors[1:num_col];
+        color_mat=matrix(color_pad, nrow=color_mat_dim, ncol=color_mat_dim);
+        colors=as.vector(t(color_mat));
+        colors=colors[colors!="grey"];
+}
 
 create_GrpToSbj_map=function(subjects_arr, groups_arr){
         if(length(subjects_arr) != length(groups_arr)){
@@ -102,9 +111,32 @@ create_GrpToSbj_map=function(subjects_arr, groups_arr){
 	sbj_to_grp_map=groups_arr;
 	names(sbj_to_grp_map)=subjects_arr;
 
+	# Assign colors to groups and subjects
+	num_grps=length(uniq_grps);
+	uniq_sbjs=sort(unique(subjects_arr));
+	num_sbjs=length(uniq_sbjs);
+
+	# Opaque
+	group_colors=get_colors(num_grps,1);
+	names(group_colors)=uniq_grps;
+	subject_colors=get_colors(num_sbjs,1);
+	names(subject_colors)=uniq_sbjs;
+
+	# Transparent
+	group_colors_transparent=get_colors(num_grps,.2);
+	names(group_colors_transparent)=uniq_grps;
+	subject_colors_transparent=get_colors(num_sbjs,.2);
+	names(subject_colors_transparent)=uniq_sbjs;
+
 	rec=list();
 	rec[["Groups"]]=uniq_grps;
-	rec[["NumGroups"]]=length(uniq_grps);
+	rec[["GroupColors"]]=group_colors;
+	rec[["GroupColorsTransparent"]]=group_colors_transparent;
+	rec[["Subjects"]]=uniq_sbjs;
+	rec[["SubjectColors"]]=subject_colors;
+	rec[["SubjectColorsTransparent"]]=subject_colors_transparent;
+	rec[["NumSubjects"]]=num_sbjs;
+	rec[["NumGroups"]]=num_grps;
 	rec[["GrpToSbj"]]=grp_to_sbj_map;
 	rec[["SbjToGrp"]]=sbj_to_grp_map;	
 
