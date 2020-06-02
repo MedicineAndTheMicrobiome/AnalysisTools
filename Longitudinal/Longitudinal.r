@@ -721,10 +721,11 @@ plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.05, samp_gly=T){
         bar_width=mean(diff(mids));
         qbw=bar_width/6;
 
-        # Label x-axis
-        text(mids-par()$cxy[1]/2, rep(6*-par()$cxy[2]/2, num_grps),
+        # Label group names x-axis
+        text(mids-par()$cxy[1]/2, rep(plotdatamin, num_grps),
                 group_names, srt=-45, xpd=T, pos=4,
-                cex=min(c(1,.7*bar_width/par()$cxy[1])));
+		font=2,
+                cex=min(c(1.5,.7*bar_width/par()$cxy[1])));
 
         # Scatter
         if(samp_gly){
@@ -735,7 +736,7 @@ plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.05, samp_gly=T){
                         points(
                                 #rep(mids[grp_ix], numpts),
                                 mids[grp_ix]+rnorm(numpts, 0, bar_width/10),
-                                pts, col="darkblue", cex=.5, type="p");
+                                pts, col="darkblue", cex=1, type="p");
                 }
         }
 
@@ -756,11 +757,13 @@ plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.05, samp_gly=T){
 
         # label sample size
         for(grp_ix in 1:num_grps){
-                text(mids[grp_ix], 3*-par()$cxy[2]/2, paste("mean =", round(grp_means[grp_ix], 2)),
+                #text(mids[grp_ix], 3*-par()$cxy[2]/2, paste("mean =", round(grp_means[grp_ix], 2)),
+                text(mids[grp_ix], plotdatamax, paste("mean =", round(grp_means[grp_ix], 2)),
                         cex=.95, xpd=T, font=3, adj=c(.5,-1));
 
-                text(mids[grp_ix], 4*-par()$cxy[2]/2, paste("n =",samp_size[grp_ix]),
-                        cex=.85, xpd=T, font=3, adj=c(.5,-1));
+                #text(mids[grp_ix], 4*-par()$cxy[2]/2, paste("n =",samp_size[grp_ix]),
+                text(mids[grp_ix], plotdatamax, paste("\nn =",samp_size[grp_ix]),
+                        cex=.95, xpd=T, font=2, adj=c(.5,-1));
         }
 
         connect_significant=function(A, B, ypos, pval){
@@ -857,6 +860,7 @@ plot_pairwise_grp_comparisons=function(longit_stats, grp_to_sbj_info_rec, plots_
         stat_names=names(longit_stats);
         for(stat_ix in stat_names){
 
+		cat("Working on stat: ", stat_ix, "\n");
                 num_target_cat=ncol(longit_stats[[stat_ix]]);
                 cat_names=colnames(longit_stats[[stat_ix]]);
 
@@ -879,7 +883,10 @@ plot_pairwise_grp_comparisons=function(longit_stats, grp_to_sbj_info_rec, plots_
                 par(oma=c(0,0,2,0));
                 label_oma=F
                 plot_ix=0;
-                for(cat_ix in num_target_cat){
+                for(cat_ix in 1:num_target_cat){
+		
+			cat("Working on category: ", cat_names[cat_ix], "\n");
+
                         signf=plot_barplot_wsignf_annot(
                                 title=cat_names[cat_ix],
                                 long_stats[[stat_ix]][,cat_ix,drop=F],
@@ -909,6 +916,164 @@ plot_pairwise_grp_comparisons=function(longit_stats, grp_to_sbj_info_rec, plots_
 
 
         }
+
         return(stat_table);
 }
 
+###############################################################################
+
+sigchar=function(x){
+        if(x<=.0001){
+                return("***");
+        }else if(x<=.001){
+                return("**");
+        }else if(x<=.01){
+                return("*");
+        }else if(x<=.05){
+                return(":");
+        }else if(x<=.1){
+                return(".");
+        }else{
+                return("");
+        }
+}
+
+output_stat_table_alternate_ordering=function(stat_table, output_root){
+
+	if(nrow(stat_table)>0){
+
+		pvals=as.numeric(stat_table[,"p-value"]);
+		signf=sapply(pvals, sigchar);
+		stat_table=cbind(stat_table, signf);
+		row_idx_str=paste(1:nrow(stat_table), ".", sep="");
+
+		options(width=1000);
+
+		#------------------------------------------------
+		cat("Ordering by P-value...\n");
+		# First order by pvalue, then do stable sort
+		stat_order_ix=order(pvals);
+		stat_table=stat_table[stat_order_ix,];
+		print(stat_table);
+
+		#------------------------------------------------
+		cat("Ordering by Stat Name...\n");
+
+		stat_order_ix=order(stat_table[,"Statistic"], method="shell");
+		out_stat_table=stat_table[stat_order_ix,];
+		rownames(out_stat_table)=row_idx_str;
+		out=capture.output(print(out_stat_table, quote=F));
+
+		cat("Writing by statistic:\n");
+		plot_text(c(
+			"By Statistic:",
+			"",
+			out));
+
+		#------------------------------------------------
+		cat("Ordering by Category...\n");
+
+		stat_order_ix=order(stat_table[,"Category"], method="shell");
+		out_stat_table=stat_table[stat_order_ix,];
+		rownames(out_stat_table)=row_idx_str;
+		out=capture.output(print(out_stat_table, quote=F));
+
+		cat("Writing by category:\n");
+		plot_text(c(
+			"By Category:",
+			"",
+			out));
+
+		#------------------------------------------------
+		cat("Outputing by P-Value...\n");
+
+		out_stat_table=stat_table;
+		rownames(out_stat_table)=row_idx_str;
+		out=capture.output(print(out_stat_table, quote=F));
+		cat("Writing by p-value:\n");
+		plot_text(c(
+			"By P-value:",
+			"",
+			out));
+
+		#------------------------------------------------
+
+		cat("Writing stat table...\n");
+		write.table(out_stat_table, 
+			file=paste(output_root,".lngt_stats.comp.tsv", sep=""), quote=F, sep="\t");
+
+	}else{
+		plot_text(c(
+			"No Significant Differences Identified Between Groups."
+		));
+		fh=file(paste(output_root,".lngt_stats.comp.tsv", sep=""), "w");
+		cat(file=fh, "Sorry.  No significant differences identified between groups.\n");
+		close(fh);
+	}
+
+}
+
+###############################################################################
+
+longit_stat_descriptions=c(
+        "Explanation of Longitudinal Statistics:",
+        "",
+	"",
+        "These stats are calculated independent of the time component:",
+        "  min: minimum value",
+        "  max: maximum value",
+        "  median: median value",
+        "  mean: average value",
+        "  stdev: standard deviation of values",
+        "  range: (max-min) of values",
+        "  N: number of samples",
+        "  last_time: last recorded sample",
+        "",
+        "These stats are based on fitting a linear model (value = intercept + time + error):",
+        "  volatility:  standard deviation of residuals",
+        "  slope: slope of line",
+        "",
+        "These stats take time into account:",
+        "  time_weighted_average: average between two time points weighted by time between points",
+        "  time_at_max: time at value's maximum",
+        "  time_at_min: time at value's minimum",
+        "  time_closest_to_t0: time when value is closest to first time value",
+        "  time_furthest_fr_t0: time when value is furthest from first time value",
+        "  start_end_diff: difference between first and last time points (end-start)",
+        "  convexcave: if curve is convex or conave, stat will be <0 or >0, respectively",
+        "       A concave curve looks like a hill, a convex curve looks like a pit"
+);
+
+longit_stat_description_distance=c(
+        "Explanation of Longitudinal Statistics:",
+        "",
+        "",
+        "last_time: Last recorded time",
+        "num_time_pts: Number of time points",
+        "",
+        "Changes, relative to 1st sample:",
+        "  average_dist: Average distance samples spent away from 1st sample",
+        "  average_speed: (Total changes in distance)/(Last recorded time)",
+        "  total_dist_travelled: Sum of distance travelled",
+        "",
+        "mean_reversion variables:  Fit linear model across all data points",
+        "  mean_reversion_first_dist: expected distance of first sample (y-intercept)",
+        "  mean_reversion_last_dist: expected distance of last sample",
+        "  mean_reversion_stdev_residuals: standard deviation of residuals",
+        "  mean_reversion_slope: slope of linear model",
+        "",
+        "closest_travel_dist: Distance sample came closest to 1st sample",
+        "closest_travel_time: Time when sample came closest to 1st sample",
+        "",
+        "furthest_travel_dist: Distance of sample furthest from 1st sample",
+        "furthest_travel_time: Time when sample went furthest from 1st sample",
+        "",
+        "closest_return_dist: Closest distance sample came to 1st sample after rebounding",
+        "closest_return_time: Time when sample came closest to 1st ample after rebounding",
+        "",
+        "first_return_dist: Distance when sample first rebounds",
+        "first_return_time: Time when sample first rebounds"
+);
+
+
+###############################################################################
