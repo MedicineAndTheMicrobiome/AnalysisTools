@@ -595,7 +595,7 @@ calc_longitudinal_stats=function(offset_rec, alr_cat_val){
 ###############################################################################
 
 
-plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.05, samp_gly=T){
+plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.1, samp_gly=T){
         # Generate a barplot based on stats and groupings
         # Annotat barplot with signficance
 
@@ -662,9 +662,6 @@ plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.05, samp_gly=T){
                 }
         }
 
-        cat("p-value matrix:\n");
-        print(pval_mat);
-
         # Count how many rows have significant pairings
         num_signf=nrow(signf);
         cat("  Num Significant: ", num_signf, "\n");
@@ -724,12 +721,13 @@ plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.05, samp_gly=T){
         print(ci95);
 
         # Estimate spacing for annotations
-        annot_line_prop=1/5; # proportion of pl
+        annot_line_prop=2/5; # proportion of pl
         min_95ci=min(c(ci95[,1], stat), na.rm=T);
         max_95ci=max(c(ci95[,2], stat), na.rm=T);
         minmax_span=max_95ci-min_95ci;
-        plotdatamax=max_95ci+minmax_span*0.3;
-        plotdatamin=min_95ci-minmax_span*0.3;;
+	if(minmax_span==0){minmax_span=min_95ci/5;}
+        plotdatamax=max_95ci+minmax_span*0.4;
+        plotdatamin=min_95ci-minmax_span*0.4;
         space_for_annotations=minmax_span*annot_line_prop*(num_signf_rows+2);
         horiz_spacing=annot_line_prop*plotdatamax;
 
