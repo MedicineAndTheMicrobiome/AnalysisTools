@@ -563,33 +563,6 @@ get_colors=function(num_col, alpha=1){
 
 ###############################################################################
 
-plot_stats_mat=function(sm, subject_grouping_rec){
-
-	cat("Plotting Stats Matrix...\n");
-	num_groups=subject_grouping_rec[["NumGroups"]];
-	num_stats=ncol(sm);
-	num_indiv=nrow(sm);
-	stat_name=colnames(sm);
-
-	cat("Num Groups: ", num_groups, "\n");
-	cat("Num Indiv: ", num_indiv, "\n");
-	cat("Num Stats: ", num_stats, "\n");
-
-	par(mfrow=c(2,1));
-
-	for(stat_ix in 1:num_stats){
-		cat("---------------------------------------------------------\n");
-		cat("Plotting: ", stat_name[stat_ix], "\n");
-		plot_barplot_wsignf_annot(
-			title=stat_name[stat_ix], 
-			stat=sm[,stat_ix, drop=F],
-			grps=subject_grouping_rec[["GrpToSbj"]]);
-	}
-
-}
-
-###############################################################################
-
 plot_text=function(strings){
         par(family="Courier");
         par(oma=rep(.1,4));
@@ -754,28 +727,8 @@ plot_sample_dist_by_group(dist_mat, offset_rec, subject_grouping_rec, col_assign
 plot_sample_dist_by_group_loess(dist_mat, offset_rec, subject_grouping_rec, col_assign, ind_colors, 
 	dist_type=DistanceType);
 
-group_stat_comparisons=plot_pairwise_grp_comparisons(stats_mat, subject_grouping_rec);
+group_stat_comparisons=plot_pairwise_grp_comparisons(stats_mat, subject_grouping_rec, plots_pp=1);
 
-
-# Extract individual membership
-
-print(stats_mat);
-num_stats=ncol(stats_mat);
-cols_per_page=4;
-num_pages=ceiling(num_stats/cols_per_page);
-
-cat("Printing Stats to PDF...\n");
-cat("Num Stats: ", num_stats, "\n");
-cat("Num Pages: ", num_pages, "\n");
-cat("Num Stats/Page: ", cols_per_page, "\n");
-for(page_ix in 1:num_pages){
-	start_col=((page_ix-1)*cols_per_page)+1;
-	end_col=min(start_col+cols_per_page-1, num_stats);
-	cat("Printing columns: ", start_col, " to ", end_col, "\n", sep="");	
-	plot_text(capture.output(print(stats_mat[, start_col:end_col, drop=F])));
-}
-
-plot_stats_mat(stats_mat, subject_grouping_rec);
 
 par(mfrow=c(1,1));
 plot_text(longit_stat_description_distance);
