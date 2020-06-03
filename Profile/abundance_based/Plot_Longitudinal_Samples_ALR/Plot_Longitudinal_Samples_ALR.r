@@ -876,7 +876,7 @@ for(stat_ix in stat_names){
 }
 
 # Plot and compute pairwise group comparisons
-stat_table_grp_cmp=plot_pairwise_grp_comparisons(long_stats, subject_grouping_rec, plots_pp=4);
+stat_table_grp_cmp=plot_pairwise_grp_comparisons(long_stats, subject_grouping_rec, plots_pp=3);
 
 par(mfrow=c(1,1));
 
