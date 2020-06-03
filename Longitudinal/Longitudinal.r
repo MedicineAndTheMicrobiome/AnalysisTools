@@ -323,7 +323,7 @@ calculate_stats_on_series_distance=function(offset_rec, dist_mat){
         cat("Calculating average distance over time...\n");
 
         uniq_indiv_ids=offset_rec[["SubjectIDs"]];
-        num_ind=offset_rec[["NumSubjects"]];
+        num_subjects=offset_rec[["NumSubjects"]];
 
         stat_names=c(
                 "last_time", "num_time_pts",
@@ -337,19 +337,19 @@ calculate_stats_on_series_distance=function(offset_rec, dist_mat){
                 "closest_return_dist", "closest_return_time",
                 "first_return_dist", "first_return_time");
 
-        out_mat=matrix(NA, nrow=num_ind, ncol=length(stat_names));
-        rownames(out_mat)=uniq_indiv_ids;
-        colnames(out_mat)=stat_names;
-
         dist_mat=as.matrix(dist_mat);
+
+        tmp_mat=matrix(NA, nrow=num_subjects, ncol=length(stat_names));
+        rownames(tmp_mat)=uniq_indiv_ids;
+        colnames(tmp_mat)=stat_names;
 
         for(cur_id in uniq_indiv_ids){
 
                 cur_offsets=offset_rec[["OffsetsBySubject"]][[cur_id]];
                 num_timepts=nrow(cur_offsets);
 
-                out_mat[cur_id, "last_time"]=cur_offsets[num_timepts, "Offsets"];
-                out_mat[cur_id, "num_time_pts"]=num_timepts;
+                tmp_mat[cur_id, "last_time"]=cur_offsets[num_timepts, "Offsets"];
+                tmp_mat[cur_id, "num_time_pts"]=num_timepts;
 
                 samp_ids=rownames(cur_offsets);
 
@@ -357,35 +357,48 @@ calculate_stats_on_series_distance=function(offset_rec, dist_mat){
                         cur_dist=dist_mat[samp_ids[1], samp_ids];
                         cur_times=cur_offsets[,"Offsets"];
 
-                        out_mat[cur_id, "average_dist"]=avg_dist(cur_dist, cur_times);
-                        out_mat[cur_id, "average_speed"]=avg_speed(cur_dist, cur_times);
-                        out_mat[cur_id, "total_dist_travelled"]=tot_dist_travelled(cur_dist, cur_times);
+                        tmp_mat[cur_id, "average_dist"]=avg_dist(cur_dist, cur_times);
+                        tmp_mat[cur_id, "average_speed"]=avg_speed(cur_dist, cur_times);
+                        tmp_mat[cur_id, "total_dist_travelled"]=tot_dist_travelled(cur_dist, cur_times);
 
                         res=mean_reversion(cur_dist, cur_times);
-                        out_mat[cur_id, "mean_reversion_first_dist"]=res[["first_dist"]];
-                        out_mat[cur_id, "mean_reversion_last_dist"]=res[["last_dist"]];
-                        out_mat[cur_id, "mean_reversion_stdev_residuals"]=res[["sd_res"]];
-                        out_mat[cur_id, "mean_reversion_slope"]=res[["slope"]];
+                        tmp_mat[cur_id, "mean_reversion_first_dist"]=res[["first_dist"]];
+                        tmp_mat[cur_id, "mean_reversion_last_dist"]=res[["last_dist"]];
+                        tmp_mat[cur_id, "mean_reversion_stdev_residuals"]=res[["sd_res"]];
+                        tmp_mat[cur_id, "mean_reversion_slope"]=res[["slope"]];
 
                         res=closest_travel(cur_dist, cur_times);
-                        out_mat[cur_id, "closest_travel_dist"]=res[["dist"]];
-                        out_mat[cur_id, "closest_travel_time"]=res[["time"]];
+                        tmp_mat[cur_id, "closest_travel_dist"]=res[["dist"]];
+                        tmp_mat[cur_id, "closest_travel_time"]=res[["time"]];
 
                         res=furthest_travel(cur_dist, cur_times);
-                        out_mat[cur_id, "furthest_travel_dist"]=res[["dist"]];
-                        out_mat[cur_id, "furthest_travel_time"]=res[["time"]];
+                        tmp_mat[cur_id, "furthest_travel_dist"]=res[["dist"]];
+                        tmp_mat[cur_id, "furthest_travel_time"]=res[["time"]];
 
                         res=closest_return(cur_dist, cur_times);
-                        out_mat[cur_id, "closest_return_dist"]=res[["dist"]];
-                        out_mat[cur_id, "closest_return_time"]=res[["time"]];
+                        tmp_mat[cur_id, "closest_return_dist"]=res[["dist"]];
+                        tmp_mat[cur_id, "closest_return_time"]=res[["time"]];
 
                         res=first_return(cur_dist, cur_times);
-                        out_mat[cur_id, "first_return_dist"]=res[["dist"]];
-                        out_mat[cur_id, "first_return_time"]=res[["time"]];
+                        tmp_mat[cur_id, "first_return_dist"]=res[["dist"]];
+                        tmp_mat[cur_id, "first_return_time"]=res[["time"]];
                 }
         }
 
-        return(out_mat);
+	results=list();
+	matrix_template=matrix(NA, nrow=num_subjects, ncol=1);
+	colnames(matrix_template)="distance";
+	rownames(matrix_template)=uniq_indiv_ids;
+
+	for(stat_ix in stat_names){
+		results[[stat_ix]]=matrix_template;
+		for(sbx in uniq_indiv_ids){
+			results[[stat_ix]][sbx, "distance"]=tmp_mat[sbx, stat_ix];
+		}	
+
+	}
+
+        return(results);
 }
 
 ###############################################################################
@@ -590,6 +603,230 @@ calc_longitudinal_stats=function(offset_rec, alr_cat_val){
         }
 
         return(results);
+}
+
+###############################################################################
+
+paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_is_hot=T, deci_pts=4,
+        label_zeros=T, counts=F, value.cex=1,
+        plot_col_dendr=F,
+        plot_row_dendr=F
+){
+
+        cat("Working on: ", title, "\n");
+
+        num_row=nrow(mat);
+        num_col=ncol(mat);
+
+        if(num_row==0 || num_col==0){
+                cat("Nothing to plot.\n");
+                return();
+        }
+
+        any_nas=any(is.na(mat));
+
+        if(num_row==1 || any_nas){
+                plot_row_dendr=F;
+        }
+        if(num_col==1 || any_nas){
+                plot_col_dendr=F;
+        }
+
+        row_names=rownames(mat);
+        col_names=colnames(mat);
+
+        orig.par=par(no.readonly=T);
+
+        cat("Num Rows: ", num_row, "\n");
+        cat("Num Cols: ", num_col, "\n");
+
+        # Flips the rows, so becuase origin is bottom left
+        mat=mat[rev(1:num_row),, drop=F];
+
+        # Generate a column scheme
+        num_colors=50;
+        color_arr=rainbow(num_colors, start=0, end=4/6);
+        if(high_is_hot){
+                color_arr=rev(color_arr);
+        }
+
+        # Provide a means to map values to an (color) index
+        remap=function(in_val, in_range, out_range){
+                in_prop=(in_val-in_range[1])/(in_range[2]-in_range[1])
+                out_val=in_prop*(out_range[2]-out_range[1])+out_range[1];
+                return(out_val);
+        }
+
+        # If range is not specified, find it based on the data
+        if(is.na(plot_min)){
+                plot_min=min(mat, na.rm=T);
+        }
+        if(is.na(plot_max)){
+                plot_max=max(mat, na.rm=T);
+        }
+
+        if(plot_min>=-1 && plot_max<=1){
+                fractions_only=T;
+        }else{
+                fractions_only=F;
+        }
+        cat("Plot min/max: ", plot_min, "/", plot_max, "\n");
+
+        # Get Label lengths
+        row_max_nchar=max(nchar(row_names));
+        col_max_nchar=max(nchar(col_names));
+        cat("Max Row Names Length: ", row_max_nchar, "\n");
+        cat("Max Col Names Length: ", col_max_nchar, "\n");
+
+        ##################################################################################################
+
+        get_dendrogram=function(in_mat, type){
+
+                if(type=="row"){
+                        dendist=dist(in_mat);
+                }else{
+                        dendist=dist(t(in_mat));
+                }
+
+                get_clstrd_leaf_names=function(den){
+                # Get a list of the leaf names, from left to right
+                        den_info=attributes(den);
+                        if(!is.null(den_info$leaf) && den_info$leaf==T){
+                                return(den_info$label);
+                        }else{
+                                lf_names=character();
+                                for(i in 1:2){
+                                        lf_names=c(lf_names, get_clstrd_leaf_names(den[[i]]));
+                                }
+                                return(lf_names);
+                        }
+                }
+
+                hcl=hclust(dendist, method="ward.D2");
+                dend=list();
+                dend[["tree"]]=as.dendrogram(hcl);
+                dend[["names"]]=get_clstrd_leaf_names(dend[["tree"]]);
+                return(dend);
+        }
+
+        ##################################################################################################
+        # Comput Layouts
+        col_dend_height=ceiling(num_row*.1);
+        row_dend_width=ceiling(num_col*.2);
+
+        heatmap_height=num_row;
+        heatmap_width=num_col;
+
+        if(plot_col_dendr && plot_row_dendr){
+                layoutmat=matrix(
+                        c(
+                        rep(c(rep(4, row_dend_width), rep(3, heatmap_width)), col_dend_height),
+                        rep(c(rep(2, row_dend_width), rep(1, heatmap_width)), heatmap_height)
+                        ), byrow=T, ncol=row_dend_width+heatmap_width);
+
+                col_dendr=get_dendrogram(mat, type="col");
+                row_dendr=get_dendrogram(mat, type="row");
+
+                mat=mat[row_dendr[["names"]], col_dendr[["names"]], drop=F];
+
+        }else if(plot_col_dendr){
+                layoutmat=matrix(
+                        c(
+                        rep(rep(2, heatmap_width), col_dend_height),
+                        rep(rep(1, heatmap_width), heatmap_height)
+                        ), byrow=T, ncol=heatmap_width);
+
+                col_dendr=get_dendrogram(mat, type="col");
+                mat=mat[, col_dendr[["names"]], drop=F];
+
+        }else if(plot_row_dendr){
+                layoutmat=matrix(
+                        rep(c(rep(2, row_dend_width), rep(1, heatmap_width)), heatmap_height),
+                        byrow=T, ncol=row_dend_width+heatmap_width);
+
+                row_dendr=get_dendrogram(mat, type="row");
+                mat=mat[row_dendr[["names"]],, drop=F];
+        }else{
+                layoutmat=matrix(
+                        rep(1, heatmap_height*heatmap_width),
+                        byrow=T, ncol=heatmap_width);
+        }
+
+        #print(layoutmat);
+        layout(layoutmat);
+
+        ##################################################################################################
+
+        par(oma=c(col_max_nchar*.60, 0, 3, row_max_nchar*.60));
+        par(mar=c(0,0,0,0));
+        plot(0, type="n", xlim=c(0,num_col), ylim=c(0,num_row), xaxt="n", yaxt="n", bty="n", xlab="", ylab="");
+        mtext(title, side=3, line=0, outer=T, font=2);
+
+        # x-axis
+        axis(side=1, at=seq(.5, num_col-.5, 1), labels=colnames(mat), las=2, line=-1.75, cex.axis=value.cex);
+        axis(side=4, at=seq(.5, num_row-.5, 1), labels=rownames(mat), las=2, line=-1.75, cex.axis=value.cex);
+
+        if(log_col){
+                plot_min=log10(plot_min+.0125);
+                plot_max=log10(plot_max+.0125);
+        }
+
+        for(x in 1:num_col){
+                for(y in 1:num_row){
+
+                        if(log_col){
+                                col_val=log10(mat[y,x]+.0125);
+                        }else{
+                                col_val=mat[y,x];
+                        }
+
+                        remap_val=remap(col_val, c(plot_min, plot_max), c(1, num_colors));
+                        col_ix=ceiling(remap_val);
+
+                        rect(x-1, y-1, (x-1)+1, (y-1)+1, border=NA, col=color_arr[col_ix]);
+
+                        if(is.na(mat[y,x]) || mat[y,x]!=0 || label_zeros){
+                                if(counts){
+                                        text_lab=sprintf("%i", mat[y,x]);
+                                }else{
+                                        text_lab=sprintf(paste("%0.", deci_pts, "f", sep=""), mat[y,x]);
+                                        if(fractions_only){
+                                                if(!is.na(mat[y,x])){
+                                                        if(mat[y,x]==-1 || mat[y,x]==1){
+                                                                text_lab=as.integer(mat[y,x]);
+                                                        }else{
+                                                                text_lab=gsub("0\\.","\\.", text_lab);
+                                                        }
+                                                }
+                                        }
+                                }
+                                text(x-.5, y-.5, text_lab, srt=atan(num_col/num_row)/pi*180, cex=value.cex, font=2);
+                        }
+                }
+        }
+
+        ##################################################################################################
+
+        par(mar=c(0, 0, 0, 0));
+
+        if(plot_row_dendr && plot_col_dendr){
+                rdh=attributes(row_dendr[["tree"]])$height;
+                cdh=attributes(col_dendr[["tree"]])$height;
+                plot(row_dendr[["tree"]], leaflab="none", horiz=T, xaxt="n", yaxt="n", bty="n", xlim=c(rdh, 0));
+                plot(col_dendr[["tree"]], leaflab="none",xaxt="n", yaxt="n", bty="n", ylim=c(0, cdh));
+                plot(0,0, type="n", bty="n", xaxt="n", yaxt="n");
+                #text(0,0, "Placeholder");
+        }else if(plot_row_dendr){
+                rdh=attributes(row_dendr[["tree"]])$height;
+                plot(row_dendr[["tree"]], leaflab="none", horiz=T, xaxt="n", yaxt="n", bty="n", xlim=c(rdh, 0));
+                #text(0,0, "Row Dendrogram");
+        }else if(plot_col_dendr){
+                cdh=attributes(col_dendr[["tree"]])$height;
+                plot(col_dendr[["tree"]], leaflab="none", xaxt="n", yaxt="n", bty="n", ylim=c(0, cdh));
+                #text(0,0, "Col Dendrogram");
+        }
+
+        par(orig.par);
 }
 
 ###############################################################################
@@ -909,7 +1146,7 @@ plot_pairwise_grp_comparisons=function(longit_stats, grp_to_sbj_info_rec, plots_
                 for(grp_ix in unique_group_names){
                         grp_members=group_to_subject_map[[grp_ix]];
                         grp_mat[grp_ix,]=apply(
-                                long_stats[[stat_ix]][grp_members,,drop=F], 2,
+                                longit_stats[[stat_ix]][grp_members,,drop=F], 2,
                                 function(x){mean(x, na.rm=T)});
                 }
 
@@ -926,7 +1163,7 @@ plot_pairwise_grp_comparisons=function(longit_stats, grp_to_sbj_info_rec, plots_
 
                         signf=plot_barplot_wsignf_annot(
                                 title=cat_names[cat_ix],
-                                long_stats[[stat_ix]][,cat_ix,drop=F],
+                                longit_stats[[stat_ix]][,cat_ix,drop=F],
                                 group_to_subject_map,
                                 alpha=0.1
                         );
