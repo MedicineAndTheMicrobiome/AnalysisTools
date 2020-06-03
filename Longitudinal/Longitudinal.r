@@ -963,16 +963,23 @@ plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.1, samp_gly=T){
         max_95ci=max(c(ci95[,2], stat), na.rm=T);
         minmax_span=max_95ci-min_95ci;
 	if(minmax_span==0){minmax_span=min_95ci/5;}
-        plotdatamax=max_95ci+minmax_span*0.4;
+
+        space_for_annotations=minmax_span*0.4;
+        plotdatamax=max_95ci+space_for_annotations;
         plotdatamin=min_95ci-minmax_span*0.4;
-        space_for_annotations=minmax_span*annot_line_prop*(num_signf_rows+2);
-        horiz_spacing=annot_line_prop*plotdatamax;
+
+	padding_for_mean_n_label=3;
+	# Amount of y-space to use per significant different annotation
+        horiz_spacing=space_for_annotations/(max(1,num_signf_rows)+padding_for_mean_n_label);
+
+	cat("space_for_annotations:", space_for_annotations, "\n");
+	cat("horizon_spacing:", horiz_spacing, "\n");
 
         # Start plot
         par(mar=c(8,5,4,3));
         cat("  Plot Limits: (", plotdatamin, ", ", plotdatamax, ")\n");
         plot(0, type="n",
-                ylim=c(plotdatamin, plotdatamax+space_for_annotations),
+                ylim=c(plotdatamin, plotdatamax),
                 xlim=c(0, num_grps+1),
                 yaxt="n", xaxt="n", xlab="", ylab="", bty="n");
         for(grp_ix in 1:num_grps){
@@ -1032,12 +1039,12 @@ plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.1, samp_gly=T){
         # label sample size
         for(grp_ix in 1:num_grps){
                 #text(mids[grp_ix], 3*-par()$cxy[2]/2, paste("mean =", round(grp_means[grp_ix], 2)),
-                text(mids[grp_ix], plotdatamax, paste("mean =", round(grp_means[grp_ix], 2)),
-                        cex=.95, xpd=T, font=3, adj=c(.5,-1));
+                text(mids[grp_ix], max_95ci, paste("mean =", round(grp_means[grp_ix], 2)),
+                        cex=.95, xpd=T, font=3, adj=c(.5,-2));
 
                 #text(mids[grp_ix], 4*-par()$cxy[2]/2, paste("n =",samp_size[grp_ix]),
-                text(mids[grp_ix], plotdatamax, paste("\nn =",samp_size[grp_ix]),
-                        cex=.95, xpd=T, font=2, adj=c(.5,-1));
+                text(mids[grp_ix], max_95ci, paste("n =",samp_size[grp_ix]),
+                        cex=.95, xpd=T, font=2, adj=c(.5,-3));
         }
 
         connect_significant=function(A, B, ypos, pval){
@@ -1068,7 +1075,7 @@ plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.1, samp_gly=T){
                         cat("Pairs: ", i, " to:\n");
                         print(signf_grps);
 
-                        y_offset=plotdatamax+horiz_spacing*row_ix;
+                        y_offset=max_95ci+(horiz_spacing*(row_ix+padding_for_mean_n_label));
 
                         # Draw line between left/reference to each paired signf grp
                         points(c(
