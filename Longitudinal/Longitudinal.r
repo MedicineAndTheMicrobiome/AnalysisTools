@@ -642,15 +642,22 @@ plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.05, samp_gly=T){
 				grpAmean=mean(grpAval);
 				grpBmean=mean(grpBval);
 
-                                res=wilcox.test(grpAval, grpBval);
-                                pval_mat[grpAnm, grpBnm]=res$p.value;
-                                if(res$p.value<=alpha){
-                                        signf=rbind(signf, 
-						c(grpAnm, sprintf("%8.4f",grpAmean), 
-						grpBnm, sprintf("%8.4f",grpBmean), 
-						sprintf("%8.4f", (grpBmean-grpAmean)),
-						sprintf("%5.3f",res$p.value)));
-                                }
+				if(!(length(grpAval)==0 || length(grpBval)==0)){
+					res=wilcox.test(grpAval, grpBval);
+					if(is.nan(res$p.value)){
+						pval=1;
+					}else{
+						pval=res$p.value;
+					}
+					pval_mat[grpAnm, grpBnm]=pval;
+					if(pval<=alpha){
+						signf=rbind(signf, 
+							c(grpAnm, sprintf("%8.4f",grpAmean), 
+							grpBnm, sprintf("%8.4f",grpBmean), 
+							sprintf("%8.4f", (grpBmean-grpAmean)),
+							sprintf("%5.3f",pval)));
+					}
+				}
                         }
                 }
         }
