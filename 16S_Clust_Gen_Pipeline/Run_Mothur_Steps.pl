@@ -174,8 +174,10 @@ sub format_datetime{
 my $timing_log="$output_dir/$TIMING_LOGNAME";
 
 sub log_time{
-	my $date=shift;
-	my $time=shift;
+	my $sdate=shift;
+	my $stime=shift;
+	my $edate=shift;
+	my $etime=shift;
 	my $begin_time_ref=shift;
 	my $end_time_ref=shift;
 	my $step=shift;
@@ -190,10 +192,10 @@ sub log_time{
 
 	open(LOG, ">>$timing_log") || die "Could not open $timing_log for appending.\n";
 	if($print_hdr){
-		print LOG "Start_Date\tStart_Time\tCommand\tCPU_Time\tNotes\n";
+		print LOG "Start_Date\tStart_Time\tEnd_Date\tEnd_Time\tCommand\tCPU_Time\tNotes\n";
 	}
 	my $run_time_str=sprintf("%3.2f", $run_time);
-	print LOG "$date\t$time\t$step\t$run_time_str\t$notes";
+	print LOG "$sdate\t$stime\t$edate\t$etime\t$step\t$run_time_str\t$notes";
 	print LOG "\n";
 	close(LOG);
 
@@ -240,7 +242,7 @@ sub execute_mothur_cmd{
 	my $step_skipped=0;
 
 	# Get start time
-	my ($date, $time)=format_datetime();
+	my ($sdate_wall, $stime_wall)=format_datetime();
 	my $notes="";
 
 	my (@begin_time, @end_time);
@@ -282,7 +284,10 @@ sub execute_mothur_cmd{
 		$notes="Skipped";
 	}
 
-	log_time($date, $time, \@begin_time, \@end_time, "$step_str\_$cmd", $notes);
+	my ($edate_wall, $etime_wall)=format_datetime();
+
+	log_time($sdate_wall, $stime_wall, $edate_wall, $etime_wall, 
+		\@begin_time, \@end_time, "$step_str\_$cmd", $notes);
 
 	$step++;
 	return;
@@ -543,7 +548,7 @@ execute_mothur_cmd(
 # Convert OTU info into Summary Table  
 # 	IN.unique.good.filter.unique.precluster.pick.an.shared into Summary Table
 
-my ($date, $time)=format_datetime();
+my ($sdate_wall, $stime_wall)=format_datetime();
 my @sumtab_start_time=time;
 
 my $out_root=$name;
@@ -584,7 +589,10 @@ exec_cmd($exec_string, "$st_dir", "taxonomy_to_summary_table");
 
 my @sumtab_end_time=time;
 
-log_time($date, $time, \@sumtab_start_time, \@sumtab_end_time, "generate.summary_tables", "");
+my ($edate_wall, $etime_wall)=format_datetime();
+
+log_time($sdate_wall, $stime_wall, $edate_wall, $etime_wall, 
+	\@sumtab_start_time, \@sumtab_end_time, "generate.summary_tables", "");
 
 ###############################################################################
 ###############################################################################
@@ -709,11 +717,5 @@ my $exec_string="
 exec_cmd($exec_string, "$desc_stat_dir", "abundance_desc_analysis");
 
 ##############################################################################
-
-my ($date, $time)=format_datetime();
-my @overall_end_time=times;
-log_time($date, $time, \@overall_begin_time, \@overall_end_time, "Completion", "Overall");
-
-###############################################################################
 
 print STDERR "done.\n";
