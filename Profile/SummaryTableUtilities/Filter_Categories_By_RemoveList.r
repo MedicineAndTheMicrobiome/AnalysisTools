@@ -122,7 +122,12 @@ for(i in 1:num_removal){
 # Remove the columns
 cat("Columns to Remove:\n");
 print(rem_idx);
-outmat=counts_mat[,-rem_idx];
+
+if(length(rem_idx)){
+	outmat=counts_mat[,-rem_idx];
+}else{
+	outmat=counts_mat;
+}
 
 # Remove num categories left
 num_remaining_categories=ncol(outmat);
