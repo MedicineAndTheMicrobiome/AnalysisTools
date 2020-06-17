@@ -85,7 +85,7 @@ sub process_record{
 	my $id;
 
 	$defline=~s/^>//;
-	my @defarr=split / /, $defline;
+	my @defarr=split /\s+/, $defline;
 
 	if(defined($mapping_hash{$defarr[0]})){
 		$defarr[0]=$mapping_hash{$defarr[0]};
