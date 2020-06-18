@@ -114,7 +114,6 @@ for(i in 1:num_categories){
 	res=gsub("\\)", "", res); 
 
 	res=gsub(",", "_", res); 
-	res=gsub(";", "_", res); 
 	res=gsub("'", "p", res); 
 	res=gsub("\\+", "p", res); 
 	res=gsub("/", "_", res); 
