@@ -255,7 +255,7 @@ sub run_abundance_based{
 
 	my $add_groups="";
 	if($groups_colname ne ""){
-		$add_groups="";
+		$add_groups="-g $groups_colname";
 	}
 
 	my $add_target_var_file="";
@@ -271,11 +271,8 @@ sub run_abundance_based{
 		-f $factor_file \
 		-t $offsets_colname \
 		-i $subjectid_colname \
-		-o $output_dir/abundance/$model_name
-		$add_alr
-		$add_reflev 
-		$add_groups 
-		$add_target_var_file
+		-o $output_dir/abundance/$model_name \
+		$add_alr $add_reflev $add_groups $add_target_var_file
 	";
 	run_command("Longitudinal ALR", "longit_alr", $cmd, 
 		"$output_dir/abundance");
@@ -307,7 +304,7 @@ sub run_distribution_based{
 
 	my $add_groups="";
 	if($groups_colname ne ""){
-		$add_groups="";
+		$add_groups="-g $groups_colname";
 	}
 
 	#######################################################################
@@ -320,8 +317,7 @@ sub run_distribution_based{
 		-i $subjectid_colname \
              	-o $output_dir/distribution/$model_name \
 		-d tail \
-		$add_reflev
-		$add_groups
+		$add_reflev $add_groups
 	";
 	run_command("Plot Diversity Longitudinal", "longit_diversity", 
 		$cmd, "$output_dir/distribution");
@@ -357,7 +353,7 @@ sub run_distance_based{
 
 	my $add_groups="";
 	if($groups_colname ne ""){
-		$add_groups="";
+		$add_groups="-g $groups_colname";
 	}
 
 
@@ -369,8 +365,7 @@ sub run_distance_based{
 		-i $subjectid_colname \
 		-o $output_dir/distance/$model_name \
 		-d man \
-		$add_reflev \
-		$add_groups
+		$add_reflev $add_groups
 	";
 	run_command("Plot Distance Longitudinal", "longit_dist_plot",
 		$cmd, "$output_dir/distance");
