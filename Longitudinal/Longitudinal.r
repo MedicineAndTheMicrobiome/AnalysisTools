@@ -592,6 +592,10 @@ calc_longitudinal_stats=function(offset_rec, alr_cat_val){
 
                                 call_res=do.call(funct_name, list(x=time, y=val));
 
+				if(!length(call_res)){
+					call_res=NA;	
+				}
+
                                 tmp_mat[ind_ix, cat_ix]=call_res;
 
                         }
