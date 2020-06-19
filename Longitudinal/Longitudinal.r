@@ -41,7 +41,13 @@ extract_offset=function(factor_mat, sbj_cname, timeoffset_cname, start=-Inf, end
 	offsets_by_sbj=list()
 	for(sbj in offsets_data[["SubjectIDs"]]){
 		sbj_ix=offsets_mat[,"SubjectID"]==sbj;
-		offsets_by_sbj[[sbj]]=offsets_mat[sbj_ix,,drop=F];
+
+		sbj_offset_rec=offsets_mat[sbj_ix,,drop=F];
+
+		offset_order=order(sbj_offset_rec[,"Offsets"]);
+		sorted_offsets=sbj_offset_rec[offset_order,];
+
+		offsets_by_sbj[[sbj]]=sorted_offsets;
 	}
 	offsets_data[["OffsetsBySubject"]]=offsets_by_sbj;
 
