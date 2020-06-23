@@ -1170,7 +1170,8 @@ plot_ab_comparisons=function(a, b, aname, bname, pval, title){
 	), ncol=2, byrow=T);
 	layout(layout_mat);
 	par(oma=c(1,1,3,1));
-	par(mar=c(4,4,3,1));
+	par(mar=c(6,6,7,1));
+	par(family="serif");
 
 	ranges=range(c(a,b));
 	ab=c(a,b);
@@ -1180,22 +1181,29 @@ plot_ab_comparisons=function(a, b, aname, bname, pval, title){
 	ahrec=hist(A_alr_val, breaks=ab_hrec$breaks, plot=F);
 	bhrec=hist(B_alr_val, breaks=ab_hrec$breaks, plot=F);
 	max_count=max(c(ahrec$counts, bhrec$counts));
-	ahrec=hist(A_alr_val, breaks=ab_hrec$breaks, main=aname, ylim=c(0, max_count), xlab="ALR");
-	bhrec=hist(B_alr_val, breaks=ab_hrec$breaks, main=bname, ylim=c(0, max_count), xlab="ALR");
+	ahrec=hist(A_alr_val, breaks=ab_hrec$breaks, main=aname, ylim=c(0, max_count), 
+		cex.axis=1.5, cex.lab=1.5, cex.main=1.5, xlab="ALR", las=1);
+	bhrec=hist(B_alr_val, breaks=ab_hrec$breaks, main=bname, ylim=c(0, max_count), 
+		cex.axis=1.5, cex.lab=1.5, cex.main=1.5, xlab="ALR", las=1);
 
 	# Plot difference
 	alr_dif=b-a;
 	magn=max(abs(alr_dif));
 	diff_plot_range=c(-magn*1.2, magn*1.2);
 	print(diff_plot_range);
-	hist(alr_dif, xlim=diff_plot_range,
-		xlab="",
-		main=paste("diff = ", bname, "-", aname, "\n", 
-			"Wilcoxon Paired P-value:", round(pval, 4), sep=""), breaks=30);
-	abline(v=0, col="blue", lty=2);
+	hist(alr_dif, xlim=diff_plot_range, cex.axis=1.5,
+		yaxt="n",
+		xlab=paste("ALR difference = ", bname, " - ", aname, sep=""), las=1, cex.lab=1.5, cex.main=1.3,
+		main=paste("Wilcoxon paired p-value: ", round(pval, 4), sep=""), breaks=30);
+	yaxis_info=par()$yaxp;
+	y_ats=as.integer(seq(yaxis_info[1], yaxis_info[2], length.out=min(yaxis_info[2], yaxis_info[3])));
+	axis(2, at=y_ats, labels=y_ats, las=1, cex.axis=1.5);
+	title(main=gsub("^\\d+\\.\\)", "", title), line=5, cex.main=2.5);
+	abline(v=0, col="blue", lty=2, lwd=2);
 
 	# Plot scatter
-	plot(a,b, xlim=ranges, ylim=ranges, xlab=aname, ylab=bname, cex=1.2);
+	plot(a,b, xlim=ranges, ylim=ranges, xlab=aname, ylab=bname, 
+		cex=1.2, cex.axis=1.5, cex.lab=1.5, las=1);
 	abline(a=0, b=1, col="blue", lty=2);
 
 	mtext(title, side=3, line=0, outer=T, font=2, cex=2);
