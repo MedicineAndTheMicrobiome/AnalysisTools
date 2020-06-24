@@ -8,7 +8,8 @@ options(useFancyQuotes=F);
 
 params=c(
 	"paired_map_file", "p", 1, "character",
-	"metadata_output", "o", 1, "character"
+	"metadata_output", "o", 1, "character",
+	"category_name", "c", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -18,6 +19,7 @@ usage = paste(
 	"\nUsage:\n", script_name, "\n",
 	"	-p <paired map file>\n",
 	"	-o <output metdatafile>\n",
+	"	[-c <category name, default=Category>]\n",
 	"\n",
 	"This script will read in a paired map file and regenerate\n",
 	"a metadata/factor file.\n",
@@ -34,9 +36,16 @@ if(
 PairedMapFile=opt$paired_map_file;
 OutputMetadataFile=opt$metadata_output;
 
+if(length(opt$category_name)){
+	CategoryName=opt$category_name;
+}else{
+	CategoryName="Category";
+}
+
 cat("\n");
 cat("Paired Map File: ", PairedMapFile, "\n", sep="");
 cat("Output Metadata File: ", OutputMetadataFile, "\n", sep="");
+cat("Category Name: ", CategoryName, "\n", sep="");
 cat("\n");
 
 ##############################################################################
@@ -71,16 +80,16 @@ names(a_subj_ids)=a_samp_ids;
 names(b_subj_ids)=b_samp_ids;
 
 metadata_out=matrix(NA, nrow=2*num_subjects, ncol=3);
-colnames(metadata_out)=c("Category", "SubjectID", "SampleID");
+colnames(metadata_out)=c(CategoryName, "SubjectID", "SampleID");
 rownames(metadata_out)=c(a_samp_ids, b_samp_ids);
-metadata_out[,"Category"]=c(rep(pair_category[1], num_subjects), rep(pair_category[2], num_subjects));
+metadata_out[,CategoryName]=c(rep(pair_category[1], num_subjects), rep(pair_category[2], num_subjects));
 metadata_out[,"SubjectID"]=c(a_subj_ids, b_subj_ids);
 metadata_out[,"SampleID"]=c(a_samp_ids, b_samp_ids);
 
 cat("Removing NAs...\n");
 nrows_orig=2*num_subjects;
 not_na_ix=!is.na(metadata_out[,"SampleID"]);
-metadata_out=metadata_out[not_na_ix, c("SampleID", "Category", "SubjectID")];
+metadata_out=metadata_out[not_na_ix, c("SampleID", CategoryName, "SubjectID")];
 nrows_after_na_remove=nrow(metadata_out);
 num_removed=nrows_orig-nrows_after_na_remove;
 cat("Number of Rows Removed: ", num_removed, "\n");
