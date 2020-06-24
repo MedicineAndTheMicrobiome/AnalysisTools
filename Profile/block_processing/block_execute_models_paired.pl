@@ -301,6 +301,8 @@ sub run_abundance_based{
 		-M $output_dir/cov_var \
 		-e $A_colname \
 		-g $B_colname \
+		-u $num_alr \
+		-v $num_alr \
 		-q $output_dir/cov_var \
 		-x \";\" \
 		-o $output_dir/abundance/$B_pred_A_OUT_DIR/$model_name
@@ -317,6 +319,8 @@ sub run_abundance_based{
 		-M $output_dir/cov_var \
 		-e $B_colname \
 		-g $A_colname \
+		-u $num_alr \
+		-v $num_alr \
 		-q $output_dir/cov_var \
 		-x \";\" \
 		-o $output_dir/abundance/$A_pred_B_OUT_DIR/$model_name
@@ -358,6 +362,7 @@ sub run_abundance_based{
 		-B $B_colname \
 		-A $A_colname \
 		-q $output_dir/cov_var \
+		-u $num_alr \
 		-x \";\" \
 		-o $output_dir/abundance/$DIFF_OUT_DIR/$model_name
 	";
@@ -397,6 +402,7 @@ sub run_distribution_based{
 
 	my $cmd;
 	my $DIV_DIFF="paired_div_diff_regr";
+	my $STACKED_BP="stacked_barplots";
 
 	if($covariates=="" && $variable_list==""){
 		$cmd="touch $output_dir/cov_var"
@@ -407,6 +413,7 @@ sub run_distribution_based{
 
 	mkdir "$output_dir/distribution";
 	mkdir "$output_dir/distribution/$DIV_DIFF";
+	mkdir "$output_dir/distribution/$STACKED_BP";
 
 	my $sumtabs;
 	if($summary_table2 eq ""){
@@ -434,6 +441,58 @@ sub run_distribution_based{
 	";
 	run_command("Fit Paired Diversity Difference Regression", "paired_div_diff_regr",
 		$cmd, "$output_dir/distribution/$DIV_DIFF");
+	
+	#######################################################################
+
+	my $CATEGORY_NAME="Category";
+	
+	$cmd=
+	"~/git/AnalysisTools/Column/Make_Pair_Mapping_from_FactorInfo/Paired_to_Metadata.r \
+		-p $pair_map \
+		-o $output_dir/distribution/$STACKED_BP/paired_as_metadata.tsv \
+		-c $CATEGORY_NAME
+	";
+
+	$cmd=
+	run_command("Create Metadata Out of Paired Map", "paired_to_metadata",
+		$cmd, "$output_dir/distribution/$STACKED_BP");
+
+	#----------------------------------------------------------------------
+	
+	`echo $CATEGORY_NAME > $output_dir/distribution/$STACKED_BP/paired_category_name.txt`;
+
+	#----------------------------------------------------------------------
+
+	if($summary_table2 ne ""){
+		$cmd=
+		"~/git/AnalysisTools/Profile/SummaryTableUtilities/Join_Summary_Tables.r \
+			-i $summary_table,$summary_table2 \
+			-o $output_dir/distribution/$STACKED_BP/combined.summary_table.tsv
+		";
+		$cmd=
+		run_command("Combine Summary Tables", "combine_summary_tables",
+			$cmd, "$output_dir/distribution/$STACKED_BP");
+	}else{
+		$cmd=
+		"cp $summary_table $output_dir/distribution/$STACKED_BP/combined.summary_table.tsv";
+		run_command("Renaming Summary Table", "rename_summary_table",
+			$cmd, "$output_dir/distribution/$STACKED_BP");
+	}
+
+	#----------------------------------------------------------------------
+
+	$cmd=
+	"~/git/AnalysisTools/Profile/distribution_based/Plot_StackedBar/Plot_StackedBar.r \
+		-i $output_dir/distribution/$STACKED_BP/combined.summary_table.tsv \
+		-f $output_dir/distribution/$STACKED_BP/paired_as_metadata.tsv \
+		-M $output_dir/distribution/$STACKED_BP/paired_category_name.txt \
+		-o $output_dir/distribution/$STACKED_BP/paired_stacked_bp \
+		-s \";\"
+	";
+	$cmd=
+	run_command("Create Metadata Out of Paired Map", "paired_to_metadata",
+		$cmd, "$output_dir/distribution/$STACKED_BP");
+
 
 }
 
