@@ -480,18 +480,23 @@ sub run_distribution_based{
 	}
 
 	#----------------------------------------------------------------------
+	
+	foreach my $t ((2,3,4)){
 
-	$cmd=
-	"~/git/AnalysisTools/Profile/distribution_based/Plot_StackedBar/Plot_StackedBar.r \
-		-i $output_dir/distribution/$STACKED_BP/combined.summary_table.tsv \
-		-f $output_dir/distribution/$STACKED_BP/paired_as_metadata.tsv \
-		-M $output_dir/distribution/$STACKED_BP/paired_category_name.txt \
-		-o $output_dir/distribution/$STACKED_BP/paired_stacked_bp \
-		-s \";\"
-	";
-	$cmd=
-	run_command("Create Metadata Out of Paired Map", "paired_to_metadata",
-		$cmd, "$output_dir/distribution/$STACKED_BP");
+		$cmd=
+		"~/git/AnalysisTools/Profile/distribution_based/Plot_StackedBar/Plot_StackedBar.r \
+			-i $output_dir/distribution/$STACKED_BP/combined.summary_table.tsv \
+			-f $output_dir/distribution/$STACKED_BP/paired_as_metadata.tsv \
+			-M $output_dir/distribution/$STACKED_BP/paired_category_name.txt \
+			-o $output_dir/distribution/$STACKED_BP/paired_stacked_bp \
+			-t $t \
+			-s \";\"
+		";
+		$cmd=
+		run_command("Create Metadata Out of Paired Map", "paired_to_metadata",
+			$cmd, "$output_dir/distribution/$STACKED_BP");
+
+	}
 
 
 }
