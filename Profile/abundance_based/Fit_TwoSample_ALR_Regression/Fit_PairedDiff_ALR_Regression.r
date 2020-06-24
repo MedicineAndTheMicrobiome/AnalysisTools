@@ -1170,7 +1170,7 @@ plot_ab_comparisons=function(a, b, aname, bname, pval, title){
 	), ncol=2, byrow=T);
 	layout(layout_mat);
 	par(oma=c(1,1,3,1));
-	par(mar=c(6,6,7,1));
+	par(mar=c(6,6,8,.25));
 	par(family="serif");
 
 	ranges=range(c(a,b));
@@ -1191,14 +1191,23 @@ plot_ab_comparisons=function(a, b, aname, bname, pval, title){
 	magn=max(abs(alr_dif));
 	diff_plot_range=c(-magn*1.2, magn*1.2);
 	print(diff_plot_range);
-	hist(alr_dif, xlim=diff_plot_range, cex.axis=1.5,
-		yaxt="n",
-		xlab=paste("ALR difference = ", bname, " - ", aname, sep=""), las=1, cex.lab=1.5, cex.main=1.3,
-		main=paste("Wilcoxon paired p-value: ", round(pval, 4), sep=""), breaks=30);
+	hist(alr_dif, xlim=diff_plot_range, yaxt="n", xaxt="n", main="", xlab="", ylab="", las=1, breaks=30);
+
 	yaxis_info=par()$yaxp;
-	y_ats=as.integer(seq(yaxis_info[1], yaxis_info[2], length.out=min(yaxis_info[2], yaxis_info[3])));
-	axis(2, at=y_ats, labels=y_ats, las=1, cex.axis=1.5);
-	title(main=gsub("^\\d+\\.\\)", "", title), line=5, cex.main=2.5);
+	y_ats=as.integer(seq(yaxis_info[1], yaxis_info[2], 
+		length.out=max(min(yaxis_info[2], yaxis_info[3]), 3)));
+	axis(2, at=y_ats, labels=y_ats, las=1, cex.axis=2.5, padj=.5);
+
+	xaxis_info=par()$xaxp;
+	x_ats=as.integer(seq(xaxis_info[1], xaxis_info[2], 
+		length.out=max(min(xaxis_info[2], xaxis_info[3]), 5)));
+	axis(1, at=x_ats, labels=x_ats, las=1, cex.axis=2.5, padj=1);
+
+	title(main=gsub("^\\d+\\.\\)", "", title), line=5, cex.main=5);
+	title(main=paste("Wilcoxon paired p-value: ", round(pval, 4), sep=""), line=2.5, cex.main=2);
+	title(xlab=paste("ALR difference = ", bname, " - ", aname, sep=""), cex.lab=2.5, line=5);
+	title(ylab="Frequency", cex.lab=2.5, line=4);
+
 	abline(v=0, col="blue", lty=2, lwd=2);
 
 	# Plot scatter
