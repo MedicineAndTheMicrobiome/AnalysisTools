@@ -34,8 +34,10 @@ if(
 PairedMapFile=opt$paired_map_file;
 OutputMetadataFile=opt$metadata_output;
 
+cat("\n");
 cat("Paired Map File: ", PairedMapFile, "\n", sep="");
 cat("Output Metadata File: ", OutputMetadataFile, "\n", sep="");
+cat("\n");
 
 ##############################################################################
 
@@ -69,27 +71,23 @@ names(a_subj_ids)=a_samp_ids;
 names(b_subj_ids)=b_samp_ids;
 
 metadata_out=matrix(NA, nrow=2*num_subjects, ncol=3);
-colnames(metadata_out)=c("Category", "SubjectID", "sample_id");
+colnames(metadata_out)=c("Category", "SubjectID", "SampleID");
 rownames(metadata_out)=c(a_samp_ids, b_samp_ids);
 metadata_out[,"Category"]=c(rep(pair_category[1], num_subjects), rep(pair_category[2], num_subjects));
 metadata_out[,"SubjectID"]=c(a_subj_ids, b_subj_ids);
-metadata_out[,"sample_id"]=c(a_samp_ids, b_samp_ids);
+metadata_out[,"SampleID"]=c(a_samp_ids, b_samp_ids);
 
 cat("Removing NAs...\n");
 nrows_orig=2*num_subjects;
-not_na_ix=!is.na(metadata_out[,"sample_id"]);
-metadata_out=metadata_out[not_na_ix, c("Category", "SubjectID")];
+not_na_ix=!is.na(metadata_out[,"SampleID"]);
+metadata_out=metadata_out[not_na_ix, c("SampleID", "Category", "SubjectID")];
 nrows_after_na_remove=nrow(metadata_out);
 num_removed=nrows_orig-nrows_after_na_remove;
 cat("Number of Rows Removed: ", num_removed, "\n");
 
-
-cat("Outputing New Factor File Values:\n");
+cat("Writing New Factor File into: ", OutputMetadataFile, "\n");
 fname=paste(OutputMetadataFile);
-fh=file(fname, "w");
-cat(file=fh, "SampleID");
-close(fh);
-write.table(metadata_out, file=fname, col.names=NA, append=T, quote=F, sep="\t");
+write.table(metadata_out, file=fname, row.names=F, append=F, quote=F, sep="\t");
 
 ###############################################################################
 
