@@ -1,6 +1,6 @@
 #!/usr/bin/Rscript
 
-test_code=T;
+test_code=F;
 
 sample_sheet_validator=function(df){
 
@@ -204,6 +204,25 @@ sample_sheet_validator=function(df){
 		non_stnd_len_pcodes_msg="OK: Project codes have a consistent length";
 	}
 
+	#----------------------------------------------------------------------
+	# Check for XX's placeholders
+	cat("Checking for more than 3 consecutive X's in Sample ID...\n");
+	bad_samp_ids=character();
+	
+	for(i in 1:num_samples){
+		cur_id=samp_ids[i];
+		if(length(grep("XXX", cur_id))){
+			bad_samp_ids=c(bad_samp_ids, cur_id);
+		}
+	}
+	if(length(bad_samp_ids)>0){
+		residual_xxx_placeholder_msg=
+			c("ERROR: Sample IDs with XXX's identified.",
+				bad_samp_ids);
+	}else{
+		residual_xxx_placeholder_msg="OK: No Sample IDs with XXX's identified";
+	}
+
 
 	#----------------------------------------------------------------------
 	# cross check Sample_Project (which is the plate_id/well for the barcode) with Barcode
@@ -235,11 +254,12 @@ sample_sheet_validator=function(df){
 
 		if(length(exp_bc)==0){
 			no_info_lst=c(no_info_lst,
-				paste("Line: ", i, ", has no plate map information: ", pm, " / ", bc, sep=""));
+				paste("Line: ", i+(sample_begin_ix-1), 
+					", has no plate map information: ", pm, " / ", bc, sep=""));
 			no_info_cnt=no_info_cnt+1;
 		}else if(exp_bc!=bc){
 			mism_info_lst=c(mism_info_lst,
-			paste("Line: ", i, ", PlateMap/Barcode Mismatch:", pm, "/", bc, sep=""),
+			paste("Line: ", i+(sample_begin_ix-1), ", PlateMap/Barcode Mismatch:", pm, "/", bc, sep=""),
 			paste(" Expected: ", pm, "/", pm_list[[pm]], sep=""));
 			mism_cnt=mism_cnt+1;
 		}
@@ -274,6 +294,7 @@ sample_sheet_validator=function(df){
 		samp_id_and_names_match_msg,
 		mixcase_msg,
 		bad_char_msg,
+		residual_xxx_placeholder_msg,
 		non_stnd_len_pcodes_msg,
 		plate_info_msg,
 		plate_match_msg,
@@ -288,7 +309,7 @@ sample_sheet_validator=function(df){
 }
 
 
-if(test_code && F){
+if(test_code && T){
 
 	cat("-----------------------------------------------------------------\n");
 
@@ -298,7 +319,7 @@ if(test_code && F){
 }
 
 
-if(test_code && F){
+if(test_code && T){
 	cat("-----------------------------------------------------------------\n");
 	df=read.csv("example/0159_20200131_samplesheet.wErrors.csv", header=F);
 	msgs=sample_sheet_validator(df);
