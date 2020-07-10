@@ -130,8 +130,9 @@ for(i in 1:num_categories){
 
 	inssed_found=length(grep("Incertae_Sedis", res))>0;
 	unknown_found=length(grep("Unknown_", res))>0;
+	uncultured_found=length(grep("uncultured", res))>0;
 
-	if(inssed_found || unknown_found){ 
+	if(inssed_found || unknown_found || uncultured_found){ 
 
 		splits=strsplit(res, ";")[[1]];
 		num_splits=length(splits);
@@ -160,6 +161,9 @@ for(i in 1:num_categories){
 				tok=paste(splits[s-1], "_FamilyIncSed", sep="");
 			}else if(tok=="Genus_Incertae_Sedis"){
 				tok=paste(splits[s-1], "_GenusIncSed", sep="");
+
+			}else if(tok=="uncultured"){
+				tok=paste(splits[s-1], "_Uncltrd", sep="");
 
 			}else if(tok=="Incertae_Sedis"){
 				tok=paste(splits[s-1], "_IncSed", sep="");
