@@ -11,6 +11,7 @@ use vars qw($opt_m $opt_o $opt_f $opt_r);
 my $PIPELINE_UTIL_PATH="$FindBin::Bin/pipeline_utilities";
 print STDERR "Path of Pipeline Utilities: $PIPELINE_UTIL_PATH\n";
 my $RENAME_BIN="$PIPELINE_UTIL_PATH/../../FASTA/Rename_FASTA_Records_with_MappingFile.pl";
+my $CLEAN_DEFLINE_BIN="$PIPELINE_UTIL_PATH/../../FASTA/Clean_FASTA_Defline.pl";
 
 getopts("m:o:fr");
 my $usage = "usage: 
@@ -235,8 +236,13 @@ if($build_mfasta){
 	my $ren_cmd_str="perl $RENAME_BIN -i $mfasta_fname -o $mfasta_fname.tmp -m $output_mapping_fname";
 	print STDERR "'$ren_cmd_str'\n";
 	print STDERR `$ren_cmd_str`;
+ 
+ 	print STDERR "Cleaning FASTA deflines...\n";
+	my $clean_cmd_str="perl $CLEAN_DEFLINE_BIN -i $mfasta_fname.tmp -o $mfasta_fname.tmp1";
+	print STDERR "'$clean_cmd_str'\n";
+	print STDERR `$clean_cmd_str`;
 
-	system("mv $mfasta_fname.tmp $mfasta_fname");
+  system("mv $mfasta_fname.tmp1 $mfasta_fname");
 }
 
 ###############################################################################
