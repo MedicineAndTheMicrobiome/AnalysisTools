@@ -1,0 +1,456 @@
+# Do not include library that are not necessary, but list all
+# used libraries at the top
+
+library(shiny)
+
+###############################################################################
+# All the dialog boxes and UI defined here
+
+
+DataTransformationDialogBox=function(in_values, in_varname, default_trans="x"){
+		
+	modalDialog(
+		fluidPage(
+			 titlePanel(paste("Data Transformation: ", in_varname, sep="")),
+			 helpText("Please find a suitable transformation for your variable:"),
+			 fluidRow(
+				column(5,
+					wellPanel(
+						renderPlot({hist(in_values, main="Original", xlab=in_varname);}),
+						htmlOutput("DTDB.untransformed_shapirowilks_pval")
+					)
+				),
+				column(2,
+					verticalLayout(
+						tags$h1(""),tags$h1(""),tags$h1(""),
+						selectInput("DTDB.transformation_select", 
+								  label = "Transformations:",
+								  choices = DTDB.transformations,
+								  selected = default_trans,
+								  size=8, selectize=F
+								  )
+					)
+				),
+				column(5,
+					wellPanel(
+						plotOutput("DTDB.transformed_histogram"),
+						htmlOutput("DTDB.transformed_shapirowilks_pval")
+					)
+				)
+			)
+		),
+		footer=fluidRow(
+				column(1, actionButton("DTDB.helpButton", label="Help")),
+				column(7),
+				column(2, actionButton("DTDB.saveAsButton", label="Save As...")),
+				column(2, actionButton("DTDB.cancelButton", label="Cancel"))
+			),
+		size="l"
+	);
+	
+}
+
+RenameDialogBox=function(old_name, suggested_name, mesg=NULL){
+	cat(file=stderr(), old_name, suggested_name, mesg, "\n", sep=",");
+	modalDialog(
+		fluidPage(
+			ifelse(is.null(mesg), "", tags$h4(mesg)),
+			tags$b("Current Variable Name"),
+			tags$h5(old_name),
+			textInput("ReNmDB.new_variable_name", label="New Variable Name", value=suggested_name)
+		),
+		footer=fluidRow(
+			column(2, actionButton("ReNmDB.okButton", label="OK")),
+			column(3, actionButton("ReNmDB.cancelButton", label="Cancel"))
+		)
+	);
+}
+
+BadVariableName_DialogBox=function(variable, mesg=NULL){
+	modalDialog(
+		fluidPage(
+			tags$h4(paste("The variable \"", variable, "\" is invalid.", sep="")),
+			tags$h5(ifelse(is.null(mesg), "", mesg)),
+			tags$br(),
+			tags$h5("Please try again."),
+		),
+		footer=fluidRow(
+			column(2, actionButton("BadVN.okButton", label="OK")),
+		)
+	);
+}
+
+CantSave_DialogBox=function(mesg=NULL){
+	modalDialog(
+		fluidPage(
+			tags$h4(paste("Cannot save changes: ", mesg, sep=""))
+		),
+		footer=fluidRow(
+			column(2, actionButton("CS.okButton", label="OK"))
+		)
+	);
+}
+
+###############################################################################
+# All the responses/event handlers here
+# Do not place modalDialogs inline, unless they are really simple.
+
+observe_DataTransformationDialogBoxEvents=function(input, output, session, in_values, in_varname, current_variable_names){
+
+	#--------------------------------------------------------------------------
+	# DTDB Events:
+	observeEvent(input$DTDB.helpButton, {
+		cat("Dialog Help Pushed.\n");
+		removeModal();
+		showModal(modalDialog(title="Data Transformation", 
+			DTDB.help_txt, 
+			footer=actionButton("DTDB.dismissHelp", label="OK"),
+			size="l"
+			));
+	});
+	
+	observeEvent(input$DTDB.cancelButton, {
+		cat("Dialog Cancel Pushed.\n");
+		removeModal();
+	});
+	
+	observeEvent(input$DTDB.saveAsButton, {
+		cat("Dialog SaveAs Pushed.\n");
+		
+		if(!is.null(input$DTDB.transformation_select)){
+			removeModal();
+			sug_name=DTDB.suggest_name(input$DTDB.transformation_select, in_varname);
+			cat("Suggested Name: ", sug_name, "\n");
+			showModal(RenameDialogBox(in_varname, sug_name));
+		}else{
+			showModal(CantSave_DialogBox("No transformation specified"));
+		}
+	});
+	
+	observeEvent(input$DTDB.transformation_select, {
+		cat("Transformation selector touched.\n");
+		cat(input$DTDB.transformation_select, "\n");
+	
+		transformed_values=DTDB.transform(input$DTDB.transformation_select, in_values);
+		nas=is.na(transformed_values);
+		num_nas=sum(nas);
+		
+		orig_pval=tryCatch({
+			res=shapiro.test(in_values);
+			res$p.value;
+		}, warning=function(w){}, error=function(e){});
+		
+		trans_pval=tryCatch({
+			res=shapiro.test(transformed_values);
+			res$p.value;
+		}, warning=function(w){}, error=function(e){});
+		
+		bad_trans=F;
+		
+		if(is.null(trans_pval)){
+			trans_pval=0;
+			bad_trans=T;
+		}
+		
+		if(is.null(orig_pval)){
+			orig_pval=0;
+		}
+		
+		if(orig_pval>.10){
+			orig_col="green";
+		}else{
+			orig_col="red";
+		}
+		
+		if(trans_pval>.10){
+			trans_col="green";
+		}else{
+			trans_col="red";
+		}
+	
+		if(trans_pval>orig_pval){
+			trans_bold=c("<b>", "</b>");
+			orig_bold=c("","");
+		}else{
+			orig_bold=c("<b>", "</b>");
+			trans_bold=c("","");
+		}
+	
+		xlabel=gsub("x", in_varname, input$DTDB.transformation_select);
+		
+		if(bad_trans){
+			output$DTDB.transformed_histogram=renderPlot({
+				plot(0, type="n", xlab="", ylab="", xaxt="n", yaxt="n", bty="n", main="", xlim=c(-1,1), ylim=c(-1,1));
+				text(0,0, "Transformation not applicable\nfor values in this range.");
+				}
+			)
+		}else{
+			output$DTDB.transformed_histogram=renderPlot(hist(transformed_values, xlab=xlabel, main="Transformed"));
+		}
+		
+		output$DTDB.untransformed_shapirowilks_pval=renderText({
+			paste(orig_bold[1], "<p style=\"color:", orig_col, "\">Shapiro-Wilks: p-value = ", signif(orig_pval,3),
+				"</p>", orig_bold[2], sep="")});
+		
+		output$DTDB.transformed_shapirowilks_pval=renderText({
+			paste(trans_bold[1], "<p style=\"color:", trans_col, "\">Shapiro-Wilks: p-value = ", signif(trans_pval,3),
+				"</p>", trans_bold[2], sep="")});
+		
+	});
+
+	#--------------------------------------------------------------------------
+	# Help Events
+	
+	observeEvent(input$DTDB.dismissHelp, {
+		cat("Dismissed Help.\n");
+		removeModal();
+		showModal(DataTransformationDialogBox(in_values, in_varname), session);
+		updateSelectInput(session, "DTDB.transformation_select", selected=input$DTDB.transformation_select);
+	});
+
+	#--------------------------------------------------------------------------
+	# CS, Can't save Events
+	
+	observeEvent(input$CS.okButton, {
+			showModal(DateFormatConversionDialogBox(in_date, in_varname), session);
+	});
+	
+	#--------------------------------------------------------------------------
+	# ReNmDB (Rename variable) Events
+	observeEvent(input$ReNmDB.cancelButton,{
+		removeModal();
+		showModal(DataTransformationDialogBox(in_values, in_varname), session);
+		cat("Current Transformation: ", cur_trans, "\n");
+		updateSelectInput(session, "DTDB.transformation_select", selected=input$DTDB.transformation_select);
+	});
+  
+	observeEvent(input$ReNmDB.okButton, {
+		removeModal();
+		
+		check_variable_name_msg=check_variable_name(input$ReNmDB.new_variable_name, current_variable_names);
+		
+		cur_new_variable_name=input$ReNmDB.new_variable_name;
+		
+		if(check_variable_name_msg!=""){
+			showModal(
+				BadVariableName_DialogBox(input$ReNmDB.new_variable_name, 
+					check_variable_name_msg)
+			);
+		}else{
+			SetReturn("Selected_Variable_Name", input$ReNmDB.new_variable_name, session);
+			SetReturn("Selected_Transformation", input$DTDB.transformation_select, session);
+		}
+	});
+	
+	#--------------------------------------------------------------------------
+	# BadVN (Bad variable name) Events
+	observeEvent(input$BadVN.okButton, {
+		removeModal();
+		showModal(RenameDialogBox(in_varname));
+		updateTextInput(session, "ReNmDB.new_variable_name", value=input$ReNmDB.new_variable_name);
+	});
+ 
+}
+
+###############################################################################
+# Supporting constants and functions specific to this group of UIs
+
+check_variable_name=function(varname, existing_varnames){
+# This function is just for a quick check for egregiously bad names
+
+	if(length(grep("^[0-9]", varname))){
+		return("The variable name may not start with a number.");
+	}
+	
+	if(length(grep("\\s", varname))){
+		return("The variable name may not contain any spaces.");
+	}
+	
+	if(any(varname==existing_varnames)){
+		return("The variable name is already being used.");
+	}
+	
+	bad_chars=gsub("[a-zA-Z0-9_\\.]", "", varname);
+	if(nchar(bad_chars)>0){
+		return(paste(
+			"The variable name contains the following bad characters:\n",
+				bad_chars, sep=""));
+	}
+	
+	return("");
+}
+
+###############################################################################
+# Use this function so we can see what is being returned.
+# As we share code, we will look for this call to quickly identify what is being
+# returned by this set of functions.  This code below will not be executed
+# in the main application.
+
+SetReturn=function(varname, value, session){
+	updateTextInput(session, varname, value=value); 
+}
+
+###############################################################################
+
+DTDB.help_txt=tags$html(
+		tags$h4("The Goal of Transforming Data"),
+		tags$p(
+			"Data transformations are crucial for statistical analyses ",
+			"because many models depend on normally distributed measurement ",
+			"errors, or the relationship between two ",
+			"variables, such as a response and a set of predictors, to ",
+			"have a linear relationship."
+		),
+		tags$br(),
+		tags$h4("Available Transformations"),
+		tags$p(
+			tags$b("sqrt(x)"), ": Counts tend to have poisson distributions and may benefit ",
+			"from this transformation by variance stabilization.  ie. ",
+			"constant variance independent of the value of x.  Measurements of ",
+			"area (e.g., L x W, or r^2) also benefit from this transformation."),
+		tags$p(
+			tags$b("ln(x)"), " and ", tags$b("log10(x)"), ": Useful when a value has an exponential response to an effect, ",
+			"or x is a ratio of a/b.  The choice of natural or a base-10 log is not ",
+			"crucial, but the transformed values may be more intuitive under some cirumstances ",
+			"when base-10 is applied."),
+		tags$p(
+			tags$b("ln(x+1)"), " and ", tags$b("log10(x+1)"), ": Measurements may have a value of 0",
+			"as a result of assay sensitivity, or sampling size.  (Sample size of the",
+			"items being measured, not the number of subjects.)  When 0's are present",
+			"the log transformations will return -Inf, so adding 1 to all values will",
+			"address this issue."),
+		tags$p(
+			tags$b("logit(x)"), ": Probabilities and proportions may benefit from this transformation,",
+			"especially when the mean is not centered around .5.  Range of transformation",
+			"can span from -Inf to +Inf."),
+		tags$p(
+			tags$b("arcsin(sqrt(x))"), ": Similar to logit.  Use at your own discretion. Range of ",
+			"transformation can span from 0 to pi."
+		),
+		tags$br(),
+		tags$h4("How to Explore"),
+		tags$p(
+			"The left and right panels contain a histogram/distribution of the variable's original and ",
+			"transformed values, respectively. The Shapiro-Wilks test, a statistical test for normality ",
+			"(where if the p-value > 0.05, the distribution cannot be rejected as non normal), is displayed",
+			"in each panel.  If the transformation has a greater p-value (more normal), than the ",
+			"variable's original value, then the text will be displayed in bold.  If either original or transformed ",
+			"variable may be considered normally distributed, each will be colored green, or else red."),
+		tags$p(
+			"Remember Occam's Razor when chosing to accept a transformation. ",
+			"If the original value is more or less normally distributed, then leave it alone.",
+			"If the transformed value does not significantly improve it's normality, then accept the original values."
+		)
+);
+
+# This will be provided, for now hard coded for testing
+type="prob";
+
+if(type=="lognorm"){
+	in_values=exp(rnorm(20, 10, 5));
+	in_varname="need_log";
+	in_default_trans="log(x)";
+}else if(type=="pois"){
+	in_values=rpois(100, 10);
+	in_varname="need_sqrt";
+	in_default_trans="sqrt(x)";
+}else if(type=="prob"){
+	in_values=rbeta(300, .35,.25);
+	in_varname="beta";
+	in_default_trans="logit(x)";
+}else{
+	in_values=norm(100, 6, 3);
+	in_varname="already_norm";
+	in_default_trans="x";
+}
+
+print(type);
+print(in_varname);
+
+
+in_current_variable_names=c("apple_pie", "peach_cobbler", "portuguese_tart", "shoofly_pie");
+
+DTDB.transformations=c(
+	"sqrt(x)",
+	"ln(x)",
+	"ln(x+1)",
+	"log10(x)",
+	"log10(x+1)",
+	"logit(x)",
+	"arcsin(sqrt(x))",
+	"x"
+);
+
+DTDB.transform=function(trans, x){
+
+	ret=tryCatch({
+		if(trans=="sqrt(x)"){
+			trans=(sqrt(x));
+		}else if(trans=="ln(x)"){
+			trans=(log(x));
+		}else if(trans=="ln(x+1)"){
+			trans=(log(x+1));
+		}else if(trans=="log10(x)"){
+			trans=(log10(x));
+		}else if(trans=="log10(x+1)"){
+			trans=(log10(x+1));
+		}else if(trans=="logit(x)"){
+			trans=(log(x/(1-x)));
+		}else if(trans=="arcsin(sqrt(x))"){
+			trans=(asin(sqrt(x)));
+		}else if(trans=="x"){
+			trans=x;
+		}
+	});
+
+	return(ret);
+
+}
+
+DTDB.suggest_name=function(trans, varname){
+
+	if(trans=="sqrt(x)"){
+		sug_name=paste("sqrt_", varname, sep="");
+	}else if(trans=="ln(x)"){		
+		sug_name=paste("ln_", varname, sep="");
+	}else if(trans=="ln(x+1)"){
+		sug_name=paste("ln_", varname, "_p1", sep="");
+	}else if(trans=="log10(x)"){
+		sug_name=paste("log10_", varname, sep="");
+	}else if(trans=="log10(x+1)"){
+		sug_name=paste("log10_", varname, "_p1", sep="");
+	}else if(trans=="logit(x)"){
+		sug_name=paste("logit_", varname, sep="");
+	}else if(trans=="arcsin(sqrt(x))"){
+		sug_name=paste("asin_sqrt_", varname, sep="");
+	}else if(trans=="x"){
+		sug_name=varname;
+	}
+
+	return(sug_name);
+
+}
+
+###############################################################################
+# Boiling plate for unit testing
+
+ui = fluidPage(
+	actionButton("startButton", label="Start"),
+	textInput("Selected_Transformation", label="Selected Transformation:"),
+	textInput("Selected_Variable_Name", label="Selected Variable Name:")
+);
+
+###############################################################################
+
+server = function(input, output, session) {
+
+	observeEvent(input$startButton,{
+		showModal(DataTransformationDialogBox(in_values, in_varname, in_default_trans), session);
+	});
+
+	observe_DataTransformationDialogBoxEvents(input, output, session, in_values, in_varname, in_current_variable_names);
+}
+
+###############################################################################
+# Launch
+shinyApp(ui, server);
