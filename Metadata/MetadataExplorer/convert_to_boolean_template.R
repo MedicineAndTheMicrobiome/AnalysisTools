@@ -1,0 +1,266 @@
+
+library(shiny)
+library(tableHTML)
+
+###############################################################################
+# All the dialog boxes and UI defined here
+
+BooleanConversionDialogBox=function(in_values, in_varname){		
+
+	uniq_values=sort(unique(in_values));
+		
+	modalDialog(
+		fluidPage(
+			 titlePanel(paste("Boolean Conversion: ", in_varname, sep="")),
+			 helpText("Please convert your 2 level variable into a Boolean variable."),
+			 fluidRow(
+				column(3,
+					radioButtons("BCDB.reference_radio", 
+								label = "Pick a Reference:",
+								choices = uniq_values
+							  )
+				),
+				column(5,
+					tableOutput("bool_stats_table")
+				),
+				column(4,
+					textInput("BCDB.new_variable_name_textInput", "New Variable Name:", value="")
+				)
+			)
+		),
+		footer=fluidRow(
+				column(1, actionButton("BCDB.helpButton", label="Help")),
+				column(7),
+				column(2, actionButton("BCDB.saveButton", label="Save")),
+				column(2, actionButton("BCDB.cancelButton", label="Cancel"))
+			)
+		
+	)
+}
+
+
+BadVariableName_DialogBox=function(variable, mesg=NULL){
+	modalDialog(
+		fluidPage(
+			tags$h4(paste("The variable \"", variable, "\" is invalid.", sep="")),
+			tags$h5(ifelse(is.null(mesg), "", mesg)),
+			tags$br(),
+			tags$h5("Please try again."),
+		),
+		footer=fluidRow(
+			column(2, actionButton("BadVN.okButton", label="OK")),
+		)
+	);
+}
+
+CantSave_DialogBox=function(mesg=NULL){
+	modalDialog(
+		fluidPage(
+			tags$h4(paste("Cannot save changes: ", mesg, sep=""))
+		),
+		footer=fluidRow(
+			column(2, actionButton("CS.okButton", label="OK"))
+		)
+	);
+}
+
+###############################################################################
+# All the responses/event handlers here
+# Do not place modalDialogs inline, unless they are really simple.
+
+observe_BooleanConversionDialogBoxEvents=function(input, output, session, in_values, in_varname, current_variable_names){
+
+	# BCDB Events:
+	cat("obsered events\n");
+	BCDB_static[["levels"]]=sort(unique(in_values));
+	
+	observeEvent(input$BCDB.reference_radio, {
+		cat("radio button pressed.\n");
+		
+		alternate_level=setdiff(BCDB_static[["levels"]], input$BCDB.reference_radio);
+		
+		suggested_variable_name=paste(
+			get_prefix(in_varname), "_", in_varname, "_", alternate_level, sep="");
+
+		updateTextInput(session, "BCDB.new_variable_name_textInput", value=suggested_variable_name);
+		
+		# Build/Refresh Matrix
+		mat=matrix(character(), nrow=2, ncol=3);
+		colnames(mat)=c(in_varname, "n", "Boolean");
+		mat[,in_varname]=BCDB_static[["levels"]];
+		mat[,"n"]=c(sum(in_values==BCDB_static[["levels"]][1]), sum(in_values==BCDB_static[["levels"]][2]));
+		mat[,"Boolean"]=input$BCDB.reference_radio!=BCDB_static[["levels"]];	
+		output$bool_stats_table=renderTable({mat}, colnames=T);
+	});
+	
+	observeEvent(input$BCDB.new_variable_name_textInput, {
+		cat("User modified text input.\n");
+	});
+	
+	observeEvent(input$BCDB.helpButton, {
+		cat("Dialog Help Pushed.\n");
+		removeModal();
+		showModal(modalDialog(title="Boolean Conversion", 
+			BCDB.help_txt, 
+			footer=actionButton("BCDB.dismissHelp", label="OK")));
+	});
+	
+	observeEvent(input$BCDB.cancelButton, {
+		cat("Dialog Cancel Pushed.\n");
+		removeModal();
+	});
+	
+	observeEvent(input$BCDB.saveButton, {
+		cat("Dialog Save Pushed.\n");
+		if(input$BCDB.new_variable_name_textInput!=""){
+			removeModal();
+			check_variable_name_msg=check_variable_name(input$BCDB.new_variable_name_textInput, current_variable_names);
+			
+			if(check_variable_name_msg!=""){
+				showModal(
+					BadVariableName_DialogBox(input$ReNmDB.new_variable_name_textInput, 
+						check_variable_name_msg)
+				);
+			}else{
+				SetReturn("Selected_Variable_Name", input$BCDB.new_variable_name_textInput, session);
+				SetReturn("Selected_Reference", input$BCDB.reference_radio, session);
+			}
+		}else{
+			showModal(CantSave_DialogBox("No new variable name specified"));
+		}
+	});
+	
+	# Help Events
+	observeEvent(input$BCDB.dismissHelp, {
+		cat("Dismissed Help.\n");
+		removeModal();
+		showModal(BooleanConversionDialogBox(in_values, in_varname), session);
+		updateTextInput(session, "BCDB.new_variable_name_textInput", value=input$BCDB.new_variable_name_textInput);
+		updateSelectInput(session, "BCDB.reference_radio", selected=input$BCDB.reference_radio);
+	});
+
+	# CS, Can't save Events
+	observeEvent(input$CS.okButton, {
+		showModal(BooleanConversionDialogBox(in_values, in_varname), session);
+		updateSelectInput(session, "BCDB.reference_radio", selected=input$BCDB.reference_radio);
+	});
+
+	
+	# BadVN (Bad variable name) Events
+	observeEvent(input$BadVN.okButton, {
+		removeModal();
+		showModal(RenameDialogBox(in_varname));
+		updateTextInput(session, "ReNmDB.new_variable_name", value=input$ReNmDB.new_variable_name);
+	});
+ 
+}
+
+###############################################################################
+# Supporting constants and functions specific to this group of UIs
+
+check_variable_name=function(varname, existing_varnames){
+# This function is just for a quick check for egregiously bad names
+
+	if(length(grep("^[0-9]", varname))){
+		return("The variable name may not start with a number.");
+	}
+	
+	if(length(grep("\\s", varname))){
+		return("The variable name may not contain any spaces.");
+	}
+	
+	if(any(varname==existing_varnames)){
+		return("The variable name is already being used.");
+	}
+	
+	bad_chars=gsub("[a-zA-Z0-9_\\.]", "", varname);
+	if(nchar(bad_chars)>0){
+		return(paste(
+			"The variable name contains the following bad characters:\n",
+				bad_chars, sep=""));
+	}
+	
+	return("");
+}
+
+get_prefix=function(name){
+	# Suggest prefix to variable name
+	if(length(grep("s$", name))){
+		prefix="are";
+	}else{
+		prefix="is";
+	}
+	return(prefix);
+}
+
+###############################################################################
+# Use this function so we can see what is being returned.
+# As we share code, we will look for this call to quickly identify what is being
+# returned by this set of functions.  This code below will not be executed
+# in the main application.
+
+SetReturn=function(varname, value, session){
+	updateTextInput(session, varname, value=value); 
+}
+
+###############################################################################
+# Static variables
+BCDB_static=list();
+BCDB_static[["selected_reference"]]="";
+BCDB_static[["new_variable_name"]]="";
+BCDB_static[["levels"]]="";
+BCDB_static[["variable_name"]]="";
+
+BCDB.help_txt=tags$html(
+	tags$h4(tags$b("Pick a Reference:")),
+		tags$p(
+			"Select the data value to use as the reference. ",
+			"The reference will be assigned a value of 0 (False)", 
+			"and the alternate value will be assigned a value of 1 (True)"),
+	tags$h4(tags$b("Statistics:")),
+		tags$ul(
+			tags$li(tags$b("Categories"), ": The factor levels/values of the variable."),
+			tags$li(tags$b("n"), ": The number of samples with that data value."),
+			tags$li(tags$b("Boolean"), ": The Boolean representation of the data value.")),				
+	tags$h4(tags$b("New Variable Name:")),
+		"A new variable name will be suggested, but you can modify this."
+);
+
+
+###############################################################################
+# This will be provided, for now hard coded for testing
+if(1){
+	in_values=c("Apple", "Orange", "Orange", "Orange", "Apple", "Apple", "Orange");
+	in_varname="FruitType";
+}else{
+	in_values=c(8, 8, 16, 8, 16, 16, 16, 8, 8);
+	in_varname="Ounces";
+}
+
+print(in_varname);
+
+in_current_variable_names=c("apple_pie", "peach_cobbler", "portuguese_tart", "shoofly_pie");
+
+###############################################################################
+# Boiling plate for unit testing
+
+ui = fluidPage(
+	actionButton("startButton", label="Start"),
+	textInput("Selected_Reference", label="Selected Reference:"),
+	textInput("Selected_Variable_Name", label="Selected Variable Name:")
+);
+
+###############################################################################
+
+server = function(input, output, session) {
+
+	observeEvent(input$startButton,{
+		showModal(BooleanConversionDialogBox(in_values, in_varname), session);
+	});
+
+	observe_BooleanConversionDialogBoxEvents(input, output, session, in_values, in_varname, in_current_variable_names);
+}
+
+###############################################################################
+# Launch
+shinyApp(ui, server);
