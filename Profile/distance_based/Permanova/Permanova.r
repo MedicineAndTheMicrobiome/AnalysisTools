@@ -526,6 +526,12 @@ if(""!=RequiredFile){
         cat("No Required Variables specified...\n");
 }
 
+if(ncol(factors)==1){
+	cat("Only one variable selected.\n");
+	required_arr=c(colnames(factors));
+	cat("Making ", required_arr, " required.\n");
+}
+
 # Decide what to do with NAs.
 if(StripSamplesWithNAs){
 	factors=remove_samples_wNA(factors);
