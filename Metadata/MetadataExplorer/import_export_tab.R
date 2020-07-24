@@ -1,5 +1,7 @@
 library(shiny)
 
+source("D:\\work_git\\AnalysisTools\\Metadata\\MetadataExplorer\\import_export_functions.R");
+
 ImportExportTab=function(){
 
 	tabPanel("Import/Export",
@@ -111,6 +113,52 @@ observe_ImportExportTabEvents=function(input, output, session){
 	output$ImportExportTab.metadata_ready=renderText("Not Ready")
 	output$ImportExportTab.study_ready=renderText("Not Ready")
 	output$ImportExportTab.model_ready=renderText("Not Ready")
+	
+	# Import handlers
+	
+	observeEvent(input$ImportExportTab.metadata_load, {
+		cat("Metadata Load File: ", input$ImportExportTab.metadata_load$datapath, "\n");
+		MetadataRec.read_metadata(input$ImportExportTab.metadata_load$datapath);
+		MetadataRec.print();
+	});
+
+	observeEvent(input$ImportExportTab.study_load, {
+		cat("Study Load File: ", input$ImportExportTab.study_load$datapath, "\n");
+	});
+
+	observeEvent(input$ImportExportTab.model_load, {
+		cat("Model Load File: ", input$ImportExportTab.model_load$datapath, "\n");
+	});
+
+	# Download handlers
+	
+	output$ImportExportTab.metadata_download=downloadHandler(
+			filename=function(){
+				paste("MyMetadata_", format(Sys.time(), "%y%m%d_%H%M"), ".tsv", sep="");
+			},
+			content=function(filename){
+				MetadataRec.write_metadata(filename);
+			}
+		);
+		
+	output$ImportExportTab.study_download=downloadHandler(
+			filename=function(){
+				paste("MyStudy_", format(Sys.time(), "%y%m%d_%H%M"), ".stu", sep="");
+			},
+			content=function(filename){
+				StudyRec.write_study(filename);
+			}
+		);
+		
+		
+	output$ImportExportTab.model_download=downloadHandler(
+			filename=function(){
+				paste("MyModel_", format(Sys.time(), "%y%m%d_%H%M"), ".mod", sep="");
+			},
+			content=function(filename){
+				ModelRec.write_model(filename);
+			}
+		);
 
 	observeEvent(input$ImportExportTab.file_load,{
 		print(input$ImportExportTab.file_load);
