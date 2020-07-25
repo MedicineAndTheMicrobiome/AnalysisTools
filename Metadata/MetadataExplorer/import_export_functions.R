@@ -1,20 +1,107 @@
 
+library(xml2);
+
+
 ###############################################################################
 # Model Rec Functions
 
-
 ModelRec.init=function(){
 
+	ModelRec=list();
+	
+	## Test data
+	if(true){
+	
+		ModelRec=list();
+		ModelRec[["Excluded"]]=c("banned", "barred", "blocked", "ignored");
+		ModelRec[["Available"]]=c("accessible", "applicable", "free", "usable");
+		ModelRec[["Covariates"]]=c("age", "sex", "ethnicity");
+		ModelRec[["Groups"]]=list();
+		ModelRec[["Groups"]][["fruits"]]=c("apples", "bananas", "cantaloupe", "eggplant");
+		ModelRec[["Groups"]][["animals"]]=c("bird", "frog", "dog", "cat");
+		ModelRec[["Groups"]][["colors"]]=c("red", "orange", "yellow", "green");
+		ModelRec[["Groups"]][["numbers"]]=c("one-hundred", "ninety-three", "eighty-six");
+		ModelRec[["Groups"]][["shapes"]]=c("circle", "square", "trapezoid", "cone");
+		ModelRec[["Groups"]][["books"]]=c("biography", "history", "computer", "self-help");
+		
+		root=list();
+		root[["Model"]]=ModelRec;
 }
 
 ModelRec.write_model=function(filename){
-	ModelRec=list();
+
+	# Build Excluded, Available and Covariates XML
+	ml=list();
+	for(vartype in c("Excluded", "Available", "Covariates")){
+		ml[[vartype]]=list();
+		
+		ix=0;
+		for(vname in ModelRec[[vartype]]){
+			ix=ix+1;
+			ml[[vartype]][[paste("variables",ix,sep="")]]=list(vname);
+		}
+		names(ml[[vartype]])=rep("name", ix);
+		
+	}
+	
+	# Build Groups Lists XML
+	gr=list();
+	grp_names=names(ModelRec[["Groups"]]);
+	for(gname in grp_names){
+		gr[[gname]]=structure(list(), id=gname);
+		
+		ix=0;
+		for(vname in ModelRec[["Groups"]][[gname]]){
+			ix=ix+1;
+			gr[[gname]][[paste("variables",ix,sep="")]]=list(vname);
+		}
+		names(gr[[gname]])=rep("name", ix);
+		
+	}
+	names(gr)=rep("Groups", length(grp_names));
+	
+	# Combine two XML records 
+	ml=c(ml, gr);
+	
+	# Create a root
+	root=list();
+	root[["Model"]]=ml;
+	
+	xml_doc=as_xml_document(root);
+	write_xml(xml_doc, filename);
 
 }
 
+ModelRec.write_model("test");
+
 ModelRec.read_model=function(filename){
 
+	read_xml();
+
 	return(model_info);
+}
+
+ModelRec.set_list=function(varcategory, name=NULL, varlist){
+
+	if(varcategory=="Excluded" || varcategory=="Available" || varcategory=="Covariates"){
+		ModelRec[[varcategory]]=varlist;
+	}else if(varcategory=="Groups"){
+		ModelRec[[varcategory]][[name]]=varlist;
+	}
+
+	ModelRec<<-ModelRec;
+	
+}
+
+ModelRec.get_list=function(varcategory, name=NULL){
+
+	if(varcategory=="Excluded" || varcategory=="Available" || varcategory=="Covariates"){
+		varlist=ModelRec[[varcategory]];
+	}else if(varcategory=="Groups"){
+		varlist=ModelRec[[varcategory]][[name]];
+	}
+
+	return(varlist);
 }
 
 ###############################################################################
