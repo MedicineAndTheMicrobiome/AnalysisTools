@@ -6,26 +6,13 @@ library(xml2);
 # Model Rec Functions
 
 ModelRec.init=function(){
-
 	ModelRec=list();
-	
-	## Test data
-	if(true){
-	
-		ModelRec=list();
-		ModelRec[["Excluded"]]=c("banned", "barred", "blocked", "ignored");
-		ModelRec[["Available"]]=c("accessible", "applicable", "free", "usable");
-		ModelRec[["Covariates"]]=c("age", "sex", "ethnicity");
-		ModelRec[["Groups"]]=list();
-		ModelRec[["Groups"]][["fruits"]]=c("apples", "bananas", "cantaloupe", "eggplant");
-		ModelRec[["Groups"]][["animals"]]=c("bird", "frog", "dog", "cat");
-		ModelRec[["Groups"]][["colors"]]=c("red", "orange", "yellow", "green");
-		ModelRec[["Groups"]][["numbers"]]=c("one-hundred", "ninety-three", "eighty-six");
-		ModelRec[["Groups"]][["shapes"]]=c("circle", "square", "trapezoid", "cone");
-		ModelRec[["Groups"]][["books"]]=c("biography", "history", "computer", "self-help");
-		
-		root=list();
-		root[["Model"]]=ModelRec;
+	ModelRec[["Excluded"]]=c();
+	ModelRec[["Available"]]=c();
+	ModelRec[["Covariates"]]=c();
+	ModelRec[["Groups"]]=list();
+	ModelRec<<-ModelRec;
+	return;
 }
 
 ModelRec.write_model=function(filename){
@@ -70,15 +57,45 @@ ModelRec.write_model=function(filename){
 	xml_doc=as_xml_document(root);
 	write_xml(xml_doc, filename);
 
+	return;
 }
-
-ModelRec.write_model("test");
 
 ModelRec.read_model=function(filename){
 
-	read_xml();
+	xml_doc=read_xml(filename);
+	xml_list=as_list(xml_doc);
+	
+	ModelRec.init();
+	
+	for(vartype in c("Excluded", "Available", "Covariates")){
+		var_list=xml_list[["Model"]][[vartype]];
+		num_var=length(var_list);
+		for(i in 1:num_var){
+			ModelRec[[vartype]]=c(ModelRec[[vartype]], var_list[[i]][[1]][1]);
+		}
+		
+		# Delete 
+		xml_list[["Model"]][[vartype]]=c();
+	}
+	
+	# Only remaining should be "Groups"
+	ModelRec[["Groups"]]=list();
+	num_groups=length(xml_list[["Model"]]);
+	
+	for(g in 1:num_groups){
+	
+		group_name=attr(xml_list[["Model"]][[g]], "id");
+		num_var=length(xml_list[["Model"]][[g]]);
+		
+		for(v in 1:num_var){
+			ModelRec[["Groups"]][[group_name]]=c(
+				ModelRec[["Groups"]][[group_name]], xml_list[["Model"]][[g]][[v]][[1]]);
+		}
 
-	return(model_info);
+	}
+	
+	ModelRec<<-ModelRec;
+	return;
 }
 
 ModelRec.set_list=function(varcategory, name=NULL, varlist){
@@ -88,9 +105,8 @@ ModelRec.set_list=function(varcategory, name=NULL, varlist){
 	}else if(varcategory=="Groups"){
 		ModelRec[[varcategory]][[name]]=varlist;
 	}
-
 	ModelRec<<-ModelRec;
-	
+	return;
 }
 
 ModelRec.get_list=function(varcategory, name=NULL){
@@ -102,6 +118,35 @@ ModelRec.get_list=function(varcategory, name=NULL){
 	}
 
 	return(varlist);
+}
+
+ModelRec.remove_list=function(varcategory, name=NULL){
+	if(is.null(name)){
+		ModelRec[[varcategory]]=c();
+	}else{
+		ModelRec[[varcategory]][[name]]=c();
+	}
+	ModelRec<<-ModelRec;
+	return;
+}
+
+#------------------------------------------------------------------------------
+
+if(test){
+	ModelRec.init();
+	ModelRec.set_list("Excluded", varlist=c("banned", "barred", "blocked", "ignored"));
+	ModelRec.set_list("Available", varlist=c("accessible", "applicable", "free", "usable"));
+	ModelRec.set_list("Covariates", varlist=c("age", "sex", "ethnicity"));
+	ModelRec.set_list("Groups", "fruits", c("apples", "bananas", "cantaloupe", "eggplant"));
+	ModelRec.set_list("Groups", "animals", c("bird", "frog", "dog", "cat"));
+	ModelRec.set_list("Groups", "colors", c("red", "orange", "yellow", "green"));
+	ModelRec.set_list("Groups", "numbers", c("one-hundred", "ninety-three", "eighty-six"));
+	ModelRec.set_list("Groups", "shapes", c("circle", "square", "trapezoid", "cone"));
+	ModelRec.set_list("Groups", "books", c("biography", "history", "computer", "self-help"));
+	ModelRec.write_model("test");
+	ModelRec.read_model("test");
+	ModelRec.remove_list("Groups", "books");
+	ModelRec.get_list("Excluded");
 }
 
 ###############################################################################
