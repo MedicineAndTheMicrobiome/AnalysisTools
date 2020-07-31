@@ -41,7 +41,7 @@ my $output_file=$opt_o;
 my $comment=$opt_c;
 
 if(!defined($comment)){
-	my ($fname, $path)=fileparse($names_file);
+	my ($fname, $path)=fileparse($count_table_file);
 	$comment=$fname;
 }
 
