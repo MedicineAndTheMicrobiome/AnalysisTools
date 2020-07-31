@@ -9,13 +9,14 @@ use File::Basename;
 use FileHandle;
 use vars qw($opt_f $opt_g $opt_r $opt_o $opt_p $opt_c $opt_m);
 
-my $MOTHUR_BIN="/usr/bin/mothur";
+my $MOTHUR_BIN="/usr/bin/mothur_1.44.1/mothur/mothur";
 
 my $PIPELINE_UTIL_PATH="$FindBin::Bin/pipeline_utilities";
 print STDERR "Path of Pipeline Utilities: $PIPELINE_UTIL_PATH\n";
 
 my $OTU_TO_ST_BIN="$PIPELINE_UTIL_PATH/OTU_To_SummaryTable/Convert_MothurSharedFile_to_SummaryTable.r";
-my $TAXA_TO_ST_BIN="$PIPELINE_UTIL_PATH/Taxonomy_To_SummaryTable/Convert_MothurTaxonomy_to_SummaryTable.pl";
+my $TAXA_TO_ST_BIN="$PIPELINE_UTIL_PATH/Taxonomy_To_SummaryTable/Convert_MothurTaxonomy_to_SummaryTable_CountTable.pl";
+my $COUNT_TABLES_BIN="$PIPELINE_UTIL_PATH/Count_Names/Count_Tables.pl";
 my $COUNT_NAMES_BIN="$PIPELINE_UTIL_PATH/Count_Names/Count_Names.pl";
 my $ANNOTATE_OTU_WITH_GENUS_BIN="$PIPELINE_UTIL_PATH/Annotate_OTU_SummaryTable_Genera/Annotate_OTU_SummaryTable_Genera.pl";
 
@@ -336,12 +337,22 @@ sub exec_cmd{
 	return;
 }
 
-sub log_counts{
+sub log_counts_names{
 	my $fname=shift;
 	my $comment=shift;
 	my $exec_str="$COUNT_NAMES_BIN -n $fname -c $comment -o $output_dir/$COUNTS_LOGNAME";
+	print STDERR "\nExecuting:\n$exec_str\n";
 	`$exec_str`;
 }
+
+sub log_counts_tables{
+	my $fname=shift;
+	my $comment=shift;
+	my $exec_str="$COUNT_TABLES_BIN -n $fname -c $comment -o $output_dir/$COUNTS_LOGNAME";
+	print STDERR "\nExecuting:\n$exec_str\n";
+	`$exec_str`;
+}
+
 
 ###############################################################################
 
@@ -380,7 +391,7 @@ execute_mothur_cmd(
 	"unique.seqs",
 	"fasta=$in.fasta"
 );
-log_counts("$in.names", "After_1st_Unique");
+log_counts_names("$in.names", "After_1st_Unique");
 # Takes
 # 	IN.fasta
 # Makes 
@@ -408,6 +419,8 @@ execute_mothur_cmd(
 	criteria=95,
 	name=$in.names,
 	group=$group.groups,
+	alignreport=$in.unique.align.report,
+	minscore=30,
 	processors=$num_proc"
 );
 # Takes
@@ -415,9 +428,10 @@ execute_mothur_cmd(
 # Makes
 #	IN.unique.good.align
 #	IN.unique.bad.accnos
+#	IN.unique.align.good.align.report
 #	IN.good.names
 #	GROUP.good.groups
-log_counts("$in.good.names", "After_Screening");
+log_counts_names("$in.good.names", "After_Screening");
 
 execute_mothur_cmd(
 	"filter.seqs",
@@ -437,64 +451,73 @@ execute_mothur_cmd(
 # Makes
 #	IN.unique.good.filter.unique.fasta
 #	IN.unique.good.filter.names
-log_counts("$in.unique.good.filter.names", "After_2nd_Unique");
+log_counts_names("$in.unique.good.filter.names", "After_2nd_Unique");
 
 
 execute_mothur_cmd(
 	"pre.cluster",
 	"fasta=$in.unique.good.filter.unique.fasta,
 	name=$in.unique.good.filter.names,
+	group=$in.good.groups,
 	diffs=$preclust_diff,
 	processors=$num_proc"
 );
 # Makes
-#	IN.unique.good.filter.unique.precluster.map
+# 	IN.unique.good.filter.count_table
+# 	IN.unique.good.filter.unique.precluster.<group id1>.map
+# 	IN.unique.good.filter.unique.precluster.<group id2>.map
+# 	IN.unique.good.filter.unique.precluster.<group id...>.map
+# 	IN.unique.good.filter.unique.precluster.<group idn>.map
 #	IN.unique.good.filter.unique.precluster.fasta
-#	IN.unique.good.filter.unique.precluster.names
-log_counts("$in.unique.good.filter.unique.precluster.names", "After_Precluster");
+#	IN.unique.good.filter.unique.precluster.count_table
+#	
 
+log_counts_tables("$in.unique.good.filter.unique.precluster.count_table", "After_Precluster");
+
+#####################################################################
 
 execute_mothur_cmd(
-	"chimera.uchime",
+	"chimera.vsearch",
 	"fasta=$in.unique.good.filter.unique.precluster.fasta, 
-	name=$in.unique.good.filter.unique.precluster.names, 
+	count=$in.unique.good.filter.unique.precluster.count_table, 
 	reference=self,
+	dereplicate=f,
 	processors=$num_proc"
 );
 # Makes
-#	IN.unique.good.filter.unique.precluster.denovo.uchime.accnos
-#	IN.unique.good.filter.unique.precluster.denovo.uchime.chimeras
+#	IN.unique.good.filter.unique.precluster.denovo.vsearch.chimeras
+#	IN.unique.good.filter.unique.precluster.denovo.vsearch.accnos
 
 
 execute_mothur_cmd(
 	"remove.seqs",
-	"accnos=$in.unique.good.filter.unique.precluster.denovo.uchime.accnos, 
+	"accnos=$in.unique.good.filter.unique.precluster.denovo.vsearch.accnos, 
 	fasta=$in.unique.good.filter.unique.precluster.fasta, 
-	name=$in.unique.good.filter.unique.precluster.names,
-	group=$group.good.groups"
+	count=$in.unique.good.filter.unique.precluster.count_table,
+	dups=t"
 );
 # Makes
-# 	IN.unique.good.filter.unique.precluster.pick.names
+# 	IN.unique.good.filter.unique.precluster.pick.count_table
 # 	IN.unique.good.filter.unique.precluster.pick.fasta
 #	IN.good.pick.groups
-log_counts("$in.unique.good.filter.unique.precluster.pick.names", "After_Chimera_Check");
 
+log_counts_tables("$in.unique.good.filter.unique.precluster.pick.count_table", "After_Chimera_Check");
 
+#####################################################################
 
 execute_mothur_cmd(
 	"classify.seqs",
 	"fasta=$in.unique.good.filter.unique.precluster.pick.fasta, 
-	name=$in.unique.good.filter.unique.precluster.pick.names, 
+	count=$in.unique.good.filter.unique.precluster.pick.count_table, 
 	template=$ref_16s_align,
 	taxonomy=$tax_map,
 	cutoff=80,
-	group=$group.good.pick.groups,
 	processors=$num_proc"
 );
 # Makes
-#	IN.unique.good.filter.unique.precluster.pick.REFERENCE.wang.flip.accnos
-#	IN.unique.good.filter.unique.precluster.pick.REFERENCE.wang.tax.summary
-#	IN.unique.good.filter.unique.precluster.pick.REFERENCE.wang.taxonomy
+#	IN.unique.good.filter.unique.precluster.pick.16S_Reference.wang.flip.accnos
+#	IN.unique.good.filter.unique.precluster.pick.16S_Reference.wang.tax.summary
+#	IN.unique.good.filter.unique.precluster.pick.16S_Reference.wang.taxonomy
 
 execute_mothur_cmd(
 	"dist.seqs",
@@ -508,7 +531,7 @@ execute_mothur_cmd(
 execute_mothur_cmd(
 	"cluster",
 	"column=$in.unique.good.filter.unique.precluster.pick.dist, 
-	name=$in.unique.good.filter.unique.precluster.pick.names,
+	count=$in.unique.good.filter.unique.precluster.pick.count_table,
 	precision=100
 	"
 );
@@ -523,25 +546,26 @@ execute_mothur_cmd(
 execute_mothur_cmd(
 	"make.shared",
 	"list=$in.unique.good.filter.unique.precluster.pick.opti_mcc.list, 
-	group=$group.good.pick.groups, 
+	count=$in.unique.good.filter.unique.precluster.pick.count_table,
 	label=0.03"
 );
 # Makes
-#	IN.unique.good.filter.unique.precluster.pick.opti_mcc.<per groups>.rabund
+#	IN.unique.good.filter.unique.precluster.pick.mothurGroup.count_table
 #	IN.unique.good.filter.unique.precluster.pick.opti_mcc.shared
 
 execute_mothur_cmd(
 	"classify.otu",
 	"taxonomy=$in.unique.good.filter.unique.precluster.pick.$reference_name.wang.taxonomy,
 	list=$in.unique.good.filter.unique.precluster.pick.opti_mcc.list,
-	name=$in.unique.good.filter.unique.precluster.pick.names,
-	group=$group.good.pick.groups,
+	count=$in.unique.good.filter.unique.precluster.pick.count_table,
 	label=0.03"
 );
 # Makes
-# 	IN.unique.good.filter.unique.precluster.pick.an.0.03.cons.taxonomy
-#	IN.unique.good.filter.unique.precluster.pick.an.0.03.cons.tax.summary
+# 	IN.unique.good.filter.unique.precluster.pick.opti_mcc.0.03.cons.taxonomy
+#	IN.unique.good.filter.unique.precluster.pick.opti_mcc.0.03.cons.tax.summary
 
+
+###############################################################################
 
 ###############################################################################
 
@@ -580,9 +604,8 @@ exec_cmd($exec_string, "$st_dir", "annotate_otu_with_genera");
 
 my $exec_string="
 	$TAXA_TO_ST_BIN
-		-t $in.unique.good.filter.unique.precluster.pick.$reference_name.wang.taxonomy
-		-n $in.unique.good.filter.unique.precluster.pick.names
-		-g $group.good.pick.groups
+		-t $in.unique.good.filter.unique.precluster.pick.$reference_name.wang.taxonomy.tmp
+		-b $in.unique.good.filter.unique.precluster.pick.count_table
 		-o $st_dir/$out_root.taxa
 ";
 exec_cmd($exec_string, "$st_dir", "taxonomy_to_summary_table");
@@ -719,3 +742,4 @@ exec_cmd($exec_string, "$desc_stat_dir", "abundance_desc_analysis");
 ##############################################################################
 
 print STDERR "done.\n";
+
