@@ -604,7 +604,7 @@ exec_cmd($exec_string, "$st_dir", "annotate_otu_with_genera");
 
 my $exec_string="
 	$TAXA_TO_ST_BIN
-		-t $in.unique.good.filter.unique.precluster.pick.$reference_name.wang.taxonomy.tmp
+		-t $in.unique.good.filter.unique.precluster.pick.$reference_name.wang.taxonomy
 		-b $in.unique.good.filter.unique.precluster.pick.count_table
 		-o $st_dir/$out_root.taxa
 ";
