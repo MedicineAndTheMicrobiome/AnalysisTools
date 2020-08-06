@@ -1721,10 +1721,10 @@ plot_dist_hist=function(a_dist_arr, b_dist_arr, a_name, b_name, acol, bcol){
 regress_dispersion=function(Adist_arr, Bdist_arr, Aname, Bname, model_var, factors){
 
 	A_samp_ids=names(Adist_arr);
-	factors=factors[A_sample_ids,];
+	factors=factors[A_sample_ids,,drop=F];
 	
 	num_model_var=length(model_var);
-	cat("Number of Predictors: ", num_model_var, "\n");
+	cat("RegressDispersion: Number of Predictors: ", num_model_var, "\n");
 
 	pred_string=paste(model_var, collapse=" + ");
 	A_disp_model_string=paste("Adist_arr ~ ", pred_string, sep="");
@@ -1762,10 +1762,10 @@ regress_diff_dispersion=function(Adist_arr, Bdist_arr, Aname, Bname, model_var, 
 
 	centr_diff=Bdist_arr-Adist_arr;
 	A_samp_ids=names(centr_diff);
-	factors=factors[A_sample_ids,];
+	factors=factors[A_sample_ids,,drop=F];
 	
 	num_model_var=length(model_var);
-	cat("Number of Predictors: ", num_model_var, "\n");
+	cat("RegressDifferenceDispersion: Number of Predictors: ", num_model_var, "\n");
 
 	pred_string=paste(model_var, collapse=" + ");
 	diff_disp_model_string=paste("centr_diff ~ ", pred_string, sep="");
