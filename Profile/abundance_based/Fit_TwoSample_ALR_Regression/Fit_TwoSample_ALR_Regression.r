@@ -324,7 +324,7 @@ intersect_pairings_map=function(pairs_map, keepers){
 }
 
 split_goodbad_pairings_map=function(pairs_map){
-	
+
 	num_rows=nrow(pairs_map);
 	keepers=apply(pairs_map, 1, function(x){ all(!is.na(x))});
 
@@ -968,7 +968,7 @@ num_factors=ncol(factors);
 # Relevel factor levels
 if(ReferenceLevelsFile!=""){
         ref_lev_mat=load_reference_levels_file(ReferenceLevelsFile)
-        factors=relevel_factors(kept_factors, ref_lev_mat);
+        factors=relevel_factors(factors, ref_lev_mat);
 }else{
         cat("No Reference Levels File specified.\n");
 }
