@@ -975,8 +975,15 @@ colors[B_sample_ids]="blue";
 
 glyphs=character(num_shared_sample_ids);
 names(glyphs)=paired_samples;
-glyphs[A_sample_ids]=substr(A_subtrahend, 1, 2);
-glyphs[B_sample_ids]=substr(B_minuend, 1, 2);
+
+# Find a short but unique abbreviation
+shorter_name_len=min(c(nchar(A_subtrahend), nchar(B_minuend)));
+abbrev_len=min(shorter_name_len, 5);
+while(substr(A_subtrahend, 1, abbrev_len)==substr(B_minuend, 1, abbrev_len) && abbrev_len<=shorter_name_len){
+	abbrev_len=abbrev_len+1;	
+}
+glyphs[A_sample_ids]=substr(A_subtrahend, 1, abbrev_len);
+glyphs[B_sample_ids]=substr(B_minuend, 1, abbrev_len);
 
 remap_val=function(inval, end_rng){
 	in_rng=range(inval);
