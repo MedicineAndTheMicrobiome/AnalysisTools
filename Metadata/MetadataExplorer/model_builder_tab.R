@@ -35,7 +35,7 @@ ModelBuilderTab.copy_to_dialog=function(input, session, source_grp_id){
 	cat("CopyTo Dialog Called.\n");
 	
 	group_names=c();
-	for(gid in 1:num_groups){
+	for(gid in 1:ModelBuilderTab.num_groups){
 		if(gid!=source_grp_id){
 			group_names=c(group_names,input[[paste("ModelBuilderTab.group.name_", gid, sep="")]]);
 		}
@@ -62,11 +62,11 @@ ModelBuilderTab.copy_to_dialog=function(input, session, source_grp_id){
 	
 }
 
-ModelBuilderTab=function(avail_variables){
+ModelBuilderTab=function(){
 
 	selector_display_length=12;
-	num_groups=6;
-	grp_names=paste("untitled", 1:num_groups);
+	ModelBuilderTab.num_groups=6;
+	grp_names=paste("untitled", 1:ModelBuilderTab.num_groups);
 
 	tabPanel("Model Builder",
 		fluidRow(
@@ -91,7 +91,7 @@ ModelBuilderTab=function(avail_variables){
 				tags$b("Available"),
 				actionLink("ModelBuilderTab.AvailableHelp", NULL, icon=icon("question-circle")),
 				selectInput("ModelBuilderTab.available_selector", 
-					NULL, choices=avail_variables, multiple=T, selectize=F, size=selector_display_length-4),
+					NULL, choices=ModelBuilder.available_variables, multiple=T, selectize=F, size=selector_display_length-4),
 				tags$h2(""),
 				tags$b("Select group(s) to add to:"),
 				actionLink("ModelBuilderTab.GroupHelp", NULL, icon=icon("question-circle")),
@@ -157,7 +157,7 @@ ModelBuilderTab.move_selected=function(input, session, from, to){
 
 ModelBuilderTab.get_all_group_names=function(input){
 	grp_names=c();
-	for(i in 1:num_groups){
+	for(i in 1:ModelBuilderTab.num_groups){
 		control_ids=paste("ModelBuilderTab.group.name_", i, sep="");
 		grp_names=c(grp_names, input[[control_ids]]);
 	}
@@ -368,7 +368,7 @@ observe_ModelBuilderTabEvents=function(input, output, session){
 		group_names=ModelBuilderTab.get_all_group_names(input);
 		cat("All group names:\n");
 		print(group_names)
-		for(grp_id in 1:num_groups){
+		for(grp_id in 1:ModelBuilderTab.num_groups){
 			if(any(group_names[grp_id]==target_groups)){
 				ctl_name=paste("ModelBuilderTab.group.selector_", grp_id, sep="");
 				ModelBuilderTab.sets[[ctl_name]]<<-sort(union(ModelBuilderTab.sets[[ctl_name]], var_sel_from_src_grp));
@@ -492,47 +492,50 @@ ModelBuilderTab.GroupHelpTxt=tagList(
 		)
 	);
 
-
-
-avail_variables=sort(c(
-	"Apples",
-	"Oranges",
-	"SubjectIDs",
-	"Pears",
-	"SampleType",
-	"PrePost",
-	"Dates",
-	"Times"
-));
-
-num_groups=6;
+ModelBuilder.available_variables=c();
+ModelBuilderTab.num_groups=6;
 ModelBuilderTab.source_copy_grp_id=0;
 
-ui = fluidPage(
-	mainPanel(
-		tabsetPanel(
-			tabPanel("Data", ""),
-			tabPanel("Curation", ""),
-			tabPanel("Study", ""),
-			ModelBuilderTab(avail_variables)
+if(!exists("integration")){
+
+	avail_variables=sort(c(
+		"Apples",
+		"Oranges",
+		"SubjectIDs",
+		"Pears",
+		"SampleType",
+		"PrePost",
+		"Dates",
+		"Times"
+	));
+
+
+	ui = fluidPage(
+		mainPanel(
+			tabsetPanel(
+				tabPanel("Data", ""),
+				tabPanel("Curation", ""),
+				tabPanel("Study", ""),
+				ModelBuilderTab(avail_variables)
+			)
 		)
-	)
-);
+	);
 
-ModelBuilderTab.get_data_colnames=function(){
-	return(colnames(test.matrix));
+	ModelBuilderTab.get_data_colnames=function(){
+		return(colnames(test.matrix));
+	}
+
+	###############################################################################
+
+	server = function(input, output, session) {
+
+		ModelBuilderTab.sets<<-list();	
+		ModelBuilderTab.sets[["ModelBuilderTab.available_selector"]]<<-avail_variables;
+
+		observe_ModelBuilderTabEvents(input, output, session);
+	}
+
+	###############################################################################
+	# Launch
+	shinyApp(ui, server);
 }
-
-###############################################################################
-
-server = function(input, output, session) {
-
-	ModelBuilderTab.sets<<-list();	
-	ModelBuilderTab.sets[["ModelBuilderTab.available_selector"]]<<-avail_variables;
-
-	observe_ModelBuilderTabEvents(input, output, session);
-}
-
-###############################################################################
-# Launch
-shinyApp(ui, server);

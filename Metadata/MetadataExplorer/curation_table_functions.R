@@ -310,14 +310,15 @@ WarningsTable.GenerateFromVariableInfo=function(var_info_table){
 
 ###############################################################################
 
-if(TRUE){
+if(!exists("integration")){
 	setwd("D:\\work_git\\AnalysisTools\\Metadata\\MetadataExplorer");
 	test_mat=as.data.frame(read.table("TestExample.tsv", as.is=T, check.names=F, header=T, sep="\t"));
+	
+	VariableInfo.build(test_mat);
+	print(VariableInfo);
+
+	WarningsTable=WarningsTable.GenerateFromVariableInfo(VariableInfo);
+	print(WarningsTable);
+
 }
-
-VariableInfo.build(test_mat);
-print(VariableInfo);
-
-WarningsTable=WarningsTable.GenerateFromVariableInfo(VariableInfo);
-print(WarningsTable);
 

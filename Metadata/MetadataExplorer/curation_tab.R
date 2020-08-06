@@ -1,6 +1,9 @@
 library(shiny)
 library(DT)
 
+source("D:\\work_git\\AnalysisTools\\Metadata\\MetadataExplorer\\curation_table_functions.R");
+
+
 CurationTab=function(){
 
 	tabPanel("Curation",
@@ -23,16 +26,6 @@ CurationTab=function(){
 	) #tabPanel
 }
 
-# <input type="button" name="hello">
-
-#reviewed_checkbox=matrix(sprintf("<input type=\"checkbox\" id=\"checkbox_%i\"/>", 1:10), nrow=10,ncol=1);
-#review_button=matrix(sprintf("<input type=\"button\" value=\"review\" id=\"button_%i\"/>", 1:10), nrow=10, ncol=1);
-#testmat=cbind(reviewed_checkbox, review_button);
-
-testmat=matrix(runif(150), ncol=3);
-
-print(testmat);
-
 observe_CurationTabEvents=function(input, output, session){
 
 	observeEvent(input$CurationTab.curateButton, {
@@ -41,7 +34,7 @@ observe_CurationTabEvents=function(input, output, session){
 	
 		output$CurationTab.warnings_table=
 			renderDT(
-				testmat,
+				WarningsTable,
 				selection='single'
 			);
 	});
@@ -56,29 +49,32 @@ observe_CurationTabEvents=function(input, output, session){
 
 ###############################################################################
 
+if(!exists("integration")){
 
 ###############################################################################
 
-ui = fluidPage(
-	mainPanel(
-		tabsetPanel(
-			tabPanel("Import/Export", ""),
-			tabPanel("Data", ""),
-			CurationTab(),
-			tabPanel("Study",""),
-			tabPanel("Model Explorer", "")
+	ui = fluidPage(
+		mainPanel(
+			tabsetPanel(
+				tabPanel("Import/Export", ""),
+				tabPanel("Data", ""),
+				CurationTab(),
+				tabPanel("Study",""),
+				tabPanel("Model Explorer", "")
+			)
 		)
-	)
-);
+	);
 
-ImportExportTab.data_matrix=c();
+	ImportExportTab.data_matrix=c();
 
-###############################################################################
+	###############################################################################
 
-server = function(input, output, session) {
-	observe_CurationTabEvents(input, output, session);
+	server = function(input, output, session) {
+		observe_CurationTabEvents(input, output, session);
+	}
+
+	###############################################################################
+	# Launch
+	shinyApp(ui, server);
+
 }
-
-###############################################################################
-# Launch
-shinyApp(ui, server);

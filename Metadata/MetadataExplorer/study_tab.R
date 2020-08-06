@@ -222,28 +222,6 @@ observe_StudyTabEvents=function(input, output, session, avail_variables){
 
 ###############################################################################
 
-ui = fluidPage(
-	mainPanel(
-		tabsetPanel(
-			tabPanel("Data", ""),
-			tabPanel("Curation", ""),
-			StudyTab(),
-			tabPanel("Model Explorer", "")
-		)
-	)
-);
-
-avail_variables=c(
-	"Apples",
-	"Oranges",
-	"SubjectIDs",
-	"Pears",
-	"SampleType",
-	"PrePost",
-	"Dates",
-	"Times"
-);
-
 StudyTab.crosssection_help_text=
 	tags$html(tags$b("Cross-sectional study:"), tags$p("A study assuming a single observation per subject. "), 
 		tags$p("This type of study must have a unique subject ID for each sample(row)."));
@@ -257,21 +235,6 @@ StudyTab.paired_help_text=
 		tags$p("This type of study will have 2 samples(rows) per subject, and a pairing criteria ",
 		" that differentiates the 2 samples from each other."));
 
-test.nrows=200;
-
-test.cs_sbjIds={a=.05; sample(c(rep(NA,test.nrows*a), paste("s_", 1:(test.nrows*(1-a)), sep="")), test.nrows)};
-test.long_sbjIds=sample(test.cs_sbjIds[1:20], test.nrows, replace=T);
-test.offsets=sample({a=.7;as.integer(c(rexp(test.nrows*a,.0005)*.005,rpois(test.nrows*(1-a),35)))}, test.nrows);
-
-test.pairings_sbjIds=paste("ps_", rep(1:(test.nrows/2),2), sep="");
-test.pairings_criteria={a=.20; b=.15; 
-	c(
-		rep(NA, test.nrows/2*a),
-		rep("Before", test.nrows/2*(1-a)),
-		rep("After", test.nrows/2*(1-b)),
-		rep(NA, test.nrows/2*b)
-	)};
-
 
 
 StudyTab.get_column=function(var_name){
@@ -283,20 +246,6 @@ StudyTab.get_data_colnames=function(){
 
 
 
-test.matrix=cbind(test.cs_sbjIds, test.pairings_sbjIds, test.pairings_criteria, test.long_sbjIds, test.offsets);
-print(test.matrix);
-
-avail_variables=c(
-	StudyTab.get_data_colnames(),
-	"Apples",
-	"Oranges",
-	"SubjectIDs",
-	"Pears",
-	"SampleType",
-	"PrePost",
-	"Dates",
-	"Times"
-);
 
 #------------------------------------------------------------------------------
 
@@ -423,14 +372,68 @@ StudyTab.pairings_validate=function(sbj_ids, pairings){
 }
 
 	
+if(!exists("integration")){
+	ui = fluidPage(
+		mainPanel(
+			tabsetPanel(
+				tabPanel("Data", ""),
+				tabPanel("Curation", ""),
+				StudyTab(),
+				tabPanel("Model Explorer", "")
+			)
+		)
+	);
 
-###############################################################################
+	avail_variables=c(
+		"Apples",
+		"Oranges",
+		"SubjectIDs",
+		"Pears",
+		"SampleType",
+		"PrePost",
+		"Dates",
+		"Times"
+	);
+	
+	test.nrows=200;
 
-server = function(input, output, session) {
+	test.cs_sbjIds={a=.05; sample(c(rep(NA,test.nrows*a), paste("s_", 1:(test.nrows*(1-a)), sep="")), test.nrows)};
+	test.long_sbjIds=sample(test.cs_sbjIds[1:20], test.nrows, replace=T);
+	test.offsets=sample({a=.7;as.integer(c(rexp(test.nrows*a,.0005)*.005,rpois(test.nrows*(1-a),35)))}, test.nrows);
 
-	observe_StudyTabEvents(input, output, session, avail_variables);
+	test.pairings_sbjIds=paste("ps_", rep(1:(test.nrows/2),2), sep="");
+	test.pairings_criteria={a=.20; b=.15; 
+		c(
+			rep(NA, test.nrows/2*a),
+			rep("Before", test.nrows/2*(1-a)),
+			rep("After", test.nrows/2*(1-b)),
+			rep(NA, test.nrows/2*b)
+		)};
+		
+	test.matrix=cbind(test.cs_sbjIds, test.pairings_sbjIds, test.pairings_criteria, test.long_sbjIds, test.offsets);
+	print(test.matrix);
+
+	avail_variables=c(
+		StudyTab.get_data_colnames(),
+		"Apples",
+		"Oranges",
+		"SubjectIDs",
+		"Pears",
+		"SampleType",
+		"PrePost",
+		"Dates",
+		"Times"
+	);
+
+	###############################################################################
+
+	server = function(input, output, session) {
+
+		observe_StudyTabEvents(input, output, session, avail_variables);
+	}
+
+	###############################################################################
+	# Launch
+	shinyApp(ui, server);
+
 }
-
-###############################################################################
-# Launch
-shinyApp(ui, server);
