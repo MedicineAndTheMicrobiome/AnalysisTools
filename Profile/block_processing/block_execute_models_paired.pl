@@ -5,13 +5,13 @@
 use strict;
 use Getopt::Std;
 use File::Temp;
-use vars qw ($opt_s $opt_S $opt_f $opt_F $opt_c $opt_g $opt_p $opt_A $opt_B $opt_P $opt_o $opt_E);
+use vars qw ($opt_s $opt_S $opt_f $opt_F $opt_r $opt_c $opt_g $opt_p $opt_A $opt_B $opt_P $opt_o $opt_E);
 use File::Basename;
 use Cwd;
 use Digest::MD5;
 use Sys::Hostname;
 
-getopts("s:S:f:F:c:g:p:A:B:P:o:E");
+getopts("s:S:f:F:r:c:g:p:A:B:P:o:Ec:");
 
 my $NUM_ALR_VARIABLES=15;
 
@@ -26,6 +26,8 @@ my $usage = "
 	Factor File:
 	-f <factor file>
 	-F <column name of sample ids>
+
+	-r <reference level filename>
 
 	Variable Lists:
 	[-c <covariates list>]
@@ -81,6 +83,7 @@ my $SummaryTable=$opt_s;
 my $SummaryTable2=$opt_S;
 my $FactorFile=$opt_f;
 my $SampID_Colname=$opt_F;
+my $ReferenceLevelsFilename=$opt_r;
 my $PairingMap=$opt_p;
 my $Aname=$opt_A;
 my $Bname=$opt_B;
@@ -98,6 +101,10 @@ if(!defined($Covariates)){
 
 if(!defined($GroupVar)){
 	$GroupVar="";
+}
+
+if(!defined($ReferenceLevelsFilename)){
+	$ReferenceLevelsFilename="";
 }
 
 if(!defined($SummaryTable2)){
@@ -242,6 +249,7 @@ sub run_abundance_based{
 	my $summary_table=shift;
 	my $summary_table2=shift;
 	my $factor_file=shift;
+	my $reference_level_file=shift;
 	my $covariates=shift;
 	my $variable_list=shift;
 	my $model_name=shift;
@@ -291,6 +299,13 @@ sub run_abundance_based{
 		$sumtabs="-s $summary_table -S $summary_table2";
 	}
 
+	my $reflvl;
+	if($reference_level_file eq ""){
+		$reflvl="";
+	}else{
+		$reflvl="-c $reference_level_file";
+	}
+
 	
 	$cmd=
 	"~/git/AnalysisTools/Profile/abundance_based/Fit_TwoSample_ALR_Regression/Fit_TwoSample_ALR_Regression.r \
@@ -305,7 +320,8 @@ sub run_abundance_based{
 		-v $num_alr \
 		-q $output_dir/cov_var \
 		-x \";\" \
-		-o $output_dir/abundance/$B_pred_A_OUT_DIR/$model_name
+		-o $output_dir/abundance/$B_pred_A_OUT_DIR/$model_name \
+		$reflvl
 	";
 	run_command("Fit $A_colname as Response", "A_as_resp", $cmd, "$output_dir/abundance/$B_pred_A_OUT_DIR");
 
@@ -323,7 +339,8 @@ sub run_abundance_based{
 		-v $num_alr \
 		-q $output_dir/cov_var \
 		-x \";\" \
-		-o $output_dir/abundance/$A_pred_B_OUT_DIR/$model_name
+		-o $output_dir/abundance/$A_pred_B_OUT_DIR/$model_name \
+		$reflvl
 	";
 	run_command("Fit $B_colname as Response", "B_as_resp", $cmd, "$output_dir/abundance/$A_pred_B_OUT_DIR");
 
@@ -364,7 +381,8 @@ sub run_abundance_based{
 		-q $output_dir/cov_var \
 		-u $num_alr \
 		-x \";\" \
-		-o $output_dir/abundance/$DIFF_OUT_DIR/$model_name
+		-o $output_dir/abundance/$DIFF_OUT_DIR/$model_name \
+		$reflvl
 	";
 	run_command("Fit B-A Difference", "paired_diff", $cmd, "$output_dir/abundance/$DIFF_OUT_DIR");
 
@@ -379,6 +397,7 @@ sub run_distribution_based{
 	my $summary_table=shift;
 	my $summary_table2=shift;
 	my $factor_file=shift;
+	my $reference_level_file=shift;
 	my $covariates=shift;
 	my $variable_list=shift;
 	my $model_name=shift;
@@ -422,6 +441,13 @@ sub run_distribution_based{
 		$sumtabs="-s $summary_table -S $summary_table2";
 	}
 
+	my $reflvl;
+	if($reference_level_file eq ""){
+		$reflvl="";
+	}else{
+		$reflvl="-c $reference_level_file";
+	}
+
 	my ($st_root_name)=File::Basename::fileparse($summary_table);
 	$st_root_name=~s/\.summary_table\.tsv$//;
 
@@ -437,7 +463,8 @@ sub run_distribution_based{
 		-B $B_colname \
 		-A $A_colname \
 		-q $output_dir/cov_var \
-		-o $output_dir/distribution/$DIV_DIFF/$model_name
+		-o $output_dir/distribution/$DIV_DIFF/$model_name \
+		$reflvl
 	";
 	run_command("Fit Paired Diversity Difference Regression", "paired_div_diff_regr",
 		$cmd, "$output_dir/distribution/$DIV_DIFF");
@@ -509,6 +536,7 @@ sub run_distance_based{
 	my $summary_table=shift;
 	my $summary_table2=shift;
 	my $factor_file=shift;
+	my $reference_level_file=shift;
 	my $covariates=shift;
 	my $variable_list=shift;
 	my $model_name=shift;
@@ -553,6 +581,13 @@ sub run_distance_based{
 		$sumtabs="-s $summary_table -S $summary_table2";
 	}
 
+	my $reflvl;
+	if($reference_level_file eq ""){
+		$reflvl="";
+	}else{
+		$reflvl="-c $reference_level_file";
+	}
+
 	my ($st_root_name)=File::Basename::fileparse($summary_table);
 	$st_root_name=~s/\.summary_table\.tsv$//;
 
@@ -570,7 +605,8 @@ sub run_distance_based{
 		-q $output_dir/cov_var \
 		-d man \
 		-x \";\" \
-		-o $output_dir/distance/$DIST_DIFF/$model_name
+		-o $output_dir/distance/$DIST_DIFF/$model_name \
+		$reflvl
 	";
 	run_command("Fit Paired Distance Regression", $DIST_DIFF,
 		$cmd, "$output_dir/distance/$DIST_DIFF");
@@ -615,6 +651,7 @@ run_abundance_based(
 	$SummaryTable,
 	$SummaryTable2,
 	$FactorFile,
+	$ReferenceLevelsFilename,
 	$Covariates,
 	$GroupVar,
 	$AnalysisName,
@@ -629,6 +666,7 @@ run_distribution_based(
 	$SummaryTable,
 	$SummaryTable2,
 	$FactorFile,
+	$ReferenceLevelsFilename,
 	$Covariates,
 	$GroupVar,
 	$AnalysisName,
@@ -642,6 +680,7 @@ run_distance_based(
 	$SummaryTable,
 	$SummaryTable2,
 	$FactorFile,
+	$ReferenceLevelsFilename,
 	$Covariates,
 	$GroupVar,
 	$AnalysisName,
