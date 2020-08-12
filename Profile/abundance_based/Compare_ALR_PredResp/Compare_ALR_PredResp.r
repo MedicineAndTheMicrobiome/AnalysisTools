@@ -13,7 +13,9 @@ params=c(
 	"output_file", "o", 1, "character",
 	"sig_cutoff", "p", 2, "numeric",
 	"ratio_cutoff", "r", 2, "numeric",
-	"highlight_diag", "d", 2, "logical"
+	"highlight_diag", "d", 2, "logical",
+	"as_pred_A_name", "a", 2, "character",
+	"as_resp_B_name", "b", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -26,14 +28,16 @@ DEF_RATIO_CUTOFF=1; # Log2(2)=1
 
 usage = paste(
 	"\nUsage:\n", script_name, "\n",
-	"	-x <as_pred p-value matrix input file>\n",
-	"	-y <as_resp p-value matrix input file>\n",
+	"	-x <as_pred p-value matrix input file (rows=alr/pred, cols=var/resp)>\n",
+	"	-y <as_resp p-value matrix input file (rows=alr/resp, cols=var/pred)>\n",
 	"	-u <as_pred coefficients matrix input file>\n",
 	"	-v <as_resp coefficients matrix input file>\n",
 	"	-o <output file name root>\n",
 	"	-p <significance cutoff, default=", DEF_SIGNF_CUTOFF, ">\n",
 	"	[-r <ratio cutoff for reporting P/R, default=", DEF_RATIO_CUTOFF, ">]\n",
 	"	[-d (highlight diagonal for symmetric P/R analyses)]\n",
+	"	[-a <'as_pred', sample type>]\n", 
+	"	[-b <'as_resp', sample type>]\n", 
 	"\n",
 	"This script will read in two pairs of matrices:\n",
 	" 1.) Predictor p-values and coefficients\n",
@@ -47,6 +51,9 @@ usage = paste(
 	"The numbers factors and categories should be the same\n",
 	"(as well as the covariates) so that the values can\n",
 	"be comparable.\n",
+	"\n",
+	"If the predictor and response are two samples with the same taxa names, then\n",
+	"make sure you specify the -a and -b sample types\n",
 	"\n", sep="");
 
 if(!length(opt$pred_pval_file) || !length(opt$resp_pval_file) ||
@@ -80,6 +87,15 @@ if(length(opt$highlight_diag)){
 	HighlightDiag=F;
 }
 
+AsPredAName="[ALR Categories]";
+AsRespBName="[Factors]";
+if(length(opt$as_pred_A_name)){
+	AsPredAName=opt$as_pred_A_name;
+}
+if(length(opt$as_resp_B_name)){
+	AsRespBName=opt$as_resp_B_name;
+}
+
 signf_ext=sprintf("p%02g", SignifCutoff*100);
 
 OutputRoot=paste(OutputRoot, ".pred_vs_resp.", signf_ext, sep="");
@@ -98,6 +114,9 @@ input_summary=capture.output({
 	cat("\n");
 	cat("Significant Cutoff: ", SignifCutoff, "\n", sep="");
 	cat("Highlight Diagonal: ", HighlightDiag, "\n", sep="");
+	cat("\n");
+	cat("AsPred A Name: ", AsPredAName, "\n", sep="");
+	cat("AsResp B Name: ", AsRespBName, "\n", sep="");
 });
 cat(input_summary, sep="\n");
 
@@ -209,7 +228,7 @@ plot_text(shrd_var_summary);
 
 #############################################################################	
 
-plot_resp_pred_scatter=function(factor_name, categories, as_pred_mat, as_resp_mat){
+plot_resp_pred_scatter=function(factor_name, categories, as_pred_mat, as_resp_mat, a_name, b_name){
 
 
 	par(family="");
@@ -230,6 +249,11 @@ plot_resp_pred_scatter=function(factor_name, categories, as_pred_mat, as_resp_ma
 		type="n",
 		cex.main=2
 	);
+
+        mtext(a_name, side=1, line=3.7, cex=1, font=2, col="#FF000088");
+        mtext(a_name, side=2, line=3.7, cex=1, font=2, col="#FF000088");
+        mtext(b_name, side=3, line=3.7, cex=1, font=2, col="#0000FF88");
+
 
 	# Above untransformed p-values
 	axis(side=3, at=siglines_pos, labels=siglines_val, cex.axis=.7);
@@ -967,7 +991,7 @@ summarize_to_matrix=function(combined_ratio_coef, shrd_fact_names, shrd_cat_name
 
 #############################################################################
 
-plot_predresp_matrix=function(matrices, highlight_diag=F, ratio_thres, signf_thres){
+plot_predresp_matrix=function(matrices, highlight_diag=F, ratio_thres, signf_thres, a_name="", b_name=""){
 	
 	pr_mat=matrices[["pred.resp"]];
 	dir_mat=matrices[["coeff.dir"]];
@@ -993,12 +1017,35 @@ plot_predresp_matrix=function(matrices, highlight_diag=F, ratio_thres, signf_thr
 
 
 	# Start plot
-	par(mar=c(4,12,10,2));
+	par(mar=c(4,14,14,1));
 	off=.25;
 	plot(0,0, xlim=c(1, num_facts+1), ylim=c(1, num_cat+1), xaxt="n", yaxt="n",
 		xlab="", ylab="", type="n");
 	title(xlab=paste("p-values < ", signf_thres, "      |log2(p-value ratio)| > ", ratio_thres, sep=""),
 		line=1);
+
+	# Help text at top left
+	a_name_placeholder=paste(rep(" ", nchar(a_name)), collapse="");
+	b_name_placeholder=paste(rep(" ", nchar(b_name)), collapse="");
+	mtext("Interpretations:", 
+		3, adj=0, line=11, at=-1.7, cex=1, font=2, col="black", family="mono");
+
+	mtext(paste(a_name_placeholder, " [R]esponds to ", b_name_placeholder, sep=""), 
+		3, adj=0, line=10, at=-1.7, cex=1, font=2, col="orange", family="mono");
+	mtext(paste(a_name_placeholder, " [P]redicts ", b_name_placeholder, sep=""), 
+		3, adj=0, line= 9, at=-1.7, cex=1, font=2, col="blue", family="mono");
+
+	mtext(paste(a_name, "               ", b_name_placeholder, sep=""), 
+		3, adj=0, line=10, at=-1.7, cex=1, font=2, col="#FF000088", family="mono");
+	mtext(paste(a_name, "            ", b_name_placeholder, sep=""), 
+		3, adj=0, line= 9, at=-1.7, cex=1, font=2, col="#FF000088", family="mono");
+
+	mtext(paste(a_name_placeholder, "               ", b_name, sep=""), 
+		3, adj=0, line=10, at=-1.7, cex=1, font=2, col="#0000FF88", family="mono");
+	mtext(paste(a_name_placeholder, "            ", b_name, sep=""), 
+		3, adj=0, line= 9, at=-1.7, cex=1, font=2, col="#0000FF88", family="mono");
+
+
 
 	if(highlight_diag){
 		abline(a=0, b=1, lwd=12, col="grey80");
@@ -1046,12 +1093,17 @@ plot_predresp_matrix=function(matrices, highlight_diag=F, ratio_thres, signf_thr
 	axis(side=3, at=vert[!col_highlight], labels=fact_names[!col_highlight], 
 		las=2, col.axis="grey80", col="grey80");
 
+	# Label direction type
+	cat("a/b: ", a_name, "/", b_name, "\n");
+	mtext(a_name, side=2, line=-1.5, cex=1.75, font=2, col="#FF000044");
+	mtext(b_name, side=3, line=-1.5, cex=1.75, font=2, col="#0000FF44");
+
 }
 
 
 #############################################################################	
 
-plot_venn=function(matrices){
+plot_venn=function(matrices, a_name="", b_name=""){
 
 	pr_mat=matrices[["pred.resp"]];
 	dir_mat=matrices[["coeff.dir"]];
@@ -1077,7 +1129,7 @@ plot_venn=function(matrices){
 	}
 
 
-	plot_venn_table=function(x, title){
+	plot_venn_table=function(x, title, lab_col, flip){
 		
 		width=4;
 
@@ -1098,9 +1150,17 @@ plot_venn=function(matrices){
 		plot(0,0, type="n", xaxt="n", yaxt="n", xlab="", ylab="",
 			xlim=c(-1,4), ylim=c(0, max_list_length));
 
-		axis(3, at=c(0,1,2,3), labels=c("Predictor", "Both", "Responder", "Neither"),
-			font.axis=2, cex.axis=1.5
-		);
+		if(flip==F){
+			axis(3, at=c(0,1,2,3), labels=c("Predictors", "Both", "Responders", "Neither"),
+				font.axis=2, cex.axis=1.5
+			);
+		}else{
+			axis(3, at=c(0,1,2,3), labels=c("Responders", "Both", "Predictors", "Neither"),
+				font.axis=2, cex.axis=1.5
+			);
+		}
+
+		mtext(title, side=3, line=3, cex=1.5, font=2, col=lab_col);
 
 		plot_list=function(varlist, x, y){
 			llen=length(varlist);
@@ -1127,8 +1187,8 @@ plot_venn=function(matrices){
 	
 	par(mar=c(1,1,5,1));
 
-	plot_venn_table(cat_pr_venn, "categories");
-	plot_venn_table(fact_pr_venn, "factors");
+	plot_venn_table(cat_pr_venn, a_name, "#FF000044", flip=F);
+	plot_venn_table(fact_pr_venn, b_name, "#0000FF44", flip=T);
 
 	#print(cat_pr_venn);
 	#print(fact_pr_venn);
@@ -1155,7 +1215,7 @@ for(cur_fact in shrd_fact_names){
 	# Plot resp vs pred
 	par(mar=c(5,5,6,3));
 	layout(layout_mat);
-	plot_resp_pred_scatter(cur_fact, shrd_cat_names, as_pred_pval, as_resp_pval);
+	plot_resp_pred_scatter(cur_fact, shrd_cat_names, as_pred_pval, as_resp_pval, AsPredAName, AsRespBName);
 	
 	# Summary comparisons
 	result=summarize_comparisons(cur_fact, shrd_cat_names, 
@@ -1275,15 +1335,15 @@ par(mfrow=c(1,1));
 pred_resp_mat=summarize_to_matrix(combined_records, shrd_fact_names, shrd_cat_names, 
 	ratio_thres=0);
 plot_predresp_matrix(pred_resp_mat, highlight_diag=HighlightDiag, 
-	ratio_thres=0, signf_thres=SignifCutoff);
-plot_venn(pred_resp_mat);
+	ratio_thres=0, signf_thres=SignifCutoff, a_name=AsPredAName, b_name=AsRespBName);
+plot_venn(pred_resp_mat, a_name=AsPredAName, b_name=AsRespBName);
 
 # More stringent/user defined cutoff
 pred_resp_mat=summarize_to_matrix(combined_records, shrd_fact_names, shrd_cat_names, 
 	ratio_thres=RatioCutoff);
 plot_predresp_matrix(pred_resp_mat, highlight_diag=HighlightDiag, 
-	ratio_thres=RatioCutoff, signf_thres=SignifCutoff);
-plot_venn(pred_resp_mat);
+	ratio_thres=RatioCutoff, signf_thres=SignifCutoff, a_name=AsPredAName, b_name=AsRespBName);
+plot_venn(pred_resp_mat, a_name=AsPredAName, b_name=AsRespBName);
 
 #############################################################################	
 # Close PDF output
