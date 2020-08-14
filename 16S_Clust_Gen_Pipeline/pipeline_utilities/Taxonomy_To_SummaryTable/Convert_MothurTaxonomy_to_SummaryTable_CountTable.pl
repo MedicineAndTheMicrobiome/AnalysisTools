@@ -61,7 +61,7 @@ sub load_read_to_taxa_map{
 			}elsif($level eq "unknown"){
 				$clean_name="unknown";
 			}else{
-				if($level=~/(.+)(\(\d+\))$/){
+				if($level=~/(.+)(\([0-9\.]+\))$/){
 					$clean_name=$1;
 					my $conf=$2;
 					$previous=$clean_name;
