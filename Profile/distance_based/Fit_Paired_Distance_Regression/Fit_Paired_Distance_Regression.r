@@ -1303,6 +1303,8 @@ plot_abund_wCI=function(abundances, lb, ub, num_top_categories=10, category_colo
 	dist_bt_mids=mids[2]-mids[1];
 	error_bar_half_wid=dist_bt_mids/8;
 
+	num_top_categories=min(num_top_categories, length(abundances));
+
 	for(catix in 1:num_top_categories){
 		if(ub[catix]!=lb[catix]){
 			points(
@@ -1379,6 +1381,8 @@ plot_comparisons=function(a_profs, b_profs, global_colormap, title, a_name, b_na
 	
 	sort_ix=order(avg_prof, decreasing=T);
 
+	topN=min(topN, ncol(comb_prof));
+
 	avg_prof=avg_prof[sort_ix[1:topN]];
 	a_profs=a_profs[,sort_ix[1:topN], drop=F];
 	b_profs=b_profs[,sort_ix[1:topN], drop=F];
@@ -1409,14 +1413,14 @@ plot_comparisons=function(a_profs, b_profs, global_colormap, title, a_name, b_na
 			lrab_bs[bsix,]=log10((a_bs_means[bsix,]+minabund)/(b_bs_means[bsix,]+minabund));
 		}
 
-		a_95ci_ub=apply(a_bs_means, 2, function(x){ quantile(x, .975);});
-		a_95ci_lb=apply(a_bs_means, 2, function(x){ quantile(x, .025);});
+		a_95ci_ub=apply(a_bs_means, 2, function(x){ quantile(x, .975, na.rm=T);});
+		a_95ci_lb=apply(a_bs_means, 2, function(x){ quantile(x, .025, na.rm=T);});
 
-		b_95ci_ub=apply(b_bs_means, 2, function(x){ quantile(x, .975);});
-		b_95ci_lb=apply(b_bs_means, 2, function(x){ quantile(x, .025);});
+		b_95ci_ub=apply(b_bs_means, 2, function(x){ quantile(x, .975, na.rm=T);});
+		b_95ci_lb=apply(b_bs_means, 2, function(x){ quantile(x, .025, na.rm=T);});
 
-		lrab_95ci_ub=apply(lrab_bs, 2, function(x){ quantile(x, .975);});
-		lrab_95ci_lb=apply(lrab_bs, 2, function(x){ quantile(x, .025);});
+		lrab_95ci_ub=apply(lrab_bs, 2, function(x){ quantile(x, .975, na.rm=T);});
+		lrab_95ci_lb=apply(lrab_bs, 2, function(x){ quantile(x, .025, na.rm=T);});
 	}else{
 		a_95ci_ub=a_mean_prof;
 		a_95ci_lb=a_mean_prof;
@@ -1430,15 +1434,15 @@ plot_comparisons=function(a_profs, b_profs, global_colormap, title, a_name, b_na
 	lr_ymax=max(abs(c(lrab_95ci_ub, lrab_95ci_lb, max_abs_lr)));
 
 	par(mar=c(6,6,2,1));
-	plot_abund_wCI(a_mean_prof, a_95ci_lb, a_95ci_ub, num_top_categories=15, 
+	plot_abund_wCI(a_mean_prof, a_95ci_lb, a_95ci_ub, num_top_categories=topN, 
 		ymax=ymax, bar_col, title=a_name, ylab=ylab);
 
 	par(mar=c(6,2,2,1));
-	plot_abund_wCI(b_mean_prof, b_95ci_lb, b_95ci_ub, num_top_categories=15, 
+	plot_abund_wCI(b_mean_prof, b_95ci_lb, b_95ci_ub, num_top_categories=topN, 
 		ymax=ymax, bar_col, title=b_name, ylab="");
 
 	par(mar=c(6,2,2,3));
-	plot_lograt_wCI(lrab_prof, lb=lrab_95ci_lb, ub=lrab_95ci_ub, num_top_categories=15, 
+	plot_lograt_wCI(lrab_prof, lb=lrab_95ci_lb, ub=lrab_95ci_ub, num_top_categories=topN, 
 		ymax=lr_ymax, bar_col, title=paste("Log10(", a_name, "/", b_name,")", sep=""), ylab="");
 
 	stats=list();
