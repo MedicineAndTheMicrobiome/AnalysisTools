@@ -1,6 +1,6 @@
 #!/usr/bin/Rscript
 
-test_code=F;
+test_code=T;
 
 sample_sheet_validator=function(df){
 
@@ -167,6 +167,23 @@ sample_sheet_validator=function(df){
 		bad_char_msg="OK: All Sample IDs have valid characters.";
 	}
 
+
+	#----------------------------------------------------------------------
+	cat("Checking for underscore at end of sample ID...\n");
+	bad_samp_ids=character();
+	for(i in 1:num_samples){
+		if(length(grep("_$", samp_ids[i]))>0){
+			bad_samp_ids=c(bad_samp_ids, samp_ids[i]);
+		}
+	}
+	if(length(bad_samp_ids)>0){
+		bad_char_endunderscore_msg=c("ERROR: Underscore found at end of Sample IDs",
+			paste(bad_samp_ids, collapse=", ")
+		);
+	}else{
+		bad_char_endunderscore_msg="OK: All Sample IDs don't have underscores at end";
+	}
+
 	#----------------------------------------------------------------------
 	# Report on project codes	
 	cat("Reporting on Project Codes...\n");
@@ -294,6 +311,7 @@ sample_sheet_validator=function(df){
 		samp_id_and_names_match_msg,
 		mixcase_msg,
 		bad_char_msg,
+		bad_char_endunderscore_msg,
 		residual_xxx_placeholder_msg,
 		non_stnd_len_pcodes_msg,
 		plate_info_msg,
