@@ -1028,22 +1028,22 @@ plot_predresp_matrix=function(matrices, highlight_diag=F, ratio_thres, signf_thr
 	a_name_placeholder=paste(rep(" ", nchar(a_name)), collapse="");
 	b_name_placeholder=paste(rep(" ", nchar(b_name)), collapse="");
 	mtext("Interpretations:", 
-		3, adj=0, line=11, at=-1.7, cex=1, font=2, col="black", family="mono");
+		3, adj=0, line=11, at=0, cex=1, font=2, col="black", family="mono");
 
 	mtext(paste(a_name_placeholder, " [R]esponds to ", b_name_placeholder, sep=""), 
-		3, adj=0, line=10, at=-1.7, cex=1, font=2, col="orange", family="mono");
+		3, adj=0, line=10, at=0, cex=1, font=2, col="orange", family="mono");
 	mtext(paste(a_name_placeholder, " [P]redicts ", b_name_placeholder, sep=""), 
-		3, adj=0, line= 9, at=-1.7, cex=1, font=2, col="blue", family="mono");
+		3, adj=0, line= 9, at=0, cex=1, font=2, col="blue", family="mono");
 
 	mtext(paste(a_name, "               ", b_name_placeholder, sep=""), 
-		3, adj=0, line=10, at=-1.7, cex=1, font=2, col="#FF000088", family="mono");
+		3, adj=0, line=10, at=0, cex=1, font=2, col="#FF000088", family="mono");
 	mtext(paste(a_name, "            ", b_name_placeholder, sep=""), 
-		3, adj=0, line= 9, at=-1.7, cex=1, font=2, col="#FF000088", family="mono");
+		3, adj=0, line= 9, at=0, cex=1, font=2, col="#FF000088", family="mono");
 
 	mtext(paste(a_name_placeholder, "               ", b_name, sep=""), 
-		3, adj=0, line=10, at=-1.7, cex=1, font=2, col="#0000FF88", family="mono");
+		3, adj=0, line=10, at=0, cex=1, font=2, col="#0000FF88", family="mono");
 	mtext(paste(a_name_placeholder, "            ", b_name, sep=""), 
-		3, adj=0, line= 9, at=-1.7, cex=1, font=2, col="#0000FF88", family="mono");
+		3, adj=0, line= 9, at=0, cex=1, font=2, col="#0000FF88", family="mono");
 
 
 
@@ -1100,6 +1100,166 @@ plot_predresp_matrix=function(matrices, highlight_diag=F, ratio_thres, signf_thr
 
 }
 
+#############################################################################
+
+plot_predresp_line_diagram=function(
+		matrices, ratio_thres, signf_thres, a_name="", b_name="", 
+		subset="both", title=""
+	){
+	
+	cat("Starting plot_predresp_line_diagram plot:\n");
+
+	dir_mat=matrices[["coeff.dir"]];
+	pr_mat=matrices[["pred.resp"]];
+
+	if(subset=="both"){
+	}else if(subset=="responders"){
+		pr_mat=apply(pr_mat, 1:2, function(x){ ifelse(x=="P", "", x);});
+	}else if(subset=="predictors"){
+		pr_mat=apply(pr_mat, 1:2, function(x){ ifelse(x=="R", "", x);});
+	}
+
+	#print(pr_mat);
+	#print(dir_mat);
+
+	nrows_A_left=nrow(pr_mat);
+	ncols_B_right=ncol(pr_mat);
+
+	rows_A_left_names=rownames(pr_mat);
+	cols_B_right_names=colnames(pr_mat);
+	
+	# Calc spacing between variables on each side
+	spacing_A=seq(0,1, length.out=nrows_A_left+2)[2:(nrows_A_left+1)];
+	spacing_B=seq(0,1, length.out=ncols_B_right+2)[2:(ncols_B_right+1)];
+
+	par(mar=c(5,20,3,20));
+	line_margin=.05;
+	plot(0, type="n", 
+		xlim=c(0-line_margin,1+line_margin), 
+		ylim=c(0+.05,1-.05), xlab="", ylab="", xaxt="n", yaxt="n");
+
+	title(main=title);
+
+	mtext(a_name, side=2, line=15, cex=4, col="#FF000088");
+	mtext(b_name, side=4, line=15, cex=4, col="#0000FF88");
+
+	# Label variables on left/right axis
+	for(rowix in 1:nrows_A_left){
+		if(all(pr_mat[rowix,]=="")){
+			label_col="grey";
+		}else{
+			label_col="#FF0000";
+		}
+		axis(side=2, at=spacing_A[rowix], labels=rows_A_left_names[rowix], las=2, col.axis=label_col);
+	}
+	for(colix in 1:ncols_B_right){
+		if(all(pr_mat[,colix]=="")){
+			label_col="grey";
+		}else{
+			label_col="#0000FF";
+		}
+		axis(side=4, at=spacing_B[colix], labels=cols_B_right_names[colix], las=2, col.axis=label_col);
+	}
+
+	# Draw arrows when they are responders
+	for(rowix in 1:nrows_A_left){
+		if(any(pr_mat[rowix,]=="R")){
+			arrows(0, spacing_A[rowix], 0-line_margin, spacing_A[rowix], 
+				length=.1, angle=22.5, col="orange", lwd=1.5);
+		}
+	}
+	for(colix in 1:ncols_B_right){
+		if(any(pr_mat[,colix]=="P")){
+			arrows(1, spacing_B[colix], 1+line_margin, spacing_B[colix], 
+				length=.1, angle=22.5, col="blue", lwd=1.5);
+		}
+	}
+
+	# Function to place up/down green/red arrows base on slop of the line
+	label_direction=function(xs, ys, side, dir, outline_col, lift, dist_from_end=.05){
+		# y=mx+b;
+		slope=(ys[2]-ys[1])/(xs[2]-xs[1]);
+		yintc=ys[1]-slope*xs[1];
+
+		xloc=ifelse(side==0, dist_from_end, 1-dist_from_end);
+		yloc=slope*xloc+yintc;
+	
+		redgreen=ifelse(dir==1, "green", "red");
+		updown=ifelse(dir==1, 24, 25);
+		points(xloc, yloc+lift, pch=updown, col=outline_col, bg=redgreen, cex=1.5);
+	}
+
+	# Draw lines before drawing arrows
+	for(rowix in 1:nrows_A_left){
+		for(colix in 1:ncols_B_right){
+			predresp=pr_mat[rows_A_left_names[rowix], cols_B_right_names[colix]];
+			if(predresp==""){
+				#noop
+			}else if(predresp=="P"){
+				points(c(0,1), c(spacing_A[rowix], spacing_B[colix]), type="l", lwd=1.5,
+					 col="blue");
+			}else if(predresp=="R"){
+				points(c(0,1), c(spacing_A[rowix], spacing_B[colix]), type="l", lwd=1.5,
+					col="orange");
+			}else{
+				cat("ERROR: bad pred/resp character.\n");
+				quit(status=-1);
+			}
+		}
+	}
+
+	# How far above line to draw coefficient arrows
+	lift_a=(spacing_A[2]-spacing_A[1])*.1;
+	lift_b=(spacing_B[2]-spacing_B[1])*.1;
+
+	# Draw direction arrow over the lines
+	for(rowix in 1:nrows_A_left){
+		for(colix in 1:ncols_B_right){
+			predresp=pr_mat[rows_A_left_names[rowix], cols_B_right_names[colix]];
+			if(predresp==""){
+				#noop
+			}else if(predresp=="P"){
+				label_direction(
+					c(0,1), c(spacing_A[rowix], spacing_B[colix]), side=0,
+					dir_mat[rowix,colix], outline_col="blue", lift=lift_a
+					);
+			}else if(predresp=="R"){
+				label_direction(
+					c(0,1), c(spacing_A[rowix], spacing_B[colix]), side=1,
+					dir_mat[rowix,colix], outline_col="orange", lift=lift_b
+					);
+			}else{
+				cat("ERROR: bad pred/resp character.\n");
+				quit(status=-1);
+			}
+		}
+	}
+
+	# Help text at top 
+	a_name_placeholder=paste(rep(" ", nchar(a_name)), collapse="");
+	b_name_placeholder=paste(rep(" ", nchar(b_name)), collapse="");
+	xpos=0;
+	mtext("Interpretations:", 
+		1, adj=0, line=1, at=xpos, cex=1, font=2, col="black", family="mono");
+
+	mtext(paste(a_name_placeholder, " <-Responds to ", b_name_placeholder, sep=""), 
+		1, adj=0, line=2, at=xpos, cex=1, font=2, col="orange", family="mono");
+	mtext(paste(a_name_placeholder, " Predicts-> ", b_name_placeholder, sep=""), 
+		1, adj=0, line=3, at=xpos, cex=1, font=2, col="blue", family="mono");
+
+	mtext(paste(a_name, "               ", b_name_placeholder, sep=""), 
+		1, adj=0, line=2, at=xpos, cex=1, font=2, col="#FF000088", family="mono");
+	mtext(paste(a_name, "            ", b_name_placeholder, sep=""), 
+		1, adj=0, line=3, at=xpos, cex=1, font=2, col="#FF000088", family="mono");
+
+	mtext(paste(a_name_placeholder, "               ", b_name, sep=""), 
+		1, adj=0, line=2, at=xpos, cex=1, font=2, col="#0000FF88", family="mono");
+	mtext(paste(a_name_placeholder, "            ", b_name, sep=""), 
+		1, adj=0, line=3, at=xpos, cex=1, font=2, col="#0000FF88", family="mono");
+	
+
+	cat("Done with PredResp Line Diagram.\n");
+}
 
 #############################################################################	
 
@@ -1338,12 +1498,34 @@ plot_predresp_matrix(pred_resp_mat, highlight_diag=HighlightDiag,
 	ratio_thres=0, signf_thres=SignifCutoff, a_name=AsPredAName, b_name=AsRespBName);
 plot_venn(pred_resp_mat, a_name=AsPredAName, b_name=AsRespBName);
 
+plot_predresp_line_diagram(pred_resp_mat,
+        ratio_thres=0, signf_thres=SignifCutoff, a_name=AsPredAName, b_name=AsRespBName,
+	subset="both", title=paste("Predictors and Responders"));
+plot_predresp_line_diagram(pred_resp_mat,
+        ratio_thres=0, signf_thres=SignifCutoff, a_name=AsPredAName, b_name=AsRespBName,
+	subset="predictors", title=paste("Predictors Only"));
+plot_predresp_line_diagram(pred_resp_mat,
+        ratio_thres=0, signf_thres=SignifCutoff, a_name=AsPredAName, b_name=AsRespBName,
+	subset="responders", title=paste("Responders Only"));
+
+
 # More stringent/user defined cutoff
 pred_resp_mat=summarize_to_matrix(combined_records, shrd_fact_names, shrd_cat_names, 
 	ratio_thres=RatioCutoff);
 plot_predresp_matrix(pred_resp_mat, highlight_diag=HighlightDiag, 
 	ratio_thres=RatioCutoff, signf_thres=SignifCutoff, a_name=AsPredAName, b_name=AsRespBName);
 plot_venn(pred_resp_mat, a_name=AsPredAName, b_name=AsRespBName);
+
+plot_predresp_line_diagram(pred_resp_mat,
+        ratio_thres=0, signf_thres=SignifCutoff, a_name=AsPredAName, b_name=AsRespBName,
+	subset="both", title=paste("Predictors and Responders: (Ratio Cutoff>", RatioCutoff, ")", sep=""));
+plot_predresp_line_diagram(pred_resp_mat,
+        ratio_thres=0, signf_thres=SignifCutoff, a_name=AsPredAName, b_name=AsRespBName,
+	subset="predictors", title=paste("Predictors Only: (Ratio Cutoff>", RatioCutoff, ")", sep=""));
+plot_predresp_line_diagram(pred_resp_mat,
+        ratio_thres=0, signf_thres=SignifCutoff, a_name=AsPredAName, b_name=AsRespBName,
+	subset="responders", title=paste("Responders Only: (Ratio Cutoff>", RatioCutoff, ")", sep=""));
+
 
 #############################################################################	
 # Close PDF output
