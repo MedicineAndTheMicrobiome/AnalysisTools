@@ -51,6 +51,16 @@ sample_sheet_validator=function(df){
 	hdr=as.matrix(df[sample_id_header_ix,]);
 	colnames(samp_mat)=hdr;
 
+	# Confirm column names are as expected:
+	expected_columns=c("Sample_ID", "Sample_Name", "index", "I7_Index_ID")
+	missing_columns=setdiff(expected_columns,hdr);
+	if(length(missing_columns)>0){
+		miss_col_list=paste(missing_columns, collapse=", ");
+		err=paste("Error: Could not find columns: ", miss_col_list, "\n", sep="");
+		return(err);
+	}
+	
+
 	#print(samp_mat)
 	num_samples=nrow(samp_mat);
 	samp_ids=samp_mat[,"Sample_ID"];
@@ -327,17 +337,17 @@ sample_sheet_validator=function(df){
 }
 
 
-if(test_code && T){
+if(test_code && F){
 
 	cat("-----------------------------------------------------------------\n");
 
-	df=read.csv("example/0159_20200131_samplesheet.noErrors.csv", header=F);
+	df=read.csv("example/20200819_a_saliva_samplesheet.csv", header=F);
 	msgs=sample_sheet_validator(df);
 	cat(paste(msgs, collapse="\n"));
 }
 
 
-if(test_code && T){
+if(test_code && F){
 	cat("-----------------------------------------------------------------\n");
 	df=read.csv("example/0159_20200131_samplesheet.wErrors.csv", header=F);
 	msgs=sample_sheet_validator(df);
