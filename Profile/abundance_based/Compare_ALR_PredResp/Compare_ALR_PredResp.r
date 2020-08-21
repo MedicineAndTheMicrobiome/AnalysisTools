@@ -1282,6 +1282,15 @@ generate_dual_values_plot=function(as_resp_pval, as_pred_pval, as_resp_coef, as_
 	mtext(a_name, side=2, line=13, cex=2, font=2, col="#FF000088");
 	mtext(b_name, side=3, line=13, cex=2, font=2, col="#0000FF88");
 
+	mtext(title, side=3, at=0, line=6, font=2, cex=1.5);
+	mtext(paste("p-values <=", signf_thres, " emphasized", sep=""), side=3, at=0, line=5, font=1, cex=1);
+	msg=paste("Orange Horizontal Arrows: Connects ", b_name, 
+		" predictors (x) to predict ", a_name, " as a response (y)", sep="");
+	mtext(msg, side=3, at=0, line=9, col="#FFA500", font=1, cex=.75);
+	msg=paste("Blue Vertical Arrows: Connects ", a_name, 
+		" predictors (x) to predict ", b_name, " as a response (y)", sep="");
+	mtext(msg, side=3, at=0, line=8.25, col="#AAAAFF", font=1, cex=.75);
+
 	axis(side=2, at=1:num_rows, labels=row_names, las=2, cex.axis=.75);
 	axis(side=3, at=1:num_cols, labels=col_names, las=2, cex.axis=.75);
 
@@ -1316,8 +1325,6 @@ generate_dual_values_plot=function(as_resp_pval, as_pred_pval, as_resp_coef, as_
 			lwd=as_resp_signf_row[rowix], col="#FFA500");
 	}
 
-	mtext(title, side=3, at=0, line=6, font=2, cex=1.5);
-	mtext(paste("p-values <=", signf_thres, " emphasized", sep=""), side=3, at=0, line=5, font=1, cex=1);
 
 	for(rowix in 1:num_rows){
 		for(colix in 1:num_cols){
@@ -1336,11 +1343,11 @@ generate_dual_values_plot=function(as_resp_pval, as_pred_pval, as_resp_coef, as_
 				r_pval=as_resp_pval[rowix, colix];
 				p_pval=as_pred_pval[rowix, colix];
 
-				bold=ifelse(r_pval<p_pval, 2, 0);
+				bold=ifelse(r_pval<=signf_thres && r_pval<p_pval, 2, 0);
 				size=ifelse(r_pval<=signf_thres, 1.25, 1)*text_cex;
 				text(colix-lineadj_x, rowix, r_pval, font=bold, cex=size);
 
-				bold=ifelse(r_pval>p_pval, 2, 0);
+				bold=ifelse(p_pval<=signf_thres && r_pval>p_pval, 2, 0);
 				size=ifelse(p_pval<=signf_thres, 1.25, 1)*text_cex;
 				text(colix, rowix+lineadj_y, p_pval, font=bold, cex=size);
 			}
@@ -1355,13 +1362,13 @@ generate_dual_values_plot=function(as_resp_pval, as_pred_pval, as_resp_coef, as_
 				r_coef=as_resp_coef[rowix, colix];
 				p_coef=as_pred_coef[rowix, colix];
 
-				bold=ifelse(r_pval<p_pval, 2, 0);
+				bold=ifelse(r_pval<=signf_thres && r_pval<p_pval, 2, 0);
 				size=ifelse(r_pval<=signf_thres, 1.25, 1)*text_cex;
 
 				coef_col=ifelse(r_coef<0, "red", "darkgreen");
 				text(colix-lineadj_x, rowix, r_coef, font=bold, cex=size, col=coef_col);
 
-				bold=ifelse(r_pval>p_pval, 2, 0);
+				bold=ifelse(p_pval<=signf_thres && r_pval>p_pval, 2, 0);
 				size=ifelse(p_pval<=signf_thres, 1.25, 1)*text_cex;
 
 				coef_col=ifelse(p_coef<0, "red", "darkgreen");
