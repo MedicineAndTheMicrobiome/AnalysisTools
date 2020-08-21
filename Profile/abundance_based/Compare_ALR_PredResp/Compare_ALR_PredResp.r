@@ -1263,6 +1263,169 @@ plot_predresp_line_diagram=function(
 
 #############################################################################	
 
+generate_dual_values_plot=function(as_resp_pval, as_pred_pval, as_resp_coef, as_pred_coef,
+	title, signf_thres, a_name, b_name){
+
+	num_rows=nrow(as_resp_pval);
+	num_cols=ncol(as_resp_pval);
+
+	row_names=rownames(as_resp_pval);
+	col_names=colnames(as_resp_pval);
+
+	
+	par(mar=c(1,15,15,1));
+	plot(0,0, xlim=c(1-.5, num_cols+.5), ylim=c(1-.5, num_rows+.5), 
+		xlab="", ylab="", main="",
+		xaxt="n", yaxt="n"
+		);
+
+	mtext(a_name, side=2, line=13, cex=2, font=2, col="#FF000088");
+	mtext(b_name, side=3, line=13, cex=2, font=2, col="#0000FF88");
+
+	axis(side=2, at=1:num_rows, labels=row_names, las=2, cex.axis=.75);
+	axis(side=3, at=1:num_cols, labels=col_names, las=2, cex.axis=.75);
+
+	line_width=function(x){
+		adds=2;
+		m=min(x);
+		lwd=-1;
+		if(m<=.05){ lwd=lwd+adds;}
+		if(m<=.01){ lwd=lwd+adds;}
+		if(m<=.001){ lwd=lwd+adds;}
+		if(m<=.0001){ lwd=lwd+adds;}
+		return(lwd);
+	}
+
+	text_cex=.5;
+	lineadj_y=1*strheight("0.1234");
+	lineadj_x=1*strheight("0.1234");
+
+
+	as_resp_signf_row=apply(as_resp_pval, 1, line_width);
+	as_pred_signf_col=apply(as_pred_pval, 2, line_width);
+
+	for(colix in 1:num_cols){
+		arrows(colix, 1-.5, colix, num_rows+.75, code=2, 
+			length=.1, angle=22.5,
+			lwd=as_pred_signf_col[colix], col="#AAAAFF");
+	}
+
+	for(rowix in 1:num_rows){
+		arrows(1-.75, rowix, num_cols+.5, rowix, code=1, 
+			length=.1, angle=22.5,
+			lwd=as_resp_signf_row[rowix], col="#FFA500");
+	}
+
+	mtext(title, side=3, at=0, line=6, font=2, cex=1.5);
+	mtext(paste("p-values <=", signf_thres, " emphasized", sep=""), side=3, at=0, line=5, font=1, cex=1);
+
+	for(rowix in 1:num_rows){
+		for(colix in 1:num_cols){
+			points(
+				c(colix, colix-lineadj_x), c(rowix, rowix+lineadj_y), 
+				type="l", col="grey50", lwd=.75);
+		}
+	}
+
+
+	if(title=="P-Values"){
+
+		for(rowix in 1:num_rows){
+			for(colix in 1:num_cols){
+
+				r_pval=as_resp_pval[rowix, colix];
+				p_pval=as_pred_pval[rowix, colix];
+
+				bold=ifelse(r_pval<p_pval, 2, 0);
+				size=ifelse(r_pval<=signf_thres, 1.25, 1)*text_cex;
+				text(colix-lineadj_x, rowix, r_pval, font=bold, cex=size);
+
+				bold=ifelse(r_pval>p_pval, 2, 0);
+				size=ifelse(p_pval<=signf_thres, 1.25, 1)*text_cex;
+				text(colix, rowix+lineadj_y, p_pval, font=bold, cex=size);
+			}
+		}
+	}else if(title=="Coefficients"){
+
+		for(rowix in 1:num_rows){
+			for(colix in 1:num_cols){
+
+				r_pval=as_resp_pval[rowix, colix];
+				p_pval=as_pred_pval[rowix, colix];
+				r_coef=as_resp_coef[rowix, colix];
+				p_coef=as_pred_coef[rowix, colix];
+
+				bold=ifelse(r_pval<p_pval, 2, 0);
+				size=ifelse(r_pval<=signf_thres, 1.25, 1)*text_cex;
+
+				coef_col=ifelse(r_coef<0, "red", "darkgreen");
+				text(colix-lineadj_x, rowix, r_coef, font=bold, cex=size, col=coef_col);
+
+				bold=ifelse(r_pval>p_pval, 2, 0);
+				size=ifelse(p_pval<=signf_thres, 1.25, 1)*text_cex;
+
+				coef_col=ifelse(p_coef<0, "red", "darkgreen");
+				text(colix, rowix+lineadj_y, p_coef, font=bold, cex=size, col=coef_col);
+
+
+				if(r_pval<=signf_thres || p_pval<=signf_thres){
+					if(r_coef<0 && p_coef<0){
+						both_col="red";
+					}else if(r_coef>=0 && p_coef>=0){
+						both_col="darkgreen";
+					}else{
+						both_col="black";
+					}
+					points(colix, rowix, cex=1.75, pch=16, col=both_col, bg=both_col);
+				}
+
+			}
+		}
+
+	}else{
+		cat("Error:  Unknown Title.\n");
+		quit(status=-1);
+	}
+
+}
+
+#----------------------------------------------------------------------------
+
+plot_values_in_matrix=function(as_pred_pval, as_resp_pval, as_pred_coef, as_resp_coef, signf_thres, a_name, b_name){
+
+	rnames=sort(rownames(as_pred_pval));
+	cnames=sort(colnames(as_pred_pval));
+
+	as_pred_pval=as_pred_pval[rnames, cnames];
+	as_pred_coef=as_pred_coef[rnames, cnames];
+	as_resp_pval=as_resp_pval[rnames, cnames];
+	as_resp_coef=as_resp_coef[rnames, cnames];
+
+	cat("\n\nas_pred_pval:\n");
+	as_pred_pval=apply(as_pred_pval, 1:2, function(x){signif(x,3)});
+	print(as_pred_pval);
+
+	cat("\n\nas_resp_pval:\n");
+	as_resp_pval=apply(as_resp_pval, 1:2, function(x){signif(x,3)});
+	print(as_resp_pval);
+
+	cat("\n\nas_pred_coef:\n");
+	as_pred_coef=apply(as_pred_coef, 1:2, function(x){signif(x,3)});
+	print(as_pred_coef);
+
+	cat("\n\nas_resp_coef:\n");
+	as_resp_coef=apply(as_resp_coef, 1:2, function(x){signif(x,3)});
+	print(as_resp_coef);
+
+	generate_dual_values_plot(as_resp_pval, as_pred_pval, as_resp_coef, as_pred_coef,
+		 "P-Values", signf_thres, a_name, b_name);
+	generate_dual_values_plot(as_resp_pval, as_pred_pval, as_resp_coef, as_pred_coef,
+		 "Coefficients", signf_thres, a_name, b_name);
+	
+}
+
+#############################################################################	
+
 plot_venn=function(matrices, a_name="", b_name=""){
 
 	pr_mat=matrices[["pred.resp"]];
@@ -1496,6 +1659,7 @@ pred_resp_mat=summarize_to_matrix(combined_records, shrd_fact_names, shrd_cat_na
 	ratio_thres=0);
 plot_predresp_matrix(pred_resp_mat, highlight_diag=HighlightDiag, 
 	ratio_thres=0, signf_thres=SignifCutoff, a_name=AsPredAName, b_name=AsRespBName);
+plot_values_in_matrix(as_pred_pval, as_resp_pval, as_pred_coef, as_resp_coef, SignifCutoff, AsPredAName, AsRespBName);
 plot_venn(pred_resp_mat, a_name=AsPredAName, b_name=AsRespBName);
 
 plot_predresp_line_diagram(pred_resp_mat,
