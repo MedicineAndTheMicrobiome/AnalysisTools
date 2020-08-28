@@ -22,7 +22,7 @@ StudyTab=function(){
 
 }
 
-observe_StudyTabEvents=function(input, output, session, avail_variables){
+observe_StudyTabEvents=function(input, output, session){
 
 	observeEvent(input$StudyTab.StudyType_radioButton,{
 		cat("StudyType Radio Button Clicked.\n");

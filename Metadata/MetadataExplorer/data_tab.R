@@ -14,7 +14,7 @@ DataTab=function(){
 				radioButtons(
 					inputId="DataTab.col_order_radiobutton",
 					label="Variable Order:",
-					choices=c("Original", "Alphabetic", "Non-NA", "Entropy"),
+					choices=c("Original", "Alphabetic", "Non-NA", "Information Entropy"),
 					selected="Original"
 				),
 				
@@ -23,7 +23,6 @@ DataTab=function(){
 					"Variables Shown:",
 					choices=c(),
 					multiple=T, selectize=F, size=20
-					#selected=colnames(MetadataRec)[1:10]
 					),
 					
 				width=2
@@ -37,20 +36,38 @@ DataTab=function(){
 }
 
 observe_DataTabEvents=function(input, output, session){
-
-	#output$DataTab.table=renderDT({
-	#	DT::datatable(MetadataRec[, input$DataTab.disp_col_selector, drop=F])
-	#});
 	
-	#output$DataTab.rowxcol=renderText({ paste(nrow(MetadataRec), " x ", ncol(MetadataRec), sep="")});
+	observeEvent(input$DataTab.disp_col_selector, {
+		output$DataTab.table=renderDT(
+			DT::datatable(session$userData[["Metadata"]][, input$DataTab.disp_col_selector, drop=F]))
+		});	
 	
-	#observeEvent(input$DataTab.col_order_radiobutton,{
-	#	selected=input$DataTab.disp_col_selector;
-	#	DataTab.column_order<<-DataTab.get_column_order(MetadataRec, input$DataTab.col_order_radiobutton);
-	#	updateSelectInput(session, "DataTab.disp_col_selector", choices=DataTab.column_order, selected=selected);
-	#});
+	output$DataTab.rowxcol=renderText({
+		metadata=session$userData[["Metadata"]];
+		
+		if(!is.null(metadata)){
+			nrows=nrow(metadata);
+			ncols=ncol(metadata);
+		}else{
+			nrows=0;
+			ncols=0;
+		}
+		
+		paste(nrows, " x ", ncols, sep="")}
+	);
+	
+	observeEvent(input$DataTab.col_order_radiobutton,{
+		cat("DataTab Column Order Radiobutton\n");
+		selected=input$DataTab.disp_col_selector;
+		metadata=session$userData[["Metadata"]];
+		if(!is.null(metadata)){
+			DataTab.column_order=DataTab.get_column_order(metadata, input$DataTab.col_order_radiobutton);
+			updateSelectInput(session, "DataTab.disp_col_selector", choices=DataTab.column_order, selected=selected);
+		}
+	});
 	
 }
+
 
 ###############################################################################
 
@@ -62,13 +79,12 @@ DataTab.get_column_order=function(mat, ordering){
 		var_ordering=sort(varnames);
 	}else if(ordering=="Non-NA"){
 		var_ordering=varnames[order(decreasing=F, get_numNAs(mat))];
-	}else if(ordering=="Entropy"){
+	}else if(ordering=="Information Entropy"){
 		var_ordering=varnames[order(decreasing=T, get_entropy(mat))];
 	}else{
 		var_ordering=varnames;
 	}
 
-	print(var_ordering);
 	return(var_ordering)
 }
 
@@ -111,8 +127,8 @@ get_entropy=function(mat){
 #------------------------------------------------------------------------------
 
 get_numNAs=function(mat){
+	
 	num_nas=apply(mat, 2, function(x){ sum(is.na(x))});
-	print(num_nas);
 	return(num_nas);
 }
 

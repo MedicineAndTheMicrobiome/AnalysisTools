@@ -147,7 +147,16 @@ observe_ImportExportTabEvents=function(input, output, session){
 	
 	observeEvent(input$ImportExportTab.metadata_load, {
 		cat("Metadata Load File: ", input$ImportExportTab.metadata_load$datapath, "\n");
-		MetadataRec=MetadataRec.read_metadata(input$ImportExportTab.metadata_load$datapath);
+		metadata=MetadataRec.read_metadata(input$ImportExportTab.metadata_load$datapath);
+		
+		output$DataTab.table=renderDT(metadata);
+		
+		metadata_colnames=colnames(metadata);
+		updateSelectInput(session, "DataTab.disp_col_selector", 
+			choices=metadata_colnames, selected=metadata_colnames);
+		
+		session$userData[["Metadata"]]=metadata;
+		cat("Leaving metadata load\n");
 	});
 	
 	#observeEvent(input$ImportExportTab.transformation_load, {
@@ -201,6 +210,7 @@ observe_ImportExportTabEvents=function(input, output, session){
 			}
 		);
 	
+	cat("Leaving observe_ImportExportTabEvents\n");
 }
 
 ###############################################################################

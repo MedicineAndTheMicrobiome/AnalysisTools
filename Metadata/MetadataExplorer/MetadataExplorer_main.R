@@ -31,9 +31,6 @@ ui = fluidPage(
 ###############################################################################
 
 server = function(input, output, session) {
-
-	MetadataRec=matrix(NA, nrow=0, ncol=0);
-
 	observe_ImportExportTabEvents(input, output, session);
 	observe_DataTabEvents(input, output, session);
 	observe_CurationTabEvents(input, output, session);
