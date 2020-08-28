@@ -324,7 +324,7 @@ intersect_pairings_map=function(pairs_map, keepers){
 }
 
 split_goodbad_pairings_map=function(pairs_map){
-	
+
 	num_rows=nrow(pairs_map);
 	keepers=apply(pairs_map, 1, function(x){ all(!is.na(x))});
 
@@ -968,7 +968,7 @@ num_factors=ncol(factors);
 # Relevel factor levels
 if(ReferenceLevelsFile!=""){
         ref_lev_mat=load_reference_levels_file(ReferenceLevelsFile)
-        factors=relevel_factors(kept_factors, ref_lev_mat);
+        factors=relevel_factors(factors, ref_lev_mat);
 }else{
         cat("No Reference Levels File specified.\n");
 }
@@ -1506,6 +1506,14 @@ mtext("After Controlling for Covariates & Predictors", side=3, font=2, line=1);
 mtext("Regression Coefficient", side=2, font=1, line=3.75);
 
 ###############################################################################
+
+write.table(category_alr_pval_mat[,1:NumPredVariables, drop=F],
+	file=paste(OutputRoot, ".alr_as_pred.nolabels.pvals.tsv", sep=""), 
+	sep="\t", quote=F, col.names=NA, row.names=T);
+
+write.table(category_alr_coef_mat[,1:NumPredVariables, drop=F],
+	file=paste(OutputRoot, ".alr_as_pred.nolabels.coefs.tsv", sep=""), 
+	sep="\t", quote=F, col.names=NA, row.names=T);
 
 # Write out predictor ALR predictors
 rownames(category_alr_pval_mat)=paste(ResponseName,".",rownames(category_alr_pval_mat), sep="");

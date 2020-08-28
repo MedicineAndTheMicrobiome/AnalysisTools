@@ -1,6 +1,6 @@
 #!/usr/bin/Rscript
 
-test_code=F;
+test_code=T;
 
 sample_sheet_validator=function(df){
 
@@ -50,6 +50,16 @@ sample_sheet_validator=function(df){
 	samp_mat=as.matrix(df[sample_begin_ix:df_rows,,drop=F]);
 	hdr=as.matrix(df[sample_id_header_ix,]);
 	colnames(samp_mat)=hdr;
+
+	# Confirm column names are as expected:
+	expected_columns=c("Sample_ID", "Sample_Name", "index", "I7_Index_ID")
+	missing_columns=setdiff(expected_columns,hdr);
+	if(length(missing_columns)>0){
+		miss_col_list=paste(missing_columns, collapse=", ");
+		err=paste("Error: Could not find columns: ", miss_col_list, "\n", sep="");
+		return(err);
+	}
+	
 
 	#print(samp_mat)
 	num_samples=nrow(samp_mat);
@@ -165,6 +175,23 @@ sample_sheet_validator=function(df){
 		);
 	}else{
 		bad_char_msg="OK: All Sample IDs have valid characters.";
+	}
+
+
+	#----------------------------------------------------------------------
+	cat("Checking for underscore at end of sample ID...\n");
+	bad_samp_ids=character();
+	for(i in 1:num_samples){
+		if(length(grep("_$", samp_ids[i]))>0){
+			bad_samp_ids=c(bad_samp_ids, samp_ids[i]);
+		}
+	}
+	if(length(bad_samp_ids)>0){
+		bad_char_endunderscore_msg=c("ERROR: Underscore found at end of Sample IDs",
+			paste(bad_samp_ids, collapse=", ")
+		);
+	}else{
+		bad_char_endunderscore_msg="OK: All Sample IDs don't have underscores at end";
 	}
 
 	#----------------------------------------------------------------------
@@ -294,6 +321,7 @@ sample_sheet_validator=function(df){
 		samp_id_and_names_match_msg,
 		mixcase_msg,
 		bad_char_msg,
+		bad_char_endunderscore_msg,
 		residual_xxx_placeholder_msg,
 		non_stnd_len_pcodes_msg,
 		plate_info_msg,
@@ -309,17 +337,17 @@ sample_sheet_validator=function(df){
 }
 
 
-if(test_code && T){
+if(test_code && F){
 
 	cat("-----------------------------------------------------------------\n");
 
-	df=read.csv("example/0159_20200131_samplesheet.noErrors.csv", header=F);
+	df=read.csv("example/20200819_a_saliva_samplesheet.csv", header=F);
 	msgs=sample_sheet_validator(df);
 	cat(paste(msgs, collapse="\n"));
 }
 
 
-if(test_code && T){
+if(test_code && F){
 	cat("-----------------------------------------------------------------\n");
 	df=read.csv("example/0159_20200131_samplesheet.wErrors.csv", header=F);
 	msgs=sample_sheet_validator(df);

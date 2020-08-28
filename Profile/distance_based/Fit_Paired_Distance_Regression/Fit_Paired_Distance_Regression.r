@@ -827,7 +827,7 @@ num_factors=ncol(factors);
 # Relevel factor levels
 if(ReferenceLevelsFile!=""){
         ref_lev_mat=load_reference_levels_file(ReferenceLevelsFile)
-        factors=relevel_factors(kept_factors, ref_lev_mat);
+        factors=relevel_factors(factors, ref_lev_mat);
 }else{
         cat("No Reference Levels File specified.\n");
 }
@@ -975,8 +975,15 @@ colors[B_sample_ids]="blue";
 
 glyphs=character(num_shared_sample_ids);
 names(glyphs)=paired_samples;
-glyphs[A_sample_ids]=substr(A_subtrahend, 1, 2);
-glyphs[B_sample_ids]=substr(B_minuend, 1, 2);
+
+# Find a short but unique abbreviation
+shorter_name_len=min(c(nchar(A_subtrahend), nchar(B_minuend)));
+abbrev_len=min(shorter_name_len, 5);
+while(substr(A_subtrahend, 1, abbrev_len)==substr(B_minuend, 1, abbrev_len) && abbrev_len<=shorter_name_len){
+	abbrev_len=abbrev_len+1;	
+}
+glyphs[A_sample_ids]=substr(A_subtrahend, 1, abbrev_len);
+glyphs[B_sample_ids]=substr(B_minuend, 1, abbrev_len);
 
 remap_val=function(inval, end_rng){
 	in_rng=range(inval);
@@ -1296,6 +1303,8 @@ plot_abund_wCI=function(abundances, lb, ub, num_top_categories=10, category_colo
 	dist_bt_mids=mids[2]-mids[1];
 	error_bar_half_wid=dist_bt_mids/8;
 
+	num_top_categories=min(num_top_categories, length(abundances));
+
 	for(catix in 1:num_top_categories){
 		if(ub[catix]!=lb[catix]){
 			points(
@@ -1372,6 +1381,8 @@ plot_comparisons=function(a_profs, b_profs, global_colormap, title, a_name, b_na
 	
 	sort_ix=order(avg_prof, decreasing=T);
 
+	topN=min(topN, ncol(comb_prof));
+
 	avg_prof=avg_prof[sort_ix[1:topN]];
 	a_profs=a_profs[,sort_ix[1:topN], drop=F];
 	b_profs=b_profs[,sort_ix[1:topN], drop=F];
@@ -1402,14 +1413,14 @@ plot_comparisons=function(a_profs, b_profs, global_colormap, title, a_name, b_na
 			lrab_bs[bsix,]=log10((a_bs_means[bsix,]+minabund)/(b_bs_means[bsix,]+minabund));
 		}
 
-		a_95ci_ub=apply(a_bs_means, 2, function(x){ quantile(x, .975);});
-		a_95ci_lb=apply(a_bs_means, 2, function(x){ quantile(x, .025);});
+		a_95ci_ub=apply(a_bs_means, 2, function(x){ quantile(x, .975, na.rm=T);});
+		a_95ci_lb=apply(a_bs_means, 2, function(x){ quantile(x, .025, na.rm=T);});
 
-		b_95ci_ub=apply(b_bs_means, 2, function(x){ quantile(x, .975);});
-		b_95ci_lb=apply(b_bs_means, 2, function(x){ quantile(x, .025);});
+		b_95ci_ub=apply(b_bs_means, 2, function(x){ quantile(x, .975, na.rm=T);});
+		b_95ci_lb=apply(b_bs_means, 2, function(x){ quantile(x, .025, na.rm=T);});
 
-		lrab_95ci_ub=apply(lrab_bs, 2, function(x){ quantile(x, .975);});
-		lrab_95ci_lb=apply(lrab_bs, 2, function(x){ quantile(x, .025);});
+		lrab_95ci_ub=apply(lrab_bs, 2, function(x){ quantile(x, .975, na.rm=T);});
+		lrab_95ci_lb=apply(lrab_bs, 2, function(x){ quantile(x, .025, na.rm=T);});
 	}else{
 		a_95ci_ub=a_mean_prof;
 		a_95ci_lb=a_mean_prof;
@@ -1423,15 +1434,15 @@ plot_comparisons=function(a_profs, b_profs, global_colormap, title, a_name, b_na
 	lr_ymax=max(abs(c(lrab_95ci_ub, lrab_95ci_lb, max_abs_lr)));
 
 	par(mar=c(6,6,2,1));
-	plot_abund_wCI(a_mean_prof, a_95ci_lb, a_95ci_ub, num_top_categories=15, 
+	plot_abund_wCI(a_mean_prof, a_95ci_lb, a_95ci_ub, num_top_categories=topN, 
 		ymax=ymax, bar_col, title=a_name, ylab=ylab);
 
 	par(mar=c(6,2,2,1));
-	plot_abund_wCI(b_mean_prof, b_95ci_lb, b_95ci_ub, num_top_categories=15, 
+	plot_abund_wCI(b_mean_prof, b_95ci_lb, b_95ci_ub, num_top_categories=topN, 
 		ymax=ymax, bar_col, title=b_name, ylab="");
 
 	par(mar=c(6,2,2,3));
-	plot_lograt_wCI(lrab_prof, lb=lrab_95ci_lb, ub=lrab_95ci_ub, num_top_categories=15, 
+	plot_lograt_wCI(lrab_prof, lb=lrab_95ci_lb, ub=lrab_95ci_ub, num_top_categories=topN, 
 		ymax=lr_ymax, bar_col, title=paste("Log10(", a_name, "/", b_name,")", sep=""), ylab="");
 
 	stats=list();
@@ -1721,10 +1732,10 @@ plot_dist_hist=function(a_dist_arr, b_dist_arr, a_name, b_name, acol, bcol){
 regress_dispersion=function(Adist_arr, Bdist_arr, Aname, Bname, model_var, factors){
 
 	A_samp_ids=names(Adist_arr);
-	factors=factors[A_sample_ids,];
+	factors=factors[A_sample_ids,,drop=F];
 	
 	num_model_var=length(model_var);
-	cat("Number of Predictors: ", num_model_var, "\n");
+	cat("RegressDispersion: Number of Predictors: ", num_model_var, "\n");
 
 	pred_string=paste(model_var, collapse=" + ");
 	A_disp_model_string=paste("Adist_arr ~ ", pred_string, sep="");
@@ -1762,10 +1773,10 @@ regress_diff_dispersion=function(Adist_arr, Bdist_arr, Aname, Bname, model_var, 
 
 	centr_diff=Bdist_arr-Adist_arr;
 	A_samp_ids=names(centr_diff);
-	factors=factors[A_sample_ids,];
+	factors=factors[A_sample_ids,,drop=F];
 	
 	num_model_var=length(model_var);
-	cat("Number of Predictors: ", num_model_var, "\n");
+	cat("RegressDifferenceDispersion: Number of Predictors: ", num_model_var, "\n");
 
 	pred_string=paste(model_var, collapse=" + ");
 	diff_disp_model_string=paste("centr_diff ~ ", pred_string, sep="");
