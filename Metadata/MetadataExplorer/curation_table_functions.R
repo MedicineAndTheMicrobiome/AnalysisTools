@@ -34,8 +34,7 @@ VariableInfo.init=function(num_variables){
 
 	VariableInfo=as.data.frame(matrix(NA, nrow=num_variables, ncol=num_var_info_colnames));
 	colnames(VariableInfo)=var_info_colnames;
-	VariableInfo<<-VariableInfo;
-	return;
+	return(VariableInfo);
 }
 
 VariableInfo.check_variable_name=function(vname){
@@ -89,7 +88,7 @@ VariableInfo.build=function(metadata){
 	variable_names=colnames(metadata);
 	num_samples=nrow(metadata);
 	
-	VariableInfo.init(num_variables);
+	VariableInfo=VariableInfo.init(num_variables);
 	VariableInfo[,"VariableName"]=variable_names;
 	VariableInfo[,"IsVarnameValid"]=sapply(VariableInfo[,"VariableName"], VariableInfo.check_variable_name);
 	
@@ -207,7 +206,7 @@ VariableInfo.build=function(metadata){
 		}
 	}
 	
-	VariableInfo<<-VariableInfo;
+	return(VariableInfo);
 	
 }
 
@@ -314,7 +313,7 @@ if(!exists("integration")){
 	setwd("D:\\work_git\\AnalysisTools\\Metadata\\MetadataExplorer");
 	test_mat=as.data.frame(read.table("TestExample.tsv", as.is=T, check.names=F, header=T, sep="\t"));
 	
-	VariableInfo.build(test_mat);
+	VariableInfo=VariableInfo.build(test_mat);
 	print(VariableInfo);
 
 	WarningsTable=WarningsTable.GenerateFromVariableInfo(VariableInfo);
