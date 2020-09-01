@@ -149,13 +149,27 @@ observe_ImportExportTabEvents=function(input, output, session){
 		cat("Metadata Load File: ", input$ImportExportTab.metadata_load$datapath, "\n");
 		metadata=MetadataRec.read_metadata(input$ImportExportTab.metadata_load$datapath);
 		
+		#######################################################################
+		
+		# Update data across tabs
 		output$DataTab.table=renderDT(metadata);
+		
+		available_variables=sort(colnames(metadata));
+		updateSelectInput(session, inputId="ModelBuilderTab.available_selector",
+			choices=available_variables);
+			
+		session$userData[["Metadata"]]=metadata;	
+		session$userData[["ModelBuilderSets"]][["ModelBuilderTab.available_selector"]]=available_variables;
+	
+		
+		#
+		#######################################################################
+		
 		
 		metadata_colnames=colnames(metadata);
 		updateSelectInput(session, "DataTab.disp_col_selector", 
 			choices=metadata_colnames, selected=metadata_colnames);
 		
-		session$userData[["Metadata"]]=metadata;
 		cat("Leaving metadata load\n");
 	});
 	
