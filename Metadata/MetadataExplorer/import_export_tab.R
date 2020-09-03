@@ -161,7 +161,6 @@ observe_ImportExportTabEvents=function(input, output, session){
 		session$userData[["Metadata"]]=metadata;	
 		session$userData[["ModelBuilderSets"]][["ModelBuilderTab.available_selector"]]=available_variables;
 	
-		
 		#
 		#######################################################################
 		

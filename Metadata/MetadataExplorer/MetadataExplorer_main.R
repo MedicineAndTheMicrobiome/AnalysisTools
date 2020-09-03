@@ -34,6 +34,7 @@ server = function(input, output, session) {
 
 	session$userData[["ModelBuilderSets"]]=ModelBuilderTab.init_variables();
 	session$userData[["Metadata"]]=matrix(NA, ncol=0, nrow=0);
+	session$userData[["StudyType"]]=list();
 
 	observe_ImportExportTabEvents(input, output, session);
 	observe_DataTabEvents(input, output, session);

@@ -76,10 +76,11 @@ ModelBuilderTab=function(){
 
 	tabPanel("Model Builder",
 		fluidRow(
-			column(3, tags$h1("Model Builder"), align="right"),
+			column(3, tags$h1(tags$b("Model Builder")), align="right"),
 			tags$br(),
 			actionLink("ModelBuilderTab.MainHelp", NULL, icon=icon("question-circle"))
 		),
+		"Use this tool to organize the variables in your metadata into systematic groupings.",
 		tags$hr(),
 		fixedRow(
 			column(2,
