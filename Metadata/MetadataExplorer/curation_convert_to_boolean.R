@@ -39,20 +39,6 @@ BooleanConversionDialogBox=function(in_values, in_varname){
 }
 
 
-BadVariableName_DialogBox=function(variable, mesg=NULL){
-	modalDialog(
-		fluidPage(
-			tags$h4(paste("The variable \"", variable, "\" is invalid.", sep="")),
-			tags$h5(ifelse(is.null(mesg), "", mesg)),
-			tags$br(),
-			tags$h5("Please try again."),
-		),
-		footer=fluidRow(
-			column(2, actionButton("BadVN.okButton", label="OK")),
-		)
-	);
-}
-
 CantSave_DialogBox=function(mesg=NULL){
 	modalDialog(
 		fluidPage(
@@ -158,31 +144,6 @@ observe_BooleanConversionDialogBoxEvents=function(input, output, session, in_val
 ###############################################################################
 # Supporting constants and functions specific to this group of UIs
 
-check_variable_name=function(varname, existing_varnames){
-# This function is just for a quick check for egregiously bad names
-
-	if(length(grep("^[0-9]", varname))){
-		return("The variable name may not start with a number.");
-	}
-	
-	if(length(grep("\\s", varname))){
-		return("The variable name may not contain any spaces.");
-	}
-	
-	if(any(varname==existing_varnames)){
-		return("The variable name is already being used.");
-	}
-	
-	bad_chars=gsub("[a-zA-Z0-9_\\.]", "", varname);
-	if(nchar(bad_chars)>0){
-		return(paste(
-			"The variable name contains the following bad characters:\n",
-				bad_chars, sep=""));
-	}
-	
-	return("");
-}
-
 get_prefix=function(name){
 	# Suggest prefix to variable name
 	if(length(grep("s$", name))){
@@ -226,41 +187,44 @@ BCDB.help_txt=tags$html(
 		"A new variable name will be suggested, but you can modify this."
 );
 
+if(!exists("integration")){
 
-###############################################################################
-# This will be provided, for now hard coded for testing
-if(1){
-	in_values=c("Apple", "Orange", "Orange", "Orange", "Apple", "Apple", "Orange");
-	in_varname="FruitType";
-}else{
-	in_values=c(8, 8, 16, 8, 16, 16, 16, 8, 8);
-	in_varname="Ounces";
+	###############################################################################
+	# This will be provided, for now hard coded for testing
+	if(1){
+		in_values=c("Apple", "Orange", "Orange", "Orange", "Apple", "Apple", "Orange");
+		in_varname="FruitType";
+	}else{
+		in_values=c(8, 8, 16, 8, 16, 16, 16, 8, 8);
+		in_varname="Ounces";
+	}
+
+	print(in_varname);
+
+	in_current_variable_names=c("apple_pie", "peach_cobbler", "portuguese_tart", "shoofly_pie");
+
+	###############################################################################
+	# Boiling plate for unit testing
+
+	ui = fluidPage(
+		actionButton("startButton", label="Start"),
+		textInput("Selected_Reference", label="Selected Reference:"),
+		textInput("Selected_Variable_Name", label="Selected Variable Name:")
+	);
+
+	###############################################################################
+
+	server = function(input, output, session) {
+
+		observeEvent(input$startButton,{
+			showModal(BooleanConversionDialogBox(in_values, in_varname), session);
+		});
+
+		observe_BooleanConversionDialogBoxEvents(input, output, session, in_values, in_varname, in_current_variable_names);
+	}
+
+	###############################################################################
+
+	# Launch
+	shinyApp(ui, server);
 }
-
-print(in_varname);
-
-in_current_variable_names=c("apple_pie", "peach_cobbler", "portuguese_tart", "shoofly_pie");
-
-###############################################################################
-# Boiling plate for unit testing
-
-ui = fluidPage(
-	actionButton("startButton", label="Start"),
-	textInput("Selected_Reference", label="Selected Reference:"),
-	textInput("Selected_Variable_Name", label="Selected Variable Name:")
-);
-
-###############################################################################
-
-server = function(input, output, session) {
-
-	observeEvent(input$startButton,{
-		showModal(BooleanConversionDialogBox(in_values, in_varname), session);
-	});
-
-	observe_BooleanConversionDialogBoxEvents(input, output, session, in_values, in_varname, in_current_variable_names);
-}
-
-###############################################################################
-# Launch
-shinyApp(ui, server);

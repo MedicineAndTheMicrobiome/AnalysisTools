@@ -3,6 +3,11 @@ library(DT)
 
 source("D:\\work_git\\AnalysisTools\\Metadata\\MetadataExplorer\\curation_table_functions.R");
 
+source("D:\\work_git\\AnalysisTools\\Metadata\\MetadataExplorer\\curation_variablename_dialog.R");
+source("D:\\work_git\\AnalysisTools\\Metadata\\MetadataExplorer\\curation_data_transformation.R");
+source("D:\\work_git\\AnalysisTools\\Metadata\\MetadataExplorer\\curation_date_reformat_dialog.R");
+source("D:\\work_git\\AnalysisTools\\Metadata\\MetadataExplorer\\curation_convert_to_boolean.R");
+
 CurationTab=function(){
 
 	tabPanel("Curation",
@@ -31,10 +36,9 @@ observe_CurationTabEvents=function(input, output, session){
 	
 		metadata=session$userData[["Metadata"]]
 		variable_info=VariableInfo.build(metadata);
-		print(variable_info);
-
+	
 		warnings_table=WarningsTable.GenerateFromVariableInfo(variable_info);
-		print(warnings_table);
+		session$userData[["Curation"]][["WarningsTable"]]=warnings_table;
 		
 		output$CurationTab.warnings_table=
 			renderDT(
@@ -50,6 +54,65 @@ observe_CurationTabEvents=function(input, output, session){
 	observeEvent(input$CurationTab.warnings_table_rows_selected, {
 		selected_row=input$CurationTab.warnings_table_rows_selected;
 		cat("Row Selected: ", selected_row, "\n");
+		
+		warnings_table=session$userData[["Curation"]][["WarningsTable"]];
+		warning_line=warnings_table[selected_row,];
+		varname=warning_line["VariableName"];
+		warning_code=warning_line["WarningCode"];
+		
+		metadata=session$userData[["Metadata"]];
+		values=metadata[,varname]
+		
+		print(warning_code);
+		print(values);
+		print(varname);
+		
+		dt_proxy=dataTableProxy("CurationTab.warnings_table");
+		
+		switch(warning_code,
+			"INV_VAR_NAME"={
+				showModal(BadVariableName_DialogBox(varname));
+			},
+			"NA_GT50"={
+				showModal();
+			},
+			"NA_GT25"={
+				showModal();
+			},
+			"NA_GT10"={
+				showModal();
+			},
+			"DICH_NOTBOOL"={
+				showModal(BooleanConversionDialogBox(values, varname));
+			},
+			"ALL_IDENT"={
+				showModal();
+			},
+			"REC_SQRT_TRANS"={
+				DataTransformationDialogBoxServer("sqrt_trans", values, varname, default_trans="sqrt(x)");
+			},
+			"REC_LOG_TRANS"={
+				DataTransformationDialogBoxServer("log_trans", values, varname, default_trans="ln(x)");
+			},
+			"REC_LOGIT_TRANS"={
+				DataTransformationDialogBoxServer("logit_trans", values, varname, default_trans="logit(x)");
+			},
+			"NON_ISODATE"={
+				DateFormatConversionDialogBoxServer("date_format", values, varname);
+			},
+			"INV_LVL_NAMES"={
+				showModal();
+			},
+			"EXCESS_CATS"={
+				showModal();
+			},	
+			"UNDERREP_CATS"={
+				showModal();
+			}
+		);
+		
+		selectRows(dt_proxy, NULL);
+		
 	});
 	
 }
