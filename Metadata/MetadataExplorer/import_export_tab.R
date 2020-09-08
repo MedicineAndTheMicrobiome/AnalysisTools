@@ -6,15 +6,12 @@ ImportExportTab=function(){
 
 	tabPanel("Import/Export",
 		
-		#tags$h5("Center for"),
-		#tags$h4("Medicine and the Microbiome"),
-		#tags$h6("University of Pittsburgh"),
-		
 		img(src="microbiome-logo-option.png", align="right"),
 		
 		tags$h1(tags$b("Metadata Explorer")),
 		
 		tags$h4("Welcome to the CMM's Metadata Explorer application!"),
+		tags$h5("If you are starting afresh with a new metadata file, please go ahead and upload it below."),
 		
 		tags$hr(),
 		
@@ -23,6 +20,8 @@ ImportExportTab=function(){
 			fixedRow(
 				column(4,
 					tags$b("Upload your Metadata File:"),
+					tags$style(".fa-flag {color:#00AA00}"),
+					actionLink("ImportExportTab.start_here", NULL, icon=icon("flag")),
 					tags$p("If this is a first or returning session, please upload your metadata file here."),
 					fileInput(
 						inputId="ImportExportTab.metadata_load",
@@ -40,8 +39,36 @@ ImportExportTab=function(){
 								outputId="ImportExportTab.metadata_download",
 								label="Download Metadata"
 								)),
-						column(1,
+						column(2,
 							textOutput("ImportExportTab.metadata_ready"))
+					)
+				)
+			),#fixedRow
+			
+			tags$hr(),
+			
+			fixedRow(
+				column(4,
+					tags$b("Upload your Transformation File:"),
+					tags$p("You may upload a previously saved Transformation File (.trn) here."),
+					fileInput(
+						inputId="ImportExportTab.transformation_load",
+						label=NULL, #label="Upload Your Metadata File:",
+						accept=c(
+							".txt",
+							".trn"))
+						),
+				column(5,
+					tags$p(tags$b("Download your Transformation File:")),
+					tags$p("You may download your new transformations, if you have modified it."),
+					fixedRow(
+						column(5,
+							downloadButton(
+								outputId="ImportExportTab.transformation_download",
+								label="Download Transformation"
+								)),
+						column(2,
+							textOutput("ImportExportTab.transformation_ready"))
 					)
 				)
 			),#fixedRow
@@ -70,11 +97,12 @@ ImportExportTab=function(){
 								outputId="ImportExportTab.study_download",
 								label="Download Study"
 								)),
-						column(1,
+						column(2,
 							textOutput("ImportExportTab.study_ready"))
 					)
 				),
 			),#fixedRow
+
 			
 			tags$hr(),
 			
@@ -99,7 +127,7 @@ ImportExportTab=function(){
 								label="Download Model"
 								)
 						),
-						column(1,	
+						column(2,	
 							textOutput("ImportExportTab.model_ready"))
 					)
 				)
@@ -111,6 +139,7 @@ ImportExportTab=function(){
 observe_ImportExportTabEvents=function(input, output, session){
 
 	output$ImportExportTab.metadata_ready=renderText("Not Ready")
+	output$ImportExportTab.transformation_ready=renderText("Not Ready")
 	output$ImportExportTab.study_ready=renderText("Not Ready")
 	output$ImportExportTab.model_ready=renderText("Not Ready")
 	
@@ -118,9 +147,34 @@ observe_ImportExportTabEvents=function(input, output, session){
 	
 	observeEvent(input$ImportExportTab.metadata_load, {
 		cat("Metadata Load File: ", input$ImportExportTab.metadata_load$datapath, "\n");
-		MetadataRec.read_metadata(input$ImportExportTab.metadata_load$datapath);
-		MetadataRec.print();
+		metadata=MetadataRec.read_metadata(input$ImportExportTab.metadata_load$datapath);
+		
+		#######################################################################
+		
+		# Update data across tabs
+		output$DataTab.table=renderDT(metadata);
+		
+		available_variables=sort(colnames(metadata));
+		updateSelectInput(session, inputId="ModelBuilderTab.available_selector",
+			choices=available_variables);
+			
+		session$userData[["Metadata"]]=metadata;	
+		session$userData[["ModelBuilderSets"]][["ModelBuilderTab.available_selector"]]=available_variables;
+	
+		#
+		#######################################################################
+		
+		
+		metadata_colnames=colnames(metadata);
+		updateSelectInput(session, "DataTab.disp_col_selector", 
+			choices=metadata_colnames, selected=metadata_colnames);
+		
+		cat("Leaving metadata load\n");
 	});
+	
+	#observeEvent(input$ImportExportTab.transformation_load, {
+	#	cat("Study Load File: ", input$ImportExportTab.study_load$datapath, "\n");
+	#});
 
 	observeEvent(input$ImportExportTab.study_load, {
 		cat("Study Load File: ", input$ImportExportTab.study_load$datapath, "\n");
@@ -141,6 +195,15 @@ observe_ImportExportTabEvents=function(input, output, session){
 			}
 		);
 		
+	#output$ImportExportTab.transformation_download=downloadHandler(
+	#		filename=function(){
+	#			paste("MyTransformations_", format(Sys.time(), "%y%m%d_%H%M"), ".tsv", sep="");
+	#		},
+	#		content=function(filename){
+	#			TransformationRec.write_transformations(filename);
+	#		}
+	#	);
+		
 	output$ImportExportTab.study_download=downloadHandler(
 			filename=function(){
 				paste("MyStudy_", format(Sys.time(), "%y%m%d_%H%M"), ".stu", sep="");
@@ -159,38 +222,36 @@ observe_ImportExportTabEvents=function(input, output, session){
 				ModelRec.write_model(filename);
 			}
 		);
-
-	observeEvent(input$ImportExportTab.file_load,{
-		print(input$ImportExportTab.file_load);
-	});
 	
+	cat("Leaving observe_ImportExportTabEvents\n");
 }
 
 ###############################################################################
 
+if(!exists("integration")){
 
-###############################################################################
-
-ui = fluidPage(
-	mainPanel(
-		tabsetPanel(
-			ImportExportTab(),
-			tabPanel("Data", ""),
-			tabPanel("Curation", ""),
-			tabPanel("Study",""),
-			tabPanel("Model Explorer", "")
+	ui = fluidPage(
+		mainPanel(
+			tabsetPanel(
+				ImportExportTab(),
+				tabPanel("Data", ""),
+				tabPanel("Curation", ""),
+				tabPanel("Study",""),
+				tabPanel("Model Explorer", "")
+			)
 		)
-	)
-);
+	);
 
-ImportExportTab.data_matrix=c();
+	ImportExportTab.data_matrix=c();
 
-###############################################################################
+	###############################################################################
 
-server = function(input, output, session) {
-	observe_ImportExportTabEvents(input, output, session);
+	server = function(input, output, session) {
+		observe_ImportExportTabEvents(input, output, session);
+	}
+
+	###############################################################################
+	# Launch
+	shinyApp(ui, server);
+
 }
-
-###############################################################################
-# Launch
-shinyApp(ui, server);

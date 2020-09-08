@@ -22,7 +22,7 @@ StudyTab=function(){
 
 }
 
-observe_StudyTabEvents=function(input, output, session, avail_variables){
+observe_StudyTabEvents=function(input, output, session){
 
 	observeEvent(input$StudyTab.StudyType_radioButton,{
 		cat("StudyType Radio Button Clicked.\n");
@@ -60,11 +60,12 @@ observe_StudyTabEvents=function(input, output, session, avail_variables){
 		
 		# (Re)draw Select variable controls
 		output$StudyTab.study_specific_ui=renderUI({
-		
+			
+			avail_variables=StudyTab.get_data_colnames(session);
+			
 			fluidPage(
 			tags$h1(),
 			tags$h4("Identify the necessary variables from your dataset:"),
-				
 		
 			switch(input$StudyTab.StudyType_radioButton,
 				"Cross-Sectional" = 
@@ -108,15 +109,14 @@ observe_StudyTabEvents=function(input, output, session, avail_variables){
 	});
 
 	observeEvent(input$StudyTab.StudyType_checkButton,{
-		cat("Check Button:\n");
-		
-		
-		
+	
+		session$userData[["StudyType"]][["Type"]]=input$StudyTab.StudyType_radioButton;
+			
 		switch(input$StudyTab.StudyType_radioButton,
 				"Cross-Sectional" = 
 						{
 						
-						sbj_ids=StudyTab.get_column(input$StudyTab.StudyType_subjectID.cs);
+						sbj_ids=StudyTab.get_column(input$StudyTab.StudyType_subjectID.cs, session);
 										
 						output$StudyTab.StudyType_checkResults_ui=
 							renderUI(tagList(
@@ -133,14 +133,15 @@ observe_StudyTabEvents=function(input, output, session, avail_variables){
 						
 		
 						output$StudyTab.subjectid_validate_plots=renderPlot({
-								StudyTab.subjectid_validate(sbj_ids);
+								StudyTab.subjectid_validate(sbj_ids, "cross-sectional");
 							});
-							
+													
+						session$userData[["StudyType"]][["SampleID.cs"]]=input$StudyTab.StudyType_subjectID.cs;
 						},
 				"Longitudinal" =
 						{
-						sbj_ids=StudyTab.get_column(input$StudyTab.StudyType_subjectID.long);
-						time_offsets=StudyTab.get_column(input$StudyTab.StudyType_TimeOffsets);
+						sbj_ids=StudyTab.get_column(input$StudyTab.StudyType_subjectID.long, session);
+						time_offsets=StudyTab.get_column(input$StudyTab.StudyType_TimeOffsets, session);
 						
 						output$StudyTab.StudyType_checkResults_ui=
 							renderUI(tagList(
@@ -168,18 +169,21 @@ observe_StudyTabEvents=function(input, output, session, avail_variables){
 									));
 									
 						output$StudyTab.subjectid_validate_plots=renderPlot({
-							StudyTab.subjectid_validate(sbj_ids);
+							StudyTab.subjectid_validate(sbj_ids, "longitudinal");
 							});						
 						
 						output$StudyTab.timeoffset_validate_plots=renderPlot({
 								StudyTab.timeoffset_validate(sbj_ids, time_offsets);
 							});
-							
+									
+						session$userData[["StudyType"]][["SampleID.long"]]=input$StudyTab.StudyType_subjectID.long;
+						session$userData[["StudyType"]][["TimeOffsets"]]=input$StudyTab.StudyType_radioButton;	
+											
 						},
 				"Paired" = 
 						{
-						sbj_ids=StudyTab.get_column(input$StudyTab.StudyType_subjectID.paired);
-						pairings=StudyTab.get_column(input$StudyTab.StudyType_Pairings);
+						sbj_ids=StudyTab.get_column(input$StudyTab.StudyType_subjectID.paired, session);
+						pairings=StudyTab.get_column(input$StudyTab.StudyType_Pairings, session);
 						
 						output$StudyTab.StudyType_checkResults_ui=
 							renderUI(tagList(
@@ -207,13 +211,16 @@ observe_StudyTabEvents=function(input, output, session, avail_variables){
 									));
 									
 						output$StudyTab.subjectid_validate_plots=renderPlot({
-							StudyTab.subjectid_validate(sbj_ids);
+							StudyTab.subjectid_validate(sbj_ids, "paired");
 							});						
 						
 						output$StudyTab.pairings_validate_plots=renderPlot({
 								StudyTab.pairings_validate(sbj_ids, pairings);
 							});
 							
+						session$userData[["StudyType"]][["PairingCriteria"]]=input$StudyTab.StudyType_radioButton;
+						session$userData[["StudyType"]][["SampleID.paired"]]=input$StudyTab.StudyType_subjectID.paired;
+
 						}
 				)
 	});
@@ -221,28 +228,6 @@ observe_StudyTabEvents=function(input, output, session, avail_variables){
 
 
 ###############################################################################
-
-ui = fluidPage(
-	mainPanel(
-		tabsetPanel(
-			tabPanel("Data", ""),
-			tabPanel("Curation", ""),
-			StudyTab(),
-			tabPanel("Model Explorer", "")
-		)
-	)
-);
-
-avail_variables=c(
-	"Apples",
-	"Oranges",
-	"SubjectIDs",
-	"Pears",
-	"SampleType",
-	"PrePost",
-	"Dates",
-	"Times"
-);
 
 StudyTab.crosssection_help_text=
 	tags$html(tags$b("Cross-sectional study:"), tags$p("A study assuming a single observation per subject. "), 
@@ -257,50 +242,21 @@ StudyTab.paired_help_text=
 		tags$p("This type of study will have 2 samples(rows) per subject, and a pairing criteria ",
 		" that differentiates the 2 samples from each other."));
 
-test.nrows=200;
-
-test.cs_sbjIds={a=.05; sample(c(rep(NA,test.nrows*a), paste("s_", 1:(test.nrows*(1-a)), sep="")), test.nrows)};
-test.long_sbjIds=sample(test.cs_sbjIds[1:20], test.nrows, replace=T);
-test.offsets=sample({a=.7;as.integer(c(rexp(test.nrows*a,.0005)*.005,rpois(test.nrows*(1-a),35)))}, test.nrows);
-
-test.pairings_sbjIds=paste("ps_", rep(1:(test.nrows/2),2), sep="");
-test.pairings_criteria={a=.20; b=.15; 
-	c(
-		rep(NA, test.nrows/2*a),
-		rep("Before", test.nrows/2*(1-a)),
-		rep("After", test.nrows/2*(1-b)),
-		rep(NA, test.nrows/2*b)
-	)};
 
 
-
-StudyTab.get_column=function(var_name){
-	return(test.matrix[,var_name]);
+StudyTab.get_column=function(var_name, session){
+	return(session$userData[["Metadata"]][,var_name]);
 }	
-StudyTab.get_data_colnames=function(){
-	return(colnames(test.matrix));
+StudyTab.get_data_colnames=function(session){
+	return(colnames(session$userData[["Metadata"]]));
 }
 
 
 
-test.matrix=cbind(test.cs_sbjIds, test.pairings_sbjIds, test.pairings_criteria, test.long_sbjIds, test.offsets);
-print(test.matrix);
-
-avail_variables=c(
-	StudyTab.get_data_colnames(),
-	"Apples",
-	"Oranges",
-	"SubjectIDs",
-	"Pears",
-	"SampleType",
-	"PrePost",
-	"Dates",
-	"Times"
-);
 
 #------------------------------------------------------------------------------
 
-StudyTab.subjectid_validate=function(subject_ids){
+StudyTab.subjectid_validate=function(subject_ids, study_type){
 	
 	na_ix=is.na(subject_ids);
 	num_nas=sum(na_ix);
@@ -313,31 +269,107 @@ StudyTab.subjectid_validate=function(subject_ids){
 	
 	bar_values=c(total_samples, num_nonas, num_uniq, num_dups, num_nas);
 	max_bar_value=max(bar_values);
+	prop_uniq=num_uniq/num_nonas;
 	
-	mids=barplot(
-		bar_values,
-		names.arg=c("Rows", "Non-NAs", "Unique", "Duplicates", "NAs"),
-		ylab="Counts",
-		ylim=c(0, max_bar_value*1.1)
-	);
+	par(mar=c(7,4,4,1));
 	
-	text(mids, bar_values, bar_values, pos=3);
+	if(study_type=="cross-sectional"){
+		
+		mids=barplot(
+			bar_values,
+			names.arg=c("Rows", "Non-NAs", "Unique", "Duplicates", "NAs"),
+			col=c("grey", "grey", "blue", "red", "grey"),
+			ylab="Counts",
+			ylim=c(0, max_bar_value*1.1)
+		);
+		
+		text(mids, bar_values, bar_values, pos=3);
+		
+		mtext("In a cross-sectional study, all of your non-NA Subject IDs should be unique.",
+			side=1,
+			line=3,
+			);
+		
+		text_col=ifelse(prop_uniq<0.90, "red", "blue");
+		mtext(paste(round(100*prop_uniq,2), "% of your Subject IDs are unique.", sep=""),
+			side=1,
+			line=5,
+			col=text_col
+		);
 	
+	}else if(study_type=="longitudinal"){
+		
+		mids=barplot(
+			bar_values,
+			names.arg=c("Rows", "Non-NAs", "Unique", "Duplicates", "NAs"),
+			col=c("grey", "grey", "red", "blue", "grey"),
+			ylab="Counts",
+			ylim=c(0, max_bar_value*1.1)
+		);
+		
+		text(mids, bar_values, bar_values, pos=3);
+		
+		mtext("In a longitudinal study, you would expect to have more than 1 measurement per subject.",
+			side=1,
+			line=3,
+			);
+			
+		text_col=ifelse(prop_uniq>0.10, "red", "blue");
+		mtext(paste(round(100*prop_uniq,2), "% of your Subject IDs do not have repeated measurements.", sep=""),
+			side=1,
+			line=5,
+			col=text_col
+		);
+		
+	}else if(study_type=="paired"){
+	
+		mids=barplot(
+			bar_values,
+			names.arg=c("Rows", "Non-NAs", "Unique", "Duplicates", "NAs"),
+			col=c("grey", "grey", "red", "blue", "grey"),
+			ylab="Counts",
+			ylim=c(0, max_bar_value*1.1)
+		);
+		
+		text(mids, bar_values, bar_values, pos=3);
+		
+		mtext("In a paired study, most of your non-NA Subject IDs should have a matching pair.",
+			side=1,
+			line=3,
+			);
+			
+		text_col=ifelse(prop_uniq>0.10, "red", "blue");
+		mtext(paste(round(100*prop_uniq,2), "% of your Subject IDs are not paired.", sep=""),
+			side=1,
+			line=5,
+			col=text_col
+		);
+	}
+
 }
 
 StudyTab.timeoffset_validate=function(subject_ids, timeoffsets){
 	
+	is_numeric=is.numeric(timeoffsets);
 	offsets_val=as.numeric(timeoffsets);
 	na_ix=is.na(offsets_val);
 	nonna_offsets_val=offsets_val[!na_ix];
 	
 	num_nonna=length(nonna_offsets_val);
 	
-	if(num_nonna>0){
+	if(num_nonna>0 && is_numeric){
 		par(mfrow=c(2,1));
+		
 		par(mar=c(4,4,2,1));
 		hist(offsets_val, xlab="Time Offsets", main="", ylab="Counts");
+		
+		par(mar=c(8,4,2,1));
 		hist(table(subject_ids), xlab="Measures Per Subject", ylab="Counts", main="")
+		
+		mtext("The distribution of time offsets and measurements per subject", side=1, line=5, col="blue");
+		mtext("will depend on your sampling frequency and rate of subject drop out.", side=1, line=6, col="blue");
+		
+		
 	}else{
 		cat_counts=table(timeoffsets);
 		plot(0, type="n", xlab="", ylab="", xaxt="n", yaxt="n", main="", bty="n",
@@ -392,7 +424,6 @@ StudyTab.pairings_validate=function(sbj_ids, pairings){
 			}
 		}
 		
-		print(pairing_list_cts);
 		
 		if(error){
 			plot(0, type="n", xlab="", ylab="", xaxt="n", yaxt="n", main="", bty="n",
@@ -406,6 +437,7 @@ StudyTab.pairings_validate=function(sbj_ids, pairings){
 				pairing_list_cts[[uniq_pairings[2]]]
 				);
 				
+			par(mar=c(7,4,1,1));
 			mids=barplot(
 				bar_values,
 				names.arg=c(
@@ -417,20 +449,80 @@ StudyTab.pairings_validate=function(sbj_ids, pairings){
 			);
 			
 			text(mids, bar_values, bar_values, pos=3);
+			
+			prop_paired=pairing_list_cts[["Both"]]/(pairing_list_cts[[uniq_pairings[1]]]+pairing_list_cts[[uniq_pairings[2]]]);
+			msg_col=ifelse(prop_paired<.9,	"red", "blue");
+				
+			mtext(paste(round(100*prop_paired,2), "% of subjects are paired.", sep=""), side=1, line=3, col=msg_col);
+
 		}
 	}
 	
 }
 
 	
+if(!exists("integration")){
+	ui = fluidPage(
+		mainPanel(
+			tabsetPanel(
+				tabPanel("Data", ""),
+				tabPanel("Curation", ""),
+				StudyTab(),
+				tabPanel("Model Explorer", "")
+			)
+		)
+	);
 
-###############################################################################
+	avail_variables=c(
+		"Apples",
+		"Oranges",
+		"SubjectIDs",
+		"Pears",
+		"SampleType",
+		"PrePost",
+		"Dates",
+		"Times"
+	);
+	
+	test.nrows=200;
 
-server = function(input, output, session) {
+	test.cs_sbjIds={a=.05; sample(c(rep(NA,test.nrows*a), paste("s_", 1:(test.nrows*(1-a)), sep="")), test.nrows)};
+	test.long_sbjIds=sample(test.cs_sbjIds[1:20], test.nrows, replace=T);
+	test.offsets=sample({a=.7;as.integer(c(rexp(test.nrows*a,.0005)*.005,rpois(test.nrows*(1-a),35)))}, test.nrows);
 
-	observe_StudyTabEvents(input, output, session, avail_variables);
+	test.pairings_sbjIds=paste("ps_", rep(1:(test.nrows/2),2), sep="");
+	test.pairings_criteria={a=.20; b=.15; 
+		c(
+			rep(NA, test.nrows/2*a),
+			rep("Before", test.nrows/2*(1-a)),
+			rep("After", test.nrows/2*(1-b)),
+			rep(NA, test.nrows/2*b)
+		)};
+		
+	test.matrix=cbind(test.cs_sbjIds, test.pairings_sbjIds, test.pairings_criteria, test.long_sbjIds, test.offsets);
+	print(test.matrix);
+
+	avail_variables=c(
+		StudyTab.get_data_colnames(),
+		"Apples",
+		"Oranges",
+		"SubjectIDs",
+		"Pears",
+		"SampleType",
+		"PrePost",
+		"Dates",
+		"Times"
+	);
+
+	###############################################################################
+
+	server = function(input, output, session) {
+
+		observe_StudyTabEvents(input, output, session, avail_variables);
+	}
+
+	###############################################################################
+	# Launch
+	shinyApp(ui, server);
+
 }
-
-###############################################################################
-# Launch
-shinyApp(ui, server);

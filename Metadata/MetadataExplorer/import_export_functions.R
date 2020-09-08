@@ -1,7 +1,7 @@
 
 library(xml2);
 
-
+###############################################################################
 ###############################################################################
 # Model Rec Functions
 
@@ -132,7 +132,7 @@ ModelRec.remove_list=function(varcategory, name=NULL){
 
 #------------------------------------------------------------------------------
 
-if(test){
+if(!exists("integration")){
 	ModelRec.init();
 	ModelRec.set_list("Excluded", varlist=c("banned", "barred", "blocked", "ignored"));
 	ModelRec.set_list("Available", varlist=c("accessible", "applicable", "free", "usable"));
@@ -150,13 +150,14 @@ if(test){
 }
 
 ###############################################################################
+###############################################################################
 # Metadata Rec Functions
 
 MetadataRec.init=function(){
 	MetadataRec=c();
 }
 
-MetadataRec.write_metadata=function(filename){
+MetadataRec.write_metadata=function(MetadataRec, filename){
 	write.table(MetadataRec, file=filename, quote=F, sep="\t", col.names=T, row.names=F);
 }
 
@@ -191,15 +192,14 @@ MetadataRec.read_metadata=function(filename){
 	}
 	
 	MetadataRec=read.table(file=filename, header=T, quote="", sep=separator);
-	MetadataRec<<-MetadataRec;
-	return(1);
+	return(MetadataRec);
 }
 
-MetadataRec.print=function(){
+MetadataRec.print=function(MetadataRec){
 	print(MetadataRec);
 }
 
-
+###############################################################################
 ###############################################################################
 # Study Rec Functions
 
@@ -277,7 +277,6 @@ StudyRec.set_study=function(study_type, attribute_type, value, confirmed){
 }
 
 ###############################################################################
-# Model Rec Functions
 
 
 

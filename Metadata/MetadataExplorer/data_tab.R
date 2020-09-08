@@ -14,16 +14,16 @@ DataTab=function(){
 				radioButtons(
 					inputId="DataTab.col_order_radiobutton",
 					label="Variable Order:",
-					choices=c("Original", "Alphabetic", "Non-NA", "Entropy"),
+					choices=c("Original", "Alphabetic", "Non-NA", "Information Entropy"),
 					selected="Original"
 				),
 				
 				selectInput(
 					"DataTab.disp_col_selector", 
 					"Variables Shown:",
-					choices=colnames(data_matrix),
-					multiple=T, selectize=F, size=20,
-					selected=colnames(data_matrix)[1:10]),
+					choices=c(),
+					multiple=T, selectize=F, size=20
+					),
 					
 				width=2
 				),
@@ -36,20 +36,38 @@ DataTab=function(){
 }
 
 observe_DataTabEvents=function(input, output, session){
-
-	output$DataTab.table=renderDT({
-		DT::datatable(data_matrix[, input$DataTab.disp_col_selector, drop=F])
-	});
 	
-	output$DataTab.rowxcol=renderText({ paste(nrow(data_matrix), " x ", ncol(data_matrix), sep="")});
+	observeEvent(input$DataTab.disp_col_selector, {
+		output$DataTab.table=renderDT(
+			DT::datatable(session$userData[["Metadata"]][, input$DataTab.disp_col_selector, drop=F]))
+		});	
+	
+	output$DataTab.rowxcol=renderText({
+		metadata=session$userData[["Metadata"]];
+		
+		if(!is.null(metadata)){
+			nrows=nrow(metadata);
+			ncols=ncol(metadata);
+		}else{
+			nrows=0;
+			ncols=0;
+		}
+		
+		paste(nrows, " x ", ncols, sep="")}
+	);
 	
 	observeEvent(input$DataTab.col_order_radiobutton,{
+		cat("DataTab Column Order Radiobutton\n");
 		selected=input$DataTab.disp_col_selector;
-		DataTab.column_order<<-DataTab.get_column_order(data_matrix, input$DataTab.col_order_radiobutton);
-		updateSelectInput(session, "DataTab.disp_col_selector", choices=DataTab.column_order, selected=selected);
+		metadata=session$userData[["Metadata"]];
+		if(!is.null(metadata)){
+			DataTab.column_order=DataTab.get_column_order(metadata, input$DataTab.col_order_radiobutton);
+			updateSelectInput(session, "DataTab.disp_col_selector", choices=DataTab.column_order, selected=selected);
+		}
 	});
 	
 }
+
 
 ###############################################################################
 
@@ -61,13 +79,12 @@ DataTab.get_column_order=function(mat, ordering){
 		var_ordering=sort(varnames);
 	}else if(ordering=="Non-NA"){
 		var_ordering=varnames[order(decreasing=F, get_numNAs(mat))];
-	}else if(ordering=="Entropy"){
+	}else if(ordering=="Information Entropy"){
 		var_ordering=varnames[order(decreasing=T, get_entropy(mat))];
 	}else{
 		var_ordering=varnames;
 	}
 
-	print(var_ordering);
 	return(var_ordering)
 }
 
@@ -110,59 +127,67 @@ get_entropy=function(mat){
 #------------------------------------------------------------------------------
 
 get_numNAs=function(mat){
+	
 	num_nas=apply(mat, 2, function(x){ sum(is.na(x))});
-	print(num_nas);
 	return(num_nas);
 }
 
 ###############################################################################
 
-ui = fluidPage(
-	mainPanel(
-		tabsetPanel(
-			DataTab(),
-			tabPanel("Curation", ""),
-			tabPanel("Study",""),
-			tabPanel("Model Explorer", "")
+#DataTab.DataMatrix=c();
+#DataTab.column_order=colnames(DataTab.DataMatrix);
+
+###############################################################################
+
+if(!exists("integration")){
+
+	ui = fluidPage(
+		mainPanel(
+			tabsetPanel(
+				DataTab(),
+				tabPanel("Curation", ""),
+				tabPanel("Study",""),
+				tabPanel("Model Explorer", "")
+			)
 		)
-	)
-);
+	);
 
-test.cols=c("SampleID", "SubjectID", "Time", "Age", "Sex", 
-			"PercPred", "Probability", "Variable1", "Systolic", "Diastolic", 
-			"Diet", "Occupation");
-nts=50;
+	test.cols=c("SampleID", "SubjectID", "Time", "Age", "Sex", 
+				"PercPred", "Probability", "Variable1", "Systolic", "Diastolic", 
+				"Diet", "Occupation");
+	nts=50;
 
-test.matrix=cbind(
-	paste("samp", rpois(nts, 100000), sep=""),
-	paste("subj", rpois(nts, 10), sep=""),
-	rpois(nts, 30),
-	round(rnorm(nts, 40),2),
-	rbinom(nts, 1, .6),
-	
-	round(rnorm(nts, 100), 2),
-	round(runif(nts, 0,1),4),
-	round(rnorm(nts, 85, 1),2),
-	round(rnorm(nts, 120, 20),1),
-	round(rnorm(nts, 80, 20),1),
-	
-	sample(c("Apples", "Bananas", "Cucumbers", NA), nts, replace=T),
-	sample(c("Fireman", "Law Enforcement", "Dentist", "Teacher", "Nuclear Scientist", "Lawyer", "Politician", NA), nts, replace=T)
-);
+	test.matrix=cbind(
+		paste("samp", rpois(nts, 100000), sep=""),
+		paste("subj", rpois(nts, 10), sep=""),
+		rpois(nts, 30),
+		round(rnorm(nts, 40),2),
+		rbinom(nts, 1, .6),
+		
+		round(rnorm(nts, 100), 2),
+		round(runif(nts, 0,1),4),
+		round(rnorm(nts, 85, 1),2),
+		round(rnorm(nts, 120, 20),1),
+		round(rnorm(nts, 80, 20),1),
+		
+		sample(c("Apples", "Bananas", "Cucumbers", NA), nts, replace=T),
+		sample(c("Fireman", "Law Enforcement", "Dentist", "Teacher", "Nuclear Scientist", "Lawyer", "Politician", NA), nts, replace=T)
+	);
 
-colnames(test.matrix)=test.cols;
-test.matrix=test.matrix[order(test.matrix[,"SubjectID"]),];
+	colnames(test.matrix)=test.cols;
+	test.matrix=test.matrix[order(test.matrix[,"SubjectID"]),];
 
-#print(test.matrix);
-data_matrix=test.matrix;
-DataTab.column_order=colnames(data_matrix);
+	#print(test.matrix);
+	data_matrix=test.matrix;
+	DataTab.column_order=colnames(data_matrix);
 
-###############################################################################
+	###############################################################################
 
-server = function(input, output, session) {
-	observe_DataTabEvents(input, output, session);
+	server = function(input, output, session) {
+		observe_DataTabEvents(input, output, session);
+	}
+
+	###############################################################################
+	# Launch
+	shinyApp(ui, server);
 }
-
-###############################################################################
-# Launch
-shinyApp(ui, server);

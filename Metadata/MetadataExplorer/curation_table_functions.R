@@ -34,8 +34,7 @@ VariableInfo.init=function(num_variables){
 
 	VariableInfo=as.data.frame(matrix(NA, nrow=num_variables, ncol=num_var_info_colnames));
 	colnames(VariableInfo)=var_info_colnames;
-	VariableInfo<<-VariableInfo;
-	return;
+	return(VariableInfo);
 }
 
 VariableInfo.check_variable_name=function(vname){
@@ -89,7 +88,7 @@ VariableInfo.build=function(metadata){
 	variable_names=colnames(metadata);
 	num_samples=nrow(metadata);
 	
-	VariableInfo.init(num_variables);
+	VariableInfo=VariableInfo.init(num_variables);
 	VariableInfo[,"VariableName"]=variable_names;
 	VariableInfo[,"IsVarnameValid"]=sapply(VariableInfo[,"VariableName"], VariableInfo.check_variable_name);
 	
@@ -113,7 +112,7 @@ VariableInfo.build=function(metadata){
 		# Treat as number
 		as_number=as.numeric(non_na_val);
 		num_numerics=sum(!is.na(as_number));
-		is_numeric=num_numerics>0;
+		is_numeric=is.numeric(non_na_val);
 		VariableInfo[i, "IsNumeric"]=is_numeric;
 		
 		# Treat as Boolean
@@ -129,46 +128,49 @@ VariableInfo.build=function(metadata){
 		
 		if(is_numeric){
 		
-			# Check as number
-			raw_shpwlk_pvalue=shapiro.test(as_number)$p.value;
-			VariableInfo[i, "PassedShapiroWilks"]=raw_shpwlk_pvalue>0.05;
-			if(!VariableInfo[i, "PassedShapiroWilks"]){
-				if(all(as_number>=0)){
-				
-					# Transform and Test
-					#  sqrt
-					sqrt_trans=sqrt(as_number);
-					sqrt_shpwlk_pvalue=shapiro.test(sqrt_trans)$p.value;
+			if(VariableInfo[i,"NumberUnique"]>1){
+			
+				# Check as number
+				raw_shpwlk_pvalue=shapiro.test(as_number)$p.value;
+				VariableInfo[i, "PassedShapiroWilks"]=raw_shpwlk_pvalue>0.05;
+				if(!VariableInfo[i, "PassedShapiroWilks"]){
+					if(all(as_number>=0)){
 					
-					#  log
-					log_trans=log(as_number+1);
-					log_shpwlk_pvalue=shapiro.test(log_trans)$p.value;
-					
-					#  logit
-					val_range=range(as_number);
-					if(val_range[1]>0 && val_range[2]<1){
-						logit_trans=log(as_number/(1-as_number));
-						logit_shpwlk_pvalue=shapiro.test(logit_trans)$p.value;
-					}else{
-						logit_shpwlk_pvalue=0;
-					}
-					
-					# Look for least not normal transform
-					pvals=c(raw_shpwlk_pvalue, sqrt_shpwlk_pvalue, log_shpwlk_pvalue, logit_shpwlk_pvalue);
-					print(pvals);
-					max_pval=max(pvals);
-					best_transform=min(which(pvals==max_pval));
-					
-					VariableInfo[i,"ImprovedBySqrtTransform"]=F;
-					VariableInfo[i,"ImprovedByLogTransform"]=F;
-					VariableInfo[i,"ImprovedByLogitTransform"]=F;
-					
-					if(best_transform==2){
-						VariableInfo[i,"ImprovedBySqrtTransform"]=T;
-					}else if(best_transform==3){
-						VariableInfo[i,"ImprovedByLogTransform"]=T;
-					}else if(best_transform==4){
-						VariableInfo[i,"ImprovedByLogitTransform"]=T;
+						# Transform and Test
+						#  sqrt
+						sqrt_trans=sqrt(as_number);
+						sqrt_shpwlk_pvalue=shapiro.test(sqrt_trans)$p.value;
+						
+						#  log
+						log_trans=log(as_number+1);
+						log_shpwlk_pvalue=shapiro.test(log_trans)$p.value;
+						
+						#  logit
+						val_range=range(as_number);
+						if(val_range[1]>0 && val_range[2]<1){
+							logit_trans=log(as_number/(1-as_number));
+							logit_shpwlk_pvalue=shapiro.test(logit_trans)$p.value;
+						}else{
+							logit_shpwlk_pvalue=0;
+						}
+						
+						# Look for least not normal transform
+						pvals=c(raw_shpwlk_pvalue, sqrt_shpwlk_pvalue, log_shpwlk_pvalue, logit_shpwlk_pvalue);
+						print(pvals);
+						max_pval=max(pvals);
+						best_transform=min(which(pvals==max_pval));
+						
+						VariableInfo[i,"ImprovedBySqrtTransform"]=F;
+						VariableInfo[i,"ImprovedByLogTransform"]=F;
+						VariableInfo[i,"ImprovedByLogitTransform"]=F;
+						
+						if(best_transform==2){
+							VariableInfo[i,"ImprovedBySqrtTransform"]=T;
+						}else if(best_transform==3){
+							VariableInfo[i,"ImprovedByLogTransform"]=T;
+						}else if(best_transform==4){
+							VariableInfo[i,"ImprovedByLogitTransform"]=T;
+						}
 					}
 				}
 			}
@@ -207,7 +209,7 @@ VariableInfo.build=function(metadata){
 		}
 	}
 	
-	VariableInfo<<-VariableInfo;
+	return(VariableInfo);
 	
 }
 
@@ -310,14 +312,15 @@ WarningsTable.GenerateFromVariableInfo=function(var_info_table){
 
 ###############################################################################
 
-if(TRUE){
+if(!exists("integration")){
 	setwd("D:\\work_git\\AnalysisTools\\Metadata\\MetadataExplorer");
 	test_mat=as.data.frame(read.table("TestExample.tsv", as.is=T, check.names=F, header=T, sep="\t"));
+	
+	VariableInfo=VariableInfo.build(test_mat);
+	print(VariableInfo);
+
+	WarningsTable=WarningsTable.GenerateFromVariableInfo(VariableInfo);
+	print(WarningsTable);
+
 }
-
-VariableInfo.build(test_mat);
-print(VariableInfo);
-
-WarningsTable=WarningsTable.GenerateFromVariableInfo(VariableInfo);
-print(WarningsTable);
 

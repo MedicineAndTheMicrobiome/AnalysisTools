@@ -7,7 +7,7 @@ ModelBuilder.GroupControl=function(id){
 	
 		textInput(
 			paste("ModelBuilderTab.group.name_", id, sep=""),
-			label=paste("Group:"),
+			label=paste("Group ", id, ": ", sep=""),
 			paste("MyGroup", id, sep="")),
 
 		selectInput(
@@ -30,12 +30,18 @@ ModelBuilder.GroupControl=function(id){
 	)
 }
 
-ModelBuilderTab.copy_to_dialog=function(input, session, source_grp_id){
+ModelBuilderTab.init_variables=function(){
+	model_data=list();
+	model_data[["ModelBuilderTab.excluded_selector"]]=character(0);
+	model_data[["ModelBuilderTab.available_selector"]]=character(0);
+	model_data[["ModelBuilderTab.covariates_selector"]]=character(0);
+	return(model_data);
+}
 
-	cat("CopyTo Dialog Called.\n");
+ModelBuilderTab.copy_to_dialog=function(input, session, source_grp_id){
 	
 	group_names=c();
-	for(gid in 1:num_groups){
+	for(gid in 1:ModelBuilderTab.num_groups){
 		if(gid!=source_grp_id){
 			group_names=c(group_names,input[[paste("ModelBuilderTab.group.name_", gid, sep="")]]);
 		}
@@ -62,18 +68,19 @@ ModelBuilderTab.copy_to_dialog=function(input, session, source_grp_id){
 	
 }
 
-ModelBuilderTab=function(avail_variables){
+ModelBuilderTab=function(){
 
 	selector_display_length=12;
-	num_groups=6;
-	grp_names=paste("untitled", 1:num_groups);
+	ModelBuilderTab.num_groups=6;
+	grp_names=paste("untitled", 1:ModelBuilderTab.num_groups);
 
 	tabPanel("Model Builder",
 		fluidRow(
-			column(3, tags$h1("Model Builder"), align="right"),
+			column(3, tags$h1(tags$b("Model Builder")), align="right"),
 			tags$br(),
 			actionLink("ModelBuilderTab.MainHelp", NULL, icon=icon("question-circle"))
 		),
+		"Use this tool to organize the variables in your metadata into systematic groupings.",
 		tags$hr(),
 		fixedRow(
 			column(2,
@@ -91,7 +98,7 @@ ModelBuilderTab=function(avail_variables){
 				tags$b("Available"),
 				actionLink("ModelBuilderTab.AvailableHelp", NULL, icon=icon("question-circle")),
 				selectInput("ModelBuilderTab.available_selector", 
-					NULL, choices=avail_variables, multiple=T, selectize=F, size=selector_display_length-4),
+					NULL, choices=ModelBuilder.available_variables, multiple=T, selectize=F, size=selector_display_length-4),
 				tags$h2(""),
 				tags$b("Select group(s) to add to:"),
 				actionLink("ModelBuilderTab.GroupHelp", NULL, icon=icon("question-circle")),
@@ -130,26 +137,117 @@ ModelBuilderTab=function(avail_variables){
 
 }
 
+###############################################################################
+#------------------------------------------------------------------------------
+
+ModelBuilderTab.rmv_cnt_annot=function(variables_arr){
+	num_variables=length(variables_arr);
+	cleaned=c();
+	for(invar in variables_arr){
+		cleaned=c(cleaned, strsplit(invar, "  ")[[1]][1]);
+	}
+	return(cleaned);
+}
+
+ModelBuilderTab.add_cnt_annot=function(variables_arr, session){
+	
+	# Make a list of group memberships for each variable
+	num_variables=length(variables_arr);
+	var_to_grp_map=vector("list", num_variables);
+	names(var_to_grp_map)=variables_arr;
+	
+	#cat("Num Variables: ", num_variables, "\n");
+	#cat("Variables:\n");
+	#print(variables_arr);
+	
+	#cat("ModelBuilderSet:\n");
+	#print(session$userData[["ModelBuilderSets"]]);
+	
+	# Look for variable membership
+	for(gix in 1:ModelBuilderTab.num_groups){
+		selector_name=paste("ModelBuilderTab.group.selector_", gix, sep="");
+		grp_variables=session$userData[["ModelBuilderSets"]][[selector_name]];
+		
+		#cat("selector_name: ", selector_name, "\n");
+		
+		if(length(grp_variables)){
+			for(gp_var in grp_variables){
+				var_to_grp_map[[gp_var]]=c(var_to_grp_map[[gp_var]], as.character(gix));
+			}
+		}
+	}
+	
+	#cat("Variable Membership:\n");
+	#print(var_to_grp_map);
+	
+	# Append group membership annotation
+	annotd=character(num_variables);
+	names(annotd)=variables_arr;
+	for(vix in variables_arr){
+		if(length(var_to_grp_map[[vix]])){
+			annotd[vix]=paste(vix,
+				"  [", paste(var_to_grp_map[[vix]], collapse=","), "]", sep="");
+		}else{
+			annotd[vix]=vix;
+		}
+	}
+	
+	#cat("Annotated:\n");
+	#print(annotd);
+	return(annotd);
+
+}
+
+ModelBuilderTab.upd_avail_slctr=function(session){
+
+	#cat("upd_avail_slctr-->\n");
+	clean_avail=ModelBuilderTab.rmv_cnt_annot(
+		session$userData[["ModelBuilderSets"]][["ModelBuilderTab.available_selector"]]);
+		
+	#cat("Cleaned:\n");
+	#print(clean_avail);
+	annot_avail=ModelBuilderTab.add_cnt_annot(clean_avail, session);
+
+	#cat("Annoated:\n");
+	#print(annot_avail);
+	
+	names(annot_avail)=c(); # if there are names, then values will not be displayed!
+	updateSelectInput(session, inputId="ModelBuilderTab.available_selector", choices=annot_avail);
+	#cat("<--upd_avail_slctr\n");
+	
+}
+
 #------------------------------------------------------------------------------
 
 ModelBuilderTab.move_selected=function(input, session, from, to){
+		
+	variables_selected=input[[from]];
 	
-	#cat("------------------------------------------------------------------------\n");
-	#cat("Before:\n");
-	#print(ModelBuilderTab.sets);
+	if(from=="ModelBuilderTab.available_selector"){
+		variables_selected=ModelBuilderTab.rmv_cnt_annot(variables_selected);
+	}
 	
-	#cat("Selected:\n");
-	#print(input[[from]]);
+	session$userData[["ModelBuilderSets"]][[from]]=
+		sort(setdiff(session$userData[["ModelBuilderSets"]][[from]], variables_selected));
+		
+	session$userData[["ModelBuilderSets"]][[to]]=
+		sort(union(session$userData[["ModelBuilderSets"]][[to]], variables_selected));
 	
-	ModelBuilderTab.sets[[from]]<<-sort(setdiff(ModelBuilderTab.sets[[from]], input[[from]]));
-	ModelBuilderTab.sets[[to]]<<-sort(union(ModelBuilderTab.sets[[to]], input[[from]]));
 	
-	updateSelectInput(session, from, choices=ModelBuilderTab.sets[[from]]);
-	updateSelectInput(session, to, choices=ModelBuilderTab.sets[[to]]);
+	if(to=="ModelBuilderTab.available_selector"){
+		ModelBuilderTab.upd_avail_slctr(session);
+	}else{
+		new_choices=session$userData[["ModelBuilderSets"]][[to]];
+		updateSelectInput(session, to, choices=new_choices);
+	}
 	
-	#cat("------------------\n");
-	#cat("After:\n");
-	#print(ModelBuilderTab.sets);
+	if(from=="ModelBuilderTab.available_selector"){
+		ModelBuilderTab.upd_avail_slctr(session);
+	}else{
+		new_choices=session$userData[["ModelBuilderSets"]][[from]];
+		updateSelectInput(session, from, choices=new_choices);
+	}
+	
 }
 
 #------------------------------------------------------------------------------
@@ -157,7 +255,7 @@ ModelBuilderTab.move_selected=function(input, session, from, to){
 
 ModelBuilderTab.get_all_group_names=function(input){
 	grp_names=c();
-	for(i in 1:num_groups){
+	for(i in 1:ModelBuilderTab.num_groups){
 		control_ids=paste("ModelBuilderTab.group.name_", i, sep="");
 		grp_names=c(grp_names, input[[control_ids]]);
 	}
@@ -172,33 +270,86 @@ ModelBuilderTab.update_grp_selector=function(input, session){
 ModelBuilderTab.delete_grp_var=function(input, session, id){
 	ctl_name=paste("ModelBuilderTab.group.selector_", id, sep="");
 	variables_selected=input[[ctl_name]];
-	ModelBuilderTab.sets[[ctl_name]]<<-sort(setdiff(ModelBuilderTab.sets[[ctl_name]], variables_selected));
-	updateSelectInput(session, ctl_name, choices=ModelBuilderTab.sets[[ctl_name]]);
+	
+	session$userData[["ModelBuilderSets"]][[ctl_name]]=
+		sort(setdiff(session$userData[["ModelBuilderSets"]][[ctl_name]], variables_selected));
+	updateSelectInput(session, ctl_name, choices=session$userData[["ModelBuilderSets"]][[ctl_name]]);
+	ModelBuilderTab.upd_avail_slctr(session);
 }
 
 ModelBuilderTab.clear_grp_var=function(input, session, id){
-cat("clear\n");
 	ctl_name=paste("ModelBuilderTab.group.selector_", id, sep="");
 	variables_selected=input[[ctl_name]];
-	ModelBuilderTab.sets[[ctl_name]]<<-character(0);
-	print(ModelBuilderTab.sets);
-	updateSelectInput(session, ctl_name, choices=ModelBuilderTab.sets[[ctl_name]]);
+	session$userData[["ModelBuilderSets"]][[ctl_name]]=character(0);
+	updateSelectInput(session, ctl_name, choices=session$userData[["ModelBuilderSets"]][[ctl_name]]);
+	ModelBuilderTab.upd_avail_slctr(session);
 }
 
+ModelBuilderTab.get_all_grouped_variables=function(session){
+	
+	all_grp_var=c();
+	for(gix in 1:ModelBuilderTab.num_groups){
+		selector_name=paste("ModelBuilderTab.group.selector_", gix, sep="");
+		all_grp_var=c(all_grp_var, session$userData[["ModelBuilderSets"]][[selector_name]]);
+	}
+	
+	return(all_grp_var);
+}
 
-#------------------------------------------------------------------------------
+ModelBuilderTab.remove_variables_from_all_grouped_variables=function(session, var_to_remove){
+	
+	for(gix in 1:ModelBuilderTab.num_groups){
+		selector_name=paste("ModelBuilderTab.group.selector_", gix, sep="");
+		
+		session$userData[["ModelBuilderSets"]][[selector_name]]=
+			setdiff(
+				session$userData[["ModelBuilderSets"]][[selector_name]],
+				var_to_remove
+				);
+		updateSelectInput(
+			session, 
+			selector_name, 
+			choices=session$userData[["ModelBuilderSets"]][[selector_name]]
+		);
+	}
+	
+}
+
+###############################################################################
 
 observe_ModelBuilderTabEvents=function(input, output, session){
 
 	observeEvent(input$ModelBuilderTab.exclude_button,{
-		cat("Exclude button pushed.\n");
-		ModelBuilderTab.move_selected(input, session,
-			"ModelBuilderTab.available_selector",
-			"ModelBuilderTab.excluded_selector");
+	
+		avail_selected=input[["ModelBuilderTab.available_selector"]];
+		avail_selected=ModelBuilderTab.rmv_cnt_annot(avail_selected);
+		
+		grouped_variables=ModelBuilderTab.get_all_grouped_variables(session);
+		in_group_var=intersect(grouped_variables, avail_selected)
+
+		if(length(in_group_var)){
+			showModal(
+				modalDialog(
+					"You are moving some variables already assigned to a group to the excluded list.",
+					"To do this, each will be removed from all the groups they belong to.  Is this ok?",
+					title="Removing variables from groups",
+					footer=fluidRow(
+						column(4),
+						column(3, actionButton("ModelBuilderTab.remove_from_available_cancelButton", label="Cancel")),
+						column(3, actionButton("ModelBuilderTab.remove_from_available_exclude_okButton", label="Ok"))
+					),
+				size="m"
+				)
+			)
+		}else{	
+			ModelBuilderTab.move_selected(input, session,
+				"ModelBuilderTab.available_selector",
+				"ModelBuilderTab.excluded_selector");
+		}
+	
 	});
 	
 	observeEvent(input$ModelBuilderTab.include_button,{
-		cat("Include button pushed.\n");
 		ModelBuilderTab.move_selected(input, session,
 			"ModelBuilderTab.excluded_selector",
 			"ModelBuilderTab.available_selector");
@@ -206,13 +357,76 @@ observe_ModelBuilderTabEvents=function(input, output, session){
 	
 	observeEvent(input$ModelBuilderTab.add_to_covar_button,{
 		cat("From Covariates button pushed.\n");
+		
+		avail_selected=input[["ModelBuilderTab.available_selector"]];
+		avail_selected=ModelBuilderTab.rmv_cnt_annot(avail_selected);
+		
+		grouped_variables=ModelBuilderTab.get_all_grouped_variables(session);
+		in_group_var=intersect(grouped_variables, avail_selected)
+
+		if(length(in_group_var)){
+			showModal(
+				modalDialog(
+					"You are moving some variables already assigned to a group to the covariates list.",
+					"To do this, each will be removed from all the groups they belong to.  Is this ok?",
+					title="Removing variables from groups",
+					footer=fluidRow(
+						column(4),
+						column(3, actionButton("ModelBuilderTab.remove_from_available_cancelButton", label="Cancel")),
+						column(3, actionButton("ModelBuilderTab.remove_from_available_covariate_okButton", label="Ok"))
+					),
+				size="m"
+				)
+			)
+		}else{	
+			ModelBuilderTab.move_selected(input, session,
+				"ModelBuilderTab.available_selector",
+				"ModelBuilderTab.covariates_selector");
+		}
+		
+	});
+	
+	#--------------------------------------------------------------------------
+	
+	observeEvent(input$ModelBuilderTab.remove_from_available_cancelButton, {
+		removeModal();
+	});
+	
+	observeEvent(input$ModelBuilderTab.remove_from_available_exclude_okButton, {
+	
+		avail_selected=input[["ModelBuilderTab.available_selector"]];
+		avail_selected=ModelBuilderTab.rmv_cnt_annot(avail_selected);
+			
+		ModelBuilderTab.remove_variables_from_all_grouped_variables(
+			session, avail_selected);
+		
+		removeModal();
+			
+		ModelBuilderTab.move_selected(input, session,
+			"ModelBuilderTab.available_selector",
+			"ModelBuilderTab.excluded_selector");
+
+	});
+	
+	observeEvent(input$ModelBuilderTab.remove_from_available_covariate_okButton, {
+	
+		avail_selected=input[["ModelBuilderTab.available_selector"]];
+		avail_selected=ModelBuilderTab.rmv_cnt_annot(avail_selected);
+			
+		ModelBuilderTab.remove_variables_from_all_grouped_variables(
+			session, avail_selected);
+		
+		removeModal();
+			
 		ModelBuilderTab.move_selected(input, session,
 			"ModelBuilderTab.available_selector",
 			"ModelBuilderTab.covariates_selector");
 	});
 	
+	#--------------------------------------------------------------------------
+
+	
 	observeEvent(input$ModelBuilderTab.remove_from_covar_button,{
-		cat("To Covariates button pushed.\n");
 		ModelBuilderTab.move_selected(input, session,
 			"ModelBuilderTab.covariates_selector",
 			"ModelBuilderTab.available_selector");
@@ -232,10 +446,9 @@ observe_ModelBuilderTabEvents=function(input, output, session){
 		#cat("Selected Groups:\n");
 		#print(grps_selected);
 		
-		variables_selected=input$ModelBuilderTab.available_selector;
-		num_var_selected=length(variables_selected)
-		#cat("Selected Variables:\n");
-		#print(variables_selected);
+		avail_selected=input$ModelBuilderTab.available_selector;
+		avail_selected=ModelBuilderTab.rmv_cnt_annot(avail_selected);
+		num_var_selected=length(avail_selected)
 		
 		# Add to group
 		selected_grps=c();
@@ -245,9 +458,14 @@ observe_ModelBuilderTabEvents=function(input, output, session){
 			for(i in 1:num_grps_selected){
 				selected_grp_id=which(grps_selected[i]==all_grp_names);
 				ctl_name=paste("ModelBuilderTab.group.selector_", selected_grp_id, sep="");
-				ModelBuilderTab.sets[[ctl_name]]<<-sort(union(ModelBuilderTab.sets[[ctl_name]], variables_selected));
-				updateSelectInput(session, ctl_name, choices=ModelBuilderTab.sets[[ctl_name]]);
+				
+				session$userData[["ModelBuilderSets"]][[ctl_name]]=
+					sort(union(session$userData[["ModelBuilderSets"]][[ctl_name]], avail_selected));
+				updateSelectInput(session, ctl_name, choices=session$userData[["ModelBuilderSets"]][[ctl_name]]);
 			}
+			
+			# Update the available selector counts
+			ModelBuilderTab.upd_avail_slctr(session);
 			
 			# Clear group selector
 			updateSelectizeInput(session, "ModelBuilderTab.group_selector", selected="");
@@ -260,15 +478,6 @@ observe_ModelBuilderTabEvents=function(input, output, session){
 	});
 
 	#--------------------------------------------------------------------------
-	
-	#for(i in 1){
-	#	grps_ctl_id=paste("ModelBuilderTab.group.name_", i, sep="");
-	#	cat("Observing: ", grps_ctl_id, "\n");
-	#	observeEvent(input[[grps_ctl_id]], {
-	#		cat(grps_ctl_id, ": Group name changed:", input[[grps_ctl_id]], "\n");
-	#	});
-	#}
-	
 
 	observeEvent(input$ModelBuilderTab.group.name_1, {
 		ModelBuilderTab.update_grp_selector(input, session);
@@ -368,14 +577,17 @@ observe_ModelBuilderTabEvents=function(input, output, session){
 		group_names=ModelBuilderTab.get_all_group_names(input);
 		cat("All group names:\n");
 		print(group_names)
-		for(grp_id in 1:num_groups){
+		for(grp_id in 1:ModelBuilderTab.num_groups){
 			if(any(group_names[grp_id]==target_groups)){
 				ctl_name=paste("ModelBuilderTab.group.selector_", grp_id, sep="");
-				ModelBuilderTab.sets[[ctl_name]]<<-sort(union(ModelBuilderTab.sets[[ctl_name]], var_sel_from_src_grp));
-				updateSelectInput(session, ctl_name, choices=ModelBuilderTab.sets[[ctl_name]]);
+				
+				session$userData[["ModelBuilderSets"]][[ctl_name]]=
+					sort(union(session$userData[["ModelBuilderSets"]][[ctl_name]], var_sel_from_src_grp));
+				updateSelectInput(session, ctl_name, choices=session$userData[["ModelBuilderSets"]][[ctl_name]]);
 			}
 		}
 		
+		ModelBuilderTab.upd_avail_slctr(session);
 		
 	});
 	observeEvent(input$ModelBuilderTab.copy_to_dialog.cancelButton, {
@@ -386,22 +598,22 @@ observe_ModelBuilderTabEvents=function(input, output, session){
 	# Help links
 	observeEvent(input$ModelBuilderTab.MainHelp, {
 		showModal(
-			modalDialog(ModelBuilderTab.MainHelpTxt, title="Model Builder", easyClose=T, size="s")
+			modalDialog(ModelBuilderTab.MainHelpTxt, title="Model Builder", easyClose=T, size="m")
 		);
 	});
 	observeEvent(input$ModelBuilderTab.ExcludedHelp, {
 		showModal(
-			modalDialog(ModelBuilderTab.ExcludedHelpTxt, title="Excluded Variables", easyClose=T, size="s")
+			modalDialog(ModelBuilderTab.ExcludedHelpTxt, title="Excluded Variables", easyClose=T, size="m")
 		);
 	});
 	observeEvent(input$ModelBuilderTab.AvailableHelp, {
 		showModal(
-			modalDialog(ModelBuilderTab.AvailableHelpTxt, title="Available Variables", easyClose=T, size="s")
+			modalDialog(ModelBuilderTab.AvailableHelpTxt, title="Available Variables", easyClose=T, size="m")
 		);
 	});
 	observeEvent(input$ModelBuilderTab.CovariatesHelp, {
 		showModal(
-			modalDialog(ModelBuilderTab.CovariatesHelpTxt, title="Covariates", easyClose=T, size="s")
+			modalDialog(ModelBuilderTab.CovariatesHelpTxt, title="Covariates", easyClose=T, size="m")
 		);
 	});
 	observeEvent(input$ModelBuilderTab.GroupHelp, {
@@ -445,7 +657,12 @@ ModelBuilderTab.AvailableHelpTxt=tagList(
 		tags$p("Available variables may be assigned Excluded or Covariates, at which time ",
 		"they would moved out of availability."),
 		tags$p("Since a variable may belong in multiple Grouped sets, assigning a variable into ",
-		"a Group, will still leave it available for additonal assigments.")
+		"a Group, will still leave it available for additonal assigments."),
+		tags$p("When an available variable is assigned to a Group, the Group number will be ",
+		"appended within brackets next to the variable name, e.g. age  [3,6].  (This indicates ",
+		"that the 'age' variable currently belongs in Groups 3 and 6.)"),
+		tags$p("If a variable was assigned to a Group, for it to be moved into the Excluded ",
+		"or Covariates set, it will must be removed from all Groups.")
 	);
 ModelBuilderTab.CovariatesHelpTxt=tagList(
 		tags$p("Covariates are variables that you want to consider immutable with respect ",
@@ -492,47 +709,50 @@ ModelBuilderTab.GroupHelpTxt=tagList(
 		)
 	);
 
-
-
-avail_variables=sort(c(
-	"Apples",
-	"Oranges",
-	"SubjectIDs",
-	"Pears",
-	"SampleType",
-	"PrePost",
-	"Dates",
-	"Times"
-));
-
-num_groups=6;
+ModelBuilder.available_variables=c();
+ModelBuilderTab.num_groups=6;
 ModelBuilderTab.source_copy_grp_id=0;
 
-ui = fluidPage(
-	mainPanel(
-		tabsetPanel(
-			tabPanel("Data", ""),
-			tabPanel("Curation", ""),
-			tabPanel("Study", ""),
-			ModelBuilderTab(avail_variables)
+if(!exists("integration")){
+
+	avail_variables=sort(c(
+		"Apples",
+		"Oranges",
+		"SubjectIDs",
+		"Pears",
+		"SampleType",
+		"PrePost",
+		"Dates",
+		"Times"
+	));
+
+
+	ui = fluidPage(
+		mainPanel(
+			tabsetPanel(
+				tabPanel("Data", ""),
+				tabPanel("Curation", ""),
+				tabPanel("Study", ""),
+				ModelBuilderTab(avail_variables)
+			)
 		)
-	)
-);
+	);
 
-ModelBuilderTab.get_data_colnames=function(){
-	return(colnames(test.matrix));
+	ModelBuilderTab.get_data_colnames=function(){
+		return(colnames(test.matrix));
+	}
+
+	###############################################################################
+
+	server = function(input, output, session) {
+
+		ModelBuilderTab.sets<<-list();	
+		ModelBuilderTab.sets[["ModelBuilderTab.available_selector"]]<<-avail_variables;
+
+		observe_ModelBuilderTabEvents(input, output, session);
+	}
+
+	###############################################################################
+	# Launch
+	shinyApp(ui, server);
 }
-
-###############################################################################
-
-server = function(input, output, session) {
-
-	ModelBuilderTab.sets<<-list();	
-	ModelBuilderTab.sets[["ModelBuilderTab.available_selector"]]<<-avail_variables;
-
-	observe_ModelBuilderTabEvents(input, output, session);
-}
-
-###############################################################################
-# Launch
-shinyApp(ui, server);
