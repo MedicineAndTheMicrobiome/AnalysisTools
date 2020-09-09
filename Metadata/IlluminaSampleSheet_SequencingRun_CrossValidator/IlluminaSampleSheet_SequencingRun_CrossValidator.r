@@ -2,7 +2,6 @@
 
 ###############################################################################
 
-library(MASS);
 library('getopt');
 
 options(useFancyQuotes=F);
@@ -159,7 +158,7 @@ samplesheet_dir=paste(SeqRunDir, "/Samplesheet", sep="");
 
 cat("Samplesheet Directory: ", samplesheet_dir, "\n");
 
-Samplesheet_dir_contents=list.files(samplesheet_dir, pattern="*\\.csv");
+Samplesheet_dir_contents=list.files(samplesheet_dir, pattern="*\\.csv$");
 
 if(length(Samplesheet_dir_contents)==0){
 	cat("Error: Could not find sample sheet in: ", samplesheet_dir, "\n");
@@ -177,14 +176,21 @@ cat("Found Samplesheet: ", Samplesheet_dir_contents, "\n");
 cat("\n");
 
 # Get IDs from sample sheet
-ss_ids=get_sample_ids_from_samplesheet(paste(samplesheet_dir, "/", Samplesheet_dir_contents, sep=""));
+sample_sheet_path=paste(samplesheet_dir, "/", Samplesheet_dir_contents, sep="");
+ss_ids=get_sample_ids_from_samplesheet(sample_sheet_path);
 
 # Get IDs from run directory
-run_ids_rec=get_sample_ids_from_fastqgz_dir(paste(SeqRunDir, "/Run", sep=""));
+fastq_directory=paste(SeqRunDir, "/Run", sep="");
+run_ids_rec=get_sample_ids_from_fastqgz_dir(fastq_directory);
+run_ids_rec[["paired"]]=sapply(run_ids_rec[["paired"]], function(x){ gsub("-", ".", x);});
+run_ids_rec[["R1_missing"]]=sapply(run_ids_rec[["R1_missing"]], function(x){ gsub("-", ".", x);});
+run_ids_rec[["R2_missing"]]=sapply(run_ids_rec[["R2_missing"]], function(x){ gsub("-", ".", x);});
 
 # Convert -'s and _'s to .'s to make them consistent
 ss_ids_period=sapply(ss_ids, function(x){ gsub("_", ".", x);});
-run_ids_period=sapply(run_ids_rec[["paired"]], function(x){ gsub("-", ".", x);});
+num_ss_ids=length(ss_ids_period);
+run_ids_period=run_ids_rec[["paired"]];
+num_run_ids=length(run_ids_period);
 
 names(ss_ids_period)=c();
 names(run_ids_period)=c();
@@ -200,41 +206,64 @@ missing_fq_files=setdiff(ss_ids_period, run_ids_period);
 missing_ss_files=setdiff(run_ids_period, ss_ids_period);
 
 num_missing_fq_files=length(missing_fq_files);
+print(missing_ss_files);
 num_excess_ss_entries=length(missing_ss_files);
 
+###############################################################################
 # Output to PDF file
 
 output_dir=paste(SeqRunDir, "/smpsht_fastq_xval.pdf", sep="");
-pdf(output_dir, height=11, width=8.5);
+pdf(output_dir, height=8.5, width=11);
 
 plot_text(c(
-	"Samplesheet / Run FASTQ.gz file Cross Validator",
+	"Samplesheet / Run Fastq File Cross Validator",
+	"",
+	"",
 	paste("Sequencing Run Directory: ", SeqRunDir, sep=""),
 	paste("Date/Time Executed: ", date()),
 	"",
+	"Samplesheet found at: ", 
+	paste("  ", sample_sheet_path),
+	"",
+	"Fastq directory at: ", 
+	paste("  ", fastq_directory),
+	"",
+	"",
+	paste("Num Sample IDs in samplesheet: ", num_ss_ids, sep=""),
+	paste("Num Sample IDs by paired fastq files: ", num_run_ids, sep=""),
+	"",
+	"",
 	paste("Num Missing Fastq Samples IDs: ", num_missing_fq_files, sep=""),
-	paste("Num Excess Sample Sheet IDs: ", num_excess_ss_entries, sep="")
+	paste("Num Excess Sample Sheet IDs: ", num_excess_ss_entries, sep=""),
+	"",
+	"",
+	{if(num_ss_ids!=num_run_ids){"Error: Sample ID count mismatch."}}
+	
 ));
 
 
 plot_text(c(
 	"Sample IDs missing fastq.gz files:",
-	ifelse(length(missing_fq_files), missing_fq_files, "(none)")
+	"",
+	{if(length(missing_fq_files)){missing_fq_files}else{ "(none)"}}
 ));
 
 plot_text(c(
 	"Sample IDs missing from sample sheet:",
-	ifelse(length(missing_ss_files), missing_ss_files, "(none)")
+	"",
+	{if(length(missing_ss_files)){missing_ss_files}else{"(none)"}}
 ));
 
 plot_text(c(
-	"Missing R1 Fastq Files: \n",
-	ifelse(length(run_ids_rec[["R1_missing"]]), run_ids_rec[["R1_missing"]], "(none)")
+	"Missing R1 Fastq Files:",
+	"",
+	{if(length(run_ids_rec[["R1_missing"]])){run_ids_rec[["R1_missing"]]}else{"(none)"}}
 ));
 
 plot_text(c(
-	"Missing R2 Fastq Files: \n",
-	ifelse(length(run_ids_rec[["R2_missing"]]), run_ids_rec[["R2_missing"]], "(none)")
+	"Missing R2 Fastq Files:",
+	"",
+	{if(length(run_ids_rec[["R2_missing"]])){run_ids_rec[["R2_missing"]]}else{"(none)"}}
 ));
 
 ##############################################################################
