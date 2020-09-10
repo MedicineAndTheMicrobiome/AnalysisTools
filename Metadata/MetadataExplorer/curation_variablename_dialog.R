@@ -1,6 +1,79 @@
 
+RenameDialogBoxUI=function(id, old_name, suggested_name, mesg){
 
-BadVariableName_DialogBox=function(variable, mesg=NULL){
+	ns=NS(id);
+
+	modalDialog(
+		fluidPage(
+			tags$h4(mesg),
+			tags$hr(),
+			tags$b("Current Variable Name:"),
+			tags$p(tags$h5(old_name)),
+			textInput(ns("ReNmDB.new_variable_name"), label="New Variable Name:", value=suggested_name)
+		),
+		footer=fluidRow(
+			column(2, actionButton(ns("ReNmDB.okButton"), label="OK")),
+			column(3, actionButton(ns("ReNmDB.cancelButton"), label="Cancel"))
+		)
+	);
+}
+
+RenameDialogBoxServer=function(id, old_name, suggested_name, current_variable_names, mesg){
+	
+	moduleServer(
+	
+		id,
+		
+		function(input, output, session){
+		
+			cat("RenameDialogBoxServer started with id: ", id, "\n");
+		
+			showModal(RenameDialogBoxUI(id, old_name, suggested_name, mesg));
+			
+			observeEvent(input$ReNmDB.cancelButton,{
+				cat("ReNmDB.cancelButton pressed.\n");
+				removeModal();
+				#showModal(DataTransformationDialogBoxUI(id, in_values, in_varname), session);
+				#updateSelectInput(session, "DTDB.transformation_select", selected=input$DTDB.transformation_select);
+			});
+		  
+			observeEvent(input$ReNmDB.okButton, {
+				cat("ReNmDB.okButton pressed.\n");
+				removeModal();
+				
+				check_variable_name_msg=check_variable_name(input$ReNmDB.new_variable_name, current_variable_names);
+				
+				cur_new_variable_name=input$ReNmDB.new_variable_name;
+				
+				if(check_variable_name_msg!=""){
+					showModal(
+						BadVariableName_DialogBox(input$ReNmDB.new_variable_name, 
+							check_variable_name_msg)
+					);
+				}else{
+					removeModal();
+					return(input$ReNmDB.new_variable_name);
+				}
+			});
+			
+			#--------------------------------------------------------------------------
+			# BadVN (Bad variable name) Events
+			observeEvent(input$BadVN.okButton, {
+				removeModal();
+				showModal(RenameDialogBox(in_varname));
+				updateTextInput(session, "ReNmDB.new_variable_name", value=input$ReNmDB.new_variable_name);
+			});
+			
+		}
+	);
+}
+
+
+
+BadVariableName_DialogBoxUI=function(id, variable, mesg=NULL){
+
+	ns=NS(id);
+
 	modalDialog(
 		fluidPage(
 			tags$h4(paste("The variable \"", variable, "\" is invalid.", sep="")),
@@ -9,7 +82,7 @@ BadVariableName_DialogBox=function(variable, mesg=NULL){
 			tags$h5("Please try again."),
 		),
 		footer=fluidRow(
-			column(2, actionButton("BadVN.okButton", label="OK")),
+			column(2, actionButton(ns("BadVN.okButton"), label="OK")),
 		)
 	);
 }
@@ -39,50 +112,3 @@ check_variable_name=function(varname, existing_varnames){
 	return("");
 }
 
-
-RenameDialogBox=function(old_name, suggested_name, mesg=NULL){
-	cat(file=stderr(), old_name, suggested_name, mesg, "\n", sep=",");
-	modalDialog(
-		fluidPage(
-			ifelse(is.null(mesg), "", tags$h4(mesg)),
-			tags$b("Current Variable Name"),
-			tags$h5(old_name),
-			textInput("ReNmDB.new_variable_name", label="New Variable Name", value=suggested_name)
-		),
-		footer=fluidRow(
-			column(2, actionButton("ReNmDB.okButton", label="OK")),
-			column(3, actionButton("ReNmDB.cancelButton", label="Cancel"))
-		)
-	);
-}
-
-BadVariableName_DialogBox=function(variable, mesg=NULL){
-	modalDialog(
-		fluidPage(
-			tags$h4(paste("The variable \"", variable, "\" is invalid.", sep="")),
-			tags$h5(ifelse(is.null(mesg), "", mesg)),
-			tags$br(),
-			tags$h5("Please try again."),
-		),
-		footer=fluidRow(
-			column(2, actionButton("BadVN.okButton", label="OK")),
-		)
-	);
-}
-
-CantSave_DialogBox=function(mesg=NULL){
-	modalDialog(
-		fluidPage(
-			tags$h4(paste("Cannot save changes: ", mesg, sep=""))
-		),
-		footer=fluidRow(
-			column(2, actionButton("CS.okButton", label="OK"))
-		)
-	);
-}
-
-
-observe_VariableNameDialogBoxEvents=function(input, output, session){
-
-
-}

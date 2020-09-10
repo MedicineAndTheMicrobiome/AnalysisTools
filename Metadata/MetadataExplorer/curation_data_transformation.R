@@ -58,6 +58,8 @@ DataTransformationDialogBoxServer=function(id, in_values, in_varname, default_tr
 		
 		function(input, output, session){
 		
+			ns=NS(id);
+		
 			showModal(DataTransformationDialogBoxUI(id, in_values, in_varname, default_trans));
 
 			observeEvent(input$DTDB.helpButton, {
@@ -65,7 +67,7 @@ DataTransformationDialogBoxServer=function(id, in_values, in_varname, default_tr
 				removeModal();
 				showModal(modalDialog(title="Data Transformation", 
 					DTDB.help_txt, 
-					footer=actionButton("DTDB.dismissHelp", label="OK"),
+					footer=actionButton(ns("DTDB.dismissHelp"), label="OK"),
 					size="l"
 					));
 			});
@@ -167,52 +169,17 @@ DataTransformationDialogBoxServer=function(id, in_values, in_varname, default_tr
 			observeEvent(input$DTDB.dismissHelp, {
 				cat("Dismissed Help.\n");
 				removeModal();
-				showModal(DataTransformationDialogBox(in_values, in_varname), session);
-				updateSelectInput(session, "DTDB.transformation_select", selected=input$DTDB.transformation_select);
+				showModal(DataTransformationDialogBoxUI(id, in_values, in_varname), session);
+				updateSelectInput(session, ns("DTDB.transformation_select"), selected=input$DTDB.transformation_select);
 			});
 
 			#--------------------------------------------------------------------------
 			# CS, Can't save Events
 			
 			observeEvent(input$CS.okButton, {
-					showModal(DateFormatConversionDialogBox(in_date, in_varname), session);
+					showModal(DataTransformationDialogBoxUI(id, in_date, in_varname), session);
 			});
-			
-			#--------------------------------------------------------------------------
-			# ReNmDB (Rename variable) Events
-			observeEvent(input$ReNmDB.cancelButton,{
-				removeModal();
-				showModal(DataTransformationDialogBox(in_values, in_varname), session);
-				cat("Current Transformation: ", cur_trans, "\n");
-				updateSelectInput(session, "DTDB.transformation_select", selected=input$DTDB.transformation_select);
-			});
-		  
-			observeEvent(input$ReNmDB.okButton, {
-				removeModal();
-				
-				current_variable_names=colnames(session$userData[["Metadata"]])
-				check_variable_name_msg=check_variable_name(input$ReNmDB.new_variable_name, current_variable_names);
-				
-				cur_new_variable_name=input$ReNmDB.new_variable_name;
-				
-				if(check_variable_name_msg!=""){
-					showModal(
-						BadVariableName_DialogBox(input$ReNmDB.new_variable_name, 
-							check_variable_name_msg)
-					);
-				}else{
-					SetReturn("Selected_Variable_Name", input$ReNmDB.new_variable_name, session);
-					SetReturn("Selected_Transformation", input$DTDB.transformation_select, session);
-				}
-			});
-			
-			#--------------------------------------------------------------------------
-			# BadVN (Bad variable name) Events
-			observeEvent(input$BadVN.okButton, {
-				removeModal();
-				showModal(RenameDialogBox(in_varname));
-				updateTextInput(session, "ReNmDB.new_variable_name", value=input$ReNmDB.new_variable_name);
-			});
+		
 			
 			}
 		 );

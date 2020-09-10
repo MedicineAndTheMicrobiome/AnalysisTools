@@ -61,6 +61,7 @@ observe_CurationTabEvents=function(input, output, session){
 		warning_code=warning_line["WarningCode"];
 		
 		metadata=session$userData[["Metadata"]];
+		used_names=colnames(metadata);
 		values=metadata[,varname]
 		
 		print(warning_code);
@@ -71,22 +72,20 @@ observe_CurationTabEvents=function(input, output, session){
 		
 		switch(warning_code,
 			"INV_VAR_NAME"={
-				showModal(BadVariableName_DialogBox(varname));
+				suggested_name=gsub("[^a-zA-Z0-9_\\.]", "", varname);
+				RenameDialogBoxServer("bad_var_name", varname, suggested_name, used_names, mesg=NULL);
 			},
 			"NA_GT50"={
-				showModal();
 			},
 			"NA_GT25"={
-				showModal();
 			},
 			"NA_GT10"={
-				showModal();
+			RenameDialogBoxServer("test", "var1", "var2", used_names, mesg="test");
 			},
 			"DICH_NOTBOOL"={
-				showModal(BooleanConversionDialogBox(values, varname));
+				BooleanConversionDialogBoxServer("bool_conv", values, varname);
 			},
 			"ALL_IDENT"={
-				showModal();
 			},
 			"REC_SQRT_TRANS"={
 				DataTransformationDialogBoxServer("sqrt_trans", values, varname, default_trans="sqrt(x)");
@@ -98,16 +97,14 @@ observe_CurationTabEvents=function(input, output, session){
 				DataTransformationDialogBoxServer("logit_trans", values, varname, default_trans="logit(x)");
 			},
 			"NON_ISODATE"={
-				DateFormatConversionDialogBoxServer("date_format", values, varname);
+				DateFormatConversionDialogBoxServer("date_format", values, varname, used_names);
 			},
 			"INV_LVL_NAMES"={
-				showModal();
+				#showModal();
 			},
 			"EXCESS_CATS"={
-				showModal();
 			},	
 			"UNDERREP_CATS"={
-				showModal();
 			}
 		);
 		

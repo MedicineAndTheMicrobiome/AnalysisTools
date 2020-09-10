@@ -5,8 +5,10 @@ library(tableHTML)
 ###############################################################################
 # All the dialog boxes and UI defined here
 
-BooleanConversionDialogBox=function(in_values, in_varname){		
+BooleanConversionDialogBoxUI=function(id, in_values, in_varname){		
 
+	ns=NS(id);
+	
 	uniq_values=sort(unique(in_values));
 		
 	modalDialog(
@@ -15,130 +17,149 @@ BooleanConversionDialogBox=function(in_values, in_varname){
 			 helpText("Please convert your 2 level variable into a Boolean variable."),
 			 fluidRow(
 				column(3,
-					radioButtons("BCDB.reference_radio", 
+					radioButtons(ns("BCDB.reference_radio"), 
 								label = "Pick a Reference:",
 								choices = uniq_values
 							  )
 				),
 				column(5,
-					tableOutput("bool_stats_table")
+					tableOutput(ns("bool_stats_table"))
 				),
 				column(4,
-					textInput("BCDB.new_variable_name_textInput", "New Variable Name:", value="")
+					textInput(ns("BCDB.new_variable_name_textInput"), "Example New Variable Name:", value="")
 				)
 			)
 		),
 		footer=fluidRow(
-				column(1, actionButton("BCDB.helpButton", label="Help")),
+				column(1, actionButton(ns("BCDB.helpButton"), label="Help")),
 				column(7),
-				column(2, actionButton("BCDB.saveButton", label="Save")),
-				column(2, actionButton("BCDB.cancelButton", label="Cancel"))
+				column(2, actionButton(ns("BCDB.saveButton"), label="Save")),
+				column(2, actionButton(ns("BCDB.cancelButton"), label="Cancel"))
 			)
 		
 	)
 }
 
 
-CantSave_DialogBox=function(mesg=NULL){
+CantSave_DialogBox=function(id, mesg=NULL){
+
+	ns=NS(id);
+
 	modalDialog(
 		fluidPage(
 			tags$h4(paste("Cannot save changes: ", mesg, sep=""))
 		),
 		footer=fluidRow(
-			column(2, actionButton("CS.okButton", label="OK"))
+			column(2, actionButton(ns("CS.okButton"), label="OK"))
 		)
 	);
+}
+
+BCDB.HelpDialog=function(id){
+
+	ns=NS(id);
+	
+	modalDialog(title="Boolean Conversion", 
+		BCDB.help_txt, 
+		footer=actionButton(ns("BCDB.dismissHelp"), label="OK"));
+		
 }
 
 ###############################################################################
 # All the responses/event handlers here
 # Do not place modalDialogs inline, unless they are really simple.
 
-observe_BooleanConversionDialogBoxEvents=function(input, output, session, in_values, in_varname, current_variable_names){
+BooleanConversionDialogBoxServer=function(id, in_values, in_varname, current_variable_names){
 
-	# BCDB Events:
-	cat("obsered events\n");
-	BCDB_static[["levels"]]=sort(unique(in_values));
+	moduleServer(
 	
-	observeEvent(input$BCDB.reference_radio, {
-		cat("radio button pressed.\n");
+		id,
 		
-		alternate_level=setdiff(BCDB_static[["levels"]], input$BCDB.reference_radio);
-		
-		suggested_variable_name=paste(
-			get_prefix(in_varname), "_", in_varname, "_", alternate_level, sep="");
+		function(input, output, session){
 
-		updateTextInput(session, "BCDB.new_variable_name_textInput", value=suggested_variable_name);
-		
-		# Build/Refresh Matrix
-		mat=matrix(character(), nrow=2, ncol=3);
-		colnames(mat)=c(in_varname, "n", "Boolean");
-		mat[,in_varname]=BCDB_static[["levels"]];
-		mat[,"n"]=c(sum(in_values==BCDB_static[["levels"]][1]), sum(in_values==BCDB_static[["levels"]][2]));
-		mat[,"Boolean"]=input$BCDB.reference_radio!=BCDB_static[["levels"]];	
-		output$bool_stats_table=renderTable({mat}, colnames=T);
-	});
-	
-	observeEvent(input$BCDB.new_variable_name_textInput, {
-		cat("User modified text input.\n");
-	});
-	
-	observeEvent(input$BCDB.helpButton, {
-		cat("Dialog Help Pushed.\n");
-		removeModal();
-		showModal(modalDialog(title="Boolean Conversion", 
-			BCDB.help_txt, 
-			footer=actionButton("BCDB.dismissHelp", label="OK")));
-	});
-	
-	observeEvent(input$BCDB.cancelButton, {
-		cat("Dialog Cancel Pushed.\n");
-		removeModal();
-	});
-	
-	observeEvent(input$BCDB.saveButton, {
-		cat("Dialog Save Pushed.\n");
-		if(input$BCDB.new_variable_name_textInput!=""){
-			removeModal();
-			check_variable_name_msg=check_variable_name(input$BCDB.new_variable_name_textInput, current_variable_names);
+			# BCDB Events:
+			cat("obsered events\n");
+			BCDB_static[["levels"]]=sort(unique(in_values));
 			
-			if(check_variable_name_msg!=""){
-				showModal(
-					BadVariableName_DialogBox(input$ReNmDB.new_variable_name_textInput, 
-						check_variable_name_msg)
-				);
-			}else{
-				SetReturn("Selected_Variable_Name", input$BCDB.new_variable_name_textInput, session);
-				SetReturn("Selected_Reference", input$BCDB.reference_radio, session);
-			}
-		}else{
-			showModal(CantSave_DialogBox("No new variable name specified"));
+			showModal(BooleanConversionDialogBoxUI(id, in_values, in_varname));		
+			
+			observeEvent(input$BCDB.reference_radio, {
+				cat("radio button pressed.\n");
+				
+				alternate_level=setdiff(BCDB_static[["levels"]], input$BCDB.reference_radio);
+				
+				suggested_variable_name=paste(
+					get_prefix(in_varname), "_", in_varname, "_", alternate_level, sep="");
+
+				updateTextInput(session, "BCDB.new_variable_name_textInput", value=suggested_variable_name);
+				
+				# Build/Refresh Matrix
+				mat=matrix(character(), nrow=2, ncol=3);
+				colnames(mat)=c(in_varname, "n", "Boolean");
+				mat[,in_varname]=BCDB_static[["levels"]];
+				mat[,"n"]=c(sum(in_values==BCDB_static[["levels"]][1]), sum(in_values==BCDB_static[["levels"]][2]));
+				mat[,"Boolean"]=input$BCDB.reference_radio!=BCDB_static[["levels"]];	
+				output$bool_stats_table=renderTable({mat}, colnames=T);
+			});
+			
+			observeEvent(input$BCDB.new_variable_name_textInput, {
+				cat("User modified text input.\n");
+			});
+			
+			observeEvent(input$BCDB.helpButton, {
+				cat("Dialog Help Pushed.\n");
+				removeModal();
+				showModal(BCDB.HelpDialog(id));
+			});
+			
+			observeEvent(input$BCDB.cancelButton, {
+				cat("Dialog Cancel Pushed.\n");
+				removeModal();
+			});
+			
+			observeEvent(input$BCDB.saveButton, {
+				cat("Dialog Save Pushed.\n");
+				if(input$BCDB.new_variable_name_textInput!=""){
+					removeModal();
+					check_variable_name_msg=check_variable_name(input$BCDB.new_variable_name_textInput, current_variable_names);
+					
+					if(check_variable_name_msg!=""){
+						showModal(
+							BadVariableName_DialogBox(input$ReNmDB.new_variable_name_textInput, 
+								check_variable_name_msg)
+						);
+					}else{
+						SetReturn("Selected_Variable_Name", input$BCDB.new_variable_name_textInput, session);
+						SetReturn("Selected_Reference", input$BCDB.reference_radio, session);
+					}
+				}else{
+					showModal(CantSave_DialogBox("No new variable name specified"));
+				}
+			});
+			
+			# Help Events
+			observeEvent(input$BCDB.dismissHelp, {
+				removeModal();
+				showModal(BooleanConversionDialogBoxUI(id, in_values, in_varname));
+				updateTextInput(session, "BCDB.new_variable_name_textInput", value=input$BCDB.new_variable_name_textInput);
+				updateSelectInput(session, "BCDB.reference_radio", selected=input$BCDB.reference_radio);
+			});
+
+			# CS, Can't save Events
+			observeEvent(input$CS.okButton, {
+				showModal(BooleanConversionDialogBoxUI(id, in_values, in_varname));
+				updateSelectInput(session, "BCDB.reference_radio", selected=input$BCDB.reference_radio);
+			});
+			
+			# BadVN (Bad variable name) Events
+			observeEvent(input$BadVN.okButton, {
+				removeModal();
+				showModal(RenameDialogBox(in_varname));
+				updateTextInput(session, "ReNmDB.new_variable_name", value=input$ReNmDB.new_variable_name);
+			});
+
 		}
-	});
-	
-	# Help Events
-	observeEvent(input$BCDB.dismissHelp, {
-		cat("Dismissed Help.\n");
-		removeModal();
-		showModal(BooleanConversionDialogBox(in_values, in_varname), session);
-		updateTextInput(session, "BCDB.new_variable_name_textInput", value=input$BCDB.new_variable_name_textInput);
-		updateSelectInput(session, "BCDB.reference_radio", selected=input$BCDB.reference_radio);
-	});
-
-	# CS, Can't save Events
-	observeEvent(input$CS.okButton, {
-		showModal(BooleanConversionDialogBox(in_values, in_varname), session);
-		updateSelectInput(session, "BCDB.reference_radio", selected=input$BCDB.reference_radio);
-	});
-
-	
-	# BadVN (Bad variable name) Events
-	observeEvent(input$BadVN.okButton, {
-		removeModal();
-		showModal(RenameDialogBox(in_varname));
-		updateTextInput(session, "ReNmDB.new_variable_name", value=input$ReNmDB.new_variable_name);
-	});
- 
+	);
 }
 
 ###############################################################################

@@ -12,12 +12,14 @@ DateFormatConversionDialogBoxUI=function(id, in_date, in_varname){
 	ns=NS(id);
 
 	format_strings=c(
-		"%d%b%Y", "%m/%d/%y", "%Y-%d-%m", "%Y.%d", "%d-%b-%Y");
+		"%d%b%Y", "%m/%d/%y", "%Y-%d-%m", "%Y.%d", "%d-%b-%Y", "%Y-%b-%d");
 		
 	modalDialog(
 		fluidPage(
 			 titlePanel(paste("Date Format Conversion: ", in_varname, sep="")),
 			 helpText("Please convert your date into the standard ISO 8601 format."),
+			 helpText("For example, 1980-10-31 (i.e. %Y-%m-%d)"),
+			 tags$hr(),
 			 fluidRow(
 				column(4,
 					selectInput(ns("DFCD.input_dates_select"), 
@@ -34,7 +36,7 @@ DateFormatConversionDialogBoxUI=function(id, in_date, in_varname){
 							  selected = "",
 							  size=10, selectize=F
 							  ),
-					textInput("DFCD.date_format_textInput", "Format String", value="")
+					textInput(ns("DFCD.date_format_textInput"), "Format String", value="")
 				),
 				column(4,
 					selectInput(ns("DFCD.converted_dates_select"), 
@@ -56,11 +58,23 @@ DateFormatConversionDialogBoxUI=function(id, in_date, in_varname){
 	)
 }
 
+CantSaveDialogBox=function(id){
+	ns=NS(id);
+	showModal(modalDialog(title="Error Saving Variable...", "No date format string specified.", 
+		size="s", footer=actionButton(ns("dismissCantSave"), label="OK")));
+}
+
+HelpDialogBox=function(id){
+	ns=NS(id);
+	showModal(modalDialog(title="Date Conversion Format Symbols", help_txt, format_table,
+		size="m", footer=actionButton(ns("dismissHelp"), label="OK")));
+}
+
 ###############################################################################
 # All the responses/event handlers here
 # Do not place modalDialogs inline, unless they are really simple.
 
-DateFormatConversionDialogBoxServer=function(id, in_date, in_varname){
+DateFormatConversionDialogBoxServer=function(id, in_date, in_varname, used_var_names){
 
 	moduleServer(
 
@@ -68,34 +82,31 @@ DateFormatConversionDialogBoxServer=function(id, in_date, in_varname){
 		
 		function(input, output, session){
 		
+			ns=NS(id);
+		
 			showModal(DateFormatConversionDialogBoxUI(id, in_date, in_varname));
 		
 			# DFCD Events:
 			observeEvent(input$DFCD.helpButton, {
-				cat("Dialog Help Pushed.\n");
 				removeModal();
-				showModal(modalDialog(title="Date Conversion Formats", 
-					help_txt, 
-					footer=actionButton("dismissHelp", label="OK")));
+				HelpDialogBox(id);
 			});
 			
 			observeEvent(input$DFCD.cancelButton, {
-				cat("Dialog Cancel Pushed.\n");
 				removeModal();
 			});
 			
 			observeEvent(input$DFCD.saveAsButton, {
-				cat("Dialog SaveAs Pushed.\n");
+				removeModal();
 				if(input$DFCD.date_format_textInput!=""){
-					removeModal();
-					showModal(RenameDialogBox(in_varname));
+					new_name=RenameDialogBoxServer("rename", in_varname, in_varname, used_var_names, 
+						mesg="Specify a new variable name for your newly reformatted dates.");
 				}else{
-					showModal(CantSave_DialogBox("No format string specified"));
+					CantSaveDialogBox(id);
 				}
 			});
 			
 			observeEvent(input$DFCD.date_format_select,{
-				cat("observeEvent: input$DFCD.date_format_select.\n");
 				fmt_str=input$DFCD.date_format_select;
 				cat("Selected format string: '", fmt_str, "'\n", sep="");
 				if(length(fmt_str)){
@@ -104,7 +115,6 @@ DateFormatConversionDialogBoxServer=function(id, in_date, in_varname){
 			});
 
 			observeEvent(input$DFCD.date_format_textInput, {
-				cat("Format text box changed.\n");
 				txt_fmt_str=input$DFCD.date_format_textInput;
 				if(length(txt_fmt_str)){
 					if(txt_fmt_str==""){
@@ -118,51 +128,20 @@ DateFormatConversionDialogBoxServer=function(id, in_date, in_varname){
 				}
 			});
 			
-			# Help Events
+			# Help
 			observeEvent(input$dismissHelp, {
-				cat("Dismissed Help.\n");
 				removeModal();
-				showModal(DateFormatConversionDialogBox(in_date, in_varname), session);
+				showModal(DateFormatConversionDialogBoxUI(id, in_date, in_varname));
 				updateTextInput(session, "DFCD.date_format_textInput", value=input$DFCD.date_format_textInput);
-			});
-
-			# CS, Can't save Events
-			observeEvent(input$CS.okButton, {
-					showModal(DateFormatConversionDialogBox(in_date, in_varname), session);
-			});
-
-			# ReNmDB (Rename variable) Events
-			observeEvent(input$ReNmDB.cancelButton,{
-				removeModal();
-				showModal(DateFormatConversionDialogBox(in_date, in_varname), session);
-				updateTextInput(session, "DFCD.date_format_textInput", value=input$DFCD.date_format_textInput);
-			});
-		  
-			observeEvent(input$ReNmDB.okButton, {
-				removeModal();
-				
-				check_variable_name_msg=check_variable_name(input$ReNmDB.new_variable_name, current_variable_names);
-				
-				cur_new_variable_name=input$ReNmDB.new_variable_name;
-				
-				if(check_variable_name_msg!=""){
-					showModal(
-						BadVariableName_DialogBox(input$ReNmDB.new_variable_name, 
-							check_variable_name_msg)
-					);
-				}else{
-					SetReturn("Selected_Variable_Name", input$ReNmDB.new_variable_name, session);
-					SetReturn("Selected_Date_Format", input$DFCD.date_format_textInput, session);
-				}
 			});
 			
-			# BadVN (Bad variable name) Events
-			observeEvent(input$BadVN.okButton, {
+			# Can't Save
+			observeEvent(input$dismissCantSave, {
 				removeModal();
-				showModal(RenameDialogBox(in_varname));
-				updateTextInput(session, "ReNmDB.new_variable_name", value=input$ReNmDB.new_variable_name);
+				showModal(DateFormatConversionDialogBoxUI(id, in_date, in_varname));
+				updateTextInput(session, "DFCD.date_format_textInput", value=input$DFCD.date_format_textInput);
 			});
- 
+
 		}
 	);
  
@@ -187,7 +166,8 @@ date_conversion_help_table=matrix(
 rownames(date_conversion_help_table)=rep("",8);
 colnames(date_conversion_help_table)=paste("&nbsp", c("Symbol", "Meaning", "Example"));
 
-help_txt=tableHTML(date_conversion_help_table, rownames=F, widths=c(90,200,100));
+help_txt=tags$p("Use this table to identify the components of your data format string:");
+format_table=tableHTML(date_conversion_help_table, rownames=F, widths=c(90,200,100));
 
 check_variable_name=function(varname, existing_varnames){
 # This function is just for a quick check for egregiously bad names
