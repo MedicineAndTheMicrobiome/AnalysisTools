@@ -26,9 +26,21 @@ RenameDialogBoxServer=function(id, old_name, suggested_name, current_variable_na
 		
 		function(input, output, session){
 		
-			cat("RenameDialogBoxServer started with id: ", id, "\n");
+			ns=NS(id);
+		
+			cat("RenameDialogBoxServer called:\n");
+			cat("  Session Namespace=", session$ns(""), " id=", id, " ns() prepender=", ns(""), "\n");
+	
+			# I think there is a bug in the namespce.  It's either not prepending ns of calling function to id,
+			# or if the ns() is supposed to be placed around the id when called, it's double appending the ns.
+			id=gsub("-$", "", session$ns(""));
+			cat("  Used id=", id, "\n");
 		
 			showModal(RenameDialogBoxUI(id, old_name, suggested_name, mesg));
+			
+			observeEvent(input$Nuts, {
+				cat("Nuts button pressed.\n");
+			});
 			
 			observeEvent(input$ReNmDB.cancelButton,{
 				cat("ReNmDB.cancelButton pressed.\n");

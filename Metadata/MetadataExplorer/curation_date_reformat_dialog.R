@@ -82,7 +82,10 @@ DateFormatConversionDialogBoxServer=function(id, in_date, in_varname, used_var_n
 		
 		function(input, output, session){
 		
-			ns=NS(id);
+			ns=NS(id)
+		
+			cat("DateFormatConversionDialogBoxServer called:\n");
+			cat("  Session Namespace=", session$ns(""), " id=", id, " ns() prepender=", ns(""), "\n");
 		
 			showModal(DateFormatConversionDialogBoxUI(id, in_date, in_varname));
 		
@@ -99,6 +102,8 @@ DateFormatConversionDialogBoxServer=function(id, in_date, in_varname, used_var_n
 			observeEvent(input$DFCD.saveAsButton, {
 				removeModal();
 				if(input$DFCD.date_format_textInput!=""){
+					cat("\nCalling RenameDialogBoxServer w/ id=", "rename", "\n");
+					# If I wrap the id ("rename") in ns(), then the ns gets double added in the id when called
 					new_name=RenameDialogBoxServer("rename", in_varname, in_varname, used_var_names, 
 						mesg="Specify a new variable name for your newly reformatted dates.");
 				}else{

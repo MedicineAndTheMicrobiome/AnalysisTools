@@ -50,7 +50,6 @@ observe_CurationTabEvents=function(input, output, session){
 			
 	});
 	
-	
 	observeEvent(input$CurationTab.warnings_table_rows_selected, {
 		selected_row=input$CurationTab.warnings_table_rows_selected;
 		cat("Row Selected: ", selected_row, "\n");
@@ -80,7 +79,8 @@ observe_CurationTabEvents=function(input, output, session){
 			"NA_GT25"={
 			},
 			"NA_GT10"={
-			RenameDialogBoxServer("test", "var1", "var2", used_names, mesg="test");
+				suggested_name=gsub("[^a-zA-Z0-9_\\.]", "", varname);
+				RenameDialogBoxServer("nagt10", varname, suggested_name, used_names, mesg=NULL);
 			},
 			"DICH_NOTBOOL"={
 				BooleanConversionDialogBoxServer("bool_conv", values, varname);
