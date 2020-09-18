@@ -50,7 +50,7 @@ DataTransformationDialogBoxUI=function(id, in_values, in_varname, default_trans=
 
 ###############################################################################
 
-DataTransformationDialogBoxServer=function(id, in_values, in_varname, default_trans){
+DataTransformationDialogBoxServer=function(id, invalname, invarname, transformname, save_transf_data_callback){
 
 	moduleServer(
 	
@@ -60,8 +60,6 @@ DataTransformationDialogBoxServer=function(id, in_values, in_varname, default_tr
 		
 			ns=NS(id);
 		
-			showModal(DataTransformationDialogBoxUI(id, in_values, in_varname, default_trans));
-
 			observeEvent(input$DTDB.helpButton, {
 				cat("Dialog Help Pushed.\n");
 				removeModal();
@@ -82,9 +80,13 @@ DataTransformationDialogBoxServer=function(id, in_values, in_varname, default_tr
 				
 				if(!is.null(input$DTDB.transformation_select)){
 					removeModal();
-					sug_name=DTDB.suggest_name(input$DTDB.transformation_select, in_varname);
+					sug_name=DTDB.suggest_name(input$DTDB.transformation_select, session$userData[[invarname]]);
 					cat("Suggested Name: ", sug_name, "\n");
-					showModal(RenameDialogBox(in_varname, sug_name));
+					showModal(RenameDialogBoxUI(
+						id="data_rename",
+						old_name=session$userData[[invarname]],
+						suggested_name=sug_name,
+						mesg="Please specify a new name for your transformed variable."));
 				}else{
 					showModal(CantSave_DialogBox("No transformation specified"));
 				}
@@ -96,12 +98,14 @@ DataTransformationDialogBoxServer=function(id, in_values, in_varname, default_tr
 			
 				warnings_table=session$userData[["Curation"]][["WarningsTable"]];
 			
-				transformed_values=DTDB.transform(input$DTDB.transformation_select, in_values);
+				session$userData[[transformname]]=input$DTDB.transformation_select;
+			
+				transformed_values=DTDB.transform(input$DTDB.transformation_select, session$userData[[invalname]]);
 				nas=is.na(transformed_values);
 				num_nas=sum(nas);
 				
 				orig_pval=tryCatch({
-					res=shapiro.test(in_values);
+					res=shapiro.test(session$userData[[invalname]]);
 					res$p.value;
 				}, warning=function(w){}, error=function(e){});
 				
@@ -141,7 +145,8 @@ DataTransformationDialogBoxServer=function(id, in_values, in_varname, default_tr
 					trans_bold=c("","");
 				}
 			
-				xlabel=gsub("x", in_varname, input$DTDB.transformation_select);
+				cat("invarname: ", session$userData[[invarname]], "\n");
+				xlabel=gsub("x", session$userData[[invarname]], input$DTDB.transformation_select);
 				
 				if(bad_trans){
 					output$DTDB.transformed_histogram=renderPlot({
@@ -169,7 +174,7 @@ DataTransformationDialogBoxServer=function(id, in_values, in_varname, default_tr
 			observeEvent(input$DTDB.dismissHelp, {
 				cat("Dismissed Help.\n");
 				removeModal();
-				showModal(DataTransformationDialogBoxUI(id, in_values, in_varname), session);
+				showModal(DataTransformationDialogBoxUI(id, session$userData[[invalname]], session$userData[[invarname]]), session);
 				updateSelectInput(session, ns("DTDB.transformation_select"), selected=input$DTDB.transformation_select);
 			});
 
@@ -177,7 +182,7 @@ DataTransformationDialogBoxServer=function(id, in_values, in_varname, default_tr
 			# CS, Can't save Events
 			
 			observeEvent(input$CS.okButton, {
-					showModal(DataTransformationDialogBoxUI(id, in_date, in_varname), session);
+					showModal(DataTransformationDialogBoxUI(id, session$userData[[invalname]], session$userData[[invarname]]), session);
 			});
 		
 			
