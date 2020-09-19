@@ -94,15 +94,24 @@ DataTransformationDialogBoxServer=function(id, invalname, invarname, transformna
 			
 			observeEvent(input$DTDB.transformation_select, {
 				cat("Transformation selector touched.\n");
-				cat(input$DTDB.transformation_select, "\n");
+				cat("Selected Function: ", input$DTDB.transformation_select, "\n");
 			
-				warnings_table=session$userData[["Curation"]][["WarningsTable"]];
+				#warnings_table=session$userData[["Curation"]][["WarningsTable"]];
 			
 				session$userData[[transformname]]=input$DTDB.transformation_select;
-			
 				transformed_values=DTDB.transform(input$DTDB.transformation_select, session$userData[[invalname]]);
+				
+				cat("invalname:", invalname, "\n");
+				print(session$userData[[invalname]]);
+				
+				cat("invarname:", invarname, "\n");
+				print(session$userData[[invarname]]);
+				
+				
 				nas=is.na(transformed_values);
 				num_nas=sum(nas);
+				
+				cat("Performing transformations.\n");
 				
 				orig_pval=tryCatch({
 					res=shapiro.test(session$userData[[invalname]]);
@@ -113,6 +122,9 @@ DataTransformationDialogBoxServer=function(id, invalname, invarname, transformna
 					res=shapiro.test(transformed_values);
 					res$p.value;
 				}, warning=function(w){}, error=function(e){});
+				
+				print(orig_pval);
+				print(trans_pval);
 				
 				bad_trans=F;
 				
@@ -257,6 +269,9 @@ DTDB.transformations=c(
 
 DTDB.transform=function(trans, x){
 
+	cat("In:\n");
+	print(x);
+
 	ret=tryCatch({
 		if(trans=="sqrt(x)"){
 			trans=(sqrt(x));
@@ -275,7 +290,11 @@ DTDB.transform=function(trans, x){
 		}else if(trans=="x"){
 			trans=x;
 		}
+		
+		trans=trans[is.finite(trans)];
 	});
+	cat("Out:\n");
+	print(ret);
 
 	return(ret);
 

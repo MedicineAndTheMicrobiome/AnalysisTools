@@ -18,7 +18,7 @@ RenameDialogBoxUI=function(id, old_name, suggested_name, mesg){
 	);
 }
 
-RenameDialogBoxServer=function(id, in_varname, in_availname, save_transf_data_callback){
+RenameDialogBoxServer=function(id, in_values, in_varname, in_availname, return_ui, save_transf_data_callback){
 	
 	moduleServer(
 	
@@ -44,21 +44,14 @@ RenameDialogBoxServer=function(id, in_varname, in_availname, save_transf_data_ca
 				cat("ReNmDB.cancelButton pressed.\n");
 				removeModal();
 				
-				#return(
-				#	list(
-				#		new_name=reactive({input$ReNmDB.new_variable_name}), 
-				#		cancel=reactive({input$ReNmDB.cancelButton})
-				#));
-				#showModal(DataTransformationDialogBoxUI(id, in_values, in_varname), session);
-				#updateSelectInput(session, "DTDB.transformation_select", selected=input$DTDB.transformation_select);
+				showModal(return_ui(session$userData[["id_name"]], session$userData[[in_values]], session$userData[[in_varname]]));
+				
 			});
 		  
 			observeEvent(input$ReNmDB.okButton, {
 				cat("ReNmDB.okButton pressed.\n");
 				
 				check_variable_name_msg=check_variable_name(input$ReNmDB.new_variable_name, session$userData[["in_availname"]]);
-				
-				cat(date(), "ok button: new_variable_name: ", input$ReNmDB.new_variable_name, "\n");
 				
 				cur_new_variable_name=input$ReNmDB.new_variable_name;
 				

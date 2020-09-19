@@ -87,6 +87,7 @@ observe_CurationTabEvents=function(input, output, session){
 		session$userData[["curation_varname"]]=varname;
 		session$userData[["avail_varnames"]]=colnames(session$userData[["Metadata"]]);
 		
+		
 		switch(warning_code,
 			"INV_VAR_NAME"={
 				suggested_name=gsub("[^a-zA-Z0-9_\\.]", "", varname);
@@ -107,23 +108,22 @@ observe_CurationTabEvents=function(input, output, session){
 			"ALL_IDENT"={
 			},
 			"REC_SQRT_TRANS"={
-				#DataTransformationDialogBoxServer("sqrt_trans", values, varname, default_trans="sqrt(x)");
+				session$userData[["id_name"]]="data_trans";
 				showModal(DataTransformationDialogBoxUI("data_trans", values, varname, default_trans="sqrt(x)"));
 			},
 			"REC_LOG_TRANS"={
-				#DataTransformationDialogBoxServer("log_trans", values, varname, default_trans="ln(x)");
+				session$userData[["id_name"]]="data_trans";
 				showModal(DataTransformationDialogBoxUI("data_trans", values, varname, default_trans="ln(x)"));
 			},
 			"REC_LOGIT_TRANS"={
-				#DataTransformationDialogBoxServer("logit_trans", values, varname, default_trans="logit(x)");
+				session$userData[["id_name"]]="data_trans";
 				showModal(DataTransformationDialogBoxUI("data_trans", values, varname, default_trans="logit(x)"));
 			},
 			"NON_ISODATE"={
+				session$userData[["id_name"]]="date_format";
 				showModal(DateFormatConversionDialogBoxUI("date_format", values, varname));
-				
 			},
 			"INV_LVL_NAMES"={
-				#showModal();
 			},
 			"EXCESS_CATS"={
 			},	
@@ -135,14 +135,25 @@ observe_CurationTabEvents=function(input, output, session){
 		
 	});
 	
-	RenameDialogBoxServer("rename", "curation_varname", "avail_varnames", 
+	
+	
+	RenameDialogBoxServer(id="rename", in_values="curation_values", in_varname="curation_varname", 
+		in_availname="avail_varnames", 
+		return_ui=NULL,
 		save_transf_data_callback=CurationTab.add_transformed_column);
 		
-	RenameDialogBoxServer("data_rename", "curation_varname", "avail_varnames", 
+	RenameDialogBoxServer(id="data_rename",  in_values="curation_values", in_varname="curation_varname", 
+		in_availname="avail_varnames", 
+		return_ui=DataTransformationDialogBoxUI,
 		save_transf_data_callback=CurationTab.add_transformed_column);
 
-	RenameDialogBoxServer("date_rename", "curation_varname", "avail_varnames", 
+	RenameDialogBoxServer(id="date_rename", in_values="curation_values", in_varname="curation_varname", 
+		in_availname="avail_varnames", 
+		return_ui=DateFormatConversionDialogBoxUI,
 		save_transf_data_callback=CurationTab.add_transformed_column);
+		
+		
+		
 	
 	DateFormatConversionDialogBoxServer(id="date_format", 
 		invalname="curation_values", invarname="curation_varname", transformname="current_transform_type",
