@@ -87,6 +87,7 @@ observe_CurationTabEvents=function(input, output, session){
 		session$userData[["curation_varname"]]=varname;
 		session$userData[["avail_varnames"]]=colnames(session$userData[["Metadata"]]);
 		
+		no_op=F;
 		
 		switch(warning_code,
 			"INV_VAR_NAME"={
@@ -94,18 +95,20 @@ observe_CurationTabEvents=function(input, output, session){
 				#RenameDialogBoxServer("bad_var_name", varname, suggested_name, used_names, mesg=NULL);
 			},
 			"NA_GT50"={
+				no_op=T;
 			},
 			"NA_GT25"={
+				no_op=T;
 			},
 			"NA_GT10"={
-				suggested_name=gsub("[^a-zA-Z0-9_\\.]", "", varname);
-				
-				#RenameDialogBoxServer("nagt10", varname, suggested_name, used_names, mesg=NULL);
+				no_op=T;
 			},
 			"DICH_NOTBOOL"={
-				#BooleanConversionDialogBoxServer("bool_conv", values, varname);
+				session$userData[["id_name"]]="bool_conv";
+				showModal(BooleanConversionDialogBoxUI("bool_conv", values, varname));
 			},
 			"ALL_IDENT"={
+				no_op=T;
 			},
 			"REC_SQRT_TRANS"={
 				session$userData[["id_name"]]="data_trans";
@@ -124,14 +127,19 @@ observe_CurationTabEvents=function(input, output, session){
 				showModal(DateFormatConversionDialogBoxUI("date_format", values, varname));
 			},
 			"INV_LVL_NAMES"={
+				no_op=T;
 			},
 			"EXCESS_CATS"={
+				no_op=T;
 			},	
 			"UNDERREP_CATS"={
+				no_op=T;
 			}
 		);
 		
-		selectRows(dt_proxy, NULL);
+		#if(!no_op){
+			#selectRows(dt_proxy, NULL);
+		#}
 		
 	});
 	
@@ -152,6 +160,11 @@ observe_CurationTabEvents=function(input, output, session){
 		return_ui=DateFormatConversionDialogBoxUI,
 		save_transf_data_callback=CurationTab.add_transformed_column);
 		
+	RenameDialogBoxServer(id="bool_rename", in_values="curation_values", in_varname="curation_varname", 
+		in_availname="avail_varnames", 
+		return_ui=BooleanConversionDialogBoxUI,
+		save_transf_data_callback=CurationTab.add_transformed_column);
+		
 		
 		
 	
@@ -163,7 +176,9 @@ observe_CurationTabEvents=function(input, output, session){
 		invalname="curation_values", invarname="curation_varname", transformname="current_transform_type",
 		save_transf_data_callback=CurationTab.add_transformed_column);
 		
-	#BooleanConversionDialogBoxServer("bool_conv", save_transf_data_callback=CurationTab.add_transformed_column);
+	BooleanConversionDialogBoxServer("bool_conv", 
+		invalname="curation_values", invarname="curation_varname", transformname="current_transform_type",
+		save_transf_data_callback=CurationTab.add_transformed_column);
 	
 }
 

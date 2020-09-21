@@ -106,6 +106,10 @@ DateFormatConversionDialogBoxServer=function(id, invalname, invarname, transform
 						suggested_name=session$userData[[invarname]], 
 						mesg="Please specify a new name for your transformed date."));
 
+					session$userData[["curate.cancel_call_back"]]=function(){
+							updateTextInput(session, "DFCD.date_format_textInput", value=input$DFCD.date_format_textInput);
+						}
+
 				}else{
 					CantSaveDialogBox(id);
 				}

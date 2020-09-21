@@ -36,15 +36,12 @@ RenameDialogBoxServer=function(id, in_values, in_varname, in_availname, return_u
 			id=gsub("-$", "", session$ns(""));
 			cat("  Used id=", id, "\n");
 			
-			#ret_val=reactiveValues();
-		
-			#showModal(RenameDialogBoxUI(id, old_name, suggested_name, mesg));
-			
 			observeEvent(input$ReNmDB.cancelButton,{
 				cat("ReNmDB.cancelButton pressed.\n");
 				removeModal();
 				
 				showModal(return_ui(session$userData[["id_name"]], session$userData[[in_values]], session$userData[[in_varname]]));
+				session$userData[["curate.cancel_call_back"]]();
 				
 			});
 		  

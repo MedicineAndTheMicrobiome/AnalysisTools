@@ -65,7 +65,7 @@ DataTransformationDialogBoxServer=function(id, invalname, invarname, transformna
 				removeModal();
 				showModal(modalDialog(title="Data Transformation", 
 					DTDB.help_txt, 
-					footer=actionButton(ns("DTDB.dismissHelp"), label="OK"),
+					footer=actionButton("DTDB.dismissHelp", label="OK"),
 					size="l"
 					));
 			});
@@ -87,6 +87,10 @@ DataTransformationDialogBoxServer=function(id, invalname, invarname, transformna
 						old_name=session$userData[[invarname]],
 						suggested_name=sug_name,
 						mesg="Please specify a new name for your transformed variable."));
+						
+					session$userData[["curate.cancel_call_back"]]=function(){
+							updateSelectInput(session, "DTDB.transformation_select", selected=input$DTDB.transformation_select);
+						}	
 				}else{
 					showModal(CantSave_DialogBox("No transformation specified"));
 				}
