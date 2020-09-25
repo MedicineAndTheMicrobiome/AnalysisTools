@@ -74,7 +74,7 @@ HelpDialogBox=function(id){
 # All the responses/event handlers here
 # Do not place modalDialogs inline, unless they are really simple.
 
-DateFormatConversionDialogBoxServer=function(id, in_date, in_varname, used_var_names){
+DateFormatConversionDialogBoxServer=function(id, invalname, invarname, transformname, save_transf_data_callback){
 
 	moduleServer(
 
@@ -82,9 +82,9 @@ DateFormatConversionDialogBoxServer=function(id, in_date, in_varname, used_var_n
 		
 		function(input, output, session){
 		
-			ns=NS(id);
+			ns=NS(id)
 		
-			showModal(DateFormatConversionDialogBoxUI(id, in_date, in_varname));
+			#cat("  Session Namespace=", session$ns(""), " id=", id, " ns() prepender=", ns(""), "\n");
 		
 			# DFCD Events:
 			observeEvent(input$DFCD.helpButton, {
@@ -99,13 +99,22 @@ DateFormatConversionDialogBoxServer=function(id, in_date, in_varname, used_var_n
 			observeEvent(input$DFCD.saveAsButton, {
 				removeModal();
 				if(input$DFCD.date_format_textInput!=""){
-					new_name=RenameDialogBoxServer("rename", in_varname, in_varname, used_var_names, 
-						mesg="Specify a new variable name for your newly reformatted dates.");
+				
+					showModal(RenameDialogBoxUI(
+						id="date_rename", 
+						old_name=session$userData[[invarname]], 
+						suggested_name=session$userData[[invarname]], 
+						mesg="Please specify a new name for your transformed date."));
+
+					session$userData[["curate.cancel_call_back"]]=function(){
+							updateTextInput(session, "DFCD.date_format_textInput", value=input$DFCD.date_format_textInput);
+						}
+
 				}else{
 					CantSaveDialogBox(id);
 				}
 			});
-			
+
 			observeEvent(input$DFCD.date_format_select,{
 				fmt_str=input$DFCD.date_format_select;
 				cat("Selected format string: '", fmt_str, "'\n", sep="");
@@ -116,12 +125,13 @@ DateFormatConversionDialogBoxServer=function(id, in_date, in_varname, used_var_n
 
 			observeEvent(input$DFCD.date_format_textInput, {
 				txt_fmt_str=input$DFCD.date_format_textInput;
+				session$userData[[transformname]]=txt_fmt_str;
 				if(length(txt_fmt_str)){
 					if(txt_fmt_str==""){
 						conv_date=c();
 					}else{
 						conv_date=tryCatch({
-								as.Date(in_date, txt_fmt_str);
+								as.Date(session$userData[[invalname]], txt_fmt_str);
 							});
 					}
 					updateSelectInput(session, "DFCD.converted_dates_select", choices=conv_date);
@@ -131,14 +141,14 @@ DateFormatConversionDialogBoxServer=function(id, in_date, in_varname, used_var_n
 			# Help
 			observeEvent(input$dismissHelp, {
 				removeModal();
-				showModal(DateFormatConversionDialogBoxUI(id, in_date, in_varname));
+				showModal(DateFormatConversionDialogBoxUI(id, session$userData[[invalname]], session$userData[[invarname]]));
 				updateTextInput(session, "DFCD.date_format_textInput", value=input$DFCD.date_format_textInput);
 			});
 			
 			# Can't Save
 			observeEvent(input$dismissCantSave, {
 				removeModal();
-				showModal(DateFormatConversionDialogBoxUI(id, in_date, in_varname));
+				showModal(DateFormatConversionDialogBoxUI(id, session$userData[[invalname]], session$userData[[invarname]]));
 				updateTextInput(session, "DFCD.date_format_textInput", value=input$DFCD.date_format_textInput);
 			});
 
