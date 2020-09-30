@@ -98,7 +98,7 @@ print(proj_desc);
 
 outfh=file(paste(OutputFileNameRoot, ".metadata.tsv", sep=""), "w");
 
-cat(file=outfh, "Sample_ID\tExperiment_Type\tRead_Depth\n");
+cat(file=outfh, "Sample_ID\tSample_Type\tRead_Depth\n");
 
 for(row_ix in 1:num_samples){
 	cat(file=outfh, 
