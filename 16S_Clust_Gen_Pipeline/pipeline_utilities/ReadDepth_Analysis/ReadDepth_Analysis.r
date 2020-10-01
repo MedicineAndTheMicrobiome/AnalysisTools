@@ -100,7 +100,7 @@ num_sample_types=length(unique_sample_types);
 # Split samples and calc stats
 
 by_sample_type=list();
-stat_mat=matrix(0, nrow=num_sample_types, ncol=6);
+stat_mat=matrix(NA, nrow=num_sample_types, ncol=6);
 rownames(stat_mat)=unique_sample_types;
 colnames(stat_mat)=c("median", "N", "min", "max", "lb95", "ub95");
 
