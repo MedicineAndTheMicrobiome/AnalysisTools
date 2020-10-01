@@ -25,7 +25,7 @@ usage = paste (
 	"bar plots and pairwise comparisons of their medians.\n",
 	"\n",
 	"Generates: \n",
-	"  <output root>.ctrl_analysis.pdf\n",
+	"  <output root>.ctrl_depth_analysis.pdf\n",
 	"\n");
 
 if(!length(opt$input_depth_file) && !length(opt$output_fname_root)){
@@ -42,7 +42,7 @@ cat("\n")
 cat("Input File Name: ", InputFileName, "\n");
 cat("Output File Name Root: ", OutputFileNameRoot, "\n");       
 
-pdf(paste(OutputFileNameRoot, ".ctrl_analysis.pdf", sep=""), height=8.5, width=11);
+pdf(paste(OutputFileNameRoot, ".ctrl_depth_analysis.pdf", sep=""), height=8.5, width=11);
 
 ###############################################################################
 
