@@ -40,6 +40,7 @@ my $SUMTAB_TO_FACTOR_FILE_BIN="$FindBin::Bin/pipeline_utilities/SummaryTable_to_
 my $SUMTAB_TO_DISTMAT_BIN="$FindBin::Bin/../Profile/SummaryTableUtilities/Create_Distance_Matrix.r";
 my $JOIN_SUMTAB_BIN="$FindBin::Bin/../Profile/SummaryTableUtilities/Join_Summary_Tables.r";
 my $PERMANOVA_BIN="$FindBin::Bin/../Profile/distance_based/Permanova/Permanova.r";
+my $READDEPTH_ANALYSIS_BIN="$FindBin::Bin/pipeline_utilities/ReadDepth_Analysis/ReadDepth_Analysis.r";
 
 #my $CURRENT_16S_ALIGNMENT=
 #	"/usr/local/devel/DAS/users/kli/SVN/DAS/16sDataAnalysis/trunk/16S_OTU_Generation/silva.nr_v119.align";
@@ -793,6 +794,14 @@ my $exec_string="
 ";
 exec_cmd($exec_string, "$control_comp_dir", "control_analysis_permanova_all");
 
+# Perform read depth analysis w/controls
+my $exec_string="
+	$READDEPTH_ANALYSIS_BIN
+		-i $control_comp_dir/$out_root.metadata.tsv
+		-o $control_comp_dir/$out_root.all_samples
+";
+exec_cmd($exec_string, "$control_comp_dir", "control_analysis_depth_analysis_all");
+
 # 0750,1000,2000,3000
 #my @depths=("0750");
 my @depths=("0750", "1000", "2000", "3000");
@@ -804,31 +813,42 @@ $sumtabs{"3000"}=$sumtab_exp3000;
 
 foreach my $depth (@depths){
 
+	my $depth_dir="$control_comp_dir/$depth";
+	mkdir $depth_dir;
+
 	# Join experimental at cutoff with negative controls
 	my $exec_string="
 		$JOIN_SUMTAB_BIN
 			-i $sumtab_negctl,$sumtabs{$depth}
-			-o $control_comp_dir/$out_root.$depth.w_negctl
+			-o $depth_dir/$out_root.$depth.w_negctl
 	";
-	exec_cmd($exec_string, "$control_comp_dir", "control_analysis_join_$depth\_w_negctl");
+	exec_cmd($exec_string, "$depth_dir", "control_analysis_join_$depth\_w_negctl");
 
 	# Pull factor file for summary table
 	my $exec_string="
 		$SUMTAB_TO_FACTOR_FILE_BIN
-			-i $control_comp_dir/$out_root.$depth.w_negctl.summary_table.tsv
-			-o $control_comp_dir/$out_root.$depth.w_negctl
+			-i $depth_dir/$out_root.$depth.w_negctl.summary_table.tsv
+			-o $depth_dir/$out_root.$depth.w_negctl
 	";
-	exec_cmd($exec_string, "$control_comp_dir", "control_analysis_make_factorfile_$depth");
+	exec_cmd($exec_string, "$depth_dir", "control_analysis_make_factorfile_$depth");
 
 	# Perform permanova
 	my $exec_string="
 		$PERMANOVA_BIN
 			-d $control_comp_dir/$out_root.man.distmat
-			-f $control_comp_dir/$out_root.$depth.w_negctl.metadata.tsv
-			-o $control_comp_dir/$out_root.$depth.w_negctl
+			-f $depth_dir/$out_root.$depth.w_negctl.metadata.tsv
+			-o $depth_dir/$out_root.$depth.w_negctl
 			-m \"Sample_Type\"
 	";
-	exec_cmd($exec_string, "$control_comp_dir", "control_analysis_permanova_$depth");
+	exec_cmd($exec_string, "$depth_dir", "control_analysis_permanova_$depth");
+
+	# Perform read depth analysis w/controls
+	my $exec_string="
+		$READDEPTH_ANALYSIS_BIN
+			-i $depth_dir/$out_root.$depth.w_negctl.metadata.tsv
+			-o $depth_dir/$out_root.$depth.w_negctl
+	";
+	exec_cmd($exec_string, "$depth_dir", "control_analysis_depth_analysis_$depth");
 	
 }
 
