@@ -51,10 +51,10 @@ project_ids_map=list(
 	"0008"="Vehicle.Control.Saline",
 	"0009"="Vehicle.Control.Swab",
 	"0010"="MoBio.PowerMicrobiome.DNA.Ext.Neg",
-	"0011"="Zymo.IntactCells.Positive.Control.For.Extraction",
-	"0012"="Ecoli.IntactCells.Positive.Control.For.Extraction",
-	"0013"="Positive.Control.For.Extraction.Other",
-	"0015"="Neg.Ctrl.Genomic.DNA.by.Investigator"
+	"0011"="Zymo.IntctCells.Pos.Ctrl.For.Extr",
+	"0012"="Ecoli.IntctCells.Pos.Ctrl.For.Extr",
+	"0013"="Pos.Ctrl.For.Extr.Other",
+	"0015"="Neg.Ctrl.Genomic.DNA.by.Invstgtr"
 );
 
 cat("Mapped Project IDs:\n");
