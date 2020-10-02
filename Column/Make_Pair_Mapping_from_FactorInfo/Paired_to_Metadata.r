@@ -23,6 +23,11 @@ usage = paste(
 	"\n",
 	"This script will read in a paired map file and regenerate\n",
 	"a metadata/factor file.\n",
+	"\n",
+	"The format of the paired map needs the following columns:\n",
+	" 1.) subject id\n",
+	" 2.) first sample type's sample ids\n",
+	" 3.) second sample type's sample ids\n",
 	"\n", sep="");
 
 if(
@@ -54,6 +59,16 @@ load_paired=function(fname){
 	cat("Loading Paired Map...\n");
 	table=data.frame(read.table(fname,  sep="\t", header=TRUE, 
 		row.names=1, check.names=FALSE, comment.char=""));
+
+	if(nrow(table)!=2){
+		cat("\n*************************************************************\n");
+		cat("Error:  This script requires 3 columns in the paired file.\n");
+		cat(" 1.) subject id\n 2.) sample id A\n 3.) sample id B\n");
+		cat("\n*************************************************************\n");
+		cat("\n\n");
+		quit(status=-1);
+	}
+
 	return(table);
 }
 
