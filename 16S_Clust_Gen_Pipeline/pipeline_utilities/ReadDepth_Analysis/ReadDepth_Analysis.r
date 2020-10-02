@@ -42,7 +42,7 @@ cat("\n")
 cat("Input File Name: ", InputFileName, "\n");
 cat("Output File Name Root: ", OutputFileNameRoot, "\n");       
 
-pdf(paste(OutputFileNameRoot, ".ctrl_depth_analysis.pdf", sep=""), height=8.5, width=11);
+pdf(paste(OutputFileNameRoot, ".ctrl_depth_analysis.pdf", sep=""), height=8.5, width=14);
 
 ###############################################################################
 
