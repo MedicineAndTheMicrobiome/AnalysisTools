@@ -95,6 +95,8 @@ print(sample_types);
 sample_colors=as.numeric(sample_types);
 unique_sample_types=as.character(levels(sample_types));
 num_sample_types=length(unique_sample_types);
+colors=1:num_sample_types;
+names(colors)=unique_sample_types;
 
 #------------------------------------------------------------------------------
 # Split samples and calc stats
@@ -145,6 +147,11 @@ layout(layout_mat);
 par(mar=c(2,4,4,1));
 plot(0,0, type="n", xlim=c(-4,4), ylim=c(0, max_depth*1.1), 
 	xaxt="n", xlab="", ylab="Read Depth", main="All Samples: Points Only");
+
+for(smp_typ in unique_sample_types){
+	abline(h=stat_mat[smp_typ, "median"], col=colors[smp_typ], lwd=.8, lty=2);
+}
+
 jitter=rnorm(num_samples, 0, sqrt(1.5));
 points(jitter, sample_depth, col=sample_colors);
 par(mar=c(0,0,2,0));
@@ -165,12 +172,13 @@ text(jitter, sample_depth, labels=sample_names, col=sample_colors, cex=.7, pos=3
 
 #------------------------------------------------------------------------------
 # bar plots
-par(mar=c(20,5,5,1));
+par(mar=c(20,8,5,1));
 par(lwd=2);
 barmids=barplot(stat_mat[unique_sample_types, "median"], col="white", 
 	border=1:num_sample_types,
-	ylab="Read Depth", ylim=c(0, max_depth*1.1), las=2,
+	ylim=c(0, max_depth*1.1), las=2,
 	main="Median Read Depth by Sample Type");
+title(ylab="Read Depth", line=6);
 spacing=diff(barmids)[1];
 cat("Bar spacings: ", spacing, "\n");
 
@@ -185,6 +193,34 @@ for(i in 1:num_sample_types){
 	points(barmids[i]+jitter, depths, col=i);
 }
 
+format=function(mat){
+	outmat=apply(mat, 1:2, function(x){
+			if(!is.na(x)){
+				sprintf("%6.5f",x);
+			}else{
+				return("-");
+			}
+		}
+	);
+	return(outmat);
+}
+
+signif=function(mat){
+	outmat=apply(mat, 1:2, function(x){
+			if(!is.na(x)){
+				if(x<=.001){return("****")}
+				if(x<=.01){return("***")}
+				if(x<=.05){return("**")}
+				if(x<=.1){return("*")}
+				return(".");
+			}else{
+				return(".");
+			}
+		}
+	);
+	return(outmat);
+}
+
 #------------------------------------------------------------------------------
 # Output stat tables
 options(width=2000);
@@ -196,7 +232,12 @@ plot_text(c(
 	"",
 	"Wilcoxon Rank Sum Test Pairwise P-values:",
 	"",
-	capture.output(print(pvals))
+	capture.output(print(format(pvals), quote=F)),
+	"",
+	"",
+	"Significantly Different (p-value<0.10):",
+	"",
+	capture.output(print(signif(pvals), quote=F))
 ));
 
 ###############################################################################
