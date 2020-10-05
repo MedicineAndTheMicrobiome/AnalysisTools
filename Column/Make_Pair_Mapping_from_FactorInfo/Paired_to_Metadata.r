@@ -60,7 +60,7 @@ load_paired=function(fname){
 	table=data.frame(read.table(fname,  sep="\t", header=TRUE, 
 		row.names=1, check.names=FALSE, comment.char=""));
 
-	if(nrow(table)!=2){
+	if(ncol(table)!=2){
 		cat("\n*************************************************************\n");
 		cat("Error:  This script requires 3 columns in the paired file.\n");
 		cat(" 1.) subject id\n 2.) sample id A\n 3.) sample id B\n");
