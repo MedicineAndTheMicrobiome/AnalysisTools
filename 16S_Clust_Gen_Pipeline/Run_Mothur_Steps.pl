@@ -797,7 +797,8 @@ exec_cmd($exec_string, "$control_comp_dir", "control_analysis_permanova_all");
 # Perform read depth analysis w/controls
 my $exec_string="
 	$READDEPTH_ANALYSIS_BIN
-		-i $control_comp_dir/$out_root.metadata.tsv
+		-m $control_comp_dir/$out_root.metadata.tsv
+		-g $groups_file	
 		-o $control_comp_dir/$out_root.all_samples
 ";
 exec_cmd($exec_string, "$control_comp_dir", "control_analysis_depth_analysis_all");
@@ -845,7 +846,8 @@ foreach my $depth (@depths){
 	# Perform read depth analysis w/controls
 	my $exec_string="
 		$READDEPTH_ANALYSIS_BIN
-			-i $depth_dir/$out_root.$depth.w_negctl.metadata.tsv
+			-m $depth_dir/$out_root.$depth.w_negctl.metadata.tsv
+			-g $groups_file
 			-o $depth_dir/$out_root.$depth.w_negctl
 	";
 	exec_cmd($exec_string, "$depth_dir", "control_analysis_depth_analysis_$depth");
