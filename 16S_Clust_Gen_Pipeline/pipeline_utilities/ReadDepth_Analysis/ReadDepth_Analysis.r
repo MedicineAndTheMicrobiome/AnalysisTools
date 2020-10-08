@@ -58,20 +58,20 @@ pdf(paste(OutputFileNameRoot, ".ctrl_depth_analysis.pdf", sep=""), height=8.5, w
 
 project_ids_map=list(
         "0000"="MoBio.Powersoil.DNA.Ext.Neg",
-        "0001"="PCR.Negative",
-        "0002"="PCR.Positive.Zymo",
-        "0003"="PCR.Positive.Ecoli.DH5a",
-        "0004"="Stool.Test.Extraction",
+        "0001"="PCR.Neg",
+        "0002"="PCR.Pos.Zymo",
+        "0003"="PCR.Pos.Ecoli.DH5a",
+        "0004"="Stool.Test.Ext",
         "0005"="Qiagen.FastStool.DNA.Ext.Neg",
         "0006"="MoBio.Ultraclean.DNA.Ext.Neg",
-        "0007"="PCR.Positive.Other",
-        "0008"="Vehicle.Control.Saline",
-        "0009"="Vehicle.Control.Swab",
-        "0010"="MoBio.PowerMicrobiome.DNA.Ext.Neg",
-        "0011"="Zymo.IntctCells.Pos.Ctrl.For.Extr",
-        "0012"="Ecoli.IntctCells.Pos.Ctrl.For.Extr",
-        "0013"="Pos.Ctrl.For.Extr.Other",
-        "0015"="Neg.Ctrl.Genomic.DNA.by.Invstgtr"
+        "0007"="PCR.Pos.Other",
+        "0008"="Vehicle.Ctrl.Saline",
+        "0009"="Vehicle.Ctrl.Swab",
+        "0010"="MoBio.PwrMbiome.DNA.Ext.Neg",
+        "0011"="Zymo.Cells.Pos.Ctrl.Ext",
+        "0012"="Ecoli.Cells.Pos.Ctrl.Ext",
+        "0013"="Pos.Ctrl.Ext.Other",
+        "0015"="Neg.Ctrl.Genmc.DNA.by.Invstgtr"
 );
 
 cat("Mapped Project IDs:\n");
