@@ -107,9 +107,16 @@ plot_text=function(strings){
 plot_text(c(
 	"Read Depth and Sample Attrition Analysis:",
 	"",
-        paste("Input Depth File: ", InputDepthFileName, sep=""),
-        paste("Input Groups File: ", InputGroupsFileName, sep=""),
-        paste("Output File Root: ", OutputFileNameRoot, sep=""),
+	"",
+        "Input Depth File: ", 
+	paste("  ", InputDepthFileName, sep=""),
+	"",
+        "Input Groups File: ",
+        paste("  ", InputGroupsFileName, sep=""),
+	"",
+        "Output File Root: ",
+        paste("  ", OutputFileNameRoot, sep=""),
+	"",
 	"",
 	paste("Date:", date())
 ));
@@ -284,6 +291,8 @@ for(i in 1:num_sample_types){
 	jitter=rnorm(num_pts, 0, spacing/8);
 	print(barmids[i]+jitter);
 	points(barmids[i]+jitter, depths, col=i);
+	axis(side=1, at=barmids[i], tick=F, line=-1.2, cex.axis=.6, 
+		labels=sprintf("Med Depth=%g", stat_mat[smp_type, "median"]), col.axis=colors[i]);
 }
 
 format=function(mat){
@@ -335,14 +344,14 @@ plot_text(c(
 
 #------------------------------------------------------------------------------
 
-max_rows=30;
+max_rows=40;
 num_pages=ceiling(num_samples/max_rows);
 for(i in 1:num_pages){
 	start=((i-1)*max_rows)+1;
 	stop=min(start+(max_rows-1), num_samples);
 	cat("Range: ", start, "-", stop, "\n");
 	plot_text(c(
-		"Read Attribtion Table:",
+		"Read Attrition Table:",
 		paste("Sample Range: ", start, " - ", stop, sep=""),
 		"",
 		capture.output(print(read_info_mat[start:stop,,drop=F]))
@@ -380,6 +389,7 @@ plot(0, type="n",
 	ylab="Post-Mothur Read Depth",
 	main="Pre/Post Mothur Read Scatter Plot"
 );
+abline(a=0, b=1, lwd=.5, col="grey", lty=2);
 points(read_info_mat[,"InputReadDepth"], read_info_mat[,"OutputReadDepth"], 
 	col=sample_colors, type="p");
 
@@ -396,7 +406,7 @@ for(smp_type in unique_sample_types){
 }
 
 par(mar=c(20,8,6,1));
-mids=barplot(med_prop_loss, ylim=c(0, max(read_info_mat[, "PropLoss"])*1.05), 
+mids=barplot(med_prop_loss, ylim=c(-.05, max(read_info_mat[, "PropLoss"])*1.05), 
 	ylab="Proportion Loss",
 	col="white", border=colors, las=2, main="Percent Read Loss by Sample Type (Less is Better)");
 bar_sep=diff(mids)[1];
@@ -407,6 +417,7 @@ for(smp_type in unique_sample_types){
 	num_vals=length(vals);
 	jitter=rnorm(num_vals, 0, bar_sep/7);
 	points(mids[i]+jitter, vals, col=colors[i]);
+	text(mids[i], 0, labels=sprintf("Med Loss=%5.4f", med_prop_loss[smp_type]), pos=1, col=colors[i]);
 	i=i+1;
 }
 
@@ -420,6 +431,7 @@ plot(0, type="n",
 	xlim=c(0, max(read_info_mat[, "InputReadDepth"])*1.05),
 	ylim=c(0, max(read_info_mat[, "PropLoss"])*1.05),
 );
+abline(h=median(read_info_mat[, "PropLoss"]), lwd=.5, col="grey", lty=2);
 points(read_info_mat[,"InputReadDepth"], read_info_mat[, "PropLoss"],
 	col=sample_colors
 );
