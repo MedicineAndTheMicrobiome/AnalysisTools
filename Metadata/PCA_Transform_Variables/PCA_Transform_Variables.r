@@ -656,7 +656,7 @@ eigen=eigen(pred_correl$val);
 # Compute variance contribution of each PC
 pca_propvar=eigen$values/sum(eigen$values);
 pca_propcumsum=cumsum(pca_propvar);
-num_pc_at_cutoff=sum(pca_propcumsum<PCCoverage);
+num_pc_at_cutoff=sum(pca_propcumsum<PCCoverage)+1;
 
 # Compute per sample scores
 scores=(scale(imputed_mat, center=T, scale=T) %*% eigen$vectors);
