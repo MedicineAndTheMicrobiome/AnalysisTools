@@ -13,7 +13,7 @@ params=c(
 	"outputroot", "o", 1, "character",
 	"predictor", "p", 1, "character",
 	"response", "r", 2, "character",
-	"donnot_transform", "t", 2, "character",
+	"donnot_transform", "t", 2, "logical",
 	"pc_coverage", "c", 2, "numeric",
 	"export_orig", "O", 2, "logical",
 	"export_curated", "C", 2, "logical",
@@ -339,11 +339,16 @@ resp_mat=loaded_factors[, responses_arr, drop=F];
 orig_pred_names=predictors_arr;
 orig_resp_names=responses_arr;
 
-cat("Testing Predictor Variables for normality.\n");
-curated_pred_mat=test_and_apply_log_transform(pred_mat, NORM_PVAL_CUTOFF);
+if(DonnotTransform){
+	curated_pred_mat=pred_mat;
+	curated_resp_mat=resp_mat;
+}else{
+	cat("Testing Predictor Variables for normality.\n");
+	curated_pred_mat=test_and_apply_log_transform(pred_mat, NORM_PVAL_CUTOFF);
 
-cat("Testing Response Variables for normality.\n");
-curated_resp_mat=test_and_apply_log_transform(resp_mat, NORM_PVAL_CUTOFF);
+	cat("Testing Response Variables for normality.\n");
+	curated_resp_mat=test_and_apply_log_transform(resp_mat, NORM_PVAL_CUTOFF);
+}
 
 ##############################################################################
 
@@ -717,7 +722,7 @@ for(i in seq(1,num_pc_at_cutoff+1,2)){
 	plot(xpos, ypos, type="p", 
 		xlim=c(xrange[1]-xspan/10, xrange[2]+xspan/10),
 		ylim=c(yrange[1]-yspan/10, yrange[2]+yspan/10),
-		xlab="", ylab="", main=""
+		xlab="", ylab="", main="", cex=2
 	)
 
 	title(
