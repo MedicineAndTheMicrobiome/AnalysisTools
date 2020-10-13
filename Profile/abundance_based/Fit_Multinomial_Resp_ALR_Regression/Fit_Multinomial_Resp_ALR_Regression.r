@@ -200,6 +200,12 @@ load_summary_file=function(fname){
 
 load_reference_levels_file=function(fname){
         inmat=as.matrix(read.table(fname, sep="\t", header=F, check.names=FALSE, comment.char="#", row.names=1))
+
+	if(ncol(inmat)!=1){
+		cat("Reference levels requires 2 columns, Variable Name and Reference Level.\n");
+		quit(status=-1);
+	}
+
         colnames(inmat)=c("ReferenceLevel");
         print(inmat);
         cat("\n");
@@ -951,9 +957,15 @@ plot_predictions_over_time=function(pred_time_mat, subj_resp_map, resp_name, mod
 	numeric_val=logit_matrix[numeric_ix];
 
 	logit_mag=max(abs(numeric_val));
+	if(logit_mag==Inf){
+		logit_mag=1e300;
+	}else if(logit_mag==-Inf){
+		logit_mag=1e300;
+	}
 	logit_matrix[logit_matrix==Inf]=logit_mag+1;
-	logit_matrix[logit_matrix==-Inf]=logit_mag-1;
+	logit_matrix[logit_matrix==-Inf]=-logit_mag-1;
 	logit_max=logit_mag+1;
+
 
 	plot(0,0, type="n", 
 		xlim=c(time_min-xpad, time_max+xpad),
@@ -1610,7 +1622,7 @@ process_model=function(fit, null_fit=NULL, num_samples=NULL){
 	pred_names=colnames(res[["pvalues"]]);
 	pred_names=setdiff(pred_names, "(Intercept)");
 
-	signf_counts=res[["pvalues"]][,pred_names]<0.1;
+	signf_counts=res[["pvalues"]][,pred_names, drop=F]<0.1;
 	res[["num_signif"]]=apply(signf_counts, 1, function(x){sum(x, na.rm=T);});
 
 	# See M. W. Fagerland and D. W. Hosmer,
