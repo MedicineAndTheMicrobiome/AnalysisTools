@@ -316,7 +316,7 @@ num_exp_ids=length(exp_ids_study_uniq)
 
 for(exp_id in exp_ids_study_uniq){
 
-	if(exp_id!="All_Exp")
+	if(exp_id!="All_Exp"){
 		# If not "All Exp", then the current exp_id is the experiment to extract
 
 		# Add '^' to prevent matching in middle of line
