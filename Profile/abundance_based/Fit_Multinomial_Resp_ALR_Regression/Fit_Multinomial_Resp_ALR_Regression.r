@@ -1152,6 +1152,56 @@ plot_signif_variables_over_time=function(factors, resp_cnm, time_cnm, sbj_cnm,
 
 }
 
+output_predictions_over_time=function(
+	output_fn_root,
+	time_mat, 
+	subj_id_to_resp_map, resp, model){
+
+	cat("\n\n");
+	cat("Inside: output_predictions_over_time\n");
+
+	cat("Output File: ", output_fn_root, "\n");
+	cat("Response: ", resp, "\n");
+	cat("Model: ", model, "\n");
+
+	#cat("Time Mat:\n");
+	#print(time_mat);
+
+	#cat("Sbj->Resp Map:\n");
+	#print(subj_id_to_resp_map);
+
+	# Make directories for all the different combinations of output
+	predictions_dir=paste(output_fn_root, ".multn_predictions", sep="");
+	if(!dir.exists(predictions_dir)){
+		dir.create(predictions_dir);
+	}
+
+	model_dir=paste(predictions_dir, "/model_[", model, "]", sep="");
+	if(!dir.exists(model_dir)){
+		dir.create(model_dir);
+	}
+
+	responses_dir=paste(model_dir, "/pred_as_[", resp, "]", sep="");
+	if(!dir.exists(responses_dir)){
+		dir.create(responses_dir);
+	}
+
+	# Output separate lists for each sample/resp category type	
+	resp_types=unique(subj_id_to_resp_map);
+	for(rtype in resp_types){
+		cat("Obs Resp Types: ", rtype, "\n");
+		samp_ids=(rtype==subj_id_to_resp_map);
+		probs_mat=time_mat[samp_ids,,drop=F];
+		print(probs_mat);
+
+		full_path=paste(responses_dir, "/obsr_as_[", rtype, "].tsv", sep="");
+		write.table(probs_mat, full_path, sep="\t", col.names=NA, row.names=T, quote=F);
+	}
+	
+	cat("Leaving: output_predictions_over_time\n");
+
+}
+
 ##############################################################################
 ##############################################################################
 
@@ -2194,6 +2244,11 @@ for(resp_ix in response_no_reference){
 			grp_colors,
 			model_ix
 		);
+
+		output_predictions_over_time(
+			OutputRoot,
+			cur_pred_by_time_matrix, 
+			subject_id_to_response_map, resp_ix, model_ix);
 	
 	}
 
