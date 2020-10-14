@@ -41,6 +41,7 @@ my $SUMTAB_TO_DISTMAT_BIN="$FindBin::Bin/../Profile/SummaryTableUtilities/Create
 my $JOIN_SUMTAB_BIN="$FindBin::Bin/../Profile/SummaryTableUtilities/Join_Summary_Tables.r";
 my $PERMANOVA_BIN="$FindBin::Bin/../Profile/distance_based/Permanova/Permanova.r";
 my $READDEPTH_ANALYSIS_BIN="$FindBin::Bin/pipeline_utilities/ReadDepth_Analysis/ReadDepth_Analysis.r";
+my $MULTINOMIAL_ANALYSIS_BIN="$FindBin::Bin/../Profile/abundance_based/Fit_Multinomial_Resp_ALR_Regression/Fit_Multinomial_Resp_ALR_Regression.r";
 
 #my $CURRENT_16S_ALIGNMENT=
 #	"/usr/local/devel/DAS/users/kli/SVN/DAS/16sDataAnalysis/trunk/16S_OTU_Generation/silva.nr_v119.align";
@@ -802,6 +803,28 @@ my $exec_string="
 		-o $control_comp_dir/$out_root.all_samples
 ";
 exec_cmd($exec_string, "$control_comp_dir", "control_analysis_depth_analysis_all");
+
+`echo Read_Depth > $control_comp_dir/multinom.covariates`;
+`echo "Sample_Type\tPCR.Negative" > $control_comp_dir/multinom.reference`;
+
+# Perform multinomial comparisons
+my $exec_string="
+	$MULTINOMIAL_ANALYSIS_BIN
+		-s $sumtab_all
+		-p 10
+		-x \";\"
+		-f $control_comp_dir/$out_root.metadata.tsv 
+		-c $control_comp_dir/multinom.covariates
+		-y Sample_Type
+		-r $control_comp_dir/multinom.reference
+		-o $control_comp_dir/$out_root		
+";
+exec_cmd($exec_string, "$control_comp_dir", "control_analysis_multinomial_all");
+
+foreach my $proj_file (split "\n", 
+	`ls $control_comp_dir/$out_root.multn_predictions/model_\\[alr_only\\]/pred_as_\\[P_*\\]/obsr_as_\\[P_*\\].tsv`){
+	`cp $proj_file $control_comp_dir`;
+}
 
 # 0750,1000,2000,3000
 #my @depths=("0750");
