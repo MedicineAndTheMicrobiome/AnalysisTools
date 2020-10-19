@@ -531,18 +531,44 @@ sub run_distance_based{
 
 ###############################################################################
 
-#print STDERR "Summary Table:   $SummaryTable\n";
-#print STDERR "Factor File:     $FactorFile\n";
-#print STDERR "Covariates List: $Covariates\n";
-#print STDERR "Group Variables List: $GroupVar\n";
-#print STDERR "Output Directory: $OutputDir\n";
-#
+print STDERR "Summary Table:   $SummaryTable\n";
+print STDERR "Factor File:     $FactorFile\n";
+print STDERR "Covariates List: $Covariates\n";
+print STDERR "Group Variables List: $GroupVar\n";
+print STDERR "Output Directory: $OutputDir\n";
 
 
 if(!(-e $OutputDir)){
 	mkdir $OutputDir;
 }
 
+my $cmd="cat $Covariates $GroupVar > $OutputDir/all_req_var";
+run_command("Combine Cov/Grp variables for NA prescreen", "na_prescreen_concat_var",
+	$cmd, "$OutputDir");
+
+# Prescreen factors/summary table
+my $cmd=
+"~/git/AnalysisTools/Metadata/RemoveNAs/Prescreen_Sample_woFactorNAs/Prescreen_Sample_woFactorNAs.r \
+	-s $SummaryTable \
+	-f $FactorFile \
+	-d $OutputDir \
+	-t $OutputDir/all_req_var \
+	-q $OutputDir/all_req_var
+";
+run_command("Run NA prescreen", "na_prescreen", $cmd, "$OutputDir");
+
+my $screened_summary_table=$SummaryTable;
+$screened_summary_table=~s/\.summary_table\.tsv$//;
+$screened_summary_table="$OutputDir/$screened_summary_table.prescr.summary_table.tsv";
+print "Prescreened Summary Table: $screened_summary_table\n";
+
+my $screened_factor_file=$FactorFile;
+$screened_factor_file=~s/\.prescr\.tsv$//;
+$screened_factor_file="$OutputDir/$screened_factor_file.prescr.tsv";
+print "Prescreened Factor File: $screened_factor_file\n";
+
+$SummaryTable=$screened_summary_table;
+$FactorFile=$screened_factor_file;
 
 run_abundance_based(
 	$OutputDir,
