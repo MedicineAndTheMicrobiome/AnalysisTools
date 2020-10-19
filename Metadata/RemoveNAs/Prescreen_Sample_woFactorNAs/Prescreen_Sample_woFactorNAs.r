@@ -348,10 +348,17 @@ factors=factors[avail_id,,drop=F];
 factor_var=colnames(factors);
 
 cat("Checking targeted variables.\n");
-target_var_avail=intersect(factor_var, target_var);
-if(length(target_var_avail)!=length(target_var)){
-	cat("WARNING: Targeted variables missing from available factors.\n");
-	print(setdiff(target_var, target_var_avail));
+if(length(target_var)){
+	target_var_avail=intersect(factor_var, target_var);
+}else{
+	target_var_avail=factor_var;
+}
+
+if(length(target_var)>0){
+	if(length(target_var_avail)!=length(target_var)){
+		cat("WARNING: Targeted variables missing from available factors.\n");
+		print(setdiff(target_var, target_var_avail));
+	}
 }
 cat("\nTargeted Variables:\n");
 print(target_var_avail);
