@@ -8,6 +8,7 @@ use Getopt::Std;
 use File::Basename;
 use FileHandle;
 use vars qw($opt_f $opt_g $opt_r $opt_o $opt_p $opt_c $opt_m);
+use POSIX;
 
 my $MOTHUR_BIN="/usr/bin/mothur_1.44.1/mothur/mothur";
 
@@ -807,11 +808,24 @@ exec_cmd($exec_string, "$control_comp_dir", "control_analysis_depth_analysis_all
 `echo Read_Depth > $control_comp_dir/multinom.covariates`;
 `echo "Sample_Type\tPCR.Negative" > $control_comp_dir/multinom.reference`;
 
+# Estimate number of ALR variables to use  in multinomial analysis based on number of samples in run
+my $num_samples=`wc -l $control_comp_dir/$out_root.metadata.tsv | cut -f 1 -d " "`;
+$num_samples--;
+my $num_alr=ceil((log($num_samples/10)/log(2))*5);
+if($num_alr<3){
+	$num_alr=3;
+}
+if($num_alr>40){
+	$num_alr=40;
+}
+
+print "Using $num_alr ALR variables with $num_samples samples.";
+
 # Perform multinomial comparisons
 my $exec_string="
 	$MULTINOMIAL_ANALYSIS_BIN
 		-s $sumtab_all
-		-p 10
+		-p $num_alr
 		-x \";\"
 		-f $control_comp_dir/$out_root.metadata.tsv 
 		-c $control_comp_dir/multinom.covariates
