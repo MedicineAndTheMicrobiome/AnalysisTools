@@ -398,6 +398,7 @@ sub run_distribution_based{
 			-u $output_dir/distribution/$PRED_OUT_DIR/$model_name.div_as_pred.coefs.tsv \
 			-v $output_dir/distribution/$RESP_OUT_DIR/$model_name.div_as_resp.coefs.tsv \
 			-o $output_dir/distribution/$COMP_DIR/$model_name.div \
+			-a Diversity \
 			-p .025 \
 			-t $tag_name
 		";
