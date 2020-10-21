@@ -25,7 +25,9 @@ params=c(
 	"outputroot", "o", 2, "character",
 
 	"contains_remaining", "R", 2, "logical",
-	"shorten_category_names", "x", 2, "character"
+	"shorten_category_names", "x", 2, "character",
+
+	"tag_name", "t", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -48,6 +50,8 @@ usage = paste(
 	"\n",
 	"	[-R (pay attention to 'remaining' category)]\n",
 	"	[-x <shorten category names, with separator in double quotes (default=\"\")>]\n",
+	"\n",
+	"	[-t <tag name>]\n",
 	"\n",
 	"This script will fit the following model:\n",
 	"\n",
@@ -104,6 +108,28 @@ if(length(opt$additional_categories)){
 }else{
 	AdditionalCatFile="";
 }
+
+if(length(opt$tag_name)){
+	TagName=opt$tag_name;
+	cat("Setting TagName Hook: ", TagName, "\n");
+	setHook("plot.new", 
+		function(){
+			cat("Hook called.\n");
+			if(par()$page==T){
+				oma_orig=par()$oma;
+				exp_oma=oma_orig;
+				exp_oma[1]=max(exp_oma[1], 1);
+				par(oma=exp_oma);
+				mtext(paste("[", TagName, "]", sep=""), side=1, line=exp_oma[1]-1, 
+					outer=T, col="steelblue4", font=2, cex=.8, adj=.97);
+				par(oma=oma_orig);
+			}
+		}, "append");
+			
+}else{
+	TagName="";
+}
+
 
 SummaryFile=opt$summary_file;
 FactorsFile=opt$factors;
@@ -296,7 +322,7 @@ additive_log_ratio=function(ordered_matrix){
 
 plot_text=function(strings){
 	par(family="Courier");
-	par(oma=rep(.1,4));
+	par(oma=rep(1,4));
 	par(mar=rep(0,4));
 
 	num_lines=length(strings);
@@ -1377,6 +1403,16 @@ write.table(exp_tab,  file=paste(OutputRoot, ".alr_as_pred.coefs.tsv", sep=""), 
 # Write R^2 Reduced/Full Model stats
 
 write.table(improv_mat, file=paste(OutputRoot, ".alr_as_pred.rsqrd.tsv", sep=""), sep="\t", quote=F, col.names=NA, row.names=T);
+
+###############################################################################
+# Write MANOVA to file
+
+if(length(manova_res)){
+	print(manova_res);
+}else{
+
+}
+
 
 ###############################################################################
 
