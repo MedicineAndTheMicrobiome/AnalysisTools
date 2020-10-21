@@ -23,9 +23,11 @@ params=c(
 	"model_variables_file", "M", 2, "character",
 	"contains_remaining", "R", 2, "logical",
 	"shorten_category_names", "x", 2, "character",
-	"test_run", "t", 2, "logical",
+	"test_run", "T", 2, "logical",
 	"rm_na_trials", "N", 2, "numeric",
-	"required_var", "q", 2, "character"
+	"required_var", "q", 2, "character",
+
+	"tag_name", "t", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -53,7 +55,9 @@ usage = paste(
 	"	[-q <required variables>]\n",
 	"\n",
 	"	[-x <shorten category names, with separator in double quotes (default=\"\")>]\n",
-	"	[-t (test run flag)]\n",
+	"	[-T (test run flag)]\n",
+	"\n",
+	"	[-t <tag name>]\n",
 	"\n",
 	"This script will read in the summary file table, then perform\n",
 	"a multivariate logistic regression on the the top categories\n",
@@ -144,6 +148,29 @@ if(length(opt$required_var)){
 Num_Remove_NA_Trials=RM_NA_TRIALS;
 if(length(opt$rm_na_trials)){
 	Num_Remove_NA_Trials=opt$rm_na_trials;
+}
+
+
+if(length(opt$tag_name)){
+        TagName=opt$tag_name;
+        cat("Setting TagName Hook: ", TagName, "\n");
+        setHook("plot.new",
+		function(){
+			#cat("Hook called.\n");
+			if(par()$page==T){
+				oma_orig=par()$oma;
+				exp_oma=oma_orig;
+				exp_oma[1]=max(exp_oma[1], 1);
+				par(oma=exp_oma);
+				mtext(paste("[", TagName, "]", sep=""), side=1, line=exp_oma[1]-1,
+					outer=T, col="steelblue4", font=2, cex=.8, adj=.97);
+				par(oma=oma_orig);
+			}
+		},
+                "append");
+
+}else{
+        TagName="";
 }
 
 SummaryFile=opt$summary_file;
@@ -1416,9 +1443,17 @@ reg_coef_power=function(uv_reg_fit, factor=10, alpha=.05, power=.8){
 # Plot univariate analyses
 
 par(oma=c(0,0,3,0));
+
+setHook("plot.new", function(){mtext(sorted_taxa_names[var_ix], outer=T, line=-.5);}, "prepend");
+hooks=getHook("plot.new");
+
 for(var_ix in 1:num_cat_to_analyze){
 
-	setHook("plot.new", function(){mtext(sorted_taxa_names[var_ix], outer=T, line=-.5);});
+	if(length(getHook("plot.new"))==0){
+		for(hix in 1:length(hooks)){
+			setHook("plot.new", hooks[[hix]], "prepend");
+		}
+	}
 
 	# Output univariate ANOVA results
 	summary_txt=c();
