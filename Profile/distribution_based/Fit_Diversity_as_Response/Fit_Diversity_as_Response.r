@@ -18,7 +18,8 @@ params=c(
 	"reference_levels", "r", 2, "character",
 	"outputroot", "o", 2, "character",
 	"model_formula", "m", 2, "character",
-	"testing_flag", "t", 2, "logical"
+	"testing_flag", "T", 2, "logical",
+	"tag_name", "t", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -34,7 +35,8 @@ usage = paste(
 	"	[-o <output filename root>]\n",
 	"	[-m \"<model formula string>\"]\n",
 	"\n",
-	"	[-t (testing flag)]\n",
+	"	[-T (testing flag)]\n",
+	"	[-t <tag name>]\n",
 	"\n",
 	"Computes the diversity measuares for each sample, performs a box-cox\n",
 	"transformation and then performs a linear regression based on the\n",
@@ -83,6 +85,28 @@ RequiredFile="";
 if(length(opt$required_var)){
         RequiredFile=opt$required_var;
 }
+
+if(length(opt$tag_name)){
+        TagName=opt$tag_name;
+        cat("Setting TagName Hook: ", TagName, "\n");
+        setHook("plot.new",
+                function(){
+                        cat("Hook called.\n");
+                        if(par()$page==T){
+                                oma_orig=par()$oma;
+                                exp_oma=oma_orig;
+                                exp_oma[1]=max(exp_oma[1], 1);
+                                par(oma=exp_oma);
+                                mtext(paste("[", TagName, "]", sep=""), side=1, line=exp_oma[1]-1,
+                                        outer=T, col="steelblue4", font=2, cex=.8, adj=.97);
+                                par(oma=oma_orig);
+                        }
+                }, "append");
+
+}else{
+        TagName="";
+}
+
 
 SummaryFile=opt$summary_file;
 FactorsFile=opt$factors;
@@ -604,6 +628,7 @@ for(i in 1:num_div_idx){
 		# Rerun and plot the lambda search with a smaller increments
 		par(mar=c(5,4,4,2));
 		cat("Refining search around: ", approx_lambda-search_tolerance, " - ", approx_lambda+search_tolerance, "\n");
+
 		bc=boxcox(as.formula(model_string), data=factors, 
 			lambda=seq(approx_lambda-search_tolerance, approx_lambda+search_tolerance, length.out=40));
 		title(main=div_names[i]);

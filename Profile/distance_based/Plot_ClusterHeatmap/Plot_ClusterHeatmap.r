@@ -25,7 +25,8 @@ params=c(
 	"output_filename_root", "o", 2, "character",
 	"dist_type", "d", 2, "character",
 	"num_clus", "k", 2, "numeric",
-	"sample_inclusion_fname", "c", 2, "character"
+	"sample_inclusion_fname", "c", 2, "character",
+	"tag_name", "t", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -41,6 +42,7 @@ usage = paste(
 	"	[-d <euc/wrd/man/bray/horn/bin/gow/tyc/minkp5/minkp3, default =", DEF_DISTTYPE, ">]\n",
 	"	[-k <max num of clusters to split into, default =", DEF_NUM_CLUS, ">\n",
 	"	[-c <sample inClusion filename>]\n",
+	"	[-t <tag name>]\n",
 	"\n",
 	"This script will:\n",
 	"	1.) Load metadata.\n",
@@ -95,6 +97,26 @@ if(length(opt$sample_inclusion_fname)){
         SampleIncFname=opt$sample_inclusion_fname;
 }
 
+if(length(opt$tag_name)){
+        TagName=opt$tag_name;
+        cat("Setting TagName Hook: ", TagName, "\n");
+        setHook("plot.new",
+                function(){
+                        cat("Hook called.\n");
+                        if(par()$page==T){
+                                oma_orig=par()$oma;
+                                exp_oma=oma_orig;
+                                exp_oma[1]=max(exp_oma[1], 1);
+                                par(oma=exp_oma);
+                                mtext(paste("[", TagName, "]", sep=""), side=1, line=exp_oma[1]-1,
+                                        outer=T, col="steelblue4", font=2, cex=.8, adj=.97);
+                                par(oma=oma_orig);
+                        }
+                }, "append");
+
+}else{
+        TagName="";
+}
 
 ###############################################################################
 # See http://www.mothur.org/wiki/Thetayc for formula

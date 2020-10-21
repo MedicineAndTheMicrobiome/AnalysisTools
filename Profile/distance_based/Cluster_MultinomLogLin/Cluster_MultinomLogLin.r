@@ -30,7 +30,8 @@ params=c(
 	"only_at_k", "K", 2, "numeric",
 	"rm_na_trials", "N", 2, "numeric",
 	"required", "q", 2, "character",
-	"reference_levels", "r", 2, "character"
+	"reference_levels", "r", 2, "character",
+	"tag_name", "t", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -52,6 +53,7 @@ usage = paste(
 	"	[-K <only compute at K cuts>]\n",
 	"\n",
 	"	[-N <remova NA trials, trials=", RM_NA_TRIALS, "\n",
+	"	[-t <tag name>]\n",
 	"\n",
 	"This script will:\n",
 	"	1.) Load metadata.\n",
@@ -138,6 +140,26 @@ if(length(opt$reference_levels)){
        ReferenceLevelsFile="";
 }
 
+if(length(opt$tag_name)){
+        TagName=opt$tag_name;
+        cat("Setting TagName Hook: ", TagName, "\n");
+        setHook("plot.new",
+                function(){
+                        cat("Hook called.\n");
+                        if(par()$page==T){
+                                oma_orig=par()$oma;
+                                exp_oma=oma_orig;
+                                exp_oma[1]=max(exp_oma[1], 1);
+                                par(oma=exp_oma);
+                                mtext(paste("[", TagName, "]", sep=""), side=1, line=exp_oma[1]-1,
+                                        outer=T, col="steelblue4", font=2, cex=.8, adj=.97);
+                                par(oma=oma_orig);
+                        }
+                }, "append");
+
+}else{
+        TagName="";
+}
 
 ###############################################################################
 # See http://www.mothur.org/wiki/Thetayc for formula

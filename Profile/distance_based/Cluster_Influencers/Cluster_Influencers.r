@@ -25,7 +25,8 @@ params=c(
 	"max_cuts", "k", 2, "numeric",
 	"only_at_k", "K", 2, "numeric",
 	"factor_filename", "f", 2, "character",
-	"factor_names_list", "n", 2, "character"
+	"factor_names_list", "n", 2, "character",
+	"tag_name", "t", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -47,6 +48,7 @@ usage = paste(
 	"	Metadata-Based (User-defined Factors) Options:\n",
 	"	[-f <factor/metadata file]\n",
 	"	[-n <file containing column names to analyze in factor file>]\n",
+	"	[-t <tag name>]\n",
 	"\n",
 	"This script will:\n",
 	"	1.) Read in a summary table and compute a full/complete distance matrix.\n",
@@ -140,6 +142,26 @@ if(FactorFilename==""){
 	w_meta_ext=".meta";
 }
 
+if(length(opt$tag_name)){
+        TagName=opt$tag_name;
+        cat("Setting TagName Hook: ", TagName, "\n");
+        setHook("plot.new",
+                function(){
+                        cat("Hook called.\n");
+                        if(par()$page==T){
+                                oma_orig=par()$oma;
+                                exp_oma=oma_orig;
+                                exp_oma[1]=max(exp_oma[1], 1);
+                                par(oma=exp_oma);
+                                mtext(paste("[", TagName, "]", sep=""), side=1, line=exp_oma[1]-1,
+                                        outer=T, col="steelblue4", font=2, cex=.8, adj=.97);
+                                par(oma=oma_orig);
+                        }
+                }, "append");
+
+}else{
+        TagName="";
+}
 
 ###############################################################################
 # See http://www.mothur.org/wiki/Thetayc for formula

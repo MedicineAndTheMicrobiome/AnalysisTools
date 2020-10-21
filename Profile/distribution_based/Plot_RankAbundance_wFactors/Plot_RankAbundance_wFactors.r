@@ -10,13 +10,14 @@ params=c(
 	"input_file", "i", 1, "character",
 	"factor_file", "f", 1, "character",
 	"factor_subset", "M", 2, "character",
-	"top_categories", "t", 2, "numeric",
+	"top_categories", "T", 2, "numeric",
 	"output_file", "o", 2, "character",
 	"diversity_type", "d", 2, "character",
 	"shorten_category_names", "s", 2, "character",
 	"num_rows", "r", 2, "numeric",
 	"num_cols", "c", 2, "numeric",
-	"crossing_string", "x", 2, "character"
+	"crossing_string", "x", 2, "character",
+	"tag_name", "t", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -32,7 +33,7 @@ usage = paste(
 	"	-i <input summary_table.tsv file>\n",
 	"	-f <factor file>\n",
 	"	[-M <subset of factors/variables to group by>]\n",
-	"	[-t <top categories to display, default=", TOP_CATEGORIES, ">]\n",
+	"	[-T <top categories to display, default=", TOP_CATEGORIES, ">]\n",
 	"	[-o <output file root name>]\n",
 	"	[-d <diversity, default=", DEF_DIVERSITY, ".]\n",
 	"	[-s <shorten category names, with separator in double quotes (default=\"\")>]\n",
@@ -42,6 +43,8 @@ usage = paste(
 	"	[-c <number of rows per page, default=", NUM_COLS, "\n",
 	"\n",
 	"	[-x <crossing/interactions list, e.g., \"var1,var2,var3\" >]\n",
+	"\n",
+	"	[-t <tag name>]\n",
 	"\n",
 	"	This script will read in the summary table\n",
 	"	and the factor file.\n",
@@ -122,7 +125,26 @@ if(length(opt$num_cols)){
 	NumCols=opt$num_cols;
 }
 
+if(length(opt$tag_name)){
+        TagName=opt$tag_name;
+        cat("Setting TagName Hook: ", TagName, "\n");
+        setHook("plot.new",
+                function(){
+                        cat("Hook called.\n");
+                        if(par()$page==T){
+                                oma_orig=par()$oma;
+                                exp_oma=oma_orig;
+                                exp_oma[1]=max(exp_oma[1], 1);
+                                par(oma=exp_oma);
+                                mtext(paste("[", TagName, "]", sep=""), side=1, line=exp_oma[1]-1,
+                                        outer=T, col="steelblue4", font=2, cex=.8, adj=.97);
+                                par(oma=oma_orig);
+                        }
+                }, "append");
 
+}else{
+        TagName="";
+}
 
 ###############################################################################
 
@@ -315,11 +337,16 @@ plot_rank_abundance_matrix=function(abd_mat, title="", plot_cols=3, plot_rows=4,
 	par(oma=c(.5,.5,3.5,.5));
 	par(mar=c(10,2,2,5));
 	par(lwd=.25);
-	setHook("plot.new", function(){
-		if(par()$page){
-			mtext(text=title, side=3, outer=T, cex=2, font=2, line=.5);
-		}
-		}
+
+	existing_hooks=getHook("plot.new");
+
+	setHook("plot.new", 
+		function(){
+			if(par()$page){
+				mtext(text=title, side=3, outer=T, cex=2, font=2, line=.5);
+			}
+		},
+		"append"
 	);
 		
 
@@ -371,6 +398,10 @@ plot_rank_abundance_matrix=function(abd_mat, title="", plot_cols=3, plot_rows=4,
 	}
 
 	setHook("plot.new", NULL, "replace");
+	for(hix in length(existing_hooks)){
+		setHook("plot.new", existing_hooks[[hix]], "append");
+	}
+
 	par(orig.par);
 }
 

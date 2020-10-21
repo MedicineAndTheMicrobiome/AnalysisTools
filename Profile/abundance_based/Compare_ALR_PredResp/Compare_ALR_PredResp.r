@@ -15,7 +15,8 @@ params=c(
 	"ratio_cutoff", "r", 2, "numeric",
 	"highlight_diag", "d", 2, "logical",
 	"as_pred_A_name", "a", 2, "character",
-	"as_resp_B_name", "b", 2, "character"
+	"as_resp_B_name", "b", 2, "character",
+	"tag_name", "t", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -38,6 +39,7 @@ usage = paste(
 	"	[-d (highlight diagonal for symmetric P/R analyses)]\n",
 	"	[-a <'as_pred', sample type>]\n", 
 	"	[-b <'as_resp', sample type>]\n", 
+	"	[-t <tag name>]\n",
 	"\n",
 	"This script will read in two pairs of matrices:\n",
 	" 1.) Predictor p-values and coefficients\n",
@@ -94,6 +96,27 @@ if(length(opt$as_pred_A_name)){
 }
 if(length(opt$as_resp_B_name)){
 	AsRespBName=opt$as_resp_B_name;
+}
+
+if(length(opt$tag_name)){
+        TagName=opt$tag_name;
+        cat("Setting TagName Hook: ", TagName, "\n");
+        setHook("plot.new",
+                function(){
+                        cat("Hook called.\n");
+                        if(par()$page==T){
+                                oma_orig=par()$oma;
+                                exp_oma=oma_orig;
+                                exp_oma[1]=max(exp_oma[1], 1);
+                                par(oma=exp_oma);
+                                mtext(paste("[", TagName, "]", sep=""), side=1, line=exp_oma[1]-1,
+                                        outer=T, col="steelblue4", font=2, cex=.8, adj=.97);
+                                par(oma=oma_orig);
+                        }
+                }, "append");
+
+}else{
+        TagName="";
 }
 
 signf_ext=sprintf("p%02g", SignifCutoff*100);

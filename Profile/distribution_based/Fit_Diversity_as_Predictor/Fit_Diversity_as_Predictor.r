@@ -20,7 +20,9 @@ params=c(
 	"covariates_var", "c", 2, "character",
 	"required_var", "q", 2, "character",
 
-	"reference_levels", "r", 2, "character"
+	"reference_levels", "r", 2, "character",
+
+	"tag_name", "t", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -40,6 +42,8 @@ usage = paste(
 	"	[-c <covariates variables>]\n",
 	"	[-q <required variables>]\n",
 	"	[-r <reference levels file>]\n",
+	"\n",
+	"	[-t <tag name>]\n",
 	"\n",
 	"This script will fit the following types of models:\n",
 	"	<responses> = <covariates> + <microbiome diversity>\n",	
@@ -88,6 +92,27 @@ if(length(opt$response_var)){
 CovariatesFile="";
 if(length(opt$covariates_var)){
         CovariatesFile=opt$covariates_var;
+}
+
+if(length(opt$tag_name)){
+        TagName=opt$tag_name;
+        cat("Setting TagName Hook: ", TagName, "\n");
+        setHook("plot.new",
+                function(){
+                        cat("Hook called.\n");
+                        if(par()$page==T){
+                                oma_orig=par()$oma;
+                                exp_oma=oma_orig;
+                                exp_oma[1]=max(exp_oma[1], 1);
+                                par(oma=exp_oma);
+                                mtext(paste("[", TagName, "]", sep=""), side=1, line=exp_oma[1]-1,
+                                        outer=T, col="steelblue4", font=2, cex=.8, adj=.97);
+                                par(oma=oma_orig);
+                        }
+                }, "append");
+
+}else{
+        TagName="";
 }
 
 SummaryFile=opt$summary_file;

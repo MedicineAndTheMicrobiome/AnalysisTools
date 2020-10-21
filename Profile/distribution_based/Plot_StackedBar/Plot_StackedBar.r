@@ -10,12 +10,13 @@ params=c(
 	"input_file", "i", 1, "character",
 	"factor_file", "f", 2, "character",
 	"factor_subset", "M", 2, "character",
-	"top_categories", "t", 2, "character",
+	"top_categories", "T", 2, "character",
 	"output_file", "o", 2, "character",
 	"diversity_type", "d", 2, "character",
 	"shorten_category_names", "s", 2, "character",
 	"crossing_string", "c", 2, "character",
-	"label_threshold", "l", 2, "numeric"
+	"label_threshold", "l", 2, "numeric",
+	"tag_name", "t", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -29,13 +30,15 @@ usage = paste(
 	"	-i <input summary_table.tsv file>\n",
 	"	[-f <factor file>]\n",
 	"	[-M <list of factors/variables to focus on (filename)>]\n",
-	"	[-t <top categories to display, default=", TOP_CATEGORIES, ">]\n",
+	"	[-T <top categories to display, default=", TOP_CATEGORIES, ">]\n",
 	"	[-o <output file root name>]\n",
 	"	[-d <diversity, default=", DEF_DIVERSITY, ".]\n",
 	"	[-s <shorten category names, with separator in double quotes (default=\"\")>]\n",
 	"	[-l <label abundances greater than specified threshold, default=1.0, recommended 0.01]\n",
 	"\n",
 	"	[-c <crossing/interactions list, e.g., \"var1,var2,var3\" >]\n",
+	"\n",
+	"	[-t <tag name>]\n",
 	"\n",
 	"	This script will read in the summary table\n",
 	"	and the factor file.\n",
@@ -136,6 +139,26 @@ if(length(opt$label_threshold)){
 
 cat("Label Threshold: ", LabelThreshold, "\n");
 
+if(length(opt$tag_name)){
+        TagName=opt$tag_name;
+        cat("Setting TagName Hook: ", TagName, "\n");
+        setHook("plot.new",
+                function(){
+                        cat("Hook called.\n");
+                        if(par()$page==T){
+                                oma_orig=par()$oma;
+                                exp_oma=oma_orig;
+                                exp_oma[1]=max(exp_oma[1], 1);
+                                par(oma=exp_oma);
+                                mtext(paste("[", TagName, "]", sep=""), side=1, line=exp_oma[1]-1,
+                                        outer=T, col="steelblue4", font=2, cex=.8, adj=.97);
+                                par(oma=oma_orig);
+                        }
+                }, "append");
+
+}else{
+        TagName="";
+}
 
 ###############################################################################
 

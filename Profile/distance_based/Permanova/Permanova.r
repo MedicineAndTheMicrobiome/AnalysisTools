@@ -18,8 +18,9 @@ params=c(
 	"outputroot", "o", 2, "character",
 	"xrange", "x", 2, "character",
 	"yrange", "y", 2, "character",
-	"testing", "t", 2, "logical",
-	"strip_samples_nas", "s", 2, "logical"
+	"testing", "T", 2, "logical",
+	"strip_samples_nas", "s", 2, "logical",
+	"tag_name", "t", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -42,7 +43,8 @@ usage = paste(
 	"	[-b <factor to use as blocking variable>]\n",
 	"	[--xrange=<MDS Dim1 Range, eg. -2,2>]\n",
 	"	[--yrange=<MDS Dim2 Rnage, eg. -2,2>]\n",
-	"	[-t (testing flag)]\n",
+	"	[-T (testing flag)]\n",
+	"	[-t <tag name>]\n",
 	"\n",
 	"	[-s (Flag to strip samples with NAs, default=F)]\n",
 	"\n",
@@ -134,6 +136,27 @@ if(length(opt$strip_samples_nas)){
 RequiredFile="";
 if(length(opt$required_var)){
         RequiredFile=opt$required_var;
+}
+
+if(length(opt$tag_name)){
+        TagName=opt$tag_name;
+        cat("Setting TagName Hook: ", TagName, "\n");
+        setHook("plot.new",
+                function(){
+                        cat("Hook called.\n");
+                        if(par()$page==T){
+                                oma_orig=par()$oma;
+                                exp_oma=oma_orig;
+                                exp_oma[1]=max(exp_oma[1], 1);
+                                par(oma=exp_oma);
+                                mtext(paste("[", TagName, "]", sep=""), side=1, line=exp_oma[1]-1,
+                                        outer=T, col="steelblue4", font=2, cex=.8, adj=.97);
+                                par(oma=oma_orig);
+                        }
+                }, "append");
+
+}else{
+        TagName="";
 }
 
 ###############################################################################
