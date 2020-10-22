@@ -1149,7 +1149,7 @@ outmat[,"Pr(>F)"]=sprintf("%4.4f", pvals[1:num_variables]);
 
 print(outmat);
 
-write.table(outmat, file=paste(OutputFnameRoot, ".manova.summary.tsv", sep=""),
+write.table(outmat, file=paste(OutputFnameRoot, ".anova.summary.tsv", sep=""),
 	sep="\t", quote=FALSE, col.names=T, row.names=FALSE);
 
 ##############################################################################
