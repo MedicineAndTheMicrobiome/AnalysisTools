@@ -1600,7 +1600,7 @@ if(length(manova_res)){
         outmat=matrix("-", nrow=1, ncol=2);
         colnames(outmat)=c(TagName, "Pr(>F)");
 }
-write.table(outmat, file=paste(OutputRoot, ".anova.summary.tsv", sep=""), sep="\t", quote=F, col.names=T, row.names=F);
+write.table(outmat, file=paste(OutputRoot, ".alr_as_resp.anova.summary.tsv", sep=""), sep="\t", quote=F, col.names=T, row.names=F);
 
 ##############################################################################
 

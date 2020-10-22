@@ -1133,6 +1133,26 @@ cat(file=fh, "\n");
 close(fh);
 
 ##############################################################################
+# Output MANOVA files
+
+print(res$aov.tab);
+num_variables=nrow(res$aov.tab)-2;
+print(num_variables);
+
+outmat=matrix("", nrow=num_variables, ncol=2);
+colnames(outmat)=c(TagName, "Pr(>F)");
+varnames=rownames(res$aov.tab);
+pvals=res$aov.tab[,"Pr(>F)"];
+
+outmat[,TagName]=varnames[1:num_variables];
+outmat[,"Pr(>F)"]=sprintf("%4.4f", pvals[1:num_variables]);
+
+print(outmat);
+
+write.table(outmat, file=paste(OutputFnameRoot, ".anova.summary.tsv", sep=""),
+	sep="\t", quote=FALSE, col.names=T, row.names=FALSE);
+
+##############################################################################
 
 if(Testing){
 	cat("**************************************************************\n");
