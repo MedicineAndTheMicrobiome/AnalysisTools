@@ -1408,11 +1408,18 @@ write.table(improv_mat, file=paste(OutputRoot, ".alr_as_pred.rsqrd.tsv", sep="")
 # Write MANOVA to file
 
 if(length(manova_res)){
-	print(manova_res);
+	num_variables=nrow(manova_res)-1;
+	outmat=matrix("", nrow=num_variables, ncol=2);
+	colnames(outmat)=c(TagName, "Pr(>F)");
+	varnames=unlist(rownames(manova_res));
+	pvals=unlist(manova_res["Pr(>F)"]);
+	outmat[,TagName]=varnames[1:num_variables];
+	outmat[,"Pr(>F)"]=sprintf("%4.4f", pvals[1:num_variables]);
 }else{
-
+	outmat=matrix("-", nrow=1, ncol=2);
+	colnames(outmat)=c(TagName, "Pr(>F)");
 }
-
+write.table(outmat, file=paste(OutputRoot, ".anova.summary.tsv", sep=""), sep="\t", quote=F, col.names=T, row.names=F);
 
 ###############################################################################
 
