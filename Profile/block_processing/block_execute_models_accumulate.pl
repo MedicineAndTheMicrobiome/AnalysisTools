@@ -76,7 +76,7 @@ foreach my $ext (@extensions){
 	my $targ_list=join " ", @targets;
 
 
-	`$FILES_TO_COLUMN_BIN $targ_list > $OutputSummaryDir/$ext`;
+	`$FILES_TO_COLUMN_BIN -c $targ_list > $OutputSummaryDir/$ext`;
 
 	print "\n";
 

@@ -565,16 +565,18 @@ print STDERR "Covariates List: $Covariates\n";
 print STDERR "Group Variables List: $GroupVar\n";
 print STDERR "Output Directory: $OutputDir\n";
 
-
 if(!(-e $OutputDir)){
 	mkdir $OutputDir;
 }
+
+
+###############################################################################
 
 my $cmd="cat $Covariates $GroupVar > $OutputDir/all_req_var";
 run_command("Combine Cov/Grp variables for NA prescreen", "na_prescreen_concat_var",
 	$cmd, "$OutputDir");
 
-# Prescreen factors/summary table
+# Prescreen factors/summary table for NAs
 my $cmd=
 "~/git/AnalysisTools/Metadata/RemoveNAs/Prescreen_Sample_woFactorNAs/Prescreen_Sample_woFactorNAs.r \
 	-s $SummaryTable \
@@ -601,9 +603,23 @@ print "Prescreened Factor File: $screened_factor_file\n";
 
 print STDERR "\n**************************************************************\n";
 
+# Remove factors lost due to NA screening
+my $cmd="lch $screened_factor_file | grep -v '^\$' > $OutputDir/all_avail_var";
+run_command("Get Post-NA Removal Variables", "get_postna_rem_var", $cmd, "$OutputDir");
+
+my $cmd="grep -f $OutputDir/all_avail_var $Covariates > $OutputDir/covar.screened";
+run_command("Screen Covariates", "scr_covar", $cmd, "$OutputDir");
+
+my $cmd="grep -f $OutputDir/all_avail_var $GroupVar > $OutputDir/groupvar.screened";
+run_command("Screen Grouped Variables", "scr_group_var", $cmd, "$OutputDir");
+
+###############################################################################
 
 $SummaryTable=$screened_summary_table;
 $FactorFile=$screened_factor_file;
+$Covariates="$OutputDir/covar.screened";
+$GroupVar="$OutputDir/groupvar.screened";
+
 
 run_abundance_based(
 	$OutputDir,
@@ -636,4 +652,8 @@ run_distance_based(
 	$AnalysisName,
 	$TagName
 );
+
+###############################################################################
+
+`block_execute_models_accumulate.pl -i $OutputDir`;
 
