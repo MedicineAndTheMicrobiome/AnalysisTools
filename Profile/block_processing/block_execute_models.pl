@@ -585,15 +585,22 @@ my $cmd=
 ";
 run_command("Run NA prescreen", "na_prescreen", $cmd, "$OutputDir");
 
-my $screened_summary_table=$SummaryTable;
-$screened_summary_table=~s/\.summary_table\.tsv$//;
-$screened_summary_table="$OutputDir/$screened_summary_table.prescr.summary_table.tsv";
-print "Prescreened Summary Table: $screened_summary_table\n";
+print STDERR "\n**************************************************************\n";
 
-my $screened_factor_file=$FactorFile;
+my ($stname, $stpath)=fileparse($SummaryTable);
+my $screened_summary_table="$OutputDir/$stname";
+$screened_summary_table=~s/\.summary_table\.tsv$//;
+$screened_summary_table="$screened_summary_table.prescr.summary_table.tsv";
+print STDERR "Prescreened Summary Table: $screened_summary_table\n";
+
+my ($fcname, $fcpath)=fileparse($FactorFile);
+my $screened_factor_file="$OutputDir/$fcname";
 $screened_factor_file=~s/\.prescr\.tsv$//;
-$screened_factor_file="$OutputDir/$screened_factor_file.prescr.tsv";
+$screened_factor_file="$screened_factor_file.prescr.tsv";
 print "Prescreened Factor File: $screened_factor_file\n";
+
+print STDERR "\n**************************************************************\n";
+
 
 $SummaryTable=$screened_summary_table;
 $FactorFile=$screened_factor_file;
