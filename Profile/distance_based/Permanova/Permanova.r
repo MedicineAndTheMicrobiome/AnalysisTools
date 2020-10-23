@@ -143,7 +143,7 @@ if(length(opt$tag_name)){
         cat("Setting TagName Hook: ", TagName, "\n");
         setHook("plot.new",
                 function(){
-                        cat("Hook called.\n");
+                        #cat("Hook called.\n");
                         if(par()$page==T){
                                 oma_orig=par()$oma;
                                 exp_oma=oma_orig;
