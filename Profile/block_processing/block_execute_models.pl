@@ -655,5 +655,3 @@ run_distance_based(
 
 ###############################################################################
 
-`block_execute_models_accumulate.pl -i $OutputDir`;
-
