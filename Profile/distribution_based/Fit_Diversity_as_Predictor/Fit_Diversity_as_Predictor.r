@@ -1106,12 +1106,13 @@ close(fh);
 manova_res=mv_anova;
 if(length(manova_res)){
         num_variables=nrow(manova_res)-1;
-        outmat=matrix("", nrow=num_variables, ncol=2);
-        colnames(outmat)=c(TagName, "Pr(>F)");
+        outmat=matrix("", nrow=num_variables, ncol=3);
+        colnames(outmat)=c(TagName, "Pr(>F)", "Signf");
         varnames=unlist(rownames(manova_res));
         pvals=unlist(manova_res["Pr(>F)"]);
         outmat[,TagName]=varnames[1:num_variables];
         outmat[,"Pr(>F)"]=sprintf("%4.4f", pvals[1:num_variables]);
+	outmat[,"Signf"]=sapply(pvals[1:num_variables], sig_char);
 }else{
         outmat=matrix("-", nrow=1, ncol=2);
         colnames(outmat)=c(TagName, "Pr(>F)");

@@ -433,6 +433,19 @@ load_list=function(filename){
 
 ##############################################################################
 
+sig_char=function(val){
+        if(!is.null(val) && !is.nan(val) && !is.na(val)){
+                if(val <= .0001){ return("***");}
+                if(val <= .001 ){ return("** ");}
+                if(val <= .01  ){ return("*  ");}
+                if(val <= .05  ){ return(":  ");}
+                if(val <= .1   ){ return(".  ");}
+        }
+        return(" ");
+}
+
+##############################################################################
+
 subset_model_string=function(model_string, avail_factors){
 	lin_var_str=gsub(" ", "", model_string);
 	lin_comp=strsplit(lin_var_str, "\\+")[[1]];
@@ -1139,13 +1152,14 @@ print(res$aov.tab);
 num_variables=nrow(res$aov.tab)-2;
 print(num_variables);
 
-outmat=matrix("", nrow=num_variables, ncol=2);
-colnames(outmat)=c(TagName, "Pr(>F)");
+outmat=matrix("", nrow=num_variables, ncol=3);
+colnames(outmat)=c(TagName, "Pr(>F)", "Signf");
 varnames=rownames(res$aov.tab);
 pvals=res$aov.tab[,"Pr(>F)"];
 
 outmat[,TagName]=varnames[1:num_variables];
 outmat[,"Pr(>F)"]=sprintf("%4.4f", pvals[1:num_variables]);
+outmat[,"Signf"]=sapply(pvals[1:num_variables], sig_char);
 
 print(outmat);
 
