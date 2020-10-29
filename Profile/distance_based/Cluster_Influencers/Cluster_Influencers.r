@@ -833,7 +833,7 @@ for(ix in iterations){
 		abline(h=cut_midpoints[num_cl], col="red", lty=2);
 	}
 
-	legend_title=ifelse(useMetadata, paste("[", fact_name, "]", sep=""), NULL);
+	legend_title=ifelse(useMetadata, paste("[", fact_name, "]", sep=""), "");
 
 	# Legend at top left of dendrogram
 	ranges=par()$usr;
