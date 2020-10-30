@@ -778,8 +778,11 @@ for(i in 1:num_pc_at_cutoff){
 		round(pc_pred_cor_ordered[1]*100, 0), "_", 
 		ordered_names[1], sep="");
 
-	barplot(pc_pred_cor_ordered, 
-		names.arg=names(pc_pred_cor_ordered), 
+	# Max bars to plot
+	num_corr_bars_to_plot=min(20, length(pc_pred_cor_ordered));
+
+	barplot(pc_pred_cor_ordered[1:num_corr_bars_to_plot], 
+		names.arg=names(pc_pred_cor_ordered)[1:num_corr_bars_to_plot], 
 		ylim=c(-1,1),
 		ylab="Correlation",
 		las=2, cex.names=.7,
@@ -820,7 +823,7 @@ highlight_pcs=function(x){
 dend=dendrapply(dend, highlight_pcs);
 
 par(mfrow=c(1,1));
-par(mar=c(2,1,1,9));
+par(mar=c(2,1,1,20));
 plot(dend, horiz=T, main="Ward's Minimum Variance: dist(1-abs(cor)) with PCs");
 
 ##############################################################################
