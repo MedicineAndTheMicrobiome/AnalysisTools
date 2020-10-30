@@ -125,8 +125,8 @@ load_factors=function(fname){
 
 load_list=function(fname){
 	cat("Loading: ", fname, "\n");
-	lst=scan(fname, what=character());
-	return(lst);	
+	lst=read.delim(fname, header=F, check.names=F, comment.char="#", as.is=T);
+	return(lst[,1]);	
 }
 
 test_and_apply_log_transform=function(mat_val, pval_cutoff=.2, plot_before_after=T){
@@ -737,8 +737,8 @@ for(i in seq(1,num_pc_at_cutoff+1,2)){
 
 # Calculate correlation between each PC and the predictors
 
-
-par(mar=c(6,3,2,1));
+par(mfrow=c(2,2));
+par(mar=c(12,3,2,1));
 positive_scores=scores;
 
 pc_name=paste("PC", sprintf("%02g", 1:num_pred), sep="");
