@@ -106,10 +106,12 @@ create_GrpToSbj_map=function(subjects_arr, groups_arr){
                 quit(status=-1);
         }
 
+	groups_arr=as.character(groups_arr);
 	# Create subject lookup by group
         uniq_grps=sort(unique(groups_arr));
         grp_to_sbj_map=list();
         for(grp_ix in uniq_grps){
+                print(unique(sort(as.character(subjects_arr[groups_arr==grp_ix]))));
                 grp_to_sbj_map[[grp_ix]]=unique(sort(as.character(subjects_arr[groups_arr==grp_ix])));
         }
 
