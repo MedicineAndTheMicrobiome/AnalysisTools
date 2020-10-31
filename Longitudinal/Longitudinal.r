@@ -1235,7 +1235,7 @@ output_stat_table_alternate_ordering=function(stat_table, output_root){
 
 	if(nrow(stat_table)>0){
 
-		pvals=as.numeric(stat_table[,"p-value"]);
+		pvals=as.numeric(stat_table[,"p-value", drop=F]);
 		signf=sapply(pvals, sigchar);
 		stat_table=cbind(stat_table, signf);
 		row_idx_str=paste(1:nrow(stat_table), ".", sep="");
@@ -1246,14 +1246,14 @@ output_stat_table_alternate_ordering=function(stat_table, output_root){
 		cat("Ordering by P-value...\n");
 		# First order by pvalue, then do stable sort
 		stat_order_ix=order(pvals);
-		stat_table=stat_table[stat_order_ix,];
+		stat_table=stat_table[stat_order_ix,, drop=F];
 		print(stat_table);
 
 		#------------------------------------------------
 		cat("Ordering by Stat Name...\n");
 
-		stat_order_ix=order(stat_table[,"Statistic"], method="shell");
-		out_stat_table=stat_table[stat_order_ix,];
+		stat_order_ix=order(stat_table[,"Statistic",drop=F], method="shell");
+		out_stat_table=stat_table[stat_order_ix,,drop=F];
 		rownames(out_stat_table)=row_idx_str;
 		out=capture.output(print(out_stat_table, quote=F));
 
@@ -1266,8 +1266,8 @@ output_stat_table_alternate_ordering=function(stat_table, output_root){
 		#------------------------------------------------
 		cat("Ordering by Category...\n");
 
-		stat_order_ix=order(stat_table[,"Category"], method="shell");
-		out_stat_table=stat_table[stat_order_ix,];
+		stat_order_ix=order(stat_table[,"Category",drop=F], method="shell");
+		out_stat_table=stat_table[stat_order_ix,,drop=F];
 		rownames(out_stat_table)=row_idx_str;
 		out=capture.output(print(out_stat_table, quote=F));
 
