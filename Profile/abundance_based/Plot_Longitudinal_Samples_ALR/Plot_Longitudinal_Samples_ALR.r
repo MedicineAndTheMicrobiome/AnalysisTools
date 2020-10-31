@@ -358,7 +358,6 @@ plot_alr_time_grpd=function(tar_cat, subj_arr, grouping, grouping_name, offsets_
 
 	offset_span=offset_range[2]-offset_range[1];
 
-
 	plot(0, type="n", ylim=alr_range, xlim=c(offset_range[1], offset_range[2]+0.2*offset_span), 
 		ylab=paste(grouping_name, ": ", grouping));
 	abline(h=alr_med, col="grey", lty="dotdash");
@@ -579,7 +578,10 @@ if(GroupCol==""){
 }
 
 subject_grouping_rec=create_GrpToSbj_map(factor_info[,SubjectIDCol], group_names);
-unique_group_names=sort(unique(group_names));
+unique_group_names=as.character(sort(unique(group_names)));
+
+cat("Unique Group Names:\n");
+print(unique_group_names);
 
 grp_to_sbj=subject_grouping_rec[["GrpToSbj"]];
 print(grp_to_sbj);
@@ -684,12 +686,13 @@ for(cat_ix in alr_cat_names){
 	# Plotting individuals by group
 	cat("Plotting Individuals by Group:\n");
 	for(grp_ix in unique_group_names){
+
 		cat("For group: ", grp_ix, "\n");
-	
 		
 		par(mfrow=c(plots_per_page, 1));	
 		plot_ix=0;
 		for(subj_ix in grp_to_sbj[[grp_ix]]){
+
 			plot_alr_time_indv(cat_ix, subj_ix, offset_rec, alr_categories_val, 
 				offset_ranges, alr_range, alr_med[cat_ix], subj_col[subj_ix]);
 			plot_ix=plot_ix+1;
