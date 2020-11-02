@@ -39,6 +39,7 @@ extract_offset=function(factor_mat, sbj_cname, timeoffset_cname, start=-Inf, end
 	
 	# Offsets by subject
 	offsets_by_sbj=list()
+	min_periods=numeric();
 	for(sbj in offsets_data[["SubjectIDs"]]){
 		sbj_ix=offsets_mat[,"SubjectID"]==sbj;
 
@@ -47,9 +48,12 @@ extract_offset=function(factor_mat, sbj_cname, timeoffset_cname, start=-Inf, end
 		offset_order=order(sbj_offset_rec[,"Offsets"]);
 		sorted_offsets=sbj_offset_rec[offset_order,];
 
+		min_periods=c(min_periods,min(diff(sorted_offsets[,"Offsets"])));
+
 		offsets_by_sbj[[sbj]]=sorted_offsets;
 	}
 	offsets_data[["OffsetsBySubject"]]=offsets_by_sbj;
+	offsets_data[["MinOffsetSepInSubj"]]=min(min_periods);
 
 	# Store range information
 	if(start==-Inf){

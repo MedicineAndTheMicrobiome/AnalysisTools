@@ -246,7 +246,8 @@ plot_sample_distributions_by_individual=function(diversity_arr, div_type, normal
 	cat("Diversity Range:\n");
 	print(diversity_ranges);
 
-	min_period=offsets_rec[["MinOffsetSep"]];
+	#min_period=offsets_rec[["MinOffsetSep"]];
+	min_period=offsets_rec[["MinOffsetSepInSubj"]];
 	cat("Minimum period: ", min_period, "\n");
 
 	cat_names=colnames(normalized_mat);
@@ -254,6 +255,7 @@ plot_sample_distributions_by_individual=function(diversity_arr, div_type, normal
 	# Plot individual samples
 	for(i in 1:num_subjects){
 
+		par(mar=c(5.1,4.1,4.1,2.1));
 		# Grab members from group
 		cat("Plotting: ", subject_ids[i], "\n");
 		sbj_subset=which(offsets_mat[,"SubjectID"]==subject_ids[i]);
@@ -335,7 +337,8 @@ plot_sample_distributions_by_individual=function(diversity_arr, div_type, normal
 
 		# Plot color key/legend
 		num_in_key=min(35, length(cat_names));
-		plot(0, 0, main="",
+		par(mar=c(1,4.1,1,2.1));
+		plot(0, 0, main="", bty="n",
 			 xlab="", ylab="", type="n", col=i, lwd=2,
 			 xlim=c(0,10), ylim=c(0,num_in_key), xaxt="n", yaxt="n");
 
@@ -675,7 +678,8 @@ plot_sample_distributions_by_group=function(normalized_mat, offsets_rec, grp_to_
 	cat("Offset Range:\n");
 	print(offset_ranges);
 
-	min_period=offsets_rec[["MinOffsetSep"]];
+	#min_period=offsets_rec[["MinOffsetSep"]];
+	min_period=offsets_rec[["MinOffsetSepInSubj"]];
 	cat("Minimum period: ", min_period, "\n");
 
 	palette(cat_colors);
@@ -771,6 +775,7 @@ plot_mean_distributions_by_group=function(normalized_mat, offsets_rec, grp_to_sb
         print(offset_ranges);
 
         min_period=offsets_rec[["MinOffsetSep"]];
+	#min_period=offsets_rec[["MinOffsetSepInSubj"]];
         cat("Minimum period: ", min_period, "\n");
 
 	palette(cat_colors);
@@ -818,6 +823,7 @@ plot_mean_distributions_by_group=function(normalized_mat, offsets_rec, grp_to_sb
 
 		#--------------------------------------------------------------
 		# Plot times series for cohort
+		par(mar=c(3, 6, 2, 1));
 		plot(0, 0, main="",
 			xlab="", 
 			ylab=paste(grp_name, ": ", groups[g]), 
@@ -839,8 +845,11 @@ plot_mean_distributions_by_group=function(normalized_mat, offsets_rec, grp_to_sb
 			plot_dist(cur_off, y=0, 
 				abundances=avg_off_comp[offset_key,,drop=F], width=min_period*.95);
 
-			text(cur_off, 1+cxy[2]/2, 
-				paste("n=",samp_size_at_offset[offset_key], sep=""), cex=.75, font=3);
+			if(samp_size_at_offset[offset_key]>1){
+				text(cur_off, 1+cxy[2]/2, 
+					paste("n=",samp_size_at_offset[offset_key], sep=""), 
+					cex=.75, font=3);
+			}
 
 		}
 
@@ -854,7 +863,7 @@ plot_mean_distributions_by_group=function(normalized_mat, offsets_rec, grp_to_sb
 	cat_names=colnames(normalized_mat);
 	num_in_key=min(35, length(cat_names));
 	plot(0, 0, 
-		 xlab="", ylab="", type="n", lwd=2,
+		 xlab="", ylab="", type="n", lwd=2, bty="n",
 		 xlim=c(0,10), ylim=c(0,num_in_key), xaxt="n", yaxt="n");
 
 	for(j in 1:num_in_key){
