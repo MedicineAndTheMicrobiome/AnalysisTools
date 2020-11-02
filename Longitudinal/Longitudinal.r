@@ -1194,7 +1194,7 @@ plot_pairwise_grp_comparisons=function(longit_stats, grp_to_sbj_info_rec, plots_
                 }
 
                 # Plot heatmap
-                paint_matrix(grp_mat, paste("mean(", stat_ix, ") for Grouping: ", GroupCol, sep="", deci_pts=-1));
+                paint_matrix(grp_mat, paste("mean(", stat_ix, ") for Grouping: ", GroupCol, sep=""), deci_pts=-1);
 
                 par(mfrow=c(plots_pp,1));
                 par(oma=c(0,0,2,0));
