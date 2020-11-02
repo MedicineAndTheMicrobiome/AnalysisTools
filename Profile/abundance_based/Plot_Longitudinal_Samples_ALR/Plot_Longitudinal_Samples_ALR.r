@@ -875,7 +875,7 @@ stat_names=names(long_stats);
 # Plot heatmaps
 for(stat_ix in stat_names){
 	mat=long_stats[[stat_ix]];
-	paint_matrix(mat, stat_ix);
+	paint_matrix(mat, stat_ix, deci_pts=-1);
 }
 
 # Plot and compute pairwise group comparisons
