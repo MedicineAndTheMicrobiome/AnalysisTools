@@ -684,6 +684,30 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
         }
         cat("Plot min/max: ", plot_min, "/", plot_max, "\n");
 
+	# Autocalc num decimal points to draw 
+	if(deci_pts<0){
+
+		num_not_integer=sum(apply(mat, 1:2, function(x){
+			ifelse(is.finite(x), x!=as.integer(x), F);
+		}));
+	
+		mat_maxabs=apply(mat, 1:2, function(x){
+			ifelse(is.finite(x), max(abs(x)), 0);
+		});
+
+		if(num_not_integer==0 || mat_maxabs>=1000){
+			deci_pts=0;
+		}else if(mat_maxabs>=100){
+			deci_pts=1;
+		}else if(mat_maxabs>=10){
+			deci_pts=2;
+		}else if(mat_maxabs>=1){
+			deci_pts=3;
+		}else{
+			deci_pts=4;
+		}
+	}
+
         # Get Label lengths
         row_max_nchar=max(nchar(row_names));
         col_max_nchar=max(nchar(col_names));
@@ -1170,7 +1194,7 @@ plot_pairwise_grp_comparisons=function(longit_stats, grp_to_sbj_info_rec, plots_
                 }
 
                 # Plot heatmap
-                paint_matrix(grp_mat, paste("mean(", stat_ix, ") for Grouping: ", GroupCol, sep=""));
+                paint_matrix(grp_mat, paste("mean(", stat_ix, ") for Grouping: ", GroupCol, sep="", deci_pts=-1));
 
                 par(mfrow=c(plots_pp,1));
                 par(oma=c(0,0,2,0));
@@ -1231,6 +1255,38 @@ sigchar=function(x){
         }
 }
 
+plot_text_wide=function(strings, maxlpp=100, text_size_mult=1){
+
+        nlines=length(strings);
+        if(nlines>maxlpp){
+                plot_text_wide(strings[1:maxlpp], text_size_mult=text_size_mult);
+                plot_text_wide(strings[(maxlpp+1):nlines], text_size_mult=text_size_mult);
+        }else{
+
+                par(family="Courier");
+                par(mar=rep(0,4));
+
+                num_lines=length(strings);
+                cat("Num Plot Text lines:", num_lines, "\n");
+
+                top=maxlpp;
+
+                plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
+                        xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
+                        );
+
+                text_size=max(.01, min(.8, .8 - .003*(maxlpp-52)));
+                #print(text_size);
+
+                for(i in 1:num_lines){
+                        #cat(strings[i], "\n", sep="");
+                        strings[i]=gsub("\t", "", strings[i]);
+                        text(0, top-i, strings[i], pos=4, cex=text_size/text_size_mult);
+                }
+        }
+}
+
+
 output_stat_table_alternate_ordering=function(stat_table, output_root){
 
 	if(nrow(stat_table)>0){
@@ -1258,7 +1314,9 @@ output_stat_table_alternate_ordering=function(stat_table, output_root){
 		out=capture.output(print(out_stat_table, quote=F));
 
 		cat("Writing by statistic:\n");
-		plot_text(c(
+		plot_text_wide(
+			text_size_mult=1.1,
+			c(
 			"By Statistic:",
 			"",
 			out));
@@ -1272,7 +1330,9 @@ output_stat_table_alternate_ordering=function(stat_table, output_root){
 		out=capture.output(print(out_stat_table, quote=F));
 
 		cat("Writing by category:\n");
-		plot_text(c(
+		plot_text_wide(
+			text_size_mult=1.1,
+			c(
 			"By Category:",
 			"",
 			out));
@@ -1284,7 +1344,9 @@ output_stat_table_alternate_ordering=function(stat_table, output_root){
 		rownames(out_stat_table)=row_idx_str;
 		out=capture.output(print(out_stat_table, quote=F));
 		cat("Writing by p-value:\n");
-		plot_text(c(
+		plot_text_wide(
+			text_size_mult=1.1,
+			c(
 			"By P-value:",
 			"",
 			out));
@@ -1296,7 +1358,7 @@ output_stat_table_alternate_ordering=function(stat_table, output_root){
 			file=paste(output_root,".lngt_stats.comp.tsv", sep=""), quote=F, sep="\t");
 
 	}else{
-		plot_text(c(
+		plot_text_wide(c(
 			"No Significant Differences Identified Between Groups."
 		));
 		fh=file(paste(output_root,".lngt_stats.comp.tsv", sep=""), "w");
