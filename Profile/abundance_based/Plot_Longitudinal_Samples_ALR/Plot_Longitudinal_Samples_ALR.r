@@ -294,16 +294,6 @@ additive_log_rato=function(ordered_matrix){
 	return(alr_struct);
 }
 
-title_page=function(string){
-
-	plot(0,0, xlim=c(-1,1), ylim=c(-1,1), type="n",  xaxt="n", yaxt="n",
-		xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
-		);
-
-	text(0,0, string, font=2, cex=2);
-
-}
-
 plot_text=function(strings, maxlpp=100){
 
 	nlines=length(strings);
@@ -467,64 +457,6 @@ compute_and_plot_loess=function(tar_cat, subj_arr, grouping, grouping_name, offs
 
 	return(grp_loess);
 
-}
-
-regress_longitudinal_stats=function(longit_stats, variable_list, factors){
-
-	subj_ids=rownames(factors);
-	stat_names=names(longit_stats);
-	num_variables=length(variable_list);
-
-	all_regr_res=list();
-	df.factors=as.data.frame(factors);
-
-	# Get coefficient names from model matrix
-	resp=rep(0, length(subj_ids));
-	form_str=paste("resp ~ ", paste(variable_list, collapse=" + "), sep="");
-	mm=model.matrix(as.formula(form_str), data=df.factors);
-	coef_names=setdiff(colnames(mm), "(Intercept)");
-	cat("Coefficient Names:\n");
-	print(coef_names);
-
-	for(stat_ix in stat_names){
-		cat("Working on: ", stat_ix, "\n");
-		
-		stat_mat=longit_stats[[stat_ix]];
-		cat_names=colnames(stat_mat);
-		num_cat=length(cat_names);
-
-		pval_mat=matrix(NA, nrow=length(coef_names), ncol=num_cat);
-		rownames(pval_mat)=coef_names;
-		colnames(pval_mat)=cat_names;
-		coef_mat=pval_mat;
-
-
-		for(cat_ix  in cat_names){
-		
-			cat("Regression Analsis for: ", stat_ix, " of ", cat_ix, "\n", sep="");	
-
-			resp=stat_mat[subj_ids, cat_ix, drop=F];
-			
-			form_str=paste("resp ~ ", paste(variable_list, collapse=" + "), sep="");
-
-			cat("Model: ", form_str, "\n");
-			fit=lm(as.formula(form_str), data=df.factors);
-			sumfit=summary(fit);
-			
-			kept=intersect(coef_names, rownames(sumfit$coefficients));
-			pval_mat[kept, cat_ix]=sumfit$coefficients[kept, "Pr(>|t|)"];
-			coef_mat[kept, cat_ix]=sumfit$coefficients[kept, "Estimate"];
-	
-		}
-
-		reg_res=list();
-		reg_res[["pval"]]=pval_mat;
-		reg_res[["coef"]]=coef_mat;
-
-		all_regr_res[[stat_ix]]=reg_res;
-	}
-
-	return(all_regr_res);
 }
 
 ##############################################################################
@@ -918,76 +850,33 @@ plot_text(longit_stat_descriptions);
 output_stat_table_alternate_ordering(stat_table_grp_cmp, OutputRoot);
 
 ###############################################################################
+###############################################################################
+# Work on regressing longitudinal stats as response to factors/group info
 
 if(ModelFile!=""){
 	model_var_list=load_list(ModelFile);
+	model_var_list=c(model_var_list, GroupCol);
 	cat("Model variables in: ", ModelFile, "\n");
 }else{
 	cat("Model File was not specified. Skipping analyses with factors.\n");
 	quit();
 }
 
-# collapse
-kept_fact=factor_info[,c(SubjectIDCol,model_var_list)];
-uniq_subj=sort(unique(factor_info[,SubjectIDCol]));
 
-num_subj=length(uniq_subj);
-num_model_var=length(model_var_list);
+cat("Collapsing Factors...\n");
+colpsd_factors=collapse_factors(factor_info, SubjectIDCol, model_var_list);
 
-# Collapse factor info and only keep those with offset info
-colpsd_factors=numeric();
-uniq_subj=intersect(uniq_subj, offset_rec[["SubjectIDs"]]);
-for(subj_id in uniq_subj){
-	ix=(subj_id==factor_info[,SubjectIDCol]);
-	first_found=min(which(ix));
-	val=factor_info[first_found, model_var_list];
-	colpsd_factors=rbind(colpsd_factors, val);
-}
-
-rownames(colpsd_factors)=uniq_subj;
-colnames(colpsd_factors)=model_var_list;
-
+cat("Regressing Longitudinal Stats...\n");
 regres=regress_longitudinal_stats(long_stats, model_var_list, colpsd_factors);
+
 options(width=200);
 print(regres);
 
+cat("Generating Heatmaps by Stat...\n");
+title_page(paste(
+	"Response:\nLongitudinal Stats\n\nPredictors:\n", paste(model_var_list, collapse="\n"), sep=""));
+
 stat_names=names(regres);
-
-plot_heat_maps=function(coef_mat, pval_mat, title){
-
-	title_page(title);
-	
-	paint_matrix(
-		coef_mat, 
-		title=paste(title, ": Coefficients", sep=""));
-
-	min_coef=min(coef_mat);
-	max_coef=max(coef_mat);
-
-	paint_matrix(
-		pval_mat, 
-		title=paste(title, ": P-values", sep=""),
-		plot_min=0, plot_max=1, high_is_hot=F);
-	
-	coef_at_10=mask_matrix(coef_mat, pval_mat, 0.1, 0);
-	coef_at_05=mask_matrix(coef_mat, pval_mat, 0.05, 0);
-	coef_at_01=mask_matrix(coef_mat, pval_mat, 0.01, 0);
-
-	paint_matrix(
-		coef_at_10,
-		label_zeros=F, plot_min=min_coef, plot_max=max_coef,
-		title=paste(title, ": Coeff with p-val < 0.10", sep=""));
-	paint_matrix(
-		coef_at_05,
-		label_zeros=F, plot_min=min_coef, plot_max=max_coef,
-		title=paste(title, ": Coeff with p-val < 0.05", sep=""));
-	paint_matrix(
-		coef_at_01,
-		label_zeros=F, plot_min=min_coef, plot_max=max_coef,
-		title=paste(title, ": Coeff with p-val < 0.01", sep=""));
-	
-}
-
 for(stat_ix in stat_names){
 	plot_heat_maps(
 		regres[[stat_ix]][["coef"]],
@@ -995,75 +884,17 @@ for(stat_ix in stat_names){
 		stat_ix);
 }
 
-###############################################################################
-
-regr_stat_summary=character();
-
-for(stat_ix in stat_names){
-	coef_mat=regres[[stat_ix]][["coef"]];
-	pval_mat=regres[[stat_ix]][["pval"]];
-
-	predictors=rownames(coef_mat);
-	categories=colnames(coef_mat);
-
-	for(pred_ix in predictors){
-		for(cat_ix in categories){
-
-			pval=pval_mat[pred_ix, cat_ix];
-		
-			if(!is.na(pval) && pval<=0.1){
-				coef=signif(coef_mat[pred_ix, cat_ix], 3);
-				pval=signif(pval_mat[pred_ix, cat_ix], 3);
-
-				row_info=c(
-					stat_ix, pred_ix, cat_ix, 
-					coef,
-					pval,
-					sigchar(pval)	
-				);
-
-				regr_stat_summary=rbind(regr_stat_summary, row_info);
-			}	
-		}
-
-	}
-}
-
-
-colnames(regr_stat_summary)=c("Statistic", "Predictor", "Category", "Coefficient", "P-value", "Significance");
-
-pval_numeric=as.numeric(regr_stat_summary[,"P-value"]);
-pval_ord_ix=order(pval_numeric);
-
-regr_stat_summary=regr_stat_summary[pval_ord_ix,];
+cat("Summarizing Regression Results into Table...\n");
+regr_stat_summary=summarize_regression_results(regres, stat_names);
 num_sigf_reg_assoc=nrow(regr_stat_summary);
 
-#---------------------------------------------------------------
-
-for(ordering in c("Statistic", "Predictor", "Category", "P-value")){
-
-	if(ordering=="P-value"){
-		out_stat_table=regr_stat_summary;
-	}else{
-		stat_order=order(regr_stat_summary[,ordering], method="shell");
-		out_stat_table=regr_stat_summary[stat_order,];
-	}
-	rownames(out_stat_table)=paste(1:num_sigf_reg_assoc, ".", sep="");
-
-	cat("Outputing by: ", ordering, "\n");
-
-	out=capture.output(print(out_stat_table, quote=F));
-
-	plot_text(c(
-		paste("By ", ordering, ":", sep=""), 
-		"",
-		out));
-
-}
+cat("Writing Stats by Alternative Ordering...\n");
+output_long_regression_stats_w_alt_ordering(regr_stat_summary);
 
 ###############################################################################
 
 cat("Done.\n");
-#dev.off();
+
+dev.off();
 print(warnings());
 q(status=0);
