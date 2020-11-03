@@ -1374,6 +1374,14 @@ output_stat_table_alternate_ordering=function(stat_table, output_root){
 
 ###############################################################################
 
+mask_matrix=function(val_mat, mask_mat, mask_thres, mask_val){
+        masked_matrix=val_mat;
+        masked_matrix[mask_mat>mask_thres]=mask_val;
+        return(masked_matrix);
+}
+
+###############################################################################
+
 collapse_factors=function(factor_info_mat, subj_id_colname, model_vars_arr){
 
 	# collapse
