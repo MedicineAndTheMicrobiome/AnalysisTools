@@ -22,7 +22,9 @@ params=c(
 
         "dont_reset_offsets", "n", 2, "logical",
         "begin_offset", "b", 2, "numeric",
-        "end_offset", "e", 2, "numeric"
+        "end_offset", "e", 2, "numeric",
+
+	"tag_name", "T", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -46,6 +48,8 @@ usage = paste(
 	"	[-n (do not reset earliest offsets to 0 to line up time points, default=reset offsets)]\n",
 	"	[-b <begin offset, default=-Inf>]\n",
 	"	[-e <end offset, default=Inf>]\n",
+	"\n",
+	"	[-T <tag name>]\n",
 	"\n",
 	"	Diversity types include:\n",
 	"		shannon, tail, simpson, invsimpson\n",
@@ -90,6 +94,28 @@ if(length(opt$begin_offset)){
 }
 if(length(opt$end_offset)){
 	EndOffset=opt$end_offset;
+}
+
+if(length(opt$tag_name)){
+        TagName=opt$tag_name;
+        cat("Setting TagName Hook: ", TagName, "\n");
+        setHook("plot.new",
+                function(){
+                        #cat("Hook called.\n");
+                        if(par()$page==T){
+                                oma_orig=par()$oma;
+                                exp_oma=oma_orig;
+                                exp_oma[1]=max(exp_oma[1], 1.5);
+                                par(oma=exp_oma);
+                                mtext(paste("[", TagName, "]", sep=""), side=1, line=exp_oma[1]-1,
+                                        outer=T, col="steelblue4", font=2, cex=.8, adj=.97);
+                                par(oma=oma_orig);
+                        }
+                },
+                "append");
+
+}else{
+        TagName="";
 }
 
 ###############################################################################
