@@ -24,6 +24,7 @@ params=c(
         "begin_offset", "b", 2, "numeric",
         "end_offset", "e", 2, "numeric",
 
+	"model_file", "m", 2, "character",
 	"tag_name", "T", 2, "character"
 );
 
@@ -49,6 +50,7 @@ usage = paste(
 	"	[-b <begin offset, default=-Inf>]\n",
 	"	[-e <end offset, default=Inf>]\n",
 	"\n",
+	"	[-m <model file>]\n",
 	"	[-T <tag name>]\n",
 	"\n",
 	"	Diversity types include:\n",
@@ -116,6 +118,11 @@ if(length(opt$tag_name)){
 
 }else{
         TagName="";
+}
+
+ModelFile="";
+if(length(opt$model_file)){
+	ModelFile=opt$model_file;
 }
 
 ###############################################################################
@@ -1082,6 +1089,13 @@ plot_text=function(strings){
 }
 
 ###############################################################################
+
+load_list=function(filename){
+        val=scan(filename, what=character(), comment.char="#");
+        return(val);
+}
+
+###############################################################################
 ###############################################################################
 
 factor_info=load_factors(FactorFile);
@@ -1209,6 +1223,46 @@ stat_table_grp_cmp=plot_pairwise_grp_comparisons(long_stats, grp_to_sbj_info, pl
 #print(stat_table_grp_cmp);
 
 output_stat_table_alternate_ordering(stat_table_grp_cmp, OutputRoot);
+
+##############################################################################
+
+if(ModelFile!=""){
+        model_var_list=load_list(ModelFile);
+        model_var_list=c(model_var_list, GroupCol);
+        cat("Model variables in: ", ModelFile, "\n");
+}else{
+        cat("Model File was not specified. Skipping analyses with factors.\n");
+        quit();
+}
+
+
+cat("Collapsing Factors...\n");
+colpsd_factors=collapse_factors(factor_info, SubjectIDCol, model_var_list);
+
+cat("Regressing Longitudinal Stats...\n");
+regres=regress_longitudinal_stats(long_stats, model_var_list, colpsd_factors);
+
+options(width=200);
+print(regres);
+
+cat("Generating Heatmaps by Stat...\n");
+title_page(paste(
+        "Response:\nLongitudinal Stats\n\nPredictors:\n", paste(model_var_list, collapse="\n"), sep=""));
+
+stat_names=names(regres);
+for(stat_ix in stat_names){
+        plot_heat_maps(
+                regres[[stat_ix]][["coef"]],
+                regres[[stat_ix]][["pval"]],
+                stat_ix);
+}
+
+cat("Summarizing Regression Results into Table...\n");
+regr_stat_summary=summarize_regression_results(regres, stat_names);
+num_sigf_reg_assoc=nrow(regr_stat_summary);
+
+cat("Writing Stats by Alternative Ordering...\n");
+output_long_regression_stats_w_alt_ordering(regr_stat_summary);
 
 ##############################################################################
 

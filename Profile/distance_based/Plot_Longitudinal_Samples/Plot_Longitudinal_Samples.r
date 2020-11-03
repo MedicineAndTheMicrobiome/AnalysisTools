@@ -49,6 +49,7 @@ usage = paste(
         "       [-b <begin offset, default=-Inf>]\n",
         "       [-e <end offset, default=Inf>]\n",
 	"	[-d <distance type, def=", DEF_DIST, ">]\n",
+	"	[-m <model file>]\n",
 	"\n",
 	"	[-T <tag name>]\n",
 	"\n");
@@ -122,6 +123,11 @@ if(length(opt$tag_name)){
 
 }else{
         TagName="";
+}
+
+ModelFile="";
+if(length(opt$model_file)){
+	ModelFile=opt$model_file;
 }
 
 ###############################################################################
@@ -734,7 +740,7 @@ mds2_coord=isomds$points;
 
 ###############################################################################
 
-stats_mat=calculate_stats_on_series_distance(offset_rec, dist_mat);
+long_stats=calculate_stats_on_series_distance(offset_rec, dist_mat);
 
 plot_connected_figure(mds_coord, offset_rec, subject_grouping_rec, 
 	subjects_per_plot=as.integer(num_subjects/5), col_assign, 
@@ -753,7 +759,7 @@ plot_sample_dist_by_group(dist_mat, offset_rec, subject_grouping_rec, col_assign
 plot_sample_dist_by_group_loess(dist_mat, offset_rec, subject_grouping_rec, col_assign, ind_colors, 
 	dist_type=DistanceType);
 
-group_stat_comparisons=plot_pairwise_grp_comparisons(stats_mat, subject_grouping_rec, plots_pp=1);
+group_stat_comparisons=plot_pairwise_grp_comparisons(long_stats, subject_grouping_rec, plots_pp=1);
 
 
 par(mfrow=c(1,1));
@@ -767,6 +773,52 @@ output_stat_table_alternate_ordering(group_stat_comparisons, OutputFileRoot);
 
 export_distances_from_start(paste(OutputFileRoot,".dist_from_start.tsv", sep=""),
 	offset_rec, dist_mat);
+
+##############################################################################
+##############################################################################
+
+load_list=function(filename){
+        val=scan(filename, what=character(), comment.char="#");
+        return(val);
+}
+
+if(ModelFile!=""){
+        model_var_list=load_list(ModelFile);
+        model_var_list=c(model_var_list, GroupCol);
+        cat("Model variables in: ", ModelFile, "\n");
+}else{
+        cat("Model File was not specified. Skipping analyses with factors.\n");
+        quit();
+}
+
+
+cat("Collapsing Factors...\n");
+colpsd_factors=collapse_factors(factor_info, SubjectIDCol, model_var_list);
+
+cat("Regressing Longitudinal Stats...\n");
+regres=regress_longitudinal_stats(long_stats, model_var_list, colpsd_factors);
+
+options(width=200);
+print(regres);
+
+cat("Generating Heatmaps by Stat...\n");
+title_page(paste(
+        "Response:\nLongitudinal Stats\n\nPredictors:\n", paste(model_var_list, collapse="\n"), sep=""));
+
+stat_names=names(regres);
+for(stat_ix in stat_names){
+        plot_heat_maps(
+                regres[[stat_ix]][["coef"]],
+                regres[[stat_ix]][["pval"]],
+                stat_ix);
+}
+
+cat("Summarizing Regression Results into Table...\n");
+regr_stat_summary=summarize_regression_results(regres, stat_names);
+num_sigf_reg_assoc=nrow(regr_stat_summary);
+
+cat("Writing Stats by Alternative Ordering...\n");
+output_long_regression_stats_w_alt_ordering(regr_stat_summary);
 
 ##############################################################################
 
