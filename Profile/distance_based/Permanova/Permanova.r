@@ -1152,6 +1152,10 @@ print(res$aov.tab);
 num_variables=nrow(res$aov.tab)-2;
 print(num_variables);
 
+if(TagName==""){
+	TagName="Variables";
+}
+
 outmat=matrix("", nrow=num_variables, ncol=3);
 colnames(outmat)=c(TagName, "Pr(>F)", "Signf");
 varnames=rownames(res$aov.tab);
