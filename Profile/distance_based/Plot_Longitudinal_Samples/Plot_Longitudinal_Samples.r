@@ -761,10 +761,6 @@ plot_sample_dist_by_group_loess(dist_mat, offset_rec, subject_grouping_rec, col_
 
 group_stat_comparisons=plot_pairwise_grp_comparisons(long_stats, subject_grouping_rec, plots_pp=1);
 
-
-par(mfrow=c(1,1));
-plot_text(longit_stat_description_distance);
-
 ##############################################################################
 
 output_stat_table_alternate_ordering(group_stat_comparisons, OutputFileRoot);
@@ -819,6 +815,11 @@ num_sigf_reg_assoc=nrow(regr_stat_summary);
 
 cat("Writing Stats by Alternative Ordering...\n");
 output_long_regression_stats_w_alt_ordering(regr_stat_summary);
+
+##############################################################################
+
+par(mfrow=c(1,1));
+plot_text(longit_stat_description_distance);
 
 ##############################################################################
 

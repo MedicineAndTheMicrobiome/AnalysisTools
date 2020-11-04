@@ -325,12 +325,6 @@ plot_text=function(strings, maxlpp=100){
 	}
 }
 
-mask_matrix=function(val_mat, mask_mat, mask_thres, mask_val){
-        masked_matrix=val_mat;
-        masked_matrix[mask_mat>mask_thres]=mask_val;
-        return(masked_matrix);
-}
-
 get_colors=function(num_col, alpha=1){
         colors=hsv(seq(0,1,length.out=num_col+1), c(1,.5), c(1,.75,.5), alpha=alpha);
         color_mat_dim=ceiling(sqrt(num_col));
@@ -839,11 +833,6 @@ for(stat_ix in stat_names){
 # Plot and compute pairwise group comparisons
 stat_table_grp_cmp=plot_pairwise_grp_comparisons(long_stats, subject_grouping_rec, plots_pp=3);
 
-par(mfrow=c(1,1));
-
-# Output descript of stats
-plot_text(longit_stat_descriptions);
-
 ###############################################################################
 
 # Output significant stats
@@ -890,6 +879,12 @@ num_sigf_reg_assoc=nrow(regr_stat_summary);
 
 cat("Writing Stats by Alternative Ordering...\n");
 output_long_regression_stats_w_alt_ordering(regr_stat_summary);
+
+###############################################################################
+
+# Output descript of stats
+par(mfrow=c(1,1));
+plot_text(longit_stat_descriptions);
 
 ###############################################################################
 

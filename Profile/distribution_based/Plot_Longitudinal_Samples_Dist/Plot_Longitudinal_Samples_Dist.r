@@ -1266,6 +1266,12 @@ output_long_regression_stats_w_alt_ordering(regr_stat_summary);
 
 ##############################################################################
 
+# Output descript of stats
+par(mfrow=c(1,1));
+plot_text(longit_stat_descriptions);
+
+##############################################################################
+
 cat("Done.\n")
 dev.off();
 warn=warnings();
