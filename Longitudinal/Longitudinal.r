@@ -1293,6 +1293,7 @@ plot_text_wide=function(strings, maxlpp=100, text_size_mult=1){
 
 output_stat_table_alternate_ordering=function(stat_table, output_root){
 
+	par(mfrow=c(1,1));
 	if(nrow(stat_table)>0){
 
 		pvals=as.numeric(stat_table[,"p-value", drop=F]);
