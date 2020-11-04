@@ -1560,6 +1560,8 @@ summarize_regression_results=function(long_regres, stat_names_arr){
 
 output_long_regression_stats_w_alt_ordering=function(regr_stat_summary_mat){
 
+	par(mfrow=c(1,1));
+
 	for(ordering in c("Statistic", "Predictor", "Category", "P-value")){
 
 		if(ordering=="P-value"){
