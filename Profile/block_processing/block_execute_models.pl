@@ -597,7 +597,7 @@ print STDERR "Prescreened Summary Table: $screened_summary_table\n";
 
 my ($fcname, $fcpath)=fileparse($FactorFile);
 my $screened_factor_file="$OutputDir/$fcname";
-$screened_factor_file=~s/\.prescr\.tsv$//;
+$screened_factor_file=~s/\.tsv$//;
 $screened_factor_file="$screened_factor_file.prescr.tsv";
 print "Prescreened Factor File: $screened_factor_file\n";
 
