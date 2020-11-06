@@ -32,7 +32,10 @@ params=c(
 
 	"reference_levels", "c", 2, "character",
 	"contains_remaining", "R", 2, "logical",
-	"shorten_category_names", "x", 2, "character"
+	"shorten_category_names", "x", 2, "character",
+
+        "tag_name", "t", 2, "character"
+
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -63,6 +66,8 @@ usage = paste(
 	"	[-c <reference levels file for Y's in factor file>]\n",
 	"	[-R (pay attention to 'remaining' category)]\n",
 	"	[-x <shorten category names, with separator in double quotes (default=\"\")>]\n",
+	"\n",
+	"	[-t <tag name>]\n",
 	"\n",
 	"This script will fit the following model for each ALR category from the top ", NUM_TOP_RESP_CAT, " taxa\n",
 	"  and/or the specified list.\n",
@@ -135,6 +140,26 @@ if(length(opt$alr_list_file)){
 	ALRCategListFile="";
 }
 
+if(length(opt$tag_name)){
+        TagName=opt$tag_name;
+        cat("Setting TagName Hook: ", TagName, "\n");
+        setHook("plot.new",
+                function(){
+                        #cat("Hook called.\n");
+                        if(par()$page==T){
+                                oma_orig=par()$oma;
+                                exp_oma=oma_orig;
+                                exp_oma[1]=max(exp_oma[1], 1);
+                                par(oma=exp_oma);
+                                mtext(paste("[", TagName, "]", sep=""), side=1, line=exp_oma[1]-1,
+                                        outer=T, col="steelblue4", font=2, cex=.8, adj=.97);
+                                par(oma=oma_orig);
+                        }
+                }, "append");
+
+}else{
+        TagName="";
+}
 
 SummaryFile=opt$summary_file;
 FactorsFile=opt$factors;

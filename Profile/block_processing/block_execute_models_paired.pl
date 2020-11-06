@@ -5,13 +5,13 @@
 use strict;
 use Getopt::Std;
 use File::Temp;
-use vars qw ($opt_s $opt_S $opt_f $opt_F $opt_r $opt_c $opt_g $opt_p $opt_A $opt_B $opt_P $opt_o $opt_E);
+use vars qw ($opt_s $opt_S $opt_f $opt_F $opt_r $opt_c $opt_g $opt_p $opt_A $opt_B $opt_P $opt_o $opt_E $opt_t);
 use File::Basename;
 use Cwd;
 use Digest::MD5;
 use Sys::Hostname;
 
-getopts("s:S:f:F:r:c:g:p:A:B:P:o:Ec:");
+getopts("s:S:f:F:r:c:g:p:A:B:P:o:Ec:t:");
 
 my $NUM_ALR_VARIABLES=15;
 
@@ -43,6 +43,8 @@ my $usage = "
 	
 	Output:
 	-o <output directory>
+
+	[-t <tag name>]
 
 	[-E (Do not abort on error.  Keep going on other analyses)]
 
@@ -90,7 +92,7 @@ my $Bname=$opt_B;
 my $NumALRVariables=$opt_P;
 my $OutputDir=$opt_o;
 my $DontAbort=$opt_E;
-
+my $TagName=$opt_t;
 
 my $Covariates=$opt_c;
 my $GroupVar=$opt_g;
@@ -123,7 +125,19 @@ if(!defined($opt_E)){
 
 my $AnalysisName=$GroupVar;
 if($AnalysisName eq ""){
-	$AnalysisName="result";
+
+	if($GroupVar!=""){
+		$AnalysisName=fileparse($GroupVar);
+		$AnalysisName=~s/\.txt$//;
+		$AnalysisName=~s/\.lst$//;
+		$AnalysisName=~s/\.tsv$//;
+	}else{
+		$AnalysisName="result";
+	}
+}
+
+if(!defined($TagName)){
+	$TagName=$AnalysisName;
 }
 
 $AnalysisName=~s/\.txt$//;
@@ -145,6 +159,7 @@ print STDERR "\n";
 print STDERR "Covariates List:      $Covariates\n";
 print STDERR "Group Variables List: $GroupVar\n";
 print STDERR "Analysis Name:        $AnalysisName\n";
+print STDERR "Tag Name:             $TagName\n";
 print STDERR "\n";
 print STDERR "Pairings Map:         $PairingMap\n";
 print STDERR "A Name:               $Aname\n";
@@ -257,6 +272,7 @@ sub run_abundance_based{
 	my $pair_map=shift;
 	my $A_colname=shift;
 	my $B_colname=shift;
+	my $tag_name=shift;
 
 	print STDERR "\n";
 	print STDERR "Running Distance Based Analyses:\n";
@@ -271,6 +287,7 @@ sub run_abundance_based{
 	print STDERR "  Pair Map: $pair_map\n";
 	print STDERR "  A ColumnName: $A_colname\n";
 	print STDERR "  B ColumnName: $B_colname\n";
+	print STDERR "  Tag Name: $tag_name\n";
 	print STDERR "\n";
 
 	my $A_pred_B_OUT_DIR="alr_b_resp_a_pred";
@@ -306,7 +323,6 @@ sub run_abundance_based{
 		$reflvl="-c $reference_level_file";
 	}
 
-	
 	$cmd=
 	"~/git/AnalysisTools/Profile/abundance_based/Fit_TwoSample_ALR_Regression/Fit_TwoSample_ALR_Regression.r \
 		$sumtabs \
@@ -321,6 +337,7 @@ sub run_abundance_based{
 		-q $output_dir/cov_var \
 		-x \";\" \
 		-o $output_dir/abundance/$B_pred_A_OUT_DIR/$model_name \
+		-t $tag_name \
 		$reflvl
 	";
 	run_command("Fit $A_colname as Response", "A_as_resp", $cmd, "$output_dir/abundance/$B_pred_A_OUT_DIR");
@@ -340,6 +357,7 @@ sub run_abundance_based{
 		-q $output_dir/cov_var \
 		-x \";\" \
 		-o $output_dir/abundance/$A_pred_B_OUT_DIR/$model_name \
+		-t $tag_name \
 		$reflvl
 	";
 	run_command("Fit $B_colname as Response", "B_as_resp", $cmd, "$output_dir/abundance/$A_pred_B_OUT_DIR");
@@ -354,6 +372,7 @@ sub run_abundance_based{
 	  -b $B_colname \
 	  -p 0.01 \
 	  -d \
+	  -t $tag_name \
 	  -o $output_dir/abundance/$PRED_RESP_ANALYSIS/$model_name
 	";
 	run_command("Predictor/Response Analysis", "pred_resp_analysis", $cmd, "$output_dir/abundance/$PRED_RESP_ANALYSIS");
@@ -368,6 +387,7 @@ sub run_abundance_based{
 	  -b $B_colname \
 	  -p 0.05 \
 	  -d \
+	  -t $tag_name \
 	  -o $output_dir/abundance/$PRED_RESP_ANALYSIS/$model_name
 	";
 	run_command("Predictor/Response Analysis", "pred_resp_analysis", $cmd, "$output_dir/abundance/$PRED_RESP_ANALYSIS");
@@ -386,6 +406,7 @@ sub run_abundance_based{
 		-u $num_alr \
 		-x \";\" \
 		-o $output_dir/abundance/$DIFF_OUT_DIR/$model_name \
+		-t $tag_name \
 		$reflvl
 	";
 	run_command("Fit B-A Difference", "paired_diff", $cmd, "$output_dir/abundance/$DIFF_OUT_DIR");
@@ -408,6 +429,7 @@ sub run_distribution_based{
 	my $pair_map=shift;
 	my $A_colname=shift;
 	my $B_colname=shift;
+	my $tag_name=shift;
 
 	print STDERR "\n";
 	print STDERR "Running Distribution Based Analyses:\n";
@@ -421,6 +443,7 @@ sub run_distribution_based{
 	print STDERR "  Pair Map: $pair_map\n";
 	print STDERR "  A ColumnName: $A_colname\n";
 	print STDERR "  B ColumnName: $B_colname\n";
+	print STDERR "  Tag Name: $tag_name\n";
 	print STDERR "\n";
 
 	my $cmd;
@@ -468,6 +491,7 @@ sub run_distribution_based{
 		-A $A_colname \
 		-q $output_dir/cov_var \
 		-o $output_dir/distribution/$DIV_DIFF/$model_name \
+		-t $tag_name \
 		$reflvl
 	";
 	run_command("Fit Paired Diversity Difference Regression", "paired_div_diff_regr",
@@ -547,6 +571,7 @@ sub run_distance_based{
 	my $pair_map=shift;
 	my $A_colname=shift;
 	my $B_colname=shift;
+	my $tag_name=shift;
 
 	print STDERR "\n";
 	print STDERR "Running Distance Based Analyses:\n";
@@ -560,6 +585,7 @@ sub run_distance_based{
 	print STDERR "  Pair Map: $pair_map\n";
 	print STDERR "  A ColumnName: $A_colname\n";
 	print STDERR "  B ColumnName: $B_colname\n";
+	print STDERR "  Tag Name: $tag_name\n";
 	print STDERR "\n";
 
 	my $cmd;
@@ -610,6 +636,7 @@ sub run_distance_based{
 		-d man \
 		-x \";\" \
 		-o $output_dir/distance/$DIST_DIFF/$model_name \
+		-t $tag_name \
 		$reflvl
 	";
 	run_command("Fit Paired Distance Regression", $DIST_DIFF,
@@ -627,7 +654,8 @@ sub run_distance_based{
 		-b $summary_table2 \
 		-m $pair_map \
 		-o $output_dir/distance/$CLUST_CMP/$model_name \
-		-d man
+		-d man \
+		-t $tag_name
 	";
 	run_command("Cluster Compare", $CLUST_CMP, $cmd, "$output_dir/distance/$CLUST_CMP");
 
@@ -662,7 +690,8 @@ run_abundance_based(
 	$NumALRVariables,
 	$PairingMap,
 	$Aname,
-	$Bname
+	$Bname,
+	$TagName
 );
 
 run_distribution_based(
@@ -676,7 +705,8 @@ run_distribution_based(
 	$AnalysisName,
 	$PairingMap,
 	$Aname,
-	$Bname
+	$Bname,
+	$TagName
 );
 
 run_distance_based(
@@ -690,7 +720,8 @@ run_distance_based(
 	$AnalysisName,
 	$PairingMap,
 	$Aname,
-	$Bname
+	$Bname,
+	$TagName
 );
 
 

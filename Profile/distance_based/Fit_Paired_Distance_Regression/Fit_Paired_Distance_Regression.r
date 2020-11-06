@@ -31,7 +31,9 @@ params=c(
 	"outputroot", "o", 2, "character",
 
 	"reference_levels", "c", 2, "character",
-	"shorten_category_names", "x", 2, "character"
+	"shorten_category_names", "x", 2, "character",
+
+	"tag_name", "t", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -59,6 +61,8 @@ usage = paste(
 	"\n",
 	"	[-c <reference levels file for Y's in factor file>]\n",
         "       [-x <shorten category names, with separator in double quotes (default=\"\")>]\n",
+	"\n",
+	"	[-t <tag name>]\n",
 	"\n",
 	"This script will fit the following model for diversity:\n",
 	"\n",
@@ -116,6 +120,27 @@ if(length(opt$shorten_category_names)){
         ShortenCategoryNames=opt$shorten_category_names;
 }else{
         ShortenCategoryNames="";
+}
+
+if(length(opt$tag_name)){
+        TagName=opt$tag_name;
+        cat("Setting TagName Hook: ", TagName, "\n");
+        setHook("plot.new",
+                function(){
+                        #cat("Hook called.\n");
+                        if(par()$page==T){
+                                oma_orig=par()$oma;
+                                exp_oma=oma_orig;
+                                exp_oma[1]=max(exp_oma[1], 1);
+                                par(oma=exp_oma);
+                                mtext(paste("[", TagName, "]", sep=""), side=1, line=exp_oma[1]-1,
+                                        outer=T, col="steelblue4", font=2, cex=.8, adj=.97);
+                                par(oma=oma_orig);
+                        }
+                }, "append");
+
+}else{
+        TagName="";
 }
 
 SummaryFile=opt$summary_file;
