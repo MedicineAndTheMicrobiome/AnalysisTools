@@ -85,31 +85,55 @@ while(!$done){
 }
 
 # If any sample id's are redundant, try to make it unique
+print STDERR "Checking Sample IDs for uniqueness...\n";
 my %uniq_hash;
+my %cnts_hash;
+
+# Count duplicates
 foreach my $fpath(keys %map){
-	my $samp_id = $map{$fpath};
+	my $samp_id = join ".", @{$map{$fpath}};
 	if(defined($uniq_hash{$samp_id})){
 		$uniq_hash{$samp_id}++;
+		$cnts_hash{$samp_id}++;
+		print STDERR "Duplicated Sample ID found: $samp_id\n";
 	}else{
 		$uniq_hash{$samp_id}=1;
+		$cnts_hash{$samp_id}=1;
 	}
 }
 
+my %sampid_to_path_hash;
+my %samp_to_uniqsamp_hash;
+# Append ID with r#
 foreach my $fpath(keys %map){
-	my $samp_id = $map{$fpath};
-	if($uniq_hash{$samp_id}>1){
-		$map{$fpath}.="_$uniq_hash{$samp_id}";	
+	my $samp_id = join ".", @{$map{$fpath}};
+	my $uniq_samp_id=$samp_id;
+	if($cnts_hash{$samp_id}>1){
+		$uniq_samp_id="$samp_id.r$uniq_hash{$samp_id}";	
 		$uniq_hash{$samp_id}--;
 	}
+	$sampid_to_path_hash{$uniq_samp_id}=$fpath;
+	$samp_to_uniqsamp_hash{$uniq_samp_id}=$samp_id;
 }
 
 ###############################################################################
 
 open(OUT_FH, ">$output_fname") || die "Could not open $output_fname\n";
 
-foreach my $fpath(sort @fastalist){
-	my $samp_id=join ".", @{$map{$fpath}};
-	print OUT_FH "$samp_id\t$fpath\n";
+foreach my $samp_id(sort keys %sampid_to_path_hash){
+	print OUT_FH "$samp_id\t$sampid_to_path_hash{$samp_id}\n";
+}
+
+close(OUT_FH);
+
+#-----------------------------------------------------------------------------
+
+my $collapse_rep_tsv="$output_fname.clps.tsv";
+open(OUT_FH, ">$collapse_rep_tsv") || die "Could not open $collapse_rep_tsv\n";
+
+print OUT_FH "ReplicateID\tSampleID\n";
+foreach my $uniq_samp_id(sort keys %samp_to_uniqsamp_hash){
+	print OUT_FH "$uniq_samp_id\t$samp_to_uniqsamp_hash{$uniq_samp_id}\n";
 }
 
 close(OUT_FH);
