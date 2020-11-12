@@ -1340,7 +1340,13 @@ plot_km=function(events_info, grp_to_sbj_map, grp_colors, time_varname, sbj_varn
 	prop_surv=prop_surv[grp_plot_order];
 	cat("(Ordered) Proportion of Survivors:\n");
 	print(prop_surv);
+	perc_surv_text=sprintf("%4.2f%%", prop_surv*100.0);
+	names(perc_surv_text)=names(prop_surv);
+	print(perc_surv_text);
 	ordgrp=names(prop_surv);
+
+	legend_labels=paste(ordgrp, " [", perc_surv_text, "]", sep="");
+	print(legend_labels);
 
 	max_event_time=max(as.numeric(events_info[,time_varname]));
 	cat("Max Event Time: ", max_event_time, "\n");
@@ -1348,14 +1354,22 @@ plot_km=function(events_info, grp_to_sbj_map, grp_colors, time_varname, sbj_varn
 	# Plot legend
 	plot(0,0, type="n", xlim=c(0, 1), ylim=c(0,1), xaxt="n", yaxt="n",
 		xlab="", ylab="", main="", bty="n");
-	legend(0,.5, legend=ordgrp, fill=grp_colors[ordgrp], bty="n");
+	legend(0,.5, 
+		title="Group [Survival%]",
+		legend=legend_labels, cex=1.5,
+		fill=grp_colors[ordgrp], bty="n");
 
 	# Setup plot for curves
 	par(mar=c(5,5,5,5));
 	plot(0,0, type="n", xlim=c(0, max_event_time), ylim=c(0,110),
 		cex.axis=2, cex.lab=2, cex.main=3,
+		yaxt="n",
 		main="Kaplan-Meier Plot",
 		xlab=time_varname, ylab="Percent Survival");
+
+	yax_pos=seq(0,100,20);
+	axis(4, at=yax_pos, labels=yax_pos, cex.axis=2);
+	axis(2, at=yax_pos, labels=yax_pos, cex.axis=2);
 
 
 	# Draw lines for each group
