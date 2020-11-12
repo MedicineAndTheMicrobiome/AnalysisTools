@@ -2582,16 +2582,22 @@ plot_epochs_as_strip=function(avgs_list, epoch_names,
 
 	# Legend #############################################
 	plot(0, type="n", ylim=c(0,1), xlim=c(0,1), xlab="", ylab="", xaxt="n", yaxt="n", main="", bty="n");
-	legend(0, 1, legend=cht_names, fill=cht_colors, bty="n", cex=1.5);
-	
+	legend_labels=paste("(", 1:num_chts, ") ", cht_names, sep="");
+	legend(0, 1, legend=legend_labels, fill=cht_colors, bty="n", cex=1.5);
+
 
 	# Points/lines only ##################################
 	plot(0,0, type="n", xlim=c(1-.5,num_epochs+.5), ylim=range(mean_matrix, na.rm=T), 
 		xlab="", ylab="ALR Transformed Abundance", xaxt="n");
 	title(main="Epoch Means by Cohort", line=0.25);
 	axis(side=1, at=1:num_epochs, labels=epoch_names);
+
+	cht_num=1;
 	for(cht_id in cht_names){
 		points(1:num_epochs, mean_matrix[, cht_id], col=cht_colors[cht_id], type="b");
+		text(1, mean_matrix[1, cht_id], cht_num, cex=.75, pos=2);
+		text(num_epochs, mean_matrix[num_epochs, cht_id], cht_num, cex=.75, pos=4);
+		cht_num=cht_num+1;
 	}
 
 	# Side by side with 95% CI ##########################
@@ -2654,6 +2660,7 @@ plot_epochs_as_strip=function(avgs_list, epoch_names,
 	plot(0,0, type="n", xlab="", ylab="", bty="n", xaxt="n", yaxt="n");
 
 	mtext(mtitle, side=3, outer=T, font=2);
+
 }
 
 ###############################################################################
