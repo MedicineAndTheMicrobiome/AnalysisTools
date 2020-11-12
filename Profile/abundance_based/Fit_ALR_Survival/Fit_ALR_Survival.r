@@ -725,7 +725,7 @@ num_factors=ncol(factors);
 # Relevel factor levels
 if(ReferenceLevelsFile!=""){
         ref_lev_mat=load_reference_levels_file(ReferenceLevelsFile)
-        factors=relevel_factors(kept_factors, ref_lev_mat);
+        factors=relevel_factors(factors, ref_lev_mat);
 }else{
         cat("No Reference Levels File specified.\n");
 }
@@ -1297,7 +1297,7 @@ run_km_surv_analysis=function(event_info, grp_to_sbj_map, time_varname, subj_var
 
 	paint_matrix(
 		log_rank_pval_mat,
-		"Log Rank Pairwise Comparision of Groups",
+		"Log Rank Pairwise Comparison of Groups: P-value Matrix",
 		plot_min=0, plot_max=1, high_is_hot=F, deci_pts=3,
 		value.cex=5
 		);
