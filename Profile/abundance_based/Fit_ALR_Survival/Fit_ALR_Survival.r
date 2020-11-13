@@ -947,14 +947,22 @@ plot_alr_over_time=function(ids, times, end_time, alrs, time_range, alr_range, c
 	num_alrs=ncol(alrs);
 	for(cat_ix in 1:num_alrs){
 		if(is.null(keep) || any(cat_names[cat_ix]==keep)){
-			points(times, alrs[ids, cat_ix], type="l", 
+
+			alr_val=alrs[ids, cat_ix];
+			non_nas=!is.na(alr_val);
+
+			points(times[non_nas], alr_val[non_nas], type="l", 
 				col=colors[cat_names[cat_ix]], lwd=max_m-(cat_ix/num_alrs)*mult);
 		}
 		#points(times, alrs[ids, cat_ix], type="l", col="black", lwd=.05);
 	}
 	for(cat_ix in 1:num_alrs){
 		if(is.null(keep) || any(cat_names[cat_ix]==keep)){
-			points(times, alrs[ids, cat_ix], type="p", pch=16, 
+
+			alr_val=alrs[ids, cat_ix];
+			non_nas=!is.na(alr_val);
+
+			points(times[non_nas], alr_val[non_nas], type="p", pch=16, 
 				cex=max_m-(cat_ix/num_alrs)*mult, col=colors[cat_ix]);
 		}
 	}
@@ -1178,6 +1186,7 @@ for(coht_ix in uniq_coht_ids){
 		avg_alr_by_coht[[coht_ix]],
 		c(0, last_measured_time), alr_range, colors,
 		title=coht_ix);
+
 	
 	plot_death_over_time(
 		alr_by_coht[[coht_ix]][["death"]], c(0, last_measured_time), coht_ix
