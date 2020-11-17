@@ -390,8 +390,8 @@ for(exp_id in exp_ids_study_uniq){
 		paste("Num Controls Detected: ", num_uniq_ctl_ids, sep=""),
 		paste("Experiment Study ID: ",exp_id, sep=""),
 		paste("Num Experimentals Detected: ", num_uniq_exp_ids, sep=""),
-		paste("Experimental Sample IDs: "), 
-		paste(uniq_exp_ids, sep=""),
+		paste("Example Experimental Sample IDs: "), 
+		paste(uniq_exp_ids[1:(min(20, num_uniq_exp_ids))], sep=""),
 		"",
 		paste("Num QC Steps Detected: ", length(qc_steps)),
 		paste(capture.output(print(qc_steps, quote=F)))
@@ -433,9 +433,10 @@ for(exp_id in exp_ids_study_uniq){
 	export_redos(paste(post_qc_res_dir, "/", LOG_FILE_NAME, sep=""), 
 		sort(num_pairable_sequences), c(750,1000,2000,3000,Inf), exp_id);
 
+	dev.off();
+
 }
 
-dev.off();
 
 ###############################################################################
 
