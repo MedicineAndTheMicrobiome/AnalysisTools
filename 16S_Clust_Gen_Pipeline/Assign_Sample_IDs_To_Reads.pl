@@ -229,20 +229,30 @@ if($build_mfasta){
 	}
 	
 	for(my $i=0; $i<$num_maps_loaded; $i++){
-		`cat $fasta_fname_arr[$i] >> $mfasta_fname`;
+		`cat $fasta_fname_arr[$i] >> $mfasta_fname.tmp1`;
 	}
 
+	print STDERR "\n";
 	print STDERR "Remapping FASTA file IDs...\n";
-	my $ren_cmd_str="perl $RENAME_BIN -i $mfasta_fname -o $mfasta_fname.tmp -m $output_mapping_fname";
+	my $ren_cmd_str="perl $RENAME_BIN -i $mfasta_fname.tmp1 -o $mfasta_fname.tmp2 -m $output_mapping_fname";
 	print STDERR "'$ren_cmd_str'\n";
 	print STDERR `$ren_cmd_str`;
  
+	print STDERR "\n";
  	print STDERR "Cleaning FASTA deflines...\n";
-	my $clean_cmd_str="perl $CLEAN_DEFLINE_BIN -i $mfasta_fname.tmp -o $mfasta_fname.tmp1";
+	my $clean_cmd_str="perl $CLEAN_DEFLINE_BIN -i $mfasta_fname.tmp2 -o $mfasta_fname.tmp3";
 	print STDERR "'$clean_cmd_str'\n";
 	print STDERR `$clean_cmd_str`;
 
-  system("mv $mfasta_fname.tmp1 $mfasta_fname");
+	print STDERR "\n";
+	print STDERR "Renaming Output File to Indicate Completion...\n";
+	system("mv $mfasta_fname.tmp3 $mfasta_fname");
+
+	print STDERR "\n";
+	print STDERR "Removing Intermediate Temporary Files...\n";
+	system("rm $mfasta_fname.tmp1");
+	system("rm $mfasta_fname.tmp2");
+	print STDERR "\n";
 }
 
 ###############################################################################
