@@ -155,11 +155,16 @@ load_factor_file=function(fn){
 write_factors=function(fname, table){
 
 	cat("Writing: ", fname, " as factor file.\n", sep="");
-        dimen=dim(factors);
-        cat("Rows Exporting: ", dimen[1], "\n");
-        cat("Cols Exporting: ", dimen[2], "\n");
+	dimen=dim(table);
+	cat("Rows Exporting: ", dimen[1], "\n");
+	cat("Cols Exporting: ", dimen[2], "\n");
 
-        write.table(table, fname, quote=F, row.names=T, col.names=NA, sep="\t");
+	# Make sure sample ids have a column name
+	fh=file(fname, "w");
+	cat(file=fh, "sample_id");
+	close(fh);
+
+	write.table(table, file=fname, quote=F, append=T, row.names=TRUE, col.names=NA, sep="\t");
 
 }
 
