@@ -190,10 +190,10 @@ plot_text(input_summary);
 
 #############################################################################	
 
-as_pred_pval=read.table(PredPvalFile);
-as_resp_pval=read.table(RespPvalFile);
-as_pred_coef=read.table(PredCoefFile);
-as_resp_coef=read.table(RespCoefFile);
+as_pred_pval=read.table(PredPvalFile, header=T);
+as_resp_pval=read.table(RespPvalFile, header=T);
+as_pred_coef=read.table(PredCoefFile, header=T);
+as_resp_coef=read.table(RespCoefFile, header=T);
 
 if(all(is.na(as_pred_pval))){
 	plot_text(c(
