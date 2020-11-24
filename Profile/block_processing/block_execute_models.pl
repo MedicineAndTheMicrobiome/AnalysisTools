@@ -604,7 +604,12 @@ print "Prescreened Factor File: $screened_factor_file\n";
 print STDERR "\n**************************************************************\n";
 
 # Remove factors lost due to NA screening
-my $cmd="lch $screened_factor_file | grep -v '^\$' > $OutputDir/all_avail_var; echo done.";
+my $cmd=
+"cat $screened_factor_file | \
+	~/git/AnalysisTools/Column/list_column_headers.pl | \
+	grep -v '^\$' > \
+	$OutputDir/all_avail_var";
+#my $cmd="lch $screened_factor_file | grep -v '^\$' > $OutputDir/all_avail_var; echo done.";
 run_command("Get Post-NA Removal Variables", "get_postna_rem_var", $cmd, "$OutputDir");
 
 my $cmd="grep -f $OutputDir/all_avail_var $Covariates > $OutputDir/covar.screened; echo done.";
