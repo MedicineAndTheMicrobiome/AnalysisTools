@@ -11,7 +11,7 @@ use Cwd;
 use Digest::MD5;
 use Sys::Hostname;
 
-getopts("s:f:c:g:p:a:o:E:r:t:");
+getopts("s:f:c:g:p:a:o:Er:t:");
 
 my $NUM_ALR_VARIABLES=35;
 
@@ -604,13 +604,13 @@ print "Prescreened Factor File: $screened_factor_file\n";
 print STDERR "\n**************************************************************\n";
 
 # Remove factors lost due to NA screening
-my $cmd="lch $screened_factor_file | grep -v '^\$' > $OutputDir/all_avail_var";
+my $cmd="lch $screened_factor_file | grep -v '^\$' > $OutputDir/all_avail_var; echo done.";
 run_command("Get Post-NA Removal Variables", "get_postna_rem_var", $cmd, "$OutputDir");
 
-my $cmd="grep -f $OutputDir/all_avail_var $Covariates > $OutputDir/covar.screened";
+my $cmd="grep -f $OutputDir/all_avail_var $Covariates > $OutputDir/covar.screened; echo done.";
 run_command("Screen Covariates", "scr_covar", $cmd, "$OutputDir");
 
-my $cmd="grep -f $OutputDir/all_avail_var $GroupVar > $OutputDir/groupvar.screened";
+my $cmd="grep -f $OutputDir/all_avail_var $GroupVar > $OutputDir/groupvar.screened; echo done.";
 run_command("Screen Grouped Variables", "scr_group_var", $cmd, "$OutputDir");
 
 ###############################################################################
