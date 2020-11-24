@@ -56,11 +56,15 @@ my $NumCols=defined($opt_c);
 
 ###############################################################################
 
+print STDERR "Running $0\n";
+
 my $fh;
 
 if(!(-t STDIN)){
+	print STDERR "Reading from STDIN...\n";
 	$_=<STDIN>;
 }else{
+	print STDERR "Opening $File.\n";
 	open(IN_FH, "<$File") || die "Could not open $File\n";
 	$_=<IN_FH>;
 }
@@ -82,3 +86,5 @@ for(my $i=0; $i<$num_cols; $i++){
 
 }
 
+print STDERR "Wrote $num_cols columns.\n";
+print STDERR "Done.\n";
