@@ -1599,7 +1599,7 @@ write.table(t(uv_coeff_mat), file=uv_coeff_fname, quote=F, sep="\t", col.names=N
 ##############################################################################
 # Write MANOVA pvalues to file
 
-if(length(manova_res)){
+if(manova_success){
         num_variables=nrow(manova_res)-1;
         outmat=matrix("", nrow=num_variables, ncol=3);
         colnames(outmat)=c(TagName, "Pr(>F)", "Signf");
