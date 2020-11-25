@@ -642,10 +642,12 @@ for(i in 1:num_div_idx){
 			approx_lambda-BOX_COX_SEARCH_RANGE, " - ", approx_lambda+BOX_COX_SEARCH_RANGE, "\n");
 
 		bc=boxcox(as.formula(model_string), data=factors, 
-			lambda=seq(approx_lambda-BOX_COX_SEARCH_RANGE, approx_lambda+BOX_COX_SEARCH_RANGE, length.out=40));
+			lambda=seq(approx_lambda-BOX_COX_SEARCH_RANGE, approx_lambda+BOX_COX_SEARCH_RANGE, 
+			length.out=20));
+
 		title(main=div_names[i]);
 
-		# Store find grain results
+		# Store fine grain results
 		max_idx=which(bc$y==max(bc$y));
 		lambda[i]=bc$x[max_idx];
 	}else{
