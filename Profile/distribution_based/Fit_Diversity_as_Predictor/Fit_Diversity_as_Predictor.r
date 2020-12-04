@@ -176,14 +176,20 @@ load_reference_levels_file=function(fname){
 }
 
 relevel_factors=function(factors, ref_lev_mat){
+
 	num_factors_to_relevel=nrow(ref_lev_mat);
 	relevel_names=rownames(ref_lev_mat);
+	factor_names=colnames(factors);
+
 	for(i in 1:num_factors_to_relevel){
-		tmp=factors[,relevel_names[i]];
-		#print(tmp);
-		tmp=relevel(tmp, ref_lev_mat[i, 1]);
-		#print(tmp);
-		factors[,relevel_names[i]]=tmp;
+		relevel_target=relevel_names[i];
+		if(length(intersect(relevel_target, factor_names))){
+			tmp=factors[,relevel_target];
+			tmp=relevel(tmp, ref_lev_mat[i, 1]);
+			factors[,relevel_target]=tmp;
+		}else{
+			cat("WARNING: Relevel Target Not Found: '", relevel_target, "'!!!\n", sep="");
+		}
 	}
 	return(factors);
 }

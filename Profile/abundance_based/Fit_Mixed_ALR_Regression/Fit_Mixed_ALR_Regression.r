@@ -15,51 +15,46 @@ options(useFancyQuotes=F);
 params=c(
 	"summary_file", "s", 1, "character",
 	"summary_file2", "S", 2, "character",
-
+	"pairings", "p", 1, "character",
 	"factors", "f", 1, "character",
-	"factor_samp_id_name", "F", 1, "character",
+	"factor_samp_id_name", "F", 2, "character",
 	"model_var", "M", 1, "character",
 	"required", "q", 2, "character",
+	"response", "e", 1, "character",
+	"predictor", "g", 1, "character",
 
-	"pairings", "p", 1, "character",
-	"B_minuend", "B", 1, "character",
-	"A_subtrahend", "A", 1, "character",
-
-	"num_top", "u", 2, "numeric",
-	"alr_list_file", "a", 2, "character",
-
-	"outputroot", "o", 2, "character",
+	"num_resp_var", "u", 2, "numeric",
+	"num_pred_var", "v", 2, "numeric",
 
 	"reference_levels", "c", 2, "character",
+	"outputroot", "o", 2, "character",
+
 	"contains_remaining", "R", 2, "logical",
-	"shorten_category_names", "x", 2, "character",
-
-        "tag_name", "t", 2, "character"
-
+	"shorten_category_names", "x", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
 script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
 
 NUM_TOP_RESP_CAT=35;
+NUM_TOP_PRED_CAT=10;
 
 usage = paste(
 	"\nUsage:\n", script_name, "\n",
-	"	-s <summary file table>\n",
-	"	[-S <second summary file table, in case pairings were in different files.>]\n",
+	"	-s <First summary file table>\n",
+	"	-t <Second summary file table>\n",
+	"\n",
+	"	-u <Number of top categories to include in first  (-s) Summary Table>\n";
+	"	-v <Number of top categories to include in second (-t) Summary Table>\n";
 	"\n",
 	"	-f <factors file, contains covariates and factors>\n",
+	"\n",
+	"	[-p <pairings map, with column names>]\n",
+	"\n",
 	"	-F <column name of sample ids in factor file>\n",
 	"	-M <list of covariate X's names to include in the model from the factor file>\n",
 	"	[-q <required list of variables to include after NA removal>]\n",
 	"\n",
-	"	-p <pairings map, pairing sample IDs from two groups. Must have header/column names>\n",
-	"	-B <Sample Group B (minuend: B-A=diff), (column name in pairings file)\n",
-	"	-A <Sample Group A (subtrahend: B-A=diff), (column name in pairings file)\n",
-	"\n",
-	"	ALR Options:\n",
-	"	[-u <number of top ALR categories to analyze, default=", NUM_TOP_RESP_CAT, "\n",
-	"	[-a <list of ALR categories to use in additon to top>]\n",
 	"\n",
 	"	[-o <output filename root>]\n",
 	"\n",
@@ -67,26 +62,10 @@ usage = paste(
 	"	[-R (pay attention to 'remaining' category)]\n",
 	"	[-x <shorten category names, with separator in double quotes (default=\"\")>]\n",
 	"\n",
-	"	[-t <tag name>]\n",
-	"\n",
-	"This script will fit the following model for each ALR category from the top ", NUM_TOP_RESP_CAT, " taxa\n",
-	"  and/or the specified list.\n",
-	"\n",
-	"	1.) (ALR_B_minuend[i] - ALR_A_subtrahend[i]) = covariates\n",
-	"\n",
-	"If the -R flag is set, a 'remaining' category will be be included in the denominator\n",
-	"	independent of how large it is.  I.e., do not use it as one of the response variables.\n",
 	"\n", sep="");
 
-if(
-	!length(opt$summary_file) || 
-	!length(opt$factors) || 
-	!length(opt$model_var) || 
-	!length(opt$A_subtrahend) || 
-	!length(opt$B_minuend) || 
-	!length(opt$pairings) ||
-	!length(opt$factor_samp_id_name)
-){
+if(!length(opt$summary_file) || !length(opt$factors) || !length(opt$model_var) || 
+	 !length(opt$response) || !length(opt$pairings) || !length(opt$factor_samp_id_name)){
 	cat(usage);
 	q(status=-1);
 }
@@ -104,11 +83,19 @@ if(!length(opt$summary_file2)){
 	SecondSummaryTable=opt$summary_file2;
 }
 
-if(!length(opt$num_top)){
-	NumTopALR=NUM_TOP_RESP_CAT;
+if(!length(opt$num_resp_var)){
+	NumRespVariables=NUM_TOP_RESP_CAT;
 }else{
-	NumTopALR=opt$num_top;
+	NumRespVariables=opt$num_resp_var;
 }
+
+if(!length(opt$num_pred_var)){
+	NumPredVariables=NUM_TOP_PRED_CAT;
+}else{
+	NumPredVariables=opt$num_pred_var;
+}
+
+NumMaxALRVariables=max(NumRespVariables, NumPredVariables);
 
 if(!length(opt$reference_levels)){
         ReferenceLevelsFile="";
@@ -134,43 +121,13 @@ if(length(opt$required)){
 	RequiredFile="";
 }
 
-if(length(opt$alr_list_file)){
-	ALRCategListFile=opt$alr_list_file;
-}else{
-	ALRCategListFile="";
-}
-
-if(length(opt$tag_name)){
-        TagName=opt$tag_name;
-        cat("Setting TagName Hook: ", TagName, "\n");
-        setHook("plot.new",
-                function(){
-                        #cat("Hook called.\n");
-                        if(par()$page==T){
-                                oma_orig=par()$oma;
-                                exp_oma=oma_orig;
-                                exp_oma[1]=max(exp_oma[1], 1);
-                                par(oma=exp_oma);
-                                mtext(paste("[", TagName, "]", sep=""), side=1, line=exp_oma[1]-1,
-                                        outer=T, col="steelblue4", font=2, cex=.8, adj=.97);
-                                par(oma=oma_orig);
-                        }
-                }, "append");
-
-}else{
-        TagName="";
-}
-
 SummaryFile=opt$summary_file;
 FactorsFile=opt$factors;
 ModelVarFile=opt$model_var;
 PairingsFile=opt$pairings;
-A_subtrahend=opt$A_subtrahend;
-B_minuend=opt$B_minuend;
-
+ResponseName=opt$response;
+PredictorName=opt$predictor;
 FactorSampleIDName=opt$factor_samp_id_name;
-
-OutputRoot=paste(OutputRoot, ".a_", A_subtrahend, ".b_", B_minuend, sep="");
 
 cat("\n");
 cat("         Summary File: ", SummaryFile, "\n", sep="");
@@ -181,11 +138,13 @@ cat("         Factors File: ", FactorsFile, "\n", sep="");
 cat("Factor Sample ID Name: ", FactorSampleIDName, "\n", sep="");
 cat(" Model Variables File: ", ModelVarFile, "\n", sep="");
 cat("        Pairings File: ", PairingsFile, "\n", sep="");
-cat("            A Minuend: ", A_subtrahend, "\n", sep="");
-cat("         B Subtrahend: ", B_minuend, "\n", sep="");
+cat("        Response Name: ", ResponseName, "\n", sep="");
+cat("       Predictor Name: ", PredictorName, "\n", sep="");
 cat("          Output File: ", OutputRoot, "\n", sep="");
 cat("\n");
-cat("List of ALR Categories to Include (instead of using Top): ", ALRCategListFile, "\n", sep="");
+cat("Number of Predictor Variables: ", NumPredVariables, "\n", sep="");
+cat(" Number of Response Variables: ", NumRespVariables, "\n", sep="");
+cat("           Max ALR Var to Fit: ", NumMaxALRVariables, "\n", sep="");
 cat("\n");
 cat("Reference Levels File: ", ReferenceLevelsFile, "\n", sep="");
 cat("Use Remaining? ", UseRemaining, "\n");
@@ -317,31 +276,20 @@ load_mapping=function(filename, src, dst){
 
 	map=cbind(as.character(mapping[,src]), as.character(mapping[,dst]));
 	colnames(map)=c(src, dst);
-
-	# Remove pairings with NAs
-	incomp=apply(map, 1, function(x){any(is.na(x))});
-	map=map[!incomp,];
-
 	return(map);
 }
 
 intersect_pairings_map=function(pairs_map, keepers){
-
-	missing=character();
 	# Sets mappings to NA if they don't exist in the keepers array
 	num_rows=nrow(pairs_map);
 	for(cix in 1:2){
 		for(rix in 1:num_rows){
 			if(!any(pairs_map[rix, cix]==keepers)){
-				missing=c(missing, pairs_map[rix, cix]);
 				pairs_map[rix, cix]=NA;
 			}
 		}
 	}
-	results=list();
-	results[["pairs"]]=pairs_map;
-	results[["missing"]]=missing;
-	return(results);
+	return(pairs_map);
 }
 
 split_goodbad_pairings_map=function(pairs_map){
@@ -361,60 +309,35 @@ split_goodbad_pairings_map=function(pairs_map){
 	
 }
 
-extract_top_categories=function(ordered_normalized, top, additional_cat=c()){
+extract_top_categories=function(ordered_normalized, top){
 
-        num_samples=nrow(ordered_normalized);
-        num_categories=ncol(ordered_normalized);
+	num_samples=nrow(ordered_normalized);
+	num_categories=ncol(ordered_normalized);
 
-        cat("Samples: ", num_samples, "\n");
-        cat("Categories: ", num_categories, "\n");
+	cat("Samples: ", num_samples, "\n");
+	cat("Categories: ", num_categories, "\n");
+	
+	num_saved=min(c(num_categories, top+1));
 
-        num_top_to_extract=min(num_categories-1, top);
+	cat("Top Requested to Extract: ", top, "\n");
+	cat("Columns to Extract: ", num_saved, "\n");
 
-        cat("Top Requested to Extract: ", top, "\n");
-        cat("Columns to Extract: ", num_top_to_extract, "\n");
+	top_cat=matrix(0, nrow=num_samples, ncol=num_saved);
+	top=num_saved-1;
 
-        # Extract top categories requested
-        top_cat=ordered_normalized[,1:num_top_to_extract, drop=F];
+	# Extract top categories requested
+	top_cat[,1:top]=ordered_normalized[,1:top];
 
-        if(length(additional_cat)){
-                cat("Additional Categories to Include:\n");
-                print(additional_cat);
-        }else{
-                cat("No Additional Categories to Extract.\n");
-		num_extra_to_extract=0;
-        }
+	# Included remaineder as sum of remaining categories
+	top_cat[,(top+1)]=apply(
+		ordered_normalized[,(top+1):num_categories, drop=F],
+		1, sum);
 
-        # Extract additional categories
-        # :: Make sure we can find the categories
-        available_cat=colnames(ordered_normalized);
-        missing_cat=setdiff(additional_cat, available_cat);
-        if(length(missing_cat)){
-                cat("Error: Could not find categories: \n");
-                print(missing_cat);
-                quit(status=-1);
-        }
+	rownames(top_cat)=rownames(ordered_normalized);
+	colnames(top_cat)=c(colnames(ordered_normalized)[1:top], "Remaining");
 
-        # :: Remove categories we have already extracted in the top N
-        already_extracted_cat=colnames(top_cat);
-        extra_cat=setdiff(additional_cat, already_extracted_cat);
-
-	num_extra_to_extract=length(extra_cat);
-	cat("Num Extra Categories to Extract: ", num_extra_to_extract, "\n");
-
-        # Allocate/Prepare output matrix
-        num_out_mat_cols=num_top_to_extract+num_extra_to_extract+1;
-        out_mat=matrix(0, nrow=num_samples, ncol=num_out_mat_cols);
-        rownames(out_mat)=rownames(ordered_normalized);
-        colnames(out_mat)=c(already_extracted_cat, extra_cat, "Remaining");
-
-        # Copy over top and additional categories, and compute remainding
-        all_cat_names=c(already_extracted_cat, extra_cat);
-        out_mat[,all_cat_names]=ordered_normalized[,all_cat_names];
-        out_mat[,"Remaining"]=apply(out_mat, 1, function(x){1-sum(x)});
-
-        return(out_mat);
-
+	return(top_cat);
+			
 }
 
 additive_log_rato=function(ordered_matrix){
@@ -476,24 +399,8 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 	plot_row_dendr=F
 ){
 
-	cat("Working on: ", title, "\n");
-
         num_row=nrow(mat);
         num_col=ncol(mat);
-
-	if(num_row==0 || num_col==0){
-		cat("Nothing to plot.\n");
-		return();
-	}
-
-	any_nas=any(is.na(mat));
-
-	if(num_row==1 || any_nas){
-		plot_row_dendr=F;
-	}
-	if(num_col==1 || any_nas){
-		plot_col_dendr=F;
-	}
 
 	row_names=rownames(mat);
 	col_names=colnames(mat);
@@ -544,7 +451,6 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 	##################################################################################################
 	
 	get_dendrogram=function(in_mat, type){
-
 		if(type=="row"){
 			dendist=dist(in_mat);
 		}else{
@@ -564,6 +470,7 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 				return(lf_names);
 			}
 		}
+
 
 		hcl=hclust(dendist, method="ward.D2");
 		dend=list();
@@ -591,7 +498,7 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 		col_dendr=get_dendrogram(mat, type="col");
 		row_dendr=get_dendrogram(mat, type="row");
 
-		mat=mat[row_dendr[["names"]], col_dendr[["names"]], drop=F];
+		mat=mat[row_dendr[["names"]], col_dendr[["names"]]];
 		
 	}else if(plot_col_dendr){
 		layoutmat=matrix(
@@ -601,7 +508,7 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 			), byrow=T, ncol=heatmap_width); 
 
 		col_dendr=get_dendrogram(mat, type="col");
-		mat=mat[, col_dendr[["names"]], drop=F];
+		mat=mat[, col_dendr[["names"]]];
 		
 	}else if(plot_row_dendr){
 		layoutmat=matrix(
@@ -609,7 +516,7 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 			byrow=T, ncol=row_dend_width+heatmap_width);
 
 		row_dendr=get_dendrogram(mat, type="row");
-		mat=mat[row_dendr[["names"]],, drop=F];
+		mat=mat[row_dendr[["names"]],];
 	}else{
 		layoutmat=matrix(
 			rep(1, heatmap_height*heatmap_width), 
@@ -627,8 +534,8 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 	mtext(title, side=3, line=0, outer=T, font=2);
 
         # x-axis
-        axis(side=1, at=seq(.5, num_col-.5, 1), labels=colnames(mat), las=2, line=-1.75, cex.axis=value.cex);
-        axis(side=4, at=seq(.5, num_row-.5, 1), labels=rownames(mat), las=2, line=-1.75, cex.axis=value.cex);
+        axis(side=1, at=seq(.5, num_col-.5, 1), labels=colnames(mat), las=2, line=-1.75);
+        axis(side=4, at=seq(.5, num_row-.5, 1), labels=rownames(mat), las=2, line=-1.75);
 
         if(log_col){
                 plot_min=log10(plot_min+.0125);
@@ -739,18 +646,11 @@ add_sign_col=function(coeff){
 	
 }
 
-mask_matrix=function(val_mat, mask_mat, mask_thres, mask_val){
-        masked_matrix=val_mat;
-        masked_matrix[mask_mat>mask_thres]=mask_val;
-        return(masked_matrix);
-}
-
-
 ##############################################################################
 ##############################################################################
 
 # Open main output file
-pdf(paste(OutputRoot, ".paird_diff_alr.pdf", sep=""), height=11, width=9.5);
+pdf(paste(OutputRoot, ".2smp_alr.pdf", sep=""), height=11, width=9.5);
 
 # Load summary file table counts 
 cat("\n");
@@ -784,7 +684,7 @@ num_st_categories=ncol(counts);
 num_st_samples=nrow(counts);
 
 # Load resp/pred sample mappings
-all_pairings_map=load_mapping(PairingsFile, A_subtrahend, B_minuend);
+all_pairings_map=load_mapping(PairingsFile, ResponseName, PredictorName);
 st_samples=rownames(counts);
 num_pairings_loaded=nrow(all_pairings_map);
 cat("\n");
@@ -793,8 +693,7 @@ print(all_pairings_map);
 
 cat("Intersecting with samples in summary table:\n");
 intersect_res=intersect_pairings_map(all_pairings_map, st_samples);
-pairs=intersect_res[["pairs"]];
-split_res=split_goodbad_pairings_map(pairs);
+split_res=split_goodbad_pairings_map(intersect_res);
 good_pairs_map=split_res$good_pairs;
 bad_pairs_map=split_res$bad_pairs;
 
@@ -823,26 +722,10 @@ loaded_sample_info=c(
 	paste("Number of InComplete/UnMatched Pairings: ", num_incomplete_pairings, sep="")
 );
 
-if(length(intersect_res[["missing"]])){
-	missing_info=c(
-		"",
-		"Missing:",
-		capture.output(print(intersect_res[["missing"]]))
-	);
-}else{
-	missing_info=c();
-}
-
 incomplete_pairing_info=c(
 	"Incomplete Pairings: ",
 	capture.output(print(bad_pairs_map)),
-	"",
-	paste("  Num complete pairings: ", num_complete_pairings, sep=""),
-	paste("Num incomplete pairings: ", num_incomplete_pairings, sep=""),
-	"",
-	"(Double NA entries mean that the samples are missing from both groups.)",
-	"(Known incomplete pairings (i.e. NAs in map file) are not included.)",
-	missing_info
+	""
 );
 
 plot_text(loaded_sample_info);
@@ -867,16 +750,14 @@ if(ShortenCategoryNames!=""){
 
 # Normalize
 cat("Normalizing counts...\n");
-counts=counts+.5;
 normalized=normalize(counts);
-#print(normalized);
 
 # Assign 0's to values smaller than smallest abundance across entire dataset
-#min_assay=min(normalized[normalized!=0]);
-#cat("Lowest non-zero value: ", min_assay, "\n", sep="");
-#zero_replacment=min_assay/10;
-#cat("Substituting 0's with: ", zero_replacment, "\n", sep="");
-#normalized[normalized==0]=zero_replacment;
+min_assay=min(normalized[normalized!=0]);
+cat("Lowest non-zero value: ", min_assay, "\n", sep="");
+zero_replacment=min_assay/10;
+cat("Substituting 0's with: ", zero_replacment, "\n", sep="");
+normalized[normalized==0]=zero_replacment;
 
 if(UseRemaining){
 	category_names=colnames(counts);	
@@ -911,11 +792,12 @@ if(UseRemaining){
 
 sorted_taxa_names=colnames(normalized);
 
-num_top_alr_cat=min(c(NumTopALR, num_st_categories));
-prop_abundance_represented=sum(mean_abund[1:num_top_alr_cat]);
+num_top_taxa=NumMaxALRVariables;
+num_top_taxa=min(c(num_top_taxa, num_st_categories));
+prop_abundance_represented=sum(mean_abund[1:num_top_taxa]);
 
-cat("\nThe top ", num_top_alr_cat, " taxa are:\n", sep="");
-for(i in 1:num_top_alr_cat){
+cat("\nThe top ", num_top_taxa, " taxa are:\n", sep="");
+for(i in 1:num_top_taxa){
 	cat("\t", sorted_taxa_names[i], "\t[", mean_abund[i], "]\n", sep="");
 }
 cat("\n");
@@ -994,7 +876,7 @@ num_factors=ncol(factors);
 # Relevel factor levels
 if(ReferenceLevelsFile!=""){
         ref_lev_mat=load_reference_levels_file(ReferenceLevelsFile)
-        factors=relevel_factors(factors, ref_lev_mat);
+        factors=relevel_factors(kept_factors, ref_lev_mat);
 }else{
         cat("No Reference Levels File specified.\n");
 }
@@ -1026,8 +908,7 @@ cat("Total samples shared: ", num_shared_sample_ids, "\n");
 # Remove samples not in summary table 
 cat("Adjusting pairings map based on factor/summary table reconciliation...\n");
 intersect_res=intersect_pairings_map(good_pairs_map, shared_sample_ids);
-pairs=intersect_res[["pairs"]];
-split_res=split_goodbad_pairings_map(pairs);
+split_res=split_goodbad_pairings_map(intersect_res);
 good_pairs_map=split_res$good_pairs;
 bad_pairs_map=split_res$bad_pairs;
 paired_samples=as.vector(good_pairs_map);
@@ -1074,8 +955,7 @@ model_var_arr=intersect(model_var_arr, factor_names_wo_nas);
 # Subset pairing map based on factor sample IDs
 cat("Adjusting pairings map based on post-NA removal samples...\n");
 intersect_res=intersect_pairings_map(good_pairs_map, factor_sample_ids_wo_nas);
-pairs=intersect_res[["pairs"]]
-split_res=split_goodbad_pairings_map(pairs);
+split_res=split_goodbad_pairings_map(intersect_res);
 good_pairs_map=split_res$good_pairs;
 bad_pairs_map=split_res$bad_pairs;
 paired_samples=as.vector(good_pairs_map);
@@ -1091,35 +971,28 @@ num_factors_wo_nas=ncol(factors_wo_nas);
 #cat("\n");
 
 ##############################################################################
+# Prepping for ALR calculations
 
-cat("\n");
-cat("Extracting Top categories: ", num_top_alr_cat, " from amongst ", ncol(normalized), "\n", sep="");
+if(NumMaxALRVariables >= num_st_categories){
+	NumMaxALRVariables = (num_st_categories-1);
+	cat("Number of taxa to work on was changed to: ", NumMaxALRVariables, "\n");
+	
+	NumRespVariables=min(NumMaxALRVariables, NumRespVariables);
+	NumPredVariables=min(NumMaxALRVariables, NumPredVariables);
 
-additional_categories=c();
-if(ALRCategListFile!=""){
-	additional_categories=load_list(ALRCategListFile);	
-	cat("Additional ALRs Categories Specified: \n");
-	print(additional_categories);
+	cat("Number of ALR Predictors to include: ", NumPredVariables, "\n");
+	cat("Number of ALR Responses to analyze: ", NumRespVariables, "\n");
 }
 
-cat_abundances=extract_top_categories(normalized, num_top_alr_cat, additional_cat=additional_categories);
+##############################################################################
 
-print(cat_abundances);
+cat("\n");
+cat("Extracting Top categories: ", NumMaxALRVariables, " from amongst ", ncol(normalized), "\n", sep="");
+
+cat_abundances=extract_top_categories(normalized, NumMaxALRVariables);
 resp_alr_struct=additive_log_rato(cat_abundances);
 alr_categories_val=resp_alr_struct$transformed;
 alr_cat_names=colnames(alr_categories_val);
-num_used_alr_cat=length(alr_cat_names);
-
-NumRespVariables=ncol(alr_categories_val);
-
-plot_text(c(
-	"Additional ALR Categories Requested:\n",
-	capture.output(print(additional_categories)),
-	"\n",
-	"Top Categories Included:\n",
-	capture.output(print(setdiff(alr_cat_names, additional_categories)))
-));
-
 
 plot_text(c(
 	paste("Num (Reconciled) Samples before NA removal: ", num_samples_before_na_removal, sep=""),
@@ -1132,6 +1005,12 @@ plot_text(c(
 	paste("Num Samples w/o NAs: ", num_samples_wo_nas, sep=""),
 	paste("Num Factors w/o NAs: ", num_factors_wo_nas, sep="")
 ));
+
+plot_text(c(
+	paste("ALR Categories (Top ", NumMaxALRVariables, ")", sep=""),
+	capture.output(print(alr_cat_names))
+));
+
 
 cat("\n");
 cat("ALR Category Summary:\n");
@@ -1148,149 +1027,157 @@ plot_histograms(alr_categories_val);
 
 # Order/Split the data....
 # Order the pairings map by response sample IDs
-A_sample_ids=good_pairs_map[,A_subtrahend];
-B_sample_ids=good_pairs_map[,B_minuend];
+response_sample_ids=good_pairs_map[,ResponseName];
+predictor_sample_ids=good_pairs_map[,PredictorName];
 
 # Extract the predictor ALR and factors values in the right order
-A_alr_values=alr_categories_val[A_sample_ids,,drop=F];
-B_alr_values=alr_categories_val[B_sample_ids,,drop=F];
-factors=factors_wo_nas[A_sample_ids,,drop=F];
+response_alr=alr_categories_val[response_sample_ids,,drop=F];
+predictor_alr=alr_categories_val[predictor_sample_ids,,drop=F];
+factors=factors_wo_nas[predictor_sample_ids,];
 
 ##############################################################################
 
+# Plot relationship between predictors and response from same taxa
+alr_names=colnames(alr_categories_val);
+plots_per_page=6
+par(mfrow=c(plots_per_page,2));
+par(oma=c(0,0,0,0));
+par(mar=c(4,4,2,2));
+median_delta=numeric(NumRespVariables);
+names(median_delta)=alr_names;
+for(cat_ix in 1:NumRespVariables){
+
+	cur_alr_resp=response_alr[,cat_ix];
+	cur_alr_pred=predictor_alr[,cat_ix];
+
+
+	if((cat_ix %% plots_per_page)==0){
+		bottom_label=PredictorName;
+	}else{
+		bottom_label="";
+	}
+
+	# Plot matching pred/resp off reference line
+	plot(cur_alr_pred, cur_alr_resp, type="n", main=alr_names[cat_ix],
+		xlab=bottom_label, ylab=ResponseName);
+	abline(0, 1, col="blue");
+	points(cur_alr_pred, cur_alr_resp, main=alr_names[cat_ix]);
+
+	deltas=cur_alr_resp-cur_alr_pred;
+	median_delta[cat_ix]=median(deltas);
+	hist(deltas, main=paste(alr_names[cat_ix], " ALR: ", ResponseName, " - ", PredictorName, sep=""), 
+		xlab="");
+	
+}
+
+# Generate bar plots for differences between response and predictors
+par(mfrow=c(2,1));
+par(mar=c(20,4,3,1));
+color_arr=rainbow(NumRespVariables, start=0, end=4/6);
+barplot(median_delta, horiz=F, las=2, 
+	main=paste("Median Difference between ", ResponseName, " and ", PredictorName, sep=""),
+	col=color_arr);
+
+dec_del_ix=order(median_delta, decreasing=F);
+barplot(median_delta[dec_del_ix], horiz=F, las=2, 
+	main=paste("Median Difference between ", ResponseName, " and ", PredictorName, sep=""),
+	col=color_arr[dec_del_ix]
+	);
+
+par(mfrow=c(1,1));
+#print(response_alr);
+#print(predictor_alr);
+#print(factors);
+
+
+# Store the results
 num_model_pred=length(model_var_arr);
 
 cov_model_string=paste(model_var_arr, collapse="+");
 mmat=model.matrix(as.formula(paste("~", cov_model_string, "-1")), data=as.data.frame(factors));
-cov_coeff_names=c("(Intercept)", colnames(mmat));
+cov_coeff_names=colnames(mmat);
 num_cov_coeff_names=length(cov_coeff_names);
 
 cat("Anticipated Coefficient Names:\n");
 print(cov_coeff_names);
 cat("\n");
 
-wilcoxon_pval_mat=matrix(NA, nrow=num_used_alr_cat, ncol=1,
-	dimnames=list(alr_cat_names, "Wilcoxon Paired"));
+category_alr_coef_mat=matrix(NA, nrow=NumRespVariables, ncol=NumRespVariables,
+	dimnames=list(alr_cat_names, alr_cat_names));
+category_alr_pval_mat=matrix(NA, nrow=NumRespVariables, ncol=NumRespVariables,
+	dimnames=list(alr_cat_names, alr_cat_names));
 
-covariates_coef_mat  =matrix(NA, nrow=num_used_alr_cat, ncol=num_cov_coeff_names, 
+covariates_coef_mat  =matrix(NA, nrow=NumRespVariables, ncol=num_cov_coeff_names, 
 	dimnames=list(alr_cat_names, cov_coeff_names));
-covariates_pval_mat  =matrix(NA, nrow=num_used_alr_cat, ncol=num_cov_coeff_names, 
+covariates_pval_mat  =matrix(NA, nrow=NumRespVariables, ncol=num_cov_coeff_names, 
 	dimnames=list(alr_cat_names, cov_coeff_names));
 
-rsqrd_mat             =matrix(NA, nrow=num_used_alr_cat, ncol=2, 
-	dimnames=list(alr_cat_names[1:num_used_alr_cat], c("R^2", "Adj-R^2")));
+rsqrd_mat             =matrix(NA, nrow=NumRespVariables, ncol=4, 
+	dimnames=list(alr_cat_names[1:NumRespVariables], c("R^2", "Adj-R^2", "Reduced Adj-R^2", "ALR Contrib")));
 
-model_pval_mat             =matrix(NA, nrow=num_used_alr_cat, ncol=1, 
-	dimnames=list(alr_cat_names[1:num_used_alr_cat], c("F-statistic P-value")));
+model_pval_mat             =matrix(NA, nrow=NumRespVariables, ncol=1, 
+	dimnames=list(alr_cat_names[1:NumRespVariables], c("F-statistic P-value")));
 
-###############################################################################
+# Fit the regression model
 
-plot_ab_comparisons=function(a, b, aname, bname, pval, title){
-# Plot histogram of differences and paired samples
-	layout_mat=matrix(c(
-		1,2,
-		3,3,
-		4,4
-	), ncol=2, byrow=T);
-	layout(layout_mat);
-	par(oma=c(1,1,3,1));
-	par(mar=c(6,6,8,.25));
-	par(family="serif");
-
-	ranges=range(c(a,b));
-	ab=c(a,b);
-	ab_hrec=hist(ab, plot=F);
-
-	# Plot individual A/B
-	ahrec=hist(A_alr_val, breaks=ab_hrec$breaks, plot=F);
-	bhrec=hist(B_alr_val, breaks=ab_hrec$breaks, plot=F);
-	max_count=max(c(ahrec$counts, bhrec$counts));
-	ahrec=hist(A_alr_val, breaks=ab_hrec$breaks, main=aname, ylim=c(0, max_count), 
-		cex.axis=1.5, cex.lab=1.5, cex.main=1.5, xlab="ALR", las=1);
-	bhrec=hist(B_alr_val, breaks=ab_hrec$breaks, main=bname, ylim=c(0, max_count), 
-		cex.axis=1.5, cex.lab=1.5, cex.main=1.5, xlab="ALR", las=1);
-
-	# Plot difference
-	alr_dif=b-a;
-	magn=max(abs(alr_dif));
-	diff_plot_range=c(-magn*1.2, magn*1.2);
-	print(diff_plot_range);
-	hist(alr_dif, xlim=diff_plot_range, yaxt="n", xaxt="n", main="", xlab="", ylab="", las=1, breaks=30);
-
-	yaxis_info=par()$yaxp;
-	y_ats=as.integer(seq(yaxis_info[1], yaxis_info[2], 
-		length.out=max(min(yaxis_info[2], yaxis_info[3]), 3)));
-	axis(2, at=y_ats, labels=y_ats, las=1, cex.axis=2.5, padj=.5);
-
-	xaxis_info=par()$xaxp;
-	x_ats=as.integer(seq(xaxis_info[1], xaxis_info[2], 
-		length.out=max(min(xaxis_info[2], xaxis_info[3]), 5)));
-	axis(1, at=x_ats, labels=x_ats, las=1, cex.axis=2.5, padj=1);
-
-	title(main=gsub("^\\d+\\.\\)", "", title), line=5, cex.main=5);
-	title(main=paste("Wilcoxon paired p-value: ", round(pval, 4), sep=""), line=2.5, cex.main=2);
-	title(xlab=paste("ALR difference = ", bname, " - ", aname, sep=""), cex.lab=2.5, line=5);
-	title(ylab="Frequency", cex.lab=2.5, line=4);
-
-	abline(v=0, col="blue", lty=2, lwd=2);
-
-	# Plot scatter
-	plot(a,b, xlim=ranges, ylim=ranges, xlab=aname, ylab=bname, 
-		cex=1.2, cex.axis=1.5, cex.lab=1.5, las=1);
-	abline(a=0, b=1, col="blue", lty=2);
-
-	mtext(title, side=3, line=0, outer=T, font=2, cex=2);
-}
-
-###############################################################################
-
-alr_cat_names=colnames(A_alr_values);
-for(cat_ix in 1:num_used_alr_cat){
-
-	A_alr_val=A_alr_values[,cat_ix,drop=F];
-	B_alr_val=B_alr_values[,cat_ix,drop=F];
-
-	cur_cat_name=alr_cat_names[cat_ix];
+for(resp_ix in 1:NumRespVariables){
+	alr_resp=response_alr[,resp_ix,drop=F];
+	resp_cat_name=colnames(alr_resp);
+	alr_resp=as.vector(alr_resp);
 	
-	cat("Fitting: ", cat_ix, ".) ", cur_cat_name, "\n");
+	cat("Fitting: ", resp_ix, ".) ", resp_cat_name, "\n");
 
-	alr_dif=(B_alr_val-A_alr_val);
-
-	model_pred=cbind(factors, alr_dif);
-
-	if(length(model_var_arr)==0){
-		model_str=paste("alr_dif ~ 1");
+	# For the top responses, the top ALR predictors are already included in the model, but for the
+	#   remaining make sure the predictor ALR is also included.
+	if(resp_ix<=NumPredVariables){
+		# Response category is already in predictors
+		alr_pred=predictor_alr[,1:NumPredVariables];
 	}else{
-		model_str=paste("alr_dif ~ ", paste(model_var_arr, collapse=" + "), sep="");
+		# Include response category in predictor
+		alr_pred=cbind(predictor_alr[,resp_cat_name, drop=F], predictor_alr[,1:NumPredVariables]);
+	}
+	alr_pred_names=colnames(alr_pred);
+	
+	model_pred_df=as.data.frame(cbind(alr_pred, factors));
+
+	# Build formula string for full and reduced model
+	model_str=paste("alr_resp ~ ", paste(c(alr_pred_names,model_var_arr), collapse="+"), sep="");
+	model_reduced_str=paste("alr_resp ~ ", paste(model_var_arr, collapse="+"), sep="");
+
+	cat("Model String: \n");
+	cat("Full:\n");
+	print(model_str);
+	cat("Reduced:\n");
+	print(model_reduced_str);
+
+	if(grep("[^a-zA-Z0-9]", model_str)){
+		cat("\n\n");
+		cat("WARNING: Model string contains non alphanumerics. This may cause errors.\n");
+		cat("Check the variables (covariates or categories) for illegal characters.\n");
+		cat("Semi-colons in the categories may indicate you need to use the -x \";\" option.\n");
+		cat("\n\n");
 	}
 
-	lm_fit=lm(as.formula(model_str), data=model_pred);
+	# Fit full and reduced model
+	lm_fit=lm(as.formula(model_str), data=model_pred_df);
+	lm_reduced_fit=lm(as.formula(model_reduced_str), data=model_pred_df);
+
+	# Summarize full and reduced model
 	sum_fit=summary(lm_fit);
-
-	print(sum_fit);
-	ab_wilcox_res=wilcox.test(A_alr_val, B_alr_val, paired=T);
-	wilcoxon_pval_mat[cur_cat_name, 1]=ab_wilcox_res$p.value;
-
-
-	plot_ab_comparisons(A_alr_val, B_alr_val, A_subtrahend, B_minuend, 
-		pval=ab_wilcox_res$p.value,
-		title=paste(cat_ix, ".) ", cur_cat_name, sep=""));
-
-
-	par(mfrow=c(1,1));
+	sum_reduced_fit=summary(lm_reduced_fit);
 
 	# ANOVA on full model
 	anova_res=anova(lm_fit);
 
 	plot_text(c(
-		paste(cat_ix, ".) ", cur_cat_name, ":", sep=""),
+		paste(resp_ix, ".) ", resp_cat_name, ":", sep=""),
 		"",
 		capture.output(print(sum_fit))
 		)
 	);
 
 	plot_text(c(
-		paste(cat_ix, ".) ", cur_cat_name, ":", sep=""),
+		paste(resp_ix, ".) ", resp_cat_name, ":", sep=""),
                 "",
 		capture.output(print(anova_res))
 		)
@@ -1298,28 +1185,27 @@ for(cat_ix in 1:num_used_alr_cat){
 
 	mmps(lm_fit);
 
-	#model_coef_names=setdiff(rownames(sum_fit$coefficients), "(Intercept)");
-	# The intercept will be zero if there is no difference, so we should report this.
-	model_coef_names=rownames(sum_fit$coefficients);
+	model_coef_names=setdiff(rownames(sum_fit$coefficients), "(Intercept)");
 
-	print(model_coef_names);
+	# Save the ALR result stats
+	cat_names=intersect(model_coef_names, alr_pred_names);
+	category_alr_coef_mat[resp_cat_name, cat_names]=sum_fit$coefficients[cat_names,"Estimate"];
+	category_alr_pval_mat[resp_cat_name, cat_names]=sum_fit$coefficients[cat_names,"Pr(>|t|)"];
 
 	# Save the covariate result stats
 	cat_names=intersect(model_coef_names, cov_coeff_names);
-	covariates_coef_mat[cur_cat_name, cat_names]=sum_fit$coefficients[cat_names,"Estimate"];
-	covariates_pval_mat[cur_cat_name, cat_names]=sum_fit$coefficients[cat_names,"Pr(>|t|)"];
+	covariates_coef_mat[resp_cat_name, cat_names]=sum_fit$coefficients[cat_names,"Estimate"];
+	covariates_pval_mat[resp_cat_name, cat_names]=sum_fit$coefficients[cat_names,"Pr(>|t|)"];
 
-	rsqrd_mat[cur_cat_name, "R^2"]=sum_fit$r.squared;
-	rsqrd_mat[cur_cat_name, "Adj-R^2"]=sum_fit$adj.r.squared;
+	rsqrd_mat[resp_cat_name, "R^2"]=sum_fit$r.squared;
+	rsqrd_mat[resp_cat_name, "Adj-R^2"]=sum_fit$adj.r.squared;
+	rsqrd_mat[resp_cat_name, "Reduced Adj-R^2"]=sum_reduced_fit$adj.r.squared;
+	rsqrd_mat[resp_cat_name, "ALR Contrib"]=sum_fit$adj.r.squared-sum_reduced_fit$adj.r.squared;
 
-	if(!is.null(sum_fit$fstatistic)){
-		model_pval_mat[cur_cat_name, "F-statistic P-value"]=
-			1-pf(sum_fit$fstatistic[1], sum_fit$fstatistic[2], sum_fit$fstatistic[3]);
-	}else{
-		model_pval_mat[cur_cat_name, "F-statistic P-value"]=NA;
-	}
+	model_pval_mat[resp_cat_name, "F-statistic P-value"]=
+		1-pf(sum_fit$fstatistic[1], sum_fit$fstatistic[2], sum_fit$fstatistic[3]);
 
-	cat("\n\n*************************************************\n\n");
+	cat("*************************************************\n");
 
 }
 
@@ -1331,68 +1217,145 @@ covariates_coef_mat=covariates_coef_mat[,!all.nas,drop=F];
 all.nas=apply(covariates_pval_mat, 2, function(x){all(is.na(x))});
 covariates_pval_mat=covariates_pval_mat[,!all.nas,drop=F];
 
-print(covariates_coef_mat);
-print(covariates_pval_mat);
 print(rsqrd_mat);
-print(model_pval_mat);
 
 par(oma=c(2,1,5,2));
 
-rename_intercept=function(mat, old_n, new_n){
-	cname=colnames(mat);
-	old_ix=which(cname==old_n);
-	cname[old_ix]=new_n;
-	colnames(mat)=cname;
-	return(mat);
+# ALR Coefficients
+paint_matrix(category_alr_coef_mat, 
+	title=paste("Top ", NumPredVariables, " ", PredictorName," Predictor ALR Coefficients for Top ", NumRespVariables, " ", ResponseName, " Responses ALR", sep=""), 
+	deci_pts=2, value.cex=.8);
+mtext(PredictorName, side=1, cex=2, font=2, line=.75);
+mtext(ResponseName, side=4, cex=2, font=2, line=.75);
+
+# ALR Coefficients Clustered
+paint_matrix(category_alr_coef_mat[,1:NumPredVariables], 
+	title=paste("Top ", NumPredVariables, " ", PredictorName," Predictor ALR Coefficients for Top ", NumRespVariables, " ", ResponseName, " Responses ALR", sep=""), 
+	 plot_col_dendr=T, plot_row_dendr=T,
+	deci_pts=2, value.cex=.8);
+mtext(PredictorName, side=1, cex=2, font=2, line=.75);
+mtext(ResponseName, side=4, cex=2, font=2, line=.75);
+
+# ALR P-Values
+paint_matrix(category_alr_pval_mat, plot_min=0, plot_max=1,
+	title=paste("Top ", NumPredVariables, " ", PredictorName," Predictor ALR P-Values for Top ", NumRespVariables, " ", ResponseName, " Responses ALR", sep=""), 
+	high_is_hot=F, deci_pts=2, value.cex=.8);
+mtext(PredictorName, side=1, cex=2, font=2, line=.75);
+mtext(ResponseName, side=4, cex=2, font=2, line=.75);
+
+# ALR Coefficients w/ P-value masked
+limit=max(abs(range(category_alr_coef_mat)));
+category_alr_coef_masked_mat=mask_matrix(
+	val_mat=category_alr_coef_mat, 
+	mask_mat=category_alr_pval_mat, 
+	mask_thres=0.05, 
+	mask_val=0.0);
+paint_matrix(category_alr_coef_masked_mat,
+	title=paste("Top ", NumPredVariables, " ", 
+		PredictorName," Predictor ALR Coeff for Top ", NumRespVariables, " ", ResponseName,
+		" Responses ALR P-Val(<.05) Maskd", sep=""), 
+	label_zeros=F, high_is_hot=F, deci_pts=2, value.cex=.8);
+mtext(PredictorName, side=1, cex=2, font=2, line=.75);
+mtext(ResponseName, side=4, cex=2, font=2, line=.75);
+
+# ALR P-Values Clustered
+paint_matrix(category_alr_pval_mat[,1:NumPredVariables], plot_min=0, plot_max=1,
+	title=paste("Top ", NumPredVariables, " ", PredictorName," Predictor ALR P-Values for Top ", NumRespVariables, " ", ResponseName, " Responses ALR", sep=""), 
+	plot_col_dendr=T, plot_row_dendr=T,
+	high_is_hot=F, deci_pts=2, value.cex=.8);
+mtext(PredictorName, side=1, cex=2, font=2, line=.75);
+mtext(ResponseName, side=4, cex=2, font=2, line=.75);
+
+# Covariate Coefficients
+paint_matrix(covariates_coef_mat, 
+	title=paste("Covariates Coefficients for Top ", NumRespVariables, " ", ResponseName, " Categories", sep=""),
+	deci_pts=2, value.cex=.8);
+mtext("Covariates", side=1, cex=2, font=2, line=.75);
+mtext(ResponseName, side=4, cex=2, font=2, line=.75);
+
+# Covariate Coefficients w/ Clustering
+paint_matrix(covariates_coef_mat, 
+	title=paste("Covariates Coefficients for Top ", NumRespVariables, " ", ResponseName, " Categories", sep=""),
+	plot_col_dendr=T, plot_row_dendr=T,
+	deci_pts=2, value.cex=.8);
+mtext("Covariates", side=1, cex=2, font=2, line=.75);
+mtext(ResponseName, side=4, cex=2, font=2, line=.75);
+
+# Covariate P-Values
+paint_matrix(covariates_pval_mat, plot_min=0, plot_max=1, 
+	title=paste("Covariates P-Values for Top ", NumRespVariables, " ", ResponseName, " Categories", sep=""),
+	high_is_hot=F, deci_pts=2, value.cex=.8);
+mtext("Covariates", side=1, cex=2, font=2, line=.75);
+mtext(ResponseName, side=4, cex=2, font=2, line=.75);
+
+# Covariate Coefficients w/ P-value masked
+covariates_coef_masked_mat=mask_matrix(
+        val_mat=covariates_coef_mat,
+        mask_mat=covariates_pval_mat,
+        mask_thres=0.05,
+        mask_val=0.0);
+paint_matrix(covariates_coef_masked_mat,,
+        title=paste("Top ", NumPredVariables, " ",
+                PredictorName," Covariates Coeff for Top ", NumRespVariables, " ", ResponseName,
+                " Responses ALR P-Val(<.05) Maskd", sep=""),
+        label_zeros=F, high_is_hot=F, deci_pts=2, value.cex=.8);
+mtext("Covariates", side=1, cex=2, font=2, line=.75);
+mtext(ResponseName, side=4, cex=2, font=2, line=.75);
+
+
+# Covariate P-Values Clustered
+paint_matrix(covariates_pval_mat, plot_min=0, plot_max=1, 
+	title=paste("Covariates P-Values for Top ", NumRespVariables, " ", ResponseName, " Categories", sep=""),
+	plot_col_dendr=T, plot_row_dendr=T,
+	high_is_hot=F, deci_pts=2, value.cex=.8);
+mtext("Covariates", side=1, cex=2, font=2, line=.75);
+mtext(ResponseName, side=4, cex=2, font=2, line=.75);
+
+# R^2
+paint_matrix(rsqrd_mat, plot_min=0, plot_max=1, title=paste("Explained Variation for Top ", NumRespVariables, " Responses: R^2", sep=""));
+mtext(ResponseName, side=4, cex=2, font=2, line=.75);
+
+# Model pval
+paint_matrix(model_pval_mat, plot_min=0, plot_max=1, high_is_hot=F, 
+	title=paste("Model F-Statistic P-Values for Top ", NumRespVariables, sep=""));
+mtext(ResponseName, side=4, cex=2, font=2, line=.75);
+
+# Plot Pred->Resp for ALR
+plot_pred_resp_bar=function(coef_mat, pval_mat, title=""){
+	val=diag(coef_mat);
+	pval=diag(pval_mat);
+	cat_names=rownames(coef_mat);
+
+	ord=order(val, decreasing=T);
+
+	val=val[ord];
+	pval=pval[ord];
+	cat_names=cat_names[ord];
+
+        num_colors=50;
+        color_arr=rainbow(num_colors, start=0, end=4/6);
+
+        # Provide a means to map values to an (color) index
+        remap=function(in_val, in_range, out_range){
+                in_prop=(in_val-in_range[1])/(in_range[2]-in_range[1])
+                out_val=in_prop*(out_range[2]-out_range[1])+out_range[1];
+                return(out_val);
+        }
+
+	colors=ceiling(remap(pval, c(0,1), c(1,num_colors)));
+
+	barplot(val, names.arg=cat_names, las=2, col=color_arr[colors],
+		main=title
+		);
 }
 
-covariates_coef_mat=rename_intercept(covariates_coef_mat, "(Intercept)", "\"Difference\"");
-covariates_pval_mat=rename_intercept(covariates_pval_mat, "(Intercept)", "\"Difference\"");
-
-print(covariates_coef_mat);
-
-paint_matrix(wilcoxon_pval_mat, plot_min=0, plot_max=1,
-	title="Wilcoxon Difference in ALR: P-values",
-	high_is_hot=F, deci_pts=2, value.cex=.8); 
-mtext(text="(No controlling for covariates)", side=3, cex=.8, font=3, line=2, outer=T);
-
-paint_matrix(covariates_coef_mat, 
-        title="Regression Model Coefficient Values",
-        high_is_hot=T, deci_pts=2, value.cex=.8);
-
-paint_matrix(covariates_pval_mat, plot_min=0, plot_max=1,
-        title="Regression Model Coeff P-Values", 
-        high_is_hot=F, deci_pts=2, value.cex=.8);
-mtext(text="(H0: Coefficients equal zero, H1: Non-zero Coefficients)", side=3, cex=.9, font=3, line=2, outer=T);
-
-signf_coef_mat=mask_matrix(covariates_coef_mat, covariates_pval_mat, .1, 0);
-paint_matrix(signf_coef_mat,
-        title="Regression Model Significant Coefficients", 
-        high_is_hot=T, deci_pts=2, value.cex=.8, label_zeros=F);
-mtext(text="(P-Values < 0.10 Shown)", side=3, cex=.9, font=3, line=2, outer=T);
-
-signf_coef_mat=mask_matrix(covariates_coef_mat, covariates_pval_mat, .05, 0);
-paint_matrix(signf_coef_mat,
-        title="Regression Model Significant Coefficients", 
-        high_is_hot=T, deci_pts=2, value.cex=.8, label_zeros=F);
-mtext(text="(P-Values < 0.05 Shown)", side=3, cex=.9, font=3, line=2, outer=T);
-
-signf_coef_mat=mask_matrix(covariates_coef_mat, covariates_pval_mat, .01, 0);
-paint_matrix(signf_coef_mat,
-        title="Regression Model Significant Coefficients", 
-        high_is_hot=T, deci_pts=2, value.cex=.8, label_zeros=F);
-mtext(text="(P-Values < 0.01 Shown)", side=3, cex=.9, font=3, line=2, outer=T);
-
-paint_matrix(rsqrd_mat, plot_min=0, plot_max=1,
-        title="Regression R^2's", 
-        high_is_hot=T, deci_pts=2, value.cex=.8);
-
-paint_matrix(model_pval_mat, plot_min=0, plot_max=1,
-        title="Regression Model Fit P-values", 
-        high_is_hot=F, deci_pts=2, value.cex=.8);
-mtext(text="(H0: Predictors have no contribution to model fit)", side=3, cex=.8, font=3, line=2, outer=T);
-
-
+par(oma=c(20, 5, 5, 1));
+plot_pred_resp_bar(category_alr_coef_mat, category_alr_pval_mat);
+mtext(paste("Predictability of ", ResponseName, " ALR based on ", PredictorName, " ALR", sep=""),
+	side=3, font=2, line=2
+	);
+mtext("After Controlling for Covariates", side=3, font=2, line=1);
+mtext("Regression Coefficient", side=2, font=1, line=3.75);
 
 ###############################################################################
 
