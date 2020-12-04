@@ -743,7 +743,13 @@ print(model_var);
 cat("\n");
 cat("Response Variables:\n");
 responses_arr=load_list(ResponseFile);
-print(responses_arr);
+if(length(responses_arr)==0){
+	cat("There were no response variables specified.\n");
+	cat("Quiting...\n");
+	quit(status=0);
+}else{
+	print(responses_arr);
+}
 cat("\n");
 
 cat("Extracting predictors+responses from available factors...\n");
