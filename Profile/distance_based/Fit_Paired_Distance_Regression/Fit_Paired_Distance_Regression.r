@@ -227,10 +227,17 @@ relevel_factors=function(factors, ref_lev_mat){
 
 	for(i in 1:num_factors_to_relevel){
 		relevel_target=relevel_names[i];
+
 		if(length(intersect(relevel_target, factor_names))){
+			target_level=ref_lev_mat[i, 1];
 			tmp=factors[,relevel_target];
-			tmp=relevel(tmp, ref_lev_mat[i, 1]);
-			factors[,relevel_target]=tmp;
+			if(length(intersect(target_level, tmp))){
+				tmp=relevel(tmp, target_level);
+    				factors[,relevel_target]=tmp;
+			}else{
+				cat("WARNING: Target level '", target_level,
+					"' not found in '", relevel_target, "'!!!\n", sep="");
+			}
 		}else{
 			cat("WARNING: Relevel Target Not Found: '", relevel_target, "'!!!\n", sep="");
 		}
