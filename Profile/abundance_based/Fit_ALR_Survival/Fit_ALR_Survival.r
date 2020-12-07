@@ -1410,11 +1410,18 @@ plot_km=function(events_info, grp_to_sbj_map, grp_colors, time_varname, sbj_varn
 		}
 
 	
-		linewidth=(num_grps-ix)*2-1;
+		# Make the line % thicker
+		linewidth=(1.5^(num_grps-1-ix));
+		#linewidth=(num_grps-ix)*4-3;
 		cat("Line Width:", linewidth, "\n");
 
-		points(x,y*100, cex=linewidth/2, type="p", pch=20, col=grp_colors[grix]);
-		points(x,y*100, lwd=linewidth, type="l", col=grp_colors[grix]);
+		# Outline
+		points(x,y*100, cex=linewidth/3, type="p", pch=20, col="black");
+		points(x,y*100, lwd=linewidth, type="l", col="black");
+
+		# Line
+		points(x,y*100, cex=linewidth/3*.90, type="p", pch=20, col=grp_colors[grix]);
+		points(x,y*100, lwd=linewidth*.85, type="l", col=grp_colors[grix]);
 
 		ix=ix+1;
 	}
