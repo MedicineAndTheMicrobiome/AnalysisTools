@@ -1225,7 +1225,7 @@ print(covariates_coef_mat);
 
 paint_matrix(wilcoxon_pval_mat, plot_min=0, plot_max=1,
 	title="Wilcoxon Difference in ALR: P-values",
-	high_is_hot=F, deci_pts=2, value.cex=1); 
+	high_is_hot=F, deci_pts=4, value.cex=1); 
 mtext(text="(No controlling for covariates)", side=3, cex=.8, font=3, line=2, outer=T);
 
 paint_matrix(covariates_coef_mat, 
@@ -1234,7 +1234,7 @@ paint_matrix(covariates_coef_mat,
 
 paint_matrix(covariates_pval_mat, plot_min=0, plot_max=1,
         title="Regression Model Coeff P-Values", 
-        high_is_hot=F, deci_pts=2, value.cex=1);
+        high_is_hot=F, deci_pts=4, value.cex=1);
 mtext(text="(H0: Coefficients equal zero, H1: Non-zero Coefficients)", side=3, cex=.9, font=3, line=2, outer=T);
 
 signf_coef_mat=mask_matrix(covariates_coef_mat, covariates_pval_mat, .1, 0);
