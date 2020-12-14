@@ -75,6 +75,7 @@ fname_list = strsplit(InputFNameList, ",")[[1]];
 num_target_files=length(fname_list);
 
 cat("Files to Merge: \n");
+names(fname_list)=LETTERS[1:length(fname_list)];
 print(fname_list);
 
 loaded_factors=list();
@@ -94,28 +95,39 @@ for(i in 1:num_target_files){
 
 }
 
+cat("\n");
+cat("**********************************************************************\n");
+cat("Unique column names across files specified:\n\n");
+print(unique_columns);
+
 lowercase_uniq_cols=tolower(unique_columns);
 formatting_uniq_cols=gsub("[\\.\\_]", "", lowercase_uniq_cols);
-print(formatting_uniq_cols);
+#print(formatting_uniq_cols);
 #print(lowercase_uniq_cols);
 
 cat("\n");
 cat("**********************************************************************\n");
 
+merge_warnings=F;
+
 if(length(unique(lowercase_uniq_cols))!=length(unique(unique_columns))){
 	cat("WARNING: Case insensitive conflicts.\n");
+	cat("  (This means multiple columns have the same name if we ignore case.)\n");
 	counts=table(lowercase_uniq_cols);
 	dups=counts>1;
 	print(counts[dups]);
+	merge_warnings=T;
 }else{
 	cat("Good. No case insensitive conflicts.\n");
 }
 
 if(length(unique(formatting_uniq_cols))!=length(unique(unique_columns))){
 	cat("WARNING: Formatting conflicts.\n");
+	cat("  (This means multiple columns have the same name if we ignore _'s and .'s)\n");
 	counts=table(formatting_uniq_cols);
 	dups=counts>1;
 	print(counts[dups]);
+	merge_warnings=T;
 }else{
 	cat("Good. No formatting conflicts.\n");
 }
@@ -129,7 +141,7 @@ num_unique_cols=length(unique_columns);
 
 shared_matrix=matrix(0, nrow=num_unique_cols, ncol=num_target_files);
 rownames(shared_matrix)=unique_columns;
-colnames(shared_matrix)=1:num_target_files;
+colnames(shared_matrix)=LETTERS[1:num_target_files];
 
 for(i in 1:num_target_files){
 	file_mat=loaded_factors[[i]];
@@ -142,12 +154,16 @@ for(i in 1:num_target_files){
 }
 
 cat("Non-NA Percentages, sorted alphabetically:\n");
+cat("  (Check for variables with similar names with mutually exclusive counts.)\n");
+cat("\n");
 print(shared_matrix, digits=1);
 cat("\n");
 
 cat("Non-NA Percentages, sorted by total non-NAs:\n");
+cat("  (Look for variables with missing data due to inconsistent naming.)\n");
+cat("\n");
 shared_totals=apply(shared_matrix, 1, sum);
-ordered_by_total_ix=order(shared_totals, decreasing=T);
+ordered_by_total_ix=order(shared_totals, decreasing=T, method="shell");
 shared_matrix=shared_matrix[ordered_by_total_ix,,drop=F];
 print(shared_matrix, digits=1);
 cat("\n");
@@ -180,6 +196,13 @@ for(i in 1:num_target_files){
 write_factors(OutputFName, output_matrix);
 
 ##############################################################################
+
+if(merge_warnings){
+	cat("\n");
+	cat("***********************************************\n");
+	cat("Check program output.  Merge warnings detected.\n");
+	cat("***********************************************\n");
+}
 
 cat("\nDone.\n");
 
