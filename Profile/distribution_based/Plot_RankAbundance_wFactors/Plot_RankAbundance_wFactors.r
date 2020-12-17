@@ -433,8 +433,8 @@ cat("\n\n");
 num_shared=length(shared);
 cat("Number of Shared Samples: ", num_shared, "\n");
 
-factors_mat=orig_factors_mat[shared,];
-counts_mat=orig_counts_mat[shared,];
+factors_mat=orig_factors_mat[shared,, drop=F];
+counts_mat=orig_counts_mat[shared,, drop=F];
 
 ###############################################################################
 
