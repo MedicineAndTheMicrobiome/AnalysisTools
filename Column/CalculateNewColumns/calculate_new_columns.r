@@ -96,6 +96,14 @@ usage = paste(
 	"		str.chop_left(x, n)\n",
 	"		str.chop_right(x, n)\n",
 	"\n",
+	"		str.split_keep(x, sep, keep_idx, join)\n",
+	"			This will split x by sep, then only keep the keep_idx components\n",
+	"			  then rejoin with the join character.  Useful for manipulating Sample IDs.\n",
+	"			For example: \n",
+	"			  str.split_keep(\"This.is.a.test\", \"\\\\.\", c(1,4), \".\");\n",
+	"			Produces:\n",
+	"			  \"This.test\"\n",
+	"\n",
 	"	Indexing:\n",
 	"		index(start=1) will assign a number from start to number of rows.\n",
 	"\n",
@@ -365,6 +373,16 @@ str.chop_right=function(x, n){
 	x=as.character(x);
 	last=nchar(x);
 	substr(x, 1, last-n);	
+}
+
+str.split_keep=function(x, sep="\\.", keep_idx, join="."){
+	arr_len=length(x);
+	out_arr=character(arr_len);
+	for(i in 1:arr_len){
+		splits=strsplit(x[i], sep)[[1]];
+		out_arr[i]=paste(splits[keep_idx], collapse=join);
+	}
+	return(out_arr);
 }
 
 #------------------------------------------------------------------------------
