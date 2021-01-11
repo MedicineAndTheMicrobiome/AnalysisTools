@@ -164,32 +164,40 @@ test_and_apply_log_transform=function(mat_val, pval_cutoff=.2, plot_before_after
 
 		cat("\n", var, ": Num Unique Values: ", num_unique_val, "\n");
 
-		test_res=shapiro.test(values);
+		if(num_unique_val>1){
 
-		if(test_res$p.value<=pval_cutoff && num_unique_val>2){
-			cat(" Not normal: ", test_res$p.value, "\n");
-			if(any(values_nona==0)){
-				log_values=log(values+1);
+			test_res=shapiro.test(values);
+
+			if(test_res$p.value<=pval_cutoff && num_unique_val>2){
+				cat(" Not normal: ", test_res$p.value, "\n");
+				if(any(values_nona==0)){
+					log_values=log(values+1);
+				}else{
+					log_values=log(values);
+				}
+
+				test_log_res=shapiro.test(log_values);
+
+				if(test_log_res$p.value < test_res$p.value){
+					# Keep original
+					cat("  No Improvement: ", test_log_res$p.value, "\n");
+					new_colnames=c(new_colnames, paste("orig_", var, sep=""));
+				}else{
+					# Keep log transformed
+					cat("  Transformation Effective: ", test_log_res$p.value, "\n");
+					new_colnames=c(new_colnames, paste("log_", var, sep=""));
+					trans_mat[, var]=log_values;
+					transformed=T;		
+				}
 			}else{
-				log_values=log(values);
+				cat(" Normal enough. ", test_res$p.value, "\n");
+				new_colnames=c(new_colnames, var);
 			}
 
-			test_log_res=shapiro.test(log_values);
-
-			if(test_log_res$p.value < test_res$p.value){
-				# Keep original
-				cat("  No Improvement: ", test_log_res$p.value, "\n");
-				new_colnames=c(new_colnames, paste("orig_", var, sep=""));
-			}else{
-				# Keep log transformed
-				cat("  Transformation Effective: ", test_log_res$p.value, "\n");
-				new_colnames=c(new_colnames, paste("log_", var, sep=""));
-				trans_mat[, var]=log_values;
-				transformed=T;		
-			}
 		}else{
-			cat(" Normal enough. ", test_res$p.value, "\n");
-			new_colnames=c(new_colnames, var);
+			cat("  All values identical:\n");
+			new_colnames=c(new_colnames, paste("all_ident_", var, sep=""));
+			
 		}
 
 		if(plot_before_after){
