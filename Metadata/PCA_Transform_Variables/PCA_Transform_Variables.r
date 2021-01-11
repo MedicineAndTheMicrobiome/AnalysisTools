@@ -195,9 +195,8 @@ test_and_apply_log_transform=function(mat_val, pval_cutoff=.2, plot_before_after
 			}
 
 		}else{
-			cat("  All values identical:\n");
-			new_colnames=c(new_colnames, paste("all_ident_", var, sep=""));
-			
+			cat("  All values identical, removing...\n");
+			#new_colnames=c(new_colnames, paste("all_ident_", var, sep=""));
 		}
 
 		if(plot_before_after){
