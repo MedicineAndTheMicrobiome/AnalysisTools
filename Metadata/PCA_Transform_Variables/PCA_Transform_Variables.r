@@ -142,13 +142,21 @@ test_and_apply_log_transform=function(mat_val, pval_cutoff=.2, plot_before_after
 		par(mfrow=c(5,2));
 	}
 
+	delete_list=c();
 	for(var in orig_colnames){
 		values=mat_val[,var];
+
+
 		transformed=F;
 
 		num_unique_val=length(setdiff(unique(values), NA));
 		values_nona=values[!is.na(values)];
 		num_nona=length(values_nona);
+
+		if(!is.numeric(values_nona)){
+			cat("Error: Values not numeric for: ", var, "\n", sep="");
+			print(values_nona);
+		}
 
 		if(num_nona<=3){
 			cat("Not enough non NA values to measure normality.\n");
@@ -196,7 +204,9 @@ test_and_apply_log_transform=function(mat_val, pval_cutoff=.2, plot_before_after
 
 		}else{
 			cat("  All values identical, removing...\n");
-			#new_colnames=c(new_colnames, paste("all_ident_", var, sep=""));
+			new_name=paste("all_ident_", var, sep="");
+			new_colnames=c(new_colnames, new_name);
+			delete_list=c(delete_list, new_name);
 		}
 
 		if(plot_before_after){
@@ -216,12 +226,16 @@ test_and_apply_log_transform=function(mat_val, pval_cutoff=.2, plot_before_after
 		}
 
 	}
+
 	colnames(trans_mat)=new_colnames;
 
+	trans_mat=trans_mat[,setdiff(new_colnames, delete_list),drop=F];
 
 	if(plot_before_after){
 		par(orig_par);
 	}
+
+	
 
 	return(trans_mat);
 }
@@ -404,10 +418,17 @@ for(pred_name in curated_predictors_arr){
 		sumfit=summary(fit);
 
 		# Pull regression stats
-		pval_arr[i]=sumfit$coefficients["pred_val", "Pr(>|t|)"];
-		coef_arr[i]=sumfit$coefficients["pred_val", "Estimate"];
-		rsqd_arr[i]=sumfit$r.squared;
-		fit_arr[[i]]=fit;
+		if(length(intersect("pred_val", rownames(sumfit$coefficients)))){
+			pval_arr[i]=sumfit$coefficients["pred_val", "Pr(>|t|)"];
+			coef_arr[i]=sumfit$coefficients["pred_val", "Estimate"];
+			rsqd_arr[i]=sumfit$r.squared;
+			fit_arr[[i]]=fit;
+		}else{
+			pval_arr[i]=1;
+			coef_arr[i]=0;
+			rsqd_arr[i]=0;
+			fit_arr[[i]]=NA;
+		}
 	
 		i=i+1;
 	}
@@ -435,7 +456,9 @@ for(pred_name in curated_predictors_arr){
 			main=paste(orig_resp_names[i], signf_char, sep=""));
 
 		# Draw regression line
-		abline(fit_arr[[i]], col="blue");
+		if(!is.na(fit_arr[[i]])){
+			abline(fit_arr[[i]], col="blue");
+		}
 		stat_info=paste(
 			"coeff=", signif(coef_arr[i],2), 
 			"  p-val=", sprintf("%3.3f", pval_arr[i]),
@@ -683,16 +706,18 @@ plot_text(c(
 ));
 
 # Plot bar plots of PC variance explanation
+num_kept_pred=length(pca_propvar);
 par(mfrow=c(2,1));
 par(mar=c(7,4,2,2));
-colors=rep("grey",num_pred);
+colors=rep("grey",num_kept_pred);
 colors[1:num_pc_at_cutoff]="darkcyan";
 
-mids=barplot(pca_propvar, las=2, names.arg=1:num_pred, xlab="PCs", 
+
+mids=barplot(pca_propvar, las=2, names.arg=1:num_kept_pred, xlab="PCs", 
 	col=colors,
 	ylab="Proportion", main="PCA Proportion of Variance");
 
-mids=barplot(pca_propcumsum, las=2, names.arg=1:num_pred, xlab="PCs", 
+mids=barplot(pca_propcumsum, las=2, names.arg=1:num_kept_pred, xlab="PCs", 
 	col=colors,
 	ylab="Proportion", main="PCA Cumulative Variance");
 abline(h=PCCoverage, col="blue", lty=2);
@@ -748,15 +773,15 @@ par(mfrow=c(2,2));
 par(mar=c(12,3,2,1));
 positive_scores=scores;
 
-pc_name=paste("PC", sprintf("%02g", 1:num_pred), sep="");
+pc_name=paste("PC", sprintf("%02g", 1:num_kept_pred), sep="");
 for(i in 1:num_pc_at_cutoff){
 	
 	pc=scores[,i];
 	nonna_pc=!is.na(pc);
 
-	pc_pred_cor=numeric(num_pred);
+	pc_pred_cor=numeric(num_kept_pred);
 	names(pc_pred_cor)=colnames(curated_pred_mat)
-	for(pix in 1:num_pred){
+	for(pix in 1:num_kept_pred){
 
 		prd=curated_pred_mat[,pix];
 		nonna_prd=!is.na(prd);
