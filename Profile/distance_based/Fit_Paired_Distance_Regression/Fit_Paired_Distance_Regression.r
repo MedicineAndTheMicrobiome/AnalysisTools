@@ -1053,7 +1053,7 @@ for(ix in 1:(num_shared_sample_ids/2)){
 	points(
 		c(mds[aid,1], mds[bid,1]),
 		c(mds[aid,2], mds[bid,2]),
-		type="l", lwd=.5, col="grey80");
+		type="l", lwd=.5, col="grey70");
 }
 text(mds[,1], mds[,2], glyphs, col=colors);
 
@@ -1074,6 +1074,86 @@ for(ix in 1:(num_shared_sample_ids/2)){
 		type="l", lwd=line_wts[ix], col="black");
 }
 text(mds[,1], mds[,2], glyphs, col=colors);
+
+#------------------------------------------------------------------------------
+
+plot_paired_mds_colored_by_group=function(a_ids, b_ids, mds_res, fact, labels){
+
+	orig_par=par(no.readonly=T);
+
+	# Make space for plot and legend
+	layout_mat=matrix(c(1,1,1,1,1,2), nrow=6, ncol=1);
+	layout(layout_mat);
+
+	num_factors=ncol(fact);
+	if(num_factors<1){
+		return;
+	}
+
+	cat("Num of Factors: ", num_factors, "\n");
+	factor_names=colnames(fact);
+	for(fi in 1:num_factors){
+
+		cur_fact=as.character(fact[a_ids,fi,]);
+		cur_fact_name=factor_names[fi];
+		uniq_levels=sort(unique(cur_fact));
+		num_levels=length(uniq_levels);
+		if(num_levels>10){
+			cat(cur_fact_name, ": Too many levels to color. (", num_levels, ")\n", sep="");
+			next;
+		}else{
+			cat("Working on: ", cur_fact_name, "\n");
+			cat("Num Levels: ", num_levels, "\n");
+			print(cur_fact);
+
+			color_map=rainbow(num_levels, start=0, end=4/6);
+			names(color_map)=uniq_levels;
+
+			cat("Color Map:\n");
+			print(color_map);
+
+			cat("Color Assignment:\n");
+			colors_list=color_map[cur_fact];
+			print(colors_list);
+
+			# Generate MDS plot
+			mds_x_range=range(mds_res[,1]);
+			mds_y_range=range(mds_res[,2]);
+
+			mds_x_width=diff(mds_x_range);
+			mds_y_height=diff(mds_y_range);
+
+			par(mar=c(4,4,4,4));
+			plot(0,0, type="n", xlab="Dim 1", ylab="Dim 2", 
+				xlim=c(mds_x_range[1]-mds_x_width*.05, mds_x_range[2]+mds_x_width*.05),
+				ylim=c(mds_y_range[1]-mds_y_height*.05, mds_y_range[2]+mds_y_height*.05),
+				main=paste("Colored by: ", cur_fact_name, sep=""));
+
+			for(ix in 1:length(a_ids)){
+				aid=a_ids[ix];
+				bid=b_ids[ix];
+				points(
+					c(mds_res[aid,1], mds_res[bid,1]),
+					c(mds_res[aid,2], mds_res[bid,2]),
+					type="l", lwd=1, col=colors_list[ix]);
+			}
+			text(mds_res[,1], mds_res[,2], labels, col="black", cex=1.3);
+
+			# Generate Legend
+			par(mar=c(0,0,0,0));
+			plot(0,0, xlim=c(0,1), ylim=c(0,1), type="n", xlab="", ylab="", bty="n", 
+				xaxt="n", yaxt="n", main="");
+
+			legend(0, 1, fill=color_map, legend=uniq_levels, bty="n");	
+		}
+
+		cat("\n\n");
+	}
+
+	par(orig_par);
+}
+
+plot_paired_mds_colored_by_group(A_sample_ids, B_sample_ids, mds, factors, glyphs);
 
 #------------------------------------------------------------------------------
 
