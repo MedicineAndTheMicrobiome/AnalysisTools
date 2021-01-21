@@ -604,6 +604,7 @@ for(i in 1:num_div_idx){
 		# Rerun and plot the lambda search with a smaller increments
 		par(mar=c(5,4,4,2));
 		cat("Refining search around: ", approx_lambda-search_tolerance, " - ", approx_lambda+search_tolerance, "\n");
+
 		bc=boxcox(as.formula(model_string), data=factors, 
 			lambda=seq(approx_lambda-search_tolerance, approx_lambda+search_tolerance, length.out=40));
 		title(main=div_names[i]);

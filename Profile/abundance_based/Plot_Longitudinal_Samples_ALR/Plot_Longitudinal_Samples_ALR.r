@@ -358,7 +358,6 @@ plot_alr_time_grpd=function(tar_cat, subj_arr, grouping, grouping_name, offsets_
 
 	offset_span=offset_range[2]-offset_range[1];
 
-
 	plot(0, type="n", ylim=alr_range, xlim=c(offset_range[1], offset_range[2]+0.2*offset_span), 
 		ylab=paste(grouping_name, ": ", grouping));
 	abline(h=alr_med, col="grey", lty="dotdash");

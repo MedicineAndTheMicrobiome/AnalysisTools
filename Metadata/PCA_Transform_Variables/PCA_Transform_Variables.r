@@ -717,7 +717,7 @@ for(i in seq(1,num_pc_at_cutoff+1,2)){
 	plot(xpos, ypos, type="p", 
 		xlim=c(xrange[1]-xspan/10, xrange[2]+xspan/10),
 		ylim=c(yrange[1]-yspan/10, yrange[2]+yspan/10),
-		xlab="", ylab="", main=""
+		xlab="", ylab="", main="", cex=2
 	)
 
 	title(

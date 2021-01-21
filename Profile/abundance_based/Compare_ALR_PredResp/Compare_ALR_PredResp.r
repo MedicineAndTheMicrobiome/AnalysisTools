@@ -100,6 +100,10 @@ signf_ext=sprintf("p%02g", SignifCutoff*100);
 
 OutputRoot=paste(OutputRoot, ".pred_vs_resp.", signf_ext, sep="");
 
+cur_wd=getwd();
+cur_date=date();
+cur_user=Sys.info()[["user"]];
+
 input_summary=capture.output({
 	cat("\n");
 	cat("Pvals:\n");
@@ -117,6 +121,10 @@ input_summary=capture.output({
 	cat("\n");
 	cat("AsPred A Name: ", AsPredAName, "\n", sep="");
 	cat("AsResp B Name: ", AsRespBName, "\n", sep="");
+	cat("\n");
+	cat("User: ", cur_user, "\n");
+	cat("Date: ", cur_date, "\n");
+	cat("WorkingDir: ", cur_wd, "\n");
 });
 cat(input_summary, sep="\n");
 
