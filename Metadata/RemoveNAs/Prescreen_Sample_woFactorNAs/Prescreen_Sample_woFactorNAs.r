@@ -155,16 +155,22 @@ load_factor_file=function(fn){
 write_factors=function(fname, table){
 
 	cat("Writing: ", fname, " as factor file.\n", sep="");
-        dimen=dim(factors);
-        cat("Rows Exporting: ", dimen[1], "\n");
-        cat("Cols Exporting: ", dimen[2], "\n");
+	dimen=dim(table);
+	cat("Rows Exporting: ", dimen[1], "\n");
+	cat("Cols Exporting: ", dimen[2], "\n");
 
-        write.table(table, fname, quote=F, row.names=T, col.names=NA, sep="\t");
+	# Make sure sample ids have a column name
+	fh=file(fname, "w");
+	cat(file=fh, "sample_id");
+	close(fh);
+
+	write.table(table, file=fname, quote=F, append=T, row.names=TRUE, col.names=NA, sep="\t");
 
 }
 
 load_summary_table=function(st_fname){
-        inmat=as.matrix(read.delim(st_fname, sep="\t", header=TRUE, row.names=1, check.names=FALSE, comment.char="", quote=""))
+        inmat=as.matrix(read.delim(st_fname, sep="\t", header=TRUE, row.names=1, 
+		check.names=FALSE, comment.char="", quote=""))
 
         num_categories=ncol(inmat)-1;
         num_samples=nrow(inmat);
@@ -197,7 +203,8 @@ write_summary_table=function(out_mat, fname){
 }
 
 load_list=function(list_fname){
-        list=read.delim(list_fname, sep="\t", header=F, row.names=NULL, as.is=T, check.names=F, comment.char="#", quote="");
+        list=read.delim(list_fname, sep="\t", header=F, row.names=NULL, as.is=T, 
+		check.names=F, comment.char="#", quote="");
         return(list[,1]);
 }
 
@@ -348,10 +355,17 @@ factors=factors[avail_id,,drop=F];
 factor_var=colnames(factors);
 
 cat("Checking targeted variables.\n");
-target_var_avail=intersect(factor_var, target_var);
-if(length(target_var_avail)!=length(target_var)){
-	cat("WARNING: Targeted variables missing from available factors.\n");
-	print(setdiff(target_var, target_var_avail));
+if(length(target_var)){
+	target_var_avail=intersect(factor_var, target_var);
+}else{
+	target_var_avail=factor_var;
+}
+
+if(length(target_var)>0){
+	if(length(target_var_avail)!=length(target_var)){
+		cat("WARNING: Targeted variables missing from available factors.\n");
+		print(setdiff(target_var, target_var_avail));
+	}
 }
 cat("\nTargeted Variables:\n");
 print(target_var_avail);
@@ -444,7 +458,8 @@ if(SummaryTableB!=""){
 		recon_samp_ids=b_ids[recon_samp_ids];
 	}
 	stB_recon=stB[recon_samp_ids,,drop=F];
-	write_summary_table(stB_recon, paste(OutputDir, "/", stB_root, bname_ext, ".prescr.summary_table.tsv", sep=""));
+	write_summary_table(stB_recon, paste(OutputDir, "/", stB_root, bname_ext, 
+		".prescr.summary_table.tsv", sep=""));
 
 	if(MapFile!=""){
 		factor_a_ids=rownames(factors);

@@ -23,9 +23,11 @@ params=c(
 	"model_variables_file", "M", 2, "character",
 	"contains_remaining", "R", 2, "logical",
 	"shorten_category_names", "x", 2, "character",
-	"test_run", "t", 2, "logical",
+	"test_run", "T", 2, "logical",
 	"rm_na_trials", "N", 2, "numeric",
-	"required_var", "q", 2, "character"
+	"required_var", "q", 2, "character",
+
+	"tag_name", "t", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -53,7 +55,9 @@ usage = paste(
 	"	[-q <required variables>]\n",
 	"\n",
 	"	[-x <shorten category names, with separator in double quotes (default=\"\")>]\n",
-	"	[-t (test run flag)]\n",
+	"	[-T (test run flag)]\n",
+	"\n",
+	"	[-t <tag name>]\n",
 	"\n",
 	"This script will read in the summary file table, then perform\n",
 	"a multivariate logistic regression on the the top categories\n",
@@ -146,6 +150,29 @@ if(length(opt$rm_na_trials)){
 	Num_Remove_NA_Trials=opt$rm_na_trials;
 }
 
+
+if(length(opt$tag_name)){
+        TagName=opt$tag_name;
+        cat("Setting TagName Hook: ", TagName, "\n");
+        setHook("plot.new",
+		function(){
+			#cat("Hook called.\n");
+			if(par()$page==T){
+				oma_orig=par()$oma;
+				exp_oma=oma_orig;
+				exp_oma[1]=max(exp_oma[1], 1);
+				par(oma=exp_oma);
+				mtext(paste("[", TagName, "]", sep=""), side=1, line=exp_oma[1]-1,
+					outer=T, col="steelblue4", font=2, cex=.8, adj=.97);
+				par(oma=oma_orig);
+			}
+		},
+                "append");
+
+}else{
+        TagName="";
+}
+
 SummaryFile=opt$summary_file;
 FactorsFile=opt$factors;
 
@@ -223,24 +250,28 @@ load_reference_levels_file=function(fname){
 
 relevel_factors=function(factors, ref_lev_mat){
 
-        num_factors_to_relevel=nrow(ref_lev_mat);
-        relevel_names=rownames(ref_lev_mat);
+	num_factors_to_relevel=nrow(ref_lev_mat);
+	relevel_names=rownames(ref_lev_mat);
 	factor_names=colnames(factors);
-        for(i in 1:num_factors_to_relevel){
-		
-		target_relev_name=relevel_names[i];
-		if(any(target_relev_name==factor_names)){
-			tmp=factors[,target_relev_name];
-			#print(tmp);
-			tmp=relevel(tmp, ref_lev_mat[i, 1]);
-			#print(tmp);
-			factors[,target_relev_name]=tmp;
+
+	for(i in 1:num_factors_to_relevel){
+		relevel_target=relevel_names[i];
+
+		if(length(intersect(relevel_target, factor_names))){
+			target_level=ref_lev_mat[i, 1];
+			tmp=factors[,relevel_target];
+			if(length(intersect(target_level, tmp))){
+				tmp=relevel(tmp, target_level);
+    				factors[,relevel_target]=tmp;
+			}else{
+				cat("WARNING: Target level '", target_level,
+					"' not found in '", relevel_target, "'!!!\n", sep="");
+			}
 		}else{
-			cat("Note: ", target_relev_name, 
-				" not in model.  Ignoring reference releveling.\n\n", sep="");
+			cat("WARNING: Relevel Target Not Found: '", relevel_target, "'!!!\n", sep="");
 		}
-        }
-        return(factors);
+	}
+	return(factors);
 }
 
 normalize=function(counts){
@@ -278,6 +309,17 @@ plot_text=function(strings){
 		strings[i]=gsub("\t", "", strings[i]);
 		text(0, top-i, strings[i], pos=4, cex=text_size); 
 	}
+}
+
+sig_char=function(val){
+        if(!is.null(val) && !is.nan(val) && !is.na(val)){
+                if(val <= .0001){ return("***");}
+                if(val <= .001 ){ return("** ");}
+                if(val <= .01  ){ return("*  ");}
+                if(val <= .05  ){ return(":  ");}
+                if(val <= .1   ){ return(".  ");}
+        }
+        return(" ");
 }
 
 ##############################################################################
@@ -1416,9 +1458,17 @@ reg_coef_power=function(uv_reg_fit, factor=10, alpha=.05, power=.8){
 # Plot univariate analyses
 
 par(oma=c(0,0,3,0));
+
+setHook("plot.new", function(){mtext(sorted_taxa_names[var_ix], outer=T, line=-.5);}, "prepend");
+hooks=getHook("plot.new");
+
 for(var_ix in 1:num_cat_to_analyze){
 
-	setHook("plot.new", function(){mtext(sorted_taxa_names[var_ix], outer=T, line=-.5);});
+	if(length(getHook("plot.new"))==0){
+		for(hix in 1:length(hooks)){
+			setHook("plot.new", hooks[[hix]], "prepend");
+		}
+	}
 
 	# Output univariate ANOVA results
 	summary_txt=c();
@@ -1549,6 +1599,24 @@ if(manova_success){
 
 uv_coeff_fname=paste(OutputRoot, ".uv_coeff.tsv", sep="");
 write.table(t(uv_coeff_mat), file=uv_coeff_fname, quote=F, sep="\t", col.names=NA, row.names=T);
+
+##############################################################################
+# Write MANOVA pvalues to file
+
+if(manova_success){
+        num_variables=nrow(manova_res)-1;
+        outmat=matrix("", nrow=num_variables, ncol=3);
+        colnames(outmat)=c(TagName, "Pr(>F)", "Signf");
+        varnames=unlist(rownames(manova_res));
+        pvals=unlist(manova_res["Pr(>F)"]);
+        outmat[,TagName]=varnames[1:num_variables];
+        outmat[,"Pr(>F)"]=sprintf("%4.4f", pvals[1:num_variables]);
+	outmat[,"Signf"]=sapply(pvals[1:num_variables], sig_char);
+}else{
+        outmat=matrix("-", nrow=1, ncol=2);
+        colnames(outmat)=c(TagName, "Pr(>F)");
+}
+write.table(outmat, file=paste(OutputRoot, ".alr_as_resp.anova.summary.tsv", sep=""), sep="\t", quote=F, col.names=T, row.names=F);
 
 ##############################################################################
 

@@ -200,6 +200,12 @@ load_summary_file=function(fname){
 
 load_reference_levels_file=function(fname){
         inmat=as.matrix(read.table(fname, sep="\t", header=F, check.names=FALSE, comment.char="#", row.names=1))
+
+	if(ncol(inmat)!=1){
+		cat("Reference levels requires 2 columns, Variable Name and Reference Level.\n");
+		quit(status=-1);
+	}
+
         colnames(inmat)=c("ReferenceLevel");
         print(inmat);
         cat("\n");
@@ -211,24 +217,29 @@ load_reference_levels_file=function(fname){
 }
 
 relevel_factors=function(factors, ref_lev_mat){
-        num_factors_to_relevel=nrow(ref_lev_mat);
-        relevel_names=rownames(ref_lev_mat);
+
+	num_factors_to_relevel=nrow(ref_lev_mat);
+	relevel_names=rownames(ref_lev_mat);
 	factor_names=colnames(factors);
-        for(i in 1:num_factors_to_relevel){
-		
-		target_relev_name=relevel_names[i];
-		if(any(target_relev_name==factor_names)){
-			tmp=factors[,target_relev_name];
-			#print(tmp);
-			tmp=relevel(tmp, ref_lev_mat[i, 1]);
-			#print(tmp);
-			factors[,target_relev_name]=tmp;
+
+	for(i in 1:num_factors_to_relevel){
+		relevel_target=relevel_names[i];
+
+		if(length(intersect(relevel_target, factor_names))){
+			target_level=ref_lev_mat[i, 1];
+			tmp=factors[,relevel_target];
+			if(length(intersect(target_level, tmp))){
+				tmp=relevel(tmp, target_level);
+    				factors[,relevel_target]=tmp;
+			}else{
+				cat("WARNING: Target level '", target_level,
+					"' not found in '", relevel_target, "'!!!\n", sep="");
+			}
 		}else{
-			cat("Note: ", target_relev_name, 
-				" not in model.  Ignoring reference releveling.\n\n", sep="");
+			cat("WARNING: Relevel Target Not Found: '", relevel_target, "'!!!\n", sep="");
 		}
-        }
-        return(factors);
+	}
+	return(factors);
 }
 
 normalize=function(counts){
@@ -951,9 +962,15 @@ plot_predictions_over_time=function(pred_time_mat, subj_resp_map, resp_name, mod
 	numeric_val=logit_matrix[numeric_ix];
 
 	logit_mag=max(abs(numeric_val));
+	if(logit_mag==Inf){
+		logit_mag=1e300;
+	}else if(logit_mag==-Inf){
+		logit_mag=1e300;
+	}
 	logit_matrix[logit_matrix==Inf]=logit_mag+1;
-	logit_matrix[logit_matrix==-Inf]=logit_mag-1;
+	logit_matrix[logit_matrix==-Inf]=-logit_mag-1;
 	logit_max=logit_mag+1;
+
 
 	plot(0,0, type="n", 
 		xlim=c(time_min-xpad, time_max+xpad),
@@ -1137,6 +1154,56 @@ plot_signif_variables_over_time=function(factors, resp_cnm, time_cnm, sbj_cnm,
 	if(plot_ix<num_rows_per_page && plot_ix!=0){
 		plot_group_legend(resp_to_color_map);
 	}
+
+}
+
+output_predictions_over_time=function(
+	output_fn_root,
+	time_mat, 
+	subj_id_to_resp_map, resp, model){
+
+	cat("\n\n");
+	cat("Inside: output_predictions_over_time\n");
+
+	cat("Output File: ", output_fn_root, "\n");
+	cat("Response: ", resp, "\n");
+	cat("Model: ", model, "\n");
+
+	#cat("Time Mat:\n");
+	#print(time_mat);
+
+	#cat("Sbj->Resp Map:\n");
+	#print(subj_id_to_resp_map);
+
+	# Make directories for all the different combinations of output
+	predictions_dir=paste(output_fn_root, ".multn_predictions", sep="");
+	if(!dir.exists(predictions_dir)){
+		dir.create(predictions_dir);
+	}
+
+	model_dir=paste(predictions_dir, "/model_[", model, "]", sep="");
+	if(!dir.exists(model_dir)){
+		dir.create(model_dir);
+	}
+
+	responses_dir=paste(model_dir, "/pred_as_[", resp, "]", sep="");
+	if(!dir.exists(responses_dir)){
+		dir.create(responses_dir);
+	}
+
+	# Output separate lists for each sample/resp category type	
+	resp_types=unique(subj_id_to_resp_map);
+	for(rtype in resp_types){
+		cat("Obs Resp Types: ", rtype, "\n");
+		samp_ids=(rtype==subj_id_to_resp_map);
+		probs_mat=time_mat[samp_ids,,drop=F];
+		print(probs_mat);
+
+		full_path=paste(responses_dir, "/obsr_as_[", rtype, "].tsv", sep="");
+		write.table(probs_mat, full_path, sep="\t", col.names=NA, row.names=T, quote=F);
+	}
+	
+	cat("Leaving: output_predictions_over_time\n");
 
 }
 
@@ -1610,7 +1677,7 @@ process_model=function(fit, null_fit=NULL, num_samples=NULL){
 	pred_names=colnames(res[["pvalues"]]);
 	pred_names=setdiff(pred_names, "(Intercept)");
 
-	signf_counts=res[["pvalues"]][,pred_names]<0.1;
+	signf_counts=res[["pvalues"]][,pred_names, drop=F]<0.1;
 	res[["num_signif"]]=apply(signf_counts, 1, function(x){sum(x, na.rm=T);});
 
 	# See M. W. Fagerland and D. W. Hosmer,
@@ -2182,6 +2249,11 @@ for(resp_ix in response_no_reference){
 			grp_colors,
 			model_ix
 		);
+
+		output_predictions_over_time(
+			OutputRoot,
+			cur_pred_by_time_matrix, 
+			subject_id_to_response_map, resp_ix, model_ix);
 	
 	}
 

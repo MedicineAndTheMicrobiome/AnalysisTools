@@ -18,7 +18,7 @@ RenameDialogBoxUI=function(id, old_name, suggested_name, mesg){
 	);
 }
 
-RenameDialogBoxServer=function(id, old_name, suggested_name, current_variable_names, mesg){
+RenameDialogBoxServer=function(id, in_values, in_varname, in_availname, return_ui, save_transf_data_callback){
 	
 	moduleServer(
 	
@@ -26,34 +26,49 @@ RenameDialogBoxServer=function(id, old_name, suggested_name, current_variable_na
 		
 		function(input, output, session){
 		
-			cat("RenameDialogBoxServer started with id: ", id, "\n");
+			ns=NS(id);
 		
-			showModal(RenameDialogBoxUI(id, old_name, suggested_name, mesg));
+			cat("RenameDialogBoxServer called:\n");
+			cat("  Session Namespace=", session$ns(""), " id=", id, " ns() prepender=", ns(""), "\n");
+	
+			# I think there is a bug in the namespce.  It's either not prepending ns of calling function to id,
+			# or if the ns() is supposed to be placed around the id when called, it's double appending the ns.
+			id=gsub("-$", "", session$ns(""));
+			cat("  Used id=", id, "\n");
 			
 			observeEvent(input$ReNmDB.cancelButton,{
 				cat("ReNmDB.cancelButton pressed.\n");
 				removeModal();
-				#showModal(DataTransformationDialogBoxUI(id, in_values, in_varname), session);
-				#updateSelectInput(session, "DTDB.transformation_select", selected=input$DTDB.transformation_select);
+				
+				showModal(return_ui(session$userData[["id_name"]], session$userData[[in_values]], session$userData[[in_varname]]));
+				session$userData[["curate.cancel_call_back"]]();
+				
 			});
 		  
 			observeEvent(input$ReNmDB.okButton, {
 				cat("ReNmDB.okButton pressed.\n");
-				removeModal();
 				
-				check_variable_name_msg=check_variable_name(input$ReNmDB.new_variable_name, current_variable_names);
+				check_variable_name_msg=check_variable_name(input$ReNmDB.new_variable_name, session$userData[["in_availname"]]);
 				
 				cur_new_variable_name=input$ReNmDB.new_variable_name;
 				
 				if(check_variable_name_msg!=""){
+					
+					removeModal();
 					showModal(
 						BadVariableName_DialogBox(input$ReNmDB.new_variable_name, 
 							check_variable_name_msg)
 					);
 				}else{
+					cat("Acceptable new name: ", input$ReNmDB.new_variable_name, "\n");
+					
+					save_transf_data_callback(
+						new_col_name=input$ReNmDB.new_variable_name, 
+						session=session);
+					
 					removeModal();
-					return(input$ReNmDB.new_variable_name);
 				}
+				
 			});
 			
 			#--------------------------------------------------------------------------

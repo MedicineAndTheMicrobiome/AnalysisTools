@@ -18,8 +18,9 @@ params=c(
 	"outputroot", "o", 2, "character",
 	"xrange", "x", 2, "character",
 	"yrange", "y", 2, "character",
-	"testing", "t", 2, "logical",
-	"strip_samples_nas", "s", 2, "logical"
+	"testing", "T", 2, "logical",
+	"strip_samples_nas", "s", 2, "logical",
+	"tag_name", "t", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -42,7 +43,8 @@ usage = paste(
 	"	[-b <factor to use as blocking variable>]\n",
 	"	[--xrange=<MDS Dim1 Range, eg. -2,2>]\n",
 	"	[--yrange=<MDS Dim2 Rnage, eg. -2,2>]\n",
-	"	[-t (testing flag)]\n",
+	"	[-T (testing flag)]\n",
+	"	[-t <tag name>]\n",
 	"\n",
 	"	[-s (Flag to strip samples with NAs, default=F)]\n",
 	"\n",
@@ -134,6 +136,27 @@ if(length(opt$strip_samples_nas)){
 RequiredFile="";
 if(length(opt$required_var)){
         RequiredFile=opt$required_var;
+}
+
+if(length(opt$tag_name)){
+        TagName=opt$tag_name;
+        cat("Setting TagName Hook: ", TagName, "\n");
+        setHook("plot.new",
+                function(){
+                        #cat("Hook called.\n");
+                        if(par()$page==T){
+                                oma_orig=par()$oma;
+                                exp_oma=oma_orig;
+                                exp_oma[1]=max(exp_oma[1], 1);
+                                par(oma=exp_oma);
+                                mtext(paste("[", TagName, "]", sep=""), side=1, line=exp_oma[1]-1,
+                                        outer=T, col="steelblue4", font=2, cex=.8, adj=.97);
+                                par(oma=oma_orig);
+                        }
+                }, "append");
+
+}else{
+        TagName="";
 }
 
 ###############################################################################
@@ -406,6 +429,19 @@ remove_samples_wNA=function(factors){
 load_list=function(filename){
         val=scan(filename, what=character(), comment.char="#");
         return(val);
+}
+
+##############################################################################
+
+sig_char=function(val){
+        if(!is.null(val) && !is.nan(val) && !is.na(val)){
+                if(val <= .0001){ return("***");}
+                if(val <= .001 ){ return("** ");}
+                if(val <= .01  ){ return("*  ");}
+                if(val <= .05  ){ return(":  ");}
+                if(val <= .1   ){ return(".  ");}
+        }
+        return(" ");
 }
 
 ##############################################################################
@@ -1108,6 +1144,31 @@ for(i in 1:num_fact){
 cat(file=fh, "\n");
 
 close(fh);
+
+##############################################################################
+# Output MANOVA files
+
+print(res$aov.tab);
+num_variables=nrow(res$aov.tab)-2;
+print(num_variables);
+
+if(TagName==""){
+	TagName="Variables";
+}
+
+outmat=matrix("", nrow=num_variables, ncol=3);
+colnames(outmat)=c(TagName, "Pr(>F)", "Signf");
+varnames=rownames(res$aov.tab);
+pvals=res$aov.tab[,"Pr(>F)"];
+
+outmat[,TagName]=varnames[1:num_variables];
+outmat[,"Pr(>F)"]=sprintf("%4.4f", pvals[1:num_variables]);
+outmat[,"Signf"]=sapply(pvals[1:num_variables], sig_char);
+
+print(outmat);
+
+write.table(outmat, file=paste(OutputFnameRoot, ".anova.summary.tsv", sep=""),
+	sep="\t", quote=FALSE, col.names=T, row.names=FALSE);
 
 ##############################################################################
 

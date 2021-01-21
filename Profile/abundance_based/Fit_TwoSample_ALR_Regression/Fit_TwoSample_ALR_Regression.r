@@ -31,7 +31,9 @@ params=c(
 	"outputroot", "o", 2, "character",
 
 	"contains_remaining", "R", 2, "logical",
-	"shorten_category_names", "x", 2, "character"
+	"shorten_category_names", "x", 2, "character",
+	
+	"tag_name", "t", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -62,6 +64,8 @@ usage = paste(
 	"	[-c <reference levels file for Y's in factor file>]\n",
 	"	[-R (pay attention to 'remaining' category)]\n",
 	"	[-x <shorten category names, with separator in double quotes (default=\"\")>]\n",
+	"\n",
+	"	[-t <tag name>]\n",
 	"\n",
 	"This script will fit the following 2 models for each category, i = 1 to ", NUM_TOP_RESP_CAT, ":\n",
 	"  where the top P=", NUM_TOP_PRED_CAT, " categories are included.\n",
@@ -134,7 +138,27 @@ if(length(opt$alr_list_file)){
 }else{
 	ALRCategListFile="";
 }
-	
+
+if(length(opt$tag_name)){
+	TagName=opt$tag_name;
+	cat("Setting TagName Hook: ", TagName, "\n");
+	setHook("plot.new",
+		function(){
+			#cat("Hook called.\n");
+			if(par()$page==T){
+				oma_orig=par()$oma;
+				exp_oma=oma_orig;
+				exp_oma[1]=max(exp_oma[1], 1);
+				par(oma=exp_oma);
+				mtext(paste("[", TagName, "]", sep=""), side=1, line=exp_oma[1]-1,
+					outer=T, col="steelblue4", font=2, cex=.8, adj=.97);
+				par(oma=oma_orig);
+			}
+		}, "append");
+
+}else{
+	TagName="";
+}
 
 SummaryFile=opt$summary_file;
 FactorsFile=opt$factors;
@@ -221,23 +245,29 @@ load_reference_levels_file=function(fname){
 }
 
 relevel_factors=function(factors, ref_lev_mat){
-        num_factors_to_relevel=nrow(ref_lev_mat);
-        relevel_names=rownames(ref_lev_mat);
+
+	num_factors_to_relevel=nrow(ref_lev_mat);
+	relevel_names=rownames(ref_lev_mat);
 	factor_names=colnames(factors);
-        for(i in 1:num_factors_to_relevel){
-		
-		target_relev_name=relevel_names[i];
-		if(any(target_relev_name==factor_names)){
-			tmp=factors[,target_relev_name];
-			#print(tmp);
-			tmp=relevel(tmp, ref_lev_mat[i, 1]);
-			#print(tmp);
-			factors[,target_relev_name]=tmp;
+
+	for(i in 1:num_factors_to_relevel){
+		relevel_target=relevel_names[i];
+
+		if(length(intersect(relevel_target, factor_names))){
+			target_level=ref_lev_mat[i, 1];
+			tmp=factors[,relevel_target];
+			if(length(intersect(target_level, tmp))){
+				tmp=relevel(tmp, target_level);
+    				factors[,relevel_target]=tmp;
+			}else{
+				cat("WARNING: Target level '", target_level,
+					"' not found in '", relevel_target, "'!!!\n", sep="");
+			}
 		}else{
-			cat("Note: ", target_relev_name, " not in model.  Ignoring reference releveling.\n\n", sep="");
+			cat("WARNING: Relevel Target Not Found: '", relevel_target, "'!!!\n", sep="");
 		}
-        }
-        return(factors);
+	}
+	return(factors);
 }
 
 merge_summary_tables=function(st1, st2){

@@ -67,6 +67,7 @@ usage = paste(
 	"The format of the 'death/status change file', is:\n",
 	"	<subject ID>\\t<time of death>\\n\n",
 	"Time of death, should match the time scale used in the -t option.\n",
+	"If subject did not die, the <time of death> should be NA.\n",
 	"\n",
 	"1.) Plot Kaplan-Meier Estimator Curve\n",
 	"2.) Calculate Cox Proportional Hazard\n",
@@ -236,23 +237,29 @@ load_reference_levels_file=function(fname){
 }
 
 relevel_factors=function(factors, ref_lev_mat){
-        num_factors_to_relevel=nrow(ref_lev_mat);
-        relevel_names=rownames(ref_lev_mat);
+
+	num_factors_to_relevel=nrow(ref_lev_mat);
+	relevel_names=rownames(ref_lev_mat);
 	factor_names=colnames(factors);
-        for(i in 1:num_factors_to_relevel){
-		
-		target_relev_name=relevel_names[i];
-		if(any(target_relev_name==factor_names)){
-			tmp=factors[,target_relev_name];
-			#print(tmp);
-			tmp=relevel(tmp, ref_lev_mat[i, 1]);
-			#print(tmp);
-			factors[,target_relev_name]=tmp;
+
+	for(i in 1:num_factors_to_relevel){
+		relevel_target=relevel_names[i];
+
+		if(length(intersect(relevel_target, factor_names))){
+			target_level=ref_lev_mat[i, 1];
+			tmp=factors[,relevel_target];
+			if(length(intersect(target_level, tmp))){
+				tmp=relevel(tmp, target_level);
+    				factors[,relevel_target]=tmp;
+			}else{
+				cat("WARNING: Target level '", target_level,
+					"' not found in '", relevel_target, "'!!!\n", sep="");
+			}
 		}else{
-			cat("Note: ", target_relev_name, " not in model.  Ignoring reference releveling.\n\n", sep="");
+			cat("WARNING: Relevel Target Not Found: '", relevel_target, "'!!!\n", sep="");
 		}
-        }
-        return(factors);
+	}
+	return(factors);
 }
 
 normalize=function(counts){
@@ -724,7 +731,7 @@ num_factors=ncol(factors);
 # Relevel factor levels
 if(ReferenceLevelsFile!=""){
         ref_lev_mat=load_reference_levels_file(ReferenceLevelsFile)
-        factors=relevel_factors(kept_factors, ref_lev_mat);
+        factors=relevel_factors(factors, ref_lev_mat);
 }else{
         cat("No Reference Levels File specified.\n");
 }
@@ -946,14 +953,22 @@ plot_alr_over_time=function(ids, times, end_time, alrs, time_range, alr_range, c
 	num_alrs=ncol(alrs);
 	for(cat_ix in 1:num_alrs){
 		if(is.null(keep) || any(cat_names[cat_ix]==keep)){
-			points(times, alrs[ids, cat_ix], type="l", 
+
+			alr_val=alrs[ids, cat_ix];
+			non_nas=!is.na(alr_val);
+
+			points(times[non_nas], alr_val[non_nas], type="l", 
 				col=colors[cat_names[cat_ix]], lwd=max_m-(cat_ix/num_alrs)*mult);
 		}
 		#points(times, alrs[ids, cat_ix], type="l", col="black", lwd=.05);
 	}
 	for(cat_ix in 1:num_alrs){
 		if(is.null(keep) || any(cat_names[cat_ix]==keep)){
-			points(times, alrs[ids, cat_ix], type="p", pch=16, 
+
+			alr_val=alrs[ids, cat_ix];
+			non_nas=!is.na(alr_val);
+
+			points(times[non_nas], alr_val[non_nas], type="p", pch=16, 
 				cex=max_m-(cat_ix/num_alrs)*mult, col=colors[cat_ix]);
 		}
 	}
@@ -1177,6 +1192,7 @@ for(coht_ix in uniq_coht_ids){
 		avg_alr_by_coht[[coht_ix]],
 		c(0, last_measured_time), alr_range, colors,
 		title=coht_ix);
+
 	
 	plot_death_over_time(
 		alr_by_coht[[coht_ix]][["death"]], c(0, last_measured_time), coht_ix
@@ -1296,7 +1312,7 @@ run_km_surv_analysis=function(event_info, grp_to_sbj_map, time_varname, subj_var
 
 	paint_matrix(
 		log_rank_pval_mat,
-		"Log Rank Pairwise Comparision of Groups",
+		"Log Rank Pairwise Comparison of Groups: P-value Matrix",
 		plot_min=0, plot_max=1, high_is_hot=F, deci_pts=3,
 		value.cex=5
 		);
@@ -1339,7 +1355,13 @@ plot_km=function(events_info, grp_to_sbj_map, grp_colors, time_varname, sbj_varn
 	prop_surv=prop_surv[grp_plot_order];
 	cat("(Ordered) Proportion of Survivors:\n");
 	print(prop_surv);
+	perc_surv_text=sprintf("%4.2f%%", prop_surv*100.0);
+	names(perc_surv_text)=names(prop_surv);
+	print(perc_surv_text);
 	ordgrp=names(prop_surv);
+
+	legend_labels=paste(ordgrp, " [", perc_surv_text, "]", sep="");
+	print(legend_labels);
 
 	max_event_time=max(as.numeric(events_info[,time_varname]));
 	cat("Max Event Time: ", max_event_time, "\n");
@@ -1347,14 +1369,22 @@ plot_km=function(events_info, grp_to_sbj_map, grp_colors, time_varname, sbj_varn
 	# Plot legend
 	plot(0,0, type="n", xlim=c(0, 1), ylim=c(0,1), xaxt="n", yaxt="n",
 		xlab="", ylab="", main="", bty="n");
-	legend(0,.5, legend=ordgrp, fill=grp_colors[ordgrp], bty="n");
+	legend(0,.5, 
+		title="Group [Survival%]",
+		legend=legend_labels, cex=1.5,
+		fill=grp_colors[ordgrp], bty="n");
 
 	# Setup plot for curves
 	par(mar=c(5,5,5,5));
 	plot(0,0, type="n", xlim=c(0, max_event_time), ylim=c(0,110),
 		cex.axis=2, cex.lab=2, cex.main=3,
+		yaxt="n",
 		main="Kaplan-Meier Plot",
 		xlab=time_varname, ylab="Percent Survival");
+
+	yax_pos=seq(0,100,20);
+	axis(4, at=yax_pos, labels=yax_pos, cex.axis=2);
+	axis(2, at=yax_pos, labels=yax_pos, cex.axis=2);
 
 
 	# Draw lines for each group
@@ -1380,11 +1410,18 @@ plot_km=function(events_info, grp_to_sbj_map, grp_colors, time_varname, sbj_varn
 		}
 
 	
-		linewidth=(num_grps-ix)*2-1;
+		# Make the line % thicker
+		linewidth=(1.5^(num_grps-1-ix));
+		#linewidth=(num_grps-ix)*4-3;
 		cat("Line Width:", linewidth, "\n");
 
-		points(x,y*100, cex=linewidth/2, type="p", pch=20, col=grp_colors[grix]);
-		points(x,y*100, lwd=linewidth, type="l", col=grp_colors[grix]);
+		# Outline
+		points(x,y*100, cex=linewidth/3, type="p", pch=20, col="black");
+		points(x,y*100, lwd=linewidth, type="l", col="black");
+
+		# Line
+		points(x,y*100, cex=linewidth/3*.90, type="p", pch=20, col=grp_colors[grix]);
+		points(x,y*100, lwd=linewidth*.85, type="l", col=grp_colors[grix]);
 
 		ix=ix+1;
 	}
@@ -2567,16 +2604,22 @@ plot_epochs_as_strip=function(avgs_list, epoch_names,
 
 	# Legend #############################################
 	plot(0, type="n", ylim=c(0,1), xlim=c(0,1), xlab="", ylab="", xaxt="n", yaxt="n", main="", bty="n");
-	legend(0, 1, legend=cht_names, fill=cht_colors, bty="n", cex=1.5);
-	
+	legend_labels=paste("(", 1:num_chts, ") ", cht_names, sep="");
+	legend(0, 1, legend=legend_labels, fill=cht_colors, bty="n", cex=1.5);
+
 
 	# Points/lines only ##################################
 	plot(0,0, type="n", xlim=c(1-.5,num_epochs+.5), ylim=range(mean_matrix, na.rm=T), 
 		xlab="", ylab="ALR Transformed Abundance", xaxt="n");
 	title(main="Epoch Means by Cohort", line=0.25);
 	axis(side=1, at=1:num_epochs, labels=epoch_names);
+
+	cht_num=1;
 	for(cht_id in cht_names){
 		points(1:num_epochs, mean_matrix[, cht_id], col=cht_colors[cht_id], type="b");
+		text(1, mean_matrix[1, cht_id], cht_num, cex=.75, pos=2);
+		text(num_epochs, mean_matrix[num_epochs, cht_id], cht_num, cex=.75, pos=4);
+		cht_num=cht_num+1;
 	}
 
 	# Side by side with 95% CI ##########################
@@ -2639,6 +2682,128 @@ plot_epochs_as_strip=function(avgs_list, epoch_names,
 	plot(0,0, type="n", xlab="", ylab="", bty="n", xaxt="n", yaxt="n");
 
 	mtext(mtitle, side=3, outer=T, font=2);
+
+}
+
+###############################################################################
+
+plot_comparison_to_baseline=function(collapsed_alr, alr_colname, cht_colname, cht_colors, alr_ranges, mtitle){
+
+	cat("\n\nPlotting Comparisons to Baseline\n\n");
+
+	time_epoch_names=names(collapsed_alr);
+	num_epochs=length(time_epoch_names);
+
+	cat("Time Epochs:\n");
+	print(time_epoch_names);
+	
+	cat("Num Epochs: ", num_epochs, "\n", sep="");
+
+	cat("Samples in each Epoch:\n");
+	for(ep_nm in time_epoch_names){
+		cat("\t", ep_nm, " : ", nrow(collapsed_alr[[ep_nm]]), "\n");
+	}
+
+	cat("Cohort Groups:\n");
+	cohort_names=names(cht_colors);
+	print(cohort_names);
+
+	cat("\n");
+	cohort_survival_membership=list();
+	cohort_survival_membership[[time_epoch_names[1]]]=collapsed_alr[[time_epoch_names[1]]];
+
+	for(epix in 1:(num_epochs-1)){
+
+		cat("Comparing: ", time_epoch_names[epix], " to ", time_epoch_names[epix+1], "\n");
+		before_cht=rownames(collapsed_alr[[time_epoch_names[epix]]]);
+		after_cht=rownames(collapsed_alr[[time_epoch_names[epix+1]]]);
+
+		survivors=after_cht;
+		non_survivors=setdiff(before_cht, after_cht);
+
+		surv_name=paste(time_epoch_names[epix], ":Survive_to_nextEpoch", sep="");
+		nons_name=paste(time_epoch_names[epix], ":NonSurv_to_nextEpoch", sep="");
+		cohort_survival_membership[[surv_name]]=collapsed_alr[[time_epoch_names[epix]]][survivors,];
+		cohort_survival_membership[[nons_name]]=collapsed_alr[[time_epoch_names[epix]]][non_survivors,];
+		
+	}
+
+	cohort_survival_membership[[time_epoch_names[num_epochs]]]=collapsed_alr[[time_epoch_names[num_epochs]]];
+
+	epoch_surv_groups=names(cohort_survival_membership);
+	num_epoch_surv_groups=length(epoch_surv_groups);
+
+	effect_matrix=matrix(NA, nrow=num_epoch_surv_groups, ncol=num_epoch_surv_groups);
+	colnames(effect_matrix)=epoch_surv_groups;
+	rownames(effect_matrix)=epoch_surv_groups;
+
+	pvalue_matrix=matrix(NA, nrow=num_epoch_surv_groups, ncol=num_epoch_surv_groups);
+	colnames(pvalue_matrix)=epoch_surv_groups;
+	rownames(pvalue_matrix)=epoch_surv_groups;
+
+	for(cht_ix in c("[Overall]", cohort_names)){
+
+		cat("Working On: ", mtitle, " / ", cht_ix, "\n");
+
+		for(eg_ixA in 1:num_epoch_surv_groups){
+
+			eganm=epoch_surv_groups[eg_ixA];
+
+			a_row_ix=cohort_survival_membership[[eganm]][,cht_colname]==cht_ix;
+
+			if(cht_ix=="[Overall]"){
+				a_row_ix=rep(TRUE, length(a_row_ix));
+			}
+
+			aval=cohort_survival_membership[[eganm]][a_row_ix,alr_colname];
+
+			for(eg_ixB in 1:num_epoch_surv_groups){
+
+				egbnm=epoch_surv_groups[eg_ixB];
+
+				b_row_ix=cohort_survival_membership[[egbnm]][,cht_colname]==cht_ix;
+
+				if(cht_ix=="[Overall]"){
+					b_row_ix=rep(TRUE, length(b_row_ix));
+				}
+
+				bval=cohort_survival_membership[[egbnm]][b_row_ix,alr_colname];
+
+				if(eg_ixA<eg_ixB){
+
+					if(length(aval)<2 || length(bval)<2){
+						pval=NA; 
+					}else{
+						
+						cat("A:", eganm, "\n");
+						print(aval);
+						cat("B:", egbnm, "\n");
+						print(bval);
+						cat("\n");
+						res=wilcox.test(aval, bval);  
+						pval=res$p.value;
+					}
+					pvalue_matrix[eg_ixA, eg_ixB]=pval;
+					effect_matrix[eg_ixA, eg_ixB]=mean(bval)-mean(aval);
+				}
+
+			}
+		}
+
+		paint_matrix(effect_matrix, 
+			paste(mtitle, ":\n", cht_ix, "\nDifference: Later-Earlier (+, incr over time)", sep=""));
+		paint_matrix(pvalue_matrix, 
+			paste(mtitle, ":\n", cht_ix, "\nDifference, P-value", sep=""), 
+			plot_min=0, plot_max=1, high_is_hot=F, deci_pts=3);
+
+	}
+
+	#print(alr_colname);
+	#print(cht_colname);
+	#print(cht_colors);
+	#print(alr_ranges);
+	#print(mtitle);
+
 }
 
 ###############################################################################

@@ -25,7 +25,9 @@ params=c(
 	"outputroot", "o", 2, "character",
 
 	"contains_remaining", "R", 2, "logical",
-	"shorten_category_names", "x", 2, "character"
+	"shorten_category_names", "x", 2, "character",
+
+	"tag_name", "t", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -48,6 +50,8 @@ usage = paste(
 	"\n",
 	"	[-R (pay attention to 'remaining' category)]\n",
 	"	[-x <shorten category names, with separator in double quotes (default=\"\")>]\n",
+	"\n",
+	"	[-t <tag name>]\n",
 	"\n",
 	"This script will fit the following model:\n",
 	"\n",
@@ -104,6 +108,28 @@ if(length(opt$additional_categories)){
 }else{
 	AdditionalCatFile="";
 }
+
+if(length(opt$tag_name)){
+	TagName=opt$tag_name;
+	cat("Setting TagName Hook: ", TagName, "\n");
+	setHook("plot.new", 
+		function(){
+			#cat("Hook called.\n");
+			if(par()$page==T){
+				oma_orig=par()$oma;
+				exp_oma=oma_orig;
+				exp_oma[1]=max(exp_oma[1], 1);
+				par(oma=exp_oma);
+				mtext(paste("[", TagName, "]", sep=""), side=1, line=exp_oma[1]-1, 
+					outer=T, col="steelblue4", font=2, cex=.8, adj=.97);
+				par(oma=oma_orig);
+			}
+		}, "append");
+			
+}else{
+	TagName="";
+}
+
 
 SummaryFile=opt$summary_file;
 FactorsFile=opt$factors;
@@ -178,23 +204,29 @@ load_reference_levels_file=function(fname){
 }
 
 relevel_factors=function(factors, ref_lev_mat){
-        num_factors_to_relevel=nrow(ref_lev_mat);
-        relevel_names=rownames(ref_lev_mat);
+
+	num_factors_to_relevel=nrow(ref_lev_mat);
+	relevel_names=rownames(ref_lev_mat);
 	factor_names=colnames(factors);
-        for(i in 1:num_factors_to_relevel){
-		
-		target_relev_name=relevel_names[i];
-		if(any(target_relev_name==factor_names)){
-			tmp=factors[,target_relev_name];
-			#print(tmp);
-			tmp=relevel(tmp, ref_lev_mat[i, 1]);
-			#print(tmp);
-			factors[,target_relev_name]=tmp;
+
+	for(i in 1:num_factors_to_relevel){
+		relevel_target=relevel_names[i];
+
+		if(length(intersect(relevel_target, factor_names))){
+			target_level=ref_lev_mat[i, 1];
+			tmp=factors[,relevel_target];
+			if(length(intersect(target_level, tmp))){
+				tmp=relevel(tmp, target_level);
+    				factors[,relevel_target]=tmp;
+			}else{
+				cat("WARNING: Target level '", target_level,
+					"' not found in '", relevel_target, "'!!!\n", sep="");
+			}
 		}else{
-			cat("Note: ", target_relev_name, " not in model.  Ignoring reference releveling.\n\n", sep="");
+			cat("WARNING: Relevel Target Not Found: '", relevel_target, "'!!!\n", sep="");
 		}
-        }
-        return(factors);
+	}
+	return(factors);
 }
 
 normalize=function(counts){
@@ -296,7 +328,7 @@ additive_log_ratio=function(ordered_matrix){
 
 plot_text=function(strings){
 	par(family="Courier");
-	par(oma=rep(.1,4));
+	par(oma=rep(1,4));
 	par(mar=rep(0,4));
 
 	num_lines=length(strings);
@@ -1377,6 +1409,24 @@ write.table(exp_tab,  file=paste(OutputRoot, ".alr_as_pred.coefs.tsv", sep=""), 
 # Write R^2 Reduced/Full Model stats
 
 write.table(improv_mat, file=paste(OutputRoot, ".alr_as_pred.rsqrd.tsv", sep=""), sep="\t", quote=F, col.names=NA, row.names=T);
+
+###############################################################################
+# Write MANOVA to file
+
+if(length(manova_res)){
+	num_variables=nrow(manova_res)-1;
+	outmat=matrix("", nrow=num_variables, ncol=3);
+	colnames(outmat)=c(TagName, "Pr(>F)", "Signf");
+	varnames=unlist(rownames(manova_res));
+	pvals=unlist(manova_res["Pr(>F)"]);
+	outmat[,TagName]=varnames[1:num_variables];
+	outmat[,"Pr(>F)"]=sprintf("%4.4f", pvals[1:num_variables]);
+	outmat[,"Signf"]=sapply(pvals[1:num_variables], sig_char); 
+}else{
+	outmat=matrix("-", nrow=1, ncol=2);
+	colnames(outmat)=c(TagName, "Pr(>F)");
+}
+write.table(outmat, file=paste(OutputRoot, ".alr_as_pred.anova.summary.tsv", sep=""), sep="\t", quote=F, col.names=T, row.names=F);
 
 ###############################################################################
 

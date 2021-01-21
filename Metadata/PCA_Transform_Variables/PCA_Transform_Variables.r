@@ -13,7 +13,7 @@ params=c(
 	"outputroot", "o", 1, "character",
 	"predictor", "p", 1, "character",
 	"response", "r", 2, "character",
-	"donnot_transform", "t", 2, "character",
+	"donnot_transform", "t", 2, "logical",
 	"pc_coverage", "c", 2, "numeric",
 	"export_orig", "O", 2, "logical",
 	"export_curated", "C", 2, "logical",
@@ -125,8 +125,8 @@ load_factors=function(fname){
 
 load_list=function(fname){
 	cat("Loading: ", fname, "\n");
-	lst=scan(fname, what=character());
-	return(lst);	
+	lst=read.delim(fname, header=F, check.names=F, comment.char="#", as.is=T);
+	return(lst[,1]);	
 }
 
 test_and_apply_log_transform=function(mat_val, pval_cutoff=.2, plot_before_after=T){
@@ -142,13 +142,21 @@ test_and_apply_log_transform=function(mat_val, pval_cutoff=.2, plot_before_after
 		par(mfrow=c(5,2));
 	}
 
+	delete_list=c();
 	for(var in orig_colnames){
 		values=mat_val[,var];
+
+
 		transformed=F;
 
 		num_unique_val=length(setdiff(unique(values), NA));
 		values_nona=values[!is.na(values)];
 		num_nona=length(values_nona);
+
+		if(!is.numeric(values_nona)){
+			cat("Error: Values not numeric for: ", var, "\n", sep="");
+			print(values_nona);
+		}
 
 		if(num_nona<=3){
 			cat("Not enough non NA values to measure normality.\n");
@@ -164,32 +172,41 @@ test_and_apply_log_transform=function(mat_val, pval_cutoff=.2, plot_before_after
 
 		cat("\n", var, ": Num Unique Values: ", num_unique_val, "\n");
 
-		test_res=shapiro.test(values);
+		if(num_unique_val>1){
 
-		if(test_res$p.value<=pval_cutoff && num_unique_val>2){
-			cat(" Not normal: ", test_res$p.value, "\n");
-			if(any(values_nona==0)){
-				log_values=log(values+1);
+			test_res=shapiro.test(values);
+
+			if(test_res$p.value<=pval_cutoff && num_unique_val>2){
+				cat(" Not normal: ", test_res$p.value, "\n");
+				if(any(values_nona==0)){
+					log_values=log(values+1);
+				}else{
+					log_values=log(values);
+				}
+
+				test_log_res=shapiro.test(log_values);
+
+				if(test_log_res$p.value < test_res$p.value){
+					# Keep original
+					cat("  No Improvement: ", test_log_res$p.value, "\n");
+					new_colnames=c(new_colnames, paste("orig_", var, sep=""));
+				}else{
+					# Keep log transformed
+					cat("  Transformation Effective: ", test_log_res$p.value, "\n");
+					new_colnames=c(new_colnames, paste("log_", var, sep=""));
+					trans_mat[, var]=log_values;
+					transformed=T;		
+				}
 			}else{
-				log_values=log(values);
+				cat(" Normal enough. ", test_res$p.value, "\n");
+				new_colnames=c(new_colnames, var);
 			}
 
-			test_log_res=shapiro.test(log_values);
-
-			if(test_log_res$p.value < test_res$p.value){
-				# Keep original
-				cat("  No Improvement: ", test_log_res$p.value, "\n");
-				new_colnames=c(new_colnames, paste("orig_", var, sep=""));
-			}else{
-				# Keep log transformed
-				cat("  Transformation Effective: ", test_log_res$p.value, "\n");
-				new_colnames=c(new_colnames, paste("log_", var, sep=""));
-				trans_mat[, var]=log_values;
-				transformed=T;		
-			}
 		}else{
-			cat(" Normal enough. ", test_res$p.value, "\n");
-			new_colnames=c(new_colnames, var);
+			cat("  All values identical, removing...\n");
+			new_name=paste("all_ident_", var, sep="");
+			new_colnames=c(new_colnames, new_name);
+			delete_list=c(delete_list, new_name);
 		}
 
 		if(plot_before_after){
@@ -209,12 +226,16 @@ test_and_apply_log_transform=function(mat_val, pval_cutoff=.2, plot_before_after
 		}
 
 	}
+
 	colnames(trans_mat)=new_colnames;
 
+	trans_mat=trans_mat[,setdiff(new_colnames, delete_list),drop=F];
 
 	if(plot_before_after){
 		par(orig_par);
 	}
+
+	
 
 	return(trans_mat);
 }
@@ -339,11 +360,16 @@ resp_mat=loaded_factors[, responses_arr, drop=F];
 orig_pred_names=predictors_arr;
 orig_resp_names=responses_arr;
 
-cat("Testing Predictor Variables for normality.\n");
-curated_pred_mat=test_and_apply_log_transform(pred_mat, NORM_PVAL_CUTOFF);
+if(DonnotTransform){
+	curated_pred_mat=pred_mat;
+	curated_resp_mat=resp_mat;
+}else{
+	cat("Testing Predictor Variables for normality.\n");
+	curated_pred_mat=test_and_apply_log_transform(pred_mat, NORM_PVAL_CUTOFF);
 
-cat("Testing Response Variables for normality.\n");
-curated_resp_mat=test_and_apply_log_transform(resp_mat, NORM_PVAL_CUTOFF);
+	cat("Testing Response Variables for normality.\n");
+	curated_resp_mat=test_and_apply_log_transform(resp_mat, NORM_PVAL_CUTOFF);
+}
 
 ##############################################################################
 
@@ -392,10 +418,17 @@ for(pred_name in curated_predictors_arr){
 		sumfit=summary(fit);
 
 		# Pull regression stats
-		pval_arr[i]=sumfit$coefficients["pred_val", "Pr(>|t|)"];
-		coef_arr[i]=sumfit$coefficients["pred_val", "Estimate"];
-		rsqd_arr[i]=sumfit$r.squared;
-		fit_arr[[i]]=fit;
+		if(length(intersect("pred_val", rownames(sumfit$coefficients)))){
+			pval_arr[i]=sumfit$coefficients["pred_val", "Pr(>|t|)"];
+			coef_arr[i]=sumfit$coefficients["pred_val", "Estimate"];
+			rsqd_arr[i]=sumfit$r.squared;
+			fit_arr[[i]]=fit;
+		}else{
+			pval_arr[i]=1;
+			coef_arr[i]=0;
+			rsqd_arr[i]=0;
+			fit_arr[[i]]=NA;
+		}
 	
 		i=i+1;
 	}
@@ -423,7 +456,9 @@ for(pred_name in curated_predictors_arr){
 			main=paste(orig_resp_names[i], signf_char, sep=""));
 
 		# Draw regression line
-		abline(fit_arr[[i]], col="blue");
+		if(!is.na(fit_arr[[i]])){
+			abline(fit_arr[[i]], col="blue");
+		}
 		stat_info=paste(
 			"coeff=", signif(coef_arr[i],2), 
 			"  p-val=", sprintf("%3.3f", pval_arr[i]),
@@ -651,7 +686,7 @@ eigen=eigen(pred_correl$val);
 # Compute variance contribution of each PC
 pca_propvar=eigen$values/sum(eigen$values);
 pca_propcumsum=cumsum(pca_propvar);
-num_pc_at_cutoff=sum(pca_propcumsum<PCCoverage);
+num_pc_at_cutoff=sum(pca_propcumsum<PCCoverage)+1;
 
 # Compute per sample scores
 scores=(scale(imputed_mat, center=T, scale=T) %*% eigen$vectors);
@@ -671,16 +706,18 @@ plot_text(c(
 ));
 
 # Plot bar plots of PC variance explanation
+num_kept_pred=length(pca_propvar);
 par(mfrow=c(2,1));
 par(mar=c(7,4,2,2));
-colors=rep("grey",num_pred);
+colors=rep("grey",num_kept_pred);
 colors[1:num_pc_at_cutoff]="darkcyan";
 
-mids=barplot(pca_propvar, las=2, names.arg=1:num_pred, xlab="PCs", 
+
+mids=barplot(pca_propvar, las=2, names.arg=1:num_kept_pred, xlab="PCs", 
 	col=colors,
 	ylab="Proportion", main="PCA Proportion of Variance");
 
-mids=barplot(pca_propcumsum, las=2, names.arg=1:num_pred, xlab="PCs", 
+mids=barplot(pca_propcumsum, las=2, names.arg=1:num_kept_pred, xlab="PCs", 
 	col=colors,
 	ylab="Proportion", main="PCA Cumulative Variance");
 abline(h=PCCoverage, col="blue", lty=2);
@@ -732,19 +769,19 @@ for(i in seq(1,num_pc_at_cutoff+1,2)){
 
 # Calculate correlation between each PC and the predictors
 
-
-par(mar=c(6,3,2,1));
+par(mfrow=c(2,2));
+par(mar=c(12,3,2,1));
 positive_scores=scores;
 
-pc_name=paste("PC", sprintf("%02g", 1:num_pred), sep="");
+pc_name=paste("PC", sprintf("%02g", 1:num_kept_pred), sep="");
 for(i in 1:num_pc_at_cutoff){
 	
 	pc=scores[,i];
 	nonna_pc=!is.na(pc);
 
-	pc_pred_cor=numeric(num_pred);
+	pc_pred_cor=numeric(num_kept_pred);
 	names(pc_pred_cor)=colnames(curated_pred_mat)
-	for(pix in 1:num_pred){
+	for(pix in 1:num_kept_pred){
 
 		prd=curated_pred_mat[,pix];
 		nonna_prd=!is.na(prd);
@@ -773,8 +810,11 @@ for(i in 1:num_pc_at_cutoff){
 		round(pc_pred_cor_ordered[1]*100, 0), "_", 
 		ordered_names[1], sep="");
 
-	barplot(pc_pred_cor_ordered, 
-		names.arg=names(pc_pred_cor_ordered), 
+	# Max bars to plot
+	num_corr_bars_to_plot=min(20, length(pc_pred_cor_ordered));
+
+	barplot(pc_pred_cor_ordered[1:num_corr_bars_to_plot], 
+		names.arg=names(pc_pred_cor_ordered)[1:num_corr_bars_to_plot], 
 		ylim=c(-1,1),
 		ylab="Correlation",
 		las=2, cex.names=.7,
@@ -815,7 +855,7 @@ highlight_pcs=function(x){
 dend=dendrapply(dend, highlight_pcs);
 
 par(mfrow=c(1,1));
-par(mar=c(2,1,1,9));
+par(mar=c(2,1,1,20));
 plot(dend, horiz=T, main="Ward's Minimum Variance: dist(1-abs(cor)) with PCs");
 
 ##############################################################################

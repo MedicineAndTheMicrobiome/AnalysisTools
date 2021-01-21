@@ -23,7 +23,8 @@ params=c(
 	"dist_type", "d", 2, "character",
 	"num_sub_samp", "s", 2, "numeric",
 	"sample_inclusion_fname", "c", 2, "character",
-	"num_bootstraps", "b", 2, "numeric"
+	"num_bootstraps", "b", 2, "numeric",
+	"tag_name", "t", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -38,6 +39,7 @@ usage = paste(
 	"	[-s <sub sample size, default=all>]\n",
 	"	[-c <sample inClusion filename>]\n",
 	"	[-b <num bootstraps, default=", DEF_NUM_BS, ">]\n",
+	"	[-t <tag name>]\n",
 	"\n",
 	"This script identifies the recommended number of clusters to split the data\n",
 	"into based on the Calinski-Harabasz statistic.  It is a Pseudo-F statistic\n",
@@ -105,6 +107,27 @@ if(!any(dist_type == c("wrd","man","bray","horn","bin","gow","euc","tyc","minkp3
 SampleIncFname="";
 if(length(opt$sample_inclusion_fname)){
 	SampleIncFname=opt$sample_inclusion_fname;
+}
+
+if(length(opt$tag_name)){
+        TagName=opt$tag_name;
+        cat("Setting TagName Hook: ", TagName, "\n");
+        setHook("plot.new",
+                function(){
+                        cat("Hook called.\n");
+                        if(par()$page==T){
+                                oma_orig=par()$oma;
+                                exp_oma=oma_orig;
+                                exp_oma[1]=max(exp_oma[1], 1);
+                                par(oma=exp_oma);
+                                mtext(paste("[", TagName, "]", sep=""), side=1, line=exp_oma[1]-1,
+                                        outer=T, col="steelblue4", font=2, cex=.8, adj=.97);
+                                par(oma=oma_orig);
+                        }
+                }, "append");
+
+}else{
+        TagName="";
 }
 
 ###############################################################################

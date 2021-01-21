@@ -15,6 +15,7 @@ script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
 LOG_FILE_NAME="fastq_qc_log";
 LOG_FILE_EXT="tsv";
 CTL_REGEX="^00[0-9][0-9]\\.";
+
 POSTQC_DIR="PostQC";
 
 usage = paste (
@@ -38,6 +39,10 @@ usage = paste (
 	"\n",
 	"Output will go into the specific -d directory, under a new\n",
 	"directory named, ", POSTQC_DIR, "\n",
+	"\n",
+	"Experimental samples will be split by taking the first\n",
+	"four digits of the sampleID. Plots and tables will be generated\n",
+	"for both individual experiments and the experimentals as a whole\n",
 	"\n",
 	"The control names, specified with the regex: ", CTL_REGEX, "\n",
 	"will be split out before the analyses begin.\n",
@@ -75,128 +80,7 @@ plot_text=function(strings){
         }
 }
 
-###############################################################################
-
-QC_LogDir=opt$directory;
-post_qc_res_dir=paste(QC_LogDir, "/PostQC", sep="");
-
-cat("\n")
-cat("QC Result Directory: ", QC_LogDir, "\n");
-cat("Post QC Result Directory: ", post_qc_res_dir, "\n");
-
-dir.create(post_qc_res_dir);
-
-###############################################################################
-
-# Find list of files in directory
-pattern=paste(LOG_FILE_NAME, "\\.\\d+\\.", LOG_FILE_EXT, sep="");
-cat("Log Pattern: ", pattern, "\n");
-qc_log_files_arr=sort(list.files(QC_LogDir, pattern=pattern));
-qc_log_fullpath_arr=paste(QC_LogDir, "/", qc_log_files_arr, sep="");
-print(qc_log_fullpath_arr);
-
-cat("\n");
-cat("Found these log files:\n");
-print(qc_log_files_arr);
-
-num_log_files=length(qc_log_files_arr);
-
-cat("\nNumber of log files: ", num_log_files, "\n", sep="");
-
-# Parse files names
-name_parse=strsplit(qc_log_files_arr, "\\.");
-indices_found=numeric();
-for(i in 1:num_log_files){
-	indices_found[i]=as.numeric(name_parse[[i]][2]);
-}
-indices_found=sort(indices_found);
-
-cat("Indices Found:\n");
-print(indices_found);
-
-# Confirm all files in range exist
-if(all(indices_found==(1:num_log_files))){
-	cat("Indices found across expected range. (1 - ", num_log_files, ")\n", sep="");
-}else{
-	cat("Error:  Unexpected differences between found and expected log file indices.\n");
-}
-
-###############################################################################
-
-full_file_fname=paste(post_qc_res_dir, "/",LOG_FILE_NAME, "._ALL_.", LOG_FILE_EXT, sep="");
-cat("Concatenating all files into: ", full_file_fname, "\n", sep="");
-
-full_tab=data.frame();
-
-for(i in 1:num_log_files){
-	cur_file=qc_log_files_arr[i];
-	cat("Loading: ", cur_file, "\n"); 
-	tab=read.table(qc_log_fullpath_arr[i], header=T, sep="\t", comment.char="");
-	
-	cnam=colnames(tab);
-	cnam[1:3]=c("SampleID", "Direction", "QCStep");
-	colnames(tab)=cnam;
-
-	full_tab=rbind(full_tab, tab);
-}
-
-uniq_samp_ids=sort(unique(as.character(full_tab[,"SampleID"])));
-num_samp_ids=length(uniq_samp_ids);
-
-cat("Number of Samples Read:\n", num_samp_ids, "\n");
-
-write.table(full_tab, file=full_file_fname, sep="\t", quote=F, row.names=F);
-
-###############################################################################
-
-cat("Splitting out controls based on: ", CTL_REGEX, "\n");
-ctl_ix=grep(CTL_REGEX, full_tab[,"SampleID"]);
-
-ctl_tab=full_tab[ctl_ix,,drop=F];
-exp_tab=full_tab[-ctl_ix,,drop=F];
-
-ctl_ids=as.character(ctl_tab[,"SampleID"]);
-exp_ids=as.character(exp_tab[,"SampleID"]);
-
-uniq_ctl_ids=sort(unique(ctl_ids));
-uniq_exp_ids=sort(unique(exp_ids));
-
-num_uniq_ctl_ids=length(uniq_ctl_ids);
-num_uniq_exp_ids=length(uniq_exp_ids);
-
-cat("Control IDs:\n");
-print(uniq_ctl_ids);
-cat("\n");
-cat("Experimental IDs:\n");
-print(uniq_exp_ids);
-cat("\n");
-
-# Extract out first sample's steps as a basis
-first_exp=uniq_exp_ids[1];
-first_entry=exp_tab[first_exp==exp_ids,];
-
-forw_steps=as.character(first_entry[first_entry[,"Direction"]=="F","QCStep"]);
-reve_steps=as.character(first_entry[first_entry[,"Direction"]=="R","QCStep"]);
-
-rev_reads_found=T;
-if(length(reve_steps)==0){
-	rev_reads_found=F;	
-}
-
-if(length(forw_steps)==length(reve_steps) && !all(forw_steps==reve_steps)){
-	cat("Error: Forward and Reverse steps don't match.\n");
-	cat("Forward:\n");
-	print(forw_steps);
-	cat("Reverse:\n");
-	print(reve_steps);
-	cat("\n");
-	quit(-1);
-}
-
-qc_steps=forw_steps;
-
-cat("Step Order Identified:\n");
-print(qc_steps);
+#------------------------------------------------------------------------------
 
 plot_step_histograms=function(table, directions, steps, target_stats){
 
@@ -277,56 +161,7 @@ plot_step_histograms=function(table, directions, steps, target_stats){
 	}	
 }
 
-
-pdf(paste(post_qc_res_dir, "/", LOG_FILE_NAME, ".summary.pdf", sep=""), height=11, width=8.5);
-
-partial_tab=exp_tab[,
-	c("SampleID", "Direction", "QCStep", "NumRecords", "NumBases", "LB95Len", "LB95QV")];
-
-target_stats=c("NumRecords", "NumBases", "LB95Len", "LB95QV");
-
-plot_text(c(
-	"QC Run Post-Analysis:",
-	"",
-	paste("Run on: ", date(), sep=""),
-	paste("Run by: ", system("whoami", intern=T), sep=""),
-	"",
-	paste("Command: "),
-	paste("\t", commandArgs()),
-	"",
-	paste("Working Directory: ", getwd()),
-	paste("Target Directory: ", QC_LogDir, sep=""),
-	paste("Output Directory: ", post_qc_res_dir, sep=""),
-	"",
-	paste("Num Log Files Detected: ", num_log_files, sep=""),
-	paste("Num Sample IDs Detected: ", num_samp_ids, sep=""),
-	paste("Control Regular Expression: ", CTL_REGEX, sep=""),
-	paste("Num Controls Detected: ", num_uniq_ctl_ids, sep=""),
-	paste("Num Experimentals Detected: ", num_uniq_exp_ids, sep=""),
-	"",
-	paste("Num QC Steps Detected: ", length(qc_steps)),
-	paste(capture.output(print(qc_steps, quote=F)))
-));
-
-###############################################################################
-	
-par(mfrow=c(1,1));
-plot(0, xlim=c(-1,1), ylim=c(-1,1), type="n", bty="n", xaxt="n", yaxt="n", main="", xlab="", ylab="");
-text(0,0, "Forward vs. Reverse Reads", font=2, cex=3);
-
-plot_step_histograms(partial_tab, c("F", "R"), qc_steps, target_stats);
-
-par(mfrow=c(1,1));
-plot(0, xlim=c(-1,1), ylim=c(-1,1), type="n", bty="n", xaxt="n", yaxt="n", main="", xlab="", ylab="");
-text(0,0, "Pairability Results", font=2, cex=3);
-plot_step_histograms(partial_tab, c("for_frag", "rev_frag", "paired"), "merged", target_stats);
-
-###############################################################################
-
-paired_merged_ix=((partial_tab[,"Direction"]=="paired") & (partial_tab[,"QCStep"]=="merged"));
-paired_merged_num_records=partial_tab[paired_merged_ix, "NumRecords"];
-paired_merged_samp_id=partial_tab[paired_merged_ix, "SampleID"];
-names(paired_merged_num_records)=paired_merged_samp_id;
+#------------------------------------------------------------------------------
 
 plot_bar_cutoffs=function(values, cutoffs){
 	
@@ -360,15 +195,9 @@ plot_bar_cutoffs=function(values, cutoffs){
 
 }
 
+#------------------------------------------------------------------------------
 
-num_pairable_sequences=paired_merged_num_records/2;
-
-targeted_cutoffs=c(750, 1000, 2000, 3000, 10000, 20000, 50000, 10^ceiling(log10(max(num_pairable_sequences))));
-plot_bar_cutoffs(num_pairable_sequences, targeted_cutoffs);
-
-###############################################################################
-
-export_redos=function(fname_root, counts_wnames, cutoffs){
+export_redos=function(fname_root, counts_wnames, cutoffs, project_id_extension){
 
 	num_cutoff=length(cutoffs);
 	cutoffs=sort(cutoffs);
@@ -380,9 +209,11 @@ export_redos=function(fname_root, counts_wnames, cutoffs){
 	for(cutix in cutoffs){
 
 		if(is.infinite(cutix)){
-			fname=paste(fname_root, ".paird_cnts.ALL", ".tsv", sep="");
+			fname=paste(fname_root, ".", project_id_extension, 
+				".paird_cnts.ALL", ".tsv", sep="");
 		}else{
-			fname=paste(fname_root, ".paird_cnts.lt_", sprintf(spf_str, cutix), ".tsv", sep="");
+			fname=paste(fname_root, ".", project_id_extension, 
+				".paird_cnts.lt_", sprintf(spf_str, cutix), ".tsv", sep="");
 		}
 
 		below=as.matrix(counts_wnames[counts_wnames<cutix]);
@@ -393,12 +224,219 @@ export_redos=function(fname_root, counts_wnames, cutoffs){
 
 }
 
+###############################################################################
+
+QC_LogDir=opt$directory;
+post_qc_res_dir=paste(QC_LogDir, "/PostQC", sep="");
+
+cat("\n")
+cat("QC Result Directory: ", QC_LogDir, "\n");
+cat("Post QC Result Directory: ", post_qc_res_dir, "\n");
+
+dir.create(post_qc_res_dir);
+
+###############################################################################
+
+# Find list of files in directory
+pattern=paste(LOG_FILE_NAME, "\\.\\d+\\.", LOG_FILE_EXT, sep="");
+cat("Log Pattern: ", pattern, "\n");
+qc_log_files_arr=sort(list.files(QC_LogDir, pattern=pattern));
+qc_log_fullpath_arr=paste(QC_LogDir, "/", qc_log_files_arr, sep="");
+print(qc_log_fullpath_arr);
+
 cat("\n");
+cat("Found these log files:\n");
+print(qc_log_files_arr);
 
-export_redos(paste(post_qc_res_dir, "/", LOG_FILE_NAME, sep=""), 
-	sort(num_pairable_sequences), c(750,1000,2000,3000,Inf));
+num_log_files=length(qc_log_files_arr);
 
-dev.off();
+cat("\nNumber of log files: ", num_log_files, "\n", sep="");
+
+# Parse files names
+name_parse=strsplit(qc_log_files_arr, "\\.");
+indices_found=numeric();
+for(i in 1:num_log_files){
+	indices_found[i]=as.numeric(name_parse[[i]][2]);
+}
+indices_found=sort(indices_found);
+
+cat("Indices Found:\n");
+print(indices_found);
+
+# Confirm all files in range exist
+if(all(indices_found==(1:num_log_files))){
+	cat("Indices found across expected range. (1 - ", num_log_files, ")\n", sep="");
+}else{
+	cat("Error:  Unexpected differences between found and expected log file indices.\n");
+}
+
+###############################################################################
+
+full_file_fname=paste(post_qc_res_dir, "/",LOG_FILE_NAME, "._ALL_.", LOG_FILE_EXT, sep="");
+cat("Concatenating all files into: ", full_file_fname, "\n", sep="");
+
+full_tab=data.frame();
+
+for(i in 1:num_log_files){
+	cur_file=qc_log_files_arr[i];
+	cat("Loading: ", cur_file, "\n"); 
+	tab=read.table(qc_log_fullpath_arr[i], header=T, sep="\t", comment.char="");
+	
+	cnam=colnames(tab);
+	cnam[1:3]=c("SampleID", "Direction", "QCStep");
+	colnames(tab)=cnam;
+
+	full_tab=rbind(full_tab, tab);
+}
+
+uniq_samp_ids=sort(unique(as.character(full_tab[,"SampleID"])));
+num_samp_ids=length(uniq_samp_ids);
+
+cat("Number of Samples Read:\n", num_samp_ids, "\n");
+
+write.table(full_tab, file=full_file_fname, sep="\t", quote=F, row.names=F);
+
+###############################################################################
+
+cat("Splitting out controls based on: ", CTL_REGEX, "\n");
+ctl_ix=grep(CTL_REGEX, full_tab[,"SampleID"]);
+ctl_tab=full_tab[ctl_ix,,drop=F];
+exp_tab=full_tab[-ctl_ix,,drop=F];
+
+ctl_ids=as.character(ctl_tab[,"SampleID"]);
+exp_ids=as.character(exp_tab[,"SampleID"]);
+
+# Parse out the study IDs
+exp_ids_study=regexpr("^[0-9]{4}\\.",exp_ids)
+exp_ids_study_uniq=gsub("[^0-9]", "", unique(regmatches(exp_ids, exp_ids_study)))
+
+# "All_Exp" will report all IDs the first time through the loop
+exp_ids_study_uniq=append(exp_ids_study_uniq, values="All_Exp", after=0);
+num_exp_ids=length(exp_ids_study_uniq)
+
+for(exp_id in exp_ids_study_uniq){
+
+	if(exp_id!="All_Exp"){
+		# If not "All Exp", then the current exp_id is the experiment to extract
+
+		# Add '^' to prevent matching in middle of line
+		exp_ix=grep(paste("^",exp_id, sep=""), full_tab[,"SampleID"]);
+		exp_tab=full_tab[exp_ix,,drop=F];
+		exp_ids=as.character(exp_tab[,"SampleID"]);
+	}
+
+	###############################################################################
+
+	uniq_ctl_ids=sort(unique(ctl_ids));
+	uniq_exp_ids=sort(unique(exp_ids));
+
+	num_uniq_ctl_ids=length(uniq_ctl_ids);
+	num_uniq_exp_ids=length(uniq_exp_ids);
+
+	cat("Control IDs:\n");
+	print(uniq_ctl_ids);
+	cat("\n");
+	cat("Experimental IDs:\n");
+	print(uniq_exp_ids);
+	cat("\n");
+
+	# Extract out first sample's steps as a basis
+	first_exp=uniq_exp_ids[1];
+	first_entry=exp_tab[first_exp==exp_ids,];
+	forw_steps=as.character(first_entry[first_entry[,"Direction"]=="F","QCStep"]);
+	reve_steps=as.character(first_entry[first_entry[,"Direction"]=="R","QCStep"]);
+
+	# Confirm that the forward and reverse steps match
+	if(length(forw_steps)==length(reve_steps) && !all(forw_steps==reve_steps)){
+		cat("Error: Forward and Reverse steps don't match.\n");
+		cat("Forward:\n");
+		print(forw_steps);
+		cat("Reverse:\n");
+		print(reve_steps);
+		cat("\n");
+		quit(-1);
+	}
+
+	qc_steps=forw_steps;
+
+	cat("Step Order Identified:\n");
+	print(qc_steps);
+
+	###############################################################################
+
+	pdf(paste(post_qc_res_dir, "/", LOG_FILE_NAME, ".", exp_id, ".summary.pdf", sep=""), height=11, width=8.5);
+
+	partial_tab=exp_tab[,
+		c("SampleID", "Direction", "QCStep", "NumRecords", "NumBases", "LB95Len", "LB95QV")];
+
+	target_stats=c("NumRecords", "NumBases", "LB95Len", "LB95QV");
+
+	plot_text(c(
+		"QC Run Post-Analysis:",
+		"",
+		paste("Run on: ", date(), sep=""),
+		paste("Run by: ", system("whoami", intern=T), sep=""),
+		"",
+		paste("Command: "),
+		paste("\t", commandArgs()),
+		"",
+		paste("Working Directory: ", getwd()),
+		paste("Target Directory: ", QC_LogDir, sep=""),
+		paste("Output Directory: ", post_qc_res_dir, sep=""),
+		"",
+		paste("Num Log Files Detected: ", num_log_files, sep=""),
+		paste("Num Sample IDs Detected: ", num_samp_ids, sep=""),
+		paste("Control Regular Expression: ", CTL_REGEX, sep=""),
+		paste("Num Controls Detected: ", num_uniq_ctl_ids, sep=""),
+		paste("Experiment Study ID: ",exp_id, sep=""),
+		paste("Num Experimentals Detected: ", num_uniq_exp_ids, sep=""),
+		paste("Example Experimental Sample IDs: "), 
+		paste(uniq_exp_ids[1:(min(20, num_uniq_exp_ids))], sep=""),
+		"",
+		paste("Num QC Steps Detected: ", length(qc_steps)),
+		paste(capture.output(print(qc_steps, quote=F)))
+	));
+
+	###############################################################################
+	# Plot F vs R histograms for various statistics for each step
+	
+	par(mfrow=c(1,1));
+	plot(0, xlim=c(-1,1), ylim=c(-1,1), type="n", bty="n", xaxt="n", yaxt="n", main="", xlab="", ylab="");
+	text(0,0, "Forward vs. Reverse Reads", font=2, cex=3);
+	plot_step_histograms(partial_tab, c("F", "R"), qc_steps, target_stats);
+
+	###############################################################################
+	# Plot Pairable histograms for various statistics for each step
+
+	par(mfrow=c(1,1));
+	plot(0, xlim=c(-1,1), ylim=c(-1,1), type="n", bty="n", xaxt="n", yaxt="n", main="", xlab="", ylab="");
+	text(0,0, "Pairability Results", font=2, cex=3);
+	plot_step_histograms(partial_tab, c("for_frag", "rev_frag", "paired"), "merged", target_stats);
+
+	###############################################################################
+	# Plot cumulative bar charts at different cutoffs
+
+	paired_merged_ix=((partial_tab[,"Direction"]=="paired") & (partial_tab[,"QCStep"]=="merged"));
+	paired_merged_num_records=partial_tab[paired_merged_ix, "NumRecords"];
+	paired_merged_samp_id=partial_tab[paired_merged_ix, "SampleID"];
+	names(paired_merged_num_records)=paired_merged_samp_id;
+
+	num_pairable_sequences=paired_merged_num_records/2;
+	targeted_cutoffs=c(750, 1000, 2000, 3000, 10000, 20000, 50000, 
+		10^ceiling(log10(max(num_pairable_sequences))));
+	plot_bar_cutoffs(num_pairable_sequences, targeted_cutoffs);
+
+	###############################################################################
+
+	cat("\n");
+
+	export_redos(paste(post_qc_res_dir, "/", LOG_FILE_NAME, sep=""), 
+		sort(num_pairable_sequences), c(750,1000,2000,3000,Inf), exp_id);
+
+	dev.off();
+
+}
+
 
 ###############################################################################
 

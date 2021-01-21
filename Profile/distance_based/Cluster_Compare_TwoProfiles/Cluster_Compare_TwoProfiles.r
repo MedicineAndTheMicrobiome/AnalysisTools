@@ -19,7 +19,8 @@ params=c(
 	"include_list_A", "i", 2, "character",
 	"include_list_B", "j", 2, "character",
 	"output_filename_root", "o", 1, "character",
-	"dist_type", "d", 2, "character"
+	"dist_type", "d", 2, "character",
+	"tag_name", "t", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -36,6 +37,9 @@ usage = paste(
 	"	[-d <euc/wrd/man/bray/horn/bin/gow/tyc/minkp5/minkp3, default =", DEF_DISTTYPE, ">]\n",
 	"	[-i <include list of IDs for summary_table.tsv A, may be a factor file>]\n",
 	"	[-j <include list of IDs for summary_table.tsv B, may be a factor file>]\n",
+	"\n",
+	"	[-t <tag name>]\n",
+	"\n",
 	"\n",
 	"This script will compute distance matrices for the two summary tables independently, then\n",
 	"use various methods to compare their clustering.  Since the summary tables do not have\n",
@@ -112,6 +116,26 @@ if(length(opt$include_list_B)){
 	Include_B_list=opt$include_list_B;
 }
 
+if(length(opt$tag_name)){
+        TagName=opt$tag_name;
+        cat("Setting TagName Hook: ", TagName, "\n");
+        setHook("plot.new",
+                function(){
+                        #cat("Hook called.\n");
+                        if(par()$page==T){
+                                oma_orig=par()$oma;
+                                exp_oma=oma_orig;
+                                exp_oma[1]=max(exp_oma[1], 1);
+                                par(oma=exp_oma);
+                                mtext(paste("[", TagName, "]", sep=""), side=1, line=exp_oma[1]-1,
+                                        outer=T, col="steelblue4", font=2, cex=.8, adj=.97);
+                                par(oma=oma_orig);
+                        }
+                }, "append");
+
+}else{
+        TagName="";
+}
 
 ###############################################################################
 

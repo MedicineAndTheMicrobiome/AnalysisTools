@@ -58,6 +58,7 @@ sub mkdir_and_check{
 
 	print STDERR "Making new directory: $dname\n";
 	mkdir $dname;
+	`chmod u+wrx $dname`;
 	if(!(-e $dname)){
 		print STDERR "Could not create new directory: $dname.\n";
 		die;

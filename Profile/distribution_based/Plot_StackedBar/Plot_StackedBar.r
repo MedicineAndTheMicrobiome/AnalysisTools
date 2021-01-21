@@ -10,12 +10,14 @@ params=c(
 	"input_file", "i", 1, "character",
 	"factor_file", "f", 2, "character",
 	"factor_subset", "M", 2, "character",
-	"top_categories", "t", 2, "character",
+	"top_categories", "T", 2, "character",
 	"output_file", "o", 2, "character",
 	"diversity_type", "d", 2, "character",
 	"shorten_category_names", "s", 2, "character",
 	"crossing_string", "c", 2, "character",
-	"label_threshold", "l", 2, "numeric"
+	"label_threshold", "l", 2, "numeric",
+	"tag_name", "t", 2, "character",
+	"harmonizing_colormap", "h", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -29,13 +31,17 @@ usage = paste(
 	"	-i <input summary_table.tsv file>\n",
 	"	[-f <factor file>]\n",
 	"	[-M <list of factors/variables to focus on (filename)>]\n",
-	"	[-t <top categories to display, default=", TOP_CATEGORIES, ">]\n",
+	"	[-T <top categories to display, default=", TOP_CATEGORIES, ">]\n",
 	"	[-o <output file root name>]\n",
 	"	[-d <diversity, default=", DEF_DIVERSITY, ".]\n",
 	"	[-s <shorten category names, with separator in double quotes (default=\"\")>]\n",
 	"	[-l <label abundances greater than specified threshold, default=1.0, recommended 0.01]\n",
 	"\n",
 	"	[-c <crossing/interactions list, e.g., \"var1,var2,var3\" >]\n",
+	"\n",
+	"	[-t <tag name>]\n",
+	"\n",
+	"	[-h <harmonizing color map file, from previous run>]\n",
 	"\n",
 	"	This script will read in the summary table\n",
 	"	and the factor file.\n",
@@ -136,6 +142,32 @@ if(length(opt$label_threshold)){
 
 cat("Label Threshold: ", LabelThreshold, "\n");
 
+if(length(opt$tag_name)){
+        TagName=opt$tag_name;
+        cat("Setting TagName Hook: ", TagName, "\n");
+        setHook("plot.new",
+                function(){
+                        cat("Hook called.\n");
+                        if(par()$page==T){
+                                oma_orig=par()$oma;
+                                exp_oma=oma_orig;
+                                exp_oma[1]=max(exp_oma[1], 1);
+                                par(oma=exp_oma);
+                                mtext(paste("[", TagName, "]", sep=""), side=1, line=exp_oma[1]-1,
+                                        outer=T, col="steelblue4", font=2, cex=.8, adj=.97);
+                                par(oma=oma_orig);
+                        }
+                }, "append");
+
+}else{
+        TagName="";
+}
+
+if(length(opt$harmonizing_colormap)){
+	HarmonizingColorMap=opt$harmonizing_colormap;
+}else{
+	HarmonizingColorMap="";
+}
 
 ###############################################################################
 
@@ -266,11 +298,11 @@ get_colors=function(num_col, alpha=1){
 
 ###############################################################################
 
-plot_dist=function(x, y, width=20, abundances, num_ticks=3, label_abund=0){
+plot_dist=function(x, y, width=20, abundances, num_ticks=3, label_abund=0, color_map){
 	# This function will plot a stack box plot
 	# The location is center around x, and over y, with a bar height of 1
 	# If the abundance is less than label_abund, it will be labeled
-	
+
 	if(all(is.na(abundances))){
 
 		points(
@@ -320,7 +352,7 @@ plot_dist=function(x, y, width=20, abundances, num_ticks=3, label_abund=0){
 				xright=x+width/2,
 				ytop=prev+abundances[i],
 				lwd=.01,
-				col=i
+				col=color_map[cat_name[i]]
 			);	
 
 			# Plot tick marks on the left
@@ -349,7 +381,7 @@ plot_dist=function(x, y, width=20, abundances, num_ticks=3, label_abund=0){
 		
 }
 
-plot_legend=function(categories, size=.7, num_ticks=3, max_labels=40){
+plot_legend=function(categories, size=.7, num_ticks=3, max_labels=40, color_map){
 
 	orig.par=par(no.readonly=T);
 
@@ -371,7 +403,7 @@ plot_legend=function(categories, size=.7, num_ticks=3, max_labels=40){
 		xaxt="n", yaxt="n");
 
 	leg_info=legend(0, 0, legend=rev(c(categories, "Remaining")), 
-		fill=rev(c(1:num_cat, "grey")), cex=size, pt.lwd=.1);
+		fill=rev(c(color_map[categories[1:num_cat]], "grey")), cex=size, pt.lwd=.1);
 
 	# Compute tick positions
 	tick_pos=seq(1, orig_num_cat, length.out=num_ticks+2);
@@ -418,7 +450,7 @@ tail_statistic=function(x){
 
 plot_abundance_matrix=function(abd_mat, title="", plot_cols=8, plot_rows=5, 
 	samp_size=c(), divname="diversity", median_diversity=c(), mean_diversity=c(),
-	label_threshold=0){
+	label_threshold=0, color_map){
 	# This function will plot a sample x abundance (summary table)
 	# There will be one plot for row (sample) in the matrix
 
@@ -493,7 +525,9 @@ plot_abundance_matrix=function(abd_mat, title="", plot_cols=8, plot_rows=5,
 					}
 
 					abundances=abd_mat[sample,,drop=F];
-					plot_dist(0, 0, width=dist_bar_width, abundances, label_abund=label_threshold);
+					plot_dist(0, 0, width=dist_bar_width, abundances, 
+						num_ticks=3,
+						label_abund=label_threshold, color_map=color_map);
 				}else{
 					plot(0,0, type="n", bty="n", xaxt="n", yaxt="n");
 				}
@@ -502,7 +536,7 @@ plot_abundance_matrix=function(abd_mat, title="", plot_cols=8, plot_rows=5,
 		}
 		cat("Plotting legend...\n");
 
-		plot_legend(cat_names, size=min(1, 45/num_cat));
+		plot_legend(cat_names, size=min(1, 45/num_cat), color_map=color_map);
 		mtext(text=title, side=3, outer=T, cex=2, font=2, line=.5);
 	}
 	par(orig.par);
@@ -926,6 +960,7 @@ plot_text(c(
 	paste("Summary Table File: ", InputFileName),
 	paste("Factor File: ", FactorFileName),
 	paste("Output File Root: ", OutputFileRoot),
+	paste("Color Map: ", HarmonizingColorMap),
 	"",
 	paste("Diversity Index:", DiversityType),
 	"",
@@ -953,14 +988,30 @@ plot_text(c(
 ));	
 
 ###############################################################################
+# Handle Colors
 
-category_colors=get_colors(num_simp_cat);
-palette(category_colors);
+if(HarmonizingColorMap==""){
+	category_colors=get_colors(num_simp_cat);
+
+	names(category_colors)=colnames(simplified_mat);
+
+	write.table(category_colors, file=paste(OutputFileRoot, ".color_map.tsv", sep=""), quote=F, sep="\t",
+		row.names=T, col.names=F);
+}else{
+	colors_table=read.table(HarmonizingColorMap, as.is=T, comment.char="");
+	category_colors=colors_table[,2];
+	names(category_colors)=colors_table[,1];
+}
+
+print(category_colors);
+#palette(category_colors);
+
+###############################################################################
 
 plot_abundance_matrix(simplified_mat, title="By Sample ID", 
 	divname=DiversityType, 
 	median_diversity=diversity_arr, mean_diversity=diversity_arr,
-	label_threshold=LabelThreshold);
+	label_threshold=LabelThreshold, color_map=category_colors);
 
 write_abundances_to_fh(output_grouped_abundances_fh, simplified_mat, title="By Sample ID",
 	samp_size=rep(1, nrow(simplified_mat)), divname=DiversityType, 
@@ -1122,7 +1173,7 @@ for(i in 1:ncol(grp_mat)){
 	cat("Plotting Abundances:\n");
 	plot_abundance_matrix(combined_abd, title=grp_name, samp_size=sample_sizes, 
 		divname=DiversityType, median_diversity=diversity_median, mean_diversity=diversity_mean,
-		label_threshold=LabelThreshold);
+		label_threshold=LabelThreshold, color_map=category_colors);
 
 	cat("Writing Abundances to File:\n");
 	write_abundances_to_fh(output_grouped_abundances_fh, combined_abd, title=grp_name, samp_size=sample_sizes, 
@@ -1174,7 +1225,7 @@ cat("Completed per variable plots.\n");
 
 if(num_crossings>0){
 
-	plot_2D_stacked=function(var1, var2, title_arr, grpd_factors, simplfd_sumtab, label_threshold=0){
+	plot_2D_stacked=function(var1, var2, title_arr, grpd_factors, simplfd_sumtab, label_threshold=0, color_map){
 		# This function will plot a matrix of stacked bar plots
 		# Var1 levels will be the number of columns
 		# Var2 levels will be the nubmer of rows
@@ -1228,7 +1279,8 @@ if(num_crossings>0){
 				num_samp=sum(v1_x_v2_samp_id);
 
 				combined_abd=apply(simplfd_sumtab[samp_ids[v1_x_v2_samp_id],,drop=F], 2, mean);
-				plot_dist(0, 0, width=1, combined_abd, label_abund=label_threshold);
+				plot_dist(0, 0, width=1, combined_abd, num_ticks=3,
+					label_abund=label_threshold, color_map=color_map);
 
 				# Label number of samples
 				text(0, 0, pos=1, paste("n=", num_samp, sep=""), cex=.6);
@@ -2073,7 +2125,7 @@ if(num_crossings>0){
 			# Plot combined
 			plot_2D_stacked(rem_cros_var[1], rem_cros_var[2], 
 				c(crossing_var[1], crossing_var[2]),
-				grp_mat, simplified_mat, LabelThreshold);	
+				grp_mat, simplified_mat, LabelThreshold, category_colors);	
 
 			plot_2D_diversity(rem_cros_var[1], rem_cros_var[2], 
 				c(crossing_var[1], crossing_var[2]),
@@ -2095,7 +2147,7 @@ if(num_crossings>0){
 				keep_ix=(grp_mat[,excl_var]==lev);
 				plot_2D_stacked(rem_cros_var[1], rem_cros_var[2], 
 					c(rem_cros_var[1], rem_cros_var[2], lev),
-					grp_mat[keep_ix,,drop=F], simplified_mat, LabelThreshold);	
+					grp_mat[keep_ix,,drop=F], simplified_mat, LabelThreshold, category_colors);	
 				plot_2D_diversity(rem_cros_var[1], rem_cros_var[2], 
 					c(rem_cros_var[1], rem_cros_var[2], lev),
 					grp_mat[keep_ix,,drop=F], diversity_arr);
@@ -2109,7 +2161,7 @@ if(num_crossings>0){
 
 			# Plot legend	
 			par(mfrow=c(1,1), mar=c(0,0,0,0), oma=c(0,0,0,0));
-			plot_legend(colnames(simplified_mat), size=.5);
+			plot_legend(colnames(simplified_mat), size=.5, color_map=color_map);
 
 			dev.off();
 
@@ -2126,7 +2178,7 @@ if(num_crossings>0){
 		cat("Generating plot for 2-way crossings...\n");
 		plot_2D_stacked(crossing_var[1], crossing_var[2], 
 			c(crossing_var[1],  crossing_var[2], ""),
-			grp_mat, simplified_mat, LabelThreshold);	
+			grp_mat, simplified_mat, LabelThreshold, category_colors);	
 
 		plot_2D_diversity(crossing_var[1], crossing_var[2], 
 			c(crossing_var[1],  crossing_var[2], ""), grp_mat, diversity_arr);
@@ -2139,7 +2191,7 @@ if(num_crossings>0){
 
 		# Plot legend
 		par(mfrow=c(1,1), mar=c(0,0,0,0), oma=c(0,0,0,0));
-		plot_legend(colnames(simplified_mat), size=.5);
+		plot_legend(colnames(simplified_mat), size=.5, color_map=category_colors);
 
 		dev.off();
 	}

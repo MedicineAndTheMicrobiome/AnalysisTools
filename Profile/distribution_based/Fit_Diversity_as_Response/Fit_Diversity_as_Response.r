@@ -18,7 +18,8 @@ params=c(
 	"reference_levels", "r", 2, "character",
 	"outputroot", "o", 2, "character",
 	"model_formula", "m", 2, "character",
-	"testing_flag", "t", 2, "logical"
+	"testing_flag", "T", 2, "logical",
+	"tag_name", "t", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -34,7 +35,8 @@ usage = paste(
 	"	[-o <output filename root>]\n",
 	"	[-m \"<model formula string>\"]\n",
 	"\n",
-	"	[-t (testing flag)]\n",
+	"	[-T (testing flag)]\n",
+	"	[-t <tag name>]\n",
 	"\n",
 	"Computes the diversity measuares for each sample, performs a box-cox\n",
 	"transformation and then performs a linear regression based on the\n",
@@ -83,6 +85,28 @@ RequiredFile="";
 if(length(opt$required_var)){
         RequiredFile=opt$required_var;
 }
+
+if(length(opt$tag_name)){
+        TagName=opt$tag_name;
+        cat("Setting TagName Hook: ", TagName, "\n");
+        setHook("plot.new",
+                function(){
+                        #cat("Hook called.\n");
+                        if(par()$page==T){
+                                oma_orig=par()$oma;
+                                exp_oma=oma_orig;
+                                exp_oma[1]=max(exp_oma[1], 1);
+                                par(oma=exp_oma);
+                                mtext(paste("[", TagName, "]", sep=""), side=1, line=exp_oma[1]-1,
+                                        outer=T, col="steelblue4", font=2, cex=.8, adj=.97);
+                                par(oma=oma_orig);
+                        }
+                }, "append");
+
+}else{
+        TagName="";
+}
+
 
 SummaryFile=opt$summary_file;
 FactorsFile=opt$factors;
@@ -134,14 +158,27 @@ load_reference_levels_file=function(fname){
 }
 
 relevel_factors=function(factors, ref_lev_mat){
+
 	num_factors_to_relevel=nrow(ref_lev_mat);
 	relevel_names=rownames(ref_lev_mat);
+	factor_names=colnames(factors);
+
 	for(i in 1:num_factors_to_relevel){
-		tmp=factors[,relevel_names[i]];
-		#print(tmp);
-		tmp=relevel(tmp, ref_lev_mat[i, 1]);
-		#print(tmp);
-		factors[,relevel_names[i]]=tmp;
+		relevel_target=relevel_names[i];
+
+		if(length(intersect(relevel_target, factor_names))){
+			target_level=ref_lev_mat[i, 1];
+			tmp=factors[,relevel_target];
+			if(length(intersect(target_level, tmp))){
+				tmp=relevel(tmp, target_level);
+    				factors[,relevel_target]=tmp;
+			}else{
+				cat("WARNING: Target level '", target_level,
+					"' not found in '", relevel_target, "'!!!\n", sep="");
+			}
+		}else{
+			cat("WARNING: Relevel Target Not Found: '", relevel_target, "'!!!\n", sep="");
+		}
 	}
 	return(factors);
 }
@@ -158,6 +195,17 @@ normalize=function(counts){
 	colnames(normalized)=colnames(counts);
 	rownames(normalized)=rownames(counts);	
 	return(normalized);
+}
+
+sig_char=function(val){
+        if(!is.null(val) && !is.nan(val) && !is.na(val)){
+                if(val <= .0001){ return("***");}
+                if(val <= .001 ){ return("** ");}
+                if(val <= .01  ){ return("*  ");}
+                if(val <= .05  ){ return(":  ");}
+                if(val <= .1   ){ return(".  ");}
+        }
+        return(" ");
 }
 
 plot_correl_heatmap=function(mat, title="", noPrintZeros=F, guideLines=F){
@@ -603,13 +651,16 @@ for(i in 1:num_div_idx){
 	if(approx_lambda!=1){
 		# Rerun and plot the lambda search with a smaller increments
 		par(mar=c(5,4,4,2));
-		cat("Refining search around: ", approx_lambda-search_tolerance, " - ", approx_lambda+search_tolerance, "\n");
+		cat("Refining search around: ", 
+			approx_lambda-BOX_COX_SEARCH_RANGE, " - ", approx_lambda+BOX_COX_SEARCH_RANGE, "\n");
 
 		bc=boxcox(as.formula(model_string), data=factors, 
-			lambda=seq(approx_lambda-search_tolerance, approx_lambda+search_tolerance, length.out=40));
+			lambda=seq(approx_lambda-BOX_COX_SEARCH_RANGE, approx_lambda+BOX_COX_SEARCH_RANGE, 
+			length.out=20));
+
 		title(main=div_names[i]);
 
-		# Store find grain results
+		# Store fine grain results
 		max_idx=which(bc$y==max(bc$y));
 		lambda[i]=bc$x[max_idx];
 	}else{
@@ -634,6 +685,9 @@ for(i in 1:num_div_idx){
 		transformed[, div_names[i]]=((raw^lambda[i])-1)/lambda[i];
 	}
 }
+
+rownames(transformed)=rownames(div_mat);
+
 mtext("Box-Cox Lambda Intervals", outer=T);
 
 cat("Plotting transformed histograms...\n");
@@ -1076,20 +1130,57 @@ for(i in 1:length(coeff_names)){
 close(fh);
 
 ##############################################################################
-
 # Write coefficient p-values to file
+
 write.table(t(pval_matrix), file=paste(OutputRoot, ".div_as_resp.pvals.tsv", sep=""),
         sep="\t", quote=F, col.names=NA, row.names=T);
 
 write.table(t(coeff_matrix), file=paste(OutputRoot, ".div_as_resp.coefs.tsv", sep=""),
         sep="\t", quote=F, col.names=NA, row.names=T);
 	
-
 ##############################################################################
-
 # Write diversity matrix to file
+
 write.table(div_mat, file=paste(OutputRoot, ".diversity_indices.tsv", sep=""),
 	sep="\t", quote=F, col.names=NA, row.names=T);
+
+##############################################################################
+# Compute multivariate regression for a MANOVA
+
+#print(transformed);
+#print(model_string);
+#print(factors);
+#print(model_string);
+
+trans=transformed;
+mv_fit=lm(as.formula(model_string), data=factors);
+
+try_res=try({manova_res=anova(mv_fit)});
+
+if(class(try_res)=="try-error"){
+	manova_res=NULL;
+	cat("MANOVA Failed.\n");
+}else{
+	cat("MANOVA:\n");
+	print(manova_res);
+}
+
+if(length(manova_res)){
+        num_variables=nrow(manova_res)-1;
+        outmat=matrix("", nrow=num_variables, ncol=3);
+        colnames(outmat)=c(TagName, "Pr(>F)", "Signf");
+        varnames=unlist(rownames(manova_res));
+        pvals=unlist(manova_res["Pr(>F)"]);
+        outmat[,TagName]=varnames[1:num_variables];
+        outmat[,"Pr(>F)"]=sprintf("%4.4f", pvals[1:num_variables]);
+	outmat[,"Signf"]=sapply(pvals[1:num_variables], sig_char);
+}else{
+        outmat=matrix("-", nrow=1, ncol=2);
+        colnames(outmat)=c(TagName, "Pr(>F)");
+}
+
+write.table(outmat, file=paste(OutputRoot, ".div_as_resp.anova.summary.tsv", sep=""),
+        sep="\t", quote=F, col.names=T, row.names=F);
 
 
 ##############################################################################

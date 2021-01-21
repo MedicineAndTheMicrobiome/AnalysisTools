@@ -30,7 +30,8 @@ params=c(
 	"only_at_k", "K", 2, "numeric",
 	"rm_na_trials", "N", 2, "numeric",
 	"required", "q", 2, "character",
-	"reference_levels", "r", 2, "character"
+	"reference_levels", "r", 2, "character",
+	"tag_name", "t", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -52,6 +53,7 @@ usage = paste(
 	"	[-K <only compute at K cuts>]\n",
 	"\n",
 	"	[-N <remova NA trials, trials=", RM_NA_TRIALS, "\n",
+	"	[-t <tag name>]\n",
 	"\n",
 	"This script will:\n",
 	"	1.) Load metadata.\n",
@@ -138,6 +140,26 @@ if(length(opt$reference_levels)){
        ReferenceLevelsFile="";
 }
 
+if(length(opt$tag_name)){
+        TagName=opt$tag_name;
+        cat("Setting TagName Hook: ", TagName, "\n");
+        setHook("plot.new",
+                function(){
+                        cat("Hook called.\n");
+                        if(par()$page==T){
+                                oma_orig=par()$oma;
+                                exp_oma=oma_orig;
+                                exp_oma[1]=max(exp_oma[1], 1);
+                                par(oma=exp_oma);
+                                mtext(paste("[", TagName, "]", sep=""), side=1, line=exp_oma[1]-1,
+                                        outer=T, col="steelblue4", font=2, cex=.8, adj=.97);
+                                par(oma=oma_orig);
+                        }
+                }, "append");
+
+}else{
+        TagName="";
+}
 
 ###############################################################################
 # See http://www.mothur.org/wiki/Thetayc for formula
@@ -261,24 +283,29 @@ load_reference_levels_file=function(fname){
 }
 
 relevel_factors=function(factors, ref_lev_mat){
-        num_factors_to_relevel=nrow(ref_lev_mat);
-        relevel_names=rownames(ref_lev_mat);
-        factor_names=colnames(factors);
-        for(i in 1:num_factors_to_relevel){
 
-                target_relev_name=relevel_names[i];
-                if(any(target_relev_name==factor_names)){
-                        tmp=factors[,target_relev_name];
-                        #print(tmp);
-                        tmp=relevel(tmp, ref_lev_mat[i, 1]);
-                        #print(tmp);
-                        factors[,target_relev_name]=tmp;
-                }else{
-                        cat("Note: ", target_relev_name,
-                                " not in model.  Ignoring reference releveling.\n\n", sep="");
-                }
-        }
-        return(factors);
+	num_factors_to_relevel=nrow(ref_lev_mat);
+	relevel_names=rownames(ref_lev_mat);
+	factor_names=colnames(factors);
+
+	for(i in 1:num_factors_to_relevel){
+		relevel_target=relevel_names[i];
+
+		if(length(intersect(relevel_target, factor_names))){
+			target_level=ref_lev_mat[i, 1];
+			tmp=factors[,relevel_target];
+			if(length(intersect(target_level, tmp))){
+				tmp=relevel(tmp, target_level);
+    				factors[,relevel_target]=tmp;
+			}else{
+				cat("WARNING: Target level '", target_level,
+					"' not found in '", relevel_target, "'!!!\n", sep="");
+			}
+		}else{
+			cat("WARNING: Relevel Target Not Found: '", relevel_target, "'!!!\n", sep="");
+		}
+	}
+	return(factors);
 }
 
 #------------------------------------------------------------------------------

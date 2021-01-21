@@ -22,7 +22,10 @@ params=c(
 
         "dont_reset_offsets", "n", 2, "logical",
         "begin_offset", "b", 2, "numeric",
-        "end_offset", "e", 2, "numeric"
+        "end_offset", "e", 2, "numeric",
+
+	"model_file", "m", 2, "character",
+	"tag_name", "T", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -46,6 +49,9 @@ usage = paste(
 	"	[-n (do not reset earliest offsets to 0 to line up time points, default=reset offsets)]\n",
 	"	[-b <begin offset, default=-Inf>]\n",
 	"	[-e <end offset, default=Inf>]\n",
+	"\n",
+	"	[-m <model file>]\n",
+	"	[-T <tag name>]\n",
 	"\n",
 	"	Diversity types include:\n",
 	"		shannon, tail, simpson, invsimpson\n",
@@ -90,6 +96,33 @@ if(length(opt$begin_offset)){
 }
 if(length(opt$end_offset)){
 	EndOffset=opt$end_offset;
+}
+
+if(length(opt$tag_name)){
+        TagName=opt$tag_name;
+        cat("Setting TagName Hook: ", TagName, "\n");
+        setHook("plot.new",
+                function(){
+                        #cat("Hook called.\n");
+                        if(par()$page==T){
+                                oma_orig=par()$oma;
+                                exp_oma=oma_orig;
+                                exp_oma[1]=max(exp_oma[1], 1.5);
+                                par(oma=exp_oma);
+                                mtext(paste("[", TagName, "]", sep=""), side=1, line=exp_oma[1]-1,
+                                        outer=T, col="steelblue4", font=2, cex=.8, adj=.97);
+                                par(oma=oma_orig);
+                        }
+                },
+                "append");
+
+}else{
+        TagName="";
+}
+
+ModelFile="";
+if(length(opt$model_file)){
+	ModelFile=opt$model_file;
 }
 
 ###############################################################################
@@ -246,7 +279,8 @@ plot_sample_distributions_by_individual=function(diversity_arr, div_type, normal
 	cat("Diversity Range:\n");
 	print(diversity_ranges);
 
-	min_period=offsets_rec[["MinOffsetSep"]];
+	#min_period=offsets_rec[["MinOffsetSep"]];
+	min_period=offsets_rec[["MinOffsetSepInSubj"]];
 	cat("Minimum period: ", min_period, "\n");
 
 	cat_names=colnames(normalized_mat);
@@ -254,6 +288,7 @@ plot_sample_distributions_by_individual=function(diversity_arr, div_type, normal
 	# Plot individual samples
 	for(i in 1:num_subjects){
 
+		par(mar=c(5.1,4.1,4.1,2.1));
 		# Grab members from group
 		cat("Plotting: ", subject_ids[i], "\n");
 		sbj_subset=which(offsets_mat[,"SubjectID"]==subject_ids[i]);
@@ -335,7 +370,8 @@ plot_sample_distributions_by_individual=function(diversity_arr, div_type, normal
 
 		# Plot color key/legend
 		num_in_key=min(35, length(cat_names));
-		plot(0, 0, main="",
+		par(mar=c(1,4.1,1,2.1));
+		plot(0, 0, main="", bty="n",
 			 xlab="", ylab="", type="n", col=i, lwd=2,
 			 xlim=c(0,10), ylim=c(0,num_in_key), xaxt="n", yaxt="n");
 
@@ -675,7 +711,8 @@ plot_sample_distributions_by_group=function(normalized_mat, offsets_rec, grp_to_
 	cat("Offset Range:\n");
 	print(offset_ranges);
 
-	min_period=offsets_rec[["MinOffsetSep"]];
+	#min_period=offsets_rec[["MinOffsetSep"]];
+	min_period=offsets_rec[["MinOffsetSepInSubj"]];
 	cat("Minimum period: ", min_period, "\n");
 
 	palette(cat_colors);
@@ -771,6 +808,7 @@ plot_mean_distributions_by_group=function(normalized_mat, offsets_rec, grp_to_sb
         print(offset_ranges);
 
         min_period=offsets_rec[["MinOffsetSep"]];
+	#min_period=offsets_rec[["MinOffsetSepInSubj"]];
         cat("Minimum period: ", min_period, "\n");
 
 	palette(cat_colors);
@@ -818,6 +856,7 @@ plot_mean_distributions_by_group=function(normalized_mat, offsets_rec, grp_to_sb
 
 		#--------------------------------------------------------------
 		# Plot times series for cohort
+		par(mar=c(3, 6, 2, 1));
 		plot(0, 0, main="",
 			xlab="", 
 			ylab=paste(grp_name, ": ", groups[g]), 
@@ -839,8 +878,11 @@ plot_mean_distributions_by_group=function(normalized_mat, offsets_rec, grp_to_sb
 			plot_dist(cur_off, y=0, 
 				abundances=avg_off_comp[offset_key,,drop=F], width=min_period*.95);
 
-			text(cur_off, 1+cxy[2]/2, 
-				paste("n=",samp_size_at_offset[offset_key], sep=""), cex=.75, font=3);
+			if(samp_size_at_offset[offset_key]>1){
+				text(cur_off, 1+cxy[2]/2, 
+					paste("n=",samp_size_at_offset[offset_key], sep=""), 
+					cex=.75, font=3);
+			}
 
 		}
 
@@ -854,7 +896,7 @@ plot_mean_distributions_by_group=function(normalized_mat, offsets_rec, grp_to_sb
 	cat_names=colnames(normalized_mat);
 	num_in_key=min(35, length(cat_names));
 	plot(0, 0, 
-		 xlab="", ylab="", type="n", lwd=2,
+		 xlab="", ylab="", type="n", lwd=2, bty="n",
 		 xlim=c(0,10), ylim=c(0,num_in_key), xaxt="n", yaxt="n");
 
 	for(j in 1:num_in_key){
@@ -1047,6 +1089,13 @@ plot_text=function(strings){
 }
 
 ###############################################################################
+
+load_list=function(filename){
+        val=scan(filename, what=character(), comment.char="#");
+        return(val);
+}
+
+###############################################################################
 ###############################################################################
 
 factor_info=load_factors(FactorFile);
@@ -1174,6 +1223,52 @@ stat_table_grp_cmp=plot_pairwise_grp_comparisons(long_stats, grp_to_sbj_info, pl
 #print(stat_table_grp_cmp);
 
 output_stat_table_alternate_ordering(stat_table_grp_cmp, OutputRoot);
+
+##############################################################################
+
+if(ModelFile!=""){
+        model_var_list=load_list(ModelFile);
+        model_var_list=c(model_var_list, GroupCol);
+        cat("Model variables in: ", ModelFile, "\n");
+}else{
+        cat("Model File was not specified. Skipping analyses with factors.\n");
+        quit();
+}
+
+
+cat("Collapsing Factors...\n");
+colpsd_factors=collapse_factors(factor_info, SubjectIDCol, model_var_list);
+
+cat("Regressing Longitudinal Stats...\n");
+regres=regress_longitudinal_stats(long_stats, model_var_list, colpsd_factors);
+
+options(width=200);
+print(regres);
+
+cat("Generating Heatmaps by Stat...\n");
+title_page(paste(
+        "Response:\nLongitudinal Stats\n\nPredictors:\n", paste(model_var_list, collapse="\n"), sep=""));
+
+stat_names=names(regres);
+for(stat_ix in stat_names){
+        plot_heat_maps(
+                regres[[stat_ix]][["coef"]],
+                regres[[stat_ix]][["pval"]],
+                stat_ix);
+}
+
+cat("Summarizing Regression Results into Table...\n");
+regr_stat_summary=summarize_regression_results(regres, stat_names);
+num_sigf_reg_assoc=nrow(regr_stat_summary);
+
+cat("Writing Stats by Alternative Ordering...\n");
+output_long_regression_stats_w_alt_ordering(regr_stat_summary);
+
+##############################################################################
+
+# Output descript of stats
+par(mfrow=c(1,1));
+plot_text(longit_stat_descriptions);
 
 ##############################################################################
 

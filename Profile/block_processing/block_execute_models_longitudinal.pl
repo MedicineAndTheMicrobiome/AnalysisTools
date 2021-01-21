@@ -5,13 +5,13 @@
 use strict;
 use Getopt::Std;
 use File::Temp;
-use vars qw ($opt_s $opt_f $opt_c $opt_t $opt_S $opt_g $opt_p $opt_a $opt_r $opt_o $opt_E);
+use vars qw ($opt_s $opt_f $opt_c $opt_t $opt_S $opt_g $opt_p $opt_a $opt_r $opt_o $opt_E $opt_T);
 use File::Basename;
 use Cwd;
 use Digest::MD5;
 use Sys::Hostname;
 
-getopts("s:f:c:t:S:g:p:a:r:o:E");
+getopts("s:f:c:t:S:g:p:a:r:o:ET:");
 
 my $NUM_ALR_VARIABLES=35;
 
@@ -37,6 +37,8 @@ my $usage = "
 	-o <output directory>
 
 	[-E (Do not abort on error.  Keep going on other analyses)]
+
+	[-T <tag name>]
 
 	This script will run a suite of analyses that use the following
 	inputs:
@@ -112,6 +114,11 @@ if($AnalysisName eq ""){
 	$AnalysisName=File::Basename::fileparse($AnalysisName);
 }
 
+my $TagName="";
+if(defined($opt_T)){
+	$TagName=$opt_T;
+}
+
 ###############################################################################
 
 my $ABDNC_DIR="abundance_based";
@@ -130,6 +137,7 @@ print STDERR "Group ID Column Name:    $GroupColumn\n";
 print STDERR "Output Directory:        $OutputDir\n";
 print STDERR "\n";
 print STDERR "Analysis Name:           $AnalysisName\n";
+print STDERR "Tag Name:                $TagName\n";
 print STDERR "\n";
 print STDERR "Reference Leveling File: $ReferenceRelevelingFile";
 print STDERR "\n";
@@ -238,6 +246,7 @@ sub run_abundance_based{
 	my $reference_leveling_file=shift;
 	my $num_alr=shift;
 	my $additional_alr_file=shift;
+	my $tag_name=shift;
 
 	my $cmd;
 
@@ -263,6 +272,11 @@ sub run_abundance_based{
 		$add_target_var_file="-m $target_var_file";
 	}
 
+	my $add_tagname="";
+	if($tag_name ne ""){
+		$add_tagname="-T $tag_name";
+	}
+
 	$cmd=
 	"~/git/AnalysisTools/Profile/abundance_based/Plot_Longitudinal_Samples_ALR/Plot_Longitudinal_Samples_ALR.r \
 		-s $summary_table \
@@ -272,7 +286,7 @@ sub run_abundance_based{
 		-t $offsets_colname \
 		-i $subjectid_colname \
 		-o $output_dir/abundance/$model_name \
-		$add_alr $add_reflev $add_groups $add_target_var_file
+		$add_alr $add_reflev $add_groups $add_target_var_file $add_tagname
 	";
 	run_command("Longitudinal ALR", "longit_alr", $cmd, 
 		"$output_dir/abundance");
@@ -292,6 +306,7 @@ sub run_distribution_based{
 	my $subjectid_colname=shift;
 	my $groups_colname=shift;
 	my $reference_leveling_file=shift;
+	my $tag_name=shift;
 
 	my $cmd;
 
@@ -307,6 +322,11 @@ sub run_distribution_based{
 		$add_groups="-g $groups_colname";
 	}
 
+	my $add_tagname="";
+	if($tag_name ne ""){
+		$add_tagname="-T $tag_name";
+	}
+
 	#######################################################################
 	# Diversity
 	$cmd=
@@ -317,7 +337,7 @@ sub run_distribution_based{
 		-i $subjectid_colname \
              	-o $output_dir/distribution/$model_name \
 		-d tail \
-		$add_reflev $add_groups
+		$add_reflev $add_groups $add_tagname
 	";
 	run_command("Plot Diversity Longitudinal", "longit_diversity", 
 		$cmd, "$output_dir/distribution");
@@ -338,6 +358,7 @@ sub run_distance_based{
 	my $subjectid_colname=shift;
 	my $groups_colname=shift;
 	my $reference_leveling_file=shift;
+	my $tag_name=shift;
 
 	my $LONGIT_PLOT="longit_plot";
 
@@ -356,6 +377,11 @@ sub run_distance_based{
 		$add_groups="-g $groups_colname";
 	}
 
+	my $add_tagname="";
+	if($tag_name ne ""){
+		$add_tagname="-T $tag_name";
+	}
+
 
 	$cmd=
 	"~/git/AnalysisTools/Profile/distance_based/Plot_Longitudinal_Samples/Plot_Longitudinal_Samples.r \
@@ -365,7 +391,7 @@ sub run_distance_based{
 		-i $subjectid_colname \
 		-o $output_dir/distance/$model_name \
 		-d man \
-		$add_reflev $add_groups
+		$add_reflev $add_groups $add_tagname
 	";
 	run_command("Plot Distance Longitudinal", "longit_dist_plot",
 		$cmd, "$output_dir/distance");
@@ -400,7 +426,8 @@ run_abundance_based(
 	$GroupColumn,
 	$ReferenceRelevelingFile,
 	$NumALRVariables,
-	$AdditionalALRFile
+	$AdditionalALRFile,
+	$TagName
 );
 
 
@@ -413,7 +440,8 @@ run_distribution_based(
 	$OffsetsColumn,
 	$SubjectIDColumn,
 	$GroupColumn,
-	$ReferenceRelevelingFile
+	$ReferenceRelevelingFile,
+	$TagName
 );
 
 run_distance_based(
@@ -425,7 +453,8 @@ run_distance_based(
 	$OffsetsColumn,
 	$SubjectIDColumn,
 	$GroupColumn,
-	$ReferenceRelevelingFile
+	$ReferenceRelevelingFile,
+	$TagName
 );
 
 

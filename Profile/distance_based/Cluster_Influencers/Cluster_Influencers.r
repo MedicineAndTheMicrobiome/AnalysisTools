@@ -25,7 +25,8 @@ params=c(
 	"max_cuts", "k", 2, "numeric",
 	"only_at_k", "K", 2, "numeric",
 	"factor_filename", "f", 2, "character",
-	"factor_names_list", "n", 2, "character"
+	"factor_names_list", "n", 2, "character",
+	"tag_name", "t", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -47,6 +48,7 @@ usage = paste(
 	"	Metadata-Based (User-defined Factors) Options:\n",
 	"	[-f <factor/metadata file]\n",
 	"	[-n <file containing column names to analyze in factor file>]\n",
+	"	[-t <tag name>]\n",
 	"\n",
 	"This script will:\n",
 	"	1.) Read in a summary table and compute a full/complete distance matrix.\n",
@@ -140,6 +142,26 @@ if(FactorFilename==""){
 	w_meta_ext=".meta";
 }
 
+if(length(opt$tag_name)){
+        TagName=opt$tag_name;
+        cat("Setting TagName Hook: ", TagName, "\n");
+        setHook("plot.new",
+                function(){
+                        cat("Hook called.\n");
+                        if(par()$page==T){
+                                oma_orig=par()$oma;
+                                exp_oma=oma_orig;
+                                exp_oma[1]=max(exp_oma[1], 1);
+                                par(oma=exp_oma);
+                                mtext(paste("[", TagName, "]", sep=""), side=1, line=exp_oma[1]-1,
+                                        outer=T, col="steelblue4", font=2, cex=.8, adj=.97);
+                                par(oma=oma_orig);
+                        }
+                }, "append");
+
+}else{
+        TagName="";
+}
 
 ###############################################################################
 # See http://www.mothur.org/wiki/Thetayc for formula
@@ -493,6 +515,29 @@ reconcile_factors_and_summary_table=function(fact, st){
 	return(results);
 }
 
+plot_text=function(strings){
+        par(family="Courier");
+        par(oma=rep(.1,4));
+        par(mar=rep(0,4));
+
+        num_lines=length(strings);
+
+        top=max(as.integer(num_lines), 52);
+
+        plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
+                xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
+                );
+
+        text_size=max(.01, min(.8, .8 - .003*(num_lines-52)));
+        #print(text_size);
+
+        for(i in 1:num_lines){
+                #cat(strings[i], "\n", sep="");
+                strings[i]=gsub("\t", "", strings[i]);
+                text(0, top-i, strings[i], pos=4, cex=text_size);
+        }
+}
+
 ###############################################################################
 
 if(OnlyAtK){
@@ -514,6 +559,8 @@ if(OnlyAtK){
 }
 cat("\n");
 
+pdf(paste(output_fname_root, ".cl_inf.pdf", sep=""), height=8.5, width=14);
+
 if(useMetadata){
 	cat("Loading Factor Table...\n");
 	factors_matrix=load_factor_file(FactorFilename);
@@ -529,6 +576,32 @@ if(useMetadata){
 	num_target_factors=ncol(factors_matrix);
 }else{
 	cat("Max Num clusters: ", max_clusters, "\n", sep="");
+}
+
+###############################################################################
+
+plot_text(c(
+	"Cluster Influencers:",
+	script_name,
+	"",
+	paste("Input Summary Table Name: ", InputFileName, sep=""),
+	paste("Output Filename Root: ", output_fname_root, sep=""),
+	paste("Distance Type: ", dist_type, sep=""),
+	paste("Num Top categories to analyze: ", num_top_cat, sep=""),
+	paste("Targeted Variables: ", FactorListFile, sep=""),
+	"",
+	ifelse(OnlyAtK, paste("Only at: ", OnlyAtK), ""),
+	ifelse(useMetadata, paste("Factor File: ", FactorFilename), ""),
+	ifelse(FactorListFile!="", paste("Target Variables: ", FactorListFile), ""),
+	ifelse(TagName!="", paste("Tag Name: ", TagName), "")
+));
+
+if(useMetadata){
+	plot_text(c(
+		paste("Target List: ", FactorListFile, sep=""),
+		"",
+		target_factors
+	));
 }
 
 ###############################################################################
@@ -620,7 +693,6 @@ orig_dendr=as.dendrogram(hcl);
 # Exactract names of leaves from left to right
 lf_names=get_clstrd_leaf_names(orig_dendr);
 
-pdf(paste(output_fname_root, ".cl_inf.pdf", sep=""), height=8.5, width=14);
 palette_col=c("red", "green", "blue", "cyan", "magenta", "orange", "gray", "pink", "black", "purple", "brown", "aquamarine");
 #palette_col=c("blue", "red", "green", "cyan", "magenta", "orange", "gray", "pink", "black", "purple", "brown", "aquamarine");
 palette(palette_col);
@@ -740,7 +812,9 @@ for(ix in iterations){
 	cat("Prepping dendrogram...\n");
 	max_sample_name_length=max(nchar(sample_names));
 	cat("Max sample name length: ", max_sample_name_length, "\n");
-	label_scale=min(2,20/max_sample_name_length);
+	label_scale_by_samp_name_len=min(2, 20/max_sample_name_length);
+	label_scale_by_num_samples=min(2, 50/num_samples);
+	label_scale=min(label_scale_by_num_samples, label_scale_by_samp_name_len);
 	par(oma=c(0,0,0,0));
 	par(mar=c(max_sample_name_length/2,4.1,4.1,2.1));
 	par(mfrow=c(1,1));
@@ -759,9 +833,11 @@ for(ix in iterations){
 		abline(h=cut_midpoints[num_cl], col="red", lty=2);
 	}
 
+	legend_title=ifelse(useMetadata, paste("[", fact_name, "]", sep=""), "");
+
 	# Legend at top left of dendrogram
 	ranges=par()$usr;
-	legend(ranges[1], ranges[4], fill=1:num_cl, legend=legend_labels, bty="n");
+	legend(ranges[1], ranges[4], fill=1:num_cl, legend=legend_labels, bty="n", title=legend_title);
 
 	# Label page with cut/factor specific info
 	mtext(paste("Distance Type: ", dist_type), side=3, line=1, outer=T);
@@ -799,7 +875,7 @@ for(ix in iterations){
 	par(mar=c(0,0,0,0));
 	plot(0, type="n", xlab="", ylab="", main="", bty="n", xaxt="n", yaxt="n", xlim=c(0,1), ylim=c(0,1));
 
-	legend(0,1, fill=1:num_cl, legend=legend_labels, bty="n", cex=2);
+	legend(0,1, fill=1:num_cl, legend=legend_labels, bty="n", cex=2, title=legend_title);
 	mtext(paste("Num Clusters: ", num_cl), side=3, outer=T);
 	
 	# Compute R^2 pairwise between clusters

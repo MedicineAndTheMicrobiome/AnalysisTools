@@ -32,7 +32,10 @@ params=c(
 
 	"reference_levels", "c", 2, "character",
 	"contains_remaining", "R", 2, "logical",
-	"shorten_category_names", "x", 2, "character"
+	"shorten_category_names", "x", 2, "character",
+
+        "tag_name", "t", 2, "character"
+
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -63,6 +66,8 @@ usage = paste(
 	"	[-c <reference levels file for Y's in factor file>]\n",
 	"	[-R (pay attention to 'remaining' category)]\n",
 	"	[-x <shorten category names, with separator in double quotes (default=\"\")>]\n",
+	"\n",
+	"	[-t <tag name>]\n",
 	"\n",
 	"This script will fit the following model for each ALR category from the top ", NUM_TOP_RESP_CAT, " taxa\n",
 	"  and/or the specified list.\n",
@@ -135,6 +140,26 @@ if(length(opt$alr_list_file)){
 	ALRCategListFile="";
 }
 
+if(length(opt$tag_name)){
+        TagName=opt$tag_name;
+        cat("Setting TagName Hook: ", TagName, "\n");
+        setHook("plot.new",
+                function(){
+                        #cat("Hook called.\n");
+                        if(par()$page==T){
+                                oma_orig=par()$oma;
+                                exp_oma=oma_orig;
+                                exp_oma[1]=max(exp_oma[1], 1);
+                                par(oma=exp_oma);
+                                mtext(paste("[", TagName, "]", sep=""), side=1, line=exp_oma[1]-1,
+                                        outer=T, col="steelblue4", font=2, cex=.8, adj=.97);
+                                par(oma=oma_orig);
+                        }
+                }, "append");
+
+}else{
+        TagName="";
+}
 
 SummaryFile=opt$summary_file;
 FactorsFile=opt$factors;
@@ -218,23 +243,29 @@ load_reference_levels_file=function(fname){
 }
 
 relevel_factors=function(factors, ref_lev_mat){
-        num_factors_to_relevel=nrow(ref_lev_mat);
-        relevel_names=rownames(ref_lev_mat);
+
+	num_factors_to_relevel=nrow(ref_lev_mat);
+	relevel_names=rownames(ref_lev_mat);
 	factor_names=colnames(factors);
-        for(i in 1:num_factors_to_relevel){
-		
-		target_relev_name=relevel_names[i];
-		if(any(target_relev_name==factor_names)){
-			tmp=factors[,target_relev_name];
-			#print(tmp);
-			tmp=relevel(tmp, ref_lev_mat[i, 1]);
-			#print(tmp);
-			factors[,target_relev_name]=tmp;
+
+	for(i in 1:num_factors_to_relevel){
+		relevel_target=relevel_names[i];
+
+		if(length(intersect(relevel_target, factor_names))){
+			target_level=ref_lev_mat[i, 1];
+			tmp=factors[,relevel_target];
+			if(length(intersect(target_level, tmp))){
+				tmp=relevel(tmp, target_level);
+    				factors[,relevel_target]=tmp;
+			}else{
+				cat("WARNING: Target level '", target_level,
+					"' not found in '", relevel_target, "'!!!\n", sep="");
+			}
 		}else{
-			cat("Note: ", target_relev_name, " not in model.  Ignoring reference releveling.\n\n", sep="");
+			cat("WARNING: Relevel Target Not Found: '", relevel_target, "'!!!\n", sep="");
 		}
-        }
-        return(factors);
+	}
+	return(factors);
 }
 
 merge_summary_tables=function(st1, st2){
@@ -1329,43 +1360,43 @@ print(covariates_coef_mat);
 
 paint_matrix(wilcoxon_pval_mat, plot_min=0, plot_max=1,
 	title="Wilcoxon Difference in ALR: P-values",
-	high_is_hot=F, deci_pts=2, value.cex=.8); 
+	high_is_hot=F, deci_pts=4, value.cex=.8); 
 mtext(text="(No controlling for covariates)", side=3, cex=.8, font=3, line=2, outer=T);
 
 paint_matrix(covariates_coef_mat, 
         title="Regression Model Coefficient Values",
-        high_is_hot=T, deci_pts=2, value.cex=.8);
+        high_is_hot=T, deci_pts=3, value.cex=.8);
 
 paint_matrix(covariates_pval_mat, plot_min=0, plot_max=1,
         title="Regression Model Coeff P-Values", 
-        high_is_hot=F, deci_pts=2, value.cex=.8);
+        high_is_hot=F, deci_pts=4, value.cex=.8);
 mtext(text="(H0: Coefficients equal zero, H1: Non-zero Coefficients)", side=3, cex=.9, font=3, line=2, outer=T);
 
 signf_coef_mat=mask_matrix(covariates_coef_mat, covariates_pval_mat, .1, 0);
 paint_matrix(signf_coef_mat,
         title="Regression Model Significant Coefficients", 
-        high_is_hot=T, deci_pts=2, value.cex=.8, label_zeros=F);
+        high_is_hot=T, deci_pts=3, value.cex=.8, label_zeros=F);
 mtext(text="(P-Values < 0.10 Shown)", side=3, cex=.9, font=3, line=2, outer=T);
 
 signf_coef_mat=mask_matrix(covariates_coef_mat, covariates_pval_mat, .05, 0);
 paint_matrix(signf_coef_mat,
         title="Regression Model Significant Coefficients", 
-        high_is_hot=T, deci_pts=2, value.cex=.8, label_zeros=F);
+        high_is_hot=T, deci_pts=3, value.cex=.8, label_zeros=F);
 mtext(text="(P-Values < 0.05 Shown)", side=3, cex=.9, font=3, line=2, outer=T);
 
 signf_coef_mat=mask_matrix(covariates_coef_mat, covariates_pval_mat, .01, 0);
 paint_matrix(signf_coef_mat,
         title="Regression Model Significant Coefficients", 
-        high_is_hot=T, deci_pts=2, value.cex=.8, label_zeros=F);
+        high_is_hot=T, deci_pts=3, value.cex=.8, label_zeros=F);
 mtext(text="(P-Values < 0.01 Shown)", side=3, cex=.9, font=3, line=2, outer=T);
 
 paint_matrix(rsqrd_mat, plot_min=0, plot_max=1,
         title="Regression R^2's", 
-        high_is_hot=T, deci_pts=2, value.cex=.8);
+        high_is_hot=T, deci_pts=3, value.cex=.8);
 
 paint_matrix(model_pval_mat, plot_min=0, plot_max=1,
         title="Regression Model Fit P-values", 
-        high_is_hot=F, deci_pts=2, value.cex=.8);
+        high_is_hot=F, deci_pts=4, value.cex=.8);
 mtext(text="(H0: Predictors have no contribution to model fit)", side=3, cex=.8, font=3, line=2, outer=T);
 
 ###############################################################################

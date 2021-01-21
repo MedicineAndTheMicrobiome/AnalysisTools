@@ -8,6 +8,7 @@ use Getopt::Std;
 use File::Basename;
 use FileHandle;
 use vars qw($opt_f $opt_g $opt_r $opt_o $opt_p $opt_c $opt_m);
+use POSIX;
 
 my $MOTHUR_BIN="/usr/bin/mothur_1.44.1/mothur/mothur";
 
@@ -35,6 +36,13 @@ my $SUMMARIZE_SUMTAB_BIN="$FindBin::Bin/../Profile/SummaryTableUtilities/Summari
 my $DESC_DISTANCE_ANALYSIS_BIN="$FindBin::Bin/../Profile/distance_based/Cluster_Influencers/Cluster_Influencers.r";
 my $DESC_DISTRIBUTION_ANALYSIS_BIN="$FindBin::Bin/../Profile/distribution_based/Plot_StackedBar/Plot_StackedBar.r";
 my $DESC_ABUNDANCE_ANALYSIS_BIN="$FindBin::Bin/../Profile/abundance_based/Export_ALR_Values/Export_ALR_Values.r";
+
+my $SUMTAB_TO_FACTOR_FILE_BIN="$FindBin::Bin/pipeline_utilities/SummaryTable_to_MetadataFile/SummaryTable_to_MetadataFile.r";
+my $SUMTAB_TO_DISTMAT_BIN="$FindBin::Bin/../Profile/SummaryTableUtilities/Create_Distance_Matrix.r";
+my $JOIN_SUMTAB_BIN="$FindBin::Bin/../Profile/SummaryTableUtilities/Join_Summary_Tables.r";
+my $PERMANOVA_BIN="$FindBin::Bin/../Profile/distance_based/Permanova/Permanova.r";
+my $READDEPTH_ANALYSIS_BIN="$FindBin::Bin/pipeline_utilities/ReadDepth_Analysis/ReadDepth_Analysis.r";
+my $MULTINOMIAL_ANALYSIS_BIN="$FindBin::Bin/../Profile/abundance_based/Fit_Multinomial_Resp_ALR_Regression/Fit_Multinomial_Resp_ALR_Regression.r";
 
 #my $CURRENT_16S_ALIGNMENT=
 #	"/usr/local/devel/DAS/users/kli/SVN/DAS/16sDataAnalysis/trunk/16S_OTU_Generation/silva.nr_v119.align";
@@ -669,6 +677,15 @@ my $exec_string="
 ";
 exec_cmd($exec_string, "$st_dir", "extract_control_samples");
 
+# Split negative control samples
+my $exec_string="
+	$SAMPLE_GREP_BIN
+		-i $st_dir/$out_root.taxa.genus.cmF.cln.summary_table.tsv
+		-k \"^000[01]\\.\"
+		-o $st_dir/$out_root.taxa.genus.cmF.cln.neg_ctl
+";
+exec_cmd($exec_string, "$st_dir", "extract_negative_control_samples");
+
 # Remove low count samples
 my $exec_string="
 	$READ_DEPTH_CUTOFF_BIN
@@ -738,6 +755,148 @@ my $exec_string="
 		-x \";\"
 ";
 exec_cmd($exec_string, "$desc_stat_dir", "abundance_desc_analysis");
+
+##############################################################################
+
+# Comparison with controls
+my $control_comp_dir="$st_dir/Controls";
+mkdir $control_comp_dir;
+
+my $sumtab_all="$st_dir/$out_root.taxa.genus.cmF.cln.summary_table.tsv";
+my $sumtab_negctl="$st_dir/$out_root.taxa.genus.cmF.cln.neg_ctl.summary_table.tsv";
+my $sumtab_exp0750="$st_dir/$out_root.taxa.genus.cmF.cln.exp.min_0750.summary_table.tsv";
+my $sumtab_exp1000="$st_dir/$out_root.taxa.genus.cmF.cln.exp.min_1000.summary_table.tsv";
+my $sumtab_exp2000="$st_dir/$out_root.taxa.genus.cmF.cln.exp.min_2000.summary_table.tsv";
+my $sumtab_exp3000="$st_dir/$out_root.taxa.genus.cmF.cln.exp.min_3000.summary_table.tsv";
+
+# Compare all exp samples with all control
+my $exec_string="
+	$SUMTAB_TO_DISTMAT_BIN
+		-i $sumtab_all
+		-d man
+		-o $control_comp_dir/$out_root
+";
+exec_cmd($exec_string, "$control_comp_dir", "control_analysis_make_distmat");
+
+# make factor file
+my $exec_string="
+	$SUMTAB_TO_FACTOR_FILE_BIN
+		-i $sumtab_all
+		-o $control_comp_dir/$out_root
+";
+exec_cmd($exec_string, "$control_comp_dir", "control_analysis_make_factorfile");
+
+# Compare all exp samples with negative controls
+my $exec_string="
+	$PERMANOVA_BIN
+		-d $control_comp_dir/$out_root.man.distmat
+		-f $control_comp_dir/$out_root.metadata.tsv
+		-o $control_comp_dir/$out_root.all_samples
+		-m \"Sample_Type\"
+";
+exec_cmd($exec_string, "$control_comp_dir", "control_analysis_permanova_all");
+
+# Perform read depth analysis w/controls
+my $exec_string="
+	$READDEPTH_ANALYSIS_BIN
+		-m $control_comp_dir/$out_root.metadata.tsv
+		-g $groups_file	
+		-o $control_comp_dir/$out_root.all_samples
+";
+exec_cmd($exec_string, "$control_comp_dir", "control_analysis_depth_analysis_all");
+
+`echo Read_Depth > $control_comp_dir/multinom.covariates`;
+`echo "Sample_Type\tPCR.Negative" > $control_comp_dir/multinom.reference`;
+
+# Estimate number of ALR variables to use  in multinomial analysis based on number of samples in run
+my $num_samples=`wc -l $control_comp_dir/$out_root.metadata.tsv | cut -f 1 -d " "`;
+$num_samples--;
+my $num_alr=ceil((log($num_samples/10)/log(2))*5);
+if($num_alr<3){
+	$num_alr=3;
+}
+if($num_alr>40){
+	$num_alr=40;
+}
+
+print "Using $num_alr ALR variables with $num_samples samples.";
+
+# Perform multinomial comparisons
+my $exec_string="
+	$MULTINOMIAL_ANALYSIS_BIN
+		-s $sumtab_all
+		-p $num_alr
+		-x \";\"
+		-f $control_comp_dir/$out_root.metadata.tsv 
+		-c $control_comp_dir/multinom.covariates
+		-y Sample_Type
+		-r $control_comp_dir/multinom.reference
+		-o $control_comp_dir/$out_root		
+";
+exec_cmd($exec_string, "$control_comp_dir", "control_analysis_multinomial_all");
+
+foreach my $proj_file (split "\n", 
+	`ls $control_comp_dir/$out_root.multn_predictions/model_\\[alr_only\\]/pred_as_\\[P_*\\]/obsr_as_\\[P_*\\].tsv`){
+	`cp $proj_file $control_comp_dir`;
+}
+
+# 0750,1000,2000,3000
+#my @depths=("0750");
+my @depths=("0750", "1000", "2000", "3000");
+my %sumtabs;
+$sumtabs{"0750"}=$sumtab_exp0750;
+$sumtabs{"1000"}=$sumtab_exp1000;
+$sumtabs{"2000"}=$sumtab_exp2000;
+$sumtabs{"3000"}=$sumtab_exp3000;
+
+foreach my $depth (@depths){
+
+	my $depth_dir="$control_comp_dir/$depth";
+	mkdir $depth_dir;
+
+	# Join experimental at cutoff with negative controls
+	my $exec_string="
+		$JOIN_SUMTAB_BIN
+			-i $sumtab_negctl,$sumtabs{$depth}
+			-o $depth_dir/$out_root.$depth.w_negctl
+	";
+	exec_cmd($exec_string, "$depth_dir", "control_analysis_join_$depth\_w_negctl");
+
+	# Pull factor file for summary table
+	my $exec_string="
+		$SUMTAB_TO_FACTOR_FILE_BIN
+			-i $depth_dir/$out_root.$depth.w_negctl.summary_table.tsv
+			-o $depth_dir/$out_root.$depth.w_negctl
+	";
+	exec_cmd($exec_string, "$depth_dir", "control_analysis_make_factorfile_$depth");
+
+	# Perform permanova
+	my $exec_string="
+		$PERMANOVA_BIN
+			-d $control_comp_dir/$out_root.man.distmat
+			-f $depth_dir/$out_root.$depth.w_negctl.metadata.tsv
+			-o $depth_dir/$out_root.$depth.w_negctl
+			-m \"Sample_Type\"
+	";
+	exec_cmd($exec_string, "$depth_dir", "control_analysis_permanova_$depth");
+
+	# Perform read depth analysis w/controls
+	my $exec_string="
+		$READDEPTH_ANALYSIS_BIN
+			-m $depth_dir/$out_root.$depth.w_negctl.metadata.tsv
+			-g $groups_file
+			-o $depth_dir/$out_root.$depth.w_negctl
+	";
+	exec_cmd($exec_string, "$depth_dir", "control_analysis_depth_analysis_$depth");
+	
+}
+
+# Read Depth analysis
+#
+# Compare all 750 samples with negative controls
+# Compare all 1000 samples with negative control
+# Compare all 2000 samples with negative control
+# Compare all 3000 samples with negative control
 
 ##############################################################################
 

@@ -5,13 +5,13 @@
 use strict;
 use Getopt::Std;
 use File::Temp;
-use vars qw ($opt_s $opt_f $opt_c $opt_g $opt_p $opt_a $opt_o $opt_E $opt_r);
+use vars qw ($opt_s $opt_f $opt_c $opt_g $opt_p $opt_a $opt_o $opt_E $opt_r $opt_t);
 use File::Basename;
 use Cwd;
 use Digest::MD5;
 use Sys::Hostname;
 
-getopts("s:f:c:g:p:a:o:E:r:");
+getopts("s:f:c:g:p:a:o:Er:t:");
 
 my $NUM_ALR_VARIABLES=35;
 
@@ -34,6 +34,7 @@ my $usage = "
 	-o <output directory>
 
 	[-E (Do not abort on error.  Keep going on other analyses)]
+	[-t <tag name>]
 
 	This script will run a suite of analyses that use the following
 	inputs:
@@ -59,6 +60,7 @@ my $usage = "
 			Permanova
 			Cluster MLL
 
+	Use the -t <tag name> option to help watermark the individual pages in the output pdf file.
 
 
 ";
@@ -84,6 +86,7 @@ my $NumALRVariables=$NUM_ALR_VARIABLES;
 my $DontAbort;
 my $AdditionalALRFile;
 my $ReferenceRelevelingFile;
+my $TagName="";
 
 if(defined($opt_g)){
 	$GroupVar=$opt_g;
@@ -118,6 +121,12 @@ if($AnalysisName eq ""){
 	$AnalysisName="result";
 }
 
+if(defined($opt_t)){
+	$TagName=$opt_t;
+}else{
+	$TagName=$AnalysisName;
+}
+
 my $ABDNC_DIR="abundance_based";
 my $DSTRB_DIR="distribution_based";
 my $DSTNC_DIR="distance_based";
@@ -145,6 +154,7 @@ print STDERR "Num ALR Variables:       $NumALRVariables\n";
 print STDERR "Additional ALR File:     $AdditionalALRFile\n";
 print STDERR "\n";
 print STDERR "Don't Abort on Errors:   $DontAbort\n";
+print STDERR "Tag Name:                $TagName\n";
 print STDERR "\n";
 
 ###############################################################################
@@ -242,6 +252,7 @@ sub run_abundance_based{
 	my $variable_list=shift;
 	my $model_name=shift;
 	my $num_alr=shift;
+	my $tag_name=shift;
 
 
 	my $PRED_OUT_DIR="alr_as_pred";
@@ -276,6 +287,7 @@ sub run_abundance_based{
                 -p $num_alr \
                 -o $output_dir/abundance/$RESP_OUT_DIR/$model_name  \
                 -x \";\" \
+		-t $tag_name \
 		$add_alr $add_reflev
 	";
 	run_command("Fit ALR as Response", "alr_as_resp", $cmd, "$output_dir/abundance/$RESP_OUT_DIR");
@@ -292,6 +304,7 @@ sub run_abundance_based{
 			-p $num_alr \
 			-o $output_dir/abundance/$PRED_OUT_DIR/$model_name \
 			-x \";\" \
+			-t $tag_name \
 			$add_alr $add_reflev
 		";
 		run_command("Fit ALR as Predictor", "alr_as_pred", $cmd, "$output_dir/abundance/$PRED_OUT_DIR");
@@ -304,7 +317,8 @@ sub run_abundance_based{
 			-u $output_dir/abundance/$PRED_OUT_DIR/$model_name.alr_as_pred.coefs.tsv \
 			-v $output_dir/abundance/$RESP_OUT_DIR/$model_name.alr_as_resp.coefs.tsv \
 			-o $output_dir/abundance/$COMP_DIR/$model_name.alr \
-			-p .025
+			-p .025 \
+			-t $tag_name
 		";
 		run_command("Compare ALR Pred/Resp", "alr_pred_resp_comp", $cmd, "$output_dir/abundance/$COMP_DIR");	
 
@@ -322,6 +336,7 @@ sub run_distribution_based{
 	my $covariates=shift;
 	my $variable_list=shift;
 	my $model_name=shift;
+	my $tag_name=shift;
 
 	my $PRED_OUT_DIR="div_as_pred";
 	my $RESP_OUT_DIR="div_as_resp";
@@ -355,6 +370,7 @@ sub run_distribution_based{
                 -M $output_dir/cov_var \
                 -q $output_dir/cov_var \
              	-o $output_dir/distribution/$RESP_OUT_DIR/$model_name \
+		-t $tag_name \
 		$add_reflev
 	";
 	run_command("Fit Diversity as Response", "div_as_resp", $cmd, "$output_dir/distribution/$RESP_OUT_DIR");
@@ -369,6 +385,7 @@ sub run_distribution_based{
 			-c $covariates \
 			-q $output_dir/cov_var \
 			-o $output_dir/distribution/$PRED_OUT_DIR/$model_name \
+			-t $tag_name \
 			$add_reflev
 			
 		";
@@ -381,7 +398,9 @@ sub run_distribution_based{
 			-u $output_dir/distribution/$PRED_OUT_DIR/$model_name.div_as_pred.coefs.tsv \
 			-v $output_dir/distribution/$RESP_OUT_DIR/$model_name.div_as_resp.coefs.tsv \
 			-o $output_dir/distribution/$COMP_DIR/$model_name.div \
-			-p .025
+			-a Diversity \
+			-p .025 \
+			-t $tag_name
 		";
 		run_command("Compare Diversity Pred/Resp", "div_pred_resp_comp", $cmd, "$output_dir/distribution/$COMP_DIR");
 	}
@@ -395,6 +414,7 @@ sub run_distribution_based{
 		-M $output_dir/cov_var \
 		-o $output_dir/distribution/$STCK_BAR_DIR/$model_name \
 		-s \";\" \
+		-t $tag_name
 	";
 	run_command("Plot Stacked Bar Plots", "stacked_bp", $cmd, "$output_dir/distribution/$STCK_BAR_DIR");
 
@@ -405,6 +425,7 @@ sub run_distribution_based{
 		-M $output_dir/cov_var \
 		-o $output_dir/distribution/$RANK_ABND_DIR/$model_name \
 		-s \";\" \
+		-t $tag_name
 	";
 	run_command("Plot Rank Abundance Plots", "rank_abnd", $cmd, "$output_dir/distribution/$RANK_ABND_DIR");
 
@@ -421,6 +442,7 @@ sub run_distance_based{
 	my $covariates=shift;
 	my $variable_list=shift;
 	my $model_name=shift;
+	my $tag_name=shift;
 
 	my $DISTMAT_DIR="dist_mat";
 	my $PERMA_DIR="permanova";
@@ -463,7 +485,8 @@ sub run_distance_based{
                 -f $factor_file \
 		-M $output_dir/cov_var \
 		-o $output_dir/distance/$PERMA_DIR/$model_name \
-		-q $output_dir/cov_var
+		-q $output_dir/cov_var \
+		-t $tag_name
 	";
 	run_command("Permanova", "perma", $cmd, "$output_dir/distance/$PERMA_DIR");
 		
@@ -478,6 +501,7 @@ sub run_distance_based{
 		-q $output_dir/cov_var \
 		-o $output_dir/distance/$CLUST_MLL_DIR/$model_name \
 		-d $dist_type \
+		-t $tag_name \
 		$add_reflev
 	";
 	run_command("Fit Multinomial Log-Linear Model", "clust_mll", $cmd, "$output_dir/distance/$CLUST_MLL_DIR");
@@ -489,7 +513,8 @@ sub run_distance_based{
 		-d $dist_type \
 		-M $output_dir/cov_var \
 		-c $output_dir/distance/$CLUST_MLL_DIR/$model_name\.$dist_type\.cl_mll.used_samp.lst \
-		-o $output_dir/distance/$CLUST_MLL_DIR/$model_name
+		-o $output_dir/distance/$CLUST_MLL_DIR/$model_name \
+		-t $tag_name
 	";
 	run_command("Plot Metadata Heatmap", "cl_hmp", $cmd, "$output_dir/distance/$CLUST_MLL_DIR");
 
@@ -498,7 +523,8 @@ sub run_distance_based{
 		-i $summary_table \
 		-d $dist_type \
 		-c $output_dir/distance/$CLUST_MLL_DIR/$model_name\.$dist_type\.cl_mll.used_samp.lst \
-		-o $output_dir/distance/$CLUST_MLL_DIR/$model_name
+		-o $output_dir/distance/$CLUST_MLL_DIR/$model_name \
+		-t $tag_name 
 	";
 	run_command("Compute Calinski-Harabasz Stopping", "ch_stop", $cmd, "$output_dir/distance/$CLUST_MLL_DIR");
 
@@ -507,7 +533,8 @@ sub run_distance_based{
 		-i $summary_table \
 		-d $dist_type \
 		-l $output_dir/distance/$CLUST_MLL_DIR/$model_name\.$dist_type\.cl_mll.used_samp.lst \
-		-o $output_dir/distance/$CLUST_MLL_DIR/$model_name
+		-o $output_dir/distance/$CLUST_MLL_DIR/$model_name \
+		-t $tag_name
 	";
 	run_command("Compute Cluster Influencers", "cl_inf", $cmd, "$output_dir/distance/$CLUST_MLL_DIR");
 	
@@ -520,7 +547,8 @@ sub run_distance_based{
 		-d $dist_type \
 		-o $output_dir/distance/$INFL_BY_FACTOR/$model_name \
 		-n $output_dir/cov_var \
-		-f $factor_file
+		-f $factor_file \
+		-t $tag_name
 	";
 	run_command("Compute Cluster Influencers by Factors", "cl_inf_by_factors",
 		$cmd, "$output_dir/distance/$INFL_BY_FACTOR");
@@ -531,17 +559,71 @@ sub run_distance_based{
 
 ###############################################################################
 
-#print STDERR "Summary Table:   $SummaryTable\n";
-#print STDERR "Factor File:     $FactorFile\n";
-#print STDERR "Covariates List: $Covariates\n";
-#print STDERR "Group Variables List: $GroupVar\n";
-#print STDERR "Output Directory: $OutputDir\n";
-#
-
+print STDERR "Summary Table:   $SummaryTable\n";
+print STDERR "Factor File:     $FactorFile\n";
+print STDERR "Covariates List: $Covariates\n";
+print STDERR "Group Variables List: $GroupVar\n";
+print STDERR "Output Directory: $OutputDir\n";
 
 if(!(-e $OutputDir)){
 	mkdir $OutputDir;
 }
+
+
+###############################################################################
+
+my $cmd="cat $Covariates $GroupVar > $OutputDir/all_req_var";
+run_command("Combine Cov/Grp variables for NA prescreen", "na_prescreen_concat_var",
+	$cmd, "$OutputDir");
+
+# Prescreen factors/summary table for NAs
+my $cmd=
+"~/git/AnalysisTools/Metadata/RemoveNAs/Prescreen_Sample_woFactorNAs/Prescreen_Sample_woFactorNAs.r \
+	-s $SummaryTable \
+	-f $FactorFile \
+	-d $OutputDir \
+	-t $OutputDir/all_req_var \
+	-q $OutputDir/all_req_var
+";
+run_command("Run NA prescreen", "na_prescreen", $cmd, "$OutputDir");
+
+print STDERR "\n**************************************************************\n";
+
+my ($stname, $stpath)=fileparse($SummaryTable);
+my $screened_summary_table="$OutputDir/$stname";
+$screened_summary_table=~s/\.summary_table\.tsv$//;
+$screened_summary_table="$screened_summary_table.prescr.summary_table.tsv";
+print STDERR "Prescreened Summary Table: $screened_summary_table\n";
+
+my ($fcname, $fcpath)=fileparse($FactorFile);
+my $screened_factor_file="$OutputDir/$fcname";
+$screened_factor_file=~s/\.tsv$//;
+$screened_factor_file="$screened_factor_file.prescr.tsv";
+print "Prescreened Factor File: $screened_factor_file\n";
+
+print STDERR "\n**************************************************************\n";
+
+# Remove factors lost due to NA screening
+my $cmd=
+"cat $screened_factor_file | \
+	~/git/AnalysisTools/Column/list_column_headers.pl | \
+	grep -v '^\$' > \
+	$OutputDir/all_avail_var";
+#my $cmd="lch $screened_factor_file | grep -v '^\$' > $OutputDir/all_avail_var; echo done.";
+run_command("Get Post-NA Removal Variables", "get_postna_rem_var", $cmd, "$OutputDir");
+
+my $cmd="grep -f $OutputDir/all_avail_var $Covariates > $OutputDir/covar.screened; echo done.";
+run_command("Screen Covariates", "scr_covar", $cmd, "$OutputDir");
+
+my $cmd="grep -f $OutputDir/all_avail_var $GroupVar > $OutputDir/groupvar.screened; echo done.";
+run_command("Screen Grouped Variables", "scr_group_var", $cmd, "$OutputDir");
+
+###############################################################################
+
+$SummaryTable=$screened_summary_table;
+$FactorFile=$screened_factor_file;
+$Covariates="$OutputDir/covar.screened";
+$GroupVar="$OutputDir/groupvar.screened";
 
 
 run_abundance_based(
@@ -551,7 +633,8 @@ run_abundance_based(
 	$Covariates,
 	$GroupVar,
 	$AnalysisName,
-	$NumALRVariables
+	$NumALRVariables,
+	$TagName
 );
 
 
@@ -561,7 +644,8 @@ run_distribution_based(
 	$FactorFile,
 	$Covariates,
 	$GroupVar,
-	$AnalysisName
+	$AnalysisName,
+	$TagName
 );
 
 run_distance_based(
@@ -570,57 +654,9 @@ run_distance_based(
 	$FactorFile,
 	$Covariates,
 	$GroupVar,
-	$AnalysisName
+	$AnalysisName,
+	$TagName
 );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+###############################################################################
 
