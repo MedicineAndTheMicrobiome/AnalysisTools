@@ -5,9 +5,9 @@
 use strict;
 use Getopt::Std;
 use File::Temp;
-use vars qw ($opt_i $opt_o $opt_m $opt_d $opt_t $opt_a);
+use vars qw ($opt_i $opt_o $opt_m $opt_h $opt_c $opt_d $opt_t $opt_a);
 
-getopts("i:o:m:dta");
+getopts("i:o:m:hc:dta");
 
 my $usage = "
 	usage:
@@ -16,22 +16,30 @@ my $usage = "
 		-o <Output char-delimited file name>
 		-m <Output mapping file>
 		
+		[-h (only work on header, i.e. first line)]
+		[-c <column numbers, comma-separated, starting from 1>]
+
 		Input delimitor options
 		[-d (auto Detected, default)]
 		[-t (Tab delimited)]
 		[-a (commA delimited)]
 
-	Output goes to STDOUT.
-
-	This script will clean all cells in the input
+	By default, this script will clean all cells in the input
 	and generate a mapping file.
+
+	If you only want the first line cleaned, use the -h flag.
+	If you only want specific columns cleaned, use the -c option.
+		e.g. -c 1,3,16
+	If you specify both the -h and -c option, then the only
+		the specified columsn will be cleaned in the header.
 
 	To keep the mapping consistent between multiple
 	files the same version of this script should
 	be applied to all files.
 
 	All characters will be converted into periods, underscores, or alpha-numeric.
-	If value starts with a number, then X__ will be prepended to it.
+	If a value starts with a number, then X__ will be prepended to it, so
+	it shouldn't be applied to data that is numeric.
 
 ";
 
@@ -43,6 +51,15 @@ if(!defined($opt_i) || !defined($opt_o) || !defined($opt_m)){
 my $InputFile=$opt_i;
 my $OutputFile=$opt_o;
 my $MappingFile=$opt_m;
+
+# Optional
+my $HeaderOnly=defined($opt_h);
+my $ColumnOnly=defined($opt_c);
+
+my @target_columns=();
+if($ColumnOnly){
+	@target_columns=split /,/, $opt_c;
+}
 
 # Delimitors
 my $Delimitor="";
@@ -62,7 +79,21 @@ if(defined($opt_a)){
 print STDERR "Input:   $InputFile\n";
 print STDERR "Output:  $OutputFile\n";
 print STDERR "Mapping: $MappingFile\n";
+print STDERR "\n";
 print STDERR "Delimitor: '$Delimitor'\n";
+print STDERR "\n";
+
+if($HeaderOnly){
+	print STDERR "Only work on header line.\n";
+}else{
+	print STDERR "Working on all rows.\n";
+}
+
+if($ColumnOnly){
+	print STDERR "Only working on columns: ", (join ", ", @target_columns), "\n";
+}else{
+	print STDERR "Working on all columns.\n";
+}	
 
 ###############################################################################
 # Autodetect field delimiter
@@ -145,46 +176,80 @@ sub clean_name{
 ###############################################################################
 
 print STDERR "Processing Input File...\n";
-my $input_lines=0;
 open(IN_FH, "<$InputFile") || die "Could not open input file $InputFile.\n";
 open(OUT_FH, ">$OutputFile") || die "Could not open output file $OutputFile.\n";
 
 my %mapping_hash;
 my %inv_hash;
 
+my %column_hash;
+my $all_col=0;
+if($ColumnOnly){
+	foreach my $target_col(@target_columns){
+		$column_hash{$target_col}=1;
+	}
+}else{
+	$all_col=1;
+}
+
+my $input_lines=0;
+my $process_row;
+my $process_col;
+my $num_cells_processed=0;
+
 while(<IN_FH>){
 	chomp;
 
-	if($_ eq ""){
-		next;
-	}
-	
-	my @array=split /$Delimitor/, $_, -1;
+	$process_row=0;
 
+	# Conditions of when to process row
+	if($HeaderOnly && $input_lines==0){
+		$process_row=1;
+	}
+	if(!$HeaderOnly){
+		$process_row=1;
+	}
+
+	my @array=split /$Delimitor/, $_, -1;
 	my $num_col=$#array+1;
 	for(my $i=0; $i<$num_col; $i++){
 
-		my $original=$array[$i];
-		my $cleaned=clean_name($original);
+		$process_col=0;
 
-		my $prev_orig=$inv_hash{$cleaned};
-		if(!defined($prev_orig)){
-			$inv_hash{$cleaned}=$original;
+		# Conditions of when to process col	
+		if($all_col==1){
+			$process_col=1;
 		}else{
-			if($original ne $prev_orig){
-				print STDERR "\n";
-				print STDERR "Error: Cleaned name not unique.\n";
-				print STDERR "Cleaned:  $cleaned\n";
-				print STDERR "Current:  $original\n";
-				print STDERR "Previous: $prev_orig\n";
-				print STDERR "\n";
-				die "Update cleaning algorithm to fix degenerate cleaning.\n";
-			} 
+			if($column_hash{$i+1}){
+				$process_col=1;
+			}
 		}
-		$mapping_hash{$original}=$cleaned;
 
-		$array[$i]=$cleaned;
+		if($process_col && $process_row){
+			my $original=$array[$i];
+			my $cleaned=clean_name($original);
+
+			my $prev_orig=$inv_hash{$cleaned};
+			if(!defined($prev_orig)){
+				$inv_hash{$cleaned}=$original;
+			}else{
+				if($original ne $prev_orig){
+					print STDERR "\n";
+					print STDERR "Error: Cleaned name not unique.\n";
+					print STDERR "Cleaned:  $cleaned\n";
+					print STDERR "Current:  $original\n";
+					print STDERR "Previous: $prev_orig\n";
+					print STDERR "\n";
+					die "Update cleaning algorithm to fix degenerate cleaning.\n";
+				} 
+			}
+			$mapping_hash{$original}=$cleaned;
+			$array[$i]=$cleaned;
+
+			$num_cells_processed++;
+		}
 	}
+
 
 	my  $outstr=join "$Delimitor", @array;
 	print OUT_FH "$outstr\n";
@@ -201,9 +266,8 @@ foreach my $orig (sort keys %mapping_hash){
 }
 close(MAP_FH);
 
-
-
 ###############################################################################
 
 print STDERR "Num Lines Processed: $input_lines\n";
+print STDERR "Num Cells Cleaned: $num_cells_processed\n";
 print STDERR "Done.\n";
