@@ -5,9 +5,9 @@
 use strict;
 use Getopt::Std;
 use File::Temp;
-use vars qw ($opt_i $opt_o $opt_m $opt_h $opt_c $opt_d $opt_t $opt_a);
+use vars qw ($opt_i $opt_o $opt_m $opt_h $opt_c $opt_n $opt_d $opt_t $opt_a);
 
-getopts("i:o:m:hc:dta");
+getopts("i:o:m:hc:ndta");
 
 my $usage = "
 	usage:
@@ -18,6 +18,7 @@ my $usage = "
 		
 		[-h (only work on header, i.e. first line)]
 		[-c <column numbers, comma-separated, starting from 1>]
+		[-n (work on column and row names only)]
 
 		Input delimitor options
 		[-d (auto Detected, default)]
@@ -31,7 +32,7 @@ my $usage = "
 	If you only want specific columns cleaned, use the -c option.
 		e.g. -c 1,3,16
 	If you specify both the -h and -c option, then the only
-		the specified columsn will be cleaned in the header.
+		the specified columns will be cleaned in the header.
 
 	To keep the mapping consistent between multiple
 	files the same version of this script should
@@ -55,6 +56,7 @@ my $MappingFile=$opt_m;
 # Optional
 my $HeaderOnly=defined($opt_h);
 my $ColumnOnly=defined($opt_c);
+my $NamesOnly=defined($opt_n);
 
 my @target_columns=();
 if($ColumnOnly){
@@ -85,15 +87,15 @@ print STDERR "\n";
 
 if($HeaderOnly){
 	print STDERR "Only work on header line.\n";
-}else{
-	print STDERR "Working on all rows.\n";
 }
 
 if($ColumnOnly){
 	print STDERR "Only working on columns: ", (join ", ", @target_columns), "\n";
-}else{
-	print STDERR "Working on all columns.\n";
 }	
+
+if($NamesOnly){
+	print STDERR "Only working on names.\n";
+}
 
 ###############################################################################
 # Autodetect field delimiter
@@ -209,6 +211,9 @@ while(<IN_FH>){
 	if(!$HeaderOnly){
 		$process_row=1;
 	}
+	if($NamesOnly){
+		$process_row=1;
+	}
 
 	my @array=split /$Delimitor/, $_, -1;
 	my $num_col=$#array+1;
@@ -217,12 +222,22 @@ while(<IN_FH>){
 		$process_col=0;
 
 		# Conditions of when to process col	
-		if($all_col==1){
-			$process_col=1;
-		}else{
+		if($ColumnOnly){
 			if($column_hash{$i+1}){
 				$process_col=1;
 			}
+		}
+		if($NamesOnly){
+			if($input_lines==0){
+				$process_col=1;
+			}else{
+				if($i==0){
+					$process_col=1;
+				}
+			}
+		}
+		if(!$ColumnOnly && !$NamesOnly){
+			$process_col=1;
 		}
 
 		if($process_col && $process_row){
