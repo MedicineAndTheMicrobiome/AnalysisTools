@@ -388,7 +388,7 @@ correl_to_PC=function(cor_rec, values, title, contrib_cutoff){
 	cat("Num PC's exceeding min cutoff: ", num_pc_at_cutoff, "\n");
 	cat("Num Variables: ", num_var, "\n");
 	var_names=colnames(values);
-	pcname=character(num_pc_at_cutoff);
+	pcnames=character(num_pc_at_cutoff);
 	for(pcix in 1:num_pc_at_cutoff){
 
 		# Find correlation with original variables
@@ -405,17 +405,21 @@ correl_to_PC=function(cor_rec, values, title, contrib_cutoff){
 		# If PC is negative, multiple score by -1
 		if(correls[closest_var_to_pc]<0){
 			scores[, pcix]=-1*scores[, pcix];	
+			correls[closest_var_to_pc]=-1*correls[closest_var_to_pc];
+			cat("PC Scores were flipped because correlation was negative.\n");
 		}
 
 		# Construct Name of PC
 		#   As:  PC[ix]_[coverage].[varname]_[cor]
-		pcname[pcix]=paste("PC",pcix,"_", round(pca_propvar[pcix]*100), ".",
-			var_names[closest_var_to_pc],"_", round(max_cor*100), sep="");
+		pcnames[pcix]=paste("PC",pcix,
+			"_c", round(pca_propvar[pcix]*100),
+			"_p", round(max_cor*100), ".",
+			var_names[closest_var_to_pc], sep="");
 		
 	}
 
 	kept_score=scores[,1:num_pc_at_cutoff, drop=F];
-	colnames(kept_score)=pcname;
+	colnames(kept_score)=pcnames;
 
 	########################################################################
 
@@ -427,19 +431,43 @@ correl_to_PC=function(cor_rec, values, title, contrib_cutoff){
 	cor_as_dist=1-(abs(pc_and_val));
 	hcl=hclust(as.dist(cor_as_dist), method="ward.D2");
         dend=as.dendrogram(hcl);
+
+	highlight_pcs=function(x){
+		# Using external pcnames variable
+
+		if(is.leaf(x)){
+			leaf_attr=attributes(x);
+			label=leaf_attr$label;
+			print(label);
+			if(any(label==pcnames)){
+				color="red";
+				font=2;
+			}else{
+				color="black";
+				font=1;
+			}
+			attr(x, "nodePar")=c(leaf_attr$nodePar, 
+				list(lab.font=font, lab.col=color, lab.cex=.8, cex=0));
+		}
+		return(x);
+	}
+
+	dend=dendrapply(dend, highlight_pcs);
+
         plot(dend, main=title, ylab="1-|cor(x,y)|", ylim=c(0, 2));
 
 	# Generate Barplots w/ PC Variance
 	colors=rep("khaki", num_var);
 	colors[1:num_pc_at_cutoff]="slategray2";
 	barlabs=rep("", num_var);
-	barlabs[1:num_pc_at_cutoff]=pcname;
+	barlabs[1:num_pc_at_cutoff]=pcnames;
 	par(mar=c(20,4,0,1));
 	mids=barplot(pca_propvar, ylim=c(0,1.1), names.arg=barlabs,  las=2,
-		col=colors, ylab="Proportion of Variance");
-	text(mids, pca_propvar, sprintf("%3.1f", pca_propvar*100), pos=3, cex=.9);
+		col=colors, ylab="Prop. of Var.", cex.names=.8);
+	text(mids, pca_propvar, sprintf("%3.1f%%", pca_propvar*100), pos=3, cex=.7);
 	abline(h=contrib_cutoff, col="red", lty=2);
 
+	colnames(kept_score)=paste(title, ".", pcnames, sep="");
 	return(kept_score);
 }
 
@@ -447,7 +475,7 @@ correl_to_PC=function(cor_rec, values, title, contrib_cutoff){
 # Main Program Starts Here!
 ##############################################################################
 
-pdf(paste(OutputFnameRoot, ".pdf", sep=""), height=11, width=8.5);
+pdf(paste(OutputFnameRoot, ".variables.pdf", sep=""), height=11, width=8.5);
 
 plot_text(param_text);
 
@@ -502,8 +530,9 @@ cat("Testing and Apply Log Transforms...\n");
 curated_fact_rec=test_and_apply_log_transform(shared_factors_mat, NORM_PVAL_CUTOFF);
 
 remapped_groupings=remap_groupings(groupings_rec, curated_fact_rec);
-
 group_cor_rec=calculate_grouped_correlations(curated_fact_rec, remapped_groupings);
+
+accumulated_pcs=numeric();
 
 for(grp_ix in names(group_cor_rec)){
 	cat("------------------------------------------------------------\n");
@@ -511,57 +540,89 @@ for(grp_ix in names(group_cor_rec)){
 
 	grp_members=remapped_groupings[["GrpVarMap"]][[grp_ix]];
 	subset_curated_fact=curated_fact_rec[["Transformed"]][,grp_members];
-	correl_to_PC(group_cor_rec[[grp_ix]], subset_curated_fact, title=grp_ix, PCContribCutoff);
+	kept_pcs=correl_to_PC(group_cor_rec[[grp_ix]], subset_curated_fact, title=grp_ix, PCContribCutoff);
+
+	accumulated_pcs=cbind(accumulated_pcs, kept_pcs);
 }
 
-##############################################################################
-
-
-
-
-
-
-
-
-
-quit();
-
-
+dev.off();
 
 ##############################################################################
 
-colnames(positive_scores)=pc_name;
+num_accumulated_pcs=ncol(accumulated_pcs);
+pdf(paste(OutputFnameRoot, ".overall.pdf", sep=""), height=11, width=num_accumulated_pcs/6);
 
-correl_wpca=compute_correlations(cbind(positive_scores[,1:num_pc_at_cutoff], curated_pred_mat, curated_resp_mat));
-hcl=hclust(correl_wpca$dist, method="ward.D2");
-dend=as.dendrogram(hcl);
+cat("Calculating correlation across accumulated PCs...\n")
+overall_correl_mat=cor(accumulated_pcs);
+cat("Calculating eigen values across PC correlation matrix...\n")
+overall_eigen=eigen(overall_correl_mat);
+sum_eigen=sum(overall_eigen$values);
+pc_prop=overall_eigen$values/sum_eigen;
+print(pc_prop);
 
-highlight_pcs=function(x){
-	if(is.leaf(x)){
-		leaf_attr=attributes(x);
-		label=leaf_attr$label;
-		print(label);
-		if(any(label==pc_name)){
-			color="red";
-			font=2;
-		}else{
-			color="black";
-			font=1;
+var_cutoff=1/num_accumulated_pcs;
+num_abv=sum(pc_prop>var_cutoff);
+
+##############################################################################
+
+overall_scores=(scale(accumulated_pcs, center=T, scale=T) %*% overall_eigen$vectors);
+
+annotate_pcs=function(pc_coord, ref_val, pc_prop){
+	num_pcs=ncol(pc_coord);
+	num_ref=ncol(ref_val);
+	ref_names=colnames(ref_val);
+
+	pc_annot=character(num_pcs);
+		
+	for(pcix in 1:num_pcs){
+
+		correls=numeric(num_ref);
+
+		for(refix in 1:num_ref){
+			correls[refix]=cor(pc_coord[,pcix], ref_val[,refix]);
 		}
-		attr(x, "nodePar")=c(leaf_attr$nodePar, list(lab.font=font, lab.col=color, cex=0));
+
+		correl_mags=abs(correls);
+		max_cor_mag=max(correl_mags);
+		max_ix=min(which(max_cor_mag==correl_mags));
+
+		pc_annot[pcix]=paste("PC", pcix, 
+			"_c", round(pc_prop[pcix]*100),
+			"_p", round(max_cor_mag*100), ".", 
+			ref_names[max_ix], sep="");
+
 	}
-	return(x);
+
+	return(pc_annot);
+	
 }
 
-dend=dendrapply(dend, highlight_pcs);
+# Annotated PC values with Group PCs
+grp_annot=annotate_pcs(overall_scores, accumulated_pcs, pc_prop);
+print(grp_annot);
 
-par(mfrow=c(1,1));
-par(mar=c(2,1,1,20));
-plot(dend, horiz=T, main="Ward's Minimum Variance: dist(1-abs(cor)) with PCs");
+# Annotated PC values with original Variables
+var_annot=annotate_pcs(overall_scores, curated_fact_rec[["Transformed"]], pc_prop);
+print(var_annot);
 
 ##############################################################################
 
-out_factors=loaded_factors;
+# Generate Barplots w/ PC Variance
+par(mar=c(40,4,2,1));
+
+generate_barplot=function(pc_prop, labels, num_top, title){
+
+	mids=barplot(pc_prop[1:num_top], ylim=c(0,1.1), names.arg=labels[1:num_top],  las=2,
+		col="grey", ylab="Proportion of Variance", cex.names=.8, main=title);
+	abline(h=var_cutoff, col="blue", lty=2);
+	text(mids, pc_prop[1:num_top], sprintf("%3.1f", pc_prop[1:num_top]*100), pos=3, cex=.7);
+
+}
+
+generate_barplot(pc_prop, grp_annot, num_accumulated_pcs, title="All Groups: Group Annotated");
+generate_barplot(pc_prop, grp_annot, num_abv, title="Top Groups: Group Annotated");
+generate_barplot(pc_prop, var_annot, num_accumulated_pcs, title="All Groups: Variable Annotated");
+generate_barplot(pc_prop, var_annot, num_abv, title="Top Groups: Variable Annotated");
 
 ##############################################################################
 
