@@ -368,7 +368,21 @@ correl_to_PC=function(cor_rec, values, title, contrib_cutoff){
 
 	num_var=nrow(cor_rec$val);
 	if(num_var < 2){
-		return();
+
+		orig_name=colnames(values);
+
+		results=list();
+		results[["num_pcs"]]=num_var;
+		results[["representatives"]]=values;
+		colnames(values)=paste(title, ".noPC.", orig_name, sep="");
+		results[["scores"]]=values;
+		par(mfrow=c(1,1));
+		plot(0,0, bty="n", xlab="", ylab="", main="", xaxt="n", yaxt="n", type="n", 
+			xlim=c(-1,1), ylim=c(-1,1));
+		text(0,0, title, cex=1.5, font=2);
+		text(0,-par()$cxy[2]*3, font=1,
+			paste("Only holds a single member:\n", orig_name, "\n\n(No PCA Performed.)",sep=""));
+		return(results);
 	}
 
 	# Compute PCA
@@ -389,6 +403,8 @@ correl_to_PC=function(cor_rec, values, title, contrib_cutoff){
 	cat("Num Variables: ", num_var, "\n");
 	var_names=colnames(values);
 	pcnames=character(num_pc_at_cutoff);
+	kept_representatives=matrix(0, nrow=nrow(values), ncol=0);
+
 	for(pcix in 1:num_pc_at_cutoff){
 
 		# Find correlation with original variables
@@ -415,6 +431,8 @@ correl_to_PC=function(cor_rec, values, title, contrib_cutoff){
 			"_c", round(pca_propvar[pcix]*100),
 			"_p", round(max_cor*100), ".",
 			var_names[closest_var_to_pc], sep="");
+
+		kept_representatives=cbind(kept_representatives, values[,closest_var_to_pc, drop=F]);
 		
 	}
 
@@ -468,7 +486,15 @@ correl_to_PC=function(cor_rec, values, title, contrib_cutoff){
 	abline(h=contrib_cutoff, col="red", lty=2);
 
 	colnames(kept_score)=paste(title, ".", pcnames, sep="");
-	return(kept_score);
+
+
+	# Return PC and representatives
+	results=list();
+	results[["num_pcs"]]=ncol(kept_score);
+	results[["scores"]]=kept_score;
+	results[["representatives"]]=kept_representatives;
+
+	return(results);
 }
 
 ##############################################################################
@@ -524,6 +550,8 @@ print(grouping_text);
 shared_factors_mat=loaded_factors[,shared_variables, drop=F];
 #print(shared_factors);
 
+num_samples=nrow(shared_factors_mat);
+
 ##############################################################################
 
 cat("Testing and Apply Log Transforms...\n");
@@ -532,17 +560,23 @@ curated_fact_rec=test_and_apply_log_transform(shared_factors_mat, NORM_PVAL_CUTO
 remapped_groupings=remap_groupings(groupings_rec, curated_fact_rec);
 group_cor_rec=calculate_grouped_correlations(curated_fact_rec, remapped_groupings);
 
-accumulated_pcs=numeric();
+accumulated_pcs=matrix(0, nrow=num_samples, ncol=0);
+accumulated_reps=matrix(0, nrow=num_samples, ncol=0);
 
 for(grp_ix in names(group_cor_rec)){
 	cat("------------------------------------------------------------\n");
 	cat("Analyzing: ", grp_ix, "\n");
 
 	grp_members=remapped_groupings[["GrpVarMap"]][[grp_ix]];
-	subset_curated_fact=curated_fact_rec[["Transformed"]][,grp_members];
-	kept_pcs=correl_to_PC(group_cor_rec[[grp_ix]], subset_curated_fact, title=grp_ix, PCContribCutoff);
+	subset_curated_fact=curated_fact_rec[["Transformed"]][,grp_members, drop=F];
+	results=correl_to_PC(group_cor_rec[[grp_ix]], subset_curated_fact, title=grp_ix, PCContribCutoff);
 
-	accumulated_pcs=cbind(accumulated_pcs, kept_pcs);
+
+	if(results[["num_pcs"]]>0){
+		accumulated_pcs=cbind(accumulated_pcs, results[["scores"]]);
+		accumulated_reps=cbind(accumulated_reps, results[["representatives"]]);
+	}
+
 }
 
 dev.off();
@@ -573,6 +607,7 @@ annotate_pcs=function(pc_coord, ref_val, pc_prop){
 	ref_names=colnames(ref_val);
 
 	pc_annot=character(num_pcs);
+	pc_rep=matrix(0, ncol=0, nrow=nrow(ref_val));
 		
 	for(pcix in 1:num_pcs){
 
@@ -591,19 +626,21 @@ annotate_pcs=function(pc_coord, ref_val, pc_prop){
 			"_p", round(max_cor_mag*100), ".", 
 			ref_names[max_ix], sep="");
 
+		pc_rep=cbind(pc_rep, ref_val[,max_ix,drop=F]);
 	}
 
-	return(pc_annot);
-	
+	results=list();
+	results[["annotated_names"]]=pc_annot;
+	results[["representatives"]]=pc_rep;
+
+	return(results);
 }
 
 # Annotated PC values with Group PCs
-grp_annot=annotate_pcs(overall_scores, accumulated_pcs, pc_prop);
-print(grp_annot);
+grp_annot_res=annotate_pcs(overall_scores, accumulated_pcs, pc_prop);
 
 # Annotated PC values with original Variables
-var_annot=annotate_pcs(overall_scores, curated_fact_rec[["Transformed"]], pc_prop);
-print(var_annot);
+var_annot_res=annotate_pcs(overall_scores, curated_fact_rec[["Transformed"]], pc_prop);
 
 ##############################################################################
 
@@ -619,19 +656,43 @@ generate_barplot=function(pc_prop, labels, num_top, title){
 
 }
 
-generate_barplot(pc_prop, grp_annot, num_accumulated_pcs, title="All Groups: Group Annotated");
-generate_barplot(pc_prop, grp_annot, num_abv, title="Top Groups: Group Annotated");
-generate_barplot(pc_prop, var_annot, num_accumulated_pcs, title="All Groups: Variable Annotated");
-generate_barplot(pc_prop, var_annot, num_abv, title="Top Groups: Variable Annotated");
+generate_barplot(pc_prop, grp_annot_res[["annotated_names"]], num_accumulated_pcs, 
+	title="All Groups: Group Annotated");
+generate_barplot(pc_prop, grp_annot_res[["annotated_names"]], num_abv, 
+	title="Top Groups: Group Annotated");
+generate_barplot(pc_prop, var_annot_res[["annotated_names"]], num_accumulated_pcs, 
+	title="All Groups: Variable Annotated");
+generate_barplot(pc_prop, var_annot_res[["annotated_names"]], num_abv, 
+	title="Top Groups: Variable Annotated");
 
 ##############################################################################
 
-cat("Outputing New Factor File Values:\n");
-fname=paste(OutputFnameRoot, ".pca.tsv", sep="");
-fh=file(fname, "w");
-cat(file=fh, "SampleID");
-close(fh);
-write.table(out_factors, file=fname, col.names=NA, append=T, quote=F, sep="\t");
+output_pca=function(outmat, fname){
+	cat("Outputing New Factor File Values:\n");
+	fh=file(fname, "w");
+	cat(file=fh, "SampleID");
+	close(fh);
+	write.table(outmat, file=fname, col.names=NA, append=T, quote=F, sep="\t");
+}
+
+output_pca(accumulated_pcs, paste(OutputFnameRoot, ".groups.pca.tsv", sep=""));
+output_pca(accumulated_reps, paste(OutputFnameRoot, ".groups.var_rep.tsv", sep=""));
+
+
+output_pca(grp_annot_res[["annotated_names"]], paste(OutputFnameRoot, ".overall.pca.tsv", sep=""));
+output_pca(grp_annot_res[["representatives"]], paste(OutputFnameRoot, ".overall.grp_rep.tsv", sep=""));
+output_pca(var_annot_res[["representatives"]], paste(OutputFnameRoot, ".overall.var_rep.tsv", sep=""));
+
+quit();
+
+output_pca(grp_annt_res[["annotated_names"]][,1:num_abv], 
+	paste(OutputFnameRoot, ".overall.top.pca.tsv", sep=""));
+output_pca(grp_annot_res[["representatives"]][,1:num_abv], 
+	paste(OutputFnameRoot, ".overall.top.grp_rep.tsv", sep=""));
+output_pca(var_annot_res[["representatives"]][,1:num_abv], 
+	paste(OutputFnameRoot, ".overall.top.var_rep.tsv", sep=""));
+
+
 
 ##############################################################################
 
