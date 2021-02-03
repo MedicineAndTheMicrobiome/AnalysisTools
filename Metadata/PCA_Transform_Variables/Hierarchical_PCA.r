@@ -679,20 +679,24 @@ output_pca(accumulated_pcs, paste(OutputFnameRoot, ".groups.pca.tsv", sep=""));
 output_pca(accumulated_reps, paste(OutputFnameRoot, ".groups.var_rep.tsv", sep=""));
 
 
-output_pca(grp_annot_res[["annotated_names"]], paste(OutputFnameRoot, ".overall.pca.tsv", sep=""));
-output_pca(grp_annot_res[["representatives"]], paste(OutputFnameRoot, ".overall.grp_rep.tsv", sep=""));
+if(ncol(overall_scores)!=length(grp_annot_res[["annotated_names"]])){
+	cat("Error!  Number of PCs/Score Columns doesn't match annotation length!!!\n");
+	quit(status=-1);
+}
+
+annotated_scores=overall_scores;
+colnames(annotated_scores)=grp_annot_res[["annotated_names"]];
+
+output_pca(annotated_scores, paste(OutputFnameRoot, ".overall.pca.tsv", sep=""));
+output_pca(grp_annot_res[["representatives"]], paste(OutputFnameRoot, ".overall.grp_pca_rep.tsv", sep=""));
 output_pca(var_annot_res[["representatives"]], paste(OutputFnameRoot, ".overall.var_rep.tsv", sep=""));
 
-quit();
-
-output_pca(grp_annt_res[["annotated_names"]][,1:num_abv], 
+output_pca(annotated_scores[,1:num_abv], 
 	paste(OutputFnameRoot, ".overall.top.pca.tsv", sep=""));
 output_pca(grp_annot_res[["representatives"]][,1:num_abv], 
-	paste(OutputFnameRoot, ".overall.top.grp_rep.tsv", sep=""));
+	paste(OutputFnameRoot, ".overall.top.grp_pca_rep.tsv", sep=""));
 output_pca(var_annot_res[["representatives"]][,1:num_abv], 
 	paste(OutputFnameRoot, ".overall.top.var_rep.tsv", sep=""));
-
-
 
 ##############################################################################
 
