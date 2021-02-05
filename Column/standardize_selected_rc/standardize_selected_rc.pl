@@ -165,6 +165,7 @@ sub clean_name{
 	$item=~s/\%/pct/g;
 	$item=~s/\=/.eq./g;
 	$item=~s/\*/.x/g;
+	$item=~s/\#/n/g;
 
 	if($item=~/^\d+/){
 		$item="X__$item";
