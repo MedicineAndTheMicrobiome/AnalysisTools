@@ -9,6 +9,7 @@ options(width=120);
 params=c(
 	"input_list_cli", "i", 2, "character",
 	"input_list_file", "l", 2, "character",
+	"collapse_samp_id", "c", 2, "character",
 	"output", "o", 1, "character"
 );
 
@@ -20,6 +21,8 @@ usage = paste(
 	"	Use one of the input options:\n",
 	"	[-i <input, comma separated list of tsv files>]\n",
 	"	[-l <input, text file with list of target files>]\n",
+	"\n",
+	"	[-c <collapse rows with duplicated sample id with this column name, eg. sample_id>\n",
 	"\n",
 	"	-o <output tab_separated column data file>\n",
 	"\n",
@@ -45,6 +48,7 @@ InputFNameFile=opt$input_list_file;
 
 Formulas=opt$formulas;
 OutputFName=opt$output;
+CollapseBySampleID=opt$collapse_samp_id;
 
 use_cli=NA;
 if(length(InputFNameList)){
@@ -58,6 +62,12 @@ if(length(InputFNameFile)){
 
 if(is.na(use_cli)){
 	cat("Please specify one of the input options.\n");
+}
+
+if(length(CollapseBySampleID)){
+	cat("Collapsing Rows by: ", CollapseBySampleID, "\n");
+}else{
+	CollapseBySampleID="";
 }
 
 cat("Output Filename: ", OutputFName, "\n");
@@ -223,6 +233,61 @@ for(i in 1:num_target_files){
 #print(output_matrix);
 
 ##############################################################################
+
+collapse_multiple_sample_ids=function(data_mat, sample_id_colname){
+
+	cnames=colnames(data_mat);
+	samp_id_ix=which(cnames==sample_id_colname)[1];
+
+	if(is.na(samp_id_ix)){
+		cat("\n");
+		cat("Error, Could not find \"", sample_id_colname, "\" in headers.\n", sep="");
+		cat("Here are your available column names:\n");
+		print(cnames);
+		quit(status=-1);
+	}
+
+	samp_ids=data_mat[,samp_id_ix];
+
+	uniq_samp_ids=sort(unique(samp_ids));
+	num_uniq_samp_ids=length(uniq_samp_ids);
+	cat("Unique Sample IDs:\n");
+	print(uniq_samp_ids);
+
+	target_cnames=setdiff(cnames, sample_id_colname);
+	new_mat=matrix(NA, nrow=num_uniq_samp_ids, ncol=ncol(data_mat));
+	colnames(new_mat)=colnames(data_mat);
+	rownames(new_mat)=uniq_samp_ids;
+	new_mat[,sample_id_colname]=uniq_samp_ids;
+
+	for(var in target_cnames){
+		for(samp_id in uniq_samp_ids){
+			rows=(samp_id==data_mat[,sample_id_colname]);
+			values=data_mat[rows, var];
+			values=unique(values[!is.na(values)]);
+
+			num_values=length(values);
+			if(num_values>1){
+				cat("For ", var, " x ", samp_id, "\n", sep="");
+				cat("Error: Could not collapse values into single sample ID.\n");
+				print(values);
+			}else if(num_values==0){
+				values=NA;
+			}
+			new_mat[samp_id, var]=values;
+		}
+	}
+
+	return(new_mat);
+
+
+}
+
+if(CollapseBySampleID!=""){
+	print(output_matrix);
+	output_matrix=collapse_multiple_sample_ids(output_matrix, CollapseBySampleID);
+	print(output_matrix);
+}
 
 write_factors(OutputFName, output_matrix);
 
