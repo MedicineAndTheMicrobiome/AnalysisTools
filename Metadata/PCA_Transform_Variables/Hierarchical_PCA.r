@@ -135,7 +135,6 @@ test_and_apply_log_transform=function(mat_val, pval_cutoff=.2, plot_before_after
 	for(var in orig_colnames){
 		values=mat_val[,var];
 
-
 		transformed=F;
 
 		num_unique_val=length(setdiff(unique(values), NA));
@@ -160,6 +159,9 @@ test_and_apply_log_transform=function(mat_val, pval_cutoff=.2, plot_before_after
 		}
 
 		cat("\n", var, ": Num Unique Values: ", num_unique_val, "\n");
+
+		test_res=NA;
+		test_log_res=NA;
 
 		if(num_unique_val>1){
 
@@ -189,6 +191,7 @@ test_and_apply_log_transform=function(mat_val, pval_cutoff=.2, plot_before_after
 			}else{
 				cat(" Normal enough. ", test_res$p.value, "\n");
 				new_colnames=c(new_colnames, var);
+				transformed=F;
 			}
 
 		}else{
@@ -203,13 +206,20 @@ test_and_apply_log_transform=function(mat_val, pval_cutoff=.2, plot_before_after
 
 			hist(values, main=var, breaks=nclass);
 			title(main=sprintf("p-value: %4.4f", test_res$p.value), cex.main=.8, line=.5);
-			
+
 			if(transformed){
 				hist(log_values, breaks=nclass, main=paste("log(", var,")", sep=""));
 				title(main=sprintf("p-value: %4.4f", test_log_res$p.value), cex.main=.8, line=.5);
 			}else{
 				plot(0,0, xlab="", ylab="", main="", xaxt="n", yaxt="n", bty="n", type="n");
-				title(main=sprintf("p-value: %4.4f", test_log_res$p.value), cex.main=.8, line=.5);
+
+				if(is.na(test_log_res)){
+					pval=test_res$p.value;
+				}else{
+					pval=test_log_res$p.value;
+				}
+
+				title(main=sprintf("p-value: %4.4f", pval), cex.main=.8, line=.5);
 				text(0,0, "Transform not beneficial");
 			}
 		}
@@ -586,6 +596,14 @@ dev.off();
 num_accumulated_pcs=ncol(accumulated_pcs);
 pdf(paste(OutputFnameRoot, ".overall.pdf", sep=""), height=11, width=num_accumulated_pcs/6);
 
+included_group_pca=colnames(accumulated_pcs);
+plot_text(c(
+	"Group PCs included in Overal PCA:",
+	"",
+	included_group_pca));
+print(included_group_pca);
+
+
 cat("Calculating correlation across accumulated PCs...\n")
 overall_correl_mat=cor(accumulated_pcs);
 cat("Calculating eigen values across PC correlation matrix...\n")
@@ -687,9 +705,9 @@ if(ncol(overall_scores)!=length(grp_annot_res[["annotated_names"]])){
 annotated_scores=overall_scores;
 colnames(annotated_scores)=grp_annot_res[["annotated_names"]];
 
-output_pca(annotated_scores, paste(OutputFnameRoot, ".overall.pca.tsv", sep=""));
-output_pca(grp_annot_res[["representatives"]], paste(OutputFnameRoot, ".overall.grp_pca_rep.tsv", sep=""));
-output_pca(var_annot_res[["representatives"]], paste(OutputFnameRoot, ".overall.var_rep.tsv", sep=""));
+output_pca(annotated_scores, paste(OutputFnameRoot, ".overall.all.pca.tsv", sep=""));
+output_pca(grp_annot_res[["representatives"]], paste(OutputFnameRoot, ".overall.all.grp_pca_rep.tsv", sep=""));
+output_pca(var_annot_res[["representatives"]], paste(OutputFnameRoot, ".overall.all.var_rep.tsv", sep=""));
 
 output_pca(annotated_scores[,1:num_abv], 
 	paste(OutputFnameRoot, ".overall.top.pca.tsv", sep=""));
