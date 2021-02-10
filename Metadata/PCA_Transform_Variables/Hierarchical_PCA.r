@@ -594,7 +594,7 @@ dev.off();
 ##############################################################################
 
 num_accumulated_pcs=ncol(accumulated_pcs);
-pdf(paste(OutputFnameRoot, ".overall.pdf", sep=""), height=11, width=num_accumulated_pcs/6);
+pdf(paste(OutputFnameRoot, ".overall.pdf", sep=""), height=11, width=num_accumulated_pcs/6+2);
 
 included_group_pca=colnames(accumulated_pcs);
 plot_text(c(
@@ -606,6 +606,7 @@ print(included_group_pca);
 
 cat("Calculating correlation across accumulated PCs...\n")
 overall_correl_mat=cor(accumulated_pcs);
+
 cat("Calculating eigen values across PC correlation matrix...\n")
 overall_eigen=eigen(overall_correl_mat);
 sum_eigen=sum(overall_eigen$values);
@@ -614,6 +615,8 @@ print(pc_prop);
 
 var_cutoff=1/num_accumulated_pcs;
 num_abv=sum(pc_prop>var_cutoff);
+captured_prop_var=sum(pc_prop[1:num_abv]);
+captured_perc_str=round(captured_prop_var*100.0,1);
 
 ##############################################################################
 
@@ -677,11 +680,47 @@ generate_barplot=function(pc_prop, labels, num_top, title){
 generate_barplot(pc_prop, grp_annot_res[["annotated_names"]], num_accumulated_pcs, 
 	title="All Groups: Group Annotated");
 generate_barplot(pc_prop, grp_annot_res[["annotated_names"]], num_abv, 
-	title="Top Groups: Group Annotated");
+	title=paste("Top Groups (", captured_perc_str, "%) : Group Annotated", sep=""));
 generate_barplot(pc_prop, var_annot_res[["annotated_names"]], num_accumulated_pcs, 
 	title="All Groups: Variable Annotated");
 generate_barplot(pc_prop, var_annot_res[["annotated_names"]], num_abv, 
-	title="Top Groups: Variable Annotated");
+	title=paste("Top Groups (", captured_perc_str, "%) : Variable Annotated", sep=""));
+
+##############################################################################
+
+# Generate Dendrogram
+
+kept_pcs=overall_scores[,1:num_abv];
+kept_pcs_names=grp_annot_res[["annotated_names"]][1:num_abv];
+colnames(kept_pcs)=kept_pcs_names;
+combined_mat=cbind(accumulated_pcs, kept_pcs);
+combined_cor=cor(combined_mat);
+combined_dist=1-(abs(combined_cor));
+combined_dend=as.dendrogram(hclust(as.dist(combined_dist), method="ward.D2"));
+
+highlight_pcs=function(x){
+	# Using external pcnames variable
+
+	if(is.leaf(x)){
+		leaf_attr=attributes(x);
+		label=leaf_attr$label;
+		print(label);
+		if(any(label==kept_pcs_names)){
+			color="red";
+			font=2;
+		}else{
+			color="black";
+			font=1;
+		}
+		attr(x, "nodePar")=c(leaf_attr$nodePar, 
+			list(lab.font=font, lab.col=color, lab.cex=.8, cex=0));
+	}
+	return(x);
+}
+
+combined_dend=dendrapply(combined_dend, highlight_pcs);
+par(mar=c(40,5,3,1));
+plot(combined_dend, ylab="1-|cor(x,y)|", main="Accumulated Selected Group PCs with Overall Top PCs");
 
 ##############################################################################
 
