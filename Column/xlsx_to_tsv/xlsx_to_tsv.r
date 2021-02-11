@@ -74,6 +74,18 @@ cat("Transpose?: ", Transpose, "\n");
 
 ##############################################################################
 
+clean_variables=function(in_char_arr){
+	ar_len=length(in_char_arr);
+	for(i in 1:ar_len){
+		tmp=gsub("^\\s+", "", in_char_arr[i]);
+		tmp=gsub("\\s+$", "", tmp);
+		in_char_arr[i]=tmp;
+	}
+	return(in_char_arr);
+}
+
+##############################################################################
+
 output_sheet=function(data, outputfname, transpose=F){
 
 	cat("Found Sheet.\n");
@@ -85,7 +97,11 @@ output_sheet=function(data, outputfname, transpose=F){
 
 	cat("Loaded: Rows: ", num_rows, " Cols: ", num_cols, "\n");
 	cat("Column Names:\n");
-	print(colnames(data));
+	
+	cnames=colnames(data);
+	cnames=clean_variables(cnames);
+	colnames(data)=cnames;
+
 	tab_name=colnames(data)[1];
 
 	empty_rows=apply(data,1,function(x){all(is.na(x))});
