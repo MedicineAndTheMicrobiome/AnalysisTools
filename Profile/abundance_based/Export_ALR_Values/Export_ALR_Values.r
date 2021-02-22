@@ -693,7 +693,7 @@ paint_matrix(cor_rec$val, title="Correlation: Coefficients", value.cex=.7,
 	high_is_hot=F, plot_min=-1, plot_max=1, deci_pts=2);
 
 paint_matrix(cor_rec$pval, title="Correlation: P-values (Null Hypothesis, H0: correl=0)", 
-	value.cex=.7, plot_min=0, plot_max=1, deci_pts=2);
+	high_is_hot=F, value.cex=.7, plot_min=0, plot_max=1, deci_pts=2);
 
 
 for(sig in c(.1, .05, .01, .001)){
