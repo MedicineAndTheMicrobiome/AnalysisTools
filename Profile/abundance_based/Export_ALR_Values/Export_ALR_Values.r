@@ -777,7 +777,6 @@ plot_cor_by_row=function(coef, pval, alpha=0.05){
 		}
 	}
 	
-
 	#print(coef_str);
 	#print(pval);
 	#print(adj_pval);
@@ -792,9 +791,14 @@ plot_cor_by_row=function(coef, pval, alpha=0.05){
 		
 	cxy=par()$cxy;
 	for(i in 1:num_comp){
-		rect(xleft=i-1, ybottom=0, xright=i, ytop=1, col=get_color(coef[i]), lwd=box_lwd[i]);
-		text(i-.5, .5, coef_str[i], cex=.6, font=font_signf[i], col=col_signf[i]);
 
+		# Draw color filled boxes
+		rect(xleft=i-1, ybottom=0, xright=i, ytop=1, col=get_color(coef[i]), lwd=box_lwd[i]);
+
+		# Label coeff inside of boxes
+		text(i-.5, .5, coef_str[i], cex=(1.125+-0.0125*(num_comp+1)), font=font_signf[i], col=col_signf[i]);
+
+		# Label taxa
 		text(i-.5-cxy[1]/2, -cxy[2]/2, compare_names[i], xpd=T, pos=4, srt=-45,
 			font=font_signf[i], col=col_signf[i], cex=cex_signf[i]);
 	}
