@@ -732,7 +732,11 @@ plot_text(c(
 	"  would be 0.0497.  This means that more than 1-0.0497 = 0.9503 or >95% of the time",
 	"  at least 1 read will be associated with this category for this sample."
 ));
-plot_text(capture.output(print(prevalence_matrix, quote=F)));
+plot_text(c(
+	paste("Total Number of Samples: ", num_samples),
+	"",
+	capture.output(print(prevalence_matrix, quote=F))
+));
 
 ##############################################################################
 
