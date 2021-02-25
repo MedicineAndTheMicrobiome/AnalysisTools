@@ -556,6 +556,7 @@ if(ShortenCategoryNames!=""){
 
 # Normalize
 cat("Normalizing counts to proportions.\n");
+pure_counts=counts;
 counts=counts+.5;
 normalized=normalize(counts);
 #print(normalized);
@@ -673,6 +674,65 @@ plot_text(c(
 cat("Plotting ALR Category Histograms:\n");
 #print(alr_categories_val);
 plot_histograms(alr_categories_val);
+
+##############################################################################
+
+num_samples=nrow(normalized);
+stat_names=c("CategoryName", "MeanAbnd", "NumSamp>0", "Preval%", "Rs95NumSamp>0", "Rs95Preval%");
+num_stats=length(stat_names);
+prevalence_matrix=matrix("", nrow=num_top_categories, ncol=num_stats);
+colnames(prevalence_matrix)=stat_names;
+rownames(prevalence_matrix)=sprintf("%3i.", 1:num_top_categories);
+
+pure_totals=apply(pure_counts, 1, sum);
+pure_normalized=normalize(pure_counts);
+pure_num_samples=nrow(pure_counts);
+pure_norm_means=apply(pure_normalized, 2, mean);
+order=order(pure_norm_means, decreasing=T);
+pure_normalized=pure_normalized[,order,drop=F];
+pure_cat_names=colnames(pure_normalized);
+
+for(i in 1:num_top_categories){
+
+	abnd=pure_normalized[,i];
+	abv=sum(abnd>0);
+
+	prob95=length(pure_num_samples);
+	for(smp in 1:pure_num_samples){
+		prob95[smp]=ifelse(pbinom(0, pure_totals[i], pure_normalized[smp,i])<.05, 1, 0);
+	}
+	num_prob95=sum(prob95);
+
+	prevalence_matrix[i,]=c(
+		pure_cat_names[i], 
+		sprintf("%3.4f", mean(abnd)),
+		sprintf("%5i", abv), 
+		sprintf("%5.1f", abv/num_samples*100.0),
+		sprintf("%5i", num_prob95),
+		sprintf("%5.1f", num_prob95/num_samples*100.0)
+	);
+
+}
+
+print(prevalence_matrix, quote=F);
+
+plot_text(c(
+	"The next page provides the following statistics for each category in a table:",	
+	"", 
+	"CategoryName:    Name of the category",
+	"MeanAbnd:        Mean abundance/proportion",
+	"NumSamp>0:       Number of samples with abundances > 0.0",
+	"Preval%:         Percent of samples with abundances > 0.0",
+	"Rs95NumSamp>0:   Number of samples with abundances > 0.0, 95% of the time if resampled", 
+	"Rs95Preval%>0:   Percent of samples with abundances > 0.0, 95% of the time if resampled", 
+	"",
+	"Note that the Rsmp95 statistics assume the binomial distribution.",
+	"For example, if a sample has a read depth of 3000, and the abundance of the category",
+	"  was 0.001, then the probabilty of seeing 0 reads associated with that category",
+	"  would be 0.0497.  This means that more than 1-0.0497 = 0.9503 or >95% of the time",
+	"  at least 1 read will be associated with this category for this sample."
+));
+plot_text(capture.output(print(prevalence_matrix, quote=F)));
 
 ##############################################################################
 
