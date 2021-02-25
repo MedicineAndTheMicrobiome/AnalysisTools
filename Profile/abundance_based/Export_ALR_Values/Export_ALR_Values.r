@@ -697,9 +697,9 @@ for(i in 1:num_top_categories){
 	abnd=pure_normalized[,i];
 	abv=sum(abnd>0);
 
-	prob95=length(pure_num_samples);
+	prob95=integer(pure_num_samples);
 	for(smp in 1:pure_num_samples){
-		prob95[smp]=ifelse(pbinom(0, pure_totals[i], pure_normalized[smp,i])<.05, 1, 0);
+		prob95[smp]=ifelse(pbinom(0, pure_totals[smp], pure_normalized[smp,i])<.05, 1, 0);
 	}
 	num_prob95=sum(prob95);
 
@@ -862,9 +862,6 @@ plot_cor_by_row=function(coef, pval, alpha=0.05){
 		text(i-.5-cxy[1]/2, -cxy[2]/2, compare_names[i], xpd=T, pos=4, srt=-45,
 			font=font_signf[i], col=col_signf[i], cex=cex_signf[i]);
 	}
-	
-
-	#quit();
 	
 }
 
