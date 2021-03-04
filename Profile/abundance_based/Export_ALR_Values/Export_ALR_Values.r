@@ -739,6 +739,10 @@ plot_text(c(
 ));
 
 ##############################################################################
+# Write prevalence to file
+prev_fname=paste(OutputRoot, ".top", num_top_categories, ".prevalence.csv", sep="");
+cat("Writing CSV of prevalence values to file: ", prev_fname, "\n", sep="");
+write.table(prevalence_matrix, file=prev_fname, quote=F, sep=",", row.names=T, col.names=NA);
 
 # Write ALR to file
 csv_fname=paste(OutputRoot, ".top", num_top_categories, ".csv", sep="");
