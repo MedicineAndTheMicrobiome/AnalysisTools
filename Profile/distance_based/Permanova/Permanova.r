@@ -734,6 +734,74 @@ out_text=c(
 plot_text(out_text);
 
 ##############################################################################
+# Plot SS barplots
+
+plot_sumsqr_barplot=function(adonis_res){
+
+	#print(res);
+	#print(names(res));
+	#print(res[["aov.tab"]]);
+	#print(rownames(res[["aov.tab"]]));
+	#print(colnames(res[["aov.tab"]]));
+
+	ss_val=adonis_res[["aov.tab"]][,"R2"];
+	pval=adonis_res[["aov.tab"]][,"Pr(>F)"];
+	pval_lt10=(pval<=.10 & !is.na(pval));
+
+	ss_varname=rownames(adonis_res[["aov.tab"]]);
+	
+	signf_varnames=ss_varname[pval_lt10];
+	cat("Significant variable names:\n");
+	print(signf_varnames);
+
+	res_ix=which(ss_varname=="Residuals");
+	ss_varname[res_ix]="\"Unexplained\"";
+
+	ss_arr_len=length(ss_val)-1; # exclude Total
+
+	ss_val=ss_val[1:ss_arr_len];
+	ss_varname=ss_varname[1:ss_arr_len];
+	ss_val_order=order(ss_val, decreasing=T);
+	ss_val=ss_val[ss_val_order];
+	ss_varname=ss_varname[ss_val_order];
+
+
+	print(ss_val);
+	print(ss_varname);
+
+	par(mar=c(10,5,5,10));
+	barcol=rep("grey", ss_arr_len);
+	textcol=rep("grey33", ss_arr_len);
+
+	names(barcol)=ss_varname;
+	names(textcol)=ss_varname;
+
+	barcol[signf_varnames]="blue";
+	barcol["\"Unexplained\""]="red";
+
+	textcol[signf_varnames]="black";
+	textcol["\"Unexplained\""]="darkred";
+
+	mids=barplot(ss_val, main="R^2 By Factor", xlab="", las=2, col=barcol,
+		ylim=c(0,1.1), ylab="Proportion of Sum of Squares (SS)");
+
+	text(mids, ss_val, sprintf("%2.3f", ss_val), pos=3, cex=.7, col=textcol);
+
+        bar_width=mids[2]-mids[1];
+        plot_range=par()$usr;
+        label_size=min(c(1,.7*bar_width/par()$cxy[1]));
+        text(
+		mids-par()$cxy[1]/2, 
+		rep(-par()$cxy[2]/2, ss_arr_len), 
+		ss_varname, srt=-45, xpd=T, pos=4, cex=label_size, col=textcol
+	);
+
+	return;
+}
+
+plot_sumsqr_barplot(res);
+
+##############################################################################
 # Pre-Compute PCA and MDS
 
 # Compute PCA
