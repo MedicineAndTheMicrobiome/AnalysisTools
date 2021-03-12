@@ -53,7 +53,7 @@ extract_offset=function(factor_mat, sbj_cname, timeoffset_cname, start=-Inf, end
 		offsets_by_sbj[[sbj]]=sorted_offsets;
 	}
 	offsets_data[["OffsetsBySubject"]]=offsets_by_sbj;
-	offsets_data[["MinOffsetSepInSubj"]]=min(min_periods);
+	offsets_data[["MinOffsetSepInSubj"]]=min(setdiff(min_periods,0));
 
 	# Store range information
 	if(start==-Inf){
