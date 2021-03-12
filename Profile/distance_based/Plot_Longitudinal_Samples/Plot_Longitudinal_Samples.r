@@ -554,20 +554,23 @@ plot_sample_dist_by_group_loess=function(dist_mat, offsets_rec, subject_grouping
 	#print(subj_points_rec);
 
 	# Create plot
-	plot(0,0, xlim=offset_ranges, ylim=c(0, max_subj_dist), xlab="Time", ylab="Distance");
+	plot(0,0, xlim=offset_ranges, ylim=c(0, max_subj_dist), 
+		main="Loess by Group", xlab="Time", ylab="Distance",);
+
+	# Group colors
+	groups=names(loess_rec);
+	grp_colors=terrain.colors(num_groups+1)[1:num_groups];
+	names(grp_colors)=groups;
 
 	# Plot scatter for all 
 	subjects=names(subj_points_rec);
 	for(sbj_ix in subjects){
 		points(subj_points_rec[[sbj_ix]][,1], subj_points_rec[[sbj_ix]][,2],
-			col=col_assign[sbj_ix]);	
+			col=grp_colors[subject_grouping_rec[["SbjToGrp"]][sbj_ix]]);	
+			#col=col_assign[sbj_ix]);	
 	} 
 
 	# Plot loess lines
-	groups=names(loess_rec);
-	grp_colors=terrain.colors(num_groups+1)[1:num_groups];
-	names(grp_colors)=groups;
-
 	for(grp_ix in groups){
 		cur_loess=loess_rec[[grp_ix]];
 		points(cur_loess[,1], cur_loess[,2], type="l", lwd=2, col=grp_colors[grp_ix]);
@@ -578,6 +581,8 @@ plot_sample_dist_by_group_loess=function(dist_mat, offsets_rec, subject_grouping
 	legend(0,1, fill=grp_colors, legend=groups);
 
         par(def_par);
+
+#quit();
 }
 
 ###############################################################################
