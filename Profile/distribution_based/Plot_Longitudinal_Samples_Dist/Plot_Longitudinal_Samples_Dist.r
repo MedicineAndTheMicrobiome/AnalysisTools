@@ -17,6 +17,7 @@ params=c(
 	"output_root", "o", 1, "character",
 
 	"diversity_type", "d", 2, "character",
+	"shorten_category_names", "x", 2, "character",
 
 	"group_col", "g", 2, "character",
 
@@ -43,6 +44,7 @@ usage = paste(
 	"	-o <output file root name>\n",
 	"\n",
 	"	[-d <diversity, default=", DEF_DIVERSITY, ".]\n",
+        "       [-x <shorten category names, with separator in double quotes (default=\"\")>]\n",
 	"\n",
 	"	[-g <group/cohort variable column name>]\n",
 	"\n",
@@ -81,6 +83,7 @@ GroupCol="";
 ResetOffsets=T;
 BeginOffset=-Inf;
 EndOffset=Inf;
+ShortenCategoryNames="";
 
 if(length(opt$diversity_type)){
 	DiversityType=opt$diversity_type;
@@ -96,6 +99,9 @@ if(length(opt$begin_offset)){
 }
 if(length(opt$end_offset)){
 	EndOffset=opt$end_offset;
+}
+if(length(opt$shorten_category_names)){
+        ShortenCategoryNames=opt$shorten_category_names;
 }
 
 if(length(opt$tag_name)){
@@ -1104,6 +1110,24 @@ factor_info=load_factors(FactorFile);
 
 counts_mat=load_summary_file(SummaryFile);
 #print(counts_mat);
+
+# Shorten cateogry names
+if(ShortenCategoryNames!=""){
+        full_names=colnames(counts_mat);
+        splits=strsplit(full_names, ShortenCategoryNames);
+        short_names=character();
+        for(i in 1:length(full_names)){
+                short_names[i]=tail(splits[[i]], 1);
+                short_names[i]=gsub("_unclassified$", "_uc", short_names[i]);
+                short_names[i]=gsub("_group", "_gr", short_names[i]);
+                short_names[i]=gsub("\\[", "", short_names[i]);
+                short_names[i]=gsub("\\]", "", short_names[i]);
+        }
+        colnames(counts_mat)=short_names;
+        cat("Names have been shortened.\n");
+}else{
+        cat("Keeping original category names...\n");
+}
 
 ###############################################################################
 
