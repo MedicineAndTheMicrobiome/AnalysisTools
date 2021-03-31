@@ -17,7 +17,7 @@ script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
 usage = paste(
 	"\nUsage:\n", script_name, "\n",
 	"	-i <input tab-separated>\n",
-	"	-o <output tab_separated>\n",
+	"	-o <output filename root>\n",
 	"\n",
 	"This script will read in a tab separated list of QC output files:\n",
 	"	<file path> \\t <run name> \\n\n",
@@ -25,7 +25,7 @@ usage = paste(
 	"The QC output files should the format:\n",
 	"	<sample id> \\t <read depth> \\n\n",
 	"\n",
-	"The output will be a matrix:\n",
+	"The output will be tsv files with the specified root:\n",
 	"  Each row will be a unique sample id across the runs with replicate extension removed.\n",
 	"  Each column will contain the read depth for each run\n",
 	"  The Final column will be the total.\n",
