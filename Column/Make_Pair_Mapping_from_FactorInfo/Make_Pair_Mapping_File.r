@@ -64,7 +64,7 @@ cat("Text Line Width: ", options()$width, "\n", sep="");
 
 load_factors=function(fname){
 	factors=data.frame(read.table(fname,  sep="\t", header=TRUE, 
-		row.names=1, check.names=FALSE, comment.char=""));
+		row.names=1, as.is=T, check.names=FALSE, comment.char=""));
 	factor_names=colnames(factors);
 
 	ignore_idx=grep("^IGNORE\\.", factor_names);
