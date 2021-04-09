@@ -31,15 +31,62 @@ usage = paste(
 	"\n",
 	"	[-p <Min PC contribution cutoff, default=", MIN_PC_PROP_CUTOFF," >]\n",
 	"\n",
-	"This script will:\n",
+	"This steps are:\n",
 	"	1.) Transform all variables to ensure they are normally distributed\n",
-	"	2.) Perform PCA on each group of variables.  A variable can be in more than 1 group.\n",
+	"		If original variable is already normally distributed, do nothing, but if\n",
+	"		not normal, try log transform.  If transformation made distribution worse,\n",
+	"		then revert to original.\n",
+	"	2.) Perform PCA on each group of variables.  A variable is permitted to be in more than 1 group.\n",
 	"	3.) Select the top PC's that contribute more than the min cutoff. e.g. >10%\n",
 	"	4.) Annotate the top Selected PC's.\n",
+	"		Also provide underlying variables that could be used as proxy for selected PCs.\n",
 	"	5.) Perform Overall PCA on Groups PCA\n",
 	"	6.) Annotate the top Overall PCs with Group names\n",
-	"	7.) Export Group and Overall PC Scores.\n",
-	"\n");
+	"		Also provide underying group PCs and underlying variables that could be used for\n",
+	"		selected overall PCs.\n",
+	"	7.) Export Group and Overall PC Scores, and proxies.\n",
+	"\n",
+	"  Description of Output Files:\n",
+	"\n",
+	"Pre-PCA transformations:\n",
+	"1.) <root>.pre_pca.log_trans_var.tsv:\n",
+	"	Contains log transformed (if necessary) values based on Shapiro-Wilks test.\n",
+	"	 <varname>     : original distribution was already normal.\n",
+	"	 log_<varname> : log tranform improved distribution.\n",
+	"	 orig_<varname> : original distribution was not normal, and log transform made it worse.\n",
+	"\n",
+	"Group-specific PCAs Results:\n",
+	"2.) <root>.groups.pca_dendro.pdf:\n",
+	"	PDF files containing log transformations distributions, PCA histograms, dendrograms, etc...\n",
+	"3.) <root>.groups.pca_scores.tsv\n",
+	"	Contains PCA scores (transformed for ordination).\n",
+	"	Only the top PCs (Coverage>", MIN_PC_PROP_CUTOFF, ") from each group were retained.\n",
+	"4.) <root>.groups.pc_var_rep.tsv\n",
+	"	Contains the variables from each group that is most similar to the PCs selected, as a proxy.\n",
+	"	This should contain the same number of columns/PCs as .groups.pca_scores.tsv.\n",
+	"\n",
+	"Overall PCAs Results (across selected groups):\n",
+	"5.) <root>.overall.pca_dendro.pdf\n",
+	"	Contains PCA histograms and dendrograms for PCA across group PCA representatives.\n",
+	"	Similar to .groups.pca_dendro.pdf, but one hierarchical level higher.\n",
+	"6.) <root>.overall.all.pca_scores.tsv\n",
+	"	Contains overall PCA scores (transformed for ordination).\n",
+	"	Use this for 'cleanest' analyses, but most removed from original data.\n",
+	"7.) <root>.overall.all.pc_grp_pca_rep.tsv\n",
+	"	Contains the group representative closest to each PC as a proxy.\n",
+	"	Use this for analyses abstracted to group.\n",
+	"8.) <root>.overall.all.pc_var_rep.tsv\n",
+	"	Contains the variable representative closest to each PC as a proxy.\n",
+	"	Use this for analyses closest to underlying original variables.\n",
+	"\n",
+	"Similar to the 'all' set of files, but only containing the top PCs with",
+	" variance coverage > ", MIN_PC_PROP_CUTOFF, "\n",
+	"These are the best candidates for downstream analyses as regression predictors.\n",
+	"9.) <root>.overall.topN.pca_scores.tsv\n",
+	"10.) <root>.overall.topN.pc_grp_pca_rep.tsv\n",
+	"11.) <root>.overall.topN.pc_var_rep.tsv\n",
+	"\n",
+	"\n", sep="");
 
 if(
 	!length(opt$factors) || 
@@ -511,7 +558,7 @@ correl_to_PC=function(cor_rec, values, title, contrib_cutoff){
 # Main Program Starts Here!
 ##############################################################################
 
-pdf(paste(OutputFnameRoot, ".variables.pdf", sep=""), height=11, width=8.5);
+pdf(paste(OutputFnameRoot, ".groups.pca_dendro.pdf", sep=""), height=11, width=8.5);
 
 plot_text(param_text);
 
@@ -594,7 +641,7 @@ dev.off();
 ##############################################################################
 
 num_accumulated_pcs=ncol(accumulated_pcs);
-pdf(paste(OutputFnameRoot, ".overall.pdf", sep=""), height=11, width=num_accumulated_pcs/6+2);
+pdf(paste(OutputFnameRoot, ".overall.pca_dendro.pdf", sep=""), height=11, width=num_accumulated_pcs/6+2);
 
 included_group_pca=colnames(accumulated_pcs);
 plot_text(c(
@@ -732,8 +779,15 @@ output_pca=function(outmat, fname){
 	write.table(outmat, file=fname, col.names=NA, append=T, quote=F, sep="\t");
 }
 
-output_pca(accumulated_pcs, paste(OutputFnameRoot, ".groups.pca.tsv", sep=""));
-output_pca(accumulated_reps, paste(OutputFnameRoot, ".groups.var_rep.tsv", sep=""));
+# Output variables after log transform
+
+output_pca(curated_fact_rec$Transformed,
+	paste(OutputFnameRoot, ".pre_pca.log_trans_var.tsv", sep=""));
+
+# Output PCA scores and underlying variables
+
+output_pca(accumulated_pcs, paste(OutputFnameRoot, ".groups.pca_scores.tsv", sep=""));
+output_pca(accumulated_reps, paste(OutputFnameRoot, ".groups.pc_var_rep.tsv", sep=""));
 
 
 if(ncol(overall_scores)!=length(grp_annot_res[["annotated_names"]])){
@@ -744,16 +798,18 @@ if(ncol(overall_scores)!=length(grp_annot_res[["annotated_names"]])){
 annotated_scores=overall_scores;
 colnames(annotated_scores)=grp_annot_res[["annotated_names"]];
 
-output_pca(annotated_scores, paste(OutputFnameRoot, ".overall.all.pca.tsv", sep=""));
-output_pca(grp_annot_res[["representatives"]], paste(OutputFnameRoot, ".overall.all.grp_pca_rep.tsv", sep=""));
-output_pca(var_annot_res[["representatives"]], paste(OutputFnameRoot, ".overall.all.var_rep.tsv", sep=""));
+# Output PCA scores and underlying variables
+
+output_pca(annotated_scores, paste(OutputFnameRoot, ".overall.all.pca_scores.tsv", sep=""));
+output_pca(grp_annot_res[["representatives"]], paste(OutputFnameRoot, ".overall.all.pc_grp_pca_rep.tsv", sep=""));
+output_pca(var_annot_res[["representatives"]], paste(OutputFnameRoot, ".overall.all.pc_var_rep.tsv", sep=""));
 
 output_pca(annotated_scores[,1:num_abv], 
-	paste(OutputFnameRoot, ".overall.top.pca.tsv", sep=""));
+	paste(OutputFnameRoot, ".overall.top", num_abv, ".pca_scores.tsv", sep=""));
 output_pca(grp_annot_res[["representatives"]][,1:num_abv], 
-	paste(OutputFnameRoot, ".overall.top.grp_pca_rep.tsv", sep=""));
+	paste(OutputFnameRoot, ".overall.top", num_abv, ".pc_grp_pca_rep.tsv", sep=""));
 output_pca(var_annot_res[["representatives"]][,1:num_abv], 
-	paste(OutputFnameRoot, ".overall.top.var_rep.tsv", sep=""));
+	paste(OutputFnameRoot, ".overall.top", num_abv, ".pc_var_rep.tsv", sep=""));
 
 ##############################################################################
 
