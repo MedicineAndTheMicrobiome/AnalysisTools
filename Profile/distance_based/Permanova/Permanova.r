@@ -744,6 +744,8 @@ plot_sumsqr_barplot=function(adonis_res){
 	#print(rownames(res[["aov.tab"]]));
 	#print(colnames(res[["aov.tab"]]));
 
+	orig_par=par(no.readonly=T);
+
 	ss_val=adonis_res[["aov.tab"]][,"R2"];
 	pval=adonis_res[["aov.tab"]][,"Pr(>F)"];
 	pval_lt10=(pval<=.10 & !is.na(pval));
@@ -795,6 +797,8 @@ plot_sumsqr_barplot=function(adonis_res){
 		rep(-par()$cxy[2]/2, ss_arr_len), 
 		ss_varname, srt=-45, xpd=T, pos=4, cex=label_size, col=textcol
 	);
+
+	par(orig_par);
 
 	return;
 }
