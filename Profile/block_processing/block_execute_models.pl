@@ -615,8 +615,14 @@ run_command("Get Post-NA Removal Variables", "get_postna_rem_var", $cmd, "$Outpu
 my $cmd="grep -f $OutputDir/all_avail_var $Covariates > $OutputDir/covar.screened; echo done.";
 run_command("Screen Covariates", "scr_covar", $cmd, "$OutputDir");
 
-my $cmd="grep -f $OutputDir/all_avail_var $GroupVar > $OutputDir/groupvar.screened; echo done.";
-run_command("Screen Grouped Variables", "scr_group_var", $cmd, "$OutputDir");
+if ($GroupVar ne  ""){
+	my $cmd="grep -f $OutputDir/all_avail_var $GroupVar > $OutputDir/groupvar.screened; echo done.";
+	run_command("Screen Grouped Variables", "scr_group_var", $cmd, "$OutputDir");
+}else{
+	my $cmd="touch $OutputDir/groupvar.screened; echo done.";
+	print STDERR "No Group Variables specified...\n";
+	run_command("Screen Grouped Variables", "scr_group_var", $cmd, "$OutputDir");
+}	
 
 ###############################################################################
 
