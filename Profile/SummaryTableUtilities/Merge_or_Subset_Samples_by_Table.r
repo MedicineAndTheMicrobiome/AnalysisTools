@@ -167,6 +167,9 @@ load_mapping_file=function(fname){
 
 full_mapping_table=load_mapping_file(MappingTable);
 mapping_table=full_mapping_table[, ColumnNum, drop=F];
+nona_ix=!is.na(mapping_table[,1]);
+mapping_table=mapping_table[nona_ix,,drop=F];
+full_mapping_table=full_mapping_table[nona_ix,,drop=F];
 
 inmap_samples=rownames(inmat);
 mapping_table_samples=rownames(mapping_table);
@@ -190,8 +193,6 @@ if(ForceIgnore){
 	inmat=inmat[shared_samples,];
 	mapping_table=mapping_table[shared_samples, , drop=F];
 }
-
-print(mapping_table);
 
 # Remove samples we want to exclude
 unique_groups=sort(unique(mapping_table[,1]));
@@ -290,7 +291,9 @@ write_summary_file(new_summary_table, output_fname);
 
 # Generate new mapping table with rows collapsed and keyed by new sample ID
 #print(full_mapping_table);
+
 collapse_entries=function(in_mat){
+print(in_mat);
 	num_col=ncol(in_mat);
 	if(num_col==0){
 		return(in_mat);
@@ -316,8 +319,9 @@ for(i in 1:num_uniq_grps){
 
 fc=file(paste(OutputDirectory,"/",OutputFileNameRoot, ".", group_name, ".meta.tsv", sep=""));
 cat(file=fc, paste(c(key_cat, colnames(collpsed_map_table)), collapse="\t"), "\n", sep="");
-write.table(collpsed_map_table, file=paste(OutputDirectory,"/",OutputFileNameRoot, ".", group_name, ".meta.tsv", sep=""),
-		quote=F, sep="\t", row.names=T, col.names=F, append=T);
+write.table(collpsed_map_table, 
+	file=paste(OutputDirectory,"/",OutputFileNameRoot, ".", group_name, ".meta.tsv", sep=""),
+	quote=F, sep="\t", row.names=T, col.names=F, append=T);
 
 
 ###############################################################################
