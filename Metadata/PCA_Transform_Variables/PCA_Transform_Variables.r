@@ -773,6 +773,9 @@ par(mfrow=c(2,2));
 par(mar=c(12,3,2,1));
 positive_scores=scores;
 
+out_pc_cormat=matrix("", ncol=num_pc_at_cutoff*3, nrow=ncol(scores));
+out_pc_cormat_header=rep("", ncol(scores));
+
 pc_name=paste("PC", sprintf("%02g", 1:num_kept_pred), sep="");
 for(i in 1:num_pc_at_cutoff){
 	
@@ -823,9 +826,19 @@ for(i in 1:num_pc_at_cutoff){
 
 	pc_name[i]=proxyname;
 
+	# Save to output matrix for export
+	out_pc_cormat[, ((i-1)*3)+1]=names(pc_pred_cor_ordered);
+	out_pc_cormat[, ((i-1)*3)+2]=round(pc_pred_cor_ordered, 4);
+	out_pc_cormat_header[((i-1)*3)+1]=proxyname;
+	out_pc_cormat_header[((i-1)*3)+2]="Correlation";
 }
 
+colnames(out_pc_cormat)=out_pc_cormat_header;
+rownames(out_pc_cormat)=paste(1:ncol(scores), ".)", sep="");
 
+cat("Outputing PC to Variable Correlations:\n");
+fname=paste(OutputFnameRoot, ".pc_var_cor.tsv", sep="");
+write.table(out_pc_cormat, file=fname, col.names=NA, append=T, quote=F, sep="\t");
 
 ##############################################################################
 
