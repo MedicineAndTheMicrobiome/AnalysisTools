@@ -1,0 +1,11 @@
+https://shiny.rstudio.com/articles/shinyapps.html
+
+
+local run:
+setwd("D:\\work_git\\AnalysisTools\\Metadata\\ShinyApps\\SystemCallUI");
+library(shiny);
+runApp();
+
+deploy:
+library(rsconnect);
+deployApp(appName="newname");
