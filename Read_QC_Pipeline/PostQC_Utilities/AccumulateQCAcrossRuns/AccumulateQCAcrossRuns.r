@@ -123,7 +123,7 @@ cat("\n");
 
 unique_sample_ids=character();
 for(tix in 1:num_targets){
-	unique_sample_ids=as.character(target_values[[tix]][,"CollapsedID"]);
+	unique_sample_ids=c(unique_sample_ids, as.character(target_values[[tix]][,"CollapsedID"]));
 }
 unique_sample_ids=sort(unique(unique_sample_ids));
 num_unique_sample_ids=length(unique_sample_ids);
@@ -141,14 +141,16 @@ accumout_matrix=matrix(0, nrow=num_unique_sample_ids, ncol=num_targets);
 rownames(accumout_matrix)=unique_sample_ids;
 colnames(accumout_matrix)=target_list[,2];
 
-#print(breakout_matrix);
+print(breakout_matrix);
 #print(accumout_matrix);
+
 
 for(tix in 1:num_targets){
 	count_tab=target_values[[tix]];
 	num_samples=nrow(count_tab);
 	for(six in 1:num_samples){
-		samp_id=count_tab[six,"CollapsedID"];
+		samp_id=as.character(count_tab[six,"CollapsedID"]);
+
 		if(breakout_matrix[samp_id, tix]=="0"){
 			breakout_matrix[samp_id, tix]=count_tab[six,"Counts"];
 			accumout_matrix[samp_id, tix]=as.numeric(count_tab[six,"Counts"]);
