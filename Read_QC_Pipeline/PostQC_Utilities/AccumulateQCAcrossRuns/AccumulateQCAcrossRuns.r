@@ -276,11 +276,22 @@ meta_table=sample_ids_to_metadata(unique_sample_ids);
 
 make_contingency_table=function(data, c1, c2){
 
+	#print(c1);
+	#print(c2);
+	#print(data[["matrix"]]);
+
 	arr1=data[["matrix"]][,c1];	
 	arr2=data[["matrix"]][,c2];
 
+	arr1[arr1==""]="NA";
+	arr2[arr2==""]="NA";
+
 	uniq1=sort(unique(arr1));
 	uniq2=sort(unique(arr2));
+
+	#cat("Uniques:\n");
+	#print(uniq1);
+	#print(uniq2);
 
 	num_cat1=length(uniq1);
 	num_cat2=length(uniq2);
