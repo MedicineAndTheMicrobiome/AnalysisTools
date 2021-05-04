@@ -1104,12 +1104,18 @@ plot_ab_comparisons=function(a, b, aname, bname, pval, title){
 
 	#label mean and CI
 	text(mids[1], a95ci[2], sprintf("mean = %5.3f", amean), col="blue", adj=c(.5,-2.4));
-	text(mids[1], a95ci[2], sprintf("95%% CI = (%5.3f, %5.3f)", a95ci[1], a95ci[2]), 
-		col="blue", adj=c(.5,-.8), cex=.8);
+
+	if(length(a)>=40){
+		text(mids[1], a95ci[2], sprintf("95%% CI = (%5.3f, %5.3f)", a95ci[1], a95ci[2]), 
+			col="blue", adj=c(.5,-.8), cex=.8);
+	}
 
 	text(mids[2], b95ci[2], sprintf("mean = %5.3f", bmean), col="blue", adj=c(.5,-2.4));
-	text(mids[2], b95ci[2], sprintf("95%% CI = (%5.3f, %4.3f)", b95ci[1], b95ci[2]), 
-		col="blue", adj=c(.5,-.8), cex=.8);
+
+	if(length(b)>=40){
+		text(mids[2], b95ci[2], sprintf("95%% CI = (%5.3f, %4.3f)", b95ci[1], b95ci[2]), 
+			col="blue", adj=c(.5,-.8), cex=.8);
+	}
 
 	drawsigbar(mids, val_max*1.1, pval);
 	

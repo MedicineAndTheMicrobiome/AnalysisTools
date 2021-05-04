@@ -1399,7 +1399,10 @@ paint_matrix(model_pval_mat, plot_min=0, plot_max=1,
         high_is_hot=F, deci_pts=4, value.cex=.8);
 mtext(text="(H0: Predictors have no contribution to model fit)", side=3, cex=.8, font=3, line=2, outer=T);
 
+###############################################################################
 
+write.table(covariates_pval_mat, file=paste(OutputRoot, ".pval.tsv", sep=""), sep="\t", row.names=T, col.names=T);
+write.table(covariates_coef_mat, file=paste(OutputRoot, ".coef.tsv", sep=""), sep="\t", row.names=T, col.names=T);
 
 ###############################################################################
 

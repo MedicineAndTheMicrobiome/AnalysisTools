@@ -337,6 +337,7 @@ sub run_distribution_based{
 		-i $subjectid_colname \
              	-o $output_dir/distribution/$model_name \
 		-d tail \
+		-x \";\" \
 		$add_reflev $add_groups $add_tagname
 	";
 	run_command("Plot Diversity Longitudinal", "longit_diversity", 

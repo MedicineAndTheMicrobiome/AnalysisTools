@@ -7,7 +7,9 @@ options(useFancyQuotes=F);
 options(width=120);
 
 params=c(
-	"input_list", "i", 1, "character",
+	"input_list_cli", "i", 2, "character",
+	"input_list_file", "l", 2, "character",
+	"collapse_samp_id", "c", 2, "character",
 	"output", "o", 1, "character"
 );
 
@@ -16,7 +18,12 @@ script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
 
 usage = paste(
 	"\nUsage:\n", script_name, "\n",
-	"	-i <input command separated list of tsv files>\n",
+	"	Use one of the input options:\n",
+	"	[-i <input, comma separated list of tsv files>]\n",
+	"	[-l <input, text file with list of target files>]\n",
+	"\n",
+	"	[-c <collapse rows with duplicated sample id with this column name, eg. sample_id>\n",
+	"\n",
 	"	-o <output tab_separated column data file>\n",
 	"\n",
 	"  Eg. -i /path/filename.tsv,/anotherpath/anotherfile.tsv\n",
@@ -31,23 +38,59 @@ usage = paste(
 	"	(total num rows input)-(number of files)+1\n",
 	"\n");
 
-if(!length(opt$input_list)  || !length(opt$output)){
+if(!length(opt$output)){
 	cat(usage);
 	q(status=-1);
 }
 
-InputFNameList=opt$input_list;
+InputFNameList=opt$input_list_cli;
+InputFNameFile=opt$input_list_file;
+
 Formulas=opt$formulas;
 OutputFName=opt$output;
+CollapseBySampleID=opt$collapse_samp_id;
 
-cat("Input Filename: ", InputFNameList, "\n");
+use_cli=NA;
+if(length(InputFNameList)){
+	cat("List specified on commmand line.\n");
+	use_cli=T;
+}
+if(length(InputFNameFile)){
+	cat("List specified in file.\n");
+	use_cli=F;
+}
+
+if(is.na(use_cli)){
+	cat("Please specify one of the input options.\n");
+}
+
+if(length(CollapseBySampleID)){
+	cat("Collapsing Rows by: ", CollapseBySampleID, "\n");
+}else{
+	CollapseBySampleID="";
+}
+
 cat("Output Filename: ", OutputFName, "\n");
 cat("\n");
+
+
+target_list=character();
+if(use_cli){
+	target_list=strsplit(InputFNameList, ",")[[1]];	
+}else{
+	target_list=read.table(InputFNameFile, as.is=T, sep="\n", header=F, check.names=F,
+			comment.char="", quote="")[,1];
+}
+
+cat("Target list of files to merge:\n");
+print(target_list);
+
 
 ##############################################################################
 
 load_factors=function(fname){
-	factors=data.frame(read.table(fname,  header=TRUE, check.names=FALSE, as.is=T, comment.char="", quote="", sep="\t"));
+	factors=data.frame(read.table(fname,  header=TRUE, check.names=FALSE, as.is=T, 
+		comment.char="", quote="", sep="\t"));
 
 	#print(factors);
 
@@ -70,13 +113,11 @@ write_factors=function(fname, table){
 
 ##############################################################################
 
-
-fname_list = strsplit(InputFNameList, ",")[[1]];
-num_target_files=length(fname_list);
+num_target_files=length(target_list);
 
 cat("Files to Merge: \n");
-names(fname_list)=LETTERS[1:length(fname_list)];
-print(fname_list);
+names(target_list)=LETTERS[1:length(target_list)];
+print(target_list);
 
 loaded_factors=list();
 loaded_columns=list();
@@ -85,7 +126,7 @@ unique_columns=character();
 total_rows=0;
 for(i in 1:num_target_files){
 	
-	cur_fname=fname_list[i];
+	cur_fname=target_list[i];
 	cat("\nLoading: ", cur_fname, "\n", sep="");
 	loaded_factors[[i]]=load_factors(cur_fname);	
 	loaded_columns[[i]]=colnames(loaded_factors[[i]]);
@@ -192,6 +233,61 @@ for(i in 1:num_target_files){
 #print(output_matrix);
 
 ##############################################################################
+
+collapse_multiple_sample_ids=function(data_mat, sample_id_colname){
+
+	cnames=colnames(data_mat);
+	samp_id_ix=which(cnames==sample_id_colname)[1];
+
+	if(is.na(samp_id_ix)){
+		cat("\n");
+		cat("Error, Could not find \"", sample_id_colname, "\" in headers.\n", sep="");
+		cat("Here are your available column names:\n");
+		print(cnames);
+		quit(status=-1);
+	}
+
+	samp_ids=data_mat[,samp_id_ix];
+
+	uniq_samp_ids=sort(unique(samp_ids));
+	num_uniq_samp_ids=length(uniq_samp_ids);
+	cat("Unique Sample IDs:\n");
+	print(uniq_samp_ids);
+
+	target_cnames=setdiff(cnames, sample_id_colname);
+	new_mat=matrix(NA, nrow=num_uniq_samp_ids, ncol=ncol(data_mat));
+	colnames(new_mat)=colnames(data_mat);
+	rownames(new_mat)=uniq_samp_ids;
+	new_mat[,sample_id_colname]=uniq_samp_ids;
+
+	for(var in target_cnames){
+		for(samp_id in uniq_samp_ids){
+			rows=(samp_id==data_mat[,sample_id_colname]);
+			values=data_mat[rows, var];
+			values=unique(values[!is.na(values)]);
+
+			num_values=length(values);
+			if(num_values>1){
+				cat("For ", var, " x ", samp_id, "\n", sep="");
+				cat("Error: Could not collapse values into single sample ID.\n");
+				print(values);
+			}else if(num_values==0){
+				values=NA;
+			}
+			new_mat[samp_id, var]=values;
+		}
+	}
+
+	return(new_mat);
+
+
+}
+
+if(CollapseBySampleID!=""){
+	print(output_matrix);
+	output_matrix=collapse_multiple_sample_ids(output_matrix, CollapseBySampleID);
+	print(output_matrix);
+}
 
 write_factors(OutputFName, output_matrix);
 

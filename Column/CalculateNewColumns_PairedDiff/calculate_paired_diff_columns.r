@@ -206,7 +206,7 @@ for(cmd in commands){
 	# For each pair, gather metadata for that parameter
 	# and perform the difference calculation
 
-	result_arr=numeric(num_samples);
+	result_arr=rep(NA, num_samples);
 	names(result_arr)=factor_rownames;
 	
 	for(pair_ix in 1:num_pairs){
@@ -227,7 +227,6 @@ for(cmd in commands){
 		result_arr[pair[1]]=diff_res;
 		result_arr[pair[2]]=diff_res;
 	}
-
 
 	cnames=colnames(factors);
 	factors=cbind(factors, result_arr);

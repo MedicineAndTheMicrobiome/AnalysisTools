@@ -289,6 +289,7 @@ if(RequiredVarFile!=""){
 	required_var=load_list(RequiredVarFile);
 }else{
 	cat("No required variables specified.\n");
+	required_var=c();
 }
 
 ###############################################################################

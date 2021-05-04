@@ -13,13 +13,15 @@ params=c(
 	"contains_remaining", "R", 2, "logical",
 	"additional_categories", "a", 2, "character",
 	"output_file_root", "o", 2, "character",
-	"shorten_category_names", "x", 2, "character"
+	"shorten_category_names", "x", 2, "character",
+	"alpha", "f", 2, "numeric"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
 script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
 
 NUM_TOP_CAT=35;
+ALPHA=.05;
 
 usage = paste(
 	"\nUsage:\n", script_name, "\n",
@@ -64,6 +66,12 @@ if(length(opt$shorten_category_names)){
 	ShortenCategoryNames="";
 }
 
+if(length(opt$alpha)){
+	Alpha=opt$alpha;
+}else{
+	Alpha=ALPHA;
+}
+
 SummaryFile=opt$summary_file;
 
 OutputRoot=paste(OutputRoot, ".alr", sep="");
@@ -75,6 +83,7 @@ cat("\n");
 cat("Number of MALR Variables: ", NumVariables, "\n", sep="");
 cat("Use Remaining? ", UseRemaining, "\n");
 cat("Shorten Category Names: '", ShortenCategoryNames, "'\n", sep="");
+cat("Alpha: ", Alpha, "\n");
 cat("\n");
 
 if(ShortenCategoryNames==TRUE){
@@ -454,6 +463,56 @@ plot_histograms=function(table){
 	par(orig.par);
 }
 
+compute_correlations=function(mat){
+        num_col=ncol(mat);
+        cor_mat=matrix(0, nrow=num_col, ncol=num_col);
+        pval_mat=matrix(0, nrow=num_col, ncol=num_col);
+        rownames(cor_mat)=colnames(mat);
+        colnames(cor_mat)=colnames(mat);
+        rownames(pval_mat)=colnames(mat);
+        colnames(pval_mat)=colnames(mat);
+        for(i in 1:num_col){
+                for(j in 1:i){
+                        v1=mat[,i];
+                        v2=mat[,j];
+                        notna=!(is.na(v1) | is.na(v2));
+                        #cor_mat[i,j]=cor(v1[notna], v2[notna]);
+                        test=cor.test(v1[notna], v2[notna]);
+                        pval_mat[i,j]=test$p.value;
+                        pval_mat[j,i]=test$p.value;
+                        cor_mat[i,j]=test$estimate;
+                        cor_mat[j,i]=test$estimate;
+                }
+        }
+        res=list();
+        res[["val"]]=cor_mat;
+        res[["pval"]]=pval_mat;;
+        res[["dist"]]=as.dist(1-abs(cor_mat));
+        return(res);
+}
+
+mask_matrix=function(val_mat, mask_mat, mask_thres, mask_val){
+        masked_matrix=val_mat;
+        masked_matrix[mask_mat>mask_thres]=mask_val;
+        return(masked_matrix);
+}
+
+holm_bon_sym_mat_correction=function(pval_mat){
+	tri_val=pval_mat[lower.tri(pval_mat)];
+	ranks=rank(tri_val);
+	num_val=length(tri_val);
+	adj=numeric(num_val);
+
+	for(i in 1:num_val){
+		adj[i]=min(tri_val[i]*(num_val-ranks[i]+1), 1.0);
+	}
+
+	out_mat=matrix(NA, nrow=nrow(pval_mat), ncol=ncol(pval_mat));
+	out_mat[lower.tri(out_mat)]=adj;
+	out_mat=as.matrix(as.dist(out_mat));
+	return(out_mat);
+}
+
 ##############################################################################
 ##############################################################################
 
@@ -497,6 +556,7 @@ if(ShortenCategoryNames!=""){
 
 # Normalize
 cat("Normalizing counts to proportions.\n");
+pure_counts=counts;
 counts=counts+.5;
 normalized=normalize(counts);
 #print(normalized);
@@ -604,13 +664,6 @@ plot_text(c(
 
 ##############################################################################
 
-# Generate quick stats:
-#print(alr_categories_val);
-cor_mat=cor(alr_categories_val);
-
-par(oma=c(1,1,1,1));
-paint_matrix(cor_mat, title="Response Correlations", value.cex=.7, plot_min=-1, plot_max=1, deci_pts=2);
-
 cat("\n");
 s=summary(alr_categories_val);
 plot_text(c(
@@ -624,10 +677,236 @@ plot_histograms(alr_categories_val);
 
 ##############################################################################
 
+num_samples=nrow(normalized);
+stat_names=c("CategoryName", "MeanAbnd", "NumSamp>0", "Preval%", "Rs95NumSamp>0", "Rs95Preval%");
+num_stats=length(stat_names);
+prevalence_matrix=matrix("", nrow=num_top_categories, ncol=num_stats);
+colnames(prevalence_matrix)=stat_names;
+rownames(prevalence_matrix)=sprintf("%3i.", 1:num_top_categories);
+
+pure_totals=apply(pure_counts, 1, sum);
+pure_normalized=normalize(pure_counts);
+pure_num_samples=nrow(pure_counts);
+pure_norm_means=apply(pure_normalized, 2, mean);
+order=order(pure_norm_means, decreasing=T);
+pure_normalized=pure_normalized[,order,drop=F];
+pure_cat_names=colnames(pure_normalized);
+
+for(i in 1:num_top_categories){
+
+	abnd=pure_normalized[,i];
+	abv=sum(abnd>0);
+
+	prob95=integer(pure_num_samples);
+	for(smp in 1:pure_num_samples){
+		prob95[smp]=ifelse(pbinom(0, pure_totals[smp], pure_normalized[smp,i])<.05, 1, 0);
+	}
+	num_prob95=sum(prob95);
+
+	prevalence_matrix[i,]=c(
+		pure_cat_names[i], 
+		sprintf("%3.4f", mean(abnd)),
+		sprintf("%5i", abv), 
+		sprintf("%5.1f", abv/num_samples*100.0),
+		sprintf("%5i", num_prob95),
+		sprintf("%5.1f", num_prob95/num_samples*100.0)
+	);
+
+}
+
+print(prevalence_matrix, quote=F);
+
+plot_text(c(
+	"The next page provides the following statistics for each category in a table:",	
+	"", 
+	"CategoryName:    Name of the category",
+	"MeanAbnd:        Mean abundance/proportion",
+	"NumSamp>0:       Number of samples with abundances > 0.0",
+	"Preval%:         Percent of samples with abundances > 0.0",
+	"Rs95NumSamp>0:   Number of samples with abundances > 0.0, 95% of the time if resampled", 
+	"Rs95Preval%>0:   Percent of samples with abundances > 0.0, 95% of the time if resampled", 
+	"",
+	"Note that the Rsmp95 statistics assume the binomial distribution.",
+	"For example, if a sample has a read depth of 3000, and the abundance of the category",
+	"  was 0.001, then the probabilty of seeing 0 reads associated with that category",
+	"  would be 0.0497.  This means that more than 1-0.0497 = 0.9503 or >95% of the time",
+	"  at least 1 read will be associated with this category for this sample."
+));
+plot_text(c(
+	paste("Total Number of Samples: ", num_samples),
+	"",
+	capture.output(print(prevalence_matrix, quote=F))
+));
+
+##############################################################################
+# Write prevalence to file
+prev_fname=paste(OutputRoot, ".top", num_top_categories, ".prevalence.csv", sep="");
+cat("Writing CSV of prevalence values to file: ", prev_fname, "\n", sep="");
+write.table(prevalence_matrix, file=prev_fname, quote=F, sep=",", row.names=T, col.names=NA);
+
 # Write ALR to file
 csv_fname=paste(OutputRoot, ".top", num_top_categories, ".csv", sep="");
 cat("Writing CSV of ALR values to file: ", csv_fname, "\n", sep="");
 write.table(alr_categories_val, file=csv_fname, quote=F, sep=",", row.names=T, col.names=NA);
+
+##############################################################################
+
+cor_rec=compute_correlations(alr_categories_val);
+
+print(cor_rec);
+
+par(oma=c(1,1,1,1));
+
+paint_matrix(cor_rec$val, title="Correlation: Coefficients", value.cex=.7, 
+	high_is_hot=F, plot_min=-1, plot_max=1, deci_pts=2);
+
+paint_matrix(cor_rec$pval, title="Correlation: P-values (Null Hypothesis, H0: correl=0)", 
+	high_is_hot=F, value.cex=.7, plot_min=0, plot_max=1, deci_pts=2);
+
+
+for(sig in c(.1, .05, .01, .001)){
+	cor_at_sig=mask_matrix(cor_rec$val, cor_rec$pval, sig, 0);
+	paint_matrix(cor_at_sig, title=paste("Signif Correl at: Individual p-value < ", sig, sep=""),
+		value.cex=.7, plot_min=-1, plot_max=1, deci_pts=2, label_zeros=F, high_is_hot=F);
+}
+
+holm_correct_pval=holm_bon_sym_mat_correction(cor_rec$pval);
+
+for(sig in c(.1, .05, .01, .001)){
+	cor_at_sig=mask_matrix(cor_rec$val, holm_correct_pval, sig, 0);
+	paint_matrix(cor_at_sig, title=paste("Signif Correl wth Holm-Bonferroni Corrected, p-value < ", sig, sep=""),
+		value.cex=.7, plot_min=-1, plot_max=1, deci_pts=2, label_zeros=F, high_is_hot=F);
+}
+
+paint_matrix(as.matrix(cor_rec$dist), title="Distance: 1-|cor(x,y)|  0/1 is close/far", value.cex=.7, high_is_hot=F,
+	plot_min=0, plot_max=1, deci_pts=2);
+
+
+# Plot dendrogram
+
+hcl=hclust(cor_rec$dist);
+dend=as.dendrogram(hcl);
+par(mar=c(20,4,4,1));
+plot(dend, xlab="", ylab="Distance: 1-|cor(x,y)|", main="Associated Taxa");
+
+# Plot correlations by
+
+num_categories=length(alr_cat_names);
+
+plot_cor_by_row=function(coef, pval, alpha=0.05){
+	target_name=rownames(coef);
+	compare_names=colnames(coef);
+
+	self=which(compare_names==target_name)
+
+	coef=coef[,-self];
+	pval=pval[,-self];
+	num_comp=length(coef);
+
+	order=order(coef);
+	coef=coef[order];
+	pval=pval[order];
+	compare_names=names(coef);
+
+	coef_str=gsub("0\\.", ".", sprintf("%3.2f", coef));
+
+	pval_ranks=rank(pval)
+	adj_pval=pval;
+	# Calculate Holm-Bonferroni adjustment
+	for(i in 1:num_comp){
+		adj_pval[i]=min(1, pval[i]*(num_comp-pval_ranks[i]+1));	
+	}
+
+	get_color=function(rho){
+		prop=(rho+1)/2;
+		val=rainbow(1, start=prop*4/6, end=prop*4/6+0.0001);
+		return(val);
+	}
+
+	# If holm-bon signf, make bold
+	# If uncorrect sigf, make regular
+	# else make grey
+
+	font_signf=rep(1, num_comp);
+	col_signf=rep("grey50", num_comp);
+	cex_signf=rep(.8, num_comp);
+	box_lwd=rep(.5, num_comp);
+	for(i in 1:num_comp){
+		if(pval[i]<=alpha){
+			col_signf[i]="black";
+			box_lwd[i]=1;
+			cex_signf[i]=1;
+		}
+
+		if(adj_pval[i]<=alpha){
+			font_signf[i]=2;
+			box_lwd[i]=2;
+			cex_signf[i]=1.2;
+		}
+	}
+	
+	#print(coef_str);
+	#print(pval);
+	#print(adj_pval);
+
+	signf=(adj_pval<=alpha);	
+	cat(target_name, ":\n");
+	print(coef[signf]);
+
+	cat("Num Comparisions: ", num_comp, "\n");
+	plot(0, type="n", xlim=c(0, num_comp), ylim=c(0,1), xlab="", ylab="", xaxt="n", yaxt="n",
+		main=target_name, bty="n");
+		
+	cxy=par()$cxy;
+	for(i in 1:num_comp){
+
+		# Draw color filled boxes
+		rect(xleft=i-1, ybottom=0, xright=i, ytop=1, col=get_color(coef[i]), lwd=box_lwd[i]);
+
+		# Label coeff inside of boxes
+		text(i-.5, .5, coef_str[i], cex=(1.125+-0.0125*(num_comp+1)), font=font_signf[i], col=col_signf[i]);
+
+		# Label taxa
+		text(i-.5-cxy[1]/2, -cxy[2]/2, compare_names[i], xpd=T, pos=4, srt=-45,
+			font=font_signf[i], col=col_signf[i], cex=cex_signf[i]);
+	}
+	
+}
+
+
+plot_text(c(
+	"The following section contain the correlations for each taxa sorted by their",
+	"correlation with another taxa.",
+	"",
+	"Red: Negatively correlated  (mnemonic: In bloody competition with)",
+	"Green: Not correlated       (mnemonic: Sharing green pastures, minding their own business)",
+	"Blue: Positively correlated (mnemonic: Together the sky is the limit)",
+	"",
+	"Bold Font / Thickly Boxed : significant association < alpha, even with Holm-Bonferroni correction",
+	"Regular Font / Boxed : significant associations < alpha, uncorrected p-values",
+	"Grey Font / Thinly Boxed : not significant",
+	"",
+	"Notes:",
+	paste("  Alpha cutoff: ", Alpha),
+	"",
+	"  The number of tests assumed for the Holm-Bonferroni correction in these strip plots is: ", 
+	paste("  (Number of Categories - 1) = ", num_categories - 1),
+	"",
+	"  The number of tests assumed in the full matrices is the half matrix area: ",
+	paste("  (Number of Categories - 1) * (Numer of Categories) / 2 = ", (num_categories - 1)*num_categories/2),
+	"",
+	"There are fewer assumed tests in the strips because we are assuming that not all categories",
+	"will be considered equally important."
+));
+
+par(mfrow=c(5,1));
+par(mar=c(12, 2, 2, 6));
+for(i in 1:num_categories){
+	plot_cor_by_row(cor_rec$val[i,,drop=F], cor_rec$pval[i,,drop=F]);
+	cat("\n\n");
+}
+
+
 
 ##############################################################################
 

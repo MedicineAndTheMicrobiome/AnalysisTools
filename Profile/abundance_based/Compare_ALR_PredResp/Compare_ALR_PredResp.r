@@ -1327,8 +1327,9 @@ generate_dual_values_plot=function(as_resp_pval, as_pred_pval, as_resp_coef, as_
 
 	line_width=function(x){
 		adds=2;
-		m=min(x);
+		m=min(x, na.rm=T);
 		lwd=-1;
+
 		if(m<=.05){ lwd=lwd+adds;}
 		if(m<=.01){ lwd=lwd+adds;}
 		if(m<=.001){ lwd=lwd+adds;}
@@ -1393,6 +1394,19 @@ generate_dual_values_plot=function(as_resp_pval, as_pred_pval, as_resp_coef, as_
 				r_coef=as_resp_coef[rowix, colix];
 				p_coef=as_pred_coef[rowix, colix];
 
+				if(is.na(r_pval)){
+					r_pval=1;
+				}
+				if(is.na(p_pval)){
+					p_pval=1;
+				}
+				if(is.na(r_coef)){
+					r_coef=0;
+				}
+				if(is.na(p_coef)){
+					p_coef=0;
+				}
+
 				bold=ifelse(r_pval<=signf_thres && r_pval<p_pval, 2, 0);
 				size=ifelse(r_pval<=signf_thres, 1.25, 1)*text_cex;
 
@@ -1404,7 +1418,6 @@ generate_dual_values_plot=function(as_resp_pval, as_pred_pval, as_resp_coef, as_
 
 				coef_col=ifelse(p_coef<0, "red", "darkgreen");
 				text(colix, rowix+lineadj_y, p_coef, font=bold, cex=size, col=coef_col);
-
 
 				if(r_pval<=signf_thres || p_pval<=signf_thres){
 					if(r_coef<0 && p_coef<0){

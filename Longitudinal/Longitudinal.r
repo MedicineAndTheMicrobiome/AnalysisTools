@@ -53,7 +53,7 @@ extract_offset=function(factor_mat, sbj_cname, timeoffset_cname, start=-Inf, end
 		offsets_by_sbj[[sbj]]=sorted_offsets;
 	}
 	offsets_data[["OffsetsBySubject"]]=offsets_by_sbj;
-	offsets_data[["MinOffsetSepInSubj"]]=min(min_periods);
+	offsets_data[["MinOffsetSepInSubj"]]=min(setdiff(min_periods,0));
 
 	# Store range information
 	if(start==-Inf){
@@ -215,76 +215,112 @@ calculate_stats_on_series_distance=function(offset_rec, dist_mat){
                 # Average distance sample spent away from home (0)
                 num_pts=length(dist_arr);
 
-                acc_dist=0;
-                for(i in 1:(num_pts-1)){
-                        avg_dist=(dist_arr[i+1]+dist_arr[i])/2;
-                        dtime=(time_arr[i+1]-time_arr[i]);
-                        acc_dist=acc_dist+avg_dist*dtime;
-                }
+		if(num_pts>1){
+			acc_dist=0;
+			for(i in 1:(num_pts-1)){
+				avg_dist=(dist_arr[i+1]+dist_arr[i])/2;
+				dtime=(time_arr[i+1]-time_arr[i]);
+				acc_dist=acc_dist+avg_dist*dtime;
+			}
 
-                overall_avg_dist=acc_dist/time_arr[num_pts];
-                return(overall_avg_dist);
+			overall_avg_dist=acc_dist/time_arr[num_pts];
+			return(overall_avg_dist);
+		}else{
+			return(NA);
+		}
         }
 
         avg_speed=function(dist_arr, time_arr){
                 # total distance traveled divided by time
                 num_pts=length(dist_arr);
-                acc_dist=0;
-                for(i in 1:(num_pts-1)){
-                        ddist=abs(dist_arr[i+1]-dist_arr[i]);
-                        acc_dist=acc_dist+ddist;
-                }
-                average_speed=acc_dist/time_arr[num_pts];
-                return(average_speed);
+
+		if(num_pts>1){
+			acc_dist=0;
+			for(i in 1:(num_pts-1)){
+				ddist=abs(dist_arr[i+1]-dist_arr[i]);
+				acc_dist=acc_dist+ddist;
+			}
+			average_speed=acc_dist/time_arr[num_pts];
+			return(average_speed);
+		}else{
+			return(NA);
+		}
         }
 
         tot_dist_travelled=function(dist_arr, time_arr){
                 # total distance traveled
                 num_pts=length(dist_arr);
-                acc_dist=0;
-                for(i in 1:(num_pts-1)){
-                        ddist=abs(dist_arr[i+1]-dist_arr[i]);
-                        acc_dist=acc_dist+ddist;
-                }
-                return(acc_dist);
+		if(num_pts>1){
+			acc_dist=0;
+			for(i in 1:(num_pts-1)){
+				ddist=abs(dist_arr[i+1]-dist_arr[i]);
+				acc_dist=acc_dist+ddist;
+			}
+			return(acc_dist);
+		}else{
+			return(NA);
+		}
         }
 
         mean_reversion=function(dist_arr, time_arr){
-                fit=lm(dist_arr~time_arr);
-                res=list();
-                res[["first_dist"]]=fit$coefficients[["(Intercept)"]];
-                res[["slope"]]=fit$coefficients[["time_arr"]];
-                res[["last_dist"]]=res[["first_dist"]]+res[["slope"]]*tail(time_arr,1);
-                res[["sd_res"]]=sd(fit$residuals);
-                return(res);
+		if(length(dist_arr)>1){
+			fit=lm(dist_arr~time_arr);
+			res=list();
+			res[["first_dist"]]=fit$coefficients[["(Intercept)"]];
+			res[["slope"]]=fit$coefficients[["time_arr"]];
+			res[["last_dist"]]=res[["first_dist"]]+res[["slope"]]*tail(time_arr,1);
+			res[["sd_res"]]=sd(fit$residuals);
+			return(res);
+		}else{
+			res=list();
+			res[["first_dist"]]=NA;
+			res[["slope"]]=NA;
+			res[["last_dist"]]=NA;
+			res[["sd_res"]]=NA;
+			return(res);
+		}
         }
 
         closest_travel=function(dist_arr, time_arr){
 
-                dist_arr=dist_arr[-1];
-                time_arr=time_arr[-1];
+		if(length(dist_arr)>2){
+			dist_arr=dist_arr[-1];
+			time_arr=time_arr[-1];
 
-                min_dist=min(dist_arr);
-                ix=min(which(min_dist==dist_arr));
+			min_dist=min(dist_arr);
+			ix=min(which(min_dist==dist_arr));
 
-                res=list();
-                res[["dist"]]=min_dist;
-                res[["time"]]=time_arr[ix];
-                return(res);
+			res=list();
+			res[["dist"]]=min_dist;
+			res[["time"]]=time_arr[ix];
+			return(res);
+		}else{
+			res=list();
+			res[["dist"]]=NA;
+			res[["time"]]=NA;
+			return(res);
+		}
         }
 
         furthest_travel=function(dist_arr, time_arr){
 
-                dist_arr=dist_arr[-1];
-                time_arr=time_arr[-1];
+		if(length(dist_arr)>2){
+			dist_arr=dist_arr[-1];
+			time_arr=time_arr[-1];
 
-                max_dist=max(dist_arr);
-                ix=min(which(max_dist==dist_arr));
+			max_dist=max(dist_arr);
+			ix=min(which(max_dist==dist_arr));
 
-                res=list();
-                res[["dist"]]=max_dist;
-                res[["time"]]=time_arr[ix];
-                return(res);
+			res=list();
+			res[["dist"]]=max_dist;
+			res[["time"]]=time_arr[ix];
+			return(res);
+		}else{
+			res=list();
+			res[["dist"]]=NA;
+			res[["time"]]=NA;
+			return(res);
+		}
         }
 
         closest_return=function(dist_arr, time_arr){
@@ -441,8 +477,12 @@ calc_longitudinal_stats=function(offset_rec, alr_cat_val){
         }
         l_range=function(x, y){
                 r=range(y);
-                span=abs(r[1]-r[2]);
-                return(span);
+		if(length(x)>1){
+			span=abs(r[1]-r[2]);
+			return(span);
+		}else{
+			return(NA);
+		}
         }
         l_N=function(x, y){
                 return(length(x));
@@ -491,64 +531,88 @@ calc_longitudinal_stats=function(offset_rec, alr_cat_val){
         }
 
         l_time_at_max=function(x, y){
-                max_val=max(y);
-                ix=min(which(y==max_val));
-                return(x[ix]);
+		if(length(x)>1){
+			max_val=max(y);
+			ix=min(which(y==max_val));
+			return(x[ix]);
+		}else{
+			return(NA);
+		}
         }
 
         l_time_at_min=function(x, y){
-                min_val=min(y);
-                ix=min(which(y==min_val));
-                return(x[ix]);
+		if(length(x)>1){
+			min_val=min(y);
+			ix=min(which(y==min_val));
+			return(x[ix]);
+		}else{
+			return(NA);
+		}
         }
 
         l_time_closest_to_t0=function(x, y){
-                starty=y[1];
-                y=y[-1];
-                dist=abs(y-starty);
-                min_dist=min(dist);
-                min_ix=min(which(min_dist==dist));
-                return(x[min_ix+1]);
+		if(length(x)>2){
+			starty=y[1];
+			y=y[-1];
+			dist=abs(y-starty);
+			min_dist=min(dist);
+			min_ix=min(which(min_dist==dist));
+			return(x[min_ix+1]);
+		}else{
+			return(NA);
+		}
         }
 
         l_time_furthest_fr_t0=function(x, y){
-                starty=y[1];
-                y=y[-1];
-                dist=abs(y-starty);
-                max_dist=max(dist);
-                max_ix=min(which(max_dist==dist));
-                return(x[max_ix+1]);
+		if(length(x)>2){
+			starty=y[1];
+			y=y[-1];
+			dist=abs(y-starty);
+			max_dist=max(dist);
+			max_ix=min(which(max_dist==dist));
+			return(x[max_ix+1]);
+		}else{
+			return(NA);
+		}
         }
 
         l_start_end_diff=function(x,y){
-                start=y[1];
-                end=tail(y,1);
-                return(end-start);
+		if(length(x)>1){
+			start=y[1];
+			end=tail(y,1);
+			return(end-start);
+		}else{
+			return(NA);
+		}
         }
 
         l_convexcave=function(x, y){
                 num_pts=length(x);
                 # y=mx+b
                 # b=y-mx
+		if(num_pts>2){
 
-                m=(y[num_pts]-y[1])/(x[num_pts]-x[1]);
-                b=y[1]-m*x[1];
+			m=(y[num_pts]-y[1])/(x[num_pts]-x[1]);
+			b=y[1]-m*x[1];
 
-                lvl_y=numeric(num_pts);
-                for(i in 1:num_pts){
-                        lvl_y[i]=y[i]-(m*x[i]+b);
-                }
+			lvl_y=numeric(num_pts);
+			for(i in 1:num_pts){
+				lvl_y[i]=y[i]-(m*x[i]+b);
+			}
 
-                cum_sum=0;
-                for(i in 1:(num_pts-1)){
-                        dx=x[i+1]-x[i];
-                        avgy=(lvl_y[i+1]+lvl_y[i])/2;
-                        avg=dx*avgy/2;
-                        cum_sum=cum_sum+avg;
-                }
-                vexcav=cum_sum/(x[num_pts]-x[1]);
+			cum_sum=0;
+			for(i in 1:(num_pts-1)){
+				dx=x[i+1]-x[i];
+				avgy=(lvl_y[i+1]+lvl_y[i])/2;
+				avg=dx*avgy/2;
+				cum_sum=cum_sum+avg;
+			}
+			vexcav=cum_sum/(x[num_pts]-x[1]);
 
-                return(vexcav);
+			return(vexcav);
+		}else{
+			return(NA);
+		}
         }
 
 
@@ -557,7 +621,7 @@ calc_longitudinal_stats=function(offset_rec, alr_cat_val){
         #       individual:
 
         stat_name=c(
-                "min", "max", "range",
+                "min", "max", "median", "mean", "stdev", "range", "N", "last_time",
                 "volatility", "slope", "time_wght_avg",
                 "time_at_max", "time_at_min",
                 "time_closest_to_t0", "time_furthest_fr_t0",

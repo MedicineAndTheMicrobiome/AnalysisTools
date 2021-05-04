@@ -2808,6 +2808,127 @@ plot_comparison_to_baseline=function(collapsed_alr, alr_colname, cht_colname, ch
 
 ###############################################################################
 
+plot_comparison_to_baseline=function(collapsed_alr, alr_colname, cht_colname, cht_colors, alr_ranges, mtitle){
+
+	cat("\n\nPlotting Comparisons to Baseline\n\n");
+
+	time_epoch_names=names(collapsed_alr);
+	num_epochs=length(time_epoch_names);
+
+	cat("Time Epochs:\n");
+	print(time_epoch_names);
+	
+	cat("Num Epochs: ", num_epochs, "\n", sep="");
+
+	cat("Samples in each Epoch:\n");
+	for(ep_nm in time_epoch_names){
+		cat("\t", ep_nm, " : ", nrow(collapsed_alr[[ep_nm]]), "\n");
+	}
+
+	cat("Cohort Groups:\n");
+	cohort_names=names(cht_colors);
+	print(cohort_names);
+
+	cat("\n");
+	cohort_survival_membership=list();
+	cohort_survival_membership[[time_epoch_names[1]]]=collapsed_alr[[time_epoch_names[1]]];
+
+	for(epix in 1:(num_epochs-1)){
+
+		cat("Comparing: ", time_epoch_names[epix], " to ", time_epoch_names[epix+1], "\n");
+		before_cht=rownames(collapsed_alr[[time_epoch_names[epix]]]);
+		after_cht=rownames(collapsed_alr[[time_epoch_names[epix+1]]]);
+
+		survivors=after_cht;
+		non_survivors=setdiff(before_cht, after_cht);
+
+		surv_name=paste(time_epoch_names[epix], ":Survive_to_nextEpoch", sep="");
+		nons_name=paste(time_epoch_names[epix], ":NonSurv_to_nextEpoch", sep="");
+		cohort_survival_membership[[surv_name]]=collapsed_alr[[time_epoch_names[epix]]][survivors,];
+		cohort_survival_membership[[nons_name]]=collapsed_alr[[time_epoch_names[epix]]][non_survivors,];
+		
+	}
+
+	cohort_survival_membership[[time_epoch_names[num_epochs]]]=collapsed_alr[[time_epoch_names[num_epochs]]];
+
+	epoch_surv_groups=names(cohort_survival_membership);
+	num_epoch_surv_groups=length(epoch_surv_groups);
+
+	effect_matrix=matrix(NA, nrow=num_epoch_surv_groups, ncol=num_epoch_surv_groups);
+	colnames(effect_matrix)=epoch_surv_groups;
+	rownames(effect_matrix)=epoch_surv_groups;
+
+	pvalue_matrix=matrix(NA, nrow=num_epoch_surv_groups, ncol=num_epoch_surv_groups);
+	colnames(pvalue_matrix)=epoch_surv_groups;
+	rownames(pvalue_matrix)=epoch_surv_groups;
+
+	for(cht_ix in c("[Overall]", cohort_names)){
+
+		cat("Working On: ", mtitle, " / ", cht_ix, "\n");
+
+		for(eg_ixA in 1:num_epoch_surv_groups){
+
+			eganm=epoch_surv_groups[eg_ixA];
+
+			a_row_ix=cohort_survival_membership[[eganm]][,cht_colname]==cht_ix;
+
+			if(cht_ix=="[Overall]"){
+				a_row_ix=rep(TRUE, length(a_row_ix));
+			}
+
+			aval=cohort_survival_membership[[eganm]][a_row_ix,alr_colname];
+
+			for(eg_ixB in 1:num_epoch_surv_groups){
+
+				egbnm=epoch_surv_groups[eg_ixB];
+
+				b_row_ix=cohort_survival_membership[[egbnm]][,cht_colname]==cht_ix;
+
+				if(cht_ix=="[Overall]"){
+					b_row_ix=rep(TRUE, length(b_row_ix));
+				}
+
+				bval=cohort_survival_membership[[egbnm]][b_row_ix,alr_colname];
+
+				if(eg_ixA<eg_ixB){
+
+					if(length(aval)<2 || length(bval)<2){
+						pval=NA; 
+					}else{
+						
+						cat("A:", eganm, "\n");
+						print(aval);
+						cat("B:", egbnm, "\n");
+						print(bval);
+						cat("\n");
+						res=wilcox.test(aval, bval);  
+						pval=res$p.value;
+					}
+					pvalue_matrix[eg_ixA, eg_ixB]=pval;
+					effect_matrix[eg_ixA, eg_ixB]=mean(bval)-mean(aval);
+				}
+
+			}
+		}
+
+		paint_matrix(effect_matrix, 
+			paste(mtitle, ":\n", cht_ix, "\nDifference: Later-Earlier (+, incr over time)", sep=""));
+		paint_matrix(pvalue_matrix, 
+			paste(mtitle, ":\n", cht_ix, "\nDifference, P-value", sep=""), 
+			plot_min=0, plot_max=1, high_is_hot=F, deci_pts=3);
+
+	}
+
+	#print(alr_colname);
+	#print(cht_colname);
+	#print(cht_colors);
+	#print(alr_ranges);
+	#print(mtitle);
+
+}
+
+###############################################################################
+
 par(mfrow=c(1,1));
 par(mar=c(0,0,0,0));
 plot(0,0, type="n", xlab="", ylab="", xaxt="n", yaxt="n", main="", bty="n");

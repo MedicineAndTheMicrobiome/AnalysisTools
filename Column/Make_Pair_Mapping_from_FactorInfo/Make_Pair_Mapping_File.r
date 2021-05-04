@@ -64,7 +64,7 @@ cat("Text Line Width: ", options()$width, "\n", sep="");
 
 load_factors=function(fname){
 	factors=data.frame(read.table(fname,  sep="\t", header=TRUE, 
-		row.names=1, check.names=FALSE, comment.char=""));
+		row.names=1, as.is=T, check.names=FALSE, comment.char=""));
 	factor_names=colnames(factors);
 
 	ignore_idx=grep("^IGNORE\\.", factor_names);
@@ -100,6 +100,12 @@ if(length(intersect(SubjectIDColname, factor_names))==0){
 }
 
 subj_ids=factors[,SubjectIDColname];
+nona_ix=!is.na(subj_ids);
+
+# Remove rows without subject ids
+factors=factors[nona_ix,,drop=F];
+subj_ids=factors[,SubjectIDColname];
+
 uniq_subj_ids=unique(subj_ids);
 num_subj_ids=length(uniq_subj_ids);
 
@@ -137,14 +143,16 @@ cat("\nNum Subject IDs (", SubjectIDColname, "): ",  num_subj_ids, "\n");
 print(head(uniq_subj_ids)); 
 cat("\n");
 
-
 mapping=matrix(NA, nrow=num_subj_ids, ncol=num_samp_types);
 rownames(mapping)=uniq_subj_ids;
 colnames(mapping)=uniq_sample_types;
 
 samp_ids=rownames(factors);
 for(i in 1:num_factor_samples){
-	mapping[subj_ids[i], sample_types[i]]=samp_ids[i];
+	if(!is.na(sample_types[i]) && !is.na(subj_ids[i])){
+		mapping[subj_ids[i], sample_types[i]]=samp_ids[i];
+
+	}
 }
 
 ###############################################################################
