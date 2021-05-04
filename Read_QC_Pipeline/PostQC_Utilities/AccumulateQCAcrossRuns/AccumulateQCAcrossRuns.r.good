@@ -294,7 +294,7 @@ make_contingency_table=function(data, c1, c2){
 	for(i in 1:num_samp){
 		cont_mat[arr1[i], arr2[i]]=cont_mat[arr1[i], arr2[i]]+1;
 	}
-
+		
 	return(cont_mat);
 	
 }
@@ -324,7 +324,6 @@ for(i in 1:meta_table[["num_columns"]]){
 }
 
 num_cont_tabs=tix-1;
-cat("Num contigency tables to add: ", num_cont_tabs, "\n");
 
 ##############################################################################
 # Prepare Sheets and output Excel spreadsheet
@@ -347,7 +346,7 @@ if(num_cont_tabs>0){
 	for(i in 1:num_cont_tabs){
 		cat("Adding Sheet: ", contigency_table_name[i], "\n");
 		addWorksheet(wb=workbook, sheetName=contigency_table_name[i]);
-		writeData(workbook, sheet=3+i, contigency_table_list[[i]], rowNames=T, colNames=T);
+		writeData(workbook, sheet=3+i, attempts);
 	}
 }
 
