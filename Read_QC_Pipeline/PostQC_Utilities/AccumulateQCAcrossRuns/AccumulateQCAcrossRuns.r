@@ -108,13 +108,13 @@ load_counts=function(fname){
 
 #------------------------------------------------------------------------------
 
-sample_ids_to_metadata=function(x, min_cat=2, max_cat=12){
+sample_ids_to_metadata=function(x, min_cat=1, max_cat=50){
 	num_ids=length(x);
 	sp=strsplit(x, "\\.");
 
 	split_lengths=c(num_ids);
 	for(i in 1:num_ids){
-		split_lengths=length(sp[[i]]);
+		split_lengths[i]=length(sp[[i]]);
 	}
 
 	uniq_split_lengths=unique(split_lengths);
@@ -128,9 +128,10 @@ sample_ids_to_metadata=function(x, min_cat=2, max_cat=12){
 	cat("Min split lengths:\n");
 	print(min_split_lengths);
 
-	meta_matrix=matrix(NA, nrow=num_ids, ncol=max_split_lengths);
+	meta_matrix=matrix("NA", nrow=num_ids, ncol=max_split_lengths);
 	for(smpix in 1:num_ids){
-		meta_matrix[smpix,]=sp[[smpix]];
+		cur_len=length(sp[[smpix]]);
+		meta_matrix[smpix,]=c(sp[[smpix]], rep("NA", max_split_lengths-cur_len));
 	}
 
 	is_unique=logical(max_split_lengths);
