@@ -5,14 +5,15 @@
 use strict;
 use Getopt::Std;
 use FileHandle;
-use vars qw($opt_l $opt_n $opt_r);
+use vars qw($opt_l $opt_n $opt_r $opt_i);
 
-getopts("l:n:r:");
+getopts("l:n:r:i:");
 my $usage = "usage: 
 $0 
 	-l <fasta list file name>
 	-n <sample size, n>
 	-r <output directory>
+	[-i <batch id>]
 
 	This program will randomly sample n sequences from each
 	fasta file specified in the list.  If the number of 
@@ -25,6 +26,9 @@ $0
 	Two columns:
 	<sample name>\\t<fasta filename>\\n
 
+	The -i option, appends the specified batch id to all the
+	subsample sequences, so they will stay unique, if combined
+	with other subsamples from the same fasta file.
 ";
 
 if(!(
@@ -39,11 +43,19 @@ if(!(
 my $fasta_list=$opt_l;
 my $sample_size=$opt_n;
 my $output_root=$opt_r;
+my $batch_id=$opt_i;
 
 print STDERR "\n";
 print STDERR "Input fasta list: $fasta_list\n";
 print STDERR "Sample size: $sample_size\n";
 print STDERR "Output root: $output_root\n";
+print STDERR "\n";
+
+if(defined($batch_id)){
+	print STDERR "Batch ID: $batch_id\n";
+}else{
+	print STDERR "No Batch ID specified.\n";
+}
 print STDERR "\n";
 
 if(!(-e $output_root)){
@@ -63,6 +75,22 @@ while(<LST_FH>){
 }	
 		
 close(LST_FH);
+
+
+
+sub append_batch_id{
+	my $defline=shift;
+	my $batch_id=shift;
+
+	if(defined($batch_id)){
+		my @parts=split /\s+/, $defline;
+		$parts[0].=".$batch_id";
+		$defline=join " ", @parts;
+	}
+
+	return($defline);
+}
+	
 
 
 foreach my $sampid (keys %sample_to_fasta_hash){
@@ -105,6 +133,7 @@ foreach my $sampid (keys %sample_to_fasta_hash){
 		if(/^>/){
 			$defline=$_;
 			if($sequence ne ""){
+				$prev_defline=append_batch_id($prev_defline, $batch_id);
 				process_record($prev_defline, $sequence, $offset, $select_arr, $outfh);
 				$sequence="";
 				$offset++;
@@ -115,6 +144,7 @@ foreach my $sampid (keys %sample_to_fasta_hash){
 		}
 		
 	}
+	$prev_defline=append_batch_id($prev_defline, $batch_id);
 	process_record($prev_defline, $sequence, $offset, $select_arr, $outfh);
 
 	close($infh);
