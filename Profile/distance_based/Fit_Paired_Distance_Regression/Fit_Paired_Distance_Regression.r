@@ -996,8 +996,19 @@ names(paired_dist)=A_sample_ids;
 mds=cmdscale(distmat);
 #print(mds);
 
-#print(A_sample_ids);
-#print(B_sample_ids);
+cat("A Sample IDs:\n");
+print(A_sample_ids);
+
+cat("B Sample IDs:\n");
+print(B_sample_ids);
+
+A_centroid=c(mean(mds[A_sample_ids,1]), mean(mds[A_sample_ids,2]));
+B_centroid=c(mean(mds[B_sample_ids,1]), mean(mds[B_sample_ids,2]));
+
+cat("A centroid: \n");
+print(A_centroid);
+cat("B centroid: \n");
+print(B_centroid);
 
 colors=numeric(num_shared_sample_ids)
 names(colors)=paired_samples;
@@ -1030,6 +1041,15 @@ mds_y_range=range(mds[,2]);
 mds_x_width=diff(mds_x_range);
 mds_y_height=diff(mds_y_range);
 
+
+draw_centroids=function(acent, bcent, acol="green", bcol="blue"){
+	points(acent[1], acent[2], pch=19, col=acol, cex=4);	
+	points(acent[1], acent[2], pch=19, col="white", cex=3);	
+
+	points(bcent[1], bcent[2], pch=19, col=bcol, cex=4);	
+	points(bcent[1], bcent[2], pch=19, col="white", cex=3);	
+}
+
 par(mar=c(4,4,4,4));
 
 #------------------------------------------------------------------------------
@@ -1038,6 +1058,8 @@ plot(0,0, type="n", xlab="Dim 1", ylab="Dim 2",
 	xlim=c(mds_x_range[1]-mds_x_width*.1, mds_x_range[2]+mds_x_width*.1),
 	ylim=c(mds_y_range[1]-mds_y_height*.1, mds_y_range[2]+mds_y_height*.1),
 	main="Points Only");
+
+draw_centroids(A_centroid, B_centroid);
 
 points(mds[,1], mds[,2], col=colors)
 
@@ -1048,6 +1070,8 @@ plot(0,0, type="n", xlab="Dim 1", ylab="Dim 2",
 	ylim=c(mds_y_range[1]-mds_y_height*.1, mds_y_range[2]+mds_y_height*.1),
 	main="Labelled by Sample Type");
 
+draw_centroids(A_centroid, B_centroid);
+
 text(mds[,1], mds[,2], glyphs, col=colors);
 
 #------------------------------------------------------------------------------
@@ -1056,6 +1080,8 @@ plot(0,0, type="n", xlab="Dim 1", ylab="Dim 2",
 	xlim=c(mds_x_range[1]-mds_x_width*.1, mds_x_range[2]+mds_x_width*.1),
 	ylim=c(mds_y_range[1]-mds_y_height*.1, mds_y_range[2]+mds_y_height*.1),
 	main=paste("Labelled by ", A_subtrahend, sep=""));
+
+draw_centroids(A_centroid, B_centroid);
 
 label_by_A=glyphs;
 label_by_A[A_sample_ids]=A_sample_ids;
@@ -1067,6 +1093,8 @@ plot(0,0, type="n", xlab="Dim 1", ylab="Dim 2",
 	ylim=c(mds_y_range[1]-mds_y_height*.1, mds_y_range[2]+mds_y_height*.1),
 	main=paste("Labelled by ", B_minuend, sep=""));
 
+draw_centroids(A_centroid, B_centroid);
+
 label_by_B=glyphs;
 label_by_B[B_sample_ids]=B_sample_ids;
 text(mds[,1], mds[,2], label_by_B, col=colors, cex=.75);
@@ -1077,6 +1105,8 @@ plot(0,0, type="n", xlab="Dim 1", ylab="Dim 2",
 	xlim=c(mds_x_range[1]-mds_x_width*.1, mds_x_range[2]+mds_x_width*.1),
 	ylim=c(mds_y_range[1]-mds_y_height*.1, mds_y_range[2]+mds_y_height*.1),
 	main="Pairs Connected");
+
+draw_centroids(A_centroid, B_centroid);
 
 for(ix in 1:(num_shared_sample_ids/2)){
 	aid=A_sample_ids[ix];
@@ -1094,6 +1124,8 @@ plot(0,0, type="n", xlab="Dim 1", ylab="Dim 2",
 	xlim=c(mds_x_range[1]-mds_x_width*.1, mds_x_range[2]+mds_x_width*.1),
 	ylim=c(mds_y_range[1]-mds_y_height*.1, mds_y_range[2]+mds_y_height*.1),
 	main="Closer Pairs Connected with Thicker Lines");
+
+draw_centroids(A_centroid, B_centroid);
 
 line_wts=remap_val(paired_dist, c(4,.25));
 for(ix in 1:(num_shared_sample_ids/2)){
@@ -1159,6 +1191,8 @@ plot_paired_mds_colored_by_group=function(a_ids, b_ids, mds_res, fact, labels){
 				xlim=c(mds_x_range[1]-mds_x_width*.05, mds_x_range[2]+mds_x_width*.05),
 				ylim=c(mds_y_range[1]-mds_y_height*.05, mds_y_range[2]+mds_y_height*.05),
 				main=paste("Colored by: ", cur_fact_name, sep=""));
+
+			draw_centroids(A_centroid, B_centroid);
 
 			for(ix in 1:length(a_ids)){
 				aid=a_ids[ix];
