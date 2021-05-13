@@ -1172,13 +1172,28 @@ for(i in 1:num_responses){
 
 	univar_summary_wsignf=add_sign_col(univar_summary[shrd_alr_names,,drop=F]);
 
+	reduced_coef_tab=round(reduced_lm_summaries[[i]]$coefficients, 4);
+	reduced_coef_tab=reduced_coef_tab[setdiff(rownames(reduced_coef_tab), "(Intercept)"),,drop=F];
+
+
 	plot_text(c(
 		paste("Univariate: ", responses[i], sep=""),
+		"",
+		"",
+		"-----------------------------------------------------------------------------------------",
+		"",
+		"Covariates of Reduced Model (Covariates only):",
+		"",
+		capture.output(print(add_sign_col(reduced_coef_tab), quote=F)),
+		"",
+		"-----------------------------------------------------------------------------------------",
+		"",
+
 		"Covariates portion of Full Model (Covariates + ALR):",
 		"",
-		capture.output(
-			print(univar_summary[covariate_coefficients,,drop=F], digits=4)
-		)
+		capture.output(print(add_sign_col(univar_summary[covariate_coefficients,,drop=F]), quote=F)),
+		"",
+		"-----------------------------------------------------------------------------------------"
 	));
 
 	plot_text(c(
@@ -1198,7 +1213,8 @@ for(i in 1:num_responses){
 		"",
 		"",
 		"Reduced Model (covariates only) Summary:",
-		paste("Multiple R-squared: ", reduced_rsquared[1], ", Adjusted R-squared: ", reduced_rsquared[2], sep=""),
+		paste("Multiple R-squared: ", reduced_rsquared[1], 
+			", Adjusted R-squared: ", reduced_rsquared[2], sep=""),
 		"",
 		"Difference (contribution of ALR):",
 		paste("Multiple R-squared: ", rsqrd_diff, 
