@@ -270,31 +270,36 @@ par(orig.par);
 }
 
 compute_correlations=function(mat){
-num_col=ncol(mat);
-cor_mat=matrix(0, nrow=num_col, ncol=num_col);
-pval_mat=matrix(0, nrow=num_col, ncol=num_col);
-rownames(cor_mat)=colnames(mat);
-colnames(cor_mat)=colnames(mat);
-rownames(pval_mat)=colnames(mat);
-colnames(pval_mat)=colnames(mat);
-for(i in 1:num_col){
-	for(j in 1:i){
-		v1=mat[,i];
-		v2=mat[,j];
-		notna=!(is.na(v1) | is.na(v2));
-		#cor_mat[i,j]=cor(v1[notna], v2[notna]);
-		test=cor.test(v1[notna], v2[notna]);
-		pval_mat[i,j]=test$p.value;
-		pval_mat[j,i]=test$p.value;
-		cor_mat[i,j]=test$estimate;
-		cor_mat[j,i]=test$estimate;
+
+	cat("Computing Correlations: \n");
+	num_col=ncol(mat);
+	cat("Num Columns: ", num_col, "\n");
+
+	cor_mat=matrix(0, nrow=num_col, ncol=num_col);
+	pval_mat=matrix(0, nrow=num_col, ncol=num_col);
+	rownames(cor_mat)=colnames(mat);
+	colnames(cor_mat)=colnames(mat);
+	rownames(pval_mat)=colnames(mat);
+	colnames(pval_mat)=colnames(mat);
+	for(i in 1:num_col){
+		for(j in 1:i){
+			v1=mat[,i];
+			v2=mat[,j];
+			notna=!(is.na(v1) | is.na(v2));
+			#cor_mat[i,j]=cor(v1[notna], v2[notna]);
+			test=cor.test(v1[notna], v2[notna]);
+			pval_mat[i,j]=test$p.value;
+			pval_mat[j,i]=test$p.value;
+			cor_mat[i,j]=test$estimate;
+			cor_mat[j,i]=test$estimate;
+		}
 	}
-}
-res=list();
-res[["val"]]=cor_mat;
-res[["pval"]]=pval_mat;;
-res[["dist"]]=as.dist(1-abs(cor_mat));
-return(res);
+	res=list();
+	res[["val"]]=cor_mat;
+	res[["pval"]]=pval_mat;;
+	res[["dist"]]=as.dist(1-abs(cor_mat));
+
+	return(res);
 }
 
 
@@ -573,8 +578,13 @@ impute_matrix=function(mat_wna){
 			}
 		}
 	}
-	
-	num_nas_to_impute=nrow(na_pos);
+
+	if(length(na_pos)==0){
+		num_nas_to_impute=0;
+	}else{
+		num_nas_to_impute=nrow(na_pos);
+	}
+
 	cat("Num NAs to try to impute:",  num_nas_to_impute, "\n");
 
 	filled_matrix=usable_mat_wna;
@@ -592,7 +602,8 @@ impute_matrix=function(mat_wna){
 				quit();
 			}
 		
-			cat("(", na_ix, "/", num_nas_to_impute, ") Imputing: ", rownames(cell), " / ", colnames(cell), "\n");
+			cat("(", na_ix, "/", num_nas_to_impute, ") Imputing: ", 
+				rownames(cell), " / ", colnames(cell), "\n");
 
 			non_na_row=!is.na(usable_mat_wna[,target_column,drop=F]);
 			non_na_col=!is.na(usable_mat_wna[target_row,,drop=F]);
@@ -615,6 +626,8 @@ impute_matrix=function(mat_wna){
 }
 
 imputed_mat=impute_matrix(curated_pred_mat);
+cat("Inputed Matrix Dimensions: ", nrow(imputed_mat), " x ", ncol(imputed_mat), "\n");
+
 #print(imputed_mat);
 
 ##############################################################################
@@ -665,10 +678,10 @@ dend=dendrapply(dend, highlight_predictors);
 
 plot(dend, main="Ward's Minimum Variance: dist(1-abs(cor))");
 
-
 ##############################################################################
 
 pred_correl=compute_correlations(curated_pred_mat);
+cat("Predictor Correlation Matrix Dimensions: ", nrow(pred_correl$val), " x ", ncol(pred_correl$val), "\n");
 
 # Note that the princomp R function takes the resp values directly and the Standard Deviations
 # are the squareroot of the eigenvalues
@@ -681,6 +694,7 @@ pred_correl=compute_correlations(curated_pred_mat);
 #	scale(pred_mat, center, scale) %*% loadings
 
 # Compute PCA
+cat("Calculating Eigen Values...\n");
 eigen=eigen(pred_correl$val);
 
 # Compute variance contribution of each PC
@@ -713,6 +727,7 @@ colors=rep("grey",num_kept_pred);
 colors[1:num_pc_at_cutoff]="darkcyan";
 
 
+cat("Generating PCA variance barplots...\n");
 mids=barplot(pca_propvar, las=2, names.arg=1:num_kept_pred, xlab="PCs", 
 	col=colors,
 	ylab="Proportion", main="PCA Proportion of Variance");
@@ -768,16 +783,22 @@ for(i in seq(1,num_pc_at_cutoff+1,2)){
 ##############################################################################
 
 # Calculate correlation between each PC and the predictors
+cat("Calculating correlation between each PCA and the predictors...\n");
 
 par(mfrow=c(2,2));
 par(mar=c(12,3,2,1));
 positive_scores=scores;
 
+cat("Num PCs at Cutoff: ", num_pc_at_cutoff, "\n");
+cat("Num Scores: ", ncol(scores), "\n");
+
 out_pc_cormat=matrix("", ncol=num_pc_at_cutoff*3, nrow=ncol(scores));
-out_pc_cormat_header=rep("", ncol(scores));
+out_pc_cormat_header=rep("", num_pc_at_cutoff*3);
 
 pc_name=paste("PC", sprintf("%02g", 1:num_kept_pred), sep="");
 for(i in 1:num_pc_at_cutoff){
+
+	cat("Working on: PC ", i, "\n");
 	
 	pc=scores[,i];
 	nonna_pc=!is.na(pc);
