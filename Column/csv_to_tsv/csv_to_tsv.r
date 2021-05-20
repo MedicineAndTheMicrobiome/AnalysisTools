@@ -57,6 +57,7 @@ load_factors=function(fname){
 	}
 	colnames(factors)=header;
 
+
 	return(factors);
 }
 
@@ -70,9 +71,27 @@ write_factors=function(fname, table){
 
 }
 
+convert_tabs=function(data, subchar){
+
+	if(is.null(dim(data))){
+		len=length(data);
+		for(i in 1:len){
+			data[i]=gsub("\\t", " ", data[i]);
+		}
+	}else{
+		data=apply(data, 1:2, function(x){ gsub("\\t", " ", x);});
+	}
+	return(data);
+}
+
 ##############################################################################
 
 data=load_factors(InputFile);
+
+# Remove tabs
+colnames(data)=convert_tabs(colnames(data), " ");
+data=convert_tabs(data, " ");
+
 write_factors(OutputFile, data)
 
 ##############################################################################
