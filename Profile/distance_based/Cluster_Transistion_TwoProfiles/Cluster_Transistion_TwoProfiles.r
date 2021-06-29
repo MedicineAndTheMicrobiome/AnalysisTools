@@ -735,6 +735,8 @@ plot_dendro_colored_by_pairtype=function(
 	option_name, option_args
 ){
 
+	orig_par=par(no.readonly=T);
+
 	num_pairs=length(a_ids);
 	num_samples=num_pairs*2;
 	sample_to_color_map=clus_mem;
@@ -794,6 +796,10 @@ plot_dendro_colored_by_pairtype=function(
 	dendro_plot_range=c(0, num_samples+1);
 	palette(grp_col);
 
+	bottom_right_margins=1;
+
+	par(oma=c(0,0,4,0));
+
 	# Top-Left
 	par(mar=c(0,0,0,0));
 	plot(0,0, xlim=c(0,1), ylim=c(0,1), type="n",
@@ -801,21 +807,21 @@ plot_dendro_colored_by_pairtype=function(
 	text(.5, .5, paste("k = ", k, sep=""), cex=2, font=2);
 
 	# Top Margin
-	par(mar=c(samp_labl_spc, 0, title_spc,0));
-	plot(dendra_mod, main="", horiz=F, xaxt="n", yaxt="n", xlab="", ylab="", xlim=dendro_plot_range);
-	mtext(aname, side=3, font=2, line=.5);
+	par(mar=c(samp_labl_spc, 0, title_spc, bottom_right_margins));
+	plot(dendrb_mod, main="", horiz=F, xaxt="n", yaxt="n", xlab="", ylab="", xlim=dendro_plot_range);
+	mtext(bname, side=3, font=2, line=.5);
 	abline(h=h, col="blue", lty=2, lwd=.7);
 	#abline(v=c(1,num_samples));
 
 	# Right Margin
-	par(mar=c(0, title_spc,0, samp_labl_spc));
-	plot(dendrb_mod, main="", horiz=T, xaxt="n", yaxt="n", xlab="", ylab="", ylim=dendro_plot_range);
-	mtext(bname, side=2, font=2, line=.5)
+	par(mar=c(bottom_right_margins, title_spc,0, samp_labl_spc));
+	plot(dendra_mod, main="", horiz=T, xaxt="n", yaxt="n", xlab="", ylab="", ylim=dendro_plot_range);
+	mtext(aname, side=2, font=2, line=.5)
 	abline(v=h, col="blue", lty=2, lwd=.7);
 	#abline(h=c(1,num_samples));
 
 	# Center Field
-	par(mar=c(0,0,0,0));
+	par(mar=c(bottom_right_margins,0,0,bottom_right_margins));
 	plot(0,0, xlim=dendro_plot_range, ylim=dendro_plot_range, 
 		type="n", main="", xlab="", ylab="", xaxt="n", yaxt="n", bty="n");
 	#abline(h=dendro_plot_range);
@@ -823,23 +829,77 @@ plot_dendro_colored_by_pairtype=function(
 	abline(h=c(0, group_lines)+.5, lwd=.5);
 	abline(v=c(0, group_lines)+.5, lwd=.5);
 
+	
 	topmost=par()$usr[4];
 	leftmost=par()$usr[1];
+	rightmost=par()$usr[2];
+	bottommost=par()$usr[3];
 
-	text(
-		group_centers, rep(topmost, k), 1:k, cex=2, font=2, pos=1
-	);
-	text(
-		rep(leftmost, k), group_centers, 1:k, cex=2, font=2, pos=4
-	);
+	# Label cluster numbers at top and left margin
+	text(group_centers, rep(topmost, k), 1:k, cex=2, font=2, pos=1);
+	text(rep(leftmost, k), group_centers, 1:k, cex=2, font=2, pos=4);
 
 	if(option_name=="drawMatchingDots"){
-		
-		
+
 		points(option_args[,1], option_args[,2], pch=22, col=option_args[,3]);
+		mtext("Sample Pairing Scatter Plot", side=3, outer=T);
+
+	}else if(option_name=="count.contingency"){
+	
+		for(rowix in 1:k){
+			for(colix in 1:k){
+				text(group_centers[colix], group_centers[rowix], 
+					option_args[[option_name]][rowix, colix]);
+			}
+		}
+
+		# bottom margin
+		text(group_centers, rep(bottommost, k), option_args[["count.marginal_B"]], 
+			cex=1, font=4, pos=3);
+		# right margin
+		text(rep(rightmost, k), group_centers, option_args[["count.marginal_A"]],
+			cex=1, font=4, pos=2);
+
+		mtext("Contingency Table (Counts)", side=3, outer=T);
+
+	}else if(any(option_name==c("prob.contingency", "prob.BgivenA"))){
+
+		for(rowix in 1:k){
+			for(colix in 1:k){
+				text(group_centers[colix], group_centers[rowix], 
+					paste(round(option_args[[option_name]][rowix, colix], 3)));
+			}
+		}
+
+		if(option_name=="prob.contingency"){
+
+			mtext(paste("Joint Prob: Pr(", aname, " & ", bname, ")", sep=""), 
+				side=3, outer=T);
+
+			# bottom margin
+			text(group_centers, rep(bottommost, k), 
+				sprintf("%4.3f", option_args[["prob.marginal_B"]]), 
+				cex=1, font=4, pos=3);
+			# right margin
+			text(rep(rightmost, k), group_centers, 
+				sprintf("%4.3f", option_args[["prob.marginal_A"]]),
+				cex=1, font=4, pos=3, srt=90);
+
+		}else if(option_name=="prob.BgivenA"){
+
+			# right margin
+			text(rep(rightmost, k), group_centers, 
+				apply(option_args[["prob.BgivenA"]], 1, sum),
+				cex=1, font=4, pos=2);
+
+			mtext(paste("Conditional Prob: Pr(", bname, " | ", aname, ")",  sep=""), 
+				side=3, outer=T);
+
+		}
 
 	}
 
+	par(orig_par);
 }
 
 
@@ -851,22 +911,98 @@ analyze_cut=function(k, num_pairs, a_clus_mem, b_clus_mem, a_ids, b_ids){
 	#print(a_ids);
 	#print(b_ids);
 
-	ctng_counts=matrix(0, nrow=k, ncol=k);
-	rownames(ctng_counts)=paste("a_cl_", 1:k, sep="");
-	colnames(ctng_counts)=paste("b_cl_", 1:k, sep="");
+	ctng_cnt=matrix(0, nrow=k, ncol=k);
+	anames=paste("a_cl_", 1:k, sep="");
+	bnames=paste("b_cl_", 1:k, sep="");
 
+	rownames(ctng_cnt)=anames;
+	colnames(ctng_cnt)=bnames;
+	
+	# Sum of contingency table
 	for(i in 1:num_pairs){
-		ctng_counts[
+		ctng_cnt[
 			a_clus_mem[a_ids[i]],
 			b_clus_mem[b_ids[i]]
 		]=
-			ctng_counts[
+			ctng_cnt[
 				a_clus_mem[a_ids[i]],
 				b_clus_mem[b_ids[i]]
 			]+1;
 	}
 
-	print(ctng_counts);
+	cat("\n*********************************************************************\n");
+	#cat("Contigency Table:\n");
+	#print(ctng_cnt[k:1,]);
+	total=sum(ctng_cnt);
+
+	#cat("\n");
+	#cat("Totals: \n");
+	#print(total);
+
+	ctng_prb=ctng_cnt/total;
+	#print(ctng_prb);
+
+	margin_A_cnt=apply(ctng_cnt, 1, sum);
+	margin_B_cnt=apply(ctng_cnt, 2, sum);
+	margin_A_prb=margin_A_cnt/total;
+	margin_B_prb=margin_B_cnt/total;
+
+	logdiff=log(margin_B_prb/margin_A_prb);
+	propchange=(margin_B_prb-margin_A_prb)/margin_A_prb;
+	prop_no_change=sum(diag(ctng_prb));	
+
+	#cat("\n");
+	#cat("Marginal A: \n");
+	#print(margin_A_cnt);
+	#print(margin_A_prb);
+
+	#cat("\n");
+	#cat("Marginal B: \n");
+	#print(margin_B_cnt);
+	#print(margin_B_prb);
+
+	cond_prb_BgA=matrix(0, nrow=k, ncol=k);
+	cond_prb_AgB=matrix(0, nrow=k, ncol=k);
+	colnames(cond_prb_BgA)=bnames;
+	rownames(cond_prb_BgA)=anames;
+	colnames(cond_prb_AgB)=bnames;
+	rownames(cond_prb_AgB)=anames;
+
+	# Conditional Prob: p(B|A)
+	# P(A|B) = P(A^B)/P(B)
+	# P(B|A) = P(A^B)/P(A)
+
+	for(aix in 1:k){
+		for(bix in 1:k){
+			cond_prb_AgB[aix, bix]=ctng_prb[aix, bix] / margin_B_prb[bix];
+			cond_prb_BgA[aix, bix]=ctng_prb[aix, bix] / margin_A_prb[aix];
+		}
+	}
+
+	#cat("P(A|B):\n");
+	#print(cond_prb_AgB);
+
+	#cat("P(B|A):\n");
+	#print(cond_prb_BgA);
+
+	results=list();
+	results[["count.totals"]]=total;
+	results[["count.contingency"]]=ctng_cnt;
+	results[["count.marginal_A"]]=margin_A_cnt;
+	results[["count.marginal_B"]]=margin_B_cnt;
+
+	results[["prob.contingency"]]=ctng_prb;
+	results[["prob.marginal_A"]]=margin_A_prb;
+	results[["prob.marginal_B"]]=margin_B_prb;
+	results[["prob.AgivenB"]]=cond_prb_AgB;
+	results[["prob.BgivenA"]]=cond_prb_BgA;
+	
+	results[["log_diff_perCl"]]=logdiff;
+	results[["prop_chang_perCl"]]=propchange;
+
+	results[["prop_nochange"]]=prop_no_change;
+
+	return(results);
 
 }
 
@@ -898,7 +1034,7 @@ num_pairs=map_info[["num_pairs"]];
 pos_map=matrix(0, nrow=num_pairs, ncol=3);
 a_id=map_info[["a_id"]];
 b_id=map_info[["b_id"]];
-colnames(pos_map)=c(map_info[["a"]], map_info[["b"]], "same_clus");
+colnames(pos_map)=c(map_info[["b"]], map_info[["a"]], "same_clus");
 
 
 for(k in 2:max_cuts){
@@ -943,7 +1079,7 @@ for(k in 2:max_cuts){
 			memberships[a_id[pix]],
 			"grey"
 			);
-		pos_map[pix,]=c(a_pos, b_pos, same_clus);
+		pos_map[pix,]=c(b_pos, a_pos, same_clus);
 	}
 
 	plot_dendro_colored_by_pairtype(
@@ -955,6 +1091,23 @@ for(k in 2:max_cuts){
 		option_name="drawMatchingDots",
 		option_args=pos_map
 	);
+
+	for(opt_name in c("count.contingency", "prob.contingency", "prob.BgivenA")){
+		plot_dendro_colored_by_pairtype(
+			memberships,
+			orig_dendro, 
+			aname=map_info[["a"]], bname=map_info[["b"]],
+			a_ids=map_info[["a_id"]], b_ids=map_info[["b_id"]],
+			k, h, grp_sizes_all, palette_col,
+			option_name=opt_name,
+			option_args=cut_info
+		);
+	}
+
+	print(cut_info);
+
+	lines=capture.output(print(cut_info));
+	plot_text(lines);
 
 }
 
