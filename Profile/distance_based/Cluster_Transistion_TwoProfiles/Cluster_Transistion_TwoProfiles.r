@@ -986,6 +986,7 @@ analyze_cut=function(k, num_pairs, a_clus_mem, b_clus_mem, a_ids, b_ids){
 	#print(cond_prb_BgA);
 
 	results=list();
+	results[["k"]]=k;
 	results[["count.totals"]]=total;
 	results[["count.contingency"]]=ctng_cnt;
 	results[["count.marginal_A"]]=margin_A_cnt;
@@ -1004,6 +1005,75 @@ analyze_cut=function(k, num_pairs, a_clus_mem, b_clus_mem, a_ids, b_ids){
 
 	return(results);
 
+}
+
+print_cut_info=function(cinfo, aname, bname){
+	
+	k=cinfo[["k"]];
+
+	aclnames=c(paste(aname, "_", 1:k, sep=""), "", "Totals");
+	bclnames=c(paste(bname, "_", 1:k, sep=""), "", "Totals");
+
+	cont_tab=cinfo[["count.contingency"]];
+	cont_tab=cbind(cont_tab, "", cinfo[["count.marginal_A"]]);
+	cont_tab=rbind(cont_tab, "", c(cinfo[["count.marginal_B"]], "", cinfo[["count.totals"]]));
+	rownames(cont_tab)=aclnames;
+	colnames(cont_tab)=bclnames;
+
+	#print(cont_tab);
+
+	prob_tab=apply(cinfo[["prob.contingency"]], 1:2, function(x){sprintf("%3.3f", x)});
+	prob_tab=cbind(prob_tab, "", sprintf("%3.3f", cinfo[["prob.marginal_A"]]));
+	prob_tab=rbind(prob_tab, "", c(sprintf("%3.3f", cinfo[["prob.marginal_B"]]), "", 1));
+	rownames(prob_tab)=aclnames;
+	colnames(prob_tab)=bclnames;
+
+	#print(prob_tab);
+
+	cont_bga=apply(cinfo[["prob.BgivenA"]], 1:2, function(x){sprintf("%3.3f", x)});
+	cont_bga=cbind(cont_bga, "", 1);
+	rownames(cont_bga)=paste(aname, "_", 1:k, sep="");
+	colnames(cont_bga)=bclnames;
+	
+	#print(cont_bga);
+	lr=cinfo[["log_diff_perCl"]];
+	names(lr)=paste("cl_", 1:k, sep="");
+	
+	pd=cinfo[["prop_chang_perCl"]];
+	names(pd)=paste("cl_", 1:k, sep="");
+
+	out=c(
+		paste("k = ", cinfo[["k"]], sep=""),
+		paste("Total Pairs = ", cinfo[["count.totals"]], sep=""),
+		paste("Proportion in Same Cluster = ", sprintf("%3.3f", cinfo[["prop_nochange"]]), sep=""),
+		"",	
+		"",
+		"Contigency Table (Counts):",
+		capture.output(print(cont_tab, quote=F)),
+		"",
+		"",
+		"Contigency Table (Probabilities):",
+		capture.output(print(prob_tab, quote=F)),
+		"",
+		"",
+		paste("Conditional Probability: P(", bname, "|", aname, "):", sep=""),
+		capture.output(print(cont_bga, quote=F)),
+		"",
+		"",
+		paste("Difference (Positive Number is Increase of Cluster Size in ", bname, "):", sep=""),
+		"",
+		paste("Log Ratio, Ln(", bname, "/", aname, "):", sep=""),
+		capture.output(print(sprintf("%3.3f", lr), quote=F)),
+		"",
+		paste("Prop Diff, (", bname, "-", aname, ")/", aname, ":", sep=""),
+		capture.output(print(sprintf("%3.3f", pd), quote=F))
+	);
+
+	print(out, quote=F);
+
+	plot_text(
+		out
+	);
 }
 
 ###############################################################################
@@ -1036,6 +1106,7 @@ a_id=map_info[["a_id"]];
 b_id=map_info[["b_id"]];
 colnames(pos_map)=c(map_info[["b"]], map_info[["a"]], "same_clus");
 
+prop_change=rep(0,max_cuts);
 
 for(k in 2:max_cuts){
 	
@@ -1104,545 +1175,41 @@ for(k in 2:max_cuts){
 		);
 	}
 
-	print(cut_info);
+	aname=map_info[["a"]];
+	bname=map_info[["b"]];
+	rown=paste(aname, ":\n", 1:k, sep="");
+	coln=paste(bname, ":\n", 1:k, sep="");
 
-	lines=capture.output(print(cut_info));
-	plot_text(lines);
+	mat=cut_info[["count.contingency"]];
+	rownames(mat)=rown;
+	colnames(mat)=coln;
+	paint_matrix(mat[k:1,], 
+		paste("k=", k, ", Contingency Table (Counts) Heat Map", sep=""), counts=T);
 
-}
+	mat=cut_info[["prob.contingency"]];
+	rownames(mat)=rown;
+	colnames(mat)=coln;
+	paint_matrix(mat[k:1,], 
+		paste("k=", k, ", Joint Probability Heat Map", sep=""), counts=F, deci_pts=3,
+		plot_min=0, plot_max=1);
 
+	mat=cut_info[["prob.BgivenA"]];
+	rownames(mat)=rown;
+	colnames(mat)=coln;
+	paint_matrix(mat[k:1,], 
+		paste("k=", k, ", Conditional Pr(", map_info[["b"]], " | ", map_info[["a"]], ") Heat Map", sep=""), 
+		counts=F, deci_pts=3,
+		plot_min=0, plot_max=1);
 
-quit();
+	print_cut_info(cut_info, aname, bname);
 
-plot_dendro_contigency=function(hclA, hclB, acuts, bcuts, namea, nameb, idsb){
-
-	color_denfun_bySample=function(n){
-		if(is.leaf(n)){
-			leaf_attr=attributes(n);
-			leaf_name=leaf_attr$label;
-			ind_color=sample_to_color_map[leaf_name];
-			if(is.null(ind_color)){
-				ind_color="black";
-			}
-
-			attr(n, "nodePar") = c(leaf_attr$nodePar,
-							list(lab.col=ind_color));
-		}
-		return(n);
-	}
-
-	text_scale_denfun=function(n){
-		if(is.leaf(n)){
-			leaf_attr=attributes(n);
-			leaf_name=leaf_attr$label;
-			attr(n, "nodePar") = c(leaf_attr$nodePar,
-						cex=0,
-						lab.cex=label_scale);
-		}
-		return(n);
-	}
-
-	# Compute
-	cat("Working on: ", nameb, ": ", bcuts, " x ", namea, ": ", acuts, "\n", sep="");
-
-	dendra=as.dendrogram(hclA);
-	dendrb=as.dendrogram(hclB);
-
-	memb_byA=cutree(hclA, k=acuts);
-	memb_byB=cutree(hclB, k=bcuts);
-
-	dendr_names_a=get_clstrd_leaf_names(dendra);
-	dendr_names_b=get_clstrd_leaf_names(dendrb);
-
-	memb_byA=reorder_member_ids(memb_byA, dendr_names_a);
-	memb_byB=reorder_member_ids(memb_byB, dendr_names_b);
-
-	dend_mids_a=get_middle_of_groups(dendr_names_a, memb_byA);
-	dend_mids_b=get_middle_of_groups(dendr_names_b, memb_byB);
-
-	num_members=length(memb_byA);
-
-	grp_cnts_a=(table(memb_byA)[1:acuts]);
-	grp_cnts_b=(table(memb_byB)[1:bcuts]);;
-	
-	grp_prop_a=grp_cnts_a/num_members;
-	grp_prop_b=grp_cnts_b/num_members;;
-
-	cat("Group Proportions A:\n");
-	print(grp_prop_a);
-
-	cat("Group Proportions B:\n");
-	print(grp_prop_b);
-
-	# Count up observed
-	ab_cnts_obs_mat=matrix(0, nrow=bcuts, ncol=acuts);
-	for(i in 1:num_members){
-		ma=memb_byA[i];
-		mb=memb_byB[i];
-		ab_cnts_obs_mat[mb, ma]=ab_cnts_obs_mat[mb, ma]+1;
-	}
-
-	ab_prop_obs_mat=ab_cnts_obs_mat/num_members;
-	
-	# Calculate expected
-	ab_prop_exp_mat=grp_prop_b %*% t(grp_prop_a);
-	ab_cnts_exp_mat=ab_prop_exp_mat * num_members;
-
-	cat("Observed Counts\n");
-	print(ab_cnts_obs_mat);
-
-	cat("Observed Proportions\n");
-	print(ab_prop_obs_mat);
-
-	cat("Expected Counts:\n");
-	print(ab_cnts_exp_mat);
-
-	cat("Expected Proportions:\n");
-	print(ab_prop_exp_mat);
-	
-	# Compute pvalue for contingency table
-	cst=chisq.test(ab_cnts_obs_mat);
-	ct_cst_pval=cst$p.value;
-
-	#print(cst);
-	#print(cst$observed);
-	#print(cst$expected);
-
-	fish_exact_mat=matrix(0, nrow=bcuts, ncol=acuts);
-
-	for(rix in 1:bcuts){
-		for(cix in 1:acuts){
-
-			twobytwo=matrix(0, nrow=2, ncol=2);
-			twobytwo[1,1]=ab_cnts_obs_mat[rix, cix];
-			twobytwo[1,2]=sum(ab_cnts_obs_mat[-rix, cix]);
-			twobytwo[2,1]=sum(ab_cnts_obs_mat[rix, -cix]);
-			twobytwo[2,2]=sum(ab_cnts_obs_mat[-rix, -cix]);
-			ind_cst_res=fisher.test(twobytwo);
-			fish_exact_mat[rix, cix]=ind_cst_res$p.value;
-		}
-	}
-	#print(fish_exact_mat);
-
-	# Calculate conditional probabilities
-	cnd_pr_agb=matrix(0, nrow=bcuts, ncol=acuts);
-	cnd_pr_bga=matrix(0, nrow=bcuts, ncol=acuts);
-
-	for(rix in 1:bcuts){
-		cnd_pr_agb[rix,]=ab_prop_obs_mat[rix,]/grp_prop_b[rix];
-	}
-
-	for(cix in 1:acuts){
-		cnd_pr_bga[,cix]=ab_prop_obs_mat[,cix]/grp_prop_a[cix];
-	}
-
-	# Calculate cumulative probability for highest probability mapping
-	cum_pr_bga=sum(apply(ab_prop_obs_mat, 2, max));
-	cum_pr_agb=sum(apply(ab_prop_obs_mat, 1, max));
-	
-
-	##########################################
-	# Plot
-
-	orig_par=par(no.readonly=T);
-
-	par(oma=c(1,1,1,1));
-
-	table_sp=5;
-	layout_mat=matrix(c(
-		1,rep(2, table_sp),
-		rep(c(3,rep(4, table_sp)), table_sp)),
-		nrow=table_sp+1, byrow=T);
-	#print(layout_mat);
-	layout(layout_mat);
-
-	# plot top/left spacer
-	par(mar=c(0,0,0,0));
-	plot(0,0,type="n", bty="n", xlab="", ylab="", main="", xaxt="n", yaxt="n");
-	text(0,0, paste
-		(nameb, ": ", bcuts, "\n x \n", namea, ": ", acuts, 
-		"\n\nX^2 Test p-value:\n", sprintf("%1.3g", ct_cst_pval),
-		"\n\nCumulative Top:\nPr(", nameb, "|", namea, ")=\n", round(cum_pr_bga, 3), 
-		"\nPr(", namea, "|", nameb, ")=\n", round(cum_pr_agb, 3),
-		 sep=""), cex=.8, font=2);
-
-
-
-	# Scale leaf sample IDs
-	label_scale=.2;
-	dendra=dendrapply(dendra, text_scale_denfun);
-	dendrb=dendrapply(dendrb, text_scale_denfun);
-	
-	# Color both dendrograms by A clustering
-	sample_to_color_map=memb_byA;
-	dendra=dendrapply(dendra, color_denfun_bySample);
-	names(sample_to_color_map)=idsb;
-	dendrb=dendrapply(dendrb, color_denfun_bySample);
-	
-	# Find height where clusters separate
-	acutheight=find_height_at_k(hclA, acuts);
-	bcutheight=find_height_at_k(hclB, bcuts);
-
-	top_label_spc=4;
-	left_label_spc=4;
-	title_spc=2;
-
-	# Plot A Dendrogram
-	par(mar=c(5,left_label_spc,title_spc,0));
-	plot(dendra, main=namea, horiz=F, yaxt="n", xaxt="n", xlab="", ylab="", xlim=c(-1,num_members+1));
-	abline(h=acutheight, col="blue", lty=2, lwd=.7);
-	abline(v=c(0,cumsum(grp_cnts_a)+.5), col="grey75", lwd=.5);
-	trans_dend_mids_a=remap_coord(dend_mids_a, 0, num_members, 0, 1);
-
-	# Plot B Dendrogram
-	par(mar=c(0,title_spc,top_label_spc,5));
-	plot(dendrb, main=nameb, horiz=T, xaxt="n", yaxt="n", xlab="", ylab="", ylim=c(-1,num_members+1));
-	abline(v=bcutheight, col="blue", lty=2, lwd=.7);
-	abline(h=c(0, cumsum(grp_cnts_b)+.5), col="grey75", lwd=.5);
-	trans_dend_mids_b=remap_coord(dend_mids_b, 0, num_members, 0, 1);
-
-	# Plot shared statistics
-	par(mar=c(0,left_label_spc,top_label_spc,0));
-	plot(0,0, type="n", xlab="", ylab="", xlim=c(0,1), ylim=c(0,1), xaxt="n", yaxt="n");
-	#points(c(0,0,1,1), c(0,1,0,1));
-	axis(3, at=trans_dend_mids_a, 1:acuts, tick=F, line=NA, font=2, cex.axis=2);
-	axis(3, at=trans_dend_mids_a, grp_cnts_a, tick=F, line=-1, font=2, cex.axis=1);
-	axis(2, at=trans_dend_mids_b, 1:bcuts, tick=F, line=NA, font=2, cex.axis=2);
-	axis(2, at=trans_dend_mids_b, grp_cnts_b, tick=F, line=-1, font=2, cex.axis=1);
-
-	cellab_size=min(1, 4/sqrt(acuts^2+bcuts^2));
-
-	minpval=min(fish_exact_mat);
-	cell_bounds_x=c(0,cumsum(grp_cnts_a)+.5)/num_members;
-	cell_bounds_y=c(0,cumsum(grp_cnts_b)+.5)/num_members;
-
-	for(colx in 1:acuts){
-		for(rowx in 1:bcuts){
-
-			cur_pval=fish_exact_mat[rowx, colx];
-
-			cell_info=paste(
-				"ob ct: ", ab_cnts_obs_mat[rowx, colx], "\n",
-				"ob pr: ", round(ab_prop_obs_mat[rowx, colx], 3), "\n",
-				"ex ct: ", round(ab_cnts_exp_mat[rowx, colx], 1), "\n",
-				"ex pr: ", round(ab_prop_exp_mat[rowx, colx], 3), "\n",
-				"fe pv: ", sprintf("%3.3g", cur_pval), "\n",
-				"\n",
-				"Pr(", namea, "|", nameb, ")=\n", sprintf("%3.3g", cnd_pr_agb[rowx, colx]), "\n",
-				"Pr(", nameb, "|", namea, ")=\n", sprintf("%3.3g", cnd_pr_bga[rowx, colx]), "\n",
-				sep="");
-
-			
-			# Highlight significant cells labels
-			col="grey";
-			font=1;
-			if(cur_pval<.05){
-				col="blue";
-			}
-			if(cur_pval<=minpval){
-				font=2;
-				points(c(cell_bounds_x[colx], cell_bounds_x[colx], cell_bounds_x[colx+1], 
-					cell_bounds_x[colx+1], cell_bounds_x[colx]),
-					c(cell_bounds_y[rowx], cell_bounds_y[rowx+1], cell_bounds_y[rowx+1], 
-					cell_bounds_y[rowx], cell_bounds_y[rowx]), 
-					col="cornflowerblue", type="l");
-			}
-				
-			text(trans_dend_mids_a[colx], trans_dend_mids_b[rowx], cell_info, cex=cellab_size,
-				font=font, col=col);
-		}
-	}
-
-	par(orig_par);
-
-	result=list();
-	result[["chisqr_test_pval"]]=ct_cst_pval;
-	result[["cumulative_cond_prob_agb"]]=cum_pr_agb;
-	result[["cumulative_cond_prob_bga"]]=cum_pr_bga;
-
-	return(result);
+	prop_change[k]=cut_info[["prop_nochange"]];
 
 }
 
-##############################################################################
-
-plot_dendro_group_compare=function(hclA, hclB, acuts, bcuts, namea, nameb, idsb){
-
-	color_denfun_bySample=function(n){
-		if(is.leaf(n)){
-			leaf_attr=attributes(n);
-			leaf_name=leaf_attr$label;
-			ind_color=sample_to_color_map[leaf_name];
-			if(is.null(ind_color)){
-				ind_color="black";
-			}
-
-			attr(n, "nodePar") = c(leaf_attr$nodePar,
-							list(lab.col=ind_color));
-		}
-		return(n);
-	}
-
-	text_scale_denfun=function(n){
-		if(is.leaf(n)){
-			leaf_attr=attributes(n);
-			leaf_name=leaf_attr$label;
-			attr(n, "nodePar") = c(leaf_attr$nodePar,
-						cex=0,
-						lab.cex=label_scale);
-		}
-		return(n);
-	}
-
-	# Compute
-	cat("Working on: ", nameb, ": ", bcuts, " x ", namea, ": ", acuts, "\n", sep="");
-
-	dendra=as.dendrogram(hclA);
-	dendrb=as.dendrogram(hclB);
-
-	memb_byA=cutree(hclA, k=acuts);
-	memb_byB=cutree(hclB, k=bcuts);
-
-	dendr_names_a=get_clstrd_leaf_names(dendra);
-	dendr_names_b=get_clstrd_leaf_names(dendrb);
-
-	memb_byA=reorder_member_ids(memb_byA, dendr_names_a);
-	memb_byB=reorder_member_ids(memb_byB, dendr_names_b);
-
-	dend_mids_a=get_middle_of_groups(dendr_names_a, memb_byA);
-	dend_mids_b=get_middle_of_groups(dendr_names_b, memb_byB);
-
-	num_members=length(memb_byA);
-
-	grp_cnts_a=(table(memb_byA)[1:acuts]);
-	grp_cnts_b=(table(memb_byB)[1:bcuts]);;
-	
-	grp_prop_a=grp_cnts_a/num_members;
-	grp_prop_b=grp_cnts_b/num_members;;
-
-	cat("Group Proportions A:\n");
-	print(grp_prop_a);
-
-	cat("Group Proportions B:\n");
-	print(grp_prop_b);
-
-	##########################################
-
-	orig_par=par(no.readonly=T);
-	#par(mfrow=c(4,1));
-	plsz=3;
-	layout_mat=matrix(c(
-		rep(1, plsz),
-		rep(2, plsz),
-		3,
-		rep(4, plsz),
-		rep(5, plsz)
-		), byrow=T, ncol=1);
-	layout(layout_mat);
-
-	# Find height where clusters separate
-	acutheight=find_height_at_k(hclA, acuts);
-	bcutheight=find_height_at_k(hclB, bcuts);
-
-	top_label_spc=4;
-	left_label_spc=1;
-	title_spc=2;
-
-	#-----------------------------------------------------------------------------
-
-	# Scale leaf sample IDs
-	label_scale=.2;
-	dendraA=dendrapply(dendra, text_scale_denfun);
-	dendrbA=dendrapply(dendrb, text_scale_denfun);
-	
-	# Color both dendrograms by A clustering
-	sample_to_color_map=memb_byA;
-	dendraA=dendrapply(dendraA, color_denfun_bySample);
-	idsa=names(sample_to_color_map);
-	names(sample_to_color_map)=idsb;
-	dendrbA=dendrapply(dendrbA, color_denfun_bySample);
-
-	# Plot A Dendrogram
-	par(mar=c(5,left_label_spc,title_spc,0));
-	plot(dendraA, main=paste(namea, ": ", acuts, " cuts", sep=""), 
-		horiz=F, yaxt="n", xaxt="n", xlab="", ylab="", xlim=c(-1,num_members+1));
-	abline(h=acutheight, col="blue", lty=2, lwd=.7);
-	abline(v=c(0,cumsum(grp_cnts_a)+.5), col="grey75", lwd=.5);
-
-	# Plot B Dendrogram
-	par(mar=c(5,left_label_spc,title_spc,0));
-	plot(dendrbA, main=paste(nameb, ": colored by ", namea, sep=""), 
-		horiz=F, xaxt="n", yaxt="n", xlab="", ylab="", xlim=c(-1,num_members+1));
-	abline(h=bcutheight, col="blue", lty=2, lwd=.7);
-	abline(v=c(0, cumsum(grp_cnts_b)+.5), col="grey75", lwd=.5);
-
-	#-----------------------------------------------------------------------------
-	par(mar=c(0,0,0,0));
-	plot(0,0, type="n", main="", xlab="", ylab="", bty="n", xaxt="n", yaxt="n");
-	abline(h=0, col="grey", lwd=5);
-
-	#-----------------------------------------------------------------------------
-
-	# Color both dendrograms by B clustering
-	label_scale=.2;
-	dendraB=dendrapply(dendra, text_scale_denfun);
-	dendrbB=dendrapply(dendrb, text_scale_denfun);
-
-	sample_to_color_map=memb_byB;
-	dendrbB=dendrapply(dendrbB, color_denfun_bySample);
-	names(sample_to_color_map)=idsa;
-	dendraB=dendrapply(dendraB, color_denfun_bySample);
-
-	# Plot B Dendrogram
-	par(mar=c(5,left_label_spc,title_spc,0));
-	plot(dendrbB, main=paste(nameb, ": ", bcuts, " cuts", sep=""),
-		horiz=F, xaxt="n", yaxt="n", xlab="", ylab="", xlim=c(-1,num_members+1));
-	abline(h=bcutheight, col="blue", lty=2, lwd=.7);
-	abline(v=c(0, cumsum(grp_cnts_b)+.5), col="grey75", lwd=.5);
-
-	# Plot A Dendrogram
-	par(mar=c(5,left_label_spc,title_spc,0));
-	plot(dendraB, main=paste(namea, ": colored by ", nameb, sep=""),
-		horiz=F, yaxt="n", xaxt="n", xlab="", ylab="", xlim=c(-1,num_members+1));
-	abline(h=acutheight, col="blue", lty=2, lwd=.7);
-	abline(v=c(0,cumsum(grp_cnts_a)+.5), col="grey75", lwd=.5);
-
-	par(orig_par);
-
-
-}
-
-##############################################################################
-
-classic_mds_pts_A=matrix(0, nrow=num_samples, ncol=2); 
-nonparm_mds_pts_A=matrix(0, nrow=num_samples, ncol=2); 
-classic_mds_pts_B=matrix(0, nrow=num_samples, ncol=2); 
-nonparm_mds_pts_B=matrix(0, nrow=num_samples, ncol=2); 
-
-class_mdsA_res=cmdscale(dist_mat_A, k=2);
-class_mdsB_res=cmdscale(dist_mat_B, k=2);
-classic_mds_pts_A=class_mdsA_res;
-classic_mds_pts_B=class_mdsB_res;
-
-nonpr_mdsA_res=isoMDS(dist_mat_A, k=2);
-nonpr_mdsB_res=isoMDS(dist_mat_B, k=2);
-nonparm_mds_pts_A=nonpr_mdsA_res$points;
-nonparm_mds_pts_B=nonpr_mdsB_res$points;
-
-hcl_A=hclust(dist_mat_A, method="ward.D2");
-hcl_B=hclust(dist_mat_B, method="ward.D2");
-
-clus4_A=cutree(hcl_A, k=max_cuts);
-clus4_B=cutree(hcl_B, k=max_cuts);
-
-cat("Comparing MDS plots:\n");
-par(mfrow=c(2,2));
-compare_mds(classic_mds_pts_A, classic_mds_pts_B, "Classical MDS", 
-	clus4_A, clus4_B, map_info[["a"]], map_info[["b"]]);
-compare_mds(nonparm_mds_pts_A, nonparm_mds_pts_B, "NonMetric MDS", 
-	clus4_A, clus4_B, map_info[["a"]], map_info[["b"]]);
-
-##############################################################################
-
-analyze_dendro_cont=T;
-
-if(analyze_dendro_cont){
-
-	probmat=matrix(0, nrow=max_cuts, ncol=max_cuts);
-	rownames(probmat)=c(paste(map_info[["b"]], 1:max_cuts));
-	colnames(probmat)=c(paste(map_info[["a"]], 1:max_cuts));
-
-	pval_mat=probmat;
-	cum_agb_mat=probmat;
-	cum_bga_mat=probmat;
-
-	for(acuts in 2:max_cuts){
-		for(bcuts in 2:max_cuts){
-
-			cont_res=plot_dendro_contigency(hcl_A, hcl_B, acuts, bcuts, 
-				map_info[["a"]], map_info[["b"]], map_info[["b_id"]]);
-
-			plot_dendro_group_compare(hcl_A, hcl_B, acuts, bcuts,
-                                map_info[["a"]], map_info[["b"]], map_info[["b_id"]]);
-
-			pval_mat[bcuts, acuts]=cont_res[["chisqr_test_pval"]];
-			cum_agb_mat[bcuts, acuts]=cont_res[["cumulative_cond_prob_agb"]];
-			cum_bga_mat[bcuts, acuts]=cont_res[["cumulative_cond_prob_bga"]];
-		}
-	}
-
-	pval_mat=pval_mat[2:max_cuts, 2:max_cuts, drop=F];
-	cum_agb_mat=cum_agb_mat[2:max_cuts, 2:max_cuts, drop=F];
-	cum_bga_mat=cum_bga_mat[2:max_cuts, 2:max_cuts, drop=F];
-
-	logodds=log2(cum_agb_mat/cum_bga_mat);
-
-
-	print(pval_mat);
-	min_cont_pval=min(pval_mat);
-	min_idx=which(pval_mat==min_cont_pval, arr.ind=T);
-
-	anames=colnames(pval_mat);
-	bnames=rownames(pval_mat);
-
-	paint_matrix(-log10(pval_mat), title="Contigency Table Dimension Log10(P-Values)");
-
-	par(mfrow=c(1,1));
-	plot_text(c(
-		"Contingency Table Chi-Squared Tests by Num Clusters, p-value:",
-		"",
-		capture.output(print(signif(pval_mat, 3))),
-		"",
-		"",
-		"",
-		"Contingency Table Chi-Squared Tests by Num Clusters, -log10(p-value):",
-		"",
-		capture.output(print(-log10(pval_mat))),
-		"",
-		"",
-		paste("Min P-Value: ", sprintf("%3.3g", min_cont_pval), 
-			" at (", bnames[min_idx[1]], ", ", anames[min_idx[2]], ")", sep="")
-	));
-
-	plot_text(c(
-		paste("Given a sample from ", map_info[["b"]], 
-			" what's the probability classifying it in ",  map_info[["a"]], "?", sep=""),
-		paste("Cumulative Pr(", map_info[["a"]], "|", map_info[["b"]], "):", sep=""),
-		"",
-		capture.output(print(round(cum_agb_mat,3))),
-		"",
-		"",
-		paste("Given a sample from ", map_info[["a"]], 
-			" what's the probability classifying it in ",  map_info[["b"]], "?", sep=""),
-		paste("Cumulative Pr(", map_info[["b"]], "|", map_info[["a"]], "):", sep=""),
-		"",
-		capture.output(print(round(cum_bga_mat,3))),
-		"",
-		"",
-		paste("Log(Pr(", map_info[["a"]], "|", map_info[["b"]], ")/Pr(", 
-			map_info[["b"]], "|", map_info[["a"]], ")):", sep=""),
-		paste("  Positive Log Prob Ratio implies ", map_info[["b"]], 
-			" predicts ", map_info[["a"]], " better than vice versa.", sep=""),
-		"",
-		capture.output(print(round(logodds, 2)))
-	));
-
-	plot_dendro_contigency(hcl_A, hcl_B, min_idx[2]+1, min_idx[1]+1, 
-		map_info[["a"]], map_info[["b"]], map_info[["b_id"]]);
-
-	plot_dendro_group_compare(hcl_A, hcl_B, min_idx[2]+1, min_idx[1]+1,
-                map_info[["a"]], map_info[["b"]], map_info[["b_id"]]);
-
-	# Write optimal cuts to file
-	cnt_fh=file(paste(OutputFileRoot, ".", map_info[["a"]], ".cuts", sep=""), "w");
-	cat(file=cnt_fh, min_idx[2]+1, "\n", sep="");
-	close(cnt_fh);
-
-	cnt_fh=file(paste(OutputFileRoot, ".", map_info[["b"]], ".cuts", sep=""), "w");
-	cat(file=cnt_fh, min_idx[1]+1, "\n", sep="");
-	close(cnt_fh);
-}
-
+plot(2:k, prop_change[2:k], ylim=c(0,1), main="Proportion Not Changing Clusters", 
+	ylab="Proportion", xlab="Cuts (k)", type="b");
+abline(h=c(0,1), lty=2, col="blue");
 
 ##############################################################################
 
