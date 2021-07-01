@@ -951,6 +951,9 @@ analyze_cut=function(k, num_pairs, a_clus_mem, b_clus_mem, a_ids, b_ids){
 	propchange=(margin_B_prb-margin_A_prb)/margin_A_prb;
 	prop_no_change=sum(diag(ctng_prb));	
 
+	chisq.homogeneity.res=chisq.test(rbind(margin_A_cnt, margin_B_cnt));
+	chisq.homogeneity.pval=chisq.homogeneity.res$p.value;
+
 	#cat("\n");
 	#cat("Marginal A: \n");
 	#print(margin_A_cnt);
@@ -991,6 +994,7 @@ analyze_cut=function(k, num_pairs, a_clus_mem, b_clus_mem, a_ids, b_ids){
 	results[["count.contingency"]]=ctng_cnt;
 	results[["count.marginal_A"]]=margin_A_cnt;
 	results[["count.marginal_B"]]=margin_B_cnt;
+	results[["count.chisq.homo.pval"]]=chisq.homogeneity.pval;
 
 	results[["prob.contingency"]]=ctng_prb;
 	results[["prob.marginal_A"]]=margin_A_prb;
@@ -1034,6 +1038,9 @@ print_cut_info=function(cinfo, aname, bname){
 	cont_bga=cbind(cont_bga, "", 1);
 	rownames(cont_bga)=paste(aname, "_", 1:k, sep="");
 	colnames(cont_bga)=bclnames;
+
+	prob_staying_same=sprintf("%3.3f", diag(cinfo[["prob.BgivenA"]]));
+	names(prob_staying_same)=paste("cl_", 1:k, sep="");
 	
 	#print(cont_bga);
 	lr=cinfo[["log_diff_perCl"]];
@@ -1045,7 +1052,10 @@ print_cut_info=function(cinfo, aname, bname){
 	out=c(
 		paste("k = ", cinfo[["k"]], sep=""),
 		paste("Total Pairs = ", cinfo[["count.totals"]], sep=""),
-		paste("Proportion in Same Cluster = ", sprintf("%3.3f", cinfo[["prop_nochange"]]), sep=""),
+		paste("Proportion in Same Cluster = ", 
+			sprintf("%3.3f", cinfo[["prop_nochange"]]), sep=""),
+		paste("Chi^2 Test of Homogeneity, p-val = ", 
+			sprintf("%3.3f", cinfo[["count.chisq.homo.pval"]]), sep=""),
 		"",	
 		"",
 		"Contigency Table (Counts):",
@@ -1058,6 +1068,9 @@ print_cut_info=function(cinfo, aname, bname){
 		"",
 		paste("Conditional Probability: P(", bname, "|", aname, "):", sep=""),
 		capture.output(print(cont_bga, quote=F)),
+		"",
+		"Cond. Prob. of Staying in Same Cluster:",	
+		capture.output(print(prob_staying_same, quote=F)),
 		"",
 		"",
 		paste("Difference (Positive Number is Increase of Cluster Size in ", bname, "):", sep=""),
@@ -1107,6 +1120,7 @@ b_id=map_info[["b_id"]];
 colnames(pos_map)=c(map_info[["b"]], map_info[["a"]], "same_clus");
 
 prop_change=rep(0,max_cuts);
+chisq_homo_pval=rep(0,max_cuts);
 
 for(k in 2:max_cuts){
 	
@@ -1204,12 +1218,31 @@ for(k in 2:max_cuts){
 	print_cut_info(cut_info, aname, bname);
 
 	prop_change[k]=cut_info[["prop_nochange"]];
+	chisq_homo_pval[k]=cut_info[["count.chisq.homo.pval"]];
 
 }
 
+# Proportion not changing clusters
 plot(2:k, prop_change[2:k], ylim=c(0,1), main="Proportion Not Changing Clusters", 
 	ylab="Proportion", xlab="Cuts (k)", type="b");
 abline(h=c(0,1), lty=2, col="blue");
+
+# Chisq test of homogeneity 
+signf_levels=c(1, .1, .05, .01, .001, .0001);
+neglog_signf_levels=-log10(signf_levels);
+neglog_homo_pval=-log10(chisq_homo_pval[2:k]);
+
+par(mar=c(5, 6, 5, 6));
+plot(2:k, -log10(chisq_homo_pval[2:k]), 
+	ylim=range(neglog_signf_levels, neglog_homo_pval), 
+	main="Chi^2 Test of Homogeneity across cuts", 
+	yaxt="n",
+	ylab="", xlab="Cuts (k)", type="b");
+mtext("p-value", side=4, line=4);
+mtext("-log10(p-value)", side=2, line=4);
+abline(h=neglog_signf_levels, lty=2, col="blue");
+axis(side=2, at=neglog_signf_levels, labels=sprintf("%3.2f", neglog_signf_levels), las=2);
+axis(side=4, at=neglog_signf_levels, labels=signf_levels, las=2);
 
 ##############################################################################
 
