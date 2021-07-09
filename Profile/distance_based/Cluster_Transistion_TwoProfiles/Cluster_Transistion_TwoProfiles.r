@@ -9,6 +9,7 @@ library('getopt');
 library('vegan');
 library('plotrix');
 
+source('~/git/AnalysisTools/Metadata/RemoveNAs/Remove_NAs.r');
 
 DEF_DISTTYPE="man";
 MAX_CLUSTER_CUTS=8;
@@ -21,7 +22,9 @@ params=c(
 	"b_name", "B", 1, "character",
 
 	"factor_file", "f", 2, "character",
-	"target_variables", "c", 2, "character",
+	"factor_mapcolname", "", 2, "character",
+	"factor_target_variables", "c", 2, "character",
+
 	"dist_type", "d", 2, "character",
 	"num_clust_cuts", "k", 2, "character",
 	"tag_name", "t", 2, "character"
@@ -40,6 +43,7 @@ usage = paste(
 	"\n",
 	"	Options:\n",
 	"	[-f <factor file>]\n",
+	"	[--factor_mapcolname=<column name in map file (i.e. A or B) to use sample ids from>]\n",
 	"	[-c <target variables>]\n",
 	"\n",
 	"	[-d <euc/wrd/man/bray/horn/bin/gow/tyc/minkp5/minkp3, default =", DEF_DISTTYPE, ">]\n",
@@ -85,8 +89,32 @@ OutputFileRoot=opt$output_filename_root;
 Aname=opt$a_name;
 Bname=opt$b_name;
 
-FactorFile=ifelse(length(opt$factor_file), opt$factor_file, "");
-TargetVariablesFile=ifelse(length(opt$target_variables), opt$target_variables, "");
+if(length(opt$factor_file)){
+	FactorFile=opt$factor_file;
+	FactorMapColname=opt$factor_mapcolname;
+
+	if(!length(FactorMapColname)){
+		cat("\n");
+		cat("If you specify a factor file, then you need to specify\n");
+		cat("the column name in the map file to use for the metadata.\n");
+		cat("The column name for A or B, needs to be specified.\n");
+		quit(status=-1);
+	}
+
+	TargetVariablesFilename=opt$factor_target_variables;
+	if(!length(TargetVariablesFilename)){
+		cat("\n");
+		cat("You should specify a target list of variables to include\n");
+		cat("if you have specified a factor/metadata file.\n");
+		quit(status=-1);
+	}
+
+}else{
+	FactorFile="";
+}
+
+
+TargetVariablesFile=ifelse(length(opt$factor_target_variables), opt$factor_target_variables, "");
 
 DistType=DEF_DISTTYPE;
 if(length(opt$dist_type)){
@@ -134,6 +162,7 @@ cat(" A Col Name           :", Aname, "\n");
 cat(" B Col Name           :", Bname, "\n");
 cat("Output File           :", OutputFileRoot, "\n");
 cat("Factor File           :", FactorFile, "\n");
+cat("   (Map) Column Name  :", FactorMapColname, "\n");
 cat("Target Var File       :", TargetVariablesFile, "\n");
 cat("Number of Cluster Cuts:", NumClusterCuts, "\n");
 cat("Distance Type         :", DistType, "\n");
@@ -246,14 +275,22 @@ load_mapping_file=function(mp_fname, keep_ids, a_colname, b_colname){
 	num_kept_matrows=nrow(inmat);
 	cat("Number of Mapping Entries Kept: ", num_kept_matrows, "\n");
 
-	mapping=as.list(x=inmat[,1]);
-	names(mapping)=inmat[,2];
+	ba_mapping=as.list(x=inmat[,1]);
+	names(ba_mapping)=inmat[,2];
+	ab_mapping=as.list(x=inmat[,2]);
+	names(ab_mapping)=inmat[,1];
 
 	coln=colnames(inmat);
+	ab_name_mapping=list();
+	ab_name_mapping[[coln[1]]]="a_id";
+	ab_name_mapping[[coln[2]]]="b_id";
+
 	map_info=list();
-	map_info[["map"]]=mapping;
+	map_info[["ab_map"]]=ab_mapping;
+	map_info[["ba_map"]]=ba_mapping;
 	map_info[["a"]]=coln[1];
 	map_info[["b"]]=coln[2];
+	map_info[["name_to_ab"]]=ab_name_mapping;
 	map_info[["a_id"]]=inmat[,1];
 	map_info[["b_id"]]=inmat[,2];
 	map_info[["num_pairs"]]=num_kept_matrows;
@@ -664,6 +701,12 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 
 }
 
+mask_matrix=function(val_mat, mask_mat, mask_thres, mask_val){
+        masked_matrix=val_mat;
+        masked_matrix[mask_mat>mask_thres]=mask_val;
+        return(masked_matrix);
+}
+
 
 ##############################################################################
 
@@ -675,18 +718,10 @@ output_fname_root = paste(OutputFileRoot, ".", DistType, sep="");
 cat("\n");
 cat("Loading summary table:", InputSumTab, "\n");
 counts_mat=load_summary_table(InputSumTab);
-
 sumtab_sample_ids=rownames(counts_mat);
-
-if(FactorFile!=""){
-	factors_matrix=load_factors(FactorFile);
-}else{
-	factors_matrix=NA;
-}
 
 cat("Loading Mapping file:", MappingFile, "\n");
 map_info=load_mapping_file(MappingFile, sumtab_sample_ids, Aname, Bname);
-print(map_info);
 
 sample_ids_pairable=c(map_info[["a_id"]], map_info[["b_id"]]);
 
@@ -695,6 +730,74 @@ counts_mat=counts_mat[sample_ids_pairable,];
 
 num_samples=nrow(counts_mat);
 cat("Num usable samples: ", num_samples, "\n");
+
+
+if(FactorFile!=""){
+	factors_matrix=load_factors(FactorFile);
+	factors_samp_ids=rownames(factors_matrix);
+
+	# Grab sample ID's from A or B list
+	a_or_b=map_info[["name_to_ab"]][[FactorMapColname]];
+	a_or_b_samp_ids=map_info[[a_or_b]];
+	cat("Using samples IDs from: ", FactorMapColname, "(", a_or_b, ")\n", sep="");
+
+	# Keep rows with sample IDs in A or B list
+	shared_ids=intersect(a_or_b_samp_ids, factors_samp_ids);
+	num_shared_ids=length(shared_ids);
+	factors_matrix=factors_matrix[shared_ids,,drop=F];
+
+	# Insert sample ID's from b_or_a
+	a_sample_ids=character(num_shared_ids);
+	b_sample_ids=character(num_shared_ids);
+
+	if(a_or_b == "a_id"){
+		a_sample_ids=shared_ids;
+		for(i in 1:num_shared_ids){
+			b_sample_ids[i]=map_info[["ab_map"]][[shared_ids[i]]];
+		}
+	}else{
+		b_sample_ids=shared_ids;
+		for(i in 1:num_shared_ids){
+			a_sample_ids[i]=map_info[["ba_map"]][[shared_ids[i]]];
+		}
+	}
+
+	factors_matrix=cbind(factors_matrix, a_sample_ids, b_sample_ids);
+
+	# Keep columns in target list
+	target_variables=load_list(TargetVariablesFilename);
+	factors_matrix=factors_matrix[,c(target_variables, "a_sample_ids", "b_sample_ids"),drop=F];
+
+	# NA removal
+	remove_na_res=remove_sample_or_factors_wNA_parallel(factors_matrix, required=target_variables,
+        num_trials=640000, num_cores=64, outfile=OutputFileRoot);
+	factors_matrix=remove_na_res$factors;
+	target_variables=colnames(factors_matrix);
+	samp_wo_nas=rownames(factors_matrix);	
+
+	# Remove samples from counts_mat
+	paired_samp_ids=c();
+	for(samp_id in samp_wo_nas){
+		paired_samp_ids= c(paired_samp_ids, samp_id, 
+			map_info$ab_map[[samp_id]], map_info$ba_map[[samp_id]]);
+	}
+
+	map_info$a_id=intersect(paired_samp_ids, map_info$a_id);
+	bid=c();
+	for(aid in map_info$a_id){
+		bid=c(bid, map_info$ab_map[[aid]]);
+	}
+	map_info$b_id=bid;
+	map_info$num_pairs=length(map_info$a_id);
+
+	counts_mat=counts_mat[paired_samp_ids,,drop=F];
+	num_samples=nrow(counts_mat);
+
+	cat("Num samples after NA removal:", num_samples, "\n");
+
+}else{
+	factors_matrix=NA;
+}
 
 ###############################################################################
 
@@ -740,7 +843,6 @@ plot_dendro_colored_by_pairtype=function(
 	num_pairs=length(a_ids);
 	num_samples=num_pairs*2;
 	sample_to_color_map=clus_mem;
-	names(sample_to_color_map)=c(a_ids, b_ids);
 	group_lines=cumsum(grp_sizes);
 	group_centers=(c(0, group_lines)+c(grp_sizes/2,0))[1:k];
 
@@ -780,7 +882,6 @@ plot_dendro_colored_by_pairtype=function(
 	}
 	
 	dendro_mod=dendrapply(inden, text_scale_denfun);
-
 	dendra_mod=dendrapply(dendro_mod, function(n){color_denfun_bySample(n, a_ids)});
 	dendrb_mod=dendrapply(dendro_mod, function(n){color_denfun_bySample(n, b_ids)});
 
@@ -1089,6 +1190,213 @@ print_cut_info=function(cinfo, aname, bname){
 	);
 }
 
+
+add_memberships_to_factors=function(pair_map_info, factors_matrix, memberships){
+
+	cat("Adding membership information to factor matrix...\n");
+	cat("Factor Matrix Dimensions:\n");
+	
+	a_samp_ids=as.character(factors_matrix[,"a_sample_ids"]);
+	a_memb_str=paste("cl_", memberships[a_samp_ids], sep="");
+	a_cluster_id=as.factor(a_memb_str);
+
+	b_samp_ids=as.character(factors_matrix[,"b_sample_ids"]);
+	b_memb_str=paste("cl_", memberships[b_samp_ids], sep="");
+	b_cluster_id=as.factor(b_memb_str);
+	
+	combined=cbind(as.data.frame(factors_matrix), a_cluster_id, b_cluster_id);
+
+	return(combined);
+}
+
+
+fit_arrivers_logistic_regression=function(num_clusters, metadata, targ_pred, memship){
+# For each cluster fit logistic regression with, 
+#	post membership as response
+#	pre membership and covariates as predictor
+
+#	print(metadata);
+#	print(memship);
+
+	print(colnames(metadata));
+
+	predictors=setdiff(targ_pred, c("a_sample_ids", "b_sample_ids", "a_cluster_id", "b_cluster_id"));
+	
+	regr_formla_str=paste("b_cluster_in ~ ", 
+		paste(predictors, collapse= " + "), " + a_cluster_id",
+		sep="");
+
+	cat("Formula:\n");
+	print(regr_formla_str);
+
+	summ_arr_list=list();
+	coeff_names=c();
+	cluster_names=c();
+
+	for(kix in 1:num_clusters){
+		cat("\nFitting cluster: ", kix, "\n");
+		target_cluster_id=paste("cl_", kix, sep="");
+		cluster_names=c(cluster_names, target_cluster_id);
+		b_cluster_in=as.character(metadata[,"b_cluster_id"])==target_cluster_id;
+		
+		cat("Percent in cluster: ", round(100*sum(b_cluster_in)/length(b_cluster_in), 2), "%\n");		
+		current_df=cbind(b_cluster_in, metadata);
+
+		# Relevel cluster id so reference is the current cluster of interest
+		values=current_df[,"a_cluster_id"];
+		current_df[,"a_cluster_id"]=relevel(values, target_cluster_id);
+		
+		glm_res=glm(as.formula(regr_formla_str), family=binomial, data=current_df);
+		glm_sum=summary(glm_res);
+
+		#print(glm_sum$coefficients);
+		#print(names(glm_sum));
+		#print(glm_res);
+		#print(glm_sum);
+
+		summ_arr_list[[target_cluster_id]]=glm_sum$coefficients[,c("Estimate", "Pr(>|z|)")];
+		coeff_names=c(coeff_names, rownames(summ_arr_list[[target_cluster_id]]));
+
+		cat("\n\n");
+
+
+	}
+
+	# Allocate matrices
+	cluster_coeff_names=paste("a_cluster_id", cluster_names, sep="");
+	coeff_names=sort(setdiff(unique(coeff_names), c("(Intercept)", cluster_coeff_names)));
+
+	num_pred=length(coeff_names)+num_clusters;
+
+	coef_matrix=matrix(0, nrow=num_pred, ncol=num_clusters);
+	colnames(coef_matrix)=cluster_names;
+	rownames(coef_matrix)=c(cluster_names, coeff_names);
+
+	pval_matrix=matrix(1, nrow=num_pred, ncol=num_clusters);
+	colnames(pval_matrix)=cluster_names;
+	rownames(pval_matrix)=c(cluster_names, coeff_names);
+
+	for(kix in 1:num_clusters){
+		
+		# Copy covariates estim/pval
+		avail_coef=intersect(coeff_names, rownames(summ_arr_list[[cluster_names[kix]]]));
+		for(cn in avail_coef){
+			coef_matrix[cn, kix]=summ_arr_list[[cluster_names[kix]]][cn, "Estimate"];
+			pval_matrix[cn, kix]=summ_arr_list[[cluster_names[kix]]][cn, "Pr(>|z|)"];
+		}
+
+		# Copy cluster estim/pval
+		for(clix in 1:num_clusters){
+			if(clix==kix){
+				next;
+			}else{
+				src_clid=paste("a_cluster_id", "cl_", clix, sep="");
+				dst_clid=paste("cl_", clix, sep="");
+
+				coef_matrix[dst_clid, kix]=
+					summ_arr_list[[cluster_names[kix]]][src_clid, "Estimate"];
+				pval_matrix[dst_clid, kix]=
+					summ_arr_list[[cluster_names[kix]]][src_clid, "Pr(>|z|)"];
+			}
+		}
+
+	}
+
+	#print(summ_arr_list);
+	results=list();
+	results[["coef"]]=coef_matrix;
+	results[["pval"]]=pval_matrix;
+	return(results);
+
+
+}
+
+fit_departers_logistic_regression=function(num_clusters, metadata, targ_pred, memship){
+# For each a cluster fit logistic regression with, 
+#	only it's pre-members
+#	pre membership and covariates as predictor
+
+#	print(metadata);
+#	print(memship);
+
+	print(colnames(metadata));
+
+	predictors=setdiff(targ_pred, c("a_sample_ids", "b_sample_ids"));
+	regr_formla_str=paste("b_cluster_out ~ ", 
+		paste(predictors, collapse= " + "),
+		sep="");
+
+	cat("\nFormula:\n");
+	print(regr_formla_str);
+
+	summ_arr_list=list();
+	coeff_names=c();
+	cluster_names=c();
+
+	for(kix in 1:num_clusters){
+
+		cat("\nFitting cluster: ", kix, "\n");
+		
+		target_cluster_id=paste("cl_", kix, sep="");		
+		cluster_names=c(cluster_names, target_cluster_id);
+
+		cl_members_ix=as.character(metadata[,"a_cluster_id"])==target_cluster_id;
+		cl_metadata=metadata[cl_members_ix,,drop=F];
+		num_cl_members=nrow(cl_metadata);		
+		b_cluster_out=cl_metadata[,"b_cluster_id"]!=target_cluster_id;
+
+		current_df=cbind(cl_metadata, b_cluster_out);
+
+		glm_res=glm(as.formula(regr_formla_str), family=binomial, data=current_df);
+		glm_sum=summary(glm_res);
+
+		#print(glm_sum$coefficients);
+		#print(names(glm_sum));
+		#print(glm_res);
+		print(glm_sum);
+
+		summ_arr_list[[target_cluster_id]]=glm_sum$coefficients[,c("Estimate", "Pr(>|z|)")];
+		coeff_names=c(coeff_names, rownames(summ_arr_list[[target_cluster_id]]));
+
+		cat("\n\n");
+
+
+	}
+
+	print(summ_arr_list);
+
+	# Allocate matrices
+	coeff_names=sort(setdiff(unique(coeff_names), "(Intercept)"));
+	num_pred=length(coeff_names);
+
+	coef_matrix=matrix(0, nrow=num_pred, ncol=num_clusters);
+	colnames(coef_matrix)=cluster_names;
+	rownames(coef_matrix)=coeff_names;
+
+	pval_matrix=matrix(1, nrow=num_pred, ncol=num_clusters);
+	colnames(pval_matrix)=cluster_names;
+	rownames(pval_matrix)=coeff_names;
+
+
+	for(kix in 1:num_clusters){
+		
+		# Copy covariates estim/pval
+		avail_coef=setdiff(rownames(summ_arr_list[[cluster_names[kix]]]), "(Intercept)");
+		for(cn in avail_coef){
+			coef_matrix[cn, kix]=summ_arr_list[[cluster_names[kix]]][cn, "Estimate"];
+			pval_matrix[cn, kix]=summ_arr_list[[cluster_names[kix]]][cn, "Pr(>|z|)"];
+		}
+
+	}
+
+	#print(summ_arr_list);
+	results=list();
+	results[["coef"]]=coef_matrix;
+	results[["pval"]]=pval_matrix;
+	return(results);
+
+}
+
 ###############################################################################
 
 test=F;
@@ -1106,9 +1414,6 @@ if(max_cuts>num_pref_col){
 
 
 orig_dendro=as.dendrogram(hcl);
-
-grp_a_col="blue";
-grp_b_col="green";
 
 lf_names=get_clstrd_leaf_names(orig_dendro);
 print(lf_names);
@@ -1145,7 +1450,6 @@ for(k in 2:max_cuts){
 
 	# Calculate group sizes
 	grp_sizes_all=table(memberships);
-
 
 	cut_info=analyze_cut(
 		k, num_pairs,
@@ -1211,7 +1515,8 @@ for(k in 2:max_cuts){
 	rownames(mat)=rown;
 	colnames(mat)=coln;
 	paint_matrix(mat[k:1,], 
-		paste("k=", k, ", Conditional Pr(", map_info[["b"]], " | ", map_info[["a"]], ") Heat Map", sep=""), 
+		paste("k=", k, ", Conditional Pr(", map_info[["b"]], " | ", map_info[["a"]], 
+			") Heat Map", sep=""), 
 		counts=F, deci_pts=3,
 		plot_min=0, plot_max=1);
 
@@ -1219,6 +1524,86 @@ for(k in 2:max_cuts){
 
 	prop_change[k]=cut_info[["prop_nochange"]];
 	chisq_homo_pval[k]=cut_info[["count.chisq.homo.pval"]];
+
+	if(!is.null(factors_matrix)){
+
+		factor_wmemberships=add_memberships_to_factors(map_info, factors_matrix, memberships);
+
+		###############################################################
+
+		# Fit and plot arrivers
+		arrivers_res=fit_arrivers_logistic_regression(
+			k, factor_wmemberships, target_variables, memberships);
+
+		colnames(arrivers_res[["coef"]])=paste(bname, ": ", colnames(arrivers_res[["coef"]]), sep="");
+		rownames(arrivers_res[["coef"]])=gsub("^cl_", paste(aname, ": cl_", sep=""), 
+			rownames(arrivers_res[["coef"]]));
+
+
+		colnames(arrivers_res[["pval"]])=paste(bname, ": ", colnames(arrivers_res[["pval"]]), sep="");
+		rownames(arrivers_res[["pval"]])=gsub("^cl_", paste(aname, ": cl_", sep=""), 
+			rownames(arrivers_res[["pval"]]));
+			
+
+		paint_matrix(arrivers_res[["coef"]], 
+			title=paste("k = ", k, ", Arrivers: All Coefficients", sep=""), 
+			high_is_hot=T, deci_pts=3);
+
+		paint_matrix(arrivers_res[["pval"]], 
+			title=paste("k = ", k, ", Arrivers: All P-values", sep=""), 
+			high_is_hot=F, deci_pts=3, plot_min=0, plot_max=1);
+
+		msk=mask_matrix(arrivers_res[["coef"]], arrivers_res[["pval"]], .1, 0);
+		paint_matrix(msk, 
+			title=paste("k = ", k, ", Arrivers: Coefficients w/ p-val < 0.10", sep=""), 
+			label_zeros=F, deci_pts=3);
+
+		msk=mask_matrix(arrivers_res[["coef"]], arrivers_res[["pval"]], .05, 0);
+		paint_matrix(msk, 
+			title=paste("k = ", k, ", Arrivers: Coefficients w/ p-val < 0.05", sep=""), 
+			label_zeros=F, deci_pts=3);
+
+		msk=mask_matrix(arrivers_res[["coef"]], arrivers_res[["pval"]], .01, 0);
+		paint_matrix(msk, 
+			title=paste("k = ", k, ", Arrivers: Coefficients w/ p-val < 0.01", sep=""), 
+			label_zeros=F, deci_pts=3);
+
+
+		###############################################################
+
+		# Fit and plot leavers
+
+		departers_res=fit_departers_logistic_regression(
+			k, factor_wmemberships, target_variables, memberships);
+
+		colnames(departers_res[["coef"]])=paste(aname, ": ", colnames(departers_res[["coef"]]), sep="");
+		colnames(departers_res[["pval"]])=paste(aname, ": ", colnames(departers_res[["pval"]]), sep="");
+			
+
+		paint_matrix(departers_res[["coef"]], 
+			title=paste("k = ", k, ", Departers: All Coefficients", sep=""), 
+			high_is_hot=T, deci_pts=3);
+
+		paint_matrix(departers_res[["pval"]], 
+			title=paste("k = ", k, ", Departers: All P-values", sep=""), 
+			high_is_hot=F, deci_pts=3, plot_min=0, plot_max=1);
+
+		msk=mask_matrix(departers_res[["coef"]], departers_res[["pval"]], .1, 0);
+		paint_matrix(msk, 
+			title=paste("k = ", k, ", Departers: Coefficients w/ p-val < 0.10", sep=""), 
+			label_zeros=F, deci_pts=3);
+
+		msk=mask_matrix(departers_res[["coef"]], departers_res[["pval"]], .05, 0);
+		paint_matrix(msk, 
+			title=paste("k = ", k, ", Departers: Coefficients w/ p-val < 0.05", sep=""), 
+			label_zeros=F, deci_pts=3);
+
+		msk=mask_matrix(departers_res[["coef"]], departers_res[["pval"]], .01, 0);
+		paint_matrix(msk, 
+			title=paste("k = ", k, ", Departers: Coefficients w/ p-val < 0.01", sep=""), 
+			label_zeros=F, deci_pts=3);
+
+	}
 
 }
 
