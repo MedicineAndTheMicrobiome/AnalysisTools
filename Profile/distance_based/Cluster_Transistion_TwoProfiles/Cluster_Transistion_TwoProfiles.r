@@ -1532,6 +1532,9 @@ for(k in 2:max_cuts){
 
 		factor_wmemberships=add_memberships_to_factors(map_info, factors_matrix, memberships);
 
+		a_marginal=cut_info[["count.marginal_A"]];
+		b_marginal=cut_info[["count.marginal_B"]];
+
 		###############################################################
 
 		# Fit and plot arrivers
@@ -1540,16 +1543,24 @@ for(k in 2:max_cuts){
 
 		arrivers_list[[k]]=arrivers_res;
 
-		colnames(arrivers_res[["coef"]])=paste(bname, ": ", colnames(arrivers_res[["coef"]]), sep="");
-		rownames(arrivers_res[["coef"]])=gsub("^cl_", paste(aname, ": cl_", sep=""), 
-			rownames(arrivers_res[["coef"]]));
+		# Adjust the colnames
+		augmented_colnames=paste(
+                        bname, ": ", colnames(arrivers_res[["coef"]]),
+                        " [n=", b_marginal, "]",
+                        sep="");
 
+		colnames(arrivers_res[["coef"]])=augmented_colnames;
+		colnames(arrivers_res[["pval"]])=augmented_colnames;
 
-		colnames(arrivers_res[["pval"]])=paste(bname, ": ", colnames(arrivers_res[["pval"]]), sep="");
-		rownames(arrivers_res[["pval"]])=gsub("^cl_", paste(aname, ": cl_", sep=""), 
-			rownames(arrivers_res[["pval"]]));
-			
+		# Adjust the rownames
+		augmented_rownames=rownames(arrivers_res[["coef"]]);
+		clix=grep("^cl_\\d", augmented_rownames);
+		augmented_rownames[clix]=paste(aname, ": ", augmented_rownames[1:k], 
+			" [n=", a_marginal, "]", sep="");
+		rownames(arrivers_res[["coef"]])=augmented_rownames;
+		rownames(arrivers_res[["pval"]])=augmented_rownames;
 
+		# Generate all the heatmaps
 		paint_matrix(arrivers_res[["coef"]], 
 			title=paste("k = ", k, ", Arrivers: All Coefficients", sep=""), 
 			high_is_hot=T, deci_pts=3);
@@ -1583,10 +1594,15 @@ for(k in 2:max_cuts){
 
 		departers_list[[k]]=departers_res;
 
-		colnames(departers_res[["coef"]])=paste(aname, ": ", colnames(departers_res[["coef"]]), sep="");
-		colnames(departers_res[["pval"]])=paste(aname, ": ", colnames(departers_res[["pval"]]), sep="");
+		# Adjust the column names
+		augmented_colnames=paste(
+			aname, ": ", colnames(departers_res[["coef"]]),
+			" [n=", a_marginal, "]",
+			sep="");
+		colnames(departers_res[["coef"]])=augmented_colnames;
+		colnames(departers_res[["pval"]])=augmented_colnames;
 			
-
+		# Generate all the heatmaps
 		paint_matrix(departers_res[["coef"]], 
 			title=paste("k = ", k, ", Departers: All Coefficients", sep=""), 
 			high_is_hot=T, deci_pts=3);
@@ -1671,12 +1687,14 @@ if(!is.null(factors_matrix)){
 	cat("Departers:\n");
 	print(dep_mspval_mat);
 
+	# Function to plot most significant variables over k
 	plot_pval_over_k=function(mat, title, pval_cutoff=1){
 		num_var=nrow(mat);
 		k=ncol(mat);
 
 		cols=rainbow(num_var);
 
+		# Reference lines
 		pval_ref=c(0.1, 0.05, 0.01, 0.001);
 		neglog10_pval_ref=-log10(pval_ref);
 
@@ -1690,13 +1708,16 @@ if(!is.null(factors_matrix)){
 			ylim=neglog10_pval_range,
 			main=title, xlab="k", ylab="-log10(p-value)");
 
+		# Draw significance reference lines
 		abline(h=neglog10_pval_ref, col="grey", lwd=.5, lty=2);
 		text(1.5, neglog10_pval_ref, pval_ref, pos=4, font=3, cex=.75);
 
+		# Calculate transformed cutoff so we can apply it in transformed space
 		neglog10_pval_cutoff=-log10(pval_cutoff);
 
 		for(i in 1:num_var){
 
+			# Find most significant p-value across the k's
 			most_sigf=max(neglog10_pval_mat[i,2:k]);
 			most_sigf_k=min(which(most_sigf==neglog10_pval_mat[i,2:k]))+1;
 
@@ -1709,6 +1730,8 @@ if(!is.null(factors_matrix)){
 
 				points(most_sigf_k, most_sigf, col=cols[i], cex=1, pch=16);
 				points(most_sigf_k, most_sigf, col="black", cex=1.5, pch=1);
+
+				# Label with variable names
 				text(most_sigf_k, most_sigf, pred_names[i], font=2, cex=.75, 
 					adj=c((most_sigf_k-2)/(k-2), -.5)
 					);
