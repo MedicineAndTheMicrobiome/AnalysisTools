@@ -1427,6 +1427,9 @@ colnames(pos_map)=c(map_info[["b"]], map_info[["a"]], "same_clus");
 prop_change=rep(0,max_cuts);
 chisq_homo_pval=rep(0,max_cuts);
 
+arrivers_list=list();
+departers_list=list();
+
 for(k in 2:max_cuts){
 	
 	cat("Cutting at: ", k, "\n");
@@ -1535,6 +1538,8 @@ for(k in 2:max_cuts){
 		arrivers_res=fit_arrivers_logistic_regression(
 			k, factor_wmemberships, target_variables, memberships);
 
+		arrivers_list[[k]]=arrivers_res;
+
 		colnames(arrivers_res[["coef"]])=paste(bname, ": ", colnames(arrivers_res[["coef"]]), sep="");
 		rownames(arrivers_res[["coef"]])=gsub("^cl_", paste(aname, ": cl_", sep=""), 
 			rownames(arrivers_res[["coef"]]));
@@ -1575,6 +1580,8 @@ for(k in 2:max_cuts){
 
 		departers_res=fit_departers_logistic_regression(
 			k, factor_wmemberships, target_variables, memberships);
+
+		departers_list[[k]]=departers_res;
 
 		colnames(departers_res[["coef"]])=paste(aname, ": ", colnames(departers_res[["coef"]]), sep="");
 		colnames(departers_res[["pval"]])=paste(aname, ": ", colnames(departers_res[["pval"]]), sep="");
@@ -1628,6 +1635,102 @@ mtext("-log10(p-value)", side=2, line=4);
 abline(h=neglog_signf_levels, lty=2, col="blue");
 axis(side=2, at=neglog_signf_levels, labels=sprintf("%3.2f", neglog_signf_levels), las=2);
 axis(side=4, at=neglog_signf_levels, labels=signf_levels, las=2);
+
+##############################################################################
+
+if(!is.null(factors_matrix)){
+
+	#print(arrivers_list);
+	#print(departers_list);
+
+	pred_names=setdiff(rownames(arrivers_list[[2]]$coef), c("cl_1", "cl_2"));
+	print(pred_names);
+
+	num_pred=length(pred_names);
+	arr_mspval_mat=matrix(1, nrow=num_pred, ncol=k);
+	colnames(arr_mspval_mat)=paste("cl_", 1:k, sep="");
+	rownames(arr_mspval_mat)=pred_names;
+
+	dep_mspval_mat=matrix(1, nrow=num_pred, ncol=k);
+	colnames(dep_mspval_mat)=paste("cl_", 1:k, sep="");
+	rownames(dep_mspval_mat)=pred_names;
+	
+	for(kix in 2:k){
+		
+
+		min_pval=apply(arrivers_list[[kix]]$pval, 1, min);
+		arr_mspval_mat[pred_names, kix]=min_pval[pred_names];
+
+		min_pval=apply(departers_list[[kix]]$pval, 1, min);
+		dep_mspval_mat[pred_names, kix]=min_pval[pred_names];
+	}
+
+	cat("Arrivers:\n");
+	print(arr_mspval_mat);
+
+	cat("Departers:\n");
+	print(dep_mspval_mat);
+
+	plot_pval_over_k=function(mat, title, pval_cutoff=1){
+		num_var=nrow(mat);
+		k=ncol(mat);
+
+		cols=rainbow(num_var);
+
+		pval_ref=c(0.1, 0.05, 0.01, 0.001);
+		neglog10_pval_ref=-log10(pval_ref);
+
+		neglog10_pval_mat=apply(mat, 1:2, function(x){-log10(x);});
+
+		neglog10_pval_range=range(c(neglog10_pval_ref, neglog10_pval_mat));
+
+		par(mar=c(4,4,5,1));
+		plot(0, type="n", 
+			xlim=c(1.5,k),
+			ylim=neglog10_pval_range,
+			main=title, xlab="k", ylab="-log10(p-value)");
+
+		abline(h=neglog10_pval_ref, col="grey", lwd=.5, lty=2);
+		text(1.5, neglog10_pval_ref, pval_ref, pos=4, font=3, cex=.75);
+
+		neglog10_pval_cutoff=-log10(pval_cutoff);
+
+		for(i in 1:num_var){
+
+			most_sigf=max(neglog10_pval_mat[i,2:k]);
+			most_sigf_k=min(which(most_sigf==neglog10_pval_mat[i,2:k]))+1;
+
+			if(most_sigf>neglog10_pval_cutoff){
+
+				points(2:k, neglog10_pval_mat[i,2:k], type="l", 
+					col=cols[i], lwd=2);
+				points(2:k, neglog10_pval_mat[i,2:k], type="l", 
+					col="black", lwd=.5);
+
+				points(most_sigf_k, most_sigf, col=cols[i], cex=1, pch=16);
+				points(most_sigf_k, most_sigf, col="black", cex=1.5, pch=1);
+				text(most_sigf_k, most_sigf, pred_names[i], font=2, cex=.75, 
+					adj=c((most_sigf_k-2)/(k-2), -.5)
+					);
+			}
+		}
+		
+		
+
+	}
+
+
+	plot_pval_over_k(arr_mspval_mat, title="Arrivers (All)");
+	plot_pval_over_k(arr_mspval_mat, title="Arrivers (p-val<0.10)", pval_cutoff=0.1);
+	plot_pval_over_k(arr_mspval_mat, title="Arrivers (p-val<0.05)", pval_cutoff=0.05);
+	plot_pval_over_k(arr_mspval_mat, title="Arrivers (p-val<0.01)", pval_cutoff=0.01);
+
+	plot_pval_over_k(dep_mspval_mat, title="Departers (All)");
+	plot_pval_over_k(dep_mspval_mat, title="Departers (p-val<0.10)", pval_cutoff=0.1);
+	plot_pval_over_k(dep_mspval_mat, title="Departers (p-val<0.05)", pval_cutoff=0.05);
+	plot_pval_over_k(dep_mspval_mat, title="Departers (p-val<0.01)", pval_cutoff=0.01);
+
+}
 
 ##############################################################################
 
