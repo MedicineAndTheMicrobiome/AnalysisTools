@@ -1399,6 +1399,156 @@ fit_departers_logistic_regression=function(num_clusters, metadata, targ_pred, me
 
 ###############################################################################
 
+draw_arrivers_diagram=function(cinfo, mpinfo, arr_res=NULL, title="", pval_cutoff=1){
+
+	cat("Drawing arrivers diagram...\n");
+	k=cinfo$k;
+
+	a_pos=0;
+	b_pos=.5;
+	margin=.05;
+	top=1;
+	bottom=0;
+	var_space=.5;
+
+
+	par(mar=c(.5,.5,6,.5));
+	plot(0,0, type="n", bty="n", 
+		xaxt="n", yaxt="n", 
+		xlab="", ylab="",
+		main=title,
+		xlim=c(a_pos-margin, b_pos+var_space+margin), 
+		ylim=c(bottom-margin, top+margin));
+
+	#abline(h=c(0,1));
+	#abline(v=c(0,1));
+
+	# Draw A clusters
+	clus_cent_y=seq(bottom, top, length.out=k+2)[2:(k+1)];
+
+	b_rect_radius=(clus_cent_y[2]-clus_cent_y[1])*.95/2;
+	a_rect_radius=min(b_rect_radius*.75, margin);
+
+	# Draw lines from A to B
+	for(aix in 1:k){
+		for(bix in 1:k){
+			lwd=10*cinfo$prob.BgivenA[aix, bix];
+			if(lwd>0){
+				points(
+					c(a_pos+a_rect_radius, b_pos-b_rect_radius),
+					c(clus_cent_y[aix], clus_cent_y[bix]),
+					lwd=lwd,
+					type="l"
+				);
+			}
+		}
+	}
+
+
+
+	#points(rep(0,k), clus_cent_y);
+	
+	rect(
+		xleft=a_pos-a_rect_radius, 
+		ybottom=clus_cent_y-a_rect_radius,
+		xright=a_pos+a_rect_radius,
+		ytop=clus_cent_y+a_rect_radius,
+		col="white"
+	);
+
+	rect(
+		xleft=b_pos-b_rect_radius, 
+		ybottom=clus_cent_y-b_rect_radius,
+		xright=b_pos+b_rect_radius,
+		ytop=clus_cent_y+b_rect_radius,
+		col="white"
+	);
+
+	for(i in 1:k){
+		text(a_pos, clus_cent_y[i], i, font=2);
+		text(b_pos, clus_cent_y[i], i, font=2);
+
+		text(a_pos, clus_cent_y[i], pos=1,
+			paste("[n=", cinfo$count.marginal_A[i], "]", sep=""), cex=.5);
+		text(b_pos, clus_cent_y[i], pos=1,
+			paste("[n=", cinfo$count.marginal_B[i], "]", sep=""), cex=.5);
+	}
+
+	mtext(mpinfo[["a"]], side=3, line=0, at=a_pos, cex=2, font=2);
+	mtext(mpinfo[["b"]], side=3, line=0, at=b_pos, cex=2, font=2);
+
+	if(!is.null(arr_res)){
+
+		num_var_wcl=nrow(arr_res$coef);
+
+		coef=arr_res$coef[(k+1):num_var_wcl,, drop=F];
+		pval=arr_res$pval[(k+1):num_var_wcl,, drop=F];
+		varnames=rownames(coef);
+		num_var=length(varnames);
+
+		#print(coef);
+		#print(pval);
+		
+		for(clix in 1:k){
+
+			signf_list=c();
+			color_list=c();
+			for(varix in 1:num_var){
+				if(pval[varix, clix]<=pval_cutoff){
+
+					if(coef[varix, clix]>0){
+						dir="+";
+						color_list=c(color_list, "darkgreen");
+					}else{
+						dir="-";
+						color_list=c(color_list, "darkred");
+					}
+
+					info=paste(
+						"[", dir, "] ", varnames[varix],
+						" (p-val=", sprintf("%5.3f", pval[varix, clix]), ")",
+						sep=""
+					);
+					signf_list=c(signf_list, info);
+				}
+			}
+
+			cat("Signif for: ", clix, "\n");
+			num_signf=length(signf_list);
+			print(signf_list);
+
+			spacing=max(num_signf, 7);
+			offset=2*b_rect_radius/spacing;
+
+			for(varix in 1:num_signf){
+				text(b_pos+b_rect_radius, 
+					clus_cent_y[clix]+b_rect_radius-offset*(varix-1)-b_rect_radius/8,
+					signf_list[varix],
+					pos=4, cex=.75, col=color_list[varix]
+					);
+			}
+
+		}
+
+	}
+
+	#print(cinfo);
+	#print(arr_res);
+
+	#quit();
+}
+
+print(draw_arrivers_diagram);
+
+###############################################################################
+
+draw_departers_diagram=function(cinfo, dep_res, pval_cutoff=1){
+
+}
+
+###############################################################################
+###############################################################################
+
 test=F;
 
 max_cuts=min(log2(num_samples), NumClusterCuts);
@@ -1414,7 +1564,6 @@ if(max_cuts>num_pref_col){
 
 
 orig_dendro=as.dendrogram(hcl);
-
 lf_names=get_clstrd_leaf_names(orig_dendro);
 print(lf_names);
 
@@ -1528,6 +1677,8 @@ for(k in 2:max_cuts){
 	prop_change[k]=cut_info[["prop_nochange"]];
 	chisq_homo_pval[k]=cut_info[["count.chisq.homo.pval"]];
 
+	arrivers_res=NULL;
+	departers_res=NULL;
 	if(!is.null(factors_matrix)){
 
 		factor_wmemberships=add_memberships_to_factors(map_info, factors_matrix, memberships);
@@ -1627,6 +1778,13 @@ for(k in 2:max_cuts){
 			label_zeros=F, deci_pts=3);
 
 	}
+
+
+	# Plot diagram
+	draw_arrivers_diagram(cut_info, map_info, arrivers_res, title="Arrivers: P-val<0.10", pval_cutoff=.1);
+	draw_arrivers_diagram(cut_info, map_info, arrivers_res, title="Arrivers: P-val<0.05", pval_cutoff=.05);
+	draw_arrivers_diagram(cut_info, map_info, arrivers_res, title="Arrivers: P-val<0.01", pval_cutoff=.01);
+	#draw_departers_diagram(cut_info, map_info, departers_res, title="all", pval_cutoff=1);
 
 }
 
