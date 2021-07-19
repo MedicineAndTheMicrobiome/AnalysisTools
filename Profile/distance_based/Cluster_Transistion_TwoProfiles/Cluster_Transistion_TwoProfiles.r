@@ -1089,6 +1089,7 @@ analyze_cut=function(k, num_pairs, a_clus_mem, b_clus_mem, a_ids, b_ids){
 	#cat("P(B|A):\n");
 	#print(cond_prb_BgA);
 
+
 	results=list();
 	results[["k"]]=k;
 	results[["count.totals"]]=total;
@@ -1097,6 +1098,10 @@ analyze_cut=function(k, num_pairs, a_clus_mem, b_clus_mem, a_ids, b_ids){
 	results[["count.marginal_B"]]=margin_B_cnt;
 	results[["count.chisq.homo.pval"]]=chisq.homogeneity.pval;
 
+	results[["count.remaining"]]=diag(ctng_cnt)
+	results[["count.departures"]]=results[["count.marginal_A"]]-results[["count.remaining"]];
+	results[["count.arrivals"]]=results[["count.marginal_B"]]-results[["count.remaining"]];
+	
 	results[["prob.contingency"]]=ctng_prb;
 	results[["prob.marginal_A"]]=margin_A_prb;
 	results[["prob.marginal_B"]]=margin_B_prb;
@@ -1422,6 +1427,7 @@ draw_arrivers_diagram=function(cinfo, mpinfo, arr_res=NULL, title="", pval_cutof
 
 	#abline(h=c(0,1));
 	#abline(v=c(0,1));
+print(cinfo);
 
 	# Draw A clusters
 	clus_cent_y=seq(bottom, top, length.out=k+2)[2:(k+1)];
@@ -1471,11 +1477,14 @@ draw_arrivers_diagram=function(cinfo, mpinfo, arr_res=NULL, title="", pval_cutof
 		text(a_pos, clus_cent_y[i], pos=1,
 			paste("[n=", cinfo$count.marginal_A[i], "]", sep=""), cex=.5);
 		text(b_pos, clus_cent_y[i], pos=1,
-			paste("[n=", cinfo$count.marginal_B[i], "]", sep=""), cex=.5);
+			paste("\n(orig=", cinfo$count.remaining[i], ", new=", cinfo$count.arrivals[i], ")\n", 
+			"[n=", cinfo$count.marginal_B[i], "]",
+		sep=""), cex=.5);
+
 	}
 
-	mtext(mpinfo[["a"]], side=3, line=0, at=a_pos, cex=2, font=2);
-	mtext(mpinfo[["b"]], side=3, line=0, at=b_pos, cex=2, font=2);
+	mtext(mpinfo[["a"]], side=3, line=-2, at=a_pos, cex=2, font=2);
+	mtext(mpinfo[["b"]], side=3, line=-2, at=b_pos, cex=2, font=2);
 
 	if(!is.null(arr_res)){
 
@@ -1538,12 +1547,200 @@ draw_arrivers_diagram=function(cinfo, mpinfo, arr_res=NULL, title="", pval_cutof
 	#quit();
 }
 
-print(draw_arrivers_diagram);
-
 ###############################################################################
 
-draw_departers_diagram=function(cinfo, dep_res, pval_cutoff=1){
+library(plotrix);
 
+draw_departers_diagram=function(cinfo, mpinfo, dep_res=NULL, title="", pval_cutoff=1){
+
+	cat("Drawing departers diagram...\n");
+	k=cinfo$k;
+
+	a_pos=0;
+	margin=.5;
+	top=1;
+	bottom=0;
+	var_space=.5;
+
+
+	par(mar=c(.5,.5,6,.5));
+	plot(0,0, type="n", bty="n", 
+		xaxt="n", yaxt="n", 
+		xlab="", ylab="",
+		main=title,
+		xlim=c(a_pos-margin, a_pos+var_space+margin), 
+		ylim=c(bottom, top));
+
+	# Label
+	mtext(mpinfo[["a"]], side=3, line=-2, at=a_pos, cex=2, font=2);
+
+	# Draw A clusters
+	clus_cent_y=seq(bottom, top, length.out=k+2)[2:(k+1)];
+	a_rect_radius=min(margin, (clus_cent_y[2]-clus_cent_y[1])*.95/2);
+
+	cl_stay_same=diag(cinfo$prob.BgivenA);
+	cl_change=1-cl_stay_same;
+
+	# Draw lines returning to cluster
+	large_arrow=.15;
+	small_arrow=.5*large_arrow;
+	for(aix in 1:k){
+
+
+		top_y=clus_cent_y[aix]+.5*a_rect_radius;
+		left_x=a_pos-2*a_rect_radius;
+		bottom_y=clus_cent_y[aix]-.5*a_rect_radius;
+		right_x=a_pos-a_rect_radius;
+
+		arhd_w=a_rect_radius*.4;
+		arhd_l=arhd_w*1.75;
+
+		if(cl_stay_same[aix]>0){
+
+			stay_lwd=cl_stay_same[aix]*10;
+
+			points(
+				c(right_x, left_x, left_x, right_x-arhd_l),
+				c(top_y, top_y, bottom_y, bottom_y),
+				type="l", lwd=stay_lwd, col="grey50");
+				
+		
+
+			# Draw arrow heads
+			polygon(x=c(
+					right_x,
+					right_x-arhd_l,
+					right_x-arhd_l,
+					right_x),
+				y=c(
+					bottom_y,
+					bottom_y+arhd_w/2,
+					bottom_y-arhd_w/2,
+					bottom_y),
+				col="grey50", border="grey50", lwd=1
+			);
+
+
+		}
+
+		text(left_x, clus_cent_y[aix], 
+			sprintf("Remained:\n%3.1f%%\n[n=%i]", 100*cl_stay_same[aix], cinfo[["count.remaining"]][aix]),
+			cex=.75, pos=2, font=3
+		);
+
+		left_x=a_pos+a_rect_radius;
+		right_x=a_pos+2*a_rect_radius;
+		bottom_y=clus_cent_y[aix]+.5*a_rect_radius;
+		top_y=bottom_y;
+
+		if(cl_change[aix]>0){
+
+			leave_lwd=cl_change[aix]*10;
+
+			#arrows(left_x, bottom_y-arhd_l, right_x, top_y, length=0, 
+			#	angle=15, col="grey50", lwd=leave_lwd);
+
+			points(c(left_x, right_x-arhd_l), c(bottom_y, top_y), 
+				type="l", lwd=leave_lwd, col="grey50");
+
+			# Draw arrow heads
+			polygon(x=c(
+					right_x,
+					right_x-arhd_l,
+					right_x-arhd_l,
+					right_x),
+				y=c(
+					bottom_y,
+					bottom_y+arhd_w/2,
+					bottom_y-arhd_w/2,
+					bottom_y),
+				col="grey50", border="grey50", lwd=1
+			);
+
+
+		}
+		text(right_x, clus_cent_y[aix]+a_rect_radius, 
+			sprintf("Departures: %3.1f%% [n=%i]", 100*cl_change[aix], cinfo[["count.departures"]][aix]),
+			cex=.75, pos=4, font=3
+		);
+
+	}
+
+	# Draw rectangles for each cluster
+	rect(
+		xleft=a_pos-a_rect_radius, 
+		ybottom=clus_cent_y-a_rect_radius,
+		xright=a_pos+a_rect_radius,
+		ytop=clus_cent_y+a_rect_radius,
+		col="white"
+	);
+
+	# Label each rectangle
+	for(i in 1:k){
+		text(a_pos, clus_cent_y[i], i, font=2);
+		text(a_pos, clus_cent_y[i], pos=1,
+			paste("[n=", cinfo$count.marginal_A[i], "]", sep=""), cex=.5);
+	}
+
+
+	if(!is.null(dep_res)){
+
+		num_var_wcl=nrow(dep_res$coef);
+
+		coef=dep_res$coef;
+		pval=dep_res$pval;
+
+		varnames=rownames(coef);
+		num_var=length(varnames);
+		
+		for(clix in 1:k){
+
+			signf_list=c();
+			color_list=c();
+			for(varix in 1:num_var){
+				if(pval[varix, clix]<=pval_cutoff){
+
+					if(coef[varix, clix]>0){
+						dir="+";
+						color_list=c(color_list, "darkgreen");
+					}else{
+						dir="-";
+						color_list=c(color_list, "darkred");
+					}
+
+					info=paste(
+						"[", dir, "] ", varnames[varix],
+						" (p-val=", sprintf("%5.3f", pval[varix, clix]), ")",
+						sep=""
+					);
+					signf_list=c(signf_list, info);
+				}
+			}
+
+			cat("Signif for: ", clix, "\n");
+			num_signf=length(signf_list);
+			print(signf_list);
+
+			spacing=max(num_signf, 10);
+			offset=2*(a_rect_radius*.9)/spacing;
+
+			for(varix in 1:num_signf){
+				text(a_pos+2*a_rect_radius, 
+					(-a_rect_radius*.05)+clus_cent_y[clix]+
+						a_rect_radius-offset*(varix-1)-a_rect_radius/8,
+					signf_list[varix],
+					pos=4, cex=.75, col=color_list[varix]
+					);
+			}
+
+		}
+
+	}
+
+	#print(cinfo);
+	#print(arr_res);
+
+	#quit();
 }
 
 ###############################################################################
@@ -1784,7 +1981,10 @@ for(k in 2:max_cuts){
 	draw_arrivers_diagram(cut_info, map_info, arrivers_res, title="Arrivers: P-val<0.10", pval_cutoff=.1);
 	draw_arrivers_diagram(cut_info, map_info, arrivers_res, title="Arrivers: P-val<0.05", pval_cutoff=.05);
 	draw_arrivers_diagram(cut_info, map_info, arrivers_res, title="Arrivers: P-val<0.01", pval_cutoff=.01);
-	#draw_departers_diagram(cut_info, map_info, departers_res, title="all", pval_cutoff=1);
+	
+	draw_departers_diagram(cut_info, map_info, departers_res, title="Departers: P-value<0.10", pval_cutoff=.1);
+	draw_departers_diagram(cut_info, map_info, departers_res, title="Departers: P-value<0.05", pval_cutoff=.05);
+	draw_departers_diagram(cut_info, map_info, departers_res, title="Departers: P-value<0.01", pval_cutoff=.01);
 
 }
 
