@@ -2060,6 +2060,8 @@ if(!is.null(factors_matrix)){
 
 		neglog10_pval_range=range(c(neglog10_pval_ref, neglog10_pval_mat));
 
+		neglog10_pval_range[neglog10_pval_range==Inf]=-log10(min(pval_ref)/10);
+
 		par(mar=c(4,4,5,1));
 		plot(0, type="n", 
 			xlim=c(1.5,k),
