@@ -7,6 +7,7 @@ library('getopt');
 params=c(
 	"input_file", "i", 1, "character",
 	"sample_list", "s", 1, "character",
+	"remove_samples", "R", 2, "logical",
 	"output_file", "o", 1, "character"
 );
 
@@ -19,16 +20,24 @@ usage = paste (
 	"\n",
 	"	-i <input summary_table.tsv>\n",
 	"	-s <sample list>\n",
+	"	[-R remove samples]\n",
 	"	-o <output summary_table file name>\n",
 	"\n",	
-	"This script will extract the samples from the summary table\n",
-	"that are specified in the sample list.\n",
+	"This script will extract the samples on the list from the summary table,\n",
+	"writing them to a new summary table.\n",
 	"\n",
+	"If the -R flag is set, the samples on the list will instead\n",
+	"be deleted and the remaining samples written to a the new summary table\n",
 	"\n");
 
 if(!length(opt$input_file) || !length(opt$sample_list) || !length(opt$output_file)){
 	cat(usage);
 	q(status=-1);
+}
+
+RemoveSamples=F;
+if(length(opt$remove_samples)){
+	RemoveSamples=T;
 }
 
 ###############################################################################
@@ -74,14 +83,23 @@ cat("Num Categories: ", num_categories, "\n");
 sample_list=as.vector(read.table(SampleList, header=FALSE)[,1]);
 
 num_samples_to_extract=length(sample_list);
-cat("Samples to Extract:\n");
-print(sample_list);
-
-cat("\n");
-cat("Num Samples to Extract: ", num_samples_to_extract, "\n");
 
 st_samples=rownames(inmat);
-to_extract=intersect(st_samples, sample_list);
+
+if (RemoveSamples){
+	cat("Samples to Remove:\n");
+	print(sample_list);
+	cat("\n");
+        cat("Num Samples to Remove: ", num_samples_to_extract, "\n");
+	to_extract=setdiff(st_samples, sample_list);
+	
+}else{
+	cat("Samples to Extract:\n");
+	print(sample_list);
+	cat("\n");
+	cat("Num Samples to Extract: ", num_samples_to_extract, "\n");
+	to_extract=intersect(st_samples, sample_list);
+}
 
 num_to_extract=length(to_extract);
 num_targeted=length(sample_list);
