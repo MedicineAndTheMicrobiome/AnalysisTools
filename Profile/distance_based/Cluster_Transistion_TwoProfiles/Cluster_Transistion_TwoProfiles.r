@@ -7,7 +7,6 @@ cat("\n\n");
 library(MASS)
 library('getopt');
 library('vegan');
-library('plotrix');
 
 source('~/git/AnalysisTools/Metadata/RemoveNAs/Remove_NAs.r');
 
@@ -1358,7 +1357,7 @@ fit_departers_logistic_regression=function(num_clusters, metadata, targ_pred, me
 		#print(glm_sum$coefficients);
 		#print(names(glm_sum));
 		#print(glm_res);
-		print(glm_sum);
+		#print(glm_sum);
 
 		summ_arr_list[[target_cluster_id]]=glm_sum$coefficients[,c("Estimate", "Pr(>|z|)")];
 		coeff_names=c(coeff_names, rownames(summ_arr_list[[target_cluster_id]]));
@@ -1989,6 +1988,7 @@ for(k in 2:max_cuts){
 }
 
 # Proportion not changing clusters
+par(mar=c(4,4,4,1));
 plot(2:k, prop_change[2:k], ylim=c(0,1), main="Proportion Not Changing Clusters", 
 	ylab="Proportion", xlab="Cuts (k)", type="b");
 abline(h=c(0,1), lty=2, col="blue");
@@ -2058,9 +2058,9 @@ if(!is.null(factors_matrix)){
 
 		neglog10_pval_mat=apply(mat, 1:2, function(x){-log10(x);});
 
-		neglog10_pval_range=range(c(neglog10_pval_ref, neglog10_pval_mat));
+		neglog10_pval_mat[neglog10_pval_mat==Inf]=-log10(min(pval_ref)/10);
 
-		neglog10_pval_range[neglog10_pval_range==Inf]=-log10(min(pval_ref)/10);
+		neglog10_pval_range=range(c(neglog10_pval_ref, neglog10_pval_mat));
 
 		par(mar=c(4,4,5,1));
 		plot(0, type="n", 
@@ -2107,6 +2107,8 @@ if(!is.null(factors_matrix)){
 	plot_pval_over_k(arr_mspval_mat, title="Arrivers (p-val<0.10)", pval_cutoff=0.1);
 	plot_pval_over_k(arr_mspval_mat, title="Arrivers (p-val<0.05)", pval_cutoff=0.05);
 	plot_pval_over_k(arr_mspval_mat, title="Arrivers (p-val<0.01)", pval_cutoff=0.01);
+
+
 
 	plot_pval_over_k(dep_mspval_mat, title="Departers (All)");
 	plot_pval_over_k(dep_mspval_mat, title="Departers (p-val<0.10)", pval_cutoff=0.1);
