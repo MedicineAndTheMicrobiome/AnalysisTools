@@ -381,7 +381,7 @@ plot_text=function(strings){
 
 load_list=function(fn){
 	cat("Loading ", fn, " as list...\n");
-	data=read.delim(fn, header=F, sep="\t", quote="", as.is=T);
+	data=read.delim(fn, header=F, sep="\t", quote="", comment.char="#", as.is=T);
 	res=data[,1];
 	cat(" Number of ID's loaded: ", length(res), "\n");
 	return(res);
@@ -1253,12 +1253,17 @@ fit_arrivers_logistic_regression=function(num_clusters, metadata, targ_pred, mem
 		glm_res=glm(as.formula(regr_formla_str), family=binomial, data=current_df);
 		glm_sum=summary(glm_res);
 
+		coef_pval_mat=glm_sum$coefficients[,c("Estimate", "Pr(>|z|)")];
+		if(glm_res$converged==FALSE){
+			coef_pval_mat[,"Estimate"]=0;
+			coef_pval_mat[,"Pr(>|z|)"]=1;
+		}
 		#print(glm_sum$coefficients);
 		#print(names(glm_sum));
 		#print(glm_res);
 		#print(glm_sum);
 
-		summ_arr_list[[target_cluster_id]]=glm_sum$coefficients[,c("Estimate", "Pr(>|z|)")];
+		summ_arr_list[[target_cluster_id]]=coef_pval_mat;
 		coeff_names=c(coeff_names, rownames(summ_arr_list[[target_cluster_id]]));
 
 		cat("\n\n");
@@ -1354,12 +1359,13 @@ fit_departers_logistic_regression=function(num_clusters, metadata, targ_pred, me
 		glm_res=glm(as.formula(regr_formla_str), family=binomial, data=current_df);
 		glm_sum=summary(glm_res);
 
-		#print(glm_sum$coefficients);
-		#print(names(glm_sum));
-		#print(glm_res);
-		#print(glm_sum);
+		coef_pval_mat=glm_sum$coefficients[,c("Estimate", "Pr(>|z|)")];
+		if(glm_res$converged==FALSE){
+			coef_pval_mat[,"Estimate"]=0;
+			coef_pval_mat[,"Pr(>|z|)"]=1;
+		}
 
-		summ_arr_list[[target_cluster_id]]=glm_sum$coefficients[,c("Estimate", "Pr(>|z|)")];
+		summ_arr_list[[target_cluster_id]]=coef_pval_mat;
 		coeff_names=c(coeff_names, rownames(summ_arr_list[[target_cluster_id]]));
 
 		cat("\n\n");
@@ -1426,7 +1432,6 @@ draw_arrivers_diagram=function(cinfo, mpinfo, arr_res=NULL, title="", pval_cutof
 
 	#abline(h=c(0,1));
 	#abline(v=c(0,1));
-print(cinfo);
 
 	# Draw A clusters
 	clus_cent_y=seq(bottom, top, length.out=k+2)[2:(k+1)];
@@ -1528,11 +1533,13 @@ print(cinfo);
 			spacing=max(num_signf, 7);
 			offset=2*b_rect_radius/spacing;
 
+			kscaling=min(4/k, 1);
+
 			for(varix in 1:num_signf){
 				text(b_pos+b_rect_radius, 
 					clus_cent_y[clix]+b_rect_radius-offset*(varix-1)-b_rect_radius/8,
 					signf_list[varix],
-					pos=4, cex=.75, col=color_list[varix]
+					pos=4, cex=.75*kscaling, col=color_list[varix]
 					);
 			}
 
@@ -1547,8 +1554,6 @@ print(cinfo);
 }
 
 ###############################################################################
-
-library(plotrix);
 
 draw_departers_diagram=function(cinfo, mpinfo, dep_res=NULL, title="", pval_cutoff=1){
 
@@ -1723,12 +1728,14 @@ draw_departers_diagram=function(cinfo, mpinfo, dep_res=NULL, title="", pval_cuto
 			spacing=max(num_signf, 10);
 			offset=2*(a_rect_radius*.9)/spacing;
 
+			kscaling=min(4/k, 1);
+
 			for(varix in 1:num_signf){
 				text(a_pos+2*a_rect_radius, 
 					(-a_rect_radius*.05)+clus_cent_y[clix]+
-						a_rect_radius-offset*(varix-1)-a_rect_radius/8,
+						a_rect_radius-offset*(varix-1)-a_rect_radius/7,
 					signf_list[varix],
-					pos=4, cex=.75, col=color_list[varix]
+					pos=4, cex=.75*kscaling, col=color_list[varix]
 					);
 			}
 
