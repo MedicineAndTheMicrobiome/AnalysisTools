@@ -800,6 +800,11 @@ if(FactorFile!=""){
 
 ###############################################################################
 
+# Export sample IDs that were pairable and had metadata
+kept_sample_ids=rownames(counts_mat);
+write(kept_sample_ids, file=paste(OutputFileRoot, ".used_sample_ids.txt", sep=""), 
+	ncolumns=1, sep="\n");
+
 # Normalize counts
 cat("Normalizing counts...\n");
 norm_mat=normalize(counts_mat);
