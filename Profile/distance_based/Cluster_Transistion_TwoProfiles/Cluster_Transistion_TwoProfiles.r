@@ -1258,15 +1258,20 @@ fit_arrivers_logistic_regression=function(num_clusters, metadata, targ_pred, mem
 		glm_res=glm(as.formula(regr_formla_str), family=binomial, data=current_df);
 		glm_sum=summary(glm_res);
 
-		coef_pval_mat=glm_sum$coefficients[,c("Estimate", "Pr(>|z|)")];
+		coef_pval_mat=glm_sum$coefficients[,c("Estimate", "Pr(>|z|)"), drop=F];
 		if(glm_res$converged==FALSE){
+			cat("Regression did not converge!!!\n");
 			coef_pval_mat[,"Estimate"]=0;
 			coef_pval_mat[,"Pr(>|z|)"]=1;
+		}else{
+			cat("Regression converged...\n");
+			na_ix=is.na(coef_pval_mat[,"Pr(>|z|)"]);
+			coef_pval_mat[na_ix,"Estimate"]=0;
+			coef_pval_mat[na_ix,"Pr(>|z|)"]=1;
 		}
 		#print(glm_sum$coefficients);
 		#print(names(glm_sum));
 		#print(glm_res);
-		#print(glm_sum);
 
 		summ_arr_list[[target_cluster_id]]=coef_pval_mat;
 		coeff_names=c(coeff_names, rownames(summ_arr_list[[target_cluster_id]]));
@@ -1364,10 +1369,16 @@ fit_departers_logistic_regression=function(num_clusters, metadata, targ_pred, me
 		glm_res=glm(as.formula(regr_formla_str), family=binomial, data=current_df);
 		glm_sum=summary(glm_res);
 
-		coef_pval_mat=glm_sum$coefficients[,c("Estimate", "Pr(>|z|)")];
+		coef_pval_mat=glm_sum$coefficients[,c("Estimate", "Pr(>|z|)"), drop=F];
 		if(glm_res$converged==FALSE){
+			cat("Regression did not converge!!!\n");
 			coef_pval_mat[,"Estimate"]=0;
 			coef_pval_mat[,"Pr(>|z|)"]=1;
+		}else{
+			na_ix=is.na(coef_pval_mat[,"Pr(>|z|)"]);
+			coef_pval_mat[na_ix,"Estimate"]=0;
+			coef_pval_mat[na_ix,"Pr(>|z|)"]=1;
+			cat("Regression converged...\n");
 		}
 
 		summ_arr_list[[target_cluster_id]]=coef_pval_mat;
@@ -1377,8 +1388,6 @@ fit_departers_logistic_regression=function(num_clusters, metadata, targ_pred, me
 
 
 	}
-
-	print(summ_arr_list);
 
 	# Allocate matrices
 	coeff_names=sort(setdiff(unique(coeff_names), "(Intercept)"));
@@ -1570,7 +1579,6 @@ draw_departers_diagram=function(cinfo, mpinfo, dep_res=NULL, title="", pval_cuto
 	top=1;
 	bottom=0;
 	var_space=.5;
-
 
 	par(mar=c(.5,.5,6,.5));
 	plot(0,0, type="n", bty="n", 
@@ -1788,6 +1796,7 @@ arrivers_list=list();
 departers_list=list();
 
 for(k in 2:max_cuts){
+
 	
 	cat("Cutting at: ", k, "\n");
 	memberships=cutree(hcl, k=k);
@@ -2040,15 +2049,17 @@ if(!is.null(factors_matrix)){
 	dep_mspval_mat=matrix(1, nrow=num_pred, ncol=k);
 	colnames(dep_mspval_mat)=paste("cl_", 1:k, sep="");
 	rownames(dep_mspval_mat)=pred_names;
-	
+
 	for(kix in 2:k){
-		
 
+		avail=intersect(pred_names, rownames(arrivers_list[[kix]]$pval));
 		min_pval=apply(arrivers_list[[kix]]$pval, 1, min);
-		arr_mspval_mat[pred_names, kix]=min_pval[pred_names];
+		arr_mspval_mat[avail, kix]=min_pval[avail];
 
+		avail=intersect(pred_names, rownames(departers_list[[kix]]$pval));
 		min_pval=apply(departers_list[[kix]]$pval, 1, min);
-		dep_mspval_mat[pred_names, kix]=min_pval[pred_names];
+		dep_mspval_mat[avail, kix]=min_pval[avail];
+
 	}
 
 	cat("Arrivers:\n");
@@ -2119,8 +2130,6 @@ if(!is.null(factors_matrix)){
 	plot_pval_over_k(arr_mspval_mat, title="Arrivers (p-val<0.10)", pval_cutoff=0.1);
 	plot_pval_over_k(arr_mspval_mat, title="Arrivers (p-val<0.05)", pval_cutoff=0.05);
 	plot_pval_over_k(arr_mspval_mat, title="Arrivers (p-val<0.01)", pval_cutoff=0.01);
-
-
 
 	plot_pval_over_k(dep_mspval_mat, title="Departers (All)");
 	plot_pval_over_k(dep_mspval_mat, title="Departers (p-val<0.10)", pval_cutoff=0.1);
