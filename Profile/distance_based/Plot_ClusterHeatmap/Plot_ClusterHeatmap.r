@@ -404,7 +404,9 @@ get_middle_of_groups=function(clustered_leaf_names, group_asgn){
 
 ###############################################################################
 
-plot_heatmap=function(sample_names, factors, guide_lines, model_string){
+plot_heatmap=function(sample_names, factors, guide_lines){
+
+	cat("Plotting heatmaps with individuals colored...\n");
 
 	orig_par=par(no.readonly=T);
 
@@ -472,6 +474,193 @@ plot_heatmap=function(sample_names, factors, guide_lines, model_string){
 			text(x-.5, y-.5, text_lab, srt=45, cex=.5/lab_len, font=2, col=inv_color_arr[color_ix[x,y]]);
 		}
         }
+	# Draw guidelines
+	guide_lines=c(0, guide_lines);
+	abline(v=guide_lines, col="black", lwd=1.5);
+
+	# Label cluster IDs
+	num_cl=length(guide_lines)-1;
+	halves=diff(guide_lines)/2;
+	mids=guide_lines+c(halves,0);
+	axis(side=3, at=mids[1:num_cl], labels=1:num_cl, line=-1, cex.axis=2.5, font.axis=2, lwd=0);
+
+	# Plot Heatmap legend
+	plot(0,0, type="n", xlim=c(0, 4), ylim=c(0,num_variables),  xaxt="n", yaxt="n", bty="n", xlab="", ylab="");
+	axis(side=3, at=(1:3)-.5, labels=c("Min", "Mean", "Max"), las=2, line=0);
+	for(x in 1:3){
+		for(y in 1:num_variables){
+			rect(x-1, y-1, (x-1)+1, (y-1)+1, border=NA, col=color_arr[range_col_ix[y,x]]);
+			text_lab=signif(var_ranges[y,x], 2);
+			lab_len=nchar(gsub("\\.", "", text_lab));
+			
+			text(x-.5, y-.5, text_lab, srt=0, cex=.5, font=2, col=inv_color_arr[range_col_ix[y,x]]);
+		}
+        }
+
+}
+
+fun95ci_err=function(x){
+	stdevx=sd(x);
+	n=length(x);
+	err=qt((.95+1)/2, df=n-1)*stdevx/sqrt(n);
+	return(err);
+}
+
+plot_heatmap_grouped=function(sample_names, factors, guide_lines, sampcol_map, group_label=F){
+
+	cat("Plotting heatmaps with individuals grouped before coloring...\n");
+
+	# Calculate the means and 95CI for each of the clusters
+	num_groups=length(guide_lines);
+	var_names=colnames(factors);
+
+	factor_averages=matrix(NA, nrow=num_groups, ncol=ncol(factors));
+	rownames(factor_averages)=1:num_groups;
+	colnames(factor_averages)=var_names;	
+
+	factor_95err=matrix(NA, nrow=num_groups, ncol=ncol(factors));
+	rownames(factor_95err)=1:num_groups;
+	colnames(factor_95err)=var_names;	
+	
+	for(var_ix in var_names){
+
+		grouped_val=list();
+
+		# Make a placeholder with NAs
+		for(i in 1:num_groups){
+			grouped_val[[i]]=NA;
+		}
+
+		# Accumulate the values by cluster/group
+		for(smp_ix in sample_names){
+			cl_id=sampcol_map[[smp_ix]];
+			val=factors[smp_ix, var_ix];
+			grouped_val[[cl_id]]=c(grouped_val[[cl_id]], val);
+		}
+
+		for(cl_id in 1:num_groups){
+
+			# Remove NAs we used as placeholders
+			grouped_val[[cl_id]]=grouped_val[[cl_id]][!is.na(grouped_val[[cl_id]])];
+
+			# Calculate mean and 95%CI
+			factor_averages[cl_id, var_ix]=mean(grouped_val[[cl_id]]);
+			factor_95err[cl_id, var_ix]=fun95ci_err(grouped_val[[cl_id]]);
+		}
+	}
+
+	# Prepare for the heatmap
+
+	orig_par=par(no.readonly=T);
+
+        num_samples=nrow(factors);
+        num_variables=ncol(factors);
+	variable_names=colnames(factors);
+
+        cat("Num Samples: ", num_samples, "\n");
+        cat("Num Variables: ", num_variables, "\n");
+
+	# Define number of different colors
+        num_colors=50;
+        color_arr=rev(rainbow(num_colors, start=0, end=4/6));
+	inv_color_arr=character(num_colors);
+	
+	inv_rgb=abs(col2rgb(color_arr)-255)/255;
+	for(i in 1:num_colors){
+		inv_color_arr[i]=rgb(inv_rgb[1,i], inv_rgb[2,i], inv_rgb[3,i]);
+	}
+
+	# Compute ranges
+	var_ranges=matrix(NA, nrow=num_variables, ncol=3, dimnames=list(variable_names, c("Min", "Mean", "Max")));
+	for(i in 1:num_variables){
+		val=factors[,i];
+		var_ranges[i,"Min"]=min(val, na.rm=T);
+		var_ranges[i,"Mean"]=mean(val, na.rm=T);
+		var_ranges[i,"Max"]=max(val, na.rm=T);
+	}
+
+	#cat("Variable Ranges:\n");
+	#print(var_ranges);
+
+        remap=function(in_val, in_range, out_range){
+                in_prop=(in_val-in_range[1])/(in_range[2]-in_range[1])
+                out_val=in_prop*(out_range[2]-out_range[1])+out_range[1];
+                return(out_val);
+        }
+
+	variable_names=colnames(factors);
+	sample_names=rownames(factors);
+
+	color_ix=matrix(0, nrow=num_samples, ncol=num_variables);
+	range_col_ix=matrix(0, nrow=num_variables, ncol=3);
+
+	j=0;
+	for(smp_ix in sample_names){
+		j=j+1;
+		for(i in 1:num_variables){
+
+			cl_id=sampcol_map[[smp_ix]];
+
+			color_ix[j,i]=round(remap(factor_averages[cl_id, i], 
+				c(var_ranges[i, "Min"], var_ranges[i, "Max"]), 
+				c(1, num_colors)));
+
+			range_col_ix[i,]=round(remap(var_ranges[i,], c(var_ranges[i, "Min"], var_ranges[i, "Max"]), 
+				c(1, num_colors)));
+		}
+	}
+
+	par(mar=c(0,0,2,0));
+        plot(0,0, type="n", xlim=c(0,num_samples), ylim=c(0,num_variables), 
+		xaxt="n", yaxt="n", bty="n", xlab="", ylab="");
+
+
+
+	# Color in cells with colors and labels
+	#   If we're labelling groups with w/ mean and 95CI, don't label individual cell values
+
+	cat("Plotting heat map cells...\n");
+        for(x in 1:num_samples){
+                for(y in 1:num_variables){
+                        rect(x-1, y-1, (x-1)+1, (y-1)+1, border=NA, col=color_arr[color_ix[x, y]]);
+
+			if(!group_label){
+				# Label individual samples
+				text_lab=signif(factors[x,y], 2);
+				lab_len=nchar(gsub("\\.", "", text_lab));
+				text(x-.5, y-.5, text_lab, srt=45, cex=.5/lab_len, font=2, 
+					col=inv_color_arr[color_ix[x,y]]);
+			}
+		}
+        }
+
+	# if we're labelling groups with w/ mean and 95CI, do so now.
+	if(group_label){
+		cluster_mids=round(guide_lines-diff(c(0, guide_lines))/2,0);
+		cl_id=1;
+		for(x in cluster_mids){
+			for(y in 1:num_variables){
+
+				mean=factor_averages[cl_id, y];
+				err95=factor_95err[cl_id, y];
+
+				text_lab=paste(
+					round(mean, 2),
+					" (", round(mean - err95, 2), 
+					", ", round(mean + err95, 2), ")", sep="");
+
+				text(x-.5, y-.5, text_lab, cex=1, font=2, 
+					col=inv_color_arr[color_ix[x,y]]);
+
+			}
+			cl_id=cl_id+1;
+		}
+	}
+
+
+	# Label variable names
+        axis(side=2, at=seq(.5, num_variables-.5, 1), labels=variable_names, las=2, line=0);
+
 	# Draw guidelines
 	guide_lines=c(0, guide_lines);
 	abline(v=guide_lines, col="black", lwd=1.5);
@@ -727,6 +916,7 @@ for(num_cl in 2:max_clusters){
 	grp_mids=grp_mids[plot_order];
 
 	members_per_group=table(memberships[lf_names]); #
+	cat("Members per Group:\n");
 	print(members_per_group);
 
 	# Plot Dendrogram
@@ -736,10 +926,12 @@ for(num_cl in 2:max_clusters){
 	tweaked_dendro=dendrapply(orig_dendr, color_denfun_bySample);
 	tweaked_dendro=dendrapply(tweaked_dendro, text_scale_denfun);
 
+
+	########################################################################
+	# Plot with individuals colored
+
 	# Make room for sample ids below dendrogram
 	par(mar=c(max_sample_name_len/2,0,0,0));
-
-	# PLOT DENDROGRAM
 	plot(tweaked_dendro, horiz=F);
 
 	# Draw cut line
@@ -755,7 +947,55 @@ for(num_cl in 2:max_clusters){
 	mtext(paste("Num Clusters: ", num_cl), side=3, line=1, outer=T);
 
 	# Plot heatmap and key
-	plot_heatmap(lf_names, shared_factors[lf_names,, drop=F], guide_lines=cumsum(members_per_group), ModelString);
+	plot_heatmap(lf_names, shared_factors[lf_names,, drop=F], 
+		guide_lines=cumsum(members_per_group));
+
+
+	########################################################################
+	# Plot with groups colored, but indiviuals labeled
+
+	# Make room for sample ids below dendrogram
+	par(mar=c(max_sample_name_len/2,0,0,0));
+	plot(tweaked_dendro, horiz=F);
+
+	# Draw cut line
+	abline(h=cut_midpoints[num_cl], col="red", lty=2);
+	ranges=par()$usr;
+
+	# Top/Right Place holder 
+	par(mar=c(0,0,0,0));
+        plot(0,0, xlim=c(0,10), ylim=c(0,10), type="n",  xaxt="n", yaxt="n", bty="n", xlab="", ylab="");
+
+	# Label each page with dist type and number of cuts
+	mtext(paste("Distance Type: ", dist_type), side=3, line=0, outer=T);
+	mtext(paste("Num Clusters: ", num_cl), side=3, line=1, outer=T);
+
+	# Plot averaged heatmap
+	plot_heatmap_grouped(lf_names, shared_factors[lf_names,, drop=F], 
+		guide_lines=cumsum(members_per_group), sample_to_color_map, group_label=F);
+
+	########################################################################
+	# PLOT with groups colored, and group means labeled
+
+	# Make room for sample ids below dendrogram
+	par(mar=c(max_sample_name_len/2,0,0,0));
+	plot(tweaked_dendro, horiz=F);
+
+	# Draw cut line
+	abline(h=cut_midpoints[num_cl], col="red", lty=2);
+	ranges=par()$usr;
+
+	# Top/Right Place holder 
+	par(mar=c(0,0,0,0));
+        plot(0,0, xlim=c(0,10), ylim=c(0,10), type="n",  xaxt="n", yaxt="n", bty="n", xlab="", ylab="");
+
+	# Label each page with dist type and number of cuts
+	mtext(paste("Distance Type: ", dist_type), side=3, line=0, outer=T);
+	mtext(paste("Num Clusters: ", num_cl), side=3, line=1, outer=T);
+
+	# Plot averaged heatmap
+	plot_heatmap_grouped(lf_names, shared_factors[lf_names,, drop=F], 
+		guide_lines=cumsum(members_per_group), sample_to_color_map, group_label=T);
 
 
 }
