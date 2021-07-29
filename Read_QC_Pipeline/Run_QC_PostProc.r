@@ -293,15 +293,20 @@ uniq_samp_ids=sort(unique(as.character(full_tab[,"SampleID"])));
 num_samp_ids=length(uniq_samp_ids);
 
 cat("Number of Samples Read:\n", num_samp_ids, "\n");
-
 write.table(full_tab, file=full_file_fname, sep="\t", quote=F, row.names=F);
 
 ###############################################################################
 
 cat("Splitting out controls based on: ", CTL_REGEX, "\n");
 ctl_ix=grep(CTL_REGEX, full_tab[,"SampleID"]);
-ctl_tab=full_tab[ctl_ix,,drop=F];
-exp_tab=full_tab[-ctl_ix,,drop=F];
+
+ctl_bool=rep(F, nrow(full_tab)); 
+ctl_bool[ctl_ix]=T;
+exp_bool=!ctl_bool;
+
+ctl_tab=full_tab[ctl_bool,,drop=F];
+exp_tab=full_tab[exp_bool,,drop=F];
+
 
 ctl_ids=as.character(ctl_tab[,"SampleID"]);
 exp_ids=as.character(exp_tab[,"SampleID"]);
