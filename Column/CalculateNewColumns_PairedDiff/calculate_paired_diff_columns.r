@@ -146,6 +146,15 @@ log2_ratio=function(val){
 	return(log2(val$b/val$a));
 }
 
+pick_A=function(val){
+	return(val$a);
+}
+
+pick_B=function(val){
+	return(val$b);
+}
+
+
 ##############################################################################
 
 # Load factors
