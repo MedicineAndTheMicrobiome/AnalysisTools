@@ -50,6 +50,14 @@ usage = paste(
 	"The log2 ratio is is log2(B/A).\n",
 	"	This is useful for proportions/percentages.\n",
 	"\n",
+	"There are also 2 special functions: pick_A(x) and pick_B(x)\n",
+	"	These two functions will return the values from A or B.\n",
+	"	This will allow you to explicity keep the values from A or B.\n",
+	"	This is useful if you aren't sure what pairs of sample values\n",
+	"	go together or you want to explicitly rename a variable name.\n",
+	"	For example:  As_x=pick_A(x);\n",
+	"	              Bs_x=pick_A(x);\n",
+	"\n",
 	"\n");
 
 if(!length(opt$input) || 
