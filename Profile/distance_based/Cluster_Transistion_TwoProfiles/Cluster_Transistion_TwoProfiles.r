@@ -1253,21 +1253,33 @@ fit_arrivers_logistic_regression=function(num_clusters, metadata, targ_pred, mem
 
 		# Relevel cluster id so reference is the current cluster of interest
 		values=current_df[,"a_cluster_id"];
-		current_df[,"a_cluster_id"]=relevel(values, target_cluster_id);
-		
-		glm_res=glm(as.formula(regr_formla_str), family=binomial, data=current_df);
-		glm_sum=summary(glm_res);
 
-		coef_pval_mat=glm_sum$coefficients[,c("Estimate", "Pr(>|z|)"), drop=F];
-		if(glm_res$converged==FALSE){
-			cat("Regression did not converge!!!\n");
+		avail_levels=levels(values);
+		if(any(target_cluster_id==avail_levels)){
+
+			current_df[,"a_cluster_id"]=relevel(values, target_cluster_id);
+			
+			glm_res=glm(as.formula(regr_formla_str), family=binomial, data=current_df);
+			glm_sum=summary(glm_res);
+
+			coef_pval_mat=glm_sum$coefficients[,c("Estimate", "Pr(>|z|)"), drop=F];
+			if(glm_res$converged==FALSE){
+				cat("Regression did not converge!!!\n");
+				coef_pval_mat[,"Estimate"]=0;
+				coef_pval_mat[,"Pr(>|z|)"]=1;
+			}else{
+				cat("Regression converged...\n");
+				na_ix=is.na(coef_pval_mat[,"Pr(>|z|)"]);
+				coef_pval_mat[na_ix,"Estimate"]=0;
+				coef_pval_mat[na_ix,"Pr(>|z|)"]=1;
+			}
+
+		}else{
+
+			cat("There is no starting cluster: ", target_cluster_id, "\n");
 			coef_pval_mat[,"Estimate"]=0;
 			coef_pval_mat[,"Pr(>|z|)"]=1;
-		}else{
-			cat("Regression converged...\n");
-			na_ix=is.na(coef_pval_mat[,"Pr(>|z|)"]);
-			coef_pval_mat[na_ix,"Estimate"]=0;
-			coef_pval_mat[na_ix,"Pr(>|z|)"]=1;
+			
 		}
 		#print(glm_sum$coefficients);
 		#print(names(glm_sum));
@@ -1312,10 +1324,16 @@ fit_arrivers_logistic_regression=function(num_clusters, metadata, targ_pred, mem
 				src_clid=paste("a_cluster_id", "cl_", clix, sep="");
 				dst_clid=paste("cl_", clix, sep="");
 
-				coef_matrix[dst_clid, kix]=
-					summ_arr_list[[cluster_names[kix]]][src_clid, "Estimate"];
-				pval_matrix[dst_clid, kix]=
-					summ_arr_list[[cluster_names[kix]]][src_clid, "Pr(>|z|)"];
+				rwn=rownames(summ_arr_list[[cluster_names[kix]]]);
+				if(any(src_clid==rwn)){
+					coef_matrix[dst_clid, kix]=
+						summ_arr_list[[cluster_names[kix]]][src_clid, "Estimate"];
+					pval_matrix[dst_clid, kix]=
+						summ_arr_list[[cluster_names[kix]]][src_clid, "Pr(>|z|)"];
+				}else{
+					coef_matrix[dst_clid, kix]=0;
+					pval_matrix[dst_clid, kix]=1;
+				}
 			}
 		}
 
@@ -1362,23 +1380,31 @@ fit_departers_logistic_regression=function(num_clusters, metadata, targ_pred, me
 		cl_members_ix=as.character(metadata[,"a_cluster_id"])==target_cluster_id;
 		cl_metadata=metadata[cl_members_ix,,drop=F];
 		num_cl_members=nrow(cl_metadata);		
-		b_cluster_out=cl_metadata[,"b_cluster_id"]!=target_cluster_id;
 
-		current_df=cbind(cl_metadata, b_cluster_out);
+		if(num_cl_members>1){
 
-		glm_res=glm(as.formula(regr_formla_str), family=binomial, data=current_df);
-		glm_sum=summary(glm_res);
+			b_cluster_out=cl_metadata[,"b_cluster_id"]!=target_cluster_id;
 
-		coef_pval_mat=glm_sum$coefficients[,c("Estimate", "Pr(>|z|)"), drop=F];
-		if(glm_res$converged==FALSE){
-			cat("Regression did not converge!!!\n");
+			current_df=cbind(cl_metadata, b_cluster_out);
+
+			glm_res=glm(as.formula(regr_formla_str), family=binomial, data=current_df);
+			glm_sum=summary(glm_res);
+
+			coef_pval_mat=glm_sum$coefficients[,c("Estimate", "Pr(>|z|)"), drop=F];
+			if(glm_res$converged==FALSE){
+				cat("Regression did not converge!!!\n");
+				coef_pval_mat[,"Estimate"]=0;
+				coef_pval_mat[,"Pr(>|z|)"]=1;
+			}else{
+				cat("Regression converged...\n");
+				na_ix=is.na(coef_pval_mat[,"Pr(>|z|)"]);
+				coef_pval_mat[na_ix,"Estimate"]=0;
+				coef_pval_mat[na_ix,"Pr(>|z|)"]=1;
+			}
+		}else{
+			cat("No starting members...\n");
 			coef_pval_mat[,"Estimate"]=0;
 			coef_pval_mat[,"Pr(>|z|)"]=1;
-		}else{
-			na_ix=is.na(coef_pval_mat[,"Pr(>|z|)"]);
-			coef_pval_mat[na_ix,"Estimate"]=0;
-			coef_pval_mat[na_ix,"Pr(>|z|)"]=1;
-			cat("Regression converged...\n");
 		}
 
 		summ_arr_list[[target_cluster_id]]=coef_pval_mat;
@@ -1457,13 +1483,15 @@ draw_arrivers_diagram=function(cinfo, mpinfo, arr_res=NULL, title="", pval_cutof
 	for(aix in 1:k){
 		for(bix in 1:k){
 			lwd=10*cinfo$prob.BgivenA[aix, bix];
-			if(lwd>0){
-				points(
-					c(a_pos+a_rect_radius, b_pos-b_rect_radius),
-					c(clus_cent_y[aix], clus_cent_y[bix]),
-					lwd=lwd,
-					type="l"
-				);
+			if(length(lwd) && !is.nan(lwd)){
+				if(lwd>0){
+					points(
+						c(a_pos+a_rect_radius, b_pos-b_rect_radius),
+						c(clus_cent_y[aix], clus_cent_y[bix]),
+						lwd=lwd,
+						type="l"
+					);
+				}
 			}
 		}
 	}
@@ -1612,7 +1640,7 @@ draw_departers_diagram=function(cinfo, mpinfo, dep_res=NULL, title="", pval_cuto
 		arhd_w=a_rect_radius*.4;
 		arhd_l=arhd_w*1.75;
 
-		if(cl_stay_same[aix]>0){
+		if(cl_stay_same[aix]>0 && !is.nan(cl_stay_same[aix])){
 
 			stay_lwd=cl_stay_same[aix]*10;
 
@@ -1650,7 +1678,7 @@ draw_departers_diagram=function(cinfo, mpinfo, dep_res=NULL, title="", pval_cuto
 		bottom_y=clus_cent_y[aix]+.5*a_rect_radius;
 		top_y=bottom_y;
 
-		if(cl_change[aix]>0){
+		if(cl_change[aix]>0 && !is.nan(cl_change[aix])){
 
 			leave_lwd=cl_change[aix]*10;
 
