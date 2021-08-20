@@ -8,6 +8,9 @@ library(MASS)
 library('getopt');
 library('vegan');
 
+library(car);
+library(glm2);
+
 source('~/git/AnalysisTools/Metadata/RemoveNAs/Remove_NAs.r');
 
 DEF_DISTTYPE="man";
@@ -1227,8 +1230,6 @@ fit_arrivers_logistic_regression=function(num_clusters, metadata, targ_pred, mem
 #	print(metadata);
 #	print(memship);
 
-	print(colnames(metadata));
-
 	predictors=setdiff(targ_pred, c("a_sample_ids", "b_sample_ids", "a_cluster_id", "b_cluster_id"));
 	
 	regr_formla_str=paste("b_cluster_in ~ ", 
@@ -1243,7 +1244,7 @@ fit_arrivers_logistic_regression=function(num_clusters, metadata, targ_pred, mem
 	cluster_names=c();
 
 	for(kix in 1:num_clusters){
-		cat("\nFitting cluster: ", kix, "\n");
+		cat("\nFitting cluster: ", kix, " / ", num_clusters, "\n");
 		target_cluster_id=paste("cl_", kix, sep="");
 		cluster_names=c(cluster_names, target_cluster_id);
 		b_cluster_in=as.character(metadata[,"b_cluster_id"])==target_cluster_id;
@@ -1251,46 +1252,57 @@ fit_arrivers_logistic_regression=function(num_clusters, metadata, targ_pred, mem
 		cat("Percent in cluster: ", round(100*sum(b_cluster_in)/length(b_cluster_in), 2), "%\n");		
 		current_df=cbind(b_cluster_in, metadata);
 
-		# Relevel cluster id so reference is the current cluster of interest
-		values=current_df[,"a_cluster_id"];
-
-		avail_levels=levels(values);
-		if(any(target_cluster_id==avail_levels)){
-
-			current_df[,"a_cluster_id"]=relevel(values, target_cluster_id);
-			
-			glm_res=glm(as.formula(regr_formla_str), family=binomial, data=current_df);
-			glm_sum=summary(glm_res);
-
-			coef_pval_mat=glm_sum$coefficients[,c("Estimate", "Pr(>|z|)"), drop=F];
-			if(glm_res$converged==FALSE){
-				cat("Regression did not converge!!!\n");
-				coef_pval_mat[,"Estimate"]=0;
-				coef_pval_mat[,"Pr(>|z|)"]=1;
-			}else{
-				cat("Regression converged...\n");
-				na_ix=is.na(coef_pval_mat[,"Pr(>|z|)"]);
-				coef_pval_mat[na_ix,"Estimate"]=0;
-				coef_pval_mat[na_ix,"Pr(>|z|)"]=1;
-			}
-
-		}else{
-
-			cat("There is no starting cluster: ", target_cluster_id, "\n");
+		resp_var=var(b_cluster_in);
+		if(resp_var==0){
+			cat("There is no variance in the b cluster / response.\n");
 			coef_pval_mat[,"Estimate"]=0;
 			coef_pval_mat[,"Pr(>|z|)"]=1;
-			
+		}else{
+			values=current_df[,"a_cluster_id"];
+			avail_levels=levels(values);
+			if(any(target_cluster_id==avail_levels)){
+
+				# Relevel cluster id so reference is the current cluster of interest
+				current_df[,"a_cluster_id"]=relevel(values, target_cluster_id);
+
+				#mm=model.matrix(as.formula(regr_formla_str), data=current_df);
+				#num_pred_wdummies=ncol(mm);
+
+				glm_res=glm2(as.formula(regr_formla_str), family=binomial, 
+					#start=rep(0, num_pred_wdummies),
+					data=current_df, singular.ok=F, trace=T);
+				glm_sum=summary(glm_res);
+
+				cat("GLM Results:\n");
+				print(glm_sum);
+
+				cat("VIF Results:\n");
+				print(vif(glm_res));
+
+				coef_pval_mat=glm_sum$coefficients[,c("Estimate", "Pr(>|z|)"), drop=F];
+
+				if(glm_res$converged==FALSE){
+					cat("Regression did not converge!!!\n");
+					coef_pval_mat[,"Estimate"]=0;
+					coef_pval_mat[,"Pr(>|z|)"]=1;
+				}else{
+					cat("Regression converged...\n");
+					na_ix=is.na(coef_pval_mat[,"Pr(>|z|)"]);
+					coef_pval_mat[na_ix,"Estimate"]=0;
+					coef_pval_mat[na_ix,"Pr(>|z|)"]=1;
+				}
+
+			}else{
+				cat("There is no ending / response members in cluster: ", target_cluster_id, "\n");
+				coef_pval_mat[,"Estimate"]=0;
+				coef_pval_mat[,"Pr(>|z|)"]=1;
+			}
 		}
-		#print(glm_sum$coefficients);
-		#print(names(glm_sum));
-		#print(glm_res);
 
 		summ_arr_list[[target_cluster_id]]=coef_pval_mat;
 		coeff_names=c(coeff_names, rownames(summ_arr_list[[target_cluster_id]]));
 
 		cat("\n\n");
-
-
 	}
 
 	# Allocate matrices
@@ -1339,7 +1351,6 @@ fit_arrivers_logistic_regression=function(num_clusters, metadata, targ_pred, mem
 
 	}
 
-	#print(summ_arr_list);
 	results=list();
 	results[["coef"]]=coef_matrix;
 	results[["pval"]]=pval_matrix;
@@ -1823,6 +1834,7 @@ chisq_homo_pval=rep(0,max_cuts);
 arrivers_list=list();
 departers_list=list();
 
+#for(k in 10){
 for(k in 2:max_cuts){
 
 	
