@@ -750,6 +750,9 @@ if(OnlyAtK!=0){
 
 cat("Using Metadata:", useMetadata, "\n");
 
+all_unifiers_list=list();
+all_cluster_sizes_list=list();
+
 # Begin pair-wise cluster analyses
 for(ix in iterations){
 
@@ -806,6 +809,8 @@ for(ix in iterations){
 		grp_mids=grp_mids[plot_order];
 
 		legend_labels=as.character(1:num_cl);
+
+		all_cluster_sizes_list[[ix]]=table(memberships);
 	}
 
 	# Plot Dendrogram
@@ -910,6 +915,8 @@ for(ix in iterations){
 	layout(barplot_layout);
 	par(oma=c(.5,13,3,1));
 	plot_count=0;
+
+
 	for(i in 1:num_cl){
 
 		members_i=names(memberships[memberships==i]);
@@ -996,6 +1003,8 @@ for(ix in iterations){
 
 	}
 
+	unifiers_list=list();
+
 	# Compute cluster unifiers
 	layout(barplot_layout);
 	par(oma=c(.5,13,3,1));
@@ -1076,6 +1085,7 @@ for(ix in iterations){
 			return(mean(x, na.rm=T));
 		}
 		mean_unifiers=apply(cluster_unifiers_matrix, 2, mean_wo_na);
+		unifiers_list[[i]]=mean_unifiers;
 		#cat("Kept:");
 		#print(mean_unifiers);
 		
@@ -1126,8 +1136,113 @@ for(ix in iterations){
 
 		
 	}
-	
+	all_unifiers_list[[ix]]=unifiers_list;	
 
+}
+
+if(!useMetadata){
+	plot_influencer_summary=function(cluster_list, unifiers_list, TOPN=5){
+		print(cluster_list);
+		print(unifiers_list);
+
+		total_samples=sum(cluster_list[[1]]);
+		cat("Total Samples:", total_samples, "\n");
+
+		max_cuts=length(cluster_list)+1;
+		cat("Max Cuts: ", max_cuts, "\n");
+
+		# Normalize the cluster counts so we can esimate the cluster boundaries
+		cluster_list_normalized=list();
+		for(k in 1:(max_cuts-1)){
+			cluster_list_normalized[[k]]=cluster_list[[k]]/total_samples;
+		}
+		print(cluster_list_normalized);
+
+		# Sort make make list of cluster influencers
+		top_cluster_influencers=list();
+		for(k in 2:max_cuts){
+			cur_cut=unifiers_list[[k]];
+			top_cluster_influencers[[k]]=list();
+			for(kix in 1:k){
+				sorted_cl_inf=sort(cur_cut[[kix]], decreasing=F, na.last=T);	
+				sorted_cl_inf=sorted_cl_inf[!is.na(sorted_cl_inf)];
+				top_cluster_influencers[[k]][[kix]]=names(sorted_cl_inf);
+			}
+		}
+
+		# Set up empty plot space
+		par(mfrow=c(1,1));
+		par(oma=c(0,0,0,0));
+		par(mar=c(.25,4,2,.25));
+		plot(0,0, type="n", xlim=c(0,1), ylim=c(0, max_cuts-1), bty="n", 
+			xlab="n", ylab="Cuts (k)", main="Top Cluster Unifiers",
+			xaxt="n", yaxt="n");
+		abline(v=c(0:1));
+		axis(side=2, at=(0:(max_cuts-2))+.5, labels=c(max_cuts:2), 
+			las=2, line=NA, cex.axis=2, font.axis=2);
+
+		# Draw horizontal lines for cut levels
+		for(k in 0:(max_cuts-1)){
+			points(c(0,1), c(k,k), type="l");
+		}
+
+		# Draw vertical lines for cuts
+		for(k in 2:max_cuts){
+			cut_location=cumsum(cluster_list_normalized[[k-1]]);
+			for(kix in 1:(k-1)){
+				points(c(cut_location[kix], cut_location[kix]), c(0, max_cuts-k+1), type="l");
+			}
+		}
+
+		# Get size of text in plot space
+		text_size_x=par()$cxy[1];
+		text_size_y=par()$cxy[2];
+		space_for_clnum=.3;
+
+		for(i in 1:(max_cuts-1)){
+			centers=cumsum(c(0, cluster_list_normalized[[i]]))+c(cluster_list_normalized[[i]]/2,0);
+			for(kix in 1:(i+1)){
+
+				# Label cluster number
+				text(centers[kix], max_cuts-i, kix, pos=1, cex=2, font=2);
+
+				# Grab top influencers list
+				top_inf=top_cluster_influencers[[i+1]][[kix]][1:TOPN];
+				if(length(top_cluster_influencers[[i+1]][[kix]])>TOPN){
+					top_inf=c(top_inf, "...");
+				}
+				top_inf[is.na(top_inf)]="";
+
+				# Calc Space
+				x_space_avail=cluster_list_normalized[[i]][kix];
+				y_space_avail=1-space_for_clnum;
+				
+				x_space_used=max(nchar(top_inf))*text_size_x;
+				y_space_used=length(top_inf)*text_size_y;
+
+				#cat("Avail  x=", x_space_avail, " y=", y_space_avail, "\n");
+				#cat("Needed x=", x_space_used, " y=", y_space_used, "\n");
+				
+				x_cex=1;
+				if(x_space_avail<x_space_used){
+					x_cex=min(1, x_space_avail/x_space_used);
+				}
+				y_cex=1
+				if(y_space_avail<y_space_used){
+					y_cex=min(1, y_space_avail/y_space_used);
+				}
+				cex_used=min(x_cex, y_cex);
+
+				# Plot influencers list
+				text(centers[kix], max_cuts-i-space_for_clnum, pos=1, cex=cex_used,
+					paste(top_inf, collapse="\n"));
+
+			}
+		}
+
+	}
+
+	plot_influencer_summary(all_cluster_sizes_list, all_unifiers_list);
 }
 
 
