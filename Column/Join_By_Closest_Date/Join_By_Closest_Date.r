@@ -6,6 +6,9 @@ library('getopt');
 
 options(useFancyQuotes=F);
 
+DEFAULT_INTERP_PREFIX="interp_";
+DEFAULT_CLOSEST_PREFIX="closest_";
+
 params=c(
 	"main_filen", "F", 1, "character",
 	"main_keycn", "K", 1, "character",
@@ -15,9 +18,11 @@ params=c(
 	"aux_keycn", "k", 1, "character",
 	"aux_offcn", "d", 1, "character",
 	"aux_dateformat", "t", 1, "character",
-	"aux_valuecn", "v", 1, "character",
+	"aux_valuecn", "v", 2, "character",
+	"aux_cn_fn_list", "l", 2, "character", 
+	"aux_choose_closest", "h", 2, "character",
 	"outputfn", "o", 1, "character",
-	"output_cname", "c", 2, "character"
+	"output_cname_prefix", "p", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -25,8 +30,6 @@ script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
 
 usage = paste(
 	"\nUsage:\n", script_name, "\n",
-	"\n",
-	" (All parameters are required.)\n",
 	"\n",
 	"	--main_filen <factor file name (to add to)>\n",
 	"	--main_keycn <column name with key (e.g. subject id)>\n",
@@ -37,10 +40,18 @@ usage = paste(
 	"	--aux_keycn <column name with key (e.g. subject id)>\n",
 	"	--aux_offcn <column name with Date/Offset>\n",
 	"	--aux_dateformat <eg. \"%Y-%m-%d\">\n",
-	"	--aux_valuecn <column name with value to link>\n",
+	"\n",
+	"	One of: \n",
+	"	[--aux_valuecn <column name with value to link>]\n",
+	"	[--aux_cn_fn_list <filename with list of column names to link>]\n",
+	"\n",
+	"	Use this option for categorical or non-ordinal variables:\n",
+	"	[--choose_closest]  (default: weighted average of bracketing measurements, i.e. interpolate)\n",
 	"\n",
 	"	-o <output map file name>\n",
-	"	[-c <appended values column name, default=\"interp_<aux_valuecn>\">]\n",
+	"	[-p <appended values column prefix>]\n",
+	"	  interpolated default =", DEFAULT_INTERP_PREFIX, "\n",
+	"         closest default      =", DEFAULT_CLOSEST_PREFIX, "\n",
 	"\n",
 	"This script will read in the main file and using the key (subject_id)\n",
 	"and then link it with specified date with the value in the auxiliary\n",
@@ -56,7 +67,6 @@ if(
 	!length(opt$aux_keycn) || 
 	!length(opt$aux_offcn) || 
 	!length(opt$aux_dateformat) || 
-	!length(opt$aux_valuecn) || 
 	!length(opt$outputfn)
 ){
 	cat(usage);
@@ -71,13 +81,27 @@ AuxFilename=opt$aux_filen;
 AuxKeyColname=opt$aux_keycn;
 AuxOffsetColname=opt$aux_offcn;
 AuxDateFormat=opt$aux_dateformat;
-AuxValueColname=opt$aux_valuecn;
 OutputFilename=opt$outputfn;
+OutputColumnPrefix=opt$output_cname_prefix;
 
-if(length(opt$output_cname)){
-	OutputColName=opt$output_cname;
+AuxValueColname=opt$aux_valuecn;
+AuxFilenameColnameList=opt$aux_cn_fn_list;
+AuxChooseClosest=opt$aux_choose_closest;
+
+if(length(AuxChooseClosest)){
+	AuxChooseClosest=T;
 }else{
-	OutputColName=paste("interp_", AuxValueColname, sep="");
+	AuxChooseClosest=F;
+}
+
+if(!length(opt$aux_valuecn)){
+	AuxValueColname="";
+}
+
+if(length(opt$output_cname_prefix)){
+	OutputColNamePrefix=opt$output_cname_prefix;
+}else{
+	OutputColNamePrefix=ifelse(AuxChooseClosest, DEFAULT_CLOSEST_PREFIX, DEFAULT_INTERP_PREFIX);
 }
 
 cat("\n");
@@ -92,10 +116,12 @@ cat("	Filename:       ", AuxFilename, "\n", sep="");
 cat("	Key Colname:    ", AuxKeyColname, "\n", sep="");
 cat("	Offset Colname: ", AuxOffsetColname, "\n", sep="");
 cat("	Date Format:    ", AuxDateFormat, "\n", sep="");
-cat("	Values:         ", AuxValueColname, "\n", sep="");
+cat("	Fname Colname List: ", AuxFilenameColnameList, "\n", sep="");
+cat("\n");
+cat("Choose Closest?: ", AuxChooseClosest, "\n", sep="");
 cat("\n");
 cat("Output Filename:   ", OutputFilename, "\n", sep="");
-cat("	Colname:        ", OutputColName, "\n", sep="");
+cat("	ColnamePrefix:  ", OutputColNamePrefix, "\n", sep="");
 cat("\n");
 
 ##############################################################################
@@ -125,6 +151,28 @@ write_factors=function(fname, table){
 
 }
 
+load_list=function(fname){
+	arr=as.matrix(read.delim(fname, header=F, as.is=T, stringsAsFactors=F, comment.char="#"))[,1];
+	return(arr);
+}
+
+
+##############################################################################
+
+target_variables_arr=c();
+cat("\nIdentification of Targeted Values to Join:\n");
+if(AuxFilenameColnameList!=""){
+	cat("Loading Target File List: ", AuxFilenameColnameList, "\n");
+	target_variables_arr=load_list(AuxFilenameColnameList);
+}else if(AuxValueColname!=""){
+	cat("Using single specified column name: ", AuxValueColname, "\n");
+	target_variables_arr=AuxValueColname;
+}else{
+	cat("Error: Neither a list (via Filename) nor column name, was specified for joining.\n");
+}
+cat("Targeted Variable Name(s) for joining:\n");
+print(target_variables_arr);
+cat("\n\n");
 
 ##############################################################################
 
@@ -138,11 +186,13 @@ cat("Main: Num Rows to Match:",  main_nrows, "\n");
 
 cat("Loading Aux File:\n");
 aux_matrix=load_factors(AuxFilename);
-#print(aux_matrix);
-aux_data=aux_matrix[, c(AuxKeyColname, AuxOffsetColname, AuxValueColname), drop=F];
+aux_data=aux_matrix[, c(AuxKeyColname, AuxOffsetColname, target_variables_arr), drop=F];
 aux_nrows=nrow(aux_matrix);
 cat("Aux: Num Rows to Select From:", aux_nrows, "\n");
-#print(aux_data);
+cat("Excerpt:\n");
+print(head(aux_data));
+cat("\n");
+
 
 ###############################################################################
 # Convert dates to offsets
@@ -170,12 +220,12 @@ if(AuxOffsetColname!=""){
 	);
 
 	aux_data=cbind(aux_data,aux_date_conv);
-	print(aux_data);
+	#print(aux_data);
 }
 
 ###############################################################################
 
-interpolate_values=function(values, offsets, target_offset){
+choose_values=function(values, offsets, target_offset, interpolate=T){
 
 	#print(values);
 	#print(offsets);
@@ -231,61 +281,80 @@ interpolate_values=function(values, offsets, target_offset){
 		cat("Using closest before value: ", before_bracket_value, "\n");
 		return(before_bracket_value);
 	}else{
+
 		# Calculate weighted average
 		prop_before=(target_offset-before_bracket_offset)/
 			(after_bracket_offset-before_bracket_offset);
 
-		interpolated_value=prop_before*before_bracket_value + 
-			(1-prop_before)*after_bracket_value;
-
 		cat("Prop of Before to use: ", prop_before, "\n");
-		cat("Interpolated Value: ", interpolated_value, "\n");
 
-		return(interpolated_value);
+		if(interpolate){
+
+			interpolated_value=prop_before*before_bracket_value + 
+				(1-prop_before)*after_bracket_value;
+
+			cat("Interpolated Value: ", interpolated_value, "\n");
+
+			return(interpolated_value);
+
+		}else{
+
+			closest_value=ifelse(prop_before<.5, before_bracket_value, after_bracket_value);
+
+			cat("Closest Value:", closest_value, "\n");
+
+			return(closest_value);
+
+		}
 	}
 
 }
 
-# Keep values in same order as main input file
-selected_values=numeric(main_nrows);
+# Allocate empty matrix to accumulated selected values
+num_targeted_columns=length(target_variables_arr);
+new_columns=matrix(NA, nrow=main_nrows, ncol=num_targeted_columns);
 
-for(i in 1:main_nrows){
-	cur_key=main_data[i, MainKeyColname];
-	cur_date=main_data[i, MainOffsetColname];
-	cur_offset=main_data[i, "main_date_conv"];
-	cat("Working on: ", cur_key, " [Offset: ", cur_date, " / ", cur_offset, "]\n", sep="");
+colnames(new_columns)=paste(OutputColNamePrefix, target_variables_arr, sep="");
 
-	# Select out cur_key / subject_id
-	per_key_aux_ix=aux_data[,AuxKeyColname]==cur_key;
-	per_key_aux=aux_data[per_key_aux_ix,];
+# Loop through targeted columns
+col_ix=1;
+for(aux_targeted_colname in target_variables_arr){
 
-	# Get available offsets and values
-	offsets=per_key_aux[,"aux_date_conv"];
-	values=per_key_aux[, AuxValueColname];
+	cat("Working on Column: ", aux_targeted_colname, "\n");
 
-	#print(per_key_aux);
-	selected_values[i]=interpolate_values(values, offsets, cur_offset)
+	for(i in 1:main_nrows){
+		cur_key=main_data[i, MainKeyColname];
+		cur_date=main_data[i, MainOffsetColname];
+		cur_offset=main_data[i, "main_date_conv"];
+		cat("Working on: ", cur_key, " [Offset: ", cur_date, " / ", cur_offset, "]\n", sep="");
 
-	cat("\n");
+		# Select out cur_key / subject_id
+		per_key_aux_ix=aux_data[,AuxKeyColname]==cur_key;
+		per_key_aux=aux_data[per_key_aux_ix,];
+
+		# Get available offsets and values
+		offsets=per_key_aux[,"aux_date_conv"];
+		values=per_key_aux[, aux_targeted_colname];
+
+		new_columns[i, col_ix]=choose_values(values, offsets, cur_offset, interpolate=!AuxChooseClosest);
+
+		cat("\n");
+	}
+
+	col_ix=col_ix+1;
+
 }
 
 ###############################################################################
 
-if(OutputColName!=""){
-	appended_cname=paste("interp_", AuxValueColname, sep="");
+if(AuxChooseClosest){
+	# Don't round if choosing closest, since it could be categorical
+	out_cols=new_columns;
 }else{
-	appended_cname=OutputColName;
+	out_cols=round(new_columns, 5);
 }
 
-orig_cnames=colnames(main_matrix);
-new_cnames=c(orig_cnames, appended_cname);
-
-cat("Output Colnames:\n");
-print(new_cnames);
-
-main_appended=cbind(main_matrix, selected_values);
-colnames(main_appended)=new_cnames;
-print(main_appended);
+main_appended=cbind(main_matrix, out_cols);
 
 write_factors(OutputFilename, main_appended);
 
