@@ -245,7 +245,9 @@ choose_values=function(values, offsets, target_offset, interpolate=T){
 	exact_matches=which(relative_pos==0);
 	num_exact=length(exact_matches);
 	if(num_exact>0){
-		return(mean(values[exact_matches]));
+		matching_value=(mean(values[exact_matches]));
+		cat("Exact Offset/Date Match Found: ", matching_value, "\n");
+		return(matching_value);
 	}
 
 	#print(relative_pos);
@@ -281,6 +283,16 @@ choose_values=function(values, offsets, target_offset, interpolate=T){
 		cat("Using closest before value: ", before_bracket_value, "\n");
 		return(before_bracket_value);
 	}else{
+
+		# If one or the other bracketed value is NA, return non-NA value.
+		#   returns NA if both bracketed values are NA, else continues to interp/closest
+		if(is.na(before_bracket_value)){
+			cat("Before value is NA.\n")
+			return(after_bracket_value);
+		}else if(is.na(after_bracket_value)){
+			cat("After value is NA.\n")
+			return(before_bracket_value);
+		}
 
 		# Calculate weighted average
 		prop_before=(target_offset-before_bracket_offset)/
