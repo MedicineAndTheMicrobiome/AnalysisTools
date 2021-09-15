@@ -320,7 +320,19 @@ sub run_abundance_based{
 			-p .025 \
 			-t $tag_name
 		";
-		run_command("Compare ALR Pred/Resp", "alr_pred_resp_comp", $cmd, "$output_dir/abundance/$COMP_DIR");	
+		run_command("Compare ALR Pred/Resp", "alr_pred_resp_comp.025", $cmd, "$output_dir/abundance/$COMP_DIR");	
+
+		$cmd=
+		"~/git/AnalysisTools/Profile/abundance_based/Compare_ALR_PredResp/Compare_ALR_PredResp.r \
+			-x $output_dir/abundance/$PRED_OUT_DIR/$model_name.alr_as_pred.pvals.tsv \
+			-y $output_dir/abundance/$RESP_OUT_DIR/$model_name.alr_as_resp.pvals.tsv \
+			-u $output_dir/abundance/$PRED_OUT_DIR/$model_name.alr_as_pred.coefs.tsv \
+			-v $output_dir/abundance/$RESP_OUT_DIR/$model_name.alr_as_resp.coefs.tsv \
+			-o $output_dir/abundance/$COMP_DIR/$model_name.alr \
+			-p .050 \
+			-t $tag_name
+		";
+		run_command("Compare ALR Pred/Resp", "alr_pred_resp_comp.050", $cmd, "$output_dir/abundance/$COMP_DIR");	
 
 	}
 
@@ -402,7 +414,22 @@ sub run_distribution_based{
 			-p .025 \
 			-t $tag_name
 		";
-		run_command("Compare Diversity Pred/Resp", "div_pred_resp_comp", $cmd, "$output_dir/distribution/$COMP_DIR");
+		run_command("Compare Diversity Pred/Resp", "div_pred_resp_comp.025", $cmd, 
+			"$output_dir/distribution/$COMP_DIR");
+
+		$cmd=
+		"~/git/AnalysisTools/Profile/abundance_based/Compare_ALR_PredResp/Compare_ALR_PredResp.r \
+			-x $output_dir/distribution/$PRED_OUT_DIR/$model_name.div_as_pred.pvals.tsv \
+			-y $output_dir/distribution/$RESP_OUT_DIR/$model_name.div_as_resp.pvals.tsv \
+			-u $output_dir/distribution/$PRED_OUT_DIR/$model_name.div_as_pred.coefs.tsv \
+			-v $output_dir/distribution/$RESP_OUT_DIR/$model_name.div_as_resp.coefs.tsv \
+			-o $output_dir/distribution/$COMP_DIR/$model_name.div \
+			-a Diversity \
+			-p .050 \
+			-t $tag_name
+		";
+		run_command("Compare Diversity Pred/Resp", "div_pred_resp_comp.050", $cmd, 
+			"$output_dir/distribution/$COMP_DIR");
 	}
 
 	#######################################################################
