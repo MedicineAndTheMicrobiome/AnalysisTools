@@ -245,7 +245,18 @@ choose_values=function(values, offsets, target_offset, interpolate=T){
 	exact_matches=which(relative_pos==0);
 	num_exact=length(exact_matches);
 	if(num_exact>0){
-		matching_value=(mean(values[exact_matches]));
+
+		matching_values=values[exact_matches];
+		matching_values=matching_values[!is.na(matching_values)];
+		mean_mv=mean(matching_values);
+
+		# If we can't take the mean across the matching values, then return first one.
+		if(is.na(mean_mv)){
+			matching_value=matching_values[1];
+		}else{
+			matching_value=mean_mv;
+		}
+
 		cat("Exact Offset/Date Match Found: ", matching_value, "\n");
 		return(matching_value);
 	}
@@ -338,7 +349,8 @@ for(aux_targeted_colname in target_variables_arr){
 		cur_key=main_data[i, MainKeyColname];
 		cur_date=main_data[i, MainOffsetColname];
 		cur_offset=main_data[i, "main_date_conv"];
-		cat("Working on: ", cur_key, " [Offset: ", cur_date, " / ", cur_offset, "]\n", sep="");
+		cat("[", aux_targeted_colname, "] Working on Subject: ", cur_key, 
+			" [Offset: ", cur_date, " / ", cur_offset, "]\n", sep="");
 
 		# Select out cur_key / subject_id
 		per_key_aux_ix=aux_data[,AuxKeyColname]==cur_key;
