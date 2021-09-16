@@ -306,7 +306,7 @@ choose_values=function(values, offsets, target_offset, interpolate=T){
 		}
 
 		# Calculate weighted average
-		prop_before=(target_offset-before_bracket_offset)/
+		prop_before=1-(target_offset-before_bracket_offset)/
 			(after_bracket_offset-before_bracket_offset);
 
 		cat("Prop of Before to use: ", prop_before, "\n");
