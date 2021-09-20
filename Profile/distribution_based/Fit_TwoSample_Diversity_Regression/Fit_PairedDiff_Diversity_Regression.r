@@ -1270,7 +1270,10 @@ paint_matrix(model_pval_mat, plot_min=0, plot_max=1,
         high_is_hot=F, deci_pts=2, value.cex=1);
 mtext(text="(H0: Predictors have no contribution to model fit)", side=3, cex=.8, font=3, line=2, outer=T);
 
+###############################################################################
 
+write.table(model_pval_mat, file=paste(OutputRoot, ".paired_div_diff.model.anova.tsv", sep=""), 
+	sep="\t", row.names=T, col.names=T);
 
 ###############################################################################
 
