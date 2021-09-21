@@ -1272,7 +1272,13 @@ mtext(text="(H0: Predictors have no contribution to model fit)", side=3, cex=.8,
 
 ###############################################################################
 
-write.table(model_pval_mat, file=paste(OutputRoot, ".paired_div_diff.model.anova.tsv", sep=""), 
+outfn=paste(OutputRoot, ".paired_div_diff.model.anova.tsv", sep="");
+if(TagName!=""){
+        fh=file(outfn, "w");
+        cat(file=fh, TagName, "\n");
+}
+write.table(round(model_pval_mat, 4),
+	file=outfn, append=T,
 	sep="\t", row.names=T, col.names=T);
 
 ###############################################################################
