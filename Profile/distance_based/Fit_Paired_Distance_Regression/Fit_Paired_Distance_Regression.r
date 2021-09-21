@@ -1398,10 +1398,19 @@ plot_text(c(
 "Bootstrapped Stats:",
 regression_table_text));
 
+
+################################################################################
+
+outfn=paste(OutputRoot, ".paired_dist.pval.tsv", sep="");
+if(TagName!=""){
+	fh=file(outfn, "w");
+	cat(file=fh, TagName, "\n");
+}
 write.table(round(regression_table[,c("Estimate","P-value")], 4), 
-	file=paste(OutputRoot, ".paired_dist.pval.tsv", sep=""),
+	file=outfn, append=T,
         sep="\t", row.names=T, col.names=T);
 
+################################################################################
 
 plot_text(c(
 "Standard Stats:",
