@@ -1409,7 +1409,7 @@ write.table(covariates_coef_mat, file=paste(OutputRoot, ".coef.tsv", sep=""), se
 outfn=paste(OutputRoot, ".alr_diff.anova.tsv", sep="");
 if(TagName!=""){
         fh=file(outfn, "w");
-        cat(file=fh, TagName, "\n");
+        cat(file=fh, TagName, "\n\t");
 }
 write.table(round(model_pval_mat[,c("F-statistic P-value"), drop=F], 4),
         file=outfn, append=T,

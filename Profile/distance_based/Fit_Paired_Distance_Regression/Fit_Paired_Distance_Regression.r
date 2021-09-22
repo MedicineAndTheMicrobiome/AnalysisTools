@@ -1404,7 +1404,7 @@ regression_table_text));
 outfn=paste(OutputRoot, ".paired_dist.pval.tsv", sep="");
 if(TagName!=""){
 	fh=file(outfn, "w");
-	cat(file=fh, TagName, "\n");
+	cat(file=fh, TagName, "\n\t");
 }
 write.table(round(regression_table[,c("Estimate","P-value")], 4), 
 	file=outfn, append=T,
