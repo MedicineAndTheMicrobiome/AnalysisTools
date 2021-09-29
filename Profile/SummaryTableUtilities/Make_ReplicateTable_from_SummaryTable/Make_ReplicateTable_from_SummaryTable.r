@@ -86,7 +86,6 @@ for(i in 1:num_samp_ids){
 	collapsed_id[i]=paste(toks, collapse=".");
 }
 
-
 ###############################################################################
 # Output
 cat("Writing Mapping File...\n");
@@ -94,7 +93,7 @@ fc=file(OuputMappingFile, "w");
 
 cat(file=fc, "Original\tCollapsed\n");
 for(samp_idx in 1:num_samp_ids){
-	cat(file=fc, sample_ids[samp_idx], "\t", collapsed_id[i], "\n", sep="");
+	cat(file=fc, sample_ids[samp_idx], "\t", collapsed_id[samp_idx], "\n", sep="");
 }
 close(fc);	
 
