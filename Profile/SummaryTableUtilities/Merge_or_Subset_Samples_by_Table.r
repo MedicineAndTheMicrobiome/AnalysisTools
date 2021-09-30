@@ -9,7 +9,7 @@ params=c(
 	"mapping_table", "m", 1, "character",
 	"output_fname_root", "o", 1, "character",
 	"force_ignore", "f", 2, "logical",
-	"column_num", "c", 2, "numeric",
+	"column_name", "c", 2, "character",
 	"output_dir", "d", 2, "character"
 );
 
@@ -24,7 +24,7 @@ usage = paste (
 	"	-m <sample mapping table>\n",
 	"	[-f (force ignore mismatching samples)]\n",
 	"	[-o <output filename root>]\n",
-	"	[-c <column number starting from 1, excluding sample IDs, default=1>]\n",
+	"	[-c <column name of new ID in sample mapping table>]\n",
 	"	[-d <output directory>]\n",
 	"\n",	
 	"This script will read in both the summary table and mapping table\n",
@@ -94,9 +94,9 @@ if(length(opt$output_fname_root)){
 	OutputFileNameRoot=gsub("\\.summary_table.xls$", "", OutputFileNameRoot);
 }
 
-ColumnNum=1;
-if(length(opt$column_num)){
-	ColumnNum=opt$column_num;	
+ColumnName="";
+if(length(opt$column_name)){
+	ColumnName=opt$column_name;	
 }
 
 ForceIgnore=F;
@@ -135,7 +135,7 @@ cat("Input File Name: ", InputFileName, "\n");
 cat("Override Output Directory: ", OutputDirectory, "\n");
 cat("Output File Name Root: ", OutputFileNameRoot, "\n");       
 cat("Mapping Table Name: ", MappingTable, "\n");
-cat("Column Number: ", ColumnNum, "\n");
+cat("Column Name: ", ColumnName, "\n");
 cat("Force Ignore : ", ForceIgnore, "\n");
 
 ###############################################################################
@@ -166,7 +166,11 @@ load_mapping_file=function(fname){
 ###############################################################################
 
 full_mapping_table=load_mapping_file(MappingTable);
-mapping_table=full_mapping_table[, ColumnNum, drop=F];
+
+if(ColumnName==""){
+	ColumnName=colnames(full_mapping_table[,1,drop=F]);
+}
+mapping_table=full_mapping_table[, ColumnName, drop=F];
 nona_ix=!is.na(mapping_table[,1]);
 mapping_table=mapping_table[nona_ix,,drop=F];
 full_mapping_table=full_mapping_table[nona_ix,,drop=F];
@@ -293,7 +297,6 @@ write_summary_file(new_summary_table, output_fname);
 #print(full_mapping_table);
 
 collapse_entries=function(in_mat){
-print(in_mat);
 	num_col=ncol(in_mat);
 	if(num_col==0){
 		return(in_mat);
@@ -308,17 +311,19 @@ print(in_mat);
 
 collpsed_map_table=matrix("", nrow=num_uniq_grps, ncol=ncol(full_mapping_table)-1);
 rownames(collpsed_map_table)=unique_groups;
-colnames(collpsed_map_table)=colnames(full_mapping_table)[-ColumnNum];
-key_cat=colnames(full_mapping_table)[ColumnNum];
+
+col_num=which(colnames(full_mapping_table)==ColumnName);
+colnames(collpsed_map_table)=colnames(full_mapping_table)[-col_num];
+
 for(i in 1:num_uniq_grps){
 	cur_grp=unique_groups[i];
         cat("Group: ", cur_grp, "\n");
-	grp_idx=(full_mapping_table[,ColumnNum]==cur_grp);
-	collpsed_map_table[i,]=collapse_entries(full_mapping_table[grp_idx,-ColumnNum,drop=F]);
+	grp_idx=(full_mapping_table[,ColumnName]==cur_grp);
+	collpsed_map_table[i,]=collapse_entries(full_mapping_table[grp_idx,-col_num,drop=F]);
 }
 
 fc=file(paste(OutputDirectory,"/",OutputFileNameRoot, ".", group_name, ".meta.tsv", sep=""));
-cat(file=fc, paste(c(key_cat, colnames(collpsed_map_table)), collapse="\t"), "\n", sep="");
+cat(file=fc, paste(c(ColumnName, colnames(collpsed_map_table)), collapse="\t"), "\n", sep="");
 write.table(collpsed_map_table, 
 	file=paste(OutputDirectory,"/",OutputFileNameRoot, ".", group_name, ".meta.tsv", sep=""),
 	quote=F, sep="\t", row.names=T, col.names=F, append=T);
