@@ -113,6 +113,7 @@ if(length(opt$factor_file)){
 
 }else{
 	FactorFile="";
+	FactorMapColname="";
 }
 
 
@@ -733,6 +734,7 @@ counts_mat=counts_mat[sample_ids_pairable,];
 num_samples=nrow(counts_mat);
 cat("Num usable samples: ", num_samples, "\n");
 
+num_pairs_pre_factor=num_samples/2;
 
 if(FactorFile!=""){
 	factors_matrix=load_factors(FactorFile);
@@ -798,8 +800,10 @@ if(FactorFile!=""){
 	cat("Num samples after NA removal:", num_samples, "\n");
 
 }else{
-	factors_matrix=NA;
+	factors_matrix=NULL;
 }
+
+num_pairs_post_factor=num_samples/2;
 
 ###############################################################################
 
@@ -833,6 +837,9 @@ param_summary=capture.output({
 	cat("Target Var File       :", TargetVariablesFile, "\n");
 	cat("Number of Cluster Cuts:", NumClusterCuts, "\n");
 	cat("Distance Type         :", DistType, "\n");
+	cat("\n");
+	cat("Num pairs before Factor File Reconc:", num_pairs_pre_factor, "\n");
+	cat("Num pairs after Factor File Reconc:", num_pairs_post_factor, "\n");
 });
 plot_text(param_summary);
 
