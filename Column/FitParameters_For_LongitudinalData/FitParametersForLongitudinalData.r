@@ -175,7 +175,7 @@ if(Opt_FindLine){
 		slope=lmfit$coefficients["x"];		
 		sd_res=sd(lmfit$residuals);
 
-		return(c(intercept,slope, sd_res));
+		return(c(intercept, slope, sd_res));
 	}
 }
 if(Opt_FindLimits){
@@ -242,12 +242,20 @@ cat("Variable stats/extensions:\n");
 print(extensions);
 num_stats=length(extensions);
 num_new_variables=num_stats*num_target_variables;
-new_var_names=paste(target_variable_list, "_", extensions, sep="");
+
+new_var_names=c();
+for(var_ix in target_variable_list){
+	for(ext_ix in extensions){
+		new_var_names=c(new_var_names, paste(var_ix, "_", ext_ix, sep=""));
+	}
+}
+
+
 cat("\n");
 cat("Num New Variables: ", num_new_variables, "\n");
 print(new_var_names);
 
-acc_matrix=matrix(NA, nrow=num_unique_subject_ids, ncol=num_stats)
+acc_matrix=matrix(NA, nrow=num_unique_subject_ids, ncol=num_new_variables);
 colnames(acc_matrix)=new_var_names;
 rownames(acc_matrix)=unique_subject_ids;
 
@@ -258,18 +266,53 @@ colnames(ranges_mat)=c("min", "max");
 #ranges_mat[,"min"]=apply(targeted_values_mat, 2,  min);
 #ranges_mat[,"max"]=apply(targeted_values_mat, 2,  max);
 
-stdevs=apply(targeted_values_mat, 2,  sd);
-means=apply(targeted_values_mat, 2,  mean);
+stdevs=apply(targeted_values_mat, 2,  function(x){sd(x, na.rm=T)});
+means=apply(targeted_values_mat, 2,  function(x){mean(x, na.rm=T)});
 ranges_mat[,"max"]=means+stdevs*3;
 ranges_mat[,"min"]=means-stdevs*3;
 
+cat("\n");
+cat("Plot Ranges (+/- 3*sd):\n");
 print(ranges_mat);
 
 multiplot_dim=ceiling(sqrt(num_target_variables));
 cat("Multiplot Dimensions: ", multiplot_dim, "\n");
 
+plot_var=function(times, values, var_name, subject_id, val_lim){
+
+	plot(times, values, type="n", 
+		main=paste(subject_id, ": ", var_name, sep=""),
+		ylim=val_lim,
+		xlab="", ylab="" 
+	);
+
+	fit=lm(values~times);
+	slope=fit$coefficients["times"];
+	intercept=fit$coefficients["(Intercept)"];
+
+	lowest_ix=min(which(values==min(values, na.rm=T)));
+	highest_ix=min(which(values==max(values, na.rm=T)));
+
+	if(slope>=0){
+		abline(a=intercept, b=slope, col="brown", lwd=.5, lty="dashed");
+	}else{
+		abline(a=intercept, b=slope, col="darkolivegreen", lwd=.5, lty="dashed");
+	}
+
+	points(times, values, type="b", col="grey", lwd=2);
+	points(times, values, type="p", col="black");
+
+	# Label min/max
+	points(times[lowest_ix], values[lowest_ix], col="blue", pch=24, bg="blue", cex=1.5);
+	points(times[highest_ix], values[highest_ix], col="red", pch=25, bg="red", cex=1.5);
+
+}
+
 pdf(file=paste(OutputFname, ".longit.pdf", sep=""), height=8.5, width=11);
 
+
+par(oma=c(0,0,2,0));
+par(mar=c(2,2,3,1));
 
 for(cur_subj in unique_subject_ids){
 
@@ -285,42 +328,57 @@ for(cur_subj in unique_subject_ids){
 	for(targ_var_ix in target_variable_list){
 
 		# Plot Variables
-		plot(subj_mat_sorted[,TimeOffsetColName], subj_mat_sorted[,targ_var_ix],
-			main=paste(cur_subj, " : ", targ_var_ix, sep=""),
-			xlab=TimeOffsetColName,
-			ylab=targ_var_ix,
-			ylim=c(ranges_mat[targ_var_ix, "min"], ranges_mat[targ_var_ix, "max"])
+		#plot(subj_mat_sorted[,TimeOffsetColName], subj_mat_sorted[,targ_var_ix],
+		#	main=paste(cur_subj, " : ", targ_var_ix, sep=""),
+		#	xlab=TimeOffsetColName,
+		#	ylab=targ_var_ix,
+		#	ylim=c(ranges_mat[targ_var_ix, "min"], ranges_mat[targ_var_ix, "max"])
+		#);
+
+		plot_var(
+			times=subj_mat_sorted[,TimeOffsetColName], 
+			values=subj_mat_sorted[,targ_var_ix],
+			subject_id=cur_subj,
+			var_name=targ_var_ix,
+			val_lim=c(ranges_mat[targ_var_ix, "min"], ranges_mat[targ_var_ix, "max"])
 		);
+		
 
 		# Calculate parameters
 		if(Opt_FindLine){
-			acc_matrix[cur_subj, paste(targ_var_ix, "_", c("intercept", "slope", "sd_res"), sep="")]=
+			acc_matrix[cur_subj, paste(targ_var_ix, "_", 
+				c("intercept", "slope", "sd_res"), sep="")]=
 				calc_line(subj_mat_sorted[,c(TimeOffsetColName, targ_var_ix),drop=F]);
 		}
 
 		if(Opt_FindLimits){
-			acc_matrix[cur_subj, paste(targ_var_ix, "_", c("min", "max", "range"), sep="")]=
+			acc_matrix[cur_subj, paste(targ_var_ix, "_",
+				c("min", "max", "range"), sep="")]=
 				calc_limits(subj_mat_sorted[,c(TimeOffsetColName, targ_var_ix),drop=F]);
 		}
 
 		if(Opt_FindDescriptive){
-			acc_matrix[cur_subj, paste(targ_var_ix, "_", c("mean", "stdev", "median"), sep="")]=
+			acc_matrix[cur_subj, paste(targ_var_ix, "_", 
+				c("mean", "stdev", "median"), sep="")]=
 				calc_descriptive(subj_mat_sorted[,c(TimeOffsetColName, targ_var_ix),drop=F]);
 		}
 
 		if(Opt_FindRanges){
-			acc_matrix[cur_subj, paste(targ_var_ix, "_", c("first", "last", "N"), sep="")]=
+			acc_matrix[cur_subj, paste(targ_var_ix, "_", 
+				c("first", "last", "N"), sep="")]=
 				calc_ranges(subj_mat_sorted[,c(TimeOffsetColName, targ_var_ix),drop=F]);
 
 		}
 		if(Opt_FindTiming){
-			acc_matrix[cur_subj, paste(targ_var_ix, "_", c("time_span", "freq"), sep="")]=
+			acc_matrix[cur_subj, paste(targ_var_ix, "_", 
+				c("time_span", "freq"), sep="")]=
 				calc_timing(subj_mat_sorted[,c(TimeOffsetColName, targ_var_ix),drop=F]);
 
 		}
 
 	}	
 
+	mtext(text=cur_subj, side=3, line=0, outer=T, cex=2, font=2);
 }
 
 rounded_acc_mat=round(acc_matrix, 4);
