@@ -275,13 +275,18 @@ cat("\n");
 cat("Plot Ranges (+/- 3*sd):\n");
 print(ranges_mat);
 
-multiplot_dim=ceiling(sqrt(num_target_variables));
-cat("Multiplot Dimensions: ", multiplot_dim, "\n");
+multiplot_dim_r=ceiling(sqrt(num_target_variables));
+multiplot_dim_c=multiplot_dim_r;
+
+if(multiplot_dim_c*(multiplot_dim_r-1)>=num_target_variables){
+	multiplot_dim_r=multiplot_dim_r-1;	
+}
+cat("Multiplot Dimensions: ", multiplot_dim_r, " x ", multiplot_dim_c, "\n");
 
 plot_var=function(times, values, var_name, subject_id, val_lim){
 
 	plot(times, values, type="n", 
-		main=paste(subject_id, ": ", var_name, sep=""),
+		main=var_name,
 		ylim=val_lim,
 		xlab="", ylab="" 
 	);
@@ -324,7 +329,7 @@ for(cur_subj in unique_subject_ids){
 
 	#print(subj_mat_sorted);
 
-	par(mfrow=c(multiplot_dim, multiplot_dim));
+	par(mfrow=c(multiplot_dim_r, multiplot_dim_c));
 	for(targ_var_ix in target_variable_list){
 
 		# Plot Variables
