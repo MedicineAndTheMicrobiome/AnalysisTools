@@ -12,6 +12,7 @@ params=c(
 	"subject_id_cn", "s", 1, "character",
 	"target_values_fn", "v", 1, "character",
 	"output", "o", 1, "character",
+	"group_cn", "g", 2, "character",
 
 	"find_line", "l", 2, "character",
 	"find_limits", "m", 2, "character",
@@ -29,6 +30,7 @@ usage = paste(
 	"	--time_offset_cn=<column name of time offset>\n",
 	"	--subject_id_cn=<column name of subject IDs>\n",
 	"	--target_values_fn=<filename of list of target column names>\n",
+	"	[--group_cn=<column name of subject grouping>]\n",
 	"\n",
 	"	Specify at least one of these find/fit parameters:\n",
 	"	[-l (fit line: intercept/slope)]\n",
@@ -58,6 +60,7 @@ SubjectIDColName=opt$subject_id_cn;
 TargetValuesFname=opt$target_values_fn;
 OutputFname=opt$output;
 
+
 Opt_FindLine=F;
 Opt_FindLimits=F;
 Opt_FindDescriptive=F;
@@ -80,12 +83,18 @@ if(length(opt$find_timing)){
 	Opt_FindTiming=T;
 }
 
+GroupColName="";
+if(length(opt$group_cn)){
+	GroupColName=opt$group_cn;
+}
+
 cat("\n");
 cat("Input Filename:", InputFname , "\n");
 cat("Time Offset Colname:", TimeOffsetColName, "\n");
 cat("SubjectID Colname:", SubjectIDColName, "\n");
 cat("Target Values List Filename:", TargetValuesFname, "\n");
 cat("Output Filename:", OutputFname, "\n");
+cat("Group Colname: ", GroupColName, "\n");
 cat("\n");
 cat("Find Line: ", Opt_FindLine, "\n");
 cat("Find Limits: ", Opt_FindLimits, "\n");
@@ -313,11 +322,15 @@ plot_var=function(times, values, var_name, subject_id, val_lim){
 
 }
 
-pdf(file=paste(OutputFname, ".longit.pdf", sep=""), height=8.5, width=11);
+var_by_subj=list();
 
+pdf(file=paste(OutputFname, ".longit.pdf", sep=""), height=8.5, width=11);
 
 par(oma=c(0,0,2,0));
 par(mar=c(2,2,3,1));
+
+time_ranges_min=min(all_factors[,TimeOffsetColName]);
+time_ranges_max=max(all_factors[,TimeOffsetColName]);
 
 for(cur_subj in unique_subject_ids){
 
@@ -328,6 +341,7 @@ for(cur_subj in unique_subject_ids){
 	subj_mat_sorted=subj_mat[sort_ix,,drop=F];
 
 	#print(subj_mat_sorted);
+	var_by_subj[[cur_subj]]=list();
 
 	par(mfrow=c(multiplot_dim_r, multiplot_dim_c));
 	for(targ_var_ix in target_variable_list){
@@ -339,6 +353,8 @@ for(cur_subj in unique_subject_ids){
 		#	ylab=targ_var_ix,
 		#	ylim=c(ranges_mat[targ_var_ix, "min"], ranges_mat[targ_var_ix, "max"])
 		#);
+
+		var_by_subj[[cur_subj]][[targ_var_ix]]=subj_mat_sorted[,c(TimeOffsetColName, targ_var_ix),drop=F];
 
 		plot_var(
 			times=subj_mat_sorted[,TimeOffsetColName], 
@@ -394,6 +410,141 @@ outmat=cbind(unique_subject_ids, rounded_acc_mat);
 colnames(outmat)=out_hdr;
 
 write_factors(paste(OutputFname, ".longit.tsv", sep=""), outmat);
+
+##############################################################################
+
+if(GroupColName!=""){
+
+	# Generate subject to group mapping
+	group_mapping_matrix=all_factors[, c(GroupColName, SubjectIDColName)]; 
+	group_map=list();
+	for(subj_ix in unique_subject_ids){
+		ix=min(which(subj_ix==group_mapping_matrix[,SubjectIDColName]));
+		group_map[[subj_ix]]=group_mapping_matrix[ix, GroupColName];
+	}
+	print(group_map);
+	
+	# Get group info
+	uniq_group_names=unique(group_mapping_matrix[,GroupColName]);
+	num_uniq_groups=length(uniq_group_names);
+	cat("Groups:\n");
+	print(uniq_group_names);
+	cat("Num Groups: ", num_uniq_groups, "\n");
+
+	# Generate group members structure
+	group_members=list();
+	for(grp_ix in uniq_group_names){
+		group_members[[grp_ix]]=list();
+	}
+
+
+	for(subj_ix in unique_subject_ids){
+		subj_grp=group_map[[subj_ix]];
+		grp_mem=group_members[[subj_grp]];
+
+		if(length(grp_mem)){
+			grp_mem=c(grp_mem, subj_ix);
+		}else{
+			grp_mem=subj_ix;
+		}
+
+		group_members[[subj_grp]]=grp_mem;
+
+	}
+
+	print(group_members);
+
+	#---------------------------------------------------------------------
+	#var_by_subj[[cur_subj]][[targ_var_ix]]
+
+
+	par(mfrow=c(num_uniq_groups+1, 1));
+
+	colors=c("blue", "red", "yellow", "purple", "orange", "green");
+	num_colors=length(colors);
+	if(num_uniq_groups>num_colors){
+		colors=rainbow(num_uniq_groups);
+	}
+	names(colors)=uniq_group_names;
+
+	for(targ_var_ix in target_variable_list){
+
+		# plot by group
+		grp_data=list();
+		for(grp_ix in uniq_group_names){
+
+			# Create empty plot
+			plot(0,0, type="n", 
+				main=grp_ix,
+				xlim=c(time_ranges_min, time_ranges_max),
+				ylim=c(ranges_mat[targ_var_ix, "min"], ranges_mat[targ_var_ix, "max"]));
+
+			grp_members=group_members[[grp_ix]];
+
+			grp_data[[grp_ix]]=numeric();
+
+			# Draw lines with colors
+			for(subj_ix in grp_members){
+				sbj_dat=var_by_subj[[subj_ix]][[targ_var_ix]];
+				grp_data[[grp_ix]]=rbind(grp_data[[grp_ix]], sbj_dat);
+	
+				points(sbj_dat[, TimeOffsetColName], sbj_dat[, targ_var_ix], 
+					col=colors[grp_ix],
+					type="l", lwd=2);
+			}
+
+			# Draw thin black lines
+			for(subj_ix in grp_members){
+				sbj_dat=var_by_subj[[subj_ix]][[targ_var_ix]];
+				grp_data[[grp_ix]]=rbind(grp_data[[grp_ix]], sbj_dat);
+	
+				points(sbj_dat[, TimeOffsetColName], sbj_dat[, targ_var_ix], 
+					col="black",
+					type="l", lwd=.5);
+			}
+		}
+
+		# Generate combined plots
+		plot(0,0, type="n",
+			main="[Combined]",
+			xlim=c(time_ranges_min, time_ranges_max),
+			ylim=c(ranges_mat[targ_var_ix, "min"], ranges_mat[targ_var_ix, "max"]));
+
+	
+		# Compute lowess for groups
+		lowess_res=list();
+		for(grp_ix in uniq_group_names){
+			lowess_res[[grp_ix]]=lowess(
+				grp_data[[grp_ix]][,TimeOffsetColName], 
+				grp_data[[grp_ix]][,targ_var_ix]);
+		}
+
+		# Draw lines with colors
+		for(grp_ix in uniq_group_names){
+			points(lowess_res[[grp_ix]][["x"]],
+				lowess_res[[grp_ix]][["y"]], 
+				col=colors[grp_ix],
+				lwd=2,
+				type="l");
+
+		}
+		# Draw thin black lines
+		for(grp_ix in uniq_group_names){
+			points(lowess_res[[grp_ix]][["x"]],
+				lowess_res[[grp_ix]][["y"]], 
+				col="black",
+				lwd=.5,
+				type="l");
+		}
+
+		mtext(text=targ_var_ix, side=3, line=0, outer=T, cex=2, font=2);
+
+	}
+
+
+
+
+}
 
 ##############################################################################
 
