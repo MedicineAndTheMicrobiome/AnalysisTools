@@ -334,6 +334,18 @@ sub run_abundance_based{
 		";
 		run_command("Compare ALR Pred/Resp", "alr_pred_resp_comp.050", $cmd, "$output_dir/abundance/$COMP_DIR");	
 
+		$cmd=
+		"~/git/AnalysisTools/Profile/abundance_based/Compare_ALR_PredResp/Compare_ALR_PredResp.r \
+			-x $output_dir/abundance/$PRED_OUT_DIR/$model_name.alr_as_pred.pvals.tsv \
+			-y $output_dir/abundance/$RESP_OUT_DIR/$model_name.alr_as_resp.pvals.tsv \
+			-u $output_dir/abundance/$PRED_OUT_DIR/$model_name.alr_as_pred.coefs.tsv \
+			-v $output_dir/abundance/$RESP_OUT_DIR/$model_name.alr_as_resp.coefs.tsv \
+			-o $output_dir/abundance/$COMP_DIR/$model_name.alr \
+			-p .005 \
+			-t $tag_name
+		";
+		run_command("Compare ALR Pred/Resp", "alr_pred_resp_comp.005", $cmd, "$output_dir/abundance/$COMP_DIR");	
+
 	}
 
 }
