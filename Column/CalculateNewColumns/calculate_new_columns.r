@@ -60,6 +60,10 @@ usage = paste(
 	"	  example:\n",
 	"	     gpa=remap(grade, c(\"A\", \"B\", \"C\", \"D\", \"E\"), c(4, 3, 2, 1, 0))\n",
 	"\n",
+	"	redefine_NA(x, value):  This will remap all the NAs in x to the the specified value.\n",
+	"	  example:\n",
+	"	     medication_usage_nona=redefine_NA(medication_usage, 0)\n",
+	"\n",
 	"	function.list(fun, list(x, y, ...), na.rm=T): This a generic function that will apply the 'fun' command\n",
 	"		across the rows for each of the columns specified in the list.\n",
 	"		If you don't do this, the function by itself will apply to the column, isntead of\n",
@@ -268,6 +272,12 @@ remap=function(x, key, value, leave_unmapped_alone=T){
 	}
 
 	return(new);
+}
+
+redefine_NA=function(x, value){
+	na_ix=is.na(x);
+	x[na_ix]=value;
+	return(x);	
 }
 
 function.list=function(fun, arglist, na.rm=T){
