@@ -939,6 +939,8 @@ B_sample_ids=good_pairs_map[,B_minuend];
 
 factors=factors_wo_nas[A_sample_ids,,drop=F];
 
+print(factors);
+
 ##############################################################################
 # Compute diversity indices
 cat("Computing diversity indices:\n");
@@ -946,18 +948,14 @@ cat("Computing diversity indices:\n");
 div_names=c("Tail", "Shannon", "Simpson", "Evenness", "SimpsonsRecip");
 num_div_idx=length(div_names);
 
-div_mat=matrix(0, nrow=num_samples_wo_nas, ncol=num_div_idx);
 
-print(div_mat);
-
+div_mat=matrix(0, nrow=num_shared_sample_ids, ncol=num_div_idx);
 colnames(div_mat)=div_names;
-print(div_mat);
-print(rownames(normalized));
 rownames(div_mat)=rownames(normalized);
-print(div_mat);
 
 cat("Computing diversity indices across samples.\n");
-for(i in 1:num_samples_wo_nas){
+cat("Num Samples Paired Samples: ", num_shared_sample_ids, "\n");
+for(i in 1:num_shared_sample_ids){
         curNorm=normalized[i,];
         zeroFreeNorm=curNorm[curNorm>0]
         div_mat[i,"Tail"]=tail_statistic(zeroFreeNorm);
@@ -966,6 +964,8 @@ for(i in 1:num_samples_wo_nas){
         div_mat[i,"Evenness"]=div_mat[i,"Shannon"]/log(length(zeroFreeNorm));
         div_mat[i,"SimpsonsRecip"]=1/sum(curNorm^2);
 }
+
+print(div_mat);
 
 # Set evenness to 0 if there is only 1 category.
 evenness=div_mat[,"Evenness"];
