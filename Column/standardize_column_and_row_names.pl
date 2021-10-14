@@ -93,6 +93,8 @@ sub clean_name{
 	# Convert characters to underscores first
 	$item=~s/,/_/g;
 	$item=~s/ /_/g;
+	$item=~s/\{/_/g;
+	$item=~s/\}/_/g;
 	$item=~s/\(/_/g;
 	$item=~s/\)/_/g;
 	$item=~s/\]/_/g;
@@ -109,6 +111,7 @@ sub clean_name{
 	
 	# Convert characters to .
 	$item=~s/\:/\./g;
+	$item=~s/\;/\./g;
 	$item=~s/\?/\./g;
 	$item=~s/\//\./g;
 	$item=~s/\-/\./g;
