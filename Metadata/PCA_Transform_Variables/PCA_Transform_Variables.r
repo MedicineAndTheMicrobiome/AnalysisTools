@@ -15,6 +15,7 @@ params=c(
 	"response", "r", 2, "character",
 	"donnot_transform", "t", 2, "logical",
 	"pc_coverage", "c", 2, "numeric",
+	"pc_indiv_coverage", "i", 2, "numeric",
 	"export_orig", "O", 2, "logical",
 	"export_curated", "C", 2, "logical",
 	"export_imputed", "I", 2, "logical",
@@ -23,6 +24,7 @@ params=c(
 
 NORM_PVAL_CUTOFF=.2;
 PCA_COVERAGE=.95;
+PCA_INDIV_COVERAGE=0.05;
 CURATED_PREFIX="crtd";
 NO_CHANGE="orig"
 
@@ -39,6 +41,7 @@ usage = paste(
 	"\n",
 	"	[-t (do not transform/autocurate predictors, default: transform if necessary)\n",
 	"	[-c PC Coverage, default=", PCA_COVERAGE, "\n",
+	"	[-i PC Individual coverage mininum, default=", PCA_INDIV_COVERAGE, "\n",
 	"\n",
 	"Output Options:\n",
 	"	[-O (export Original predictor variable list)\n",
@@ -68,6 +71,7 @@ PredictorListName=opt$predictor;
 
 ResponseListName="";
 PCCoverage=PCA_COVERAGE;
+PCIndivCoverage=PCA_INDIV_COVERAGE;
 DonnotTransform=F;
 
 ExportOrig=F;
@@ -81,6 +85,10 @@ if(length(opt$response)){
 
 if(length(opt$pc_coverage)){
 	PCCoverage=opt$pc_coverage;
+}
+
+if(length(opt$pc_indiv_coverage)){
+	PCIndivCoverage=opt$pc_indiv_coverage;
 }
 
 if(length(opt$donnot_transform)){
@@ -705,6 +713,10 @@ num_pc_at_cutoff=sum(pca_propcumsum<PCCoverage)+1;
 # Compute per sample scores
 scores=(scale(imputed_mat, center=T, scale=T) %*% eigen$vectors);
 
+# Top PC with coverate >5%
+top_PCs=pca_propvar>PCIndivCoverage;
+num_pc_above_indiv_cutoff=sum(top_PCs);
+
 plot_text(c(
 	"Principal Components Analysis:",
 	"(Eigenvalues/vectors on Response Correlation Matrix)",
@@ -716,26 +728,63 @@ plot_text(c(
 	capture.output(print(pca_propcumsum)),
 	"",
 	paste("Number of PCs to retain >", (PCCoverage*100.0), "% of Variance:"),
-	num_pc_at_cutoff
+	num_pc_at_cutoff,
+	"",
+	paste("Number of PCs with each with >", (PCIndivCoverage*100.0), "% of Variance:"),
+	num_pc_above_indiv_cutoff
+
 ));
 
 # Plot bar plots of PC variance explanation
 num_kept_pred=length(pca_propvar);
 par(mfrow=c(2,1));
 par(mar=c(7,4,2,2));
-colors=rep("grey",num_kept_pred);
-colors[1:num_pc_at_cutoff]="darkcyan";
 
+###############################################################################
 
 cat("Generating PCA variance barplots...\n");
+
+# Individual
+colors=rep("grey",num_kept_pred);
+colors[1:num_pc_above_indiv_cutoff]="darkgreen";
 mids=barplot(pca_propvar, las=2, names.arg=1:num_kept_pred, xlab="PCs", 
 	col=colors,
 	ylab="Proportion", main="PCA Proportion of Variance");
+abline(h=PCIndivCoverage, col="darkgreen", lty=2);
 
+# Cumulative
+colors=rep("grey",num_kept_pred);
+colors[1:num_pc_at_cutoff]="darkcyan";
 mids=barplot(pca_propcumsum, las=2, names.arg=1:num_kept_pred, xlab="PCs", 
 	col=colors,
 	ylab="Proportion", main="PCA Cumulative Variance");
-abline(h=PCCoverage, col="blue", lty=2);
+abline(h=PCCoverage, col="darkcyan", lty=2);
+
+###############################################################################
+
+cat("Generating PCA variance barplots (zoomed in)...\n");
+
+# Individual
+colors=rep("grey",num_kept_pred);
+colors[1:num_pc_above_indiv_cutoff]="darkgreen";
+mids=barplot(pca_propvar, las=2, names.arg=1:num_kept_pred, xlab="PCs", 
+	col=colors,
+	ylab="Proportion", main="PCA Proportion of Variance\n(zoomed)",
+	xlim=c(0, num_pc_at_cutoff+2)
+	);
+abline(h=PCIndivCoverage, col="darkgreen", lty=2);
+
+# Cumulative
+colors=rep("grey",num_kept_pred);
+colors[1:num_pc_at_cutoff]="darkcyan";
+mids=barplot(pca_propcumsum, las=2, names.arg=1:num_kept_pred, xlab="PCs", 
+	col=colors,
+	ylab="Proportion", main="PCA Cumulative Variance\n(zoomed)",
+	xlim=c(0, num_pc_at_cutoff+2)
+	);
+abline(h=PCCoverage, col="darkcyan", lty=2);
+
+###############################################################################
 
 # Plot sample ordination based on scores
 sample_ids=rownames(resp_mat);
@@ -839,6 +888,7 @@ for(i in 1:num_pc_at_cutoff){
 
 	barplot(pc_pred_cor_ordered[1:num_corr_bars_to_plot], 
 		names.arg=names(pc_pred_cor_ordered)[1:num_corr_bars_to_plot], 
+		col=ifelse(i<=num_pc_above_indiv_cutoff, "darkgreen", "grey"),
 		ylim=c(-1,1),
 		ylab="Correlation",
 		las=2, cex.names=.7,
@@ -875,13 +925,19 @@ highlight_pcs=function(x){
 		label=leaf_attr$label;
 		print(label);
 		if(any(label==pc_name)){
-			color="red";
+			if(any(label==pc_name[1:num_pc_above_indiv_cutoff])){
+				color="darkgreen";
+			}else{
+				color="darkcyan";
+			}
 			font=2;
+			cex=1.05;
 		}else{
-			color="black";
+			color="grey33";
 			font=1;
+			cex=1/1.05;
 		}
-		attr(x, "nodePar")=c(leaf_attr$nodePar, list(lab.font=font, lab.col=color, cex=0));
+		attr(x, "nodePar")=c(leaf_attr$nodePar, list(lab.font=font, lab.col=color, lab.cex=cex, cex=0));
 	}
 	return(x);
 }
