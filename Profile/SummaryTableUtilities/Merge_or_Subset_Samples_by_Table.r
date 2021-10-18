@@ -322,11 +322,22 @@ for(i in 1:num_uniq_grps){
 	collpsed_map_table[i,]=collapse_entries(full_mapping_table[grp_idx,-col_num,drop=F]);
 }
 
-fc=file(paste(OutputDirectory,"/",OutputFileNameRoot, ".", group_name, ".meta.tsv", sep=""));
+out_meta_filename=paste(OutputDirectory,"/",OutputFileNameRoot, ".", group_name, ".meta.tsv", sep="");
+
+fc=file(out_meta_filename, "w");
 cat(file=fc, paste(c(ColumnName, colnames(collpsed_map_table)), collapse="\t"), "\n", sep="");
-write.table(collpsed_map_table, 
-	file=paste(OutputDirectory,"/",OutputFileNameRoot, ".", group_name, ".meta.tsv", sep=""),
-	quote=F, sep="\t", row.names=T, col.names=F, append=T);
+
+if(dim(collpsed_map_table)[2]==0){
+	write.table(rownames(collpsed_map_table), 
+		file=out_meta_filename,
+		quote=F,
+		row.names=F, col.names=F, append=T)
+}else{
+	write.table(collpsed_map_table, 
+		file=out_meta_filename,
+		quote=F, sep="\t", 
+		row.names=T, col.names=F, append=T);
+}
 
 
 ###############################################################################
