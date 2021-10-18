@@ -1,0 +1,8 @@
+SampleID=Collapsed
+MedbioNum=as.numeric(str.split_keep(Collapsed, "\\.", 3, NULL));
+MedbioID=paste("m", str.split_keep(Collapsed, "\\.", 3, NULL), sep="");
+DateStr=str.split_keep(Collapsed, "\\.", 4, NULL);
+DateForm=as.Date(DateStr, "%Y%m%d");
+DateNum=as.numeric(as.Date(DateStr, "%Y%m%d"));
+SampleType=str.split_keep(Collapsed, "\\.", 5, NULL);
+delete Collapsed
