@@ -6,7 +6,7 @@ library('getopt');
 
 params=c(
 	"input_summary_table", "s", 1, "character",
-	"output_mapping_file", "m", 2, "character"
+	"output_filename_root", "o", 1, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -17,7 +17,7 @@ usage = paste (
 	"\nUsage:\n\n", script_name,
 	"\n",
 	"	-s <input .summary_table.tsv>\n",
-	"	-m <output mapping file, tab-separated>\n",
+	"	-o <output filename root>\n",
 	"\n",	
 	"This script will generate a mapping table based on the\n",
 	"input summary table's sample IDs.  The first column\n",
@@ -33,19 +33,25 @@ usage = paste (
 	"	<current sample id>\\t<new sample id>\\n\n",
 	"\n");
 
-if(!length(opt$input_summary_table) || !length(opt$output_mapping_file)){
+if(!length(opt$input_summary_table) || !length(opt$output_filename_root)){
 	cat(usage);
 	q(status=-1);
 }
 
 InputSummaryTable=opt$input_summary_table;
-OuputMappingFile=opt$output_mapping_file;
+OuputFilenameRoot=opt$output_filename_root;
+
+MappingFilename=paste(OuputFilenameRoot, ".mapping.tsv", sep="");
+UniqueIDsFilename=paste(OuputFilenameRoot, ".unique_ids.lst", sep="");
 
 ###############################################################################
 
 cat("\n")
 cat("Input Summary Table Name: ", InputSummaryTable, "\n");
-cat("Output Mapping File Name: ", OuputMappingFile, "\n");       
+cat("Output Mapping File Name Root: ", OuputFilenameRoot, "\n");       
+cat("\n");
+cat("Mapping File Name: ", MappingFilename, "\n");
+cat("Unique ID list: ", UniqueIDsFilename, "\n");
 cat("\n");
 
 ###############################################################################
@@ -88,14 +94,26 @@ for(i in 1:num_samp_ids){
 
 ###############################################################################
 # Output
+
 cat("Writing Mapping File...\n");
-fc=file(OuputMappingFile, "w");
+fc=file(MappingFilename, "w");
 
 cat(file=fc, "Original\tCollapsed\n");
 for(samp_idx in 1:num_samp_ids){
 	cat(file=fc, sample_ids[samp_idx], "\t", collapsed_id[samp_idx], "\n", sep="");
 }
 close(fc);	
+
+###############################################################################
+
+cat("Writing unique list of sample IDs...\n");
+uniq_ids=sort(unique(collapsed_id));
+fc=file(UniqueIDsFilename, "w");
+cat(file=fc, "SampleID\n");
+for(samp_idx in 1:length(uniq_ids)){
+	cat(file=fc, uniq_ids[samp_idx], "\n", sep="");
+}
+close(fc);
 
 ###############################################################################
 
