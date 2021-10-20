@@ -13,11 +13,11 @@ params=c(
 	"main_filen", "F", 1, "character",
 	"main_keycn", "K", 1, "character",
 	"main_offcn", "D", 1, "character",
-	"main_dateformat", "T", 1, "character",
+	"main_dateformat", "T", 2, "character",
 	"aux_filen", "f", 1, "character",
 	"aux_keycn", "k", 1, "character",
 	"aux_offcn", "d", 1, "character",
-	"aux_dateformat", "t", 1, "character",
+	"aux_dateformat", "t", 2, "character",
 	"aux_valuecn", "v", 2, "character",
 	"aux_cn_fn_list", "l", 2, "character", 
 	"aux_choose_closest", "h", 2, "character",
@@ -34,12 +34,12 @@ usage = paste(
 	"	--main_filen <factor file name (to add to)>\n",
 	"	--main_keycn <column name with key (e.g. subject id)>\n",
 	"	--main_offcn <column name with Date/Offset>\n",
-	"	--main_dateformat <eg. \"%Y-%m-%d\">\n",
+	"	[--main_dateformat <default, \"%Y-%m-%d\">]\n",
 	"\n",
 	"	--aux_filen <factor file name (to add from>\n",
 	"	--aux_keycn <column name with key (e.g. subject id)>\n",
 	"	--aux_offcn <column name with Date/Offset>\n",
-	"	--aux_dateformat <eg. \"%Y-%m-%d\">\n",
+	"	[--aux_dateformat <default, \"%Y-%m-%d\">]\n",
 	"\n",
 	"	One of: \n",
 	"	[--aux_valuecn <column name with value to link>]\n",
@@ -62,11 +62,9 @@ if(
 	!length(opt$main_filen) || 
 	!length(opt$main_keycn) || 
 	!length(opt$main_offcn) || 
-	!length(opt$main_dateformat) || 
 	!length(opt$aux_filen) || 
 	!length(opt$aux_keycn) || 
 	!length(opt$aux_offcn) || 
-	!length(opt$aux_dateformat) || 
 	!length(opt$outputfn)
 ){
 	cat(usage);
@@ -87,6 +85,15 @@ OutputColumnPrefix=opt$output_cname_prefix;
 AuxValueColname=opt$aux_valuecn;
 AuxFilenameColnameList=opt$aux_cn_fn_list;
 AuxChooseClosest=opt$aux_choose_closest;
+
+
+if(!length(MainDateFormat)){
+	MainDateFormat="%Y-%m-%d";	
+}
+
+if(!length(AuxDateFormat)){
+	AuxDateFormat="%Y-%m-%d";	
+}
 
 if(length(AuxChooseClosest)){
 	AuxChooseClosest=T;
