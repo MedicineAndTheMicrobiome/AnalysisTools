@@ -10,7 +10,8 @@ params=c(
 	"output_fname_root", "o", 1, "character",
 	"force_ignore", "f", 2, "logical",
 	"column_name", "c", 2, "character",
-	"output_dir", "d", 2, "character"
+	"output_dir", "d", 2, "character",
+	"max_depth", "M", 2, "numeric"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -26,6 +27,7 @@ usage = paste (
 	"	[-o <output filename root>]\n",
 	"	[-c <column name of new ID in sample mapping table>]\n",
 	"	[-d <output directory>]\n",
+	"	[-M <max depth used in merging samples, default=Inf>]\n",
 	"\n",	
 	"This script will read in both the summary table and mapping table\n",
 	"and merge the counts between samples that map to the same group/id.\n",
@@ -77,6 +79,16 @@ usage = paste (
 	"\n",
 	"The -d output directory option will override directory specified in the input\n",
 	"or output file name root, if specified.\n",
+	"\n",
+	"The -M max depth limits the contribution of a sample's reads.\n",
+	"  This allows individual samples to be represented more uniformly, independent of\n",
+	"  sequencing depth.\n",
+	"  For example: \n",
+	"    if max_depth = 0, then the sample with the lowest depth will be used as the max_depth.\n",
+	"    if max_depth = Inf, then there is no limit and all samples depths will be summed up.\n",
+	"    if max_depth = 3000, if there are samples with <3000 reads, then any sample with >=3000\n",
+	"        reads will be 'subsampled' down to 3000.  Otherwise, the depth of the sample with\n",
+	"        the least depth will be used.\n",
 	"\n");
 
 if(!length(opt$input_file) || !length(opt$mapping_table)){
@@ -128,6 +140,12 @@ if(!file.exists(OutputDirectory)){
 	dir.create(OutputDirectory);
 }
 
+if(length(opt$max_depth)){
+	MaxDepth=opt$max_depth;
+}else{
+	MaxDepth=Inf;
+}
+
 ###############################################################################
 
 cat("\n")
@@ -137,6 +155,7 @@ cat("Output File Name Root: ", OutputFileNameRoot, "\n");
 cat("Mapping Table Name: ", MappingTable, "\n");
 cat("Column Name: ", ColumnName, "\n");
 cat("Force Ignore : ", ForceIgnore, "\n");
+cat("Max Depth : ", MaxDepth, "\n");
 
 ###############################################################################
 ###############################################################################
@@ -211,16 +230,82 @@ cat("Unique Groups:\n");
 print(unique_groups);
 cat("\n");
 
+
+###############################################################################
+
+combine_samples=function(count_mat, totals, max_depth){
+
+	cat("Totals:\n");
+	print(totals);
+	cat("Max Depth: ", max_depth, "\n");
+
+	num_samples=nrow(count_mat);
+
+	if(max_depth==Inf || num_samples==1){
+		combined_counts=apply(count_mat, 2, sum);
+	}else{
+		norm=matrix(NA, nrow=nrow(count_mat), ncol=ncol(count_mat));
+
+		# Calculate how many reads to retain per sample
+		kept_totals=numeric();
+
+		# If all samples have more depth then the max_depth,
+		# then use the min across all samples.
+		min_cutoff=max(min(totals), max_depth);
+
+		for(i in 1:num_samples){
+			
+			# Normalize all samples
+			norm[i,]=count_mat[i,]/totals[i];
+
+			# Calculate max depth from each sample to use
+			kept_totals[i]=min(totals[i], min_cutoff);
+		}
+
+		cat("\nOriginal / Kept Totals:\n");
+		print(totals);
+		print(kept_totals);
+
+		#cat("Normalized: \n");
+		#print(norm);
+		
+		total_depth=sum(kept_totals);
+		cat("Kept Depth: ", total_depth, "\n");
+		kept_prop=kept_totals/total_depth;
+		cat("Kept Proportions: \n");
+		print(kept_prop);
+
+		sum_weighted_normalized=rep(0, ncol(count_mat));
+
+		for(i in 1:num_samples){
+			sum_weighted_normalized=sum_weighted_normalized+
+				kept_prop[i]*norm[i,];
+		}
+
+		#print(sum(sum_weighted_normalized));
+		combined_counts=round(sum_weighted_normalized*total_depth);
+
+		cat("\nCombined Depth (with rounding):\n");
+		print(sum(combined_counts));
+
+	}
+
+	return(combined_counts);
+}
+
 ###############################################################################
 # Extract samples by group and join them if necessary
 
-new_summary_table=matrix(NA, nrow=num_uniq_grps, ncol=num_categories);
+new_summary_table=matrix(0, nrow=num_uniq_grps, ncol=num_categories);
 
 cat("Working on extracting and merging:\n");
 mapping_sample_names=rownames(mapping_table);
 available_sample_names=rownames(counts_mat);
 
 for(i in 1:num_uniq_grps){
+
+	cat("\n\n-----------------------------------------------------------------------------\n");
+
 	cur_grp=unique_groups[i];
 	
 	grp_idx=(mapping_table[,1]==cur_grp);
@@ -249,12 +334,27 @@ for(i in 1:num_uniq_grps){
 		cat("\n");
 	}	
 
-	sub_matrix=counts_mat[target_sample_names, , drop=F];
-	new_summary_table[i,]=apply(sub_matrix, 2, sum);
+	if(length(target_sample_names)>0){
+
+		sub_matrix=counts_mat[target_sample_names, , drop=F];
+		sums=apply(sub_matrix, 1, sum);
+
+		if(MaxDepth==0){
+			used_max_depth=min(sums);
+			cat("Using depth of: ", used_max_depth, "\n");
+		}else{
+			used_max_depth=MaxDepth;
+		}
+
+		new_summary_table[i,]=combine_samples(sub_matrix, sums, used_max_depth);
+
+	}
 }
 
 colnames(new_summary_table)=colnames(counts_mat);
 rownames(new_summary_table)=unique_groups;
+
+
 
 # Remove samples without counts
 new_sample_counts=apply(new_summary_table, 1, sum);
