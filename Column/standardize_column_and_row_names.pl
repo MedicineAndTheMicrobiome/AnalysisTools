@@ -122,6 +122,8 @@ sub clean_name{
 	$item=~s/\=/.eq./g;
 	$item=~s/\*/.x/g;
 
+	$item=~s/[^a-zA-Z0-9\._]//g;
+
 	print STDERR "$before / $item\n";
 	
 	return($item);
