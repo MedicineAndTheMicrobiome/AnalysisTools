@@ -402,14 +402,6 @@ for(cur_subj in unique_subject_ids){
 	mtext(text=cur_subj, side=3, line=0, outer=T, cex=2, font=2);
 }
 
-rounded_acc_mat=round(acc_matrix, 4);
-
-out_hdr=c(SubjectIDColName, colnames(rounded_acc_mat));
-outmat=cbind(unique_subject_ids, rounded_acc_mat);
-
-colnames(outmat)=out_hdr;
-
-write_factors(paste(OutputFname, ".longit.tsv", sep=""), outmat);
 
 ##############################################################################
 
@@ -542,9 +534,27 @@ if(GroupColName!=""){
 	}
 
 
-
-
 }
+
+###############################################################################
+
+rounded_acc_mat=round(acc_matrix, 4);
+
+if(GroupColName!=""){
+	collapsed_group_ids=character();
+	for(sbj_ix in unique_subject_ids){
+		collapsed_group_ids=c(collapsed_group_ids, group_map[[sbj_ix]]);
+	}
+
+	out_hdr=c(SubjectIDColName, GroupColName, colnames(rounded_acc_mat));
+	outmat=cbind(unique_subject_ids, collapsed_group_ids,  rounded_acc_mat);
+}else{
+	out_hdr=c(SubjectIDColName, colnames(rounded_acc_mat));
+	outmat=cbind(unique_subject_ids, rounded_acc_mat);
+}
+
+colnames(outmat)=out_hdr;
+write_factors(paste(OutputFname, ".longit.tsv", sep=""), outmat);
 
 ##############################################################################
 
