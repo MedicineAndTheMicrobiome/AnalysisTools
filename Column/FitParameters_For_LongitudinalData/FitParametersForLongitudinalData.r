@@ -455,10 +455,16 @@ generate_group_plots=function(group_info, stats_mat, var_name, grp_cols){
 	
 		# Generate Plots
 
+		new_page=par()$page;
+
 		plot(0,0, type="n", main=gsub(paste(var_name, "_", sep=""), "", stats_ix),
 			xlim=c(1-1, num_groups+1), ylim=c(min-(range*.05), max+(range*.05)),
 			xaxt="n"
 			);
+
+		if(new_page){
+			mtext(var_name, outer=T, font=2);
+		}
 
 		axis(side=1, at=c(1:num_groups), labels=group_ids, cex.axis=.75);
 
@@ -514,8 +520,6 @@ generate_group_plots=function(group_info, stats_mat, var_name, grp_cols){
 		
 	}
 
-	mtext(var_name, outer=T);
-	
 	
 }
 
