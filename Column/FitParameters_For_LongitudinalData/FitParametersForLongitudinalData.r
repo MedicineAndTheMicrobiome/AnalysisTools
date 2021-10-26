@@ -37,7 +37,7 @@ usage = paste(
 	"	[-m (find limits: min/max/range)]\n",
 	"	[-d (find descriptive stats: mean/stdev/median)]\n",
 	"	[-r (find ranges: first/last/N)]\n",
-	"	[-n (find timing: time_span/freq)]\n",
+	"	[-n (find timing: timespan/freq)]\n",
 	"\n",
 	"	-o <output filename>\n",
 	"\n");
@@ -230,7 +230,7 @@ if(Opt_FindRanges){
 	}
 }
 if(Opt_FindTiming){
-	extensions=c(extensions, c("time_span", "freq"));
+	extensions=c(extensions, c("timespan", "freq"));
 	calc_timing=function(data){
 
 		x=data[,1];
@@ -238,10 +238,10 @@ if(Opt_FindTiming){
 		first_time=min(x);
 		last_time=max(x);
 		N=length(x);
-		time_span=last_time-first_time;	
-		freq=N/time_span;
+		timespan=last_time-first_time;	
+		freq=N/timespan;
 
-		return(c(time_span, freq));
+		return(c(timespan, freq));
 	}
 }
 
@@ -253,16 +253,21 @@ num_stats=length(extensions);
 num_new_variables=num_stats*num_target_variables;
 
 new_var_names=c();
+target_to_newvar_map=list();
 for(var_ix in target_variable_list){
+	var_specific=character();
 	for(ext_ix in extensions){
-		new_var_names=c(new_var_names, paste(var_ix, "_", ext_ix, sep=""));
+		name_w_ext=paste(var_ix, "_", ext_ix, sep="");
+		new_var_names=c(new_var_names, name_w_ext);
+		var_specific=c(var_specific, name_w_ext);
 	}
+	target_to_newvar_map[[var_ix]]=var_specific;
 }
-
 
 cat("\n");
 cat("Num New Variables: ", num_new_variables, "\n");
 print(new_var_names);
+print(target_to_newvar_map);
 
 acc_matrix=matrix(NA, nrow=num_unique_subject_ids, ncol=num_new_variables);
 colnames(acc_matrix)=new_var_names;
@@ -332,6 +337,7 @@ par(mar=c(2,2,3,1));
 time_ranges_min=min(all_factors[,TimeOffsetColName]);
 time_ranges_max=max(all_factors[,TimeOffsetColName]);
 
+
 for(cur_subj in unique_subject_ids){
 
 	subj_ix=(cur_subj==subject_ids_arr);
@@ -392,9 +398,8 @@ for(cur_subj in unique_subject_ids){
 		}
 		if(Opt_FindTiming){
 			acc_matrix[cur_subj, paste(targ_var_ix, "_", 
-				c("time_span", "freq"), sep="")]=
+				c("timespan", "freq"), sep="")]=
 				calc_timing(subj_mat_sorted[,c(TimeOffsetColName, targ_var_ix),drop=F]);
-
 		}
 
 	}	
@@ -404,6 +409,115 @@ for(cur_subj in unique_subject_ids){
 
 
 ##############################################################################
+
+generate_group_plots=function(group_info, stats_mat, var_name, grp_cols){
+
+	cat("Generating Grouped Plots:\n");
+	print(group_info);
+	print(stats_mat);
+
+	num_groups=length(group_info);
+	group_ids=names(group_info);
+	cat("Num Groups: ", num_groups, "\n");
+	
+	stats_names=colnames(stats_mat);
+	for(stats_ix in stats_names){
+		cat("\n\nStat Name: ", stats_ix, "\n");
+		grouped_data=list();
+		medians=list();
+		pvalue=list();
+
+		min=min(stats_mat[, stats_ix]);
+		max=max(stats_mat[, stats_ix]);
+		range=max-min;
+
+		# Perform calculations
+		for(grp_ix in group_ids){
+
+			in_group=group_info[[grp_ix]];
+			out_group=numeric();
+			for(grp_ix_2 in setdiff(group_ids, grp_ix)){
+				out_group=c(out_group, group_info[[grp_ix_2]]);
+			}
+
+			print(in_group);
+			print(out_group);
+
+			grp_data=stats_mat[in_group, stats_ix]; 
+			outgrp_data=stats_mat[out_group, stats_ix];
+
+			wilcox_res=wilcox.test(grp_data, outgrp_data);
+			pvalue[[grp_ix]]=wilcox_res$p.value;
+	
+			grouped_data[[grp_ix]]=grp_data;
+			medians[[grp_ix]]=median(grp_data);
+		}
+	
+		# Generate Plots
+
+		plot(0,0, type="n", main=gsub(paste(var_name, "_", sep=""), "", stats_ix),
+			xlim=c(1-1, num_groups+1), ylim=c(min-(range*.05), max+(range*.05)),
+			xaxt="n"
+			);
+
+		axis(side=1, at=c(1:num_groups), labels=group_ids, cex.axis=.75);
+
+		# 
+		for(grp_ix in 1:num_groups){
+			num_pts=length(grouped_data[[grp_ix]]);
+
+			# Annotate median
+			points(c(grp_ix-.20, grp_ix+.20), rep(medians[[grp_ix]], 2),
+				type="l", lwd=2, col="black"
+				);
+
+			# Draw datapoints
+			points(rep(grp_ix, num_pts), grouped_data[[grp_ix]], col=grp_cols[grp_ix], lwd=2);
+			points(rep(grp_ix, num_pts), grouped_data[[grp_ix]], col="black", lwd=.5);
+
+			adj.gly=c(-.05,-.2);
+			adj.pvl=c(-.05,.4);	
+			pts=.65;
+			gly_mult=2;
+		
+			if(pvalue[[grp_ix]]<=0.001){
+
+				text(grp_ix+.25, medians[[grp_ix]], "****",
+					cex=pts*gly_mult, adj=adj.gly);
+				text(grp_ix+.25, medians[[grp_ix]], sprintf("%0.4f", pvalue[[grp_ix]]), 
+					cex=pts, adj=adj.pvl);
+
+			}else if(pvalue[[grp_ix]]<=0.01){
+
+				text(grp_ix+.25, medians[[grp_ix]], "*** ",
+					cex=pts*gly_mult, adj=adj.gly);
+				text(grp_ix+.25, medians[[grp_ix]], sprintf("%0.3f ", pvalue[[grp_ix]]), 
+					cex=pts, adj=adj.pvl);
+
+			}else if(pvalue[[grp_ix]]<=0.05){
+
+				text(grp_ix+.25, medians[[grp_ix]], "**  ",
+					cex=pts*gly_mult, adj=adj.gly);
+				text(grp_ix+.25, medians[[grp_ix]], sprintf("%0.2f  ", pvalue[[grp_ix]]), 
+					cex=pts, adj=adj.pvl);
+
+			}else if(pvalue[[grp_ix]]<=0.1){
+
+				text(grp_ix+.25, medians[[grp_ix]], "*   ",
+					cex=pts*gly_mult, adj=adj.gly);
+				text(grp_ix+.25, medians[[grp_ix]], sprintf("%0.1f   ", pvalue[[grp_ix]]), 
+					cex=pts, adj=adj.pvl);
+
+			}
+		}
+
+		
+	}
+
+	mtext(var_name, outer=T);
+	
+	
+}
 
 if(GroupColName!=""){
 
@@ -444,22 +558,30 @@ if(GroupColName!=""){
 
 	}
 
+	cat("Group Members:\n");
 	print(group_members);
 
 	#---------------------------------------------------------------------
 	#var_by_subj[[cur_subj]][[targ_var_ix]]
 
-
-	par(mfrow=c(num_uniq_groups+1, 1));
+	grp_plot_rows=ceiling(sqrt(num_uniq_groups+1));
+	grp_plot_cols=grp_plot_rows;
+	if(grp_plot_cols*(grp_plot_rows-1)>(num_uniq_groups+1)){
+		grp_plot_rows=grp_plot_rows-1;
+	}
 
 	colors=c("blue", "red", "yellow", "purple", "orange", "green");
 	num_colors=length(colors);
 	if(num_uniq_groups>num_colors){
 		colors=rainbow(num_uniq_groups);
 	}
+	colors=colors[1:num_uniq_groups];
 	names(colors)=uniq_group_names;
 
 	for(targ_var_ix in target_variable_list){
+		cat("Current Target Variables:", targ_var_ix, "\n");
+
+		par(mfrow=c(grp_plot_rows, grp_plot_cols));
 
 		# plot by group
 		grp_data=list();
@@ -530,6 +652,14 @@ if(GroupColName!=""){
 		}
 
 		mtext(text=targ_var_ix, side=3, line=0, outer=T, cex=2, font=2);
+
+		#--------------------------------------------------------------
+
+		cur_varlist=target_to_newvar_map[[targ_var_ix]];
+
+		par(mfrow=c(multiplot_dim_r, multiplot_dim_c));
+
+		generate_group_plots(group_members, acc_matrix[,cur_varlist], targ_var_ix, colors);
 
 	}
 
