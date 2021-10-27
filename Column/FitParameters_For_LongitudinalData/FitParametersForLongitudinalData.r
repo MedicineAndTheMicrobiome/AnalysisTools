@@ -447,7 +447,12 @@ generate_group_plots=function(group_info, stats_mat, var_name, grp_cols){
 			outgrp_data=stats_mat[out_group, stats_ix];
 
 			wilcox_res=wilcox.test(grp_data, outgrp_data);
+
 			pvalue[[grp_ix]]=wilcox_res$p.value;
+
+			if(is.na(pvalue[[grp_ix]])){
+				pvalue[[grp_ix]]=1.0;
+			}
 	
 			grouped_data[[grp_ix]]=grp_data;
 			medians[[grp_ix]]=median(grp_data);
@@ -661,7 +666,14 @@ if(GroupColName!=""){
 
 		cur_varlist=target_to_newvar_map[[targ_var_ix]];
 
-		par(mfrow=c(multiplot_dim_r, multiplot_dim_c));
+		num_curvar=length(cur_varlist);	
+		var_stat_dim_c=ceiling(sqrt(num_curvar));	
+		var_stat_dim_r=var_stat_dim_c;
+		if(var_stat_dim_c*(var_stat_dim_r-1) > num_curvar){
+			var_stat_dim_r=var_stat_dim_r-1;
+		}
+		
+		par(mfrow=c(var_stat_dim_r, var_stat_dim_c));
 
 		generate_group_plots(group_members, acc_matrix[,cur_varlist], targ_var_ix, colors);
 
