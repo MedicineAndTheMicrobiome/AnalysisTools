@@ -1147,14 +1147,22 @@ num_coefficients=nrow(lm_summaries[[1]]$coefficients);
 coefficient_names=rownames(lm_summaries[[1]]$coefficients);
 summary_var_names=rownames(lm_summaries[[1]]$coefficients);
 covariate_coefficients=setdiff(coefficient_names, c("(Intercept)", alr_cat_names));
+num_covariate_coefficients=length(covariate_coefficients);
 
 # In case some alr categories are not calculable...
 shrd_alr_names=intersect(alr_cat_names, coefficient_names);
 
-summary_res_coeff=matrix(0, nrow=num_coefficients, ncol=num_responses, dimnames=list(coefficient_names, response_fit_names));
-summary_res_pval=matrix(0, nrow=num_coefficients, ncol=num_responses, dimnames=list(coefficient_names, response_fit_names));
+summary_res_coeff=matrix(0, nrow=num_coefficients, ncol=num_responses, 
+	dimnames=list(coefficient_names, response_fit_names));
+summary_res_pval=matrix(0, nrow=num_coefficients, ncol=num_responses, 
+	dimnames=list(coefficient_names, response_fit_names));
 summary_res_rsqrd=matrix(0, nrow=num_responses, ncol=3, dimnames=list(response_fit_names, 
 	c("Full Model", "Reduced Model", "Difference")));
+
+summary_res_reduced_coef=matrix(0, nrow=num_covariate_coefficients, ncol=num_responses,
+	dimnames=list(covariate_coefficients, response_fit_names));
+summary_res_reduced_pval=matrix(0, nrow=num_covariate_coefficients, ncol=num_responses,
+	dimnames=list(covariate_coefficients, response_fit_names));
 
 for(i in 1:num_responses){
 	cat("\n\nWorking on: ", responses[i], "\n");
@@ -1175,6 +1183,14 @@ for(i in 1:num_responses){
 	reduced_coef_tab=round(reduced_lm_summaries[[i]]$coefficients, 4);
 	reduced_coef_tab=reduced_coef_tab[setdiff(rownames(reduced_coef_tab), "(Intercept)"),,drop=F];
 
+
+
+	resp_name=gsub("Response ", "", responses[i]);
+
+	summary_res_reduced_coef[covariate_coefficients, resp_name]=
+		round(reduced_lm_summaries[[i]]$coefficients[covariate_coefficients,"Estimate"], 4);
+	summary_res_reduced_pval[covariate_coefficients,resp_name]=
+		round(reduced_lm_summaries[[i]]$coefficients[covariate_coefficients,"Pr(>|t|)"], 4);
 
 	plot_text(c(
 		paste("Univariate: ", responses[i], sep=""),
@@ -1385,7 +1401,7 @@ close(fh);
 ###############################################################################
 # Write ALR Predictor Coefficients to file
 
-fh=file(paste(OutputRoot, ".alr_as_pred.all_pred._coef_and_pval.tsv", sep=""), "w");
+fh=file(paste(OutputRoot, ".alr_as_pred.all_pred.coef_and_pval.tsv", sep=""), "w");
 num_out_col=ncol(summary_res_coeff);
 response_names=colnames(summary_res_coeff);
 
@@ -1429,6 +1445,24 @@ for(var in shrd_alr_names){
 }
 
 close(fh);
+
+###############################################################################
+# Write Reduced Model (covariates only) to file
+
+fn=paste(OutputRoot, ".alr_as_pred.reduced.cov_only.coef_and_pval.tsv", sep="");
+
+fh=file(fn, "w");
+cat(file=fh, "Reduced Model (Covariates-only) Regression Results:\n\n");
+cat(file=fh, "[Coefficients]\n\nCovariates\t");
+close(fh);
+
+write.table(file=fn, x=summary_res_reduced_coef, append=T, quote=F, sep="\t");
+
+fh=file(fn, "a");
+cat(file=fh, "\n\n[P-values]\n\nCovariates\t");
+close(fh);
+
+write.table(file=fn, x=summary_res_reduced_pval, append=T, quote=F, sep="\t");
 
 
 ###############################################################################
