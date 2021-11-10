@@ -1385,7 +1385,7 @@ close(fh);
 ###############################################################################
 # Write ALR Predictor Coefficients to file
 
-fh=file(paste(OutputRoot, ".alr_as_pred.alr.covr.coefficients.tsv", sep=""), "w");
+fh=file(paste(OutputRoot, ".alr_as_pred.all_pred._coef_and_pval.tsv", sep=""), "w");
 num_out_col=ncol(summary_res_coeff);
 response_names=colnames(summary_res_coeff);
 
@@ -1394,6 +1394,8 @@ cat(file=fh, "\n");
 cat(file=fh, "Responses:\t", paste(response_names, collapse="\t"), sep="");
 cat(file=fh, "\n\n");
 
+# Coefficients
+cat(file=fh, "[Coefficients]\n");
 for(var in covariate_coefficients){
 	cat(file=fh, var, paste(
 		round(summary_res_coeff[var, response_names], 4), collapse="\t"), sep="\t");
@@ -1405,6 +1407,24 @@ cat(file=fh, "\n");
 for(var in shrd_alr_names){
 	cat(file=fh, var, paste(
 		round(summary_res_coeff[var, response_names], 4), collapse="\t"), sep="\t");
+	cat(file=fh, "\n");
+}
+
+cat(file=fh, "\n\n");
+
+# P-values
+cat(file=fh, "[P-values]\n");
+for(var in covariate_coefficients){
+	cat(file=fh, var, paste(
+		round(summary_res_pval[var, response_names], 4), collapse="\t"), sep="\t");
+	cat(file=fh, "\n");
+}
+
+cat(file=fh, "\n");
+
+for(var in shrd_alr_names){
+	cat(file=fh, var, paste(
+		round(summary_res_pval[var, response_names], 4), collapse="\t"), sep="\t");
 	cat(file=fh, "\n");
 }
 
