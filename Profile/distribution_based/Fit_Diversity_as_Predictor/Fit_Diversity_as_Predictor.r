@@ -877,9 +877,29 @@ anova_pval=matrix(NA, nrow=num_pred_var+1, ncol=num_div_idx,
 		dimnames=list(c("diversity",model_var), div_names));
 
 
+reduced_model_res_list=list();
+
+# Inititalize storage of reduced model
 for(i in 1:num_div_idx){
 
-	cat("Working on: ", div_names[i], "\n", sep="");
+	div_name=div_names[i];
+	reduced_model_res_list[[div_name]]=list();
+	
+
+	reduced_model_res_list[[div_name]][["p-values"]]=
+		matrix(NA, nrow=num_regression_variables, ncol=num_resp_var,
+			dimnames=list(regression_variables, responses_arr));
+
+	reduced_model_res_list[[div_name]][["coefficients"]]=
+		matrix(NA, nrow=num_regression_variables, ncol=num_resp_var,
+			dimnames=list(regression_variables, responses_arr));
+}
+
+
+for(i in 1:num_div_idx){
+
+	cur_div_name=div_names[i];
+	cat("Working on: ", cur_div_name, "\n", sep="");
 
 	diversity=div_mat[samp_wo_nas, div_names[i], drop=F];
 	all_predictors_mat=cbind(diversity[samp_wo_nas,,drop=F], predictors_mat[samp_wo_nas,,drop=F]);
@@ -927,6 +947,7 @@ for(i in 1:num_div_idx){
 	red_mv_fit=lm(as.formula(red_model_string), data=as.data.frame(all_predictors_mat), y=T);
 	red_sum_fit=summary(red_mv_fit);
 
+	
 	# Full/Reduced ANOVA
 	improv_matrix=calc_model_imprv("responses_mat", red_model_string, full_model_string,
 		predictors_mat, responses_mat);
@@ -959,20 +980,20 @@ for(i in 1:num_div_idx){
 		missing=setdiff(regression_variables, 
 			rownames(sum_fit[[sum_resp_names[resp_ix]]]$coefficients));
 
-		avail_regression_variables=regression_variables;
+		avail_reg_var=regression_variables;
 		if(length(missing)>0){
 			cat("***************************************************\n");
 			cat("Warning: Not all regression coefficient calculable:\n");
 			print(missing);
 			cat("***************************************************\n");
-			avail_regression_variables=setdiff(regression_variables, missing);
+			avail_reg_var=setdiff(regression_variables, missing);
 		}
 		
 
-		estimates_matrix[avail_regression_variables, resp_ix]=
-			sum_fit[[sum_resp_names[resp_ix]]]$coefficients[avail_regression_variables, "Estimate"];
-		pvalues_matrix[avail_regression_variables, resp_ix]=
-			sum_fit[[sum_resp_names[resp_ix]]]$coefficients[avail_regression_variables, "Pr(>|t|)"];
+		estimates_matrix[avail_reg_var, resp_ix]=
+			sum_fit[[sum_resp_names[resp_ix]]]$coefficients[avail_reg_var, "Estimate"];
+		pvalues_matrix[avail_reg_var, resp_ix]=
+			sum_fit[[sum_resp_names[resp_ix]]]$coefficients[avail_reg_var, "Pr(>|t|)"];
 
 		# Store diversity
 		diversity_coef[resp_ix, div_names[i]]=
@@ -989,7 +1010,15 @@ for(i in 1:num_div_idx){
                         sum_fit[[sum_resp_names[resp_ix]]]$adj.r.squared-
                         red_sum_fit[[sum_resp_names[resp_ix]]]$adj.r.squared;
 
+		# Store reduced model results
+		reduced_model_res_list[[cur_div_name]][["coefficients"]][avail_reg_var,responses_arr[resp_ix]]=
+			red_sum_fit[[sum_resp_names[resp_ix]]][["coefficients"]][avail_reg_var, "Estimate"];
+
+		reduced_model_res_list[[cur_div_name]][["p-values"]][avail_reg_var,responses_arr[resp_ix]]=
+			red_sum_fit[[sum_resp_names[resp_ix]]][["coefficients"]][avail_reg_var, "Pr(>|t|)"];
+
 	}
+
 
 	coeff_list[[div_names[i]]]=estimates_matrix;
 	pval_list[[div_names[i]]]=pvalues_matrix;
@@ -1000,6 +1029,25 @@ for(i in 1:num_div_idx){
 	paint_matrix(pvalues_matrix, title=paste("P-values: ", div_names[i], " Covariates", sep=""), 
 		plot_col_dendr=T, plot_row_dendr=T,
 		high_is_hot=F, plot_min=0, plot_max=1);
+
+	plot_text(c(
+		"Full Model (w/ Diversity):",
+		"  [Coefficients]",
+		capture.output(print(round(estimates_matrix, 4))),
+		"",
+		"  [P-values]",
+		capture.output(print(round(pvalues_matrix, 4))),
+		"",
+		"",
+		"Reduced Model (Covariates-only w/o Diversity):",
+		"  [Coefficients]",
+		capture.output(print(round(reduced_model_res_list[[cur_div_name]][["coefficients"]],4))),
+		"",
+		"  [P-values]",
+		capture.output(print(round(reduced_model_res_list[[cur_div_name]][["p-values"]],4)))
+		
+	));
+
 
 	# Output model improvment statistics
 	signf=sapply(improv_matrix[,"Diff ANOVA P-Value"], sig_char);
@@ -1119,6 +1167,49 @@ for(dnm in div_names){
 }
 
 close(fh);
+
+##############################################################################
+
+# Export reduced model statistics:
+fn=paste(OutputRoot, ".div_as_pred.full_vs_reduced.covar_coef_and_pval.tsv", sep="");
+
+fh=file(fn, "w");
+cat(file=fh, "\nFull vs. Reduced Model Regression Statistics\n");
+close(fh);
+
+for(div_idx in div_names){
+
+	cur_stats=reduced_model_res_list[[div_idx]];
+
+	fh=file(fn, "a");
+	cat(file=fh, "\n\n", div_idx, ":\n", "FULL MODEL:\n[Coefficients]\nCovariates\t", sep="");
+	close(fh);
+
+	write.table(file=fn, x=round(coeff_list[[div_idx]], 4), append=T, quote=F, sep="\t");
+
+	fh=file(fn, "a");
+	cat(file=fh, "[P-values]\nCovariates\t", sep="");
+	close(fh);
+
+	write.table(file=fn, x=round(pval_list[[div_ix]], 4), append=T, quote=F, sep="\t");
+
+	fh=file(fn, "a");
+	cat(file=fh, "\n", "REDUCED MODEL:\n[Coefficients]\nCovariates\t", sep="");
+	close(fh);
+
+	write.table(file=fn, x=round(cur_stats[["coefficients"]], 4), append=T, quote=F, sep="\t");
+
+	fh=file(fn, "a");
+	cat(file=fh, "[P-values]\nCovariates\t", sep="");
+	close(fh);
+
+	write.table(file=fn, x=round(cur_stats[["p-values"]], 4), append=T, quote=F, sep="\t");
+
+	fh=file(fn, "a");
+	cat(file=fh, "\n", sep="");
+	close(fh);
+
+}
 
 ##############################################################################
 
