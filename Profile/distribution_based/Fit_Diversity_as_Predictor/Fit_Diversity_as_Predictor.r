@@ -1191,7 +1191,7 @@ for(div_idx in div_names){
 	cat(file=fh, "[P-values]\nCovariates\t", sep="");
 	close(fh);
 
-	write.table(file=fn, x=round(pval_list[[div_ix]], 4), append=T, quote=F, sep="\t");
+	write.table(file=fn, x=round(pval_list[[div_idx]], 4), append=T, quote=F, sep="\t");
 
 	fh=file(fn, "a");
 	cat(file=fh, "\n", "REDUCED MODEL:\n[Coefficients]\nCovariates\t", sep="");
