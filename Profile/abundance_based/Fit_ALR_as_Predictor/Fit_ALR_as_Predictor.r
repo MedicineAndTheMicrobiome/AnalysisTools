@@ -847,7 +847,7 @@ kept_factors=factors[,kept_variables, drop=F];
 # Relevel factor levels
 if(ReferenceLevelsFile!=""){
         ref_lev_mat=load_reference_levels_file(ReferenceLevelsFile)
-        factors=relevel_factors(kept_factors, ref_lev_mat);
+        kept_factors=relevel_factors(kept_factors, ref_lev_mat);
 }else{
         cat("No Reference Levels File specified.\n");
 }
