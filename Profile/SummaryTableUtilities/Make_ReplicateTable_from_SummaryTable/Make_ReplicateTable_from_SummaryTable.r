@@ -28,6 +28,7 @@ usage = paste (
 	"For example:\n",
 	"0208.004012.20180910.BALR	0208.004012.20180910.BALR\n",
 	"0208.004012.20180910.BALR.2	0208.004012.20180910.BALR\n",
+	"0159.AB18.26717.20201005.ST.r2 0159.AB18.26717.20201005.ST\n",
 	"\n",
 	"Mapping File format:\n",
 	"	<current sample id>\\t<new sample id>\\n\n",
@@ -85,7 +86,10 @@ for(i in 1:num_samp_ids){
 
 	toks=strsplit(cur_samp_id, "\\.")[[1]];
 	num_toks=length(toks);
+
 	if(!is.na(as.numeric(toks[num_toks]))){
+		toks=toks[-num_toks];
+	}else if(length(grep("r\\d+$", toks[num_toks]))){
 		toks=toks[-num_toks];
 	}
 
