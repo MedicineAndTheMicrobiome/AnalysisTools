@@ -504,28 +504,44 @@ print(outmatrix);
 
 pdf(paste(OutputFileName, ".combined_barplots.pdf", sep=""), height=8.5, width=11);
 
-barplot_categories=function(center_values, top=10, lb, ub, title){
+barplot_categories=function(center_values, top=10, lb, ub, data=NULL, title){
 
 	top_center_val=center_values[1:top];
 
 	top_lb=lb[1:top];
 	top_ub=ub[1:top];
 
+	if(!is.null(data)){
+		datamax=max(data);
+	}else{
+		datamax=0;
+	}
+
 	par(mar=c(10,5,5,10));
 	mids=barplot(top_center_val,
 		names.arg="",
-		ylim=c(0, max(ub)*1.1),
+		ylim=c(0, max(ub, datamax)*1.1),
 		main=paste("Top ", top, ": ", title, sep=""),
-		xlab="", ylab="Proportion"
+		xlab="", ylab="Proportion",
+		fill="grey75"
 	);
 	bar_width=mids[2]-mids[1];
 	ebw=bar_width/4;
+
+	# Draw scatters
+	if(!is.null(data)){
+		num_samp=nrow(data);
+		x_scatter=rnorm(num_samp, 0, ebw/4);
+		for(i in 1:top){
+			points(mids[i]+x_scatter, data[,i], col="grey50", cex=.5);
+		}
+	}
 
 	# Draw bounds
 	for(i in 1:top){
 		points(c(mids[i]-ebw, mids[i]+ebw), c(top_ub[i], top_ub[i]), col="red", lwd=2, type="l"); 
 		points(c(mids[i]-ebw, mids[i]+ebw), c(top_lb[i], top_lb[i]), col="blue", lwd=2, type="l"); 
-		points(c(mids[i], mids[i]), c(top_lb[i], top_ub[i]), col="black", lwd=.5, type="l"); 
+		points(c(mids[i], mids[i]), c(top_lb[i], top_ub[i]), col="grey5", lwd=.5, type="l"); 
 	}
 
 	# Label 
@@ -545,9 +561,25 @@ for(num_disp_cat in c(10, 15, 20, 25, 30)){
 		title="Means and Standard Deviations");
 
 	barplot_categories(outmatrix[,"Mean"], top=num_disp_cat, 
+		lb=outmatrix[,"Mean"]-outmatrix[,"StdDev"],
+		ub=outmatrix[,"Mean"]+outmatrix[,"StdDev"],
+		data=norm_mod_names,
+		title="Means and Standard Deviations");
+
+
+
+	barplot_categories(outmatrix[,"Mean"], top=num_disp_cat, 
 		lb=outmatrix[,"Mean"]-outmatrix[,"StdErr"],
 		ub=outmatrix[,"Mean"]+outmatrix[,"StdErr"],
 		title="Means and Standard Errors");
+
+	barplot_categories(outmatrix[,"Mean"], top=num_disp_cat, 
+		lb=outmatrix[,"Mean"]-outmatrix[,"StdErr"],
+		ub=outmatrix[,"Mean"]+outmatrix[,"StdErr"],
+		data=norm_mod_names,
+		title="Means and Standard Errors");
+
+
 
 	barplot_categories(outmatrix[,"Median"], top=num_disp_cat, 
 		lb=outmatrix[,"CI95_LB"],
@@ -555,8 +587,22 @@ for(num_disp_cat in c(10, 15, 20, 25, 30)){
 		title="Medians and 95% CI");
 
 	barplot_categories(outmatrix[,"Median"], top=num_disp_cat, 
+		lb=outmatrix[,"CI95_LB"],
+		ub=outmatrix[,"CI95_UB"],
+		data=norm_mod_names,
+		title="Medians and 95% CI");
+
+
+
+	barplot_categories(outmatrix[,"Median"], top=num_disp_cat, 
 		lb=outmatrix[,"Min"],
 		ub=outmatrix[,"Max"],
+		title="Medians and Min/Max");
+
+	barplot_categories(outmatrix[,"Median"], top=num_disp_cat, 
+		lb=outmatrix[,"Min"],
+		ub=outmatrix[,"Max"],
+		data=norm_mod_names,
 		title="Medians and Min/Max");
 
 }
