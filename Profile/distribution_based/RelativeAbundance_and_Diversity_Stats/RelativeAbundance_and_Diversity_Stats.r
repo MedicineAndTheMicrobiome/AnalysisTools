@@ -21,7 +21,8 @@ usage = paste (
 	"	[-s \"<name splitter character, e.g. ;>\"]\n",
         "\n",
 	"This script will read in a summary table and generate\n",
-	"rank abundance plots, diversity indices, and confidence intervals\n",
+	"rank abundance plots, diversity indices, relative abundance, and\n",
+	"descriptive stats.\n",
 	"\n",
 	"The -s shorten names flag will split the input category names\n",
 	"by spaces, and chose the one furthest to the right.\n",
@@ -150,6 +151,10 @@ if(ShortenNameChar!=""){
 	display_name=category_names;
 }
 names(display_name)=category_names;
+
+norm_mod_names=norm;
+colnames(norm_mod_names)=display_name;
+
 
 # List for diversity indices
 num_distrib=num_samples + 2; # 1 for all reads, and 1 for equal weighted
@@ -471,6 +476,97 @@ cat(paste(",DiscTaxa", paste(disctaxa_ci, collapse=","), sep=","), file=fc);
 cat(paste(",N",num_samples, sep=","), file=fc);
 cat("\n", file=fc);
 close(fc);
+
+###############################################################################
+###############################################################################
+
+mean_abund=apply(norm_mod_names, 2, mean);
+order_ix=order(mean_abund, decreasing=T);
+
+mean_abund=mean_abund[order_ix];
+norm_mod_names=norm_mod_names[,order_ix];
+
+outmatrix=matrix(NA, nrow=ncol(norm_mod_names), ncol=8);
+rownames(outmatrix)=colnames(norm_mod_names);
+colnames(outmatrix)=c("Mean", "StdDev", "StdErr", "Median", "CI95_LB", "CI95_UB", "Min", "Max");
+N=nrow(norm_mod_names);
+
+outmatrix[,"Mean"]=mean_abund;
+outmatrix[,"StdDev"]=apply(norm_mod_names, 2, sd);
+outmatrix[,"StdErr"]=outmatrix[,"StdDev"]/sqrt(N);
+outmatrix[,"Median"]=apply(norm_mod_names, 2, median);
+outmatrix[,"CI95_UB"]=apply(norm_mod_names, 2, function(x){quantile(x, .975)});
+outmatrix[,"CI95_LB"]=apply(norm_mod_names, 2, function(x){quantile(x, .025)});
+outmatrix[,"Min"]=apply(norm_mod_names, 2, min);
+outmatrix[,"Max"]=apply(norm_mod_names, 2, max);
+
+print(outmatrix);
+
+pdf(paste(OutputFileName, ".combined_barplots.pdf", sep=""), height=8.5, width=11);
+
+barplot_categories=function(center_values, top=10, lb, ub, title){
+
+	top_center_val=center_values[1:top];
+
+	top_lb=lb[1:top];
+	top_ub=ub[1:top];
+
+	par(mar=c(10,5,5,10));
+	mids=barplot(top_center_val,
+		names.arg="",
+		ylim=c(0, max(ub)*1.1),
+		main=paste("Top ", top, ": ", title, sep=""),
+		xlab="", ylab="Proportion"
+	);
+	bar_width=mids[2]-mids[1];
+	ebw=bar_width/4;
+
+	# Draw bounds
+	for(i in 1:top){
+		points(c(mids[i]-ebw, mids[i]+ebw), c(top_ub[i], top_ub[i]), col="red", lwd=2, type="l"); 
+		points(c(mids[i]-ebw, mids[i]+ebw), c(top_lb[i], top_lb[i]), col="blue", lwd=2, type="l"); 
+		points(c(mids[i], mids[i]), c(top_lb[i], top_ub[i]), col="black", lwd=.5, type="l"); 
+	}
+
+	# Label 
+        plot_range=par()$usr;
+        plot_height=plot_range[4];
+        label_size=min(c(1,.7*bar_width/par()$cxy[1]));
+	cat_names=names(top_center_val);
+        text(mids-par()$cxy[1]/2, rep(-par()$cxy[2]/2, top), cat_names, srt=-45, xpd=T, pos=4, cex=label_size);
+
+}
+
+for(num_disp_cat in c(10, 15, 20, 25, 30)){
+
+	barplot_categories(outmatrix[,"Mean"], top=num_disp_cat, 
+		lb=outmatrix[,"Mean"]-outmatrix[,"StdDev"],
+		ub=outmatrix[,"Mean"]+outmatrix[,"StdDev"],
+		title="Means and Standard Deviations");
+
+	barplot_categories(outmatrix[,"Mean"], top=num_disp_cat, 
+		lb=outmatrix[,"Mean"]-outmatrix[,"StdErr"],
+		ub=outmatrix[,"Mean"]+outmatrix[,"StdErr"],
+		title="Means and Standard Errors");
+
+	barplot_categories(outmatrix[,"Median"], top=num_disp_cat, 
+		lb=outmatrix[,"CI95_LB"],
+		ub=outmatrix[,"CI95_UB"],
+		title="Medians and 95% CI");
+
+	barplot_categories(outmatrix[,"Median"], top=num_disp_cat, 
+		lb=outmatrix[,"Min"],
+		ub=outmatrix[,"Max"],
+		title="Medians and Min/Max");
+
+}
+
+dev.off();
+
+# Write stats to file
+fname=paste(OutputFileName, ".combined_statistcs.tsv", sep="");
+cat(file=fname, "Category\t");
+write.table(outmatrix, file=fname, append=T, quote=F, sep="\t");
 
 ###############################################################################
 
