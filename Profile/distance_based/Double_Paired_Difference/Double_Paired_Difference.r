@@ -475,78 +475,6 @@ load_reference_levels_file=function(fname){
 
 ##############################################################################
 
-find_height_at_k=function(hclust, k){
-# Computes the height on the dendrogram for a particular k
-
-        heights=hclust$height;
-        num_heights=length(heights);
-        num_clust=numeric(num_heights);
-        for(i in 1:num_heights){
-                num_clust[i]=length(unique(cutree(hclust, h=heights[i])));
-        }
-        height_idx=which(num_clust==k);
-        midpoint=(heights[height_idx+1]+heights[height_idx])/2;
-        return(midpoint);
-}
-
-get_clstrd_leaf_names=function(den){
-# Get a list of the leaf names, from left to right
-        den_info=attributes(den);
-        if(!is.null(den_info$leaf) && den_info$leaf==T){
-                return(den_info$label);
-        }else{
-                lf_names=character();
-                for(i in 1:2){
-                        lf_names=c(lf_names, get_clstrd_leaf_names(den[[i]]));
-                }
-                return(lf_names);
-        }
-}
-
-get_middle_of_groups=function(clustered_leaf_names, group_asgn){
-# Finds middle of each group in the plot
-        num_leaves=length(group_asgn);
-        groups=sort(unique(group_asgn));
-        num_groups=length(groups);
-
-        reord_grps=numeric(num_leaves);
-        names(reord_grps)=clustered_leaf_names;
-        reord_grps[clustered_leaf_names]=group_asgn[clustered_leaf_names];
-
-        mids=numeric(num_groups);
-        names(mids)=1:num_groups;
-        for(i in 1:num_groups){
-                mids[i]=mean(range(which(reord_grps==i)));
-        }
-        return(mids);
-
-}
-
-reorder_member_ids=function(members_cut, dendr_names){
-
-	grp_mids=get_middle_of_groups(dendr_names, members_cut);
-
-        # Reorder cluster assignments to match dendrogram left/right
-        plot_order=order(grp_mids);
-        mem_tmp=numeric(num_samples);
-	num_cl=length(unique(members_cut));
-        for(gr_ix in 1:num_cl){
-		old_id=(members_cut==plot_order[gr_ix]);
-		mem_tmp[old_id]=gr_ix;
-        }
-        names(mem_tmp)=names(members_cut);
-        members_cut=mem_tmp;
-	return(members_cut);
-} 
-
-remap_coord=function(x, sbeg, send, dbeg, dend){
-	srang=send-sbeg;
-	norm=(x-sbeg)/srang;
-	drang=dend-dbeg;
-	return(norm*drang+dbeg);
-}
-##############################################################################
-
 paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_is_hot=T, deci_pts=4,
         label_zeros=T, counts=F, value.cex=1,
         plot_col_dendr=F,
@@ -849,7 +777,7 @@ for(i in 1:num_shared_XY){
 
 print(pairedXY_dist);
 
-cor_res=capture.output(print(cor.test(pairedXY_dist[,1], pairedXY_dist[,2])));
+dist_cor_res=cor.test(pairedXY_dist[,1], pairedXY_dist[,2]);
 
 ##############################################################################
 
@@ -858,10 +786,15 @@ pdf(paste(OutputFileRoot, ".dbl_pair_diff.pdf", sep=""), height=8.5, width=8);
 max_dist=max(pairedXY_dist);
 
 plot(pairedXY_dist[,1], pairedXY_dist[,2], xlab=TypenameX, ylab=TypenameY,
-	xlim=c(0, max_dist), ylim=c(0, max_dist)
+	xlim=c(0, max_dist), ylim=c(0, max_dist),
+	main="Distance Between Paired Samples"
 	);
 
-plot_text(cor_res);
+plot_text(c(
+	"Correlation of Distances Between Sample Types:",
+	"",
+	capture.output(dist_cor_res)
+));
 
 
 ##############################################################################
@@ -872,20 +805,20 @@ if(FactorFileX!=""){
 	factor_matrix_X=load_factors(FactorFileX);
 }else{
 	cat("Factor File for X not specified.\n");
+	quit();
 }
 
 if(FactorFileY!=""){
 	factor_matrix_Y=load_factors(FactorFileY);
 }else{
 	cat("Factor File for Y not specified.\n");
+	quit();
 }
 
-if(TargetVariablesFname!=""){
-	target_variables_array=load_list(TargetVariablesFname);
-	cat("Target Variables:\n");
-	print(target_variables_array);
-}else{
-	cat("Target List needs to be specified.\n");
+
+if(CollectionTimeColname==""){
+	cat("Collection Date/Time needs to be specified.\n");
+	quit();
 }
 
 wtype=substr(WhichStaticValue, 1,1);
@@ -923,16 +856,20 @@ for(i in 1:num_shared_XY){
 		collection_times_Y[a_id, CollectionTimeColname]);
 }
 
-print(pairedXY_timespan);
-
-
-
 max_timespan=max(pairedXY_timespan);
 
 plot(pairedXY_timespan[,1], pairedXY_timespan[,2], xlab=TypenameX, ylab=TypenameY,
 	xlim=c(0, max_timespan), ylim=c(0, max_timespan),
-	main="Time Spans Between Samples from Same Subject"
+	main="Time Span Between Samples (from Same Subject)"
 	);
+
+time_span_cor_res=cor.test(pairedXY_timespan[,1], pairedXY_timespan[,2]);
+
+plot_text(c(
+	"Correlation of Time Spans Between Sample Types",
+	"",
+	capture.output(time_span_cor_res)
+));
 
 ###############################################################################
 
@@ -942,10 +879,206 @@ max_rate=max(pairedXY_rates);
 
 plot(pairedXY_rates[,1], pairedXY_rates[,2], xlab=TypenameX, ylab=TypenameY,
 	xlim=c(0, max_rate), ylim=c(0, max_rate),
-	main="Rate=Dist/Timespan"
+	main="Rate of Change = Distance / Time Span"
 	);
 
-print(cor.test(pairedXY_rates[,1], pairedXY_rates[,2]));
+rates_cor_res=cor.test(pairedXY_rates[,1], pairedXY_rates[,2]);
+
+plot_text(c(
+	"Correlation of Rates of Change Between Sample Types",
+	"",
+	capture.output(print(rates_cor_res))
+));
+
+###############################################################################
+# Fit factors
+
+if(TargetVariablesFname!=""){
+	target_variables_array=load_list(TargetVariablesFname);
+	cat("Target Variables:\n");
+	print(target_variables_array);
+}else{
+	cat("Target List needs to be specified.\n");
+	quit();
+}
+
+
+
+if(WhichStaticValue=="AX"){
+	factor_sample_ids=sample_ids_pairable_X[,1];
+	selected_factors_mat=factor_matrix_X[factor_sample_ids, target_variables_array, drop=F];
+}else if(WhichStaticValue=="AY"){
+	factor_sample_ids=sample_ids_pairable_Y[,1];
+	selected_factors_mat=factor_matrix_Y[factor_sample_ids, target_variables_array, drop=F];
+}else if(WhichStaticValue=="BX"){
+	factor_sample_ids=sample_ids_pairable_X[,2];
+	selected_factors_mat=factor_matrix_X[factor_sample_ids, target_variables_array, drop=F];
+}else if(WhichStaticValue=="BY"){
+	factor_sample_ids=sample_ids_pairable_X[,2];
+	selected_factors_mat=factor_matrix_X[factor_sample_ids, target_variables_array, drop=F];
+}
+
+# Remove subjects with NAs in them
+
+samples_woNA_ix=apply(selected_factors_mat, 1, function(x){ !any(is.na(x))});
+
+selected_factors_woNA_mat=selected_factors_mat[samples_woNA_ix,,drop=F];
+
+num_samp_wNA=nrow(selected_factors_mat);
+num_kept_samples=nrow(selected_factors_woNA_mat);
+
+cat("Num Samples with NAs in Factor Matrix: ", num_samp_wNA, "\n");
+cat("Num Samples after Subjects w/ NAs Removed:", num_kept_samples, "\n");
+
+# Build model string/formula
+pred_string=paste(target_variables_array, collapse=" + ");
+
+cat("Model Predictor String: \n");
+print(pred_string);
+
+# By Sample ID
+print(selected_factors_woNA_mat);
+
+# By subject ID
+print(pairedXY_rates);
+
+sample_IDs_woNAs=rownames(selected_factors_woNA_mat);
+
+all_samp_ids=c(
+	map_info_X[["pair_matrix"]][,1], 
+	map_info_X[["pair_matrix"]][,2], 
+	map_info_Y[["pair_matrix"]][,1], 
+	map_info_Y[["pair_matrix"]][,2]
+);
+all_subj_ids=c(
+	rep(rownames(map_info_X[["pair_matrix"]]), 2),
+	rep(rownames(map_info_Y[["pair_matrix"]]), 2)
+);
+
+names(all_subj_ids)=all_samp_ids;
+subject_IDs_woNAs=all_subj_ids[sample_IDs_woNAs];
+
+analyze_distance_time=function(distance, timespan, factors, name){
+
+	print(distance);
+	print(factors);
+	rate=distance/timespan;
+
+	max_time=max(timespan);
+	max_dist=max(distance);
+	plot(timespan, distance, xlab="Time Span", ylab="Distance",
+		xlim=c(0, max_time),
+		ylim=c(0, max_dist),
+		main=paste("Type ", name, ": Effect of Time on Distance",  sep="")
+		);
+	
+	# Fit loess
+	loess_res=loess(distance~timespan);
+	loess_y=loess_res[["fitted"]];
+	loess_x=loess_res[["x"]];
+	xix=order(loess_x);
+	points(loess_x[xix], loess_y[xix], col="blue", type="l", lwd=4);
+
+	# Fit loess with 0/0
+	distance=c(0,distance);
+	timespan=c(0,timespan);
+	loess_res=loess(distance~timespan);
+	loess_y=loess_res[["fitted"]];
+	loess_x=loess_res[["x"]];
+	xix=order(loess_x);
+	points(loess_x[xix], loess_y[xix], col="red", type="l", lwd=2, lty="dashed");
+
+	# Fit line
+	lmfit=lm(distance~timespan);
+	abline(lmfit,col="green");
+
+	#x=1:1000;
+	#r=.01;
+	#points(x, 1-exp(-x*r), col="pink");
+	#r=.02;
+	#points(x, 1-exp(-x*r), col="brown");
+	#r=.03;
+	#points(x, 1-exp(-x*r), col="orange");
+
+
+	# Fit 1-exp(t*r), to estimate r.
+	objective_fn=function(x){
+		
+		r=x[1];
+		mu=x[2];
+
+		obs=distance;
+		pred=mu*(1-exp(-timespan*r));
+
+cat("r: ", r, "\n");
+cat("mu: ", mu, "\n");
+#cat("Obs:\n");
+#print(obs);
+#cat("Pred:\n");
+#print(pred);
+		sse=sum((obs-pred)^2);
+cat("SSE: ", sse, "\n\n");
+		return(sse);
+	}
+
+	opt_res=optim(c(.01, mean(distance)), objective_fn, control=list(reltol=1e-60) );
+	print(opt_res);
+	x=1:max_time;
+	r=opt_res$par[1];
+	mu=opt_res$par[2];
+	points(x, mu*(1-exp(-x*r)), col="pink", type="l");
+
+
+
+	hist(rate, main=paste("Type ", name, ": Distribution of Rate = Distance/Timespan"));
+	
+
+
+}
+
+analyze_distance_time(
+	pairedXY_dist[subject_IDs_woNAs, "X"], 
+	pairedXY_timespan[subject_IDs_woNAs, "X"],
+	selected_factors_woNA_mat,
+	TypenameX
+	);
+
+analyze_distance_time(
+	pairedXY_dist[subject_IDs_woNAs, "Y"], 
+	pairedXY_timespan[subject_IDs_woNAs, "Y"],
+	selected_factors_woNA_mat,
+	TypenameY
+	);
+
+
+quit();
+
+
+dataframe_X=as.data.frame(cbind(response_arr_X, selected_factors_woNA_mat));
+print(dataframe_X);
+
+#model_str_X=paste("response_arr_X ~ ", pred_string, sep="");
+
+
+log_lin_glm_fit_X=glm(as.formula(model_str_X), family=poisson, data=dataframe_X, model=T);
+log_lin_glm_fit_summary_X=summary(log_lin_glm_fit_X);
+print(log_lin_glm_fit_X$fitted.values);
+plot(response_arr_X, log_lin_glm_fit_X$fitted.values);
+print(log_lin_glm_fit_summary_X);
+
+log_lin_glm_fit_X=glm(as.formula(model_str_X), family=gaussian, data=dataframe_X, model=T);
+log_lin_glm_fit_summary_X=summary(log_lin_glm_fit_X);
+print(log_lin_glm_fit_X$fitted.values);
+plot(response_arr_X, log_lin_glm_fit_X$fitted.values);
+print(log_lin_glm_fit_summary_X);
+
+###############################################################################
+	
+
+
+###############################################################################
+
+
 
 cat("\nDone.\n")
 dev.off();
@@ -954,39 +1087,4 @@ if(length(warn)){
         print(warn);
 }
 q(status=0);
-
-quit();
-
-###############################################################################
-
-# Export sample IDs that were pairable 
-kept_sample_ids=rownames(counts_mat);
-write(kept_sample_ids, file=paste(OutputFileRoot, ".used_sample_ids.txt", sep=""), 
-	ncolumns=1, sep="\n");
-
-
-###############################################################################
-
-
-cat("Hierarchical clustering...\n");
-hcl=hclust(dist_mat, method="ward.D2");
-
-###############################################################################
-
-param_summary=capture.output({
-	cat("Input Summary Table   :", InputSumTab, "\n");
-	cat("Mapping File          :", MappingFile, "\n");
-	cat("Output File           :", OutputFileRoot, "\n");
-	cat("Factor File           :", FactorFile, "\n");
-	cat("Target Var File       :", TargetVariablesFile, "\n");
-	cat("Number of Cluster Cuts:", NumClusterCuts, "\n");
-	cat("Distance Type         :", DistType, "\n");
-	cat("\n");
-	cat("Num pairs before Factor File Reconc:", num_pairs_pre_factor, "\n");
-	cat("Num pairs after Factor File Reconc:", num_pairs_post_factor, "\n");
-});
-plot_text(param_summary);
-
-###############################################################################
-
 
