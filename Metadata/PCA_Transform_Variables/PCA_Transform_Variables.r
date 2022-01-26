@@ -183,6 +183,7 @@ test_and_apply_log_transform=function(mat_val, pval_cutoff=.2, plot_before_after
 		if(num_unique_val>1){
 
 			test_res=shapiro.test(values);
+			test_log_res=NULL;
 
 			if(test_res$p.value<=pval_cutoff && num_unique_val>2){
 				cat(" Not normal: ", test_res$p.value, "\n");
@@ -228,8 +229,14 @@ test_and_apply_log_transform=function(mat_val, pval_cutoff=.2, plot_before_after
 				title(main=sprintf("p-value: %4.4f", test_log_res$p.value), cex.main=.8, line=.5);
 			}else{
 				plot(0,0, xlab="", ylab="", main="", xaxt="n", yaxt="n", bty="n", type="n");
-				title(main=sprintf("p-value: %4.4f", test_log_res$p.value), cex.main=.8, line=.5);
-				text(0,0, "Transform not beneficial");
+
+				if(is.null(test_log_res)){
+					text(0,0, "Transform not necessary");
+				}else{
+					title(main=sprintf("p-value: %4.4f", test_log_res$p.value), 
+						cex.main=.8, line=.5);
+					text(0,0, "Transform not beneficial");
+				}
 			}
 		}
 
@@ -296,10 +303,18 @@ compute_correlations=function(mat){
 			notna=!(is.na(v1) | is.na(v2));
 			#cor_mat[i,j]=cor(v1[notna], v2[notna]);
 			test=cor.test(v1[notna], v2[notna]);
-			pval_mat[i,j]=test$p.value;
-			pval_mat[j,i]=test$p.value;
-			cor_mat[i,j]=test$estimate;
-			cor_mat[j,i]=test$estimate;
+
+			if(!is.na(test$estimate)){
+				pval_mat[i,j]=test$p.value;
+				pval_mat[j,i]=test$p.value;
+				cor_mat[i,j]=test$estimate;
+				cor_mat[j,i]=test$estimate;
+			}else{
+				pval_mat[i,j]=1;
+				pval_mat[j,i]=1;
+				cor_mat[i,j]=0;
+				cor_mat[j,i]=0;
+			}
 		}
 	}
 	res=list();
@@ -662,6 +677,7 @@ correl=compute_correlations(cbind(curated_pred_mat, curated_resp_mat));
 
 par(mfrow=c(1,1));
 par(mar=c(15,2,1,2));
+
 hcl=hclust(correl$dist, method="ward.D2");
 dend=as.dendrogram(hcl);
 
