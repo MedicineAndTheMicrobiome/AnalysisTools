@@ -2,6 +2,8 @@
 
 ###############################################################################
 
+MAX_REPNUM=100;
+
 library('getopt');
 
 params=c(
@@ -32,6 +34,9 @@ usage = paste (
 	"\n",
 	"Mapping File format:\n",
 	"	<current sample id>\\t<new sample id>\\n\n",
+	"\n",
+	"If the value of the replicate is greater than MAX_REPNUM =", MAX_REPNUM, "\n",
+	"then, it is assumed to not be a replicate number and the ID is left alone.\n",
 	"\n");
 
 if(!length(opt$input_summary_table) || !length(opt$output_filename_root)){
@@ -88,7 +93,9 @@ for(i in 1:num_samp_ids){
 	num_toks=length(toks);
 
 	if(!is.na(as.numeric(toks[num_toks]))){
-		toks=toks[-num_toks];
+		if(as.numeric(toks[num_toks])<$MAX_REPNUM){
+			toks=toks[-num_toks];
+		}
 	}else if(length(grep("r\\d+$", toks[num_toks]))){
 		toks=toks[-num_toks];
 	}
