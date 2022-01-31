@@ -381,7 +381,7 @@ plot_dist=function(x, y, width=20, abundances, num_ticks=3, label_abund=0, color
 		
 }
 
-plot_legend=function(categories, size=.7, num_ticks=3, max_labels=40, color_map){
+plot_legend=function(categories, size=NULL, num_ticks=3, max_labels=40, color_map){
 
 	orig.par=par(no.readonly=T);
 
@@ -396,6 +396,10 @@ plot_legend=function(categories, size=.7, num_ticks=3, max_labels=40, color_map)
 		categories=categories[1:(max_labels-1)];
 		num_cat=length(categories);
 		orig_v_plot_diff=(num_cat-max_labels);
+	}
+
+	if(is.null(size)){
+		size=min(1, 45/num_cat);
 	}
 
 	plot(0,0, type="n", ylim=c(15,0), xlim=c(0,30), 
@@ -536,7 +540,9 @@ plot_abundance_matrix=function(abd_mat, title="", plot_cols=8, plot_rows=5,
 		}
 		cat("Plotting legend...\n");
 
-		plot_legend(cat_names, size=min(1, 45/num_cat), color_map=color_map);
+		cat("Num Categories in Legend: ", num_cat, "\n");
+
+		plot_legend(cat_names, size=NULL, color_map=color_map);
 		mtext(text=title, side=3, outer=T, cex=2, font=2, line=.5);
 	}
 	par(orig.par);
