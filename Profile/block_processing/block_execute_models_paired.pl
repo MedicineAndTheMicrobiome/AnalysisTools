@@ -652,6 +652,8 @@ sub run_distance_based{
 	"~/git/AnalysisTools/Profile/distance_based/Cluster_Compare_TwoProfiles/Cluster_Compare_TwoProfiles.r \
 		-a $summary_table \
 		-b $summary_table2 \
+		-A $A_colname \
+		-B $B_colname \
 		-m $pair_map \
 		-o $output_dir/distance/$CLUST_CMP/$model_name \
 		-d man \
