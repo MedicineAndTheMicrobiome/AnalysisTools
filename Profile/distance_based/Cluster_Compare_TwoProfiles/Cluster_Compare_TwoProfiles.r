@@ -16,6 +16,9 @@ params=c(
 	"input_summary_table_A", "a", 1, "character",
 	"input_summary_table_B", "b", 1, "character",
 	"mapping_file", "m", 1, "character",
+	"mapping_file_Aname", "A", 2, "character",
+	"mapping_file_Bname", "B", 2, "character",
+	
 	"include_list_A", "i", 2, "character",
 	"include_list_B", "j", 2, "character",
 	"output_filename_root", "o", 1, "character",
@@ -31,6 +34,8 @@ usage = paste(
 	"	-a <input summary_table.tsv file A>\n",
 	"	-b <input summary_table.tsv file B>\n",
 	"	-m <mapping file, from A to B Identifiers>\n",
+	"	-A <for mapping file, A's column name>\n",
+	"	-B <for mapping file, B's column name>\n",
 	"	-o <output file root name>\n",
 	"\n",
 	"	Options:\n",
@@ -82,6 +87,8 @@ if(
 	!length(opt$input_summary_table_A) || 
 	!length(opt$input_summary_table_B) || 
 	!length(opt$mapping_file) || 
+	!length(opt$mapping_file_Aname) || 
+	!length(opt$mapping_file_Bname) || 
 	!length(opt$output_filename_root) 
 ){
 	cat(usage);
@@ -91,6 +98,8 @@ if(
 InputSumTabA=opt$input_summary_table_A;
 InputSumTabB=opt$input_summary_table_B;
 MappingFile=opt$mapping_file;
+MappingFileAname=opt$mapping_file_Aname;
+MappingFileBname=opt$mapping_file_Bname;
 OutputFileRoot=opt$output_filename_root;
 
 DistType=DEF_DISTTYPE;
@@ -142,6 +151,8 @@ if(length(opt$tag_name)){
 cat("Input Summary Table A:", InputSumTabA, "\n");
 cat("Input Summary Table B:", InputSumTabB, "\n");
 cat("Mapping File         :", MappingFile, "\n");
+cat("Mapping File Aname   :", MappingFileAname, "\n");
+cat("Mapping File Bname   :", MappingFileBname, "\n");
 cat("Output File          :", OutputFileRoot, "\n");
 cat("Distance Type        :", DistType, "\n");
 cat("\n");
@@ -225,7 +236,7 @@ load_summary_table=function(st_fname){
 
 #------------------------------------------------------------------------------
 
-load_mapping_file=function(mp_fname, keep_a_ids, keep_b_ids){
+load_mapping_file=function(mp_fname, keep_a_ids, keep_b_ids, colname_a, colname_b){
 
 	num_keep_a=length(keep_a_ids);
 	num_keep_b=length(keep_b_ids);
@@ -234,15 +245,7 @@ load_mapping_file=function(mp_fname, keep_a_ids, keep_b_ids){
 
 	inmat=as.matrix(read.delim(mp_fname, sep="\t", header=TRUE, check.names=F, comment.char="", quote=""));
 
-	if(ncol(inmat)==3){
-		cat("\nWarning: 3 Columns Found in Mapping File.  Assuming First Column is Subject ID\n");
-		cat("As Seen:\n");
-		print(inmat);
-		inmat=inmat[,c(2,3)];
-		cat("\nAs Interpretted:\n");
-		print(inmat);
-		cat("\n");
-	}
+	inmat=inmat[,c(colname_a, colname_b)];
 
 	# Remove unpaired
 	keep_ix=apply(inmat, 1, function(x){ all(!is.na(x))});
@@ -253,7 +256,7 @@ load_mapping_file=function(mp_fname, keep_a_ids, keep_b_ids){
 	orig_mat_rows=nrow(inmat);
 	cat("Number of Mapping Entries Read: ", orig_mat_rows, "\n");
 	for(i in 1:orig_mat_rows){
-		if(any(inmat[i,1]==keep_a_ids) && any(inmat[i,2]==keep_b_ids)){
+		if(any(inmat[i,1]==keep_a_ids) &&  any(inmat[i,2]==keep_b_ids)){
 			keep_ix=c(keep_ix, i);
 		}
 	}
@@ -399,7 +402,9 @@ samples_stA=rownames(counts_mat_A);
 samples_stB=rownames(counts_mat_B);
 
 cat("Loading Mapping file:", MappingFile, "\n");
-map_info=load_mapping_file(MappingFile, samples_stA, samples_stB);
+map_info=load_mapping_file(MappingFile, samples_stA, samples_stB, MappingFileAname, MappingFileBname);
+
+print(map_info);
 
 cat("Removing samples without complete mappings...\n");
 counts_mat_A=counts_mat_A[map_info[["a_id"]],];
