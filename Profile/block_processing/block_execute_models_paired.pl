@@ -123,11 +123,11 @@ if(!defined($opt_E)){
 	$DontAbort=1;
 }
 
-my $AnalysisName=$GroupVar;
+my $AnalysisName;
 if($AnalysisName eq ""){
 
-	if($GroupVar!=""){
-		$AnalysisName=fileparse($GroupVar);
+	if($GroupVar ne ""){
+		($AnalysisName)=fileparse($GroupVar);
 		$AnalysisName=~s/\.txt$//;
 		$AnalysisName=~s/\.lst$//;
 		$AnalysisName=~s/\.tsv$//;
@@ -139,9 +139,6 @@ if($AnalysisName eq ""){
 if(!defined($TagName)){
 	$TagName=$AnalysisName;
 }
-
-$AnalysisName=~s/\.txt$//;
-$AnalysisName=File::Basename::fileparse($AnalysisName);
 
 my $ABDNC_DIR="abundance_based";
 my $DSTRB_DIR="distribution_based";
@@ -505,6 +502,8 @@ sub run_distribution_based{
 	"~/git/AnalysisTools/Column/Make_Pair_Mapping_from_FactorInfo/Paired_to_Metadata.r \
 		-p $pair_map \
 		-o $output_dir/distribution/$STACKED_BP/paired_as_metadata.tsv \
+		-a $A_colname \
+		-b $B_colname \
 		-c $CATEGORY_NAME
 	";
 
@@ -544,7 +543,8 @@ sub run_distribution_based{
 			-f $output_dir/distribution/$STACKED_BP/paired_as_metadata.tsv \
 			-M $output_dir/distribution/$STACKED_BP/paired_category_name.txt \
 			-o $output_dir/distribution/$STACKED_BP/paired_stacked_bp \
-			-t $t \
+			-T $t \
+			-t $tag_name \
 			-s \";\"
 		";
 		$cmd=
