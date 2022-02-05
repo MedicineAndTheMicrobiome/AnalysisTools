@@ -38,9 +38,9 @@ usage = paste(
 	"       50       M     1234.12345.OW     1234.12345.ST\n",
 	"\n",
 	"  Output:\n",
-	"      SampleID      Age     Sex        OralSampID       StoolSampID\n",
-	" 1234.12345.OW       50       M     1234.12345.OW     1234.12345.ST\n",
-	" 1234.12345.ST       50       M     1234.12345.OW     1234.12345.ST\n",
+	"      SampleID     SampleIDType    Age     Sex        OralSampID       StoolSampID\n",
+	" 1234.12345.OW       OralSampID     50       M     1234.12345.OW     1234.12345.ST\n",
+	" 1234.12345.ST      StoolSampID     50       M     1234.12345.OW     1234.12345.ST\n",
 	"\n");
 
 if(!length(opt$input) || !length(opt$sampid_cname_list) || !length(opt$output)){
@@ -116,6 +116,7 @@ if(length(intersect_cnames)!=length(targeted_columns)){
 
 outmatrix=character();
 outsampid=character();
+outsampidtype=character();
 
 for(inrow in 1:num_input_rows){
 
@@ -125,13 +126,15 @@ for(inrow in 1:num_input_rows){
 		if(!is.na(samp_id)){
 			outmatrix=rbind(outmatrix, factors[inrow,]);
 			outsampid=c(outsampid, samp_id);
+			outsampidtype=c(outsampidtype, tcol);
 		}
 	}	
 }
 
-outjoined=cbind(outsampid, outmatrix);
+outjoined=cbind(outsampid, outsampidtype, outmatrix);
 cnames=colnames(outjoined);
 cnames[1]=NewSampleIDColName;
+cnames[2]=paste(NewSampleIDColName, "Type", sep="");
 colnames(outjoined)=cnames;
 
 #print(outjoined);
