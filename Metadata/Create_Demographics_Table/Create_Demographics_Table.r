@@ -231,9 +231,19 @@ calc_bin_conf=function(counts){
 
 	for(c_ix in 1:dimen[2]){
 		for(r_ix in 1:dimen[1]){
-			bt_res=binom.test(counts[r_ix, c_ix], colsums[c_ix]);
-			lb_mat[r_ix, c_ix]=bt_res$conf.int[1];
-			ub_mat[r_ix, c_ix]=bt_res$conf.int[2];
+			bt_res=tryCatch({
+				bt_res=binom.test(counts[r_ix, c_ix], colsums[c_ix]);
+			}, error=function(x){
+				return(NULL);
+			});
+
+			if(!is.null(bt_res)){
+				lb_mat[r_ix, c_ix]=bt_res$conf.int[1];
+				ub_mat[r_ix, c_ix]=bt_res$conf.int[2];
+			}else{
+				lb_mat[r_ix, c_ix]=NA;
+				ub_mat[r_ix, c_ix]=NA;
+			}
 		}
 	}
 
@@ -375,9 +385,18 @@ for(f_ix in 1:num_factors){
 			nona=!is.na(cur_factor) & !is.na(split_vals);
 			xval=split_vals[nona];
 			yval=cur_factor[nona];
-			fit=lm(yval~xval);
-			anova_res=anova(fit);
-			pval=anova_res[["Pr(>F)"]][1];
+			fit=tryCatch({
+					lm(yval~xval);
+				}, error=function(x){
+					return(NULL);
+				});
+
+			if(!is.null(fit)){
+				anova_res=anova(fit);
+				pval=anova_res[["Pr(>F)"]][1];
+			}else{
+				pval=NA;
+			}
 		}else{
 			pval=NA;
 		}
