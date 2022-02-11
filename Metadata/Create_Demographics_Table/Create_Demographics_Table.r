@@ -353,18 +353,30 @@ for(f_ix in 1:num_factors){
 		counts=numeric(num_splits);
 		lb=numeric(num_splits);
 		ub=numeric(num_splits);
+		medians=numeric(num_splits);
+		lb95pis=numeric(num_splits);
+		ub95pis=numeric(num_splits);
 	
 		names(means)=split_categories;
 		names(counts)=split_categories;
 		names(lb)=split_categories;
 		names(ub)=split_categories;
+		names(medians)=split_categories;
+		names(lb95pis)=split_categories;
+		names(ub95pis)=split_categories;
 	
 		for(splcat in split_categories){
 			cat_ix=sp_ix[,splcat];
 			cat_cont_vals=cur_factor[cat_ix];
 			cat_cont_vals=cat_cont_vals[!is.na(cat_cont_vals)];
+
 			means[splcat]=mean(cat_cont_vals);
 			counts[splcat]=length(cat_cont_vals);
+
+			medians[splcat]=median(cat_cont_vals);
+			bounds=quantile(cat_cont_vals, c(0.025, 0.975));
+			lb95pis[splcat]=bounds[1];
+			ub95pis[splcat]=bounds[2];
 			
 			tres=tryCatch({
 				t.test(cat_cont_vals);
@@ -408,6 +420,9 @@ for(f_ix in 1:num_factors){
 		res[["lb"]]=lb;
 		res[["ub"]]=ub;
 		res[["pval"]]=pval;
+		res[["medians"]]=medians;
+		res[["lb95pis"]]=lb95pis;;
+		res[["ub95pis"]]=ub95pis;
 
 		demo_list[[cur_factname]]=res;
 
@@ -443,15 +458,20 @@ output_demo_list=function(dl, splts, fh){
 	num_splts=length(splts);
 
 	cat(file=fh, "Variable\tCategories\t", 
-		paste(splts,collapse="\t"), "\t",
-		paste("N", "p-value", "Signf", "Method", "DummyName", sep="\t"),
+		paste(splts, collapse="\t"), "\t",
+		paste("N", "p-value", "Signf", "Method", "DummyName", 
+		paste(splts, collapse="\t"), "\t", sep="\t"),
 		"\n", sep="");
 
 	for(nm in list_names){
 
 		info=dl[[nm]];
+
 		col_str=character(num_splts);
 		names(col_str)=splts;
+
+		pi_str=character(num_splts);
+		names(pi_str)=splts;
 
 		if(info[["type"]]=="categorical"){
 
@@ -491,16 +511,26 @@ output_demo_list=function(dl, splts, fh){
 			lb=info[["lb"]];
 			ub=info[["ub"]];
 			pv=info[["pval"]];
+	
+			md=info[["medians"]];
+			lb95pi=info[["lb95pis"]];
+			ub95pi=info[["ub95pis"]];
 
 			totaln=sum(ct);
 
 			for(sp in splts){
 				col_str[sp]=paste(
 					round(mn[sp], 3), 
-					" (", round(lb[sp],3), ", ", round(ub[sp],3), ") [", ct[sp], "]", sep="");
+					" (", round(lb[sp],3), ", ", 
+					round(ub[sp],3), ") [", ct[sp], "]", sep="");
+
+				pi_str[sp]=paste(
+					round(md[sp], 3), 
+					" (", round(lb95pi[sp],3), ", ", 
+					round(ub95pi[sp],3), ") [", ct[sp], "]", sep="");
 			}
 			cat(file=fh, paste(nm, ":\t", sep=""), col_str, totaln, pv, sigchar(pv), "ANOVA", 
-					nm, sep="\t"); 
+					nm, pi_str, sep="\t"); 
 			cat(file=fh, "\n");
 		}
 
