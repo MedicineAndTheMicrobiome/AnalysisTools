@@ -712,6 +712,203 @@ if(WhichStaticValue=="A"){
 		factor_matrix[map_info[["b_id"]], c(CollectionTimeColname, target_variables_array), drop=F];
 }
 
+##############################################################################
+
+rate_model_formula=function(mu, lambda, s, timespans){
+	dists=mu*(1-exp(-timespans*lambda))+s*timespans;
+	return(dists);
+}
+
+##############################################################################
+
+fit_rate_model=function(distance, timespan){
+
+	# Fit 1-exp(t*r), to estimate r.
+	objective_fn=function(x){
+		mu=x[1];
+		r=x[2];
+		s=x[3];
+		obs=distance;
+		#pred=mu*(1-exp(-timespan*r))+s*timespan;
+		pred=rate_model_formula(mu, r, s, timespan);
+		sse=sum((obs-pred)^2);
+		return(sse);
+	}
+
+	# Fit max-dist model without any metadata first.
+	p=c(.75, .75, -.1); # Perturb from best guess
+	rate=distance/timespan;
+	start_param=c(mean(distance)*p[1], mean(rate)*p[2], 0+p[3]);
+	opt_res=optim(start_param, objective_fn, control=list(reltol=1e-5));
+	print(opt_res);
+
+	x=0:max_time;
+	mu=opt_res$par[1];
+	r=opt_res$par[2];
+	s=opt_res$par[3];
+
+	cat("Starting: Mean: ", start_param[1], " Rate: ", start_param[2], " Slope: ", start_param[3], "\n" );
+	cat("Fitted: Mean: ", mu, " Rate: ", r, " Slope: ", s, "\n" );
+
+	predictions=cbind(x, rate_model_formula(mu, r, s, x));
+
+	results=list();
+	results[["mu"]]=mu;
+	results[["r"]]=r;
+	results[["s"]]=s;
+	results[["predictions"]]=predictions;
+	return(results);
+
+}
+
+##############################################################################
+
+fit_rate_model_wfactors=function(dist, time, factor_mat, num_bootstraps=80){
+
+	cat("Inside Fit Rate Model with Factors...\n");
+
+	if(length(dist)!=nrow(factor_mat)){
+		cat("Error Num Distances doesn't match Num Rows in Factor Matrix.\n");
+	}
+
+	if(length(dist)!=length(time)){
+		cat("Error Num Distances doesn't match Num Times.\n");
+	}
+
+	num_samples=nrow(factor_mat);
+	num_factors=ncol(factor_mat);
+	max_time=max(time);
+	mean_dist=mean(dist);
+
+	prev_SSD=Inf;
+	obs=NULL;
+	pred=NULL;
+
+	calc_ssd=function(dist, time, factors, parameters){
+
+		num_param=length(parameters);
+		mu=parameters[1];
+		lambda=parameters[2];
+		s=parameters[3];
+
+		prod=sweep(factors, parameters[4:num_param], MARGIN=2, FUN="*");
+		linear=apply(prod, 1, sum);
+
+		obs=dist;
+		pred=rate_model_formula(mu, lambda, s, time) + linear;
+
+		res=list();
+		res[["ssd"]]=sum((obs-pred)^2);
+		res[["obs"]]=obs;
+		res[["pred"]]=pred;
+		return(res);		
+	}
+	
+	# Fit rate and factors
+
+	res_factor_mat=factor_mat;
+	res_dist=dist;
+	res_time=time;
+	res_seq=NA;
+
+	num_params=3;
+
+	initial_conditions=rep(0, num_factors+num_params);
+	initial_conditions[1]=mean_dist;
+	initial_conditions[2]=mean_dist/max_time;
+	initial_conditions[3]=0;
+
+	parameters=matrix(0, nrow=num_bootstraps, ncol=length(initial_conditions));
+	colnames(parameters)=c("mu", "lambda", "s", colnames(factor_mat));
+
+	cat("Running Simulated Annealing for Initial Conditions:\n");
+
+	sann_objective_fn_wfactors=function(b){
+		res=calc_ssd(dist, time, factor_mat, b);
+		return(res$ssd);		
+	}
+
+	sann_opt_res=optim(initial_conditions, sann_objective_fn_wfactors, method="SANN", control=list(reltol=1));
+	
+	for(bsit in 1:num_bootstraps){
+		cat("Running BFGS for Final Estimate: [", bsit, "]\n");
+		resamp_ix=sample(num_samples, replace=T);
+		res_seq=resamp_ix;
+
+		res_time=time[resamp_ix];
+		res_factor_mat=factor_mat[resamp_ix,];
+		res_dist=dist[resamp_ix];
+
+		objective_fn_wfactors=function(b){
+			res=calc_ssd(res_dist, res_time, res_factor_mat, b);
+			return(res$ssd);		
+		}
+
+		#opt_res=optim(sann_opt_res$par, objective_fn_wfactors, method="BFGS", control=list(reltol=1e3));
+		opt_res=optim(sann_opt_res$par, objective_fn_wfactors, method="BFGS", control=list(reltol=1e-4));
+		print(opt_res); 
+		parameters[bsit,]=opt_res$par;
+
+	
+		res=calc_ssd(res_dist, res_time, res_factor_mat, opt_res$par);
+
+		#plot(res$obs, res$pred, type="n", xlab="observed", ylab="predicted", 
+		#	main=opt_res$value, xlim=c(0,2), ylim=c(0,2));
+		#text(res$obs, res$pred, res_seq);
+	}
+
+	# Build bootstrap based regression table
+	regr_table=matrix(NA, nrow=num_factors+num_params, ncol=4);
+	rownames(regr_table)=c("mu", "lambda", "s", colnames(factor_mat));
+	colnames(regr_table)=c("mean", "lb95", "ub95", "pval");
+
+	means=apply(parameters, 2, mean);
+	sds=apply(parameters, 2, sd);
+	lb95=apply(parameters, 2, function(x){quantile(x, 0.025)});
+	ub95=apply(parameters, 2, function(x){quantile(x, 0.975)});
+
+	pval=apply(parameters, 2, 
+		function(x){
+			gtz=sum(x>0); 
+			n=length(x);
+			pr_nz=min(gtz/n, 1-gtz/n);
+			return(min(1,pr_nz*2));
+		}
+	);
+	
+	regr_table[,"mean"]=means;
+	regr_table[,"lb95"]=lb95;
+	regr_table[,"ub95"]=ub95;
+	regr_table[,"pval"]=pval;
+
+	print(regr_table);
+	plot_text(capture.output(print(regr_table)));
+
+	# Calculate on input dataset (i.e. not resampled)
+	opt_res=optim(sann_opt_res$par, objective_fn_wfactors, method="BFGS", control=list(reltol=1e-4));
+	res=calc_ssd(dist, time, factor_mat, opt_res$par);
+
+	# Plot observed vs predicted scatter
+	obs_range=range(res[["obs"]]);
+	prd_range=range(res[["pred"]]);
+	plot_min=min(obs_range, prd_range);
+	plot_max=max(obs_range, prd_range);
+	plot(res[["obs"]], res[["pred"]], xlim=c(plot_min, plot_max), ylim=c(plot_min, plot_max),
+		xlab="Observed", ylab="Predicted", main="Model Fit: Predicted vs. Observed");
+	abline(a=0, b=1, col="blue");
+
+	# Calculate net effect on mu/lamba for export
+	mu=opt_res$par[1];
+	lambda=opt_res$par[2];
+	s=opt_res$par[3];
+
+	time_correction=rate_model_formula(mu, lambda, s, time);
+
+	results=list();
+	results[["time_correction"]]=time_correction;
+
+	return(results);
+}
 
 ##############################################################################
 
@@ -779,7 +976,7 @@ colnames(final_sample_pairing)=c(Aname, Bname);
 #print(selected_factors_woNA_mat[final_sample_pairing[,1], CollectionTimeColname] );
 #print(selected_factors_woNA_mat[final_sample_pairing[,2], CollectionTimeColname] );
 
-final_selected_factors_mat=selected_factors_woNA_mat;
+final_selected_factors_mat=selected_factors_woNA_mat[,setdiff(colnames(selected_factors_woNA_mat), CollectionTimeColname)];
 final_timespans=
 	factor_matrix[final_sample_pairing[,2], CollectionTimeColname] - 
 	factor_matrix[final_sample_pairing[,1], CollectionTimeColname];
@@ -855,243 +1052,99 @@ hist(final_paired_distances, main="Distribution of Paired Distances",
 
 ##############################################################################
 
+rates=final_paired_distances/final_timespans;
+mean_rate=mean(rates);
+mean_dist=mean(final_paired_distances);
+
+cat("Mean Rate: ", mean_rate, "\n");
+cat("Mean Distance: ", mean_dist, "\n");
+
+cat("Generating Rate Histogram...\n");
+hist(rates, main="Distribution of Rate=Distance/Timespan", xlab="Rate");
+
+cat("Generating Rates over Time Scatter...\n");
+print(final_timespans);
+print(rates);
+plot(final_timespans, rates, main="Rates across Times", xlab="Time", ylab="Rate");
+
+cat("Genering Distance over Time Scatter...\n");
 max_distance=max(final_paired_distances);
 max_time=max(final_timespans);
+cat("Max Dist:", max_distance, "   Max Time:", max_time, "\n");
 plot(final_timespans, final_paired_distances,
 	ylim=c(0, max_distance*1.1),
 	xlim=c(0, max_time *1.1),
 	xlab="Time", ylab="Paired Distance", main="Relationship between Time and Distance");
 
-# Fit loess with 0/0
+# Fit loess without 0/0 origin
+cat("Calculating Loess without Origin.\n");
+distance=final_paired_distances;
+timespan=final_timespans;
+loess_res=loess(distance~timespan);
+loess_y=loess_res[["fitted"]];
+loess_x=loess_res[["x"]];
+xix=order(loess_x);
+points(loess_x[xix], loess_y[xix], col="blue", type="l", lwd=2, lty="dashed");
+
+# Fit loess with 0/0 origin
+cat("Calculating Loess with Origin.\n");
 distance_w0=c(0,final_paired_distances);
 timespan_w0=c(0,final_timespans);
 loess_res=loess(distance_w0~timespan_w0);
 loess_y=loess_res[["fitted"]];
 loess_x=loess_res[["x"]];
 xix=order(loess_x);
+points(0,0, col="red", cex=2);
 points(loess_x[xix], loess_y[xix], col="red", type="l", lwd=2, lty="dashed");
 
 # Fit line
 lmfit=lm(final_paired_distances~final_timespans);
-abline(lmfit,col="green");
+abline(lmfit,col="green", lwd=2);
 
-quit();
+# Fit curve without paramters
+results=fit_rate_model(final_paired_distances, final_timespans);
+points(results[["predictions"]][,1], results[["predictions"]][,2], type="l", lwd=2, col="orange");
 
-##############################################################################
 
-fit_distance_rate_model=function(dist, time, factor_mat){
-
-	cat("Inside Fit Distance Rate Model...\n");
-
-	#print(dist);
-	#print(factor_mat);
-
-	if(length(dist)!=nrow(factor_mat)){
-		cat("Error Num Distances doesn't match Num Rows in Factor Matrix.\n");
-	}
-
-	if(length(dist)!=length(time)){
-		cat("Error Num Distances doesn't match Num Times.\n");
-	}
-
-	num_samples=nrow(factor_mat);
-	num_factors=ncol(factor_mat);
-	max_time=max(time);
-	mean_dist=mean(dist);
-
-	prev_SSD=Inf;
-	obs=NULL;
-	pred=NULL;
-
-	calc_ssd=function(dist, time, factors, parameters){
-
-		num_param=length(parameters);
-		mu=parameters[1];
-		lambda=parameters[2];
-
-		prod=sweep(factors, parameters[3:num_param], MARGIN=2, FUN="*");
-		linear=apply(prod, 1, sum);
-
-		obs=dist;
-		pred=mu*(1-exp(-time*lambda))+linear;
-
-		res=list();
-		res[["ssd"]]=sum((obs-pred)^2);
-		res[["obs"]]=obs;
-		res[["pred"]]=pred;
-		return(res);		
-	}
-	
-	# Fit rate and factors
-
-	res_factor_mat=factor_mat;
-	res_dist=dist;
-	res_time=time;
-	res_seq=NA;
-
-	initial_conditions=rep(0, num_factors+2);
-	initial_conditions[1]=mean_dist;
-	initial_conditions[2]=mean_dist/max_time;
-
-	print(num_factors);
-	num_bootstraps=80;
-
-	parameters=matrix(0, nrow=num_bootstraps, ncol=num_factors+2);
-	colnames(parameters)=c("mu", "lambda", colnames(factor_mat));
-
-	cat("Running Simulated Annealing for Initial Conditions:\n");
-
-	sann_objective_fn_wfactors=function(b){
-		res=calc_ssd(dist, time, factor_mat, b);
-		return(res$ssd);		
-	}
-
-	sann_opt_res=optim(initial_conditions, sann_objective_fn_wfactors, method="SANN", control=list(reltol=1));
-	
-	for(bsit in 1:num_bootstraps){
-		cat("Running BFGS for Final Estimate: [", bsit, "]\n");
-		resamp_ix=sample(num_samples, replace=T);
-		res_seq=resamp_ix;
-
-		res_time=time[resamp_ix];
-		res_factor_mat=factor_mat[resamp_ix,];
-		res_dist=dist[resamp_ix];
-
-		objective_fn_wfactors=function(b){
-			res=calc_ssd(res_dist, res_time, res_factor_mat, b);
-			return(res$ssd);		
-		}
-
-		#opt_res=optim(sann_opt_res$par, objective_fn_wfactors, method="BFGS", control=list(reltol=1e3));
-		opt_res=optim(sann_opt_res$par, objective_fn_wfactors, method="BFGS", control=list(reltol=1e-4));
-		print(opt_res); 
-		parameters[bsit,]=opt_res$par;
-
-	
-		res=calc_ssd(res_dist, res_time, res_factor_mat, opt_res$par);
-
-		#plot(res$obs, res$pred, type="n", xlab="observed", ylab="predicted", 
-		#	main=opt_res$value, xlim=c(0,2), ylim=c(0,2));
-		#text(res$obs, res$pred, res_seq);
-	}
-
-	print(parameters);
-
-	means=apply(parameters, 2, mean);
-	sds=apply(parameters, 2, sd);
-	lb95=apply(parameters, 2, function(x){quantile(x, 0.025)});
-	ub95=apply(parameters, 2, function(x){quantile(x, 0.975)});
-	pval=apply(parameters, 2, 
-		function(x){
-			gtz=sum(x>0); 
-			n=length(x);
-			pr_nz=min(gtz/n, 1-gtz/n);
-			return(min(1,pr_nz*2));
-		}
+results=fit_rate_model_wfactors(
+	final_paired_distances, final_timespans, final_selected_factors_mat,
+	num_bootstraps=5
 	);
-			
-			
 
-	cat("Means:\n");
-	print(means);
+# Fit linear model with time correction
+factors_w_correction=cbind(results$time_correction, final_selected_factors_mat);
+colnames(factors_w_correction)=c("Time_Correction", colnames(final_selected_factors_mat));
 
-	cat("StDev:\n");
-	print(sds);
+print(factors_w_correction);
 
-	print(lb95);
+predictors=colnames(final_selected_factors_mat);
 
-	print(ub95);
-	
-	regr_table=matrix(NA, nrow=num_factors+2, ncol=4);
-	rownames(regr_table)=c("mu", "lambda", colnames(factor_mat));
-	colnames(regr_table)=c("mean", "lb95", "ub95", "pval");
+predonly_model_formula_str=paste(predictors, collapse=" + ");
+print(predonly_model_formula_str);
 
-	regr_table[,"mean"]=means;
-	regr_table[,"lb95"]=lb95;
-	regr_table[,"ub95"]=ub95;
-	regr_table[,"pval"]=pval;
+correctiononly_model_formula_str="Time_Correction - 1";
+print(correctiononly_model_formula_str);
 
-	print(regr_table);
+full_model_formula_str=paste(paste(c("Time_Correction", predictors), collapse=" + "), " -1", sep="");
+print(full_model_formula_str);
 
-	plot_text(capture.output(print(regr_table)));
-}
+predonly_fit=glm(as.formula(paste("final_paired_distances ~ ", predonly_model_formula_str)), 
+	data=factors_w_correction);
 
-analyze_distance_time=function(distance, timespan, factors, name){
+correctiononly_fit=glm(as.formula(paste("final_paired_distances ~ ", correctiononly_model_formula_str)), 
+	data=factors_w_correction);
 
-	#print(distance);
-	#print(factors);
-	rate=distance/timespan;
-
-	max_time=max(timespan);
-	max_dist=max(distance);
-	plot(timespan, distance, xlab="Time Span", ylab="Distance",
-		xlim=c(0, max_time),
-		ylim=c(0, max_dist),
-		main=paste("Type ", name, ": Effect of Time on Distance",  sep="")
-		);
-	
-	# Fit loess
-	loess_res=loess(distance~timespan);
-	loess_y=loess_res[["fitted"]];
-	loess_x=loess_res[["x"]];
-	xix=order(loess_x);
-	points(loess_x[xix], loess_y[xix], col="blue", type="l", lwd=4);
+full_fit=glm(as.formula(paste("final_paired_distances ~ ", full_model_formula_str)), 
+	data=factors_w_correction);
 
 
-	#x=1:1000;
-	#r=.01;
-	#points(x, 1-exp(-x*r), col="pink");
-	#r=.02;
-	#points(x, 1-exp(-x*r), col="brown");
-	#r=.03;
-	#points(x, 1-exp(-x*r), col="orange");
+predonly_txt=capture.output(print(summary(predonly_fit)));
+correctiononly_txt=capture.output(print(summary(correctiononly_fit)));
+full_txt=capture.output(print(summary(full_fit)));
 
-
-	# Fit 1-exp(t*r), to estimate r.
-	objective_fn=function(x){
-		
-		r=x[1];
-		mu=x[2];
-
-		obs=distance;
-		pred=mu*(1-exp(-timespan*r));
-
-		#cat("r: ", r, "\n");
-		#cat("mu: ", mu, "\n");
-		#cat("Obs:\n");
-		#print(obs);
-		#cat("Pred:\n");
-		#print(pred);
-
-		sse=sum((obs-pred)^2);
-		#cat("SSE: ", sse, "\n\n");
-
-		return(sse);
-	}
-
-	# Fit max-dist model without any metadata first.
-	opt_res=optim(c(mean(distance)/max_time, mean(distance)), objective_fn, control=list(reltol=1e-60) );
-	print(opt_res);
-	x=1:max_time;
-	r=opt_res$par[1];
-	mu=opt_res$par[2];
-	cat("Rate: ", r, " Mean: ", mu, "\n");
-	points(x, mu*(1-exp(-x*r)), col="pink", type="b");
-
-	hist(rate, main=paste("Type ", name, ": Distribution of Rate = Distance/Timespan"));
-
-	
-
-	result=fit_distance_rate_model(distance, timespan, factors);
-
-}
-
-analyze_distance_time(
-	pairedXY_dist[subject_IDs_woNAs, "X"], 
-	pairedXY_timespan[subject_IDs_woNAs, "X"],
-	selected_factors_woNA_mat,
-	TypenameX
-	);
+plot_text(predonly_txt);
+plot_text(correctiononly_txt);
+plot_text(full_txt);
 
 ###############################################################################
 
