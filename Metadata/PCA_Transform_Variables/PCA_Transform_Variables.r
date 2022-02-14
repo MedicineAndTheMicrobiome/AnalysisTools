@@ -155,7 +155,8 @@ test_and_apply_log_transform=function(mat_val, pval_cutoff=.2, plot_before_after
 		values=mat_val[,var];
 
 
-		transformed=F;
+		log_transformed=F;
+		sqrt_transformed=F;
 
 		num_unique_val=length(setdiff(unique(values), NA));
 		values_nona=values[!is.na(values)];
@@ -187,24 +188,40 @@ test_and_apply_log_transform=function(mat_val, pval_cutoff=.2, plot_before_after
 
 			if(test_res$p.value<=pval_cutoff && num_unique_val>2){
 				cat(" Not normal: ", test_res$p.value, "\n");
+
 				if(any(values_nona==0)){
 					log_values=log(values+1);
 				}else{
 					log_values=log(values);
 				}
+				sqrt_values=sqrt(values);
 
 				test_log_res=shapiro.test(log_values);
+				test_sqrt_res=shapiro.test(sqrt_values);
 
-				if(test_log_res$p.value < test_res$p.value){
+				if(test_log_res$p.value < test_res$p.value && 
+					test_sqrt_res$p.value < test_res$p.value){
 					# Keep original
 					cat("  No Improvement: ", test_log_res$p.value, "\n");
 					new_colnames=c(new_colnames, paste("orig_", var, sep=""));
 				}else{
-					# Keep log transformed
-					cat("  Transformation Effective: ", test_log_res$p.value, "\n");
-					new_colnames=c(new_colnames, paste("log_", var, sep=""));
-					trans_mat[, var]=log_values;
-					transformed=T;		
+
+					cat("     Log p-val : ", test_log_res$p.value, "\n");
+					cat("    Sqrt p-val : ", test_sqrt_res$p.value, "\n");
+					
+					if(test_log_res$p.value > test_sqrt_res$p.value){
+						# Keep log transformed
+						cat("  Log Transformation Effective: ", test_log_res$p.value, "\n");
+						new_colnames=c(new_colnames, paste("log_", var, sep=""));
+						trans_mat[, var]=log_values;
+						log_transformed=T;		
+					}else{
+						# Keep sqrt transformed
+						cat("  Sqrt Transformation Effective: ", test_sqrt_res$p.value, "\n");
+						new_colnames=c(new_colnames, paste("sqrt_", var, sep=""));
+						trans_mat[, var]=sqrt_values;
+						sqrt_transformed=T;		
+					}
 				}
 			}else{
 				cat(" Normal enough. ", test_res$p.value, "\n");
@@ -224,17 +241,18 @@ test_and_apply_log_transform=function(mat_val, pval_cutoff=.2, plot_before_after
 			hist(values, main=var, breaks=nclass);
 			title(main=sprintf("p-value: %4.4f", test_res$p.value), cex.main=.8, line=.5);
 			
-			if(transformed){
+			if(log_transformed){
 				hist(log_values, breaks=nclass, main=paste("log(", var,")", sep=""));
 				title(main=sprintf("p-value: %4.4f", test_log_res$p.value), cex.main=.8, line=.5);
+			}else if(sqrt_transformed){
+				hist(sqrt_values, breaks=nclass, main=paste("sqrt(", var,")", sep=""));
+				title(main=sprintf("p-value: %4.4f", test_sqrt_res$p.value), cex.main=.8, line=.5);
 			}else{
 				plot(0,0, xlab="", ylab="", main="", xaxt="n", yaxt="n", bty="n", type="n");
 
-				if(is.null(test_log_res)){
+				if(test_res$p.value>pval_cutoff){
 					text(0,0, "Transform not necessary");
 				}else{
-					title(main=sprintf("p-value: %4.4f", test_log_res$p.value), 
-						cex.main=.8, line=.5);
 					text(0,0, "Transform not beneficial");
 				}
 			}
