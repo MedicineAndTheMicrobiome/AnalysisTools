@@ -11,6 +11,7 @@ library(glm2);
 source('~/git/AnalysisTools/Metadata/RemoveNAs/Remove_NAs.r');
 
 DEF_DISTTYPE="man";
+DEF_NUM_BS=80;
 
 params=c(
 	"input_summary_table", "s", 1, "character",
@@ -26,6 +27,7 @@ params=c(
 	"output_filename_root", "o", 1, "character",
 
 	"dist_type", "d", 2, "character",
+	"num_bootstraps", "p", "numeric",
 	"tag_name", "t", 2, "character"
 );
 
@@ -51,6 +53,7 @@ usage = paste(
 	"\n",
 	"	[-t <tag name>]\n",
 	"\n",
+	"	[-p <num bootstraps, default=", NUM_BS, ">]",
 	"\n",
 	"	The contents of the mapping files should be:\n",
 	"	<SubjectID>\\t<SampleID_1>\\t<SampleID_2>\\n\n",
@@ -107,6 +110,11 @@ if(length(opt$which_value_to_use)){
 DistType=DEF_DISTTYPE;
 if(length(opt$dist_type)){
 	DistType=opt$dist_type;
+}
+
+NumBootstraps=DEF_NUM_BS;
+if(length(opt$num_bootstraps)){
+	NumBootstraps=opt$num_bootstraps;
 }
 
 if(!any(DistType== c("wrd","man","bray","horn","bin","gow","euc","tyc","minkp3","minkp5"))){
@@ -882,7 +890,12 @@ fit_rate_model_wfactors=function(dist, time, factor_mat, num_bootstraps=80){
 	regr_table[,"pval"]=pval;
 
 	print(regr_table);
-	plot_text(capture.output(print(regr_table)));
+	plot_text(c(
+		"Bootstrapped Regression Coefficients:",
+		paste("Num Bootstraps: ", num_bootstraps, sep=""),
+		capture.output(print(regr_table))
+		)
+	);
 
 	# Calculate on input dataset (i.e. not resampled)
 	opt_res=optim(sann_opt_res$par, objective_fn_wfactors, method="BFGS", control=list(reltol=1e-4));
@@ -1032,6 +1045,7 @@ mds_pad_y=mds_range_y*.05;
 plot(0, type="n", 
 	xlim=c(mds_min_x-mds_pad_x, mds_max_x+mds_pad_x),
 	ylim=c(mds_min_y-mds_pad_y, mds_max_y+mds_pad_y),
+	main="MDS Plot with Connected Pairs",
 	xlab="Dimension 1", ylab="Dimension 2");
 
 for(i in 1:final_sample_pair_count){
@@ -1108,7 +1122,7 @@ points(results[["predictions"]][,1], results[["predictions"]][,2], type="l", lwd
 
 results=fit_rate_model_wfactors(
 	final_paired_distances, final_timespans, final_selected_factors_mat,
-	num_bootstraps=5
+	num_bootstraps=NumBootstraps
 	);
 
 # Fit linear model with time correction
@@ -1142,9 +1156,23 @@ predonly_txt=capture.output(print(summary(predonly_fit)));
 correctiononly_txt=capture.output(print(summary(correctiononly_fit)));
 full_txt=capture.output(print(summary(full_fit)));
 
-plot_text(predonly_txt);
-plot_text(correctiononly_txt);
-plot_text(full_txt);
+plot_text(c(
+	"Pure Linear Model: No Parameterized Time Correction, but with Intercept",
+	"",
+	predonly_txt
+));
+
+plot_text(c(
+	"Reduced Model: Time Correction Only, without any predictors",
+	"",
+	correctiononly_txt
+));
+
+plot_text(c(
+	"Full Model: Time Correction, with predictors",
+	"",
+	full_txt
+));
 
 ###############################################################################
 
