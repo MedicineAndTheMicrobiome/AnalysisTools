@@ -257,31 +257,31 @@ test_and_apply_log_transform=function(mat_val, pval_cutoff=.2, plot_before_after
 
 plot_text=function(strings){
 
-orig.par=par(no.readonly=T);
+	orig.par=par(no.readonly=T);
 
-par(mfrow=c(1,1));
-par(family="Courier");
-par(oma=rep(.5,4));
-par(mar=rep(0,4));
+	par(mfrow=c(1,1));
+	par(family="Courier");
+	par(oma=rep(.5,4));
+	par(mar=rep(0,4));
 
-num_lines=length(strings);
+	num_lines=length(strings);
 
-top=max(as.integer(num_lines), 52);
+	top=max(as.integer(num_lines), 52);
 
-plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
-	xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
-	);
+	plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
+		xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
+		);
 
-text_size=max(.01, min(.8, .8 - .003*(num_lines-52)));
-#print(text_size);
+	text_size=max(.01, min(.8, .8 - .003*(num_lines-52)));
+	#print(text_size);
 
-for(i in 1:num_lines){
-	#cat(strings[i], "\n", sep="");
-	strings[i]=gsub("\t", "", strings[i]);
-	text(0, top-i, strings[i], pos=4, cex=text_size);
-}
+	for(i in 1:num_lines){
+		#cat(strings[i], "\n", sep="");
+		strings[i]=gsub("\t", "", strings[i]);
+		text(0, top-i, strings[i], pos=4, cex=text_size);
+	}
 
-par(orig.par);
+	par(orig.par);
 }
 
 compute_correlations=function(mat){
@@ -325,12 +325,219 @@ compute_correlations=function(mat){
 	return(res);
 }
 
+paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_is_hot=T, deci_pts=4,
+        label_zeros=T, counts=F, value.cex=1,
+        plot_col_dendr=F,
+        plot_row_dendr=F
+){
+
+        num_row=nrow(mat);
+        num_col=ncol(mat);
+
+        row_names=rownames(mat);
+        col_names=colnames(mat);
+
+        orig.par=par(no.readonly=T);
+
+        cat("Num Rows: ", num_row, "\n");
+        cat("Num Cols: ", num_col, "\n");
+
+        # Flips the rows, so becuase origin is bottom left
+        mat=mat[rev(1:num_row),, drop=F];
+
+        # Generate a column scheme
+        num_colors=50;
+        color_arr=rainbow(num_colors, start=0, end=4/6);
+        if(high_is_hot){
+                color_arr=rev(color_arr);
+        }
+
+        # Provide a means to map values to an (color) index
+        remap=function(in_val, in_range, out_range){
+                in_prop=(in_val-in_range[1])/(in_range[2]-in_range[1])
+                out_val=in_prop*(out_range[2]-out_range[1])+out_range[1];
+                return(out_val);
+        }
+
+        # If range is not specified, find it based on the data
+        if(is.na(plot_min)){
+                plot_min=min(mat, na.rm=T);
+        }
+        if(is.na(plot_max)){
+                plot_max=max(mat, na.rm=T);
+        }
+
+        if(plot_min>=-1 && plot_max<=1){
+                fractions_only=T;
+        }else{
+                fractions_only=F;
+        }
+        cat("Plot min/max: ", plot_min, "/", plot_max, "\n");
+
+        # Get Label lengths
+        row_max_nchar=max(nchar(row_names));
+        col_max_nchar=max(nchar(col_names));
+        cat("Max Row Names Length: ", row_max_nchar, "\n");
+        cat("Max Col Names Length: ", col_max_nchar, "\n");
+
+        ##################################################################################################
+
+        get_dendrogram=function(in_mat, type){
+                if(type=="row"){
+                        dendist=dist(in_mat);
+                }else{
+                        dendist=dist(t(in_mat));
+                }
+
+                get_clstrd_leaf_names=function(den){
+                # Get a list of the leaf names, from left to right
+                        den_info=attributes(den);
+                        if(!is.null(den_info$leaf) && den_info$leaf==T){
+                                return(den_info$label);
+                        }else{
+                                lf_names=character();
+                                for(i in 1:2){
+                                        lf_names=c(lf_names, get_clstrd_leaf_names(den[[i]]));
+                                }
+                                return(lf_names);
+                        }
+                }
+
+
+                hcl=hclust(dendist, method="ward.D2");
+                dend=list();
+                dend[["tree"]]=as.dendrogram(hcl);
+                dend[["names"]]=get_clstrd_leaf_names(dend[["tree"]]);
+                return(dend);
+        }
+
+
+        ##################################################################################################
+        # Comput Layouts
+        col_dend_height=ceiling(num_row*.1);
+        row_dend_width=ceiling(num_col*.2);
+
+        heatmap_height=num_row;
+        heatmap_width=num_col;
+
+        if(plot_col_dendr && plot_row_dendr){
+                layoutmat=matrix(
+                        c(
+                        rep(c(rep(4, row_dend_width), rep(3, heatmap_width)), col_dend_height),
+                        rep(c(rep(2, row_dend_width), rep(1, heatmap_width)), heatmap_height)
+                        ), byrow=T, ncol=row_dend_width+heatmap_width);
+
+                col_dendr=get_dendrogram(mat, type="col");
+                row_dendr=get_dendrogram(mat, type="row");
+
+                mat=mat[row_dendr[["names"]], col_dendr[["names"]]];
+
+        }else if(plot_col_dendr){
+                layoutmat=matrix(
+                        c(
+                        rep(rep(2, heatmap_width), col_dend_height),
+                        rep(rep(1, heatmap_width), heatmap_height)
+                        ), byrow=T, ncol=heatmap_width);
+
+                col_dendr=get_dendrogram(mat, type="col");
+                mat=mat[, col_dendr[["names"]]];
+
+        }else if(plot_row_dendr){
+                layoutmat=matrix(
+                        rep(c(rep(2, row_dend_width), rep(1, heatmap_width)), heatmap_height),
+                        byrow=T, ncol=row_dend_width+heatmap_width);
+
+                row_dendr=get_dendrogram(mat, type="row");
+                mat=mat[row_dendr[["names"]],];
+        }else{
+                layoutmat=matrix(
+                        rep(1, heatmap_height*heatmap_width),
+                        byrow=T, ncol=heatmap_width);
+        }
+
+        #print(layoutmat);
+        layout(layoutmat);
+
+        ##################################################################################################
+
+        par(oma=c(col_max_nchar*.60, 0, 3, row_max_nchar*.60));
+        par(mar=c(0,0,0,0));
+        plot(0, type="n", xlim=c(0,num_col), ylim=c(0,num_row), xaxt="n", yaxt="n", bty="n", xlab="", ylab="");
+        mtext(title, side=3, line=0, outer=T, font=2);
+
+        # x-axis
+        axis(side=1, at=seq(.5, num_col-.5, 1), labels=colnames(mat), las=2, line=-1.75);
+        axis(side=4, at=seq(.5, num_row-.5, 1), labels=rownames(mat), las=2, line=-1.75);
+
+        if(log_col){
+                plot_min=log10(plot_min+.0125);
+                plot_max=log10(plot_max+.0125);
+        }
+
+        for(x in 1:num_col){
+                for(y in 1:num_row){
+
+                        if(log_col){
+                                col_val=log10(mat[y,x]+.0125);
+                        }else{
+                                col_val=mat[y,x];
+                        }
+
+                        remap_val=remap(col_val, c(plot_min, plot_max), c(1, num_colors));
+                        col_ix=ceiling(remap_val);
+
+                        rect(x-1, y-1, (x-1)+1, (y-1)+1, border=NA, col=color_arr[col_ix]);
+
+                        if(is.na(mat[y,x]) || mat[y,x]!=0 || label_zeros){
+                                if(counts){
+                                        text_lab=sprintf("%i", mat[y,x]);
+                                }else{
+                                        text_lab=sprintf(paste("%0.", deci_pts, "f", sep=""), mat[y,x]);
+                                        if(fractions_only){
+                                                if(!is.na(mat[y,x])){
+                                                        if(mat[y,x]==-1 || mat[y,x]==1){
+                                                                text_lab=as.integer(mat[y,x]);
+                                                        }else{
+                                                                text_lab=gsub("0\\.","\\.", text_lab);
+                                                        }
+                                                }
+                                        }
+                                }
+                                text(x-.5, y-.5, text_lab, srt=atan(num_col/num_row)/pi*180, cex=value.cex, font=2);
+                        }
+                }
+        }
+
+        ##################################################################################################
+
+        par(mar=c(0, 0, 0, 0));
+
+        if(plot_row_dendr && plot_col_dendr){
+                rdh=attributes(row_dendr[["tree"]])$height;
+                cdh=attributes(col_dendr[["tree"]])$height;
+                plot(row_dendr[["tree"]], leaflab="none", horiz=T, xaxt="n", yaxt="n", bty="n", xlim=c(rdh, 0));
+                plot(col_dendr[["tree"]], leaflab="none",xaxt="n", yaxt="n", bty="n", ylim=c(0, cdh));
+                plot(0,0, type="n", bty="n", xaxt="n", yaxt="n");
+                #text(0,0, "Placeholder");
+        }else if(plot_row_dendr){
+                rdh=attributes(row_dendr[["tree"]])$height;
+                plot(row_dendr[["tree"]], leaflab="none", horiz=T, xaxt="n", yaxt="n", bty="n", xlim=c(rdh, 0));
+                #text(0,0, "Row Dendrogram");
+        }else if(plot_col_dendr){
+                cdh=attributes(col_dendr[["tree"]])$height;
+                plot(col_dendr[["tree"]], leaflab="none", xaxt="n", yaxt="n", bty="n", ylim=c(0, cdh));
+                #text(0,0, "Col Dendrogram");
+        }
+
+        par(orig.par);
+
+}
 
 ##############################################################################
 # Main Program Starts Here!
 ##############################################################################
 
-pdf(paste(OutputFnameRoot, ".pdf", sep=""), height=11, width=8.5);
+pdf(paste(OutputFnameRoot, ".pca.pdf", sep=""), height=11, width=8.5);
 
 plot_text(param_text);
 
@@ -499,6 +706,13 @@ for(pred_name in curated_predictors_arr){
 
 	pred_ix=pred_ix+1;
 }
+
+mask_matrix=function(val_mat, mask_mat, mask_thres, mask_val){
+        masked_matrix=val_mat;
+        masked_matrix[mask_mat>mask_thres]=mask_val;
+        return(masked_matrix);
+}
+
 
 #############################################################################
 
@@ -701,6 +915,30 @@ highlight_predictors=function(x){
 dend=dendrapply(dend, highlight_predictors);
 
 plot(dend, main="Ward's Minimum Variance: dist(1-abs(cor))");
+
+print(correl$val);
+paint_matrix(correl$val, deci_pts=2, title="All Correlations");
+
+signf_10=mask_matrix(correl$val, correl$pval, 0.1, mask_val=0);
+paint_matrix(signf_10, deci_pts=2, label_zeros=F, title="Correlations (p-val<0.10)");
+
+signf_05=mask_matrix(correl$val, correl$pval, 0.05, mask_val=0);
+paint_matrix(signf_05, deci_pts=2, label_zeros=F, title="Correlations (p-val<0.05)");
+
+signf_01=mask_matrix(correl$val, correl$pval, 0.01, mask_val=0);
+paint_matrix(signf_01, deci_pts=2, label_zeros=F, title="Correlations (p-val<0.01)");
+
+num_comparisons=nrow(correl$val)*(nrow(correl$val)-1)/2;
+cat("Num comparisons to correct for: ", num_comparisons, "\n");
+
+signf_05_bonf=mask_matrix(correl$val, correl$pval, 0.05/num_comparisons, mask_val=0);
+paint_matrix(signf_05_bonf, deci_pts=2, label_zeros=F, title="Correlations (Bonferroni Corrected: p-val<0.05)");
+
+signf_01_bonf=mask_matrix(correl$val, correl$pval, 0.01/num_comparisons, mask_val=0);
+paint_matrix(signf_01_bonf, deci_pts=2, label_zeros=F, title="Correlations (Bonferroni Corrected: p-val<0.01)");
+
+signf_001_bonf=mask_matrix(correl$val, correl$pval, 0.001/num_comparisons, mask_val=0);
+paint_matrix(signf_001_bonf, deci_pts=2, label_zeros=F, title="Correlations (Bonferroni Corrected: p-val<0.001)");
 
 ##############################################################################
 
@@ -963,6 +1201,7 @@ dend=dendrapply(dend, highlight_pcs);
 par(mfrow=c(1,1));
 par(mar=c(2,1,1,20));
 plot(dend, horiz=T, main="Ward's Minimum Variance: dist(1-abs(cor)) with PCs");
+
 
 ##############################################################################
 
