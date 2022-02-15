@@ -97,6 +97,17 @@ while(<IN_FH>){
 	$line++;
 }
 
+my @key_arr=keys %col_hash;
+my $num_uniq_colnames=$#key_arr+1;
+
+if($num_hdr_cols != $num_uniq_colnames){
+	print STDERR "\n";
+	print STDERR "************************************************\n";
+	print STDERR "* WARNING: Possibly duplicated column names!!! *\n";
+	print STDERR "************************************************\n";
+	print STDERR "\n";
+}
+
 for(my $i=0; $i<$num_hdr_cols; $i++){
 	my $colname=$header_arr[$i];
 		
@@ -154,3 +165,10 @@ for(my $i=0; $i<$num_hdr_cols; $i++){
 	print "$colnum $colname:  $out_string\n";
 }
 
+if($num_hdr_cols != $num_uniq_colnames){
+	print STDERR "\n";
+	print STDERR "************************************************\n";
+	print STDERR "* WARNING: Possibly duplicated column names!!! *\n";
+	print STDERR "************************************************\n";
+	print STDERR "\n";
+}
