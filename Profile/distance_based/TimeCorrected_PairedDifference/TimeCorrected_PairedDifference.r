@@ -53,7 +53,7 @@ usage = paste(
 	"\n",
 	"	[-t <tag name>]\n",
 	"\n",
-	"	[-p <num bootstraps, default=", NUM_BS, ">]",
+	"	[-p <num bootstraps, default=", DEF_NUM_BS, ">]",
 	"\n",
 	"	The contents of the mapping files should be:\n",
 	"	<SubjectID>\\t<SampleID_1>\\t<SampleID_2>\\n\n",
