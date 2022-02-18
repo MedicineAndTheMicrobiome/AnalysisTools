@@ -1100,8 +1100,17 @@ pval_matrix=pval_matrix[-intercept_ix, , drop=F];
 plot_correl_heatmap(coeff_matrix, title="Coefficients");
 plot_correl_heatmap(pval_matrix, title="P-values");
 
+significant_coeff=(pval_matrix<0.10)*coeff_matrix;
+plot_correl_heatmap(significant_coeff, title="Significant Coefficients: p-value<0.10", noPrintZeros=T);
+
 significant_coeff=(pval_matrix<0.05)*coeff_matrix;
-plot_correl_heatmap(significant_coeff, title="Significant Coefficients", noPrintZeros=T);
+plot_correl_heatmap(significant_coeff, title="Significant Coefficients: p-value<0.05", noPrintZeros=T);
+
+significant_coeff=(pval_matrix<0.01)*coeff_matrix;
+plot_correl_heatmap(significant_coeff, title="Significant Coefficients: p-value<0.01", noPrintZeros=T);
+
+significant_coeff=(pval_matrix<0.001)*coeff_matrix;
+plot_correl_heatmap(significant_coeff, title="Significant Coefficients: p-value<0.001", noPrintZeros=T);
 
 
 dev.off();
