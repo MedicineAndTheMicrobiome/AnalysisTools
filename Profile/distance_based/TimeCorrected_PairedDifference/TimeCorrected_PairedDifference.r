@@ -1084,11 +1084,16 @@ plot(final_timespans, rates, main="Rates across Times", xlab="Time", ylab="Rate"
 cat("Genering Distance over Time Scatter...\n");
 max_distance=max(final_paired_distances);
 max_time=max(final_timespans);
+quant95_times=quantile(final_timespans, c(0.025, 0.975));
 cat("Max Dist:", max_distance, "   Max Time:", max_time, "\n");
 plot(final_timespans, final_paired_distances,
 	ylim=c(0, max_distance*1.1),
 	xlim=c(0, max_time *1.1),
 	xlab="Time", ylab="Paired Distance", main="Relationship between Time and Distance");
+title(main=paste("95% PI of Times: (", quant95_times[1], ", ", quant95_times[2], ")", sep=""), 
+	line=0, cex.main=.8);
+abline(v=quant95_times[1], col="grey");
+abline(v=quant95_times[2], col="grey");
 
 # Fit loess without 0/0 origin
 cat("Calculating Loess without Origin.\n");
