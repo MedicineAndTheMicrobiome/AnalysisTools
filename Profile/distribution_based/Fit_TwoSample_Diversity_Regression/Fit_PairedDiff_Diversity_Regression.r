@@ -331,7 +331,8 @@ mask_matrix=function(val_mat, mask_mat, mask_thres, mask_val){
 	return(masked_matrix);
 }
 
-plot_text=function(strings){
+plot_text=function(strings, size_multi=1){
+	par(mfrow=c(1,1));
 	par(family="Courier");
 	par(oma=rep(.1,4));
 	par(mar=rep(0,4));
@@ -350,7 +351,7 @@ plot_text=function(strings){
 	for(i in 1:num_lines){
 		#cat(strings[i], "\n", sep="");
 		strings[i]=gsub("\t", "", strings[i]);
-		text(0, top-i, strings[i], pos=4, cex=text_size); 
+		text(0, top-i, strings[i], pos=4, cex=text_size*size_multi); 
 	}
 }
 
@@ -639,6 +640,57 @@ tail_statistic=function(x){
                 tail=tail + norm[i]*((i-1)^2);
         }
         return(sqrt(tail));
+}
+
+
+signf_as_table=function(coef_mat, pval_mat){
+
+        num_rows=nrow(coef_mat);
+        num_cols=ncol(coef_mat);
+        num_entries=num_rows*num_cols;
+
+        cnames=colnames(coef_mat);
+        rnames=rownames(coef_mat);
+        tab_headers=c("Row", "Column", "Coefficient", "P-value", "Formatted");
+        comb_tab=matrix(NA, nrow=num_entries, ncol=length(tab_headers));
+        colnames(comb_tab)=tab_headers;
+
+        pval_val=numeric(num_entries);
+
+        line_ix=1;
+        for(i in 1:num_rows){
+                for(j in 1:num_cols){
+
+                        pval=pval_mat[i,j];
+                        if(pval < 0.10){
+                                comb_tab[line_ix, "Row"]=rnames[i];
+                                comb_tab[line_ix, "Column"]=cnames[j];
+                                comb_tab[line_ix, "Coefficient"]=sprintf("%.5g", coef_mat[i,j]);
+                                comb_tab[line_ix, "P-value"]=sprintf("%.5g", pval);
+
+                                comb_tab[line_ix, "Formatted"]=
+                                        sprintf("(coef = %.4f, p-val = %.3g)", coef_mat[i,j], pval);
+                                pval_val[line_ix]=pval;
+                                line_ix=line_ix+1;
+                        }
+                }
+        }
+
+        num_signf=line_ix-1;
+
+        if(num_signf>=1){
+
+                comb_tab=comb_tab[1:num_signf,,drop=F];
+                pval_val=pval_val[1:num_signf];
+
+                sorted_ix=order(pval_val);
+
+                comb_tab=comb_tab[sorted_ix,,drop=F];
+                rownames(comb_tab)=1:num_signf;
+        }
+
+        return(comb_tab);
+
 }
 
 ##############################################################################
@@ -1260,6 +1312,13 @@ paint_matrix(signf_coef_mat,
         title="Regression Model Significant Coefficients", 
         high_is_hot=T, deci_pts=2, value.cex=1, label_zeros=F);
 mtext(text="(P-Values < 0.01 Shown)", side=3, cex=.9, font=3, line=2, outer=T);
+
+
+# Plot table of significant associations
+stab=signf_as_table(covariates_coef_mat, covariates_pval_mat);
+options(width=1000);
+plot_text(capture.output(print(stab, quote=F)), .8);
+
 
 paint_matrix(rsqrd_mat, plot_min=0, plot_max=1,
         title="Regression R^2's", 
