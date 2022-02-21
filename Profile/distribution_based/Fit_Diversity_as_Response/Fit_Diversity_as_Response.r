@@ -459,7 +459,7 @@ num_model_variables=length(strsplit(model_string, "\\+")[[1]]);
 
 ##############################################################################
 
-plot_text=function(strings){
+plot_text=function(strings, size_mult=1){
 	par(mfrow=c(1,1));
         par(family="Courier");
         par(oma=rep(.5,4));
@@ -479,7 +479,7 @@ plot_text=function(strings){
         for(i in 1:num_lines){
                 #cat(strings[i], "\n", sep="");
                 strings[i]=gsub("\t", "", strings[i]);
-                text(0, top-i, strings[i], pos=4, cex=text_size);
+                text(0, top-i, strings[i], pos=4, cex=text_size*size_mult);
         }
 }
 
@@ -998,6 +998,53 @@ plot_overlapping_histograms=function(raw, factors, model_string, title, bin_cont
 
 ##############################################################################
 
+signf_as_table=function(coef_mat, pval_mat){
+
+	num_rows=nrow(coef_mat);
+	num_cols=ncol(coef_mat);
+	num_entries=num_rows*num_cols;
+
+	cnames=colnames(coef_mat);
+	rnames=rownames(coef_mat);
+	tab_headers=c("Row", "Column", "Coefficient", "P-value", "Formatted");
+	comb_tab=matrix(NA, nrow=num_entries, ncol=length(tab_headers));
+	colnames(comb_tab)=tab_headers;
+
+	pval_val=numeric(num_entries);
+
+	line_ix=1;
+	for(i in 1:num_rows){
+		for(j in 1:num_cols){
+
+			pval=pval_mat[i,j];
+			if(pval < 0.10){
+				comb_tab[line_ix, "Row"]=rnames[i];
+				comb_tab[line_ix, "Column"]=cnames[j];
+				comb_tab[line_ix, "Coefficient"]=sprintf("%.5g", coef_mat[i,j]);
+				comb_tab[line_ix, "P-value"]=sprintf("%.5g", pval);
+
+				comb_tab[line_ix, "Formatted"]=
+					sprintf("(coef = %.4f, p-val = %.3g)", coef_mat[i,j], pval);
+				pval_val[line_ix]=pval;
+				line_ix=line_ix+1;
+			}
+		}
+	}
+
+	comb_tab=comb_tab[1:(line_ix-1),,drop=F];
+	pval_val=pval_val[1:(line_ix-1)];
+
+	sorted_ix=order(pval_val);
+
+	comb_tab=comb_tab[sorted_ix,,drop=F];
+	rownames(comb_tab)=1:(line_ix-1);
+	
+	return(comb_tab);
+
+}
+
+##############################################################################
+
 # Matrix to store R^2's
 cat("Allocating R^2 Matrix...\n");
 rsqrd_mat=matrix(0, nrow=num_div_idx, ncol=2);
@@ -1112,6 +1159,10 @@ plot_correl_heatmap(significant_coeff, title="Significant Coefficients: p-value<
 significant_coeff=(pval_matrix<0.001)*coeff_matrix;
 plot_correl_heatmap(significant_coeff, title="Significant Coefficients: p-value<0.001", noPrintZeros=T);
 
+# Plot table of significant associations
+stab=signf_as_table(coeff_matrix, pval_matrix);
+options(width=1000);
+plot_text(capture.output(print(stab, quote=F)), .8);
 
 dev.off();
 
