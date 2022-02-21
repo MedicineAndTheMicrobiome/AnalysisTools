@@ -1031,13 +1031,18 @@ signf_as_table=function(coef_mat, pval_mat){
 		}
 	}
 
-	comb_tab=comb_tab[1:(line_ix-1),,drop=F];
-	pval_val=pval_val[1:(line_ix-1)];
+	num_signf=line_ix-1;
 
-	sorted_ix=order(pval_val);
+	if(num_signf>=1){
 
-	comb_tab=comb_tab[sorted_ix,,drop=F];
-	rownames(comb_tab)=1:(line_ix-1);
+		comb_tab=comb_tab[1:num_signf,,drop=F];
+		pval_val=pval_val[1:num_signf];
+
+		sorted_ix=order(pval_val);
+
+		comb_tab=comb_tab[sorted_ix,,drop=F];
+		rownames(comb_tab)=1:num_signf;
+	}
 	
 	return(comb_tab);
 
