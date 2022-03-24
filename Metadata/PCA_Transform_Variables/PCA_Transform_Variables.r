@@ -468,12 +468,29 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
                 row_dendr=get_dendrogram(mat, type="row");
                 mat=mat[row_dendr[["names"]],];
         }else{
-                layoutmat=matrix(
-                        rep(1, heatmap_height*heatmap_width),
-                        byrow=T, ncol=heatmap_width);
+
+		if(heatmap_height < 200 &&  heatmap_width < 200){
+			layoutmat=matrix(
+				rep(1, heatmap_height*heatmap_width),
+				byrow=T, ncol=heatmap_width);
+		}else{
+			larger_dim=max(heatmap_height, heatmap_width);
+
+			hm_height_norm=heatmap_height/larger_dim;	
+			hm_width_norm=heatmap_width/larger_dim;
+
+			lo_height=100*hm_height_norm;
+			lo_width=100*hm_width_norm;
+
+			layoutmat=matrix(
+				rep(1, lo_height*lo_width),
+				byrow=T, ncol=lo_width);
+
+		}
+			
         }
 
-        #print(layoutmat);
+        print(layoutmat);
         layout(layoutmat);
 
         ##################################################################################################
