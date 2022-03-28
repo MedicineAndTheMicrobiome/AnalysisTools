@@ -45,10 +45,29 @@ impute_cell=function(target_predictors, responses, predictors, verbose=F){
         # Create model with the predictors with greatest correlaton with response first
         form_str=paste(colnames(responses), "~", paste(top_pred, collapse="+"));
         print(form_str);
-        fit=lm(formula(form_str), data=cbind(responses, predictors_nona));
+        fit=lm(formula(form_str), data=as.data.frame(cbind(responses, predictors_nona)));
+
+
+	coefficients=fit$coefficients;
+	if(any(is.na(coefficients))){
+		cat("\n");
+		cat("Warning: NAs detected in estimated coefficients.\n");
+		cat("  Refitting model with subset of predictors.\n");
+
+		nonNA_predictors=setdiff(names(coefficients[!is.na(coefficients)]), "(Intercept)");
+		cat("Non-NA Predictors:\n");
+		print(nonNA_predictors);
+
+		form_str=paste(colnames(responses), "~", paste(nonNA_predictors, collapse="+"));
+		print(form_str);
+		fit=lm(formula(form_str), data=as.data.frame(cbind(responses, predictors_nona)));
+		
+		top_pred=nonNA_predictors;
+
+	}
 
         # Predict NA with the values that we have
-        imputed_val=predict(fit, new=target_predictors[top_pred]);
+        imputed_val=predict(fit, newdata=as.data.frame(target_predictors[,top_pred, drop=F]));
 
         #print(fit);
         if(verbose){
@@ -172,3 +191,54 @@ impute_matrix=function(mat_wna){
 
 }
 
+###############################################################################
+# Matrix_wNAs: contains a matrix with NAs in it
+# variable_grouping_list: contains a R list, keyed with group names.  
+#     Each list element is a vector of variables names in the Matrix_wNAs.
+
+impute_by_groupings=function(matrix_wNAs, variable_grouping_list){
+
+	#print(matrix_wNAs);
+	#print(variable_grouping_list);
+
+	num_var=ncol(matrix_wNAs);
+	num_samples=nrow(matrix_wNAs);
+
+	samp_names=rownames(matrix_wNAs);
+	#cat("Sample Names:\n");
+	#print(samp_names);
+	#cat("\n");
+	var_names=colnames(matrix_wNAs);
+	#cat("Variable Names:\n");
+	#print(var_names);
+	#cat("\n");
+
+	out_matrix=matrix(NA, nrow=num_samples, ncol=num_var);
+	rownames(out_matrix)=samp_names;
+	colnames(out_matrix)=var_names;
+
+	group_names=names(variable_grouping_list);
+
+	for(cur_grp in group_names){
+
+		cat("Imputing Group: ", cur_grp, "\n");
+		targ_var=variable_grouping_list[[cur_grp]];
+
+		cat("Variables: \n");
+		print(targ_var);
+		
+		targ_matrix_wNAs=matrix_wNAs[,targ_var,drop=F];
+
+		noNA_matrix=impute_matrix(targ_matrix_wNAs);	
+
+		# Not sure why I need to iterate to make assignment
+		#   out_matrix[samp_names,targ_var]=noNA_matrix[samp_names,targ_var];
+		for(var_ix in targ_var){
+			out_matrix[samp_names, var_ix]=noNA_matrix[samp_names, var_ix];
+		}
+
+	}
+
+	return(out_matrix);
+
+}
