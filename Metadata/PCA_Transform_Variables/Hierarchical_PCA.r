@@ -23,6 +23,9 @@ MIN_PC_PROP_CUTOFF=0.10;
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
 script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
 
+script_path=paste(head(strsplit(script_name, "/")[[1]], -1), collapse="/");
+source(paste(script_path, "/Impute_Matrix.r", sep=""));
+
 usage = paste(
 	"\nUsage:\n", script_name, "\n",
 	"	-f <factors/metadata file name>\n",
@@ -182,7 +185,8 @@ test_and_apply_log_transform=function(mat_val, pval_cutoff=.2, plot_before_after
 	for(var in orig_colnames){
 		values=mat_val[,var];
 
-		transformed=F;
+		log_transformed=F;
+		sqrt_transformed=F;
 
 		num_unique_val=length(setdiff(unique(values), NA));
 		values_nona=values[!is.na(values)];
@@ -207,38 +211,52 @@ test_and_apply_log_transform=function(mat_val, pval_cutoff=.2, plot_before_after
 
 		cat("\n", var, ": Num Unique Values: ", num_unique_val, "\n");
 
-		test_res=NA;
-		test_log_res=NA;
-
 		if(num_unique_val>1){
 
 			test_res=shapiro.test(values);
+			test_log_res=NULL;
 
 			if(test_res$p.value<=pval_cutoff && num_unique_val>2){
 				cat(" Not normal: ", test_res$p.value, "\n");
+
 				if(any(values_nona==0)){
 					log_values=log(values+1);
 				}else{
 					log_values=log(values);
 				}
+				sqrt_values=sqrt(values);
 
 				test_log_res=shapiro.test(log_values);
+				test_sqrt_res=shapiro.test(sqrt_values);
 
-				if(test_log_res$p.value < test_res$p.value){
+				if(test_log_res$p.value < test_res$p.value &&
+					test_sqrt_res$p.value < test_res$p.value){
 					# Keep original
 					cat("  No Improvement: ", test_log_res$p.value, "\n");
 					new_colnames=c(new_colnames, paste("orig_", var, sep=""));
 				}else{
-					# Keep log transformed
-					cat("  Transformation Effective: ", test_log_res$p.value, "\n");
-					new_colnames=c(new_colnames, paste("log_", var, sep=""));
-					trans_mat[, var]=log_values;
-					transformed=T;		
+
+					cat("     Log p-val : ", test_log_res$p.value, "\n");
+                                        cat("    Sqrt p-val : ", test_sqrt_res$p.value, "\n");
+
+					if(test_log_res$p.value > test_sqrt_res$p.value){
+                                                # Keep log transformed
+                                                cat("  Log Transformation Effective: ", test_log_res$p.value, "\n");
+                                                new_colnames=c(new_colnames, paste("log_", var, sep=""));
+                                                trans_mat[, var]=log_values;
+                                                log_transformed=T;
+                                        }else{
+                                                # Keep sqrt transformed
+                                                cat("  Sqrt Transformation Effective: ", test_sqrt_res$p.value, "\n");
+                                                new_colnames=c(new_colnames, paste("sqrt_", var, sep=""));
+                                                trans_mat[, var]=sqrt_values;
+                                                sqrt_transformed=T;
+                                        }
+
 				}
 			}else{
 				cat(" Normal enough. ", test_res$p.value, "\n");
 				new_colnames=c(new_colnames, var);
-				transformed=F;
 			}
 
 		}else{
@@ -254,20 +272,17 @@ test_and_apply_log_transform=function(mat_val, pval_cutoff=.2, plot_before_after
 			hist(values, main=var, breaks=nclass);
 			title(main=sprintf("p-value: %4.4f", test_res$p.value), cex.main=.8, line=.5);
 
-			if(transformed){
+			if(log_transformed){
 				hist(log_values, breaks=nclass, main=paste("log(", var,")", sep=""));
 				title(main=sprintf("p-value: %4.4f", test_log_res$p.value), cex.main=.8, line=.5);
+				pval=test_log_res$p.value;
+			}else if(sqrt_transformed){
+				hist(sqrt_values, breaks=nclass, main=paste("sqrt(", var,")", sep=""));
+				title(main=sprintf("p-value: %4.4f", test_sqrt_res$p.value), cex.main=.8, line=.5);
+				pval=test_sqrt_res$p.value;
 			}else{
 				plot(0,0, xlab="", ylab="", main="", xaxt="n", yaxt="n", bty="n", type="n");
-
-				if(is.na(test_log_res)){
-					pval=test_res$p.value;
-				}else{
-					pval=test_log_res$p.value;
-				}
-
-				title(main=sprintf("p-value: %4.4f", pval), cex.main=.8, line=.5);
-				text(0,0, "Transform not beneficial");
+				text(0,0, "Transform not beneficial/necessary");
 			}
 		}
 
@@ -390,8 +405,7 @@ calculate_grouped_correlations=function(cur_fact_rec, groupings_rec){
 	for(cur_grp in groups){
 		cat("Calculating Correl on: ", cur_grp, "\n");
 		grp_mem=groupings_rec[["GrpVarMap"]][[cur_grp]];
-
-		grp_var_subset=cur_fact_rec[["Transformed"]][grp_mem];
+		grp_var_subset=cur_fact_rec[["Transformed"]][,grp_mem, drop=F];
 		if(ncol(grp_var_subset)>0){
 			grp_cor_rec[[cur_grp]]=compute_correlations(grp_var_subset);
 		}
@@ -615,6 +629,30 @@ cat("Testing and Apply Log Transforms...\n");
 curated_fact_rec=test_and_apply_log_transform(shared_factors_mat, NORM_PVAL_CUTOFF);
 
 remapped_groupings=remap_groupings(groupings_rec, curated_fact_rec);
+
+#print(curated_fact_rec);
+#print(remapped_groupings);
+
+pre_imput_num_nas=sum(is.na(curated_fact_rec$Transformed));
+cat("Num NAs before imputation: ", pre_imput_num_nas, "\n");
+
+# Impute with data within group first
+cat("Imputing within Groups...\n");
+group_inputed_matrix=impute_by_groupings(curated_fact_rec$Transformed, remapped_groupings[["GrpVarMap"]]);
+post_group_imput_num_nas=sum(is.na(group_inputed_matrix));
+cat("Num NAs after group-wise imputation: ", post_group_imput_num_nas, "\n");
+
+# Impute with data across groups next
+cat("Imputing across Groups...\n");
+print(group_inputed_matrix);
+curated_fact_rec$Transformed=impute_matrix(group_inputed_matrix);
+post_global_imput_num_nas=sum(is.na(curated_fact_rec$Transformed));
+
+cat("Num NAs before imputation: ", pre_imput_num_nas, "\n");
+cat("Num NAs after group-wise imputation: ", post_group_imput_num_nas, "\n");
+cat("Num NAs after global imputation: ", post_global_imput_num_nas, "\n");
+
+
 group_cor_rec=calculate_grouped_correlations(curated_fact_rec, remapped_groupings);
 
 accumulated_pcs=matrix(0, nrow=num_samples, ncol=0);
