@@ -105,11 +105,11 @@ OutputFnameRoot=opt$outputroot;
 GroupingsFname=opt$groupings;
 
 PCContribCutoff=MIN_PC_PROP_CUTOFF;
-
 if(length(opt$pc_contrib_cutoff)){
 	PCContribCutoff=opt$pc_contrib_cutoff;
 }
 
+OutputFnameRoot=paste(OutputFnameRoot, sprintf(".%3.3g", PCContribCutoff), sep="");
 
 param_text=capture.output({
 	cat("\n");
@@ -513,7 +513,7 @@ correl_to_PC=function(cor_rec, values, title, contrib_cutoff){
 	########################################################################
 
 	par(mfrow=c(2,1));
-	par(mar=c(20,4,1,1));
+	par(mar=c(18,4,1,1));
 	# Generate Dendrograms w/ PC
 	value_and_pc=cbind(values, kept_score);
 	pc_and_val=cor(value_and_pc);
@@ -543,17 +543,37 @@ correl_to_PC=function(cor_rec, values, title, contrib_cutoff){
 
 	dend=dendrapply(dend, highlight_pcs);
 
-        plot(dend, main=title, ylab="1-|cor(x,y)|", ylim=c(0, 2));
+        plot(dend, main=title, ylab="1-|cor(x,y)|", ylim=c(0, 2.5));
 
 	# Generate Barplots w/ PC Variance
 	colors=rep("khaki", num_var);
 	colors[1:num_pc_at_cutoff]="slategray2";
 	barlabs=rep("", num_var);
 	barlabs[1:num_pc_at_cutoff]=pcnames;
-	par(mar=c(20,4,0,1));
+	par(mar=c(20,4,1,1));
+
+	cumulative_coverage=sum(pca_propvar[1:num_pc_at_cutoff]);
 	mids=barplot(pca_propvar, ylim=c(0,1.1), names.arg=barlabs,  las=2,
-		col=colors, ylab="Prop. of Var.", cex.names=.8);
-	text(mids, pca_propvar, sprintf("%3.1f%%", pca_propvar*100), pos=3, cex=.7);
+		col=colors, ylab="Prop. of Var.", cex.names=.8, 
+		main=sprintf("Cumulative Coverage above Cutoff: %3.1f%%", cumulative_coverage*100));
+
+
+
+	# Adjust coverage labels so they are legible
+	if(num_var<=10){
+		angle=0;
+		adj=c(.5, -1);
+	}else if (num_var<=20){
+		angle=45;
+		adj=c(-.5,-2);
+	}else{
+		angle=90;
+		adj=c(-.5, .25);
+	}
+
+	text(mids, pca_propvar, sprintf("%3.1f%%", pca_propvar*100), cex=.7, srt=angle, adj=adj);
+	
+
 	abline(h=contrib_cutoff, col="red", lty=2);
 
 	colnames(kept_score)=paste(title, ".", pcnames, sep="");
@@ -657,6 +677,10 @@ group_cor_rec=calculate_grouped_correlations(curated_fact_rec, remapped_grouping
 
 accumulated_pcs=matrix(0, nrow=num_samples, ncol=0);
 accumulated_reps=matrix(0, nrow=num_samples, ncol=0);
+accumulated_groupid=character();
+accumulated_repid=character();
+accumulated_pcid=character();
+
 
 for(grp_ix in names(group_cor_rec)){
 	cat("------------------------------------------------------------\n");
@@ -666,15 +690,29 @@ for(grp_ix in names(group_cor_rec)){
 	subset_curated_fact=curated_fact_rec[["Transformed"]][,grp_members, drop=F];
 	results=correl_to_PC(group_cor_rec[[grp_ix]], subset_curated_fact, title=grp_ix, PCContribCutoff);
 
-
 	if(results[["num_pcs"]]>0){
 		accumulated_pcs=cbind(accumulated_pcs, results[["scores"]]);
 		accumulated_reps=cbind(accumulated_reps, results[["representatives"]]);
+
+		num_grp_reps=ncol(results[["representatives"]]);
+		accumulated_groupid=c(accumulated_groupid, rep(grp_ix, num_grp_reps));
+		accumulated_repid=c(accumulated_repid, colnames(results[["representatives"]]));
+		accumulated_pcid=c(accumulated_pcid, colnames(results[["scores"]]));
 	}
 
 }
 
 dev.off();
+
+# Export group representatives as determined by PCs
+group_reps_mat=cbind(accumulated_repid, accumulated_groupid);
+colnames(group_reps_mat)=c("Variable", "Group");
+print(group_reps_mat);
+
+group_pcs_mat=cbind(accumulated_pcid, accumulated_groupid);
+colnames(group_pcs_mat)=c("PC", "Group");
+print(group_pcs_mat);
+
 
 ##############################################################################
 
@@ -708,6 +746,11 @@ captured_perc_str=round(captured_prop_var*100.0,1);
 overall_scores=(scale(accumulated_pcs, center=T, scale=T) %*% overall_eigen$vectors);
 
 annotate_pcs=function(pc_coord, ref_val, pc_prop){
+
+	# pc_coord: Contains the PC "score", or transformed coordinates in PC space
+	# ref_val: Contains underlying variables, or "original" variable names/values
+	# pc_prop: variance coverage of PCs
+
 	num_pcs=ncol(pc_coord);
 	num_ref=ncol(ref_val);
 	ref_names=colnames(ref_val);
@@ -809,6 +852,13 @@ plot(combined_dend, ylab="1-|cor(x,y)|", main="Accumulated Selected Group PCs wi
 
 ##############################################################################
 
+# Output selected variable names and their groupings
+output_groupings=function(outmat, fname){
+	cat("Outputing Groups: ", fname, "\n");
+	write.table(outmat, file=fname, col.names=T, row.names=F, append=F, quote=F, sep="\t");
+}
+
+# Output variable values
 output_pca=function(outmat, fname){
 	cat("Outputing New Factor File Values:\n");
 	fh=file(fname, "w");
@@ -817,16 +867,24 @@ output_pca=function(outmat, fname){
 	write.table(outmat, file=fname, col.names=NA, append=T, quote=F, sep="\t");
 }
 
-# Output variables after log transform
 
+# Output variables after log transform
 output_pca(curated_fact_rec$Transformed,
 	paste(OutputFnameRoot, ".pre_pca.log_trans_var.tsv", sep=""));
 
-# Output PCA scores and underlying variables
+# Output groupings of selected PCs (based on cutoff)
+output_groupings(group_pcs_mat, paste(OutputFnameRoot, ".groups.pcs.groupings.tsv", sep=""));
 
+rownames(group_reps_mat)=group_reps_mat[,"Variable"];
+unique_repr=sort(unique(group_reps_mat[,"Variable"]));
+output_groupings(group_reps_mat[unique_repr,,drop=F], 
+	paste(OutputFnameRoot, ".groups.pc_var_rep.groupings.tsv", sep=""));
+
+# Output PCA scores and underlying variable values
 output_pca(accumulated_pcs, paste(OutputFnameRoot, ".groups.pca_scores.tsv", sep=""));
-output_pca(accumulated_reps, paste(OutputFnameRoot, ".groups.pc_var_rep.tsv", sep=""));
+output_pca(accumulated_reps[,unique_repr], paste(OutputFnameRoot, ".groups.pc_var_rep.tsv", sep=""));
 
+##############################################################################
 
 if(ncol(overall_scores)!=length(grp_annot_res[["annotated_names"]])){
 	cat("Error!  Number of PCs/Score Columns doesn't match annotation length!!!\n");
@@ -836,7 +894,7 @@ if(ncol(overall_scores)!=length(grp_annot_res[["annotated_names"]])){
 annotated_scores=overall_scores;
 colnames(annotated_scores)=grp_annot_res[["annotated_names"]];
 
-# Output PCA scores and underlying variables
+# Output overall PCA results: 
 
 output_pca(annotated_scores, paste(OutputFnameRoot, ".overall.all.pca_scores.tsv", sep=""));
 output_pca(grp_annot_res[["representatives"]], paste(OutputFnameRoot, ".overall.all.pc_grp_pca_rep.tsv", sep=""));
