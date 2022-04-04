@@ -303,7 +303,7 @@ centers=function(x, steps){
 	min=min(x);
 	max=max(x);
 	breaks=seq(min, max, length.out=steps+1);
-	breaks=breaks+(breaks[2]-breaks[1])/2;
+	breaks=round(breaks+(breaks[2]-breaks[1])/2, 3);
 	return(head(breaks, steps));
 }
 
@@ -327,14 +327,33 @@ for(type in c("Measured", "Response")){
 		mds_coord=mds_rec[[type]][[grp]];		
 	
 		for(var_ix in covariate_variable_names){
+
 			plot(mds_coord[,1], mds_coord[,2], col=colors[, var_ix],
 				xlab="Dim 1", ylab="Dim 2", type="n",
-				main=paste("Group: ", grp, " (Colored by: ", var_ix, ")", sep="")
+				main=paste("Group: ", grp, sep=""),
 				);
+			title(main=paste("(Colored by: ", var_ix, ")", sep=""), line=.66, cex.main=.75);
+
+			plot_ranges=par()$usr; # left, right, bottom, top
 			points(mds_coord[,1], mds_coord[,2], col=colors[,var_ix], cex=1.5, lwd=3);
 			points(mds_coord[,1], mds_coord[,2], col="black", cex=1.5, lwd=.25);
+			text(mds_coord[,1], mds_coord[,2], rownames(mds_coord), cex=.5, pos=3);
 
-			#legen
+			xmid=(plot_ranges[1]+plot_ranges[2])/2;
+			ymid=(plot_ranges[3]+plot_ranges[4])/2;
+			left=sum(mds_coord[,1]<xmid)<sum(mds_coord[,1]>xmid);
+			bottom=sum(mds_coord[,2]<ymid)<sum(mds_coord[,2]>ymid);
+
+			xrange=plot_ranges[2]-plot_ranges[1];
+			yrange=plot_ranges[4]-plot_ranges[3];
+
+			legend(
+				ifelse(left, plot_ranges[1]+xrange/8, plot_ranges[2]-xrange/4),
+				ifelse(bottom, plot_ranges[3]+yrange/4, plot_ranges[4]-yrange/8),
+				0,0, 
+				fill=1:max_cat, border="black",
+				title=var_ix,
+				legend=legends_values[[var_ix]]);
 		}
 
 	}
