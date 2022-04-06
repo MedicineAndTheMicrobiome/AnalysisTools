@@ -209,6 +209,7 @@ varlists_text=capture.output({
 });
 
 print(varlists_text, quote=F);
+plot_text(varlists_text);
 
 ##############################################################################
 
@@ -281,17 +282,19 @@ print(mds_rec);
 
 covariates_data=matrix(NA, nrow=nrow(loaded_factors), ncol=0);
 for(grp in names(variables_rec[["Covariates"]])){
-print(variables_rec[["Covariates"]][[grp]]);
 	covariates_data=cbind(covariates_data, variables_rec[["Covariates"]][[grp]]);
 }
 
 covariate_variable_names=colnames(covariates_data);
+
+##############################################################################
 
 colors=matrix(NA, nrow=nrow(covariates_data), ncol=ncol(covariates_data));
 colnames(colors)=colnames(covariates_data);
 rownames(colors)=rownames(covariates_data);
 
 quantize=function(x, steps){
+	# Assign value to bin by quantizig
 	min=min(x);
 	max=max(x);
 	range=max-min;
@@ -300,6 +303,7 @@ quantize=function(x, steps){
 }
 
 centers=function(x, steps){
+	# Calculate the bin centers in 
 	min=min(x);
 	max=max(x);
 	breaks=seq(min, max, length.out=steps+1);
@@ -321,6 +325,7 @@ print(legends_values);
 palette(rainbow(max_cat, end=4/6));
 
 ##############################################################################
+# Generate MDS Plots for each group of measurements and response
 
 for(type in c("Measured", "Response")){
 	for(grp in names(mds_rec[[type]])){
@@ -333,12 +338,12 @@ for(type in c("Measured", "Response")){
 				main=paste("Group: ", grp, sep=""),
 				);
 			title(main=paste("(Colored by: ", var_ix, ")", sep=""), line=.66, cex.main=.75);
-
-			plot_ranges=par()$usr; # left, right, bottom, top
 			points(mds_coord[,1], mds_coord[,2], col=colors[,var_ix], cex=1.5, lwd=3);
 			points(mds_coord[,1], mds_coord[,2], col="black", cex=1.5, lwd=.25);
 			text(mds_coord[,1], mds_coord[,2], rownames(mds_coord), cex=.5, pos=3);
 
+			# Determine which part of plot has the least points to place legend
+			plot_ranges=par()$usr; # left, right, bottom, top
 			xmid=(plot_ranges[1]+plot_ranges[2])/2;
 			ymid=(plot_ranges[3]+plot_ranges[4])/2;
 			left=sum(mds_coord[,1]<xmid)<sum(mds_coord[,1]>xmid);
@@ -358,6 +363,189 @@ for(type in c("Measured", "Response")){
 
 	}
 }
+
+##############################################################################
+# Fit Covariates to Predict Measured
+
+model_results=list();
+
+model_results[["Cov_to_Msd"]]=list();
+model_results[["Msd_to_Msd"]]=list();
+model_results[["Msd_to_Resp"]]=list();
+
+num_covariates=ncol(covariates_data);
+
+##############################################################################
+
+for(msd_ix in measured_list){
+
+	cat("Fitting: Covariates as Predictor to :", msd_ix, "\n");
+	msd_resp=as.matrix(variables_rec[["Measured"]][[msd_ix]]);
+	num_resp=ncol(msd_resp);
+	msd_varnames=colnames(msd_resp);
+
+	model_string=paste("msd_resp ~ ", paste(covariate_variable_names, collapse=" + "));
+
+	cat("Model: \n");
+	print(model_string);	
+
+	fit=lm(as.formula(model_string), data=covariates_data);
+	sum_fit=summary(fit);
+
+	# Matrices for storing coef and pvalues
+	pval_mat=matrix(NA, nrow=num_covariates, ncol=num_resp);
+	rownames(pval_mat)=covariate_variable_names;
+	colnames(pval_mat)=msd_varnames;
+
+	coef_mat=matrix(NA, nrow=num_covariates, ncol=num_resp);
+	rownames(coef_mat)=covariate_variable_names;
+	colnames(coef_mat)=msd_varnames;
+	
+	# Copy values from summary to matrices
+	for(var_ix in names(sum_fit)){
+		varname=gsub("Response ", "", var_ix);
+
+		pval_mat[covariate_variable_names, varname]=
+			sum_fit[[var_ix]][["coefficients"]][covariate_variable_names,"Pr(>|t|)"];
+
+		coef_mat[covariate_variable_names, varname]=
+			sum_fit[[var_ix]][["coefficients"]][covariate_variable_names,"Estimate"];
+
+	}
+
+	# Store in record
+	model_results[["Cov_to_Msd"]][[msd_ix]][["pval"]]=pval_mat;
+	model_results[["Cov_to_Msd"]][[msd_ix]][["coef"]]=coef_mat;
+
+}
+
+#print(model_results[["Cov_to_Msd"]]);
+
+##############################################################################
+# Fit (Measured + Covariates) to Predict Measured
+
+for(pred_msd_ix in measured_list){
+	for(resp_msd_ix in measured_list){
+
+		if(pred_msd_ix==resp_msd_ix){
+			next;
+		}
+
+		cat("Fitting: Measured to Measured: (Pred)", pred_msd_ix, " (Resp)", resp_msd_ix, "\n");
+		analysis_string=paste(pred_msd_ix, "->", resp_msd_ix, sep="");
+
+		msd_resp=as.matrix(variables_rec[["Measured"]][[resp_msd_ix]]);
+		num_resp=ncol(msd_resp);
+		msd_resp_varnames=colnames(msd_resp);
+
+		msd_pred=as.matrix(variables_rec[["Measured"]][[pred_msd_ix]]);
+		num_pred=ncol(msd_pred);
+		msd_pred_varnames=colnames(msd_pred);
+
+		model_string=paste("msd_resp ~ ", 
+			paste(c(covariate_variable_names, msd_pred_varnames), collapse=" + "));
+
+		cat("Model: \n");
+		print(model_string);	
+
+		fit=lm(as.formula(model_string), data=cbind(covariates_data, msd_pred));
+		sum_fit=summary(fit);
+		#print(sum_fit);
+
+		cov_and_pred_names=c(covariate_variable_names, msd_pred_varnames);
+		num_cov_pred_var=num_covariates+num_pred;
+
+		# Matrices for storing coef and pvalues
+		pval_mat=matrix(NA, nrow=num_cov_pred_var, ncol=num_resp);
+		rownames(pval_mat)=cov_and_pred_names;
+		colnames(pval_mat)=msd_resp_varnames;
+
+		coef_mat=matrix(NA, nrow=num_cov_pred_var, ncol=num_resp);
+		rownames(coef_mat)=cov_and_pred_names;
+		colnames(coef_mat)=msd_resp_varnames;
+		
+		# Copy values from summary to matrices
+		for(var_ix in names(sum_fit)){
+			varname=gsub("Response ", "", var_ix);
+
+			pval_mat[cov_and_pred_names, varname]=
+				sum_fit[[var_ix]][["coefficients"]][cov_and_pred_names,"Pr(>|t|)"];
+
+			coef_mat[cov_and_pred_names, varname]=
+				sum_fit[[var_ix]][["coefficients"]][cov_and_pred_names,"Estimate"];
+
+		}
+
+		# Store in record
+		model_results[["Msd_to_Msd"]][[analysis_string]][["pval"]]=pval_mat;
+		model_results[["Msd_to_Msd"]][[analysis_string]][["coef"]]=coef_mat;
+
+	}
+
+}
+
+#print(model_results[["Msd_to_Msd"]]);
+
+##############################################################################
+# Fit (Covariates + Measured) to Predict Response
+
+for(pred_msd_ix in measured_list){
+	for(resp_ix in response_list){
+
+		cat("Fitting: Measured to (as Predictor)", pred_msd_ix, " to ", resp_msd_ix, " (as Response)\n");
+
+		analysis_string=paste(pred_msd_ix, "->", resp_ix, sep="");
+
+		resp=as.matrix(variables_rec[["Response"]][[resp_ix]]);
+		num_resp=ncol(resp);
+		resp_varnames=colnames(resp);
+
+		msd_pred=as.matrix(variables_rec[["Measured"]][[pred_msd_ix]]);
+		num_pred=ncol(msd_pred);
+		msd_pred_varnames=colnames(msd_pred);
+
+		model_string=paste("resp ~ ", 
+			paste(c(covariate_variable_names, msd_pred_varnames), collapse=" + "));
+
+		cat("Model: \n");
+		print(model_string);	
+
+		fit=lm(as.formula(model_string), data=cbind(covariates_data, msd_pred));
+		sum_fit=summary(fit);
+		print(sum_fit);
+
+		cov_and_pred_names=c(covariate_variable_names, msd_pred_varnames);
+		num_cov_pred_var=num_covariates+num_pred;
+
+		# Matrices for storing coef and pvalues
+		pval_mat=matrix(NA, nrow=num_cov_pred_var, ncol=num_resp);
+		rownames(pval_mat)=cov_and_pred_names;
+		colnames(pval_mat)=resp_varnames;
+
+		coef_mat=matrix(NA, nrow=num_cov_pred_var, ncol=num_resp);
+		rownames(coef_mat)=cov_and_pred_names;
+		colnames(coef_mat)=resp_varnames;
+		
+		# Copy values from summary to matrices
+		for(var_ix in names(sum_fit)){
+			varname=gsub("Response ", "", var_ix);
+
+			pval_mat[cov_and_pred_names, varname]=
+				sum_fit[[var_ix]][["coefficients"]][cov_and_pred_names,"Pr(>|t|)"];
+
+			coef_mat[cov_and_pred_names, varname]=
+				sum_fit[[var_ix]][["coefficients"]][cov_and_pred_names,"Estimate"];
+
+		}
+
+		# Store in record
+		model_results[["Msd_to_Resp"]][[analysis_string]][["pval"]]=pval_mat;
+		model_results[["Msd_to_Resp"]][[analysis_string]][["coef"]]=coef_mat;
+
+	}
+}
+
+print(model_results[["Msd_to_Resp"]]);
 
 ##############################################################################
 
