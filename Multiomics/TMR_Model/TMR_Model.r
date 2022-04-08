@@ -186,8 +186,7 @@ cat("\n");
 
 # Load Groupings
 groupings_rec=load_groupings(VariableGroupingsFname);
-
-print(groupings_rec);
+#print(groupings_rec);
 
 # Load variable types
 covariates_list=load_list(CovTrtGrpFname);
@@ -228,7 +227,7 @@ variables_rec[["Covariates"]]=split_factors_to_groups(loaded_factors, groupings_
 variables_rec[["Measured"]]=split_factors_to_groups(loaded_factors, groupings_rec, measured_list);
 variables_rec[["Response"]]=split_factors_to_groups(loaded_factors, groupings_rec, response_list);
 
-print(variables_rec);
+#print(variables_rec);
 
 ##############################################################################
 
@@ -273,10 +272,10 @@ apply_fun_to_var_rec=function(var_rec, mat_funct){
 }
 
 standardized_variables_rec=apply_fun_to_var_rec(variables_rec, standardize_matrix);
-print(standardized_variables_rec);
+#print(standardized_variables_rec);
 
 mds_rec=apply_fun_to_var_rec(standardized_variables_rec, calc_mds_matrix);
-print(mds_rec);
+#print(mds_rec);
 
 ##############################################################################
 
@@ -371,11 +370,19 @@ model_results=list();
 
 model_results[["Cov_to_Msd"]]=list();
 model_results[["Msd_to_Msd"]]=list();
-model_results[["Msd_to_Resp"]]=list();
+model_results[["Msd_to_Rsp"]]=list();
 
 num_covariates=ncol(covariates_data);
 
 ##############################################################################
+
+# Get mapping from variable name to covariates grouping
+covtrt_to_group_map=list();
+for(gix in covariates_list){
+	for(vix in groupings_rec[["GrpVarMap"]][[gix]]){
+		covtrt_to_group_map[[vix]]=gix;
+	}
+}
 
 for(msd_ix in measured_list){
 
@@ -512,7 +519,7 @@ for(pred_msd_ix in measured_list){
 
 		fit=lm(as.formula(model_string), data=cbind(covariates_data, msd_pred));
 		sum_fit=summary(fit);
-		print(sum_fit);
+		#print(sum_fit);
 
 		cov_and_pred_names=c(covariate_variable_names, msd_pred_varnames);
 		num_cov_pred_var=num_covariates+num_pred;
@@ -539,13 +546,294 @@ for(pred_msd_ix in measured_list){
 		}
 
 		# Store in record
-		model_results[["Msd_to_Resp"]][[analysis_string]][["pval"]]=pval_mat;
-		model_results[["Msd_to_Resp"]][[analysis_string]][["coef"]]=coef_mat;
+		model_results[["Msd_to_Rsp"]][[analysis_string]][["pval"]]=pval_mat;
+		model_results[["Msd_to_Rsp"]][[analysis_string]][["coef"]]=coef_mat;
 
 	}
 }
 
-print(model_results[["Msd_to_Resp"]]);
+#print(model_results[["Msd_to_Rsp"]]);
+
+##############################################################################
+
+matrix_to_tables=function(results, pval_cutoff){
+	
+	tables=list();
+	model_types=names(results);
+
+	model_type=character();
+	model_name=character();	
+	predictor=character();
+	response=character();
+	pval=numeric();
+	coef=numeric();
+
+	for(mt in model_types){
+		cat("Traversing: ", mt, "\n");
+		
+		tables[[mt]]=list();
+
+		model_names=names(results[[mt]]);
+		for(mn in model_names){
+			cat("\t",mn, "\n");
+
+			pval_mat=results[[mt]][[mn]][["pval"]];
+			coef_mat=results[[mt]][[mn]][["coef"]];
+
+			num_pred=nrow(pval_mat);
+			num_resp=ncol(pval_mat);
+
+			pred_names=rownames(pval_mat);
+			resp_names=colnames(pval_mat);
+
+
+			for(pix in 1:num_pred){
+				for(rix in 1:num_resp){
+					if(pval_mat[pix, rix]<=pval_cutoff){
+						model_type=c(model_type, mt);
+						model_name=c(model_name, mn);
+						predictor=c(predictor, pred_names[pix]);
+						response=c(response, resp_names[rix]);
+						pval=c(pval, pval_mat[pix,rix]);
+						coef=c(coef, coef_mat[pix,rix]);
+					}
+				}
+			}
+
+		}
+
+	}
+
+	table=cbind(
+		as.data.frame(cbind(model_type, model_name, predictor, response)),
+		as.data.frame(cbind(coef, pval))
+		);
+
+	return(table);
+}
+
+#print(model_results);
+
+denorm_results=list();
+for(pvco in rev(c(0.1000, 0.050, 0.010, 0.001, 0.0001))){
+	denorm_results[[sprintf("%3.4f", pvco)]]=matrix_to_tables(model_results, pvco);
+}
+
+#print(denorm_results);
+
+##############################################################################
+
+draw_squares_centered=function(xpos, ypos, height, width, grp_name, variables){
+	
+	points(c(
+		xpos-width/2, # tl 
+		xpos+width/2, # tr
+		xpos+width/2, # br
+		xpos-width/2, # bl
+		xpos-width/2  # tl
+		),
+		c(
+		ypos+height/2,
+		ypos+height/2,
+		ypos-height/2,
+		ypos-height/2,
+		ypos+height/2
+		),
+		type="l");
+
+	text(xpos, ypos+height/2, grp_name, font=2, cex=.7, pos=1);
+	text(xpos, ypos+height/2, paste(c(rep("",3), variables), collapse="\n"), cex=.4, pos=1);
+
+}
+
+plot_TMR_diagram=function(result_rec, title, cvtrt_to_grp_map, cvtrt_grps, msd_grps, rsp_grps){
+
+	cat("Plotting TMR diagram: ", title, "\n");
+
+	num_cvtrt_grps=length(cvtrt_grps);
+	num_msd_grps=length(msd_grps);
+	num_rsp_grps=length(rsp_grps);
+
+	#num_trtcov_var=nrow(result_rec[["Cov_to_Msd"]][[1]][["pval"]]);
+
+	#cat("Num Treatment/Covariates variables: ", num_trtcov_var, "\n");
+
+	par(mar=c(0,0,1,0));
+
+	covtrt_xpos=0;
+	msd_1_resp_xpos=1;
+	msd_1_pred_xpos=1.5;
+	msd_2_resp_xpos=2.5;
+	msd_2_pred_xpos=3;
+	rsp_xpos=4;
+
+	fig_xmar=.5;
+	fig_ymar=.0;
+	
+	plot(0,0,type="n", ylim=c(0-fig_ymar-.05,1+fig_ymar), xlim=c(covtrt_xpos-fig_xmar, rsp_xpos+fig_xmar),
+		bty="n", xaxt="n", yaxt="n", main=title);
+
+	#abline(v=c(covtrt_xpos, msd_1_xpos, msd_2_xpos, rsp_xpos), lwd=2, col="grey");
+	text(covtrt_xpos, 0, "Covariates &\nTreatments", font=2, cex=1.5);
+	text((msd_1_resp_xpos+msd_1_pred_xpos)/2, 0, "Measured", font=2, cex=1.5);
+	text((msd_2_resp_xpos+msd_2_pred_xpos)/2, 0, "Measured", font=2, cex=1.5);
+	text(rsp_xpos, 0, "Response", font=2, cex=1.5);
+
+	#draw_square_centered(x, y, h, w);
+	covtrt_ypos=head(tail(seq(0,1, length.out=(2+num_cvtrt_grps)), -1), -1);
+	msd_ypos=head(tail(seq(0,1, length.out=(2+num_msd_grps)), -1), -1);
+	rsp_ypos=head(tail(seq(0,1, length.out=(2+num_rsp_grps)), -1), -1);
+	
+
+	height_multiplier=.95;
+	covtrt_height=(covtrt_ypos[2]-covtrt_ypos[1])*height_multiplier;
+	msd_height=(msd_ypos[2]-msd_ypos[1])*height_multiplier;
+	rsp_height=(rsp_ypos[2]-rsp_ypos[1])*height_multiplier;
+
+	covtrt_height=ifelse(is.na(covtrt_height), .5, covtrt_height);
+	msd_height=ifelse(is.na(msd_height), .5, msd_height);
+	rsp_height=ifelse(is.na(rsp_height), .5, rsp_height);
+
+	all_widths=1*.5;
+
+	if(0){
+		# centers of all the variables on plot
+		points(rep(covtrt_xpos, num_cvtrt_grps), covtrt_ypos, cex=2);
+		points(rep(msd_1_xpos, num_msd_grps), msd_ypos, cex=2);
+		points(rep(msd_2_xpos, num_msd_grps), msd_ypos, cex=2);
+		points(rep(rsp_xpos, num_rsp_grps), rsp_ypos, cex=2);
+	}
+
+	#----------------------------------------------------------------------
+
+	# Get variable names
+
+	get_variable_names=function(rr, ct_grp_map, covtrt_g, msd_g, rsp_g){
+
+		num_result_rows=nrow(rr);
+
+		init_list=function(names){
+			outlist=list();
+			for(n in names){
+				outlist[[n]]=character();
+			}
+			return(outlist);
+		}
+
+		covtrt=init_list(covtrt_g);
+		msd1resp=init_list(msd_g);
+		msd1pred=init_list(msd_g);
+		msd2resp=init_list(msd_g);
+		msd2pred=init_list(msd_g);
+		resp=init_list(rsp_g);
+
+		for(i in 1:num_result_rows){
+
+			type=as.character(rr[i, "model_type"]);
+			name=as.character(rr[i, "model_name"]);
+			pred_var=as.character(rr[i, "predictor"]);
+			resp_var=as.character(rr[i, "response"]);
+	
+			grplink=strsplit(name, "->")[[1]];
+			pred_grp=grplink[1];
+			resp_grp=grplink[2];
+
+		
+			if(type=="Cov_to_Msd"){
+
+				pred_grp=ct_grp_map[[pred_var]];
+				resp_grp=grplink[1];
+				
+				covtrt[[pred_grp]]=unique(c(covtrt[[pred_grp]], pred_var));
+				msd1resp[[resp_grp]]=unique(c(msd1resp[[resp_grp]], resp_var));
+
+			}else if(type=="Msd_to_Msd"){
+				msd1pred[[pred_grp]]=unique(c(msd1pred[[pred_grp]], pred_var));
+				msd2resp[[resp_grp]]=unique(c(msd2resp[[resp_grp]], resp_var));	
+
+			}else if(type=="Msd_to_Rsp"){
+
+				msd2pred[[pred_grp]]=unique(c(msd2pred[[pred_grp]], pred_var));
+				resp[[resp_grp]]=unique(c(resp[[resp_grp]], resp_var));
+
+			}else{
+				cat("Type error.\n");
+				quit(-1);
+			}
+		
+		}
+
+		var_lists=list();
+		var_lists[["covtrt"]]=covtrt;
+		var_lists[["msd1resp"]]=msd1resp;
+		var_lists[["msd1pred"]]=msd1pred;
+		var_lists[["msd2resp"]]=msd2resp;
+		var_lists[["msd2pred"]]=msd2pred;
+		var_lists[["resp"]]=resp;
+		return(var_lists);
+
+	}
+
+	extr_var_names=get_variable_names(result_rec, cvtrt_to_grp_map, cvtrt_grps, msd_grps, rsp_grps);
+
+	# Get Links
+
+	#----------------------------------------------------------------------
+
+	for(i in 1:num_cvtrt_grps){
+		draw_squares_centered(covtrt_xpos, covtrt_ypos[i],
+			height=covtrt_height, width=all_widths,
+			grp_name=cvtrt_grps[i], 
+			variables=extr_var_names[["covtrt"]][[cvtrt_grps[i]]]);
+	}
+
+	for(i in 1:num_msd_grps){
+		draw_squares_centered(msd_1_resp_xpos, msd_ypos[i],
+			height=msd_height, width=all_widths,
+			grp_name=msd_grps[i], 
+			variables=extr_var_names[["msd1resp"]][[msd_grps[i]]]);
+
+		draw_squares_centered(msd_1_pred_xpos, msd_ypos[i],
+			height=msd_height, width=all_widths,
+			grp_name="", 
+			variables=extr_var_names[["msd1pred"]][[msd_grps[i]]]);
+
+		draw_squares_centered(msd_2_resp_xpos, msd_ypos[i],
+			height=msd_height, width=all_widths,
+			grp_name=msd_grps[i], 
+			variables=extr_var_names[["msd2resp"]][[msd_grps[i]]]);
+
+		draw_squares_centered(msd_2_pred_xpos, msd_ypos[i],
+			height=msd_height, width=all_widths,
+			grp_name="",
+			variables=extr_var_names[["msd2pred"]][[msd_grps[i]]]);
+	}
+
+	for(i in 1:num_rsp_grps){
+		draw_squares_centered(rsp_xpos, rsp_ypos[i],
+			height=rsp_height, width=all_widths,
+			grp_name=rsp_grps[i], 
+			variables=extr_var_names[["resp"]][[rsp_grps[i]]]);
+	}
+
+
+	cat("End of Plot TMR Diagram.\n");
+}
+
+
+#for(cutoffs in c("0.0010")){
+for(cutoffs in names(denorm_results)){
+	plot_TMR_diagram(denorm_results[[cutoffs]],
+		paste("P-value Cutoff: ", cutoffs, sep=""),
+		covtrt_to_group_map,
+		covariates_list, measured_list, response_list);
+
+	plot_text(c(
+		paste("P-value Cutoff: ", cutoffs, sep=""),
+		capture.output(print(denorm_results[[cutoffs]], quotes=""))
+	));
+		
+}
 
 ##############################################################################
 
