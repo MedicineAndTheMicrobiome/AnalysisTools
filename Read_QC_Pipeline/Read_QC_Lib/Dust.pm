@@ -55,6 +55,7 @@ sub _initialize {
 	$self->{DUST_OUT_NAME}="dust.out.fasta";
 	$self->{STATS_OUT_NAME}="dust.out.stats";
 	$self->{REMOVE_LIST_NAME}="dust.remove.list";
+	$self->{purge}=0;
 }
 
 ###############################################################################
@@ -97,6 +98,11 @@ sub get_output_format{
 sub get_input_format{
         my $self = shift;
         return($self->{input_format});
+}
+
+sub set_purge{
+	my $self = shift;
+	$self->{purge}=shift;
 }
 
 ###############################################################################
@@ -273,6 +279,15 @@ sub perform_qc{
 	# 4. Optionally, generate stats
 	print STDERR "\nRunning Diagnostics:\n";
 	$self->execute_diagnostics();
+
+	# 5. Purge intermediate files
+	if($self->{purge}){
+		print STDERR "Purging Dust temporary fasta file: $self->{output_path}/$self->{DUST_OUT_NAME}\n";
+		unlink "$self->{output_path}/$self->{DUST_OUT_NAME}" || die "Could not purge $self->{DUST_OUT_NAME}\n";
+	}else{
+		print STDERR "Leaving temporary file: $self->{output_path}/$self->{DUST_OUT_NAME}\n";
+	}	
+
 
 	print STDERR "\nDone.\n";
 

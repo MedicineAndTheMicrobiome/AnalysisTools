@@ -6,7 +6,7 @@ use strict;
 use FindBin;
 use lib "$FindBin::Bin";
 use Getopt::Std;
-use vars qw($opt_l $opt_p $opt_s $opt_r $opt_c $opt_o);
+use vars qw($opt_l $opt_p $opt_s $opt_r $opt_c $opt_o $opt_S);
 use File::Basename;
 use POSIX; # for ceil function
 
@@ -21,7 +21,7 @@ use Read_QC_Lib::Config::IniFiles;
 
 my $command_list = "contam,dust,qvtrim,adapt,ribo";
 
-getopts("l:p:s:r:c:o:");
+getopts("l:p:s:r:c:o:S");
 my $usage = "usage: 
 
 $0 
@@ -32,6 +32,8 @@ $0
 	[-r <input fastq root directory>]
 	[-s <Offset, default=1>,<Multiplier, default=1>]
 	[-c <Command list, default=\"$command_list\"]
+
+	[-S <Save intermediate files flag, default is to clean up>]
 	
 	This script will run the list of read processing steps
 	specified in the order of the command list.
@@ -85,6 +87,7 @@ my $parameter_fname=$opt_p;
 my $output_dir=$opt_o;
 my $subparam="1,1";
 my $input_fastq_root="";
+my $CleanUp=1;
 
 
 if(defined($opt_s)){
@@ -99,9 +102,14 @@ if(defined($opt_r)){
 	$input_fastq_root=$opt_r;
 }
 
+if(defined($opt_S)){
+	$CleanUp=0;
+}
+
 my ($offset, $multiplier)=split ",", $subparam;
 
 my @command_arr=split ",", $command_list;
+
 
 ###############################################################################
 
@@ -110,6 +118,7 @@ print STDERR "Read List: $read_list\n";
 print STDERR "Parameters: $parameter_fname\n";
 print STDERR "Subset Paramters: Offset=$offset Multiplier=$multiplier\n";
 print STDERR "Input fastq root director: $input_fastq_root\n";
+print STDERR "Clean up intermediate files: $CleanUp\n";
 
 print STDERR "Command List:\n";
 foreach my $command(@command_arr){
@@ -266,6 +275,7 @@ sub execute_module{
 	my $output_directory=shift;
 	my $config=shift;
 	my $run_specific_param_hash_ref=shift;
+	my $purge=shift;
 	
 	my $VERBOSE=1;
 	if($VERBOSE){
@@ -296,6 +306,7 @@ sub execute_module{
 		$mod=new Read_QC_Lib::Dust;
 		$mod->set_executable_path($config->val("dust_screen", "bin"));
 		$mod->set_cutoff($config->val("dust_screen", "cutoff"));
+		$mod->set_purge($purge);
 
 	}elsif($command eq "qvtrim"){
 
@@ -353,8 +364,10 @@ sub execute_module{
 
 		$mod=new Read_QC_Lib::RibosomeFilter;	
 		$mod->set_executable_path($config->val("ribosomal_screen", "bin"));
-		$mod->set_alignment_identity_threshold($config->val("ribosomal_screen", "alignment_identity_threshold"));
-		$mod->set_alignment_coverage_threshold($config->val("ribosomal_screen", "alignment_coverage_threshold"));
+		$mod->set_alignment_identity_threshold(
+			$config->val("ribosomal_screen", "alignment_identity_threshold"));
+		$mod->set_alignment_coverage_threshold(
+			$config->val("ribosomal_screen", "alignment_coverage_threshold"));
 		$mod->set_alignment_length_threshold($config->val("ribosomal_screen", "alignment_length_threshold"));
 		$mod->set_database_list($config->val("ribosomal_screen", "database_list"));
 
@@ -373,17 +386,25 @@ sub execute_module{
 
 	# Make sure we have the right input format
 	my $input_format=$mod->get_input_format();
+	my $fasta_path="";
 	if($input_format eq "fastq"){
 		if($VERBOSE){print STDERR "Setting fastq to $input_fastq_path\n";}
 		$mod->set_input_fastq($input_fastq_path);
 	}elsif($input_format eq "fasta"){
-		my $fasta_path=convert_fastq_to_fasta($input_fastq_path, $config);
+		$fasta_path=convert_fastq_to_fasta($input_fastq_path, $config);
 		if($VERBOSE){print STDERR "Setting fasta to $fasta_path\n";}
 		$mod->set_input_fasta($fasta_path);
 	}
 
 	# Run the program
 	$mod->perform_qc();
+
+	# If we started with needing a FASTA file for a step, then we can purge it now.
+	if($purge && $input_format eq "fasta"){
+		print STDERR 
+			"Removing (intermediate) input FASTA file ($fasta_path) that was necessary for this step.";
+		unlink $fasta_path or die "Could not purge: $fasta_path\n";
+	}
 
 	# Make sure we generate a fastq file
 	my $fastq_location;
@@ -488,6 +509,8 @@ for(my $idx=$offset; $idx<$num_records; $idx+=$multiplier){
 	$output_reads_path_hash{"F"}=$for_path;
 	$output_reads_path_hash{"R"}=$rev_path;
 
+	my %temp_file_purge_hash;
+
 	# Do each direction independently
 	foreach my $direction (@dir_list){
 
@@ -524,10 +547,14 @@ for(my $idx=$offset; $idx<$num_records; $idx+=$multiplier){
 					$current_fastq_fn,
 					"$library_dir/$direction/$cmd_tag",
 					$cfg,
-					\%run_spec_params
+					\%run_spec_params,
+					$CleanUp
 				);
 
 			my @time_rec_end=times;
+
+			# Keep track of files at end of step so we can purge them later
+			$temp_file_purge_hash{$output_reads_path_hash{$direction}}=1;
 
 			# Set output from current as input of next step
 			$current_fastq_fn=$output_reads_path_hash{$direction};
@@ -579,6 +606,16 @@ for(my $idx=$offset; $idx<$num_records; $idx+=$multiplier){
 		log_timing_stats(\@paired_time_rec_begin, \@paired_time_rec_end, $timing_log_fn, 
 			"$lib_name\tIndividual\tfinal");
 
+	}
+
+	# Remove/Clean up intermediat files
+	if($CleanUp){
+
+		print "Purging these inter-command files:\n";
+		foreach my $purge_fn ( keys %temp_file_purge_hash){
+			print "\t$purge_fn\n";
+			unlink $purge_fn or die "Could not delete: '$purge_fn'\n";
+		}
 	}
 
 	# Make a file when all is done.
