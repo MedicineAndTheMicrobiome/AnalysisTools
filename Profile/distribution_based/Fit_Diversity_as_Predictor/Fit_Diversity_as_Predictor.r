@@ -476,10 +476,19 @@ plot_pred_vs_obs=function(lmfit_ful, lmfit_red, title=""){
 		rngs=range(c(obs_cur, pred_red[,resp_ix], pred_ful[,resp_ix]));	
 
 		# P-values
-		red_pval=1-pf(sum_red[[resp_ix]]$fstatistic["value"], 
-			sum_red[[resp_ix]]$fstatistic["numdf"], sum_red[[resp_ix]]$fstatistic["dendf"]);
-		ful_pval=1-pf(sum_ful[[resp_ix]]$fstatistic["value"], 
-			sum_ful[[resp_ix]]$fstatistic["numdf"], sum_ful[[resp_ix]]$fstatistic["dendf"]);
+		if(is.null(sum_red[[resp_ix]]$fstatistic)){
+			red_pval=1;
+		}else{
+			red_pval=1-pf(sum_red[[resp_ix]]$fstatistic["value"], 
+				sum_red[[resp_ix]]$fstatistic["numdf"], sum_red[[resp_ix]]$fstatistic["dendf"]);
+		}
+
+		if(is.null(sum_ful[[resp_ix]]$fstatistic)){
+			ful_pval=1;
+		}else{
+			ful_pval=1-pf(sum_ful[[resp_ix]]$fstatistic["value"], 
+				sum_ful[[resp_ix]]$fstatistic["numdf"], sum_ful[[resp_ix]]$fstatistic["dendf"]);
+		}
 
 		red_pval=round(red_pval,4);
 		ful_pval=round(ful_pval,4);
@@ -744,6 +753,10 @@ if(ModelFormula!=""){
 cat("Model String used for Regression: \n");
 print(model_string);
 model_var=get_var_from_modelstring(model_string);
+if(is.na(model_var)){
+	model_var=NULL;
+}
+
 cat("Predictors:\n");
 print(model_var);
 
@@ -761,8 +774,10 @@ cat("\n");
 
 cat("Extracting predictors+responses from available factors...\n");
 all_var=c(model_var, responses_arr);
+print(all_var);
 
 factors=factors[,all_var, drop=F];
+print(factors);
 cat("\n");
 
 ##############################################################################
@@ -851,6 +866,11 @@ paint_matrix(cor(responses_mat), title="Response Correlations", plot_min=-1, plo
 
 # Allocation matrices 
 resp=rep(1, length(samp_wo_nas));
+
+if(model_string==""){
+	model_string="1";
+}
+
 model_matrix=model.matrix(as.formula(paste("resp ~", model_string)),data=predictors_mat);
 regression_variables=setdiff(colnames(model_matrix), "(Intercept)");
 cat("Expected Regression Variables:\n");
