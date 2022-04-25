@@ -695,19 +695,129 @@ plot_TMR_diagram=function(result_rec, title, cvtrt_to_grp_map, cvtrt_grps, msd_g
 	rsp_height=ifelse(is.na(rsp_height), .5, rsp_height);
 
 	all_widths=1*.5;
-
-	if(0){
-		# centers of all the variables on plot
-		points(rep(covtrt_xpos, num_cvtrt_grps), covtrt_ypos, cex=2);
-		points(rep(msd_1_xpos, num_msd_grps), msd_ypos, cex=2);
-		points(rep(msd_2_xpos, num_msd_grps), msd_ypos, cex=2);
-		points(rep(rsp_xpos, num_rsp_grps), rsp_ypos, cex=2);
-	}
+	edge=all_widths/2;
 
 	#----------------------------------------------------------------------
 
-	# Get variable names
+	get_group_linkages=function(rr, ct_grp_map, covtrt_g, msd_g, rsp_g){
 
+		num_result_rows=nrow(rr);
+
+		init_list=function(names){
+			outlist=matrix(NA, nrow=0, ncol=2);
+			colnames(outlist)=c("pred", "resp");
+			return(outlist);
+		}
+
+		covtrt=init_list(covtrt_g);
+		msd=init_list(msd_g);
+		resp=init_list(rsp_g);
+
+		for(i in 1:num_result_rows){
+
+			type=as.character(rr[i, "model_type"]);
+			name=as.character(rr[i, "model_name"]);
+			pred_var=as.character(rr[i, "predictor"]);
+			resp_var=as.character(rr[i, "response"]);
+	
+			grplink=strsplit(name, "->")[[1]];
+			pred_grp=grplink[1];
+			resp_grp=grplink[2];
+		
+			if(type=="Cov_to_Msd"){
+				pred_grp=ct_grp_map[[pred_var]];
+				resp_grp=grplink[1];
+
+				pred_ix=which(pred_grp==covtrt_g);
+				resp_ix=which(resp_grp==msd_g);
+
+				covtrt=rbind(covtrt, c(pred_ix, resp_ix));
+
+			}else if(type=="Msd_to_Msd"){
+
+				pred_ix=which(pred_grp==msd_g);
+				resp_ix=which(resp_grp==msd_g);
+
+				msd=rbind(msd, c(pred_ix, resp_ix));
+
+			}else if(type=="Msd_to_Rsp"){
+
+				pred_ix=which(pred_grp==msd_g);
+				resp_ix=which(resp_grp==rsp_g);
+				
+				resp=rbind(resp, c(pred_ix, resp_ix));
+
+			}else{
+				cat("Type error.\n");
+				quit(-1);
+			}
+		
+		}
+
+		grp_lists=list();
+		grp_lists[["covtrt"]]=covtrt;
+		grp_lists[["msd"]]=msd;
+		grp_lists[["resp"]]=resp;
+		return(grp_lists);
+
+	}
+
+	extr_links=get_group_linkages(result_rec, cvtrt_to_grp_map, cvtrt_grps, msd_grps, rsp_grps);
+	print(extr_links);
+	print(result_rec);
+
+	num_links=nrow(extr_links[["covtrt"]]);
+	if(num_links>0){
+		for(i in 1:num_links){
+			# From covtrt to msd1_resp
+			points(
+				x=c(covtrt_xpos+edge, msd_1_resp_xpos-edge),
+				y=c(
+					covtrt_ypos[extr_links[["covtrt"]][i,"pred"]],
+					msd_ypos[extr_links[["covtrt"]][i,"resp"]]
+				),
+				type="l"
+			);
+		}
+	}
+
+	num_links=nrow(extr_links[["msd"]]);
+	if(num_links>0){
+		for(i in 1:num_links){
+			# From msd1_pred to msd2_resp
+			points(
+				x=c(msd_1_pred_xpos+edge, msd_2_resp_xpos-edge),
+				y=c(
+					msd_ypos[extr_links[["msd"]][i,"pred"]],
+					msd_ypos[extr_links[["msd"]][i,"resp"]]
+				),
+				type="l"
+			);
+		
+
+		}
+	}
+
+	num_links=nrow(extr_links[["resp"]]);
+	if(num_links>0){
+		for(i in 1:num_links){
+			# From msd2_pred to resp
+			points(
+				x=c(msd_2_pred_xpos+edge, rsp_xpos-edge),
+				y=c(
+					msd_ypos[extr_links[["resp"]][i,"pred"]],
+					rsp_ypos[extr_links[["resp"]][i,"resp"]]
+				),
+				type="l"
+			);
+
+		}
+	}
+
+	#----------------------------------------------------------------------
+	# Draw squares and label with variable names
+
+	# Get variable names
 	get_variable_names=function(rr, ct_grp_map, covtrt_g, msd_g, rsp_g){
 
 		num_result_rows=nrow(rr);
@@ -776,10 +886,6 @@ plot_TMR_diagram=function(result_rec, title, cvtrt_to_grp_map, cvtrt_grps, msd_g
 
 	extr_var_names=get_variable_names(result_rec, cvtrt_to_grp_map, cvtrt_grps, msd_grps, rsp_grps);
 
-	# Get Links
-
-	#----------------------------------------------------------------------
-
 	for(i in 1:num_cvtrt_grps){
 		draw_squares_centered(covtrt_xpos, covtrt_ypos[i],
 			height=covtrt_height, width=all_widths,
@@ -815,6 +921,8 @@ plot_TMR_diagram=function(result_rec, title, cvtrt_to_grp_map, cvtrt_grps, msd_g
 			grp_name=rsp_grps[i], 
 			variables=extr_var_names[["resp"]][[rsp_grps[i]]]);
 	}
+
+	#----------------------------------------------------------------------
 
 
 	cat("End of Plot TMR Diagram.\n");
