@@ -623,7 +623,18 @@ for(pvco in rev(c(0.1000, 0.050, 0.010, 0.001, 0.0001))){
 
 ##############################################################################
 
-draw_squares_centered=function(xpos, ypos, height, width, grp_name, variables){
+calc_vertical_spacing=function(num_rows, max_rows_before_squeeze=10, start, end){
+	positions=seq(start, end, length.out=max(num_rows, max_rows_before_squeeze));
+	if(num_rows<max_rows_before_squeeze){
+		offset=ceiling((max_rows_before_squeeze-num_rows)/2);
+		return(positions[offset:(offset+num_rows-1)]);
+	}else{
+		return(positions);
+	}
+	
+}
+
+draw_squares_centered=function(xpos, ypos, height, width, grp_name, variables, text_align){
 	
 	points(c(
 		xpos-width/2, # tl 
@@ -641,10 +652,40 @@ draw_squares_centered=function(xpos, ypos, height, width, grp_name, variables){
 		),
 		type="l");
 
-	text(xpos, ypos+height/2, grp_name, font=2, cex=.7, pos=1);
-	text(xpos, ypos+height/2, paste(c(rep("",3), variables), collapse="\n"), cex=.4, pos=1);
+	title_cex=.7;
+	var_cex=.4;
+
+	text(xpos, ypos+height/2, grp_name, font=2, cex=title_cex, pos=1);
+	#text(xpos, ypos+height/2, paste(c(rep("",3), variables), collapse="\n"), cex=.4, pos=1);
+	
+	title_spc=par()$cxy[2]*title_cex*1.7;
+	var_spc=par()$cxy[2]*var_cex;
+	
+	num_var=length(variables);
+
+	if(num_var>0){
+		text_pos=calc_vertical_spacing(num_var, start=ypos+height/2-title_spc, end=ypos-height/2+var_spc);
+
+
+		#xpad=par()$cxy[1]*var_cex;
+		xpad=0;
+		if(text_align=="left"){
+			posv=4;
+			text_xpos=xpos-width/2+xpad;
+		}else if(text_align=="right"){
+			posv=2;
+			text_xpos=xpos+width/2-xpad;
+		}
+		for(i in 1:num_var){
+			text(text_xpos, text_pos[i], variables[i], cex=var_cex, pos=posv);
+		}
+		return(text_pos);
+	}else{
+		return(NA);
+	}
 
 }
+
 
 plot_TMR_diagram=function(result_rec, title, cvtrt_to_grp_map, cvtrt_grps, msd_grps, rsp_grps){
 
@@ -704,8 +745,8 @@ plot_TMR_diagram=function(result_rec, title, cvtrt_to_grp_map, cvtrt_grps, msd_g
 		num_result_rows=nrow(rr);
 
 		init_list=function(names){
-			outlist=matrix(NA, nrow=0, ncol=2);
-			colnames(outlist)=c("pred", "resp");
+			outlist=matrix(character(), nrow=0, ncol=4);
+			colnames(outlist)=c("pred", "resp", "pred_var", "resp_var");
 			return(outlist);
 		}
 
@@ -731,21 +772,21 @@ plot_TMR_diagram=function(result_rec, title, cvtrt_to_grp_map, cvtrt_grps, msd_g
 				pred_ix=which(pred_grp==covtrt_g);
 				resp_ix=which(resp_grp==msd_g);
 
-				covtrt=rbind(covtrt, c(pred_ix, resp_ix));
+				covtrt=rbind(covtrt, c(pred_ix, resp_ix, pred_var, resp_var));
 
 			}else if(type=="Msd_to_Msd"){
 
 				pred_ix=which(pred_grp==msd_g);
 				resp_ix=which(resp_grp==msd_g);
 
-				msd=rbind(msd, c(pred_ix, resp_ix));
+				msd=rbind(msd, c(pred_ix, resp_ix, pred_var, resp_var));
 
 			}else if(type=="Msd_to_Rsp"){
 
 				pred_ix=which(pred_grp==msd_g);
 				resp_ix=which(resp_grp==rsp_g);
 				
-				resp=rbind(resp, c(pred_ix, resp_ix));
+				resp=rbind(resp, c(pred_ix, resp_ix, pred_var, resp_var));
 
 			}else{
 				cat("Type error.\n");
@@ -754,183 +795,261 @@ plot_TMR_diagram=function(result_rec, title, cvtrt_to_grp_map, cvtrt_grps, msd_g
 		
 		}
 
+		add_group_offset=function(em){
+			print(em);
+			num_entries=nrow(em);
+
+			uniq_pred_grp_ix=sort(unique(em[,"pred"]));
+			uniq_resp_grp_ix=sort(unique(em[,"resp"]));
+
+
+			cat("Predictors:\n");
+			print(uniq_pred_grp_ix);
+			cat("Responders:\n");
+			print(uniq_resp_grp_ix);
+
+			pred_members=list();
+			for(pred_grp_ix in uniq_pred_grp_ix){
+				ingrp=(pred_grp_ix==em[,"pred"]);
+				pred_members[[pred_grp_ix]]=sort(unique(em[ingrp,"pred_var"]));
+			}
+			resp_members=list();
+			for(resp_grp_ix in uniq_resp_grp_ix){
+				ingrp=(resp_grp_ix==em[,"resp"]);
+				resp_members[[resp_grp_ix]]=sort(unique(em[ingrp,"resp_var"]));
+			}
+
+			cat("Pred Members:\n");
+			print(pred_members);
+			cat("Resp Members:\n");
+			print(resp_members);			
+
+			offsets=matrix(NA, nrow=0, ncol=2);
+			colnames(offsets)=c("pred_off", "resp_off");
+			for(i in 1:num_entries){
+				pred_grp_ix=em[i, "pred"];
+				resp_grp_ix=em[i, "resp"];
+
+				pred_var=em[i, "pred_var"];
+				resp_var=em[i, "resp_var"];
+
+				pred_off=which(pred_members[[pred_grp_ix]]==pred_var);
+				resp_off=which(resp_members[[resp_grp_ix]]==resp_var);
+
+				offsets=rbind(offsets, c(pred_off, resp_off))
+
+			}
+
+			em=cbind(em, offsets);
+			res=list();
+			res[["grp_links"]]=em;
+			res[["pred_grp_members"]]=pred_members;
+			res[["resp_grp_members"]]=resp_members;
+
+			return(res);
+		}
+
+		grp_link_info=list();
 		grp_lists=list();
 		grp_lists[["covtrt"]]=covtrt;
 		grp_lists[["msd"]]=msd;
 		grp_lists[["resp"]]=resp;
-		return(grp_lists);
+
+		for(grp_type in names(grp_lists)){
+			grp_link_info[[grp_type]]=add_group_offset(grp_lists[[grp_type]]);
+		}
+
+		return(grp_link_info);
 
 	}
+
+	#cat("Results:\n");
+	#print(result_rec);
 
 	extr_links=get_group_linkages(result_rec, cvtrt_to_grp_map, cvtrt_grps, msd_grps, rsp_grps);
+
+	cat("Extracted Links:\n");
 	print(extr_links);
-	print(result_rec);
 
-	num_links=nrow(extr_links[["covtrt"]]);
-	if(num_links>0){
-		for(i in 1:num_links){
-			# From covtrt to msd1_resp
-			points(
-				x=c(covtrt_xpos+edge, msd_1_resp_xpos-edge),
-				y=c(
-					covtrt_ypos[extr_links[["covtrt"]][i,"pred"]],
-					msd_ypos[extr_links[["covtrt"]][i,"resp"]]
-				),
-				type="l"
-			);
-		}
-	}
 
-	num_links=nrow(extr_links[["msd"]]);
-	if(num_links>0){
-		for(i in 1:num_links){
-			# From msd1_pred to msd2_resp
-			points(
-				x=c(msd_1_pred_xpos+edge, msd_2_resp_xpos-edge),
-				y=c(
-					msd_ypos[extr_links[["msd"]][i,"pred"]],
-					msd_ypos[extr_links[["msd"]][i,"resp"]]
-				),
-				type="l"
-			);
-		
+	# Draw squares and calculate where variables are plotted
 
-		}
-	}
-
-	num_links=nrow(extr_links[["resp"]]);
-	if(num_links>0){
-		for(i in 1:num_links){
-			# From msd2_pred to resp
-			points(
-				x=c(msd_2_pred_xpos+edge, rsp_xpos-edge),
-				y=c(
-					msd_ypos[extr_links[["resp"]][i,"pred"]],
-					rsp_ypos[extr_links[["resp"]][i,"resp"]]
-				),
-				type="l"
-			);
-
-		}
-	}
-
-	#----------------------------------------------------------------------
-	# Draw squares and label with variable names
-
-	# Get variable names
-	get_variable_names=function(rr, ct_grp_map, covtrt_g, msd_g, rsp_g){
-
-		num_result_rows=nrow(rr);
-
-		init_list=function(names){
-			outlist=list();
-			for(n in names){
-				outlist[[n]]=character();
-			}
-			return(outlist);
-		}
-
-		covtrt=init_list(covtrt_g);
-		msd1resp=init_list(msd_g);
-		msd1pred=init_list(msd_g);
-		msd2resp=init_list(msd_g);
-		msd2pred=init_list(msd_g);
-		resp=init_list(rsp_g);
-
-		for(i in 1:num_result_rows){
-
-			type=as.character(rr[i, "model_type"]);
-			name=as.character(rr[i, "model_name"]);
-			pred_var=as.character(rr[i, "predictor"]);
-			resp_var=as.character(rr[i, "response"]);
-	
-			grplink=strsplit(name, "->")[[1]];
-			pred_grp=grplink[1];
-			resp_grp=grplink[2];
-
-		
-			if(type=="Cov_to_Msd"){
-
-				pred_grp=ct_grp_map[[pred_var]];
-				resp_grp=grplink[1];
-				
-				covtrt[[pred_grp]]=unique(c(covtrt[[pred_grp]], pred_var));
-				msd1resp[[resp_grp]]=unique(c(msd1resp[[resp_grp]], resp_var));
-
-			}else if(type=="Msd_to_Msd"){
-				msd1pred[[pred_grp]]=unique(c(msd1pred[[pred_grp]], pred_var));
-				msd2resp[[resp_grp]]=unique(c(msd2resp[[resp_grp]], resp_var));	
-
-			}else if(type=="Msd_to_Rsp"){
-
-				msd2pred[[pred_grp]]=unique(c(msd2pred[[pred_grp]], pred_var));
-				resp[[resp_grp]]=unique(c(resp[[resp_grp]], resp_var));
-
-			}else{
-				cat("Type error.\n");
-				quit(-1);
-			}
-		
-		}
-
-		var_lists=list();
-		var_lists[["covtrt"]]=covtrt;
-		var_lists[["msd1resp"]]=msd1resp;
-		var_lists[["msd1pred"]]=msd1pred;
-		var_lists[["msd2resp"]]=msd2resp;
-		var_lists[["msd2pred"]]=msd2pred;
-		var_lists[["resp"]]=resp;
-		return(var_lists);
-
-	}
-
-	extr_var_names=get_variable_names(result_rec, cvtrt_to_grp_map, cvtrt_grps, msd_grps, rsp_grps);
+	extr_links[["covtrt"]][["pred_grp_members_loc"]]=list();
+	extr_links[["covtrt"]][["resp_grp_members_loc"]]=list();
+	extr_links[["msd"]][["pred_grp_members_loc"]]=list();
+	extr_links[["msd"]][["resp_grp_members_loc"]]=list();
+	extr_links[["resp"]][["pred_grp_members_loc"]]=list();
+	extr_links[["resp"]][["resp_grp_members_loc"]]=list();
 
 	for(i in 1:num_cvtrt_grps){
-		draw_squares_centered(covtrt_xpos, covtrt_ypos[i],
+		ichar=sprintf("%i", i);
+		var_labels=extr_links[["covtrt"]][["pred_grp_members"]][[ichar]];
+		loc=draw_squares_centered(covtrt_xpos, covtrt_ypos[i],
 			height=covtrt_height, width=all_widths,
 			grp_name=cvtrt_grps[i], 
-			variables=extr_var_names[["covtrt"]][[cvtrt_grps[i]]]);
+			variables=var_labels, text_align="right");
+
+		extr_links[["covtrt"]][["pred_grp_members_loc"]]=list();
+		extr_links[["covtrt"]][["pred_grp_members_loc"]][[ichar]]=loc;
 	}
 
 	for(i in 1:num_msd_grps){
-		draw_squares_centered(msd_1_resp_xpos, msd_ypos[i],
+		ichar=sprintf("%i", i);
+
+		pred_var_labels=extr_links[["msd"]][["pred_grp_members"]][[ichar]];
+		resp_var_labels=extr_links[["msd"]][["resp_grp_members"]][[ichar]];
+
+		covtrt_resp_var_labels=extr_links[["covtrt"]][["resp_grp_members"]][[ichar]];
+		resp_pred_var_labels=extr_links[["resp"]][["pred_grp_members"]][[ichar]];
+
+		loc=draw_squares_centered(msd_1_resp_xpos, msd_ypos[i],
 			height=msd_height, width=all_widths,
 			grp_name=msd_grps[i], 
-			variables=extr_var_names[["msd1resp"]][[msd_grps[i]]]);
+			variables=covtrt_resp_var_labels, text_align="left");
+		extr_links[["covtrt"]][["resp_grp_members_loc"]][[ichar]]=loc;
 
-		draw_squares_centered(msd_1_pred_xpos, msd_ypos[i],
+		loc=draw_squares_centered(msd_1_pred_xpos, msd_ypos[i],
 			height=msd_height, width=all_widths,
 			grp_name="", 
-			variables=extr_var_names[["msd1pred"]][[msd_grps[i]]]);
+			variables=pred_var_labels, text_align="right");
+		extr_links[["msd"]][["pred_grp_members_loc"]][[ichar]]=loc;
 
-		draw_squares_centered(msd_2_resp_xpos, msd_ypos[i],
+		loc=draw_squares_centered(msd_2_resp_xpos, msd_ypos[i],
 			height=msd_height, width=all_widths,
 			grp_name=msd_grps[i], 
-			variables=extr_var_names[["msd2resp"]][[msd_grps[i]]]);
+			variables=resp_var_labels, text_align="left");
+		extr_links[["msd"]][["resp_grp_members_loc"]][[ichar]]=loc;
 
-		draw_squares_centered(msd_2_pred_xpos, msd_ypos[i],
+		loc=draw_squares_centered(msd_2_pred_xpos, msd_ypos[i],
 			height=msd_height, width=all_widths,
 			grp_name="",
-			variables=extr_var_names[["msd2pred"]][[msd_grps[i]]]);
+			variables=resp_pred_var_labels, text_align="right");
+		extr_links[["resp"]][["pred_grp_members_loc"]][[ichar]]=loc;
 	}
 
 	for(i in 1:num_rsp_grps){
-		draw_squares_centered(rsp_xpos, rsp_ypos[i],
+		ichar=sprintf("%i", i);
+		var_labels=extr_links[["resp"]][["resp_grp_members"]][[ichar]];
+		loc=draw_squares_centered(rsp_xpos, rsp_ypos[i],
 			height=rsp_height, width=all_widths,
 			grp_name=rsp_grps[i], 
-			variables=extr_var_names[["resp"]][[rsp_grps[i]]]);
+			variables=var_labels, text_align="left");
+		extr_links[["resp"]][["resp_grp_members_loc"]][[ichar]]=loc;
+	}
+
+	print(extr_links);
+
+	grp_links=0;
+	if(grp_links){
+		for(type in names(extr_links)){
+
+			cat("Drawing Group links for: ", type, "\n");
+			link_tab=extr_links[[type]][["grp_links"]];
+			num_links=nrow(link_tab);
+			if(num_links>0){
+				for(i in 1:num_links){
+					# From covtrt to msd1_resp
+
+					b_grp_off=as.numeric(link_tab[i,"pred"]);
+					e_grp_off=as.numeric(link_tab[i,"resp"]);
+					b_var_off=as.numeric(link_tab[i,"pred_off"]);
+					e_var_off=as.numeric(link_tab[i,"resp_off"]);
+
+					if(type=="covtrt"){
+						x_pos=c(covtrt_xpos+edge, msd_1_resp_xpos-edge);
+						y_pos=c(covtrt_ypos[b_grp_off], msd_ypos[e_grp_off]);
+					}else if(type=="msd"){
+						x_pos=c(msd_1_pred_xpos+edge, msd_2_resp_xpos-edge);
+						y_pos=c(msd_ypos[b_grp_off], msd_ypos[e_grp_off]);
+					}else if(type=="resp"){
+						x_pos=c(msd_2_pred_xpos+edge, rsp_xpos-edge);
+						y_pos=c(msd_ypos[b_grp_off], rsp_ypos[e_grp_off]);
+					}
+
+					points(x=x_pos, y=y_pos, type="l");
+
+				}
+			}
+		}
+	}else{
+		for(type in names(extr_links)){
+
+			cat("Drawing Group links for: ", type, "\n");
+			link_tab=extr_links[[type]][["grp_links"]];
+			num_links=nrow(link_tab);
+
+			cat("Link Table:\n");
+			print(link_tab);
+			cat("--------------- Predictors: --------------------\n");
+			print(extr_links[[type]][["pred_grp_members_loc"]]);
+			cat("---------------- Response: ---------------------\n");
+			print(extr_links[[type]][["resp_grp_members_loc"]]);
+
+			pred_var_grp_loc=extr_links[[type]][["pred_grp_members_loc"]];
+			resp_var_grp_loc=extr_links[[type]][["resp_grp_members_loc"]];
+
+			cat("------------------------------------------------------\n");
+
+			if(num_links>0){
+				for(i in 1:num_links){
+					# From covtrt to msd1_resp
+					print(link_tab[i,]);
+
+					pred_grp_off=link_tab[i,"pred"];
+					resp_grp_off=link_tab[i,"resp"];
+					pred_var_off=link_tab[i,"pred_off"];
+					resp_var_off=link_tab[i,"resp_off"];
+
+					pred_grp_off_num=as.numeric(pred_grp_off);
+					resp_grp_off_num=as.numeric(resp_grp_off);
+					pred_var_off_num=as.numeric(pred_var_off);
+					resp_var_off_num=as.numeric(resp_var_off);
+
+					pred_var_loc=pred_var_grp_loc[[pred_grp_off]][pred_var_off_num];
+					resp_var_loc=resp_var_grp_loc[[resp_grp_off]][resp_var_off_num];
+				
+
+					if(type=="covtrt"){
+						x_pos=c(covtrt_xpos+edge, msd_1_resp_xpos-edge);
+						y_pos=c(
+							pred_var_loc, 
+							resp_var_loc);
+							#covtrt_ypos[pred_grp_off_num]+pred_var_loc, 
+							#msd_ypos[resp_grp_off_num]+resp_var_loc);
+					}else if(type=="msd"){
+						x_pos=c(msd_1_pred_xpos+edge, msd_2_resp_xpos-edge);
+						y_pos=c(
+							pred_var_loc, 
+							resp_var_loc);
+							#msd_ypos[pred_grp_off_num]+pred_var_loc, 
+							#msd_ypos[resp_grp_off_num]+resp_var_loc);
+					}else if(type=="resp"){
+						x_pos=c( msd_2_pred_xpos+edge, rsp_xpos-edge);
+						y_pos=c(
+							pred_var_loc, 
+							resp_var_loc);
+							#msd_ypos[pred_grp_off_num]+pred_var_loc, 
+							#rsp_ypos[resp_grp_off_num]+resp_var_loc);
+					}
+
+					print(x_pos);
+					print(y_pos);
+					points(x=x_pos, y=y_pos, type="l");
+
+				}
+			}
+		}
 	}
 
 	#----------------------------------------------------------------------
-
 
 	cat("End of Plot TMR Diagram.\n");
 }
 
 
-#for(cutoffs in c("0.0010")){
-for(cutoffs in names(denorm_results)){
+for(cutoffs in c("0.0010")){
+#for(cutoffs in c("0.0010", "0.1000")){
+#for(cutoffs in names(denorm_results)){
 	plot_TMR_diagram(denorm_results[[cutoffs]],
 		paste("P-value Cutoff: ", cutoffs, sep=""),
 		covtrt_to_group_map,
