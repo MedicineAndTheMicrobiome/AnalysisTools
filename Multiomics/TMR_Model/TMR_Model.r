@@ -615,7 +615,7 @@ matrix_to_tables=function(results, pval_cutoff){
 #print(model_results);
 
 denorm_results=list();
-for(pvco in rev(c(0.1000, 0.050, 0.010, 0.001, 0.0001))){
+for(pvco in rev(c(0.1000, 0.050, 0.010, 0.005, 0.001, 0.0005, 0.0001))){
 	denorm_results[[sprintf("%3.4f", pvco)]]=matrix_to_tables(model_results, pvco);
 }
 
