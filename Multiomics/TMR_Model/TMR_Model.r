@@ -745,8 +745,8 @@ plot_TMR_diagram=function(result_rec, title, cvtrt_to_grp_map, cvtrt_grps, msd_g
 		num_result_rows=nrow(rr);
 
 		init_list=function(names){
-			outlist=matrix(character(), nrow=0, ncol=4);
-			colnames(outlist)=c("pred", "resp", "pred_var", "resp_var");
+			outlist=matrix(character(), nrow=0, ncol=5);
+			colnames(outlist)=c("pred", "resp", "pred_var", "resp_var", "direction");
 			return(outlist);
 		}
 
@@ -760,6 +760,7 @@ plot_TMR_diagram=function(result_rec, title, cvtrt_to_grp_map, cvtrt_grps, msd_g
 			name=as.character(rr[i, "model_name"]);
 			pred_var=as.character(rr[i, "predictor"]);
 			resp_var=as.character(rr[i, "response"]);
+			direction=ifelse(rr[i, "coef"]>0, "+", "-");
 	
 			grplink=strsplit(name, "->")[[1]];
 			pred_grp=grplink[1];
@@ -772,21 +773,21 @@ plot_TMR_diagram=function(result_rec, title, cvtrt_to_grp_map, cvtrt_grps, msd_g
 				pred_ix=which(pred_grp==covtrt_g);
 				resp_ix=which(resp_grp==msd_g);
 
-				covtrt=rbind(covtrt, c(pred_ix, resp_ix, pred_var, resp_var));
+				covtrt=rbind(covtrt, c(pred_ix, resp_ix, pred_var, resp_var, direction));
 
 			}else if(type=="Msd_to_Msd"){
 
 				pred_ix=which(pred_grp==msd_g);
 				resp_ix=which(resp_grp==msd_g);
 
-				msd=rbind(msd, c(pred_ix, resp_ix, pred_var, resp_var));
+				msd=rbind(msd, c(pred_ix, resp_ix, pred_var, resp_var, direction));
 
 			}else if(type=="Msd_to_Rsp"){
 
 				pred_ix=which(pred_grp==msd_g);
 				resp_ix=which(resp_grp==rsp_g);
 				
-				resp=rbind(resp, c(pred_ix, resp_ix, pred_var, resp_var));
+				resp=rbind(resp, c(pred_ix, resp_ix, pred_var, resp_var, direction));
 
 			}else{
 				cat("Type error.\n");
@@ -796,51 +797,58 @@ plot_TMR_diagram=function(result_rec, title, cvtrt_to_grp_map, cvtrt_grps, msd_g
 		}
 
 		add_group_offset=function(em){
+
+			cat("Adding Group Offsets:\n");
 			print(em);
 			num_entries=nrow(em);
 
-			uniq_pred_grp_ix=sort(unique(em[,"pred"]));
-			uniq_resp_grp_ix=sort(unique(em[,"resp"]));
+			pred_members=c();
+			resp_members=c();
+			if(num_entries>0){
 
+				uniq_pred_grp_ix=sort(unique(em[,"pred"]));
+				uniq_resp_grp_ix=sort(unique(em[,"resp"]));
 
-			cat("Predictors:\n");
-			print(uniq_pred_grp_ix);
-			cat("Responders:\n");
-			print(uniq_resp_grp_ix);
+				cat("Predictors:\n");
+				print(uniq_pred_grp_ix);
+				cat("Responders:\n");
+				print(uniq_resp_grp_ix);
 
-			pred_members=list();
-			for(pred_grp_ix in uniq_pred_grp_ix){
-				ingrp=(pred_grp_ix==em[,"pred"]);
-				pred_members[[pred_grp_ix]]=sort(unique(em[ingrp,"pred_var"]));
+				pred_members=list();
+				for(pred_grp_ix in uniq_pred_grp_ix){
+					ingrp=(pred_grp_ix==em[,"pred"]);
+					pred_members[[pred_grp_ix]]=sort(unique(em[ingrp,"pred_var"]));
+				}
+				resp_members=list();
+				for(resp_grp_ix in uniq_resp_grp_ix){
+					ingrp=(resp_grp_ix==em[,"resp"]);
+					resp_members[[resp_grp_ix]]=sort(unique(em[ingrp,"resp_var"]));
+				}
+
+				cat("Pred Members:\n");
+				print(pred_members);
+				cat("Resp Members:\n");
+				print(resp_members);			
+
+				offsets=matrix(NA, nrow=0, ncol=2);
+				colnames(offsets)=c("pred_off", "resp_off");
+				for(i in 1:num_entries){
+					pred_grp_ix=em[i, "pred"];
+					resp_grp_ix=em[i, "resp"];
+
+					pred_var=em[i, "pred_var"];
+					resp_var=em[i, "resp_var"];
+
+					pred_off=which(pred_members[[pred_grp_ix]]==pred_var);
+					resp_off=which(resp_members[[resp_grp_ix]]==resp_var);
+
+					offsets=rbind(offsets, c(pred_off, resp_off))
+
+				}
+
+				em=cbind(em, offsets);
 			}
-			resp_members=list();
-			for(resp_grp_ix in uniq_resp_grp_ix){
-				ingrp=(resp_grp_ix==em[,"resp"]);
-				resp_members[[resp_grp_ix]]=sort(unique(em[ingrp,"resp_var"]));
-			}
 
-			cat("Pred Members:\n");
-			print(pred_members);
-			cat("Resp Members:\n");
-			print(resp_members);			
-
-			offsets=matrix(NA, nrow=0, ncol=2);
-			colnames(offsets)=c("pred_off", "resp_off");
-			for(i in 1:num_entries){
-				pred_grp_ix=em[i, "pred"];
-				resp_grp_ix=em[i, "resp"];
-
-				pred_var=em[i, "pred_var"];
-				resp_var=em[i, "resp_var"];
-
-				pred_off=which(pred_members[[pred_grp_ix]]==pred_var);
-				resp_off=which(resp_members[[resp_grp_ix]]==resp_var);
-
-				offsets=rbind(offsets, c(pred_off, resp_off))
-
-			}
-
-			em=cbind(em, offsets);
 			res=list();
 			res[["grp_links"]]=em;
 			res[["pred_grp_members"]]=pred_members;
@@ -871,9 +879,9 @@ plot_TMR_diagram=function(result_rec, title, cvtrt_to_grp_map, cvtrt_grps, msd_g
 	cat("Extracted Links:\n");
 	print(extr_links);
 
-
 	# Draw squares and calculate where variables are plotted
 
+	cat("Initializing link locations struct.\n");
 	extr_links[["covtrt"]][["pred_grp_members_loc"]]=list();
 	extr_links[["covtrt"]][["resp_grp_members_loc"]]=list();
 	extr_links[["msd"]][["pred_grp_members_loc"]]=list();
@@ -881,6 +889,7 @@ plot_TMR_diagram=function(result_rec, title, cvtrt_to_grp_map, cvtrt_grps, msd_g
 	extr_links[["resp"]][["pred_grp_members_loc"]]=list();
 	extr_links[["resp"]][["resp_grp_members_loc"]]=list();
 
+	cat("Drawing squares and calculating link x-positions.\n");
 	for(i in 1:num_cvtrt_grps){
 		ichar=sprintf("%i", i);
 		var_labels=extr_links[["covtrt"]][["pred_grp_members"]][[ichar]];
@@ -889,9 +898,9 @@ plot_TMR_diagram=function(result_rec, title, cvtrt_to_grp_map, cvtrt_grps, msd_g
 			grp_name=cvtrt_grps[i], 
 			variables=var_labels, text_align="right");
 
-		extr_links[["covtrt"]][["pred_grp_members_loc"]]=list();
 		extr_links[["covtrt"]][["pred_grp_members_loc"]][[ichar]]=loc;
 	}
+
 
 	for(i in 1:num_msd_grps){
 		ichar=sprintf("%i", i);
@@ -937,8 +946,6 @@ plot_TMR_diagram=function(result_rec, title, cvtrt_to_grp_map, cvtrt_grps, msd_g
 		extr_links[["resp"]][["resp_grp_members_loc"]][[ichar]]=loc;
 	}
 
-	print(extr_links);
-
 	grp_links=0;
 	if(grp_links){
 		for(type in names(extr_links)){
@@ -955,6 +962,7 @@ plot_TMR_diagram=function(result_rec, title, cvtrt_to_grp_map, cvtrt_grps, msd_g
 					b_var_off=as.numeric(link_tab[i,"pred_off"]);
 					e_var_off=as.numeric(link_tab[i,"resp_off"]);
 
+
 					if(type=="covtrt"){
 						x_pos=c(covtrt_xpos+edge, msd_1_resp_xpos-edge);
 						y_pos=c(covtrt_ypos[b_grp_off], msd_ypos[e_grp_off]);
@@ -966,7 +974,7 @@ plot_TMR_diagram=function(result_rec, title, cvtrt_to_grp_map, cvtrt_grps, msd_g
 						y_pos=c(msd_ypos[b_grp_off], rsp_ypos[e_grp_off]);
 					}
 
-					points(x=x_pos, y=y_pos, type="l");
+					points(x=x_pos, y=y_pos, type="l", col="black", lwd=1);
 
 				}
 			}
@@ -978,27 +986,19 @@ plot_TMR_diagram=function(result_rec, title, cvtrt_to_grp_map, cvtrt_grps, msd_g
 			link_tab=extr_links[[type]][["grp_links"]];
 			num_links=nrow(link_tab);
 
-			cat("Link Table:\n");
-			print(link_tab);
-			cat("--------------- Predictors: --------------------\n");
-			print(extr_links[[type]][["pred_grp_members_loc"]]);
-			cat("---------------- Response: ---------------------\n");
-			print(extr_links[[type]][["resp_grp_members_loc"]]);
-
 			pred_var_grp_loc=extr_links[[type]][["pred_grp_members_loc"]];
 			resp_var_grp_loc=extr_links[[type]][["resp_grp_members_loc"]];
-
-			cat("------------------------------------------------------\n");
 
 			if(num_links>0){
 				for(i in 1:num_links){
 					# From covtrt to msd1_resp
-					print(link_tab[i,]);
 
 					pred_grp_off=link_tab[i,"pred"];
 					resp_grp_off=link_tab[i,"resp"];
 					pred_var_off=link_tab[i,"pred_off"];
 					resp_var_off=link_tab[i,"resp_off"];
+
+					link_col=ifelse(link_tab[i,"direction"]=="+", "green", "red");
 
 					pred_grp_off_num=as.numeric(pred_grp_off);
 					resp_grp_off_num=as.numeric(resp_grp_off);
@@ -1031,10 +1031,10 @@ plot_TMR_diagram=function(result_rec, title, cvtrt_to_grp_map, cvtrt_grps, msd_g
 							#msd_ypos[pred_grp_off_num]+pred_var_loc, 
 							#rsp_ypos[resp_grp_off_num]+resp_var_loc);
 					}
-
-					print(x_pos);
-					print(y_pos);
+					
 					points(x=x_pos, y=y_pos, type="l");
+					points(x=x_pos, y=y_pos, type="l", col=link_col, lwd=1);
+					points(x=x_pos, y=y_pos, type="l", col="black", lwd=.125);
 
 				}
 			}
@@ -1047,9 +1047,9 @@ plot_TMR_diagram=function(result_rec, title, cvtrt_to_grp_map, cvtrt_grps, msd_g
 }
 
 
-for(cutoffs in c("0.0010")){
+#for(cutoffs in c("0.0010")){
 #for(cutoffs in c("0.0010", "0.1000")){
-#for(cutoffs in names(denorm_results)){
+for(cutoffs in names(denorm_results)){
 	plot_TMR_diagram(denorm_results[[cutoffs]],
 		paste("P-value Cutoff: ", cutoffs, sep=""),
 		covtrt_to_group_map,
