@@ -7,7 +7,7 @@ library('getopt');
 
 options(useFancyQuotes=F);
 options(digits=5);
-options(width=120);
+options(width=300);
 
 params=c(
 	"factors", "f", 1, "character",
@@ -668,16 +668,19 @@ draw_squares_centered=function(xpos, ypos, height, width, grp_name, variables, t
 
 
 		#xpad=par()$cxy[1]*var_cex;
-		xpad=0;
+		xpad=1/32;
 		if(text_align=="left"){
 			posv=4;
-			text_xpos=xpos-width/2+xpad;
+			text_xpos=xpos-width/2-xpad;
+			#aln_adj=c(-0.2,.3);
 		}else if(text_align=="right"){
 			posv=2;
-			text_xpos=xpos+width/2-xpad;
+			text_xpos=xpos+width/2+xpad;
+			#aln_adj=c(1.2, .3);
 		}
 		for(i in 1:num_var){
 			text(text_xpos, text_pos[i], variables[i], cex=var_cex, pos=posv);
+			#text(text_xpos, text_pos[i], variables[i], cex=var_cex, adj=aln_adj);
 		}
 		return(text_pos);
 	}else{
@@ -699,7 +702,7 @@ plot_TMR_diagram=function(result_rec, title, cvtrt_to_grp_map, cvtrt_grps, msd_g
 
 	#cat("Num Treatment/Covariates variables: ", num_trtcov_var, "\n");
 
-	par(mar=c(0,0,1,0));
+	par(mar=c(0,0,0,0));
 
 	covtrt_xpos=0;
 	msd_1_resp_xpos=1;
@@ -708,13 +711,16 @@ plot_TMR_diagram=function(result_rec, title, cvtrt_to_grp_map, cvtrt_grps, msd_g
 	msd_2_pred_xpos=3;
 	rsp_xpos=4;
 
-	fig_xmar=.5;
+	fig_xmar=.125;
 	fig_ymar=.0;
 	
-	plot(0,0,type="n", ylim=c(0-fig_ymar-.05,1+fig_ymar), xlim=c(covtrt_xpos-fig_xmar, rsp_xpos+fig_xmar),
-		bty="n", xaxt="n", yaxt="n", main=title);
+	plot(0,0,type="n", ylim=c(0,1), xlim=c(covtrt_xpos-fig_xmar, rsp_xpos+fig_xmar),
+		bty="n", xaxt="n", yaxt="n");
+
+	#abline(h=c(0,1));
 
 	#abline(v=c(covtrt_xpos, msd_1_xpos, msd_2_xpos, rsp_xpos), lwd=2, col="grey");
+	text((rsp_xpos-covtrt_xpos)/2, 1, title, font=2, cex=2);
 	text(covtrt_xpos, 0, "Covariates &\nTreatments", font=2, cex=1.5);
 	text((msd_1_resp_xpos+msd_1_pred_xpos)/2, 0, "Measured", font=2, cex=1.5);
 	text((msd_2_resp_xpos+msd_2_pred_xpos)/2, 0, "Measured", font=2, cex=1.5);
