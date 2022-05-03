@@ -14,7 +14,8 @@ params=c(
 	"additional_categories", "a", 2, "character",
 	"output_file_root", "o", 2, "character",
 	"shorten_category_names", "x", 2, "character",
-	"alpha", "f", 2, "numeric"
+	"alpha", "f", 2, "numeric",
+	"prefix", "P", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -31,9 +32,16 @@ usage = paste(
 	"	[-a <filename of additional categories to include>] Not implemented yet\n",
 	"	[-o <output filename root>]\n",
 	"	[-x <shorten categories names with delimitor>]\n",
+	"	[-f <Alpha for filtering correlation heatmap, default=", ALPHA, ">]\n",
+	"	[-P <prefix for category names>]\n",
 	"\n",
 	"Compute ALR transformed values and export to tsv file.\n",
 	"Some diagnostic plots will be generated.\n",
+	"\n",
+	"The -P option will allow the user to specify a prefix to the category names\n",
+	"in case more than one summary table is eventually going to be used and the\n",
+	"exported ALR values will be used together in the same analysis.  To keep the\n",
+	"taxa/category names unique.\n",
 	"\n", sep="");
 
 if(!length(opt$summary_file)){
@@ -72,6 +80,12 @@ if(length(opt$alpha)){
 	Alpha=ALPHA;
 }
 
+if(length(opt$prefix)){
+	Prefix=opt$prefix;
+}else{
+	Prefix="";
+}
+
 SummaryFile=opt$summary_file;
 
 OutputRoot=paste(OutputRoot, ".alr", sep="");
@@ -83,6 +97,7 @@ cat("\n");
 cat("Number of MALR Variables: ", NumVariables, "\n", sep="");
 cat("Use Remaining? ", UseRemaining, "\n");
 cat("Shorten Category Names: '", ShortenCategoryNames, "'\n", sep="");
+cat("Category Prefix: '", Prefix, "'\n", sep="");
 cat("Alpha: ", Alpha, "\n");
 cat("\n");
 
@@ -554,6 +569,10 @@ if(ShortenCategoryNames!=""){
 	cat("\tNames have been shortened.\n");
 }
 
+if(Prefix!=""){
+	colnames(counts)=paste(Prefix, ".", colnames(counts), sep="");
+}
+
 # Normalize
 cat("Normalizing counts to proportions.\n");
 pure_counts=counts;
@@ -744,10 +763,18 @@ prev_fname=paste(OutputRoot, ".top", num_top_categories, ".prevalence.csv", sep=
 cat("Writing CSV of prevalence values to file: ", prev_fname, "\n", sep="");
 write.table(prevalence_matrix, file=prev_fname, quote=F, sep=",", row.names=T, col.names=NA);
 
-# Write ALR to file
+# Write ALR to csv file
 csv_fname=paste(OutputRoot, ".top", num_top_categories, ".csv", sep="");
 cat("Writing CSV of ALR values to file: ", csv_fname, "\n", sep="");
 write.table(alr_categories_val, file=csv_fname, quote=F, sep=",", row.names=T, col.names=NA);
+
+# Write ALR to tsv file 
+tsv_fname=paste(OutputRoot, ".top", num_top_categories, ".tsv", sep="");
+cat("Writing TSV of ALR values to file: ", tsv_fname, "\n", sep="");
+fh=file(tsv_fname, "w");
+cat(file=fh, "SampleID");
+close(fh);
+write.table(alr_categories_val, file=tsv_fname, quote=F, sep="\t", row.names=T, col.names=NA, append=T);
 
 ##############################################################################
 
@@ -902,7 +929,7 @@ plot_text(c(
 par(mfrow=c(5,1));
 par(mar=c(12, 2, 2, 6));
 for(i in 1:num_categories){
-	plot_cor_by_row(cor_rec$val[i,,drop=F], cor_rec$pval[i,,drop=F]);
+	plot_cor_by_row(cor_rec$val[i,,drop=F], cor_rec$pval[i,,drop=F], Alpha);
 	cat("\n\n");
 }
 
