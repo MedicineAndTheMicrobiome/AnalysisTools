@@ -693,6 +693,72 @@ write_summary_file(cleaned_bs_counts, paste(OutputFileRoot,  ".btstp_cln.summary
 
 ###############################################################################
 
+# Keep track of proportion and number of reads virtually removed
+obs_removed_totals=numeric(num_exp_samples);
+bs_removed_totals=numeric(num_exp_samples);
+
+names(obs_removed_totals)=experm_samples;
+names(bs_removed_totals)=experm_samples;
+
+obs_removed_totals[experm_samples]=exp_tot[experm_samples]*obs_prop_removed[experm_samples];
+bs_removed_totals[experm_samples]=exp_tot[experm_samples]*bs_prop_removed[experm_samples];
+
+obs_removed_total_median=median(obs_removed_totals);
+obs_removed_prop_median=median(obs_prop_removed);
+bs_removed_total_median=median(bs_removed_totals);
+bs_removed_prop_median=median(bs_prop_removed);
+
+# Plot histogram of what was removed
+
+par(mfrow=c(2,2));
+
+hist(obs_removed_totals, breaks=nclass.Sturges(obs_removed_totals)*2,
+	 main="Observed Reads Removed (Counts)", xlab="Number of Reads");
+abline(v=obs_removed_total_median, col="blue");
+text(obs_removed_total_median, 0, adj=c(-.4,-.1), srt=90, 
+	sprintf("Median=%g", obs_removed_total_median), col="blue", font=2);
+
+hist(obs_prop_removed*100, breaks=nclass.Sturges(obs_prop_removed)*2, 
+	main="Observed Reads Removed (Percentage)", xlab="Percent of Reads");
+abline(v=obs_removed_prop_median*100, col="blue");
+text(obs_removed_prop_median*100, 0, adj=c(-.4,-.1), srt=90,
+	sprintf("Median=%3.2f", 100* obs_removed_prop_median), col="blue", font=2);
+
+hist(log10(obs_removed_totals), breaks=nclass.Sturges(log10(obs_removed_totals))*2,
+	 main="Observed Reads Removed Log10(Counts)", xlab="Log10(Number of Reads)");
+abline(v=log10(obs_removed_total_median), col="blue");
+text(log10(obs_removed_total_median), 0, adj=c(-.4,-.1), srt=90, 
+	sprintf("Median=%g", log10(obs_removed_total_median)), col="blue", font=2);
+
+plot(log10(obs_removed_totals), obs_prop_removed*100, 
+	main="Log10 Counts vs. Percentage Removed", xlab="Log10(Counts)", ylab="Percent Removed");
+
+
+
+hist(bs_removed_totals, breaks=nclass.Sturges(bs_removed_totals)*2, 
+	main="Bootstrapped Reads Removed (Counts)", xlab="Number of Reads");
+abline(v=bs_removed_total_median, col="blue");
+text(bs_removed_total_median, 0, adj=c(-.4,-.1), srt=90,
+	sprintf("Median=%g", bs_removed_total_median), col="blue", font=2);
+
+hist(bs_prop_removed*100, breaks=nclass.Sturges(bs_prop_removed)*2, 
+	main="Bootstrapped Reads Removed (Percentage)", xlab="Percentage of Reads");
+abline(v=bs_removed_prop_median*100, col="blue");
+text(bs_removed_prop_median*100, 0, adj=c(-.4,-.1), srt=90,
+	sprintf("Median=%3.2f", 100* bs_removed_prop_median), col="blue", font=2);
+
+hist(log10(bs_removed_totals), breaks=nclass.Sturges(log10(bs_removed_totals))*2, 
+	main="Bootstrapped Reads Removed Log10(Counts)", xlab="Log10(Number of Reads)");
+abline(v=log10(bs_removed_total_median), col="blue");
+text(log10(bs_removed_total_median), 0, adj=c(-.4,-.1), srt=90,
+	sprintf("Median=%g", log10(bs_removed_total_median)), col="blue", font=2);
+
+plot(log10(bs_removed_totals), bs_prop_removed*100, 
+	main="Log10 Counts vs. Percentage Removed", xlab="Log10(Counts)", ylab="Percent Removed");
+
+###############################################################################
+
+
 # Write parameters
 fc=file(paste(OutputFileRoot, ".cleaned.stats.tsv", sep=""), "w");
 
