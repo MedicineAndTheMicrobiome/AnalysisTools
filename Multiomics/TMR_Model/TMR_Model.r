@@ -240,7 +240,30 @@ variables_rec[["Covariates"]]=split_factors_to_groups(loaded_factors, groupings_
 variables_rec[["Measured"]]=split_factors_to_groups(loaded_factors, groupings_rec, measured_list);
 variables_rec[["Response"]]=split_factors_to_groups(loaded_factors, groupings_rec, response_list);
 
-#print(variables_rec);
+# Generate list of how variables will be used
+model_variables_summary=capture.output({
+	for(type in names(variables_rec)){
+		cat(type, ":\n\n");
+		for(grp in names(variables_rec[[type]])){
+			cat("   ", grp, "\n");
+			vars=colnames(variables_rec[[type]][[grp]]);
+			for(var in vars){
+				cat("      ", var, "\n");
+			}
+			cat("\n");
+		}
+		cat("\n\n");
+	}
+});
+
+
+print(model_variables_summary);
+plot_text(c(
+	"Model Variables:",
+	"",	
+	model_variables_summary
+), max_lines_pp=80);
+
 
 ##############################################################################
 
