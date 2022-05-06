@@ -703,9 +703,10 @@ draw_squares_centered=function(xpos, ypos, height, width, grp_name, variables, t
 }
 
 
-plot_TMR_diagram=function(result_rec, title, cvtrt_to_grp_map, cvtrt_grps, msd_grps, rsp_grps){
+plot_TMR_diagram=function(result_rec, title, subtitle="", cvtrt_to_grp_map, cvtrt_grps, msd_grps, rsp_grps){
 
 	cat("Plotting TMR diagram: ", title, "\n");
+	cat("Subtitle: ", subtitle, "\n");
 
 	num_cvtrt_grps=length(cvtrt_grps);
 	num_msd_grps=length(msd_grps);
@@ -733,7 +734,9 @@ plot_TMR_diagram=function(result_rec, title, cvtrt_to_grp_map, cvtrt_grps, msd_g
 	#abline(h=c(0,1));
 
 	#abline(v=c(covtrt_xpos, msd_1_xpos, msd_2_xpos, rsp_xpos), lwd=2, col="grey");
-	text((rsp_xpos-covtrt_xpos)/2, 1, title, font=2, cex=2);
+	text((rsp_xpos-covtrt_xpos)/2, 1+.0075, title, font=2, cex=2);
+	text((rsp_xpos-covtrt_xpos)/2, 1-.025, subtitle, font=2, cex=1.25);
+
 	text(covtrt_xpos, 0, "Covariates &\nTreatments", font=2, cex=1.5);
 	text((msd_1_resp_xpos+msd_1_pred_xpos)/2, 0, "Measured", font=2, cex=1.5);
 	text((msd_2_resp_xpos+msd_2_pred_xpos)/2, 0, "Measured", font=2, cex=1.5);
@@ -1158,13 +1161,14 @@ remove_weaker_bidirectional_links=function(links_rec, log10_diff_thres=1){
 for(cutoffs in names(denorm_results)){
 
 	plot_TMR_diagram(denorm_results[[cutoffs]],
-		paste("P-value Cutoff: ", cutoffs, "\n(All)", sep=""),
+		paste("P-value Cutoff: ", cutoffs, sep=""),
+		"(All links above cutoff)",
 		covtrt_to_group_map,
 		covariates_list, measured_list, response_list);
 
 	plot_text(c(
 		paste("P-value Cutoff: ", cutoffs, sep=""),
-		paste("(All, ", nrow(denorm_results[[cutoffs]]), " links.)", sep=""),
+		paste("(All links above cutoff, ", nrow(denorm_results[[cutoffs]]), " links.)", sep=""),
 		capture.output(print(denorm_results[[cutoffs]], quotes=""))
 	), max_lines_pp=70);
 
@@ -1172,13 +1176,14 @@ for(cutoffs in names(denorm_results)){
 
 	unidir_links=remove_weaker_bidirectional_links(denorm_results[[cutoffs]], log10_diff_thres=1);
 	plot_TMR_diagram(unidir_links,
-		paste("P-value Cutoff: ", cutoffs, "\n(Weaker Bi-Directional Links Removed)", sep=""),
+		paste("P-value Cutoff: ", cutoffs, sep=""),
+		"(Excluding weaker of bi-directional links)",
 		covtrt_to_group_map,
 		covariates_list, measured_list, response_list);
 
 	plot_text(c(
 		paste("P-value Cutoff: ", cutoffs, sep=""),
-		paste("(Without Weaker Bi-Direction Links, ", nrow(unidir_links), " links.)", sep=""),
+		paste("(Excluding weaker of bi-directional links, ", nrow(unidir_links), " links.)", sep=""),
 		capture.output(print(unidir_links, quotes=""))
 	), max_lines_pp=70);
 		
