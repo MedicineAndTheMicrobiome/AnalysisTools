@@ -129,7 +129,7 @@ load_groupings=function(fname, var_col=1, grp_col=2){
 
 #-----------------------------------------------------------------------------#
 
-plot_text=function(strings){
+plot_text=function(strings, max_lines_pp=Inf){
 
 	orig.par=par(no.readonly=T);
 
@@ -139,20 +139,33 @@ plot_text=function(strings){
 	par(mar=rep(0,4));
 
 	num_lines=length(strings);
+	num_pages=max(1, ceiling(num_lines/max_lines_pp));
 
-	top=max(as.integer(num_lines), 52);
+	cat("Num Pages for ", num_lines, " lines: ", num_pages, "\n", sep="");
 
-	plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
-		xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
-		);
+	lines_pp=min(num_lines, max_lines_pp);
+	for(p in 1:num_pages){
 
-	text_size=max(.01, min(.8, .8 - .003*(num_lines-52)));
-	#print(text_size);
+		top=max(as.integer(lines_pp), 52);
 
-	for(i in 1:num_lines){
-		#cat(strings[i], "\n", sep="");
-		strings[i]=gsub("\t", "", strings[i]);
-		text(0, top-i, strings[i], pos=4, cex=text_size);
+		plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
+			xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
+			);
+
+		text_size=max(.01, min(.8, .8 - .003*(lines_pp-52)));
+		#print(text_size);
+
+		start=(p-1)*lines_pp+1;
+		end=start+lines_pp-1;
+		end=min(end, num_lines);
+		line=1;
+		for(i in start:end){
+			#cat(strings[i], "\n", sep="");
+			strings[i]=gsub("\t", "", strings[i]);
+			text(0, top-line, strings[i], pos=4, cex=text_size);
+			line=line+1;
+		}
+
 	}
 
 	par(orig.par);
@@ -1052,19 +1065,122 @@ plot_TMR_diagram=function(result_rec, title, cvtrt_to_grp_map, cvtrt_grps, msd_g
 	cat("End of Plot TMR Diagram.\n");
 }
 
+remove_weaker_bidirectional_links=function(links_rec, log10_diff_thres=1){
 
-#for(cutoffs in c("0.0010")){
+	# Identify MSD to MSD links
+	msd_to_msd_ix=links_rec[,"model_type"]=="Msd_to_Msd";
+
+	# Extract out MSD to MSD links, and save other links for later
+	msd_to_msd_rec=links_rec[msd_to_msd_ix,,drop=F];
+	other_recs=links_rec[!msd_to_msd_ix,,drop=F];
+
+	num_m2m_links=nrow(msd_to_msd_rec);
+	if(num_m2m_links>1){
+
+		link_hash=list();
+		forward_dir=character();
+		opposite_dir=character();
+
+		# Build a hash so we can quickly determine existence of opposite link
+		for(i in 1:num_m2m_links){
+
+			grps=strsplit(as.character(msd_to_msd_rec[i, "model_name"]), "->")[[1]];
+			pred_grp=grps[1];
+			resp_grp=grps[2];
+
+			# Generate group#variable key for pred/resp
+			pred_str=paste(pred_grp, "#", msd_to_msd_rec[i, "predictor"], sep="");
+			resp_str=paste(resp_grp, "#", msd_to_msd_rec[i, "response"], sep="");
+
+			# Generate pred/resp key
+			for_pair_str=paste(pred_str, resp_str, sep="|");
+			opp_pair_str=paste(resp_str, pred_str, sep="|");
+
+			# Save the pred/resp pval as store value in hash
+			link_hash[[for_pair_str]]=msd_to_msd_rec[i, "pval"];
+
+			# Keep track of pred/resp keys and resp/red keys
+			forward_dir=c(forward_dir, for_pair_str);
+			opposite_dir=c(opposite_dir, opp_pair_str);
+
+		}
+
+		remove_list=c();
+		for(i in 1:num_m2m_links){
+		
+			cur_for=forward_dir[i];
+			cur_opp=opposite_dir[i];	
+
+			if(is.null(link_hash[[cur_opp]])){
+				# If there is no, link in opposite direction, do nothing.
+				next;
+			}else{
+				# If there is a link in the opposite direction, compare
+				# the p-values.  If one is more significant than the 
+				# other by more than the threshold, keep the more significant
+				# one.
+
+				cat("F/R link found:", cur_for, "\n");
+
+				for_pval=link_hash[[cur_for]];
+				opp_pval=link_hash[[cur_opp]];
+
+				# log_diff < 0, if for_pval more signf than rev_pval
+				log10_diff=log10(for_pval/opp_pval);
+
+				if(log10_diff < (-log10_diff_thres)){
+					# forward is more significant then opposite
+					link_hash[[cur_opp]]=1;
+				}else if(log10_diff > (log10_diff_thres)){
+					# Opposite is more significant than forward
+					# so mark it for removal
+					link_hash[[cur_for]]=1;
+					msd_to_msd_rec[i, "pval"]=1;
+					remove_list=c(remove_list, i);
+				}else{
+					# Keep both
+				}
+			}
+		}
+
+		# Remove weaker links from table
+		msd_to_msd_rec=msd_to_msd_rec[setdiff(1:num_m2m_links, remove_list),, drop=F];
+	}
+
+	# Combine filtered MSD to MSD records with other records
+	out=rbind(other_recs, msd_to_msd_rec);
+	rownames(out)=1:nrow(out);
+	return(out);	
+
+}
+
 #for(cutoffs in c("0.0010", "0.1000")){
 for(cutoffs in names(denorm_results)){
+
 	plot_TMR_diagram(denorm_results[[cutoffs]],
-		paste("P-value Cutoff: ", cutoffs, sep=""),
+		paste("P-value Cutoff: ", cutoffs, "\n(All)", sep=""),
 		covtrt_to_group_map,
 		covariates_list, measured_list, response_list);
 
 	plot_text(c(
 		paste("P-value Cutoff: ", cutoffs, sep=""),
+		paste("(All, ", nrow(denorm_results[[cutoffs]]), " links.)", sep=""),
 		capture.output(print(denorm_results[[cutoffs]], quotes=""))
-	));
+	), max_lines_pp=70);
+
+	# Remove weaker of bi-directional links
+
+	unidir_links=remove_weaker_bidirectional_links(denorm_results[[cutoffs]], log10_diff_thres=1);
+	plot_TMR_diagram(unidir_links,
+		paste("P-value Cutoff: ", cutoffs, "\n(Weaker Bi-Directional Links Removed)", sep=""),
+		covtrt_to_group_map,
+		covariates_list, measured_list, response_list);
+
+	plot_text(c(
+		paste("P-value Cutoff: ", cutoffs, sep=""),
+		paste("(Without Weaker Bi-Direction Links, ", nrow(unidir_links), " links.)", sep=""),
+		capture.output(print(unidir_links, quotes=""))
+	), max_lines_pp=70);
 		
 }
 
