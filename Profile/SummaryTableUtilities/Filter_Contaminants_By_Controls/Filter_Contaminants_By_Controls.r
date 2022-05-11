@@ -6,6 +6,7 @@ library('getopt');
 
 params=c(
 	"input_summary_table", "i", 1, "character",
+	"match_contam", "m", 2, "character",
 	"avg_contam", "a", 2, "character",
 	"paired_contam", "p", 2, "character",
 	"plevel", "l", 2, "numeric",
@@ -34,7 +35,8 @@ usage = paste (
 	"	-i <input samples summary table.tsv>\n",
 	"\n",
 	"	One of:\n",
-	"	[-a <contamiment/negative control sample IDs list>]\n",
+	"	[-m <contamiment/negative control sample IDs list, to find closest match>]\n",
+	"	[-a <contamiment/negative control sample IDs list, to pool/average together>]\n",
 	"	[-p <list of experimental/contaminant paired sample IDs>]\n",
 	"\n",
 	"	[-l <p-norm used in the objective function, default=", DEFAULT_PLEVEL, ">]\n",
@@ -139,6 +141,7 @@ if(!length(opt$input_summary_table)){
 InputSummaryTable=opt$input_summary_table;
 AvgContamFName=opt$avg_contam;
 PairedContamFName=opt$paired_contam;
+MatchContamFName=opt$match_contam;
 PLevel=opt$plevel;
 OutputFileRoot=opt$output_fname_root;
 ShortNameDelim=opt$short_name_delim;
@@ -197,12 +200,24 @@ cat("Quantile (1-alpha), alpha: ", Quantile, "\n", sep="");
 cat("\n");
 
 doPaired=NULL;
+doMatched=NULL;
+doAveraged=NULL;
+
 if(length(PairedContamFName)){
 	cat("Performing paired contaminant removal: ", PairedContamFName, "\n");
-	doPaired=T;
-}else{
+	doPaired=TRUE;
+	doMatched=FALSE;
+	doAveraged=FALSE;
+}else if(length(AvgContamFName)){
 	cat("Performing averaged contaminant removal: ", AvgContamFName, "\n");
-	doPaired=F;
+	doPaired=FALSE;
+	doMatched=FALSE;
+	doAveraged=TRUE;
+}else if(length(MatchContamFName)){
+	cat("Performing matched contaminant removal: ", MatchContamFName, "\n");
+	doPaired=FALSE;
+	doMatched=TRUE;
+	doAveraged=FALSE;
 }
 
 
@@ -304,7 +319,8 @@ plot_RAbox=function(ordered_composition, title="", top=0, max=1){
 	if(top<=0){
 		top=num_cat;
 	}
-	boxplot(ordered_composition[,1:top], names.arg=names[1:top], las=2, 
+	subsamp=sample(1:nrow(ordered_composition), 80, replace=F);
+	boxplot(ordered_composition[subsamp,1:top], names.arg=names[1:top], las=2, 
 		cex.names=.75, cex.axis=.75,
 		bty="n",
 		main=paste("\n\n",title, sep=""), ylim=c(0,max));
@@ -376,16 +392,13 @@ for(i in 1:num_names){
 
 normalized_mat=normalize(counts_mat);
 
-
 # Load IDs
-AvgContamFName=opt$avg_contam;
-PairedContamFName=opt$paired_contam;
-
 avg_cont_dist=NULL;
 experm_samples=character();
 contam_samples=character();
 
 if(doPaired){
+
 	pairs=load_pairs(PairedContamFName);
 	experm_samples=intersect(names(pairs), summary_table_sample_ids);
 	contam_samples=intersect(pairs, summary_table_sample_ids);
@@ -405,7 +418,8 @@ if(doPaired){
 	contam_samples=pairs;
 	names(contam_samples)=NULL;
 
-}else{
+}else if(doAveraged){
+
 	ids_array=load_ids(AvgContamFName);
 	overlapping_ids=intersect(ids_array, summary_table_sample_ids);
 
@@ -414,6 +428,17 @@ if(doPaired){
 
 	experm_samples=setdiff(summary_table_sample_ids, ids_array);
 	contam_samples=overlapping_ids;
+
+}else if(doMatched){
+
+	ids_array=load_ids(MatchContamFName);
+	overlapping_ids=intersect(ids_array, summary_table_sample_ids);
+
+	contam_mat=normalized_mat[overlapping_ids,, drop=F];
+
+	experm_samples=setdiff(summary_table_sample_ids, ids_array);
+	contam_samples=overlapping_ids;
+
 }
 
 cat("Experimental Samples:\n");
@@ -429,12 +454,14 @@ mean_con_abund=apply(normalized_mat[contam_samples,,drop=F], 2, mean);
 mean_both_abund=(mean_exp_abund+mean_con_abund)/2;
 mean_order=order(mean_both_abund, decreasing=T);
 
-normalized_mat=normalized_mat[,mean_order];
+normalized_mat=normalized_mat[,mean_order, drop=F];
 short_names=short_names[mean_order];
 original_names=colnames(normalized_mat);
 colnames(normalized_mat)=short_names;
 
-if(!doPaired){
+contam_mat=normalized_mat[contam_samples,,drop=F];
+
+if(doAveraged){
 	avg_cont_dist=avg_cont_dist[mean_order];
 	names(avg_cont_dist)=short_names;
 }
@@ -519,6 +546,32 @@ bootstrp_fit=function(exper_dist, pert_ctl_dist_matrix, plevel){
 
 ###############################################################################
 
+find_closest=function(query, references, p=1){
+
+	num_ref=nrow(references);
+	distances=numeric(num_ref);
+	ref_names=rownames(references);
+	names(distances)=ref_names;
+
+	for(i in 1:num_ref){
+
+		cur_ref=references[i,];
+		non_zero_ref=(cur_ref>0);
+
+		dist=sum((abs(query[non_zero_ref]-cur_ref[non_zero_ref]))^p)^(1/p);
+		distances[i]=dist;
+	}
+	
+	#cat("Distances:\n");
+	#print(distances);
+	min_dist=min(distances);
+	closest_ref=min(which(distances==min_dist));
+	return(ref_names[closest_ref]);
+	
+}
+
+###############################################################################
+
 pdf(paste(OutputFileRoot, ".dist_contam.pdf", sep=""), height=14, width=8.5);
 
 top_cat_to_plot=45;
@@ -564,9 +617,14 @@ for(exp_samp_id in experm_samples){
 	if(doPaired){
 		ctl_name=pairs[exp_samp_id];
 		ctl_dist=normalized_mat[ctl_name,];
-	}else{
+	}else if(doAveraged){
 		ctl_name="average control";
 		ctl_dist=avg_cont_dist;
+	}else if(doMatched){
+		closest_name=find_closest(exp_dist, contam_mat);
+		cat("Closest control was: ", closest_name, "\n");
+		ctl_name=paste("closest control: ", closest_name, sep="");
+		ctl_dist=contam_mat[closest_name,];
 	}
 
 	# Get Num Taxa:
@@ -606,19 +664,25 @@ for(exp_samp_id in experm_samples){
 	mtext(paste("Min Abundance:", min_exp_abd), line=-2.5, outer=F, cex=.5);
 
 	# 2.) Plot obs ctrl
-	plot_RAcurve(ctl_dist, title=paste("Obs. Control:", ctl_name), top=top_cat_to_plot, max=max_disp_y, overlay_dist=exp_dist);
+	plot_RAcurve(ctl_dist, title=paste("Obs. Control:", ctl_name), top=top_cat_to_plot, 
+		max=max_disp_y, overlay_dist=exp_dist);
 	mtext(paste("Num Categories:", num_ctl_cat), line=-1.75, outer=F, cex=.5);
 	mtext(paste("Min Abundance:", min_ctl_abd), line=-2.5, outer=F, cex=.5);
 
 	# 3.) Plot straight obs filter
-	plot_RAcurve(obs_fit$cleaned, title=paste("Obs. Cleaned:"), top=top_cat_to_plot, max=max_disp_y, overlay_dist=exp_dist);
+	plot_RAcurve(obs_fit$cleaned, title=paste("Obs. Cleaned:"), top=top_cat_to_plot, 
+		max=max_disp_y, overlay_dist=exp_dist);
 	mtext(paste("Proportion Removed:", round(obs_fit$removed, 3)), line=-1.75, outer=F, cex=.5);
 	mtext(paste("Multiplier:", round(obs_fit$multiplier, 3)), line=-2.5, outer=F, cex=.5);
 
 	# 4.) Plot perturbation instance at 95% best 
-	plot_RAcurve(pert_ctrl[perc95_ix,], title=paste(percentile_str, " Most Removed Pert. Control Instance", sep=""), top=top_cat_to_plot, max=max_disp_y, overlay_dist=exp_dist);
+	plot_RAcurve(pert_ctrl[perc95_ix,], 
+		title=paste(percentile_str, " Most Removed Pert. Control Instance", sep=""), 
+		top=top_cat_to_plot, max=max_disp_y, overlay_dist=exp_dist);
 	# 5.) Plot filtered instance at 95% best
-	plot_RAcurve(fits$cleaned[perc95_ix,], title=paste(percentile_str, " Most Removed Cleaned", sep=""), top=top_cat_to_plot, max=max_disp_y, overlay_dist=exp_dist);
+	plot_RAcurve(fits$cleaned[perc95_ix,], 
+		title=paste(percentile_str, " Most Removed Cleaned", sep=""), 
+		top=top_cat_to_plot, max=max_disp_y, overlay_dist=exp_dist);
 	mtext(paste("Proportion Removed:", round(fits$stats[perc95_ix, "removed"], 3)), line=-1.75, outer=F, cex=.5);
 	mtext(paste("Multiplier:", round(fits$stats[perc95_ix, "multiplier"], 3)), line=-2.5, outer=F, cex=.5);
 
