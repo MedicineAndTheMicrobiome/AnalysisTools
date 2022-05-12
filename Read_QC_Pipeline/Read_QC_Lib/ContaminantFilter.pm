@@ -170,18 +170,26 @@ sub execute_analysis{
 		mkdir $output_path;
 	}
 
-	# Construct execution string
-	my $execute_analysis_string=
-		"$exec_path " .
-		"-b $ref_bitmask " .
-		"-x $ref_srprism " .
-		"-T $temp_path " .
-		"-q1 -1 $fastq_path " .
-		"-o $output_path/$self->{REMOVE_LIST_NAME}";
+	# If fastq is exists and is non-zero in size
+	if(-s $fastq_path){
 
-	# Execute
-	print STDERR "Executing: $execute_analysis_string\n";
-	my $res=`$execute_analysis_string`;
+		# Construct execution string
+		my $execute_analysis_string=
+			"$exec_path " .
+			"-b $ref_bitmask " .
+			"-x $ref_srprism " .
+			"-T $temp_path " .
+			"-q1 -1 $fastq_path " .
+			"-o $output_path/$self->{REMOVE_LIST_NAME}";
+
+		# Execute
+		print STDERR "Executing: $execute_analysis_string\n";
+		my $res=`$execute_analysis_string`;
+
+	}else{
+		print STDERR "$fastq_path exists, but has zero size.  Skipping step.\n";
+		`touch $output_path/$self->{REMOVE_LIST_NAME}`;
+	}
 
 	$self->{remove_list_path}="$output_path/$self->{REMOVE_LIST_NAME}";
 	
