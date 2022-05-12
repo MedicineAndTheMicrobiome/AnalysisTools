@@ -1,0 +1,55 @@
+This is cutadapt 1.8.1 with Python 2.7.5
+Command line parameters: -b AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT -b CAAGCAGAAGACGGCATACGAGATNNNNNNGTGACTGGAGTTCAGACGTGTGCTCTTCCGATCA QC/Results/0159.AY44.33069.20171018.ST/R/1_qvtrim/qv_trimmed.fastq -o QC/Results/0159.AY44.33069.20171018.ST/R/2_seq_adapt_trim/adapter_trimmed.fastq --match-read-wildcards
+Trimming 2 adapters with at most 10.0% errors in single-end mode ...
+Finished in 0.91 s (52 us/read; 1.15 M reads/minute).
+
+=== Summary ===
+
+Total reads processed:                  17,435
+Reads with adapters:                        49 (0.3%)
+Reads written (passing filters):        17,435 (100.0%)
+
+Total basepairs processed:     4,352,081 bp
+Total written (filtered):      4,351,922 bp (100.0%)
+
+=== Adapter 1 ===
+
+Sequence: AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT; Type: variable 5'/3'; Length: 58; Trimmed: 24 times.
+11 times, it overlapped the 5' end of a read
+13 times, it overlapped the 3' end or was within the read
+
+No. of allowed errors:
+0-9 bp: 0; 10-19 bp: 1; 20-29 bp: 2; 30-39 bp: 3; 40-49 bp: 4; 50-58 bp: 5
+
+Overview of removed sequences (5')
+length	count	expect	max.err	error counts
+3	7	272.4	0	7
+4	4	68.1	0	4
+
+
+Overview of removed sequences (3' or within)
+length	count	expect	max.err	error counts
+3	10	272.4	0	10
+4	3	68.1	0	3
+
+=== Adapter 2 ===
+
+Sequence: CAAGCAGAAGACGGCATACGAGATNNNNNNGTGACTGGAGTTCAGACGTGTGCTCTTCCGATCA; Type: variable 5'/3'; Length: 64; Trimmed: 25 times.
+12 times, it overlapped the 5' end of a read
+13 times, it overlapped the 3' end or was within the read
+
+No. of allowed errors:
+0-9 bp: 0; 10-19 bp: 1; 20-29 bp: 2; 30-39 bp: 3; 40-49 bp: 4; 50-59 bp: 5; 60-64 bp: 6
+
+Overview of removed sequences (5')
+length	count	expect	max.err	error counts
+3	11	272.4	0	11
+4	1	68.1	0	1
+
+
+Overview of removed sequences (3' or within)
+length	count	expect	max.err	error counts
+3	11	272.4	0	11
+4	1	68.1	0	1
+6	1	4.3	0	1
+

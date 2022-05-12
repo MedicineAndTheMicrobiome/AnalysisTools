@@ -1,0 +1,22 @@
+This is cutadapt 1.8.1 with Python 2.7.5
+Command line parameters: -b GTGCCAGCMGCCGCGGTAA -b GGACTACHVGGGTWTCTAAT QC/Results/0000.0909.20190116/F/2_seq_adapt_trim/adapter_trimmed.fastq -o QC/Results/0000.0909.20190116/F/3_primer_trim/adapter_trimmed.fastq --match-read-wildcards
+Trimming 2 adapters with at most 10.0% errors in single-end mode ...
+Finished in 0.01 s (263 us/read; 0.23 M reads/minute).
+
+=== Summary ===
+
+Total reads processed:                      38
+Reads with adapters:                         0 (0.0%)
+Reads written (passing filters):            38 (100.0%)
+
+Total basepairs processed:         9,519 bp
+Total written (filtered):          9,519 bp (100.0%)
+
+=== Adapter 1 ===
+
+Sequence: GTGCCAGCMGCCGCGGTAA; Type: variable 5'/3'; Length: 19; Trimmed: 0 times.
+
+=== Adapter 2 ===
+
+Sequence: GGACTACHVGGGTWTCTAAT; Type: variable 5'/3'; Length: 20; Trimmed: 0 times.
+

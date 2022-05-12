@@ -1,0 +1,4 @@
+This is cutadapt 1.8.1 with Python 2.7.5
+Command line parameters: -b AATGATACGGCGACCACCGAGATCTACACTCTTTCCCTACACGACGCTCTTCCGATCT -b CAAGCAGAAGACGGCATACGAGATNNNNNNGTGACTGGAGTTCAGACGTGTGCTCTTCCGATCA QC/Results/0159.AY44.32002.20171110.ST/F/1_qvtrim/qv_trimmed.fastq -o QC/Results/0159.AY44.32002.20171110.ST/F/2_seq_adapt_trim/adapter_trimmed.fastq --match-read-wildcards
+Trimming 2 adapters with at most 10.0% errors in single-end mode ...
+No reads processed! Either your input file is empty or you used the wrong -f/--format parameter.

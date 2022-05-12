@@ -1,0 +1,55 @@
+This is cutadapt 1.8.1 with Python 2.7.5
+Command line parameters: -b GTGCCAGCMGCCGCGGTAA -b GGACTACHVGGGTWTCTAAT QC/Results/0159.AY44.33069.20171018.ST/R/2_seq_adapt_trim/adapter_trimmed.fastq -o QC/Results/0159.AY44.33069.20171018.ST/R/3_primer_trim/adapter_trimmed.fastq --match-read-wildcards
+Trimming 2 adapters with at most 10.0% errors in single-end mode ...
+Finished in 0.37 s (21 us/read; 2.83 M reads/minute).
+
+=== Summary ===
+
+Total reads processed:                  17,435
+Reads with adapters:                        23 (0.1%)
+Reads written (passing filters):        17,435 (100.0%)
+
+Total basepairs processed:     4,351,922 bp
+Total written (filtered):      4,351,835 bp (100.0%)
+
+=== Adapter 1 ===
+
+Sequence: GTGCCAGCMGCCGCGGTAA; Type: variable 5'/3'; Length: 19; Trimmed: 11 times.
+6 times, it overlapped the 5' end of a read
+5 times, it overlapped the 3' end or was within the read
+
+No. of allowed errors:
+0-9 bp: 0; 10-19 bp: 1
+
+Overview of removed sequences (5')
+length	count	expect	max.err	error counts
+3	6	272.4	0	6
+
+
+Overview of removed sequences (3' or within)
+length	count	expect	max.err	error counts
+3	1	272.4	0	1
+4	2	68.1	0	2
+5	1	17.0	0	1
+11	1	0.0	1	0 1
+
+=== Adapter 2 ===
+
+Sequence: GGACTACHVGGGTWTCTAAT; Type: variable 5'/3'; Length: 20; Trimmed: 12 times.
+11 times, it overlapped the 5' end of a read
+1 times, it overlapped the 3' end or was within the read
+
+No. of allowed errors:
+0-9 bp: 0; 10-19 bp: 1; 20 bp: 2
+
+Overview of removed sequences (5')
+length	count	expect	max.err	error counts
+3	8	272.4	0	8
+4	2	68.1	0	2
+5	1	17.0	0	1
+
+
+Overview of removed sequences (3' or within)
+length	count	expect	max.err	error counts
+5	1	17.0	0	1
+
