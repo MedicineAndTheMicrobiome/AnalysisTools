@@ -319,7 +319,7 @@ plot_RAbox=function(ordered_composition, title="", top=0, max=1){
 	if(top<=0){
 		top=num_cat;
 	}
-	subsamp=sample(1:nrow(ordered_composition), 80, replace=F);
+	subsamp=sample(1:nrow(ordered_composition), min(80, nrow(ordered_composition)), replace=F);
 	boxplot(ordered_composition[subsamp,1:top], names.arg=names[1:top], las=2, 
 		cex.names=.75, cex.axis=.75,
 		bty="n",
@@ -609,6 +609,8 @@ fits=list();
 num_samp=length(experm_samples);
 counter=1;
 
+selected_controls=character();
+
 for(exp_samp_id in experm_samples){
 
 	cat("\nWorking on: ", exp_samp_id, " (", counter, "/", num_samp, ")\n", sep="");
@@ -625,6 +627,7 @@ for(exp_samp_id in experm_samples){
 		cat("Closest control was: ", closest_name, "\n");
 		ctl_name=paste("closest control: ", closest_name, sep="");
 		ctl_dist=contam_mat[closest_name,];
+		selected_controls=c(selected_controls, closest_name);
 	}
 
 	# Get Num Taxa:
@@ -819,6 +822,21 @@ text(log10(bs_removed_total_median), 0, adj=c(-.4,-.1), srt=90,
 
 plot(log10(bs_removed_totals), bs_prop_removed*100, 
 	main="Log10 Counts vs. Percentage Removed", xlab="Log10(Counts)", ylab="Percent Removed");
+
+###############################################################################
+
+# Generate a histogram of the frequency by which controls have been matched
+if(doMatched){
+	par(mfrow=c(1,1));
+	par(mar=c(4,10,4,1));
+	matched_profile=table(selected_controls);
+	print(matched_profile);
+	sort_ix=order(matched_profile, decreasing=T);
+	matched_profile=matched_profile[sort_ix];
+	barplot(matched_profile, main="Frequency of Control Matching", 
+		horiz=T, las=1, cex.names=.5);
+
+}
 
 ###############################################################################
 
