@@ -8,6 +8,7 @@ params=c(
 	"input_summary_table", "i", 1, "character",
 	"match_contam", "m", 2, "character",
 	"avg_contam", "a", 2, "character",
+	"mixture_contam", "x", 2, "character",
 	"paired_contam", "p", 2, "character",
 	"plevel", "l", 2, "numeric",
 	"output_fname_root", "o", 2, "character",
@@ -20,6 +21,7 @@ params=c(
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
 
+options(width=200);
 script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
 
 DEFAULT_PLEVEL=2;
@@ -37,6 +39,7 @@ usage = paste (
 	"	One of:\n",
 	"	[-m <contamiment/negative control sample IDs list, to find closest match>]\n",
 	"	[-a <contamiment/negative control sample IDs list, to pool/average together>]\n",
+	"	[-x <contamiment/negative control sample IDs list, for mixture model.>]\n",
 	"	[-p <list of experimental/contaminant paired sample IDs>]\n",
 	"\n",
 	"	[-l <p-norm used in the objective function, default=", DEFAULT_PLEVEL, ">]\n",
@@ -142,6 +145,8 @@ InputSummaryTable=opt$input_summary_table;
 AvgContamFName=opt$avg_contam;
 PairedContamFName=opt$paired_contam;
 MatchContamFName=opt$match_contam;
+MixtureContamFName=opt$mixture_contam;
+
 PLevel=opt$plevel;
 OutputFileRoot=opt$output_fname_root;
 ShortNameDelim=opt$short_name_delim;
@@ -202,23 +207,41 @@ cat("\n");
 doPaired=NULL;
 doMatched=NULL;
 doAveraged=NULL;
+doMixture=NULL;
+
+method="";
 
 if(length(PairedContamFName)){
 	cat("Performing paired contaminant removal: ", PairedContamFName, "\n");
 	doPaired=TRUE;
 	doMatched=FALSE;
 	doAveraged=FALSE;
+	doMixture=FALSE;
+	method="paired";
 }else if(length(AvgContamFName)){
 	cat("Performing averaged contaminant removal: ", AvgContamFName, "\n");
 	doPaired=FALSE;
 	doMatched=FALSE;
 	doAveraged=TRUE;
+	doMixture=FALSE;
+	method="averaged";
 }else if(length(MatchContamFName)){
 	cat("Performing matched contaminant removal: ", MatchContamFName, "\n");
 	doPaired=FALSE;
 	doMatched=TRUE;
 	doAveraged=FALSE;
+	doMixture=FALSE;
+	method="matched";
+}else if(length(MixtureContamFName)){
+	cat("Performing mixture contaminant removal: ", MixtureContamFName, "\n");
+	doPaired=FALSE;
+	doMatched=FALSE;
+	doAveraged=FALSE;
+	doMixture=TRUE;
+	method="mixture";
 }
+
+OutputFileRoot=paste(OutputFileRoot, ".", method, sep="");
 
 
 ###############################################################################
@@ -292,6 +315,260 @@ normalize=function(counts){
 	rownames(normalized)=rownames(counts);
 
 	return(normalized);
+}
+
+###############################################################################
+
+plot_text=function(strings, max_lines_pp=Inf){
+
+        orig.par=par(no.readonly=T);
+
+        par(mfrow=c(1,1));
+        par(family="Courier");
+        par(oma=rep(.5,4));
+        par(mar=rep(0,4));
+
+        num_lines=length(strings);
+        num_pages=max(1, ceiling(num_lines/max_lines_pp));
+
+        cat("Num Pages for ", num_lines, " lines: ", num_pages, "\n", sep="");
+
+        lines_pp=min(num_lines, max_lines_pp);
+        for(p in 1:num_pages){
+
+                top=max(as.integer(lines_pp), 52);
+
+                plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
+                        xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
+                        );
+
+                text_size=max(.01, min(.7, .7 - .003*(lines_pp-52)));
+                #print(text_size);
+
+                start=(p-1)*lines_pp+1;
+                end=start+lines_pp-1;
+                end=min(end, num_lines);
+                line=1;
+                for(i in start:end){
+                        #cat(strings[i], "\n", sep="");
+                        strings[i]=gsub("\t", "", strings[i]);
+                        text(0, top-line, strings[i], pos=4, cex=text_size);
+                        line=line+1;
+                }
+
+        }
+
+        par(orig.par);
+}
+
+###############################################################################
+
+paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_is_hot=T, deci_pts=4,
+        label_zeros=T, counts=F, value.cex=1,
+        plot_col_dendr=F,
+        plot_row_dendr=F
+){
+
+        num_row=nrow(mat);
+        num_col=ncol(mat);
+
+        row_names=rownames(mat);
+        col_names=colnames(mat);
+
+        orig.par=par(no.readonly=T);
+
+        cat("Num Rows: ", num_row, "\n");
+        cat("Num Cols: ", num_col, "\n");
+
+        # Flips the rows, so becuase origin is bottom left
+        mat=mat[rev(1:num_row),, drop=F];
+
+        # Generate a column scheme
+        num_colors=50;
+        color_arr=rainbow(num_colors, start=0, end=4/6);
+        if(high_is_hot){
+                color_arr=rev(color_arr);
+        }
+
+        # Provide a means to map values to an (color) index
+        remap=function(in_val, in_range, out_range){
+                in_prop=(in_val-in_range[1])/(in_range[2]-in_range[1])
+                out_val=in_prop*(out_range[2]-out_range[1])+out_range[1];
+                return(out_val);
+        }
+
+        # If range is not specified, find it based on the data
+        if(is.na(plot_min)){
+                plot_min=min(mat, na.rm=T);
+        }
+        if(is.na(plot_max)){
+                plot_max=max(mat, na.rm=T);
+        }
+
+        if(plot_min>=-1 && plot_max<=1){
+                fractions_only=T;
+        }else{
+                fractions_only=F;
+        }
+        cat("Plot min/max: ", plot_min, "/", plot_max, "\n");
+
+        # Get Label lengths
+        row_max_nchar=max(nchar(row_names));
+        col_max_nchar=max(nchar(col_names));
+        cat("Max Row Names Length: ", row_max_nchar, "\n");
+        cat("Max Col Names Length: ", col_max_nchar, "\n");
+
+        ##################################################################################################
+
+        get_dendrogram=function(in_mat, type){
+                if(type=="row"){
+                        dendist=dist(in_mat);
+                }else{
+                        dendist=dist(t(in_mat));
+                }
+
+                get_clstrd_leaf_names=function(den){
+                # Get a list of the leaf names, from left to right
+                        den_info=attributes(den);
+                        if(!is.null(den_info$leaf) && den_info$leaf==T){
+                                return(den_info$label);
+                        }else{
+                                lf_names=character();
+                                for(i in 1:2){
+                                        lf_names=c(lf_names, get_clstrd_leaf_names(den[[i]]));
+                                }
+                                return(lf_names);
+                        }
+                }
+
+
+                hcl=hclust(dendist, method="ward.D2");
+                dend=list();
+                dend[["tree"]]=as.dendrogram(hcl);
+                dend[["names"]]=get_clstrd_leaf_names(dend[["tree"]]);
+                return(dend);
+        }
+
+
+        ##################################################################################################
+        # Comput Layouts
+        col_dend_height=ceiling(num_row*.1);
+        row_dend_width=ceiling(num_col*.2);
+
+        heatmap_height=num_row;
+        heatmap_width=num_col;
+
+        if(plot_col_dendr && plot_row_dendr){
+                layoutmat=matrix(
+                        c(
+                        rep(c(rep(4, row_dend_width), rep(3, heatmap_width)), col_dend_height),
+                        rep(c(rep(2, row_dend_width), rep(1, heatmap_width)), heatmap_height)
+                        ), byrow=T, ncol=row_dend_width+heatmap_width);
+
+                col_dendr=get_dendrogram(mat, type="col");
+                row_dendr=get_dendrogram(mat, type="row");
+
+                mat=mat[row_dendr[["names"]], col_dendr[["names"]]];
+
+        }else if(plot_col_dendr){
+                layoutmat=matrix(
+                        c(
+                        rep(rep(2, heatmap_width), col_dend_height),
+                        rep(rep(1, heatmap_width), heatmap_height)
+                        ), byrow=T, ncol=heatmap_width);
+
+                col_dendr=get_dendrogram(mat, type="col");
+                mat=mat[, col_dendr[["names"]]];
+
+        }else if(plot_row_dendr){
+                layoutmat=matrix(
+                        rep(c(rep(2, row_dend_width), rep(1, heatmap_width)), heatmap_height),
+                        byrow=T, ncol=row_dend_width+heatmap_width);
+
+                row_dendr=get_dendrogram(mat, type="row");
+                mat=mat[row_dendr[["names"]],];
+        }else{
+                layoutmat=matrix(
+                        rep(1, heatmap_height*heatmap_width),
+                        byrow=T, ncol=heatmap_width);
+        }
+
+        #print(layoutmat);
+        layout(layoutmat);
+
+        ##################################################################################################
+
+        par(oma=c(col_max_nchar*.60, 0, 3, row_max_nchar*.60));
+        par(mar=c(0,0,0,0));
+        plot(0, type="n", xlim=c(0,num_col), ylim=c(0,num_row), xaxt="n", yaxt="n", bty="n", xlab="", ylab="");
+        mtext(title, side=3, line=0, outer=T, font=2);
+
+        # x-axis
+        axis(side=1, at=seq(.5, num_col-.5, 1), labels=colnames(mat), las=2, line=-1.75);
+        axis(side=4, at=seq(.5, num_row-.5, 1), labels=rownames(mat), las=2, line=-1.75);
+
+        if(log_col){
+                plot_min=log10(plot_min+.0125);
+                plot_max=log10(plot_max+.0125);
+        }
+
+        for(x in 1:num_col){
+                for(y in 1:num_row){
+
+                        if(log_col){
+                                col_val=log10(mat[y,x]+.0125);
+                        }else{
+                                col_val=mat[y,x];
+                        }
+
+                        remap_val=remap(col_val, c(plot_min, plot_max), c(1, num_colors));
+                        col_ix=ceiling(remap_val);
+
+                        rect(x-1, y-1, (x-1)+1, (y-1)+1, border=NA, col=color_arr[col_ix]);
+
+                        if(is.na(mat[y,x]) || mat[y,x]!=0 || label_zeros){
+                                if(counts){
+                                        text_lab=sprintf("%i", mat[y,x]);
+                                }else{
+                                        text_lab=sprintf(paste("%0.", deci_pts, "f", sep=""), mat[y,x]);
+                                        if(fractions_only){
+                                                if(!is.na(mat[y,x])){
+                                                        if(mat[y,x]==-1 || mat[y,x]==1){
+                                                                text_lab=as.integer(mat[y,x]);
+                                                        }else{
+                                                                text_lab=gsub("0\\.","\\.", text_lab);
+                                                        }
+                                                }
+                                        }
+                                }
+                                text(x-.5, y-.5, text_lab, srt=atan(num_col/num_row)/pi*180, cex=value.cex, font=2);
+                        }
+                }
+        }
+
+        ##################################################################################################
+
+        par(mar=c(0, 0, 0, 0));
+
+        if(plot_row_dendr && plot_col_dendr){
+                rdh=attributes(row_dendr[["tree"]])$height;
+                cdh=attributes(col_dendr[["tree"]])$height;
+                plot(row_dendr[["tree"]], leaflab="none", horiz=T, xaxt="n", yaxt="n", bty="n", xlim=c(rdh, 0));
+                plot(col_dendr[["tree"]], leaflab="none",xaxt="n", yaxt="n", bty="n", ylim=c(0, cdh));
+                plot(0,0, type="n", bty="n", xaxt="n", yaxt="n");
+                #text(0,0, "Placeholder");
+        }else if(plot_row_dendr){
+                rdh=attributes(row_dendr[["tree"]])$height;
+                plot(row_dendr[["tree"]], leaflab="none", horiz=T, xaxt="n", yaxt="n", bty="n", xlim=c(rdh, 0));
+                #text(0,0, "Row Dendrogram");
+        }else if(plot_col_dendr){
+                cdh=attributes(col_dendr[["tree"]])$height;
+                plot(col_dendr[["tree"]], leaflab="none", xaxt="n", yaxt="n", bty="n", ylim=c(0, cdh));
+                #text(0,0, "Col Dendrogram");
+        }
+
+        par(orig.par);
+
 }
 
 ###############################################################################
@@ -439,6 +716,19 @@ if(doPaired){
 	experm_samples=setdiff(summary_table_sample_ids, ids_array);
 	contam_samples=overlapping_ids;
 
+}else if(doMixture){
+
+	ids_array=load_ids(MixtureContamFName);
+	overlapping_ids=intersect(ids_array, summary_table_sample_ids);
+
+	contam_mat=normalized_mat[overlapping_ids,, drop=F];
+
+	experm_samples=setdiff(summary_table_sample_ids, ids_array);
+	contam_samples=overlapping_ids;
+
+	mixture_component_matrix=matrix(NA, nrow=length(experm_samples), ncol=length(contam_samples));
+	colnames(mixture_component_matrix)=contam_samples;
+	rownames(mixture_component_matrix)=experm_samples;
 }
 
 cat("Experimental Samples:\n");
@@ -570,6 +860,68 @@ find_closest=function(query, references, p=1){
 	
 }
 
+find_mixture=function(query, references, p=1){
+
+	num_ref=nrow(references);
+	ref_names=rownames(references);
+
+	num_cat=ncol(references);
+
+	logistic_transform=function(real, s=250){
+		# converts from from -inf to info to 0 to 1
+		# so we don't have to deal with bounds in optimizer
+		prop=1/(1+exp(-real/s));
+		return(prop);
+	}
+
+	exponential_transform=function(prop, s=250){
+		real=-s*(log((1/prop)-1));
+		return(real);
+	}
+
+	make_mixture=function(weights, prof_mat){
+		weighted_mat=prof_mat;
+		for(i in 1:nrow(prof_mat)){
+			weighted_mat[i,]=weighted_mat[i,]*weights[i];
+		}
+		sum_prof=apply(weighted_mat, 2, sum);
+		norm_prof=sum_prof/sum(sum_prof);
+		return(norm_prof);
+	}
+
+	obj_contam_dist_fun=function(param){
+		weights=logistic_transform(param);
+		#print(weights);
+		mix_prof=make_mixture(weights, references);
+		non_zero_ref=(mix_prof>0);
+		dist=sum((abs(query[non_zero_ref]-mix_prof[non_zero_ref]))^p)^(1/p);
+		return(dist);
+	}
+
+	# Instead of using bounded BFGS, with upper/lower bounds between 0-1, use 
+	# 1/(1+exp(-x)) to allow x to be unbounded while leaving the transformed value bounded
+	init_param=rep(exponential_transform(1/num_ref), num_ref);
+	opt_res=optim(init_param, obj_contam_dist_fun, method="Nelder-Mead");
+
+	opt_weights=logistic_transform(opt_res$par);
+	opt_weights_norm=opt_weights/sum(opt_weights);
+	names(opt_weights_norm)=ref_names;
+	greatest_weight=max(opt_weights_norm);
+	key_ref=ref_names[min(which(greatest_weight==opt_weights_norm))];
+
+	results_rec=list();
+	results_rec[["categorical_profile"]]=make_mixture(opt_weights_norm, references);
+	results_rec[["mixture_name"]]=
+		paste("Mix_", key_ref, "_", sprintf("%2.0f", greatest_weight*100), sep="");
+	results_rec[["component_profile"]]=opt_weights_norm;
+
+	print(results_rec);
+
+	return(results_rec);
+
+}
+
+
 ###############################################################################
 
 pdf(paste(OutputFileRoot, ".dist_contam.pdf", sep=""), height=14, width=8.5);
@@ -628,6 +980,11 @@ for(exp_samp_id in experm_samples){
 		ctl_name=paste("closest control: ", closest_name, sep="");
 		ctl_dist=contam_mat[closest_name,];
 		selected_controls=c(selected_controls, closest_name);
+	}else if(doMixture){
+		mixture_distr_rec=find_mixture(exp_dist, contam_mat);
+		ctl_dist=mixture_distr_rec[["categorical_profile"]];
+		ctl_name=mixture_distr_rec[["mixture_name"]];
+		mixture_component_matrix[exp_samp_id,]=mixture_distr_rec[["component_profile"]];
 	}
 
 	# Get Num Taxa:
@@ -835,6 +1192,17 @@ if(doMatched){
 	matched_profile=matched_profile[sort_ix];
 	barplot(matched_profile, main="Frequency of Control Matching", 
 		horiz=T, las=1, cex.names=.5);
+
+}
+
+if(doMixture){
+	formatted_mat=apply(mixture_component_matrix, c(1,2), function(x){sprintf("%3.3f", x)});
+	print(formatted_mat, quote=F, width=200);
+	compositions=capture.output({print(formatted_mat, quote=F, width=200)});	
+	plot_text(compositions);
+
+	paint_matrix(mixture_component_matrix, title="Mixeure Contributions",
+		plot_min=0, plot_max=1, high_is_hot=T, deci_pts=2, label_zeros=F);
 
 }
 
