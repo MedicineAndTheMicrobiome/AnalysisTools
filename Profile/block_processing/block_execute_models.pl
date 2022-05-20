@@ -21,7 +21,7 @@ my $usage = "
 
 	-s <summary table file>
 	-f <factor file>
-	-c <covariates list file>
+	[-c <covariates list file>]
 	[-g <\"grouped\" variables list file>]
 
 	ALR (Abundance-Based) Related Options
@@ -68,7 +68,6 @@ my $usage = "
 if(
 	!defined($opt_s) || 
 	!defined($opt_f) || 
-	!defined($opt_c) || 
 	!defined($opt_o)
 ){
 	die $usage;
@@ -651,8 +650,14 @@ my $cmd=
 #my $cmd="lch $screened_factor_file | grep -v '^\$' > $OutputDir/all_avail_var; echo done.";
 run_command("Get Post-NA Removal Variables", "get_postna_rem_var", $cmd, "$OutputDir");
 
-my $cmd="grep -f $OutputDir/all_avail_var $Covariates > $OutputDir/covar.screened; echo done.";
-run_command("Screen Covariates", "scr_covar", $cmd, "$OutputDir");
+if($Covariates ne ""){
+	my $cmd="grep -f $OutputDir/all_avail_var $Covariates > $OutputDir/covar.screened; echo done.";
+	run_command("Screen Covariates", "scr_covar", $cmd, "$OutputDir");
+}else{
+	my $cmd="touch $OutputDir/covar.screened; echo done.";
+	print STDERR "Covariates not specified.  Skipping NA removal Covariate screen.\n";
+	run_command("Screen Covariate Variables", "scr_covar", $cmd, "$OutputDir");
+}
 
 if ($GroupVar ne  ""){
 	my $cmd="grep -f $OutputDir/all_avail_var $GroupVar > $OutputDir/groupvar.screened; echo done.";
