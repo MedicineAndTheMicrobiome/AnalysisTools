@@ -1017,7 +1017,7 @@ signf_as_table=function(coef_mat, pval_mat){
 		for(j in 1:num_cols){
 
 			pval=pval_mat[i,j];
-			if(pval < 0.10){
+			if(!is.na(pval) && pval < 0.10){
 				comb_tab[line_ix, "Row"]=rnames[i];
 				comb_tab[line_ix, "Column"]=cnames[j];
 				comb_tab[line_ix, "Coefficient"]=sprintf("%.5g", coef_mat[i,j]);
