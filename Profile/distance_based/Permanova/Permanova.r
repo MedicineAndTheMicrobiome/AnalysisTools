@@ -622,8 +622,7 @@ cat("\nFitting this model: ", model_string, "\n");
 
 cat("\n--------------------------------------------------------------------------\n");
 cat("Before invoking Adonis:\n");
-#print(dist);
-#res=adonis(as.formula(model_string), data=factors, permutations=2000);
+
 if(Blocking!=""){
 	stratify=factors[[Blocking]];
 }else{
@@ -632,8 +631,89 @@ if(Blocking!=""){
 
 perm_factor=max(10, num_linear_components);
 
-res=adonis(as.formula(model_string), data=factors, strata=stratify, permutations=perm_factor*1000);
-cat("After invoking Adonis:\n");
+
+# Old version using type I sum of squares
+old_res=adonis(as.formula(model_string), data=factors, strata=stratify, permutations=perm_factor*1000);
+cat("Old Adonis Results:\n");
+print(names(old_res));
+print((old_res));
+print(old_res);
+
+res2=adonis2(as.formula(model_string), data=factors, strata=stratify, permutations=perm_factor*1000, by="margin");
+cat("New Adonis Results:\n");
+print(names(res2));
+print((res2));
+
+# Merge new AOV table into old result to maintain other statistics we need
+merge_new_with_old_adonis=function(old, new){
+
+	numrows_old=nrow(old[["aov.tab"]]);
+	numrows_new=nrow(new);
+
+	cat("Number of Rows in old: ", numrows_old, " vs. new: ", numrows_new, "\n");
+
+	old_row_names=rownames(old[["aov.tab"]]);
+	new_row_names=rownames(new);
+	new_row_names[(new_row_names=="Residual")]="Residuals";
+	rownames(new)=new_row_names;
+
+	print(old_row_names);
+	print(new_row_names);	
+
+	out_res=old_res;
+
+	if(numrows_old==numrows_new && all(old_row_names==new_row_names)){
+		cat("Moving AOV table from adonis2 into old adonis result.\n");
+
+		aov.tab=old[["aov.tab"]];
+		aov.tab[old_row_names, "Df"]=new[old_row_names, "Df"];
+		aov.tab[old_row_names, "SumsOfSqs"]=new[old_row_names, "SumOfSqs"];
+		aov.tab[old_row_names, "MeanSqs"]=new[old_row_names, "SumOfSqs"]/new[old_row_names, "Df"];
+		aov.tab[old_row_names, "F.Model"]=new[old_row_names, "F"];
+		aov.tab[old_row_names, "R2"]=new[old_row_names, "R2"];
+		aov.tab[old_row_names, "Pr(>F)"]=new[old_row_names, "Pr(>F)"];
+		attr(aov.tab, "heading")="";
+		out_res[["aov.tab"]]=aov.tab;
+		
+		#print(out_res[["call"]]);
+		out_res[["call"]]="Original Adonis results with Adonis2 margin (type II) Sum of Squares AOV";
+		return(out_res);		
+	}else{
+		cat("Number of rows do not match between old and new Adonis results.\n");
+		cat("Going forward with old Adonis results only...\n");
+		return(NULL);
+	}
+
+}
+
+res=merge_new_with_old_adonis(old_res, res2);
+
+if(is.null(res)){
+
+	adonis_out=capture.output(print(old_res));
+	adonis2_out=capture.output(print(res2));
+
+	plot_text(c(
+		"WARNING: The adonis2 output could not be merged into prior format.",
+		"The handling of degenerate variables could explain the discrepancy.",
+		"You may need to remove/curate the model to remove factor coefficients that could not be estimated.",
+		"",
+		"-----------------------------------------------------------------------------------------------",
+		"",
+		"Original Adonis:",
+		"",
+		adonis_out,
+		"",
+		"-----------------------------------------------------------------------------------------------",
+		"",
+		"Adonis2:",
+		"",
+		adonis2_out
+	));
+
+	res=old_res;
+}
+
 print(res);
 
 cat("--------------------------------------------------------------------------\n");
