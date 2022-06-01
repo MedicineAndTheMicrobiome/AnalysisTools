@@ -13,10 +13,15 @@
 
 impute_cell=function(target_predictors, responses, predictors, verbose=F){
 
+	# target_predictors are the predictors/available data we have for the
+	#    the subject's missing cell.
+	
+	# responses and predictors are the other subjects data for training
+
         num_samples=nrow(responses);
         avail_predictors=ncol(predictors);
 
-        num_pred_to_use=min(num_samples, avail_predictors)-2;
+        num_pred_to_use=min(num_gamples-2, avail_predictors);
 
         cat("Num Samples Available for Imputation: ", num_samples, "\n");
         cat("Num Available Predictors: ", avail_predictors, "\n");
