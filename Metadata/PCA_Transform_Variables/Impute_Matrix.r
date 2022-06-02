@@ -21,7 +21,7 @@ impute_cell=function(target_predictors, responses, predictors, verbose=F){
         num_samples=nrow(responses);
         avail_predictors=ncol(predictors);
 
-        num_pred_to_use=min(num_gamples-2, avail_predictors);
+        num_pred_to_use=min(num_samples-2, avail_predictors);
 
         cat("Num Samples Available for Imputation: ", num_samples, "\n");
         cat("Num Available Predictors: ", avail_predictors, "\n");
