@@ -734,7 +734,13 @@ draw_squares_centered=function(xpos, ypos, height, width, grp_name, variables, t
 			posv=2;
 			text_xpos=xpos+width/2+xpad;
 			#aln_adj=c(1.2, .3);
+		}else if(text_align=="center"){
+			posv=NULL;
+			text_xpos=xpos;
 		}
+
+
+
 		for(i in 1:num_var){
 			text(text_xpos, text_pos[i], variables[i], cex=var_cex, pos=posv);
 			#text(text_xpos, text_pos[i], variables[i], cex=var_cex, adj=aln_adj);
@@ -747,7 +753,10 @@ draw_squares_centered=function(xpos, ypos, height, width, grp_name, variables, t
 }
 
 
-plot_TMR_diagram=function(result_rec, title, subtitle="", cvtrt_to_grp_map, cvtrt_grps, msd_grps, rsp_grps){
+plot_TMR_diagram=function(
+	result_rec, title, subtitle="", cvtrt_to_grp_map, 
+	grp_links=0,
+	cvtrt_grps, msd_grps, rsp_grps){
 
 	cat("Plotting TMR diagram: ", title, "\n");
 	cat("Subtitle: ", subtitle, "\n");
@@ -962,7 +971,7 @@ plot_TMR_diagram=function(result_rec, title, subtitle="", cvtrt_to_grp_map, cvtr
 		loc=draw_squares_centered(covtrt_xpos, covtrt_ypos[i],
 			height=covtrt_height, width=all_widths,
 			grp_name=cvtrt_grps[i], 
-			variables=var_labels, text_align="right");
+			variables=var_labels, text_align=ifelse(grp_links, "center", "right"));
 
 		extr_links[["covtrt"]][["pred_grp_members_loc"]][[ichar]]=loc;
 	}
@@ -980,25 +989,25 @@ plot_TMR_diagram=function(result_rec, title, subtitle="", cvtrt_to_grp_map, cvtr
 		loc=draw_squares_centered(msd_1_resp_xpos, msd_ypos[i],
 			height=msd_height, width=all_widths,
 			grp_name=msd_grps[i], 
-			variables=covtrt_resp_var_labels, text_align="left");
+			variables=covtrt_resp_var_labels, text_align=ifelse(grp_links, "center", "left"));
 		extr_links[["covtrt"]][["resp_grp_members_loc"]][[ichar]]=loc;
 
 		loc=draw_squares_centered(msd_1_pred_xpos, msd_ypos[i],
 			height=msd_height, width=all_widths,
 			grp_name="", 
-			variables=pred_var_labels, text_align="right");
+			variables=pred_var_labels, text_align=ifelse(grp_links, "center", "right"));
 		extr_links[["msd"]][["pred_grp_members_loc"]][[ichar]]=loc;
 
 		loc=draw_squares_centered(msd_2_resp_xpos, msd_ypos[i],
 			height=msd_height, width=all_widths,
 			grp_name=msd_grps[i], 
-			variables=resp_var_labels, text_align="left");
+			variables=resp_var_labels, text_align=ifelse(grp_links, "center", "left"));
 		extr_links[["msd"]][["resp_grp_members_loc"]][[ichar]]=loc;
 
 		loc=draw_squares_centered(msd_2_pred_xpos, msd_ypos[i],
 			height=msd_height, width=all_widths,
 			grp_name="",
-			variables=resp_pred_var_labels, text_align="right");
+			variables=resp_pred_var_labels, text_align=ifelse(grp_links, "center", "right"));
 		extr_links[["resp"]][["pred_grp_members_loc"]][[ichar]]=loc;
 	}
 
@@ -1008,11 +1017,10 @@ plot_TMR_diagram=function(result_rec, title, subtitle="", cvtrt_to_grp_map, cvtr
 		loc=draw_squares_centered(rsp_xpos, rsp_ypos[i],
 			height=rsp_height, width=all_widths,
 			grp_name=rsp_grps[i], 
-			variables=var_labels, text_align="left");
+			variables=var_labels, text_align=ifelse(grp_links, "center", "left"));
 		extr_links[["resp"]][["resp_grp_members_loc"]][[ichar]]=loc;
 	}
 
-	grp_links=0;
 	if(grp_links){
 		for(type in names(extr_links)){
 
@@ -1206,8 +1214,16 @@ for(cutoffs in names(denorm_results)){
 
 	plot_TMR_diagram(denorm_results[[cutoffs]],
 		paste("P-value Cutoff: ", cutoffs, sep=""),
+		"Group Links",
+		covtrt_to_group_map,
+		grp_links=1,
+		covariates_list, measured_list, response_list);
+
+	plot_TMR_diagram(denorm_results[[cutoffs]],
+		paste("P-value Cutoff: ", cutoffs, sep=""),
 		"(All links above cutoff)",
 		covtrt_to_group_map,
+		grp_links=0,
 		covariates_list, measured_list, response_list);
 
 	plot_text(c(
@@ -1223,6 +1239,7 @@ for(cutoffs in names(denorm_results)){
 		paste("P-value Cutoff: ", cutoffs, sep=""),
 		"(Excluding weaker of bi-directional links)",
 		covtrt_to_group_map,
+		grp_links=0,
 		covariates_list, measured_list, response_list);
 
 	plot_text(c(
