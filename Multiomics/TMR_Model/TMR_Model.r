@@ -207,6 +207,8 @@ measured_list=load_list(MeasuredGrpFname);
 response_list=load_list(ResponseGrpFname);
 
 varlists_text=capture.output({
+	cat("Number of Samples:", length(loaded_sample_names), "\n");
+	cat("\n");
 	cat("Variable Group Type Assigments\n");
         cat("\n");
 	cat("Covariates:\n");
@@ -227,9 +229,22 @@ plot_text(varlists_text);
 
 split_factors_to_groups=function(data_matrix, group_list, grp_arr){
 
+	matrix_vars=colnames(data_matrix);
+
 	data_grp=list();
 	for(grp_id in grp_arr){
-		data_grp[[grp_id]]=data_matrix[,group_list[["GrpVarMap"]][[grp_id]], drop=F];
+		cat("Placing '", grp_id, "' into data structures.\n", sep="");
+
+		grp_vars=group_list[["GrpVarMap"]][[grp_id]];
+
+		missing_var=setdiff(grp_vars, matrix_vars);
+		if(length(missing_var)==0){
+			data_grp[[grp_id]]=data_matrix[,grp_vars, drop=F];
+		}else{
+			cat("Error:  Could not find variables in data matrix.\n");
+			print(missing_var);
+			quit(status=-1);
+		}
 	}
 	return(data_grp);
 
@@ -307,9 +322,15 @@ apply_fun_to_var_rec=function(var_rec, mat_funct){
 	return(std_var_rec);
 }
 
+cat("Standardizing Matrix...\n");
 standardized_variables_rec=apply_fun_to_var_rec(variables_rec, standardize_matrix);
 #print(standardized_variables_rec);
 
+cat("Calculate Distances...\n");
+dist_rec=apply_fun_to_var_rec(standardized_variables_rec, dist);
+#print(dist_rec);
+
+cat("Calculating MDS...\n");
 mds_rec=apply_fun_to_var_rec(standardized_variables_rec, calc_mds_matrix);
 #print(mds_rec);
 
