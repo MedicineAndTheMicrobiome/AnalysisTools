@@ -1214,14 +1214,14 @@ for(cutoffs in names(denorm_results)){
 
 	plot_TMR_diagram(denorm_results[[cutoffs]],
 		paste("P-value Cutoff: ", cutoffs, sep=""),
-		"Group Links",
+		"All GROUP Links more significant than cutoff",
 		covtrt_to_group_map,
 		grp_links=1,
 		covariates_list, measured_list, response_list);
 
 	plot_TMR_diagram(denorm_results[[cutoffs]],
 		paste("P-value Cutoff: ", cutoffs, sep=""),
-		"(All links above cutoff)",
+		"All VARIABLE Links more significant than cutoff)",
 		covtrt_to_group_map,
 		grp_links=0,
 		covariates_list, measured_list, response_list);
@@ -1237,7 +1237,7 @@ for(cutoffs in names(denorm_results)){
 	unidir_links=remove_weaker_bidirectional_links(denorm_results[[cutoffs]], log10_diff_thres=1);
 	plot_TMR_diagram(unidir_links,
 		paste("P-value Cutoff: ", cutoffs, sep=""),
-		"(Excluding weaker of bi-directional links)",
+		"Uni-directional VARIABLE Links with stronger associations",
 		covtrt_to_group_map,
 		grp_links=0,
 		covariates_list, measured_list, response_list);
