@@ -173,8 +173,219 @@ plot_text=function(strings, max_lines_pp=Inf){
 
 #-----------------------------------------------------------------------------#
 
-generic_distance=function(data){
-	
+paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_is_hot=T, deci_pts=4,
+        label_zeros=T, counts=F, value.cex=2,
+        plot_col_dendr=F,
+        plot_row_dendr=F
+){
+
+        num_row=nrow(mat);
+        num_col=ncol(mat);
+
+        row_names=rownames(mat);
+        col_names=colnames(mat);
+
+        orig.par=par(no.readonly=T);
+
+        cat("Painting Matrix: ", title, "\n");
+        cat("Num Rows: ", num_row, "\n");
+        cat("Num Cols: ", num_col, "\n");
+
+
+        if(num_row==0 || num_col==0){
+                plot(0, type="n", xlim=c(-1,1), ylim=c(-1,1), xaxt="n", yaxt="n", bty="n", xlab="", ylab="",
+                        main=title);
+                text(0,0, "No data to plot...");
+                return();
+        }
+
+        # Flips the rows, so becuase origin is bottom left
+        mat=mat[rev(1:num_row),, drop=F];
+
+        # Generate a column scheme
+        num_colors=50;
+        color_arr=rainbow(num_colors, start=0, end=4/6);
+        if(high_is_hot){
+                color_arr=rev(color_arr);
+        }
+
+        # Provide a means to map values to an (color) index
+        remap=function(in_val, in_range, out_range){
+                in_prop=(in_val-in_range[1])/(in_range[2]-in_range[1])
+                out_val=in_prop*(out_range[2]-out_range[1])+out_range[1];
+                return(out_val);
+        }
+
+        # If range is not specified, find it based on the data
+        if(is.na(plot_min)){
+                plot_min=min(mat);
+        }
+        if(is.na(plot_max)){
+                plot_max=max(mat);
+        }
+        cat("Plot min/max: ", plot_min, "/", plot_max, "\n");
+
+
+        # Get Label lengths
+        row_max_nchar=max(nchar(row_names));
+        col_max_nchar=max(nchar(col_names));
+        cat("Max Row Names Length: ", row_max_nchar, "\n");
+        cat("Max Col Names Length: ", col_max_nchar, "\n");
+
+        ##################################################################################################
+
+        get_dendrogram=function(in_mat, type){
+                if(type=="row"){
+                        dendist=dist(in_mat);
+                }else{
+                        dendist=dist(t(in_mat));
+                }
+
+                get_clstrd_leaf_names=function(den){
+                # Get a list of the leaf names, from left to right
+                        den_info=attributes(den);
+                        if(!is.null(den_info$leaf) && den_info$leaf==T){
+                                return(den_info$label);
+                        }else{
+                                lf_names=character();
+                                for(i in 1:2){
+                                        lf_names=c(lf_names, get_clstrd_leaf_names(den[[i]]));
+                                }
+                                return(lf_names);
+                        }
+                }
+
+                hcl=hclust(dendist, method="ward.D2");
+                dend=list();
+                dend[["tree"]]=as.dendrogram(hcl);
+                dend[["names"]]=get_clstrd_leaf_names(dend[["tree"]]);
+                return(dend);
+        }
+
+
+        ##################################################################################################
+        # Comput Layouts
+        col_dend_height=ceiling(num_row*.1);
+        row_dend_width=ceiling(num_col*.2);
+
+        heatmap_height=num_row;
+        heatmap_width=num_col;
+
+        if(num_row==1){
+                plot_row_dendr=F;
+        }
+        if(num_col==1){
+                plot_col_dendr=F;
+        }
+
+        # Don't plot dendrogram if there are any NAs in the matrix
+        if(any(is.na(mat))){
+                plot_col_dendr=F;
+                plot_row_dendr=F;
+        }
+
+        if(plot_col_dendr && plot_row_dendr){
+                layoutmat=matrix(
+                        c(
+                        rep(c(rep(4, row_dend_width), rep(3, heatmap_width)), col_dend_height),
+                        rep(c(rep(2, row_dend_width), rep(1, heatmap_width)), heatmap_height)
+                        ), byrow=T, ncol=row_dend_width+heatmap_width);
+
+                col_dendr=get_dendrogram(mat, type="col");
+                row_dendr=get_dendrogram(mat, type="row");
+
+                mat=mat[row_dendr[["names"]], col_dendr[["names"]], drop=F];
+
+        }else if(plot_col_dendr){
+                layoutmat=matrix(
+                        c(
+                        rep(rep(2, heatmap_width), col_dend_height),
+                        rep(rep(1, heatmap_width), heatmap_height)
+                        ), byrow=T, ncol=heatmap_width);
+
+                col_dendr=get_dendrogram(mat, type="col");
+                mat=mat[, col_dendr[["names"]], drop=F];
+
+        }else if(plot_row_dendr){
+                layoutmat=matrix(
+                        rep(c(rep(2, row_dend_width), rep(1, heatmap_width)), heatmap_height),
+                        byrow=T, ncol=row_dend_width+heatmap_width);
+
+                row_dendr=get_dendrogram(mat, type="row");
+                mat=mat[row_dendr[["names"]],,drop=F];
+        }else{
+                layoutmat=matrix(
+                        rep(1, heatmap_height*heatmap_width),
+                        byrow=T, ncol=heatmap_width);
+        }
+
+        #print(layoutmat);
+        layout(layoutmat);
+
+        ##################################################################################################
+
+        par(oma=c(col_max_nchar*.60, 0, 3, row_max_nchar*.60));
+        par(mar=c(0,0,0,0));
+        plot(0, type="n", xlim=c(0,num_col), ylim=c(0,num_row), xaxt="n", yaxt="n", bty="n", xlab="", ylab="");
+        mtext(title, side=3, line=0, outer=T, font=2);
+
+        # x-axis
+        axis(side=1, at=seq(.5, num_col-.5, 1), labels=colnames(mat), las=2, line=-1.75);
+        axis(side=4, at=seq(.5, num_row-.5, 1), labels=rownames(mat), las=2, line=-1.75);
+
+        if(log_col){
+                plot_min=log10(plot_min+.0125);
+                plot_max=log10(plot_max+.0125);
+        }
+
+        for(x in 1:num_col){
+                for(y in 1:num_row){
+
+                        if(log_col){
+                                col_val=log10(mat[y,x]+.0125);
+                        }else{
+                                col_val=mat[y,x];
+                        }
+
+                        remap_val=remap(col_val, c(plot_min, plot_max), c(1, num_colors));
+                        col_ix=ceiling(remap_val);
+
+                        rect(x-1, y-1, (x-1)+1, (y-1)+1, border=NA, col=color_arr[col_ix]);
+
+                        if(mat[y,x]!=0 || label_zeros){
+                                if(counts){
+                                        text_lab=sprintf("%i", mat[y,x]);
+                                }else{
+                                        text_lab=sprintf(paste("%0.", deci_pts, "f", sep=""), mat[y,x]);
+                                }
+                                text(x-.5, y-.5, text_lab, srt=atan(num_col/num_row)/pi*180, cex=value.cex, font=2);
+                        }
+                }
+        }
+
+        ##################################################################################################
+
+        par(mar=c(0, 0, 0, 0));
+
+        if(plot_row_dendr && plot_col_dendr){
+                rdh=attributes(row_dendr[["tree"]])$height;
+                cdh=attributes(col_dendr[["tree"]])$height;
+                plot(row_dendr[["tree"]], leaflab="none", horiz=T, xaxt="n", yaxt="n", bty="n", xlim=c(rdh, 0));
+                plot(col_dendr[["tree"]], leaflab="none",xaxt="n", yaxt="n", bty="n", ylim=c(0, cdh));
+                plot(0,0, type="n", bty="n", xaxt="n", yaxt="n");
+                #text(0,0, "Placeholder");
+        }else if(plot_row_dendr){
+                rdh=attributes(row_dendr[["tree"]])$height;
+                plot(row_dendr[["tree"]], leaflab="none", horiz=T, xaxt="n", yaxt="n", bty="n", xlim=c(rdh, 0));
+                #text(0,0, "Row Dendrogram");
+        }else if(plot_col_dendr){
+                cdh=attributes(col_dendr[["tree"]])$height;
+                plot(col_dendr[["tree"]], leaflab="none", xaxt="n", yaxt="n", bty="n", ylim=c(0, cdh));
+                #text(0,0, "Col Dendrogram");
+        }
+
+        par(orig.par);
+
 }
 
 ##############################################################################
@@ -333,6 +544,100 @@ dist_rec=apply_fun_to_var_rec(standardized_variables_rec, dist);
 cat("Calculating MDS...\n");
 mds_rec=apply_fun_to_var_rec(standardized_variables_rec, calc_mds_matrix);
 #print(mds_rec);
+
+##############################################################################
+
+calculate_intergroup_correlation=function(d_rec){
+
+	flatten=list();
+
+	types=names(d_rec);
+	for(t in types){
+		group_names=names(d_rec[[t]]);
+		for(g in group_names){
+			name=paste(t, ":", g, sep="");
+			flatten[[name]]=d_rec[[t]][[g]];
+		}
+
+	}
+
+
+	#print(flatten);
+	num_distmats=length(flatten);
+	distmat_names=names(flatten);
+	distmat_correl=matrix(NA, nrow=num_distmats, ncol=num_distmats);
+	rownames(distmat_correl)=distmat_names;
+	colnames(distmat_correl)=distmat_names;
+
+	diag(distmat_correl)=1;
+
+	for(i in 1:num_distmats){
+		for(j in 1:num_distmats){
+			if(i<j){
+				distmat_correl[i,j]=
+					cor(flatten[[distmat_names[i]]], flatten[[distmat_names[j]]],
+						method="spearman"
+						);
+			}else{
+				distmat_correl[i,j]=distmat_correl[j,i];
+			}
+		}
+	}
+
+	return(distmat_correl);
+
+}
+
+plot_distances_on_line=function(dist_rec, plots_per_page=4){
+
+	dist_mat=as.matrix(dist_rec);
+	#print(dist_mat);
+	nvar=ncol(dist_mat);
+	varnames=rownames(dist_mat);
+
+	orig_par=par(no.readonly=T);
+	par(mfrow=c(plots_per_page, 1));
+	par(mar=c(3,2,4,2));
+	
+	for(i in 1:nvar){
+		
+		dist_arr=dist_mat[i,];
+		names(dist_arr)=varnames;
+
+		cat(varnames[i], "\n");
+		#print(dist_arr)
+
+		plot(0, type="n", main=paste("1-|cor(dist)| from:  ", varnames[i], sep=""),
+			xlim=c(0,1), ylim=c(-.05,3), bty="n", yaxt="n", xlab="", ylab="");
+
+		axis(side=1, at=0, "More Similar", tick=F, line=1, cex.axis=1, font.axis=2);
+		axis(side=1, at=1, "More Different", tick=F, line=1, cex.axis=1, font.axis=2);
+
+		for(j in 1:nvar){
+			if(j!=i){
+				points(dist_arr[j], -0.1, pch=15);
+				text(dist_arr[j], 0.1, varnames[j], pos=4, 
+					offset=0, srt=90, cex=.75);
+			}
+		}
+
+	}
+
+	par(orig_par);
+}
+
+
+cat("Calculating intergroup correlations...\n");
+dist_cor=calculate_intergroup_correlation(dist_rec);
+cor_as_dist=1-abs(dist_cor);
+
+hcl=hclust(as.dist(cor_as_dist), method="ward.D2");
+plot(hcl, xlab="", ylab="Distance", main="Group Dendrogram: 1-|cor(distances)|");
+
+paint_matrix(dist_cor, title="Correlation Among Distances",
+	plot_min=-1, plot_max=1, deci_pts=2, value.cex=1);
+
+plot_distances_on_line(cor_as_dist);
 
 ##############################################################################
 
