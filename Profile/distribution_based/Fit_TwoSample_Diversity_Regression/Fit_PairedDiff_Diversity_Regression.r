@@ -991,7 +991,25 @@ B_sample_ids=good_pairs_map[,B_minuend];
 
 factors=factors_wo_nas[A_sample_ids,,drop=F];
 
-print(factors);
+#------------------------------------------------------------------------------
+
+# Export the sample ids that were actually used
+fh=file(paste(OutputRoot, ".used_pairs.meta.tsv", sep=""), "w");
+cat(file=fh, "SampleID\tType\n");
+for(i in 1:nrow(good_pairs_map)){
+	cat(file=fh, A_sample_ids[i], "\t", A_subtrahend, "\n", sep="");
+	cat(file=fh, B_sample_ids[i], "\t", B_minuend, "\n", sep="");
+}
+close(fh);
+
+#------------------------------------------------------------------------------
+
+fh=file(paste(OutputRoot, ".used_pairs.paired.tsv", sep=""), "w");
+cat(file=fh, c(A_subtrahend, "\t", B_minuend, "\n"), sep="");
+for(i in 1:nrow(good_pairs_map)){
+	cat(file=fh, A_sample_ids[i], "\t", B_sample_ids[i], "\n");
+}
+close(fh);
 
 ##############################################################################
 # Compute diversity indices
