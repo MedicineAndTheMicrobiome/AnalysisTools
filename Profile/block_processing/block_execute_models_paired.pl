@@ -493,6 +493,29 @@ sub run_distribution_based{
 	";
 	run_command("Fit Paired Diversity Difference Regression", "paired_div_diff_regr",
 		$cmd, "$output_dir/distribution/$DIV_DIFF");
+
+	#######################################################################
+
+	my $meta_fname="$output_dir/distribution/$DIV_DIFF/$model_name.a_$A_colname.b_$B_colname.used_pairs.meta.tsv";
+
+	foreach my $t ((2,3,4)){
+
+		$cmd=
+		"~/git/AnalysisTools/Profile/distribution_based/Plot_StackedBar/Plot_StackedBar.r \
+			-i $summary_table \
+			-f $meta_fname \
+			-o $output_dir/distribution/$DIV_DIFF/paired_stacked_bp \
+			-T $t \
+			-t $tag_name \
+			-s \";\"
+		";
+		$cmd=
+		run_command("Plot stacked bar plot used pairs", "stacked_bp_used_pairs",
+			$cmd, "$output_dir/distribution/$DIV_DIFF");
+
+	}
+	
+
 	
 	#######################################################################
 
@@ -548,7 +571,7 @@ sub run_distribution_based{
 			-s \";\"
 		";
 		$cmd=
-		run_command("Create Metadata Out of Paired Map", "paired_to_metadata",
+		run_command("Plot stacked bar plot", "stacked_bp",
 			$cmd, "$output_dir/distribution/$STACKED_BP");
 
 	}
