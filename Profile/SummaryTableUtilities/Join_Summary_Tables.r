@@ -63,6 +63,12 @@ cat("\n");
 ###############################################################################
 
 load_summary_table=function(summary_table_fn){
+
+	# Check file is not empty
+	if(file.size(summary_table_fn)==0){
+		return(NULL);
+	}
+
         # Load data
         cat("Loading Matrix (", summary_table_fn, ") ...\n", sep="");
         inmat=as.matrix(read.table(summary_table_fn, sep="\t", header=TRUE, 
