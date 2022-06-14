@@ -65,10 +65,22 @@ cat("\n");
 load_summary_table=function(summary_table_fn){
         # Load data
         cat("Loading Matrix (", summary_table_fn, ") ...\n", sep="");
-        inmat=as.matrix(read.table(summary_table_fn, sep="\t", header=TRUE, check.names=FALSE, row.names=1, comment.char="", quote=""))
+        inmat=as.matrix(read.table(summary_table_fn, sep="\t", header=TRUE, 
+		check.names=FALSE, row.names=1, comment.char="", quote=""))
 
         #cat("\nOriginal Matrix:\n")
         #print(inmat);
+
+	# Remove null colnames
+	categories=colnames(inmat);
+	blank_cat_ix=(categories=="");
+	inmat=inmat[,!blank_cat_ix, drop=F];
+
+	if(ncol(inmat)==1){
+		# Case where we only have sample id (rowname) and Total
+		cat("No categories.  Returning NULL.\n");
+		return(NULL);
+	}
 
         # Grab columns we need into a vector, ignore totals, we won't trust it.
         counts_mat=inmat[,2:(ncol(inmat)), drop=F];
@@ -90,15 +102,17 @@ load_summary_table=function(summary_table_fn){
 
 merge_two_matrices=function(mat1, mat2){
 
-	if(is.null(dim(mat1))){
-		return(mat2);
-	}
-	
 	nsamp1=nrow(mat1);
 	ncat1=ncol(mat1);
 
 	nsamp2=nrow(mat2);
 	ncat2=ncol(mat2);
+
+	if(is.null(ncat1) || ncat1==0){
+		return(mat2);
+	}else if(is.null(ncat2) || ncat2==0){
+		return(mat1);
+	}
 
 	catnames1=colnames(mat1);
 	catnames2=colnames(mat2);
