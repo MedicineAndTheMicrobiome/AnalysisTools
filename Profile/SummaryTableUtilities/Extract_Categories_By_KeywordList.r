@@ -9,6 +9,7 @@ params=c(
 	"keyword_file", "k", 1, "character",
 	"case_sensitive", "c", 2, "logical",
 	"stand_alone_word", "w", 2, "logical",
+	"exact_match", "E", 2, "logical",
 	"output_file", "o", 2, "character",
 	"exclude_remaining", "R", 2, "logical"
 );
@@ -23,6 +24,7 @@ usage = paste (
 	"	-k <file name for list of keywords look for>\n",
 	"	[-c <case sensitive, default = not>]\n",
 	"	[-w <stand alone word, default = not>]\n",
+	"	[-E (exact match flag, default = not set)]\n",
 	"	[-o <output file name root>]\n",
 	"	[-R (Do not include 'Remaining' Category)]\n",
 	"\n",	
@@ -73,6 +75,14 @@ if(length(opt$case_sensitive)){
 IncludeRemaining=T;
 if(length(opt$exclude_remaining)){
 	IncludeRemaining=F
+}
+
+ExactMatch=F;
+if(length(opt$exact_match)){
+	ExactMatch=T;
+	cat("Exact Match flag set, ignoring word and case settings.\n");
+	StandAlone=F;
+	CaseSensitive=T;
 }
 
 cat("\n")
@@ -153,18 +163,31 @@ for(kwidx in 1:num_keywords){
 	cur_keyword=gsub("^\\s+", "", cur_keyword);
 	cur_keyword=gsub("\\s+$", "", cur_keyword);
 
-	if(StandAlone){
-		begin_kw=paste("(^", cur_keyword, "\\W+)", sep="");
-		end_kw=paste("(\\W+", cur_keyword, "$)", sep="");
-		middle_kw=paste("(\\W+", cur_keyword, "\\W+)", sep="");
-		cur_keyword=paste(begin_kw, end_kw, middle_kw, sep="|");
+	if(!ExactMatch){
+		if(StandAlone){
+			begin_kw=paste("(^", cur_keyword, "\\W+)", sep="");
+			end_kw=paste("(\\W+", cur_keyword, "$)", sep="");
+			middle_kw=paste("(\\W+", cur_keyword, "\\W+)", sep="");
+			cur_keyword=paste(begin_kw, end_kw, middle_kw, sep="|");
+		}
+
+		cat("Pattern:", cur_keyword, "\n");
+		
+		hits=grep(cur_keyword, target_category_names, perl=T);
+		num_hits=length(hits);
+		cat("Num hits: ", num_hits, "\n");
+	}else{
+		find_ix=(cur_keyword==category_names);
+		if(any(find_ix)){
+			cat("Found.\n");
+			hits=which(find_ix);
+		}else{
+			cat("Not Found.\n");
+			hits=c();
+		}
+
 	}
 
-	cat("Pattern:", cur_keyword, "\n");
-	
-	hits=grep(cur_keyword, target_category_names, perl=T);
-	num_hits=length(hits);
-	cat("Num hits: ", num_hits, "\n");
 	print(category_names[hits]);
 	keep_idx=c(keep_idx, hits);
 
