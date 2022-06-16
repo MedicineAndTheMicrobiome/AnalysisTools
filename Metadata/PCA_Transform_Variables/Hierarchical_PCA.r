@@ -30,7 +30,7 @@ usage = paste(
 	"\nUsage:\n", script_name, "\n",
 	"	-f <factors/metadata file name>\n",
 	"	-o <output filename root>\n",
-	"	-g <variable groupings>\n",
+	"	-g <variable groupings file, format=variable\\tgroup>\n",
 	"\n",
 	"	[-p <Min PC contribution cutoff, default=", MIN_PC_PROP_CUTOFF," >]\n",
 	"\n",
@@ -525,6 +525,8 @@ correl_to_PC=function(cor_rec, values, title, contrib_cutoff){
 	hcl=hclust(as.dist(cor_as_dist), method="ward.D2");
         dend=as.dendrogram(hcl);
 
+	lab_size=min(1, 40/num_var);
+
 	highlight_pcs=function(x){
 		# Using external pcnames variable
 
@@ -540,7 +542,7 @@ correl_to_PC=function(cor_rec, values, title, contrib_cutoff){
 				font=1;
 			}
 			attr(x, "nodePar")=c(leaf_attr$nodePar, 
-				list(lab.font=font, lab.col=color, lab.cex=.8, cex=0));
+				list(lab.font=font, lab.col=color, lab.cex=lab_size, cex=0));
 		}
 		return(x);
 	}
@@ -556,9 +558,10 @@ correl_to_PC=function(cor_rec, values, title, contrib_cutoff){
 	barlabs[1:num_pc_at_cutoff]=pcnames;
 	par(mar=c(20,4,1,1));
 
+
 	cumulative_coverage=sum(pca_propvar[1:num_pc_at_cutoff]);
 	mids=barplot(pca_propvar, ylim=c(0,1.1), names.arg=barlabs,  las=2,
-		col=colors, ylab="Prop. of Var.", cex.names=.8, 
+		col=colors, ylab="Prop. of Var.", cex.names=lab_size, 
 		main=sprintf("Cumulative Coverage above Cutoff: %3.1f%%", cumulative_coverage*100));
 
 
