@@ -642,6 +642,15 @@ sample_names=rownames(norm_mat);
 num_samples=nrow(norm_mat);
 num_categories=ncol(norm_mat);
 
+
+if(num_top_cat>num_categories){
+	cat("\n");
+	cat("There are fewer categories than requested in the top categories requested to analyze.\n");
+	cat("Setting number of top categories (", num_top_cat, ") to num categories (", 
+		num_categories, ")\n", sep="");
+	num_top_cat=num_categories;
+}
+
 cat("\nTop Categories: \n");
 print(category_names[1:num_top_cat]);
 cat("\n");
@@ -1197,7 +1206,7 @@ if(!useMetadata){
 		# Get size of text in plot space
 		text_size_x=par()$cxy[1];
 		text_size_y=par()$cxy[2];
-		space_for_clnum=.3;
+		space_for_clnum=.35;
 
 		for(i in 1:(max_cuts-1)){
 			centers=cumsum(c(0, cluster_list_normalized[[i]]))+c(cluster_list_normalized[[i]]/2,0);
