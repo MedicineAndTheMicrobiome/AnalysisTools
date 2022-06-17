@@ -190,10 +190,29 @@ plot_text(input_summary);
 
 #############################################################################	
 
-as_pred_pval=read.table(PredPvalFile, header=T);
+if(
+	!file.exists(PredPvalFile) && !file.exists(PredCoefFile) &&
+	file.exists(RespPvalFile) && file.exists(RespCoefFile)){
+	
+	msg=c(
+		"",
+		"As Predictor files could not be found, but As Response files were available.",
+		"Is it possible that no variables were specified as the response variables.",
+		"for the upstream 'as a response' analysis?",
+		""
+	);
+	plot_text(msg);
+	cat(msg, sep="\n");
+	quit(status=0);
+
+}
+
 as_resp_pval=read.table(RespPvalFile, header=T);
-as_pred_coef=read.table(PredCoefFile, header=T);
 as_resp_coef=read.table(RespCoefFile, header=T);
+
+as_pred_pval=read.table(PredPvalFile, header=T);
+as_pred_coef=read.table(PredCoefFile, header=T);
+
 
 if(all(is.na(as_pred_pval))){
 	plot_text(c(
