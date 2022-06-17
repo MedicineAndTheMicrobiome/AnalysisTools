@@ -831,14 +831,23 @@ plot_text(c(
 	 capture.output(print(required_arr))
 ));
 
-print(setdiff(covariates_arr, factor_names));
-print(setdiff(responses_arr, factor_names));
+if(length(responses_arr)==0){
+	msg=c(
+		"For ALR as a predictor, a list of response (y) variables needs to be provided.",
+		"The Response file was provided, but was empty.",
+		""
+	);
+	plot_text(msg);
+	cat(msg, sep="\n");
+	quit(status=0);
+}
+
 
 overlapping_variables=intersect(responses_arr, covariates_arr);
 if(length(overlapping_variables)!=0){
 	cat("Error:  You have the same variable names in response and covariate:\n");
 	print(overlapping_variables);	
-	quit(-1);
+	quit(status=-1);
 }
 
 kept_variables=union(responses_arr, covariates_arr);
