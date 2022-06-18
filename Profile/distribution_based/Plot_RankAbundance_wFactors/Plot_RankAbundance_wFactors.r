@@ -398,8 +398,11 @@ plot_rank_abundance_matrix=function(abd_mat, title="", plot_cols=3, plot_rows=4,
 	}
 
 	setHook("plot.new", NULL, "replace");
-	for(hix in length(existing_hooks)){
-		setHook("plot.new", existing_hooks[[hix]], "append");
+	num_existing_hooks=length(existing_hooks);
+		if(num_existing_hooks){
+		for(hix in 1:num_existing_hooks){
+			setHook("plot.new", existing_hooks[[hix]], "append");
+		}
 	}
 
 	par(orig.par);
