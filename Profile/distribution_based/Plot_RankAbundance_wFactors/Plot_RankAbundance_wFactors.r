@@ -254,6 +254,7 @@ plot_ra=function(abundances, num_top_categories=10, category_colors, ymax, title
 	sort_ix=order(abundances, decreasing=T);
 
 	# Grab abundances/names of top categories
+	num_top_categories=min(num_top_categories, length(abundances));
 	top=abundances[sort_ix[1:num_top_categories]];
 	cat_names=names(top);
 
@@ -292,6 +293,22 @@ get_unique_top_categories=function(abd_mat, num_top){
 
 	num_samples=nrow(abd_mat);
 	cat_names=colnames(abd_mat);
+	
+	rem_ix=which(tolower(cat_names)=="remaining");
+	num_remaining_found=length(rem_ix);
+	if(num_remaining_found==1){
+		cat("Remaining Found as category.\n");
+		#abd_mat=abd_mat[,-rem_ix, drop=F];
+	}else if(num_remaining_found>1){
+		cat("Error:  More than one Remaining category found.\n");
+		quit();
+	}
+		
+	#num_categories_exrem=length(cat_names)-num_remaining_found;
+
+	num_categories=length(cat_names);
+	num_top=min(num_top, num_categories);
+
 	categories=character();
 	for(i in 1:num_samples){
 		sort_ix=order(abd_mat[i,], decreasing=T);
@@ -338,70 +355,53 @@ plot_rank_abundance_matrix=function(abd_mat, title="", plot_cols=3, plot_rows=4,
 	par(mar=c(10,2,2,5));
 	par(lwd=.25);
 
-	existing_hooks=getHook("plot.new");
-
-	setHook("plot.new", 
-		function(){
-			if(par()$page){
-				mtext(text=title, side=3, outer=T, cex=2, font=2, line=.5);
-			}
-		},
-		"append"
-	);
-		
-
 	plot_ra(abd_avg, num_uniq_top_cat, colors_map, ymax=max_abd,
 		title="Average/Reference", subtitle=paste(num_samples, " Groups", sep=""));
+	mtext(text=title, side=3, outer=T, cex=2, font=2, line=.5);
 
 	i=1;
-	while(i<=num_samples){
-		for(y in 1:plot_rows){
-			for(x in 1:plot_cols){
-				if(i<=num_samples){
-					sample=sample_names[i];
-					n=samp_size[i];
+	for(y in 1:plot_rows){
+		for(x in 1:plot_cols){
+			if(i<=num_samples){
+				sample=sample_names[i];
+				n=samp_size[i];
 
-					if(label_samp_size){
-						#mtext(paste("n=",n,sep=""), line=-.5, cex=.4, font=3);
-					}
-					if(length(samp_size) && samp_size[i]>1){
-						#text(label_offset1, 0, paste("Median ", divname, " = ",
-						#	signif(median_diversity[i+1], 4),sep=""),
-						#	srt=90, adj=0, cex=.7);
-						#text(label_offset2, 0, paste("Mean ", divname, " = ",
-						#	signif(mean_diversity[i+1], 4),sep=""),
-						#	srt=90, adj=0, cex=.7);
-					}else{
-						#text(label_offset1, 0, paste(divname, " = ",
-						#	signif(median_diversity[i+1], 4),sep=""),
-						#	srt=90, adj=0, cex=.7);
-					}
-
-					abundances=abd_mat[sample,,drop=F];
-
-					if(n==1){
-						samp_size_subtitle="";
-					}else{
-						samp_size_subtitle=paste("n = ", n, sep="");
-					}
-
-					plot_ra(abundances, num_top_categories, colors_map, ymax=max_abd, 
-						title=sample, subtitle=samp_size_subtitle);
-
-				}else{
-					plot(0,0, type="n", bty="n", xaxt="n", yaxt="n", 
-						main="", xlab="", ylab="");
+				if(label_samp_size){
+					#mtext(paste("n=",n,sep=""), line=-.5, cex=.4, font=3);
 				}
+				if(length(samp_size) && samp_size[i]>1){
+					#text(label_offset1, 0, paste("Median ", divname, " = ",
+					#	signif(median_diversity[i+1], 4),sep=""),
+					#	srt=90, adj=0, cex=.7);
+					#text(label_offset2, 0, paste("Mean ", divname, " = ",
+					#	signif(mean_diversity[i+1], 4),sep=""),
+					#	srt=90, adj=0, cex=.7);
+				}else{
+					#text(label_offset1, 0, paste(divname, " = ",
+					#	signif(median_diversity[i+1], 4),sep=""),
+					#	srt=90, adj=0, cex=.7);
+				}
+
+				abundances=abd_mat[sample,,drop=F];
+
+				if(n==1){
+					samp_size_subtitle="";
+				}else{
+					samp_size_subtitle=paste("n = ", n, sep="");
+				}
+
+				plot_ra(abundances, num_top_categories, colors_map, ymax=max_abd, 
+					title=sample, subtitle=samp_size_subtitle);
+
+				# Label page when it's the first plot
+				if(i%%(plot_rows*plot_cols)==0){
+					# Offset by 1, since first plot is the average/reference
+
+					mtext(text=title, side=3, outer=T, cex=2, font=2, line=.5);
+				}
+
 				i=i+1;
 			}
-		}
-	}
-
-	setHook("plot.new", NULL, "replace");
-	num_existing_hooks=length(existing_hooks);
-		if(num_existing_hooks){
-		for(hix in 1:num_existing_hooks){
-			setHook("plot.new", existing_hooks[[hix]], "append");
 		}
 	}
 
