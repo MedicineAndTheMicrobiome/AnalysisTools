@@ -1137,6 +1137,8 @@ for(num_cl in cl_cuts){
 		}
 
 		if(length(pvalue_tmp)==0){
+
+			# Allocate space for tmps based on number of variables in first cluster
 			num_coeff=length(sum_fit$coefficients[,"Pr(>|z|)"]);
 			pvalue_tmp=matrix(0, nrow=num_coeff, ncol=num_cl);
 			coeff_tmp=matrix(0, nrow=num_coeff, ncol=num_cl);
@@ -1150,7 +1152,21 @@ for(num_cl in cl_cuts){
 			pvalue_tmp[var_names,cl_ix]=sum_fit$coefficients[var_names,"Pr(>|z|)"];
 			coeff_tmp[var_names,cl_ix]=sum_fit$coefficients[var_names,"Estimate"];
 		}else{
-			var_names=rownames(sum_fit$coefficients);
+
+			cur_var_names=rownames(pvalue_tmp);
+			new_var_names=rownames(sum_fit$coefficients);
+
+			# See if any new variables need to be added
+			new_var_names=setdiff(new_var_names, cur_var_names);
+			if(length(new_var_names)>0){
+				blank_mat=matrix(NA, nrow=length(new_var_names), ncol=num_cl);
+				rownames(blank_mat)=new_var_names;
+
+				pvalue_tmp=rbind(pvalue_tmp, blank_mat);
+				coeff_tmp=rbind(coeff_tmp, blank_mat);
+				var_names=rownames(sum_fit$coefficients);
+			}
+
 			pvalue_tmp[var_names, cl_ix]=sum_fit$coefficients[var_names,"Pr(>|z|)"];
 			coeff_tmp[var_names, cl_ix] =sum_fit$coefficients[var_names,"Estimate"];
 		}
@@ -1434,11 +1450,13 @@ plot_tree_phenotypes=function(hcl, coef_mat_list, pval_mat_list, alpha=.10){
 		cur_cut_mat=pval_mat_list[[cut_ix]];
 		for(var_ix in 1:num_variables){
 			for(cl_ix in 1:cut_ix){
-				if(cur_cut_mat[var_ix, cl_ix] < best_cut_mat[var_ix, "pvalue"]){
-					best_cut_mat[var_ix, "pvalue"]=cur_cut_mat[var_ix, cl_ix];
-					best_cut_mat[var_ix, "coeff"]=coef_mat_list[[cut_ix]][var_ix, cl_ix];
-					best_cut_mat[var_ix, "cut"]=cut_ix;
-					best_cut_mat[var_ix, "cluster"]=cl_ix;
+				if(!is.na(cur_cut_mat[var_ix, cl_ix])){
+					if(cur_cut_mat[var_ix, cl_ix] < best_cut_mat[var_ix, "pvalue"]){
+						best_cut_mat[var_ix, "pvalue"]=cur_cut_mat[var_ix, cl_ix];
+						best_cut_mat[var_ix, "coeff"]=coef_mat_list[[cut_ix]][var_ix, cl_ix];
+						best_cut_mat[var_ix, "cut"]=cut_ix;
+						best_cut_mat[var_ix, "cluster"]=cl_ix;
+					}
 				}
 			}	
 		}		
