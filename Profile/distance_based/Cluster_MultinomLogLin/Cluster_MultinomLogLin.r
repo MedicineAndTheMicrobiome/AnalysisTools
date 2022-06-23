@@ -1139,6 +1139,8 @@ for(num_cl in cl_cuts){
 		if(length(pvalue_tmp)==0){
 
 			# Allocate space for tmps based on number of variables in first cluster
+			cat("Allocating space based on first record.\n");
+
 			num_coeff=length(sum_fit$coefficients[,"Pr(>|z|)"]);
 			pvalue_tmp=matrix(0, nrow=num_coeff, ncol=num_cl);
 			coeff_tmp=matrix(0, nrow=num_coeff, ncol=num_cl);
@@ -1159,11 +1161,13 @@ for(num_cl in cl_cuts){
 			# See if any new variables need to be added
 			additional_var_names=setdiff(new_var_names, cur_var_names);
 			if(length(additional_var_names)>0){
+				cat("Expanding space due to new variable.\n");
 				blank_mat=matrix(NA, nrow=length(additional_var_names), ncol=num_cl);
-				rownames(blank_mat)=new_var_names;
+				rownames(blank_mat)=additional_var_names;
 
 				pvalue_tmp=rbind(pvalue_tmp, blank_mat);
 				coeff_tmp=rbind(coeff_tmp, blank_mat);
+
 				var_names=rownames(sum_fit$coefficients);
 			}else{
 				var_names=intersect(cur_var_names, new_var_names);				
