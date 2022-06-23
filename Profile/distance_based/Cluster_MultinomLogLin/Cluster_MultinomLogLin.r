@@ -1157,14 +1157,16 @@ for(num_cl in cl_cuts){
 			new_var_names=rownames(sum_fit$coefficients);
 
 			# See if any new variables need to be added
-			new_var_names=setdiff(new_var_names, cur_var_names);
-			if(length(new_var_names)>0){
-				blank_mat=matrix(NA, nrow=length(new_var_names), ncol=num_cl);
+			additional_var_names=setdiff(new_var_names, cur_var_names);
+			if(length(additional_var_names)>0){
+				blank_mat=matrix(NA, nrow=length(additional_var_names), ncol=num_cl);
 				rownames(blank_mat)=new_var_names;
 
 				pvalue_tmp=rbind(pvalue_tmp, blank_mat);
 				coeff_tmp=rbind(coeff_tmp, blank_mat);
 				var_names=rownames(sum_fit$coefficients);
+			}else{
+				var_names=intersect(cur_var_names, new_var_names);				
 			}
 
 			pvalue_tmp[var_names, cl_ix]=sum_fit$coefficients[var_names,"Pr(>|z|)"];
@@ -1508,6 +1510,14 @@ plot_tree_phenotypes=function(hcl, coef_mat_list, pval_mat_list, alpha=.10){
 	num_signf_var=nrow(best_cut_mat);
 	signf_var_names=rownames(best_cut_mat);
 	add_ix=1;
+
+	if(num_signf_var==0){
+		msg="No significant associations to plot.";
+		plot_text(msg);
+		cat(msg, "\n");
+		return();
+	}
+
 	for(var_ix in 1:num_signf_var){
 		cur_cut=best_cut_mat[var_ix,"cut"];
 		cur_var_name=signf_var_names[var_ix];
