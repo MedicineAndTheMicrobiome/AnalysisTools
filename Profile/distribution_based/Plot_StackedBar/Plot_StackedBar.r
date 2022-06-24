@@ -231,7 +231,19 @@ simplify_matrix_categories=function(normalized_mat, top=4){
 	keep_cat=character();
 	num_samp=nrow(normalized_mat);
 	samp_names=rownames(normalized_mat);
+
+	# If there is a "Remaining" category, remove it
+	cat_names=colnames(normalized_mat);
+	rem_bool=(tolower(cat_names)=="remaining");
+	rem_ix=which(rem_bool);	
+	if(length(rem_ix)==1){
+		cat("Detected \"Remaining\" category...\n");
+		cat("Excluding from the top categories.\n");
+		normalized_mat=normalized_mat[,-rem_ix];
+	}
 	
+	top=min(top, ncol(normalized_mat));
+
 	for(i in 1:num_samp){
 		#cat(samp_names[i], "\n");
 		abund=sort(normalized_mat[i,], decreasing=T);
