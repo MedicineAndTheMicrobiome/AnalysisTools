@@ -91,10 +91,41 @@ category_names=colnames(counts_mat);
 splits=strsplit(category_names, ShortenCategoryNames);
 short_names=character();
 
-for(i in 1:num_categories){
-	short_names[i]=tail(splits[[i]], 1);
-	cat(category_names[i], " ->\n\t",  short_names[i], "\n");
+targets=1:num_categories;
+shorten=T;
+
+level=1;
+while(shorten){
+
+	cat("\n\nLevel :", level, "\n");
+
+	for(i in targets){
+		short_names[i]=paste(tail(splits[[i]], level), collapse=ShortenCategoryNames);
+		cat(category_names[i], " ->\n\t",  short_names[i], "\n");
+	}
+
+	dup_bool=table(short_names)>1;
+	dups_names=names(dup_bool[dup_bool==T]);
+	cat("\nDuplicated Names after Shortening (tailed at:", level, "):\n");
+	print(dups_names);
+
+	targets=c();
+	for(dups_ix in 1:length(dups_names)){
+		targets=c(targets, which(dups_names[dups_ix]==short_names));
+	}
+
+	level=level+1;
+
+	if(length(targets)){
+		shorten=T;
+	}else{
+		shorten=F;
+	}
 }
+
+
+cat("\n\nFinal Shortened Name Assignments:\n");
+print(short_names);
 
 colnames(counts_mat)=short_names;
 
