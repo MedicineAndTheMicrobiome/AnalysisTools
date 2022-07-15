@@ -480,13 +480,18 @@ correl_to_PC=function(cor_rec, values, title, contrib_cutoff){
 	pcnames=character(num_pc_at_cutoff);
 	kept_representatives=matrix(0, nrow=nrow(values), ncol=0);
 
+	top_reps=list();
+
 	for(pcix in 1:num_pc_at_cutoff){
+
+		cat("Identifying closest variable to PC:", pcix, "\n");
 
 		# Find correlation with original variables
 		correls=numeric(num_var);
 		for(valix in 1:num_var){
 			correls[valix]=cor(scores[, pcix], values[, valix]);
 		}
+		names(correls)=colnames(values);
 
 		# Find original variable most similar to PC
 		mag_cor=abs(correls);
@@ -496,7 +501,8 @@ correl_to_PC=function(cor_rec, values, title, contrib_cutoff){
 		# If PC is negative, multiple score by -1
 		if(correls[closest_var_to_pc]<0){
 			scores[, pcix]=-1*scores[, pcix];	
-			correls[closest_var_to_pc]=-1*correls[closest_var_to_pc];
+			#correls[closest_var_to_pc]=-1*correls[closest_var_to_pc];
+			correls=-1*correls;
 			cat("PC Scores were flipped because correlation was negative.\n");
 		}
 
@@ -508,6 +514,10 @@ correl_to_PC=function(cor_rec, values, title, contrib_cutoff){
 			var_names[closest_var_to_pc], sep="");
 
 		kept_representatives=cbind(kept_representatives, values[,closest_var_to_pc, drop=F]);
+
+		# save top reps
+		sorted_correls_bymag=correls[order(mag_cor, decreasing=T)];
+		top_reps[[pcix]]=sorted_correls_bymag;
 		
 	}
 
@@ -591,6 +601,8 @@ correl_to_PC=function(cor_rec, values, title, contrib_cutoff){
 	results[["num_pcs"]]=ncol(kept_score);
 	results[["scores"]]=kept_score;
 	results[["representatives"]]=kept_representatives;
+	results[["top_reps_perPC"]]=top_reps;
+	results[["contrib_to_variance"]]=pca_propvar[1:num_pc_at_cutoff];
 
 	return(results);
 }
@@ -688,6 +700,7 @@ accumulated_groupid=character();
 accumulated_repid=character();
 accumulated_pcid=character();
 
+PC_var_correl_results=list();
 
 for(grp_ix in names(group_cor_rec)){
 	cat("------------------------------------------------------------\n");
@@ -705,11 +718,51 @@ for(grp_ix in names(group_cor_rec)){
 		accumulated_groupid=c(accumulated_groupid, rep(grp_ix, num_grp_reps));
 		accumulated_repid=c(accumulated_repid, colnames(results[["representatives"]]));
 		accumulated_pcid=c(accumulated_pcid, colnames(results[["scores"]]));
+
 	}
+
+	PC_var_correl_results[[grp_ix]]=results;
 
 }
 
 dev.off();
+
+# Export reps per group
+top_reps_perPC_fname=paste(OutputFnameRoot, ".groups.top_reps.tsv", sep="");
+fh=file(top_reps_perPC_fname, "w");
+
+cat(file=fh, "# This file contains (for each group) the variables most correlated to\n");
+cat(file=fh, "# each of the PCs.  The percent coverage of each PC is reported within brackets.\n");
+cat(file=fh, "# For each PC, the variable names and correlations are reported, sorted\n");
+cat(file=fh, "# by decreasing magnitude of correlation.\n");
+
+for(grp_ix in names(group_cor_rec)){
+
+	grp_cor_res=PC_var_correl_results[[grp_ix]];
+
+	cat(file=fh, "\n");
+	cat(file=fh, "Group: ", grp_ix, "\n", sep="");
+	
+	prop_var=grp_cor_res[["contrib_to_variance"]];
+
+	for(pc_ix in 1:grp_cor_res[["num_pcs"]]){
+
+		cat(file=fh, "\tPC ", pc_ix, " [", round(prop_var[pc_ix]*100,2), " %]\n", sep="");
+		rep_list=grp_cor_res[["top_reps_perPC"]];
+
+		rep_name=names(rep_list[[pc_ix]]);
+		rep_cor=rep_list[[pc_ix]];
+		for(rep_ix in 1:grp_cor_res[["num_pcs"]]){
+			cat(file=fh, "\t\t", rep_ix, ".) ", rep_name[rep_ix], "\t", 
+				round(rep_cor[rep_ix], 3) , "\n", sep="");
+		}
+	}
+	
+
+}
+
+close(fh);
+
 
 # Export group representatives as determined by PCs
 group_reps_mat=cbind(accumulated_repid, accumulated_groupid);
