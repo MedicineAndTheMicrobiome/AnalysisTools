@@ -9,6 +9,7 @@ use File::Basename;
 use FileHandle;
 use vars qw($opt_f $opt_g $opt_r $opt_o $opt_p $opt_c $opt_m $opt_O $opt_R);
 use POSIX;
+use Cwd 'abs_path';
 
 my $MOTHUR_BIN="/usr/bin/mothur_1.44.1/mothur/mothur";
 
@@ -128,10 +129,10 @@ if(!(
 
 my @overall_begin_time=times;
 
-my $input_fasta=$opt_f;
-my $groups_file=$opt_g;
+my $input_fasta=abs_path($opt_f);
+my $groups_file=abs_path($opt_g);
 my $ref_16s_align=$opt_r;
-my $output_dir=$opt_o;
+my $output_dir=abs_path($opt_o);
 my $num_proc=defined($opt_p)?$opt_p:$DEF_NPROC;
 my $clust_cutoff=defined($opt_c)?$opt_c:$DEF_CLUST_CUTOFF;
 my $preclust_diff=defined($opt_m)?$opt_m:$DEF_NUM_MISM;
