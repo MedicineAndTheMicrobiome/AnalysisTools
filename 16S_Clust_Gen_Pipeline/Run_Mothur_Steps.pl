@@ -7,7 +7,7 @@ use strict;
 use Getopt::Std;
 use File::Basename;
 use FileHandle;
-use vars qw($opt_f $opt_g $opt_r $opt_o $opt_p $opt_c $opt_m);
+use vars qw($opt_f $opt_g $opt_r $opt_o $opt_p $opt_c $opt_m $opt_O $opt_R);
 use POSIX;
 
 my $MOTHUR_BIN="/usr/bin/mothur_1.44.1/mothur/mothur";
@@ -58,7 +58,7 @@ my $DEF_CLUST_CUTOFF=0.45;
 
 ###############################################################################
 
-getopts("f:g:r:o:m:p:c:");
+getopts("f:g:r:o:m:p:c:O:R");
 my $usage = "usage: 
 
 $0 
@@ -67,7 +67,11 @@ $0
 	-r <reference 16S alignments, e.g. [abs path]/silva.nr_v119.align >
 	-o <output directory>
 
-	[-m <max mismatch for uniqueness in preclustering, default=$DEF_NUM_MISM>]
+	Skipping processing options:
+	[-O <skipOTU>]
+	[-R <skipRDP>]
+
+ 	[-m <max mismatch for uniqueness in preclustering, default=$DEF_NUM_MISM>]
 	[-p <num processors, default=$DEF_NPROC>]
 	[-c <maximum distance saved in distance matrix, default=$DEF_CLUST_CUTOFF>]
 		(note: to acquire clusters of .03, you may need .3
@@ -132,6 +136,9 @@ my $num_proc=defined($opt_p)?$opt_p:$DEF_NPROC;
 my $clust_cutoff=defined($opt_c)?$opt_c:$DEF_CLUST_CUTOFF;
 my $preclust_diff=defined($opt_m)?$opt_m:$DEF_NUM_MISM;
 
+my $skipOTUsteps=defined($opt_O);
+my $skipRDPsteps=defined($opt_R);
+
 print STDERR "Using Mothur at: $MOTHUR_BIN\n";
 print STDERR "Input FASTA File: $input_fasta\n";
 print STDERR "Groups File: $groups_file\n";
@@ -140,6 +147,17 @@ print STDERR "Output Directory: $output_dir\n";
 print STDERR "Num Processors: $num_proc\n";
 print STDERR "Cluster Cutoff: $clust_cutoff\n";
 print STDERR "Num Mismatch for Precluster: $preclust_diff\n";
+
+if($skipOTUsteps){
+	print STDERR "Skipping OTU Steps.\n";
+}
+if($skipRDPsteps){
+	print STDERR "Skipping RDP Steps.\n";
+}
+if($skipOTUsteps && $skipRDPsteps){
+	print STDERR "Error: Both OTU and RDP steps have been requested to be skipped.\n";
+	exit(-1);
+}
 
 if(!(-e $output_dir)){
 	print STDERR "Making $output_dir...\n";
@@ -511,8 +529,6 @@ execute_mothur_cmd(
 
 log_counts_tables("$in.unique.good.filter.unique.precluster.pick.count_table", "After_Chimera_Check");
 
-#####################################################################
-
 execute_mothur_cmd(
 	"classify.seqs",
 	"fasta=$in.unique.good.filter.unique.precluster.pick.fasta, 
@@ -522,383 +538,417 @@ execute_mothur_cmd(
 	cutoff=80,
 	processors=$num_proc"
 );
+
 # Makes
-#	IN.unique.good.filter.unique.precluster.pick.16S_Reference.wang.flip.accnos
-#	IN.unique.good.filter.unique.precluster.pick.16S_Reference.wang.tax.summary
-#	IN.unique.good.filter.unique.precluster.pick.16S_Reference.wang.taxonomy
-
-execute_mothur_cmd(
-	"dist.seqs",
-	"fasta=$in.unique.good.filter.unique.precluster.pick.fasta, 
-	cutoff=$clust_cutoff,
-	processors=$num_proc"
-);
-# Makes
-#	IN.unique.good.filter.unique.precluster.pick.dist
-
-execute_mothur_cmd(
-	"cluster",
-	"column=$in.unique.good.filter.unique.precluster.pick.dist, 
-	count=$in.unique.good.filter.unique.precluster.pick.count_table,
-	precision=100
-	"
-);
-# Makes
-#	IN.unique.good.filter.unique.precluster.pick.opti_mcc.steps
-#	IN.unique.good.filter.unique.precluster.pick.opti_mcc.list
-#	IN.unique.good.filter.unique.precluster.pick.opti_mcc.sensspec
-#	IN.unique.good.filter.unique.precluster.pick.opti_mcc.sabund
-#	IN.unique.good.filter.unique.precluster.pick.opti_mcc.rabund
-
-
-execute_mothur_cmd(
-	"make.shared",
-	"list=$in.unique.good.filter.unique.precluster.pick.opti_mcc.list, 
-	count=$in.unique.good.filter.unique.precluster.pick.count_table,
-	label=0.03"
-);
-# Makes
-#	IN.unique.good.filter.unique.precluster.pick.mothurGroup.count_table
-#	IN.unique.good.filter.unique.precluster.pick.opti_mcc.shared
-
-execute_mothur_cmd(
-	"classify.otu",
-	"taxonomy=$in.unique.good.filter.unique.precluster.pick.$reference_name.wang.taxonomy,
-	list=$in.unique.good.filter.unique.precluster.pick.opti_mcc.list,
-	count=$in.unique.good.filter.unique.precluster.pick.count_table,
-	label=0.03"
-);
-# Makes
-# 	IN.unique.good.filter.unique.precluster.pick.opti_mcc.0.03.cons.taxonomy
-#	IN.unique.good.filter.unique.precluster.pick.opti_mcc.0.03.cons.tax.summary
-
-
-###############################################################################
-
-###############################################################################
-
-# Convert OTU info into Summary Table  
-# 	IN.unique.good.filter.unique.precluster.pick.an.shared into Summary Table
-
-my ($sdate_wall, $stime_wall)=format_datetime();
-my @sumtab_start_time=time;
-
-my $out_root=$name;
-$out_root=~s/\.fasta$//;
-
-my $st_dir="$output_dir/Summary_Tables";
-mkdir $st_dir;
-
-my $exec_string="
-	$OTU_TO_ST_BIN
-		-i $in.unique.good.filter.unique.precluster.pick.opti_mcc.shared
-		-o $st_dir/$out_root.otu
-";
-exec_cmd($exec_string, "$st_dir", "shared_to_summary_table");
-
-# Annotate OTUs with Genus
-$exec_string="
-	$ANNOTATE_OTU_WITH_GENUS_BIN
-		-s $st_dir/$out_root.otu.97.summary_table.tsv
-		-m $in.unique.good.filter.unique.precluster.pick.opti_mcc.0.03.cons.taxonomy
-		-o $st_dir/$out_root.otu.97.genus.summary_table.tsv
-";
-exec_cmd($exec_string, "$st_dir", "annotate_otu_with_genera");	
-
-# Convert Taxonomy files into Summary Table
-#	Will need IN.unique.good.filter.unique.precluster.pick.REFERENCE.wang.taxonomy
-#		  IN.unique.good.filter.unique.precluster.pick.names
-#		  IN.good.pick.groups
-
-my $exec_string="
-	$TAXA_TO_ST_BIN
-		-t $in.unique.good.filter.unique.precluster.pick.$reference_name.wang.taxonomy
-		-b $in.unique.good.filter.unique.precluster.pick.count_table
-		-o $st_dir/$out_root.taxa
-";
-exec_cmd($exec_string, "$st_dir", "taxonomy_to_summary_table");
-
-my @sumtab_end_time=time;
-
-my ($edate_wall, $etime_wall)=format_datetime();
-
-log_time($sdate_wall, $stime_wall, $edate_wall, $etime_wall, 
-	\@sumtab_start_time, \@sumtab_end_time, "generate.summary_tables", "");
-
-###############################################################################
-###############################################################################
-
-# Compute OTU to taxa degrees
-# 	Will need IN.unique.good.filter.unique.precluster.pick.opti_mcc.0.03.cons.taxonomy
-
-my $exec_string="
-	$OTU_TAXA_DEGREE_BIN
-		-i $in.unique.good.filter.unique.precluster.pick.opti_mcc.0.03.cons.taxonomy
-		-o $st_dir/0.03.cons.taxonomy
-";
-exec_cmd($exec_string, "$st_dir", "otu_taxa_degree");
-
-###############################################################################
-
-# Filter out mito, chlr and unknown
-my $exec_string="
-	$TAXA_SUMTAB_FILTER_BIN
-		-i $st_dir/$out_root.taxa.genus.summary_table.tsv
-		-l $TAXA_FILTER_LIST \
-		-o $st_dir/$out_root.taxa.genus.cmF.summary_table.tsv
-";
-exec_cmd($exec_string, "$st_dir", "remove_chl_mit_from_sumtab");
-
-
-# Clean the summary table taxa names
-my $exec_string="
-	$TAXA_SUMTAB_CLEANER_BIN
-		-i $st_dir/$out_root.taxa.genus.cmF.summary_table.tsv
-		-o $st_dir/$out_root.taxa.genus.cmF.cln.summary_table.tsv
-";
-exec_cmd($exec_string, "$st_dir", "clean_sumtab_taxa_names");
-
-
-# Split experimental samples
-my $exec_string="
-	$SAMPLE_GREP_BIN
-		-i $st_dir/$out_root.taxa.genus.cmF.cln.summary_table.tsv
-		-r \"^00[0-9][0-9]\\.\"
-		-o $st_dir/$out_root.taxa.genus.cmF.cln.exp
-";
-exec_cmd($exec_string, "$st_dir", "extract_experimental_samples");
-
-# Split control samples
-my $exec_string="
-	$SAMPLE_GREP_BIN
-		-i $st_dir/$out_root.taxa.genus.cmF.cln.summary_table.tsv
-		-k \"^00[0-9][0-9]\\.\"
-		-o $st_dir/$out_root.taxa.genus.cmF.cln.ctl
-";
-exec_cmd($exec_string, "$st_dir", "extract_control_samples");
-
-# Split negative control samples
-my $exec_string="
-	$SAMPLE_GREP_BIN
-		-i $st_dir/$out_root.taxa.genus.cmF.cln.summary_table.tsv
-		-k \"^000[01]\\.\"
-		-o $st_dir/$out_root.taxa.genus.cmF.cln.neg_ctl
-";
-exec_cmd($exec_string, "$st_dir", "extract_negative_control_samples");
-
-# Remove low count samples
-my $exec_string="
-	$READ_DEPTH_CUTOFF_BIN
-		-i $st_dir/$out_root.taxa.genus.cmF.cln.exp.summary_table.tsv
-		-c 750,1000,2000,3000
-		-o $st_dir/$out_root.taxa.genus.cmF.cln.exp
-";
-exec_cmd($exec_string, "$st_dir", "filter_samples_by_read_depth");
-
-
-###############################################################################
-
-# Summarize all before filtering
-my $exec_string="
-	$SUMMARIZE_SUMTAB_BIN
-		-i $st_dir/$out_root.taxa.genus.summary_table.tsv
-		> $st_dir/$out_root.taxa.genus.summary.txt
-";
-exec_cmd($exec_string, "$st_dir", "summarize_all_before_filtering");
+#       IN.unique.good.filter.unique.precluster.pick.16S_Reference.wang.flip.accnos
+#       IN.unique.good.filter.unique.precluster.pick.16S_Reference.wang.tax.summary
+#       IN.unique.good.filter.unique.precluster.pick.16S_Reference.wang.taxonomy
 #
-# Summarize Experimental after filtering (750)
-my $exec_string="
-	$SUMMARIZE_SUMTAB_BIN
-		-i $st_dir/$out_root.taxa.genus.cmF.cln.exp.min_0750.summary_table.tsv
-		> $st_dir/$out_root.taxa.genus.cmF.cln.exp.min_0750.summary.txt
-";
-exec_cmd($exec_string, "$st_dir", "summarize_experimental_after_filtering");
-#
-# Summarize Control before filtering
-my $exec_string="
-	$SUMMARIZE_SUMTAB_BIN
-		-i $st_dir/$out_root.taxa.genus.cmF.cln.ctl.summary_table.tsv
-		> $st_dir/$out_root.taxa.genus.cmF.cln.ctl.summary.txt
-";
-exec_cmd($exec_string, "$st_dir", "summarize_control_before_filtering");
 
-###############################################################################
+#####################################################################
 
-# Descriptive statistics
-my $desc_stat_dir="$st_dir/Descriptive";
-mkdir $desc_stat_dir;
+if(!($skipRDPsteps)){
 
-my $exec_string="
-	$DESC_DISTANCE_ANALYSIS_BIN
-		-i $st_dir/$out_root.taxa.genus.cmF.cln.summary_table.tsv
-		-o $desc_stat_dir/$out_root
-		-d man
-		-p 15
-		-k 6
-		-s \";\"
-";
-exec_cmd($exec_string, "$desc_stat_dir", "distance_desc_analysis");
+	my ($sdate_wall, $stime_wall)=format_datetime();
+	my @sumtab_start_time=time;
 
-my $exec_string="
-	$DESC_DISTRIBUTION_ANALYSIS_BIN
-		-i $st_dir/$out_root.taxa.genus.cmF.cln.summary_table.tsv
-		-o $desc_stat_dir/$out_root
-		-s \";\"
-";
-exec_cmd($exec_string, "$desc_stat_dir", "distribution_desc_analysis");
+	my $out_root=$name;
+	$out_root=~s/\.fasta$//;
 
+	my $st_dir="$output_dir/Summary_Tables";
+	mkdir $st_dir;
 
-my $exec_string="
-	$DESC_ABUNDANCE_ANALYSIS_BIN
-		-s $st_dir/$out_root.taxa.genus.cmF.cln.summary_table.tsv
-		-o $desc_stat_dir/$out_root
-		-x \";\"
-";
-exec_cmd($exec_string, "$desc_stat_dir", "abundance_desc_analysis");
+	#
+	# Convert Taxonomy files into Summary Table
+	#	Will need IN.unique.good.filter.unique.precluster.pick.REFERENCE.wang.taxonomy
+	#		  IN.unique.good.filter.unique.precluster.pick.names
+	#		  IN.good.pick.groups
 
-##############################################################################
-
-# Comparison with controls
-my $control_comp_dir="$st_dir/Controls";
-mkdir $control_comp_dir;
-
-my $sumtab_all="$st_dir/$out_root.taxa.genus.cmF.cln.summary_table.tsv";
-my $sumtab_negctl="$st_dir/$out_root.taxa.genus.cmF.cln.neg_ctl.summary_table.tsv";
-my $sumtab_exp0750="$st_dir/$out_root.taxa.genus.cmF.cln.exp.min_0750.summary_table.tsv";
-my $sumtab_exp1000="$st_dir/$out_root.taxa.genus.cmF.cln.exp.min_1000.summary_table.tsv";
-my $sumtab_exp2000="$st_dir/$out_root.taxa.genus.cmF.cln.exp.min_2000.summary_table.tsv";
-my $sumtab_exp3000="$st_dir/$out_root.taxa.genus.cmF.cln.exp.min_3000.summary_table.tsv";
-
-# Compare all exp samples with all control
-my $exec_string="
-	$SUMTAB_TO_DISTMAT_BIN
-		-i $sumtab_all
-		-d man
-		-o $control_comp_dir/$out_root
-";
-exec_cmd($exec_string, "$control_comp_dir", "control_analysis_make_distmat");
-
-# make factor file
-my $exec_string="
-	$SUMTAB_TO_FACTOR_FILE_BIN
-		-i $sumtab_all
-		-o $control_comp_dir/$out_root
-";
-exec_cmd($exec_string, "$control_comp_dir", "control_analysis_make_factorfile");
-
-# Compare all exp samples with negative controls
-my $exec_string="
-	$PERMANOVA_BIN
-		-d $control_comp_dir/$out_root.man.distmat
-		-f $control_comp_dir/$out_root.metadata.tsv
-		-o $control_comp_dir/$out_root.all_samples
-		-m \"Sample_Type\"
-";
-exec_cmd($exec_string, "$control_comp_dir", "control_analysis_permanova_all");
-
-# Perform read depth analysis w/controls
-my $exec_string="
-	$READDEPTH_ANALYSIS_BIN
-		-m $control_comp_dir/$out_root.metadata.tsv
-		-g $groups_file	
-		-o $control_comp_dir/$out_root.all_samples
-";
-exec_cmd($exec_string, "$control_comp_dir", "control_analysis_depth_analysis_all");
-
-`echo Read_Depth > $control_comp_dir/multinom.covariates`;
-`echo "Sample_Type\tPCR.Negative" > $control_comp_dir/multinom.reference`;
-
-# Estimate number of ALR variables to use  in multinomial analysis based on number of samples in run
-my $num_samples=`wc -l $control_comp_dir/$out_root.metadata.tsv | cut -f 1 -d " "`;
-$num_samples--;
-my $num_alr=ceil((log($num_samples/10)/log(2))*5);
-if($num_alr<3){
-	$num_alr=3;
-}
-if($num_alr>40){
-	$num_alr=40;
-}
-
-print "Using $num_alr ALR variables with $num_samples samples.";
-
-# Perform multinomial comparisons
-my $exec_string="
-	$MULTINOMIAL_ANALYSIS_BIN
-		-s $sumtab_all
-		-p $num_alr
-		-x \";\"
-		-f $control_comp_dir/$out_root.metadata.tsv 
-		-c $control_comp_dir/multinom.covariates
-		-y Sample_Type
-		-r $control_comp_dir/multinom.reference
-		-o $control_comp_dir/$out_root		
-";
-exec_cmd($exec_string, "$control_comp_dir", "control_analysis_multinomial_all");
-
-foreach my $proj_file (split "\n", 
-	`ls $control_comp_dir/$out_root.multn_predictions/model_\\[alr_only\\]/pred_as_\\[P_*\\]/obsr_as_\\[P_*\\].tsv`){
-	`cp $proj_file $control_comp_dir`;
-}
-
-# 0750,1000,2000,3000
-#my @depths=("0750");
-my @depths=("0750", "1000", "2000", "3000");
-my %sumtabs;
-$sumtabs{"0750"}=$sumtab_exp0750;
-$sumtabs{"1000"}=$sumtab_exp1000;
-$sumtabs{"2000"}=$sumtab_exp2000;
-$sumtabs{"3000"}=$sumtab_exp3000;
-
-foreach my $depth (@depths){
-
-	my $depth_dir="$control_comp_dir/$depth";
-	mkdir $depth_dir;
-
-	# Join experimental at cutoff with negative controls
 	my $exec_string="
-		$JOIN_SUMTAB_BIN
-			-i $sumtab_negctl,$sumtabs{$depth}
-			-o $depth_dir/$out_root.$depth.w_negctl
+		$TAXA_TO_ST_BIN
+			-t $in.unique.good.filter.unique.precluster.pick.$reference_name.wang.taxonomy
+			-b $in.unique.good.filter.unique.precluster.pick.count_table
+			-o $st_dir/$out_root.taxa
 	";
-	exec_cmd($exec_string, "$depth_dir", "control_analysis_join_$depth\_w_negctl");
+	exec_cmd($exec_string, "$st_dir", "taxonomy_to_summary_table");
 
-	# Pull factor file for summary table
+	my @sumtab_end_time=time;
+
+	my ($edate_wall, $etime_wall)=format_datetime();
+
+	log_time($sdate_wall, $stime_wall, $edate_wall, $etime_wall, 
+		\@sumtab_start_time, \@sumtab_end_time, "generate.summary_tables_RDP", "");
+	 
+	 
+	# Filter out mito, chlr and unknown
+	my $exec_string="
+		$TAXA_SUMTAB_FILTER_BIN
+			-i $st_dir/$out_root.taxa.genus.summary_table.tsv
+			-l $TAXA_FILTER_LIST \
+			-o $st_dir/$out_root.taxa.genus.cmF.summary_table.tsv
+	";
+	exec_cmd($exec_string, "$st_dir", "remove_chl_mit_from_sumtab");
+
+
+	# Clean the summary table taxa names
+	my $exec_string="
+		$TAXA_SUMTAB_CLEANER_BIN
+			-i $st_dir/$out_root.taxa.genus.cmF.summary_table.tsv
+			-o $st_dir/$out_root.taxa.genus.cmF.cln.summary_table.tsv
+	";
+	exec_cmd($exec_string, "$st_dir", "clean_sumtab_taxa_names");
+
+
+	# Split experimental samples
+	my $exec_string="
+		$SAMPLE_GREP_BIN
+			-i $st_dir/$out_root.taxa.genus.cmF.cln.summary_table.tsv
+			-r \"^00[0-9][0-9]\\.\"
+			-o $st_dir/$out_root.taxa.genus.cmF.cln.exp
+	";
+	exec_cmd($exec_string, "$st_dir", "extract_experimental_samples");
+
+	# Split control samples
+	my $exec_string="
+		$SAMPLE_GREP_BIN
+			-i $st_dir/$out_root.taxa.genus.cmF.cln.summary_table.tsv
+			-k \"^00[0-9][0-9]\\.\"
+			-o $st_dir/$out_root.taxa.genus.cmF.cln.ctl
+	";
+	exec_cmd($exec_string, "$st_dir", "extract_control_samples");
+
+	# Split negative control samples
+	my $exec_string="
+		$SAMPLE_GREP_BIN
+			-i $st_dir/$out_root.taxa.genus.cmF.cln.summary_table.tsv
+			-k \"^000[01]\\.\"
+			-o $st_dir/$out_root.taxa.genus.cmF.cln.neg_ctl
+	";
+	exec_cmd($exec_string, "$st_dir", "extract_negative_control_samples");
+
+	# Remove low count samples
+	my $exec_string="
+		$READ_DEPTH_CUTOFF_BIN
+			-i $st_dir/$out_root.taxa.genus.cmF.cln.exp.summary_table.tsv
+			-c 750,1000,2000,3000
+			-o $st_dir/$out_root.taxa.genus.cmF.cln.exp
+	";
+	exec_cmd($exec_string, "$st_dir", "filter_samples_by_read_depth");
+
+
+	###############################################################################
+
+	# Summarize all before filtering
+	my $exec_string="
+		$SUMMARIZE_SUMTAB_BIN
+			-i $st_dir/$out_root.taxa.genus.summary_table.tsv
+			> $st_dir/$out_root.taxa.genus.summary.txt
+	";
+	exec_cmd($exec_string, "$st_dir", "summarize_all_before_filtering");
+	#
+	# Summarize Experimental after filtering (750)
+	my $exec_string="
+		$SUMMARIZE_SUMTAB_BIN
+			-i $st_dir/$out_root.taxa.genus.cmF.cln.exp.min_0750.summary_table.tsv
+			> $st_dir/$out_root.taxa.genus.cmF.cln.exp.min_0750.summary.txt
+	";
+	exec_cmd($exec_string, "$st_dir", "summarize_experimental_after_filtering");
+	#
+	# Summarize Control before filtering
+	my $exec_string="
+		$SUMMARIZE_SUMTAB_BIN
+			-i $st_dir/$out_root.taxa.genus.cmF.cln.ctl.summary_table.tsv
+			> $st_dir/$out_root.taxa.genus.cmF.cln.ctl.summary.txt
+	";
+	exec_cmd($exec_string, "$st_dir", "summarize_control_before_filtering");
+
+	###############################################################################
+
+	# Descriptive statistics
+	my $desc_stat_dir="$st_dir/Descriptive";
+	mkdir $desc_stat_dir;
+
+	my $exec_string="
+		$DESC_DISTANCE_ANALYSIS_BIN
+			-i $st_dir/$out_root.taxa.genus.cmF.cln.summary_table.tsv
+			-o $desc_stat_dir/$out_root
+			-d man
+			-p 15
+			-k 6
+			-s \";\"
+	";
+	exec_cmd($exec_string, "$desc_stat_dir", "distance_desc_analysis");
+
+	my $exec_string="
+		$DESC_DISTRIBUTION_ANALYSIS_BIN
+			-i $st_dir/$out_root.taxa.genus.cmF.cln.summary_table.tsv
+			-o $desc_stat_dir/$out_root
+			-s \";\"
+	";
+	exec_cmd($exec_string, "$desc_stat_dir", "distribution_desc_analysis");
+
+
+	my $exec_string="
+		$DESC_ABUNDANCE_ANALYSIS_BIN
+			-s $st_dir/$out_root.taxa.genus.cmF.cln.summary_table.tsv
+			-o $desc_stat_dir/$out_root
+			-x \";\"
+	";
+	exec_cmd($exec_string, "$desc_stat_dir", "abundance_desc_analysis");
+
+	##############################################################################
+
+	# Comparison with controls
+	my $control_comp_dir="$st_dir/Controls";
+	mkdir $control_comp_dir;
+
+	my $sumtab_all="$st_dir/$out_root.taxa.genus.cmF.cln.summary_table.tsv";
+	my $sumtab_negctl="$st_dir/$out_root.taxa.genus.cmF.cln.neg_ctl.summary_table.tsv";
+	my $sumtab_exp0750="$st_dir/$out_root.taxa.genus.cmF.cln.exp.min_0750.summary_table.tsv";
+	my $sumtab_exp1000="$st_dir/$out_root.taxa.genus.cmF.cln.exp.min_1000.summary_table.tsv";
+	my $sumtab_exp2000="$st_dir/$out_root.taxa.genus.cmF.cln.exp.min_2000.summary_table.tsv";
+	my $sumtab_exp3000="$st_dir/$out_root.taxa.genus.cmF.cln.exp.min_3000.summary_table.tsv";
+
+	# Compare all exp samples with all control
+	my $exec_string="
+		$SUMTAB_TO_DISTMAT_BIN
+			-i $sumtab_all
+			-d man
+			-o $control_comp_dir/$out_root
+	";
+	exec_cmd($exec_string, "$control_comp_dir", "control_analysis_make_distmat");
+
+	# make factor file
 	my $exec_string="
 		$SUMTAB_TO_FACTOR_FILE_BIN
-			-i $depth_dir/$out_root.$depth.w_negctl.summary_table.tsv
-			-o $depth_dir/$out_root.$depth.w_negctl
+			-i $sumtab_all
+			-o $control_comp_dir/$out_root
 	";
-	exec_cmd($exec_string, "$depth_dir", "control_analysis_make_factorfile_$depth");
+	exec_cmd($exec_string, "$control_comp_dir", "control_analysis_make_factorfile");
 
-	# Perform permanova
+	# Compare all exp samples with negative controls
 	my $exec_string="
 		$PERMANOVA_BIN
 			-d $control_comp_dir/$out_root.man.distmat
-			-f $depth_dir/$out_root.$depth.w_negctl.metadata.tsv
-			-o $depth_dir/$out_root.$depth.w_negctl
+			-f $control_comp_dir/$out_root.metadata.tsv
+			-o $control_comp_dir/$out_root.all_samples
 			-m \"Sample_Type\"
 	";
-	exec_cmd($exec_string, "$depth_dir", "control_analysis_permanova_$depth");
+	exec_cmd($exec_string, "$control_comp_dir", "control_analysis_permanova_all");
 
 	# Perform read depth analysis w/controls
 	my $exec_string="
 		$READDEPTH_ANALYSIS_BIN
-			-m $depth_dir/$out_root.$depth.w_negctl.metadata.tsv
-			-g $groups_file
-			-o $depth_dir/$out_root.$depth.w_negctl
+			-m $control_comp_dir/$out_root.metadata.tsv
+			-g $groups_file	
+			-o $control_comp_dir/$out_root.all_samples
 	";
-	exec_cmd($exec_string, "$depth_dir", "control_analysis_depth_analysis_$depth");
-	
+	exec_cmd($exec_string, "$control_comp_dir", "control_analysis_depth_analysis_all");
+
+	`echo Read_Depth > $control_comp_dir/multinom.covariates`;
+	`echo "Sample_Type\tPCR.Negative" > $control_comp_dir/multinom.reference`;
+
+	# Estimate number of ALR variables to use  in multinomial analysis based on number of samples in run
+	my $num_samples=`wc -l $control_comp_dir/$out_root.metadata.tsv | cut -f 1 -d " "`;
+	$num_samples--;
+	my $num_alr=ceil((log($num_samples/10)/log(2))*5);
+	if($num_alr<3){
+		$num_alr=3;
+	}
+	if($num_alr>40){
+		$num_alr=40;
+	}
+
+	print "Using $num_alr ALR variables with $num_samples samples.";
+
+	# Perform multinomial comparisons
+	my $exec_string="
+		$MULTINOMIAL_ANALYSIS_BIN
+			-s $sumtab_all
+			-p $num_alr
+			-x \";\"
+			-f $control_comp_dir/$out_root.metadata.tsv 
+			-c $control_comp_dir/multinom.covariates
+			-y Sample_Type
+			-r $control_comp_dir/multinom.reference
+			-o $control_comp_dir/$out_root		
+	";
+	exec_cmd($exec_string, "$control_comp_dir", "control_analysis_multinomial_all");
+
+	foreach my $proj_file (split "\n", 
+		`ls $control_comp_dir/$out_root.multn_predictions/model_\\[alr_only\\]/pred_as_\\[P_*\\]/obsr_as_\\[P_*\\].tsv`){
+		`cp $proj_file $control_comp_dir`;
+	}
+
+	# 0750,1000,2000,3000
+	#my @depths=("0750");
+	my @depths=("0750", "1000", "2000", "3000");
+	my %sumtabs;
+	$sumtabs{"0750"}=$sumtab_exp0750;
+	$sumtabs{"1000"}=$sumtab_exp1000;
+	$sumtabs{"2000"}=$sumtab_exp2000;
+	$sumtabs{"3000"}=$sumtab_exp3000;
+
+	foreach my $depth (@depths){
+
+		my $depth_dir="$control_comp_dir/$depth";
+		mkdir $depth_dir;
+
+		# Join experimental at cutoff with negative controls
+		my $exec_string="
+			$JOIN_SUMTAB_BIN
+				-i $sumtab_negctl,$sumtabs{$depth}
+				-o $depth_dir/$out_root.$depth.w_negctl
+		";
+		exec_cmd($exec_string, "$depth_dir", "control_analysis_join_$depth\_w_negctl");
+
+		# Pull factor file for summary table
+		my $exec_string="
+			$SUMTAB_TO_FACTOR_FILE_BIN
+				-i $depth_dir/$out_root.$depth.w_negctl.summary_table.tsv
+				-o $depth_dir/$out_root.$depth.w_negctl
+		";
+		exec_cmd($exec_string, "$depth_dir", "control_analysis_make_factorfile_$depth");
+
+		# Perform permanova
+		my $exec_string="
+			$PERMANOVA_BIN
+				-d $control_comp_dir/$out_root.man.distmat
+				-f $depth_dir/$out_root.$depth.w_negctl.metadata.tsv
+				-o $depth_dir/$out_root.$depth.w_negctl
+				-m \"Sample_Type\"
+		";
+		exec_cmd($exec_string, "$depth_dir", "control_analysis_permanova_$depth");
+
+		# Perform read depth analysis w/controls
+		my $exec_string="
+			$READDEPTH_ANALYSIS_BIN
+				-m $depth_dir/$out_root.$depth.w_negctl.metadata.tsv
+				-g $groups_file
+				-o $depth_dir/$out_root.$depth.w_negctl
+		";
+		exec_cmd($exec_string, "$depth_dir", "control_analysis_depth_analysis_$depth");
+		
+	}
+
+	# Read Depth analysis
+	#
+	# Compare all 750 samples with negative controls
+	# Compare all 1000 samples with negative control
+	# Compare all 2000 samples with negative control
+	# Compare all 3000 samples with negative control
+
+	############################################################################## 
+}else{
+	print STDERR "WARNING:RDP skipped \n";
 }
 
-# Read Depth analysis
-#
-# Compare all 750 samples with negative controls
-# Compare all 1000 samples with negative control
-# Compare all 2000 samples with negative control
-# Compare all 3000 samples with negative control
 
-##############################################################################
+
+if(!($skipOTUsteps)){
+	
+	execute_mothur_cmd(
+		"dist.seqs",
+		"fasta=$in.unique.good.filter.unique.precluster.pick.fasta, 
+		cutoff=$clust_cutoff,
+		processors=$num_proc"
+	);
+	# Makes
+	#	IN.unique.good.filter.unique.precluster.pick.dist
+
+	execute_mothur_cmd(
+		"cluster",
+		"column=$in.unique.good.filter.unique.precluster.pick.dist, 
+		count=$in.unique.good.filter.unique.precluster.pick.count_table,
+		precision=100
+		"
+	);
+	# Makes
+	#	IN.unique.good.filter.unique.precluster.pick.opti_mcc.steps
+	#	IN.unique.good.filter.unique.precluster.pick.opti_mcc.list
+	#	IN.unique.good.filter.unique.precluster.pick.opti_mcc.sensspec
+	#	IN.unique.good.filter.unique.precluster.pick.opti_mcc.sabund
+	#	IN.unique.good.filter.unique.precluster.pick.opti_mcc.rabund
+
+	execute_mothur_cmd(
+		"make.shared",
+		"list=$in.unique.good.filter.unique.precluster.pick.opti_mcc.list, 
+		count=$in.unique.good.filter.unique.precluster.pick.count_table,
+		label=0.03"
+	);
+	# Makes
+	#	IN.unique.good.filter.unique.precluster.pick.mothurGroup.count_table
+	#	IN.unique.good.filter.unique.precluster.pick.opti_mcc.shared
+
+	execute_mothur_cmd(
+		"classify.otu",
+		"taxonomy=$in.unique.good.filter.unique.precluster.pick.$reference_name.wang.taxonomy,
+		list=$in.unique.good.filter.unique.precluster.pick.opti_mcc.list,
+		count=$in.unique.good.filter.unique.precluster.pick.count_table,
+		label=0.03"
+	);
+	# Makes
+	# 	IN.unique.good.filter.unique.precluster.pick.opti_mcc.0.03.cons.taxonomy
+	#	IN.unique.good.filter.unique.precluster.pick.opti_mcc.0.03.cons.tax.summary
+	
+
+	
+	##############################################################################
+	# Post-Mothur Processing
+
+	my ($sdate_wall, $stime_wall)=format_datetime();
+	my @sumtab_start_time=time;
+
+	my $out_root=$name;
+	$out_root=~s/\.fasta$//;
+
+	my $st_dir="$output_dir/Summary_Tables";
+	mkdir $st_dir;
+	#
+	# Convert OTU info into Summary Table  
+	# 	IN.unique.good.filter.unique.precluster.pick.an.shared into Summary Table
+
+	my $exec_string="
+		$OTU_TO_ST_BIN
+			-i $in.unique.good.filter.unique.precluster.pick.opti_mcc.shared
+			-o $st_dir/$out_root.otu
+	";
+	exec_cmd($exec_string, "$st_dir", "shared_to_summary_table");
+
+	# Annotate OTUs with Genus
+	#
+	$exec_string="
+		$ANNOTATE_OTU_WITH_GENUS_BIN
+			-s $st_dir/$out_root.otu.97.summary_table.tsv
+			-m $in.unique.good.filter.unique.precluster.pick.opti_mcc.0.03.cons.taxonomy
+			-o $st_dir/$out_root.otu.97.genus.summary_table.tsv
+	";
+	exec_cmd($exec_string, "$st_dir", "annotate_otu_with_genera");
+
+
+	my @sumtab_end_time=time;
+	my ($edate_wall, $etime_wall)=format_datetime();
+	log_time($sdate_wall, $stime_wall, $edate_wall, $etime_wall, 
+		\@sumtab_start_time, \@sumtab_end_time, "generate.summary_tables_OTU", "");
+	 
+
+	# Compute OTU to taxa degrees
+	# 	Will need IN.unique.good.filter.unique.precluster.pick.opti_mcc.0.03.cons.taxonomy
+
+	my $exec_string="
+		$OTU_TAXA_DEGREE_BIN
+			-i $in.unique.good.filter.unique.precluster.pick.opti_mcc.0.03.cons.taxonomy
+			-o $st_dir/0.03.cons.taxonomy
+	";
+	exec_cmd($exec_string, "$st_dir", "otu_taxa_degree");
+
+	###############################################################################
+
+}else{
+	print STDERR "WARNING: OTU skipped \n";
+}
+
+###############################################################################
 
 print STDERR "done.\n";
 
