@@ -22,31 +22,15 @@ $0
 	-p <'list of project IDs to include', 0000 and 0001, negative controls automatically included>
 	-o <Output directory>
 
-	Columns will be generated based on the sequencing run directory and fastq file name.
-
-	1.) sample_name
-	2.) run_ID
-	3.) library_id
-	4.) title
-	5.) filename1
-	6.) filename2
-	7.) collection_date
-	8.) env_local_scale
-	9.) host_subject_id
-
-
 	This script will look into the SequencingRuns directory, finding the sequencing runs
 	specified in the sequencing runs list.  For each sequencing run, it will look into
 	
 	$RAW_FASTQ_FILES
 
-	The paired fasta files will be copied into the output directory.
-
-	<output_directory>/<sequencing run>/<project_id>.*.paired.*.fasta
+	The paired fastq files will be copied into the output directory.
 
 	A single tsv file will be generated which tries to guess the above variables
 	based on the sample ID.
-
 	
 ";
 
