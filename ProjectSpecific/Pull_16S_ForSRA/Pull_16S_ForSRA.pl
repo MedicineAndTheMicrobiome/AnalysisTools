@@ -151,7 +151,7 @@ if($missing_sr_dirs){
 
 ###############################################################################
 
-my $dont_copy=1;
+my $dont_copy=0;
 
 
 # Try to make output dir
@@ -201,8 +201,8 @@ foreach my $sr(@{$target_seq_runs_ref}){
 			push @f2_list, $f2_newname;
 
 			if(!$dont_copy){
-				print STDERR `cp -pv $f1 $OutputDirectory/fastq/$f1_newname`;
-				print STDERR `cp -pv $f2 $OutputDirectory/fastq/$f2_newname`;
+				print STDERR `cp -s $f1 $OutputDirectory/fastq/$f1_newname`;
+				print STDERR `cp -s $f2 $OutputDirectory/fastq/$f2_newname`;
 			}
 		}
 
