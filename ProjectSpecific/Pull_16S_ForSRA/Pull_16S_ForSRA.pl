@@ -112,6 +112,14 @@ sub make_dir{
 my $target_seq_runs_ref=load_file_list($SequencingRunsListFname);
 my $target_projects_ids_ref=load_file_list($ProjectIDsListFname);
 
+my $include_list_ref=undef;
+my $incl_list_length=-1;
+if($IncludeList ne ""){
+	$include_list_ref=load_file_list($IncludeList);
+	$incl_list_length=$#{$include_list_ref}+1;
+	print STDERR "\nInclusion list length: $incl_list_length entries.\n";
+}
+
 unshift @{$target_projects_ids_ref}, ("0000", "0001", "0002");
 
 
@@ -151,9 +159,6 @@ if($missing_sr_dirs){
 
 ###############################################################################
 
-my $dont_copy=0;
-
-
 # Try to make output dir
 make_dir($OutputDirectory);
 make_dir("$OutputDirectory/fastq");
@@ -167,43 +172,77 @@ foreach my $sr(@{$target_seq_runs_ref}){
 	
 	my $seqrun_full_dir="$SequencingRunsDirectory/$sr";
 
-	print STDERR "Looking for target files in: $SequencingRunsDirectory/$sr\n";
+	print STDERR "\nLooking for target files in: $SequencingRunsDirectory/$sr\n";
 
 	foreach my $projid (@{$target_projects_ids_ref}){
 
-		print STDERR "Looking for project ID: $projid\n";
+		print STDERR "\nLooking for project ID: $projid\n";
 
-		my @files=`ls $seqrun_full_dir/$RAW_FASTQ_FILES/$projid-*_R1_*.fastq.gz`;
+		#my @files=`ls $seqrun_full_dir/$RAW_FASTQ_FILES/$projid-*_R1_*.fastq.gz`;
+		my @files=`find $seqrun_full_dir/$RAW_FASTQ_FILES -regex '.*/$projid.*_R1_.*fastq.gz\$'`;
 
 		foreach my $file(@files){
 			chomp $file;
-			print STDERR "Copying file:\n\t$file\nto\n\t$OutputDirectory/$sr\n\n";
 
+
+			# See if sample is control
+			my $is_control=0;
+			my $fname_only=basename($file);
+			if(
+				$fname_only=~/^0000/ ||
+				$fname_only=~/^0001/ ||
+				$fname_only=~/^0002/)
+			{
+				$is_control=1;
+			}
+
+			# If not control, and not on list, exclude it
+			if(!$is_control && $incl_list_length>0){
+				my $onlist=0;
+				for(my $sidx=0; $sidx<$incl_list_length; $sidx++){
+					my $target=${$include_list_ref}[$sidx];
+					if($file=~/$target/){
+						print STDERR "\n\nFound match:\n";
+						print STDERR "[$target]: $file\n";
+						$onlist=1;
+					}
+				}
+
+				if(!$onlist){
+					next;
+				}
+			}
+
+			#print STDERR "Copying file:\n\t$file\nto\n\t$OutputDirectory/$sr\n\n";
+
+			# Get R1 and R2 names, based on list of R1 files
 			my $f1=$file;
 			my $f2=$f1;
 			$f2=~s/_R1_001.fastq.gz/_R2_001.fastq.gz/;
 
+			# Get filename without path
 			my $f1_fname=basename($f1);
 			my $f2_fname=basename($f2);
 
-			print STDERR "$f1_fname\n";
-			print STDERR "$f2_fname\n";
+			#print STDERR "$f1_fname\n";
+			#print STDERR "$f2_fname\n";
 
+			# Create unique new name across sequencing runs
 			my $f1_newname="$sr\_$f1_fname";
 			my $f2_newname="$sr\_$f2_fname";
 
-			print STDERR "$f1_newname\n";
-			print STDERR "$f2_newname\n";
+			#print STDERR "$f1_newname\n";
+			#print STDERR "$f2_newname\n";
 
+			# Keep track of fastq names and new filenames for tsv file
 			push @run_list, $sr;
 			push @file_list, $f1_fname;
 			push @f1_list, $f1_newname;
 			push @f2_list, $f2_newname;
 
-			if(!$dont_copy){
-				print STDERR `cp -s $f1 $OutputDirectory/fastq/$f1_newname`;
-				print STDERR `cp -s $f2 $OutputDirectory/fastq/$f2_newname`;
-			}
+			# Create symbolic link between new name and old location
+			print STDERR `cp -vs $f1 $OutputDirectory/fastq/$f1_newname`;
+			print STDERR `cp -vs $f2 $OutputDirectory/fastq/$f2_newname`;
 		}
 
 	}
@@ -211,7 +250,9 @@ foreach my $sr(@{$target_seq_runs_ref}){
 }
 
 my $num_entries=$#run_list+1;
-print STDERR "Num Entries: $num_entries\n";
+print STDERR "\n\nNum Entries/Samples to Process: $num_entries\n";
+
+###############################################################################
 
 my %sample_type_hash;
 
@@ -249,6 +290,9 @@ $organism_hash{"Mouse"}="Mus musculus";
 
 my $env_broad_scale_default="multicellular organism [UBERON:0000468]";
 
+###############################################################################
+# Generate output table
+
 my @header=(
 	"sample_name",
 	"library_id",
@@ -272,8 +316,8 @@ open(FH, ">$outfile") || die "Could not open $outfile.\n";
 print FH (join "\t", @header) . "\n";
 
 for(my $i=0; $i<$num_entries; $i++){
-	print STDERR "\n\n";
-	print STDERR "INPUT: $run_list[$i],$file_list[$i]\t$f1_list[$i]/$f2_list[$i]\n";
+	#print STDERR "INPUT: $run_list[$i],$file_list[$i]\t$f1_list[$i]/$f2_list[$i]\n";
+	print STDERR "Processing: $file_list[$i]\n";
 
 	# Parse file name
 	my @file_toks=split "_", $file_list[$i];
@@ -360,7 +404,6 @@ if($BuildTGZ){
 	print STDERR "********************************************************\n";
 	print STDERR "\n\n";
 }	
-
 
 ###############################################################################
 
