@@ -6,12 +6,12 @@ use strict;
 use FindBin;
 use lib "$FindBin::Bin";
 use Getopt::Std;
-use vars qw($opt_d $opt_s $opt_p $opt_o);
+use vars qw($opt_d $opt_s $opt_p $opt_o $opt_i $opt_t);
 use File::Basename;
 
 my $RAW_FASTQ_FILES="Run";
 
-getopts("d:s:p:o:");
+getopts("d:s:p:o:i:t");
 my $usage = "usage: 
 
 $0 
@@ -52,6 +52,16 @@ my $SequencingRunsListFname=$opt_s;
 my $ProjectIDsListFname=$opt_p;
 my $OutputDirectory=$opt_o;
 
+my $IncludeList="";
+if(defined($opt_i)){
+	$IncludeList=$opt_i;
+}
+
+my $BuildTGZ=0;
+if(defined($opt_t)){
+	$BuildTGZ=1;
+}
+
 ###############################################################################
 
 print STDERR "\n";
@@ -60,6 +70,8 @@ print STDERR "Sequencing Run Target List File Name: $SequencingRunsListFname\n";
 print STDERR "Project IDs List File Name: $ProjectIDsListFname\n";
 print STDERR "Output Directory: $OutputDirectory\n";
 print STDERR "\n";
+print STDERR "Include List: $IncludeList\n";
+print STDERR "Build TGZ: $BuildTGZ\n";
 
 ###############################################################################
 
@@ -332,6 +344,23 @@ for(my $i=0; $i<$num_entries; $i++){
 }
 
 close(FH);
+
+###############################################################################
+
+if($BuildTGZ){
+	print STDERR "\n\n";
+	print STDERR "Building tgz file...  This may take a while!\n";
+	# the h option deferences links
+	system("tar -cvzhf $OutputDirectory/fastq.tgz $OutputDirectory/fastq");
+}else{
+	print STDERR "\n\n";
+	print STDERR "********************************************************\n";
+	print STDERR "The option to build a fastq.tgz was not exercised.\n";
+	print STDERR "Make sure you specify the -t option make it so!.\n";
+	print STDERR "********************************************************\n";
+	print STDERR "\n\n";
+}	
+
 
 ###############################################################################
 
