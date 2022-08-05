@@ -386,7 +386,7 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 ##############################################################################
 
 # Open main output file
-pdf(paste(OutputRoot, ".ref_cmp.pdf", sep=""), height=8.5, width=11);
+pdf(paste(OutputRoot, ".ref_cmp.pdf", sep=""), height=8.5, width=14);
 
 plot_text(param_msg);
 
@@ -490,7 +490,7 @@ plot_text(cat_mesg);
 
 # Normalize
 cat("Normalizing counts...\n");
-counts=counts+.05; # Use smaller adjustment to maintain values similar relative abundance
+#counts=counts+.05; # Use smaller adjustment to maintain values similar relative abundance
 normalized=normalize(counts);
 
 # Reorder by abundance
@@ -552,7 +552,7 @@ calc_exp_lim=function(vals, mar){
 }
 
 
-
+# Plot points
 plot(refcat_only_mds[,1], refcat_only_mds[,2], xlab="", ylab="", 
 	xlim=calc_exp_lim(refcat_only_mds[,1], mar=.05),
 	main="MDS Reference Categories Only", 
@@ -560,11 +560,11 @@ plot(refcat_only_mds[,1], refcat_only_mds[,2], xlab="", ylab="",
 
 plot(refcat_only_renorm_mds[,1], refcat_only_renorm_mds[,2], xlab="", ylab="",
 	xlim=calc_exp_lim(refcat_only_renorm_mds[,1], mar=.05),
-	main="MDS Reference Categories Only, with Renormalization", 
+	main="MDS Reference Categories Only, with Renormal.", 
 	col=colors, cex=sizes, lwd=lwds);
 
 
-
+# Plot with labels
 plot(refcat_only_mds[,1], refcat_only_mds[,2], xlab="", ylab="", 
 	xlim=calc_exp_lim(refcat_only_mds[,1], .25),
 	main="MDS Reference Categories Only", 
@@ -573,56 +573,233 @@ text(refcat_only_mds[,1], refcat_only_mds[,2], sample_ids, cex=cexs, col=colors)
 
 plot(refcat_only_renorm_mds[,1], refcat_only_renorm_mds[,2], xlab="", ylab="",
 	xlim=calc_exp_lim(refcat_only_renorm_mds[,1], .25),
-	main="MDS Reference Categories Only, with Renormalization", 
+	main="MDS Reference Categories Only, with Renormal.", 
 	col="grey", cex=sizes/2);
 text(refcat_only_renorm_mds[,1], refcat_only_renorm_mds[,2], sample_ids, cex=cexs, col=colors);
 
-quit();
 
 ###############################################################################
 
-plot_against_reference=function(norm_mat, ref_id, qry_ids, title){
+plot_against_reference=function(norm_mat, hypo_ids, hist_ids, qry_ids, title){
 
-	ref_abund=norm_mat[ref_id,,drop=F];	
-	order_ix=order(ref_abund, decreasing=T);
-
+	# Sort decreasing by hypothetical abundance
+	hypo_ref_abund=norm_mat[hypo_ids,,drop=F];	
+	order_ix=order(hypo_ref_abund, decreasing=T);
 	norm_mat=norm_mat[,order_ix];
 
-	ref_abund=norm_mat[ref_id,,drop=F];
+	hypo_abund=norm_mat[hypo_ids,,drop=F];
+	hist_abund=norm_mat[hist_ids,,drop=F];
 	qry_abund=norm_mat[qry_ids,,drop=F];
 
+	median_hist_abund=apply(hist_abund, 2, median);
 	median_qry_abund=apply(qry_abund, 2, median);
 	
 	num_cat=ncol(norm_mat);
-	num_qry=length(qry_ids);
+	num_hist_ids=length(hist_ids);
+	num_qry_ids=length(qry_ids);
 
 	max_abund=max(norm_mat);
 
-	print(ref_abund);
 	par(mar=c(10, 3, 4, 1));
-	mids=barplot(ref_abund,
+	mids=barplot(hypo_abund,
 		ylim=c(0, max_abund*1.2), col="white",
 		las=2,
 		main=title
 	);
 
-	scat=rnorm(num_qry, 0, (mids[2]-mids[1])/16);
-	names(scat)=qry_ids;
+	scat_var=(mids[2]-mids[1])/16;
+	scat=rnorm(num_qry_ids+num_hist_ids, 0, scat_var);
+	names(scat)=c(qry_ids, hist_ids);
 
 	for(catix in 1:num_cat){
-		for(qix in qry_ids){
-			points(mids[catix]+scat[qix], norm_mat[qix, catix], col="cornflowerblue");
+		for(qix in hist_ids){
+			points(mids[catix]+scat[qix], norm_mat[qix, catix], col="blue");
 		}
-		points(mids[catix], median_qry_abund[catix], pch="-", cex=2, col="blue");
+
+		for(qix in qry_ids){
+			points(mids[catix]+scat[qix], norm_mat[qix, catix], col="green", lwd=1.1);
+		}
+
+		points(mids[catix], median_hist_abund[catix], pch="-", cex=3, col="blue");
+		points(mids[catix], median_qry_abund[catix], pch="-", cex=3, col="green", lwd=1.1);
 	}
 
 }
 
-plot_against_reference(refcat_only_mat, ref_samp_ids, qry_samp_ids, 
+plot_against_reference(refcat_only_mat, 
+	hypo_ref_samp_ids, hist_ref_samp_ids, qry_samp_ids,
 	"Reference Categories Only");
-plot_against_reference(refcat_only_renorm_mat, ref_samp_ids, qry_samp_ids, 
-	"Reference Categories Only, with Renormalization");
 
+plot_against_reference(refcat_only_renorm_mat,
+	hypo_ref_samp_ids, hist_ref_samp_ids, qry_samp_ids,
+	"Reference Categories Only, with Renormal.");
+
+###############################################################################
+
+plot_overlapping_histograms=function(norm_mat, hypo_ids, hist_ids, qry_ids){
+	
+	# Sort decreasing by hypothetical abundance
+        hypo_ref_abund=norm_mat[hypo_ids,,drop=F];
+        order_ix=order(hypo_ref_abund, decreasing=T);
+        norm_mat=norm_mat[,order_ix];
+
+        hypo_abund=norm_mat[hypo_ids,,drop=F];
+        hist_abund=norm_mat[hist_ids,,drop=F];
+        qry_abund=norm_mat[qry_ids,,drop=F];
+
+        median_hist_abund=apply(hist_abund, 2, median);
+        median_qry_abund=apply(qry_abund, 2, median);
+
+        num_cat=ncol(norm_mat);
+        num_hist_ids=length(hist_ids);
+        num_qry_ids=length(qry_ids);
+
+	par(mfrow=c(3,4));
+        par(mar=c(3,3,4,1));
+
+	catnames=colnames(norm_mat);
+	max_abund=max(norm_mat);
+
+        for(catix in 1:num_cat){
+
+		hypo_val=norm_mat[hypo_ids,catix];
+		hist_val=norm_mat[hist_ids,catix];
+		qry_val=norm_mat[qry_ids,catix];
+
+		test.res=wilcox.test(hist_val, qry_val);
+		pval=test.res$p.value;
+
+		if(pval<0.05){
+			sigcol="red";
+		}else{
+			sigcol="darkgreen";
+		}
+
+		h=hist(hist_val, main=catnames[catix], 
+			xlab="Relative Abundance", ylab="Frequency", 
+			col="blue",
+			breaks=seq(0, max_abund, length.out=20),
+		);
+
+		title(main=paste("p-value: ", round(pval,4), sep=""),
+			line=.9, cex.main=.85, col.main=sigcol);
+
+		abline(v=hypo_val, col="black", lwd=3);
+		abline(v=qry_val, col="green", lwd=2);
+		abline(v=qry_val, col="black", lwd=.5);
+
+
+        }
+
+}
+
+plot_overlapping_histograms(refcat_only_mat, hypo_ref_samp_ids, hist_ref_samp_ids, qry_samp_ids);
+
+###############################################################################
+
+generate_qry_ref_stats_table=function(norm_mat, hypo_ids, hist_ids, qry_ids){
+	
+	# Sort decreasing by hypothetical abundance
+        hypo_ref_abund=norm_mat[hypo_ids,,drop=F];
+        order_ix=order(hypo_ref_abund, decreasing=T);
+        norm_mat=norm_mat[,order_ix];
+
+        hypo_abund=norm_mat[hypo_ids,,drop=F];
+        hist_abund=norm_mat[hist_ids,,drop=F];
+        qry_abund=norm_mat[qry_ids,,drop=F];
+
+        median_hist_abund=apply(hist_abund, 2, median);
+        median_qry_abund=apply(qry_abund, 2, median);
+
+        num_cat=ncol(norm_mat);
+        num_hist_ids=length(hist_ids);
+        num_qry_ids=length(qry_ids);
+
+	catnames=colnames(norm_mat);
+
+	info_hdr=c(
+		"Category",
+		"Hypo_Abd",
+		"Hist_Abd",
+		"Qry_Abd",
+		"Hist_Stdev",
+		"Qry_Stdev",
+		"HypoQry_Diff",
+		"HistQry_Diff",
+		"HistQry_Pval",
+		"Signf"
+	);
+
+	tab=matrix("", nrow=num_cat, ncol=length(info_hdr));
+	colnames(tab)=info_hdr
+
+	signed_str=function(x){
+		if(x>0){
+			s="+";
+		}else if(x<0){
+			s="-";
+		}else{
+			s=" ";
+		}
+
+		return(
+			paste(s, round(abs(x), 4), sep="")
+		);
+	}
+
+        for(catix in 1:num_cat){
+
+		hypo_val=norm_mat[hypo_ids,catix];
+		hist_val=norm_mat[hist_ids,catix];
+		qry_val=norm_mat[qry_ids,catix];
+
+		test.res=wilcox.test(hist_val, qry_val);
+		pval=test.res$p.value;
+
+		tab[catix, "Category"]=catnames[catix];
+		tab[catix, "Hypo_Abd"]=round(hypo_val, 4);
+		tab[catix, "Hist_Abd"]=round(mean(hist_val), 4);
+		tab[catix, "Qry_Abd"]=round(mean(qry_val), 4);
+		tab[catix, "Hist_Stdev"]=round(sd(hist_val), 4);
+		tab[catix, "Qry_Stdev"]=round(sd(qry_val), 4);
+
+		tab[catix, "HypoQry_Diff"]=signed_str(mean(qry_val)-hypo_val);
+		tab[catix, "HistQry_Diff"]=signed_str(mean(qry_val)-mean(hist_val));
+		tab[catix, "HistQry_Pval"]=round(pval, 4);
+
+		s="";
+		if(pval<0.0001){
+			s="***";
+		}else if(pval<0.001){
+			s="**";
+		}else if(pval<0.01){
+			s="*";
+		}else if(pval<0.05){
+			s="-";
+		}else if(pval<0.1){
+			s=".";	
+		}
+
+		tab[catix, "Signf"]=s;
+        }
+	
+	return(tab);
+
+}
+
+table=generate_qry_ref_stats_table(refcat_only_mat, hypo_ref_samp_ids, hist_ref_samp_ids, qry_samp_ids);
+
+options(width=200);
+tab=capture.output({
+	print(table, quote=F, width=200);
+});
+
+print(tab);
+
+par(mfrow=c(1,1));
+plot_text(
+	tab
+);
 
 ###############################################################################
 
