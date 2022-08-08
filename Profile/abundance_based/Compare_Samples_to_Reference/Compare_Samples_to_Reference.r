@@ -600,7 +600,7 @@ plot_against_reference=function(norm_mat, hypo_ids, hist_ids, qry_ids, title){
 
 	max_abund=max(norm_mat);
 
-	par(mar=c(10, 3, 4, 1));
+	par(mar=c(13, 3, 4, 1));
 	mids=barplot(hypo_abund,
 		ylim=c(0, max_abund*1.2), col="white",
 		las=2,
@@ -800,6 +800,94 @@ par(mfrow=c(1,1));
 plot_text(
 	tab
 );
+
+###############################################################################
+
+# Extract only "remaining" categories not in Hypothetical
+all_nz_cat=colnames(normalized);
+all_nz_remaining_cat=setdiff(all_nz_cat, in_hypo_ref_cat);
+remaining_normalized=normalized[,all_nz_remaining_cat];
+
+# Sort by query 
+qry_remaining_abd=remaining_normalized[qry_samp_ids,,drop=F];
+mean_qry_remaining_abd=apply(qry_remaining_abd, 2, mean);
+qry_rem_sort_ix=order(mean_qry_remaining_abd, decreasing=T, method="shell");
+qry_remain_ordered_abd=remaining_normalized[,qry_rem_sort_ix,drop=F];
+
+# Sort by hist ref
+hist_remaining_abd=remaining_normalized[hist_ref_samp_ids,,drop=F];
+mean_hist_remaining_abd=apply(hist_remaining_abd, 2, mean);
+hist_rem_sort_ix=order(mean_hist_remaining_abd, decreasing=T, method="shell");
+hist_remain_ordered_abd=remaining_normalized[,hist_rem_sort_ix,drop=F];
+
+# Sort by combined
+mean_comb_remaining_abd=(mean_qry_remaining_abd+mean_hist_remaining_abd)/2;
+comb_rem_sort_ix=order(mean_comb_remaining_abd, decreasing=T, method="shell");
+comb_remain_ordered_abd=remaining_normalized[,comb_rem_sort_ix,drop=F];
+
+
+plot_qry_vs_ref=function(norm_mat, hist_ids, qry_ids, num_top, title){
+
+	num_cat=ncol(norm_mat);
+	num_top=min(num_top, num_cat);
+	
+	norm_mat=norm_mat[,1:num_top];
+
+	hist_abund=norm_mat[hist_ids,,drop=F];
+	qry_abund=norm_mat[qry_ids,,drop=F];
+
+	median_hist_abund=apply(hist_abund, 2, median);
+	median_qry_abund=apply(qry_abund, 2, median);
+	
+	num_hist_ids=length(hist_ids);
+	num_qry_ids=length(qry_ids);
+
+	max_abund=max(norm_mat);
+
+	par(mar=c(13, 3, 4, 1));
+	placeholder=rep(0, num_top);
+	names(placeholder)=colnames(norm_mat);
+	mids=barplot(placeholder,
+		ylim=c(0, max_abund*1.2), col="white",
+		las=2,
+		main=title
+	);
+
+	scat_var=(mids[2]-mids[1])/16;
+	scat=rnorm(num_qry_ids+num_hist_ids, 0, scat_var);
+	names(scat)=c(qry_ids, hist_ids);
+
+	for(catix in 1:num_top){
+		for(qix in hist_ids){
+			if(norm_mat[qix, catix]>0){
+				points(mids[catix]+scat[qix], norm_mat[qix, catix], col="blue");
+			}
+		}
+
+		for(qix in qry_ids){
+			if(norm_mat[qix, catix]>0){
+				points(mids[catix]+scat[qix], norm_mat[qix, catix], col="green", lwd=1.1);
+			}
+		}
+
+		points(mids[catix], median_hist_abund[catix], pch="-", cex=3, col="blue");
+		points(mids[catix], median_qry_abund[catix], pch="-", cex=3, col="green", lwd=1.1);
+	}
+
+}
+
+plot_qry_vs_ref(comb_remain_ordered_abd, hist_ref_samp_ids, qry_samp_ids, num_top=5, "Top 5 Combined Remainders");
+plot_qry_vs_ref(comb_remain_ordered_abd, hist_ref_samp_ids, qry_samp_ids, num_top=15, "Top 15 Combined Remainders");
+plot_qry_vs_ref(comb_remain_ordered_abd, hist_ref_samp_ids, qry_samp_ids, num_top=50, "Top 50 Combined Remainders");
+
+plot_qry_vs_ref(qry_remain_ordered_abd, hist_ref_samp_ids, qry_samp_ids, num_top=5, "Top 5 Query Remainders");
+plot_qry_vs_ref(qry_remain_ordered_abd, hist_ref_samp_ids, qry_samp_ids, num_top=15, "Top 15 Query Remainder");
+plot_qry_vs_ref(qry_remain_ordered_abd, hist_ref_samp_ids, qry_samp_ids, num_top=50, "Top 50 Query Remainder");
+
+plot_qry_vs_ref(hist_remain_ordered_abd, hist_ref_samp_ids, qry_samp_ids, num_top=5, "Top 5 Historical Remainders");
+plot_qry_vs_ref(hist_remain_ordered_abd, hist_ref_samp_ids, qry_samp_ids, num_top=15, "Top 15 Historical Remainders");
+plot_qry_vs_ref(hist_remain_ordered_abd, hist_ref_samp_ids, qry_samp_ids, num_top=50, "Top 50 Historical Remainders");
+
 
 ###############################################################################
 
