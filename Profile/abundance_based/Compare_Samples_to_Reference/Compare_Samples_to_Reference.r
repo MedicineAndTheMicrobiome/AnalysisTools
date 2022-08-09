@@ -493,6 +493,14 @@ cat("Normalizing counts...\n");
 #counts=counts+.05; # Use smaller adjustment to maintain values similar relative abundance
 normalized=normalize(counts);
 
+# Add centroids for hist and qry
+hist_centroid=apply(normalized[hist_ref_samp_ids,,drop=F], 2, mean);
+qry_centroid=apply(normalized[qry_samp_ids,,drop=F], 2, mean);
+normalized=rbind(normalized, hist_centroid, qry_centroid);
+#sample_ids=rownames(normalized);
+sample_ids=rownames(normalized);
+
+
 # Reorder by abundance
 cat("Reordering summary table categories by abundance...\n");
 mean_abund=apply(normalized, 2, mean);
@@ -524,25 +532,47 @@ refcat_only_renorm_mds=cmdscale(refcat_only_renorm_dist);
 par(mfrow=c(1,2));
 par(mar=c(2,2,3,1));
 
-colors=rep("blue", num_samples);
+num_mds_points=num_samples+2;
+
+colors=rep("blue", num_mds_points);
 names(colors)=sample_ids;
 colors[hypo_ref_samp_ids]="black";
 colors[qry_samp_ids]="green";
+colors["hist_centroid"]="blue";
+colors["qry_centroid"]="green";
 
-sizes=rep(1, num_samples);
+sizes=rep(1, num_mds_points);
 names(sizes)=sample_ids;
 sizes[hypo_ref_samp_ids]=3;
 sizes[qry_samp_ids]=2;
+sizes["hist_centroid"]=2.5;
+sizes["qry_centroid"]=2.5;
 
-lwds=rep(1, num_samples);
+lwds=rep(1, num_mds_points);
 names(lwds)=sample_ids;
 lwds[hypo_ref_samp_ids]=2;
 lwds[qry_samp_ids]=3;
+lwds["hist_centroid"]=1.5;
+lwds["qry_centroid"]=1.5;
 
-cexs=rep(.5, num_samples);
+cexs=rep(.5, num_mds_points);
 names(cexs)=sample_ids;
 cexs[hypo_ref_samp_ids]=.75;
 cexs[qry_samp_ids]=1;
+cexs["hist_centroid"]=.7;
+cexs["qry_centroid"]=.7;
+
+pchs=rep(1, num_mds_points);
+names(pchs)=sample_ids;
+pchs[hypo_ref_samp_ids]=1;
+pchs[qry_samp_ids]=1;
+pchs["hist_centroid"]=3;
+pchs["qry_centroid"]=3;
+
+sample_ids_no_centroids=sample_ids;
+names(sample_ids_no_centroids)=sample_ids;
+sample_ids_no_centroids["hist_centroid"]="";
+sample_ids_no_centroids["qry_centroid"]="";
 
 
 calc_exp_lim=function(vals, mar){
@@ -556,12 +586,12 @@ calc_exp_lim=function(vals, mar){
 plot(refcat_only_mds[,1], refcat_only_mds[,2], xlab="", ylab="", 
 	xlim=calc_exp_lim(refcat_only_mds[,1], mar=.05),
 	main="MDS Reference Categories Only", 
-	col=colors, cex=sizes, lwd=lwds);
+	col=colors, cex=sizes, lwd=lwds, pch=pchs);
 
 plot(refcat_only_renorm_mds[,1], refcat_only_renorm_mds[,2], xlab="", ylab="",
 	xlim=calc_exp_lim(refcat_only_renorm_mds[,1], mar=.05),
 	main="MDS Reference Categories Only, with Renormal.", 
-	col=colors, cex=sizes, lwd=lwds);
+	col=colors, cex=sizes, lwd=lwds, pch=pchs);
 
 
 # Plot with labels
@@ -569,13 +599,13 @@ plot(refcat_only_mds[,1], refcat_only_mds[,2], xlab="", ylab="",
 	xlim=calc_exp_lim(refcat_only_mds[,1], .25),
 	main="MDS Reference Categories Only", 
 	col="grey", cex=sizes/2);
-text(refcat_only_mds[,1], refcat_only_mds[,2], sample_ids, cex=cexs, col=colors);
+text(refcat_only_mds[,1], refcat_only_mds[,2], sample_ids_no_centroids, cex=cexs, col=colors);
 
 plot(refcat_only_renorm_mds[,1], refcat_only_renorm_mds[,2], xlab="", ylab="",
 	xlim=calc_exp_lim(refcat_only_renorm_mds[,1], .25),
 	main="MDS Reference Categories Only, with Renormal.", 
 	col="grey", cex=sizes/2);
-text(refcat_only_renorm_mds[,1], refcat_only_renorm_mds[,2], sample_ids, cex=cexs, col=colors);
+text(refcat_only_renorm_mds[,1], refcat_only_renorm_mds[,2], sample_ids_no_centroids, cex=cexs, col=colors);
 
 
 ###############################################################################
