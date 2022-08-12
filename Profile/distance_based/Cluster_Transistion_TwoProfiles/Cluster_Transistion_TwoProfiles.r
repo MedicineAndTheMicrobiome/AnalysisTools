@@ -1882,7 +1882,7 @@ for(k in 2:max_cuts){
 		same_clus=ifelse(
 			memberships[a_id[pix]]==memberships[b_id[pix]], 
 			memberships[a_id[pix]],
-			"grey"
+			"grey25"
 			);
 		pos_map[pix,]=c(b_pos, a_pos, same_clus);
 	}
@@ -2059,6 +2059,7 @@ for(k in 2:max_cuts){
 par(mar=c(4,4,4,1));
 plot(2:k, prop_change[2:k], ylim=c(0,1), main="Proportion Not Changing Clusters", 
 	ylab="Proportion", xlab="Cuts (k)", type="b");
+text(2:k, prop_change[2:k], sprintf("%3.3f", prop_change[2:k]), pos=3, cex=.8);
 abline(h=c(0,1), lty=2, col="blue");
 
 # Chisq test of homogeneity 
