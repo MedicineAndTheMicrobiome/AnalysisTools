@@ -98,6 +98,8 @@ load_count_table=function(fname){
 		line=readLines(fh,n=1);
 	}
 
+	close(fh);
+
 	# Flatten to get sample-to-represented map
 	repres=names(rep_to_sample_map);
 	sample_id_to_repmap=list();
@@ -114,6 +116,9 @@ load_count_table=function(fname){
 		}
 
 	}
+
+	# Sort the list items
+	sample_id_to_repmap=sample_id_to_repmap[order(names(sample_id_to_repmap))];
 
 	return(sample_id_to_repmap);
 }
@@ -240,12 +245,16 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 # Main Program Starts Here!
 ##############################################################################
 
-pdf(paste(OutputFnameRoot, ".pdf", sep=""), height=11, width=8.5);
+pdf(paste(OutputFnameRoot, ".taxa_class_analysis.pdf", sep=""), height=11, width=8.5);
 
 param_msg=capture.output({
-	cat("Taxonomy Filename: ", TaxonomyFile , "\n", sep="");
-	cat("Counts Filename: ", CountsFile, "\n", sep="");
-	cat("Output Filename Root: ", OutputFnameRoot, "\n", sep="");
+	cat("Taxonomy Filename:\n");
+	cat("  ", TaxonomyFile, "\n");
+	cat("\n");
+	cat("Counts Filename:\n");
+	cat("  ", CountsFile, "\n");
+	cat("\n");
+	cat("Output Filename Root: ", OutputFnameRoot, "\n");
 });
 
 # Load Counts
@@ -348,6 +357,7 @@ conf_list_to_stats=function(conf_list, subsamp_size=300){
 	lb95_conf=numeric(num_taxa);
 	ub95_conf=numeric(num_taxa);
 	num_reads=numeric(num_taxa);
+	total_reads=0;
 
 	names(median_conf)=taxa_names;
 	names(lb95_conf)=taxa_names;
@@ -360,6 +370,7 @@ conf_list_to_stats=function(conf_list, subsamp_size=300){
 		median_conf[i]=qnts[2];
 		ub95_conf[i]=qnts[3];
 		num_reads[i]=length(conf_list[[i]]);
+		total_reads=total_reads+num_reads[i];
 	}
 
 	sort_ix=order(num_reads, decreasing=T);
@@ -410,6 +421,7 @@ conf_list_to_stats=function(conf_list, subsamp_size=300){
 	results[["NumReads"]]=num_reads;
 	results[["Normalized"]]=normalized;
 	results[["Subsampled"]]=subsamp;
+	results[["TotalReads"]]=total_reads;
 	# Top + Remaining
 	results[["NumTop"]]=num_top_taxa;
 	results[["TopTaxaNames"]]=top_w_remaining_names;
@@ -444,6 +456,7 @@ plot_stats=function(stats_record, title){
 		names.arg="",
 		ylab="Abundance",
 		main=paste("Top Abundances: ", title, sep=""));
+	title(main=paste("Total Reads: ", stats_record[["TotalReads"]]), line=-.5, cex.main=1);
 
 	# Plot confidences
 	par(mar=c(15,5,2,1));
@@ -481,9 +494,12 @@ samp_ids=names(taxa_conf_list_by_sample);
 num_sample_ids=length(samp_ids);
 
 # Accumulate medians into single matrix
-overall_top_taxa=overall_stats[["TopTaxaNames"]];
+cat("Accumulating Medians into single matrix...\n");
+overall_top_taxa=setdiff(overall_stats[["TopTaxaNames"]], "remaining");
+cat("Overall Top Taxa:\n");
+print(overall_top_taxa);
 num_overall_top_taxa=overall_stats[["NumTop"]];
-sample_medians_mat=matrix(NA, nrow=num_sample_ids, ncol=num_overall_top_taxa+1);
+sample_medians_mat=matrix(NA, nrow=num_sample_ids, ncol=num_overall_top_taxa);
 rownames(sample_medians_mat)=samp_ids;
 colnames(sample_medians_mat)=overall_top_taxa;
 
@@ -495,16 +511,18 @@ for(smp_ix in samp_ids){
 	plot_stats(smp_stats, smp_ix);
 
 	for(tx_id in overall_top_taxa){
-		sample_medians_mat[smp_ix, tx_id]=smp_stats[["TopConfwRem_Med"]][tx_id];
+		sample_medians_mat[smp_ix, tx_id]=smp_stats[["MedianConfidence"]][tx_id];
 	}
 	i=i+1;
 }
 
+cat("Sampled Medians Matrix:\n");
 print(sample_medians_mat);
 
 ##############################################################################
 
 # Generate heatmap for across samples
+cat("Generating heatmap for confidences across samples...\n");
 max_samples_per_page=30;
 num_pages=ceiling(num_sample_ids/max_samples_per_page);
 for(i in 1:num_pages){
@@ -520,6 +538,7 @@ for(i in 1:num_pages){
 ##############################################################################
 # Generate barplot of medians with median sample confidences overlaid.
 # summarize medians
+cat("Generating barplots of medians of medians...\n");
 median_of_medians=apply(sample_medians_mat, 2, function(x){median(x, na.rm=T);});
 
 par(mfrow=c(1,1));
@@ -528,7 +547,7 @@ mids=barplot(median_of_medians, names.arg=colnames(sample_medians_mat), las=2,
 	main="Median Confidences Across Samples"
 );
 scatter=rnorm(num_sample_ids, 0, (mids[2]-mids[1])/10);
-for(tix in 1:(num_overall_top_taxa+1)){
+for(tix in 1:(num_overall_top_taxa)){
 	points(rep(mids[tix], num_sample_ids)+scatter, sample_medians_mat[,tix], col="blue");
 }
 
