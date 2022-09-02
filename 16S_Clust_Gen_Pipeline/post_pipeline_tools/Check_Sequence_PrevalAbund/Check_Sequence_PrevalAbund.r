@@ -7,18 +7,29 @@ library('getopt');
 library(stringr);
 
 options(useFancyQuotes=F);
-options(digits=5)
+options(digits=5);
+options(width=200);
 
 params=c(
 	"targets", "t", 1, "character",
 	"count_tab", "c", 1, "character",
 	"outputroot", "o", 1, "character",
 	"abund_cutoff", "A", 2, "numeric",
-	"prevl_cutoff", "P", 2, "numeric"
+	"prevl_cutoff", "P", 2, "numeric",
+	"fasta_file", "f", 2, "character",
+	"mothur_bin", "m", 2, "character",
+	"fa_extract_bin", "e", 2, "character",
+	"ref_taxa_align", "n", 2, "character",
+	"ref_taxa_tax", "x", 2, "character"
 );
 
 ABUND_CUTOFF=0.001;
 PREVL_CUTOFF=0.15;
+
+MOTHUR_DEF_BIN="/usr/bin/mothur_1.44.1/mothur/mothur";
+FASTA_EXTR_BIN="~/git/AnalysisTools/FASTA/Extract_Record_From_FASTA_By_List.pl";
+REF_ALGN="/home/kelvinli/git/AnalysisTools/16S_Clust_Gen_Pipeline/silva_reference/silva.nr_v138.align";
+REF_TAX="/home/kelvinli/git/AnalysisTools/16S_Clust_Gen_Pipeline/silva_reference/silva.nr_v138.tax";
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
 script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
@@ -31,6 +42,13 @@ usage = paste(
 	"\n",
 	"	[-A <abundance cutoff, default=", ABUND_CUTOFF, ">\n",
 	"	[-P <prevalence cutoff, default=", PREVL_CUTOFF, ">\n",
+	"\n",
+	"	Classification paramaters\n",
+	"	[-f <fasta of representative sequences>]\n",
+	"	[-m <mothur bin, default=", MOTHUR_DEF_BIN, ">]\n",
+	"	[-e <extraction script, default=", FASTA_EXTR_BIN, ">]\n",
+	"	[-n <reference taxa .align file, default=", REF_ALGN, ">]\n",
+	"	[-x <reference taxa .tax file, default=", REF_TAX, ">]\n",
 	"\n",
 	"This script will evaluate the prevalence and abundance of each\n",
 	"unique sequence.\n",
@@ -59,6 +77,28 @@ if(length(opt$prevl_cutoff)){
 	PrevalenceCutoff=opt$prevl_cutoff;
 }
 
+MothurBin=MOTHUR_DEF_BIN;
+FastaExtrBin=FASTA_EXTR_BIN;
+RefAlign=REF_ALGN;
+RefTax=REF_TAX;
+FastaFile="";
+
+
+if(length(opt$fasta_file)){
+	FastaFile=opt$fasta_file;
+}
+if(length(opt$mothur_bin)){
+	MothurBin=opt$mothur_bin;
+}
+if(length(opt$fa_extract_bin)){
+	FastaExtrBin=opt$fa_extract_bin;
+}
+if(length(opt$ref_taxa_align)){
+	RefAlign=opt$ref_taxa_align;
+}
+if(length(opt$ref_taxa_tax)){
+	RefTax=opt$ref_taxa_tax;
+}
 
 cat("\n");
 cat("Targets Filename: ", TargetsFile, "\n", sep="");
@@ -67,6 +107,10 @@ cat("Output Filename Root: ", OutputFnameRoot, "\n", sep="");
 cat("\n");
 cat("Abundance Cutoff: ", AbundanceCutoff, "\n", sep="");
 cat("Prevalence Cutoff: ", PrevalenceCutoff, "\n", sep="");
+cat("\n");
+cat("FASTA Filename: ", FastaFile, "\n", sep="");
+cat("Mothur Bin Path: ", MothurBin, "\n", sep="");
+cat("FASTA Extr Bin Path: ", FastaExtrBin, "\n", sep="");
 cat("\n");
 
 ##############################################################################
@@ -302,7 +346,7 @@ load_list=function(filename){
 # Main Program Starts Here!
 ##############################################################################
 
-pdf(paste(OutputFnameRoot, ".seq_check.pdf", sep=""), height=11, width=8.5);
+pdf(paste(OutputFnameRoot, ".seq_check.pdf", sep=""), height=11, width=10);
 
 param_msg=capture.output({
 	cat("Targets Filename:\n");
@@ -448,6 +492,12 @@ msg=c(
 print(msg);
 plot_text(msg);
 
+# Export extracted targets
+output_extr_lst_fn=paste(OutputFnameRoot, ".extr_targets.lst", sep="");
+fh=file(output_extr_lst_fn, "w");
+cat(file=fh, paste(extr_targ_seq_ids, collapse="\n"), "\n", sep="");
+close(fh);
+
 ##############################################################################
 
 msg=c(
@@ -538,6 +588,75 @@ plot(log_hdtar, ylab="Log10(Frequency)", main="Targeted", xlab="Log10(Abundance)
 mtext("Log Scale Comparison of Prevalence Distributions", outer=T, cex=1.5, font=2);
 
 ##############################################################################
+
+if(FastaFile != ""){
+
+	# Extract Fasta file
+	extracted_fasta_filename=paste(OutputFnameRoot, ".extr_targets.fasta", sep="");
+	cmd=paste(
+		FastaExtrBin, 
+			" -f ", FastaFile, 
+			" -l ", output_extr_lst_fn,
+			" > ", extracted_fasta_filename,
+		sep="");
+
+	cat(cmd, "\n");
+	system(cmd, wait=T);
+
+	# Run mothur's RDP classifier on it
+
+	cmd=paste(
+		MothurBin,
+			"\"#classify.seqs(",
+				"fasta=", extracted_fasta_filename, ", ",
+				"template=", RefAlign, ", ",
+				"taxonomy=", RefTax, ", ",
+				"cutoff=50", ", ",
+				"processors=16",
+			")\"", sep=" ");
+
+	cat(cmd, "\n");
+	system(cmd, wait=T);
+
+
+	# Get extension
+	split_res=strsplit(RefTax, "\\.")[[1]];
+	num_tok=length(split_res);
+	vers_ext=split_res[num_tok-1];
+	class_result_file=paste(OutputFnameRoot, ".extr_targets.", vers_ext, ".wang.taxonomy", sep="");
+	class_data=read.table(class_result_file, stringsAsFactors=F);
+	print(class_data);
+
+	# Merge classification results with stat matrix
+	colnames(class_data)=c("TargetSeqID", "FullTaxonomy");
+	num_class=nrow(class_data);
+	Genus=character(num_class);
+	names(Genus)=extr_targ_seq_ids;
+
+	for(i in 1:num_class){
+		tsid=class_data[i, "TargetSeqID"];
+		Genus[tsid]=strsplit(class_data[i,"FullTaxonomy"], ";")[[1]][6];
+	}
+
+	# Format output
+	extr_targ_stat_class_mat=cbind(extr_targ_stat_mat, Genus);
+	extr_targ_stat_class_mat_rounded=extr_targ_stat_class_mat;
+
+	extr_targ_stat_class_mat_rounded[,"Prevalence"]=
+		sprintf("%3.3f", as.numeric(extr_targ_stat_class_mat_rounded[,"Prevalence"]));
+	extr_targ_stat_class_mat_rounded[,"Abundance"]=
+		sprintf("%6.6f", as.numeric(extr_targ_stat_class_mat_rounded[,"Abundance"]));
+
+	# Output stats
+	msg=c(
+		"Classifications of Targeted Sequences:",
+		"",
+		capture.output(print(extr_targ_stat_class_mat_rounded, quote=F))
+	)
+
+	plot_text(msg);
+
+}
 
 cat("Done.\n");
 dev.off();
