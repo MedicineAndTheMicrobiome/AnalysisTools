@@ -457,7 +457,7 @@ num_singletons_target=sum(!non_sing_ix);
 min_prev=min(targ_stat_mat[,"Prevalence"]);
 
 points(log10(targ_stat_mat[non_sing_ix,"Abundance"]), 
-	targ_stat_mat[non_sing_ix,"Prevalence"], pch=4, col="red");
+	targ_stat_mat[non_sing_ix,"Prevalence"], pch=4, cex=1.2, col="red");
 
 if(num_singletons_target){
 	points(log_min_abund, min_prev, pch=4, col="red", cex=1.5);
@@ -604,7 +604,6 @@ if(FastaFile != ""){
 	system(cmd, wait=T);
 
 	# Run mothur's RDP classifier on it
-
 	cmd=paste(
 		MothurBin,
 			"\"#classify.seqs(",
@@ -618,8 +617,7 @@ if(FastaFile != ""){
 	cat(cmd, "\n");
 	system(cmd, wait=T);
 
-
-	# Get extension
+	# Get extension used in mothur's output
 	split_res=strsplit(RefTax, "\\.")[[1]];
 	num_tok=length(split_res);
 	vers_ext=split_res[num_tok-1];
@@ -652,9 +650,47 @@ if(FastaFile != ""){
 		"Classifications of Targeted Sequences:",
 		"",
 		capture.output(print(extr_targ_stat_class_mat_rounded, quote=F))
-	)
+	);
 
 	plot_text(msg);
+	
+	#######################################################################
+	# Regenerate scatter plot and label points with classifications. 
+
+	all_reps_above_cutoff= 
+		(stat_mat[,"Abundance"]>=AbundanceCutoff) &
+		(stat_mat[,"Prevalence"]>=PrevalenceCutoff);
+
+	par(mfrow=c(1,1));
+	plot(0,0, type="n", xlab="Log10(Abundance)", ylab="Prevalence",
+		xlim=c(log10(AbundanceCutoff),0), 
+		ylim=c(PrevalenceCutoff, max(stat_mat[,"Prevalence"])*1.1),
+		main="Sequences Above Cutoffs"
+	);
+
+	# Draw lines where the cutoffs are
+	abline(v=log10(AbundanceCutoff), col="green", lty="dashed");
+	abline(h=PrevalenceCutoff, col="blue", lty="dashed");
+	
+	# Plot all above cutoff
+	points(
+		log10(stat_mat[all_reps_above_cutoff,"Abundance"]),
+		stat_mat[all_reps_above_cutoff,"Prevalence"]);
+
+	# Mark targets above cutoff
+	points(
+		log10(targ_stat_mat[extract_targets_ix,"Abundance"]),
+		targ_stat_mat[extract_targets_ix,"Prevalence"],
+		pch=4, col="red", cex=1.2
+		);
+	
+	for(i in 1:num_class){
+		x=log10(as.numeric(extr_targ_stat_class_mat[i,"Abundance"]));
+		y=as.numeric(extr_targ_stat_class_mat[i,"Prevalence"]);
+		label=extr_targ_stat_class_mat[i,"Genus"];	
+		text(x, y, label, pos=3, font=2, cex=.8);
+	}
+	
 
 }
 
