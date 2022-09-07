@@ -9,7 +9,9 @@ options(useFancyQuotes=F);
 params=c(
 	"paired_map_file", "p", 1, "character",
 	"metadata_output", "o", 1, "character",
-	"category_name", "c", 2, "character"
+	"category_name", "c", 2, "character",
+	"acolname", "a", 2, "character",
+	"bcolname", "b", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -19,12 +21,14 @@ usage = paste(
 	"\nUsage:\n", script_name, "\n",
 	"	-p <paired map file>\n",
 	"	-o <output metdatafile>\n",
+	"	[-a <column name of sample ID A>]\n",
+	"	[-b <column name of sample ID B>]\n",
 	"	[-c <category name, default=Category>]\n",
 	"\n",
 	"This script will read in a paired map file and regenerate\n",
 	"a metadata/factor file.\n",
 	"\n",
-	"The format of the paired map needs the following columns:\n",
+	"The format of the paired map needs the following columns, unless the -a and -b options are specified:\n",
 	" 1.) subject id\n",
 	" 2.) first sample type's sample ids\n",
 	" 3.) second sample type's sample ids\n",
@@ -47,18 +51,41 @@ if(length(opt$category_name)){
 	CategoryName="Category";
 }
 
+if(length(opt$acolname)){
+	Acolname=opt$acolname;
+}else{
+	Acolname="";
+}
+
+if(length(opt$bcolname)){
+	Bcolname=opt$bcolname;
+}else{
+	Bcolname="";
+}
+
 cat("\n");
 cat("Paired Map File: ", PairedMapFile, "\n", sep="");
 cat("Output Metadata File: ", OutputMetadataFile, "\n", sep="");
 cat("Category Name: ", CategoryName, "\n", sep="");
 cat("\n");
 
+if(Acolname!=""){
+	cat("A Colname: ", Acolname, "\n");	
+}
+if(Bcolname!=""){
+	cat("B Colname: ", Bcolname, "\n");	
+}
+
 ##############################################################################
 
-load_paired=function(fname){
+load_paired=function(fname, acn=NULL, bcn=NULL){
 	cat("Loading Paired Map...\n");
 	table=data.frame(read.table(fname,  sep="\t", header=TRUE, 
 		row.names=1, check.names=FALSE, comment.char=""));
+
+	if(!is.null(acn) && !is.null(bcn)){
+		table=table[, c(acn, bcn)];
+	}
 
 	if(ncol(table)!=2){
 		cat("\n*************************************************************\n");
@@ -75,7 +102,14 @@ load_paired=function(fname){
 ##############################################################################
 
 # Load factors
-paired_map=load_paired(PairedMapFile);
+if(Acolname!="" && Bcolname!=""){
+	paired_map=load_paired(PairedMapFile, Acolname, Bcolname);
+}else if(Acolname=="" && Bcolname==""){
+	paired_map=load_paired(PairedMapFile);
+}else{
+	cat("Error: If A or B colname is specified, then both A & B must be specified.\n");
+}
+
 subject_ids=rownames(paired_map);
 pair_category=colnames(paired_map);
 
