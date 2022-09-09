@@ -419,7 +419,7 @@ CUTOFF=0.95;
 abund_cutoff_ix=sum(cumsum(stat_matrix_by_abundance[,"Abundance"]));
 cat("Num Representives to go to cutoff:", abund_cutoff_ix, "\n");
 
-NUM_PLOT=1000;
+NUM_PLOT=1500;
 top_targ_num=min(NUM_PLOT, num_rep_sequences);
 top_reps=unique(c(
 	rownames(stat_matrix_by_abundance[1:top_targ_num,]),
@@ -434,7 +434,8 @@ plot(
 	xlab="Log10(Abundance)",
 	ylab="Prevalence",
 	xlim=c(log_min_abund, log_max_abund),
-	ylim=c(0,1)
+	ylim=c(0,1),
+	main=paste("Top ", NUM_PLOT, " Representative Sequnces", sep="")
 );
 
 abline(v=log10(AbundanceCutoff), col="green", lty="dashed");
@@ -462,8 +463,10 @@ non_sing_ix=(targ_stat_mat[,"NumReads"]>1);
 num_singletons_target=sum(!non_sing_ix);
 min_prev=min(targ_stat_mat[,"Prevalence"]);
 
-points(log10(targ_stat_mat[non_sing_ix,"Abundance"]), 
-	targ_stat_mat[non_sing_ix,"Prevalence"], pch=4, cex=1.2, col="red");
+top_targ=intersect(top_reps, targets);
+
+points(log10(targ_stat_mat[top_targ,"Abundance"]), 
+	targ_stat_mat[top_targ,"Prevalence"], pch=4, cex=1.2, col="red");
 
 if(num_singletons_target){
 	points(log_min_abund, min_prev, pch=4, col="red", cex=1.5);
