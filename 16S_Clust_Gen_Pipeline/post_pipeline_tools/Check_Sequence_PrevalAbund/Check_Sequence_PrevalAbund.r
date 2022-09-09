@@ -40,18 +40,24 @@ usage = paste(
 	"	-c <Count Table Filename>\n",
 	"	-o <Output Filename Root>\n",	
 	"\n",
-	"	[-A <abundance cutoff, default=", ABUND_CUTOFF, ">\n",
-	"	[-P <prevalence cutoff, default=", PREVL_CUTOFF, ">\n",
+	"	[-A <abundance cutoff, default=", ABUND_CUTOFF, ">]\n",
+	"	[-P <prevalence cutoff, default=", PREVL_CUTOFF, ">]\n",
 	"\n",
 	"	Classification paramaters\n",
 	"	[-f <fasta of representative sequences>]\n",
-	"	[-m <mothur bin, default=", MOTHUR_DEF_BIN, ">]\n",
-	"	[-e <extraction script, default=", FASTA_EXTR_BIN, ">]\n",
-	"	[-n <reference taxa .align file, default=", REF_ALGN, ">]\n",
-	"	[-x <reference taxa .tax file, default=", REF_TAX, ">]\n",
+	"	[-m <mothur bin, \n\t\tdefault=", MOTHUR_DEF_BIN, ">]\n",
+	"	[-e <extraction script, \n\t\tdefault=", FASTA_EXTR_BIN, ">]\n",
+	"	[-n <reference taxa .align file, \n\t\tdefault=", REF_ALGN, ">]\n",
+	"	[-x <reference taxa .tax file, \n\t\tdefault=", REF_TAX, ">]\n",
 	"\n",
 	"This script will evaluate the prevalence and abundance of each\n",
 	"unique sequence.\n",
+	"\n",
+	"Within the Mothur pipeline the files should be applied\n",
+	"to the following parameters:\n",
+	" Target Sequence List: *precluster.denovo.vsearch.accnos\n",
+	" Count Table:          *precluster.count_table\n",
+	" FASTA File:		*precluster.fasta\n",
 	"\n");
 
 if(
@@ -498,6 +504,19 @@ fh=file(output_extr_lst_fn, "w");
 cat(file=fh, paste(extr_targ_seq_ids, collapse="\n"), "\n", sep="");
 close(fh);
 
+# Export all seq above cutoffs
+extract_all_above_ix=
+	(stat_mat[,"Abundance"]>=AbundanceCutoff) & 
+	(stat_mat[,"Prevalence"]>=PrevalenceCutoff);
+all_above_stat_mat=stat_mat[extract_all_above_ix,];
+all_above_seq_ids=rownames(all_above_stat_mat);
+cat("All Above Sequence IDs:\n");
+print(all_above_seq_ids);
+output_above_lst_fn=paste(OutputFnameRoot, ".above_cutoff.lst", sep="");
+fh=file(output_above_lst_fn, "w");
+cat(file=fh, paste(all_above_seq_ids, collapse="\n"), "\n", sep="");
+close(fh);
+
 ##############################################################################
 
 msg=c(
@@ -591,12 +610,19 @@ mtext("Log Scale Comparison of Prevalence Distributions", outer=T, cex=1.5, font
 
 if(FastaFile != ""){
 
+	# seq ids are from: all_above_stat_mat
+	cat("All Seq IDs above cutoffs matrix:\n");
+	print(all_above_stat_mat);
+	cat("Targeted Seqs above cutoff:\n");
+	print(extr_targ_seq_ids);
+	all_above_seq_ids=rownames(all_above_stat_mat);
+
 	# Extract Fasta file
-	extracted_fasta_filename=paste(OutputFnameRoot, ".extr_targets.fasta", sep="");
+	extracted_fasta_filename=paste(OutputFnameRoot, ".above_cutoff.fasta", sep="");
 	cmd=paste(
 		FastaExtrBin, 
 			" -f ", FastaFile, 
-			" -l ", output_extr_lst_fn,
+			" -l ", output_above_lst_fn, 
 			" > ", extracted_fasta_filename,
 		sep="");
 
@@ -621,45 +647,53 @@ if(FastaFile != ""){
 	split_res=strsplit(RefTax, "\\.")[[1]];
 	num_tok=length(split_res);
 	vers_ext=split_res[num_tok-1];
-	class_result_file=paste(OutputFnameRoot, ".extr_targets.", vers_ext, ".wang.taxonomy", sep="");
+	class_result_file=paste(OutputFnameRoot, ".above_cutoff.", vers_ext, ".wang.taxonomy", sep="");
 	class_data=read.table(class_result_file, stringsAsFactors=F);
-	print(class_data);
 
 	# Merge classification results with stat matrix
 	colnames(class_data)=c("TargetSeqID", "FullTaxonomy");
+	print(class_data);
 	num_class=nrow(class_data);
-	Genus=character(num_class);
-	names(Genus)=extr_targ_seq_ids;
+	genus=character(num_class);
+	tsid=character(num_class);
 
 	for(i in 1:num_class){
-		tsid=class_data[i, "TargetSeqID"];
-		Genus[tsid]=strsplit(class_data[i,"FullTaxonomy"], ";")[[1]][6];
+		tsid[i]=class_data[i, "TargetSeqID"];
+		genus[i]=strsplit(class_data[i,"FullTaxonomy"], ";")[[1]][6];
 	}
+	names(genus)=tsid;
+
 
 	# Format output
-	extr_targ_stat_class_mat=cbind(extr_targ_stat_mat, Genus);
-	extr_targ_stat_class_mat_rounded=extr_targ_stat_class_mat;
+	Genus=rep("", nrow(all_above_stat_mat));
+	all_above_stat_mat_char=cbind(all_above_stat_mat, Genus);
+	rownames(all_above_stat_mat_char)=rownames(all_above_stat_mat);
 
-	extr_targ_stat_class_mat_rounded[,"Prevalence"]=
-		sprintf("%3.3f", as.numeric(extr_targ_stat_class_mat_rounded[,"Prevalence"]));
-	extr_targ_stat_class_mat_rounded[,"Abundance"]=
-		sprintf("%6.6f", as.numeric(extr_targ_stat_class_mat_rounded[,"Abundance"]));
+	all_above_ids=rownames(all_above_stat_mat);
+	all_above_stat_mat_char[all_above_ids, "Genus"]=genus[all_above_ids];
+
+	all_above_stat_mat_char[,"Prevalence"]=
+		sprintf("%3.3f", as.numeric(all_above_stat_mat[,"Prevalence"]));
+	all_above_stat_mat_char[,"Abundance"]=
+		sprintf("%6.6f", as.numeric(all_above_stat_mat[,"Abundance"]));
+
+	# Mark the rows that were targeted
+	Targets=rep("", nrow(all_above_stat_mat));
+	all_above_stat_mat_char=cbind(all_above_stat_mat_char, Targets);
+	all_above_stat_mat_char[extr_targ_seq_ids, "Targets"]="*";
 
 	# Output stats
 	msg=c(
 		"Classifications of Targeted Sequences:",
 		"",
-		capture.output(print(extr_targ_stat_class_mat_rounded, quote=F))
+		capture.output(print(all_above_stat_mat_char, quote=F))
 	);
-
+	
+	print(msg);
 	plot_text(msg);
 	
 	#######################################################################
 	# Regenerate scatter plot and label points with classifications. 
-
-	all_reps_above_cutoff= 
-		(stat_mat[,"Abundance"]>=AbundanceCutoff) &
-		(stat_mat[,"Prevalence"]>=PrevalenceCutoff);
 
 	par(mfrow=c(1,1));
 	plot(0,0, type="n", xlab="Log10(Abundance)", ylab="Prevalence",
@@ -674,21 +708,29 @@ if(FastaFile != ""){
 	
 	# Plot all above cutoff
 	points(
-		log10(stat_mat[all_reps_above_cutoff,"Abundance"]),
-		stat_mat[all_reps_above_cutoff,"Prevalence"]);
+		log10(all_above_stat_mat[,"Abundance"]),
+		all_above_stat_mat[,"Prevalence"]);
 
 	# Mark targets above cutoff
 	points(
-		log10(targ_stat_mat[extract_targets_ix,"Abundance"]),
-		targ_stat_mat[extract_targets_ix,"Prevalence"],
+		log10(all_above_stat_mat[extr_targ_seq_ids,"Abundance"]),
+		all_above_stat_mat[extr_targ_seq_ids,"Prevalence"],
 		pch=4, col="red", cex=1.2
 		);
 	
+	# Label all the classifications
 	for(i in 1:num_class){
-		x=log10(as.numeric(extr_targ_stat_class_mat[i,"Abundance"]));
-		y=as.numeric(extr_targ_stat_class_mat[i,"Prevalence"]);
-		label=extr_targ_stat_class_mat[i,"Genus"];	
-		text(x, y, label, pos=3, font=2, cex=.8);
+		x=log10(as.numeric(all_above_stat_mat[i,"Abundance"]));
+		y=as.numeric(all_above_stat_mat[i,"Prevalence"]);
+		label=all_above_stat_mat_char[i,"Genus"];	
+		if(any(all_above_seq_ids[i]==extr_targ_seq_ids)){
+			labcol="black";
+			labcex=1;
+		}else{
+			labcol="grey40";
+			labcex=.8;
+		}
+		text(x, y, label, pos=3, font=2, cex=labcex, col=labcol);
 	}
 	
 
