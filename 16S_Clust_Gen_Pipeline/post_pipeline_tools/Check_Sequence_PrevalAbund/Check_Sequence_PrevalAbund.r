@@ -20,7 +20,8 @@ params=c(
 	"mothur_bin", "m", 2, "character",
 	"fa_extract_bin", "e", 2, "character",
 	"ref_taxa_align", "n", 2, "character",
-	"ref_taxa_tax", "x", 2, "character"
+	"ref_taxa_tax", "x", 2, "character",
+	"tag_name", "T", 2, "character"
 );
 
 ABUND_CUTOFF=0.001;
@@ -49,6 +50,8 @@ usage = paste(
 	"	[-e <extraction script, \n\t\tdefault=", FASTA_EXTR_BIN, ">]\n",
 	"	[-n <reference taxa .align file, \n\t\tdefault=", REF_ALGN, ">]\n",
 	"	[-x <reference taxa .tax file, \n\t\tdefault=", REF_TAX, ">]\n",
+	"\n",
+	"	[-T <tag name>]\n",
 	"\n",
 	"This script will evaluate the prevalence and abundance of each\n",
 	"unique sequence.\n",
@@ -106,6 +109,31 @@ if(length(opt$ref_taxa_tax)){
 	RefTax=opt$ref_taxa_tax;
 }
 
+
+# Setup TagName Hooks
+if(length(opt$tag_name)){
+        TagName=opt$tag_name;
+}else{
+	TagName=tail(strsplit(OutputFnameRoot, "/")[[1]],1);
+}
+cat("Setting TagName Hook: ", TagName, "\n");
+setHook("plot.new",
+	function(){
+		cat("Hook called.\n");
+		if(par()$page==T){
+			oma_orig=par()$oma;
+			exp_oma=oma_orig;
+			exp_oma[1]=max(exp_oma[1], 1);
+			par(oma=exp_oma);
+			mtext(paste("[", TagName, "]", sep=""), side=1, line=exp_oma[1]-1,
+				outer=T, col="steelblue4", font=2, cex=.8, adj=.97);
+			par(oma=oma_orig);
+		}
+	}, "append");
+
+
+
+
 cat("\n");
 cat("Targets Filename: ", TargetsFile, "\n", sep="");
 cat("Counts Filename: ", CountsFile, "\n", sep="");
@@ -118,6 +146,7 @@ cat("FASTA Filename: ", FastaFile, "\n", sep="");
 cat("Mothur Bin Path: ", MothurBin, "\n", sep="");
 cat("FASTA Extr Bin Path: ", FastaExtrBin, "\n", sep="");
 cat("\n");
+cat("Tag Name: ", TagName, "\n", sep="");
 
 ##############################################################################
 
