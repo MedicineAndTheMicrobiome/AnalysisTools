@@ -352,7 +352,7 @@ load_list=function(filename){
 # Main Program Starts Here!
 ##############################################################################
 
-pdf(paste(OutputFnameRoot, ".seq_check.pdf", sep=""), height=11, width=10);
+pdf(paste(OutputFnameRoot, ".seq_check.pdf", sep=""), height=11, width=13);
 
 param_msg=capture.output({
 	cat("Targets Filename:\n");
@@ -687,7 +687,7 @@ if(FastaFile != ""){
 
 	# Output stats
 	msg=c(
-		"Classifications of Targeted Sequences:",
+		"Classifications of Sequences Above Cutoffs:",
 		"",
 		capture.output(print(all_above_stat_mat_char, quote=F))
 	);
