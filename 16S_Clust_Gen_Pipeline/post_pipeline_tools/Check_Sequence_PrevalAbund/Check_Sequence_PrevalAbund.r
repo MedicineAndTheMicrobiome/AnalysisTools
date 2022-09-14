@@ -16,6 +16,7 @@ params=c(
 	"outputroot", "o", 1, "character",
 	"abund_cutoff", "A", 2, "numeric",
 	"prevl_cutoff", "P", 2, "numeric",
+	"class_cutoff", "C", 2, "numeric",
 	"fasta_file", "f", 2, "character",
 	"mothur_bin", "m", 2, "character",
 	"fa_extract_bin", "e", 2, "character",
@@ -26,6 +27,7 @@ params=c(
 
 ABUND_CUTOFF=0.001;
 PREVL_CUTOFF=0.15;
+CLASS_CUTOFF=0.80;
 
 MOTHUR_DEF_BIN="/usr/bin/mothur_1.44.1/mothur/mothur";
 FASTA_EXTR_BIN="~/git/AnalysisTools/FASTA/Extract_Record_From_FASTA_By_List.pl";
@@ -43,6 +45,7 @@ usage = paste(
 	"\n",
 	"	[-A <abundance cutoff, default=", ABUND_CUTOFF, ">]\n",
 	"	[-P <prevalence cutoff, default=", PREVL_CUTOFF, ">]\n",
+	"	[-C <taxa classification cutoff, default=", CLASS_CUTOFF, ">]\n",
 	"\n",
 	"	Classification paramaters\n",
 	"	[-f <fasta of representative sequences>]\n",
@@ -84,6 +87,11 @@ if(length(opt$abund_cutoff)){
 PrevalenceCutoff=PREVL_CUTOFF;
 if(length(opt$prevl_cutoff)){
 	PrevalenceCutoff=opt$prevl_cutoff;
+}
+
+ClassificationCutoff=CLASS_CUTOFF;
+if(length(opt$class_cutoff)){
+	ClassificationCutoff=opt$class_cutoff;
 }
 
 MothurBin=MOTHUR_DEF_BIN;
@@ -141,6 +149,7 @@ cat("Output Filename Root: ", OutputFnameRoot, "\n", sep="");
 cat("\n");
 cat("Abundance Cutoff: ", AbundanceCutoff, "\n", sep="");
 cat("Prevalence Cutoff: ", PrevalenceCutoff, "\n", sep="");
+cat("Classification Cutoff: ", ClassificationCutoff, "\n", sep="");
 cat("\n");
 cat("FASTA Filename: ", FastaFile, "\n", sep="");
 cat("Mothur Bin Path: ", MothurBin, "\n", sep="");
@@ -681,44 +690,72 @@ if(FastaFile != ""){
 	vers_ext=split_res[num_tok-1];
 	class_result_file=paste(OutputFnameRoot, ".above_cutoff.", vers_ext, ".wang.taxonomy", sep="");
 	class_data=read.table(class_result_file, stringsAsFactors=F);
+	colnames(class_data)=c("SequenceID", "FullTaxonomy");
 
 	# Merge classification results with stat matrix
-	colnames(class_data)=c("TargetSeqID", "FullTaxonomy");
 	print(class_data);
 	num_class=nrow(class_data);
-	genus=character(num_class);
-	tsid=character(num_class);
+
+	class_info_colnames=c("SequenceID", "Genus(Conf)", "Genus", "Confidence", "Target", "Rescue");
+	num_class_info=length(class_info_colnames);
+	class_info_mat=matrix("", nrow=num_class, ncol=num_class_info);
+	colnames(class_info_mat)=class_info_colnames;
 
 	for(i in 1:num_class){
-		tsid[i]=class_data[i, "TargetSeqID"];
-		genus[i]=strsplit(class_data[i,"FullTaxonomy"], ";")[[1]][6];
+		class_info_mat[i, "SequenceID"]=class_data[i, "SequenceID"];
+		genus_wCon=strsplit(class_data[i,"FullTaxonomy"], ";")[[1]][6];
+		class_info_mat[i, "Genus(Conf)"]=genus_wCon;
+		captures=str_match(genus_wCon, "^(.+)\\((\\d+)\\)$");
+		class_info_mat[i, "Genus"]=captures[,2];
+		class_info_mat[i, "Confidence"]=captures[,3];
+		
 	}
-	names(genus)=tsid;
+	rownames(class_info_mat)=class_info_mat[, "SequenceID"];
+	#print(class_info_mat);	
 
+	class_info_mat[extr_targ_seq_ids,"Target"]="*";
 
-	# Format output
-	Genus=rep("", nrow(all_above_stat_mat));
-	all_above_stat_mat_char=cbind(all_above_stat_mat, Genus);
-	rownames(all_above_stat_mat_char)=rownames(all_above_stat_mat);
+	# Find targets that should be untargeted
+	class_cutoff_perc=ClassificationCutoff*100;
+	rescued=character();
+	for(seq_id in rownames(class_info_mat)){
+		if(
+			class_info_mat[seq_id, "Target"]=="*" &&
+			as.numeric(class_info_mat[seq_id, "Confidence"])>class_cutoff_perc){
+				class_info_mat[seq_id,"Rescue"]="*";
+				rescued=c(rescued, seq_id);
+		}
+	}
 
+	# Combine stats with classifications
 	all_above_ids=rownames(all_above_stat_mat);
-	all_above_stat_mat_char[all_above_ids, "Genus"]=genus[all_above_ids];
+	all_above_stat_mat_char=cbind(all_above_stat_mat[all_above_ids,], class_info_mat[all_above_ids,]);
 
 	all_above_stat_mat_char[,"Prevalence"]=
-		sprintf("%3.3f", as.numeric(all_above_stat_mat[,"Prevalence"]));
+		sprintf("%3.3f", as.numeric(all_above_stat_mat_char[,"Prevalence"]));
 	all_above_stat_mat_char[,"Abundance"]=
-		sprintf("%6.6f", as.numeric(all_above_stat_mat[,"Abundance"]));
+		sprintf("%6.6f", as.numeric(all_above_stat_mat_char[,"Abundance"]));
 
-	# Mark the rows that were targeted
-	Targets=rep("", nrow(all_above_stat_mat));
-	all_above_stat_mat_char=cbind(all_above_stat_mat_char, Targets);
-	all_above_stat_mat_char[extr_targ_seq_ids, "Targets"]="*";
+
+	print(all_above_stat_mat);
 
 	# Output stats
+	out_col=c(
+		"NumSamples",
+		"NumReads",
+		"Prevalence",
+		"Abundance",
+		"Genus",
+		"Confidence",
+		"Target",
+		"Rescue"
+	);
 	msg=c(
-		"Classifications of Sequences Above Cutoffs:",
+		paste("Untarget Classification Cutoff: ", class_cutoff_perc),
 		"",
-		capture.output(print(all_above_stat_mat_char, quote=F))
+		"Classifications of Sequences Above Abundance/Prevlence Cutoffs:",
+		"",
+		capture.output(print(all_above_stat_mat_char[,out_col,drop=F], quote=F))
 	);
 	
 	print(msg);
@@ -754,8 +791,8 @@ if(FastaFile != ""){
 	for(i in 1:num_class){
 		x=log10(as.numeric(all_above_stat_mat[i,"Abundance"]));
 		y=as.numeric(all_above_stat_mat[i,"Prevalence"]);
-		label=all_above_stat_mat_char[i,"Genus"];	
-		if(any(all_above_seq_ids[i]==extr_targ_seq_ids)){
+		label=all_above_stat_mat_char[i,"Genus(Conf)"];	
+		if(any(all_above_seq_ids[i]==targets)){
 			labcol="black";
 			labcex=1;
 		}else{
@@ -764,6 +801,35 @@ if(FastaFile != ""){
 		}
 		text(x, y, label, pos=3, font=2, cex=labcex, col=labcol);
 	}
+
+	#######################################################################
+
+	msg=c(
+		"Rescue Sequence ID List: ",
+		"",
+		rescued
+	);
+
+	plot_text(msg);
+	
+	#######################################################################
+	# Remove targets that had good classifications from target list and export
+	targets_wo_rescues=setdiff(targets, rescued);
+
+	num_orig_targets=length(targets);
+	num_rescued=length(rescued);
+	num_targ_wo_rescues=length(targets_wo_rescues);
+
+	if((num_orig_targets-num_rescued)!=num_targ_wo_rescues){
+		cat("Error with rescusing sequences from target list.\n");
+		quit(-1);
+	}
+
+	fh=file(paste(TargetsFile, ".wo_rescued", sep=""), "w");
+	for(seq in targets_wo_rescues){
+		cat(file=fh, seq, "\n", sep="");
+	}
+	close(fh);
 	
 
 }
