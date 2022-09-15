@@ -47,7 +47,7 @@ my $MULTINOMIAL_ANALYSIS_BIN="$FindBin::Bin/../Profile/abundance_based/Fit_Multi
 
 # Chimera Rescue
 my $CHIMERA_RESCUE_BIN="$POSTPIPELINE_TOOL_PATH/Check_Sequence_PrevalAbund/Check_Sequence_PrevalAbund.r";
-my $FASTA_RECORDS_EXTRACTION_BIN="$FindBin::Bin/../FASTA/Extract_Record_From_FASTA_By_List.pl";
+my $FASTA_RECORDS_EXTRACTION_BIN="$FindBin::Bin/pipeline_utilities/Extract_Record_From_FASTA_By_List.pl";
 
 # Classification Confidence
 my $CLASSIFICATION_CONFIDENCE_ANALYSIS_BIN="$POSTPIPELINE_TOOL_PATH/Analyze_Taxonomic_Classifications/Analyze_Taxonomic_Classifications.r";
@@ -593,6 +593,17 @@ execute_mothur_cmd(
 #       IN.unique.good.filter.unique.precluster.pick.16S_Reference.wang.tax.summary
 #       IN.unique.good.filter.unique.precluster.pick.16S_Reference.wang.taxonomy
 #
+	
+############################################################################## 
+# Perform classification confidence analysis
+
+my $exec_string="
+	$CLASSIFICATION_CONFIDENCE_ANALYSIS_BIN	
+		-t $in.unique.good.filter.unique.precluster.pick.$reference_name.wang.taxonomy
+		-c $in.unique.good.filter.unique.precluster.pick.count_table
+		-o $in
+";
+exec_cmd($exec_string, "$output_dir", "classification_confidence_analysis");
 
 #####################################################################
 
@@ -887,19 +898,6 @@ if(!($skipRDPsteps)){
 	# Compare all 2000 samples with negative control
 	# Compare all 3000 samples with negative control
 
-	############################################################################## 
-	# Perform classification confidence analysis
-
-	my $exec_string="
-		$CLASSIFICATION_CONFIDENCE_ANALYSIS_BIN	
-			-t $in.unique.good.filter.unique.precluster.pick.$reference_name.wang.taxonomy
-			-c $in.unique.good.filter.unique.precluster.pick.count_table
-			-o $in
-			-f $in.unique.good.filter.unique.precluster.pick.fasta
-			-m $MOTHUR_BIN
-			-e $FASTA_RECORDS_EXTRACTION_BIN
-	";
-	exec_cmd($exec_string, "$output_dir", "classification_confidence_analysis");
 
 	############################################################################## 
 }else{
