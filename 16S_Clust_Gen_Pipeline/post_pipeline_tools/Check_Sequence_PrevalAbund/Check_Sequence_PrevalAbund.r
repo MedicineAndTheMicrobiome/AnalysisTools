@@ -31,8 +31,8 @@ CLASS_CUTOFF=0.80;
 
 MOTHUR_DEF_BIN="/usr/bin/mothur_1.44.1/mothur/mothur";
 FASTA_EXTR_BIN="~/git/AnalysisTools/FASTA/Extract_Record_From_FASTA_By_List.pl";
-REF_ALGN="/home/kelvinli/git/AnalysisTools/16S_Clust_Gen_Pipeline/silva_reference/silva.nr_v138.align";
-REF_TAX="/home/kelvinli/git/AnalysisTools/16S_Clust_Gen_Pipeline/silva_reference/silva.nr_v138.tax";
+REF_ALGN="/home/kelvinli/git/AnalysisTools/16S_Clust_Gen_Pipeline/silva_reference/silva_nr_v138.align";
+REF_TAX="/home/kelvinli/git/AnalysisTools/16S_Clust_Gen_Pipeline/silva_reference/silva_nr_v138.tax";
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
 script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
@@ -685,10 +685,11 @@ if(FastaFile != ""){
 	system(cmd, wait=T);
 
 	# Get extension used in mothur's output
-	split_res=strsplit(RefTax, "\\.")[[1]];
+	split_res=strsplit(RefTax, "/")[[1]];
 	num_tok=length(split_res);
-	vers_ext=split_res[num_tok-1];
-	class_result_file=paste(OutputFnameRoot, ".above_cutoff.", vers_ext, ".wang.taxonomy", sep="");
+	filename_align=split_res[num_tok];
+	filename=gsub("\\.tax$", "", filename_align);
+	class_result_file=paste(OutputFnameRoot, ".above_cutoff.", filename, ".wang.taxonomy", sep="");
 	class_data=read.table(class_result_file, stringsAsFactors=F);
 	colnames(class_data)=c("SequenceID", "FullTaxonomy");
 
