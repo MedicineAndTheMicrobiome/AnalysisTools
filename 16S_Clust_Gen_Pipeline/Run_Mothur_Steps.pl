@@ -45,6 +45,13 @@ my $PERMANOVA_BIN="$FindBin::Bin/../Profile/distance_based/Permanova/Permanova.r
 my $READDEPTH_ANALYSIS_BIN="$FindBin::Bin/pipeline_utilities/ReadDepth_Analysis/ReadDepth_Analysis.r";
 my $MULTINOMIAL_ANALYSIS_BIN="$FindBin::Bin/../Profile/abundance_based/Fit_Multinomial_Resp_ALR_Regression/Fit_Multinomial_Resp_ALR_Regression.r";
 
+# Chimera Rescue
+my $CHIMERA_RESCUE_BIN="$POSTPIPELINE_TOOL_PATH/Check_Sequence_PrevalAbund/Check_Sequence_PrevalAbund.r";
+my $FASTA_RECORDS_EXTRACTION_BIN="$FindBin::Bin/../FASTA/Extract_Record_From_FASTA_By_List.pl";
+
+# Classification Confidence
+my $CLASSIFICATION_CONFIDENCE_ANALYSIS_BIN="$POSTPIPELINE_TOOL_PATH/Analyze_Taxonomic_Classifications/Analyze_Taxonomic_Classifications.r";
+
 #my $CURRENT_16S_ALIGNMENT=
 #	"/usr/local/devel/DAS/users/kli/SVN/DAS/16sDataAnalysis/trunk/16S_OTU_Generation/silva.nr_v119.align";
 
@@ -56,6 +63,20 @@ my $DEF_NUM_MISM=2;
 my $DEF_NPROC=4;
 my $DEF_CLUST_CUTOFF=0.45;
 #my $DEF_CLUST_CUTOFF=0.3; if you just want .03
+my $DEF_CLASS_CONF=50; # historical we used 80
+
+# From mothur:
+# The dereplicate parameter can be used when checking for chimeras by group. 
+# If the dereplicate parameter is false, then if one group finds the sequence
+#  to be chimeric, then all groups find it to be chimeric, default=f. 
+#  If you set dereplicate=t, and then when a sequence is found to be chimeric 
+#  it is removed from it’s group, not the entire dataset.
+#
+
+# Our position is to remove sequences from all samples if any are chimeric (dereplicate=f),
+# increase abskew (larger values have fewer false positives).
+my $DEF_DEREP="f"; 
+my $DEF_ABSKEW=32;
 
 ###############################################################################
 
@@ -508,7 +529,8 @@ execute_mothur_cmd(
 	"fasta=$in.unique.good.filter.unique.precluster.fasta, 
 	count=$in.unique.good.filter.unique.precluster.count_table, 
 	reference=self,
-	dereplicate=f,
+	dereplicate=$DEF_DEREP,
+	abskew=$DEF_ABSKEW,
 	processors=$num_proc"
 );
 # Makes
@@ -516,9 +538,34 @@ execute_mothur_cmd(
 #	IN.unique.good.filter.unique.precluster.denovo.vsearch.accnos
 
 
+
+#------------------------------------------------------------------------------
+# Check chimeras with abundance/prevalance code
+	my $exec_string="
+		$CHIMERA_RESCUE_BIN
+			-t $in.unique.good.filter.unique.precluster.denovo.vsearch.accnos
+			-c $in.unique.good.filter.unique.precluster.count_table
+			-o $in
+			-f $in.unique.good.filter.unique.precluster.fasta
+			-m $MOTHUR_BIN
+			-e $FASTA_RECORDS_EXTRACTION_BIN
+			-n $reference_link
+			-x $tax_map
+			-T derep$DEF_DEREP\_abskew$DEF_ABSKEW
+	";
+	exec_cmd($exec_string, "$output_dir", "chimera_rescue");
+
+# Makes
+# 	IN.unique.good.filter.unique.precluster.denovo.vsearch.accnos.wo_rescued
+
+#------------------------------------------------------------------------------
+
+
+# previously accnos=$in.unique.good.filter.unique.precluster.denovo.vsearch.accnos 
+
 execute_mothur_cmd(
 	"remove.seqs",
-	"accnos=$in.unique.good.filter.unique.precluster.denovo.vsearch.accnos, 
+	"accnos=$in.unique.good.filter.unique.precluster.denovo.vsearch.accnos.wo_rescued, 
 	fasta=$in.unique.good.filter.unique.precluster.fasta, 
 	count=$in.unique.good.filter.unique.precluster.count_table,
 	dups=t"
@@ -528,6 +575,7 @@ execute_mothur_cmd(
 # 	IN.unique.good.filter.unique.precluster.pick.fasta
 #	IN.good.pick.groups
 
+
 log_counts_tables("$in.unique.good.filter.unique.precluster.pick.count_table", "After_Chimera_Check");
 
 execute_mothur_cmd(
@@ -536,7 +584,7 @@ execute_mothur_cmd(
 	count=$in.unique.good.filter.unique.precluster.pick.count_table, 
 	template=$ref_16s_align,
 	taxonomy=$tax_map,
-	cutoff=80,
+	cutoff=$DEF_CLASS_CONF,
 	processors=$num_proc"
 );
 
@@ -838,6 +886,20 @@ if(!($skipRDPsteps)){
 	# Compare all 1000 samples with negative control
 	# Compare all 2000 samples with negative control
 	# Compare all 3000 samples with negative control
+
+	############################################################################## 
+	# Perform classification confidence analysis
+
+	my $exec_string="
+		$CLASSIFICATION_CONFIDENCE_ANALYSIS_BIN	
+			-t $in.unique.good.filter.unique.precluster.pick.$reference_name.wang.taxonomy
+			-c $in.unique.good.filter.unique.precluster.pick.count_table
+			-o $in
+			-f $in.unique.good.filter.unique.precluster.pick.fasta
+			-m $MOTHUR_BIN
+			-e $FASTA_RECORDS_EXTRACTION_BIN
+	";
+	exec_cmd($exec_string, "$output_dir", "classification_confidence_analysis");
 
 	############################################################################## 
 }else{
