@@ -456,7 +456,7 @@ plot_stats=function(stats_record, title){
 		names.arg="",
 		ylab="Abundance",
 		main=paste("Top Abundances: ", title, sep=""));
-	title(main=paste("Total Reads: ", stats_record[["TotalReads"]]), line=-.5, cex.main=1);
+	title(main=paste("Total Reads: ", stats_record[["TotalReads"]]), line=-1.5, cex.main=1);
 
 	# Plot confidences
 	par(mar=c(15,5,2,1));
