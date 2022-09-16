@@ -52,6 +52,11 @@ my $FASTA_RECORDS_EXTRACTION_BIN="$FindBin::Bin/pipeline_utilities/Extract_Recor
 # Classification Confidence
 my $CLASSIFICATION_CONFIDENCE_ANALYSIS_BIN="$POSTPIPELINE_TOOL_PATH/Analyze_Taxonomic_Classifications/Analyze_Taxonomic_Classifications.r";
 
+# Compare positive controls against historical reference
+my $COMPARE_SAMPLES_TO_REFERENCE_BIN="$POSTPIPELINE_TOOL_PATH/Compare_Samples_to_Reference/Compare_Samples_to_Reference.r";
+my $HISTORICAL_POSITIVE_CONTROL_FILE="$POSTPIPELINE_TOOL_PATH/Compare_Samples_to_Reference/historical.20220915.summary_table.tsv";
+my $THEORETICAL_POSITIVE_CONTROL_FILE="$POSTPIPELINE_TOOL_PATH/Compare_Samples_to_Reference/Zymo_Con_Only.taxa.genus.summary_table.tsv";
+
 #my $CURRENT_16S_ALIGNMENT=
 #	"/usr/local/devel/DAS/users/kli/SVN/DAS/16sDataAnalysis/trunk/16S_OTU_Generation/silva.nr_v119.align";
 
@@ -891,13 +896,30 @@ if(!($skipRDPsteps)){
 		
 	}
 
-	# Read Depth analysis
-	#
-	# Compare all 750 samples with negative controls
-	# Compare all 1000 samples with negative control
-	# Compare all 2000 samples with negative control
-	# Compare all 3000 samples with negative control
+	##############################################################################
+	# Compare positive controls with historical and theoretical
 
+	my $positive_control_comp_dir="$st_dir/PositiveControls";
+	mkdir $positive_control_comp_dir;
+	#
+	# Split control samples
+	my $exec_string="
+		$SAMPLE_GREP_BIN
+			-i $st_dir/$out_root.taxa.genus.cmF.cln.summary_table.tsv
+			-k \"^0002\\.\"
+			-o $positive_control_comp_dir/$out_root.taxa.genus.cmF.cln.pos_ctl
+	";
+	exec_cmd($exec_string, "$positive_control_comp_dir", "extract_control_samples");
+	
+	my $exec_string="
+		$COMPARE_SAMPLES_TO_REFERENCE_BIN
+			-y $THEORETICAL_POSITIVE_CONTROL_FILE
+			-h $HISTORICAL_POSITIVE_CONTROL_FILE
+			-q $positive_control_comp_dir/$out_root.taxa.genus.cmF.cln.pos_ctl.summary_table.tsv
+			-o $positive_control_comp_dir/$out_root
+			-x \";\"
+	";
+	exec_cmd($exec_string, "$positive_control_comp_dir", "positive_control_analysis");
 
 	############################################################################## 
 }else{
