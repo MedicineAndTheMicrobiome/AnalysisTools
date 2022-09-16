@@ -66,8 +66,11 @@ my $MOTHUR_LOG="mothur.current.logfile";
 my $COUNTS_LOGNAME="counts.logfile";
 my $DEF_NUM_MISM=2;
 my $DEF_NPROC=4;
-my $DEF_CLUST_CUTOFF=0.45;
-#my $DEF_CLUST_CUTOFF=0.3; if you just want .03
+
+my $DEF_DM_CLUST_CUTOFF=0.45;
+#my $DEF_DM_CLUST_CUTOFF=0.3; if you just want .03
+my $DEF_CLUSTER_CUTOFF=0.03;
+
 my $DEF_CLASS_CONF=50; # historical we used 80
 
 # From mothur:
@@ -100,7 +103,7 @@ $0
 
  	[-m <max mismatch for uniqueness in preclustering, default=$DEF_NUM_MISM>]
 	[-p <num processors, default=$DEF_NPROC>]
-	[-c <maximum distance saved in distance matrix, default=$DEF_CLUST_CUTOFF>]
+	[-c <maximum distance saved in distance matrix, default=$DEF_DM_CLUST_CUTOFF>]
 		(note: to acquire clusters of .03, you may need .3
 		       to acquire clusters of .10, you may need .45)
 
@@ -160,11 +163,12 @@ my $groups_file=abs_path($opt_g);
 my $ref_16s_align=$opt_r;
 my $output_dir=abs_path($opt_o);
 my $num_proc=defined($opt_p)?$opt_p:$DEF_NPROC;
-my $clust_cutoff=defined($opt_c)?$opt_c:$DEF_CLUST_CUTOFF;
+my $dm_clust_cutoff=defined($opt_c)?$opt_c:$DEF_DM_CLUST_CUTOFF;
+my $clust_cutoff=$DEF_CLUSTER_CUTOFF;
 my $preclust_diff=defined($opt_m)?$opt_m:$DEF_NUM_MISM;
 
-my $skipOTUsteps=defined($opt_O);
-my $skipRDPsteps=defined($opt_R);
+my $skipOTUsteps=defined($opt_O)?1:0;
+my $skipRDPsteps=defined($opt_R)?1:0;
 
 print STDERR "Using Mothur at: $MOTHUR_BIN\n";
 print STDERR "Input FASTA File: $input_fasta\n";
@@ -172,8 +176,9 @@ print STDERR "Groups File: $groups_file\n";
 print STDERR "Reference 16S Alignments: $ref_16s_align\n";
 print STDERR "Output Directory: $output_dir\n";
 print STDERR "Num Processors: $num_proc\n";
-print STDERR "Cluster Cutoff: $clust_cutoff\n";
 print STDERR "Num Mismatch for Precluster: $preclust_diff\n";
+print STDERR "Distance Matrix Cutoff: $dm_clust_cutoff\n";
+print STDERR "Cluster Cutoff: $clust_cutoff\n";
 
 if($skipOTUsteps){
 	print STDERR "Skipping OTU Steps.\n";
@@ -193,6 +198,10 @@ if(!(-e $output_dir)){
 	print STDERR "$output_dir already exists...\n";
 }
 print "\n";
+
+if($dm_clust_cutoff<$clust_cutoff){
+	die "ERROR: Your cluster cutoff ($clust_cutoff) is larger than than the distance matrix cutoff ($dm_clust_cutoff)";
+}
 
 ###############################################################################
 
@@ -254,6 +263,17 @@ sub log_time{
 	close(LOG);
 
 	return;
+}
+
+sub log_notes{
+	my $filename=shift;
+	my $notes=shift;
+
+        open(P_FH, ">>$filename") || die "Could not open $filename for appending.\n";
+	my ($d, $t)=format_datetime();
+	print P_FH "$d $t:\t$notes\n";
+	close(P_FH);
+	
 }
 
 ###############################################################################
@@ -407,6 +427,7 @@ sub log_counts_tables{
 }
 
 
+
 ###############################################################################
 
 # Link fasta file to working directory
@@ -437,6 +458,28 @@ symlink $taxa_map, "$output_dir/$reference_name.tax";
 my $reference_link="$output_dir/$reference_name.align";
 my $tax_map="$output_dir/$reference_name.tax";
 
+
+# Log Notes
+my $notes_log_filename="$output_dir/notes.log";
+
+log_notes($notes_log_filename, "Started.");
+my $user=`whoami`;
+$user=~s/\n//;
+log_notes($notes_log_filename, "User: $user");
+log_notes($notes_log_filename, "Num Processors Allocated: $num_proc");
+my $space_info=`df $output_dir`;
+log_notes($notes_log_filename, "Execution Directory: $output_dir");
+log_notes($notes_log_filename, "\n\n$space_info");
+log_notes($notes_log_filename, "Mothur Path: $MOTHUR_BIN");
+log_notes($notes_log_filename, "Skip OTUS?: $skipOTUsteps");
+log_notes($notes_log_filename, "Skip RDP?: $skipRDPsteps");
+log_notes($notes_log_filename, "Pre.cluster Mismatches: $preclust_diff");
+log_notes($notes_log_filename, "16S Reference: $ref_16s_align");
+log_notes($notes_log_filename, "Chimera deprelicate: $DEF_DEREP");
+log_notes($notes_log_filename, "Chimera abskew: $DEF_ABSKEW");
+log_notes($notes_log_filename, "Classify.Seqs confidence cutoff: $DEF_CLASS_CONF");
+log_notes($notes_log_filename, "Distance matrix cutoff (OTU): $dm_clust_cutoff");
+log_notes($notes_log_filename, "Cluster Cutoff (OTU): $clust_cutoff");
 
 ###############################################################################
 
@@ -933,7 +976,7 @@ if(!($skipOTUsteps)){
 	execute_mothur_cmd(
 		"dist.seqs",
 		"fasta=$in.unique.good.filter.unique.precluster.pick.fasta, 
-		cutoff=$clust_cutoff,
+		cutoff=$dm_clust_cutoff,
 		processors=$num_proc"
 	);
 	# Makes
@@ -957,7 +1000,7 @@ if(!($skipOTUsteps)){
 		"make.shared",
 		"list=$in.unique.good.filter.unique.precluster.pick.opti_mcc.list, 
 		count=$in.unique.good.filter.unique.precluster.pick.count_table,
-		label=0.03"
+		label=$clust_cutoff"
 	);
 	# Makes
 	#	IN.unique.good.filter.unique.precluster.pick.mothurGroup.count_table
@@ -968,7 +1011,7 @@ if(!($skipOTUsteps)){
 		"taxonomy=$in.unique.good.filter.unique.precluster.pick.$reference_name.wang.taxonomy,
 		list=$in.unique.good.filter.unique.precluster.pick.opti_mcc.list,
 		count=$in.unique.good.filter.unique.precluster.pick.count_table,
-		label=0.03"
+		label=$clust_cutoff"
 	);
 	# Makes
 	# 	IN.unique.good.filter.unique.precluster.pick.opti_mcc.0.03.cons.taxonomy
@@ -1003,7 +1046,7 @@ if(!($skipOTUsteps)){
 	$exec_string="
 		$ANNOTATE_OTU_WITH_GENUS_BIN
 			-s $st_dir/$out_root.otu.97.summary_table.tsv
-			-m $in.unique.good.filter.unique.precluster.pick.opti_mcc.0.03.cons.taxonomy
+			-m $in.unique.good.filter.unique.precluster.pick.opti_mcc.$clust_cutoff.cons.taxonomy
 			-o $st_dir/$out_root.otu.97.genus.summary_table.tsv
 	";
 	exec_cmd($exec_string, "$st_dir", "annotate_otu_with_genera");
@@ -1020,8 +1063,8 @@ if(!($skipOTUsteps)){
 
 	my $exec_string="
 		$OTU_TAXA_DEGREE_BIN
-			-i $in.unique.good.filter.unique.precluster.pick.opti_mcc.0.03.cons.taxonomy
-			-o $st_dir/0.03.cons.taxonomy
+			-i $in.unique.good.filter.unique.precluster.pick.opti_mcc.$clust_cutoff.cons.taxonomy
+			-o $st_dir/$clust_cutoff.cons.taxonomy
 	";
 	exec_cmd($exec_string, "$st_dir", "otu_taxa_degree");
 
@@ -1030,6 +1073,9 @@ if(!($skipOTUsteps)){
 }else{
 	print STDERR "WARNING: OTU skipped \n";
 }
+
+
+log_notes($notes_log_filename, "Completed.");
 
 ###############################################################################
 
