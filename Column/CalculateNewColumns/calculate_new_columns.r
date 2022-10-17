@@ -35,6 +35,8 @@ usage = paste(
 	"	good.ids=!is.na(subj_ids)\n",
 	"	keep good.ids\n",
 	"	make_key subj_ids\n",
+	"	rem_var_max_perc_na 5\n",
+	"	rem_var_no_information\n",
 	"\n",
 	"Additional columns will be added to the end\n",
 	"of the existing columns.  If the formula line is \"delete\"\n",
@@ -47,6 +49,15 @@ usage = paste(
 	"\n",
 	"A column can be moved to the first column position perhaps making it a\n",
 	"primary key or sample id for the matrix with the \"make_key\" command.\n",
+	"\n",
+	"To apply a global variable screen use these remove functions:\n",
+	"	rem_var_max_perc_na <max perc na>\n",
+	"		This will remove any variables with greater than <max perc na>% NA.\n",
+	"		For example, rem_var_max_perc_na 5, will limit the percentage of NAs\n",
+	"		allowed in a variable to 5%.\n",
+	"\n",
+	"	rem_var_no_information\n",
+	"		This will remove any variables with fewer than 2 unique values.\n",
 	"\n",
 	"In addition, the following non-standard R functions have been implemented:\n",
 	"\n",
@@ -174,7 +185,9 @@ cat("Output Filename: ", OutputFName, "\n");
 ##############################################################################
 
 load_factors=function(fname){
-	factors=data.frame(read.table(fname,  header=TRUE, check.names=FALSE, as.is=T, comment.char="", quote="", sep="\t"));
+	factors=data.frame(read.delim(fname,  header=TRUE, check.names=FALSE, 
+		row.names=NULL,
+		as.is=T, comment.char="", quote="", sep="\t"));
 
 	#print(factors);
 
@@ -512,6 +525,75 @@ set_LOQ=function(x, detection_limit_value, method){
 
 ##############################################################################
 
+find_variables_woNAs=function(factors, max_na_perc_thres){
+	num_factors=ncol(factors);
+	num_samples=nrow(factors);
+	max_prop_na=max_na_perc_thres/100.0;
+	var_names=colnames(factors);
+
+	keep_ix=c();
+	cat("Proportion NA screen:\n");
+	for(i in 1:num_factors){
+		num_nas=sum(is.na(factors[,i]));
+		prop_na=num_nas/num_samples;
+
+		if(prop_na < max_prop_na){
+			msg="Keep";
+			keep_ix=c(keep_ix, i);	
+		}else{
+			msg="Remove";
+			keep=F;
+		};
+
+		cat("\t", var_names[i], ": ", prop_na, ", (", msg, ")\n", sep="");
+	}
+
+	num_kept=length(keep_ix);
+	num_removed=num_factors-num_kept;
+
+	cat("\n");
+	cat("Num Kept: ", num_kept, "\n", sep="");
+	cat("Num Removed: ", num_removed, "\n", sep="");
+
+	return(keep_ix);
+}
+
+find_variables_wInformation=function(factors){
+	num_factors=ncol(factors);
+	var_names=colnames(factors);
+
+	keep_ix=c();
+	cat("Information screen, num unique values:\n");
+	for(i in 1:num_factors){
+		data=factors[,i];
+		nona_ix=!is.na(data);
+		nona_data=data[nona_ix];
+		uniq_data=unique(nona_data);
+		num_uniq=length(uniq_data);
+	
+		if(num_uniq > 1){
+			msg="Keep";
+			keep_ix=c(keep_ix, i);	
+		}else{
+			msg="Remove";
+			keep=F;
+		};
+
+		cat("\t", var_names[i], ": ", num_uniq, " (", msg, ")\n", sep="");
+	}
+
+	num_kept=length(keep_ix);
+	num_removed=num_factors-num_kept;
+
+	cat("\n");
+	cat("Num Kept: ", num_kept, "\n", sep="");
+	cat("Num Removed: ", num_removed, "\n", sep="");
+
+	return(keep_ix);
+}
+
+##############################################################################
+
 # Load factors
 factors=load_factors(InputFName);
 num_samples=nrow(factors);
@@ -545,6 +627,7 @@ for(cmd in commands){
 		cnames=colnames(factors);
 		cnames=setdiff(cnames, var);
 		factors=factors[,cnames, drop=F];
+
 	}else if(length(grep("^keep ", cmd))==1){
 		# Remove rows with factors that are F
 		var=strsplit(cmd, "\\s+")[[1]][2];
@@ -553,6 +636,23 @@ for(cmd in commands){
 		factors=factors[keep_ix,, drop=F];
 		rowcol=dim(factors);
 		cat("Rows: ", rowcol[1], " x Cols: ", rowcol[2], "\n", sep="");
+
+	}else if(length(grep("^rem_var_max_perc_na", cmd))==1){
+		var=strsplit(cmd, "\\s+")[[1]][2];
+		cat("Keeping variables where percentage NA < ", var, "\n", sep="");
+		keep_ix=find_variables_woNAs(factors, max_na_perc_thres=as.numeric(var));
+		factors=factors[,keep_ix, drop=F];
+		rowcol=dim(factors);
+		cat("Rows: ", rowcol[1], " x Cols: ", rowcol[2], "\n", sep="");
+
+	}else if(length(grep("^rem_var_no_information", cmd))==1){
+		var=strsplit(cmd, "\\s+")[[1]][2];
+		cat("Keeping variables where there is information\n", sep="");
+		keep_ix=find_variables_wInformation(factors);
+		factors=factors[,keep_ix, drop=F];
+		rowcol=dim(factors);
+		cat("Rows: ", rowcol[1], " x Cols: ", rowcol[2], "\n", sep="");
+
 	}else if(length(grep("^make_key ", cmd))==1){
 		# move column to first position
 		var=strsplit(cmd, "\\s+")[[1]][2];
@@ -561,13 +661,16 @@ for(cmd in commands){
 		cnames=colnames(factors);
 		cnames=setdiff(cnames, var);
 		factors=cbind(key_col_val, factors[,cnames,drop=F]);
+
 	}else if(length(grep("^print ", cmd))==1){
 		var=strsplit(cmd, "\\s+")[[1]][2];
 		cat("Printing ", var, "\n", sep="");
 		print(factors[, var, drop=F]);
+
 	}else if(length(grep("^quit", cmd))==1){
 		cat("Forcing quit...\n");
 		quit("yes");
+
 	}else{
 		# Add variable to factors
 		#cmd=gsub("\\s+", "", cmd);
