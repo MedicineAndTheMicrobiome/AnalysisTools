@@ -112,15 +112,13 @@ impute_matrix=function(mat_wna){
         # remove rows with all NAs
         usable_rows=apply(mat_wna, 1, function(x){!all(is.na(x))});
         usable_cols=apply(mat_wna, 2, function(x){!all(is.na(x))});
-        usable_mat_wna=mat_wna[usable_rows,usable_cols];
+        usable_mat_wna=mat_wna[usable_rows,usable_cols, drop=F];
 
         usable_num_rows=nrow(usable_mat_wna);
         usable_num_cols=ncol(usable_mat_wna);
 
         cat("Removed rows/cols with all NAs: ", usable_num_rows, " x ", usable_num_cols,
                 " matrix. (", usable_num_rows * usable_num_cols,")\n", sep="");
-
-        #print(mat_wna);
 
         cat("Looking for NAs...\n");
         na_pos=numeric();
@@ -153,6 +151,7 @@ impute_matrix=function(mat_wna){
         filled_matrix=usable_mat_wna;
 
         if(!is.null(num_nas_to_impute) && num_nas_to_impute>0){
+
                 for(na_ix in 1:num_nas_to_impute){
 
                         target_row=na_pos[na_ix,1];
@@ -191,7 +190,7 @@ impute_matrix=function(mat_wna){
         }
 
         repl_rows=rownames(filled_matrix);
-        mat_wna[repl_rows,]=filled_matrix[repl_rows,];
+        mat_wna[repl_rows,]=filled_matrix[repl_rows,,drop=F];
         return(mat_wna);
 
 }
@@ -226,8 +225,13 @@ impute_by_groupings=function(matrix_wNAs, variable_grouping_list){
 
 	for(cur_grp in group_names){
 
-		cat("Imputing Group: ", cur_grp, "\n");
+		cat("\nImputing Group: ", cur_grp, "\n");
 		targ_var=variable_grouping_list[[cur_grp]];
+
+		if(length(targ_var)==0){
+			cat("No variables in group.  Skipping.\n");
+			next;
+		}
 
 		cat("Variables: \n");
 		print(targ_var);
