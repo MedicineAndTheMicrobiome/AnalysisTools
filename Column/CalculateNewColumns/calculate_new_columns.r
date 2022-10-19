@@ -558,20 +558,24 @@ find_variables_woNAs=function(factors, max_na_perc_thres){
 	return(keep_ix);
 }
 
-find_variables_wInformation=function(factors){
+find_variables_wModeDominance=function(factors, perc_max_dominant_thres){
 	num_factors=ncol(factors);
 	var_names=colnames(factors);
 
 	keep_ix=c();
-	cat("Information screen, num unique values:\n");
+	cat("Mode Dominance screen:\n");
 	for(i in 1:num_factors){
+
 		data=factors[,i];
 		nona_ix=!is.na(data);
 		nona_data=data[nona_ix];
-		uniq_data=unique(nona_data);
-		num_uniq=length(uniq_data);
-	
-		if(num_uniq > 1){
+
+		dtab=table(nona_data);
+		dtab_sorted=sort(dtab, decreasing=T);
+		num_values=sum(dtab_sorted);
+
+		mode_perc=dtab_sorted[1]/num_values*100;
+		if(mode_perc < perc_max_dominant_thres){
 			msg="Keep";
 			keep_ix=c(keep_ix, i);	
 		}else{
@@ -579,7 +583,8 @@ find_variables_wInformation=function(factors){
 			keep=F;
 		};
 
-		cat("\t", var_names[i], ": ", num_uniq, " (", msg, ")\n", sep="");
+		cat("\t", var_names[i], ": ", mode_perc, " [", dtab_sorted[1], "/", num_values, 
+			"] (", msg, ")\n", sep="");
 	}
 
 	num_kept=length(keep_ix);
@@ -645,10 +650,10 @@ for(cmd in commands){
 		rowcol=dim(factors);
 		cat("Rows: ", rowcol[1], " x Cols: ", rowcol[2], "\n", sep="");
 
-	}else if(length(grep("^rem_var_no_information", cmd))==1){
+	}else if(length(grep("^rem_var_max_perc_modedom", cmd))==1){
 		var=strsplit(cmd, "\\s+")[[1]][2];
-		cat("Keeping variables where there is information\n", sep="");
-		keep_ix=find_variables_wInformation(factors);
+		cat("Keeping variables with mode dominance < ", var, "\n", sep="");
+		keep_ix=find_variables_wModeDominance(factors, perc_max_dominant_thres=as.numeric(var));
 		factors=factors[,keep_ix, drop=F];
 		rowcol=dim(factors);
 		cat("Rows: ", rowcol[1], " x Cols: ", rowcol[2], "\n", sep="");
