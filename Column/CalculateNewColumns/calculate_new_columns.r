@@ -38,9 +38,11 @@ usage = paste(
 	"	rem_var_max_perc_na 5\n",
 	"	rem_var_no_information\n",
 	"\n",
-	"Additional columns will be added to the end\n",
-	"of the existing columns.  If the formula line is \"delete\"\n",
-	"Then the column will be deleted.\n",
+	"Additional columns will be added to the end of the existing columns.\n",
+	"\n",
+	"Variable manipulation commands include:\n",
+	"	delete <variable name>\n",
+	"	rename <orig name> <new name>\n",
 	"\n",
 	"Rows/Samples can be conditionally kept/removed by using\n",
 	"the \"keep\" command.  First create/identify a variable/column that is T/F\n",
@@ -56,8 +58,10 @@ usage = paste(
 	"		For example, rem_var_max_perc_na 5, will limit the percentage of NAs\n",
 	"		allowed in a variable to 5%.\n",
 	"\n",
-	"	rem_var_no_information\n",
-	"		This will remove any variables with fewer than 2 unique values.\n",
+	"	rem_var_max_perc_modedom <max mode dominance>\n",
+	"		This will remove any variables where the most common values is greater\n",
+	"		than <max mode dominance>%.  For example, rem_var_max_perc_modedom 90\n",
+	"		will remove any variable if the most common value is >90% of that variable.\n",
 	"\n",
 	"In addition, the following non-standard R functions have been implemented:\n",
 	"\n",
@@ -632,6 +636,20 @@ for(cmd in commands){
 		cnames=colnames(factors);
 		cnames=setdiff(cnames, var);
 		factors=factors[,cnames, drop=F];
+
+	}else if(length(grep("^rename ", cmd))==1){
+		# rename variables 
+		origname=strsplit(cmd, "\\s+")[[1]][2];
+		newname=strsplit(cmd, "\\s+")[[1]][3];
+		cat("Renaming: ", origname, " to ", newname, "\n"); 
+		cnames=colnames(factors);
+		varix=which(cnames==origname);
+		if(length(varix)==0){
+			cat("Could not find: ", origname, "\n", sep="");
+			quit(-1);
+		}
+		cnames[varix]=newname;
+		colnames(factors)=cnames;
 
 	}else if(length(grep("^keep ", cmd))==1){
 		# Remove rows with factors that are F
