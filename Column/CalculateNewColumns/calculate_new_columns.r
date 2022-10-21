@@ -770,7 +770,7 @@ batch_apply=function(factors, list_fname, funct_str, ext, keep){
 	}
 		
 	# Apply post-fix, if requested
-	if(!is.na(ext)){
+	if(ext!="NA"){
 		colnames(accum_mat)=paste(colnames(accum_mat), ext, sep="");
 	}
 
