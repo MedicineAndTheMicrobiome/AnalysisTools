@@ -63,6 +63,20 @@ usage = paste(
 	"		than <max mode dominance>%.  For example, rem_var_max_perc_modedom 90\n",
 	"		will remove any variable if the most common value is >90% of that variable.\n",
 	"\n",
+	"	match_apply <A_extension> <B_extension> <function>\n",
+	"		Example:\n",
+	"			match_apply .t1 .t2 nomn_diff\n",
+	"			match_apply .t1 .t2 perc_diff\n",
+	"			match_apply .t1 .t2 log2_ratio\n",
+	"\n",
+	"		This will look for variables with the suffix A extension, \n",
+	"		then identify matching variables with suffix B extension, then\n",
+	"		apply the paired function, to create a new variable.\n",
+	"\n",
+	"		Example:\n",
+	"			<var><A_extension> and <var><B_extension> will create\n",
+	"			the variable <var>.<function>\n",
+	"\n",
 	"In addition, the following non-standard R functions have been implemented:\n",
 	"\n",
 	"	bin(x, range_name, breaks): \n",
@@ -603,6 +617,109 @@ find_variables_wModeDominance=function(factors, perc_max_dominant_thres){
 
 ##############################################################################
 
+perc_diff=function(A, B){
+	return((B-A)/A);
+}
+
+nomn_diff=function(A, B){
+	return(B-A);
+}
+
+log2_ratio=function(A, B){
+	return(log2(B/A));
+}
+
+match_apply=function(factors, extA, extB, funct){
+
+	cat("Match/Apply called.\n");
+
+	var_names=colnames(factors);
+	num_vars=length(var_names);
+	cat("Extension A: '", extA, "'\n", sep="");
+	cat("Extension B: '", extB, "'\n", sep="");
+	cat("Function: '", funct, "'\n", sep="");
+
+	# Create regular expression
+	extA_regex=paste(extA, "$", sep="");
+	extB_regex=paste(extB, "$", sep="");
+
+	# Find variables
+	A_vars_ix=grep(extA_regex, var_names);
+	B_vars_ix=grep(extB_regex, var_names);
+
+	A_vars=character(num_vars);
+	B_vars=character(num_vars);
+	A_vars_roots=character(num_vars);
+	B_vars_roots=character(num_vars);
+
+	# Extract A and B full names
+	A_vars[A_vars_ix]=var_names[A_vars_ix];
+	B_vars[B_vars_ix]=var_names[B_vars_ix];
+
+	# Find roots
+	A_vars_roots[A_vars_ix]=gsub(extA_regex, "", var_names[A_vars_ix]);
+	B_vars_roots[B_vars_ix]=gsub(extB_regex, "", var_names[B_vars_ix]);
+
+	# Find intersection
+	shared_vars=setdiff(intersect(A_vars_roots, B_vars_roots), "");
+	cat("\nShared between A and B:\n");
+	print(shared_vars);
+	A_vars_roots_only=setdiff(A_vars_roots, c("", shared_vars));
+	B_vars_roots_only=setdiff(B_vars_roots, c("", shared_vars));
+
+	cat("\nExclusive to A:\n");
+	print(A_vars_roots_only);
+	cat("\nExclusive to B:\n");
+	print(B_vars_roots_only);
+	cat("\n");
+
+	num_shared=length(shared_vars);
+	if(num_shared==0){
+		cat("No variables found with matching roots.\n");
+		return(factors);
+	}
+
+	# Create accumulation matrix to later append
+	res_mat=matrix(NA, nrow=nrow(factors), ncol=num_shared);
+	newvarnames=paste(shared_vars, ".", funct, sep="");
+	colnames(res_mat)=newvarnames;
+	
+	for(i in 1:num_shared){
+		shrdvar=shared_vars[i];
+		cat("Working on: ", shrdvar, "\n");
+
+		A_ix=which(A_vars_roots==shrdvar);
+		B_ix=which(B_vars_roots==shrdvar);
+
+		A_vals=factors[,A_ix,drop=F];
+		B_vals=factors[,B_ix,drop=F];
+
+		#print(colnames(A_vals));
+		#print(colnames(B_vals));
+
+		if(funct=="perc_diff"){
+			res=perc_diff(A_vals, B_vals);
+		}else if(funct=="nomn_diff"){
+			res=nomn_diff(A_vals, B_vals);
+		}else if(funct=="log2_ratio"){
+			res=log2_ratio(A_vals, B_vals);
+		}else{
+			cat("Unknown function: ", funct, "\n");
+			quit(status=-1);
+		}
+
+		#print(res);
+
+		res_mat[,newvarnames[i]]=res[,1];
+	}
+	
+	out_factors=cbind(factors, res_mat);
+	return(out_factors);
+
+}
+
+##############################################################################
+
 # Load factors
 factors=load_factors(InputFName);
 num_samples=nrow(factors);
@@ -675,6 +792,16 @@ for(cmd in commands){
 		factors=factors[,keep_ix, drop=F];
 		rowcol=dim(factors);
 		cat("Rows: ", rowcol[1], " x Cols: ", rowcol[2], "\n", sep="");
+
+	}else if(length(grep("^match_apply ", cmd))==1){
+		# rename variables 
+		toks=strsplit(cmd, "\\s+")[[1]];
+		extensionA=toks[2];
+		extensionB=toks[3];
+		funct=toks[4];
+
+		cat("Match Apply: ", funct, "(A=", extensionA, ",B=", extensionB,")\n", sep="");
+		factors=match_apply(factors, extensionA, extensionB, funct);
 
 	}else if(length(grep("^make_key ", cmd))==1){
 		# move column to first position
