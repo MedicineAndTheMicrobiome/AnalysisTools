@@ -3,6 +3,7 @@
 ###############################################################################
 
 library('getopt');
+library('stringr');
 options(useFancyQuotes=F);
 options(width=120);
 
@@ -77,6 +78,15 @@ usage = paste(
 	"		Example:\n",
 	"			<var><A_extension> and <var><B_extension> will create\n",
 	"			the variable <var>.<function>\n",
+	"\n",
+	"	batch_apply <filename> \"<function>\" <postfix> <keep>\n",
+	"		This will load the variable names in the specified file name and then apply\n",
+	"		the specified function to all the variables.\n",
+	"		Example:\n",
+	"			list_apply ./variable.lst \"1-%x%\" NA 1\n",
+	"		The %x% will be substituted with the variable name.\n",
+	"		<postfix> will be applied to original name, unless NA\n",
+	"		<keep> if 1, will save the original variable, else it will be deleted, if 0.\n",
 	"\n",
 	"In addition, the following non-standard R functions have been implemented:\n",
 	"\n",
@@ -719,6 +729,62 @@ match_apply=function(factors, extA, extB, funct){
 
 }
 
+batch_apply=function(factors, list_fname, funct_str, ext, keep){
+	
+	cat("Batch Apply:\n");
+	cat("  Variable Filename: ", list_fname, "\n", sep="");
+	cat("  Function: ", funct_str, "\n", sep="");
+	cat("  New variable name extension: ", ext, "\n", sep="");
+	cat("  Keep original variable?: ", keep, "\n", sep="");
+
+	# load list
+	target_vars=read.delim(list_fname, header=F, comment.char="#",
+		as.is=T);
+	target_vars=target_vars[,];
+	num_targets=length(target_vars);
+	cat("\nTarget Variables (", num_targets, "):\n", sep="");
+	print(target_vars);
+
+	# Find available targets and report missing
+	avail_variables=colnames(factors);
+	valid_target_vars=intersect(target_vars, avail_variables);
+	num_valid_targets=length(valid_target_vars);
+	missing_target_vars=setdiff(target_vars, valid_target_vars);
+	num_missing_targets=length(missing_target_vars);
+	cat("\nValid Targets (", num_valid_targets, "): \n", sep="");
+	print(valid_target_vars);
+	cat("\nMissing Targets (", num_missing_targets, "): \n", sep="");
+	print(missing_target_vars);
+	cat("\n");
+
+	# Allocate output matrix
+	num_samples=nrow(factors);
+	accum_mat=matrix(NA, nrow=num_samples, ncol=num_valid_targets);
+	colnames(accum_mat)=valid_target_vars;
+
+	for(tar_var in valid_target_vars){
+		cmd=gsub("%x%", tar_var, funct_str);
+		cat("Command: ", cmd, "\n");
+		results=eval(parse(text=cmd), envir=factors);
+		accum_mat[,tar_var]=results;
+	}
+		
+	# Apply post-fix, if requested
+	if(!is.na(ext)){
+		colnames(accum_mat)=paste(colnames(accum_mat), ext, sep="");
+	}
+
+	# Remove original variables, if requested
+	if(!keep){
+		cnames=colnames(factors);
+		kept_cnames=setdiff(cnames, valid_target_vars);
+		factors=factors[,kept_cnames,drop=F];
+	}
+
+	factors=cbind(factors, accum_mat);
+	return(factors);
+}
+
 ##############################################################################
 
 # Load factors
@@ -813,6 +879,16 @@ for(cmd in commands){
 
 		cat("Match Apply: ", funct, "(A=", extensionA, ",B=", extensionB,")\n", sep="");
 		factors=match_apply(factors, extensionA, extensionB, funct);
+
+	}else if(length(grep("^batch_apply ", cmd))==1){
+
+		params=str_match(cmd, "^batch_apply (.+) \"(.+)\" (.+) (.+)");		
+		listfn=params[2];
+		funct=params[3];
+		new_ext=params[4];
+		keep=as.logical(as.numeric(params[5]));
+
+		factors=batch_apply(factors, listfn, funct, new_ext, keep);		
 
 	}else if(length(grep("^make_key ", cmd))==1){
 		# move column to first position
