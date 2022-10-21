@@ -42,6 +42,7 @@ usage = paste(
 	"\n",
 	"Variable manipulation commands include:\n",
 	"	delete <variable name>\n",
+	"		This command can use $ and * wildcards\n",
 	"	rename <orig name> <new name>\n",
 	"\n",
 	"Rows/Samples can be conditionally kept/removed by using\n",
@@ -751,7 +752,17 @@ for(cmd in commands){
 		var=strsplit(cmd, "\\s+")[[1]][2];
 		cat("Deleting: ", var, "\n"); 
 		cnames=colnames(factors);
-		cnames=setdiff(cnames, var);
+
+		regex=gsub("\\$", ".", var);
+		regex=gsub("\\*", ".*", regex);
+		regex=paste("^", regex, "$", sep="");
+
+		cat("Effective Regex:", regex, "\n", sep="");
+		matches=grep(regex, cnames);
+		cat("Matches:\n");
+		print(cnames[matches]);
+
+		cnames=setdiff(cnames, cnames[matches]);
 		factors=factors[,cnames, drop=F];
 
 	}else if(length(grep("^rename ", cmd))==1){
