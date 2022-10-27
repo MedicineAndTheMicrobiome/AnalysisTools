@@ -13,6 +13,7 @@ params=c(
 	"outputroot", "o", 1, "character",
 	"predictor", "p", 1, "character",
 	"response", "r", 2, "character",
+	"subsample", "s", 2, "numeric",
 	"donnot_transform", "t", 2, "logical",
 	"pc_coverage", "c", 2, "numeric",
 	"pc_indiv_coverage", "i", 2, "numeric",
@@ -40,6 +41,7 @@ usage = paste(
 	"	-o <output filename root.\n",
 	"\n",
 	"	-p <targeted predictor variable list>\n",
+	"	[-s <subsample from predictors, default=use all samples>]\n",
 	"	[-r <targeted response variable to plot against]\n",
 	"\n",
 	"	[-t (do not transform/autocurate predictors, default: transform if necessary)\n",
@@ -76,6 +78,7 @@ ResponseListName="";
 PCCoverage=PCA_COVERAGE;
 PCIndivCoverage=PCA_INDIV_COVERAGE;
 DonnotTransform=F;
+SubsampleTargets=-1;
 
 ExportOrig=F;
 ExportCurated=F;
@@ -96,6 +99,10 @@ if(length(opt$pc_indiv_coverage)){
 
 if(length(opt$donnot_transform)){
 	DonnotTransform=T;
+}
+
+if(length(opt$subsample)){
+	SubsampleTargets=opt$subsample;
 }
 
 if(length(opt$export_orig)){
@@ -597,9 +604,9 @@ predictors_arr=load_list(PredictorListName);
 
 responses_arr=c();
 if(ResponseListName!=""){
-responses_arr=load_list(ResponseListName);
+	responses_arr=load_list(ResponseListName);
 }else{
-cat("Response variable list not specified.\n");
+	cat("Response variable list not specified.\n");
 }
 
 
@@ -608,9 +615,9 @@ cat("Targeted Responses:\n");
 print(responses_arr);
 missing=setdiff(responses_arr, loaded_factor_names);
 if(length(missing)>0){
-cat("Missing:\n");
-print(missing);
-quit(status=-1);
+	cat("Missing:\n");
+	print(missing);
+	quit(status=-1);
 }
 cat("\n");
 
@@ -626,6 +633,14 @@ cat("\n");
 
 num_pred=length(predictors_arr);
 num_resp=length(responses_arr);
+
+if(SubsampleTargets!=-1){
+	if(SubsampleTargets<num_pred){
+		predictors_arr=sample(predictors_arr, SubsampleTargets, replace=F);
+		num_pred=SubsampleTargets;
+		cat("Targets have been subsampled.\n");
+	}
+}
 
 pred_mat=loaded_factors[, predictors_arr, drop=F];
 resp_mat=loaded_factors[, responses_arr, drop=F];
