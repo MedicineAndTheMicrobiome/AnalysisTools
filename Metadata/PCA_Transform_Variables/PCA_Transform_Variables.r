@@ -11,7 +11,7 @@ options(digits=5)
 params=c(
 	"factors", "f", 1, "character",
 	"outputroot", "o", 1, "character",
-	"predictor", "p", 1, "character",
+	"predictor", "p", 2, "character",
 	"response", "r", 2, "character",
 	"subsample", "s", 2, "numeric",
 	"donnot_transform", "t", 2, "logical",
@@ -40,7 +40,7 @@ usage = paste(
 	"	-f <factors/metadata file name>\n",
 	"	-o <output filename root.\n",
 	"\n",
-	"	-p <targeted predictor variable list>\n",
+	"	[-p <targeted predictor variable list, default is all variables>]\n",
 	"	[-s <subsample from predictors, default=use all samples>]\n",
 	"	[-r <targeted response variable to plot against]\n",
 	"\n",
@@ -63,8 +63,7 @@ usage = paste(
 
 if(
 	!length(opt$factors) || 
-	!length(opt$outputroot) || 
-	!length(opt$predictor)
+	!length(opt$outputroot)
 ){
 	cat(usage);
 	q(status=-1);
@@ -72,7 +71,6 @@ if(
 
 FactorsFname=opt$factors;
 OutputFnameRoot=opt$outputroot;
-PredictorListName=opt$predictor;
 
 ResponseListName="";
 PCCoverage=PCA_COVERAGE;
@@ -84,6 +82,13 @@ ExportOrig=F;
 ExportCurated=F;
 ExportImputed=F;
 ExportPC=F;
+
+
+if(length(opt$predictor)){
+	PredictorListName=opt$predictor;
+}else{
+	PredictorListName="";
+}	
 
 if(length(opt$response)){
 	ResponseListName=opt$response;
@@ -600,7 +605,11 @@ print(loaded_sample_names);
 cat("\n");
 
 # Subset factors
-predictors_arr=load_list(PredictorListName);
+if(PredictorListName!=""){
+	predictors_arr=load_list(PredictorListName);
+}else{
+	predictors_arr=loaded_factor_names;
+}
 
 responses_arr=c();
 if(ResponseListName!=""){
