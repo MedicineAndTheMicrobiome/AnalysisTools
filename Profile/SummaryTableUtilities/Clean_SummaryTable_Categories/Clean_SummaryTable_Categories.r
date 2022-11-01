@@ -6,7 +6,8 @@ library('getopt');
 
 params=c(
 	"input_file", "i", 1, "character",
-	"output_file", "o", 2, "character"
+	"output_file", "o", 2, "character",
+	"strip_semicolons", "s", 2, "logical"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -17,6 +18,8 @@ usage = paste (
 	"\n",
 	"	-i <input summary table.tsv>\n",
 	"	[-o <output summary table root name>]\n",
+	"\n",
+	"	[-s (change semicolons to _, as well)]\n",
 	"\n",	
 	"This script will read in a summary file and \n",
 	"clean up the categories names so they are R friendly\n",
@@ -41,6 +44,12 @@ usage = paste (
 if(!length(opt$input_file)){
 	cat(usage);
 	q(status=-1);
+}
+
+if(length(opt$strip_semicolons)){
+	strip_semicolons=T;
+}else{
+	strip_semicolons=F;
 }
 
 if(!length(opt$output_file)){
@@ -120,6 +129,10 @@ for(i in 1:num_categories){
 	res=gsub(":", "_", res); 
 	res=gsub(" ", "_", res); 
 	res=gsub("_+", "_", res);
+
+	if(strip_semicolons){
+		res=gsub(";","_", res);
+	}
 
 	if(length(grep("^[0-9]", res))){
 		res=paste("n",res, sep="");
