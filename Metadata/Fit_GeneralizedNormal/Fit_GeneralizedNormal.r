@@ -532,9 +532,17 @@ curated_targets_mat=test_and_apply_log_transform(targeted_mat, NORM_PVAL_CUTOFF)
 curated_target_names=colnames(curated_targets_mat);
 
 ##############################################################################
+
+num_variables=length(curated_target_names);
+
+params_matrix=matrix(NA, nrow=num_variables, ncol=3);
+colnames(params_matrix)=c("mu", "alpha", "beta");
+rownames(params_matrix)=curated_target_names;
+
+gn_density=list();
+
 failed_variables=c();
 par(mfrow=c(2,2));
-
 counter=1;
 for(ctn in curated_target_names){
 	data=curated_targets_mat[,ctn];
@@ -561,14 +569,14 @@ for(ctn in curated_target_names){
 	success=F;
 	tries=1;
 	MAX_TRIES=25;
-
+	adj=seq(1,10,length.out=MAX_TRIES);
 	while(success==F){
 		cat("Trials: ", tries, "\n");
 
 		# If fails, attribute more "width" to shape, rather than scale
 		muTry=mu0;
-		alphaTry=alpha0/(tries/5);
-		betaTry=beta0*(tries/5);
+		alphaTry=alpha0/adj[tries];
+		betaTry=beta0*adj[tries];
 
 		tryCatch(
 			{
@@ -611,6 +619,12 @@ for(ctn in curated_target_names){
 		#print(x);
 		#print(y);
 		points(x,y, col="blue");
+	
+		params_matrix[ctn,]=c(muf, alphaf, betaf);
+		gn_density[[ctn]]=list();
+		gn_density[[ctn]][["x"]]=x;
+		gn_density[[ctn]][["y"]]=y;
+
 	}else{
 		cat("Writing to list of unsuccessful fits.\n");
 		title(main="Unsuccessful Fit.", line=-1);
@@ -621,6 +635,17 @@ for(ctn in curated_target_names){
 	cat("\n\n");
 	counter=counter+1;
 }
+
+##############################################################################
+
+par(mfrow=c(4,1));
+beta_arr=params_matrix[,"beta"];
+hist(beta_arr, main="Beta Distribution (All)", xlab="");
+hist(beta_arr[beta_arr<25], main="Beta Distribution (0-25)", xlab="");
+hist(beta_arr[beta_arr<10], main="Beta Distribution (0-10)", xlab="");
+hist(beta_arr[beta_arr<5], main="Beta Distribution (0-5)", xlab="");
+
+dev.off();
 
 ##############################################################################
 
@@ -640,6 +665,34 @@ failed_fn=paste(OutputFnameRoot, ".failed.lst", sep="");
 fh=file(failed_fn, "w");
 cat(file=fh, paste(failed_variables, collapse="\n"), sep="");
 close(fh);
+
+##############################################################################
+
+pdf(paste(OutputFnameRoot, ".sorted.pdf", sep=""), height=11, width=8.5);
+par(mfrow=c(3,2));
+beta_arr_sorted=sort(beta_arr, decreasing=T);
+var_sorted=names(beta_arr_sorted);
+
+counter=1;
+for(varname in var_sorted){
+	
+	data=curated_targets_mat[,varname];
+	mu=params_matrix[varname,"mu"];
+	alpha=params_matrix[varname,"alpha"];
+	beta=params_matrix[varname,"beta"];
+
+	hist(data, main=paste(counter, ".) ", varname, sep=""), xlab="", freq=F, breaks=30);
+	title(main=paste("Mean =", round(mu,4)), line=-1);
+	title(main=paste("Alpha =", round(alpha,4)), line=-2);
+	title(main=paste("Beta =", round(beta,4)), line=-3);
+
+	points(gn_density[[varname]][["x"]], gn_density[[varname]][["y"]], col="blue");
+	counter=counter+1;
+}
+
+
+
+
 
 ##############################################################################
 
