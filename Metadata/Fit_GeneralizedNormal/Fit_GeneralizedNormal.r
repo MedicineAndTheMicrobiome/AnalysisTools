@@ -12,7 +12,8 @@ options(digits=5)
 
 params=c(
 	"factors", "f", 1, "character",
-	"outputroot", "o", 1, "character"
+	"outputroot", "o", 1, "character",
+	"debug_targets", "d", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -29,6 +30,8 @@ usage = paste(
 	"\nUsage:\n", script_name, "\n",
 	"	-f <factors/metadata file name>\n",
 	"	-o <output filename root.\n",
+	"\n",
+	"	<-d <debug list of variable targets>\n",
 	"\n",
 	"This script will try to sort the variables based on\n",
 	"how much 'information' the variables have.  Since\n",
@@ -49,6 +52,11 @@ if(
 
 FactorsFname=opt$factors;
 OutputFnameRoot=opt$outputroot;
+
+DebugVarList="";
+if(length(opt$debug_targets)){
+	DebugVarList=opt$debug_targets;	
+}
 
 
 param_text=capture.output({
@@ -529,7 +537,17 @@ targeted_mat=loaded_factors;
 
 cat("Testing Predictor Variables for normality.\n");
 curated_targets_mat=test_and_apply_log_transform(targeted_mat, NORM_PVAL_CUTOFF);
+
+if(DebugVarList!=""){
+	debug_tar_list=scan(DebugVarList, what=character(), comment.char="#");
+	cat("Debug target variable list:\n");
+	print(debug_tar_list);
+	curated_targets_mat=curated_targets_mat[,debug_tar_list,drop=F];
+}
+
+
 curated_target_names=colnames(curated_targets_mat);
+
 
 ##############################################################################
 
@@ -566,67 +584,116 @@ for(ctn in curated_target_names){
 
 	muf=NA; alphaf=NA; betaf=NA;
 
-	success=F;
-	tries=1;
-	MAX_TRIES=25;
-	adj=seq(1,10,length.out=MAX_TRIES);
-	while(success==F){
-		cat("Trials: ", tries, "\n");
+	mu_pert=5;
+	alpha_pert=5;
+	beta_pert=5;
 
-		# If fails, attribute more "width" to shape, rather than scale
-		muTry=mu0;
-		alphaTry=alpha0/adj[tries];
-		betaTry=beta0*adj[tries];
+	#mu_pert=1;
+	#alpha_pert=1;
+	#beta_pert=2;
 
-		tryCatch(
-			{
-				fit=mle(nLL, start=list(mu=muTry, alpha=alphaTry, beta=betaTry));
-				print(fit);
-				fit_res=attributes(fit);
-				#print(fit_res);
-				muf=fit_res$coef[1];	
-				alphaf=fit_res$coef[2];	
-				betaf=fit_res$coef[3];	
-				success=T;
-			}, 
-			error=function(e){
-				cat("Error:\n");
-				print(e);
+	mu_adj=2^(seq(-.25, .25, length.out=mu_pert));
+	alpha_adj=2^(seq(-.5, .5, length.out=alpha_pert));
+	beta_adj=2^(seq(-.5, .5, length.out=beta_pert));
+
+	total_perts=mu_pert*alpha_pert*beta_pert;
+	pert_ix=1;
+
+	pert_res_matrix=matrix(NA, nrow=total_perts, ncol=4);
+	colnames(pert_res_matrix)=c("nLL", "mu", "alpha", "beta");
+	
+	any_success=F;
+	for(mu_ix in mu_adj){
+		for(alpha_ix in alpha_adj){
+			for(beta_ix in beta_adj){
+
+				success=F;
+
+				# The tries are for fine grain adjustments,
+				#   if the starting parameters are causing errors
+				tries=1;
+				MAX_TRIES=25;
+				adj=seq(1,10,length.out=MAX_TRIES);
+				while(success==F){
+					#cat("Perturbations: ", pert_ix, "  Trials: ", tries, "\n");
+
+					# If fails, attribute more "width" to shape, rather than scale
+					muTry=mu0*mu_ix;
+					alphaTry=alpha0/adj[tries]*alpha_ix;
+					betaTry=beta0*adj[tries]*beta_ix;
+
+					tryCatch(
+						{
+							fit=mle(nLL, start=list(
+								mu=muTry, alpha=alphaTry, beta=betaTry));
+
+							#print(fit);
+							fit_res=attributes(fit);
+							#print(fit_res);
+							muf=fit_res$coef[1];	
+							alphaf=fit_res$coef[2];	
+							betaf=fit_res$coef[3];	
+							success=T;
+							any_success=T;
+						}, 
+						error=function(e){
+							cat("Error:\n");
+							print(e);
+						}
+					);
+					if(tries==MAX_TRIES){
+						break;
+					}
+					tries=tries+1;
+				}
+
+				if(success){
+					nll_pert=nLL(muf, alphaf, betaf);
+					pert_res_matrix[pert_ix,]=c(nll_pert, muf, alphaf, betaf);
+				}
+
+				pert_ix=pert_ix+1;		
 			}
-		);
-		if(tries==MAX_TRIES){
-			break;
 		}
-		tries=tries+1;
 	}
 
-	cat("Success: ", success, "\n");
+	# Find perturbation with min nll_pert
+	nona_ix=!is.na(pert_res_matrix[,"nLL"]);
+	nona_pert_res_matrix=pert_res_matrix[nona_ix,,drop=F];
+	min_nLL=min(nona_pert_res_matrix[,"nLL"]);
+	min_ix=min(which(nona_pert_res_matrix[,"nLL"]==min_nLL));
+
+	mu_best=nona_pert_res_matrix[min_ix,"mu"];
+	alpha_best=nona_pert_res_matrix[min_ix,"alpha"];
+	beta_best=nona_pert_res_matrix[min_ix,"beta"];
+
+	cat("Best: (", mu_best, ", ", alpha_best, ", ", beta_best, ")\n", sep="");
 
 	hist(data, breaks=30, main=paste(counter, ".) ", ctn, sep=""), freq=F, xlab="");
 
-	if(success){
-		cat("Overlaying model on top of data.\n");
-		title(main=paste("Mean =", round(muf,4)), line=-1);
-		title(main=paste("Alpha =", round(alphaf,4)), line=-2);
-		title(main=paste("Beta =", round(betaf,4)), line=-3);
+	if(any_success){
+		cat("Overall Success.\n")
+		title(main=paste("Mean =", round(mu_best,4)), line=-1);
+		title(main=paste("Alpha =", round(alpha_best,4)), line=-2);
+		title(main=paste("Beta =", round(beta_best,4)), line=-3);
 
 		range=range(data);
 		span=diff(range);
 		margin=span*.15;
 		x=seq(range[1]-margin, range[2]+margin, length.out=100);
 		#print(c(muf, alphaf, betaf));
-		y=dgnorm(x, muf, alphaf, betaf);
+		y=dgnorm(x, mu_best, alpha_best, beta_best);
 		#print(x);
 		#print(y);
 		points(x,y, col="blue");
 	
-		params_matrix[ctn,]=c(muf, alphaf, betaf);
+		params_matrix[ctn,]=c(mu_best, alpha_best, beta_best);
 		gn_density[[ctn]]=list();
 		gn_density[[ctn]][["x"]]=x;
 		gn_density[[ctn]][["y"]]=y;
 
 	}else{
-		cat("Writing to list of unsuccessful fits.\n");
+		cat("Overall Failure.\n");
 		title(main="Unsuccessful Fit.", line=-1);
 		failed_variables=c(failed_variables, ctn);	
 	}
@@ -663,7 +730,7 @@ write.table(
 
 failed_fn=paste(OutputFnameRoot, ".failed.lst", sep="");
 fh=file(failed_fn, "w");
-cat(file=fh, paste(failed_variables, collapse="\n"), sep="");
+cat(file=fh, paste(failed_variables, collapse="\n"), "\n", sep="");
 close(fh);
 
 ##############################################################################
@@ -690,8 +757,92 @@ for(varname in var_sorted){
 	counter=counter+1;
 }
 
+##############################################################################
+# Calculate correlation across variables from different beta values
 
+max_group_size=75;
+num_var=length(beta_arr);
 
+high_beta_vnames=var_sorted[1:max_group_size];
+low_beta_vnames=var_sorted[(num_var-max_group_size):num_var];
+
+gt2_beta_ix=max(which(beta_arr_sorted>2));
+lb=max(1, gt2_beta_ix-max_group_size/2);
+ub=min(num_var, gt2_beta_ix+max_group_size/2);
+mid_beta_vnames=var_sorted[lb:ub];
+
+cat("Low Beta:\n");
+print(beta_arr_sorted[low_beta_vnames]);
+cat("Medium Beta:\n");
+print(beta_arr_sorted[mid_beta_vnames]);
+cat("High Beta:\n");
+print(beta_arr_sorted[high_beta_vnames]);
+
+low_beta_values_mat=curated_targets_mat[,low_beta_vnames,drop=F];
+mid_beta_values_mat=curated_targets_mat[,mid_beta_vnames,drop=F];
+high_beta_values_mat=curated_targets_mat[,high_beta_vnames,drop=F];
+
+par(mfrow=c(1,1));
+paint_matrix(cor(low_beta_values_mat), plot_min=-1, plot_max=1, title="Low Beta Variables", 
+	value.cex=.5, deci_pts=2);
+paint_matrix(cor(mid_beta_values_mat), plot_min=-1, plot_max=1, title="Mid Beta Variables",
+	value.cex=.5, deci_pts=2);
+paint_matrix(cor(high_beta_values_mat), plot_min=-1, plot_max=1, title="High Beta Variables",
+	value.cex=.5, deci_pts=2);
+
+##############################################################################
+# compute sliding window
+
+abs_group_mean_cor=function(x){
+	mean(abs(as.dist(cor(x))));	
+}
+
+slide_window_cor=function(mat, beta_arr, window_size, steps){
+	num_var=ncol(mat);
+
+	window_size=min(window_size, round(num_var/8, 0));
+	steps=min(num_var, steps);
+	
+	indices=seq(1, num_var-window_size, length.out=steps);
+
+	if(any(indices<0)){
+		return(rep(NA, num_var));
+	}
+	
+	mean_abs_cor=numeric(num_var);
+
+	i=1;
+	for(offset in indices){
+		mean_abs_cor[i]=abs_group_mean_cor(mat[,offset:(offset+window_size)]);
+		i=i+1;
+	}	
+
+	res=list();
+	res$x=beta_arr[indices];
+	res$y=mean_abs_cor;
+	res$steps=steps;
+	res$window_size=window_size;
+
+	return(res);
+}
+
+mac=slide_window_cor(
+	curated_targets_mat[,var_sorted],
+	beta_arr_sorted,
+	window_size=100,
+	steps=300);
+
+beta_landmarks=0:10;
+
+plot(mac$x, mac$y, xlab="Beta", ylab="Mean Abs(Cor)", main="Abs Auto-Correlation", ylim=c(0,1));
+title(main=paste("Window Size=", mac$window_size, "  Steps=", mac$steps, sep=""), line=-2);
+abline(v=beta_landmarks, col="blue", lty="dotted");
+
+plot(log10(mac$x), mac$y, xlab="Log10(Beta)", ylab="Mean Abs(Cor)", main="Abs Auto-Correlation", ylim=c(0,1));
+title(main=paste("Window Size=", mac$window_size, "  Steps=", mac$steps, sep=""), line=-2);
+abline(v=log10(beta_landmarks), col="blue", lty="dotted");
+text(log10(beta_landmarks), 0, beta_landmarks, font=2);
+	
 
 
 ##############################################################################
