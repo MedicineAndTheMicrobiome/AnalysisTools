@@ -13,7 +13,9 @@ options(digits=5)
 params=c(
 	"factors", "f", 1, "character",
 	"outputroot", "o", 1, "character",
-	"debug_targets", "d", 2, "character"
+	"debug_targets", "d", 2, "character",
+	"fast_fit", "F", 2, "logical"
+
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -32,6 +34,7 @@ usage = paste(
 	"	-o <output filename root.\n",
 	"\n",
 	"	<-d <debug list of variable targets>\n",
+	"	<-F (fast fit)>\n",
 	"\n",
 	"This script will try to sort the variables based on\n",
 	"how much 'information' the variables have.  Since\n",
@@ -58,11 +61,21 @@ if(length(opt$debug_targets)){
 	DebugVarList=opt$debug_targets;	
 }
 
+FastFit=F;
+if(length(opt$fast_fit)){
+	FastFit=T;
+}
+
+if(FastFit){
+	OutputFnameRoot=paste(OutputFnameRoot, ".fast", sep="");
+}
+
 
 param_text=capture.output({
 	cat("\n");
 	cat("Factor File Name: ", FactorsFname, "\n");
 	cat("Output File Name Root: ", OutputFnameRoot, "\n");
+	cat("Fast Fit? ", FastFit, "\n");
 	cat("\n");
 });
 
@@ -584,13 +597,15 @@ for(ctn in curated_target_names){
 
 	muf=NA; alphaf=NA; betaf=NA;
 
-	mu_pert=5;
-	alpha_pert=5;
-	beta_pert=5;
-
-	#mu_pert=1;
-	#alpha_pert=1;
-	#beta_pert=2;
+	if(!FastFit){
+		mu_pert=5;
+		alpha_pert=5;
+		beta_pert=5;
+	}else{
+		mu_pert=1;
+		alpha_pert=1;
+		beta_pert=2;
+	}
 
 	mu_adj=2^(seq(-.25, .25, length.out=mu_pert));
 	alpha_adj=2^(seq(-.5, .5, length.out=alpha_pert));
@@ -803,13 +818,13 @@ slide_window_cor=function(mat, beta_arr, window_size, steps){
 	window_size=min(window_size, round(num_var/8, 0));
 	steps=min(num_var, steps);
 	
-	indices=seq(1, num_var-window_size, length.out=steps);
+	indices=as.integer(seq(1, num_var-window_size, length.out=steps));
 
 	if(any(indices<0)){
 		return(rep(NA, num_var));
 	}
 	
-	mean_abs_cor=numeric(num_var);
+	mean_abs_cor=numeric(steps);
 
 	i=1;
 	for(offset in indices){
@@ -822,6 +837,7 @@ slide_window_cor=function(mat, beta_arr, window_size, steps){
 	res$y=mean_abs_cor;
 	res$steps=steps;
 	res$window_size=window_size;
+	res$indices=indices;
 
 	return(res);
 }
@@ -832,12 +848,22 @@ mac=slide_window_cor(
 	window_size=100,
 	steps=300);
 
-beta_landmarks=0:10;
+print(mac$indices);
 
+cat("Betas:\n");
+print(mac$x);
+
+cat("Mean(Abs(Correl)):\n");
+print(mac$y);
+
+beta_landmarks=c(0:5, 10, 25, 50, 100, 200, 400);
+
+cat("Plotting Beta vs. AutoCor...\n");
 plot(mac$x, mac$y, xlab="Beta", ylab="Mean Abs(Cor)", main="Abs Auto-Correlation", ylim=c(0,1));
 title(main=paste("Window Size=", mac$window_size, "  Steps=", mac$steps, sep=""), line=-2);
 abline(v=beta_landmarks, col="blue", lty="dotted");
 
+cat("Plotting Log10(Beta) vs. AutoCor...\n");
 plot(log10(mac$x), mac$y, xlab="Log10(Beta)", ylab="Mean Abs(Cor)", main="Abs Auto-Correlation", ylim=c(0,1));
 title(main=paste("Window Size=", mac$window_size, "  Steps=", mac$steps, sep=""), line=-2);
 abline(v=log10(beta_landmarks), col="blue", lty="dotted");
