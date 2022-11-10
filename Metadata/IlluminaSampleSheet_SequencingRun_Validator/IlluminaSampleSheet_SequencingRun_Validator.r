@@ -46,24 +46,33 @@ cat("\n");
 
 get_sample_ids_from_samplesheet=function(sample_sheet_fname){
 
-	ss_data=read.csv(file=sample_sheet_fname, header=F);
 
-	# Find [Data]
-	data_row=which(ss_data[,1]=="[Data]");
+	#Finding line with [Data] header
 
-	if(length(data_row)==0){
-		cat("Error: Could not find [Data] in sample sheet.\n");
-		quit(status=-1);
-	}
+	ss_data=readLines(sample_sheet_fname)
+	data_row=grepl("^\\[Data\\]", ss_data)
+	data_row=which(data_row==TRUE)
 
-	if(ss_data[data_row+1,1]!="Sample_ID"){
-		cat("Error: Could not find Sample_ID in sample sheet.\n");
-		quit(status=-1);
-	}
+	#Basic sanity checks
 
-	sample_ids=as.character(ss_data[(data_row+2):nrow(ss_data), 1]);
+        if(length(data_row)==0){
+                cat("Error: Could not find [Data] in sample sheet.\n");
+                quit(status=-1);
+        }
+
+
+	if(!grep("Sample_ID", ss_data[data_row+1])){
+               cat("Error: Could not find Sample_ID in sample sheet.\n");
+               quit(status=-1);
+       }
+
+
+	#Extracting sampleIDs from sample sheet.
+
+	sample_ids=as.character(ss_data[(data_row+2):NROW(ss_data)]);
+	sample_ids=sapply(strsplit(sample_ids, ","), getElement, 1)
 	num_samp_ids=length(sample_ids);
-	#print(sample_ids);
+
 
 	cat("Number of Sample IDs Found in sample sheet: ", num_samp_ids, "\n");
 
@@ -273,3 +282,4 @@ dev.off();
 
 print(warnings());
 q(status=0);
+
