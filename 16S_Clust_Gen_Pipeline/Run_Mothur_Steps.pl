@@ -11,7 +11,7 @@ use vars qw($opt_f $opt_g $opt_r $opt_o $opt_p $opt_c $opt_m $opt_O $opt_R);
 use POSIX;
 use Cwd 'abs_path';
 
-my $MOTHUR_BIN="/usr/bin/mothur_1.44.1/mothur/mothur";
+my $MOTHUR_BIN="/usr/bin/mothur_1.44.1/mothur";
 
 my $PIPELINE_UTIL_PATH="$FindBin::Bin/pipeline_utilities";
 print STDERR "Path of Pipeline Utilities: $PIPELINE_UTIL_PATH\n";
