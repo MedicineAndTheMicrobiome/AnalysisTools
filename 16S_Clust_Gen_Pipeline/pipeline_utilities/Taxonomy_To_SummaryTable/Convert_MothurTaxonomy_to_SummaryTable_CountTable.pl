@@ -168,7 +168,7 @@ sub output_summary_table{
 
 	foreach my $group(@group_keys){
 		print STDERR "\nSample ID: $group\n";
-		my @taxa_keys=keys ${$counts_hash_ref}{$group};
+		my @taxa_keys=keys %{${$counts_hash_ref}{$group}};
 		foreach my $taxa(@taxa_keys){
 			$all_taxa{$taxa}=1;
 			print STDERR "${$counts_hash_ref}{$group}{$taxa}\t$taxa\n";
