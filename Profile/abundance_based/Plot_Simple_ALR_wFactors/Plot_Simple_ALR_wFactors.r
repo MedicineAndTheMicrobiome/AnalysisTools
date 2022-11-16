@@ -581,9 +581,9 @@ for(i in 1:num_factors){
 
 		# Save into table
 		association_matrix[p,]=c(
-			p,
+			sprintf("%2i", p),
 			alr_names[p],
-			round(slope, 4),
+			sprintf("%7.4f", slope),
 			round(pval, 4),
 			signf_char
 		);
