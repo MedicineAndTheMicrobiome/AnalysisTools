@@ -166,22 +166,25 @@ normalize=function(counts){
         return(normalized);
 }
 
-plot_text=function(strings){
+plot_text=function(strings, no_touch_par=F, lines=52, cex=1){
 
 	orig.par=par(no.readonly=T);
         par(family="Courier");
-        par(oma=rep(.1,4));
-        par(mar=rep(0,4));
+
+	if(!no_touch_par){
+		par(oma=rep(.1,4));
+		par(mar=rep(0,4));
+	}
 
         num_lines=length(strings);
 
-        top=max(as.integer(num_lines), 52);
+        top=max(as.integer(num_lines), lines);
 
         plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
                 xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
                 );
 
-        text_size=max(.01, min(.8, .8 - .003*(num_lines-52)));
+        text_size=max(.01, min(.8, .8 - .003*(num_lines-52)))*cex;
         #print(text_size);
 
         for(i in 1:num_lines){
@@ -333,18 +336,44 @@ compute_alr=function(st, top){
 
 }
 
-get_color=function(pval){
-	slp_col="white";
-	if(pval<0.001){
-		slp_col="red";
-	}else if(pval<0.01){
-		slp_col="purple";
-	}else if(pval<0.05){
-		slp_col="blue";
-	}else if(pval<0.1){
-		slp_col="green";
+get_color=function(pval_arr){
+	fill_arr=c();
+	for(i in 1:length(pval_arr)){
+		pval=pval_arr[i];
+		if(pval<=0.001){
+			fillcol="#2000FF";
+		}else if(pval<=0.01){
+			fillcol="#0040FF";
+		}else if(pval<=0.05){
+			fillcol="#009FFF";
+		}else if(pval<=0.1){
+			fillcol="#00FFFF";
+		}else{
+			fillcol="#DDDDDD";
+		} 
+		fill_arr=c(fill_arr, fillcol);
 	}
-	return(slp_col);
+	return(fill_arr);
+}
+
+get_signf=function(pval_arr){
+	char_arr=c();
+	for(i in 1:length(pval_arr)){
+		pval=pval_arr[i];
+		if(pval<=0.001){
+			char="***";
+		}else if(pval<=0.01){
+			char="**";
+		}else if(pval<=0.05){
+			char="*";
+		}else if(pval<=0.1){
+			char="'";
+		}else{
+			char="";
+		} 
+		char_arr=c(char_arr, char);
+	}
+	return(char_arr);
 }
 
 
@@ -369,9 +398,13 @@ for(i in 1:num_factors){
 	par(mfrow=c(6,5));
 	par(oma=c(2,2,3,2));
 	par(mar=c(2,3,3,.1));
+
+	hist(factor_data[,1], main=factor_name, col="grey");
+
 	for(p in 1:NumTopCategories){
 		hist(alr_val[,p], main=alr_names[p]);
 	}
+	
 	mtext(
 		paste("Histograms for ", factor_name, " w/o NAs", sep=""),
 		side=3, outer=T,
@@ -476,21 +509,24 @@ for(i in 1:num_factors){
 	# Plot with rank abundance style
 	cat("Plotting in rank abundance style.\n");
 
-	par(mfrow=c(NumPlotRows/2, 1));
-	par(mar=c(10,4,4,2.5));
+	#par(mfrow=c(3, 1));
+	layout_mat=matrix(c(1,1,2,3,3,3), ncol=1);
+	layout(layout_mat);
+
+	par(mar=c(10,4,6,2.5));
 	all_alr_range=range(alr_val);
 	alrmar=diff(all_alr_range)*.15;
 
 	plot(0, type="n", 
-		xlim=c(.25, NumTopCategories+.25), 
+		xlim=c(.75, NumTopCategories+.25), 
 		ylim=c(all_alr_range[1]-armar, all_alr_range[2]+armar),
 		bty="l",
 		xaxt="n",
 		xlab="", ylab="ALR"
 	);
 
-	x_range=range(factor_data);
-	x_mid=(x_range[2]-x_range[1])/2;
+	x_range=range(factor_data[,1]);
+	x_mid=(x_range[2]+x_range[1])/2;
 	x_span=x_range[2]-x_range[1];
 
 	transform_pts=function(x, mid, span, scale, offset){
@@ -500,6 +536,11 @@ for(i in 1:num_factors){
 	cat("x-mid = ", x_mid, " / x-span", x_span, "\n");
 
 	scale=.75;
+
+	assoc_colnames=c("Category", "Estimate", "P-value", "Significance");
+	association_matrix=matrix(character(), nrow=NumTopCategories, ncol=length(assoc_colnames));
+	colnames(association_matrix)=assoc_colnames;
+	rownames(association_matrix)=paste(1:NumTopCategories, ".)", sep="");
 
 	for(p in 1:NumTopCategories){
 
@@ -516,8 +557,6 @@ for(i in 1:num_factors){
 		intercept=sumfit$coefficients["(Intercept)", "Estimate"];
 		pval=sumfit$coefficients["x", "Pr(>|t|)"];
 
-		slp_col=get_color(pval);
-
 		linex_start=transform_pts(x_range[1], x_mid, x_span, scale, p);
 		linex_end=transform_pts(x_range[2], x_mid, x_span, scale, p);
 
@@ -525,41 +564,64 @@ for(i in 1:num_factors){
 		liney_end=slope*x_range[2]+intercept;
 
 		# Fill
+		fillcol=get_color(pval);
 		polygon(
 			c(linex_start, linex_end, linex_end, linex_start), 
 			c(liney_start, liney_end, all_alr_range[1], all_alr_range[1]), 
-			col="blue"
+			col=fillcol
 		);
-
-		# slope
-		points(c(linex_start, linex_end), c(liney_start, liney_end), 
-			col="white", lwd=slp_lwd+2, type="l");
-		points(c(linex_start, linex_end), c(liney_start, liney_end), 
-			col="black", lwd=slp_lwd+1, type="l");
-		points(c(linex_start, linex_end), c(liney_start, liney_end), 
-			col=slp_col, lwd=slp_lwd, lty="dashed", type="l");
 
 		# Sample Glyphs
 		trans=transform_pts(x, x_mid, x_span, scale, p);
 		points(trans, y, cex=.7);
 
-		#abline(lmfit, col="black", lwd=slp_lwd+1);
-		#abline(lmfit, col=slp_col, lty="longdash", lwd=slp_lwd);
-		#mtext(alr_names[p], 
+		# Label signif below bar
+		signf_char=get_signf(pval);
+		text(p, all_alr_range[1], signf_char, font=2, cex=2, adj=c(.5, 1.5));
+
+		# Save into table
+		association_matrix[p,]=c(
+			alr_names[p],
+			round(slope, 4),
+			round(pval, 4),
+			signf_char
+		);
 	}
 
 	bar_width=scale;
+
+	# label taxa bottom
 	label_size=min(c(1,.7*bar_width/par()$cxy[1]));
 	text(
 		(1:NumTopCategories)-par()$cxy[1]/2, 
 		rep(-par()$cxy[2]/2, NumTopCategories)+(all_alr_range[1]-armar*1.05),
 		alr_names, srt=-45, xpd=T, pos=4, cex=label_size);
 
+	# label first bar above
+	axis(side=3, at=c(1-scale/2, 1+scale/2), labels=c(x_range[1], x_range[2]));
+	axis(side=3, at=1, labels=factor_name, tick=F, line=1.25, font.axis=3, cex.axis=1.1);
+
 	mtext(
-		paste("Scatter Plots for ", factor_name, " Rank ALR Style", sep=""),
+		paste("Rank ALR Simple Regression Plot: ", factor_name, sep=""),
 		side=3, outer=T,
-		cex=2, font=2
+		cex=1.5, font=2
 	);
+
+	# Legends
+	legend_signf=c(0.1, 0.05, 0.01, 0.001);
+	par(mar=c(0,0,0,0));
+	plot(0, type="n", xlim=c(0,1), ylim=c(0,1), xaxt="n", yaxt="n", xlab="", ylab="", main="", bty="n");
+	legend(0,1, 
+		title="Significance Colors",
+		legend=paste(legend_signf, get_signf(legend_signf), sep="  "),
+		fill=get_color(legend_signf),
+		bty="n"
+	);
+
+	# Table
+	text=capture.output({print(association_matrix, quote=F)});
+	par(mar=c(0,0,0,0));
+	plot_text(text, no_touch_par=T, lines=NumTopCategories, cex=2);
 
 	cat("\n");
 	
