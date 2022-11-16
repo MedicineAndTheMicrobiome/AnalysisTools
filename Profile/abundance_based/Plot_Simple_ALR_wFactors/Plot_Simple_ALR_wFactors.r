@@ -333,6 +333,20 @@ compute_alr=function(st, top){
 
 }
 
+get_color=function(pval){
+	slp_col="white";
+	if(pval<0.001){
+		slp_col="red";
+	}else if(pval<0.01){
+		slp_col="purple";
+	}else if(pval<0.05){
+		slp_col="blue";
+	}else if(pval<0.1){
+		slp_col="green";
+	}
+	return(slp_col);
+}
+
 
 for(i in 1:num_factors){
 		
@@ -364,6 +378,8 @@ for(i in 1:num_factors){
 		cex=2, font=2
 	);
 
+	slp_lwd=2;
+
 	#######################################################################
 	# Plot individual
 
@@ -391,21 +407,8 @@ for(i in 1:num_factors){
 			line=.35, cex.main=.75, font=1
 		);
 
-		slp_col="grey";
-		slp_lwd=1;
-		if(pval<0.1){
-			slp_col="green";
-			slp_lwd=1.5;
-		}else if(pval<0.05){
-			slp_col="blue";
-			slp_lwd=1.75;
-		}else if(pval<0.01){
-			slp_col="purple";
-			slp_lwd=2;
-		}else if(pval<0.001){
-			slp_col="red";
-			slp_lwd=2.5;
-		}
+		slp_col=get_color(pval);
+
 		abline(lmfit, col="black", lwd=slp_lwd+1);
 		abline(lmfit, col=slp_col, lty="longdash", lwd=slp_lwd);
 	}
@@ -458,26 +461,102 @@ for(i in 1:num_factors){
 			line=.35, cex.main=.75, font=1
 		);
 
-		slp_col="grey";
-		slp_lwd=1;
-		if(pval<0.1){
-			slp_col="green";
-			slp_lwd=1.5;
-		}else if(pval<0.05){
-			slp_col="blue";
-			slp_lwd=1.75;
-		}else if(pval<0.01){
-			slp_col="purple";
-			slp_lwd=2;
-		}else if(pval<0.001){
-			slp_col="red";
-			slp_lwd=2.5;
-		}
+		slp_col=get_color(pval);
+
 		abline(lmfit, col="black", lwd=slp_lwd+1);
 		abline(lmfit, col=slp_col, lty="longdash", lwd=slp_lwd);
 	}
 	mtext(
 		paste("Scatter Plots for ", factor_name, " Common ALR Axis", sep=""),
+		side=3, outer=T,
+		cex=2, font=2
+	);
+
+	#######################################################################
+	# Plot with rank abundance style
+	cat("Plotting in rank abundance style.\n");
+
+	par(mfrow=c(NumPlotRows/2, 1));
+	par(mar=c(10,4,4,2.5));
+	all_alr_range=range(alr_val);
+	alrmar=diff(all_alr_range)*.15;
+
+	plot(0, type="n", 
+		xlim=c(.25, NumTopCategories+.25), 
+		ylim=c(all_alr_range[1]-armar, all_alr_range[2]+armar),
+		bty="l",
+		xaxt="n",
+		xlab="", ylab="ALR"
+	);
+
+	x_range=range(factor_data);
+	x_mid=(x_range[2]-x_range[1])/2;
+	x_span=x_range[2]-x_range[1];
+
+	transform_pts=function(x, mid, span, scale, offset){
+		(x-mid)/span*scale+offset
+	}
+
+	cat("x-mid = ", x_mid, " / x-span", x_span, "\n");
+
+	scale=.75;
+
+	for(p in 1:NumTopCategories){
+
+		cat(alr_names[p], "\n");
+		x=factor_data[,1];
+		y=alr_val[,p];
+
+		min_y=min(y);
+
+		lmfit=lm(y~x);
+		sumfit=summary(lmfit);
+
+		slope=sumfit$coefficients["x", "Estimate"];
+		intercept=sumfit$coefficients["(Intercept)", "Estimate"];
+		pval=sumfit$coefficients["x", "Pr(>|t|)"];
+
+		slp_col=get_color(pval);
+
+		linex_start=transform_pts(x_range[1], x_mid, x_span, scale, p);
+		linex_end=transform_pts(x_range[2], x_mid, x_span, scale, p);
+
+		liney_start=slope*x_range[1]+intercept;
+		liney_end=slope*x_range[2]+intercept;
+
+		# Fill
+		polygon(
+			c(linex_start, linex_end, linex_end, linex_start), 
+			c(liney_start, liney_end, all_alr_range[1], all_alr_range[1]), 
+			col="blue"
+		);
+
+		# slope
+		points(c(linex_start, linex_end), c(liney_start, liney_end), 
+			col="white", lwd=slp_lwd+2, type="l");
+		points(c(linex_start, linex_end), c(liney_start, liney_end), 
+			col="black", lwd=slp_lwd+1, type="l");
+		points(c(linex_start, linex_end), c(liney_start, liney_end), 
+			col=slp_col, lwd=slp_lwd, lty="dashed", type="l");
+
+		# Sample Glyphs
+		trans=transform_pts(x, x_mid, x_span, scale, p);
+		points(trans, y, cex=.7);
+
+		#abline(lmfit, col="black", lwd=slp_lwd+1);
+		#abline(lmfit, col=slp_col, lty="longdash", lwd=slp_lwd);
+		#mtext(alr_names[p], 
+	}
+
+	bar_width=scale;
+	label_size=min(c(1,.7*bar_width/par()$cxy[1]));
+	text(
+		(1:NumTopCategories)-par()$cxy[1]/2, 
+		rep(-par()$cxy[2]/2, NumTopCategories)+(all_alr_range[1]-armar*1.05),
+		alr_names, srt=-45, xpd=T, pos=4, cex=label_size);
+
+	mtext(
+		paste("Scatter Plots for ", factor_name, " Rank ALR Style", sep=""),
 		side=3, outer=T,
 		cex=2, font=2
 	);
