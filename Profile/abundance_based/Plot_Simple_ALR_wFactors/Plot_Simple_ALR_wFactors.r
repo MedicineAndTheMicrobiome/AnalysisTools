@@ -537,10 +537,10 @@ for(i in 1:num_factors){
 
 	scale=.75;
 
-	assoc_colnames=c("Category", "Estimate", "P-value", "Significance");
+	assoc_colnames=c("Rank", "Category", "Estimate", "P-value", "Significance");
 	association_matrix=matrix(character(), nrow=NumTopCategories, ncol=length(assoc_colnames));
 	colnames(association_matrix)=assoc_colnames;
-	rownames(association_matrix)=paste(1:NumTopCategories, ".)", sep="");
+	association_pvals=numeric(NumTopCategories);
 
 	for(p in 1:NumTopCategories){
 
@@ -581,11 +581,13 @@ for(i in 1:num_factors){
 
 		# Save into table
 		association_matrix[p,]=c(
+			p,
 			alr_names[p],
 			round(slope, 4),
 			round(pval, 4),
 			signf_char
 		);
+		association_pvals[p]=pval;
 	}
 
 	bar_width=scale;
@@ -599,7 +601,7 @@ for(i in 1:num_factors){
 
 	# label first bar above
 	axis(side=3, at=c(1-scale/2, 1+scale/2), labels=c(x_range[1], x_range[2]));
-	axis(side=3, at=1, labels=factor_name, tick=F, line=1.25, font.axis=3, cex.axis=1.1);
+	axis(side=3, at=1, labels=paste(factor_name, "Range"), tick=F, line=1.25, font.axis=3, cex.axis=1.1);
 
 	mtext(
 		paste("Rank ALR Simple Regression Plot: ", factor_name, sep=""),
@@ -619,7 +621,10 @@ for(i in 1:num_factors){
 	);
 
 	# Table
-	text=capture.output({print(association_matrix, quote=F)});
+	by_pval=order(association_pvals);
+	ordered_assoc_mat=association_matrix[by_pval,];
+	rownames(ordered_assoc_mat)=paste(1:NumTopCategories, ".)", sep="");
+	text=capture.output({print(ordered_assoc_mat, quote=F)});
 	par(mar=c(0,0,0,0));
 	plot_text(text, no_touch_par=T, lines=NumTopCategories, cex=2);
 
