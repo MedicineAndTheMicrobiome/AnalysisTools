@@ -10,12 +10,18 @@ library('stats4'); # For mle
 options(useFancyQuotes=F);
 options(digits=5)
 
+INDIV_PCA_CUTOFF=0.05;
+CUMUL_PCA_CUTOFF=0.80;
+NUM_PC_GLOBAL=5;
+
 params=c(
 	"factors", "f", 1, "character",
 	"outputroot", "o", 1, "character",
 	"debug_targets", "d", 2, "character",
-	"fast_fit", "F", 2, "logical"
-
+	"fast_fit", "F", 2, "logical",
+	"indiv_pca_cutoff", "i", 2, "numeric",
+	"cumul_pca_cutoff", "c", 2, "numeric",
+	"num_pcs_glob_cor", "p", 2, "numeric"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -24,9 +30,7 @@ script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
 #script_path=paste(head(strsplit(script_name, "/")[[1]], -1), collapse="/");
 #source(paste(script_path, "/Impute_Matrix.r", sep=""));
 
-
 NORM_PVAL_CUTOFF=.2;
-
 
 usage = paste(
 	"\nUsage:\n", script_name, "\n",
@@ -35,6 +39,11 @@ usage = paste(
 	"\n",
 	"	<-d <debug list of variable targets>\n",
 	"	<-F (fast fit)>\n",
+	"\n",
+	"	<-i <Individual PC Cutoff, default=", INDIV_PCA_CUTOFF, "\n",
+	"	<-c <Cumulative PC Cutoff, default=", CUMUL_PCA_CUTOFF, "\n",
+	"\n",
+	"	<-p <Num PCs for global correlation, default=", NUM_PC_GLOBAL, "\n",
 	"\n",
 	"This script will try to sort the variables based on\n",
 	"how much 'information' the variables have.  Since\n",
@@ -70,6 +79,21 @@ if(FastFit){
 	OutputFnameRoot=paste(OutputFnameRoot, ".fast", sep="");
 }
 
+Indiv_PC_Cutoff=INDIV_PCA_CUTOFF;
+Cumul_PC_Cutoff=CUMUL_PCA_CUTOFF;
+
+if(length(opt$indiv_pca_cutoff)){
+	Indiv_PC_Cutoff=opt$indiv_pca_cutoff;
+}
+
+if(length(opt$cumul_pca_cutoff)){
+	Cumul_PC_Cutoff=opt$cumul_pca_cutoff;
+}
+
+Num_PC_Global_Correl=NUM_PC_GLOBAL;
+if(length(opt$num_pcs_glob_cor)){
+	Num_PC_Global_Correl=opt$num_pcs_glob_cor;
+}
 
 param_text=capture.output({
 	cat("\n");
@@ -529,7 +553,7 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 # Main Program Starts Here!
 ##############################################################################
 
-pdf(paste(OutputFnameRoot, ".fit_gnd.pdf", sep=""), height=11, width=8.5);
+pdf(paste(OutputFnameRoot, ".fit_gnd.raw.pdf", sep=""), height=11, width=8.5);
 
 plot_text(param_text);
 
@@ -720,14 +744,9 @@ for(ctn in curated_target_names){
 
 ##############################################################################
 
-par(mfrow=c(4,1));
-beta_arr=params_matrix[,"beta"];
-hist(beta_arr, main="Beta Distribution (All)", xlab="");
-hist(beta_arr[beta_arr<25], main="Beta Distribution (0-25)", xlab="");
-hist(beta_arr[beta_arr<10], main="Beta Distribution (0-10)", xlab="");
-hist(beta_arr[beta_arr<5], main="Beta Distribution (0-5)", xlab="");
-
 dev.off();
+
+
 
 ##############################################################################
 
@@ -752,6 +771,8 @@ close(fh);
 
 pdf(paste(OutputFnameRoot, ".sorted.pdf", sep=""), height=11, width=8.5);
 par(mfrow=c(3,2));
+
+beta_arr=params_matrix[,"beta"];
 beta_arr_sorted=sort(beta_arr, decreasing=T);
 var_sorted=names(beta_arr_sorted);
 
@@ -772,10 +793,24 @@ for(varname in var_sorted){
 	counter=counter+1;
 }
 
+dev.off();
+
+##############################################################################
+##############################################################################
+
+pdf(paste(OutputFnameRoot, ".summaries.pdf", sep=""), height=11, width=8.5);
+
+
+par(mfrow=c(4,1));
+hist(beta_arr, main="Beta Distribution (All)", xlab="");
+hist(beta_arr[beta_arr<25], main="Beta Distribution (0-25)", xlab="");
+hist(beta_arr[beta_arr<10], main="Beta Distribution (0-10)", xlab="");
+hist(beta_arr[beta_arr<5], main="Beta Distribution (0-5)", xlab="");
+
 ##############################################################################
 # Calculate correlation across variables from different beta values
 
-max_group_size=75;
+max_group_size=50;
 num_var=length(beta_arr);
 
 high_beta_vnames=var_sorted[1:max_group_size];
@@ -804,6 +839,7 @@ paint_matrix(cor(mid_beta_values_mat), plot_min=-1, plot_max=1, title="Mid Beta 
 	value.cex=.5, deci_pts=2);
 paint_matrix(cor(high_beta_values_mat), plot_min=-1, plot_max=1, title="High Beta Variables",
 	value.cex=.5, deci_pts=2);
+
 
 ##############################################################################
 # compute sliding window
@@ -848,27 +884,246 @@ mac=slide_window_cor(
 	window_size=100,
 	steps=300);
 
-print(mac$indices);
-
 cat("Betas:\n");
 print(mac$x);
 
 cat("Mean(Abs(Correl)):\n");
 print(mac$y);
 
-beta_landmarks=c(0:5, 10, 25, 50, 100, 200, 400);
+	
+##############################################################################
+# windowed PCA
+
+pca_group_counts=function(x, indiv_pc_cutoff=0.03, cumulative_pc_cutoff=.80){
+
+	correl_mat=cor(x);
+	eigen=eigen(correl_mat);
+
+	pca_propvar=eigen$values/sum(eigen$values);
+	pca_propcumsum=cumsum(pca_propvar);
+
+	num_pc_to_exceed_cutoff=sum(pca_propcumsum<cumulative_pc_cutoff)+1;
+	num_pc_above_indiv_cutoff=sum(pca_propvar>indiv_pc_cutoff);
+
+	return(c(num_pc_to_exceed_cutoff, num_pc_above_indiv_cutoff));
+}
+
+slide_window_pca=function(mat, beta_arr, indiv_pc_cutoff, cumul_pc_cutoff, window_size, steps){
+	num_var=ncol(mat);
+
+	window_size=min(window_size, round(num_var/8, 0));
+	steps=min(num_var, steps);
+	
+	indices=as.integer(seq(1, num_var-window_size, length.out=steps));
+
+	if(any(indices<0)){
+		return(rep(NA, num_var));
+	}
+	
+	num_pc_to_exceed_cutoff=numeric(steps);
+	num_pc_above_indiv_cutoff=numeric(steps);
+
+	i=1;
+	for(offset in indices){
+		counts=pca_group_counts(mat[,offset:(offset+window_size)], indiv_pc_cutoff, cumul_pc_cutoff);
+		num_pc_to_exceed_cutoff[i]=counts[1];
+		num_pc_above_indiv_cutoff[i]=counts[2];
+		i=i+1;
+	}	
+
+	res=list();
+	res$x=beta_arr[indices];
+	res$y_num_pc_to_exceed_cutoff=num_pc_to_exceed_cutoff;
+	res$y_num_pc_above_indiv_cutoff=num_pc_above_indiv_cutoff;
+	res$steps=steps;
+	res$window_size=window_size;
+	res$indices=indices;
+
+	return(res);
+}
+
+pcam=slide_window_pca(
+	curated_targets_mat[,var_sorted],
+	beta_arr_sorted,
+	Indiv_PC_Cutoff,
+	Cumul_PC_Cutoff,
+	window_size=100,
+	steps=300);
+
+print(pcam$indices);
+
+cat("Betas:\n");
+print(pcam$x);
+
+cat("PCA Measures:\n");
+print(pcam$y_num_pc_to_exceed_cutoff);
+print(pcam$y_num_pc_above_indiv_cutoff);
+
+###############################################################################
+# Calculate Global Correl
+
+global_abs_correl=function(x, reference){
+	cormat=abs(cor(x, reference));
+	ref_cor=apply(cormat, 2, mean);
+	return(ref_cor);
+}
+
+slide_window_global_cor=function(mat, beta_arr, num_glob_PCs, window_size, steps){
+
+	cat("Calculating sliding window global correlation.\n");
+	cat("Num Global PCs to include: ", num_glob_PCs, "\n");
+	num_var=ncol(mat);
+
+	window_size=min(window_size, round(num_var/8, 0));
+	steps=min(num_var-window_size, steps);
+	
+	indices=as.integer(seq(1, num_var-window_size, length.out=steps));
+
+	cat("Num Variables: ", num_var, "\n");
+	cat("Window Size: ", window_size, "\n");
+	cat("Indices:\n");
+	#print(indices);
+
+	subsample_size=min(num_var/5, 200);
+	cat("Subsample size for Glocal PCA: ", subsample_size, "\n");
+	mat_subsamp=mat[,sample(num_var, subsample_size)];
+
+	sample_cor_mat=cor(mat_subsamp);	
+	eigen=eigen(sample_cor_mat);
+	#print(eigen);
+	scores=(scale(mat_subsamp, center=T, scale=T) %*% eigen$vectors);
+	target_scores=scores[,1:num_glob_PCs];
+	#print(scores);
+
+	glob_abs_cor_mat=matrix(NA, nrow=steps, ncol=num_glob_PCs);
+
+	i=1;
+	for(offset in indices){
+		glob_abs_cor_mat[i,]=global_abs_correl(
+			mat[,offset:(offset+window_size)], 
+			target_scores);
+		i=i+1;
+	}	
+
+	res=list();
+	res$x=beta_arr[indices];
+	res$y_mat=glob_abs_cor_mat;
+	res$steps=steps;
+	res$window_size=window_size;
+	res$indices=indices;
+	res$perc_var=eigen$values/sum(eigen$values);
+
+	return(res);
+}
+
+magc=slide_window_global_cor(
+	curated_targets_mat[,var_sorted],
+	beta_arr_sorted,
+	Num_PC_Global_Correl,
+	window_size=100,
+	steps=300);
+
+cat("Betas:\n");
+print(magc$x);
+
+cat("Global Mean(Abs(Correl)):\n");
+print(magc$y_mat);
+
+###############################################################################
+# Generate Plots
+
+beta_landmarks=sort(unique(c(0:5,1.5, 10, 25, 50, 100, 200, 400)));
+par(mfrow=c(4,1));
+
+# Plot Beta vs. Metric
+range_x=range(beta_arr);
 
 cat("Plotting Beta vs. AutoCor...\n");
 plot(mac$x, mac$y, xlab="Beta", ylab="Mean Abs(Cor)", main="Abs Auto-Correlation", ylim=c(0,1));
-title(main=paste("Window Size=", mac$window_size, "  Steps=", mac$steps, sep=""), line=-2);
+title(main=paste("Window Size=", mac$window_size, "  Steps=", mac$steps, sep=""), line=.25, cex.main=.8);
 abline(v=beta_landmarks, col="blue", lty="dotted");
 
+cat("Plotting Beta vs. Num PCS to Exceed Cutoff\n");
+plot(pcam$x, pcam$y_num_pc_to_exceed_cutoff, 
+	xlim=range_x,
+	ylim=c(0, max(pcam$y_num_pc_to_exceed_cutoff)+2),
+	xlab="Beta", ylab="Num PCs", main=paste("To Exceed Cumulative Cutoff:", Cumul_PC_Cutoff));
+abline(v=beta_landmarks, col="blue", lty="dotted");
+
+cat("Plotting Beta vs. Num PCS to Exceed Cutoff\n");
+plot(pcam$x, pcam$y_num_pc_above_indiv_cutoff, 
+	xlim=range_x,
+	ylim=c(0, max(pcam$y_num_pc_above_indiv_cutoff)+2),
+	xlab="Beta", ylab="Num PCs", main=paste("To Exceed Individual Cutoff:", Indiv_PC_Cutoff));
+abline(v=beta_landmarks, col="blue", lty="dotted");
+
+hist(beta_arr, main="Beta Distribution", xlab="", xlim=range_x, breaks=100);
+abline(v=beta_landmarks, col="blue", lty="dotted");
+
+# Plot Log10(Beta) vs. Metric
+range_logx=range(log10(beta_arr));
+
+
 cat("Plotting Log10(Beta) vs. AutoCor...\n");
-plot(log10(mac$x), mac$y, xlab="Log10(Beta)", ylab="Mean Abs(Cor)", main="Abs Auto-Correlation", ylim=c(0,1));
-title(main=paste("Window Size=", mac$window_size, "  Steps=", mac$steps, sep=""), line=-2);
+plot(log10(mac$x), mac$y, xlab="Log10(Beta)", ylab="Mean Abs(Cor)", main="Abs Auto-Correlation", 
+	xlim=c(range_logx),
+	ylim=c(0,1));
+title(main=paste("Window Size=", mac$window_size, "  Steps=", mac$steps, sep=""), line=.25, cex.main=.8);
 abline(v=log10(beta_landmarks), col="blue", lty="dotted");
 text(log10(beta_landmarks), 0, beta_landmarks, font=2);
-	
+
+cat("Plotting Log10(Beta) vs. Num PCS to Exceed Cutoff\n");
+plot(log10(pcam$x), pcam$y_num_pc_to_exceed_cutoff,
+	xlim=c(range_logx),
+	ylim=c(0, max(pcam$y_num_pc_to_exceed_cutoff)+2),
+	xlab="Log10(Beta)", ylab="Num PCs", main=paste("To Exceed Cumulative Cutoff:", Cumul_PC_Cutoff));
+abline(v=log10(beta_landmarks), col="blue", lty="dotted");
+text(log10(beta_landmarks), 0, beta_landmarks, font=2);
+
+cat("Plotting Log10(Beta) vs. Num PCS to Exceed Cutoff\n");
+plot(log10(pcam$x), pcam$y_num_pc_above_indiv_cutoff,
+	xlim=c(range_logx),
+	ylim=c(0, max(pcam$y_num_pc_above_indiv_cutoff)+2),
+	xlab="Log10(Beta)", ylab="Num PCs", main=paste("To Exceed Individual Cutoff:", Indiv_PC_Cutoff));
+abline(v=log10(beta_landmarks), col="blue", lty="dotted");
+text(log10(beta_landmarks), 0, beta_landmarks, font=2);
+
+hist(log10(beta_arr), main="Log10(Beta) Distribution", xlab="", 
+	xlim=c(range_logx),
+	breaks=seq(range_logx[1], range_logx[2], length.out=100));
+abline(v=log10(beta_landmarks), col="blue", lty="dotted");
+
+##############################################################################
+
+par(mar=c(2,4,1,1));
+par(mfrow=c(Num_PC_Global_Correl+1,1));
+
+for(i in 1:Num_PC_Global_Correl){
+	plot(magc$x, magc$y_mat[,i],
+		ylab="Abs(Correlation)",
+		xlim=range_x,
+		ylim=c(0,1),
+		main=paste("PC[",i,"]: ", paste(round(magc$perc_var[i]*100,2)), "%", sep="")
+	);
+	abline(v=beta_landmarks, col="blue", lty="dotted");
+}
+hist(beta_arr, main="Beta Distribution", xlab="", xlim=range_x, breaks=100);
+abline(v=beta_landmarks, col="blue", lty="dotted");
+
+for(i in 1:Num_PC_Global_Correl){
+	plot(log10(magc$x), magc$y_mat[,i],
+		ylab="Abs(Correlation)",
+		xlim=range_logx,
+		ylim=c(0,1),
+		main=paste("PC[",i,"]: ", paste(round(magc$perc_var[i]*100,2)), "%", sep="")
+	);
+	abline(v=log10(beta_landmarks), col="blue", lty="dotted");
+	text(log10(beta_landmarks), 0, beta_landmarks, font=2);
+}
+hist(log10(beta_arr), main="Log10(Beta) Distribution", xlab="", 
+	xlim=c(range_logx),
+	breaks=seq(range_logx[1], range_logx[2], length.out=100));
+abline(v=log10(beta_landmarks), col="blue", lty="dotted");
 
 
 ##############################################################################
