@@ -746,8 +746,6 @@ for(ctn in curated_target_names){
 
 dev.off();
 
-
-
 ##############################################################################
 
 failed_fn=paste(OutputFnameRoot, ".failed.meta.tsv", sep="");
@@ -768,13 +766,19 @@ cat(file=fh, paste(failed_variables, collapse="\n"), "\n", sep="");
 close(fh);
 
 ##############################################################################
+##############################################################################
+# Write out the variable histograms sorted by decreasing beta
 
 pdf(paste(OutputFnameRoot, ".sorted.pdf", sep=""), height=11, width=8.5);
 par(mfrow=c(3,2));
 
 beta_arr=params_matrix[,"beta"];
-beta_arr_sorted=sort(beta_arr, decreasing=T);
-var_sorted=names(beta_arr_sorted);
+beta_arr_sort_ix=order(beta_arr, decreasing=F);
+
+params_matrix_beta_sort=params_matrix[beta_arr_sort_ix,, drop=F];
+beta_arr_sorted=params_matrix_beta_sort[, "beta"];
+mean_arr_sorted=params_matrix_beta_sort[, "mu"];
+var_sorted=rownames(params_matrix_beta_sort);
 
 counter=1;
 for(varname in var_sorted){
@@ -800,7 +804,6 @@ dev.off();
 
 pdf(paste(OutputFnameRoot, ".summaries.pdf", sep=""), height=11, width=8.5);
 
-
 par(mfrow=c(4,1));
 hist(beta_arr, main="Beta Distribution (All)", xlab="");
 hist(beta_arr[beta_arr<25], main="Beta Distribution (0-25)", xlab="");
@@ -813,12 +816,12 @@ hist(beta_arr[beta_arr<5], main="Beta Distribution (0-5)", xlab="");
 max_group_size=50;
 num_var=length(beta_arr);
 
-high_beta_vnames=var_sorted[1:max_group_size];
-low_beta_vnames=var_sorted[(num_var-max_group_size):num_var];
+low_beta_vnames=var_sorted[1:max_group_size];
+high_beta_vnames=var_sorted[(num_var-max_group_size):num_var];
 
 gt2_beta_ix=max(which(beta_arr_sorted>2));
-lb=max(1, gt2_beta_ix-max_group_size/2);
-ub=min(num_var, gt2_beta_ix+max_group_size/2);
+ub=max(1, gt2_beta_ix-max_group_size/2);
+lb=min(num_var, gt2_beta_ix+max_group_size/2);
 mid_beta_vnames=var_sorted[lb:ub];
 
 cat("Low Beta:\n");
@@ -855,6 +858,7 @@ slide_window_cor=function(mat, beta_arr, window_size, steps){
 	steps=min(num_var, steps);
 	
 	indices=as.integer(seq(1, num_var-window_size, length.out=steps));
+	separation=indices[2]-indices[1];
 
 	if(any(indices<0)){
 		return(rep(NA, num_var));
@@ -865,6 +869,7 @@ slide_window_cor=function(mat, beta_arr, window_size, steps){
 	i=1;
 	for(offset in indices){
 		mean_abs_cor[i]=abs_group_mean_cor(mat[,offset:(offset+window_size)]);
+		#cat(offset, "-", (offset+window_size), "\n");
 		i=i+1;
 	}	
 
@@ -874,6 +879,7 @@ slide_window_cor=function(mat, beta_arr, window_size, steps){
 	res$steps=steps;
 	res$window_size=window_size;
 	res$indices=indices;
+	res$separation=separation;
 
 	return(res);
 }
@@ -890,7 +896,6 @@ print(mac$x);
 cat("Mean(Abs(Correl)):\n");
 print(mac$y);
 
-	
 ##############################################################################
 # windowed PCA
 
@@ -915,6 +920,7 @@ slide_window_pca=function(mat, beta_arr, indiv_pc_cutoff, cumul_pc_cutoff, windo
 	steps=min(num_var, steps);
 	
 	indices=as.integer(seq(1, num_var-window_size, length.out=steps));
+	separation=indices[2]-indices[1];
 
 	if(any(indices<0)){
 		return(rep(NA, num_var));
@@ -938,6 +944,7 @@ slide_window_pca=function(mat, beta_arr, indiv_pc_cutoff, cumul_pc_cutoff, windo
 	res$steps=steps;
 	res$window_size=window_size;
 	res$indices=indices;
+	res$separation=separation;
 
 	return(res);
 }
@@ -978,10 +985,11 @@ slide_window_global_cor=function(mat, beta_arr, num_glob_PCs, window_size, steps
 	steps=min(num_var-window_size, steps);
 	
 	indices=as.integer(seq(1, num_var-window_size, length.out=steps));
+	separation=indices[2]-indices[1];
 
 	cat("Num Variables: ", num_var, "\n");
 	cat("Window Size: ", window_size, "\n");
-	cat("Indices:\n");
+	cat("Steps: ", steps, "\n");
 	#print(indices);
 
 	subsample_size=min(num_var/5, 200);
@@ -1012,6 +1020,7 @@ slide_window_global_cor=function(mat, beta_arr, num_glob_PCs, window_size, steps
 	res$window_size=window_size;
 	res$indices=indices;
 	res$perc_var=eigen$values/sum(eigen$values);
+	res$separation=separation;
 
 	return(res);
 }
@@ -1032,15 +1041,19 @@ print(magc$y_mat);
 ###############################################################################
 # Generate Plots
 
-beta_landmarks=sort(unique(c(0:5,1.5, 10, 25, 50, 100, 200, 400)));
+beta_landmarks=sort(unique(c(0:5, 1.5, 10, 25, 50, 100, 200, 400)));
 par(mfrow=c(4,1));
 
 # Plot Beta vs. Metric
 range_x=range(beta_arr);
 
 cat("Plotting Beta vs. AutoCor...\n");
-plot(mac$x, mac$y, xlab="Beta", ylab="Mean Abs(Cor)", main="Abs Auto-Correlation", ylim=c(0,1));
-title(main=paste("Window Size=", mac$window_size, "  Steps=", mac$steps, sep=""), line=.25, cex.main=.8);
+plot(mac$x, mac$y, xlab="Beta", ylab="Mean Abs(Cor)", main="Abs Auto-Correlation", 
+	xlim=range_x,
+	ylim=c(0,1));
+title(main=paste(
+	"Window Size=", mac$window_size, "  Steps=", mac$steps, "  Sep=", mac$separation, sep=""), 
+	line=.25, cex.main=.8);
 abline(v=beta_landmarks, col="blue", lty="dotted");
 
 cat("Plotting Beta vs. Num PCS to Exceed Cutoff\n");
@@ -1068,7 +1081,9 @@ cat("Plotting Log10(Beta) vs. AutoCor...\n");
 plot(log10(mac$x), mac$y, xlab="Log10(Beta)", ylab="Mean Abs(Cor)", main="Abs Auto-Correlation", 
 	xlim=c(range_logx),
 	ylim=c(0,1));
-title(main=paste("Window Size=", mac$window_size, "  Steps=", mac$steps, sep=""), line=.25, cex.main=.8);
+title(main=paste(
+	"Window Size=", mac$window_size, "  Steps=", mac$steps, "  Sep=", mac$separation, sep=""), 
+	line=.25, cex.main=.8);
 abline(v=log10(beta_landmarks), col="blue", lty="dotted");
 text(log10(beta_landmarks), 0, beta_landmarks, font=2);
 
@@ -1125,6 +1140,28 @@ hist(log10(beta_arr), main="Log10(Beta) Distribution", xlab="",
 	breaks=seq(range_logx[1], range_logx[2], length.out=100));
 abline(v=log10(beta_landmarks), col="blue", lty="dotted");
 
+
+##############################################################################
+
+par(mar=c(4,4,4,1));
+par(mfrow=c(2,1));
+
+beta_arr_sorted=params_matrix_beta_sort[beta_arr_sort_ix, "beta", drop=F];
+mean_arr_sorted=params_matrix_beta_sort[beta_arr_sort_ix, "mu", drop=F];
+
+plot(log10(beta_arr_sorted), mean_arr_sorted,
+	xlab="Log10(Beta)",
+	xlim=range_logx,
+	ylab="Mean",
+	main="Mean vs. Beta"
+);
+abline(v=log10(beta_landmarks), col="blue", lty="dotted");
+text(log10(beta_landmarks), 0, beta_landmarks, font=2);
+
+hist(log10(beta_arr), main="Log10(Beta) Distribution", xlab="", 
+	xlim=c(range_logx),
+	breaks=seq(range_logx[1], range_logx[2], length.out=100));
+abline(v=log10(beta_landmarks), col="blue", lty="dotted");
 
 ##############################################################################
 
