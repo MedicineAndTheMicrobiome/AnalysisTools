@@ -17,6 +17,7 @@ NUM_PC_GLOBAL=5;
 params=c(
 	"factors", "f", 1, "character",
 	"outputroot", "o", 1, "character",
+	"beta_export_cutoff", "b", 2, "numeric",
 	"debug_targets", "d", 2, "character",
 	"fast_fit", "F", 2, "logical",
 	"indiv_pca_cutoff", "i", 2, "numeric",
@@ -36,14 +37,15 @@ usage = paste(
 	"\nUsage:\n", script_name, "\n",
 	"	-f <factors/metadata file name>\n",
 	"	-o <output filename root.\n",
+	"	[-b <Beta export cutoff for variable export>]\n",
 	"\n",
-	"	<-d <debug list of variable targets>\n",
-	"	<-F (fast fit)>\n",
+	"	[-d <debug list of variable targets>]\n",
+	"	[-F (fast fit)>]\n",
 	"\n",
-	"	<-i <Individual PC Cutoff, default=", INDIV_PCA_CUTOFF, "\n",
-	"	<-c <Cumulative PC Cutoff, default=", CUMUL_PCA_CUTOFF, "\n",
+	"	[-i <Individual PC Cutoff, default=", INDIV_PCA_CUTOFF, ">]\n",
+	"	[-c <Cumulative PC Cutoff, default=", CUMUL_PCA_CUTOFF, ">]\n",
 	"\n",
-	"	<-p <Num PCs for global correlation, default=", NUM_PC_GLOBAL, "\n",
+	"	[-p <Num PCs for global correlation, default=", NUM_PC_GLOBAL, ">]\n",
 	"\n",
 	"This script will try to sort the variables based on\n",
 	"how much 'information' the variables have.  Since\n",
@@ -68,6 +70,12 @@ OutputFnameRoot=opt$outputroot;
 DebugVarList="";
 if(length(opt$debug_targets)){
 	DebugVarList=opt$debug_targets;	
+}
+
+BetaExportCutoff=NA;
+if(length(opt$BetaExportCutoff)){
+	BetaExportCutoff=opt$BetaExportCutoff;
+	OutputFnameRoot=paste(OutputFnameRoot, ".b", BetaExportCutoff, sep="");
 }
 
 FastFit=F;
@@ -596,9 +604,73 @@ rownames(params_matrix)=curated_target_names;
 
 gn_density=list();
 
+normal_estim_matrix=matrix(NA, nrow=num_variables, ncol=2);
+colnames(normal_estim_matrix)=c("mu", "sd");
+rownames(normal_estim_matrix)=curated_target_names;
+
+norm_density=list();
+
+
 failed_variables=c();
 par(mfrow=c(2,2));
 counter=1;
+
+
+
+if(!FastFit){
+	# Complete
+	mu_pert=3;
+	alpha_pert=5;
+	beta_pert=7;
+
+	pert_range=4;
+	max_successes=20;
+}else{
+	# Fast
+	mu_pert=3;
+	alpha_pert=3;
+	beta_pert=3;
+
+	pert_range=3;
+	max_successes=3
+}
+
+# Compute range and steps for perturbation
+mu_adj=2^(seq(-pert_range, pert_range, length.out=mu_pert));
+alpha_adj=2^(seq(-pert_range, pert_range, length.out=alpha_pert));
+beta_adj=2^(seq(-pert_range, pert_range, length.out=beta_pert));
+
+total_perts=mu_pert*alpha_pert*beta_pert;
+
+# Compute how far each perturbation is from 'no perturbation', and order.
+pert_matrix=matrix(0, nrow=total_perts, ncol=3);
+colnames(pert_matrix)=c("mu", "alpha", "beta");
+pert_distance=numeric(total_perts);
+pert_ix=1;
+for(i in 1:mu_pert){
+	for(j in 1:alpha_pert){
+		for(k in 1:beta_pert){
+
+			pert_matrix[pert_ix,]=c(mu_adj[i], alpha_adj[j], beta_adj[k]);
+
+			pert_distance[pert_ix]=
+				sqrt(log2(mu_adj[i])^2+log2(alpha_adj[j])^2+log2(beta_adj[k])^2);
+
+			pert_ix=pert_ix+1;
+		}
+	}
+}
+
+pert_dist_sort_ix=order(pert_distance);
+pert_matrix=pert_matrix[pert_dist_sort_ix,];
+
+cat("Pertubration Matrix (Sorted):\n");
+print(pert_matrix);
+
+##############################################################################
+
+MIN_REAL=1e-323;
+
 for(ctn in curated_target_names){
 	data=curated_targets_mat[,ctn];
 
@@ -610,95 +682,92 @@ for(ctn in curated_target_names){
 	alpha0=sqrt(variance*2);
 	beta0=2;
 
+	normal_estim_matrix[ctn, "mu"]=mu0;
+	normal_estim_matrix[ctn, "sd"]=sqrt(variance);
+
 	nLL=function(mu, alpha, beta){
-		if(alpha<0){alpha=alpha0/1000.0};
-		if(beta<0){beta=1e-10};
+		if(alpha<MIN_REAL){alpha=MIN_REAL;};
+		if(beta<MIN_REAL){beta=MIN_REAL};
 		return(-sum(dgnorm(data, mu, alpha, beta, log=T)));
 	};
 
 	cat("Initial Values: mean=",mu0, " alpha=", alpha0, 
 		" (var=", variance, ") beta=", beta0, "\n", sep="");
-
 	muf=NA; alphaf=NA; betaf=NA;
 
-	if(!FastFit){
-		mu_pert=5;
-		alpha_pert=5;
-		beta_pert=5;
-	}else{
-		mu_pert=1;
-		alpha_pert=1;
-		beta_pert=2;
-	}
-
-	mu_adj=2^(seq(-.25, .25, length.out=mu_pert));
-	alpha_adj=2^(seq(-.5, .5, length.out=alpha_pert));
-	beta_adj=2^(seq(-.5, .5, length.out=beta_pert));
-
-	total_perts=mu_pert*alpha_pert*beta_pert;
 	pert_ix=1;
 
 	pert_res_matrix=matrix(NA, nrow=total_perts, ncol=4);
 	colnames(pert_res_matrix)=c("nLL", "mu", "alpha", "beta");
 	
-	any_success=F;
-	for(mu_ix in mu_adj){
-		for(alpha_ix in alpha_adj){
-			for(beta_ix in beta_adj){
+	num_success=0;
 
-				success=F;
+	while(num_success<max_successes && pert_ix<=total_perts){
+		success=F;
 
-				# The tries are for fine grain adjustments,
-				#   if the starting parameters are causing errors
-				tries=1;
-				MAX_TRIES=25;
-				adj=seq(1,10,length.out=MAX_TRIES);
-				while(success==F){
-					#cat("Perturbations: ", pert_ix, "  Trials: ", tries, "\n");
+		#cat("Perturbations: ", pert_ix, "  Trials: ", tries, "\n");
 
-					# If fails, attribute more "width" to shape, rather than scale
-					muTry=mu0*mu_ix;
-					alphaTry=alpha0/adj[tries]*alpha_ix;
-					betaTry=beta0*adj[tries]*beta_ix;
+		muTry=mu0*pert_matrix[pert_ix, "mu"];
+		alphaTry=alpha0*pert_matrix[pert_ix, "alpha"];
+		betaTry=beta0*pert_matrix[pert_ix, "beta"];
 
-					tryCatch(
-						{
-							fit=mle(nLL, start=list(
-								mu=muTry, alpha=alphaTry, beta=betaTry));
+	
+		for(method in c("Nelder-Mead", "SANN")){
+			method_success=F;
+			tryCatch(
+				{
 
-							#print(fit);
-							fit_res=attributes(fit);
-							#print(fit_res);
-							muf=fit_res$coef[1];	
-							alphaf=fit_res$coef[2];	
-							betaf=fit_res$coef[3];	
-							success=T;
-							any_success=T;
-						}, 
-						error=function(e){
-							cat("Error:\n");
-							print(e);
-						}
-					);
-					if(tries==MAX_TRIES){
-						break;
-					}
-					tries=tries+1;
+					cat(method, ": Adj Init: (",
+						muTry, ", ",
+						alphaTry, ", ",
+						betaTry,"): \n",sep="");
+
+					names(muTry)=NULL;
+					names(alphaTry)=NULL;
+					names(betaTry)=NULL;
+
+					start_param=list(mu=muTry, alpha=alphaTry, beta=betaTry);
+					fit=mle(nLL, start=start_param, method);
+
+					#print(fit);
+					fit_res=attributes(fit);
+					#print(fit_res);
+					muf=fit_res$coef[1];	
+					alphaf=max(fit_res$coef[2], MIN_REAL);
+					betaf=max(fit_res$coef[3], MIN_REAL);
+					num_success=num_success+1;
+					method_success=T;
+				}, 
+				error=function(e){
+					cat("Error:\n");
+					print(e);
 				}
-
-				if(success){
-					nll_pert=nLL(muf, alphaf, betaf);
-					pert_res_matrix[pert_ix,]=c(nll_pert, muf, alphaf, betaf);
-				}
-
-				pert_ix=pert_ix+1;		
+			);
+			if(method_success){
+				cat(method, ": Success!\n");
+				break;
+			}else{
+				cat(method, ": Failure.\n");
 			}
 		}
+
+		if(method_success){
+			nll_pert=nLL(mu=muf, alpha=alphaf, beta=betaf);
+			pert_res_matrix[pert_ix,]=c(nll_pert, muf, alphaf, betaf);
+		}
+
+		pert_ix=pert_ix+1;		
+
+		cat("\n");
 	}
 
 	# Find perturbation with min nll_pert
 	nona_ix=!is.na(pert_res_matrix[,"nLL"]);
 	nona_pert_res_matrix=pert_res_matrix[nona_ix,,drop=F];
+
+	
+	print(nona_pert_res_matrix);
+
 	min_nLL=min(nona_pert_res_matrix[,"nLL"]);
 	min_ix=min(which(nona_pert_res_matrix[,"nLL"]==min_nLL));
 
@@ -710,7 +779,7 @@ for(ctn in curated_target_names){
 
 	hist(data, breaks=30, main=paste(counter, ".) ", ctn, sep=""), freq=F, xlab="");
 
-	if(any_success){
+	if(num_success>0){
 		cat("Overall Success.\n")
 		title(main=paste("Mean =", round(mu_best,4)), line=-1);
 		title(main=paste("Alpha =", round(alpha_best,4)), line=-2);
@@ -730,6 +799,13 @@ for(ctn in curated_target_names){
 		gn_density[[ctn]]=list();
 		gn_density[[ctn]][["x"]]=x;
 		gn_density[[ctn]][["y"]]=y;
+
+		y=dnorm(x, normal_estim_matrix[ctn, "mu"], normal_estim_matrix[ctn, "sd"]);
+		points(x,y, col="red", cex=.5);
+		norm_density[[ctn]]=list();
+		norm_density[[ctn]][["x"]]=x;
+		norm_density[[ctn]][["y"]]=y;
+		
 
 	}else{
 		cat("Overall Failure.\n");
@@ -794,6 +870,8 @@ for(varname in var_sorted){
 	title(main=paste("Beta =", round(beta,4)), line=-3);
 
 	points(gn_density[[varname]][["x"]], gn_density[[varname]][["y"]], col="blue");
+	points(norm_density[[varname]][["x"]], norm_density[[varname]][["y"]], col="red", cex=.5);
+
 	counter=counter+1;
 }
 
@@ -1046,6 +1124,8 @@ par(mfrow=c(4,1));
 
 # Plot Beta vs. Metric
 range_x=range(beta_arr);
+cat("Beta Range:\n");
+print(range_x);
 
 cat("Plotting Beta vs. AutoCor...\n");
 plot(mac$x, mac$y, xlab="Beta", ylab="Mean Abs(Cor)", main="Abs Auto-Correlation", 
@@ -1126,7 +1206,8 @@ hist(beta_arr, main="Beta Distribution", xlab="", xlim=range_x, breaks=100);
 abline(v=beta_landmarks, col="blue", lty="dotted");
 
 for(i in 1:Num_PC_Global_Correl){
-	plot(log10(magc$x), magc$y_mat[,i],
+	#plot(log10(magc$x), magc$y_mat[,i],
+	plot(0, type="n",
 		ylab="Abs(Correlation)",
 		xlim=range_logx,
 		ylim=c(0,1),
@@ -1134,6 +1215,13 @@ for(i in 1:Num_PC_Global_Correl){
 	);
 	abline(v=log10(beta_landmarks), col="blue", lty="dotted");
 	text(log10(beta_landmarks), 0, beta_landmarks, font=2);
+
+	range_y=range(magc$y_mat[,i]);
+	abline(h=range_y[1], col="blue", lwd=2);
+	abline(h=range_y[2], col="red", lwd=2);
+
+	points(log10(magc$x), magc$y_mat[,i]);
+	
 }
 hist(log10(beta_arr), main="Log10(Beta) Distribution", xlab="", 
 	xlim=c(range_logx),
@@ -1142,12 +1230,15 @@ abline(v=log10(beta_landmarks), col="blue", lty="dotted");
 
 
 ##############################################################################
+mean_zero_cutoff=-.025;
 
 par(mar=c(4,4,4,1));
-par(mfrow=c(2,1));
+par(mfrow=c(3,1));
 
 beta_arr_sorted=params_matrix_beta_sort[beta_arr_sort_ix, "beta", drop=F];
 mean_arr_sorted=params_matrix_beta_sort[beta_arr_sort_ix, "mu", drop=F];
+
+hist(mean_arr_sorted, main="Mean Distribution", xlab="means", breaks=100);
 
 plot(log10(beta_arr_sorted), mean_arr_sorted,
 	xlab="Log10(Beta)",
@@ -1156,6 +1247,7 @@ plot(log10(beta_arr_sorted), mean_arr_sorted,
 	main="Mean vs. Beta"
 );
 abline(v=log10(beta_landmarks), col="blue", lty="dotted");
+abline(h=mean_zero_cutoff, col="red", lty="dotted");
 text(log10(beta_landmarks), 0, beta_landmarks, font=2);
 
 hist(log10(beta_arr), main="Log10(Beta) Distribution", xlab="", 
@@ -1164,6 +1256,77 @@ hist(log10(beta_arr), main="Log10(Beta) Distribution", xlab="",
 abline(v=log10(beta_landmarks), col="blue", lty="dotted");
 
 ##############################################################################
+
+# Look at means greater than >-.025
+
+mean_zeros_ix=(mean_arr_sorted>mean_zero_cutoff);
+max_mean=max(mean_arr_sorted);
+
+mean_zeros_mean=mean_arr_sorted[mean_zeros_ix];
+mean_zeros_logbeta=log10(beta_arr_sorted[mean_zeros_ix]);
+
+
+hist(mean_zeros_mean, 
+	main=paste("Mean Distribution (Cutoff=", mean_zero_cutoff, ")"), 
+	xlab="means", breaks=100);
+
+plot(mean_zeros_logbeta, mean_zeros_mean,
+	xlab="Log10(Beta)",
+	xlim=range_logx,
+	ylab="Mean",
+	main="Means at Cutoff vs. Beta"
+);
+abline(v=log10(beta_landmarks), col="blue", lty="dotted");
+text(log10(beta_landmarks), 0, beta_landmarks, font=2);
+
+hist(mean_zeros_logbeta, main="Log10(Beta) Distribution of Means at Cutoff", xlab="",
+	xlim=c(range_logx),
+	breaks=seq(range_logx[1], range_logx[2], length.out=100));
+abline(v=log10(beta_landmarks), col="blue", lty="dotted");
+
+##############################################################################
+
+#
+
+par(mfrow=c(2,2));
+
+log10_beta=log10(params_matrix[,"beta"]);
+beta_log10_range=range(log10_beta);
+
+#print(params_matrix[params_matrix[,"alpha"]<=0,"alpha"]);
+
+#quit();
+
+
+log10_alpha=log10(params_matrix[,"alpha"]);
+alpha_log10_range=range(log10_alpha);
+
+mu_range=range(params_matrix[,"mu"]);
+
+
+
+plot(log10_beta, log10_alpha,
+	xlab="log10(beta), shape", ylab="log10(alpha), scale",
+	xlim=beta_log10_range, ylim=alpha_log10_range
+);
+
+plot(0,type="n", xlab="", ylab="", main="", xaxt="n", yaxt="n", bty="n");
+
+plot(log10_beta, params_matrix[,"mu"],
+	xlab="log10(beta), shape", ylab="mean (mu), location",
+	xlim=beta_log10_range, ylim=mu_range
+);
+
+plot(log10_alpha, params_matrix[,"mu"],
+	xlab="log10(alpha), scale", ylab="mean (mu), location",
+	xlim=alpha_log10_range, ylim=mu_range
+);
+
+mtext("Scatter Plots for Generalized Normal Parameters", side=3, line=0, outer=T, font=2);
+
+##############################################################################
+
+BetaExportCutoff
 
 cat("Done.\n");
 dev.off();
