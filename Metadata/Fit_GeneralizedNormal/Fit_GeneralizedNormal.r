@@ -72,9 +72,9 @@ if(length(opt$debug_targets)){
 	DebugVarList=opt$debug_targets;	
 }
 
-BetaExportCutoff=NA;
-if(length(opt$BetaExportCutoff)){
-	BetaExportCutoff=opt$BetaExportCutoff;
+BetaExportCutoff="";
+if(length(opt$beta_export_cutoff)){
+	BetaExportCutoff=opt$beta_export_cutoff;
 	OutputFnameRoot=paste(OutputFnameRoot, ".b", BetaExportCutoff, sep="");
 }
 
@@ -850,22 +850,25 @@ dev.off();
 
 ##############################################################################
 
-failed_fn=paste(OutputFnameRoot, ".failed.meta.tsv", sep="");
-fh=file(failed_fn, "w");
-cat(file=fh, "SampleID\t");
-close(fh);
+if(length(failed_variables)){
 
-write.table(
-	curated_targets_mat[,failed_variables,drop=F], 
-	file=failed_fn, append=T,
-	quote=F, sep="\t");
+	failed_fn=paste(OutputFnameRoot, ".failed.meta.tsv", sep="");
+	fh=file(failed_fn, "w");
+	cat(file=fh, "SampleID\t");
+	close(fh);
 
-##############################################################################
+	write.table(
+		curated_targets_mat[,failed_variables,drop=F], 
+		file=failed_fn, append=T,
+		quote=F, sep="\t");
 
-failed_fn=paste(OutputFnameRoot, ".failed.lst", sep="");
-fh=file(failed_fn, "w");
-cat(file=fh, paste(failed_variables, collapse="\n"), "\n", sep="");
-close(fh);
+	#----------------------------------------------------------------------
+
+	failed_fn=paste(OutputFnameRoot, ".failed.lst", sep="");
+	fh=file(failed_fn, "w");
+	cat(file=fh, paste(failed_variables, collapse="\n"), "\n", sep="");
+	close(fh);
+}
 
 ##############################################################################
 ##############################################################################
@@ -1425,10 +1428,35 @@ mtext("Scatter Plots for Generalized Normal Parameters", side=3, line=0, outer=T
 
 ##############################################################################
 
-if(!is.na(BetaExportCutoff)){
+# Export paramters
+gnorm_param_table_fn=paste(OutputFnameRoot, ".fit_param.tsv", sep="");
+fh=file(gnorm_param_table_fn, "w");
+cat(file=fh, "VariableID\t");
+close(fh);
+write.table(params_matrix_beta_sort, file=gnorm_param_table_fn, append=T, quote=F, sep="\t");
 
-	
+
+# Export variables (with their values) if they exceed beta cutoff
+if(!BetaExportCutoff==""){
+
+	keep_ix=params_matrix_beta_sort[,"beta"]>=BetaExportCutoff;
+	target_var=rownames(params_matrix_beta_sort[keep_ix,,drop=F]);
+
+	num_var_above=length(target_var);
+	cat("Exporting ", num_var_above, " variables...\n", sep="");
+
+	export_fn=paste(OutputFnameRoot, ".beta_filtered.metadata.tsv", sep="");
+        fh=file(export_fn, "w");
+        cat(file=fh, "SampleID\t");
+        close(fh);
+
+        write.table(
+                curated_targets_mat[,target_var,drop=F],
+                file=export_fn, append=T,
+                quote=F, sep="\t");
 }
+
+##############################################################################
 
 cat("Done.\n");
 dev.off();
