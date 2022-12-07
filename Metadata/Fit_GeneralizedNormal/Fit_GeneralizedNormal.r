@@ -871,6 +871,52 @@ close(fh);
 ##############################################################################
 # Write out the variable histograms sorted by decreasing beta
 
+plot_hist=function(d, var_name, params, var_ix, gden, nden){
+
+	nLL=params[var_name, "nLL"];
+	pert_ix=params[var_name, "pert_ix"];
+	method=params[var_name, "method"];
+	mu=params[var_name,"mu"];
+	alpha=params[var_name,"alpha"];
+	beta=params[var_name,"beta"];
+
+	hist(data, main=paste(var_ix, ".) ", var_name, sep=""), xlab="", freq=F, breaks=30,
+		border="grey50", col="grey75" );
+
+	xy_bounds=par()$usr;
+	xspan=xy_bounds[2]-xy_bounds[1];
+	left=xy_bounds[1]+xspan*3/8;
+	right=xy_bounds[1]+xspan*5/8;
+	top=xy_bounds[4];
+
+	text(left, top,
+		paste(
+			"[Generalized Norm Dist]\n",
+			"nLL = ", sprintf("%g", nLL), "\n",
+			"Mean = ", sprintf("%g", mu), "\n",
+			"(StDev = ", sprintf("%g", alpha/sqrt(2)), ")\n",
+			"Alpha = ", sprintf("%g", alpha), "\n",
+			"Beta = ", sprintf("%g", beta), "\n",
+			"Method = ", ifelse(method==1, "Nelder-Mead", "SANN"), "\n", 
+			"pert iter = ", pert_ix, "\n",
+		sep=""),
+		cex=.7, col="blue", adj=c(1,1));
+
+	text(right, top,
+		paste(
+			"[Standard Norm Dist]\n",
+			"nLL = ", sprintf("%g", nden[[var_name]][["nLL"]]), "\n",
+			"Mean = ", sprintf("%g", nden[[var_name]][["mu"]]), "\n",
+			"StDev = ", sprintf("%g", nden[[var_name]][["sd"]]), "\n",
+			"Method = MoM\n", sep=""),
+		cex=.7, col="red", adj=c(0,1));
+
+	points(gden[[var_name]][["x"]], gden[[var_name]][["y"]], col="blue");
+	points(nden[[var_name]][["x"]], nden[[var_name]][["y"]], col="red", cex=.5);
+}
+
+#------------------------------------------------------------------------------
+
 pdf(paste(OutputFnameRoot, ".beta_sorted.pdf", sep=""), height=11, width=8.5);
 par(mfrow=c(3,2));
 
@@ -882,22 +928,11 @@ beta_arr_sorted=params_matrix_beta_sort[, "beta"];
 mean_arr_sorted=params_matrix_beta_sort[, "mu"];
 var_sorted=rownames(params_matrix_beta_sort);
 
+
 counter=1;
 for(varname in var_sorted){
-	
 	data=curated_targets_mat[,varname];
-	mu=params_matrix[varname,"mu"];
-	alpha=params_matrix[varname,"alpha"];
-	beta=params_matrix[varname,"beta"];
-
-	hist(data, main=paste(counter, ".) ", varname, sep=""), xlab="", freq=F, breaks=30);
-	title(main=paste("Mean =", round(mu,4)), line=-1);
-	title(main=paste("Alpha =", round(alpha,4)), line=-2);
-	title(main=paste("Beta =", round(beta,4)), line=-3);
-
-	points(gn_density[[varname]][["x"]], gn_density[[varname]][["y"]], col="blue");
-	points(norm_density[[varname]][["x"]], norm_density[[varname]][["y"]], col="red", cex=.5);
-
+	plot_hist(data, varname, params_matrix, counter, gn_density, norm_density);	
 	counter=counter+1;
 }
 
@@ -916,44 +951,8 @@ nLL_var_sorted=rownames(params_matrix_nLL_sort);
 
 counter=1;
 for(varname in nLL_var_sorted){
-	
 	data=curated_targets_mat[,varname];
-
-	nLL=params_matrix[varname, "nLL"];
-	pert_ix=params_matrix[varname, "pert_ix"];
-	method=params_matrix[varname, "method"];
-	mu=params_matrix[varname,"mu"];
-	alpha=params_matrix[varname,"alpha"];
-	beta=params_matrix[varname,"beta"];
-
-	hist(data, main=paste(counter, ".) ", varname, sep=""), xlab="", freq=F, breaks=30);
-
-	xy_bounds=par()$usr;
-	left=xy_bounds[1]+(xy_bounds[2]-xy_bounds[1])/4;
-	mid=(xy_bounds[1]+xy_bounds[2])/2;
-	top=xy_bounds[4];
-
-	text(left, top,
-		paste(
-			"nLL = ", round(nLL,6), "\n",
-			"perturbation index = ", pert_ix, "\n",
-			"method = ", method, "\n", 
-			"Mean = ", round(mu,6), "\n",
-			"Alpha = ", round(alpha,6), "\n",
-			"(StDev = ", round(alpha/sqrt(2),6), ")\n",
-			"Beta = ", round(beta,6), sep=""),
-		cex=.7, col="blue", adj=c(1,1));
-
-	text(mid, top,
-		paste(
-			"nLL = ", round(norm_density[[varname]][["nLL"]],6), "\n",
-			"Mean = ", round(norm_density[[varname]][["mu"]],6), "\n",
-			"StDev = ", round(norm_density[[varname]][["sd"]],6), sep=""),
-		cex=.7, col="red", adj=c(0,1));
-
-	points(gn_density[[varname]][["x"]], gn_density[[varname]][["y"]], col="blue");
-	points(norm_density[[varname]][["x"]], norm_density[[varname]][["y"]], col="red", cex=.5);
-
+	plot_hist(data, varname, params_matrix, counter, gn_density, norm_density);	
 	counter=counter+1;
 }
 
@@ -1203,6 +1202,7 @@ print(magc$y_mat);
 
 beta_landmarks=sort(unique(c(0:5, 1.5, 10, 25, 50, 100, 200, 400)));
 par(mfrow=c(4,1));
+par(oma=c(0,0,2,0));
 
 # Plot Beta vs. Metric
 range_x=range(beta_arr);
@@ -1235,9 +1235,14 @@ abline(v=beta_landmarks, col="blue", lty="dotted");
 hist(beta_arr, main="Beta Distribution", xlab="", xlim=range_x, breaks=100);
 abline(v=beta_landmarks, col="blue", lty="dotted");
 
+mtext("Correlations with Self and Top PC's across Betas", side=3, line=0, outer=T, font=2);
+
+##############################################################################
+
 # Plot Log10(Beta) vs. Metric
 range_logx=range(log10(beta_arr));
-
+par(mfrow=c(4,1));
+par(oma=c(0,0,2,0));
 
 cat("Plotting Log10(Beta) vs. AutoCor...\n");
 plot(log10(mac$x), mac$y, xlab="Log10(Beta)", ylab="Mean Abs(Cor)", main="Abs Auto-Correlation", 
@@ -1270,9 +1275,14 @@ hist(log10(beta_arr), main="Log10(Beta) Distribution", xlab="",
 	breaks=seq(range_logx[1], range_logx[2], length.out=100));
 abline(v=log10(beta_landmarks), col="blue", lty="dotted");
 
+mtext("Correlations with Self and Top PC's across Log10(Betas)", side=3, line=0, outer=T, font=2);
+
 ##############################################################################
 
+# Plot correlations with PC's
+
 par(mar=c(2,4,1,1));
+par(oma=c(0,0,2,0));
 par(mfrow=c(Num_PC_Global_Correl+1,1));
 
 for(i in 1:Num_PC_Global_Correl){
@@ -1286,6 +1296,8 @@ for(i in 1:Num_PC_Global_Correl){
 }
 hist(beta_arr, main="Beta Distribution", xlab="", xlim=range_x, breaks=100);
 abline(v=beta_landmarks, col="blue", lty="dotted");
+
+mtext("Correlations with Top PC's across Betas", side=3, line=0, outer=T, font=2);
 
 for(i in 1:Num_PC_Global_Correl){
 	#plot(log10(magc$x), magc$y_mat[,i],
@@ -1310,12 +1322,17 @@ hist(log10(beta_arr), main="Log10(Beta) Distribution", xlab="",
 	breaks=seq(range_logx[1], range_logx[2], length.out=100));
 abline(v=log10(beta_landmarks), col="blue", lty="dotted");
 
+mtext("Correlations with Top PC's across Log10(Betas)", side=3, line=0, outer=T, font=2);
 
 ##############################################################################
+
+# Look at relationship between means and betas
+
 mean_zero_cutoff=-.025;
 
 par(mar=c(4,4,4,1));
 par(mfrow=c(3,1));
+par(oma=c(0,0,2,0));
 
 beta_arr_sorted=params_matrix_beta_sort[beta_arr_sort_ix, "beta", drop=F];
 mean_arr_sorted=params_matrix_beta_sort[beta_arr_sort_ix, "mu", drop=F];
@@ -1337,9 +1354,12 @@ hist(log10(beta_arr), main="Log10(Beta) Distribution", xlab="",
 	breaks=seq(range_logx[1], range_logx[2], length.out=100));
 abline(v=log10(beta_landmarks), col="blue", lty="dotted");
 
+mtext("Means and Betas for All Variables", side=3, line=0, outer=T, font=2);
+
 ##############################################################################
 
 # Look at means greater than >-.025
+par(oma=c(0,0,2,0));
 
 mean_zeros_ix=(mean_arr_sorted>mean_zero_cutoff);
 max_mean=max(mean_arr_sorted);
@@ -1349,7 +1369,7 @@ mean_zeros_logbeta=log10(beta_arr_sorted[mean_zeros_ix]);
 
 
 hist(mean_zeros_mean, 
-	main=paste("Mean Distribution (Cutoff=", mean_zero_cutoff, ")"), 
+	main=paste("Mean Distribution\n(Actual Cutoff=", mean_zero_cutoff, ")"), 
 	xlab="means", breaks=100);
 
 plot(mean_zeros_logbeta, mean_zeros_mean,
@@ -1366,26 +1386,23 @@ hist(mean_zeros_logbeta, main="Log10(Beta) Distribution of Means at Cutoff", xla
 	breaks=seq(range_logx[1], range_logx[2], length.out=100));
 abline(v=log10(beta_landmarks), col="blue", lty="dotted");
 
+mtext("Means and Betas for Variables with Means > 0 ", side=3, line=0, outer=T, font=2);
+
 ##############################################################################
 
-#
+# Plot scatter plots between parameters
 
 par(mfrow=c(2,2));
+par(oma=c(0,0,2,0));
 
 log10_beta=log10(params_matrix[,"beta"]);
 beta_log10_range=range(log10_beta);
-
-#print(params_matrix[params_matrix[,"alpha"]<=0,"alpha"]);
-
-#quit();
 
 
 log10_alpha=log10(params_matrix[,"alpha"]);
 alpha_log10_range=range(log10_alpha);
 
 mu_range=range(params_matrix[,"mu"]);
-
-
 
 plot(log10_beta, log10_alpha,
 	xlab="log10(beta), shape", ylab="log10(alpha), scale",
@@ -1408,7 +1425,10 @@ mtext("Scatter Plots for Generalized Normal Parameters", side=3, line=0, outer=T
 
 ##############################################################################
 
-BetaExportCutoff
+if(!is.na(BetaExportCutoff)){
+
+	
+}
 
 cat("Done.\n");
 dev.off();
