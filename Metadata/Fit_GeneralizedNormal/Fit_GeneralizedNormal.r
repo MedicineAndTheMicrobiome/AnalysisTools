@@ -598,8 +598,8 @@ curated_target_names=colnames(curated_targets_mat);
 
 num_variables=length(curated_target_names);
 
-params_matrix=matrix(NA, nrow=num_variables, ncol=3);
-colnames(params_matrix)=c("mu", "alpha", "beta");
+params_matrix=matrix(NA, nrow=num_variables, ncol=6);
+colnames(params_matrix)=c("nLL", "pert_ix", "method", "mu", "alpha", "beta");
 rownames(params_matrix)=curated_target_names;
 
 gn_density=list();
@@ -688,7 +688,13 @@ for(ctn in curated_target_names){
 	nLL=function(mu, alpha, beta){
 		if(alpha<MIN_REAL){alpha=MIN_REAL;};
 		if(beta<MIN_REAL){beta=MIN_REAL};
-		return(-sum(dgnorm(data, mu, alpha, beta, log=T)));
+		neg_loglik=-sum(dgnorm(data, mu, alpha, beta, log=T));
+		#neg_loglik=ifelse(neg_loglik==Inf, 1e200, neg_loglik);
+		neg_loglik=ifelse(neg_loglik==Inf, 1e308, neg_loglik);
+		if(!is.finite(neg_loglik)){
+			cat(mu, ", ", alpha, ", ", beta, ": ", neg_loglik, "\n", sep="");
+		}
+		return(neg_loglik);
 	};
 
 	cat("Initial Values: mean=",mu0, " alpha=", alpha0, 
@@ -697,8 +703,8 @@ for(ctn in curated_target_names){
 
 	pert_ix=1;
 
-	pert_res_matrix=matrix(NA, nrow=total_perts, ncol=4);
-	colnames(pert_res_matrix)=c("nLL", "mu", "alpha", "beta");
+	pert_res_matrix=matrix(NA, nrow=total_perts, ncol=6);
+	colnames(pert_res_matrix)=c("nLL", "pert_ix", "method", "mu", "alpha", "beta");
 	
 	num_success=0;
 
@@ -711,7 +717,7 @@ for(ctn in curated_target_names){
 		alphaTry=alpha0*pert_matrix[pert_ix, "alpha"];
 		betaTry=beta0*pert_matrix[pert_ix, "beta"];
 
-	
+		method_ix=1
 		for(method in c("Nelder-Mead", "SANN")){
 			method_success=F;
 			tryCatch(
@@ -727,11 +733,23 @@ for(ctn in curated_target_names){
 					names(betaTry)=NULL;
 
 					start_param=list(mu=muTry, alpha=alphaTry, beta=betaTry);
-					fit=mle(nLL, start=start_param, method);
+
+					#parscale=c(1,1,1);
+					parscale=c(abs(mu0)/5, alpha0/5, beta0/10);
+
+					if(method=="SANN"){
+						control_var=list(parscale=parscale);
+					}else{
+						control_var=list(parscale=parscale);
+					}
+
+					#fit=mle(nLL, start=start_param, method);
+					fit=mle(nLL, start=start_param, method, control=control_var);
 
 					#print(fit);
 					fit_res=attributes(fit);
 					#print(fit_res);
+
 					muf=fit_res$coef[1];	
 					alphaf=max(fit_res$coef[2], MIN_REAL);
 					betaf=max(fit_res$coef[3], MIN_REAL);
@@ -749,11 +767,14 @@ for(ctn in curated_target_names){
 			}else{
 				cat(method, ": Failure.\n");
 			}
+
+			method_ix=method_ix+1;
 		}
 
 		if(method_success){
 			nll_pert=nLL(mu=muf, alpha=alphaf, beta=betaf);
-			pert_res_matrix[pert_ix,]=c(nll_pert, muf, alphaf, betaf);
+
+			pert_res_matrix[pert_ix,]=c(nll_pert, pert_ix, method_ix, muf, alphaf, betaf);
 		}
 
 		pert_ix=pert_ix+1;		
@@ -771,6 +792,9 @@ for(ctn in curated_target_names){
 	min_nLL=min(nona_pert_res_matrix[,"nLL"]);
 	min_ix=min(which(nona_pert_res_matrix[,"nLL"]==min_nLL));
 
+	nll_best=nona_pert_res_matrix[min_ix,"nLL"];
+	pert_ix_best=nona_pert_res_matrix[min_ix, "pert_ix"];
+	method_best=nona_pert_res_matrix[min_ix,"method"];
 	mu_best=nona_pert_res_matrix[min_ix,"mu"];
 	alpha_best=nona_pert_res_matrix[min_ix,"alpha"];
 	beta_best=nona_pert_res_matrix[min_ix,"beta"];
@@ -795,7 +819,7 @@ for(ctn in curated_target_names){
 		#print(y);
 		points(x,y, col="blue");
 	
-		params_matrix[ctn,]=c(mu_best, alpha_best, beta_best);
+		params_matrix[ctn,]=c(nll_best, pert_ix_best, method_best, mu_best, alpha_best, beta_best);
 		gn_density[[ctn]]=list();
 		gn_density[[ctn]][["x"]]=x;
 		gn_density[[ctn]][["y"]]=y;
@@ -805,7 +829,9 @@ for(ctn in curated_target_names){
 		norm_density[[ctn]]=list();
 		norm_density[[ctn]][["x"]]=x;
 		norm_density[[ctn]][["y"]]=y;
-		
+		norm_density[[ctn]][["mu"]]=mu0;
+		norm_density[[ctn]][["sd"]]=sqrt(variance);
+		norm_density[[ctn]][["nLL"]]=-sum(dnorm(data, mu0, sqrt(variance), log=T));
 
 	}else{
 		cat("Overall Failure.\n");
@@ -845,7 +871,7 @@ close(fh);
 ##############################################################################
 # Write out the variable histograms sorted by decreasing beta
 
-pdf(paste(OutputFnameRoot, ".sorted.pdf", sep=""), height=11, width=8.5);
+pdf(paste(OutputFnameRoot, ".beta_sorted.pdf", sep=""), height=11, width=8.5);
 par(mfrow=c(3,2));
 
 beta_arr=params_matrix[,"beta"];
@@ -868,6 +894,62 @@ for(varname in var_sorted){
 	title(main=paste("Mean =", round(mu,4)), line=-1);
 	title(main=paste("Alpha =", round(alpha,4)), line=-2);
 	title(main=paste("Beta =", round(beta,4)), line=-3);
+
+	points(gn_density[[varname]][["x"]], gn_density[[varname]][["y"]], col="blue");
+	points(norm_density[[varname]][["x"]], norm_density[[varname]][["y"]], col="red", cex=.5);
+
+	counter=counter+1;
+}
+
+dev.off();
+
+#------------------------------------------------------------------------------
+
+pdf(paste(OutputFnameRoot, ".nLL_sorted.pdf", sep=""), height=11, width=8.5);
+par(mfrow=c(3,2));
+
+nLL_arr=params_matrix[,"nLL"];
+nLL_arr_sort_ix=order(nLL_arr, decreasing=F);
+
+params_matrix_nLL_sort=params_matrix[nLL_arr_sort_ix,, drop=F];
+nLL_var_sorted=rownames(params_matrix_nLL_sort);
+
+counter=1;
+for(varname in nLL_var_sorted){
+	
+	data=curated_targets_mat[,varname];
+
+	nLL=params_matrix[varname, "nLL"];
+	pert_ix=params_matrix[varname, "pert_ix"];
+	method=params_matrix[varname, "method"];
+	mu=params_matrix[varname,"mu"];
+	alpha=params_matrix[varname,"alpha"];
+	beta=params_matrix[varname,"beta"];
+
+	hist(data, main=paste(counter, ".) ", varname, sep=""), xlab="", freq=F, breaks=30);
+
+	xy_bounds=par()$usr;
+	left=xy_bounds[1]+(xy_bounds[2]-xy_bounds[1])/4;
+	mid=(xy_bounds[1]+xy_bounds[2])/2;
+	top=xy_bounds[4];
+
+	text(left, top,
+		paste(
+			"nLL = ", round(nLL,6), "\n",
+			"perturbation index = ", pert_ix, "\n",
+			"method = ", method, "\n", 
+			"Mean = ", round(mu,6), "\n",
+			"Alpha = ", round(alpha,6), "\n",
+			"(StDev = ", round(alpha/sqrt(2),6), ")\n",
+			"Beta = ", round(beta,6), sep=""),
+		cex=.7, col="blue", adj=c(1,1));
+
+	text(mid, top,
+		paste(
+			"nLL = ", round(norm_density[[varname]][["nLL"]],6), "\n",
+			"Mean = ", round(norm_density[[varname]][["mu"]],6), "\n",
+			"StDev = ", round(norm_density[[varname]][["sd"]],6), sep=""),
+		cex=.7, col="red", adj=c(0,1));
 
 	points(gn_density[[varname]][["x"]], gn_density[[varname]][["y"]], col="blue");
 	points(norm_density[[varname]][["x"]], norm_density[[varname]][["y"]], col="red", cex=.5);
