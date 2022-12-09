@@ -1428,6 +1428,119 @@ mtext("Scatter Plots for Generalized Normal Parameters", side=3, line=0, outer=T
 
 ##############################################################################
 
+# Generate rarefaction curve
+
+pca_rarefaction_curve=function(
+	data, ordered_variables, num_top_pcs=5,
+	pcs_cumul_cutoff=.80,
+	pcs_indiv_cutoff=.05,
+	start_size=20, end_size=3000){
+
+	num_var=length(ordered_variables);
+
+	cat("Calculating Correlation Matrix...\n");
+        correl_mat=cor(data[,ordered_variables]);
+	cat("Done.\n");
+
+	end_size=min(end_size, num_var);
+	if(num_var<start_size){
+		cat("Number of variables too small.\n");
+		return(NULL);
+	}
+	total_trials=end_size-start_size+1;
+
+	pca_stats_colnames=c("num_var", "pcs_cumul_cutoff", "pcs_indiv_cutoff", "var_rep",
+		paste("pc_cov.", 1:num_top_pcs, sep=""));
+	num_pca_stats_cols=4+num_top_pcs;
+
+
+	pca_stats=matrix(NA, nrow=total_trials, ncol=num_pca_stats_cols);
+	colnames(pca_stats)=pca_stats_colnames;
+
+	row_ix=1;
+	for(rar_size in start_size:end_size){
+
+		cat("Working on window size: ", rar_size, "\n");
+
+		selected_var=ordered_variables[1:rar_size];
+        	eigen=eigen(correl_mat[selected_var, selected_var]);
+
+		pca_propvar=eigen$values/sum(eigen$values);
+		pca_propcumsum=cumsum(pca_propvar);
+
+		num_pc_to_exceed_cutoff=sum(pca_propcumsum<pcs_cumul_cutoff)+1;
+		num_pc_above_indiv_cutoff=sum(pca_propvar>pcs_indiv_cutoff);
+
+		pca_stats[row_ix, ]=c(
+			rar_size, num_pc_to_exceed_cutoff, num_pc_above_indiv_cutoff,
+			pca_propcumsum[num_top_pcs], pca_propvar[1:num_top_pcs]
+			);
+
+		row_ix=row_ix+1;
+	}
+
+	#----------------------------------------------------------------------
+
+	par(mfrow=c(2, 1));
+	par(mar=c(4,4,4,1));
+	par(oma=c(0,0,2,0));
+
+	pal_arr=c("red", "orange", "green", "blue", "violet");
+	palette(pal_arr);
+
+	max_num_cumul_pcs=max(pca_stats[,"pcs_cumul_cutoff"]);
+	plot(0, type="n", xlim=c(0, end_size+1), ylim=c(0, max_num_cumul_pcs+1),
+		main=paste("Num PCs by Cutoffs:\nCumulative: ", 
+			round(pcs_cumul_cutoff*100, 2), "%  Individual: ",
+			round(pcs_indiv_cutoff*100, 2), "%", sep=""),
+		xlab="Num Variables Included", 
+		ylab="Num PCs");
+	
+	points(start_size:end_size, pca_stats[, "pcs_cumul_cutoff"], col=1);
+	points(start_size:end_size, pca_stats[, "pcs_indiv_cutoff"], col=2, cex=.5);
+
+	legend(par()$usr[1], par()$usr[4], 
+		legend=c("Num PCs to exceed Cumulative Cutoff", "Num PCs above Individual Cutoff"),
+		fill=c(1,2),
+		cex=.75, bty="n"
+	);
+
+	#----------------------------------------------------------------------
+	
+	plot(0, type="n", xlim=c(0, end_size+1), ylim=c(0, 100),
+		main="Coverage of PCs",
+		xlab="Num Variables Included", ylab="Percent of Coverage");
+
+	points(start_size:end_size, pca_stats[, "var_rep"]*100, col="black", cex=1); 
+
+	for(i in 1:num_top_pcs){
+		points(start_size:end_size, pca_stats[, paste("pc_cov.", i, sep="")]*100, 
+			col=i, cex=1-i/10
+		);
+	}
+
+	legend(par()$usr[1], par()$usr[4], 
+		legend=c("Total Coverage Across Top PCs", paste("PC", 1:num_top_pcs, sep="")),
+		fill=c("black", 1:num_top_pcs),
+		cex=.75, bty="n"
+	);
+
+
+	#----------------------------------------------------------------------
+
+	
+	mtext("PC Rarefaction of Variables by Decreasing Beta", side=3, line=0, outer=T, font=2);
+
+        return(pca_stats);
+}
+	
+pca_rc_results=pca_rarefaction_curve(curated_targets_mat, var_sorted);
+
+print(pca_rc_results);
+
+
+##############################################################################
+
 # Export paramters
 gnorm_param_table_fn=paste(OutputFnameRoot, ".fit_param.tsv", sep="");
 fh=file(gnorm_param_table_fn, "w");
