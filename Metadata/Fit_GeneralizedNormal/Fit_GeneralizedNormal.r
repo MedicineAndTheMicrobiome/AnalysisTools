@@ -931,7 +931,6 @@ beta_arr_sorted=params_matrix_beta_sort[, "beta"];
 mean_arr_sorted=params_matrix_beta_sort[, "mu"];
 var_sorted=rownames(params_matrix_beta_sort);
 
-
 counter=1;
 for(varname in var_sorted){
 	data=curated_targets_mat[,varname];
@@ -1337,8 +1336,9 @@ par(mar=c(4,4,4,1));
 par(mfrow=c(3,1));
 par(oma=c(0,0,2,0));
 
-beta_arr_sorted=params_matrix_beta_sort[beta_arr_sort_ix, "beta", drop=F];
-mean_arr_sorted=params_matrix_beta_sort[beta_arr_sort_ix, "mu", drop=F];
+# here
+beta_arr_sorted=params_matrix_beta_sort[, "beta", drop=F];
+mean_arr_sorted=params_matrix_beta_sort[, "mu", drop=F];
 
 hist(mean_arr_sorted, main="Mean Distribution", xlab="means", breaks=100);
 
@@ -1431,16 +1431,57 @@ mtext("Scatter Plots for Generalized Normal Parameters", side=3, line=0, outer=T
 # Generate rarefaction curve
 
 pca_rarefaction_curve=function(
-	data, ordered_variables, num_top_pcs=5,
+	data, ordered_variables, betas,
+	num_top_pcs=5,
 	pcs_cumul_cutoff=.80,
 	pcs_indiv_cutoff=.05,
-	start_size=20, end_size=3000){
+	start_size=20, end_size=Inf){
+
 
 	num_var=length(ordered_variables);
 
 	cat("Calculating Correlation Matrix...\n");
         correl_mat=cor(data[,ordered_variables]);
 	cat("Done.\n");
+
+	#----------------------------------------------------------------------
+	# Calculate locations for beta landmarks
+
+	direction="Decreasing";
+	if(betas[1]<betas[2]){	
+		direction="Increasing";	
+	}
+	cat("Beta direction: ", direction, "\n");
+
+	beta_cutoffs=c(1, 1.5, 2, 3, 4, 5, 10, 25, 50, 200, 400);
+	num_cutoffs=length(beta_cutoffs);
+	var_inc_index=numeric(num_cutoffs);
+
+	if(direction=="Increasing"){
+		for(i in 1:num_cutoffs){
+			var_inc_index[i]=min(which(betas>beta_cutoffs[i]));
+		}
+	}else{
+		beta_cutoffs=rev(beta_cutoffs);
+		for(i in 1:num_cutoffs){
+			var_inc_index[i]=min(which(betas<beta_cutoffs[i]));
+		}
+	}
+
+	cat("Proposed Cutoffs Locations:\n");
+	print(beta_cutoffs);
+	print(var_inc_index);
+
+	valid_indices=var_inc_index>1 & is.finite(var_inc_index)
+	beta_cutoffs=beta_cutoffs[valid_indices];
+	var_inc_index=var_inc_index[valid_indices];
+
+	cat("Retained Cutoffs Locations:\n");
+	print(beta_cutoffs);
+	print(var_inc_index);
+
+	#----------------------------------------------------------------------
+	# Perform windowing/rarefaction calculations
 
 	end_size=min(end_size, num_var);
 	if(num_var<start_size){
@@ -1452,7 +1493,6 @@ pca_rarefaction_curve=function(
 	pca_stats_colnames=c("num_var", "pcs_cumul_cutoff", "pcs_indiv_cutoff", "var_rep",
 		paste("pc_cov.", 1:num_top_pcs, sep=""));
 	num_pca_stats_cols=4+num_top_pcs;
-
 
 	pca_stats=matrix(NA, nrow=total_trials, ncol=num_pca_stats_cols);
 	colnames(pca_stats)=pca_stats_colnames;
@@ -1480,8 +1520,9 @@ pca_rarefaction_curve=function(
 	}
 
 	#----------------------------------------------------------------------
+	# Generate plots
 
-	par(mfrow=c(2, 1));
+	par(mfrow=c(3, 1));
 	par(mar=c(4,4,4,1));
 	par(oma=c(0,0,2,0));
 
@@ -1496,6 +1537,9 @@ pca_rarefaction_curve=function(
 		xlab="Num Variables Included", 
 		ylab="Num PCs");
 	
+	abline(v=var_inc_index, col="cornflowerblue", lty="dashed");
+	text(var_inc_index, 0, beta_cutoffs, font=2, col="blue"); 
+
 	points(start_size:end_size, pca_stats[, "pcs_cumul_cutoff"], col=1);
 	points(start_size:end_size, pca_stats[, "pcs_indiv_cutoff"], col=2, cex=.5);
 
@@ -1511,6 +1555,9 @@ pca_rarefaction_curve=function(
 		main="Coverage of PCs",
 		xlab="Num Variables Included", ylab="Percent of Coverage");
 
+	abline(v=var_inc_index, col="cornflowerblue", lty="dashed");
+	text(var_inc_index, 0, beta_cutoffs, font=2, col="blue"); 
+
 	points(start_size:end_size, pca_stats[, "var_rep"]*100, col="black", cex=1); 
 
 	for(i in 1:num_top_pcs){
@@ -1520,7 +1567,8 @@ pca_rarefaction_curve=function(
 	}
 
 	legend(par()$usr[1], par()$usr[4], 
-		legend=c("Total Coverage Across Top PCs", paste("PC", 1:num_top_pcs, sep="")),
+		legend=c(paste("Total Coverage Across Top ", num_top_pcs, " PCs", sep=""), 
+			paste("PC", 1:num_top_pcs, sep="")),
 		fill=c("black", 1:num_top_pcs),
 		cex=.75, bty="n"
 	);
@@ -1528,16 +1576,36 @@ pca_rarefaction_curve=function(
 
 	#----------------------------------------------------------------------
 
+	max_pc=max(pca_stats[, "pc_cov.1"])*100;
+	plot(0, type="n", xlim=c(0, end_size+1), ylim=c(0, max_pc*1.1),
+		main="Coverage of PCs",
+		xlab="Num Variables Included", ylab="Percent of Coverage");
+
+	abline(v=var_inc_index, col="cornflowerblue", lty="dashed");
+	text(var_inc_index, 0, beta_cutoffs, font=2, col="blue"); 
+
+	for(i in 1:num_top_pcs){
+		points(start_size:end_size, pca_stats[, paste("pc_cov.", i, sep="")]*100, 
+			col=i, cex=1-i/10
+		);
+	}
+
+	legend(par()$usr[1], par()$usr[4], 
+		legend=paste("PC", 1:num_top_pcs, sep=""),
+		fill=c(1:num_top_pcs),
+		cex=.75, bty="n"
+	);
+
 	
-	mtext("PC Rarefaction of Variables by Decreasing Beta", side=3, line=0, outer=T, font=2);
+	mtext(paste("PC Rarefaction of Variables by ", direction, " Beta", sep=""), 
+		side=3, line=0, outer=T, font=2);
 
         return(pca_stats);
 }
+
 	
-pca_rc_results=pca_rarefaction_curve(curated_targets_mat, var_sorted);
-
-print(pca_rc_results);
-
+pca_rc_results=pca_rarefaction_curve(curated_targets_mat, var_sorted, beta_arr_sorted);
+rev_pca_rc_results=pca_rarefaction_curve(curated_targets_mat, rev(var_sorted), rev(beta_arr_sorted));
 
 ##############################################################################
 
