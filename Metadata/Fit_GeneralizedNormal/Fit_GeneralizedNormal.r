@@ -1435,7 +1435,10 @@ pca_rarefaction_curve=function(
 	num_top_pcs=5,
 	pcs_cumul_cutoff=.80,
 	pcs_indiv_cutoff=.05,
-	start_size=20, end_size=Inf){
+	start_size=20, end_size=Inf,
+	max_pc_cov=0,
+	max_pcs=0
+	){
 
 
 	num_var=length(ordered_variables);
@@ -1497,26 +1500,42 @@ pca_rarefaction_curve=function(
 	pca_stats=matrix(NA, nrow=total_trials, ncol=num_pca_stats_cols);
 	colnames(pca_stats)=pca_stats_colnames;
 
+	# Calculate calculation frequency
+	max_calc_freq=1000;
+	rate=30;
+	norm=exp(max_calc_freq/rate);
+	subset=sort(unique(as.integer(exp((1:max_calc_freq)/rate)/norm*end_size)));
+	print(subset);
+
 	row_ix=1;
 	for(rar_size in start_size:end_size){
 
-		cat("Working on window size: ", rar_size, "\n");
+		if(any(rar_size==subset)){
 
-		selected_var=ordered_variables[1:rar_size];
-        	eigen=eigen(correl_mat[selected_var, selected_var]);
+			cat("Working on window size: ", rar_size, "\n");
 
-		pca_propvar=eigen$values/sum(eigen$values);
-		pca_propcumsum=cumsum(pca_propvar);
+			selected_var=ordered_variables[1:rar_size];
+			eigen=eigen(correl_mat[selected_var, selected_var], only.values=T);
 
-		num_pc_to_exceed_cutoff=sum(pca_propcumsum<pcs_cumul_cutoff)+1;
-		num_pc_above_indiv_cutoff=sum(pca_propvar>pcs_indiv_cutoff);
+			pca_propvar=eigen$values/sum(eigen$values);
+			pca_propcumsum=cumsum(pca_propvar);
 
-		pca_stats[row_ix, ]=c(
-			rar_size, num_pc_to_exceed_cutoff, num_pc_above_indiv_cutoff,
-			pca_propcumsum[num_top_pcs], pca_propvar[1:num_top_pcs]
+			num_pc_to_exceed_cutoff=sum(pca_propcumsum<pcs_cumul_cutoff)+1;
+			num_pc_above_indiv_cutoff=sum(pca_propvar>pcs_indiv_cutoff);
+
+			pca_stats[row_ix, ]=c(
+				rar_size, num_pc_to_exceed_cutoff, num_pc_above_indiv_cutoff,
+				pca_propcumsum[num_top_pcs], pca_propvar[1:num_top_pcs]
 			);
+		}
 
 		row_ix=row_ix+1;
+	}
+
+	if(end_size<500){
+		plot_tick_freq=50;
+	}else{
+		plot_tick_freq=100;
 	}
 
 	#----------------------------------------------------------------------
@@ -1529,13 +1548,15 @@ pca_rarefaction_curve=function(
 	pal_arr=c("red", "orange", "green", "blue", "violet");
 	palette(pal_arr);
 
-	max_num_cumul_pcs=max(pca_stats[,"pcs_cumul_cutoff"]);
-	plot(0, type="n", xlim=c(0, end_size+1), ylim=c(0, max_num_cumul_pcs+1),
+	max_num_cumul_pcs=max(pca_stats[,"pcs_cumul_cutoff"], na.rm=T);
+	plot(0, type="n", xlim=c(0, end_size+1), ylim=c(0, max(max_num_cumul_pcs, max_pcs)+1),
 		main=paste("Num PCs by Cutoffs:\nCumulative: ", 
 			round(pcs_cumul_cutoff*100, 2), "%  Individual: ",
 			round(pcs_indiv_cutoff*100, 2), "%", sep=""),
+		xaxt="n",
 		xlab="Num Variables Included", 
 		ylab="Num PCs");
+	axis(1, at=seq(0, end_size+1, plot_tick_freq));
 	
 	abline(v=var_inc_index, col="cornflowerblue", lty="dashed");
 	text(var_inc_index, 0, beta_cutoffs, font=2, col="blue"); 
@@ -1553,7 +1574,9 @@ pca_rarefaction_curve=function(
 	
 	plot(0, type="n", xlim=c(0, end_size+1), ylim=c(0, 100),
 		main="Coverage of PCs",
+		xaxt="n",
 		xlab="Num Variables Included", ylab="Percent of Coverage");
+	axis(1, at=seq(0, end_size+1, plot_tick_freq));
 
 	abline(v=var_inc_index, col="cornflowerblue", lty="dashed");
 	text(var_inc_index, 0, beta_cutoffs, font=2, col="blue"); 
@@ -1576,10 +1599,12 @@ pca_rarefaction_curve=function(
 
 	#----------------------------------------------------------------------
 
-	max_pc=max(pca_stats[, "pc_cov.1"])*100;
-	plot(0, type="n", xlim=c(0, end_size+1), ylim=c(0, max_pc*1.1),
+	max_pc=max(pca_stats[, "pc_cov.1"], na.rm=T)*100;
+	plot(0, type="n", xlim=c(0, end_size+1), ylim=c(0, max(max_pc, max_pc_cov*100)*1.1),
 		main="Coverage of PCs",
-		xlab="Num Variables Included", ylab="Percent of Coverage");
+		xaxt="n",
+		xlab="Num Variables Included", ylab="Percent of Coverage (y-axis zoomed)");
+	axis(1, at=seq(0, end_size+1, plot_tick_freq));
 
 	abline(v=var_inc_index, col="cornflowerblue", lty="dashed");
 	text(var_inc_index, 0, beta_cutoffs, font=2, col="blue"); 
@@ -1597,7 +1622,8 @@ pca_rarefaction_curve=function(
 	);
 
 	
-	mtext(paste("PC Rarefaction of Variables by ", direction, " Beta", sep=""), 
+	mtext(paste("PC Rarefaction of Variables by ", direction, " Beta, Range = ", 
+		start_size, " - ", end_size, sep=""), 
 		side=3, line=0, outer=T, font=2);
 
         return(pca_stats);
@@ -1606,6 +1632,14 @@ pca_rarefaction_curve=function(
 	
 pca_rc_results=pca_rarefaction_curve(curated_targets_mat, var_sorted, beta_arr_sorted);
 rev_pca_rc_results=pca_rarefaction_curve(curated_targets_mat, rev(var_sorted), rev(beta_arr_sorted));
+
+max_pc_coverage=max(pca_rc_results[,"pc_cov.1"], rev_pca_rc_results[,"pc_cov.1"], na.rm=T);
+max_pc_cumul=max(pca_rc_results[,"pcs_cumul_cutoff"], rev_pca_rc_results[,"pcs_cumul_cutoff"], na.rm=T);
+
+pca_rc_results=pca_rarefaction_curve(curated_targets_mat, var_sorted, beta_arr_sorted, 
+	end_size=400, max_pc_cov=max_pc_coverage, max_pcs=max_pc_cumul);
+rev_pca_rc_results=pca_rarefaction_curve(curated_targets_mat, rev(var_sorted), rev(beta_arr_sorted), 
+	end_size=400, max_pc_cov=max_pc_coverage, max_pcs=max_pc_cumul);
 
 ##############################################################################
 
