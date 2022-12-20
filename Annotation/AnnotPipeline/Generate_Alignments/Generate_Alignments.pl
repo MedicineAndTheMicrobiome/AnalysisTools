@@ -138,6 +138,7 @@ sub get_config_val{
 	my $group=shift;
 	my $field=shift;
 
+	#print STDERR "Looking for [$group]  Field:$field\n";
 	my $value=$config->val($group, $field);
 	
 	# Dereference variable pointing elsewhere
@@ -145,6 +146,8 @@ sub get_config_val{
 		$value=get_config_val($config, $1, $2);
 		print STDERR "Resolved [$1]:$2 to $value\n";
 	}
+
+	print STDERR "[$group].$field = $value\n";
 		
 	return($value);
 
@@ -201,6 +204,8 @@ sub align{
 		$out_dir_w_wd="\$working_directory/$clean_od";
 	}
 
+	print STDERR "Tool: $cfg_bl_tool\n";
+
 	if($cfg_bl_tool eq "ncbi_blast"){
 
 		my $cfg_bl_program_bin=get_config_val($config, "blast_options", "program");
@@ -221,7 +226,8 @@ sub align{
 
 		my $cfg_bl_diamond_bin=get_config_val($config, "blast_options", "diamond_bin");
 		my $cfg_bl_program=get_config_val($config, "blast_options", "program");
-		$cfg_bl_db=get_config_val($config, "blast_options", "diamond_db");
+		my $cfg_bl_db=get_config_val($config, "blast_options", "diamond_db");
+		my $global_tmp=get_config_val($config, "global", "scratch_dir");
 
 		$aln_cmd="
 		$cfg_bl_diamond_bin
@@ -233,6 +239,7 @@ sub align{
 		--outfmt 6
 		--dbsize $cfg_bl_dbsize
 		--threads $cfg_bl_num_threads
+		--tmpdir $global_tmp
 		";
 
 	}
@@ -289,9 +296,17 @@ sub align{
 ###############################################################################
 ###############################################################################
 
+print STDERR "Param File: $Parameter_Fn\n";
+
 my $cfg=Config::IniFiles->new(-file => $Parameter_Fn);
 
-my $ini_global_scratch_dir=get_config_val($cfg, "GLOBAL", "scratch_dir");
+if(!defined($cfg)){
+	print STDERR "Error Reading in $Parameter_Fn\n";
+	print STDERR "Please confirm formatting is ok.  I.e. only [Group] and Field= entries.  Comments # are ok.\n";
+	die "Configuration file not valid.";
+}
+
+my $ini_global_scratch_dir=get_config_val($cfg, "global", "scratch_dir");
 print STDERR "Scratch directory: $ini_global_scratch_dir\n";
 
 my $file_arr_ref=load_file_list($FASTA_List_Fn);
