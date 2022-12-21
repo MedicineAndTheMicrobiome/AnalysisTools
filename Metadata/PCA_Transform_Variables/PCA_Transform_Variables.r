@@ -17,6 +17,7 @@ params=c(
 	"donnot_transform", "t", 2, "logical",
 	"pc_coverage", "c", 2, "numeric",
 	"pc_indiv_coverage", "i", 2, "numeric",
+	"pc_var_correlation", "v", 2, "numeric",
 	"export_orig", "O", 2, "logical",
 	"export_curated", "C", 2, "logical",
 	"export_imputed", "I", 2, "logical",
@@ -25,7 +26,9 @@ params=c(
 
 NORM_PVAL_CUTOFF=.2;
 PCA_COVERAGE=.95;
-PCA_INDIV_COVERAGE=0.05;
+PCA_INDIV_COVERAGE=0.025;
+PCA_VAR_CORREL_CUTOFF=0.5;
+
 CURATED_PREFIX="crtd";
 NO_CHANGE="orig"
 
@@ -47,6 +50,7 @@ usage = paste(
 	"	[-t (do not transform/autocurate predictors, default: transform if necessary)\n",
 	"	[-c PC Coverage, default=", PCA_COVERAGE, "\n",
 	"	[-i PC Individual coverage mininum, default=", PCA_INDIV_COVERAGE, "\n",
+	"	[-v Min correlation at cutoff, default=", PCA_VAR_CORREL_CUTOFF, "\n",
 	"\n",
 	"Output Options:\n",
 	"	[-O (export Original predictor variable list)\n",
@@ -73,8 +77,9 @@ FactorsFname=opt$factors;
 OutputFnameRoot=opt$outputroot;
 
 ResponseListName="";
-PCCoverage=PCA_COVERAGE;
+PCCumulCoverage=PCA_COVERAGE;
 PCIndivCoverage=PCA_INDIV_COVERAGE;
+PCVariableCorrelationCutoff=PCA_VAR_CORREL_CUTOFF;
 DonnotTransform=F;
 SubsampleTargets=-1;
 
@@ -95,11 +100,15 @@ if(length(opt$response)){
 }
 
 if(length(opt$pc_coverage)){
-	PCCoverage=opt$pc_coverage;
+	PCCumulCoverage=opt$pc_coverage;
 }
 
 if(length(opt$pc_indiv_coverage)){
 	PCIndivCoverage=opt$pc_indiv_coverage;
+}
+
+if(length(opt$pc_var_correlation)){
+	PCVariableCorrelationCutoff=opt$pc_var_correlation;
 }
 
 if(length(opt$donnot_transform)){
@@ -130,7 +139,9 @@ param_text=capture.output({
 	cat("Output File Name Root: ", OutputFnameRoot, "\n");
 	cat("Response List Name: ", ResponseListName, "\n");
 	cat("Predictor List Name: ", PredictorListName, "\n");
-	cat("PC Min Coverage: ", PCCoverage, "\n");
+	cat("PC Min Cumulative Coverage: ", PCCumulCoverage, "\n");
+	cat("PC Min Individual Cutoff: ", PCIndivCoverage, "\n");
+	cat("PC Variable Correlation Cutoff: ", PCVariableCorrelationCutoff, "\n");
 	cat("\n");
 	cat("Donnot Transform Variables: ", DonnotTransform, "\n");
 	cat("Export original variables: ", ExportOrig, "\n");
@@ -877,7 +888,7 @@ eigen=eigen(pred_correl$val);
 # Compute variance contribution of each PC
 pca_propvar=eigen$values/sum(eigen$values);
 pca_propcumsum=cumsum(pca_propvar);
-num_pc_at_cutoff=sum(pca_propcumsum<PCCoverage)+1;
+num_pc_at_cutoff=sum(pca_propcumsum<PCCumulCoverage)+1;
 
 # Compute per sample scores
 scores=(scale(imputed_mat, center=T, scale=T) %*% eigen$vectors);
@@ -896,7 +907,7 @@ plot_text(c(
 	"Cumulative Variance:",
 	capture.output(print(pca_propcumsum)),
 	"",
-	paste("Number of PCs to retain >", (PCCoverage*100.0), "% of Variance:"),
+	paste("Number of PCs to retain >", (PCCumulCoverage*100.0), "% of Variance:"),
 	num_pc_at_cutoff,
 	"",
 	paste("Number of PCs with each with >", (PCIndivCoverage*100.0), "% of Variance:"),
@@ -927,7 +938,7 @@ colors[1:num_pc_at_cutoff]="darkcyan";
 mids=barplot(pca_propcumsum, las=2, names.arg=1:num_kept_pred, xlab="PCs", 
 	col=colors,
 	ylab="Proportion", main="PCA Cumulative Variance");
-abline(h=PCCoverage, col="darkcyan", lty=2);
+abline(h=PCCumulCoverage, col="darkcyan", lty=2);
 
 ###############################################################################
 
@@ -951,7 +962,7 @@ mids=barplot(pca_propcumsum, las=2, names.arg=1:num_kept_pred, xlab="PCs",
 	ylab="Proportion", main="PCA Cumulative Variance\n(zoomed)",
 	xlim=c(0, num_pc_at_cutoff+2)
 	);
-abline(h=PCCoverage, col="darkcyan", lty=2);
+abline(h=PCCumulCoverage, col="darkcyan", lty=2);
 
 ###############################################################################
 
@@ -1003,6 +1014,11 @@ for(i in seq(1,num_pc_at_cutoff+1,2)){
 # Calculate correlation between each PC and the predictors
 cat("Calculating correlation between each PCA and the predictors...\n");
 
+top_pc_var_correl_header=c("PCID", "Correlation", "IndivCoverage", "CumulCoverage" );
+top_pc_var_correl_mat=matrix(NA, nrow=num_pc_at_cutoff, ncol=length(top_pc_var_correl_header));
+colnames(top_pc_var_correl_mat)=top_pc_var_correl_header;
+top_pc_var_name=character();
+
 par(mfrow=c(2,2));
 par(mar=c(12,3,2,1));
 positive_scores=scores;
@@ -1044,6 +1060,10 @@ for(i in 1:num_pc_at_cutoff){
 		pc_pred_cor_ordered=pc_pred_cor_ordered*-1
 		flipped=" (flipped)";
 	}
+
+	# Save top variable correlated to PC
+	top_pc_var_name=c(top_pc_var_name, names(pc_pred_cor_ordered)[1]) ;
+	top_pc_var_correl_mat[i,]=c(i, pc_pred_cor_ordered[1], pca_propvar[i], pca_propcumsum[i]);
 	
 	ordered_names=names(pc_pred_cor_ordered);
 	
@@ -1073,12 +1093,113 @@ for(i in 1:num_pc_at_cutoff){
 	out_pc_cormat_header[((i-1)*3)+2]="Correlation";
 }
 
+rownames(top_pc_var_correl_mat)=top_pc_var_name;
+
+# Select variables based on the difference cutoff options
+
+selected_variables=list();
+
+abv_cor_max_ix=max(which(top_pc_var_correl_mat[,"Correlation"]>=PCVariableCorrelationCutoff));
+abv_ind_max_ix=max(which(top_pc_var_correl_mat[,"IndivCoverage"]>=PCIndivCoverage));
+
+selected_variables[["by_correl"]]=unique(top_pc_var_name[1:abv_cor_max_ix]);
+selected_variables[["by_indiv"]]=unique(top_pc_var_name[1:abv_ind_max_ix]);
+selected_variables[["by_cumul"]]=unique(top_pc_var_name);
+
+plot_text(c(
+	"Selected Variables By Cutoff:",
+	"",
+	capture.output(print(top_pc_var_correl_mat)),
+	"",
+	paste("Correlation Cutoff:", PCVariableCorrelationCutoff),
+	selected_variables[["by_correl"]],
+	"",
+	paste("Individual Coverage Cutoff:", PCIndivCoverage),
+	selected_variables[["by_indiv"]],
+	"",
+	paste("Cumulative Coverage Cutoff:", PCCumulCoverage),
+	selected_variables[["by_cumul"]]
+));
+
 colnames(out_pc_cormat)=out_pc_cormat_header;
 rownames(out_pc_cormat)=paste(1:ncol(scores), ".)", sep="");
 
 cat("Outputing PC to Variable Correlations:\n");
 fname=paste(OutputFnameRoot, ".pc_var_cor.tsv", sep="");
 write.table(out_pc_cormat, file=fname, col.names=NA, append=T, quote=F, sep="\t");
+
+##############################################################################
+
+# Plot dendrogram with selected variable
+
+find_height_at_k=function(hclust, k){
+# Computes the height on the dendrogram for a particular k
+
+	heights=hclust$height;
+	num_heights=length(heights);
+	num_clust=numeric(num_heights);
+	for(i in 1:num_heights){
+		num_clust[i]=length(unique(cutree(hclust, h=heights[i])));
+	}
+	height_idx=which(num_clust==k);
+	midpoint=(heights[height_idx+1]+heights[height_idx])/2;
+	return(midpoint);
+}
+
+var_cor=compute_correlations(curated_pred_mat);
+hcl=hclust(var_cor$dist, method="ward.D2");
+dend=as.dendrogram(hcl);
+
+par(mar=c(14, 2, 4, 1));
+par(mfrow=c(1,1));
+for(sel_type in c("by_correl", "by_indiv", "by_cumul")){
+
+	cat("Generating Dendrogram for: ", sel_type, "\n");
+	cur_sel_var=selected_variables[[sel_type]];
+
+	highlight_vars=function(x){
+		if(is.leaf(x)){
+			leaf_attr=attributes(x);
+			label=leaf_attr$label;
+			#print(label);
+			if(any(label==cur_sel_var)){
+				cat("Coloring: ", label, "\n");
+				color="darkcyan";
+				font=2;
+				cex=1.05;
+			}else{
+				color="black";
+				font=1;
+				cex=.95;
+			}
+			attr(x, "nodePar")=c(leaf_attr$nodePar, 
+				list(lab.font=font, lab.col=color, lab.cex=cex, cex=0));
+		}
+		return(x);
+	}
+
+	
+	cur_dend=dendrapply(dend, highlight_vars);
+
+	if(sel_type == "by_correl"){
+		msg=paste("Selected Variables with Correlation with PCs  > ", 
+			PCVariableCorrelationCutoff, sep="");
+	}else if(sel_type == "by_indiv"){
+		msg=paste("Selected Variables Most Similar with PCs Individually Covering > ", 
+			PCIndivCoverage, sep="");
+	}else if(sel_type == "by_cumul"){
+		msg=paste("Selected Variables Most Similar to PCs Cumulatively Covering > ", 
+			PCCumulCoverage, sep="");
+	}
+
+	plot(cur_dend, , main=paste(msg, "\nWard's Minimum Variance:\ndist(1-abs(cor))", sep=""));
+
+
+	effect_cut=find_height_at_k(hcl, k=length(cur_sel_var));
+	abline(h=effect_cut, col="blue", lty="dashed");
+
+
+}
 
 ##############################################################################
 
@@ -1114,8 +1235,8 @@ highlight_pcs=function(x){
 dend=dendrapply(dend, highlight_pcs);
 
 par(mfrow=c(1,1));
-par(mar=c(2,1,1,20));
-plot(dend, horiz=T, main="Ward's Minimum Variance: dist(1-abs(cor)) with PCs");
+par(mar=c(2,1,4,20));
+plot(dend, horiz=T, main="Relationship of PCs with Original Variables\nWard's Minimum Variance:\ndist(1-abs(cor)) with PCs");
 
 
 ##############################################################################
@@ -1191,6 +1312,25 @@ fh=file(fname, "w");
 cat(file=fh, "SampleID");
 close(fh);
 write.table(out_factors, file=fname, col.names=NA, append=T, quote=F, sep="\t");
+
+##############################################################################
+# Export selected variables
+
+ext_list=list();
+ext_list[["by_correl"]]=sprintf("var_corr%02.1f", PCVariableCorrelationCutoff*100);
+ext_list[["by_indiv"]]= sprintf("pc_indiv%02.1f", PCIndivCoverage*100);
+ext_list[["by_cumul"]]= sprintf("pc_cumul%02.1f", PCCumulCoverage*100);
+
+for(criteria in c("by_correl", "by_indiv", "by_cumul")){
+	sel_mat=curated_pred_mat[,selected_variables[[criteria]]];
+
+	fname=paste(OutputFnameRoot, ".selected_transf_var.", ext_list[[criteria]], ".tsv", sep="");
+	fh=file(fname, "w");
+	cat(file=fh, "SampleID");
+	close(fh);
+	write.table(sel_mat, file=fname, col.names=NA, append=T, quote=F, sep="\t");	
+}
+
 
 ##############################################################################
 
