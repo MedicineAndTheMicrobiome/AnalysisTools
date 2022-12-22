@@ -73,7 +73,9 @@ keep_ix=eval(parse(text=Condition), envir=factors);
 cat("Keep Index:\n");
 print(keep_ix);
 
-write_factors(OutputFactorFile, factors[keep_ix,,drop=F]);
+keepers=which(keep_ix);
+
+write_factors(OutputFactorFile, factors[keepers,,drop=F]);
 
 ##############################################################################
 
