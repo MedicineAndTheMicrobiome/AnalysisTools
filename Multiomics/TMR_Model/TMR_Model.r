@@ -15,7 +15,8 @@ params=c(
 	"outputroot", "o", 1, "character",
 	"covtrt_grp_list_fn", "c", 1, "character",
 	"measured_grp_list_fn", "m", 1, "character",
-	"response_grp_list_fn", "r", 1, "character"
+	"response_grp_list_fn", "r", 2, "character",
+	"repeated_measure_analysis_id", "a", 2, "character"
 );
 
 NO_CHANGE="orig";
@@ -35,7 +36,10 @@ usage = paste(
 	"\n",
 	"	-c <treatment/covariate group list file>\n",
 	"	-m <measured variable group list file>\n",
-	"	-r <response group list file>\n",
+	"	[-r <response group list file>]\n",
+	"\n",
+	"	[-a <time offset, or repeated measure identifer to insert into output table>]\n",
+	"            (This does not affect computations.)\n",
 	"\n",
 	"This script will automatically generate an analysis for the following\n",
 	"groups of variables.\n",
@@ -55,8 +59,7 @@ if(
 	!length(opt$groupings) || 
 	!length(opt$outputroot) || 
 	!length(opt$covtrt_grp_list_fn) || 
-	!length(opt$measured_grp_list_fn) || 
-	!length(opt$response_grp_list_fn)
+	!length(opt$measured_grp_list_fn) 
 ){
 	cat(usage);
 	q(status=-1);
@@ -67,8 +70,19 @@ VariableGroupingsFname=opt$groupings;
 OutputFnameRoot=opt$outputroot;
 CovTrtGrpFname=opt$covtrt_grp_list_fn;
 MeasuredGrpFname=opt$measured_grp_list_fn;
-ResponseGrpFname=opt$response_grp_list_fn;
 
+
+if(length(opt$response_grp_list_fn)){
+	ResponseGrpFname=opt$response_grp_list_fn;
+}else{
+	ResponseGrpFname="";
+}
+
+if(length(opt$repeated_measure_analysis_id)){
+	RepeatedMeasureAnalysisID=opt$repeated_measure_analysis_id;
+}else{
+	RepeatedMeasureAnalysisID=NULL;
+}
 
 param_text=capture.output({
 	cat("\n");
@@ -78,10 +92,11 @@ param_text=capture.output({
 	cat("Covariate/Treatment Groups Filename: ", CovTrtGrpFname, "\n");
 	cat("Measured Groups Filename:            ", MeasuredGrpFname, "\n");
 	cat("Response Groups Filename:            ", ResponseGrpFname, "\n");
+	cat("Repeated Measure Analysis ID:        ", RepeatedMeasureAnalysisID, "\n");
 	cat("\n");
 });
 
-print(param_text, quote=F);
+cat(paste(param_text, collapse="\n"), "\n");
 
 ###############################################################################
 
@@ -94,6 +109,12 @@ load_factors=function(fname){
 
 load_list=function(fname){
 	cat("Loading: ", fname, "\n");
+
+	if(fname==""){
+		cat("Could not load list: File not specified\n");
+		return(c());
+	}
+
 	lst=read.delim(fname, header=F, check.names=F, comment.char="#", as.is=T);
 	return(lst[,1]);	
 }
@@ -401,6 +422,7 @@ loaded_factors=load_factors(FactorsFname);
 loaded_factor_names=colnames(loaded_factors);
 loaded_sample_names=rownames(loaded_factors);
 
+options(width=80);
 cat("Loaded factors:\n");
 print(loaded_factor_names);
 cat("\n");
@@ -410,7 +432,7 @@ cat("\n");
 
 # Load Groupings
 groupings_rec=load_groupings(VariableGroupingsFname);
-#print(groupings_rec);
+print(groupings_rec);
 
 # Load variable types
 covariates_list=load_list(CovTrtGrpFname);
@@ -433,7 +455,7 @@ varlists_text=capture.output({
         cat("\n");
 });
 
-print(varlists_text, quote=F);
+cat(paste(varlists_text, collapse="\n"),"\n");
 plot_text(varlists_text);
 
 ##############################################################################
@@ -461,10 +483,14 @@ split_factors_to_groups=function(data_matrix, group_list, grp_arr){
 
 }
 
+#print(loaded_factors);
+
 variables_rec=list();
 variables_rec[["Covariates"]]=split_factors_to_groups(loaded_factors, groupings_rec, covariates_list);
 variables_rec[["Measured"]]=split_factors_to_groups(loaded_factors, groupings_rec, measured_list);
 variables_rec[["Response"]]=split_factors_to_groups(loaded_factors, groupings_rec, response_list);
+
+#print(variables_rec);
 
 # Generate list of how variables will be used
 model_variables_summary=capture.output({
@@ -483,13 +509,14 @@ model_variables_summary=capture.output({
 });
 
 
-print(model_variables_summary);
+#print(model_variables_summary);
 plot_text(c(
 	"Model Variables:",
 	"",	
 	model_variables_summary
 ), max_lines_pp=80);
 
+cat(paste(model_variables_summary, collapse="\n"));
 
 ##############################################################################
 
@@ -774,11 +801,17 @@ for(msd_ix in measured_list){
 	for(var_ix in names(sum_fit)){
 		varname=gsub("Response ", "", var_ix);
 
-		pval_mat[covariate_variable_names, varname]=
-			sum_fit[[var_ix]][["coefficients"]][covariate_variable_names,"Pr(>|t|)"];
+		# Sometimes NAs in fit drop the predictor name from coefficients table
+		avail_pred=intersect(
+			rownames(sum_fit[[var_ix]][["coefficients"]]),
+			covariate_variable_names
+		);
 
-		coef_mat[covariate_variable_names, varname]=
-			sum_fit[[var_ix]][["coefficients"]][covariate_variable_names,"Estimate"];
+		pval_mat[avail_pred, varname]=
+			sum_fit[[var_ix]][["coefficients"]][avail_pred,"Pr(>|t|)"];
+
+		coef_mat[avail_pred, varname]=
+			sum_fit[[var_ix]][["coefficients"]][avail_pred,"Estimate"];
 
 	}
 
@@ -790,6 +823,8 @@ for(msd_ix in measured_list){
 
 #print(model_results[["Cov_to_Msd"]]);
 
+cat("\n\n");
+
 ##############################################################################
 # Fit (Measured + Covariates) to Predict Measured
 
@@ -800,7 +835,7 @@ for(pred_msd_ix in measured_list){
 			next;
 		}
 
-		cat("Fitting: Measured to Measured: (Pred)", pred_msd_ix, " (Resp)", resp_msd_ix, "\n");
+		cat("\n\nFitting: Measured to Measured: (Pred)", pred_msd_ix, " (Resp)", resp_msd_ix, "\n");
 		analysis_string=paste(pred_msd_ix, "->", resp_msd_ix, sep="");
 
 		msd_resp=as.matrix(variables_rec[["Measured"]][[resp_msd_ix]]);
@@ -819,7 +854,6 @@ for(pred_msd_ix in measured_list){
 
 		fit=lm(as.formula(model_string), data=cbind(covariates_data, msd_pred));
 		sum_fit=summary(fit);
-		#print(sum_fit);
 
 		cov_and_pred_names=c(covariate_variable_names, msd_pred_varnames);
 		num_cov_pred_var=num_covariates+num_pred;
@@ -835,13 +869,21 @@ for(pred_msd_ix in measured_list){
 		
 		# Copy values from summary to matrices
 		for(var_ix in names(sum_fit)){
+
 			varname=gsub("Response ", "", var_ix);
 
-			pval_mat[cov_and_pred_names, varname]=
-				sum_fit[[var_ix]][["coefficients"]][cov_and_pred_names,"Pr(>|t|)"];
+			# Sometimes NAs in fit drop the predictor name from coefficients table
+			avail_pred=intersect(
+				rownames(sum_fit[[var_ix]][["coefficients"]]),
+				cov_and_pred_names
+			);
 
-			coef_mat[cov_and_pred_names, varname]=
-				sum_fit[[var_ix]][["coefficients"]][cov_and_pred_names,"Estimate"];
+			pval_mat[avail_pred, varname]=
+				sum_fit[[var_ix]][["coefficients"]][avail_pred,"Pr(>|t|)"];
+
+
+			coef_mat[avail_pred, varname]=
+				sum_fit[[var_ix]][["coefficients"]][avail_pred,"Estimate"];
 
 		}
 
@@ -854,6 +896,8 @@ for(pred_msd_ix in measured_list){
 }
 
 #print(model_results[["Msd_to_Msd"]]);
+
+cat("\n\n");
 
 ##############################################################################
 # Fit (Covariates + Measured) to Predict Response
@@ -899,11 +943,18 @@ for(pred_msd_ix in measured_list){
 		for(var_ix in names(sum_fit)){
 			varname=gsub("Response ", "", var_ix);
 
-			pval_mat[cov_and_pred_names, varname]=
-				sum_fit[[var_ix]][["coefficients"]][cov_and_pred_names,"Pr(>|t|)"];
+			# Sometimes NAs in fit drop the predictor name from coefficients table
+			avail_pred=intersect(
+				rownames(sum_fit[[var_ix]][["coefficients"]]),
+				cov_and_pred_names
+			);
 
-			coef_mat[cov_and_pred_names, varname]=
-				sum_fit[[var_ix]][["coefficients"]][cov_and_pred_names,"Estimate"];
+
+			pval_mat[avail_pred, varname]=
+				sum_fit[[var_ix]][["coefficients"]][avail_pred,"Pr(>|t|)"];
+
+			coef_mat[avail_pred, varname]=
+				sum_fit[[var_ix]][["coefficients"]][avail_pred,"Estimate"];
 
 		}
 
@@ -948,10 +999,10 @@ matrix_to_tables=function(results, pval_cutoff){
 			pred_names=rownames(pval_mat);
 			resp_names=colnames(pval_mat);
 
-
 			for(pix in 1:num_pred){
 				for(rix in 1:num_resp){
-					if(pval_mat[pix, rix]<=pval_cutoff){
+					if(!is.na(pval_mat[pix, rix]) &&
+					   pval_mat[pix, rix]<=pval_cutoff){
 						model_type=c(model_type, mt);
 						model_name=c(model_name, mn);
 						predictor=c(predictor, pred_names[pix]);
@@ -977,7 +1028,7 @@ matrix_to_tables=function(results, pval_cutoff){
 #print(model_results);
 
 denorm_results=list();
-for(pvco in rev(c(0.1000, 0.050, 0.010, 0.005, 0.001, 0.0005, 0.0001))){
+for(pvco in rev(c(1.0000, 0.1000, 0.050, 0.010, 0.005, 0.001, 0.0005, 0.0001))){
 	denorm_results[[sprintf("%3.4f", pvco)]]=matrix_to_tables(model_results, pvco);
 }
 
@@ -997,6 +1048,8 @@ calc_vertical_spacing=function(num_rows, max_rows_before_squeeze=10, start, end)
 }
 
 draw_squares_centered=function(xpos, ypos, height, width, grp_name, variables, text_align){
+
+	#print(c(xpos, ypos, height, width, grp_name, variables, text_align));
 	
 	points(c(
 		xpos-width/2, # tl 
@@ -1135,6 +1188,7 @@ plot_TMR_diagram=function(
 		resp=init_list(rsp_g);
 
 		for(i in 1:num_result_rows){
+			if(num_result_rows==0) { break;}
 
 			type=as.character(rr[i, "model_type"]);
 			name=as.character(rr[i, "model_name"]);
@@ -1145,6 +1199,8 @@ plot_TMR_diagram=function(
 			grplink=strsplit(name, "->")[[1]];
 			pred_grp=grplink[1];
 			resp_grp=grplink[2];
+
+			cat("Model Type: ", type, "\n");
 		
 			if(type=="Cov_to_Msd"){
 				pred_grp=ct_grp_map[[pred_var]];
@@ -1270,9 +1326,13 @@ plot_TMR_diagram=function(
 	extr_links[["resp"]][["resp_grp_members_loc"]]=list();
 
 	cat("Drawing squares and calculating link x-positions.\n");
+	cat("  Drawing covariates/treatments squares...\n");
 	for(i in 1:num_cvtrt_grps){
+		if(num_cvtrt_grps==0){break;};
+
 		ichar=sprintf("%i", i);
 		var_labels=extr_links[["covtrt"]][["pred_grp_members"]][[ichar]];
+
 		loc=draw_squares_centered(covtrt_xpos, covtrt_ypos[i],
 			height=covtrt_height, width=all_widths,
 			grp_name=cvtrt_grps[i], 
@@ -1283,6 +1343,7 @@ plot_TMR_diagram=function(
 
 
 	for(i in 1:num_msd_grps){
+	cat("  Drawing Measured-to-Measured squares...\n");
 		ichar=sprintf("%i", i);
 
 		pred_var_labels=extr_links[["msd"]][["pred_grp_members"]][[ichar]];
@@ -1316,7 +1377,10 @@ plot_TMR_diagram=function(
 		extr_links[["resp"]][["pred_grp_members_loc"]][[ichar]]=loc;
 	}
 
+	cat("  Drawing Response squares...\n");
 	for(i in 1:num_rsp_grps){
+		if(num_rsp_grps==0){break;};
+
 		ichar=sprintf("%i", i);
 		var_labels=extr_links[["resp"]][["resp_grp_members"]][[ichar]];
 		loc=draw_squares_centered(rsp_xpos, rsp_ypos[i],
@@ -1326,6 +1390,7 @@ plot_TMR_diagram=function(
 		extr_links[["resp"]][["resp_grp_members_loc"]][[ichar]]=loc;
 	}
 
+	cat("  Drawing links...\n");
 	if(grp_links){
 		for(type in names(extr_links)){
 
@@ -1509,13 +1574,19 @@ remove_weaker_bidirectional_links=function(links_rec, log10_diff_thres=1){
 
 	# Combine filtered MSD to MSD records with other records
 	out=rbind(other_recs, msd_to_msd_rec);
-	rownames(out)=1:nrow(out);
+
+	if(nrow(out)>0){
+		rownames(out)=1:nrow(out);
+	}
+
 	return(out);	
 
 }
 
 #for(cutoffs in c("0.0010", "0.1000")){
+options(width=300);
 for(cutoffs in names(denorm_results)){
+	if(cutoffs=="1.0000"){break;}
 
 	plot_TMR_diagram(denorm_results[[cutoffs]],
 		paste("P-value Cutoff: ", cutoffs, sep=""),
@@ -1554,6 +1625,21 @@ for(cutoffs in names(denorm_results)){
 	), max_lines_pp=70);
 		
 }
+
+##############################################################################
+# Export full link table
+cat("Exporting link table...\n");
+
+outtable=denorm_results[["1.0000"]];
+if(!is.null(RepeatedMeasureAnalysisID)){
+	outtable=cbind(RepeatedMeasureAnalysisID, outtable);
+}
+
+write.table(
+	outtable,
+	file=paste(OutputFnameRoot, ".tmr.all_links.tsv", sep=""),
+	quote=F, sep="\t", row.names=F, col.names=T
+);
 
 ##############################################################################
 
