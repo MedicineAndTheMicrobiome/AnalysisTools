@@ -192,6 +192,12 @@ usage = paste(
 	"			min_div02:  find min, then divide by 2\n",
 	"			expected:  Assume X is normal, set LOQ to Exp[X: X<LOQ]\n",
 	"\n",
+	"	standardize(x)\n",
+	"		This function will standardize (0-center and divide by sd) x.\n",
+	"		If you have a two level variable, and you want to convert it\n",
+	"		into a boolean, do this:\n",
+	"			bool_x=ifelse(standardize(x)>0, 1, 0);\n",
+	"\n",
 	"\n",
 	"For debugging you can also do:\n",
 	"	print <variable name>\n",
@@ -783,6 +789,12 @@ batch_apply=function(factors, list_fname, funct_str, ext, keep){
 
 	factors=cbind(factors, accum_mat);
 	return(factors);
+}
+
+##############################################################################
+
+standardize=function(x){
+	return((x-mean(x))/sd(x));
 }
 
 ##############################################################################
