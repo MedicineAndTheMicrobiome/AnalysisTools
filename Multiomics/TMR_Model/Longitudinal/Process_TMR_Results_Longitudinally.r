@@ -502,6 +502,8 @@ num_signf=nrow(signif_index);
 pval_cutoffs=c(1, .1, .05, .01, .001);
 neglog10_cutoffs=-log10(pval_cutoffs);
 
+overall_tally=list();
+
 model_types=unique(signif_index[,"model_type"]);
 for(mt in model_types){
 	plot_title_page(paste("Model Type:\n", mt, sep=""));	
@@ -513,6 +515,10 @@ for(mt in model_types){
 	table_by_model_type=signif_index[mt_ix,];
 
 	model_names=sort(unique(table_by_model_type[,"model_name"]));
+
+	overall_tally[[mt]]=list();
+
+	max_signf_assoc=0;
 
 	for(mn in model_names){
 		mn_ix=table_by_model_type[,"model_name"]==mn;
@@ -603,12 +609,96 @@ for(mt in model_types){
 		#print(by_model_name_tally);
 		# Plot tallies
 		plot_tally(by_model_name_tally, mn);
+		overall_tally[[mt]][[mn]]=by_model_name_tally;
 
 	}
 
 }
 
+plot_title_page("Overall Summaries");
 
+plot_overall_tally=function(tally_rec){
+
+	converted=list();
+	max_total=0;
+	max_offset=0;
+
+	model_types=names(tally_rec);
+	for(mt in model_types){
+		cat("Model Type: ", mt, "\n");
+		model_names=names(tally_rec[[mt]]);
+
+		converted[[mt]]=list();
+
+		for(mn in model_names){
+
+			acc=matrix(NA, nrow=0, ncol=4);
+			colnames(acc)=c("Offset", "Total", "Negative", "Positive");
+
+			cat("Model Name: ", mn, "\n");
+			offsets=names(tally_rec[[mt]][[mn]]);
+			for(offset in offsets){
+
+				print(tally_rec[[mt]][[mn]][[offset]]);
+				acc=rbind(acc, c(as.numeric(offset), tally_rec[[mt]][[mn]][[offset]]));
+			}
+
+			converted[[mt]][[mn]]=acc;
+			max_total=max(max_total, acc[,"Total"]);
+			max_offset=max(max_offset, acc[,"Offset"]);
+
+		}
+	}		
+
+	#print(converted);
+	#print(max_total);
+
+	for(mt in model_types){
+		
+		
+		model_names=names(tally_rec[[mt]]);
+		num_models=length(model_names);
+		cat("Num Models in ", mt, ": ", num_models, "\n");
+
+		par(mfrow=c(5, 1));
+		par(mar=c(2.5, 4, 2,.5));
+
+		# Place holder model type
+		plot(0,0, xlim=c(0,1), ylim=c(0,1), type="n",  xaxt="n", yaxt="n",
+                        xlab="", ylab="", bty="n", mar=c(0,0,0,0));
+                text(.5, .5, mt, pos=1, cex=2, font=2);	
+
+		for(mn in model_names){
+
+			signf_tab=converted[[mt]][[mn]]
+
+			plot(0, type="n", xlim=c(0, max_offset), ylim=c(0, max_total*1.1),
+				ylab="Counts", xlab="Offset",
+				main="", las=1);
+			title(main=mn, line=.5);
+
+			# lines connecting totals
+			points(signf_tab[,"Offset"], signf_tab[,"Total"], 
+				type="l", col="blue", lty="dotted", lwd=2, cex=2);
+
+			# Positive Prop
+			points(signf_tab[,"Offset"], signf_tab[,"Total"], 
+				type="5", col="green", lwd=20, lend=1);
+			# Negative Prop
+			points(signf_tab[,"Offset"], signf_tab[,"Negative"], 
+				type="h", col="red", lwd=20, lend=1);
+			# Glyph at totals
+			points(signf_tab[,"Offset"], signf_tab[,"Total"], 
+				type="p", pch="-", col="black", cex=2);
+
+		}
+		
+
+	}
+
+}
+
+plot_overall_tally(overall_tally);
 
 ##############################################################################
 
