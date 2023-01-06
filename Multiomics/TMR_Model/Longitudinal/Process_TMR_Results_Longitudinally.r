@@ -50,6 +50,8 @@ if(length(opt$pval_cutoff)){
 	PValCutoff=opt$pval_cutoff;
 }
 
+OutputFnameRoot=paste(OutputFnameRoot, ".p", sprintf("%.4f", as.numeric(PValCutoff)), sep="");
+
 param_text=capture.output({
 	cat("\n");
 	cat("TMR Results Input File: ", TMR_ResultsFname, "\n");
