@@ -683,7 +683,7 @@ plot_overall_tally=function(tally_rec){
 
 			# Positive Prop
 			points(signf_tab[,"Offset"], signf_tab[,"Total"], 
-				type="5", col="green", lwd=20, lend=1);
+				type="h", col="green", lwd=20, lend=1);
 			# Negative Prop
 			points(signf_tab[,"Offset"], signf_tab[,"Negative"], 
 				type="h", col="red", lwd=20, lend=1);
