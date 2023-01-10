@@ -264,8 +264,8 @@ for(level_ix in 1:6){
 
 		otus=pull_otus(splits, taxa_mat);
 		otu_names=rownames(otus);
-		otu_sizes=as.vector(inmat[otu_names, "Size", drop=F]);
-		
+		otu_sizes=as.vector(inmat[otu_names, "Size", drop=F])$Size;
+
 		# Compute stats on this set of OTUs
 		total_seq=sum(otu_sizes);
 		otu_prop=otu_sizes/total_seq;
