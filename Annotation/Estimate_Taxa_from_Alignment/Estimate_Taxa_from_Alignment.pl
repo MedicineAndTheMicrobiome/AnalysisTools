@@ -2,9 +2,11 @@
 
 use strict;
 use Getopt::Std;
-use vars qw ($opt_a $opt_A $opt_t $opt_n $opt_o $opt_h);
+use vars qw ($opt_a $opt_A $opt_t $opt_n $opt_o $opt_h $opt_T);
 
-getopts("a:A:t:n:o:h");
+getopts("a:A:t:n:o:hT:");
+
+my $DEFAULT_TMP="/mnt/scratch";
 
 my $usage = "
 	usage:
@@ -15,6 +17,7 @@ my $usage = "
 	-n <taxa names file (taxa_id, taxa_name) >
 	-o <output file>
 	[-h (suppress header flag)]
+	[-T <temporary directory for sort, default=$DEFAULT_TMP>]
 
 	The alignment file (-a) needs to contain:
 		1.) read id
@@ -48,6 +51,11 @@ my $taxa_nodes_file=$opt_t;
 my $taxa_names_file=$opt_n;
 my $output_file=$opt_o;
 my $suppress_header=($opt_h eq "1");
+
+my $temp_directory=$DEFAULT_TMP;
+if(defined($opt_T)){
+	$temp_directory=$opt_T;
+}
 
 ###############################################################################
 
@@ -423,7 +431,7 @@ my $ID_COL=0;
 my $PERC_COL=1;
 my $TAXA_COL=2;
 
-open(FH, "cut -f $alignments_file_columns $alignments_file | sort -k 1,1 -k2,2nr |") || die "Could not open $alignments_file\n";
+open(FH, "cut -f $alignments_file_columns $alignments_file | sort -k 1,1 -k2,2nr -T $temp_directory |") || die "Could not open $alignments_file\n";
 # Sort by column1, then column2 (numerically in reverse)
 
 my @records=();
