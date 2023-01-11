@@ -18,7 +18,8 @@ params=c(
 	"find_limits", "m", 2, "character",
 	"find_descriptive", "d", 2, "character",
 	"find_ranges", "r", 2, "character",
-	"find_timing", "n", 2, "character"
+	"find_timing", "n", 2, "character",
+	"find_timing_of_limits", "T", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -38,6 +39,7 @@ usage = paste(
 	"	[-d (find descriptive stats: mean/stdev/median)]\n",
 	"	[-r (find ranges: first/last/N)]\n",
 	"	[-n (find timing: timespan/freq)]\n",
+	"	[-T (find timing of limits: min_time/max_time)\n",
 	"\n",
 	"	-o <output filename>\n",
 	"\n");
@@ -66,6 +68,7 @@ Opt_FindLimits=F;
 Opt_FindDescriptive=F;
 Opt_FindRanges=F;
 Opt_FindTiming=F;
+Opt_FindTimeOfLimits=F;
 
 if(length(opt$find_line)){
 	Opt_FindLine=T;
@@ -82,6 +85,10 @@ if(length(opt$find_ranges)){
 if(length(opt$find_timing)){
 	Opt_FindTiming=T;
 }
+if(length(opt$find_timing_of_limits)){
+	Opt_FindTimingOfLimits=T;
+}
+
 
 GroupColName="";
 if(length(opt$group_cn)){
@@ -101,9 +108,11 @@ cat("Find Limits: ", Opt_FindLimits, "\n");
 cat("Find Descriptive: ", Opt_FindDescriptive, "\n");
 cat("Find Ranges: ", Opt_FindRanges, "\n");
 cat("Find Timing: ", Opt_FindTiming, "\n");
+cat("Find Timing of Limits: ", Opt_FindTimingOfLimits, "\n");
 
-if(!(Opt_FindLine || Opt_FindLimits || Opt_FindDescriptive || Opt_FindRanges || Opt_findTiming)){
-	cat("At least one of the find/fit parameters must be specified.\n");
+if(!(Opt_FindLine || Opt_FindLimits || Opt_FindDescriptive || 
+	Opt_FindRanges || Opt_FindTiming || Opt_FindTimingOfLimits)){
+	cat("At least one of the find/fit parameters should be specified.\n");
 }
 
 ##############################################################################
@@ -194,8 +203,8 @@ if(Opt_FindLimits){
 		x=data[,1];
 		y=data[,2];
 
-		min=min(y);
-		max=max(y);
+		min=min(y, na.rm=T);
+		max=max(y, na.rm=T);
 		range=max-min;
 
 		return(c(min, max, range));
@@ -208,9 +217,9 @@ if(Opt_FindDescriptive){
 		x=data[,1];
 		y=data[,2];
 
-		mean=mean(y);
-		stdev=sd(y);
-		median=median(y);
+		mean=mean(y, na.rm=T);
+		stdev=sd(y, na.rm=T);
+		median=median(y, na.rm=T);
 
 		return(c(mean, stdev, median));
 	}
@@ -244,6 +253,23 @@ if(Opt_FindTiming){
 		return(c(timespan, freq));
 	}
 }
+if(Opt_FindTimingOfLimits){
+	extensions=c(extensions, c("time_of_min", "time_of_max"));
+	calc_timing_of_limits=function(data){
+	
+		minx=min(data[,2], na.rm=T);
+		maxx=max(data[,2], na.rm=T);
+
+		min_ix=min(which(data[,2]==minx));
+		max_ix=min(which(data[,2]==maxx));
+		
+		min_time=data[min_ix,1];
+		max_time=data[max_ix,1];
+
+		return(c(min_time, max_time));
+
+	}
+}          
 
 ##############################################################################
 
@@ -360,7 +386,11 @@ for(cur_subj in unique_subject_ids){
 		#	ylim=c(ranges_mat[targ_var_ix, "min"], ranges_mat[targ_var_ix, "max"])
 		#);
 
-		var_by_subj[[cur_subj]][[targ_var_ix]]=subj_mat_sorted[,c(TimeOffsetColName, targ_var_ix),drop=F];
+
+		var_spec_tab=subj_mat_sorted[,c(TimeOffsetColName, targ_var_ix),drop=F];
+		nona_ix=!is.na(var_spec_tab[,2]);
+		
+		var_by_subj[[cur_subj]][[targ_var_ix]]=var_spec_tab[nona_ix,];
 
 		plot_var(
 			times=subj_mat_sorted[,TimeOffsetColName], 
@@ -401,7 +431,11 @@ for(cur_subj in unique_subject_ids){
 				c("timespan", "freq"), sep="")]=
 				calc_timing(subj_mat_sorted[,c(TimeOffsetColName, targ_var_ix),drop=F]);
 		}
-
+		if(Opt_FindTimingOfLimits){
+			acc_matrix[cur_subj, paste(targ_var_ix, "_",
+				c("time_of_min", "time_of_max"), sep="")]=
+				calc_timing_of_limits(subj_mat_sorted[,c(TimeOffsetColName, targ_var_ix),drop=F]);
+		}
 	}	
 
 	mtext(text=cur_subj, side=3, line=0, outer=T, cex=2, font=2);
@@ -427,8 +461,8 @@ generate_group_plots=function(group_info, stats_mat, var_name, grp_cols){
 		medians=list();
 		pvalue=list();
 
-		min=min(stats_mat[, stats_ix]);
-		max=max(stats_mat[, stats_ix]);
+		min=min(stats_mat[, stats_ix], na.rm=T);
+		max=max(stats_mat[, stats_ix], na.rm=T);
 		range=max-min;
 
 		# Perform calculations
@@ -439,9 +473,6 @@ generate_group_plots=function(group_info, stats_mat, var_name, grp_cols){
 			for(grp_ix_2 in setdiff(group_ids, grp_ix)){
 				out_group=c(out_group, group_info[[grp_ix_2]]);
 			}
-
-			print(in_group);
-			print(out_group);
 
 			grp_data=stats_mat[in_group, stats_ix]; 
 			outgrp_data=stats_mat[out_group, stats_ix];
@@ -610,7 +641,7 @@ if(GroupColName!=""){
 			for(subj_ix in grp_members){
 				sbj_dat=var_by_subj[[subj_ix]][[targ_var_ix]];
 				grp_data[[grp_ix]]=rbind(grp_data[[grp_ix]], sbj_dat);
-	
+
 				points(sbj_dat[, TimeOffsetColName], sbj_dat[, targ_var_ix], 
 					col=colors[grp_ix],
 					type="l", lwd=2);
