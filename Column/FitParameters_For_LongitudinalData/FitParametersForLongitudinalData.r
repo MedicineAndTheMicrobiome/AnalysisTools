@@ -642,9 +642,20 @@ if(GroupColName!=""){
 				sbj_dat=var_by_subj[[subj_ix]][[targ_var_ix]];
 				grp_data[[grp_ix]]=rbind(grp_data[[grp_ix]], sbj_dat);
 
+				# Draw colored lines
 				points(sbj_dat[, TimeOffsetColName], sbj_dat[, targ_var_ix], 
 					col=colors[grp_ix],
 					type="l", lwd=2);
+
+				# Draw points
+				points(sbj_dat[, TimeOffsetColName], sbj_dat[, targ_var_ix], 
+					col="black",
+					type="p", cex=.7);
+
+				# Label with subject id
+				text(sbj_dat[, TimeOffsetColName], sbj_dat[, targ_var_ix],
+					pos=3,
+					subj_ix, col="grey20", cex=.4);
 			}
 
 			# Draw thin black lines
