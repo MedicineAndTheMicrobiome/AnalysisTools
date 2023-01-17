@@ -80,6 +80,27 @@ my $TOT_LEVELS=$SPECIES_COL-$DOMAIN_COL+1;
 
 my @level_names=("domain", "kingdom", "phylum", "class", "order", "family", "genus", "species");
 
+sub non_standard{
+	my $inname=shift;
+
+	if(
+		$inname=~/inae$/ ||
+		$inname=~/eae$/ ||
+		$inname=~/oideae$/ ||
+		$inname=~/aceae$/ ||
+		$inname=~/ineae$/ ||
+		$inname=~/ales$/ ||
+		$inname=~/idae$/ ||
+		$inname=~/ia$/ ||
+		$inname=~/ota$/
+	){
+		return(0);
+	}else{
+		return(1);
+	}
+
+}
+
 sub get_counts_from_taxa_file{
 	my $fname=shift;
 
@@ -101,14 +122,34 @@ sub get_counts_from_taxa_file{
 			next;
 		}
 		my @col=split "\t", $_;
+
+		my %append_hash;
+
+		#print "$_\n";
 		for(my $level=$DOMAIN_COL; $level<=$SPECIES_COL; $level++){
-			if(!defined(${$level_hash_arr[$level-$DOMAIN_COL]}{$col[$level]})){
-				${$level_hash_arr[$level-$DOMAIN_COL]}{$col[$level]}=1;
+
+			# If taxon has parenthesis, look up prefix and append it for uniquness
+			# If taxon doesn't have parenthesis, and it has a non-standard ending, then
+			# then appended the level name to it.
+			my $name=$col[$level];
+			if(!($name=~/^\((.+)\)$/)){
+				if(non_standard($name)){
+					$append_hash{$name}="$name\_$level_names[$level-$DOMAIN_COL]";
+				}else{
+					$append_hash{$name}=$name;
+				}
 			}else{
-				${$level_hash_arr[$level-$DOMAIN_COL]}{$col[$level]}++;
+				$name=$append_hash{$1};	
+			}
+
+			if(!defined(${$level_hash_arr[$level-$DOMAIN_COL]}{$name})){
+				${$level_hash_arr[$level-$DOMAIN_COL]}{$name}=1;
+			}else{
+				${$level_hash_arr[$level-$DOMAIN_COL]}{$name}++;
 			}
 		}
 	}
+
 
 	close(TAX_FH);
 
