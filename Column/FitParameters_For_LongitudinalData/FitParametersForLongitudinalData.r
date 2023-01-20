@@ -802,13 +802,11 @@ if(GroupColName!=""){
 
 	adjust_pos=function(orig_pos, range, char_h){
 
-		if(length(orig_pos)==0){
+		num_pos=length(orig_pos);
+		# Do not adjust if less than 2 positions
+		if(num_pos<2){
 			return(orig_pos);
 		}
-
-		span=range[2]-range[1];
-
-		num_pos=length(orig_pos);
 		
 		orig_order=names(orig_pos);
 		new_pos=sort(orig_pos);
@@ -817,8 +815,10 @@ if(GroupColName!=""){
 		num_trials=0;
 		max_trials=num_pos^2;
 		while(keep_adjusting){
+
 			keep_adjusting=F;
 
+			# Move labels forward
 			for(i in 1:(num_pos-1)){
 				if(abs(new_pos[i]-new_pos[i+1])<char_h){
 					adj=new_pos[i+1]+char_h/2;
@@ -829,6 +829,7 @@ if(GroupColName!=""){
 				}
 			}
 
+			# Move labels backward
 			for(i in num_pos:2){
 				if(abs(new_pos[i]-new_pos[i-1])<char_h){
 					adj=new_pos[i-1]-char_h/2;
@@ -839,6 +840,7 @@ if(GroupColName!=""){
 				}
 			}
 
+			# If not enough space, make inter-label spacing smaller
 			if(num_trials>num_pos){
 				num_trials=0;
 				char_h=char_h*.95;
