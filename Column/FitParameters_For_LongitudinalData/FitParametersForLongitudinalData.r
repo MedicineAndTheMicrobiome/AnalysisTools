@@ -138,6 +138,37 @@ load_list=function(fname){
 	return(arr);
 }
 
+plot_text=function(strings, no_touch_par=F, lines=52, cex=1){
+
+        orig.par=par(no.readonly=T);
+        par(family="Courier");
+
+        if(!no_touch_par){
+                par(oma=rep(.1,4));
+                par(mar=rep(0,4));
+        }
+
+        num_lines=length(strings);
+
+        top=max(as.integer(num_lines), lines);
+
+        plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
+                xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
+                );
+
+        text_size=max(.01, min(.8, .8 - .003*(num_lines-52)))*cex;
+        #print(text_size);
+
+        for(i in 1:num_lines){
+                #cat(strings[i], "\n", sep="");
+                strings[i]=gsub("\t", "", strings[i]);
+                text(0, top-i, strings[i], pos=4, cex=text_size);
+        }
+
+        par(orig.par);
+}
+
+
 ##############################################################################
 
 # Load factors
@@ -977,6 +1008,189 @@ if(GroupColName!=""){
 				}
 			}
 		}
+
+	}
+
+	#######################################################################
+	#######################################################################
+
+	cat("Plot Rankings...\n");
+
+	find_signf_extremes=function(grp_mem, tar_var, acc_mat, tar_stat, pval_cutoff=0.1){
+
+		grp_names=names(grp_mem);
+		avail_subjects=rownames(acc_mat);	
+
+		num_tar_var=length(tar_var);
+		num_grps=length(grp_names);
+
+		# Store results
+		extreme_mat=matrix(0, nrow=num_grps, ncol=num_tar_var);
+		extreme_pval_mat=matrix(numeric(), nrow=num_grps, ncol=num_tar_var);
+
+		rownames(extreme_mat)=grp_names;
+		colnames(extreme_mat)=tar_var;
+		rownames(extreme_pval_mat)=grp_names;
+		colnames(extreme_pval_mat)=tar_var;
+
+		# Compare every variable for it's target statistic
+		for(var_ix in tar_var){
+
+			varstat_name=var2stat(var_ix, tar_stat);			
+			values=acc_mat[,varstat_name];
+
+			cat("Target Vars: ", varstat_name, "\n");
+			
+			# Compare each group against the rest
+			for(grp_ix in grp_names){
+
+				cat("Group: ", grp_ix, "\n");
+				tar_subj=grp_mem[[grp_ix]];
+
+				tar_val=values[tar_subj];
+				oth_val=values[setdiff(avail_subjects, tar_subj)];
+
+				# Compare
+				wres=wilcox.test(tar_val, oth_val);
+
+				if(median(tar_val) > median(oth_val)){
+					rank=1;
+				}else{
+					rank=-1;
+				}	
+
+				extreme_pval_mat[grp_ix, var_ix]=wres$p.value;
+				if(wres$p.value<pval_cutoff){
+					extreme_mat[grp_ix, var_ix]=rank;
+				}
+			}
+		}
+
+		res=list();
+		res[["rank"]]=extreme_mat;
+		res[["pval"]]=extreme_pval_mat;
+		return(res);
+
+	}
+
+	#----------------------------------------------------------------------
+
+	plot_signf_extremes=function(extr_rec, title){
+
+		ranks=extr_rec[["rank"]];
+		num_vars=ncol(ranks);
+		num_grps=nrow(ranks);
+
+
+		par(mfrow=c(1,1));
+		par(oma=c(0,1,2,0));
+		par(mar=c(1,12,12,1));
+
+		plot(0,0, type="n", xlim=c(0, num_vars+1), ylim=c(0, num_grps+1),
+			xaxt="n", yaxt="n", xlab="", ylab="", main=""
+			);
+
+		mtext(title, side=3, outer=T, cex=3, font=2, line=-1, adj=0);
+
+		# variables
+		axis(side=3, at=1:num_vars, colnames(ranks), las=2);
+		axis(side=2, at=1:num_grps, rownames(ranks), las=2);
+
+		abline(v=1:num_vars, col="grey", lwd=.5);
+		abline(h=1:num_grps, col="grey", lwd=.75);
+
+		for(vix in 1:num_vars){
+			for(gix in 1:num_grps){
+
+				if(ranks[gix, vix]==1){
+					rpch=24;
+					rcol="red";
+				}else if(ranks[gix, vix]==-1){
+					rpch=25;
+					rcol="blue"
+				}
+				
+				if(ranks[gix, vix]!=0){
+					points(vix, gix, pch=rpch, bg=rcol);
+				}
+			}
+		}
+
+		# Label 
+		cxy=par()$cxy;
+
+		points(0,.5, pch=24, bg="red");
+		points(0,.5-cxy[2], pch=25, bg="blue");
+
+		text(0,.5, pos=4, labels="Maximum across groups");
+		text(0,.5-cxy[2], pos=4, labels="Minimum across groups");
+
+	}
+
+	#----------------------------------------------------------------------
+
+	list_signf_extremes=function(extr_rec, title){
+
+		ranks=extr_rec[["rank"]];
+                num_vars=ncol(ranks);
+                num_grps=nrow(ranks);
+
+		grps=rownames(ranks);
+		vars=colnames(ranks);
+
+		extr_list=list();
+
+		for(grp_ix in grps){
+
+			mins_arr=c();
+			maxs_arr=c();
+			for(var_ix in vars){
+				r=ranks[grp_ix, var_ix];
+				if(r==1){
+					maxs_arr=c(maxs_arr, var_ix);
+				}else if(r==-1){
+					mins_arr=c(mins_arr, var_ix);
+				}
+			}
+
+			extr_list[[grp_ix]]=list();
+			extr_list[[grp_ix]][["Mins"]]=mins_arr;
+			extr_list[[grp_ix]][["Maxs"]]=maxs_arr;
+
+		}
+
+		print(extr_list);
+
+	}
+
+	#----------------------------------------------------------------------
+
+	if(Opt_FindLine){
+	
+		# Plot slope
+		extr_rec=find_signf_extremes(group_members, target_variable_list, acc_matrix, "slope");
+		plot_signf_extremes(extr_rec, "slope");
+		slope_ext_list=list_signf_extremes(extr_rec, "slope");
+
+		plot_text(c(
+			"Slope:",
+			"",
+			capture.output(print(slope_ext_list, quote=F))
+			));
+	}
+
+	if(Opt_FindDescriptive){
+
+		# plot Stdev
+		extr_rec=find_signf_extremes(group_members, target_variable_list, acc_matrix, "stdev");
+		plot_signf_extremes(extr_rec, "stdev");
+		stdev_ext_list=list_signf_extremes(extr_rec, "stdev");
+
+		plot_text(c(
+			"Stdev:",
+			"",
+			capture.output(print(stdev_ext_list, quote=F))
+			));
 
 	}
 
