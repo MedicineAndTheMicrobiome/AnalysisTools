@@ -168,6 +168,31 @@ plot_text=function(strings, no_touch_par=F, lines=52, cex=1){
         par(orig.par);
 }
 
+plot_title_page=function(title, subtitle=""){
+
+        orig.par=par(no.readonly=T);
+        par(family="serif");
+	par(mfrow=c(1,1));
+
+        plot(0,0, xlim=c(0,1), ylim=c(0,1), type="n",  xaxt="n", yaxt="n",
+                xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
+                );
+
+	# Title
+	title_cex=3;
+	title_line=1;
+	text(0.5, title_line, title, cex=title_cex, font=2, adj=c(.5,1));
+
+	# Subtitle
+	num_subt_lines=length(subtitle);
+	cxy=par()$cxy;
+	for(i in 1:num_subt_lines){
+		text(.5, title_line -title_cex*cxy[2] -i*cxy[2], subtitle[i], adj=.5);
+	}
+
+        par(orig.par);
+}
+
 
 ##############################################################################
 
@@ -387,6 +412,18 @@ plot_var=function(times, values, var_name, subject_id, val_lim){
 var_by_subj=list();
 
 pdf(file=paste(OutputFname, ".longit.pdf", sep=""), height=8.5, width=11);
+	
+plot_title_page("Individual Plots", c(
+	"Longitudinal plots for each of the variables are",
+	"generated for each subject.",
+	"",
+	"The subject ID is labeled in the top margin of each page.",
+	"Red and blue glyphs demark the max and min values for",
+	"each subject across time points.  The dotted line",
+	"represents a line fit through the data points.",
+	"The y and x axes represent each variable's value and",
+	"time, respectively."
+));
 
 par(oma=c(0,0,2,0));
 par(mar=c(2,2,3,1));
@@ -628,6 +665,32 @@ if(GroupColName!=""){
 	cat("Group Members:\n");
 	print(group_members);
 
+	plot_title_page("Group Plots", c(
+		"The Group Plots (Longitudinal and Extracted Statistics) are generated in pairs for each variable.",
+		"The variable name is labeled in the top margin of each page.",
+		"",
+		"Longitudinal Plots:", 
+		"",
+		"The longitudinal data for each subjected are overlaid together by their group membership",
+		"and assigned a color.  Individual points in the plot are label with their subject ID.",
+		"The last longitudinal plot contains the lowess curve representing each group overlaid together.",
+		"",
+		"",
+		"Extracted Statistics Plots:",
+		"",
+		"These strip plots by group compare the statistics calculated for each subject's longitudinal data.",
+		"Each glyph in the strip plot represents a different subject.  The horizontal bar",
+		"represents the median value for each group.  If a group's median is significantly",
+		"different from the median of the subjects not in the group, the p-value is labeled.",
+		"P-values were calculated with the one-sample Wilcoxon test.",
+		"",
+		"intercept, slope, and sd_res (standard deviation of the residuals) were calculated with linear regression.",
+		"min, max, range, mean, stdev, and median were calculated independent of time.",
+		"timespan and freq (samples per time unit) consider the sampling time.",
+		"time_of_min and time_of_max measure the earliest time point when a subject's",
+		"    sample has reach a minimum or maximum in value, respectively."
+	));
+
 	#---------------------------------------------------------------------
 	#var_by_subj[[cur_subj]][[targ_var_ix]]
 
@@ -753,6 +816,22 @@ if(GroupColName!=""){
 	###############################################################################
 
 	cat("Plotting Min/Max Time Lines:\n");
+
+	plot_title_page("Timeline Plots", c(
+		"Timeline plots place the variables along a timeline (x-axis) to provide context",
+		"for when each variable's levels are peaking or troughing.",	
+		"",
+		"Plots are generated at various p-value cutoffs and for each group.",
+		"For each group, a combined (red+blue), and then a mins (blue) and maxs (red)",
+		"only plot are generated.  Since multiple variables may peak or trough at",
+		"the sample time point, callouts are used to provide sufficient spacing",
+		"between variables for legibility.",
+		"",
+		"The p-value cutoffs are used to exclude ploting a variable's min/max",
+		"if there is not a significant difference between them.  The p-values",
+		"use a Bonferroni correction, with then number of tests equal to the number",
+		"of variables."
+	));
 
 	# Plot story lines for time_of variables
 	#print(colors);
@@ -1016,6 +1095,30 @@ if(GroupColName!=""){
 
 	cat("Plot Rankings...\n");
 
+	plot_title_page("Extreme (Top/Bottom) Plots", c(
+		"For selected statistics, groups with values that are significantly greater or less",
+		"than the values from members of the other groups (out-groups) are marked on the matrix plot.",
+		"",
+		"If a group's values are greater or less than members from the out-groups, then a red up or",
+		"blue down triangle glyph, respectively, is drawn at the intersection of the group name",
+		"and the variable name.  It is possible for more than one group to be marked",
+		"as higher or lower than members outside of their group.  When glyphs are not drawn",
+		"across or down a group or variable, the group or variable is not significantly",
+		"different from the values of other groups.",
+		"",
+		"Following each plot is a text list of the greater/less than relationships for ease",
+		"of cutting/pasting into another document.",
+		"",
+		"",
+		"slope: A slope suggests that over time, values are increasing or decreasing.  Remember",
+		"that these plots only identify the greatest or least sloped groups, so a variable/group",
+		"combination that is not marked could still have significant non-zero slopes.",
+		"",
+		"stdev: A greater stdev suggests a variable's values are more disrupted than the other groups.",
+		"A group with consistently minimal stdev across all variables could be a characteristic",
+		"of a control/no-treatment group."
+	));
+
 	find_signf_extremes=function(grp_mem, tar_var, acc_mat, tar_stat, pval_cutoff=0.1){
 
 		grp_names=names(grp_mem);
@@ -1122,8 +1225,8 @@ if(GroupColName!=""){
 		points(0,.5, pch=24, bg="red");
 		points(0,.5-cxy[2], pch=25, bg="blue");
 
-		text(0,.5, pos=4, labels="Maximum across groups");
-		text(0,.5-cxy[2], pos=4, labels="Minimum across groups");
+		text(0,.5, pos=4, labels="Group's values greater than subjects in other groups.");
+		text(0,.5-cxy[2], pos=4, labels="Group's values less than subjects in other groups.");
 
 	}
 
