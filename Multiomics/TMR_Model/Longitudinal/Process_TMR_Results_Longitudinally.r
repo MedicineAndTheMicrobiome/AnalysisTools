@@ -64,6 +64,34 @@ cat(paste(param_text, collapse="\n"), "\n");
 
 ###############################################################################
 
+plot_title_page=function(title, subtitle=""){
+
+        orig.par=par(no.readonly=T);
+        par(family="serif");
+        par(mfrow=c(1,1));
+
+        plot(0,0, xlim=c(0,1), ylim=c(0,1), type="n",  xaxt="n", yaxt="n",
+                xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
+                );
+
+        # Title
+        title_cex=3;
+        title_line=1;
+        text(0.5, title_line, title, cex=title_cex, font=2, adj=c(.5,1));
+
+        # Subtitle
+        num_subt_lines=length(subtitle);
+        cxy=par()$cxy;
+        for(i in 1:num_subt_lines){
+                text(.5, title_line -title_cex*cxy[2] -i*cxy[2], subtitle[i], adj=.5);
+        }
+
+        par(orig.par);
+}
+
+
+###############################################################################
+
 load_tmr_results=function(fname, pval_cutoff=0.01){
 
 	cat("Loading: ", fname, " with cutoff at: ", pval_cutoff, "\n", sep="");
@@ -178,25 +206,6 @@ plot_text=function(strings, max_lines_pp=Inf){
 	}
 
 	par(orig.par);
-}
-
-plot_title_page=function(string, size=1){
-
-	orig.par=par(no.readonly=T);
-
-	par(mfrow=c(1,1));
-	par(family="Courier");
-	par(oma=rep(.5,4));
-	par(mar=rep(0,4));
-
-	plot(0,0, xlim=c(0,1), ylim=c(0,1), type="n",  xaxt="n", yaxt="n",
-		xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
-	);
-
-	text(.5, .5, string, pos=1, cex=size*2, font=2);
-
-	par(orig.par);
-
 }
 
 #-----------------------------------------------------------------------------#
@@ -496,6 +505,34 @@ plot_tally=function(tally_in, title){
 
 ##############################################################################
 
+plot_title_page("Longitudinal Accumulation of TMR Results", c(
+	"The results from this accumulation are organized hierarchically.",
+	"There could be (if the experiment supports a complete TMR model) up to 3 main sections.", 
+	"1.) Treatments/Covariates-to-Measured",
+	"2.) Measured-to-Measured",
+	"3.) Measured-to-Response", 
+	"",
+	"Within each model, the compartment-to-compartment associations are plotted.",
+	"",
+	"The left-hand-side plot illustrate coefficients and the right-hand-side plot illustrate",
+	"p-values for the same intercompartment associations, over time.",
+	"",
+	"The coefficients plot are annotated with a horizontal dashed line at 0.",
+	"The p-values plot are annotated with multiple dashed lines at various significance levels.",
+	"The p-values plot are negative log10-scaled with with the -log10 values labeled on the",
+	"left y-axis, and the original untransformed p-values on the right.",
+	"In both the coefficient and p-value plots, when a timepoint yields a significant association",
+	"the point is highlighted with a glyph.  A red or green glyph is used to signify whether the",
+	"association is negative or positive, respectively.",
+	"",
+	"The name of the predictor [P] variable and response [R] variable are annotated above each plot.",
+	"",
+	"At the end of each compartment's plot, there are two summary plots.  The first summary plot",
+	"is a barplot with the number of significant assocations over time.  The number of positive and",
+	"negative associations at each time point are also differentiated by green and red coloring,",
+	"respectively.  The second summary plot is a simple line plot without any colors."
+));
+
 signif_index=loaded_results[["signif_index"]];
 tables=loaded_results[["tables"]];
 
@@ -617,7 +654,14 @@ for(mt in model_types){
 
 }
 
-plot_title_page("Overall Summaries");
+plot_title_page("Overall Summaries of Significance Counts", c(
+	"These plots recapitulation the barplots that were previously provided at the end of each",
+	"compartment summary.  These plots have a common scale and are grouped together so they can be",
+	"more readily compared.  Plots are grouped by model type.",
+	"",
+	"These plots provide a quick means to identify the timepoints when some compartments may be",
+	"more predictive than others."
+));
 
 plot_overall_tally=function(tally_rec){
 
@@ -699,6 +743,7 @@ plot_overall_tally=function(tally_rec){
 	}
 
 }
+
 
 plot_overall_tally(overall_tally);
 
