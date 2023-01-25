@@ -551,9 +551,9 @@ for(mt in model_types){
 
 	mt_ix=signif_index[,"model_type"]==mt;
 
-	table_by_model_type=signif_index[mt_ix,];
+	table_by_model_type=signif_index[mt_ix,,drop=F];
 
-	model_names=sort(unique(table_by_model_type[,"model_name"]));
+	model_names=sort(unique(table_by_model_type[,"model_name", drop=F]));
 
 	overall_tally[[mt]]=list();
 
