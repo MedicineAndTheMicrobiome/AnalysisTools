@@ -194,6 +194,33 @@ plot_text=function(strings, max_lines_pp=Inf){
 
 #-----------------------------------------------------------------------------#
 
+plot_title_page=function(title, subtitle=""){
+
+        orig.par=par(no.readonly=T);
+        par(family="serif");
+        par(mfrow=c(1,1));
+
+        plot(0,0, xlim=c(0,1), ylim=c(0,1), type="n",  xaxt="n", yaxt="n",
+                xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
+                );
+
+        # Title
+        title_cex=3;
+        title_line=1;
+        text(0.5, title_line, title, cex=title_cex, font=2, adj=c(.5,1));
+
+        # Subtitle
+        num_subt_lines=length(subtitle);
+        cxy=par()$cxy;
+        for(i in 1:num_subt_lines){
+                text(.5, title_line -title_cex*cxy[2] -i*cxy[2], subtitle[i], adj=.5);
+        }
+
+        par(orig.par);
+}
+
+#-----------------------------------------------------------------------------#
+
 paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_is_hot=T, deci_pts=4,
         label_zeros=T, counts=F, value.cex=2,
         plot_col_dendr=F,
@@ -416,6 +443,34 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 pdf(paste(OutputFnameRoot, ".tmr.pdf", sep=""), height=8.5, width=11);
 plot_text(param_text);
 
+plot_title_page("TMR", c(
+	"The TMR is a framework for integrating various datasets",
+	"so that inter-dataset relationships can be systematically identified.",
+	"",
+	"Datasets can be measurements from different biological compartments,",
+	"-omics types, panels, etc.",
+	"",
+	"In TMR, a dataset is represented by a group of variables that has been previously",
+	"curated down (eg. with PCA) so that a majority of its variance can be captured",
+	"in fewer variables and also so that the members are not highly co-linear.",
+	"It is important not to perform a single PCA across all groups, since an important",
+	"goal of the TMR framework is to identify relationships between datasets",
+	"through building and testing specific but numerous models, in order to identify an",
+	"overall 'network' of interactions among the biological compartments measured.",
+	"",
+	"Variable groups are assigned into one of 3 groups:",
+	"1.) Treatment/Covariates: Variables that are determined by the investigator (Treatments)",
+	"or are variables that could affect the experiment, but are essentially static, e.g.",
+	"age, sex, smoking status.",
+	"2.) Measured: These variables are quantitatively measured and may be",
+	"highly dimensional.  These may be affected by the treatment/covariates, or they",
+	"may be responsible for affecting another Measured variables.  These were measured",
+	"for in the experiment, because they were believe to have an affect on the Response.",
+	"3.) Response: These variables are typically measured or used to define the severity",
+	"or manifestation of a disease, or the ultimate outcome of the experiment.  The essential",
+	"characteristic of the Response is that it is assume to not affect a Measured variable."
+));
+
 # Load factors
 cat("Loading Factors...\n");
 loaded_factors=load_factors(FactorsFname);
@@ -508,6 +563,11 @@ model_variables_summary=capture.output({
 	}
 });
 
+
+plot_title_page("TMR Framework Model Variables", c(
+	"The following page lists the variable types and variable groups that",
+	"will be used in the TMR Framework."
+));
 
 #print(model_variables_summary);
 plot_text(c(
@@ -653,6 +713,18 @@ plot_distances_on_line=function(dist_rec, plots_per_page=4){
 	par(orig_par);
 }
 
+plot_title_page("Inter-group Similarity Dendrogram", c(
+	"The following dendrogram illustrates the similarity of variable groups",
+	"based on the measurements collected for each sample.",
+	"",
+	"Intersample distance matrices were calculated for each of the variable",
+	"groups using dist=1-abs(cor) as input towards generating the Ward hierarchical",
+	"clusters.",
+	"",
+	"When two groups cluster closely together, their similarity may",
+	"suggest signally between compartments, similarity (redundancy) in",
+	"the mechanisms/biomarkers being assayed, etc."  
+));
 
 cat("Calculating intergroup correlations...\n");
 dist_cor=calculate_intergroup_correlation(dist_rec);
@@ -661,8 +733,21 @@ cor_as_dist=1-abs(dist_cor);
 hcl=hclust(as.dist(cor_as_dist), method="ward.D2");
 plot(hcl, xlab="", ylab="Distance", main="Group Dendrogram: 1-|cor(distances)|");
 
+plot_title_page("Intergroup Distance Heat Map", c(
+	"The following heat map illustrates the correlation between the inter-sample distance matrices",
+	"computed between the variable groups." 
+));
+
 paint_matrix(dist_cor, title="Correlation Among Distances",
 	plot_min=-1, plot_max=1, deci_pts=2, value.cex=1);
+
+plot_title_page("Intergroup Distances", c(
+	"The following distance plots illustrate the distance between groups",
+	"on a line, using each variable group as a reference (0). Groups that",
+	"are more similar to the reference variable group will be located towards",
+	"the left of the line, whereas variable groups more different from the",
+	"reference will be located towards the right."
+));
 
 plot_distances_on_line(cor_as_dist);
 
@@ -714,6 +799,19 @@ palette(rainbow(max_cat, end=4/6));
 
 ##############################################################################
 # Generate MDS Plots for each group of measurements and response
+
+plot_title_page("MDS Plots", c(
+	"The following Multi-Dimensional Scaling plots are based on the",
+	"intersample distances calculated on by variable group.",
+	"",
+	"Samples that are more spatially separated are more different from",
+	"each other based on the information captured by the data in each",
+	"specific group.",
+	"",
+	"Although only Measured and Response group variable MDS plots have",
+	"been generated, the samples have been colored by the values in the",
+	"Treatment/Covariate group."
+));
 
 for(type in c("Measured", "Response")){
 	for(grp in names(mds_rec[[type]])){
@@ -1582,6 +1680,36 @@ remove_weaker_bidirectional_links=function(links_rec, log10_diff_thres=1){
 	return(out);	
 
 }
+
+plot_title_page("TMR Diagrams", c(
+	"The follow diagrams illustrate the group-to-group relationships that have been identified",
+	"by the pair-wise regression models.",
+	"",
+	"The variable groups are organized as squares from left to right (with variables indicated",
+	"internally) and lines connecting them, if significant associations between the variables in",
+	"the groups had been identified:",
+	"",
+	"Covariates and Treatments (CT):",
+	"Measured (M1):",
+	"Measured (M2):",
+	"Response (R):",
+	"",
+	"Note: Measured Groups (M1 and M2) are the same group, but are duplicated in the figure for ease",
+	"of interpretation.",
+	"When variables from a group on the left (predictors, fit with multiple regression) significantly",
+	"predict a variable in a group to the right (response), a line is drawn between them.",
+	"",
+	"TMR diagrams are drawn at various p-value cutoffs.  For each cutoff, 3 TMR diagrans are drawn:",
+	"1.) All Group: To emphasize inter-group relationship, a single line is drawn between groups, even",
+	"if multiple variables associations have been identified between groups.",
+	"2.) All Variables:  To show all possible relationships, lines are draw between variables of",
+	"different groups.",
+	"3.) Uni-directional Variables: To show most relevant relationships, when two variables in different",
+	"groups in (M1 to M2) predict each other significantly, the less significant of the two links are removed.",
+	"",
+	"After the TMR diagrams (2) and (3), a table containing a list of the model type, model name, predictor,",
+	"response, coefficients and p-values that were represented by the preceding TMR diagram is reported."
+));
 
 #for(cutoffs in c("0.0010", "0.1000")){
 options(width=300);
