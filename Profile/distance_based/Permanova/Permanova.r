@@ -633,16 +633,17 @@ perm_factor=max(10, num_linear_components);
 
 
 # Old version using type I sum of squares
-old_res=adonis(as.formula(model_string), data=factors, strata=stratify, permutations=perm_factor*1000);
+old_res=adonis(as.formula(model_string), data=as.data.frame(factors), strata=stratify, permutations=perm_factor*1000);
 cat("Old Adonis Results:\n");
 print(names(old_res));
-print((old_res));
 print(old_res);
 
-res2=adonis2(as.formula(model_string), data=factors, strata=stratify, permutations=perm_factor*1000, by="margin");
+
+res2=adonis2(as.formula(model_string), data=as.data.frame(factors), strata=stratify, permutations=perm_factor*1000, by="margin");
 cat("New Adonis Results:\n");
 print(names(res2));
 print((res2));
+
 
 # Merge new AOV table into old result to maintain other statistics we need
 merge_new_with_old_adonis=function(old, new){
@@ -801,7 +802,7 @@ out_text=c(
 plot_text(out_text);
 
 # Output model and ANOVA table
-anova_lines=capture.output(print(res));
+anova_lines=capture.output(print(res$aov.tab));
 out_text=c(
 	"Model: ",
 	paste("    ", model_string),
@@ -1026,12 +1027,7 @@ for(fact_id in 1:num_anova_terms){
 			cat("Number of unique 'levels':", num_unique, "\n");
 			if(num_unique>2){
 
-				if(num_unique<=5 && length(unique(diff(sort(unique(cur_factor)))))==1){
-					# If fewer than 5 levels/choices and they are equally spaced out
-					#   just let them all show up distinctly.
-					# So do nothing...
-				}else{
-					# Assume fully continuous
+				if(is.numeric(cur_factor)){
 					cur_factor=bin_continuous_values(cur_factor, num_bins=10);
 				}
 
