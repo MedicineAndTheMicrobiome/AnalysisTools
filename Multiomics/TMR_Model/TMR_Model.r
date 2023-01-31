@@ -98,6 +98,9 @@ param_text=capture.output({
 
 cat(paste(param_text, collapse="\n"), "\n");
 
+fh=file(paste(OutputFnameRoot, ".tmr.started", sep=""), "w");
+close(fh);
+
 ###############################################################################
 
 load_factors=function(fname){
@@ -1779,9 +1782,10 @@ write.table(
 
 ##############################################################################
 
-fh=file(paste(OutputFnameRoot, ".tmr.done", sep=""));
-cat(file=fh, "Completed.\n");
-close(fh);
+file.rename(
+	paste(OutputFnameRoot, ".tmr.started", sep=""),
+	paste(OutputFnameRoot, ".tmr.done", sep="")
+);
 
 ##############################################################################
 
