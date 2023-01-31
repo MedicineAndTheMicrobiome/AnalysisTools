@@ -595,8 +595,11 @@ standardize_matrix=function(x){
 
 	for(var_ix in 1:ncol){
 		st_mat[,var_ix]=(x[,var_ix]-mean[var_ix])/sd[var_ix];
+		if(any(!is.finite(st_mat[,var_ix]))){
+			st_mat[,var_ix]=rep(0, nrow);
+		}
 	}
-
+	
 	return(st_mat);
 
 }
@@ -622,7 +625,6 @@ apply_fun_to_var_rec=function(var_rec, mat_funct){
 
 cat("Standardizing Matrix...\n");
 standardized_variables_rec=apply_fun_to_var_rec(variables_rec, standardize_matrix);
-#print(standardized_variables_rec);
 
 cat("Calculate Distances...\n");
 dist_rec=apply_fun_to_var_rec(standardized_variables_rec, dist);
@@ -728,6 +730,12 @@ plot_title_page("Inter-group Similarity Dendrogram", c(
 
 cat("Calculating intergroup correlations...\n");
 dist_cor=calculate_intergroup_correlation(dist_rec);
+
+# Remove groups with all NAs
+na_rows=apply(dist_cor, 1, function(x){ all(is.na(x) | x==1)});
+na_cols=apply(dist_cor, 1, function(x){ all(is.na(x) | x==1)});
+dist_cor=dist_cor[!na_rows, !na_cols];
+
 cor_as_dist=1-abs(dist_cor);
 
 hcl=hclust(as.dist(cor_as_dist), method="ward.D2");
