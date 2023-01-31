@@ -594,6 +594,30 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 
 }
 
+plot_title_page=function(title, subtitle="", title_cex=3){
+
+        orig.par=par(no.readonly=T);
+        par(family="serif");
+        par(mfrow=c(1,1));
+
+        plot(0,0, xlim=c(0,1), ylim=c(0,1), type="n",  xaxt="n", yaxt="n",
+                xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
+                );
+
+        # Title
+        title_line=1;
+        text(0.5, title_line, title, cex=title_cex, font=2, adj=c(.5,1));
+
+        # Subtitle
+        num_subt_lines=length(subtitle);
+        cxy=par()$cxy;
+        for(i in 1:num_subt_lines){
+                text(.5, title_line -title_cex*cxy[2] -i*cxy[2], subtitle[i], adj=.5);
+        }
+
+        par(orig.par);
+}
+
 ##############################################################################
 # Main Program Starts Here!
 ##############################################################################
@@ -672,6 +696,25 @@ if(DonnotTransform){
 	curated_pred_mat=pred_mat;
 	curated_resp_mat=resp_mat;
 }else{
+
+	plot_title_page("Checking Variable Normality", c(
+		"Variables are tested for normality with the Shapiro-Wilks test.",
+		paste("If the p-value is < ", NORM_PVAL_CUTOFF, ", then both a log and sqrt", sep=""),
+		"transform are applied and normality are retested.  If either transformation",
+		"increases the normality (and increases the p-value), then the transformation",
+		"that has the greater p-value is retained.",
+		"",
+		"In the following pages, the left column contains the variable's original",
+		"distribution before any transformation is attempted.  The right column",
+		"contains the accepted transformation if it is closer to a normal distribution.",
+		"The p-values annotated below the variable names (titles) are calculated with",
+		"the Shapiro-Wilks test.",
+		"",
+		"If a transformation was not applied, then the right column will hold the indication:",
+		"\"Transform not necessary\", if the original distribution was sufficiently normal.",
+		"\"Transform not beneficial\", if the transformation did not make the variable more normal."
+	));
+
 	cat("Testing Predictor Variables for normality.\n");
 	curated_pred_mat=test_and_apply_log_transform(pred_mat, NORM_PVAL_CUTOFF);
 
@@ -686,20 +729,13 @@ curated_responses_arr=colnames(curated_resp_mat);
 
 ##############################################################################
 
-plot_text(c(
-	"Relationship between predictors (x-axis) and responses (y-axis):",
-	"",
-	"Plots are sorted by decreasing statistical significance (increasing p-value).",
-	"",
-	"To determine if the Log transform of the predictors or responses were necessary,",
-	"  the following algorithm was applied:",
-	"",
-	"  If the Shapiro-Wilks (SW) Test for normality rejects the distribution as normal",
-	paste("  at alpha<", NORM_PVAL_CUTOFF, ", then the log transform is attempted.", sep=""),
-	"  If the SW Test p-value on the transformed distribution is greater than that of",
-	"  the untransformed distribution, then the transformed distribution is retained,",
-	"  else the untransformed distribution is retained."
-));
+if(length(responses_arr)){
+	plot_text(c(
+		"Relationship between predictors (x-axis) and responses (y-axis):",
+		"",
+		"Plots are sorted by decreasing statistical significance (increasing p-value)."
+	));
+}
 
 par(oma=c(1,1,4,1));
 
@@ -797,20 +833,10 @@ cat("Inputed Matrix Dimensions: ", nrow(imputed_mat), " x ", ncol(imputed_mat), 
 
 # Compute the dendrogram, clustering based on the correlation between responses and predictors
 
-plot_text(c(
-	"The following dendrogram illustrates the relationship between the",
-	"  response and predictor variables based on their correlation.",
-	"",
-	"The greater the magnitude of the correlation, i.e. abs(cor),",
-	"  the shorter the distance between variables.",
-	"",
-	"The Euclidean distance is still used to compare the correlation profiles",
-	"  between variables to satisfy the 'triangle inequality'.",
-	"",
-	"The predictor variables are colored red.",
-	"Note that the relationship between variables is actually closer to R^2",
-	"  than the estimated coefficient magnitudes because the scale/unit for",
-	"  each of the variables may not be the same."
+plot_title_page("Dendrogram of Variable Similarity", title_cex=2, c(
+	"Variables with a higher degree of correlation (abs(cor)) are clustered",
+	"together.  If 'predictor' variables were specified in this analyis, then",
+	"they will be colored red."
 ));
 
 correl=compute_correlations(cbind(curated_pred_mat, curated_resp_mat));
@@ -841,6 +867,15 @@ highlight_predictors=function(x){
 dend=dendrapply(dend, highlight_predictors);
 
 plot(dend, main="Ward's Minimum Variance: dist(1-abs(cor))");
+
+##############################################################################
+
+plot_title_page("Correlation Heatmaps", c(
+	"The following heatmaps illustrate the correlation between variables at various",
+	"cutoffs of statistical significance (both unadjusted and adjusted for multiple testing).",
+	"",
+	"Red is more positively correlated, Blue is more negatively correlated."
+));
 
 print(correl$val);
 paint_matrix(correl$val, deci_pts=2, title="All Correlations");
@@ -896,6 +931,30 @@ scores=(scale(imputed_mat, center=T, scale=T) %*% eigen$vectors);
 # Top PC with coverate >5%
 top_PCs=pca_propvar>PCIndivCoverage;
 num_pc_above_indiv_cutoff=sum(top_PCs);
+
+plot_title_page("PCA Results", c(
+	"The following pages of results were based on running a PCA.",
+	"",
+	"Two criteria were provided as a means to select the number of PCs to",
+	"represent a dataset.",
+	"",
+	paste("1.) Number of PCs to cumulatively acquire >", (PCCumulCoverage*100.0), 
+		"% of the variance in dataset.", sep=""),
+	"This criteria tries to capture a minimum amount of 'information' in a dataset.",
+	"",
+	paste("2.) Number of PCs individually with >", (PCIndivCoverage*100.0),
+		"% of coverage.", sep=""),
+	"This criteria tries to select only the PCs with a minimum amount of 'information'",
+	"in them, with the assumption that PCs with low coverage may be representing 'noise'.",
+	"",
+	"",
+	"Bar plots are also generated:",
+	"1.) PCA Proportion of Variance",
+	"The number of PCs that exceed the individual cutoff threshold are colored green.",
+	"",
+	"2.) PCA Cumulative Variance",
+	"The number of PCs necessary to cumulative exceed the cumulative cutoff are colored teal."
+));
 
 plot_text(c(
 	"Principal Components Analysis:",
@@ -966,6 +1025,15 @@ abline(h=PCCumulCoverage, col="darkcyan", lty=2);
 
 ###############################################################################
 
+plot_title_page("PC Ordination", c(
+	"These scatter plots illustrate the separation of samples across the top PCs.",
+	"PC[i] and PC[i+1] are represented along the x and y axes, respectively.",
+	"",
+	"Left figures are labeled with sample IDs to help identify outliers, and the right",
+	"figures only have glyphs drawn to more clearly see the distribution of samples",
+	"across both axes/PCs."
+));
+
 # Plot sample ordination based on scores
 sample_ids=rownames(resp_mat);
 par(mfrow=c(3,2));
@@ -1028,6 +1096,27 @@ cat("Num Scores: ", ncol(scores), "\n");
 
 out_pc_cormat=matrix("", ncol=num_pc_at_cutoff*3, nrow=ncol(scores));
 out_pc_cormat_header=rep("", num_pc_at_cutoff*3);
+
+plot_title_page("Identifying PC Proxies", c(
+	"Since PCs are composed of characteristics of the underlying observed variables in a",
+	"dataset, often times it is more useful to identify a set of these observed variables",
+	"to represent these PCs that can be more easily interpreted with domain-specific knowledge,",
+	"rather than an abstract PC.",
+	"",
+	"In the following bar plots, a correlation is calculated between each PC and all the",
+	"observed variables and the variables with the greatest magnitude of correlation",
+	"with the PC are listed.  The PC is then annotated/named with the percent correlation",
+	"and name of the observed variable.  If the relationship between the PC and the observed",
+	"variable with the most correlation is negative, then the PC is flipped (multiplied by",
+	"-1) so the correlation between the modified PC and the assigned observed variable is positive.",
+	"",
+	"The number of PCs annotated/plotted is the number of PCs to cumulatively cover the",
+	"cumulative PC threshold.  The PCs with individual PCs exceeding the individual PC",
+	"cutoff have their bars colored in green",
+	"",
+	"We have also observed that when a PC is not at least 50% correlated with one of the",
+	"observed variables, then its ensuing utility is also potentially low (i.e. noise)."
+));
 
 pc_name=paste("PC", sprintf("%02g", 1:num_kept_pred), sep="");
 for(i in 1:num_pc_at_cutoff){
@@ -1095,7 +1184,17 @@ for(i in 1:num_pc_at_cutoff){
 
 rownames(top_pc_var_correl_mat)=top_pc_var_name;
 
+###############################################################################
 # Select variables based on the difference cutoff options
+
+plot_title_page("Selected Variables", c(
+	"The following pages report the PCA-based proxy observed variable selection",
+	"results based on the 3 previously described criteria.",
+	"",
+	"The next page reports the selected observed variables as well as a table of the",
+	"criteria used to select them including: correlations, individual and cumulative",
+	"coverage."
+));	
 
 selected_variables=list();
 
@@ -1149,6 +1248,21 @@ find_height_at_k=function(hclust, k){
 var_cor=compute_correlations(curated_pred_mat);
 hcl=hclust(var_cor$dist, method="ward.D2");
 dend=as.dendrogram(hcl);
+
+plot_title_page("Selected Variable Dendrograms", c(
+	"The following 3 dendrograms illustrate the relative location of selected",
+	"observed variables in the context of all observed variables.",
+	"",
+	"Selected variables are colored teal.",
+	"",
+	"A dotted line is drawn based on the number of variables selected.",
+	"The cutree algorithm will identify the height at which to cut a hierarchically",
+	"cluster dendrogram so that a number of clusters (m) can be specified.  The number of",
+	"clusters (m) specified in each figure is based on the number of variables selected.",
+	"Ideally, if each of the clusters has exactly one selected variable in it,",
+	"then the selected variables were able to represent the entire dataset reasonably",
+	"efficiently."
+));
 
 par(mar=c(14, 2, 4, 1));
 par(mfrow=c(1,1));
@@ -1233,6 +1347,14 @@ highlight_pcs=function(x){
 }
 
 dend=dendrapply(dend, highlight_pcs);
+
+plot_title_page("Dendrogram w/ PCs", c(
+	"In this dendrogram, the PCs (that have been annotated/renamed with the observed variable",
+	"they are most similar (correlated) with have been included in the dendrogram with all",
+	"observed variables.  The green PCs are the variables that have been identified as capturing",
+	"more than the minimum individual variance threshold.  The remaining teal PCs cumulatively exceed",
+	"the min cumulative variance threshold."
+));
 
 par(mfrow=c(1,1));
 par(mar=c(2,1,4,20));
