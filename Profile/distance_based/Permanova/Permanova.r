@@ -213,10 +213,10 @@ load_distance_matrix=function(fname){
 load_factors=function(fname){
 
 	cat("Loading factor file: ", fname, "\n");
-	factors=data.frame(read.table(fname,  header=TRUE, row.names=1, 
-		check.names=FALSE, sep="\t", quote="", comment.char=""));
-
-	#print(factors);
+	factors=read.delim(fname,  header=TRUE, row.names=1, 
+		stringsAsFactors=T,
+		check.names=FALSE, sep="\t", quote="", comment.char="");
+	# Returns data from of character strings and numbers
 
 	dimen=dim(factors);
 	cat("Rows Loaded: ", dimen[1], "\n");
@@ -467,6 +467,20 @@ subset_model_string=function(model_string, avail_factors){
 ##############################################################################
 
 pdf(paste(OutputFnameRoot, rand, ".pdf", sep=""), height=5.5, width=11);
+
+plot_text(c(
+	script_name,
+	"",
+	"",
+	"Distance Matrix Filename: ",
+	paste(" ", DistmatFname),
+	"",
+	"Factors Filename: ", 
+	paste(" ", FactorsFname),
+	"",
+	"Output Filename Root: ",
+	paste(" ", OutputFnameRoot)
+));
 
 ##############################################################################
 
@@ -786,8 +800,9 @@ cat("\n");
 # Output factor summaries
 
 used_factors=intersect(model_var, factor_names);
+used_factors_df=as.data.frame(factors[,used_factors]);
 
-factor_summary=capture.output(summary(factors[used_factors]));
+factor_summary=capture.output(summary(used_factors_df));
 out_text=c(
 	"PERMANOVA analysis for:",
 	OutputFnameRoot, 
