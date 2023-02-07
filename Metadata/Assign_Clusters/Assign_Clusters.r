@@ -454,7 +454,7 @@ anti_outlier_weights=calc_antioutlier_weight(standardized_targets);
 print(anti_outlier_weights);
 
 
-weighted_dist=function(variables, weight){
+weighted_dist=function(variables, weight=NA){
 	num_sbj=nrow(variables);
 	num_var=ncol(variables);
 
@@ -462,6 +462,9 @@ weighted_dist=function(variables, weight){
 	colnames(dist_mat)=rownames(variables);
 	rownames(dist_mat)=rownames(variables);
 
+	if(is.na(weight)){
+		weight=rep(1, num_var);
+	}
 
 	for(i in 1:num_sbj){
 		for(j in 1:i){
@@ -477,6 +480,7 @@ weighted_dist=function(variables, weight){
 }
 
 
+#distance_mat=weighted_dist(standardized_targets);
 distance_mat=weighted_dist(standardized_targets, anti_outlier_weights);
 
 ###############################################################################
@@ -640,6 +644,60 @@ plot_variables_heatmap=function(factors, subj_order, cl_mids){
 	abline(v=c(0,num_subjects));
 }
 
+find_cluster_features=function(num_clusters, clst_map, factors_mat, pvalcutoff=0.1, bonf_adj=T){
+
+	num_vars=ncol(factors_mat);
+	sbj_ids=names(clst_map);
+
+	features_rec=list();
+	varnames=colnames(factors_mat);
+
+	if(bonf_adj){
+		pvalcutoff=pvalcutoff/(num_vars*num_clusters);
+	}
+
+	for(k in 1:num_clusters){
+		members=sbj_ids[clst_map==k];
+		non_members=sbj_ids[clst_map!=k];
+
+		feat_tab=matrix(0, ncol=5, nrow=num_vars);		
+		colnames(feat_tab)=c("isHigh", "p-value", "member_mean", "other_mean", "signif");
+		rownames(feat_tab)=varnames;
+
+		for(var in 1:num_vars){
+
+			member_val=factors_mat[members,var];
+			non_member_val=factors_mat[non_members,var];
+
+			member_mean=mean(member_val);
+			other_mean=mean(non_member_val);
+
+			wc.res=wilcox.test(member_val, non_member_val);
+
+			# 2 tail
+			signif=ifelse(wc.res$p.value<(pvalcutoff/2), T, F);
+
+			if(member_mean>other_mean){
+				isHigh=T;
+			}else{
+				isHigh=F;
+			}
+
+			feat_tab[var,]=c(isHigh, wc.res$p.value, member_mean, other_mean, signif);
+		}		
+
+		order_ix=order(feat_tab[,"p-value"]);
+
+		features_rec[[k]]=feat_tab[order_ix,];
+	}
+
+	print(features_rec);	
+	#quit();
+	return(features_rec);
+	
+
+}
+
 ###############################################################################
 
 max_cuts=log2(num_subjects);
@@ -702,6 +760,10 @@ for(k in 2:max_cuts){
 	par(mar=c(0,0,0,left_label_margin));
 	plot_variables_heatmap(targeted_factors, subj_ids_from_dendro_LtoR, cl_mids=cl_mids);
 	abline(v=grp_split_loc, lwd=1, col="black");
+
+	# Compute cluster influencers
+	cluster_features_rec=find_cluster_features(k, clmap, targeted_factors);
+
 }
 
 ###############################################################################
