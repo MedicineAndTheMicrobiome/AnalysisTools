@@ -450,11 +450,21 @@ calc_antioutlier_weight=function(std_val_mat){
 	return(weights);
 }
 
-anti_outlier_weights=calc_antioutlier_weight(standardized_targets);
-print(anti_outlier_weights);
+UseAntiOutlierWeighting=T;
+if(UseAntiOutlierWeighting){
+
+	cat("Calculating anti-outlier weights...\n");
+	anti_outlier_weights=calc_antioutlier_weight(standardized_targets);
+	print(anti_outlier_weights);
+	weight_order=order(anti_outlier_weights);
+
+	anti_outlier_weights=anti_outlier_weights[weight_order];
+	standardized_targets=standardized_targets[,weight_order];
+	targeted_factors=targeted_factors[,weight_order];
+}
 
 
-weighted_dist=function(variables, weight=NA){
+weighted_dist=function(variables, weight=numeric()){
 	num_sbj=nrow(variables);
 	num_var=ncol(variables);
 
@@ -462,7 +472,7 @@ weighted_dist=function(variables, weight=NA){
 	colnames(dist_mat)=rownames(variables);
 	rownames(dist_mat)=rownames(variables);
 
-	if(is.na(weight)){
+	if(length(weight)==0){
 		weight=rep(1, num_var);
 	}
 
@@ -481,11 +491,14 @@ weighted_dist=function(variables, weight=NA){
 
 
 #distance_mat=weighted_dist(standardized_targets);
+cat("Calculating intersubject distances...\n");
 distance_mat=weighted_dist(standardized_targets, anti_outlier_weights);
 
 ###############################################################################
 
 distance_subs=as.dist(distance_mat);
+
+cat("Hierarchically clustering...\n");
 hcl=hclust(distance_subs, method="ward.D2");
 dend=as.dendrogram(hcl);
 
@@ -594,7 +607,7 @@ plot_annotated_dendrogram=function(in_dend, cluster_map, cut, cl_mids, h){
 
 }
 
-plot_variables_heatmap=function(factors, subj_order, cl_mids){
+plot_variables_heatmap=function(factors, subj_order, cl_mids, num_colors=64){
 
 	factors=factors[subj_order,];
 
@@ -605,10 +618,9 @@ plot_variables_heatmap=function(factors, subj_order, cl_mids){
 	plot(0,0, type="n", 
 		xlim=c(0, num_subjects),
 		ylim=c(0, num_variables),
-		xaxt="n", yaxt="n", xlab="", ylab="", title="", bty="n");
+		xaxt="n", yaxt="n", xlab="", ylab="", main="", bty="n");
 
-	num_col=16;
-	heat_col=rev(rainbow(num_col, end=2/3));
+	heat_col=rev(rainbow(num_colors, end=2/3));
 
 	map_val_to_col=function(num_levels, values){
 		# Remaps values to between 1 and num_levels
@@ -624,7 +636,7 @@ plot_variables_heatmap=function(factors, subj_order, cl_mids){
 		mtext(variable_names[var_ix], at=var_ix-.5, side=4, las=2, line=-2, adj=0);
 
 		values=factors[,var_ix];
-		mapped_col=map_val_to_col(num_col, values);
+		mapped_col=map_val_to_col(num_colors, values);
 
 		for(sbj_ix in 1:num_subjects){
 
@@ -698,6 +710,78 @@ find_cluster_features=function(num_clusters, clst_map, factors_mat, pvalcutoff=0
 
 }
 
+plot_variables_heatmap_avgs=function(factors, grp_split_loc, cl_feat_rec, num_colors=64){
+
+	num_variables=ncol(factors);
+	num_subjects=nrow(factors);
+	num_clusters=length(cl_feat_rec);
+
+	# Use the order here, not the variable order in the cluster features rec
+	variable_names=colnames(factors);
+
+	plot(0,0, type="n", 
+		xlim=c(0, num_subjects),
+		ylim=c(0, num_variables),
+		xaxt="n", yaxt="n", xlab="", ylab="", main="", bty="n");
+
+	num_colors=16;
+	heat_col=rev(rainbow(num_colors, end=2/3));
+
+	map_val_to_col=function(num_levels, ref_values, tar_val){
+		# Remaps values to between 1 and num_levels
+		minmax=range(ref_values);
+		span=minmax[2]-minmax[1];
+		tar_val=(tar_val-minmax[1])/span;	
+		level=ceiling(tar_val*(num_levels-1))+1;
+		return(level);
+	}
+
+	cl_loc=c(0, grp_split_loc, num_subjects);
+
+	for(var_ix in 1:num_variables){
+
+		cur_varname=variable_names[var_ix];
+		mtext(cur_varname, at=var_ix-.5, side=4, las=2, line=-2, adj=0);
+
+		for(cl_ix in 1:num_clusters){
+
+			# Get the variable information for cluster
+			cluster_feat_mat=cl_feat_rec[[cl_ix]];
+			var_cl_mean=cluster_feat_mat[cur_varname, "member_mean"];
+			var_cl_signf=cluster_feat_mat[cur_varname, "signif"];
+			var_cl_ishigh=cluster_feat_mat[cur_varname, "isHigh"];
+
+			# Map the mean to color
+			mapped_col=map_val_to_col(num_colors, factors[, cur_varname], var_cl_mean);
+
+			# Get location of start/end for each cluster
+			cl_start=cl_loc[cl_ix];
+			cl_end=cl_loc[cl_ix+1];
+
+			# Draw rectangle for the cluster/variable
+			rect(cl_start, var_ix-1, cl_end, var_ix,
+				border=NA, 
+				col=heat_col[mapped_col]);
+
+			# Draw annotation if significant
+			if(var_cl_signf){
+				ch=ifelse(var_cl_ishigh, 24, 25);
+				points((cl_start+cl_end)/2, var_ix-.5, pch=ch, 
+					bg=ifelse(var_cl_ishigh, heat_col[num_colors], heat_col[1]));
+			}
+
+		}
+	}	
+
+	cuts=length(cl_mids);
+	mtext(1:cuts, side=3, line=-1, at=cl_mids, font=2, 
+		cex=ifelse((1:cuts)<10, 2, 1.5),
+		col=1:cuts);
+	
+
+	abline(v=c(0,num_subjects));
+}
+
 ###############################################################################
 
 max_cuts=log2(num_subjects);
@@ -721,8 +805,7 @@ par(oma=c(0,0,1,0));
 left_label_margin=5;
 
 for(k in 2:max_cuts){
-
-#for(k in 15:18){
+#for(k in 5){
 	
 	clmap=cutree(hcl, k=k);
 
@@ -740,6 +823,7 @@ for(k in 2:max_cuts){
 	names(clmap_tmp)=names(clmap);
 	clmap=clmap_tmp;
 	cl_mids=cl_mids[plot_order];
+	cut_clusters[[k]]=clmap;
 
 	# calculate cluster division points
 	grp_sizes=table(clmap);
@@ -749,13 +833,11 @@ for(k in 2:max_cuts){
 	# Find cut height
 	h=find_height_at_k(hcl, k);
 
+	# By subject
 	# Plot dendrogram with all the annotations
 	par(mar=c(4,0,3,left_label_margin));
 	plot_annotated_dendrogram(dend, clmap, k, cl_mids, h);
 	abline(v=grp_split_loc, lwd=.5, col="grey");
-
-	cut_clusters[[k]]=clmap;
-
 	# Plot heatmap of variables
 	par(mar=c(0,0,0,left_label_margin));
 	plot_variables_heatmap(targeted_factors, subj_ids_from_dendro_LtoR, cl_mids=cl_mids);
@@ -764,129 +846,21 @@ for(k in 2:max_cuts){
 	# Compute cluster influencers
 	cluster_features_rec=find_cluster_features(k, clmap, targeted_factors);
 
+	# By cluster
+	# Plot heatmap with group averages and significances
+	par(mar=c(4,0,3,left_label_margin));
+	plot_annotated_dendrogram(dend, clmap, k, cl_mids, h);
+	abline(v=grp_split_loc, lwd=.5, col="grey");
+	# Plot heatmap of variables
+	par(mar=c(0,0,0,left_label_margin));
+	plot_variables_heatmap_avgs(targeted_factors, grp_split_loc, cluster_features_rec);
+	abline(v=grp_split_loc, lwd=1, col="black");
+
+	# List cluster influencers
+
 }
 
 ###############################################################################
-
-quit();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-par(mfrow=c(1,1));
-par(mar=c(15,2,1,2));
-
-hcl=hclust(correl$dist, method="ward.D2");
-dend=as.dendrogram(hcl);
-
-#highlight_predictors=function(x){
-#	if(is.leaf(x)){
-#		leaf_attr=attributes(x);
-#		label=leaf_attr$label;
-#		print(label);
-#		if(any(label==curated_predictors_arr)){
-#			color="black";
-#			font=1;
-#		}else{
-#			color="red";
-#			font=2;
-#		}
-#		attr(x, "nodePar")=c(leaf_attr$nodePar, list(lab.font=font, lab.col=color, cex=0));
-#	}
-#	return(x);
-#}
-
-dend=dendrapply(dend, highlight_predictors);
-
-plot(dend, main="Ward's Minimum Variance: dist(1-abs(cor))");
-
-##############################################################################
-
-# Plot dendrogram with selected variable
-
-find_height_at_k=function(hclust, k){
-# Computes the height on the dendrogram for a particular k
-
-	heights=hclust$height;
-	num_heights=length(heights);
-	num_clust=numeric(num_heights);
-	for(i in 1:num_heights){
-		num_clust[i]=length(unique(cutree(hclust, h=heights[i])));
-	}
-	height_idx=which(num_clust==k);
-	midpoint=(heights[height_idx+1]+heights[height_idx])/2;
-	return(midpoint);
-}
-
-
-append_columns=function(original_mat, additional_mat){
-
-	origmat_dim=dim(original_mat);
-	addmat_dim=dim(additional_mat);
-
-	cat("Inserting: ", addmat_dim[1], "x", addmat_dim[2], " into ", origmat_dim[1], "x", origmat_dim[2], "\n");
-
-	orig_cnames=colnames(original_mat);
-	add_cnames=colnames(additional_mat);	
-	samp_ids=rownames(original_mat);
-	add_ids=rownames(additional_mat);
-
-	comb_mat=as.data.frame(matrix(NA, nrow=origmat_dim[1], ncol=origmat_dim[2]+addmat_dim[2]));
-
-	rownames(comb_mat)=samp_ids;
-	colnames(comb_mat)=c(orig_cnames, add_cnames);
-
-	#comb_mat[samp_ids, orig_cnames]=original_mat[samp_ids, orig_cnames];
-
-	# Copy original mat over
-	for(cnames in orig_cnames){
-		comb_mat[,cnames]=original_mat[,cnames];
-	}
-
-	# Copy addition mat over
-	avail_ids=intersect(samp_ids, add_ids);
-	for(cnames in add_cnames){
-		comb_mat[avail_ids, cnames]=additional_mat[avail_ids, cnames];
-	}
-
-	dim_return=dim(comb_mat);
-	cat("Returning Matrix: ", dim_return[1], " x ", dim_return[2], "\n"); 
-	return(comb_mat);
-}
-
-
-}
-##############################################################################
-
-cat("Outputing New Factor File Values:\n");
-fname=paste(OutputFnameRoot, ".pca.tsv", sep="");
-fh=file(fname, "w");
-cat(file=fh, "SampleID");
-close(fh);
-write.table(out_factors, file=fname, col.names=NA, append=T, quote=F, sep="\t");
-
-##############################################################################
 
 cat("Done.\n");
 dev.off();
