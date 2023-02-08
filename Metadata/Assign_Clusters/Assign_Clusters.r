@@ -458,6 +458,7 @@ if(UseAntiOutlierWeighting){
 	print(anti_outlier_weights);
 	weight_order=order(anti_outlier_weights);
 
+	# Reorder variables by their weights
 	anti_outlier_weights=anti_outlier_weights[weight_order];
 	standardized_targets=standardized_targets[,weight_order];
 	targeted_factors=targeted_factors[,weight_order];
@@ -724,7 +725,6 @@ plot_variables_heatmap_avgs=function(factors, grp_split_loc, cl_feat_rec, num_co
 		ylim=c(0, num_variables),
 		xaxt="n", yaxt="n", xlab="", ylab="", main="", bty="n");
 
-	num_colors=16;
 	heat_col=rev(rainbow(num_colors, end=2/3));
 
 	map_val_to_col=function(num_levels, ref_values, tar_val){
@@ -782,9 +782,120 @@ plot_variables_heatmap_avgs=function(factors, grp_split_loc, cl_feat_rec, num_co
 	abline(v=c(0,num_subjects));
 }
 
+plot_variables_lists=function(factors, grp_split_loc, cl_feat_rec, num_colors=64){
+
+	num_variables=ncol(factors);
+	num_subjects=nrow(factors);
+	num_clusters=length(cl_feat_rec);
+
+	plot(0,0, type="n", 
+		xlim=c(0, num_subjects),
+		ylim=c(0, num_variables+2),
+		xaxt="n", yaxt="n", xlab="", ylab="", main="", bty="n");
+
+	heat_col=rev(rainbow(num_colors, end=2/3));
+
+	map_val_to_col=function(num_levels, ref_values, tar_val){
+		# Remaps values to between 1 and num_levels
+		minmax=range(ref_values);
+		span=minmax[2]-minmax[1];
+		tar_val=(tar_val-minmax[1])/span;	
+		level=ceiling(tar_val*(num_levels-1))+1;
+		return(level);
+	}
+
+	# Location of cluster widths
+	cl_loc=c(0, grp_split_loc, num_subjects);
+	# Location of colums widths
+	column_pos=seq(0, num_subjects, length.out=num_clusters+1);
+	# Location of column mids
+	column_mids=(column_pos+(column_pos[2]-column_pos[1])/2)[1:num_clusters];
+
+
+	for(cl_ix in 1:num_clusters){
+
+		cat("\nCluster: ", cl_ix, "\n");
+		# Get the variable information for cluster
+		cluster_feat_mat=cl_feat_rec[[cl_ix]];
+		print(cluster_feat_mat);
+
+		los_ix=cluster_feat_mat[,"isHigh"]==0 & cluster_feat_mat[,"signif"]==1;
+		his_ix=cluster_feat_mat[,"isHigh"]==1 & cluster_feat_mat[,"signif"]==1;
+
+		lo_tab=cluster_feat_mat[los_ix,,drop=F];
+		hi_tab=cluster_feat_mat[his_ix,,drop=F]
+
+		lo_pval_ix=order(lo_tab[,"p-value"]);
+		hi_pval_ix=order(hi_tab[,"p-value"]);
+
+		lo_tab=lo_tab[lo_pval_ix,,drop=F];
+		hi_tab=hi_tab[hi_pval_ix,,drop=F];
+
+		#cat("\nLows:\n");
+		#print(lo_tab);
+		#cat("\nHighs:\n");
+		#print(hi_tab);
+
+		lo_varnames=rownames(lo_tab);
+		hi_varnames=rownames(hi_tab);
+
+		num_lo=nrow(lo_tab);
+		num_hi=nrow(hi_tab);
+
+		# Label cell with variable name
+		if(num_lo>0){
+			for(i in 1:num_lo){
+				# Map the mean to color
+				vname=lo_varnames[i];
+				mapped_col=map_val_to_col(num_colors, 
+					factors[, vname], lo_tab[vname, "member_mean"]);
+
+				# Draw rectangle for the cluster/variable
+				rect(column_pos[cl_ix], i, 
+					column_pos[cl_ix+1], i+1,
+					border=NA, 
+					col=heat_col[mapped_col]);
+				text(column_mids[cl_ix], i+.5, vname, adj=.5, font=2);
+			}
+		}
+
+		if(num_hi>0){
+			for(i in 1:num_hi){
+				# Map the mean to color
+				vname=hi_varnames[i];
+				mapped_col=map_val_to_col(num_colors, 
+					factors[, vname], hi_tab[vname, "member_mean"]);
+
+				# Draw rectangle for the cluster/variable
+				rect(column_pos[cl_ix], num_variables-i, 
+					column_pos[cl_ix+1], num_variables-i+1,
+					border=NA, 
+					col=heat_col[mapped_col]);
+				text(column_mids[cl_ix], num_variables-i-.5+1, vname, adj=.5, font=2);
+			}
+		}
+
+	}	
+
+	# Label cluster numbers
+	cuts=length(cl_mids);
+	mtext(1:cuts, side=3, line=-1, at=cl_mids, font=2, 
+		cex=ifelse((1:cuts)<10, 2, 1.5),
+		col=1:cuts);
+
+	# Draw lines and callouts
+	for(i in 1:num_clusters){
+		points(c(column_pos[i], column_pos[i]), c(0,num_variables), type="l", col="black");
+		points(c(column_pos[i], cl_loc[i]), c(num_variables,num_variables+2), type="l", col="black");
+	}
+
+	abline(v=c(0,num_subjects));
+	
+}
+
 ###############################################################################
 
-max_cuts=log2(num_subjects);
+max_cuts=ceiling(log2(num_subjects)*1.2);
 
 
 cut_clusters=list();
@@ -833,6 +944,10 @@ for(k in 2:max_cuts){
 	# Find cut height
 	h=find_height_at_k(hcl, k);
 
+	# Compute cluster influencers
+	cluster_features_rec=find_cluster_features(k, clmap, targeted_factors);
+
+	#----------------------------------------------------------------------
 	# By subject
 	# Plot dendrogram with all the annotations
 	par(mar=c(4,0,3,left_label_margin));
@@ -843,9 +958,7 @@ for(k in 2:max_cuts){
 	plot_variables_heatmap(targeted_factors, subj_ids_from_dendro_LtoR, cl_mids=cl_mids);
 	abline(v=grp_split_loc, lwd=1, col="black");
 
-	# Compute cluster influencers
-	cluster_features_rec=find_cluster_features(k, clmap, targeted_factors);
-
+	#----------------------------------------------------------------------
 	# By cluster
 	# Plot heatmap with group averages and significances
 	par(mar=c(4,0,3,left_label_margin));
@@ -856,7 +969,16 @@ for(k in 2:max_cuts){
 	plot_variables_heatmap_avgs(targeted_factors, grp_split_loc, cluster_features_rec);
 	abline(v=grp_split_loc, lwd=1, col="black");
 
+	#----------------------------------------------------------------------
 	# List cluster influencers
+	# By cluster
+	# Plot heatmap with group averages and significances
+	par(mar=c(4,0,3,0));
+	plot_annotated_dendrogram(dend, clmap, k, cl_mids, h);
+	abline(v=grp_split_loc, lwd=.5, col="grey");
+	# Plot heatmap of variables
+	par(mar=c(0,0,0,0));
+	plot_variables_lists(targeted_factors, grp_split_loc, cluster_features_rec);
 
 }
 
