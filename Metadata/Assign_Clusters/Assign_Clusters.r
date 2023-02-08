@@ -402,6 +402,12 @@ num_subjects=nrow(targeted_factors);
 
 cat("Standardizing...\n");
 
+plot_title_page("Standardizing Targeted Variables", c(
+	"Variables were first standardized (0 centered/mean, 1 stdev) so the distance",
+	"measure that combines all the variables, will not be more greatly",
+	"influenced by some variables that have nominally greater variances."
+));
+
 stats=matrix(0, nrow=num_targets, ncol=2);
 colnames(stats)=c("Means", "StDev");
 rownames(stats)=target_arr;
@@ -412,7 +418,11 @@ stats[,"Means"]=means;
 stats[,"StDev"]=stdev;
 
 print(stats);
-plot_text(capture.output(print(stats)));
+plot_text(c(
+	"Means and Standard Deviations before Standardization:",
+	"",
+	capture.output(print(stats))
+));
 cat("\n");
 
 standardized_targets=matrix(NA, nrow=num_subjects, ncol=num_targets);
@@ -453,15 +463,47 @@ calc_antioutlier_weight=function(std_val_mat){
 UseAntiOutlierWeighting=T;
 if(UseAntiOutlierWeighting){
 
+	plot_title_page("Anti-Outlier Weighting", c(
+		"Anti-outlier weighting calculates a weighting for each variable so that",
+		"variables appearing to represent rare observations (e.g. rare diseases)",
+		"are weighted less than those that are more ubiquitous.",
+		"",
+		"To calculate the weighting:",
+		"   1.) calculate the mean",
+		"   2.) calculate the PGT: proportion of observations > mean",
+		"   3.) calculate the spread = | 1 - 2*PGT |",
+		"   4.) Weight = 1-spread",
+		"",
+		"The weights are then normalized across the variables to provide",
+		"context for how much each variables is contributing to the distance.",
+		"",
+		"For a boolean variable, the anti-outlier weighting will give more",
+		"weight to variables that are closer to 50%/50% distributed, and",
+		"much less weight to those that are closer to 99%/1% distributed."
+		));
+
 	cat("Calculating anti-outlier weights...\n");
 	anti_outlier_weights=calc_antioutlier_weight(standardized_targets);
 	print(anti_outlier_weights);
-	weight_order=order(anti_outlier_weights);
 
 	# Reorder variables by their weights
+	weight_order=order(anti_outlier_weights);
 	anti_outlier_weights=anti_outlier_weights[weight_order];
 	standardized_targets=standardized_targets[,weight_order];
 	targeted_factors=targeted_factors[,weight_order];
+
+	plot_text(c(
+		"Anti-outlier Weights (ordered):",
+		"",
+		capture.output(print(anti_outlier_weights))
+	));
+
+	decreasing_aow=sort(anti_outlier_weights, decreasing=T);
+	par(mar=c(10,4,4,1));
+	barplot(decreasing_aow, xlab="", ylab="Weighting", las=2,
+		main="Anti-Outlier Weighting");
+
+
 }
 
 
@@ -752,7 +794,8 @@ plot_variables_heatmap_avgs=function(factors, grp_split_loc, cl_feat_rec, num_co
 			var_cl_ishigh=cluster_feat_mat[cur_varname, "isHigh"];
 
 			# Map the mean to color
-			mapped_col=map_val_to_col(num_colors, factors[, cur_varname], var_cl_mean);
+			mapped_col=map_val_to_col(num_colors, factors[, cur_varname], 
+				var_cl_mean);
 
 			# Get location of start/end for each cluster
 			cl_start=cl_loc[cl_ix];
@@ -767,7 +810,8 @@ plot_variables_heatmap_avgs=function(factors, grp_split_loc, cl_feat_rec, num_co
 			if(var_cl_signf){
 				ch=ifelse(var_cl_ishigh, 24, 25);
 				points((cl_start+cl_end)/2, var_ix-.5, pch=ch, 
-					bg=ifelse(var_cl_ishigh, heat_col[num_colors], heat_col[1]));
+					bg=ifelse(var_cl_ishigh, heat_col[num_colors], 
+					heat_col[1]));
 			}
 
 		}
@@ -810,6 +854,8 @@ plot_variables_lists=function(factors, grp_split_loc, cl_feat_rec, num_colors=64
 	column_pos=seq(0, num_subjects, length.out=num_clusters+1);
 	# Location of column mids
 	column_mids=(column_pos+(column_pos[2]-column_pos[1])/2)[1:num_clusters];
+	# cluster sizes
+	cluster_sizes=diff(cl_loc);
 
 
 	for(cl_ix in 1:num_clusters){
@@ -871,7 +917,8 @@ plot_variables_lists=function(factors, grp_split_loc, cl_feat_rec, num_colors=64
 					column_pos[cl_ix+1], num_variables-i+1,
 					border=NA, 
 					col=heat_col[mapped_col]);
-				text(column_mids[cl_ix], num_variables-i-.5+1, vname, adj=.5, font=2);
+				text(column_mids[cl_ix], num_variables-i-.5+1, vname, 
+					adj=.5, font=2);
 			}
 		}
 
@@ -883,10 +930,21 @@ plot_variables_lists=function(factors, grp_split_loc, cl_feat_rec, num_colors=64
 		cex=ifelse((1:cuts)<10, 2, 1.5),
 		col=1:cuts);
 
+	# Label sample sizes
+	if(num_clusters<5){
+		mtext(paste("n=",cluster_sizes, sep=""), side=3, line=-2, at=cl_mids, font=3, cex=.7);
+	}else if(num_clusters<10){
+		mtext(cluster_sizes, side=3, line=-2, at=cl_mids, font=3, cex=.7);
+	}else{
+		mtext(cluster_sizes, side=3, line=-2, at=cl_mids, font=3, cex=.5);
+	}
+
+
 	# Draw lines and callouts
 	for(i in 1:num_clusters){
 		points(c(column_pos[i], column_pos[i]), c(0,num_variables), type="l", col="black");
 		points(c(column_pos[i], cl_loc[i]), c(num_variables,num_variables+2), type="l", col="black");
+		points(c(cl_loc[i], cl_loc[i]), c(num_variables+4,num_variables+2), type="l", col="black");
 	}
 
 	abline(v=c(0,num_subjects));
@@ -895,7 +953,30 @@ plot_variables_lists=function(factors, grp_split_loc, cl_feat_rec, num_colors=64
 
 ###############################################################################
 
-max_cuts=ceiling(log2(num_subjects)*1.2);
+plot_title_page("Dendrogram and Heatmaps", c(
+	"The following plots are generated and grouped at various cuts (k).",
+	"At the top of each page the hierarhical clustering is represented by a dendrogram at",
+	"the top of the page.  A dotted blue line represents the height",
+	"at which the tree was cut to achieve the k for that iteration.",
+	"",
+	"Below the dendrogram are heatmaps describing the nature of each cluster:",
+	"  1.) Individual values",
+	"",
+	"  2.) Cluster values (average of individual values)",
+	"If a cluster's values for a variable are significantly higher/lower then the other",
+	"subjects not in the group, then a red/blue up/down triangle is drawn in the cell.",
+	"",
+	"  3.) Cluster descriptors",
+	"These figures list the variables that were significantly greater/lower, ordered by",
+	"p-value.  Note that the colors are assigned relative to all the values for a variable.",
+	"This means a cluster may be high for variable, but it is still colored a shade",
+	"of blue because overall the there are few observations of it.",
+	"",
+	"High values are colored red, and low values are colored blue.  Intermediate",
+	"values are green."
+));
+
+max_cuts=ceiling(log2(num_subjects)*3);
 
 
 cut_clusters=list();
