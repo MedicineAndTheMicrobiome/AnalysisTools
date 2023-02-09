@@ -951,6 +951,72 @@ plot_variables_lists=function(factors, grp_split_loc, cl_feat_rec, num_colors=64
 	
 }
 
+assign_cluster_names_from_features=function(cl_feat_rec, top_feat=3){
+	# This function will look at the feature table and come up with
+	# a 'short' name for the cluster
+
+	num_clus=length(cl_feat_rec);
+	cluster_name=character(num_clus);
+	for(i in 1:num_clus){
+		feat_tab=cl_feat_rec[[i]];
+		
+		ord_ix=order(feat_tab[,"p-value"]);
+		num_signf=sum(feat_tab[,"signif"]);
+
+		top_feat=min(top_feat, num_signf);
+		top_tab=feat_tab[ord_ix[1:top_feat],];
+
+		feat_names=rownames(top_tab);
+		feat_hilo=top_tab[,"isHigh"];
+
+		cluster_name[i]=paste(
+			"cl", i, "_",
+			paste(paste(ifelse(feat_hilo, "H", "L"), ".", feat_names, sep=""), collapse="_"),
+			sep=""
+		);
+	}
+	return(cluster_name);
+
+}
+
+append_export=function(fname, orig_mat, cl_mem, cl_names){
+
+	num_cuts=length(cl_mem);
+	subj_ids=rownames(orig_mat);
+	orig_mat_colnames=colnames(orig_mat);
+
+	# Appened columns to original factor file
+	new_mat=orig_mat;
+	found_cuts=c();
+	for(k in 2:num_cuts){
+	
+		if(is.null(cl_mem[[k]])){
+			next;
+		}
+
+		cur_mem=cl_mem[[k]];
+		cur_names=cl_names[[k]];
+
+		print(cur_mem);
+		print(cur_names);
+
+		new_mat=cbind(new_mat, cur_names[cur_mem[subj_ids]]);
+
+		found_cuts=c(found_cuts, k);
+	}
+
+	# Rename column headers
+	cut_names=paste(sprintf("K%02i", found_cuts));
+	colnames(new_mat)=c(orig_mat_colnames, cut_names);
+
+	# Write to file
+	fh=file(fname, "w");
+	cat(file=fh, "subject_id\t");
+	close(fh);
+	write.table(new_mat, file=fname, sep="\t", row.names=T, col.names=T, quote=F, append=T);
+
+}
+
 ###############################################################################
 
 plot_title_page("Dendrogram and Heatmaps", c(
@@ -980,6 +1046,7 @@ max_cuts=ceiling(log2(num_subjects)*3);
 
 
 cut_clusters=list();
+clus_names=list();
 
 palette_col=c("red", "green", "blue", "cyan", "magenta", "orange", "gray", "pink", "black", 
 		"purple", "brown", "aquamarine");
@@ -1061,7 +1128,18 @@ for(k in 2:max_cuts){
 	par(mar=c(0,0,0,0));
 	plot_variables_lists(targeted_factors, grp_split_loc, cluster_features_rec);
 
+	clus_names[[k]]=assign_cluster_names_from_features(cluster_features_rec);
+			
+
 }
+
+cat("Exporting Clusters...\n");
+
+append_export(paste(OutputFnameRoot,".loaded_factors.wClusters.tsv", sep=""),
+	loaded_factors, cut_clusters, clus_names);
+
+append_export(paste(OutputFnameRoot,".targeted_factors.wClusters.tsv", sep=""),
+	targeted_factors, cut_clusters, clus_names);
 
 ###############################################################################
 
