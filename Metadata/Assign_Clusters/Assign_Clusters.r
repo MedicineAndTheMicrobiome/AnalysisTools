@@ -970,7 +970,7 @@ assign_cluster_names_from_features=function(cl_feat_rec, top_feat=3){
 		feat_hilo=top_tab[,"isHigh"];
 
 		cluster_name[i]=paste(
-			"cl", i, "_",
+			"cl", sprintf("%02i", i), "_",
 			paste(paste(ifelse(feat_hilo, "H", "L"), ".", feat_names, sep=""), collapse="_"),
 			sep=""
 		);
