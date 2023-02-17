@@ -6,7 +6,6 @@ library(MASS);
 library('getopt');
 
 options(useFancyQuotes=F);
-options(width=200);
 
 params=c(
 	"factor_fn", "f", 1, "character",
@@ -78,7 +77,7 @@ cat("\n");
 });
 
 print(params);
-options(width=200);
+options(width=80);
 
 ##############################################################################
 
@@ -135,7 +134,7 @@ plot_text=function(strings){
 	}
 }
 
-title_page=function(title, subtitle="", notes=""){
+plot_page_separator=function(title, subtitle="", notes=""){
 
 	par(mfrow=c(1,1));
 	plot(0,0, xlim=c(0,1), ylim=c(0,1), type="n",  xaxt="n", yaxt="n",
@@ -498,6 +497,7 @@ accumulate_sumfit_to_matrix=function(sumfit, mat, cname){
 	
 	mat[["coef"]][varnames, cname]=coef_tab[varnames, "Estimate"];
 	mat[["pval"]][varnames, cname]=coef_tab[varnames, "Pr(>|z|)"];
+	mat[["aic"]][cname]=sumfit[["aic"]];
 
 	return(mat);
 }
@@ -520,9 +520,14 @@ for(resp_ix in responses_arr){
 	colnames(empty_matrix)=resp_categories;
 	rownames(empty_matrix)=expected_variables;
 
+	empty_arr=numeric(num_resp_categories);
+	names(empty_arr)=resp_categories;
+
 	empty_pval_coef=list();
 	empty_pval_coef[["coef"]]=empty_matrix;
 	empty_pval_coef[["pval"]]=empty_matrix;
+	empty_pval_coef[["aic"]]=empty_arr;;
+	
 
 	responses_results[[resp_ix]]=list();
 
@@ -532,7 +537,9 @@ for(resp_ix in responses_arr){
 	responses_results[[resp_ix]][["target_covar"]]=list();
 
 	for(tg in test_group_names){
-		responses_results[[resp_ix]][["target_reduced"]][[tg]]=empty_pval_coef;
+		if(num_test_groups>2){
+			responses_results[[resp_ix]][["target_reduced"]][[tg]]=empty_pval_coef;
+		}
 		responses_results[[resp_ix]][["target_covar"]][[tg]]=empty_pval_coef;
 	}
 
@@ -566,24 +573,26 @@ for(resp_ix in responses_arr){
 		#print(cov_sum_fit);
 
 		responses_results[[resp_ix]][["covariates"]]=
-			accumulate_sumfit_to_matrix(full_sum_fit, 
+			accumulate_sumfit_to_matrix(cov_sum_fit, 
 				responses_results[[resp_ix]][["covariates"]], category_ix);
 	
 		for(tg in test_group_names){
 	
 			cat("\tFitting Targeted Models (", tg, "):\n");
 
-			# Test Targeted Reduced (All Targets except Target, + Covariates)
-			cat("\t\tFitting Targeted Reduced Model...\n");
-			tar_red_formula=as.formula(paste("responses ~ ", targeted_reduced_model_list[tg]));
-			tar_red_fit=glm(tar_red_formula, data=as.data.frame(tmp_factors), family="binomial");
-			tar_red_sum_fit=summary(tar_red_fit);
-			#print(tar_red_sum_fit);
+			if(num_test_groups>2){
 
-			responses_results[[resp_ix]][["target_reduced"]][[tg]]=
-				accumulate_sumfit_to_matrix(full_sum_fit, 
-					responses_results[[resp_ix]][["target_reduced"]][[tg]], category_ix);
+				# Test Targeted Reduced (All Targets except Target, + Covariates)
+				cat("\t\tFitting Targeted Reduced Model...\n");
+				tar_red_formula=as.formula(paste("responses ~ ", targeted_reduced_model_list[tg]));
+				tar_red_fit=glm(tar_red_formula, data=as.data.frame(tmp_factors), family="binomial");
+				tar_red_sum_fit=summary(tar_red_fit);
+				#print(tar_red_sum_fit);
 
+				responses_results[[resp_ix]][["target_reduced"]][[tg]]=
+					accumulate_sumfit_to_matrix(tar_red_sum_fit, 
+						responses_results[[resp_ix]][["target_reduced"]][[tg]], category_ix);
+			}
 
 
 			# Test Target (Target + Covariates)
@@ -594,7 +603,7 @@ for(resp_ix in responses_arr){
 			#print(tar_sum_fit);
 
 			responses_results[[resp_ix]][["target_covar"]][[tg]]=
-				accumulate_sumfit_to_matrix(full_sum_fit, 
+				accumulate_sumfit_to_matrix(tar_sum_fit, 
 					responses_results[[resp_ix]][["target_covar"]][[tg]], category_ix);
 
 
@@ -604,7 +613,337 @@ for(resp_ix in responses_arr){
 	cat("\n");
 }
 
-print(responses_results);
+###############################################################################
+
+mask_by_cutoff=function(coef_mat, pval_mat, pval_cutoff=1, mask_val=0){
+        masked_mat=coef_mat;
+        masked_mat[pval_mat>pval_cutoff]=mask_val;
+	return(masked_mat);
+}
+
+plot_signif_summary=function(coef_mat, pval_mat){
+
+	print(coef_mat);
+
+	dir_mat=apply(coef_mat, c(1,2), function(x){ 
+		ifelse(x==0, 0, ifelse(x>0, 1, -1));}
+		);
+
+	signf_mat=apply(pval_mat, c(1,2), function(x){
+		if(x<.001){
+			s=4;
+		}else if(x<0.01){
+			s=3;
+		}else if(x<0.05){
+			s=2;
+		}else if(x<0.10){
+			s=1;
+		}else{
+			s=0;
+		}
+	});
+
+	comp_mat=dir_mat * signf_mat;	
+		
+	paint_matrix(comp_mat, title="Significant Associations", 
+		deci_pts=2, label_zeros=F, value.cex=1);
+	
+}
+
+
+get_aic=function(fit_results){
+	
+	# Pull AIC values from results
+	model_aics=list();
+	model_aics[["full"]]=fit_results[["full"]]$aic;
+	model_aics[["covar_only"]]=fit_results[["covariates"]]$aic;
+
+	tr_names=names(fit_results[["target_reduced"]]);
+	for(tr in tr_names){
+		trname=paste("excl_", tr, sep="");
+		model_aics[[trname]]=fit_results[["target_reduced"]][[tr]]$aic;
+	}
+
+	tr_names=names(fit_results[["target_covar"]]);
+	for(tr in tr_names){
+		trname=paste("covar+", tr, sep="");
+		model_aics[[trname]]=fit_results[["target_covar"]][[tr]]$aic;
+	}
+
+	# Combine into matrix
+	results=numeric();
+	mnames=names(model_aics);
+	for(m in mnames){
+		results=rbind(results, model_aics[[m]]);
+	}
+	rownames(results)=mnames;
+	colnames(results)=names(model_aics[["full"]]);
+	print(results);
+
+	return(results);
+
+}
+
+#------------------------------------------------------------------------------
+
+adj_spacing=function(aicm){
+	param=par()
+	ch=param$cxy[2];	
+	min_pos=param$usr[3]+.5*ch;
+	max_pos=param$usr[4]-.5*ch;
+	num_labels=nrow(aicm)*ncol(aicm);
+
+	aic_arr=as.numeric(aicm);
+	names(aic_arr)=1:num_labels;
+	aic_arr=sort(aic_arr);
+	num_aics=length(aic_arr);
+
+	ch=min(ch, (max_pos-min_pos)/(num_aics+2));
+	adj=.5*ch;
+	cat("Targeted Spacings: ", ch, " (Ideal: ", param$cxy[2], ")\n");
+	cat("Allowed Adjustment Range: ", min_pos, " - ", max_pos, "\n");
+
+	adj_made=T;
+	max_iter=1000000;
+
+	tweak_iter=0
+	iter=0;
+	
+	while(adj_made && iter<max_iter){
+		adj_made=F;
+
+		for(i in 1:(num_aics-1)){
+			if((aic_arr[i+1]-aic_arr[i])<ch){
+				aic_arr[i+1]=min(aic_arr[i+1]+adj, max_pos);
+				adj_made=T;
+			}
+		}
+
+		for(i in (num_aics:2)){
+			if((aic_arr[i]-aic_arr[i-1])<ch){
+				aic_arr[i-1]=max(aic_arr[i-1]-adj, min_pos);
+				adj_made=T;
+			}
+		}
+
+		if(tweak_iter>2*num_labels){
+			ch=ch*.95;	
+			adj=adj*.95;
+			tweak_iter=0;
+			cat("Reducing spacing requirements: ", ch, "\n");
+		}
+
+		iter=iter+1;
+		tweak_iter=tweak_iter+1;
+	}
+
+	if(iter==max_iter){
+		cat("WARNING: Hit adjustment iteration limit.\n");
+	}
+
+	reorder=order(as.numeric(names(aic_arr)));
+	aic_arr=aic_arr[reorder];
+
+	na_padded=rep(NA, num_labels);
+	names(na_padded)=1:num_labels;
+	na_padded[as.numeric(names(aic_arr))]=aic_arr;	
+
+	out_aicm=matrix(na_padded, nrow=nrow(aicm));
+	colnames(out_aicm)=colnames(aicm);
+	rownames(out_aicm)=rownames(aicm);
+
+	return(out_aicm);
+
+}
+
+#------------------------------------------------------------------------------
+
+plot_top_aics_table=function(aic_matrix, aic_thres=2, title=""){
+
+	cat("Generating table for top AICs Models...\n");
+	print(aic_matrix);
+
+	num_col=ncol(aic_matrix);
+	num_models=nrow(aic_matrix);
+	model_names=rownames(aic_matrix);
+	category_names=colnames(aic_matrix);
+
+	# Remove models not within aic_thres of top
+	max_aics=apply(aic_matrix, 2, max);
+	for(i in 1:num_col){
+		val=aic_matrix[,i];
+		val[(max_aics[i]-val)>aic_thres]=NA;
+		aic_matrix[,i]=val;
+	}
+	print(aic_matrix);	
+
+
+	par(mar=c(1,10,14,5));
+	par(oma=c(0,0,2,0));
+
+	plot(0,0, type="n", xlim=c(0, num_col), ylim=c(0, num_models),
+		ylab="", xlab="Response Categories", bty="n",
+		xaxt="n", yaxt="n"
+		);
+
+	text((1:num_col)-1, num_models+.05, pos=4, srt=45, xpd=T, category_names);
+
+	text(0, (1:num_models)-.5, pos=2, srt=0, xpd=T, model_names);
+
+
+	for(cix in 1:num_col){
+		for(mix in 1:num_models){
+
+			best=F;
+
+			if(!is.na(aic_matrix[mix, cix])){
+				fill="blue";
+
+				otherval=aic_matrix[,cix];
+				otherval=otherval[!is.na(otherval)];
+				best=T;
+				if(any(aic_matrix[mix, cix]<otherval)){
+					best=F;
+				}
+
+			}else{
+				fill="white";
+			}
+
+			# Fill in cell
+			rect(xleft=cix-1, ybottom=mix-1, xright=cix, ytop=mix, col=fill);
+
+			# Mark as best
+			if(best){
+				points(cix-.5, mix-.5, type="p", col="orange", cex=2, pch="*")
+			}
+
+		}	
+	}
+
+	mtext(title, side=3, outer=T, font=2, cex=1.5);
+
+}
+
+#------------------------------------------------------------------------------
+
+plot_top_aics=function(aic_matrix, aic_thres=2, title=""){
+
+	cat("Plotting top AICs Models...\n");
+	#print(aic_matrix);
+
+	num_col=ncol(aic_matrix);
+	num_models=nrow(aic_matrix);
+	model_names=rownames(aic_matrix);
+	category_names=colnames(aic_matrix);
+
+	# Remove models not within aic_thres of top
+	max_aics=apply(aic_matrix, 2, max);
+	for(i in 1:num_col){
+		val=aic_matrix[,i];
+		val[(max_aics[i]-val)>aic_thres]=NA;
+		aic_matrix[,i]=val;
+	}
+	print(aic_matrix);	
+
+	aic_range=range(as.numeric(aic_matrix), na.rm=T);
+	min_aic=aic_range[1];
+	max_aic=aic_range[2];
+	cat("Input Range: ", aic_range, "\n");
+
+	aic_range=max_aic-min_aic;
+
+	par(mar=c(1,4,14,10));
+	par(oma=c(0,0,2,0));
+
+	plot(0,0, type="n", xlim=c(0, num_col), ylim=c(min_aic, max_aic),
+		ylab="AIC", xlab="Response Categories", bty="n",
+		xaxt="n"
+		);
+	text((1:num_col)-1, max_aic+aic_range*.05, pos=4, srt=45, xpd=T, category_names);
+	abline(v=0:num_col, col="grey");
+
+	aic_matrix_spc_adj=adj_spacing(aic_matrix);
+
+	chw=par()$cxy[1];
+
+	for(cix in 1:num_col){
+		for(mix in 1:num_models){
+			points(cix-.95, aic_matrix[mix, cix], cex=.5);
+			points(c(cix-1+.05, cix-1+.1), 
+				c(aic_matrix[mix, cix], aic_matrix_spc_adj[mix, cix]), type="l");
+
+			text(cix-1+.1-chw*.70, aic_matrix_spc_adj[mix, cix], model_names[mix], pos=4, xpd=T);
+
+		}	
+	}
+
+	mtext(title, side=3, outer=T, font=2, cex=1.5);
+
+}
+
+#------------------------------------------------------------------------------
+
+plot_results=function(resp_rec){
+	
+	cat("Plotting Results:\n");
+	resp_var_names=names(resp_rec);
+	num_responses=length(resp_var_names);
+
+	cat("Number of Response Variables:", num_responses, "\n");
+
+	plot_text(c(
+		paste("Number of Respose Variables:", num_responses),
+		"",
+		print(resp_var_names)
+	));
+
+
+	for(resp_var_ix in resp_var_names){
+
+		cat("Working on Response Variable: ", resp_var_ix, "\n");
+		plot_page_separator(resp_var_ix);
+
+		resp_var_res=resp_rec[[resp_var_ix]];
+		models=names(resp_var_res);
+		print(models);
+
+		print(resp_var_res[["full"]]);
+		full_coef_mat=resp_var_res[["full"]][["coef"]];
+		full_pval_mat=resp_var_res[["full"]][["pval"]];
+
+		masked_coef=mask_by_cutoff(full_coef_mat, full_pval_mat, pval_cutoff=1);
+		paint_matrix(masked_coef, title="Full Model: All Assoc", 
+			deci_pts=2, label_zeros=F, value.cex=1);
+
+		masked_coef=mask_by_cutoff(full_coef_mat, full_pval_mat, pval_cutoff=.1);
+		paint_matrix(masked_coef, title="Full Model: Signf Assoc (p-val<0.1)", 
+			deci_pts=2, label_zeros=F, value.cex=1);
+
+
+	
+		aic_values=get_aic(resp_var_res);	
+
+		plot_text(c(
+			"Model Fit AIC Values:",
+			"(Remember: If two models are within 2 AIC units of each other,",
+			"  then they can not be considered significantly better/worse than",
+			"  each other.)", 
+			"",
+			capture.output(print(aic_values))
+		));
+
+		plot_top_aics(aic_values, Inf, "Relative AIC: All Models");
+		plot_top_aics(aic_values, 2, "Models with AIC within 2 of Top Model");
+
+		plot_top_aics_table(aic_values, 2, "Top Models Table");
+
+	}	
+}
+
+#------------------------------------------------------------------------------
+
+plot_results(responses_results);
 
 
 ###############################################################################
