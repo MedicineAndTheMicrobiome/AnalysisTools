@@ -678,7 +678,6 @@ get_aic=function(fit_results){
 	}
 	rownames(results)=mnames;
 	colnames(results)=names(model_aics[["full"]]);
-	print(results);
 
 	return(results);
 
@@ -761,7 +760,6 @@ adj_spacing=function(aicm){
 plot_top_aics_table=function(aic_matrix, aic_thres=2, title=""){
 
 	cat("Generating table for top AICs Models...\n");
-	print(aic_matrix);
 
 	num_col=ncol(aic_matrix);
 	num_models=nrow(aic_matrix);
@@ -775,7 +773,6 @@ plot_top_aics_table=function(aic_matrix, aic_thres=2, title=""){
 		val[(max_aics[i]-val)>aic_thres]=NA;
 		aic_matrix[,i]=val;
 	}
-	print(aic_matrix);	
 
 
 	par(mar=c(1,10,14,5));
@@ -844,7 +841,6 @@ plot_top_aics=function(aic_matrix, aic_thres=2, title=""){
 		val[(max_aics[i]-val)>aic_thres]=NA;
 		aic_matrix[,i]=val;
 	}
-	print(aic_matrix);	
 
 	aic_range=range(as.numeric(aic_matrix), na.rm=T);
 	min_aic=aic_range[1];
@@ -853,14 +849,14 @@ plot_top_aics=function(aic_matrix, aic_thres=2, title=""){
 
 	aic_range=max_aic-min_aic;
 
-	par(mar=c(1,4,14,10));
+	par(mar=c(1,4,14,14));
 	par(oma=c(0,0,2,0));
 
 	plot(0,0, type="n", xlim=c(0, num_col), ylim=c(min_aic, max_aic),
 		ylab="AIC", xlab="Response Categories", bty="n",
 		xaxt="n"
 		);
-	text((1:num_col)-1, max_aic+aic_range*.05, pos=4, srt=45, xpd=T, category_names);
+	text((1:num_col)-.5, max_aic+aic_range*.05, pos=4, srt=45, xpd=T, category_names);
 	abline(v=0:num_col, col="grey");
 
 	aic_matrix_spc_adj=adj_spacing(aic_matrix);
@@ -879,6 +875,48 @@ plot_top_aics=function(aic_matrix, aic_thres=2, title=""){
 	}
 
 	mtext(title, side=3, outer=T, font=2, cex=1.5);
+
+}
+
+#------------------------------------------------------------------------------
+
+plot_contributors=function(pval_mat, pval_cutoff){
+
+	num_predictors=nrow(pval_mat);
+	num_categories=ncol(pval_mat);
+
+	pred_contrib=apply(pval_mat, 1, function(x){
+		sum(x<=pval_cutoff)});
+
+	category_contrib=apply(pval_mat, 2, function(x){
+		sum(x<=pval_cutoff)});
+
+	category_contrib=sort(category_contrib, decreasing=T);
+	pred_contrib=sort(pred_contrib, decreasing=T);
+
+	#print(pred_contrib);
+	#print(category_contrib);
+
+	par(mfrow=c(2,1));
+	par(mar=c(15, 4, 2, 10));
+
+	bmids=barplot(category_contrib, 
+		main=paste("Number of Predictors Category Associated with: p-val < ", pval_cutoff, sep=""),
+		xaxt="n", ylim=c(0, num_predictors), ylab="Num Predictors"
+		);
+	abline(h=num_predictors, lty="dashed", col="blue");
+	chx=par()$cxy[1];
+	chy=par()$cxy[2]
+	text(bmids-chx, -.75*chy, names(category_contrib), pos=4, srt=-45, xpd=T);
+
+	bmids=barplot(pred_contrib, 
+		main=paste("Number of Categories Predictor Associated with: p-val < ", pval_cutoff, sep=""),
+		xaxt="n", ylim=c(0, num_categories), ylab="Num Categories"
+		);
+	abline(h=num_categories, lty="dashed", col="blue");
+	chx=par()$cxy[1];
+	chy=par()$cxy[2]
+	text(bmids-chx, -.75*chy, names(pred_contrib), pos=4, srt=-45, xpd=T);
 
 }
 
@@ -906,9 +944,9 @@ plot_results=function(resp_rec){
 
 		resp_var_res=resp_rec[[resp_var_ix]];
 		models=names(resp_var_res);
-		print(models);
+		#print(models);
 
-		print(resp_var_res[["full"]]);
+		#print(resp_var_res[["full"]]);
 		full_coef_mat=resp_var_res[["full"]][["coef"]];
 		full_pval_mat=resp_var_res[["full"]][["pval"]];
 
@@ -921,8 +959,11 @@ plot_results=function(resp_rec){
 			deci_pts=2, label_zeros=F, value.cex=1);
 
 
+		plot_contributors(full_pval_mat, pval_cutoff=.1);
 	
 		aic_values=get_aic(resp_var_res);	
+
+		par(mfrow=c(1,1));		
 
 		plot_text(c(
 			"Model Fit AIC Values:",
