@@ -880,43 +880,115 @@ plot_top_aics=function(aic_matrix, aic_thres=2, title=""){
 
 #------------------------------------------------------------------------------
 
-plot_contributors=function(pval_mat, pval_cutoff){
+plot_contributors=function(pval_mat, pval_cutoff, covariates, group_map){
+
+	group_map[["covariates"]]=covariates;
 
 	num_predictors=nrow(pval_mat);
 	num_categories=ncol(pval_mat);
 
-	pred_contrib=apply(pval_mat, 1, function(x){
-		sum(x<=pval_cutoff)});
+	num_groups=length(group_map);
+	grp_names=names(group_map);
 
-	category_contrib=apply(pval_mat, 2, function(x){
-		sum(x<=pval_cutoff)});
+	num_resp_cat=ncol(pval_mat);
+	resp_names=colnames(pval_mat);	
 
-	category_contrib=sort(category_contrib, decreasing=T);
-	pred_contrib=sort(pred_contrib, decreasing=T);
+	#----------------------------------------------------------------------
+	# Split predictors into their groups
 
-	#print(pred_contrib);
-	#print(category_contrib);
+	contrib_matrix=matrix(NA, nrow=num_groups, ncol=num_resp_cat);
+	rownames(contrib_matrix)=grp_names;
+	colnames(contrib_matrix)=resp_names;
+
+	for(g_ix in grp_names){
+		gr_var_list=group_map[[g_ix]];
+		grp_pval_mat=pval_mat[gr_var_list,,drop=F];
+		num_predict_contrib=apply(grp_pval_mat, 2, function(x){
+			sum(x<=pval_cutoff)});
+		contrib_matrix[g_ix,]=num_predict_contrib;
+	}
+
+	# Sort by total contributions
+	all_contrib_arr=apply(contrib_matrix, 2, sum);
+
+	sort_ix=order(all_contrib_arr, decreasing=T);
+	contrib_matrix=contrib_matrix[,sort_ix, drop=F];
+	all_contrib_arr=all_contrib_arr[sort_ix];
+
+	cat("\nContributions by Group:\n");
+	print(contrib_matrix);
+	cat("\n\nTotal Contributions across Groups:\n");
+	print(all_contrib_arr);
+	cat("\n");
+
+	#----------------------------------------------------------------------
+	# Get group colors
+	grp_col=rainbow(num_groups, end=2/3);
+	names(grp_col)=grp_names;
+
+	# Assign group colors to underlying variable names
+	pred_cols=character();
+	for(g_ix in grp_names){
+		grp_var=rep(grp_col[[g_ix]], length(group_map[[g_ix]]));
+		names(grp_var)=group_map[[g_ix]];
+		pred_cols=c(pred_cols, grp_var);
+	}
+	print(pred_cols);
+
+	#----------------------------------------------------------------------
+	# Generate Predictors by Category plot
 
 	par(mfrow=c(2,1));
 	par(mar=c(15, 4, 2, 10));
 
-	bmids=barplot(category_contrib, 
-		main=paste("Number of Predictors Category Associated with: p-val < ", pval_cutoff, sep=""),
-		xaxt="n", ylim=c(0, num_predictors), ylab="Num Predictors"
-		);
+	plot(0,0, xlim=c(0, num_resp_cat+1), ylim=c(0, num_predictors*1.1),
+		main=paste("Num. of Assoc. Predictors by Resp. Category: p-val < ", pval_cutoff, sep=""),
+		bty="n",
+		xaxt="n", xlab="", ylab="Num Predictors", type="n");
+
+	cumsums=apply(contrib_matrix, 2, cumsum);
+	print(cumsums);
+	for(g_ix in rev(grp_names)){
+		for(cat_ix in 1:num_categories){
+			rect(
+				xleft=cat_ix-1+.05, 
+				xright=cat_ix-.05, 
+				ybottom=0, 
+				ytop=cumsums[g_ix, cat_ix], 
+			col=grp_col[g_ix]);
+		}
+	}
+
+	bmids=(1:num_resp_cat)-.5;
+
 	abline(h=num_predictors, lty="dashed", col="blue");
 	chx=par()$cxy[1];
 	chy=par()$cxy[2]
-	text(bmids-chx, -.75*chy, names(category_contrib), pos=4, srt=-45, xpd=T);
+	text(bmids-chx, -.75*chy, names(all_contrib_arr), pos=4, srt=-45, xpd=T);
+
+	legend(num_resp_cat*3/4, num_predictors, legend=grp_names, fill=grp_col, bty="n");
+
+	#----------------------------------------------------------------------
+	# Generate Categories by Predictor plot
+
+	pred_contrib=apply(pval_mat, 1, function(x){
+		sum(x<=pval_cutoff)});
+
+	pred_contrib=sort(pred_contrib, decreasing=T);
+
+	#----------------------------------------------------------------------
 
 	bmids=barplot(pred_contrib, 
-		main=paste("Number of Categories Predictor Associated with: p-val < ", pval_cutoff, sep=""),
-		xaxt="n", ylim=c(0, num_categories), ylab="Num Categories"
+		main=paste("Num. of Assoc. Categories by Predictor: p-val < ", pval_cutoff, sep=""),
+		xaxt="n", ylim=c(0, num_categories*1.1), ylab="Num Categories",
+		col=pred_cols[names(pred_contrib)]
 		);
 	abline(h=num_categories, lty="dashed", col="blue");
 	chx=par()$cxy[1];
 	chy=par()$cxy[2]
 	text(bmids-chx, -.75*chy, names(pred_contrib), pos=4, srt=-45, xpd=T);
+
+	legend(num_predictors*3/4, num_resp_cat, legend=grp_names, fill=grp_col, bty="n");
 
 }
 
@@ -959,7 +1031,7 @@ plot_results=function(resp_rec){
 			deci_pts=2, label_zeros=F, value.cex=1);
 
 
-		plot_contributors(full_pval_mat, pval_cutoff=.1);
+		plot_contributors(full_pval_mat, pval_cutoff=.1, covariates_arr, test_group_map);
 	
 		aic_values=get_aic(resp_var_res);	
 
