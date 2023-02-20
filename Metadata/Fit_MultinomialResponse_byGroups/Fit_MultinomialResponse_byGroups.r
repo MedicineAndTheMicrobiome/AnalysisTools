@@ -758,6 +758,7 @@ adj_spacing=function(aicm){
 #------------------------------------------------------------------------------
 
 plot_top_aics_table=function(aic_matrix, aic_thres=2, title=""){
+	# Colored Cells
 
 	cat("Generating table for top AICs Models...\n");
 
@@ -868,9 +869,9 @@ plot_top_aics=function(aic_matrix, aic_thres=2, title=""){
 
 	for(cix in 1:num_col){
 		for(mix in 1:num_models){
-			points(cix-.95, aic_matrix[mix, cix], cex=.5);
+			points(c(cix-.95, cix-1.05), rep(aic_matrix[mix, cix], 2), type="l", col="blue");
 			points(c(cix-1+.05, cix-1+.1), 
-				c(aic_matrix[mix, cix], aic_matrix_spc_adj[mix, cix]), type="l");
+				c(aic_matrix[mix, cix], aic_matrix_spc_adj[mix, cix]), type="l", col="blue");
 
 			text(cix-1+.1-chw*.70, aic_matrix_spc_adj[mix, cix], model_names[mix], pos=4, xpd=T);
 
