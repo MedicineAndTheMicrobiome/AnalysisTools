@@ -787,6 +787,7 @@ plot_top_aics_table=function(aic_matrix, aic_thres=2, title=""){
 
 	text(0, (1:num_models)-.5, pos=2, srt=0, xpd=T, model_names);
 
+	num_best=apply(aic_matrix, 2, function(x){ sum(!is.na(x))});
 
 	for(cix in 1:num_col){
 		for(mix in 1:num_models){
@@ -794,7 +795,8 @@ plot_top_aics_table=function(aic_matrix, aic_thres=2, title=""){
 			best=F;
 
 			if(!is.na(aic_matrix[mix, cix])){
-				fill="blue";
+
+				fill=ifelse(num_best[cix]==1, "blue", "cornflowerblue");
 
 				otherval=aic_matrix[,cix];
 				otherval=otherval[!is.na(otherval)];
@@ -812,7 +814,8 @@ plot_top_aics_table=function(aic_matrix, aic_thres=2, title=""){
 
 			# Mark as best
 			if(best){
-				points(cix-.5, mix-.5, type="p", col="orange", cex=2, pch="*")
+				points(cix-.5, mix-.5, type="p", col="darkorange3", 
+					font=2, cex=3, pch="*")
 			}
 
 		}	
@@ -894,6 +897,21 @@ plot_contributors=function(pval_mat, pval_cutoff, covariates, group_map){
 	resp_names=colnames(pval_mat);	
 
 	#----------------------------------------------------------------------
+	# Get group colors
+	grp_col=rainbow(num_groups, end=2/3);
+	names(grp_col)=grp_names;
+
+	# Assign group colors to underlying variable names
+	pred_cols=character();
+	for(g_ix in grp_names){
+		grp_var=rep(grp_col[[g_ix]], length(group_map[[g_ix]]));
+		names(grp_var)=group_map[[g_ix]];
+		pred_cols=c(pred_cols, grp_var);
+	}
+	print(pred_cols);
+
+	#----------------------------------------------------------------------
+	#----------------------------------------------------------------------
 	# Split predictors into their groups
 
 	contrib_matrix=matrix(NA, nrow=num_groups, ncol=num_resp_cat);
@@ -920,20 +938,6 @@ plot_contributors=function(pval_mat, pval_cutoff, covariates, group_map){
 	cat("\n\nTotal Contributions across Groups:\n");
 	print(all_contrib_arr);
 	cat("\n");
-
-	#----------------------------------------------------------------------
-	# Get group colors
-	grp_col=rainbow(num_groups, end=2/3);
-	names(grp_col)=grp_names;
-
-	# Assign group colors to underlying variable names
-	pred_cols=character();
-	for(g_ix in grp_names){
-		grp_var=rep(grp_col[[g_ix]], length(group_map[[g_ix]]));
-		names(grp_var)=group_map[[g_ix]];
-		pred_cols=c(pred_cols, grp_var);
-	}
-	print(pred_cols);
 
 	#----------------------------------------------------------------------
 	# Generate Predictors by Category plot
@@ -975,8 +979,6 @@ plot_contributors=function(pval_mat, pval_cutoff, covariates, group_map){
 		sum(x<=pval_cutoff)});
 
 	pred_contrib=sort(pred_contrib, decreasing=T);
-
-	#----------------------------------------------------------------------
 
 	bmids=barplot(pred_contrib, 
 		main=paste("Num. of Assoc. Categories by Predictor: p-val < ", pval_cutoff, sep=""),
