@@ -1017,34 +1017,166 @@ list_signf_pred_by_category=function(coef_mat, pval_mat, pval_cutoff=.1){
 	num_categories=ncol(coef_mat);
 	predictor_names=rownames(coef_mat);
 
+	orig_width=options()$width;
+
 	out_text=c();
-	
+	options(width=1000);
 	for(cat in category_names){
+
+		# Extract signf rows for this category
 		signif=pval_mat[,cat]<=pval_cutoff;
-		
 		signf_coef=coef_mat[signif, cat];
 		signf_pval=pval_mat[signif, cat];
 		pred_names=predictor_names[signif];
 
-		formatted_list=paste(pred_names, " (coef=", sprintf("%3.4f", signf_coef), ", ",
-				"p-val=", sprintf("%3.4f", signf_pval), ")", sep="");
-		
-		str=capture.output({
-			cat("Category: ", cat, "\n");
-			print(formatted_list, quote=F);
-			cat("\n");
-		});
+		names(signf_coef)=pred_names;
+		names(signf_pval)=pred_names;
 
-		out_text=c(out_text, str);
+		# Sort by pvalue
+		sort_pval_order=order(signf_pval, decreasing=F);
+		cat_pval_sort=signf_pval[sort_pval_order];
+		cat_coef_sort=signf_coef[sort_pval_order];
+		pred_names=pred_names[sort_pval_order];
+
+		num_signf=length(signf_coef);
+	
+		pos_assoc=character();
+		neg_assoc=character();
+		
+		if(length(pred_names)){
+			for(pred in pred_names){
+				formatted=paste(
+					pred, 
+					" (coef=", sprintf("%3.4f", cat_coef_sort[pred]), ", ",
+					"p-val=", sprintf("%3.4f", cat_pval_sort[pred]), ")", 
+					sep="");
+
+				if(cat_coef_sort[pred]>0){
+					pos_assoc=c(pos_assoc, formatted);
+				}else{
+					neg_assoc=c(neg_assoc, formatted);
+				}
+			}
+		}	
+
+		num_pos=length(pos_assoc);
+		num_neg=length(neg_assoc);
+
+		max_len=max(num_pos, num_neg);
+
+		pos_neg_mat=matrix("", nrow=max_len, ncol=2);
+		colnames(pos_neg_mat)=c("[Negative (-)]", "[Positive (+)]");
+
+		if(num_neg>0){
+			pos_neg_mat[1:num_neg,1]=neg_assoc;
+		}
+		if(num_pos>0){
+			pos_neg_mat[1:num_pos,2]=pos_assoc;
+		}
+
+		out_text=c(out_text,
+			paste("Response Category: ", cat, sep=""),
+			capture.output(print(pos_neg_mat, quote=F, width=1000)),
+			""
+			);
+
 	}	
 
-	print(out_text);
-	
+	#print(out_text);
 	plot_text(c(
 		paste("Number of Categories: ", num_categories),
 		"",
-		out_text
+		out_text,
+		"----------------------------------------------End----------------------------------------------"
 	), max_lines_pp=50);
+
+	options(width=orig_width);
+
+}
+
+list_signf_category_by_pred=function(coef_mat, pval_mat, pval_cutoff=.1){
+
+	category_names=colnames(coef_mat);
+	num_categories=ncol(coef_mat);
+	num_predictors=nrow(coef_mat);
+	predictor_names=rownames(coef_mat);
+
+	orig_width=options()$width;
+
+	out_text=c();
+	options(width=1000);
+
+	for(pred in predictor_names){
+
+		# Extract signf rows for this category
+		signif=pval_mat[pred,]<=pval_cutoff;
+		signf_coef=coef_mat[pred, signif];
+		signf_pval=pval_mat[pred, signif];
+		cat_names=category_names[signif];
+
+		names(signf_coef)=cat_names;
+		names(signf_pval)=cat_names;
+
+		# Sort by pvalue
+		sort_pval_order=order(signf_pval, decreasing=F);
+		pred_pval_sort=signf_pval[sort_pval_order];
+		pred_coef_sort=signf_coef[sort_pval_order];
+		cat_names=cat_names[sort_pval_order];
+
+
+		num_signf=length(signf_coef);
+	
+		pos_assoc=character();
+		neg_assoc=character();
+
+		if(length(cat_names)){		
+			for(cat in cat_names){
+				formatted=paste(
+					cat, 
+					" (coef=", sprintf("%3.4f", pred_coef_sort[cat]), ", ",
+					"p-val=", sprintf("%3.4f", pred_pval_sort[cat]), ")", 
+					sep="");
+
+				if(pred_coef_sort[cat]>0){
+					pos_assoc=c(pos_assoc, formatted);
+				}else{
+					neg_assoc=c(neg_assoc, formatted);
+				}
+			}	
+		}
+
+		num_pos=length(pos_assoc);
+		num_neg=length(neg_assoc);
+
+		max_len=max(num_pos, num_neg);
+
+		pos_neg_mat=matrix("", nrow=max_len, ncol=2);
+		colnames(pos_neg_mat)=c("[Negative (-)]", "[Positive (+)]");
+
+		if(num_neg>0){
+			pos_neg_mat[1:num_neg,1]=neg_assoc;
+		}
+		if(num_pos>0){
+			pos_neg_mat[1:num_pos,2]=pos_assoc;
+		}
+
+		out_text=c(out_text,
+			paste("Predictor: ", pred, sep=""),
+			capture.output(print(pos_neg_mat, quote=F, width=1000)),
+			""
+			);
+
+	}	
+
+	#print(out_text);
+	plot_text(c(
+		paste("Number of Predictors: ", num_predictors),
+		"",
+		out_text,
+		"----------------------------------------------End----------------------------------------------"
+	), max_lines_pp=50);
+
+	options(width=orig_width);
 
 }
 
@@ -1200,6 +1332,7 @@ plot_results=function(resp_rec){
 			deci_pts=2, label_zeros=F, value.cex=1);
 
 		list_signf_pred_by_category(full_coef_mat, full_pval_mat, pval_cutoff=.1);
+		list_signf_category_by_pred(full_coef_mat, full_pval_mat, pval_cutoff=.1);
 
 		plot_contributors(full_pval_mat, pval_cutoff=.1, covariates_arr, test_group_map);
 	
