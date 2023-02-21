@@ -198,6 +198,13 @@ usage = paste(
 	"		into a boolean, do this:\n",
 	"			bool_x=ifelse(standardize(x)>0, 1, 0);\n",
 	"\n",
+	"	 hinged(x, knot, type)\n",
+	"		This function is used to apply a hinge function for MARS-like splines.\n",
+	"		The knot is the point where the inflection begins.\n",
+	"		The two types of hinges are: 'low_flat_call' and 'high_flat_put'\n",
+	"		The low_flat_call starts flat and then increases after the knot.\n",
+	"		The high_flat_put starts high, then decrease until the knot, and goes flat.\n",
+	"\n",
 	"\n",
 	"For debugging you can also do:\n",
 	"	print <variable name>\n",
@@ -795,6 +802,25 @@ batch_apply=function(factors, list_fname, funct_str, ext, keep){
 
 standardize=function(x){
 	return((x-mean(x))/sd(x));
+}
+
+##############################################################################
+
+hinge=function(x, knot, type){
+
+	num_val=length(x);
+	if(type=="low_flat_call"){
+		# Low values are flat, High values follow x
+		hinged=ifelse(x<knot, 0, x-knot);
+	}else if(type=="high_flat_put"){
+		# Low values are flat, High values follow x
+		hinged=ifelse(x>knot, 0, knot-x);
+	}else{
+		cat("Error, unknown hinge type, only:\n");
+		cat("'low_flat_call' and 'high_flat_put' allowed.\n");
+	}
+	return(hinged);
+
 }
 
 ##############################################################################
