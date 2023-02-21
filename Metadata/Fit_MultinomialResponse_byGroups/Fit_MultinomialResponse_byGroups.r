@@ -111,28 +111,48 @@ load_list=function(filename){
 	return(val);
 }
 
-plot_text=function(strings){
-	par(family="Courier");
-	par(oma=rep(.1,4));
-	par(mar=rep(0,4));
+plot_text=function(strings, max_lines_pp=Inf){
 
-	num_lines=length(strings);
-	
-	top=max(as.integer(num_lines), 52);
+        orig.par=par(no.readonly=T);
 
-	plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
-		xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
-		);
+        par(mfrow=c(1,1));
+        par(family="Courier");
+        par(oma=rep(.5,4));
+        par(mar=rep(0,4));
 
-	text_size=max(.01, min(.8, .8 - .003*(num_lines-52)));
-	#print(text_size);
+        num_lines=length(strings);
+        num_pages=max(1, ceiling(num_lines/max_lines_pp));
 
-	for(i in 1:num_lines){
-		#cat(strings[i], "\n", sep="");
-		strings[i]=gsub("\t", "", strings[i]);
-		text(0, top-i, strings[i], pos=4, cex=text_size); 
-	}
+        cat("Num Pages for ", num_lines, " lines: ", num_pages, "\n", sep="");
+
+        lines_pp=min(num_lines, max_lines_pp);
+        for(p in 1:num_pages){
+
+                top=max(as.integer(lines_pp), 52);
+
+                plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
+                        xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
+                        );
+
+                text_size=max(.01, min(.7, .7 - .003*(lines_pp-52)));
+                #print(text_size);
+
+                start=(p-1)*lines_pp+1;
+                end=start+lines_pp-1;
+                end=min(end, num_lines);
+                line=1;
+                for(i in start:end){
+                        #cat(strings[i], "\n", sep="");
+                        strings[i]=gsub("\t", "", strings[i]);
+                        text(0, top-line, strings[i], pos=4, cex=text_size);
+                        line=line+1;
+                }
+
+        }
+
+        par(orig.par);
 }
+
 
 plot_page_separator=function(title, subtitle="", notes=""){
 
@@ -784,7 +804,7 @@ plot_top_aics_table=function(aic_matrix, aic_thres=2, title=""){
 		xaxt="n", yaxt="n"
 		);
 
-	text((1:num_col)-1, num_models+.05, pos=4, srt=45, xpd=T, category_names);
+	text((1:num_col)-1, num_models+.05, pos=4, srt=45, xpd=T, cex=.8, category_names);
 
 	text(0, (1:num_models)-.5, pos=2, srt=0, xpd=T, model_names);
 
@@ -860,7 +880,9 @@ plot_top_aics=function(aic_matrix, aic_thres=2, title=""){
 		ylab="AIC", xlab="Response Categories", bty="n",
 		xaxt="n"
 		);
-	text((1:num_col)-.5, max_aic+aic_range*.05, pos=4, srt=45, xpd=T, category_names);
+	plot_top=par()$usr[4];
+	plot_bottom=par()$usr[3];
+	text((1:num_col)-1, plot_top, pos=4, srt=45, xpd=T, font=2, cex=.8, category_names);
 	abline(v=0:num_col, col="grey");
 
 	aic_matrix_spc_adj=adj_spacing(aic_matrix);
@@ -879,6 +901,41 @@ plot_top_aics=function(aic_matrix, aic_thres=2, title=""){
 	}
 
 	mtext(title, side=3, outer=T, font=2, cex=1.5);
+
+}
+
+#------------------------------------------------------------------------------
+
+list_signf_pred_by_category=function(coef_mat, pval_mat, pval_cutoff=.1){
+
+	category_names=colnames(coef_mat);
+	num_categories=ncol(coef_mat);
+	predictor_names=rownames(coef_mat);
+
+	out_text=c();
+	
+	for(cat in category_names){
+		signif=pval_mat[,cat]<=pval_cutoff;
+		
+		signf_coef=coef_mat[signif, cat];
+		signf_pval=pval_mat[signif, cat];
+		pred_names=predictor_names[signif];
+
+		formatted_list=paste(pred_names, " (coef=", sprintf("%3.4f", signf_coef), ", ",
+				"p-val=", sprintf("%3.4f", signf_pval), ")", sep="");
+		
+		str=capture.output({
+			cat("Category: ", cat, "\n");
+			print(formatted_list, quote=F);
+			cat("\n");
+		});
+
+		out_text=c(out_text, str);
+	}	
+
+	print(out_text);
+	
+	plot_text(out_text, max_lines_pp=50);
 
 }
 
@@ -969,7 +1026,7 @@ plot_contributors=function(pval_mat, pval_cutoff, covariates, group_map){
 	abline(h=num_predictors, lty="dashed", col="blue");
 	chx=par()$cxy[1];
 	chy=par()$cxy[2]
-	text(bmids-chx, -.75*chy, names(all_contrib_arr), pos=4, srt=-45, xpd=T);
+	text(bmids-chx, -.75*chy, names(all_contrib_arr), pos=4, srt=-45, cex=.7, xpd=T);
 
 	legend(num_resp_cat*3/4, num_predictors, legend=grp_names, fill=grp_col, bty="n");
 
@@ -989,7 +1046,7 @@ plot_contributors=function(pval_mat, pval_cutoff, covariates, group_map){
 	abline(h=num_categories, lty="dashed", col="blue");
 	chx=par()$cxy[1];
 	chy=par()$cxy[2]
-	text(bmids-chx, -.75*chy, names(pred_contrib), pos=4, srt=-45, xpd=T);
+	text(bmids-chx, -.75*chy, names(pred_contrib), pos=4, srt=-45, cex=.7, xpd=T);
 
 	legend(num_predictors*3/4, num_resp_cat, legend=grp_names, fill=grp_col, bty="n");
 
@@ -1033,6 +1090,7 @@ plot_results=function(resp_rec){
 		paint_matrix(masked_coef, title="Full Model: Signf Assoc (p-val<0.1)", 
 			deci_pts=2, label_zeros=F, value.cex=1);
 
+		list_signf_pred_by_category(full_coef_mat, full_pval_mat, pval_cutoff=.1);
 
 		plot_contributors(full_pval_mat, pval_cutoff=.1, covariates_arr, test_group_map);
 	
