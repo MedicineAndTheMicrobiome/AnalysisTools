@@ -153,6 +153,31 @@ plot_text=function(strings, max_lines_pp=Inf){
         par(orig.par);
 }
 
+plot_title_page=function(title, subtitle=""){
+
+        orig.par=par(no.readonly=T);
+        par(family="serif");
+        par(mfrow=c(1,1));
+
+        plot(0,0, xlim=c(0,1), ylim=c(0,1), type="n",  xaxt="n", yaxt="n",
+                xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
+                );
+
+        # Title
+        title_cex=3;
+        title_line=1;
+        text(0.5, title_line, title, cex=title_cex, font=2, adj=c(.5,1));
+
+        # Subtitle
+        num_subt_lines=length(subtitle);
+        cxy=par()$cxy;
+        for(i in 1:num_subt_lines){
+                text(.5, title_line -title_cex*cxy[2] -i*cxy[2], subtitle[i], adj=.5);
+        }
+
+        par(orig.par);
+}
+
 
 plot_page_separator=function(title, subtitle="", notes=""){
 
@@ -510,6 +535,86 @@ cat("\n");
 
 ###############################################################################
 
+plot_title_page("Multinomial Response Analysis", c(
+	"In this analysis, each of the columns specified as a targeted response column",
+	"will be modeled as a response against the specified covariates and test predictor",
+	"groups.",
+	"",
+	"In all models, the covariates will be included, but specific combinations of",
+	"the test predictor groups will be included or excluded, in order to identify whether the",
+	"group as a whole contributes to the prediction of the response.",
+	"",
+	"The following models will be computed:",
+	"Full: Covariates + All Test Predictor Groups",
+	"Covariates: Covariates Only",
+	"Covariates+[Group]: Covariates and a single test predictor group",
+	"Full-[Group]: Full model except a single test predictor group",
+	"",
+	"(If only 2 test groups are supplied, then the Full-[Group] model is not fit since it is",
+	"redundant to the Covariates+[Group] models.)",
+	"",
+	"For each of the specified response columns, a battery of analyses will be generated.",
+	"Procedurally, each of the categories in the multivariate response will be fit independently",
+	"(in category vs remaining) with a generalized linear model (GLM) using the binomial",
+	"family as the error distribution and link function." 
+));
+
+plot_title_page("Associations From Model Fitting", c(
+	"The following plots will be generated for each targeted response column:",
+	"",
+	"1.) Full Model Heatmap (All Associations):",
+	"The coefficients for each of the predictors (rows) and for the categories (columns)",
+	"are represented in the heat map.  Cells are colored red and blue for positive and",
+	"negative associations, respectively.",
+	"",
+	"2.) Full Model Significant Associations:",
+	"Similar to the previous figure, but only the associations with p-values below the",
+	"specified cutoff are displayed.",
+	"",
+	"3.) Formatted Text List of Significant Assocations by Response Category",
+	"",
+	"4.) Predictor Associations by Response Category",
+	"In these barplots, the number of significant associations between each response category",
+	"and the color coded predictor groups are displyed.  Response categories are sorted with the",
+	"greatest number of significant predictor associations first.  The dashed blue line",
+	"represents the maximum number of predictors that can be associated with each category.",
+	"",
+	"5.) Response Categories by Predictor", 
+	"In these barplots, the number of response categories each of the predictors is",
+	"significantly associated with is plotted.  The predictor variables are sorted in",
+	"decreasing order by the number of response categories each is associated with.",
+	"The dashed blue line represents the maximum number of response categories each predictor",
+	"can be associated with."
+));	
+
+plot_title_page("Model Fitness Evaluations", c(
+	"After the figures for the model fitting, an analysis of model fit using the AIC",
+	"statistic is performed.  The greater the AIC, the better the model.  If two models are",
+	"greater than 2 AIC values apart, then the model with the greater AIC can be regarded as",
+	"signficantly better than the lower one.",
+	"",
+	"1.) Model Fit AIC Values:",
+	"For all the models fit and each of the response categories, the AIC values are",
+	"reported in a table.",
+	"",
+	"2.) Relative AIC: All Models",
+	"For each model and response category, the models are plotted by their AIC values.",
+	"so their relative fitness within and between the response categories can be visualized.",
+	"",
+	"3.) Top AICs: Only Models within 2 from Top Model",
+	"Only the models that are within 2 from the best fitting model for each category",
+	"are plotted, in order to reduce some clutter.",
+	"",
+	"4.) Top Models Table",
+	"In this table, the top models for each response category are colored blue.",
+	"If there is a single best model, then the color will be dark blue.  If there are",
+	"multiple best models then all competing best models will share a lighter blue.",
+	"The model with the numerically greatest AIC value will be demarked with an",
+	"orange asterisk."
+));
+
+###############################################################################
+
 accumulate_sumfit_to_matrix=function(sumfit, mat, cname){
 
 	coef_tab=sumfit[["coefficients"]]	
@@ -680,7 +785,7 @@ get_aic=function(fit_results){
 
 	tr_names=names(fit_results[["target_reduced"]]);
 	for(tr in tr_names){
-		trname=paste("excl_", tr, sep="");
+		trname=paste("full-", tr, sep="");
 		model_aics[[trname]]=fit_results[["target_reduced"]][[tr]]$aic;
 	}
 
@@ -935,7 +1040,11 @@ list_signf_pred_by_category=function(coef_mat, pval_mat, pval_cutoff=.1){
 
 	print(out_text);
 	
-	plot_text(out_text, max_lines_pp=50);
+	plot_text(c(
+		paste("Number of Categories: ", num_categories),
+		"",
+		out_text
+	), max_lines_pp=50);
 
 }
 
