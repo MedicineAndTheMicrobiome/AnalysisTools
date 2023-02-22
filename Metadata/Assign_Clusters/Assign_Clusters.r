@@ -11,7 +11,9 @@ options(digits=5)
 params=c(
 	"factors", "f", 1, "character",
 	"targets", "t", 2, "character",
-	"outputroot", "o", 1, "character"
+	"outputroot", "o", 1, "character",
+	"maxcluster", "m", 2, "numeric",
+	"subsample", "s", 2, "numeric"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -22,6 +24,8 @@ usage = paste(
 	"	-f <factors/metadata file name>\n",
 	"	-t <target file name, for variables to compute clusters on>\n",
 	"	-o <output filename root>\n",
+	"	[-m <maximum number of clusters, default=max(log2(sample_size), sample_size/40)>]\n",
+	"	[-s <subsample for testing, default=all samples>]\n",
 	"\n",
 	"This script will use the variables specified in the target file\n",
 	"to assign subjects to clusters.  The cluster assignments will be\n",
@@ -45,11 +49,24 @@ FactorsFname=opt$factors;
 TargetsFname=opt$targets;
 OutputFnameRoot=opt$outputroot;
 
+MaxClusters=-1;
+if(length(opt$maxcluster)){
+	MaxClusters=opt$maxcluster;
+}
+
+Subsample=-1;
+if(length(opt$subsample)){
+	Subsample=opt$subsample;
+}
+
+
 param_text=capture.output({
 	cat("\n");
 	cat("Factor File Name: ", FactorsFname, "\n");
 	cat("Targets File Name: ", TargetsFname, "\n");
 	cat("Output File Name Root: ", OutputFnameRoot, "\n");
+	cat("Maximum Cluster Cuts: ", MaxClusters, "\n");
+	cat("Subsample:", Subsample, "\n");
 });
 print(param_text, quote=F);
 cat("\n\n");
@@ -356,6 +373,11 @@ plot_text(param_text);
 # Load factors
 cat("Loading Factors...\n");
 loaded_factors=load_factors(FactorsFname);
+
+if(Subsample!=-1){
+	loaded_factors=loaded_factors[sample(nrow(loaded_factors), Subsample),];
+}
+
 loaded_factor_names=colnames(loaded_factors);
 loaded_subject_names=rownames(loaded_factors);
 num_subjects=length(loaded_subject_names);
@@ -397,6 +419,12 @@ if(any(!is_numeric)){
 }
 targeted_factors=targeted_factors[is_numeric,];
 num_subjects=nrow(targeted_factors);
+
+# Remove 0 information variables
+targets_wstdev=apply(targeted_factors, 2, function(x){sd(x)>0});
+targeted_factors=targeted_factors[,targets_wstdev,drop=F];
+target_arr=colnames(targeted_factors);
+num_targets=length(target_arr);
 
 ###############################################################################
 
@@ -452,8 +480,11 @@ calc_antioutlier_weight=function(std_val_mat){
 		prop_gt_mean=sum(std_val_mat[,i] > means[i])/num_sbj;
 		spread=abs(1-2*prop_gt_mean);
 		weight=1-spread;
+		if(is.na(weight)){
+			weight=0;
+		}
 		cat(var_names[i], " Prop: ", prop_gt_mean, " Spread: ", spread, " Weight: ", weight, "\n", sep="");
-		weights[i]=weight
+		weights[i]=weight;
 	}
 	weights=weights/(sum(weights));
 
@@ -535,11 +566,13 @@ weighted_dist=function(variables, weight=numeric()){
 
 #distance_mat=weighted_dist(standardized_targets);
 cat("Calculating intersubject distances...\n");
+print(standardized_targets);
 distance_mat=weighted_dist(standardized_targets, anti_outlier_weights);
 
 ###############################################################################
 
 distance_subs=as.dist(distance_mat);
+#print(distance_subs);
 
 cat("Hierarchically clustering...\n");
 hcl=hclust(distance_subs, method="ward.D2");
@@ -964,7 +997,7 @@ assign_cluster_names_from_features=function(cl_feat_rec, top_feat=3){
 		num_signf=sum(feat_tab[,"signif"]);
 
 		top_feat=min(top_feat, num_signf);
-		top_tab=feat_tab[ord_ix[1:top_feat],];
+		top_tab=feat_tab[ord_ix[1:top_feat],,drop=F];
 
 		feat_names=rownames(top_tab);
 		feat_hilo=top_tab[,"isHigh"];
@@ -1042,7 +1075,13 @@ plot_title_page("Dendrogram and Heatmaps", c(
 	"values are green."
 ));
 
-max_cuts=ceiling(log2(num_subjects)*3);
+
+if(MaxClusters<=2){
+	max_cuts=ceiling(max(log2(num_subjects), num_subjects/40));
+}else{
+	max_cuts=MaxClusters;	
+}
+cat("Max Cuts: ", max_cuts, "\n");
 
 
 cut_clusters=list();
@@ -1064,7 +1103,6 @@ par(oma=c(0,0,1,0));
 left_label_margin=5;
 
 for(k in 2:max_cuts){
-#for(k in 5){
 	
 	clmap=cutree(hcl, k=k);
 
@@ -1140,6 +1178,159 @@ append_export(paste(OutputFnameRoot,".loaded_factors.wClusters.tsv", sep=""),
 
 append_export(paste(OutputFnameRoot,".targeted_factors.wClusters.tsv", sep=""),
 	targeted_factors, cut_clusters, clus_names);
+
+###############################################################################
+###############################################################################
+
+# Calculate Calinkski-Harabasz statistic 
+
+compute_pseudoF=function(dist_mat, memberships, resample_sequence){
+
+        dist_mat=as.matrix(dist_mat);
+
+        num_samples=length(memberships);
+        num_clusters=length(unique(memberships));
+
+        n=num_samples;
+        k=num_clusters;
+
+        sample_list=names(memberships);
+
+        num_bs=nrow(resample_sequence);
+        pseudo_f=numeric(num_bs);
+
+	num_cells=num_samples*(num_samples-1)/2;
+
+        for(bs_ix in 1:num_bs){
+		cat(".");
+                #SSB=0;
+                #SSW=0;
+
+		ssb_arr=numeric(num_cells);
+		ssw_arr=numeric(num_cells);
+		num_ssb=0;
+		num_ssw=0;
+
+                # Resample
+                resamp_ix=resample_sequence[bs_ix,]; #sample(num_samples, replace=T);
+
+                # Compute SSB and SSW
+                for(i in 1:num_samples){
+                        samp_i=sample_list[resamp_ix[i]];
+
+                        for(j in 1:num_samples){
+
+                                if(i<j){
+
+                                        samp_j=sample_list[resamp_ix[j]];
+
+                                        i_mem=memberships[samp_i];
+                                        j_mem=memberships[samp_j];
+
+                                        #cat(i_mem, "/", j_mem, "\n");
+                                        if(i_mem==j_mem){
+                                                #SSW=SSW+dist_mat[samp_i, samp_j];
+                                                #cat("SSW: ", SSW, "\n");
+						num_ssw=num_ssw+1;
+						ssw_arr[num_ssw]=dist_mat[samp_i, samp_j];
+                                        }else{
+                                                #SSB=SSB+dist_mat[samp_i, samp_j];
+                                                #cat("SSB: ", SSB, "\n");
+						num_ssb=num_ssb+1;
+						ssb_arr[num_ssb]=dist_mat[samp_i, samp_j];
+                                        }
+                                }
+                        }
+                }
+
+                # Compute/Store this instance of bootstrap
+                #pseudo_f[bs_ix]=SSB/(k-1)*(n-k)/SSW;
+                #pseudo_f[bs_ix]=SSB/num_ssb*(num_ssw)/SSW;
+                pseudo_f[bs_ix]=median(ssb_arr[1:num_ssb])/median(ssw_arr[1:num_ssw]);
+        }
+	cat("\n");
+
+        return(pseudo_f);
+}
+
+#------------------------------------------------------------------------------
+
+bootstrap_calculate_pseudoF_stats=function(distmat, membership_list, num_bs){
+
+	num_samples=nrow(distmat);
+
+	# Pre-randomize samples across all cluster sizes so finding max will be consistent
+	resample_sequence=matrix(0, nrow=num_bs, ncol=num_samples);
+	# Rows are each BS instance, Columns are the selected samples
+	for(i in 1:num_bs){
+		resample_sequence[i,]=sample(num_samples, replace=T);
+	}
+	#print(resample_sequence);
+
+	max_clusters=length(membership_list);
+
+	# Store the pseudoF stat for each cluster cut
+	pseudoF_mat=matrix(NA, nrow=num_bs, ncol=max_clusters);
+
+	# For each cluster cut, bootstrap calculate the pseudoF stat
+	for(num_cl in 2:max_clusters){
+		cat("Performing bootstrap pseudo-F on k=", num_cl, "\n");
+		memberships=membership_list[[num_cl]];
+		pseudoF_bs_res=compute_pseudoF(distmat, memberships, resample_sequence);
+		pseudoF_mat[,num_cl]=pseudoF_bs_res;
+	}
+
+	# Remove infinite values, probably due to low sample size
+	pseudoF_mat=apply(pseudoF_mat, 1:2, function(x){ if(is.infinite(x)){return(NA);}else{return(x);}});
+
+	med_pseudoF=apply(pseudoF_mat, 2, function(x){quantile(x, .5, na.rm=T)});
+	lb_pseudoF=apply(pseudoF_mat, 2, function(x){quantile(x, .025, na.rm=T)});
+	ub_pseudoF=apply(pseudoF_mat, 2, function(x){quantile(x, .975, na.rm=T)});
+	max_of_median_pseudoF=max(med_pseudoF);
+	k_of_max=min(which(max_of_median_pseudoF==med_pseudoF));
+
+	min_pseudoF=min(pseudoF_mat, na.rm=T);
+	max_pseudoF=max(pseudoF_mat, na.rm=T);
+
+	results=list();
+	results[["medians"]]=med_pseudoF;
+	results[["lb"]]=lb_pseudoF;
+	results[["ub"]]=ub_pseudoF;
+	results[["max_k"]]=k_of_max;
+	results[["matrix"]]=pseudoF_mat;
+	results[["min"]]=min_pseudoF;
+	results[["max"]]=max_pseudoF;
+	results[["num_bs"]]=num_bs;
+
+	return(results);
+
+}
+
+#------------------------------------------------------------------------------
+
+pf=bootstrap_calculate_pseudoF_stats(distance_mat, cut_clusters, num_bs=80);
+
+print(pf);
+
+# Plot cluster separation
+
+par(mfrow=c(1,1));
+par(mar=c(5,5,4,1));
+plot(0, type="n", xlim=c(1, max_cuts+1), ylim=c(pf[["min"]], pf[["max"]]),
+	xlab="k", ylab="Pseudo-F", main="Cluster Cut vs. Separation"
+	);
+
+scat=rnorm(pf[["num_bs"]], mean=0, sd=.10);
+
+for(k in 2:max_cuts){
+	cat("Working on plotting k: ", k, "\n");
+	points(scat+k, pf[["matrix"]][,k], col="grey25");
+	points(k, pf[["ub"]][k], pch="-", cex=2, col="red")
+	points(k, pf[["lb"]][k], pch="-", cex=2, col="blue")
+	points(k, pf[["medians"]][k], pch="-", cex=4, col="green")
+}
+
+points(2:max_cuts, pf[["medians"]][2:max_cuts], col="black", type="l", lwd=2.5);
 
 ###############################################################################
 
