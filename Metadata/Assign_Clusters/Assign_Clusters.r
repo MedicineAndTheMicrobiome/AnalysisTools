@@ -1186,19 +1186,28 @@ append_export(paste(OutputFnameRoot,".targeted_factors.wClusters.tsv", sep=""),
 
 compute_pseudoF=function(dist_mat, memberships, resample_sequence){
 
+	# The distance matrix contains all the subjects
         dist_mat=as.matrix(dist_mat);
-
-        num_samples=length(memberships);
+	
+	# The membership map contains which cluster each subjects belongs
         num_clusters=length(unique(memberships));
 
-        n=num_samples;
-        k=num_clusters;
+	# The resample_sequence is a matrix, with:
+	# Rows: a different bootstrap sequence of subjects (nrow=num_bootstraps)
+	# Cols: the sequence of subjects selected (ncol=num resample subjects, subsample)
+        num_bs=nrow(resample_sequence);
+        num_samples=ncol(resample_sequence);
 
         sample_list=names(memberships);
 
-        num_bs=nrow(resample_sequence);
+	# Array of calculated pseudo-F stats for each bootstrap
         pseudo_f=numeric(num_bs);
 
+	# F-stat adjustment
+	n=num_samples;
+	k=num_clusters;
+
+	# Estimate maximum number of distances to for SSB and SSW
 	num_cells=num_samples*(num_samples-1)/2;
 
         for(bs_ix in 1:num_bs){
@@ -1208,14 +1217,16 @@ compute_pseudoF=function(dist_mat, memberships, resample_sequence){
 
 		ssb_arr=numeric(num_cells);
 		ssw_arr=numeric(num_cells);
+
 		num_ssb=0;
 		num_ssw=0;
 
-                # Resample
-                resamp_ix=resample_sequence[bs_ix,]; #sample(num_samples, replace=T);
+                # Select sequence of samples from matrix
+                resamp_ix=resample_sequence[bs_ix,];
 
-                # Compute SSB and SSW
+                # Split into between and within distances
                 for(i in 1:num_samples){
+
                         samp_i=sample_list[resamp_ix[i]];
 
                         for(j in 1:num_samples){
@@ -1232,21 +1243,24 @@ compute_pseudoF=function(dist_mat, memberships, resample_sequence){
                                                 #SSW=SSW+dist_mat[samp_i, samp_j];
                                                 #cat("SSW: ", SSW, "\n");
 						num_ssw=num_ssw+1;
-						ssw_arr[num_ssw]=dist_mat[samp_i, samp_j];
+						ssw_arr[num_ssw]=dist_mat[samp_i, samp_j]^2;
                                         }else{
                                                 #SSB=SSB+dist_mat[samp_i, samp_j];
                                                 #cat("SSB: ", SSB, "\n");
 						num_ssb=num_ssb+1;
-						ssb_arr[num_ssb]=dist_mat[samp_i, samp_j];
+						ssb_arr[num_ssb]=dist_mat[samp_i, samp_j]^2;
                                         }
                                 }
                         }
                 }
 
                 # Compute/Store this instance of bootstrap
-                #pseudo_f[bs_ix]=SSB/(k-1)*(n-k)/SSW;
-                #pseudo_f[bs_ix]=SSB/num_ssb*(num_ssw)/SSW;
-                pseudo_f[bs_ix]=median(ssb_arr[1:num_ssb])/median(ssw_arr[1:num_ssw]);
+                # original CH stat formula: SSB/(k-1)*(n-k)/SSW;
+
+		adj_med_ssb=median(ssb_arr[1:num_ssb])*(k)/(k-1);
+		adj_med_ssw=median(ssw_arr[1:num_ssw])*(n)/(n-k);
+
+                pseudo_f[bs_ix]=adj_med_ssb/adj_med_ssw;
         }
 	cat("\n");
 
@@ -1255,15 +1269,17 @@ compute_pseudoF=function(dist_mat, memberships, resample_sequence){
 
 #------------------------------------------------------------------------------
 
-bootstrap_calculate_pseudoF_stats=function(distmat, membership_list, num_bs){
+bootstrap_calculate_pseudoF_stats=function(distmat, membership_list, num_bs, max_resample_size=200){
 
 	num_samples=nrow(distmat);
 
+	max_resample_size=min(max_resample_size, num_samples);
+
 	# Pre-randomize samples across all cluster sizes so finding max will be consistent
-	resample_sequence=matrix(0, nrow=num_bs, ncol=num_samples);
+	resample_sequence=matrix(0, nrow=num_bs, ncol=max_resample_size);
 	# Rows are each BS instance, Columns are the selected samples
 	for(i in 1:num_bs){
-		resample_sequence[i,]=sample(num_samples, replace=T);
+		resample_sequence[i,]=sample(num_samples, max_resample_size, replace=T);
 	}
 	#print(resample_sequence);
 
@@ -1317,8 +1333,10 @@ print(pf);
 par(mfrow=c(1,1));
 par(mar=c(5,5,4,1));
 plot(0, type="n", xlim=c(1, max_cuts+1), ylim=c(pf[["min"]], pf[["max"]]),
-	xlab="k", ylab="Pseudo-F", main="Cluster Cut vs. Separation"
+	xlab="k", ylab="Pseudo-F", main="Cluster Cut (k) vs. Separation (Pseudo-F)",
+	xaxt="n"
 	);
+axis(side=1, at=c(2:length(cut_clusters));
 
 scat=rnorm(pf[["num_bs"]], mean=0, sd=.10);
 
