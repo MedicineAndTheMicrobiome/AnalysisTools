@@ -566,7 +566,7 @@ weighted_dist=function(variables, weight=numeric()){
 
 #distance_mat=weighted_dist(standardized_targets);
 cat("Calculating intersubject distances...\n");
-print(standardized_targets);
+#print(standardized_targets);
 distance_mat=weighted_dist(standardized_targets, anti_outlier_weights);
 
 ###############################################################################
@@ -1030,8 +1030,8 @@ append_export=function(fname, orig_mat, cl_mem, cl_names){
 		cur_mem=cl_mem[[k]];
 		cur_names=cl_names[[k]];
 
-		print(cur_mem);
-		print(cur_names);
+		#print(cur_mem);
+		#print(cur_names);
 
 		new_mat=cbind(new_mat, cur_names[cur_mem[subj_ids]]);
 
@@ -1324,9 +1324,50 @@ bootstrap_calculate_pseudoF_stats=function(distmat, membership_list, num_bs, max
 
 #------------------------------------------------------------------------------
 
-pf=bootstrap_calculate_pseudoF_stats(distance_mat, cut_clusters, num_bs=80);
+num_bootstraps=80;
+max_resample_size=200;
+pf=bootstrap_calculate_pseudoF_stats(distance_mat, cut_clusters, 
+	num_bs=num_bootstraps, max_resample_size=max_resample_size);
 
 print(pf);
+
+plot_title_page("Cluster Separation Analysis", c(
+	"The purpose of a cluster separation analysis is to identify if there is an",
+	"ideal cut (k) that minimizes the number of clusters, but also maximizes the",
+	"separation between clusters.  Ideally, the ideal cut identifies true categories",
+	"or types in a population.  In practice, the variables collected to describe each",
+	"subject may or may not be related to the targeted categories or not all categories",
+	"consist of the same subject homogeneity so that a specific k, results in heights",
+	"that serve each cluster universally well."
+	"",
+	"Nonetheless, a cluster separation analysis can be performed to visualize whether",
+	"increasing the number of clusters/cuts results in tightening clusters.  To quantify",
+	"cluster separation a F-statistic is calculated at each cut.  The larger the F-statistic",
+	"the better the separation between clusters.  The F-statistic is essentially a ratio",
+	"between the distance between members that are in different clusters, versus those",
+	"distances within the same cluster: Between/Within ratio.  The classic formula is",
+	"SSB/SSW*(dof adjusted denominators), where SSB is the sum of squared difference between clusters",
+	"and SSW is the sum of squared differences within clusters.  The dof adjusted denominators is",
+	"the Degrees of Freedom adjustment denominator so that MSB and MSW (mean SB and SW,",
+	"respectively) can be calculated from the SSB and SSW.",
+	"The dof adjusted denominator for SSB is (k-1) and for the SSW, it is n-k.",
+	"The F-statistic is originally derived for ANOVA and its assumptions for applicability"
+	"serve its usefulness for hypothesis testing.",
+	"",
+	"We use a F stat-like (pseudo-Fstat) for the following analysis.  It has been modified",
+	"partially as the median(SSB) and median(SSW) to improve the stability of the",	
+	"statistic.",
+	"",
+	paste("The number of bootstraps:", num_bootstraps),
+	paste("The number of samples used for each bootstrap: ", max_resample_size),
+	"",
+	"In the following plot, the x and y-axes represent the cuts (k) and the estimated cluster",
+	"separation (pseudo-F), respectively.  The circular glyphs represent each of the pseudo-F",
+	"calculations for each bootstrap.  The red and blue markers represent the 95% upper and lower",
+	"bound, respectively.  The green marker represents the median.  A black line connects the",
+	"medians."
+));
+		 
 
 # Plot cluster separation
 
@@ -1336,7 +1377,7 @@ plot(0, type="n", xlim=c(1, max_cuts+1), ylim=c(pf[["min"]], pf[["max"]]),
 	xlab="k", ylab="Pseudo-F", main="Cluster Cut (k) vs. Separation (Pseudo-F)",
 	xaxt="n"
 	);
-axis(side=1, at=c(2:length(cut_clusters));
+axis(side=1, at=c(2:length(cut_clusters)));
 
 scat=rnorm(pf[["num_bs"]], mean=0, sd=.10);
 
