@@ -1378,7 +1378,8 @@ plot(0, type="n", xlim=c(1, max_cuts+1), ylim=c(pf[["min"]], pf[["max"]]),
 	xlab="k", ylab="Pseudo-F", main="Cluster Cut (k) vs. Separation (Pseudo-F)",
 	xaxt="n"
 	);
-axis(side=1, at=c(2:length(cut_clusters)));
+abline(v=2:max_cuts, col="grey75");
+axis(side=1, at=c(2:length(cut_clusters)), cex=.8);
 
 scat=rnorm(pf[["num_bs"]], mean=0, sd=.10);
 
