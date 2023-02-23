@@ -1332,16 +1332,17 @@ pf=bootstrap_calculate_pseudoF_stats(distance_mat, cut_clusters,
 print(pf);
 
 plot_title_page("Cluster Separation Analysis", c(
-	"The purpose of a cluster separation analysis is to identify if there is an",
+	"The purpose of a cluster separation analysis is to identify wether there is an",
 	"ideal cut (k) that minimizes the number of clusters, but also maximizes the",
 	"separation between clusters.  Ideally, the ideal cut identifies true categories",
 	"or types in a population.  In practice, the variables collected to describe each",
 	"subject may or may not be related to the targeted categories or not all categories",
 	"consist of the same subject homogeneity so that a specific k, results in heights",
-	"that serve each cluster universally well."
+	"that serve each cluster universally well.",
 	"",
 	"Nonetheless, a cluster separation analysis can be performed to visualize whether",
-	"increasing the number of clusters/cuts results in tightening clusters.  To quantify",
+	"increasing the number of clusters/cuts results in tightening clusters at the expense",
+	"of excessive (false positive or over-clustered) clusters.  To quantify",
 	"cluster separation a F-statistic is calculated at each cut.  The larger the F-statistic",
 	"the better the separation between clusters.  The F-statistic is essentially a ratio",
 	"between the distance between members that are in different clusters, versus those",
@@ -1351,7 +1352,7 @@ plot_title_page("Cluster Separation Analysis", c(
 	"the Degrees of Freedom adjustment denominator so that MSB and MSW (mean SB and SW,",
 	"respectively) can be calculated from the SSB and SSW.",
 	"The dof adjusted denominator for SSB is (k-1) and for the SSW, it is n-k.",
-	"The F-statistic is originally derived for ANOVA and its assumptions for applicability"
+	"The F-statistic is originally derived for ANOVA and its assumptions for applicability",
 	"serve its usefulness for hypothesis testing.",
 	"",
 	"We use a F stat-like (pseudo-Fstat) for the following analysis.  It has been modified",
