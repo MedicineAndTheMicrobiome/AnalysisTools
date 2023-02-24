@@ -8,12 +8,17 @@ library('getopt');
 options(useFancyQuotes=F);
 options(digits=5)
 
+PSEUDO_F_BOOTSTRAPS=80;
+PSEUDO_F_SUBSAMP=200;
+
 params=c(
 	"factors", "f", 1, "character",
 	"targets", "t", 2, "character",
 	"outputroot", "o", 1, "character",
 	"maxcluster", "m", 2, "numeric",
-	"subsample", "s", 2, "numeric"
+	"subsample", "s", 2, "numeric",
+	"pseudof_bs", "B", 2, "numeric",
+	"pseufof_n", "N", 2, "numeric"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -26,6 +31,9 @@ usage = paste(
 	"	-o <output filename root>\n",
 	"	[-m <maximum number of clusters, default=max(log2(sample_size), sample_size/40)>]\n",
 	"	[-s <subsample for testing, default=all samples>]\n",
+	"\n",
+	"	[-B <bootstraps for pseudo-F estimation, default=", PSEUDO_F_BOOTSTRAPS, "\n", 
+	"	[-S <subsammple for pseudo-F estimation, default=", PSEUDO_F_SUBSAMP, "\n",
 	"\n",
 	"This script will use the variables specified in the target file\n",
 	"to assign subjects to clusters.  The cluster assignments will be\n",
@@ -59,6 +67,16 @@ if(length(opt$subsample)){
 	Subsample=opt$subsample;
 }
 
+PseudoFBS=PSEUDO_F_BOOTSTRAPS;
+if(length(opt$pseudof_bs)){
+	PseudoFBS=opt$pseudof_bs;
+}
+
+PseudoFN=PSEUDO_F_SUBSAMP;
+if(length(opt$pseufof_n)){
+	PseudoFN=opt$pseufof_n;
+}
+
 
 param_text=capture.output({
 	cat("\n");
@@ -67,6 +85,8 @@ param_text=capture.output({
 	cat("Output File Name Root: ", OutputFnameRoot, "\n");
 	cat("Maximum Cluster Cuts: ", MaxClusters, "\n");
 	cat("Subsample:", Subsample, "\n");
+	cat("\n");
+	cat("Pseudo F Bootstraps: ", PseudoFBS, "  Subsamples:", PseudoFN, "\n");
 });
 print(param_text, quote=F);
 cat("\n\n");
@@ -627,6 +647,19 @@ find_height_at_k=function(hclust, k){
         return(midpoint);
 }
 
+find_height_at_k_exact=function(hclust, k){
+# Computes the height on the dendrogram for a particular k
+
+        heights=hclust$height;
+        num_heights=length(heights);
+        num_clust=numeric(num_heights);
+        for(i in 1:num_heights){
+                num_clust[i]=length(unique(cutree(hclust, h=heights[i])));
+        }
+        height_idx=which(num_clust==k);
+        return(heights[height_idx]);
+}
+
 get_clstrd_leaf_names=function(den){
 # Recursively gets a list of the leaf names, from left to right from
 #   the specified dendrogram
@@ -1086,6 +1119,7 @@ cat("Max Cuts: ", max_cuts, "\n");
 
 cut_clusters=list();
 clus_names=list();
+heights=numeric(max_cuts);
 
 palette_col=c("red", "green", "blue", "cyan", "magenta", "orange", "gray", "pink", "black", 
 		"purple", "brown", "aquamarine");
@@ -1101,6 +1135,7 @@ layout(layout_mat);
 par(oma=c(0,0,1,0));
 
 left_label_margin=5;
+
 
 for(k in 2:max_cuts){
 	
@@ -1128,7 +1163,8 @@ for(k in 2:max_cuts){
 	grp_split_loc=cumsum(grp_sizes)[1:(k-1)];
 
 	# Find cut height
-	h=find_height_at_k(hcl, k);
+	h=find_height_at_k(hcl, k); # Midpoint visually
+	heights[k]=find_height_at_k_exact(hcl, k); # Actual cut height
 
 	# Compute cluster influencers
 	cluster_features_rec=find_cluster_features(k, clmap, targeted_factors);
@@ -1324,8 +1360,8 @@ bootstrap_calculate_pseudoF_stats=function(distmat, membership_list, num_bs, max
 
 #------------------------------------------------------------------------------
 
-num_bootstraps=80;
-max_resample_size=200;
+num_bootstraps=PseudoFBS;
+max_resample_size=PseudoFN;
 pf=bootstrap_calculate_pseudoF_stats(distance_mat, cut_clusters, 
 	num_bs=num_bootstraps, max_resample_size=max_resample_size);
 
@@ -1392,6 +1428,33 @@ for(k in 2:max_cuts){
 }
 
 points(2:max_cuts, pf[["medians"]][2:max_cuts], col="black", type="l", lwd=2.5);
+
+###############################################################################
+
+par(mfrow=c(3,1));
+
+max_height=max(heights);
+
+plot(2:max_cuts, heights[2:max_cuts], ylim=c(0, max_height), 
+	main="Cut Heights at increasing Cuts (k)", type="b",
+	xlab="k", ylab="Height", xaxt="n");
+axis(side=1, at=2:max_cuts);
+
+#------------------------------------------------------------------------------
+
+diffs=abs(diff(heights[2:max_cuts]));
+log_perc_change=log(diffs/heights[2:(max_cuts-1)]);
+
+plot(3:max_cuts, log_perc_change, xlab="from k-1 to k", ylab="log(dHeight)",
+	type="b", xaxt="n",
+	main="Log(dHeights from previous Cut Height) over Time");
+axis(side=1, at=2:max_cuts);
+
+#------------------------------------------------------------------------------
+
+plot(heights[2:max_cuts], 2:max_cuts, xlab="Height", ylab="k",
+	main="Cut (k) at increasing Heights", type="b"
+	);
 
 ###############################################################################
 
