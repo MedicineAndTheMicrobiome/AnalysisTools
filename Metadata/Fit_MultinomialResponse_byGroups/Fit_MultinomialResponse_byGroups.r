@@ -194,7 +194,8 @@ plot_page_separator=function(title, subtitle="", notes=""){
 paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_is_hot=T, deci_pts=4, 
 	label_zeros=T, counts=F, value.cex=2, 
 	plot_col_dendr=F,
-	plot_row_dendr=F
+	plot_row_dendr=F,
+	v_guide_lines=c(), h_guide_lines=c()
 ){
 
         num_row=nrow(mat);
@@ -403,8 +404,34 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 		#text(0,0, "Col Dendrogram");
 	}
 
+	if(length(v_guide_lines)){
+		for(i in 1:length(v_guide_lines)){
+			points(rep(v_guide_lines[i],2), c(0, num_row), col="grey50", type="l", lwd=.75);
+		}
+	}
+
+	if(length(h_guide_lines)){
+		for(i in 1:length(h_guide_lines)){
+			points(c(0, num_col), rep(h_guide_lines[i],2), col="grey50", type="l", lwd=.75);
+		}
+	}
+
 	par(orig.par);
 
+}
+
+calc_guide_lines=function(num_cells, min_cuts=5, max_cuts=10){
+
+	if(num_cells<max_cuts){return(c())}
+
+	cuts=min_cuts:max_cuts;
+	cut_remainders=num_cells %% cuts;
+	names(cut_remainders)=cuts;
+	sorted_remainders=sort(cut_remainders, method="shell");
+	recommended_cut=as.numeric(names(sorted_remainders[1]));
+	guides=seq(0, num_cells, recommended_cut);
+	num_guides=length(guides);
+	return(guides[2:(num_guides-1)]);
 }
 
 sig_char=function(val){
@@ -1309,7 +1336,6 @@ plot_results=function(resp_rec){
 		print(resp_var_names)
 	));
 
-
 	for(resp_var_ix in resp_var_names){
 
 		cat("Working on Response Variable: ", resp_var_ix, "\n");
@@ -1323,13 +1349,20 @@ plot_results=function(resp_rec){
 		full_coef_mat=resp_var_res[["full"]][["coef"]];
 		full_pval_mat=resp_var_res[["full"]][["pval"]];
 
+		resp_guide_lines=calc_guide_lines(ncol(full_coef_mat), min_cuts=5, max_cuts=10);
+		pred_guide_lines=calc_guide_lines(nrow(full_coef_mat), min_cuts=5, max_cuts=10);
+
 		masked_coef=mask_by_cutoff(full_coef_mat, full_pval_mat, pval_cutoff=1);
 		paint_matrix(masked_coef, title="Full Model: All Assoc", 
-			deci_pts=2, label_zeros=F, value.cex=1);
+			deci_pts=2, label_zeros=F, value.cex=1, 
+			h_guide_lines=pred_guide_lines,
+			v_guide_lines=resp_guide_lines);
 
 		masked_coef=mask_by_cutoff(full_coef_mat, full_pval_mat, pval_cutoff=.1);
 		paint_matrix(masked_coef, title="Full Model: Signf Assoc (p-val<0.1)", 
-			deci_pts=2, label_zeros=F, value.cex=1);
+			deci_pts=2, label_zeros=F, value.cex=1, 
+			h_guide_lines=pred_guide_lines,
+			v_guide_lines=resp_guide_lines);
 
 		list_signf_pred_by_category(full_coef_mat, full_pval_mat, pval_cutoff=.1);
 		list_signf_category_by_pred(full_coef_mat, full_pval_mat, pval_cutoff=.1);
@@ -1340,6 +1373,7 @@ plot_results=function(resp_rec){
 
 		par(mfrow=c(1,1));		
 
+		options(width=120);
 		plot_text(c(
 			"Model Fit AIC Values:",
 			"(Remember: If two models are within 2 AIC units of each other,",
