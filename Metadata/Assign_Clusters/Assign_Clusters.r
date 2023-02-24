@@ -33,7 +33,7 @@ usage = paste(
 	"	[-s <subsample for testing, default=all samples>]\n",
 	"\n",
 	"	[-B <bootstraps for pseudo-F estimation, default=", PSEUDO_F_BOOTSTRAPS, "\n", 
-	"	[-S <subsammple for pseudo-F estimation, default=", PSEUDO_F_SUBSAMP, "\n",
+	"	[-N <subsammple for pseudo-F estimation, default=", PSEUDO_F_SUBSAMP, "\n",
 	"\n",
 	"This script will use the variables specified in the target file\n",
 	"to assign subjects to clusters.  The cluster assignments will be\n",
