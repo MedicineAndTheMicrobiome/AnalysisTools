@@ -111,13 +111,19 @@ load_list=function(filename){
 	return(val);
 }
 
-plot_text=function(strings, max_lines_pp=Inf){
+plot_text=function(strings, max_lines_pp=Inf, oma_tag=""){
 
         orig.par=par(no.readonly=T);
 
         par(mfrow=c(1,1));
         par(family="Courier");
-        par(oma=rep(.5,4));
+
+	if(oma_tag==""){
+		par(oma=rep(.5,4));
+	}else{
+		par(oma=c(1, .5, .5, .5));
+	}
+
         par(mar=rep(0,4));
 
         num_lines=length(strings);
@@ -129,10 +135,14 @@ plot_text=function(strings, max_lines_pp=Inf){
         for(p in 1:num_pages){
 
                 top=max(as.integer(lines_pp), 52);
-
+	
                 plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
                         xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
                         );
+
+		if(oma_tag!=""){
+			mtext(paste("[", oma_tag, "]", sep=""), side=1, col="grey25");
+		}
 
                 text_size=max(.01, min(.7, .7 - .003*(lines_pp-52)));
                 #print(text_size);
@@ -1038,7 +1048,7 @@ plot_top_aics=function(aic_matrix, aic_thres=2, title=""){
 
 #------------------------------------------------------------------------------
 
-list_signf_pred_by_category=function(coef_mat, pval_mat, pval_cutoff=.1){
+list_signf_pred_by_category=function(coef_mat, pval_mat, pval_cutoff=.1, oma_tag=""){
 
 	category_names=colnames(coef_mat);
 	num_categories=ncol(coef_mat);
@@ -1115,13 +1125,13 @@ list_signf_pred_by_category=function(coef_mat, pval_mat, pval_cutoff=.1){
 		"",
 		out_text,
 		"----------------------------------------------End----------------------------------------------"
-	), max_lines_pp=50);
+	), max_lines_pp=50, oma_tag=oma_tag);
 
 	options(width=orig_width);
 
 }
 
-list_signf_category_by_pred=function(coef_mat, pval_mat, pval_cutoff=.1){
+list_signf_category_by_pred=function(coef_mat, pval_mat, pval_cutoff=.1, oma_tag=""){
 
 	category_names=colnames(coef_mat);
 	num_categories=ncol(coef_mat);
@@ -1201,7 +1211,7 @@ list_signf_category_by_pred=function(coef_mat, pval_mat, pval_cutoff=.1){
 		"",
 		out_text,
 		"----------------------------------------------End----------------------------------------------"
-	), max_lines_pp=50);
+	), max_lines_pp=50, oma_tag=oma_tag);
 
 	options(width=orig_width);
 
@@ -1353,19 +1363,21 @@ plot_results=function(resp_rec){
 		pred_guide_lines=calc_guide_lines(nrow(full_coef_mat), min_cuts=5, max_cuts=10);
 
 		masked_coef=mask_by_cutoff(full_coef_mat, full_pval_mat, pval_cutoff=1);
-		paint_matrix(masked_coef, title="Full Model: All Assoc", 
+		paint_matrix(masked_coef, 
+			title=paste(resp_var_ix, ":  Full Model, All Assoc", sep=""), 
 			deci_pts=2, label_zeros=F, value.cex=1, 
 			h_guide_lines=pred_guide_lines,
 			v_guide_lines=resp_guide_lines);
 
 		masked_coef=mask_by_cutoff(full_coef_mat, full_pval_mat, pval_cutoff=.1);
-		paint_matrix(masked_coef, title="Full Model: Signf Assoc (p-val<0.1)", 
+		paint_matrix(masked_coef, 
+			title=paste(resp_var_ix, ":  Full Model, Signf Assoc (p-val<0.1)", sep=""), 
 			deci_pts=2, label_zeros=F, value.cex=1, 
 			h_guide_lines=pred_guide_lines,
 			v_guide_lines=resp_guide_lines);
 
-		list_signf_pred_by_category(full_coef_mat, full_pval_mat, pval_cutoff=.1);
-		list_signf_category_by_pred(full_coef_mat, full_pval_mat, pval_cutoff=.1);
+		list_signf_pred_by_category(full_coef_mat, full_pval_mat, pval_cutoff=.1, oma_tag=resp_var_ix);
+		list_signf_category_by_pred(full_coef_mat, full_pval_mat, pval_cutoff=.1, oma_tag=resp_var_ix);
 
 		plot_contributors(full_pval_mat, pval_cutoff=.1, covariates_arr, test_group_map);
 	
@@ -1375,6 +1387,7 @@ plot_results=function(resp_rec){
 
 		options(width=120);
 		plot_text(c(
+			paste("Response Name: ", resp_var_ix),
 			"Model Fit AIC Values:",
 			"(Remember: If two models are within 2 AIC units of each other,",
 			"  then they can not be considered significantly better/worse than",
@@ -1383,10 +1396,10 @@ plot_results=function(resp_rec){
 			capture.output(print(aic_values))
 		));
 
-		plot_top_aics(aic_values, Inf, "Relative AIC: All Models");
-		plot_top_aics(aic_values, 2, "Models with AIC within 2 of Top Model");
+		plot_top_aics(aic_values, Inf, paste(resp_var_ix, ": Relative AIC, All Models", sep=""));
+		plot_top_aics(aic_values, 2, paste(resp_var_ix, ": Models with AIC within 2 of Top Model", sep=""));
 
-		plot_top_aics_table(aic_values, 2, "Top Models Table");
+		plot_top_aics_table(aic_values, 2, paste(resp_var_ix, ": Top Models Table", sep=""));
 
 	}	
 }
