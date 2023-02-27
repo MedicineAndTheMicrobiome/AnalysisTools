@@ -1219,7 +1219,7 @@ list_signf_category_by_pred=function(coef_mat, pval_mat, pval_cutoff=.1, oma_tag
 
 #------------------------------------------------------------------------------
 
-plot_contributors=function(pval_mat, pval_cutoff, covariates, group_map){
+plot_contributors=function(pval_mat, pval_cutoff, covariates, group_map, resp_name){
 
 	group_map[["covariates"]]=covariates;
 
@@ -1280,6 +1280,7 @@ plot_contributors=function(pval_mat, pval_cutoff, covariates, group_map){
 
 	par(mfrow=c(2,1));
 	par(mar=c(15, 4, 2, 10));
+	par(oma=c(1,0,0,0));
 
 	plot(0,0, xlim=c(0, num_resp_cat+1), ylim=c(0, num_predictors*1.1),
 		main=paste("Num. of Assoc. Predictors by Resp. Category: p-val < ", pval_cutoff, sep=""),
@@ -1328,6 +1329,7 @@ plot_contributors=function(pval_mat, pval_cutoff, covariates, group_map){
 
 	legend(num_predictors*3/4, num_resp_cat, legend=grp_names, fill=grp_col, bty="n");
 
+	mtext(text=paste("[", resp_name, "]", sep=""), side=1, family="Courier", col="grey25", outer=T);
 }
 
 #------------------------------------------------------------------------------
@@ -1379,7 +1381,7 @@ plot_results=function(resp_rec){
 		list_signf_pred_by_category(full_coef_mat, full_pval_mat, pval_cutoff=.1, oma_tag=resp_var_ix);
 		list_signf_category_by_pred(full_coef_mat, full_pval_mat, pval_cutoff=.1, oma_tag=resp_var_ix);
 
-		plot_contributors(full_pval_mat, pval_cutoff=.1, covariates_arr, test_group_map);
+		plot_contributors(full_pval_mat, pval_cutoff=.1, covariates_arr, test_group_map, resp_var_ix);
 	
 		aic_values=get_aic(resp_var_res);	
 
@@ -1394,7 +1396,7 @@ plot_results=function(resp_rec){
 			"  each other.)", 
 			"",
 			capture.output(print(aic_values))
-		));
+		), oma_tag=resp_var_ix);
 
 		plot_top_aics(aic_values, Inf, paste(resp_var_ix, ": Relative AIC, All Models", sep=""));
 		plot_top_aics(aic_values, 2, paste(resp_var_ix, ": Models with AIC within 2 of Top Model", sep=""));
