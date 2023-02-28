@@ -81,7 +81,7 @@ if(Bcolname!=""){
 load_paired=function(fname, acn=NULL, bcn=NULL){
 	cat("Loading Paired Map...\n");
 	table=data.frame(read.table(fname,  sep="\t", header=TRUE, 
-		row.names=1, check.names=FALSE, comment.char=""));
+		row.names=c(), check.names=FALSE, comment.char=""));
 
 	if(!is.null(acn) && !is.null(bcn)){
 		table=table[, c(acn, bcn)];
