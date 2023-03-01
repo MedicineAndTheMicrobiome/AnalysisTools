@@ -205,6 +205,15 @@ usage = paste(
 	"		The low_flat_call starts flat and then increases after the knot.\n",
 	"		The high_flat_put starts high, then decrease until the knot, and goes flat.\n",
 	"\n",
+	"	make_dummies(x, prefix=\"is\", reference=NA)\n",
+	"		This function will create dummy variables for a variable that is categorical.\n",
+	"		If the reference is not specified, then the most common category will be used\n",
+	"		as the reference.  The number of new variables that will be created is\n",
+	"		the (number of categories - 1).  When the function is called, the LHS variable\n",
+	"		name will be appended to the category name after the prefix has been attached.\n",
+	"		For example:  If there are two categories, male and female, and there are more\n",
+	"		males than females, then the follow command: sex=make_dummies(gender), will produce\n",
+	"		the new variable sex.ismale.\n",
 	"\n",
 	"For debugging you can also do:\n",
 	"	print <variable name>\n",
@@ -825,6 +834,44 @@ hinge=function(x, knot, type){
 
 ##############################################################################
 
+make_dummies=function(x, prefix="is", reference=NA){
+	# This function will convert a variable with categorical variables
+	# into multiple dummy variables, relative to the specified reference.
+	# If the reference is not specified, the most common category will
+	# be used as the reference.
+
+	# Count up categories, so we can build dummy variables in decreasing
+	# order of frequency
+	tab=sort(table(x), decreasing=T);
+	print(tab);
+
+	if(is.na(reference)){
+		reference=names(tab)[1];
+	}
+
+	cat("Using as reference category: ", reference, "\n");
+
+	categories=names(tab);
+	dummy_vars=setdiff(categories, reference);
+
+	cat("Targeted Dummy variables to make:\n");
+	print(dummy_vars);
+	num_dummy_vars=length(dummy_vars);
+	num_values=length(x);
+
+	dum_mat=matrix(NA, ncol=num_dummy_vars, nrow=num_values);
+	colnames(dum_mat)=paste(prefix, dummy_vars, sep="");
+
+	for(i in 1:num_dummy_vars){
+		dum_mat[,i]=ifelse(dummy_vars[i]==x, 1, 0);
+	}
+
+	return(dum_mat);
+
+}
+
+##############################################################################
+
 # Load factors
 factors=load_factors(InputFName);
 num_samples=nrow(factors);
@@ -953,15 +1000,24 @@ for(cmd in commands){
 		cat("LHS: ", lhs, "\n");
 		results=eval(parse(text=cmd), envir=factors);
 		print(results);
-		cnames=colnames(factors);
 
-		if(any(lhs==cnames)){
-			# Replace
-			factors[,lhs]=results;
+		cnames=colnames(factors);
+		if(ncol(results)==1){
+			# Single column results
+			if(any(lhs==cnames)){
+				# Replace
+				factors[,lhs]=results;
+			}else{
+				# Append
+				factors=cbind(factors, results, stringsAsFactors=F);
+				colnames(factors)=c(cnames, lhs);
+			}
 		}else{
-			# Append
+			# Multi column results
+			result_colnames=colnames(results);
+			prefixed_res_cn=paste(lhs, ".", result_colnames, sep="");
 			factors=cbind(factors, results, stringsAsFactors=F);
-			colnames(factors)=c(cnames, lhs);
+			colnames(factors)=c(cnames, prefixed_res_cn);
 		}
 	}
 	
