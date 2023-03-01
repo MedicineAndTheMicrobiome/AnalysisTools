@@ -32,8 +32,8 @@ usage = paste(
 	"	[-m <maximum number of clusters, default=max(log2(sample_size), sample_size/40)>]\n",
 	"	[-s <subsample for testing, default=all samples>]\n",
 	"\n",
-	"	[-B <bootstraps for pseudo-F estimation, default=", PSEUDO_F_BOOTSTRAPS, "\n", 
-	"	[-N <subsammple for pseudo-F estimation, default=", PSEUDO_F_SUBSAMP, "\n",
+	"	[-B <bootstraps for pseudo-F estimation, default=", PSEUDO_F_BOOTSTRAPS, "]\n", 
+	"	[-N <subsammple for pseudo-F estimation, default=", PSEUDO_F_SUBSAMP, "]\n",
 	"\n",
 	"This script will use the variables specified in the target file\n",
 	"to assign subjects to clusters.  The cluster assignments will be\n",
@@ -1134,7 +1134,10 @@ layout_mat=matrix(c(1,2,2,2), nrow=4);
 layout(layout_mat);
 par(oma=c(0,0,1,0));
 
-left_label_margin=5;
+factor_names=colnames(targeted_factors);
+longest_factor_var_len=max(nchar(factor_names));
+cat("Longest factor name: ", longest_factor_var_len, "\n");
+left_label_margin=longest_factor_var_len/2;
 
 
 for(k in 2:max_cuts){
