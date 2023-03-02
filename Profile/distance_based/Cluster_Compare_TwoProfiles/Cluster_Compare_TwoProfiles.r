@@ -246,23 +246,31 @@ load_mapping_file=function(mp_fname, keep_a_ids, keep_b_ids, colname_a, colname_
 	inmat=as.matrix(read.delim(mp_fname, sep="\t", header=TRUE, check.names=F, comment.char="", quote=""));
 
 	inmat=inmat[,c(colname_a, colname_b)];
+	cat("Num Pairs in Map: ", nrow(inmat), "\n");
 
 	# Remove unpaired
 	keep_ix=apply(inmat, 1, function(x){ all(!is.na(x))});
 	inmat=inmat[keep_ix,,drop=F];
+	cat("Num Pairs that were complete: ", nrow(inmat), "\n");
 
 	# Keep Entry if record is in both lists
 	keep_ix=c();
 	orig_mat_rows=nrow(inmat);
 	cat("Number of Mapping Entries Read: ", orig_mat_rows, "\n");
+
 	for(i in 1:orig_mat_rows){
 		if(any(inmat[i,1]==keep_a_ids) &&  any(inmat[i,2]==keep_b_ids)){
 			keep_ix=c(keep_ix, i);
 		}
 	}
-	inmat=inmat[keep_ix,];
+
+	inmat=inmat[keep_ix,,drop=F];
 	num_kept_matrows=nrow(inmat);
 	cat("Number of Mapping Entries Kept: ", num_kept_matrows, "\n");
+
+	if(num_kept_matrows==0){
+		cat("Are you sure the A/B of the summary tables match the map columns?\n");
+	}
 
 	mapping=as.list(x=inmat[,1]);
 	names(mapping)=inmat[,2];
