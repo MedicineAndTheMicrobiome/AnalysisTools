@@ -24,7 +24,7 @@
 
 package PositionProfiles;
 use strict;
-use Math::CDF;
+#use Math::CDF;
 
 my @NUC_ARR =("A","C","G","T");
 my @GAP_NUC_ARR=@NUC_ARR;
@@ -1123,70 +1123,70 @@ sub filter_prof_percentage{
 
 ################################################################################
 
-sub filter_prof_binomial{
-
-	# For each nucleotide in the distribution, removes the allele if the probability
-	# of that nucleotide being greater than 0 is better than the threshold
-	# specified, if resampled at the same depth were to be performed.
-
-	# In other words, if we were to resample the same position again, if the probability
-	# of that allele being nonzero is greater than the specified threshold, keep it.
-
-	my $prof_arr_ref=shift;
-	my $conf_thres=shift; # The higher the number, the greater the stringency.
-	my @new_profile=();
-
-	my ($gap_res_arr_ref, $ungap_res_arr_ref)=get_alphabet_profarr($prof_arr_ref);
-
-	my $prof_length=$#{$prof_arr_ref}+1;
-
-	for(my $i=0; $i<$prof_length; $i++){
-		my $pos_prof_ref=${$prof_arr_ref}[$i];
-		
-		# Count up the total counts
-		my $pos_count=0;
-		foreach my $res(@{$gap_res_arr_ref}){
-			$pos_count+=${$pos_prof_ref}{$res};
-		}
-
-		# Compute prob of each nucleotide
-		my %res_perc;
-		foreach my $res(@{$gap_res_arr_ref}){
-			if($pos_count>0){
-				$res_perc{$res}=${$pos_prof_ref}{$res}/$pos_count;
-			}else{
-				$res_perc{$res}=0;
-			}
-		}
-
-		# Test each nucleotide for inclusion
-		my $new_total=0;
-		foreach my $res(@{$gap_res_arr_ref}){
-
-			my $p=$res_perc{$res};
-			#print STDERR "Count = $pos_count p($nuc)=$p\n";
-			my $prob_not_zero=1-Math::CDF::pbinom(0, $pos_count, $p);
-			#print STDERR "P(X>0)=$prob_not_zero\n";
-
-			if($prob_not_zero>$conf_thres){
-				${$new_profile[$i]}{$res}=${$pos_prof_ref}{$res};
-				$new_total+=${$pos_prof_ref}{$res};
-			}else{
-				${$new_profile[$i]}{$res}=0;
-			}
-		}	
-
-		# If all counts were filtered, revert and report.
-		if($new_total==0){
-			#print STDERR "Warning: Position $i could not be filtered.  All counts were insignificant.\n";
-			foreach my $res(@{$gap_res_arr_ref}){
-				${$new_profile[$i]}{$res}=${$pos_prof_ref}{$res};
-			}
-		}
-	}
-
-	return(\@new_profile);
-}
+#sub filter_prof_binomial{
+#
+#	# For each nucleotide in the distribution, removes the allele if the probability
+#	# of that nucleotide being greater than 0 is better than the threshold
+#	# specified, if resampled at the same depth were to be performed.
+#
+#	# In other words, if we were to resample the same position again, if the probability
+#	# of that allele being nonzero is greater than the specified threshold, keep it.
+#
+#	my $prof_arr_ref=shift;
+#	my $conf_thres=shift; # The higher the number, the greater the stringency.
+#	my @new_profile=();
+#
+#	my ($gap_res_arr_ref, $ungap_res_arr_ref)=get_alphabet_profarr($prof_arr_ref);
+#
+#	my $prof_length=$#{$prof_arr_ref}+1;
+#
+#	for(my $i=0; $i<$prof_length; $i++){
+#		my $pos_prof_ref=${$prof_arr_ref}[$i];
+#		
+#		# Count up the total counts
+#		my $pos_count=0;
+#		foreach my $res(@{$gap_res_arr_ref}){
+#			$pos_count+=${$pos_prof_ref}{$res};
+#		}
+#
+#		# Compute prob of each nucleotide
+#		my %res_perc;
+#		foreach my $res(@{$gap_res_arr_ref}){
+#			if($pos_count>0){
+#				$res_perc{$res}=${$pos_prof_ref}{$res}/$pos_count;
+#			}else{
+#				$res_perc{$res}=0;
+#			}
+#		}
+#
+#		# Test each nucleotide for inclusion
+#		my $new_total=0;
+#		foreach my $res(@{$gap_res_arr_ref}){
+#
+#			my $p=$res_perc{$res};
+#			#print STDERR "Count = $pos_count p($nuc)=$p\n";
+#			my $prob_not_zero=1-Math::CDF::pbinom(0, $pos_count, $p);
+#			#print STDERR "P(X>0)=$prob_not_zero\n";
+#
+#			if($prob_not_zero>$conf_thres){
+#				${$new_profile[$i]}{$res}=${$pos_prof_ref}{$res};
+#				$new_total+=${$pos_prof_ref}{$res};
+#			}else{
+#				${$new_profile[$i]}{$res}=0;
+#			}
+#		}	
+#
+#		# If all counts were filtered, revert and report.
+#		if($new_total==0){
+#			#print STDERR "Warning: Position $i could not be filtered.  All counts were insignificant.\n";
+#			foreach my $res(@{$gap_res_arr_ref}){
+#				${$new_profile[$i]}{$res}=${$pos_prof_ref}{$res};
+#			}
+#		}
+#	}
+#
+#	return(\@new_profile);
+#}
 
 ################################################################################
 
