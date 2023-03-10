@@ -5,70 +5,46 @@
 use strict;
 use Getopt::Std;
 use FileHandle;
-use vars qw($opt_f $opt_s $opt_n $opt_r $opt_R);
+use vars qw($opt_f $opt_n $opt_l $opt_o);
 
-getopts("f:s:n:r:R");
+getopts("f:n:l:o:");
 my $usage = "usage: 
 $0 
 	-f <Input FASTA Filename>
-	-n <Num fragments>
-	-m <mean length>
-	-s <stdev length>
-	[-c circularize genome]
+	-n <Num Shreds/Fragments>
+	-l <length>
+	-o <output file name>
 
 	This program will take the input fasta file and randomly generate
-	a set of reads with the specified mean and standard deviation.
-	If you want the genome to be circularized, use the -c flag or else
-	you may end up with many short sequences off the end of the sequence.
+	a set of reads with the specified length.
 
 ";
 
 if(!(
 	defined($opt_f) && 
-	defined($opt_s) && 
 	defined($opt_n) && 
-	defined($opt_r))){
+	defined($opt_l) && 
+	defined($opt_o))){
 	die $usage;
 }
 
 ###############################################################################
 
 my $fasta=$opt_f;
-my $num_samples=$opt_s;
-my $sample_size=$opt_n;
-my $output_root=$opt_r;
-my $with_replacement=defined($opt_R);
+my $num_shreds=$opt_n;
+my $shred_length=$opt_l;
+my $output_root=$opt_o;
 
 print STDERR "Input fasta: $fasta\n";
-print STDERR "Number of samples: $num_samples\n";
-print STDERR "Sample size: $sample_size\n";
+print STDERR "Number of shreds: $num_shreds\n";
+print STDERR "Shred Length: $shred_length\n";
 print STDERR "Output root: $output_root\n";
 
+###############################################################################
 
-# Open output fasta files
-my @fh;
-my $digits=int(log($num_samples)/log(10))+1;
-for(my $i=0; $i<$num_samples; $i++){
-	$fh[$i]=FileHandle->new();
-	my $offset=sprintf("%0$digits" . "i", $i);
-	my $fname="$output_root\.$offset\.fasta";
-	$fh[$i]->open(">$fname") || die "Could not open $fname\n";
-}
+open(OUT_FH, ">$output_root") || die "Could not open $output_root\n";
 
-# Determine population size
-print STDERR "Counting number of records in FASTA file\n";
-my $num_records=count_records($fasta);
-print STDERR "Number of records: $num_records\n";
-
-if($num_records<=$sample_size && !$with_replacement){
-	die "Num records is less than sample size. You can't sample without replacement.\n";
-}
-
-# Determine which records should go in which file, randomly
-my $subset_hash_ref=compute_samples($num_samples, $sample_size, $num_records, $with_replacement);
-
-# Read/Process fasta file, extracting records as we need them
-open(FASTA_FH, "<$opt_f") || die "Could not open $opt_f\n";
+open(FASTA_FH, "<$fasta") || die "Could not open $fasta\n";
 
 my $offset=0;
 print STDERR "Processing FASTA file...\n";
@@ -96,73 +72,41 @@ print STDERR "Completed.\n";
 ###############################################################################
 ###############################################################################
 
-sub compute_samples{
-	my $num_samples=shift;
-	my $sample_size=shift;
-	my $population_size=shift;
-	my $with_replacement=shift;
-
-	my %sample_hash;
-
-	for(my $s=0; $s<$num_samples; $s++){
-
-		my %selected_hash;
-
-		for(my $p=0; $p<$sample_size;){
-			my $offset=int(rand($population_size));
-			#print "$offset: $s\n";
-			if($with_replacement || (!$with_replacement && !defined($selected_hash{$offset}))){
-				push @{$sample_hash{$offset}}, $s;
-				$selected_hash{$offset}=1;
-				$p++;
-			}
-		}
-	}
-	return(\%sample_hash);
-}
-
-sub count_records{
-	my $name=shift;
-	open(FH, "<$name") || die "Could not open $name\n";
-	
-	my $num_records=0;
-	while(<FH>){
-		if($_=~/^>/){
-			$num_records++;
-		}
-	}
-	
-	close(FH);
-	return($num_records);
-}
-
-###############################################################################
-
 sub process_record{
 	my $defline = shift;
 	my $sequence = shift;
 
-	if(defined(${$subset_hash_ref}{$offset})){
-		
-		my $samples_ref=${$subset_hash_ref}{$offset};
+	my $seq_len=length($sequence);
 
-		foreach my $sample(@{$samples_ref}){
+	print STDERR "Processing:\n";
+	print STDERR "$defline\n";
+	print STDERR "Sequence Length: $seq_len\n";
 
-			print {$fh[$sample]} "$defline\n";
+	my @splits=split /\s+/, $defline;
+	my $clean_id=$splits[0];
 
-			my $length=length($sequence);
-			my $width=70;
-			my $pos=0;
-			do{
-				my $out_width=($width>$length)?$length:$width;
-				print {$fh[$sample]} substr($sequence, $pos, $width) . "\n";
-				$pos+=$width;
-				$length-=$width;
-			}while($length>0);
-		}
+	for(my $i=0; $i<$num_shreds; $i++){
+
+		# Find fragment to extract as shred
+		my $rand_pos=int(rand()*($seq_len-$shred_length));
+		print "Shred Pos: $rand_pos\n";
+		my $frag=substr($sequence, $rand_pos, $shred_length);
+
+		# Output Shred	
+		my $shred_id=sprintf("%03i", $i+1);
+		print OUT_FH "$clean_id\.$shred_id\n";
+		my $length=length($frag);
+		my $width=70;
+		my $pos=0;
+		do{
+			my $out_width=($width>$length)?$length:$width;
+			print OUT_FH substr($frag, $pos, $width) . "\n";
+			$pos+=$width;
+			$length-=$width;
+		}while($length>0);
+
 	}
 
-	$offset++;
 }
 
 #------------------------------------------------------------------------------
