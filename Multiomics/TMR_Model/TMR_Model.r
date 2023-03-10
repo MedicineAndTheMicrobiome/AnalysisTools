@@ -4,6 +4,7 @@
 
 library(MASS);
 library('getopt');
+library(vegan);
 
 options(useFancyQuotes=F);
 options(digits=5);
@@ -809,6 +810,86 @@ print(legends_values);
 palette(rainbow(max_cat, end=4/6));
 
 ##############################################################################
+# Compute PERMANOVA on measurements and response
+
+plot_title_page("PERMANOVA", c(
+	"PERMANOVA was run on the distance matrices for the Measured and",
+	"Response groups, using the variables from the Treatment/Covariates",
+	"groups as predictors.  R^2 and P-values are reported in tables",
+	"and in heatmaps"
+));
+
+run_adonis=function(in_dist, in_factors){
+	formula_str=paste("in_dist ~", paste(colnames(in_factors), collapse=" + "));
+	adon2_res=adonis2(
+		as.formula(formula_str), 
+		data=as.data.frame(in_factors),
+		permutations=ncol(in_factors)*1000
+		);
+	anova_tab=as.matrix(adon2_res);
+	return(anova_tab);
+}
+
+permanova_rec=list();
+for(type in c("Measured", "Response")){
+	for(grp in names(mds_rec[[type]])){
+		distances=dist_rec[[type]][[grp]];
+		perm_mod_name=paste(type, ": ", grp, sep="");
+		permanova_rec[[perm_mod_name]]=run_adonis(distances, covariates_data[,covariate_variable_names]);
+	}
+}
+
+# Consolidate PERMANOVA records into matrices
+num_perm_models=length(permanova_rec);
+perm_models=names(permanova_rec);
+
+permanova_pval_mat=matrix(NA, nrow=length(covariate_variable_names), ncol=num_perm_models);
+permanova_rsqr_mat=matrix(NA, nrow=length(covariate_variable_names), ncol=num_perm_models);
+
+rownames(permanova_pval_mat)=covariate_variable_names;
+rownames(permanova_rsqr_mat)=covariate_variable_names;
+colnames(permanova_pval_mat)=perm_models;
+colnames(permanova_rsqr_mat)=perm_models;
+
+for(perm_grp in perm_models){
+	perm_mat=permanova_rec[[perm_grp]];
+	permanova_pval_mat[covariate_variable_names, perm_grp]=perm_mat[covariate_variable_names, "Pr(>F)"];
+	permanova_rsqr_mat[covariate_variable_names, perm_grp]=perm_mat[covariate_variable_names, "R2"];
+}
+
+# Plot heatmaps for R^2 and P-values
+paint_matrix(permanova_pval_mat, title="PERMANOVA P-Values", plot_min=0, plot_max=1, high_is_hot=F);
+paint_matrix(permanova_rsqr_mat, title="PERMANOVA R^2", plot_min=0, plot_max=1, high_is_hot=T);
+
+# Plot summary tables
+plot_text(c(
+	"PERMANOVA Results:",
+	"",
+	"P-values:",
+	"",
+	capture.output(print(permanova_pval_mat)),
+	"",
+	"",
+	"R^2:",
+	capture.output(print(permanova_rsqr_mat))
+	), max_lines_pp=80);
+
+signf_char=function(x){
+	sc="";
+	if(x<0.001){
+		sc="***";
+	}else if(x<0.01){
+		sc="**";
+	}else if(x<0.05){
+		sc="*";
+	}else if(x<0.10){
+		sc="'";
+	}
+	return(sc);
+}
+
+
+##############################################################################
 # Generate MDS Plots for each group of measurements and response
 
 plot_title_page("MDS Plots", c(
@@ -821,12 +902,18 @@ plot_title_page("MDS Plots", c(
 	"",
 	"Although only Measured and Response group variable MDS plots have",
 	"been generated, the samples have been colored by the values in the",
-	"Treatment/Covariate group."
+	"Treatment/Covariate group.",
+	"",
+	"Plots have been annotated with PERMANOVA calculation from previous section."
 ));
 
+
+par(mar=c(4,4,6,1));
 for(type in c("Measured", "Response")){
+
 	for(grp in names(mds_rec[[type]])){
 		mds_coord=mds_rec[[type]][[grp]];		
+		distances=dist_rec[[type]][[grp]];
 	
 		for(var_ix in covariate_variable_names){
 
@@ -834,7 +921,19 @@ for(type in c("Measured", "Response")){
 				xlab="Dim 1", ylab="Dim 2", type="n",
 				main=paste("Group: ", grp, sep=""),
 				);
-			title(main=paste("(Colored by: ", var_ix, ")", sep=""), line=.66, cex.main=.75);
+			title(main=paste("(Colored by: ", var_ix, ")", sep=""), line=1.5, cex.main=.95);
+
+			# Label with permanova results
+			perm_mod_name=paste(type, ": ", grp, sep="");
+			perm_r2=round(permanova_rsqr_mat[var_ix, perm_mod_name], 4);
+			perm_pv=paste(
+				round(permanova_pval_mat[var_ix, perm_mod_name], 4),
+				" ", signf_char(permanova_pval_mat[var_ix, perm_mod_name]),
+				sep=""
+				);
+			title(main=paste("R^2 = ", perm_r2, " / P-val = ", perm_pv, sep="") , line=.25, cex.main=.9);
+			
+			# Plot points and sample labels
 			points(mds_coord[,1], mds_coord[,2], col=colors[,var_ix], cex=1.5, lwd=3);
 			points(mds_coord[,1], mds_coord[,2], col="black", cex=1.5, lwd=.25);
 			text(mds_coord[,1], mds_coord[,2], rownames(mds_coord), cex=.5, pos=3);
