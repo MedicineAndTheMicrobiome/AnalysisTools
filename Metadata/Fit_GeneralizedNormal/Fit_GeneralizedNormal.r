@@ -613,9 +613,6 @@ norm_density=list();
 
 failed_variables=c();
 par(mfrow=c(2,2));
-counter=1;
-
-
 
 if(!FastFit){
 	# Complete
@@ -671,11 +668,13 @@ print(pert_matrix);
 
 MIN_REAL=1e-323;
 
+num_curated_targets=length(curated_target_names);
+counter=1;
 for(ctn in curated_target_names){
 	data=curated_targets_mat[,ctn];
 
 	cat("********************************************************************\n");
-	cat("Working on: ", ctn, "\n");
+	cat("Working on: ", ctn, " (", counter, "/", num_curated_targets,")\n");
 
 	mu0=mean(data);
 	variance=var(data);
@@ -1366,30 +1365,35 @@ par(oma=c(0,0,2,0));
 
 mean_zeros_ix=(mean_arr_sorted>mean_zero_cutoff);
 max_mean=max(mean_arr_sorted);
-
 mean_zeros_mean=mean_arr_sorted[mean_zeros_ix];
-mean_zeros_logbeta=log10(beta_arr_sorted[mean_zeros_ix]);
 
+num_zero_means=length(mean_zeros_mean);
 
-hist(mean_zeros_mean, 
-	main=paste("Mean Distribution\n(Actual Cutoff=", mean_zero_cutoff, ")"), 
-	xlab="means", breaks=100);
+if(num_zero_means>0){
 
-plot(mean_zeros_logbeta, mean_zeros_mean,
-	xlab="Log10(Beta)",
-	xlim=range_logx,
-	ylab="Mean",
-	main="Means at Cutoff vs. Beta"
-);
-abline(v=log10(beta_landmarks), col="blue", lty="dotted");
-text(log10(beta_landmarks), 0, beta_landmarks, font=2);
+	mean_zeros_logbeta=log10(beta_arr_sorted[mean_zeros_ix]);
 
-hist(mean_zeros_logbeta, main="Log10(Beta) Distribution of Means at Cutoff", xlab="",
-	xlim=c(range_logx),
-	breaks=seq(range_logx[1], range_logx[2], length.out=100));
-abline(v=log10(beta_landmarks), col="blue", lty="dotted");
+	hist(mean_zeros_mean, 
+		main=paste("Mean Distribution\n(Actual Cutoff=", mean_zero_cutoff, ")"), 
+		xlab="means", breaks=100);
 
-mtext("Means and Betas for Variables with Means > 0 ", side=3, line=0, outer=T, font=2);
+	plot(mean_zeros_logbeta, mean_zeros_mean,
+		xlab="Log10(Beta)",
+		xlim=range_logx,
+		ylab="Mean",
+		main="Means at Cutoff vs. Beta"
+	);
+	abline(v=log10(beta_landmarks), col="blue", lty="dotted");
+	text(log10(beta_landmarks), 0, beta_landmarks, font=2);
+
+	hist(mean_zeros_logbeta, main="Log10(Beta) Distribution of Means at Cutoff", xlab="",
+		xlim=c(range_logx),
+		breaks=seq(range_logx[1], range_logx[2], length.out=100));
+	abline(v=log10(beta_landmarks), col="blue", lty="dotted");
+
+	mtext("Means and Betas for Variables with Means > 0 ", side=3, line=0, outer=T, font=2);
+
+}
 
 ##############################################################################
 
