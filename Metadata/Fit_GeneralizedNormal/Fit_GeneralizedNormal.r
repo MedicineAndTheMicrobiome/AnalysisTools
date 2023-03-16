@@ -99,8 +99,6 @@ print(param_text, quote=F);
 
 load_factors=function(fname){
 	factors=as.data.frame(read.delim(fname,  header=TRUE, row.names=1, check.names=FALSE, sep="\t"));
-	factors=factors[,-1,drop=F];
-
 	return(factors);
 }
 
