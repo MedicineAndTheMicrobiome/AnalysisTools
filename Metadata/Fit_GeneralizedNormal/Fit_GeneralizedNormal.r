@@ -12,6 +12,7 @@ options(digits=5)
 
 params=c(
 	"factors", "f", 1, "character",
+	"targets", "t", 1, "character",
 	"outputroot", "o", 1, "character",
 	"debug_targets", "d", 2, "character",
 	"fast_fit", "F", 2, "logical"
@@ -25,6 +26,7 @@ NORM_PVAL_CUTOFF=.2;
 usage = paste(
 	"\nUsage:\n", script_name, "\n",
 	"	-f <factors/metadata file name>\n",
+	"	-t <list of variable targets>\n",
 	"	-o <output filename root>\n",
 	"\n",
 	"	[-d <debug list of variable targets>]\n",
@@ -57,6 +59,7 @@ usage = paste(
 
 if(
 	!length(opt$factors) || 
+	!length(opt$targets) || 
 	!length(opt$outputroot)
 ){
 	cat(usage);
@@ -65,6 +68,7 @@ if(
 
 FactorsFname=opt$factors;
 OutputFnameRoot=opt$outputroot;
+TargetsFname=opt$targets;
 
 DebugVarList="";
 if(length(opt$debug_targets)){
@@ -84,6 +88,7 @@ param_text=capture.output({
 	cat("\n");
 	cat("Factor File Name: ", FactorsFname, "\n");
 	cat("Output File Name Root: ", OutputFnameRoot, "\n");
+	cat("Targets: ", TargetsFname, "\n");
 	cat("Fast Fit? ", FastFit, "\n");
 	cat("\n");
 });
@@ -290,7 +295,10 @@ cat("Loaded sample ids:\n");
 print(loaded_sample_names);
 cat("\n");
 
-targeted_mat=loaded_factors;
+target_var_arr=load_list(TargetsFname);
+cat("Num of Targets: ", length(target_var_arr));
+target_variables=intersect(loaded_factor_names, load_list(TargetsFname));
+targeted_mat=loaded_factors[,target_variables, drop=F];
 
 cat("Testing Predictor Variables for normality.\n");
 curated_targets_mat=test_and_apply_log_transform(targeted_mat, NORM_PVAL_CUTOFF);
