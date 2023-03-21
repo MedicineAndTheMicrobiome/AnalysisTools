@@ -173,7 +173,8 @@ if(!is.na(CrossingString)){
 ###############################################################################
 
 load_factors=function(fname){
-        factors=data.frame(read.table(fname,  header=TRUE, check.names=FALSE, row.names=1, comment.char="", quote="", sep="\t"));
+        factors=data.frame(read.table(fname,  header=TRUE, check.names=FALSE, row.names=1, 
+		comment.char="", quote="", sep="\t", stringsAsFactors=TRUE));
         dimen=dim(factors);
         cat("Rows Loaded: ", dimen[1], "\n");
         cat("Cols Loaded: ", dimen[2], "\n");

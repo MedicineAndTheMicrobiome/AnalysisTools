@@ -141,7 +141,7 @@ summary_text=c(summary_text, "\n", out);
 load_factors=function(fname){
 	cat("Loading Factors: ", fname, "\n");
 	factors=data.frame(read.table(fname,  sep="\t", header=TRUE, row.names=1, 
-		check.names=FALSE, comment.char="", quote=""));
+		check.names=FALSE, comment.char="", quote="", stringsAsFactors=TRUE));
 	factor_names=colnames(factors);
 
 	ignore_idx=grep("^IGNORE\\.", factor_names);
