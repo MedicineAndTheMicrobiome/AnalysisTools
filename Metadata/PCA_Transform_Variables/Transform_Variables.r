@@ -166,6 +166,7 @@ cat("Testing Targeted Variables for normality.\n");
 transformed_mat=test_and_apply_normalizing_transforms(target_mat, NORM_PVAL_CUTOFF);
 
 ##############################################################################
+# Write out new matrix/factor file
 
 out_mat=numeric();
 out_colnames=character();
@@ -197,6 +198,12 @@ colnames(out_mat)=out_colnames;
 
 fname=paste(OutputFnameRoot, ".transformed.tsv", sep="");
 write.table(out_mat, file=fname, col.names=T, row.names=F, sep="\t");
+
+##############################################################################
+# Write out list of transformed variables
+
+fname=paste(OutputFnameRoot, ".transformed.lst", sep="");
+write.table(colnames(transformed_mat), file=fname, row.names=F, col.names=F, quote=F);
 
 ##############################################################################
 
