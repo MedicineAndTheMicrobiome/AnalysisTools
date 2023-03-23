@@ -76,7 +76,7 @@ test_and_apply_normalizing_transforms=function(mat_val, pval_cutoff=.2, plot_bef
 					test_negrecip_res$p.value
 					);
 
-				max_pvalue=max(test_pvals, rm.na=T);
+				max_pvalue=max(test_pvals, na.rm=T);
 				best_trans=which(test_pvals==max_pvalue);
 			
 				# Store results of best transform
