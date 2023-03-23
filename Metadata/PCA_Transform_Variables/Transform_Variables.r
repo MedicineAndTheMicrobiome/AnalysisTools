@@ -197,7 +197,7 @@ cat("Writing output file...\n");
 colnames(out_mat)=out_colnames;
 
 fname=paste(OutputFnameRoot, ".transformed.tsv", sep="");
-write.table(out_mat, file=fname, col.names=T, row.names=F, sep="\t");
+write.table(out_mat, file=fname, col.names=T, row.names=F, sep="\t", quote=F);
 
 ##############################################################################
 # Write out list of transformed variables
