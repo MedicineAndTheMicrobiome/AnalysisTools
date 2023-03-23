@@ -115,7 +115,7 @@ test_and_apply_normalizing_transforms=function(mat_val, pval_cutoff=.2, plot_bef
 				}
 			}else{
 				cat(" Normal enough. ", test_res$p.value, "\n");
-				new_colnames=c(new_colnames, var);
+				new_colnames=c(new_colnames, paste("orig_", var, sep=""));
 			}
 
 		}else{
@@ -160,5 +160,7 @@ test_and_apply_normalizing_transforms=function(mat_val, pval_cutoff=.2, plot_bef
 	if(plot_before_after){
 		par(orig_par);
 	}
+
+	return(trans_mat);
 
 }
