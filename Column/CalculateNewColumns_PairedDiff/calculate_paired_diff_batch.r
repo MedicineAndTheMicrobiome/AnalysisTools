@@ -307,6 +307,11 @@ write_factors(paste(OutputFName, ".tsv", sep=""), output_matrix);
 
 ##############################################################################
 
+fname=paste(OutputFName, ".diff_vars.lst", sep="");
+write.table(colnames(diff_matrix), file=fname, row.names=F, col.names=F, quote=F);
+
+##############################################################################
+
 cat("\nDone.\n");
 
 print(warnings());
