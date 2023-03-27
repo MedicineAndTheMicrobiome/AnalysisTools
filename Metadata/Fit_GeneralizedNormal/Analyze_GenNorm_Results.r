@@ -618,12 +618,18 @@ dev.off();
 
 sort_var_names=rownames(sorted_beta);
 
-fname=paste(OutputFnameRoot, ".prioritized.tsv", sep="");
+# Write out values of kept variables
+fname=paste(OutputFnameRoot, ".prioritized.meta.tsv", sep="");
 fh=file(fname, "w");
 cat(file=fh, "SampleID\t");
 close(fh);
 write.table(loaded_factors[, sort_var_names[1:recommended_num_var]], 
 	file=fname, quote=F, row.names=T, sep="\t", append=T);
+
+
+# Write out list
+fname=paste(OutputFnameRoot, ".prioritized.targets.tsv", sep="");
+write.table(sort_var_names[1:recommended_num_var], file=fname, row.names=F, col.names=F, quote=F);
 
 
 ##############################################################################
