@@ -495,7 +495,7 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
                 mat=mat[row_dendr[["names"]],];
         }else{
 
-		if(heatmap_height < 200 &&  heatmap_width < 200){
+		if(heatmap_height*heatmap_width < 10000){
 			layoutmat=matrix(
 				rep(1, heatmap_height*heatmap_width),
 				byrow=T, ncol=heatmap_width);
