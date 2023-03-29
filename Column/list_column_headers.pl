@@ -4,9 +4,9 @@
 
 use strict;
 use Getopt::Std;
-use vars qw ($opt_i $opt_n $opt_d $opt_c);
+use vars qw ($opt_i $opt_n $opt_d $opt_c $opt_r $opt_o);
 
-getopts("i:nd:c");
+getopts("i:nd:cr:o:");
 
 my $usage = "
 	usage:
@@ -15,6 +15,9 @@ my $usage = "
 		[-n (number columns)]
 		[-d <delimiter, default=tab>];
 		[-c (count number of columns only)]
+
+		[-r <pRefix>]
+		[-o <pOstfix>]
 
 	This script will read in the first line of a delimited column
 	text file (i.e. the header) and output the column names on
@@ -27,6 +30,28 @@ my $usage = "
 	-c: output the number of columns in the file
 
 	Results goes to STDOUT.
+
+	PREFIX/POSTFIX Options
+
+	The -r and -o options will pre or post-fix the output.
+	For example, if the output without either options is:
+
+		Col1
+		Col2
+		Col3
+
+	The -r 'apples.' specification will look like:
+
+		apples.Col1
+		apples.Col2
+		apples.Col3
+
+	The -o '.apples' specification will look like:
+
+		Col1.apples
+		Col2.apples
+		Col3.apples
+	
 	
 ";
 
@@ -53,6 +78,21 @@ if(defined($opt_d)){
 }
 
 my $NumCols=defined($opt_c);
+
+my $Prefix;
+if(defined($opt_r)){
+	$Prefix=$opt_r;
+}else{
+	$Prefix="";
+}
+
+my $Postfix;
+if(defined($opt_o)){
+	$Postfix=$opt_o;
+}else{
+	$Postfix="";
+}
+
 
 ###############################################################################
 
@@ -82,7 +122,7 @@ for(my $i=0; $i<$num_cols; $i++){
 	if($Number){
 		print STDOUT ($i+1) . " ";
 	}
-	print STDOUT "$header_arr[$i]\n";		
+	print STDOUT "$Prefix$header_arr[$i]$Postfix\n";		
 
 }
 
