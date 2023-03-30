@@ -478,7 +478,6 @@ days_from_date=function(x, format){
 }
 
 num_to_str_id=function(numeric_id, prefix="s"){
-print(names(numeric_id));
 	max_val=max(numeric_id);
 	num_digits=log10(max_val+1)+1;
 	print(numeric_id);
@@ -894,8 +893,10 @@ for(cmd in commands){
 	cmd=gsub("^\\s+", "", cmd);
 	cmd=gsub("\\s+$", "", cmd);
 
-	print(cmd);
+	num_factors=ncol(factors);
+	cat("Number of Factors in matrix: ", num_factors, "\n");
 
+	print(cmd);
 	cat("Working on: ", cmd, "\n");
 
 	if(length(grep("^delete ", cmd))==1){
@@ -963,6 +964,7 @@ for(cmd in commands){
 		funct=toks[4];
 
 		cat("Match Apply: ", funct, "(A=", extensionA, ",B=", extensionB,")\n", sep="");
+
 		factors=match_apply(factors, extensionA, extensionB, funct);
 
 	}else if(length(grep("^batch_apply ", cmd))==1){
@@ -1002,7 +1004,7 @@ for(cmd in commands){
 		print(results);
 
 		cnames=colnames(factors);
-		if(ncol(results)==1){
+		if(is.null(ncol(results)) || ncol(results)==1){
 			# Single column results
 			if(any(lhs==cnames)){
 				# Replace
