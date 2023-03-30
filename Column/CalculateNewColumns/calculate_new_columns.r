@@ -65,11 +65,11 @@ usage = paste(
 	"		than <max mode dominance>%.  For example, rem_var_max_perc_modedom 90\n",
 	"		will remove any variable if the most common value is >90% of that variable.\n",
 	"\n",
-	"	match_apply <A_extension> <B_extension> <function>\n",
+	"	match_apply <A_extension> <B_extension> <function> <keepA> <keepB> <keepAB>\n",
 	"		Example:\n",
-	"			match_apply .t1 .t2 nomn_diff\n",
-	"			match_apply .t1 .t2 perc_diff\n",
-	"			match_apply .t1 .t2 log2_ratio\n",
+	"			match_apply .t1 .t2 nomn_diff T T T\n",
+	"			match_apply .t1 .t2 perc_diff T T T\n",
+	"			match_apply .t1 .t2 log2_ratio T T F\n",
 	"\n",
 	"		This will look for variables with the suffix A extension, \n",
 	"		then identify matching variables with suffix B extension, then\n",
@@ -78,6 +78,14 @@ usage = paste(
 	"		Example:\n",
 	"			<var><A_extension> and <var><B_extension> will create\n",
 	"			the variable <var>.<function>\n",
+	"\n",
+	"		Before the function completes, the keepA, keepB and keepAB will\n",
+	"		determine if the variables that were exclusive to A, B, and matching between\n",
+	"		the two will be kept or not.  If keepAB is set to false, then the variables\n",
+	"		will not exist if match_apply is called again.\n",
+	"		If pairs are not matchable, variables exclusive to A may be useful as covariates at\n",	
+	"		baseline.  If variables exclusive to B are kept, they may be useful as response\n",
+	"		or outcome variables.\n",
 	"\n",
 	"	batch_apply <filename> \"<function>\" <postfix> <keep>\n",
 	"		This will load the variable names in the specified file name and then apply\n",
@@ -661,7 +669,7 @@ log2_ratio=function(A, B){
 	return(log2(B/A));
 }
 
-match_apply=function(factors, extA, extB, funct){
+match_apply=function(factors, extA, extB, funct, keepA=T, keepB=T, keepAB=T){
 
 	cat("Match/Apply called.\n");
 
@@ -744,8 +752,32 @@ match_apply=function(factors, extA, extB, funct){
 
 		res_mat[,newvarnames[i]]=res[,1];
 	}
+
+	#####################################################
+
+	cur_colnames=colnames(factors);
+	if(!keepA){
+		cat("Removing Exclusive to A:", extA, "\n");
+		exclA=paste(A_vars_roots_only, extA, sep="");
+		cur_colnames=setdiff(cur_colnames, exclA);	
+	}
+	if(!keepB){
+		cat("Removing Exclusive to B:", extB, "\n");
+		exclB=paste(B_vars_roots_only, extB, sep="");
+		cur_colnames=setdiff(cur_colnames, exclB);	
+	}
+	if(!keepAB){
+		cat("Removing shared by A and B:\n");
+		sharedAB_asA=paste(shared_vars, extA, sep="");
+		sharedAB_asB=paste(shared_vars, extB, sep="");
+
+		cur_colnames=setdiff(cur_colnames, c(sharedAB_asA, sharedAB_asB));	
+	}
+
+	#####################################################
 	
 	out_factors=cbind(factors, res_mat);
+
 	return(out_factors);
 
 }
@@ -956,16 +988,19 @@ for(cmd in commands){
 		rowcol=dim(factors);
 		cat("Rows: ", rowcol[1], " x Cols: ", rowcol[2], "\n", sep="");
 
-	}else if(length(grep("^match_apply ", cmd))==1){
+	}else if(length(grep("^match_apply", cmd))==1){
 		# rename variables 
 		toks=strsplit(cmd, "\\s+")[[1]];
 		extensionA=toks[2];
 		extensionB=toks[3];
 		funct=toks[4];
+		keepA=as.logical(toks[5]);
+		keepB=as.logical(toks[6]);
+		keepAB=as.logical(toks[7]);
 
 		cat("Match Apply: ", funct, "(A=", extensionA, ",B=", extensionB,")\n", sep="");
 
-		factors=match_apply(factors, extensionA, extensionB, funct);
+		factors=match_apply(factors, extensionA, extensionB, funct, keepA, keepB, keepAB);
 
 	}else if(length(grep("^batch_apply ", cmd))==1){
 
