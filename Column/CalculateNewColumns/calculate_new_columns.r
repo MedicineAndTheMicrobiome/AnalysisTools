@@ -71,9 +71,15 @@ usage = paste(
 	"			match_apply .t1 .t2 perc_diff T T T\n",
 	"			match_apply .t1 .t2 log2_ratio T T F\n",
 	"\n",
+	"			match_apply .t1 .t2 nomn_diff_NA_0 T T T\n",
+	"			match_apply .t1 .t2 perc_diff_NA_0 T T T\n",
+	"			match_apply .t1 .t2 log2_ratio_NA_0 T T F\n",
+	"\n",
 	"		This will look for variables with the suffix A extension, \n",
 	"		then identify matching variables with suffix B extension, then\n",
 	"		apply the paired function, to create a new variable.\n",
+	"		The *_NA_0 functions will automatically set the difference to 0 if either or\n",
+	"		both A and B values are NA.\n",
 	"\n",
 	"		Example:\n",
 	"			<var><A_extension> and <var><B_extension> will create\n",
@@ -699,6 +705,24 @@ log2_ratio=function(A, B){
 	return(log2(B/A));
 }
 
+perc_diff_NA_0=function(A, B){
+	diff=perc_diff(A, B);
+	diff[is.na(diff)]=0;
+	return(diff);
+}
+
+nomn_diff_NA_0=function(A, B){
+	diff=nomn_diff(A,B);
+	diff[is.na(diff)]=0;
+	return(diff);
+}
+
+log2_ratio_NA_0=function(A, B){
+	diff=log2_ratio(A, B);
+	diff[is.na(diff)]=0;
+	return(diff);
+}
+
 match_apply=function(factors, extA, extB, funct, keepA=T, keepB=T, keepAB=T){
 
 	cat("Match/Apply called.\n");
@@ -773,6 +797,12 @@ match_apply=function(factors, extA, extB, funct, keepA=T, keepB=T, keepAB=T){
 			res=nomn_diff(A_vals, B_vals);
 		}else if(funct=="log2_ratio"){
 			res=log2_ratio(A_vals, B_vals);
+		}else if(funct=="perc_diff_NA_0"){
+			res=perc_diff_NA_0(A_vals, B_vals);
+		}else if(funct=="nomn_diff_NA_0"){
+			res=nomn_diff_NA_0(A_vals, B_vals);
+		}else if(funct=="log2_ratio_NA_0"){
+			res=log2_ratio_NA_0(A_vals, B_vals);
 		}else{
 			cat("Unknown function: ", funct, "\n");
 			quit(status=-1);
