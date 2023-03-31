@@ -773,6 +773,7 @@ match_apply=function(factors, extA, extB, funct, keepA=T, keepB=T, keepAB=T){
 
 		cur_colnames=setdiff(cur_colnames, c(sharedAB_asA, sharedAB_asB));	
 	}
+	factors=factors[,cur_colnames,drop=F];
 
 	#####################################################
 	
