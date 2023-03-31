@@ -108,9 +108,12 @@ usage = paste(
 	"	  example:\n",
 	"	     gpa=remap(grade, c(\"A\", \"B\", \"C\", \"D\", \"E\"), c(4, 3, 2, 1, 0))\n",
 	"\n",
-	"	redefine_NA(x, value):  This will remap all the NAs in x to the the specified value.\n",
+	"	redefine_NA(x, value, max_prop_na=1):  This will remap all the NAs in x to the the specified value.\n",
 	"	  example:\n",
 	"	     medication_usage_nona=redefine_NA(medication_usage, 0)\n",
+	"	If you specify a value of 'mean', 'median', or 'mode', then a calculated value will be used\n",
+	"	If you only want to redefine NAs when it is a small proportion of the variables, then set the\n",
+	"	max_prop_na to a value such as 0.1 or 0.05.\n",
 	"\n",
 	"	function.list(fun, list(x, y, ...), na.rm=T): This a generic function that will apply the 'fun' command\n",
 	"		across the rows for each of the columns specified in the list.\n",
@@ -346,8 +349,35 @@ remap=function(x, key, value, leave_unmapped_alone=T){
 	return(new);
 }
 
-redefine_NA=function(x, value){
+redefine_NA=function(x, value, max_prop_NA_limit=1.0){
+
 	na_ix=is.na(x);
+	num_xs=length(x);
+
+	prop_na=sum(na_ix)/num_xs;
+	if(max_prop_NA_limit>1 || max_prop_NA_limit<0){
+		cat("Error, max prop NA limit should be between 0 and 1.\n");
+		quit(status=-1);
+	}
+
+	if(prop_na>max_prop_NA_limit){
+		cat("\tWarning:  Proportion of NAs (", prop_na, 
+			") in variable exceeded max threshold (", max_prop_NA_limit, ")\n");
+		cat("\tSkipping redefinition.\n");
+		return(x);
+	}else{
+		cat("\tProportion NA: ", prop_na, "\n");
+	}
+	
+
+	if(value=="mean"){
+		value=mean(x, na.rm=T);
+	}else if (value=="mode"){
+		value=mode(x, na.rm=T);
+	}else if (value=="median"){
+		value=median(x, na.rm=T);
+	}
+
 	x[na_ix]=value;
 	return(x);	
 }
