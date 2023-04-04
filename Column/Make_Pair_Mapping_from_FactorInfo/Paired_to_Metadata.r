@@ -78,14 +78,10 @@ if(Bcolname!=""){
 
 ##############################################################################
 
-load_paired=function(fname, acn=NULL, bcn=NULL){
+load_paired=function(fname, acn=NULL, bcn=NULL, sbj_idn=NULL){
 	cat("Loading Paired Map...\n");
 	table=data.frame(read.table(fname,  sep="\t", header=TRUE, 
 		row.names=c(), check.names=FALSE, comment.char=""));
-
-	if(!is.null(acn) && !is.null(bcn)){
-		table=table[, c(acn, bcn)];
-	}
 
 	if(ncol(table)!=3){
 		cat("\n*************************************************************\n");
@@ -95,6 +91,20 @@ load_paired=function(fname, acn=NULL, bcn=NULL){
 		cat("\n\n");
 		quit(status=-1);
 	}
+
+	# Find subject ID column
+	if(!is.null(sbj_idn)){
+		subject_ids=table[,sbj_idn];
+	}else{
+		subject_ids=table[,1];
+	}
+
+	# Find A & B
+	if(!is.null(acn) && !is.null(bcn)){
+		table=table[, c(acn, bcn)];
+	}
+
+	rownames(table)=subject_ids;
 
 	return(table);
 }
