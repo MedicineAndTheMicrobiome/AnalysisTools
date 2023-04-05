@@ -207,7 +207,8 @@ cat("Text Line Width: ", options()$width, "\n", sep="");
 ##############################################################################
 
 load_factors=function(fname){
-	factors=data.frame(read.table(fname,  sep="\t", header=TRUE, row.names=1, check.names=FALSE, comment.char=""));
+	factors=data.frame(read.table(fname,  sep="\t", header=TRUE, row.names=1, 
+		check.names=FALSE, comment.char=""), stringsAsFactors=T);
 	factor_names=colnames(factors);
 
 	ignore_idx=grep("^IGNORE\\.", factor_names);
@@ -1340,7 +1341,12 @@ for(resp_ix in 1:NumRespVariables){
 		)
 	);
 
-	mmps(lm_fit);
+	tryCatch({
+		mmps(lm_fit);
+	}, error=function(e){
+		print(e);
+		plot_text(capture.output(print(e)));
+	});
 
 	model_coef_names=setdiff(rownames(sum_fit$coefficients), "(Intercept)");
 
