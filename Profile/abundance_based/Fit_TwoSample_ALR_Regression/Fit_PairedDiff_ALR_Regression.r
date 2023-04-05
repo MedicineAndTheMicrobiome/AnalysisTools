@@ -205,7 +205,8 @@ cat("Text Line Width: ", options()$width, "\n", sep="");
 ##############################################################################
 
 load_factors=function(fname){
-	factors=data.frame(read.table(fname,  sep="\t", header=TRUE, row.names=1, check.names=FALSE, comment.char=""));
+	factors=data.frame(read.table(fname,  sep="\t", header=TRUE, row.names=1, 
+		check.names=FALSE, comment.char="", stringsAsFactors=T));
 	factor_names=colnames(factors);
 
 	ignore_idx=grep("^IGNORE\\.", factor_names);
@@ -218,7 +219,8 @@ load_factors=function(fname){
 }
 
 load_summary_file=function(fname){
-	inmat=as.matrix(read.table(fname, sep="\t", header=TRUE, check.names=FALSE, comment.char="", quote="", row.names=1))
+	inmat=as.matrix(read.table(fname, sep="\t", header=TRUE, check.names=FALSE, 
+		comment.char="", quote="", row.names=1));
 	counts_mat=inmat[,2:(ncol(inmat))];
 
 	# Clean category names a little
