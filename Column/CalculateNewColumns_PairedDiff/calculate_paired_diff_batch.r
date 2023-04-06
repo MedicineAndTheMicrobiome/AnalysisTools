@@ -183,13 +183,13 @@ pick_B=function(val){
 filenames=list();
 
 if(NomnDiffFname!=""){
-	filenames[["nomn"]]=NomnDiffFname;
+	filenames[["nmn"]]=NomnDiffFname;
 }
 if(PercDiffFname!=""){
-	filenames[["perc"]]=PercDiffFname;
+	filenames[["pct"]]=PercDiffFname;
 }
 if(Log2DiffFname!=""){
-	filenames[["log2"]]=Log2DiffFname;
+	filenames[["lg2"]]=Log2DiffFname;
 }
 
 target_types=names(filenames);
@@ -246,11 +246,11 @@ calc_diff=function(a_mat, b_mat, diff_type){
 		arow=a_mat[rix,];
 		brow=b_mat[rix,];
 
-		if(diff_type == "nomn"){
+		if(diff_type == "nmn"){
 			res=brow-arow;
-		}else if (diff_type == "perc"){
+		}else if (diff_type == "pct"){
 			res=100*(brow-arow)/arow;
-		}else if (diff_type == "log2"){
+		}else if (diff_type == "lg2"){
 			res=log2(brow/arow);
 		}else{
 			cat("Error, invalid difference type: ", diff_type, "\n");
@@ -279,7 +279,7 @@ for(type in target_types){
 	diff_matrix=calc_diff(A_matrix, B_matrix, type);
 
 	varnames=colnames(diff_matrix);
-	prefixed_varnames=paste(type, "_diff_", varnames, sep="");
+	prefixed_varnames=paste(type, "df_", varnames, sep="");
 	colnames(diff_matrix)=prefixed_varnames;
 
 	output_matrix=cbind(output_matrix, diff_matrix);
