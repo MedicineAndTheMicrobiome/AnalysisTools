@@ -131,7 +131,7 @@ plot_text=function(strings){
 # Main Program Starts Here!
 ##############################################################################
 
-pdf(paste(OutputFnameRoot, ".transformations.pdf", sep=""), height=11, width=8.5);
+pdf(paste(OutputFnameRoot, ".transformed.pdf", sep=""), height=11, width=8.5);
 
 plot_text(param_text);
 
@@ -163,7 +163,10 @@ if(length(missing_targets)){
 target_mat=loaded_factors[,targets];
 
 cat("Testing Targeted Variables for normality.\n");
-transformed_mat=test_and_apply_normalizing_transforms(target_mat, NORM_PVAL_CUTOFF);
+results=test_and_apply_normalizing_transforms(target_mat, NORM_PVAL_CUTOFF);
+
+transformed_mat=results[["trans_mat"]];
+transform_map=results[["names_map"]];
 
 ##############################################################################
 # Write out new matrix/factor file
@@ -204,6 +207,84 @@ write.table(out_mat, file=fname, col.names=T, row.names=F, sep="\t", quote=F);
 
 fname=paste(OutputFnameRoot, ".transformed.lst", sep="");
 write.table(colnames(transformed_mat), file=fname, row.names=F, col.names=F, quote=F);
+
+##############################################################################
+# Calculate relative abundance and percentiles
+
+abund=apply(target_mat, 2, function(x){mean(x, na.rm=T)});
+names(abund)=colnames(target_mat);
+sum_abund=sum(abund);
+abund_norm=abund/sum_abund;
+
+hist(abund_norm, main="Distribution of Normalized Abundances", xlab="Normalized Abundances");
+hist(log10(abund_norm), main="Distribution of Log10(Normalized Abundances)", 
+	ylab="Log10(Normalized Abundances)");
+
+#print(abund_norm);
+abund_norm_rank=rank(abund_norm)-1;
+abund_norm_perc=100*abund_norm_rank/(max(abund_norm_rank));
+print(sort(abund_norm_perc));
+
+order_by_abund=order(abund_norm, decreasing=T);
+
+##############################################################################
+# Output transformation information into table
+
+transform_df=as.data.frame(transform_map);
+var_ix=transform_map[,"original"];
+rownames(transform_map)=var_ix;
+abund_norm=abund_norm[var_ix];
+abund_norm_perc=abund_norm_perc[var_ix];
+
+transform_map=cbind(transform_map, sprintf("%5.4g", abund_norm));
+transform_map=cbind(transform_map, sprintf("%5.4f", abund_norm_perc));
+
+colnames(transform_map)=c("Original", "Transformed", "Type", "NormAbund", "Percentile");
+
+transform_map_by_abund=transform_map[order_by_abund,];
+#print(transform_map_by_abund);
+
+options(width=200);
+num_rows=nrow(transform_map);
+topN=20;
+topN=min(topN, num_rows);
+plot_text(c(
+	paste("Top ", topN, ":", sep=""),
+	"",
+	capture.output(print(transform_map_by_abund[1:topN,], quote=F)),
+	"",
+	paste("Bottom ", topN, ":", sep=""),
+	capture.output(print(transform_map_by_abund[(num_rows-topN): num_rows,], quote=F))
+));
+
+##############################################################################
+# Write table of transformation information into file
+
+fname=paste(OutputFnameRoot, ".transformed.info.tsv", sep="");
+write.table(transform_map, file=fname, row.names=F, col.names=T, sep="\t", quote=F);
+
+##############################################################################
+# Split data by transformation type and examine abundances for systematic bias
+
+trans_categories=unique(transform_map[, "Type"]);
+cat("Transform Categories:\n");
+print(trans_categories);
+
+log_abund_norm=log10(abund_norm);
+min_log_abund=min(log_abund_norm);
+max_log_abund=max(log_abund_norm);
+abund_by_trn_cat_list=list();
+num_transcat_types=length(trans_categories);
+par(mfrow=c(num_transcat_types, 1));
+for(trn_cat_ix in trans_categories){
+	ix=(trn_cat_ix==transform_map[,"Type"]);
+	abund_by_trn_cat_list[[trn_cat_ix]]=log_abund_norm[ix];
+	hist(abund_by_trn_cat_list[[trn_cat_ix]], breaks=seq(min_log_abund, max_log_abund, length.out=20),
+		main=trn_cat_ix, xlab="Normalized Abundances"
+		);
+}
+
+#print(abund_by_trn_cat_list);
 
 ##############################################################################
 
