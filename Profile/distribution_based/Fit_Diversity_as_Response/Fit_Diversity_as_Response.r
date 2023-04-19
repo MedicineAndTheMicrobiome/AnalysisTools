@@ -1222,7 +1222,7 @@ mv_fit=lm(as.formula(model_string), data=factors);
 
 try_res=try({manova_res=anova(mv_fit)});
 
-if(class(try_res)=="try-error"){
+if(any(class(try_res)=="try-error")){
 	manova_res=NULL;
 	cat("MANOVA Failed.\n");
 }else{
