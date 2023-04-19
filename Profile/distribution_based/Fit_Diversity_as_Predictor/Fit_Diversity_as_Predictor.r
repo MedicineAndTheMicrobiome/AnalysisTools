@@ -944,7 +944,7 @@ for(i in 1:num_div_idx){
 
 		try_res=try({mv_anova=anova(mv_fit)});
 		
-		if(class(try_res)=="try-error"){
+		if(any(class(try_res)=="try-error")){
 			mv_anova=NULL;
 			
 			msg=c(
