@@ -1,0 +1,783 @@
+C12 H24 O7
+	 Edits	Adds	Subs	dProp	Name 
+	 1	1	0	0.02381	C12H24O6: 1,4,7,10,13,16-Hexaoxacyclooctadecane 
+	 2	1	-1	0.04651	C12H25O6+: 18-Crown-6 ether, protonated 
+	 2	2	0	0.04878	C12H22O7: Ethanol, 2,2'-[oxybis(2,1-ethanediyloxy)]bis-, diacetate;2,3,4,6-Tetramethyl-1-acetylglucoside (A);2,3,4,6-Tetramethyl-1-acetylglucoside (B) 
+	 2	2	0	0.04878	C11H24O6: 2,5,8,11,14-Pentaoxahexadecan-16-ol 
+	 2	0	-2	0.04444	C12H26O7: Hexaethylene glycol 
+
+
+C13 H28 O7
+	 Edits	Adds	Subs	dProp	Name 
+	 0	0	0	0	C13H28O7: Hexaethylene glycol monomethyl ether 
+	 2	0	-2	0.04	C14H28O8: 1,3,6,9,12,14,17,20-Octaoxacyclodocosane 
+	 2	0	-2	0.04	C15H28O7: Pentaethylene glycol, monoallyl ether, acetate 
+	 2	1	-1	0.04167	C14H28O6: 2-(2-(2-Butoxy-ethoxy)-ethoxy)-ethoxy)-ethyl acetate;2-(2-(2-Isobutoxy-ethoxy)-ethoxy)-ethoxy)-ethyl acetate 
+	 2	2	0	0.04348	C13H28O5: 2-(2-(2-Isopentoxy-ethoxy)-ethoxy)-ethoxy)-ethanol;2-(2-(2-Pentoxy-ethoxy)-ethoxy)-ethoxy)-ethanol 
+
+
+C14 H27 N5 O3
+	 Edits	Adds	Subs	dProp	Name 
+	 2	1	-1	0.04082	C15H27N5O2: Imidazole-4-carboxylic acid, 5-(3-methyl-3-octyltriazeno)-, ethyl ester 
+	 3	3	0	0.06522	C14H26N4O2: N&lt;1&gt;,n&lt;2&gt;-bis[4-(1-aziridinyl)butyl]ethanediamide 
+	 3	0	-3	0.05769	C16H27N5O3Si: 2'-Deoxyadenosine, 3'-O-TBDMS;2'-Deoxyadenosine, 5'-O-TBDMS 
+	 4	0	-4	0.07547	C15H27N5O6: penta-L-alanine 
+	 4	0	-4	0.07547	C18H27N5O3: [2H6]Isopentenyladenine nucleotide, permethylated;Isopentenyladenine nucleotide, permethylated 
+
+
+C10 H20 N6 O4
+	 Edits	Adds	Subs	dProp	Name 
+	 0	0	0	0	C10H20N6O4: gly-gly-arg 
+	 2	2	0	0.05263	C10H20N4O4: gly-gly-lys;gly-lys-gly;lys-gly-gly 
+	 3	3	0	0.08108	C10H20N6O: 1-(methylethanolamino)-3,5-bis(dimethylamino)-s-triazine 
+	 4	4	0	0.11111	C10H19N3O4: Leucylglycylglycine;gly-gly-leu;D-Leucylglycylglycine;gly-leu-gly 
+	 4	4	0	0.11111	C10H20N6: 1,3,5-triazine-2,4,6-triamine, N-ethyl-N,N',N',N'',N''-pentamethyl- 
+
+
+C8 H14 O4
+	 Edits	Adds	Subs	dProp	Name 
+	 0	0	0	0	C8H14O4: Mono ethyl adipate;Cyclohexanecarboxylic acid, 3,4-dihydroxy-cis-3, cis-4, methyl ester;2,3-Butanedioldiacetate;1,3-Butanediol, diacetate;Diethyl succinate;1,2-Ethanediol, dipropanoate;1,2-butanediol diacetate;Propanedioic acid, propyl-, dimethyl ester;2,3-butanediol, diacetate, (R*,S*)-;Pentanedioic acid, 3-methyl-, dimethyl ester;Ethylene glycol diglycidyl ether;Bis(1-oxobutyl)peroxide;Sym. dimethyladipic acid;2,5-Dihydroperoxy-2,5-dimethylhex-3-yne;Racemic-2,3-diethylbutanedioic acid;Meso-2,3-diethylbutanedioic acid;3-Propylglutaric acid;Hexanedioic acid, 2,5-dimethyl-;Octanedioic acid;1,3-Propanediol, 2-methyl-, diacetate;2,2-Diethylbutanedioic acid;Propanedioic acid, methyl-, diethyl ester;diisopropyl oxalate;Di-N-propyl oxalate;n-Pentylmalonic acid;Hexanedioic acid, monoethyl ester;Hexanedioic acid, dimethyl ester;1,4-Butanediol, diacetate;Tetramethylbutanedioic acid;Ethyl 2-methyl-1,3-dioxolane-2-acetate 
+	 1	0	-1	0.03704	C8H14BaO4: Barium butyrate 
+	 1	1	0	0.04	C8H14O3: Butanoic acid, anhydride;Butanoic acid, 3-oxo-, 1-methylpropyl ester;Hexanoic acid, 5-oxo-, ethyl ester;Butanoic acid, 3-oxo-, 1,1-dimethylethyl ester;3-Hydroxy-4-hexenoic acid, ethyl ester;Iso-propyl levulinate;Cyclohexanecarboxylic acid, 2-hydroxy-, methyl ester;2-Buteneperoxoic acid, 1,1-dimethylethyl ester;2-Ethoxyethyl methacrylate;Carbonic acid cyclohexylmethyl ester;2-Propenoic acid, 3-methoxybutyl ester;Hexanoic acid, 3-oxo-, ethyl ester;Ethyl 3-ethoxy-cis-crotonate;Pentanoic acid, 4,4-dimethyl-3-oxo-, methyl ester;Butanoic acid, 2-ethyl-3-oxo-, ethyl ester;n-Butyric acid tetrahydrofurfuryl ester;Pentanoic acid, 4-methyl-3-oxo-, ethyl ester;Ethene, 1,1'-[oxybis(2,1-ethanediyloxy)]bis-;Butanoic acid, 3-oxo-, 2-methylpropyl ester;Propanoic acid, 2-methyl-, anhydride;2-Butenoic acid, 3-ethoxy-, ethyl ester;Pentyl pyruvate;2-Hydroxy-cyclopentanecarboxylic acid ethyl ester, cis;2-Hydroxy-cyclopentanecarboxylic acid ethyl ester, trans;3-Methoxy-1-butanol, acrylate;Propylene glycol, monoallyl ether, acetate;3-Butyl-oxirane-2-carboxylic acid methyl ester;2-Ketobutan-3-yl butanoate 
+	 1	0	-1	0.03704	C9H14O4: Diethyl ethylidenemalonate;Diethyl 1,1-cyclopropanedicarboxylate;Diethyl glutaconate;Carbisopropoxy methyl methacrylate;Diethylitaconate;1,2-Cyclopentanediol, diacetate, trans-;1,2-Cyclopentanedicarboxylic acid dimethyl ester;3-Methyl-hept-2-enedioic acid dimethyl ester, E;3-Methyl-hex-2-enedioic acid dimethyl ester, Z;Acetoxyacetic acid, 3-methylbut-2-enyl ester 
+	 1	1	0	0.04	C7H14O4: Trimethoxymethyl allyl ether;1,3,6,9 Tetraoxacycloundecane;1-Mono-n-butyrin 
+
+
+C10 H22 O6
+	 Edits	Adds	Subs	dProp	Name 
+	 0	0	0	0	C10H22O6: HO[CH2CH2O]5H 
+	 1	0	-1	0.02564	C10H22O7: 1,3-Propanediol, 2,2'-[oxybis(methylene)]bis[2-(hydroxymethyl)- 
+	 1	1	0	0.02703	C10H22O5: CH3O[CH2CH2O]4CH3;Tetraethylene glycol, monoethyl ether;Arabitol permethyl 
+	 1	0	-1	0.02564	C11H22O6: 1,3,6,9,12,15-Hexaoxacycloheptadecane 
+	 2	2	0	0.05556	C10H21O5+: 15-Crown-5 ether, protonated 
+
+
+C10 H20 O6
+	 Edits	Adds	Subs	dProp	Name 
+	 0	0	0	0	C10H20O6: 1,3,6,9,11,14-Hexaoxacyclohexadecane 
+	 1	1	0	0.02857	C10H20O5: 1,5-Anhydro-2,3,4,6-tetra-O-methyl-D-galactitol;15-Crown-5;1,5-Anhydro-2,3,4,6-tetra-O-methyl-D-mannitol;1,5-Anhydro-2,3,4,6-tetra-O-methyl-D-glucitol 
+	 1	0	-1	0.02703	C11H20O6: 2-O-acetyl-1,5-Anhydro-3,4,6-tri-O-methyl-D-glucitol;4-O-acetyl-1,5-Anhydro-2,3,6-tri-O-methyl-D-mannitol;2-O-Acetyl-1,5-Anhydro-3,4,6-tri-O-methyl-D-galactitol;3-O-Acetyl-1,5-Anhydro-2,4,6-tri-O-methyl-D-galactitol;4-O-Acetyl-1,5-Anhydro-2,3,6-tri-O-methyl-D-galactitol;6-O-Acetyl-1,5-Anhydro-2,3,4-tri-O-methyl-D-galactitol;4-O-acetyl-1,5-Anhydro-2,3,6-tri-O-methyl-D-glucitol;2-O-acetyl-1,5-Anhydro-3,4,6-tri-O-methyl-D-mannitol;3-O-acetyl-1,5-Anhydro-2,4,6-tri-O-methyl-D-mannitol;6-O-acetyl-1,5-Anhydro-2,3,4-tri-O-methyl-D-mannitol;3-O-acetyl-1,5-Anhydro-2,4,6-tri-O-methyl-D-glucitol;6-O-acetyl-1,5-Anhydro-2,3,4-tri-O-methyl-D-glucitol;Acetic acid 4,5-dimethoxy-2-methoxy methyl-tetrahydro-pyran-3-yl ester 
+	 2	1	-1	0.05556	C10H21O5+: 15-Crown-5 ether, protonated 
+	 2	2	0	0.05882	C10H18O6: 3,4-Dimethoxy adipic acid, dimethyl ester;Ethanol, 2,2'-[1,2-ethanediylbis(oxy)]bis-, diacetate;(+)-Diisopropyl tartrate;Diisopropyl-D-tartrate 
+
+
+C8 H16 O5
+	 Edits	Adds	Subs	dProp	Name 
+	 1	1	0	0.03571	C8H16O4: Acetaldehyde, tetramer;Ethanol, 2-(2-ethoxyethoxy)-, acetate;Peroxycarbonic acid, oo-tert-butyl isopropyl ester;1,3,7,9 Tetraoxacyclododecane;12-Crown-4;Acetic acid, diethoxy-, ethyl ester;1,4-Anhydro-2,3,5-tri-O-methyl-D-ribitol;1,5-Anhydro-2,3,4-tri-O-methyl-L-arabinitol;1,5-Anhydro-2,3,4-tri-O-methyl-D-ribitol;3,4,5-Trimethoxy-tetrahydro-pyran 
+	 1	0	-1	0.03333	C9H16O5: Diethyl 3-hydroxyglutarate;Butanedioic acid, 2-hydroxy-2-(1-methylethyl), dimethyl ester;4-Tert-butoxy-4-oxobutane-peroxoic acid methyl ester;Pentanedioic acid, 3-ethyl-3-hydroxy, dimethyl ester;2-O-acetyl-1,4-Anhydro-3,5-di-O-methyl-D-ribitol;3-O-Acetyl-1,4-Anhydro-2,5-di-O-methyl-D-ribitol;5-O-acetyl-1,4-Anhydro-2,3-di-O-methyl-D-ribitol;2-O-acetyl-1,5-Anhydro-3,4-di-O-methyl-L-arabinitol;3-O-acetyl-1,5-Anhydro-2,4-di-O-methyl-L-arabinitol;4-O-acetyl-1,5-Anhydro-2,3-di-O-methyl-L-arabinitol;2-O-acetyl-1,5-Anhydro-3,4-di-O-methyl-D-ribitol;3-O-acetyl-1,5-Anhydro-2,4-di-O-methyl-D-ribitol;4-O-acetyl-1,5-Anhydro-2,3-di-O-methyl-D-ribitol;Acetic acid 3,5-dimethoxy-tetrahydro-pyran-4-yl ester;Acetic acid 4,5-dimethoxy-tetrahydro-pyran-3-yl ester 
+	 2	1	-1	0.06897	C8H16ClO4-: (HOCH2CH=CHCH2OH)2..Cl anion 
+	 2	1	-1	0.06897	C8H17O4+: 12-Crown-4-ether, protonated 
+	 2	2	0	0.07407	C7H16O4: Propane, 1,1,3,3-tetramethoxy-;Ethanol, 2-[2-(2-methoxyethoxy)ethoxy]-;3-((Tert-butyl)dioxy)-1,2-propanediol;3,5,7,9-Tetraoxaundecane 
+
+
+C15 H29 N5 O3
+	 Edits	Adds	Subs	dProp	Name 
+	 3	3	0	0.06122	C15H27N5O2: Imidazole-4-carboxylic acid, 5-(3-methyl-3-octyltriazeno)-, ethyl ester 
+	 3	0	-3	0.05455	C16H29N5O3Si2: 2'-Deoxyadenosine, 3',5'-bis-O-TMS 
+	 4	2	-2	0.07692	C16H28N4O3Si: Xanthine, 1-(5'-hydroxyhexyl)-3,7-dimethyl, TMS 
+	 4	2	-2	0.07692	C16H27N5O3Si: 2'-Deoxyadenosine, 3'-O-TBDMS;2'-Deoxyadenosine, 5'-O-TBDMS 
+	 4	4	0	0.08333	C15H29NO3: L-Leucine, N-capryloyl-, methyl ester;Acetoxyacetamide, N-decyl-N-methyl- 
+
+
+C7 H14 O4
+	 Edits	Adds	Subs	dProp	Name 
+	 0	0	0	0	C7H14O4: Trimethoxymethyl allyl ether;1,3,6,9 Tetraoxacycloundecane;1-Mono-n-butyrin 
+	 1	0	-1	0.03846	C8H14O4: Mono ethyl adipate;Cyclohexanecarboxylic acid, 3,4-dihydroxy-cis-3, cis-4, methyl ester;2,3-Butanedioldiacetate;1,3-Butanediol, diacetate;Diethyl succinate;1,2-Ethanediol, dipropanoate;1,2-butanediol diacetate;Propanedioic acid, propyl-, dimethyl ester;2,3-butanediol, diacetate, (R*,S*)-;Pentanedioic acid, 3-methyl-, dimethyl ester;Ethylene glycol diglycidyl ether;Bis(1-oxobutyl)peroxide;Sym. dimethyladipic acid;2,5-Dihydroperoxy-2,5-dimethylhex-3-yne;Racemic-2,3-diethylbutanedioic acid;Meso-2,3-diethylbutanedioic acid;3-Propylglutaric acid;Hexanedioic acid, 2,5-dimethyl-;Octanedioic acid;1,3-Propanediol, 2-methyl-, diacetate;2,2-Diethylbutanedioic acid;Propanedioic acid, methyl-, diethyl ester;diisopropyl oxalate;Di-N-propyl oxalate;n-Pentylmalonic acid;Hexanedioic acid, monoethyl ester;Hexanedioic acid, dimethyl ester;1,4-Butanediol, diacetate;Tetramethylbutanedioic acid;Ethyl 2-methyl-1,3-dioxolane-2-acetate 
+	 1	1	0	0.04167	C6H14O4: Triethylene glycol;1,1,1,2-Tetramethoxyethane 
+	 1	1	0	0.04167	C7H14O3: Propionic acid, 2-methyl-2-hydroxy propyl ester;Propanoic acid, 2-hydroxy-, butyl ester;Ethanol, 2-[2-(2-propenyloxy)ethoxy]-;Ethyl 3-hydroxy-3-methylbutanoate;2-Hydroxyethyl-2',2'-dimethylpropionate;2-Propoxyethyl acetate;Hexanoic acid, 3-hydroxy-, methyl ester;Butanoic acid, 2-hydroxy-3-methyl-, ethyl ester;t-Butylperoxymethyloxirane;7-Hydroxyheptanoic acid;Methyl 2-hydroxy-4-methyl pentanoate;Methyl 2-hydroxy-3-methylpentanoate;1-Butanol, 3-methoxy-, acetate;Ethyl 3-hydroxypentanoate;1,1-Dimethoxyethyl allyl ether;R-(+)-isobutyl lactate;Carbonic acid, dipropyl ester;2,3-Butanediol, 2,3-dimethyl-, monoformate;2,6-Dimethoxytetrahydropyran;Dimethyl(E)-1-propenyl orthoacetate;1-Propene, 1-(1,1-dimethoxyethoxy)-, (Z)-;Propionic acid, 3-ethoxy-, ethyl ester;Butanoic acid, 2-hydroxy-2-methyl-, ethyl ester;Propyl butanoate, 3-hydroxy 
+	 1	0	-1	0.03846	C7H14O5: Ethanol, 2-methoxy-, carbonate (2:1) 
+
+
+C11 H24 O7
+	 Edits	Adds	Subs	dProp	Name 
+	 1	1	0	0.02439	C11H24O6: 2,5,8,11,14-Pentaoxahexadecan-16-ol 
+	 2	1	-1	0.04762	C11H24O6Si: 2,5,7,10-Tetraoxa-6-silaundecane, 6-ethenyl-6-(2-methoxyethoxy)- 
+	 2	1	-1	0.04762	C12H24O6: 1,4,7,10,13,16-Hexaoxacyclooctadecane 
+	 2	2	0	0.05	C11H24O5: L-Fucitol permethyl 
+	 3	1	-2	0.06977	C12H25O6+: 18-Crown-6 ether, protonated 
+
+
+C18 H36 O10
+	 Edits	Adds	Subs	dProp	Name 
+	 0	0	0	0	C18H36O10: 1,3,6,9,12,15,17,20,23,26-Decaoxacyclooctacosane 
+	 2	2	0	0.03226	C18H34O10: Heptaethylene glycol, diacetate 
+	 2	1	-1	0.03125	C19H36O9: Heptaethylene glycol, monoallyl ether, acetate 
+	 2	2	0	0.03226	C17H36O9: Octaethylene glycol monomethyl ether 
+	 2	2	0	0.03226	C18H36O8: 2-(2-(2-(2-(2-Butoxy-ethoxy)-ethoxy)-ethoxy)-ethoxy)-ethoxy)-ethyl acetate;2-(2-(2-(2-(2-Isobutoxy-ethoxy)-ethoxy)-ethoxy)-ethoxy)-ethoxy)-ethyl acetate 
+
+
+C17 H33 N5 O4
+	 Edits	Adds	Subs	dProp	Name 
+	 4	2	-2	0.0678	C19H31N5O4: [2H3]Dihydrozeatin nucleotide, permethylated;Dihydrozeatin nucleotide, permethylated 
+	 5	3	-2	0.08621	C18H33MoN3O3: Mo(CO)3(pip)3 
+	 5	1	-4	0.08065	C20H34N4O4: L-Histidine,N-[N-(1-oxodecyl)-L-alanyl]-methyl ester 
+	 5	4	-1	0.08929	C17H32N2O5: L-Serine,N-[N-(1-oxodecyl)-L-alanyl]-methyl ester;1,3-Di-(1-carbethoxy-3-methylbutyl) urea 
+	 5	5	0	0.09259	C17H33NO3: Propionitrile, 3-decyloxy-2,2-diethoxy/-, 
+
+
+C17 H28 N4 O5
+	 Edits	Adds	Subs	dProp	Name 
+	 2	1	-1	0.03704	C18H28N4O4: 2,4-dinitrophenylhydrazone dodecanal 
+	 3	3	0	0.05882	C17H26N4O4: 2,4-dinitrophenylhydrazone 2-undecanone;2,4-dinitrophenylhydrazone undecanal 
+	 3	3	0	0.05882	C17H27N3O4: 7E,9Z-Dodecadienyl acetate + MTAD adduct;8E,10E-Dodecadienyl acetate + MTAD adduct 
+	 3	2	-1	0.0566	C17H28N2O5Si: Thymidine, 3'-O-cyclotetramethylene-isopropylsilyl;Thymidine, 5'-O-cyclotetramethylene-isopropylsilyl 
+	 4	4	0	0.08	C16H26N4O4: Glutarimide, 3-[2-(3,5-dimethyl-2-oxocyclohexyl)-2-hydroxyethyl]-, semicarbazone 
+
+
+C12 H27 N O6
+	 Edits	Adds	Subs	dProp	Name 
+	 2	2	0	0.04545	C12H26O6: 2,5,8,11,14,17-Hexaoxaoctadecane;Pentaethylene glycol, monoethyl ether;Tris(2-hydroxypropyl)glycerol;L-Sorbitol permethyl 
+	 2	2	0	0.04545	C12H27NO4: 2-{2-[2-(2-Diethylamino-ethoxy)-eth oxy]-ethoxy}-ethanol 
+	 3	3	0	0.06977	C12H25O6+: 18-Crown-6 ether, protonated 
+	 3	3	0	0.06977	C12H27NO3: Triethylamine, 2,2',2&quot;-triethoxy-;Triethylene glycol, amino, N-hexyl 
+	 3	3	0	0.06977	C12H26O5: 3,6,9,12-Tetraoxahexadecan-1-ol;Tetrapropylene glycol;Tetrapropylene glycol;2-(2-(2-Isobutoxy-ethoxy)-ethoxy)-ethoxy)-ethanol 
+
+
+C11 H22 O6
+	 Edits	Adds	Subs	dProp	Name 
+	 0	0	0	0	C11H22O6: 1,3,6,9,12,15-Hexaoxacycloheptadecane 
+	 1	0	-1	0.025	C12H22O6: Bis-(2-methoxyethyl)adipate;Triethylene glycol, dipropionate;D-Mannitol, 1,2:5,6-bis-o-(1-methylethylidene)-;1,2-5,6-Diacetone L-mannitol;Oligoethylene butylene glycol adipate;Butanedioic acid, 2,3-dihydroxy-, dibutyl ester;Dibutyl tartrate 
+	 1	1	0	0.02632	C10H22O6: HO[CH2CH2O]5H 
+	 2	2	0	0.05405	C11H20O6: 2-O-acetyl-1,5-Anhydro-3,4,6-tri-O-methyl-D-glucitol;4-O-acetyl-1,5-Anhydro-2,3,6-tri-O-methyl-D-mannitol;2-O-Acetyl-1,5-Anhydro-3,4,6-tri-O-methyl-D-galactitol;3-O-Acetyl-1,5-Anhydro-2,4,6-tri-O-methyl-D-galactitol;4-O-Acetyl-1,5-Anhydro-2,3,6-tri-O-methyl-D-galactitol;6-O-Acetyl-1,5-Anhydro-2,3,4-tri-O-methyl-D-galactitol;4-O-acetyl-1,5-Anhydro-2,3,6-tri-O-methyl-D-glucitol;2-O-acetyl-1,5-Anhydro-3,4,6-tri-O-methyl-D-mannitol;3-O-acetyl-1,5-Anhydro-2,4,6-tri-O-methyl-D-mannitol;6-O-acetyl-1,5-Anhydro-2,3,4-tri-O-methyl-D-mannitol;3-O-acetyl-1,5-Anhydro-2,4,6-tri-O-methyl-D-glucitol;6-O-acetyl-1,5-Anhydro-2,3,4-tri-O-methyl-D-glucitol;Acetic acid 4,5-dimethoxy-2-methoxy methyl-tetrahydro-pyran-3-yl ester 
+	 2	2	0	0.05405	C11H22O4: Propionic acid, 3,3-diethoxy-2,2-dimethyl-, ethyl ester;Levulinic acid, ethyl ester, diethyl acetal;2-(2-Isopentoxyethoxy)ethyl acetate;2-(2-Pentoxyethoxy)ethyl acetate 
+
+
+C12 H26 O7
+	 Edits	Adds	Subs	dProp	Name 
+	 0	0	0	0	C12H26O7: Hexaethylene glycol 
+	 1	1	0	0.02273	C12H26O6: 2,5,8,11,14,17-Hexaoxaoctadecane;Pentaethylene glycol, monoethyl ether;Tris(2-hydroxypropyl)glycerol;L-Sorbitol permethyl 
+	 2	2	0	0.04651	C12H25O6+: 18-Crown-6 ether, protonated 
+	 2	2	0	0.04651	C12H26O5: 3,6,9,12-Tetraoxahexadecan-1-ol;Tetrapropylene glycol;Tetrapropylene glycol;2-(2-(2-Isobutoxy-ethoxy)-ethoxy)-ethoxy)-ethanol 
+	 3	1	-2	0.06522	C14H26O6: Beta-ethoxyethyl adipate;Di-iso-amyl tartrate 
+
+
+C14 H20 O5
+	 Edits	Adds	Subs	dProp	Name 
+	 0	0	0	0	C14H20O5: 1,3-Cyclohexanedione, 5,5-dimethyl-2-(4'-carbomethoxybutyro)-;Bis(1,4,7,10,13-benzopentaoxacyclopentadecin, 2,3,5,6,8,9,11,12-octahydro-);Furan-3-carboxylic acid, 4-methyl-2-(2-methoxycarbonylethyl)-5-propyl, methyl ester 
+	 1	1	0	0.02632	C14H20O4: 2H,9H-1,5,8,16-Benzotetraoxacyclotetradecin, 3,4,6,7,10,11-hexahydro-;(3-Methoxy-4-isopropoxy-phenyl)-propionic acid, methyl ester;Acetoxyacetic acid, 2,7-dimethyloct-7-en-5-yn-4-yl ester;Acetoxyacetic acid, 2-adamantyl ester 
+	 1	0	-1	0.025	C15H20O5: MEXILETINE, M (DESAMINO-DI-HO-) ISOMER 3, AC;MEXILETINE, M(DESAMINO-DI-HO) ISOMER 2, AC 
+	 2	0	-2	0.04878	C15H20FeO5: Fe(CO)(C7H10O2)2;Iron, (.eta.4-1,3-butadiene)carbonyl[(2,3,4,5-.eta.)-diethyl 2,4-hexadienedioate]-, stereoisomer 
+	 2	2	0	0.05405	C13H20O4: Cyclohexanehexanoic acid, e,2-dioxo-, methyl ester;Diethyl diallylmalonate;Acetoxyacetic acid, 2-methyloct-5-yn-4-yl ester 
+
+
+C10 H18 N6 O4
+	 Edits	Adds	Subs	dProp	Name 
+	 2	0	-2	0.05	C10H20N6O4: gly-gly-arg 
+	 2	2	0	0.05556	C10H18N6O2: glycine, N-[4,6-bis(dimethylamino)-1,3,5-triazin-2-yl]-N-methyl- 
+	 3	1	-2	0.07692	C11H18ClN5O4: 2,6-Pyridinedicarbamic acid, 3,4-diamino-, diethyl ester, hydrochloride 
+	 3	2	-1	0.08108	C11H16N6O4: 9H-purine, 6-amino-2-(methylamino)-9-beta-d-ribofuranosyl- 
+	 3	3	0	0.08571	C10H18N6O: 4-Imidazole carboxamide,5-(3-methyl-3-pentyl-1-triazeno)- 
+
+
+C6 H21 N8 O P
+	 Edits	Adds	Subs	dProp	Name 
+	 7	6	-1	0.21875	C6H18N6P2: 2,3,5,6,7,8-Hexaaza-1,4-diphosphabicyclo[2.2.2]octane, 2,3,5,6,7,8-hexamethyl- 
+	 7	2	-5	0.175	C11H21N7O: 5-(3',3'-Dibutyl-1'-triazeno)-1,2,3-triazole-4-carboxamide 
+	 7	6	-1	0.21875	C6H21BN3P: Tris(dimethylamino)phosphine-borane 
+	 8	4	-4	0.21622	C6H20N6O4S: 1,1-Dimethylguanidine sulfate 
+	 8	6	-2	0.24242	C7H21N2OPSi: Phosphine, bis(dimethylamino)-trimethylsilyl-p-oxide 
+
+
+C6 H12 O3
+	 Edits	Adds	Subs	dProp	Name 
+	 0	0	0	0	C6H12O3: 1,3-Dioxolane-4-methanol, 2,2-dimethyl-;1-Methoxy-2-propyl acetate;2-Ethoxyethyl acetate;6-Hydroxycaproic acid;3-Allyloxy-1,2 propanediol;Paraldehyde;D-Acetone glycerol;cis-2,4,6-Trimethyl-1,3,5-trioxane;Dimethoxymethyl allyl ether;Methyl 3-methyl 2-hydroxybutanoate;1,3,3-Trimethoxy-2-propene;3,3-Dimethoxy-2-butanone;L-Acetone glycerol;DL-Acetone glycerol;methyl 3-methoxybutanoate;Butanoic acid, 2-hydroxy-2-methyl-, methyl ester;2-Ethyl-2-hydroxybutyric acid;Ethyl 2-hydroxybitanoate;Butanoic acid, 3-hydroxy-, ethyl ester;Propanoic acid ethoxymethyl ester;2-Butanone, 4,4-dimethoxy-;2,3-Butanediol monoacetate;Butanoic acid, 3-hydroxy-3-methyl-, methyl ester;propyl lactate;1,2,3-Cyclohexanetriol;Dimethyl(E)-1-propenyl orthoformate;1-Propene, 1-(dimethoxymethoxy)-, (E)-;Furan, tetrahydro-2,5-dimethoxy-;Butyl glycolate;Propanoic acid, 2-hydroxy-2-methyl-, ethyl ester;Acetic acid, ethoxy-, ethyl ester;Ethanol, 2-[2-(ethenyloxy)ethoxy]-;Butanoic acid, 4-hydroxy, ethyl ester;Propyl 3-hydroxybutanoate;2-(Tetrahydro-furan-2-yloxy)-ethanol 
+	 1	0	-1	0.04545	C6H12NO3+: DL-Alanine, N-acetyl, methyl ester, protonated 
+	 1	1	0	0.05	C6H12O2: Ketene, diethyl acetal;Tetrahydropyran-2-methanol;P-dioxane, 2,6-dimethyl-,;Pentanoic acid, 3-methyl-;Acetic acid, 1-methylpropyl ester;Butanoic acid, ethyl ester;Propanoic acid, propyl ester;Butanoic acid, 3,3-dimethyl-;Isobutyl acetate;1-Butanol, 3-methyl-, formate;trans 4,5-Dimethyl-1,3-dioxane;trans-4,6-Dimethyl-1,3-dioxane;2,2,4-Trimethyldioxolane;4-Hydroxy-4-methylpentan-2-one;Acetic acid, butyl ester;1,2-Cyclopentanediol, 1-methyl-, cis;1,3-Dioxolane, 2-ethyl-2-methyl-;Cyclopentanol,2-methoxy-,cis-;2-Ethoxytetrahydrofuran;Hexanoic acid;2,3-Dimethyl butyric acid;1,2-Cyclohexanediol, trans-;1,3-dioxane, 2,5-dimethyl-, cis-;1,3-dioxane, 2,5-dimethyl-, trans-;cis-2,4-Dimethyl-1,3-dioxane;trans-2,4-dimethyl-1,3-dioxane;cis-2-Thyl-4-methyl-1,3-dioxolane;4,5-Dimethyl-1,3-dioxane;cis-1,2-Cyclohexanediol;1,3-Dioxolane, 2-ethyl-4-methyl-, trans-;ethene, (2-ethoxyethoxy)-;Furan, tetrahydro-2-(methoxymethyl)-;2H-Pyran, tetrahydro-4-methoxy-;1,2-Cyclopentanediol, 1-methyl-, trans-;C6H12O2;2-Hexanone, 6-hydroxy-;2-Butene, 1,1-dimethoxy-;Ethene, 1,1-diethoxy-;1,2-Cyclopentanediol, 3-methyl-;3-Ethyl-3-hydroxymethyl oxetane;Oxirane, (propoxymethyl)-;1,3-Dioxolane, 2-propyl;1,3-Dioxane, 4,6-dimethyl-, cis-;2-Methyltetrahydropyran;1,2-Dioxetane,3,3,4,4-tetramethyl-;Oxirane, [(1-methylethoxy)methyl]-;1,3-Dioxolane, 2-ethyl-4-methyl, cis;1,1-Dimethoxybutane;4-Hydroxy-3-hexanone;1,3-Cyclohexanediol;Butanoic acid, 2-methyl-, methyl ester, (.+/-.)-;Acetic acid, 1,1-dimethylethyl ester;trans-1,3-cyclohexanol;Butanoic acid, 3-methyl-, methyl ester;1,4-Cyclohexanediol;1,2-Cyclobutanedimethanol, trans-;Ketene, dimethyl-, dimethyl acetal;1,3-dioxane, 2-ethyl-;2-Pentanol, formate;Butanoic acid, 2,2-dimethyl-;Propanoic acid, 2,2-dimethyl-, methyl ester;1-Methoxyethyl allyl ether;tetrahydro-5-methyl-2-furanmethanol;1-Propene, 1-(1-methoxyethoxy)-, (Z)-;1-Propene, 1-(2-methoxyethoxy)-, (Z)-;1-Methoxy-1-(E)-(1-propenyloxy)ethane;1-Methoxy-(E)-propenyloxyethane;Pentanoic acid, methyl ester;Isopropyl propionate;Formic acid, pentyl ester;Pentanoic acid, 4-methyl-;1,2-Dioxocane;1,3-Dioxocane;2H-Pyran, tetrahydro-2-methoxy-;2,2-Dimethyl-1,3-dioxane;1,4-Cyclohexanediol, trans-;Cyclopentanol,2-methoxy-,trans-;tert-amyl methanoate;Ethyl ethoxymethyl ketone;Cyclohexyl hydroperoxide;1,3-Dioxane, 4,4-dimethyl-;1,3-Dioxane, 2,4-dimethyl-;1,3-Dioxolane, 2-(1-methylethyl);cis-1,3-cyclohexandiol;Butanoic acid, 2-methyl-, methyl ester;5,5-Dimethyl-1,3-dioxane;Butanoic acid, 2-ethyl-;1,2-Cyclohexanediol;1,4-Cyclohexanediol, cis-;Pentanoic acid, 2-methyl-;Propanoic acid, 2-methyl-, ethyl ester;Tetrahydrofuran, 2-methyl-2-methoxy;2-ethyl-1,3-dioxane;4-(hydroxymethyl)-2-pentanone;1,3-Dioxolane, 4-ethyl-2-methyl, trans 
+	 1	0	-1	0.04545	C7H12O3: 2-Ethoxyethyl acrylate;Methyl 5-oxohexanoate;Ethylpropionyl acetate;Butanoic acid, 3-oxo-, propyl ester;Butyl pyruvate;Glycidyl butyrate;Pentanoic acid, 3-methyl-4-oxo-, methyl ester;Propenoic acid, 2-methyl-, hydroxypropyl ester;2,6,7-Trioxabicyclo[2.2.2]octane, 1,4-dimethyl-;Heptanoic acid, 6-oxo-;Pentanecarboxylic acid, 3-hydroxy-, methyl ester;Acetoacetic acid, 2,2-dimethyl-, methyl ester;Ethyl propionylacetate;Pentanoic acid, 2-oxo-, ethyl ester;2-Pentanone, 5-(acetyloxy)-;Pentanoic acid, 4-oxo-, ethyl ester;Butanoic acid, 2-methyl-3-oxo-, ethyl ester;Methyl 2-methyl-3-methoxy-3-butenoate;2-Butenoic acid, 3-methoxy-2-methyl-, methyl ester, (Z)-;Tetrahydropyrane, 4-acetoxy;Ethanol, 2-allyloxy, acetate;2(5)-ethyl-4-hydroxy-5(2)-methyl-3(2H)-furanone (ethylfuraneol) 
+	 1	1	0	0.05	C5H12O3: Ethanol, 2-(2-methoxyethoxy)-;Ethane, 1,1,1-trimethoxy-;2,3,4-Pentanetriol;Methanol, (tert-butyldioxy)-;3-Ethoxy-1,2-propanediol;Ethane, 1,1,2-trimethoxy-;2-Propanol, 1,3-dimethoxy-;1,3-Propanediol, 2-(hydroxymethyl)-2-methyl- 
+
+
+C19 H30 O5
+	 Edits	Adds	Subs	dProp	Name 
+	 0	0	0	0	C19H30O5: Gallic acid, n-dodecyl ester;Piperonyl butoxide;3&#945;,11&#946;,17&#945;,21-tetrahydroxy-5&#945;-pregnane-20-one;3&#945;,11&#946;,17&#945;,21-tetrahydroxy-5&#946;-pregnane-20-one;3&#945;,17&#945;,20&#945;,21-tetrahydroxy-5&#946;-Pregnane-11-one;3&#945;,17&#945;,20&#946;,21-tetrahydroxy-5&#946;-Pregnane-11-one 
+	 1	1	0	0.01887	C19H30O4: 3&#945;,11&#946;,21-trihydroxy-5&#945;-pregnane-20-one;3&#945;,11&#946;,21-trihydroxy-5&#946;-pregnane-20-one;3&#945;,17&#945;,21-trihydroxy-5&#946;-pregnane-20-one 
+	 1	0	-1	0.01818	C19H30O5Si: Benzoic acid, 2-hydroxy-3-(2,3-dioxypropyl), methyl ester, DTBS #1;Benzoic acid, 2-hydroxy, 3-(2,3-dioxypropyl), methyl ester, DTBS #2 
+	 2	0	-2	0.03571	C20H30O6: Succinic acid, bis(2,2,4,4-tetra methyl-3-oxocyclobutyl) ester;Phthalic acid, di(2-butoxyethyl) ester 
+	 2	1	-1	0.03704	C18H30O6: 1,2,3-Propenetricarboxylic acid, tri(2-methylpropyl) ester;1,2,3-Propenetricarboxylic acid, tris(1-methylpropyl) ester;Ethylene glycol bis(2,2,4-trimethyl-3-oxovalerate);1,2,3-Propenetricarboxylic acid, tributyl ester 
+
+
+C6 H14 O4
+	 Edits	Adds	Subs	dProp	Name 
+	 0	0	0	0	C6H14O4: Triethylene glycol;1,1,1,2-Tetramethoxyethane 
+	 1	1	0	0.04348	C6H14O3: Noname;Polypropylene glycol;Dipropylene glycol;1,2,6-Hexanetriol;2-Propanol, 1,1'-oxydi-,;Ethanol, 2-(2-ethoxyethoxy)-;Ethane, 1,1'-oxybis[2-methoxy-;3-methyl-2,3,4-pentanetriol;1,1,3-Trimethoxypropane;Ethanol, 2-[(1,1-dimethylethyl)dioxy]-;Propane, 1,1,1-trimethoxy-;Dipropylene glycol;3,5,7-Trioxanonane;1,3-Propanediol, 2-ethyl-2-(hydroxymethyl)- 
+	 1	0	-1	0.04	C7H14O4: Trimethoxymethyl allyl ether;1,3,6,9 Tetraoxacycloundecane;1-Mono-n-butyrin 
+	 1	0	-1	0.04	C6H14O4S: Sulphuric acid dipropyl ester 
+	 2	1	-1	0.08333	C6H15O3+: Ethane, 1,1'-oxybis[2-methoxy-, protonated 
+
+
+C14 H28 O8
+	 Edits	Adds	Subs	dProp	Name 
+	 0	0	0	0	C14H28O8: 1,3,6,9,12,14,17,20-Octaoxacyclodocosane 
+	 2	2	0	0.04167	C14H26O8: 3,6,9,12-Tetraoxatetradecane-1,14-diol, diacetate 
+	 2	2	0	0.04167	C13H28O7: Hexaethylene glycol monomethyl ether 
+	 2	0	-2	0.03846	C16H28O8: Diethylene glycol-trimethylolpropane-adipate polymer 
+	 2	0	-2	0.03846	C14H30O8: Heptaethylene glycol 
+
+
+C6 H10 O3
+	 Edits	Adds	Subs	dProp	Name 
+	 0	0	0	0	C6H10O3: 2-Butanone, 4-(acetyloxy)-;Propanoic acid, anhydride;Methacrylic acid, 2-hydroxyethyl ester;hexanedial, 2-hydroxy-;Butanoic acid, 3-oxo-, ethyl ester;Carbonic acid, ethyl 2-propenyl ester;Acetone D-glyceraldehyde;Butanoic acid, 2-oxo-, ethyl ester;CH3C(OCH3)=CHCOOCH3;Acetone L-glyceraldehyde;2-Hydroxypropyl acrylate;7,8,9-Trioxabicyclo[4.2.1]nonane;Pentanoic acid, 3-oxo-, methyl ester;4-Acetylbutyric acid;Furan, 2,5-dihydro-2,5-dimethoxy-;5,5-Dimethyl-1,3-dioxan-2-one;2-Butanon-3-ol, acetate;Tetrahydropyran-4-carboxylic acid;2-Propenoic acid, 3-hydroxy-2-methyl-, ethyl ester;Pantolactone;Pentanoic acid, 4-oxo-, methyl ester;1-Methoxy-2,4-pentanedione;Butyl glyoxylate;Levulinic acid, 3-methyl;dl-Mevalonic acid lactone;4-Methyl-2,6,7-trioxabicyclo[2.2.2]octane;2(3H)-Furanone, dihydro-3-hydroxy-4,4-dimethyl-, (.+/-.)-;Butanoic acid, 3,3-dimethyl-2-oxo-;2-Butenoic acid, 2-hydroxy-, ethyl ester;2-Hydroxyethyl methacrylate;Propyl pyruvate 
+	 1	1	0	0.05556	C6H10O2: 3-Butenoic acid, 2,2-dimethyl-;Beta-isopropyl-beta-propiolactone;2-Butenoic acid, ethyl ester;Oxirane, [(2-propenyloxy)methyl]-;CH3COCH2CH2COCH3;2H-Pyran-2-one, tetrahydro-4-methyl-;2-Butenoic acid, 2-ethyl-, (E)-;Butanoic acid, ethenyl ester;2-Hexenoic acid, (E)-;Acetic acid, iso-butenyl ester;CH3C(O)O(CH2)2CH=CH2;3-Hexenoic acid, (E)-;2-Pentenoic acid, methyl ester, (E)-;Beta-propyl-beta-propiolactone;3-Butenoic acid, ethyl ester;2-Pentenoic acid, 2-methyl-, (E)-;5,6-Dihydro-4-methoxy-2H-pyran;(Z)-3-hexenoic acid;(E)-Pent-3-enoic acid methyl ester;Propanoic acid, 2-propenyl ester;Isobutyric acid, vinyl ester;2,3-Dioxabicyclo[2.2.2]octane;2,4-Hexanedione;3-Hexyne-2,5-diol;Iso-caprolactone;cyclopentane carboxylic acid;4-Hexen-3-one, 5-hydroxy-;(Z)-CH3CH=CHCH2C(O)OCH3;Butyric acid, 2,2-dimethyl-4-hydroxy-, g-lactone;2,3-Hexanedione;2-Butenoic acid, 2-methyl-, methyl ester;4-Hexenal, 6-hydroxy-, (Z)-;2,3,4,7-Tetrahydrooxepin-2-ol;3-Hexenoic acid;3,4-Hexanedione;2H-Pyran, 3,4-dihydro-2-methoxy-;Ethyl cyclopropanecarboxylate;cyclobutyl ethanoate;2-Oxepanone;6,7-Dioxabicyclo[3.2.1]octane;Cyclohexanone, 2-hydroxy-;2-vinyl-1,3-dioxane;2-Butenoic acid, ethyl ester, (E)-;2-Buten-1-ol, acetate;Methyl tiglate;1-Methylallyl acetate;Isopropyl acrylate;2(3H)-Furanone, 5-ethyldihydro-;2(3H)-Furanone, dihydro-4,5-dimethyl-;4-methyl-2,3-pentanedione;1,2-Divinyloxyethane;Cyclobutanecarboxylic acid methyl ester;2,4-Pentanedione, 3-methyl-;Ir<sub>5</sub>525;&#948;-Hexalactone;2-Butenoic acid, 3-methyl-, methyl ester;2-Propenoic acid, propyl ester;2-Propenoic acid, 2-methyl-, ethyl ester;4-oxohexanal;4,5-dihydro-2-methyl-3(2H)-furanone;trans-2,3-epoxyhexanal;2-Vinyloxy-tetrahydro-furan 
+	 1	0	-1	0.05	C7H10O3: Cyclopentanecarboxylic acid, 2-oxo-, methyl ester;2-Propenoic acid, 2-methyl-, oxiranylmethyl ester;Butanoic acid, 3-oxo-, 2-propenyl ester;2(3h)-Furanone, 3-acetyldihydro-3-methyl-;Diallyl carbonate;Ethyl 2-formyl-1-cyclopropanecarboxylate;5-Ethyl-4-hydroxy-2-methyl-3(2H)-furanone;2-ethyl-4-hydroxy-5-methyl-3(2H)-furanone;2,4,10-Trioxatricyclo-[3.3.1.1(3,7)]decane;2,2-Dimethylglutaric anhydride;3-Carbomethoxycyclopentanone;Dihydro-3,3,4-trimethyl-2,5-furandione;2,5-dimethyl-4-methoxy-2,3-dihydro-3-furanone;2H-Pyran-2,6(3H)-dione, dihydro-4,4-dimethyl-;(dimethoxymethyl)furan;resorcinol monohydrate;3-hydroxy-5-ethyl-4-methyl-2-(5H)-furanone;2,4-Pentanedione, 3-acetyl- 
+	 1	1	0	0.05556	C5H10O3: Carbonic acid, diethyl ester;Ethanol, 2-methoxy-, acetate;Butanoic acid, 3-hydroxy-, methyl ester;l,3,6-Trioxocane;Propanoic acid, 2-hydroxy-2-methyl-, methyl ester;Propanoic acid, 2-hydroxyethyl ester;Methyl 2-hydroxybutanoate;Acetic acid, 2-methoxyethyl ester;Isopropoxyacetic acid;2-Hydroxy-2-methylbutyric acid;2-Hydroxymethyl-1,3-dioxane;Acetic acid, methoxy-, ethyl ester;Propanoic acid, 3-hydroxy-2-methyl-, methyl ester;Hydroxy pivalic acid;Butanoic acid, 3-hydroxy-, methyl ester, (S)-;2-Propanone, 1,1-dimethoxy-;Propanoic acid, 2-hydroxy-, ethyl ester, (S)-;Glycolic acid, propyl ester;Propanoic acid, 2-hydroxy-, ethyl ester;2,4,7-Trioxepane, 6-methyl;Oxetane, 3,3-bis-(hydroxymethyl) 
+	 1	0	-1	0.05	C6H10O4: Butanedioic acid, dimethyl ester;1,2-Ethanediol, diacetate;Hexanedioic acid;2,3-Dimethylsuccinic acid;Pentanedioic acid, monomethyl ester;2-Methylglutaric acid;1,2:5,6-Dianhydrogalactitol;Bis(1-oxopropyl) peroxide;Methyl 4-methoxyacetoacetate;[1,4]Dioxino[2,3-b]-1,4-dioxin, hexahydro-;5-(1&#945;,2&#946;,3&#946;,4&#945;,)-1,2,3,4-Cyclohexenetetrol;1,1-Diacetoxyethane;(-)-2,3-Dimethylbutanedioic acid;2,2-Dimethylbutanedioic acid;Meso-2,3-dimethyl-butanedioic acid;Racemic-2,3-dimethyl-butanedioic acid;Propanedioic acid, methyl-, dimethyl ester;n-Propylmalonic acid;Pentanedioic acid, 2-methyl-;3-Methylglutaric acid;2-Ethylbutanedioic acid;Ethanedioic acid, diethyl ester;1,3-Butanediol diformate 
+
+
+C16 H31 N5 O4
+	 Edits	Adds	Subs	dProp	Name 
+	 3	0	-3	0.05085	C19H31N5O4: [2H3]Dihydrozeatin nucleotide, permethylated;Dihydrozeatin nucleotide, permethylated 
+	 5	3	-2	0.09091	C16H32N2O4S: Bicyclo[2.2.1]heptane, endo-2-aminomethyl-, sulfate (2 to 1) 
+	 5	2	-3	0.08772	C19H31N3O4: 9Z,11E-Tetradecadienyl acetate + MTAD adduct 
+	 5	3	-2	0.09091	C16H32N2O5: 4,7,13,16,21-Pentaoxa-1,10-diazabicyclo[8.8.5]tricosane 
+	 5	2	-3	0.08772	C17H29ClN6O4: 1-(2-Chloro-3-(1-[(cyclohexylamino)carbonyl]-2-oxohydrazino)propyl)-1-[(cyclohexylamino)carbonyl]-2-oxohydrazine 
+
+
+C5 H8 N3 O7 P S
+	 Edits	Adds	Subs	dProp	Name 
+	 3	2	-1	0.125	C5H9N3O7: 1,1,1-Trinitro-2-ethoxypropane 
+	 4	2	-2	0.16	C5H9N3O8: 2-Ethyl-2-nitro-1,3-propanediol dinitrate 
+	 4	3	-1	0.17391	C5H9N3O6: Butane, 2-methyl-2,3,3-trinitro- 
+	 4	4	0	0.19048	C4H8N2O7: Ethanol, 2,2'-oxybis-, dinitrate 
+	 5	5	0	0.25	C5H7N3O4S: Imidazole, 1-methyl-5-(methylsulfonyl)-4-nitro- 
+
+
+C12 H27 N O4
+	 Edits	Adds	Subs	dProp	Name 
+	 0	0	0	0	C12H27NO4: 2-{2-[2-(2-Diethylamino-ethoxy)-eth oxy]-ethoxy}-ethanol 
+	 1	1	0	0.02326	C12H27NO3: Triethylamine, 2,2',2&quot;-triethoxy-;Triethylene glycol, amino, N-hexyl 
+	 2	1	-1	0.04545	C12H27O4V: V(O)(OBu)3 
+	 2	1	-1	0.04545	C12H27O4P: Triisobutyl phosphate;Tri-n-butylphosphate;Phosphoric acid, diethyl 2-ethylhexyl ester 
+	 2	2	0	0.04762	C12H27NO2: 1,2-propanediol, 3-(nonylamino)-, (&plusmn;)-;Diethylene glycol, amino, N-octyl 
+
+
+C16 H20 S
+	 Edits	Adds	Subs	dProp	Name 
+	 1	1	0	0.02778	C16H20: Naphthalene, 1,2,3,4,6,7-hexamethyl;2,6-Diisopropylnaphthalene;2,3'5,6'-Tetrahydro[2.2]paracyclophane;Naphthalene, 2-hexyl-;Naphthalene, 1-hexyl-;Cyclohept[fg]acenaphthylene, 1,2,2a,3,4,4a,5,6,7,8-decahydro-;Tricyclo[4.2.0.0<sup>2,5</sup>]octane,1,2,5,6-tetramethyl-3,4,7,8-tetrakis(methylene)-(1&#945;,2&#946;,5&#946;,6&#945;)-;Tricyclo[3.3.0.0<sup>2,6</sup>]octane,1,2,5,6-tetramethyl-3,4,7,8-tetrakis(methylene)-;1-(2,2,4,4-tetramethylbutyl)naphthalene;Azulene,2,4,5,6,7,8-hexamethyl-;1-Phenyladamantane;1,4-Cyclohexadiene, 3-(4,4-dimethyl-2,5-cyclohexadien-1-ylidene)-6,6-dimethyl-;Dispiro{cyclopropane-6,1'-pentacyclo[6.3.1.0(2,7).0(3,5).0(9,11)]-dodecane-12,1&quot;-cyclopropane};1,2,3-trimethyl-4-propylnaphthalene;2-phenyl-adamantane 
+	 2	1	-1	0.05405	C16H20Cr: Bis(&#951;<sup>6</sup>-1,2-dimethylbenzene)chromium;Bis(ethylbenzene)chromium 
+	 2	2	0	0.05714	C16H18S: Sulfide, bis(4-methylbenzyl)-;Benzene,1,1'-thiobis[2,6-dimethyl- 
+	 2	1	-1	0.05405	C17H20: 1,3-Diphenyl-2-ethylpropane;1,5-Diphenylpentane;1,1-Diphenylpentane;Benzene, 1,1'-(3-methylbutylidene)bis-;Methane, 2,2',4,4'-tetramethyldiphenyl-;benzene, 1,1'-(2,2-dimethylpropylidene)bis-;4-(1,1-dimethylpropyl)-1,1'-biphenyl;[4-(1-methylpropyl)phenyl]phenylmethane;1,4:5,8:9,10-Trimethanoanthracene, 1,4,4a,5,8,8a,9,9a,10,10a-decahydro-(1&#945;,4&#945;,4a&#945;,5&#945;,8&#945;,8a&#945;,9&#946;,9a&#945;,10&#946;,10a&#945;)-;2-Butyldiphenylmethane;2-Sec-butyldiphenylmethane;4-Butyldiphenylmethane;4-Sec-butyldiphenylmethane;1,4:5,8:9,10-Trimethanoanthracene, 1,4,4a,5,8,8a,9,9a,10,10a-decahydro-(1&#945;,4&#945;,4a&#945;,5&#945;,8&#945;,8a&#945;,9&#945;,9a&#946;,10&#945;,10a&#946;)-;1,4:5,8:9,10-Trimethanoanthracene, 1,4,4a,5,8,8a,9,9a,10,10a-decahydro-(1&#945;,4&#945;,4a&#945;,5&#946;,8&#946;,8a&#945;,9&#946;,9a&#945;,10&#946;,10a&#945;)- 
+	 2	2	0	0.05714	C15H20: Lauren-1-ene;1-Phenyl-1-nonyne;1-Phenyl-3,3-diethylpentyne;&#946;-Dehydro-Ar-himachalene;&#947;-Dehydro-Ar-himachalene;9,10-Dehydro-ar-curcumene;(E)-Calacorene;Calacorene;&#946;-Calacorene;&#945;-Calacorene 
+
+
+C12 H24 N6 O5
+	 Edits	Adds	Subs	dProp	Name 
+	 4	4	0	0.09302	C12H22N4O5: tetra-L-alanine 
+	 5	5	0	0.11905	C12H24N4O2: Urea],1,1'-(1,4-cyclohexylenedimethylene)bis[3-methyl- 
+	 5	5	0	0.11905	C12H24N2O4: Bis-(beta-dimethylaminoethyl)succinate;Carisoprodol 
+	 6	5	-1	0.13953	C12H24N2O4Pt: Pt(1,1-cbda)(NH2-i-Pr)2 
+	 6	6	0	0.14634	C11H22N6O2: 5,5'-Methylene-bis(2-keto-1,3-dimethyltetrahydro-1,3,5-triazine 
+
+
+C6 H12 N6 O4
+	 Edits	Adds	Subs	dProp	Name 
+	 0	0	0	0	C6H12N6O4: Urea, 1,1'-ethylenebis[3-methyl-3-nitroso- 
+	 3	3	0	0.12	C6H12N3O4+: N-(N-Glycylglycylglycine), protonated 
+	 3	0	-3	0.09677	C7H14N6O4: Urea], 1,1'-trimethylenebis[3-methyl-3-nitroso- 
+	 3	1	-2	0.10345	C8H12N6O3: Acetic acid, [3-(4-carbamoylimidazol-5-yl)-2-triazeno]-, ethyl ester 
+	 3	3	0	0.12	C5H10N6O4: Dinitropentamethylenetetramine 
+
+
+C11 H32 N9 O3 P
+	 Edits	Adds	Subs	dProp	Name 
+	 10	3	-7	0.16667	C12H36N9P3: Cyclo-tris(bis(dimethylamino))phosphonitrile 
+	 11	10	-1	0.23404	C12H30N3OP: OP(N(C2H5)2)3 
+	 12	6	-6	0.21429	C10H32N4O8P2: 1,4-Butanediamine, n,n'-bis-(3-aminopropyl)-, diphosphate 
+	 12	11	-1	0.26087	C10H30N5Nb: Niobium, pentakis(dimethylamino)- 
+	 12	11	-1	0.26087	C10H30N5Ta: Tantalum, pentakis(dimethylamino)- 
+
+
+C21 H41 N5 O6
+	 Edits	Adds	Subs	dProp	Name 
+	 5	3	-2	0.06944	C21H42N2O6Si: Orn, N-isoBOC TBDMS 
+	 6	3	-3	0.08219	C22H41N5O3Si2: 2'-Deoxyadenosine, 3',5'-bis-O-TBDMS 
+	 6	4	-2	0.08451	C21H40N2O6Si2: Uridine, 2',3'-bis-O-TBDMS;Uridine, 2',5'-bis-O-TBDMS;Uridine, 3',5'-bis-O-TBDMS 
+	 6	4	-2	0.08451	C22H39N3O6Si: His isoBOC TBDMS 
+	 7	6	-1	0.10294	C21H40N2O4S: 2-Hydroxy-3-(n-octylamino) propyl-trimethylammonium p-tosylate 
+
+
+C4 H8 O2
+	 Edits	Adds	Subs	dProp	Name 
+	 0	0	0	0	C4H8O2: 1,3-Dioxolane, 4-methyl-;Beta-hydroxybutyraldehyde;Butanoic acid;2-Butene-1,4-diol;Formic acid, propyl ester;1,4-Dioxane;Ethyl acetate;Propanal, 3-methoxy-;Tetrahydrofuran, 3-hydroxy-;3-butene-1,2-diol;1,3-Dioxolane, 2-methyl-;1,3-Dioxane;1-Hydroxy-2-butanone;2-Butanone, 3-hydroxy-;2-Butanone, 3-hydroxy-, (.+/-.)-;2-Butanone, 3-hydroxy-, (R)-;Propanoic acid, methyl ester;1,2-Dioxane;2-Propanone, 1-methoxy-;4-Hydroxy-2-butanone;2-Butene-1,4-diol, (Z)-;Formic acid, 1-methylethyl ester;cis 1,2-Dimethoxyethylene;Ethene, 1,2-dimethoxy-, (E)-;Ethylene glycol monovinyl ether;Propanoic acid, 2-methyl-;(E)-2-butene-1,4-diol;Ethene, 1,1-dimethoxy-;Oxirane, (methoxymethyl)- 
+	 1	0	-1	0.06667	C4H9O2-: t-C4H9O2-;HO(CH2)4O anion;tBuOO anion 
+	 1	0	-1	0.06667	C4H8IO2-: iPrCO2H..I anion 
+	 1	1	0	0.07692	C4H7O2-: CH2=CHOCH2CH2O anion;CH2=C(OEt)O anion;nPrCO2 anion;iPrCO2 anion 
+	 1	1	0	0.07692	C4H8O-: 2-Butanone anion;Butanal anion;Propanal, 2-methyl- radical anion 
+
+
+C15 H29 N5 O6
+	 Edits	Adds	Subs	dProp	Name 
+	 2	2	0	0.03774	C15H27N5O6: penta-L-alanine 
+	 2	0	-2	0.03509	C15H30N6O6: Hexa(methoxymethyl)melamine 
+	 5	5	0	0.1	C15H28N2O5: 1,3-Di-(5-carbomethoxyamyl) urea 
+	 6	2	-4	0.10526	C17H29ClN6O4: 1-(2-Chloro-3-(1-[(cyclohexylamino)carbonyl]-2-oxohydrazino)propyl)-1-[(cyclohexylamino)carbonyl]-2-oxohydrazine 
+	 6	6	0	0.12245	C15H27N5O2: Imidazole-4-carboxylic acid, 5-(3-methyl-3-octyltriazeno)-, ethyl ester 
+
+
+C8 H16 N10 O2
+	 Edits	Adds	Subs	dProp	Name 
+	 5	5	0	0.16129	C8H16N6O: 1,3,5-triazine-2,4,6-triamine, N-hydroxy-N,N',N',N'',N''-pentamethyl- 
+	 6	6	0	0.2	C8H16N4O2: 1,3,5,7-Tetramethyltetrahydro-2,6(1H,3H)-1,3,5,7-tetrazocine-2,6-dione 
+	 6	6	0	0.2	C8H16N6: 1,3,5-triazine-2,4,6-triamine, N,N,N',N',N''-pentamethyl- 
+	 6	4	-2	0.17647	C10H14N10: S-triazine], 2,2'-cyclobut-1,2-ylene-bis[4,6-diamino- 
+	 7	7	0	0.24138	C8H14N6O: 4-Imidazolecarboxamide, 5-(butyl-1-triazeno)- 
+
+
+C4 H6 O2
+	 Edits	Adds	Subs	dProp	Name 
+	 0	0	0	0	C4H6O2-: 2,3-Butanedione anion 
+	 0	0	0	0	C4H6O2: Crotonic acid;Acetic acid ethenyl ester;2-Butyne-1,4-diol;1,2,3,4-Diepoxybutane;1,3-Dioxole, 4-methyl-;Cyclopropanecarboxylic acid;Formic acid, 2-propenyl ester;1,2-Dioxin, 3,6-dihydro-;2,2'-Bioxirane, (R*,R*)-(.+/-.)-;(2s,3s)-Diepoxybutane;4-Methyl-2-oxetanone;Crotonic acid;2,3-Butanedione;4-Methylene-1,3-dioxolane;Isocrotonic acid;1,4-Dioxin, 2,3-dihydro-;2,3-Butanedione;3-Butenoic acid;3-butyne-1,4-diol;2-Propenoic acid, 2-methyl-;2-Propenoic acid, methyl ester;&#947;-Butyrolactone;3(2H)-Furanone, dihydro 
+	 1	0	-1	0.07692	C4H6BrO2-: EtCHBrCO2 anion 
+	 1	0	-1	0.07692	C4H6NO2-: MeCN..MeCO2 anion;MeCON=C(Me)O anion 
+	 1	1	0	0.09091	C4H5O2-: MeCH=CHCO2 anion;cPrCO2 anion;CH2=C(Me)CO2 anion 
+
+
+C3 H8 N2 O2 S
+	 Edits	Adds	Subs	dProp	Name 
+	 1	1	0	0.06667	C3H8N2OS: Urea, (2-mercaptoethyl)-;Alpha-mercaptopropionhydrazide 
+	 1	0	-1	0.05882	C4H8N2O2S: Acetamide, 2,2'-thiobis-;Ethenamine, N-methyl-1-(methylthio)-2-nitro-;N-acetyl-n'-mercaptoacetylhydrazine 
+	 1	1	0	0.06667	C3H8N2O2: N-(2-hydroxyethyl)urea;Hydrazinecarboxylic acid, ethyl ester;Methanamine, N,N-dimethyl-1-nitro-;n-Propylnitramine 
+	 1	0	-1	0.05882	C3H8N2O3S: Urea, 1-methyl-3-methylsulfonyl- 
+	 2	1	-1	0.125	C3H8ClNO2S: Cysteine hydrochloride 
+
+
+C9 H28 N9 O2 P
+	 Edits	Adds	Subs	dProp	Name 
+	 11	9	-2	0.2619	C10H26N4P2: 1,3-Diphosphacyclobutadiene, 1,1,3,3-tetra(dimethylamino)- 
+	 11	8	-3	0.25	C12H28N4: 2-Tetrazene, 1,1,4,4-tetrakis(1-methylethyl)- 
+	 11	7	-4	0.23913	C10H30N5Nb: Niobium, pentakis(dimethylamino)- 
+	 11	7	-4	0.23913	C10H30N5Ta: Tantalum, pentakis(dimethylamino)- 
+	 11	11	0	0.28947	C9H24N3OP: OP(CH2N(CH3)2)3 
+
+
+C11 H18 O6
+	 Edits	Adds	Subs	dProp	Name 
+	 0	0	0	0	C11H18O6: 1,3-Propanediol, 2-hydroxymethyl-2-methyl-, triacetate;Triethyl 1,1,1-ethanetricarboxylate;1,1,2-Ethanetricarboxylic acid, triethyl ester;2,3-Di-O-Acetyl-1,4-Anhydro-5-O-methyl-L-fucitol;2,5-Di-O-Acetyl-1,4-Anhydro-3-O-methyl-L-fucitol;3,5-Di-O-Acetyl-1,4-Anhydro-2-O-methyl-L-fucitol;2,3-Di-O-acetyl-1,5-Anhydro-4-O-methyl-L-rhamnitol;2,4-Di-O-acetyl-1,5-Anhydro-3-O-methyl-L-rhamnitol;3,4-Di-O-acetyl-1,5-Anhydro-2-O-methyl-L-rhamnitol;2,3-di-O-acetyl-1,4-anhydro-4-O-methyl-D-fucitol;2,4-di-O-acetyl-1,5-anhydro-3-O-methyl-D-fucitol;3,4-di-O-acetyl-1,5-anhydro-2-O-methyl-D-fucitol 
+	 1	1	0	0.02941	C10H18O6: 3,4-Dimethoxy adipic acid, dimethyl ester;Ethanol, 2,2'-[1,2-ethanediylbis(oxy)]bis-, diacetate;(+)-Diisopropyl tartrate;Diisopropyl-D-tartrate 
+	 1	0	-1	0.02778	C12H18O6: Triethyl (1z)-1-propene-1,2,3-tricarboxylate;1,2,3-Propenetricarboxylic acid, triethyl ester;Succinic acid, dimethyl ester, 2-isopropylidene-3-(dimethoxymethylene);cis-1,3,5-Cyclohexanetricarboxylic acid, trimethyl ester;trans-1,3,5-Cyclohexanetricarboxylic acid, trimethyl ester 
+	 1	1	0	0.02941	C11H18O5: Diethyl 2-acetylglutarate;&#945;-D-Xylofuranose, 1,2:3,5-bis-O-(1-methylethylidene)-;o-Allyl oo-tert-butylsuccinate;Diethyl tetrahydropyran-4,4-dicarboxylate;4-Oxoheptanedioic acid, diethyl ester 
+	 1	0	-1	0.02778	C11H18O6S: 3-Thiophenemalonic acid, tetrahydro-, 1,1-dioxide, diethyl ester 
+
+
+C14 H24 O S2
+	 Edits	Adds	Subs	dProp	Name 
+	 2	2	0	0.05128	C14H24O: Cyclohexanone, 2-(2-ethylhexylidene)-,;8(E),10(Z)-Tetradeca-8,10-dienal;1-Hydroxy-1-ethynylcyclododecane;Caryophyllene alcohol 
+	 3	2	-1	0.075	C15H24O: P-nonylphenol;&#946;-Caryophyllene epoxide;&#945;-Santalol;Butylated hydroxytoluene;Cedranone;1,4-Methanoazulen-2(1H)-one, octahydro-4,8,8,9-tetramethyl-, (1&#945;,3a&#946;,4&#945;,8a&#946;,9S*)-;8-Cedren-13-ol;1,5,5,8-Tetramethyl-12-oxabicyclo[9.1.0]dodeca-3,7-diene;Longifolenaldehyde;1,10-dihydro nootkatone;Phenol, 2-methyl-4-(1,1,3,3-tetramethylbutyl)-;2H-2,4a-Methanonaphthalen-8(5H)-one, 1,3,4,6,7,8a-hexahydro-1,1,5,5-tetramethyl-;Nonylphenol;Cedrenol;Phenol, 2,4,6-tris(1-methylethyl)-;&#945;-Cedrene epoxide;nonyloxybenzene;&#945;-Copaen-11-ol;2-(1,1,3,3-Tetramethylbutyl)-p-cresol;2,6,10-Dodecatrienal, 3,7,11-trimethyl-, (E,E)-;BHT;2,4-Di-t-butyl-6-methylphenol;1,4-Methanoazulen-7(1H)-one, octahydro-1,5,5,8a-tetramethyl-;Spathulenol;4a,7-Methano-4aH-naphth[1,8a-b]oxirene, octahydro-4,4,8,8-tetramethyl-;Vetivenol;Ether, butyl p-(1,1-dimethylpropyl)phenyl;(-)-Spathulenol;Beta-santalol;Humulene epoxide I;Humulene epoxide II;Zerumbodienone;iso-Butyladamantyl ketone;n-Butyladamantyl ketone;bisabolene oxide;Humulene epoxide;12-nor-Ziza-6(13)-en-2-&#946;-yl methyl ether;&#945;-Agarofuran;Cyclocopacamphan-12-ol;1,10-Epoxy-amorph-4-ene;10,11-Epoxy-eremophil-1-ene;3,4-Dihydro-2H-pyran, 3-isopropyl-6-methyl-2-(3-methylcyclopent-2-enyl);6,12-Epoxy-elema-1,3-diene;6,12-Epoxyspiroax-4-ene;7,15-Epoxyprezizaane;cis-Eudesm-6-en-12-al;(E)-Eremophila-1(10),7(11)-dien-12-ol;(E)-Opposita-4(15),7(11)-dien-12-ol;Eremophila-1(10),7(11)-dien-2-&#945;-ol;Eudesm-4(15),7-dien-3-&#946;-ol;Eudesma-3,5-dien-1-&#945;-ol;Eudesma-5,7-dien-4-ol;Khusian-2-one;Preziza-7(15)-en-12-ol;Prezizaan-15-al;trans-Eudesma-4(15),7-dien-12-ol;Ziza-6(13)-en-12-ol;Ziza-6(13)-en-3-&#945;-ol;Ziza-6(13)-en-3-&#946;-ol;Humulene-6,7-epoxide;14-Hydroxy-1-epi-caryophyllene;&#945;-Humulene, 14-hydroxy-;14-Hydroxy-&#945;-muurolene;14-Hydroxy-9-epi-(E)-caryophyllene;cedr-8(15)-en-9-&#945;-ol;cis-Eudesm-4(15)-en-1-one;Eudesma-4(15),7-dien-1&#946;-ol;5-&#945;-Hydroxycaryophylla-4(12),8(13)-diene;&#946;-Himachalene oxide;14-Hydroxy-9-epi-&#946;-Caryophyllene;cis-farnesal;Caryophylla-3,8(15)-dien-5-one;Caryophylla-4(14),8(15)-dien-5-one;&#945;-Copaene-11-ol;&#945;-Copaene-8-ol;5,11-Epoxycadin-1(10)-ene;Muurola-4,10(14)-dien-1-ol;Humulene epoxide III;Muurola-4,10(14)-dien-1&#946;-ol;Eudesma-4(14),7-dien-1&#946;-ol;(E)-&#946;-10,11-Dihydro-10,11-epoxyfarnesene;Cedrene oxide;&#945;-Bisabolene oxide;Cedrene epoxide;1,2-Dehydrosesquicineole;&#945;-Copaen-8&#945;-ol;&#946;-Selinen-2&#945;-ol (Jatamol A);1,8-Epoxycadin-4-ene;10-epi-1,8-Epoxycadin-4-ene;Cadina-1(10),4-dien-8&#945;-ol;Cadina-4,10(14)-dien-8&#945;-ol;Cadina-4,10(14)-dien-8&#946;-ol;Muurola-4,10(14)-dien-8&#945;-ol;Muurola-4,10(14)-dien-8&#946;-ol;10-epi-acora-3,5-dien-11-ol;Acora-2,4(15)-dien-11-ol;acora-3,5-dien-11-ol;Caryophylla-3(15),7(14)-dien-6&#945;-ol;isocaryophyllene oxide;&#945;-humulene epoxide I;(E)-&#945;-santalol;&#946;-Dihydroagarofurane;Cedranone 5-;Humulene epoxyde;&#945;-Cedr-8(15)ene-9-ol;Caryophyllene, 14-hydroxy-;Caryophyllene, 6-hydroxy-;Isolongifolanone, trans- (piconia);Aromadendrenepoxide;Arteannuic alcohol (cis);1-endo-Bourbonanol;(Z)- &#945;-Santalool;trans-caryophyllene oxide;Caryophylla-3,8(13)-dien-5-b-ol;dehydrosesquicineole;Caryophylla-3(15),7(14)-dien-6-ol;Oplopenone;Caryophylla-4(14), 8(15)-dien-5-ol;&#946;-(E)-Santalol;&#946;-(Z)-Santalol;Eudesma-4(15),7-dien-1-b-ol;(Z)-&#946;-Santalol;(+)-9-Hydroxyselina-4,11-diene;(+)-cis-Selina-4(15),11-dien-5-ol;(-)-trans-Selina-4(15),11-dien-5-ol;Arteannuic alcohol;Cedren-13-ol;Himachalen oxide (&#946;);Cadina-1,4-dien-3-ol;&#946;-Copaen-4-&#945;-ol;aromadendrene oxide;Guaia-1(10),11-dien-15-ol;Selina-3,11-dien-14-ol;Selina-3,11-dien-9-ol;&#946;-Bisabolen-12-ol;Ledenoxide (I);Di-epi-cedrenoxide;iso-Aromadendrene epoxide 
+	 3	2	-1	0.075	C14H24O2: Geranyl N-butyrate;bornyl butyrate;Geranyl isobutyrate;1,8-Cyclotetradecanedione;Bornyl isobutyrate;Allyl undecylenate;Linalol isobutyrate;Linalyl butyrate;Dicyclohexylcarbinol, formate;Neryl butyrate;(E4,E10)-Dodecadienyl acetate;8-Decen-3,5-dione, 2,4,6,9-tetramethyl;9-Undecen-4,6-dione, 5,7,10-trimethyl;Lavandulyl isobutyrate;Isobornyl isobutyrate;2,4,6,9-Tetramethyldec-8-en-3,5-dion (A);2,4,6,9-Tetramethyldec-8-en-3,5-dion (B);Isobornyl n-butanoate;&#945;-Terpinyl isobutyrate;Linalool propanoate;valeric acid, 2-methyloct-5-yn-4-yl ester;2,2-Dimethylpropanoic acid, 2-methyloct-5-yn-4-yl ester;Octanoic acid, hex-4-yn-3-yl ester 
+	 3	3	0	0.07895	C14H24: Cyclobutane,1,1,2,2-tetramethyl-3,4-bis(1-methylethylidene)-;1-Butyladamantane;2-Butyladamantane;1-Ethyl-3,5-dimethyladamantane;1,3,5,7-Tetramethyladamantane;Anthracene, tetradecahydro-, (4a&#945;,8a&#945;,9a&#946;,10a&#945;)-;Anthracene, tetradecahydro-, (4a&#945;,8a&#945;,9a&#945;,10a&#945;)-;cis,trans-Perhydroanthracene(4a&#945;,8a&#945;,9a&#945;,10a&#946;);5,5,8,8-Tetramethylcyclodecyne;4,4,7,7-Tetramethylcyclodecyne;2-Methylperhydrophenalene;1,3-Diethyladamantane;cis,syn,cis-Perhydrophenanthrene;4a alpha, 4b beta, 8a alpha, 10a alpha-Tetradecahydrophenanthrene;Perhydrophenanthrene, (4a.alpha., 4b.beta., 8a.beta., 10a.alpha.)-;Perhydrophenanthrene, (4a.alpha., 4b.alpha., 8a.beta., 10a.beta)-;4a alpha, 8b alpha, 8a alpha, 10a beta-Tetradecahydrophenanthrene;trans-Anti-trans-tetra-decahydroanthracene;cis,Anti,cis-perhydroanthracene;1-(2-ethyl-1-butenyl)-2,3,3-trimethylcyclopentene;Cycloheptane, cycloheptylidene-;1,4-Hexadiene, 2,5-dimethyl-4-(1-methylethyl)-3-(1-methylethylidene)-;Perhydrophenanthrene;Anthracene, tetradecahydro-;9-Methylperhydrofluorene;2-isobutyladamantane;4-Cyclohexyl-cycloheptene;1,2-Diethyladamantane;1,3-Cyclopentadiene, 1-nonyl;1,3-Cyclopentadiene, 2-nonyl 
+	 3	2	-1	0.075	C13H24O2S: 1-Oxa-6-thiacyclopentadecan-15-one 
+
+
+C9 H14 N10
+	 Edits	Adds	Subs	dProp	Name 
+	 1	0	-1	0.02941	C10H14N10: S-triazine], 2,2'-cyclobut-1,2-ylene-bis[4,6-diamino- 
+	 4	4	0	0.13793	C9H14N6: 9H-purine, 2-amino-6-(butylamino)- 
+	 5	4	-1	0.16667	C9H13N7O: Urea, 1-methyl, 3-[9h-purin-6-ylaminoethyl]- 
+	 6	4	-2	0.19355	C11H14N6: 9H-purine, 9-cyclohex-2-enyl-6-hydrazino- 
+	 6	5	-1	0.2069	C9H13ClN6: Propionitrile, 2-((4-chloro-6-(ethylamino)-s-triazin-2-yl)amino)-2-methyl-;Cyanazine 
+
+
+C3 H2 N3 O3 P3 S
+	 Edits	Adds	Subs	dProp	Name 
+	 5	4	-1	0.41667	C3H3N3O3: 1,3,5-Triazine-2,4,6(1H,3H,5H)-trione;s-Triazine-2,4,6-triol 
+	 5	5	0	0.5	C3H2N2O3: 2,4,5-Trioxoimidazolidine 
+	 5	5	0	0.5	C3H2N2O2S: Isothiazole, 4-nitro- 
+	 6	5	-1	0.54545	C3H3N3O2: 4-Carboxy-1,2,3-triazole;3(5)-nitropyrazole;1H-Imidazole, 4-nitro-;1,2,4-Triazine-3,5(2H,4H)-dione;1,3,5-Triazine-2,4(1H,3H)-dione 
+	 6	3	-3	0.4	C4H3N3O4S: Thiophene, 2-amino-3,5-dinitro- 
+
+
+C3 H5 Cl N8 O
+	 Edits	Adds	Subs	dProp	Name 
+	 4	2	-2	0.22222	C4H6N8: 1,2-Bis-(5-tetrazolyl)-ethane 
+	 4	4	0	0.28571	C3H5N5O: N-1H-Tetrazol-5-ylacetamide;1,3,5-Triazin-2(1H)-one, 4,6-diamino- 
+	 4	4	0	0.28571	C2H5N7: Guanidine, 1-(1H-tetrazol-5-yl)- 
+	 5	3	-2	0.29412	C5H5ClN6: Purine, 6-chloro-2-hydrazino-;Purine, 2-chloro-6-hydrazino- 
+	 5	4	-1	0.33333	C3H6N6: 1,3,5-Triazine-2,4,6-triamine 
+
+
+C8 H14 N10 O4
+	 Edits	Adds	Subs	dProp	Name 
+	 5	5	0	0.16129	C7H14N6O4: Urea], 1,1'-trimethylenebis[3-methyl-3-nitroso- 
+	 6	5	-1	0.1875	C9H14N6O3: Propanoic acid, 2-[(4-aminocarbonylimidazol-5-yl)-1-triazen-1,3-diyl-], ethyl ester 
+	 6	4	-2	0.17647	C10H14N10: S-triazine], 2,2'-cyclobut-1,2-ylene-bis[4,6-diamino- 
+	 6	4	-2	0.17647	C10H12N8O4: Adenosine, 2-azido- 
+	 7	7	0	0.24138	C8H14N6O: 4-Imidazolecarboxamide, 5-(butyl-1-triazeno)- 
+
+
+C14 H26 O10
+	 Edits	Adds	Subs	dProp	Name 
+	 2	2	0	0.04167	C14H26O8: 3,6,9,12-Tetraoxatetradecane-1,14-diol, diacetate 
+	 3	2	-1	0.06122	C15H26O8: Glycerol - dipropylene glycol ether, triacetate 
+	 4	4	0	0.08696	C14H26O6: Beta-ethoxyethyl adipate;Di-iso-amyl tartrate 
+	 4	2	-2	0.08	C14H26O8W2: Ditungsten tetraformate, dineopentyl- 
+	 4	3	-1	0.08333	C15H26O7: 1,2,3-Propanetricarboxylic acid, 2-hydroxy-, tripropyl ester 
+
+
+C14 H29 N O10
+	 Edits	Adds	Subs	dProp	Name 
+	 4	3	-1	0.07692	C14H30O8: Heptaethylene glycol 
+	 4	4	0	0.08	C14H28O8: 1,3,6,9,12,14,17,20-Octaoxacyclodocosane 
+	 5	4	-1	0.09804	C14H30O7: Hexaethylene glycol dimethyl ether;Hexaethylene glycol monoethyl ether 
+	 5	2	-3	0.09091	C16H30O9: Hexaethylele glycol, diacetate 
+	 6	2	-4	0.10714	C17H28N2O9: 1,3-Di-(1,2-dicarbethoxyethyl) urea 
+
+
+C20 H24 O5 S
+	 Edits	Adds	Subs	dProp	Name 
+	 1	1	0	0.02041	C20H24O5: GA11, Me 
+	 2	2	0	0.04167	C20H24O4: 3-Ethoxycarbonyl-17-oxaestra-1,3,5(10)-trien-16-one;GA73, Me;GA9(w2,3), Me 
+	 2	1	-1	0.04	C20H24O6: Dibenzo-18-crown-6 
+	 3	3	0	0.06383	C20H24O3: Benzophenone, 5-heptyl-2,4-dihydroxy-;3Beta-acetoxyestra-1,3,5(10)-trien-17-one;3,17Beta-dihydroxy-1,3,5(10)estratrien-16beta-ylacetic acid lactone 
+	 3	2	-1	0.06122	C21H24O4: 4,4'-Isopropylidene diphenol, diglycidyl ether-;2,2-Bis(phenyl-4-glycidoxy)propane 
+
+
+C16 H30 O11
+	 Edits	Adds	Subs	dProp	Name 
+	 2	2	0	0.03636	C16H30O9: Hexaethylele glycol, diacetate 
+	 4	1	-3	0.0678	C16H30MoO10P2: Bis(triethylphosphite-p)molybdenum tetracarbonyl 
+	 4	1	-3	0.0678	C16H30CrO10P2: Bis(triethylphosphite-p-)chromium tetracarbonyl 
+	 4	4	0	0.07547	C16H30O7: Tetrapropylene glycol, diacetate 
+	 5	5	0	0.09615	C16H28O8: Diethylene glycol-trimethylolpropane-adipate polymer 
+
+
+C12 H22 O9
+	 Edits	Adds	Subs	dProp	Name 
+	 2	0	-2	0.04444	C12H22O11: Cellobiose;&#946;-Cellobiose;Cellobiose;melibiose;gentiobiose;Sucrose;&#946;-D-Glucopyranose, 4-o-&#946;-D-galactopyranosyl-;D-Glucose, 4-o-&#946;-D-galactopyranosyl-;D-Glucose, 4-o-&#945;-D-glucopyranosyl-;&#945;-D-Glucopyranoside, &#945;-D-glucopyranosyl 
+	 2	2	0	0.04878	C12H22O7: Ethanol, 2,2'-[oxybis(2,1-ethanediyloxy)]bis-, diacetate;2,3,4,6-Tetramethyl-1-acetylglucoside (A);2,3,4,6-Tetramethyl-1-acetylglucoside (B) 
+	 2	1	-1	0.04651	C13H22O8: Diethylene glycol-glycerol-adipate polymer;3,4,6-Trimethyl-1,2-diacetylglucoside (B);2,3,4-Trimethyl-1,6-diacetylglucoside (A);2,3,6-Trimethyl-1,4-diacetylglucoside (B);2,4,6-Trimethyl-1,3-diacetylglucoside (B);3,4,6-Trimethyl-1,2-diacetylglucoside (A) 
+	 2	0	-2	0.04444	C14H22O9: 2,3-Dimethyl-1,4,6-triacetylglucoside (A);2,4-Dimethyl-1,3,6-triacetylglucoside (A);2,4-Dimethyl-1,3,6-triacetylglucoside (B);2,6-Dimethyl-1,3,4-triacetylglucoside (A);2,6-Dimethyl-1,3,4-triacetylglycoside (B);3,4-Dimethyl-1,2,6-triacetylglucoside;4,6-Dimethyl-1,2,3-triacetylglucoside (A);4,6-Dimethyl-1,2,3-triacetylglucoside (B) 
+	 3	3	0	0.075	C12H22O6: Bis-(2-methoxyethyl)adipate;Triethylene glycol, dipropionate;D-Mannitol, 1,2:5,6-bis-o-(1-methylethylidene)-;1,2-5,6-Diacetone L-mannitol;Oligoethylene butylene glycol adipate;Butanedioic acid, 2,3-dihydroxy-, dibutyl ester;Dibutyl tartrate 
+
+
+C11 H30 N9 O6 P
+	 Edits	Adds	Subs	dProp	Name 
+	 8	4	-4	0.14035	C15H30N6O6: Hexa(methoxymethyl)melamine 
+	 11	6	-5	0.19643	C10H32N4O8P2: 1,4-Butanediamine, n,n'-bis-(3-aminopropyl)-, diphosphate 
+	 12	8	-4	0.22642	C15H27N5O6: penta-L-alanine 
+	 12	9	-3	0.23529	C13H30O6P2: Tetraisopropyl methylenediphosphonate 
+	 12	11	-1	0.25532	C11H27NO6P2: Tetraethyl dimethylaminomethylenediphosphonate 
+
+
+C7 H22 N9 O4 P
+	 Edits	Adds	Subs	dProp	Name 
+	 6	6	0	0.16216	C7H22N3O4P: 1,4-Butanediamine, n-(3-aminopropyl)-, phosphate (1 to 1) 
+	 8	7	-1	0.21622	C6H20N6O4S: 1,1-Dimethylguanidine sulfate 
+	 9	6	-3	0.225	C10H20N6O4: gly-gly-arg 
+	 10	6	-4	0.2439	C11H22N6O2: 5,5'-Methylene-bis(2-keto-1,3-dimethyltetrahydro-1,3,5-triazine 
+	 11	8	-3	0.28947	C10H20N4O4: gly-gly-lys;gly-lys-gly;lys-gly-gly 
+
+
+C19 H30 N4 O8
+	 Edits	Adds	Subs	dProp	Name 
+	 3	2	-1	0.05	C18H29N4O8P: 5'-Inosinic acid, dibutyl ester 
+	 3	2	-1	0.05	C19H30N2O8Si: Uridine, 2',3'-bis-O-acetyl, 5'-O-TBDMS;Uridine, 2',5'-bis-O-acetyl, 3'-O-TBDMS;Uridine, 2'-O-TBDMS, 3',5'-bis-O-acetyl 
+	 4	4	0	0.07018	C19H27N3O8: benzoic acid, 2,4,6-trinitro-, dodecyl ester 
+	 4	4	0	0.07018	C19H30N4O4: 2,4-dinitrophenylhydrazone tridecanal 
+	 5	4	-1	0.08621	C20H27N3O8: 3-Phenyl-5-[2-diethylamino]ethyl-1,2,4-oxadiazole, citrate 
+
+
+C13 H28 N2 O13
+	 Edits	Adds	Subs	dProp	Name 
+	 8	3	-5	0.13793	C10H28CeN2NaO16: Acetic acid, (ethylenedinitrilo)-tetra-, cerium sodium salt, hydrate 
+	 8	4	-4	0.14286	C17H28N2O9: 1,3-Di-(1,2-dicarbethoxyethyl) urea 
+	 8	8	0	0.16667	C13H28O7: Hexaethylene glycol monomethyl ether 
+	 8	8	0	0.16667	C12H24O12: Alpha-d-melibiose, monohydrate;Lactose monohydrate 
+	 8	7	-1	0.16	C14H28O8: 1,3,6,9,12,14,17,20-Octaoxacyclodocosane 
+
+
+C18 H37 N O12
+	 Edits	Adds	Subs	dProp	Name 
+	 4	4	0	0.0625	C18H36O10: 1,3,6,9,12,15,17,20,23,26-Decaoxacyclooctacosane 
+	 5	2	-3	0.07246	C20H38O11: Trehalose, permethyl;Sucrose, permethyl;Melibiose, permethyl;Sophorose, permethyl;Octaethylene glycol, diacetate;&#945;-mannosyl-(1-2)-mannose, permethyl 
+	 6	1	-5	0.08333	C21H39NO11: &#946;-Mannosyl-(1-4)-N-acetylglucosamine, permethyl 
+	 6	6	0	0.09677	C18H34O10: Heptaethylene glycol, diacetate 
+	 6	5	-1	0.09375	C19H36O9: Heptaethylene glycol, monoallyl ether, acetate 
+
+
+C18 H34 O12
+	 Edits	Adds	Subs	dProp	Name 
+	 2	2	0	0.03226	C18H34O10: Heptaethylene glycol, diacetate 
+	 4	2	-2	0.0625	C18H36O10: 1,3,6,9,12,15,17,20,23,26-Decaoxacyclooctacosane 
+	 5	5	0	0.08475	C18H32O9: Glycerol - tripropylene glycol ether, triacetate 
+	 6	6	0	0.10345	C18H34O6: Beta-ethoxyethyl sebacate;di(Butoxyethyl)adipate;Decanedioic acid, bis(2-ethoxyethyl) ester;Triethylene glycol di-2-ethylbutyrate 
+	 6	2	-4	0.09091	C18H32O16: Melezitose, monohydrate;D-Raffinose 
+
+
+C22 H52 N5 O8 P3
+	 Edits	Adds	Subs	dProp	Name 
+	 12	11	-1	0.15	C21H50O9: Polyglycol p 15/200 
+	 12	9	-3	0.14286	C24H52O7Si: 2-(2-(2-(2-(2-(2-nonyloxy-ethoxy)-ethoxy)-ethoxy)-ethoxy)-ethoxy)-ethanol, TFA 
+	 12	8	-4	0.13953	C24H52O9Si: 2-(2-(2-(2-(2-(2-(2-Isopentoxy-ethoxy)-ethoxy)-ethoxy)-ethoxy)-ethoxy)-ethoxy)-ethoxy)-ethyl TMS ether;2-(2-(2-(2-(2-(2-(2-Pentoxy-ethoxy)-ethoxy)-ethoxy)-ethoxy)-ethoxy)-ethoxy)-ethoxy)-ethyl TMS ether 
+	 12	3	-9	0.125	C25H53N4O8PSi5: inosine-5'-monophosphate, TMS 
+	 13	3	-10	0.13402	C25H54N5O7PSi5: deoxyguanosine-5'-monophosphate, TMS;adenosine-5'-monophosphate, TMS;adenosine-2'-monophosphate, TMS;adenosine-3'-monophosphate, TMS 
+
+
+C15 H35 N8 O8 P
+	 Edits	Adds	Subs	dProp	Name 
+	 7	4	-3	0.10606	C18H35N7O6: gly-lys-lys-gly-gly;gly-lys-gly-lys-gly;lys-gly-gly-gly-lys 
+	 10	7	-3	0.15873	C18H32N6O7: hexa-L-alanine 
+	 10	7	-3	0.15873	C15H36FeN6O3P2: Iron, tricarbonylbis(hexamethylphosphorous triamide-p)- 
+	 10	6	-4	0.15385	C16H36CrN6O4P2: Chromium, tetracarbonylbis(hexamethylphosphorus triamide-p)-, (oc-6-22)- 
+	 10	6	-4	0.15385	C16H36N6O4P2W: Tungsten, tetracarbonylbis(hexamethylphosphorus triamide-p)- 
+
+
+C10 H20 N2 O2
+	 Edits	Adds	Subs	dProp	Name 
+	 0	0	0	0	C10H20N2O2: N,N'-Hexamethylenebisacetamide;N,N,N',N'-tetramethyl-1,6-hexanediamide;butanamide, N,N'-1,2-ethanediylbis- 
+	 1	0	-1	0.02857	C10H20N2O3: N-nitroso-n-(t-octyl)glycine;val-met;met-val;val-val 
+	 1	0	-1	0.02857	C11H20N2O2: Cyclopentane-1,2-dione, 3,3,5,5-tetramethyl, bis(o-methyloxime)-(E,E)-;Cyclopentane-1,2-dione, 3,3,5,5-tetramethyl, bis(o-methyloxime)-(E,Z)-;Cyclopentane-1,2-dione, 3,3,5,5-tetramethyl, bis(o-methyloxime)-(Z,Z)-;3-Isopropyl-6-(2-methyl-propyl)-2,5-piperazinedione;2,5,5-Triethyl-4-propionyl-1,3,4-oxadiazoline 
+	 1	1	0	0.0303	C10H20N2O: Nipecotamide, n,n-diethyl-;Methanimine, 1-(4-morpholino), N-pentyl 
+	 2	2	0	0.0625	C10H20N2: 1,8-Diazabicyclo[6.3.1]dodecane;N,N'-Di-t-butylethanedialdimine;Acetonitrile, diisobutylamino-,;3,3,7,7-Tetramethyl-1,5-diazabicyclo[3.3.0]octane;2-Propanamine, N,N'-1,2-ethanediylidenebis[2-methyl-;2,3-Diazabicyclo[2.2.1]heptane,2-(1,1-dimethylethyl)-3-methyl-;2,3-Diazabicyclo[2.2.2]octane,1,2,3,4-tetramethyl-,trans-;Butane-2,3-diimine, N,N'-diisopropyl-;2,3-Diazabicyclo[2.2.2]octane, 1,2,3,4-tetramethyl-;1H-Azepine, hexahydro-1-(pyrrolidinyl-);9-Azabicyclo[3.3.1]nonan-9-amine,N,N-dimethyl-;1,1'-Bipiperidine;Butanenitrile, 4-(dipropylamino)-;1,7-Diazabicyclo[5.3.2]dodecane;1,6-Diazabicyclo[4.4.2]dodecane;Formamidine, 3,3-hexamethyleno-1-propyl;Methanimine, 1-(1-piperidinyl), N-butyl;Methanimine, 1-(1-piperidinyl), N-isobutyl;Methanimine, 1-(1-pyrrolidinyl), N-pentyl;N'-Cyclohexyl-N,N-dimethyl-acetamidine 
+
+
+C3 H8 O10 S
+	 Edits	Adds	Subs	dProp	Name 
+	 4	1	-3	0.16667	C5H9O10-: (HCO2H)4..HCO2 anion 
+	 5	4	-1	0.26316	C4H7O8-: (HCO2H)3..HCO2 anion 
+	 5	3	-2	0.2381	C4H8ClO8-: (HCO2H)4..Cl anion 
+	 6	6	0	0.375	C3H7O6-: (H2O)2..HO2CCH2CO2 anion 
+	 6	5	-1	0.33333	C2H9O6S-: (H2O)2..EtOSO3 anion 
+
+
+C11 H13 N O7
+	 Edits	Adds	Subs	dProp	Name 
+	 2	1	-1	0.0625	C12H13NO6: 4H-3,1-benzoxazine-2,4(1h)-dione, 6,7,8-trimethoxy-n-methyl- 
+	 2	2	0	0.06667	C11H12O7: 3-Oxabicyclo[3.2.1.]octane-2,4-dione, 6,7-dihydroxy-, 6,7-diacetate 
+	 2	2	0	0.06667	C11H11NO7: 2-(3,3-Diacetoxy-2-propenyl)-5-nitrofuran 
+	 2	2	0	0.06667	C11H13NO5: Methyl 4-(p-nitrophenoxy)butyrate;2-Nitrophenol, isoBOC;3-Nitrophenol, isoBOC;4-Nitrophenol, isoBOC 
+	 2	0	-2	0.05882	C11H13NO9: 5-Nitro-2-acetoxy-2,5-dihydrofurfural diacetate 
+
+
+C7 H7 N O4
+	 Edits	Adds	Subs	dProp	Name 
+	 0	0	0	0	C7H7NO4: Phenol, 4-methoxy-2-nitro-;4-Nitroguaiacol;4-Hydroxy-3-nitrobenzyl alcohol;3,4,5-Trihydroxybenzamide 
+	 1	0	-1	0.05	C8H7NO4-: Benzoic acid, 4-nitro-, methyl ester anion;Benzoic acid, 3-nitro-, methyl ester anion 
+	 1	0	-1	0.05	C8H7NO4: Methyl p-nitro benzoate;2-Methyl-6-nitrobenzoic acid;Acetic acid, 3-nitrophenyl ester;Acetic acid, m-nitrophenyl-;2-Methyl-5-nitrobenzoic acid;3-Methyl-4-nitrobenzoic acid;Benzeneacetic acid, 2-nitro-;C8H7NO4;C8H7NO4;Benzoic acid, 2-nitro-, methyl ester;2-Nitrophenyl acetate;3-O2N-C6H4-COOCH3;4-Nitrobenzoic acid methyl ester;4-Hydroxy-3-nitroacetophenone;Acetic acid, 4-nitrophenyl ester 
+	 1	1	0	0.05556	C7H7NO3: 5-Nitro-o-cresol;Benzene, 1-methoxy-4-nitro-;Phenol, 4-methyl-2-nitro-;Phenol, 2-methyl-6-nitro-;4-Methyl-3-nitrophenol;4-Amino-3-hydroxybenzoic acid;4-Nitro-5-methylphenol;2,4-Dihydroxybenzamide;2,6-Dihydroxybenzamide;3-Methyl-2-nitrophenol;2,5-Dihydroxy benzamide;B-resorcylaldoxime;2-Methyl-5-nitrophenol;3-Nitro-o-cresol;Benzoic acid, 2-amino-3-hydroxy-;Benzene, 1-methoxy-3-nitro-;3-Aminosalicylic acid;Benzenemethanol, 2-nitro-;Benzenemethanol, 3-nitro-;4-NO2-C6H4CH2OH;Aminosalicylic Acid;5-Methyl-2-nitrophenol;Mesalamine;Benzene, 1-methoxy-2-nitro-;Phenol, 2-methyl-4-nitro- 
+	 1	1	0	0.05556	C7H7NO3-: Benzene, 1-methoxy-3-nitro- anion;Benzene, 1-methoxy-4-nitro- anion 
+
+
+C12 H9 N5 O3
+	 Edits	Adds	Subs	dProp	Name 
+	 2	2	0	0.07407	C12H9N3O3: 4-Hydroxy-4'-nitroazobenzene 
+	 2	2	0	0.07407	C12H9N5O: 4-Benzamidopyrazolo(3,4-d)pyrimidine 
+	 3	2	-1	0.10714	C11H10N4O3: Triazole-4-carboxylic acid, 1,2,3-, 5-phenylacetamido- 
+	 3	2	-1	0.10714	C12H10N4O2: Alloxazine, 7,8-dimethyl-;Alloxazine, 1,3-dimethyl-;Benzo[g]pteridine-2,4(3H,10H)-dione,3,10-dimethyl-;Purine, 6-(p-methoxyphenoxy)-;4-Amino-4'-nitroazobenzene 
+	 3	0	-3	0.09375	C12H11N5O3S: P-toluenesulfonamide, alpha-(1,6-dihydro-6-oxo-9h-purin-9-yl)- 
+
+
+C6 H7 N O4 S
+	 Edits	Adds	Subs	dProp	Name 
+	 0	0	0	0	C6H7NO4S: Alpha-hydroxy-3-pyridinemethanesulfonic acid;Alpha-hydroxy-4-pyridinemethanesulfonic acid;Benzenesulfonic acid, 5-amino-2-hydroxy- 
+	 1	1	0	0.05556	C6H7O4S-: H2O..PhSO3 anion 
+	 1	1	0	0.05556	C6H7NO3S: Metanilic acid;Benzenesulfonic acid, 4-amino-;Benzene sulfohydroxamic acid;Aniline-o-sulfonic acid 
+	 1	0	-1	0.05	C7H7NO4S: P-sulfamoylbenzoic acid;3-Sulfamylbenzoic acid;Ketone, 5-methoxy-4-nitro-2-thienyl methyl 
+	 1	1	0	0.05556	C6H7NO4: Succinimide, n-acetoxy-;Isonipecotic acid, 2,6-dioxo- 
+
+
+C14 H21 Cl N10 O2
+	 Edits	Adds	Subs	dProp	Name 
+	 5	5	0	0.11628	C14H21ClN7-: (MeCN)7..Cl anion 
+	 5	3	-2	0.10638	C16H20N10O: N-beta-hydroxyethyl-n,n'-bis-(4-(6-methyl)-1,3,3a,7-tetrazaindenyl)ethylenediamine 
+	 7	6	-1	0.16279	C14H21FN7-: (MeCN)7..F anion 
+	 7	6	-1	0.16279	C14H21BrN7-: (MeCN)7..Br anion 
+	 7	6	-1	0.16279	C14H21IN7-: (MeCN)7..I anion 
+
+
+C15 H31 Cl O8
+	 Edits	Adds	Subs	dProp	Name 
+	 2	1	-1	0.03636	C15H32O8: Heptaethylene glycol monomethyl ether 
+	 3	1	-2	0.05357	C16H32O8: 1,4,7,10,13,16,19,22-Octaoxacyclotetracosane 
+	 3	3	0	0.05769	C14H30O8: Heptaethylene glycol 
+	 4	4	0	0.07843	C14H30O7: Hexaethylene glycol dimethyl ether;Hexaethylene glycol monoethyl ether 
+	 4	3	-1	0.07547	C15H32O6: Pentapropylene glycol;2-(2-(2-(2-Isopentoxy-ethoxy)-ethoxy)-ethoxy)-ethoxy)-ethanol;2-(2-(2-(2-Pentoxy-ethoxy)-ethoxy)-ethoxy)-ethoxy)-ethanol 
+
+
+C18 H36 Cl N4 O4 P S
+	 Edits	Adds	Subs	dProp	Name 
+	 5	4	-1	0.08065	C19H36N2O4S: 2-Hydroxy-3-(n-hexylamino) propyl-trimethylammonium p-tosylate 
+	 6	5	-1	0.09836	C19H36N2O4: Glycine,N-[N-(1-oxodecyl)-L-leucyl]-methyl ester 
+	 7	7	0	0.12069	C18H36ClNO2: Bentyl analog 
+	 7	7	0	0.12069	C18H36N2O2: octanamide, N,N'-1,2-ethanediylbis-;hexanamide, N,N'-1,6-hexanediylbis-;N,N'-Di-n-hexyladipamide;butanamide, N,N'-1,10-decanediylbis- 
+	 7	5	-2	0.1129	C18H36N2O6: 4,7,13,16,21,24-Hexaoxa-1,10-diazabicyclo[8.8.8]hexacosane 
+
+
+C19 H33 Cl N4 O6
+	 Edits	Adds	Subs	dProp	Name 
+	 4	3	-1	0.06557	C19H33N3O5S: Beta-diethylaminoethyl-p-aminobenzoate cyclohexylsulfamate 
+	 5	3	-2	0.08065	C20H32ClN2O6P: Acridan, 2-chloro-9-(3-dimethylaminopropyl)-10-ethyl-, phosphate (1 to 1),dihydrate 
+	 5	3	-2	0.08065	C20H34N4O4: L-Histidine,N-[N-(1-oxodecyl)-L-alanyl]-methyl ester 
+	 6	4	-2	0.09836	C20H32N2O6S: Phenol, 4-(2-aminopropyl), n-methyl-, hydrogen sulfate 
+	 6	3	-3	0.09524	C18H32N6O7: hexa-L-alanine 
+
+
+C21 H31 Cl O P2
+	 Edits	Adds	Subs	dProp	Name 
+	 3	2	-1	0.05455	C21H31O2P: Benzoic acid,4-(dicyclohexylphosphino)-ethyl ester 
+	 4	2	-2	0.07143	C21H31ClN2O: Viminol 
+	 4	4	0	0.07692	C21H30O: 1,1'-Diadamantyl ketone 
+	 4	3	-1	0.07407	C20H31ClO2: 2-Chlorobenzoic acid, tridecyl ester;2-Chlorobenzoic acid, 2-tridecyl ester;2-Chlorobenzoic acid, 3-tridecyl ester;2-Chlorobenzoic acid, 4-tridecyl ester 
+	 5	3	-2	0.09091	C21H32O2: Methyl abieta-7,13-dien-18-oate;Methyl abieta-7,13-dien-18-oate;Abietic acid, methyl ester;Pregnane-3,20-dione, (5.beta.)-;Bolasterone;Methyl sandaracopimarate;Methyl isopimarate;Calusterone;Methyl neoabietate;Methyl levopimarate;Methyl pimarate;Pregn-5-en-20-one, 3-hydroxy-;5A-Pregnan-3,10-dione;3Beta-hydroxypregn-5-en-20-one;Hexahydrocannabinol;17-epi-Bolasterone;5,7-Pregnadiene-3&#946;,20&#945;-diol;5,8-Pregnadiene-3&#946;,20&#945;-diol;5&#945;-Pregn-7-ene-3&#945;-ol-20-one;5&#946;-Pregn-7-ene-3&#945;-ol-20-one;5&#946;-Pregn-8-ene-3&#945;-ol-20-one;ent-Kaurenoic acid, Me 
+
+
+C19 H33 Cl O P2
+	 Edits	Adds	Subs	dProp	Name 
+	 4	3	-1	0.07407	C19H34O: Tricyclohexylmethanol 
+	 4	4	0	0.07692	C17H33ClO: 1-Chloro-heptadecanone-2 
+	 4	3	-1	0.07407	C19H33NO: 4-Tert-butyl-2-[(dibutylamino)methyl]phenol 
+	 4	4	0	0.07692	C18H33P: Phosphine, tricyclohexyl- 
+	 5	3	-2	0.09091	C20H32ClNO: Trihexyphenidyl hydrochloride 
+
+
+C15 H32 O9
+	 Edits	Adds	Subs	dProp	Name 
+	 1	1	0	0.01818	C15H32O8: Heptaethylene glycol monomethyl ether 
+	 2	1	-1	0.03571	C16H32O8: 1,4,7,10,13,16,19,22-Octaoxacyclotetracosane 
+	 3	3	0	0.0566	C15H32O6: Pentapropylene glycol;2-(2-(2-(2-Isopentoxy-ethoxy)-ethoxy)-ethoxy)-ethoxy)-ethanol;2-(2-(2-(2-Pentoxy-ethoxy)-ethoxy)-ethoxy)-ethoxy)-ethanol 
+	 3	0	-3	0.05085	C18H32O9: Glycerol - tripropylene glycol ether, triacetate 
+	 3	2	-1	0.05455	C16H30O9: Hexaethylele glycol, diacetate 
+
+
+C14 H30 N6 O2 S2
+	 Edits	Adds	Subs	dProp	Name 
+	 5	2	-3	0.09091	C17H30N6O2: Imidazole-4-carboxylic acid, 5-(3-cyclohexyl-3-methyl-1-triazeno)-, 2-(diethylamino)ethyl ester 
+	 7	6	-1	0.14286	C15H27N5O2: Imidazole-4-carboxylic acid, 5-(3-methyl-3-octyltriazeno)-, ethyl ester 
+	 7	7	0	0.14894	C13H30N4: 1,4,8,11-Tetraazacyclotetradecane, 1,4,8-trimethyl- 
+	 7	2	-5	0.12281	C15H30N6O6: Hexa(methoxymethyl)melamine 
+	 7	6	-1	0.14286	C13H30NO2PS2: O-Ethyl S-[5-(diisopropylamino)-3-thiapentyl]methylphosphonothiolate 
+
+
+C26 H20 N10
+	 Edits	Adds	Subs	dProp	Name 
+	 2	2	0	0.03704	C24H20N10: N,n'-bis-(4-(6-methyl)1,3,3a,7-tetrazaindenyl)-4,4'-biphenyldiamine 
+	 5	4	-1	0.09434	C26H20N6O: Bis-(o-aminophenyl)-2,2'-dibezimidazole oxide 
+	 6	5	-1	0.11538	C26H21N5: 3-Anilino-1,4-diphenyl-5-phenylimino-1,2,4-triazoline 
+	 7	2	-5	0.11864	C26H22N8NiS2: Formic acid, (phenylazo)thio-, 2-phenylhydrazide, ni-complex 
+	 7	2	-5	0.11864	C26H22CuN8S2: Formic acid, (phenylazo)thio-, 2-phenyl hydrazide, copper derivative 
+
+
+C12 H20 O5
+	 Edits	Adds	Subs	dProp	Name 
+	 1	1	0	0.02778	C12H20O4: 6,6,12,12-Tetramethyl-1,4,8,11-tetroxadispiro-[4.1.4.1]dodecane;1,2-Cyclohexanedicarboxylic acid, diethyl ester;Trans-1,4-cyclohexanedimethanol, diacetate;2-Butenedioic acid (e), dibutyl ester;2-Butenedioic acid (Z)-, dibutyl ester;1,4-Cyclohexanediacetic acid, dimethyl ester;1,4,10,13-tetraoxadispiro[4.3.4.3]hexadecane;Trans-1,3-cyclobutanediol, 2,2,4,4-tetramethyl-, diacetate;cis-Cyclohexane-1,3-dicarboxylic acid diethyl ester;trans-Cyclohexane-1,3-dicarboxylic acid diethyl ester;Diisobutylfomarate;2-Decenedioic acid, dimethyl ester;3-Methyl-dec-2-enedioic acid dimethyl ester, Z 
+	 1	0	-1	0.02632	C12H20O6: 1,2,3-Propanetriol, tripropanoate;D-fructopyranose, 2,3:5,6-di-o-isopropylidene-,;&#945;-L-Sorbofuranose, 2,3:4,6-bis-o-(1-methylethylidene)-;Diacetone sorbose;Galactopyranose, 1,2:3,4-di-o-isopropylidene-, d- 
+	 1	1	0	0.02778	C11H20O5: Triethylene glycol, monoallyl ether, acetate 
+	 2	0	-2	0.05128	C14H20O5: 1,3-Cyclohexanedione, 5,5-dimethyl-2-(4'-carbomethoxybutyro)-;Bis(1,4,7,10,13-benzopentaoxacyclopentadecin, 2,3,5,6,8,9,11,12-octahydro-);Furan-3-carboxylic acid, 4-methyl-2-(2-methoxycarbonylethyl)-5-propyl, methyl ester 
+	 2	1	-1	0.05405	C13H20O4: Cyclohexanehexanoic acid, e,2-dioxo-, methyl ester;Diethyl diallylmalonate;Acetoxyacetic acid, 2-methyloct-5-yn-4-yl ester 
+
+
+C4 H6 N6 O2
+	 Edits	Adds	Subs	dProp	Name 
+	 0	0	0	0	C4H6N6O2: Pyrimidine, 4-amino-6-hydrazino-5-nitro- 
+	 1	0	-1	0.05263	C4H6N6O2S: 1,2,5-Thiadiazole-3-carboxamidoxime, 4-(hydroxyiminomethylamino)- 
+	 2	0	-2	0.1	C5H6N6O3: Purine, 2-amino-, nitrate 
+	 2	1	-1	0.11111	C3H6N6O3: 3H-v-triazolo[4,5-d]-v-triazin-7-ol, dihydrate;Hexahydro-1,3,5-trinitroso-1,3,5-triazine;1,3,5-Trinitroso-1,3,5-triazacyclohexane 
+	 2	2	0	0.125	C4H6N6: 1-(&#946;-Cyanoethyl)-5-aminotetrazole;2-(&#946;-Cyanoethyl)-5-aminotetrazole 
+
+
+C6 H12 O4
+	 Edits	Adds	Subs	dProp	Name 
+	 0	0	0	0	C6H12O4: Diethylene glycol monoacetate;Propionic acid dimer;1-Mono propionin;Methyl 3,3-dimethoxypropionate 
+	 1	1	0	0.04762	C6H12O3: 1,3-Dioxolane-4-methanol, 2,2-dimethyl-;1-Methoxy-2-propyl acetate;2-Ethoxyethyl acetate;6-Hydroxycaproic acid;3-Allyloxy-1,2 propanediol;Paraldehyde;D-Acetone glycerol;cis-2,4,6-Trimethyl-1,3,5-trioxane;Dimethoxymethyl allyl ether;Methyl 3-methyl 2-hydroxybutanoate;1,3,3-Trimethoxy-2-propene;3,3-Dimethoxy-2-butanone;L-Acetone glycerol;DL-Acetone glycerol;methyl 3-methoxybutanoate;Butanoic acid, 2-hydroxy-2-methyl-, methyl ester;2-Ethyl-2-hydroxybutyric acid;Ethyl 2-hydroxybitanoate;Butanoic acid, 3-hydroxy-, ethyl ester;Propanoic acid ethoxymethyl ester;2-Butanone, 4,4-dimethoxy-;2,3-Butanediol monoacetate;Butanoic acid, 3-hydroxy-3-methyl-, methyl ester;propyl lactate;1,2,3-Cyclohexanetriol;Dimethyl(E)-1-propenyl orthoformate;1-Propene, 1-(dimethoxymethoxy)-, (E)-;Furan, tetrahydro-2,5-dimethoxy-;Butyl glycolate;Propanoic acid, 2-hydroxy-2-methyl-, ethyl ester;Acetic acid, ethoxy-, ethyl ester;Ethanol, 2-[2-(ethenyloxy)ethoxy]-;Butanoic acid, 4-hydroxy, ethyl ester;Propyl 3-hydroxybutanoate;2-(Tetrahydro-furan-2-yloxy)-ethanol 
+	 1	0	-1	0.04348	C7H12O4: Propanedioic acid, diethyl ester;Heptanedioic acid;Dimethyl pentanedioate;2,4,8,10-Tetraoxaspiro[5.5]undecane;Butanedioic acid, methyl-, dimethyl ester;Trimethyl butanedioic acid;Succinic acid, isopropyl-;Dimethyl ethylmalonate;2,2-Diacetoxypropane;Cyclohexanecarboxylic acid, 3,4-dihydroxy-, cis-3,cis-4;3,3-Dimethylglutaric acid;Propanedioic acid, diethyl-;Butylmalonic acid;1,3-Propanediol, 2,2-dimethyl-, diformate;Dimethylpropanedioic acid dimethyl ester;(R)-(+)-3-Methyladipic acid;1,2-Propanediol, diacetate;Hexanedioic acid, 2-methyl-;Butanedioic acid, ethyl methyl ester;Hexanedioic acid, monomethyl ester;1,3-Propanediol, diacetate;2,2-Dimethylglutaric acid;Methyl 2,3-dimethoxy-3-butenoate;(Z) Methyl 2,3-dimethoxy-2-butenoate;2-Butenoic acid, 2,3-dimethoxy-, methyl ester, (E)-;Butanoic acid, 3-(acetyloxy)-, methyl ester;Methyl butanoate, 3-acetoxy 
+	 1	1	0	0.04762	C5H12O4: 1,3-Propanediol, 2,2-bis(hydroxymethyl)-;3-(2-Hydroxyethoxy)-1,2-propanediol;Tetramethoxymethane 
+	 1	0	-1	0.04348	C6H12O4Si: Silanediol, dimethyl-, diacetate;Malonic acid, TMS, secondary peak (unknown) 
+
+
+C10 H18 N2 O3 S2
+	 Edits	Adds	Subs	dProp	Name 
+	 2	2	0	0.06061	C10H18N2O3: val-pro;pro-val 
+	 2	2	0	0.06061	C10H16N2O3S2: Thiosulfuric acid, s-[2-[(2-anilinoethyl)amino]ethyl]ester 
+	 2	2	0	0.06061	C9H18N2O3S: Morpholine, 4-(piperidinosulfonyl)- 
+	 2	1	-1	0.05714	C11H18N2O3S: Fast red pdc salt;2-Methoxyaniline-5-sulfonic acid diethylamide 
+	 3	0	-3	0.07895	C10H20N2O4S2: Alanine, n,n'-(dithiodiethylene)di- 
+
+
+C9 H10 O6
+	 Edits	Adds	Subs	dProp	Name 
+	 1	1	0	0.04167	C9H10O5: 3-Hydroxy-4,5-dimethoxybenzoic acid;2-Hydroxy-4,6-dimethoxybenzoic acid;3-Hydroxy-4-methoxymandelic acid;Syringic acid;2-(Diacetoxymethyl)furan;Gallic acid, ethyl ester 
+	 2	1	-1	0.08	C9H10O5W: W(CO)5(n-C4H10) 
+	 2	0	-2	0.07407	C9H12O6: Trimethyl (1z)-1-propene-1,2,3-tricarboxylate;1,2,3-Propenetricarboxylic acid, trimethyl ester;Trimethyl cyclopropane-1,2,3-tricarboxylate;2-Methoxycarbonyl-pent-2-enedioic acid dimethyl ester 
+	 2	2	0	0.08696	C7H10O6: 5-Dehydroquinic acid;Trimethyl methanetricarboxylate;1,2,4-butanetricarboxylic acid 
+	 2	1	-1	0.08	C10H10O5: 4-Acetoxy-meta-anisic acid;1,3-Benzenedicarboxylic acid, 4-hydroxy-, dimethyl ester 
+
+
+C9 H11 N8 O2 P3
+	 Edits	Adds	Subs	dProp	Name 
+	 5	4	-1	0.16667	C9H11N7O2S: Urea, 1-methyl-1-nitroso-3-[2-(purin-8-ylthio)ethyl]-;Urea, 1-methyl-1-nitroso-3-[2-(9h-purine-6-ylthio)ethyl]- 
+	 6	6	0	0.22222	C9H11N5O2: Glycine, n-(9h-purin-6-yl)-, ethyl ester 
+	 6	5	-1	0.2069	C10H11N7O: Triazole-4-carboxamide, (1h)-1,2,3-, 5-[(n-methyl-n-phenyl)-1-triazeno]- 
+	 6	5	-1	0.2069	C9H12N6O2: Urea, 1-[2-(6-hydroxy-9h-purin-9-yl)ethyl]-3-methyl- 
+	 7	3	-4	0.20588	C10H12N8O4: Adenosine, 2-azido- 
+
+
+C12 H16 O6
+	 Edits	Adds	Subs	dProp	Name 
+	 0	0	0	0	C12H16O6: Cyclohexanecarboxylic acid, 1,3-dihydroxy-4,5-(isopropylidenedioxy)-, gamma-lactone, 1-acetate;2-hydroxyl-tetramethoxy-acetophenone 
+	 1	1	0	0.0303	C12H16O5: 3-(3,4,5-Trimethoxyphenyl)propionic acid;2,3,4,6-tetramethoxy-acetophenone 
+	 2	1	-1	0.05882	C12H16CrO5: Cr(CO)5(n-C7H16) 
+	 2	1	-1	0.05882	C12H16MoO5: Mo(CO)5(n-C7H16) 
+	 2	1	-1	0.05882	C12H16O5W: W(CO)5(n-C7H16) 
+
+
+C11 H16 O5
+	 Edits	Adds	Subs	dProp	Name 
+	 0	0	0	0	C11H16O5: o-Allyl oo-tert-butylperfumarate 
+	 1	1	0	0.03226	C11H16O4: Cyclohexanepropionic acid, 4,4-dimethyl-2,6-dioxo-;Diacetoxynorbornane;1-Oxaspiro[4.5]decane-4-carboxylic acid, 2-oxo-, methyl ester;Dimethyl diallylmalonate;3,4,5-Trimethoxybenzyl methyl ether;2,4,8,10-Tetraoxaspiro[5.5]undecane, 3,9-diethenyl-;4-Cyclohexene-1,2-dicarboxylic acid, 4-methyl, dimethyl ester;1-Propanol, 3-(4-hydroxy-3,5-dimethoxyphenyl) 
+	 1	1	0	0.03226	C10H16O5: Butanedioic acid, acetyl-, diethyl ester;Propanedioic acid, (ethoxymethylene)-, diethyl ester 
+	 1	0	-1	0.0303	C12H16O5: 3-(3,4,5-Trimethoxyphenyl)propionic acid;2,3,4,6-tetramethoxy-acetophenone 
+	 2	0	-2	0.05882	C12H16CrO5: Cr(CO)5(n-C7H16) 
+
+
+C7 H10 O2
+	 Edits	Adds	Subs	dProp	Name 
+	 0	0	0	0	C7H10O2: 1,3-Cyclohexanedione, 2-methyl-;1,2-Cyclopentanedione, 3,4-dimethyl-;1,2-Cyclopentanedione, 3,5-dimethyl-;2-Cyclopentene-1-acetic acid;2-Heptynoic acid;Dimethylvinylethynylhydroperoxide;2,4-Hexadienoic acid, methyl ester;3(2H)-Furanone,2,2,5-trimethyl-;2-Acetylcyclopentanone;3-Methylenecyclobutylacetate;2-Hexynoic acid methyl ester;Ethyl 2-methylenecyclopropanecarboxylate;Bicyclo[2.2.1]hept-5-ene-2,3-diol-, (exo,exo)-;Allyl (2e)-2-butenoate;Acetic acid, cyclopent-2-en-1-yl ester;1,2-Dimethyl-3-carbomethoxycyclopropene;2-Cyclopenten-1-one, 2-hydroxy-3,5-dimethyl-;2-Cyclopenten-1-one, 2-hydroxy-3,4-dimethyl-;2-Cyclopenten-1-one, 2-hydroxy-3-ethyl;2(3H)-Furanone,3,3,5-trimethyl-;1,3-Cyclopentanedione, 2,2-dimethyl-;2-Oxabicyclo[2.2.2]octan-3-one;2-Methylene-3-butenoic acid ethyl ester;3-Cyclohexene-1-carboxylic acid;3-Pentynoic acid ethyl ester;2-Hydroxy-5,5-dimethylcyclopent-2-en-1-one;2-Pentynoic acid ethyl ester;Furan,3-methoxy-2,5-dimethyl-;2-Cyclopenten-1-one,2-ethyl-3-hydroxy-;2-Furfuryl ethyl ether;4-Pentynoic acid ethyl ester;1-Cyclohexene-1-carboxylic acid;Spiro[2,3-dioxabicyclo[2.2.1]heptane,7,1'-cyclopropane;2,4-Hexadienoic acid, methyl ester, (E,E)-;1,4-Dioxaspiro[4.4]non-6-ene;1,3-Dioxolane,2,2-dimethyl-4,5-bis(methylene)-;1,3-Cyclopentanedione, 2-ethyl-;2-Propenoic acid, 2-methyl-, 2-propenyl ester;trans-4,5-epoxy-(E)-hept-2-enal;Butanoic acid, 2-propynyl ester;lavander lactone;2-Cyclopenten-1-one, 2-hydroxy-4,4-dimethyl 
+	 1	0	-1	0.05	C7H11O2-: cPnCH2CO2 anion;cHxCO2 anion;CH2=CHC(Me)2CH2CO2 anion 
+	 1	1	0	0.05556	C7H10O: 3-Cyclohexene-1-carboxaldehyde;Norbornan-7-one;Furan, 2,3,5-trimethyl-;2,3,4-trimethylfuran;2,3-Dimethyl-2-cyclopenten-1-one;2-Cyclohexen-1-one, 2-methyl-;Methanone, dicyclopropyl-;3-Cyclohepten-1-one;2-Cyclohepten-1-one;2-Cyclohexen-1-one, 3-methyl-;Bicyclo[2.2.1]hept-5-en-2-ol;Bicyclo[2.2.1]hept-2-en-7-ol, syn-;bicyclo[3.2.0]heptan-6-one;2-ethyl-5-methylfuran;1-Ethynylcyclopentanol;1-Methoxy-1,3-cyclohexadiene;8-Oxatricyclo[3,2,1,0(1,5)]octane;4,4-Dimethyl-2-cyclopenten-1-one;Pent-2-ynal, 4,4-dimethyl-;Hept-3-yn-2-one;cis-2,3-Epoxybicyclo[2.2.1]heptane;1-Methoxy-1,4-cyclohexadiene;2-Methoxy-1,3-cyclohexadiene;3-Oxatricyclo[3.2.1.02,4]octane, (1&#945;,2&#946;,4&#946;,5&#945;)-;3-methyl-3-cyclohexen-1-one;Furan, 2-propyl-;2,4-Heptadienal, (E,E)-;2-Norbornanone;Hex-2-yn-4-one, 2-methyl-;Pent-4-yn-3-one, 2,2-dimethyl-;2,4-Heptadienal;2-Oxabicyclo[3.2.1]oct-3-ene;5-Methyl-5-hexen-3-yn-2-ol;5-Hexen-3-yn-2-ol, 2-methyl-;Bicyclo[2.2.1]hept-2-en-7-ol, anti-;Hept-2-yn-4-one;2-Cyclohexen-1-one, 5-methyl-;(Z,E)-2,4-heptadien-1-al;(Z,Z)-2,4-heptadienal 
+	 1	1	0	0.05556	C6H10O2: 3-Butenoic acid, 2,2-dimethyl-;Beta-isopropyl-beta-propiolactone;2-Butenoic acid, ethyl ester;Oxirane, [(2-propenyloxy)methyl]-;CH3COCH2CH2COCH3;2H-Pyran-2-one, tetrahydro-4-methyl-;2-Butenoic acid, 2-ethyl-, (E)-;Butanoic acid, ethenyl ester;2-Hexenoic acid, (E)-;Acetic acid, iso-butenyl ester;CH3C(O)O(CH2)2CH=CH2;3-Hexenoic acid, (E)-;2-Pentenoic acid, methyl ester, (E)-;Beta-propyl-beta-propiolactone;3-Butenoic acid, ethyl ester;2-Pentenoic acid, 2-methyl-, (E)-;5,6-Dihydro-4-methoxy-2H-pyran;(Z)-3-hexenoic acid;(E)-Pent-3-enoic acid methyl ester;Propanoic acid, 2-propenyl ester;Isobutyric acid, vinyl ester;2,3-Dioxabicyclo[2.2.2]octane;2,4-Hexanedione;3-Hexyne-2,5-diol;Iso-caprolactone;cyclopentane carboxylic acid;4-Hexen-3-one, 5-hydroxy-;(Z)-CH3CH=CHCH2C(O)OCH3;Butyric acid, 2,2-dimethyl-4-hydroxy-, g-lactone;2,3-Hexanedione;2-Butenoic acid, 2-methyl-, methyl ester;4-Hexenal, 6-hydroxy-, (Z)-;2,3,4,7-Tetrahydrooxepin-2-ol;3-Hexenoic acid;3,4-Hexanedione;2H-Pyran, 3,4-dihydro-2-methoxy-;Ethyl cyclopropanecarboxylate;cyclobutyl ethanoate;2-Oxepanone;6,7-Dioxabicyclo[3.2.1]octane;Cyclohexanone, 2-hydroxy-;2-vinyl-1,3-dioxane;2-Butenoic acid, ethyl ester, (E)-;2-Buten-1-ol, acetate;Methyl tiglate;1-Methylallyl acetate;Isopropyl acrylate;2(3H)-Furanone, 5-ethyldihydro-;2(3H)-Furanone, dihydro-4,5-dimethyl-;4-methyl-2,3-pentanedione;1,2-Divinyloxyethane;Cyclobutanecarboxylic acid methyl ester;2,4-Pentanedione, 3-methyl-;Ir<sub>5</sub>525;&#948;-Hexalactone;2-Butenoic acid, 3-methyl-, methyl ester;2-Propenoic acid, propyl ester;2-Propenoic acid, 2-methyl-, ethyl ester;4-oxohexanal;4,5-dihydro-2-methyl-3(2H)-furanone;trans-2,3-epoxyhexanal;2-Vinyloxy-tetrahydro-furan 
+	 1	0	-1	0.05	C7H10O3: Cyclopentanecarboxylic acid, 2-oxo-, methyl ester;2-Propenoic acid, 2-methyl-, oxiranylmethyl ester;Butanoic acid, 3-oxo-, 2-propenyl ester;2(3h)-Furanone, 3-acetyldihydro-3-methyl-;Diallyl carbonate;Ethyl 2-formyl-1-cyclopropanecarboxylate;5-Ethyl-4-hydroxy-2-methyl-3(2H)-furanone;2-ethyl-4-hydroxy-5-methyl-3(2H)-furanone;2,4,10-Trioxatricyclo-[3.3.1.1(3,7)]decane;2,2-Dimethylglutaric anhydride;3-Carbomethoxycyclopentanone;Dihydro-3,3,4-trimethyl-2,5-furandione;2,5-dimethyl-4-methoxy-2,3-dihydro-3-furanone;2H-Pyran-2,6(3H)-dione, dihydro-4,4-dimethyl-;(dimethoxymethyl)furan;resorcinol monohydrate;3-hydroxy-5-ethyl-4-methyl-2-(5H)-furanone;2,4-Pentanedione, 3-acetyl- 
+
+
+C12 H16 O7
+	 Edits	Adds	Subs	dProp	Name 
+	 1	0	-1	0.02778	C12H16O8: &#946;-D-Glucopyranose, 1,6-anhydro-, triacetate 
+	 1	1	0	0.02941	C12H16O6: Cyclohexanecarboxylic acid, 1,3-dihydroxy-4,5-(isopropylidenedioxy)-, gamma-lactone, 1-acetate;2-hydroxyl-tetramethoxy-acetophenone 
+	 1	1	0	0.02941	C11H16O7: 2,3,4-Tri-O-acetyl-1,5-Anhydro-D-ribitol;2,3,5-Tri-O-acetyl-1,4-Anhydro-D-ribitol;2,3,4-O-triacetyl-1,5-Anhydro-L-arabinitol;Acetic acid 4,5-diacetoxy-tetrahydro-pyran-3-yl ester 
+	 2	2	0	0.06061	C12H16O5: 3-(3,4,5-Trimethoxyphenyl)propionic acid;2,3,4,6-tetramethoxy-acetophenone 
+	 2	0	-2	0.05405	C13H16O8: Cyclohexanecarboxylic acid, 1,3,4,5-tetrahydroxy-, gamma-lactone, triacetate 
+
+
+C12 H14 O5
+	 Edits	Adds	Subs	dProp	Name 
+	 0	0	0	0	C12H14O5: Malonic acid, furfurylidene, diethyl ester;(1&#945;,2&#945;,4&#945;,7&#945;)5-Methyl-3-oxatricyclo[5.1.0.0(2,4)]oct-5-ene-6,7-dicarboxylic acid dimethyl ester;2,3,4-Trimethoxycinnamic acid;4H-Oxocin-5,6-dicarboxylic acid, 7-methyl-, dimethyl ester, (Z,Z,E)-;Propionic acid, 3-(6-hydroxy-m-anisoyl)-, methyl ester;methyl everninate, acetylated 
+	 1	1	0	0.03333	C12H14O4-: Diethyl Phthalate anion 
+	 1	1	0	0.03333	C12H14O4: Octatetraene dicarboxylic acid, dimethyl ester;3-Methyl-1,4-benzodioxan-2-carboxylic acid, ethyl ester;Maleic acid, monodibromophenyl ester;Benzene, m-bis(2,3-epoxy propoxy)-;Methyl benzyl succinate;1,2-Benzenedicarboxylic acid, monobutyl ester;1,1-Ethanediol, 2-phenyl-, diacetate;P-benzenediacetic acid, dimethyl ester;Dillapiol;1,4-benzenediol dipropanoate;Apiol;Cinnamic acid, 3,4-dimethoxy-,methyl ester;Diethyl p-phthalate;1,3-Benzenedicarboxylic acid, diethyl ester;Diethyl phthalate;Fenproporex-M (desamino-oxo-HO-methoxy), AC;R,S-4'-Methoxy-&#945;-pyrrolidinopropiophenone-M (desmethyl-3-methoxy-desamino-oxo-), ethylated;R,S-3',4'-methylenedioxy-&#945;-pyrrolidinopropiophenone-M (desmethylene-3-methyl-desamino-oxo-), ethylated;2-Propenoic acid, 3-(3,4-dimethoxyphenyl)-, methyl ester, trans;2-Propenoic acid, 3-(3,4,5-trimethoxyphenyl)-, methyl ester, cis;Methyl 4-(3,4-methylenedioxyphenyl)butanoate;Acetoxyacetic acid, 3,5-dimethylphenyl ester 
+	 1	0	-1	0.03125	C13H14O5: 3H-2-Benzopyran-7-carboxylic acid, 4,6-dihydro-8-hydroxy-3,4,5-trimethyl-6-oxo-, (3S-trans)-;p-Quinomethide tautomer;Fenproporex-M (desamino-oxo-di-HO), 2AC 
+	 1	1	0	0.03333	C11H14O5: Benzoic acid, 3,4,5-trimethoxy-, methyl ester;2,3,4-Trimethoxyphenylacetic acid;Methyl &#945;-hydroxy-&#945;-(3,4-dimethoxyphenyl)acetate;3,4,5-Trimethoxyphenylacetic acid;2-hydroxyl-3,4,6-trimethoxy-acetophenone 
+
+
+C11 H16 O4
+	 Edits	Adds	Subs	dProp	Name 
+	 0	0	0	0	C11H16O4: Cyclohexanepropionic acid, 4,4-dimethyl-2,6-dioxo-;Diacetoxynorbornane;1-Oxaspiro[4.5]decane-4-carboxylic acid, 2-oxo-, methyl ester;Dimethyl diallylmalonate;3,4,5-Trimethoxybenzyl methyl ether;2,4,8,10-Tetraoxaspiro[5.5]undecane, 3,9-diethenyl-;4-Cyclohexene-1,2-dicarboxylic acid, 4-methyl, dimethyl ester;1-Propanol, 3-(4-hydroxy-3,5-dimethoxyphenyl) 
+	 1	1	0	0.03333	C10H16O4: trans-Cyclohexane-1,3-dicarboxylic acid dimethyl ester;2-Butenedioic acid (Z)-, bis(1-methylethyl) ester;Lactic acid, butyl ester, acrylate;D-camphoric acid;Hexanoic acid, 5,5-dimethyl-2,4-dioxo-, ethyl ester;1,2-Cyclohexanedicarboxylic acid, dimethyl ester, cis-;1,2-Cyclohexanediol diacetate, trans-;1,4-Cyclohexanedione bis(ethylene ketal);Propanedioic acid, 2-propenyl-, diethyl ester;Cyclohexane-cic-1,2-diol-diacetate;Hexanoic acid, 2-acetyl-5-oxo-, ethyl ester;Diethyl 1,1-cyclobutanedicarboxylate;Diethyl 3-methylcyclopropane-1,2-dicarboxylate;Hexanedioic acid, 2-methyl-5-methylene-, dimethyl ester;cis-5-decenedioic acid;Diethyl isopropylidenemalonate;cis-Cyclohexane-1,3-dicarboxylic acid dimethyl ester;Trans-1,4-cyclohexane-dimethanol diformate;1,1-Cyclohexane diacetic acid;1,4-Cyclohexanedicarboxylic acid, dimethyl ester;3-Methyl-hept-2-enedioic acid dimethyl ester, Z;3-Methyl-oct-2-enedioic acid dimethyl ester, E;3-Methyl-oct-2-enedioic acid dimethyl ester, Z 
+	 1	0	-1	0.03125	C12H16O4: C12H16O4;Ethyl 3,4-dimethoxyphenyl acetate;Benzenepropanoic acid, 3,4-dimethoxy-, methyl ester;Vanillic acid, n-butyl ester;Ethyl-.beta.-(4-hydroxy-3-methoxy-phenyl)-propionate;Vanillic acid, isobutyl ester;4,7-Methanoindan-2,5-dicarboxylic acid, hexahydro-;2-Methoxyphenol, isoBOC;2,5-Dimethoxy-4-propoxy-benzaldehyde 
+	 1	1	0	0.03333	C11H16O3: Diethyl phenyl orthoformate;1-Propanol, 3-(3,4-dimethoxyphenyl);Phenethyl alcohol, 2,5-dimethoxy-alpha-methyl-;Phenol, 2,6-dimethoxy-4-propyl 
+	 1	0	-1	0.03125	C11H16O5: o-Allyl oo-tert-butylperfumarate 
+
+
+C10 H18 O4
+	 Edits	Adds	Subs	dProp	Name 
+	 0	0	0	0	C10H18O4: Ethylene glycol di-N-butyrate;Decanedioic acid;1,1-Ethanediol, diisobutyrate;Ethylene glycol mono-2,2,4-trimethyl-3-oxovalerate;Hexanedioic acid monoethyl ester;Hexanedioic acid, diethyl ester;1,4-Butanediol, dipropionate;Octanedioic acid, dimethyl ester;Glutaric acid, 2-methyl-, diethyl ester;Ethanedioic acid, dibutyl ester;Triethylbutanedioic acid;Nonanedioic acid, monomethyl ester;Ethyl 3-acetoxyhexanoate;Diethyl propylmalonate;Oxirane, 2,2'-[1,4-butanediylbis(oxymethylene)]bis-;ethyl 5-acetoxyhexanoate;2-Ethyl suberic acid;Heptanedioic acid, 4-methyl-, dimethyl ester;Heptanedioic acid, 3-methyl-, dimethyl ester;Hexanedioic acid, diethyl ester;n-Heptylmalonic acid;Succinic acid diisopropyl ester;Butanedioic acid, dipropyl ester;(1-Methylpropyl)succinic acid, methyl ester;ethyl 4-acetoxyhexanoate 
+	 1	1	0	0.03226	C10H17O4-: Decanedioic acid, conjugate base 
+	 1	1	0	0.03226	C9H18O4: Ethyl 3,3-diethoxypropionate;2-(2'-Hydroxyethoxy)ethyl pivalate;Ethyl 2,2-diethoxypropionate;1,4-Anhydro-2,3,5-tri-O-methyl-L-fucitol;1,5-Anhydro-2,3,4-tri-O-methyl-L-rhamnitol;1,5-anhydro-2,3,4-tri-O-methyl-D-fucitol 
+	 1	1	0	0.03226	C10H18O3: 1,3-Cyclobutanediol, 2,2,4,4-tetramethyl-, monoacetate;2-Methylbutanoic anhydride;2,2-Dimethylpropanoic anhydride;methyl 9-oxononanoate;N-Amyl levulinate;Valeric anhydride;2,2,4-Trimethyl-3-oxovaleric acid, ethyl ester;1,3,3,4,6,6-Hexamethyl-2,5,7-trioxabicyclo[2.2.1]heptane;Iso-amyl levulinate;2-Hydroxy-cycloheptanecarboxylic acid ethyl ester, cis;2-Hydroxy-cycloheptanecarboxylic acid ethyl ester, trans;allyl amyl glycolate;Methyl-2,6-Dimethyl-5-oxoheptanoate;3-Hexyl-oxirane-2-carboxylic acid methyl ester;Acetoin hexanoate 
+	 1	0	-1	0.0303	C11H18O4: Cyclobutaneacetic acid, 3-carboxy-2,2-dimethyl-, dimethyl ester;1,1-Cyclopentanedicarboxylic acid, diethyl ester;Pinic acid dimethyl ester;2-Triethoxymethylfuran;3-Methyl-non-2-enedioic acid dimethyl ester, E;3-Methyl-non-2-enedioic acid dimethyl ester, Z;Cyclopentylsuccinic acid, methyl ester;1,2-Cyclohexanedicarboxylic acid, 4-methyl, dimethyl ester 
+
+
+C3 H8 O6 S
+	 Edits	Adds	Subs	dProp	Name 
+	 2	2	0	0.125	C3H7O6-: (H2O)2..HO2CCH2CO2 anion 
+	 2	1	-1	0.11111	C2H9O6S-: (H2O)2..EtOSO3 anion 
+	 2	1	-1	0.11111	C4H8O6-: (H2O)..{EtCO2H}..CO3 radical anion 
+	 2	1	-1	0.11111	C3H8NO6-: (H2O)..{EtCO2H}..NO3 anion 
+	 2	2	0	0.125	C3H8O4S: Sulfuric acid, mono(1-methylethyl) ester 
+
+

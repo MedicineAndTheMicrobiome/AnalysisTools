@@ -1,0 +1,100 @@
+HC(=O)SO anion	CHO2S-	N/A
+Sn3 anion	Sn3-	N/A
+Sn4 anion	Sn4-	N/A
+Sn5 anion	Sn5-	N/A
+Sn6 anion	Sn6-	N/A
+Sn7 anion	Sn7-	N/A
+Sn8 anion	Sn8-	N/A
+Sn9 anion	Sn9-	N/A
+Sn10 anion	Sn10-	N/A
+Lithium iodide anion	ILi-	N/A
+Sn18 anion	Sn18-	N/A
+Sn19 anion	Sn19-	N/A
+Phosphorus trichloride anion	Cl3P-	N/A
+Pb10 anion	Pb10-	N/A
+Pb12 anion	Pb12-	N/A
+Pb15 anion	Pb15-	N/A
+Pb16 anion	Pb16-	N/A
+Pb17 anion	Pb17-	N/A
+Methane, iodo- anion	CH3I-	N/A
+Pb18 anion	Pb18-	N/A
+Pb20 anion	Pb20-	N/A
+AlCl3..F anion	AlCl3F-	N/A
+AlCl2F..F anion	AlCl2F2-	N/A
+AlClF2..F anion	AlClF3-	N/A
+AlCl3..Cl anion	AlCl4-	N/A
+AlF3..Cl anion	AlClF3-	N/A
+AlClF2..Cl anion	AlCl2F2-	N/A
+AlCl2F..Cl anion	AlCl3F-	N/A
+Yttrium anion	Y-	N/A
+CD3CH2O anion	C2H2D3O-	N/A
+CS2..Br anion	CBrS2-	N/A
+CS2..I anion	CIS2-	N/A
+Lead(II) oxide anion	OPb-	N/A
+Borane anion	HB-	N/A
+Boron nitride anion	BN-	N/A
+Boron anion	B2-	N/A
+Boron carbide anion	CB-	N/A
+NdCl2..Cl anion	Cl3Nd-	N/A
+NdCl3..Cl anion	Cl4Nd-	N/A
+NdCl2..NdCl3 anion	Cl5Nd2-	N/A
+NdCl3..NdCl4 anion	Cl7Nd2-	N/A
+(NdCl3)2..NdCl4 anion	Cl10Nd3-	N/A
+NdCl3..AlCl4 anion	AlCl7Nd-	N/A
+CH3CD2O anion	C2H3D2O-	N/A
+Antimony dimer anion	Sb2-	N/A
+Sb4 anion	Sb4-	N/A
+CHCl3..Br anion	CHBrCl3-	N/A
+MeBr..I anion	CH3BrI-	N/A
+(CF3)2N anion	C2F6N-	N/A
+CF3SO2N(CH2Ph) anion	C8H7F3NO2S-	N/A
+2,3,5,6-F4C6HN(C6F5) anion	C12HF9N-	N/A
+(C6F5)3C anion	C19F15-	N/A
+(C6F5)2N anion	C12F10N-	N/A
+Sulfur hexafluoride anion	F6S-	N/A
+pNO2-C6H4N(C6F5) anion	C12H4F5N2O2-	N/A
+heptaF-1-naphthoxide anion	C10F7O-	N/A
+C6F5C(CN)=C(OEt)O anion	C11H5F5NO2-	N/A
+pSO(CF3)(=NSO2CF3)-anilide anion	C8H5F6N2O3S2-	N/A
+(C6F5)2CCN anion	C14F10N-	N/A
+heptaF-2-naphthoxide anion	C10F7O-	N/A
+p-aza-F4-phenoxide anion	C5F4NO-	N/A
+p-aza-C5F4N(C6F5) anion	C11F9N2-	N/A
+2,4-diNO2-phenoxide anion	C6H3N2O5-	N/A
+pMe-C6F4C(CN)2 anion	C10H3F4N2-	N/A
+pCF3-C6F4C(C6F5)CN anion	C15F12N-	N/A
+pCN-C6F4N(C6F5) anion	C13F9N2-	N/A
+(CF3CO)2C=C(OMe)O anion	C7H3F6O4-	N/A
+(p-aza-C5F4)2N anion	C10F8N3-	N/A
+2,3,5,6-F4-C6HC(CN)2 anion	C9HF4N2-	N/A
+2,4,6-triSO2CF3-anilide anion	C9H3F9NO6S3-	N/A
+p-aza-C5F4-C(CN)=C(OEt)O anion	C10H5F4N2O2-	N/A
+(p-aza-C5F4)2CCN anion	C12F8N3-	N/A
+(pCF3-C6F4)2CCN anion	C16F14N-	N/A
+9-C6F5-octafluorofluorenide anion	C19F13-	N/A
+2-F7-naphthyl-C(CN)2 anion	C13F7N2-	N/A
+pCF3-C6F4-C(CN)2 anion	C10F7N2-	N/A
+(CF3SO2)2C(Ph) anion	C9H5F6O4S2-	N/A
+nC4F9SO2N=C(CF3)O anion	C6F12NO3S-	N/A
+CF3SO2N=C(nC7F15)O anion	C9F18NO3S-	N/A
+CF3CF2SO2N=C(nC3F7)O anion	C6F12NO3S-	N/A
+nC4F9SO2N=C(nC3F7)O anion	C8F16NO3S-	N/A
+2,4,6-triSO2CF3-phenoxide anion	C9H2F9O7S3-	N/A
+CF3SO2N(SO2CF2CF3) anion	C3F8NO4S2-	N/A
+(CF3CF2SO2)2N anion	C4F10NO4S2-	N/A
+CF3SO2N(SO2nC3F7) anion	C4F10NO4S2-	N/A
+Cr2H radical anion	HCr2-	N/A
+Cr2D radical anion	DCr2-	N/A
+Bismuth monoxide anion	BiO-	N/A
+Bismuth oxide anion	BiO2-	N/A
+1,2,3-triphenyl-cyclopropenide anion	C21H15-	N/A
+MeSO2 anion	CH3O2S-	N/A
+HN=NO2 anion	HN2O2-	N/A
+Carbon Tetrachloride anion	CCl4-	N/A
+HC&eth;CC&eth;CC&eth;C anion	C6H-	N/A
+Fe3(CO)14 anion	C14Fe3O14-	N/A
+Fe4(CO)19 anion	C19Fe4O19-	N/A
+Me3Ge anion	C3H9Ge-	N/A
+Me3Sn anion	C3H9Sn-	N/A
+MeGeH2 anion	CH5Ge-	N/A
+Phosphorus oxychloride anion	Cl3OP-	N/A

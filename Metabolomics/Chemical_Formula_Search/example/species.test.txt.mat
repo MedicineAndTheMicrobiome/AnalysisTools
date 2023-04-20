@@ -1,0 +1,95 @@
+"Al" "B" "Bi" "Br" "C" "Cl" "Cr" "D" "F" "Fe" "Ge" "H" "I" "Li" "N" "Nd" "O" "P" "Pb" "S" "Sb" "Sn" "Y"
+"CHO2S-: HC(=O)SO anion" 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 2 0 0 1 0 0 0
+"Sn3-: Sn3 anion" 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3 0
+"Sn4-: Sn4 anion" 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 0
+"Sn5-: Sn5 anion" 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 5 0
+"Sn6-: Sn6 anion" 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6 0
+"Sn7-: Sn7 anion" 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7 0
+"Sn8-: Sn8 anion" 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 8 0
+"Sn9-: Sn9 anion" 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 9 0
+"Sn10-: Sn10 anion" 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10 0
+"ILi-: Lithium iodide anion" 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0
+"Sn18-: Sn18 anion" 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 18 0
+"Sn19-: Sn19 anion" 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 19 0
+"Cl3P-: Phosphorus trichloride anion" 0 0 0 0 0 3 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0
+"Pb10-: Pb10 anion" 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10 0 0 0 0
+"Pb12-: Pb12 anion" 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 12 0 0 0 0
+"Pb15-: Pb15 anion" 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 15 0 0 0 0
+"Pb16-: Pb16 anion" 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 16 0 0 0 0
+"Pb17-: Pb17 anion" 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 17 0 0 0 0
+"CH3I-: Methane, iodo- anion" 0 0 0 0 1 0 0 0 0 0 0 3 1 0 0 0 0 0 0 0 0 0 0
+"Pb18-: Pb18 anion" 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 18 0 0 0 0
+"Pb20-: Pb20 anion" 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 20 0 0 0 0
+"AlCl3F-: AlCl3..F anion;AlCl2F..Cl anion" 1 0 0 0 0 3 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+"AlCl2F2-: AlCl2F..F anion;AlClF2..Cl anion" 1 0 0 0 0 2 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+"AlClF3-: AlClF2..F anion;AlF3..Cl anion" 1 0 0 0 0 1 0 0 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+"AlCl4-: AlCl3..Cl anion" 1 0 0 0 0 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+"Y-: Yttrium anion" 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1
+"C2H2D3O-: CD3CH2O anion" 0 0 0 0 2 0 0 3 0 0 0 2 0 0 0 0 1 0 0 0 0 0 0
+"CBrS2-: CS2..Br anion" 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0
+"CIS2-: CS2..I anion" 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 2 0 0 0
+"OPb-: Lead(II) oxide anion" 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0
+"HB-: Borane anion" 0 1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0
+"BN-: Boron nitride anion" 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0
+"B2-: Boron anion" 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+"CB-: Boron carbide anion" 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+"Cl3Nd-: NdCl2..Cl anion" 0 0 0 0 0 3 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0
+"Cl4Nd-: NdCl3..Cl anion" 0 0 0 0 0 4 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0
+"Cl5Nd2-: NdCl2..NdCl3 anion" 0 0 0 0 0 5 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0
+"Cl7Nd2-: NdCl3..NdCl4 anion" 0 0 0 0 0 7 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0
+"Cl10Nd3-: (NdCl3)2..NdCl4 anion" 0 0 0 0 0 10 0 0 0 0 0 0 0 0 0 3 0 0 0 0 0 0 0
+"AlCl7Nd-: NdCl3..AlCl4 anion" 1 0 0 0 0 7 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0
+"C2H3D2O-: CH3CD2O anion" 0 0 0 0 2 0 0 2 0 0 0 3 0 0 0 0 1 0 0 0 0 0 0
+"Sb2-: Antimony dimer anion" 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0
+"Sb4-: Sb4 anion" 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 0 0
+"CHBrCl3-: CHCl3..Br anion" 0 0 0 1 1 3 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0
+"CH3BrI-: MeBr..I anion" 0 0 0 1 1 0 0 0 0 0 0 3 1 0 0 0 0 0 0 0 0 0 0
+"C2F6N-: (CF3)2N anion" 0 0 0 0 2 0 0 0 6 0 0 0 0 0 1 0 0 0 0 0 0 0 0
+"C8H7F3NO2S-: CF3SO2N(CH2Ph) anion" 0 0 0 0 8 0 0 0 3 0 0 7 0 0 1 0 2 0 0 1 0 0 0
+"C12HF9N-: 2,3,5,6-F4C6HN(C6F5) anion" 0 0 0 0 12 0 0 0 9 0 0 1 0 0 1 0 0 0 0 0 0 0 0
+"C19F15-: (C6F5)3C anion" 0 0 0 0 19 0 0 0 15 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+"C12F10N-: (C6F5)2N anion" 0 0 0 0 12 0 0 0 10 0 0 0 0 0 1 0 0 0 0 0 0 0 0
+"F6S-: Sulfur hexafluoride anion" 0 0 0 0 0 0 0 0 6 0 0 0 0 0 0 0 0 0 0 1 0 0 0
+"C12H4F5N2O2-: pNO2-C6H4N(C6F5) anion" 0 0 0 0 12 0 0 0 5 0 0 4 0 0 2 0 2 0 0 0 0 0 0
+"C10F7O-: heptaF-1-naphthoxide anion;heptaF-2-naphthoxide anion" 0 0 0 0 10 0 0 0 7 0 0 0 0 0 0 0 1 0 0 0 0 0 0
+"C11H5F5NO2-: C6F5C(CN)=C(OEt)O anion" 0 0 0 0 11 0 0 0 5 0 0 5 0 0 1 0 2 0 0 0 0 0 0
+"C8H5F6N2O3S2-: pSO(CF3)(=NSO2CF3)-anilide anion" 0 0 0 0 8 0 0 0 6 0 0 5 0 0 2 0 3 0 0 2 0 0 0
+"C14F10N-: (C6F5)2CCN anion" 0 0 0 0 14 0 0 0 10 0 0 0 0 0 1 0 0 0 0 0 0 0 0
+"C5F4NO-: p-aza-F4-phenoxide anion" 0 0 0 0 5 0 0 0 4 0 0 0 0 0 1 0 1 0 0 0 0 0 0
+"C11F9N2-: p-aza-C5F4N(C6F5) anion" 0 0 0 0 11 0 0 0 9 0 0 0 0 0 2 0 0 0 0 0 0 0 0
+"C6H3N2O5-: 2,4-diNO2-phenoxide anion" 0 0 0 0 6 0 0 0 0 0 0 3 0 0 2 0 5 0 0 0 0 0 0
+"C10H3F4N2-: pMe-C6F4C(CN)2 anion" 0 0 0 0 10 0 0 0 4 0 0 3 0 0 2 0 0 0 0 0 0 0 0
+"C15F12N-: pCF3-C6F4C(C6F5)CN anion" 0 0 0 0 15 0 0 0 12 0 0 0 0 0 1 0 0 0 0 0 0 0 0
+"C13F9N2-: pCN-C6F4N(C6F5) anion" 0 0 0 0 13 0 0 0 9 0 0 0 0 0 2 0 0 0 0 0 0 0 0
+"C7H3F6O4-: (CF3CO)2C=C(OMe)O anion" 0 0 0 0 7 0 0 0 6 0 0 3 0 0 0 0 4 0 0 0 0 0 0
+"C10F8N3-: (p-aza-C5F4)2N anion" 0 0 0 0 10 0 0 0 8 0 0 0 0 0 3 0 0 0 0 0 0 0 0
+"C9HF4N2-: 2,3,5,6-F4-C6HC(CN)2 anion" 0 0 0 0 9 0 0 0 4 0 0 1 0 0 2 0 0 0 0 0 0 0 0
+"C9H3F9NO6S3-: 2,4,6-triSO2CF3-anilide anion" 0 0 0 0 9 0 0 0 9 0 0 3 0 0 1 0 6 0 0 3 0 0 0
+"C10H5F4N2O2-: p-aza-C5F4-C(CN)=C(OEt)O anion" 0 0 0 0 10 0 0 0 4 0 0 5 0 0 2 0 2 0 0 0 0 0 0
+"C12F8N3-: (p-aza-C5F4)2CCN anion" 0 0 0 0 12 0 0 0 8 0 0 0 0 0 3 0 0 0 0 0 0 0 0
+"C16F14N-: (pCF3-C6F4)2CCN anion" 0 0 0 0 16 0 0 0 14 0 0 0 0 0 1 0 0 0 0 0 0 0 0
+"C19F13-: 9-C6F5-octafluorofluorenide anion" 0 0 0 0 19 0 0 0 13 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+"C13F7N2-: 2-F7-naphthyl-C(CN)2 anion" 0 0 0 0 13 0 0 0 7 0 0 0 0 0 2 0 0 0 0 0 0 0 0
+"C10F7N2-: pCF3-C6F4-C(CN)2 anion" 0 0 0 0 10 0 0 0 7 0 0 0 0 0 2 0 0 0 0 0 0 0 0
+"C9H5F6O4S2-: (CF3SO2)2C(Ph) anion" 0 0 0 0 9 0 0 0 6 0 0 5 0 0 0 0 4 0 0 2 0 0 0
+"C6F12NO3S-: nC4F9SO2N=C(CF3)O anion;CF3CF2SO2N=C(nC3F7)O anion" 0 0 0 0 6 0 0 0 12 0 0 0 0 0 1 0 3 0 0 1 0 0 0
+"C9F18NO3S-: CF3SO2N=C(nC7F15)O anion" 0 0 0 0 9 0 0 0 18 0 0 0 0 0 1 0 3 0 0 1 0 0 0
+"C8F16NO3S-: nC4F9SO2N=C(nC3F7)O anion" 0 0 0 0 8 0 0 0 16 0 0 0 0 0 1 0 3 0 0 1 0 0 0
+"C9H2F9O7S3-: 2,4,6-triSO2CF3-phenoxide anion" 0 0 0 0 9 0 0 0 9 0 0 2 0 0 0 0 7 0 0 3 0 0 0
+"C3F8NO4S2-: CF3SO2N(SO2CF2CF3) anion" 0 0 0 0 3 0 0 0 8 0 0 0 0 0 1 0 4 0 0 2 0 0 0
+"C4F10NO4S2-: (CF3CF2SO2)2N anion;CF3SO2N(SO2nC3F7) anion" 0 0 0 0 4 0 0 0 10 0 0 0 0 0 1 0 4 0 0 2 0 0 0
+"HCr2-: Cr2H radical anion" 0 0 0 0 0 0 2 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0
+"DCr2-: Cr2D radical anion" 0 0 0 0 0 0 2 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+"BiO-: Bismuth monoxide anion" 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0
+"BiO2-: Bismuth oxide anion" 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0
+"C21H15-: 1,2,3-triphenyl-cyclopropenide anion" 0 0 0 0 21 0 0 0 0 0 0 15 0 0 0 0 0 0 0 0 0 0 0
+"CH3O2S-: MeSO2 anion" 0 0 0 0 1 0 0 0 0 0 0 3 0 0 0 0 2 0 0 1 0 0 0
+"HN2O2-: HN=NO2 anion" 0 0 0 0 0 0 0 0 0 0 0 1 0 0 2 0 2 0 0 0 0 0 0
+"CCl4-: Carbon Tetrachloride anion" 0 0 0 0 1 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+"C6H-: HC&eth;CC&eth;CC&eth;C anion" 0 0 0 0 6 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0
+"C14Fe3O14-: Fe3(CO)14 anion" 0 0 0 0 14 0 0 0 0 3 0 0 0 0 0 0 14 0 0 0 0 0 0
+"C19Fe4O19-: Fe4(CO)19 anion" 0 0 0 0 19 0 0 0 0 4 0 0 0 0 0 0 19 0 0 0 0 0 0
+"C3H9Ge-: Me3Ge anion" 0 0 0 0 3 0 0 0 0 0 1 9 0 0 0 0 0 0 0 0 0 0 0
+"C3H9Sn-: Me3Sn anion" 0 0 0 0 3 0 0 0 0 0 0 9 0 0 0 0 0 0 0 0 0 1 0
+"CH5Ge-: MeGeH2 anion" 0 0 0 0 1 0 0 0 0 0 1 5 0 0 0 0 0 0 0 0 0 0 0
+"Cl3OP-: Phosphorus oxychloride anion" 0 0 0 0 0 3 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0

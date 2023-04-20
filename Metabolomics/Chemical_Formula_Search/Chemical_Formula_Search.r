@@ -232,52 +232,68 @@ load_formula_database=function(fname){
 
 lookup=function(qry_form, ref_db_mat, num_top_hits=5){
 
+	# Parse the query string
 	qry_formula=gsub(" ", "", qry_formula);
 	qry_split_formula=parse_formula(qry_formula);
 	qry_ac=count_atoms(qry_split_formula);
+	#print(qry_ac);
 
+	# Get DB metadata
 	atom_colnames=colnames(ref_db_mat);
 	num_db_col=ncol(ref_db_mat);
-	num_db_row=nrow(ref_db_mat);
 	db_rownames=rownames(ref_db_mat);
+	num_db_row=nrow(ref_db_mat);
 
+	# Make sure the query doesn't have atoms missing from database
+	extra_atoms=setdiff(names(qry_ac), atom_colnames);
+	if(length(extra_atoms)){
+		extra_col=matrix(0, nrow=num_db_row, ncol=length(extra_atoms));
+		colnames(extra_col)=extra_atoms;
+		ref_db_mat=cbind(ref_db_mat, extra_col);
+		cat("Zero padded atoms missing in DB:\n");
+		print(extra_atoms);
+		atom_colnames=colnames(ref_db_mat);
+		num_db_col=ncol(ref_db_mat);
+	}
+
+	# Create query vector that matches DB
 	search_vector=rep(0, num_db_col);
 	names(search_vector)=atom_colnames;
-
 	for(atom_name in names(qry_ac)){
 		search_vector[atom_name]=qry_ac[[atom_name]];
 	}
-	#print(search_vector);
+	print(search_vector);
 
-	#diffs=numeric(num_db_row);
-	#for(i in 1:num_db_row){
-	#	cat(i, "\n");
-	#	diffs[i]=sum(abs(search_vector-ref_db_mat[i,]));
-	#}
-
-	diffs=apply(ref_db_mat, 1, function(x){
-			sum(abs(x-search_vector));
+	# Calculated edit distance across all the matrix rows
+	diffs=apply(ref_db_mat, 1, function(ref){
+			diff=search_vector-ref;
+			subtractions=sum(diff[diff<0]);
+			additions=sum(diff[diff>0]);
+			tot_edits=additions+abs(subtractions);
+			num_atoms=sum(ref);			
+			net_prop_change=round(tot_edits/num_atoms, 5);	
+			return(c(tot_edits, additions, subtractions, net_prop_change));
 		});
 
-	order_ix=order(diffs);
-	top_hits=order_ix[1:num_top_hits];
+	diff_tab=t(diffs);
+	colnames(diff_tab)=c("Edits", "Adds", "Subs", "dProp");
 
-	#for(i in 1:5){
-	#	cat(diffs[order_ix[i]], db_rownames[order_ix[i]], "\n");
-	#}
+	# Sort
+	order_ix=order(diff_tab[,"Edits"]);
+	diff_tab=diff_tab[order_ix,];
 
 	res=list();
-	res[["diffs"]]=diffs[top_hits];
-	res[["hits"]]=db_rownames[top_hits];
-	
+	res[["diffs"]]=diff_tab[1:num_top_hits,,drop=F];
+	res[["hits"]]=rownames(diff_tab)[1:num_top_hits];
+
 	return(res);
 
 }
 	
+###############################################################################
+# Main program
 
-
-#------------------------------------------------------------------------------
-
+# Load database either from unparsed list, or previously parsed matrix
 if(InputDatabaseMatrix!=""){
 	cat("Reading atoms matrix from: ", InputDatabaseMatrix, "\n");
 	db_mat=read.table(file=InputDatabaseMatrix, header=T, sep=" ", quote="\"");
@@ -292,6 +308,7 @@ if(InputDatabaseMatrix!=""){
 num_entries=nrow(db_mat);
 cat("Num Entries Read: ", num_entries, "\n");
 
+# Sanity check results
 if(0){
 	for(i in 1:num_entries){
 		row=db_mat[i,,drop=F];
@@ -304,16 +321,19 @@ if(0){
 
 #------------------------------------------------------------------------------
 
+# Read in file that contains query chemical formulas to annotate
 in_file=read.table(file=InputFile, header=T, sep="\t", stringsAsFactors=F);
 
 num_queries=nrow(in_file);
-
 cat("Num Queries/Lines: ", num_queries, "\n");
 
 matches=character(num_queries);
+additional_match_info=list();
+
 for(i in 1:num_queries){
 
 	qry_formula=in_file[i, FormulaColname];
+	cat("--------------------------------------------------\n");
 	cat("Looking up: ", qry_formula, "\n");
 	if(qry_formula =="" || is.na(qry_formula)){
 		cat("Not query-able...\n");
@@ -321,20 +341,55 @@ for(i in 1:num_queries){
 	}
 
 	results=lookup(qry_formula, db_mat);
-	
-	matches[i]=paste("[", results[["diffs"]][1], "] ", results[["hits"]][1], sep="");
 
+	top_match=results[["diffs"]][1,,drop=F];
+	top_name=rownames(top_match);
+	
+	# Save best match
+	matches[i]=paste("[", top_match[,"Edits"], "] ", top_name, sep="");
+
+	cat("\n");
+	cat("Top match: ", top_match[, "Edits"], " edits\n", sep="");
+	cat("\t", top_name, "\n");
+	
+	additional_match_info[[qry_formula]]=results;
+
+	cat("\n\n");
 }
 
 out_mat=cbind(in_file, matches);
+last_col=ncol(out_mat);
+colnames(out_mat)=c(colnames(out_mat)[1:(last_col-1)], "[edits] DBChemName");
 
 #------------------------------------------------------------------------------
+# Output query file with addition column of annotation
 
-outfn=paste(OutputFName, ".chem_matched.tsv", sep="");
+outfn=paste(OutputFName, ".chem_matched.best.tsv", sep="");
 write.table(out_mat, outfn, sep="\t", row.names=F, quote=F);
 
 #------------------------------------------------------------------------------
+# Output additional matches by query formula
 
+outfn=paste(OutputFName, ".chem_matched.additional_hits.tsv", sep="");
+
+fh=file(outfn, "w");
+for(qry_form in names(additional_match_info)){
+	cat(file=fh, qry_form, "\n", sep="");	
+	hits=additional_match_info[[qry_form]]$diffs;
+
+	num_hits=nrow(hits);
+	hit_names=rownames(hits);
+	rownames(hits)=1:num_hits;
+
+	cat(file=fh, "\t", paste(c(colnames(hits), "Name"), collapse="\t"), "\n");
+	for(i in 1:num_hits){
+		cat(file=fh, "\t", paste(c(hits[i,], hit_names[i]), collapse="\t"), "\n");
+	}
+
+	cat(file=fh, "\n\n");
+
+}
+close(fh);
 
 ###############################################################################
 
