@@ -753,7 +753,7 @@ if(ModelFormula!=""){
 cat("Model String used for Regression: \n");
 print(model_string);
 model_var=get_var_from_modelstring(model_string);
-if(is.na(model_var)){
+if(all(is.na(model_var))){
 	model_var=NULL;
 }
 
