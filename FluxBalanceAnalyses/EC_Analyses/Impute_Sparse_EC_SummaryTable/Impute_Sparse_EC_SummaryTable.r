@@ -200,6 +200,20 @@ impute_zeros=function(qry_name, normalized_mat, lognormlzd_mat, max_predictors=I
 	nonzero_ix=which(target_resp!=0);
 	num_nonzero_set=length(nonzero_ix);
 
+	if(num_nonzero_set<10){
+		results=list();
+		results[["name"]]=qry_name;
+		results[["success"]]=F;
+		results[["num_pred_to_select_from"]]=NA;
+		results[["fit"]]=NA;
+		results[["sumfit"]]=NA;
+		results[["imputed.lognrmzd"]]=1;
+		results[["imputed.normalized"]]=0;
+		results[["values"]]=NA;
+		results[["obs_vs_pred.lognrmzd"]]=0;
+		return(results);
+	}
+
 	# Build Training set and remove qry from predictors
 	resp_values=lognormlzd_mat[nonzero_ix, qry_name];
 	predictors_names=setdiff(colnames(lognormlzd_mat), qry_name);
@@ -272,6 +286,7 @@ impute_zeros=function(qry_name, normalized_mat, lognormlzd_mat, max_predictors=I
 	# Package results to return
 	results=list();
 	results[["name"]]=qry_name;
+	results[["success"]]=T;
 	results[["num_pred_to_select_from"]]=num_pred_to_select_from;
 	results[["fit"]]=var_sel;
 	results[["sumfit"]]=sumfit;
@@ -288,12 +303,12 @@ impute_zeros=function(qry_name, normalized_mat, lognormlzd_mat, max_predictors=I
 ###############################################################################
 # Paralle#l execute
 
-NumProcessors=10;
-num_categories_to_process=min(num_categories, 10);
+NumProcessors=55;
+num_categories_to_process=min(num_categories, Inf);
 
 cat("Launching in parallel...\n");
+#all_results=mclapply(1:num_categories_to_process,
 all_results=mclapply(1:num_categories_to_process,
-#all_results=mclapply(1:num_categories,
 	function(id){
 		cat(".");
 		res=impute_zeros(category_names[id], 
@@ -332,12 +347,32 @@ add_samples_to_hist=function(hist_res, samples){
 
 }
 
-plot_diagnostics=function(imp_res, depths_arr, counts_mat, norm_mat, lognormz_mat){
-	
+plot_diagnostics=function(imp_res, sample_depths, counts_mat, norm_mat, lognormz_mat){
+
 	par(mfrow=c(3,2));
-	
-	#print(imp_res);
 	cat_name=imp_res[["name"]];
+
+	if(!imp_res[["success"]]){
+		plot(0,0, type="n", xlim=c(0,1), ylim=c(0,1), xlab="", ylab="",
+			xaxt="n", yaxt="n", bty="n");
+
+		text(.5, .5, "Too many zeros to impute.", col="red", cex=2);
+
+		hist(log10(counts_mat[,cat_name]+1),
+			xlab="Counts",
+			main="Log10(Target Counts)");
+		hist(norm_mat[,cat_name],
+			xlab="Abundance",
+			main="Abundance"
+			);
+		hist(lognormz_mat[,cat_name],
+			xlab="Log10(Normalized)",
+			main="Log10(Normalized)"
+			);
+		mtext(cat_name, side=3, outer=T, cex=1.5, font=2);
+		return();	
+	}
+	
 	
 	imputed_norml=imp_res[["imputed.normalized"]];
 	imputed_lognrmz=imp_res[["imputed.lognrmzd"]];
@@ -348,7 +383,8 @@ plot_diagnostics=function(imp_res, depths_arr, counts_mat, norm_mat, lognormz_ma
 	norm_range=range(c(imputed_norml, norm_vals));
 	lognrm_range=range(c(imputed_lognrmz, lognorm_vals));
 
-	num_zeros=sum(counts_mat[,cat_name]==0);
+	zero_ix=(counts_mat[,cat_name]==0);
+	num_zeros=sum(zero_ix);
 	prop_zeros=num_zeros/nrow(counts_mat);
 
 	# Plot relative abundance
@@ -388,10 +424,34 @@ plot_diagnostics=function(imp_res, depths_arr, counts_mat, norm_mat, lognormz_ma
 		line=-3, cex=.75);
 
 	# Plot depth vs counts
-	#plot(depths_arr, 
+	log10p1_counts=log10(counts_mat[,cat_name]+1);
+	log10p1_depths=log10(sample_depths);
+
+	imputed_norm=imp_res[["imputed.normalized"]];
+	imputed_names=names(imputed_norm);
+	log10p1_imputed_sample_depths=log10(sample_depths[imputed_names]);
+	log10p1_imputed_counts=log10(imputed_norm*sample_depths[imputed_names]);
+
+	combined_logdepth_range=range(c(log10p1_depths, log10p1_imputed_sample_depths));
+	combined_logcount_range=range(c(log10p1_counts, log10p1_imputed_counts));
+
+	combined_logcounts=log10(imp_res[["values"]][,"Imputed"]*sample_depths);
+	imputed_and_observed_fit=lm(combined_logcounts~log10p1_depths);
+
+	plot(log10p1_depths, log10p1_counts,
+		xlim=combined_logdepth_range,
+		ylim=combined_logcount_range,
+		xlab="Log10(Sample Depths)",
+		ylab="Log10(Target Counts)",
+		main="Target Counts vs Sample Depths"
+	);
+	abline(h=0, col="pink");
+	points(log10p1_depths[zero_ix], rep(0, num_zeros), col="red");
+
+	abline(imputed_and_observed_fit, col="blue");
+	points(log10p1_imputed_sample_depths, log10p1_imputed_counts, col="green");
 
 	# Plot sample depth vs target depth		
-
 	mtext(cat_name, side=3, outer=T, cex=1.5, font=2);
 }
 
@@ -401,139 +461,7 @@ plot_diagnostics=function(imp_res, depths_arr, counts_mat, norm_mat, lognormz_ma
 par(oma=c(0,0,2,0));
 # Output Diagnostic Plots
 for(i in 1:num_categories_to_process){
-	plot_diagnostics(all_results[[i]], depths, counts_mat, normalized_mat, log_normz_mat);
-}
-
-# Output Imputed summary table
-
-quit();
-
-
-
-reassess_zeros=function(target, depths, counts, normalized, lognorm, diag_plots=T){
-
-	if(diag_plots){
-		par(mfrow=c(3,2));
-	}
-
-	num_samples=nrow(counts);
-
-	target_counts=counts[,target];
-	target_prop=normalized[,target];
-	target_lnorm=lognorm[,target];
-
-	samples_w_zeros=(target_counts==0);
-	num_samples_w_zeros=sum(samples_w_zeros);
-	prop_samples_w_zeros=num_samples_w_zeros/num_samples;
-
-	cat("Num Samples w/ zero: ", num_samples_w_zeros, "\n");
-	cat("Prop Samples w/ zero: ", prop_samples_w_zeros, "\n");
-
-	if(prop_samples_w_zeros>.95){
-		cat("Too many zeros\n");
-		return();
-	}
-
-	if(diag_plots){
-		# Plot normalized
-		hist(target_prop, breaks=40, 
-			main=paste("Distribution of Relative Abundances:\npr(", target, "))",sep=""),
-			xlab="Abundance"
-			);
-		title(main=paste(
-			"Mean Abund: ", signif(mean(target_prop), 4), 
-			" / Perc 0's: ", round(100*num_samples_w_zeros/num_samples,2), "%", sep=""),
-			line=-1, font.main=1, cex.main=.9
-			);
-
-
-		# Plot lognorm
-		hist(target_lnorm, breaks=40, 
-			main=paste("Distribution of Log10(Rel. Abund.)\nw/ 0-replacement",sep=""),
-			xlab="Log10(Abundance)"
-			);
-	}
-
-	#----------------------------------------------------------------------
-	# Predict abundance based on depth
-
-	nonzero_set=!samples_w_zeros;
-	nonzero_set_idx=which(nonzero_set);
-	zero_set=samples_w_zeros;
-	zero_set_idx=which(zero_set);
-
-	nz_counts=counts[nonzero_set_idx,target];
-	nz_depths=depths[nonzero_set_idx];
-
-	nz_log10_depths=log10(nz_depths+1);
-	nz_log10_counts=log10(nz_counts+1);
-
-	# Fit
-	nz_fit=lm(nz_log10_counts~nz_log10_depths);
-
-	# Predict
-	zero_set_depths=depths[zero_set_idx]
-	zero_set_log10_depths=log10(zero_set_depths+1);
-	zero_set_log10_counts=log10(counts[zero_set_idx, target]+1);
-	df=as.data.frame(zero_set_log10_depths);
-	colnames(df)="nz_log10_depths";
-	log10_expected_counts=predict(nz_fit, newdata=df);
-
-	#----------------------------------------------------------------------
-	# Build training set around samples without zeros in target
-
-	all_sample_ids=names(depths);
-	training_set=all_sample_ids[!zero_set];
-	impute_set=all_sample_ids[zero_set];
-
-	selected_model=find_best_predictors(target, lognorm[training_set,]);
-
-	zero_set_lognorm_df=as.data.frame(lognorm[zero_set_idx,,drop=F]);
-
-	#print(selected$model);
-	#print(selected$coefficients);
-	#print(zero_set_normalized);
-
-	imputed_values_lognorm=predict.lm(selected_model, newdata=zero_set_lognorm_df);
-	imputed_values_norm=10^(imputed_values_lognorm);
-	imputed_values_counts=imputed_values_norm*depths[zero_set];
-
-	#cat("Imputed Normalized:\n");
-	#print(imputed_values_norm)
-	#cat("Imputed Counts:\n");
-	#print(imputed_values_counts);
-
-	if(diag_plots){
-		# Combine Points so we can draw a new green line
-		log10_combined_counts=log10(c(counts[training_set, target], imputed_values_counts));
-		log10_combined_depths=log10(c(depths[training_set], depths[zero_set]));
-		log10_combined_fit=lm(log10_combined_counts~log10_combined_depths);
-
-		# Plot the regression line, and red/blue for zeros/recomputed
-		plot(log10(depths+1), log10(target_counts+1), 
-			ylim=range(c(log10(target_counts+1), log10_expected_counts, log10(imputed_values_counts))),
-			main="Expected Target Count based on Sample Depth",
-			xlab="Log10(Sample Depth)", ylab="Log10(Targets+1)");
-		points(zero_set_log10_depths, zero_set_log10_counts, col="red");
-		points(zero_set_log10_depths, log10_expected_counts, col="blue");
-		abline(nz_fit, col="blue");
-		abline(h=0, col="pink");
-		abline(log10_combined_fit, col="green");
-		points(zero_set_log10_depths, log10(imputed_values_counts), col="green");
-
-
-		# Plot the distribution of imputed
-		hist(c(imputed_values_norm, target_prop[nonzero_set]), 
-			breaks=40,
-			xlab="Abundance",
-			main="Distribution of Relative Abundances\nw/ Imputed Samples");
-
-		hist(c(imputed_values_lognorm, lognorm[nonzero_set, target]), 
-			breaks=40,
-			xlab="Log10(Abund)",
-			main="Distribution of Log10(Relative Abundances)\nw/ Imputed Samples");
-	}
-
+	plot_diagnostics(all_results[[i]], sample_depths, counts_mat, normalized_mat, log_normz_mat);
 }
 
 ###############################################################################
