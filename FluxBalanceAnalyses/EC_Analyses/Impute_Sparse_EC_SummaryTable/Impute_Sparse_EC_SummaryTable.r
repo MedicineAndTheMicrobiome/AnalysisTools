@@ -166,12 +166,23 @@ cat("Num Categories: ", num_categories, "\n");
 sample_depths=apply(counts_mat, 1, sum);
 quantiles=quantile(sample_depths, c(.025, .975));
 
-par(mfrow=c(2,1));
+par(mfrow=c(4,1));
 
-hist(sample_depths, main="Distribution of Depths");
+hist(sample_depths, main="Distribution of Depths", xlab="Sample Depth", breaks=40);
 abline(v=quantiles, col=c("blue", "black", "blue"), lwd=c(1,2,1), lty=c("dashed", "solid", "dashed"));
-hist(log10(sample_depths+1), main="Distribution of Log10(Depths+1)");
+
+hist(log10(sample_depths+1), main="Distribution of Log10(Depths+1)", xlab="Log10(Sample Depth + 1)", breaks=40);
 abline(v=log10(quantiles), col=c("blue", "black", "blue"), lwd=c(1,2,1), lty=c("dashed", "solid", "dashed"));
+
+zero_counts=apply(counts_mat, 1, function(x){ sum(x==0)});
+hist(zero_counts, main="Distribution of Num Zeros (acrossed samples) in Categories", xlab="Num Zeros in Category",
+	 breaks=40);
+hist(log10(zero_counts+1), main="Distribution of Log10(Num Zero in Categories + 1) across Samples",
+	xlab="Log10(Num Zero + 1)", breaks=40);
+
+hist(zero_counts/num_categories, main="Distribution of Proportion of Zeros Categories across Samples", 
+	xlab="Proportion of Zeros in Category",
+	xlim=c(0,1), breaks=40);
 
 cat("Normalizing Counts...\n");
 normalized_mat=normalize(counts_mat);
@@ -190,21 +201,26 @@ if(0){
 
 ###############################################################################
 
-impute_zeros=function(qry_name, normalized_mat, lognormlzd_mat, max_predictors=Inf, verbose=T){
+impute_zeros=function(id, qry_name, normalized_mat, lognormlzd_mat, max_predictors=Inf, verbose=T){
 	
 	target_resp=normalized_mat[,qry_name];
 	
 	# Split off zeros from training set
 	zeros_ix=which(target_resp==0);
 	num_zero_set=length(zeros_ix);
+	prop_zero=num_zero_set/length(target_resp);
 	nonzero_ix=which(target_resp!=0);
 	num_nonzero_set=length(nonzero_ix);
 
 	if(num_nonzero_set<10){
 		results=list();
+		results[["id"]]=id;
 		results[["name"]]=qry_name;
 		results[["success"]]=F;
+		results[["num_zeros"]]=num_zero_set;
+		results[["prop_zeros"]]=prop_zero;
 		results[["num_pred_to_select_from"]]=NA;
+		results[["num_variables_selected"]]=NA;
 		results[["fit"]]=NA;
 		results[["sumfit"]]=NA;
 		results[["imputed.lognrmzd"]]=1;
@@ -245,7 +261,7 @@ impute_zeros=function(qry_name, normalized_mat, lognormlzd_mat, max_predictors=I
 	sorted_pred_lognormlzd_df=as.data.frame(predictors_lognormlzd_mat[,names(correls_sorted)]);
 	
 	# Define stepwise variables it can see
-	num_pred_to_select_from=min(c(num_valid_cor, max_predictors)); 
+	num_pred_to_select_from=min(c(num_valid_cor, num_nonzero_set-1, max_predictors)); 
 
 	null_model=lm(resp_values ~ 1 , data=sorted_pred_lognormlzd_df[,1:num_pred_to_select_from]);
 	full_model=lm(resp_values ~ . , data=sorted_pred_lognormlzd_df[,1:num_pred_to_select_from]);
@@ -257,17 +273,22 @@ impute_zeros=function(qry_name, normalized_mat, lognormlzd_mat, max_predictors=I
 	obs_vs_pred=cbind(resp_values, var_sel$fitted.values);
 	colnames(obs_vs_pred)=c("observed", "predicted");
 
-
 	sumfit=summary(var_sel);
+	num_variables_selected=nrow(sumfit$coefficients)-1;
 	if(verbose){
 		cat("Num variables allowed for selection: ", num_pred_to_select_from, "\n");
+		cat("Number of Variables Selected: ", num_variables_selected, "\n");
 		print(sumfit);
 	}
+
+
 
 	# Predict the zero set
 	zero_lognormlzd_df=as.data.frame(lognormlzd_mat[zeros_ix,,drop=F]);
 	imputed_lognormlzd=predict(var_sel, newdata=zero_lognormlzd_df);
 	imputed_normalized=10^imputed_lognormlzd;
+
+	imputed_normalized[imputed_normalized==0]=1e-323;
 
 	if(verbose){
 		cat("Imputed Log10(Normalized):\n");
@@ -285,9 +306,13 @@ impute_zeros=function(qry_name, normalized_mat, lognormlzd_mat, max_predictors=I
 
 	# Package results to return
 	results=list();
+	results[["id"]]=id;
 	results[["name"]]=qry_name;
 	results[["success"]]=T;
+	results[["num_zeros"]]=num_zero_set;
+	results[["prop_zeros"]]=prop_zero;
 	results[["num_pred_to_select_from"]]=num_pred_to_select_from;
+	results[["num_variables_selected"]]=num_variables_selected;
 	results[["fit"]]=var_sel;
 	results[["sumfit"]]=sumfit;
 	results[["imputed.lognrmzd"]]=imputed_lognormlzd;
@@ -303,28 +328,23 @@ impute_zeros=function(qry_name, normalized_mat, lognormlzd_mat, max_predictors=I
 ###############################################################################
 # Paralle#l execute
 
-NumProcessors=55;
+NumProcessors=60;
 num_categories_to_process=min(num_categories, Inf);
+max_allowed_predictors=min(Inf);
 
 cat("Launching in parallel...\n");
-#all_results=mclapply(1:num_categories_to_process,
-all_results=mclapply(1:num_categories_to_process,
+
+process_list=1:num_categories_to_process;
+
+all_results=mclapply(process_list,
 	function(id){
 		cat(".");
-		res=impute_zeros(category_names[id], 
-			normalized_mat, log_normz_mat, max_predictors=50, verbose=F);
+		res=impute_zeros(id, category_names[id], 
+			normalized_mat, log_normz_mat, max_predictors=max_allowed_predictors, verbose=F);
 		return(res);
 	},
 	mc.cores=NumProcessors
 	);
-
-
-#for(i in 1:num_categories){
-#	target_name=category_names[i];
-#	cat("Working on: ", target_name, " [", i, "/", num_categories, "]\n", sep="");
-#	res=impute_zeros(target_name, normalized_mat, log_normz_mat, max_predictors=80, verbose=T);
-#	print(res);
-#}
 
 ###############################################################################
 
@@ -349,14 +369,22 @@ add_samples_to_hist=function(hist_res, samples){
 
 plot_diagnostics=function(imp_res, sample_depths, counts_mat, norm_mat, lognormz_mat){
 
+	print(imp_res);
+
 	par(mfrow=c(3,2));
 	cat_name=imp_res[["name"]];
+
+	mar_title=paste("[", imp_res[["id"]], "]: ", cat_name, sep="");
 
 	if(!imp_res[["success"]]){
 		plot(0,0, type="n", xlim=c(0,1), ylim=c(0,1), xlab="", ylab="",
 			xaxt="n", yaxt="n", bty="n");
 
-		text(.5, .5, "Too many zeros to impute.", col="red", cex=2);
+		text(.5, .5, 
+			paste("Too many zeros to impute.\n", 
+				"Num Zeros: ", results[["num_zeros"]], "\n",
+				"Prop Zeros: ", round(results[["prop_zeros"]], 4)),	
+			col="red", cex=2);
 
 		hist(log10(counts_mat[,cat_name]+1),
 			xlab="Counts",
@@ -369,7 +397,7 @@ plot_diagnostics=function(imp_res, sample_depths, counts_mat, norm_mat, lognormz
 			xlab="Log10(Normalized)",
 			main="Log10(Normalized)"
 			);
-		mtext(cat_name, side=3, outer=T, cex=1.5, font=2);
+		mtext(mar_title, side=3, outer=T, cex=1.5, font=2);
 		return();	
 	}
 	
@@ -420,8 +448,13 @@ plot_diagnostics=function(imp_res, sample_depths, counts_mat, norm_mat, lognormz
 		xlab="Observed (lognormlz)", ylab="Predicted (lognormlz)"
 		);
 	abline(0,1, col="blue");
-	mtext(text=paste("R^2: ", round(rsqrd,4), "\nAdj-R^2: ", round(rsqrd.adj, 4), sep=""),
-		line=-3, cex=.75);
+	mtext(text=paste(
+		"R^2: ", round(rsqrd,4), 
+		"\nAdj-R^2: ", round(rsqrd.adj, 4), 
+		"\nMax Pred Allowed: ", imp_res[["num_pred_to_select_from"]],
+		"\nNum Predictors Selected: ", imp_res[["num_variables_selected"]],
+		sep=""),
+		line=-4, cex=.55);
 
 	# Plot depth vs counts
 	log10p1_counts=log10(counts_mat[,cat_name]+1);
@@ -452,17 +485,60 @@ plot_diagnostics=function(imp_res, sample_depths, counts_mat, norm_mat, lognormz
 	points(log10p1_imputed_sample_depths, log10p1_imputed_counts, col="green");
 
 	# Plot sample depth vs target depth		
-	mtext(cat_name, side=3, outer=T, cex=1.5, font=2);
+	mtext(mar_title, side=3, outer=T, cex=1.5, font=2);
 }
 
 
 #------------------------------------------------------------------------------
 
+cat("Imputations completed.\n")
+
 par(oma=c(0,0,2,0));
 # Output Diagnostic Plots
-for(i in 1:num_categories_to_process){
-	plot_diagnostics(all_results[[i]], sample_depths, counts_mat, normalized_mat, log_normz_mat);
+cat("Length of results: ", length(all_results), "\n");
+for(i in 1:length(all_results)){
+	tryCatch({
+		plot_diagnostics(all_results[[i]], sample_depths, counts_mat, normalized_mat, log_normz_mat);
+		}, error=function(e){
+			cat("Error occurred on ", i, "th column.\n");
+			print(e);
+		}
+	);
 }
+
+###############################################################################
+
+# Output Imputed Abundances
+cat("Collecting Imputed Abundances into Output Matrix...\n");
+out_imputed_norm=normalized_mat;
+nsamples=nrow(normalized_mat);
+ncategories=ncol(normalized_mat);
+for(i in 1:ncategories){
+	if(all_results[[i]][["success"]]){
+		out_imputed_norm[,i]=all_results[[i]][["values"]][,"Imputed"];
+	}else{
+		cat("Failed imputation for column: ", i, ", exporting original values.\n");
+	}
+}
+
+write_summary_file=function(out_mat, fname){
+        fc=file(fname, "w");
+        cat(file=fc, paste("sample_id\ttotal", paste(colnames(out_mat), collapse="\t"), sep="\t"));
+        cat(file=fc, "\n");
+        sample_names=rownames(out_mat);
+        num_samples=nrow(out_mat);
+        for(samp_idx in 1:num_samples){
+                total=sum(out_mat[samp_idx,]);
+                outline=paste(sample_names[samp_idx], total,
+                        paste(out_mat[samp_idx,], collapse="\t"), sep="\t");
+                cat(file=fc, outline);
+                cat(file=fc, "\n");
+        }
+        close(fc);
+}
+
+cat("Writing Imputed Abundances to Summary Table...\n");
+write_summary_file(out_imputed_norm, OutputFilename);
 
 ###############################################################################
 
