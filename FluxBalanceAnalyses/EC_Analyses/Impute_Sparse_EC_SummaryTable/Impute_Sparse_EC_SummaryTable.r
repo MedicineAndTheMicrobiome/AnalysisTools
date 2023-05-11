@@ -201,7 +201,35 @@ if(0){
 
 ###############################################################################
 
-impute_zeros=function(id, qry_name, normalized_mat, lognormlzd_mat, max_predictors=Inf, verbose=T){
+simplify_model=function(model, resp, data, verbose=T){
+
+	coefficients=summary(model)$coefficients;
+	no_intercept=setdiff(rownames(coefficients), "(Intercept)");
+
+	if(length(no_intercept)==0){
+		return(model);
+	}
+
+	coefficients=coefficients[no_intercept,];
+	pvalue_sort_ix=order(coefficients[,"Pr(>|t|)"]);
+	sorted_coefficients=coefficients[pvalue_sort_ix,];
+	# print(sorted_coefficients);
+
+	# Keep predictions within 3 order of magnitue from the best
+	best_pval=sorted_coefficients[1,"Pr(>|t|)"];
+	keep_ix=sorted_coefficients[,"Pr(>|t|)"] < best_pval*10^3;
+	
+	# Rebuild model with only the kept predictors
+	keep_predictors=rownames(sorted_coefficients[keep_ix,]);
+	new_model_str=paste("resp ~ ", paste(keep_predictors, collapse=" + "));
+	new_model=lm(as.formula(new_model_str), data=data);	
+	
+	return(new_model);
+
+}
+
+impute_zeros=function(id, qry_name, normalized_mat, lognormlzd_mat, max_predictors=Inf, 
+	do_simplify_model=T, verbose=T){
 	
 	target_resp=normalized_mat[,qry_name];
 	
@@ -268,7 +296,12 @@ impute_zeros=function(id, qry_name, normalized_mat, lognormlzd_mat, max_predicto
 
 	# Perform stepwise selection
 	var_sel=stepAIC(null_model, direction="both", 
-		scope=list(upper=full_model, lower=null_model), trace=0);
+		scope=list(upper=full_model, lower=null_model), trace=ifelse(verbose, 1, 0));
+
+	if(do_simplify_model){
+		var_sel=simplify_model(var_sel, resp_values, 
+			data=sorted_pred_lognormlzd_df[,1:num_pred_to_select_from]);
+	}
 
 	obs_vs_pred=cbind(resp_values, var_sel$fitted.values);
 	colnames(obs_vs_pred)=c("observed", "predicted");
@@ -325,6 +358,13 @@ impute_zeros=function(id, qry_name, normalized_mat, lognormlzd_mat, max_predicto
 }
 
 
+#cross_validate=function(id, qry_name, normalized_mat, lognormlzd_mat){
+	# Remove zeros
+	# if number non-0 remaining > 40
+	#impute_zeros(id, qry_name, normalized_mat, lognormlzd_mat, max_predictors=Inf, verbose=T);
+#}
+
+
 ###############################################################################
 # Paralle#l execute
 
@@ -333,14 +373,16 @@ num_categories_to_process=min(num_categories, Inf);
 max_allowed_predictors=min(Inf);
 
 cat("Launching in parallel...\n");
-
 process_list=1:num_categories_to_process;
+
+
+go_verbose=length(process_list)==1;
 
 all_results=mclapply(process_list,
 	function(id){
 		cat(".");
 		res=impute_zeros(id, category_names[id], 
-			normalized_mat, log_normz_mat, max_predictors=max_allowed_predictors, verbose=F);
+			normalized_mat, log_normz_mat, max_predictors=max_allowed_predictors, verbose=go_verbose);
 		return(res);
 	},
 	mc.cores=NumProcessors
@@ -382,8 +424,8 @@ plot_diagnostics=function(imp_res, sample_depths, counts_mat, norm_mat, lognormz
 
 		text(.5, .5, 
 			paste("Too many zeros to impute.\n", 
-				"Num Zeros: ", results[["num_zeros"]], "\n",
-				"Prop Zeros: ", round(results[["prop_zeros"]], 4)),	
+				"Num Zeros: ", imp_res[["num_zeros"]], "\n",
+				"Prop Zeros: ", round(imp_res[["prop_zeros"]], 4)),	
 			col="red", cex=2);
 
 		hist(log10(counts_mat[,cat_name]+1),
