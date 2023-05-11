@@ -217,10 +217,10 @@ simplify_model=function(model, resp, data, verbose=T){
 
 	# Keep predictions within 3 order of magnitue from the best
 	best_pval=sorted_coefficients[1,"Pr(>|t|)"];
-	keep_ix=sorted_coefficients[,"Pr(>|t|)"] < best_pval*10^3;
+	keep_ix=sorted_coefficients[,"Pr(>|t|)"] <= best_pval*10^3;
 	
 	# Rebuild model with only the kept predictors
-	keep_predictors=rownames(sorted_coefficients[keep_ix,]);
+	keep_predictors=rownames(sorted_coefficients[keep_ix,,drop=F]);
 	new_model_str=paste("resp ~ ", paste(keep_predictors, collapse=" + "));
 	new_model=lm(as.formula(new_model_str), data=data);	
 	
@@ -479,24 +479,28 @@ plot_diagnostics=function(imp_res, sample_depths, counts_mat, norm_mat, lognormz
 	rsqrd=sumfit$r.squared;
 	rsqrd.adj=sumfit$adj.r.squared;
 
+	fit_range=range(10^c(fit[,"observed"], fit[,"predicted"]));
 	plot(10^fit[,"observed"], 10^fit[,"predicted"],
 		main="Training Set: Observed vs. Predicted\n(Abundance)",
-		xlab="Observed (abundance)", ylab="Predicted (abundance)"
+		xlab="Observed (abundance)", ylab="Predicted (abundance)",
+		xlim=fit_range, ylim=fit_range
 		);
 	abline(0,1, col="blue");
 
+	fit_range=range(c(fit[,"observed"], fit[,"predicted"]));
 	plot(fit[,"observed"], fit[,"predicted"],
 		main="Training Set: Observed vs. Predicted\n(Log(Normalized))",
-		xlab="Observed (lognormlz)", ylab="Predicted (lognormlz)"
+		xlab="Observed (lognormlz)", ylab="Predicted (lognormlz)",
+		xlim=fit_range, ylim=fit_range
 		);
 	abline(0,1, col="blue");
 	mtext(text=paste(
-		"R^2: ", round(rsqrd,4), 
-		"\nAdj-R^2: ", round(rsqrd.adj, 4), 
-		"\nMax Pred Allowed: ", imp_res[["num_pred_to_select_from"]],
-		"\nNum Predictors Selected: ", imp_res[["num_variables_selected"]],
+		" R^2: ", round(rsqrd,4), 
+		"\n Adj-R^2: ", round(rsqrd.adj, 4), 
+		"\n Max Pred Allowed: ", imp_res[["num_pred_to_select_from"]],
+		"\n Num Predictors Selected: ", imp_res[["num_variables_selected"]],
 		sep=""),
-		line=-4, cex=.55);
+		line=-4, adj=0, cex=.55, family="mono", col="blue");
 
 	# Plot depth vs counts
 	log10p1_counts=log10(counts_mat[,cat_name]+1);
@@ -525,6 +529,29 @@ plot_diagnostics=function(imp_res, sample_depths, counts_mat, norm_mat, lognormz
 
 	abline(imputed_and_observed_fit, col="blue");
 	points(log10p1_imputed_sample_depths, log10p1_imputed_counts, col="green");
+
+	# Write coefficients and selected predictors to screen
+	old_par=par(no.readonly=T);
+	par(mar=c(0,0,0,0));
+	plot(0,0, type="n", xlab="", ylab="", main="", bty="n", xaxt="n", yaxt="n",
+		xlim=c(0,1), ylim=c(0,1));
+	char_height=par()$cxy[2];
+	coef_table=imp_res[["sumfit"]]$coefficients[-1,c("Estimate", "Pr(>|t|)"), drop=F];
+	coef_order_ix=order(coef_table[,"Pr(>|t|)"]);
+	coef_text=capture.output({print(coef_table[coef_order_ix,,drop=F])});
+	num_lines=length(coef_text);
+	text_scale=min(1, num_lines/char_height);
+
+	if(text_scale==1){
+		max_lines=1/char_height;
+		coef_text=c(coef_text, rep("", max(0, max_lines-num_lines)));
+		num_lines=length(coef_text);
+	}
+
+	for(i in num_lines:1){
+		text(0,1-(i/num_lines*text_scale), adj=0, labels=coef_text[i], cex=text_scale*.95, family="mono");
+	}
+	par(old_par);
 
 	# Plot sample depth vs target depth		
 	mtext(mar_title, side=3, outer=T, cex=1.5, font=2);
