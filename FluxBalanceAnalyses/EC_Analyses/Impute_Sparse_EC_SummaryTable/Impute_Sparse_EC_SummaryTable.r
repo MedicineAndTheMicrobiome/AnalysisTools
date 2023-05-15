@@ -215,14 +215,30 @@ simplify_model=function(model, resp, data, verbose=T){
 	sorted_coefficients=coefficients[pvalue_sort_ix,];
 	# print(sorted_coefficients);
 
-	# Keep predictions within 3 order of magnitue from the best
+	# Keep predictions within 3 order of magnitue from the best positive association
 	best_pval=sorted_coefficients[1,"Pr(>|t|)"];
-	keep_ix=sorted_coefficients[,"Pr(>|t|)"] <= best_pval*10^3;
+
+	best_pval_ix=sorted_coefficients[,"Pr(>|t|)"] <= best_pval*10^3;
+	gt_pval_ix=sorted_coefficients[,"Pr(>|t|)"] <= 0.1;
+
+	keep_ix=best_pval_ix & gt_pval_ix;
+	if(sum(keep_ix)==0){
+		keep_ix=best_pval_ix;
+	}
 	
 	# Rebuild model with only the kept predictors
 	keep_predictors=rownames(sorted_coefficients[keep_ix,,drop=F]);
 	new_model_str=paste("resp ~ ", paste(keep_predictors, collapse=" + "));
 	new_model=lm(as.formula(new_model_str), data=data);	
+
+	if(verbose){
+		cat("Variable Selection Model:\n");
+		print(summary(model));
+		cat("\n");
+		cat("Simplified Model:\n");
+		print(summary(new_model));
+		cat("\n");
+	}
 	
 	return(new_model);
 
@@ -289,7 +305,7 @@ impute_zeros=function(id, qry_name, normalized_mat, lognormlzd_mat, max_predicto
 	sorted_pred_lognormlzd_df=as.data.frame(predictors_lognormlzd_mat[,names(correls_sorted)]);
 	
 	# Define stepwise variables it can see
-	num_pred_to_select_from=min(c(num_valid_cor, num_nonzero_set-1, max_predictors)); 
+	num_pred_to_select_from=min(c(num_valid_cor, num_nonzero_set-2, max_predictors)); 
 
 	null_model=lm(resp_values ~ 1 , data=sorted_pred_lognormlzd_df[,1:num_pred_to_select_from]);
 	full_model=lm(resp_values ~ . , data=sorted_pred_lognormlzd_df[,1:num_pred_to_select_from]);
@@ -300,7 +316,8 @@ impute_zeros=function(id, qry_name, normalized_mat, lognormlzd_mat, max_predicto
 
 	if(do_simplify_model){
 		var_sel=simplify_model(var_sel, resp_values, 
-			data=sorted_pred_lognormlzd_df[,1:num_pred_to_select_from]);
+			data=sorted_pred_lognormlzd_df[,1:num_pred_to_select_from],
+			verbose=verbose);
 	}
 
 	obs_vs_pred=cbind(resp_values, var_sel$fitted.values);
@@ -374,6 +391,7 @@ max_allowed_predictors=min(Inf);
 
 cat("Launching in parallel...\n");
 process_list=1:num_categories_to_process;
+#process_list=26;
 
 
 go_verbose=length(process_list)==1;
@@ -583,10 +601,21 @@ out_imputed_norm=normalized_mat;
 nsamples=nrow(normalized_mat);
 ncategories=ncol(normalized_mat);
 for(i in 1:ncategories){
+
+	if(is.null(all_results[[i]])){
+		cat("Unexpected failure for column: ", i, ", (null) exporting original values.\n", sep="");
+		next;
+	}
+
+	cat("i:", i, "\n");
+	if(i==26){
+		print(all_results[[i]]);
+	}
+
 	if(all_results[[i]][["success"]]){
 		out_imputed_norm[,i]=all_results[[i]][["values"]][,"Imputed"];
 	}else{
-		cat("Failed imputation for column: ", i, ", exporting original values.\n");
+		cat("Failed imputation for column: ", i, ", (Too many zeros) exporting original values.\n", sep="");
 	}
 }
 
