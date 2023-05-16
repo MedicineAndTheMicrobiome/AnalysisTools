@@ -201,7 +201,7 @@ if(0){
 
 ###############################################################################
 
-simplify_model=function(model, resp, data, verbose=T){
+simplify_model=function(model, resp, data, verbose=T, max_keep=10, min_keep=3, adj_pval_cutoff=0.01){
 
 	coefficients=summary(model)$coefficients;
 	no_intercept=setdiff(rownames(coefficients), "(Intercept)");
@@ -210,21 +210,24 @@ simplify_model=function(model, resp, data, verbose=T){
 		return(model);
 	}
 
-	coefficients=coefficients[no_intercept,];
+	coefficients=coefficients[no_intercept,,drop=F];
 	pvalue_sort_ix=order(coefficients[,"Pr(>|t|)"]);
-	sorted_coefficients=coefficients[pvalue_sort_ix,];
+	sorted_coefficients=coefficients[pvalue_sort_ix,,drop=F];
 	# print(sorted_coefficients);
 
-	# Keep predictions within 3 order of magnitue from the best positive association
-	best_pval=sorted_coefficients[1,"Pr(>|t|)"];
+	# Keep predictions within between min and max keep, depending on FDR pvalue
+	fdr_adj_pval=p.adjust(sorted_coefficients[,"Pr(>|t|)"]);
+	gt_pval_ix=fdr_adj_pval <= adj_pval_cutoff;
+	keep_ix=gt_pval_ix;
 
-	best_pval_ix=sorted_coefficients[,"Pr(>|t|)"] <= best_pval*10^3;
-	gt_pval_ix=sorted_coefficients[,"Pr(>|t|)"] <= 0.1;
-
-	keep_ix=best_pval_ix & gt_pval_ix;
-	if(sum(keep_ix)==0){
-		keep_ix=best_pval_ix;
+	if(sum(keep_ix)<min_keep){
+		keep_ix[1 : min(min_keep, length(keep_ix))]=T;
 	}
+
+	if(sum(keep_ix) >= max_keep){
+		keep_ix[(max_keep+1) : (length(keep_ix))]=F;
+	}
+
 	
 	# Rebuild model with only the kept predictors
 	keep_predictors=rownames(sorted_coefficients[keep_ix,,drop=F]);
@@ -232,11 +235,16 @@ simplify_model=function(model, resp, data, verbose=T){
 	new_model=lm(as.formula(new_model_str), data=data);	
 
 	if(verbose){
+		cat("-------------------------------------------------------\n");
+		print(keep_ix);
+		cat("-------------------------------------------------------\n");
 		cat("Variable Selection Model:\n");
-		print(summary(model));
+		print(summary(model)$coefficients);
 		cat("\n");
 		cat("Simplified Model:\n");
-		print(summary(new_model));
+		print(summary(new_model)$coefficients);
+		cat("\n");
+		cat("-------------------------------------------------------\n");
 		cat("\n");
 	}
 	
@@ -313,6 +321,8 @@ impute_zeros=function(id, qry_name, normalized_mat, lognormlzd_mat, max_predicto
 	# Perform stepwise selection
 	var_sel=stepAIC(null_model, direction="both", 
 		scope=list(upper=full_model, lower=null_model), trace=ifelse(verbose, 1, 0));
+	
+	num_var_stepwise_selected=nrow(summary(var_sel)$coefficients)-1;
 
 	if(do_simplify_model){
 		var_sel=simplify_model(var_sel, resp_values, 
@@ -362,6 +372,7 @@ impute_zeros=function(id, qry_name, normalized_mat, lognormlzd_mat, max_predicto
 	results[["num_zeros"]]=num_zero_set;
 	results[["prop_zeros"]]=prop_zero;
 	results[["num_pred_to_select_from"]]=num_pred_to_select_from;
+	results[["num_variables_stepwise_selected"]]=num_var_stepwise_selected;
 	results[["num_variables_selected"]]=num_variables_selected;
 	results[["fit"]]=var_sel;
 	results[["sumfit"]]=sumfit;
@@ -385,13 +396,14 @@ impute_zeros=function(id, qry_name, normalized_mat, lognormlzd_mat, max_predicto
 ###############################################################################
 # Paralle#l execute
 
-NumProcessors=60;
+NumProcessors=180;
 num_categories_to_process=min(num_categories, Inf);
 max_allowed_predictors=min(Inf);
 
 cat("Launching in parallel...\n");
 process_list=1:num_categories_to_process;
-#process_list=26;
+#process_list=c(46);
+#process_list=1:100;
 
 
 go_verbose=length(process_list)==1;
@@ -399,8 +411,14 @@ go_verbose=length(process_list)==1;
 all_results=mclapply(process_list,
 	function(id){
 		cat(".");
-		res=impute_zeros(id, category_names[id], 
-			normalized_mat, log_normz_mat, max_predictors=max_allowed_predictors, verbose=go_verbose);
+		tryCatch({
+			res=impute_zeros(id, category_names[id], 
+				normalized_mat, log_normz_mat, max_predictors=max_allowed_predictors, 
+				verbose=go_verbose);
+		}, error=function(e){
+                        cat("Error occurred on ", id, "th column during impute_zeros.\n");
+                        print(e);
+                });
 		return(res);
 	},
 	mc.cores=NumProcessors
@@ -428,8 +446,6 @@ add_samples_to_hist=function(hist_res, samples){
 }
 
 plot_diagnostics=function(imp_res, sample_depths, counts_mat, norm_mat, lognormz_mat){
-
-	print(imp_res);
 
 	par(mfrow=c(3,2));
 	cat_name=imp_res[["name"]];
@@ -516,7 +532,8 @@ plot_diagnostics=function(imp_res, sample_depths, counts_mat, norm_mat, lognormz
 		" R^2: ", round(rsqrd,4), 
 		"\n Adj-R^2: ", round(rsqrd.adj, 4), 
 		"\n Max Pred Allowed: ", imp_res[["num_pred_to_select_from"]],
-		"\n Num Predictors Selected: ", imp_res[["num_variables_selected"]],
+		"\n Num Pred Stepwise Selected: ", imp_res[["num_variables_stepwise_selected"]],
+		"\n Num Pred Finally Selected: ", imp_res[["num_variables_selected"]],
 		sep=""),
 		line=-4, adj=0, cex=.55, family="mono", col="blue");
 
@@ -587,7 +604,7 @@ for(i in 1:length(all_results)){
 	tryCatch({
 		plot_diagnostics(all_results[[i]], sample_depths, counts_mat, normalized_mat, log_normz_mat);
 		}, error=function(e){
-			cat("Error occurred on ", i, "th column.\n");
+			cat("Error occurred on ", i, "th column during plot_diagnostics.\n");
 			print(e);
 		}
 	);
@@ -600,24 +617,31 @@ cat("Collecting Imputed Abundances into Output Matrix...\n");
 out_imputed_norm=normalized_mat;
 nsamples=nrow(normalized_mat);
 ncategories=ncol(normalized_mat);
-for(i in 1:ncategories){
+for(i in 1:length(all_results)){
 
-	if(is.null(all_results[[i]])){
-		cat("Unexpected failure for column: ", i, ", (null) exporting original values.\n", sep="");
-		next;
-	}
+	tryCatch({
 
-	cat("i:", i, "\n");
-	if(i==26){
-		print(all_results[[i]]);
-	}
+			if(is.null(all_results[[i]])){
+				cat("Unexpected failure for column: ", i, 
+					", (null) exporting original values.\n", sep="");
+				next;
+			}
 
-	if(all_results[[i]][["success"]]){
-		out_imputed_norm[,i]=all_results[[i]][["values"]][,"Imputed"];
-	}else{
-		cat("Failed imputation for column: ", i, ", (Too many zeros) exporting original values.\n", sep="");
-	}
+			if(all_results[[i]][["success"]]){
+				out_imputed_norm[,i]=all_results[[i]][["values"]][,"Imputed"];
+			}else{
+				cat("Failed imputation for column: ", i, 
+					", (Too many zeros) exporting original values.\n", sep="");
+			}
+
+		}, error=function(e){
+			cat("Error occured on ", i, "th column during export to output matrix.\n");
+			print(e);
+		}
+		);
 }
+
+#------------------------------------------------------------------------------
 
 write_summary_file=function(out_mat, fname){
         fc=file(fname, "w");
