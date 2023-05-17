@@ -248,6 +248,8 @@ hist(fullfilled_pathway_lengths,
 	breaks=30,
 	main="Distribution of Fullfilled Pathway Lengths", xlab="Num Reactions");
 
+dev.off();
+
 ###############################################################################
 # Export computed log liks
 
@@ -262,6 +264,97 @@ rownames(outmat)=sample_ids;
 for(fpwy in fullfilled_pwy_names){
 	outmat[,fpwy]=saved_logliks[[fpwy]];
 }
+
+###############################################################################
+# Compute correlations and report top correlations for each pathway
+
+pdf(paste(OutputFilename, ".pwy_loglik.cor.pdf", sep=""), height=11, width=8.5);
+
+cormat=cor(outmat);
+
+lookup=function(id, hash){
+	if(is.null(hash[[id]])){
+		return(id);
+	}else{
+		return(hash[[id]]);
+	}
+}
+
+plot_top_cor=function(cor_line, top_cor=15, pwy_nm_hash=NULL){
+	
+	qry_name=rownames(cor_line);
+	ref_names=colnames(cor_line);
+
+	cor_val=cor_line[1,];
+
+	# Sort by decreasing magnitude of correlation
+	mag_sort_ix=order(abs(cor_val), decreasing=T);
+	top_idc=mag_sort_ix[1:top_cor];
+
+	kept_cor=cor_val[top_idc];
+	kept_cor_sort_ix=order(kept_cor);
+	sorted_cor=kept_cor[kept_cor_sort_ix];
+
+	#cat(qry_name, ":\n");
+	#print(sorted_cor);
+	sorted_names=names(sorted_cor);
+
+	# Translate pathway ID with description if hash provided
+	if(!is.null(pwy_nm_hash)){
+		qry_name=lookup(qry_name, pwy_nm_hash);
+		for(i in 1:top_cor){
+			sorted_names[i]=lookup(sorted_names[i], pwy_nm_hash);
+		}
+	}
+
+	
+	par(mar=c(1,3,2,25));
+	plot(0,0, type="n", ylim=c(-1,1), xlim=c(-1,1), xlab="", ylab="",
+		xaxt="n", yaxt="n", bty="n"
+		);
+
+	# Title
+	mtext(qry_name, side=3, line=.5, at=-1, font=2, cex=.8, adj=0);
+
+	# Calculate positions for the pathway ID/names on the left
+	ref_lab_pos=seq(-1,1, length.out=top_cor);
+
+	# Reference line for 0
+	abline(h=0, col="green");
+
+	# Mark actual correlation
+	points(rep(0, top_cor), sorted_cor, pch="-", cex=.5, col=ifelse(sorted_cor>0, "blue", "red"));
+	
+	# connect points to label
+	for(i in 1:top_cor){
+
+		linecol=ifelse(sorted_cor[i]>0, "darkblue", "darkred");
+
+		points(c(.05, .95), c(sorted_cor[i], ref_lab_pos[i]), type="l", lwd=.5, col=linecol);
+		points(c(.95, 1), rep(ref_lab_pos[i], 2), type="l", lwd=.5, col=linecol);
+	}
+
+	# label names
+	cortxt=sprintf("%4.2f",sorted_cor);
+	axis(side=4, at=ref_lab_pos, labels=paste("[", cortxt, "] ", sorted_names, sep=""),
+		cex.axis=.7, las=2, lwd=0, line=-1
+		);
+
+	# label correlation values
+	label_pos=c(-1, -.75, -.5, 0, .5, .75, 1);
+	axis(side=2, at=label_pos, labels=label_pos,
+		cex.axis=.7, las=2
+		);
+
+}
+
+
+par(mfrow=c(6,2));
+for(i in 1:num_fullfilled_pwy){
+	plot_top_cor(cormat[i,,drop=F], pwy_nm_hash=pathway_name_hash);
+}
+
+###############################################################################
 
 cat("Writing log likelihood matrix to file...\n");
 SampleID=sample_ids;
