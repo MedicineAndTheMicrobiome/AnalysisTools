@@ -10,6 +10,7 @@ options(digits=5)
 
 PSEUDO_F_BOOTSTRAPS=80;
 PSEUDO_F_SUBSAMP=200;
+DEFAULT_CLUS_PREFIX="K";
 
 params=c(
 	"factors", "f", 1, "character",
@@ -18,7 +19,8 @@ params=c(
 	"maxcluster", "m", 2, "numeric",
 	"subsample", "s", 2, "numeric",
 	"pseudof_bs", "B", 2, "numeric",
-	"pseufof_n", "N", 2, "numeric"
+	"pseudof_n", "N", 2, "numeric",
+	"out_clus_prefix", "p", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -34,6 +36,8 @@ usage = paste(
 	"\n",
 	"	[-B <bootstraps for pseudo-F estimation, default=", PSEUDO_F_BOOTSTRAPS, "]\n", 
 	"	[-N <subsammple for pseudo-F estimation, default=", PSEUDO_F_SUBSAMP, "]\n",
+	"\n",
+	"	[-p <output cluster name prefix, default=", DEFAULT_CLUS_PREFIX, "]\n",
 	"\n",
 	"This script will use the variables specified in the target file\n",
 	"to assign subjects to clusters.  The cluster assignments will be\n",
@@ -74,7 +78,12 @@ if(length(opt$pseudof_bs)){
 
 PseudoFN=PSEUDO_F_SUBSAMP;
 if(length(opt$pseufof_n)){
-	PseudoFN=opt$pseufof_n;
+	PseudoFN=opt$pseudof_n;
+}
+
+OutputClusterPrefix=DEFAULT_CLUS_PREFIX;
+if(length(opt$out_clus_prefix)){
+	OutputClusterPrefix=opt$out_clus_prefix;
 }
 
 
@@ -87,6 +96,8 @@ param_text=capture.output({
 	cat("Subsample:", Subsample, "\n");
 	cat("\n");
 	cat("Pseudo F Bootstraps: ", PseudoFBS, "  Subsamples:", PseudoFN, "\n");
+	cat("\n");
+	cat("Output Cluster Prefix: ", OutputClusterPrefix, "\n");
 });
 print(param_text, quote=F);
 cat("\n\n");
@@ -1045,7 +1056,7 @@ assign_cluster_names_from_features=function(cl_feat_rec, top_feat=3){
 
 }
 
-append_export=function(fname, orig_mat, cl_mem, cl_names){
+append_export=function(fname, orig_mat, cl_mem, cl_names, cl_prefix){
 
 	num_cuts=length(cl_mem);
 	subj_ids=rownames(orig_mat);
@@ -1072,7 +1083,7 @@ append_export=function(fname, orig_mat, cl_mem, cl_names){
 	}
 
 	# Rename column headers
-	cut_names=paste(sprintf("K%02i", found_cuts));
+	cut_names=paste(cl_prefix, sprintf("%02i", found_cuts), sep="");
 	colnames(new_mat)=c(orig_mat_colnames, cut_names);
 
 	# Write to file
@@ -1213,10 +1224,10 @@ for(k in 2:max_cuts){
 cat("Exporting Clusters...\n");
 
 append_export(paste(OutputFnameRoot,".loaded_factors.wClusters.tsv", sep=""),
-	loaded_factors, cut_clusters, clus_names);
+	loaded_factors, cut_clusters, clus_names, OutputClusterPrefix);
 
 append_export(paste(OutputFnameRoot,".targeted_factors.wClusters.tsv", sep=""),
-	targeted_factors, cut_clusters, clus_names);
+	targeted_factors, cut_clusters, clus_names, OutputClusterPrefix);
 
 ###############################################################################
 ###############################################################################
