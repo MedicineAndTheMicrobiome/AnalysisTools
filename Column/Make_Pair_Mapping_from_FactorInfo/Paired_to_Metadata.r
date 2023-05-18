@@ -79,6 +79,9 @@ if(Bcolname!=""){
 ##############################################################################
 
 load_paired=function(fname, acn=NULL, bcn=NULL, sbj_idn=NULL){
+
+	# acn, bcn and sbj_idn are the column names for the 3 columns expected
+	
 	cat("Loading Paired Map...\n");
 	table=data.frame(read.table(fname,  sep="\t", header=TRUE, 
 		row.names=c(), check.names=FALSE, comment.char=""));
@@ -102,6 +105,9 @@ load_paired=function(fname, acn=NULL, bcn=NULL, sbj_idn=NULL){
 	# Find A & B
 	if(!is.null(acn) && !is.null(bcn)){
 		table=table[, c(acn, bcn)];
+	}else{
+		# Assume row 2 and 3 are a and b, respectively
+		table=table[,c(2,3)];
 	}
 
 	rownames(table)=subject_ids;
