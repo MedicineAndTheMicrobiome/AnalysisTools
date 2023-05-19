@@ -142,7 +142,7 @@ log_trans=function(normalized_mat){
 
 ###############################################################################
 
-pdf(paste(OutputFilename, ".pdf", sep=""), height=11, width=8.5);
+pdf(paste(OutputFilename, ".pdf", sep=""), height=11, width=8.5, useDingbats=T);
 
 cat("Reading: ", InputFilename, "\n");
 counts_mat=load_summary_file(InputFilename);
