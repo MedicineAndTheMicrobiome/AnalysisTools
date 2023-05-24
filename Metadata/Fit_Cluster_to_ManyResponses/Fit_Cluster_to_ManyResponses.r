@@ -12,7 +12,8 @@ params=c(
 	"responses_fn", "r", 1, "character",
 	"covariates_fn", "c" , 1, "character",
 	"cluster_names_fn", "k", 1, "character",
-	"outputroot", "o", 1, "character"
+	"outputroot", "o", 1, "character",
+	"response_descriptions", "d", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -25,6 +26,7 @@ usage = paste(
 	"	-r <Response Variables List, filename>\n",
 	"	-c <Covariates List, and other predictors, filename>\n",
 	"	-k <cluster cut (categorical variable) name list, filename>\n",
+	"	[-d <description for response id/names>]\n",
 	"	-o <Output Filename Root>\n",
 	"\n",
 	"This script will fit the following regression model:\n",
@@ -49,13 +51,19 @@ CovariatesFile=opt$covariates_fn;
 ClusterNamesFile=opt$cluster_names_fn;
 OutputRoot=opt$outputroot;
 
+ResponseDescriptionsFile="";
+if(length(opt$response_descriptions)){
+	ResponseDescriptionsFile=opt$response_descriptions;
+}
+
 params=capture.output({
 cat("\n");
-cat("      Factors File: ", FactorsFile, "\n", sep="");
-cat("    Responses File: ", ResponsesFile, "\n", sep="");
-cat("   Covariates File: ", CovariatesFile, "\n", sep="");
-cat("Cluster Names File: ", ClusterNamesFile, "\n", sep="");
-cat("       Output Root: ", OutputRoot, "\n", sep="");
+cat("              Factors File: ", FactorsFile, "\n", sep="");
+cat("            Responses File: ", ResponsesFile, "\n", sep="");
+cat("           Covariates File: ", CovariatesFile, "\n", sep="");
+cat("        Cluster Names File: ", ClusterNamesFile, "\n", sep="");
+cat("               Output Root: ", OutputRoot, "\n", sep="");
+cat("Response Descriptions File: ", ResponseDescriptionsFile, "\n", sep="");
 cat("\n");
 });
 
@@ -472,6 +480,30 @@ truncate_string=function(text, max){
 	}
 }
 
+load_descriptions=function(file){
+
+        file_data=read.delim(file, header=T, sep="\t",
+		check.names=F,
+                stringsAsFactors=F, comment.char="#", row.names=NULL);
+
+	unchecked=cbind(as.character(file_data[,1]), as.character(file_data[,2]));
+	#print(head(unchecked));
+
+	checked=cbind(sapply(unchecked[,1], make.names), unchecked[,2]);
+	#print(head(checked));
+
+        map_mat=rbind(checked, unchecked);
+        num_names=nrow(map_mat);
+
+        hash=list();
+        for(i in 1:num_names){
+                hash[[map_mat[i, 1]]]=map_mat[i,2];
+        }
+
+        return(hash);
+}
+
+
 ##############################################################################
 ##############################################################################
 
@@ -489,6 +521,13 @@ response_var_arr=load_list(ResponsesFile);
 num_response_variables=length(response_var_arr);
 
 num_cluster_var=length(cluster_names_arr);
+
+resp_desc_hash=NULL;
+if(ResponseDescriptionsFile!=""){
+	resp_desc_hash=load_descriptions(ResponseDescriptionsFile);
+}
+
+
 
 pdf(paste(OutputRoot, ".mresp_clst.pdf", sep=""), height=11, width=8.5);
 
@@ -509,7 +548,7 @@ plot_text(var_info);
 
 ##############################################################################
 
-response_var_arr=response_var_arr[1:20];
+#response_var_arr=response_var_arr[1:20];
 
 library('digest');
 response_matrix=factors_loaded[,response_var_arr,drop=F];
@@ -730,11 +769,21 @@ for(resp_name in resp_sorted_names){
 	signif_chars=signf_char(cluster_category_coefficients[,"P-value"]);
 
 	range=c(-1,1) * max(abs(cluster_category_coefficients[,"Coefficient"]));
+	barcol=ifelse(cluster_category_coefficients[,"Coefficient"]>0,
+			ifelse(
+				cluster_category_coefficients[,"P-value"]<.1,
+					"blue", "#89cff0" 
+			),
+			ifelse(
+				cluster_category_coefficients[,"P-value"]<.1,
+					"red", "pink" 
+			));
+
 	mids=barplot(cluster_category_coefficients[,"Coefficient"], las=2,
 		main=paste(best_cl_fit[["clust_id"]], ":\nCluster Category Coefficients", sep=""),
 		ylim=range,
 		names.arg="",
-		col=ifelse(cluster_category_coefficients[,"Coefficient"]>0, "blue", "red")
+		col=barcol
 		);
 
 	text(mids-par()$cxy[1]/2, rep(-range[2]-par()$cxy[2]/2, length(cluster_categories)), cluster_categories,
@@ -781,23 +830,20 @@ for(resp_name in resp_sorted_names){
 	
 	# ---------------------------------------------------------------------
 	# Label response in outer margins
-	mtext(resp_name, outer=T, line=2, font=2);	
+	mtext(resp_name, outer=T, line=2.5, font=2);	
 	altnames=unique_responses[[resp_name]];
+
+	if(!is.null(resp_desc_hash)){
+		desciption=ifelse(!is.null(resp_desc_hash[[resp_name]]), 
+			resp_desc_hash[[resp_name]], "");
+		mtext(desciption, outer=T, line=1.5, cex=.75, font=4);
+	}
+
 	if(length(altnames)>1){
 		mtext(paste("aliases: ",  paste(altnames, collapse=", "), sep=""), 
-			outer=T, line=.5, cex=.75);
+			outer=T, line=.25, cex=.65);
 	}
 }
-
-
-
-
-
-
-
-
-
-quit();
 
 ###############################################################################
 
