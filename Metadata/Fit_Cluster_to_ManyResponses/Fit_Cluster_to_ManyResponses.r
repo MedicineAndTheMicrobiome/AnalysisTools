@@ -450,11 +450,26 @@ plot_text_mini=function(text, main=""){
 
 	max_lines_wo_scaling=1/cheight;
 	scale=1;
-	if(nlines>max_lines_wo_scaling){
+	if(nlines>(max_lines_wo_scaling/.65)){
 		scale=max_lines_wo_scaling/nlines/.65;
 	}
 	text(0, 1, paste(text, collapse="\n"), family="mono", cex=scale, adj=c(0,1)); 
 
+}
+
+truncate_string=function(text, max){
+	if(length(text)>1){
+		return(lapply(text, function(x){truncate_string(x, max);}));	
+	}else{
+
+		len=nchar(text);
+		if(len > max){
+			outstr=paste(substr(text, 1, max-1), "~", sep="");	
+		}else{
+			outstr=text;
+		}
+		return(outstr);
+	}
 }
 
 ##############################################################################
@@ -662,7 +677,8 @@ for(resp_name in resp_sorted_names){
 	}
 
 	axis(side=4, at=nl10_pval_ticks, labels=pval_ticks, las=2);
-	mtext(line=.25, sprintf("Best p-val = %5.4g", best_cl_fit[["pval"]]), 
+	mtext(line=.25, sprintf("best p-val = %5.4g %s", best_cl_fit[["pval"]], 
+		signf_char(best_cl_fit[["pval"]])), 
 		cex=.75, font=3, col="blue");
 
 	#----------------------------------------------------------------------
@@ -725,16 +741,20 @@ for(resp_name in resp_sorted_names){
 		cex=ifelse(cluster_category_coefficients[,"P-value"]>.1, .75, 3)
 		);
 
+	text(mids[1], 0, labels="[Reference]", font=1, pos=1);
+
 	# ---------------------------------------------------------------------
 	# Covariate Coefficient/Pvalues
 	par(mar=c(0, .5, 4.1,.5));
 	out_table=cbind(
 		sprintf("%10.4g", covariates_coefficients[,"Coefficient"]), 
 		sprintf("%10.4g", covariates_coefficients[,"P-value"]), 
-		covariates_names);
+		truncate_string(covariates_names, 85),
+		signf_char(covariates_coefficients[,"P-value"])
+		);
 
 
-	colnames(out_table)=c("Coefficients", "P-values", "Variable Names");
+	colnames(out_table)=c("Coefficients", "P-values", "Variable Names", "Signf");
 	options(width=2000);
 	out_text=capture.output(print(as.data.frame(out_table), row.names=F));
 	plot_text_mini(out_text, main=paste(best_cl_fit[["clust_id"]], ":\nCovariates", sep="") );
@@ -745,8 +765,10 @@ for(resp_name in resp_sorted_names){
 	out_table=cbind(
 		sprintf("%10.4g", cluster_category_coefficients[,"Coefficient"]), 
 		sprintf("%10.4g", cluster_category_coefficients[,"P-value"]), 
-		rownames(cluster_category_coefficients));
-	colnames(out_table)=c("Coefficients", "P-values", "Variable Names");
+		truncate_string(rownames(cluster_category_coefficients), 85),
+		signf_char(cluster_category_coefficients[,"P-value"])
+		);
+	colnames(out_table)=c("Coefficients", "P-values", "Variable Names", "Signf");
 	options(width=2000);
 	out_text=capture.output(print(as.data.frame(out_table), row.names=F));
 	plot_text_mini(out_text, main=paste(best_cl_fit[["clust_id"]], ":\nCluster Categories", sep="") );
