@@ -509,7 +509,7 @@ plot_text(var_info);
 
 ##############################################################################
 
-#response_var_arr=response_var_arr[1:20];
+response_var_arr=response_var_arr[1:20];
 
 library('digest');
 response_matrix=factors_loaded[,response_var_arr,drop=F];
@@ -726,15 +726,19 @@ for(resp_name in resp_sorted_names){
 
 	# ---------------------------------------------------------------------
 	# Bar plot of cluster coefficients
-	par(mar=c(30, 5.1, 4.1, 2.1));
+	par(mar=c(30, 5.1, 4.1, 30));
 	signif_chars=signf_char(cluster_category_coefficients[,"P-value"]);
 
 	range=c(-1,1) * max(abs(cluster_category_coefficients[,"Coefficient"]));
 	mids=barplot(cluster_category_coefficients[,"Coefficient"], las=2,
 		main=paste(best_cl_fit[["clust_id"]], ":\nCluster Category Coefficients", sep=""),
 		ylim=range,
+		names.arg="",
 		col=ifelse(cluster_category_coefficients[,"Coefficient"]>0, "blue", "red")
 		);
+
+	text(mids-par()$cxy[1]/2, rep(-range[2]-par()$cxy[2]/2, length(cluster_categories)), cluster_categories,
+		srt=-45, xpd=T, pos=4);
 
 	text(mids, 0, labels=signif_chars, font=3, 
 		pos=ifelse(cluster_category_coefficients[,"Coefficient"]>0, 1, 3),
@@ -747,8 +751,8 @@ for(resp_name in resp_sorted_names){
 	# Covariate Coefficient/Pvalues
 	par(mar=c(0, .5, 4.1,.5));
 	out_table=cbind(
-		sprintf("%10.4g", covariates_coefficients[,"Coefficient"]), 
-		sprintf("%10.4g", covariates_coefficients[,"P-value"]), 
+		sprintf("%10.4f", covariates_coefficients[,"Coefficient"]), 
+		sprintf("%10.4f", covariates_coefficients[,"P-value"]), 
 		truncate_string(covariates_names, 85),
 		signf_char(covariates_coefficients[,"P-value"])
 		);
@@ -763,8 +767,8 @@ for(resp_name in resp_sorted_names){
 	# Cluster Coefficient/Pvalues
 	par(mar=c(0, .5, 4.1,.5));
 	out_table=cbind(
-		sprintf("%10.4g", cluster_category_coefficients[,"Coefficient"]), 
-		sprintf("%10.4g", cluster_category_coefficients[,"P-value"]), 
+		sprintf("%10.4f", cluster_category_coefficients[,"Coefficient"]), 
+		sprintf("%10.4f", cluster_category_coefficients[,"P-value"]), 
 		truncate_string(rownames(cluster_category_coefficients), 85),
 		signf_char(cluster_category_coefficients[,"P-value"])
 		);
