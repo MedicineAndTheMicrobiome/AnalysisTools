@@ -573,6 +573,11 @@ num_unique_responses=length(unique_responses_var_arr);
 
 ##############################################################################
 
+# Calculate 
+cluster_sizes_list=apply(factors_loaded[,cluster_names_arr, drop=F], 2, table);
+
+##############################################################################
+
 if(length(covariates_arr)){
 	covariates_string=paste(" + ", paste(covariates_arr, collapse=" + "));
 }else{
@@ -659,6 +664,7 @@ plot(resp_pval_sorted, fdr_adj, main="FDR Adjusted P-values",
 	xlab="Original Unadjusted P-values", ylab="FDR Adjusted P-values");
 
 ##############################################################################
+# Plot individual response diagnostics
 
 signf_char=function(x){
 
@@ -680,11 +686,14 @@ signf_char=function(x){
 }
 
 layout_mat=matrix(c(
-	1,1,3,3,
+	1,1,2,2,
+	1,1,2,2,
+	3,3,3,3,
+	5,5,5,5,
 	4,4,4,4,
-	2,2,2,2,
-	2,2,2,2,
-	2,2,2,2), byrow=T, ncol=4);
+	4,4,4,4,
+	4,4,4,4,
+	4,4,4,4), byrow=T, ncol=4);
 layout(layout_mat);
 
 resp_sorted_names=names(resp_pval_sorted);
@@ -692,9 +701,13 @@ par(oma=c(0,0,4,0));
 
 pval_ticks=c(.1, .05, .01, .001, .0001);
 nl10_pval_ticks=-log10(pval_ticks);
+
+max_var_disp_len=75;
+
 for(resp_name in resp_sorted_names){
 
 	best_cl_fit=best_cluster_fit[[resp_name]];	
+	cluster_sizes=cluster_sizes_list[[best_cl_fit[["clust_id"]]]];
 
 	#----------------------------------------------------------------------
 	# Plot pvalues across clusters
@@ -764,6 +777,38 @@ for(resp_name in resp_sorted_names){
 	}
 
 	# ---------------------------------------------------------------------
+	# Covariate Coefficient/Pvalues
+	par(mar=c(0, .5, 4.1,.5));
+	out_table=cbind(
+		sprintf("%10.4f", covariates_coefficients[,"Coefficient"]), 
+		sprintf("%10.4f", covariates_coefficients[,"P-value"]), 
+		truncate_string(covariates_names, max_var_disp_len),
+		signf_char(covariates_coefficients[,"P-value"])
+		);
+
+
+	colnames(out_table)=c("Coefficients", "P-values", "Variable Names", "Signf");
+	options(width=2000);
+	out_text=capture.output(print(as.data.frame(out_table), row.names=F));
+	plot_text_mini(out_text, main=paste(best_cl_fit[["clust_id"]], ": Covariates", sep="") );
+	
+	# ---------------------------------------------------------------------
+	# Cluster Coefficient/Pvalues
+	par(mar=c(0, .5, 4.1,.5));
+	out_table=cbind(
+		cluster_sizes[rownames(cluster_category_coefficients)],
+		sprintf("%10.4f", cluster_category_coefficients[,"Coefficient"]), 
+		sprintf("%10.4f", cluster_category_coefficients[,"P-value"]), 
+		truncate_string(rownames(cluster_category_coefficients), max_var_disp_len),
+		signf_char(cluster_category_coefficients[,"P-value"])
+		);
+	colnames(out_table)=c("n", "Coefficients", "P-values", "Variable Names", "Signf");
+	options(width=2000);
+	out_text=capture.output(print(as.data.frame(out_table), row.names=F));
+	plot_text_mini(out_text, main=paste(best_cl_fit[["clust_id"]], ": Cluster Categories", sep="") );
+
+
+	# ---------------------------------------------------------------------
 	# Bar plot of cluster coefficients
 	par(mar=c(30, 5.1, 4.1, 30));
 	signif_chars=signf_char(cluster_category_coefficients[,"P-value"]);
@@ -780,7 +825,7 @@ for(resp_name in resp_sorted_names){
 			));
 
 	mids=barplot(cluster_category_coefficients[,"Coefficient"], las=2,
-		main=paste(best_cl_fit[["clust_id"]], ":\nCluster Category Coefficients", sep=""),
+		main=paste(best_cl_fit[["clust_id"]], ": Cluster Category Coefficients", sep=""),
 		ylim=range,
 		names.arg="",
 		col=barcol
@@ -791,40 +836,44 @@ for(resp_name in resp_sorted_names){
 
 	text(mids, 0, labels=signif_chars, font=3, 
 		pos=ifelse(cluster_category_coefficients[,"Coefficient"]>0, 1, 3),
-		cex=ifelse(cluster_category_coefficients[,"P-value"]>.1, .75, 3)
+		cex=ifelse(cluster_category_coefficients[,"P-value"]>.1, .75, 2)
 		);
 
 	text(mids[1], 0, labels="[Reference]", font=1, pos=1);
 
 	# ---------------------------------------------------------------------
-	# Covariate Coefficient/Pvalues
-	par(mar=c(0, .5, 4.1,.5));
-	out_table=cbind(
-		sprintf("%10.4f", covariates_coefficients[,"Coefficient"]), 
-		sprintf("%10.4f", covariates_coefficients[,"P-value"]), 
-		truncate_string(covariates_names, 85),
-		signf_char(covariates_coefficients[,"P-value"])
-		);
+	# Plot the response values for each category
 
+	response_values=factors_loaded[, c(best_cl_fit[["clust_id"]], resp_name)];
+	resp_range=range(response_values[,2], na.rm=T);
+	resp_dist=resp_range[2]-resp_range[1];
+	resp_val_by_cat=list();
+	mean_val_by_cat=list();
+	for(cat in cluster_categories){
+		cat_ix=(response_values[,1]==cat);
+		resp_val_by_cat[[cat]]=response_values[cat_ix, 2];
+		mean_val_by_cat[[cat]]=mean(response_values[cat_ix, 2], na.rm=T);
+	}
 
-	colnames(out_table)=c("Coefficients", "P-values", "Variable Names", "Signf");
-	options(width=2000);
-	out_text=capture.output(print(as.data.frame(out_table), row.names=F));
-	plot_text_mini(out_text, main=paste(best_cl_fit[["clust_id"]], ":\nCovariates", sep="") );
-	
-	# ---------------------------------------------------------------------
-	# Cluster Coefficient/Pvalues
-	par(mar=c(0, .5, 4.1,.5));
-	out_table=cbind(
-		sprintf("%10.4f", cluster_category_coefficients[,"Coefficient"]), 
-		sprintf("%10.4f", cluster_category_coefficients[,"P-value"]), 
-		truncate_string(rownames(cluster_category_coefficients), 85),
-		signf_char(cluster_category_coefficients[,"P-value"])
-		);
-	colnames(out_table)=c("Coefficients", "P-values", "Variable Names", "Signf");
-	options(width=2000);
-	out_text=capture.output(print(as.data.frame(out_table), row.names=F));
-	plot_text_mini(out_text, main=paste(best_cl_fit[["clust_id"]], ":\nCluster Categories", sep="") );
+	barplot_par=par();
+	par(mar=c(0, 5.1, 2, 30));
+	plot(mids, rep(0, num_categories), type="n", main="Cluster Category Values", xlab="", 
+		xlim=c(0, num_categories*1.2), 
+		ylim=c(resp_range[1]-resp_dist/8, resp_range[2]+resp_dist/8),
+		xaxt="n", ylab="Values", bty="n");
+	text(mids, 0, 1:num_categories);
+	abline(h=mean_val_by_cat[[cluster_categories[[1]]]], col="green");
+
+	i=1;
+	for(cat in cluster_categories){
+		num_points=length(resp_val_by_cat[[cat]]);
+		jitter=rnorm(num_points, 0, .05);
+		points(mids[i]+jitter, resp_val_by_cat[[cat]], cex=.6, col="grey");
+		points(mids[i], mean_val_by_cat[[cat]], col="blue", cex=1.2, pch="-");
+		text(mids[i], resp_range[1]-resp_dist/9, i, font=2, cex=1.2);
+		i=i+1;
+	}
+
 
 
 	
