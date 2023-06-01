@@ -68,7 +68,7 @@ cat("\n");
 });
 
 print(params);
-options(width=120);
+options(width=200);
 
 ##############################################################################
 
@@ -466,6 +466,9 @@ plot_text_mini=function(text, main=""){
 }
 
 truncate_string=function(text, max){
+
+	if(is.null(text)){ return("");}
+
 	if(length(text)>1){
 		return(lapply(text, function(x){truncate_string(x, max);}));	
 	}else{
@@ -548,7 +551,7 @@ plot_text(var_info);
 
 ##############################################################################
 
-#response_var_arr=response_var_arr[1:20];
+#response_var_arr=response_var_arr[1:100];
 
 library('digest');
 response_matrix=factors_loaded[,response_var_arr,drop=F];
@@ -585,6 +588,7 @@ if(length(covariates_arr)){
 }
 
 best_cluster_fit=list();
+
 i=1;
 for(resp_nm in unique_responses_var_arr){
 
@@ -664,6 +668,332 @@ plot(resp_pval_sorted, fdr_adj, main="FDR Adjusted P-values",
 	xlab="Original Unadjusted P-values", ylab="FDR Adjusted P-values");
 
 ##############################################################################
+# Plot summary of cluster / responses
+
+all_clust_pvals=list();
+for(resp_nm in unique_responses_var_arr){
+
+	res=best_cluster_fit[[resp_nm]];
+	clust_id=res[["clust_id"]];
+	pval=res[["pval"]];
+
+	all_clust_pvals[[clust_id]]=c(all_clust_pvals[[clust_id]], pval);
+	
+}
+
+
+plot_signf_clusters=function(clust_pval_lists, abs_cutoff=1){
+
+	num_clust=length(clust_pval_lists);
+	clust_names=sort(names(clust_pval_lists));
+
+	# Count up number of pvalues and significances for each cluster
+	signf_counts=list();
+	cutoffs=c(1, .1, .05, .01, .001, .0001, 0);
+
+	num_cutoffs=length(cutoffs);
+
+	cutoffs_matrix=matrix(0, nrow=num_cutoffs-1, ncol=num_clust);
+	rownames(cutoffs_matrix)=cutoffs[1:(num_cutoffs-1)];
+	colnames(cutoffs_matrix)=clust_names;
+
+	#print(cutoffs_matrix);
+
+	for(cl in clust_names){
+		signf_arr=numeric(num_cutoffs);
+		names(signf_arr)=cutoffs;
+		for(i in 1:num_cutoffs){
+			
+			signf_arr[i]=sum(
+				clust_pval_lists[[cl]]<cutoffs[i] & clust_pval_lists[[cl]]<abs_cutoff
+				);
+		}
+
+		signf_arr=diff(rev(signf_arr));
+		cutoffs_matrix[,cl]=rev(signf_arr);
+	}
+
+	#print(signf_counts);
+	#print(cutoffs_matrix);
+	totals=apply(cutoffs_matrix, 2, sum);
+	max_totals=max(totals);
+
+	signf_col=c("grey", "blue", "green", "yellow", "orange", "red");
+
+	par(mar=c(10, 4.1, 4.1, 10));
+	mids=barplot(cutoffs_matrix, 
+		col=signf_col,
+		main=paste("Best Clusters (Abs. P-value Cutoff: ", abs_cutoff, ")", sep=""),
+		xaxt="n",
+		ylim=c(0, max_totals*1.1)
+		);
+
+	# Label totals above bar
+	text(mids, totals, totals, font=3, pos=3, cex=.7);
+
+	text(mids-par()$cxy[1]/2, rep(-par()$cxy[2]/2, num_clust), clust_names,
+		srt=-45, xpd=T, pos=4);
+
+	# Set up legend
+	params=par();
+	rightx=(params$usr[2]-params$usr[1])*2/3;
+	topy=max_totals;
+	legend(rightx, topy, 
+		title="Significance Levels",
+		c("< 0.0001",
+		  "< 0.001 ",
+		  "< 0.01  ",
+		  "< 0.05  ",
+		  "< 0.1   "),
+		fill=rev(signf_col)
+	);
+
+}
+
+plot_signf_clusters(all_clust_pvals, abs_cutoff=1);
+plot_signf_clusters(all_clust_pvals, abs_cutoff=0.1);
+
+##############################################################################
+# For each covariate, generate a bar plot of postive and negative associations
+
+split_coef_table=function(coefficients, cluster_id, cluster_categories){
+
+	#print(coefficients);
+	#print(cluster_id);
+	#print(cluster_categories);
+
+	# Split coefficients into clusters and covariates 
+	num_coefficients=nrow(coefficients);
+	coef_rownames=rownames(coefficients);
+	
+	coef_names=setdiff(rownames(coefficients), "(Intercept)");
+		
+	num_categories=length(cluster_categories);
+
+	# Allocate matrix to store cluster coefficients
+	cluster_category_coefficients=matrix(c(0, 1), byrow=T, nrow=num_categories, ncol=2);
+	rownames(cluster_category_coefficients)=cluster_categories;
+	colnames(cluster_category_coefficients)=c("Coefficient", "P-value");
+
+	# Allocate matrix to store covariates coefficients
+	covariates_coefficients=matrix(numeric(), byrow=T, nrow=0, ncol=2);
+	colnames(covariates_coefficients)=c("Coefficient", "P-value");
+	cov_ix=1;
+	covariates_names=c();
+
+	# Copy cluster coefficients to matrix
+	clid_prefix=paste("^", cluster_id, sep="");
+	for(i in 1:num_coefficients){
+		if(length(grep(clid_prefix, coef_rownames[i]))){
+			# Clusters
+			category_name=gsub(clid_prefix, "", coef_rownames[i]);
+			cluster_category_coefficients[category_name,"Coefficient"]=coefficients[i, "Estimate"];
+			cluster_category_coefficients[category_name,"P-value"]=coefficients[i, "Pr(>|t|)"];
+		}else{
+			# Covariates
+			if(coef_rownames[i]!="(Intercept)"){
+				covariates_names=c(covariates_names, coef_rownames[i]);
+				covariates_coefficients=rbind(
+					covariates_coefficients,
+					c(coefficients[i, "Estimate"], coefficients[i, "Pr(>|t|)"]));
+				cov_ix=cov_ix+1;
+			}
+		}
+	}
+
+	rownames(covariates_coefficients)=covariates_names;
+
+	tables=list();
+	tables[["cluster"]]=cluster_category_coefficients;
+	tables[["covariates"]]=covariates_coefficients;
+
+	return(tables);
+}
+
+#------------------------------------------------------------------------------
+
+# Get cluster categories for each cluster
+cluster_categories_list=list();
+for(cl_names in cluster_names_arr){
+	clus_cat=sort(unique(as.character(factors_loaded[, cl_names])));
+	clus_cat_nona=setdiff(clus_cat, NA);
+	cluster_categories_list[[cl_names]]=clus_cat_nona;
+}
+#print(cluster_categories_list);
+
+best_coefficients_list=list();
+for(resp_nm in unique_responses_var_arr){
+
+        res=best_cluster_fit[[resp_nm]];
+	tabs=split_coef_table(
+		res[["fit"]][["sum_fit"]]$coefficients,
+		res[["clust_id"]],
+		cluster_categories_list[[res[["clust_id"]]]]
+		);
+
+	#cat("Response Name: ", resp_nm, "\n");
+	#print(tabs);
+	best_coefficients_list[[resp_nm]]=tabs;
+
+}
+
+##############################################################################
+# Acculumate most responses for each covariate
+
+accumulate_responses_by_covariates=function(best_coef_byresp_list){
+
+	resp_names=names(best_coef_byresp_list);
+	num_resp=length(resp_names);
+
+	# get variable names
+	varnames=character();
+	for(resp in resp_names){
+		varnames=unique(c(varnames, rownames(best_coef_byresp_list[[resp]][["covariates"]])));
+	}
+	varnames=sort(varnames);
+
+	cat("Identified Variable Names:\n");
+	print(varnames);
+
+	pvals_arr=numeric(num_resp);
+	coefs_arr=numeric(num_resp);
+
+	names(pvals_arr)=resp_names;
+	names(coefs_arr)=resp_names;
+
+	covar_to_resp_list=list();
+	for(var in varnames){
+		covar_to_resp_list[[var]]=list();
+		covar_to_resp_list[[var]][["pvals"]]=pvals_arr;
+		covar_to_resp_list[[var]][["coefs"]]=pvals_arr;
+	}
+
+
+	for(resp in resp_names){
+		coef_tab=best_coef_byresp_list[[resp]][["covariates"]];		
+		covar_names=rownames(coef_tab);
+		for(cov in covar_names){
+			covar_to_resp_list[[cov]][["pvals"]][resp]=coef_tab[cov,"P-value"];
+			covar_to_resp_list[[cov]][["coefs"]][resp]=coef_tab[cov,"Coefficient"];
+		}
+	}
+
+	return(covar_to_resp_list);
+
+}
+
+resp_bycov=accumulate_responses_by_covariates(best_coefficients_list);
+
+plot_resp_assoc_by_covariate=function(rsp_bycov, cutoffs_arr=0.15, desc_hash=NULL){
+
+	covar_names=names(rsp_bycov);
+
+	pval_ticks=c(1, 0.1, 0.05, 0.01, 0.001);
+	nl10_pval_ticks=-log10(pval_ticks);
+
+	par(mar=c(13, 5, 5, 5));
+
+	for(covar_nm in covar_names){
+
+		par(mfrow=c(3,1));
+		cat("Covariate: ", covar_nm, "\n");
+		
+		coefs=rsp_bycov[[covar_nm]][["coefs"]];
+		pvals=rsp_bycov[[covar_nm]][["pvals"]];
+
+		pval_order=order(pvals);
+
+		coefs_ord=coefs[pval_order];
+		pvals_ord=pvals[pval_order];
+		dir=coefs_ord>0;
+
+		for(cutoff in cutoffs_arr){
+
+			cutoff_ix=pvals_ord<cutoff;
+			
+			coefs_ord_cut=coefs_ord[cutoff_ix];
+			pvals_ord_cut=pvals_ord[cutoff_ix];
+
+			#cat("Coef:\n");
+			#print(coefs_ord_cut);
+			#cat("Pval:\n");
+			#print(pvals_ord_cut);
+
+			num_lt_cutoff=length(pvals_ord_cut);
+			if(num_lt_cutoff==0){
+				next;
+			}
+
+			neglog_pval=-log10(pvals_ord_cut);
+
+			coef_col=rep("red", num_lt_cutoff);
+			coef_col[dir]="blue";
+
+			mids=barplot(neglog_pval, col=coef_col, 
+				main="",
+				names.arg="",
+				ylab="-log10(p-val)"
+				);
+			axis(side=4, at=nl10_pval_ticks, labels=pval_ticks, las=2);
+			title(main="Top Associations:", line=2.5, cex.main=.85, font.main=1);
+			title(main=covar_nm, line=1, cex.main=1.5, font.main=2);
+			title(main=paste("p-value cutoff: ", cutoff), line=-1, cex.main=.95, font.main=3);
+
+			# Scale labels if necessary
+			barsep=mids[2]-mids[1];
+			text_height=par()$cxy[1]*1.2;
+			if(num_lt_cutoff>1 && text_height>barsep){
+				rescale=barsep/text_height;
+			}else{
+				rescale=1;
+			}
+			cat("Rescale Text: ", rescale, "\n");
+
+			# Get/Translate response names if map is provided
+			resp_var_names=names(neglog_pval);
+			if(!is.null(desc_hash)){
+				for(i in 1:length(resp_var_names)){
+					resp_var_names[i]=
+						ifelse(!is.null(desc_hash[[resp_var_names[i]]]),
+							desc_hash[[resp_var_names[i]]],
+							resp_var_names[i]
+							);
+				}
+			}
+		
+			text(
+				mids-par()$cxy[1]/2, 
+				rep(-par()$cxy[2]/2, num_lt_cutoff), 
+				resp_var_names, srt=-45, xpd=T, pos=4,
+				cex=rescale
+				);
+
+			# Draw horizontal lines
+			abline(h=nl10_pval_ticks, col="grey", lty="solid", lwd=1);
+			abline(h=nl10_pval_ticks, col="darkgreen", lty="dashed", lwd=1.8);
+
+			# Legend
+			p=par();
+			xloc=(p$usr[2]-p$usr[1])*.75 + p$usr[1];
+			yloc=(p$usr[4]-p$usr[3]) + p$usr[3];
+			cat("Legend: (", xloc, ", ", yloc, ")\n");
+			legend(xloc, yloc, 
+				legend=c("Positive", "Negative"), 
+				fill=c("blue", "red"),
+				bg="white"
+				);
+
+	
+		}
+
+	}
+
+}
+
+plot_resp_assoc_by_covariate(resp_bycov, cutoff=c(0.15, .1, .05, .01, .001), resp_desc_hash);
+
+##############################################################################
+
 # Plot individual response diagnostics
 
 signf_char=function(x){
@@ -688,6 +1018,7 @@ signf_char=function(x){
 layout_mat=matrix(c(
 	1,1,2,2,
 	1,1,2,2,
+	3,3,3,3,
 	3,3,3,3,
 	5,5,5,5,
 	4,4,4,4,
@@ -734,47 +1065,11 @@ for(resp_name in resp_sorted_names){
 		cex=.75, font=3, col="blue");
 
 	#----------------------------------------------------------------------
+	# Get split coefficientrs for best cluster
 
-	# Split coefficients into clusters and covariates 
-	coefficients=best_cl_fit[["fit"]][["sum_fit"]]$coefficients;
-	num_coefficients=nrow(coefficients);
-	coef_rownames=rownames(coefficients);
-	
-	coef_names=setdiff(rownames(coefficients), "(Intercept)");
-		
-	cluster_categories=setdiff(sort(unique(as.character(factors_loaded[, best_cl_fit[["clust_id"]]]))), NA);
-	num_categories=length(cluster_categories);
-
-	# Allocate matrix to store cluster coefficients
-	cluster_category_coefficients=matrix(c(0, 1), byrow=T, nrow=num_categories, ncol=2);
-	rownames(cluster_category_coefficients)=cluster_categories;
-	colnames(cluster_category_coefficients)=c("Coefficient", "P-value");
-
-	# Allocate matrix to store covariates coefficients
-	covariates_coefficients=matrix(c(0, 1), byrow=T, nrow=0, ncol=2);
-	colnames(covariates_coefficients)=c("Coefficient", "P-value");
-	cov_ix=1;
-	covariates_names=c();
-
-	# Copy cluster coefficients to matrix
-	clid_prefix=paste("^", best_cl_fit[["clust_id"]], sep="");
-	for(i in 1:num_coefficients){
-		if(length(grep(clid_prefix, coef_rownames[i]))){
-			# Clusters
-			category_name=gsub(clid_prefix, "", coef_rownames[i]);
-			cluster_category_coefficients[category_name,"Coefficient"]=coefficients[i, "Estimate"];
-			cluster_category_coefficients[category_name,"P-value"]=coefficients[i, "Pr(>|t|)"];
-		}else{
-			# Covariates
-			if(coef_rownames[i]!="(Intercept)"){
-				covariates_names=c(covariates_names, coef_rownames[i]);
-				covariates_coefficients=rbind(
-					covariates_coefficients,
-					c(coefficients[i, "Estimate"], coefficients[i, "Pr(>|t|)"]));
-				cov_ix=cov_ix+1;
-			}
-		}
-	}
+	split_coef=best_coefficients_list[[resp_name]];
+	covariates_coefficients=split_coef[["covariates"]];
+	cluster_category_coefficients=split_coef[["cluster"]];
 
 	# ---------------------------------------------------------------------
 	# Covariate Coefficient/Pvalues
@@ -782,7 +1077,7 @@ for(resp_name in resp_sorted_names){
 	out_table=cbind(
 		sprintf("%10.4f", covariates_coefficients[,"Coefficient"]), 
 		sprintf("%10.4f", covariates_coefficients[,"P-value"]), 
-		truncate_string(covariates_names, max_var_disp_len),
+		truncate_string(rownames(covariates_coefficients), max_var_disp_len),
 		signf_char(covariates_coefficients[,"P-value"])
 		);
 
@@ -810,7 +1105,7 @@ for(resp_name in resp_sorted_names){
 
 	# ---------------------------------------------------------------------
 	# Bar plot of cluster coefficients
-	par(mar=c(30, 5.1, 4.1, 30));
+	par(mar=c(25, 5.1, 4.1, 30));
 	signif_chars=signf_char(cluster_category_coefficients[,"P-value"]);
 
 	range=c(-1,1) * max(abs(cluster_category_coefficients[,"Coefficient"]));
@@ -830,6 +1125,9 @@ for(resp_name in resp_sorted_names){
 		names.arg="",
 		col=barcol
 		);
+
+	cluster_categories=rownames(cluster_category_coefficients);
+	num_categories=length(cluster_categories);
 
 	text(mids-par()$cxy[1]/2, rep(-range[2]-par()$cxy[2]/2, length(cluster_categories)), cluster_categories,
 		srt=-45, xpd=T, pos=4);
