@@ -3,6 +3,9 @@
 ###############################################################################
 
 library(getopt);
+
+options(java.parameters="- Xmx1024m");
+
 library(xlsx); # Depends on: install.packages('xlsx')
 
 options(useFancyQuotes=F);
@@ -172,9 +175,13 @@ output_sheet=function(data, outputfname, transpose=F){
 
 ##############################################################################
 
+wb=loadWorkbook(InputFile);
+sheetnames=names(getSheets(wb));
+
 if(!is.na(num_sheets_to_extract)){
 
 	cat("Trying to extract specified sheets.\n");
+
 
 	for(i in SheetNumArr){
 		data=read.xlsx(InputFile, i, check.names=F);
@@ -185,14 +192,17 @@ if(!is.na(num_sheets_to_extract)){
 
 	cat("Trying to extract all sheets...\n");
 
+
 	i=1;
 	keep_reading=T;
 	while(keep_reading){
-		
+
 		keep_reading=tryCatch({
 			cat("Reading sheet: ", i, "\n");
 			data=read.xlsx(InputFile, i, check.names=F);
-			output_sheet(data, paste(OutputFileRoot, ".", i, ".tsv", sep=""), transpose=Transpose);
+			output_sheet(data, 
+				paste(OutputFileRoot, ".", i, ".", sheetnames[i], ".tsv", sep=""), 
+				transpose=Transpose);
 			keep_reading=T;
 		}, error=function(e){
 			cat("\nError Detected...\n");
