@@ -368,7 +368,7 @@ if(Opt_FindTimeOfLimits){
 }          
 
 if(Opt_FindExtrapolatedLimits){
-	extensions=c(extensions, c("extrp_start", "extrp_end", "extrp_slope"));
+	extensions=c(extensions, c("extrp_start", "extrp_mid", "extrp_end", "extrp_slope"));
 
 	calc_extrapolated_limits=function(data, beginx, endx){
 
@@ -378,7 +378,7 @@ if(Opt_FindExtrapolatedLimits){
 		num_time_pts=nrow(data);
 
 		if(num_time_pts<2){
-			return(rep(NA, 3));
+			return(rep(NA, 4));
 		}
 
 		ord_ix=order(x);
@@ -402,9 +402,10 @@ if(Opt_FindExtrapolatedLimits){
 
 		extrp_start=slope*beginx + intercept;
 		extrp_end=slope*endx + intercept;
+		extrp_mid=(extrp_end+extrp_start)/2;
 		extrp_slope=slope;
 		
-		return(c(extrp_start, extrp_end, extrp_slope));
+		return(c(extrp_start, extrp_mid, extrp_end, extrp_slope));
 
 	}
 }
@@ -703,18 +704,17 @@ for(cur_subj in unique_subject_ids){
 		if(Opt_FindExtrapolatedLimits){
 
 			varnames=paste(targ_var_ix, "_", 
-				c("extrp_start", "extrp_end", "extrp_slope"), sep="");
+				c("extrp_start", "extrp_mid", "extrp_end", "extrp_slope"), sep="");
 
 			params=calc_extrapolated_limits(target_data,
 					CropLimits[1], CropLimits[2]
 					);
-
 			acc_matrix[cur_subj, varnames]=params;
 		
 			t=seq(CropLimits[1], CropLimits[2], length.out=100);
-			intercept=params[1]-params[3]*CropLimits[1];
+			intercept=params[1]-params[4]*CropLimits[1];
 
-			points(t, params[3]*t+intercept, type="b", col="green", cex=.5);
+			points(t, params[4]*t+intercept, type="b", col="green", cex=.5);
 			points(c(CropLimits[1], CropLimits[2]), c(params[1], params[2]), 
 				type="p", cex=1.1, col="green");
 			
@@ -749,8 +749,6 @@ for(cur_subj in unique_subject_ids){
 		msg=paste(
 			capture.output({print(t(acc_matrix[cur_subj, varnames, drop=F]), quote=F)}),
 			collapse="\n");
-			
-print(msg);
 
 		text(left, top, msg, pos=4, family="mono");
 
