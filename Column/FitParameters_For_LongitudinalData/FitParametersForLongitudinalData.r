@@ -375,13 +375,17 @@ if(Opt_FindExtrapolatedLimits){
 		x=data[,1];
 		y=data[,2];
 
-		num_samples=nrow(data);
+		num_time_pts=nrow(data);
+
+		if(num_time_pts<2){
+			return(rep(NA, 3));
+		}
 
 		ord_ix=order(x);
 		data=data[ord_ix,];
 
-		earliest_y=data[1,1];
-		last_y=data[num_samples, 1];
+		earliest_y=data[1,2];
+		last_y=data[num_time_pts, 2];
 
 		end_weighted_data=rbind(
 			c(beginx, earliest_y),
@@ -577,7 +581,7 @@ trim_data=function(in_data, limits){
 	num_kept=sum(keep_ix);
 
 	if(num_kept==0){
-		zmat=matrix(NULL, nrow=0, ncol=2);
+		zmat=matrix(numeric(), nrow=0, ncol=2);
 		colnames(zmat)=colnames(in_data);	
 		return(zmat);
 	}
@@ -645,9 +649,13 @@ for(cur_subj in unique_subject_ids){
 			print(target_data);
 			if(is.finite(CropLimits[1])){
 				abline(v=CropLimits[1], col="orange", lwd=1.5);
+				mtext(paste(CropLimits[1], " >", sep=""), 
+					at=CropLimits[1], side=1, line=-1, col="darkorange", adj=1);
 			}
 			if(is.finite(CropLimits[2])){
 				abline(v=CropLimits[2], col="orange", lwd=1.5);
+				mtext(paste("< ", CropLimits[2], sep=""),
+					at=CropLimits[2], side=1, line=-1, col="darkorange", adj=0);
 			}
 		}
 
@@ -697,10 +705,19 @@ for(cur_subj in unique_subject_ids){
 			varnames=paste(targ_var_ix, "_", 
 				c("extrp_start", "extrp_end", "extrp_slope"), sep="");
 
-			acc_matrix[cur_subj, varnames]=
-				calc_extrapolated_limits(target_data,
+			params=calc_extrapolated_limits(target_data,
 					CropLimits[1], CropLimits[2]
 					);
+
+			acc_matrix[cur_subj, varnames]=params;
+		
+			t=seq(CropLimits[1], CropLimits[2], length.out=100);
+			intercept=params[1]-params[3]*CropLimits[1];
+
+			points(t, params[3]*t+intercept, type="b", col="green", cex=.5);
+			points(c(CropLimits[1], CropLimits[2]), c(params[1], params[2]), 
+				type="p", cex=1.1, col="green");
+			
 
 		}
 
