@@ -19,7 +19,12 @@ params=c(
 	"find_descriptive", "d", 2, "character",
 	"find_ranges", "r", 2, "character",
 	"find_timing", "n", 2, "character",
-	"find_timing_of_limits", "T", 2, "character"
+	"find_time_of_limits", "T", 2, "character",
+	"find_extrapolated_limits", "L", 2, "character",
+	"find_recovery_rate_model", "R", 2, "character",
+
+	"crop", "c", 2, "character",
+	"prefix", "p", "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -40,6 +45,13 @@ usage = paste(
 	"	[-r (find ranges: first/last/N)]\n",
 	"	[-n (find timing: timespan/freq)]\n",
 	"	[-T (find timing of limits: min_time/max_time)\n",
+	"	[-L (find extrapolated limits: extrp_start, extrp_end, extrp_slope)\n",
+	"	[-R (fit recovery_rate_model: start, max, recovery_rate, decline_rate)\n",
+	"\n",
+	"	Specify focus on subset of timepoints:\n",
+	"	[--crop=<start>,<end>]\n",
+	"	[--prefix=<variable name prefix, e.g. mon1, mon1to6, mon6to12>]\n",
+	"\n",
 	"\n",
 	"	-o <output filename>\n",
 	"\n");
@@ -69,6 +81,8 @@ Opt_FindDescriptive=F;
 Opt_FindRanges=F;
 Opt_FindTiming=F;
 Opt_FindTimeOfLimits=F;
+Opt_FindExtrapolatedLimits=F;
+Opt_FindRecoveryRateModel=F;
 
 if(length(opt$find_line)){
 	Opt_FindLine=T;
@@ -85,8 +99,14 @@ if(length(opt$find_ranges)){
 if(length(opt$find_timing)){
 	Opt_FindTiming=T;
 }
-if(length(opt$find_timing_of_limits)){
-	Opt_FindTimingOfLimits=T;
+if(length(opt$find_time_of_limits)){
+	Opt_FindTimeOfLimits=T;
+}
+if(length(opt$find_extrapolated_limits)){
+	Opt_FindExtrapolatedLimits=T;
+}
+if(length(opt$find_recovery_rate_model)){
+	Opt_FindRecoveryRateModel=T;
 }
 
 
@@ -94,6 +114,19 @@ GroupColName="";
 if(length(opt$group_cn)){
 	GroupColName=opt$group_cn;
 }
+
+Crop="";
+CropLimits=c(-Inf, Inf);
+if(length(opt$crop)){
+	Crop=opt$crop;
+	CropLimits=as.numeric(strsplit(Crop, ",")[[1]]);
+}
+
+Prefix="";
+if(length(opt$Prefix)){
+	Prefix=opt$prefix;
+}
+
 
 cat("\n");
 cat("Input Filename:", InputFname , "\n");
@@ -103,15 +136,22 @@ cat("Target Values List Filename:", TargetValuesFname, "\n");
 cat("Output Filename:", OutputFname, "\n");
 cat("Group Colname: ", GroupColName, "\n");
 cat("\n");
+cat("Crop Start/End: (", paste(CropLimits, collapse="/"), ")\n");
+cat("Variable Prefix: ", Prefix, "\n");
+cat("\n");
 cat("Find Line: ", Opt_FindLine, "\n");
 cat("Find Limits: ", Opt_FindLimits, "\n");
 cat("Find Descriptive: ", Opt_FindDescriptive, "\n");
 cat("Find Ranges: ", Opt_FindRanges, "\n");
 cat("Find Timing: ", Opt_FindTiming, "\n");
-cat("Find Timing of Limits: ", Opt_FindTimingOfLimits, "\n");
+cat("Find Timing of Limits: ", Opt_FindTimeOfLimits, "\n");
+cat("Find Extrapolated Limits: ", Opt_FindExtrapolatedLimits, "\n");
+cat("Find Recovery Rate Model: ", Opt_FindRecoveryRateModel, "\n");
 
 if(!(Opt_FindLine || Opt_FindLimits || Opt_FindDescriptive || 
-	Opt_FindRanges || Opt_FindTiming || Opt_FindTimingOfLimits)){
+	Opt_FindRanges || Opt_FindTiming || Opt_FindTimeOfLimits ||
+	Opt_FindExtrapolatedLimits || Opt_FindRecoveryRateModel
+)){
 	cat("At least one of the find/fit parameters should be specified.\n");
 }
 
@@ -309,7 +349,7 @@ if(Opt_FindTiming){
 		return(c(timespan, freq));
 	}
 }
-if(Opt_FindTimingOfLimits){
+if(Opt_FindTimeOfLimits){
 	extensions=c(extensions, c("time_of_min", "time_of_max"));
 	calc_timing_of_limits=function(data){
 	
@@ -326,6 +366,124 @@ if(Opt_FindTimingOfLimits){
 
 	}
 }          
+
+if(Opt_FindExtrapolatedLimits){
+	extensions=c(extensions, c("extrp_start", "extrp_end", "extrp_slope"));
+
+	calc_extrapolated_limits=function(data, beginx, endx){
+
+		x=data[,1];
+		y=data[,2];
+
+		num_samples=nrow(data);
+
+		ord_ix=order(x);
+		data=data[ord_ix,];
+
+		earliest_y=data[1,1];
+		last_y=data[num_samples, 1];
+
+		end_weighted_data=rbind(
+			c(beginx, earliest_y),
+			data,
+			c(endx, last_y)
+		);
+
+		ew_x=end_weighted_data[,1];
+		ew_y=end_weighted_data[,2];
+
+		lmfit=lm(ew_y~ew_x);
+		intercept=lmfit$coefficients["(Intercept)"];		
+		slope=lmfit$coefficients["ew_x"];		
+
+		extrp_start=slope*beginx + intercept;
+		extrp_end=slope*endx + intercept;
+		extrp_slope=slope;
+		
+		return(c(extrp_start, extrp_end, extrp_slope));
+
+	}
+}
+
+if(Opt_FindRecoveryRateModel){
+
+	extensions=c(extensions, c("rrm_start", "rrm_max", "rrm_exp_rate", "rrm_lin_rate"));
+
+	# This model consists of a exponential (short-term) and a linear (long-term)
+	# recovery/deline rate.  The parameters allow for a non-zero starting and a maximum
+	# recovery state/value.  This model was fit for lung transplant/FEV1 data, where
+	# a subject would be expected to have a non-zero FEV1 after the surgery, then
+	# improve with exponentially decreases of improvement to a maximum.  In many subjects,
+	# there is a subsequent decline after the maximum recovery has been achieved.
+
+	exp_lin_rate_model=function(t, start_val, max_val, exp_rate, lin_rate){
+		y=start_val + (max_val-start_val)*2*(1/(1+exp(-t*exp_rate))-.5) + t*lin_rate;
+		return(y);
+	}
+
+	#t=0:1000; plot(t, exp_lin_rate_model(t, 50, 100, .3, -.03), ylim=c(0, 200));
+
+	calc_recovery_rate_params=function(data){
+		time=data[,1];
+		y=data[,2];
+		num_time_pts=length(time);
+
+		if(num_time_pts<5){
+			return(rep(NA, 4));
+		}
+
+		# Order the data by time
+		by_time=order(time);
+		time=time[by_time];
+		y=y[by_time];
+
+		# Pre-calculations for estimating starting parameters
+		max_y=max(y);
+		min_y=min(y);
+		time_of_max_y=min(which(max_y==y));
+
+		last_half_time=time[num_time_pts]-median(time);
+		
+		init_start_val=y[1];
+		init_max_val=max_y;
+		init_lin_rate=sd(y)/last_half_time;
+		init_exp_rate=abs(init_lin_rate);  # Order of magnitude guess
+
+		# Define objective function
+		model_ssd=function(p){
+			obs=y;
+			pred=exp_lin_rate_model(
+				t=time, start_val=p[1], max_val=p[2], exp_rate=p[3], lin_rate=p[4]);
+			ssd=sum(abs(obs-pred)^2);
+			return(ssd);
+		}
+
+		cat("Starting Parameter Values:\n");
+		print(c(init_start_val, init_max_val, init_exp_rate, init_lin_rate));
+
+		# Calc normalization for each parameter
+		sum_param=sum(abs(c(init_start_val, init_max_val, init_exp_rate, init_lin_rate)));
+		psc=c(init_start_val, init_max_val, init_exp_rate, init_lin_rate)/sum_param;
+
+		cat("Parameter Scaling:\n");
+		print(psc);
+		
+		# Run optimization
+		opt_res=optim(
+			par=c(init_start_val, init_max_val, init_exp_rate, init_lin_rate),
+			control=list(parscale=psc),
+			lower=c(0, min_y/2, 0, -Inf),
+			upper=c(min_y, max_y*2, Inf, Inf),
+			fn=model_ssd, method="L-BFGS-B"
+		);
+
+		print(opt_res);
+
+		return(opt_res$par);
+
+	}
+
+}
 
 ##############################################################################
 
@@ -411,6 +569,23 @@ plot_var=function(times, values, var_name, subject_id, val_lim){
 
 var_by_subj=list();
 
+
+trim_data=function(in_data, limits){
+	x=in_data[,1];
+
+	keep_ix=(x>=limits[1]) & (x<=limits[2]);
+	num_kept=sum(keep_ix);
+
+	if(num_kept==0){
+		zmat=matrix(NULL, nrow=0, ncol=2);
+		colnames(zmat)=colnames(in_data);	
+		return(zmat);
+	}
+
+	kept_data=in_data[keep_ix,,drop=F];
+	return(kept_data);
+}
+
 pdf(file=paste(OutputFname, ".longit.pdf", sep=""), height=8.5, width=11);
 	
 plot_title_page("Individual Plots", c(
@@ -434,6 +609,8 @@ time_ranges_max=max(all_factors[,TimeOffsetColName]);
 time_of_variable_arr=character();
 
 for(cur_subj in unique_subject_ids){
+
+	cat("Working on: ", cur_subj, "\n");
 
 	subj_ix=(cur_subj==subject_ids_arr);
 	subj_mat=all_factors[subj_ix, c(SubjectIDColName, TimeOffsetColName, target_variable_list)];
@@ -460,46 +637,107 @@ for(cur_subj in unique_subject_ids){
 			val_lim=c(ranges_mat[targ_var_ix, "min"], ranges_mat[targ_var_ix, "max"])
 		);
 		
+		target_data=subj_mat_sorted[,c(TimeOffsetColName, targ_var_ix), drop=F];
+		times=target_data[,1];
+		if(!is.null(CropLimits)){
+			cat("Trimming data to: ", CropLimits, "\n");
+			target_data=trim_data(target_data, CropLimits);
+			print(target_data);
+			if(is.finite(CropLimits[1])){
+				abline(v=CropLimits[1], col="orange", lwd=1.5);
+			}
+			if(is.finite(CropLimits[2])){
+				abline(v=CropLimits[2], col="orange", lwd=1.5);
+			}
+		}
 
+		#----------------------------------------------------------------------------
 		# Calculate parameters
 		if(Opt_FindLine){
 			acc_matrix[cur_subj, paste(targ_var_ix, "_", 
 				c("intercept", "slope", "sd_res"), sep="")]=
-				calc_line(subj_mat_sorted[,c(TimeOffsetColName, targ_var_ix),drop=F]);
+				calc_line(target_data);
 		}
 
-		if(Opt_FindLimits || Opt_FindTimingOfLimits){
+		if(Opt_FindLimits || Opt_FindTimeOfLimits){
 			acc_matrix[cur_subj, paste(targ_var_ix, "_",
 				c("min", "max", "range"), sep="")]=
-				calc_limits(subj_mat_sorted[,c(TimeOffsetColName, targ_var_ix),drop=F]);
+				calc_limits(target_data);
 		}
 
 		if(Opt_FindDescriptive){
 			acc_matrix[cur_subj, paste(targ_var_ix, "_", 
 				c("mean", "stdev", "median"), sep="")]=
-				calc_descriptive(subj_mat_sorted[,c(TimeOffsetColName, targ_var_ix),drop=F]);
+				calc_descriptive(target_data);
 		}
 
 		if(Opt_FindRanges){
 			acc_matrix[cur_subj, paste(targ_var_ix, "_", 
 				c("first", "last", "N"), sep="")]=
-				calc_ranges(subj_mat_sorted[,c(TimeOffsetColName, targ_var_ix),drop=F]);
+				calc_ranges(target_data);
 
 		}
 		if(Opt_FindTiming){
 			acc_matrix[cur_subj, paste(targ_var_ix, "_", 
 				c("timespan", "freq"), sep="")]=
-				calc_timing(subj_mat_sorted[,c(TimeOffsetColName, targ_var_ix),drop=F]);
+				calc_timing(target_data);
 		}
-		if(Opt_FindTimingOfLimits){
+		if(Opt_FindTimeOfLimits){
 
 			varnames=paste(targ_var_ix, "_", c("time_of_min", "time_of_max"), sep="");
 
 			acc_matrix[cur_subj, varnames]=
-				calc_timing_of_limits(subj_mat_sorted[,c(TimeOffsetColName, targ_var_ix),drop=F]);
+				calc_timing_of_limits(target_data);
 
 			time_of_variable_arr=unique(c(time_of_variable_arr, varnames));
 		}
+
+		if(Opt_FindExtrapolatedLimits){
+
+			varnames=paste(targ_var_ix, "_", 
+				c("extrp_start", "extrp_end", "extrp_slope"), sep="");
+
+			acc_matrix[cur_subj, varnames]=
+				calc_extrapolated_limits(target_data,
+					CropLimits[1], CropLimits[2]
+					);
+
+		}
+
+		if(Opt_FindRecoveryRateModel){
+
+			varnames=paste(targ_var_ix, "_", 
+				c("rrm_start", "rrm_max", "rrm_exp_rate", "rrm_lin_rate"),
+				sep="");
+
+			params=calc_recovery_rate_params(target_data);
+			acc_matrix[cur_subj, varnames]=params;
+
+			t=seq(
+				max(CropLimits[1], 0),
+				min(CropLimits[2], max(times)),
+				length.out=100);
+
+			points(t, exp_lin_rate_model(t, params[1], params[2], params[3], params[4]), 
+				type="b", col="blue", cex=.5);
+			
+		}
+
+		#----------------------------------------------------------------------------
+
+		plot_par=par();	
+		left=(plot_par$usr[2]-plot_par$usr[1])*.01 + plot_par$usr[1];
+		top=(plot_par$usr[4]-plot_par$usr[3])*.9 + plot_par$usr[3];
+
+		msg=paste(
+			capture.output({print(t(acc_matrix[cur_subj, varnames, drop=F]), quote=F)}),
+			collapse="\n");
+			
+print(msg);
+
+		text(left, top, msg, pos=4, family="mono");
+
+
 	}	
 
 	mtext(text=cur_subj, side=3, line=0, outer=T, cex=2, font=2);
@@ -550,7 +788,7 @@ generate_group_plots=function(group_info, stats_mat, var_name, grp_cols){
 			}
 	
 			grouped_data[[grp_ix]]=grp_data;
-			medians[[grp_ix]]=median(grp_data);
+			medians[[grp_ix]]=median(grp_data, na.rm=T);
 		}
 	
 		# Generate Plots
@@ -568,7 +806,11 @@ generate_group_plots=function(group_info, stats_mat, var_name, grp_cols){
 
 		axis(side=1, at=c(1:num_groups), labels=group_ids, cex.axis=.75);
 
-		# 
+		jitter_list=list();
+		for(grp_ix in 1:num_groups){
+			jitter_list[[grp_ix]]=rnorm(length(grouped_data[[grp_ix]]), 0, .1);
+		}
+		 
 		for(grp_ix in 1:num_groups){
 			num_pts=length(grouped_data[[grp_ix]]);
 
@@ -578,8 +820,10 @@ generate_group_plots=function(group_info, stats_mat, var_name, grp_cols){
 				);
 
 			# Draw datapoints
-			points(rep(grp_ix, num_pts), grouped_data[[grp_ix]], col=grp_cols[grp_ix], lwd=2);
-			points(rep(grp_ix, num_pts), grouped_data[[grp_ix]], col="black", lwd=.5);
+			points(rep(grp_ix, num_pts)+jitter_list[[grp_ix]], 
+				grouped_data[[grp_ix]], col=grp_cols[grp_ix], lwd=2);
+			points(rep(grp_ix, num_pts)+jitter_list[[grp_ix]], 
+				grouped_data[[grp_ix]], col="black", lwd=.5);
 
 			adj.gly=c(-.05,-.2);
 			adj.pvl=c(-.05,.4);	
