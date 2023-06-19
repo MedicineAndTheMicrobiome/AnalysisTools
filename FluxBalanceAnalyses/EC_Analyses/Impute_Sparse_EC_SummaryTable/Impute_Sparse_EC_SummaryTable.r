@@ -403,7 +403,7 @@ max_allowed_predictors=min(Inf);
 cat("Launching in parallel...\n");
 process_list=1:num_categories_to_process;
 #process_list=c(46);
-#process_list=1:100;
+#process_list=1:50;
 
 
 go_verbose=length(process_list)==1;
@@ -640,6 +640,71 @@ for(i in 1:length(all_results)){
 		}
 		);
 }
+
+###############################################################################
+
+generate_imputation_stats=function(imputed_norm, unimputed_norm){
+	# Report:
+	#   1.) Number of Categories
+	#   2.) Number of Categories needing imputation
+	#   3.) Prop of categories needing imputation
+	#   4.) Number of Categories successfully imputed
+	#   5.) Prop of Categories successfully imputed
+	#   6.) Number of 0s in count table
+	#   7.) Number of 0s in imputed normalized table
+	#   8.) Prop of 0's imputed
+
+	
+	num_categories=ncol(unimputed_norm);
+	
+	unimputed_numzeros=apply(unimputed_norm, 2,
+		function(x){ sum(x==0);});
+	unimputed_cats_wzeros=unimputed_numzeros>0;
+	unimputed_numzeros=sum(unimputed_numzeros);
+
+	imputed_numzeros=apply(imputed_norm, 2,
+		function(x){ sum(x==0);});
+	imputed_cats_wzeros=imputed_numzeros>0;
+	imputed_numzeros=sum(imputed_numzeros);
+
+	num_unimputed_cats_wzeros=sum(unimputed_cats_wzeros);
+	num_imputed_cats_wzeros=sum(imputed_cats_wzeros);
+
+	prop_categories_needing_imputation=num_unimputed_cats_wzeros/num_categories;
+	
+	num_categories_succ_imputed=num_unimputed_cats_wzeros-num_imputed_cats_wzeros;
+
+	prop_categories_succ_imputed=num_categories_succ_imputed/num_unimputed_cats_wzeros;
+
+	num_zeros_imputed=unimputed_numzeros-imputed_numzeros;
+
+	prop_zeros_succ_imputed=num_zeros_imputed/unimputed_numzeros;
+
+	results=list();
+	results[["num_categories"]]=num_categories;
+	results[["num_cat_needing_imputation"]]=num_unimputed_cats_wzeros;
+	results[["prop_cat_needing_imputation"]]=prop_categories_needing_imputation;
+	results[["num_cat_succ_imputed"]]=num_categories_succ_imputed;
+	results[["prop_cat_succ_imputed"]]=prop_categories_succ_imputed;
+	results[["num_zeros_needing_imputation"]]=unimputed_numzeros;
+	results[["num_zeros_succ_imputed"]]=num_zeros_imputed;
+	results[["prop_zeros_succ_imputed"]]=prop_zeros_succ_imputed;
+	
+	return(results);
+
+}
+
+
+impute_stats=generate_imputation_stats(out_imputed_norm, normalized_mat);
+stat_out=capture.output({print(impute_stats)});
+
+par(mfrow=c(1,1));
+plot_text(c(
+	"Imputation Statistics:",
+	"",
+	stat_out));
+
+###############################################################################
 
 #------------------------------------------------------------------------------
 
