@@ -142,7 +142,7 @@ log_trans=function(normalized_mat){
 
 ###############################################################################
 
-pdf(paste(OutputFilename, ".pdf", sep=""), height=11, width=8.5, useDingbats=T);
+pdf(paste(OutputFilename, ".imputation.plots.pdf", sep=""), height=11, width=8.5, useDingbats=T);
 
 cat("Reading: ", InputFilename, "\n");
 counts_mat=load_summary_file(InputFilename);
@@ -725,7 +725,10 @@ write_summary_file=function(out_mat, fname){
 }
 
 cat("Writing Imputed Abundances to Summary Table...\n");
-write_summary_file(out_imputed_norm, OutputFilename);
+write_summary_file(out_imputed_norm, paste(OutputFilename, ".imputed.summary_table.tsv", sep=""));
+
+cat("Writing Original Unimputed Normalized Summary Table...\n");
+write_summary_file(normalized_mat, paste(OutputFilename, ".unimputed.normalized.summary_table.tsv", sep=""));
 
 ###############################################################################
 
