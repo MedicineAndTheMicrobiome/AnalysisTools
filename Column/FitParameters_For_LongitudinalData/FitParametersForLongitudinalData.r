@@ -24,7 +24,7 @@ params=c(
 	"find_recovery_rate_model", "R", 2, "character",
 
 	"crop", "c", 2, "character",
-	"prefix", "p", "character"
+	"prefix", "p", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -123,7 +123,7 @@ if(length(opt$crop)){
 }
 
 Prefix="";
-if(length(opt$Prefix)){
+if(length(opt$prefix)){
 	Prefix=opt$prefix;
 }
 
@@ -1074,277 +1074,281 @@ if(GroupColName!=""){
 	###############################################################################
 	###############################################################################
 
-	cat("Plotting Min/Max Time Lines:\n");
+	if(length(time_of_variable_arr)){
 
-	plot_title_page("Timeline Plots", c(
-		"Timeline plots place the variables along a timeline (x-axis) to provide context",
-		"for when each variable's levels are peaking or troughing.",	
-		"",
-		"Plots are generated at various p-value cutoffs and for each group.",
-		"For each group, a combined (red+blue), and then a mins (blue) and maxs (red)",
-		"only plot are generated.  Since multiple variables may peak or trough at",
-		"the sample time point, callouts are used to provide sufficient spacing",
-		"between variables for legibility.",
-		"",
-		"The p-value cutoffs are used to exclude ploting a variable's min/max",
-		"if there is not a significant difference between them.  The p-values",
-		"use a Bonferroni correction, with then number of tests equal to the number",
-		"of variables."
-	));
+		cat("Plotting Min/Max Time Lines:\n");
 
-	# Plot story lines for time_of variables
-	#print(colors);
-	#print(group_members);
-	#print(time_of_variable_arr);
-	#print(acc_matrix);
-	#quit();
+		plot_title_page("Timeline Plots", c(
+			"Timeline plots place the variables along a timeline (x-axis) to provide context",
+			"for when each variable's levels are peaking or troughing.",	
+			"",
+			"Plots are generated at various p-value cutoffs and for each group.",
+			"For each group, a combined (red+blue), and then a mins (blue) and maxs (red)",
+			"only plot are generated.  Since multiple variables may peak or trough at",
+			"the sample time point, callouts are used to provide sufficient spacing",
+			"between variables for legibility.",
+			"",
+			"The p-value cutoffs are used to exclude ploting a variable's min/max",
+			"if there is not a significant difference between them.  The p-values",
+			"use a Bonferroni correction, with then number of tests equal to the number",
+			"of variables."
+		));
 
-	tov_vnames=character();
-	for(var_ix in target_variable_list){
-		for(stat_ix in c("time_of_min", "time_of_max", "min", "max")){
-			tov_vnames=c(tov_vnames, paste(var_ix, "_", stat_ix, sep=""));
-		}
-	}
+		# Plot story lines for time_of variables
+		#print(colors);
+		#print(group_members);
+		#print(time_of_variable_arr);
+		#print(acc_matrix);
+		#quit();
 
-	var2stat=function(varname, stat_name){
-		paste(varname, "_", stat_name, sep="");
-	}
-
-	tov_matrix=acc_matrix[unique_subject_ids, tov_vnames]
-
-	#print(tov_matrix);
-	grp_medians_rec=list();
-	groups=names(group_members);
-
-	max_time=0;
-	num_comparisons=num_uniq_groups*num_target_variables;
-
-	# Compute means for the "time of" variables by group
-	for(grp_ix in groups){
-
-		grp_medians_rec[[grp_ix]]=list();
-
+		tov_vnames=character();
 		for(var_ix in target_variable_list){
-
-			grp_time_of_min=acc_matrix[
-				group_members[[grp_ix]],
-				var2stat(var_ix, "time_of_min"), drop=F];
-
-			grp_time_of_max=acc_matrix[
-				group_members[[grp_ix]],
-				var2stat(var_ix, "time_of_max"), drop=F];
-
-			grp_mins=acc_matrix[
-				group_members[[grp_ix]],
-				var2stat(var_ix, "min"), drop=F];
-
-			grp_maxs=acc_matrix[
-				group_members[[grp_ix]],
-				var2stat(var_ix, "max"), drop=F];
-
-			#cat("mins:\n");
-			#print(grp_mins);
-			#cat("maxs:\n");
-			#print(grp_maxs);
-			wc.res=wilcox.test(grp_mins, grp_maxs);			
-			if(!is.finite(wc.res$p.value)){
-				wc.res$p.value=1;
+			for(stat_ix in c("time_of_min", "time_of_max", "min", "max")){
+				tov_vnames=c(tov_vnames, paste(var_ix, "_", stat_ix, sep=""));
 			}
-
-			grp_medians_rec[[grp_ix]][[var2stat(var_ix, "time_of_min")]]=
-				median(grp_time_of_min);
-			grp_medians_rec[[grp_ix]][[var2stat(var_ix, "time_of_max")]]=
-				median(grp_time_of_max);
-			grp_medians_rec[[grp_ix]][[var2stat(var_ix, "range_signf")]]=
-				wc.res$p.value;
-			grp_medians_rec[[grp_ix]][[var2stat(var_ix, "range_signf_adj")]]=
-				min(1, wc.res$p.value*num_comparisons);
-
-			max_time=max(max_time, grp_time_of_max);
 		}
-	}
 
-
-	par(mfrow=c(num_uniq_groups,1));
-
-	#-----------------------------------------------------------------------------
-
-	adjust_pos=function(orig_pos, range, char_h){
-
-		num_pos=length(orig_pos);
-		# Do not adjust if less than 2 positions
-		if(num_pos<2){
-			return(orig_pos);
+		var2stat=function(varname, stat_name){
+			paste(varname, "_", stat_name, sep="");
 		}
-		
-		orig_order=names(orig_pos);
-		new_pos=sort(orig_pos);
 
-		keep_adjusting=T;
-		num_trials=0;
-		max_trials=num_pos^2;
-		while(keep_adjusting){
+		tov_matrix=acc_matrix[unique_subject_ids, tov_vnames]
 
-			keep_adjusting=F;
+		#print(tov_matrix);
+		grp_medians_rec=list();
+		groups=names(group_members);
 
-			# Move labels forward
-			for(i in 1:(num_pos-1)){
-				if(abs(new_pos[i]-new_pos[i+1])<char_h){
-					adj=new_pos[i+1]+char_h/2;
-					if(adj<=range[2]){
-						new_pos[i+1]=adj;
-						keep_adjusting=T;
-					}
+		max_time=0;
+		num_comparisons=num_uniq_groups*num_target_variables;
+
+		# Compute means for the "time of" variables by group
+		for(grp_ix in groups){
+
+			grp_medians_rec[[grp_ix]]=list();
+
+			for(var_ix in target_variable_list){
+
+				grp_time_of_min=acc_matrix[
+					group_members[[grp_ix]],
+					var2stat(var_ix, "time_of_min"), drop=F];
+
+				grp_time_of_max=acc_matrix[
+					group_members[[grp_ix]],
+					var2stat(var_ix, "time_of_max"), drop=F];
+
+				grp_mins=acc_matrix[
+					group_members[[grp_ix]],
+					var2stat(var_ix, "min"), drop=F];
+
+				grp_maxs=acc_matrix[
+					group_members[[grp_ix]],
+					var2stat(var_ix, "max"), drop=F];
+
+				#cat("mins:\n");
+				#print(grp_mins);
+				#cat("maxs:\n");
+				#print(grp_maxs);
+				wc.res=wilcox.test(grp_mins, grp_maxs);			
+				if(!is.finite(wc.res$p.value)){
+					wc.res$p.value=1;
 				}
+
+				grp_medians_rec[[grp_ix]][[var2stat(var_ix, "time_of_min")]]=
+					median(grp_time_of_min);
+				grp_medians_rec[[grp_ix]][[var2stat(var_ix, "time_of_max")]]=
+					median(grp_time_of_max);
+				grp_medians_rec[[grp_ix]][[var2stat(var_ix, "range_signf")]]=
+					wc.res$p.value;
+				grp_medians_rec[[grp_ix]][[var2stat(var_ix, "range_signf_adj")]]=
+					min(1, wc.res$p.value*num_comparisons);
+
+				max_time=max(max_time, grp_time_of_max);
 			}
-
-			# Move labels backward
-			for(i in num_pos:2){
-				if(abs(new_pos[i]-new_pos[i-1])<char_h){
-					adj=new_pos[i-1]-char_h/2;
-					if(adj>=range[1]){
-						new_pos[i-1]=adj;
-						keep_adjusting=T;
-					}
-				}
-			}
-
-			# If not enough space, make inter-label spacing smaller
-			if(num_trials>num_pos){
-				num_trials=0;
-				char_h=char_h*.95;
-				cat("Reducing spacing between labels: ", char_h, "\n");
-			}
-
-			num_trials=num_trials+1;
-
 		}
 
-		new_pos=new_pos[orig_order];
-		return(new_pos);
-	}
 
-	#-----------------------------------------------------------------------------
+		par(mfrow=c(num_uniq_groups,1));
 
-	label=function(actual_pos, adjusted_pos, cxy_scale){
+		#-----------------------------------------------------------------------------
 
-		arr_len=length(actual_pos);
+		adjust_pos=function(orig_pos, range, char_h){
 
-		if(arr_len==0){return();};
-
-		points(actual_pos, rep(0, arr_len), cex=.3);
-
-		varnames=names(actual_pos);
-
-		for(i in 1:arr_len){
+			num_pos=length(orig_pos);
+			# Do not adjust if less than 2 positions
+			if(num_pos<2){
+				return(orig_pos);
+			}
 			
-			points(
-				c(actual_pos[i], adjusted_pos[i]),
-				c(0, .08),
-				type="l", col="black", lwd=.5);
+			orig_order=names(orig_pos);
+			new_pos=sort(orig_pos);
 
-			label=gsub("_time_of", "", varnames[i]);
-			label_length=nchar(label)*cxy_scale[2];
-			label_size=2*min(1, 1/label_length);
+			keep_adjusting=T;
+			num_trials=0;
+			max_trials=num_pos^2;
+			while(keep_adjusting){
 
-			ismin=length(grep("_min$", label));
+				keep_adjusting=F;
 
-			label_col=ifelse(ismin, "blue", "red");
-
-			text(adjusted_pos[i], .1, 
-				label,
-				adj=c(0,.25), srt=90, 
-				col=label_col,
-				cex=label_size);
-		}
-	}
-
-	#-----------------------------------------------------------------------------
-	print(grp_medians_rec);
-
-	par(mfrow=c(3,1));
-	for(cutoff_ix in c(1, 0.1, 0.05, 0.01, 0.001)){
-		cat("Cutoff: ", cutoff_ix, "\n");
-
-		for(grp_ix in groups){	
-			cat("      Group: ", grp_ix, "\n");
-
-			for(split_ix in c(F, T)){
-				cat("   Split: ", split_ix, "\n");
-
-
-				plot_title=paste(grp_ix, ", cutoff=", cutoff_ix, sep="");				
-				# Start Plot
-				#   We need to start the plot so we can get the character size calculations.
-				#   The first plot is min when splitting, or both when combining.
-				plot(NA, type="n", xlim=c(0, max_time), ylim=c(0,1), 
-					yaxt="n",
-					main="", xlab="", ylab="");
-				title(main=
-					paste(ifelse(split_ix, "Mins: ", "Mins & Maxs:"), plot_title), 
-					cex.main=2, line=.5);
-				cxy=par("cxy");
-
-				# Get variables to plot based on cutoff
-				plot_list=c();
-				for(var_ix in target_variable_list){
-					signf=grp_medians_rec[[grp_ix]][[var2stat(var_ix, "range_signf")]];
-					if(signf<cutoff_ix){
-						plot_list=c(plot_list, var_ix);
+				# Move labels forward
+				for(i in 1:(num_pos-1)){
+					if(abs(new_pos[i]-new_pos[i+1])<char_h){
+						adj=new_pos[i+1]+char_h/2;
+						if(adj<=range[2]){
+							new_pos[i+1]=adj;
+							keep_adjusting=T;
+						}
 					}
 				}
 
-				var_min_time_arr=c();
-				var_max_time_arr=c();
-				var_both_time_arr=c();
-				var_min_names_arr=c();
-				var_max_names_arr=c();
-				var_both_names_arr=c();
-				for(var_ix in plot_list){
-					tomin_name=var2stat(var_ix, "time_of_min");
-					tomax_name=var2stat(var_ix, "time_of_max");
-
-					var_min_names_arr=c(var_min_names_arr, tomin_name);
-					var_max_names_arr=c(var_max_names_arr, tomax_name);
-					var_both_names_arr=c(var_both_names_arr, c(tomin_name, tomax_name));
-
-					tomin=grp_medians_rec[[grp_ix]][[tomin_name]];
-					tomax=grp_medians_rec[[grp_ix]][[tomax_name]];
-					var_min_time_arr=c(var_min_time_arr, tomin);
-					var_max_time_arr=c(var_max_time_arr, tomax);
-					var_both_time_arr=c(var_both_time_arr, c(tomin, tomax));
+				# Move labels backward
+				for(i in num_pos:2){
+					if(abs(new_pos[i]-new_pos[i-1])<char_h){
+						adj=new_pos[i-1]-char_h/2;
+						if(adj>=range[1]){
+							new_pos[i-1]=adj;
+							keep_adjusting=T;
+						}
+					}
 				}
-				names(var_min_time_arr)=var_min_names_arr;
-				names(var_max_time_arr)=var_max_names_arr;
-				names(var_both_time_arr)=var_both_names_arr;
 
-				# Adjust spacing of labels
-				min_time_adjusted_pos=
-					adjust_pos(var_min_time_arr, range=c(0, max_time), cxy[1]);
-				max_time_adjusted_pos=
-					adjust_pos(var_max_time_arr, range=c(0, max_time), cxy[1]);
-				both_time_adjusted_pos=
-					adjust_pos(var_both_time_arr, range=c(0, max_time), cxy[1]);
+				# If not enough space, make inter-label spacing smaller
+				if(num_trials>num_pos){
+					num_trials=0;
+					char_h=char_h*.95;
+					cat("Reducing spacing between labels: ", char_h, "\n");
+				}
 
-				if(split_ix){
-					
-					# Min
-					label(var_min_time_arr, min_time_adjusted_pos, cxy);					
-					# Max 
+				num_trials=num_trials+1;
+
+			}
+
+			new_pos=new_pos[orig_order];
+			return(new_pos);
+		}
+
+		#-----------------------------------------------------------------------------
+
+		label=function(actual_pos, adjusted_pos, cxy_scale){
+
+			arr_len=length(actual_pos);
+
+			if(arr_len==0){return();};
+
+			points(actual_pos, rep(0, arr_len), cex=.3);
+
+			varnames=names(actual_pos);
+
+			for(i in 1:arr_len){
+				
+				points(
+					c(actual_pos[i], adjusted_pos[i]),
+					c(0, .08),
+					type="l", col="black", lwd=.5);
+
+				label=gsub("_time_of", "", varnames[i]);
+				label_length=nchar(label)*cxy_scale[2];
+				label_size=2*min(1, 1/label_length);
+
+				ismin=length(grep("_min$", label));
+
+				label_col=ifelse(ismin, "blue", "red");
+
+				text(adjusted_pos[i], .1, 
+					label,
+					adj=c(0,.25), srt=90, 
+					col=label_col,
+					cex=label_size);
+			}
+		}
+
+		#-----------------------------------------------------------------------------
+		print(grp_medians_rec);
+
+		par(mfrow=c(3,1));
+		for(cutoff_ix in c(1, 0.1, 0.05, 0.01, 0.001)){
+			cat("Cutoff: ", cutoff_ix, "\n");
+
+			for(grp_ix in groups){	
+				cat("      Group: ", grp_ix, "\n");
+
+				for(split_ix in c(F, T)){
+					cat("   Split: ", split_ix, "\n");
+
+
+					plot_title=paste(grp_ix, ", cutoff=", cutoff_ix, sep="");				
+					# Start Plot
+					#   We need to start the plot so we can get the character size calculations.
+					#   The first plot is min when splitting, or both when combining.
 					plot(NA, type="n", xlim=c(0, max_time), ylim=c(0,1), 
 						yaxt="n",
 						main="", xlab="", ylab="");
-							
-					title(main=paste("Maxs: ", plot_title), 
+					title(main=
+						paste(ifelse(split_ix, "Mins: ", "Mins & Maxs:"), plot_title), 
 						cex.main=2, line=.5);
-					# Max	
-					label(var_max_time_arr, max_time_adjusted_pos, cxy);					
+					cxy=par("cxy");
 
-				}else{
-					# Both
-					label(var_both_time_arr, both_time_adjusted_pos, cxy);					
+					# Get variables to plot based on cutoff
+					plot_list=c();
+					for(var_ix in target_variable_list){
+						signf=grp_medians_rec[[grp_ix]][[var2stat(var_ix, "range_signf")]];
+						if(signf<cutoff_ix){
+							plot_list=c(plot_list, var_ix);
+						}
+					}
+
+					var_min_time_arr=c();
+					var_max_time_arr=c();
+					var_both_time_arr=c();
+					var_min_names_arr=c();
+					var_max_names_arr=c();
+					var_both_names_arr=c();
+					for(var_ix in plot_list){
+						tomin_name=var2stat(var_ix, "time_of_min");
+						tomax_name=var2stat(var_ix, "time_of_max");
+
+						var_min_names_arr=c(var_min_names_arr, tomin_name);
+						var_max_names_arr=c(var_max_names_arr, tomax_name);
+						var_both_names_arr=c(var_both_names_arr, c(tomin_name, tomax_name));
+
+						tomin=grp_medians_rec[[grp_ix]][[tomin_name]];
+						tomax=grp_medians_rec[[grp_ix]][[tomax_name]];
+						var_min_time_arr=c(var_min_time_arr, tomin);
+						var_max_time_arr=c(var_max_time_arr, tomax);
+						var_both_time_arr=c(var_both_time_arr, c(tomin, tomax));
+					}
+					names(var_min_time_arr)=var_min_names_arr;
+					names(var_max_time_arr)=var_max_names_arr;
+					names(var_both_time_arr)=var_both_names_arr;
+
+					# Adjust spacing of labels
+					min_time_adjusted_pos=
+						adjust_pos(var_min_time_arr, range=c(0, max_time), cxy[1]);
+					max_time_adjusted_pos=
+						adjust_pos(var_max_time_arr, range=c(0, max_time), cxy[1]);
+					both_time_adjusted_pos=
+						adjust_pos(var_both_time_arr, range=c(0, max_time), cxy[1]);
+
+					if(split_ix){
+						
+						# Min
+						label(var_min_time_arr, min_time_adjusted_pos, cxy);					
+						# Max 
+						plot(NA, type="n", xlim=c(0, max_time), ylim=c(0,1), 
+							yaxt="n",
+							main="", xlab="", ylab="");
+								
+						title(main=paste("Maxs: ", plot_title), 
+							cex.main=2, line=.5);
+						# Max	
+						label(var_max_time_arr, max_time_adjusted_pos, cxy);					
+
+					}else{
+						# Both
+						label(var_both_time_arr, both_time_adjusted_pos, cxy);					
+					}
 				}
 			}
+
 		}
 
 	}
@@ -1563,16 +1567,22 @@ if(GroupColName!=""){
 
 rounded_acc_mat=round(acc_matrix, 4);
 
+out_colnames=colnames(rounded_acc_mat);
+if(Prefix!=""){
+	out_colnames=paste(Prefix, ".", out_colnames, sep="");
+}
+
 if(GroupColName!=""){
+	# Add group id to output if specified
 	collapsed_group_ids=character();
 	for(sbj_ix in unique_subject_ids){
 		collapsed_group_ids=c(collapsed_group_ids, group_map[[sbj_ix]]);
 	}
 
-	out_hdr=c(SubjectIDColName, GroupColName, colnames(rounded_acc_mat));
+	out_hdr=c(SubjectIDColName, GroupColName, out_colnames);
 	outmat=cbind(unique_subject_ids, collapsed_group_ids,  rounded_acc_mat);
 }else{
-	out_hdr=c(SubjectIDColName, colnames(rounded_acc_mat));
+	out_hdr=c(SubjectIDColName, out_colnames);
 	outmat=cbind(unique_subject_ids, rounded_acc_mat);
 }
 
