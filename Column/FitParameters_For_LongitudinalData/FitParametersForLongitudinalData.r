@@ -452,7 +452,10 @@ if(Opt_FindRecoveryRateModel){
 		init_start_val=y[1];
 		init_max_val=max_y;
 		init_lin_rate=sd(y)/last_half_time;
-		init_exp_rate=abs(init_lin_rate);  # Order of magnitude guess
+		init_exp_rate=0;
+
+		#lin_fit=lm(y~time);
+		#y_intercept=lin_fit$coefficients["(Intercept)"];
 
 		# Define objective function
 		model_ssd=function(p){
@@ -467,18 +470,19 @@ if(Opt_FindRecoveryRateModel){
 		print(c(init_start_val, init_max_val, init_exp_rate, init_lin_rate));
 
 		# Calc normalization for each parameter
-		sum_param=sum(abs(c(init_start_val, init_max_val, init_exp_rate, init_lin_rate)));
-		psc=c(init_start_val, init_max_val, init_exp_rate, init_lin_rate)/sum_param;
+		# Set the scale for the exp_rate to be the same as for the lin_rate
+		sum_param=sum(abs(c(init_start_val, init_max_val, init_lin_rate, init_lin_rate)));
+		psc=c(init_start_val, init_max_val, init_lin_rate, init_lin_rate)/sum_param;
 
 		cat("Parameter Scaling:\n");
 		print(psc);
 		
 		# Run optimization
 		opt_res=optim(
-			par=c(init_start_val, init_max_val, init_exp_rate, init_lin_rate),
+			par=c(init_start_val, init_max_val, 0, init_lin_rate),
 			control=list(parscale=psc),
 			lower=c(0, min_y/2, 0, -Inf),
-			upper=c(min_y, max_y*2, Inf, Inf),
+			upper=c(y[1], max_y, Inf, Inf),
 			fn=model_ssd, method="L-BFGS-B"
 		);
 
@@ -730,13 +734,18 @@ for(cur_subj in unique_subject_ids){
 			params=calc_recovery_rate_params(target_data);
 			acc_matrix[cur_subj, varnames]=params;
 
-			t=seq(
-				max(CropLimits[1], 0),
-				min(CropLimits[2], max(times)),
-				length.out=100);
+			start_plot_time=max(CropLimits[1], 0);
+			end_plot_time=min(CropLimits[2], max(times));
+
+			t=sort(c(
+				seq(start_plot_time, end_plot_time/16, length.out=100),
+				seq(start_plot_time, end_plot_time/8, length.out=100),
+				seq(start_plot_time, end_plot_time/4, length.out=100),
+				seq(start_plot_time, end_plot_time, length.out=200)
+			));
 
 			points(t, exp_lin_rate_model(t, params[1], params[2], params[3], params[4]), 
-				type="b", col="blue", cex=.5);
+				type="b", col="blue", cex=.25);
 			
 		}
 
