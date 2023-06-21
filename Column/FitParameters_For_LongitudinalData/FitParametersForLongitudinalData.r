@@ -276,6 +276,57 @@ cat("Num Unique Subject IDs: ", num_unique_subject_ids, "\n");
 
 ##############################################################################
 
+group_map=NULL;
+group_members=NULL;
+if(GroupColName!=""){
+	# Generates group to members (group_members) and member to group (group_map);
+
+	# Generate subject to group mapping
+	group_mapping_matrix=all_factors[, c(GroupColName, SubjectIDColName)]; 
+	group_map=list();
+	for(subj_ix in unique_subject_ids){
+		ix=min(which(subj_ix==group_mapping_matrix[,SubjectIDColName]));
+		group_map[[subj_ix]]=group_mapping_matrix[ix, GroupColName];
+	}
+	#print(group_map);
+	
+	# Get group info
+	uniq_group_names=unique(group_mapping_matrix[,GroupColName]);
+	num_uniq_groups=length(uniq_group_names);
+	cat("Groups:\n");
+	print(uniq_group_names);
+	cat("Num Groups: ", num_uniq_groups, "\n");
+
+	# Generate group members structure
+	group_members=list();
+	for(grp_ix in uniq_group_names){
+		group_members[[grp_ix]]=list();
+	}
+
+
+	for(subj_ix in unique_subject_ids){
+		subj_grp=group_map[[subj_ix]];
+		grp_mem=group_members[[subj_grp]];
+
+		if(length(grp_mem)){
+			grp_mem=c(grp_mem, subj_ix);
+		}else{
+			grp_mem=subj_ix;
+		}
+
+		group_members[[subj_grp]]=grp_mem;
+
+	}
+
+	#cat("---------------------------------------------------\n");
+	#print(group_members);
+	#cat("---------------------------------------------------\n");
+	#print(group_map);
+	#cat("---------------------------------------------------\n");
+}
+
+##############################################################################
+
 extensions=c();
 if(Opt_FindLine){
 	extensions=c(extensions, c("intercept", "slope", "sd_res"));
@@ -412,7 +463,7 @@ if(Opt_FindExtrapolatedLimits){
 
 if(Opt_FindRecoveryRateModel){
 
-	extensions=c(extensions, c("rrm_start", "rrm_max", "rrm_exp_rate", "rrm_lin_rate"));
+	extensions=c(extensions, c("rrm_start", "rrm_gain", "rrm_exp_rate", "rrm_lin_rate", "rrm_max"));
 
 	# This model consists of a exponential (short-term) and a linear (long-term)
 	# recovery/deline rate.  The parameters allow for a non-zero starting and a maximum
@@ -421,8 +472,13 @@ if(Opt_FindRecoveryRateModel){
 	# improve with exponentially decreases of improvement to a maximum.  In many subjects,
 	# there is a subsequent decline after the maximum recovery has been achieved.
 
-	exp_lin_rate_model=function(t, start_val, max_val, exp_rate, lin_rate){
-		y=start_val + (max_val-start_val)*2*(1/(1+exp(-t*exp_rate))-.5) + t*lin_rate;
+	#exp_lin_rate_model=function(t, start_val, max_val, exp_rate, lin_rate){
+	#	y=start_val + (max_val-start_val)*2*(1/(1+exp(-t*exp_rate))-.5) + t*lin_rate;
+	#	return(y);
+	#}
+
+	exp_lin_rate_model=function(t, start_val, gain, exp_rate, lin_rate){
+		y=start_val + gain*2*(1/(1+exp(-t*exp_rate))-.5) + t*lin_rate;
 		return(y);
 	}
 
@@ -434,7 +490,7 @@ if(Opt_FindRecoveryRateModel){
 		num_time_pts=length(time);
 
 		if(num_time_pts<5){
-			return(rep(NA, 4));
+			return(rep(NA, 5));
 		}
 
 		# Order the data by time
@@ -469,7 +525,8 @@ if(Opt_FindRecoveryRateModel){
 			obs=y;
 			
 			pred=exp_lin_rate_model(
-				t=time, start_val=p[1], max_val=p[2], exp_rate=p[3], lin_rate=p[4]);
+				t=time, start_val=p[1], gain=p[2], exp_rate=p[3], lin_rate=p[4]);
+				#t=time, start_val=p[1], max_val=p[2], exp_rate=p[3], lin_rate=p[4]);
 			ssd=sum(abs(obs-pred)^2);
 			return(ssd);
 		}
@@ -487,16 +544,20 @@ if(Opt_FindRecoveryRateModel){
 		
 		# Run optimization
 		opt_res=optim(
-			par=c(init_start_val, init_max_val, 1e-4, init_lin_rate),
+			par=c(init_start_val, init_max_val-init_start_val, init_lin_rate, init_lin_rate),
 			control=list(parscale=psc),
-			lower=c(0, min_y/2, 1e-3, -Inf),
-			upper=c(100, max_y, Inf, Inf),
+			lower=c(0, 0, 1e-3, -Inf),
+			upper=c(100, 100, Inf, Inf),
 			fn=model_ssd, method="L-BFGS-B"
 		);
 
 		print(opt_res);
+		
+		est_param=opt_res$par;
+		names(est_param)=c("start", "gain", "exp_rate", "lin_rate");
+		res=c(est_param, est_param["start"]+est_param["gain"]);
 
-		return(opt_res$par);
+		return(res);
 
 	}
 
@@ -554,13 +615,16 @@ if(multiplot_dim_c*(multiplot_dim_r-1)>=num_target_variables){
 }
 cat("Multiplot Dimensions: ", multiplot_dim_r, " x ", multiplot_dim_c, "\n");
 
-plot_var=function(times, values, var_name, subject_id, val_lim){
+plot_var=function(times, values, var_name, subject_id, group_id, val_lim){
 
 	plot(times, values, type="n", 
-		main=var_name,
+		main="",
 		ylim=val_lim,
 		xlab="", ylab="" 
 	);
+
+	title(main=var_name, col.main="black", cex.main=1.5, font.main=3, line=.5);
+	title(main=group_id, col.main="blue", cex.main=1.2, line=2);
 
 	fit=lm(values~times);
 	slope=fit$coefficients["times"];
@@ -646,10 +710,17 @@ for(cur_subj in unique_subject_ids){
 		
 		var_by_subj[[cur_subj]][[targ_var_ix]]=var_spec_tab[nona_ix,];
 
+		if(!is.null(group_map)){
+			grp_name=group_map[[cur_subj]];
+		}else{
+			grp_name="";
+		}
+
 		plot_var(
 			times=subj_mat_sorted[,TimeOffsetColName], 
 			values=subj_mat_sorted[,targ_var_ix],
 			subject_id=cur_subj,
+			group_id=grp_name,
 			var_name=targ_var_ix,
 			val_lim=c(ranges_mat[targ_var_ix, "min"], ranges_mat[targ_var_ix, "max"])
 		);
@@ -736,7 +807,7 @@ for(cur_subj in unique_subject_ids){
 		if(Opt_FindRecoveryRateModel){
 
 			varnames=paste(targ_var_ix, "_", 
-				c("rrm_start", "rrm_max", "rrm_exp_rate", "rrm_lin_rate"),
+				c("rrm_start", "rrm_gain", "rrm_exp_rate", "rrm_lin_rate", "rrm_max"),
 				sep="");
 
 			params=calc_recovery_rate_params(target_data);
@@ -756,7 +827,7 @@ for(cur_subj in unique_subject_ids){
 				type="b", col="blue", cex=.25);
 
 			abline(h=params[1], col="green");
-			abline(h=params[2], col="blue");
+			abline(h=params[5], col="blue");
 			
 		}
 
@@ -902,44 +973,8 @@ generate_group_plots=function(group_info, stats_mat, var_name, grp_cols){
 	
 }
 
+
 if(GroupColName!=""){
-
-	# Generate subject to group mapping
-	group_mapping_matrix=all_factors[, c(GroupColName, SubjectIDColName)]; 
-	group_map=list();
-	for(subj_ix in unique_subject_ids){
-		ix=min(which(subj_ix==group_mapping_matrix[,SubjectIDColName]));
-		group_map[[subj_ix]]=group_mapping_matrix[ix, GroupColName];
-	}
-	print(group_map);
-	
-	# Get group info
-	uniq_group_names=unique(group_mapping_matrix[,GroupColName]);
-	num_uniq_groups=length(uniq_group_names);
-	cat("Groups:\n");
-	print(uniq_group_names);
-	cat("Num Groups: ", num_uniq_groups, "\n");
-
-	# Generate group members structure
-	group_members=list();
-	for(grp_ix in uniq_group_names){
-		group_members[[grp_ix]]=list();
-	}
-
-
-	for(subj_ix in unique_subject_ids){
-		subj_grp=group_map[[subj_ix]];
-		grp_mem=group_members[[subj_grp]];
-
-		if(length(grp_mem)){
-			grp_mem=c(grp_mem, subj_ix);
-		}else{
-			grp_mem=subj_ix;
-		}
-
-		group_members[[subj_grp]]=grp_mem;
-
-	}
 
 	cat("Group Members:\n");
 	print(group_members);
