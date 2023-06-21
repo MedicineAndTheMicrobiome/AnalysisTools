@@ -442,6 +442,12 @@ if(Opt_FindRecoveryRateModel){
 		time=time[by_time];
 		y=y[by_time];
 
+
+		# Bias the 0 time to half of the first observed point
+		time=c(0,time);
+		y=c(y[1]/2,y);
+
+
 		# Pre-calculations for estimating starting parameters
 		max_y=max(y);
 		min_y=min(y);
@@ -449,10 +455,11 @@ if(Opt_FindRecoveryRateModel){
 
 		last_half_time=time[num_time_pts]-median(time);
 		
-		init_start_val=y[1];
 		init_max_val=max_y;
+		init_start_val=y[2];
 		init_lin_rate=sd(y)/last_half_time;
 		init_exp_rate=0;
+
 
 		#lin_fit=lm(y~time);
 		#y_intercept=lin_fit$coefficients["(Intercept)"];
@@ -460,6 +467,7 @@ if(Opt_FindRecoveryRateModel){
 		# Define objective function
 		model_ssd=function(p){
 			obs=y;
+			
 			pred=exp_lin_rate_model(
 				t=time, start_val=p[1], max_val=p[2], exp_rate=p[3], lin_rate=p[4]);
 			ssd=sum(abs(obs-pred)^2);
@@ -479,10 +487,10 @@ if(Opt_FindRecoveryRateModel){
 		
 		# Run optimization
 		opt_res=optim(
-			par=c(init_start_val, init_max_val, 0, init_lin_rate),
+			par=c(init_start_val, init_max_val, 1e-4, init_lin_rate),
 			control=list(parscale=psc),
-			lower=c(0, min_y/2, 0, -Inf),
-			upper=c(y[1], max_y, Inf, Inf),
+			lower=c(0, min_y/2, 1e-3, -Inf),
+			upper=c(100, max_y, Inf, Inf),
 			fn=model_ssd, method="L-BFGS-B"
 		);
 
@@ -561,11 +569,11 @@ plot_var=function(times, values, var_name, subject_id, val_lim){
 	lowest_ix=min(which(values==min(values, na.rm=T)));
 	highest_ix=min(which(values==max(values, na.rm=T)));
 
-	if(slope>=0){
-		abline(a=intercept, b=slope, col="brown", lwd=.5, lty="dashed");
-	}else{
-		abline(a=intercept, b=slope, col="darkolivegreen", lwd=.5, lty="dashed");
-	}
+	#if(slope>=0){
+	#	abline(a=intercept, b=slope, col="brown", lwd=.5, lty="dashed");
+	#}else{
+	#	abline(a=intercept, b=slope, col="darkolivegreen", lwd=.5, lty="dashed");
+	#}
 
 	points(times, values, type="b", col="grey", lwd=2);
 	points(times, values, type="p", col="black");
@@ -746,6 +754,9 @@ for(cur_subj in unique_subject_ids){
 
 			points(t, exp_lin_rate_model(t, params[1], params[2], params[3], params[4]), 
 				type="b", col="blue", cex=.25);
+
+			abline(h=params[1], col="green");
+			abline(h=params[2], col="blue");
 			
 		}
 
