@@ -195,6 +195,13 @@ usage = paste(
 	"		same group.  The groups may be a subject ID and the values may be a time/date\n",
 	"		value.  You can think of these as ordered visits.\n",
 	"\n",
+	"	apply_function_by_group(values, grp, funct)\n",
+	"		This will apply the specified function, to the values within a group\n",
+	"		specified by the group ID.  All the cells in the group will then have\n",
+	"		the same value.\n",
+	"			 For example:\n",
+	"				any_rejection=apply_function_by_group(rejection, subject_id, any);\n",
+	"\n",
 	"	num_to_str_id(numeric_id, prefix=\"s\")\n",
 	"		This will convert the numeric id into a string.  By default, a prefix is prepended\n",
 	"		to the number to make it a string.\n",
@@ -422,6 +429,23 @@ indices_by_group=function(abs, grp){
 		grp_ix=which(grp==uniq_grps[i]);
 		grp_val=abs[grp_ix];
 		out[grp_ix]=rank(grp_val);
+	}
+	return(out);
+}
+
+apply_function_by_group=function(values, grp, funct){
+	# This function will apply the function to all the values
+	# within a group, funct would be a function like: any,
+	# sum, max, min, etc.
+	uniq_grps=unique(grp);
+	num_uniq_grp=length(uniq_grps);
+	num_rows=length(values);
+
+	out=rep(0, num_rows);
+	for(i in 1:num_uniq_grp){
+		grp_ix=which(grp==uniq_grps[i]);
+		grp_val=values[grp_ix];
+		out[grp_ix]=funct(grp_val);
 	}
 	return(out);
 }
