@@ -278,11 +278,13 @@ cat("Num Unique Subject IDs: ", num_unique_subject_ids, "\n");
 
 group_map=NULL;
 group_members=NULL;
+
 if(GroupColName!=""){
 	# Generates group to members (group_members) and member to group (group_map);
 
 	# Generate subject to group mapping
 	group_mapping_matrix=all_factors[, c(GroupColName, SubjectIDColName)]; 
+	group_mapping_matrix[,GroupColName]=make.names(group_mapping_matrix[,GroupColName]);
 	group_map=list();
 	for(subj_ix in unique_subject_ids){
 		ix=min(which(subj_ix==group_mapping_matrix[,SubjectIDColName]));
@@ -323,6 +325,7 @@ if(GroupColName!=""){
 	#cat("---------------------------------------------------\n");
 	#print(group_map);
 	#cat("---------------------------------------------------\n");
+
 }
 
 ##############################################################################
@@ -615,7 +618,7 @@ if(multiplot_dim_c*(multiplot_dim_r-1)>=num_target_variables){
 }
 cat("Multiplot Dimensions: ", multiplot_dim_r, " x ", multiplot_dim_c, "\n");
 
-plot_var=function(times, values, var_name, subject_id, group_id, val_lim){
+plot_var=function(times, values, var_name, subject_id, group_name, group_id, val_lim){
 
 	plot(times, values, type="n", 
 		main="",
@@ -624,7 +627,7 @@ plot_var=function(times, values, var_name, subject_id, group_id, val_lim){
 	);
 
 	title(main=var_name, col.main="black", cex.main=1.5, font.main=3, line=.5);
-	title(main=group_id, col.main="blue", cex.main=1.2, line=2);
+	title(main=paste(group_name, ": ", group_id, sep=""), col.main="blue", cex.main=1.2, line=2);
 
 	fit=lm(values~times);
 	slope=fit$coefficients["times"];
@@ -720,6 +723,7 @@ for(cur_subj in unique_subject_ids){
 			times=subj_mat_sorted[,TimeOffsetColName], 
 			values=subj_mat_sorted[,targ_var_ix],
 			subject_id=cur_subj,
+			group_name=GroupColName,
 			group_id=grp_name,
 			var_name=targ_var_ix,
 			val_lim=c(ranges_mat[targ_var_ix, "min"], ranges_mat[targ_var_ix, "max"])
@@ -790,16 +794,19 @@ for(cur_subj in unique_subject_ids){
 				c("extrp_start", "extrp_mid", "extrp_end", "extrp_slope"), sep="");
 
 			params=calc_extrapolated_limits(target_data,
-					CropLimits[1], CropLimits[2]
-					);
+					CropLimits[1], CropLimits[2]);
 			acc_matrix[cur_subj, varnames]=params;
 		
 			t=seq(CropLimits[1], CropLimits[2], length.out=100);
 			intercept=params[1]-params[4]*CropLimits[1];
 
 			points(t, params[4]*t+intercept, type="b", col="green", cex=.5);
-			points(c(CropLimits[1], CropLimits[2]), c(params[1], params[2]), 
-				type="p", cex=1.1, col="green");
+
+			# market ends and mid
+			points(c(CropLimits[1], CropLimits[2]), c(params[1], params[3]), 
+				type="p", cex=1.1, col="darkgreen");
+			points((CropLimits[1]+CropLimits[2])/2, params[2],
+				type="p", cex=1.1, col="darkgreen", pch="+");
 			
 
 		}
