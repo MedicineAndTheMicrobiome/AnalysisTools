@@ -58,7 +58,7 @@ usage = paste(
 	"	-A <Sample Group A (subtrahend: B-A=diff), (column name in pairings file)\n",
 	"\n",
 	"	ALR Options:\n",
-	"	[-u <number of top ALR categories to analyze, default=", NUM_TOP_RESP_CAT, "\n",
+	"	[-u <number of top ALR categories to analyze, default=", NUM_TOP_RESP_CAT, "]\n",
 	"	[-a <list of ALR categories to use in additon to top>]\n",
 	"\n",
 	"	[-o <output filename root>]\n",
@@ -204,8 +204,8 @@ cat("Text Line Width: ", options()$width, "\n", sep="");
 ##############################################################################
 ##############################################################################
 
-load_factors=function(fname){
-	factors=data.frame(read.table(fname,  sep="\t", header=TRUE, row.names=1, 
+load_factors=function(fname, samp_id_colname=1){
+	factors=data.frame(read.table(fname,  sep="\t", header=TRUE, row.names=samp_id_colname, 
 		check.names=FALSE, comment.char="", stringsAsFactors=T));
 	factor_names=colnames(factors);
 
@@ -339,17 +339,16 @@ intersect_pairings_map=function(pairs_map, keepers){
 	missing=character();
 	# Sets mappings to NA if they don't exist in the keepers array
 	num_rows=nrow(pairs_map);
-	for(cix in 1:2){
-		for(rix in 1:num_rows){
-			if(!any(pairs_map[rix, cix]==keepers)){
-				missing=c(missing, pairs_map[rix, cix]);
-				pairs_map[rix, cix]=NA;
-			}
+	for(rix in 1:num_rows){
+		if(!any(pairs_map[rix, 1]==keepers) && !any(pairs_map[rix, 2]==keepers) ){
+			missing=c(missing, pairs_map[rix, cix]);
+			pairs_map[rix, cix]=NA;
 		}
 	}
 	results=list();
 	results[["pairs"]]=pairs_map;
 	results[["missing"]]=missing;
+
 	return(results);
 }
 
@@ -986,7 +985,7 @@ cat("\n");
 
 # Load factors
 cat("Loading Factors...\n");
-factors=load_factors(FactorsFile);
+factors=load_factors(FactorsFile, FactorSampleIDName);
 factor_names=colnames(factors);
 num_factors=ncol(factors);
 factor_sample_names=rownames(factors);
@@ -1065,7 +1064,16 @@ cat("\nReconciling samples between factor file and paired mapping...\n");
 factor_sample_ids=rownames(factors);
 counts_sample_ids=rownames(counts);
 
+cat("Example Factor Sample IDs:\n");
+print(head(factor_sample_ids));
+cat("Example Summary Table Sample IDs:\n");
+print(head(counts_sample_ids));
+cat("\n");
+
 shared_sample_ids=sort(intersect(factor_sample_ids, counts_sample_ids));
+
+cat("Shared Sample IDs:\n");
+print(shared_sample_ids);
 
 num_shared_sample_ids=length(shared_sample_ids);
 num_factor_sample_ids=length(factor_sample_ids);
@@ -1085,6 +1093,10 @@ cat("Total samples shared: ", num_shared_sample_ids, "\n");
 # Remove samples not in summary table 
 cat("Adjusting pairings map based on factor/summary table reconciliation...\n");
 intersect_res=intersect_pairings_map(good_pairs_map, shared_sample_ids);
+
+print(intersect_res);
+
+
 pairs=intersect_res[["pairs"]];
 split_res=split_goodbad_pairings_map(pairs);
 good_pairs_map=split_res$good_pairs;
