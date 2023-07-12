@@ -851,6 +851,10 @@ if(ModelFile!=""){
 	quit();
 }
 
+# Remove group column, if not metadata file, i.e. added in as a group of unity
+if(!any(GroupCol==colnames(factor_info))){
+	model_var_list=setdiff(model_var_list, GroupCol);
+}
 
 cat("Collapsing Factors...\n");
 colpsd_factors=collapse_factors(factor_info, SubjectIDCol, model_var_list);
