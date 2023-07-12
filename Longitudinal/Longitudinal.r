@@ -1449,6 +1449,12 @@ mask_matrix=function(val_mat, mask_mat, mask_thres, mask_val){
 
 collapse_factors=function(factor_info_mat, subj_id_colname, model_vars_arr){
 
+	# This function will reduce to the factor_info_mat so there is only 
+	# one row per subject id
+
+	# Make sure all columns are found
+	model_vars_arr=intersect(model_vars_arr, colnames(factor_info_mat));
+
 	# collapse
 	kept_fact=factor_info_mat[,c(subj_id_colname, model_vars_arr)];
 	uniq_subj=sort(unique(factor_info_mat[,subj_id_colname]));
@@ -1469,6 +1475,7 @@ collapse_factors=function(factor_info_mat, subj_id_colname, model_vars_arr){
 	rownames(colpsd_factors_mat)=uniq_subj;
 	colnames(colpsd_factors_mat)=model_vars_arr;
 
+	print(colpsd_factors_mat);
 	return(colpsd_factors_mat);
 
 }
