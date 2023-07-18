@@ -299,14 +299,13 @@ intersect_pairings_map=function(pairs_map, keepers){
 	missing=character();
 	# Sets mappings to NA if they don't exist in the keepers array
 	num_rows=nrow(pairs_map);
-	for(cix in 1:2){
-		for(rix in 1:num_rows){
-			if(!any(pairs_map[rix, cix]==keepers)){
-				missing=c(missing, pairs_map[rix, cix]);
-				pairs_map[rix, cix]=NA;
-			}
-		}
-	}
+        for(rix in 1:num_rows){
+                if(!any(pairs_map[rix, 1]==keepers) && !any(pairs_map[rix, 2]==keepers) ){
+                        missing=c(missing, pairs_map[rix, cix]);
+                        pairs_map[rix, cix]=NA;
+                }
+        }
+
 	results=list();
 	results[["pairs"]]=pairs_map;
 	results[["missing"]]=missing;
@@ -314,7 +313,7 @@ intersect_pairings_map=function(pairs_map, keepers){
 }
 
 split_goodbad_pairings_map=function(pairs_map){
-	
+
 	num_rows=nrow(pairs_map);
 	keepers=apply(pairs_map, 1, function(x){ all(!is.na(x))});
 
@@ -908,6 +907,7 @@ cat("Total samples shared: ", num_shared_sample_ids, "\n");
 
 # Remove samples not in summary table 
 cat("Adjusting pairings map based on factor/summary table reconciliation...\n");
+
 intersect_res=intersect_pairings_map(good_pairs_map, shared_sample_ids);
 pairs=intersect_res[["pairs"]];
 split_res=split_goodbad_pairings_map(pairs);
