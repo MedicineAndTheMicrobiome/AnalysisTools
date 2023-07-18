@@ -122,6 +122,12 @@ if(length(opt$shorten_category_names)){
         ShortenCategoryNames="";
 }
 
+if(length(opt$factor_samp_id_name)){
+	FactorSampleIDName=opt$factor_samp_id_name;
+}else{
+	FactorSampleIDName=1;
+}
+
 if(length(opt$tag_name)){
         TagName=opt$tag_name;
         cat("Setting TagName Hook: ", TagName, "\n");
@@ -178,8 +184,8 @@ cat("Text Line Width: ", options()$width, "\n", sep="");
 ##############################################################################
 ##############################################################################
 
-load_factors=function(fname){
-	factors=data.frame(read.table(fname,  sep="\t", header=TRUE, row.names=1, 
+load_factors=function(fname, samp_id_colname=1){
+	factors=data.frame(read.table(fname,  sep="\t", header=TRUE, row.names=samp_id_colname, 
 		check.names=FALSE, comment.char=""));
 	factor_names=colnames(factors);
 
