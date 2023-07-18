@@ -348,14 +348,15 @@ intersect_pairings_map=function(pairs_map, keepers){
 	missing=character();
 	# Sets mappings to NA if they don't exist in the keepers array
 	num_rows=nrow(pairs_map);
-	for(cix in 1:2){
-		for(rix in 1:num_rows){
-			if(!any(pairs_map[rix, cix]==keepers)){
-				missing=c(missing, pairs_map[rix, cix]);
-				pairs_map[rix, cix]=NA;
-			}
+
+	num_rows=nrow(pairs_map);
+	for(rix in 1:num_rows){
+		if(!any(pairs_map[rix, 1]==keepers) && !any(pairs_map[rix, 2]==keepers) ){
+			missing=c(missing, pairs_map[rix, cix]);
+			pairs_map[rix, cix]=NA;
 		}
 	}
+
 	results=list();
 	results[["pairs"]]=pairs_map;
 	results[["missing"]]=missing;
@@ -375,6 +376,7 @@ split_goodbad_pairings_map=function(pairs_map){
 	res=list();
 	res[["good_pairs"]]=good_pairs_map;
 	res[["bad_pairs"]]=bad_pairs_map;
+
 	return(res);
 	
 }
@@ -884,7 +886,7 @@ if(ShortenCategoryNames!=""){
 cat("Normalizing counts...\n");
 counts=counts+.5;
 normalized=normalize(counts);
-print(normalized);
+#print(normalized);
 
 # Assign 0's to values smaller than smallest abundance across entire dataset
 #min_assay=min(normalized[normalized!=0]);
@@ -1044,6 +1046,7 @@ cat("Total samples shared: ", num_shared_sample_ids, "\n");
 cat("Adjusting pairings map based on factor/summary table reconciliation...\n");
 intersect_res=intersect_pairings_map(good_pairs_map, shared_sample_ids);
 pairs=intersect_res[["pairs"]];
+
 split_res=split_goodbad_pairings_map(pairs);
 good_pairs_map=split_res$good_pairs;
 bad_pairs_map=split_res$bad_pairs;
@@ -1182,7 +1185,12 @@ predictor_sample_ids=good_pairs_map[,PredictorName];
 # Extract the predictor ALR and factors values in the right order
 response_alr=alr_categories_val[response_sample_ids,,drop=F];
 predictor_alr=alr_categories_val[predictor_sample_ids,,drop=F];
-factors=factors_wo_nas[predictor_sample_ids,,drop=F];
+
+if(FactorSampleIDName==ResponseName){
+	factors=factors_wo_nas[response_sample_ids,,drop=F];
+}else{
+	factors=factors_wo_nas[predictor_sample_ids,,drop=F];
+}
 
 ##############################################################################
 
@@ -1256,15 +1264,15 @@ category_alr_coef_mat=matrix(NA, nrow=NumRespVariables, ncol=NumRespVariables,
 category_alr_pval_mat=matrix(NA, nrow=NumRespVariables, ncol=NumRespVariables,
 	dimnames=list(alr_cat_names, alr_cat_names));
 
-covariates_coef_mat  =matrix(NA, nrow=NumRespVariables, ncol=num_cov_coeff_names, 
+covariates_coef_mat=matrix(NA, nrow=NumRespVariables, ncol=num_cov_coeff_names, 
 	dimnames=list(alr_cat_names, cov_coeff_names));
-covariates_pval_mat  =matrix(NA, nrow=NumRespVariables, ncol=num_cov_coeff_names, 
+covariates_pval_mat=matrix(NA, nrow=NumRespVariables, ncol=num_cov_coeff_names, 
 	dimnames=list(alr_cat_names, cov_coeff_names));
 
-rsqrd_mat             =matrix(NA, nrow=NumRespVariables, ncol=4, 
+rsqrd_mat=matrix(NA, nrow=NumRespVariables, ncol=4, 
 	dimnames=list(alr_cat_names[1:NumRespVariables], c("R^2", "Adj-R^2", "Reduced Adj-R^2", "ALR Contrib")));
 
-model_pval_mat             =matrix(NA, nrow=NumRespVariables, ncol=1, 
+model_pval_mat=matrix(NA, nrow=NumRespVariables, ncol=1, 
 	dimnames=list(alr_cat_names[1:NumRespVariables], c("F-statistic P-value")));
 
 # Fit the regression model
