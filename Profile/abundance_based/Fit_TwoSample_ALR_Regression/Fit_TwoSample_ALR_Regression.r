@@ -139,6 +139,12 @@ if(length(opt$alr_list_file)){
 	ALRCategListFile="";
 }
 
+if(length(opt$factor_samp_id_name)){
+	FactorSampleIDName=opt$factor_samp_id_name;
+}else{
+	FactorSampleIDName=1;
+}
+
 if(length(opt$tag_name)){
 	TagName=opt$tag_name;
 	cat("Setting TagName Hook: ", TagName, "\n");
@@ -166,7 +172,8 @@ ModelVarFile=opt$model_var;
 PairingsFile=opt$pairings;
 ResponseName=opt$response;
 PredictorName=opt$predictor;
-FactorSampleIDName=opt$factor_samp_id_name;
+
+
 
 OutputRoot=paste(OutputRoot, ".p_", PredictorName, ".r_", ResponseName, sep="");
 
@@ -206,9 +213,10 @@ cat("Text Line Width: ", options()$width, "\n", sep="");
 ##############################################################################
 ##############################################################################
 
-load_factors=function(fname){
-	factors=data.frame(read.table(fname,  sep="\t", header=TRUE, row.names=1, 
-		check.names=FALSE, comment.char=""), stringsAsFactors=T);
+load_factors=function(fname, samp_id_colname=1){
+
+	factors=data.frame(read.table(fname,  sep="\t", header=TRUE, row.names=samp_id_colname, 
+		check.names=FALSE, comment.char="", stringsAsFactors=T));
 	factor_names=colnames(factors);
 
 	ignore_idx=grep("^IGNORE\\.", factor_names);
@@ -795,6 +803,8 @@ print(all_pairings_map);
 
 cat("Intersecting with samples in summary table:\n");
 intersect_res=intersect_pairings_map(all_pairings_map, st_samples);
+
+
 pairs=intersect_res[["pairs"]];
 split_res=split_goodbad_pairings_map(pairs);
 good_pairs_map=split_res$good_pairs;
@@ -806,6 +816,7 @@ num_complete_pairings=nrow(good_pairs_map);
 num_incomplete_pairings=nrow(bad_pairs_map);
 cat("  Number of complete pairings: ", num_complete_pairings, "\n");
 cat("Number of incomplete pairings: ", num_incomplete_pairings, "\n");
+
 
 loaded_sample_info=c(
 	"Summary Table Info:",
@@ -932,7 +943,8 @@ cat("\n");
 
 # Load factors
 cat("Loading Factors...\n");
-factors=load_factors(FactorsFile);
+factors=load_factors(FactorsFile, FactorSampleIDName);
+
 factor_names=colnames(factors);
 num_factors=ncol(factors);
 factor_sample_names=rownames(factors);
