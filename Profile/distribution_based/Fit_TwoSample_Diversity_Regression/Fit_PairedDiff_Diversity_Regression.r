@@ -104,6 +104,12 @@ if(length(opt$required)){
 	RequiredFile="";
 }
 
+if(length(opt$factor_samp_id_name)){
+	FactorSampleIDName=opt$factor_samp_id_name;
+}else{
+	FactorSampleIDName=1;
+}
+
 if(length(opt$tag_name)){
         TagName=opt$tag_name;
         cat("Setting TagName Hook: ", TagName, "\n");
@@ -132,7 +138,6 @@ PairingsFile=opt$pairings;
 A_subtrahend=opt$A_subtrahend;
 B_minuend=opt$B_minuend;
 
-FactorSampleIDName=opt$factor_samp_id_name;
 
 OutputRoot=paste(OutputRoot, ".a_", A_subtrahend, ".b_", B_minuend, sep="");
 
@@ -158,8 +163,8 @@ cat("Text Line Width: ", options()$width, "\n", sep="");
 ##############################################################################
 ##############################################################################
 
-load_factors=function(fname){
-	factors=data.frame(read.table(fname,  sep="\t", header=TRUE, row.names=1, 
+load_factors=function(fname, samp_id_colname=1){
+	factors=data.frame(read.table(fname,  sep="\t", header=TRUE, row.names=samp_id_colname, 
 		check.names=FALSE, comment.char="", stringsAsFactors=T));
 	factor_names=colnames(factors);
 
@@ -805,7 +810,7 @@ normalized=normalize(counts);
 
 # Load factors
 cat("Loading Factors...\n");
-factors=load_factors(FactorsFile);
+factors=load_factors(FactorsFile, FactorSampleIDName);
 factor_names=colnames(factors);
 num_factors=ncol(factors);
 factor_sample_names=rownames(factors);
