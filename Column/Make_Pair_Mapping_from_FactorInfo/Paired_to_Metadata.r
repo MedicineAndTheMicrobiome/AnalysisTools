@@ -86,6 +86,10 @@ load_paired=function(fname, acn=NULL, bcn=NULL, sbj_idn=NULL){
 	table=data.frame(read.table(fname,  sep="\t", header=TRUE, 
 		row.names=c(), check.names=FALSE, comment.char=""));
 
+	if(!is.null(acn) && !is.null(bcn)){
+		table=cbind(table[,1], table[,c(acn, bcn), drop=F]);
+	}
+
 	if(ncol(table)!=3){
 		cat("\n*************************************************************\n");
 		cat("Error:  This script requires 3 columns in the paired file.\n");
