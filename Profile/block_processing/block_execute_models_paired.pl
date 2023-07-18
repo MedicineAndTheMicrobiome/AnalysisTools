@@ -261,6 +261,7 @@ sub run_abundance_based{
 	my $summary_table=shift;
 	my $summary_table2=shift;
 	my $factor_file=shift;
+	my $samp_id_colname=shift;
 	my $reference_level_file=shift;
 	my $covariates=shift;
 	my $variable_list=shift;
@@ -277,6 +278,7 @@ sub run_abundance_based{
 	print STDERR "  Summary Table 1: $summary_table\n";
 	print STDERR "  Summary Table 2: $summary_table2\n";
 	print STDERR "  Factor File: $factor_file\n";
+	print STDERR "  Sample ID Column Name (in factor file): $samp_id_colname\n";
 	print STDERR "  Covariates File: $covariates\n";
 	print STDERR "  Grouped Variable Fle: $variable_list\n";
 	print STDERR "  Model Name: $model_name\n";
@@ -325,7 +327,7 @@ sub run_abundance_based{
 		$sumtabs \
 		-p $pair_map \
 		-f $factor_file \
-		-F 1 \
+		-F $samp_id_colname \
 		-M $output_dir/cov_var \
 		-e $A_colname \
 		-g $B_colname \
@@ -345,7 +347,7 @@ sub run_abundance_based{
 		$sumtabs \
 		-p $pair_map \
 		-f $factor_file \
-		-F 1 \
+		-F $samp_id_colname \
 		-M $output_dir/cov_var \
 		-e $B_colname \
 		-g $A_colname \
@@ -419,6 +421,7 @@ sub run_distribution_based{
 	my $summary_table=shift;
 	my $summary_table2=shift;
 	my $factor_file=shift;
+	my $samp_id_colname=shift;
 	my $reference_level_file=shift;
 	my $covariates=shift;
 	my $variable_list=shift;
@@ -587,6 +590,7 @@ sub run_distance_based{
 	my $summary_table=shift;
 	my $summary_table2=shift;
 	my $factor_file=shift;
+	my $samp_id_colname=shift;
 	my $reference_level_file=shift;
 	my $covariates=shift;
 	my $variable_list=shift;
@@ -708,6 +712,7 @@ run_abundance_based(
 	$SummaryTable,
 	$SummaryTable2,
 	$FactorFile,
+	$SampID_Colname,
 	$ReferenceLevelsFilename,
 	$Covariates,
 	$GroupVar,
@@ -724,6 +729,7 @@ run_distribution_based(
 	$SummaryTable,
 	$SummaryTable2,
 	$FactorFile,
+	$SampID_Colname,
 	$ReferenceLevelsFilename,
 	$Covariates,
 	$GroupVar,
@@ -739,6 +745,7 @@ run_distance_based(
 	$SummaryTable,
 	$SummaryTable2,
 	$FactorFile,
+	$SampID_Colname,
 	$ReferenceLevelsFilename,
 	$Covariates,
 	$GroupVar,
