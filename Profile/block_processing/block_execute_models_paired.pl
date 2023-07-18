@@ -397,7 +397,7 @@ sub run_abundance_based{
 		$sumtabs \
 		-p $pair_map \
 		-f $factor_file \
-		-F 1 \
+		-F $samp_id_colname \
 		-M $output_dir/cov_var \
 		-B $B_colname \
 		-A $A_colname \
@@ -485,7 +485,7 @@ sub run_distribution_based{
 		$sumtabs \
 		-p $pair_map \
 		-f $factor_file \
-		-F 1 \
+		-F $samp_id_colname \
 		-M $output_dir/cov_var \
 		-B $B_colname \
 		-A $A_colname \
@@ -655,7 +655,7 @@ sub run_distance_based{
 		$sumtabs \
 		-p $pair_map \
 		-f $factor_file \
-		-F 1 \
+		-F $samp_id_colname \
 		-M $output_dir/cov_var \
 		-B $B_colname \
 		-A $A_colname \
@@ -755,55 +755,4 @@ run_distance_based(
 	$Bname,
 	$TagName
 );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
