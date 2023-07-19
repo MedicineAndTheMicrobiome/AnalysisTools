@@ -299,12 +299,14 @@ intersect_pairings_map=function(pairs_map, keepers){
 	missing=character();
 	# Sets mappings to NA if they don't exist in the keepers array
 	num_rows=nrow(pairs_map);
-        for(rix in 1:num_rows){
-                if(!any(pairs_map[rix, 1]==keepers) && !any(pairs_map[rix, 2]==keepers) ){
-                        missing=c(missing, pairs_map[rix, cix]);
-                        pairs_map[rix, cix]=NA;
-                }
-        }
+	if(num_rows>0){
+		for(rix in 1:num_rows){
+			if(!any(pairs_map[rix, 1]==keepers) && !any(pairs_map[rix, 2]==keepers)){
+				missing=rbind(missing, pairs_map[rix, c(1,2)]);
+				pairs_map[rix, c(1,2)]=NA;
+			}
+		}
+	}
 
 	results=list();
 	results[["pairs"]]=pairs_map;
