@@ -121,6 +121,12 @@ if(length(opt$required)){
 	RequiredFile="";
 }
 
+if(length(opt$factor_samp_id_name)){
+        FactorSampleIDName=opt$factor_samp_id_name;
+}else{
+        FactorSampleIDName=1;
+}
+
 SummaryFile=opt$summary_file;
 FactorsFile=opt$factors;
 ModelVarFile=opt$model_var;
@@ -163,8 +169,8 @@ cat("Text Line Width: ", options()$width, "\n", sep="");
 ##############################################################################
 ##############################################################################
 
-load_factors=function(fname){
-	factors=data.frame(read.table(fname,  sep="\t", header=TRUE, row.names=1, check.names=FALSE, comment.char=""));
+load_factors=function(fname, samp_id_colname=1){
+	factors=data.frame(read.table(fname,  sep="\t", header=TRUE, row.names=samp_id_colname, check.names=FALSE, comment.char=""));
 	factor_names=colnames(factors);
 
 	ignore_idx=grep("^IGNORE\\.", factor_names);
@@ -287,16 +293,24 @@ load_mapping=function(filename, src, dst){
 }
 
 intersect_pairings_map=function(pairs_map, keepers){
+
+	missing=character();
 	# Sets mappings to NA if they don't exist in the keepers array
 	num_rows=nrow(pairs_map);
-	for(cix in 1:2){
+	if(num_rows>0){
 		for(rix in 1:num_rows){
-			if(!any(pairs_map[rix, cix]==keepers)){
-				pairs_map[rix, cix]=NA;
+			if(!any(pairs_map[rix, 1]==keepers) && !any(pairs_map[rix, 2]==keepers)){
+				missing=rbind(missing, pairs_map[rix, c(1,2)]);
+				pairs_map[rix, c(1,2)]=NA;
 			}
 		}
 	}
-	return(pairs_map);
+
+	results=list();
+	results[["pairs"]]=pairs_map;
+	results[["missing"]]=missing;
+
+	return(results);
 }
 
 split_goodbad_pairings_map=function(pairs_map){
@@ -700,7 +714,8 @@ print(all_pairings_map);
 
 cat("Intersecting with samples in summary table:\n");
 intersect_res=intersect_pairings_map(all_pairings_map, st_samples);
-split_res=split_goodbad_pairings_map(intersect_res);
+pairs=intersect_res[["pairs"]];
+split_res=split_goodbad_pairings_map(pairs);
 good_pairs_map=split_res$good_pairs;
 bad_pairs_map=split_res$bad_pairs;
 
@@ -816,7 +831,7 @@ cat("\n");
 
 # Load factors
 cat("Loading Factors...\n");
-factors=load_factors(FactorsFile);
+factors=load_factors(FactorsFile, FactorSampleIDName);
 factor_names=colnames(factors);
 num_factors=ncol(factors);
 factor_sample_names=rownames(factors);
@@ -915,7 +930,8 @@ cat("Total samples shared: ", num_shared_sample_ids, "\n");
 # Remove samples not in summary table 
 cat("Adjusting pairings map based on factor/summary table reconciliation...\n");
 intersect_res=intersect_pairings_map(good_pairs_map, shared_sample_ids);
-split_res=split_goodbad_pairings_map(intersect_res);
+pairs=intersect_res[["pairs"]]
+split_res=split_goodbad_pairings_map(pairs);
 good_pairs_map=split_res$good_pairs;
 bad_pairs_map=split_res$bad_pairs;
 paired_samples=as.vector(good_pairs_map);
