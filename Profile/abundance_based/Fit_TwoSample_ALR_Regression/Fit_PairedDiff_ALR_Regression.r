@@ -140,6 +140,12 @@ if(length(opt$alr_list_file)){
 	ALRCategListFile="";
 }
 
+if(length(opt$factor_samp_id_name)){
+	FactorSampleIDName=opt$factor_samp_id_name;
+}else{
+	FactorSampleIDName=1;
+}
+
 if(length(opt$tag_name)){
         TagName=opt$tag_name;
         cat("Setting TagName Hook: ", TagName, "\n");
@@ -168,7 +174,6 @@ PairingsFile=opt$pairings;
 A_subtrahend=opt$A_subtrahend;
 B_minuend=opt$B_minuend;
 
-FactorSampleIDName=opt$factor_samp_id_name;
 
 OutputRoot=paste(OutputRoot, ".a_", A_subtrahend, ".b_", B_minuend, sep="");
 
@@ -205,6 +210,7 @@ cat("Text Line Width: ", options()$width, "\n", sep="");
 ##############################################################################
 
 load_factors=function(fname, samp_id_colname=1){
+
 	factors=data.frame(read.table(fname,  sep="\t", header=TRUE, row.names=samp_id_colname, 
 		check.names=FALSE, comment.char="", stringsAsFactors=T));
 	factor_names=colnames(factors);
@@ -339,12 +345,15 @@ intersect_pairings_map=function(pairs_map, keepers){
 	missing=character();
 	# Sets mappings to NA if they don't exist in the keepers array
 	num_rows=nrow(pairs_map);
-	for(rix in 1:num_rows){
-		if(!any(pairs_map[rix, 1]==keepers) && !any(pairs_map[rix, 2]==keepers) ){
-			missing=c(missing, pairs_map[rix, cix]);
-			pairs_map[rix, cix]=NA;
+	if(num_rows>0){
+		for(rix in 1:num_rows){
+			if(!any(pairs_map[rix, 1]==keepers) && !any(pairs_map[rix, 2]==keepers)){
+				missing=rbind(missing, pairs_map[rix, c(1,2)]);
+				pairs_map[rix, c(1,2)]=NA;
+			}
 		}
 	}
+
 	results=list();
 	results[["pairs"]]=pairs_map;
 	results[["missing"]]=missing;
