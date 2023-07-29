@@ -14,12 +14,11 @@ $0
 	-f <fastq file>
 	[-m <maximum quality value, def = $MAX_QV>]
 
-	This script will read in a fastq file and convert
-	limit the number maximum quality value.  The expected
-	quality values should be coding assuming an offset of $OFFSET. 
+	This script will read in a fastq file and limit
+	the maximum quality value to the value set by the -m option.  
+	The expected quality values should be coded to characters, assuming an offset of $OFFSET. 
 
-	The output will be to STDOUT, in case you want to pipe it
-	through compression.
+	The output will be to STDOUT in case you want to pipe it through compression.
 
 ";
 
