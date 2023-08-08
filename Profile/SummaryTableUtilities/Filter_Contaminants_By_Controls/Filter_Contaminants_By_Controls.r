@@ -574,7 +574,7 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 ###############################################################################
 
 plot_RAcurve=function(ordered_composition, title="", top=0, max=1, overlay_dist=NULL){
-	#cat("Plotting: ", title, "\n", sep="");
+	cat("Plotting: ", title, "\n", sep="");
 	names=names(ordered_composition);
 	num_cat=length(names);
 	if(top<=0){
@@ -639,6 +639,11 @@ fit_contaminant_mixture_model=function(contam_comp, exper_comp, plevel){
 	normalized_filt_comp=adjusted_comp/sum(adjusted_comp);
 	names(normalized_filt_comp)=names(exper_comp);
 
+	# Compute normalized contam composition, after filtred exp has been re-normalized
+	removed_contam_prof=exper_comp-normalized_filt_comp;
+	removed_contam_prof[removed_contam_prof<0]=0;
+	normalized_contam_comp=removed_contam_prof/sum(removed_contam_prof);
+
 	# Estimate Proportion removed (after zero-ing out negatives)
 	proportion_removed=sum(exper_comp-adjusted_comp);
 
@@ -648,6 +653,7 @@ fit_contaminant_mixture_model=function(contam_comp, exper_comp, plevel){
 	fit$proportion=contam_prop;
 	fit$removed=proportion_removed;
 	fit$cleaned=normalized_filt_comp;
+	fit$removed_contam_profile=normalized_contam_comp;
 	return(fit);
 }
 
@@ -667,7 +673,9 @@ for(i in 1:num_names){
 	short_names[i]=tail(split_names[[i]],1);
 }
 
+colnames(counts_mat)=short_names;
 normalized_mat=normalize(counts_mat);
+original_names=long_names;
 
 # Load IDs
 avg_cont_dist=NULL;
@@ -744,16 +752,14 @@ mean_con_abund=apply(normalized_mat[contam_samples,,drop=F], 2, mean);
 mean_both_abund=(mean_exp_abund+mean_con_abund)/2;
 mean_order=order(mean_both_abund, decreasing=T);
 
+# Need to keep original names, because we will eventually export a summary table with full names
 normalized_mat=normalized_mat[,mean_order, drop=F];
-short_names=short_names[mean_order];
-original_names=colnames(normalized_mat);
-colnames(normalized_mat)=short_names;
+original_names=original_names[mean_order];
 
 contam_mat=normalized_mat[contam_samples,,drop=F];
 
 if(doAveraged){
 	avg_cont_dist=avg_cont_dist[mean_order];
-	names(avg_cont_dist)=short_names;
 }
 
 
@@ -948,8 +954,15 @@ layout(layout_mat);
 
 num_exp_cat=ncol(normalized_mat);
 num_exp_samples=length(experm_samples);
-cleaned_obs_matrix=matrix(-1, nrow=num_exp_samples, ncol=num_exp_cat, dimnames=list(experm_samples, original_names));
-cleaned_bs_matrix=matrix(-1, nrow=num_exp_samples, ncol=num_exp_cat, dimnames=list(experm_samples, original_names));
+
+
+cleaned_obs_matrix=matrix(-1, nrow=num_exp_samples, ncol=num_exp_cat, 
+	dimnames=list(experm_samples, original_names));
+cleaned_bs_matrix=matrix(-1, nrow=num_exp_samples, ncol=num_exp_cat, 
+	dimnames=list(experm_samples, original_names));
+removed_contam_matrix=matrix(0, nrow=num_exp_samples, ncol=num_exp_cat, 
+	dimnames=list(experm_samples, colnames(normalized_mat)));
+
 obs_prop_removed=numeric(num_exp_samples);
 bs_prop_removed=numeric(num_exp_samples);
 names(obs_prop_removed)=experm_samples;
@@ -997,6 +1010,9 @@ for(exp_samp_id in experm_samples){
 
 	# Observed fit
 	obs_fit=fit_contaminant_mixture_model(ctl_dist, exp_dist, PLevel);
+
+	# Observed prof of removed contaminants
+	removed_contam_matrix[exp_samp_id,]=obs_fit$removed_contam_profile;
 
 	# Bootstrap fit
 	cat("Perturbing...\n");
@@ -1104,8 +1120,10 @@ obs_saved_totals[experm_samples]=exp_tot[experm_samples]*obs_saved[experm_sample
 bs_saved_totals[experm_samples]=exp_tot[experm_samples]*bs_saved[experm_samples];
 
 # Compute individual category counts based on non-contam * category abundance
-cleaned_obs_counts=matrix(-1, ncol=num_categories, nrow=num_exp_samples, dimnames=list(experm_samples,original_names));
-cleaned_bs_counts=matrix(-1, ncol=num_categories, nrow=num_exp_samples, dimnames=list(experm_samples,original_names));
+cleaned_obs_counts=matrix(-1, ncol=num_categories, nrow=num_exp_samples, 
+	dimnames=list(experm_samples,original_names));
+cleaned_bs_counts=matrix(-1, ncol=num_categories, nrow=num_exp_samples, 
+	dimnames=list(experm_samples,original_names));
 
 for(samp in experm_samples){
 	cleaned_obs_counts[samp,]=floor(cleaned_obs_matrix[samp,]*obs_saved_totals[samp]);
@@ -1182,6 +1200,20 @@ plot(log10(bs_removed_totals), bs_prop_removed*100,
 
 ###############################################################################
 
+# Plot the average of what was removed from each sample
+
+mean_removed_arr=apply(removed_contam_matrix, 2, function(x){mean(x, na.rm=T);});
+mean_removed_ordered_ix=order(mean_removed_arr, decreasing=T);
+mean_removed_ordered_arr=mean_removed_arr[mean_removed_ordered_ix];
+
+par(mfrow=c(5,1));
+plot_RAcurve(mean_removed_ordered_arr, 
+	title="Mean Removed Contaminant Profile",
+	top=min(top_cat_to_plot,sum(mean_removed_ordered_arr>0)));
+
+
+###############################################################################
+
 # Generate a histogram of the frequency by which controls have been matched
 if(doMatched){
 	par(mfrow=c(1,1));
@@ -1198,8 +1230,6 @@ if(doMatched){
 if(doMixture){
 	formatted_mat=apply(mixture_component_matrix, c(1,2), function(x){sprintf("%3.3f", x)});
 	print(formatted_mat, quote=F, width=200);
-	compositions=capture.output({print(formatted_mat, quote=F, width=200)});	
-	plot_text(compositions);
 
 	paint_matrix(mixture_component_matrix, title="Mixeure Contributions",
 		plot_min=0, plot_max=1, high_is_hot=T, deci_pts=2, label_zeros=F);
