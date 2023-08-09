@@ -1012,7 +1012,9 @@ for(exp_samp_id in experm_samples){
 	obs_fit=fit_contaminant_mixture_model(ctl_dist, exp_dist, PLevel);
 
 	# Observed prof of removed contaminants
-	removed_contam_matrix[exp_samp_id,]=obs_fit$removed_contam_profile;
+	removed_contam_arr=obs_fit$removed_contam_profile;
+	removed_contam_arr[is.na(removed_contam_arr)]=0;
+	removed_contam_matrix[exp_samp_id,]=removed_contam_arr;
 
 	# Bootstrap fit
 	cat("Perturbing...\n");
@@ -1173,7 +1175,7 @@ text(log10(obs_removed_total_median), 0, adj=c(-.4,-.1), srt=90,
 	sprintf("Median=%g", log10(obs_removed_total_median)), col="blue", font=2);
 
 plot(log10(obs_removed_totals), obs_prop_removed*100, 
-	main="Log10 Counts vs. Percentage Removed", xlab="Log10(Counts)", ylab="Percent Removed");
+	main="Log10 Counts Removed vs. Percentage Removed", xlab="Log10(Counts)", ylab="Percent Removed");
 
 
 
@@ -1196,7 +1198,7 @@ text(log10(bs_removed_total_median), 0, adj=c(-.4,-.1), srt=90,
 	sprintf("Median=%g", log10(bs_removed_total_median)), col="blue", font=2);
 
 plot(log10(bs_removed_totals), bs_prop_removed*100, 
-	main="Log10 Counts vs. Percentage Removed", xlab="Log10(Counts)", ylab="Percent Removed");
+	main="Log10 Counts Removed vs. Percentage Removed", xlab="Log10(Counts)", ylab="Percent Removed");
 
 ###############################################################################
 
@@ -1210,6 +1212,49 @@ par(mfrow=c(5,1));
 plot_RAcurve(mean_removed_ordered_arr, 
 	title="Mean Removed Contaminant Profile",
 	top=min(top_cat_to_plot,sum(mean_removed_ordered_arr>0)));
+
+
+plot_category_specific_contam_stats=function(prop_removed_mat, sample_counts, num_to_plot){
+
+	samp_ids=names(sample_counts);
+	categories=colnames(prop_removed_mat);
+
+	par(mfrow=c(5,2));
+	par(mar=c(4.1,4.1,5,1));
+
+	hist_breaks=seq(0,1,length.out=20+1);
+
+	for(i in 1:num_to_plot){
+
+		plot(
+			log10(sample_counts+1),
+			prop_removed_mat[samp_ids,i],
+			main=paste(categories[i], ":\nDepth vs. Proportion Removed", sep=""),
+			ylim=c(0,1),
+			xlab="Log10(Sample Depth)",
+			ylab="Proportion Removed"
+		);
+
+		hist(prop_removed_mat[samp_ids,i], breaks=hist_breaks,
+			main=paste(categories[i], ":\nFrequency of Proportion Removed", sep=""),
+			xlab="Proportions Removed", ylab="Num Samples");
+	}
+
+}
+
+plot_category_specific_contam_stats(removed_contam_matrix, exp_tot, top_cat_to_plot);
+
+###############################################################################
+# Calculate correlation across taxa identified as contamination
+
+contam_correl_mat=cor(removed_contam_matrix[,1:top_cat_to_plot]);
+contam_correl_mat[is.na(contam_correl_mat)]=0;
+paint_matrix(contam_correl_mat, title="Correlation Among Contamination Categories",
+	plot_min=-1, plot_max=1, deci_pts=2, value.cex=.6, label_zeros=F);
+
+paint_matrix(contam_correl_mat, title="Correlation Among Contamination Categories",
+	plot_min=-1, plot_max=1, deci_pts=2, value.cex=.6, label_zeros=F, plot_row_dendr=T);
+
 
 
 ###############################################################################
@@ -1231,7 +1276,7 @@ if(doMixture){
 	formatted_mat=apply(mixture_component_matrix, c(1,2), function(x){sprintf("%3.3f", x)});
 	print(formatted_mat, quote=F, width=200);
 
-	paint_matrix(mixture_component_matrix, title="Mixeure Contributions",
+	paint_matrix(mixture_component_matrix, title="Mixture Contributions",
 		plot_min=0, plot_max=1, high_is_hot=T, deci_pts=2, label_zeros=F);
 
 }
