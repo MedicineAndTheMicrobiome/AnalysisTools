@@ -580,13 +580,64 @@ plot_RAcurve=function(ordered_composition, title="", top=0, max=1, overlay_dist=
 	if(top<=0){
 		top=num_cat;
 	}
-	mids=barplot(ordered_composition[1:top], names.arg=names[1:top], las=2, 
+	mids=barplot(ordered_composition[1:top], names.arg="", las=2, 
 		cex.names=.75, cex.axis=.75,
 		main=paste("\n\n",title, sep=""), ylim=c(0,max));
 
 	if(!is.null(overlay_dist)){
 		points(mids, overlay_dist[1:top], pch="o", col="blue");	
 	}
+
+	cw=par()$cxy;
+	labsize=min(c(1, 1/cw[1]));
+	text(mids-cw[1]/2, rep(-cw[2]/2, top), names[1:top], srt=-45, xpd=T, pos=4, cex=labsize);
+}
+
+plot_RAstrip=function(profile_mat, title="", top=10){
+
+	mean_arr=apply(profile_mat, 2, mean);
+	order_ix=order(mean_arr, decreasing=T);
+
+	top_prof_mat=profile_mat[,order_ix[1:top]];
+	num_samp=nrow(top_prof_mat);
+
+	plot(0, type="n", xlim=c(0, top+1), ylim=c(0,1), xaxt="n", bty="n", xlab="",
+		main=title);
+
+	jitter=rnorm(num_samp, 0, .1);
+
+	for(i in 1:top){
+		points(i+jitter, top_prof_mat[,i], cex=.5);
+		points(i, median(top_prof_mat[,i]), cex=1.5, col="green", pch="-");
+		points(i, mean(top_prof_mat[,i]), cex=1.5, col="blue", pch="-");
+	}
+
+	cw=par()$cxy;
+	labsize=min(c(1, 1/cw[1]));
+	text((1:top)-cw[1]/2, rep(-cw[2]/2, top), colnames(top_prof_mat), srt=-45, xpd=T, pos=4, cex=labsize);
+}
+
+plot_RAprop=function(profile_mat, title="", top=10){
+
+	mean_arr=apply(profile_mat, 2, mean);
+	order_ix=order(mean_arr, decreasing=T);
+
+	top_prof_mat=profile_mat[,order_ix[1:top]];
+	num_samp=nrow(top_prof_mat);
+
+	num_any_removed=apply(top_prof_mat, 2, function(x){sum(x>0)});
+
+	par(mar=c(10, 5, 5, 5));
+	mids=barplot(num_any_removed, names.arg="", ylim=c(0, num_samp), main=title,
+		xlab="", ylab="Number of Samples", las=2
+		);
+
+	tick_pos=c(0, .25, .33, .50, .66, .75, 1);
+	axis(side=4, at=tick_pos*num_samp, labels=tick_pos, las=2);
+
+	cw=par()$cxy;
+	labsize=min(c(1, 1/cw[1]));
+	text(mids-cw[1]/2, rep(-cw[2]/2, top), colnames(top_prof_mat), srt=-45, xpd=T, pos=4, cex=labsize);
 }
 
 plot_RAbox=function(ordered_composition, title="", top=0, max=1){
@@ -597,10 +648,14 @@ plot_RAbox=function(ordered_composition, title="", top=0, max=1){
 		top=num_cat;
 	}
 	subsamp=sample(1:nrow(ordered_composition), min(80, nrow(ordered_composition)), replace=F);
-	boxplot(ordered_composition[subsamp,1:top], names.arg=names[1:top], las=2, 
+	boxplot(ordered_composition[subsamp,1:top], names=rep("", top), las=2, 
 		cex.names=.75, cex.axis=.75,
 		bty="n",
 		main=paste("\n\n",title, sep=""), ylim=c(0,max));
+
+	cw=par()$cxy;
+	labsize=min(c(1, 1/cw[1]));
+	text((1:top)-cw[1]/2, rep(-cw[2], top), names[1:top], srt=-45, xpd=T, pos=4, cex=labsize);
 }
 
 ###############################################################################
@@ -1202,17 +1257,37 @@ plot(log10(bs_removed_totals), bs_prop_removed*100,
 
 ###############################################################################
 
-# Plot the average of what was removed from each sample
+par(mfrow=c(5,1));
 
+# Plot the average of what the contamination profile looked like for each sample
 mean_removed_arr=apply(removed_contam_matrix, 2, function(x){mean(x, na.rm=T);});
 mean_removed_ordered_ix=order(mean_removed_arr, decreasing=T);
+
 mean_removed_ordered_arr=mean_removed_arr[mean_removed_ordered_ix];
+num_cat_wmean_gt0=sum(mean_removed_ordered_arr>0);
 
-par(mfrow=c(5,1));
 plot_RAcurve(mean_removed_ordered_arr, 
-	title="Mean Removed Contaminant Profile",
-	top=min(top_cat_to_plot,sum(mean_removed_ordered_arr>0)));
+	title="Mean Contaminant Profile",
+	top=min(top_cat_to_plot, num_cat_wmean_gt0));
 
+# Plot the median of what the contamination profile looked like for each sample
+median_removed_arr=apply(removed_contam_matrix, 2, function(x){median(x, na.rm=T);});
+median_removed_ordered_ix=order(median_removed_arr, decreasing=T);
+
+median_removed_ordered_arr=median_removed_arr[median_removed_ordered_ix];
+plot_RAcurve(median_removed_ordered_arr, 
+	title="Median Contaminant Profile",
+	top=min(top_cat_to_plot, num_cat_wmean_gt0));
+
+# Plot scatter
+plot_RAstrip(removed_contam_matrix, title="Contaminant Strip Plot (Proportion of Contaminants)", 
+	top=min(top_cat_to_plot, num_cat_wmean_gt0));
+
+# Plot proportion any removed
+plot_RAprop(removed_contam_matrix, title="Proportion of Samples (With Any Amount of Category Removed)", 
+	top=min(top_cat_to_plot, num_cat_wmean_gt0));
+
+###############################################################################
 
 plot_category_specific_contam_stats=function(prop_removed_mat, sample_counts, num_to_plot){
 
@@ -1229,15 +1304,15 @@ plot_category_specific_contam_stats=function(prop_removed_mat, sample_counts, nu
 		plot(
 			log10(sample_counts+1),
 			prop_removed_mat[samp_ids,i],
-			main=paste(categories[i], ":\nDepth vs. Proportion Removed", sep=""),
+			main=paste(categories[i], ":\nSample Depth vs. Proportion of Contaminants", sep=""),
 			ylim=c(0,1),
 			xlab="Log10(Sample Depth)",
-			ylab="Proportion Removed"
+			ylab="Proportion of Contaminants"
 		);
 
 		hist(prop_removed_mat[samp_ids,i], breaks=hist_breaks,
-			main=paste(categories[i], ":\nFrequency of Proportion Removed", sep=""),
-			xlab="Proportions Removed", ylab="Num Samples");
+			main=paste(categories[i], ":\nFrequency of Proportion of Contaminants", sep=""),
+			xlab="Proportions of Contaminants", ylab="Num Samples");
 	}
 
 }
