@@ -32,13 +32,16 @@ my $max;
 my $generate_list;
 
 if(defined($opt_n)){
-	$min=$opt_n;
+	$min=$opt_n+0;
 }else{
 	$min=undef;
 }
 
 if(defined($opt_x)){
-	$max=$opt_x;
+	$max=$opt_x+0;
+	if(uc($max) eq "INF"){
+		$max=undef;
+	}
 }else{
 	$max=undef;
 }
