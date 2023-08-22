@@ -13,6 +13,7 @@ use POSIX; # for ceil function
 use Read_QC_Lib::Dust;
 use Read_QC_Lib::AdapterTrim;
 use Read_QC_Lib::AbsoluteTrim;
+use Read_QC_Lib::LengthFilter;
 use Read_QC_Lib::ContaminantFilter;
 use Read_QC_Lib::QualityTrim;
 use Read_QC_Lib::RibosomeFilter;
@@ -65,6 +66,7 @@ $0
 		primer_trim:	Primer Trimming
 		ribo:		Ribosomal Screening
 		abs_trim:	Absolute Coordinate-based Trimming
+		len_filt:	Filter Out Short/Long Sequences
 
 		contam.hs:	Human (Homo Sapiens) Contaminant Screen
 		contam.rn:	Rat (Rattus norvegicus) Contaminant Screen
@@ -327,6 +329,13 @@ sub execute_module{
 		$mod->set_executable_path($config->val("absolute_trim", "bin"));
 		$mod->set_trim_start_keep($config->val("absolute_trim", "keep_start_1based"));
 		$mod->set_trim_end_keep($config->val("absolute_trim", "keep_end_1based"));
+
+	}elsif($command eq "len_filt"){
+
+		$mod=new Read_QC_Lib::LengthFilter;
+		$mod->set_executable_path($config->val("length_filt", "bin"));
+		$mod->set_min_length($config->val("length_filt", "min_length"));
+		$mod->set_max_length($config->val("length_filt", "max_length"));
 
 	}elsif($command eq "barcode_trim"){
 		
