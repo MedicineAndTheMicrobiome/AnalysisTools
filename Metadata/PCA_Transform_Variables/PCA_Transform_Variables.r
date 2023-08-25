@@ -1118,6 +1118,9 @@ plot_title_page("Identifying PC Proxies", c(
 	"observed variables, then its ensuing utility is also potentially low (i.e. noise)."
 ));
 
+fname=paste(OutputFnameRoot, ".proxy_top_correl.tsv", sep="");
+fh=file(fname, "w");
+
 pc_name=paste("PC", sprintf("%02g", 1:num_kept_pred), sep="");
 for(i in 1:num_pc_at_cutoff){
 
@@ -1180,7 +1183,18 @@ for(i in 1:num_pc_at_cutoff){
 	out_pc_cormat[, ((i-1)*3)+2]=round(pc_pred_cor_ordered, 4);
 	out_pc_cormat_header[((i-1)*3)+1]=proxyname;
 	out_pc_cormat_header[((i-1)*3)+2]="Correlation";
+
+	# Write proxy top correlates to file
+	cat(file=fh, "ProxyName\tTopCorrelates\tCorrel_wProxy\n");
+	cat(file=fh, proxyname, "\t\n", sep="");
+	cat(file=fh, paste("",
+		names(pc_pred_cor_ordered)[1:num_corr_bars_to_plot], 
+		sprintf("%3.4f", pc_pred_cor_ordered[1:num_corr_bars_to_plot]),
+		sep="\t"), sep="\n");
+	cat(file=fh, "\t\n");
 }
+
+close(fh);
 
 rownames(top_pc_var_correl_mat)=top_pc_var_name;
 
