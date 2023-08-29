@@ -841,6 +841,7 @@ plot_title_page("PERMANOVA", c(
 ));
 
 run_adonis=function(in_dist, in_factors, num_perm_per_var=1000){
+
 	formula_str=paste("in_dist ~", paste(colnames(in_factors), collapse=" + "));
 
 	cat("Running Adonis: \n", formula_str, "\n");
@@ -863,7 +864,8 @@ for(type in c("Measured", "Response")){
 		distances=dist_rec[[type]][[grp]];
 		perm_mod_name=paste(type, ": ", grp, sep="");
 
-		permanova_rec[[perm_mod_name]]=run_adonis(distances, covariates_data[,covariate_variable_names]);
+		permanova_rec[[perm_mod_name]]=run_adonis(distances, 
+			covariates_data[,covariate_variable_names, drop=F]);
 	}
 }
 
