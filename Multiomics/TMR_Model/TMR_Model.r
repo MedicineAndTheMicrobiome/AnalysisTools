@@ -129,7 +129,24 @@ load_groupings=function(fname, var_col=1, grp_col=2){
 
 	cat("Loading Grouping: ", fname, "\n", sep="");
 	data=read.table(fname, header=F, as.is=T, comment.char="#");
-	#print(data);
+
+	# Remove duplicated variables names
+	unique_var=unique(data[,var_col]);
+	num_unique=length(unique_var);
+	if(num_unique!=nrow(data)){
+		cat("Duplicates Found:\n");
+		tmp_data=matrix("", nrow=num_unique, ncol=2);
+		pos=1;
+		for(i in 1:nrow(data)){
+			if(all(data[i,var_col]!=tmp_data[,var_col])){
+				tmp_data[pos, var_col]=data[i, var_col];
+				tmp_data[pos, grp_col]=data[i, grp_col];
+				pos=pos+1;
+			}
+		}
+		data=tmp_data;
+	}
+
 	grps=data[,grp_col];
 	uniq_grps=sort(unique(grps));
 
@@ -147,7 +164,7 @@ load_groupings=function(fname, var_col=1, grp_col=2){
 	group_map_rec[["GrpVarMap"]]=grp_list;
 	group_map_rec[["Variables"]]=uniq_vars;
 	group_map_rec[["NumUniqVar"]]=length(uniq_vars);
-	
+
 	return(group_map_rec);
 
 }
@@ -780,8 +797,8 @@ rownames(colors)=rownames(covariates_data);
 
 quantize=function(x, steps){
 	# Assign value to bin by quantizig
-	min=min(x);
-	max=max(x);
+	min=min(x, na.rm=T);
+	max=max(x, na.rm=T);
 	range=max-min;
 	norm=(x-min)/range;
 	return(floor(norm*(steps-1))+1);
@@ -789,8 +806,8 @@ quantize=function(x, steps){
 
 centers=function(x, steps){
 	# Calculate the bin centers in 
-	min=min(x);
-	max=max(x);
+	min=min(x, na.rm=T);
+	max=max(x, na.rm=T);
 	breaks=seq(min, max, length.out=steps+1);
 	breaks=round(breaks+(breaks[2]-breaks[1])/2, 3);
 	return(head(breaks, steps));
@@ -799,12 +816,16 @@ centers=function(x, steps){
 max_cat=5;
 legends_values=list();
 for(var_ix in covariate_variable_names){
+	cat("Standardizing: ", var_ix, "\n");
 	data=covariates_data[,var_ix];
 	colors[,var_ix]=quantize(data, max_cat);
 	legends_values[[var_ix]]=centers(data, max_cat);
 }
 
+cat("Colors:\n");
 print(colors);
+
+cat("Legend Values:\n");
 print(legends_values);
 
 palette(rainbow(max_cat, end=4/6));
@@ -819,12 +840,17 @@ plot_title_page("PERMANOVA", c(
 	"and in heatmaps"
 ));
 
-run_adonis=function(in_dist, in_factors){
+run_adonis=function(in_dist, in_factors, num_perm_per_var=1000){
 	formula_str=paste("in_dist ~", paste(colnames(in_factors), collapse=" + "));
+
+	cat("Running Adonis: \n", formula_str, "\n");
+
+	num_perm_per_var=50;
+
 	adon2_res=adonis2(
 		as.formula(formula_str), 
 		data=as.data.frame(in_factors),
-		permutations=ncol(in_factors)*1000
+		permutations=ncol(in_factors)*num_perm_per_var
 		);
 	anova_tab=as.matrix(adon2_res);
 	return(anova_tab);
@@ -833,8 +859,10 @@ run_adonis=function(in_dist, in_factors){
 permanova_rec=list();
 for(type in c("Measured", "Response")){
 	for(grp in names(mds_rec[[type]])){
+		cat("Working on: ", type, " / ", grp, "\n");
 		distances=dist_rec[[type]][[grp]];
 		perm_mod_name=paste(type, ": ", grp, sep="");
+
 		permanova_rec[[perm_mod_name]]=run_adonis(distances, covariates_data[,covariate_variable_names]);
 	}
 }
