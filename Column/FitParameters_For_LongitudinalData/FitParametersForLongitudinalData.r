@@ -109,7 +109,6 @@ if(length(opt$find_recovery_rate_model)){
 	Opt_FindRecoveryRateModel=T;
 }
 
-
 GroupColName="";
 if(length(opt$group_cn)){
 	GroupColName=opt$group_cn;
@@ -153,6 +152,7 @@ if(!(Opt_FindLine || Opt_FindLimits || Opt_FindDescriptive ||
 	Opt_FindExtrapolatedLimits || Opt_FindRecoveryRateModel
 )){
 	cat("At least one of the find/fit parameters should be specified.\n");
+	quit(status=-1);
 }
 
 ##############################################################################
@@ -750,37 +750,53 @@ for(cur_subj in unique_subject_ids){
 		#----------------------------------------------------------------------------
 		# Calculate parameters
 		if(Opt_FindLine){
-			acc_matrix[cur_subj, paste(targ_var_ix, "_", 
-				c("intercept", "slope", "sd_res"), sep="")]=
+
+			varnames=paste(targ_var_ix, "_", 
+				c("intercept", "slope", "sd_res"), sep="");
+		
+			acc_matrix[cur_subj, varnames]=
 				calc_line(target_data);
 		}
 
 		if(Opt_FindLimits || Opt_FindTimeOfLimits){
-			acc_matrix[cur_subj, paste(targ_var_ix, "_",
-				c("min", "max", "range"), sep="")]=
+
+			varnames=paste(targ_var_ix, "_",
+				c("min", "max", "range"), sep="");
+
+			acc_matrix[cur_subj, varnames]=
 				calc_limits(target_data);
 		}
 
 		if(Opt_FindDescriptive){
-			acc_matrix[cur_subj, paste(targ_var_ix, "_", 
-				c("mean", "stdev", "median"), sep="")]=
+
+			varnames=paste(targ_var_ix, "_",
+				c("mean", "stdev", "median"), sep="");
+
+			acc_matrix[cur_subj, varnames]=
 				calc_descriptive(target_data);
 		}
 
 		if(Opt_FindRanges){
-			acc_matrix[cur_subj, paste(targ_var_ix, "_", 
-				c("first", "last", "N"), sep="")]=
+
+			varnames=paste(targ_var_ix, "_",
+				c("first", "last", "N"), sep="");
+
+			acc_matrix[cur_subj, varnames]=
 				calc_ranges(target_data);
 
 		}
 		if(Opt_FindTiming){
-			acc_matrix[cur_subj, paste(targ_var_ix, "_", 
-				c("timespan", "freq"), sep="")]=
+
+			varnames=paste(targ_var_ix, "_",
+				c("timespan", "freq"), sep="");
+
+			acc_matrix[cur_subj, varnames]=
 				calc_timing(target_data);
 		}
 		if(Opt_FindTimeOfLimits){
 
-			varnames=paste(targ_var_ix, "_", c("time_of_min", "time_of_max"), sep="");
+			varnames=paste(targ_var_ix, "_", 
+				c("time_of_min", "time_of_max"), sep="");
 
 			acc_matrix[cur_subj, varnames]=
 				calc_timing_of_limits(target_data);
