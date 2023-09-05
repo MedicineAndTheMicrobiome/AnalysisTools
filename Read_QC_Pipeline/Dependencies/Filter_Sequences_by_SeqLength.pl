@@ -107,6 +107,9 @@ sub process_record{
 		$num_excluded++;
 	}
 
+	$defline=~s/^>//;
+	my @defsplit=split /\s+/, $defline;
+	my $seq_id=$defsplit[0];
 
 	if($generate_list==0){
 
@@ -122,9 +125,9 @@ sub process_record{
 	    }while($length>0);
 	    
 	}elsif($generate_list==-1 && !$keeper){
-		print STDOUT "$defline\n";
+		print STDOUT "$seq_id\n";
 	}elsif($generate_list==1 && $keeper){
-		print STDOUT "$defline\n";
+		print STDOUT "$seq_id\n";
 	}
 }
 
