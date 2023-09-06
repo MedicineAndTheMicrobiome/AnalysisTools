@@ -618,12 +618,22 @@ if(multiplot_dim_c*(multiplot_dim_r-1)>=num_target_variables){
 }
 cat("Multiplot Dimensions: ", multiplot_dim_r, " x ", multiplot_dim_c, "\n");
 
-plot_var=function(times, values, var_name, subject_id, group_name, group_id, val_lim){
+plot_var=function(times, values, var_name, subject_id, group_name, group_id, val_lim, crop_exp){
+
+	xrange=numeric();
+	if(is.finite(crop_exp[1])){
+		xmin=min(times, crop_exp[1]);
+	}
+	if(is.finite(crop_exp[2])){
+		xmax=max(times, crop_exp[2]);
+	}
+	xrange=(xmax-xmin);
 
 	plot(times, values, type="n", 
 		main="",
 		ylim=val_lim,
-		xlab="", ylab="" 
+		xlab="", ylab="" ,
+		xlim=c(xmin-.1*xrange, xmax+.1*xrange)
 	);
 
 	title(main=var_name, col.main="black", cex.main=1.5, font.main=3, line=.5);
@@ -726,7 +736,8 @@ for(cur_subj in unique_subject_ids){
 			group_name=GroupColName,
 			group_id=grp_name,
 			var_name=targ_var_ix,
-			val_lim=c(ranges_mat[targ_var_ix, "min"], ranges_mat[targ_var_ix, "max"])
+			val_lim=c(ranges_mat[targ_var_ix, "min"], ranges_mat[targ_var_ix, "max"]),
+			crop_exp=CropLimits
 		);
 		
 		target_data=subj_mat_sorted[,c(TimeOffsetColName, targ_var_ix), drop=F];
@@ -858,13 +869,13 @@ for(cur_subj in unique_subject_ids){
 
 		plot_par=par();	
 		left=(plot_par$usr[2]-plot_par$usr[1])*.01 + plot_par$usr[1];
-		top=(plot_par$usr[4]-plot_par$usr[3])*.9 + plot_par$usr[3];
+		top=(plot_par$usr[4]-plot_par$usr[3])*.99 + plot_par$usr[3];
 
 		msg=paste(
-			capture.output({print(t(acc_matrix[cur_subj, varnames, drop=F]), quote=F)}),
+			capture.output({print(t(round(acc_matrix[cur_subj, , drop=F], 4)), quote=F)}),
 			collapse="\n");
 
-		text(left, top, msg, pos=4, family="mono");
+		text(left, top, msg, adj=c(0,1), family="mono");
 
 
 	}	
@@ -1151,6 +1162,10 @@ if(GroupColName!=""){
 
 	###############################################################################
 	###############################################################################
+	var2stat=function(varname, stat_name){
+		paste(varname, "_", stat_name, sep="");
+	}
+
 
 	if(length(time_of_variable_arr)){
 
@@ -1184,10 +1199,6 @@ if(GroupColName!=""){
 			for(stat_ix in c("time_of_min", "time_of_max", "min", "max")){
 				tov_vnames=c(tov_vnames, paste(var_ix, "_", stat_ix, sep=""));
 			}
-		}
-
-		var2stat=function(varname, stat_name){
-			paste(varname, "_", stat_name, sep="");
 		}
 
 		tov_matrix=acc_matrix[unique_subject_ids, tov_vnames]
