@@ -45,7 +45,7 @@ usage = paste(
 	"	[-r (find ranges: first/last/N)]\n",
 	"	[-n (find timing: timespan/freq)]\n",
 	"	[-T (find timing of limits: min_time/max_time)\n",
-	"	[-L (find extrapolated limits: extrp_start, extrp_end, extrp_slope)\n",
+	"	[-L (find extrapolated limits: extrp_start, extrp_mid, extrp_end, extrp_slope, extrp_resse)\n",
 	"	[-R (fit recovery_rate_model: start, max, recovery_rate, decline_rate)\n",
 	"\n",
 	"	Specify focus on subset of timepoints:\n",
@@ -422,7 +422,7 @@ if(Opt_FindTimeOfLimits){
 }          
 
 if(Opt_FindExtrapolatedLimits){
-	extensions=c(extensions, c("extrp_start", "extrp_mid", "extrp_end", "extrp_slope"));
+	extensions=c(extensions, c("extrp_start", "extrp_mid", "extrp_end", "extrp_slope", "extrp_resse"));
 
 	calc_extrapolated_limits=function(data, beginx, endx){
 
@@ -453,13 +453,15 @@ if(Opt_FindExtrapolatedLimits){
 		lmfit=lm(ew_y~ew_x);
 		intercept=lmfit$coefficients["(Intercept)"];		
 		slope=lmfit$coefficients["ew_x"];		
+		sumfit=summary(lmfit);
 
 		extrp_start=slope*beginx + intercept;
 		extrp_end=slope*endx + intercept;
 		extrp_mid=(extrp_end+extrp_start)/2;
 		extrp_slope=slope;
+		extrp_resse=sumfit$sigma; # Residual Standard Error
 		
-		return(c(extrp_start, extrp_mid, extrp_end, extrp_slope));
+		return(c(extrp_start, extrp_mid, extrp_end, extrp_slope, extrp_resse));
 
 	}
 }
@@ -818,7 +820,7 @@ for(cur_subj in unique_subject_ids){
 		if(Opt_FindExtrapolatedLimits){
 
 			varnames=paste(targ_var_ix, "_", 
-				c("extrp_start", "extrp_mid", "extrp_end", "extrp_slope"), sep="");
+				c("extrp_start", "extrp_mid", "extrp_end", "extrp_slope", "extrp_resse"), sep="");
 
 			params=calc_extrapolated_limits(target_data,
 					CropLimits[1], CropLimits[2]);
