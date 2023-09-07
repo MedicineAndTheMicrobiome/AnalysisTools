@@ -458,6 +458,32 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 }
 
 ##############################################################################
+
+fitsummary_to_list=function(summary, resp_colnames){
+
+	# When the summary of a lm fit is univariate, the summary is not a list.
+	# This function places the summary into a list, so univariate responses are not
+	# a special case.
+
+	list_names=names(summary);
+	num_names=length(summary);
+
+	if(length(grep("^Response ", list_names))==num_names){
+		cat("Multivariate Response: \n");
+		print(list_names);
+		return(summary);
+	}else{
+		res=list();
+		resp_name=resp_colnames[1];
+		res[[paste("Response ", resp_name, sep="")]]=summary;
+		cat("Univariate Reponse: \n");
+		print(names(res));
+		return(res);
+	}
+}
+
+
+##############################################################################
 # Main Program Starts Here!
 ##############################################################################
 
@@ -1024,7 +1050,7 @@ for(msd_ix in measured_list){
 	print(model_string);	
 
 	fit=lm(as.formula(model_string), data=covariates_data);
-	sum_fit=summary(fit);
+	sum_fit=fitsummary_to_list(summary(fit), msd_resp);
 
 	# Matrices for storing coef and pvalues
 	pval_mat=matrix(NA, nrow=num_covariates, ncol=num_resp);
@@ -1091,7 +1117,7 @@ for(pred_msd_ix in measured_list){
 		print(model_string);	
 
 		fit=lm(as.formula(model_string), data=cbind(covariates_data, msd_pred));
-		sum_fit=summary(fit);
+		sum_fit=fitsummary_to_list(summary(fit), msd_resp_varnames);
 
 		cov_and_pred_names=c(covariate_variable_names, msd_pred_varnames);
 		num_cov_pred_var=num_covariates+num_pred;
@@ -1143,7 +1169,7 @@ cat("\n\n");
 for(pred_msd_ix in measured_list){
 	for(resp_ix in response_list){
 
-		cat("Fitting: Measured to (as Predictor)", pred_msd_ix, " to ", resp_msd_ix, " (as Response)\n");
+		cat("Fitting: Measured to (as Predictor)", pred_msd_ix, " to ", resp_ix, " (as Response)\n");
 
 		analysis_string=paste(pred_msd_ix, "->", resp_ix, sep="");
 
@@ -1162,7 +1188,7 @@ for(pred_msd_ix in measured_list){
 		print(model_string);	
 
 		fit=lm(as.formula(model_string), data=cbind(covariates_data, msd_pred));
-		sum_fit=summary(fit);
+		sum_fit=fitsummary_to_list(summary(fit), resp_varnames);
 		#print(sum_fit);
 
 		cov_and_pred_names=c(covariate_variable_names, msd_pred_varnames);
@@ -1186,7 +1212,6 @@ for(pred_msd_ix in measured_list){
 				rownames(sum_fit[[var_ix]][["coefficients"]]),
 				cov_and_pred_names
 			);
-
 
 			pval_mat[avail_pred, varname]=
 				sum_fit[[var_ix]][["coefficients"]][avail_pred,"Pr(>|t|)"];
