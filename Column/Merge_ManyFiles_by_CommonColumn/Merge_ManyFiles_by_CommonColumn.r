@@ -45,7 +45,7 @@ MergeColName=opt$merge_col_name;
 OutputFName=opt$output;
 
 target_list=read.table(InputFNameList, as.is=T, sep="\n", header=F, check.names=F,
-			comment.char="", quote="")[,1];
+			comment.char="#", quote="")[,1];
 
 cat("Target list of files to merge:\n");
 print(target_list);
@@ -55,7 +55,7 @@ print(target_list);
 load_factors=function(fname, merge_colname){
 	factors=data.frame(read.table(fname,  header=TRUE, check.names=FALSE, as.is=T, 
 		row.names=merge_colname,
-		comment.char="", quote="", sep="\t"));
+		comment.char="#", quote="", sep="\t"));
 
 	#print(factors);
 
