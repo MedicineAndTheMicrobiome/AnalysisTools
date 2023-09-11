@@ -869,6 +869,7 @@ write_abundances_to_fh=function(abundances_fh, abd_mat, title="",
 ###############################################################################
 
 orig_counts_mat=load_summary_file(InputFileName);
+sample_depths=apply(orig_counts_mat, 1, sum);
 #print(counts_mat);
 
 ###############################################################################
@@ -904,7 +905,10 @@ if(!is.null(FactorFileName)){
 }
 #print(factors_mat);
 
-
+# Append depths to factors
+tmp_samp_ids=rownames(orig_factors_mat);
+log10_sample_depths=log10(sample_depths[tmp_samp_ids]);
+orig_factors_mat=cbind(log10_sample_depths, orig_factors_mat);
 
 ###############################################################################
 
@@ -1026,6 +1030,53 @@ print(category_colors);
 
 ###############################################################################
 
+# Plot diversity vs. depth
+
+plot_depth_vs_diversiy=function(cts_mat, div_arr){
+
+	#print(cts_mat);
+	#print(div_arr);	
+
+	samp_ids=rownames(cts_mat);
+	div_arr=div_arr[samp_ids];
+
+	samp_depth=apply(cts_mat, 1, sum);
+
+	par(mfrow=c(3,1));
+
+	sqrt_samp_depth=sqrt(samp_depth);
+	lg10_div_arr=log10(div_arr+1);	
+
+	fit=lm(lg10_div_arr~sqrt_samp_depth);
+
+	hist(sqrt_samp_depth, main="Sample Depth", xlab="sqrt(Sample Depth)", breaks=20);
+	hist(lg10_div_arr, main="Diversity", xlab="Log10(Diversity)", breaks=20);
+	
+	par(mar=c(5,5,5,5));
+
+	sqrt_depth_pretty=sort(c(unique(c(pretty(sqrt_samp_depth), sqrt(c(100, 500, 1000))))));
+	log10_diversity_pretty=pretty(lg10_div_arr);
+
+	plot(sqrt_samp_depth, lg10_div_arr, main="Diversity vs. Sample Depth",
+		xlab="sqrt(Sample Depth)", ylab="Log10(Diversity)", xaxt="n", yaxt="n");
+
+	abline(fit, col="blue");
+
+	axis(side=1, at=sqrt_depth_pretty, labels=round(sqrt_depth_pretty,2));
+	axis(side=3, at=sqrt_depth_pretty, labels=round(sqrt_depth_pretty^2,2));
+
+	axis(side=2, at=log10_diversity_pretty, labels=round(log10_diversity_pretty,2));
+	axis(side=4, at=log10_diversity_pretty, labels=round((10^log10_diversity_pretty)-1,0));
+
+	lines(lowess(lg10_div_arr~sqrt_samp_depth), col="darkorange", lty=2, lwd=2);
+	
+
+}
+
+plot_depth_vs_diversiy(counts_mat, diversity_arr);
+
+###############################################################################
+
 plot_abundance_matrix(simplified_mat, title="By Sample ID", 
 	divname=DiversityType, 
 	median_diversity=diversity_arr, mean_diversity=diversity_arr,
@@ -1080,7 +1131,7 @@ map_val_to_grp=function(fact_mat){
 				grp_levels=paste(
 					paste("(", order_pad, ") ", sep=""),
 					hist_res$breaks[1:(num_grps-1)], 
-					"-", hist_res$breaks[2:num_grps], sep="");
+					" - ", hist_res$breaks[2:num_grps], sep="");
 				cat("Group:\n");
 				print(grp_levels);
 
