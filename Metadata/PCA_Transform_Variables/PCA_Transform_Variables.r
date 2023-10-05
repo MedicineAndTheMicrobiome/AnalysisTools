@@ -1039,7 +1039,8 @@ sample_ids=rownames(resp_mat);
 par(mfrow=c(3,2));
 par(mar=c(3,3,1,1));
 
-for(i in seq(1,num_pc_at_cutoff+1,2)){
+last_pc_to_plot=min(num_pc_at_cutoff+1, ncol(scores)-1);
+for(i in seq(1, last_pc_to_plot, 2)){
 	xpos=scores[,i];
 	ypos=scores[,i+1];
 	xrange=range(xpos, na.rm=T);
