@@ -92,7 +92,7 @@ load_factors=function(fname){
 
 write_factors=function(fname, table, sample_id_name){
 	
-	cat("Writing: ", fname, "\n", sep="");	
+	cat("Writing Metadata: ", fname, "\n", sep="");	
 
 	dimen=dim(table);
 
@@ -114,6 +114,13 @@ load_list=function(fname){
 	arr=loaded[,1];
 
 	return(arr);
+}
+
+write_list=function(fname, arr){
+
+	cat("Writing List: ", fname, "\n", sep="");	
+	write.table(arr, fname, quote=F, row.names=F, col.names=F);
+
 }
 
 
@@ -188,18 +195,32 @@ cat("\n");
 
 
 if(!is.null(required_variable_list)){
+
+	original_sample_ids=rownames(filtered);
 	filtered=filtered[,required_variable_list, drop=F];
 
 	samples_woNAs=apply(filtered, 1, function(x){ !any(is.na(x));});
 	filtered=filtered[samples_woNAs,,drop=F];
 
+	removed_sample_ids=setdiff(original_sample_ids, original_sample_ids[samples_woNAs]);
+
+	out_fname=paste(gsub("tsv", "", OutputMetadata), "removed_sample_ids.lst", sep="");
+	write_list(out_fname, removed_sample_ids);
+
 }
 
 if(!is.null(required_sample_list)){
+
+	original_variables=colnames(filtered);
 	filtered=filtered[required_sample_list,, drop=F];
 
 	variables_woNAs=apply(filtered, 2, function(x){ !any(is.na(x));});
 	filtered=filtered[,variables_woNAs,drop=F];
+
+	removed_variables=setdiff(original_variables, original_variables[variables_woNAs]);
+
+	out_fname=paste(gsub("tsv", "", OutputMetadata), "removed_variables.lst", sep="");
+	write_list(out_fname, removed_variables);
 }
 
 #print(filtered);
