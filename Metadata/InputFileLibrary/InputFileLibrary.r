@@ -6,9 +6,16 @@ source('~/git/AnalysisTools/Metadata/RemoveNAs/Remove_NAs.r');
 
 #------------------------------------------------------------------------------
 
-load_list=function(filename){
-        val=scan(filename, what=character(), comment.char="#");
-        return(val);
+load_list=function(filename, memo=NULL){
+
+	if(is.null(filename) && !is.null(memo)){
+		cat("File name NULL, no list specified for: ", memo, "\n");
+		return(NULL);
+	}else{
+		cat("Loading List: ", filename, " (purpose: ", memo, ")\n", sep="");
+ 		val=scan(filename, what=character(), comment.char="#");
+		return(val);
+	}
 }
 
 
@@ -79,6 +86,7 @@ shorten_category_names=function(full_names, split_char){
         for(i in 1:length(full_names)){
                 short_names[i]=tail(splits[[i]], 1);
                 short_names[i]=gsub("_unclassified$", "_uncl", short_names[i]);
+                short_names[i]=gsub("_group", "_grp", short_names[i]);
         }
 	return(short_names);
 }
@@ -90,6 +98,8 @@ clean_category_names=function(catnames){
         cat_names=gsub("-", "_", cat_names);
 	cat_names=gsub("\\[", "", cat_names);
 	cat_names=gsub("\\]", "", cat_names);
+	cat_names=gsub("\\(", "", cat_names);
+	cat_names=gsub("\\)", "", cat_names);
 
 	return(cat_names);
 
@@ -124,12 +134,19 @@ load_summary_file=function(fname){
 #------------------------------------------------------------------------------
 
 load_reference_levels_file=function(fname){
+
+	cat("Loading Reference Releveling File: ", fname, "\n", sep="");
         inmat=as.matrix(read.table(fname, sep="\t", header=F, check.names=FALSE, comment.char="#", row.names=1))
         colnames(inmat)=c("ReferenceLevel");
+
+	cat("Reference Levels:\n");
         print(inmat);
         cat("\n");
+
         if(ncol(inmat)!=1){
                 cat("Error reading in reference level file: ", fname, "\n");
+		cat("Should be a 2 column tab-separated text file.\n");
+		cat("Format: <variable name>\\t<reference level name>\\n");
                 quit(status=-1);
         }
         return(inmat);
@@ -137,23 +154,51 @@ load_reference_levels_file=function(fname){
 
 relevel_factors=function(factors, ref_lev_mat){
 
+	cat("Releveling References...\n");
         num_factors_to_relevel=nrow(ref_lev_mat);
+	cat("Num factors to relevel: ", num_factors_to_relevel, "\n", sep="");
         relevel_names=rownames(ref_lev_mat);
         factor_names=colnames(factors);
+
+	shared=setdiff(relevel_names, factor_names);
+	if(length(shared)==num_factors_to_relevel){
+		cat("All targeted variables to relevel have been found.\n");
+	}
 
         for(i in 1:num_factors_to_relevel){
                 relevel_target=relevel_names[i];
 
                 if(length(intersect(relevel_target, factor_names))){
+
                         target_level=ref_lev_mat[i, 1];
-                        tmp=factors[,relevel_target];
-                        if(length(intersect(target_level, tmp))){
-                                tmp=relevel(tmp, target_level);
-                                factors[,relevel_target]=tmp;
+
+                        factor_val=factors[,relevel_target];
+
+                        if(length(intersect(target_level, factor_val))){
+
+                                factor_val=relevel(factor_val, target_level);
+                                factors[,relevel_target]=factor_val;
+				cat("Level to set as reference (", relevel_target,
+					 "), found and set for ", target_level, ".\n", sep="");
+
                         }else{
+
                                 cat("WARNING: Target level '", target_level,
                                         "' not found in '", relevel_target, "'!!!\n", sep="");
+
+				top_levels=sort(table(factor_val), decreasing=T);
+				cat("Top Levels: \n");
+				print(top_levels);
+				most_prevalent_level=names(top_levels)[1];
+				cat("Most prevalent level: ", most_prevalent_level, "\n", sep="");
+
+                                factor_val=relevel(factor_val, most_prevalent_level);
+                                factors[,relevel_target]=factor_val;
+				cat("Level to set as reference (", most_prevalent_level,
+					 "), chosen and set for ", target_level, ".\n", sep="");
+				
                         }
+
                 }else{
                         cat("WARNING: Relevel Target Not Found: '", relevel_target, "'!!!\n", sep="");
                 }
@@ -163,23 +208,26 @@ relevel_factors=function(factors, ref_lev_mat){
 
 #------------------------------------------------------------------------------
 
-load_factors=function(fname, samp_id_colname=1, relevel_fn=NULL){
+load_factors_file=function(fname, prim_key_cname=1, relevel_fn=NULL){
 
-        factors=data.frame(read.table(fname,  sep="\t", header=TRUE, row.names=samp_id_colname,
+	cat("Loading Factors File: ", fname, "\n", sep="");
+	cat("Primary Key Column Name: ", prim_key_cname, "\n", sep="");
+	cat("Factor Releveling File Specified: ", relevel_fn, "\n", sep="");
+
+        factors=data.frame(read.table(fname,  sep="\t", header=TRUE, row.names=prim_key_cname,
                 check.names=FALSE, comment.char="#", stringsAsFactors=T));
+
         factor_names=colnames(factors);
+	fact_dim=dim(factors);
 
-        ignore_idx=grep("^IGNORE\\.", factor_names);
-
-        if(length(ignore_idx)!=0){
-                return(factors[-ignore_idx]);
-        }else{
-                return(factors);
-        }
+	cat("Num Rows: ", fact_dim[1], "\n", sep="");
+	cat("Num Variables: ", fact_dim[2], "\n", sep="");
 
 	if(!is.null(relevel_fn)){
 		relevel_mat=load_reference_levels_file(relevel_fn);	
 		factors=relevel_factors(factors, relevel_mat);
+	}else{
+		cat("No Reference Releveling File specified.\n");
 	}
 
 	return(factors);
@@ -193,11 +241,17 @@ load_mapping=function(filename, pA, pB, sbj_id_cname=""){
         # This function will return a 2 column mapping, as requested by the pA and pB
         # names.  The rownames of the mapping will be based on the colname of the sbj_id_cname
 
+	cat("Loading Pair Mapping File: ", filename, "\n", sep="");
         mapping=read.table(filename, sep="\t", header=T, comment.char="#", quote="", row.names=NULL);
+
+	mapping_dim=dim(mapping);
+	cat("Mapping Rows (subject IDs): ", mapping_dim[1], "\n");
+	cat("Mapping Cols (sample IDs): ", mapping_dim[2], "\n");
 
         if(sbj_id_cname==""){
                 subject_ids=mapping[,1];
         }else{
+		cat("Subject ID Column Name Specified.\n");
                 subject_ids=mapping[,sbj_id_cname];
         }
 
@@ -216,56 +270,85 @@ load_mapping=function(filename, pA, pB, sbj_id_cname=""){
         rownames(map)=subject_ids;
 
         # Remove pairings with NAs
+	cat("Removing any incomplete mappings...\n");
         incomp=apply(map, 1, function(x){any(is.na(x))});
         map=map[!incomp,];
+	num_incomplete=sum(incomp);
+	cat("Number of incomplete pairings removed: ", num_incomplete, "\n");
+
+	mapping_dim=dim(mapping);
+	cat("Paired Rows (subject IDs): ", mapping_dim[1], "\n");
+	cat("Paired Cols (sample IDs): ", mapping_dim[2], "\n");
 
         return(map);
 }
 
 #------------------------------------------------------------------------------
 
-intersect_pairings_map_by_sample_id=function(pairs_map, keepers){
+load_sbj_smp_mapping=function(filename, sbj_cname, smp_cname){
 
-        missing=character();
-        # Sets mappings to NA if they don't exist in the keepers array
-        num_rows=nrow(pairs_map);
-        if(num_rows>0){
-                for(rix in 1:num_rows){
-                        if(!any(pairs_map[rix, 1]==keepers) && !any(pairs_map[rix, 2]==keepers)){
-                                missing=rbind(missing, pairs_map[rix, c(1,2)]);
-                                pairs_map[rix, c(1,2)]=NA;
-                        }
-                }
-        }
+	cat("Loading Subject ID to Sample ID Mapping File: ", filename, "\n", sep="");
+        map=read.table(filename, sep="\t", header=T, comment.char="#", quote="", row.names=sbj_cname);
 
-        results=list();
-        results[["pairs"]]=pairs_map;
-        results[["missing"]]=missing;
-        return(results);
+	cat("Number of rows read in: ", nrow(map), "\n");
+
+	map=mapping[, smp_cname, drop=F];
+
+	incomp=is.na(map[,1]);
+        map=map[!incomp,1,drop=F];
+	num_incomplete=sum(incomp);
+
+	cat("Number of incomplete mappings removed: ", num_incomplete, "\n");
+	cat("Number of mappings returned: ", nrow(map), "\n");
+
+        return(map);
 }
 
 #------------------------------------------------------------------------------
 
-intersect_pairings_map_by_subject_id=function(pairs_map, keepers){
+intersect_pairings_map_by_keep_list=function(
+	pairs_map, 
+	sample_id_keepers=NULL,
+	subject_id_keepers=NULL){
 
-        missing=character();
-
-        # Sets mappings to NA if they don't exist in the keepers array
         num_rows=nrow(pairs_map);
-	pairs_map_sbj_id=rownames(pairs_map);
-        if(num_rows>0){
-                for(rix in 1:num_rows){
-			if(!any(pairs_map_sbj_id[rix]==keepers)){
-                                missing=rbind(missing, pairs_map[rix, c(1,2)]);
-                                pairs_map[rix, c(1,2)]=NA;
-                        }
-                }
-        }
+        if(num_rows==0){
+		c("Pairs map is empty.\n");
+		return(pairs_map);
+	}
 
-        results=list();
-        results[["pairs"]]=pairs_map;
-        results[["missing"]]=missing;
-        return(results);
+	delete_row_ix=c();
+
+	if(length(sample_id_keepers)){
+		for(rix in 1:num_rows){
+			if(!any(pairs_map[rix, 1]==sample_id_keepers) ||
+				!any(pairs_map[rix, 2]==sample_id_keepers)){
+					delete_row_ix=c(delete_row_ix, rix);
+			}
+		}
+	}
+
+	if(length(subject_id_keepers)){
+		map_sbj_ids=rownames(pairs_map);
+		for(rix in 1:num_rows){
+			if(!any(map_sbj_ids[rix]==subject_id_keepers)){
+				delete_row_ix=c(delete_row_ix, rix);
+			}
+		}
+	}
+
+        incomplete_pairs=pairs_map[delete_row_ix,,drop=F];
+        complete_pairs=pairs_map[!delete_row_ix,,drop=F];
+
+	cat("Incomplete Pairs: \n");
+	print(incomplete_pairs);
+
+	cat("\n");
+	cat("Num Input Pairs: ", nrow(pairs_map), "\n");
+	cat("Num Complete Pairs: ", nrow(complete_pairs), "\n");
+	cat("Num Incomplete Pairs: ", nrow(incomplete_pairs), "\n");
+
+        return(complete_pairs);
 }
 
 #------------------------------------------------------------------------------
@@ -345,6 +428,21 @@ extract_top_categories=function(ordered_normalized, top, additional_cat=c()){
 
 }
 
+extract_categories_for_counts=function(counts_matrix, cat_to_extr){
+
+	# Extracts counts based on extract list, and computes
+	# Remaining counts.
+
+	totals=apply(counts_matrix, 1, sum);
+	extracted_mat=counts_matrix[,cat_to_extr,drop=F];
+	extracted_totals=apply(extracted_mat, 1, sum);
+	remaining_counts=totals-extracted_totals;
+	extr_wrem=cbind(extracted_mat, remaining_counts);
+	colnames(extr_wrem)=c(cat_to_extr, "Remaining");
+	return(extr_wrem);
+	
+}
+
 
 ###############################################################################
 ###############################################################################
@@ -403,33 +501,95 @@ check_variables=function(covar, grp, req, avail){
 }
 
 
-reconcile=function(param=list("summary_table_mat"=NULL, "factor_mat"=NULL, "pairs_mat"=NULL)){
+reconcile=function(param=list("summary_table_mat"=NULL, "factor_mat"=NULL, "pairs_mat"=NULL,
+	"sbj_smp_mat"=NULL)){	
+
+	# If sumtab, factors, and pairs are specified, then the keying must be
+	#   sample_id -> sumtab
+	#   subject_id -> factors
+	#   subject_id -> pairs
+	#
+	# If sumtab and factors are specified, then
+	#   they need to have the same IDs keyed, probably sample id
 	
+	summary_table_mat=param[["summary_table_mat"]];
+	factor_mat=param[["factor_mat"]];
+	pairs_mat=param[["pairs_mat"]];
+	sbj_to_smp_mat=param[["sbj_smp_mat"]];
+
 	# Get sample IDs from summary table
 	sumtab_sample_ids=rownames(summary_table_mat);
-
-	# From the pairings, only keep pairs that have both samples available
-	intersect_results=intersect_pairings_map_by_sample_id(pairs_mat, sumtab_sample_ids);
-
-	# Get subject IDs from factors
 	factor_subject_ids=rownames(factor_mat);
 
-	# From the pairings, only keep pairs with subject IDs	
-	pairs_mat=intersect_results[["good_pairs"]]
-	intersect_results=intersect_pairings_map_by_subject_id(pairs_mat, factor_subject_ids);
+	if(!is.null(pairs_mat)){
+	# If pairs mat specified, use it to bridge the factor to sample IDs
 
-	# Split out only the good pairs
-	pairs_mat=intersect_results[["good_pairs"]]
-	split_goodbad_pairings_map(pairs_mat);
+		# Determine which pairs are complete by sample ID
+		pairs_mat=intersect_pairings_map_by_keep_list(
+			pairs_mat, 
+			sample_id_keepers=sumtab_sample_ids);
 
-	# Final subject_id list
-	shared_sbj_ids=sort(rownames(pairs_mat));
-	shared_smp_ids=sort(c(pairs_mat[,1], pairs_mat[,2]));
+		# Determine which pairs are useable by subject ID
+		pairs_mat=intersect_pairings_map_by_keep_list(
+			pairs_mat, 
+			subject_id_keepers=factor_subject_ids);
+
+		# This are the subject/sample ids that are pairable
+		pairable_sbj_ids=sort(rownames(pairs_mat));
+		pairable_smp_ids=sort(c(pairs_mat[,1], pairs_mat[,2]));
+
+		summary_table_mat=summary_table_mat[pairable_smp_ids,,drop=F];	
+		factor_mat=factor_mat[pairable_sbj_ids,,drop=F];
+
+	}else if(!is.null(sbj_to_samp_mat)){
+	# If 1-to-1 mapping specified use it.
+
+		invert_mapping=function(map){
+			inv=matrix(rownames(map), ncol=1);	
+			rownames(inv)=map[,1];
+			return(inv);
+		}
+
+		map_sbj_ids=rownames(sbj_to_smp_mat);
+		map_smp_ids=sbj_to_smp_mat[,1];
+
+		# Remove mappings missing subjects from factors
+		matched_sbj_ids=intersect(map_sbj_ids, factor_subject_ids);
+		sbj_to_smp_mat=sbj_to_smp_mat[matched_sbj_ids,,drop=F];
+
+		# Invert mappings
+		smp_to_sbj_mat=invert_mapping(sbj_to_smp_mat);
+		
+		# Remove mappings missing samples from sumtab
+		map_smp_ids=rownames(smp_to_sbj_mat);
+		matched_smp_ids=intersect(map_smp_ids, sumtab_sample_ids);
+		smp_to_sbj_mat=smp_to_sbj_mat[matched_smp_ids,,drop=F];
+
+		matched_smp_ids=rownames(smp_to_sbj_mat);
+		matched_sbj_ids=smp_to_sbj_mat[,1];
+
+		# Invert mappings back
+		sbj_to_smp_mat=invert_mapping(smp_to_sbj_mat);
+
+		summary_table_mat=summary_table_mat[matched_smp_ids,,drop=F];	
+		factor_mat=factor_mat[matched_sbj_ids,,drop=F];
+
+	}else
+		# If only sumtab and factors specified, then assume both factors and 
+		# summary table are keying by sample ID.
+
+		shared_ids=sort(intersect(sumtab_sample_ids, factor_subject_ids));
+		
+		summary_table_mat=summary_table_mat[shared_ids,,drop=F];	
+		factor_mat=factor_mat[shared_ids,,drop=F];
+
+	}
 
 	results=list();
-	results[["summary_table_mat"]]=summary_table_mat[shared_smp_ids,,drop=F];
-	results[["factor_mat"]]=factor_mat[shared_sbj_ids,,drop=F];
-	results[["pairs_mat"]]=pairs_mat[shared_sbj_ids,,drop=F];
+	results[["summary_table_mat"]]=summary_table_mat;
+	results[["factor_mat"]]=factor_mat;
+	results[["pairs_mat"]]=pairs_mat;
+	results[["sbj_smp_mat"]]=sbj_to_smp_mat;
 
 	return(results);
 }
@@ -438,6 +598,7 @@ load_and_reconcile_files=function(
 	sumtab=list(fn=NULL, shorten_char=NULL, return_top=NULL, specific_cat_fn=NULL), 
 	factors=list(fn=NULL, sbj_cname=NULL, ref_relvl_fn=NULL), 
 	pairs=list(fn=NULL, a_cname=NULL, b_cname=NULL, subject_id_cname=NULL), 
+	sbj_to_smp=list(fn=NULL, sbjid_cname=NULL, smpid_cname=NULL),
 	covariates=list(fn=NULL), 
 	grpvar=list(fn=NULL), 
 	reqvar=list(fn=NULL)){
@@ -460,7 +621,7 @@ load_and_reconcile_files=function(
 		shorten_cat_names_char=sumtab[["shorten_char"]],
 		);
 
-	load_list(sumtabl[["specific_cat_fn"]]);
+	load_list(sumtabl[["specific_cat_fn"]], memo="Specific Categories File");
 
 	factors_mat=load_factors_file(
 		fn=factors[["fn"]],
@@ -475,11 +636,17 @@ load_and_reconcile_files=function(
 		sbj_id_cname=pairs[["subject_id_cname"]]
 		);
 
-	covariates_arr=load_list(filename=covariates[["fn"]]);
+	sbj_to_smp_mat=load_sbj_smp_mapping(
+		fn=sbj_to_smp[["fn"]],
+		sbj_cname=sbj_to_smp[["sbjid_cname"]],
+		smp_cname=sbj_to_smp[["smpid_cname"]]
+		);
 
-	groupvar_arr=load_list(filename=grpvar[["fn"]]);
+	covariates_arr=load_list(filename=covariates[["fn"]], memo="Covariates File");
 
-	requiredvar_arr=load_list(filename=reqvar[["fn"]]);
+	groupvar_arr=load_list(filename=grpvar[["fn"]], memo="Group Variables File");
+
+	requiredvar_arr=load_list(filename=reqvar[["fn"]], mem="Required Variables File");
 
 	#-----------------------------------------------------------------------------
 	# 2.) Keep/Subset target variables
@@ -492,53 +659,76 @@ load_and_reconcile_files=function(
 	#-----------------------------------------------------------------------------
 	# 3.) Reconcile
 
-	reconcile(summary_table_mat, factors_mat, pairs_mat);
+	reconciled_files=reconcile(summary_table_mat, factors_subset_mat, pairs_mat, sbj_smp_mat);
+	recon_factors=reconciled_files[["factor_mat"]];
 
 	#-----------------------------------------------------------------------------
 	# 4.) Remove NAs (remove subjects with NAs)
 
-	factors_wo_nas_res=remove_sample_or_factors_wNA_parallel(recon_factors,
-        required=required_arr, num_trials=64000, num_cores=64, outfile=paste(OutputRoot, ".noNAs", sep=""));
+	nona_factors_fn=paste(gsub("\\.tsv", "", factors[["fn"]]), ".noNAs", sep="");
+	factors_wo_nas_res=remove_sample_or_factors_wNA_parallel(
+		recon_factors,
+        	required=requiredvar_arr,
+		outfile=nona_factors_fn,
+		num_trials=64000, num_cores=64);
+
+	factors_mat_nona=factors_wo_nas_res[["factors"]];
 
 	#-----------------------------------------------------------------------------
 	# 5.) Reconcile
 
-	reconcile(summary_table_mat, factors_mat);
+	reconciled_files=reconcile(
+		reconciled_files[["summary_table_mat"]], 
+		factors_mat_nona, 
+		reconciled_files[["pairs_mat"]], 
+		reconciled_files[["sbj_smp_mat"]]);
 
 	#-----------------------------------------------------------------------------
 	# 6.) Apply Summary Table Parameters
 
-	if(!is.null(return_top)){
+	# Order categories by decreasing abundance
+	counts_mat=reconciled_files[["summary_table_mat"]];
+	normalized_mat=normalize(counts_mat);
+	normalized_mat=reorder_by_decreasing_abundance(normalized_mat);
+	counts_mat=counts_mat[,colnames(normalized_mat), drop=F];
 
-		normalize_mat=normalize(counts_mat);
-		ordered_normalized=reorder_by_decreasing_abundance(normalized_mat);
+	if(!is.null(sum_tab[["return_top"]])){
 
-		extract_top_categories(
-			ordered_normalized,
+		top_cat_normalized=extract_top_categories(
+			normalized_mat,
 			sumtab[["return_top"]],
 			additional_cat=sumtabl[["specific_cat_fn"]]);
-	}
 
+		normalized_mat=top_cat_normalized;
+		counts_mat=extract_categories_for_counts(counts_mat, colnames(normalized_mat));
+	}
 
 	#-----------------------------------------------------------------------------
 	# 7.) Shorten categories
 	if(!is.null(shorten_cat_names_char)){
-		colnames(counts_mat)=
-			shorten_category_names(colnames(counts_mat), shorten_cat_names_char);
+
+		colnames(normalized_mat)=
+			shorten_category_names(colnames(normalized_mat), shorten_cat_names_char);
+
+		colnames(counts_mat)=colnames(normalized_mat);
 	}
 
         # Clean category names a little
-	colnames(counts_mat)=clean_category_names(colnames(counts_mat));
+	colnames(normalized_mat)=clean_category_names(colnames(normalized_mat));
+	colnames(counts_mat)=colnames(normalized_mat);
 
 	#-----------------------------------------------------------------------------
 	
 	results=list();
-	results[["SummaryTable"]];
-	results[["Factors"]];
-	results[["PairsMap"]];
-	results[["Covariates"]];
-	results[["GroupVariables"]];
-	results[["RequiredVariables"]];
+	results[["SummaryTable_counts"]]=counts_mat;
+	results[["SummaryTable_normalized"]]=normalized_mat;
+	results[["Factors"]]=factors_mat_nona;
+	results[["PairsMap"]]=reconciled_files[["pairs_mat"]];
+	results{["SubjectToSampleIDMap"]]=reconciled_files[["sbj_to_smp_id_mat"]];
+	results[["Covariates"]]=covariates_arr;
+	results[["GroupVariables"]]=groupvar_arr;
+	results[["RequiredVariables"]]=requiredvar_arr;
+
 	return(results);
 }
 
