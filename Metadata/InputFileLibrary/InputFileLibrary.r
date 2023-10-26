@@ -103,7 +103,7 @@ shorten_category_names=function(full_names, split_char){
 
 #------------------------------------------------------------------------------
 
-clean_category_names=function(catnames){
+clean_category_names=function(cat_names){
 
         cat_names=gsub("-", "_", cat_names);
 	cat_names=gsub("\\[", "", cat_names);
@@ -454,8 +454,8 @@ extract_top_categories=function(ordered_normalized, top, additional_cat=c()){
 
         num_top_to_extract=min(num_categories-1, top);
 
-        cat("  Top Requested to Extract: ", top, "\n");
-        cat("  Columns to Extract: ", num_top_to_extract, "\n");
+        cat("  Num Top Requested to Extract: ", top, "\n");
+        cat("  Columns to Available for Extraction: ", num_top_to_extract, "\n");
 
         # Extract top categories requested
         top_cat=ordered_normalized[,1:num_top_to_extract, drop=F];
@@ -504,6 +504,7 @@ extract_categories_for_counts=function(counts_matrix, cat_to_extr){
 	# Extracts counts based on extract list, and computes
 	# Remaining counts.
 
+	cat_to_extr=setdiff(cat_to_extr, "Remaining");
 	totals=apply(counts_matrix, 1, sum);
 	extracted_mat=counts_matrix[,cat_to_extr,drop=F];
 	extracted_totals=apply(extracted_mat, 1, sum);
@@ -666,7 +667,7 @@ reconcile=function(param=list("summary_table_mat"=NULL, "factor_mat"=NULL, "pair
 }
 
 load_and_reconcile_files=function(
-	sumtab=list(fn=NULL, shorten_char=NULL, return_top=NULL, specific_cat_fn=NULL), 
+	sumtab=list(fn=NULL, shorten_cat_names_char=NULL, return_top=NULL, specific_cat_fn=NULL), 
 	factors=list(fn=NULL, sbj_cname=NULL, ref_relvl_fn=NULL), 
 	pairs=list(fn=NULL, a_cname=NULL, b_cname=NULL, subject_id_cname=NULL), 
 	sbj_to_smp=list(fn=NULL, sbjid_cname=NULL, smpid_cname=NULL),
@@ -689,7 +690,7 @@ load_and_reconcile_files=function(
 
 	summary_table_mat=load_summary_file(fname=sumtab[["fn"]]);
 
-	load_list(fname=sumtab[["specific_cat_fn"]], memo="Specific Categories File");
+	spec_cat_arr=load_list(fname=sumtab[["specific_cat_fn"]], memo="Specific Categories File");
 
 	factors_mat=load_factors_file(
 		fname=factors[["fn"]],
@@ -764,12 +765,12 @@ load_and_reconcile_files=function(
 	normalized_mat=reorder_by_decreasing_abundance(normalized_mat);
 	counts_mat=counts_mat[,colnames(normalized_mat), drop=F];
 
-	if(specified(sum_tab[["return_top"]])){
+	if(specified(sumtab[["return_top"]])){
 
 		top_cat_normalized=extract_top_categories(
 			normalized_mat,
 			sumtab[["return_top"]],
-			additional_cat=sumtabl[["specific_cat_fn"]]);
+			additional_cat=spec_cat_arr);
 
 		normalized_mat=top_cat_normalized;
 		counts_mat=extract_categories_for_counts(counts_mat, colnames(normalized_mat));
@@ -777,10 +778,11 @@ load_and_reconcile_files=function(
 
 	#-----------------------------------------------------------------------------
 	# 7.) Shorten categories
-	if(specified(shorten_cat_names_char)){
+	if(specified(sumtab[["shorten_cat_names_char"]])){
 
 		colnames(normalized_mat)=
-			shorten_category_names(colnames(normalized_mat), shorten_cat_names_char);
+			shorten_category_names(colnames(normalized_mat), 
+			sumtab[["shorten_cat_names_char"]]);
 
 		colnames(counts_mat)=colnames(normalized_mat);
 	}
