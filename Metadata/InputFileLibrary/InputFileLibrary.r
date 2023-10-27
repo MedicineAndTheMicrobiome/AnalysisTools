@@ -657,6 +657,14 @@ reconcile=function(param=list("summary_table_mat"=NULL, "factor_mat"=NULL, "pair
 
 	}
 
+	# Sort the sujbect IDs so everything is synch up
+	subject_ids=sort(rownames(factor_mat));
+
+	factor_mat=factor_mat[subject_ids,,drop=F];
+	pairs_mat=pairs_mat[subject_ids,,drop=F];
+	sbj_to_smp_mat=sbj_to_smp_mat[subject_ids,,drop=F];
+	summary_table_mat=summary_table_mat[c(pairs_mat[,1], pairs_mat[,2]),,drop=F];
+
 	results=list();
 	results[["summary_table_mat"]]=summary_table_mat;
 	results[["factor_mat"]]=factor_mat;
