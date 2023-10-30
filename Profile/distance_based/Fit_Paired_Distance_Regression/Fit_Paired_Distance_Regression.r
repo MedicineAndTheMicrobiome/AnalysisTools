@@ -7,8 +7,7 @@ library(vegan);
 library('getopt');
 library(car);
 
-
-source('~/git/AnalysisTools/Metadata/RemoveNAs/Remove_NAs.r');
+source('~/git/AnalysisTools/Metadata/InputFileLibrary/InputFileLibrary.r');
 
 options(useFancyQuotes=F);
 
@@ -16,7 +15,6 @@ DEF_DISTTYPE="euc";
 
 params=c(
 	"summary_file", "s", 1, "character",
-	"summary_file2", "S", 2, "character",
 
 	"factors", "f", 1, "character",
 	"factor_samp_id_name", "F", 1, "character",
@@ -44,7 +42,6 @@ NUM_TOP_RESP_CAT=35;
 usage = paste(
 	"\nUsage:\n", script_name, "\n",
 	"	-s <summary file table>\n",
-	"	[-S <second summary file table, in case pairings were in different files.>]\n",
 	"\n",
 	"	-f <factors file, contains covariates and factors>\n",
 	"	-F <column name of sample ids in factor file>\n",
@@ -89,12 +86,6 @@ if(!length(opt$outputroot)){
 	OutputRoot=gsub(".summary_table.tsv", "", OutputRoot);
 }else{
 	OutputRoot=opt$outputroot;
-}
-
-if(!length(opt$summary_file2)){
-	SecondSummaryTable="";
-}else{
-	SecondSummaryTable=opt$summary_file2;
 }
 
 if(!length(opt$reference_levels)){
@@ -162,9 +153,6 @@ OutputRoot=paste(OutputRoot, ".a_", A_subtrahend, ".b_", B_minuend, sep="");
 
 cat("\n");
 cat("         Summary File: ", SummaryFile, "\n", sep="");
-if(SecondSummaryTable!=""){
-	cat("     2nd Summary File: ", SecondSummaryTable, "\n", sep="");
-}
 cat("         Factors File: ", FactorsFile, "\n", sep="");
 cat("Factor Sample ID Name: ", FactorSampleIDName, "\n", sep="");
 cat(" Model Variables File: ", ModelVarFile, "\n", sep="");
@@ -183,175 +171,6 @@ cat("Text Line Width: ", options()$width, "\n", sep="");
 
 ##############################################################################
 ##############################################################################
-
-load_factors=function(fname, samp_id_colname=1){
-	factors=data.frame(read.table(fname,  sep="\t", header=TRUE, row.names=samp_id_colname, 
-		check.names=FALSE, comment.char=""));
-	factor_names=colnames(factors);
-
-	ignore_idx=grep("^IGNORE\\.", factor_names);
-
-	if(length(ignore_idx)!=0){
-		return(factors[-ignore_idx]);
-	}else{
-		return(factors);
-	}
-}
-
-load_summary_file=function(fname){
-	inmat=as.matrix(read.table(fname, sep="\t", header=TRUE, check.names=FALSE, 
-	comment.char="", quote="", row.names=1))
-
-	counts_mat=inmat[,2:(ncol(inmat))];
-
-	# Clean category names a little
-	cat_names=colnames(counts_mat);
-	cat_names=gsub("-", "_", cat_names);
-	colnames(counts_mat)=cat_names;
-	
-	cat("Num Categories in Summary Table: ", ncol(counts_mat), "\n", sep="");
-	return(counts_mat);
-}
-
-load_reference_levels_file=function(fname){
-        inmat=as.matrix(read.table(fname, sep="\t", header=F, check.names=FALSE, comment.char="#", row.names=1))
-        colnames(inmat)=c("ReferenceLevel");
-        print(inmat);
-        cat("\n");
-        if(ncol(inmat)!=1){
-                cat("Error reading in reference level file: ", fname, "\n");
-                quit(status=-1);
-        }
-        return(inmat);
-}
-
-relevel_factors=function(factors, ref_lev_mat){
-
-	num_factors_to_relevel=nrow(ref_lev_mat);
-	relevel_names=rownames(ref_lev_mat);
-	factor_names=colnames(factors);
-
-	for(i in 1:num_factors_to_relevel){
-		relevel_target=relevel_names[i];
-
-		if(length(intersect(relevel_target, factor_names))){
-			target_level=ref_lev_mat[i, 1];
-			tmp=factors[,relevel_target];
-			if(length(intersect(target_level, tmp))){
-				tmp=relevel(tmp, target_level);
-    				factors[,relevel_target]=tmp;
-			}else{
-				cat("WARNING: Target level '", target_level,
-					"' not found in '", relevel_target, "'!!!\n", sep="");
-			}
-		}else{
-			cat("WARNING: Relevel Target Not Found: '", relevel_target, "'!!!\n", sep="");
-		}
-	}
-	return(factors);
-}
-
-merge_summary_tables=function(st1, st2){
-	st1_cat_names=colnames(st1);
-	st2_cat_names=colnames(st2);
-	st1_samp=rownames(st1);
-	st2_samp=rownames(st2);
-
-	samp_names=sort(c(st1_samp, st2_samp));
-	num_samp=length(samp_names);
-
-	cat_names=sort(unique(c(st1_cat_names, st2_cat_names)));
-	num_cat=length(cat_names);
-	
-	# Allocate
-	merged_st=matrix(0, nrow=num_samp, ncol=num_cat);
-	colnames(merged_st)=cat_names;
-	rownames(merged_st)=samp_names;
-
-	# Copy over
-	merged_st[st1_samp, st1_cat_names]=st1[st1_samp, st1_cat_names];
-	merged_st[st2_samp, st2_cat_names]=st2[st2_samp, st2_cat_names];
-	return(merged_st);
-}
-
-normalize=function(counts){
-	totals=apply(counts, 1, sum);
-	num_samples=nrow(counts);
-	normalized=matrix(0, nrow=nrow(counts), ncol=ncol(counts));
-
-	for(i in 1:num_samples){
-		normalized[i,]=counts[i,]/totals[i];
-	}
-	
-	colnames(normalized)=colnames(counts);
-	rownames(normalized)=rownames(counts);	
-	return(normalized);
-}
-
-load_list=function(filename){
-	val=scan(filename, what=character(), comment.char="#");
-	return(val);
-}
-
-load_mapping=function(filename, src, dst){
-	mapping=read.table(filename, sep="\t", header=T, comment.char="#", quote="", row.names=NULL);
-	column_names=colnames(mapping);
-	if(all(column_names!=src)){
-		cat("Error: Could not find ", src, " in header of map file.\n");
-		quit(status=-1);
-	}
-	if(all(column_names!=dst)){
-		cat("Error: Could not find ", dst, " in header of map file.\n");
-		quit(status=-1);
-	}
-
-	map=cbind(as.character(mapping[,src]), as.character(mapping[,dst]));
-	colnames(map)=c(src, dst);
-
-	# Remove pairings with NAs
-	incomp=apply(map, 1, function(x){any(is.na(x))});
-	map=map[!incomp,];
-
-	return(map);
-}
-
-intersect_pairings_map=function(pairs_map, keepers){
-
-	missing=character();
-	# Sets mappings to NA if they don't exist in the keepers array
-	num_rows=nrow(pairs_map);
-	if(num_rows>0){
-		for(rix in 1:num_rows){
-			if(!any(pairs_map[rix, 1]==keepers) && !any(pairs_map[rix, 2]==keepers)){
-				missing=rbind(missing, pairs_map[rix, c(1,2)]);
-				pairs_map[rix, c(1,2)]=NA;
-			}
-		}
-	}
-
-	results=list();
-	results[["pairs"]]=pairs_map;
-	results[["missing"]]=missing;
-
-	return(results);
-}
-
-split_goodbad_pairings_map=function(pairs_map){
-	
-	num_rows=nrow(pairs_map);
-	keepers=apply(pairs_map, 1, function(x){ all(!is.na(x))});
-
-	good_pairs_map=pairs_map[keepers,,drop=F];
-	bad_pairs_map=pairs_map[!keepers,,drop=F];
-	num_good_collapsed_rows=nrow(good_pairs_map);
-	cat("Collapsed ", num_rows, " pairs to ", num_good_collapsed_rows, " complete pairs.\n");
-
-	res=list();
-	res[["good_pairs"]]=good_pairs_map;
-	res[["bad_pairs"]]=bad_pairs_map;
-	return(res);
-	
-}
 
 mask_matrix=function(val_mat, mask_mat, mask_thres, mask_val){
 	masked_matrix=val_mat;
@@ -693,298 +512,32 @@ compute_dist=function(norm_st, type){
 # Open main output file
 pdf(paste(OutputRoot, ".paird_dist.", DistType, ".pdf", sep=""), height=11, width=9.5);
 
-# Load summary file table counts 
-cat("\n");
-cat("Loading summary table...\n");
-counts1=load_summary_file(SummaryFile);
+input_files=load_and_reconcile_files(
+                sumtab=list(fn=SummaryFile, shorten_cat_names_char=ShortenCategoryNames,
+                        return_top=NULL, specific_cat_fn=NULL),
+                factors=list(fn=FactorsFile),
+                pairs=list(fn=PairingsFile, a_cname=A_subtrahend, b_cname=B_minuend),
+                covariates=list(fn=ModelVarFile),
+                grpvar=list(fn=""),
+                reqvar=list(fn=RequiredFile)
+        );
 
-counts2=NULL;
-if(SecondSummaryTable!=""){
-	cat("Loading second summary table...\n");
-	counts2=load_summary_file(SecondSummaryTable);	
-	cat("Merging second summary table..\n");
-	counts=merge_summary_tables(counts1, counts2);
-	cat("Merged Summary Table Samples: ", nrow(counts), "\n", sep="");
-	cat("Merged Summary Table Categories: ", ncol(counts), "\n", sep="");
-}else{
-	counts=counts1;
-}
+counts=input_files[["SummaryTable_counts"]];
+factors=input_files[["Factors"]];
+good_pairs_map=input_files[["PairsMap"]];
+model_var_arr=input_files[["Covariates"]];
+required_arr=input_files[["RequiredVariables"]];
+normalized=input_files[["SummaryTable_normalized"]];
 
-# Remove zero count samples
-tot=apply(counts, 1, sum);
-nonzero=tot>0;
-if(!(all(nonzero))){
-	cat("WARNING: Zero count samples found:\n");
-	samp_names=rownames(counts);
-	print(samp_names[!nonzero]);
-	cat("\n");
-	counts=counts[nonzero,,drop=F];
-}
-
-num_st_categories=ncol(counts);
-num_st_samples=nrow(counts);
-
-# Load resp/pred sample mappings
-all_pairings_map=load_mapping(PairingsFile, A_subtrahend, B_minuend);
-st_samples=rownames(counts);
-num_pairings_loaded=nrow(all_pairings_map);
-cat("\n");
-cat("Pairing entries loaded: ", num_pairings_loaded, "\n");
-print(all_pairings_map);
-
-cat("Intersecting with samples in summary table:\n");
-intersect_res=intersect_pairings_map(all_pairings_map, st_samples);
-pairs=intersect_res[["pairs"]];
-split_res=split_goodbad_pairings_map(pairs);
-good_pairs_map=split_res$good_pairs;
-bad_pairs_map=split_res$bad_pairs;
-
-cat("Available pairs:\n");
-print(good_pairs_map);
-num_complete_pairings=nrow(good_pairs_map);
-num_incomplete_pairings=nrow(bad_pairs_map);
-cat("  Number of complete pairings: ", num_complete_pairings, "\n");
-cat("Number of incomplete pairings: ", num_incomplete_pairings, "\n");
-
-loaded_sample_info=c(
-	"Summary Table Info:",
-	paste(" 1st Summary Table Name: ", SummaryFile, sep=""),
-	paste("    Samples: ", nrow(counts1), " Categories: ", ncol(counts1), sep=""),
-	paste(" 2nd Summary Table Name: ", SecondSummaryTable, sep=""),
-	paste("    Samples: ", nrow(counts2), " Categories: ", ncol(counts2), sep=""),
-	"",
-	paste("  Total Number Samples Loaded: ", num_st_samples, sep=""),
-	paste("  Total Number Categories Loaded: ", num_st_categories, sep=""),
-	"",
-	"Sample Pairing Info:",
-	paste("  Mapping Name: ", PairingsFile, sep=""),
-	paste("  Number of Possible Pairings Loaded: ", num_pairings_loaded, sep=""),
-	"",
-	paste("Number of Complete/Matched Pairings: ", num_complete_pairings, sep=""),
-	paste("Number of InComplete/UnMatched Pairings: ", num_incomplete_pairings, sep="")
-);
-
-if(length(intersect_res[["missing"]])){
-	missing_info=c(
-		"",
-		"Missing:",
-		capture.output(print(intersect_res[["missing"]]))
-	);
-}else{
-	missing_info=c();
-}
-
-incomplete_pairing_info=c(
-	"Incomplete Pairings: ",
-	capture.output(print(bad_pairs_map)),
-	"",
-	paste("  Num complete pairings: ", num_complete_pairings, sep=""),
-	paste("Num incomplete pairings: ", num_incomplete_pairings, sep=""),
-	"",
-	"(Double NA entries mean that the samples are missing from both groups.)",
-	"(Known incomplete pairings (i.e. NAs in map file) are not included.)",
-	missing_info
-);
-
-plot_text(loaded_sample_info);
-plot_text(incomplete_pairing_info);
 
 ##############################################################################
-
-# Normalize
-cat("Normalizing counts...\n");
-normalized=normalize(counts);
-
-##############################################################################
-
-# Load factors
-cat("Loading Factors...\n");
-factors=load_factors(FactorsFile, FactorSampleIDName);
-
-factor_names=colnames(factors);
-num_factors=ncol(factors);
-factor_sample_names=rownames(factors);
-num_factor_samples=length(factor_sample_names);
-
-num_loaded_factors=num_factors;
-num_loaded_factor_samp=num_factor_samples;
-
-cat("\n");
-cat(num_factors, " Factor(s) Loaded:\n", sep="");
-print(factor_names);
-cat("\n");
-
-# Load predictorss to include in model
-if(ModelVarFile!=""){
-	model_var_arr=load_list(ModelVarFile);
-	cat("Model Variables:\n");
-	print(model_var_arr);
-	cat("\n");
-}else if(ModelString!=""){
-	cat("Error: Model String option features not implemented yet.\n");
-	quit(status=-1);
-}
-
-# Load variables to require after NA removal
-required_arr=NULL;
-if(""!=RequiredFile){
-	required_arr=load_list(RequiredFile);
-	cat("Required Variables:\n");
-	print(required_arr);
-	cat("\n");
-	missing_var=setdiff(required_arr, factor_names);
-	if(length(missing_var)>0){
-		cat("Error: Missing required variables from factor file:\n");
-		print(missing_var);
-	}
-}else{
-	cat("No Required Variables specified...\n");
-}
-
-plot_text(c(
-	"Variables Targeted:",
-	"",
-	"Predictors:",
-	capture.output(print(model_var_arr)),
-	"",
-	"Required Variables:",
-	 capture.output(print(required_arr))
-));
-
-# Confirm we can find all the factors
-missing_fact=setdiff(model_var_arr, factor_names);
-if(length(missing_fact)>0){
-	cat("Error: Factors in model, missing Factor File.\n");
-	print(missing_fact);
-	quit(status=-1);
-}else{
-	cat("All model variables found in factor file...\n");
-}
-factors=factors[,model_var_arr, drop=F];
-factor_names=colnames(factors);
-num_factors=ncol(factors);
-
-# Relevel factor levels
-if(ReferenceLevelsFile!=""){
-        ref_lev_mat=load_reference_levels_file(ReferenceLevelsFile)
-        factors=relevel_factors(factors, ref_lev_mat);
-}else{
-        cat("No Reference Levels File specified.\n");
-}
-
-##############################################################################
-# Reconcile factors with samples
-
-cat("\nReconciling samples between factor file and paired mapping...\n");
-factor_sample_ids=rownames(factors);
-counts_sample_ids=rownames(counts);
-
-shared_sample_ids=sort(intersect(factor_sample_ids, counts_sample_ids));
-
-num_shared_sample_ids=length(shared_sample_ids);
-num_factor_sample_ids=length(factor_sample_ids);
-num_counts_sample_ids=length(counts_sample_ids);
-
-cat("Num counts (paired responses) sample IDs: ", num_counts_sample_ids, "\n");
-cat("Num factor sample IDs: ", num_factor_sample_ids, "\n");
-cat("Num shared sample IDs: ", num_shared_sample_ids, "\n");
-cat("\n");
-
-cat("Samples missing from factor information:\n");
-samples_missing_factor_info=(setdiff(counts_sample_ids, factor_sample_ids));
-num_samp_missing_fact_info=length(samples_missing_factor_info);
-cat("\n");
-cat("Total samples shared: ", num_shared_sample_ids, "\n");
-
-# Remove samples not in summary table 
-cat("Adjusting pairings map based on factor/summary table reconciliation...\n");
-intersect_res=intersect_pairings_map(good_pairs_map, shared_sample_ids);
-pairs=intersect_res[["pairs"]];
-split_res=split_goodbad_pairings_map(pairs);
-good_pairs_map=split_res$good_pairs;
-bad_pairs_map=split_res$bad_pairs;
-paired_samples=as.vector(good_pairs_map);
-num_shared_sample_ids=length(paired_samples);
-
-# Reorder data by sample id
-normalized=normalized[paired_samples,];
-num_samples=nrow(normalized);
-recon_factors=factors[paired_samples,,drop=F];
-
-factor_file_info=c(
-	paste("Factor File Name: ", FactorsFile, sep=""),
-	"",
-	paste("Num Loaded Factors/Variables: ", num_loaded_factors, sep=""),
-	paste("Num Samples in Factor File: ", num_loaded_factor_samp, sep=""),
-	"",
-	paste("Num Samples Shared between Factors and Pairable Samples: ", num_shared_sample_ids, sep=""),
-	"",
-	paste("Num Samples Missing Factor Information: ", num_samp_missing_fact_info, sep=""),
-	"",
-	"Samples missing info: ",
-	capture.output(print(samples_missing_factor_info))
-);
-
-plot_text(factor_file_info);
-
-##############################################################################
-# Remove samples with NAs
-
-cat("Identifying samples/factors to keep with NAs...\n");
-num_samples_recon=nrow(recon_factors);
-num_factors_recon=ncol(recon_factors);
-num_samples_before_na_removal=num_samples_recon;
-num_factors_before_na_removal=num_factors_recon;
-
-factors_wo_nas_res=remove_sample_or_factors_wNA_parallel(recon_factors, 
-	required=required_arr, num_trials=64000, num_cores=64, outfile=paste(OutputRoot, ".noNAs", sep=""));
-
-factors_wo_nas=factors_wo_nas_res$factors;
-factor_names_wo_nas=colnames(factors_wo_nas);
-factor_sample_ids_wo_nas=rownames(factors_wo_nas);
-model_var_arr=intersect(model_var_arr, factor_names_wo_nas);
-
-# Subset pairing map based on factor sample IDs
-cat("Adjusting pairings map based on post-NA removal samples...\n");
-intersect_res=intersect_pairings_map(good_pairs_map, factor_sample_ids_wo_nas);
-pairs=intersect_res[["pairs"]]
-split_res=split_goodbad_pairings_map(pairs);
-good_pairs_map=split_res$good_pairs;
-bad_pairs_map=split_res$bad_pairs;
-paired_samples=as.vector(good_pairs_map);
-num_shared_sample_ids=length(paired_samples);
-
-# Subset the normalized counts based on pairing map
-normalized=normalized[paired_samples,, drop=F];
-num_samples_wo_nas=nrow(factors_wo_nas);
-num_factors_wo_nas=ncol(factors_wo_nas);
-
-#cat("Num Samples w/o NAs: ", num_samples_wo_nas, "\n");
-#cat("Num Factors w/o NAs: ", num_factors_wo_nas, "\n");
-#cat("\n");
-
-##############################################################################
-
-plot_text(c(
-	paste("Num (Reconciled) Samples before NA removal: ", num_samples_before_na_removal, sep=""),
-	paste("Num Factors before NA removal: ", num_factors_before_na_removal, sep=""),
-	"",
-	"Acceptable Variables after NA Removal:",
-	"",
-	capture.output(print(factor_names_wo_nas)),
-	"",
-	paste("Num Samples w/o NAs: ", num_samples_wo_nas, sep=""),
-	paste("Num Factors w/o NAs: ", num_factors_wo_nas, sep="")
-));
-
 ##############################################################################
 
 # Order/Split the data....
 # Order the pairings map by response sample IDs
 A_sample_ids=good_pairs_map[,A_subtrahend];
 B_sample_ids=good_pairs_map[,B_minuend];
-
-factors=factors_wo_nas[A_sample_ids,,drop=F];
+AB_sample_ids=c(A_sample_ids, B_sample_ids);
 
 ##############################################################################
 # Compute diversity indices
@@ -1019,13 +572,14 @@ print(A_centroid);
 cat("B centroid: \n");
 print(B_centroid);
 
+num_shared_sample_ids=length(AB_sample_ids);
 colors=numeric(num_shared_sample_ids)
-names(colors)=paired_samples;
+names(colors)=AB_sample_ids;
 colors[A_sample_ids]="green";
 colors[B_sample_ids]="blue";
 
 glyphs=character(num_shared_sample_ids);
-names(glyphs)=paired_samples;
+names(glyphs)=AB_sample_ids;
 
 # Find a short but unique abbreviation
 shorter_name_len=min(c(nchar(A_subtrahend), nchar(B_minuend)));
@@ -1151,6 +705,11 @@ text(mds[,1], mds[,2], glyphs, col=colors);
 
 plot_paired_mds_colored_by_group=function(a_ids, b_ids, mds_res, fact, labels){
 
+	if(!all(names(a_ids)==rownames(fact))){
+		cat("Error!  Subject ID if A IDs don't match the Subject IDs of Factor Matrix.\n");
+		quit(-1);
+	}
+
 	orig_par=par(no.readonly=T);
 
 	# Make space for plot and legend
@@ -1166,7 +725,7 @@ plot_paired_mds_colored_by_group=function(a_ids, b_ids, mds_res, fact, labels){
 	factor_names=colnames(fact);
 	for(fi in 1:num_factors){
 
-		cur_fact=as.character(fact[a_ids,fi,]);
+		cur_fact=as.character(fact[,fi,]);
 		cur_fact_name=factor_names[fi];
 		uniq_levels=sort(unique(cur_fact));
 		num_levels=length(uniq_levels);
@@ -1226,6 +785,7 @@ plot_paired_mds_colored_by_group=function(a_ids, b_ids, mds_res, fact, labels){
 
 	par(orig_par);
 }
+
 
 plot_paired_mds_colored_by_group(A_sample_ids, B_sample_ids, mds, factors, glyphs);
 
@@ -1634,21 +1194,6 @@ num_dist=length(sorted_paired_dist);
 splits_arr=1:(min(6,num_dist-1));
 num_splits=length(splits_arr);
 
-if(ShortenCategoryNames!=""){
-        full_names=colnames(normalized);
-        splits=strsplit(full_names, ShortenCategoryNames);
-        short_names=character();
-        for(i in 1:length(full_names)){
-                short_names[i]=tail(splits[[i]], 1);
-
-                short_names[i]=gsub("_unclassified$", "_uncl", short_names[i]);
-                short_names[i]=gsub("_group", "_grp", short_names[i]);
-        }
-        colnames(normalized)=short_names;
-
-        cat("Names have been shortened.\n");
-}
-
 num_cat_to_plot=15;
 num_colors_to_asgn=round(num_cat_to_plot*1.1)
 num_categories=ncol(normalized);
@@ -1900,7 +1445,6 @@ plot_dist_hist=function(a_dist_arr, b_dist_arr, a_name, b_name, acol, bcol){
 regress_dispersion=function(Adist_arr, Bdist_arr, Aname, Bname, model_var, factors){
 
 	A_samp_ids=names(Adist_arr);
-	factors=factors[A_sample_ids,,drop=F];
 	
 	num_model_var=length(model_var);
 	cat("RegressDispersion: Number of Predictors: ", num_model_var, "\n");
@@ -1941,7 +1485,6 @@ regress_diff_dispersion=function(Adist_arr, Bdist_arr, Aname, Bname, model_var, 
 
 	centr_diff=Bdist_arr-Adist_arr;
 	A_samp_ids=names(centr_diff);
-	factors=factors[A_sample_ids,,drop=F];
 	
 	num_model_var=length(model_var);
 	cat("RegressDifferenceDispersion: Number of Predictors: ", num_model_var, "\n");
@@ -2095,8 +1638,10 @@ plot_dist_hist(A_dist_fr_centr, B_dist_fr_centr, A_subtrahend, B_minuend, acol="
 
 regress_dispersion(A_dist_fr_centr, B_dist_fr_centr, A_subtrahend, B_minuend, model_var_arr, factors);
 
-A_bs_reg_tab=bootstrap_regression_dispersion(A_dist_fr_centr, A_subtrahend, model_var_arr, factors, NUM_BS);
-B_bs_reg_tab=bootstrap_regression_dispersion(B_dist_fr_centr, B_minuend, model_var_arr, factors, NUM_BS);
+A_bs_reg_tab=bootstrap_regression_dispersion(A_dist_fr_centr, A_subtrahend, model_var_arr, 
+	factors, NUM_BS);
+B_bs_reg_tab=bootstrap_regression_dispersion(B_dist_fr_centr, B_minuend, model_var_arr, 
+	factors, NUM_BS);
 
 plot_text(c(
 	paste("Associations on Dispersion (Bootstrapped Regression, num bootstraps: ", NUM_BS, ")", sep=""),
