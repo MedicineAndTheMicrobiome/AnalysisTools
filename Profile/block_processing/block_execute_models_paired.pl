@@ -5,13 +5,13 @@
 use strict;
 use Getopt::Std;
 use File::Temp;
-use vars qw ($opt_s $opt_S $opt_f $opt_F $opt_r $opt_c $opt_g $opt_p $opt_A $opt_B $opt_P $opt_o $opt_E $opt_t);
+use vars qw ($opt_s $opt_f $opt_F $opt_r $opt_c $opt_g $opt_p $opt_A $opt_B $opt_P $opt_o $opt_E $opt_t);
 use File::Basename;
 use Cwd;
 use Digest::MD5;
 use Sys::Hostname;
 
-getopts("s:S:f:F:r:c:g:p:A:B:P:o:Ec:t:");
+getopts("s:f:F:r:c:g:p:A:B:P:o:Ec:t:");
 
 my $NUM_ALR_VARIABLES=15;
 
@@ -21,7 +21,6 @@ my $usage = "
 
 	Summary Table:
 	-s <summary table>
-	[-S <second summary table, in case pairings were in different files>]
 
 	Factor File:
 	-f <factor file>
@@ -82,7 +81,6 @@ if(
 
 
 my $SummaryTable=$opt_s;
-my $SummaryTable2=$opt_S;
 my $FactorFile=$opt_f;
 my $SampID_Colname=$opt_F;
 my $ReferenceLevelsFilename=$opt_r;
@@ -107,10 +105,6 @@ if(!defined($GroupVar)){
 
 if(!defined($ReferenceLevelsFilename)){
 	$ReferenceLevelsFilename="";
-}
-
-if(!defined($SummaryTable2)){
-	$SummaryTable2="";
 }
 
 if(!defined($opt_P)){
@@ -148,7 +142,6 @@ my $DSTNC_DIR="distance_based";
 
 print STDERR "\n";
 print STDERR "Summary Table:        $SummaryTable\n";
-print STDERR "Summary Table 2:      $SummaryTable2\n";
 print STDERR "\n";
 print STDERR "Factor File:          $FactorFile\n";
 print STDERR "Sample ID Colname:    $SampID_Colname\n";
@@ -259,7 +252,6 @@ sub run_abundance_based{
 
 	my $output_dir=shift;
 	my $summary_table=shift;
-	my $summary_table2=shift;
 	my $factor_file=shift;
 	my $samp_id_colname=shift;
 	my $reference_level_file=shift;
@@ -276,7 +268,6 @@ sub run_abundance_based{
 	print STDERR "Running Distance Based Analyses:\n";
 	print STDERR "  Output Dir: $output_dir\n";
 	print STDERR "  Summary Table 1: $summary_table\n";
-	print STDERR "  Summary Table 2: $summary_table2\n";
 	print STDERR "  Factor File: $factor_file\n";
 	print STDERR "  Sample ID Column Name (in factor file): $samp_id_colname\n";
 	print STDERR "  Covariates File: $covariates\n";
@@ -308,12 +299,7 @@ sub run_abundance_based{
 	mkdir "$output_dir/abundance/$PRED_RESP_ANALYSIS";
 	mkdir "$output_dir/abundance/$DIFF_OUT_DIR";
 
-	my $sumtabs;
-	if($summary_table2 eq ""){
-		$sumtabs="-s $summary_table";
-	}else{
-		$sumtabs="-s $summary_table -S $summary_table2";
-	}
+	my $sumtabs="-s $summary_table";
 
 	my $reflvl;
 	if($reference_level_file eq ""){
@@ -419,7 +405,6 @@ sub run_distribution_based{
 
 	my $output_dir=shift;
 	my $summary_table=shift;
-	my $summary_table2=shift;
 	my $factor_file=shift;
 	my $samp_id_colname=shift;
 	my $reference_level_file=shift;
@@ -435,7 +420,6 @@ sub run_distribution_based{
 	print STDERR "Running Distribution Based Analyses:\n";
 	print STDERR "  Output Dir: $output_dir\n";
 	print STDERR "  Summary Table 1: $summary_table\n";
-	print STDERR "  Summary Table 2: $summary_table2\n";
 	print STDERR "  Factor File: $factor_file\n";
 	print STDERR "  Covariates File: $covariates\n";
 	print STDERR "  Grouped Variable Fle: $variable_list\n";
@@ -461,12 +445,7 @@ sub run_distribution_based{
 	mkdir "$output_dir/distribution/$DIV_DIFF";
 	mkdir "$output_dir/distribution/$STACKED_BP";
 
-	my $sumtabs;
-	if($summary_table2 eq ""){
-		$sumtabs="-s $summary_table";
-	}else{
-		$sumtabs="-s $summary_table -S $summary_table2";
-	}
+	my $sumtabs="-s $summary_table";
 
 	my $reflvl;
 	if($reference_level_file eq ""){
@@ -631,12 +610,7 @@ sub run_distance_based{
 	mkdir "$output_dir/distance/$DIST_DIFF";
 	mkdir "$output_dir/distance/$CLUST_CMP";
 
-	my $sumtabs;
-	if($summary_table2 eq ""){
-		$sumtabs="-s $summary_table";
-	}else{
-		$sumtabs="-s $summary_table -S $summary_table2";
-	}
+	my $sumtabs="-s $summary_table";
 
 	my $reflvl;
 	if($reference_level_file eq ""){
