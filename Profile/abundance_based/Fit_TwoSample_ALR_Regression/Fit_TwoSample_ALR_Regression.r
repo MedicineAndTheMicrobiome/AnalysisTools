@@ -14,8 +14,10 @@ options(useFancyQuotes=F);
 
 params=c(
 	"summary_file", "s", 1, "character",
+
 	"pairings", "p", 1, "character",
 	"factors", "f", 1, "character",
+	"factor_samp_id_name", "F", 1, "character",
 	"model_var", "M", 1, "character",
 	"required", "q", 2, "character",
 	"response", "e", 1, "character",
@@ -46,6 +48,7 @@ usage = paste(
 	"\n",
 	"	-p <pairings map, pairing Resp and Pred sample IDs. Must have header/column names>\n",
 	"	-f <factors file, contains covariates and factors>\n",
+	"       -F <column name of sample ids in factor file>\n",
 	"	-M <list of covariate X's names to include in the model from the factor file>\n",
 	"	-e <response ALR name, (column name in pairings file)\n",
 	"	-g <predictor ALR name, (column name in pairings file)\n",
@@ -127,6 +130,12 @@ if(length(opt$alr_list_file)){
 	ALRCategListFile=opt$alr_list_file;
 }else{
 	ALRCategListFile="";
+}
+
+if(length(opt$factor_samp_id_name)){
+        FactorSampleIDName=opt$factor_samp_id_name;
+}else{
+        FactorSampleIDName=1;
 }
 
 if(length(opt$tag_name)){
