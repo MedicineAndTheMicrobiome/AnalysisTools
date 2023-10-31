@@ -632,9 +632,31 @@ sub run_distance_based{
 	
 	#######################################################################
 	
+
+	
+	$cmd=
+	"~/git/AnalysisTools/Profile/SummaryTableUtilities/Extract_Samples_by_List.r \
+		-i $summary_table \
+		-s $pair_map \
+		-c $A_colname \
+		-o $output_dir/distance/$CLUST_CMP/A.summary_table.tsv
+	";
+	run_command("Extract Summary Table A", $CLUST_CMP, $cmd, "$output_dir/distance/$CLUST_CMP");
+
+	$cmd=
+	"~/git/AnalysisTools/Profile/SummaryTableUtilities/Extract_Samples_by_List.r \
+		-i $summary_table \
+		-s $pair_map \
+		-c $B_colname \
+		-o $output_dir/distance/$CLUST_CMP/B.summary_table.tsv
+	";
+	run_command("Extract Summary Table B", $CLUST_CMP, $cmd, "$output_dir/distance/$CLUST_CMP");
+
+	
 	$cmd=
 	"~/git/AnalysisTools/Profile/distance_based/Cluster_Compare_TwoProfiles/Cluster_Compare_TwoProfiles.r \
-		-a $summary_table \
+                -a $output_dir/distance/$CLUST_CMP/A.summary_table.tsv
+                -b $output_dir/distance/$CLUST_CMP/B.summary_table.tsv
 		-A $A_colname \
 		-B $B_colname \
 		-m $pair_map \
