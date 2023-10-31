@@ -7,6 +7,7 @@ library('getopt');
 params=c(
 	"input_file", "i", 1, "character",
 	"sample_list", "s", 1, "character",
+	"column_name", "c", 2, "character",
 	"remove_samples", "R", 2, "logical",
 	"output_file", "o", 1, "character"
 );
@@ -20,6 +21,7 @@ usage = paste (
 	"\n",
 	"	-i <input summary_table.tsv>\n",
 	"	-s <sample list>\n",
+	"	[-c <column name>]\n",
 	"	[-R remove samples]\n",
 	"	-o <output summary_table file name>\n",
 	"\n",	
@@ -28,6 +30,9 @@ usage = paste (
 	"\n",
 	"If the -R flag is set, the samples on the list will instead\n",
 	"be deleted and the remaining samples written to a the new summary table\n",
+	"\n",
+	"If the -c column is set, then the sample list file can be a matrix\n",
+	"and the column with the sample IDs of interest is specified by name.\n",
 	"\n");
 
 if(!length(opt$input_file) || !length(opt$sample_list) || !length(opt$output_file)){
@@ -38,6 +43,11 @@ if(!length(opt$input_file) || !length(opt$sample_list) || !length(opt$output_fil
 RemoveSamples=F;
 if(length(opt$remove_samples)){
 	RemoveSamples=T;
+}
+
+ColumnName="";
+if(length(opt$column_name)){
+	ColumnName=opt$column_name;
 }
 
 ###############################################################################
@@ -55,6 +65,9 @@ cat("\n");
 cat("Input File Name: ", InputFileName, "\n");
 cat("Sample List: ", SampleList, "\n");
 cat("Output File Name: ", OutputFileName, "\n");       
+if(ColumnName!=""){
+	cat("Column Name: ", ColumnName, "\n");
+}
 cat("\n");
 
 if(InputFileName==OutputFileName){
@@ -80,7 +93,14 @@ cat("Num Categories: ", num_categories, "\n");
 ###############################################################################
 # Load sample list
 
-sample_list=as.vector(read.table(SampleList, header=FALSE)[,1]);
+if(ColumnName==""){
+	# If no column name specified, assume it's just a simple list without a header
+	sample_list=as.vector(read.table(SampleList, header=FALSE, comment.char="#", sep="\t")[,1]);
+}else{
+	# If the column name is specified, then there must be a header.
+	samp_list_mat=read.table(SampleList, header=T, comment.char="#", sep="\t");
+	sample_list=samp_list_mat[,ColumnName];
+}
 
 num_samples_to_extract=length(sample_list);
 
