@@ -258,8 +258,10 @@ load_mapping_file=function(mp_fname, keep_a_ids, keep_b_ids, colname_a, colname_
 	orig_mat_rows=nrow(inmat);
 	cat("Number of Mapping Entries Read: ", orig_mat_rows, "\n");
 
+	ab_ids=c(keep_a_ids, keep_b_ids);
+
 	for(i in 1:orig_mat_rows){
-		if(any(inmat[i,1]==keep_a_ids) &&  any(inmat[i,2]==keep_b_ids)){
+		if(any(inmat[i,1]==ab_ids) && any(inmat[i,2]==ab_ids)){
 			keep_ix=c(keep_ix, i);
 		}
 	}
