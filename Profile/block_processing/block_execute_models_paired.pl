@@ -522,21 +522,10 @@ sub run_distribution_based{
 
 	#----------------------------------------------------------------------
 
-	if($summary_table2 ne ""){
-		$cmd=
-		"~/git/AnalysisTools/Profile/SummaryTableUtilities/Join_Summary_Tables.r \
-			-i $summary_table,$summary_table2 \
-			-o $output_dir/distribution/$STACKED_BP/combined.summary_table.tsv
-		";
-		$cmd=
-		run_command("Combine Summary Tables", "combine_summary_tables",
-			$cmd, "$output_dir/distribution/$STACKED_BP");
-	}else{
-		$cmd=
-		"cp $summary_table $output_dir/distribution/$STACKED_BP/combined.summary_table.tsv";
-		run_command("Renaming Summary Table", "rename_summary_table",
-			$cmd, "$output_dir/distribution/$STACKED_BP");
-	}
+	$cmd=
+	"cp $summary_table $output_dir/distribution/$STACKED_BP/combined.summary_table.tsv";
+	run_command("Renaming Summary Table", "rename_summary_table",
+		$cmd, "$output_dir/distribution/$STACKED_BP");
 
 	#----------------------------------------------------------------------
 	
@@ -567,7 +556,6 @@ sub run_distance_based{
 
 	my $output_dir=shift;
 	my $summary_table=shift;
-	my $summary_table2=shift;
 	my $factor_file=shift;
 	my $samp_id_colname=shift;
 	my $reference_level_file=shift;
@@ -583,7 +571,6 @@ sub run_distance_based{
 	print STDERR "Running Distance Based Analyses:\n";
 	print STDERR "  Output Dir: $output_dir\n";
 	print STDERR "  Summary Table 1: $summary_table\n";
-	print STDERR "  Summary Table 2: $summary_table2\n";
 	print STDERR "  Factor File: $factor_file\n";
 	print STDERR "  Covariates File: $covariates\n";
 	print STDERR "  Grouped Variable Fle: $variable_list\n";
@@ -645,14 +632,9 @@ sub run_distance_based{
 	
 	#######################################################################
 	
-	if($summary_table2 eq ""){
-		$summary_table2=$summary_table;
-	}
-
 	$cmd=
 	"~/git/AnalysisTools/Profile/distance_based/Cluster_Compare_TwoProfiles/Cluster_Compare_TwoProfiles.r \
 		-a $summary_table \
-		-b $summary_table2 \
 		-A $A_colname \
 		-B $B_colname \
 		-m $pair_map \
@@ -684,7 +666,6 @@ if(!(-e $OutputDir)){
 run_abundance_based(
 	$OutputDir,
 	$SummaryTable,
-	$SummaryTable2,
 	$FactorFile,
 	$SampID_Colname,
 	$ReferenceLevelsFilename,
@@ -701,7 +682,6 @@ run_abundance_based(
 run_distribution_based(
 	$OutputDir,
 	$SummaryTable,
-	$SummaryTable2,
 	$FactorFile,
 	$SampID_Colname,
 	$ReferenceLevelsFilename,
@@ -717,7 +697,6 @@ run_distribution_based(
 run_distance_based(
 	$OutputDir,
 	$SummaryTable,
-	$SummaryTable2,
 	$FactorFile,
 	$SampID_Colname,
 	$ReferenceLevelsFilename,
