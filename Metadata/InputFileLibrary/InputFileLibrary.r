@@ -153,6 +153,7 @@ load_summary_file=function(fname){
 
 	cat("  Loaded: Num Samples: ", loaded_counts_dim[1], "\n");
 	cat("  Loaded: Num Categories: ", loaded_counts_dim[2], "\n");
+	cat("\n");
 
 	# Remove alls zero categories and counts
 	counts_mat=remove_zero_count_categories_and_samples(counts_mat);
@@ -256,7 +257,6 @@ load_factors_file=function(fname, prim_key_cname=NULL, relevel_fn=NULL){
 		return(NULL);
 	}
 
-	
 	if(!specified(prim_key_cname)){
 		cat("  Primary Key Column Name not specified.  ");
 		cat("Assuming 1st column is the primary key.\n");
@@ -273,6 +273,11 @@ load_factors_file=function(fname, prim_key_cname=NULL, relevel_fn=NULL){
 
         factors=data.frame(read.table(fname,  sep="\t", header=TRUE, row.names=prim_key_cname,
                 check.names=FALSE, comment.char="#", stringsAsFactors=T));
+
+	cat("\n");
+	cat("Primary Key Excerpt: \n");
+	cat(head(rownames(factors), 10));
+	cat("\n\n");
 
         factor_names=colnames(factors);
 	fact_dim=dim(factors);
@@ -992,6 +997,43 @@ load_and_reconcile_files=function(
 	results[["Report"]]=report_list;
 
 	return(results);
+}
+
+###############################################################################
+
+write_file_report=function(report_list){
+
+	report_groups=names(report_list);
+
+        par(family="Courier");
+        par(oma=rep(.1,4));
+        par(mar=rep(0,4));
+
+	for(grp in report_groups){
+	
+		strings=report_list[[grp]];
+
+		num_lines=length(strings);
+
+		top=max(as.integer(num_lines), 52);
+
+		par(mfcol=c(1,1));
+
+		plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
+			xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
+			);
+
+		text(0, top, grp, cex=1, font=2, pos=4);
+
+		text_size=max(.01, min(.8, .8 - .003*(num_lines-52)));
+
+		for(i in 1:num_lines){
+			strings[i]=gsub("\t", "", strings[i]);
+			text(0, top-i-1, strings[i], pos=4, cex=text_size);
+		}
+
+	}
+
 }
 
 
