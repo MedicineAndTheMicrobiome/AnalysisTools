@@ -24,6 +24,9 @@ load_list=function(fname, memo=NULL){
 	}else{
 		cat("Loading List: ", fname, " (purpose: ", memo, ")\n", sep="");
  		val=scan(fname, what=character(), comment.char="#");
+		num_vals=length(val);
+		cat("  Number of items loaded: ", num_vals, "\n");
+		print(val);
 		return(val);
 	}
 }
@@ -31,18 +34,28 @@ load_list=function(fname, memo=NULL){
 
 #------------------------------------------------------------------------------
 
-remove_zero_count_categories_and_samples=function(mat){
+remove_zero_count_categories_and_samples=function(mat, max_report=10){
 
 	# Remove zero count samples
 	cat("Checking for samples with no counts.\n");
 	tot=apply(mat, 1, sum);
 	nonzero=tot>0;
 	if(!(all(nonzero))){
-		cat("  WARNING: Zero count samples found:\n");
+
+		num_found=sum(tot==0);
+
+		cat("  WARNING: Zero count samples found: ", num_found, "\n");
 		samp_names=rownames(mat);
-		print(samp_names[!nonzero]);
+
+		print(head(samp_names[!nonzero], max_report));
+		if(num_found>max_report){
+			cat("...\n");
+		}
+
 		cat("\n");
 		mat=mat[nonzero,,drop=F];
+	}else{
+		cat("  OK.  None found.\n");
 	}
 
 	# Remove zero count categories 
@@ -50,11 +63,21 @@ remove_zero_count_categories_and_samples=function(mat){
 	tot=apply(mat, 2, sum);
 	nonzero=tot>0;
 	if(!(all(nonzero))){
-		cat("  WARNING: Zero count categories found:\n");
+
+		num_found=sum(tot==0);
+
+		cat("  WARNING: Zero count categories found: ", num_found, "\n");
 		cat_names=colnames(mat);
-		print(cat_names[!nonzero]);
+		
+		print(head(cat_names[!nonzero], max_report));
+		if(num_found>max_report){
+			cat("...\n");
+		}
+
 		cat("\n");
 		mat=mat[,nonzero,drop=F];
+	}else{
+		cat("  OK.  None found.\n");
 	}
 
 	return(mat);
@@ -225,20 +248,27 @@ relevel_factors=function(factors, ref_lev_mat){
 
 #------------------------------------------------------------------------------
 
-load_factors_file=function(fname, prim_key_cname=1, relevel_fn=NULL){
+load_factors_file=function(fname, prim_key_cname=NULL, relevel_fn=NULL){
 
 	cat("Loading Factors File: ", fname, "\n", sep="");
-	cat("  Primary Key Column Name: ", prim_key_cname, "\n", sep="");
-	cat("  Factor Releveling File Specified: ", relevel_fn, "\n", sep="");
-
 	if(!specified(fname)){
 		cat("  Factor File not specified.\n");
 		return(NULL);
 	}
 
+	
 	if(!specified(prim_key_cname)){
-		cat("  Primary Key Column Name not specified.  Assuming 1st column is the key.\n");
+		cat("  Primary Key Column Name not specified.  ");
+		cat("Assuming 1st column is the primary key.\n");
 		prim_key_cname=1;
+	}else{
+		cat("  Primary Key Column Name: ", prim_key_cname, "\n", sep="");
+	}
+
+	if(!specified(relevel_fn)){
+		cat("  Factor Releveling File Not Specified.\n", sep="");
+	}else{
+		cat("  Factor Releveling File Specified: ", relevel_fn, "\n", sep="");
 	}
 
         factors=data.frame(read.table(fname,  sep="\t", header=TRUE, row.names=prim_key_cname,
@@ -247,14 +277,14 @@ load_factors_file=function(fname, prim_key_cname=1, relevel_fn=NULL){
         factor_names=colnames(factors);
 	fact_dim=dim(factors);
 
-	cat("  Num Rows: ", fact_dim[1], "\n", sep="");
+	cat("  Num Samples/Rows: ", fact_dim[1], "\n", sep="");
 	cat("  Num Variables: ", fact_dim[2], "\n", sep="");
 
 	if(specified(relevel_fn)){
 		relevel_mat=load_reference_levels_file(relevel_fn);	
+		cat("Releveling Matrix:\n");
+		print(relevel_mat);
 		factors=relevel_factors(factors, relevel_mat);
-	}else{
-		cat("  No Reference Releveling File specified.\n");
 	}
 
 	return(factors);
@@ -374,7 +404,9 @@ intersect_pairings_map_by_keep_list=function(
 
 	delete_row_ix=c();
 
+	# By sample id
 	if(num_smp_keepers){
+		cat("  Num Sample IDs to Keep: ", num_smp_keepers, "\n", sep="");
 		for(rix in 1:num_rows){
 			if(!any(pairs_map[rix, 1]==sample_id_keepers) ||
 				!any(pairs_map[rix, 2]==sample_id_keepers)){
@@ -385,9 +417,9 @@ intersect_pairings_map_by_keep_list=function(
 		cat("No Sample ID Keepers Specified.  No filter applied.\n");
 	}
 
-	
+	# By subject id
 	if(num_sbj_keepers){
-		cat("  Num Subjects to Keep: ", num_sbj_keepers, "\n", sep="");
+		cat("  Num Subject IDs to Keep: ", num_sbj_keepers, "\n", sep="");
 		map_sbj_ids=rownames(pairs_map);
 		for(rix in 1:num_rows){
 			if(!any(map_sbj_ids[rix]==subject_id_keepers)){
@@ -398,19 +430,26 @@ intersect_pairings_map_by_keep_list=function(
 		cat("No Subject ID Keepers Specified. No filter applied.\n");
 	}
 
-	cat("Delete Rows: \n");
-	print(delete_row_ix);
+	num_rows_to_delete=length(delete_row_ix);
+	cat("Number of Rows to delete: ", num_rows_to_delete, "\n", sep="");
 
+	if(num_rows_to_delete>0){
+		cat("Delete Rows: \n");
+		print(delete_row_ix);
+	}
+	
 	complete_row_ix=setdiff(1:num_rows, delete_row_ix);
 
         incomplete_pairs=pairs_map[delete_row_ix,,drop=F];
         complete_pairs=pairs_map[complete_row_ix,,drop=F];
 
-	cat("  Complete Pairs: \n");
-	print(complete_pairs);
+	#cat("  Complete Pairs: \n");
+	#print(complete_pairs);
 
-	cat("  Incomplete Pairs: \n");
-	print(incomplete_pairs);
+	if(num_rows_to_delete>0){
+		cat("  Incomplete Pairs: \n");
+		print(incomplete_pairs);
+	}
 
 	cat("\n");
 	cat("  Num Input Pairs: ", nrow(pairs_map), "\n");
@@ -594,19 +633,18 @@ reconcile=function(param=list("summary_table_mat"=NULL, "factor_mat"=NULL, "pair
 	factor_subject_ids=rownames(factor_mat);
 
 	if(specified(pairs_mat)){
-	# If pairs mat specified, use it to bridge the factor to sample IDs
+		# If pairs mat specified, use it to bridge the factor to sample IDs
+
+		cat("Pairs matrix specified.\n");
+		cat("Reconciling: Bridging Factors to Sample IDs through Pairs Matrix.\n\n");
 
 		# Determine which pairs are complete by sample ID
 		pairs_mat=intersect_pairings_map_by_keep_list(
 			pairs_mat, 
-			sample_id_keepers=sumtab_sample_ids);
-
-		# Determine which pairs are useable by subject ID
-		pairs_mat=intersect_pairings_map_by_keep_list(
-			pairs_mat, 
+			sample_id_keepers=sumtab_sample_ids,
 			subject_id_keepers=factor_subject_ids);
 
-		# This are the subject/sample ids that are pairable
+		# These are the subject/sample ids that are pairable
 		pairable_sbj_ids=sort(rownames(pairs_mat));
 		pairable_smp_ids=sort(c(pairs_mat[,1], pairs_mat[,2]));
 
@@ -614,7 +652,10 @@ reconcile=function(param=list("summary_table_mat"=NULL, "factor_mat"=NULL, "pair
 		factor_mat=factor_mat[pairable_sbj_ids,,drop=F];
 
 	}else if(specified(sbj_to_samp_mat)){
-	# If 1-to-1 mapping specified use it.
+		# If 1-to-1 mapping specified use it.
+
+		cat("Subject-to-Sample Matrix specified.\n");
+		cat("Reconciling: Bridging Factors to Sample IDs through Subject/Sample Matrix.\n\n");
 
 		invert_mapping=function(map){
 			inv=matrix(rownames(map), ncol=1);	
@@ -649,6 +690,9 @@ reconcile=function(param=list("summary_table_mat"=NULL, "factor_mat"=NULL, "pair
 	}else{
 		# If only sumtab and factors specified, then assume both factors and 
 		# summary table are keying by sample ID.
+		
+		cat("No mappings specified.\n");
+		cat("Reconciling: Assuming Factors and Samples have the same ID.\n\n");
 
 		shared_ids=sort(intersect(sumtab_sample_ids, factor_subject_ids));
 		
@@ -693,57 +737,99 @@ load_and_reconcile_files=function(
 	# 6.) Apply summary table parameters
 	# 7.) Clean up category names
 
+	report_list=list();
+
 	#-----------------------------------------------------------------------------
 	# 1.) Read in Summary Table, Factors, Sample Pairing
 
-	summary_table_mat=load_summary_file(fname=sumtab[["fn"]]);
+	report_list[["Summary Table"]]=capture.output({
 
-	spec_cat_arr=load_list(fname=sumtab[["specific_cat_fn"]], memo="Specific Categories File");
+		summary_table_mat=load_summary_file(fname=sumtab[["fn"]]);
 
-	factors_mat=load_factors_file(
-		fname=factors[["fn"]],
-		prim_key_cname=factors[["sbj_cname"]],
-		relevel_fn=factors[["ref_relvl_fn"]]
-		);
+		spec_cat_arr=load_list(
+			fname=sumtab[["specific_cat_fn"]], 
+			memo="Specific Categories File");
 
-	pairs_mat=load_mapping(
-		fname=pairs[["fn"]], 
-		pA=pairs[["a_cname"]], 
-		pB=pairs[["b_cname"]], 
-		sbj_id_cname=pairs[["subject_id_cname"]]
-		);
+	});
 
-	sbj_smp_mat=load_sbj_smp_mapping(
-		fname=sbj_to_smp[["fn"]],
-		sbj_cname=sbj_to_smp[["sbjid_cname"]],
-		smp_cname=sbj_to_smp[["smpid_cname"]]
-		);
+	
+	report_list[["Factor File"]]=capture.output({
 
-	covariates_arr=load_list(fname=covariates[["fn"]], memo="Covariates File");
+		factors_mat=load_factors_file(
+			fname=factors[["fn"]],
+			prim_key_cname=factors[["sbj_cname"]],
+			relevel_fn=factors[["ref_relvl_fn"]]
+			);
 
-	groupvar_arr=load_list(fname=grpvar[["fn"]], memo="Group Variables File");
+	});
 
-	requiredvar_arr=load_list(fname=reqvar[["fn"]], mem="Required Variables File");
+	report_list[["Mappings"]]=capture.output({
+
+		pairs_mat=load_mapping(
+			fname=pairs[["fn"]], 
+			pA=pairs[["a_cname"]], 
+			pB=pairs[["b_cname"]], 
+			sbj_id_cname=pairs[["subject_id_cname"]]
+			);
+
+		cat("\n");
+
+		sbj_smp_mat=load_sbj_smp_mapping(
+			fname=sbj_to_smp[["fn"]],
+			sbj_cname=sbj_to_smp[["sbjid_cname"]],
+			smp_cname=sbj_to_smp[["smpid_cname"]]
+			);
+
+	});
 
 	#-----------------------------------------------------------------------------
-	# 2.) Keep/Subset target variables
+	# 2.) Load and Keep/Subset target variables
 
-	status=check_variables(covariates_arr, groupvar_arr, requiredvar_arr, colnames(factors_mat));
-	
-	cat("Subsetting requested variables from factors.\n");
-	factors_subset_mat=factors_mat[, c(covariates_arr, groupvar_arr), drop=F];
+	report_list[["Variable Lists"]]=capture.output({
+
+		covariates_arr=load_list(fname=covariates[["fn"]], memo="Covariates File");
+
+		groupvar_arr=load_list(fname=grpvar[["fn"]], memo="Group Variables File");
+
+		requiredvar_arr=load_list(fname=reqvar[["fn"]], mem="Required Variables File");
+
+		cat("\n");
+		
+		if(length(covariates_arr)==0 && length(groupvar_arr)==0){
+			cat("No covariates or group variables specified.\n");
+			cat("  Continuing with all variables.\n");
+			factors_subset_mat=factors_mat;
+		}else{
+
+			status=check_variables(
+				covariates_arr, groupvar_arr, requiredvar_arr, 
+				colnames(factors_mat));
+
+			cat("Subsetting requested variables from factors.\n");
+			factors_subset_mat=factors_mat[, c(covariates_arr, groupvar_arr), drop=F];
+		}
+
+		factor_subset_dim=dim(factors_subset_mat);
+		cat("  Factor Subset Rows/Subjects: ", factor_subset_dim[1], "\n");
+		cat("  Factor Subset Cols/Variables: ", factor_subset_dim[2], "\n");
+
+	});
 
 	#-----------------------------------------------------------------------------
 	# 3.) Reconcile
 
-	reconciled_files=reconcile(param=list(
-		summary_table_mat=summary_table_mat, 
-		factor_mat=factors_subset_mat, 
-		pairs_mat=pairs_mat, 
-		sbj_smp_mat=sbj_smp_mat
-		));
+	report_list[["Pre NA Removal Reconcile"]]=capture.output({
 
-	recon_factors=reconciled_files[["factor_mat"]];
+		reconciled_files=reconcile(param=list(
+			summary_table_mat=summary_table_mat, 
+			factor_mat=factors_subset_mat, 
+			pairs_mat=pairs_mat, 
+			sbj_smp_mat=sbj_smp_mat
+			));
+
+		recon_factors=reconciled_files[["factor_mat"]];
+
+	});
 
 	#-----------------------------------------------------------------------------
 	# 4.) Remove NAs (remove subjects with NAs)
@@ -810,6 +896,10 @@ load_and_reconcile_files=function(
 	results[["Covariates"]]=covariates_arr;
 	results[["GroupVariables"]]=groupvar_arr;
 	results[["RequiredVariables"]]=requiredvar_arr;
+	results[["Report"]]=report_list;
+
+	print(results[["Report"]]);
+	quit();
 
 	return(results);
 }
