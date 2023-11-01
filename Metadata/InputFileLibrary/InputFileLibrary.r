@@ -313,9 +313,10 @@ load_mapping=function(fname, pA, pB, sbj_id_cname=""){
 	cat("  Mapping Cols (sample IDs): ", mapping_dim[2], "\n");
 
 	mapping_cnames=colnames(mapping);
+	cat("\n");
 	cat("  Mapping Column Names:\n");
 	print(mapping_cnames);
-	
+	cat("\n");	
 
         if(!specified(sbj_id_cname)){
                 subject_ids=mapping[,1];
@@ -342,16 +343,19 @@ load_mapping=function(fname, pA, pB, sbj_id_cname=""){
 	print(map);
 
         # Remove pairings with NAs
+	cat("\n");
 	cat("  Removing any incomplete mappings...\n");
         incomp=apply(map, 1, function(x){any(is.na(x))});
         map=map[!incomp,];
 	num_incomplete=sum(incomp);
 	cat("  Number of incomplete pairings removed: ", num_incomplete, "\n");
 
+	cat("\n");
 	cat("Complete Map:\n");
 	print(map);
 
 	map_dim=dim(map);
+	cat("\n");
 	cat("  Paired Rows (subject IDs): ", map_dim[1], "\n");
 	cat("  Paired Cols (sample IDs): ", map_dim[2], "\n");
 
@@ -406,7 +410,7 @@ intersect_pairings_map_by_keep_list=function(
 
 	# By sample id
 	if(num_smp_keepers){
-		cat("  Num Sample IDs to Keep: ", num_smp_keepers, "\n", sep="");
+		cat("  Num Sample IDs available in Keep List: ", num_smp_keepers, "\n", sep="");
 		for(rix in 1:num_rows){
 			if(!any(pairs_map[rix, 1]==sample_id_keepers) ||
 				!any(pairs_map[rix, 2]==sample_id_keepers)){
@@ -419,7 +423,7 @@ intersect_pairings_map_by_keep_list=function(
 
 	# By subject id
 	if(num_sbj_keepers){
-		cat("  Num Subject IDs to Keep: ", num_sbj_keepers, "\n", sep="");
+		cat("  Num Subject IDs available in Keep List: ", num_sbj_keepers, "\n", sep="");
 		map_sbj_ids=rownames(pairs_map);
 		for(rix in 1:num_rows){
 			if(!any(map_sbj_ids[rix]==subject_id_keepers)){
@@ -704,10 +708,42 @@ reconcile=function(param=list("summary_table_mat"=NULL, "factor_mat"=NULL, "pair
 	# Sort the sujbect IDs so everything is synch up
 	subject_ids=sort(rownames(factor_mat));
 
+	factor_mat_dim=dim(factor_mat);
+	pairs_mat_dim=dim(pairs_mat);
+	sbj_to_smp_mat_dim=dim(sbj_to_smp_mat);
+	summary_table_mat_dim=dim(summary_table_mat);
+
+	cat("\n");
+	cat("Input Dimensions:\n");
+	cat("  Factors: ", factor_mat_dim[1], " sbj x ", factor_mat_dim[2], " var\n", sep="");
+	cat("  Pairs: ", pairs_mat_dim[1], " sbj\n", sep="");
+	cat("  Sbj-to-Smp: ", sbj_to_smp_mat_dim[1], " sbj / smp\n", sep="");
+	cat("  Summary Table: ", summary_table_mat_dim[1], " smp x ", 
+		summary_table_mat_dim[2], " cat\n", sep="");
+
+	#------------------------------------------------------------
+
 	factor_mat=factor_mat[subject_ids,,drop=F];
 	pairs_mat=pairs_mat[subject_ids,,drop=F];
 	sbj_to_smp_mat=sbj_to_smp_mat[subject_ids,,drop=F];
 	summary_table_mat=summary_table_mat[c(pairs_mat[,1], pairs_mat[,2]),,drop=F];
+
+	#------------------------------------------------------------
+
+	factor_mat_dim=dim(factor_mat);
+	pairs_mat_dim=dim(pairs_mat);
+	sbj_to_smp_mat_dim=dim(sbj_to_smp_mat);
+	summary_table_mat_dim=dim(summary_table_mat);
+
+	cat("\n");
+	cat("Output Dimensions:\n");
+	cat("  Factors: ", factor_mat_dim[1], " sbj x ", factor_mat_dim[2], " var\n", sep="");
+	cat("  Pairs: ", pairs_mat_dim[1], " sbj\n", sep="");
+	cat("  Sbj-to-Smp: ", sbj_to_smp_mat_dim[1], " sbj / smp\n", sep="");
+	cat("  Summary Table: ", summary_table_mat_dim[1], " smp x ", 
+		summary_table_mat_dim[2], " cat\n", sep="");
+
+	#------------------------------------------------------------
 
 	results=list();
 	results[["summary_table_mat"]]=summary_table_mat;
@@ -746,9 +782,6 @@ load_and_reconcile_files=function(
 
 		summary_table_mat=load_summary_file(fname=sumtab[["fn"]]);
 
-		spec_cat_arr=load_list(
-			fname=sumtab[["specific_cat_fn"]], 
-			memo="Specific Categories File");
 
 	});
 
@@ -818,7 +851,7 @@ load_and_reconcile_files=function(
 	#-----------------------------------------------------------------------------
 	# 3.) Reconcile
 
-	report_list[["Pre NA Removal Reconcile"]]=capture.output({
+	report_list[["Pre-NA Removal Reconcile"]]=capture.output({
 
 		reconciled_files=reconcile(param=list(
 			summary_table_mat=summary_table_mat, 
@@ -834,56 +867,116 @@ load_and_reconcile_files=function(
 	#-----------------------------------------------------------------------------
 	# 4.) Remove NAs (remove subjects with NAs)
 
-	nona_factors_fn=paste(gsub("\\.tsv", "", factors[["fn"]]), ".noNAs", sep="");
-	factors_wo_nas_res=remove_sample_or_factors_wNA_parallel(
-		recon_factors,
-        	required=requiredvar_arr,
-		outfile=nona_factors_fn,
-		num_trials=64000, num_cores=64);
+	report_list[["NA Removal"]]=capture.output({
+
+		nona_factors_fn=paste(gsub("\\.tsv", "", factors[["fn"]]), ".noNAs", sep="");
+
+		factors_wo_nas_res=remove_sample_or_factors_wNA_parallel(
+			recon_factors,
+			required=requiredvar_arr,
+			outfile=nona_factors_fn,
+			num_trials=64000, num_cores=64);
+
+	});
 
 	factors_mat_nona=factors_wo_nas_res[["factors"]];
 
 	#-----------------------------------------------------------------------------
 	# 5.) Reconcile
 	
-	# Replace factor mat, but keep the other data/matrices the same
-	reconciled_files[["factor_mat"]]=factors_mat_nona;
-	reconciled_files=reconcile(reconciled_files);
+	report_list[["Post-NA Removal Reconcile"]]=capture.output({
+
+		# Replace factor mat, but keep the other data/matrices the same
+		reconciled_files[["factor_mat"]]=factors_mat_nona;
+		reconciled_files=reconcile(reconciled_files);
+
+	});
 
 	#-----------------------------------------------------------------------------
 	# 6.) Apply Summary Table Parameters
 
-	# Order categories by decreasing abundance
-	counts_mat=reconciled_files[["summary_table_mat"]];
-	normalized_mat=normalize(counts_mat);
-	normalized_mat=reorder_by_decreasing_abundance(normalized_mat);
-	counts_mat=counts_mat[,colnames(normalized_mat), drop=F];
+	report_list[["Summary Table Options"]]=capture.output({
 
-	if(specified(sumtab[["return_top"]])){
+		# Order categories by decreasing abundance
+		cat("Reordering summary table counts by decreasing abundance.\n");
+		counts_mat=reconciled_files[["summary_table_mat"]];
+		normalized_mat=normalize(counts_mat);
+		normalized_mat=reorder_by_decreasing_abundance(normalized_mat);
+		counts_mat=counts_mat[,colnames(normalized_mat), drop=F];
 
-		top_cat_normalized=extract_top_categories(
-			normalized_mat,
-			sumtab[["return_top"]],
-			additional_cat=spec_cat_arr);
+		cat("\n");
 
-		normalized_mat=top_cat_normalized;
-		counts_mat=extract_categories_for_counts(counts_mat, colnames(normalized_mat));
-	}
+		if(specified(sumtab[["return_top"]])){
+			top_to_extract=sumtab[["return_top"]]
+			cat("Num Top Categories to extract: ", top_to_extract, "\n");
+		}else{
+			cat("Top Categories for Extraction not specified.\n");
+			top_to_extract=NA;
+		}
 
-	#-----------------------------------------------------------------------------
-	# 7.) Shorten categories
-	if(specified(sumtab[["shorten_cat_names_char"]])){
+		spec_cat_arr=c();
+		if(specified(sumtab[["specific_cat_fn"]])){
+			cat("Specific Categories requested for extraction.\n");
+			spec_cat_arr=load_list(
+				fname=sumtab[["specific_cat_fn"]], 
+				memo="Specific Categories File");
+			cat("Num Targets: ", length(spec_cat_arr), "\n");
+			cat("Targets: \n");
+			print(spec_cat_arr);
+		}else{
+			cat("Specific categories not specified.\n");
+		}
 
-		colnames(normalized_mat)=
-			shorten_category_names(colnames(normalized_mat), 
-			sumtab[["shorten_cat_names_char"]]);
+		cat("\n");
 
+		if(is.na(top_to_extract) && length(spec_cat_arr)==0){
+			cat("Top and/or Specific Summary Table categories not requested.\n");
+			cat("  Returning all categories.\n");
+		}else{
+			if(length(spec_cat_arr)>0 && is.na(top_to_extract)){
+				cat("Specific categories requested w/o accompanying top categories.\n");
+				top_to_extract=0;
+			}
+	
+			extracted_normalized=extract_top_categories(
+				normalized_mat,
+				top_to_extract,
+				additional_cat=spec_cat_arr);
+
+			normalized_mat=extracted_normalized;
+			counts_mat=extract_categories_for_counts(counts_mat, colnames(normalized_mat));
+		}
+
+
+		norm_dim=dim(normalized_mat);
+		cat("\n");
+		cat("Output Dimensions:\n");
+		cat("  Samples: ", norm_dim[1], "\n", sep="");
+		cat("  Categories: ", norm_dim[2], "\n", sep="");
+		cat("\n");
+
+		#-----------------------------------------------------------------------------
+		# Shorten categories
+		if(specified(sumtab[["shorten_cat_names_char"]])){
+
+			cat("Shortening category names specified. Delimiter: '", 
+				sumtab[["shorten_cat_names_char"]], "'\n", sep="");
+
+			colnames(normalized_mat)=
+				shorten_category_names(colnames(normalized_mat), 
+				sumtab[["shorten_cat_names_char"]]);
+
+			colnames(counts_mat)=colnames(normalized_mat);
+		}else{
+			cat("Shortening category names not specified.\n");
+		}
+
+		# Clean category names a little
+		cat("Cleaning Category names.\n");
+		colnames(normalized_mat)=clean_category_names(colnames(normalized_mat));
 		colnames(counts_mat)=colnames(normalized_mat);
-	}
 
-        # Clean category names a little
-	colnames(normalized_mat)=clean_category_names(colnames(normalized_mat));
-	colnames(counts_mat)=colnames(normalized_mat);
+	});
 
 	#-----------------------------------------------------------------------------
 	
@@ -897,9 +990,6 @@ load_and_reconcile_files=function(
 	results[["GroupVariables"]]=groupvar_arr;
 	results[["RequiredVariables"]]=requiredvar_arr;
 	results[["Report"]]=report_list;
-
-	print(results[["Report"]]);
-	quit();
 
 	return(results);
 }
