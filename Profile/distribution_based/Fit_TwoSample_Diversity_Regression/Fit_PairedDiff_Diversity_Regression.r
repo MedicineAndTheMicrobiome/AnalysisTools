@@ -542,6 +542,7 @@ good_pairs_map=input_files[["PairsMap"]];
 model_var_arr=input_files[["Covariates"]];
 required_arr=input_files[["RequiredVariables"]];
 
+write_file_report(input_files[["Report"]]);
 
 ##############################################################################
 ##############################################################################

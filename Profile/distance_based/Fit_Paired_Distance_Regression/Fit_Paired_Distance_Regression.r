@@ -529,6 +529,7 @@ model_var_arr=input_files[["Covariates"]];
 required_arr=input_files[["RequiredVariables"]];
 normalized=input_files[["SummaryTable_normalized"]];
 
+write_file_report(input_files[["Report"]]);
 
 ##############################################################################
 ##############################################################################
