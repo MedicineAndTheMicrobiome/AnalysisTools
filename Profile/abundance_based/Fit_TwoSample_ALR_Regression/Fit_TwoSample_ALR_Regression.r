@@ -816,7 +816,8 @@ for(resp_ix in 1:NumRespVariables){
 all.nas=apply(covariates_coef_mat, 2, function(x){all(is.na(x))});
 covariates_coef_mat=covariates_coef_mat[,!all.nas,drop=F];
 
-all.nas=apply(covariates_pval_mat, 2, function(x){all(is.na(x))});
+#all.nas=apply(covariates_pval_mat, 2, function(x){all(is.na(x))});
+# Keep NAs for placeholder if coefficients were calculable
 covariates_pval_mat=covariates_pval_mat[,!all.nas,drop=F];
 
 print(rsqrd_mat);

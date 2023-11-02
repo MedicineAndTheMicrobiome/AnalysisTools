@@ -551,7 +551,7 @@ signf_as_table=function(coef_mat, pval_mat){
                 for(j in 1:num_cols){
 
                         pval=pval_mat[i,j];
-                        if(pval < 0.10){
+                        if(!is.na(pval) && !is.nan(pval) && pval < 0.10){
                                 comb_tab[line_ix, "Row"]=rnames[i];
                                 comb_tab[line_ix, "Column"]=cnames[j];
                                 comb_tab[line_ix, "Coefficient"]=sprintf("%.5g", coef_mat[i,j]);
@@ -813,7 +813,8 @@ for(cat_ix in 1:num_used_alr_cat){
 all.nas=apply(covariates_coef_mat, 2, function(x){all(is.na(x))});
 covariates_coef_mat=covariates_coef_mat[,!all.nas,drop=F];
 
-all.nas=apply(covariates_pval_mat, 2, function(x){all(is.na(x))});
+#all.nas=apply(covariates_pval_mat, 2, function(x){all(is.na(x))});
+# Keep NAs for placeholder if coefficients were calculable
 covariates_pval_mat=covariates_pval_mat[,!all.nas,drop=F];
 
 print(covariates_coef_mat);
