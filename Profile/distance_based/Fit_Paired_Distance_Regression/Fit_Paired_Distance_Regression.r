@@ -1462,8 +1462,8 @@ regress_dispersion=function(Adist_arr, Bdist_arr, Aname, Bname, model_var, facto
 	print(Bdisp_fit);
 	print(summary(Bdisp_fit));
 
-	skip=function(arr, n){
-		coef_ix=min(which(arr=="Coefficients:"));
+	skip_until_coef=function(arr){
+		coef_ix=grep("^Coefficients: *", arr);
 		len=length(arr);
 		return(arr[coef_ix:len]);
 	}
@@ -1473,11 +1473,11 @@ regress_dispersion=function(Adist_arr, Bdist_arr, Aname, Bname, model_var, facto
 		"Associations on Dispersion (Assuming Normally Distributed Residuals)",
 		"",
 		paste("[", Aname, "]", sep=""),
-		skip(capture.output({print(summary(Adisp_fit))}), 8),
+		skip_until_coef(capture.output({print(summary(Adisp_fit))})),
 		"",
 		"",
 		paste("[", Bname, "]", sep=""),
-		skip(capture.output({print(summary(Bdisp_fit))}), 8)
+		skip_until_coef(capture.output({print(summary(Bdisp_fit))}))
 	));
 
 }
@@ -1497,8 +1497,8 @@ regress_diff_dispersion=function(Adist_arr, Bdist_arr, Aname, Bname, model_var, 
 	print(diff_fit);
 	print(summary(diff_fit));
 
-	skip=function(arr, n){
-		coef_ix=min(which(arr=="Coefficients:"));
+	skip_until_coef=function(arr){
+		coef_ix=grep("^Coefficients: *", arr);
 		len=length(arr);
 		return(arr[coef_ix:len]);
 	}
@@ -1508,7 +1508,7 @@ regress_diff_dispersion=function(Adist_arr, Bdist_arr, Aname, Bname, model_var, 
 		paste("Associations on Difference of Dispersion: ", Bname, " - ", Aname, sep=""),
 		paste("  (Assuming normally distributed residuals)"),
 		"",
-		skip(capture.output({print(summary(diff_fit))}), 8)
+		skip_until_coef(capture.output({print(summary(diff_fit))}))
 	));
 }
 
