@@ -620,6 +620,57 @@ check_variables=function(covar, grp, req, avail){
 		
 }
 
+screen_variables=function(covar, grp, req, avail){
+
+	num_covar=length(covar);
+	num_grp=length(grp);
+	num_req=length(req);
+	num_avail=length(avail);
+
+	cat("Screening Variable Lists:\n");
+	cat("Inputs:\n");
+	cat("  Num Covariates: ", num_covar, "\n");
+	cat("  Num Group Var: ", num_grp, "\n");
+	cat("  Num Required Var: ", num_req, "\n");
+	cat("  Num Available Var (Factors): ", num_avail, "\n");
+	cat("\n");
+
+	fcovar=intersect(avail, covar);
+	fgrp=intersect(avail, grp);
+	freq=intersect(avail, req);
+
+	num_fcovar=length(fcovar);
+	num_fgrp=length(fgrp);
+	num_freq=length(freq);
+
+	if(num_fcovar!=num_covar){
+		cat("Covariate list adjusted.  Removed:\n");
+		print(setdiff(covar, fcovar));
+	}
+	if(num_fgrp!=num_grp){
+		cat("Group Var list adjusted.  Removed:\n");
+		print(setdiff(grp, fgrp));
+	}
+	if(num_freq!=num_req){
+		cat("Required Var list adjusted.  Removed:\n");
+		print(setdiff(req, freq));
+	}
+
+	cat("Outputs:\n");
+	cat("  Num Covariates: ", num_fcovar, "\n");
+	cat("  Num Group Var: ", num_fgrp, "\n");
+	cat("  Num Required Var: ", num_freq, "\n");
+	cat("  Num Available Var (Factors): ", num_avail, "\n");
+
+	screened_var=list();
+	screened_var[["covariates"]]=fcovar;
+	screened_var[["group_var"]]=fgrp;
+	screened_var[["required_var"]]=freq;
+
+	return(screened_var);
+		
+}
+
 
 reconcile=function(param=list("summary_table_mat"=NULL, "factor_mat"=NULL, "pairs_mat"=NULL,
 	"sbj_smp_mat"=NULL)){	
@@ -882,9 +933,24 @@ load_and_reconcile_files=function(
 			outfile=nona_factors_fn,
 			num_trials=64000, num_cores=64);
 
+		factors_mat_nona=factors_wo_nas_res[["factors"]];
+
+		# remove variables with no information
+		variables_woNAs=colnames(factors_mat_nona);
+
+		cat("\n");
+
+		screened_var=screen_variables(
+			covariates_arr,
+			groupvar_arr,
+			requiredvar_arr,
+			variables_woNAs);
+
+		covariates_arr=screened_var[["covariates"]];
+		groupvar_arr=screened_var[["group_var"]];
+		requiredvar_arr=screened_var[["required_var"]];
 	});
 
-	factors_mat_nona=factors_wo_nas_res[["factors"]];
 
 	#-----------------------------------------------------------------------------
 	# 5.) Reconcile
