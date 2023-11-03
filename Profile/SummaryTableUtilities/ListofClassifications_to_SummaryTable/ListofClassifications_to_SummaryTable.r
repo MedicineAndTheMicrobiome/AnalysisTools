@@ -50,15 +50,19 @@ items=scan(InputFileName, what=character(), sep="\n");
 counts=sort(table(items), decreasing=T);
 
 cat_names=names(counts);
-cat_names=gsub("^-$", "Unclassified", cat_names);
 
-cat_names=gsub(" ", "_", cat_names);
-cat_names=gsub("-", ".", cat_names);
-cat_names=gsub("=", ".", cat_names);
-cat_names=gsub("\\(", ".", cat_names);
-cat_names=gsub("\\)", ".", cat_names);
-cat_names=gsub("/", ".", cat_names);
-cat_names=gsub(":", ".", cat_names);
+cat_names=make.names(cat_names);
+
+#cat_names=gsub("^-$", "Unclassified", cat_names);
+#cat_names=gsub(" ", "_", cat_names);
+#cat_names=gsub("-", ".", cat_names);
+#cat_names=gsub("=", ".", cat_names);
+#cat_names=gsub("\\(", ".", cat_names);
+#cat_names=gsub("\\)", ".", cat_names);
+#cat_names=gsub("\\[", ".", cat_names);
+#cat_names=gsub("\\]", ".", cat_names);
+#cat_names=gsub("/", ".", cat_names);
+#cat_names=gsub(":", ".", cat_names);
 
 names(counts)=cat_names;
 
