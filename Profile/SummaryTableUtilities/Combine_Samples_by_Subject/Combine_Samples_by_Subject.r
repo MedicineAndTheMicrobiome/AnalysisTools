@@ -8,6 +8,7 @@ params=c(
 	"input_file", "i", 1, "character",
 	"mapping_table", "m", 1, "character",
 	"output_fname", "o", 1, "character",
+	"append_col_cname", "a", 2, "character",
 	"collapse_list", "l", 2, "character"
 );
 
@@ -21,6 +22,7 @@ usage = paste (
 	"	-i <input summary table>\n",
 	"	-m <sample mapping table>\n",
 	"	-o <output filename>\n",
+	"	[-a <append collapse colname to new sample id>]\n",
 	"	[-l <collapse list, comma separated>]\n",
 	"\n",	
 	"This script will read in both the summary table and mapping table\n",
@@ -46,10 +48,15 @@ InputFileName=opt$input_file;
 MappingTable=opt$mapping_table;
 OutputFileName=opt$output_fname;
 
+CollapseList=c();
+AppendColName=F;
+
+if(length(opt$append_col_cname)){
+	AppendColName=T;	
+}
+
 if(length(opt$collapse_list)){
 	CollapseList=strsplit(opt$collapse_list,",")[[1]];
-}else{
-	CollapseList=c();
 }
 
 if(!length(grep(".summary_table.tsv$", OutputFileName))){
@@ -62,6 +69,7 @@ cat("\n");
 cat("Input File Name: ", InputFileName, "\n");
 cat("Output File Name: ", OutputFileName, "\n");       
 cat("Mapping Table Name: ", MappingTable, "\n");
+cat("Append Column Name: ", AppendColName, "\n");
 cat("Collapse Column List: \n");
 print(CollapseList);
 cat("\n");
@@ -175,8 +183,12 @@ for(sbj in map_sbjs){
 	if(num_samples_to_combine>0){
 
 		# Construct a new sample ID based on subject id and samples that were included
-		types=names(samp_ids_arr);
-		comb_id=paste(sbj, "_", paste(types, collapse="."), sep="");
+		if(AppendColName){
+			types=names(samp_ids_arr);
+			comb_id=paste(sbj, "_", paste(types, collapse="."), sep="");
+		}else{
+			comb_id=sbj;
+		}
 
 		# Combine the counts
 		comb=apply(counts_mat[samp_ids_arr,,drop=F], 2, sum);
