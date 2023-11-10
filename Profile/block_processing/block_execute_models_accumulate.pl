@@ -31,7 +31,7 @@ if(
 
 
 my $OutputDir=$opt_i;
-my $OutputSummaryDir="$OutputDir\.summaries";
+my $OutputSummaryDir="$OutputDir/Summaries";
 
 ###############################################################################
 
@@ -56,7 +56,7 @@ if(! -e $OutputSummaryDir){
 	mkdir $OutputSummaryDir;
 }
 
-my @files=split /\n/, `find $OutputDir | grep summary.tsv`;
+my @files=split /\n/, `find $OutputDir | grep -v "^Summaries" | grep summary.tsv`;
 
 foreach my $ext (@extensions){
 	my @targets;
@@ -76,7 +76,7 @@ foreach my $ext (@extensions){
 	my $targ_list=join " ", @targets;
 
 
-	`$FILES_TO_COLUMN_BIN -c $targ_list > $OutputSummaryDir/$ext`;
+	`$FILES_TO_COLUMN_BIN $targ_list > $OutputSummaryDir/$ext`;
 
 	print "\n";
 
