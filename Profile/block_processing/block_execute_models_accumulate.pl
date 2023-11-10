@@ -31,7 +31,10 @@ if(
 
 
 my $OutputDir=$opt_i;
-my $OutputSummaryDir="$OutputDir/Summaries";
+
+$OutputDir=~s/\/$//;
+
+my $OutputSummaryDir="$OutputDir\.summaries";
 
 ###############################################################################
 
