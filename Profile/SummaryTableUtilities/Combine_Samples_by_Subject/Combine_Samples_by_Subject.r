@@ -21,7 +21,7 @@ usage = paste (
 	"	-i <input summary table>\n",
 	"	-m <sample mapping table>\n",
 	"	-o <output filename>\n",
-	"	[-c <collapse list, comma separated>]\n",
+	"	[-l <collapse list, comma separated>]\n",
 	"\n",	
 	"This script will read in both the summary table and mapping table\n",
 	"The mapping table has distinct categories for each sample in columns\n",
@@ -47,7 +47,7 @@ MappingTable=opt$mapping_table;
 OutputFileName=opt$output_fname;
 
 if(length(opt$collapse_list)){
-	CollapseList=strsplit(opt$collapse_list, , ",")[[1]];
+	CollapseList=strsplit(opt$collapse_list,",")[[1]];
 }else{
 	CollapseList=c();
 }
