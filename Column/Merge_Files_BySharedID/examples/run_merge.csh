@@ -10,5 +10,5 @@ EOF
 ~/git/AnalysisTools/Column/Merge_Files_BySharedID/Merge_Files_BySharedID.r \
 	-l targets \
 	-o merged.tsv \
-	-c SampleID
+	-C SampleID
 
