@@ -585,7 +585,39 @@ split_factors_to_groups=function(data_matrix, group_list, grp_arr){
 
 }
 
-#print(loaded_factors);
+#------------------------------------------------------------------------------
+
+remove_subjects_with_NAs=function(data_matrix, grp_rec){
+	all_var=grp_rec$Variables;
+	data_matrix=data_matrix[,all_var,drop=F];
+	subj_wNA=apply(data_matrix, 1, function(x){any(is.na(x));});
+	data_matrix=data_matrix[!subj_wNA,,drop=F];
+	rem_rec=list();
+	rem_rec[["noNA_matrix"]]=data_matrix;
+	rem_rec[["RemovedSubjects"]]=names(subj_wNA[subj_wNA==1]);
+	return(rem_rec);
+}
+
+#------------------------------------------------------------------------------
+# Remove subjects with NAs 
+
+na_removal_rec=remove_subjects_with_NAs(loaded_factors, groupings_rec);
+loaded_factors=na_removal_rec[["noNA_matrix"]];
+
+cat("\n");
+cat("Subjects Removed Due to NAs:\n");
+print(na_removal_rec[["RemovedSubjects"]]);
+
+if(length(na_removal_rec[["RemovedSubjects"]])){
+	plot_text(c(
+		"Notice:  The TMR Analysis cannot proceed with NAs in the dataset.",
+		"The following subjects have NAs in the variables requested for analysis:",
+		"",
+		capture.output(na_removal_rec[["RemovedSubjects"]]),
+		"",
+		"They have been removed.  Please confirm you anticipated this."
+	));
+}
 
 variables_rec=list();
 variables_rec[["Covariates"]]=split_factors_to_groups(loaded_factors, groupings_rec, covariates_list);
@@ -593,6 +625,7 @@ variables_rec[["Measured"]]=split_factors_to_groups(loaded_factors, groupings_re
 variables_rec[["Response"]]=split_factors_to_groups(loaded_factors, groupings_rec, response_list);
 
 #print(variables_rec);
+
 
 # Generate list of how variables will be used
 model_variables_summary=capture.output({
