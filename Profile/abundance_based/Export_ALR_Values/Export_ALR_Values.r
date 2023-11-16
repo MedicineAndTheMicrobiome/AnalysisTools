@@ -776,6 +776,11 @@ cat(file=fh, "SampleID");
 close(fh);
 write.table(alr_categories_val, file=tsv_fname, quote=F, sep="\t", row.names=T, col.names=NA, append=T);
 
+# Write categories to grp file
+grps_fname=paste(OutputRoot, ".top", num_top_categories, ".grps", sep="");
+grp_mat=cbind(colnames(alr_categories_val), Prefix);
+write.table(grp_mat, file=grps_fname, quote=F, sep="\t", row.names=F, col.names=F);
+
 ##############################################################################
 
 cor_rec=compute_correlations(alr_categories_val);
