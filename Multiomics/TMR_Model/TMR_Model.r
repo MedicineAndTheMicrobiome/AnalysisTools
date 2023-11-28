@@ -457,7 +457,8 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 
 }
 
-##############################################################################
+###############################################################################
+
 
 fitsummary_to_list=function(summary, resp_colnames){
 
@@ -1020,7 +1021,8 @@ for(type in c("Measured", "Response")){
 				" ", signf_char(permanova_pval_mat[var_ix, perm_mod_name]),
 				sep=""
 				);
-			title(main=paste("R^2 = ", perm_r2, " / P-val = ", perm_pv, sep="") , line=.25, cex.main=.9);
+			title(main=paste("R^2 = ", perm_r2, " / P-val = ", perm_pv, sep=""), 
+				line=.25, cex.main=.9);
 			
 			# Plot points and sample labels
 			points(mds_coord[,1], mds_coord[,2], col=colors[,var_ix], cex=1.5, lwd=3);
@@ -1132,7 +1134,9 @@ for(pred_msd_ix in measured_list){
 			next;
 		}
 
-		cat("\n\nFitting: Measured to Measured: (Pred)", pred_msd_ix, " (Resp)", resp_msd_ix, "\n");
+		cat("\n\nFitting: Measured to Measured: (Pred)", pred_msd_ix, " (Resp)", 
+			resp_msd_ix, "\n");
+
 		analysis_string=paste(pred_msd_ix, "->", resp_msd_ix, sep="");
 
 		msd_resp=as.matrix(variables_rec[["Measured"]][[resp_msd_ix]]);
@@ -1375,7 +1379,8 @@ draw_squares_centered=function(xpos, ypos, height, width, grp_name, variables, t
 	num_var=length(variables);
 
 	if(num_var>0){
-		text_pos=calc_vertical_spacing(num_var, start=ypos+height/2-title_spc, end=ypos-height/2+var_spc);
+		text_pos=calc_vertical_spacing(num_var, start=ypos+height/2-title_spc, 
+			end=ypos-height/2+var_spc);
 
 
 		#xpad=par()$cxy[1]*var_cex;
@@ -1879,6 +1884,292 @@ remove_weaker_bidirectional_links=function(links_rec, log10_diff_thres=1){
 
 }
 
+remove_covariate_links_from_msd_pred=function(links_rec, covariates){
+	#print(covariates);
+	#print(links_rec);
+
+	is_msdtomsd=("Msd_to_Msd"==links_rec[,"model_type"]);
+	is_covar=links_rec[,"predictor"] %in% covariates;
+	is_msdtomsd_and_covar=is_msdtomsd & is_covar;
+
+	covar_removed=links_rec[!is_msdtomsd_and_covar,,drop=F];
+	return(covar_removed);
+}
+
+extract_matrices_from_links=function(no_trtcov_unidir_links,
+		covtrt_to_group_map, covariates_list, measured_list, response_list
+){
+
+	#print(covtrt_to_group_map);
+	#print(covariates_list);
+	#print(measured_list);
+	#print(response_list);
+
+	print(no_trtcov_unidir_links);
+
+	cov_to_msd_tab=no_trtcov_unidir_links[
+		no_trtcov_unidir_links[,"model_type"]=="Cov_to_Msd",,drop=F];
+	msd_to_msd_tab=no_trtcov_unidir_links[
+		no_trtcov_unidir_links[,"model_type"]=="Msd_to_Msd",,drop=F];
+	msd_to_rsp_tab=no_trtcov_unidir_links[
+		no_trtcov_unidir_links[,"model_type"]=="Msd_to_Rsp",,drop=F];
+
+
+	# Put predictors on rows, responses on columns
+	tab_to_mat=function(table){
+		uniq_pred=unique(table[,"predictor"]);
+		uniq_resp=unique(table[,"response"]);
+
+		num_uniq_pred=length(uniq_pred);
+		num_uniq_resp=length(uniq_resp);
+		mat=matrix(0, nrow=num_uniq_pred, ncol=num_uniq_resp);
+		rownames(mat)=uniq_pred;
+		colnames(mat)=uniq_resp;
+
+		nrow=nrow(table);
+		cat("Num Rows: ", nrow, "\n");
+		if(nrow>0){
+			for(i in 1:nrow){
+				rn=as.character(table[i,"predictor"]);
+				cn=as.character(table[i,"response"]);
+
+				mat[rn,cn]=mat[rn,cn]+1;
+			}
+		}else{
+			mat=matrix(NA, nrow=0, ncol=0);
+		}
+		return(mat);
+	}
+
+	results=list();
+	results[["c2m"]]=tab_to_mat(cov_to_msd_tab);
+	results[["m2m"]]=tab_to_mat(msd_to_msd_tab);
+	results[["m2r"]]=tab_to_mat(msd_to_rsp_tab);
+
+	return(results);
+}
+
+tmr_heatmap=function(mat, title="", pred_var_mat, resp_var_mat, value.cex=1){
+
+	cat("Generating TMR Heatmap for: ", title, "\n", sep="");
+
+        num_row=nrow(mat);
+        num_col=ncol(mat);
+
+	cat("Mat Dimensions:", num_row, " x ", num_col, "\n");
+	print(mat);
+
+        row_names=rownames(mat);
+        col_names=colnames(mat);
+
+	#----------------------------------------------------------------------
+
+	subset_mat=function(targets, ordermat){
+
+		ordermat=as.data.frame(ordermat);
+		om_cname=colnames(ordermat);
+		ordermat=cbind(ordermat,F);
+		colnames(ordermat)=c(om_cname, "Keep");
+		rownames(ordermat)=ordermat[,"Variable"];
+
+		for(t in targets){
+			ordermat[t,3]=T;
+		}
+		
+		ordermat=ordermat[ordermat[,"Keep"],c(1,2),drop=F];
+		ordermat=as.matrix(ordermat);
+
+		rownames(ordermat)=c();
+		return(ordermat);
+	}
+
+	#----------------------------------------------------------------------
+
+	find_group_sizes=function(grp_lst){
+		# Find group counts while preserving their order
+
+		num_tot_items=length(grp_lst);
+
+		item_lst=c();
+		cur_item=grp_lst[1];
+		item_lst=cur_item;
+		if(num_tot_items>0){
+			for(i in 1:num_tot_items){
+				if(cur_item == grp_lst[i]){
+					next;
+				}else{
+					cur_item=grp_lst[i];
+					item_lst=c(item_lst, cur_item);
+				}
+			}
+		}
+
+		num_uniq_items=length(item_lst);
+
+		item_counts=numeric(num_uniq_items);
+		names(item_counts)=item_lst;
+		if(num_uniq_items>0){
+			for(i in 1:num_uniq_items){
+				item_counts[i]=sum(grp_lst==item_lst[i]);
+			}
+		}
+		
+		return(item_counts);
+
+	}
+
+	#----------------------------------------------------------------------
+
+	pred_var_mat=subset_mat(row_names, pred_var_mat);
+	resp_var_mat=subset_mat(col_names, resp_var_mat);
+
+	cat("Predictor Mat:\n");
+	print(pred_var_mat);
+	cat("\n");
+	
+	cat("Response Mat:\n");
+	print(resp_var_mat);
+	cat("\n");
+
+	row_names=pred_var_mat[,"Variable"];
+	col_names=resp_var_mat[,"Variable"];
+
+	pred_grp_sizes=find_group_sizes(pred_var_mat[,"Group"]);
+	resp_grp_sizes=find_group_sizes(resp_var_mat[,"Group"]);
+
+	data_mat=mat[row_names, col_names, drop=F];
+
+        orig.par=par(no.readonly=T);
+
+        cat("TMR Heatmap: ", title, "\n");
+        cat("Num Rows: ", num_row, "\n");
+        cat("Num Cols: ", num_col, "\n");
+
+
+        if(num_row==0 || num_col==0){
+		par(mar=c(5,5,5,5));
+                plot(0, type="n", xlim=c(-1,1), ylim=c(-1,1), xaxt="n", yaxt="n", 
+			bty="n", xlab="", ylab="");
+                text(0,0, "No relationships to plot...");
+		mtext(title, side=3, line=1.5, outer=F, font=2, cex=2);
+
+                return();
+        }
+
+
+        # Generate a color scheme
+        num_colors=50;
+        color_arr=rainbow(num_colors, start=0, end=4/6);
+        color_arr=rev(color_arr);
+
+        # Provide a means to map values to an (color) index
+        remap=function(in_val, in_range, out_range){
+                in_prop=(in_val-in_range[1])/(in_range[2]-in_range[1])
+                out_val=in_prop*(out_range[2]-out_range[1])+out_range[1];
+                return(out_val);
+        }
+
+        # Get Label lengths
+        row_max_nchar=max(nchar(row_names));
+        col_max_nchar=max(nchar(col_names));
+        cat("Max Row Names Length: ", row_max_nchar, "\n");
+        cat("Max Col Names Length: ", col_max_nchar, "\n");
+
+	plot_max=max(mat);
+
+        ########################################################################
+
+        par(mar=c(col_max_nchar*.40, row_max_nchar*.40, 5, col_max_nchar*.1));
+        plot(0, type="n", xlim=c(0,num_col), ylim=c(0,num_row), xaxt="n", yaxt="n", 
+		bty="n", xlab="", ylab="");
+        mtext(title, side=3, line=1.5, outer=F, font=2, cex=2);
+
+
+	txt_w=par()$cxy[1];
+	txt_h=par()$cxy[2];
+	label_size_x=min(c(1, 40/num_col));
+	label_size_y=min(c(1, 25/num_row));
+
+	# y-axis: predictor
+        axis(side=2, at=seq(.5, num_row-.5, 1), labels=rev(row_names), las=2, line=-1.75,
+		cex.axis=label_size_y, tick=F);
+
+        # x-axis: response
+        text((1:num_col)-1/2- label_size_x*txt_w*1.5, rep(-txt_h/2, num_col), col_names, 
+		srt=-60, xpd=T, pos=4, cex=label_size_x);
+
+
+        for(x in 1:num_col){
+                for(y in 1:num_row){
+
+                        cell_val=data_mat[(num_row-y+1),x];
+
+                        remap_val=remap(cell_val, c(0, plot_max), c(1, num_colors));
+                        col_ix=ceiling(remap_val);
+
+			# Draw/Color the cell
+                        rect(x-1, y-1, (x-1)+1, (y-1)+1, border=NA, col=color_arr[col_ix]);
+
+			# Label the counts
+                        if(cell_val>1){
+                                text_lab=sprintf("%i", cell_val);
+                                text(x-.5, y-.5, text_lab, srt=atan(num_col/num_row)/pi*180, 
+					cex=value.cex, font=2);
+                        }
+                }
+        }
+
+	pred_grp_lines=c(0, cumsum(rev(pred_grp_sizes)));
+	resp_grp_lines=c(0, cumsum(resp_grp_sizes));
+
+	for(i in 1:length(resp_grp_lines)){
+		points(c(resp_grp_lines[i], resp_grp_lines[i]), c(0, num_row), type="l", 
+			lwd=1.5, col="brown");
+	}
+
+	for(i in 1:length(pred_grp_lines)){
+		points(c(0, num_col), c(pred_grp_lines[i], pred_grp_lines[i]), type="l",
+			lwd=1.5, col="brown");
+	}
+
+        ########################################################################
+
+        par(orig.par);
+
+}
+
+##############################################################################
+
+plot_tmr_matrices=function(lnk_rec, var_rec){
+
+	var_mat=matrix(NA, nrow=0, ncol=3);
+	colnames(var_mat)=c("Type", "Group", "Variable");
+	for(tmr_type in names(var_rec)){
+		cat("TMR Type: ", tmr_type, "\n");
+		for(grp in names(var_rec[[tmr_type]])){
+			cat("  Group: ", grp, "\n");
+			for(var in colnames(var_rec[[tmr_type]][[grp]])){
+				cat("    Variable: ", var, "\n");
+				var_mat=rbind(var_mat, c(tmr_type, grp, var));
+			}
+		}
+	}
+	print(var_mat);
+	
+	trtcov_mat=var_mat[var_mat[,"Type"]=="Covariates", c("Group", "Variable"), drop=F];
+	msd_mat=var_mat[var_mat[,"Type"]=="Measured", c("Group", "Variable"), drop=F];
+	rsp_mat=var_mat[var_mat[,"Type"]=="Response", c("Group", "Variable"), drop=F];
+
+	tmr_heatmap(lnk_rec[["c2m"]], title="Treatments/Covariates to Measured", 
+		trtcov_mat, msd_mat);
+	tmr_heatmap(lnk_rec[["m2m"]], title="Measured to Measured", msd_mat, msd_mat);
+	tmr_heatmap(lnk_rec[["m2r"]], title="Measured to Response", rbind(trtcov_mat, msd_mat), rsp_mat);
+
+	#quit();
+}
+
+###############################################################################
+
 plot_title_page("TMR Diagrams", c(
 	"The follow diagrams illustrate the group-to-group relationships that have been identified",
 	"by the pair-wise regression models.",
@@ -1909,9 +2200,13 @@ plot_title_page("TMR Diagrams", c(
 	"response, coefficients and p-values that were represented by the preceding TMR diagram is reported."
 ));
 
-#for(cutoffs in c("0.0010", "0.1000")){
 options(width=300);
+
+
+#for(cutoffs in c("0.0010", "0.1000")){
+#for(cutoffs in c("0.0100")){
 for(cutoffs in names(denorm_results)){
+
 	if(cutoffs=="1.0000"){break;}
 
 	plot_TMR_diagram(denorm_results[[cutoffs]],
@@ -1946,10 +2241,33 @@ for(cutoffs in names(denorm_results)){
 
 	plot_text(c(
 		paste("P-value Cutoff: ", cutoffs, sep=""),
-		paste("(Excluding weaker of bi-directional links, ", nrow(unidir_links), " links.)", sep=""),
+		paste("(Excluding weaker of bi-directional links, ", nrow(unidir_links), 
+			" links.)", sep=""),
 		capture.output(print(unidir_links, quotes=""))
 	), max_lines_pp=70);
+
+
+	# Remove links from covariates/treatments
+
+	no_trtcov_unidir_links=remove_covariate_links_from_msd_pred(
+		unidir_links, covariate_variable_names);
+	plot_TMR_diagram(no_trtcov_unidir_links,
+		paste("P-value Cutoff: ", cutoffs, sep=""),
+		"Uni-directional VARIABLE Links and w/o Treatments/Covariates",
+		covtrt_to_group_map,
+		grp_links=0,
+		covariates_list, measured_list, response_list);
+
+	plot_text(c(
+		paste("P-value Cutoff: ", cutoffs, sep=""),
+		paste("(Excluding weaker of bi-directional links, and Treatments/Covariates)", sep=""),
+		capture.output(print(no_trtcov_unidir_links, quotes=""))
+	), max_lines_pp=70);
 		
+
+	# Generate Heatmaps
+	link_rec=extract_matrices_from_links(no_trtcov_unidir_links);
+	plot_tmr_matrices(link_rec, variables_rec);
 }
 
 ##############################################################################
