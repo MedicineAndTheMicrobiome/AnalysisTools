@@ -2061,6 +2061,7 @@ tmr_heatmap=function(mat, title="", pred_var_mat, resp_var_mat, value.cex=1){
         num_colors=50;
         color_arr=rainbow(num_colors, start=0, end=4/6);
         color_arr=rev(color_arr);
+	color_arr[1]="#FFFFFF";
 
         # Provide a means to map values to an (color) index
         remap=function(in_val, in_range, out_range){
@@ -2138,6 +2139,179 @@ tmr_heatmap=function(mat, title="", pred_var_mat, resp_var_mat, value.cex=1){
 
 }
 
+################################################################################
+
+tmr_heatmap_byGroup=function(mat, title="", pred_var_mat, resp_var_mat, value.cex=1){
+
+	cat("Generating TMR Group Heatmap for: ", title, "\n", sep="");
+        orig.par=par(no.readonly=T);
+
+        num_row=nrow(mat);
+        num_col=ncol(mat);
+
+	cat("Mat Dimensions:", num_row, " x ", num_col, "\n");
+	print(mat);
+
+        row_names=rownames(mat);
+        col_names=colnames(mat);
+
+	#----------------------------------------------------------------------
+
+	subset_mat=function(targets, ordermat){
+		# Retrun the subset in the right order.
+		# The targets may not be in the right order but the entries
+		# in the ordermat will be.
+
+		ordermat=as.data.frame(ordermat);
+		om_cname=colnames(ordermat);
+		ordermat=cbind(ordermat,F);
+		colnames(ordermat)=c(om_cname, "Keep");
+		rownames(ordermat)=ordermat[,"Variable"];
+
+		for(t in targets){
+			ordermat[t,3]=T;
+		}
+		
+		ordermat=ordermat[ordermat[,"Keep"],c(1,2),drop=F];
+		ordermat=as.matrix(ordermat);
+
+		rownames(ordermat)=c();
+		return(ordermat);
+	}
+
+	#----------------------------------------------------------------------
+
+	pred_var_mat=subset_mat(row_names, pred_var_mat);
+	resp_var_mat=subset_mat(col_names, resp_var_mat);
+
+	cat("Predictor Mat:\n");
+	print(pred_var_mat);
+	cat("\n");
+	
+	cat("Response Mat:\n");
+	print(resp_var_mat);
+	cat("\n");
+
+	pred_groups=unique(pred_var_mat[,"Group"]);
+	resp_groups=unique(resp_var_mat[,"Group"]);
+
+	num_unq_pred_grps=length(pred_groups);
+	num_unq_resp_grps=length(resp_groups);
+
+	grp_count_mat=matrix(0, nrow=num_unq_pred_grps, ncol=num_unq_resp_grps);
+	rownames(grp_count_mat)=pred_groups;
+	colnames(grp_count_mat)=resp_groups;
+
+	if(num_unq_pred_grps>0 && num_unq_resp_grps>0){
+		for(i in 1:num_unq_pred_grps){
+			for(j in 1:num_unq_resp_grps){
+
+				pred_grp=pred_groups[i];
+				resp_grp=resp_groups[j];
+
+				pred_vars=pred_var_mat[(pred_var_mat[,"Group"]==pred_grp), "Variable"];
+				resp_vars=resp_var_mat[(resp_var_mat[,"Group"]==resp_grp), "Variable"];
+
+				var_sub_mat=mat[pred_vars, resp_vars, drop=F];
+			
+				#cat("--------------------------------------------------\n");
+				#print(pred_grp);
+				#print(resp_grp);
+				#print(var_sub_mat);
+				num_assoc=sum(var_sub_mat);
+				#print(num_assoc);
+				#cat("--------------------------------------------------\n");
+				grp_count_mat[pred_grp, resp_grp]=num_assoc;
+
+			}
+		}
+	}
+
+	print(grp_count_mat);
+
+        cat("TMR Group Heatmap: ", title, "\n");
+        cat("Num Rows: ", num_unq_pred_grps, "\n");
+        cat("Num Cols: ", num_unq_resp_grps, "\n");
+
+        if(num_unq_pred_grps==0 || num_unq_resp_grps==0){
+		par(mar=c(5,5,5,5));
+                plot(0, type="n", xlim=c(-1,1), ylim=c(-1,1), xaxt="n", yaxt="n", 
+			bty="n", xlab="", ylab="");
+                text(0,0, "No relationships to plot...");
+		mtext(title, side=3, line=1.5, outer=F, font=2, cex=2);
+
+                return();
+        }
+
+        # Generate a color scheme
+        num_colors=50;
+        color_arr=rainbow(num_colors, start=0, end=4/6);
+        color_arr=rev(color_arr);
+	color_arr[1]="#FFFFFF";
+
+        # Provide a means to map values to an (color) index
+        remap=function(in_val, in_range, out_range){
+                in_prop=(in_val-in_range[1])/(in_range[2]-in_range[1])
+                out_val=in_prop*(out_range[2]-out_range[1])+out_range[1];
+                return(out_val);
+        }
+
+        # Get Label lengths
+        row_max_nchar=max(nchar(pred_groups));
+        col_max_nchar=max(nchar(resp_groups));
+        cat("Max Row Names Length: ", row_max_nchar, "\n");
+        cat("Max Col Names Length: ", col_max_nchar, "\n");
+
+	plot_max=max(grp_count_mat);
+
+        ########################################################################
+
+        par(mar=c(col_max_nchar*.40, row_max_nchar*.40, 5, col_max_nchar*.1));
+        plot(0, type="n", xlim=c(0,num_unq_resp_grps), ylim=c(0,num_unq_pred_grps), xaxt="n", yaxt="n", 
+		bty="n", xlab="", ylab="");
+        mtext(title, side=3, line=1.5, outer=F, font=2, cex=2);
+
+
+	txt_w=par()$cxy[1];
+	txt_h=par()$cxy[2];
+	label_size_x=min(c(1, 40/num_unq_resp_grps));
+	label_size_y=min(c(1, 25/num_unq_pred_grps));
+
+	# y-axis: predictor
+        axis(side=2, at=seq(.5, num_unq_pred_grps-.5, 1), labels=rev(pred_groups), las=2, line=-1.75,
+		cex.axis=label_size_y, tick=F);
+
+        # x-axis: response
+        text((1:num_unq_resp_grps)-1/2- label_size_x*txt_w*1.5, rep(-txt_h/2, num_unq_resp_grps), 
+		resp_groups, srt=-60, xpd=T, pos=4, cex=label_size_x);
+
+
+        for(x in 1:num_unq_resp_grps){
+                for(y in 1:num_unq_pred_grps){
+
+                        cell_val=grp_count_mat[(num_unq_pred_grps-y+1),x];
+
+                        remap_val=remap(cell_val, c(0, plot_max), c(1, num_colors));
+                        col_ix=ceiling(remap_val);
+
+			# Draw/Color the cell
+                        rect(x-1, y-1, (x-1)+1, (y-1)+1, border=NA, col=color_arr[col_ix]);
+
+			# Label the counts
+                        if(cell_val>0){
+                                text_lab=sprintf("%i", cell_val);
+                                text(x-.5, y-.5, text_lab, srt=atan(num_col/num_row)/pi*180, 
+					cex=value.cex, font=2);
+                        }
+                }
+        }
+
+        ########################################################################
+
+        par(orig.par);
+
+}
+
 ##############################################################################
 
 plot_tmr_matrices=function(lnk_rec, var_rec){
@@ -2160,10 +2334,17 @@ plot_tmr_matrices=function(lnk_rec, var_rec){
 	msd_mat=var_mat[var_mat[,"Type"]=="Measured", c("Group", "Variable"), drop=F];
 	rsp_mat=var_mat[var_mat[,"Type"]=="Response", c("Group", "Variable"), drop=F];
 
+
 	tmr_heatmap(lnk_rec[["c2m"]], title="Treatments/Covariates to Measured", 
 		trtcov_mat, msd_mat);
 	tmr_heatmap(lnk_rec[["m2m"]], title="Measured to Measured", msd_mat, msd_mat);
 	tmr_heatmap(lnk_rec[["m2r"]], title="Measured to Response", rbind(trtcov_mat, msd_mat), rsp_mat);
+
+
+	tmr_heatmap_byGroup(lnk_rec[["c2m"]], title="Treatments/Covariates to Measured", 
+		trtcov_mat, msd_mat);
+	tmr_heatmap_byGroup(lnk_rec[["m2m"]], title="Measured to Measured", msd_mat, msd_mat);
+	tmr_heatmap_byGroup(lnk_rec[["m2r"]], title="Measured to Response", rbind(trtcov_mat, msd_mat), rsp_mat);
 
 	#quit();
 }
