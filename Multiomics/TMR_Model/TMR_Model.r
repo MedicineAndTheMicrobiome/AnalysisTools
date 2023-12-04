@@ -2314,7 +2314,7 @@ tmr_heatmap_byGroup=function(mat, title="", pred_var_mat, resp_var_mat, value.ce
 
 }	
 
-marginal_heatmap_byGroup=function(t2m, m2m, m2r){
+marginal_stacked_barplots_byGroup=function(t2m, m2m, m2r, grp_colors){
 
 	if(!is.null(t2m)){
 		pred_t2m=apply(t2m, 1, sum);
@@ -2384,41 +2384,72 @@ marginal_heatmap_byGroup=function(t2m, m2m, m2r){
 	scale[3]=max(target_min[3], norm_by_max[3]);
 	names(scale)=names(norm_by_max);
 
+
 	orig_par=par(no.readonly=T);
 	par(mfrow=c(1,3));
 	par(mar=c(5,5,5,1));
 
 	xlabs=c("Predictors", "Responses");
 
+	#----------------------------------------------------------------------
+	# Reverse these so labels go from top to bottom, instead of bottom to top
+
+	rev_pred_t2m=rev(pred_t2m);
+	rev_resp_t2m=rev(resp_t2m);
+	rev_pred_m2m=rev(pred_m2m);
+	rev_resp_m2m=rev(resp_m2m);
+	rev_pred_m2r=rev(pred_m2r);
+	rev_resp_m2r=rev(resp_m2r);
+
+	#----------------------------------------------------------------------
+
 	m=matrix(0, nrow=max_len, ncol=2);
-	m[1:lengths[1], 1]=pred_t2m;
-	m[1:lengths[2], 2]=resp_t2m;
+	m[1:lengths[1], 1]=rev_pred_t2m;
+	m[1:lengths[2], 2]=rev_resp_t2m;
 	mids=barplot(m, ylim=c(0, scale["t2m"]*max_sum), main="Treatments & Covariates - to - Measured", 
 		names.arg=c("\nPredictors:\nTreatments & Covariates", "\nResponses:\nMeasured"));
-	lab_pos_p=calc_lab_pos(pred_t2m, par());
-	lab_pos_r=calc_lab_pos(resp_t2m, par());
+	lab_pos_p=calc_lab_pos(rev_pred_t2m, par());
+	lab_pos_r=calc_lab_pos(rev_resp_t2m, par());
+
+	barplot(cbind(m[,1], 0), col=grp_colors[names(lab_pos_p)], add=T);
+	barplot(cbind(0, m[,2]), col=grp_colors[names(lab_pos_r)], add=T);
+
 	text(rep(mids[1], length(lab_pos_p)), lab_pos_p, labels=names(lab_pos_p));
 	text(rep(mids[2], length(lab_pos_r)), lab_pos_r, labels=names(lab_pos_r));
 
+	#----------------------------------------------------------------------
+
 	m=matrix(0, nrow=max_len, ncol=2);
-	m[1:lengths[3], 1]=pred_m2m;
-	m[1:lengths[4], 2]=resp_m2m;
+	m[1:lengths[3], 1]=rev_pred_m2m;
+	m[1:lengths[4], 2]=rev_resp_m2m;
 	barplot(m, ylim=c(0, scale["m2m"]*max_sum), main="Measured - to - Measured", 
 		names.arg=c("\nPredictors:\nMeasured", "\nResponses:\nMeasured"));
-	lab_pos_p=calc_lab_pos(pred_m2m, par());
-	lab_pos_r=calc_lab_pos(resp_m2m, par());
+	lab_pos_p=calc_lab_pos(rev_pred_m2m, par());
+	lab_pos_r=calc_lab_pos(rev_resp_m2m, par());
+
+	barplot(cbind(m[,1], 0), col=grp_colors[names(lab_pos_p)], add=T);
+	barplot(cbind(0, m[,2]), col=grp_colors[names(lab_pos_r)], add=T);
+
 	text(rep(mids[1], length(lab_pos_p)), lab_pos_p, names(lab_pos_p));
 	text(rep(mids[2], length(lab_pos_r)), lab_pos_r, names(lab_pos_r));
 
+	#----------------------------------------------------------------------
+
 	m=matrix(0, nrow=max_len, ncol=2);
-	m[1:lengths[5], 1]=pred_m2r;
-	m[1:lengths[6], 2]=resp_m2r;
+	m[1:lengths[5], 1]=rev_pred_m2r;
+	m[1:lengths[6], 2]=rev_resp_m2r;
 	barplot(m, ylim=c(0, scale["m2r"]*max_sum), main="Measured - to - Response", 
 		names.arg=c("\nPredictors:\nMeasured", "Responses"));
-	lab_pos_p=calc_lab_pos(pred_m2r, par());
-	lab_pos_r=calc_lab_pos(resp_m2r, par());
+	lab_pos_p=calc_lab_pos(rev_pred_m2r, par());
+	lab_pos_r=calc_lab_pos(rev_resp_m2r, par());
+
+	barplot(cbind(m[,1], 0), col=grp_colors[names(lab_pos_p)], add=T);
+	barplot(cbind(0, m[,2]), col=grp_colors[names(lab_pos_r)], add=T);
+
 	text(rep(mids[1], length(lab_pos_p)), lab_pos_p, names(lab_pos_p));
 	text(rep(mids[2], length(lab_pos_r)), lab_pos_r, names(lab_pos_r));
+
+	#----------------------------------------------------------------------
 
 	par(orig_par);
 
@@ -2436,7 +2467,7 @@ marginal_heatmap_byGroup=function(t2m, m2m, m2r){
 
 ##############################################################################
 
-plot_tmr_matrices=function(lnk_rec, var_rec){
+plot_tmr_matrices=function(lnk_rec, var_rec, grp_colors){
 
 	# Split records into trtcov-msd, msd-msd, and msd-resp matrices
 	var_mat=matrix(NA, nrow=0, ncol=3);
@@ -2474,10 +2505,38 @@ plot_tmr_matrices=function(lnk_rec, var_rec){
 	msd_to_rsp_mat=tmr_heatmap_byGroup(lnk_rec[["m2r"]], 
 		title="Measured to Response", rbind(trtcov_mat, msd_mat), rsp_mat);
 
-	marginals=marginal_heatmap_byGroup(
-		trtcov_to_msd_mat, msd_to_msd_mat, msd_to_rsp_mat);
+	marginals=marginal_stacked_barplots_byGroup(
+		trtcov_to_msd_mat, msd_to_msd_mat, msd_to_rsp_mat, grp_colors);
 
 	#quit();
+}
+
+##############################################################################
+
+assign_colors=function(name_arr){
+
+	jumble_colors=function(num_colors){
+
+		alloc_colors=rainbow(num_colors, start=0, end=1);
+
+		sqrt_num_col=sqrt(num_colors);
+		num_sqr_cells=ceiling(sqrt_num_col)^2;
+
+		holder=rep(NA, num_sqr_cells);
+		holder[1:num_colors]=alloc_colors;
+
+		mat=matrix(holder, ncol=ceiling(sqrt_num_col), byrow=T);
+
+		jumbled=as.vector(mat);
+		jumbled=jumbled[!is.na(jumbled)];
+		return(jumbled);
+
+	}
+	
+	grp_col=jumble_colors(length(name_arr));
+	names(grp_col)=name_arr;
+
+	return(grp_col);
 }
 
 ###############################################################################
@@ -2513,6 +2572,10 @@ plot_title_page("TMR Diagrams", c(
 ));
 
 # Assign colors to each group
+cat("Assigning Colors to: \n");
+print(groupings_rec$Groups);
+grp_colors=assign_colors(groupings_rec$Groups);
+print(grp_colors);
 
 options(width=300);
 marginals=list();
@@ -2579,14 +2642,14 @@ for(cutoffs in names(denorm_results)){
 	), max_lines_pp=70);
 		
 
-	# Generate Heatmaps
+	# Generate Heatmaps & Stacked Barplots
 	link_rec=extract_matrices_from_links(no_trtcov_unidir_links);
-	marginals[[cutoffs]]=plot_tmr_matrices(link_rec, variables_rec);
+	marginals[[cutoffs]]=plot_tmr_matrices(link_rec, variables_rec, grp_colors);
 }
 
 ##############################################################################
 
-plot_marginals_over_signif=function(marginals_list){
+plot_marginals_over_signif=function(marginals_list, grp_col){
 	signf_arr=names(marginals_list);
 
 	list_by_type=list();
@@ -2628,29 +2691,6 @@ plot_marginals_over_signif=function(marginals_list){
 
 	cat("Groups seen:\n");
 	print(uniq_grps_seen);
-	num_uniq_grps=length(uniq_grps_seen);
-
-
-	jumble_colors=function(num_colors){
-
-		alloc_colors=rainbow(num_colors, start=0, end=4/6);
-
-		sqrt_num_col=sqrt(num_colors);
-		num_sqr_cells=ceiling(sqrt_num_col)^2;
-
-		holder=rep(NA, num_sqr_cells);
-		holder[1:num_colors]=alloc_colors;
-
-		mat=matrix(holder, ncol=ceiling(sqrt_num_col), byrow=T);
-
-		jumbled=as.vector(mat);
-		jumbled=jumbled[!is.na(jumbled)];
-		return(jumbled);
-
-	}
-	
-	grp_col=jumble_colors(num_uniq_grps);
-	names(grp_col)=uniq_grps_seen;
 
 	#----------------------------------------------------------------------
 
@@ -2689,6 +2729,8 @@ plot_marginals_over_signif=function(marginals_list){
 	}
 
 	#----------------------------------------------------------------------
+	# Generate line plots with x=p-val / y=counts
+	# Pair the Predictors with Responses
 
 	par(mfrow=c(3,2));
 	par(mar=c(4,4,3,1));
@@ -2707,7 +2749,7 @@ plot_marginals_over_signif=function(marginals_list){
 		ylab="Responses", m=c(4,4,1,1), al=T);
 }
 
-plot_marginals_over_signif(marginals);
+plot_marginals_over_signif(marginals, grp_colors);
 
 ##############################################################################
 # Export full link table
