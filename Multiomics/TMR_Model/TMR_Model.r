@@ -2310,12 +2310,135 @@ tmr_heatmap_byGroup=function(mat, title="", pred_var_mat, resp_var_mat, value.ce
 
         par(orig.par);
 
+	return(grp_count_mat);
+
+}	
+
+marginal_heatmap_byGroup=function(t2m, m2m, m2r){
+
+	if(!is.null(t2m)){
+		pred_t2m=apply(t2m, 1, sum);
+		resp_t2m=apply(t2m, 2, sum);
+	}else{
+		pred_t2m=0;
+		resp_t2m=0;
+	}
+
+	if(!is.null(m2m)){
+		pred_m2m=apply(m2m, 1, sum);
+		resp_m2m=apply(m2m, 2, sum);
+	}else{
+		pred_m2m=0;
+		resp_m2m=0;
+	}
+
+	if(!is.null(m2r)){
+		pred_m2r=apply(m2r, 1, sum);
+		resp_m2r=apply(m2r, 2, sum);
+	}else{
+		pred_m2r=0;
+		resp_m2r=0;
+	}
+
+
+	lengths=c(
+		pred_t2m=length(pred_t2m),
+		resp_t2m=length(resp_t2m),
+		pred_m2m=length(pred_m2m),
+		resp_m2m=length(resp_m2m),
+		pred_m2r=length(pred_m2r),
+		resp_m2r=length(resp_m2r)
+		);
+
+	sums=c(
+		pred_t2m=sum(pred_t2m),
+		resp_t2m=sum(resp_t2m),
+		pred_m2m=sum(pred_m2m),
+		resp_m2m=sum(resp_m2m),
+		pred_m2r=sum(pred_m2r),
+		resp_m2r=sum(resp_m2r)
+		);
+	
+	max_len=max(lengths);
+	max_sum=max(sums);
+
+	calc_lab_pos=function(counts, parv){
+		bottoms=c(0,cumsum(counts));
+		halfs=c(counts,0)/2;
+		midpos=bottoms+halfs;
+		names(midpos)=names(counts);
+		midpos=midpos[1:length(counts)];
+		return(midpos);
+	}
+
+	sums_by_type=c(sums["pred_t2m"], sums["pred_m2m"], sums["pred_m2r"]);
+	names(sums_by_type)=c("t2m", "m2m", "m2r");
+	norm_by_max=sums_by_type/(max(sums_by_type));
+	norm_by_max=sort(norm_by_max);
+	target_min=c(.33, .66, .1);
+
+	scale=numeric(3);
+	names(scale)=norm_by_max;
+	scale[1]=max(target_min[1], norm_by_max[1]);
+	scale[2]=max(target_min[2], norm_by_max[2]);
+	scale[3]=max(target_min[3], norm_by_max[3]);
+	names(scale)=names(norm_by_max);
+
+	orig_par=par(no.readonly=T);
+	par(mfrow=c(1,3));
+	par(mar=c(5,5,5,1));
+
+	xlabs=c("Predictors", "Responses");
+
+	m=matrix(0, nrow=max_len, ncol=2);
+	m[1:lengths[1], 1]=pred_t2m;
+	m[1:lengths[2], 2]=resp_t2m;
+	mids=barplot(m, ylim=c(0, scale["t2m"]*max_sum), main="Treatments & Covariates - to - Measured", 
+		names.arg=c("\nPredictors:\nTreatments & Covariates", "\nResponses:\nMeasured"));
+	lab_pos_p=calc_lab_pos(pred_t2m, par());
+	lab_pos_r=calc_lab_pos(resp_t2m, par());
+	text(rep(mids[1], length(lab_pos_p)), lab_pos_p, labels=names(lab_pos_p));
+	text(rep(mids[2], length(lab_pos_r)), lab_pos_r, labels=names(lab_pos_r));
+
+	m=matrix(0, nrow=max_len, ncol=2);
+	m[1:lengths[3], 1]=pred_m2m;
+	m[1:lengths[4], 2]=resp_m2m;
+	barplot(m, ylim=c(0, scale["m2m"]*max_sum), main="Measured - to - Measured", 
+		names.arg=c("\nPredictors:\nMeasured", "\nResponses:\nMeasured"));
+	lab_pos_p=calc_lab_pos(pred_m2m, par());
+	lab_pos_r=calc_lab_pos(resp_m2m, par());
+	text(rep(mids[1], length(lab_pos_p)), lab_pos_p, names(lab_pos_p));
+	text(rep(mids[2], length(lab_pos_r)), lab_pos_r, names(lab_pos_r));
+
+	m=matrix(0, nrow=max_len, ncol=2);
+	m[1:lengths[5], 1]=pred_m2r;
+	m[1:lengths[6], 2]=resp_m2r;
+	barplot(m, ylim=c(0, scale["m2r"]*max_sum), main="Measured - to - Response", 
+		names.arg=c("\nPredictors:\nMeasured", "Responses"));
+	lab_pos_p=calc_lab_pos(pred_m2r, par());
+	lab_pos_r=calc_lab_pos(resp_m2r, par());
+	text(rep(mids[1], length(lab_pos_p)), lab_pos_p, names(lab_pos_p));
+	text(rep(mids[2], length(lab_pos_r)), lab_pos_r, names(lab_pos_r));
+
+	par(orig_par);
+
+	marginals=list();
+	marginals[["pred_t2m"]]=pred_t2m;
+	marginals[["resp_t2m"]]=resp_t2m;
+	marginals[["pred_m2m"]]=pred_m2m;
+	marginals[["resp_m2m"]]=resp_m2m;
+	marginals[["pred_m2r"]]=pred_m2r;
+	marginals[["resp_m2r"]]=resp_m2r;
+
+	return(marginals);
+
 }
 
 ##############################################################################
 
 plot_tmr_matrices=function(lnk_rec, var_rec){
 
+	# Split records into trtcov-msd, msd-msd, and msd-resp matrices
 	var_mat=matrix(NA, nrow=0, ncol=3);
 	colnames(var_mat)=c("Type", "Group", "Variable");
 	for(tmr_type in names(var_rec)){
@@ -2341,10 +2464,18 @@ plot_tmr_matrices=function(lnk_rec, var_rec){
 	tmr_heatmap(lnk_rec[["m2r"]], title="Measured to Response", rbind(trtcov_mat, msd_mat), rsp_mat);
 
 
-	tmr_heatmap_byGroup(lnk_rec[["c2m"]], title="Treatments/Covariates to Measured", 
+	trtcov_to_msd_mat=tmr_heatmap_byGroup(lnk_rec[["c2m"]], 
+		title="Treatments/Covariates to Measured", 
 		trtcov_mat, msd_mat);
-	tmr_heatmap_byGroup(lnk_rec[["m2m"]], title="Measured to Measured", msd_mat, msd_mat);
-	tmr_heatmap_byGroup(lnk_rec[["m2r"]], title="Measured to Response", rbind(trtcov_mat, msd_mat), rsp_mat);
+
+	msd_to_msd_mat=tmr_heatmap_byGroup(lnk_rec[["m2m"]], 
+		title="Measured to Measured", msd_mat, msd_mat);
+
+	msd_to_rsp_mat=tmr_heatmap_byGroup(lnk_rec[["m2r"]], 
+		title="Measured to Response", rbind(trtcov_mat, msd_mat), rsp_mat);
+
+	marginals=marginal_heatmap_byGroup(
+		trtcov_to_msd_mat, msd_to_msd_mat, msd_to_rsp_mat);
 
 	#quit();
 }
@@ -2381,8 +2512,10 @@ plot_title_page("TMR Diagrams", c(
 	"response, coefficients and p-values that were represented by the preceding TMR diagram is reported."
 ));
 
-options(width=300);
+# Assign colors to each group
 
+options(width=300);
+marginals=list();
 
 #for(cutoffs in c("0.0010", "0.1000")){
 #for(cutoffs in c("0.0100")){
@@ -2448,8 +2581,133 @@ for(cutoffs in names(denorm_results)){
 
 	# Generate Heatmaps
 	link_rec=extract_matrices_from_links(no_trtcov_unidir_links);
-	plot_tmr_matrices(link_rec, variables_rec);
+	marginals[[cutoffs]]=plot_tmr_matrices(link_rec, variables_rec);
 }
+
+##############################################################################
+
+plot_marginals_over_signif=function(marginals_list){
+	signf_arr=names(marginals_list);
+
+	list_by_type=list();
+
+	padded_bind=function(m, a){
+		# This will add a line to the matrix with 0 padding
+		if(is.null(m)){
+			mat=matrix(a, nrow=1);
+			colnames(mat)=names(a);
+			return(mat)
+		}else{
+			mat=m;
+		}
+		
+		mat=rbind(mat, 0);
+		last_row=nrow(mat);
+		mat[last_row, names(a)]=a;
+		return(mat);
+	}
+	
+	#----------------------------------------------------------------------
+
+	for(signf in rev(signf_arr)){
+		cat("Working on: ", signf, "\n");
+		marginals=marginals_list[[signf]]
+		#print(marginals);
+
+		for(type in names(marginals)){
+			list_by_type[[type]]=padded_bind(list_by_type[[type]], marginals[[type]]);
+		}
+	}
+
+	# Label signif and get all groups	
+	uniq_grps_seen=c();
+	for(type in names(list_by_type)){
+		rownames(list_by_type[[type]])=rev(signf_arr);
+		uniq_grps_seen=unique(c(uniq_grps_seen, colnames(list_by_type[[type]])));
+	}
+
+	cat("Groups seen:\n");
+	print(uniq_grps_seen);
+	num_uniq_grps=length(uniq_grps_seen);
+
+
+	jumble_colors=function(num_colors){
+
+		alloc_colors=rainbow(num_colors, start=0, end=4/6);
+
+		sqrt_num_col=sqrt(num_colors);
+		num_sqr_cells=ceiling(sqrt_num_col)^2;
+
+		holder=rep(NA, num_sqr_cells);
+		holder[1:num_colors]=alloc_colors;
+
+		mat=matrix(holder, ncol=ceiling(sqrt_num_col), byrow=T);
+
+		jumbled=as.vector(mat);
+		jumbled=jumbled[!is.na(jumbled)];
+		return(jumbled);
+
+	}
+	
+	grp_col=jumble_colors(num_uniq_grps);
+	names(grp_col)=uniq_grps_seen;
+
+	#----------------------------------------------------------------------
+
+	plot_matrices=function(mat, colmap, title, m, al, ylab){
+
+		cat("Working on: ", title, "\n");
+	
+		num_xpts=nrow(mat);
+		xlab=rownames(mat);
+		max_counts=max(mat);
+		num_var=ncol(mat);
+		varnames=colnames(mat);
+	
+		par(mar=m);
+		plot(NA, type="n", ylim=c(0, max_counts), xlim=c(1,num_xpts),
+			main=title, xaxt="n", ylab=ylab, xlab="p-value");
+
+		if(al){
+			axis(side=1, at=1:num_xpts, labels=xlab);
+		}else{
+			axis(side=1, at=1:num_xpts, labels=rep("", num_xpts));
+		}
+
+		for(i in 1:num_var){
+			cvn=varnames[i];
+			col=colmap[cvn];
+			points(1:num_xpts, mat[,i], type="l", col=col, lwd=1.25);
+			points(1:num_xpts, mat[,i], type="l", col="black", lwd=.25);
+		}
+		
+		pr=par()$usr;
+		xr=pr[2]-pr[1];
+		yr=pr[4]-pr[3];
+		legend(x=pr[1]+xr*3/4, y=pr[3]+yr*7/8, fill=colmap[varnames], legend=varnames); 
+			
+	}
+
+	#----------------------------------------------------------------------
+
+	par(mfrow=c(3,2));
+	par(mar=c(4,4,3,1));
+
+	plot_matrices(list_by_type[["pred_t2m"]], grp_col, title="Predictors", 
+		ylab="Covariates & Treatments", m=c(1,4,4,1), al=F);
+	plot_matrices(list_by_type[["resp_t2m"]], grp_col, title="Responses", 
+		ylab="Measured", m=c(1,4,4,1), al=F);
+	plot_matrices(list_by_type[["pred_m2m"]], grp_col, title="", 
+		ylab="Measured", m=c(1,4,1,1), al=F);
+	plot_matrices(list_by_type[["resp_m2m"]], grp_col, title="",
+		ylab="Measured", m=c(1,4,1,1), al=F);
+	plot_matrices(list_by_type[["pred_m2r"]], grp_col, title="", 
+		ylab="Measured", m=c(4,4,1,1), al=T);
+	plot_matrices(list_by_type[["resp_m2r"]], grp_col, title="", 
+		ylab="Responses", m=c(4,4,1,1), al=T);
+}
+
+plot_marginals_over_signif(marginals);
 
 ##############################################################################
 # Export full link table
