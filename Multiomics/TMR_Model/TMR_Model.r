@@ -1954,7 +1954,7 @@ extract_matrices_from_links=function(no_trtcov_unidir_links,
 	return(results);
 }
 
-tmr_heatmap=function(mat, title="", pred_var_mat, resp_var_mat, value.cex=1){
+tmr_heatmap=function(mat, title="", subtitle="", pred_var_mat, resp_var_mat, value.cex=1){
 
 	cat("Generating TMR Heatmap for: ", title, "\n", sep="");
 
@@ -2057,6 +2057,8 @@ tmr_heatmap=function(mat, title="", pred_var_mat, resp_var_mat, value.cex=1){
 			bty="n", xlab="", ylab="");
                 text(0,0, "No relationships to plot...");
 		mtext(title, side=3, line=1.5, outer=F, font=2, cex=2);
+		mtext(paste("P-value Cutoff: ", subtitle, sep=""), side=3, line=.5, 
+			outer=F, font=1, cex=1);
 
                 return();
         }
@@ -2089,6 +2091,8 @@ tmr_heatmap=function(mat, title="", pred_var_mat, resp_var_mat, value.cex=1){
         plot(0, type="n", xlim=c(0,num_col), ylim=c(0,num_row), xaxt="n", yaxt="n", 
 		bty="n", xlab="", ylab="");
         mtext(title, side=3, line=1.5, outer=F, font=2, cex=2);
+	mtext(paste("P-value Cutoff: ", subtitle, sep=""), side=3, line=.5, 
+		outer=F, font=1, cex=1);
 
 
 	txt_w=par()$cxy[1];
@@ -2146,7 +2150,7 @@ tmr_heatmap=function(mat, title="", pred_var_mat, resp_var_mat, value.cex=1){
 
 ################################################################################
 
-tmr_heatmap_byGroup=function(mat, title="", pred_var_mat, resp_var_mat, value.cex=1){
+tmr_heatmap_byGroup=function(mat, title="", subtitle="", pred_var_mat, resp_var_mat, value.cex=1){
 
 	cat("Generating TMR Group Heatmap for: ", title, "\n", sep="");
         orig.par=par(no.readonly=T);
@@ -2275,6 +2279,7 @@ tmr_heatmap_byGroup=function(mat, title="", pred_var_mat, resp_var_mat, value.ce
         plot(0, type="n", xlim=c(0,num_unq_resp_grps), ylim=c(0,num_unq_pred_grps), xaxt="n", yaxt="n", 
 		bty="n", xlab="", ylab="");
         mtext(title, side=3, line=1.5, outer=F, font=2, cex=2);
+        mtext(paste("P-value Cutoff: ", subtitle, sep=""), side=3, line=0.4, outer=F, font=1, cex=1);
 
 
 	txt_w=par()$cxy[1];
@@ -2319,7 +2324,7 @@ tmr_heatmap_byGroup=function(mat, title="", pred_var_mat, resp_var_mat, value.ce
 
 }	
 
-marginal_stacked_barplots_byGroup=function(t2m, m2m, m2r, grp_colors){
+marginal_stacked_barplots_byGroup=function(t2m, m2m, m2r, grp_colors, cutoff){
 
 	if(!is.null(t2m)){
 		pred_t2m=apply(t2m, 1, sum);
@@ -2380,19 +2385,24 @@ marginal_stacked_barplots_byGroup=function(t2m, m2m, m2r, grp_colors){
 	names(sums_by_type)=c("t2m", "m2m", "m2r");
 	norm_by_max=sums_by_type/(max(sums_by_type));
 	norm_by_max=sort(norm_by_max);
-	target_min=c(.33, .66, .1);
+	target_min=c(2, 1.5, 1);
 
 	scale=numeric(3);
 	names(scale)=norm_by_max;
-	scale[1]=max(target_min[1], norm_by_max[1]);
-	scale[2]=max(target_min[2], norm_by_max[2]);
-	scale[3]=max(target_min[3], norm_by_max[3]);
+	scale[1]=max(target_min[1]*norm_by_max[1], norm_by_max[1]);
+	scale[2]=max(target_min[2]*norm_by_max[2], norm_by_max[2]);
+	scale[3]=max(target_min[3]*norm_by_max[3], norm_by_max[3]);
 	names(scale)=names(norm_by_max);
+
+	for(i in 1:3){
+		scale[i]=ifelse(scale[i]==0, 1, scale[i]);
+	}
 
 
 	orig_par=par(no.readonly=T);
 	par(mfrow=c(1,3));
-	par(mar=c(5,5,5,1));
+	par(mar=c(5,5,8,1));
+	par(oma=c(0,0,2,0));
 
 	xlabs=c("Predictors", "Responses");
 
@@ -2411,8 +2421,12 @@ marginal_stacked_barplots_byGroup=function(t2m, m2m, m2r, grp_colors){
 	m=matrix(0, nrow=max_len, ncol=2);
 	m[1:lengths[1], 1]=rev_pred_t2m;
 	m[1:lengths[2], 2]=rev_resp_t2m;
-	mids=barplot(m, ylim=c(0, scale["t2m"]*max_sum), main="Treatments & Covariates - to - Measured", 
-		names.arg=c("\nPredictors:\nTreatments & Covariates", "\nResponses:\nMeasured"));
+	mids=barplot(m, ylim=c(0, scale["t2m"]*max_sum), main="");
+	axis(side=1, at=mids, 
+		labels=c("\nPredictors:\nTreatments & Covariates", "\nResponses:\nMeasured"),
+		tick=F, line=1);
+
+	title(main="Treatments & Covariates\nto\nMeasured", cex.main=2);
 	lab_pos_p=calc_lab_pos(rev_pred_t2m, par());
 	lab_pos_r=calc_lab_pos(rev_resp_t2m, par());
 
@@ -2427,8 +2441,12 @@ marginal_stacked_barplots_byGroup=function(t2m, m2m, m2r, grp_colors){
 	m=matrix(0, nrow=max_len, ncol=2);
 	m[1:lengths[3], 1]=rev_pred_m2m;
 	m[1:lengths[4], 2]=rev_resp_m2m;
-	barplot(m, ylim=c(0, scale["m2m"]*max_sum), main="Measured - to - Measured", 
-		names.arg=c("\nPredictors:\nMeasured", "\nResponses:\nMeasured"));
+	barplot(m, ylim=c(0, scale["m2m"]*max_sum), main="");
+	axis(side=1, at=mids,
+		labels=c("\nPredictors:\nMeasured,\n(Trt & Cov Excluded)", "Responses:\nMeasured"),
+		tick=F, line=2);
+
+	title(main="Measured\nto\nMeasured", cex.main=2);
 	lab_pos_p=calc_lab_pos(rev_pred_m2m, par());
 	lab_pos_r=calc_lab_pos(rev_resp_m2m, par());
 
@@ -2443,8 +2461,12 @@ marginal_stacked_barplots_byGroup=function(t2m, m2m, m2r, grp_colors){
 	m=matrix(0, nrow=max_len, ncol=2);
 	m[1:lengths[5], 1]=rev_pred_m2r;
 	m[1:lengths[6], 2]=rev_resp_m2r;
-	barplot(m, ylim=c(0, scale["m2r"]*max_sum), main="Measured - to - Response", 
-		names.arg=c("\nPredictors:\nMeasured", "Responses"));
+	barplot(m, ylim=c(0, scale["m2r"]*max_sum), main="");
+	axis(side=1, at=mids,
+		labels=c("\nPredictors:\nTrt & Cov,\nMeasured", "Responses:\nResponse"),
+		tick=F, line=2);
+
+	title(main="Measured\nto\nResponse", cex.main=2);
 	lab_pos_p=calc_lab_pos(rev_pred_m2r, par());
 	lab_pos_r=calc_lab_pos(rev_resp_m2r, par());
 
@@ -2455,6 +2477,7 @@ marginal_stacked_barplots_byGroup=function(t2m, m2m, m2r, grp_colors){
 	text(rep(mids[2], length(lab_pos_r)), lab_pos_r, names(lab_pos_r));
 
 	#----------------------------------------------------------------------
+	mtext(paste("P-value Cutoff: ", cutoff, sep=""), side=3, outer=T);
 
 	par(orig_par);
 
@@ -2472,7 +2495,7 @@ marginal_stacked_barplots_byGroup=function(t2m, m2m, m2r, grp_colors){
 
 ##############################################################################
 
-plot_tmr_matrices=function(lnk_rec, var_rec, grp_colors){
+plot_tmr_matrices=function(lnk_rec, var_rec, grp_colors, cutoff){
 
 	# Split records into trtcov-msd, msd-msd, and msd-resp matrices
 	var_mat=matrix(NA, nrow=0, ncol=3);
@@ -2487,31 +2510,44 @@ plot_tmr_matrices=function(lnk_rec, var_rec, grp_colors){
 			}
 		}
 	}
-	print(var_mat);
 	
 	trtcov_mat=var_mat[var_mat[,"Type"]=="Covariates", c("Group", "Variable"), drop=F];
 	msd_mat=var_mat[var_mat[,"Type"]=="Measured", c("Group", "Variable"), drop=F];
 	rsp_mat=var_mat[var_mat[,"Type"]=="Response", c("Group", "Variable"), drop=F];
 
 
-	tmr_heatmap(lnk_rec[["c2m"]], title="Treatments/Covariates to Measured", 
+	tmr_heatmap(lnk_rec[["c2m"]], 
+		title="Treatments/Covariates to Measured", 
+		subtitle=cutoff,
 		trtcov_mat, msd_mat);
-	tmr_heatmap(lnk_rec[["m2m"]], title="Measured to Measured", msd_mat, msd_mat);
-	tmr_heatmap(lnk_rec[["m2r"]], title="Measured to Response", rbind(trtcov_mat, msd_mat), rsp_mat);
+	tmr_heatmap(lnk_rec[["m2m"]], 
+		title="Measured to Measured", 
+		subtitle=cutoff,
+		msd_mat, msd_mat);
+	tmr_heatmap(lnk_rec[["m2r"]], 
+		title="Measured to Response",
+		subtitle=cutoff,
+		rbind(trtcov_mat, msd_mat), rsp_mat);
 
 
 	trtcov_to_msd_mat=tmr_heatmap_byGroup(lnk_rec[["c2m"]], 
 		title="Treatments/Covariates to Measured", 
+		subtitle=cutoff,
 		trtcov_mat, msd_mat);
 
 	msd_to_msd_mat=tmr_heatmap_byGroup(lnk_rec[["m2m"]], 
-		title="Measured to Measured", msd_mat, msd_mat);
+		title="Measured to Measured", 
+		subtitle=cutoff,
+		msd_mat, msd_mat);
 
 	msd_to_rsp_mat=tmr_heatmap_byGroup(lnk_rec[["m2r"]], 
-		title="Measured to Response", rbind(trtcov_mat, msd_mat), rsp_mat);
+		title="Measured to Response", 
+		subtitle=cutoff,
+		rbind(trtcov_mat, msd_mat), rsp_mat);
 
 	marginals=marginal_stacked_barplots_byGroup(
-		trtcov_to_msd_mat, msd_to_msd_mat, msd_to_rsp_mat, grp_colors);
+		trtcov_to_msd_mat, msd_to_msd_mat, msd_to_rsp_mat, 
+		grp_colors, cutoff);
 
 	#quit();
 }
@@ -2649,7 +2685,7 @@ for(cutoffs in names(denorm_results)){
 
 	# Generate Heatmaps & Stacked Barplots
 	link_rec=extract_matrices_from_links(no_trtcov_unidir_links);
-	marginals[[cutoffs]]=plot_tmr_matrices(link_rec, variables_rec, grp_colors);
+	marginals[[cutoffs]]=plot_tmr_matrices(link_rec, variables_rec, grp_colors, cutoffs);
 }
 
 ##############################################################################
