@@ -2094,21 +2094,6 @@ tmr_heatmap=function(mat, title="", subtitle="", pred_var_mat, resp_var_mat, val
 	mtext(paste("P-value Cutoff: ", subtitle, sep=""), side=3, line=.5, 
 		outer=F, font=1, cex=1);
 
-
-	txt_w=par()$cxy[1];
-	txt_h=par()$cxy[2];
-	label_size_x=min(c(1, 40/num_col));
-	label_size_y=min(c(1, 25/num_row));
-
-	# y-axis: predictor
-        axis(side=2, at=seq(.5, num_row-.5, 1), labels=rev(row_names), las=2, line=-1.75,
-		cex.axis=label_size_y, tick=F);
-
-        # x-axis: response
-        text((1:num_col)-1/2- label_size_x*txt_w*1.5, rep(-txt_h/2, num_col), col_names, 
-		srt=-60, xpd=T, pos=4, cex=label_size_x);
-
-
         for(x in 1:num_col){
                 for(y in 1:num_row){
 
@@ -2129,6 +2114,26 @@ tmr_heatmap=function(mat, title="", subtitle="", pred_var_mat, resp_var_mat, val
                 }
         }
 
+	# Draw Grid Lines
+	abline(h=0:num_row, lwd=.5, col="grey");
+	abline(v=0:num_col, lwd=.5, col="grey");
+
+	# Calculate the size of the labels
+	txt_w=par()$cxy[1];
+	txt_h=par()$cxy[2];
+	label_size_x=min(c(1, 40/num_col));
+	label_size_y=min(c(1, 25/num_row));
+
+	# y-axis: predictor
+        axis(side=2, at=seq(.5, num_row-.5, 1), labels=rev(row_names), las=2, line=-1.75,
+		cex.axis=label_size_y, tick=F);
+
+	# x-axis: response
+        text((1:num_col)-1/2- label_size_x*txt_w*1.5, rep(-txt_h/2, num_col), col_names, 
+		srt=-60, xpd=T, pos=4, cex=label_size_x);
+
+
+	# Draw Group Lines
 	pred_grp_lines=c(0, cumsum(rev(pred_grp_sizes)));
 	resp_grp_lines=c(0, cumsum(resp_grp_sizes));
 
