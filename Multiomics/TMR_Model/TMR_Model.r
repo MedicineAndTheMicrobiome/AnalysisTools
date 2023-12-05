@@ -1424,6 +1424,12 @@ plot_TMR_diagram=function(
 	num_msd_grps=length(msd_grps);
 	num_rsp_grps=length(rsp_grps);
 
+
+	# Reverse order so groups go from top to bottom
+	cvtrt_grps=rev(cvtrt_grps);
+	msd_grps=rev(msd_grps);
+	rsp_grps=rev(rsp_grps);
+
 	#num_trtcov_var=nrow(result_rec[["Cov_to_Msd"]][[1]][["pval"]]);
 
 	#cat("Num Treatment/Covariates variables: ", num_trtcov_var, "\n");
@@ -1642,9 +1648,8 @@ plot_TMR_diagram=function(
 		extr_links[["covtrt"]][["pred_grp_members_loc"]][[ichar]]=loc;
 	}
 
-
-	for(i in 1:num_msd_grps){
 	cat("  Drawing Measured-to-Measured squares...\n");
+	for(i in 1:num_msd_grps){
 		ichar=sprintf("%i", i);
 
 		pred_var_labels=extr_links[["msd"]][["pred_grp_members"]][[ichar]];
