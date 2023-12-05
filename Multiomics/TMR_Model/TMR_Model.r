@@ -2087,6 +2087,7 @@ tmr_heatmap=function(mat, title="", subtitle="", pred_var_mat, resp_var_mat, val
 
         ########################################################################
 
+	par(oma=c(2,2,0,0));
         par(mar=c(col_max_nchar*.40, row_max_nchar*.40, 5, col_max_nchar*.1));
         plot(0, type="n", xlim=c(0,num_col), ylim=c(0,num_row), xaxt="n", yaxt="n", 
 		bty="n", xlab="", ylab="");
@@ -2148,6 +2149,10 @@ tmr_heatmap=function(mat, title="", subtitle="", pred_var_mat, resp_var_mat, val
 	}
 
         ########################################################################
+
+	# Label Pred/Resp in margins
+	mtext("Predictors", side=2, outer=T, font=3, cex=2, col="grey");
+	mtext("Responses", side=1, outer=T, font=3, cex=2, col="grey");
 
         par(orig.par);
 
@@ -2280,6 +2285,7 @@ tmr_heatmap_byGroup=function(mat, title="", subtitle="", pred_var_mat, resp_var_
 
         ########################################################################
 
+	par(oma=c(2,2,0,0));
         par(mar=c(col_max_nchar*.40, row_max_nchar*.40, 5, col_max_nchar*.1));
         plot(0, type="n", xlim=c(0,num_unq_resp_grps), ylim=c(0,num_unq_pred_grps), xaxt="n", yaxt="n", 
 		bty="n", xlab="", ylab="");
@@ -2320,6 +2326,10 @@ tmr_heatmap_byGroup=function(mat, title="", subtitle="", pred_var_mat, resp_var_
                         }
                 }
         }
+
+	# Label Pred/Resp in margins
+	mtext("Predictors", side=2, outer=T, font=3, cex=2, col="grey");
+	mtext("Responses", side=1, outer=T, font=3, cex=2, col="grey");
 
         ########################################################################
 
