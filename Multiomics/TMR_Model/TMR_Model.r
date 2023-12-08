@@ -17,7 +17,8 @@ params=c(
 	"covtrt_grp_list_fn", "c", 1, "character",
 	"measured_grp_list_fn", "m", 1, "character",
 	"response_grp_list_fn", "r", 2, "character",
-	"repeated_measure_analysis_id", "a", 2, "character"
+	"repeated_measure_analysis_id", "a", 2, "character",
+	"verbose", "v", 2, "logical"
 );
 
 NO_CHANGE="orig";
@@ -41,6 +42,8 @@ usage = paste(
 	"\n",
 	"	[-a <time offset, or repeated measure identifer to insert into output table>]\n",
 	"            (This does not affect computations.)\n",
+	"\n",
+	"	[-v (verbose flag.  Eg. Printing more intermediate tables.)]\n",
 	"\n",
 	"This script will automatically generate an analysis for the following\n",
 	"groups of variables.\n",
@@ -71,7 +74,7 @@ VariableGroupingsFname=opt$groupings;
 OutputFnameRoot=opt$outputroot;
 CovTrtGrpFname=opt$covtrt_grp_list_fn;
 MeasuredGrpFname=opt$measured_grp_list_fn;
-
+Verbose=opt$verbose;
 
 if(length(opt$response_grp_list_fn)){
 	ResponseGrpFname=opt$response_grp_list_fn;
@@ -85,6 +88,12 @@ if(length(opt$repeated_measure_analysis_id)){
 	RepeatedMeasureAnalysisID=NULL;
 }
 
+if(length(opt$verbose)){
+	Verbose=T;
+}else{
+	Verbose=F;
+}
+
 param_text=capture.output({
 	cat("\n");
 	cat("Factor/Metadata Filename:            ", FactorsFname, "\n");
@@ -94,6 +103,7 @@ param_text=capture.output({
 	cat("Measured Groups Filename:            ", MeasuredGrpFname, "\n");
 	cat("Response Groups Filename:            ", ResponseGrpFname, "\n");
 	cat("Repeated Measure Analysis ID:        ", RepeatedMeasureAnalysisID, "\n");
+	cat("Verbose:                             ", Verbose, "\n");
 	cat("\n");
 });
 
@@ -1922,6 +1932,7 @@ extract_matrices_from_links=function(no_trtcov_unidir_links,
 
 	# Put predictors on rows, responses on columns
 	tab_to_mat=function(table){
+
 		uniq_pred=unique(table[,"predictor"]);
 		uniq_resp=unique(table[,"response"]);
 
@@ -1937,12 +1948,22 @@ extract_matrices_from_links=function(no_trtcov_unidir_links,
 			for(i in 1:nrow){
 				rn=as.character(table[i,"predictor"]);
 				cn=as.character(table[i,"response"]);
+				coef=table[i,"coef"];
 
-				mat[rn,cn]=mat[rn,cn]+1;
+				if(!is.na(mat[rn,cn])){
+					if(mat[rn,cn] >= 0  && coef > 0){
+						mat[rn,cn] = 1;
+					}else if(mat[rn,cn] <= 0  && coef < 0){
+						mat[rn,cn] = -1;
+					}else{
+						mat[rn,cn] = NA;
+					}
+				}
 			}
 		}else{
 			mat=matrix(NA, nrow=0, ncol=0);
 		}
+
 		return(mat);
 	}
 
@@ -2063,20 +2084,6 @@ tmr_heatmap=function(mat, title="", subtitle="", pred_var_mat, resp_var_mat, val
                 return();
         }
 
-
-        # Generate a color scheme
-        num_colors=50;
-        color_arr=rainbow(num_colors, start=0, end=4/6);
-        color_arr=rev(color_arr);
-	color_arr[1]="#FFFFFF";
-
-        # Provide a means to map values to an (color) index
-        remap=function(in_val, in_range, out_range){
-                in_prop=(in_val-in_range[1])/(in_range[2]-in_range[1])
-                out_val=in_prop*(out_range[2]-out_range[1])+out_range[1];
-                return(out_val);
-        }
-
         # Get Label lengths
         row_max_nchar=max(nchar(row_names));
         col_max_nchar=max(nchar(col_names));
@@ -2100,11 +2107,23 @@ tmr_heatmap=function(mat, title="", subtitle="", pred_var_mat, resp_var_mat, val
 
                         cell_val=data_mat[(num_row-y+1),x];
 
-                        remap_val=remap(cell_val, c(0, plot_max), c(1, num_colors));
-                        col_ix=ceiling(remap_val);
+                       
+			#remap_val=remap(cell_val, c(0, plot_max), c(1, num_colors));
+                        #col_ix=ceiling(remap_val);
+	
+			if(is.na(cell_val)){
+				cell_col="purple";
+			}else if(cell_val>0){
+				cell_col="green";
+			}else if(cell_val<0){
+				cell_col="red";
+			}else{
+				cell_col="grey85";
+			}
+
 
 			# Draw/Color the cell
-                        rect(x-1, y-1, (x-1)+1, (y-1)+1, border=NA, col=color_arr[col_ix]);
+                        rect(x-1, y-1, (x-1)+1, (y-1)+1, border=NA, col=cell_col);
 
 			# Label the counts
                         if(cell_val>1){
@@ -2140,19 +2159,19 @@ tmr_heatmap=function(mat, title="", subtitle="", pred_var_mat, resp_var_mat, val
 
 	for(i in 1:length(resp_grp_lines)){
 		points(c(resp_grp_lines[i], resp_grp_lines[i]), c(0, num_row), type="l", 
-			lwd=1.5, col="brown");
+			lwd=1.5, col="blue");
 	}
 
 	for(i in 1:length(pred_grp_lines)){
 		points(c(0, num_col), c(pred_grp_lines[i], pred_grp_lines[i]), type="l",
-			lwd=1.5, col="brown");
+			lwd=1.5, col="blue");
 	}
 
         ########################################################################
 
 	# Label Pred/Resp in margins
-	mtext("Predictors", side=2, outer=T, font=3, cex=2, col="grey");
-	mtext("Responses", side=1, outer=T, font=3, cex=2, col="grey");
+	mtext("Predictor Variables", side=2, outer=T, font=3, cex=2, col="grey");
+	mtext("Response Variables", side=1, outer=T, font=3, cex=2, col="grey");
 
         par(orig.par);
 
@@ -2237,7 +2256,7 @@ tmr_heatmap_byGroup=function(mat, title="", subtitle="", pred_var_mat, resp_var_
 				#print(pred_grp);
 				#print(resp_grp);
 				#print(var_sub_mat);
-				num_assoc=sum(var_sub_mat);
+				num_assoc=sum(abs(var_sub_mat));
 				#print(num_assoc);
 				#cat("--------------------------------------------------\n");
 				grp_count_mat[pred_grp, resp_grp]=num_assoc;
@@ -2327,9 +2346,13 @@ tmr_heatmap_byGroup=function(mat, title="", subtitle="", pred_var_mat, resp_var_
                 }
         }
 
+	# Draw Grid Lines
+	abline(h=0:num_unq_pred_grps, lwd=2, col="blue");
+	abline(v=0:num_unq_resp_grps, lwd=2, col="blue");
+
 	# Label Pred/Resp in margins
-	mtext("Predictors", side=2, outer=T, font=3, cex=2, col="grey");
-	mtext("Responses", side=1, outer=T, font=3, cex=2, col="grey");
+	mtext("Predictor Groups", side=2, outer=T, font=3, cex=2, col="grey");
+	mtext("Response Groups", side=1, outer=T, font=3, cex=2, col="grey");
 
         ########################################################################
 
@@ -2341,25 +2364,31 @@ tmr_heatmap_byGroup=function(mat, title="", subtitle="", pred_var_mat, resp_var_
 
 marginal_stacked_barplots_byGroup=function(t2m, m2m, m2r, grp_colors, cutoff){
 
+	summag=function(x){
+		x=x[!is.na(x)];
+		sm=sum(abs(x));
+		return(sm);
+	}
+
 	if(!is.null(t2m)){
-		pred_t2m=apply(t2m, 1, sum);
-		resp_t2m=apply(t2m, 2, sum);
+		pred_t2m=apply(t2m, 1, summag);
+		resp_t2m=apply(t2m, 2, summag);
 	}else{
 		pred_t2m=0;
 		resp_t2m=0;
 	}
 
 	if(!is.null(m2m)){
-		pred_m2m=apply(m2m, 1, sum);
-		resp_m2m=apply(m2m, 2, sum);
+		pred_m2m=apply(m2m, 1, summag);
+		resp_m2m=apply(m2m, 2, summag);
 	}else{
 		pred_m2m=0;
 		resp_m2m=0;
 	}
 
 	if(!is.null(m2r)){
-		pred_m2r=apply(m2r, 1, sum);
-		resp_m2r=apply(m2r, 2, sum);
+		pred_m2r=apply(m2r, 1, summag);
+		resp_m2r=apply(m2r, 2, summag);
 	}else{
 		pred_m2r=0;
 		resp_m2r=0;
@@ -2530,33 +2559,36 @@ plot_tmr_matrices=function(lnk_rec, var_rec, grp_colors, cutoff){
 	msd_mat=var_mat[var_mat[,"Type"]=="Measured", c("Group", "Variable"), drop=F];
 	rsp_mat=var_mat[var_mat[,"Type"]=="Response", c("Group", "Variable"), drop=F];
 
-
+	# +/- associations by variable
 	tmr_heatmap(lnk_rec[["c2m"]], 
-		title="Treatments/Covariates to Measured", 
+		title="Treatments/Covariates to Measured:  Assoc By Var", 
 		subtitle=cutoff,
 		trtcov_mat, msd_mat);
+
 	tmr_heatmap(lnk_rec[["m2m"]], 
-		title="Measured to Measured", 
+		title="Measured to Measured:  Assoc By Var", 
 		subtitle=cutoff,
 		msd_mat, msd_mat);
+
 	tmr_heatmap(lnk_rec[["m2r"]], 
-		title="Measured to Response",
+		title="Measured to Response:  Assoc By Var",
 		subtitle=cutoff,
 		rbind(trtcov_mat, msd_mat), rsp_mat);
 
 
+	# Counts of associations by group
 	trtcov_to_msd_mat=tmr_heatmap_byGroup(lnk_rec[["c2m"]], 
-		title="Treatments/Covariates to Measured", 
+		title="Treatments/Covariates to Measured: Num Assoc By Group", 
 		subtitle=cutoff,
 		trtcov_mat, msd_mat);
 
 	msd_to_msd_mat=tmr_heatmap_byGroup(lnk_rec[["m2m"]], 
-		title="Measured to Measured", 
+		title="Measured to Measured:  Num Assoc By Group", 
 		subtitle=cutoff,
 		msd_mat, msd_mat);
 
 	msd_to_rsp_mat=tmr_heatmap_byGroup(lnk_rec[["m2r"]], 
-		title="Measured to Response", 
+		title="Measured to Response:  Num Assoc By Group", 
 		subtitle=cutoff,
 		rbind(trtcov_mat, msd_mat), rsp_mat);
 
@@ -2573,7 +2605,7 @@ assign_colors=function(name_arr){
 
 	jumble_colors=function(num_colors){
 
-		alloc_colors=rainbow(num_colors, start=0, end=1);
+		alloc_colors=rainbow(num_colors, start=0, end=max(1, num_colors-1)/num_colors);
 
 		sqrt_num_col=sqrt(num_colors);
 		num_sqr_cells=ceiling(sqrt_num_col)^2;
@@ -2656,11 +2688,14 @@ for(cutoffs in names(denorm_results)){
 		grp_links=0,
 		covariates_list, measured_list, response_list);
 
-	plot_text(c(
-		paste("P-value Cutoff: ", cutoffs, sep=""),
-		paste("(All links above cutoff, ", nrow(denorm_results[[cutoffs]]), " links.)", sep=""),
-		capture.output(print(denorm_results[[cutoffs]], quotes=""))
-	), max_lines_pp=70);
+	if(Verbose){
+		plot_text(c(
+			paste("P-value Cutoff: ", cutoffs, sep=""),
+			paste("(All links above cutoff, ", nrow(denorm_results[[cutoffs]]), 
+				" links.)", sep=""),
+			capture.output(print(denorm_results[[cutoffs]], quotes=""))
+		), max_lines_pp=70);
+	}
 
 	# Remove weaker of bi-directional links
 
@@ -2672,12 +2707,14 @@ for(cutoffs in names(denorm_results)){
 		grp_links=0,
 		covariates_list, measured_list, response_list);
 
-	plot_text(c(
-		paste("P-value Cutoff: ", cutoffs, sep=""),
-		paste("(Excluding weaker of bi-directional links, ", nrow(unidir_links), 
-			" links.)", sep=""),
-		capture.output(print(unidir_links, quotes=""))
-	), max_lines_pp=70);
+	if(Verbose){
+		plot_text(c(
+			paste("P-value Cutoff: ", cutoffs, sep=""),
+			paste("(Excluding weaker of bi-directional links, ", nrow(unidir_links), 
+				" links.)", sep=""),
+			capture.output(print(unidir_links, quotes=""))
+		), max_lines_pp=70);
+	}
 
 
 	# Remove links from covariates/treatments
