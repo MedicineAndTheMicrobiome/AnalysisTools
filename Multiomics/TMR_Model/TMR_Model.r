@@ -912,6 +912,10 @@ plot_title_page("PERMANOVA", c(
 
 run_adonis=function(in_dist, in_factors, num_perm_per_var=1000){
 
+	cat("\n");
+	cat("Number of Variables: ", ncol(in_factors), "\n");
+	cat("Number of Samples: ", nrow(in_factors), "\n");
+
 	formula_str=paste("in_dist ~", paste(colnames(in_factors), collapse=" + "));
 
 	cat("Running Adonis: \n", formula_str, "\n");
@@ -936,8 +940,11 @@ for(type in c("Measured", "Response")){
 
 		permanova_rec[[perm_mod_name]]=run_adonis(distances, 
 			covariates_data[,covariate_variable_names, drop=F]);
+
+		print(permanova_rec[[perm_mod_name]]);
 	}
 }
+
 
 # Consolidate PERMANOVA records into matrices
 num_perm_models=length(permanova_rec);
@@ -952,9 +959,24 @@ colnames(permanova_pval_mat)=perm_models;
 colnames(permanova_rsqr_mat)=perm_models;
 
 for(perm_grp in perm_models){
+
 	perm_mat=permanova_rec[[perm_grp]];
-	permanova_pval_mat[covariate_variable_names, perm_grp]=perm_mat[covariate_variable_names, "Pr(>F)"];
-	permanova_rsqr_mat[covariate_variable_names, perm_grp]=perm_mat[covariate_variable_names, "R2"];
+
+	#print(perm_mat[,"Pr(>F)"]);
+	avail_var=rownames(perm_mat);
+	shared_var=intersect(avail_var, covariate_variable_names);
+	num_shared_var=length(shared_var);
+
+	if(num_shared_var>0){
+		covariate_variable_names=shared_var;
+	}else{
+		next;
+	}
+	
+	permanova_pval_mat[covariate_variable_names, perm_grp]=
+		perm_mat[covariate_variable_names, "Pr(>F)"];
+	permanova_rsqr_mat[covariate_variable_names, perm_grp]=
+		perm_mat[covariate_variable_names, "R2"];
 }
 
 # Plot heatmaps for R^2 and P-values
@@ -976,16 +998,20 @@ plot_text(c(
 
 signf_char=function(x){
 	sc="";
-	if(x<0.001){
-		sc="***";
-	}else if(x<0.01){
-		sc="**";
-	}else if(x<0.05){
-		sc="*";
-	}else if(x<0.10){
-		sc="'";
+	if(is.na(x)){
+		return(NA);
+	}else{
+		if(x<0.001){
+			sc="***";
+		}else if(x<0.01){
+			sc="**";
+		}else if(x<0.05){
+			sc="*";
+		}else if(x<0.10){
+			sc="'";
+		}
+		return(sc);
 	}
-	return(sc);
 }
 
 
@@ -2428,6 +2454,10 @@ marginal_stacked_barplots_byGroup=function(t2m, m2m, m2r, grp_colors, cutoff){
 	sums_by_type=c(sums["pred_t2m"], sums["pred_m2m"], sums["pred_m2r"]);
 	names(sums_by_type)=c("t2m", "m2m", "m2r");
 	norm_by_max=sums_by_type/(max(sums_by_type));
+
+	if(any(is.nan(norm_by_max))){
+		norm_by_max[1:3]=c(0,0,0);
+	}
 	norm_by_max=sort(norm_by_max);
 	target_min=c(2, 1.5, 1);
 
@@ -2437,6 +2467,7 @@ marginal_stacked_barplots_byGroup=function(t2m, m2m, m2r, grp_colors, cutoff){
 	scale[2]=max(target_min[2]*norm_by_max[2], norm_by_max[2]);
 	scale[3]=max(target_min[3]*norm_by_max[3], norm_by_max[3]);
 	names(scale)=names(norm_by_max);
+
 
 	for(i in 1:3){
 		scale[i]=ifelse(scale[i]==0, 1, scale[i]);
@@ -2462,6 +2493,7 @@ marginal_stacked_barplots_byGroup=function(t2m, m2m, m2r, grp_colors, cutoff){
 
 	#----------------------------------------------------------------------
 
+	cat("Treatments and Covariates - Measured Barplots\n");
 	m=matrix(0, nrow=max_len, ncol=2);
 	m[1:lengths[1], 1]=rev_pred_t2m;
 	m[1:lengths[2], 2]=rev_resp_t2m;
@@ -2482,6 +2514,7 @@ marginal_stacked_barplots_byGroup=function(t2m, m2m, m2r, grp_colors, cutoff){
 
 	#----------------------------------------------------------------------
 
+	cat("Measured - Measured Barplots\n");
 	m=matrix(0, nrow=max_len, ncol=2);
 	m[1:lengths[3], 1]=rev_pred_m2m;
 	m[1:lengths[4], 2]=rev_resp_m2m;
@@ -2502,6 +2535,7 @@ marginal_stacked_barplots_byGroup=function(t2m, m2m, m2r, grp_colors, cutoff){
 
 	#----------------------------------------------------------------------
 
+	cat("Measured - Response Barplots\n");
 	m=matrix(0, nrow=max_len, ncol=2);
 	m[1:lengths[5], 1]=rev_pred_m2r;
 	m[1:lengths[6], 2]=rev_resp_m2r;
@@ -2743,6 +2777,7 @@ for(cutoffs in names(denorm_results)){
 ##############################################################################
 
 plot_marginals_over_signif=function(marginals_list, grp_col){
+
 	signf_arr=names(marginals_list);
 
 	list_by_type=list();
@@ -2790,6 +2825,15 @@ plot_marginals_over_signif=function(marginals_list, grp_col){
 	plot_matrices=function(mat, colmap, title, m, al, ylab){
 
 		cat("Working on: ", title, "\n");
+
+print(mat);
+print(sum(mat));
+		if(sum(mat)==0){
+			plot(NA, type="n", ylim=c(-1, 1), xlim=c(-1,1),
+				main=title, xaxt="n", ylab=ylab, xlab="p-value");
+			text(0,0, "No Associations Found.\n");
+			return();
+		}
 	
 		num_xpts=nrow(mat);
 		xlab=rownames(mat);
