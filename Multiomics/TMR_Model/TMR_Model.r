@@ -904,7 +904,7 @@ palette(rainbow(max_cat, end=4/6));
 
 ##############################################################################
 # Compute PERMANOVA on measurements and response
-doPermanova=T;
+doPermanova=F;
 if(doPermanova){
 
 plot_title_page("PERMANOVA", c(
@@ -1136,6 +1136,7 @@ pick_and_fit_model=function(mod_str, pred_val, resp_val){
 	# Old fitting implementation
 	#fit=lm(as.formula(mod_str), data=pred_val);
 	#sum_fit=fitsummary_to_list(summary(fit), resp_val);
+	insufficient_residual_dfs=F;
 
 	sum_fit_list=list();
 	for(i in 1:num_responses){
@@ -1159,6 +1160,12 @@ pick_and_fit_model=function(mod_str, pred_val, resp_val){
 		# Summarize (calculate p-values);
 		sumfit=summary(fit);
 
+		# Flag over parameterized models
+		if(sumfit[["df.residual"]]==0){
+			insufficient_residual_dfs=T;
+			break;
+		}
+
 		# If gaussian, then Pr(>|t|), if binomial then Pr(>|z|)
 		# Unify, so downstream column names are the same
 		cnames=colnames(sumfit[["coefficients"]]);
@@ -1172,7 +1179,11 @@ pick_and_fit_model=function(mod_str, pred_val, resp_val){
 
 	}
 
-	return(sum_fit_list);
+	results=list();
+	results[["sumfit_list"]]=sum_fit_list;
+	results[["sufficient_residuals"]]=!insufficient_residual_dfs;
+
+	return(results);
 }
 
 #*******************************************
@@ -1186,7 +1197,15 @@ model_results[["Cov_to_Msd"]]=list();
 model_results[["Msd_to_Msd"]]=list();
 model_results[["Msd_to_Rsp"]]=list();
 
+overfits=list();
+
+overfits[["Cov_to_Msd"]]=list();
+overfits[["Msd_to_Msd"]]=list();
+overfits[["Msd_to_Rsp"]]=list();
+
 num_covariates=ncol(covariates_data);
+
+
 
 ##############################################################################
 
@@ -1213,7 +1232,9 @@ for(msd_ix in measured_list){
 
 	#fit=lm(as.formula(model_string), data=covariates_data);
 	#sum_fit=fitsummary_to_list(summary(fit), msd_resp);
-	sum_fit=pick_and_fit_model(model_string, covariates_data, msd_resp);
+	model_fit=pick_and_fit_model(model_string, covariates_data, msd_resp);
+	sum_fit=model_fit[["sumfit_list"]];
+	overfits[["Cov_to_Msd"]][[msd_ix]]=!model_fit[["sufficient_residuals"]];
 
 	# Matrices for storing coef and pvalues
 	pval_mat=matrix(NA, nrow=num_covariates, ncol=num_resp);
@@ -1257,6 +1278,9 @@ cat("\n\n");
 # Fit (Measured + Covariates) to Predict Measured
 
 for(pred_msd_ix in measured_list){
+	
+	any_overfits=F;
+
 	for(resp_msd_ix in measured_list){
 
 		if(pred_msd_ix==resp_msd_ix){
@@ -1286,8 +1310,11 @@ for(pred_msd_ix in measured_list){
 		#fit=lm(as.formula(model_string), data=cbind(covariates_data, msd_pred));
 		#sum_fit=fitsummary_to_list(summary(fit), msd_resp_varnames);
 
-		sum_fit=pick_and_fit_model(model_string, cbind(covariates_data, msd_pred), 
+		model_fit=pick_and_fit_model(model_string, cbind(covariates_data, msd_pred), 
 			msd_resp);
+		sum_fit=model_fit[["sumfit_list"]];
+
+		any_overfits = any_overfits || !model_fit[["sufficient_residuals"]];
 
 		cov_and_pred_names=c(covariate_variable_names, msd_pred_varnames);
 		num_cov_pred_var=num_covariates+num_pred;
@@ -1327,6 +1354,8 @@ for(pred_msd_ix in measured_list){
 
 	}
 
+	overfits[["Msd_to_Msd"]][[pred_msd_ix]]=any_overfits;
+
 }
 
 #print(model_results[["Msd_to_Msd"]]);
@@ -1337,6 +1366,9 @@ cat("\n\n");
 # Fit (Covariates + Measured) to Predict Response
 
 for(pred_msd_ix in measured_list){
+	
+	any_overfits=F;
+
 	for(resp_ix in response_list){
 
 		cat("Fitting: Measured to (as Predictor)", pred_msd_ix, " to ", 
@@ -1363,8 +1395,10 @@ for(pred_msd_ix in measured_list){
 		#sum_fit=fitsummary_to_list(summary(fit), resp_varnames);
 		#print(sum_fit);
 
-		sum_fit=pick_and_fit_model(model_string, cbind(covariates_data, msd_pred),
+		model_fit=pick_and_fit_model(model_string, cbind(covariates_data, msd_pred),
                         resp);
+		sum_fit=model_fit[["sumfit_list"]];
+		any_overfits = any_overfits || !model_fit[["sufficient_residuals"]];
 
 		cov_and_pred_names=c(covariate_variable_names, msd_pred_varnames);
 		num_cov_pred_var=num_covariates+num_pred;
@@ -1403,9 +1437,12 @@ for(pred_msd_ix in measured_list){
 		model_results[["Msd_to_Rsp"]][[analysis_string]][["coef"]]=coef_mat;
 
 	}
+
+	overfits[["Msd_to_Rsp"]][[pred_msd_ix]]=any_overfits;
 }
 
 #print(model_results[["Msd_to_Rsp"]]);
+#print(overfits);
 
 ##############################################################################
 
@@ -1487,9 +1524,10 @@ calc_vertical_spacing=function(num_rows, max_rows_before_squeeze=10, start, end)
 	
 }
 
-draw_squares_centered=function(xpos, ypos, height, width, grp_name, variables, text_align){
+draw_squares_centered=function(xpos, ypos, height, width, grp_name, variables, text_align, 
+	overfit_hash=NULL){
 
-	#print(c(xpos, ypos, height, width, grp_name, variables, text_align));
+	print(c(xpos, ypos, height, width, grp_name, variables, text_align));
 	
 	points(c(
 		xpos-width/2, # tl 
@@ -1506,6 +1544,11 @@ draw_squares_centered=function(xpos, ypos, height, width, grp_name, variables, t
 		ypos+height/2
 		),
 		type="l");
+
+	if(!is.null(overfit_hash) && overfit_hash==1){
+		text(xpos, ypos, "O", col="red", cex=2.5, adj=c(.5,.5), font=1);
+		text(xpos, ypos, "overfit", col="red", cex=.5, adj=c(.5, 4), font=3);
+	}
 
 	title_cex=.7;
 	var_cex=.4;
@@ -1555,7 +1598,7 @@ draw_squares_centered=function(xpos, ypos, height, width, grp_name, variables, t
 plot_TMR_diagram=function(
 	result_rec, title, subtitle="", cvtrt_to_grp_map, 
 	grp_links=0,
-	cvtrt_grps, msd_grps, rsp_grps){
+	cvtrt_grps, msd_grps, rsp_grps, overfit_list){
 
 	cat("Plotting TMR diagram: ", title, "\n");
 	cat("Subtitle: ", subtitle, "\n");
@@ -1783,7 +1826,8 @@ plot_TMR_diagram=function(
 		loc=draw_squares_centered(covtrt_xpos, covtrt_ypos[i],
 			height=covtrt_height, width=all_widths,
 			grp_name=cvtrt_grps[i], 
-			variables=var_labels, text_align=ifelse(grp_links, "center", "right"));
+			variables=var_labels, text_align=ifelse(grp_links, "center", "right"),
+			overfit_hash=overfit_list[["Cov_to_Msd"]][[cvtrt_grps[i]]]);
 
 		extr_links[["covtrt"]][["pred_grp_members_loc"]][[ichar]]=loc;
 	}
@@ -1807,7 +1851,8 @@ plot_TMR_diagram=function(
 		loc=draw_squares_centered(msd_1_pred_xpos, msd_ypos[i],
 			height=msd_height, width=all_widths,
 			grp_name="", 
-			variables=pred_var_labels, text_align=ifelse(grp_links, "center", "right"));
+			variables=pred_var_labels, text_align=ifelse(grp_links, "center", "right"),
+			overfit_hash=overfit_list[["Msd_to_Msd"]][[msd_grps[i]]]);
 		extr_links[["msd"]][["pred_grp_members_loc"]][[ichar]]=loc;
 
 		loc=draw_squares_centered(msd_2_resp_xpos, msd_ypos[i],
@@ -1819,7 +1864,8 @@ plot_TMR_diagram=function(
 		loc=draw_squares_centered(msd_2_pred_xpos, msd_ypos[i],
 			height=msd_height, width=all_widths,
 			grp_name="",
-			variables=resp_pred_var_labels, text_align=ifelse(grp_links, "center", "right"));
+			variables=resp_pred_var_labels, text_align=ifelse(grp_links, "center", "right"),
+			overfit_hash=overfit_list[["Msd_to_Rsp"]][[msd_grps[i]]]);
 		extr_links[["resp"]][["pred_grp_members_loc"]][[ichar]]=loc;
 	}
 
@@ -2817,14 +2863,14 @@ for(cutoffs in names(denorm_results)){
 		"All GROUP Links more significant than cutoff",
 		covtrt_to_group_map,
 		grp_links=1,
-		covariates_list, measured_list, response_list);
+		covariates_list, measured_list, response_list, overfits);
 
 	plot_TMR_diagram(denorm_results[[cutoffs]],
 		paste("P-value Cutoff: ", cutoffs, sep=""),
 		"All VARIABLE Links more significant than cutoff)",
 		covtrt_to_group_map,
 		grp_links=0,
-		covariates_list, measured_list, response_list);
+		covariates_list, measured_list, response_list, overfits);
 
 	if(Verbose){
 		plot_text(c(
@@ -2843,7 +2889,7 @@ for(cutoffs in names(denorm_results)){
 		"Uni-directional VARIABLE Links with stronger associations",
 		covtrt_to_group_map,
 		grp_links=0,
-		covariates_list, measured_list, response_list);
+		covariates_list, measured_list, response_list, overfits);
 
 	if(Verbose){
 		plot_text(c(
@@ -2864,7 +2910,7 @@ for(cutoffs in names(denorm_results)){
 		"Uni-directional VARIABLE Links and w/o Treatments/Covariates",
 		covtrt_to_group_map,
 		grp_links=0,
-		covariates_list, measured_list, response_list);
+		covariates_list, measured_list, response_list, overfits);
 
 	plot_text(c(
 		paste("P-value Cutoff: ", cutoffs, sep=""),
