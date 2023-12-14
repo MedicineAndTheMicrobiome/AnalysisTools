@@ -405,7 +405,8 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 
         par(oma=c(col_max_nchar*.60, 0, 3, row_max_nchar*.60));
         par(mar=c(0,0,0,0));
-        plot(0, type="n", xlim=c(0,num_col), ylim=c(0,num_row), xaxt="n", yaxt="n", bty="n", xlab="", ylab="");
+        plot(0, type="n", xlim=c(0,num_col), ylim=c(0,num_row), xaxt="n", yaxt="n", 
+		bty="n", xlab="", ylab="");
         mtext(title, side=3, line=0, outer=T, font=2);
 
         # x-axis
@@ -437,7 +438,8 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
                                 }else{
                                         text_lab=sprintf(paste("%0.", deci_pts, "f", sep=""), mat[y,x]);
                                 }
-                                text(x-.5, y-.5, text_lab, srt=atan(num_col/num_row)/pi*180, cex=value.cex, font=2);
+                                text(x-.5, y-.5, text_lab, srt=atan(num_col/num_row)/pi*180, 
+					cex=value.cex, font=2);
                         }
                 }
         }
@@ -902,6 +904,8 @@ palette(rainbow(max_cat, end=4/6));
 
 ##############################################################################
 # Compute PERMANOVA on measurements and response
+doPermanova=T;
+if(doPermanova){
 
 plot_title_page("PERMANOVA", c(
 	"PERMANOVA was run on the distance matrices for the Measured and",
@@ -1087,6 +1091,92 @@ for(type in c("Measured", "Response")){
 	}
 }
 
+}
+
+#*******************************************
+
+pick_and_fit_model=function(mod_str, pred_val, resp_val){
+
+	if(0){
+		cat("Picking and Fitting Models:\n");
+		print(mod_str);
+		cat("Num Samples:\n");
+		print(nrow(pred_val));
+		cat("Predictors:\n");
+		print(colnames(pred_val));
+		cat("Responses:\n");
+		print(colnames(resp_val));
+	}
+
+	# Find number of responses, instead of using multivariate responses feature of lm
+	num_responses=ncol(resp_val);
+	resp_names=colnames(resp_val);
+	cat("Number of Responses: ", num_responses, "\n");
+
+	# Determine whether response is normal or binomial, or other?
+	model_families=character(num_responses);
+	names(model_families)=resp_names;
+	for(i in 1:num_responses){
+		cur_resp=resp_val[,i];
+		uniq_resp=unique(cur_resp);
+		num_uniq_resp=length(uniq_resp);
+		min_resp=min(uniq_resp);
+		max_resp=max(uniq_resp);
+
+		if(num_uniq_resp==2 && min_resp==0 && max_resp==1){
+			model_families[i]="binomial";	
+		}else{
+			model_families[i]="gaussian";
+		}
+	}
+
+	cat("Model Families:\n");
+	print(model_families);	
+	
+	# Old fitting implementation
+	#fit=lm(as.formula(mod_str), data=pred_val);
+	#sum_fit=fitsummary_to_list(summary(fit), resp_val);
+
+	sum_fit_list=list();
+	for(i in 1:num_responses){
+		
+		# Build formula from model string and current response
+		resp_name=resp_names[i];
+		y=resp_val[,i];
+		full_mod_str=paste("y ~ ", mod_str);
+		full_mod_form=as.formula(full_mod_str);
+	
+		# Change the family based previously detected model family
+		if(model_families[i]=="gaussian"){
+			fit=glm(full_mod_form, data=pred_val, family=gaussian);
+		}else if(model_families[i]=="binomial"){
+			fit=glm(full_mod_form, data=pred_val, family=binomial)
+		}else{
+			cat("Error:  Unspecified Model Family.\n");
+			quit(status=-1);
+		}
+	
+		# Summarize (calculate p-values);
+		sumfit=summary(fit);
+
+		# If gaussian, then Pr(>|t|), if binomial then Pr(>|z|)
+		# Unify, so downstream column names are the same
+		cnames=colnames(sumfit[["coefficients"]]);
+		if(grep(cnames[4], "Pr(>|.|)")){
+			cnames[4]="Pr(>|.|)";
+		}
+		colnames(sumfit[["coefficients"]])=cnames;
+
+		# Save for export
+		sum_fit_list[[resp_name]]=sumfit;
+
+	}
+
+	return(sum_fit_list);
+}
+
+#*******************************************
+
 ##############################################################################
 # Fit Covariates to Predict Measured
 
@@ -1115,13 +1205,15 @@ for(msd_ix in measured_list){
 	num_resp=ncol(msd_resp);
 	msd_varnames=colnames(msd_resp);
 
-	model_string=paste("msd_resp ~ ", paste(covariate_variable_names, collapse=" + "));
+	model_string=paste(paste(covariate_variable_names, collapse=" + "));
+	#model_string=paste("msd_resp ~ ", paste(covariate_variable_names, collapse=" + "));
 
 	cat("Model: \n");
 	print(model_string);	
 
-	fit=lm(as.formula(model_string), data=covariates_data);
-	sum_fit=fitsummary_to_list(summary(fit), msd_resp);
+	#fit=lm(as.formula(model_string), data=covariates_data);
+	#sum_fit=fitsummary_to_list(summary(fit), msd_resp);
+	sum_fit=pick_and_fit_model(model_string, covariates_data, msd_resp);
 
 	# Matrices for storing coef and pvalues
 	pval_mat=matrix(NA, nrow=num_covariates, ncol=num_resp);
@@ -1142,8 +1234,9 @@ for(msd_ix in measured_list){
 			covariate_variable_names
 		);
 
+		
 		pval_mat[avail_pred, varname]=
-			sum_fit[[var_ix]][["coefficients"]][avail_pred,"Pr(>|t|)"];
+			sum_fit[[var_ix]][["coefficients"]][avail_pred,"Pr(>|.|)"];
 
 		coef_mat[avail_pred, varname]=
 			sum_fit[[var_ix]][["coefficients"]][avail_pred,"Estimate"];
@@ -1183,14 +1276,18 @@ for(pred_msd_ix in measured_list){
 		num_pred=ncol(msd_pred);
 		msd_pred_varnames=colnames(msd_pred);
 
-		model_string=paste("msd_resp ~ ", 
-			paste(c(covariate_variable_names, msd_pred_varnames), collapse=" + "));
+		model_string=paste(paste(c(covariate_variable_names, msd_pred_varnames), collapse=" + "));
+		#model_string=paste("msd_resp ~ ", 
+		#	paste(c(covariate_variable_names, msd_pred_varnames), collapse=" + "));
 
 		cat("Model: \n");
 		print(model_string);	
 
-		fit=lm(as.formula(model_string), data=cbind(covariates_data, msd_pred));
-		sum_fit=fitsummary_to_list(summary(fit), msd_resp_varnames);
+		#fit=lm(as.formula(model_string), data=cbind(covariates_data, msd_pred));
+		#sum_fit=fitsummary_to_list(summary(fit), msd_resp_varnames);
+
+		sum_fit=pick_and_fit_model(model_string, cbind(covariates_data, msd_pred), 
+			msd_resp);
 
 		cov_and_pred_names=c(covariate_variable_names, msd_pred_varnames);
 		num_cov_pred_var=num_covariates+num_pred;
@@ -1216,7 +1313,7 @@ for(pred_msd_ix in measured_list){
 			);
 
 			pval_mat[avail_pred, varname]=
-				sum_fit[[var_ix]][["coefficients"]][avail_pred,"Pr(>|t|)"];
+				sum_fit[[var_ix]][["coefficients"]][avail_pred,"Pr(>|.|)"];
 
 
 			coef_mat[avail_pred, varname]=
@@ -1242,7 +1339,8 @@ cat("\n\n");
 for(pred_msd_ix in measured_list){
 	for(resp_ix in response_list){
 
-		cat("Fitting: Measured to (as Predictor)", pred_msd_ix, " to ", resp_ix, " (as Response)\n");
+		cat("Fitting: Measured to (as Predictor)", pred_msd_ix, " to ", 
+			resp_ix, " (as Response)\n");
 
 		analysis_string=paste(pred_msd_ix, "->", resp_ix, sep="");
 
@@ -1254,15 +1352,19 @@ for(pred_msd_ix in measured_list){
 		num_pred=ncol(msd_pred);
 		msd_pred_varnames=colnames(msd_pred);
 
-		model_string=paste("resp ~ ", 
-			paste(c(covariate_variable_names, msd_pred_varnames), collapse=" + "));
+		model_string=paste(paste(c(covariate_variable_names, msd_pred_varnames), collapse=" + "));
+		#model_string=paste("resp ~ ", 
+		#	paste(c(covariate_variable_names, msd_pred_varnames), collapse=" + "));
 
 		cat("Model: \n");
 		print(model_string);	
 
-		fit=lm(as.formula(model_string), data=cbind(covariates_data, msd_pred));
-		sum_fit=fitsummary_to_list(summary(fit), resp_varnames);
+		#fit=lm(as.formula(model_string), data=cbind(covariates_data, msd_pred));
+		#sum_fit=fitsummary_to_list(summary(fit), resp_varnames);
 		#print(sum_fit);
+
+		sum_fit=pick_and_fit_model(model_string, cbind(covariates_data, msd_pred),
+                        resp);
 
 		cov_and_pred_names=c(covariate_variable_names, msd_pred_varnames);
 		num_cov_pred_var=num_covariates+num_pred;
@@ -1279,6 +1381,8 @@ for(pred_msd_ix in measured_list){
 		# Copy values from summary to matrices
 		for(var_ix in names(sum_fit)){
 			varname=gsub("Response ", "", var_ix);
+			cat("Moving: ", var_ix, "\n");
+			print(sum_fit[[var_ix]][["coefficients"]]);
 
 			# Sometimes NAs in fit drop the predictor name from coefficients table
 			avail_pred=intersect(
@@ -1287,7 +1391,7 @@ for(pred_msd_ix in measured_list){
 			);
 
 			pval_mat[avail_pred, varname]=
-				sum_fit[[var_ix]][["coefficients"]][avail_pred,"Pr(>|t|)"];
+				sum_fit[[var_ix]][["coefficients"]][avail_pred,"Pr(>|.|)"];
 
 			coef_mat[avail_pred, varname]=
 				sum_fit[[var_ix]][["coefficients"]][avail_pred,"Estimate"];
@@ -2826,8 +2930,6 @@ plot_marginals_over_signif=function(marginals_list, grp_col){
 
 		cat("Working on: ", title, "\n");
 
-print(mat);
-print(sum(mat));
 		if(sum(mat)==0){
 			plot(NA, type="n", ylim=c(-1, 1), xlim=c(-1,1),
 				main=title, xaxt="n", ylab=ylab, xlab="p-value");
