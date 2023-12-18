@@ -632,20 +632,65 @@ if(length(na_removal_rec[["RemovedSubjects"]])){
 	));
 }
 
+num_samples=nrow(loaded_factors);
+
 variables_rec=list();
 variables_rec[["Covariates"]]=split_factors_to_groups(loaded_factors, groupings_rec, covariates_list);
 variables_rec[["Measured"]]=split_factors_to_groups(loaded_factors, groupings_rec, measured_list);
 variables_rec[["Response"]]=split_factors_to_groups(loaded_factors, groupings_rec, response_list);
-
 #print(variables_rec);
 
+##############################################################################
+# Analyze degrees of freedom available based on covariates/treatments and
+# measuread group sizes
+
+# Calculate sums for each group and type
+count_variables=function(var_rec){
+
+	group_counts_rec=list();
+	type_counts_rec=list();
+
+	for(type in names(var_rec)){
+
+		type_counts_rec[[type]]=0;
+		group_counts_rec[[type]]=list();
+
+		type_count=0;
+
+		for(grp in names(var_rec[[type]])){
+
+			vars=colnames(var_rec[[type]][[grp]]);
+
+			grp_count=0;
+			for(var in vars){
+				grp_count=grp_count+1;
+			}
+
+			group_counts_rec[[type]][[grp]]=grp_count;
+			type_count=type_count+grp_count;
+		}
+		type_counts_rec[[type]]=type_count;
+	}
+
+	counts_rec=list();
+	counts_rec[["type"]]=type_counts_rec;
+	counts_rec[["groups"]]=group_counts_rec;
+	return(counts_rec);
+}
+
+counts_rec=count_variables(variables_rec);
+#cat("Type Counts:\n");
+#print(counts_rec[["type"]]);
+#cat("Group Counts:\n");
+#print(counts_rec[["groups"]]);
 
 # Generate list of how variables will be used
 model_variables_summary=capture.output({
+	cat("\n");
 	for(type in names(variables_rec)){
-		cat(type, ":\n\n");
+		cat(type, " [ ", counts_rec[["type"]][[type]], " ]:\n\n", sep="");
 		for(grp in names(variables_rec[[type]])){
-			cat("   ", grp, "\n");
+			cat("   ", grp, " [ ", counts_rec[["groups"]][[type]][[grp]], " ]:\n", sep="");
 			vars=colnames(variables_rec[[type]][[grp]]);
 			for(var in vars){
 				cat("      ", var, "\n");
@@ -656,6 +701,28 @@ model_variables_summary=capture.output({
 	}
 });
 
+
+df_rec=list();
+df_min=Inf;
+num_df_for_msd=num_samples - counts_rec[["type"]][["Covariates"]] - 1;
+for(msd in names(counts_rec[["groups"]][["Measured"]])){
+	df_rec[[msd]]=num_df_for_msd-counts_rec[["groups"]][["Measured"]][[msd]];
+	df_min=min(df_min, df_rec[[msd]]);
+}
+
+df_summary=capture.output({
+	cat("Num Samples: ", num_samples, "\n");
+	cat("Num Covariates/Treatments: ", counts_rec[["type"]][["Covariates"]], "\n");
+	cat("Num DF for Measured Variables (Num Samp - Num Cov/Trt - 1): ", num_df_for_msd, "\n");
+	cat("\n");
+	cat("Num DF remaining for each Measured Group:\n");
+	for(msd in names(counts_rec[["groups"]][["Measured"]])){
+		cat("  ", msd, " : ", df_rec[[msd]], "\n", sep="");
+	}
+	cat("\n");
+	cat("Measured Group with Least Remaining DF: ", df_min, "\n");
+	cat("\n\n");
+});
 
 plot_title_page("TMR Framework Model Variables", c(
 	"The following page lists the variable types and variable groups that",
@@ -669,7 +736,13 @@ plot_text(c(
 	model_variables_summary
 ), max_lines_pp=80);
 
+plot_text(c(
+	"Overfit Analysis:\n",
+	df_summary
+), max_lines_pp=80);
+
 cat(paste(model_variables_summary, collapse="\n"));
+cat(paste(df_summary, collapse="\n"));
 
 ##############################################################################
 
