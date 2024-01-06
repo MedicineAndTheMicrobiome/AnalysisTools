@@ -471,6 +471,33 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 
 ###############################################################################
 
+signf_char=function(x_arr){
+
+	xlen=length(x_arr);
+	sc=character(xlen);
+
+	for(i in 1:xlen){
+		sch="";
+		x=x_arr[i];
+		if(is.na(x)){
+			sch=NA;
+		}else{
+			if(x<0.001){
+				sch="***";
+			}else if(x<0.01){
+				sch="**";
+			}else if(x<0.05){
+				sch="*";
+			}else if(x<0.10){
+				sch="'";
+			}
+		}
+		sc[i]=sch;
+	}
+	return(sc);
+}
+
+###############################################################################
 
 fitsummary_to_list=function(summary, resp_colnames){
 
@@ -1073,23 +1100,6 @@ plot_text(c(
 	capture.output(print(permanova_rsqr_mat))
 	), max_lines_pp=80);
 
-signf_char=function(x){
-	sc="";
-	if(is.na(x)){
-		return(NA);
-	}else{
-		if(x<0.001){
-			sc="***";
-		}else if(x<0.01){
-			sc="**";
-		}else if(x<0.05){
-			sc="*";
-		}else if(x<0.10){
-			sc="'";
-		}
-		return(sc);
-	}
-}
 
 
 ##############################################################################
@@ -1212,6 +1222,8 @@ pick_and_fit_model=function(mod_str, pred_val, resp_val){
 	insufficient_residual_dfs=F;
 
 	sum_fit_list=list();
+	ctl_lst=list(maxit=100);
+
 	for(i in 1:num_responses){
 		
 		# Build formula from model string and current response
@@ -1219,16 +1231,18 @@ pick_and_fit_model=function(mod_str, pred_val, resp_val){
 		y=resp_val[,i];
 		full_mod_str=paste("y ~ ", mod_str);
 		full_mod_form=as.formula(full_mod_str);
+
 	
 		# Change the family based previously detected model family
 		if(model_families[i]=="gaussian"){
-			fit=glm(full_mod_form, data=pred_val, family=gaussian);
+			fit=glm(full_mod_form, data=pred_val, family=gaussian, control=ctl_lst);
 		}else if(model_families[i]=="binomial"){
-			fit=glm(full_mod_form, data=pred_val, family=binomial)
+			fit=glm(full_mod_form, data=pred_val, family=binomial, control=ctl_lst)
 		}else{
 			cat("Error:  Unspecified Model Family.\n");
 			quit(status=-1);
 		}
+
 	
 		# Summarize (calculate p-values);
 		sumfit=summary(fit);
@@ -1575,14 +1589,208 @@ matrix_to_tables=function(results, pval_cutoff){
 	return(table);
 }
 
+#------------------------------------------------------------------------------
+
+remove_weaker_bidirectional_links=function(links_rec, log10_diff_thres=1){
+
+	# Identify MSD to MSD links
+	msd_to_msd_ix=links_rec[,"model_type"]=="Msd_to_Msd";
+
+	# Extract out MSD to MSD links, and save other links for later
+	msd_to_msd_rec=links_rec[msd_to_msd_ix,,drop=F];
+	other_recs=links_rec[!msd_to_msd_ix,,drop=F];
+
+	num_m2m_links=nrow(msd_to_msd_rec);
+	if(num_m2m_links>1){
+
+		link_hash=list();
+		forward_dir=character();
+		opposite_dir=character();
+
+		# Build a hash so we can quickly determine existence of opposite link
+		for(i in 1:num_m2m_links){
+
+			grps=strsplit(as.character(msd_to_msd_rec[i, "model_name"]), "->")[[1]];
+			pred_grp=grps[1];
+			resp_grp=grps[2];
+
+			# Generate group#variable key for pred/resp
+			pred_str=paste(pred_grp, "#", msd_to_msd_rec[i, "predictor"], sep="");
+			resp_str=paste(resp_grp, "#", msd_to_msd_rec[i, "response"], sep="");
+
+			# Generate pred/resp key
+			for_pair_str=paste(pred_str, resp_str, sep="|");
+			opp_pair_str=paste(resp_str, pred_str, sep="|");
+
+			# Save the pred/resp pval as store value in hash
+			link_hash[[for_pair_str]]=msd_to_msd_rec[i, "pval"];
+
+			# Keep track of pred/resp keys and resp/red keys
+			forward_dir=c(forward_dir, for_pair_str);
+			opposite_dir=c(opposite_dir, opp_pair_str);
+
+		}
+
+		remove_list=c();
+		for(i in 1:num_m2m_links){
+		
+			cur_for=forward_dir[i];
+			cur_opp=opposite_dir[i];	
+
+			if(is.null(link_hash[[cur_opp]])){
+				# If there is no, link in opposite direction, do nothing.
+				next;
+			}else{
+				# If there is a link in the opposite direction, compare
+				# the p-values.  If one is more significant than the 
+				# other by more than the threshold, keep the more significant
+				# one.
+
+				cat("F/R link found:", cur_for, "\n");
+
+				for_pval=link_hash[[cur_for]];
+				opp_pval=link_hash[[cur_opp]];
+
+				# log_diff < 0, if for_pval more signf than rev_pval
+				log10_diff=log10(for_pval/opp_pval);
+
+				if(log10_diff < (-log10_diff_thres)){
+					# forward is more significant then opposite
+					link_hash[[cur_opp]]=1;
+				}else if(log10_diff > (log10_diff_thres)){
+					# Opposite is more significant than forward
+					# so mark it for removal
+					link_hash[[cur_for]]=1;
+					msd_to_msd_rec[i, "pval"]=1;
+					remove_list=c(remove_list, i);
+				}else{
+					# Keep both
+				}
+			}
+		}
+
+		# Remove weaker links from table
+		msd_to_msd_rec=msd_to_msd_rec[setdiff(1:num_m2m_links, remove_list),, drop=F];
+	}
+
+	# Combine filtered MSD to MSD records with other records
+	out=rbind(other_recs, msd_to_msd_rec);
+
+	if(nrow(out)>0){
+		rownames(out)=1:nrow(out);
+	}
+
+	return(out);	
+
+}
+
+#------------------------------------------------------------------------------
+
+remove_covariate_links_from_msd_pred=function(links_rec, covariates){
+	#print(covariates);
+	#print(links_rec);
+
+	is_msdtomsd=("Msd_to_Msd"==links_rec[,"model_type"]);
+	is_covar=links_rec[,"predictor"] %in% covariates;
+	is_msdtomsd_and_covar=is_msdtomsd & is_covar;
+
+	covar_removed=links_rec[!is_msdtomsd_and_covar,,drop=F];
+	return(covar_removed);
+}
+
+##############################################################################
+
 #print(model_results);
 
 denorm_results=list();
-for(pvco in rev(c(1.0000, 0.1000, 0.050, 0.010, 0.005, 0.001, 0.0005, 0.0001))){
-	denorm_results[[sprintf("%3.4f", pvco)]]=matrix_to_tables(model_results, pvco);
+unidir_results=list();
+
+numerical_cutoffs=sort(c(1.0000, 0.1000, 0.050, 0.010, 0.005, 0.001, 0.0005, 0.0001), decreasing=T);
+string_cutoffs=sprintf("%3.4f", numerical_cutoffs); 
+num_cutoffs=length(numerical_cutoffs);
+
+for(i in 1:num_cutoffs){
+
+	denorm_results[[string_cutoffs[i]]]=
+		matrix_to_tables(model_results, numerical_cutoffs[i]);
+
+	unidir_results[[string_cutoffs[i]]]=
+		remove_weaker_bidirectional_links(
+			denorm_results[[string_cutoffs[i]]], 
+			log10_diff_thres=1);
 }
 
-#print(denorm_results);
+##############################################################################
+
+extract_predictors=function(unidir_dnrm_table, model_type){
+	#print(unidir_dnrm_table);
+	#print(model_type);	
+	cat("Extracting predictors for: ", model_type, "\n");
+
+	model_rows_ix=unidir_dnrm_table[,"model_type"]==model_type;
+	model_table=unidir_dnrm_table[model_rows_ix,,drop=F];
+
+	predictors=sort(as.character(unique(model_table[,"predictor"])));
+	print(predictors);
+
+	return(predictors);
+}
+
+cat("=======================================================\n");
+cat("=  Fitting Selected Predictors to Response Variables  =\n");
+cat("=======================================================\n");
+
+selected_predictors=list();
+selected_fits=list();
+
+for(pvco in string_cutoffs){
+
+	selected_fits[[pvco]]=list();	
+	selected_predictors[[pvco]]=list();
+
+	cat("\n\n");
+	cat("**** P-value Cutoff: ", pvco, "\n");	
+
+	for(model_type in c("Cov_to_Msd", "Msd_to_Msd", "Msd_to_Rsp")){
+
+
+		cat("**** Model Type: ", model_type, "\n");
+
+		sel_pred=extract_predictors(unidir_results[[pvco]], model_type);
+		selected_predictors[[pvco]][[model_type]]=sel_pred;
+
+		if(length(sel_pred)){
+
+			cat("**** Selected Predictors across Groups:\n");
+			print(sel_pred);
+
+			model_string=paste(sel_pred, collapse=" + ");
+
+			for(resp_ix in response_list){
+
+				# Fits multivariate response
+				cat("**** Fitting Response Group: ", resp_ix, "\n");
+				model_fit=pick_and_fit_model(
+					model_string,
+					loaded_factors[,sel_pred,drop=F],
+					variables_rec[["Response"]][[resp_ix]]
+					);
+
+				selected_fits[[pvco]][[model_type]]=model_fit;
+
+			}
+		}else{
+			cat("No predictors found for: ", model_type, " at ", pvco, "\n");
+			selected_fits[[pvco]][[model_type]]=NA;
+		}
+			
+	}
+}
+
+cat("============================================================\n");
+cat("=  Done Fitting Selected Predictors to Response Variables  =\n");
+cat("============================================================\n");
+
 
 ##############################################################################
 
@@ -2055,110 +2263,6 @@ plot_TMR_diagram=function(
 	cat("End of Plot TMR Diagram.\n");
 }
 
-remove_weaker_bidirectional_links=function(links_rec, log10_diff_thres=1){
-
-	# Identify MSD to MSD links
-	msd_to_msd_ix=links_rec[,"model_type"]=="Msd_to_Msd";
-
-	# Extract out MSD to MSD links, and save other links for later
-	msd_to_msd_rec=links_rec[msd_to_msd_ix,,drop=F];
-	other_recs=links_rec[!msd_to_msd_ix,,drop=F];
-
-	num_m2m_links=nrow(msd_to_msd_rec);
-	if(num_m2m_links>1){
-
-		link_hash=list();
-		forward_dir=character();
-		opposite_dir=character();
-
-		# Build a hash so we can quickly determine existence of opposite link
-		for(i in 1:num_m2m_links){
-
-			grps=strsplit(as.character(msd_to_msd_rec[i, "model_name"]), "->")[[1]];
-			pred_grp=grps[1];
-			resp_grp=grps[2];
-
-			# Generate group#variable key for pred/resp
-			pred_str=paste(pred_grp, "#", msd_to_msd_rec[i, "predictor"], sep="");
-			resp_str=paste(resp_grp, "#", msd_to_msd_rec[i, "response"], sep="");
-
-			# Generate pred/resp key
-			for_pair_str=paste(pred_str, resp_str, sep="|");
-			opp_pair_str=paste(resp_str, pred_str, sep="|");
-
-			# Save the pred/resp pval as store value in hash
-			link_hash[[for_pair_str]]=msd_to_msd_rec[i, "pval"];
-
-			# Keep track of pred/resp keys and resp/red keys
-			forward_dir=c(forward_dir, for_pair_str);
-			opposite_dir=c(opposite_dir, opp_pair_str);
-
-		}
-
-		remove_list=c();
-		for(i in 1:num_m2m_links){
-		
-			cur_for=forward_dir[i];
-			cur_opp=opposite_dir[i];	
-
-			if(is.null(link_hash[[cur_opp]])){
-				# If there is no, link in opposite direction, do nothing.
-				next;
-			}else{
-				# If there is a link in the opposite direction, compare
-				# the p-values.  If one is more significant than the 
-				# other by more than the threshold, keep the more significant
-				# one.
-
-				cat("F/R link found:", cur_for, "\n");
-
-				for_pval=link_hash[[cur_for]];
-				opp_pval=link_hash[[cur_opp]];
-
-				# log_diff < 0, if for_pval more signf than rev_pval
-				log10_diff=log10(for_pval/opp_pval);
-
-				if(log10_diff < (-log10_diff_thres)){
-					# forward is more significant then opposite
-					link_hash[[cur_opp]]=1;
-				}else if(log10_diff > (log10_diff_thres)){
-					# Opposite is more significant than forward
-					# so mark it for removal
-					link_hash[[cur_for]]=1;
-					msd_to_msd_rec[i, "pval"]=1;
-					remove_list=c(remove_list, i);
-				}else{
-					# Keep both
-				}
-			}
-		}
-
-		# Remove weaker links from table
-		msd_to_msd_rec=msd_to_msd_rec[setdiff(1:num_m2m_links, remove_list),, drop=F];
-	}
-
-	# Combine filtered MSD to MSD records with other records
-	out=rbind(other_recs, msd_to_msd_rec);
-
-	if(nrow(out)>0){
-		rownames(out)=1:nrow(out);
-	}
-
-	return(out);	
-
-}
-
-remove_covariate_links_from_msd_pred=function(links_rec, covariates){
-	#print(covariates);
-	#print(links_rec);
-
-	is_msdtomsd=("Msd_to_Msd"==links_rec[,"model_type"]);
-	is_covar=links_rec[,"predictor"] %in% covariates;
-	is_msdtomsd_and_covar=is_msdtomsd & is_covar;
-
-	covar_removed=links_rec[!is_msdtomsd_and_covar,,drop=F];
-	return(covar_removed);
-}
 
 extract_matrices_from_links=function(no_trtcov_unidir_links,
 		covtrt_to_group_map, covariates_list, measured_list, response_list
@@ -2858,6 +2962,71 @@ plot_tmr_matrices=function(lnk_rec, var_rec, grp_colors, cutoff){
 
 ##############################################################################
 
+plot_combined_fits=function(fits, cutoff){	
+
+	cat("Plotting combined predictors: ", cutoff, "\n");
+
+	model_types=names(fits);
+
+	for(mt in model_types){
+		
+		cat("Working on Model: ", mt, "\n");
+
+		if(length(fits[[mt]])==1 && is.na(fits[[mt]])){
+			plot_text(c(
+				paste("Cutoff: ", cutoff),
+				paste("Model: Using predictors from [", mt, 
+					"] to predict response variables.", sep=""),
+				"",
+				"No significant predictors selected at this cutoff."
+			));
+			next;
+		}
+		
+		num_resp=length(fits[[mt]][["sumfit_list"]]);
+		res_names=names(fits[[mt]][["sumfit_list"]]);
+		suff_resid=fits[[mt]][["sufficient_residuals"]];
+
+		cat("Sufficient Residuals: ", suff_resid, "\n");
+		cat("Num Responses: ", num_resp, "\n");
+		cat("Responses: \n");
+		print(res_names);
+
+		if(num_resp && suff_resid){
+			for(rix in 1:num_resp){
+
+				cur_resp_name=res_names[rix];
+				cat("Response Names: ", cur_resp_name, "\n");
+				fit_rec=fits[[mt]][["sumfit_list"]][[cur_resp_name]];
+				print(fit_rec);
+
+				out_tab=fit_rec$coefficients[,c(1,4)];
+				prednames=rownames(out_tab);
+				out_tab=out_tab[setdiff(prednames, "(Intercept)"),];
+
+				out_tab_char=apply(out_tab, c(1,2),
+					function(x){sprintf("%12.4f", x);});
+
+				out_tab_char=cbind(out_tab_char, signf_char(out_tab[,2]));
+				colnames(out_tab_char)=c("Coefficients", "P-values", "Signif");
+
+				plot_text(c(
+					paste("Cutoff: ", cutoff),
+					paste("Model: Using predictors from [", mt, 
+						"] to predict [", cur_resp_name, "]", sep=""),
+					"",
+					capture.output(print(out_tab_char, quote=F))
+				));	
+
+
+			}	
+		}
+	}
+
+}
+
+##############################################################################
+
 assign_colors=function(name_arr){
 
 	jumble_colors=function(num_colors){
@@ -2926,10 +3095,10 @@ options(width=300);
 marginals=list();
 
 #for(cutoffs in c("0.0010", "0.1000")){
-#for(cutoffs in c("0.0100")){
+#for(cutoffs in c("0.0050")){
 for(cutoffs in names(denorm_results)){
 
-	if(cutoffs=="1.0000"){break;}
+	if(cutoffs=="1.0000"){next;}
 
 	plot_TMR_diagram(denorm_results[[cutoffs]],
 		paste("P-value Cutoff: ", cutoffs, sep=""),
@@ -2995,6 +3164,10 @@ for(cutoffs in names(denorm_results)){
 	# Generate Heatmaps & Stacked Barplots
 	link_rec=extract_matrices_from_links(no_trtcov_unidir_links);
 	marginals[[cutoffs]]=plot_tmr_matrices(link_rec, variables_rec, grp_colors, cutoffs);
+
+
+	# Show combined selected
+	plot_combined_fits(selected_fits[[cutoffs]], cutoffs);
 }
 
 ##############################################################################
@@ -3002,6 +3175,13 @@ for(cutoffs in names(denorm_results)){
 plot_marginals_over_signif=function(marginals_list, grp_col){
 
 	signf_arr=names(marginals_list);
+
+	signf_numeric=as.numeric(signf_arr);
+	# Reorder, so start with least signficant/loosest cutoff
+	if(signf_numeric[1]<signf_numeric[2]){
+		signf_arr=rev(signf_arr);
+	}
+
 
 	list_by_type=list();
 
@@ -3023,10 +3203,9 @@ plot_marginals_over_signif=function(marginals_list, grp_col){
 	
 	#----------------------------------------------------------------------
 
-	for(signf in rev(signf_arr)){
+	for(signf in signf_arr){
 		cat("Working on: ", signf, "\n");
 		marginals=marginals_list[[signf]]
-		#print(marginals);
 
 		for(type in names(marginals)){
 			list_by_type[[type]]=padded_bind(list_by_type[[type]], marginals[[type]]);
@@ -3036,7 +3215,7 @@ plot_marginals_over_signif=function(marginals_list, grp_col){
 	# Label signif and get all groups	
 	uniq_grps_seen=c();
 	for(type in names(list_by_type)){
-		rownames(list_by_type[[type]])=rev(signf_arr);
+		rownames(list_by_type[[type]])=signf_arr;
 		uniq_grps_seen=unique(c(uniq_grps_seen, colnames(list_by_type[[type]])));
 	}
 
