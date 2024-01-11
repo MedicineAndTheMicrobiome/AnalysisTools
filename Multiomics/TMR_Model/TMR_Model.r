@@ -1221,6 +1221,7 @@ pick_and_fit_model=function(mod_str, pred_val, resp_val){
 	#sum_fit=fitsummary_to_list(summary(fit), resp_val);
 	insufficient_residual_dfs=F;
 
+	fit_list=list();
 	sum_fit_list=list();
 	ctl_lst=list(maxit=100);
 
@@ -1263,10 +1264,12 @@ pick_and_fit_model=function(mod_str, pred_val, resp_val){
 
 		# Save for export
 		sum_fit_list[[resp_name]]=sumfit;
+		fit_list[[resp_name]]=fit;
 
 	}
 
 	results=list();
+	results[["fit_list"]]=fit_list;
 	results[["sumfit_list"]]=sum_fit_list;
 	results[["sufficient_residuals"]]=!insufficient_residual_dfs;
 
@@ -1781,7 +1784,7 @@ for(pvco in string_cutoffs){
 			}
 		}else{
 			cat("No predictors found for: ", model_type, " at ", pvco, "\n");
-			selected_fits[[pvco]][[model_type]]=NA;
+			selected_fits[[pvco]][[model_type]]=list();
 		}
 			
 	}
@@ -2965,6 +2968,8 @@ plot_tmr_matrices=function(lnk_rec, var_rec, grp_colors, cutoff){
 plot_combined_fits=function(fits, cutoff){	
 
 	cat("Plotting combined predictors: ", cutoff, "\n");
+	orig_par=par(no.readonly=T);
+	par(mfrow=c(2,1));
 
 	model_types=names(fits);
 
@@ -2997,17 +3002,21 @@ plot_combined_fits=function(fits, cutoff){
 
 				cur_resp_name=res_names[rix];
 				cat("Response Names: ", cur_resp_name, "\n");
-				fit_rec=fits[[mt]][["sumfit_list"]][[cur_resp_name]];
-				print(fit_rec);
-
-				out_tab=fit_rec$coefficients[,c(1,4)];
+				sumfit_rec=fits[[mt]][["sumfit_list"]][[cur_resp_name]];
+				fit_rec=fits[[mt]][["fit_list"]][[cur_resp_name]];
+			
+				out_tab=sumfit_rec$coefficients[,c(1,4)];
 				prednames=rownames(out_tab);
 				out_tab=out_tab[setdiff(prednames, "(Intercept)"),];
 
-				out_tab_char=apply(out_tab, c(1,2),
-					function(x){sprintf("%12.4f", x);});
+				# Generate text matrix
+				out_formatted=matrix(character(), nrow=nrow(out_tab), ncol=2);
+				rownames(out_formatted)=rownames(out_tab);
+				out_formatted[,1]=sapply(out_tab[,1], function(x){sprintf("%12.4f", x)});
+				out_formatted[,2]=sapply(out_tab[,2], function(x){sprintf("%8.4f", x)});
 
-				out_tab_char=cbind(out_tab_char, signf_char(out_tab[,2]));
+				# Append significance character to last column
+				out_tab_char=cbind(out_formatted, signf_char(out_tab[,2]));
 				colnames(out_tab_char)=c("Coefficients", "P-values", "Signif");
 
 				plot_text(c(
@@ -3018,10 +3027,24 @@ plot_combined_fits=function(fits, cutoff){
 					capture.output(print(out_tab_char, quote=F))
 				));	
 
+				resp_range=range(c(fit_rec$y, fit_rec$fitted.values));
+				plot(fit_rec$y, fit_rec$fitted.values,
+					ylim=resp_range, xlim=resp_range,
+					xlab="Observed", ylab="Predicted",
+					main=cur_resp_name
+					);
+
+				obs=fit_rec$y;
+				prd=fit_rec$fitted.values;
+
+				obs_pred_fit=lm(prd~obs);
+				abline(obs_pred_fit, lty="dotted", lwd=2, col="blue");
 
 			}	
 		}
 	}
+
+	par(orig_par);
 
 }
 
@@ -3228,20 +3251,22 @@ plot_marginals_over_signif=function(marginals_list, grp_col){
 
 		cat("Working on: ", title, "\n");
 
-		if(sum(mat)==0){
-			plot(NA, type="n", ylim=c(-1, 1), xlim=c(-1,1),
-				main=title, xaxt="n", ylab=ylab, xlab="p-value");
-			text(0,0, "No Associations Found.\n");
-			return();
-		}
+		par(mar=m);
 	
 		num_xpts=nrow(mat);
 		xlab=rownames(mat);
 		max_counts=max(mat);
 		num_var=ncol(mat);
 		varnames=colnames(mat);
+
+		if(sum(mat)==0){
+			plot(NA, type="n", ylim=c(-1, 1), xlim=c(-1,1),
+				main=title, xaxt="n", ylab=ylab, xlab="p-value");
+			text(0,0, "No Associations Found.\n");
+		
+			return();
+		}
 	
-		par(mar=m);
 		plot(NA, type="n", ylim=c(0, max_counts), xlim=c(1,num_xpts),
 			main=title, xaxt="n", ylab=ylab, xlab="p-value");
 
@@ -3270,16 +3295,15 @@ plot_marginals_over_signif=function(marginals_list, grp_col){
 	# Pair the Predictors with Responses
 
 	par(mfrow=c(3,2));
-	par(mar=c(4,4,3,1));
 
 	plot_matrices(list_by_type[["pred_t2m"]], grp_col, title="Predictors", 
-		ylab="Covariates & Treatments", m=c(1,4,4,1), al=F);
+		ylab="Covariates & Treatments", m=c(2,4,4,1), al=T);
 	plot_matrices(list_by_type[["resp_t2m"]], grp_col, title="Responses", 
-		ylab="Measured", m=c(1,4,4,1), al=F);
+		ylab="Measured", m=c(2,4,4,1), al=T);
 	plot_matrices(list_by_type[["pred_m2m"]], grp_col, title="", 
-		ylab="Measured", m=c(1,4,1,1), al=F);
+		ylab="Measured", m=c(2,4,1,1), al=T);
 	plot_matrices(list_by_type[["resp_m2m"]], grp_col, title="",
-		ylab="Measured", m=c(1,4,1,1), al=F);
+		ylab="Measured", m=c(2,4,1,1), al=T);
 	plot_matrices(list_by_type[["pred_m2r"]], grp_col, title="", 
 		ylab="Measured", m=c(4,4,1,1), al=T);
 	plot_matrices(list_by_type[["resp_m2r"]], grp_col, title="", 
@@ -3287,6 +3311,160 @@ plot_marginals_over_signif=function(marginals_list, grp_col){
 }
 
 plot_marginals_over_signif(marginals, grp_colors);
+
+#-----------------------------------------------------------------------------
+
+plot_signif_combined_predictors=function(fits_across_cutoffs){
+
+	# The fits are grouped by model type: Cov_to_Msd, Msd_to_Msd, and Msd_to_Rsp
+	
+	cat("*************************************************************************\n");
+	cat("Plotting significant predictors across cutoffs.\n");
+
+	orig_par=par(no.readonly=T);
+
+	models=c();
+	response_variables=c();
+	max_predictors=0;
+
+	signif_pred_rec=list();
+
+	pval_cutoffs=names(fits_across_cutoffs);
+	signf_pred_by_resp=list();
+
+	for(pvc in pval_cutoffs){
+		cat("P-value: ", pvc, "\n");
+
+		fits=fits_across_cutoffs[[pvc]];
+
+		signif_pred_rec[[pvc]]=list();
+
+		for(mt in names(fits)){
+
+			cat("Models: ", mt, "\n");
+			
+			sumfit_list=fits[[mt]][["sumfit_list"]];
+			#cat("SumFit List:\n");
+			#print(sumfit_list);
+
+			signif_pred_rec[[pvc]][[mt]]=list();
+			models=c(models, mt);
+
+			for(var in names(sumfit_list)){
+	
+				cat("Variables: ", var, "\n");
+
+				sumfit=sumfit_list[[var]];
+
+				coef_mat=sumfit[["coefficients"]];
+				pred_names=setdiff(rownames(coef_mat), "(Intercept)");
+
+				coef_mat=coef_mat[pred_names,];
+				#print(coef_mat);
+				num_pred=nrow(coef_mat)
+
+				signf_ix=coef_mat[,"Pr(>|.|)"]<0.1;
+				signif_pred=rownames(coef_mat)[signf_ix];
+				num_signif_pred=length(signif_pred);
+
+				cat("Num Predictors: ", num_pred, "\n");
+				cat("Num Significant: ", num_signif_pred, "\n");
+				print(signif_pred);
+				cat("\n\n");
+
+				arr=c(num_pred, num_signif_pred);
+				names(arr)=c("Num Pred", "Num Signf Pred");
+				signif_pred_rec[[pvc]][[mt]][[var]]=arr;
+
+				signf_pred_by_resp[[var]]=
+					unique(c(signf_pred_by_resp[[var]], signif_pred));
+
+				response_variables=c(response_variables, var);
+				max_predictors=max(c(max_predictors, num_pred));
+
+			}
+		}
+		cat("\n");
+	}
+
+	#cat("Extracted:\n");
+	#print(signif_pred_rec);
+
+	par(mfrow=c(3,1));
+	par(mar=c(8,5,5,1));
+
+	models=unique(models);
+	num_models=length(models);
+	response_variables=unique(response_variables);
+
+	num_pval_cutoffs=length(pval_cutoffs);
+
+	cat("Max predictors: ", max_predictors, "\n");
+
+	num_bars=num_pval_cutoffs*(num_models+1);
+
+	for(resp_var in response_variables){
+		cat("Working on: ", resp_var, "\n");
+		
+		mids=barplot(height=rep(NA, num_bars),
+			border=NA,
+			main=resp_var,
+			xaxt="n",
+			ylab="Number of Variables",
+			ylim=c(0, max_predictors+1));
+
+		axis(side=1, at=mids, labels=rep(c("TM","MM","MR", " "), num_pval_cutoffs), tick=F,
+			 cex.axis=.95, line=0);
+
+		pval_labels=rep("", num_bars);
+		pval_labels[(0:(num_pval_cutoffs-1))*4+1]=pval_cutoffs;
+		axis(side=1, at=mids, labels=pval_labels, tick=F, line=2, font.axis=2);
+
+		x_buf=rep(0, (num_models+1)*num_pval_cutoffs);
+		for(pvc_ix in 1:num_pval_cutoffs){
+
+			pvc=pval_cutoffs[pvc_ix];
+
+			for(m_ix in 1:num_models){
+
+				mt=models[m_ix];
+
+				counts=signif_pred_rec[[pvc]][[mt]][[resp_var]];
+				if(length(counts)==0){counts=c(0,0);};
+				column_ix=(pvc_ix-1)*(num_models+1)+ (m_ix-1) + 1;
+
+				filled_buf=x_buf;
+				filled_buf[column_ix]=counts["Num Pred"];
+
+				barplot(height=filled_buf, xaxt="n", yaxt="n", 
+					border=NA,
+					add=T, col="green", tick=F);
+
+				filled_buf[column_ix]=counts["Num Signf Pred"];
+				barplot(height=filled_buf, xaxt="n", yaxt="n", 
+					border=NA,
+					add=T, col="blue", tick=F);
+			}
+		}
+
+		#--------------------------------------------------------------
+
+		cat("Predictors\n");
+		mid_val=(max(mids)-min(mids))/2;
+		signf_pred_banner=paste(sort(signf_pred_by_resp[[resp_var]]), collapse=", ");	
+		axis(side=1, at=mid_val, labels="Predictors of Interest:", tick=F, line=4, 
+			font.axis=2, cex.axis=1, cex.axis=1.1);
+		axis(side=1, at=mid_val, labels=signf_pred_banner, tick=F, line=5, 
+			font.axis=3, cex.axis=1, cex.axis=1.1);
+
+
+	}
+
+	par(orig_par);
+
+}
+
+plot_signif_combined_predictors(selected_fits);
 
 ##############################################################################
 # Export full link table
