@@ -451,17 +451,21 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
         if(plot_row_dendr && plot_col_dendr){
                 rdh=attributes(row_dendr[["tree"]])$height;
                 cdh=attributes(col_dendr[["tree"]])$height;
-                plot(row_dendr[["tree"]], leaflab="none", horiz=T, xaxt="n", yaxt="n", bty="n", xlim=c(rdh, 0));
-                plot(col_dendr[["tree"]], leaflab="none",xaxt="n", yaxt="n", bty="n", ylim=c(0, cdh));
+                plot(row_dendr[["tree"]], leaflab="none", horiz=T, xaxt="n", yaxt="n", 
+			bty="n", xlim=c(rdh, 0));
+                plot(col_dendr[["tree"]], leaflab="none",xaxt="n", yaxt="n", 
+			bty="n", ylim=c(0, cdh));
                 plot(0,0, type="n", bty="n", xaxt="n", yaxt="n");
                 #text(0,0, "Placeholder");
         }else if(plot_row_dendr){
                 rdh=attributes(row_dendr[["tree"]])$height;
-                plot(row_dendr[["tree"]], leaflab="none", horiz=T, xaxt="n", yaxt="n", bty="n", xlim=c(rdh, 0));
+                plot(row_dendr[["tree"]], leaflab="none", horiz=T, xaxt="n", yaxt="n", 
+			bty="n", xlim=c(rdh, 0));
                 #text(0,0, "Row Dendrogram");
         }else if(plot_col_dendr){
                 cdh=attributes(col_dendr[["tree"]])$height;
-                plot(col_dendr[["tree"]], leaflab="none", xaxt="n", yaxt="n", bty="n", ylim=c(0, cdh));
+                plot(col_dendr[["tree"]], leaflab="none", xaxt="n", yaxt="n", 
+			bty="n", ylim=c(0, cdh));
                 #text(0,0, "Col Dendrogram");
         }
 
@@ -1178,7 +1182,7 @@ for(type in c("Measured", "Response")){
 
 #*******************************************
 
-pick_and_fit_model=function(mod_str, pred_val, resp_val){
+pick_and_fit_model=function(mod_var, pred_val, resp_val){
 
 	if(0){
 		cat("Picking and Fitting Models:\n");
@@ -1230,6 +1234,7 @@ pick_and_fit_model=function(mod_str, pred_val, resp_val){
 		# Build formula from model string and current response
 		resp_name=resp_names[i];
 		y=resp_val[,i];
+		mod_str=paste(mod_var, collapse="+");
 		full_mod_str=paste("y ~ ", mod_str);
 		full_mod_form=as.formula(full_mod_str);
 
@@ -1269,6 +1274,7 @@ pick_and_fit_model=function(mod_str, pred_val, resp_val){
 	}
 
 	results=list();
+	results[["predictors"]]=mod_var;
 	results[["fit_list"]]=fit_list;
 	results[["sumfit_list"]]=sum_fit_list;
 	results[["sufficient_residuals"]]=!insufficient_residual_dfs;
@@ -1314,15 +1320,10 @@ for(msd_ix in measured_list){
 	num_resp=ncol(msd_resp);
 	msd_varnames=colnames(msd_resp);
 
-	model_string=paste(paste(covariate_variable_names, collapse=" + "));
-	#model_string=paste("msd_resp ~ ", paste(covariate_variable_names, collapse=" + "));
-
-	cat("Model: \n");
-	print(model_string);	
-
+	model_vars=covariate_variable_names;
 	#fit=lm(as.formula(model_string), data=covariates_data);
 	#sum_fit=fitsummary_to_list(summary(fit), msd_resp);
-	model_fit=pick_and_fit_model(model_string, covariates_data, msd_resp);
+	model_fit=pick_and_fit_model(model_vars, covariates_data, msd_resp);
 	sum_fit=model_fit[["sumfit_list"]];
 	overfits[["Cov_to_Msd"]][[msd_ix]]=!model_fit[["sufficient_residuals"]];
 
@@ -1390,17 +1391,18 @@ for(pred_msd_ix in measured_list){
 		num_pred=ncol(msd_pred);
 		msd_pred_varnames=colnames(msd_pred);
 
-		model_string=paste(paste(c(covariate_variable_names, msd_pred_varnames), collapse=" + "));
+		#model_string=paste(paste(c(covariate_variable_names, msd_pred_varnames), collapse=" + "));
 		#model_string=paste("msd_resp ~ ", 
 		#	paste(c(covariate_variable_names, msd_pred_varnames), collapse=" + "));
 
-		cat("Model: \n");
-		print(model_string);	
+		#cat("Model: \n");
+		#print(model_string);	
 
 		#fit=lm(as.formula(model_string), data=cbind(covariates_data, msd_pred));
 		#sum_fit=fitsummary_to_list(summary(fit), msd_resp_varnames);
+		model_vars=c(covariate_variable_names, msd_pred_varnames);
 
-		model_fit=pick_and_fit_model(model_string, cbind(covariates_data, msd_pred), 
+		model_fit=pick_and_fit_model(model_vars, cbind(covariates_data, msd_pred), 
 			msd_resp);
 		sum_fit=model_fit[["sumfit_list"]];
 
@@ -1474,18 +1476,19 @@ for(pred_msd_ix in measured_list){
 		num_pred=ncol(msd_pred);
 		msd_pred_varnames=colnames(msd_pred);
 
-		model_string=paste(paste(c(covariate_variable_names, msd_pred_varnames), collapse=" + "));
+		#model_string=paste(paste(c(covariate_variable_names, msd_pred_varnames), collapse=" + "));
 		#model_string=paste("resp ~ ", 
 		#	paste(c(covariate_variable_names, msd_pred_varnames), collapse=" + "));
 
-		cat("Model: \n");
-		print(model_string);	
+		#cat("Model: \n");
+		#print(model_string);	
 
 		#fit=lm(as.formula(model_string), data=cbind(covariates_data, msd_pred));
 		#sum_fit=fitsummary_to_list(summary(fit), resp_varnames);
 		#print(sum_fit);
 
-		model_fit=pick_and_fit_model(model_string, cbind(covariates_data, msd_pred),
+		model_vars=c(covariate_variable_names, msd_pred_varnames);
+		model_fit=pick_and_fit_model(model_vars, cbind(covariates_data, msd_pred),
                         resp);
 		sum_fit=model_fit[["sumfit_list"]];
 		any_overfits = any_overfits || !model_fit[["sufficient_residuals"]];
@@ -1765,19 +1768,21 @@ for(pvco in string_cutoffs){
 		if(length(sel_pred)){
 
 			cat("**** Selected Predictors across Groups:\n");
-			print(sel_pred);
-
-			model_string=paste(sel_pred, collapse=" + ");
+			model_vars=sel_pred;
 
 			for(resp_ix in response_list){
 
 				# Fits multivariate response
 				cat("**** Fitting Response Group: ", resp_ix, "\n");
 				model_fit=pick_and_fit_model(
-					model_string,
+					model_vars,
 					loaded_factors[,sel_pred,drop=F],
 					variables_rec[["Response"]][[resp_ix]]
 					);
+
+				#cat("---------------------->>\n");
+				#print(model_fit);
+				#cat("<<----------------------\n");
 
 				selected_fits[[pvco]][[model_type]]=model_fit;
 
@@ -1793,7 +1798,6 @@ for(pvco in string_cutoffs){
 cat("============================================================\n");
 cat("=  Done Fitting Selected Predictors to Response Variables  =\n");
 cat("============================================================\n");
-
 
 ##############################################################################
 
@@ -2347,6 +2351,11 @@ tmr_heatmap=function(mat, title="", subtitle="", pred_var_mat, resp_var_mat, val
 	#----------------------------------------------------------------------
 
 	subset_mat=function(targets, ordermat){
+		# extract targets from the ordermat 
+
+		if(length(targets)==0 || nrow(ordermat)==0){
+			return(ordermat[c(),]);
+		}
 
 		ordermat=as.data.frame(ordermat);
 		om_cname=colnames(ordermat);
@@ -2402,6 +2411,13 @@ tmr_heatmap=function(mat, title="", subtitle="", pred_var_mat, resp_var_mat, val
 
 	#----------------------------------------------------------------------
 
+
+        orig.par=par(no.readonly=T);
+
+        cat("TMR Heatmap: ", title, "\n");
+        cat("Num Rows: ", num_row, "\n");
+        cat("Num Cols: ", num_col, "\n");
+
 	pred_var_mat=subset_mat(row_names, pred_var_mat);
 	resp_var_mat=subset_mat(col_names, resp_var_mat);
 
@@ -2413,22 +2429,7 @@ tmr_heatmap=function(mat, title="", subtitle="", pred_var_mat, resp_var_mat, val
 	print(resp_var_mat);
 	cat("\n");
 
-	row_names=pred_var_mat[,"Variable"];
-	col_names=resp_var_mat[,"Variable"];
-
-	pred_grp_sizes=find_group_sizes(pred_var_mat[,"Group"]);
-	resp_grp_sizes=find_group_sizes(resp_var_mat[,"Group"]);
-
-	data_mat=mat[row_names, col_names, drop=F];
-
-        orig.par=par(no.readonly=T);
-
-        cat("TMR Heatmap: ", title, "\n");
-        cat("Num Rows: ", num_row, "\n");
-        cat("Num Cols: ", num_col, "\n");
-
-
-        if(num_row==0 || num_col==0){
+        if(nrow(pred_var_mat)==0 || nrow(resp_var_mat)==0){
 		par(mar=c(5,5,5,5));
                 plot(0, type="n", xlim=c(-1,1), ylim=c(-1,1), xaxt="n", yaxt="n", 
 			bty="n", xlab="", ylab="");
@@ -2439,6 +2440,15 @@ tmr_heatmap=function(mat, title="", subtitle="", pred_var_mat, resp_var_mat, val
 
                 return();
         }
+
+
+	row_names=pred_var_mat[,"Variable",drop=F];
+	col_names=resp_var_mat[,"Variable",drop=F];
+
+	pred_grp_sizes=find_group_sizes(pred_var_mat[,"Group"]);
+	resp_grp_sizes=find_group_sizes(resp_var_mat[,"Group"]);
+
+	data_mat=mat[row_names, col_names, drop=F];
 
         # Get Label lengths
         row_max_nchar=max(nchar(row_names));
@@ -2556,6 +2566,10 @@ tmr_heatmap_byGroup=function(mat, title="", subtitle="", pred_var_mat, resp_var_
 		# The targets may not be in the right order but the entries
 		# in the ordermat will be.
 
+		if(length(targets)==0 || nrow(ordermat)==0){
+			return(ordermat[c(),]);
+		}
+
 		ordermat=as.data.frame(ordermat);
 		om_cname=colnames(ordermat);
 		ordermat=cbind(ordermat,F);
@@ -2608,13 +2622,7 @@ tmr_heatmap_byGroup=function(mat, title="", subtitle="", pred_var_mat, resp_var_
 
 				var_sub_mat=mat[pred_vars, resp_vars, drop=F];
 			
-				#cat("--------------------------------------------------\n");
-				#print(pred_grp);
-				#print(resp_grp);
-				#print(var_sub_mat);
 				num_assoc=sum(abs(var_sub_mat));
-				#print(num_assoc);
-				#cat("--------------------------------------------------\n");
 				grp_count_mat[pred_grp, resp_grp]=num_assoc;
 
 			}
@@ -3004,10 +3012,10 @@ plot_combined_fits=function(fits, cutoff){
 				cat("Response Names: ", cur_resp_name, "\n");
 				sumfit_rec=fits[[mt]][["sumfit_list"]][[cur_resp_name]];
 				fit_rec=fits[[mt]][["fit_list"]][[cur_resp_name]];
-			
+
 				out_tab=sumfit_rec$coefficients[,c(1,4)];
 				prednames=rownames(out_tab);
-				out_tab=out_tab[setdiff(prednames, "(Intercept)"),];
+				out_tab=out_tab[setdiff(prednames, "(Intercept)"),,drop=F];
 
 				# Generate text matrix
 				out_formatted=matrix(character(), nrow=nrow(out_tab), ncol=2);
@@ -3028,6 +3036,7 @@ plot_combined_fits=function(fits, cutoff){
 				));	
 
 				resp_range=range(c(fit_rec$y, fit_rec$fitted.values));
+				par(mar=c(5,5,5,1));
 				plot(fit_rec$y, fit_rec$fitted.values,
 					ylim=resp_range, xlim=resp_range,
 					xlab="Observed", ylab="Predicted",
@@ -3317,9 +3326,6 @@ plot_marginals_over_signif(marginals, grp_colors);
 plot_signif_combined_predictors=function(fits_across_cutoffs){
 
 	# The fits are grouped by model type: Cov_to_Msd, Msd_to_Msd, and Msd_to_Rsp
-	
-	cat("*************************************************************************\n");
-	cat("Plotting significant predictors across cutoffs.\n");
 
 	orig_par=par(no.readonly=T);
 
@@ -3328,73 +3334,93 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 	max_predictors=0;
 
 	signif_pred_rec=list();
+	suff_res_rec=list();
 
 	pval_cutoffs=names(fits_across_cutoffs);
 	signf_pred_by_resp=list();
 
+	# Extract the number of predictors, and those significant
 	for(pvc in pval_cutoffs){
 		cat("P-value: ", pvc, "\n");
 
 		fits=fits_across_cutoffs[[pvc]];
 
 		signif_pred_rec[[pvc]]=list();
+		suff_res_rec[[pvc]]
 
-		for(mt in names(fits)){
+
+		avail_fits=names(fits);
+		for(mt in avail_fits){
 
 			cat("Models: ", mt, "\n");
 			
 			sumfit_list=fits[[mt]][["sumfit_list"]];
+
+			# Sufficient residuals apply to all response variables
+			#   at the same cutoff and model type
+			suf_res_list=fits[[mt]][["sufficient_residuals"]];
+			predictors=fits[[mt]][["predictors"]];
+			num_pred=length(predictors);
 			#cat("SumFit List:\n");
 			#print(sumfit_list);
 
 			signif_pred_rec[[pvc]][[mt]]=list();
 			models=c(models, mt);
 
-			for(var in names(sumfit_list)){
-	
-				cat("Variables: ", var, "\n");
+			if(length(sumfit_list)){
+				for(var in names(sumfit_list)){
+		
+					cat("Variables: ", var, "\n");
 
-				sumfit=sumfit_list[[var]];
+					sumfit=sumfit_list[[var]];
 
-				coef_mat=sumfit[["coefficients"]];
-				pred_names=setdiff(rownames(coef_mat), "(Intercept)");
+					coef_mat=sumfit[["coefficients"]];
+					pred_names=setdiff(rownames(coef_mat), "(Intercept)");
 
-				coef_mat=coef_mat[pred_names,];
-				#print(coef_mat);
-				num_pred=nrow(coef_mat)
+					coef_mat=coef_mat[pred_names,,drop=F];
+					#print(coef_mat);
+					#num_pred=nrow(coef_mat)
 
-				signf_ix=coef_mat[,"Pr(>|.|)"]<0.1;
-				signif_pred=rownames(coef_mat)[signf_ix];
-				num_signif_pred=length(signif_pred);
+					signf_ix=coef_mat[,"Pr(>|.|)"]<0.1;
+					signif_pred=rownames(coef_mat)[signf_ix];
+					num_signif_pred=length(signif_pred);
 
-				cat("Num Predictors: ", num_pred, "\n");
-				cat("Num Significant: ", num_signif_pred, "\n");
-				print(signif_pred);
-				cat("\n\n");
-
-				arr=c(num_pred, num_signif_pred);
-				names(arr)=c("Num Pred", "Num Signf Pred");
-				signif_pred_rec[[pvc]][[mt]][[var]]=arr;
-
-				signf_pred_by_resp[[var]]=
-					unique(c(signf_pred_by_resp[[var]], signif_pred));
-
-				response_variables=c(response_variables, var);
-				max_predictors=max(c(max_predictors, num_pred));
-
+					cat("Num Significant: ", num_signif_pred, "\n");
+					cat("\n\n");
+				}
+			}else{
+				num_signif_pred=0;
+				signif_pred=c();
 			}
+
+			arr=c(num_pred, num_signif_pred, 
+				ifelse(is.null(suf_res_list), T, suf_res_list));
+
+			names(arr)=c("Num Pred", "Num Signf Pred", "Suff Resid");
+			signif_pred_rec[[pvc]][[mt]][[var]]=arr;
+
+			signf_pred_by_resp[[var]]=
+				unique(c(signf_pred_by_resp[[var]], signif_pred));
+
+			response_variables=c(response_variables, var);
+			max_predictors=max(c(max_predictors, num_pred));
+
 		}
 		cat("\n");
 	}
 
 	#cat("Extracted:\n");
-	#print(signif_pred_rec);
+	print(signif_pred_rec);
+
+	#----------------------------------------------------------------------
+	# Generate Barplots
 
 	par(mfrow=c(3,1));
 	par(mar=c(8,5,5,1));
 
 	models=unique(models);
-	num_models=length(models);
+	num_models=3;
+	#num_models=length(models);
 	response_variables=unique(response_variables);
 
 	num_pval_cutoffs=length(pval_cutoffs);
@@ -3408,9 +3434,9 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 		
 		mids=barplot(height=rep(NA, num_bars),
 			border=NA,
-			main=resp_var,
+			main=paste("Response Variable: ", resp_var, sep=""),
 			xaxt="n",
-			ylab="Number of Variables",
+			ylab="Number of Predictors Selected",
 			ylim=c(0, max_predictors+1));
 
 		axis(side=1, at=mids, labels=rep(c("TM","MM","MR", " "), num_pval_cutoffs), tick=F,
@@ -3430,33 +3456,67 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 				mt=models[m_ix];
 
 				counts=signif_pred_rec[[pvc]][[mt]][[resp_var]];
-				if(length(counts)==0){counts=c(0,0);};
+				if(is.null(counts) || length(counts)==0){
+					counts=c(0,0,1);
+					names(counts)=c("Num Pred", "Num Signf Pred", "Suff Resid");
+				}
+
 				column_ix=(pvc_ix-1)*(num_models+1)+ (m_ix-1) + 1;
 
 				filled_buf=x_buf;
 				filled_buf[column_ix]=counts["Num Pred"];
 
+				if(counts["Suff Resid"]==0){
+					barcol="grey";
+				}else{
+					barcol="green";
+				}
+
 				barplot(height=filled_buf, xaxt="n", yaxt="n", 
 					border=NA,
-					add=T, col="green", tick=F);
+					add=T, col=barcol, tick=F);
 
 				filled_buf[column_ix]=counts["Num Signf Pred"];
 				barplot(height=filled_buf, xaxt="n", yaxt="n", 
 					border=NA,
 					add=T, col="blue", tick=F);
+
+				if(counts["Suff Resid"]==0){
+					text(mids[column_ix], 0, labels="O", pos=3, 
+						font=2, col="red");
+				}
 			}
+
+			
 		}
 
 		#--------------------------------------------------------------
 
-		cat("Predictors\n");
+		# Label significant predictors
 		mid_val=(max(mids)-min(mids))/2;
 		signf_pred_banner=paste(sort(signf_pred_by_resp[[resp_var]]), collapse=", ");	
-		axis(side=1, at=mid_val, labels="Predictors of Interest:", tick=F, line=4, 
+		axis(side=1, at=mid_val, labels="Significant Predictors:", tick=F, line=4, 
 			font.axis=2, cex.axis=1, cex.axis=1.1);
 		axis(side=1, at=mid_val, labels=signf_pred_banner, tick=F, line=5, 
 			font.axis=3, cex.axis=1, cex.axis=1.1);
 
+		# legend
+		gr_sp=par()$usr;
+		range=gr_sp[2]-gr_sp[1];
+		
+		legend(gr_sp[1]+range*2/3, gr_sp[4], 
+			fill=c("green", "blue", "grey"),
+			legend=c("Attempted", "Significant", "Overfit"),
+			horiz=T
+		);
+
+		# Draw dividers between significance cutoffs
+		abline(v=mids[((1:num_pval_cutoffs)-1)*4+4], lty="dotted");
+
+		# Hack to remove 0's lines from between models
+		barplot(height=x_buf, xaxt="n", yaxt="n", 
+			border="white", lwd=1.25,
+			add=T, col="white", tick=F);
 
 	}
 
