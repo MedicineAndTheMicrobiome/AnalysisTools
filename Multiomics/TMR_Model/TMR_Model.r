@@ -633,6 +633,13 @@ split_factors_to_groups=function(data_matrix, group_list, grp_arr){
 
 remove_subjects_with_NAs=function(data_matrix, grp_rec){
 	all_var=grp_rec$Variables;
+
+	shared=setdiff(all_var, colnames(data_matrix));
+	if(length(shared)>0){
+		cat("Error: Requested variable(s) not in metadata.\n");
+		print(shared);
+	}
+
 	data_matrix=data_matrix[,all_var,drop=F];
 	subj_wNA=apply(data_matrix, 1, function(x){any(is.na(x));});
 	data_matrix=data_matrix[!subj_wNA,,drop=F];
@@ -3352,7 +3359,7 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 		avail_fits=names(fits);
 		for(mt in avail_fits){
 
-			cat("Models: ", mt, "\n");
+			cat("    Models: ", mt, "\n");
 			
 			sumfit_list=fits[[mt]][["sumfit_list"]];
 
@@ -3367,10 +3374,13 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 			signif_pred_rec[[pvc]][[mt]]=list();
 			models=c(models, mt);
 
+			arr=c(num_pred, NA, ifelse(is.null(suf_res_list), T, suf_res_list));
+			names(arr)=c("Num Pred", "Num Signf Pred", "Suff Resid");
+
 			if(length(sumfit_list)){
 				for(var in names(sumfit_list)){
 		
-					cat("Variables: ", var, "\n");
+					cat("        Variables: ", var, "\n");
 
 					sumfit=sumfit_list[[var]];
 
@@ -3385,24 +3395,29 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 					signif_pred=rownames(coef_mat)[signf_ix];
 					num_signif_pred=length(signif_pred);
 
-					cat("Num Significant: ", num_signif_pred, "\n");
-					cat("\n\n");
+					cat("        Num Significant: ", num_signif_pred, "\n");
+
+					arr["Num Signf Pred"]=num_signif_pred;
+					signif_pred_rec[[pvc]][[mt]][[var]]=arr;
+
+					signf_pred_by_resp[[var]]=
+						unique(c(signf_pred_by_resp[[var]], signif_pred));
 				}
 			}else{
 				num_signif_pred=0;
 				signif_pred=c();
+
+				arr["Num Signf Pred"]=0;
+
+				signif_pred_rec[[pvc]][[mt]][["NULL"]]=arr;
 			}
 
-			arr=c(num_pred, num_signif_pred, 
-				ifelse(is.null(suf_res_list), T, suf_res_list));
 
-			names(arr)=c("Num Pred", "Num Signf Pred", "Suff Resid");
-			signif_pred_rec[[pvc]][[mt]][[var]]=arr;
 
-			signf_pred_by_resp[[var]]=
-				unique(c(signf_pred_by_resp[[var]], signif_pred));
-
-			response_variables=c(response_variables, var);
+			# Track response variables, so we can iterate through them later
+			response_variables=c(response_variables, names(sumfit_list));
+	
+			# Track max num predictors for the max y in the bar plot
 			max_predictors=max(c(max_predictors, num_pred));
 
 		}
@@ -3410,13 +3425,13 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 	}
 
 	#cat("Extracted:\n");
-	print(signif_pred_rec);
+	#print(signif_pred_rec);
 
 	#----------------------------------------------------------------------
 	# Generate Barplots
 
 	par(mfrow=c(3,1));
-	par(mar=c(8,5,5,1));
+	par(mar=c(10,5,5,1));
 
 	models=unique(models);
 	num_models=3;
@@ -3437,7 +3452,7 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 			main=paste("Response Variable: ", resp_var, sep=""),
 			xaxt="n",
 			ylab="Number of Predictors Selected",
-			ylim=c(0, max_predictors+1));
+			ylim=c(0, max_predictors*1.3));
 
 		axis(side=1, at=mids, labels=rep(c("TM","MM","MR", " "), num_pval_cutoffs), tick=F,
 			 cex.axis=.95, line=0);
@@ -3456,9 +3471,11 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 				mt=models[m_ix];
 
 				counts=signif_pred_rec[[pvc]][[mt]][[resp_var]];
-				if(is.null(counts) || length(counts)==0){
-					counts=c(0,0,1);
-					names(counts)=c("Num Pred", "Num Signf Pred", "Suff Resid");
+				if(is.null(counts)){
+					# If there is no variable record, use the NULL
+					# record which  contains the values we need to
+					# represent overfit
+					counts=signif_pred_rec[[pvc]][[mt]][["NULL"]];
 				}
 
 				column_ix=(pvc_ix-1)*(num_models+1)+ (m_ix-1) + 1;
@@ -3475,6 +3492,12 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 				barplot(height=filled_buf, xaxt="n", yaxt="n", 
 					border=NA,
 					add=T, col=barcol, tick=F);
+
+				text(mids[column_ix], filled_buf[column_ix], 
+					sprintf("%i/%i", counts["Num Signf Pred"], counts["Num Pred"]),
+					cex=.8,
+					pos=3, family="mono"
+					);
 
 				filled_buf[column_ix]=counts["Num Signf Pred"];
 				barplot(height=filled_buf, xaxt="n", yaxt="n", 
@@ -3494,10 +3517,19 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 
 		# Label significant predictors
 		mid_val=(max(mids)-min(mids))/2;
-		signf_pred_banner=paste(sort(signf_pred_by_resp[[resp_var]]), collapse=", ");	
+
 		axis(side=1, at=mid_val, labels="Significant Predictors:", tick=F, line=4, 
 			font.axis=2, cex.axis=1, cex.axis=1.1);
-		axis(side=1, at=mid_val, labels=signf_pred_banner, tick=F, line=5, 
+
+		signf_var_arr=sort(signf_pred_by_resp[[resp_var]]);
+		num_signf_var=length(signf_var_arr);
+		half_ix=ceiling(num_signf_var/2);
+		signf_pred_banner1=paste(signf_var_arr[1:half_ix], collapse=", ");
+		signf_pred_banner2=paste(signf_var_arr[(half_ix+1):num_signf_var], collapse=", ");
+
+		axis(side=1, at=mid_val, labels=signf_pred_banner1, tick=F, line=5, 
+			font.axis=3, cex.axis=1, cex.axis=1.1);
+		axis(side=1, at=mid_val, labels=signf_pred_banner2, tick=F, line=6, 
 			font.axis=3, cex.axis=1, cex.axis=1.1);
 
 		# legend
@@ -3523,6 +3555,9 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 	par(orig_par);
 
 }
+
+
+#print(selected_fits);
 
 plot_signif_combined_predictors(selected_fits);
 
