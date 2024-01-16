@@ -185,10 +185,12 @@ load_reference_levels_file=function(fname){
         cat("\n");
 
         if(ncol(inmat)!=1){
-                cat("  Error reading in reference level file: ", fname, "\n");
-		cat("  Should be a 2 column tab-separated text file.\n");
-		cat("  Format: <variable name>\\t<reference level name>\\n");
-                quit(status=-1);
+		msg=capture.output({
+			cat("  Error reading in reference level file: ", fname, "\n");
+			cat("  Should be a 2 column tab-separated text file.\n");
+			cat("  Format: <variable name>\\t<reference level name>\\n");
+			});
+		stop(msg);
         }
         return(inmat);
 }
@@ -332,12 +334,10 @@ load_mapping=function(fname, pA, pB, sbj_id_cname=""){
 
         column_names=colnames(mapping);
         if(all(column_names!=pA)){
-                cat("  Error: Could not find ", pA, " in header of map file.\n");
-                quit(status=-1);
+                stop("  Error: Could not find ", pA, " in header of map file.\n");
         }
         if(all(column_names!=pB)){
-                cat("  Error: Could not find ", pB, " in header of map file.\n");
-                quit(status=-1);
+                stop("  Error: Could not find ", pB, " in header of map file.\n");
         }
 
         map=cbind(as.character(mapping[,pA]), as.character(mapping[,pB]));
@@ -520,9 +520,11 @@ extract_top_categories=function(ordered_normalized, top, additional_cat=c()){
         available_cat=colnames(ordered_normalized);
         missing_cat=setdiff(additional_cat, available_cat);
         if(length(missing_cat)){
-                cat("  Error: Could not find categories: \n");
-                print(missing_cat);
-                quit(status=-1);
+		msg=capture.output({
+			cat("  Error: Could not find categories: \n");
+			print(missing_cat);
+			});
+		stop(msg);
         }
 
         # :: Remove categories we have already extracted in the top N
@@ -585,9 +587,11 @@ check_variables=function(covar, grp, req, avail){
 	if(length(overlap)==0){
 		cat("  Good.  No overlap between Covariate and Group lists.\n");
 	}else{
-		cat("  Error:  Overlap detected between Covariates and Group Lists:\n");
-		print(overlap);
-		quit(-1);
+		msg=capture.output({
+			cat("  Error:  Overlap detected between Covariates and Group Lists:\n");
+			print(overlap);
+			});
+		stop(msg);
 	}
 
 	# Checking required are subset of covariates or group list
@@ -596,14 +600,16 @@ check_variables=function(covar, grp, req, avail){
 	if(length(overlap)==num_req){
 		cat("  Good.  Required variables overlap with Covariates or Group List.\n");
 	}else{
-		cat("  Error: Required variables do not overlap with Covariates or Group List:\n");
-		cat("  Covariates:\n");
-		print(covar);
-		cat("  Group:\n");
-		print(grp);
-		cat("  Required:\n");
-		print(req);
-		quit(-1);
+		msg=capture.output({
+			cat("  Error: Required variables do not overlap with Covariates or Group List:\n");
+			cat("  Covariates:\n");
+			print(covar);
+			cat("  Group:\n");
+			print(grp);
+			cat("  Required:\n");
+			print(req);
+			});
+		stop(msg);
 	}
 
 	# Checking group and covariates are in available list
@@ -611,9 +617,11 @@ check_variables=function(covar, grp, req, avail){
 	if(length(overlap)==length(combined)){
 		cat("  Good.  All variables (Covariates and Group) found/available.\n");
 	}else{
-		cat("  Error.  Some variables missing from available requested as Covariates/Group:\n");
-		print(overlap);
-		quit(-1);
+		msg=capture.output({
+			cat("  Error.  Some variables missing from available requested as Covariates/Group:\n");
+			print(setdiff(combined, avail));
+			});
+		stop(msg);
 	}
 	
 	return(1);
