@@ -1234,6 +1234,8 @@ pick_and_fit_model=function(mod_var, pred_val, resp_val){
 
 	fit_list=list();
 	sum_fit_list=list();
+	anova_list=list();
+	r2_list=list();
 	ctl_lst=list(maxit=100);
 
 	for(i in 1:num_responses){
@@ -1242,23 +1244,37 @@ pick_and_fit_model=function(mod_var, pred_val, resp_val){
 		resp_name=resp_names[i];
 		y=resp_val[,i];
 		mod_str=paste(mod_var, collapse="+");
+
 		full_mod_str=paste("y ~ ", mod_str);
 		full_mod_form=as.formula(full_mod_str);
+
+		reduced_mod_str=("y ~ 1");
+		reduced_mod_form=as.formula(reduced_mod_str);
 
 	
 		# Change the family based previously detected model family
 		if(model_families[i]=="gaussian"){
 			fit=glm(full_mod_form, data=pred_val, family=gaussian, control=ctl_lst);
+			reduced_fit=glm(reduced_mod_form, data=pred_val, family=gaussian, 
+				control=ctl_lst);
 		}else if(model_families[i]=="binomial"){
 			fit=glm(full_mod_form, data=pred_val, family=binomial, control=ctl_lst)
+			reduced_fit=glm(reduced_mod_form, data=pred_val, family=binomial, 
+				control=ctl_lst);
 		}else{
 			cat("Error:  Unspecified Model Family.\n");
 			quit(status=-1);
 		}
-
 	
 		# Summarize (calculate p-values);
 		sumfit=summary(fit);
+
+		# McFadden's R^2 for glms
+		mcfad=1-sumfit$deviance/sumfit$null.deviance;
+
+		# ANOVA
+		anova_res=anova(fit, reduced_fit, test="Chi");
+		anova_pval=anova_res[["Pr(>Chi)"]][2];
 
 		# Flag over parameterized models
 		if(sumfit[["df.residual"]]==0){
@@ -1277,14 +1293,18 @@ pick_and_fit_model=function(mod_var, pred_val, resp_val){
 		# Save for export
 		sum_fit_list[[resp_name]]=sumfit;
 		fit_list[[resp_name]]=fit;
+		anova_list[[resp_name]]=anova_pval;
+		r2_list[[resp_name]]=mcfad;
 
 	}
 
 	results=list();
+	results[["sufficient_residuals"]]=!insufficient_residual_dfs;
 	results[["predictors"]]=mod_var;
 	results[["fit_list"]]=fit_list;
 	results[["sumfit_list"]]=sum_fit_list;
-	results[["sufficient_residuals"]]=!insufficient_residual_dfs;
+	results[["anova_list"]]=anova_list;
+	results[["r2_list"]]=r2_list;
 
 	return(results);
 }
@@ -2984,7 +3004,6 @@ plot_combined_fits=function(fits, cutoff){
 
 	cat("Plotting combined predictors: ", cutoff, "\n");
 	orig_par=par(no.readonly=T);
-	par(mfrow=c(2,1));
 
 	model_types=names(fits);
 
@@ -3024,6 +3043,10 @@ plot_combined_fits=function(fits, cutoff){
 				prednames=rownames(out_tab);
 				out_tab=out_tab[setdiff(prednames, "(Intercept)"),,drop=F];
 
+				# model fit info
+				anova=fits[[mt]][["anova_list"]][[cur_resp_name]];
+				r2=fits[[mt]][["r2_list"]][[cur_resp_name]];
+
 				# Generate text matrix
 				out_formatted=matrix(character(), nrow=nrow(out_tab), ncol=2);
 				rownames(out_formatted)=rownames(out_tab);
@@ -3039,22 +3062,92 @@ plot_combined_fits=function(fits, cutoff){
 					paste("Model: Using predictors from [", mt, 
 						"] to predict [", cur_resp_name, "]", sep=""),
 					"",
-					capture.output(print(out_tab_char, quote=F))
+					capture.output(print(out_tab_char, quote=F)),
+					"",
+					
+					paste("Goodness-of-Fit Model ANOVA: ", 
+						sprintf("%10.4g", anova), 
+						" ", signf_char(anova),
+						sep=""),
+					paste("McFadden's R^2 (for GLMs): ", 
+						sprintf("%6.4g", r2), sep="")
 				));	
 
+				#----------------------------------------------
+
+				layout_mat=matrix(c(1,1,2,2,2), ncol=1);
+				layout(layout_mat);
+
+				par(oma=c(0,0,5,5));
+
+				# Generate observed vs predicted plot
 				resp_range=range(c(fit_rec$y, fit_rec$fitted.values));
-				par(mar=c(5,5,5,1));
+				par(mar=c(4,5,0,1));
 				plot(fit_rec$y, fit_rec$fitted.values,
 					ylim=resp_range, xlim=resp_range,
-					xlab="Observed", ylab="Predicted",
-					main=cur_resp_name
-					);
+					xlab="Observed", ylab="Predicted");
 
 				obs=fit_rec$y;
 				prd=fit_rec$fitted.values;
 
 				obs_pred_fit=lm(prd~obs);
+				abline(a=0, b=1, lty="solid", lwd=3, col="grey");
 				abline(obs_pred_fit, lty="dotted", lwd=2, col="blue");
+
+				# Generate bar plot for pvalues
+				pvalues=out_tab[,"Pr(>|.|)"];
+				coef=out_tab[,"Estimate"];
+				pred_names=rownames(out_tab);
+
+				neglog_pvalues=-log10(pvalues);
+				nlp_sort_ix=order(neglog_pvalues, decreasing=T);
+
+				neglog_pvalues=neglog_pvalues[nlp_sort_ix];	
+				pvalues=pvalues[nlp_sort_ix];
+				pred_names=pred_names[nlp_sort_ix];
+				coef=coef[nlp_sort_ix];
+				
+				num_preds=nrow(out_tab);
+				barcol=numeric(num_preds);
+				for(i in 1:num_preds){
+					if(coef[i]>0){
+						if(pvalues[i]<0.1){
+							barcol[i]="green";
+						}else{
+							barcol[i]="lightgreen";
+						}
+					}else{
+						if(pvalues[i]<0.1){
+							barcol[i]="red";
+						}else{
+							barcol[i]="pink";
+						}
+					}
+				}
+
+				par(mar=c(12, 5, 5, 5));
+				max_nlog10_pval=max(-log10(c(0.001, pvalues)));
+				landmarks_pval=c(1,0.05, 0.1, 0.01, 0.001);
+				nlog10_landmarks=-log10(landmarks_pval);
+				mids=barplot(neglog_pvalues, col=barcol, names.arg="",
+					main="Predictor Significance",
+					ylab="-Log10(p-value)",
+					ylim=c(0, max_nlog10_pval));
+				abline(h=nlog10_landmarks, 
+					lty="dotted",
+					lwd=c(.25, .5, 1, 1.5, 2.0), 
+					col="blue");
+				axis(1, at=mids, labels=pred_names, las=2);
+				axis(4, at=nlog10_landmarks, labels=landmarks_pval, las=2);
+				mtext("P-values", side=4, line=4, cex=.8); 
+
+				# label outer margin
+				mtext(paste("Cutoff: ", cutoff, sep=""), outer=T, 
+					font=3, cex=.8, line=3.2);
+				mtext(paste("Predictor Model Source: ", mt, sep=""), outer=T, 
+					font=2, cex=.9, line=2.1);
+				mtext(paste("Response: ", cur_resp_name, sep=""), outer=T,
+					font=2, cex=1.5, line=.4);
 
 			}	
 		}
@@ -3371,6 +3464,10 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 			#cat("SumFit List:\n");
 			#print(sumfit_list);
 
+			anovas_list=fits[[mt]][["anova_list"]];
+			r2s_list=fits[[mt]][["r2_list"]];
+			
+
 			signif_pred_rec[[pvc]][[mt]]=list();
 			models=c(models, mt);
 
@@ -3383,6 +3480,8 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 					cat("        Variables: ", var, "\n");
 
 					sumfit=sumfit_list[[var]];
+					anova=anovas_list[[var]];
+					r2=r2s_list[[var]];		
 
 					coef_mat=sumfit[["coefficients"]];
 					pred_names=setdiff(rownames(coef_mat), "(Intercept)");
