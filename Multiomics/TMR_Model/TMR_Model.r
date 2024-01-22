@@ -3426,6 +3426,7 @@ plot_marginals_over_signif(marginals, grp_colors);
 plot_signif_combined_predictors=function(fits_across_cutoffs){
 
 	# The fits are grouped by model type: Cov_to_Msd, Msd_to_Msd, and Msd_to_Rsp
+	# fits_across_cutoffs: pval / model / stat_list / resp_name
 
 	orig_par=par(no.readonly=T);
 
@@ -3464,10 +3465,6 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 			#cat("SumFit List:\n");
 			#print(sumfit_list);
 
-			anovas_list=fits[[mt]][["anova_list"]];
-			r2s_list=fits[[mt]][["r2_list"]];
-			
-
 			signif_pred_rec[[pvc]][[mt]]=list();
 			models=c(models, mt);
 
@@ -3480,8 +3477,6 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 					cat("        Variables: ", var, "\n");
 
 					sumfit=sumfit_list[[var]];
-					anova=anovas_list[[var]];
-					r2=r2s_list[[var]];		
 
 					coef_mat=sumfit[["coefficients"]];
 					pred_names=setdiff(rownames(coef_mat), "(Intercept)");
@@ -3648,6 +3643,135 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 		barplot(height=x_buf, xaxt="n", yaxt="n", 
 			border="white", lwd=1.25,
 			add=T, col="white", tick=F);
+
+	
+		#--------------------------------------------------------------
+		# fits_across_cutoffs: pval / model / stat_list / resp_var
+		
+		#print(response_variables);
+		#print(models);
+		#print(pval_cutoffs);
+		
+		# Extract  R^2 and model pvalues into easier to use structures
+		r2_list=list();
+		pv_list=list();
+
+		arr_by_cutoff=numeric(num_cutoffs);
+		names(arr_by_cutoff)=pval_cutoffs;
+
+		r2_list[["Cov_to_Msd"]]=arr_by_cutoff;
+		r2_list[["Msd_to_Msd"]]=arr_by_cutoff;
+		r2_list[["Msd_to_Rsp"]]=arr_by_cutoff;
+
+		pv_list[["Cov_to_Msd"]]=arr_by_cutoff;
+		pv_list[["Msd_to_Msd"]]=arr_by_cutoff;
+		pv_list[["Msd_to_Rsp"]]=arr_by_cutoff;
+
+		most_signf_pval=1;
+
+		cat("Resp: ", resp_var, "\n");
+		for(mt in models){
+			cat("Model: ", mt, "\n");
+
+			for(pv_ix in pval_cutoffs){
+				cat("Cutoff: ", pv_ix, "\n");
+
+				r2=fits_across_cutoffs[[pv_ix]][[mt]][["r2_list"]][[resp_var]];
+				if(length(r2)==0){
+					r2=NA;
+				}
+				r2_list[[mt]][[pv_ix]]=r2
+
+				pv=fits_across_cutoffs[[pv_ix]][[mt]][["anova_list"]][[resp_var]];
+				if(length(pv)==0){
+					pv=NA;
+				}else{
+					most_signf_pval=min(most_signf_pval, pv);
+				}
+				pv_list[[mt]][pv_ix]=pv;
+
+			}
+		}
+
+		model_colors=c("red", "green", "blue");
+		names(model_colors)=models;
+		
+		#--------------------------------------------------------------
+		# Plot R2
+		par(mar=c(4,4,4,6));
+		plot(0, type="n", ylab="McFadden's R^2", bty="l", 
+			main="Goodness of Fit",
+			xaxt="n", xlab="", las=2,
+			ylim=c(0,1.1), xlim=c(1,num_cutoffs));
+		axis(side=1, at=1:num_cutoffs, labels=pval_cutoffs);
+		abline(h=1, col="black", lty="dotted");
+		for(mt in models){
+			points(1:num_cutoffs, r2_list[[mt]], col=model_colors[mt], type="b");
+		}
+
+		# Prep legend
+		gr_sp=par()$usr;
+		range=gr_sp[2]-gr_sp[1];
+		legend(gr_sp[1]+range*2/3, gr_sp[4], 
+			fill=c("red", "green", "blue"),
+			legend=c("TM", "MM", "MR"),
+			horiz=T, bg="white"
+		);
+		
+
+		#--------------------------------------------------------------
+		# Plot model ANOVA p-values
+		
+		ref_pval=c(1, 0.1, 0.05, 0.01, 0.001);
+		most_signf_pval=min(most_signf_pval, ref_pval);
+		nlog_msp=-log10(most_signf_pval);
+		nlog_ref_pv=-log10(ref_pval);
+		
+		par(mar=c(4,4,4,6));
+		plot(0, type="n", ylab="-Log10(p-value)", bty="l",
+			main="Model ANOVA", 
+			xaxt="n", xlab="", las=2,
+			ylim=c(0, nlog_msp*1.15), xlim=c(1,num_cutoffs));
+		axis(side=1, at=1:num_cutoffs, labels=pval_cutoffs);
+		axis(4, at=nlog_ref_pv, labels=ref_pval, las=2);
+		abline(h=nlog_ref_pv, lty="dotted", lwd=c(.5, .75, 1, 1.25, 1.5), col="black");
+		mtext("P-values", side=4, line=4, cex=.8); 
+
+		max_nlog10_pv=0;
+		max_nlog10_cutoff_ix=1;
+		max_nlog10_model="";
+
+		for(mt in models){
+			pv=pv_list[[mt]];
+			nlogpv=-log10(pv);
+			points(1:num_cutoffs, nlogpv, col=model_colors[mt], type="b");
+
+			for(cutoff_ix in 1:num_cutoffs){
+				if(nlogpv[cutoff_ix]>=max_nlog10_pv){
+					max_nlog10_pv=nlogpv[cutoff_ix];
+					max_nlog10_cutoff_ix=cutoff_ix;
+					max_nlog10_model=mt;
+				}
+			}
+		}
+
+		# Annotate most significant model
+		points(max_nlog10_cutoff_ix, max_nlog10_pv, 
+			col=model_colors[max_nlog10_model], cex=3, pch=16);
+		points(max_nlog10_cutoff_ix, max_nlog10_pv, 
+			col="white", cex=1, pch=16);
+
+
+		# Prep legend
+		gr_sp=par()$usr;
+		range=gr_sp[2]-gr_sp[1];
+		legend(gr_sp[1]+range*2/3, gr_sp[4], 
+			fill=c("red", "green", "blue"),
+			legend=c("TM", "MM", "MR"),
+			horiz=T, bg="white"
+		);
+
+		
 
 	}
 
