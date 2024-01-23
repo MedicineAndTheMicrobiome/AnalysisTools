@@ -1236,6 +1236,7 @@ pick_and_fit_model=function(mod_var, pred_val, resp_val){
 	sum_fit_list=list();
 	anova_list=list();
 	r2_list=list();
+	aic_list=list();
 	ctl_lst=list(maxit=100);
 
 	for(i in 1:num_responses){
@@ -1273,8 +1274,15 @@ pick_and_fit_model=function(mod_var, pred_val, resp_val){
 		mcfad=1-sumfit$deviance/sumfit$null.deviance;
 
 		# ANOVA
-		anova_res=anova(fit, reduced_fit, test="Chi");
-		anova_pval=anova_res[["Pr(>Chi)"]][2];
+		if(fit[["df.residual"]]>0){
+			anova_res=anova(fit, reduced_fit, test="Chi");
+			anova_pval=anova_res[["Pr(>Chi)"]][2];
+		}else{
+			anova_pval=1;
+		}
+
+		# grab AIC
+		aic=sumfit$aic;
 
 		# Flag over parameterized models
 		if(sumfit[["df.residual"]]==0){
@@ -1295,6 +1303,7 @@ pick_and_fit_model=function(mod_var, pred_val, resp_val){
 		fit_list[[resp_name]]=fit;
 		anova_list[[resp_name]]=anova_pval;
 		r2_list[[resp_name]]=mcfad;
+		aic_list[[resp_name]]=aic;
 
 	}
 
@@ -1305,6 +1314,7 @@ pick_and_fit_model=function(mod_var, pred_val, resp_val){
 	results[["sumfit_list"]]=sum_fit_list;
 	results[["anova_list"]]=anova_list;
 	results[["r2_list"]]=r2_list;
+	results[["aic_list"]]=aic_list;
 
 	return(results);
 }
@@ -3447,8 +3457,6 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 		fits=fits_across_cutoffs[[pvc]];
 
 		signif_pred_rec[[pvc]]=list();
-		suff_res_rec[[pvc]]
-
 
 		avail_fits=names(fits);
 		for(mt in avail_fits){
@@ -3524,8 +3532,10 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 	#----------------------------------------------------------------------
 	# Generate Barplots
 
-	par(mfrow=c(3,1));
-	par(mar=c(10,5,5,1));
+	#par(mfrow=c(3,1));
+	layout_matrix=matrix(c(1,1,2,3,4,4), byrow=T, nrow=3);
+	layout(layout_matrix);
+
 
 	models=unique(models);
 	num_models=3;
@@ -3541,6 +3551,7 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 	for(resp_var in response_variables){
 		cat("Working on: ", resp_var, "\n");
 		
+		par(mar=c(6,4,4,3));
 		mids=barplot(height=rep(NA, num_bars),
 			border=NA,
 			main=paste("Response Variable: ", resp_var, sep=""),
@@ -3549,11 +3560,11 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 			ylim=c(0, max_predictors*1.3));
 
 		axis(side=1, at=mids, labels=rep(c("TM","MM","MR", " "), num_pval_cutoffs), tick=F,
-			 cex.axis=.95, line=0);
+			 cex.axis=.95, line=-.75);
 
 		pval_labels=rep("", num_bars);
 		pval_labels[(0:(num_pval_cutoffs-1))*4+1]=pval_cutoffs;
-		axis(side=1, at=mids, labels=pval_labels, tick=F, line=2, font.axis=2);
+		axis(side=1, at=mids, labels=pval_labels, tick=F, line=0, font.axis=2);
 
 		x_buf=rep(0, (num_models+1)*num_pval_cutoffs);
 		for(pvc_ix in 1:num_pval_cutoffs){
@@ -3612,7 +3623,7 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 		# Label significant predictors
 		mid_val=(max(mids)-min(mids))/2;
 
-		axis(side=1, at=mid_val, labels="Significant Predictors:", tick=F, line=4, 
+		axis(side=1, at=mid_val, labels="Significant Predictors:", tick=F, line=1, 
 			font.axis=2, cex.axis=1, cex.axis=1.1);
 
 		signf_var_arr=sort(signf_pred_by_resp[[resp_var]]);
@@ -3621,9 +3632,9 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 		signf_pred_banner1=paste(signf_var_arr[1:half_ix], collapse=", ");
 		signf_pred_banner2=paste(signf_var_arr[(half_ix+1):num_signf_var], collapse=", ");
 
-		axis(side=1, at=mid_val, labels=signf_pred_banner1, tick=F, line=5, 
+		axis(side=1, at=mid_val, labels=signf_pred_banner1, tick=F, line=2, 
 			font.axis=3, cex.axis=1, cex.axis=1.1);
-		axis(side=1, at=mid_val, labels=signf_pred_banner2, tick=F, line=6, 
+		axis(side=1, at=mid_val, labels=signf_pred_banner2, tick=F, line=2.75, 
 			font.axis=3, cex.axis=1, cex.axis=1.1);
 
 		# legend
@@ -3655,6 +3666,7 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 		# Extract  R^2 and model pvalues into easier to use structures
 		r2_list=list();
 		pv_list=list();
+		aic_list=list();
 
 		arr_by_cutoff=numeric(num_cutoffs);
 		names(arr_by_cutoff)=pval_cutoffs;
@@ -3667,7 +3679,13 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 		pv_list[["Msd_to_Msd"]]=arr_by_cutoff;
 		pv_list[["Msd_to_Rsp"]]=arr_by_cutoff;
 
+		aic_list[["Cov_to_Msd"]]=arr_by_cutoff;
+		aic_list[["Msd_to_Msd"]]=arr_by_cutoff;
+		aic_list[["Msd_to_Rsp"]]=arr_by_cutoff;
+
+
 		most_signf_pval=1;
+		smallest_aic=Inf;
 
 		cat("Resp: ", resp_var, "\n");
 		for(mt in models){
@@ -3690,6 +3708,13 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 				}
 				pv_list[[mt]][pv_ix]=pv;
 
+				aic=fits_across_cutoffs[[pv_ix]][[mt]][["aic_list"]][[resp_var]];
+				if(length(aic)==0){
+					aic=NA;
+					smallest_aic=min(smallest_aic, aic);
+				}
+				aic_list[[mt]][pv_ix]=aic;
+
 			}
 		}
 
@@ -3698,16 +3723,72 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 		
 		#--------------------------------------------------------------
 		# Plot R2
-		par(mar=c(4,4,4,6));
+		par(mar=c(4,4,4,3));
 		plot(0, type="n", ylab="McFadden's R^2", bty="l", 
 			main="Goodness of Fit",
 			xaxt="n", xlab="", las=2,
-			ylim=c(0,1.1), xlim=c(1,num_cutoffs));
+			ylim=c(0,1.2), xlim=c(1,num_cutoffs));
 		axis(side=1, at=1:num_cutoffs, labels=pval_cutoffs);
 		abline(h=1, col="black", lty="dotted");
 		for(mt in models){
 			points(1:num_cutoffs, r2_list[[mt]], col=model_colors[mt], type="b");
 		}
+
+		# Prep legend
+		gr_sp=par()$usr;
+		range=gr_sp[2]-gr_sp[1];
+		legend(gr_sp[1]+range*2/3, gr_sp[4], 
+			fill=c("red", "green", "blue"),
+			legend=c("TM", "MM", "MR"),
+			horiz=T, bg="white"
+		);
+
+		#--------------------------------------------------------------
+		# Plot AIC 
+
+		# Indentify range of AIC across all models
+		aic_vals=c();
+		for(mt in models){
+			aic_vals=c(aic_vals, aic_list[[mt]]);
+		}
+		aic_range=range(aic_vals, na.rm=T);
+		aic_span=diff(aic_range);
+
+		par(mar=c(4,4,4,3));
+		plot(0, type="n", ylab="AIC", bty="l", 
+			main="AIC",
+			xaxt="n", xlab="", las=2,
+			ylim=c(aic_range[1]-aic_span*.1, aic_range[2]+aic_span*.2), 
+			xlim=c(1,num_cutoffs));
+		axis(side=1, at=1:num_cutoffs, labels=pval_cutoffs);
+		title(main="(AIC adjusts for num param. Model w/ lower AIC is better.)", 
+			line=1, font.main=3, cex.main=.8);
+
+		min_aic=Inf;
+		min_aic_cutoff_ix=1;
+		min_aic_model="";
+		
+		for(mt in models){
+			aic=aic_list[[mt]];
+
+			points(1:num_cutoffs, aic, col=model_colors[mt], type="b");
+			
+			for(cutoff_ix in 1:num_cutoffs){
+				if(!is.na(aic[cutoff_ix])){
+					if(aic[cutoff_ix]<min_aic){
+						min_aic=aic[cutoff_ix];
+						min_aic_cutoff_ix=cutoff_ix;
+						min_aic_model=mt;
+					}
+				}
+			}
+		}
+
+		# Annotate most significant model
+		points(min_aic_cutoff_ix, min_aic, 
+			col=model_colors[min_aic_model], cex=3, pch=16);
+		points(min_aic_cutoff_ix, min_aic, 
+			col="white", cex=1, pch=16);
 
 		# Prep legend
 		gr_sp=par()$usr;
@@ -3747,10 +3828,12 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 			points(1:num_cutoffs, nlogpv, col=model_colors[mt], type="b");
 
 			for(cutoff_ix in 1:num_cutoffs){
-				if(nlogpv[cutoff_ix]>=max_nlog10_pv){
-					max_nlog10_pv=nlogpv[cutoff_ix];
-					max_nlog10_cutoff_ix=cutoff_ix;
-					max_nlog10_model=mt;
+				if(!is.na(nlogpv[cutoff_ix])){
+					if(nlogpv[cutoff_ix]>=max_nlog10_pv){
+						max_nlog10_pv=nlogpv[cutoff_ix];
+						max_nlog10_cutoff_ix=cutoff_ix;
+						max_nlog10_model=mt;
+					}
 				}
 			}
 		}
@@ -3765,7 +3848,7 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 		# Prep legend
 		gr_sp=par()$usr;
 		range=gr_sp[2]-gr_sp[1];
-		legend(gr_sp[1]+range*2/3, gr_sp[4], 
+		legend(gr_sp[1]+range*3/4, gr_sp[4], 
 			fill=c("red", "green", "blue"),
 			legend=c("TM", "MM", "MR"),
 			horiz=T, bg="white"
