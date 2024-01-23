@@ -3775,7 +3775,7 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 			
 			for(cutoff_ix in 1:num_cutoffs){
 				if(!is.na(aic[cutoff_ix])){
-					if(aic[cutoff_ix]<min_aic){
+					if(aic[cutoff_ix]<=min_aic){
 						min_aic=aic[cutoff_ix];
 						min_aic_cutoff_ix=cutoff_ix;
 						min_aic_model=mt;
