@@ -3534,7 +3534,6 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 
 	#par(mfrow=c(3,1));
 	layout_matrix=matrix(c(1,1,2,3,4,4), byrow=T, nrow=3);
-	layout(layout_matrix);
 
 
 	models=unique(models);
@@ -3551,6 +3550,7 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 	for(resp_var in response_variables){
 		cat("Working on: ", resp_var, "\n");
 		
+		layout(layout_matrix);
 		par(mar=c(6,4,4,3));
 		mids=barplot(height=rep(NA, num_bars),
 			border=NA,
@@ -3863,6 +3863,8 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 
 		for(mt in models){
 			signf_var_matlist[[mt]]=list();
+			signf_pvl_matlist[[mt]]=list();
+			signf_coef_matlist[[mt]]=list();
 			for(pv_ix in pval_cutoffs){
 				signf_var_matlist[[mt]][[pv_ix]]=c();
 				signf_pvl_matlist[[mt]][[pv_ix]]=c();
@@ -3872,8 +3874,9 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 
 		for(pv_ix in pval_cutoffs){
 			for(mt in models){
-				#cat(pv_ix, " / ", mt, "\n");
+				cat("Extracting: ", pv_ix, " / ", mt, "\n");
 				sumfits=fits_across_cutoffs[[pv_ix]][[mt]][["sumfit_list"]][[resp_var]];
+				no_res=F;
 				if(!is.null(sumfits)){
 
 					coef_tab=sumfits[["coefficients"]];
@@ -3886,21 +3889,18 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 						# Order by decreasing significance
 						if(any(signf_ix)){
 							pv_ord=order(coef_tab[,"Pr(>|.|)"]);
+
 							signf_var_matlist[[mt]][[pv_ix]]=
 								rownames(coef_tab)[pv_ord];
 							signf_pvl_matlist[[mt]][[pv_ix]]=
 								coef_tab[pv_ord,"Pr(>|.|)"];
 							signf_coef_matlist[[mt]][[pv_ix]]=
 								coef_tab[pv_ord,"Estimate"];
-
 						}
 					}
 				}
 			}	
 		}	
-
-		print(signf_var_matlist);
-		#print(signf_pvl_matlist);
 		
 		num_cutoffs=length(pval_cutoffs);
 		num_models=length(models);
