@@ -3854,6 +3854,141 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 			horiz=T, bg="white"
 		);
 
+		#--------------------------------------------------------------
+		# generate 3 x num_cutoff table of significant variables
+
+		signf_var_matlist=list();
+		signf_pvl_matlist=list();
+		signf_coef_matlist=list();
+
+		for(mt in models){
+			signf_var_matlist[[mt]]=list();
+			for(pv_ix in pval_cutoffs){
+				signf_var_matlist[[mt]][[pv_ix]]=c();
+				signf_pvl_matlist[[mt]][[pv_ix]]=c();
+				signf_coef_matlist[[mt]][[pv_ix]]=c();
+			}
+		}
+
+		for(pv_ix in pval_cutoffs){
+			for(mt in models){
+				#cat(pv_ix, " / ", mt, "\n");
+				sumfits=fits_across_cutoffs[[pv_ix]][[mt]][["sumfit_list"]][[resp_var]];
+				if(!is.null(sumfits)){
+
+					coef_tab=sumfits[["coefficients"]];
+					pred_names=setdiff(rownames(coef_tab), "(Intercept)");
+					coef_tab=coef_tab[pred_names,,drop=F];
+
+					if(nrow(coef_tab)>0){
+						signf_ix=coef_tab[,"Pr(>|.|)"]<0.1;
+						coef_tab=coef_tab[signf_ix,,drop=F];
+						# Order by decreasing significance
+						if(any(signf_ix)){
+							pv_ord=order(coef_tab[,"Pr(>|.|)"]);
+							signf_var_matlist[[mt]][[pv_ix]]=
+								rownames(coef_tab)[pv_ord];
+							signf_pvl_matlist[[mt]][[pv_ix]]=
+								coef_tab[pv_ord,"Pr(>|.|)"];
+							signf_coef_matlist[[mt]][[pv_ix]]=
+								coef_tab[pv_ord,"Estimate"];
+
+						}
+					}
+				}
+			}	
+		}	
+
+		print(signf_var_matlist);
+		#print(signf_pvl_matlist);
+		
+		num_cutoffs=length(pval_cutoffs);
+		num_models=length(models);
+		par(mfrow=c(1,1));
+		par(oma=c(1,0,2,0));
+		par(mar=c(.5,2,2,.5));
+		plot(0, type="n", xaxt="n", yaxt="n", xlab="", ylab="", bty="o",
+			xlim=c(1*1.05,num_cutoffs+1*.95), ylim=c(0, 3));
+
+		mtext(resp_var, side=3, line=.2, outer=T, cex=1.5, font=2);
+		mtext("[p-val < 0.1]", side=1, line=0, outer=T, cex=.8, font=1, at=.1);
+		mtext("[p-val < 0.05]", side=1, line=0, outer=T, cex=.8, font=3, at=.2);
+		mtext("[p-val < 0.01]", side=1, line=0, outer=T, cex=.8, font=2, at=.3);
+		mtext("[p-val < 0.001]", side=1, line=0, outer=T, cex=.8, font=4, at=.4);
+
+		# Label the cutoffs on top for x-axis
+		axis(side=3, at=.5+(1:num_cutoffs), labels=pval_cutoffs, tick=T, font=2, cex=2);
+
+		# Draw the model type as the y axis
+		for(mt_ix in 1:3){
+			axis(side=2, at=-.5+(3-mt_ix+1), labels=c("TM", "MM", "MR")[mt_ix], 
+				col.axis=model_colors[mt_ix], font=2, cex=4);
+		}
+
+		# Draw grid
+		abline(h=0:num_models, col="grey");
+		abline(v=1:(num_cutoffs+1), col="grey");
+
+		for(pv_ix in 1:num_cutoffs){
+			pval=pval_cutoffs[pv_ix];
+
+			for(mt_ix in 1:length(models)){
+				mt=models[mt_ix];
+
+				signf_var=signf_var_matlist[[mt]][[pval]];
+				signf_pvl=signf_pvl_matlist[[mt]][[pval]];
+				signf_coef=signf_coef_matlist[[mt]][[pval]];
+
+				num_var=length(signf_var);
+				if(num_var>0){
+
+					# Scale text down if too many variables
+					inc=min(1/20, 1/num_var);
+						
+					for(v_ix in 1:num_var){
+						#print(c(pv_ix, mt_ix, v_ix, signf_var[v_ix]));
+						var_name_len=nchar(signf_var[v_ix]);
+						tadj=min(1, 17/var_name_len);
+
+						varpv=signf_pvl[v_ix];
+						if(varpv<.001){
+							varfont=4;
+						}else if(varpv<.01){
+							varfont=2;
+						}else if(varpv<.05){
+							varfont=3;
+						}else{
+							varfont=1;
+						}
+
+						if(signf_coef[v_ix]>0){
+							pcol="green";
+							ccol="black";
+							ppch="+";
+						}else{
+							pcol="red";
+							ccol="white";
+							ppch="-";
+						}
+
+						xadj=.05;
+						yadj=.005;
+						
+						points(pv_ix+xadj, 3-mt_ix+1-v_ix*inc, col=pcol, 
+							cex=1.2, pch=19);
+						points(pv_ix+xadj, 3-mt_ix+1-v_ix*inc-yadj, col=ccol, 
+							cex=0.8, pch=ppch);
+						points(pv_ix+xadj, 3-mt_ix+1-v_ix*inc, col="black", 
+							cex=1.2, pch=1);
+
+						text(pv_ix+.05, 3-mt_ix+1-v_ix*inc, signf_var[v_ix], 
+							pos=4, cex=.7*tadj, font=varfont);
+					}
+				}
+				
+			}
+		}
+
 		
 
 	}
