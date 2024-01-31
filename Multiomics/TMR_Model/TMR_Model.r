@@ -3136,7 +3136,7 @@ plot_combined_fits=function(fits, cutoff){
 				}
 
 				par(mar=c(12, 5, 5, 5));
-				max_nlog10_pval=max(-log10(c(0.001, pvalues)));
+				max_nlog10_pval=max(-log10(c(0.001, pvalues[pvalues>0])));
 				landmarks_pval=c(1,0.05, 0.1, 0.01, 0.001);
 				nlog10_landmarks=-log10(landmarks_pval);
 				mids=barplot(neglog_pvalues, col=barcol, names.arg="",
@@ -3804,7 +3804,11 @@ plot_signif_combined_predictors=function(fits_across_cutoffs){
 		# Plot model ANOVA p-values
 		
 		ref_pval=c(1, 0.1, 0.05, 0.01, 0.001);
-		most_signf_pval=min(most_signf_pval, ref_pval);
+		most_signf_pval=most_signf_pval[most_signf_pval>0];
+		most_signf_pval=c(most_signf_pval, ref_pval);
+		most_signf_pval=most_signf_pval[!is.na(most_signf_pval)];
+		most_signf_pval=min(most_signf_pval);
+
 		nlog_msp=-log10(most_signf_pval);
 		nlog_ref_pv=-log10(ref_pval);
 		
