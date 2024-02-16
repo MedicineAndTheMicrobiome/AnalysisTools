@@ -89,14 +89,15 @@ RA_Top15Nr_Plot= paste(OutputFileName, ".rnk_abn.top15.nr.pdf", sep="")
 RA_Top10Nr_Plot= paste(OutputFileName, ".rnk_abn.top10.nr.pdf", sep="")
 
 # Indices
-DIFile= paste(OutputFileName, ".indices.csv", sep="")
+DIcsvFile= paste(OutputFileName, ".indices.csv", sep="")
+DItsvFile= paste(OutputFileName, ".indices.tsv", sep="")
 CIFile= paste(OutputFileName, ".confidence.csv", sep="");
 CI1LFile= paste(OutputFileName, ".confidence.1line.csv", sep="");
 IDPlot= paste(OutputFileName, ".index_distributions.pdf", sep="")
 
 cat("\n");
 cat("             Input File Name: ", InputFileName, "\n");
-cat("           Diversity Indices: ", DIFile, "\n");
+cat("           Diversity Indices: ", DIcsvFile, "\n");
 cat("        Confidence Intervals: ", CIFile, "\n");
 cat("Confidence Intervals (1 row): ", CI1LFile, "\n");
 cat("         Index Distributions: ", IDPlot, "\n");
@@ -385,23 +386,12 @@ plot_rank_abundance(RA_Top10Nr_Plot, 10, samp_norm_sorted_list, div_indices,
 ###############################################################################
 
 # Output indices
+indices_outtab=cbind(sample_names, Entropy, Simpsons, Evenness, SimpsonsRecip, Tail, DiscTaxa);
+colnames(indices_outtab)=
+	c("SampleID", "Shannon", "Simpson", "Evenness", "SimpsonsRecip", "Tail", "DiscTaxa");
 
-fc=file(DIFile, "w")
-
-outline=paste("Sample ID", "Shannon", "Simpson", "Evenness", 
-	"SimpsonsRecip", "Tail", "DiscTaxa", sep=",");
-
-write(outline, file=fc);
-
-sorted_by_entropy=sort(Entropy, decreasing=TRUE, method="shell", index.return=TRUE);
-
-for(i in sorted_by_entropy$ix){
-	outline=paste(sample_names[i], 
-		Entropy[i], Simpsons[i], Evenness[i], SimpsonsRecip[i], Tail[i], DiscTaxa[i], sep=",");
-	write(outline, file=fc);
-}
-
-close(fc);
+write.table(indices_outtab, file=DIcsvFile, quote=F, sep=",", row.names=F, col.names=T);
+write.table(indices_outtab, file=DItsvFile, quote=F, sep="\t", row.names=F, col.names=T);
 
 ###############################################################################
 
