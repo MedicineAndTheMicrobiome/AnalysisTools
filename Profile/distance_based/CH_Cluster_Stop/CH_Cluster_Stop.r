@@ -10,7 +10,7 @@ library('vegan');
 library('plotrix');
 
 
-DEF_DISTTYPE="euc";
+DEF_DISTTYPE="man";
 DEF_NUM_TOP_CAT=35;
 DEF_NUM_CLUS=-1;
 DEF_SPLIT_CHAR=";";
@@ -21,6 +21,7 @@ params=c(
 	"input_summary_table", "i", 1, "character",
 	"output_filename_root", "o", 2, "character",
 	"dist_type", "d", 2, "character",
+	"max_clusters", "K", 2, "numeric",
 	"num_sub_samp", "s", 2, "numeric",
 	"sample_inclusion_fname", "c", 2, "character",
 	"num_bootstraps", "b", 2, "numeric",
@@ -36,6 +37,7 @@ usage = paste(
 	"	[-o <output file root name, default is input file base name>]\n",
 	"	[-d <euc/wrd/man/bray/horn/bin/gow/tyc/minkp5/minkp3, default =", DEF_DISTTYPE, ">]\n",
 	"\n",
+	"	[-K <maximum number of clusters to cut, default=ceiling(log2(num_samples))>]\n",
 	"	[-s <sub sample size, default=all>]\n",
 	"	[-c <sample inClusion filename>]\n",
 	"	[-b <num bootstraps, default=", DEF_NUM_BS, ">]\n",
@@ -107,6 +109,11 @@ if(!any(dist_type == c("wrd","man","bray","horn","bin","gow","euc","tyc","minkp3
 SampleIncFname="";
 if(length(opt$sample_inclusion_fname)){
 	SampleIncFname=opt$sample_inclusion_fname;
+}
+
+MaxClusters=-1;
+if(length(opt$max_clusters)){
+	MaxClusters=opt$max_clusters;
 }
 
 if(length(opt$tag_name)){
@@ -480,7 +487,7 @@ full_dist_mat=compute_dist(norm_mat, dist_type);
 hcl=hclust(full_dist_mat, method="ward.D2");
 
 # Find height where cuts are made
-max_clusters=ceiling(log(num_samples, 2));
+max_clusters=ifelse(MaxClusters==-1, ceiling(log(num_samples, 2)), MaxClusters);
 cat("Max Clusters to compute: ", max_clusters, "\n");
 cut_midpoints=numeric(max_clusters);
 for(k in 2:max_clusters){
@@ -661,8 +668,19 @@ abline(v=quants[c(1,3)], lty=2, col="blue");
 
 membership_matrix[lf_names, num_cl]=memberships[lf_names];
 
-write.table(membership_matrix, file=paste(OutputFileRoot, ".cls_mem.csv", sep=""),
-	quote=F, sep=",", row.names=TRUE, col.names=NA);
+colnames(membership_matrix)=sprintf("k%02i", as.numeric(colnames(membership_matrix)));
+membership_matrix=apply(membership_matrix, c(1,2), function(x){sprintf("cl%02i", as.numeric(x));});
+
+print(membership_matrix);
+mat_rnames=rownames(membership_matrix);
+out_mat=cbind(mat_rnames, membership_matrix);
+colnames(out_mat)=c("SampleID", colnames(membership_matrix));
+
+write.table(out_mat, file=paste(OutputFileRoot, ".cls_mem.csv", sep=""),
+	quote=F, sep=",", row.names=F, col.names=T);
+
+write.table(out_mat, file=paste(OutputFileRoot, ".cls_mem.tsv", sep=""),
+	quote=F, sep="\t", row.names=F, col.names=T);
 
 ###############################################################################
 
