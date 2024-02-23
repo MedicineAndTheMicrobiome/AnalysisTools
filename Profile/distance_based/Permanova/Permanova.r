@@ -643,17 +643,26 @@ if(Blocking!=""){
 	stratify=NULL;
 }
 
-perm_factor=max(10, num_linear_components);
+# When we have fewer degrees of freedom available, run more bootstraps
+min_perms=1000;
+num_permutations_to_run=min_perms*max(1, 80/(num_samples-num_linear_components-1));
 
+cat("num_perm = ", 
+	min_perms, " * max(1, 80/(", num_samples, "-", num_linear_components, "-1))\n", sep="");
+cat("Num Permutations to run: ", num_permutations_to_run, "\n");
 
 # Old version using type I sum of squares
-old_res=adonis(as.formula(model_string), data=as.data.frame(factors), strata=stratify, permutations=perm_factor*1000);
+old_res=adonis(as.formula(model_string), data=as.data.frame(factors), strata=stratify, 
+	permutations=num_permutations_to_run);
+
 cat("Old Adonis Results:\n");
 print(names(old_res));
 print(old_res);
 
 
-res2=adonis2(as.formula(model_string), data=as.data.frame(factors), strata=stratify, permutations=perm_factor*1000, by="margin");
+res2=adonis2(as.formula(model_string), data=as.data.frame(factors), strata=stratify, 
+	permutations=num_permutations_to_run, by="margin");
+
 cat("New Adonis Results:\n");
 print(names(res2));
 print((res2));
