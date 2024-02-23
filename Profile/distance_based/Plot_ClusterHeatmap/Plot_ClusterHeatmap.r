@@ -876,16 +876,21 @@ hmap_height=num_factors/fact_per_inch;
 key_width=legend_inch;
 dend_height=dendrogram_inch;
 
+adj_dend_width=min(175, ceiling(dend_width));
+adj_key_width=min(175, ceiling(key_width));
+adj_dend_height=min(175, ceiling(dend_height));
+adj_hmap_height=min(175, ceiling(hmap_height));
+
 layout_mat=matrix(c(
 	rep(
-		c(rep(1, ceiling(dend_width)), rep(2, ceiling(key_width)))
-	, ceiling(dend_height)),
+		c(rep(1, adj_dend_width), rep(2, adj_key_width))
+	, adj_dend_height),
 	
 	rep(
-		c(rep(3, ceiling(dend_width)), rep(4, ceiling(key_width)))
-	, ceiling(hmap_height))),
+		c(rep(3, adj_dend_width), rep(4, adj_key_width))
+	, adj_hmap_height)),
 	
-	byrow=T, ncol=ceiling(dend_width)+ceiling(key_width));
+	byrow=T, ncol= adj_dend_width + adj_key_width);
 
 print(layout_mat);
 layout(layout_mat);
