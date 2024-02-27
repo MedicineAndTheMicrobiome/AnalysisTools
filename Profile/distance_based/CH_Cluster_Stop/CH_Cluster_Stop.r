@@ -8,6 +8,7 @@ library(MASS)
 library('getopt');
 library('vegan');
 library('plotrix');
+library('parallel');
 
 
 DEF_DISTTYPE="man";
@@ -16,6 +17,7 @@ DEF_NUM_CLUS=-1;
 DEF_SPLIT_CHAR=";";
 
 DEF_NUM_BS=320;
+DEF_NUM_PROC=25;
 
 params=c(
 	"input_summary_table", "i", 1, "character",
@@ -25,7 +27,8 @@ params=c(
 	"num_sub_samp", "s", 2, "numeric",
 	"sample_inclusion_fname", "c", 2, "character",
 	"num_bootstraps", "b", 2, "numeric",
-	"tag_name", "t", 2, "character"
+	"tag_name", "t", 2, "character",
+	"num_proc", "p", 2, "numeric"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -42,6 +45,8 @@ usage = paste(
 	"	[-c <sample inClusion filename>]\n",
 	"	[-b <num bootstraps, default=", DEF_NUM_BS, ">]\n",
 	"	[-t <tag name>]\n",
+	"\n",
+	"	[-p <num processors/threads to use for bootstrapping, default=", DEF_NUM_PROC, ">]\n",
 	"\n",
 	"This script identifies the recommended number of clusters to split the data\n",
 	"into based on the Calinski-Harabasz statistic.  It is a Pseudo-F statistic\n",
@@ -114,6 +119,11 @@ if(length(opt$sample_inclusion_fname)){
 MaxClusters=-1;
 if(length(opt$max_clusters)){
 	MaxClusters=opt$max_clusters;
+}
+
+NumProc=DEF_NUM_PROC;
+if(length(opt$num_proc)){
+	NumProc=opt$num_proc;
 }
 
 if(length(opt$tag_name)){
@@ -226,6 +236,31 @@ normalize=function(st){
 
 #------------------------------------------------------------------------------
 
+plot_text=function(strings){
+        orig_par=par(no.readonly=T);
+
+        par(mfrow=c(1,1));
+        par(family="Courier");
+        par(oma=rep(.5,4));
+        par(mar=rep(0,4));
+
+        num_lines=length(strings);
+
+        top=max(as.integer(num_lines), 40);
+
+        plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
+                xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
+                );
+        for(i in 1:num_lines){
+                #cat(strings[i], "\n", sep="");
+                text(0, top-i, strings[i], pos=4, cex=.8);
+        }
+
+        par(orig_par);
+}
+
+#------------------------------------------------------------------------------
+
 compute_dist=function(norm_st, type){
 
 	if(type=="euc"){
@@ -255,6 +290,9 @@ compute_dist=function(norm_st, type){
 	return(dist_mat);
 }
 
+#------------------------------------------------------------------------------
+
+# This is the single-threaded base function
 compute_pseudoF=function(dist_mat, memberships, resample_sequence){
 
 	dist_mat=as.matrix(dist_mat);
@@ -308,6 +346,75 @@ compute_pseudoF=function(dist_mat, memberships, resample_sequence){
 
 	return(pseudo_f);
 }
+
+# This is the multi-threaded function
+compute_pseudoF_parallel=function(dist_mat, memberships, resample_sequence, nproc=20){
+
+	# wrap compute function down to a single parameter / list item
+	comp_pF=function(params){
+		l_dist_mat=params[["dist_mat"]];	
+		l_memberships=params[["memberships"]];	
+		l_res_seq=params[["resample_sequence"]];	
+		l_batch_id=params[["id"]];
+		cat("Starting new process for: ", l_batch_id, "\n");
+		psfs=compute_pseudoF(l_dist_mat, l_memberships, l_res_seq);		
+		cat("Done (", l_batch_id, ")\n");
+		return(psfs);
+	}
+
+	num_bs=nrow(resample_sequence);
+
+	cat("Number of Bootstraps Requested: ", num_bs, "\n");
+	cat("Number of Processors Supplied: ", nproc, "\n");
+
+	splits=ceiling(seq(0, num_bs, length.out=(nproc+1)));
+	starts=splits[1:nproc]+1;
+	ends=splits[2:(nproc+1)];
+	split_mat=matrix(c(starts, ends), ncol=2, byrow=F);
+	colnames(split_mat)=c("start", "end");
+
+	cat("Bootstrap Splits:\n");
+	print(split_mat);
+	
+	# Place the 3 parameter needed for each thread into a list
+	# The resample sequence is what is split across threads, other parameters are
+	#   the same.
+	input_list=list();
+	for(batch_ix in 1:nproc){
+		bat_start=split_mat[batch_ix, "start"];
+		bat_end=split_mat[batch_ix, "end"];
+
+		params=list();
+		params[["id"]]=batch_ix;
+		params[["dist_mat"]]=dist_mat;
+		params[["memberships"]]=memberships;
+		params[["resample_sequence"]]=resample_sequence[bat_start:bat_end,,drop=F];
+
+		input_list[[batch_ix]]=params
+	}
+
+	#print(input_list);
+
+	cat("'Making' Compute Cluster...\n");
+	cl=makeCluster(nproc);
+
+	clusterExport(cl, c("compute_pseudoF"));
+
+	cat("Running parLapply...\n");
+	results=parLapply(cl, input_list, comp_pF);
+
+	cat("Stopping Cluster...\n");
+	stopCluster(cl);
+
+	cat("Joining results across splits...\n");
+	pseudoF_array=do.call(c, results);
+
+	cat("Accumulated length of results: ", length(pseudoF_array), "\n");
+
+	return(pseudoF_array);
+
+}
+
 
 ###############################################################################
 
@@ -434,12 +541,25 @@ color_edges=function(den){
 ###############################################################################
 
 output_fname_root = paste(OutputFileRoot, ".", dist_type, sep="");
-cat("\n");
-cat("Input Summary Table Name: ", InputFileName, "\n", sep="");
-cat("Output Filename Root: ", output_fname_root, "\n", sep="");
-cat("Distance Type: ", dist_type, "\n", sep="");
-cat("Num Bootstraps: ", num_bs, "\n", sep="");
-cat("\n");
+
+pdf(paste(output_fname_root, ".ch_stop.pdf", sep=""), height=8.5, width=14);
+
+parameter_summary_text=capture.output({
+	cat("\n");
+	cat("Input Summary Table Name: ", InputFileName, "\n", sep="");
+	cat("Output Filename Root: ", output_fname_root, "\n", sep="");
+	cat("Distance Type: ", dist_type, "\n", sep="");
+	cat("Num Bootstraps: ", num_bs, "\n", sep="");
+	cat("Sample Inc List: ", SampleIncFname, "\n", sep="");
+	cat("Subsample Size: ", sub_sample, "\n", sep="");
+	cat("Max Clusters: ", MaxClusters, "\n", sep="");
+	cat("Num Processors: ", NumProc, "\n", sep="");
+	cat("Tag Name:", TagName, "\n", sep="");
+	cat("\n");
+});
+
+print(parameter_summary_text, quote=F);
+plot_text(parameter_summary_text);
 
 cat("Loading summary table...\n");
 counts_mat=load_summary_table(InputFileName);
@@ -498,8 +618,6 @@ orig_dendr=as.dendrogram(hcl);
 
 # Extract names of leaves from left to right
 lf_names=get_clstrd_leaf_names(orig_dendr);
-
-pdf(paste(output_fname_root, ".ch_stop.pdf", sep=""), height=8.5, width=14);
 
 palette_col=c("red", "green", "blue", "cyan", "magenta", "orange", "gray", "pink", "black", "purple", "brown", "aquamarine");
 palette(palette_col);
@@ -560,7 +678,9 @@ for(num_cl in 2:max_clusters){
         memberships=cutree(hcl, k=num_cl);
 
 	# Compute CH stats
-	pseudoF_res=compute_pseudoF(full_dist_mat, memberships, resample_sequence);
+	cat("  Computing PseudoF Stats...\n");
+	#pseudoF_res=compute_pseudoF(full_dist_mat, memberships, resample_sequence);
+	pseudoF_res=compute_pseudoF_parallel(full_dist_mat, memberships, resample_sequence, NumProc);
 	pseudoF_mat[,num_cl]=pseudoF_res;
 
         grp_mids=get_middle_of_groups(lf_names, memberships);
@@ -588,6 +708,7 @@ for(num_cl in 2:max_clusters){
         tweaked_dendro=dendrapply(orig_dendr, color_denfun_bySample);
         tweaked_dendro=dendrapply(tweaked_dendro, text_scale_denfun);
 
+	cat("  Plotting dendrogram...\n");
         plot(tweaked_dendro, horiz=F, lwd=2);
         for(cl_ix in 1:num_cl){
                 lab_size=3/ceiling(log10(cl_ix+1));
@@ -608,6 +729,7 @@ for(num_cl in 2:max_clusters){
         # Generate MDS plots
         par(oma=c(0,0,4,0));
         par(mar=c(5.1,4.1,4.1,2.1));
+	cat("  Plotting MDS Plots...\n");
         plot(nonparm_mds_res, col=memberships, xlab="Dim 1", ylab="Dim 2", main="non-metric MDS", cex=2);
         plot(classic_mds_res, type="n", col=memberships, xlab="Dim 1", ylab="Dim 2", main="classical MDS");
         points(classic_mds_res, col=memberships, cex=2);
@@ -650,6 +772,7 @@ plotCI(x=2:max_clusters, y=med_pseudoF[2:max_clusters], li=lb_pseudoF[2:max_clus
 	main="Cluster Separation w/ 95% CI",
 	xlab="Number of Clusters (k)", ylab="Calinski-Harabasz Pseudo-F Statistic");
 axis(side=1, at=2:max_clusters, labels=2:max_clusters);
+mtext(paste("Num Bootstraps per cluster cut: ", nrow(pseudoF_mat), sep=""), side=3, line=0, cex=.75);
 abline(h=med_pseudoF[max_med_ix], lty=2, col="red");
 
 # Plot Histogram for best
