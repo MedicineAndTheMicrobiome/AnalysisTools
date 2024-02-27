@@ -1280,12 +1280,12 @@ if(length(covariate_coefficients)>0){
 		title="Covariate P-values",value.cex=2, deci_pts=2,
 		plot_min=0, plot_max=1, high_is_hot=F);
 
-	cov_coef_mat_010=mask_matrix(cov_coef_mat, cov_pval_mat, 0.10, 0);
+	cov_coef_mat_100=mask_matrix(cov_coef_mat, cov_pval_mat, 0.10, 0);
 	cov_coef_mat_050=mask_matrix(cov_coef_mat, cov_pval_mat, 0.05, 0);
 	cov_coef_mat_010=mask_matrix(cov_coef_mat, cov_pval_mat, 0.01, 0);
 	cov_coef_mat_001=mask_matrix(cov_coef_mat, cov_pval_mat, 0.001, 0);
 
-	paint_matrix(cov_coef_mat_010, title="Covariate Coefficients: p-val < 0.10",
+	paint_matrix(cov_coef_mat_100, title="Covariate Coefficients: p-val < 0.10",
 		value.cex=2, deci_pts=2, label_zeros=F);
 	paint_matrix(cov_coef_mat_050, title="Covariate Coefficients: p-val < 0.05",
 		value.cex=2, deci_pts=2, label_zeros=F);
