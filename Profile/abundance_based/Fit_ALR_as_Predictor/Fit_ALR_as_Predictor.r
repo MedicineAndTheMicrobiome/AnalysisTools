@@ -639,6 +639,7 @@ sig_char=function(val){
 plot_fit=function(fit, sumfit, i=1){
 	par.orig=par(no.readonly=T);
 
+	resp_var_name=gsub("^Response ", "", names(sumfit)[i]);
 	observed=as.numeric(as.matrix(fit$model)[,i, drop=F]);
 	predicted=as.numeric(as.matrix(fit$fitted.values)[,i, drop=F]);
 
@@ -660,6 +661,7 @@ plot_fit=function(fit, sumfit, i=1){
 		main="", xlab="Observed", ylab="Predicted");
 
 	mtext(name, line=5.5, font=2, cex=3);
+	mtext(resp_var_name, line=6, font=2, cex=2.1);
 	mtext("Predicted vs. Observed", line=4, font=2, cex=1.1);
 	mtext(paste("Adjusted R^2 = ", adjsqrd, sep=""),line=2, cex=.9);
 	mtext(paste("Model F-stat p-value = ", pval, sep=""), line=1, cex=.9);
@@ -1255,6 +1257,12 @@ for(i in 1:num_responses){
 	summary_res_rsqrd[i,]=c(rsquared[2], reduced_rsquared[2], adj_rsqrd_diff);
 }
 
+mask_matrix=function(val_mat, mask_mat, mask_thres, mask_val){
+        masked_matrix=val_mat;
+        masked_matrix[mask_mat>mask_thres]=mask_val;
+        return(masked_matrix);
+}
+
 #summary_res_coeff=round(summary_res_coeff,2);
 summary_res_pval_rnd=round(summary_res_pval,2);
 
@@ -1262,8 +1270,32 @@ cat("Coefficients Matrix:\n");
 print(summary_res_coeff);
 #par(oma=c(10,14,5,1));
 if(length(covariate_coefficients)>0){
-	paint_matrix(summary_res_coeff[covariate_coefficients,,drop=F], title="Covariate Coefficients",value.cex=2, deci_pts=2);
+
+	cov_coef_mat=summary_res_coeff[covariate_coefficients,,drop=F];
+	cov_pval_mat=summary_res_pval[covariate_coefficients,,drop=F];
+
+	paint_matrix(cov_coef_mat,
+		title="Covariate Coefficients",value.cex=2, deci_pts=2);
+	paint_matrix(cov_pval_mat,
+		title="Covariate P-values",value.cex=2, deci_pts=2,
+		plot_min=0, plot_max=1, high_is_hot=F);
+
+	cov_coef_mat_010=mask_matrix(cov_coef_mat, cov_pval_mat, 0.10, 0);
+	cov_coef_mat_050=mask_matrix(cov_coef_mat, cov_pval_mat, 0.05, 0);
+	cov_coef_mat_010=mask_matrix(cov_coef_mat, cov_pval_mat, 0.01, 0);
+	cov_coef_mat_001=mask_matrix(cov_coef_mat, cov_pval_mat, 0.001, 0);
+
+	paint_matrix(cov_coef_mat_010, title="Covariate Coefficients: p-val < 0.10",
+		value.cex=2, deci_pts=2, label_zeros=F);
+	paint_matrix(cov_coef_mat_050, title="Covariate Coefficients: p-val < 0.05",
+		value.cex=2, deci_pts=2, label_zeros=F);
+	paint_matrix(cov_coef_mat_010, title="Covariate Coefficients: p-val < 0.01",
+		value.cex=2, deci_pts=2, label_zeros=F);
+	paint_matrix(cov_coef_mat_001, title="Covariate Coefficients: p-val < 0.001",
+		value.cex=2, deci_pts=2, label_zeros=F);
 }
+
+
 
 # Variations of ALR Predictor Coefficients
 paint_matrix(summary_res_coeff[shrd_alr_names,,drop=F], title="ALR Predictors Coefficients (By Decreasing Abundance)", 
@@ -1279,21 +1311,11 @@ cat("\nP-values:\n");
 #print(summary_res_pval);
 #par(oma=c(10,14,5,1));
 
-if(length(covariate_coefficients)>0){
-	paint_matrix(summary_res_pval_rnd[covariate_coefficients,,drop=F], title="Covariate P-values", 
-		plot_min=0, plot_max=1, high_is_hot=F, value.cex=2, deci_pts=2);
-}
 
 # Variations of ALR Predictor P-values
 paint_matrix(summary_res_pval_rnd[shrd_alr_names,,drop=F], title="ALR Predictors P-values (By Decreasing Abundance)", 
 	plot_min=0, plot_max=1, high_is_hot=F, value.cex=1, deci_pts=2);
 
-
-mask_matrix=function(val_mat, mask_mat, mask_thres, mask_val){
-        masked_matrix=val_mat;
-        masked_matrix[mask_mat>mask_thres]=mask_val;
-        return(masked_matrix);
-}
 
 
 # Mask coefficients at various pvalue
