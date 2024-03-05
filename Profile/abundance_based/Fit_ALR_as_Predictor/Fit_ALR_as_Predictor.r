@@ -6,6 +6,7 @@ library(MASS);
 library(vegan);
 library('getopt');
 library(car);
+library(pscl);
 
 source('~/git/AnalysisTools/Metadata/RemoveNAs/Remove_NAs.r');
 
@@ -636,18 +637,23 @@ sig_char=function(val){
 	return(" ");
 }
 
-plot_fit=function(fit, sumfit, i=1){
+plot_fit=function(fit, sumfit, mod_stats, mod_anovas, resp_name){
+
+	#print(names(fit));
+	#print(names(sumfit));
+
 	par.orig=par(no.readonly=T);
 
-	resp_var_name=gsub("^Response ", "", names(sumfit)[i]);
-	observed=as.numeric(as.matrix(fit$model)[,i, drop=F]);
-	predicted=as.numeric(as.matrix(fit$fitted.values)[,i, drop=F]);
+	observed=fit[["model"]][,resp_name];
+	predicted=fit[["fitted.values"]];
+	
+	model_fam=fit$family[[1]];
+	mcfadden_r2=mod_stats[["full"]][["mcfadden"]];
 
-	adjsqrd=signif(sumfit[[i]]$adj.r.squared, 4);
-	fstat=sumfit[[i]]$fstatistic;
-	pval=signif(1-pf(fstat["value"], fstat["numdf"], fstat["dendf"]), 4);
+	#fstat=sumfit[[i]]$fstatistic;
+	#model_pval=1-pf(fstat["value"], fstat["numdf"], fstat["dendf"]);
 
-	name=colnames(predicted);
+	#name=colnames(predicted);
 
 	par(mar=c(15, 15, 15, 15));
 
@@ -660,18 +666,23 @@ plot_fit=function(fit, sumfit, i=1){
 		ylim=c(obs_pred_range[1]-pad, obs_pred_range[2]+2*pad),
 		main="", xlab="Observed", ylab="Predicted");
 
-	mtext(name, line=5.5, font=2, cex=3);
-	mtext(resp_var_name, line=6, font=2, cex=2.1);
-	mtext("Predicted vs. Observed", line=4, font=2, cex=1.1);
-	mtext(paste("Adjusted R^2 = ", adjsqrd, sep=""),line=2, cex=.9);
-	mtext(paste("Model F-stat p-value = ", pval, sep=""), line=1, cex=.9);
-
 	abline(a=0, b=1, col="blue");
 	points(lowess(observed, predicted), type="l", col="red");
-
-	
 	legend(obs_pred_range[1]+pad, obs_pred_range[2]+pad, legend=c("Model", "Ideal"), 
 		fill=c("red", "blue"), bty="n");
+
+	mtext(resp_name, line=8.5, font=2, cex=3);
+	mtext("Predicted vs. Observed", line=7, font=2, cex=1.1);
+
+	# Annotate with some stats
+	mtext(sprintf("Model Family: %s", model_fam), line=6, cex=.8);
+	mtext(sprintf("McFadden's R^2 = %4.3f", mcfadden_r2), line=5, cex=.9);
+	mtext(sprintf("Full Model (vs. Null Model) P-val: %6.3g",
+		mod_anovas[["null_full"]]), line=3, cex=.9);
+	mtext(sprintf("ALR's Contrib to Model Improvement (Full vs. Reduced Model): P-val = %6.3g", 
+		mod_anovas[["reduced_full"]]), line=2, cex=.9);
+	mtext(sprintf("Covariates-Only Model (Reduced vs. Null Model): P-val = %6.3g", 
+		mod_anovas[["null_reduced"]]), line=1, cex=.9);
 
 	par(par.orig);
 }
@@ -928,6 +939,9 @@ if(length(covariates_arr)==0){
 response_factors=factors_wo_nas[,responses_arr, drop=F];
 covariate_factors=factors_wo_nas[,covariates_arr, drop=F];
 
+num_response_variables=length(responses_arr);
+num_covariates_variables=length(covariates_arr);
+
 ##############################################################################
 
 # Assign 0's to values smaller than smallest abundance across entire dataset
@@ -980,7 +994,7 @@ plot_text(c(
 ));
 
 #response_factors=as.matrix(response_factors);
-dafr_predictors_factors=as.data.frame(cbind(covariate_factors, alr_categories_val));
+predictors_factors_mat=cbind(covariate_factors, alr_categories_val);
 
 cat("Response Summary:\n");
 s=summary(response_factors);
@@ -1028,10 +1042,50 @@ cat("Plotting ALR Category Histograms:\n");
 plot_histograms(alr_categories_val);
 
 ###############################################################################
+
+# Determine whether response is normal or binomial, or other?
+cat("Determining whether response variable is continuous or boolean...\n");
+
+assign_model_families=function(resp_var_mat){
+
+	num_resp=ncol(resp_var_mat);
+
+	mod_fam=character(num_resp);
+	names(mod_fam)=colnames(resp_var_mat);
+
+	for(i in 1:num_resp){
+		cur_resp=resp_var_mat[,i];
+
+		uniq_resp=unique(cur_resp);
+		num_uniq_resp=length(uniq_resp);
+		min_resp=min(uniq_resp);
+		max_resp=max(uniq_resp);
+
+		if(num_uniq_resp==2 && min_resp==0 && max_resp==1){
+			mod_fam[i]="binomial";
+		}else{
+			mod_fam[i]="gaussian";
+		}
+	}
+
+	return(mod_fam);
+}
+
+model_families=assign_model_families(response_factors);
+num_bool_resp=sum(model_families=="binomial");
+all_gaussian_resp=all(model_families=="gaussian");
+
+cat("Model Families:\n");
+print(model_families);
+
+run_glm=F;
+if(num_bool_resp){
+	cat("Boolean responses identified.  Running GLM's for logistic regression.\n");
+	run_glm=T;
+}
+
+###############################################################################
 # Set up and run univariate and manova
-
-# Remove variables with no information
-
 
 covariate_formula_str=paste(covariates_arr, collapse=" + ");
 alr_category_formula_str=paste(alr_cat_names, collapse=" + ");
@@ -1041,221 +1095,567 @@ cat("\n");
 cat("ALR Predictors: \n", alr_category_formula_str, "\n", sep="");
 cat("\n");
 
-if(nchar(covariate_formula_str)){
-	formula_str=paste("response_factors_dfr ~ ", covariate_formula_str, " + ", alr_category_formula_str, sep="");
-	reduced_formula_str=paste("response_factors_dfr ~ ", covariate_formula_str, sep="");
+#if(nchar(covariate_formula_str)){
+#	formula_str=paste("response_factors_dfr ~ ", covariate_formula_str, " + ", 
+#		alr_category_formula_str, sep="");
+#	reduced_formula_str=paste("response_factors_dfr ~ ", covariate_formula_str, sep="");
+#}else{
+#	formula_str=paste("response_factors_dfr ~ ", alr_category_formula_str, sep="");
+#	reduced_formula_str=paste("response_factors_dfr ~ 1", sep="");
+#}
+
+if(length(covariates_arr)){
+	# If there are covariates to include, add them to the predictors
+	full_pred_str=paste(covariate_formula_str, " + ", alr_category_formula_str, sep="");
+	reduced_pred_str=covariate_formula_str;
 }else{
-	formula_str=paste("response_factors_dfr ~ ", alr_category_formula_str, sep="");
-	reduced_formula_str=paste("response_factors_dfr ~ 1", sep="");
+	# If there are no covariates, just have the alr categories
+	full_pred_str=paste(alr_category_formula_str, sep="");
+	reduced_pred_str="1";
 }
+
+cat("Full Model Predictors:\n");
+print(full_pred_str);
+cat("\n");
+cat("Reduced Model Predictors:\n");
+print(reduced_pred_str);
+cat("\n");
 
 response_factors_dfr=as.matrix(response_factors);
 
-cat("Fitting Full Model...\n");
-lmfit=lm(as.formula(formula_str), data=dafr_predictors_factors);
+#--------------------------------------------------
 
-cat("Fitting Reduced Model..\n");
-reduced_lmfit=lm(as.formula(reduced_formula_str), data=dafr_predictors_factors);
+num_pred_var=ncol(predictors_factors_mat);
+num_samples=nrow(predictors_factors_mat);
+cat("Number of Predictors (covariates + ALR): ", num_pred_var, "\n");
+cat("Number of Samples: ", num_samples, "\n");
 
-lm_summaries=summary(lmfit);
-reduced_lm_summaries=summary(reduced_lmfit);
+#------------------------------------------------------------------------------
 
-num_responses=length(responses_arr);
+compute_mod_stats=function(fit, sumfit){
 
-manova_res=c();
-if(num_responses > 1 && (num_responses < lmfit$df.residual)){
-	tryCatch({
-		manova_res=anova(lmfit);
-	}, error=function(e){
-		cat("ERROR: MANOVA Could not be perfomred.\n");
-		print(e);
-		cat("Things to do:\n");
-		cat(" 1.) Check for high correlations amongst response variables.\n");
-	});
+	ms=list();
+
+	ms[["mcfadden"]]=1-sumfit$deviance/sumfit$null.deviance;
+	ms[["aic"]]=fit$aic;
+
+	model_family=fit$family$family;
+	if(model_family=="gaussian"){
+
+		ss_res=sum(fit$residuals^2);
+		obs_resp=fit$y;
+		ss_tot=sum((obs_resp - mean(obs_resp))^2);
+		unadj_r2=1-(ss_res/ss_tot);
+
+		ms[["unadjusted"]]=unadj_r2;
+
+		num_obs=length(obs_resp);
+		num_pred_var=length(fit$coefficients)-1; # exclude intercept
+		adj_r2=1-((1-unadj_r2)*(num_obs-1)/(num_obs-num_pred_var-1));
+
+		ms[["adjusted"]]=adj_r2;
+
+	}else{
 		
-}else{
-	cat("WARNING: MANOVA Could not be performed because too many responses for number of samples...\n");
-}
-
-if(num_responses==1){
-
-	#tmp=lmfit;
-	#lmfit=list();
-	#lmfit[[1]]=tmp;
-
-	tmp=lm_summaries;
-	lm_summaries=list();
-	lm_summaries[[1]]=tmp;
-	names(lm_summaries)=paste("Response", responses_arr[1]);
-
-	tmp=reduced_lm_summaries;
-	reduced_lm_summaries=list();
-	reduced_lm_summaries[[1]]=tmp;
-	names(reduced_lm_summaries)=paste("Response", responses_arr[1]);
-	
-}
-
-#print(lm_summaries[[1]]$adj.r.squared);
-#quit();
-		
-responses=names(lm_summaries);
-reduced_responses=names(reduced_lm_summaries);
-
-print(names(lm_summaries));
-response_fit_names=gsub("^Response ", "", names(lm_summaries));
-
-# Calculate reduced/full model pvalues
-calc_model_imprv=function(mv_resp_name, reduced_form_str, full_form_str, pred_datafr, resp_datafr){
-	#print(reduced_form_str);
-	#print(full_form_str);
-	#print(pred_datafr);
-	#print(resp_datafr);
-
-	reduced_form_str=gsub(mv_resp_name, "tmp_resp", reduced_form_str);
-	full_form_str=gsub(mv_resp_name, "tmp_resp", full_form_str);
-
-	num_resp=ncol(resp_datafr);
-	resp_names=colnames(resp_datafr);
-
-	improv_mat=matrix(NA, nrow=num_resp, ncol=7);
-	rownames(improv_mat)=resp_names;
-	colnames(improv_mat)=c("Full R^2", "Reduced R^2", "Full Adj R^2", "Reduced Adj R^2",
-		"Diff Adj. R^2", "Perc Improvement", "Diff ANOVA P-Value"); 
-
-	for(i in 1:num_resp){
-		tmp_resp=resp_datafr[,i];
-		all_data=cbind(tmp_resp, pred_datafr);
-		full_fit=lm(as.formula(full_form_str), data=all_data);
-		full_sum=summary(full_fit);
-		reduced_fit=lm(as.formula(reduced_form_str), data=all_data);
-		reduced_sum=summary(reduced_fit);
-
-		anova_res=anova(reduced_fit, full_fit);
-		anova_pval=anova_res["2", "Pr(>F)"];
-
-		improv_mat[i,]=c(
-			full_sum$r.squared,
-			reduced_sum$r.squared,
-			full_sum$adj.r.squared,
-			reduced_sum$adj.r.squared,
-			full_sum$adj.r.squared-reduced_sum$adj.r.squared,
-			100*(full_sum$adj.r.squared-reduced_sum$adj.r.squared)/reduced_sum$adj.r.squared,
-			anova_pval);
-
+		ms[["unadjusted"]]=NA;
+		ms[["adjusted"]]=NA;
 	}
 
-	return(improv_mat);
+	return(ms);
 
 }
 
-improv_mat=calc_model_imprv("response_factors_dfr", reduced_formula_str, formula_str, 
-	dafr_predictors_factors, response_factors_dfr);
+#------------------------------------------------------------------------------
+
+if(run_glm){
+	cat("Running glm...\n");
+
+	resp_pred_mat=cbind(response_factors, predictors_factors_mat);
+
+	glm_full_fit_list=list();
+	glm_full_sumfit_list=list();
+
+	glm_reduced_fit_list=list();
+	glm_reduced_sumfit_list=list();
+
+	glm_null_fit_list=list();
+	glm_null_sumfit_list=list();
+
+	mod_stats_list=list();
+	model_anova_list=list();
+
+	num_resp_var=ncol(response_factors);
+	
+	resp_names=colnames(response_factors);
+	for(rsp_ix in 1:num_resp_var){
+	
+		cur_resp_name=resp_names[rsp_ix];
+		cat("Fitting ", cur_resp_name, " Models:\n");
+
+
+		full_form_str=paste(cur_resp_name, "~", full_pred_str);
+		reduced_form_str=paste(cur_resp_name, "~", reduced_pred_str);
+		null_form_str=paste(cur_resp_name, "~1");
+
+		#---------------------------------------------------------------
+		# Full Model
+
+		glm_full_fit=glm(as.formula(full_form_str), data=resp_pred_mat, 
+			family=model_families[cur_resp_name]);
+
+		glm_full_sumfit=summary(glm_full_fit);
+
+		#print(glm_full_fit);
+		#print(glm_full_sumfit);
+
+		#---------------------------------------------------------------
+		# Reduced Model
+
+		glm_reduced_fit=glm(as.formula(reduced_form_str), data=resp_pred_mat, 
+			family=model_families[cur_resp_name]);
+
+		glm_reduced_sumfit=summary(glm_reduced_fit);
+
+		#print(glm_reduced_fit);
+		#print(glm_reduced_sumfit);
+
+		#---------------------------------------------------------------
+		# Null Model
+
+		glm_null_fit=glm(as.formula(null_form_str), data=resp_pred_mat, 
+			family=model_families[cur_resp_name]);
+
+		glm_null_sumfit=summary(glm_null_fit);
+
+		#print(glm_null_fit);
+		#print(glm_null_sumfit);
+
+		#---------------------------------------------------------------
+		# Calculate R^2
+		full_r2s=compute_mod_stats(glm_full_fit, glm_full_sumfit);
+		reduced_r2s=compute_mod_stats(glm_reduced_fit, glm_reduced_sumfit);
+
+		mod_stat=list();
+		mod_stat[["full"]]=full_r2s;
+		mod_stat[["reduced"]]=reduced_r2s;
+
+		#---------------------------------------------------------------
+		# Calculate ANOVA
+		anova_null_reduced_res=anova(glm_null_fit, glm_reduced_fit, test="Chi");
+                anova_null_reduced_pval=anova_null_reduced_res[["Pr(>Chi)"]][2];
+
+		anova_null_full_res=anova(glm_null_fit, glm_full_fit, test="Chi");
+                anova_null_full_pval=anova_null_full_res[["Pr(>Chi)"]][2];
+
+		anova_reduced_full_res=anova(glm_reduced_fit, glm_full_fit, test="Chi");
+                anova_reduced_full_pval=anova_reduced_full_res[["Pr(>Chi)"]][2];
+
+		#---------------------------------------------------------------
+		# Save models to list
+
+		glm_full_fit_list[[cur_resp_name]]=glm_full_fit;
+		glm_full_sumfit_list[[cur_resp_name]]=glm_full_sumfit;
+		glm_reduced_fit_list[[cur_resp_name]]=glm_reduced_fit;
+		glm_reduced_sumfit_list[[cur_resp_name]]=glm_reduced_sumfit;
+		glm_null_fit_list[[cur_resp_name]]=glm_null_fit;
+		glm_null_sumfit_list[[cur_resp_name]]=glm_null_sumfit;
+
+		mod_stats_list[[cur_resp_name]]=mod_stat;
+
+		mod_anovas=list();
+		mod_anovas[["null_reduced"]]=anova_null_reduced_pval;
+		mod_anovas[["null_full"]]=anova_null_full_pval;
+		mod_anovas[["reduced_full"]]=anova_reduced_full_pval;
+		model_anova_list[[cur_resp_name]]=mod_anovas;
+
+
+		cat("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+	
+	}
+
+	# Copy all the residuals from the glm fit to a single matrix
+	num_samples=nrow(response_factors);
+	residuals_mat=matrix(NA, nrow=num_samples, ncol=num_resp_var);
+	colnames(residuals_mat)=resp_names;
+	for(rsp_ix in 1:num_resp_var){
+		cur_resp_name=resp_names[rsp_ix];
+		residuals_mat[,rsp_ix]=glm_full_fit_list[[cur_resp_name]]$residuals;
+	}
+	#print(residuals_mat);
+
+	# Run manova
+	residual_df=(glm_full_fit_list[[1]]$df.residual);
+	cat("DF of Residuals: ", residual_df, "\n", sep="");
+	if(all_gaussian_resp && num_resp_var > 1 && (num_resp_var < residual_df)){
+
+		cat("Conditions met to running MANOVA...\n");
+		tryCatch({
+
+			manova_res=manova(
+				as.formula(paste("residuals_mat~", full_pred_str)), 
+				data=resp_pred_mat);
+			manova_sumres=summary(manova_res);
+
+		}, error=function(e){
+			cat("Error: MANOVA was attempted but not successful.\n");
+			print(e);
+		});
+
+		print(manova_res);
+		print(summary(manova_res));
+
+	}else{
+
+		cat("Conditions unmet to running MANOVA...\n");
+		manova_res=NA;
+		manova_sumres=NA;
+	}
+
+}
+
+# glm_full_fit_list
+# glm_full_sumfit_list
+# glm_reduced_fit_list
+# glm_reduced_sumfit_list
+# mod_stat_list
+# null_anova_list
+# manova_res
+# manova_sumres 
+
+###############################################################################
+
+accumulate_model_improvement_stats=function(mod_stats_lst, model_anova_lst){
+
+	# "mcfadden" "aic" "unadjusted" "adjusted"
+
+	resp_vars=names(model_anova_lst);
+	num_resp_vars=length(resp_vars);
+	
+	headers=c(
+		"Reduced R2", "Full R2", "Diff R2",
+		"Reduced Adj R2", "Full Adj R2", "Diff Adj R2",
+		"Reduced McFadden", "Full McFadden", "Diff McFadden",
+		"Reduced AIC", "Full AIC", "Diff AIC",
+		"ANOVA Full-Reduced P-Val",
+		"ANOVA Reduced-Null P-Val",
+		"ANOVA Full-Null P-Val"
+	);
+
+	summary_stat_mat=matrix(NA, nrow=num_resp_vars, ncol=length(headers));
+	colnames(summary_stat_mat)=headers;
+	rownames(summary_stat_mat)=resp_vars;
+
+	for(var in resp_vars){
+
+		reduced_stats=mod_stats_lst[[var]][["reduced"]];
+		full_stats=mod_stats_lst[[var]][["full"]];
+		model_anova=model_anova_lst[[var]];
+
+		summary_stat_mat[var,]=c(
+			reduced_stats[["unadjusted"]], full_stats[["unadjusted"]], 			
+				full_stats[["unadjusted"]]-reduced_stats[["unadjusted"]],
+
+			reduced_stats[["adjusted"]], full_stats[["adjusted"]], 			
+				full_stats[["adjusted"]]-reduced_stats[["adjusted"]],
+
+			reduced_stats[["mcfadden"]], full_stats[["mcfadden"]], 			
+				full_stats[["mcfadden"]]-reduced_stats[["mcfadden"]],
+
+			reduced_stats[["aic"]], full_stats[["aic"]], 			
+				full_stats[["aic"]]-reduced_stats[["aic"]],
+
+			model_anova[["reduced_full"]],
+			model_anova[["null_reduced"]],
+			model_anova[["null_full"]]
+		);
+		
+	}
+
+	# Generate a formatted table for printing
+	summary_stat_char_mat=matrix("", nrow=num_resp_vars, ncol=length(headers)+4);
+	colnames(summary_stat_char_mat)=c(headers, 
+		"Substantial AIC Improvement", 
+		"Signf FR", 
+		"Signf RN", 
+		"Signf FN"
+		);
+	rownames(summary_stat_char_mat)=resp_vars;
+
+	for(var in 1:9){
+		summary_stat_char_mat[,var]=sprintf("%5.3f", summary_stat_mat[,var]);
+	}
+	for(var in 10:12){
+		summary_stat_char_mat[,var]=sprintf("%8.1f", summary_stat_mat[,var]);
+	}
+
+	format_pval=function(x){
+		res=ifelse(x>.0001,
+			sprintf("%11.3f", x),
+			sprintf("%11.03g", x));
+		return(res);
+	}
+
+	summary_stat_char_mat[,"ANOVA Full-Reduced P-Val"]=
+		format_pval(summary_stat_mat[,"ANOVA Full-Reduced P-Val"]);
+	summary_stat_char_mat[,"ANOVA Reduced-Null P-Val"]=
+		format_pval(summary_stat_mat[,"ANOVA Reduced-Null P-Val"]);
+	summary_stat_char_mat[,"ANOVA Full-Null P-Val"]=
+		format_pval(summary_stat_mat[,"ANOVA Full-Null P-Val"]);
+	
+	summary_stat_char_mat[,"Substantial AIC Improvement"]=
+		ifelse(summary_stat_mat[,"Diff AIC"]<(-2), "*", "");
+
+	summary_stat_char_mat[,"Signf FR"]=
+		sapply(summary_stat_mat[,"ANOVA Full-Reduced P-Val"], sig_char);
+	summary_stat_char_mat[,"Signf RN"]=
+		sapply(summary_stat_mat[,"ANOVA Reduced-Null P-Val"], sig_char);
+	summary_stat_char_mat[,"Signf FN"]=
+		sapply(summary_stat_mat[,"ANOVA Full-Null P-Val"], sig_char);
+		
+
+	print(summary_stat_mat);
+	print(summary_stat_char_mat, quote=F);
+
+	# Save and return results
+	results=list();
+	results[["numeric"]]=summary_stat_mat;
+	results[["character"]]=summary_stat_char_mat;
+
+	return(results);
+
+
+}
+
+mod_imprv_mat=accumulate_model_improvement_stats(mod_stats_list, model_anova_list);
+
+reformat_coef_tab=function(coef_tab){
+
+	num_col=ncol(coef_tab);
+	num_coef=nrow(coef_tab);
+
+	out_tab=matrix(character(), nrow=num_coef, ncol=num_col+1);
+	rownames(out_tab)=rownames(coef_tab);
+	colnames(out_tab)=c(colnames(coef_tab), "Signf");
+
+	for(i in 1:3){
+		out_tab[,i]=sprintf("%8.04f", coef_tab[,i]);
+	}
+
+	out_tab[,4]=ifelse(coef_tab[,4]>0.0001,
+		sprintf("%11.3f", coef_tab[,4]),
+		sprintf("%11.03g", coef_tab[,4]));
+
+	out_tab[,"Signf"]=sapply(coef_tab[,4], sig_char);
+
+	return(out_tab);
+}
 
 ###############################################################################
 # Accumulate univariate results into matrix and generate heat map
 
-num_coefficients=nrow(lm_summaries[[1]]$coefficients);
-coefficient_names=rownames(lm_summaries[[1]]$coefficients);
-summary_var_names=rownames(lm_summaries[[1]]$coefficients);
+# glm_full_fit_list
+# glm_full_sumfit_list
+# glm_reduced_fit_list
+# glm_reduced_sumfit_list
+# mod_stat_list
+# null_anova_list
+# reduced_anova_list
+# manova_res
+# manova_sumres
+
+num_responses=length(glm_full_fit_list);
+response_names=names(glm_full_fit_list);
+example_coef_mat=glm_full_sumfit_list[[1]]$coefficients;
+
+# Report individual fits
+for(i in 1:num_responses){
+
+	cur_response=response_names[i];
+	cat("\n\nWorking on: ", cur_response, "\n");
+
+	full_coef_tab=glm_full_sumfit_list[[i]]$coefficients;
+	reduced_coef_tab=glm_reduced_sumfit_list[[i]]$coefficients;
+
+	cat("Full Model Coefficients:\n");
+	print(full_coef_tab);
+
+	cat("Reduced Model Coefficients:\n");
+	print(reduced_coef_tab);
+
+	reduced_predictors=rownames(reduced_coef_tab);
+	cat("Reduced Predictors:\n");
+	print(reduced_predictors);
+
+	full_coef_tab_char=reformat_coef_tab(full_coef_tab);
+	reduced_coef_tab_char=reformat_coef_tab(reduced_coef_tab);
+
+	alr_comp=setdiff(rownames(full_coef_tab), reduced_predictors);
+	
+	#print(full_coef_tab_char, quote=F);
+	#print(reduced_coef_tab_char, quote=F);
+
+	mod_stats=mod_stats_list[[cur_response]];
+	print(mod_stats);
+
+	mod_anovas=model_anova_list[[cur_response]];
+	cat("Reduced ANOVA: ", mod_anovas[["reduced_full"]], "\n");
+	cat("Null ANOVA: ", mod_anovas[["null_full"]], "\n");
+	cat("Cov ANOVA: ", mod_anovas[["null_reduced"]], "\n");
+
+	full_mcfadden=mod_stats[["full"]][["mcfadden"]];
+	reduced_mcfadden=mod_stats[["reduced"]][["mcfadden"]];
+
+	full_aic=mod_stats[["full"]][["aic"]];
+	reduced_aic=mod_stats[["reduced"]][["aic"]];
+	aic_diff=reduced_aic-full_aic;
+
+	#----------------------------------------------------------------------
+
+	full_reduced_coef_comp=c(
+		paste("Univariate Response: ", cur_response, sep=""),
+		"",
+		"Comparison of the Covariates portion of w/ and w/o ALR:",
+		"",
+		"---------------------------------------------------------------------------------------",
+		"",
+		"Predictors of Reduced Model (Covariates-only Model):",
+		sprintf("McFadden's R^2: %4.3f, AIC: %.1f", reduced_mcfadden, reduced_aic),
+		"",
+		capture.output(print(reduced_coef_tab_char, quote=F)),
+		"",
+		"---------------------------------------------------------------------------------------",
+		"",
+
+		"Predictors Portion of Full Model (Covariates + ALR Model):",
+		"  (Contribution of Covariates when controlling for ALR Components.)",
+		sprintf("McFadden's R^2: %4.3f, AIC: %.1f", full_mcfadden, full_aic),
+		"",
+		capture.output(print(full_coef_tab_char[reduced_predictors,,drop=F], quote=F)),
+		"",
+		"(See next page for ALR components of Full Model.)",
+		"---------------------------------------------------------------------------------------",
+		"",
+		paste("Model Improvement ANOVA (Full vs. Reduced): ", 
+			sprintf("%6.02g", mod_anovas[["reduced_full"]]), 
+			" ", sig_char(mod_anovas[["reduced_full"]]), sep=""),
+		"",
+		paste("Diff. in AIC: ", round(reduced_aic,2), " [reduced] - ", round(full_aic,2), 
+			" [full] = ", round(aic_diff,2), " [dAIC]", sep=""),
+		"If dAIC is > 2, then full model is substantially better than reduced model.",
+		paste("Full model is ", 
+			ifelse(aic_diff>2, "", "NOT "), 
+			"substantially better then reduced model.", sep=""),
+		"",
+		sprintf("McFadden's R^2: %4.3f [full] - %4.3f [reduced] = %4.3f [delta]",
+			full_mcfadden, reduced_mcfadden, (full_mcfadden-reduced_mcfadden), sep="")	
+		
+	);
+
+	print(full_reduced_coef_comp, quote=F);
+	cat("\n");
+	plot_text(full_reduced_coef_comp);
+
+	#----------------------------------------------------------------------
+
+	alr_components_coef_comp=c(
+		paste("Univariate Response: ", cur_response, sep=""),
+		"",
+		"ALR Predictors portion of Full Model (Covariates + ALR Model):",
+		"",
+		capture.output(print(full_coef_tab_char[alr_comp,,drop=F], quote=F))
+	);
+
+	print(alr_components_coef_comp, quote=F);
+	plot_text(alr_components_coef_comp);
+
+	#----------------------------------------------------------------------
+
+	plot_fit(glm_full_fit_list[[i]], glm_full_sumfit_list[[i]], 
+		mod_stats, mod_anovas, cur_response);
+
+}
+
+###############################################################################
+
+cat("Accumulating coefficients and p-values into matrices.\n");
+
+# Some times coefficients have been recoded by R into dummy variables, so we can't
+#   just use the predictor variables names.
+
+num_coefficients=nrow(example_coef_mat);
+coefficient_names=rownames(example_coef_mat);
+
 covariate_coefficients=setdiff(coefficient_names, c("(Intercept)", alr_cat_names));
 num_covariate_coefficients=length(covariate_coefficients);
 
-# In case some alr categories are not calculable...
+# In case, some alr categories are not calculable...
 shrd_alr_names=intersect(alr_cat_names, coefficient_names);
 
-summary_res_coeff=matrix(0, nrow=num_coefficients, ncol=num_responses, 
-	dimnames=list(coefficient_names, response_fit_names));
-summary_res_pval=matrix(0, nrow=num_coefficients, ncol=num_responses, 
-	dimnames=list(coefficient_names, response_fit_names));
-summary_res_rsqrd=matrix(0, nrow=num_responses, ncol=3, dimnames=list(response_fit_names, 
-	c("Full Model", "Reduced Model", "Difference")));
+cat("Num Coefficients: ", num_coefficients, "\n");
+cat("Num Response Variables: ", num_responses, "\n");
+cat("Num Covariate Predictors: ", num_covariate_coefficients, "\n");
 
+# Coef and Pval for full model
+summary_res_coef=matrix(0, nrow=num_coefficients, ncol=num_responses, 
+	dimnames=list(coefficient_names, response_names));
+summary_res_pval=matrix(0, nrow=num_coefficients, ncol=num_responses, 
+	dimnames=list(coefficient_names, response_names));
+
+# Coef and Pval for reduced model
 summary_res_reduced_coef=matrix(0, nrow=num_covariate_coefficients, ncol=num_responses,
-	dimnames=list(covariate_coefficients, response_fit_names));
+	dimnames=list(covariate_coefficients, response_names));
 summary_res_reduced_pval=matrix(0, nrow=num_covariate_coefficients, ncol=num_responses,
-	dimnames=list(covariate_coefficients, response_fit_names));
+	dimnames=list(covariate_coefficients, response_names));
+
+# R^2 Table
+summary_res_rsqrd=matrix(0, nrow=num_responses, ncol=3,
+	dimnames=list(response_names, c("Reduced R^2", "Full R^2", "Difference")));
 
 for(i in 1:num_responses){
-	cat("\n\nWorking on: ", responses[i], "\n");
-	univar_summary=lm_summaries[[i]]$coefficients;
 
-	rsquared=signif(c(lm_summaries[[i]]$r.squared, lm_summaries[[i]]$adj.r.squared),4);
-	reduced_rsquared=signif(c(reduced_lm_summaries[[i]]$r.squared, reduced_lm_summaries[[i]]$adj.r.squared),4);
-	
-	fstat=lm_summaries[[i]]$fstatistic;
-	pval=1-pf(fstat[["value"]], fstat[["numdf"]], fstat[["dendf"]]);
+	cur_response=response_names[i];
 
-	rsqrd_diff=rsquared[1]-reduced_rsquared[1];
-	adj_rsqrd_diff=signif(rsquared[2]-reduced_rsquared[2], 4);
+# glm_reduced_sumfit_list
 
+	# Full model coef/pvals
+	fit_coef=glm_full_sumfit_list[[i]][["coefficients"]];
+	pred=rownames(fit_coef);
+	summary_res_coef[pred,cur_response]=fit_coef[pred,"Estimate"];
+	summary_res_pval[pred,cur_response]=fit_coef[pred, 4]; # Pr(>|z|) or Pr(>|t|)
 
-	univar_summary_wsignf=add_sign_col(univar_summary[shrd_alr_names,,drop=F]);
+	# Reduce/Full Model Mcfaddens's
+	mod_stats=mod_stats_list[[cur_response]];
+	summary_res_rsqrd[cur_response,"Reduced R^2"]=mod_stats[["reduced"]][["mcfadden"]];
+	summary_res_rsqrd[cur_response,"Full R^2"]=mod_stats[["full"]][["mcfadden"]];
+	summary_res_rsqrd[cur_response,"Difference"]=
+		mod_stats[["full"]][["mcfadden"]]-mod_stats[["reduced"]][["mcfadden"]];
 
-	reduced_coef_tab=round(reduced_lm_summaries[[i]]$coefficients, 4);
-	reduced_coef_tab=reduced_coef_tab[setdiff(rownames(reduced_coef_tab), "(Intercept)"),,drop=F];
-
-
-
-	resp_name=gsub("Response ", "", responses[i]);
-
-	summary_res_reduced_coef[covariate_coefficients, resp_name]=
-		round(reduced_lm_summaries[[i]]$coefficients[covariate_coefficients,"Estimate"], 4);
-	summary_res_reduced_pval[covariate_coefficients,resp_name]=
-		round(reduced_lm_summaries[[i]]$coefficients[covariate_coefficients,"Pr(>|t|)"], 4);
-
-	plot_text(c(
-		paste("Univariate: ", responses[i], sep=""),
-		"",
-		"",
-		"-----------------------------------------------------------------------------------------",
-		"",
-		"Covariates of Reduced Model (Covariates only):",
-		"",
-		capture.output(print(add_sign_col(reduced_coef_tab), quote=F)),
-		"",
-		"-----------------------------------------------------------------------------------------",
-		"",
-
-		"Covariates portion of Full Model (Covariates + ALR):",
-		"",
-		capture.output(print(add_sign_col(univar_summary[covariate_coefficients,,drop=F]), quote=F)),
-		"",
-		"-----------------------------------------------------------------------------------------"
-	));
-
-	plot_text(c(
-		paste("Univariate: ", responses[i], sep=""),
-		"ALR Predictors portion of Full Model (Covariates + ALR):",
-		"\n",
-		capture.output(print(univar_summary_wsignf, quote=F))
-	));
-
-	plot_text(c(
-		paste("Univariate: ", responses[i], sep=""),
-		"Full Model (covariates + ALR) Summary:",
-		paste("Multiple R-squared: ", rsquared[1], ", Adjusted R-squared: ", rsquared[2], sep=""),
-		paste("F-statistic: ", fstat[["value"]], " on ", 
-					fstat[["numdf"]], " and ", 
-					fstat[["dendf"]], " DF, p-value: ", pval, sep=""),
-		"",
-		"",
-		"Reduced Model (covariates only) Summary:",
-		paste("Multiple R-squared: ", reduced_rsquared[1], 
-			", Adjusted R-squared: ", reduced_rsquared[2], sep=""),
-		"",
-		"Difference (contribution of ALR):",
-		paste("Multiple R-squared: ", rsqrd_diff, 
-			", Adjusted R-squared: ", adj_rsqrd_diff, sep=""),
-		"",
-		"(Positive Adjusted R-squared differences suggests that including ALR predictors improved the model)"
-	));
-
-	plot_fit(lmfit, lm_summaries, i);
-
-	summary_res_coeff[,i]=univar_summary[,"Estimate"];
-	summary_res_pval[,i]=univar_summary[,"Pr(>|t|)"];
-	summary_res_rsqrd[i,]=c(rsquared[2], reduced_rsquared[2], adj_rsqrd_diff);
+	#reduced_coef_tab=round(reduced_lm_summaries[[i]]$coefficients, 4);
+	#reduced_coef_tab=reduced_coef_tab[setdiff(rownames(reduced_coef_tab), "(Intercept)"),,drop=F];
+	#summary_res_reduced_coef[covariate_coefficients, resp_name]=
+#		round(reduced_lm_summaries[[i]]$coefficients[covariate_coefficients,"Estimate"], 4);
+#	summary_res_reduced_pval[covariate_coefficients,resp_name]=
+#		round(reduced_lm_summaries[[i]]$coefficients[covariate_coefficients,"Pr(>|t|)"], 4);
+	#summary_res_coef[,i]=univar_summary[,"Estimate"];
+	#summary_res_pval[,i]=univar_summary[,"Pr(>|t|)"];
+	#summary_res_rsqrd[i,]=c(rsquared[2], reduced_rsquared[2], adj_rsqrd_diff);
 }
+
+# Remove (Intercept)
+keep_coef=setdiff(rownames(summary_res_coef), "(Intercept)");
+summary_res_coef=summary_res_coef[keep_coef,,drop=F];
+summary_res_pval=summary_res_pval[keep_coef,,drop=F];
+
+cat("Coefficients:\n");
+print(summary_res_coef);
+cat("\n");
+cat("P-values:\n");
+print(summary_res_pval);
+cat("\n");
+cat("McF's R^2:\n");
+print(summary_res_rsqrd);
+
+###############################################################################
 
 mask_matrix=function(val_mat, mask_mat, mask_thres, mask_val){
         masked_matrix=val_mat;
@@ -1263,15 +1663,15 @@ mask_matrix=function(val_mat, mask_mat, mask_thres, mask_val){
         return(masked_matrix);
 }
 
+#------------------------------------------------------------------------------
+
 #summary_res_coeff=round(summary_res_coeff,2);
 summary_res_pval_rnd=round(summary_res_pval,2);
 
-cat("Coefficients Matrix:\n");
-print(summary_res_coeff);
-#par(oma=c(10,14,5,1));
-if(length(covariate_coefficients)>0){
+# Plot covariates from full model
+if(num_covariate_coefficients>0){
 
-	cov_coef_mat=summary_res_coeff[covariate_coefficients,,drop=F];
+	cov_coef_mat=summary_res_coef[covariate_coefficients,,drop=F];
 	cov_pval_mat=summary_res_pval[covariate_coefficients,,drop=F];
 
 	paint_matrix(cov_coef_mat,
@@ -1295,59 +1695,162 @@ if(length(covariate_coefficients)>0){
 		value.cex=2, deci_pts=2, label_zeros=F);
 }
 
-
-
 # Variations of ALR Predictor Coefficients
-paint_matrix(summary_res_coeff[shrd_alr_names,,drop=F], title="ALR Predictors Coefficients (By Decreasing Abundance)", 
+paint_matrix(summary_res_coef[shrd_alr_names,,drop=F], 
+	title="ALR Predictors Coefficients (By Decreasing Abundance)", 
 	value.cex=1, deci_pts=2, plot_row_dendr=F, plot_col_dendr=F);
-paint_matrix(summary_res_coeff[shrd_alr_names,,drop=F], title="ALR Predictors Coefficients (ALR Clusters)", 
+paint_matrix(summary_res_coef[shrd_alr_names,,drop=F], 
+	title="ALR Predictors Coefficients (ALR Clusters)", 
 	value.cex=1, deci_pts=2, plot_row_dendr=T, plot_col_dendr=F);
-paint_matrix(summary_res_coeff[shrd_alr_names,,drop=F], title="ALR Predictors Coefficients (Response Clusters)", 
+paint_matrix(summary_res_coef[shrd_alr_names,,drop=F], 
+	title="ALR Predictors Coefficients (Response Clusters)", 
 	value.cex=1, deci_pts=2, plot_row_dendr=F, plot_col_dendr=T);
-paint_matrix(summary_res_coeff[shrd_alr_names,,drop=F], title="ALR Predictors Coefficients (ALR and Response Clusters)", 
+paint_matrix(summary_res_coef[shrd_alr_names,,drop=F], 
+	title="ALR Predictors Coefficients (ALR and Response Clusters)", 
 	value.cex=1, deci_pts=2, plot_row_dendr=T, plot_col_dendr=T);
-
-cat("\nP-values:\n");
-#print(summary_res_pval);
-#par(oma=c(10,14,5,1));
 
 
 # Variations of ALR Predictor P-values
-paint_matrix(summary_res_pval_rnd[shrd_alr_names,,drop=F], title="ALR Predictors P-values (By Decreasing Abundance)", 
+paint_matrix(summary_res_pval_rnd[shrd_alr_names,,drop=F], 
+	title="ALR Predictors P-values (By Decreasing Abundance)", 
 	plot_min=0, plot_max=1, high_is_hot=F, value.cex=1, deci_pts=2);
 
 
-
+###############################################################################
 # Mask coefficients at various pvalue
-signf_coef=mask_matrix(summary_res_coeff[shrd_alr_names,,drop=F], summary_res_pval_rnd[shrd_alr_names,,drop=F], .10, 0);
+signf_coef=mask_matrix(summary_res_coef[shrd_alr_names,,drop=F], 
+	summary_res_pval_rnd[shrd_alr_names,,drop=F], .10, 0);
 paint_matrix(signf_coef, title="Significant ALR Predictors Coefficients (p-value < .10)", 
 	value.cex=1, deci_pts=2, plot_row_dendr=F, plot_col_dendr=F, label_zeros=F);
 
-signf_coef=mask_matrix(summary_res_coeff[shrd_alr_names,,drop=F], summary_res_pval_rnd[shrd_alr_names,,drop=F], .05, 0);
+signf_coef=mask_matrix(summary_res_coef[shrd_alr_names,,drop=F], 
+	summary_res_pval_rnd[shrd_alr_names,,drop=F], .05, 0);
 paint_matrix(signf_coef, title="Significant ALR Predictors Coefficients (p-value < .05)", 
 	value.cex=1, deci_pts=2, plot_row_dendr=F, plot_col_dendr=F, label_zeros=F);
 
-signf_coef=mask_matrix(summary_res_coeff[shrd_alr_names,,drop=F], summary_res_pval_rnd[shrd_alr_names,,drop=F], .01, 0);
+signf_coef=mask_matrix(summary_res_coef[shrd_alr_names,,drop=F], 
+	summary_res_pval_rnd[shrd_alr_names,,drop=F], .01, 0);
 paint_matrix(signf_coef, title="Significant ALR Predictors Coefficients (p-value < .01)", 
 	value.cex=1, deci_pts=2, plot_row_dendr=F, plot_col_dendr=F, label_zeros=F);
 
 
-paint_matrix(summary_res_pval_rnd[shrd_alr_names,,drop=F], title="ALR Predictors P-values (ALR Clusters)", 
+paint_matrix(summary_res_pval_rnd[shrd_alr_names,,drop=F], 
+	title="ALR Predictors P-values (ALR Clusters)", 
 	plot_min=0, plot_max=1, high_is_hot=F, value.cex=1, deci_pts=2,
 	plot_row_dendr=T
 );
-paint_matrix(summary_res_pval_rnd[shrd_alr_names,,drop=F], title="ALR Predictors P-values (Response Clusters)", 
+paint_matrix(summary_res_pval_rnd[shrd_alr_names,,drop=F], 
+	title="ALR Predictors P-values (Response Clusters)", 
 	plot_min=0, plot_max=1, high_is_hot=F, value.cex=1, deci_pts=2,
 	plot_col_dendr=T
 );
-paint_matrix(summary_res_pval_rnd[shrd_alr_names,,drop=F], title="ALR Predictors P-values (ALR and Response Clusters)", 
+paint_matrix(summary_res_pval_rnd[shrd_alr_names,,drop=F], 
+	title="ALR Predictors P-values (ALR and Response Clusters)", 
 	plot_min=0, plot_max=1, high_is_hot=F, value.cex=1, deci_pts=2,
 	plot_row_dendr=T, plot_col_dendr=T
 );
 
 ###############################################################################
 
-paint_matrix(summary_res_rsqrd, title="Univariate Adjusted R-Squared");
+paint_matrix(summary_res_rsqrd, title="Univariate McFadden's R-Squared");
+
+###############################################################################
+# Report model comparison statistics
+
+#print(summary_res_rsqrd);
+
+brkt=function(mat){
+	cnames=colnames(mat);
+	colnames(mat)=sapply(cnames, function(x){ paste("[", x, "]", sep="");});
+	return(mat);	
+}
+
+print(mod_imprv_mat);
+
+r2mcf_mat=mod_imprv_mat[["character"]][,
+	c("Reduced McFadden","Full McFadden","Diff McFadden",
+	"ANOVA Full-Reduced P-Val","Signf FR"),drop=F];
+r2_mat=mod_imprv_mat[["character"]][,
+	c("Reduced R2","Full R2","Diff R2",
+	"ANOVA Full-Reduced P-Val","Signf FR"),drop=F];
+r2adj_mat=mod_imprv_mat[["character"]][,
+	c("Reduced Adj R2","Full Adj R2","Diff Adj R2",
+	"ANOVA Full-Reduced P-Val","Signf FR"),drop=F];
+aic_mat=mod_imprv_mat[["character"]][,
+	c("Reduced AIC","Full AIC","Diff AIC","Substantial AIC Improvement"),drop=F];
+
+allmod_mat=mod_imprv_mat[["character"]][,
+	c("Reduced McFadden","Full McFadden", "Diff McFadden",
+	"ANOVA Reduced-Null P-Val","Signf RN",
+	"ANOVA Full-Reduced P-Val","Signf FR",
+	"ANOVA Full-Null P-Val","Signf FN"),
+	drop=F];
+
+
+
+fn_signf_ix=order(mod_imprv_mat[["numeric"]][,"ANOVA Full-Null P-Val"], decreasing=F);
+rn_signf_ix=order(mod_imprv_mat[["numeric"]][,"ANOVA Reduced-Null P-Val"], decreasing=F);
+fr_signf_ix=order(mod_imprv_mat[["numeric"]][,"ANOVA Full-Reduced P-Val"], decreasing=F);
+
+plot_text(c(
+	"Model Comparisons Using McFadden's R^2",
+	"  (Use for comparing GLMs.)",
+	"",
+	capture.output(print(brkt(r2mcf_mat), quote=F))
+	));
+
+plot_text(c(
+	"Model Comparisons Using Standard Unadjusted R^2",
+	"  (Use for comparing LMs, NAs for binary responses.)",
+	"",
+	capture.output(print(brkt(r2_mat), quote=F))
+	));
+
+plot_text(c(
+	"Model Comparisons Using Standard Adjusted R^2",
+	"  (Use for comparing LMs, NAs for binary responses.)",
+	"",
+	capture.output(print(brkt(r2adj_mat), quote=F))
+	));
+
+plot_text(c(
+	"Model Comparisons Using AIC",
+	"  (Use for comparing GLMs and LMs.)",
+	"  (Model improvements are consider significant when diff >2)",
+	"",
+	capture.output(print(brkt(aic_mat), quote=F))
+	));
+
+#------------------------------------------------------------------------------
+
+FN_mat=allmod_mat[fn_signf_ix,c("Full McFadden","ANOVA Full-Null P-Val","Signf FN"),drop=F];
+RN_mat=allmod_mat[rn_signf_ix,c("Reduced McFadden","ANOVA Reduced-Null P-Val","Signf RN"),drop=F];
+FR_mat=allmod_mat[fr_signf_ix,c("Diff McFadden","ANOVA Full-Reduced P-Val","Signf FR"),drop=F];
+
+plot_text(c(
+	"Comparison of Model Strengths:",
+	"  (Sorted by Strongest Full Model: Full vs. Null)",
+	"",
+	capture.output(print(brkt(FN_mat), quote=F))
+	));
+
+plot_text(c(
+	"Comparison of Model Strengths",
+	"  (Sorted by Strongest Covariates-Only Model: Reduced vs. Null)",
+	"",
+	capture.output(print(brkt(RN_mat), quote=F))
+	));
+
+plot_text(c(
+	"Comparison of Model Strengths",
+	"  (Sorted by Strongest ALR Improvement:  Full vs. Reduced)",
+	"",
+	capture.output(print(brkt(FR_mat), quote=F))
+	));
+
+quit();
+
+###############################################################################
 
 # Report Full/Reduced Improvement ANOVA P-values
 Signf=sapply(improv_mat[,"Diff ANOVA P-Value"], sig_char);
@@ -1433,8 +1936,8 @@ close(fh);
 # Write ALR Predictor Coefficients to file
 
 fh=file(paste(OutputRoot, ".alr_as_pred.all_pred.coef_and_pval.tsv", sep=""), "w");
-num_out_col=ncol(summary_res_coeff);
-response_names=colnames(summary_res_coeff);
+num_out_col=ncol(summary_res_coef);
+response_names=colnames(summary_res_coef);
 
 cat(file=fh, "Grouping:\t", paste(rep(OutputRoot, num_out_col), collapse="\t"), sep="");
 cat(file=fh, "\n");
@@ -1445,7 +1948,7 @@ cat(file=fh, "\n\n");
 cat(file=fh, "[Coefficients]\n");
 for(var in covariate_coefficients){
 	cat(file=fh, var, paste(
-		round(summary_res_coeff[var, response_names], 4), collapse="\t"), sep="\t");
+		round(summary_res_coef[var, response_names], 4), collapse="\t"), sep="\t");
 	cat(file=fh, "\n");
 }
 
@@ -1453,7 +1956,7 @@ cat(file=fh, "\n");
 
 for(var in shrd_alr_names){
 	cat(file=fh, var, paste(
-		round(summary_res_coeff[var, response_names], 4), collapse="\t"), sep="\t");
+		round(summary_res_coef[var, response_names], 4), collapse="\t"), sep="\t");
 	cat(file=fh, "\n");
 }
 
@@ -1503,7 +2006,7 @@ write.table(file=fn, x=summary_res_reduced_pval, append=T, quote=F, sep="\t");
 exp_tab=summary_res_pval[shrd_alr_names,,drop=F];
 write.table(exp_tab,  file=paste(OutputRoot, ".alr_as_pred.pvals.tsv", sep=""), sep="\t", quote=F, col.names=NA, row.names=T);
 
-exp_tab=summary_res_coeff[shrd_alr_names,,drop=F];
+exp_tab=summary_res_coef[shrd_alr_names,,drop=F];
 write.table(exp_tab,  file=paste(OutputRoot, ".alr_as_pred.coefs.tsv", sep=""), sep="\t", quote=F, col.names=NA, row.names=T);
 
 ###############################################################################
