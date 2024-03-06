@@ -687,6 +687,61 @@ plot_fit=function(fit, sumfit, mod_stats, mod_anovas, resp_name){
 	par(par.orig);
 }
 
+plot_predictor_barplot=function(coef_tab, resp_name){
+	
+	par.orig=par(no.readonly=T);
+	print(coef_tab);
+
+	# Remove intercept from table
+	predictors=setdiff(rownames(coef_tab), "(Intercept)");
+	coef_tab=coef_tab[predictors,,drop=F];
+
+	# Keep only pred w/ pval<.1
+	pval=coef_tab[,4,drop=F];
+	abv_cutoff_ix=pval<0.1;
+	coef_tab=coef_tab[abv_cutoff_ix,,drop=F];
+
+	# Sort table by pval
+	pval=coef_tab[,4,drop=F];
+	order_inc_pval_ix=order(pval, decreasing=F);
+	coef_tab=coef_tab[order_inc_pval_ix,,drop=F];
+
+	# Pull out coef/est
+	coef=coef_tab[,"Estimate"];
+	pval=coef_tab[,4];
+	pred=rownames(coef_tab);	
+	cols=sapply(coef, function(x){ ifelse(x>0, "green", "red")});
+
+	print(coef);
+	print(pval);
+	print(pred);
+
+
+
+	ref_cutoffs=c(1, 0.1, 0.05, 0.01, 0.001);
+	min_pval=min(pval);
+
+	nlp_ref_cutoffs=-log10(ref_cutoffs);
+	nlp_min_pval=-log10(min(min_pval, 0.001));
+	nlp_pvals=-log10(pval);
+
+	par(mfrow=c(1,1));
+	par(mar=c(15,5,10,5));
+	mids=barplot(nlp_pvals, names.arg="", main="", ylab="-Log10(p-value)",
+		col=cols,
+		ylim=c(0, nlp_min_pval));
+	abline(h=nlp_ref_cutoffs, lty="dashed", col="blue");
+	axis(1, at=mids, labels=pred, las=2);
+	axis(4, at=nlp_ref_cutoffs, labels=ref_cutoffs, las=2);
+	mtext("P-values", side=4, line=3.5, cex=.8);	
+
+	title(main="most significant predictors", line=1.5, cex.main=1.5, font.main=1);
+	title(main=resp_name, line=3, cex.main=3, font.main=2);
+
+	par(par.orig);
+
+}
+
 ##############################################################################
 ##############################################################################
 
@@ -1570,6 +1625,8 @@ for(i in 1:num_responses){
 
 	#----------------------------------------------------------------------
 
+	plot_predictor_barplot(glm_full_sumfit_list[[i]]$coefficients, cur_response);
+
 	plot_fit(glm_full_fit_list[[i]], glm_full_sumfit_list[[i]], 
 		mod_stats, mod_anovas, cur_response);
 
@@ -1615,8 +1672,6 @@ for(i in 1:num_responses){
 
 	cur_response=response_names[i];
 
-# glm_reduced_sumfit_list
-
 	# Full model coef/pvals
 	fit_coef=glm_full_sumfit_list[[i]][["coefficients"]];
 	pred=rownames(fit_coef);
@@ -1630,15 +1685,6 @@ for(i in 1:num_responses){
 	summary_res_rsqrd[cur_response,"Difference"]=
 		mod_stats[["full"]][["mcfadden"]]-mod_stats[["reduced"]][["mcfadden"]];
 
-	#reduced_coef_tab=round(reduced_lm_summaries[[i]]$coefficients, 4);
-	#reduced_coef_tab=reduced_coef_tab[setdiff(rownames(reduced_coef_tab), "(Intercept)"),,drop=F];
-	#summary_res_reduced_coef[covariate_coefficients, resp_name]=
-#		round(reduced_lm_summaries[[i]]$coefficients[covariate_coefficients,"Estimate"], 4);
-#	summary_res_reduced_pval[covariate_coefficients,resp_name]=
-#		round(reduced_lm_summaries[[i]]$coefficients[covariate_coefficients,"Pr(>|t|)"], 4);
-	#summary_res_coef[,i]=univar_summary[,"Estimate"];
-	#summary_res_pval[,i]=univar_summary[,"Pr(>|t|)"];
-	#summary_res_rsqrd[i,]=c(rsquared[2], reduced_rsquared[2], adj_rsqrd_diff);
 }
 
 # Remove (Intercept)
