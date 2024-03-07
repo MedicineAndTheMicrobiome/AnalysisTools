@@ -534,7 +534,8 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
                                 }else{
                                         text_lab=sprintf(paste("%0.", deci_pts, "f", sep=""), mat[y,x]);
                                 }
-                                text(x-.5, y-.5, text_lab, srt=atan(num_col/num_row)/pi*180, cex=value.cex, font=2);
+                                text(x-.5, y-.5, text_lab, srt=atan(num_col/num_row)/pi*180, 
+					cex=value.cex, font=2);
                         }
                 }
         }
@@ -546,13 +547,15 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 	if(plot_row_dendr && plot_col_dendr){
 		rdh=attributes(row_dendr[["tree"]])$height;
 		cdh=attributes(col_dendr[["tree"]])$height;
-		plot(row_dendr[["tree"]], leaflab="none", horiz=T, xaxt="n", yaxt="n", bty="n", xlim=c(rdh, 0));
+		plot(row_dendr[["tree"]], leaflab="none", horiz=T, xaxt="n", yaxt="n", 
+			bty="n", xlim=c(rdh, 0));
 		plot(col_dendr[["tree"]], leaflab="none",xaxt="n", yaxt="n", bty="n", ylim=c(0, cdh));
 		plot(0,0, type="n", bty="n", xaxt="n", yaxt="n");
 		#text(0,0, "Placeholder");
 	}else if(plot_row_dendr){
 		rdh=attributes(row_dendr[["tree"]])$height;
-		plot(row_dendr[["tree"]], leaflab="none", horiz=T, xaxt="n", yaxt="n", bty="n", xlim=c(rdh, 0));
+		plot(row_dendr[["tree"]], leaflab="none", horiz=T, xaxt="n", yaxt="n", 
+			bty="n", xlim=c(rdh, 0));
 		#text(0,0, "Row Dendrogram");
 	}else if(plot_col_dendr){
 		cdh=attributes(col_dendr[["tree"]])$height;
@@ -971,7 +974,9 @@ recon_factors=resp_cov_factors[shared_sample_ids,,drop=F];
 num_samples_recon=nrow(recon_factors);
 num_factors_recon=ncol(recon_factors);
 
-factors_wo_nas_res=remove_sample_or_factors_wNA_parallel(recon_factors, required=required_arr, num_trials=640000, num_cores=64, outfile=paste(OutputRoot, ".noNAs", sep=""));
+factors_wo_nas_res=remove_sample_or_factors_wNA_parallel(recon_factors, 
+	required=required_arr, num_trials=640000, num_cores=64, 
+	outfile=paste(OutputRoot, ".noNAs", sep=""));
 
 factors_wo_nas=factors_wo_nas_res$factors;
 factor_names_wo_nas=colnames(factors_wo_nas);
@@ -1149,15 +1154,6 @@ cat("Covariates: \n", covariate_formula_str, "\n", sep="");
 cat("\n");
 cat("ALR Predictors: \n", alr_category_formula_str, "\n", sep="");
 cat("\n");
-
-#if(nchar(covariate_formula_str)){
-#	formula_str=paste("response_factors_dfr ~ ", covariate_formula_str, " + ", 
-#		alr_category_formula_str, sep="");
-#	reduced_formula_str=paste("response_factors_dfr ~ ", covariate_formula_str, sep="");
-#}else{
-#	formula_str=paste("response_factors_dfr ~ ", alr_category_formula_str, sep="");
-#	reduced_formula_str=paste("response_factors_dfr ~ 1", sep="");
-#}
 
 if(length(covariates_arr)){
 	# If there are covariates to include, add them to the predictors
@@ -1368,14 +1364,6 @@ if(run_glm){
 
 }
 
-# glm_full_fit_list
-# glm_full_sumfit_list
-# glm_reduced_fit_list
-# glm_reduced_sumfit_list
-# mod_stat_list
-# null_anova_list
-# manova_res
-# manova_sumres 
 
 ###############################################################################
 
@@ -1444,9 +1432,9 @@ accumulate_model_improvement_stats=function(mod_stats_lst, model_anova_lst){
 	}
 
 	format_pval=function(x){
-		res=ifelse(x>.0001,
+		res=ifelse(x>=.001,
 			sprintf("%11.3f", x),
-			sprintf("%11.03g", x));
+			sprintf("%11.03e", x));
 		return(res);
 	}
 
@@ -1496,9 +1484,9 @@ reformat_coef_tab=function(coef_tab){
 		out_tab[,i]=sprintf("%8.04f", coef_tab[,i]);
 	}
 
-	out_tab[,4]=ifelse(coef_tab[,4]>0.0001,
+	out_tab[,4]=ifelse(coef_tab[,4]>=0.001,
 		sprintf("%11.3f", coef_tab[,4]),
-		sprintf("%11.03g", coef_tab[,4]));
+		sprintf("%11.03e", coef_tab[,4]));
 
 	out_tab[,"Signf"]=sapply(coef_tab[,4], sig_char);
 
@@ -1507,16 +1495,6 @@ reformat_coef_tab=function(coef_tab){
 
 ###############################################################################
 # Accumulate univariate results into matrix and generate heat map
-
-# glm_full_fit_list
-# glm_full_sumfit_list
-# glm_reduced_fit_list
-# glm_reduced_sumfit_list
-# mod_stat_list
-# null_anova_list
-# reduced_anova_list
-# manova_res
-# manova_sumres
 
 num_responses=length(glm_full_fit_list);
 response_names=names(glm_full_fit_list);
@@ -1803,8 +1781,6 @@ paint_matrix(summary_res_rsqrd, title="Univariate McFadden's R-Squared");
 ###############################################################################
 # Report model comparison statistics
 
-#print(summary_res_rsqrd);
-
 brkt=function(mat){
 	cnames=colnames(mat);
 	colnames(mat)=sapply(cnames, function(x){ paste("[", x, "]", sep="");});
@@ -1935,7 +1911,7 @@ draw_list=function(abbr_tab, coloffset){
 	order_ix=order(abbr_tab_wcutoffs[,2]);
 	abbr_tab_wcutoffs=abbr_tab_wcutoffs[order_ix,,drop=F];
 
-	print(abbr_tab_wcutoffs);
+	#print(abbr_tab_wcutoffs);
 
 	# Calculate font size adjustments based on number of items in list
 	num_items=nrow(abbr_tab_wcutoffs);
@@ -1998,8 +1974,6 @@ draw_list=function(abbr_tab, coloffset){
 
 		row_id=row_id+1;
 	}
-
-	
 	
 }
 
@@ -2047,161 +2021,53 @@ plot_summary_lists=function(sumfit_list, columns_pp=4){
 
 plot_summary_lists(glm_full_sumfit_list, 5);
 
-quit();
-
+###############################################################################
+# Exports to text files
 ###############################################################################
 
+###############################################################################
+# Required for predictor/response downstream analysis
+
+write_coef_pval_matrices=function(coef_mat, pval_mat, alr_names, out_rootfn){
+	# Format: Factors as columns, alr (predictor) as rows
+
+	cat("Writing coef and pvals matrices to: ", out_rootfn, " (root).\n", sep="");
+
+	coef_mat=coef_mat[alr_names,,drop=F];
+	pval_mat=pval_mat[alr_names,,drop=F];
+
+	write.table(coef_mat, file=paste(out_rootfn, ".alr_as_pred.coefs.tsv", sep=""), 
+		sep="\t", quote=F, col.names=NA, row.names=T);
+
+	write.table(pval_mat, file=paste(out_rootfn, ".alr_as_pred.pvals.tsv", sep=""), 
+		sep="\t", quote=F, col.names=NA, row.names=T);
+}
+
+write_coef_pval_matrices(summary_res_coef, summary_res_pval, shrd_alr_names, OutputRoot);
 
 ###############################################################################
-# Write summary to file
-fh=file(paste(OutputRoot, ".alr_as_pred.review.tsv", sep=""), "w");
-cat(file=fh, c("Name:", OutputRoot, ""), sep="\t");
-cat(file=fh, "\n");
-cat(file=fh, "\n");
-cat(file=fh, c("Predictors:"), sep="\t");
-cat(file=fh, "\n");
+# Required for Block analysis summary/accumulate code
+# <predictors>\t<Full vs Null ANOVA p-value>
 
-category_names=rownames(manova_pval_mat);
+write_anova_summary=function(fn, mod_imprv_mat){
 
-# MANOVA Covariates pvalues
-cat(file=fh, paste("[Covariates]", "p-value:", "signif:", sep="\t"), "\n", sep="");
-for(cov in covariates_arr){
-	if(length(manova_res>0)){
-		pv=signif(manova_res[cov,"Pr(>F)"], 5);
-		cat(file=fh, c(cov, pv, sig_char(pv)), sep="\t");
-	}else{
-		cat(file=fh, c(cov, NA, ""), sep="\t");
-	}
-	cat(file=fh, "\n");
+	cat("Writing ANOVA summary to: ", fn, "\n");
+
+	#print(mod_imprv_mat);
+	# Use the preformatted version
+	stats=mod_imprv_mat[["character"]];
+
+	outmat=cbind(
+		rownames(stats), 
+		stats[,"Full McFadden"],
+		stats[,"ANOVA Full-Null P-Val"]
+	);
+	colnames(outmat)=c("Predictors", "Full_McF_R2", "Full-Null_ANOVA_P-Val");
+
+	write.table(outmat, fn, sep="\t", quote=F, col.names=T, row.names=F);
 }
 
-# MANOVA ALR pvalues
-cat(file=fh, c("[ALR Categories]", "p-value:", "signif:"), sep="\t");
-cat(file=fh, "\n");
-for(cat_name in alr_cat_names){
-	if(length(manova_res>0)){
-		pv=signif(manova_res[cat_name,"Pr(>F)"], 5);
-		cat(file=fh, c(cat_name, pv, sig_char(pv)), sep="\t");
-	}else{
-		cat(file=fh, c(cat_name, NA, ""), sep="\t");
-	}
-	cat(file=fh, "\n");
-}
-cat(file=fh, "\n");
-
-# Response pvalues, R^2,  
-num_resp=nrow(summary_res_rsqrd);
-resp_name=rownames(summary_res_rsqrd);
-cat(file=fh, c("Univariate Adj R-Sqrd:"),"\n");
-cat(file=fh, paste("Resp Name:", "Full Model:", "ALR Contrib:", sep="\t"), "\n", sep="");
-for(i in 1:num_resp){
-	cat(file=fh, paste(
-		resp_name[i], 
-		summary_res_rsqrd[i, "Full Model"],
-		summary_res_rsqrd[i, "Difference"],
-	sep="\t"), "\n", sep="");
-}
-close(fh);
-
-###############################################################################
-# Write ALR Predictor Coefficients to file
-
-fh=file(paste(OutputRoot, ".alr_as_pred.all_pred.coef_and_pval.tsv", sep=""), "w");
-num_out_col=ncol(summary_res_coef);
-response_names=colnames(summary_res_coef);
-
-cat(file=fh, "Grouping:\t", paste(rep(OutputRoot, num_out_col), collapse="\t"), sep="");
-cat(file=fh, "\n");
-cat(file=fh, "Responses:\t", paste(response_names, collapse="\t"), sep="");
-cat(file=fh, "\n\n");
-
-# Coefficients
-cat(file=fh, "[Coefficients]\n");
-for(var in covariate_coefficients){
-	cat(file=fh, var, paste(
-		round(summary_res_coef[var, response_names], 4), collapse="\t"), sep="\t");
-	cat(file=fh, "\n");
-}
-
-cat(file=fh, "\n");
-
-for(var in shrd_alr_names){
-	cat(file=fh, var, paste(
-		round(summary_res_coef[var, response_names], 4), collapse="\t"), sep="\t");
-	cat(file=fh, "\n");
-}
-
-cat(file=fh, "\n\n");
-
-# P-values
-cat(file=fh, "[P-values]\n");
-for(var in covariate_coefficients){
-	cat(file=fh, var, paste(
-		round(summary_res_pval[var, response_names], 4), collapse="\t"), sep="\t");
-	cat(file=fh, "\n");
-}
-
-cat(file=fh, "\n");
-
-for(var in shrd_alr_names){
-	cat(file=fh, var, paste(
-		round(summary_res_pval[var, response_names], 4), collapse="\t"), sep="\t");
-	cat(file=fh, "\n");
-}
-
-close(fh);
-
-###############################################################################
-# Write Reduced Model (covariates only) to file
-
-fn=paste(OutputRoot, ".alr_as_pred.reduced.cov_only.coef_and_pval.tsv", sep="");
-
-fh=file(fn, "w");
-cat(file=fh, "Reduced Model (Covariates-only) Regression Results:\n\n");
-cat(file=fh, "[Coefficients]\n\nCovariates\t");
-close(fh);
-
-write.table(file=fn, x=summary_res_reduced_coef, append=T, quote=F, sep="\t");
-
-fh=file(fn, "a");
-cat(file=fh, "\n\n[P-values]\n\nCovariates\t");
-close(fh);
-
-write.table(file=fn, x=summary_res_reduced_pval, append=T, quote=F, sep="\t");
-
-
-###############################################################################
-# Write ALR p-values to file
-# Format: Factors as columns, taxa (predictor) as rows
-
-exp_tab=summary_res_pval[shrd_alr_names,,drop=F];
-write.table(exp_tab,  file=paste(OutputRoot, ".alr_as_pred.pvals.tsv", sep=""), sep="\t", quote=F, col.names=NA, row.names=T);
-
-exp_tab=summary_res_coef[shrd_alr_names,,drop=F];
-write.table(exp_tab,  file=paste(OutputRoot, ".alr_as_pred.coefs.tsv", sep=""), sep="\t", quote=F, col.names=NA, row.names=T);
-
-###############################################################################
-# Write R^2 Reduced/Full Model stats
-
-write.table(improv_mat, file=paste(OutputRoot, ".alr_as_pred.rsqrd.tsv", sep=""), sep="\t", quote=F, col.names=NA, row.names=T);
-
-###############################################################################
-# Write MANOVA to file
-
-if(length(manova_res)){
-	num_variables=nrow(manova_res)-1;
-	outmat=matrix("", nrow=num_variables, ncol=3);
-	colnames(outmat)=c(TagName, "Pr(>F)", "Signf");
-	varnames=unlist(rownames(manova_res));
-	pvals=unlist(manova_res["Pr(>F)"]);
-	outmat[,TagName]=varnames[1:num_variables];
-	outmat[,"Pr(>F)"]=sprintf("%4.4f", pvals[1:num_variables]);
-	outmat[,"Signf"]=sapply(pvals[1:num_variables], sig_char); 
-}else{
-	outmat=matrix("-", nrow=1, ncol=2);
-	colnames(outmat)=c(TagName, "Pr(>F)");
-}
-write.table(outmat, file=paste(OutputRoot, ".alr_as_pred.anova.summary.tsv", sep=""), sep="\t", quote=F, col.names=T, row.names=F);
+write_anova_summary(paste(OutputRoot, ".alr_as_pred.anova.summary.tsv", sep=""), mod_imprv_mat);
 
 ###############################################################################
 
