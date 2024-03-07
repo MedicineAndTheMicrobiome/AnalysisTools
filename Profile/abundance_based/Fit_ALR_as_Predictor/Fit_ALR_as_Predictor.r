@@ -1894,38 +1894,163 @@ plot_text(c(
 	capture.output(print(brkt(FR_mat), quote=F))
 	));
 
+#------------------------------------------------------------------------------
+
+pull_abbrev_tab=function(full_coef_tab){
+
+	#cat("Original Coef Tab:\n");
+	#print(full_coef_tab);
+
+	# Remove intercept
+	predictors=setdiff(rownames(full_coef_tab), "(Intercept)");
+	cur_coef_tab=full_coef_tab[predictors,,drop=F];
+
+	# Remove if pval>.1
+	signf_ix=(cur_coef_tab[,4] < 0.1);
+	cur_coef_tab=cur_coef_tab[signf_ix, c(1,4), drop=F];
+
+	# Sort
+	signf_ord_ix=order(cur_coef_tab[,2], decreasing=F);
+	cur_coef_tab=cur_coef_tab[signf_ord_ix,,drop=F];
+
+	return(cur_coef_tab);
+
+}
+
+draw_list=function(abbr_tab, coloffset){
+
+	chw=par()$cxy[1]/1.1; # width is over estimated
+	chh=par()$cxy[2];	
+	
+	ch_rows=1/chh;
+	ch_cols=1/chw;
+
+	#cat("Rows: ", ch_rows, " / Cols: ", ch_cols, "\n");
+
+	# Include cutoffs separators into table
+	cutoffs=c(-1, 0.001, 0.01, 0.05);
+	cutoff_entries=cbind(0, cutoffs);
+	rownames(cutoff_entries)=c(" < 0.001 :", " < 0.01 :", " < 0.05 :", " < 0.1 :");
+	abbr_tab_wcutoffs=rbind(abbr_tab, cutoff_entries);
+	order_ix=order(abbr_tab_wcutoffs[,2]);
+	abbr_tab_wcutoffs=abbr_tab_wcutoffs[order_ix,,drop=F];
+
+	print(abbr_tab_wcutoffs);
+
+	# Calculate font size adjustments based on number of items in list
+	num_items=nrow(abbr_tab_wcutoffs);
+	vadj=1;
+	# If too many items, reduce size
+	if(num_items>ch_rows){
+		ch_rows=num_items;
+		vadj=num_items/ch_rows;
+	}
+
+	item_names=rownames(abbr_tab_wcutoffs);
+
+	row_id=0;
+	for(i in 1:num_items){
+
+		item_len=nchar(item_names[i]);
+		hadj=1;
+		# If size was adjust and the item is still to long, apply another adjustment
+		if(vadj*item_len*chw > 1){
+			hadj=1/(vadj*item_len*chw);
+		}
+
+		estimate=abbr_tab_wcutoffs[i,"Estimate"];
+		if(estimate>0){
+			draw_bullets=T;
+			est_bgcol="green";
+			est_sycol="black";
+			est_ch="+";
+			est_labfont=1;
+			est_labcol="black";
+			co_adj=1;
+		}else if(estimate<0){
+			draw_bullets=T;
+			est_bgcol="red";
+			est_sycol="white";
+			est_ch="-";
+			est_labfont=1;
+			est_labcol="black";
+			co_adj=1;
+		}else{
+			draw_bullets=F;
+			est_ch="";
+			est_labfont=3;
+			est_labcol="blue";
+			co_adj=.7;
+		}
+
+
+		# Mark +/- bullet glyphs
+		if(draw_bullets){
+			points(coloffset+chw*.6, 1-chh*row_id, pch=21, cex=1.3*vadj, 
+				col="black", bg=est_bgcol);
+			points(coloffset+chw*.6, 1-chh*row_id, pch=est_ch, cex=1*vadj, 
+				col=est_sycol);
+		}
+
+		# Draw response name
+		text(x=coloffset+chw*.6, y=1-chh*row_id, item_names[i], cex=hadj*vadj*co_adj, 
+			pos=4, font=est_labfont, col=est_labcol);
+
+		row_id=row_id+1;
+	}
+
+	
+	
+}
+
+plot_summary_lists=function(sumfit_list, columns_pp=4){
+
+	par.orig=par(no.readonly=T);
+
+	resp_names=names(sumfit_list);
+	
+	cat("Columns per page: ", columns_pp, "\n");
+
+
+	par(mar=c(.5, .5, 3, .5));
+	par(mfrow=c(2,1));
+
+	
+	resp_count=0;
+	for(cur_res in resp_names){
+
+		resp_col=resp_count %% columns_pp;
+
+		if(resp_col==0){
+			plot(0, type="n", xlim=c(0,columns_pp), ylim=c(0,1), bty="n",
+				xaxt="n", yaxt="n", xlab="", ylab="");
+			abline(v=seq(0,columns_pp));
+		}
+
+		cat("Current Response: ", cur_res, "\n");
+
+		# Label response name over column
+		mtext(cur_res, side=3, line=.1, at=resp_col+.5, cex=1.1, font=2);
+
+		# Extract abbreviated tables from coefficients in sumfit record
+		abtab=pull_abbrev_tab(sumfit_list[[cur_res]]$coefficients);
+
+		# Print the response's predictor in the specified column
+		draw_list(abtab, resp_col);
+		
+		resp_count=resp_count+1;
+	}
+	
+	par(par.orig);
+
+}
+
+plot_summary_lists(glm_full_sumfit_list, 5);
+
 quit();
 
 ###############################################################################
 
-# Report Full/Reduced Improvement ANOVA P-values
-Signf=sapply(improv_mat[,"Diff ANOVA P-Value"], sig_char);
-plot_text(c(
-	"ANOVA Comparing Full (Cov + ALR) and Reduced (Cov only) Models for Improvement",
-	"",
-	capture.output(print(round(improv_mat[,c(1,2)], 3))),
-	"",
-	capture.output(print(round(improv_mat[,c(3,4)], 3))),
-	"",
-	capture.output(print(cbind(
-		apply(improv_mat[,c(5,6,7), drop=F], 1:2, function(x){sprintf("%8.4f",x)}), 
-		Signf), quote=F))
-));
-
-# Report MANOVA
-manova_pval_mat=matrix(NA, nrow=length(alr_cat_names), ncol=1, dimnames=list(alr_cat_names, "Pr(>F)"));
-if(length(manova_res)>0){
-	plot_text(c(
-		"MANOVA",
-		capture.output(print(manova_res))
-	));
-
-	manova_pval=manova_res[,"Pr(>F)", drop=F]
-	manova_pval_mat[alr_cat_names,]=manova_pval[alr_cat_names,];
-	#par(oma=c(10,14,5,1));
-	paint_matrix(manova_pval_mat[alr_cat_names,,drop=F], title="ALR Predictors MANOVA", 
-		plot_min=0, plot_max=1, high_is_hot=F, value.cex=1, deci_pts=3);
-}
 
 ###############################################################################
 # Write summary to file
@@ -2079,98 +2204,6 @@ if(length(manova_res)){
 write.table(outmat, file=paste(OutputRoot, ".alr_as_pred.anova.summary.tsv", sep=""), sep="\t", quote=F, col.names=T, row.names=F);
 
 ###############################################################################
-
-#print(cat_abundances);
-#print(alr_cat_names);
-#print(manova_pval_mat);
-#print(mean_abund);
-
-plot_rank_abund=function(abundances, pvals, range=c(1,10), title="", ylim=NULL){
-
-	num_colors=50;
-	color_arr=rainbow(num_colors, start=0, end=4/6);
-
-        remap=function(in_val, in_range, out_range){
-                in_prop=(in_val-in_range[1])/(in_range[2]-in_range[1])
-                out_val=in_prop*(out_range[2]-out_range[1])+out_range[1];
-                return(out_val);
-        }
-
-	if(is.null(ylim)){
-		ylim=c(0, max(abundances)*1.1);
-	}
-	
-	category_colors=remap(pvals, c(0,1), c(1, num_colors));
-	category_names=names(abundances);
-
-	range_arr=range[1]:range[2];
-
-	proportion_rep=sum(abundances[range_arr]);
-	num_cat=range[2]-range[1];
-	mids=barplot(abundances[range_arr], col=color_arr[category_colors[range_arr]], names.arg="", 
-		yaxt="n",
-		main=title, ylim=ylim);
-	mtext(paste("Percent Represented: ", round(proportion_rep*100,2), "%", sep=""), side=3, line=0);
-
-	# Calculate labels sizes/positions
-	spacing=mids[2]-mids[1];
-
-	gpar=par();
-	dims=gpar$usr; # xlim/xlim of plot
-	cxy=gpar$cxy;  # character size in plot dimensions
-
-	# Labels
-	resize=min(1,30/num_cat);
-	text(mids-cxy[1]*.75, -cxy[2]/2, category_names[range_arr], srt=-45, xpd=T, cex=resize, pos=4);
-
-	# y axis
-	axis(2, at=seq(0,1,.05), las=2)
-
-	# Legend
-	legend_colors=remap(c(.05, .1, .5, 1), c(0,1), c(1, num_colors));
-	legend(dims[2]-(dims[2]-dims[1])/5, dims[4]-(dims[4]-dims[3])/5,
-		legend=c("0.05", "0.10", "0.50", "1.00"),
-		fill=color_arr[legend_colors],
-		cex=.75,
-		title="p-value colors:",
-		bty="n"
-	);
-	
-}
-
-if(length(manova_res)>0){
-
-	par(oma=c(1,1,1,1));
-	par(mar=c(15,3,4,15));
-	par(mfrow=c(2,1));
-
-	max_mean_abund=max(mean_abund)*1.2;
-	plot_rank_abund(mean_abund, manova_pval_mat, range=c(1,num_top_taxa), 
-		"All Top Categories", ylim=c(0, max_mean_abund));
-
-	if(num_top_taxa>=10){
-		plot_rank_abund(mean_abund, manova_pval_mat, range=c(1,10), 
-			"Top 10 Categories", ylim=c(0, max_mean_abund));
-	}
-
-	if(num_top_taxa>=20){
-		plot_rank_abund(mean_abund, manova_pval_mat, range=c(1,20), 
-			"Top 20 Categories", ylim=c(0, max_mean_abund));
-	}
-
-	if(num_top_taxa>=40){
-		plot_rank_abund(mean_abund, manova_pval_mat, range=c(1,40), 
-		"Top 40 Categories", ylim=c(0, max_mean_abund));
-	}
-
-	plot_rank_abund(mean_abund, manova_pval_mat, range=c(1,floor(num_top_taxa/2)), 
-		"Top Half of Categories", ylim=c(0, max_mean_abund));
-	plot_rank_abund(mean_abund, manova_pval_mat, range=c(floor(num_top_taxa/2)+1,num_top_taxa), 
-		"Bottom Half of Categories", ylim=c(0, max_mean_abund));
-}
-
-
-##############################################################################
 
 cat("Done.\n");
 #dev.off();
