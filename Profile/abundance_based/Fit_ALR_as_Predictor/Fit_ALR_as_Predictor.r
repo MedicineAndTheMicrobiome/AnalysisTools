@@ -350,6 +350,32 @@ plot_text=function(strings){
 	}
 }
 
+plot_title_page=function(title, subtitle=""){
+
+        orig.par=par(no.readonly=T);
+        par(family="serif");
+        par(mfrow=c(1,1));
+
+        plot(0,0, xlim=c(0,1), ylim=c(0,1), type="n",  xaxt="n", yaxt="n",
+                xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
+                );
+
+        # Title
+        title_cex=3;
+        title_line=1;
+        text(0.5, title_line, title, cex=title_cex, font=2, adj=c(.5,1));
+
+        # Subtitle
+        num_subt_lines=length(subtitle);
+        cxy=par()$cxy;
+        for(i in 1:num_subt_lines){
+                text(.5, title_line -title_cex*cxy[2] -i*cxy[2], subtitle[i], adj=.5);
+        }
+
+        par(orig.par);
+}
+
+
 paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_is_hot=T, deci_pts=4, 
 	label_zeros=T, counts=F, value.cex=2, 
 	plot_col_dendr=F,
@@ -1509,6 +1535,14 @@ num_responses=length(glm_full_fit_list);
 response_names=names(glm_full_fit_list);
 example_coef_mat=glm_full_sumfit_list[[1]]$coefficients;
 
+plot_title_page("Response Variable Diagnostics Plots", c(
+	"For each response variable, the following pages include:",
+	"  1.) Comparison of the covariate associations between full and reduced models.",
+	"  2.) Complete list of coefs and p-values for the ALR predictors.",
+	"  3.) Barplot of the most significant predictors (covariates + ALR)",
+	"  4.) Predicted vs. Observed scatter plot of fitted model."
+	));
+
 # Report individual fits
 for(i in 1:num_responses){
 
@@ -1704,6 +1738,12 @@ summary_res_pval_rnd=round(summary_res_pval,2);
 # Plot covariates from full model
 if(num_covariate_coefficients>0){
 
+	plot_title_page("Covariates Portion of Full Model GLM", c(
+		"These heatmaps summarize the coefficients and p-values",
+		"that were estimated across all the response variables",
+		"for the covariates."
+		));  
+
 	cov_coef_mat=summary_res_coef[covariate_coefficients,,drop=F];
 	cov_pval_mat=summary_res_pval[covariate_coefficients,,drop=F];
 
@@ -1727,6 +1767,12 @@ if(num_covariate_coefficients>0){
 	paint_matrix(cov_coef_mat_001, title="Covariate Coefficients: p-val < 0.001",
 		value.cex=2, deci_pts=2, label_zeros=F);
 }
+
+plot_title_page("ALR Portion of the Full Model GLM", c(
+	"These heatmaps summarize the coefficients and p-values",
+	"that were estimated across all the response variables",
+	"for the ALR data."
+	));
 
 # Variations of ALR Predictor Coefficients
 paint_matrix(summary_res_coef[shrd_alr_names,,drop=F], 
@@ -1784,6 +1830,22 @@ paint_matrix(summary_res_pval_rnd[shrd_alr_names,,drop=F],
 );
 
 ###############################################################################
+
+plot_title_page("Response Model R^2 Completeness", c(
+	"These tables provide an description of the amount of variance",
+	"that the model can explain.",
+	"",
+	"When the response variable is binary, R^2 and Adj-R^2 cannot",
+	"be estimated.  The pseudo-R^2 McFadden's R^2 is computed across",
+	"all GLMs to compare a mix of response variables",
+	"",
+	"Model comparison using AIC is provided.",
+	"",
+	"The Full Model includes covariates and ALR predictors.",
+	"The Reduced Model only includes covariates.",
+	"The Diff, subtracts the Reduced Model from the Full Model.",
+	"By definition, the Null model has a R^2 of 0."
+));
 
 paint_matrix(summary_res_rsqrd, title="Univariate McFadden's R-Squared");
 
@@ -1858,6 +1920,29 @@ FN_mat=allmod_mat[fn_signf_ix,c("Full McFadden","ANOVA Full-Null P-Val","Signf F
 RN_mat=allmod_mat[rn_signf_ix,c("Reduced McFadden","ANOVA Reduced-Null P-Val","Signf RN"),drop=F];
 FR_mat=allmod_mat[fr_signf_ix,c("Diff McFadden","ANOVA Full-Reduced P-Val","Signf FR"),drop=F];
 
+plot_title_page("Response Model Strength ANOVAs", c(
+	"These tables sort the response variables by model strength.",
+	"These help to identify which response variables are predictable by the provided data.",
+	"",
+	"Full vs. Null Models (Most comprehensive):",
+	"  Represents how well each response variable is explained by the",
+	"  covariates and ALR predictors.  This is the 'best' that can be",
+	"  done with the data provided to the model.",
+	"",
+	"Reduced vs. Null Models (Covariates-only):",
+	"  Represents how well each response variable is explained by the",
+	"  covariates alone.  The ALR are excluded. If it is assumed that",
+	"  the covariates are 'easy to come by', then the model measures",
+	"  the baseline understanding of the response variables at 'no cost'.",
+	"",
+	"Full vs. Reduced Models (Added value of ALR data):",
+	"  Represents the explanatory improvement of the response variable",
+	"  when the experimental ALR data is added on top of the covariate data.",
+	"  These statistics measure the relative improvement that including",
+	"  the experimental ALR data provides."
+));
+
+
 plot_text(c(
 	"Comparison of Model Strengths:",
 	"  (Sorted by Strongest Full Model: Full vs. Null)",
@@ -1879,28 +1964,84 @@ plot_text(c(
 	capture.output(print(brkt(FR_mat), quote=F))
 	));
 
+###############################################################################
+
+pull_abbrev_response_tab=function(sumf_lst){
+
+	abbr_list=list();
+	resp_names=names(sumf_lst);
+	for(rspn in resp_names){
+
+		full_coef_tab=sumf_lst[[rspn]]$coefficients;
+
+		# Remove intercept
+		predictors=setdiff(rownames(full_coef_tab), "(Intercept)");
+		cur_coef_tab=full_coef_tab[predictors,,drop=F];
+
+		# Remove if pval>.1
+		signf_ix=(cur_coef_tab[,4] < 0.1);
+		cur_coef_tab=cur_coef_tab[signf_ix, c(1,4), drop=F];
+
+		# Sort
+		signf_ord_ix=order(cur_coef_tab[,2], decreasing=F);
+		cur_coef_tab=cur_coef_tab[signf_ord_ix,,drop=F];
+
+		abbr_list[[rspn]]=cur_coef_tab;
+	}
+
+	return(abbr_list);
+}
+
 #------------------------------------------------------------------------------
 
-pull_abbrev_tab=function(full_coef_tab){
+pull_abbrev_predictor_tab=function(sumf_lst){
 
-	#cat("Original Coef Tab:\n");
-	#print(full_coef_tab);
+	abbr_list=list();
+	resp_names=names(sumf_lst);
 
-	# Remove intercept
-	predictors=setdiff(rownames(full_coef_tab), "(Intercept)");
-	cur_coef_tab=full_coef_tab[predictors,,drop=F];
+	for(rspn in resp_names){
+		full_coef_tab=sumf_lst[[rspn]]$coefficients;
 
-	# Remove if pval>.1
-	signf_ix=(cur_coef_tab[,4] < 0.1);
-	cur_coef_tab=cur_coef_tab[signf_ix, c(1,4), drop=F];
+		num_pred=nrow(full_coef_tab);
+		pred_names=rownames(full_coef_tab);
 
-	# Sort
-	signf_ord_ix=order(cur_coef_tab[,2], decreasing=F);
-	cur_coef_tab=cur_coef_tab[signf_ord_ix,,drop=F];
+		for(i in 1:num_pred){
+		
+			# Skip of pval >.1
+			if(full_coef_tab[i,4]<.1){
+				pred_name=pred_names[i];
 
-	return(cur_coef_tab);
+				# Skip/Remove intercept
+				if(pred_name=="(Intercept)"){
+					next;
+				}
+				
+				# Add response row to predictor table
+				orig_tab=abbr_list[[pred_name]];
+				new_tab=rbind(
+					orig_tab,
+					c(
+						full_coef_tab[i,"Estimate"],
+						full_coef_tab[i,4]
+					));
+				rownames(new_tab)=c(rownames(orig_tab), rspn);
 
+				# Add column names
+				if(is.null(orig_tab)){
+					colnames(new_tab)=c("Estimate", "Pr(>|z|)");
+				}
+
+				abbr_list[[pred_name]]=new_tab;
+			}	
+
+		}
+
+	}
+
+	return(abbr_list);
 }
+
+#------------------------------------------------------------------------------
 
 draw_list=function(abbr_tab, coloffset){
 
@@ -1986,49 +2127,106 @@ draw_list=function(abbr_tab, coloffset){
 	
 }
 
-plot_summary_lists=function(sumfit_list, columns_pp=4){
+#------------------------------------------------------------------------------
+
+plot_summary_lists=function(sumfit_list, type, columns_pp=4){
 
 	par.orig=par(no.readonly=T);
-
-	resp_names=names(sumfit_list);
-	
 	cat("Columns per page: ", columns_pp, "\n");
 
+	#----------------------------------------------------------------------
+
+	# Pull by pred or resp
+	if(type=="response"){
+
+		pval_list=pull_abbrev_response_tab(sumfit_list);
+		otherType="predictors";
+
+	}else if(type=="predictor"){
+
+		pval_list=pull_abbrev_predictor_tab(sumfit_list);
+		otherType="responses";
+
+	}else{
+		cat("Error:  Bad type.\n");
+		quit();
+	}
+
+	#----------------------------------------------------------------------
 
 	par(mar=c(.5, .5, 3, .5));
 	par(mfrow=c(2,1));
 
+	item_cex=1.1;
 	
-	resp_count=0;
-	for(cur_res in resp_names){
+	item_count=0;
+	item_names=sort(names(pval_list));
+	for(cur_item in item_names){
 
-		resp_col=resp_count %% columns_pp;
+		item_col=item_count %% columns_pp;
 
-		if(resp_col==0){
+		if(item_col==0){
 			plot(0, type="n", xlim=c(0,columns_pp), ylim=c(0,1), bty="n",
 				xaxt="n", yaxt="n", xlab="", ylab="");
+
+			title(ylab=otherType, font.lab=3, line=-1);
 			abline(v=seq(0,columns_pp));
 		}
 
-		cat("Current Response: ", cur_res, "\n");
+		cat("Current Item: ", cur_item, "\n");
 
 		# Label response name over column
-		mtext(cur_res, side=3, line=.1, at=resp_col+.5, cex=1.1, font=2);
+		chw=par()$cxy[1]/1.1;
+		if(nchar(cur_item)*item_cex*chw > 1){
+			item_readj=1/(item_cex*chw*nchar(cur_item));
+		}else{
+			item_readj=1;
+		}
+
+		mtext(type, side=3, line=1.1, at=item_col+.5, cex=.6, font=3);
+		mtext(cur_item, side=3, line=.1, at=item_col+.5, cex=item_cex*item_readj, font=2);
 
 		# Extract abbreviated tables from coefficients in sumfit record
-		abtab=pull_abbrev_tab(sumfit_list[[cur_res]]$coefficients);
+		#abtab=pull_abbrev_tab(sumfit_list[[cur_res]]$coefficients);
+		abtab=pval_list[[cur_item]];
 
 		# Print the response's predictor in the specified column
-		draw_list(abtab, resp_col);
+		draw_list(abtab, item_col);
 		
-		resp_count=resp_count+1;
+		item_count=item_count+1;
 	}
 	
 	par(par.orig);
 
 }
 
-plot_summary_lists(glm_full_sumfit_list, 5);
+plot_title_page("Summary by Response Variables", c(
+	"Each vertical panel summarizes another response variable.",
+	"The predictors that are associated with the response variable",
+	"are listed by decreasing significance.",
+	"",
+	"P-value tags separate the predictors by common thresholds.",
+	"+/- green/red bullets represent positive and negative associations",
+	"between predictor and response variables.",
+	"",
+	"These associations are estimated in a single GLM.",
+	"Non-significant associations are not listed."
+	));
+plot_summary_lists(glm_full_sumfit_list, "response", 5);
+
+plot_title_page("Summary by Predictor Variable", c(
+	"Each vertical panel summarizes another predictor variable.",
+	"The respondors that are associated with the predictor variable",
+	"are listed by decreasing significance.",
+	"",
+	"P-value tags separate the responders by common thresholds.",
+	"+/- green/red bullets represent positive and negative associations",
+	"between predictor and response variables.",
+	"",
+	"These associations are collected across multiple GLMs.",
+	"Non-signficant associations are not listed."
+	));
+plot_summary_lists(glm_full_sumfit_list, "predictor", 5);
 
 ###############################################################################
 
@@ -2139,6 +2337,7 @@ plot_manova=function(manova_res_sum){
 
 }
 
+plot_title_page("MANOVA");
 plot_manova(manova_sumres);
 
 
