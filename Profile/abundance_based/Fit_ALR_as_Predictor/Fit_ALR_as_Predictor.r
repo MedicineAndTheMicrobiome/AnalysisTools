@@ -1138,10 +1138,8 @@ all_gaussian_resp=all(model_families=="gaussian");
 cat("Model Families:\n");
 print(model_families);
 
-run_glm=F;
-if(num_bool_resp){
-	cat("Boolean responses identified.  Running GLM's for logistic regression.\n");
-	run_glm=T;
+if(!all_gaussian_resp){
+	cat("Gaussian family responses identified.\n");
 }
 
 ###############################################################################
@@ -1218,6 +1216,7 @@ compute_mod_stats=function(fit, sumfit){
 
 #------------------------------------------------------------------------------
 
+run_glm=T;
 if(run_glm){
 	cat("Running glm...\n");
 
@@ -1324,26 +1323,39 @@ if(run_glm){
 	
 	}
 
-	# Copy all the residuals from the glm fit to a single matrix
-	num_samples=nrow(response_factors);
-	residuals_mat=matrix(NA, nrow=num_samples, ncol=num_resp_var);
-	colnames(residuals_mat)=resp_names;
-	for(rsp_ix in 1:num_resp_var){
-		cur_resp_name=resp_names[rsp_ix];
-		residuals_mat[,rsp_ix]=glm_full_fit_list[[cur_resp_name]]$residuals;
-	}
-	#print(residuals_mat);
 
-	# Run manova
-	residual_df=(glm_full_fit_list[[1]]$df.residual);
-	cat("DF of Residuals: ", residual_df, "\n", sep="");
-	if(all_gaussian_resp && num_resp_var > 1 && (num_resp_var < residual_df)){
+	#######################################################################
+	# MANOVA if possible
+
+	# Placeholders
+	manova_res=NA;
+	manova_sumres=NA;
+
+	# See if we have enough gaussian response variables to run MANOVA
+	gausfam_ix=(model_families=="gaussian");
+	num_gaussian_resp=sum(gausfam_ix);
+	if(num_gaussian_resp>2){
+
+		gaus_resp_names=names(model_families[gausfam_ix]);
+
+		cat("Running MANOVA on: \n");
+		print(gaus_resp_names);
+
+		# Copy all the residuals from the glm fit to a single matrix
+		cat("Copying resp values to single matrix.\n");
+		num_samples=nrow(response_factors);
+		gaus_resp_mat=matrix(NA, nrow=num_samples, ncol=num_gaussian_resp);
+		colnames(gaus_resp_mat)=gaus_resp_names;
+		for(grn in gaus_resp_names){
+			gaus_resp_mat[,grn]=response_factors[,grn];
+		}
+		print(gaus_resp_mat);
 
 		cat("Conditions met to running MANOVA...\n");
 		tryCatch({
 
 			manova_res=manova(
-				as.formula(paste("residuals_mat~", full_pred_str)), 
+				as.formula(paste("gaus_resp_mat~", full_pred_str)), 
 				data=resp_pred_mat);
 			manova_sumres=summary(manova_res);
 
@@ -1352,14 +1364,11 @@ if(run_glm){
 			print(e);
 		});
 
-		print(manova_res);
+		#print(manova_res);
 		print(summary(manova_res));
 
 	}else{
-
-		cat("Conditions unmet to running MANOVA...\n");
-		manova_res=NA;
-		manova_sumres=NA;
+		cat("Insufficient Gaussian responses for MANOVA.\n");
 	}
 
 }
@@ -2020,6 +2029,119 @@ plot_summary_lists=function(sumfit_list, columns_pp=4){
 }
 
 plot_summary_lists(glm_full_sumfit_list, 5);
+
+###############################################################################
+
+format_manova_tab=function(mt){
+
+	format_pval=function(x){
+		res=ifelse(x>=.001,
+			sprintf("%11.3f", x),
+			sprintf("%11.03e", x));
+		return(res);
+	}
+
+	manova_tab_char=matrix("", ncol=ncol(mt), nrow=nrow(mt));
+	colnames(manova_tab_char)=colnames(mt);
+	rownames(manova_tab_char)=rownames(mt);
+
+	manova_tab_char[,"Df"]=mt[,"Df"];
+	manova_tab_char[,"Pillai"]=sprintf("%7.4f", mt[,"Pillai"]);
+	manova_tab_char[,"approx F"]=sprintf("%8.4f", mt[,"approx F"]);
+	manova_tab_char[,"num Df"]=mt[,"num Df"];
+	manova_tab_char[,"den Df"]=mt[,"den Df"];
+	manova_tab_char[,"Pr(>F)"]=format_pval(mt[,"Pr(>F)"]);
+
+	manova_tab_char=cbind(manova_tab_char, sapply(mt[,"Pr(>F)"], sig_char));
+	colnames(manova_tab_char)=c(colnames(mt), "signf");
+
+	return(manova_tab_char);
+
+}
+
+plot_manova_barplot=function(manova_tab){
+
+	ref_cutoffs=c(1, 0.1, 0.05, 0.01, 0.001);
+
+	pval=manova_tab[,"Pr(>F)"];
+	pred=rownames(manova_tab);
+	min_pval=min(pval);
+
+	nlp_ref_cutoffs=-log10(ref_cutoffs);
+	nlp_min_pval=-log10(min(min_pval, 0.001));
+	nlp_pvals=-log10(pval);
+
+	if(pval<0.1){
+		
+	}
+	signf_col=sapply(pval, function(x){ ifelse(x<0.1, "blue", "grey")});
+
+	par(mfrow=c(1,1));
+	par(mar=c(15,5,10,5));
+	mids=barplot(nlp_pvals, names.arg="", main="", ylab="-Log10(p-value)",
+		col=signf_col,
+		ylim=c(0, nlp_min_pval));
+	abline(h=nlp_ref_cutoffs, lty="dashed", col="orange");
+	axis(1, at=mids, labels=pred, las=2);
+	axis(4, at=nlp_ref_cutoffs, labels=ref_cutoffs, las=2);
+	mtext("P-values", side=4, line=3.5, cex=.8);	
+
+	title(main="MANOVA: Most Significant Predictors", line=1.5, cex.main=1.5, font.main=1);
+}
+
+plot_manova=function(manova_res_sum){
+
+	if(!is.na(manova_res_sum)){
+
+		manova_tab=manova_res_sum$stats;
+		pred_names=rownames(manova_tab);
+		pred_names=setdiff(pred_names, "Residuals");
+		manova_tab=manova_tab[pred_names,,drop=F];
+
+		ord_pval_ix=order(manova_tab[,"Pr(>F)"], decreasing=F);
+		manova_tab=manova_tab[ord_pval_ix,,drop=F];
+
+		manova_tab_char=format_manova_tab(manova_tab);
+		print(manova_tab_char, quote=F);
+
+		manout=c(
+			"MANOVA on Gaussian Family Variables:",
+			capture.output(print(gaus_resp_names)),
+			"",
+			paste("Num Samples: ", num_samples, sep=""),
+			paste("Num Gaussian Responses: ", num_gaussian_resp, sep=""),
+			paste("Num Covariates+ALR Predictors: ", num_pred_var, sep=""),
+			"",
+			capture.output(print(manova_tab_char, quote=F))
+		);
+
+		print(manout);
+		plot_text(manout);
+
+		#--------------------------------------------------------------
+		
+		plot_manova_barplot(manova_tab);
+
+
+	}else{
+		plot_text(c(
+			"MANOVA could not be performed.",
+			"",
+			"If <2 response variables were assumed to be Gaussian Family",
+			"or there were insufficient samples for the number of predictors",
+			"and response variables, then the MANOVA could not be performed.",
+			"",
+			paste("Num Samples: ", num_samples, sep=""),
+			paste("Num Gaussian Response Variables: ", num_gaussian_resp, sep=""),
+			paste("Num Covariates+ALR Predictors: ", num_pred_var, sep="")
+		));
+	}
+
+}
+
+plot_manova(manova_sumres);
+
+
 
 ###############################################################################
 # Exports to text files
