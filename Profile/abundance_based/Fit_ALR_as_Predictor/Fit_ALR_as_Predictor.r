@@ -1916,6 +1916,65 @@ plot_text(c(
 
 #------------------------------------------------------------------------------
 
+plot_model_attribution_barplot=function(r2mat){
+
+	cat("Generating Model Attribution Barplot.\n");
+	par.orig=par(no.readonly=T);
+
+	#print(r2mat);
+	mcf_r2s=c("Reduced McFadden", "Diff McFadden");
+	mcfad_mat=t(r2mat[,mcf_r2s]);
+	#print(mcfad_mat);
+	unexplained=apply(mcfad_mat, 2, function(x){ 1-sum(x)});
+	barplot_mat=rbind(mcfad_mat, unexplained);
+
+	rownames(barplot_mat)=c("Covariates-only", "ALR Improvement", "Unexplained");
+	pred_names=colnames(barplot_mat);
+	lr=log2(barplot_mat["ALR Improvement",]/barplot_mat["Covariates-only",]);
+	print(barplot_mat);
+
+	# Compute orderings for the different views
+	cov_ord=order(barplot_mat["Covariates-only",], decreasing=T);
+	full_ord=order(barplot_mat["Unexplained",], decreasing=F);
+	alr_ord=order(barplot_mat["ALR Improvement",], decreasing=T);
+	lr_ord=order(lr,decreasing=T);
+	
+
+	# Plot each of the views
+	par(mar=c(10,4,3,1));
+	par(mfrow=c(4,1));
+
+	mids=barplot(barplot_mat[,cov_ord,drop=F], col=c("blue", "green", "grey"), 
+		xaxt="n", ylim=c(0,1));
+	axis(1, at=mids, labels=pred_names[cov_ord], las=2);
+	title(main="Proportions of R^2, Sorted by Covariate R^2 (Reduced Model)");
+	
+	mids=barplot(barplot_mat[,full_ord,drop=F], col=c("blue", "green", "grey"), 
+		xaxt="n", ylim=c(0,1));
+	axis(1, at=mids, labels=pred_names[full_ord], las=2);
+	title(main="Proportions of R^2, Sorted by Covariates + ALR R^2 (Full Model)");
+
+	af=c(2,1,3); # alr first
+	mids=barplot(barplot_mat[af,alr_ord,drop=F], col=c("blue", "green", "grey")[af], 
+		xaxt="n", ylim=c(0,1));
+	axis(1, at=mids, labels=pred_names[alr_ord], las=2);
+	title(main="Proportions of R^2, Sorted by ALR (Diff Full-Reduced)");
+
+	colors=ifelse(lr[lr_ord]>0, "green", "blue");
+	mids=barplot(lr[lr_ord], xaxt="n", col=colors);
+	axis(1, at=mids, labels=pred_names[lr_ord], las=2);
+	title(main="log2([ALR R^2]/[Covar R^2])");
+
+	par(par.orig);
+
+}
+
+plot_model_attribution_barplot(mod_imprv_mat[["numeric"]]);
+
+
+
+#------------------------------------------------------------------------------
+
 FN_mat=allmod_mat[fn_signf_ix,c("Full McFadden","ANOVA Full-Null P-Val","Signf FN"),drop=F];
 RN_mat=allmod_mat[rn_signf_ix,c("Reduced McFadden","ANOVA Reduced-Null P-Val","Signf RN"),drop=F];
 FR_mat=allmod_mat[fr_signf_ix,c("Diff McFadden","ANOVA Full-Reduced P-Val","Signf FR"),drop=F];
