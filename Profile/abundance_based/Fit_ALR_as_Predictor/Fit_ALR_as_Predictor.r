@@ -1941,30 +1941,77 @@ plot_model_attribution_barplot=function(r2mat){
 	
 
 	# Plot each of the views
-	par(mar=c(10,4,3,1));
-	par(mfrow=c(4,1));
+	layout_mat=matrix(c(1,2,2,2,3,3,3,4,4,4,5,5,5,5,5), ncol=1);
+	layout(layout_mat);
 
+	#----------------------------------------------------------------------
+	# Plot the legend first
+	par(mar=c(0,4,0,1));
+	plot(0,0, type="n", xlim=c(0,1), ylim=c(0,1), xaxt="n", yaxt="n",
+		xlab="", ylab="", main="", bty="n");
+	legend(0, 1, horiz=T,
+		fill=c("blue", "green", "grey"), 
+		legend=c("Covariates", "ALR", "Unexplained"));
+
+	par(mar=c(8,4,4,1));
+
+	#----------------------------------------------------------------------
 	mids=barplot(barplot_mat[,cov_ord,drop=F], col=c("blue", "green", "grey"), 
-		xaxt="n", ylim=c(0,1));
+		xaxt="n", ylim=c(0,1), las=1, ylab="McFadden's R^2");
 	axis(1, at=mids, labels=pred_names[cov_ord], las=2);
-	title(main="Proportions of R^2, Sorted by Covariate R^2 (Reduced Model)");
+	axis(3, at=mids[1], labels=c("[Greatest Contrib from Covariates]"), 
+		cex.axis=.8, font.axis=3, hadj=0, line=-1, tick=F);
+	axis(3, at=mids[length(mids)], labels=c("[Least Contrib from Covariates]"), 
+		cex.axis=.8, font.axis=3, hadj=1, line=-1, tick=F);
+	title(main="Sorted by Covariate R^2 (Reduced Model)", line=2);
 	
+	#----------------------------------------------------------------------
 	mids=barplot(barplot_mat[,full_ord,drop=F], col=c("blue", "green", "grey"), 
-		xaxt="n", ylim=c(0,1));
+		xaxt="n", ylim=c(0,1), las=1, ylab="McFadden's R^2");
 	axis(1, at=mids, labels=pred_names[full_ord], las=2);
-	title(main="Proportions of R^2, Sorted by Covariates + ALR R^2 (Full Model)");
+	axis(3, at=mids[1], labels=c("[Most Explained by Predictors]"), 
+		cex.axis=.8, font.axis=3, hadj=0, line=-1, tick=F);
+	axis(3, at=mids[length(mids)], labels=c("[Least Explained by Predictors]"), 
+		cex.axis=.8, font.axis=3, hadj=1, line=-1, tick=F);
+	title(main="Sorted by Covariates + ALR R^2 (Full Model)", line=2);
 
+	#----------------------------------------------------------------------
 	af=c(2,1,3); # alr first
 	mids=barplot(barplot_mat[af,alr_ord,drop=F], col=c("blue", "green", "grey")[af], 
-		xaxt="n", ylim=c(0,1));
+		xaxt="n", ylim=c(0,1), las=1, ylab="McFadden's R^2");
 	axis(1, at=mids, labels=pred_names[alr_ord], las=2);
-	title(main="Proportions of R^2, Sorted by ALR (Diff Full-Reduced)");
+	axis(3, at=mids[1], labels=c("[Greatest Contrib from ALR]"), 
+		cex.axis=.8, font.axis=3, hadj=0, line=-1, tick=F);
+	axis(3, at=mids[length(mids)], labels=c("[Least Contrib from ALR]"), 
+		cex.axis=.8, font.axis=3, hadj=1, line=-1, tick=F);
+	title(main="Sorted by ALR (Diff Full-Reduced)", line=2);
 
+	#----------------------------------------------------------------------
+	# Plot Log Ratios
 	colors=ifelse(lr[lr_ord]>0, "green", "blue");
-	mids=barplot(lr[lr_ord], xaxt="n", col=colors);
-	axis(1, at=mids, labels=pred_names[lr_ord], las=2);
-	title(main="log2([ALR R^2]/[Covar R^2])");
+	full_r2_lr_ord=1-barplot_mat["Unexplained", lr_ord];
+	mag=max(abs(lr));
+	par(mar=c(8,4,3,1));
+	mids=barplot(lr[lr_ord], ylim=c(-mag*1.15, mag*1.15),
+		xaxt="n", col=colors, las=1, ylab="Log2(R^2 Ratio)");
 
+	# response var labels
+	axis(1, at=mids, labels=pred_names[lr_ord], las=2);
+	# annotations
+	axis(3, at=mids[1], labels=c("[Greater Contrib from ALR]"), 
+		cex.axis=.8, font.axis=3, hadj=0, line=-3, tick=F);
+	axis(3, at=mids[length(mids)], labels=c("[Greater Contrib from Covariates]"), 
+		cex.axis=.8, font.axis=3, hadj=1, line=-3, tick=F);
+
+	# label R^2
+	axis(1, at=mids, labels=gsub("^0.", ".", sprintf("%.02f", full_r2_lr_ord)), 
+		cex.axis=.8, font=2, col.axis="purple", tick=F, line=-2);
+	axis(1, at=mids[1], labels=c("(Full R^2)"), cex.axis=.8, col.axis="purple",
+		tick=F, line=-2.5);
+	title(main="log2([ALR R^2]/[Covar R^2])", line=1);
+
+
+	#----------------------------------------------------------------------
 	par(par.orig);
 
 }
