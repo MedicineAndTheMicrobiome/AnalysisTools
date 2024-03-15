@@ -719,7 +719,7 @@ reconcile=function(param=list("summary_table_mat"=NULL, "factor_mat"=NULL, "pair
 		summary_table_mat=summary_table_mat[pairable_smp_ids,,drop=F];	
 		factor_mat=factor_mat[pairable_sbj_ids,,drop=F];
 
-	}else if(specified(sbj_to_samp_mat)){
+	}else if(specified(sbj_to_smp_mat)){
 		# If 1-to-1 mapping specified use it.
 
 		cat("Subject-to-Sample Matrix specified.\n");
