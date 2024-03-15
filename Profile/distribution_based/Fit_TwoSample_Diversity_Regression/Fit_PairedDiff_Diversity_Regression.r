@@ -836,7 +836,7 @@ for(div_ix in 1:num_div_idx){
 
 ###############################################################################
 
-all.nas=apply(covariates_coef_mat, 2, function(x){all(is.na(x) || is.nan(x))});
+all.nas=apply(covariates_coef_mat, 2, function(x){all(is.na(x) | is.nan(x))});
 covariates_coef_mat=covariates_coef_mat[,!all.nas,drop=F];
 
 # If covariates can be estimated, go nan for pvalues
