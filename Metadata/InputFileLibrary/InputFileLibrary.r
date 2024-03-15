@@ -888,7 +888,7 @@ load_and_reconcile_files=function(
 
 		groupvar_arr=load_list(fname=grpvar[["fn"]], memo="Group Variables File");
 
-		requiredvar_arr=load_list(fname=reqvar[["fn"]], mem="Required Variables File");
+		requiredvar_arr=load_list(fname=reqvar[["fn"]], memo="Required Variables File");
 
 		cat("\n");
 		
