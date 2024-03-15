@@ -718,70 +718,68 @@ plot_paired_mds_colored_by_group=function(a_ids, b_ids, mds_res, fact, labels){
 	layout(layout_mat);
 
 	num_factors=ncol(fact);
-	if(num_factors<1){
-		return;
-	}
-
 	cat("Num of Factors: ", num_factors, "\n");
 	factor_names=colnames(fact);
-	for(fi in 1:num_factors){
+	if(num_factors>0){
+		for(fi in 1:num_factors){
 
-		cur_fact=as.character(fact[,fi,]);
-		cur_fact_name=factor_names[fi];
-		uniq_levels=sort(unique(cur_fact));
-		num_levels=length(uniq_levels);
-		if(num_levels>10){
-			cat(cur_fact_name, ": Too many levels to color. (", num_levels, ")\n", sep="");
-			next;
-		}else{
-			cat("Working on: ", cur_fact_name, "\n");
-			cat("Num Levels: ", num_levels, "\n");
-			print(cur_fact);
+			cur_fact=as.character(fact[,fi,]);
+			cur_fact_name=factor_names[fi];
+			uniq_levels=sort(unique(cur_fact));
+			num_levels=length(uniq_levels);
+			if(num_levels>10){
+				cat(cur_fact_name, ": Too many levels to color. (", num_levels, ")\n", sep="");
+				next;
+			}else{
+				cat("Working on: ", cur_fact_name, "\n");
+				cat("Num Levels: ", num_levels, "\n");
+				print(cur_fact);
 
-			color_map=rainbow(num_levels, start=0, end=4/6);
-			names(color_map)=uniq_levels;
+				color_map=rainbow(num_levels, start=0, end=4/6);
+				names(color_map)=uniq_levels;
 
-			cat("Color Map:\n");
-			print(color_map);
+				cat("Color Map:\n");
+				print(color_map);
 
-			cat("Color Assignment:\n");
-			colors_list=color_map[cur_fact];
-			print(colors_list);
+				cat("Color Assignment:\n");
+				colors_list=color_map[cur_fact];
+				print(colors_list);
 
-			# Generate MDS plot
-			mds_x_range=range(mds_res[,1]);
-			mds_y_range=range(mds_res[,2]);
+				# Generate MDS plot
+				mds_x_range=range(mds_res[,1]);
+				mds_y_range=range(mds_res[,2]);
 
-			mds_x_width=diff(mds_x_range);
-			mds_y_height=diff(mds_y_range);
+				mds_x_width=diff(mds_x_range);
+				mds_y_height=diff(mds_y_range);
 
-			par(mar=c(4,4,4,4));
-			plot(0,0, type="n", xlab="Dim 1", ylab="Dim 2", 
-				xlim=c(mds_x_range[1]-mds_x_width*.05, mds_x_range[2]+mds_x_width*.05),
-				ylim=c(mds_y_range[1]-mds_y_height*.05, mds_y_range[2]+mds_y_height*.05),
-				main=paste("Colored by: ", cur_fact_name, sep=""));
+				par(mar=c(4,4,4,4));
+				plot(0,0, type="n", xlab="Dim 1", ylab="Dim 2", 
+					xlim=c(mds_x_range[1]-mds_x_width*.05, mds_x_range[2]+mds_x_width*.05),
+					ylim=c(mds_y_range[1]-mds_y_height*.05, mds_y_range[2]+mds_y_height*.05),
+					main=paste("Colored by: ", cur_fact_name, sep=""));
 
-			draw_centroids(A_centroid, B_centroid);
+				draw_centroids(A_centroid, B_centroid);
 
-			for(ix in 1:length(a_ids)){
-				aid=a_ids[ix];
-				bid=b_ids[ix];
-				points(
-					c(mds_res[aid,1], mds_res[bid,1]),
-					c(mds_res[aid,2], mds_res[bid,2]),
-					type="l", lwd=1, col=colors_list[ix]);
+				for(ix in 1:length(a_ids)){
+					aid=a_ids[ix];
+					bid=b_ids[ix];
+					points(
+						c(mds_res[aid,1], mds_res[bid,1]),
+						c(mds_res[aid,2], mds_res[bid,2]),
+						type="l", lwd=1, col=colors_list[ix]);
+				}
+				text(mds_res[,1], mds_res[,2], labels, col="black", cex=1.3);
+
+				# Generate Legend
+				par(mar=c(0,0,0,0));
+				plot(0,0, xlim=c(0,1), ylim=c(0,1), type="n", xlab="", ylab="", bty="n", 
+					xaxt="n", yaxt="n", main="");
+
+				legend(0, 1, fill=color_map, legend=uniq_levels, bty="n");	
 			}
-			text(mds_res[,1], mds_res[,2], labels, col="black", cex=1.3);
 
-			# Generate Legend
-			par(mar=c(0,0,0,0));
-			plot(0,0, xlim=c(0,1), ylim=c(0,1), type="n", xlab="", ylab="", bty="n", 
-				xaxt="n", yaxt="n", main="");
-
-			legend(0, 1, fill=color_map, legend=uniq_levels, bty="n");	
+			cat("\n\n");
 		}
-
-		cat("\n\n");
 	}
 
 	par(orig_par);
@@ -1411,7 +1409,7 @@ plot_dist_hist=function(a_dist_arr, b_dist_arr, a_name, b_name, acol, bcol){
 
 	a_hist_res=hist(a_dist_arr, hist_res$breaks, plot=F);
 	b_hist_res=hist(b_dist_arr, hist_res$breaks, plot=F);
-	print(hist_res);
+	#print(hist_res);
 
 	a_mean=mean(a_dist_arr);
 	b_mean=mean(b_dist_arr);
@@ -1637,49 +1635,59 @@ plot_dist_bars(B_dist_fr_centr, A_dist_fr_centr, good_pairs_map[,c(2,1)],
 
 plot_dist_hist(A_dist_fr_centr, B_dist_fr_centr, A_subtrahend, B_minuend, acol="blue", bcol="green");
 
-regress_dispersion(A_dist_fr_centr, B_dist_fr_centr, A_subtrahend, B_minuend, model_var_arr, factors);
+if(length(model_var_arr)){
+	regress_dispersion(A_dist_fr_centr, B_dist_fr_centr, A_subtrahend, B_minuend, 
+		model_var_arr, factors);
 
-A_bs_reg_tab=bootstrap_regression_dispersion(A_dist_fr_centr, A_subtrahend, model_var_arr, 
-	factors, NUM_BS);
-B_bs_reg_tab=bootstrap_regression_dispersion(B_dist_fr_centr, B_minuend, model_var_arr, 
-	factors, NUM_BS);
+	A_bs_reg_tab=bootstrap_regression_dispersion(A_dist_fr_centr, A_subtrahend, model_var_arr, 
+		factors, NUM_BS);
+	B_bs_reg_tab=bootstrap_regression_dispersion(B_dist_fr_centr, B_minuend, model_var_arr, 
+		factors, NUM_BS);
 
-plot_text(c(
-	paste("Associations on Dispersion (Bootstrapped Regression, num bootstraps: ", NUM_BS, ")", sep=""),
-	"",
-	paste("[", A_subtrahend, "]", sep=""),
-	"Coefficients:",
-	A_bs_reg_tab,
-	"",
-	"",
-	paste("[", B_minuend, "]", sep=""),
-	"Coefficients:",
-	B_bs_reg_tab
-));
+	plot_text(c(
+		paste("Associations on Dispersion (Bootstrapped Regression, num bootstraps: ", 
+			NUM_BS, ")", sep=""),
+		"",
+		paste("[", A_subtrahend, "]", sep=""),
+		"Coefficients:",
+		A_bs_reg_tab,
+		"",
+		"",
+		paste("[", B_minuend, "]", sep=""),
+		"Coefficients:",
+		B_bs_reg_tab
+	));
 
-par(mfrow=c(1,1));
-plot(0,0, xlim=c(-1,1), ylim=c(-1,1), bty="n", xaxt="n", yaxt="n", xlab="", ylab="", type="n");
-text(0,0, "Differences in\nDispersion Analysis", cex=3, font=2);
+	par(mfrow=c(1,1));
+	plot(0,0, xlim=c(-1,1), ylim=c(-1,1), bty="n", xaxt="n", yaxt="n", xlab="", ylab="", type="n");
+	text(0,0, "Differences in\nDispersion Analysis", cex=3, font=2);
 
-plot_indiv_dist_diff(A_dist_fr_centr, B_dist_fr_centr, good_pairs_map[,c(1,2)],
-	A_subtrahend, B_minuend, acol="blue", bcol="green");
+	plot_indiv_dist_diff(A_dist_fr_centr, B_dist_fr_centr, good_pairs_map[,c(1,2)],
+		A_subtrahend, B_minuend, acol="blue", bcol="green");
 
-plot_grp_diff(A_dist_fr_centr, B_dist_fr_centr,
-	A_subtrahend, B_minuend, acol="blue", bcol="green");
+	plot_grp_diff(A_dist_fr_centr, B_dist_fr_centr,
+		A_subtrahend, B_minuend, acol="blue", bcol="green");
 
-regress_diff_dispersion(A_dist_fr_centr, B_dist_fr_centr, A_subtrahend, B_minuend, model_var_arr, factors);
-diff_bs_reg_tab=bootstrap_regression_dispersion(
-	B_dist_fr_centr-A_dist_fr_centr, 
-	paste(B_minuend, "-", A_subtrahend), model_var_arr, factors, NUM_BS);
+	regress_diff_dispersion(A_dist_fr_centr, B_dist_fr_centr, A_subtrahend, B_minuend, 
+		model_var_arr, factors);
+	diff_bs_reg_tab=bootstrap_regression_dispersion(
+		B_dist_fr_centr-A_dist_fr_centr, 
+		paste(B_minuend, "-", A_subtrahend), model_var_arr, factors, NUM_BS);
 
-par(mfrow=c(1,1));
-plot_text(c(
-	paste("Associations on Difference of Dispersion: ", B_minuend, " - ", A_subtrahend, sep=""),
-	paste("  (Bootstrapped Regression, num bootstraps: ", NUM_BS, ")", sep=""),
-	"",
-	"Coefficients:",
-	diff_bs_reg_tab
-));
+	par(mfrow=c(1,1));
+	plot_text(c(
+		paste("Associations on Difference of Dispersion: ", 
+			B_minuend, " - ", A_subtrahend, sep=""),
+		paste("  (Bootstrapped Regression, num bootstraps: ", NUM_BS, ")", sep=""),
+		"",
+		"Coefficients:",
+		diff_bs_reg_tab
+	));
+}else{
+	plot_text(c(
+		"Predictor/Factor variables not available for dispersion regression."
+	));
+}
 
 
 ################################################################################
