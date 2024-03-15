@@ -698,8 +698,6 @@ reconcile=function(param=list("summary_table_mat"=NULL, "factor_mat"=NULL, "pair
 	#
 	# If sumtab and factors are specified, then
 	#   they need to have the same IDs keyed, probably sample id
-cat("params:\n");
-print(param);
 	
 	summary_table_mat=param[["summary_table_mat"]];
 	factor_mat=param[["factor_mat"]];
@@ -860,7 +858,7 @@ load_and_reconcile_files=function(
 
 		summary_table_mat=load_summary_file(fname=sumtab[["fn"]]);
 
-
+		cat("Summary Table Dimensions: ", dim(summary_table_mat), "\n");
 	});
 
 	cat("Loading Factors File: ", factors[["fn"]], "\n", sep="");
@@ -871,6 +869,8 @@ load_and_reconcile_files=function(
 			prim_key_cname=factors[["sbj_cname"]],
 			relevel_fn=factors[["ref_relvl_fn"]]
 			);
+
+		cat("Factor Table Dimensions: ", dim(factors_mat), "\n");
 
 	});
 
@@ -884,6 +884,7 @@ load_and_reconcile_files=function(
 			sbj_id_cname=pairs[["subject_id_cname"]]
 			);
 
+		cat("Pairs Mapping Dimensions: ", dim(pairs_mat), "\n");
 		cat("\n");
 
 		sbj_smp_mat=load_sbj_smp_mapping(
@@ -891,6 +892,8 @@ load_and_reconcile_files=function(
 			sbj_cname=sbj_to_smp[["sbjid_cname"]],
 			smp_cname=sbj_to_smp[["smpid_cname"]]
 			);
+
+		cat("Subject-Sample Mapping Dimensions: ", dim(sbj_smp_mat), "\n");
 
 	});
 
