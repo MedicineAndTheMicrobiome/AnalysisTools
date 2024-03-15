@@ -7,10 +7,18 @@ source('~/git/AnalysisTools/Metadata/RemoveNAs/Remove_NAs.r');
 #------------------------------------------------------------------------------
 
 specified=function(var){
-	if(is.null(var) || is.na(var) || var==""){
-		return(F);
-	}else{
+	#cat("Checking: ", var, "\n");
+
+	if(length(var)==1){
+		if(is.na(var) || var=="" || is.na(var)){
+			return(F);
+		}else{
+			return(T);
+		}
+	}else if(length(var)>1){
 		return(T);
+	}else{
+		return(F);
 	}
 }
 
@@ -690,6 +698,8 @@ reconcile=function(param=list("summary_table_mat"=NULL, "factor_mat"=NULL, "pair
 	#
 	# If sumtab and factors are specified, then
 	#   they need to have the same IDs keyed, probably sample id
+cat("params:\n");
+print(param);
 	
 	summary_table_mat=param[["summary_table_mat"]];
 	factor_mat=param[["factor_mat"]];
@@ -845,6 +855,7 @@ load_and_reconcile_files=function(
 	#-----------------------------------------------------------------------------
 	# 1.) Read in Summary Table, Factors, Sample Pairing
 
+	cat("Loading Summary Table: ", sumtab[["fn"]], "\n", sep="");
 	report_list[["Summary Table"]]=capture.output({
 
 		summary_table_mat=load_summary_file(fname=sumtab[["fn"]]);
@@ -852,6 +863,7 @@ load_and_reconcile_files=function(
 
 	});
 
+	cat("Loading Factors File: ", factors[["fn"]], "\n", sep="");
 	report_list[["Factor File"]]=capture.output({
 
 		factors_mat=load_factors_file(
@@ -862,6 +874,7 @@ load_and_reconcile_files=function(
 
 	});
 
+	cat("Loading Mappings: ", pairs[["fn"]], " (pairs) and ", sbj_to_smp[["fn"]], " (sbj_to_smp)\n", sep="");
 	report_list[["Mappings"]]=capture.output({
 
 		pairs_mat=load_mapping(
@@ -884,6 +897,10 @@ load_and_reconcile_files=function(
 	#-----------------------------------------------------------------------------
 	# 2.) Load and Keep/Subset target variables
 
+	cat("Loading lists: \n");
+	cat("\t", covariates[["fn"]], " (Covariates)\n", sep="");
+	cat("\t", grpvar[["fn"]], " (Group)\n", sep="");
+	cat("\t", reqvar[["fn"]], " (Required)\n", sep="");
 	report_list[["Variable Lists"]]=capture.output({
 
 		covariates_arr=load_list(fname=covariates[["fn"]], memo="Covariates File");
@@ -917,6 +934,7 @@ load_and_reconcile_files=function(
 	#-----------------------------------------------------------------------------
 	# 3.) Reconcile
 
+	cat("Performing Pre-NA Removal Reconcile.\n");
 	report_list[["Pre-NA Removal Reconcile"]]=capture.output({
 
 		reconciled_files=reconcile(param=list(
@@ -933,6 +951,7 @@ load_and_reconcile_files=function(
 	#-----------------------------------------------------------------------------
 	# 4.) Remove NAs (remove subjects with NAs)
 
+	cat("Performing NA Removal.\n");
 	report_list[["NA Removal"]]=capture.output({
 
 		nona_factors_fn=paste(gsub("\\.tsv", "", factors[["fn"]]), ".noNAs", sep="");
@@ -965,6 +984,7 @@ load_and_reconcile_files=function(
 	#-----------------------------------------------------------------------------
 	# 5.) Reconcile
 	
+	cat("Performing Post-NA Removal Reconcile.\n");
 	report_list[["Post-NA Removal Reconcile"]]=capture.output({
 
 		# Replace factor mat, but keep the other data/matrices the same
@@ -976,6 +996,7 @@ load_and_reconcile_files=function(
 	#-----------------------------------------------------------------------------
 	# 6.) Apply Summary Table Parameters
 
+	cat("Applying Summary Table Parameters.\n");
 	report_list[["Summary Table Options"]]=capture.output({
 
 		# Order categories by decreasing abundance
@@ -1060,6 +1081,7 @@ load_and_reconcile_files=function(
 	});
 
 	#-----------------------------------------------------------------------------
+	cat("Returning Results.\n");
 	
 	results=list();
 	results[["SummaryTable_counts"]]=counts_mat;
