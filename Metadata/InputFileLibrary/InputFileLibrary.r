@@ -763,6 +763,7 @@ reconcile=function(param=list("summary_table_mat"=NULL, "factor_mat"=NULL, "pair
 		cat("Reconciling: Assuming Factors and Samples have the same ID.\n\n");
 
 		shared_ids=sort(intersect(sumtab_sample_ids, factor_subject_ids));
+		cat("Number of Shared IDs: ", length(shared_ids), "\n");
 		
 		summary_table_mat=summary_table_mat[shared_ids,,drop=F];	
 		factor_mat=factor_mat[shared_ids,,drop=F];
@@ -790,7 +791,9 @@ reconcile=function(param=list("summary_table_mat"=NULL, "factor_mat"=NULL, "pair
 	factor_mat=factor_mat[subject_ids,,drop=F];
 	pairs_mat=pairs_mat[subject_ids,,drop=F];
 	sbj_to_smp_mat=sbj_to_smp_mat[subject_ids,,drop=F];
-	summary_table_mat=summary_table_mat[c(pairs_mat[,1], pairs_mat[,2]),,drop=F];
+
+	# I think this line is not necessary
+	#summary_table_mat=summary_table_mat[c(pairs_mat[,1], pairs_mat[,2]),,drop=F];
 
 	#------------------------------------------------------------
 
@@ -849,7 +852,6 @@ load_and_reconcile_files=function(
 
 	});
 
-	
 	report_list[["Factor File"]]=capture.output({
 
 		factors_mat=load_factors_file(
