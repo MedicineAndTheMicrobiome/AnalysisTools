@@ -9,6 +9,7 @@ params=c(
 	"offset", "f", 1, "numeric",
 	"output_filename_root", "o", 1, "character",
 	"head", "h", 2, "numeric",
+	"max_qv", "m", 2, "numeric",
 	"validation", "v", 2, "logical"
 );
 
@@ -16,13 +17,17 @@ opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
 
 script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
 
+DEFAULT_MAX_QV=41;
+
 usage = paste (
 	"\nUsage:\n\n", script_name,
 	"\n",
 	"	-l <input fastq file list>\n",
 	"	-f <QV offset, i.e. 33 or 64>\n",
 	"	-o <output filename root>\n",
-	"	[-h <number of top reads to select>]\n",
+	"\n",
+	"	[-m <maximum 'reasonable' QV, default=", DEFAULT_MAX_QV, "]\n",
+	"	[-h <number of top reads to select (to reduce PDF files size)>]\n",
 	"	[-v (validation flag)]\n",
 	"\n",	
 	"This script will read in a list of fastq files\n",
@@ -33,7 +38,7 @@ usage = paste (
 	"  1.) A list of fastq files (1 column)\n",
 	"  2.) A mapping of sample ID and fastq files (2 columns)\n",
 	"\n",
-	"Note that QV's should be between 0 and 40ish.\n",
+	"Note that Phred QV's should be between 0 and 40ish.\n",
 	"If the wrong offset encoding is specified, you will\n",
 	"get QV's out of that range, and the problem should\n",
 	"be looked into.\n",
@@ -58,8 +63,17 @@ NoValidation=!length(opt$validation);
 
 if(length(opt$head)>0){
 	Head=opt$head;
+	head_ext=paste(".h", Head, sep="");
 }else{
 	Head=-1;
+	head_ext="";
+}
+OutputFilenameRoot=paste(OutputFilenameRoot, head_ext, sep="");
+
+if(length(opt$max_qv)>0){
+	MaxQV=opt$max_qv;
+}else{
+	MaxQV=DEFAULT_MAX_QV;
 }
 
 cat("\n")
@@ -68,6 +82,7 @@ cat("Offset: ", Offset, "\n");
 cat("Output Filename Root: ", OutputFilenameRoot, "\n");
 cat("Head Values: ", Head, "\n");
 cat("No Validation: ", NoValidation, "\n");
+cat("Max QV allowed: ", MaxQV, "\n");
 cat("\n");
 
 ###############################################################################
@@ -203,18 +218,21 @@ qvstr_to_int_list=function(qvstr_list, offset){
 	num_recs=length(qvstr_list);
 	for(i in 1:num_recs){
 		res[[i]]=qvstr_to_int_str(qvstr_list[[i]], offset);
-		is_reasonable=is_reasonable_qv(res[[i]]);
+		is_reasonable=is_reasonable_qv(res[[i]], max_qv=MaxQV);
+		#is_reasonable=T; 
 		if(!is_reasonable){
-			cat("Error:  QV's are out of range. Are you sure offsets are correct?\n");
+			qv_range=range(res[[i]]);
+			cat("Error:  QV's are out of range (<0 or >", MaxQV, "). Are you sure offsets are correct?\n", sep="");
 			cat("Record: ", i, "\n");
+			cat("QV Range: ", qv_range[1], " - ", qv_range[2], "\n", sep="");
 			quit(status=-1);
 		}
 	}
 	return(res);
 }
 
-is_reasonable_qv=function(qvint){
-	if(all(qvint>=0 & qvint<=41)){
+is_reasonable_qv=function(qvint, max_qv=41){
+	if(all(qvint>=0 & qvint<=max_qv)){
 		return(T);
 	}else{
 		return(F);
