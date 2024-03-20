@@ -125,7 +125,7 @@ read_fastq_file=function(fastq_fname, keep_ids=F, keep_seq=F, keep_qual=F, quick
 
 	cat("File Name: ", fastq_fname, "\n");
 	
-	fh=file(fastq_fname);
+	fh=gzfile(fastq_fname);
 	open(fh);
 
 	data=list();
