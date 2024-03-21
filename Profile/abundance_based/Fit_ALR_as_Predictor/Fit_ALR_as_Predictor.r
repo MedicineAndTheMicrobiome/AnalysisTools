@@ -719,7 +719,6 @@ plot_fit=function(fit, sumfit, mod_stats, mod_anovas, resp_name){
 plot_predictor_barplot=function(coef_tab, resp_name){
 	
 	par.orig=par(no.readonly=T);
-	print(coef_tab);
 
 	# Remove intercept from table
 	predictors=setdiff(rownames(coef_tab), "(Intercept)");
@@ -728,6 +727,13 @@ plot_predictor_barplot=function(coef_tab, resp_name){
 	# Keep only pred w/ pval<.1
 	pval=coef_tab[,4,drop=F];
 	abv_cutoff_ix=pval<0.1;
+	if(!any(abv_cutoff_ix)){
+		plot_text(c(
+			"No predictors significant at p-value cutoff of 0.1!"
+		));
+		par(par.orig)
+		return();
+	}
 	coef_tab=coef_tab[abv_cutoff_ix,,drop=F];
 
 	# Sort table by pval
@@ -741,11 +747,9 @@ plot_predictor_barplot=function(coef_tab, resp_name){
 	pred=rownames(coef_tab);	
 	cols=sapply(coef, function(x){ ifelse(x>0, "green", "red")});
 
-	print(coef);
-	print(pval);
-	print(pred);
-
-
+	#print(coef);
+	#print(pval);
+	#print(pred);
 
 	ref_cutoffs=c(1, 0.1, 0.05, 0.01, 0.001);
 	min_pval=min(pval);
@@ -1391,7 +1395,9 @@ if(run_glm){
 		});
 
 		#print(manova_res);
-		print(summary(manova_res));
+		if(is.na(manova_res)){
+			print(summary(manova_res));
+		}
 
 	}else{
 		cat("Insufficient Gaussian responses for MANOVA.\n");
