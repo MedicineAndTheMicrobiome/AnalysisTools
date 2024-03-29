@@ -54,7 +54,7 @@ plot_title_page=function(title, subtitle=""){
 }
 
 
-paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_is_hot=T, deci_pts=4, 
+paint_matrix=function(mat, title="", subtitle="", plot_min=NA, plot_max=NA, log_col=F, high_is_hot=T, deci_pts=4, 
 	label_zeros=T, counts=F, value.cex=2, 
 	plot_col_dendr=F,
 	plot_row_dendr=F
@@ -207,7 +207,8 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 	par(oma=c(col_max_nchar*.60, 0, 3, row_max_nchar*.60));
 	par(mar=c(0,0,0,0));
         plot(0, type="n", xlim=c(0,num_col), ylim=c(0,num_row), xaxt="n", yaxt="n", bty="n", xlab="", ylab="");
-	mtext(title, side=3, line=0, outer=T, font=2);
+	mtext(title, side=3, line=1, outer=T, cex=1.5, font=2);
+	mtext(subtitle, side=3, line=-.5, outer=T, cex=.8, font=3);
 
         # x-axis
         axis(side=1, at=seq(.5, num_col-.5, 1), labels=colnames(mat), las=2, line=-1.75);
@@ -377,3 +378,4 @@ plot_histograms=function(data_mat, title="", max_col_plots=3, max_row_plots=4){
 
         par(orig.par);
 }
+
