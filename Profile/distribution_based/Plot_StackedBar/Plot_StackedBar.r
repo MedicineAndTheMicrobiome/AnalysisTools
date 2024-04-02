@@ -630,10 +630,13 @@ plot_diversity_barplot_signf=function(title, diversity_name, grpd_div_list, alph
 		for(grp_ix_B in 1:num_grps){
 			if(grp_ix_A<grp_ix_B){
 				res=wilcox.test(grpd_div_list[[grp_ix_A]], grpd_div_list[[grp_ix_B]]);
-				pval_mat[grp_ix_A, grp_ix_B]=res$p.value;
+
+				pv=ifelse(is.na(res$p.value), 1, res$p.value);
+
+				pval_mat[grp_ix_A, grp_ix_B]=pv;
 				#pval_mat[grp_ix_B, grp_ix_A]=res$p.value;
 
-				if(res$p.value<=alpha){
+				if(pv<=alpha){
 					signf=rbind(signf, c(grp_ix_A, grp_ix_B, res$p.value));
 				}
 			}
