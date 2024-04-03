@@ -1103,6 +1103,9 @@ load_and_reconcile_files=function(
 ###############################################################################
 
 write_file_report=function(report_list){
+	# This will output a report to a pdf file.
+	# To call use the return value of "load_and_reconcile_files"
+	# E.g. write_file_report(loaded_files[["Report"]]);
 
 	report_groups=names(report_list);
 
