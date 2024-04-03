@@ -5,22 +5,24 @@
 library(MASS);
 library(vegan);
 library('getopt');
+
+source('~/git/AnalysisTools/Metadata/InputFileLibrary/InputFileLibrary.r');
+source('~/git/AnalysisTools/Metadata/OutputFileLibrary/OutputFileLibrary.r');
+source('~/git/AnalysisTools/Profile/distribution_based/DiversityLibrary/DiversityLibrary.r');
+source('~/git/AnalysisTools/Metadata/RemoveNAs/Remove_NAs.r');
+
 options(useFancyQuotes=F);
 
-source('~/git/AnalysisTools/Metadata/RemoveNAs/Remove_NAs.r');
 
 params=c(
 	"summary_file", "s", 1, "character",
 	"factors", "f", 1, "character",
-	"outputroot", "o", 2, "character",
-
-	"model_formula", "m", 2, "character",
-
-	"response_var", "y", 2, "character",
-	"covariates_var", "c", 2, "character",
-	"required_var", "q", 2, "character",
+	"covariates", "c", 1, "character",
+	"responses", "y", 1, "character",
+	"required", "q", 2, "character",
 
 	"reference_levels", "r", 2, "character",
+	"outputroot", "o", 2, "character",
 
 	"tag_name", "t", 2, "character"
 );
@@ -30,29 +32,24 @@ script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
 
 usage = paste(
 	"\nUsage:\n", script_name, "\n",
-	"	-s <summary table file (.tsv)>\n",
-	"	-f <factors/metadata file>\n",
+	"	-s <summary file table for taxa/function (used as Predictor/X's)>\n",
+	"	-f <factors file, contains covariates and multivariate Y>\n",
+	"	-c <list of covariate X's names to select from factor file (filename)>\n",
+	"	-y <list of response Y's names to select from factor file (filename)>\n",
+	"	[-q <required list of variables to include after NA removal>]\n",
+	"\n",
+	"	[-r <reference levels file for variables in factor file>]\n",
 	"	[-o <output filename root>]\n",
-	"\n",
-	"	Model Specification:\n",
-	"	[-m \"<model formula string>\"]\n",
-	"\n",
-	"	Variable Specification:\n",
-	"	[-y <response variables>]\n",
-	"	[-c <covariates variables>]\n",
-	"	[-q <required variables>]\n",
-	"	[-r <reference levels file>]\n",
 	"\n",
 	"	[-t <tag name>]\n",
 	"\n",
-	"This script will fit the following types of models:\n",
-	"	<responses> = <covariates> + <microbiome diversity>\n",	
+	"This script will fit the following model:\n",
 	"\n",
-	"The analysis will cycle through the various diversity\n",
-	"indices.\n",
-	"\n");
+	" Multivariate Response = covariates + <diversity index>\n",
+	"\n", sep="");
 
-if(!length(opt$summary_file) || !length(opt$factors)){
+if(!length(opt$summary_file) || !length(opt$factors) || !length(opt$covariates) || 
+	!length(opt$responses)){
 	cat(usage);
 	q(status=-1);
 }
@@ -65,1194 +62,1647 @@ if(!length(opt$outputroot)){
 }
 
 if(!length(opt$reference_levels)){
-	ReferenceLevelsFile="";
+        ReferenceLevelsFile="";
 }else{
-	ReferenceLevelsFile=opt$reference_levels;
+        ReferenceLevelsFile=opt$reference_levels;
 }
 
-if(!length(opt$model_formula)){
-	ModelFormula="";
+if(length(opt$required)){
+	RequiredFile=opt$required;
 }else{
-	ModelFormula=opt$model_formula;
-}
-
-ModelFilename="";
-if(length(opt$model_filename)){
-        ModelFilename=opt$model_filename;
-}
-
-RequiredFile="";
-if(length(opt$required_var)){
-        RequiredFile=opt$required_var;
-}
-ResponseFile="";
-if(length(opt$response_var)){
-        ResponseFile=opt$response_var;
-}
-CovariatesFile="";
-if(length(opt$covariates_var)){
-        CovariatesFile=opt$covariates_var;
+	RequiredFile="";
 }
 
 if(length(opt$tag_name)){
-        TagName=opt$tag_name;
-        cat("Setting TagName Hook: ", TagName, "\n");
-        setHook("plot.new",
-                function(){
-                        #cat("Hook called.\n");
-                        if(par()$page==T){
-                                oma_orig=par()$oma;
-                                exp_oma=oma_orig;
-                                exp_oma[1]=max(exp_oma[1], 1);
-                                par(oma=exp_oma);
-                                mtext(paste("[", TagName, "]", sep=""), side=1, line=exp_oma[1]-1,
-                                        outer=T, col="steelblue4", font=2, cex=.8, adj=.97);
-                                par(oma=oma_orig);
-                        }
-                }, "append");
-
+	TagName=opt$tag_name;
+	cat("Setting TagName Hook: ", TagName, "\n");
+	setHook("plot.new", 
+		function(){
+			#cat("Hook called.\n");
+			if(par()$page==T){
+				oma_orig=par()$oma;
+				exp_oma=oma_orig;
+				exp_oma[1]=max(exp_oma[1], 1);
+				par(oma=exp_oma);
+				mtext(paste("[", TagName, "]", sep=""), side=1, line=exp_oma[1]-1, 
+					outer=T, col="steelblue4", font=2, cex=.8, adj=.97);
+				par(oma=oma_orig);
+			}
+		}, "append");
+			
 }else{
-        TagName="";
+	TagName="";
 }
+
 
 SummaryFile=opt$summary_file;
 FactorsFile=opt$factors;
+CovariatesFile=opt$covariates;
+ResponseFile=opt$responses;
 
+cat("\n");
+cat("   Summary File: ", SummaryFile, "\n", sep="");
+cat("   Factors File: ", FactorsFile, "\n", sep="");
+cat("Covariates File: ", CovariatesFile, "\n", sep="");
+cat("  Response File: ", ResponseFile, "\n", sep="");
+cat("  Required File: ", RequiredFile, "\n", sep="");
+cat("\n");
+cat("Output File: ", OutputRoot, "\n", sep="");
+cat("\n");
+cat("Reference Levels File: ", ReferenceLevelsFile, "\n", sep="");
+cat("\n");
 
-summary_text=c();
-
-out=capture.output({
-		cat("\n");
-		cat("Summary File : ", SummaryFile, "\n", sep="");
-		cat("Factors File: ", FactorsFile, "\n", sep="");
-		cat("Output File: ", OutputRoot, "\n", sep="");
-		cat("\n");
-		cat("Reference Levels File: ", ReferenceLevelsFile, "\n", sep="");
-		cat("Required Variables File: ", RequiredFile, "\n", sep="");
-		cat("Response Variables File: ", ResponseFile, "\n", sep="");
-		cat("Covariates Variables File: ", CovariatesFile, "\n", sep="");
-		cat("\n");
-});
-cat(out, sep="\n");
-summary_text=c(summary_text, "\n", out);
+options(width=100);
+cat("Text Line Width: ", options()$width, "\n", sep="");
 
 ##############################################################################
 
-load_factors=function(fname){
-	cat("Loading Factors: ", fname, "\n");
-	factors=data.frame(read.table(fname,  sep="\t", header=TRUE, row.names=1, 
-		check.names=FALSE, comment.char="", quote="", stringsAsFactors=TRUE));
-	factor_names=colnames(factors);
+plot_fit_scatter=function(div_name, resp_name, fit, full_mcf, anpv, null_aic, full_aic){
 
-	ignore_idx=grep("^IGNORE\\.", factor_names);
+	#print(names(fit));
 
-	if(length(ignore_idx)!=0){
-		return(factors[-ignore_idx]);
-	}else{
-		return(factors);
-	}
+	par.orig=par(no.readonly=T);
+
+	observed=fit[["model"]][,resp_name];
+	predicted=fit[["fitted.values"]];
+	model_fam=fit[["family"]][[1]];
+
+	par(mar=c(15, 15, 15, 15));
+
+	obs_pred_range=range(c(observed, predicted));
+	span=diff(obs_pred_range);
+	pad=span*.07;
+
+	plot(observed, predicted, 
+		xlim=c(obs_pred_range[1]-pad, obs_pred_range[2]+pad),
+		ylim=c(obs_pred_range[1]-pad, obs_pred_range[2]+2*pad),
+		main="", xlab="Observed", ylab="Predicted");
+
+	abline(a=0, b=1, col="blue");
+	points(lowess(observed, predicted), type="l", col="red");
+	legend(obs_pred_range[1]+pad, obs_pred_range[2]+pad, legend=c("Model", "Ideal"), 
+		fill=c("red", "blue"), bty="n");
+
+	mtext(resp_name, line=8.5, font=2, cex=3);
+	mtext("Predicted vs. Observed", line=7, font=2, cex=1.1);
+
+	# Annotate with some stats
+	mtext(sprintf("Model Family: %s", model_fam), line=6, cex=.8);
+	mtext(sprintf("McFadden's R^2 = %4.3f", full_mcf), line=5, cex=.9);
+	mtext(sprintf("Full Model (vs. Null Model) P-val: %6.3g",
+		anpv[["null_full"]]), line=3, cex=.9);
+	mtext(sprintf("Diversity's Contrib to Model Improvement (Full vs. Reduced Model): P-val = %6.3g", 
+		anpv[["reduced_full"]]), line=2, cex=.9);
+	mtext(sprintf("Covariates-Only Model (Reduced vs. Null Model): P-val = %6.3g", 
+		anpv[["null_reduced"]]), line=1, cex=.9);
+
+	par(par.orig);
 }
 
-load_summary_file=function(fname){
-	cat("Loading Summary Table: ", fname, "\n");
-	inmat=as.matrix(read.table(fname, sep="\t", header=TRUE, check.names=FALSE, 
-		comment.char="", row.names=1))
-	counts_mat=inmat[,2:(ncol(inmat))];
-	return(counts_mat);
-}
-
-load_reference_levels_file=function(fname){
-	cat("Loading Reference Levels: ", fname, "\n");
-	inmat=as.matrix(read.table(fname, sep="\t", header=F, check.names=FALSE, 
-		comment.char="#", row.names=1))
-	colnames(inmat)=c("ReferenceLevel");
-	print(inmat);
-	cat("\n");
-	if(ncol(inmat)!=1){
-		cat("Error reading in reference level file: ", fname, "\n");
-		quit(status=-1);
-	}
-	return(inmat);	
-}
-
-relevel_factors=function(factors, ref_lev_mat){
-
-	num_factors_to_relevel=nrow(ref_lev_mat);
-	relevel_names=rownames(ref_lev_mat);
-	factor_names=colnames(factors);
-
-	for(i in 1:num_factors_to_relevel){
-		relevel_target=relevel_names[i];
-
-		if(length(intersect(relevel_target, factor_names))){
-			target_level=ref_lev_mat[i, 1];
-			tmp=factors[,relevel_target];
-			if(length(intersect(target_level, tmp))){
-				tmp=relevel(tmp, target_level);
-    				factors[,relevel_target]=tmp;
-			}else{
-				cat("WARNING: Target level '", target_level,
-					"' not found in '", relevel_target, "'!!!\n", sep="");
-			}
-		}else{
-			cat("WARNING: Relevel Target Not Found: '", relevel_target, "'!!!\n", sep="");
-		}
-	}
-	return(factors);
-}
-
-normalize=function(counts){
-	totals=apply(counts, 1, sum);
-	num_samples=nrow(counts);
-	normalized=matrix(0, nrow=nrow(counts), ncol=ncol(counts));
-
-	for(i in 1:num_samples){
-		normalized[i,]=counts[i,]/totals[i];
-	}
+plot_predictor_barplot=function(full_coef_tab, reduced_coef_tab, resp_name){
 	
-	colnames(normalized)=colnames(counts);
-	rownames(normalized)=rownames(counts);	
-	return(normalized);
-}
+	par.orig=par(no.readonly=T);
 
-paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_is_hot=T, deci_pts=4,
-        label_zeros=T, counts=F, value.cex=1,
-        plot_col_dendr=F,
-        plot_row_dendr=F
-){
-	# Remove any rows with NAs in them
-	any_nas=apply(mat, 1, function(x){all(is.na(x))});
-	mat=mat[!any_nas,,drop=F];
-	any_nas=apply(mat, 2, function(x){all(is.na(x))});
-	mat=mat[,!any_nas,drop=F];
+	# Remove intercept from tables
+	predictors=setdiff(rownames(full_coef_tab), "(Intercept)");
+	full_coef_tab=full_coef_tab[predictors,,drop=F];
 
-        num_row=nrow(mat);
-        num_col=ncol(mat);
+	predictors=setdiff(rownames(reduced_coef_tab), "(Intercept)");
+	reduced_coef_tab=reduced_coef_tab[predictors,,drop=F];
 
-	if(num_row==0 || num_col==0){
-		plot(0, type="n", xlim=c(-1,1), ylim=c(-1,1), xaxt="n", yaxt="n", bty="n", xlab="", ylab="",
-                        main=title);
-                text(0,0, "No data to plot...");
+	# diversity name
+	div_name=setdiff(rownames(full_coef_tab), rownames(reduced_coef_tab));
+	cat("Diversity Name: ", div_name, "\n");
+	orig_rownames=rownames(reduced_coef_tab);
+	reduced_coef_tab=rbind(c(0, 0, 0, 1), reduced_coef_tab);
+	rownames(reduced_coef_tab)=c(div_name, orig_rownames);
+
+	#cat("-----------------------------------------------\n");
+	#cat("Full:\n");
+	#print(full_coef_tab);
+	#cat("\nReduced:\n");
+	#print(reduced_coef_tab);
+	
+	# Get signf preds
+	full_signf_preds=rownames(full_coef_tab[full_coef_tab[,4]<.1,,drop=F]);
+	reduced_signf_preds=rownames(reduced_coef_tab[reduced_coef_tab[,4]<.1,,drop=F]);
+	combined_signf_preds=unique(c(reduced_signf_preds, full_signf_preds));
+	
+	# Subset only signf from both tabs	
+	full_coef_tab_signf=full_coef_tab[combined_signf_preds,,drop=F];
+	reduced_coef_tab_signf=reduced_coef_tab[combined_signf_preds,,drop=F];
+	
+	#cat("-----------------------------------------------\n");
+	#cat("Only Significant:\n\n");
+	#cat("Full:\n");
+	#print(full_coef_tab_signf);
+	#cat("\nReduced:\n");
+	#print(reduced_coef_tab_signf);
+
+
+	# Sort tables by pval of full model
+	pval=full_coef_tab_signf[,4];
+	order_inc_pval_ix=order(pval, decreasing=F);
+	full_coef_tab_signf=full_coef_tab_signf[order_inc_pval_ix,,drop=F];
+	reduced_coef_tab_signf=reduced_coef_tab_signf[order_inc_pval_ix,,drop=F];
+	sorted_pred_names=rownames(full_coef_tab_signf);
+	num_signf_preds=length(sorted_pred_names);
+
+	if(num_signf_preds==0){
+		plot_text(
+			paste("No Significant Predictors for ", resp_name, sep="")
+		);
 		return();
 	}
 
-	if(num_row==1 || num_col==1){
-		plot_row_dendr=F;
-		plot_col_dendr=F;
-	}
+	#cat("-----------------------------------------------\n");
+	#cat("Only Significant, sorted:\n\n");
+	#cat("Full:\n");
+	#print(full_coef_tab_signf);
+	#cat("\nReduced:\n");
+	#print(reduced_coef_tab_signf);
 
-        row_names=rownames(mat);
-        col_names=colnames(mat);
+	# Add nlp and colors
+	orig_colnames=colnames(full_coef_tab_signf);
 
-        orig.par=par(no.readonly=T);
+	full_coef_tab_signf=cbind(full_coef_tab_signf, -log10(full_coef_tab_signf[,4]));
+	reduced_coef_tab_signf=cbind(reduced_coef_tab_signf, -log10(reduced_coef_tab_signf[,4]));
 
-	cat("Painting Matrix for: ", title, "\n"); 
-        cat("Num Rows: ", num_row, "\n");
-        cat("Num Cols: ", num_col, "\n");
+	full_coef_tab_signf=cbind(full_coef_tab_signf, 
+		sapply(full_coef_tab_signf[,"Estimate"], function(x){ifelse(x>=0, 1, -1)}));
+	reduced_coef_tab_signf=cbind(reduced_coef_tab_signf, 
+		sapply(reduced_coef_tab_signf[,"Estimate"], function(x){ifelse(x>=0, 1, -1)}));
 
-        # Flips the rows, so becuase origin is bottom left
-        mat=mat[rev(1:num_row),, drop=F];
+	append_colnames=c(orig_colnames, "NegLogPval", "PosNeg");
+	colnames(full_coef_tab_signf)=append_colnames;
+	colnames(reduced_coef_tab_signf)=append_colnames;
 
-        # Generate a column scheme
-        num_colors=50;
-        color_arr=rainbow(num_colors, start=0, end=4/6);
-        if(high_is_hot){
-                color_arr=rev(color_arr);
-        }
-
-        # Provide a means to map values to an (color) index
-        remap=function(in_val, in_range, out_range){
-                in_prop=(in_val-in_range[1])/(in_range[2]-in_range[1])
-                out_val=in_prop*(out_range[2]-out_range[1])+out_range[1];
-                return(out_val);
-        }
-
-        # If range is not specified, find it based on the data
-        if(is.na(plot_min)){
-                plot_min=min(mat, na.rm=T);
-        }
-        if(is.na(plot_max)){
-                plot_max=max(mat, na.rm=T);
-        }
-
-        if(plot_min>=-1 && plot_max<=1){
-                fractions_only=T;
-        }else{
-                fractions_only=F;
-        }
-        cat("Plot min/max: ", plot_min, "/", plot_max, "\n");
-
-        # Get Label lengths
-        row_max_nchar=max(nchar(row_names));
-        col_max_nchar=max(nchar(col_names));
-        cat("Max Row Names Length: ", row_max_nchar, "\n");
-        cat("Max Col Names Length: ", col_max_nchar, "\n");
-
-        ##################################################################################################
-
-        get_dendrogram=function(in_mat, type){
-
-                if(type=="row"){
-                        #noop;
-                }else{
-                        in_mat=t(in_mat);
-                }
-		dendist=dist(in_mat);
-
-                get_clstrd_leaf_names=function(den){
-                # Get a list of the leaf names, from left to right
-                        den_info=attributes(den);
-                        if(!is.null(den_info$leaf) && den_info$leaf==T){
-                                return(den_info$label);
-                        }else{
-                                lf_names=character();
-                                for(i in 1:2){
-                                        lf_names=c(lf_names, get_clstrd_leaf_names(den[[i]]));
-                                }
-                                return(lf_names);
-                        }
-                }
-
-                hcl=hclust(dendist, method="ward.D2");
-                dend=list();
-                dend[["tree"]]=as.dendrogram(hcl);
-                dend[["names"]]=get_clstrd_leaf_names(dend[["tree"]]);
-                return(dend);
-        }
-
-
-        ##################################################################################################
-        # Comput Layouts
-        col_dend_height=ceiling(num_row*.1);
-        row_dend_width=ceiling(num_col*.2);
-
-        heatmap_height=num_row;
-        heatmap_width=num_col;
-
-        if(plot_col_dendr && plot_row_dendr){
-                layoutmat=matrix(
-                        c(
-                        rep(c(rep(4, row_dend_width), rep(3, heatmap_width)), col_dend_height),
-                        rep(c(rep(2, row_dend_width), rep(1, heatmap_width)), heatmap_height)
-                        ), byrow=T, ncol=row_dend_width+heatmap_width);
-
-                col_dendr=get_dendrogram(mat, type="col");
-                row_dendr=get_dendrogram(mat, type="row");
-
-                mat=mat[row_dendr[["names"]], col_dendr[["names"]]];
-
-        }else if(plot_col_dendr){
-                layoutmat=matrix(
-                        rep(c(rep(2, row_dend_width), rep(1, heatmap_width)), heatmap_height),
-                        byrow=T, ncol=row_dend_width+heatmap_width);
-
-                row_dendr=get_dendrogram(mat, type="row");
-                mat=mat[row_dendr[["names"]],];
-        }else{
-                layoutmat=matrix(
-                        rep(1, heatmap_height*heatmap_width),
-                        byrow=T, ncol=heatmap_width);
-        }
-
-        #print(layoutmat);
-        layout(layoutmat);
-
-        ##################################################################################################
-
-        par(oma=c(col_max_nchar*.60, 0, 3, row_max_nchar*.60));
-        par(mar=c(0,0,0,0));
-        plot(0, type="n", xlim=c(0,num_col), ylim=c(0,num_row), xaxt="n", yaxt="n", 
-		bty="n", xlab="", ylab="");
-        mtext(title, side=3, line=0, outer=T, font=2);
-
-        # x-axis
-        axis(side=1, at=seq(.5, num_col-.5, 1), labels=colnames(mat), las=2, line=-1.75);
-        axis(side=4, at=seq(.5, num_row-.5, 1), labels=rownames(mat), las=2, line=-1.75);
-
-        if(log_col){
-                plot_min=log10(plot_min+.0125);
-                plot_max=log10(plot_max+.0125);
-        }
-
-        for(x in 1:num_col){
-                for(y in 1:num_row){
-
-                        if(log_col){
-                                col_val=log10(mat[y,x]+.0125);
-                        }else{
-                                col_val=mat[y,x];
-                        }
-
-                        remap_val=remap(col_val, c(plot_min, plot_max), c(1, num_colors));
-                        col_ix=ceiling(remap_val);
-
-                        rect(x-1, y-1, (x-1)+1, (y-1)+1, border=NA, col=color_arr[col_ix]);
-
-                        if(is.na(mat[y,x]) || mat[y,x]!=0 || label_zeros){
-                                if(counts){
-                                        text_lab=sprintf("%i", mat[y,x]);
-                                }else{
-                                        text_lab=sprintf(paste("%0.", deci_pts, "f", sep=""), mat[y,x]);
-                                        if(fractions_only){
-                                                if(!is.na(mat[y,x])){
-                                                        if(mat[y,x]==-1 || mat[y,x]==1){
-                                                                text_lab=as.integer(mat[y,x]);
-                                                        }else{
-                                                                text_lab=gsub("0\\.","\\.", text_lab);
-                                                        }
-                                                }
-                                        }
-                                }
-                                text(x-.5, y-.5, text_lab, srt=atan(num_col/num_row)/pi*180, 
-					cex=value.cex, font=2);
-                        }
-                }
-        }
-
-        ##################################################################################################
-
-        par(mar=c(0, 0, 0, 0));
-
-        if(plot_row_dendr && plot_col_dendr){
-                rdh=attributes(row_dendr[["tree"]])$height;
-                cdh=attributes(col_dendr[["tree"]])$height;
-                plot(row_dendr[["tree"]], leaflab="none", horiz=T, xaxt="n", yaxt="n", bty="n", 
-			xlim=c(rdh, 0));
-                plot(col_dendr[["tree"]], leaflab="none",xaxt="n", yaxt="n", bty="n", ylim=c(0, cdh));
-                plot(0,0, type="n", bty="n", xaxt="n", yaxt="n");
-                #text(0,0, "Placeholder");
-        }else if(plot_row_dendr){
-                rdh=attributes(row_dendr[["tree"]])$height;
-                plot(row_dendr[["tree"]], leaflab="none", horiz=T, xaxt="n", yaxt="n", bty="n", 
-			xlim=c(rdh, 0));
-                #text(0,0, "Row Dendrogram");
-        }else if(plot_col_dendr){
-                cdh=attributes(col_dendr[["tree"]])$height;
-                plot(col_dendr[["tree"]], leaflab="none", xaxt="n", yaxt="n", bty="n", ylim=c(0, cdh));
-                #text(0,0, "Col Dendrogram");
-        }
-
-        par(orig.par);
-
-}
-
-plot_pred_vs_obs=function(lmfit_ful, lmfit_red, title=""){
-
-	par.orig=par(no.readonly=T);
-
-	#print(lmfit$fitted.values);
-	#print(lmfit$y);
-
-	obs=lmfit_ful$y;
-
-	pred_red=lmfit_red$fitted.values;
-	pred_ful=lmfit_ful$fitted.values;
-
-	sum_ful=summary(lmfit_ful);
-	sum_red=summary(lmfit_red);
-
-	if(is.null(ncol(obs))){
-		obs=matrix(obs, nrow=length(obs), ncol=1, dimnames=list(names(pred_red), "obs"));
-		pred_red=matrix(pred_red, nrow=length(pred_red), ncol=1, 
-			dimnames=list(names(pred_red), "y"));
-		pred_ful=matrix(pred_ful, nrow=length(pred_ful), ncol=1, 
-			dimnames=list(names(pred_ful), "y"));
-
-		sum_ful=list(sum_ful);
-		sum_red=list(sum_red);
-	}
-
-	num_mv_resp=ncol(pred_ful);
-	response_names=colnames(pred_ful);
-
-	plot_row=2;
-	plot_col=4;
-	plots_per_page=(plot_row*plot_col)/2;
-	par(mfcol=c(plot_row, plot_col));
+	#cat("-----------------------------------------------\n");
+	#cat("Only Significant, sorted, extra columns:\n\n");
+	#cat("Full:\n");
+	#print(full_coef_tab_signf);
+	#cat("\nReduced:\n");
+	#print(reduced_coef_tab_signf);
 	
-	for(resp_ix in 1:num_mv_resp){
+	# Generate matrix for "beside" barplots
+	stacked=matrix(0, ncol=length(combined_signf_preds), nrow=2);
+	colnames(stacked)=sorted_pred_names;
+	rownames(stacked)=c("Full", "Reduced");
+	stacked["Full", combined_signf_preds]=
+		full_coef_tab_signf[combined_signf_preds, "NegLogPval"];
+	stacked["Reduced", combined_signf_preds]=
+		reduced_coef_tab_signf[combined_signf_preds, "NegLogPval"];
 
-		obs_cur=obs[,resp_ix];
-		rngs=range(c(obs_cur, pred_red[,resp_ix], pred_ful[,resp_ix]));	
+	min_pval=min(full_coef_tab_signf[,4], reduced_coef_tab_signf[,4]);
 
-		# P-values
-		if(is.null(sum_red[[resp_ix]]$fstatistic)){
-			red_pval=1;
-		}else{
-			red_pval=1-pf(sum_red[[resp_ix]]$fstatistic["value"], 
-				sum_red[[resp_ix]]$fstatistic["numdf"], sum_red[[resp_ix]]$fstatistic["dendf"]);
-		}
+	#cat("-----------------------------------------------\n");
+	#cat("Stacked Matrix for Barplot:\n");
+	#print(stacked);
+	#cat("-----------------------------------------------\n");
 
-		if(is.null(sum_ful[[resp_ix]]$fstatistic)){
-			ful_pval=1;
-		}else{
-			ful_pval=1-pf(sum_ful[[resp_ix]]$fstatistic["value"], 
-				sum_ful[[resp_ix]]$fstatistic["numdf"], sum_ful[[resp_ix]]$fstatistic["dendf"]);
-		}
+	# Generate barplot
+	ref_cutoffs=c(1, 0.1, 0.05, 0.01, 0.001);
+	nlp_ref_cutoffs=-log10(ref_cutoffs);
+	nlp_min_pval=-log10(min(min_pval, 0.001));
 
-		red_pval=round(red_pval,4);
-		ful_pval=round(ful_pval,4);
+	barcols=as.vector(matrix(c(
+		ifelse(full_coef_tab_signf[,"PosNeg"]==1, "darkgreen", "darkred"),  
+		ifelse(reduced_coef_tab_signf[,"PosNeg"]==1, "green", "red")
+		), byrow=T, nrow=2));
+
+	cat("barcols:\n");
+	print(barcols);
 	
-		# R-sqrds
-		red_adjsqrd=sum_red[[resp_ix]]$adj.r.squared;
-		ful_adjsqrd=sum_ful[[resp_ix]]$adj.r.squared;
-
-		red_adjsqrd=round(red_adjsqrd,3);
-		ful_adjsqrd=round(ful_adjsqrd,3);
-
-		# Plot Reduced
-		cat("Plotting Reduced:\n");
-		shrd=intersect(names(obs_cur), names(pred_red[,resp_ix]));
-
-		plot(obs_cur[shrd], pred_red[shrd,resp_ix], main=response_names[resp_ix], 
-			xlim=rngs, ylim=rngs,
-			xlab="", ylab="Reduced Predicted");
-		mtext(paste("adj. R^2=",red_adjsqrd, "  p-val=", red_pval, sep=""), line=0, cex=.7)
-		abline(a=0, b=1, col="blue");
-
-		# Plot Full
-		cat("Plotting Full:\n");
-		plot(obs_cur[shrd], pred_ful[shrd,resp_ix], main="", 
-			xlim=rngs, ylim=rngs,
-			xlab="Observed", ylab="Full Predicted (w/ Diversity)");
-		mtext(paste("adj. R^2=",ful_adjsqrd, "  p-val=", ful_pval, sep=""), line=0, cex=.7)
-		abline(a=0, b=1, col="blue");
-
-		# Label page
-		if((resp_ix-1)%%(plots_per_page)==0){
-			mtext(title, outer=T);
-		}
-	}
-
-	par(par.orig);
-}
-
-load_list=function(filename){
-	arr=scan(filename, what=character(), comment.char="#");
-	return(arr);
-}
-
-plot_text=function(strings, title=""){
-	par.orig=par(no.readonly=T);
 
 	par(mfrow=c(1,1));
-        par(family="Courier");
-        par(oma=c(.5, .5, 1.5, .5));
-        par(mar=rep(0,4));
+	par(mar=c(15,5,10,5));
+	mids=barplot(stacked, names.arg=rep(c("Full", "Reduced"), num_signf_preds), 
+		main="", ylab="-Log10(p-value)",
+		col=barcols, cex.names=.9,
+		ylim=c(0, nlp_min_pval), beside=T);
+	#print(mids);
 
-        num_lines=length(strings);
+	mids_of_mids=apply(mids, 2, mean);
 
-        top=max(as.integer(num_lines), 52);
+	abline(h=nlp_ref_cutoffs, lty="dashed", col="blue");
+	axis(1, at=mids_of_mids, labels=sorted_pred_names, las=2, line=4);
+	axis(4, at=nlp_ref_cutoffs, labels=ref_cutoffs, las=2);
+	mtext("P-values", side=4, line=3.5, cex=.8);	
 
-        plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
-                xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
-                );
-	if(title!=""){
-		mtext(title, outer=T, font=2);
-	}
+	title(main="most significant predictors", line=1.5, cex.main=1.5, font.main=1);
+	title(main=resp_name, line=3, cex.main=3, font.main=2);
 
-        text_size=max(.01, min(.8, .8 - .003*(num_lines-52)));
-        #print(text_size);
-
-        for(i in 1:num_lines){
-                #cat(strings[i], "\n", sep="");
-                strings[i]=gsub("\t", "", strings[i]);
-                text(0, top-i, strings[i], pos=4, cex=text_size);
-        }
 	par(par.orig);
-}
-
-tail_statistic=function(x){
-        sorted=sort(x, decreasing=TRUE);
-        norm=sorted/sum(x);
-        n=length(norm);
-        tail=0;
-        for(i in 1:n){
-                tail=tail + norm[i]*((i-1)^2);
-        }
-        return(sqrt(tail));
-}
-
-sig_char=function(val){
-	if(!is.null(val) && !is.nan(val) && !is.na(val)){
-		if(val <= .0001){ return("***");}
-		if(val <= .001 ){ return("** ");}
-		if(val <= .01  ){ return("*  ");}
-		if(val <= .05  ){ return(":  ");}
-		if(val <= .1   ){ return(".  ");}
-	}
-	return("   ");
-}
-
-calc_model_imprv=function(mv_resp_name, reduced_form_str, full_form_str, pred_datafr, resp_datafr){
-
-        reduced_form_str=gsub(mv_resp_name, "tmp_resp", reduced_form_str);
-        full_form_str=gsub(mv_resp_name, "tmp_resp", full_form_str);
-
-        num_resp=ncol(resp_datafr);
-        resp_names=colnames(resp_datafr);
-
-        improv_mat=matrix(NA, nrow=num_resp, ncol=7);
-        rownames(improv_mat)=resp_names;
-        colnames(improv_mat)=c("Full R^2", "Reduced R^2", "Full Adj R^2", "Reduced Adj R^2",
-                "Diff Adj. R^2", "Perc Improvement", "Diff ANOVA P-Value");
-
-        for(i in 1:num_resp){
-                tmp_resp=resp_datafr[,i];
-                all_data=cbind(tmp_resp, pred_datafr);
-                full_fit=lm(as.formula(full_form_str), data=all_data);
-                full_sum=summary(full_fit);
-                reduced_fit=lm(as.formula(reduced_form_str), data=all_data);
-                reduced_sum=summary(reduced_fit);
-
-                anova_res=anova(reduced_fit, full_fit);
-                anova_pval=anova_res["2", "Pr(>F)"];
-
-                improv_mat[i,]=c(
-                        full_sum$r.squared,
-                        reduced_sum$r.squared,
-                        full_sum$adj.r.squared,
-                        reduced_sum$adj.r.squared,
-                        full_sum$adj.r.squared-reduced_sum$adj.r.squared,
-                        100*(full_sum$adj.r.squared-reduced_sum$adj.r.squared)/reduced_sum$adj.r.squared,
-                        anova_pval);
-
-        }
-
-        return(improv_mat);
 
 }
 
+##############################################################################
+##############################################################################
+
+pdf(paste(OutputRoot, ".div_as_pred.pdf", sep=""), height=11, width=9.5);
 
 ##############################################################################
 
-pdf(paste(OutputRoot, ".div_as_pred.pdf", sep=""), height=8.5, width=11);
+loaded_files=load_and_reconcile_files(
+	sumtab=list(fn=SummaryFile),
+	factors=list(fn=FactorsFile),
+	covariates=list(fn=CovariatesFile),
+	grpvar=list(fn=ResponseFile),
+	reqvar=list(fn=RequiredFile));
 
-##############################################################################
-# Load matrix
+cat("Loaded Files:\n");
+print(names(loaded_files));
 
-counts=load_summary_file(SummaryFile);
-num_categories=ncol(counts);
+write_file_report(loaded_files[["Report"]]);
+
+counts=loaded_files[["SummaryTable_counts"]];
+num_taxa=ncol(counts);
 num_samples=nrow(counts);
-#print(counts);
 
-# Normalize
-normalized=normalize(counts);
-#print(normalized);
+diversity_mat=sample_counts_to_diversity_matrix(counts);
+diversity_names=colnames(diversity_mat);
 
-out=capture.output({
-	cat("Summary Table:\n");
-	cat("  Original Num Samples: ", num_samples, "\n");
-	cat("  Original Num Categories: ", num_categories, "\n");
-});
-cat(out, sep="\n");
-summary_text=c(summary_text, "\n", out);
+plot_histograms(diversity_mat, "Diversity");
 
 ##############################################################################
-# Load factors
 
-factors=load_factors(FactorsFile);
+factors=loaded_files[["Factors"]];
+
 factor_names=colnames(factors);
 num_factors=ncol(factors);
 factor_sample_names=rownames(factors);
 num_factor_samples=length(factor_sample_names);
 
-out=capture.output({
-	cat("\n");
-	cat("Factors:\n");
-	cat("  Original Num Samples: ", num_factor_samples, "\n");
-	cat("  Original Num Factors: ", num_factors, "\n");
-	cat("\n");
-});
-cat(out, sep="\n");
-summary_text=c(summary_text, "\n", out);
-
-##############################################################################
-# Relevel factor levels
-
-if(ReferenceLevelsFile!=""){
-	ref_lev_mat=load_reference_levels_file(ReferenceLevelsFile)
-	factors=relevel_factors(factors, ref_lev_mat);
-}else{
-	cat("No Reference Levels File specified.\n");
-}
-
-##############################################################################
-# Reconcile factors with samples
-
-cat("Reconciling samples between factor file and summary table:\n");
-factor_sample_ids=rownames(factors);
-counts_sample_ids=rownames(counts);
-
-shared_sample_ids=intersect(factor_sample_ids, counts_sample_ids);
-num_shared_sample_ids=length(shared_sample_ids);
-num_factor_sample_ids=length(factor_sample_ids);
-num_counts_sample_ids=length(counts_sample_ids);
-
-out=capture.output({
-	cat("Num counts sample IDs: ", num_counts_sample_ids, "\n");
-	cat("Num factor sample IDs: ", num_factor_sample_ids, "\n");
-	cat("Num shared sample IDs: ", num_shared_sample_ids, "\n");
-	cat("\n");
-});
-cat(out, sep="\n");
-summary_text=c(summary_text, "\n", out);
-
-cat("Samples missing from count information:\n");
-print(setdiff(factor_sample_ids, counts_sample_ids));
 cat("\n");
-cat("Samples missing from factor information:\n");
-print(setdiff(counts_sample_ids, factor_sample_ids));
+cat("Num Factors/Columns Loaded: ", num_factors, "\n", sep="");
+cat("Num Samples for Factors Loaded: ", num_factor_samples, "\n", sep="");
+print(factor_names);
 cat("\n");
-cat("Total samples shared: ", num_shared_sample_ids, "\n");
 
-shared_sample_ids=sort(shared_sample_ids);
-
-# Reorder data by sample id
-normalized=normalized[shared_sample_ids,];
-num_samples=nrow(normalized);
-factors=factors[shared_sample_ids,, drop=F];
-
-# Load variables to require after NA removal
-required_arr=NULL;
-if(""!=RequiredFile){
-	required_arr=load_list(RequiredFile);
-        cat("Required Variables:\n");
-        print(required_arr);
-        cat("\n");
-        missing_var=setdiff(required_arr, factor_names);
-        if(length(missing_var)>0){
-                cat("Error: Missing required variables from factor file:\n");
-                print(missing_var);
-        }
-}else{
-        cat("No Required Variables specified...\n");
-}
-
-##############################################################################
-# Build model and select variables
-
-if(ModelFormula!=""){
-	cat("Model Formula: ", ModelFormula, "\n", sep="");
-	model_string=ModelFormula;
-	
-}else if(CovariatesFile!=""){
-	cat("Model Covariates Filename: ", CovariatesFile, "\n");
-	variables=load_list(CovariatesFile);
-	shared=intersect(variables, factor_names);
-	if(length(shared)!=length(variables)){
-		cat("Missing variables specified in Covariates File:\n");
-		print(setdiff(variables, shared));
-	}
-	model_string=paste(shared,  collapse=" + ");
-}else{
-	cat("No Model Specified, using all variables.\n");
-	model_string= paste(factor_names, collapse=" + ");
-}
-
-cat("Model String used for Regression: \n");
-print(model_string);
-model_var=get_var_from_modelstring(model_string);
-if(all(is.na(model_var))){
-	model_var=NULL;
-}
-
-cat("Predictors:\n");
-print(model_var);
+cat("Covariates Variables:\n");
+covariates_arr=loaded_files[["Covariates"]];
+print(covariates_arr);
 
 cat("\n");
+
 cat("Response Variables:\n");
-responses_arr=load_list(ResponseFile);
+responses_arr=loaded_files[["GroupVariables"]];
+print(responses_arr);
 if(length(responses_arr)==0){
-	cat("There were no response variables specified.\n");
-	cat("Quiting...\n");
+	msg=c(
+		"Response variables not specified.",
+		"Could not run diversity as a predictor analysis."
+	);
+	plot_text(msg, echo=T);
 	quit(status=0);
-}else{
-	print(responses_arr);
-}
-cat("\n");
-
-cat("Extracting predictors+responses from available factors...\n");
-all_var=c(model_var, responses_arr);
-print(all_var);
-
-factors=factors[,all_var, drop=F];
-print(factors);
-cat("\n");
-
-##############################################################################
-# Handle NAs
-
-cat("Working on NA Removal...\n");
-remove_na_res=remove_sample_or_factors_wNA_parallel(factors, required=required_arr, 
-	num_trials=640000, num_cores=64, outfile=OutputRoot);
-#remove_na_res=remove_sample_or_factors_wNA_parallel(factors, required=required_arr, 
-#	num_trials=1000, num_cores=64, outfile=OutputRoot);
-
-factors=remove_na_res$factors;
-samp_wo_nas=rownames(factors);
-factor_names=colnames(factors);
-num_factors=length(factor_names);
-normalized=normalized[samp_wo_nas,];
-num_samples=length(samp_wo_nas);
-
-model_string=rem_missing_var_from_modelstring(model_string, factor_names);
-model_var=intersect(model_var, factor_names);
-
-cat("\n");
-cat("New Model String with Factors with NAs removed:\n");
-print(model_string);
-cat("\n");
-responses_arr=intersect(responses_arr, factor_names);
-
-summary_text=c(summary_text, "\n", remove_na_res$summary_text);
-
-##############################################################################
-
-plot_text(summary_text);
-
-##############################################################################
-# Compute diversity indices
-cat("Computing diversity indices:\n");
-
-div_names=c("Tail", "Shannon", "Simpson", "Evenness", "SimpsonsRecip");
-num_div_idx=length(div_names);
-
-div_mat=matrix(0, nrow=num_samples, ncol=num_div_idx);
-colnames(div_mat)=div_names;
-rownames(div_mat)=rownames(normalized);
-
-cat("Computing diversity indices across samples.\n");
-for(i in 1:num_samples){
-	curNorm=normalized[i,];
-	zeroFreeNorm=curNorm[curNorm>0]
-	div_mat[i,"Tail"]=tail_statistic(zeroFreeNorm);
-	div_mat[i,"Shannon"]=-sum(zeroFreeNorm*log(zeroFreeNorm));
-	div_mat[i,"Simpson"]=1-sum(curNorm^2);
-	div_mat[i,"Evenness"]=div_mat[i,"Shannon"]/log(length(zeroFreeNorm));
-	div_mat[i,"SimpsonsRecip"]=1/sum(curNorm^2);
 }
 
-# Set evenness to 0 if there is only 1 category.
-evenness=div_mat[,"Evenness"];
-div_mat[is.na(evenness),"Evenness"]=0;
-
-cat("Plotting histograms of raw diversity indices.\n");
-par(mfrow=c(3,2));
-par(oma=c(1, 1, 1.5, 1));
-par(mar=c(5,4,4,2));
-
-for(i in 1:num_div_idx){
-	hist(div_mat[, div_names[i]], main=div_names[i], xlab=div_names[i], 
-		breaks=15);
-}
-
-mtext("Sample Diversity Indices Distributions", outer=T);
-
-##############################################################################
-# Output reference factor levels
-
-predictors_mat=factors[samp_wo_nas,model_var,drop=F];
-num_pred_var=ncol(predictors_mat);
-responses_mat=as.matrix(factors[samp_wo_nas,responses_arr,drop=F]);
-num_resp_var=ncol(responses_mat);
-
-##############################################################################
-# Plot Response Correlations
-cat("Plotting correlations among responses...\n");
-paint_matrix(cor(responses_mat), title="Response Correlations", plot_min=-1, plot_max=1, deci_pts=2);
-
-##############################################################################
-
-# Allocation matrices 
-resp=rep(1, length(samp_wo_nas));
-
-if(model_string==""){
-	model_string="1";
-}
-
-model_matrix=model.matrix(as.formula(paste("resp ~", model_string)),data=predictors_mat);
-regression_variables=setdiff(colnames(model_matrix), "(Intercept)");
-cat("Expected Regression Variables:\n");
-print(regression_variables);
-num_regression_variables=length(regression_variables);
 cat("\n");
 
-pval_list=list();
-coeff_list=list();
-adjrsqrd_list=list();
-full_red_anova_list=list();
+cat("Required Variables:\n");
+required_arr=loaded_files[["RequiredVariables"]];
+print(required_arr);
 
-diversity_coef=matrix(NA, nrow=num_resp_var, ncol=num_div_idx,
-		dimnames=list(responses_arr, div_names));
-diversity_pval=matrix(NA, nrow=num_resp_var, ncol=num_div_idx,
-		dimnames=list(responses_arr, div_names));
+cat("\n");
 
-diversity_adj.rsqrd=matrix(NA, nrow=num_resp_var, ncol=num_div_idx,
-                dimnames=list(responses_arr, div_names));
-diversity_adj.rsqrd_delta=matrix(NA, nrow=num_resp_var, ncol=num_div_idx,
-                dimnames=list(responses_arr, div_names));
+#------------------------------------------------------------------------------
 
-anova_pval=matrix(NA, nrow=num_pred_var+1, ncol=num_div_idx,
-		dimnames=list(c("diversity",model_var), div_names));
+responses_factors_mat=factors[,responses_arr,drop=F];
+covariates_factors_mat=factors[,covariates_arr,drop=F];
 
+###############################################################################
 
-reduced_model_res_list=list();
+plot_histograms(responses_factors_mat, "Response Variables");
 
-# Inititalize storage of reduced model
-for(i in 1:num_div_idx){
+plot_histograms(covariates_factors_mat, "Covariates Variables");
 
-	div_name=div_names[i];
-	reduced_model_res_list[[div_name]]=list();
-	
+###############################################################################
 
-	reduced_model_res_list[[div_name]][["p-values"]]=
-		matrix(NA, nrow=num_regression_variables, ncol=num_resp_var,
-			dimnames=list(regression_variables, responses_arr));
+# Determine whether response is normal or binomial, or other?
+cat("Determining whether response variable is continuous or boolean...\n");
 
-	reduced_model_res_list[[div_name]][["coefficients"]]=
-		matrix(NA, nrow=num_regression_variables, ncol=num_resp_var,
-			dimnames=list(regression_variables, responses_arr));
-}
+assign_model_families=function(resp_var_mat){
 
+	num_resp=ncol(resp_var_mat);
 
-for(i in 1:num_div_idx){
+	mod_fam=character(num_resp);
+	names(mod_fam)=colnames(resp_var_mat);
 
-	cur_div_name=div_names[i];
-	cat("Working on: ", cur_div_name, "\n", sep="");
+	for(i in 1:num_resp){
+		cur_resp=resp_var_mat[,i];
 
-	diversity=div_mat[samp_wo_nas, div_names[i], drop=F];
-	all_predictors_mat=cbind(diversity[samp_wo_nas,,drop=F], predictors_mat[samp_wo_nas,,drop=F]);
+		uniq_resp=unique(cur_resp);
+		num_uniq_resp=length(uniq_resp);
+		min_resp=min(uniq_resp);
+		max_resp=max(uniq_resp);
 
-	# Full
-	full_model_string=paste("responses_mat ~ diversity + ", model_string, sep="");
-	print(full_model_string);
-
-	mv_fit=lm(as.formula(full_model_string), data=as.data.frame(all_predictors_mat), y=T);
-	sum_fit=summary(mv_fit);
-
-	# Compute ANOVA full model
-	num_resid_df=mv_fit$df.residual;
-	num_responses=length(mv_fit);
-	if(num_resid_df<num_responses){
-		msg=paste("There are not enough residual degrees of freedom (",
-			num_resid_df, ") for the number of responses (", num_responses, 
-			") to perform MANOVA.", sep="");
-		plot_text(msg);
-		mv_anova=NULL;
-	}else{
-
-		try_res=try({mv_anova=anova(mv_fit)});
-		
-		if(any(class(try_res)=="try-error")){
-			mv_anova=NULL;
-			
-			msg=c(
-				"Error occured while computed MANOVA: ",
-				paste(try_res)
-			);
-			plot_text(msg);
-
+		if(num_uniq_resp==2 && min_resp==0 && max_resp==1){
+			mod_fam[i]="binomial";
 		}else{
-
-			plot_text(capture.output(print(mv_anova)), title=div_names[i]);
-			anova_pval[c("diversity",model_var),div_names[i]]=mv_anova[c("diversity",model_var),"Pr(>F)"];
+			mod_fam[i]="gaussian";
 		}
 	}
 
-	# Reduced
-	red_model_string=paste("responses_mat ~ ", model_string, sep="");
-	print(red_model_string);
+	return(mod_fam);
+}
 
-	red_mv_fit=lm(as.formula(red_model_string), data=as.data.frame(all_predictors_mat), y=T);
-	red_sum_fit=summary(red_mv_fit);
+model_families=assign_model_families(responses_factors_mat);
+num_bool_resp=sum(model_families=="binomial");
+all_gaussian_resp=all(model_families=="gaussian");
 
+cat("Model Families:\n");
+print(model_families);
+
+if(!all_gaussian_resp){
+	cat("Gaussian family responses identified.\n");
+}
+
+cat("\n");
+
+###############################################################################
+# Set up and run univariate and manova
+
+
+build_model_formulas=function(div_nm, cov_arr, resp_arr){
+
+	cov_str=paste(cov_arr, collapse=" + ");
+
+	div_mod_list=list();
+	for(div in div_nm){
+		resp_list=list();
+		for(resp in resp_arr){
+
+			null_model_str=paste(resp, " ~ ", 1, sep="");
+			if(length(cov_arr)){
+				full_model_str=paste(resp, " ~ ", div, " + ", cov_str, sep="");
+				reduced_model_str=paste(resp, " ~ ", cov_str, sep="");
+			}else{
+				full_model_str=paste(resp, " ~ ", div, sep="");
+				reduced_model_str=null_model_str;
+			}
+
+			mod_typ=list();
+			mod_typ[["Null"]]=null_model_str;
+			mod_typ[["Full"]]=full_model_str;
+			mod_typ[["Reduced"]]=reduced_model_str;
 	
-	# Full/Reduced ANOVA
-	improv_matrix=calc_model_imprv("responses_mat", red_model_string, full_model_string,
-		predictors_mat, responses_mat);
-
-	# Allocate data structures
-	estimates_matrix=matrix(NA, nrow=num_regression_variables, ncol=num_resp_var,
-			dimnames=list(regression_variables, responses_arr));
-	pvalues_matrix=matrix(NA, nrow=num_regression_variables, ncol=num_resp_var,
-			dimnames=list(regression_variables, responses_arr));
-
-	sum_resp_names=paste("Response ", responses_arr, sep="");
-
-	if(num_resp_var==1){
-		cat("Putting single variate response into list...\n");
-		tmp=list();
-		tmp[[sum_resp_names[1]]]=sum_fit;
-		sum_fit=tmp;
-		class(sum_fit)="listof";
-
-		tmp=list();
-		tmp[[sum_resp_names[1]]]=red_sum_fit;
-		red_sum_fit=tmp;
-		class(red_sum_fit)="listof";
-	}
-
-
-	for(resp_ix in 1:num_resp_var){
-
-
-		missing=setdiff(regression_variables, 
-			rownames(sum_fit[[sum_resp_names[resp_ix]]]$coefficients));
-
-		avail_reg_var=regression_variables;
-		if(length(missing)>0){
-			cat("***************************************************\n");
-			cat("Warning: Not all regression coefficient calculable:\n");
-			print(missing);
-			cat("***************************************************\n");
-			avail_reg_var=setdiff(regression_variables, missing);
+			resp_list[[resp]]=mod_typ;
 		}
+		div_mod_list[[div]]=resp_list;
+	}
+	return(div_mod_list);
+}
+
+diversity_model_list=build_model_formulas(diversity_names, covariates_arr, responses_arr);
+#print(diversity_model_list);
+
+###############################################################################
+
+compute_mod_stats=function(fit, sumfit){
+
+	ms=list();
+
+	ms[["mcfadden"]]=1-sumfit$deviance/sumfit$null.deviance;
+	ms[["aic"]]=fit$aic;
+
+	model_family=fit$family$family;
+	if(model_family=="gaussian"){
+
+		ss_res=sum(fit$residuals^2);
+		obs_resp=fit$y;
+		ss_tot=sum((obs_resp - mean(obs_resp))^2);
+		unadj_r2=1-(ss_res/ss_tot);
+
+		ms[["unadjusted"]]=unadj_r2;
+
+		num_obs=length(obs_resp);
+		num_pred_var=length(fit$coefficients)-1; # exclude intercept
+		adj_r2=1-((1-unadj_r2)*(num_obs-1)/(num_obs-num_pred_var-1));
+
+		ms[["adjusted"]]=adj_r2;
+
+	}else{
+		
+		ms[["unadjusted"]]=NA;
+		ms[["adjusted"]]=NA;
+	}
+
+	return(ms);
+
+}
+
+#------------------------------------------------------------------------------
+
+compute_glm_manovas=function(cov, div, all_data, resp_fam){
+
+	# cov: list of covariates
+	# div: current diversity index name
+	# all_data: all data cov, grp, and diversity indices
+	# resp_fam: binomial, gaussian, etc.
+
+	# See if we have enough gaussian response variables to run MANOVA
+	gausfam_ix=(resp_fam=="gaussian");
+	num_gaussian_resp=sum(gausfam_ix);
+
+	cat("\n");
+	if(num_gaussian_resp>2){
+
+		gaus_resp_names=names(resp_fam[gausfam_ix]);
+
+		cat("Running MANOVA on Response Variables: \n");
+		print(gaus_resp_names);
+
+		# Copy all the residuals from the glm fit to a single matrix
+		cat("Copying resp values to single matrix.\n");
+		num_samples=nrow(all_data);
+		gaus_resp_mat=matrix(NA, nrow=num_samples, ncol=num_gaussian_resp);
+		colnames(gaus_resp_mat)=gaus_resp_names;
+		for(grn in gaus_resp_names){
+			gaus_resp_mat[,grn]=all_data[,grn];
+		}
+		#print(gaus_resp_mat);
+
+		full_pred_str=paste(c(div, cov), collapse=" + ");
+		cat("Full Predictors String: \n");
+		print(full_pred_str);
+
+		tryCatch({
+
+			manova_res=manova(
+				as.formula(paste("gaus_resp_mat ~ ", full_pred_str, sep="")), 
+				data=all_data);
+			manova_sumres=summary(manova_res);
+
+		}, error=function(e){
+			cat("Error: MANOVA was attempted but not successful.\n");
+			print(e);
+		});
+
+		#print(manova_res);
+		print(summary(manova_res));
+
+	}else{
+		cat("Insufficient Gaussian family responses for MANOVA.\n");
+		manova_sumres=NA;
+	}
+
+	return(manova_sumres);
+}
+
+#------------------------------------------------------------------------------
+
+fit_glms=function(div_mod_lst, div_mat, fact_mat, rsp_mod_fam){
+
+	diversity_names=names(div_mod_lst);
+
+	div_fits_lst=list();
+
+	samp_id=rownames(fact_mat);
+	resp_pred_div_mat=cbind(div_mat[samp_id,,drop=F], fact_mat[samp_id,,drop=F]); 
+	#print(resp_pred_div_mat);
+
+	for(div_nm in diversity_names){
 		
 
-		estimates_matrix[avail_reg_var, resp_ix]=
-			sum_fit[[sum_resp_names[resp_ix]]]$coefficients[avail_reg_var, "Estimate"];
-		pvalues_matrix[avail_reg_var, resp_ix]=
-			sum_fit[[sum_resp_names[resp_ix]]]$coefficients[avail_reg_var, "Pr(>|t|)"];
+		cat("Fitting ", div_nm, " models...\n", sep="");
 
-		# Store diversity
-		diversity_coef[resp_ix, div_names[i]]=
-			sum_fit[[sum_resp_names[resp_ix]]]$coefficients["diversity", "Estimate"];
-		diversity_pval[resp_ix, div_names[i]]=
-			sum_fit[[sum_resp_names[resp_ix]]]$coefficients["diversity", "Pr(>|t|)"];
+		rsp_names=names(div_mod_lst[[div_nm]]);
+		
+		glm_fits_by_rsp=list();
+		for(rsp_nm in rsp_names){
+			rsp_fam=rsp_mod_fam[rsp_nm];
+			cat("  Fitting Resp: ", rsp_nm, " (family=", rsp_fam, ")\n", sep="");
+			
+			# Compute GLMs
+			glm_fits=list();
+			glm_sumfits=list();
+			glm_r2s=list();
+			for(models in c("Null", "Full", "Reduced")){
+
+				cat("    Fitting Model: ", models, "\n", sep="");
+				glm_fits[[models]]=glm(
+					as.formula(div_mod_lst[[div_nm]][[rsp_nm]][[models]]),
+					data=resp_pred_div_mat,
+					family=rsp_fam
+					);
+				glm_sumfits[[models]]=summary(glm_fits[[models]]);
+				#print(glm_sumfits[[models]]);
+
+				glm_r2s[[models]]=compute_mod_stats(
+					glm_fits[[models]], glm_sumfits[[models]]);
+			}
+			
+			glm_fits_by_rsp[[rsp_nm]][["fits"]]=glm_fits;	
+			glm_fits_by_rsp[[rsp_nm]][["sumfits"]]=glm_sumfits;	
+			glm_fits_by_rsp[[rsp_nm]][["r2"]]=glm_r2s;	
+
+			# Compute ANOVAs
+			anova_null_reduced_res=anova(
+				glm_fits[["Null"]], 
+				glm_fits[["Reduced"]], 
+				test="Chi");
+			anova_null_reduced_pval=anova_null_reduced_res[["Pr(>Chi)"]][2];
+
+			anova_null_full_res=anova(
+				glm_fits[["Null"]], 
+				glm_fits[["Full"]], 
+				test="Chi");
+			anova_null_full_pval=anova_null_full_res[["Pr(>Chi)"]][2];
+
+			anova_reduced_full_res=anova(
+				glm_fits[["Reduced"]], 
+				glm_fits[["Full"]], 
+				test="Chi");
+			anova_reduced_full_pval=anova_reduced_full_res[["Pr(>Chi)"]][2];
+
+			anovas=list();
+			anovas[["null_reduced"]]=anova_null_reduced_pval;
+			anovas[["null_full"]]=anova_null_full_pval;
+			anovas[["reduced_full"]]=anova_reduced_full_pval;
+			glm_fits_by_rsp[[rsp_nm]][["anova_pvals"]]=anovas;
+
+		}
+
+		div_fits_lst[[div_nm]]=list();
+		div_fits_lst[[div_nm]][["glms"]]=glm_fits_by_rsp;
+		div_fits_lst[[div_nm]][["manova"]]=
+			compute_glm_manovas(
+				covariates_arr,
+				div_nm,
+				resp_pred_div_mat,
+				rsp_mod_fam);
+	}
+
+	return(div_fits_lst);
+
+}
+
+fit_list=fit_glms(diversity_model_list, diversity_mat, factors, model_families);
 
 
-		# Store Adj-Rsqrd
-		diversity_adj.rsqrd[resp_ix, div_names[i]]=
-			sum_fit[[sum_resp_names[resp_ix]]]$adj.r.squared;
+#print(fit_list);
 
-		diversity_adj.rsqrd_delta[resp_ix, div_names[i]]=
-                        sum_fit[[sum_resp_names[resp_ix]]]$adj.r.squared-
-                        red_sum_fit[[sum_resp_names[resp_ix]]]$adj.r.squared;
+###############################################################################
 
-		# Store reduced model results
-		reduced_model_res_list[[cur_div_name]][["coefficients"]][avail_reg_var,responses_arr[resp_ix]]=
-			red_sum_fit[[sum_resp_names[resp_ix]]][["coefficients"]][avail_reg_var, "Estimate"];
+print_list_as_tree=function(lst, lev=0, max_lev=Inf){
+	
+	if(!is.list(lst)){
+		return();
+	}else{
+		if(lev>max_lev){
+			return();
+		}
 
-		reduced_model_res_list[[cur_div_name]][["p-values"]][avail_reg_var,responses_arr[resp_ix]]=
-			red_sum_fit[[sum_resp_names[resp_ix]]][["coefficients"]][avail_reg_var, "Pr(>|t|)"];
+		for(n in names(lst)){
+			cat(paste(rep("   ", lev), collapse=""), n, "\n", sep="");
+			print_list_as_tree(lst[[n]], lev=lev+1, max_lev=max_lev);
+		}
+	}
+
+}
+
+###############################################################################
+
+#print_list_as_tree(fit_list, max_lev=4);
+
+
+accumulate_coef_pval_matrices=function(fit_lst){
+
+	cat("\n");
+	cat("Accumulating matrices from across list.\n");
+
+	div_names=names(fit_lst);
+	example_glm=fit_lst[[div_names[1]]][["glms"]]
+	resp_names=names(example_glm);
+
+	cat("Diversity Indices:\n");
+	print(div_names);
+	cat("\n");
+	cat("Response Names:\n");
+	print(resp_names);
+	cat("\n");
+
+	# Allocate matrices
+	num_div_ix=length(div_names);
+	num_resp=length(resp_names);
+	pval_mat=matrix(NA, nrow=num_div_ix, ncol=num_resp, 
+			dimnames=list(div_names, resp_names));
+	coef_mat=pval_mat;
+
+	for(div_ix in div_names){
+		#cat("Extracting: ", div_ix, "\n", sep="");
+
+		glms=fit_list[[div_ix]][["glms"]];
+
+		for(rsp_ix in resp_names){
+
+			cat("  Response: ", rsp_ix, "\n");
+
+			full_sumfits=glms[[rsp_ix]][["sumfits"]][["Full"]];
+			print(full_sumfits);
+
+			regress_tab=full_sumfits$coefficients;
+			print(regress_tab);
+
+			coef_mat[div_ix, rsp_ix]=regress_tab[div_ix, "Estimate"];
+			pval_mat[div_ix, rsp_ix]=regress_tab[div_ix, 4];
+		}
+	}	
+	
+	matrices=list();
+	matrices[["pval"]]=pval_mat;
+	matrices[["coef"]]=coef_mat;
+
+	return(matrices);
+}
+
+pv_cf_mat_full_list=accumulate_coef_pval_matrices(fit_list);
+
+
+###############################################################################
+
+accumulate_coef_pval_predictors_matrices_by_diversity=function(fit_lst){
+
+	div_names=names(fit_lst);
+	example_glm=fit_lst[[div_names[1]]][["glms"]]
+	resp_names=names(example_glm);
+	pred_names=setdiff(
+		rownames(example_glm[[1]][["sumfits"]][["Full"]][["coefficients"]]),
+		c("(Intercept)", div_names[1])
+		);
+
+	cat("Diversity Indices:\n");
+	print(div_names);
+	cat("\n");
+	cat("Response Names:\n");
+	print(resp_names);
+	cat("\n");
+	cat("Predictor Names:\n");
+	print(pred_names);
+	cat("\n");
+	
+
+	# Allocate matrices
+	num_div_ix=length(div_names);
+	num_resp=length(resp_names);
+	num_pred=length(pred_names);
+	mat_tmp=matrix(NA, nrow=num_pred+1, ncol=num_resp, 
+			dimnames=list(c("",pred_names), resp_names));
+
+	cfpv_list=list();
+	for(div_ix in div_names){
+		cat("Extracting: ", div_ix, "\n", sep="");
+
+		glms=fit_list[[div_ix]][["glms"]];
+		coef_mat=mat_tmp;
+		pval_mat=mat_tmp;
+
+		rownames(coef_mat)=c(div_ix, pred_names);
+		rownames(pval_mat)=c(div_ix, pred_names);
+
+		for(rsp_ix in resp_names){
+
+			cat("  Response: ", rsp_ix, "\n");
+
+			full_sumfits=glms[[rsp_ix]][["sumfits"]][["Full"]];
+			regress_tab=full_sumfits$coefficients;
+
+			for(prd_ix in c(div_ix, pred_names)){
+				coef_mat[prd_ix, rsp_ix]=regress_tab[prd_ix, "Estimate"];
+				pval_mat[prd_ix, rsp_ix]=regress_tab[prd_ix, 4];
+			}
+		}
+
+		mat_lst=list();
+		mat_lst[["coef"]]=coef_mat;
+		mat_lst[["pval"]]=pval_mat;
+		cfpv_list[[div_ix]]=mat_lst;
+	}	
+	
+	return(cfpv_list);
+
+}
+
+cf_pv_mat_list=accumulate_coef_pval_predictors_matrices_by_diversity(fit_list);
+
+
+###############################################################################
+
+accumulate_model_improv_stats=function(fit_lst){
+
+	cat("\n");
+	cat("Accumulating Model Improvement (R^2 and AIC) Stats across list.\n");
+
+	div_names=names(fit_lst);
+	example_glm=fit_lst[[div_names[1]]][["glms"]]
+	resp_names=names(example_glm);
+
+	cat("Diversity Indices:\n");
+	print(div_names);
+	cat("\n");
+	cat("Response Names:\n");
+	print(resp_names);
+	cat("\n");
+
+	# Allocate matrices
+	num_div_idx=length(div_names);
+	num_resp=length(resp_names);
+
+	# AIC Matrix Template
+	aic_coln=c("Null", "Reduced", "Full");
+	aic_mat=matrix(NA, nrow=num_resp, ncol=length(aic_coln),
+			dimnames=list(resp_names, aic_coln));
+
+	# R2 Matrix Template
+	r2_coln=c("McF Reduced", "McF Full", "Unadj Reduced", "Unadj Full", "Adj Reduced", "Adj Full");
+	r2_mat=matrix(NA, nrow=num_resp, ncol=length(r2_coln),
+			dimnames=list(resp_names, r2_coln));
+
+	# Anova Matrix Template
+	anova_coln=c("Null Full", "Null Reduced", "Reduced Full");
+	anova_mat=matrix(NA, nrow=num_resp, ncol=length(anova_coln),
+			dimnames=list(resp_names, anova_coln));
+
+	stats_by_div=list();
+
+	for(div_ix in div_names){
+		cat("Extracting: ", div_ix, "\n", sep="");
+
+		glms=fit_list[[div_ix]][["glms"]];
+
+		for(rsp_ix in resp_names){
+
+			cat("  Response: ", rsp_ix, "\n");
+
+
+			aic_mat[rsp_ix, "Null"]=
+				glms[[rsp_ix]][["fits"]][["Null"]][["aic"]];
+			aic_mat[rsp_ix, "Reduced"]=
+				glms[[rsp_ix]][["fits"]][["Reduced"]][["aic"]];
+			aic_mat[rsp_ix, "Full"]=
+				glms[[rsp_ix]][["fits"]][["Full"]][["aic"]];
+
+
+			r2_mat[rsp_ix, "McF Reduced"]=
+				glms[[rsp_ix]][["r2"]][["Reduced"]][["mcfadden"]]; 
+			r2_mat[rsp_ix, "McF Full"]=
+				glms[[rsp_ix]][["r2"]][["Full"]][["mcfadden"]]; 
+			r2_mat[rsp_ix, "Unadj Reduced"]=
+				glms[[rsp_ix]][["r2"]][["Reduced"]][["unadjusted"]]; 
+			r2_mat[rsp_ix, "Unadj Full"]=
+				glms[[rsp_ix]][["r2"]][["Full"]][["unadjusted"]]; 
+			r2_mat[rsp_ix, "Adj Reduced"]= 
+				glms[[rsp_ix]][["r2"]][["Reduced"]][["adjusted"]]; 
+			r2_mat[rsp_ix, "Adj Full"]=
+				glms[[rsp_ix]][["r2"]][["Full"]][["adjusted"]]; 
+
+
+			anova_mat[rsp_ix, "Null Full"]=
+				nf_anova_pv=glms[[rsp_ix]][["anova_pvals"]][["null_full"]];
+			anova_mat[rsp_ix, "Null Reduced"]=
+				nr_anova_pv=glms[[rsp_ix]][["anova_pvals"]][["null_reduced"]];
+			anova_mat[rsp_ix, "Reduced Full"]=
+				rf_anova_pv=glms[[rsp_ix]][["anova_pvals"]][["reduced_full"]];
+
+
+		}
+
+		mod_stats=list();
+		mod_stats[["aic"]]=aic_mat;
+		mod_stats[["r2"]]=r2_mat;
+		mod_stats[["anova"]]=anova_mat;
+		stats_by_div[[div_ix]]=mod_stats;
+	}	
+	
+	
+	return(stats_by_div);
+
+}
+
+stats_by_div=accumulate_model_improv_stats(fit_list);
+print(stats_by_div);
+
+###############################################################################
+
+format_pval=function(x){
+	res=ifelse(x>=.001,
+		sprintf("%11.3f", x),
+		sprintf("%11.03e", x));
+	return(res);
+}
+
+###############################################################################
+#
+# Report by diversity index:
+
+#------------------------------------------------------------------------------
+
+reformat_coef_tab=function(coef_tab){
+
+	num_col=ncol(coef_tab);
+	num_coef=nrow(coef_tab);
+
+	out_tab=matrix(character(), nrow=num_coef, ncol=num_col+1);
+	rownames(out_tab)=rownames(coef_tab);
+	colnames(out_tab)=c(colnames(coef_tab), "Signf");
+
+	for(i in 1:3){
+		out_tab[,i]=sprintf("%8.04f", coef_tab[,i]);
+	}
+
+	out_tab[,4]=ifelse(coef_tab[,4]>=0.001,
+		sprintf("%11.3f", coef_tab[,4]),
+		sprintf("%11.03e", coef_tab[,4]));
+
+	out_tab[,"Signf"]=sapply(coef_tab[,4], signf_char);
+
+	return(out_tab);
+}
+
+report_fit=function(fit_rec, div_name, rsp_name){
+
+	cat("Reporting GLMs: ", div_name, " : ", rsp_name, "\n");
+	#print(fit_rec);
+
+	# Set up coefficients / p-val table
+	full_coef_tab=fit_rec[["sumfits"]][["Full"]][["coefficients"]];
+	reduced_coef_tab=fit_rec[["sumfits"]][["Reduced"]][["coefficients"]];
+
+	cat("Full Model Coefficients:\n");
+	print(full_coef_tab);
+
+	cat("Reduced Model Coefficients:\n");
+	print(reduced_coef_tab);
+
+	reduced_predictors=rownames(reduced_coef_tab);
+	cat("Reduced Predictors:\n");
+	print(reduced_predictors);
+
+	full_coef_tab_char=reformat_coef_tab(full_coef_tab);
+	reduced_coef_tab_char=reformat_coef_tab(reduced_coef_tab);
+
+	print(full_coef_tab_char, quote=F);
+	print(reduced_coef_tab_char, quote=F);
+
+	# Pull together AIC and R^2's
+	r2=fit_rec[["r2"]];
+
+	full_mcfadden=r2[["Full"]][["mcfadden"]];
+	full_adj=r2[["Full"]][["adjusted"]];
+	full_unadj=r2[["Full"]][["unadjusted"]];
+
+	reduced_mcfadden=r2[["Reduced"]][["mcfadden"]];
+	reduced_adj=r2[["Reduced"]][["adjusted"]];
+	reduced_unadj=r2[["Reduced"]][["unadjusted"]];
+
+	null_aic=r2[["Null"]][["aic"]];
+	full_aic=r2[["Full"]][["aic"]];
+	reduced_aic=r2[["Reduced"]][["aic"]];
+	nf_aic_diff=null_aic-full_aic;
+	rf_aic_diff=reduced_aic-full_aic;
+
+	# Pull together ANOVA p-values
+	anpv=fit_rec[["anova_pvals"]];
+	anpv_null_reduced=anpv[["null_reduced"]];
+	anpv_null_full=anpv[["null_full"]];
+	anpv_reduced_full=anpv[["reduced_full"]];
+
+	#----------------------------------------------------------------------
+
+	full_reduced_coef_comp=c(
+		paste("Univariate Response: ", rsp_name, sep=""),
+		"",
+		paste("Comparison of the Covariates portion of w/ and w/o ", div_name, ":", sep=""),
+		"",
+		"---------------------------------------------------------------------------------------",
+		"",
+		"Predictors of Reduced Model (Covariates-only Model):",
+		sprintf("McFadden's R^2: %4.3f, AIC: %.1f", reduced_mcfadden, reduced_aic),
+		"",
+		capture.output(print(reduced_coef_tab_char, quote=F)),
+		"",
+		"---------------------------------------------------------------------------------------",
+		"",
+
+		"Predictors Portion of Full Model (Covariates + Diversity Model):",
+		paste("  (Contribution of Covariates when controlling for ", div_name, ".)", sep=""),
+		sprintf("McFadden's R^2: %4.3f, AIC: %.1f", full_mcfadden, full_aic),
+		"",
+		capture.output(print(full_coef_tab_char, quote=F)),
+		"",
+		"---------------------------------------------------------------------------------------",
+		"",
+		paste("Model Improvement ANOVA (Full vs. Reduced): ", 
+			sprintf("%6.02g", anpv_reduced_full), 
+			" ", signf_char(anpv_reduced_full), sep=""),
+		"",
+		paste("Diff. in AIC: ", round(reduced_aic,2), " [reduced] - ", round(full_aic,2), 
+			" [full] = ", round(rf_aic_diff,2), " [dAIC]", sep=""),
+		"If dAIC is > 2, then full model is substantially better than reduced model.",
+		paste("Full model is ", 
+			ifelse(rf_aic_diff>2, "", "NOT "), 
+			"substantially better then reduced model.", sep=""),
+		"",
+		sprintf("McFadden's R^2: %4.3f [full] - %4.3f [reduced] = %4.3f [delta]",
+			full_mcfadden, reduced_mcfadden, (full_mcfadden-reduced_mcfadden))	
+		
+	);
+
+	plot_text(full_reduced_coef_comp, echo=T);
+	mtext(div_name, side=1, line=0, outer=T, font=2, col="darkred");
+
+	#----------------------------------------------------------------------
+
+	plot_predictor_barplot(full_coef_tab, reduced_coef_tab, rsp_name);
+	mtext(div_name, side=1, line=0, outer=T, font=2, col="darkred");
+
+	plot_fit_scatter(
+		div_name, rsp_name,
+		fit_rec[["fits"]][["Full"]], 
+		full_mcfadden, anpv, null_aic, full_aic);
+	mtext(div_name, side=1, line=0, outer=T, font=2, col="darkred");
+
+}
+
+###############################################################################
+# Manova output
+
+format_manova_tab=function(mt){
+
+	format_pval=function(x){
+		res=ifelse(x>=.001,
+			sprintf("%11.3f", x),
+			sprintf("%11.03e", x));
+		return(res);
+	}
+
+	manova_tab_char=matrix("", ncol=ncol(mt), nrow=nrow(mt));
+	colnames(manova_tab_char)=colnames(mt);
+	rownames(manova_tab_char)=rownames(mt);
+
+	manova_tab_char[,"Df"]=mt[,"Df"];
+	manova_tab_char[,"Pillai"]=sprintf("%7.4f", mt[,"Pillai"]);
+	manova_tab_char[,"approx F"]=sprintf("%8.4f", mt[,"approx F"]);
+	manova_tab_char[,"num Df"]=mt[,"num Df"];
+	manova_tab_char[,"den Df"]=mt[,"den Df"];
+	manova_tab_char[,"Pr(>F)"]=format_pval(mt[,"Pr(>F)"]);
+
+	manova_tab_char=cbind(manova_tab_char, sapply(mt[,"Pr(>F)"], signf_char));
+	colnames(manova_tab_char)=c(colnames(mt), "signf");
+
+	return(manova_tab_char);
+
+}
+
+plot_manova_barplot=function(manova_tab){
+
+	ref_cutoffs=c(1, 0.1, 0.05, 0.01, 0.001);
+
+	pval=manova_tab[,"Pr(>F)"];
+	pred=rownames(manova_tab);
+	min_pval=min(pval);
+
+	nlp_ref_cutoffs=-log10(ref_cutoffs);
+	nlp_min_pval=-log10(min(min_pval, 0.001));
+	nlp_pvals=-log10(pval);
+
+	signf_col=sapply(pval, function(x){ ifelse(x<0.1, "blue", "grey")});
+
+	par(mfrow=c(1,1));
+	par(mar=c(15,5,10,5));
+	mids=barplot(nlp_pvals, names.arg="", main="", ylab="-Log10(p-value)",
+		col=signf_col,
+		ylim=c(0, nlp_min_pval));
+	abline(h=nlp_ref_cutoffs, lty="dashed", col="orange");
+	axis(1, at=mids, labels=pred, las=2);
+	axis(4, at=nlp_ref_cutoffs, labels=ref_cutoffs, las=2);
+	mtext("P-values", side=4, line=3.5, cex=.8);	
+
+	title(main="MANOVA: Most Significant Predictors", line=1.5, cex.main=1.5, font.main=1);
+}
+
+report_manova=function(manova_res_sum, title){
+
+	print(names(manova_res_sum));
+	resp_var=colnames(manova_res_sum$SS$Residuals);
+
+	if(length(manova_res_sum)>1){
+
+		manova_tab=manova_res_sum$stats;
+		pred_names=rownames(manova_tab);
+		pred_names=setdiff(pred_names, "Residuals");
+		num_pred_var=length(pred_names);
+		manova_tab=manova_tab[pred_names,,drop=F];
+
+		ord_pval_ix=order(manova_tab[,"Pr(>F)"], decreasing=F);
+		manova_tab=manova_tab[ord_pval_ix,,drop=F];
+
+		manova_tab_char=format_manova_tab(manova_tab);
+		print(manova_tab_char, quote=F);
+
+		manout=c(
+			title,
+			"",
+			"MANOVA on Gaussian Family Variables",
+			capture.output(print(resp_var, quote=F)),
+			"",
+			paste("Num Samples: ", num_samples, sep=""),
+			paste("Num Covariates+",title, " Predictors: ", num_pred_var, sep=""),
+			"",
+			capture.output(print(manova_tab_char, quote=F))
+		);
+
+		plot_text(manout, echo=T);
+		mtext(title, side=1, line=0, outer=T, font=2, col="darkred");
+
+		#--------------------------------------------------------------
+		
+		plot_manova_barplot(manova_tab);
+		mtext(title, side=1, line=0, outer=T, font=2, col="darkred");
+
+
+	}else{
+		plot_text(c(
+			"MANOVA could not be performed.",
+			"",
+			"If <2 response variables were assumed to be Gaussian Family",
+			"or there were insufficient samples for the number of predictors",
+			"and response variables, then the MANOVA could not be performed.",
+			"",
+			paste("Num Samples: ", num_samples, sep=""),
+			paste("Num Covariates+",title, " Predictors: ", num_pred_var, sep="")
+		));
+		mtext(title, side=1, line=0, outer=T, font=2, col="darkred");
+	}
+
+}
+
+
+#------------------------------------------------------------------------------
+
+plot_coef_pval_heatmaps=function(cfpv_mat, divn){
+
+	coef_mat=cfpv_mat[["coef"]];
+	pval_mat=cfpv_mat[["pval"]];
+
+	par.orig=par(no.readonly=T);
+	par(oma=c(1,0,0,0));
+
+	paint_matrix(coef_mat,
+		title="Full Models: Predictor Coefficients: All",value.cex=2, deci_pts=2);
+	mtext(divn, side=1, line=0, outer=T, font=2, col="darkred");
+
+	paint_matrix(pval_mat,
+		title="Full Models: Predictor P-values: All",value.cex=2, deci_pts=2,
+		plot_min=0, plot_max=1, high_is_hot=F);
+	mtext(divn, side=1, line=0, outer=T, font=2, col="darkred");
+
+	for(cutoff in c(0.10, 0.05, 0.01, 0.001)){
+		masked_coef_mat=mask_matrix(coef_mat, pval_mat, cutoff, 0);
+		paint_matrix(masked_coef_mat, 
+			title=paste("Full Models: Coefficients: p-val < ", cutoff, sep=""),
+			value.cex=2, deci_pts=2, label_zeros=F);
+		mtext(divn, side=1, line=0, outer=T, font=2, col="darkred");
+	}
+
+	par(par.orig);
+		
+}
+
+plot_model_fitness_heatmaps=function(mod_stats, divn){
+
+	aic_mat=mod_stats[["aic"]];
+	r2_mat=mod_stats[["r2"]][,c("McF Reduced","McF Full")];
+	anova_mat=mod_stats[["anova"]];
+
+	
+	par.orig=par(no.readonly=T);
+	par(oma=c(1,0,0,0));
+
+	# AIC
+	orig_cnames=colnames(aic_mat);
+	aic_mat=cbind(aic_mat, aic_mat[,"Full"]-aic_mat[,"Reduced"]);
+	colnames(aic_mat)=c(orig_cnames, "\"Difference\"");
+	sort_best_full_ix=order(aic_mat[,"\"Difference\""]);
+	paint_matrix(aic_mat[sort_best_full_ix,,drop=F],
+		title="Full Model Quality: AIC",
+		subtitle="Sorted by Full-Reduced Difference (>2 is Signf, Lower is Better)",
+		 value.cex=2, deci_pts=1);
+	mtext(divn, side=1, line=0, outer=T, font=2, col="darkred");
+
+	# R2
+	orig_cnames=colnames(r2_mat);
+	r2_mat=cbind(r2_mat, r2_mat[,"McF Full"]-r2_mat[,"McF Reduced"]);
+	colnames(r2_mat)=c(orig_cnames, "\"Difference\"");
+	sort_best_full_ix=order(r2_mat[, "\"Difference\""], decreasing=T);
+	paint_matrix(r2_mat[sort_best_full_ix,,drop=F],
+		plot_min=0, plot_max=1,
+		title="Full Model Quality: McFadden's R^2", 
+		subtitle="Sorted by Full-Reduced McF Difference (Large Difference is Better)",
+		value.cex=2, deci_pts=3);
+	mtext(divn, side=1, line=0, outer=T, font=2, col="darkred");
+
+	# ANOVA
+	sort_best_full_ix=order(anova_mat[,"Reduced Full"]);
+	paint_matrix(anova_mat[sort_best_full_ix,,drop=F],
+		log_col=T, high_is_hot=F,
+		title="Model Improvement: ANOVA P-values", 
+		subtitle="Sorted by Reduced-Full P-Values (Smaller P-val is Better)",
+		value.cex=2, deci_pts=3);
+	mtext(divn, side=1, line=0, outer=T, font=2, col="darkred");
+
+	par(par.orig);
+
+}
+
+
+#------------------------------------------------------------------------------
+
+generate_fit_details=function(fit_lst){
+
+	div_names=names(fit_lst);
+
+	for(div in div_names){
+
+		cur_glm=fit_lst[[div]][["glms"]];		
+
+		for(rsp in names(cur_glm)){
+			report_fit(cur_glm[[rsp]], div, rsp);
+
+		}
+
+		report_manova(manova_res_sum=fit_lst[[div]][["manova"]], div);
+
+		plot_coef_pval_heatmaps(cf_pv_mat_list[[div]], div);
+		plot_model_fitness_heatmaps(stats_by_div[[div]], div);
 
 	}
 
+}
 
-	coeff_list[[div_names[i]]]=estimates_matrix;
-	pval_list[[div_names[i]]]=pvalues_matrix;
-	full_red_anova_list[[div_names[i]]]=improv_matrix;
+
+generate_fit_details(fit_list);
+
+
+###############################################################################
+###############################################################################
+# Combine diversity indices together for each response variable
+
+combine_fits_across_div_into_matrices=function(fit_lst){
+
+	#print(fit_lst);
+
+	cat("Combining Fits Across Diversities:\n");
+	div_names=names(fit_lst);
 	
-	paint_matrix(estimates_matrix, title=paste("Coefficients: ", div_names[i], " Covariates", sep=""),
-		plot_col_dendr=T, plot_row_dendr=T);
-	paint_matrix(pvalues_matrix, title=paste("P-values: ", div_names[i], " Covariates", sep=""), 
-		plot_col_dendr=T, plot_row_dendr=T,
-		high_is_hot=F, plot_min=0, plot_max=1);
+	resp_names=names(fit_lst[[1]][["glms"]]);
+	
+	cat("Diversity Names:\n");
+	print(div_names);
+	num_div=length(div_names);
 
-	plot_text(c(
-		"Full Model (w/ Diversity):",
-		"  [Coefficients]",
-		capture.output(print(round(estimates_matrix, 4))),
-		"",
-		"  [P-values]",
-		capture.output(print(round(pvalues_matrix, 4))),
-		"",
-		"",
-		"Reduced Model (Covariates-only w/o Diversity):",
-		"  [Coefficients]",
-		capture.output(print(round(reduced_model_res_list[[cur_div_name]][["coefficients"]],4))),
-		"",
-		"  [P-values]",
-		capture.output(print(round(reduced_model_res_list[[cur_div_name]][["p-values"]],4)))
-		
-	));
+	cat("Response Names:\n");
+	print(resp_names);
+	num_rsp=length(resp_names);
 
+	fit_mat=matrix(NA, nrow=num_rsp, ncol=num_div, 
+		dimnames=list(resp_names, div_names));
 
-	# Output model improvment statistics
-	signf=sapply(improv_matrix[,"Diff ANOVA P-Value"], sig_char);
-	plot_text(c(
-		paste("Full/Reduced Model Improvement Analysis for ", div_names[i], ":", sep=""),
-		"",
-		capture.output(print(round(improv_matrix[,c(1,2)], 4))),
-		"",
-		capture.output(print(round(improv_matrix[,c(3,4)], 4))),
-		"",
-		capture.output(print(cbind(
-			apply(improv_matrix[,c(5,6,7), drop=F], 1:2, function(x){sprintf("%8.4f",x)}), 
-			signf), quote=F))
-	));
+	aic_mat=fit_mat;
+	mcf_mat=fit_mat;
+	pvl_mat=fit_mat;
 
-	# Plot predicted vs observed
-	orig.par=par(no.readonly=T);
-	par(mfrow=c(1,2));
-	plot_pred_vs_obs(red_mv_fit, mv_fit, title=div_names[i]);
-	par(orig.par);
+	for(div in div_names){
+		for(rsp in resp_names){
+			full_r2_rec=fit_lst[[div]][["glms"]][[rsp]][["r2"]][["Full"]];
+			full_aic=full_r2_rec[["aic"]];
+			full_mcf=full_r2_rec[["mcfadden"]];
 
+			aic_mat[rsp, div]=full_aic;
+			mcf_mat[rsp, div]=full_mcf;
 
-}
-
-#print(coeff_list);
-#print(pval_list);
-
-#print(diversity_coef);
-#print(diversity_pval);
-
-# With dendrograms
-paint_matrix(diversity_coef, title="Diversity Coefficients", plot_col_dendr=T, plot_row_dendr=T);
-paint_matrix(diversity_pval, title="Diversity P-values", high_is_hot=F, plot_min=0, plot_max=1,
-	plot_col_dendr=T, plot_row_dendr=T);
-paint_matrix(diversity_adj.rsqrd, title="Diversity Adjusted R^2 (Full Model)", 
-	high_is_hot=F, plot_min=0, plot_max=1,
-	plot_col_dendr=T, plot_row_dendr=T);
-paint_matrix(diversity_adj.rsqrd_delta, title="Diversity Delta Adjusted R^2 (Full-Reduced Model)", 
-	high_is_hot=F,
-	plot_col_dendr=T, plot_row_dendr=T);
-
-if(!is.null(mv_anova)){
-	paint_matrix(anova_pval, title="Full Model MANOVAs (Diversity+Covariates) P-values", 
-		high_is_hot=F, plot_min=0, plot_max=1);
-}else{
-	plot_text("Full Model MANOVAs (Diversity+Covariates) P-values are not available.");
-}
-
-dev.off();
-
-##############################################################################
-
-# Output
-# MANOVA
-div_ix="Tail";
-sigdig=5;
-
-fh=file(paste(OutputRoot, ".div_as_pred.model_stats.", div_ix, ".tsv", sep=""), "w");
-
-cat(file=fh, paste("Name:", OutputRoot, "", "", sep="\t"), "\n", sep="");
-cat(file=fh, paste("Diversity:", div_ix, "", "", sep="\t"), "\n", sep="");
-
-# Output MANOVA (1 row per predictor)
-anova_var=rownames(anova_pval);
-cat(file=fh, "\t\t\t\n");
-cat(file=fh, "Predictors:\t\tMANOVA p-values:\tsignf:\n");
-for(i in 1:nrow(anova_pval)){
-	cat(file=fh, paste(
-		anova_var[i], 
-		"",
-		signif(anova_pval[i, "Tail"], sigdig), 
-		sig_char(anova_pval[i, "Tail"]), 
-		sep="\t"), "\n", sep="");
-}
-cat(file=fh, "\t\t\t\n");
-
-cat(file=fh, "Responses:\t", div_ix, "univar coeff:\t", div_ix, "univar p-values:\tsignf:\n");
-response_names=rownames(diversity_coef);
-for(i in 1:nrow(diversity_coef)){ 
-	cat(file=fh, paste(
-		response_names[i], 
-		signif(diversity_coef[i, "Tail"], sigdig), 
-		signif(diversity_pval[i, "Tail"], sigdig),
-		sig_char(diversity_pval[i, "Tail"]),
-		sep="\t"), "\n", sep="");
-}
-
-close(fh);
-
-##############################################################################
-
-# Export coefficience and p-values for pred/resp analysis
-
-write.table(t(diversity_pval), file=paste(OutputRoot, ".div_as_pred.pvals.tsv", sep=""),
-        sep="\t", quote=F, col.names=NA, row.names=T);
-
-write.table(t(diversity_coef), file=paste(OutputRoot, ".div_as_pred.coefs.tsv", sep=""),
-        sep="\t", quote=F, col.names=NA, row.names=T);
-
-
-# Export Full/Reduced ANOVA P-values and R^2's
-fh=file(paste(OutputRoot, ".div_as_pred.rsqrd.tsv", sep=""), "w");
-
-cat(file=fh, "\t", paste(colnames(full_red_anova_list[[1]]), collapse="\t"),  "\n");
-
-for(dnm in div_names){
-	mat=full_red_anova_list[[dnm]];
-
-	nrow=nrow(mat);
-	rnames=rownames(mat);
-	cat(file=fh, dnm, ":\n", sep="");
-	for(rix in 1:nrow){
-		cat(file=fh, paste(c(rnames[rix], round(mat[rix,], 4)), collapse="\t"), "\n", sep="");
+			red_ful_pv=fit_lst[[div]][["glms"]][[rsp]][["anova_pvals"]][["reduced_full"]];
+			pvl_mat[rsp, div]=red_ful_pv;
+			
+		}
 	}
-	cat(file=fh, "\n");
 
-}
+	#print(aic_mat);
+	#print(mcf_mat);
 
-close(fh);
-
-##############################################################################
-
-# Export reduced model statistics:
-fn=paste(OutputRoot, ".div_as_pred.full_vs_reduced.covar_coef_and_pval.tsv", sep="");
-
-fh=file(fn, "w");
-cat(file=fh, "\nFull vs. Reduced Model Regression Statistics\n");
-close(fh);
-
-for(div_idx in div_names){
-
-	cur_stats=reduced_model_res_list[[div_idx]];
-
-	fh=file(fn, "a");
-	cat(file=fh, "\n\n", div_idx, ":\n", "FULL MODEL:\n[Coefficients]\nCovariates\t", sep="");
-	close(fh);
-
-	write.table(file=fn, x=round(coeff_list[[div_idx]], 4), append=T, quote=F, sep="\t");
-
-	fh=file(fn, "a");
-	cat(file=fh, "[P-values]\nCovariates\t", sep="");
-	close(fh);
-
-	write.table(file=fn, x=round(pval_list[[div_idx]], 4), append=T, quote=F, sep="\t");
-
-	fh=file(fn, "a");
-	cat(file=fh, "\n", "REDUCED MODEL:\n[Coefficients]\nCovariates\t", sep="");
-	close(fh);
-
-	write.table(file=fn, x=round(cur_stats[["coefficients"]], 4), append=T, quote=F, sep="\t");
-
-	fh=file(fn, "a");
-	cat(file=fh, "[P-values]\nCovariates\t", sep="");
-	close(fh);
-
-	write.table(file=fn, x=round(cur_stats[["p-values"]], 4), append=T, quote=F, sep="\t");
-
-	fh=file(fn, "a");
-	cat(file=fh, "\n", sep="");
-	close(fh);
-
-}
-
-##############################################################################
-
-manova_res=mv_anova;
-if(length(manova_res)){
-        num_variables=nrow(manova_res)-1;
-        outmat=matrix("", nrow=num_variables, ncol=3);
-        colnames(outmat)=c(TagName, "Pr(>F)", "Signf");
-        varnames=unlist(rownames(manova_res));
-        pvals=unlist(manova_res["Pr(>F)"]);
-        outmat[,TagName]=varnames[1:num_variables];
-        outmat[,"Pr(>F)"]=sprintf("%4.4f", pvals[1:num_variables]);
-	outmat[,"Signf"]=sapply(pvals[1:num_variables], sig_char);
-}else{
-        outmat=matrix("-", nrow=1, ncol=2);
-        colnames(outmat)=c(TagName, "Pr(>F)");
-}
-write.table(outmat, file=paste(OutputRoot, ".div_as_pred.anova.summary.tsv", sep=""), 
-	sep="\t", quote=F, col.names=T, row.names=F);
-
+	rec=list();
+	rec[["aic"]]=aic_mat;
+	rec[["mcf"]]=mcf_mat;
+	rec[["red_ful_pval"]]=pvl_mat;
 	
-##############################################################################
+	return(rec);
+
+}
+
+fit_mat_list=combine_fits_across_div_into_matrices(fit_list);
+
+plot_div_fit_heatmaps=function(fit_mat_lst){
+
+	add_margins=function(mat, rowm, colm){
+		
+		all_mean=mean(mat);	
+		orig_rn=rownames(mat);
+		orig_cn=colnames(mat);
+
+		mat_wmar=cbind(mat, rowm);
+		mat_wmar=rbind(mat_wmar, c(colm, all_mean));
+
+		colnames(mat_wmar)=c(orig_cn, "\"Mean\"");
+		rownames(mat_wmar)=c(orig_rn, "\"Mean\"");
+
+		return(mat_wmar);
+	
+	}
+
+	#----------------------------------------------------------------------
+	
+	mat=fit_mat_lst[["aic"]];
+
+	resp_margins=apply(mat, 1, mean);
+	div_margins=apply(mat, 2, mean);
+
+	resp_margins_sort_ix=order(resp_margins, decreasing=F);
+	div_margins_sort_ix=order(div_margins, decreasing=F);
+
+	sorted_mat=mat[resp_margins_sort_ix, div_margins_sort_ix, drop=F];
+	resp_margins=resp_margins[resp_margins_sort_ix];
+	div_margins=div_margins[div_margins_sort_ix];
+
+	sorted_wmargins=add_margins(mat=sorted_mat, rowm=resp_margins, colm=div_margins);
+
+	paint_matrix(sorted_wmargins, 
+		title="Comparison of Full AIC Across Diversity Ind.",
+		subtitle="(Lower AIC is a better model)",
+		deci_pts=1,
+	);
+
+	#----------------------------------------------------------------------
+
+	mat=fit_mat_lst[["mcf"]];
+
+	resp_margins=apply(mat, 1, mean);
+	div_margins=apply(mat, 2, mean);
+
+	resp_margins_sort_ix=order(resp_margins, decreasing=T);
+	div_margins_sort_ix=order(div_margins, decreasing=T);
+
+	sorted_mat=mat[resp_margins_sort_ix, div_margins_sort_ix,drop=F];
+	resp_margins=resp_margins[resp_margins_sort_ix];
+	div_margins=div_margins[div_margins_sort_ix];
+
+	sorted_wmargins=add_margins(mat=sorted_mat, rowm=resp_margins, colm=div_margins);
+
+	paint_matrix(sorted_wmargins, 
+		title="Comparison of Full McFadden's R^2 Across Diversity Ind.",
+		subtitle="(Greater R^2 is a better model)",
+		deci_pts=3,
+		plot_min=0, plot_max=1
+	);
+
+	#----------------------------------------------------------------------
+
+	mat=fit_mat_lst[["red_ful_pval"]];
+
+	comb_pv=function(x){
+		nlog=-log(x);
+		mean_nlog=mean(nlog);
+		cpv=exp(-mean_nlog);
+		return(cpv);
+	}
+
+	resp_margins=apply(mat, 1, comb_pv);
+	div_margins=apply(mat, 2, comb_pv);
+
+	resp_margins_sort_ix=order(resp_margins, decreasing=F);
+	div_margins_sort_ix=order(div_margins, decreasing=F);
+
+	sorted_mat=mat[resp_margins_sort_ix, div_margins_sort_ix,drop=F];
+	resp_margins=resp_margins[resp_margins_sort_ix];
+	div_margins=div_margins[div_margins_sort_ix];
+
+	sorted_wmargins=add_margins(mat=sorted_mat, rowm=resp_margins, colm=div_margins);
+
+	paint_matrix(sorted_wmargins, 
+		title="Reduced-Full Improv. ANOVA P-Vals Across Div. Ind.",
+		subtitle="(More significant p-values, great contribution of Div. Ind.)",
+		deci_pts=3,
+		high_is_hot=F,
+		plot_min=0, plot_max=1
+	);
+		
+}
+
+plot_title_page("Comparison of Models\nAcross Diversity Indices");
+plot_div_fit_heatmaps(fit_mat_list);
+
+###############################################################################
+
+
+
+
+###############################################################################
+
+pull_div_predictors_tab=function(fit_lst){
+
+	# Pull predictors coef and pval into table
+	#print(fit_lst);
+
+	div_names=names(fit_lst);
+	resp_names=names(fit_lst[[1]][["glms"]]);
+	
+	cat("Diversity Names:\n");
+	print(div_names);
+	num_div=length(div_names);
+
+	cat("Response Names:\n");
+	print(resp_names);
+	num_rsp=length(resp_names);
+
+	fit_mat=matrix(NA, nrow=num_rsp, ncol=num_div, 
+		dimnames=list(resp_names, div_names));
+
+	coef_mat=fit_mat;
+	pval_mat=fit_mat;
+
+	for(div in div_names){
+		for(rsp in resp_names){
+			full_coef_tab=
+				fit_lst[[div]][["glms"]][[rsp]][["sumfits"]][["Full"]][["coefficients"]];
+
+			coef_mat[rsp, div]=full_coef_tab[div, "Estimate"];
+			pval_mat[rsp, div]=full_coef_tab[div, 4];
+			
+		}
+	}
+
+	rec=list();
+	rec[["pval"]]=pval_mat;
+	rec[["coef"]]=coef_mat;
+	
+	return(rec);
+
+}
+
+div_coef_pval_list=pull_div_predictors_tab(fit_list);	
+print(div_coef_pval_list);	
+
+#------------------------------------------------------------------------------
+
+generate_div_resp_heatmaps=function(div_cf_pv_lst){
+
+	pval_mat=div_cf_pv_lst[["pval"]];
+	coef_mat=div_cf_pv_lst[["coef"]];
+
+	coef_mag=max(abs(coef_mat));
+
+	for(cutoff in c(1, .1, .05, .01, .001)){
+
+		masked_coef_mat=mask_matrix(coef_mat, pval_mat, cutoff, 0);
+		paint_matrix(masked_coef_mat, 
+			title=paste("[Full Models] Diversity Coef w/ p-val < ", cutoff, sep=""),
+			plot_max=coef_mag, plot_min=-coef_mag,
+			value.cex=2, deci_pts=2, label_zeros=F);
+
+	}
+
+}
+
+plot_title_page("Comparisons of\nDiversity-to-Response\nAssociations");
+generate_div_resp_heatmaps(div_coef_pval_list);
+
+#------------------------------------------------------------------------------
+
+draw_list=function(abbr_tab, coloffset){
+
+	# the abbr_tab has is a matrix with: col1=estimate, col2=pval
+	# rownames are the predictors
+
+	chw=par()$cxy[1]/1.1; # width is over estimated
+	chh=par()$cxy[2];	
+	
+	ch_rows=1/chh;
+	ch_cols=1/chw;
+
+	#cat("Rows: ", ch_rows, " / Cols: ", ch_cols, "\n");
+
+	# Include cutoffs separators into table
+	cutoffs=c(-1, 0.001, 0.01, 0.05, 0.10);
+	cutoff_entries=cbind(0, cutoffs);
+	rownames(cutoff_entries)=c(" < 0.001 :", " < 0.01 :", " < 0.05 :", " < 0.1 :", " n.s. :");
+	abbr_tab_wcutoffs=rbind(abbr_tab, cutoff_entries);
+	order_ix=order(abbr_tab_wcutoffs[,2]);
+	abbr_tab_wcutoffs=abbr_tab_wcutoffs[order_ix,,drop=F];
+
+	#print(abbr_tab_wcutoffs);
+
+	# Calculate font size adjustments based on number of items in list
+	num_items=nrow(abbr_tab_wcutoffs);
+	vadj=1;
+	# If too many items, reduce size
+	if(num_items>ch_rows){
+		ch_rows=num_items;
+		vadj=num_items/ch_rows;
+	}
+
+	item_names=rownames(abbr_tab_wcutoffs);
+
+	row_id=0;
+	for(i in 1:num_items){
+
+		item_len=nchar(item_names[i]);
+		hadj=1;
+		# If size was adjust and the item is still to long, apply another adjustment
+		if(vadj*item_len*chw > 1){
+			hadj=1/(vadj*item_len*chw);
+		}
+
+		estimate=abbr_tab_wcutoffs[i,"Estimate"];
+		signf=abbr_tab_wcutoffs[i,2]<=0.1;
+		if(estimate>0){
+			draw_bullets=T;
+			est_bgcol="green";
+			est_sycol="black";
+			est_ch="+";
+			est_labfont=1;
+			est_labcol=ifelse(signf, "black", "grey35");
+			co_adj=1;
+		}else if(estimate<0){
+			draw_bullets=T;
+			est_bgcol="red";
+			est_sycol="white";
+			est_ch="-";
+			est_labfont=1;
+			est_labcol=ifelse(signf, "black", "grey35");
+			co_adj=1;
+		}else{
+			# If cutoff label
+			draw_bullets=F;
+			est_ch="";
+			est_labfont=3;
+			est_labcol="blue";
+			co_adj=.7;
+		}
+
+
+		# Mark +/- bullet glyphs
+		if(draw_bullets){
+			points(coloffset+chw*.6, 1-chh*row_id, pch=21, cex=1.3*vadj, 
+				col="black", bg=est_bgcol);
+			points(coloffset+chw*.6, 1-chh*row_id, pch=est_ch, cex=1*vadj, 
+				col=est_sycol);
+		}
+
+		# Draw response name
+		text(x=coloffset+chw*.6, y=1-chh*row_id, item_names[i], cex=hadj*vadj*co_adj, 
+			pos=4, font=est_labfont, col=est_labcol);
+
+		row_id=row_id+1;
+	}
+	
+}
+
+#------------------------------------------------------------------------------
+
+plot_div_summary_list=function(div_coef_pval_lst){
+
+	par.orig=par(no.readonly=T);
+
+	#----------------------------------------------------------------------
+
+	par(mar=c(.5, .5, 3, .5));
+	par(mfrow=c(1,1));
+
+	item_cex=1.1;
+	
+	pval_mat=div_coef_pval_lst[["pval"]];
+	coef_mat=div_coef_pval_lst[["coef"]];
+
+	div_names=colnames(pval_mat);
+	num_divs=length(div_names);
+
+	plot(0, type="n", xlim=c(0,num_divs), ylim=c(0,1), bty="n",
+		xaxt="n", yaxt="n", xlab="", ylab="");
+
+	title(ylab="Responses", font.lab=3, line=-1);
+	abline(v=seq(0,num_divs));
+	
+
+	div_ix=0;
+	for(div_nm in div_names){
+
+		cat("Drawing: ", div_nm, "\n", sep="");
+		
+		mtext("predictor", side=3, line=1.1, at=div_ix+.5, cex=.6, font=3);
+		mtext(div_nm, side=3, line=.1, at=div_ix+.5, cex=item_cex, font=2);
+
+		abtab=cbind(coef_mat[,div_nm], pval_mat[,div_nm]);
+		rownames(abtab)=rownames(coef_mat);
+		colnames(abtab)=c("Estimate", "Pr(>|.|)");
+
+		print(abtab);
+
+		draw_list(abtab, div_ix);
+		
+		div_ix=div_ix+1;
+	}
+
+	par(par.orig);
+
+}
+
+plot_div_summary_list(div_coef_pval_list);
+
+###############################################################################
+# Exports to text files
+###############################################################################
+
+###############################################################################
+# Required for predictor/response downstream analysis
+
+write_coef_pval_matrices=function(coef_mat, pval_mat, pred_names, out_rootfn){
+	# Format: Factors as columns, alr (predictor) as rows
+
+	cat("Writing coef and pvals matrices to: ", out_rootfn, " (root).\n", sep="");
+
+	coef_mat=coef_mat[pred_names,,drop=F];
+	pval_mat=pval_mat[pred_names,,drop=F];
+
+	write.table(coef_mat, file=paste(out_rootfn, ".alr_as_pred.coefs.tsv", sep=""), 
+		sep="\t", quote=F, col.names=NA, row.names=T);
+
+	write.table(pval_mat, file=paste(out_rootfn, ".alr_as_pred.pvals.tsv", sep=""), 
+		sep="\t", quote=F, col.names=NA, row.names=T);
+}
+
+write_coef_pval_matrices(t(div_coef_pval_list[["coef"]]), t(div_coef_pval_list[["pval"]]), 
+	diversity_names, OutputRoot);
+
+#------------------------------------------------------------------------------
+
+write_alr_as_pred_summary=function(fn, div_cfpv_lst){
+
+	fmt_cf=function(x){
+		fmt=sapply(x, function(x){sprintf("%7.4f", x)});
+		return(fmt)
+	}
+
+	fmt_pv=function(x){
+		fmt=sapply(x, function(x){
+			if(x>=0.001){
+				sprintf("%9.3f", x);
+			}else{
+				sprintf("%9.3e", x);
+			}});
+		return(fmt);
+	}
+
+	# Just write out shannon and tail
+	cat("Writing summary to: ", fn, "\n");
+
+	coef_mat=div_cfpv_lst[["coef"]];
+	pval_mat=div_cfpv_lst[["pval"]];
+
+	shan_tab=cbind(coef_mat[,"Shannon"], pval_mat[,"Shannon"]);
+	tail_tab=cbind(coef_mat[,"Tail"], pval_mat[,"Tail"]);
+
+	# Order by decreasing significance
+	shan_ord_ix=order(shan_tab[,2]);
+	tail_ord_ix=order(tail_tab[,2]);
+
+	shan_tab=shan_tab[shan_ord_ix,,drop=F];
+	tail_tab=tail_tab[tail_ord_ix,,drop=F];
+
+	# Format the numbers
+	shan_txt_tab=cbind(fmt_cf(shan_tab[,1]), fmt_pv(shan_tab[,2]));
+	tail_txt_tab=cbind(fmt_cf(tail_tab[,1]), fmt_pv(tail_tab[,2]));
+
+	shan_txt_tab=cbind(rownames(shan_txt_tab), shan_txt_tab);
+	tail_txt_tab=cbind(rownames(tail_txt_tab), tail_txt_tab);
+
+	cn=c("Coefficients", "P-values");
+
+	comb=rbind(
+		c("Shannon", cn),
+		shan_txt_tab, 
+		c("","",""), 
+		c("Tail", cn),
+		tail_txt_tab);
+
+	#print(comb);
+
+	write.table(comb, fn, sep="\t", quote=F, col.names=F, row.names=F);
+}
+
+write_alr_as_pred_summary(paste(OutputRoot, ".alr_as_pred.summary.tsv", sep=""), div_coef_pval_list);
+
+###############################################################################
 
 cat("Done.\n");
+#dev.off();
 print(warnings());
 q(status=0);
