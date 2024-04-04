@@ -1461,10 +1461,16 @@ generate_dual_values_plot=function(as_resp_pval, as_pred_pval, as_resp_coef, as_
 
 #----------------------------------------------------------------------------
 
-plot_values_in_matrix=function(as_pred_pval, as_resp_pval, as_pred_coef, as_resp_coef, signf_thres, a_name, b_name){
+plot_values_in_matrix=function(as_pred_pval, as_resp_pval, as_pred_coef, as_resp_coef, 
+	signf_thres, a_name, b_name){
 
-	rnames=sort(rownames(as_pred_pval));
-	cnames=sort(colnames(as_pred_pval));
+	pred_rnames=sort(rownames(as_pred_pval));
+	pred_cnames=sort(colnames(as_pred_pval));
+	resp_rnames=sort(rownames(as_resp_pval));
+	resp_cnames=sort(colnames(as_resp_pval));
+
+	rnames=intersect(pred_rnames, resp_rnames);
+	cnames=intersect(pred_cnames, resp_cnames);
 
 	as_pred_pval=as_pred_pval[rnames, cnames, drop=F];
 	as_pred_coef=as_pred_coef[rnames, cnames, drop=F];
