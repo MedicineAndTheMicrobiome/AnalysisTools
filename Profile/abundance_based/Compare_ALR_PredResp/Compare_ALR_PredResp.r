@@ -1466,10 +1466,10 @@ plot_values_in_matrix=function(as_pred_pval, as_resp_pval, as_pred_coef, as_resp
 	rnames=sort(rownames(as_pred_pval));
 	cnames=sort(colnames(as_pred_pval));
 
-	as_pred_pval=as_pred_pval[rnames, cnames];
-	as_pred_coef=as_pred_coef[rnames, cnames];
-	as_resp_pval=as_resp_pval[rnames, cnames];
-	as_resp_coef=as_resp_coef[rnames, cnames];
+	as_pred_pval=as_pred_pval[rnames, cnames, drop=F];
+	as_pred_coef=as_pred_coef[rnames, cnames, drop=F];
+	as_resp_pval=as_resp_pval[rnames, cnames, drop=F];
+	as_resp_coef=as_resp_coef[rnames, cnames, drop=F];
 
 	cat("\n\nas_pred_pval:\n");
 	as_pred_pval=apply(as_pred_pval, 1:2, function(x){signif(x,3)});
