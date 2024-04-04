@@ -1358,8 +1358,8 @@ if(run_glm){
 	# MANOVA if possible
 
 	# Placeholders
-	manova_res=NA;
-	manova_sumres=NA;
+	manova_res=NULL;
+	manova_sumres=NULL;
 
 	# See if we have enough gaussian response variables to run MANOVA
 	gausfam_ix=(model_families=="gaussian");
@@ -1395,7 +1395,7 @@ if(run_glm){
 		});
 
 		#print(manova_res);
-		if(is.na(manova_res)){
+		if(!is.null(manova_res)){
 			print(summary(manova_res));
 		}
 
@@ -1629,7 +1629,7 @@ for(i in 1:num_responses){
 			"substantially better then reduced model.", sep=""),
 		"",
 		sprintf("McFadden's R^2: %4.3f [full] - %4.3f [reduced] = %4.3f [delta]",
-			full_mcfadden, reduced_mcfadden, (full_mcfadden-reduced_mcfadden), sep="")	
+			full_mcfadden, reduced_mcfadden, (full_mcfadden-reduced_mcfadden))	
 		
 	);
 
@@ -2381,9 +2381,6 @@ plot_manova_barplot=function(manova_tab){
 	nlp_min_pval=-log10(min(min_pval, 0.001));
 	nlp_pvals=-log10(pval);
 
-	if(pval<0.1){
-		
-	}
 	signf_col=sapply(pval, function(x){ ifelse(x<0.1, "blue", "grey")});
 
 	par(mfrow=c(1,1));
@@ -2401,7 +2398,7 @@ plot_manova_barplot=function(manova_tab){
 
 plot_manova=function(manova_res_sum){
 
-	if(!is.na(manova_res_sum)){
+	if(!is.null(manova_res_sum)){
 
 		manova_tab=manova_res_sum$stats;
 		pred_names=rownames(manova_tab);
