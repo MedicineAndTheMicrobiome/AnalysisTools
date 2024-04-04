@@ -1083,9 +1083,6 @@ plot_manova_barplot=function(manova_tab){
 
 report_manova=function(manova_res_sum, title){
 
-	print(names(manova_res_sum));
-	resp_var=colnames(manova_res_sum$SS$Residuals);
-
 	if(length(manova_res_sum)>1){
 
 		manova_tab=manova_res_sum$stats;
@@ -1099,6 +1096,8 @@ report_manova=function(manova_res_sum, title){
 
 		manova_tab_char=format_manova_tab(manova_tab);
 		print(manova_tab_char, quote=F);
+
+		resp_var=colnames(manova_res_sum$SS$Residuals);
 
 		manout=c(
 			title,
@@ -1129,8 +1128,7 @@ report_manova=function(manova_res_sum, title){
 			"or there were insufficient samples for the number of predictors",
 			"and response variables, then the MANOVA could not be performed.",
 			"",
-			paste("Num Samples: ", num_samples, sep=""),
-			paste("Num Covariates+",title, " Predictors: ", num_pred_var, sep="")
+			paste("Num Samples: ", num_samples, sep="")
 		));
 		mtext(title, side=1, line=0, outer=T, font=2, col="darkred");
 	}
