@@ -57,7 +57,8 @@ plot_title_page=function(title, subtitle=""){
 paint_matrix=function(mat, title="", subtitle="", plot_min=NA, plot_max=NA, log_col=F, high_is_hot=T, deci_pts=4, 
 	label_zeros=T, counts=F, value.cex=2, 
 	plot_col_dendr=F,
-	plot_row_dendr=F
+	plot_row_dendr=F,
+	suppress_grid_lines=F
 ){
 
         num_row=nrow(mat);
@@ -206,7 +207,8 @@ paint_matrix=function(mat, title="", subtitle="", plot_min=NA, plot_max=NA, log_
 	
 	par(oma=c(col_max_nchar*.60, 0, 3, row_max_nchar*.60));
 	par(mar=c(0,0,0,0));
-        plot(0, type="n", xlim=c(0,num_col), ylim=c(0,num_row), xaxt="n", yaxt="n", bty="n", xlab="", ylab="");
+        plot(0, type="n", xlim=c(0,num_col), ylim=c(0,num_row), 
+		xaxt="n", yaxt="n", bty="n", xlab="", ylab="");
 	mtext(title, side=3, line=1, outer=T, cex=1.5, font=2);
 	mtext(subtitle, side=3, line=-.5, outer=T, cex=.8, font=3);
 
@@ -244,6 +246,16 @@ paint_matrix=function(mat, title="", subtitle="", plot_min=NA, plot_max=NA, log_
                         }
                 }
         }
+
+	if(!suppress_grid_lines){
+		plt_usr=par()$usr;
+		for(i in 0:num_row){
+			points(x=c(0, num_col), y=c(i,i), type="l", lwd=.5, lty="dashed", col="grey75");
+		}
+		for(i in 0:num_col){
+			points(x=c(i, i), y=c(0, num_row), type="l", lwd=.5, lty="dashed", col="grey75");
+		}
+	}
 
 	##################################################################################################
 
