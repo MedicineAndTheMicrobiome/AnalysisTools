@@ -1042,6 +1042,7 @@ summarize_to_matrix=function(combined_ratio_coef, shrd_fact_names, shrd_cat_name
 #############################################################################
 
 plot_predresp_matrix=function(matrices, highlight_diag=F, ratio_thres, signf_thres, a_name="", b_name=""){
+	# This function generaets the grid where the R/P and up/down arrows are
 	
 	pr_mat=matrices[["pred.resp"]];
 	dir_mat=matrices[["coeff.dir"]];
@@ -1112,7 +1113,19 @@ plot_predresp_matrix=function(matrices, highlight_diag=F, ratio_thres, signf_thr
 	abline(h=horiz[row_highlight], lwd=1, col="grey80");
 	abline(v=vert[col_highlight], lwd=1, col="grey80");
 
-	glyph_size=1.2;
+	# Calculate the label sizes
+	plot_range=par()$usr;
+	char_dim=par()$cxy;
+	cat("Plot Space: \n");
+	print(plot_range);
+	cat("Character Dim:\n");
+	print(char_dim);
+	cat("Num Rows (categories): ", num_cat, "\n");
+	cat("Num Cols (factors): ", num_facts, "\n");
+	rowcex=min(1, (plot_range[4]-plot_range[3])/num_cat/char_dim[2]);
+	colcex=min(1, (plot_range[2]-plot_range[1])/num_facts/char_dim[1);
+
+	glyph_size=min(rowcex, colcex);
 	for(x in 1:num_facts){
 		for(y in 1:num_cat){
 
@@ -1132,16 +1145,17 @@ plot_predresp_matrix=function(matrices, highlight_diag=F, ratio_thres, signf_thr
 
 	}
 
+
 	# Draw axes labels with associations darker
 	axis(side=2, at=horiz[row_highlight], labels=cat_names[row_highlight], 
-		las=2, col.axis="black", col="black");
+		las=2, cex.axis=rowcex, col.axis="black", col="black");
 	axis(side=3, at=vert[col_highlight], labels=fact_names[col_highlight], 
-		las=2, col.axis="black", col="black");
+		las=2, cex.axis=colcex, col.axis="black", col="black");
 	# Draw axes labels without associations lighter
 	axis(side=2, at=horiz[!row_highlight], labels=cat_names[!row_highlight], 
-		las=2, col.axis="grey80", col="grey80");
+		las=2, cex.axis=rowcex, col.axis="grey70", col="grey70");
 	axis(side=3, at=vert[!col_highlight], labels=fact_names[!col_highlight], 
-		las=2, col.axis="grey80", col="grey80");
+		las=2, cex.axis=colcex, col.axis="grey70", col="grey70");
 
 	# Label direction type
 	cat("a/b: ", a_name, "/", b_name, "\n");
