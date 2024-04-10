@@ -935,10 +935,10 @@ hinge=function(x, knot, type){
 
 	num_val=length(x);
 	if(type=="low_flat_call"){
-		# Low values are flat, High values follow x
+		# Low values are flat, High values follow x, __/
 		hinged=ifelse(x<knot, 0, x-knot);
 	}else if(type=="high_flat_put"){
-		# Low values are flat, High values follow x
+		# High values are flat, Low values follow -x, \__
 		hinged=ifelse(x>knot, 0, knot-x);
 	}else{
 		cat("Error, unknown hinge type, only:\n");
@@ -1043,6 +1043,9 @@ for(cmd in commands){
 		varix=which(cnames==origname);
 		if(length(varix)==0){
 			cat("Could not find: ", origname, "\n", sep="");
+			cat("Available Variable Names:\n");
+			print(cnames);
+			cat("\n");
 			quit(-1);
 		}
 		cnames[varix]=newname;
