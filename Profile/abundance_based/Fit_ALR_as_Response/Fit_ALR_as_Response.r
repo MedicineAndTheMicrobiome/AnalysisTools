@@ -490,7 +490,8 @@ write_top_categorical_effects_by_factor=function(output_fn, coeff_mat, pval_mat,
 		cat("Writing Top ", top_n, "\n");
 		ix=1;
 		while(ix<=top_n && mat_buf[ix,"ALR"]>0){
-			vals=c(paste(ix,"+", sep=""), sort_cat[ix], mat_buf[ix,"ALR"], mat_buf[ix, "p-value"], signif[ix]);
+			vals=c(paste(ix,"+", sep=""), sort_cat[ix], mat_buf[ix,"ALR"], 
+				mat_buf[ix, "p-value"], signif[ix]);
 			cat(file=fh, paste(vals, collapse=","), "\n");	
 			ix=ix+1;
 		}
@@ -512,7 +513,6 @@ write_top_categorical_effects_by_factor=function(output_fn, coeff_mat, pval_mat,
 
 		cat(file=fh, "\n\n");
 	}
-
 
 	close(fh);
 
@@ -1427,9 +1427,11 @@ if(length(coef_names_not_estimable)){
 
 
 # Write Top categories that have changed to file
-write_top_categorical_effects_by_factor(paste(OutputRoot,".top_effects.csv", sep=""), uv_coeff_mat, uv_pval_mat, top_n=20);
+write_top_categorical_effects_by_factor(paste(OutputRoot,".top_effects.csv", sep=""), 
+	uv_coeff_mat, uv_pval_mat, top_n=20);
 
 
+cat("Writing coefficients to file...\n");
 # Write coefficient p-values to file
 write.table(t(uv_pval_mat), file=paste(OutputRoot, ".alr_as_resp.pvals.tsv", sep=""), 
 	sep="\t", quote=F, col.names=NA, row.names=T);
@@ -1513,6 +1515,7 @@ reg_coef_power=function(uv_reg_fit, factor=10, alpha=.05, power=.8){
 }
 
 ##############################################################################
+##############################################################################
 # Plot univariate analyses
 
 par(oma=c(0,0,3,0));
@@ -1520,7 +1523,10 @@ par(oma=c(0,0,3,0));
 setHook("plot.new", function(){mtext(sorted_taxa_names[var_ix], outer=T, line=-.5);}, "prepend");
 hooks=getHook("plot.new");
 
+cat("Writing per category regression stats to PDF...\n");
 for(var_ix in 1:num_cat_to_analyze){
+
+	cat("Working on: ", sorted_taxa_names[var_ix], "\n");
 
 	if(length(getHook("plot.new"))==0){
 		for(hix in 1:length(hooks)){
@@ -1674,7 +1680,8 @@ if(manova_success){
         outmat=matrix("-", nrow=1, ncol=2);
         colnames(outmat)=c(TagName, "Pr(>F)");
 }
-write.table(outmat, file=paste(OutputRoot, ".alr_as_resp.anova.summary.tsv", sep=""), sep="\t", quote=F, col.names=T, row.names=F);
+write.table(outmat, file=paste(OutputRoot, ".alr_as_resp.anova.summary.tsv", sep=""), 
+	sep="\t", quote=F, col.names=T, row.names=F);
 
 ##############################################################################
 
