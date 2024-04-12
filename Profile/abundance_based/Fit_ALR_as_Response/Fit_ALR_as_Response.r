@@ -1525,9 +1525,12 @@ for(var_ix in 1:num_cat_to_analyze){
 		}
 	}
 
+	par(mfrow=c(1,1));
+	par(mar=c(1,1,1,1));
+
 	# Output univariate ANOVA results
 	summary_txt=c();
-	summary_txt[1]="Univariate Regression:";
+	summary_txt[1]="Univariate Regression ANOVA Results:";
 	summary_txt[2]="";
 	summary_txt[3]=paste(var_ix, ".) ", sorted_taxa_names[var_ix], sep="");
 	summary_txt[4]="";
@@ -1539,6 +1542,7 @@ for(var_ix in 1:num_cat_to_analyze){
 	summary_txt=c(summary_txt, capture.output(anova(uv_fit[[var_ix]])));
 	plot_text(summary_txt);	
 
+	#----------------------------------------------------------------------
 	
 	# Regenerate summary table after removing NAs
 	uv_summary=summary(uv_fit[[var_ix]]);
@@ -1569,12 +1573,17 @@ for(var_ix in 1:num_cat_to_analyze){
 	);
 
 	# F-statistics
+	model_anova_pval=
+		1-pf(uv_summary$fstatistic[1], 
+			uv_summary$fstatistic[2], 
+			uv_summary$fstatistic[3]);
+
 	fstat_txt=sprintf(
 		"F-statistic: %5.4f on %i and %i DF,  p-value: %5.4f",
 		uv_summary$fstatistic[1],
 		uv_summary$fstatistic[2],
 		uv_summary$fstatistic[3],
-		1-pf(uv_summary$fstatistic[1], uv_summary$fstatistic[2], uv_summary$fstatistic[3])
+		model_anova_pval
 	);
 
 	PowerCalc=F;
@@ -1589,7 +1598,7 @@ for(var_ix in 1:num_cat_to_analyze){
 		paste("  ALR Mean: ", round(alr_mean[var_ix], 4)),
 		paste("  ALR Standard Error: ", round(alr_stderr[var_ix], 4)),
 		"",
-		"Univariate Regression Coefficients for: ", 
+		"Univariate Regression Coefficients: ", 
 		paste("     ", sorted_taxa_names[var_ix], sep=""),
 		"",
 		coeff_txt,
@@ -1599,18 +1608,49 @@ for(var_ix in 1:num_cat_to_analyze){
 	)
 	plot_text(summary_txt);
 
+	#----------------------------------------------------------------------
+
 	# Generate MMPs
-	mmps(uv_fit[[var_ix]], main="")
+	# mmps(uv_fit[[var_ix]], main="")
+	
+	#----------------------------------------------------------------------
 
 	# Generate sideways histogram
-	par(mar=c(5.1,6.1,1,1));
-	h=hist(resp_alr_struct$transformed[,var_ix], breaks=20, plot=F);
-	barplot(h$counts, horiz=T, names.arg=signif(h$mids, 3), space=0, las=2, cex.names=.75,
-		ylab="ALR Transformed Abundance", xlab="Counts", main="");
+	par(mfrow=c(1,2));
+	par(mar=c(25, 5, 7, 1));
+	h=hist(resp_alr_struct$transformed[,var_ix], breaks=20,
+		xlab="ALR Transformed Abundance", ylab="Counts", 
+		main="Histogram");
 	
-	#, main=paste(var_ix, ".) ", sorted_taxa_names[var_ix], 
-	#	sprintf(" [%3.1f%%]",mean_abund[var_ix]*100), sep=""));
+	# Generate pred vs obs plots
+	cur_fit_rec=uv_fit[[var_ix]];
+	prd_resp=cur_fit_rec[["fitted.values"]];
+	obs_resp=cur_fit_rec[["model"]][,"ALR_Abundance"];
 
+	resp_range=range(c(prd_resp, obs_resp));	
+	span=diff(resp_range);
+	pad=span*.07;
+	
+	plot(obs_resp, prd_resp, 
+		xlim=c(resp_range[1]-pad, resp_range[2]+pad),
+		ylim=c(resp_range[1]-pad, resp_range[2]+pad),
+		main="Pred vs. Obs Response",
+		xlab="Observed ALR", ylab="Predicted ALR");	
+	abline(a=0, b=1, col="blue");
+	points(lowess(obs_resp, prd_resp), type="l", col="red");
+
+	title(main=sprintf("Model ANOVA P-val = %3.3g", model_anova_pval),
+		font.main=3, cex.main=.8, line=2.0);
+	title(main=sprintf("R^2 = %3.3f", rsqrd_mat[1,var_ix]),
+		font.main=3, cex.main=.8, line=1.25);
+	title(main=sprintf("Adjusted R^2 = %3.3f", rsqrd_mat[2, var_ix]), 
+		font.main=3, cex.main=.8, line=.5);
+
+	legend(resp_range[1]/2, resp_range[2]+pad, legend=c("Model", "Ideal"),
+                fill=c("red", "blue"), bty="n");
+
+	#----------------------------------------------------------------------
+	
 	setHook("plot.new", NULL, "replace");
 }
 
