@@ -35,6 +35,7 @@ script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
 
 script_path=paste(head(strsplit(script_name, "/")[[1]], -1), collapse="/");
 source(paste(script_path, "/../../../Metadata/RemoveNAs/Remove_NAs.r", sep=""));
+source(paste(script_path, "/../../../Metadata/OutputFileLibrary/OutputFileLibrary.r", sep=""));
 
 usage = paste(
 	"\nUsage:\n", script_name, "\n",
@@ -223,7 +224,8 @@ load_factors=function(fname){
 }
 
 load_summary_file=function(fname){
-	inmat=as.matrix(read.table(fname, sep="\t", header=TRUE, check.names=FALSE, comment.char="", quote="", row.names=1))
+	inmat=as.matrix(read.table(fname, sep="\t", header=TRUE, check.names=FALSE, comment.char="", 
+		quote="", row.names=1))
 	counts_mat=inmat[,2:(ncol(inmat))];
 
 	# Clean category names a little
@@ -238,7 +240,8 @@ load_summary_file=function(fname){
 }
 
 load_reference_levels_file=function(fname){
-        inmat=as.matrix(read.table(fname, sep="\t", header=F, check.names=FALSE, comment.char="#", row.names=1))
+        inmat=as.matrix(read.table(fname, sep="\t", header=F, check.names=FALSE, comment.char="#", 
+		row.names=1))
         colnames(inmat)=c("ReferenceLevel");
         print(inmat);
         cat("\n");
@@ -287,30 +290,6 @@ normalize=function(counts){
 	colnames(normalized)=colnames(counts);
 	rownames(normalized)=rownames(counts);	
 	return(normalized);
-}
-
-plot_text=function(strings, size_mult=1){
-	par(mfrow=c(1,1));
-	par(family="Courier");
-	par(oma=rep(.5,4));
-	par(mar=rep(0,4));
-
-	num_lines=length(strings);
-	
-	top=max(as.integer(num_lines), 52);
-
-	plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
-		xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
-		);
-
-	text_size=max(.01, min(.8, .8 - .003*(num_lines-52)));
-	#print(text_size);
-
-	for(i in 1:num_lines){
-		#cat(strings[i], "\n", sep="");
-		strings[i]=gsub("\t", "", strings[i]);
-		text(0, top-i, strings[i], pos=4, cex=text_size*size_mult); 
-	}
 }
 
 sig_char=function(val){
@@ -965,8 +944,9 @@ plot_overlapping_density=function(mat, title=""){
 	# Open a blank plot
 	par(mar=c(5,5,5,1));
 	range_span=diff(range);
-	plot(0,0, type="n", xlim=c(range[1]-range_span*.3, range[2]+range_span*.3), ylim=c(0, max_density*3), 
-		xlab="ALR Value", ylab="Density", main="ALR Density for Extracted Categories (Mode Labelled)");
+	plot(0,0, type="n", xlim=c(range[1]-range_span*.3, range[2]+range_span*.3), 
+		ylim=c(0, max_density*3), xlab="ALR Value", ylab="Density", 
+		main="ALR Density for Extracted Categories (Mode Labelled)");
 	title(main=title, outer=F, line=.5, cex.main=.85);
 	
 	cat_names=colnames(mat);
@@ -1028,10 +1008,13 @@ plot_overlapping_density=function(mat, title=""){
 	# Plot ticks, labels, and connectors
 	for(i in 1:num_cat){
 		# vertical tick
-		points(c(label_pos[i], label_pos[i]), c(max_density*1.05, max_density*1.10), type="l", col=colors[i]);
+		points(c(label_pos[i], label_pos[i]), c(max_density*1.05, max_density*1.10), 
+			type="l", col=colors[i]);
 		# tick to label
-		points(c(label_pos[i], modified[i]), c(max_density*1.1, max_density*1.2), type="l", col=colors[i]);
-		text(modified[i]-char_size/2, max_density*1.25, cat_names[i], srt=90, pos=4, xpd=T, col=colors[i]);
+		points(c(label_pos[i], modified[i]), c(max_density*1.1, max_density*1.2), 
+			type="l", col=colors[i]);
+		text(modified[i]-char_size/2, max_density*1.25, cat_names[i], srt=90, pos=4, 
+			xpd=T, col=colors[i]);
 	}
 
 }
@@ -1155,7 +1138,8 @@ if(manova_success){
 }
 
 text[1]=paste("Multivariate Regression with ", num_cat_to_analyze, " taxa", sep="");
-text[2]=paste("Proportion of top overall mean abundance represented: ", prop_abundance_represented, sep="");
+text[2]=paste("Proportion of top overall mean abundance represented: ", 
+	prop_abundance_represented, sep="");
 text[3]="";
 text=c(text, strsplit(model_string, "(?<=.{80})", perl=T)[[1]]);
 text=c(text, "");
@@ -1212,7 +1196,8 @@ for(i in 2:num_cat_to_analyze){
 
 # Plot Adjust p-values
 plot_correl_heatmap(fdr_pval_matrix, title="Holm Adjusted Correlation P-values");
-plot_correl_heatmap((fdr_pval_matrix<0.05)*cor_mat, title="Significant (<0.05) Correlation Holm Adjusted P-values",
+plot_correl_heatmap((fdr_pval_matrix<0.05)*cor_mat, 
+	title="Significant (<0.05) Correlation Holm Adjusted P-values",
 	noPrintZeros=T, guideLines=T);
 
 ##############################################################################
@@ -1266,7 +1251,7 @@ for(var_ix in 1:num_cat_to_analyze){
 	cat("\n");
 	cat("##########################################################################\n");
 	cat("#                                                                        #\n");
-	cat("# ", sorted_taxa_names[var_ix], "\n");
+	cat("# Fitting: ", sorted_taxa_names[var_ix], "\n");
 	cat("#                                                                        #\n");
 	cat("##########################################################################\n");
 
@@ -1302,7 +1287,8 @@ for(var_ix in 1:num_cat_to_analyze){
 	# Model p-values
 	print(uv_summ$fstatistic);
 	uv_model_fit_pval_mat[1, var_ix]=
-		1-pf(uv_summ$fstatistic["value"], uv_summ$fstatistic["numdf"], uv_summ$fstatistic["dendf"]);
+		1-pf(uv_summ$fstatistic["value"], uv_summ$fstatistic["numdf"], 
+		uv_summ$fstatistic["dendf"]);
 
 }
 
@@ -1352,7 +1338,8 @@ if(ncol(log_uv_pval_mat)>=2 && nrow(log_uv_pval_mat)>=2 && all(!is.nan(log_uv_pv
 	cl_hm_colors=(rainbow(num_hm_colors, start=0, end=0.65));
 
 	override_length=10;
-	heatmap(log_uv_pval_mat, col=cl_hm_colors, margins=c(min(rname_max_len/3, override_length), min(cname_max_len/2, override_length)));
+	heatmap(log_uv_pval_mat, col=cl_hm_colors, 
+		margins=c(min(rname_max_len/3, override_length), min(cname_max_len/2, override_length)));
 
 	# Plot Legend
 	par(mar=c(10,1,10,1), oma=c(0,0,0,0),  mfrow=c(2,1));
@@ -1360,9 +1347,11 @@ if(ncol(log_uv_pval_mat)>=2 && nrow(log_uv_pval_mat)>=2 && all(!is.nan(log_uv_pv
 	color_spans=seq(log_uv_pval_range[1], log_uv_pval_range[2], length.out=num_hm_colors);
 
 	barplot(rep(1, num_hm_colors), col=cl_hm_colors, yaxt="n", 
-		space=0, names.arg=sprintf("%3.4f", color_spans), las=2, main="HeatMap Legend (Log10[p-values])");
+		space=0, names.arg=sprintf("%3.4f", color_spans), las=2, 
+		main="HeatMap Legend (Log10[p-values])");
 	barplot(rep(1, num_hm_colors), col=cl_hm_colors, yaxt="n", 
-		space=0, names.arg=sprintf("%3.4f", 10^color_spans), las=2, main="HeatMap Legend (p-values)");
+		space=0, names.arg=sprintf("%3.4f", 10^color_spans), las=2, 
+		main="HeatMap Legend (p-values)");
 
 	# Restore prior graphics settings
 	par(oma=par_oma_before, mar=par_mar_before, mfrow=c(1,1));
@@ -1398,16 +1387,19 @@ mask_matrix=function(val_mat, mask_mat, mask_thres, mask_val){
 
 # Plot significant coefficients at various pvalue cutoffs
 signf_coef=mask_matrix(uv_coeff_mat, uv_pval_mat, .1, 0);
-plot_correl_heatmap(signf_coef, "Significant Coefficients at p-value < 0.10", noPrintZeros=T, guideLines=T);
+plot_correl_heatmap(signf_coef, "Significant Coefficients at p-value < 0.10", 
+	noPrintZeros=T, guideLines=T);
 signf_coef=mask_matrix(uv_coeff_mat, uv_pval_mat, .05, 0);
-plot_correl_heatmap(signf_coef, "Significant Coefficients at p-value < 0.05", noPrintZeros=T, guideLines=T);
+plot_correl_heatmap(signf_coef, "Significant Coefficients at p-value < 0.05",
+	noPrintZeros=T, guideLines=T);
 signf_coef=mask_matrix(uv_coeff_mat, uv_pval_mat, .01, 0);
-plot_correl_heatmap(signf_coef, "Significant Coefficients at p-value < 0.01", noPrintZeros=T, guideLines=T);
+plot_correl_heatmap(signf_coef, "Significant Coefficients at p-value < 0.01", 
+	noPrintZeros=T, guideLines=T);
 
 # Plot table of significant associations
 stab=signf_as_table(uv_coeff_mat, uv_pval_mat);
 options(width=1000);
-plot_text(capture.output(print(stab, quote=F)), .8);
+plot_text(capture.output(print(stab, quote=F)));
 
 # Significant Univariate Coefficients
 uv_pval_vect=as.vector(uv_pval_mat);
@@ -1515,7 +1507,6 @@ reg_coef_power=function(uv_reg_fit, factor=10, alpha=.05, power=.8){
 }
 
 ##############################################################################
-##############################################################################
 # Plot univariate analyses
 
 par(oma=c(0,0,3,0));
@@ -1622,6 +1613,191 @@ for(var_ix in 1:num_cat_to_analyze){
 
 	setHook("plot.new", NULL, "replace");
 }
+
+
+##############################################################################
+# generate summary lists by pred or resp
+
+draw_list=function(abbr_tab, coloffset){
+
+        chw=par()$cxy[1]/1.1; # width is over estimated
+        chh=par()$cxy[2];
+
+        ch_rows=1/chh;
+        ch_cols=1/chw;
+
+        #cat("Rows: ", ch_rows, " / Cols: ", ch_cols, "\n");
+
+        # Include cutoffs separators into table
+        cutoffs=c(-1, 0.001, 0.01, 0.05);
+        cutoff_entries=cbind(0, cutoffs);
+        rownames(cutoff_entries)=c(" < 0.001 :", " < 0.01 :", " < 0.05 :", " < 0.1 :");
+        abbr_tab_wcutoffs=rbind(abbr_tab, cutoff_entries);
+        order_ix=order(abbr_tab_wcutoffs[,2]);
+        abbr_tab_wcutoffs=abbr_tab_wcutoffs[order_ix,,drop=F];
+
+        #print(abbr_tab_wcutoffs);
+
+        # Calculate font size adjustments based on number of items in list
+        num_items=nrow(abbr_tab_wcutoffs);
+        vadj=1;
+        # If too many items, reduce size
+        if(num_items>ch_rows){
+                ch_rows=num_items;
+                vadj=num_items/ch_rows;
+        }
+
+        item_names=rownames(abbr_tab_wcutoffs);
+
+        row_id=0;
+        for(i in 1:num_items){
+
+                item_len=nchar(item_names[i]);
+                hadj=1;
+                # If size was adjust and the item is still to long, apply another adjustment
+                if(vadj*item_len*chw > 1){
+                        hadj=1/(vadj*item_len*chw);
+                }
+
+                estimate=abbr_tab_wcutoffs[i,"Estimate"];
+                if(estimate>0){
+                        draw_bullets=T;
+                        est_bgcol="green";
+                        est_sycol="black";
+                        est_ch="+";
+                        est_labfont=1;
+                        est_labcol="black";
+                        co_adj=1;
+                }else if(estimate<0){
+                        draw_bullets=T;
+                        est_bgcol="red";
+                        est_sycol="white";
+                        est_ch="-";
+                        est_labfont=1;
+                        est_labcol="black";
+                        co_adj=1;
+                }else{
+                        draw_bullets=F;
+                        est_ch="";
+                        est_labfont=3;
+                        est_labcol="blue";
+                        co_adj=.7;
+                }
+
+
+                # Mark +/- bullet glyphs
+                if(draw_bullets){
+                        points(coloffset+chw*.6, 1-chh*row_id, pch=21, cex=1.3*vadj,
+                                col="black", bg=est_bgcol);
+                        points(coloffset+chw*.6, 1-chh*row_id, pch=est_ch, cex=1*vadj,
+                                col=est_sycol);
+                }
+
+                # Draw response name
+                text(x=coloffset+chw*.6, y=1-chh*row_id, item_names[i], cex=hadj*vadj*co_adj,
+                        pos=4, font=est_labfont, col=est_labcol);
+
+                row_id=row_id+1;
+        }
+
+}
+
+pull_abbrev_tab=function(cf_mat, pv_mat, type){
+
+	if(type=="responses"){
+		targ_names=colnames(cf_mat);
+		comp_names=rownames(cf_mat);
+	}else if(type=="predictors"){
+		targ_names=rownames(cf_mat);
+		comp_names=colnames(cf_mat);	
+	}
+
+	targ_list=list();
+
+	for(trg in targ_names){
+		
+		if(type=="responses"){
+			abb_mat=cbind(cf_mat[,trg], pv_mat[,trg]);
+		}else if(type=="predictors"){
+			abb_mat=cbind(cf_mat[trg,], pv_mat[trg,]);
+		}
+
+		rownames(abb_mat)=comp_names;
+		colnames(abb_mat)=c("Estimate", "P-Value");
+		signf=abb_mat[,"P-Value"]<0.1;
+		abb_mat=abb_mat[signf,,drop=F];
+
+		targ_list[[trg]]=abb_mat;
+	}
+
+	return(targ_list);	
+
+}
+
+
+plot_summary_lists=function(coef_mat, pval_mat, type, columns_pp=4){
+
+        par.orig=par(no.readonly=T);
+        cat("Columns per page: ", columns_pp, "\n");
+
+        #----------------------------------------------------------------------
+
+        pval_list=pull_abbrev_tab(coef_mat, pval_mat, type);
+        otherType=ifelse(type=="predictors", "responses", "predictors");
+
+        #----------------------------------------------------------------------
+
+        par(mar=c(.5, .5, 3, .5));
+        par(mfrow=c(2,1));
+
+        item_cex=1.1;
+
+        item_count=0;
+        item_names=sort(names(pval_list));
+        for(cur_item in item_names){
+
+                item_col=item_count %% columns_pp;
+
+                if(item_col==0){
+                        plot(0, type="n", xlim=c(0,columns_pp), ylim=c(0,1), bty="n",
+                                xaxt="n", yaxt="n", xlab="", ylab="");
+
+                        title(ylab=otherType, font.lab=3, line=-1);
+                        abline(v=seq(0,columns_pp));
+                }
+
+                cat("Current Item: ", cur_item, "\n");
+
+                # Label response name over column
+                chw=par()$cxy[1]/1.1;
+                if(nchar(cur_item)*item_cex*chw > 1){
+                        item_readj=1/(item_cex*chw*nchar(cur_item));
+                }else{
+                        item_readj=1;
+                }
+
+                mtext(gsub("s$","", type), side=3, line=1.1, at=item_col+.5, cex=.6, font=3);
+                mtext(cur_item, side=3, line=.1, at=item_col+.5, cex=item_cex*item_readj, font=2);
+
+                # Extract abbreviated tables from coefficients in sumfit record
+                #abtab=pull_abbrev_tab(sumfit_list[[cur_res]]$coefficients);
+                abtab=pval_list[[cur_item]];
+
+                # Print the response's predictor in the specified column
+                draw_list(abtab, item_col);
+
+                item_count=item_count+1;
+        }
+
+        par(par.orig);
+
+}
+
+plot_title_page("Significant Predictors\nby ALR Response");
+plot_summary_lists(uv_coeff_mat, uv_pval_mat, type="responses");
+
+plot_title_page("Significant ALR Responses\nby Predictor");
+plot_summary_lists(uv_coeff_mat, uv_pval_mat, type="predictors");
 
 #############################################################################	
 dev.off();
