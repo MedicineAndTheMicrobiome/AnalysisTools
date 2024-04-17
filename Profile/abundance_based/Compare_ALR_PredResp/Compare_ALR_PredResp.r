@@ -1123,7 +1123,7 @@ plot_predresp_matrix=function(matrices, highlight_diag=F, ratio_thres, signf_thr
 	cat("Num Rows (categories): ", num_cat, "\n");
 	cat("Num Cols (factors): ", num_facts, "\n");
 	rowcex=min(1, (plot_range[4]-plot_range[3])/num_cat/char_dim[2]);
-	colcex=min(1, (plot_range[2]-plot_range[1])/num_facts/char_dim[1);
+	colcex=min(1, (plot_range[2]-plot_range[1])/num_facts/char_dim[1]);
 
 	glyph_size=min(rowcex, colcex);
 	for(x in 1:num_facts){
