@@ -26,6 +26,16 @@ my $tremble_dat_filename=$opt_t;
 
 ###############################################################################
 
+sub remove_bracketed_tags{
+	my $data=shift;
+	my $orig_data=$data;
+	$data=~s/ \{.+\}//g;
+	#print STDERR "Cleaned: '$orig_data' -> '$data'\n";
+	return($data);
+}
+
+#------------------------------------------------------------------------------
+
 my $cur_AC="";
 my $cur_OC="";
 my $cur_ID="";
@@ -36,7 +46,9 @@ my $taxa_id="";
 my @ec;
 my @go_p;
 my @go_f;
+my @go_c;
 my $length;
+
 
 open(FH, "<$tremble_dat_filename") || die "Could not open $tremble_dat_filename\n";
 
@@ -54,12 +66,13 @@ while(<FH>){
 	}elsif($_=~/^DE   /){
 
 		# Extract description and EC if available
+		#   (Removing bracket tags cleans up the description.  The tags are the ECO evidence tags)
 		if($_=~/SubName: Full=(.+);/){
-			push @desc, $1;
+			push @desc, remove_bracketed_tags($1);
 		}elsif($_=~/RecName: Full=(.+);/){
-			push @desc, $1;
+			push @desc, remove_bracketed_tags($1);
 		}elsif($_=~/EC=(.+);/){
-			push @ec, $1;
+			push @ec, remove_bracketed_tags($1);
 		}
 
 	}elsif($_=~/^DR   /){
@@ -78,10 +91,10 @@ while(<FH>){
 				push @go_p, $subrec[1];
 			}elsif($gotype eq "F"){
 				push @go_f, $subrec[1];
+			}elsif($gotype eq "C"){
+				push @go_c, $subrec[1];
 			}else{
-				if($gotype ne "C"){
-					print STDERR "GO parsing error: '$_'\n";
-				}
+				print STDERR "GO parsing error: '$_'\n";
 			}
 		}
 
@@ -112,9 +125,22 @@ while(<FH>){
 		my $delist=join ";", @desc;
 		my $goplist=join ";", sort(@go_p);
 		my $goflist=join ";", sort(@go_f);
+		my $goclist=join ";", sort(@go_c);
 		my $eclist=join ";", sort(@ec);
 
-		my $outstr=join "\t", ($cur_AC, $delist, $taxa_id, $length, $pfamlist, $tigrfamlist, $goplist, $goflist, $eclist);
+		if($delist eq "") {$delist="NA";}
+		if($taxa_id eq "") {$taxa_id="NA";}
+		if($length eq "") {$length="NA";}
+		if($pfamlist eq "") {$pfamlist="NA";}
+		if($tigrfamlist eq "") {$tigrfamlist="NA";}
+		if($goplist eq "") {$goplist="NA";}
+		if($goflist eq "") {$goflist="NA";}
+		if($goclist eq "") {$goclist="NA";}
+		if($eclist eq "") {$eclist="NA";}
+
+		my $outstr=join "\t", 
+			($cur_AC, $delist, $taxa_id, $length, $pfamlist, $tigrfamlist, 
+			$goplist, $goflist, $goclist, $eclist);
 
 		print "$outstr\n";
 
@@ -124,6 +150,7 @@ while(<FH>){
 		@desc=();
 		@go_p=();
 		@go_f=();
+		@go_c=();
 		@ec=();
 
 		# Heart beat
