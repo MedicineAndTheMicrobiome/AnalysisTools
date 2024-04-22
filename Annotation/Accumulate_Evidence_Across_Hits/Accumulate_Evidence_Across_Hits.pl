@@ -183,13 +183,13 @@ sub get_best_function{
 					# Ignore
 				}
 			}
-			if($len ne ""){ $best_len=$len; }
-			if($pfam ne ""){ $best_pfam=$pfam; }
-			if($tigrfam ne ""){ $best_tigrfam=$tigrfam; }
-			if($go_proc ne ""){ $best_go_proc=$go_proc; }
-			if($go_func ne ""){ $best_go_func=$go_func; }
-			if($go_comp ne ""){ $best_go_comp=$go_comp; }
-			if($ec ne ""){ $best_ec=$ec; }
+			if($len ne "NA"){ $best_len=$len; }
+			if($pfam ne "NA"){ $best_pfam=$pfam; }
+			if($tigrfam ne "NA"){ $best_tigrfam=$tigrfam; }
+			if($go_proc ne "NA"){ $best_go_proc=$go_proc; }
+			if($go_func ne "NA"){ $best_go_func=$go_func; }
+			if($go_comp ne "NA"){ $best_go_comp=$go_comp; }
+			if($ec ne "NA"){ $best_ec=$ec; }
 		}
 	}	
 
