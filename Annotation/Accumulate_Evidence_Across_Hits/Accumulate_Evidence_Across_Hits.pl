@@ -33,14 +33,15 @@ my $usage = "
 	9.) TIGRFam IDs
 	10.) GO Process
 	11.) GO Function
-	12.) EC
+	12.) GO Component
+	13.) EC
 
 	[Unused]
-	12.) NA (Subject composite idenity)
-	13.) NA (Subject length)
-	14.) Alignment Identity
-	15.) Alignment Bit Score
-	16.) Alignment E-val
+	13.) NA (Subject composite idenity)
+	14.) NA (Subject length)
+	15.) Alignment Identity
+	16.) Alignment Bit Score
+	17.) Alignment E-val
 
 	Output selects the best non-null results across the annotations:
 
@@ -52,7 +53,8 @@ my $usage = "
 	6.) TIGRFam IDs
 	7.) GO Process
 	8.) GO Function
-	9.) EC
+	9.) GO Component 
+	10.) EC
 
 ";
 
@@ -96,6 +98,7 @@ if(!$suppress_header){
 		"TIGRFamIDs",
 		"GOProcIDs",
 		"GOFuncIDs",
+		"GoCompIDs",
 		"ECIDs"	
 	);
 
@@ -120,7 +123,8 @@ my $PFAM_COL=7;
 my $TIGRFAM_COL=8;
 my $GO_PROC_COL=9;
 my $GO_FUNC_COL=10;
-my $EC_COL=11;
+my $GO_COMP_COL=11;
+my $EC_COL=12;
 
 ###############################################################################
 
@@ -147,13 +151,13 @@ sub get_best_function{
 
 	my ( $best_perc_id, $best_len, $best_desc, 
 		$best_pfam, $best_tigrfam, 
-		$best_go_proc, $best_go_func, $best_ec)=
-		(0,"","","","","","","");
+		$best_go_proc, $best_go_func, $best_go_comp, $best_ec)=
+		(0,"","","","","","","","");
 
 	# These records are already assumed to be sorted by increasing order
 	foreach my $rec(@{$rec_ref}){
 		
-		my ($perc_id, $len, $desc, $pfam, $tigrfam, $go_proc, $go_func, $ec)=(
+		my ($perc_id, $len, $desc, $pfam, $tigrfam, $go_proc, $go_func, $go_comp, $ec)=(
 			${$rec}[$PERC_ID_COL],
 			${$rec}[$LEN_COL],
 			${$rec}[$DESC_COL],
@@ -161,6 +165,7 @@ sub get_best_function{
 			${$rec}[$TIGRFAM_COL],
 			${$rec}[$GO_PROC_COL],
 			${$rec}[$GO_FUNC_COL],
+			${$rec}[$GO_COMP_COL],
 			${$rec}[$EC_COL]
 		);
 
@@ -183,13 +188,14 @@ sub get_best_function{
 			if($tigrfam ne ""){ $best_tigrfam=$tigrfam; }
 			if($go_proc ne ""){ $best_go_proc=$go_proc; }
 			if($go_func ne ""){ $best_go_func=$go_func; }
+			if($go_comp ne ""){ $best_go_comp=$go_comp; }
 			if($ec ne ""){ $best_ec=$ec; }
 		}
 	}	
 
 	return(($best_perc_id, $best_len, $best_desc,
                 $best_pfam, $best_tigrfam,
-                $best_go_proc, $best_go_func, $best_ec));
+                $best_go_proc, $best_go_func, $best_go_comp, $best_ec));
 	
 }
 
