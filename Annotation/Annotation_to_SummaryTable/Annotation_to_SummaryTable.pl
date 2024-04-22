@@ -34,6 +34,7 @@ usage:
 		<output file name root>.TIGRFamIDs.summary_table.tsv
 		<output file name root>.GOProcIDs.summary_table.tsv
 		<output file name root>.GOFuncIDs.summary_table.tsv
+		<output file name root>.GOCompIDs.summary_table.tsv
 		<output file name root>.ECIDs.summary_table.tsv
 
 	The input annotation file should look like:
@@ -46,7 +47,8 @@ usage:
 		6.) TIGRFamIDs
 		7.) GOProcIDs
 		8.) GOFuncIDs
-		9.) ECIDs
+		9.) GOCompIDs
+		10.) ECIDs
 
 
 ";
@@ -187,6 +189,8 @@ foreach my $function_type(@unique_function_types){
 			$categories_hash{$category}=1;
 		}
 	}
+
+	delete($categories_hash{"NA"});
 
 	my @categories=sort keys %categories_hash;
 	my $num_cat=$#categories+1;
