@@ -393,7 +393,7 @@ plot_histograms=function(data_mat, title="", max_col_plots=3, max_row_plots=4){
 
 ###############################################################################
 
-write_summary_table=function(out_mat, fname){
+write_summary_file=function(out_mat, fname){
         fc=file(fname, "w");
         cat(file=fc, paste("sample_id\ttotal", paste(colnames(out_mat), collapse="\t"), sep="\t"));
         cat(file=fc, "\n");
