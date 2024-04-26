@@ -391,3 +391,21 @@ plot_histograms=function(data_mat, title="", max_col_plots=3, max_row_plots=4){
         par(orig.par);
 }
 
+###############################################################################
+
+write_summary_table=function(out_mat, fname){
+        fc=file(fname, "w");
+        cat(file=fc, paste("sample_id\ttotal", paste(colnames(out_mat), collapse="\t"), sep="\t"));
+        cat(file=fc, "\n");
+        sample_names=rownames(out_mat);
+        num_samples=nrow(out_mat);
+        for(samp_idx in 1:num_samples){
+                total=sum(out_mat[samp_idx,]);
+                outline=paste(sample_names[samp_idx], total,
+                        paste(out_mat[samp_idx,], collapse="\t"), sep="\t");
+                cat(file=fc, outline);
+                cat(file=fc, "\n");
+        }
+        close(fc);
+}
+
