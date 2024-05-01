@@ -250,7 +250,8 @@ OutputFileRoot=paste(OutputFileRoot, ".", method, sep="");
 load_summary_table=function(summary_table_fn){
 	# Load data
 	cat("Loading Matrix (", summary_table_fn, ") ...\n", sep="");
-	inmat=as.matrix(read.table(summary_table_fn, sep="\t", header=TRUE, check.names=FALSE, row.names=1))
+	inmat=as.matrix(read.table(summary_table_fn, sep="\t", header=TRUE, 
+		check.names=FALSE, row.names=1))
 
 	#cat("\nOriginal Matrix:\n")
 	#print(inmat);
@@ -500,7 +501,8 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 
         par(oma=c(col_max_nchar*.60, 0, 3, row_max_nchar*.60));
         par(mar=c(0,0,0,0));
-        plot(0, type="n", xlim=c(0,num_col), ylim=c(0,num_row), xaxt="n", yaxt="n", bty="n", xlab="", ylab="");
+        plot(0, type="n", xlim=c(0,num_col), ylim=c(0,num_row), xaxt="n", 
+		yaxt="n", bty="n", xlab="", ylab="");
         mtext(title, side=3, line=0, outer=T, font=2);
 
         # x-axis
@@ -541,7 +543,8 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
                                                 }
                                         }
                                 }
-                                text(x-.5, y-.5, text_lab, srt=atan(num_col/num_row)/pi*180, cex=value.cex, font=2);
+                                text(x-.5, y-.5, text_lab, srt=atan(num_col/num_row)/pi*180, 
+					cex=value.cex, font=2);
                         }
                 }
         }
@@ -553,13 +556,15 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
         if(plot_row_dendr && plot_col_dendr){
                 rdh=attributes(row_dendr[["tree"]])$height;
                 cdh=attributes(col_dendr[["tree"]])$height;
-                plot(row_dendr[["tree"]], leaflab="none", horiz=T, xaxt="n", yaxt="n", bty="n", xlim=c(rdh, 0));
+                plot(row_dendr[["tree"]], leaflab="none", horiz=T, xaxt="n", yaxt="n", 
+			bty="n", xlim=c(rdh, 0));
                 plot(col_dendr[["tree"]], leaflab="none",xaxt="n", yaxt="n", bty="n", ylim=c(0, cdh));
                 plot(0,0, type="n", bty="n", xaxt="n", yaxt="n");
                 #text(0,0, "Placeholder");
         }else if(plot_row_dendr){
                 rdh=attributes(row_dendr[["tree"]])$height;
-                plot(row_dendr[["tree"]], leaflab="none", horiz=T, xaxt="n", yaxt="n", bty="n", xlim=c(rdh, 0));
+                plot(row_dendr[["tree"]], leaflab="none", horiz=T, xaxt="n", yaxt="n", 
+			bty="n", xlim=c(rdh, 0));
                 #text(0,0, "Row Dendrogram");
         }else if(plot_col_dendr){
                 cdh=attributes(col_dendr[["tree"]])$height;
@@ -1017,6 +1022,8 @@ cleaned_bs_matrix=matrix(-1, nrow=num_exp_samples, ncol=num_exp_cat,
 	dimnames=list(experm_samples, original_names));
 removed_contam_matrix=matrix(0, nrow=num_exp_samples, ncol=num_exp_cat, 
 	dimnames=list(experm_samples, colnames(normalized_mat)));
+selected_control_matrix=matrix(0, nrow=num_exp_samples, ncol=num_exp_cat,
+	dimnames=list(experm_samples, colnames(normalized_mat)));
 
 obs_prop_removed=numeric(num_exp_samples);
 bs_prop_removed=numeric(num_exp_samples);
@@ -1065,6 +1072,7 @@ for(exp_samp_id in experm_samples){
 
 	# Observed fit
 	obs_fit=fit_contaminant_mixture_model(ctl_dist, exp_dist, PLevel);
+	selected_control_matrix[exp_samp_id,]=ctl_dist;
 
 	# Observed prof of removed contaminants
 	removed_contam_arr=obs_fit$removed_contam_profile;
@@ -1079,7 +1087,8 @@ for(exp_samp_id in experm_samples){
 	fits=bootstrp_fit(exp_dist, pert_ctrl, PLevel);
 
 	#print(quantile(fits$stats[,"removed"]));
-	perc95_ix=min(which(fits$stats[,"removed"]==quantile(fits$stats[,"removed"], 1-Quantile, type=1)));
+	perc95_ix=min(which(fits$stats[,"removed"]==quantile(fits$stats[,"removed"], 
+		1-Quantile, type=1)));
 
 	# Save cleaned to matrix for export
 	cleaned_obs_matrix[exp_samp_id,]=obs_fit$cleaned;
@@ -1088,11 +1097,13 @@ for(exp_samp_id in experm_samples){
 	bs_prop_removed[exp_samp_id]=fits$stats[perc95_ix, "removed"];
 
 	# Get the max abundance expect across all fits
-	max_abund=max(exp_dist, ctl_dist, obs_fit$cleaned, pert_ctrl[perc95_ix,], fits$cleaned[perc95_ix,]);
+	max_abund=max(exp_dist, ctl_dist, obs_fit$cleaned, pert_ctrl[perc95_ix,], 
+		fits$cleaned[perc95_ix,]);
 	max_disp_y=max_abund*1.1;
 	
 	# 1.) Plot obs remove
-	plot_RAcurve(exp_dist, title=paste("Obs. Experimental.:", exp_samp_id), top=top_cat_to_plot, max=max_disp_y);
+	plot_RAcurve(exp_dist, title=paste("Obs. Experimental.:", exp_samp_id), 
+		top=top_cat_to_plot, max=max_disp_y);
 	mtext(paste("Num Categories:", num_exp_cat), line=-1.75, outer=F, cex=.5);
 	mtext(paste("Min Abundance:", min_exp_abd), line=-2.5, outer=F, cex=.5);
 
@@ -1116,8 +1127,10 @@ for(exp_samp_id in experm_samples){
 	plot_RAcurve(fits$cleaned[perc95_ix,], 
 		title=paste(percentile_str, " Most Removed Cleaned", sep=""), 
 		top=top_cat_to_plot, max=max_disp_y, overlay_dist=exp_dist);
-	mtext(paste("Proportion Removed:", round(fits$stats[perc95_ix, "removed"], 3)), line=-1.75, outer=F, cex=.5);
-	mtext(paste("Multiplier:", round(fits$stats[perc95_ix, "multiplier"], 3)), line=-2.5, outer=F, cex=.5);
+	mtext(paste("Proportion Removed:", round(fits$stats[perc95_ix, "removed"], 3)), 
+		line=-1.75, outer=F, cex=.5);
+	mtext(paste("Multiplier:", round(fits$stats[perc95_ix, "multiplier"], 3)), 
+		line=-2.5, outer=F, cex=.5);
 
 	# 6.) Plot range of pertubation
 	plot_RAbox(pert_ctrl, title="Perturbed Control", top=top_cat_to_plot, max=max_disp_y);
@@ -1126,7 +1139,8 @@ for(exp_samp_id in experm_samples){
 	plot_RAbox(fits$cleaned, title="Range of Cleaned", top=top_cat_to_plot, max=max_disp_y);
 
 	# 8.) Plot histogram of percent removed
-	hist(fits$stat[,"removed"], main="Bootstrapped Proportions Removed", xlab="Bootstrapped Proportions Removed", 
+	hist(fits$stat[,"removed"], main="Bootstrapped Proportions Removed", 
+		xlab="Bootstrapped Proportions Removed", 
 		breaks=seq(0,1,.025), xlim=c(0,1));
 	abline(v=fits$stat[perc95_ix,"removed"], col="blue");
 	
@@ -1257,7 +1271,7 @@ plot(log10(bs_removed_totals), bs_prop_removed*100,
 
 ###############################################################################
 
-par(mfrow=c(5,1));
+par(mfrow=c(4,1));
 
 # Plot the average of what the contamination profile looked like for each sample
 mean_removed_arr=apply(removed_contam_matrix, 2, function(x){mean(x, na.rm=T);});
@@ -1288,6 +1302,46 @@ plot_RAprop(removed_contam_matrix, title="Proportion of Samples (With Any Amount
 	top=min(top_cat_to_plot, num_cat_wmean_gt0));
 
 ###############################################################################
+# Plot the original, filtered, controls used, and removed in the order of the original abundance
+
+top_to_plot=50;
+
+mean_experm_samples=apply(normalized_mat[experm_samples,], 2, mean);
+mean_selected_control=apply(selected_control_matrix, 2, mean);
+mean_cleaned_obs=apply(cleaned_obs_matrix, 2, mean);
+# removed_contam_matrix, calculated above
+
+order_by_cleanobs_ix=order(mean_cleaned_obs, decreasing=T);
+
+max_in_top=max(c(
+	mean_experm_samples, mean_selected_control,
+	mean_cleaned_obs, mean_removed_arr));
+
+ylimit=max_in_top*1.10;
+
+# Plot the average input/original profile
+plot_RAcurve(mean_experm_samples[order_by_cleanobs_ix], 
+	title="Mean of Original Experimental Samples", 
+	top=top_to_plot, max=ylimit); 
+
+# Plot the average control that was selected
+plot_RAcurve(mean_selected_control[order_by_cleanobs_ix], 
+	title="Mean of Selected Controls", 
+	top=top_to_plot, max=ylimit); 
+
+# Plot the average output/filtered profile
+plot_RAcurve(mean_removed_arr[order_by_cleanobs_ix], 
+	title="Mean of Removed Contaminants (Obs)", 
+	top=top_to_plot, max=ylimit); 
+
+# Plot the removed
+names(mean_cleaned_obs)=names(mean_removed_arr);
+plot_RAcurve(mean_cleaned_obs[order_by_cleanobs_ix], 
+	title="Mean of Filtered Experimental Samples (Obs)", 
+	top=top_to_plot, max=ylimit); 
+
+
+###############################################################################
 
 plot_category_specific_contam_stats=function(prop_removed_mat, sample_counts, num_to_plot){
 
@@ -1304,7 +1358,8 @@ plot_category_specific_contam_stats=function(prop_removed_mat, sample_counts, nu
 		plot(
 			log10(sample_counts+1),
 			prop_removed_mat[samp_ids,i],
-			main=paste(categories[i], ":\nSample Depth vs. Proportion of Contaminants", sep=""),
+			main=paste(categories[i], ":\nSample Depth vs. Proportion of Contaminants", 
+				sep=""),
 			ylim=c(0,1),
 			xlab="Log10(Sample Depth)",
 			ylab="Proportion of Contaminants"
