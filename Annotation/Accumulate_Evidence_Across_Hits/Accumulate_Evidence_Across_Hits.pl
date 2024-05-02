@@ -98,7 +98,7 @@ if(!$suppress_header){
 		"TIGRFamIDs",
 		"GOProcIDs",
 		"GOFuncIDs",
-		"GoCompIDs",
+		"GOCompIDs",
 		"ECIDs"	
 	);
 
