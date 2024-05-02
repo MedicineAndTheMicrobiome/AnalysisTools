@@ -190,7 +190,9 @@ foreach my $function_type(@unique_function_types){
 		}
 	}
 
+	# Remove bad empty or bad categories
 	delete($categories_hash{"NA"});
+	delete($categories_hash{""});
 
 	my @categories=sort keys %categories_hash;
 	my $num_cat=$#categories+1;
@@ -210,10 +212,6 @@ foreach my $function_type(@unique_function_types){
 
 		foreach my $category(@categories){
 
-			if($category eq "" || $category eq "NA"){
-				next;
-
-			}
 			my $counts=${${$counts_hash{$sample_id}}{$function_type}}{$category};
 			if($counts eq ""){
 				$counts=0;
