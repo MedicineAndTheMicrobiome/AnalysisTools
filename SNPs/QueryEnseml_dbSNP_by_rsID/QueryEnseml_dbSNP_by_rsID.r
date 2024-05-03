@@ -29,14 +29,16 @@ usage = paste(
 	"\nUsage:\n", script_name, "\n",
 	"	-i <input file with multiple tables>\n",
 	"	-t <column name of rs SNP IDs to look up>\n",
-	"	-o <output file with chrom and coordinates appended to input>\n",
+	"	-o <output file root>\n",
 	"	[-d <dataset, default=hsapiens_snp>]\n",
 	"\n",
 	"This script will read in a list of rs IDs\n",
 	"and then extract the chromosome and coordinates\n",
 	"of the SNP from the database.\n",
 	"\n",
-	"The output will consist of the downloaded data appended to the input table.\n", 
+	"The output will consist of: \n",
+	"	1.) downloaded data appended to the input table.\n", 
+	"	2.) simple table with columns for extract from a vcf file.\n",
 	"\n",
 	"The input can have multiple columns, in case you want to presever some comments.\n",
 	"\n",
@@ -202,12 +204,38 @@ outtab=cbind(
 
 #print(outtab);
 cat("Writing output table...\n");
-write.table(x=outtab, file=OutputFile, row.names=F, col.names=T, sep="\t", quote=F);
+fname=paste(OutputFile, ".appended.tsv", sep="");
+write.table(x=outtab, file=fname, row.names=F, col.names=T, sep="\t", quote=F);
 cat("Writing version as comment to end of table....\n");
-fh=file(OutputFile, "a");
+fh=file(fname, "a");
 cat(file=fh, "# ", paste(dataset_info, collapse="/"), "\n", sep="");
 close(fh);
 
+##############################################################################
+# Write a file centric for extracting SNPs from VCF file
+# chrom:start-end \t  Ref,Var \t rsID \n
+
+cat("Writing simplified table...\n");
+fname=paste(OutputFile, ".snps.tsv", sep="");
+headers=c("chr_coord", "ref_var_alleles", "dbSNP_ID");
+outtab=matrix(character(), ncol=length(headers), nrow=num_clean);
+colnames(outtab)=headers;
+outtab[,"chr_coord"]=apply(clean_res_tab, 1, function(x){
+	cat=paste(x["chr_name"], ":", x["chrom_start"], "-", x["chrom_end"], sep="");
+	gsub(" ", "", cat);
+	});
+outtab[,"ref_var_alleles"]=apply(clean_res_tab, 1, function(x){
+	paste(x["ref_allele"], ",", x["var_allele"], sep="");
+	});
+outtab[,"dbSNP_ID"]=clean_res_tab[,"refsnp_id"];
+
+print(outtab);
+write.table(x=outtab, file=fname, row.names=F, col.names=T, sep="\t", quote=F);
+fh=file(fname, "a");
+cat(file=fh, "# ", paste(dataset_info, collapse="/"), "\n", sep="");
+close(fh);
+
+##############################################################################
 
 cat("\nDone.\n");
 
