@@ -45,7 +45,8 @@ cat("\n");
 ##############################################################################
 
 load_factors=function(fname){
-	factors=read.table(fname, header=TRUE, check.names=FALSE, as.is=T, comment.char="", quote="\"", sep=",");
+	factors=read.table(fname, header=TRUE, check.names=FALSE, as.is=T, 
+		comment.char="", quote="\"", sep=",");
 
 	dimen=dim(factors);
 	cat("Rows Loaded: ", dimen[1], "\n");
