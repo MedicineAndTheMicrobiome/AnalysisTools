@@ -4,11 +4,12 @@
 
 use strict;
 use Getopt::Std;
+use File::Basename;
 
 ###############################################################################
 
-use vars qw ($opt_s $opt_q $opt_p $opt_t $opt_r);
-getopts("s:q:p:t:r:");
+use vars qw ($opt_s $opt_q $opt_p $opt_t $opt_r $opt_o);
+getopts("s:q:p:t:r:o:");
 
 my $usage = "
 	$0
@@ -17,6 +18,8 @@ my $usage = "
 
 	    [-t <Subject (reference) length file>]
 	    [-r <Query (reads) length file>]
+	
+	    [-o <output directory>]
 
 	    -p \"<blast output file pattern>\"
 
@@ -51,6 +54,10 @@ my $usage = "
 
 	If you have the lengths already, just use the -t and -r options.
 
+	if the -o <output directory> is specified then the output .comp_id
+	file will be placed into the <output directory>.  Else the output
+	will be placed in the same directory as the blast output (input).
+
 ";
 
 if(!defined($opt_p)){
@@ -62,6 +69,7 @@ my $query_fasta=$opt_q;
 my $blastoutput_pat=$opt_p;
 my $subject_lengths=$opt_t;
 my $query_lengths=$opt_r;
+my $comp_id_output_dir=$opt_o;
 
 ###############################################################################
 
@@ -74,7 +82,8 @@ my ($defline, $prev_defline, $sequence);
 
 if(defined($subject_fasta) || defined($query_fasta)){
 
-	open(FASTA_FH, "cat $subject_fasta $query_fasta | ") || die "Could not open one of the sequence fasta files\n";
+	open(FASTA_FH, "cat $subject_fasta $query_fasta | ") || 
+		die "Could not open one of the sequence fasta files\n";
 	print STDERR "Processing FASTA file...\n";
 	while(<FASTA_FH>){
 		chomp;
@@ -98,7 +107,8 @@ if(defined($subject_fasta) || defined($query_fasta)){
 
 if(defined($subject_lengths) || defined($query_lengths)){
 
-	open(LENGTHS_FH, "cat $subject_lengths $query_lengths | ") || die "Could not open one of the length files\n";
+	open(LENGTHS_FH, "cat $subject_lengths $query_lengths | ") || 
+		die "Could not open one of the length files\n";
 
 	while(<LENGTHS_FH>){
 		chomp;
@@ -142,12 +152,21 @@ foreach my $file(@files){
 
 	print STDERR "Processing $file\n";
 
+	# If file is compressed, use zcat, else just redirect in
 	if($file=~/\.gz$/){
 		open(FH, "zcat $file |") || die "Could not open '$file' (compressed)\n";
+		$file=~s/\.gz$//;
 	}else{
 		open(FH, "<$file") || die "Could not open '$file' (uncompressed)\n";
 	}
 
+	# If output is defined, move output to specified output dir
+	if(defined($comp_id_output_dir)){
+		my ($name, $path)=fileparse($file);
+		$file="$comp_id_output_dir/$name";
+	}
+	
+	print STDERR "Writing to: $file\.comp_id\n";
 	open(OUT, ">$file\.comp_id") || die "Could not open '$file\.comp_id'\n";
 
 	while(<FH>){
@@ -174,7 +193,8 @@ foreach my $file(@files){
 		}else{
 			$sub_seq_length=$seq_length_hash{$Subject_id};
 			#$subject_comp_id=sprintf("%3.2f", $perc_identity*$alignment_length/$sub_seq_length);
-			$subject_comp_id=sprintf("%3.2f", $perc_identity*(abs($send-$sstart)+1)/$sub_seq_length);
+			$subject_comp_id=sprintf("%3.2f", 
+				$perc_identity*(abs($send-$sstart)+1)/$sub_seq_length);
 		}
 
 		if(!defined($seq_length_hash{$Query_id})){
@@ -183,7 +203,8 @@ foreach my $file(@files){
 		}else{
 			$qry_seq_length=$seq_length_hash{$Query_id};
 			#$query_comp_id=sprintf("%3.2f", $perc_identity*$alignment_length/$qry_seq_length);
-			$query_comp_id=sprintf("%3.2f", $perc_identity*(abs($qend-$qstart)+1)/$qry_seq_length);
+			$query_comp_id=sprintf("%3.2f", 
+				$perc_identity*(abs($qend-$qstart)+1)/$qry_seq_length);
 		}
 		
 
