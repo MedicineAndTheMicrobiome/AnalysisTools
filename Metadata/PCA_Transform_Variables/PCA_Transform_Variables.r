@@ -569,6 +569,39 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
                 }
         }
 
+	calc_guidelines=function(num_cells, rev=F){
+		if(num_cells<8){
+			return(NA);
+		}else{
+			grps=c(4, 5, 6, 7);
+			rem=num_cells%%grps
+			if(any(rem==0)){
+				# Take largest of 0 remainders
+				use_grp=grps[max(which(rem==0))];
+			}else{
+				# Take largest remainder
+				grp_ix=max(which(rem==max(rem)));
+				use_grp=grps[grp_ix]; 
+			}
+
+			if(rev){
+				guide_pos=seq(0,num_cells,use_grp);
+			}else{
+				guide_pos=seq(num_cells,0,-use_grp);
+			}
+			guide_pos=setdiff(guide_pos, c(0, num_cells));
+			return(guide_pos);
+		}
+	}
+
+	abline(h=1:(num_row-1), lwd=.125, lty="dotted", col="grey95");
+	abline(h=calc_guidelines(num_row), lty="dotted", lwd=2, col="white");
+	abline(h=calc_guidelines(num_row), lty="dotted", lwd=1, col="black");
+
+	abline(v=1:(num_col-1), lwd=.125, lty="dotted", col="grey95");
+	abline(v=calc_guidelines(num_col, rev=T), lty="dotted", lwd=2, col="white");
+	abline(v=calc_guidelines(num_col, rev=T), lty="dotted", lwd=1, col="black");
+
         ##################################################################################################
 
         par(mar=c(0, 0, 0, 0));
