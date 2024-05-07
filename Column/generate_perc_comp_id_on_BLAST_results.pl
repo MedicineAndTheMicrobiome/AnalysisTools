@@ -141,7 +141,12 @@ my @files=split /\n/, `ls -1 $blastoutput_pat`;
 foreach my $file(@files){
 
 	print STDERR "Processing $file\n";
-	open(FH, "<$file") || die "Could not open '$file'\n";
+
+	if($file=~/\.gz$/){
+		open(FH, "zcat $file |") || die "Could not open '$file' (compressed)\n";
+	}else{
+		open(FH, "<$file") || die "Could not open '$file' (uncompressed)\n";
+	}
 
 	open(OUT, ">$file\.comp_id") || die "Could not open '$file\.comp_id'\n";
 
