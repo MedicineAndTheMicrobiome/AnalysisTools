@@ -46,10 +46,14 @@ usage = paste(
 	"		This command can use $ and * wildcards\n",
 	"	rename <orig name> <new name>\n",
 	"\n",
-	"Rows/Samples can be conditionally kept/removed by using\n",
-	"the \"keep\" command.  First create/identify a variable/column that is T/F\n",
-	"then specify that variable as parameter for the keep command.  Rows that\n",
-	"are F will be excluded.\n",
+	"Rows/Samples can be conditionally kept/removed:\n",
+	"	keep <boolean variable name>\n",
+	"		First create/identify a variable/column that is T/F\n",
+	"		then specify that variable as parameter for the keep command.  Rows that\n",
+	"		are F will be excluded.\n",
+	"	remove_NAs <variable with NAs>\n",
+	"		Similarly, you use this function to remove rows with NAs in the\n",
+	"		specified variable, without having to create a new variable with is.na()\n",
 	"\n",
 	"A column can be moved to the first column position perhaps making it a\n",
 	"primary key or sample id for the matrix with the \"make_key\" command.\n",
@@ -1059,6 +1063,17 @@ for(cmd in commands){
 		factors=factors[keep_ix,, drop=F];
 		rowcol=dim(factors);
 		cat("Rows: ", rowcol[1], " x Cols: ", rowcol[2], "\n", sep="");
+
+	}else if(length(grep("^remove_NAs ", cmd))==1){
+		# Remove rows with factors that are F
+		var=strsplit(cmd, "\\s+")[[1]][2];
+                cat("Removing Rows where ", var, " is NA\n", sep="");
+		keep_ix=!is.na(factors[,var]);
+		before_rowcol=dim(factors);
+		factors=factors[keep_ix,, drop=F];
+		rowcol=dim(factors);
+		cat("Before Rows: ", before_rowcol[1], " x Cols: ", before_rowcol[2], "\n", sep="");
+		cat("After  Rows: ", rowcol[1], " x Cols: ", rowcol[2], "\n", sep="");
 
 	}else if(length(grep("^rem_var_max_perc_na", cmd))==1){
 		var=strsplit(cmd, "\\s+")[[1]][2];
