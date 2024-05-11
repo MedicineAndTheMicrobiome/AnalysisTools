@@ -859,6 +859,9 @@ if(!($skipRDPsteps)){
 	# Estimate number of ALR variables to use  in multinomial analysis based on number of samples in run
 	my $num_samples=`wc -l $control_comp_dir/$out_root.metadata.tsv | cut -f 1 -d " "`;
 	$num_samples--;
+	if($num_samples<=0){
+		$num_samples=1;
+	}
 	my $num_alr=ceil((log($num_samples/10)/log(2))*5);
 	if($num_alr<3){
 		$num_alr=3;
