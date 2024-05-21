@@ -281,7 +281,6 @@ loci_list=list();
 loci_info=list();
 
 for(cur_loci_id in loci_ids){
-#for(cur_loci_id in c("chr19_38266675")){
 	cat("\n\n");
 	cat("Working on: ", cur_loci_id, "\n");
 	
@@ -382,18 +381,18 @@ num_subjects=length(subject_ids);
 
 #print(subject_ids);
 
-outtab=matrix(NA, nrow=num_subjects, ncol=num_variants);
-rownames(outtab)=subject_ids;
-colnames(outtab)=loci_names;
+subj_genotype_tab=matrix(NA, nrow=num_subjects, ncol=num_variants);
+rownames(subj_genotype_tab)=subject_ids;
+colnames(subj_genotype_tab)=loci_names;
 
 for(i in 1:num_variants){
-	outtab[subject_ids,i]=loci_list[[i]][subject_ids];
+	subj_genotype_tab[subject_ids,i]=loci_list[[i]][subject_ids];
 }
 
-outtab=cbind(subject_ids, outtab);
-colnames(outtab)=c("Subject_ID", loci_names);
+subj_genotype_tab=cbind(subject_ids, subj_genotype_tab);
+colnames(subj_genotype_tab)=c("Subject_ID", loci_names);
 
-write.table(outtab, file=paste(OutputFNameRoot, ".snps.tsv", sep=""), quote=F,
+write.table(subj_genotype_tab, file=paste(OutputFNameRoot, ".all.snps.tsv", sep=""), quote=F,
 	sep="\t", row.names=F, col.names=T);
 
 ##############################################################################
@@ -412,28 +411,127 @@ for(i in 1:num_variants){
 	loci_info_tab[i,]=loci_info[[i]];
 }
 
-# Calculate 
+# Calculate HWE
 exp_psqrd=as.numeric(loci_info_tab[,"exp_psqrd"]);
 exp_2pq=as.numeric(loci_info_tab[,"exp_2pq"]);
 exp_qsqrd=as.numeric(loci_info_tab[,"exp_qsqrd"]);
 exp_variants=exp_2pq+exp_qsqrd;
 
-any_var_exp_prob=exp_variants/(exp_variants+exp_psqrd);
+any_var_exp_prob=round(exp_variants/(exp_variants+exp_psqrd), 4);
+names(any_var_exp_prob)=variant_names;
 
 loci_info_tab=cbind(variant_names, loci_info_tab, any_var_exp_prob);
 colnames(loci_info_tab)=c("locus_id", info_field_names, "any_var_exp_prob");
+rownames(loci_info_tab)=variant_names;
 
-write.table(loci_info_tab, file=paste(OutputFNameRoot, ".snps_report.tsv", sep=""),
+write.table(loci_info_tab, file=paste(OutputFNameRoot, ".loci_report.tsv", sep=""),
 	quote=F, sep="\t", row.names=F, col.names=T);
 
 ##############################################################################
 ##############################################################################
 # Estimate the missed variant detection probability for each subject
 
+subj_ids=rownames(subj_genotype_tab);
+exported_variant_names=setdiff(colnames(subj_genotype_tab), "Subject_ID");
 
+cat("Exported Variants, Any Prob:\n");
+exported_any_var_prob=any_var_exp_prob[exported_variant_names];
+print(exported_any_var_prob);
 
+estimate_pr_detect=function(obs_det, exp_det){
+	# Given observed detection for a subject (obs_det) and
+	# the expected detection rate for the cohort, estimate
+	# the probability of detection.  In other words,
+	# Estimate Pr( Ind Det[i] | Obs Det[i], Exp Pr(Det))
+	# Note that the expected pr(detect)= prob(hets) + prob(homo variant)
+	# Similarly, the obs detection includes both hets and homo variant.
 
+	loglik=function(pr_detect, detect_loci, detect_freq){
+		pr_obs=pr_detect*detect_freq;
+		ll=sum(detect_loci*log(pr_obs) + (1-detect_loci)*log(1-pr_obs));
+		cat("Param: Pr(Det)=", pr_detect, " LogLik=", ll, "\n");
+		return(ll);
+	}
 
+	optim_nll=function(param){
+		return(-loglik(param, obs_det, exp_det));
+	}
+
+	pr_detect=0.9;
+	opt_res=optim(pr_detect, fn=optim_nll, method="L-BFGS-B", lower=1e-300, upper=1)
+	#print(opt_res);	
+	return(opt_res);
+}
+
+subj_detect_mat=apply(subj_genotype_tab[,-1], c(1,2), 
+	function(x){as.numeric((as.numeric(x)>0))}
+	);
+
+detect_rates=list();
+for(subj in subj_ids){
+	cat("Working on: ", subj, "\n");
+	cur_detects=subj_detect_mat[subj,];	
+	
+	#cat("Observed:\n");
+	#print(cur_detects);
+	#cat("Cohort Probabilities:\n");
+	#print(exported_any_var_prob);
+
+	pr_det=estimate_pr_detect(obs_det=cur_detects, exp_det=exported_any_var_prob);
+	detect_rates[[subj]]=pr_det$par;
+
+	cat("\n");
+}
+detect_rate_arr=unlist(detect_rates);
+
+pdf(paste(OutputFNameRoot, ".info.pdf", sep=""), height=11, width=8.6);
+hist_res=hist(detect_rate_arr, breaks=20);
+
+#------------------------------------------------------------------------------
+# Output Estimated Pr(Detect) for each VCF/Subject
+
+vcfname=names(detect_rate_arr);
+sort_by_vcfname_ix=order(vcfname);
+sort_by_detect_rate_ix=order(detect_rate_arr);
+
+outmat=cbind(vcfname[sort_by_vcfname_ix], 
+	sprintf("%3.4f", detect_rate_arr[sort_by_vcfname_ix]),
+	"",
+	vcfname[sort_by_detect_rate_ix], 
+	sprintf("%3.4f", detect_rate_arr[sort_by_detect_rate_ix]));
+
+colnames(outmat)=c("VCFName", "DetRate_VCFOrder", "", "VCFName", "DetRate_Order");
+
+write.table(outmat, file=paste(OutputFNameRoot, ".vcf_detect_rates.tsv", sep=""),
+	quote=F, sep="\t", row.names=F, col.names=T);
+
+#------------------------------------------------------------------------------
+# Output distribution of Estimated Pr(Detect) 
+
+num_subj=sum(hist_res$counts);
+stats=cbind(hist_res$mids, hist_res$counts, 
+	cumsum(hist_res$counts),
+	sprintf("%3.4f", (hist_res$counts/num_subj)), 
+	sprintf("%3.4f", cumsum(hist_res$counts/num_subj)));
+colnames(stats)=c("PrDet_BinMids", "Num_VCFs", "CumulSum", "Prop_VCFs", "CDF_VCFs");
+write.table(stats, file=paste(OutputFNameRoot, ".detect_rates_dist.tsv", sep=""),
+	quote=F, sep="\t", row.names=F, col.names=T);
+
+#------------------------------------------------------------------------------
+# Export snp table with subjects filtered out
+
+for(cutoff in c(0.60, 0.75, .90)){
+	
+	cutoff_str=sprintf("%.2f", cutoff);
+	detect_rate_arr_gte=detect_rate_arr[detect_rate_arr>=cutoff];
+	kept_vcfs=names(detect_rate_arr_gte);
+	write.table(subj_genotype_tab[kept_vcfs,,drop=F], 
+		file=paste(OutputFNameRoot, ".", cutoff_str, ".snps.tsv", sep=""), quote=F,
+		sep="\t", row.names=F, col.names=T);
+
+}
+
+##############################################################################
 
 cat("\nDone.\n");
 
