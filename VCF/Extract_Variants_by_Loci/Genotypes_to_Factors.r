@@ -524,9 +524,21 @@ for(cutoff in c(0.60, 0.75, .90)){
 	
 	cutoff_str=sprintf("%.2f", cutoff);
 	detect_rate_arr_gte=detect_rate_arr[detect_rate_arr>=cutoff];
+	detect_rate_arr_excluded=detect_rate_arr[detect_rate_arr<cutoff];
 	kept_vcfs=names(detect_rate_arr_gte);
+
+	# Write snp tsv
 	write.table(subj_genotype_tab[kept_vcfs,,drop=F], 
 		file=paste(OutputFNameRoot, ".", cutoff_str, ".snps.tsv", sep=""), quote=F,
+		sep="\t", row.names=F, col.names=T);
+
+	# Write exclusion list
+	order_ix=order(detect_rate_arr_excluded);
+	detect_rate_arr_excluded=detect_rate_arr_excluded[order_ix];
+	excl_tab=cbind(names(detect_rate_arr_excluded), detect_rate_arr_excluded);
+	colnames(excl_tab)=c("vcf_name", "detection_rate");
+	write.table(excl_tab, 
+		file=paste(OutputFNameRoot, ".", cutoff_str, ".exclusion.lst", sep=""), quote=F,
 		sep="\t", row.names=F, col.names=T);
 
 }
