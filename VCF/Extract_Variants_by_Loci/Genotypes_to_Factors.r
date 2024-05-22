@@ -484,7 +484,7 @@ for(subj in subj_ids){
 }
 detect_rate_arr=unlist(detect_rates);
 
-pdf(paste(OutputFNameRoot, ".info.pdf", sep=""), height=11, width=8.6);
+pdf(paste(OutputFNameRoot, ".detect_rates.hist.pdf", sep=""), height=11, width=8.6);
 hist_res=hist(detect_rate_arr, breaks=20);
 
 #------------------------------------------------------------------------------
@@ -502,7 +502,7 @@ outmat=cbind(vcfname[sort_by_vcfname_ix],
 
 colnames(outmat)=c("VCFName", "DetRate_VCFOrder", "", "VCFName", "DetRate_Order");
 
-write.table(outmat, file=paste(OutputFNameRoot, ".vcf_detect_rates.tsv", sep=""),
+write.table(outmat, file=paste(OutputFNameRoot, ".indiv_vcf_detect_rates.tsv", sep=""),
 	quote=F, sep="\t", row.names=F, col.names=T);
 
 #------------------------------------------------------------------------------
@@ -514,7 +514,7 @@ stats=cbind(hist_res$mids, hist_res$counts,
 	sprintf("%3.4f", (hist_res$counts/num_subj)), 
 	sprintf("%3.4f", cumsum(hist_res$counts/num_subj)));
 colnames(stats)=c("PrDet_BinMids", "Num_VCFs", "CumulSum", "Prop_VCFs", "CDF_VCFs");
-write.table(stats, file=paste(OutputFNameRoot, ".detect_rates_dist.tsv", sep=""),
+write.table(stats, file=paste(OutputFNameRoot, ".detect_rates_distr_tab.tsv", sep=""),
 	quote=F, sep="\t", row.names=F, col.names=T);
 
 #------------------------------------------------------------------------------
@@ -522,6 +522,7 @@ write.table(stats, file=paste(OutputFNameRoot, ".detect_rates_dist.tsv", sep="")
 
 for(cutoff in c(0.60, 0.75, .90)){
 	
+	cat("Exporting at cutoff: ", cutoff, "\n");
 	cutoff_str=sprintf("%.2f", cutoff);
 	detect_rate_arr_gte=detect_rate_arr[detect_rate_arr>=cutoff];
 	detect_rate_arr_excluded=detect_rate_arr[detect_rate_arr<cutoff];
