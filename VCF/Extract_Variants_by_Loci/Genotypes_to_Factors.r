@@ -79,7 +79,7 @@ cat("\n");
 load_genotype_file=function(filepath){
 	cat("Loading: ", filepath, "\n");
 	geno_tab=read.table(filepath, header=T, sep="\t", as.is=T, 
-		stringsAsFactors=F, na.strings=NA);
+		stringsAsFactors=F, na.strings=NULL);
 
 	# For some reason, if all the column values are "", the values are read
 	# in as NA, instead of "".
@@ -245,7 +245,8 @@ split_table_multiallele=function(lim){
 	for(i in 1:num_rows){
 		variants=c(variants, strsplit(lim[i,"Var"], ",")[[1]]);
 	}
-	variants=setdiff(unique(variants), "");
+
+	variants=setdiff(unique(variants), c(NA, ""));
 	num_variants=length(variants);
 
 	cat("Variants found at locus:\n");
