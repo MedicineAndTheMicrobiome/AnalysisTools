@@ -79,7 +79,7 @@ cat("\n");
 load_genotype_file=function(filepath){
 	cat("Loading: ", filepath, "\n");
 	geno_tab=read.table(filepath, header=T, sep="\t", as.is=T, 
-		stringsAsFactors=F, na.strings=NULL);
+		stringsAsFactors=F, colClasses="character", na.strings=NULL);
 
 	# For some reason, if all the column values are "", the values are read
 	# in as NA, instead of "".
@@ -304,7 +304,7 @@ for(cur_loci_id in loci_ids){
 	
 	# Confirm all Ref alleles are the same:
 	consistent_ref=T;
-	ref_all=setdiff(unique(locus_info_matrix[,"Ref"]), "");
+	ref_all=setdiff(unique(locus_info_matrix[,"Ref"]), c("", NA));
 	if(length(ref_all)<=1){
 		cat("Unique Reference Allele: ", ref_all, "\n");
 	}else{
@@ -317,7 +317,13 @@ for(cur_loci_id in loci_ids){
 			c(NA, NA, NA), c(NA, NA, NA),
 			consistent_ref,
 			median_variant_qual,median_regional_variants);
+
+		names(info)=c("pval", "msg",
+			"obs_psqrd", "obs_2pq", "obs_qsqrd",
+			"exp_psqrd", "exp_2pq", "exp_qsqrd"
+			);
 			
+		
 		loci_info[[cur_loci_id]]=info;
 		next;
 	}
