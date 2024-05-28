@@ -73,10 +73,12 @@ cat("\n");
 
 extraction_dir=paste(OutputDirectory, "/extract_regions", sep="");
 target_genotype_dir=paste(OutputDirectory, "/target_genotype", sep="");
+logs_dir=paste(OutputDirectory, "/logs", sep="");
 
 dir.create(OutputDirectory);
 dir.create(extraction_dir);
 dir.create(target_genotype_dir);
+dir.create(logs_dir);
 
 ##############################################################################
 # Loading targeted SNPs
@@ -266,13 +268,25 @@ extract_region_vcf=function(vcf_file){
 
 	vcf_subset_full_path=paste(extraction_dir,"/", vcf_subset_info_file_root, sep="");
 
+	vcf_file_size=file.info(vcf_file)$size;
+	if(vcf_file_size==0){
+		return(paste("VCF File is zero lengthed: ", vcf_file, "\n", sep=""));
+	}
+
 	cmd=paste(
 		BCFTOOL_BIN, " query ", vcf_file, 
 		" -R ", snp_coords_vcf_targets_fn, 
 		" -o ", vcf_subset_full_path, 
 		" -f '%CHROM\t%POS\t%REF\t%ALT\t%QUAL\t%INFO'", sep="");
 	
-	system(cmd);
+	log_txt=system(cmd, intern=T);
+	log_full_path=paste(logs_dir,"/",vcf_file_root,".log.txt", sep="");
+	write.table(log_txt, log_full_path, quote=F, row.names=F, col.names=F);
+
+	subset_file_size=file.info(vcf_subset_full_path)$size;
+	if(subset_file_size==0){
+		return(paste("No targeted variants found: ", vcf_file, "\n", sep=""));
+	}
 
 	# Look up SNPs and figure out Variant, HomHet, etc.
 	genotype_tab=read.table(file=vcf_subset_full_path, header=F);
@@ -282,6 +296,8 @@ extract_region_vcf=function(vcf_file){
 	genotype_full_path=paste(target_genotype_dir,"/",vcf_file_root,".genotype.tsv", sep="");
 	write.table(indiv_report, genotype_full_path, quote=F, sep="\t", row.names=F,
 		col.names=T);
+
+	return(log_txt);
 }
 
 #num_cores=4;
@@ -294,6 +310,7 @@ clusterExport(cl, "BCFTOOL_BIN");
 clusterExport(cl, "snp_coords_vcf_targets_fn");
 clusterExport(cl, "extraction_dir");
 clusterExport(cl, "target_genotype_dir");
+clusterExport(cl, "logs_dir");
 clusterExport(cl, "extract_genotype");
 clusterExport(cl, "snp_locs");
 clusterExport(cl, "Padding");
