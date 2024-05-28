@@ -128,7 +128,7 @@ num_res_rows=nrow(res_tab);
 keep=rep(T, num_res_rows);
 for(i in 1:num_res_rows){
 	chr_name=as.character(res_tab[i,"chr_name"]);
-	if(length(grep("_CTG\\d+$", chr_name))){
+	if(length(grep("_CTG\\d+", chr_name))){
 		keep[i]=F;
 	}else if(length(grep("_PATCH$", chr_name))){
 		keep[i]=F;
