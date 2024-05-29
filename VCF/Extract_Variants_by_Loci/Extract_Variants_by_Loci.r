@@ -118,7 +118,7 @@ print(snp_locs);
 cat("\n");
 
 cat("Writing file for bcftool:\n");
-snp_coords_vcf_targets_fn=paste(extraction_dir, "/vcf_targets.tsv", sep="");
+snp_coords_vcf_targets_fn=paste(OutputDirectory, "/vcf_targets.tsv", sep="");
 write.table(x=snp_locs[,c("Chromosome", "Start", "End")], 
 	file=snp_coords_vcf_targets_fn, sep="\t", quote=F,
 	row.names=F, col.names=F);
@@ -261,6 +261,11 @@ extract_genotype=function(snp_loc_tab, genotype_tab_raw, padding){
 #quit();
 
 extract_region_vcf=function(vcf_file){
+	# This function will extract the targeted loci and up/downstream region
+	# for each VCF file and do some boiling down / interpretation to give 
+	# a genotype file.  This function will be run in parallel, so there are 
+	# a number of static/global variables that it depends on.
+
 	vcf_file_path_tok=strsplit(vcf_file, "/")[[1]]
 	vcf_fname=vcf_file_path_tok[length(vcf_file_path_tok)];
 	vcf_file_root=gsub(".vcf.gz", "", vcf_fname);
@@ -273,6 +278,7 @@ extract_region_vcf=function(vcf_file){
 		return(paste("VCF File is zero lengthed: ", vcf_file, "\n", sep=""));
 	}
 
+	# Set up call for BCF Tool
 	cmd=paste(
 		BCFTOOL_BIN, " query ", vcf_file, 
 		" -R ", snp_coords_vcf_targets_fn, 
@@ -280,22 +286,46 @@ extract_region_vcf=function(vcf_file){
 		" -f '%CHROM\t%POS\t%REF\t%ALT\t%QUAL\t%INFO'", sep="");
 	
 	log_txt=system(cmd, intern=T);
-	log_full_path=paste(logs_dir,"/",vcf_file_root,".log.txt", sep="");
-	write.table(log_txt, log_full_path, quote=F, row.names=F, col.names=F);
 
+	# If no loci were found then return an empty file
 	subset_file_size=file.info(vcf_subset_full_path)$size;
-	if(subset_file_size==0){
-		return(paste("No targeted variants found: ", vcf_file, "\n", sep=""));
+
+	if(subset_file_size>0){
+		# Look up SNPs and figure out Variant, HomHet, etc.
+		genotype_tab=read.table(file=vcf_subset_full_path, header=F);
+
+		colnames(genotype_tab)=c("chrom", "pos", "ref", "alt", "qual", "info");
+		indiv_report=extract_genotype(snp_locs, genotype_tab, Padding);
+
+		num_variants=nrow(genotype_tab);
+
+	}else{
+		# Generate empty genotype/individual report
+		report_headers=c("Chromosome", "Pos", "Ref", "Var", "VarFreq", "Qual", 
+			"MeanRegionQual", "NumRegionVariants");
+		indiv_report=matrix(NA, nrow=0, ncol=length(report_headers));
+		colnames(indiv_report)=report_headers;
+
+		num_variants=0;
 	}
 
-	# Look up SNPs and figure out Variant, HomHet, etc.
-	genotype_tab=read.table(file=vcf_subset_full_path, header=F);
-	colnames(genotype_tab)=c("chrom", "pos", "ref", "alt", "qual", "info");
-	indiv_report=extract_genotype(snp_locs, genotype_tab, Padding);
-
+	# Write out inferred genotypes
 	genotype_full_path=paste(target_genotype_dir,"/",vcf_file_root,".genotype.tsv", sep="");
 	write.table(indiv_report, genotype_full_path, quote=F, sep="\t", row.names=F,
 		col.names=T);
+
+	# Prep log with more lines
+	num_targets=nrow(indiv_report);
+	log_txt=c(log_txt, 
+		paste("BCF Extracted: ", num_variants, " variants", sep=""),
+		paste("Targets Exported: ", num_targets, " targets", sep=""));
+
+	# Write out log
+	log_full_path=paste(logs_dir,"/",vcf_file_root,".log.txt", sep="");
+	fh=file(log_full_path, "w");
+	cat(file=fh, paste(log_txt, collapse="\n", sep=""));
+	cat(file=fh, "\n");
+	close(fh);
 
 	return(log_txt);
 }
