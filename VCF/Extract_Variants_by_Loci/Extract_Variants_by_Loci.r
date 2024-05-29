@@ -327,7 +327,7 @@ extract_region_vcf=function(vcf_file){
 	cat(file=fh, "\n");
 	close(fh);
 
-	return(log_txt);
+	return(num_variants);
 }
 
 #num_cores=4;
@@ -345,9 +345,41 @@ clusterExport(cl, "extract_genotype");
 clusterExport(cl, "snp_locs");
 clusterExport(cl, "Padding");
 
-parLapply(cl, as.list(vcf_list), extract_region_vcf);
+result_list=parLapply(cl, as.list(vcf_list), extract_region_vcf);
 
 stopCluster(cl)
+
+# Extract out simple stats
+variants_extracted=unlist(result_list);
+#print(variants_extracted);
+min_var=min(variants_extracted);
+max_var=max(variants_extracted);
+med_var=median(variants_extracted);
+zero_ix=variants_extracted==0;
+num_zero_len_extracts=sum(zero_ix);
+no_var_files=vcf_list[zero_ix];
+
+# Write out summary stats of extraction
+summary_out_path=paste(OutputDirectory, "/summary.txt", sep="");
+fh=file(summary_out_path, "w");
+cat(file=fh, "Min Variants: ", min_var, "\n", sep="");
+cat(file=fh, "Max Variants: ", max_var, "\n", sep="");
+cat(file=fh, "Median Variants: ", med_var, "\n", sep="");
+cat(file=fh, "\n");
+cat(file=fh, "Num zero length extracts: ", num_zero_len_extracts, "\n", sep="");
+cat(file=fh, "\n");
+if(num_zero_len_extracts>0){
+	cat(file=fh, "Zero length extraction files:\n");
+
+	for(i in 1:num_zero_len_extracts){
+		fsize=file.info(no_var_files[i])$size;
+		cat(file=fh, paste(i, " ", no_var_files[i], ": ", round(fsize/1000,1), 
+			" kB", sep=""), "\n", sep="");
+	}
+
+	cat(file=fh, "\n");
+}
+close(fh);
 
 ##############################################################################
 
