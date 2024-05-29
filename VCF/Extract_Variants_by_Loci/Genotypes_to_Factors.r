@@ -501,15 +501,19 @@ vcfname=names(detect_rate_arr);
 sort_by_vcfname_ix=order(vcfname);
 sort_by_detect_rate_ix=order(detect_rate_arr);
 
-outmat=cbind(vcfname[sort_by_vcfname_ix], 
-	sprintf("%3.4f", detect_rate_arr[sort_by_vcfname_ix]),
-	"",
-	vcfname[sort_by_detect_rate_ix], 
+outmat_by_vcfname=cbind(vcfname[sort_by_vcfname_ix], 
+	sprintf("%3.4f", detect_rate_arr[sort_by_vcfname_ix]));
+
+outmat_by_detrat=cbind(vcfname[sort_by_detect_rate_ix], 
 	sprintf("%3.4f", detect_rate_arr[sort_by_detect_rate_ix]));
 
-colnames(outmat)=c("VCFName", "DetRate_VCFOrder", "", "VCFName", "DetRate_Order");
+colnames(outmat_by_vcfname)=c("VCFName", "DetectRate");
+colnames(outmat_by_detrat)=c("VCFName", "DetectRate");
 
-write.table(outmat, file=paste(OutputFNameRoot, ".indiv_vcf_detect_rates.tsv", sep=""),
+write.table(outmat_by_vcfname, file=paste(OutputFNameRoot, ".detect_rates.vcfname_order.tsv", sep=""),
+	quote=F, sep="\t", row.names=F, col.names=T);
+
+write.table(outmat_by_detrat, file=paste(OutputFNameRoot, ".detect_rates.detrat_order.tsv", sep=""),
 	quote=F, sep="\t", row.names=F, col.names=T);
 
 #------------------------------------------------------------------------------
