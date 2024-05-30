@@ -222,7 +222,7 @@ extract_genotype=function(snp_loc_tab, genotype_tab_raw, padding){
 		# If there is an exact position, take it
 		exact_ix=(cur_pos==inrange[,"pos"]);
 		if(any(exact_ix)){
-			cat("Exact positiong found!!!\n");
+			cat("Exact position found!!!\n");
 			inrange_ix=which(exact_ix);			
 			record=inrange[inrange_ix,,drop=F];
 			report_tab[i,
@@ -255,9 +255,12 @@ extract_genotype=function(snp_loc_tab, genotype_tab_raw, padding){
 	return(report_tab);
 }
 
-#vcf_tab=read.table("/home/kelvinli/git/AnalysisTools/VCF/Extract_Variants_by_Loci/example/results/extracted/30048_MOR107A81_CL_S18_001.vcf.extr_subset.info", header=F);
-#colnames(vcf_tab)=c("chrom", "pos", "ref", "alt", "qual", "info");
-#extract_genotype(snp_locs, vcf_tab, Padding);
+#cat("Reading subset tab.\n");
+#subset=read.table("/home/kelvinli/git/AnalysisTools/VCF/Extract_Variants_by_Loci/example/results/extracted/107129_MOR193A145_CL_S6_001.subset.info", sep="\t", header=T);
+#subset=read.table("/home/kelvinli/git/AnalysisTools/VCF/Extract_Variants_by_Loci/example/results/extracted/30048_MOR107A81_CL_S18_001.subset.info", sep="\t", header=T);
+#colnames(subset)=c("chrom", "pos", "ref", "alt", "qual", "info");
+#res=extract_genotype(snp_locs, subset, Padding);
+#print(res);
 #quit();
 
 extract_region_vcf=function(vcf_file){
@@ -290,24 +293,19 @@ extract_region_vcf=function(vcf_file){
 	# If no loci were found then return an empty file
 	subset_file_size=file.info(vcf_subset_full_path)$size;
 
-	if(subset_file_size>0){
+	if(subset_file_size==0){
+		genotype_tab=matrix(NA, ncol=6, nrow=1);
+		genotype_tab[1,]=c("NA", "0", "", "", "0", "AF=0;DP=0");
+		num_variants=0;
+	}else{
 		# Look up SNPs and figure out Variant, HomHet, etc.
 		genotype_tab=read.table(file=vcf_subset_full_path, header=F);
-
-		colnames(genotype_tab)=c("chrom", "pos", "ref", "alt", "qual", "info");
-		indiv_report=extract_genotype(snp_locs, genotype_tab, Padding);
-
 		num_variants=nrow(genotype_tab);
-
-	}else{
-		# Generate empty genotype/individual report
-		report_headers=c("Chromosome", "Pos", "Ref", "Var", "VarFreq", "Qual", 
-			"MeanRegionQual", "NumRegionVariants");
-		indiv_report=matrix(NA, nrow=0, ncol=length(report_headers));
-		colnames(indiv_report)=report_headers;
-
-		num_variants=0;
 	}
+
+	colnames(genotype_tab)=c("chrom", "pos", "ref", "alt", "qual", "info");
+	indiv_report=extract_genotype(snp_locs, genotype_tab, Padding);
+
 
 	# Write out inferred genotypes
 	genotype_full_path=paste(target_genotype_dir,"/",vcf_file_root,".genotype.tsv", sep="");
