@@ -541,7 +541,7 @@ for(cutoff in c(0.00, 0.60, 0.75, .90)){
 	# Write snp tsv
 	out_tab=cbind(
 			kept_vcfs,
-			round(detect_rate_arr_gte[kept_vcfs], 3),
+			round(detect_rate_arr_gte[kept_vcfs], 6),
 			subj_genotype_tab[kept_vcfs,,drop=F]
 		);
 	colnames(out_tab)=c("VCF_ID", "DetectRate", colnames(subj_genotype_tab));
