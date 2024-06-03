@@ -396,12 +396,6 @@ for(i in 1:num_variants){
 	subj_genotype_tab[subject_ids,i]=loci_list[[i]][subject_ids];
 }
 
-subj_genotype_tab=cbind(subject_ids, subj_genotype_tab);
-colnames(subj_genotype_tab)=c("Subject_ID", loci_names);
-
-write.table(subj_genotype_tab, file=paste(OutputFNameRoot, ".all.snps.tsv", sep=""), quote=F,
-	sep="\t", row.names=F, col.names=T);
-
 ##############################################################################
 # Write loci information 
 
@@ -439,7 +433,7 @@ write.table(loci_info_tab, file=paste(OutputFNameRoot, ".loci_report.tsv", sep="
 # Estimate the missed variant detection probability for each subject
 
 subj_ids=rownames(subj_genotype_tab);
-exported_variant_names=setdiff(colnames(subj_genotype_tab), "Subject_ID");
+exported_variant_names=colnames(subj_genotype_tab);
 
 cat("Exported Variants, Any Prob:\n");
 exported_any_var_prob=any_var_exp_prob[exported_variant_names];
@@ -470,7 +464,7 @@ estimate_pr_detect=function(obs_det, exp_det){
 	return(opt_res);
 }
 
-subj_detect_mat=apply(subj_genotype_tab[,-1], c(1,2), 
+subj_detect_mat=apply(subj_genotype_tab, c(1,2), 
 	function(x){as.numeric((as.numeric(x)>0))}
 	);
 
@@ -531,16 +525,29 @@ write.table(stats, file=paste(OutputFNameRoot, ".detect_rates_distr_tab.tsv", se
 #------------------------------------------------------------------------------
 # Export snp table with subjects filtered out
 
-for(cutoff in c(0.60, 0.75, .90)){
+for(cutoff in c(0.00, 0.60, 0.75, .90)){
 	
 	cat("Exporting at cutoff: ", cutoff, "\n");
-	cutoff_str=sprintf("%.2f", cutoff);
+
+	if(cutoff>0.00){
+		cutoff_str=sprintf("%.2f", cutoff);
+	}else{
+		cutoff_str="all";
+	}
 	detect_rate_arr_gte=detect_rate_arr[detect_rate_arr>=cutoff];
 	detect_rate_arr_excluded=detect_rate_arr[detect_rate_arr<cutoff];
 	kept_vcfs=names(detect_rate_arr_gte);
 
 	# Write snp tsv
-	write.table(subj_genotype_tab[kept_vcfs,,drop=F], 
+	out_tab=cbind(
+			kept_vcfs,
+			detect_rate_arr_gte[kept_vcfs],
+			subj_genotype_tab[kept_vcfs,,drop=F]
+		);
+	colnames(out_tab)=c("VCF_ID", "DetectRate", colnames(subj_genotype_tab));
+	
+	write.table(
+		out_tab,
 		file=paste(OutputFNameRoot, ".", cutoff_str, ".snps.tsv", sep=""), quote=F,
 		sep="\t", row.names=F, col.names=T);
 
