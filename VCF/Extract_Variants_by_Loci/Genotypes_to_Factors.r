@@ -562,6 +562,13 @@ for(cutoff in c(0.00, 0.60, 0.75, .90)){
 
 }
 
+# Write groupings file
+loci_ids=colnames(subj_genotype_tab);
+basename=tail(strsplit(OutputFNameRoot, "/")[[1]],1);
+write.table(cbind(loci_ids, basename),
+	file=paste(OutputFNameRoot, ".map", sep=""), quote=F, sep="\t",
+	row.names=F, col.names=F);
+
 ##############################################################################
 
 cat("\nDone.\n");
