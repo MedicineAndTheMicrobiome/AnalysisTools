@@ -13,7 +13,9 @@ $0
 	[-o <qv offset, assuming offset 33>]
 
 	This script will read through a FASTQ file and for each record,
-	report the length and mean QV.
+	report:
+		ID, SeqLength, GeometricMeanQV, MedianQV, MinQV and MaxQV
+
 ";
 
 if(!(
@@ -83,7 +85,7 @@ my $num_bases=0;
 
 my @qv_sample;
 
-print STDOUT "#id\tlen\tgeom_mean\tmedian\tmin\tmax\n";
+print STDOUT "#seq_id\tseq_len\tgeom_mean_qv\tmedian_qv\tmin_qv\tmax_qv\n";
 
 while(!eof(FASTQ_FH)){
 

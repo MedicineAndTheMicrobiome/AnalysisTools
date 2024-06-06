@@ -1,4 +1,4 @@
-#id	len	geom_mean	median	min	max
+#seq_id	seq_len	geom_mean_qv	median_qv	min_qv	max_qv
 71c8299b-384a-45c4-b23b-9cf0dd21b69e	205	17.0	25	3	50
 4947833f-8707-4f0c-b27c-77ced5334c4f	11	18.7	18	16	26
 b60d89f8-4ea6-4c37-8f39-acd14ab98df2	425	18.1	19	4	50
