@@ -382,7 +382,7 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 
                         rect(x-1, y-1, (x-1)+1, (y-1)+1, border=NA, col=color_arr[col_ix]);
 
-                        if(mat[y,x]!=0 || label_zeros){
+                        if(is.na(mat[y,x]) || mat[y,x]!=0 || label_zeros){
                                 if(counts){
                                         text_lab=sprintf("%i", mat[y,x]);
                                 }else{
@@ -921,6 +921,7 @@ adj_spacing=function(aicm){
 
 plot_top_aics_table=function(aic_matrix, aic_thres=2, title=""){
 	# Colored Cells
+	# The "best" AIC is the lowest.
 
 	cat("Generating table for top AICs Models...\n");
 
@@ -930,10 +931,10 @@ plot_top_aics_table=function(aic_matrix, aic_thres=2, title=""){
 	category_names=colnames(aic_matrix);
 
 	# Remove models not within aic_thres of top
-	max_aics=apply(aic_matrix, 2, max);
+	min_aics=apply(aic_matrix, 2, min);
 	for(i in 1:num_col){
 		val=aic_matrix[,i];
-		val[(max_aics[i]-val)>aic_thres]=NA;
+		val[(val-min_aics[i])>aic_thres]=NA;
 		aic_matrix[,i]=val;
 	}
 
@@ -985,6 +986,7 @@ plot_top_aics_table=function(aic_matrix, aic_thres=2, title=""){
 	}
 
 	mtext(title, side=3, outer=T, font=2, cex=1.5);
+	mtext("(Lower AIC is Better Model)", side=3, outer=T, line=-1, font=1, cex=1);
 
 }
 
@@ -1001,10 +1003,10 @@ plot_top_aics=function(aic_matrix, aic_thres=2, title=""){
 	category_names=colnames(aic_matrix);
 
 	# Remove models not within aic_thres of top
-	max_aics=apply(aic_matrix, 2, max);
+	min_aics=apply(aic_matrix, 2, min);
 	for(i in 1:num_col){
 		val=aic_matrix[,i];
-		val[(max_aics[i]-val)>aic_thres]=NA;
+		val[(val-min_aics[i])>aic_thres]=NA;
 		aic_matrix[,i]=val;
 	}
 
@@ -1033,16 +1035,20 @@ plot_top_aics=function(aic_matrix, aic_thres=2, title=""){
 
 	for(cix in 1:num_col){
 		for(mix in 1:num_models){
-			points(c(cix-.95, cix-1.05), rep(aic_matrix[mix, cix], 2), type="l", col="blue");
+			points(c(cix-.95, cix-1.05), rep(aic_matrix[mix, cix], 2), 
+				type="l", col="blue");
 			points(c(cix-1+.05, cix-1+.1), 
-				c(aic_matrix[mix, cix], aic_matrix_spc_adj[mix, cix]), type="l", col="blue");
+				c(aic_matrix[mix, cix], aic_matrix_spc_adj[mix, cix]), 
+				type="l", col="blue");
 
-			text(cix-1+.1-chw*.70, aic_matrix_spc_adj[mix, cix], model_names[mix], pos=4, xpd=T);
+			text(cix-1+.1-chw*.70, aic_matrix_spc_adj[mix, cix], model_names[mix], 
+				pos=4, xpd=T);
 
 		}	
 	}
 
 	mtext(title, side=3, outer=T, font=2, cex=1.5);
+	mtext("(Lower AIC is Better Model)", side=3, outer=T, line=-1, font=1, cex=1);
 
 }
 
@@ -1088,10 +1094,12 @@ list_signf_pred_by_category=function(coef_mat, pval_mat, pval_cutoff=.1, oma_tag
 					"p-val=", sprintf("%3.4f", cat_pval_sort[pred]), ")", 
 					sep="");
 
-				if(cat_coef_sort[pred]>0){
-					pos_assoc=c(pos_assoc, formatted);
-				}else{
-					neg_assoc=c(neg_assoc, formatted);
+				if(!is.na(cat_coef_sort[pred])){
+					if(cat_coef_sort[pred]>0){
+						pos_assoc=c(pos_assoc, formatted);
+					}else{
+						neg_assoc=c(neg_assoc, formatted);
+					}
 				}
 			}
 		}	
@@ -1166,6 +1174,8 @@ list_signf_category_by_pred=function(coef_mat, pval_mat, pval_cutoff=.1, oma_tag
 		pos_assoc=character();
 		neg_assoc=character();
 
+		# Split the pos and neg associations, so we can make a two column
+		# report
 		if(length(cat_names)){		
 			for(cat in cat_names){
 				formatted=paste(
@@ -1174,10 +1184,12 @@ list_signf_category_by_pred=function(coef_mat, pval_mat, pval_cutoff=.1, oma_tag
 					"p-val=", sprintf("%3.4f", pred_pval_sort[cat]), ")", 
 					sep="");
 
-				if(pred_coef_sort[cat]>0){
-					pos_assoc=c(pos_assoc, formatted);
-				}else{
-					neg_assoc=c(neg_assoc, formatted);
+				if(!is.na(pred_coef_sort[cat])){
+					if(pred_coef_sort[cat]>0){
+						pos_assoc=c(pos_assoc, formatted);
+					}else{
+						neg_assoc=c(neg_assoc, formatted);
+					}
 				}
 			}	
 		}
@@ -1258,6 +1270,7 @@ plot_contributors=function(pval_mat, pval_cutoff, covariates, group_map, resp_na
 		gr_var_list=group_map[[g_ix]];
 		grp_pval_mat=pval_mat[gr_var_list,,drop=F];
 		num_predict_contrib=apply(grp_pval_mat, 2, function(x){
+			x=x[!is.na(x)];
 			sum(x<=pval_cutoff)});
 		contrib_matrix[g_ix,]=num_predict_contrib;
 	}
@@ -1313,6 +1326,7 @@ plot_contributors=function(pval_mat, pval_cutoff, covariates, group_map, resp_na
 	# Generate Categories by Predictor plot
 
 	pred_contrib=apply(pval_mat, 1, function(x){
+		x=x[!is.na(x)];
 		sum(x<=pval_cutoff)});
 
 	pred_contrib=sort(pred_contrib, decreasing=T);
@@ -1330,6 +1344,7 @@ plot_contributors=function(pval_mat, pval_cutoff, covariates, group_map, resp_na
 	legend(num_predictors*3/4, num_resp_cat, legend=grp_names, fill=grp_col, bty="n");
 
 	mtext(text=paste("[", resp_name, "]", sep=""), side=1, family="Courier", col="grey25", outer=T);
+
 }
 
 #------------------------------------------------------------------------------
@@ -1378,10 +1393,13 @@ plot_results=function(resp_rec){
 			h_guide_lines=pred_guide_lines,
 			v_guide_lines=resp_guide_lines);
 
-		list_signf_pred_by_category(full_coef_mat, full_pval_mat, pval_cutoff=.1, oma_tag=resp_var_ix);
-		list_signf_category_by_pred(full_coef_mat, full_pval_mat, pval_cutoff=.1, oma_tag=resp_var_ix);
+		list_signf_pred_by_category(full_coef_mat, full_pval_mat, pval_cutoff=.1, 
+			oma_tag=resp_var_ix);
+		list_signf_category_by_pred(full_coef_mat, full_pval_mat, pval_cutoff=.1, 
+			oma_tag=resp_var_ix);
 
-		plot_contributors(full_pval_mat, pval_cutoff=.1, covariates_arr, test_group_map, resp_var_ix);
+		plot_contributors(full_pval_mat, pval_cutoff=.1, covariates_arr, 
+			test_group_map, resp_var_ix);
 	
 		aic_values=get_aic(resp_var_res);	
 
@@ -1398,8 +1416,10 @@ plot_results=function(resp_rec){
 			capture.output(print(aic_values))
 		), oma_tag=resp_var_ix);
 
-		plot_top_aics(aic_values, Inf, paste(resp_var_ix, ": Relative AIC, All Models", sep=""));
-		plot_top_aics(aic_values, 2, paste(resp_var_ix, ": Models with AIC within 2 of Top Model", sep=""));
+		plot_top_aics(aic_values, Inf, 
+			paste(resp_var_ix, ": Relative AIC, All Models", sep=""));
+		plot_top_aics(aic_values, 2, 
+			paste(resp_var_ix, ": Models with AIC within 2 of Top Model", sep=""));
 
 		plot_top_aics_table(aic_values, 2, paste(resp_var_ix, ": Top Models Table", sep=""));
 
