@@ -5,9 +5,9 @@
 use strict;
 use File::Basename;
 use Getopt::Std;
-use vars qw ($opt_i $opt_k $opt_I $opt_K $opt_o);
+use vars qw ($opt_i $opt_k $opt_I $opt_K $opt_o $opt_s);
 
-getopts("i:k:I:K:o:");
+getopts("i:k:I:K:o:s");
 
 my $usage = "
 	usage:
@@ -23,6 +23,9 @@ my $usage = "
 		Output File Name:
 		-o <output file name>
 
+		Options:
+		[-s (exclude lines if no mapping, i.e. NAs)]
+
 	This script will merge the input file with the map file.
 	The map file is read in in its entirety into a hash
 	so that it doesn't need to be sorted.  The column name
@@ -34,6 +37,8 @@ my $usage = "
 	The order of the input file will be preserved.
 	All values from map file (excluding the column key) will
 	be appended to end of output file.
+
+	Use the -s option/flag to skip lines
 
 ";
 
@@ -55,6 +60,8 @@ my $MapFileColname=$opt_K;
 
 my $OutputFile=$opt_o;
 
+my $SkipNoMap=defined($opt_s);
+
 #------------------------------------------------------------------------------
 
 
@@ -66,6 +73,7 @@ print STDERR "\n";
 print STDERR "Map File: $MapFile\n";
 print STDERR "Map File Colname: $MapFileColname\n";
 print STDERR "\n";
+print STDERR "Skip UnMergeable/UnMapped: $SkipNoMap\n";
 print STDERR "Output File Name: $OutputFile\n";
 print STDERR "\n";
 print STDERR "-----------------------------------------\n";
@@ -159,6 +167,7 @@ while(<INPUT_FH>){
 
 	my $num_col=$#array+1;
 	my @out_array;
+	my $skip_line=0;
 	if($line==0){
 
 		# Header/Column names
@@ -194,13 +203,17 @@ while(<INPUT_FH>){
 			if(!defined($unmapped_hash{$key})){
 				$num_unmappable_lines++;
 				print STDERR "No Mapping for: $key\n";
+				$skip_line=1;
 			}
 		}
 
 		@out_array=(@array, $map_val);
 
 	}
-	print OUTPUT_FH (join "\t", @out_array) . "\n";
+
+	if(!$skip_line){
+		print OUTPUT_FH (join "\t", @out_array) . "\n";
+	}
 
 	$line++;
 }
