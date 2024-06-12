@@ -477,11 +477,14 @@ for(my $idx=$offset; $idx<$num_records; $idx+=$multiplier){
 			$for_path="$input_fastq_root/$for_path";
 		}
 		if(substr($rev_path, 0 , 1) ne "/"){
-			$rev_path="$input_fastq_root/$rev_path";
+			if($rev_path ne ""){
+				$rev_path="$input_fastq_root/$rev_path";
+			}
 		}
 	}
 
 	if($rev_path eq ""){
+		print STDERR "Reverse Path was unspecified.  Assuming Unpaired QC Run.\n";
 		$rev_path = $UNSPECIFIED;
 		$rev_adapt = $NA;
 	}
