@@ -74,8 +74,10 @@ sub sample_qv{
 	my $qv_char=substr($qv_str, $idx, 1);
 	my $qv_val=(ord($qv_char)-$offset);
 
-	if($qv_val < 0 || $qv_val >41){
-		die "Error: QV out of expected range ($qv_val)\n";
+	if($qv_val < 0){
+		die "Error: Negative QVs ($qv_val)\n";
+	}elsif($qv_val > 55){
+		warn "Warning: High QVs ($qv_val)\n";
 	}
 	
 	return($qv_val);
