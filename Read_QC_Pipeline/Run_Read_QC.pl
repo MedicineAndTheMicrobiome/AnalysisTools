@@ -575,7 +575,12 @@ for(my $idx=$offset; $idx<$num_records; $idx+=$multiplier){
 			my @time_rec_end=times;
 
 			# Keep track of files at end of step so we can purge them later
-			$temp_file_purge_hash{$output_reads_path_hash{$direction}}=1;
+			#   Do not purge file, if there was only Forward specified, since
+			#   we don't need to split/merge fragments, this step is the
+			#   final fastq file.
+			if(!($rev_path eq $UNSPECIFIED && $cmd_idx eq ($num_commands-1))){
+				$temp_file_purge_hash{$output_reads_path_hash{$direction}}=1;
+			}
 
 			# Set output from current as input of next step
 			$current_fastq_fn=$output_reads_path_hash{$direction};
