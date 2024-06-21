@@ -5,6 +5,7 @@
 library(MASS);
 library('getopt');
 library('glmnet');
+library('doMC');
 
 options(useFancyQuotes=F);
 
@@ -156,6 +157,31 @@ plot_text=function(strings, max_lines_pp=Inf, oma_tag=""){
         par(orig.par);
 }
 
+plot_title_page=function(title, subtitle=""){
+
+        orig.par=par(no.readonly=T);
+        par(family="serif");
+        par(mfrow=c(1,1));
+
+        plot(0,0, xlim=c(0,1), ylim=c(0,1), type="n",  xaxt="n", yaxt="n",
+                xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
+                );
+
+        # Title
+        title_cex=3;
+        title_line=1;
+        text(0.5, title_line, title, cex=title_cex, font=2, adj=c(.5,1));
+
+        # Subtitle
+        num_subt_lines=length(subtitle);
+        cxy=par()$cxy;
+        for(i in 1:num_subt_lines){
+                text(.5, title_line -title_cex*cxy[2] -i*cxy[2], subtitle[i], adj=.5);
+        }
+
+        par(orig.par);
+}
+
 ##############################################################################
 ##############################################################################
 
@@ -216,107 +242,22 @@ cat("\n");
 
 ###############################################################################
 
-num_responses=length(responses_arr);
-num_targets=length(targets_arr);
-all_lasso_matrix=matrix(FALSE, ncol=num_responses, nrow=num_targets);
-colnames(all_lasso_matrix)=responses_arr;
-rownames(all_lasso_matrix)=targets_arr;
+output_variable_selection_table=function(alm, title="", abridge=F, lookup_tab=F){
 
-coef_list=list();
-
-par(mfrow=c(3,1));
-par(mar=c(5,5,7,1));
-for(resp in responses_arr){
-
-	cat("Working on Response: ", resp, "\n");
-	x=factors_loaded[,c(covariates_arr, targets_arr),drop=F];
-	y=factors_loaded[,resp, drop=F];
-
-	nonas=apply(cbind(x,y), 1, function(x){ all(!is.na(x));});
-	x=as.matrix(x[nonas,,drop=F]);
-	y=as.factor(y[nonas,]);
-
-	incl_cov=intersect(covariates_arr, colnames(x));
-	num_incl_cov=length(incl_cov);
-	
-	#cat("X: Predictors:\n");
-	#print(x);
-	#cat("\n");
-	#cat("Y: Response: \n");
-	#print(y);
-
-	num_predictors=ncol(x);
-
-	cat("Num Predictors: ", num_predictors, "\n");
-
-	# Set up penalty factor for covariates, so no shrinkage is possible.
-	penalty_fact_arr=rep(1, num_predictors);
-	if(num_incl_cov>0){
-		penalty_fact_arr[1:num_incl_cov]=0.0;
+	if(abridge){
+		hits=apply(alm, 1, any);
+		alm=alm[hits,,drop=F];
 	}
 
-	cat("Penalty Factors: 0's for covariates (i.e. no shrinkage allowed):\n");
-	print(penalty_fact_arr);
+	categories=colnames(alm);
+	colnames(alm)=1:ncol(alm);
 
-	# Run GLMNET
-	#fit=glmnet(x,y,family="multinomial", penalty.factor=penalty_fact_arr);
-	#print(fit);
-	#plot(fit, label=T);
-	#print(summary(fit));
-	#print(coef(fit));
-
-	cat("CrossValidation GLMNet:\n");
-	cvfit=cv.glmnet(x,y, family="multinomial", penalty.factor=penalty_fact_arr);
-	min_lambda=cvfit$lambda.min;
-	max_lambda=cvfit$lambda.1se;
-	plot(cvfit);
-	title(main=paste("Response: ", resp, sep=""), line=4);
-	title(main=paste("Num Variables Selected (including ", num_incl_cov, " required covariates)", 
-		sep=""), line=2.1, cex.main=1, font.main=1);
-	axis(side=3, at=log(min_lambda), labels="More", cex=.3, line=-1, col.axis="blue", tick=F);
-	axis(side=3, at=log(max_lambda), labels="Less", cex=.3, line=-1, col.axis="red", tick=F);
-	
-
-	# Gives minimum mean CV error
-	#cvfit$lambda.min;
-	# Gives most regularized (fewest selected variables) within 1se of 
-	#cvfit$lambda.1se;
-
-	coef_tabs=coef(cvfit, cvfit$lambda.min);
-
-	print(coef_tabs[[1]]);
-	
-	first_coef_tab=coef_tabs[[1]];
-	nonzero_ix=first_coef_tab[,1]!=0;
-
-	sel_pred_names=names(first_coef_tab[nonzero_ix,1]);
-	
-	cat("Selected Predictors:\n");
-	print(sel_pred_names);
-
-	selected_targets=intersect(sel_pred_names, targets_arr);
-	all_lasso_matrix[selected_targets,resp]=TRUE;
-
-	cat("\n\n");
-}
-
-###############################################################################
-
-# all_lasso_matrix is T/F boolean matrix
-print(all_lasso_matrix);
-
-sel_var_across_all_resp=apply(all_lasso_matrix, 1, function(x){ any(x);});
-
-###############################################################################
-
-# Generate output summary matrix
-
-output_variable_selection_table=function(alm, title=""){
 	out_matrix=apply(alm, 1:2, function(x){ ifelse(x, "X", ".")});
-	out_matrix=cbind(out_matrix, " ");
+
+	out_matrix=cbind(out_matrix, rep(" ", nrow(out_matrix)));
 
 	NumResp=apply(alm, 1, sum);
-	NumUniqResp=apply(all_lasso_matrix, 1, function(x){ any(x)});
+	NumUniqResp=apply(alm, 1, function(x){ any(x)});
 	out_matrix=cbind(out_matrix, NumResp);
 
 	out_matrix=rbind(out_matrix, "");
@@ -333,26 +274,190 @@ output_variable_selection_table=function(alm, title=""){
 	plot_text(c(
 		title,
 		"Selected Variables (Min Lambda / Max Variables):",
+		ifelse(abridge, "[Abridged/Only Selected]", "[All Predictors]"),
 		"",
 		out_mat_txt,
 		"",
 		paste("Total (Unique) Selected Variables: ", num_unique_responses, sep="")
 	));
+
+	if(lookup_tab){
+		plot_text(c(
+			title,
+			"Category/Level Names",
+			paste(1:ncol(alm), ". ", categories, sep="")
+		));
+	}
 }
 
-output_variable_selection_table(all_lasso_matrix, title="All Variables");
+###############################################################################
 
-selected_lasso_matrix=all_lasso_matrix[sel_var_across_all_resp,,drop=F];
+num_responses=length(responses_arr);
+num_targets=length(targets_arr);
+all_lasso_matrix=matrix(FALSE, ncol=num_responses, nrow=num_targets);
+colnames(all_lasso_matrix)=responses_arr;
+rownames(all_lasso_matrix)=targets_arr;
 
-print(selected_lasso_matrix);
+coef_list=list();
 
-output_variable_selection_table(selected_lasso_matrix, title="Selected Variables");
+par(mfrow=c(3,1));
+par(mar=c(5,5,7,1));
+
+num_folds=20;
+registerDoMC(num_folds);
+
+for(resp in responses_arr){
+#for(resp in responses_arr[1]){
+	plot_title_page(resp, "response");
+
+	#-----------------------------------------------------------------------------
+	# Remove NAs
+	cat("Working on Response: ", resp, "\n");
+	x=factors_loaded[,c(covariates_arr, targets_arr),drop=F];
+	y=factors_loaded[,resp, drop=F];
+
+	nonas=apply(cbind(x,y), 1, function(x){ all(!is.na(x));});
+	x=as.matrix(x[nonas,,drop=F]);
+	y=as.factor(y[nonas,]);
+
+	#-----------------------------------------------------------------------------
+	# Set up covariates as penalty free
+
+	incl_cov=intersect(covariates_arr, colnames(x));
+	num_incl_cov=length(incl_cov);
+
+	num_predictors=ncol(x);
+
+	cat("Num Predictors: ", num_predictors, "\n");
+
+	# Set up penalty factor for covariates, so no shrinkage is possible.
+	penalty_fact_arr=rep(1, num_predictors);
+	if(num_incl_cov>0){
+		penalty_fact_arr[1:num_incl_cov]=0.0;
+	}
+
+	cat("Penalty Factors: 0's for covariates (i.e. no shrinkage allowed):\n");
+	print(penalty_fact_arr);
+
+	#-----------------------------------------------------------------------------
+	# Run cv.glmnet
+
+	cat("CrossValidation GLMNet:\n");
+	cvfit=cv.glmnet(x,y, family="multinomial", 
+		parallel=TRUE,
+		nfolds=num_folds,
+		keep=TRUE, # Keep fold information
+		penalty.factor=penalty_fact_arr);
+
+	# Gives minimum mean CV error
+	mindev_lambda=cvfit$lambda.min;
+	log_mindev_lambda=log(mindev_lambda);
+
+	# Gives less regularized/penalized (more selected variables) within 1se of lowest 
+	stricter_lambda=cvfit$lambda.1se;
+	log_stricter_lambda=log(stricter_lambda);
+
+	# Looser lambda
+	log_looser_lambda=log_mindev_lambda - (log_stricter_lambda-log_mindev_lambda);
+	looser_lambda=exp(log_looser_lambda);
+
+	cat("Min Deviation Lambda: ", mindev_lambda, "Log():", log_mindev_lambda, "\n", sep="");
+	cat("Stricter Deviation Lambda: ", stricter_lambda, "Log():", log_stricter_lambda, "\n", sep="");
+	cat("Looser Deviation Lambda: ", looser_lambda, "Log():", log_looser_lambda, "\n", sep="");
+
+	#-----------------------------------------------------------------------------
+	# Get the coefficients (selected predictors will have non-zero coefficients)
+
+	coef_tabs=coef(cvfit, cvfit$lambda.min);
+
+	num_levels=length(coef_tabs);
+
+	coef_mat=matrix(NA, nrow=length(targets_arr), ncol=num_levels);
+	colnames(coef_mat)=names(coef_tabs);
+	rownames(coef_mat)=targets_arr;
+	for(i in 1:num_levels){
+		# Skip over covariates AND intercept
+		coef_mat[targets_arr,i]=(0!=coef_tabs[[i]][targets_arr,1]);
+	}
+
+	print(coef_mat);
+
+	output_variable_selection_table(coef_mat, resp, abridge=F, lookup_tab=F);
+	output_variable_selection_table(coef_mat, resp, abridge=T, lookup_tab=T);
+
+	#-----------------------------------------------------------------------------
+	# Plot and annotate cross validation deviances
+	plot(cvfit);
+	title(main=paste("Response: ", resp, sep=""), line=4);
+	title(main=paste("Num Variables Selected (including ", num_incl_cov, " required covariates)", 
+		sep=""), line=2.1, cex.main=1, font.main=1);
+
+	abline(v=log_looser_lambda, lty="dotted");
+
+	axis(side=3, at=log_stricter_lambda, labels="Stricter", 
+		cex=.3, line=-1, col.axis="blue", tick=F);
+	axis(side=3, at=log_mindev_lambda, labels="MinDev", 
+		cex=.3, line=-1, col.axis="black", tick=F);
+	axis(side=3, at=log_looser_lambda, labels="Looser", 
+		cex=.3, line=-1, col.axis="green", tick=F);
+
+	#-----------------------------------------------------------------------------
+	# Variable counts per response
+	var_counts=apply(coef_mat, 2, sum);
+	barplot(var_counts, 
+		main=paste(resp, ": Factor Level/Category Specific Variables", sep=""),
+		las=2);
+
+	#-----------------------------------------------------------------------------
+	# Accumulate across all responses
+	nonzero_targets=apply(coef_mat, 1, any);
+	targ_names=rownames(coef_mat[nonzero_targets,,drop=F]);
+	all_lasso_matrix[targ_names, resp]=TRUE;
+	#output_variable_selection_table(all_lasso_matrix, paste("ALL"), abridge=F, lookup_tab=F);
+
+	cat("\n\n");
+}
+
+
+plot_cdf_of_sel_var=function(sel_mat){
+
+	num_resp=ncol(sel_mat);
+	num_uniq_sel_var=numeric(num_resp);
+
+	for(i in 1:num_resp){
+		num_uniq_sel_var[i]=sum(apply(sel_mat[,1:i,drop=F], 1, any));
+	}
+
+	names(num_uniq_sel_var)=colnames(sel_mat);
+
+	max_sel=max(num_uniq_sel_var);
+	mids=barplot(num_uniq_sel_var, las=2, main="Cumulative Uniquely Selected Variables",
+		ylab="Num Uniq Sel Var", ylim=c(0, max_sel*1.1)
+		);
+	text(mids, num_uniq_sel_var, num_uniq_sel_var, font=3, pos=3);
+	abline(h=max_sel, col="blue", lty="dashed");
+
+}
+
+
+
+par(mfrow=c(3,1));
+
+plot_title_page("Selected Variables Across\nALL\nResponses");
+
+var_per_resp=apply(all_lasso_matrix, 2, sum);
+barplot(var_per_resp, main="Num Selected Var Per Response");
+
+plot_cdf_of_sel_var(all_lasso_matrix);
+
+output_variable_selection_table(all_lasso_matrix, paste("ALL"), abridge=F, lookup_tab=T);
+output_variable_selection_table(all_lasso_matrix, paste("Selected"), abridge=T, lookup_tab=F);
 
 ###############################################################################
 
 # Export selected
-
-select_var_arr=rownames(selected_lasso_matrix);
+selected_across_all=apply(all_lasso_matrix, 1, any);
+select_var_arr=rownames(selected_across_all);
 write.table(
 	x=select_var_arr, 
 	file=paste(OutputRoot, ".lasso.selected.lst", sep=""),
