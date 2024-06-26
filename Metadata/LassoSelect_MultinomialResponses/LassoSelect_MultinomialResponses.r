@@ -351,7 +351,7 @@ coef_list=list();
 par(mfrow=c(3,1));
 par(mar=c(5,5,7,1));
 
-num_folds=20;
+num_folds=10;
 registerDoMC(num_folds);
 
 for(resp in responses_arr){
@@ -565,7 +565,9 @@ plot_cdf_of_sel_var=function(arm){
 	cutoffs=c("S", "M", "L");
 	funcs=list("S"=nstrict, "M"=nmed, "L"=nloose);
 	num_uniq_sel_var=list();
-	max_sel=0;
+	max_sel=rep(0,3);
+	names(max_sel)=cutoffs;
+
 	for(co in cutoffs){
 	
 		num_uniq_sel_var[[co]]=numeric(num_resp);
@@ -580,7 +582,7 @@ plot_cdf_of_sel_var=function(arm){
 			#print(selected);
 
 			num_uniq_sel_var[[co]][i]=num_selected;
-			max_sel=max(c(max_sel, num_selected));
+			max_sel[co]=max(c(max_sel[co], num_selected));
 		}
 
 	}
@@ -604,32 +606,71 @@ plot_cdf_of_sel_var=function(arm){
 
 	axis(side=2, at=num_targets, labels=paste("Targets: ", num_targets, sep=""),
 		las=2, cex.axis=.7);
+
+	#----------------------------------------------------------------------
+
+	# Plot legend
+	plot(0, type="n", xlim=c(0,1), ylim=c(0,1), xlab="", ylab="", bty="n",
+		xaxt="n", yaxt="n", main="");
+	legend(0,1, legend=c(
+		sprintf("Strict: %i (%2.1f %%)", max_sel["S"], 100*max_sel["S"]/num_targets),
+		sprintf("MinDev: %i (%2.1f %%)", max_sel["M"], 100*max_sel["M"]/num_targets),
+		sprintf("Loose : %i (%2.1f %%)", max_sel["L"],  100*max_sel["L"]/num_targets)
+		), fill=c("blue", "black", "green"),
+		cex=2
+		);
+
 }
 
 cat("Plotting Cumulative Stacked Barplots Across All Responses...\n");
 plot_cdf_of_sel_var(all_responses_matrix);
 
-# Plot legend
-plot(0, type="n", xlim=c(0,1), ylim=c(0,1), xlab="", ylab="", bty="n",
-	xaxt="n", yaxt="n", main="");
-legend(0,1, legend=c("Strict", "MinDev", "Loose"), fill=c("blue", "black", "green"));
-
-
 ###############################################################################
 
 cutoffs=c("S", "M", "L");
 funcs=list("S"=nstrict, "M"=nmed, "L"=nloose);
+num_selected=numeric(3);
+names(num_selected)=cutoffs;
 
 # Export selected
 for(co in cutoffs){
 	cutoff_counts=apply(all_responses_matrix, 1, funcs[[co]] );
 	selected=cutoff_counts>0;
 	select_var_arr=names(cutoff_counts[selected]);
+	num_selected[co]=length(select_var_arr);
 	write.table(
 		x=select_var_arr, 
 		file=paste(OutputRoot, ".lasso.sel.", co, ".lst", sep=""),
 		quote=F, row.names=F, col.names=F);
 }
+
+###############################################################################
+
+outroot=tail(strsplit(OutputRoot, "/")[[1]], 1);
+
+sumfile=paste(OutputRoot, ".lasso.summary.tsv", sep="");
+fh=file(sumfile, "w");
+cat(file=fh, 
+	c("Name", "NumTargets", "nStrict", "pStrict", "nMinDev", "pMinDev", "nLoose", "pLooose"),
+	sep="\t");
+cat(file=fh, "\n");
+
+print(num_selected);
+perc_sel=paste(round(num_selected/num_targets*100, 1), "%");
+names(perc_sel)=cutoffs;
+
+cat(file=fh,
+	c(outroot,
+	num_targets,
+		num_selected["S"], perc_sel["S"],
+		num_selected["M"], perc_sel["M"],
+		num_selected["L"], perc_sel["L"]
+	),
+	sep="\t");	
+		
+cat(file=fh, "\n");
+
+close(fh);
 
 ###############################################################################
 
