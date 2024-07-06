@@ -965,7 +965,7 @@ plot_top_aics_table=function(aic_matrix, aic_thres=2, title=""){
 				otherval=aic_matrix[,cix];
 				otherval=otherval[!is.na(otherval)];
 				best=T;
-				if(any(aic_matrix[mix, cix]<otherval)){
+				if(any(aic_matrix[mix, cix]>otherval)){
 					best=F;
 				}
 
