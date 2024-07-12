@@ -248,7 +248,44 @@ paint_matrix=function(mat, title="", subtitle="", plot_min=NA, plot_max=NA, log_
         }
 
 	if(!suppress_grid_lines){
+
+		calc_guidelines=function(num_cells, rev=F){
+			# This function will calculate major guidelines separation that are
+			# more pleasing than going with something fixed
+
+			if(num_cells<8){
+				# If fewer than 8 cells, don't bother generating them
+				return(NA);
+			}else{
+				grps=c(4, 5, 6, 7);
+				rem=num_cells%%grps
+
+				if(any(rem==0)){
+					# Take largest of 0 remainders
+					use_grp=grps[max(which(rem==0))];
+				}else{
+					# Take largest remainder
+					grp_ix=max(which(rem==max(rem)));
+					use_grp=grps[grp_ix];
+				}
+
+				if(rev){
+					guide_pos=seq(0,num_cells,use_grp);
+				}else{
+					guide_pos=seq(num_cells,0,-use_grp);
+				}
+
+				guide_pos=setdiff(guide_pos, c(0, num_cells));
+				return(guide_pos);
+			}
+		}
+
 		plt_usr=par()$usr;
+
+		# Guide lines
+		# <need to implement here>
+
+		# Grid lines
 		for(i in 0:num_row){
 			points(x=c(0, num_col), y=c(i,i), type="l", lwd=.5, lty="dashed", col="grey75");
 		}
@@ -353,7 +390,6 @@ plot_histograms=function(data_mat, title="", max_col_plots=3, max_row_plots=4){
 	var_names=colnames(data_mat);
 
 	par(oma=c(1,0,2,0));
-	par(mar=c(3,4,5,1));
 
 	# Calculate num plots per row/col
 	sqrt_num_var=ceiling(sqrt(num_var));
@@ -366,21 +402,41 @@ plot_histograms=function(data_mat, title="", max_col_plots=3, max_row_plots=4){
 	for(i in 1:num_var){
 
 		data=data_mat[,i]
-		hist(data, main="", xlab="", ylab="Counts");
-	
-		# Calculate quick descriptive stats
-		mean=mean(data);
-		qtl=quantile(data, c(0.025,0.5,0.975));
-		rng=range(data);
+		if(!is.numeric(data)){
+			par(mar=c(6,4,5,1));
+			cat(var_names[i], " is not numeric.\n");
+			tab=table(data);
+			num_categories=length(tab);
+			categ_names=names(tab);
+			mids=barplot(tab, names.arg="");
 
-		# Label quick stats
+			bar_width=mids[2]-mids[1];
+			plot_range=par()$usr;
+        		plot_height=plot_range[4];
+        		label_size=min(c(1,.7*bar_width/par()$cxy[1]));
+        		text(
+				mids-par()$cxy[1]/2, 
+				rep(-par()$cxy[2]/2, num_categories), 
+				categ_names, srt=-45, xpd=T, pos=4, cex=label_size);	
+		}else{
+			par(mar=c(3,4,5,1));
+			hist(data, main="", xlab="", ylab="Counts");
+		
+			# Calculate quick descriptive stats
+			mean=mean(data);
+			qtl=quantile(data, c(0.025,0.5,0.975));
+			rng=range(data);
+
+			# Label quick stats
+			title(main=sprintf("mean = %.3g, median = %.3g", 
+				mean, qtl[2]), line=-.5, cex.main=.9, font.main=3);
+			title(main=sprintf("95%% CI (LB = %.3g, UB = %.3g)", 
+				qtl[1], qtl[3]), line=-1.4, cex.main=.9, font.main=3);
+			title(main=sprintf("min = %.3g, max = %.3g", rng[1], rng[2]), 
+				line=-2.3, cex.main=.9, font.main=3);
+		}
+
 		title(main=var_names[i], cex.main=1.5, font.main=2);
-		title(main=sprintf("mean = %.3g, median = %.3g", 
-			mean, qtl[2]), line=-.5, cex.main=.9, font.main=3);
-		title(main=sprintf("95%% CI (LB = %.3g, UB = %.3g)", 
-			qtl[1], qtl[3]), line=-1.4, cex.main=.9, font.main=3);
-		title(main=sprintf("min = %.3g, max = %.3g", rng[1], rng[2]), 
-			line=-2.3, cex.main=.9, font.main=3);
 
 		# If first plot on page (new page), then label the outer margins
 		if(((i-1)%%ppp)==0){
