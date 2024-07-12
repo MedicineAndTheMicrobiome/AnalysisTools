@@ -4,6 +4,11 @@
 
 source('~/git/AnalysisTools/Metadata/RemoveNAs/Remove_NAs.r');
 
+catse=function(...){
+	args=list(...);
+	cat(file=stderr(), unlist(args));
+}
+
 #------------------------------------------------------------------------------
 
 specified=function(var){
@@ -163,12 +168,20 @@ load_summary_file=function(fname){
 	cat("  Loaded: Num Categories: ", loaded_counts_dim[2], "\n");
 	cat("\n");
 
+	catse("  Loaded: Num Samples: ", loaded_counts_dim[1], "\n");
+	catse("  Loaded: Num Categories: ", loaded_counts_dim[2], "\n");
+	catse("\n");
+
 	# Remove alls zero categories and counts
 	counts_mat=remove_zero_count_categories_and_samples(counts_mat);
 	counts_dim=dim(counts_mat);
 
 	cat("  Returned: Num Samples: ", counts_dim[1], "\n");
 	cat("  Returned: Num Categories: ", counts_dim[2], "\n");
+
+	catse("  Returned: Num Samples: ", counts_dim[1], "\n");
+	catse("  Returned: Num Categories: ", counts_dim[2], "\n\n");
+
 
         return(counts_mat);
 }
@@ -1005,6 +1018,7 @@ load_and_reconcile_files=function(
 		# Order categories by decreasing abundance
 		cat("Reordering summary table counts by decreasing abundance.\n");
 		counts_mat=reconciled_files[["summary_table_mat"]];
+
 		normalized_mat=normalize(counts_mat);
 		normalized_mat=reorder_by_decreasing_abundance(normalized_mat);
 		counts_mat=counts_mat[,colnames(normalized_mat), drop=F];
