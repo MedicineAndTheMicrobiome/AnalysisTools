@@ -4,9 +4,10 @@
 
 source('~/git/AnalysisTools/Metadata/RemoveNAs/Remove_NAs.r');
 
-catse=function(...){
-	args=list(...);
-	cat(file=stderr(), unlist(args));
+print_se=function(x){
+	sink(stderr());
+	print(x);
+	sink();
 }
 
 #------------------------------------------------------------------------------
@@ -32,14 +33,21 @@ specified=function(var){
 load_list=function(fname, memo=NULL){
 
 	if(!specified(fname)){
-		cat("File name NULL, no list specified for: ", memo, "\n");
+		message("File name NULL, no list specified for: ", memo);
 		return(NULL);
 	}else{
-		cat("Loading List: ", fname, " (purpose: ", memo, ")\n", sep="");
+		message("Loading List: ", fname, " (purpose: ", memo, ")", sep="");
  		val=scan(fname, what=character(), comment.char="#");
 		num_vals=length(val);
-		cat("  Number of items loaded: ", num_vals, "\n");
-		print(val);
+		message("  Number of items loaded: ", num_vals, "\n");
+
+		message();
+		message("Load List: ", fname);
+		message("  (", memo, ")");
+		message("  Number of items loaded: ", num_vals);
+		message();
+		print_se(val);
+
 		return(val);
 	}
 }
@@ -168,9 +176,9 @@ load_summary_file=function(fname){
 	cat("  Loaded: Num Categories: ", loaded_counts_dim[2], "\n");
 	cat("\n");
 
-	catse("  Loaded: Num Samples: ", loaded_counts_dim[1], "\n");
-	catse("  Loaded: Num Categories: ", loaded_counts_dim[2], "\n");
-	catse("\n");
+	message("  Loaded: Num Samples: ", loaded_counts_dim[1]);
+	message("  Loaded: Num Categories: ", loaded_counts_dim[2]);
+	message("\n");
 
 	# Remove alls zero categories and counts
 	counts_mat=remove_zero_count_categories_and_samples(counts_mat);
@@ -179,8 +187,8 @@ load_summary_file=function(fname){
 	cat("  Returned: Num Samples: ", counts_dim[1], "\n");
 	cat("  Returned: Num Categories: ", counts_dim[2], "\n");
 
-	catse("  Returned: Num Samples: ", counts_dim[1], "\n");
-	catse("  Returned: Num Categories: ", counts_dim[2], "\n\n");
+	message("  Returned: Num Samples: ", counts_dim[1]);
+	message("  Returned: Num Categories: ", counts_dim[2], "\n");
 
 
         return(counts_mat);
@@ -721,11 +729,22 @@ reconcile=function(param=list("summary_table_mat"=NULL, "factor_mat"=NULL, "pair
 	sumtab_sample_ids=rownames(summary_table_mat);
 	factor_subject_ids=rownames(factor_mat);
 
+	message("Summary Table Sample IDs:");
+	print_se(sumtab_sample_ids);
+	message("\nFactor Sample IDs:");
+	print_se(factor_subject_ids);
+	message();
+
 	if(specified(pairs_mat)){
 		# If pairs mat specified, use it to bridge the factor to sample IDs
 
+		print_se(pairs_mat);
 		cat("Pairs matrix specified.\n");
 		cat("Reconciling: Bridging Factors to Sample IDs through Pairs Matrix.\n\n");
+
+		message("Pairs matrix specified.");
+		message("Reconciling: Bridging Factors to Sample IDs through Pairs Matrix.");
+
 
 		# Determine which pairs are complete by sample ID
 		pairs_mat=intersect_pairings_map_by_keep_list(
@@ -733,9 +752,20 @@ reconcile=function(param=list("summary_table_mat"=NULL, "factor_mat"=NULL, "pair
 			sample_id_keepers=sumtab_sample_ids,
 			subject_id_keepers=factor_subject_ids);
 
+		message("Intersected Pairs Map:");
+		print_se(pairs_mat);
+
 		# These are the subject/sample ids that are pairable
 		pairable_sbj_ids=sort(rownames(pairs_mat));
 		pairable_smp_ids=sort(c(pairs_mat[,1], pairs_mat[,2]));
+
+		message();
+		message("Pairable Subject IDs:");
+		print_se(pairable_sbj_ids);
+
+		message("Pairable Sample IDs:");
+		print_se(pairable_smp_ids);
+		message();
 
 		summary_table_mat=summary_table_mat[pairable_smp_ids,,drop=F];	
 		factor_mat=factor_mat[pairable_sbj_ids,,drop=F];
@@ -744,7 +774,10 @@ reconcile=function(param=list("summary_table_mat"=NULL, "factor_mat"=NULL, "pair
 		# If 1-to-1 mapping specified use it.
 
 		cat("Subject-to-Sample Matrix specified.\n");
-		cat("Reconciling: Bridging Factors to Sample IDs through Subject/Sample Matrix.\n\n");
+		cat("Reconciling: Bridging Factors to Sample IDs through Subject/Sample Matrix.");
+
+		message("Subject-to-Sample Matrix specified.\n");
+		message("Reconciling: Bridging Factors to Sample IDs through Subject/Sample Matrix.\n");
 
 		invert_mapping=function(map){
 			inv=matrix(rownames(map), ncol=1);	
@@ -783,6 +816,9 @@ reconcile=function(param=list("summary_table_mat"=NULL, "factor_mat"=NULL, "pair
 		cat("No mappings specified.\n");
 		cat("Reconciling: Assuming Factors and Samples have the same ID.\n\n");
 
+		message("No mappings specified.");
+		message("Reconciling: Assuming Factors and Samples have the same ID.\n");
+
 		shared_ids=sort(intersect(sumtab_sample_ids, factor_subject_ids));
 		cat("Number of Shared IDs: ", length(shared_ids), "\n");
 		
@@ -799,13 +835,13 @@ reconcile=function(param=list("summary_table_mat"=NULL, "factor_mat"=NULL, "pair
 	sbj_to_smp_mat_dim=dim(sbj_to_smp_mat);
 	summary_table_mat_dim=dim(summary_table_mat);
 
-	cat("\n");
-	cat("Input Dimensions:\n");
-	cat("  Factors: ", factor_mat_dim[1], " sbj x ", factor_mat_dim[2], " var\n", sep="");
-	cat("  Pairs: ", pairs_mat_dim[1], " sbj\n", sep="");
-	cat("  Sbj-to-Smp: ", sbj_to_smp_mat_dim[1], " sbj / smp\n", sep="");
-	cat("  Summary Table: ", summary_table_mat_dim[1], " smp x ", 
-		summary_table_mat_dim[2], " cat\n", sep="");
+	message("Input Dimensions:");
+	message("  Factors: ", factor_mat_dim[1], " sbj x ", 
+		factor_mat_dim[2], " var", sep="");
+	message("  Pairs: ", pairs_mat_dim[1], " sbj", sep="");
+	message("  Sbj-to-Smp: ", sbj_to_smp_mat_dim[1], " sbj / smp", sep="");
+	message("  Summary Table: ", summary_table_mat_dim[1], " smp x ", 
+		summary_table_mat_dim[2], " cat", sep="");
 
 	#------------------------------------------------------------
 
@@ -823,13 +859,13 @@ reconcile=function(param=list("summary_table_mat"=NULL, "factor_mat"=NULL, "pair
 	sbj_to_smp_mat_dim=dim(sbj_to_smp_mat);
 	summary_table_mat_dim=dim(summary_table_mat);
 
-	cat("\n");
-	cat("Output Dimensions:\n");
-	cat("  Factors: ", factor_mat_dim[1], " sbj x ", factor_mat_dim[2], " var\n", sep="");
-	cat("  Pairs: ", pairs_mat_dim[1], " sbj\n", sep="");
-	cat("  Sbj-to-Smp: ", sbj_to_smp_mat_dim[1], " sbj / smp\n", sep="");
-	cat("  Summary Table: ", summary_table_mat_dim[1], " smp x ", 
-		summary_table_mat_dim[2], " cat\n", sep="");
+	message("Output Dimensions:");
+	message("  Factors: ", factor_mat_dim[1], " sbj x ", 
+		factor_mat_dim[2], " var", sep="");
+	message("  Pairs: ", pairs_mat_dim[1], " sbj", sep="");
+	message("  Sbj-to-Smp: ", sbj_to_smp_mat_dim[1], " sbj / smp", sep="");
+	message("  Summary Table: ", summary_table_mat_dim[1], " smp x ", 
+		summary_table_mat_dim[2], " cat", sep="");
 
 	#------------------------------------------------------------
 
@@ -843,7 +879,8 @@ reconcile=function(param=list("summary_table_mat"=NULL, "factor_mat"=NULL, "pair
 }
 
 load_and_reconcile_files=function(
-	sumtab=list(fn=NULL, shorten_cat_names_char=NULL, return_top=NULL, specific_cat_fn=NULL), 
+	sumtab=list(fn=NULL, shorten_cat_names_char=NULL, return_top=NULL, 
+		specific_cat_fn=NULL), 
 	factors=list(fn=NULL, sbj_cname=NULL, ref_relvl_fn=NULL), 
 	pairs=list(fn=NULL, a_cname=NULL, b_cname=NULL, subject_id_cname=NULL), 
 	sbj_to_smp=list(fn=NULL, sbjid_cname=NULL, smpid_cname=NULL),
@@ -851,7 +888,7 @@ load_and_reconcile_files=function(
 	grpvar=list(fn=NULL), 
 	reqvar=list(fn=NULL)){
 
-	cat("Loading and Reconciling Files:\n");
+	message("Loading and Reconciling Files:\n");
 	
 	# 1.) Read in Summary Table, Factors, Sample Pairing
 	# 2.) Keep/Subset target variables
@@ -866,15 +903,16 @@ load_and_reconcile_files=function(
 	#-----------------------------------------------------------------------------
 	# 1.) Read in Summary Table, Factors, Sample Pairing
 
-	cat("Loading Summary Table: ", sumtab[["fn"]], "\n", sep="");
+	message("Loading Summary Table: ", sumtab[["fn"]], "\n", sep="");
 	report_list[["Summary Table"]]=capture.output({
 
 		summary_table_mat=load_summary_file(fname=sumtab[["fn"]]);
 
 		cat("Summary Table Dimensions: ", dim(summary_table_mat), "\n");
+		message("Summary Table Dimensions: ", dim(summary_table_mat));
 	});
 
-	cat("Loading Factors File: ", factors[["fn"]], "\n", sep="");
+	message("Loading Factors File: ", factors[["fn"]], "\n", sep="");
 	report_list[["Factor File"]]=capture.output({
 
 		factors_mat=load_factors_file(
@@ -884,10 +922,13 @@ load_and_reconcile_files=function(
 			);
 
 		cat("Factor Table Dimensions: ", dim(factors_mat), "\n");
+		message("   Factor Table Dimensions: ", dim(factors_mat));
 
 	});
 
-	cat("Loading Mappings: ", pairs[["fn"]], " (pairs) and ", sbj_to_smp[["fn"]], " (sbj_to_smp)\n", sep="");
+	message("Loading Mappings: ", pairs[["fn"]], " (pairs) and ", 
+		sbj_to_smp[["fn"]], " (sbj_to_smp)\n", sep="");
+
 	report_list[["Mappings"]]=capture.output({
 
 		pairs_mat=load_mapping(
@@ -898,6 +939,7 @@ load_and_reconcile_files=function(
 			);
 
 		cat("Pairs Mapping Dimensions: ", dim(pairs_mat), "\n");
+		message("  Pairs Mapping Dimensions: ", dim(pairs_mat));
 		cat("\n");
 
 		sbj_smp_mat=load_sbj_smp_mapping(
@@ -907,23 +949,29 @@ load_and_reconcile_files=function(
 			);
 
 		cat("Subject-Sample Mapping Dimensions: ", dim(sbj_smp_mat), "\n");
+		message("  Subject-Sample Mapping Dimensions: ", dim(sbj_smp_mat));
 
 	});
 
 	#-----------------------------------------------------------------------------
 	# 2.) Load and Keep/Subset target variables
 
-	cat("Loading lists: \n");
-	cat("\t", covariates[["fn"]], " (Covariates)\n", sep="");
-	cat("\t", grpvar[["fn"]], " (Group)\n", sep="");
-	cat("\t", reqvar[["fn"]], " (Required)\n", sep="");
+	message("Loading lists: \n");
+	message("\t", covariates[["fn"]], " (Covariates)\n", sep="");
+	message("\t", grpvar[["fn"]], " (Group)\n", sep="");
+	message("\t", reqvar[["fn"]], " (Required)\n", sep="");
+
+
 	report_list[["Variable Lists"]]=capture.output({
 
-		covariates_arr=load_list(fname=covariates[["fn"]], memo="Covariates File");
+		covariates_arr=load_list(fname=covariates[["fn"]], 
+			memo="Covariates File");
 
-		groupvar_arr=load_list(fname=grpvar[["fn"]], memo="Group Variables File");
+		groupvar_arr=load_list(fname=grpvar[["fn"]], 
+			memo="Group Variables File");
 
-		requiredvar_arr=load_list(fname=reqvar[["fn"]], memo="Required Variables File");
+		requiredvar_arr=load_list(fname=reqvar[["fn"]], 
+			memo="Required Variables File");
 
 		cat("\n");
 		
@@ -938,7 +986,8 @@ load_and_reconcile_files=function(
 				colnames(factors_mat));
 
 			cat("Subsetting requested variables from factors.\n");
-			factors_subset_mat=factors_mat[, c(covariates_arr, groupvar_arr), drop=F];
+			factors_subset_mat=
+				factors_mat[, c(covariates_arr, groupvar_arr), drop=F];
 		}
 
 		factor_subset_dim=dim(factors_subset_mat);
@@ -950,7 +999,7 @@ load_and_reconcile_files=function(
 	#-----------------------------------------------------------------------------
 	# 3.) Reconcile
 
-	cat("Performing Pre-NA Removal Reconcile.\n");
+	message("Performing Pre-NA Removal Reconcile.\n");
 	report_list[["Pre-NA Removal Reconcile"]]=capture.output({
 
 		reconciled_files=reconcile(param=list(
@@ -967,7 +1016,7 @@ load_and_reconcile_files=function(
 	#-----------------------------------------------------------------------------
 	# 4.) Remove NAs (remove subjects with NAs)
 
-	cat("Performing NA Removal.\n");
+	message("Performing NA Removal.\n");
 	report_list[["NA Removal"]]=capture.output({
 
 		nona_factors_fn=paste(gsub("\\.tsv", "", factors[["fn"]]), ".noNAs", sep="");
@@ -1000,7 +1049,7 @@ load_and_reconcile_files=function(
 	#-----------------------------------------------------------------------------
 	# 5.) Reconcile
 	
-	cat("Performing Post-NA Removal Reconcile.\n");
+	message("Performing Post-NA Removal Reconcile.\n");
 	report_list[["Post-NA Removal Reconcile"]]=capture.output({
 
 		# Replace factor mat, but keep the other data/matrices the same
@@ -1012,7 +1061,7 @@ load_and_reconcile_files=function(
 	#-----------------------------------------------------------------------------
 	# 6.) Apply Summary Table Parameters
 
-	cat("Applying Summary Table Parameters.\n");
+	message("Applying Summary Table Parameters.\n");
 	report_list[["Summary Table Options"]]=capture.output({
 
 		# Order categories by decreasing abundance
@@ -1098,7 +1147,7 @@ load_and_reconcile_files=function(
 	});
 
 	#-----------------------------------------------------------------------------
-	cat("Returning Results.\n");
+	message("Returning Results.\n");
 	
 	results=list();
 	results[["SummaryTable_counts"]]=counts_mat;
