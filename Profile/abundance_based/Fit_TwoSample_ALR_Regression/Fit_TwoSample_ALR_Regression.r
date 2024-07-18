@@ -782,7 +782,7 @@ for(resp_ix in 1:NumRespVariables){
 	);
 
 	tryCatch({
-		mmps(lm_fit);
+		mmps(lm_fit, ylab=paste("Observed ", resp_cat_name, sep=""), cex.lab=1.3);
 	}, error=function(e){
 		print(e);
 		plot_text(capture.output(print(e)));
