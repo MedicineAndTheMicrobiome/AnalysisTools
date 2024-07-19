@@ -105,6 +105,10 @@ if(!length(opt$aux_valuecn)){
 	AuxValueColname="";
 }
 
+if(!length(opt$aux_cn_fn_list)){
+	AuxFilenameColnameList="";
+}
+
 if(length(opt$output_cname_prefix)){
 	OutputColNamePrefix=opt$output_cname_prefix;
 }else{
@@ -328,8 +332,9 @@ choose_values=function(values, offsets, target_offset, interpolate=T){
 			return(interpolated_value);
 
 		}else{
-
-			closest_value=ifelse(prop_before<.5, before_bracket_value, after_bracket_value);
+			# prop_before the interpolation weighting, so if we are more weighted for the before bracket
+			# then it must be the closer one.
+			closest_value=ifelse(prop_before>.5, before_bracket_value, after_bracket_value);
 
 			cat("Closest Value:", closest_value, "\n");
 
