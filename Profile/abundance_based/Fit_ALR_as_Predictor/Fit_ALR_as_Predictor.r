@@ -814,6 +814,8 @@ cat("Plotting ALR Category Histograms:\n");
 #print(alr_categories_val);
 plot_histograms(alr_categories_val);
 
+plot_comparisons_with_theoretical_alr(counts, alr_categories_val);
+
 ###############################################################################
 
 # Determine whether response is normal or binomial, or other?
