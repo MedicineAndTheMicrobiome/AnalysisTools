@@ -475,13 +475,16 @@ plot_comparisons_with_theoretical_alr=function(cnt_mat, alr_mat){
 
 	# Assume that the expected abundance of each taxa is the mean 
 	# across the subjects, instead of just using the mean abundance of the
-	# non zero subjects.
+	# non zero subjects.  I tried using the median, but then it looked
+	# like the abundances were over estimated.
 
 	# Calculate the alr using the mean, and 95% PI of sequencing depth
 	# as a comparison to the observed alr distribution
 
 	# Compute the multinomial distraction across all taxa, so the .5 adjustment
 	# is replicated.
+	
+	orig.par=par(no.readonly=T);
 
 	cat("Comparing observed alr with theoretical...\n");	
 	
@@ -523,6 +526,7 @@ plot_comparisons_with_theoretical_alr=function(cnt_mat, alr_mat){
 
 	# Normalize with unadjusted to get unbiased prob
 	normalized=unadj_cnt_mat/samp_totals;
+	
 	cat_norm_means=apply(normalized, 2, mean);
 
 	cat("\n");
@@ -608,9 +612,9 @@ plot_comparisons_with_theoretical_alr=function(cnt_mat, alr_mat){
 	alr_type_title=list(
 		"observed"="Observed/Actual ALR",
 		"obs_depth"="Obs. Depths (Varied by Sample)",
-		"lb"=paste("95% PI Lower Bound (", totals_ci["lb"], ")", sep=""),
-		"ub"=paste("95% PI Upper Bound (", totals_ci["ub"], ")", sep=""),
-		"med"=paste("Median (", totals_ci["med"], ")", sep="")
+		"lb"=paste("95% PI Low Bnd Dep (", totals_ci["lb"], ")", sep=""),
+		"ub"=paste("95% PI Upp Bnd Dep (", totals_ci["ub"], ")", sep=""),
+		"med"=paste("Median Depth (", totals_ci["med"], ")", sep="")
 		);
 
 	cat_range_list=list();
@@ -628,12 +632,26 @@ plot_comparisons_with_theoretical_alr=function(cnt_mat, alr_mat){
 		rng=range(values);
 
 		for(alr_type in names(alr_list)){
-			hist(alr_list[[alr_type]][,catname], 
+
+			cur_val=alr_list[[alr_type]][,catname];
+			mean_alr=sprintf("%5.3g", mean(cur_val));
+			median_alr=sprintf("%5.3g", median(cur_val));
+			mean_abund=sprintf("%4.3g", cat_norm_means[catname]);
+
+			hist(cur_val,
 				main="", xlab="", ylab="",
 				breaks=seq(rng[1],rng[2], length.out=20));
 			title(main=catname, cex.main=1, font.main=2, line=2)
 			title(main=alr_type_title[[alr_type]], cex.main=.7, font.main=1, line=1)
+			title(main=paste("ALR: mean = ", mean_alr , ", median = ", median_alr, sep=""),
+				cex.main=.5, font.main=3, line=.5);
+
+			if(alr_type=="observed"){
+				title(main=paste("Abund: mean = ", mean_abund, sep=""),
+					cex.main=.5, font.main=3, line=0);
+			}
 		}
 	}
 
+        par(orig.par);
 }
