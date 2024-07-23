@@ -1,4 +1,6 @@
 
+source("~/git/AnalysisTools/Metadata/InputFileLibrary/InputFileLibrary.r");
+
 ##############################################################################
 
 plot_text=function(strings, echo=F){
@@ -464,3 +466,174 @@ write_summary_file=function(out_mat, fname){
 
 }
 
+###############################################################################
+
+plot_comparisons_with_theoretical_alr=function(cnt_mat, alr_mat){
+	
+	# The goal is to understand whether a bimodal alr distribution is
+	# true, or just a result of insufficient sequencing depth.
+
+	# Assume that the expected abundance of each taxa is the mean 
+	# across the subjects, instead of just using the mean abundance of the
+	# non zero subjects.
+
+	# Calculate the alr using the mean, and 95% PI of sequencing depth
+	# as a comparison to the observed alr distribution
+
+	# Compute the multinomial distraction across all taxa, so the .5 adjustment
+	# is replicated.
+
+	cat("Comparing observed alr with theoretical...\n");	
+	
+	sel_cat=colnames(alr_mat);
+	cnt_cat=colnames(cnt_mat);
+
+	num_sel_cat=length(sel_cat);
+	num_samples=nrow(cnt_mat);
+
+	cat("Num Samples: ", num_samples, "\n");
+	cat("Num Selected Categories: ", num_sel_cat, "\n");
+
+	# Confirm that the count matrix and alr matrix have matching categories
+	missing_cat=setdiff(sel_cat, cnt_cat);
+	if(length(missing_cat)){
+		cat("Error: Selected categories not found in count matrix.\n");
+
+		cat("Examples of Selected:\n");
+		print(head(sel_cat));
+		cat("\n");
+		cat("Examples of Count Matrix:\n");
+		print(head(cnt_cat));
+		cat("\n");
+
+		quit(status=-1);
+	}
+
+	# Remove any fractional adjustments to avoid 0's.
+	unadj_cnt_mat=apply(cnt_mat, c(1,2), floor);
+	
+	# Calculate the sequencing depths
+	samp_totals=apply(unadj_cnt_mat, 1, sum);
+	totals_ci=quantile(samp_totals, c(.025, .5, .975));
+	names(totals_ci)=c("lb", "med", "ub");
+
+	cat("\n");
+	cat("Sequencing Depths Prediction Intervals:\n");
+	print(totals_ci);
+
+	# Normalize with unadjusted to get unbiased prob
+	normalized=unadj_cnt_mat/samp_totals;
+	cat_norm_means=apply(normalized, 2, mean);
+
+	cat("\n");
+	cat("Selected Category Means:\n");
+	print(cat_norm_means[sel_cat]);
+
+	#----------------------------------------------------------------------
+
+	generate_counts=function(sample_depth, cat_means){
+		# Given means and actually sample depths, generate a list of
+		# count matrices, assuming different depth scenarios
+
+		#cat("Sample Depths:\n");
+		#print(sample_depth);
+		#cat("Category Means:\n");
+		#print(cat_means);
+
+		num_samp=length(sample_depth);
+		num_cat=length(cat_means);
+
+		mat_list=list();
+		depth_type=c("obs_depth", "lb", "med", "ub");
+
+		totals_ci=quantile(sample_depth, c(0.025, .5, 0.975));
+		names(totals_ci)=c("lb", "med", "ub");
+
+		for(dt in depth_type){
+			if(dt=="obs_depth"){
+				count_mat=matrix(0, nrow=num_samp, ncol=num_cat);
+				for(i in 1:num_samp){
+					count_mat[i,]=
+						rmultinom(n=1, size=sample_depth[i], prob=cat_means);
+				}
+			}else{
+				count_mat=t(rmultinom(n=num_samp, 
+					size=totals_ci[dt], prob=cat_means));
+			}
+
+			colnames(count_mat)=names(cat_means);
+			rownames(count_mat)=names(sample_depth);
+
+			mat_list[[dt]]=count_mat;
+		}
+
+		return(mat_list);
+	}
+
+	#----------------------------------------------------------------------
+
+	generate_alr=function(counts_list, sel_cat){
+
+		lr_list=list();
+
+		mat_names=names(counts_list);	
+		for(mn in mat_names){
+		
+			cat("Working on: ", mn, "\n");
+
+			cur_mat=counts_list[[mn]];
+			adj_mat=cur_mat+.5;	
+
+			norm_adj_mat=normalize(adj_mat);
+			selected_mat=norm_adj_mat[,sel_cat,drop=F];
+			sum_selected=apply(selected_mat, 1, sum);
+			remainders=1-sum_selected;
+
+			logratios=log(selected_mat/remainders);
+			lr_list[[mn]]=logratios;
+		}
+
+		return(lr_list);
+	}
+
+	#----------------------------------------------------------------------
+
+	count_mats_list=generate_counts(samp_totals, cat_norm_means);
+	alr_list=generate_alr(count_mats_list, sel_cat);
+
+	# Add observed alr values to list for plotting
+	alr_list=c(list("observed"=alr_mat), alr_list);
+
+	# Specify full/description for each alr_mat instance
+	alr_type_title=list(
+		"observed"="Observed/Actual ALR",
+		"obs_depth"="Obs. Depths (Varied by Sample)",
+		"lb"=paste("95% PI Lower Bound (", totals_ci["lb"], ")", sep=""),
+		"ub"=paste("95% PI Upper Bound (", totals_ci["ub"], ")", sep=""),
+		"med"=paste("Median (", totals_ci["med"], ")", sep="")
+		);
+
+	cat_range_list=list();
+
+	par(mar=c(3, 3, 4, .5));
+	par(mfrow=c(5, length(alr_list)));
+
+	for(catname in sel_cat){
+
+		values=c();
+		for(alr_type in names(alr_list)){
+			values=c(values, alr_list[[alr_type]][,catname]);
+		}
+			
+		rng=range(values);
+
+		for(alr_type in names(alr_list)){
+			hist(alr_list[[alr_type]][,catname], 
+				main="", xlab="", ylab="",
+				breaks=seq(rng[1],rng[2], length.out=20));
+			title(main=catname, cex.main=1, font.main=2, line=2)
+			title(main=alr_type_title[[alr_type]], cex.main=.7, font.main=1, line=1)
+		}
+	}
+
+}
