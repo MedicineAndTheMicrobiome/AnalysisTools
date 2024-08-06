@@ -760,8 +760,9 @@ paint_matrix=function(mat, title="", plot_min=NA, plot_max=NA, log_col=F, high_i
 		}));
 	
 		mat_maxabs=apply(mat, 1:2, function(x){
-			ifelse(is.finite(x), max(abs(x)), 0);
+			ifelse(is.finite(x), abs(x), 0);
 		});
+		mat_maxabs=max(mat_maxabs);
 
 		if(num_not_integer==0 || mat_maxabs>=1000){
 			deci_pts=0;
