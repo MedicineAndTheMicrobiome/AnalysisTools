@@ -507,6 +507,7 @@ plot_sample_dist_by_group_loess=function(dist_mat, offsets_rec, subject_grouping
 	loess_rec=list();
 	subj_points_rec=list();
 	max_subj_dist=0;
+	max_loess=0;
         for(g in 1:num_groups){
 	
 		# Get subjects in group
@@ -546,6 +547,7 @@ plot_sample_dist_by_group_loess=function(dist_mat, offsets_rec, subject_grouping
 			loess_fit_y=subset_dist;
 		}
 
+		max_loess=max(max_loess, loess_fit_y, na.rm=T);
 		loess_rec[[cur_grp]]=cbind(loess_fit_x, loess_fit_y);
 
 	}
@@ -554,7 +556,7 @@ plot_sample_dist_by_group_loess=function(dist_mat, offsets_rec, subject_grouping
 	#print(subj_points_rec);
 
 	# Create plot
-	plot(0,0, xlim=offset_ranges, ylim=c(0, max_subj_dist), 
+	plot(0,0, xlim=offset_ranges, ylim=c(0, max(max_loess, max_subj_dist, na.rm=T)), 
 		main="Loess by Group", xlab="Time", ylab="Distance",);
 
 	# Group colors
