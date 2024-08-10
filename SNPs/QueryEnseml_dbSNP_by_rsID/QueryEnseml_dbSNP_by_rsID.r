@@ -167,10 +167,24 @@ if(num_clean!=num_targets){
 	cat("******************************************************************\n");
 	cat("\n");
 	cat("Missing SNP IDs: \n");
-	print(setdiff(rs_ids, res_tab_refsnp_ids));
+	missing_rsids=setdiff(rs_ids, res_tab_refsnp_ids);
+	print(missing_rsids);
 	cat("******************************************************************\n");
-	quit(status=-1);
+	#quit(status=-1);
+	
+	cat("Writing missing targets to file:\n");
+	missing_fn=paste(OutputFile, ".missing.rsids.tsv", sep="");
+	outmat=matrix(missing_rsids, ncol=1);
+	write.table(x=outmat, file=missing_fn, row.names=F, col.names=F, quote=F);
+	cat("Num Missing RS IDs written: ", length(missing_rsids), "\n", sep="");
+
+	rs_ids=setdiff(rs_ids, missing_rsids);
+
+	# Reset num_targets, and remove NAs from tab based on what was found
+	num_targets=length(rs_ids);
+	clean_res_tab=clean_res_tab[rs_ids,,drop=F];
 }
+
 
 ##############################################################################
 # Split up ref/variant
@@ -186,7 +200,6 @@ for(i in 1:num_clean){
 }
 
 clean_res_tab=cbind(clean_res_tab, ref_allele, var_allele);
-print(clean_res_tab);
 
 ##############################################################################
 # Append to input file
