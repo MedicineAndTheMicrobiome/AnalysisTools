@@ -1058,6 +1058,9 @@ if(GroupColName!=""){
 	colors=colors[1:num_uniq_groups];
 	names(colors)=uniq_group_names;
 
+	# If the number of subjects is greater than 10, don't label the subjects
+	label_subjects=!(max(sapply(group_members,length))>10);
+
 	for(targ_var_ix in target_variable_list){
 		cat("Current Target Variables:", targ_var_ix, "\n");
 
@@ -1092,10 +1095,12 @@ if(GroupColName!=""){
 					col="black",
 					type="p", cex=.7);
 
-				# Label with subject id
-				text(sbj_dat[, TimeOffsetColName], sbj_dat[, targ_var_ix],
-					pos=3,
-					subj_ix, col="grey20", cex=.4);
+				if(label_subjects){
+					# Label with subject id
+					text(sbj_dat[, TimeOffsetColName], sbj_dat[, targ_var_ix],
+						pos=3,
+						subj_ix, col="grey20", cex=.4);
+				}
 			}
 
 			# Draw thin black lines
@@ -1121,7 +1126,9 @@ if(GroupColName!=""){
 		for(grp_ix in uniq_group_names){
 			lowess_res[[grp_ix]]=lowess(
 				grp_data[[grp_ix]][,TimeOffsetColName], 
-				grp_data[[grp_ix]][,targ_var_ix]);
+				grp_data[[grp_ix]][,targ_var_ix],
+				f=2/10
+				);
 		}
 
 		# Draw lines with colors
