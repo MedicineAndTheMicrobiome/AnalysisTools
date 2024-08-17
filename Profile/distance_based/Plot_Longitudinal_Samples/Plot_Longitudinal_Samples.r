@@ -504,7 +504,7 @@ plot_sample_dist_by_group_loess=function(dist_mat, offsets_rec, subject_grouping
 
 	x_plot_range=c(offset_ranges[1], offset_ranges[2]+(diff(offset_ranges)/10));
 
-	loess_rec=list();
+	lowess_rec=list();
 	subj_points_rec=list();
 	max_subj_dist=0;
 	max_loess=0;
@@ -533,22 +533,10 @@ plot_sample_dist_by_group_loess=function(dist_mat, offsets_rec, subject_grouping
 		}
 
 		# Compute loess for group
-		loess_res=loess(group_ys~group_xs);
+		lowess_res=lowess(group_xs, group_ys, f=2.75/10);
 			
-		loess_fit_x=seq(offset_ranges[1], offset_ranges[2], length.out=num_offsets*2);
-		loess_fit_y=tryCatch({
-				predict(loess_res, loess_fit_x);
-			}, error=function(e){
-				return(NULL);
-			});
-
-		if(is.null(loess_fit_y)){
-			loess_fit_x=time_vals;
-			loess_fit_y=subset_dist;
-		}
-
-		max_loess=max(max_loess, loess_fit_y, na.rm=T);
-		loess_rec[[cur_grp]]=cbind(loess_fit_x, loess_fit_y);
+		max_lowess=max(max_loess, lowess_res$y, na.rm=T);
+		lowess_rec[[cur_grp]]=cbind(lowess_res$x, lowess_res$y);
 
 	}
 
@@ -556,11 +544,11 @@ plot_sample_dist_by_group_loess=function(dist_mat, offsets_rec, subject_grouping
 	#print(subj_points_rec);
 
 	# Create plot
-	plot(0,0, xlim=offset_ranges, ylim=c(0, max(max_loess, max_subj_dist, na.rm=T)), 
-		main="Loess by Group", xlab="Time", ylab="Distance",);
+	plot(0,0, xlim=offset_ranges, ylim=c(0, max(max_lowess, max_subj_dist, na.rm=T)), 
+		main="Lowess by Group", xlab="Time", ylab="Distance",);
 
 	# Group colors
-	groups=names(loess_rec);
+	groups=names(lowess_rec);
 	grp_colors=terrain.colors(num_groups+1)[1:num_groups];
 	names(grp_colors)=groups;
 
@@ -574,8 +562,8 @@ plot_sample_dist_by_group_loess=function(dist_mat, offsets_rec, subject_grouping
 
 	# Plot loess lines
 	for(grp_ix in groups){
-		cur_loess=loess_rec[[grp_ix]];
-		points(cur_loess[,1], cur_loess[,2], type="l", lwd=2, col=grp_colors[grp_ix]);
+		cur_lowess=lowess_rec[[grp_ix]];
+		points(cur_lowess[,1], cur_lowess[,2], type="l", lwd=2, col=grp_colors[grp_ix]);
 	}	
 
 	# Plot legend
