@@ -361,49 +361,45 @@ plot_rank_abundance_matrix=function(abd_mat, title="", plot_cols=3, plot_rows=4,
 	mtext(text=title, side=3, outer=T, cex=2, font=2, line=.5);
 
 	i=1;
-	for(y in 1:plot_rows){
-		for(x in 1:plot_cols){
-			if(i<=num_samples){
-				sample=sample_names[i];
-				n=samp_size[i];
+	while(i<=num_samples){
+		sample=sample_names[i];
+		n=samp_size[i];
 
-				if(label_samp_size){
-					#mtext(paste("n=",n,sep=""), line=-.5, cex=.4, font=3);
-				}
-				if(length(samp_size) && samp_size[i]>1){
-					#text(label_offset1, 0, paste("Median ", divname, " = ",
-					#	signif(median_diversity[i+1], 4),sep=""),
-					#	srt=90, adj=0, cex=.7);
-					#text(label_offset2, 0, paste("Mean ", divname, " = ",
-					#	signif(mean_diversity[i+1], 4),sep=""),
-					#	srt=90, adj=0, cex=.7);
-				}else{
-					#text(label_offset1, 0, paste(divname, " = ",
-					#	signif(median_diversity[i+1], 4),sep=""),
-					#	srt=90, adj=0, cex=.7);
-				}
-
-				abundances=abd_mat[sample,,drop=F];
-
-				if(n==1){
-					samp_size_subtitle="";
-				}else{
-					samp_size_subtitle=paste("n = ", n, sep="");
-				}
-
-				plot_ra(abundances, num_top_categories, colors_map, ymax=max_abd, 
-					title=sample, subtitle=samp_size_subtitle);
-
-				# Label page when it's the first plot
-				if(i%%(plot_rows*plot_cols)==0){
-					# Offset by 1, since first plot is the average/reference
-
-					mtext(text=title, side=3, outer=T, cex=2, font=2, line=.5);
-				}
-
-				i=i+1;
-			}
+		if(label_samp_size){
+			#mtext(paste("n=",n,sep=""), line=-.5, cex=.4, font=3);
 		}
+		if(length(samp_size) && samp_size[i]>1){
+			#text(label_offset1, 0, paste("Median ", divname, " = ",
+			#	signif(median_diversity[i+1], 4),sep=""),
+			#	srt=90, adj=0, cex=.7);
+			#text(label_offset2, 0, paste("Mean ", divname, " = ",
+			#	signif(mean_diversity[i+1], 4),sep=""),
+			#	srt=90, adj=0, cex=.7);
+		}else{
+			#text(label_offset1, 0, paste(divname, " = ",
+			#	signif(median_diversity[i+1], 4),sep=""),
+			#	srt=90, adj=0, cex=.7);
+		}
+
+		abundances=abd_mat[sample,,drop=F];
+
+		if(n==1){
+			samp_size_subtitle="";
+		}else{
+			samp_size_subtitle=paste("n = ", n, sep="");
+		}
+
+		plot_ra(abundances, num_top_categories, colors_map, ymax=max_abd, 
+			title=sample, subtitle=samp_size_subtitle);
+
+		# Label page when it's the first plot
+		if(i%%(plot_rows*plot_cols)==0){
+			# Offset by 1, since first plot is the average/reference
+
+			mtext(text=title, side=3, outer=T, cex=2, font=2, line=.5);
+		}
+
+		i=i+1;
 	}
 
 	par(orig.par);
