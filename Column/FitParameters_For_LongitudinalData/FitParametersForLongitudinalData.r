@@ -254,6 +254,12 @@ print(target_variable_list);
 
 # Extract out colums we need:
 subject_ids_arr=all_factors[,SubjectIDColName];
+
+if(is.numeric(subject_ids_arr)){
+	subject_ids_arr=paste("s_",subject_ids_arr, sep="");
+	all_factors[,SubjectIDColName]=subject_ids_arr;
+}	
+
 time_offset_arr=all_factors[,TimeOffsetColName];
 targeted_values_mat=all_factors[,target_variable_list, drop=F];
 
@@ -625,10 +631,16 @@ plot_var=function(times, values, var_name, subject_id, group_name, group_id, val
 	xrange=numeric();
 	if(is.finite(crop_exp[1])){
 		xmin=min(times, crop_exp[1]);
+	}else{
+		xmin=min(times);
 	}
+
 	if(is.finite(crop_exp[2])){
 		xmax=max(times, crop_exp[2]);
+	}else{
+		xmax=max(times);
 	}
+
 	xrange=(xmax-xmin);
 
 	plot(times, values, type="n", 
@@ -730,6 +742,8 @@ for(cur_subj in unique_subject_ids){
 		}else{
 			grp_name="";
 		}
+
+
 
 		plot_var(
 			times=subj_mat_sorted[,TimeOffsetColName], 
@@ -873,8 +887,12 @@ for(cur_subj in unique_subject_ids){
 		left=(plot_par$usr[2]-plot_par$usr[1])*.01 + plot_par$usr[1];
 		top=(plot_par$usr[4]-plot_par$usr[3])*.99 + plot_par$usr[3];
 
+		acc_headers=colnames(acc_matrix);
+		cur_var=(acc_headers[grep(targ_var_ix, acc_headers)]);
+
 		msg=paste(
-			capture.output({print(t(round(acc_matrix[cur_subj, , drop=F], 4)), quote=F)}),
+			capture.output({print(t(round(acc_matrix[cur_subj, cur_var, drop=F], 4)), 
+				quote=F)}),
 			collapse="\n");
 
 		text(left, top, msg, adj=c(0,1), family="mono");
