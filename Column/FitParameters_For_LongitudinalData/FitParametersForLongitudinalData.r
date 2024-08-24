@@ -233,6 +233,15 @@ plot_title_page=function(title, subtitle=""){
         par(orig.par);
 }
 
+get_colors=function(num_col, alpha=1){
+        colors=hsv(seq(0,1,length.out=num_col+1), c(1,.5), c(1,.75,.5), alpha=alpha);
+        color_mat_dim=ceiling(sqrt(num_col));
+        color_pad=rep("grey", color_mat_dim^2);
+        color_pad[1:num_col]=colors[1:num_col];
+        color_mat=matrix(color_pad, nrow=color_mat_dim, ncol=color_mat_dim);
+        colors=as.vector(t(color_mat));
+        colors=colors[colors!="grey"];
+}
 
 ##############################################################################
 
@@ -279,6 +288,9 @@ cat("\n");
 unique_subject_ids=sort(unique(subject_ids_arr));
 num_unique_subject_ids=length(unique_subject_ids);
 cat("Num Unique Subject IDs: ", num_unique_subject_ids, "\n");
+
+subj_col_map=get_colors(num_unique_subject_ids);
+names(subj_col_map)=unique_subject_ids;
 
 ##############################################################################
 
@@ -626,7 +638,8 @@ if(multiplot_dim_c*(multiplot_dim_r-1)>=num_target_variables){
 }
 cat("Multiplot Dimensions: ", multiplot_dim_r, " x ", multiplot_dim_c, "\n");
 
-plot_var=function(times, values, var_name, subject_id, group_name, group_id, val_lim, crop_exp){
+plot_var=function(times, values, var_name, subject_id, group_name, group_id, val_lim, 
+	crop_exp, subject_color){
 
 	xrange=numeric();
 	if(is.finite(crop_exp[1])){
@@ -666,7 +679,8 @@ plot_var=function(times, values, var_name, subject_id, group_name, group_id, val
 	#	abline(a=intercept, b=slope, col="darkolivegreen", lwd=.5, lty="dashed");
 	#}
 
-	points(times, values, type="b", col="grey", lwd=2);
+	points(times, values, type="b", col=subject_color, lwd=2);
+	points(times, values, type="l", col="grey", lwd=.1);
 	points(times, values, type="p", col="black");
 
 	# Label min/max
@@ -743,8 +757,6 @@ for(cur_subj in unique_subject_ids){
 			grp_name="";
 		}
 
-
-
 		plot_var(
 			times=subj_mat_sorted[,TimeOffsetColName], 
 			values=subj_mat_sorted[,targ_var_ix],
@@ -753,7 +765,8 @@ for(cur_subj in unique_subject_ids){
 			group_id=grp_name,
 			var_name=targ_var_ix,
 			val_lim=c(ranges_mat[targ_var_ix, "min"], ranges_mat[targ_var_ix, "max"]),
-			crop_exp=CropLimits
+			crop_exp=CropLimits,
+			subject_color=subj_col_map[cur_subj]
 		);
 		
 		target_data=subj_mat_sorted[,c(TimeOffsetColName, targ_var_ix), drop=F];
@@ -761,7 +774,7 @@ for(cur_subj in unique_subject_ids){
 		if(!is.null(CropLimits)){
 			cat("Trimming data to: ", CropLimits, "\n");
 			target_data=trim_data(target_data, CropLimits);
-			print(target_data);
+			#print(target_data);
 			if(is.finite(CropLimits[1])){
 				abline(v=CropLimits[1], col="orange", lwd=1.5);
 				mtext(paste(CropLimits[1], " >", sep=""), 
@@ -897,12 +910,85 @@ for(cur_subj in unique_subject_ids){
 
 		text(left, top, msg, adj=c(0,1), family="mono");
 
-
 	}	
 
 	mtext(text=cur_subj, side=3, line=0, outer=T, cex=2, font=2);
 }
 
+##############################################################################
+
+cat("Starting Sphegetti Plots...\n");
+
+plot_title_page("Combined Sphegetti Plots", c(
+	"These plots are generated for each of the variables"
+));
+
+
+time_min=min(all_factors[,TimeOffsetColName]);
+time_max=max(all_factors[,TimeOffsetColName]);
+
+par(mfrow=c(3,1));
+
+for(targ_var_ix in target_variable_list){
+	
+	cat("Plotting: ", targ_var_ix, "\n");
+
+	var_subj_tab=all_factors[, c(SubjectIDColName, TimeOffsetColName, targ_var_ix), drop=F];
+
+	var_min=min(var_subj_tab[,targ_var_ix], na.rm=T);
+	var_max=max(var_subj_tab[,targ_var_ix], na.rm=T);
+
+	cat("Variable Range: ", var_min, " - ", var_max, "\n");
+
+	plot(NA, xlim=c(time_min, time_max), ylim=c(var_min, var_max), type="n",
+		main=targ_var_ix
+		);
+
+	for(subj_ix in unique_subject_ids){
+
+		#cat("Working on Subject: ", subj_ix, "\n");
+		
+		subj_row_idx=(var_subj_tab[,SubjectIDColName]==subj_ix);
+
+		values=var_subj_tab[subj_row_idx, c(TimeOffsetColName, targ_var_ix)];
+		nona_ix=!is.na(values[,targ_var_ix]);
+		values=values[nona_ix,,drop=F];
+		by_time=order(values[,TimeOffsetColName]);
+		values=values[by_time,,drop=F];
+
+		num_timepoints=nrow(values);
+
+		start_time=values[1,,drop=F];
+		end_time=values[num_timepoints,,drop=F];
+
+		points(values[,TimeOffsetColName], values[,targ_var_ix], 
+			type="l",
+			col=subj_col_map[subj_ix]);
+
+		points(values[c(1,num_timepoints), TimeOffsetColName], 
+			values[c(1,num_timepoints), targ_var_ix],
+			pch=c(21,22),
+			lwd=.3,
+			type="p",
+			bg=subj_col_map[subj_ix],
+			col="black", cex=.4);
+
+	}
+}
+
+##############################################################################
+
+plot_title_page("Combined Histogram Plots", c(
+	"These plots are generated for each of the parameters that have",
+	"been extracted."
+));
+
+acc_mat_variables=colnames(acc_matrix);
+
+par(mfrow=c(3,4));
+for(var_ix in acc_mat_variables){
+	hist(acc_matrix[,var_ix], main=var_ix);
+}
 
 ##############################################################################
 
