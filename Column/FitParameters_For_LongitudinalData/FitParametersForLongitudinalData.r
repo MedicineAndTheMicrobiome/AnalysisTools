@@ -917,9 +917,9 @@ for(cur_subj in unique_subject_ids){
 
 ##############################################################################
 
-cat("Starting Sphegetti Plots...\n");
+cat("Starting Spaghetti Plots...\n");
 
-plot_title_page("Combined Sphegetti Plots", c(
+plot_title_page("Combined Spaghetti Plots", c(
 	"These plots are generated for each of the variables"
 ));
 
