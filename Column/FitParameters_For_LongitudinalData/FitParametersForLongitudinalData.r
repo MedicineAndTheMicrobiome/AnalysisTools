@@ -127,25 +127,29 @@ if(length(opt$prefix)){
 }
 
 
-cat("\n");
-cat("Input Filename:", InputFname , "\n");
-cat("Time Offset Colname:", TimeOffsetColName, "\n");
-cat("SubjectID Colname:", SubjectIDColName, "\n");
-cat("Target Values List Filename:", TargetValuesFname, "\n");
-cat("Output Filename:", OutputFname, "\n");
-cat("Group Colname: ", GroupColName, "\n");
-cat("\n");
-cat("Crop Start/End: (", paste(CropLimits, collapse="/"), ")\n");
-cat("Variable Prefix: ", Prefix, "\n");
-cat("\n");
-cat("Find Line: ", Opt_FindLine, "\n");
-cat("Find Limits: ", Opt_FindLimits, "\n");
-cat("Find Descriptive: ", Opt_FindDescriptive, "\n");
-cat("Find Ranges: ", Opt_FindRanges, "\n");
-cat("Find Timing: ", Opt_FindTiming, "\n");
-cat("Find Timing of Limits: ", Opt_FindTimeOfLimits, "\n");
-cat("Find Extrapolated Limits: ", Opt_FindExtrapolatedLimits, "\n");
-cat("Find Recovery Rate Model: ", Opt_FindRecoveryRateModel, "\n");
+parameters_msg=capture.output({
+	cat("\n");
+	cat("Input Filename:", InputFname , "\n");
+	cat("Time Offset Colname:", TimeOffsetColName, "\n");
+	cat("SubjectID Colname:", SubjectIDColName, "\n");
+	cat("Target Values List Filename:", TargetValuesFname, "\n");
+	cat("Output Filename:", OutputFname, "\n");
+	cat("Group Colname: ", GroupColName, "\n");
+	cat("\n");
+	cat("Crop Start/End: (", paste(CropLimits, collapse="/"), ")\n");
+	cat("Variable Prefix: ", Prefix, "\n");
+	cat("\n");
+	cat("Find Line: ", Opt_FindLine, "\n");
+	cat("Find Limits: ", Opt_FindLimits, "\n");
+	cat("Find Descriptive: ", Opt_FindDescriptive, "\n");
+	cat("Find Ranges: ", Opt_FindRanges, "\n");
+	cat("Find Timing: ", Opt_FindTiming, "\n");
+	cat("Find Timing of Limits: ", Opt_FindTimeOfLimits, "\n");
+	cat("Find Extrapolated Limits: ", Opt_FindExtrapolatedLimits, "\n");
+	cat("Find Recovery Rate Model: ", Opt_FindRecoveryRateModel, "\n");
+});
+
+print(parameters_msg);
 
 if(!(Opt_FindLine || Opt_FindLimits || Opt_FindDescriptive || 
 	Opt_FindRanges || Opt_FindTiming || Opt_FindTimeOfLimits ||
@@ -291,6 +295,7 @@ cat("Num Unique Subject IDs: ", num_unique_subject_ids, "\n");
 
 subj_col_map=get_colors(num_unique_subject_ids);
 names(subj_col_map)=unique_subject_ids;
+
 
 ##############################################################################
 
@@ -709,6 +714,16 @@ trim_data=function(in_data, limits){
 }
 
 pdf(file=paste(OutputFname, ".longit.pdf", sep=""), height=8.5, width=11);
+
+##############################################################################
+
+plot_text(c(
+	paste("Script Name: ", script_name, sep=""),
+	"",
+	parameters_msg,
+	"",
+	paste("Num Subjects: ", num_unique_subject_ids)
+	));
 	
 plot_title_page("Individual Plots", c(
 	"Longitudinal plots for each of the variables are",
