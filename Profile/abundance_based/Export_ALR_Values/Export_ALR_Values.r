@@ -699,9 +699,11 @@ plot_histograms(alr_categories_val);
 num_samples=nrow(normalized);
 stat_names=c("CategoryName", "MeanAbnd", "NumSamp>0", "Preval%", "Rs95NumSamp>0", "Rs95Preval%");
 num_stats=length(stat_names);
+
 prevalence_matrix=matrix("", nrow=num_top_categories, ncol=num_stats);
 colnames(prevalence_matrix)=stat_names;
 rownames(prevalence_matrix)=sprintf("%3i.", 1:num_top_categories);
+
 
 pure_totals=apply(pure_counts, 1, sum);
 pure_normalized=normalize(pure_counts);
@@ -710,6 +712,8 @@ pure_norm_means=apply(pure_normalized, 2, mean);
 order=order(pure_norm_means, decreasing=T);
 pure_normalized=pure_normalized[,order,drop=F];
 pure_cat_names=colnames(pure_normalized);
+
+
 
 for(i in 1:num_top_categories){
 
@@ -734,6 +738,71 @@ for(i in 1:num_top_categories){
 }
 
 print(prevalence_matrix, quote=F);
+
+#------------------------------------------------------------------------------
+
+prevalence_matrix_val=matrix(0, nrow=num_top_categories, ncol=num_stats-1);
+colnames(prevalence_matrix_val)=stat_names[2:num_stats];
+rownames(prevalence_matrix_val)=pure_cat_names[1:num_top_categories];
+
+for(cix in 1:(num_stats-1)){
+	prevalence_matrix_val[,cix]=as.numeric(prevalence_matrix[,cix+1]);
+}
+
+plot_prevalence_barplots=function(prev_mat, numsamp){
+	orig_par=par(no.readonly=T);
+
+	par(mfrow=c(3, 1));
+	par(mar=c(10,5,2,5));
+
+	cat_names=rownames(prev_mat);
+	num_cat=length(cat_names);
+	prop_rep=sum(prev_mat[,"MeanAbnd"]);
+	annot=c(0,.25,.33,.5,.66,.75,1.);
+
+	mids=barplot(prevalence_matrix_val[,"MeanAbnd"], xaxt="n", ylab="Mean Abundance", 
+		col="lightblue");
+
+	title(main=paste("Proportion of Abundance Represented in Top ", num_cat, ":", sep="")); 
+	title(main=sprintf("%3.2f %%", prop_rep*100), line=-1);
+		
+
+	# Compute and label categories beneath barplot
+        bar_width=mids[2]-mids[1];
+        plot_range=par()$usr;
+        plot_height=plot_range[4];
+        label_size=min(c(1,.7*bar_width/par()$cxy[1]));
+
+	text(mids, par()$cxy[2]/2, 1:num_top_categories, cex=label_size*.75, font=2);
+        text(mids-par()$cxy[1]/2, rep(-par()$cxy[2]/2, num_top_categories), 
+		cat_names, srt=-45, xpd=T, pos=4, cex=label_size);
+
+	barplot(prevalence_matrix_val[,"NumSamp>0"], xaxt="n", ylim=c(0, numsamp),
+		ylab="Num Samples w/ Taxon", col="green");
+	axis(side=4, labels=annot, at=annot*numsamp, las=2, cex.axis=.7);
+	abline(h=annot*numsamp, col="black", lwd=.25, lty="dashed");
+	mtext("Proportion of Samples", side=4, line=4, cex=.7);
+
+	text(mids, par()$cxy[2]/2, 1:num_top_categories, cex=label_size*.75, font=2);
+        text(mids-par()$cxy[1]/2, rep(-par()$cxy[2]/2, num_top_categories), 
+		cat_names, srt=-45, xpd=T, pos=4, cex=label_size);
+
+	barplot(prevalence_matrix_val[,"Rs95NumSamp>0"], xaxt="n", ylim=c(0, numsamp),
+		ylab="Num Samples w/ Taxon\n[Resampled]", col="yellow");
+	axis(side=4, labels=annot, at=annot*numsamp, las=2, cex.axis=.7);
+	abline(h=annot*numsamp, col="black", lwd=.25, lty="dashed");
+	mtext("Proportion of Samples", side=4, line=4, cex=.7);
+	text(mids, par()$cxy[2]/2, 1:num_top_categories, cex=label_size*.75, font=2);
+        text(mids-par()$cxy[1]/2, rep(-par()$cxy[2]/2, num_top_categories), 
+		cat_names, srt=-45, xpd=T, pos=4, cex=label_size);
+
+	
+	par(orig_par);	
+}
+
+plot_prevalence_barplots(prevalence_matrix_val, num_samples);
+
+#------------------------------------------------------------------------------
 
 plot_text(c(
 	"The next page provides the following statistics for each category in a table:",	
