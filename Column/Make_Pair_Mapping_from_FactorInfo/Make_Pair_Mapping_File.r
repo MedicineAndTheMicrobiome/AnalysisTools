@@ -10,6 +10,7 @@ params=c(
 	"factors", "f", 1, "character",
 	"subject_id_colname", "s", 1, "character",
 	"sample_type_colname","t", 1, "character",
+	"sample_id_colname", "r", 1, "character",
 	"output", "o", 2, "character"
 );
 
@@ -21,6 +22,7 @@ usage = paste(
 	"	-f <factors file, contains covariates and factors>\n",
 	"	-s <subject id column name>\n",
 	"	-t <sample type column name>\n",
+	"	[-r <sample id column name (row name)>]\n",
 	"	[-o <output map file name>]\n",
 	"\n",
 	"This script will read in a factor file, then based on the subject\n",
@@ -43,6 +45,7 @@ if(
 FactorFilename=opt$factors;
 SubjectIDColname=opt$subject_id_colname;
 SampleTypeColname=opt$sample_type_colname;
+SampleIDColname=opt$sample_id_colname;
 
 if(length(opt$output)){
 	OutputRoot=opt$output;
@@ -51,6 +54,7 @@ if(length(opt$output)){
 }
 
 cat("           Factors File: ", FactorFilename, "\n", sep="");
+cat("  Sample ID Column Name: ", SampleIDColname, "\n", sep="");
 cat(" Subject ID Column Name: ", SubjectIDColname, "\n", sep="");
 cat("Sample Type Column Name: ", SampleTypeColname, "\n", sep="");
 cat("            Output File: ", OutputRoot, "\n", sep="");
@@ -62,9 +66,9 @@ cat("Text Line Width: ", options()$width, "\n", sep="");
 ##############################################################################
 ##############################################################################
 
-load_factors=function(fname){
+load_factors=function(fname, rowname){
 	factors=data.frame(read.table(fname,  sep="\t", header=TRUE, 
-		row.names=1, as.is=T, check.names=FALSE, comment.char=""));
+		row.names=rowname, as.is=T, check.names=FALSE, comment.char=""));
 	factor_names=colnames(factors);
 
 	ignore_idx=grep("^IGNORE\\.", factor_names);
@@ -80,7 +84,7 @@ load_factors=function(fname){
 
 # Load factors
 cat("Loading Factors...\n");
-factors=load_factors(FactorFilename);
+factors=load_factors(FactorFilename, SampleIDColname);
 factor_names=colnames(factors);
 num_factors=ncol(factors);
 factor_sample_names=rownames(factors);
