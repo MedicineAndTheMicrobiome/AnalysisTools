@@ -532,7 +532,9 @@ extract_top_categories=function(ordered_normalized, top, additional_cat=c()){
         num_top_to_extract=min(num_categories-1, top);
 
         cat("  Num Top Requested to Extract: ", top, "\n");
-        cat("  Columns to Available for Extraction: ", num_top_to_extract, "\n");
+        message("  Num Top Requested to Extract: ", top);
+        cat("  Columns Available for Extraction: ", num_top_to_extract, "\n");
+        message("  Columns Available for Extraction: ", num_top_to_extract);
 
         # Extract top categories requested
         top_cat=ordered_normalized[,1:num_top_to_extract, drop=F];
@@ -562,6 +564,7 @@ extract_top_categories=function(ordered_normalized, top, additional_cat=c()){
 
         num_extra_to_extract=length(extra_cat);
         cat("  Num Extra Categories to Extract: ", num_extra_to_extract, "\n");
+        message("  Num Extra Categories to Extract: ", num_extra_to_extract);
 
         # Allocate/Prepare output matrix
         num_out_mat_cols=num_top_to_extract+num_extra_to_extract+1;
@@ -735,6 +738,41 @@ reconcile=function(param=list("summary_table_mat"=NULL, "factor_mat"=NULL, "pair
 	print_se(factor_subject_ids);
 	message();
 
+	if(!specified(factor_mat)){
+		# If the factor mat is not specified, then just reconcile the summary table
+		# to the pairs mat, by sample id.
+
+		cat("Performing pairs matrix to summary table table reconcile.\n");
+		message("Performing pairs matrix to summary table table reconcile.");
+		message("---------------------------------------------");
+		pm_dim=dim(pairs_mat);
+		message("In Pair Mat: ", pm_dim[1], " x ", pm_dim[2]);
+		st_dim=dim(summary_table_mat);
+		message("In Summmary Table: ", st_dim[1], " x ", st_dim[2]);
+
+		pairs_mat=intersect_pairings_map_by_keep_list(
+			pairs_mat,
+			sample_id_keepers=sumtab_sample_ids
+			);
+
+		summary_table_mat=summary_table_mat[as.vector(pairs_mat),];
+
+		message("---------------------------------------------");
+		pm_dim=dim(pairs_mat);
+		message("Out Pair Mat: ", pm_dim[1], " x ", pm_dim[2]);
+		st_dim=dim(summary_table_mat);
+		message("Out Summmary Table: ", st_dim[1], " x ", st_dim[2]);
+		message("---------------------------------------------");
+
+		results=list();
+		results[["summary_table_mat"]]=summary_table_mat;
+		results[["factor_mat"]]=factor_mat;
+		results[["pairs_mat"]]=pairs_mat;
+		results[["sbj_smp_mat"]]=sbj_to_smp_mat;
+
+		return(results);
+	}
+
 	if(specified(pairs_mat)){
 		# If pairs mat specified, use it to bridge the factor to sample IDs
 
@@ -827,7 +865,7 @@ reconcile=function(param=list("summary_table_mat"=NULL, "factor_mat"=NULL, "pair
 
 	}
 
-	# Sort the sujbect IDs so everything is synch up
+	# Sort the subject IDs so everything is synch up
 	subject_ids=sort(rownames(factor_mat));
 
 	factor_mat_dim=dim(factor_mat);
@@ -1016,47 +1054,56 @@ load_and_reconcile_files=function(
 	#-----------------------------------------------------------------------------
 	# 4.) Remove NAs (remove subjects with NAs)
 
-	message("Performing NA Removal.\n");
-	report_list[["NA Removal"]]=capture.output({
+	if(factors[["fn"]]!=""){
+		message("Performing NA Removal.\n");
+		report_list[["NA Removal"]]=capture.output({
 
-		nona_factors_fn=paste(gsub("\\.tsv", "", factors[["fn"]]), ".noNAs", sep="");
+			nona_factors_fn=paste(gsub("\\.tsv", "", factors[["fn"]]), ".noNAs", sep="");
 
-		factors_wo_nas_res=remove_sample_or_factors_wNA_parallel(
-			recon_factors,
-			required=requiredvar_arr,
-			outfile=nona_factors_fn,
-			num_trials=64000, num_cores=64);
+			factors_wo_nas_res=remove_sample_or_factors_wNA_parallel(
+				recon_factors,
+				required=requiredvar_arr,
+				outfile=nona_factors_fn,
+				num_trials=64000, num_cores=64);
 
-		factors_mat_nona=factors_wo_nas_res[["factors"]];
+			factors_mat_nona=factors_wo_nas_res[["factors"]];
 
-		# remove variables with no information
-		variables_woNAs=colnames(factors_mat_nona);
+			# remove variables with no information
+			variables_woNAs=colnames(factors_mat_nona);
 
-		cat("\n");
+			cat("\n");
 
-		screened_var=screen_variables(
-			covariates_arr,
-			groupvar_arr,
-			requiredvar_arr,
-			variables_woNAs);
+			screened_var=screen_variables(
+				covariates_arr,
+				groupvar_arr,
+				requiredvar_arr,
+				variables_woNAs);
 
-		covariates_arr=screened_var[["covariates"]];
-		groupvar_arr=screened_var[["group_var"]];
-		requiredvar_arr=screened_var[["required_var"]];
-	});
-
+			covariates_arr=screened_var[["covariates"]];
+			groupvar_arr=screened_var[["group_var"]];
+			requiredvar_arr=screened_var[["required_var"]];
+		});
+	}else{
+		report_list[["NA Removal"]]="Factor File not specified.  NA Removal Skipped.";
+		factors_mat_nona=NULL;
+	}
 
 	#-----------------------------------------------------------------------------
 	# 5.) Reconcile
 	
-	message("Performing Post-NA Removal Reconcile.\n");
-	report_list[["Post-NA Removal Reconcile"]]=capture.output({
+	if(factors[["fn"]]!=""){
+		message("Performing Post-NA Removal Reconcile.\n");
+		report_list[["Post-NA Removal Reconcile"]]=capture.output({
 
-		# Replace factor mat, but keep the other data/matrices the same
-		reconciled_files[["factor_mat"]]=factors_mat_nona;
-		reconciled_files=reconcile(reconciled_files);
+			# Replace factor mat, but keep the other data/matrices the same
+			reconciled_files[["factor_mat"]]=factors_mat_nona;
+			reconciled_files=reconcile(reconciled_files);
 
-	});
+		});
+	}else{
+		report_list[["Post-NA Removal Reconcile"]]=
+			"Post-NA Removal Reconcile not performed.";
+	}
 
 	#-----------------------------------------------------------------------------
 	# 6.) Apply Summary Table Parameters
@@ -1075,7 +1122,7 @@ load_and_reconcile_files=function(
 		cat("\n");
 
 		if(specified(sumtab[["return_top"]])){
-			top_to_extract=sumtab[["return_top"]]
+			top_to_extract=as.numeric(sumtab[["return_top"]]);
 			cat("Num Top Categories to extract: ", top_to_extract, "\n");
 		}else{
 			cat("Top Categories for Extraction not specified.\n");
