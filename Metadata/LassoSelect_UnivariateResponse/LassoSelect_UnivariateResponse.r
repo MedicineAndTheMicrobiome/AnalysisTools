@@ -7,10 +7,13 @@ library('getopt');
 library('glmnet');
 library('doMC');
 
+source('~/git/AnalysisTools/Metadata/InputFileLibrary/InputFileLibrary.r');
+
 options(useFancyQuotes=F);
 
 params=c(
 	"factor_fn", "f", 1, "character",
+	"subjectid_cn", "s", 1, "character",
 	"responses_cn", "r", 1, "character",
 	"covariates_fn", "c" , 2, "character",
 	"target_var_fn", "t", 2, "character",
@@ -24,6 +27,7 @@ usage = paste(
 	"\nUsage:\n", script_name, "\n",
 	"\n",
 	"	-f <Factor Filename>\n",
+	"	-s <Subject ID Column Name>\n",
 	"	-r <Response Column Name>\n",
 	"	-c <Covariates List>\n",
 	"	-t <Target Predictors>\n",
@@ -58,16 +62,18 @@ ResponseColname=opt$responses_cn;
 CovariatesFile=opt$covariates_fn;
 TargetVarFile=opt$target_var_fn;
 OutputRoot=opt$outputroot;
+SubjectIDColname=opt$subjectid_cn;
 
 params=capture.output({
 cat("\n");
 cat(script_name, "\n", sep="");
 cat("\n");
-cat("     Factors File: ", FactorsFile, "\n", sep="");
-cat("Responses Colname: ", ResponseColname, "\n", sep="");
-cat("  Covariates File: ", CovariatesFile, "\n", sep="");
-cat(" Targ. Var.  File: ", TargetVarFile, "\n", sep="");
-cat("      Output Root: ", OutputRoot, "\n", sep="");
+cat("      Factors File: ", FactorsFile, "\n", sep="");
+cat("Subject ID Colname: ", SubjectIDColname, "\n", sep="");
+cat(" Responses Colname: ", ResponseColname, "\n", sep="");
+cat("   Covariates File: ", CovariatesFile, "\n", sep="");
+cat("  Targ. Var.  File: ", TargetVarFile, "\n", sep="");
+cat("       Output Root: ", OutputRoot, "\n", sep="");
 cat("\n");
 });
 
@@ -75,12 +81,6 @@ print(params);
 options(width=120);
 
 ##############################################################################
-
-load_factors=function(fname){
-	cat("Loading Factors/Metadata: ", fname, "\n", sep="");
-	factors=data.frame(read.table(fname,  sep="\t", header=TRUE, row.names=1, check.names=FALSE));
-	return(factors);
-}
 
 load_list=function(filename){
 	cat("Loading List: ", filename, "\n", sep="");
@@ -168,7 +168,7 @@ plot_title_page=function(title, subtitle=""){
 ##############################################################################
 ##############################################################################
 
-factors_loaded=load_factors(FactorsFile);
+factors_loaded=load_factors_file(FactorsFile, SubjectIDColname);
 available_variables=colnames(factors_loaded);
 
 targets_arr=load_list(TargetVarFile);
@@ -298,6 +298,8 @@ print(penalty_fact_arr);
 # Run cv.glmnet
 
 lasso_family="gaussian";
+
+#set.seed(100);
 
 cat("CrossValidation GLMNet:\n");
 x=as.matrix(x);
@@ -459,16 +461,29 @@ for(c_ix in cutoffs){
 	model_fit=lm(fit$fitted.values~y);
 	abline(a=0, b=1, col="blue", lty="dashed");
 	abline(model_fit, col="black");
-	
+
 	# Output selected variable list
-	if(length(var_arr)==0){
-			var_arr="[no variables selected]";
+	if(length(var_arr)){
+
+		outvarlist_fn=paste(OutputRoot, ".", c_ix, ".lst", sep="");
+		writeLines(
+			var_arr, 
+			outvarlist_fn
+			);
+
+		outvarfactors_fn=paste(OutputRoot, ".", c_ix, ".tsv", sep="");
+
+		out_table=cbind(rownames(factors_loaded), factors_loaded[,var_arr,drop=F]);
+		colnames(out_table)=c(SubjectIDColname, var_arr);
+		
+		# Output factors with selected variables only
+		write.table(
+			out_table,
+			outvarfactors_fn,
+			sep="\t", quote=F,
+			row.names=F, col.names=T
+			);
 	}
-	outvarlist_fn=paste(OutputRoot, ".", c_ix, ".lst", sep="");
-	writeLines(
-		var_arr, 
-		outvarlist_fn
-		);
 }
 
 
