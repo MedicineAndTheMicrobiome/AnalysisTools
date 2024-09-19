@@ -257,7 +257,8 @@ for(level_ix in 1:6){
 	par(mfrow=c(1,1));
 	par(oma=c(1,0,1,0));
 	lines=character();
-	stat_mat=matrix(0, nrow=0, ncol=6, dimnames=list(c(), c("NumSeq", "NumOTUs", "Seq/OTU", "GreatestProp", "Shannon", "Evenness")));
+	stat_mat=matrix(0, nrow=0, ncol=6, dimnames=list(c(), 
+		c("NumSeq", "NumOTUs", "Seq/OTU", "GreatestProp", "Shannon", "Evenness")));
 	taxa_names=character();
 	for(taxa in unique_cur_taxa){
 		splits=strsplit(taxa, ";")[[1]];
@@ -269,15 +270,17 @@ for(level_ix in 1:6){
 		# Compute stats on this set of OTUs
 		total_seq=sum(otu_sizes);
 		otu_prop=otu_sizes/total_seq;
-		total_otus=nrow(otu_sizes);
+		total_otus=length(otu_sizes);
 		max_abund=max(otu_prop);
 		seq_per_otu=total_seq/total_otus;
 		div=diversity(otu_prop);
 
+		newline=c(
+			total_seq, total_otus, round(seq_per_otu,2), 
+			round(max_abund,2), round(div[1],3), round(div[2],3))
+
 		# Add to line buffer
-		stat_mat=rbind(stat_mat, 
-			c(total_seq, total_otus, round(seq_per_otu,2), round(max_abund,2), round(div[1],3), round(div[2],3))
-		);
+		stat_mat=rbind(stat_mat, newline);
 
 		# Only keep up to the 2 lowest taxonomic names
 		taxa_names=c(taxa_names, paste(tail(splits,2), collapse=";"));
