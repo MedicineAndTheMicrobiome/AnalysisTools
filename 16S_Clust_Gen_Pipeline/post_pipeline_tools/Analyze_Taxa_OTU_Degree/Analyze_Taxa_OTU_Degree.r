@@ -309,6 +309,20 @@ for(level_ix in 1:6){
 
 	cat("\n");
 
+	#-----------------------------------------------------------------------------
+	# Write tsv files
+
+	OutputFileName
+	out_stat_mat=cbind(rownames(stat_mat), stat_mat);
+	colnames(out_stat_mat)=c("Taxa", colnames(stat_mat));
+	write.table(
+		out_stat_mat,
+		paste(OutputFileName, ".", LEVELS[level_ix], ".tsv", sep=""),
+		row.names=F,
+		sep="\t",
+		quote=F
+	);
+
 }
 
 
