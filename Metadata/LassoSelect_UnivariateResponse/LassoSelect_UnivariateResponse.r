@@ -11,13 +11,16 @@ source('~/git/AnalysisTools/Metadata/InputFileLibrary/InputFileLibrary.r');
 
 options(useFancyQuotes=F);
 
+CVSEED=1;
+
 params=c(
 	"factor_fn", "f", 1, "character",
 	"subjectid_cn", "s", 1, "character",
 	"responses_cn", "r", 1, "character",
-	"covariates_fn", "c" , 2, "character",
-	"target_var_fn", "t", 2, "character",
-	"outputroot", "o", 1, "character"
+	"covariates_fn", "c" , 1, "character",
+	"target_var_fn", "t", 1, "character",
+	"outputroot", "o", 1, "character",
+	"cvseed", "S", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -32,6 +35,7 @@ usage = paste(
 	"	-c <Covariates List>\n",
 	"	-t <Target Predictors>\n",
 	"	-o <Output Filename Root>\n",
+	"	-S <CrossValidation Seed, default=", CVSEED, "\n",
 	"\n",
 	"This script will LASSO the following logistic regression model:\n",
 	"\n",
@@ -64,6 +68,12 @@ TargetVarFile=opt$target_var_fn;
 OutputRoot=opt$outputroot;
 SubjectIDColname=opt$subjectid_cn;
 
+if(length(opt$cvseed)){
+	CVSeed=opt$cvseed;
+}else{
+	CVSeed=CVSEED;
+}
+
 params=capture.output({
 cat("\n");
 cat(script_name, "\n", sep="");
@@ -74,6 +84,7 @@ cat(" Responses Colname: ", ResponseColname, "\n", sep="");
 cat("   Covariates File: ", CovariatesFile, "\n", sep="");
 cat("  Targ. Var.  File: ", TargetVarFile, "\n", sep="");
 cat("       Output Root: ", OutputRoot, "\n", sep="");
+cat("  Cross Valid Seed: ", CVSeed, "\n", sep="");
 cat("\n");
 });
 
@@ -299,7 +310,8 @@ print(penalty_fact_arr);
 
 lasso_family="gaussian";
 
-#set.seed(100);
+cat("Set Cross Validation Seed to: ", CVSeed, "\n");
+set.seed(CVSeed);
 
 cat("CrossValidation GLMNet:\n");
 x=as.matrix(x);
@@ -323,6 +335,7 @@ log_looser_lambda=log_mindev_lambda - (log_stricter_lambda-log_mindev_lambda);
 looser_lambda=exp(log_looser_lambda);
 
 msg_lambda=capture.output({
+	cat("Cross Validation Randomization Seed: ", CVSeed, "\n");
 	cat("Min Deviation Lambda: ", mindev_lambda, 
 		"  Log():", log_mindev_lambda, "\n", sep="");
 	cat("Stricter Deviation Lambda: ", stricter_lambda, 
