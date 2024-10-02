@@ -91,8 +91,11 @@ load_ids_to_names=function(obo_tab){
 
 lookup_name=function(id, id_name_map){
 
-	out_arr=character(length(id));
-	for(i in 1:length(id)){
+	#cat("Looking up: \n");
+	#print(id);
+	num_ids=length(id);
+	out_arr=character(num_ids);
+	for(i in 1:num_ids){
 		out_arr[i]=id_name_map[[id[i]]];
 	}
 	return(out_arr);
@@ -259,12 +262,13 @@ write_descriptions=function(fname, grps, lookup_map){
 	grp_names=names(grps);
 	num_names=length(grp_names);
 
-	colnm=c("GO_ID", "Name");
+	colnm=c("GO_ID", "Num_Members", "Name");
 	name_matrix=matrix("", nrow=num_names, ncol=length(colnm));
 	colnames(name_matrix)=colnm;
 	
 	for(i in 1:num_names){
-		name_matrix[i,]=c(grp_names[i], lookup_name(grp_names[i], lookup_map));
+		num_members=length(grps[[grp_names[i]]]);
+		name_matrix[i,]=c(grp_names[i], num_members, lookup_name(grp_names[i], lookup_map));
 	}
 
 	write.table(name_matrix, fname, row.names=F, col.names=T, quote=F);
