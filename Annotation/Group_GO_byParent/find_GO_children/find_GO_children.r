@@ -254,6 +254,7 @@ write_parent_child_map=function(fname, grps, lookup_map){
 
 	fh=file(fname, "w");
 	cat(file=fh, paste(c("GroupID", "Member", "Description"), collapse="\t"), "\n", sep="");
+	close(fh);
 
 	for(nm in grp_names){
 
