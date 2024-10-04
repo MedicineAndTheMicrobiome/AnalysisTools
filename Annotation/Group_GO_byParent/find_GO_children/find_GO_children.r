@@ -238,7 +238,7 @@ write_descriptions=function(fname, grps, lookup_map){
 			paste("[", num_members, "]", sep=""));
 	}
 
-	write.table(name_matrix, fname, row.names=F, col.names=T, quote=F);
+	write.table(name_matrix, fname, row.names=F, sep="\t", col.names=T, quote=F);
 	cat("ok.\n");
 	
 }
@@ -266,16 +266,9 @@ write_parent_child_map=function(fname, grps, lookup_map){
 		out_mat[,3]=lookup_name(ids, lookup_map);
 	
 		cat("\tWriting descendants for: ", nm, "\n");
-		write.table(out_mat, fname, row.names=F, col.names=F, quote=F, append=T);
+		write.table(out_mat, fname, row.names=F, col.names=F, quote=F, sep="\t", append=T);
 	}
 	cat("ok.\n");
-
-}
-
-##############################################################################
-
-extract_descendants=function(pid, parent_to_child_tree, lookup_map){
-
 
 }
 
@@ -339,13 +332,16 @@ for(pidx in target_parent_ids){
 	cat("\n");
 
 	cln_pid=gsub(":", "_", pidx);
+	
+	par_name_cln=gsub("[^[:alnum:]_]", "_", parent_id_name);
+	par_name_cln=gsub("__+", "_", par_name_cln);
 
 	# Write descriptions
-	child_names_fn=paste(OutputDir, "/", cln_pid, ".immediate_descriptions.tsv", sep="");
+	child_names_fn=paste(OutputDir, "/", cln_pid,".", par_name_cln, ".immed_descr.tsv", sep="");
 	write_descriptions(child_names_fn, groupings, id_to_name_map);
 
 	# Write mappings
-	imm_child_to_desc_map_fn=paste(OutputDir, "/", cln_pid, ".groupings.map", sep="");
+	imm_child_to_desc_map_fn=paste(OutputDir, "/", cln_pid, ".", par_name_cln, ".groupings.map", sep="");
 	write_parent_child_map(imm_child_to_desc_map_fn, groupings, id_to_name_map);
 
 	##############################################################################
