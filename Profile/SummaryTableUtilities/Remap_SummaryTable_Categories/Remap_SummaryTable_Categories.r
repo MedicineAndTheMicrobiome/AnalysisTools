@@ -10,7 +10,8 @@ source("~/git/AnalysisTools/Metadata/OutputFileLibrary/OutputFileLibrary.r");
 params=c(
 	"summary_table", "s", 1, "character",
 	"mapping_file", "m", 1, "character",
-	"output_file_root", "o", 1, "character"
+	"output_file_root", "o", 1, "character",
+	"name_map_file", "n", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -22,6 +23,8 @@ usage = paste (
 	"	-s <input summary_table.tsv file>\n",
 	"	-m <input mapping file>\n",
 	"	-o <output file root>\n",
+	"\n",
+	"	[-n <input name map, e.g. <ID>\\t<name>\\n]",
 	"\n",	
 	"This script will read in a summary table and then for each\n",
 	"of the categories, combine/remap them to a new category\n",
@@ -30,6 +33,10 @@ usage = paste (
 	"The input mapping file should have two columns and column names:\n",
 	"	OutputIDs\\tInputIDs\\t...\\n\n",	
 	"	<out_category>\\t<in_category>\\t...\\n\n",
+	"\n",
+	"\n",
+	"The optional name map should have the columns:\n",
+	"	OutputIDs\\tName\\n\n",
 	"\n",
 	"If the input category has ;'s in it, then the category will be split\n",
 	"into a list and each item will be mapped to it's parent.  If the parents\n",
@@ -46,16 +53,24 @@ if(
 	q(status=-1);
 }
 
+
 ###############################################################################
+# Parameters
 
 SummaryTable=opt$summary_table;
 MappingFile=opt$mapping_file;
 OutputFileRoot=opt$output_file_root
 
+NameMapFile="";
+if(length(opt$name_map_file)){
+	NameMapFile=opt$name_map_file;	
+}
+
 cat("\n")
 cat("Summary Table: ", SummaryTable, "\n");
 cat("Mapping File: ", MappingFile, "\n");
 cat("Output File Root: ", OutputFileRoot, "\n");
+cat("Name Mapping File: ", NameMapFile, "\n");
 cat("\n");
 
 ###############################################################################
@@ -96,7 +111,22 @@ load_map_from_matrix=function(mat){
 
 }
 
+load_name_map=function(fn){
+	mat=as.matrix(read.table(fn, sep="\t", quote="", header=T));
+	mapping_arr=gsub("[^a-zA-Z0-9_]", "_", mat[,2]);
+	names(mapping_arr)=mat[,1];
+
+	num_mappings=length(unique(mapping_arr));
+	if(num_mappings<nrow(mat)){
+		cat("Error: After making names variable name safe, they were no longer unique.\n");
+		quit(status=-1);
+	}
+
+	return(mapping_arr);
+}
+
 ###############################################################################
+# Load files
 
 counts_mat=load_summary_file(SummaryTable);
 parent_child_map=as.matrix(read.table(MappingFile, sep="\t", quote="",  header=T));
@@ -110,7 +140,14 @@ cat("Out IDs: [", num_parent_ids, "]\n", sep="");
 print(parent_ids);
 cat("\n");
 
+if(NameMapFile!=""){
+	name_map=load_name_map(NameMapFile);
+}else{
+	cat("Name Mape File not specified.\n");
+}
+
 ###############################################################################
+# Combines descendant categories together by parent
 
 num_sumtab_cat=ncol(counts_mat);
 num_sumtab_samples=nrow(counts_mat);
@@ -139,7 +176,6 @@ for(cat_ix in 1:num_sumtab_cat){
 	num_parents=length(cat_parents);
 	#cat("Parents:\n");
 	#print(cat_parents);
-
 
 	# Spread out counts across parents
 	#print(counts_mat[,cat_ix]);
@@ -181,16 +217,25 @@ norm_mat=normalize(out_count_mat);
 median_norm=apply(norm_mat, 2, median);
 sorted_median_norm=sort(median_norm, decreasing=T);
 cat("\n");
+cat("--------------------------------------------------------------\n");
 cat("Top Median Abundances:\n");
-stat_mat=matrix(sprintf("%0.4f", sorted_median_norm), ncol=1, dimnames=list(names(sorted_median_norm), "Med_Abund"));
+stat_mat=matrix(sprintf("%0.4f", sorted_median_norm), ncol=1, 
+	dimnames=list(names(sorted_median_norm), "Med_Abund"));
 stat_cnames=colnames(stat_mat);
 stat_mat=cbind(rownames(stat_mat), stat_mat);
 colnames(stat_mat)=c("Category", stat_cnames);
+
+if(NameMapFile!=""){
+	Description=name_map[stat_mat[,"Category"]];
+	stat_mat=cbind(stat_mat, Description);
+}
+
 print(stat_mat);
+cat("--------------------------------------------------------------\n");
 cat("\n\n");
 
 ###############################################################################
-# Compare counts
+# Compare counts to confirm everything still adds up 
 
 orig_counts=apply(counts_mat, 1, sum);
 out_counts=apply(out_count_mat, 1, sum);
@@ -208,7 +253,15 @@ if(any(non_fract_diff)){
 ###############################################################################
 
 # Export summary table with IDs
-outfn=paste(OutputFileRoot, ".summary_table.tsv", sep="");
+outfn=paste(OutputFileRoot, ".ids.summary_table.tsv", sep="");
+write_summary_file(out_count_mat, outfn)
+#print(out_count_mat);
+
+#-----------------------------------------------------------------------------
+
+# Export summary table with names
+outfn=paste(OutputFileRoot, ".names.summary_table.tsv", sep="");
+colnames(out_count_mat)=name_map[colnames(out_count_mat)];
 write_summary_file(out_count_mat, outfn)
 #print(out_count_mat);
 
@@ -219,7 +272,6 @@ outfn=paste(OutputFileRoot, ".stats.tsv", sep="");
 write.table(stat_mat, outfn, row.names=F, quote=F, sep="\t");
 
 ###############################################################################
-
 
 cat("\nDone.\n")
 warns=warnings();
