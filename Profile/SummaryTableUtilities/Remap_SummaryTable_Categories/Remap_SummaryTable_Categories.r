@@ -161,6 +161,8 @@ out_count_mat=matrix(0.0, nrow=num_sumtab_samples, ncol=num_parent_ids+1);
 rownames(out_count_mat)=rownames(counts_mat);
 colnames(out_count_mat)=c(parent_ids, "Remaining");
 
+remaining_ids=c();
+
 for(cat_ix in 1:num_sumtab_cat){
 
 	cur_cat_arr=sumtab_cat_splits[[cat_ix]];
@@ -183,6 +185,8 @@ for(cat_ix in 1:num_sumtab_cat){
 		# If parents are not found, then put it in Remaining
 		out_count_mat[,"Remaining"]=
 			out_count_mat[,"Remaining"]+counts_mat[,cat_ix];
+		remaining_ids=c(remaining_ids, sumtab_cat[cat_ix]);
+		
 	}else{
 		# Spread out counts across parents
 		#print(counts_mat[,cat_ix]);
@@ -279,6 +283,10 @@ write_summary_file(out_count_mat, outfn)
 # Export summary stats
 outfn=paste(OutputFileRoot, ".stats.tsv", sep="");
 write.table(stat_mat, outfn, row.names=F, quote=F, sep="\t");
+
+# Export what is in remaining
+outfn=paste(OutputFileRoot, ".remaining_ids.tsv", sep="");
+write.table(remaining_ids, outfn, row.names=F, col.names=F, quote=F);
 
 ###############################################################################
 
