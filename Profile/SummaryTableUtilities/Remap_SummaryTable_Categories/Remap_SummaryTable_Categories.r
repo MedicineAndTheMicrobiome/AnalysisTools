@@ -214,7 +214,8 @@ out_count_mat=out_count_mat[,nonzero_count_parent_ids,drop=F];
 # Generate stats across categories
 
 norm_mat=normalize(out_count_mat);
-median_norm=apply(norm_mat, 2, median);
+median_norm=apply(norm_mat, 2, function(x){median(x,na.rm=T)});
+
 sorted_median_norm=sort(median_norm, decreasing=T);
 cat("\n");
 cat("--------------------------------------------------------------\n");
@@ -247,7 +248,7 @@ non_fract_diff=(abs_diff>1);
 
 if(any(non_fract_diff)){
 	cat("WARNING:  non-fractional differences between original and remapped totals.\n");
-	print(abs_diff[non_fract_diff]);
+	#print(abs_diff[non_fract_diff]);
 }
 
 ###############################################################################
