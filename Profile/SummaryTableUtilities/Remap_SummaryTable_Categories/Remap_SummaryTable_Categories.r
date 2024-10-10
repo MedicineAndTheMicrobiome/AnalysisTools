@@ -114,7 +114,9 @@ load_map_from_matrix=function(mat){
 load_name_map=function(fn){
 	mat=as.matrix(read.table(fn, sep="\t", quote="", header=T));
 	mapping_arr=gsub("[^a-zA-Z0-9_]", "_", mat[,2]);
-	names(mapping_arr)=mat[,1];
+
+	mapping_arr=c(mapping_arr, "Remaining");
+	names(mapping_arr)=c(mat[,1], "Remaining");
 
 	num_mappings=length(unique(mapping_arr));
 	if(num_mappings<nrow(mat)){
@@ -155,9 +157,9 @@ sumtab_cat=colnames(counts_mat);
 
 sumtab_cat_splits=strsplit(sumtab_cat, ";");
 
-out_count_mat=matrix(0.0, nrow=num_sumtab_samples, ncol=num_parent_ids);
+out_count_mat=matrix(0.0, nrow=num_sumtab_samples, ncol=num_parent_ids+1);
 rownames(out_count_mat)=rownames(counts_mat);
-colnames(out_count_mat)=parent_ids;
+colnames(out_count_mat)=c(parent_ids, "Remaining");
 
 for(cat_ix in 1:num_sumtab_cat){
 
@@ -177,14 +179,19 @@ for(cat_ix in 1:num_sumtab_cat){
 	#cat("Parents:\n");
 	#print(cat_parents);
 
-	# Spread out counts across parents
-	#print(counts_mat[,cat_ix]);
-	adj_counts=counts_mat[,cat_ix]/num_parents;
-	#print(adj_counts);
-	for(par in cat_parents){
-		out_count_mat[,par]=out_count_mat[,par] + adj_counts;
+	if(num_parents==0){
+		# If parents are not found, then put it in Remaining
+		out_count_mat[,"Remaining"]=
+			out_count_mat[,"Remaining"]+counts_mat[,cat_ix];
+	}else{
+		# Spread out counts across parents
+		#print(counts_mat[,cat_ix]);
+		adj_counts=counts_mat[,cat_ix]/num_parents;
+		#print(adj_counts);
+		for(par in cat_parents){
+			out_count_mat[,par]=out_count_mat[,par] + adj_counts;
+		}
 	}
-
 
 }
 
@@ -195,10 +202,11 @@ cat_counts=apply(out_count_mat, 2, sum);
 zero_count_cat_ix=(cat_counts==0);
 nonzero_count_cat_ix=!zero_count_cat_ix;
 
-zero_count_parent_ids=parent_ids[zero_count_cat_ix];
+out_cat=colnames(out_count_mat);
+zero_count_parent_ids=out_cat[zero_count_cat_ix];
 num_zc_par_ids=length(zero_count_parent_ids);
 
-nonzero_count_parent_ids=parent_ids[nonzero_count_cat_ix];
+nonzero_count_parent_ids=out_cat[nonzero_count_cat_ix];
 num_nzc_par_ids=length(nonzero_count_parent_ids);
 
 cat("Zero count Parent IDs: [", num_zc_par_ids, "]\n", sep="");
