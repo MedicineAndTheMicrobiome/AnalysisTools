@@ -1,0 +1,8 @@
+Category	Med_Abund	Description
+GO:0003824	0.6996	catalytic_activity
+GO:0005488	0.2017	binding
+GO:0140104	0.0725	molecular_carrier_activity
+GO:0005198	0.0000	structural_molecule_activity
+GO:0005215	0.0000	transporter_activity
+GO:0009055	0.0000	electron_transfer_activity
+GO:0140657	0.0000	ATP_dependent_activity
