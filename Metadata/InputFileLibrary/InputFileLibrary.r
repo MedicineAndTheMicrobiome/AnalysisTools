@@ -13,10 +13,11 @@ print_se=function(x){
 #------------------------------------------------------------------------------
 
 specified=function(var){
+
 	#cat("Checking: ", var, "\n");
 
 	if(length(var)==1){
-		if(is.na(var) || var=="" || is.na(var)){
+		if(all(is.na(var)) || all(var=="") || all(is.na(var))){
 			return(F);
 		}else{
 			return(T);
@@ -722,7 +723,7 @@ reconcile=function(param=list("summary_table_mat"=NULL, "factor_mat"=NULL, "pair
 	#
 	# If sumtab and factors are specified, then
 	#   they need to have the same IDs keyed, probably sample id
-	
+
 	summary_table_mat=param[["summary_table_mat"]];
 	factor_mat=param[["factor_mat"]];
 	pairs_mat=param[["pairs_mat"]];
@@ -736,6 +737,14 @@ reconcile=function(param=list("summary_table_mat"=NULL, "factor_mat"=NULL, "pair
 	print_se(sumtab_sample_ids);
 	message("\nFactor Sample IDs:");
 	print_se(factor_subject_ids);
+	message();
+
+	message("----------------------------------------------------------");
+	message("Files Specifed:");
+	message(" Factor File: ", specified(factor_mat), "");
+	message(" Pairs File: ", specified(pairs_mat), "");
+	message(" Subj-Samp File: ", specified(sbj_to_smp_mat), "");
+	message("----------------------------------------------------------");
 	message();
 
 	if(!specified(factor_mat)){
