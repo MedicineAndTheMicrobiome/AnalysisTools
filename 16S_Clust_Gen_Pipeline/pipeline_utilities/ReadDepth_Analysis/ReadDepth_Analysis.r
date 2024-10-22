@@ -344,18 +344,55 @@ plot_text(c(
 
 #------------------------------------------------------------------------------
 
+print(read_info_mat);
+SignfLossFlag=sapply(read_info_mat[,"PropLoss"], function(x){
+		if(x>.9){
+			return("**");
+		}else if(x>.75){
+			return("*");
+		}else if(x>.5){
+			return(":");
+		}else if(x>.25){
+			return(".");
+		}else{
+			return("");
+		}});
+read_info_mat=cbind(read_info_mat, SignfLossFlag);
+
+order_ix=order(read_info_mat[,"PropLoss"], decreasing=T);
+
+#------------------------------------------------------------------------------
+
 max_rows=40;
 num_pages=ceiling(num_samples/max_rows);
-for(i in 1:num_pages){
-	start=((i-1)*max_rows)+1;
-	stop=min(start+(max_rows-1), num_samples);
-	cat("Range: ", start, "-", stop, "\n");
-	plot_text(c(
-		"Read Attrition Table:",
-		paste("Sample Range: ", start, " - ", stop, sep=""),
-		"",
-		capture.output(print(read_info_mat[start:stop,,drop=F]))
-	));
+
+for(alt_order in c("proj_id", "prop_loss")){
+
+	if(alt_order=="proj_id"){
+		out_mat=read_info_mat;
+		outnm="By Project ID";
+	}else if(alt_order=="prop_loss"){
+		out_mat=read_info_mat[order_ix,,drop=F];
+		outnm="By Proportion Loss";
+	}
+
+	plot(0, xlim=c(0,1), ylim=c(0,1), xlab="", ylab="", xaxt="n", yaxt="n",
+		main="", bty="n", type="n");
+	text(.5,.6, cex=4, font=2, "Read Attrition Table");
+	text(.5,.5, cex=5, font=2, outnm);
+
+	for(i in 1:num_pages){
+		start=((i-1)*max_rows)+1;
+		stop=min(start+(max_rows-1), num_samples);
+		cat("Range: ", start, "-", stop, "\n");
+		plot_text(c(
+			paste("Read Attrition Table (", outnm, "):", sep=""),
+			paste("Sample Range: ", start, " - ", stop, sep=""),
+			"",
+			capture.output(print(out_mat[start:stop,,drop=F]))
+		));
+
+	}
 
 }
 
