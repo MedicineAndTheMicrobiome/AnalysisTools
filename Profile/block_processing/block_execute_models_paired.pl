@@ -265,7 +265,7 @@ sub run_abundance_based{
 	my $tag_name=shift;
 
 	print STDERR "\n";
-	print STDERR "Running Distance Based Analyses:\n";
+	print STDERR "Running Abundance Based Analyses:\n";
 	print STDERR "  Output Dir: $output_dir\n";
 	print STDERR "  Summary Table 1: $summary_table\n";
 	print STDERR "  Factor File: $factor_file\n";
@@ -683,7 +683,6 @@ sub run_distance_based{
 if(!(-e $OutputDir)){
 	mkdir $OutputDir;
 }
-
 
 run_abundance_based(
 	$OutputDir,
