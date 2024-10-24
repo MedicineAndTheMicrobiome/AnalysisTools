@@ -558,6 +558,7 @@ names(paired_dist)=A_sample_ids;
 
 mds=cmdscale(distmat);
 #print(mds);
+mds=mds[AB_sample_ids,,drop=F];
 
 cat("A Sample IDs:\n");
 print(A_sample_ids);
@@ -675,12 +676,14 @@ draw_centroids(A_centroid, B_centroid);
 for(ix in 1:(num_shared_sample_ids/2)){
 	aid=A_sample_ids[ix];
 	bid=B_sample_ids[ix];
+
 	points(
 		c(mds[aid,1], mds[bid,1]),
 		c(mds[aid,2], mds[bid,2]),
 		type="l", lwd=.5, col="grey70");
 }
 text(mds[,1], mds[,2], glyphs, col=colors);
+
 
 #------------------------------------------------------------------------------
 # Plot connected weighted
