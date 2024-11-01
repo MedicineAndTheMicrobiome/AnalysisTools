@@ -17,7 +17,8 @@ params=c(
 
 	"pairings", "p", 1, "character",
 	"factors", "f", 1, "character",
-	"factor_subj_id_name", "F", 1, "character",
+	"factor_samp_id_name", "F", 1, "character",
+	"factor_subj_id_name", "S", 1, "character",
 	"model_var", "M", 1, "character",
 	"required", "q", 2, "character",
 	"response", "e", 1, "character",
@@ -48,7 +49,9 @@ usage = paste(
 	"\n",
 	"	-p <pairings map, pairing Resp and Pred sample IDs. Must have header/column names>\n",
 	"	-f <factors file, contains covariates and factors>\n",
-	"	-F <column name of subject ids in factor file>\n",
+	"	-F <column name of sample ids in factor file>\n",
+	"	-S <column name of subject ids in factor file>\n",
+	"\n",
 	"	-M <list of covariate X's names to include in the model from the factor file>\n",
 	"	-e <response ALR name, (column name in pairings file)\n",
 	"	-g <predictor ALR name, (column name in pairings file)\n",
@@ -135,7 +138,13 @@ if(length(opt$alr_list_file)){
 if(length(opt$factor_subj_id_name)){
         FactorSubjectIDName=opt$factor_subj_id_name;
 }else{
-        FactorSubjectIDName=1;
+        FactorSubjectIDName="";
+}
+
+if(length(opt$factor_samp_id_name)){
+        FactorSampleIDName=opt$factor_samp_id_name;
+}else{
+        FactorSampleIDName="";
 }
 
 if(length(opt$tag_name)){
@@ -189,6 +198,7 @@ cat("Reference Levels File: ", ReferenceLevelsFile, "\n", sep="");
 cat("Use Remaining? ", UseRemaining, "\n");
 cat("Shorten Category Names: '", ShortenCategoryNames, "'\n", sep="");
 cat("Subject IDs Column Name in Factor File: ", FactorSubjectIDName, "\n", sep="");
+cat("Sample  IDs Column Name in Factor File: ", FactorSampleIDName, "\n", sep="");
 cat("\n");
 
 if(ShortenCategoryNames==TRUE){
@@ -549,7 +559,8 @@ NumMaxALRVariables=max(NumPredVariables, NumRespVariables);
 input_files=load_and_reconcile_files(
 		sumtab=list(fn=SummaryFile, shorten_cat_names_char=ShortenCategoryNames, 
 			return_top=NumMaxALRVariables, specific_cat_fn=ALRCategListFile),
-		factors=list(fn=FactorsFile, sbj_cname=FactorSubjectIDName),
+		factors=list(fn=FactorsFile, sbj_cname=FactorSubjectIDName, 
+			smp_cname=FactorSampleIDName),
 		pairs=list(fn=PairingsFile, a_cname=ResponseName, b_cname=PredictorName),
 		covariates=list(fn=ModelVarFile),
 		grpvar=list(fn=""),
@@ -561,6 +572,10 @@ factors=input_files[["Factors"]];
 good_pairs_map=input_files[["PairsMap"]];
 model_var_arr=input_files[["Covariates"]];
 required_arr=input_files[["RequiredVariables"]];
+
+# Make the primary key for the factor mat the Sample ID for A
+rownames(factors)=factors[,FactorSampleIDName];
+factors=factors[good_pairs_map[,PredictorName],,drop=F];
 
 write_file_report(input_files[["Report"]]);
 
@@ -702,6 +717,7 @@ print(top_alr_pred_names);
 cat("*************************************************\n\n");
 
 for(resp_ix in 1:NumRespVariables){
+
 	alr_resp=response_alr[,resp_ix,drop=F];
 	resp_cat_name=colnames(alr_resp);
 	alr_resp=as.vector(alr_resp);
@@ -727,15 +743,13 @@ for(resp_ix in 1:NumRespVariables){
 
 	alr_pred=predictor_alr[,alr_predictors, drop=F];
 	alr_pred_names=colnames(alr_pred);
-	model_pred_df=as.data.frame(cbind(alr_pred, factors));
+	model_pred_df=as.data.frame(cbind(factors, alr_pred));
 	num_samples_in_df=nrow(model_pred_df);
 	cat("Num samples: ", num_samples_in_df, "\n", sep="");
 
 	# Build formula string for full and reduced model
-
 	full_variables=c(alr_pred_names,model_var_arr);
 	num_full_variables=length(full_variables);
-
 	model_str=paste("alr_resp ~ ", paste(full_variables, collapse=" + "), sep="");
 
 	num_reduced_variables=length(model_var_arr);
@@ -754,8 +768,6 @@ for(resp_ix in 1:NumRespVariables){
 	# Fit full and reduced model
 	cat("Fitting Full...\n");
 	lm_fit=lm(as.formula(model_str), data=model_pred_df);
-
-	
 
 	cat("Fitting Reduced...\n");
 	lm_reduced_fit=lm(as.formula(model_reduced_str), data=model_pred_df);

@@ -291,10 +291,12 @@ load_factors_file=function(fname, prim_key_cname=NULL, relevel_fn=NULL){
 
 	if(!specified(prim_key_cname)){
 		cat("  Primary Key Column Name not specified.  ");
-		cat("Assuming 1st column is the primary key.\n");
-		prim_key_cname=1;
+        	factors=data.frame(read.table(fname,  sep="\t", header=TRUE,
+                	check.names=FALSE, comment.char="#", stringsAsFactors=T));
 	}else{
 		cat("  Primary Key Column Name: ", prim_key_cname, "\n", sep="");
+        	factors=data.frame(read.table(fname,  sep="\t", header=TRUE, row.names=prim_key_cname,
+                	check.names=FALSE, comment.char="#", stringsAsFactors=T));
 	}
 
 	if(!specified(relevel_fn)){
@@ -303,8 +305,6 @@ load_factors_file=function(fname, prim_key_cname=NULL, relevel_fn=NULL){
 		cat("  Factor Releveling File Specified: ", relevel_fn, "\n", sep="");
 	}
 
-        factors=data.frame(read.table(fname,  sep="\t", header=TRUE, row.names=prim_key_cname,
-                check.names=FALSE, comment.char="#", stringsAsFactors=T));
 
 	cat("\n");
 	cat("Primary Key Excerpt: \n");
@@ -428,8 +428,8 @@ load_sbj_smp_mapping=function(fname, sbj_cname, smp_cname){
 
 intersect_pairings_map_by_keep_list=function(
 	pairs_map, 
-	sample_id_keepers=NULL,
-	subject_id_keepers=NULL){
+	sample_id_keepers=-1,
+	subject_id_keepers=-1){
 
 	cat("Intersecting pairings map with keep lists.\n");
 	num_smp_keepers=length(sample_id_keepers);
@@ -444,8 +444,9 @@ intersect_pairings_map_by_keep_list=function(
 	delete_row_ix=c();
 
 	# By sample id
-	if(num_smp_keepers){
+	if(num_smp_keepers>0 && sample_id_keepers[1] != -1){
 		cat("  Num Sample IDs available in Keep List: ", num_smp_keepers, "\n", sep="");
+		message("  Num Sample IDs available in Keep List: ", num_smp_keepers, sep="");
 		for(rix in 1:num_rows){
 			if(!any(pairs_map[rix, 1]==sample_id_keepers) ||
 				!any(pairs_map[rix, 2]==sample_id_keepers)){
@@ -457,8 +458,9 @@ intersect_pairings_map_by_keep_list=function(
 	}
 
 	# By subject id
-	if(num_sbj_keepers){
+	if(num_sbj_keepers>0 && subject_id_keepers[1] != -1){
 		cat("  Num Subject IDs available in Keep List: ", num_sbj_keepers, "\n", sep="");
+		message("  Num Subject IDs available in Keep List: ", num_sbj_keepers, sep="");
 		map_sbj_ids=rownames(pairs_map);
 		for(rix in 1:num_rows){
 			if(!any(map_sbj_ids[rix]==subject_id_keepers)){
@@ -494,6 +496,11 @@ intersect_pairings_map_by_keep_list=function(
 	cat("  Num Input Pairs: ", nrow(pairs_map), "\n");
 	cat("  Num Complete Pairs: ", nrow(complete_pairs), "\n");
 	cat("  Num Incomplete Pairs: ", nrow(incomplete_pairs), "\n");
+
+	message("");
+	message("  Num Input Pairs: ", nrow(pairs_map));
+	message("  Num Complete Pairs: ", nrow(complete_pairs));
+	message("  Num Incomplete Pairs: ", nrow(incomplete_pairs));
 
         return(complete_pairs);
 }
@@ -712,215 +719,136 @@ screen_variables=function(covar, grp, req, avail){
 		
 }
 
+# Reconcile Functions:
+
+match_to_index=function(values_arr, targets_arr){
+	# This function will make a boolean index based on matching
+	# the values that are in the targets
+	
+	matches=sapply(values_arr, function(x){
+		return(any(x==targets_arr));
+		});
+
+	return(matches);
+}
+
+recon_factor_to_sumtab=function(fact_mat, st_mat, fact_samp_id_cname){
+
+	# Reconcile by Sample IDs
+
+	st_samp_ids=rownames(st_mat);
+	fact_samp_ids=fact_mat[, fact_samp_id_cname];
+	shared_samp_ids=intersect(st_samp_ids, fact_samp_ids);
+	
+	match_ix=match_to_index(fact_samp_ids, shared_samp_ids);	
+	out_factor_mat=factor_mat[match_ix,,drop=F];
+	
+	out_summary_table_mat=summary_table_mat[shared_samp_ids,,drop=F];	
+
+	results=list();
+	results[["factor_mat"]]=out_factor_mat;
+	results[["summary_table"]]=out_summary_table_mat;
+
+	return(results);
+
+}
+
+
+
+recon_factor_to_pairs_to_sumtab=function(fact_mat, pr_mat, st_mat, f_subj_id_cname){
+
+	# Factor <-> Pairs (By Subject ID)
+	fact_subj_ids=fact_mat[,f_subj_id_cname];
+	pairs_subj_ids=rownames(pr_mat);
+	shared_subj_ids=intersect(fact_subj_ids, pairs_subj_ids);
+
+	#  keep shared subject IDs
+	out_pr_mat=pr_mat[shared_subj_ids,,drop=F];
+	fact_shared_subj_ix=match_to_index(fact_mat[,f_subj_id_cname], shared_subj_ids);
+	out_fact_mat=fact_mat[fact_shared_subj_ix,,drop=F];
+
+	# Pairs <-> Summary Table (By Sample ID)
+	st_sample_ids=rownames(st_mat);
+	out_pr_mat=intersect_pairings_map_by_keep_list(out_pr_mat, sample_id_keepers=st_sample_ids);
+	shared_samp_ids=intersect(c(out_pr_mat[,1],out_pr_mat[,2]), st_sample_ids);
+	out_st_mat=st_mat[shared_samp_ids,,drop=F];
+
+
+	# Pairs <-> Factor (By Subject ID)
+	pr_subject_ids=rownames(out_pr_mat);
+	fact_shared_subj_ix=match_to_index(out_fact_mat[,f_subj_id_cname], pr_subject_ids);
+	out_fact_mat=out_fact_mat[fact_shared_subj_ix,,drop=F];	 
+
+
+	results=list();
+	results[["factor_mat"]]=out_fact_mat;
+	results[["pairs_mat"]]=out_pr_mat;
+	results[["summary_table"]]=out_st_mat;
+
+	return(results);
+
+}
+
+
 
 reconcile=function(param=list("summary_table_mat"=NULL, "factor_mat"=NULL, "pairs_mat"=NULL,
-	"sbj_smp_mat"=NULL)){	
+	"factor_sbj_cname"=NULL, "factor_smp_cname"=NULL)){	
 
-	# If sumtab, factors, and pairs are specified, then the keying must be
-	#   sample_id -> sumtab
-	#   subject_id -> factors
-	#   subject_id -> pairs
-	#
-	# If sumtab and factors are specified, then
-	#   they need to have the same IDs keyed, probably sample id
+	# Summary Table Mat and Factor Mat must be specified.
+	# The Factor Mat must have a subject ID and sample ID column specified.
+	# The Pairs Mat is Optional, but the first column must be the subject ID.
+
+	# Keying:
+	#  Summary Table is Keyed by Sample ID.
+	#  Factor File is not keyed, it may have duplicated Subject IDs
+	#  Pairs Mat is keyed by Subject ID.
 
 	summary_table_mat=param[["summary_table_mat"]];
 	factor_mat=param[["factor_mat"]];
 	pairs_mat=param[["pairs_mat"]];
-	sbj_to_smp_mat=param[["sbj_smp_mat"]];
 
-	# Get sample IDs from summary table
+	# Get Smp/Sbj from the available data
+	# Factor Smp/Sbj IDs
+	factor_subj_id_cname=param[["factor_sbj_cname"]];
+	factor_samp_id_cname=param[["factor_smp_cname"]];
+	# Summary Table Smp IDs
 	sumtab_sample_ids=rownames(summary_table_mat);
-	factor_subject_ids=rownames(factor_mat);
-
-	message("Summary Table Sample IDs:");
-	print_se(sumtab_sample_ids);
-	message("\nFactor Sample IDs:");
-	print_se(factor_subject_ids);
-	message();
 
 	message("----------------------------------------------------------");
 	message("Files Specifed:");
-	message(" Factor File: ", specified(factor_mat), "");
-	message(" Pairs File: ", specified(pairs_mat), "");
-	message(" Subj-Samp File: ", specified(sbj_to_smp_mat), "");
+	message(" Sum Tab File: ", specified(summary_table_mat));
+	message(" Factor File: ", specified(factor_mat));
+	message(" Pairs File: ", specified(pairs_mat));
 	message("----------------------------------------------------------");
 	message();
 
-	if(!specified(factor_mat)){
-		# If the factor mat is not specified, then just reconcile the summary table
-		# to the pairs mat, by sample id.
 
-		cat("Performing pairs matrix to summary table table reconcile.\n");
-		message("Performing pairs matrix to summary table table reconcile.");
-		message("---------------------------------------------");
-		pm_dim=dim(pairs_mat);
-		message("In Pair Mat: ", pm_dim[1], " x ", pm_dim[2]);
-		st_dim=dim(summary_table_mat);
-		message("In Summmary Table: ", st_dim[1], " x ", st_dim[2]);
+	if(!specified(pairs_mat)){
+		message("Reconcile Summary Table/Factors by shared sample IDs.");
+		reconned=recon_factor_to_sumtab(
+			factor_mat, summary_table_mat, factor_samp_id_cname);
 
-		pairs_mat=intersect_pairings_map_by_keep_list(
-			pairs_mat,
-			sample_id_keepers=sumtab_sample_ids
-			);
-
-		summary_table_mat=summary_table_mat[as.vector(pairs_mat),];
-
-		message("---------------------------------------------");
-		pm_dim=dim(pairs_mat);
-		message("Out Pair Mat: ", pm_dim[1], " x ", pm_dim[2]);
-		st_dim=dim(summary_table_mat);
-		message("Out Summmary Table: ", st_dim[1], " x ", st_dim[2]);
-		message("---------------------------------------------");
-
-		results=list();
-		results[["summary_table_mat"]]=summary_table_mat;
-		results[["factor_mat"]]=factor_mat;
-		results[["pairs_mat"]]=pairs_mat;
-		results[["sbj_smp_mat"]]=sbj_to_smp_mat;
-
-		return(results);
-	}
-
-	if(specified(pairs_mat)){
-		# If pairs mat specified, use it to bridge the factor to sample IDs
-
-		print_se(pairs_mat);
-		cat("Pairs matrix specified.\n");
-		cat("Reconciling: Bridging Factors to Sample IDs through Pairs Matrix.\n\n");
-
-		message("Pairs matrix specified.");
-		message("Reconciling: Bridging Factors to Sample IDs through Pairs Matrix.");
-
-
-		# Determine which pairs are complete by sample ID
-		pairs_mat=intersect_pairings_map_by_keep_list(
-			pairs_mat, 
-			sample_id_keepers=sumtab_sample_ids,
-			subject_id_keepers=factor_subject_ids);
-
-		message("Intersected Pairs Map:");
-		print_se(pairs_mat);
-
-		# These are the subject/sample ids that are pairable
-		pairable_sbj_ids=sort(rownames(pairs_mat));
-		pairable_smp_ids=sort(c(pairs_mat[,1], pairs_mat[,2]));
-
-		message();
-		message("Pairable Subject IDs:");
-		print_se(pairable_sbj_ids);
-
-		message("Pairable Sample IDs:");
-		print_se(pairable_smp_ids);
-		message();
-
-		summary_table_mat=summary_table_mat[pairable_smp_ids,,drop=F];	
-		factor_mat=factor_mat[pairable_sbj_ids,,drop=F];
-
-	}else if(specified(sbj_to_smp_mat)){
-		# If 1-to-1 mapping specified use it.
-
-		cat("Subject-to-Sample Matrix specified.\n");
-		cat("Reconciling: Bridging Factors to Sample IDs through Subject/Sample Matrix.");
-
-		message("Subject-to-Sample Matrix specified.\n");
-		message("Reconciling: Bridging Factors to Sample IDs through Subject/Sample Matrix.\n");
-
-		invert_mapping=function(map){
-			inv=matrix(rownames(map), ncol=1);	
-			rownames(inv)=map[,1];
-			return(inv);
-		}
-
-		map_sbj_ids=rownames(sbj_to_smp_mat);
-		map_smp_ids=sbj_to_smp_mat[,1];
-
-		# Remove mappings missing subjects from factors
-		matched_sbj_ids=intersect(map_sbj_ids, factor_subject_ids);
-		sbj_to_smp_mat=sbj_to_smp_mat[matched_sbj_ids,,drop=F];
-
-		# Invert mappings
-		smp_to_sbj_mat=invert_mapping(sbj_to_smp_mat);
-		
-		# Remove mappings missing samples from sumtab
-		map_smp_ids=rownames(smp_to_sbj_mat);
-		matched_smp_ids=intersect(map_smp_ids, sumtab_sample_ids);
-		smp_to_sbj_mat=smp_to_sbj_mat[matched_smp_ids,,drop=F];
-
-		matched_smp_ids=rownames(smp_to_sbj_mat);
-		matched_sbj_ids=smp_to_sbj_mat[,1];
-
-		# Invert mappings back
-		sbj_to_smp_mat=invert_mapping(smp_to_sbj_mat);
-
-		summary_table_mat=summary_table_mat[matched_smp_ids,,drop=F];	
-		factor_mat=factor_mat[matched_sbj_ids,,drop=F];
-
+		summary_table_mat=reconned[["summary_table"]];
+		factor_mat=reconned[["factor_mat"]];
 	}else{
-		# If only sumtab and factors specified, then assume both factors and 
-		# summary table are keying by sample ID.
-		
-		cat("No mappings specified.\n");
-		cat("Reconciling: Assuming Factors and Samples have the same ID.\n\n");
+		message("Reconcile Factors <-> Pairs <-> SummaryTable")
+		reconned=recon_factor_to_pairs_to_sumtab(
+			factor_mat, pairs_mat, summary_table_mat, 
+			factor_subj_id_cname);
 
-		message("No mappings specified.");
-		message("Reconciling: Assuming Factors and Samples have the same ID.\n");
-
-		shared_ids=sort(intersect(sumtab_sample_ids, factor_subject_ids));
-		cat("Number of Shared IDs: ", length(shared_ids), "\n");
-		
-		summary_table_mat=summary_table_mat[shared_ids,,drop=F];	
-		factor_mat=factor_mat[shared_ids,,drop=F];
-
+		summary_table_mat=reconned[["summary_table"]];
+		factor_mat=reconned[["factor_mat"]];
+		pairs_mat=reconned[["pairs_mat"]];
 	}
-
-	# Sort the subject IDs so everything is synch up
-	subject_ids=sort(rownames(factor_mat));
-
-	factor_mat_dim=dim(factor_mat);
-	pairs_mat_dim=dim(pairs_mat);
-	sbj_to_smp_mat_dim=dim(sbj_to_smp_mat);
-	summary_table_mat_dim=dim(summary_table_mat);
-
-	message("Input Dimensions:");
-	message("  Factors: ", factor_mat_dim[1], " sbj x ", 
-		factor_mat_dim[2], " var", sep="");
-	message("  Pairs: ", pairs_mat_dim[1], " sbj", sep="");
-	message("  Sbj-to-Smp: ", sbj_to_smp_mat_dim[1], " sbj / smp", sep="");
-	message("  Summary Table: ", summary_table_mat_dim[1], " smp x ", 
-		summary_table_mat_dim[2], " cat", sep="");
-
-	#------------------------------------------------------------
-
-	factor_mat=factor_mat[subject_ids,,drop=F];
-	pairs_mat=pairs_mat[subject_ids,,drop=F];
-	sbj_to_smp_mat=sbj_to_smp_mat[subject_ids,,drop=F];
-
-	# I think this line is not necessary
-	#summary_table_mat=summary_table_mat[c(pairs_mat[,1], pairs_mat[,2]),,drop=F];
-
-	#------------------------------------------------------------
-
-	factor_mat_dim=dim(factor_mat);
-	pairs_mat_dim=dim(pairs_mat);
-	sbj_to_smp_mat_dim=dim(sbj_to_smp_mat);
-	summary_table_mat_dim=dim(summary_table_mat);
-
-	message("Output Dimensions:");
-	message("  Factors: ", factor_mat_dim[1], " sbj x ", 
-		factor_mat_dim[2], " var", sep="");
-	message("  Pairs: ", pairs_mat_dim[1], " sbj", sep="");
-	message("  Sbj-to-Smp: ", sbj_to_smp_mat_dim[1], " sbj / smp", sep="");
-	message("  Summary Table: ", summary_table_mat_dim[1], " smp x ", 
-		summary_table_mat_dim[2], " cat", sep="");
-
-	#------------------------------------------------------------
 
 	results=list();
 	results[["summary_table_mat"]]=summary_table_mat;
 	results[["factor_mat"]]=factor_mat;
 	results[["pairs_mat"]]=pairs_mat;
-	results[["sbj_smp_mat"]]=sbj_to_smp_mat;
+	results[["factor_sbj_cname"]]=param[["factor_sbj_cname"]]; 
+	results[["factor_smp_cname"]]=param[["factor_smp_cname"]];
+
+	# print_se(results);
 
 	return(results);
 }
@@ -928,7 +856,7 @@ reconcile=function(param=list("summary_table_mat"=NULL, "factor_mat"=NULL, "pair
 load_and_reconcile_files=function(
 	sumtab=list(fn=NULL, shorten_cat_names_char=NULL, return_top=NULL, 
 		specific_cat_fn=NULL), 
-	factors=list(fn=NULL, sbj_cname=NULL, ref_relvl_fn=NULL), 
+	factors=list(fn=NULL, sbj_cname=NULL, smp_cname=NULL, ref_relvl_fn=NULL), 
 	pairs=list(fn=NULL, a_cname=NULL, b_cname=NULL, subject_id_cname=NULL), 
 	sbj_to_smp=list(fn=NULL, sbjid_cname=NULL, smpid_cname=NULL),
 	covariates=list(fn=NULL), 
@@ -950,6 +878,10 @@ load_and_reconcile_files=function(
 	#-----------------------------------------------------------------------------
 	# 1.) Read in Summary Table, Factors, Sample Pairing
 
+	message("\n***************************************************************");
+	message("*** 1/6 Reading Summary Table, Factors, and Sample Pairing. ***");
+	message("***************************************************************\n");
+
 	message("Loading Summary Table: ", sumtab[["fn"]], "\n", sep="");
 	report_list[["Summary Table"]]=capture.output({
 
@@ -964,7 +896,6 @@ load_and_reconcile_files=function(
 
 		factors_mat=load_factors_file(
 			fname=factors[["fn"]],
-			prim_key_cname=factors[["sbj_cname"]],
 			relevel_fn=factors[["ref_relvl_fn"]]
 			);
 
@@ -972,6 +903,7 @@ load_and_reconcile_files=function(
 		message("   Factor Table Dimensions: ", dim(factors_mat));
 
 	});
+
 
 	message("Loading Mappings: ", pairs[["fn"]], " (pairs) and ", 
 		sbj_to_smp[["fn"]], " (sbj_to_smp)\n", sep="");
@@ -1003,7 +935,10 @@ load_and_reconcile_files=function(
 	#-----------------------------------------------------------------------------
 	# 2.) Load and Keep/Subset target variables
 
-	message("Loading lists: \n");
+	message("\n***************************************************************");
+	message("*** 2/6 Loading lists.                                      ***");
+	message("***************************************************************\n");
+
 	message("\t", covariates[["fn"]], " (Covariates)\n", sep="");
 	message("\t", grpvar[["fn"]], " (Group)\n", sep="");
 	message("\t", reqvar[["fn"]], " (Required)\n", sep="");
@@ -1032,9 +967,12 @@ load_and_reconcile_files=function(
 				covariates_arr, groupvar_arr, requiredvar_arr, 
 				colnames(factors_mat));
 
+			subset_col_arr=c(factors[["sbj_cname"]], factors[["smp_cname"]],
+					covariates_arr, groupvar_arr);
+
 			cat("Subsetting requested variables from factors.\n");
 			factors_subset_mat=
-				factors_mat[, c(covariates_arr, groupvar_arr), drop=F];
+				factors_mat[, subset_col_arr, drop=F];
 		}
 
 		factor_subset_dim=dim(factors_subset_mat);
@@ -1046,14 +984,18 @@ load_and_reconcile_files=function(
 	#-----------------------------------------------------------------------------
 	# 3.) Reconcile
 
-	message("Performing Pre-NA Removal Reconcile.\n");
+	message("\n***************************************************************");
+	message("*** 3/6 Performing Pre-NA Removal Reconcile.                ***");
+	message("***************************************************************\n");
 	report_list[["Pre-NA Removal Reconcile"]]=capture.output({
 
 		reconciled_files=reconcile(param=list(
 			summary_table_mat=summary_table_mat, 
 			factor_mat=factors_subset_mat, 
 			pairs_mat=pairs_mat, 
-			sbj_smp_mat=sbj_smp_mat
+			sbj_smp_mat=sbj_smp_mat,
+			factor_sbj_cname=factors[["sbj_cname"]],
+			factor_smp_cname=factors[["smp_cname"]]
 			));
 
 		recon_factors=reconciled_files[["factor_mat"]];
@@ -1062,6 +1004,10 @@ load_and_reconcile_files=function(
 
 	#-----------------------------------------------------------------------------
 	# 4.) Remove NAs (remove subjects with NAs)
+
+	message("\n***************************************************************");
+	message("*** 4/6 Remove NAs from Factors (if necessary).            ***");
+	message("***************************************************************\n");
 
 	if(factors[["fn"]]!=""){
 		message("Performing NA Removal.\n");
@@ -1100,6 +1046,9 @@ load_and_reconcile_files=function(
 	#-----------------------------------------------------------------------------
 	# 5.) Reconcile
 	
+	message("\n***************************************************************");
+	message("*** 5/6 Reconciling after Factor NA remove (if necessary).  ***");
+	message("***************************************************************\n");
 	if(factors[["fn"]]!=""){
 		message("Performing Post-NA Removal Reconcile.\n");
 		report_list[["Post-NA Removal Reconcile"]]=capture.output({
@@ -1116,6 +1065,10 @@ load_and_reconcile_files=function(
 
 	#-----------------------------------------------------------------------------
 	# 6.) Apply Summary Table Parameters
+
+	message("\n***************************************************************");
+	message("*** 6/6 Apply Summary Table Parameters.                     ***");
+	message("***************************************************************\n");
 
 	message("Applying Summary Table Parameters.\n");
 	report_list[["Summary Table Options"]]=capture.output({

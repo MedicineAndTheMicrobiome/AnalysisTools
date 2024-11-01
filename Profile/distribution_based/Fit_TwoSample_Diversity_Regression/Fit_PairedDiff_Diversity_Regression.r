@@ -17,6 +17,7 @@ params=c(
 
 	"factors", "f", 1, "character",
 	"factor_samp_id_name", "F", 1, "character",
+	"factor_subj_id_name", "S", 1, "character",
 	"model_var", "M", 1, "character",
 	"required", "q", 2, "character",
 
@@ -42,7 +43,8 @@ usage = paste(
 	"	-s <summary file table>\n",
 	"\n",
 	"	-f <factors file, contains covariates and factors>\n",
-	"	-F <column name of sample ids in factor file>\n",
+	"	  -F <column name of sample ids in factor file>\n",
+	"	  -S <column name of subject ids in factor file>\n",
 	"	-M <list of covariate X's names to include in the model from the factor file>\n",
 	"	[-q <required list of variables to include after NA removal>]\n",
 	"\n",
@@ -98,7 +100,13 @@ if(length(opt$required)){
 if(length(opt$factor_samp_id_name)){
 	FactorSampleIDName=opt$factor_samp_id_name;
 }else{
-	FactorSampleIDName=1;
+	FactorSampleIDName="";
+}
+
+if(length(opt$factor_subj_id_name)){
+	FactorSubjectIDName=opt$factor_subj_id_name;
+}else{
+	FactorSubjectIDName="";
 }
 
 if(length(opt$tag_name)){
@@ -135,7 +143,8 @@ OutputRoot=paste(OutputRoot, ".a_", A_subtrahend, ".b_", B_minuend, sep="");
 cat("\n");
 cat("         Summary File: ", SummaryFile, "\n", sep="");
 cat("         Factors File: ", FactorsFile, "\n", sep="");
-cat("Factor Sample ID Name: ", FactorSampleIDName, "\n", sep="");
+cat("           Sample ID Name: ", FactorSampleIDName, "\n", sep="");
+cat("           Subject ID Name: ", FactorSubjectIDName, "\n", sep="");
 cat(" Model Variables File: ", ModelVarFile, "\n", sep="");
 cat("        Pairings File: ", PairingsFile, "\n", sep="");
 cat("            A Minuend: ", A_subtrahend, "\n", sep="");
@@ -528,7 +537,8 @@ pdf(paste(OutputRoot, ".paird_diff_div.pdf", sep=""), height=11, width=9.5);
 input_files=load_and_reconcile_files(
                 sumtab=list(fn=SummaryFile, shorten_cat_names_char=NULL,
                         return_top=NULL, specific_cat_fn=NULL),
-                factors=list(fn=FactorsFile),
+		factors=list(fn=FactorsFile, sbj_cname=FactorSubjectIDName,
+                        smp_cname=FactorSampleIDName),
                 pairs=list(fn=PairingsFile, a_cname=A_subtrahend, b_cname=B_minuend),
                 covariates=list(fn=ModelVarFile),
                 grpvar=list(fn=""),
@@ -541,6 +551,10 @@ factors=input_files[["Factors"]];
 good_pairs_map=input_files[["PairsMap"]];
 model_var_arr=input_files[["Covariates"]];
 required_arr=input_files[["RequiredVariables"]];
+
+# Make the primary key for the factor mat the Sample ID for A
+rownames(factors)=factors[,FactorSampleIDName];
+factors=factors[good_pairs_map[,A_subtrahend],,drop=F];
 
 write_file_report(input_files[["Report"]]);
 

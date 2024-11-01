@@ -5,13 +5,13 @@
 use strict;
 use Getopt::Std;
 use File::Temp;
-use vars qw ($opt_s $opt_f $opt_F $opt_r $opt_c $opt_g $opt_p $opt_A $opt_B $opt_P $opt_o $opt_E $opt_t);
+use vars qw ($opt_s $opt_f $opt_F $opt_S $opt_r $opt_c $opt_g $opt_p $opt_A $opt_B $opt_P $opt_o $opt_E $opt_t);
 use File::Basename;
 use Cwd;
 use Digest::MD5;
 use Sys::Hostname;
 
-getopts("s:f:F:r:c:g:p:A:B:P:o:Ec:t:");
+getopts("s:f:F:S:r:c:g:p:A:B:P:o:Ec:t:");
 
 my $NUM_ALR_VARIABLES=15;
 
@@ -25,6 +25,7 @@ my $usage = "
 	Factor File:
 	-f <factor file>
 	-F <column name of sample ids>
+	[-S <column name of subject ids>]
 
 	-r <reference level filename>
 
@@ -83,6 +84,7 @@ if(
 my $SummaryTable=$opt_s;
 my $FactorFile=$opt_f;
 my $SampID_Colname=$opt_F;
+my $SubjID_Colname=$opt_S;
 my $ReferenceLevelsFilename=$opt_r;
 my $PairingMap=$opt_p;
 my $Aname=$opt_A;
@@ -94,6 +96,10 @@ my $TagName=$opt_t;
 
 my $Covariates=$opt_c;
 my $GroupVar=$opt_g;
+
+if(!defined($SubjID_Colname)){
+	$SubjID_Colname="";
+}
 
 if(!defined($Covariates)){
 	$Covariates="";
@@ -144,16 +150,18 @@ print STDERR "\n";
 print STDERR "Summary Table:        $SummaryTable\n";
 print STDERR "\n";
 print STDERR "Factor File:          $FactorFile\n";
-print STDERR "Sample ID Colname:    $SampID_Colname\n";
+print STDERR " Sample ID Colname:   $SampID_Colname\n";
+print STDERR " Subject ID Colname:  $SubjID_Colname\n";
 print STDERR "\n";
 print STDERR "Covariates List:      $Covariates\n";
 print STDERR "Group Variables List: $GroupVar\n";
+print STDERR "\n";
 print STDERR "Analysis Name:        $AnalysisName\n";
 print STDERR "Tag Name:             $TagName\n";
 print STDERR "\n";
 print STDERR "Pairings Map:         $PairingMap\n";
-print STDERR "A Name:               $Aname\n";
-print STDERR "B Name:               $Bname\n";
+print STDERR " A Name:              $Aname\n";
+print STDERR " B Name:              $Bname\n";
 print STDERR "\n";
 print STDERR "Output Directory:     $OutputDir\n";
 print STDERR "\n";
@@ -254,6 +262,7 @@ sub run_abundance_based{
 	my $summary_table=shift;
 	my $factor_file=shift;
 	my $samp_id_colname=shift;
+	my $subj_id_colname=shift;
 	my $reference_level_file=shift;
 	my $covariates=shift;
 	my $variable_list=shift;
@@ -270,6 +279,7 @@ sub run_abundance_based{
 	print STDERR "  Summary Table 1: $summary_table\n";
 	print STDERR "  Factor File: $factor_file\n";
 	print STDERR "  Sample ID Column Name (in factor file): $samp_id_colname\n";
+	print STDERR "  Subject ID Column Name (in factor file): $subj_id_colname\n";
 	print STDERR "  Covariates File: $covariates\n";
 	print STDERR "  Grouped Variable Fle: $variable_list\n";
 	print STDERR "  Model Name: $model_name\n";
@@ -314,6 +324,7 @@ sub run_abundance_based{
 		-p $pair_map \
 		-f $factor_file \
 		-F $samp_id_colname \
+		-S $subj_id_colname \
 		-M $output_dir/cov_var \
 		-e $A_colname \
 		-g $B_colname \
@@ -334,6 +345,7 @@ sub run_abundance_based{
 		-p $pair_map \
 		-f $factor_file \
 		-F $samp_id_colname \
+		-S $subj_id_colname \
 		-M $output_dir/cov_var \
 		-e $B_colname \
 		-g $A_colname \
@@ -384,6 +396,7 @@ sub run_abundance_based{
 		-p $pair_map \
 		-f $factor_file \
 		-F $samp_id_colname \
+		-S $subj_id_colname \
 		-M $output_dir/cov_var \
 		-B $B_colname \
 		-A $A_colname \
@@ -407,6 +420,7 @@ sub run_distribution_based{
 	my $summary_table=shift;
 	my $factor_file=shift;
 	my $samp_id_colname=shift;
+	my $subj_id_colname=shift;
 	my $reference_level_file=shift;
 	my $covariates=shift;
 	my $variable_list=shift;
@@ -421,6 +435,8 @@ sub run_distribution_based{
 	print STDERR "  Output Dir: $output_dir\n";
 	print STDERR "  Summary Table 1: $summary_table\n";
 	print STDERR "  Factor File: $factor_file\n";
+	print STDERR "   Sample ID Colname: $samp_id_colname\n";
+	print STDERR "   Subject ID Colname: $subj_id_colname\n";
 	print STDERR "  Covariates File: $covariates\n";
 	print STDERR "  Grouped Variable Fle: $variable_list\n";
 	print STDERR "  Model Name: $model_name\n";
@@ -465,6 +481,7 @@ sub run_distribution_based{
 		-p $pair_map \
 		-f $factor_file \
 		-F $samp_id_colname \
+		-S $subj_id_colname \
 		-M $output_dir/cov_var \
 		-B $B_colname \
 		-A $A_colname \
@@ -558,6 +575,7 @@ sub run_distance_based{
 	my $summary_table=shift;
 	my $factor_file=shift;
 	my $samp_id_colname=shift;
+	my $subj_id_colname=shift;
 	my $reference_level_file=shift;
 	my $covariates=shift;
 	my $variable_list=shift;
@@ -572,6 +590,8 @@ sub run_distance_based{
 	print STDERR "  Output Dir: $output_dir\n";
 	print STDERR "  Summary Table 1: $summary_table\n";
 	print STDERR "  Factor File: $factor_file\n";
+	print STDERR "    Samp ID Colname: $samp_id_colname\n";
+	print STDERR "    Subj ID Colname: $subj_id_colname\n";
 	print STDERR "  Covariates File: $covariates\n";
 	print STDERR "  Grouped Variable Fle: $variable_list\n";
 	print STDERR "  Model Name: $model_name\n";
@@ -617,6 +637,7 @@ sub run_distance_based{
 		-p $pair_map \
 		-f $factor_file \
 		-F $samp_id_colname \
+		-S $subj_id_colname \
 		-M $output_dir/cov_var \
 		-B $B_colname \
 		-A $A_colname \
@@ -689,6 +710,7 @@ run_abundance_based(
 	$SummaryTable,
 	$FactorFile,
 	$SampID_Colname,
+	$SubjID_Colname,
 	$ReferenceLevelsFilename,
 	$Covariates,
 	$GroupVar,
@@ -705,6 +727,7 @@ run_distribution_based(
 	$SummaryTable,
 	$FactorFile,
 	$SampID_Colname,
+	$SubjID_Colname,
 	$ReferenceLevelsFilename,
 	$Covariates,
 	$GroupVar,
@@ -720,6 +743,7 @@ run_distance_based(
 	$SummaryTable,
 	$FactorFile,
 	$SampID_Colname,
+	$SubjID_Colname,
 	$ReferenceLevelsFilename,
 	$Covariates,
 	$GroupVar,
