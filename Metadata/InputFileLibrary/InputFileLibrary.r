@@ -970,7 +970,17 @@ load_and_reconcile_files=function(
 			subset_col_arr=c(factors[["sbj_cname"]], factors[["smp_cname"]],
 					covariates_arr, groupvar_arr);
 
+			subset_col_arr=setdiff(subset_col_arr, c("TRUE", ""));
+
 			cat("Subsetting requested variables from factors.\n");
+			message("Subsetting requested variables from factors.");
+
+			missing=setdiff(subset_col_arr, colnames(factors_mat));
+			if(length(missing)>0){
+				message("Missing variables from Factors:\n");
+				print_se(missing);
+			}
+
 			factors_subset_mat=
 				factors_mat[, subset_col_arr, drop=F];
 		}
