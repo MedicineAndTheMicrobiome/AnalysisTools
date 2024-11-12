@@ -967,22 +967,29 @@ load_and_reconcile_files=function(
 				covariates_arr, groupvar_arr, requiredvar_arr, 
 				colnames(factors_mat));
 
-			subset_col_arr=c(
-					factors[["sbj_cname"]], 
-					factors[["smp_cname"]],
-					covariates_arr, groupvar_arr);
+			subset_col_arr=c();
+			if(specified(factors[["sbj_cname"]])){
+				subset_col_arr=c(subset_col_arr, factors[["sbj_cname"]], NULL);
+			}
+
+			if(specified(factors[["smp_cname"]])){
+				subset_col_arr=c(subset_col_arr, factors[["smp_cname"]], NULL);
+			}
+
+			subset_col_arr=c(subset_col_arr, covariates_arr, groupvar_arr);
 
 			cat("Subsetting requested variables from factors.\n");
 			message("Subsetting requested variables from factors.");
 
 			missing=setdiff(subset_col_arr, colnames(factors_mat));
 			if(length(missing)>0){
-				message("Missing variables from Factors:\n");
+				message("Missing variables from Factors:");
 				print_se(missing);
 			}
 
 			factors_subset_mat=
 				factors_mat[, subset_col_arr, drop=F];
+
 		}
 
 		factor_subset_dim=dim(factors_subset_mat);
