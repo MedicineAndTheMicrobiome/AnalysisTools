@@ -967,10 +967,10 @@ load_and_reconcile_files=function(
 				covariates_arr, groupvar_arr, requiredvar_arr, 
 				colnames(factors_mat));
 
-			subset_col_arr=c(factors[["sbj_cname"]], factors[["smp_cname"]],
+			subset_col_arr=c(
+					factors[["sbj_cname"]], 
+					factors[["smp_cname"]],
 					covariates_arr, groupvar_arr);
-
-			subset_col_arr=setdiff(subset_col_arr, c("TRUE", ""));
 
 			cat("Subsetting requested variables from factors.\n");
 			message("Subsetting requested variables from factors.");
