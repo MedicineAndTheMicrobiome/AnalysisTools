@@ -71,7 +71,6 @@ my $usage = "
 if(
 	!defined($opt_s) || 
 	!defined($opt_f) || 
-	!defined($opt_F) || 
 	!defined($opt_p) || 
 	!defined($opt_A) || 
 	!defined($opt_B) || 
@@ -312,10 +311,25 @@ sub run_abundance_based{
 	my $sumtabs="-s $summary_table";
 
 	my $reflvl;
+	my $samp_id_opt;
+	my $subj_id_opt;
+
 	if($reference_level_file eq ""){
 		$reflvl="";
 	}else{
 		$reflvl="-c $reference_level_file";
+	}
+
+	if($samp_id_colname eq ""){
+		$samp_id_opt="";
+	}else{
+		$samp_id_opt="-F $samp_id_colname";
+	}
+
+	if($subj_id_colname eq ""){
+		$subj_id_opt="";
+	}else{
+		$subj_id_opt="-S $subj_id_colname";
 	}
 
 	$cmd=
@@ -323,8 +337,8 @@ sub run_abundance_based{
 		$sumtabs \
 		-p $pair_map \
 		-f $factor_file \
-		-F $samp_id_colname \
-		-S $subj_id_colname \
+		$samp_id_opt \
+		$subj_id_opt \
 		-M $output_dir/cov_var \
 		-e $A_colname \
 		-g $B_colname \
@@ -344,8 +358,8 @@ sub run_abundance_based{
 		$sumtabs \
 		-p $pair_map \
 		-f $factor_file \
-		-F $samp_id_colname \
-		-S $subj_id_colname \
+		$samp_id_opt \
+		$subj_id_opt \
 		-M $output_dir/cov_var \
 		-e $B_colname \
 		-g $A_colname \
@@ -395,8 +409,8 @@ sub run_abundance_based{
 		$sumtabs \
 		-p $pair_map \
 		-f $factor_file \
-		-F $samp_id_colname \
-		-S $subj_id_colname \
+		$samp_id_opt \
+		$subj_id_opt \
 		-M $output_dir/cov_var \
 		-B $B_colname \
 		-A $A_colname \
@@ -464,10 +478,25 @@ sub run_distribution_based{
 	my $sumtabs="-s $summary_table";
 
 	my $reflvl;
+	my $samp_id_opt;
+	my $subj_id_opt;
+
 	if($reference_level_file eq ""){
 		$reflvl="";
 	}else{
 		$reflvl="-c $reference_level_file";
+	}
+
+	if($samp_id_colname eq ""){
+		$samp_id_opt="";
+	}else{
+		$samp_id_opt="-F $samp_id_colname";
+	}
+
+	if($subj_id_colname eq ""){
+		$subj_id_opt="";
+	}else{
+		$subj_id_opt="-S $subj_id_colname";
 	}
 
 	my ($st_root_name)=File::Basename::fileparse($summary_table);
@@ -480,8 +509,8 @@ sub run_distribution_based{
 		$sumtabs \
 		-p $pair_map \
 		-f $factor_file \
-		-F $samp_id_colname \
-		-S $subj_id_colname \
+		$samp_id_opt \
+		$subj_id_opt \
 		-M $output_dir/cov_var \
 		-B $B_colname \
 		-A $A_colname \
@@ -620,10 +649,25 @@ sub run_distance_based{
 	my $sumtabs="-s $summary_table";
 
 	my $reflvl;
+	my $samp_id_opt;
+	my $subj_id_opt;
+
 	if($reference_level_file eq ""){
 		$reflvl="";
 	}else{
 		$reflvl="-c $reference_level_file";
+	}
+
+	if($samp_id_colname eq ""){
+		$samp_id_opt="";
+	}else{
+		$samp_id_opt="-F $samp_id_colname";
+	}
+
+	if($subj_id_colname eq ""){
+		$subj_id_opt="";
+	}else{
+		$subj_id_opt="-S $subj_id_colname";
 	}
 
 	my ($st_root_name)=File::Basename::fileparse($summary_table);
@@ -636,8 +680,8 @@ sub run_distance_based{
 		$sumtabs \
 		-p $pair_map \
 		-f $factor_file \
-		-F $samp_id_colname \
-		-S $subj_id_colname \
+		$samp_id_opt \
+		$subj_id_opt \
 		-M $output_dir/cov_var \
 		-B $B_colname \
 		-A $A_colname \
