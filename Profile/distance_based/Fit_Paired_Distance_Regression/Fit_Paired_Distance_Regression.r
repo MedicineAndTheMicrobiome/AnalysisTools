@@ -17,8 +17,8 @@ params=c(
 	"summary_file", "s", 1, "character",
 
 	"factors", "f", 1, "character",
-	"factor_samp_id_name", "F", 1, "character",
-	"factor_subj_id_name", "S", 1, "character",
+	"factor_samp_id_name", "F", 2, "character",
+	"factor_subj_id_name", "S", 2, "character",
 	"model_var", "M", 1, "character",
 	"required", "q", 2, "character",
 
@@ -76,8 +76,7 @@ if(
 	!length(opt$model_var) || 
 	!length(opt$A_subtrahend) || 
 	!length(opt$B_minuend) || 
-	!length(opt$pairings) ||
-	!length(opt$factor_samp_id_name)
+	!length(opt$pairings)
 ){
 	cat(usage);
 	q(status=-1);
@@ -117,12 +116,18 @@ if(length(opt$shorten_category_names)){
 
 if(length(opt$factor_samp_id_name)){
 	FactorSampleIDName=opt$factor_samp_id_name;
+	if(FactorSampleIDName==TRUE){
+		FactorSampleIDName="";
+	}
 }else{
 	FactorSampleIDName="";
 }
 
 if(length(opt$factor_subj_id_name)){
 	FactorSubjectIDName=opt$factor_subj_id_name;
+	if(FactorSubjectIDName==TRUE){
+		FactorSubjectIDName="";
+	}
 }else{
 	FactorSubjectIDName="";
 }
@@ -154,8 +159,6 @@ ModelVarFile=opt$model_var;
 PairingsFile=opt$pairings;
 A_subtrahend=opt$A_subtrahend;
 B_minuend=opt$B_minuend;
-
-FactorSampleIDName=opt$factor_samp_id_name;
 
 OutputRoot=paste(OutputRoot, ".a_", A_subtrahend, ".b_", B_minuend, sep="");
 
@@ -540,8 +543,14 @@ required_arr=input_files[["RequiredVariables"]];
 normalized=input_files[["SummaryTable_normalized"]];
 
 # Give the factor matrix a primary key.
-rownames(factors)=factors[,FactorSampleIDName];
-factors=factors[c(good_pairs_map[,1], good_pairs_map[,2]),];
+if(FactorSampleIDName!=""){
+	rownames(factors)=factors[,FactorSampleIDName];
+	factors=factors[good_pairs_map[,A_subtrahend],,];
+}
+
+if(FactorSubjectIDName!=""){
+	rownames(factors)=factors[,FactorSubjectIDName];
+}
 
 write_file_report(input_files[["Report"]]);
 
@@ -553,6 +562,7 @@ write_file_report(input_files[["Report"]]);
 A_sample_ids=good_pairs_map[,A_subtrahend];
 B_sample_ids=good_pairs_map[,B_minuend];
 AB_sample_ids=c(A_sample_ids, B_sample_ids);
+subject_ids=rownames(good_pairs_map);
 
 ##############################################################################
 # Compute diversity indices
@@ -721,7 +731,7 @@ text(mds[,1], mds[,2], glyphs, col=colors);
 
 #------------------------------------------------------------------------------
 
-plot_paired_mds_colored_by_group=function(a_ids, b_ids, mds_res, fact, labels){
+plot_paired_mds_colored_by_group=function(sbj_ids, a_ids, b_ids, mds_res, fact, labels){
 
 	#if(!all(names(a_ids)==rownames(fact))){
 	#	cat("Error!  Subject ID if A IDs don't match the Subject IDs of Factor Matrix.\n");
@@ -747,7 +757,7 @@ plot_paired_mds_colored_by_group=function(a_ids, b_ids, mds_res, fact, labels){
 	layout(layout_mat);
 
 	# Associate the factor information with the A IDs
-	fact=fact[a_ids,,drop=F];
+	fact=fact[sbj_ids,,drop=F];
 
 	num_factors=ncol(fact);
 	cat("Num of Factors: ", num_factors, "\n");
@@ -776,12 +786,12 @@ plot_paired_mds_colored_by_group=function(a_ids, b_ids, mds_res, fact, labels){
 				color_map=rainbow(num_levels, start=0, end=4/6);
 				names(color_map)=uniq_levels;
 
-				cat("Color Map:\n");
-				print(color_map);
+				#cat("Color Map:\n");
+				#print(color_map);
 
-				cat("Color Assignment:\n");
+				#cat("Color Assignment:\n");
 				colors_list=color_map[cur_fact];
-				print(colors_list);
+				#print(colors_list);
 
 				# Generate MDS plot
 				mds_x_range=range(mds_res[,1]);
@@ -826,7 +836,7 @@ plot_paired_mds_colored_by_group=function(a_ids, b_ids, mds_res, fact, labels){
 }
 
 
-plot_paired_mds_colored_by_group(A_sample_ids, B_sample_ids, mds, factors, glyphs);
+plot_paired_mds_colored_by_group(subject_ids, A_sample_ids, B_sample_ids, mds, factors, glyphs);
 
 #------------------------------------------------------------------------------
 
@@ -1481,12 +1491,12 @@ plot_dist_hist=function(a_dist_arr, b_dist_arr, a_name, b_name, acol, bcol){
 
 }
 
-regress_dispersion=function(Adist_arr, Bdist_arr, Aname, Bname, model_var, factors){
+regress_dispersion=function(sbj_ids, Adist_arr, Bdist_arr, Aname, Bname, model_var, factors){
 
-	print(Adist_arr);
-	print(Bdist_arr);
-	print(model_var);
-	print(factors);
+	#print(Adist_arr);
+	#print(Bdist_arr);
+	#print(model_var);
+	#print(factors);
 
 	A_samp_ids=names(Adist_arr);
 	B_samp_ids=names(Bdist_arr);
@@ -1499,12 +1509,11 @@ regress_dispersion=function(Adist_arr, Bdist_arr, Aname, Bname, model_var, facto
 	B_disp_model_string=paste("Bdist_arr ~ ", pred_string, sep="");
 
 
-
-	Adisp_fit=lm(as.formula(A_disp_model_string), data=factors[A_samp_ids,,drop=F]);
+	Adisp_fit=lm(as.formula(A_disp_model_string), data=factors[sbj_ids,,drop=F]);
 	print(Adisp_fit);
 	print(summary(Adisp_fit));
 
-	Bdisp_fit=lm(as.formula(B_disp_model_string), data=factors[B_samp_ids,,drop=F]);
+	Bdisp_fit=lm(as.formula(B_disp_model_string), data=factors[sbj_ids,,drop=F]);
 	print(Bdisp_fit);
 	print(summary(Bdisp_fit));
 
@@ -1528,12 +1537,12 @@ regress_dispersion=function(Adist_arr, Bdist_arr, Aname, Bname, model_var, facto
 
 }
 
-regress_diff_dispersion=function(Adist_arr, Bdist_arr, Aname, Bname, model_var, factors){
+regress_diff_dispersion=function(sbj_ids, Adist_arr, Bdist_arr, Aname, Bname, model_var, factors){
 
 	centr_diff=Bdist_arr-Adist_arr;
 	A_samp_ids=names(centr_diff);
 
-	factors_byA=factors[A_samp_ids,,drop=F];
+	factors_byA=factors[sbj_ids,,drop=F];
 	
 	num_model_var=length(model_var);
 	cat("RegressDifferenceDispersion: Number of Predictors: ", num_model_var, "\n");
@@ -1561,7 +1570,7 @@ regress_diff_dispersion=function(Adist_arr, Bdist_arr, Aname, Bname, model_var, 
 }
 
 
-bootstrap_regression_dispersion=function(dist_arr, name, model_var, factors, num_bs){
+bootstrap_regression_dispersion=function(sbj_ids, dist_arr, name, model_var, factors, num_bs){
 
 	bs_ix=1;
 	num_samp=length(dist_arr);
@@ -1686,13 +1695,13 @@ plot_dist_bars(B_dist_fr_centr, A_dist_fr_centr, good_pairs_map[,c(2,1)],
 plot_dist_hist(A_dist_fr_centr, B_dist_fr_centr, A_subtrahend, B_minuend, acol="blue", bcol="green");
 
 if(length(model_var_arr)){
-	regress_dispersion(A_dist_fr_centr, B_dist_fr_centr, A_subtrahend, B_minuend, 
+	regress_dispersion(subject_ids, A_dist_fr_centr, B_dist_fr_centr, A_subtrahend, B_minuend, 
 		model_var_arr, factors);
 
-	A_bs_reg_tab=bootstrap_regression_dispersion(A_dist_fr_centr, A_subtrahend, model_var_arr, 
-		factors, NUM_BS);
-	B_bs_reg_tab=bootstrap_regression_dispersion(B_dist_fr_centr, B_minuend, model_var_arr, 
-		factors, NUM_BS);
+	A_bs_reg_tab=bootstrap_regression_dispersion(subject_ids, A_dist_fr_centr, A_subtrahend, 
+		model_var_arr, factors, NUM_BS);
+	B_bs_reg_tab=bootstrap_regression_dispersion(subject_ids, B_dist_fr_centr, B_minuend, 
+		model_var_arr, factors, NUM_BS);
 
 	plot_text(c(
 		paste("Associations on Dispersion (Bootstrapped Regression, num bootstraps: ", 
@@ -1718,9 +1727,10 @@ if(length(model_var_arr)){
 	plot_grp_diff(A_dist_fr_centr, B_dist_fr_centr,
 		A_subtrahend, B_minuend, acol="blue", bcol="green");
 
-	regress_diff_dispersion(A_dist_fr_centr, B_dist_fr_centr, A_subtrahend, B_minuend, 
+	regress_diff_dispersion(subject_ids, A_dist_fr_centr, B_dist_fr_centr, A_subtrahend, B_minuend, 
 		model_var_arr, factors);
 	diff_bs_reg_tab=bootstrap_regression_dispersion(
+		subject_ids,
 		B_dist_fr_centr-A_dist_fr_centr, 
 		paste(B_minuend, "-", A_subtrahend), model_var_arr, factors, NUM_BS);
 

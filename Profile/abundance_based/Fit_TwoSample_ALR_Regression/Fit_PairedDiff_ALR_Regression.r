@@ -16,8 +16,8 @@ params=c(
 	"summary_file", "s", 1, "character",
 
 	"factors", "f", 1, "character",
-	"factor_samp_id_name", "F", 1, "character",
-	"factor_subj_id_name", "S", 1, "character",
+	"factor_samp_id_name", "F", 2, "character",
+	"factor_subj_id_name", "S", 2, "character",
 	"model_var", "M", 1, "character",
 	"required", "q", 2, "character",
 
@@ -128,12 +128,18 @@ if(length(opt$alr_list_file)){
 
 if(length(opt$factor_samp_id_name)){
 	FactorSampleIDName=opt$factor_samp_id_name;
+	if(FactorSampleIDName==TRUE){
+		FactorSampleIDName="";
+	}
 }else{
 	FactorSampleIDName="";
 }
 
 if(length(opt$factor_subj_id_name)){
 	FactorSubjectIDName=opt$factor_subj_id_name;
+	if(FactorSubjectIDName==TRUE){
+		FactorSubjectIDName="";
+	}
 }else{
 	FactorSubjectIDName="";
 }
@@ -613,9 +619,16 @@ good_pairs_map=input_files[["PairsMap"]];
 model_var_arr=input_files[["Covariates"]];
 required_arr=input_files[["RequiredVariables"]];
 
-# Make the primary key for the factor mat the Sample ID for A
-rownames(factors)=factors[,FactorSampleIDName];
-factors=factors[good_pairs_map[,A_subtrahend],,drop=F];
+
+if(FactorSampleIDName!=""){
+	rownames(factors)=factors[,FactorSampleIDName];
+	factors=factors[good_pairs_map[,A_subtrahend],];
+}
+
+if(FactorSubjectIDName!=""){
+	rownames(factors)=factors[,FactorSubjectIDName,];
+}
+
 
 write_file_report(input_files[["Report"]]);
 
@@ -649,6 +662,7 @@ plot_histograms(alr_categories_val);
 # Order the pairings map by response sample IDs
 A_sample_ids=good_pairs_map[,A_subtrahend];
 B_sample_ids=good_pairs_map[,B_minuend];
+subject_ids=rownames(good_pairs_map);
 
 # Extract the predictor ALR and factors values in the right order
 A_alr_values=alr_categories_val[A_sample_ids,,drop=F];
@@ -753,6 +767,8 @@ for(cat_ix in 1:num_used_alr_cat){
 	cat("Fitting: ", cat_ix, ".) ", cur_cat_name, "\n");
 
 	alr_dif=(B_alr_val-A_alr_val);
+	names(alr_dif)=subject_ids;
+
 	model_pred=cbind(factors, alr_dif);
 
 	if(length(model_var_arr)==0){
