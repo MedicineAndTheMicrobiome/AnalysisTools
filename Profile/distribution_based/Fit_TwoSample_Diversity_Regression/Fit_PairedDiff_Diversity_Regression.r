@@ -16,8 +16,8 @@ params=c(
 	"summary_file", "s", 1, "character",
 
 	"factors", "f", 1, "character",
-	"factor_samp_id_name", "F", 1, "character",
-	"factor_subj_id_name", "S", 1, "character",
+	"factor_samp_id_name", "F", 2, "character",
+	"factor_subj_id_name", "S", 2, "character",
 	"model_var", "M", 1, "character",
 	"required", "q", 2, "character",
 
@@ -71,8 +71,7 @@ if(
 	!length(opt$model_var) || 
 	!length(opt$A_subtrahend) || 
 	!length(opt$B_minuend) || 
-	!length(opt$pairings) ||
-	!length(opt$factor_samp_id_name)
+	!length(opt$pairings)
 ){
 	cat(usage);
 	q(status=-1);
@@ -553,8 +552,14 @@ model_var_arr=input_files[["Covariates"]];
 required_arr=input_files[["RequiredVariables"]];
 
 # Make the primary key for the factor mat the Sample ID for A
-rownames(factors)=factors[,FactorSampleIDName];
-factors=factors[good_pairs_map[,A_subtrahend],,drop=F];
+if(FactorSampleIDName!=""){
+	rownames(factors)=factors[,FactorSampleIDName];
+	factors=factors[good_pairs_map[,A_subtrahend],,drop=F];
+}
+
+if(FactorSubjectIDName!=""){
+	rownames(factors)=factors[,FactorSubjectIDName];
+}
 
 write_file_report(input_files[["Report"]]);
 
@@ -780,6 +785,12 @@ for(div_ix in 1:num_div_idx){
 	cat("Fitting: ", div_ix, ".) ", cur_div_name, "\n");
 
 	div_dif=(B_div-A_div);
+	rownames(div_dif)=rownames(good_pairs_map);
+
+	if(!all(rownames(factors) == rownames(div_dif))){
+		message("Error: Rownames of Factors and div_dif Matrix aren't the same.");
+		quit();
+	}
 
 	model_pred=cbind(factors, div_dif);
 
