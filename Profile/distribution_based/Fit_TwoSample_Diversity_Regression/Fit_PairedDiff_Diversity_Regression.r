@@ -673,8 +673,8 @@ plot_ab_comparisons=function(a, b, aname, bname, pval, title){
 	ahrec=hist(a, breaks=ab_hrec$breaks, plot=F);
 	bhrec=hist(b, breaks=ab_hrec$breaks, plot=F);
 	max_count=max(c(ahrec$counts, bhrec$counts));
-	ahrec=hist(a, breaks=ab_hrec$breaks, main=aname, ylim=c(0, max_count), xlab="ALR");
-	bhrec=hist(b, breaks=ab_hrec$breaks, main=bname, ylim=c(0, max_count), xlab="ALR");
+	ahrec=hist(a, breaks=ab_hrec$breaks, main=aname, ylim=c(0, max_count), xlab="diversity");
+	bhrec=hist(b, breaks=ab_hrec$breaks, main=bname, ylim=c(0, max_count), xlab="diversity");
 
 	# Plot difference
 	dif=b-a;
