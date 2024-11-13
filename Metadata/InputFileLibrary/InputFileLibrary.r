@@ -1173,7 +1173,9 @@ load_and_reconcile_files=function(
 	});
 
 	#-----------------------------------------------------------------------------
-	message("Returning Results.\n");
+	message("\n***************************************************************");
+	message("*** Completing Load and Reconciliation, Returning Results.  ***");
+	message("***************************************************************\n");
 	
 	results=list();
 	results[["SummaryTable_counts"]]=counts_mat;
