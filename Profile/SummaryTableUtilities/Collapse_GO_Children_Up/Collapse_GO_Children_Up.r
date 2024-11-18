@@ -55,7 +55,7 @@ options(width=200, useFancyQuotes=F);
 # Parameters
 
 SummaryTable=opt$summary_table;
-OBOTable=opt$ob_table;
+OBOTable=opt$obo_table;
 OutputFileRoot=opt$output_file_root
 
 cat("\n")
@@ -75,7 +75,7 @@ load_obo_map=function(obo_map_fn){
 
         start_time=Sys.time();
 
-        mat=read.table(InputOBOMap, quote="", comment.char="", sep="\t",
+        mat=read.table(obo_map_fn, quote="", comment.char="", sep="\t",
                 row.names=NULL, header=T);
 
         end_time=Sys.time();
@@ -92,36 +92,107 @@ load_obo_map=function(obo_map_fn){
 
 #------------------------------------------------------------------------------
 
-load_obo_to_tree=function(obo_tab){
+load_obo_to_trees=function(obo_tab){
 
-        cat("Loading OBO Table into Tree...\n");
+        cat("Loading OBO Table into (Parent-to-child) and (Child-to-Parent) Tree...\n");
         start_time=Sys.time();
 
         num_ids=nrow(obo_tab);
-        parent_to_child_tree=vector("list", length=num_ids);
-        names(parent_to_child_tree)=obo_tab[,"id"];
 
+	# Initialize a empty list with obo_tab IDs and ""
+        empty_tree=vector("list", length=num_ids);
+	empty_tree[1:num_ids]="";
+	names(empty_tree)=obo_tab[,"id"];
+
+	parent_to_child_tree=empty_tree;
+	child_to_parent_tree=empty_tree;
+
+	# Split all the is_a (parent) strings ahead of time for efficiency
         parent_presplit=strsplit(obo_tab[,"is_a"], ";");
-
+	
         for(i in 1:num_ids){
                 child_id=obo_tab[i,"id"];
                 parent_ids=parent_presplit[[i]];
+
+		# Populate parent_to_child Tree
                 for(pid in parent_ids){
-                        parent_to_child_tree[[pid]]=c(
-                                parent_to_child_tree[[pid]],
-                                child_id);
+
+			if(all(parent_to_child_tree[[pid]]=="")){
+				parent_to_child_tree[[pid]]=child_id;
+			}else{
+				parent_to_child_tree[[pid]]=c(
+					parent_to_child_tree[[pid]],
+					child_id);
+			}
+
                 }
+
+		# Populate child_to_parent Tree
+		child_to_parent_tree[[child_id]]=parent_ids;
+
         }
 
+	# End and compile timing
         end_time=Sys.time();
         cat("ok.\n");
         exec_time=end_time-start_time;
         cat("Time: ", exec_time, " secs\n", sep="")
-        return(parent_to_child_tree);
+
+	# Return obo_trees
+	obo_trs=list();
+	obo_trs[["p_to_c"]]=parent_to_child_tree;
+	obo_trs[["c_to_p"]]=child_to_parent_tree;;
+
+	#print(result);
+        return(obo_trs);
 
 }
 
 #------------------------------------------------------------------------------
+
+find_leaf_children=function(obo_trs){
+	# Make a list of all the leaf nodes
+	leaf_nodes_ix=unlist(lapply(obo_tree, function(x){x=="";}));
+	leaf_names=names(obo_tree[leaf_nodes_ix]);
+	return(leaf_names);	
+}
+
+#------------------------------------------------------------------------------
+
+collapse_leaves=function(obo_trs, tgts){
+	
+	# For each target leaf, find it's parents, and remove itself. 
+
+	p_to_c_tree=obo_trs[["p_to_c"]];
+	c_to_p_tree=obo_trs[["c_to_p"]];
+
+	for(tgt in tgts){
+
+		cat("Removing: ", tgt, "\n", sep="");
+
+		# Remove child from parent (p_to_c)
+		parents_of_target=c_to_p_tree[[tgt]];
+		for(prnt in parents_of_target){
+			p2c_node=p_to_c_tree[[prnt]];
+			p2c_node=setdiff(p2c_node, tgt);
+			p_to_c_tree[[prnt]]=p2c_node;
+			if(length(p_to_c_tree[[prnt]])==0){
+				p_to_c_tree[[prnt]]="";
+			}
+		}
+		p_to_c_tree[[tgt]]=NULL;
+
+		# Remove child
+		c_to_p_tree[[tgt]]=NULL;
+	}
+
+	p_to_c_tree=obo_trs[["p_to_c"]]=p_to_c_tree;
+	c_to_p_tree=obo_trs[["c_to_p"]]=c_to_p_tree;
+	return(obo_trs);
+}
+
+###############################################################################
+###############################################################################
 
 calc_zero_stats=function(cts_mat, nrm_mat){
 
@@ -145,6 +216,8 @@ calc_zero_stats=function(cts_mat, nrm_mat){
 
 	return(zstats);
 }
+
+#------------------------------------------------------------------------------
 
 estimate_TruePosNegs=function(zstats, nrm_mat, smp_dpt, false_neg_cutoff=.95, min_true_posneg_cutoff=.95){ 
 	num_cat=nrow(zstats);
@@ -201,6 +274,8 @@ estimate_TruePosNegs=function(zstats, nrm_mat, smp_dpt, false_neg_cutoff=.95, mi
 
 }
 
+#------------------------------------------------------------------------------
+
 plot_zero_stats=function(zstats, tp_mat=NULL, cutoff=NULL){
 
 	par(mfrow=c(1,1));
@@ -210,7 +285,9 @@ plot_zero_stats=function(zstats, tp_mat=NULL, cutoff=NULL){
 		cols=rep("black", num_cat);
 	}else{
 		cols=rep("grey", num_cat);
-		cols[tp_mat[,"PropTrue"]>=cutoff]="blue";
+		excd_cut_ix=tp_mat[,"PropTrue"]>=cutoff;
+		cols[excd_cut_ix]="blue";
+		num_excd_cut=sum(excd_cut_ix);
 	}
 
 	plot(log10(zstats[,"NonZeroMean"]), log10(zstats[,"NumZeros"]),
@@ -219,16 +296,32 @@ plot_zero_stats=function(zstats, tp_mat=NULL, cutoff=NULL){
 		xlab="log10(Mean Abd of NonZeros)", ylab="log10(Number of Zeros)");
 
 	if(!is.null(cutoff)){
-		title(main=paste("Min 'True' Cutoff = ", cutoff), cex.main=.9, col.main="blue", line=.5);
+		title(main=paste("Min 'True' Cutoff = ", cutoff, ", Num = ", num_excd_cut), 
+			cex.main=.9, col.main="blue", line=.5);
 	}
 }
 
-find_leaves=function(st, cutoff, child_to_parent){
+#------------------------------------------------------------------------------
 
+extract_lowPropTrue=function(tp_mat, cutoff){
+	keep_ix=(tp_mat[,"PropTrue"]>=cutoff);
+	out_tp=tp_mat[keep_ix,"PropTrue",drop=F];
+	return(out_tp);
 }
 
 ###############################################################################
+###############################################################################
+
+collapse_counts=function(cts_mat, child_to_parent_map, targets){
+
+}
+
+
+
+###############################################################################
 # Load files
+
+if(0){
 
 counts_mat=load_summary_file(SummaryTable);
 
@@ -274,64 +367,78 @@ plot_zero_stats(zero_stats_mat, true_pos_mat, cutoff=.75);
 plot_zero_stats(zero_stats_mat, true_pos_mat, cutoff=.90);
 plot_zero_stats(zero_stats_mat, true_pos_mat, cutoff=.95);
 
-quit();
+tp_above_co=extract_lowPropTrue(true_pos_mat, cutoff);
 
-
-
-###############################################################################
-
-###############################################################################
-
-par(mfrow=c(3,1));
-hist(num_zeros, main="0's in Categories", xlab="Number of Zeros");
-hist(num_zeros/num_sumtab_samp, main="0's in Categories", xlab="Proportion of Zeros");
-hist(log10(num_zeros), main="0's in Categories", xlab="Log10(Num Zeros)");
-
-###############################################################################
+print(tp_above_co);
 
 quit();
-
-
-###############################################################################
-# Remove zero count categories
-
-orig_counts=apply(counts_mat, 1, sum);
-out_counts=apply(out_count_mat, 1, sum);
-
-abs_diff=abs(orig_counts-out_counts);
-max_abs_diff=max(abs_diff);
-cat("Max differences between original and remapped: ", max_abs_diff, "\n");
-non_fract_diff=(abs_diff>1);
-
-if(any(non_fract_diff)){
-	cat("WARNING:  non-fractional differences between original and remapped totals.\n");
-	#print(abs_diff[non_fract_diff]);
 }
 
 ###############################################################################
 
-# Export summary table with IDs
-outfn=paste(OutputFileRoot, ".ids.summary_table.tsv", sep="");
-write_summary_file(out_count_mat, outfn)
-#print(out_count_mat);
+obo_map=load_obo_map(OBOTable);
+trees=load_obo_to_trees(obo_map);
 
-#-----------------------------------------------------------------------------
+if(0){
+	cat("\nOBO Map:\n");
+	print(obo_map);
 
-# Export summary table with names
-outfn=paste(OutputFileRoot, ".names.summary_table.tsv", sep="");
-colnames(out_count_mat)=name_map[colnames(out_count_mat)];
-write_summary_file(out_count_mat, outfn)
-#print(out_count_mat);
+	cat("\nOBO Parent-to-Child Tree:\n");
+	print(trees[["p_to_c"]]);
 
-#-----------------------------------------------------------------------------
+	cat("\nOBO Child-to_Parent Tree:\n");
+	print(trees[["c_to_p"]]);
 
-# Export summary stats
-outfn=paste(OutputFileRoot, ".stats.tsv", sep="");
-write.table(stat_mat, outfn, row.names=F, quote=F, sep="\t");
+	cat("\n");
+	#trees=collapse_leaves(trees, c("GO:N_2","GO:N_3","GO:N_4"));
+	#trees=collapse_leaves(trees, c("GO:N_6"));
+	#trees=collapse_leaves(trees, c("GO:N_14"));
+	#print(trees);
+}
 
-# Export what is in remaining
-outfn=paste(OutputFileRoot, ".remaining_ids.tsv", sep="");
-write.table(remaining_ids, outfn, row.names=F, col.names=F, quote=F);
+quit();
+
+###############################################################################
+#
+# 1.) Pull cat that can be collapsed
+# 2.) Pull leaves from tree
+# 3.) Intersect cat and leaves
+# 4.) Merge leave with parent(s)
+# 5.) Repeat until cat/leave intersect is empty
+
+orig_counts_mat=counts_mat;
+orig_norm_mat=norm_mat;
+orig_zero_stats_mat=zero_stats_mat;
+orig_true_pos_mat=true_pos_mat;
+
+stop_collapsing=F;
+while(!stop_collapsing){
+
+	leaf_children_arr=find_leaf_children(obo_tree);
+
+	low_prop_cat_mat=extract_lowPropTrue(true_pos_mat, TP_Cutoff);
+	low_prop_cat=rownames(low_prop_cat_mat);
+
+	collapse_targets=intersect(low_prop_cat, leaf_children_arr);
+	num_collapse_targets=length(collapse_targets);
+
+	if(num_collapse_targets>0){
+
+		# Collapse OBO and Counts
+		collapse_list=get_target_parents(obo_parent_lookup, collapse_targets);
+		obo_tree=collapse_leaves(obo_parent_lookup, collapse_list);
+		counts_mat=collapse_counts(counts_mat, obo_parent_lookup, collapse_list);
+		norm_mat=normalize(counts_mat);
+
+		# Refresh true_pos_mat
+		zero_stats_mat=calc_zero_stats(counts_mat, norm_mat);
+		true_pos_mat=estimate_TruePosNegs(zero_stats_mat, norm_mat, samp_depths);
+
+	}else{
+		stop_collapsing=T;
+	}
+
+}
 
 ###############################################################################
 
