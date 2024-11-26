@@ -87,39 +87,46 @@ find_minimal_unique_name=function(name_arr){
 	
 	cat("In:\n");
 	print(name_arr);
-	toks=strsplit(name_arr, "[/\\.]");
 
-	# Begining
-	trim=T;
-	while(trim){
-		first=sapply(toks, function(x){x[1]});
-		uniqs=unique(first);
-		num_uniq=length(uniqs);
-		if(num_uniq==1){
-			toks=lapply(toks, function(x){x=x[2:length(x)]});
-			trim=T;
-		}else{
-			trim=F;
+	if(length(name_arr)>1){
+
+		toks=strsplit(name_arr, "[/\\.]");
+
+		# Begining
+		trim=T;
+		while(trim){
+			first=sapply(toks, function(x){x[1]});
+			uniqs=unique(first);
+			num_uniq=length(uniqs);
+			if(num_uniq==1){
+				toks=lapply(toks, function(x){x=x[2:length(x)]});
+				trim=T;
+			}else{
+				trim=F;
+			}
+			#print(toks);
 		}
-		#print(toks);
-	}
 
-	# Ending 
-	trim=T;
-	while(trim){
-		last=sapply(toks, function(x){tail(x,1)});
-		uniqs=unique(last);
-		num_uniq=length(uniqs);
-		if(num_uniq==1){
-			toks=lapply(toks, function(x){x=x[1:(length(x)-1)]});
-			trim=T;
-		}else{
-			trim=F;
+		# Ending 
+		trim=T;
+		while(trim){
+			last=sapply(toks, function(x){tail(x,1)});
+			uniqs=unique(last);
+			num_uniq=length(uniqs);
+			if(num_uniq==1){
+				toks=lapply(toks, function(x){x=x[1:(length(x)-1)]});
+				trim=T;
+			}else{
+				trim=F;
+			}
+			#print(toks);
 		}
-		#print(toks);
-	}
 
-	reconstr_names=unlist(sapply(toks, function(x){paste(x, collapse=".");}));
+		reconstr_names=unlist(sapply(toks, function(x){paste(x, collapse=".");}));
+
+	}else{
+		reconstr_names=name_arr;
+	}
 
 	cat("Out:\n");
 	print(reconstr_names);
@@ -189,6 +196,7 @@ set_zeros_globalmin=function(norm_mat){
 	zsub_mat=matrix(norm_vect, ncol=num_col);
 	colnames(zsub_mat)=colnames(norm_mat);
 	rownames(zsub_mat)=rownames(norm_mat);
+
 	return(zsub_mat);
 }
 
@@ -211,6 +219,18 @@ set_zeros_catmin=function(norm_mat){
 set_zeros_catdev=function(norm_mat, dev_sep=7){
 	num_col=ncol(norm_mat);
 
+	log_sd=apply(norm_mat, 2, function(x){
+			nz_ix=(x!=0)
+			sd(log(x[nz_ix]));
+		});
+
+	mean_log_sd=mean(log_sd, na.rm=T);
+	min_log_sd=min(log_sd, na.rm=T);
+	max_log_sd=max(log_sd, na.rm=T);
+	cat("Global Mean Log(sd): ", mean_log_sd, "\n");
+	cat("Global Min Log(sd): ", min_log_sd, "\n");
+	cat("Global Max Log(sd): ", max_log_sd, "\n");
+
 	for(i in 1:num_col){
 		norm_vect=norm_mat[,i];
 		z_ix=(norm_vect==0);
@@ -219,6 +239,10 @@ set_zeros_catdev=function(norm_mat, dev_sep=7){
 		log_nz=log(norm_vect[nz_ix]);
 		log_nz_mean=mean(log_nz);
 		log_nz_sd=sd(log_nz);
+
+		if(is.na(log_nz_sd)){
+			log_nz_sd=mean_log_sd;
+		}
 
 		zero_sub=exp(log_nz_mean-dev_sep*log_nz_sd);
 		norm_vect[z_ix]=zero_sub;
@@ -234,6 +258,7 @@ lograt_trans=function(norm_mat){
 	num_col=ncol(norm_mat);
 	remaining_ix=(cat_names=="Remaining");
 	remaining_found=any(remaining_ix);
+
 
 	if(remaining_found){
 		# Do ALR, with Remaining as denominator
@@ -261,6 +286,7 @@ lograt_trans=function(norm_mat){
 	}	
 
 	lr_mat=log(ratio_mat);
+
 	return(lr_mat);
 
 }
