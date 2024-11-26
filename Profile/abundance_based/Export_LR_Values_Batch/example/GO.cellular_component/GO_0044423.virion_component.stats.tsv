@@ -1,0 +1,16 @@
+Category	Med_Abund	Description
+Remaining	0.9998	Remaining
+GO:0044423	0.0001	virion_component
+GO:0098024	0.0000	virus_tail__fiber
+GO:0019028	0.0000	viral_capsid
+GO:0098027	0.0000	virus_tail__sheath
+GO:0019013	0.0000	viral_nucleocapsid
+GO:0019033	0.0000	viral_tegument
+GO:0036338	0.0000	viral_membrane
+GO:0046727	0.0000	capsomere
+GO:0046729	0.0000	viral_procapsid
+GO:0055036	0.0000	virion_membrane
+GO:0098015	0.0000	virus_tail
+GO:0098021	0.0000	viral_capsid__decoration
+GO:0098025	0.0000	virus_tail__baseplate
+GO:0098026	0.0000	virus_tail__tube
