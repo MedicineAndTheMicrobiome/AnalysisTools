@@ -102,10 +102,10 @@ paint_matrix=function(mat, title="", subtitle="", plot_min=NA, plot_max=NA, log_
 
 	# If range is not specified, find it based on the data
         if(is.na(plot_min)){
-                plot_min=min(mat);
+                plot_min=min(mat, na.rm=T);
         }
         if(is.na(plot_max)){
-                plot_max=max(mat);
+                plot_max=max(mat, na.rm=T);
         }
         cat("Plot min/max: ", plot_min, "/", plot_max, "\n");
 
@@ -214,9 +214,14 @@ paint_matrix=function(mat, title="", subtitle="", plot_min=NA, plot_max=NA, log_
 	mtext(title, side=3, line=1, outer=T, cex=1.5, font=2);
 	mtext(subtitle, side=3, line=-.5, outer=T, cex=.8, font=3);
 
+	axis_row_cex=min(1, 100/num_row);
+	axis_col_cex=min(1, 100/num_col);
+
         # x-axis
-        axis(side=1, at=seq(.5, num_col-.5, 1), labels=colnames(mat), las=2, line=-1.75);
-        axis(side=4, at=seq(.5, num_row-.5, 1), labels=rownames(mat), las=2, line=-1.75);
+        axis(side=1, at=seq(.5, num_col-.5, 1), labels=colnames(mat), las=2, 
+		cex.axis=axis_col_cex, line=-1.75);
+        axis(side=4, at=seq(.5, num_row-.5, 1), labels=rownames(mat), las=2, 
+		cex.axis=axis_row_cex, line=-1.75);
 
         if(log_col){
                 plot_min=log10(plot_min+.0125);
@@ -237,7 +242,7 @@ paint_matrix=function(mat, title="", subtitle="", plot_min=NA, plot_max=NA, log_
 
                         rect(x-1, y-1, (x-1)+1, (y-1)+1, border=NA, col=color_arr[col_ix]);
 
-                        if(mat[y,x]!=0 || label_zeros){
+                        if(is.na(mat[y,x]) || mat[y,x]!=0 || label_zeros){
                                 if(counts){
                                         text_lab=sprintf("%i", mat[y,x]);
                                 }else{
