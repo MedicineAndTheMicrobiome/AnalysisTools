@@ -214,8 +214,8 @@ paint_matrix=function(mat, title="", subtitle="", plot_min=NA, plot_max=NA, log_
 	mtext(title, side=3, line=1, outer=T, cex=1.5, font=2);
 	mtext(subtitle, side=3, line=-.5, outer=T, cex=.8, font=3);
 
-	axis_row_cex=min(1, 100/num_row);
-	axis_col_cex=min(1, 100/num_col);
+	axis_row_cex=min(1, 80/num_row);
+	axis_col_cex=min(1, 80/num_col);
 
         # x-axis
         axis(side=1, at=seq(.5, num_col-.5, 1), labels=colnames(mat), las=2, 
