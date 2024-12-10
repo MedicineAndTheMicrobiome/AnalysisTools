@@ -264,7 +264,11 @@ extract_top_categories=function(ordered_normalized, top, additional_cat=c()){
         cat("Columns to Extract: ", num_top_to_extract, "\n");
 
         # Extract top categories requested
-        top_cat=ordered_normalized[,1:num_top_to_extract];
+	if(top>0){
+		top_cat=ordered_normalized[,1:num_top_to_extract, drop=F];
+	}else{
+		top_cat=ordered_normalized[,NULL, drop=F];
+	}
 
         if(length(additional_cat)){
                 cat("Additional Categories to Include:\n");
@@ -276,10 +280,12 @@ extract_top_categories=function(ordered_normalized, top, additional_cat=c()){
         # Extract additional categories
         # :: Make sure we can find the categories
         available_cat=colnames(ordered_normalized);
+
         missing_cat=setdiff(additional_cat, available_cat);
         if(length(missing_cat)){
                 cat("Error: Could not find categories: \n");
                 print(missing_cat);
+
                 quit(status=-1);
         }
 
@@ -971,7 +977,7 @@ if(run_glm){
 		glm_full_sumfit=summary(glm_full_fit);
 
 		#print(glm_full_fit);
-		#print(glm_full_sumfit);
+		print(glm_full_sumfit);
 
 		#---------------------------------------------------------------
 		# Reduced Model
@@ -1074,15 +1080,15 @@ if(run_glm){
 				data=resp_pred_mat);
 			manova_sumres=summary(manova_res);
 
+			if(!is.null(manova_res)){
+				print(summary(manova_res));
+			}
+
 		}, error=function(e){
 			cat("Error: MANOVA was attempted but not successful.\n");
 			print(e);
 		});
 
-		#print(manova_res);
-		if(!is.null(manova_res)){
-			print(summary(manova_res));
-		}
 
 	}else{
 		cat("Insufficient Gaussian responses for MANOVA.\n");
