@@ -737,13 +737,14 @@ recon_factor_to_sumtab=function(fact_mat, st_mat, fact_samp_id_cname){
 	# Reconcile by Sample IDs
 
 	st_samp_ids=rownames(st_mat);
-	fact_samp_ids=fact_mat[, fact_samp_id_cname];
+	fact_samp_ids=as.character(fact_mat[, fact_samp_id_cname]);
 	shared_samp_ids=intersect(st_samp_ids, fact_samp_ids);
 	
 	match_ix=match_to_index(fact_samp_ids, shared_samp_ids);	
-	out_factor_mat=factor_mat[match_ix,,drop=F];
+
+	out_factor_mat=fact_mat[match_ix,,drop=F];
 	
-	out_summary_table_mat=summary_table_mat[shared_samp_ids,,drop=F];	
+	out_summary_table_mat=st_mat[shared_samp_ids,,drop=F];	
 
 	results=list();
 	results[["factor_mat"]]=out_factor_mat;
