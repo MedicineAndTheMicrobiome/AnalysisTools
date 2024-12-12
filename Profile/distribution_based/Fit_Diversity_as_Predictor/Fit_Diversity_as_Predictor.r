@@ -17,13 +17,13 @@ options(useFancyQuotes=F);
 params=c(
 	"summary_file", "s", 1, "character",
 	"factors", "f", 1, "character",
+        "factor_samp_id_name", "F", 2, "character",
 	"covariates", "c", 1, "character",
 	"responses", "y", 1, "character",
 	"required", "q", 2, "character",
 
 	"reference_levels", "r", 2, "character",
 	"outputroot", "o", 2, "character",
-
 	"tag_name", "t", 2, "character"
 );
 
@@ -34,6 +34,7 @@ usage = paste(
 	"\nUsage:\n", script_name, "\n",
 	"	-s <summary file table for taxa/function (used as Predictor/X's)>\n",
 	"	-f <factors file, contains covariates and multivariate Y>\n",
+	"       -F <column name of sample ids in factor file>\n",
 	"	-c <list of covariate X's names to select from factor file (filename)>\n",
 	"	-y <list of response Y's names to select from factor file (filename)>\n",
 	"	[-q <required list of variables to include after NA removal>]\n",
@@ -66,6 +67,16 @@ if(!length(opt$reference_levels)){
 }else{
         ReferenceLevelsFile=opt$reference_levels;
 }
+
+if(length(opt$factor_samp_id_name)){
+        FactorSampleIDName=opt$factor_samp_id_name;
+        if(FactorSampleIDName==TRUE){
+                FactorSampleIDName="";
+        }
+}else{
+        FactorSampleIDName="";
+}
+
 
 if(length(opt$required)){
 	RequiredFile=opt$required;
@@ -110,6 +121,7 @@ cat("\n");
 cat("Output File: ", OutputRoot, "\n", sep="");
 cat("\n");
 cat("Reference Levels File: ", ReferenceLevelsFile, "\n", sep="");
+cat("Sample  IDs Column Name in Factor File: ", FactorSampleIDName, "\n", sep="");
 cat("\n");
 
 options(width=100);
@@ -305,7 +317,7 @@ pdf(paste(OutputRoot, ".div_as_pred.pdf", sep=""), height=11, width=9.5);
 
 loaded_files=load_and_reconcile_files(
 	sumtab=list(fn=SummaryFile),
-	factors=list(fn=FactorsFile),
+	factors=list(fn=FactorsFile, smp_cname=FactorSampleIDName),
 	covariates=list(fn=CovariatesFile),
 	grpvar=list(fn=ResponseFile),
 	reqvar=list(fn=RequiredFile));
@@ -327,6 +339,10 @@ plot_histograms(diversity_mat, "Diversity");
 ##############################################################################
 
 factors=loaded_files[["Factors"]];
+
+if(FactorSampleIDName!=""){
+	rownames(factors)=factors[,FactorSampleIDName];
+}
 
 factor_names=colnames(factors);
 num_factors=ncol(factors);
