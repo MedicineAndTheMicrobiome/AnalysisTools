@@ -239,7 +239,7 @@ simplify_matrix_categories=function(normalized_mat, top=4){
 	if(length(rem_ix)==1){
 		cat("Detected \"Remaining\" category...\n");
 		cat("Excluding from the top categories.\n");
-		normalized_mat=normalized_mat[,-rem_ix];
+		normalized_mat=normalized_mat[,-rem_ix, drop=F];
 	}
 	
 	top=min(top, ncol(normalized_mat));
@@ -258,7 +258,7 @@ simplify_matrix_categories=function(normalized_mat, top=4){
 	print(uniq_keep_cat);
 
 	# Keep categories across top categories
-	keep_mat=normalized_mat[,uniq_keep_cat];
+	keep_mat=normalized_mat[,uniq_keep_cat, drop=F];
 
 	# Sort categories in decreasing order
 	avg_abund=apply(keep_mat, 2, mean);
@@ -421,26 +421,28 @@ plot_legend=function(categories, size=NULL, num_ticks=3, max_labels=40, color_ma
 	leg_info=legend(0, 0, legend=rev(c(categories, "Remaining")), 
 		fill=rev(c(color_map[categories[1:num_cat]], "grey")), cex=size, pt.lwd=.1);
 
-	# Compute tick positions
-	tick_pos=seq(1, orig_num_cat, length.out=num_ticks+2);
-	tick_pos=ceiling(tick_pos[2:(num_ticks+1)])
-	xleft=leg_info$rect$left;
-	xright=(xleft+leg_info$text$x[1])/4;
+	if(num_cat>=num_ticks){
+		# Compute tick positions
+		tick_pos=seq(1, orig_num_cat, length.out=num_ticks+2);
+		tick_pos=ceiling(tick_pos[2:(num_ticks+1)])
+		xleft=leg_info$rect$left;
+		xright=(xleft+leg_info$text$x[1])/4;
 
-	# Get categories of original tick pos
-	ticked_cat_names=character(num_ticks);
+		# Get categories of original tick pos
+		ticked_cat_names=character(num_ticks);
 
-	for(i in 1:num_ticks){
-		ticked_cat_names[i]=orig_categories[tick_pos[num_ticks-i+1]];
-	}
-	cat("Ticked Category Names:\n");
-	print(ticked_cat_names);
-	
-	# Tick the categories
-	for(i in 1:num_cat){
-		if(any(categories[i]==ticked_cat_names)){
-			ypos=leg_info$text$y[i];	
-			points(c(xleft, xright), c(ypos, ypos), type="l", lwd=1);
+		for(i in 1:num_ticks){
+			ticked_cat_names[i]=orig_categories[tick_pos[num_ticks-i+1]];
+		}
+		cat("Ticked Category Names:\n");
+		print(ticked_cat_names);
+		
+		# Tick the categories
+		for(i in 1:num_cat){
+			if(any(categories[i]==ticked_cat_names)){
+				ypos=leg_info$text$y[i];	
+				points(c(xleft, xright), c(ypos, ypos), type="l", lwd=1);
+			}
 		}
 	}
 
