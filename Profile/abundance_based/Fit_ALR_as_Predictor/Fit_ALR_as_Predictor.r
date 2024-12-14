@@ -304,7 +304,7 @@ extract_top_categories=function(ordered_normalized, top, additional_cat=c()){
 
         # Copy over top and additional categories, and compute remainding
         all_cat_names=c(already_extracted_cat, extra_cat);
-        out_mat[,all_cat_names]=ordered_normalized[,all_cat_names];
+        out_mat[,all_cat_names]=ordered_normalized[,all_cat_names, drop=F];
         out_mat[,"Remaining"]=apply(out_mat, 1, function(x){1-sum(x)});
 
         return(out_mat);
@@ -317,7 +317,7 @@ additive_log_ratio=function(ordered_matrix){
 	num_cat=ncol(ordered_matrix);
 	num_samp=nrow(ordered_matrix);
 
-	denominator=ordered_matrix[,num_cat];
+	denominator=ordered_matrix[,num_cat, drop=F];
 	alr_mat=matrix(0, nrow=num_samp, ncol=(num_cat-1));
 	
 	for(i in 1:num_samp){
@@ -510,7 +510,6 @@ if(ShortenCategoryNames!=""){
 # Normalize
 counts=counts+.5;
 normalized=normalize(counts);
-#print(normalized);
 
 if(UseRemaining){
 	category_names=colnames(counts);	
@@ -525,7 +524,7 @@ if(UseRemaining){
 		cat("Remaining original column: ", remaining_ix, "\n");
 		# Take out "remaining" column so it doesn't end up as a top column
 		normalized_remaining_col_dat=normalized[,remaining_ix, drop=F];
-		normalized=normalized[,-remaining_ix];
+		normalized=normalized[,-remaining_ix, drop=F];
 	}
 }
 
@@ -533,7 +532,7 @@ if(UseRemaining){
 cat("Reordering summary table categories by abundance...\n");
 mean_abund=apply(normalized, 2, mean);
 ix=order(mean_abund, decreasing=TRUE);
-normalized=normalized[,ix];
+normalized=normalized[,ix, drop=F];
 mean_abund=mean_abund[ix];
 
 if(UseRemaining){
@@ -783,7 +782,6 @@ plot_text(c(
 	capture.output(print(s))
 ));
 cat("Plotting Response Histograms:\n");
-#print(response_factors);
 plot_histograms(response_factors);
 
 is_numeric_response_factors=logical();
