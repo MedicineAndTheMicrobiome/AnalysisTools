@@ -978,32 +978,35 @@ plot_overlapping_density=function(mat, title=""){
 	modified=label_pos;	# Tweaked position
 	tweaked=T;
 	tol=.5;
-	while(tweaked){
-		tweaked=F;
 
-		max_tweak=max(min(diff(modified)), 0);
-		if(max_tweak==0){
-			max_tweak=tol/10;
-		}
-		max_tweak=min(tol/2, max_tweak);
+	if(num_cat>1){
+		while(tweaked){
+			tweaked=F;
 
-		# Forward adjust
-		for(i in 1:(num_cat-1)){
-			if(abs(modified[i]-modified[i+1])<tol){
-				modified[i+1]=modified[i+1]+max_tweak;	
-				tweaked=T;
+			max_tweak=max(min(diff(modified)), 0);
+			if(max_tweak==0){
+				max_tweak=tol/10;
 			}
-		}
+			max_tweak=min(tol/2, max_tweak);
 
-		# Backward adjust
-		for(i in num_cat:2){
-			if(abs(modified[i]-modified[i-1])<tol){
-				modified[i-1]=modified[i-1]-max_tweak;	
-				tweaked=T;
+			# Forward adjust
+			for(i in 1:(num_cat-1)){
+				if(abs(modified[i]-modified[i+1])<tol){
+					modified[i+1]=modified[i+1]+max_tweak;	
+					tweaked=T;
+				}
 			}
-		}
 
-	}	
+			# Backward adjust
+			for(i in num_cat:2){
+				if(abs(modified[i]-modified[i-1])<tol){
+					modified[i-1]=modified[i-1]-max_tweak;	
+					tweaked=T;
+				}
+			}
+
+		}	
+	}
 
 	# Plot ticks, labels, and connectors
 	for(i in 1:num_cat){
@@ -1092,8 +1095,8 @@ cat("Num ALR Categories to Analyze: ", num_cat_to_analyze, "\n", sep="");
 plot_overlapping_density(transformed, title="All");
 bottom_half=ceiling(num_cat_to_analyze/2) : num_cat_to_analyze;
 top_half=1:floor(num_cat_to_analyze/2);
-plot_overlapping_density(transformed[,top_half], title="Top Half by Avg Abundance");
-plot_overlapping_density(transformed[,bottom_half], title="Bottom Half by Avg Abundance");
+plot_overlapping_density(transformed[,top_half,drop=F], title="Top Half by Avg Abundance");
+plot_overlapping_density(transformed[,bottom_half,drop=F], title="Bottom Half by Avg Abundance");
 
 ##############################################################################
 
