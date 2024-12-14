@@ -456,11 +456,11 @@ write_top_categorical_effects_by_factor=function(output_fn, coeff_mat, pval_mat,
 
 		mat_buf[categories,"ALR"]=coeff_mat[cur_factor,categories];	
 		mat_buf[categories,"p-value"]=pval_mat[cur_factor,categories];	
-		
+
 		# Sort
 		sort_ix=order(mat_buf[,"ALR"], decreasing=T);
-		mat_buf=mat_buf[sort_ix,];
-		signif=sapply(mat_buf[,2], sig_fun_str);
+		mat_buf=mat_buf[sort_ix,,drop=F];
+		signif=sapply(mat_buf[,"p-value"], sig_fun_str);
 		sort_cat=rownames(mat_buf);
 
 		cat(file=fh, cur_factor, ":,Category,ALR,p-value,Signif\n");
@@ -720,10 +720,9 @@ if(UseRemaining){
 	}else{
 		cat("Remaining original column: ", remaining_ix, "\n");
 		normalized_remaining_col_dat=normalized[,remaining_ix, drop=F];
-		normalized=normalized[,-remaining_ix];
+		normalized=normalized[,-remaining_ix, drop=F];
 	}
 }
-
 
 # Reorder by abundance
 mean_abund=apply(normalized, 2, mean);
@@ -853,7 +852,7 @@ extract_top_categories=function(ordered_normalized, top, additional_cat=c()){
 	cat("Columns to Extract: ", num_top_to_extract, "\n");
 
 	# Extract top categories requested
-	top_cat=ordered_normalized[,1:num_top_to_extract];
+	top_cat=ordered_normalized[,1:num_top_to_extract,drop=F];
 
 	if(length(additional_cat)){
 		cat("Additional Categories to Include:\n");
@@ -887,7 +886,7 @@ extract_top_categories=function(ordered_normalized, top, additional_cat=c()){
 
 	# Copy over top and additional categories, and compute remainding
 	all_cat_names=c(already_extracted_cat, extra_cat);
-	out_mat[,all_cat_names]=ordered_normalized[,all_cat_names];
+	out_mat[,all_cat_names]=ordered_normalized[,all_cat_names,drop=F];
 
 	normalized_sums=apply(ordered_normalized, 1, sum);
 	for(i in 1:num_samples){
@@ -1166,14 +1165,17 @@ rownames(pval_matrix)=colnames(transformed);
 pval_vect=numeric(num_cat_to_analyze*(num_cat_to_analyze-1)/2);
 
 num_corr_to_test=0;
-for(i in 2:num_cat_to_analyze){
-	for(j in 1:(i-1)){
-		pval=cor.test(transformed[,i],transformed[,j])$p.value;
-		pval_matrix[i,j]=pval;
-		pval_matrix[j,i]=pval;
-		num_corr_to_test=num_corr_to_test+1;	
-		pval_vect[num_corr_to_test]=pval;
-		
+
+if(num_cat_to_analyze>1){
+	for(i in 2:num_cat_to_analyze){
+		for(j in 1:(i-1)){
+			pval=cor.test(transformed[,i],transformed[,j])$p.value;
+			pval_matrix[i,j]=pval;
+			pval_matrix[j,i]=pval;
+			num_corr_to_test=num_corr_to_test+1;	
+			pval_vect[num_corr_to_test]=pval;
+			
+		}
 	}
 }
 
@@ -1189,11 +1191,13 @@ colnames(fdr_pval_matrix)=colnames(transformed);
 rownames(fdr_pval_matrix)=colnames(transformed);
 
 num_corr_to_test=0;
-for(i in 2:num_cat_to_analyze){
-	for(j in 1:(i-1)){
-		num_corr_to_test=num_corr_to_test+1;	
-		fdr_pval_matrix[i,j]=adjust_pval_vect[num_corr_to_test];
-		fdr_pval_matrix[j,i]=fdr_pval_matrix[i,j];
+if(num_cat_to_analyze>1){
+	for(i in 2:num_cat_to_analyze){
+		for(j in 1:(i-1)){
+			num_corr_to_test=num_corr_to_test+1;	
+			fdr_pval_matrix[i,j]=adjust_pval_vect[num_corr_to_test];
+			fdr_pval_matrix[j,i]=fdr_pval_matrix[i,j];
+		}
 	}
 }
 
