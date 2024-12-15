@@ -976,21 +976,22 @@ plot_overlapping_density=function(mat, title=""){
 	char_size=par()$cxy[1];
 	modified=label_pos;	# Tweaked position
 	tweaked=T;
-	tol=.5;
+	tol=strwidth("X")*1.5;
+	max_iterations=10000;
+	max_adj=tol;
+	min_adj=tol/100;
 
+	tweak_iterations=0;
 	if(num_cat>1){
 		while(tweaked){
 			tweaked=F;
 
-			max_tweak=max(min(diff(modified)), 0);
-			if(max_tweak==0){
-				max_tweak=tol/10;
-			}
-			max_tweak=min(tol/2, max_tweak);
+			progress=tweak_iterations/max_iterations;
+			max_tweak=(1-progress)*(max_adj-min_adj)+min_adj;
 
 			# Forward adjust
 			for(i in 1:(num_cat-1)){
-				if(abs(modified[i]-modified[i+1])<tol){
+				if((modified[i+1]-modified[i])<tol){
 					modified[i+1]=modified[i+1]+max_tweak;	
 					tweaked=T;
 				}
@@ -998,12 +999,16 @@ plot_overlapping_density=function(mat, title=""){
 
 			# Backward adjust
 			for(i in num_cat:2){
-				if(abs(modified[i]-modified[i-1])<tol){
+				if((modified[i]-modified[i-1])<tol){
 					modified[i-1]=modified[i-1]-max_tweak;	
 					tweaked=T;
 				}
 			}
 
+			tweak_iterations=tweak_iterations+1;
+			if(tweak_iterations>max_iterations){
+				tweaked=F;
+			}
 		}	
 	}
 
