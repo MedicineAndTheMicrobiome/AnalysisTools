@@ -153,6 +153,8 @@ cat("Reference Levels File: ", ReferenceLevelsFile, "\n", sep="");
 cat("Use Remaining? ", UseRemaining, "\n");
 cat("Shorten Category Names: '", ShortenCategoryNames, "'\n", sep="");
 cat("\n");
+cat("Tag Name: ", TagName, "\n");
+cat("\n");
 
 if(ShortenCategoryNames==TRUE){
 	cat("Error:  You need to specify a delimitor to split the category names.\n");
@@ -2166,9 +2168,9 @@ write_coef_pval_matrices(summary_res_coef, summary_res_pval, shrd_alr_names, Out
 
 ###############################################################################
 # Required for Block analysis summary/accumulate code
-# <predictors>\t<Full vs Null ANOVA p-value>
+# <responses>\t<Full vs Null ANOVA p-value>
 
-write_anova_summary=function(fn, mod_imprv_mat){
+write_anova_summary=function(fn, mod_imprv_mat, pred_grp_name=""){
 
 	cat("Writing ANOVA summary to: ", fn, "\n");
 
@@ -2181,12 +2183,20 @@ write_anova_summary=function(fn, mod_imprv_mat){
 		stats[,"Full McFadden"],
 		stats[,"ANOVA Full-Null P-Val"]
 	);
-	colnames(outmat)=c("Predictors", "Full_McF_R2", "Full-Null_ANOVA_P-Val");
+
+	# If the predictor group name is specified, then use it in the output
+	# else just call the column the response variables, which they are.
+	if(pred_grp_name==""){
+		"Responses";
+	}
+
+	colnames(outmat)=c(pred_grp_name, "Full_McF_R2", "Full-Null_ANOVA_P-Val");
 
 	write.table(outmat, fn, sep="\t", quote=F, col.names=T, row.names=F);
 }
 
-write_anova_summary(paste(OutputRoot, ".alr_as_pred.anova.summary.tsv", sep=""), mod_imprv_mat);
+write_anova_summary(paste(OutputRoot, ".alr_as_pred.anova.summary.tsv", sep=""), 
+	mod_imprv_mat, pred_grp_name=TagName);
 
 ###############################################################################
 
