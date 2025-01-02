@@ -355,7 +355,7 @@ if(GroupColName!=""){
 
 extensions=c();
 if(Opt_FindLine){
-	extensions=c(extensions, c("intercept", "slope", "sd_res"));
+	extensions=c(extensions, c("lin_intercept", "lin_slope", "lin_sd_res", "lin_rmsd"));
 	calc_line=function(data){
 
 		x=data[,1];
@@ -366,7 +366,9 @@ if(Opt_FindLine){
 		slope=lmfit$coefficients["x"];		
 		sd_res=sd(lmfit$residuals);
 
-		return(c(intercept, slope, sd_res));
+		rmsd=sqrt(mean(lmfit$residuals^2));
+
+		return(c(intercept, slope, sd_res, rmsd));
 	}
 }
 if(Opt_FindLimits){
@@ -491,7 +493,9 @@ if(Opt_FindExtrapolatedLimits){
 
 if(Opt_FindRecoveryRateModel){
 
-	extensions=c(extensions, c("rrm_start", "rrm_gain", "rrm_exp_rate", "rrm_lin_rate", "rrm_max"));
+	extensions=c(extensions, 
+		c("rrm_start", "rrm_gain", "rrm_exp_rate", "rrm_lin_rate", "rrm_max",
+		"rrm_rmsd"));
 
 	# This model consists of a exponential (short-term) and a linear (long-term)
 	# recovery/deline rate.  The parameters allow for a non-zero starting and a maximum
@@ -518,7 +522,7 @@ if(Opt_FindRecoveryRateModel){
 		num_time_pts=length(time);
 
 		if(num_time_pts<5){
-			return(rep(NA, 5));
+			return(rep(NA, 6));
 		}
 
 		# Order the data by time
@@ -580,10 +584,25 @@ if(Opt_FindRecoveryRateModel){
 		);
 
 		print(opt_res);
+
+		model_rmsd=function(p){
+			obs=y;
+			
+			pred=exp_lin_rate_model(
+				t=time, start_val=p[1], gain=p[2], exp_rate=p[3], lin_rate=p[4]);
+				#t=time, start_val=p[1], max_val=p[2], exp_rate=p[3], lin_rate=p[4]);
+			rmsd=sqrt(mean((obs-pred)^2));
+			return(rmsd);
+		}
+		rmsd=model_rmsd(opt_res$par);
+		cat("RMSD:", rmsd, "\n");
+	
+		# Fit linear model (Slope and intercept)
 		
 		est_param=opt_res$par;
 		names(est_param)=c("start", "gain", "exp_rate", "lin_rate");
-		res=c(est_param, est_param["start"]+est_param["gain"]);
+		res=c(est_param, est_param["start"]+est_param["gain"], rmsd);
+		names(res)=c(names(est_param), "max", "rmsd");
 
 		return(res);
 
@@ -807,7 +826,7 @@ for(cur_subj in unique_subject_ids){
 		if(Opt_FindLine){
 
 			varnames=paste(targ_var_ix, "_", 
-				c("intercept", "slope", "sd_res"), sep="");
+				c("lin_intercept", "lin_slope", "lin_sd_res", "lin_rmsd"), sep="");
 		
 			acc_matrix[cur_subj, varnames]=
 				calc_line(target_data);
@@ -885,7 +904,8 @@ for(cur_subj in unique_subject_ids){
 		if(Opt_FindRecoveryRateModel){
 
 			varnames=paste(targ_var_ix, "_", 
-				c("rrm_start", "rrm_gain", "rrm_exp_rate", "rrm_lin_rate", "rrm_max"),
+				c("rrm_start", "rrm_gain", "rrm_exp_rate", "rrm_lin_rate", "rrm_max",
+				  "rrm_rmsd"),
 				sep="");
 
 			params=calc_recovery_rate_params(target_data);
@@ -1751,9 +1771,11 @@ if(GroupColName!=""){
 	if(Opt_FindLine){
 	
 		# Plot slope
-		extr_rec=find_signf_extremes(group_members, target_variable_list, acc_matrix, "slope");
-		plot_signf_extremes(extr_rec, "slope");
-		slope_ext_list=list_signf_extremes(extr_rec, "slope");
+		extr_rec=find_signf_extremes(group_members, target_variable_list, 
+			acc_matrix, "lin_slope");
+
+		plot_signf_extremes(extr_rec, "lin_slope");
+		slope_ext_list=list_signf_extremes(extr_rec, "lin_slope");
 
 		plot_text(c(
 			"Slope:",
