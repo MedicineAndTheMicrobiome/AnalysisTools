@@ -616,7 +616,7 @@ if(Opt_FindRecoveryRateModel){
 			return(rmsd);
 		}
 
-		rmsd=model_rmsd(opt_res$par);
+		rmsd=model_rmsd(residuals);
 		cat("RMSD:", rmsd, "\n");
 
 		#--------------------------------------------------------------
