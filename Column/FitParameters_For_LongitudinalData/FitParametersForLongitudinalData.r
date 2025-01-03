@@ -54,6 +54,10 @@ usage = paste(
 	"\n",
 	"\n",
 	"	-o <output filename>\n",
+	"\n",
+	"	Note: To compare the AIC between linear and RRM, the AIC\n",
+	"	has been calculated for each subject's fit.  The >2 dAIC applies\n",
+	"	to individual fits.  \n",
 	"\n");
 
 if(
@@ -355,7 +359,7 @@ if(GroupColName!=""){
 
 extensions=c();
 if(Opt_FindLine){
-	extensions=c(extensions, c("lin_intercept", "lin_slope", "lin_sd_res", "lin_rmsd"));
+	extensions=c(extensions, c("lin_intercept", "lin_slope", "lin_sd_res", "lin_rmsd", "lin_aic"));
 	calc_line=function(data){
 
 		x=data[,1];
@@ -366,9 +370,17 @@ if(Opt_FindLine){
 		slope=lmfit$coefficients["x"];		
 		sd_res=sd(lmfit$residuals);
 
+		# Calculate AIC from residuals
+		#print(extractAIC(lmfit));
+		n=length(resid(lmfit));
+		k=length(coef(lmfit));
+		rss=sum(lmfit$residuals^2);
+		calc_aic=2*k+n*log(rss/n);
+		calc_aic=ifelse(!is.finite(calc_aic), NA, calc_aic);
+
 		rmsd=sqrt(mean(lmfit$residuals^2));
 
-		return(c(intercept, slope, sd_res, rmsd));
+		return(c(intercept, slope, sd_res, rmsd, calc_aic));
 	}
 }
 if(Opt_FindLimits){
@@ -493,9 +505,9 @@ if(Opt_FindExtrapolatedLimits){
 
 if(Opt_FindRecoveryRateModel){
 
-	extensions=c(extensions, 
-		c("rrm_start", "rrm_gain", "rrm_exp_rate", "rrm_lin_rate", "rrm_max",
-		"rrm_rmsd"));
+	out_params=c("rrm_start", "rrm_gain", "rrm_exp_rate", "rrm_lin_rate", "rrm_max",
+                "rrm_rmsd", "rrm_aic");
+	extensions=c(extensions, out_params);
 
 	# This model consists of a exponential (short-term) and a linear (long-term)
 	# recovery/deline rate.  The parameters allow for a non-zero starting and a maximum
@@ -522,7 +534,7 @@ if(Opt_FindRecoveryRateModel){
 		num_time_pts=length(time);
 
 		if(num_time_pts<5){
-			return(rep(NA, 6));
+			return(rep(NA, length(out_params)));
 		}
 
 		# Order the data by time
@@ -585,24 +597,50 @@ if(Opt_FindRecoveryRateModel){
 
 		print(opt_res);
 
-		model_rmsd=function(p){
+		#--------------------------------------------------------------
+
+		model_residuals=function(p){
 			obs=y;
-			
 			pred=exp_lin_rate_model(
 				t=time, start_val=p[1], gain=p[2], exp_rate=p[3], lin_rate=p[4]);
-				#t=time, start_val=p[1], max_val=p[2], exp_rate=p[3], lin_rate=p[4]);
-			rmsd=sqrt(mean((obs-pred)^2));
+			residuals=(obs-pred);	
+			return(residuals);
+		}
+
+		residuals=model_residuals(opt_res$par);
+
+		#--------------------------------------------------------------
+
+		model_rmsd=function(resid){
+			rmsd=sqrt(mean(resid^2));
 			return(rmsd);
 		}
+
 		rmsd=model_rmsd(opt_res$par);
 		cat("RMSD:", rmsd, "\n");
-	
-		# Fit linear model (Slope and intercept)
+
+		#--------------------------------------------------------------
+
+		model_rss=function(resid){
+			rss=sum(resid^2);
+			return(rss);
+		}
+			
+                # Calculate AIC from residuals
+                #print(extractAIC(lmfit));
+                n=length(residuals);
+                k=4
+		rss=model_rss(residuals);
+                calc_aic=2*k+n*log(rss/n);
+
+		cat("AIC: ", calc_aic, "\n");
+		
+		#--------------------------------------------------------------
 		
 		est_param=opt_res$par;
 		names(est_param)=c("start", "gain", "exp_rate", "lin_rate");
-		res=c(est_param, est_param["start"]+est_param["gain"], rmsd);
-		names(res)=c(names(est_param), "max", "rmsd");
+		res=c(est_param, est_param["start"]+est_param["gain"], rmsd, calc_aic);
+		names(res)=c(names(est_param), "max", "rmsd", "aic");
 
 		return(res);
 
@@ -826,7 +864,8 @@ for(cur_subj in unique_subject_ids){
 		if(Opt_FindLine){
 
 			varnames=paste(targ_var_ix, "_", 
-				c("lin_intercept", "lin_slope", "lin_sd_res", "lin_rmsd"), sep="");
+				c("lin_intercept", "lin_slope", "lin_sd_res", "lin_rmsd", "lin_aic"), 
+					sep="");
 		
 			acc_matrix[cur_subj, varnames]=
 				calc_line(target_data);
@@ -905,10 +944,11 @@ for(cur_subj in unique_subject_ids){
 
 			varnames=paste(targ_var_ix, "_", 
 				c("rrm_start", "rrm_gain", "rrm_exp_rate", "rrm_lin_rate", "rrm_max",
-				  "rrm_rmsd"),
+				  "rrm_rmsd", "rrm_aic"),
 				sep="");
 
 			params=calc_recovery_rate_params(target_data);
+
 			acc_matrix[cur_subj, varnames]=params;
 
 			start_plot_time=max(CropLimits[1], 0);
