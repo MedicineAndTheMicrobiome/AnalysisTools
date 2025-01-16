@@ -7,13 +7,15 @@ library('getopt');
 source("~/git/AnalysisTools/Metadata/InputFileLibrary/InputFileLibrary.r");
 source("~/git/AnalysisTools/Metadata/OutputFileLibrary/OutputFileLibrary.r");
 
-MIN_PROP_THRES=.95;
+MIN_TRUE_NEG_PROB=.95;
+MIN_TPN_PROP=.95;
 
 params=c(
 	"summary_table", "s", 1, "character",
 	"obo_table", "b", 1, "character",
-	"output_file_root", "o", 1, "character",
-	"min_true_threshold", "t", 2, "character"
+	"output_dir", "o", 1, "character",
+	"false_neg_cutoff", "f", 2, "numeric",
+	"min_tpn_cutoff", "t", 2, "numeric"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -24,26 +26,44 @@ usage = paste (
 	"\n",
 	"	-s <input summary_table.tsv file>\n",
 	"	-b <input OBO table>\n",
-	"	-o <output file root>\n",
-	"	[-t <min proportion of True Positive/Negative, default=", MIN_PROP_THRES, ">]\n",
+	"	-o <output directory>\n",
+	"	[-f <True Negative Cutoff (probability)>, default=", MIN_TRUE_NEG_PROB, ">]\n",
+	"	[-t <min proportion of True Positive/Negative (TPNs), default=", MIN_TPN_PROP, ">]\n",
 	"\n",	
-	"This script will read in the summary table and OBO table and identify\n",
-	"the leaf nodes that should be collapsed upward to its parent.\n",
+	"This script will read in the summary table and OBO table.\n",
 	"\n",
-	"For each leaf node the number of TN and TP will be calculated.\n",
-	"If the proportion: (TP+PN)/NumSamp is >", MIN_PROP_THRES, 
-	"%, then the leaf will not be collapsed\n",
+	"Recursively, it will look at each parent ID, and collapse\n",
+	"  the counts from the children.  If the parent's TPNs exceed\n",
+	"  the threshold, then it's profile is exported.\n",
+	"\n",
+	"For each parent ID, the number of TN and TP will be calculated.\n",
+	"If the proportion: (TP+PN)/NumSamp is >", MIN_TPN_PROP, "\n",
+	"then the parent's summary table will be exported.\n",
 	"\n",
 	"The TP (true positives) are the number of non-zero data points\n",
 	"The TN (true negatives) will be based on the mean abundance of the NZ\n",
 	"  and the sequencing depth of that sample.\n",
+	"\n",
+	"----------------------------------------------------------------------\n",
+	"\n",
+	"The True Negative Cutoff is the probability a sample's category is\n",
+	"  non-zero, given the read depth of the sample, and mean abundance of the\n",
+	"  non-zero samples of that category.\n",
+	"\n",
+	"  In other words, if the probably TN Cutoff is .95, then 95% of the\n",
+	"  time, the category should have a nonzero count, given the sample's depth\n",
+	"  This means it's a True Negative, because it's zeroness is not due to\n",
+	"  sequencing depth alone, but rather it's really 0 for this sample.\n",
+	"\n",
+	"The True Positive/Negative (TPN) cutoff is the minimum proportion of samples\n",
+	"  that must exceeded, for the category to be exported/kept.\n",
 	"\n",
 	"\n");
 
 if(
 	!length(opt$summary_table) ||
 	!length(opt$obo_table) ||
-	!length(opt$output_file_root)
+	!length(opt$output_dir)
 ){
 	cat(usage);
 	q(status=-1);
@@ -56,15 +76,35 @@ options(width=200, useFancyQuotes=F);
 
 SummaryTable=opt$summary_table;
 OBOTable=opt$obo_table;
-OutputFileRoot=opt$output_file_root
+OutputDir=opt$output_dir;
+
+if(length(opt$false_neg_cutoff)){
+	MinTrueNegCutoff=opt$false_neg_cutoff;
+}else{
+	MinTrueNegCutoff=MIN_TRUE_NEG_PROB;
+}
+
+if(length(opt$min_tpn_cutoff)){
+	MinTrueCutoff=opt$min_tpn_cutoff;
+}else{
+	MinTrueCutoff=MIN_TPN_PROP;
+}
 
 cat("\n")
 cat("Summary Table: ", SummaryTable, "\n");
 cat("OBO Table: ", OBOTable, "\n");
-cat("Output File Root: ", OutputFileRoot, "\n");
+cat("Output Directory: ", OutputDir, "\n");
+cat("Minimum True Cutoff: ", MinTrueCutoff, "\n");
+cat("Minimum True Neg Cutoff: ", MinTrueNegCutoff, "\n");
 cat("\n");
 
-pdf(paste(OutputFileRoot, ".clps_zero_chldn.pdf", sep=""), height=11, width=8.5);
+if(!dir.exists(OutputDir)){
+	dir.create(OutputDir);
+}else{
+
+}
+
+#pdf(paste(OutputFileRoot, ".clps_zero_chldn.pdf", sep=""), height=11, width=8.5);
 
 ###############################################################################
 ###############################################################################
@@ -142,53 +182,18 @@ load_obo_to_trees=function(obo_tab){
 	obo_trs=list();
 	obo_trs[["p_to_c"]]=parent_to_child_tree;
 	obo_trs[["c_to_p"]]=child_to_parent_tree;;
+	obo_trs[["c_wts"]]=sapply(child_to_parent_tree, function(x){1/length(x)});
 
 	#print(result);
         return(obo_trs);
 
 }
 
-#------------------------------------------------------------------------------
-
-find_leaf_children=function(obo_trs){
-	# Make a list of all the leaf nodes
-	leaf_nodes_ix=unlist(lapply(obo_tree, function(x){x=="";}));
-	leaf_names=names(obo_tree[leaf_nodes_ix]);
-	return(leaf_names);	
-}
-
-#------------------------------------------------------------------------------
-
-collapse_leaves=function(obo_trs, tgts){
-	
-	# For each target leaf, find it's parents, and remove itself. 
-
-	p_to_c_tree=obo_trs[["p_to_c"]];
-	c_to_p_tree=obo_trs[["c_to_p"]];
-
-	for(tgt in tgts){
-
-		cat("Removing: ", tgt, "\n", sep="");
-
-		# Remove child from parent (p_to_c)
-		parents_of_target=c_to_p_tree[[tgt]];
-		for(prnt in parents_of_target){
-			p2c_node=p_to_c_tree[[prnt]];
-			p2c_node=setdiff(p2c_node, tgt);
-			p_to_c_tree[[prnt]]=p2c_node;
-			if(length(p_to_c_tree[[prnt]])==0){
-				p_to_c_tree[[prnt]]="";
-			}
-		}
-		p_to_c_tree[[tgt]]=NULL;
-
-		# Remove child
-		c_to_p_tree[[tgt]]=NULL;
-	}
-
-	p_to_c_tree=obo_trs[["p_to_c"]]=p_to_c_tree;
-	c_to_p_tree=obo_trs[["c_to_p"]]=c_to_p_tree;
-	return(obo_trs);
+load_id_to_name_map=function(obo_tab){
+	name_map=list();
+	name_map=as.list(obo_tab[,"name"]);
+	names(name_map)=obo_tab[,"id"];
+	return(name_map);
 }
 
 ###############################################################################
@@ -219,7 +224,7 @@ calc_zero_stats=function(cts_mat, nrm_mat){
 
 #------------------------------------------------------------------------------
 
-estimate_TruePosNegs=function(zstats, nrm_mat, smp_dpt, false_neg_cutoff=.95, min_true_posneg_cutoff=.95){ 
+estimate_TruePosNegs=function(zstats, nrm_mat, smp_dpt, true_neg_cutoff=.95){ 
 	num_cat=nrow(zstats);
 	cat_names=rownames(zstats);
 	num_samples=length(smp_dpt);
@@ -237,7 +242,7 @@ estimate_TruePosNegs=function(zstats, nrm_mat, smp_dpt, false_neg_cutoff=.95, mi
 	for(cat_ix in 1:num_cat){
 
 		cur_cat=cat_names[cat_ix];
-		cat("Analyzing: ", cur_cat, "\n");
+		#cat("Analyzing: ", cur_cat, "\n");
 
 		# Find zeros across samples for this category
 		zero_cts_ix=(nrm_mat[,cur_cat]==0);
@@ -254,7 +259,7 @@ estimate_TruePosNegs=function(zstats, nrm_mat, smp_dpt, false_neg_cutoff=.95, mi
 		prob_non_zero=sapply(smp_depth_of_zeros, calc_prob_nz);
 
 		# If prob of nonzero > cutoff, call it TRUE NEG 
-		true_neg_ix=(prob_non_zero>false_neg_cutoff);
+		true_neg_ix=(prob_non_zero>true_neg_cutoff);
 		num_true_neg=sum(true_neg_ix);
 
 		# Calc number of nonzero categories
@@ -311,17 +316,9 @@ extract_lowPropTrue=function(tp_mat, cutoff){
 
 ###############################################################################
 ###############################################################################
-
-collapse_counts=function(cts_mat, child_to_parent_map, targets){
-
-}
-
-
-
-###############################################################################
 # Load files
 
-if(0){
+if(1){
 
 counts_mat=load_summary_file(SummaryTable);
 
@@ -346,37 +343,41 @@ samp_depths=samp_depths[samp_order_ix];
 counts_mat=counts_mat[samp_order_ix, cat_order_ix];
 norm_mat=norm_mat[samp_order_ix, cat_order_ix];
 
+#print(counts_mat);
+
+}
+
 #------------------------------------------------------------------------------
 
-zero_stats_mat=calc_zero_stats(counts_mat, norm_mat);
+if(1){
 
-plot_zero_stats(zero_stats_mat);
+	zero_stats_mat=calc_zero_stats(counts_mat, norm_mat);
 
-true_pos_mat=estimate_TruePosNegs(zero_stats_mat, norm_mat, samp_depths);
+	plot_zero_stats(zero_stats_mat);
 
-par(mfrow=c(3,1));
-hist(true_pos_mat[,"NumTrPos"]/num_sumtab_samp, breaks=20,
-	main="True Positives (Observed)", xlab="Prop True Pos");
-hist(true_pos_mat[,"NumTrNeg"]/num_sumtab_samp, breaks=20,
-	main="True Negatives (Estimated)", xlab="Prop True Neg");
-hist(true_pos_mat[,"PropTrue"], breaks=20,
-	main="Proportion True", xlab="Prop True (Pos+Neg)");
+	true_pos_mat=estimate_TruePosNegs(zero_stats_mat, norm_mat, samp_depths);
 
-plot_zero_stats(zero_stats_mat, true_pos_mat, cutoff=.5);
-plot_zero_stats(zero_stats_mat, true_pos_mat, cutoff=.75);
-plot_zero_stats(zero_stats_mat, true_pos_mat, cutoff=.90);
-plot_zero_stats(zero_stats_mat, true_pos_mat, cutoff=.95);
+	par(mfrow=c(3,1));
+	hist(true_pos_mat[,"NumTrPos"]/num_sumtab_samp, breaks=20,
+		main="True Positives (Observed)", xlab="Prop True Pos");
+	hist(true_pos_mat[,"NumTrNeg"]/num_sumtab_samp, breaks=20,
+		main="True Negatives (Estimated)", xlab="Prop True Neg");
+	hist(true_pos_mat[,"PropTrue"], breaks=20,
+		main="Proportion True", xlab="Prop True (Pos+Neg)");
 
-tp_above_co=extract_lowPropTrue(true_pos_mat, cutoff);
+	plot_zero_stats(zero_stats_mat, true_pos_mat, cutoff=.5);
+	plot_zero_stats(zero_stats_mat, true_pos_mat, cutoff=.75);
+	plot_zero_stats(zero_stats_mat, true_pos_mat, cutoff=.90);
+	plot_zero_stats(zero_stats_mat, true_pos_mat, cutoff=.95);
 
-print(tp_above_co);
-
-quit();
 }
 
 ###############################################################################
 
 obo_map=load_obo_map(OBOTable);
+
+id_to_name_map=load_id_to_name_map(obo_map);
+
 trees=load_obo_to_trees(obo_map);
 
 if(0){
@@ -396,49 +397,288 @@ if(0){
 	#print(trees);
 }
 
-quit();
+###############################################################################
+
+find_root=function(c_to_p_tree){
+	# This function will search through the child-to-parent tree
+	# to find all the roots.  There could be mulitple roots.
+	# The GO ontology has the roots of molecular function, biological process
+	# and cellular component
+	res=sapply(c_to_p_tree, function(x){length(x)==0});
+	root_ids=names(which(res));
+	return(root_ids);	
+}
+
+roots=find_root(trees[["c_to_p"]]);
+cat("Found the Root(s):\n");
+print(roots);
 
 ###############################################################################
-#
-# 1.) Pull cat that can be collapsed
-# 2.) Pull leaves from tree
-# 3.) Intersect cat and leaves
-# 4.) Merge leave with parent(s)
-# 5.) Repeat until cat/leave intersect is empty
 
-orig_counts_mat=counts_mat;
-orig_norm_mat=norm_mat;
-orig_zero_stats_mat=zero_stats_mat;
-orig_true_pos_mat=true_pos_mat;
-
-stop_collapsing=F;
-while(!stop_collapsing){
-
-	leaf_children_arr=find_leaf_children(obo_tree);
-
-	low_prop_cat_mat=extract_lowPropTrue(true_pos_mat, TP_Cutoff);
-	low_prop_cat=rownames(low_prop_cat_mat);
-
-	collapse_targets=intersect(low_prop_cat, leaf_children_arr);
-	num_collapse_targets=length(collapse_targets);
-
-	if(num_collapse_targets>0){
-
-		# Collapse OBO and Counts
-		collapse_list=get_target_parents(obo_parent_lookup, collapse_targets);
-		obo_tree=collapse_leaves(obo_parent_lookup, collapse_list);
-		counts_mat=collapse_counts(counts_mat, obo_parent_lookup, collapse_list);
-		norm_mat=normalize(counts_mat);
-
-		# Refresh true_pos_mat
-		zero_stats_mat=calc_zero_stats(counts_mat, norm_mat);
-		true_pos_mat=estimate_TruePosNegs(zero_stats_mat, norm_mat, samp_depths);
-
+get_vals=function(targ_id, mat){
+	# Return counts if target is in matrix, else return 0's
+	cat_names=colnames(mat);
+	if(targ_id %in% cat_names){
+		return(mat[,targ_id, drop=F]);
 	}else{
-		stop_collapsing=T;
+		null_mat=matrix(0, nrow=nrow(mat), ncol=1);
+		colnames(null_mat)=targ_id;
+		rownames(null_mat)=rownames(mat);
+		return(null_mat);
+	}
+}
+
+remove_zeros_cols=function(zero_cat_name, mat){
+	# Return a cleaned up matrix.  
+	#  1. Removes all zero categories
+	#  2. If all categories are zero, then use zero_cat_name as a placeholder
+	
+	num_col=ncol(mat);
+
+	# Count categories
+	nonzero_ix=apply(mat, 2, function(x){sum(x)>0;});
+
+	if(sum(nonzero_ix)==0){
+		# Return all zeros placeholder
+		return(mat[,zero_cat_name,drop=F]);
+	}else{
+		# Return cleaned up matrix
+		return(mat[,nonzero_ix,drop=F]);
+	}
+	
+		
+}
+
+accumulate_st_by_id=function(par_st_list, parent_id, p_to_c_tree, child_wts, st_mat){
+	# parent_st_list: list (hash) of 2D summary tables accumulate from child up to the
+	#	the specified parent_id
+	#
+	# parent_id: id to start searching from.  If "direct" called, the root_id of the
+	#	tree is specified. 
+	#
+	# p_to_c_tree: the tree, mapping each parent to all it's children
+	#
+	# child_wts: sometimes a child can have multiple parents, so the weights indicate
+	#	the proportion of its counts that should go to each parent.
+	#
+	# st_mat: the original, accummulated, summary table for each id
+
+	cat("Visiting: ", parent_id, "\n");
+	children_ids=p_to_c_tree[[parent_id]];
+
+	avail_st_cat=colnames(st_mat);
+
+	# Base case, if leaf node, return children counts
+	num_children=length(children_ids);
+	if(num_children==1 && children_ids==""){
+		# Leaf node
+		cat("\tLeaf node\n");
+		kid_arr=get_vals(parent_id, st_mat);
+		par_st_list[[parent_id]]=kid_arr;
+		return(par_st_list);	
+	}
+
+	# Recursive case, if parent node, accumulate children counts and totals
+
+	# Allocate summary table for this parent_id
+	children_matrix=matrix(0, nrow=nrow(st_mat), ncol=num_children);
+	colnames(children_matrix)=children_ids;
+	rownames(children_matrix)=rownames(st_mat);
+
+	# For each child of the parent
+	for(kid in children_ids){
+
+		# Accumulate kid's st, update parent_st_list since it acts like
+		#   a cache
+		par_st_list=accumulate_st_by_id(
+			par_st_list, kid, p_to_c_tree, child_wts, st_mat);
+
+		# Pull out this kid's st
+		kid_matrix=par_st_list[[kid]];
+
+		# Collapse the kids st into a single array and weight it
+		children_matrix[,kid]=apply(kid_matrix, 1, sum)*child_wts[kid];
+	}
+
+	# Add self to children matrix table
+	self_counts=get_vals(parent_id, st_mat);
+	self_and_kids=cbind(self_counts, children_matrix);
+
+	# Remove zero count children.  If no categories left, then have all-zero parents ID.
+	self_and_kids=remove_zeros_cols(parent_id, self_and_kids);
+
+	cat("Saving: ", parent_id, "\n");
+	par_st_list[[parent_id]]=self_and_kids;
+
+	return(par_st_list);	
+}
+
+#------------------------------------------------------------------------------
+
+calculate_tpn_prop=function(props, depths, false_neg_cutoff=0.05){
+
+	#cat("Proportions:\n");
+	#print(props);
+	#cat("Depths:\n");
+	#print(depths);
+	zero_ix=(props==0);
+	nzero_ix=!zero_ix;
+
+	zero_depths=depths[zero_ix];
+	nzero_depths=depths[nzero_ix];
+
+	num_samples=length(props);
+
+	nz_mean=mean(props[nzero_ix]);
+	cat("Non-zero Mean: ", nz_mean, "\n");
+	
+	num_zeros=sum(zero_ix);
+	cat("Num zeros: ", num_zeros, "\n");
+	if(num_zeros==num_samples || num_zeros==0){
+                num_true_neg=0;
+	}else{
+		calc_prob_nz=function(depth){
+			# Probability of being nonzero given depth and mean abundance
+			probnz=1-pbinom(0, depth, nz_mean);
+			return(probnz);
+		}
+		prob_non_zero_of_zeros=sapply(zero_depths, calc_prob_nz);
+		# If prob of nonzero > cutoff, call it TRUE NEG, because the
+		#    the sequencing depth should've been deep enough.
+		true_neg_ix=(prob_non_zero_of_zeros>false_neg_cutoff);
+		num_true_neg=sum(true_neg_ix);
+	}
+	
+
+	# Calc number of nonzero categories
+	num_true_pos=sum(nzero_ix);
+		
+	# Proportion of samples that we are "sure" that are TRUE POS+NEG
+	prop_true_np=(num_true_neg+num_true_pos)/num_samples;
+
+	cat("Num True Neg: ", num_true_neg, "\n");
+	cat("Num True Pos: ", num_true_pos, "\n");
+	cat("Prop TNP: ", prop_true_np, "\n");
+
+	return(prop_true_np);
+
+}
+
+calculate_tpn_rates=function(par_st_list, smp_dpt, tpn_cutoff){
+
+	parent_ids=names(par_st_list);
+	tnp_out=numeric(length(parent_ids));
+	names(tnp_out)=parent_ids;
+
+	for(pid in parent_ids){
+
+		cat("Calculating for: ", pid, "\n");
+		proportion_arr=apply(par_st_list[[pid]], 1, sum);	
+
+		if(!all(names(proportion_arr)==names(smp_dpt))){
+			cat("Error:  Order of Proportion Array doesn't Match Sample Depths\n");	
+		}
+
+		tnp_out[pid]=calculate_tpn_prop(proportion_arr, smp_dpt, false_neg_cutoff=tpn_cutoff);
+
+		cat("\n\n");
+
+	}
+
+	return(tnp_out);
+
+}
+
+#------------------------------------------------------------------------------
+
+export_sumtabs_exc_tpn=function(tpn_rt_lst, cnt_mat_list, smpdpt, tpn_thres, outdir, id2nam_map){
+
+	rename_matrix=function(inmat, map){
+		catnames=colnames(inmat);
+		outnames=sapply(catnames, function(x){ id2nam_map[[x]]});
+		outnames=sapply(outnames, function(x){ make.names(x)});
+		outnames=sapply(outnames, function(x){ gsub("\\.","_",x)});
+		colnames(inmat)=outnames;
+		return(inmat);
+	}
+
+	append_remaining=function(inmat, depth){
+		sums=apply(inmat, 1, sum);
+		Remaining=depth-sums;
+		if(any(Remaining!=0)){
+			outmat=cbind(inmat,Remaining);
+		}else{
+			outmat=inmat;
+		}
+		return(outmat);
+	}
+
+
+	cat("Exporting tables above True PN cutoff: ", tpn_thres, "\n");
+
+	parent_ids=names(tpn_rt_lst);
+	for(par_id in parent_ids){
+		cat("Parent ID: ", par_id, "\n");
+		rate=tpn_rt_lst[par_id];
+		cat(" Rate: ", rate, "\n");
+
+		if(rate>tpn_thres){
+			parent_name=gsub("\\.", "_", make.names(id2nam_map[[par_id]]));
+			cat(" Name: ", parent_name, "\n");
+			
+			outfn=paste(outdir, "/", par_id, ".", parent_name, 
+				".tpn", sprintf("%g", round(100*rate)),
+				".summary_table.tsv", sep="");
+
+			outfn=gsub("[:]","_",outfn);
+			cat(" Summary Tab Filename: \"", outfn, "\"\n", sep="");
+
+			out_mat=cnt_mat_list[[par_id]];
+
+			renamed_mat=rename_matrix(out_mat, id2nam_map);
+
+			renamed_mat=append_remaining(renamed_mat, smpdpt);
+
+			write_summary_file(renamed_mat, outfn);			
+				
+			cat("\n\n");
+		}
 	}
 
 }
+
+###############################################################################
+
+parent_st_norm_list=list();
+parent_st_cnts_list=list();
+
+for(root_id in roots){
+
+	cat("Working on: ", root_id, "\n");
+
+
+	cat("Accumulating Normalized Matrices:\n");
+	parent_st_norm_list=accumulate_st_by_id(
+			parent_st_norm_list, root_id, trees[["p_to_c"]], trees[["c_wts"]], norm_mat);
+
+	cat("Accumulating Count Matrices:\n");
+	parent_st_cnts_list=accumulate_st_by_id(
+			parent_st_cnts_list, root_id, trees[["p_to_c"]], trees[["c_wts"]], counts_mat);
+	
+
+	cat("Calculating TPN Rates, Pr[True Negative > ", MinTrueNegCutoff, "]\n", sep="");
+	tnp_rate_list=calculate_tpn_rates(parent_st_norm_list, samp_depths, MinTrueNegCutoff);
+
+	full_name=id_to_name_map[[root_id]];
+
+	export_sumtabs_exc_tpn(
+		tnp_rate_list, parent_st_cnts_list, samp_depths,
+		MinTrueCutoff, OutputDir, id_to_name_map);
+
+	
+}
+
+quit();
 
 ###############################################################################
 
