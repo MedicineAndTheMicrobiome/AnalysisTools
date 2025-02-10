@@ -942,8 +942,11 @@ plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.1, samp_gly=T){
         # Annotat barplot with signficance
 
         cat("Making Barplot with Significance annotated...\n");
+	cat("Title: ", title, "\n", sep="");
         cat("  Alpha", alpha, "\n");
         group_names=names(grps);
+	cat("Groups:\n");
+	print(group_names);
         num_grps=length(group_names);
 
         # Convert matrix into array, if necessary
@@ -963,7 +966,17 @@ plot_barplot_wsignf_annot=function(title, stat, grps, alpha=0.1, samp_gly=T){
                 grps[[grnm]]=intersect(grps[[grnm]], na_subj);
                 print(stat[grps[[grnm]]]);
         }
+
+	cat("Groupings:\n");
         print(grps);
+
+	if(length(stat)==0){
+		plot(0,0, type="n", xlim=c(-1,1), ylim=c(-1,1),
+			main=title, xaxt="n", yaxt="n", bty="o", xlab="", ylab="");
+		text(0,0, "No statistics to plot.", cex=2, font=3);
+		#text(.5,-.5, "¯\\(._.)/¯", cex=1, font=2);
+		return(NULL);
+	}
 
         # Precompute pairwise wilcoxon pvalues
         cat("\n  Precomputing group pairwise p-values...\n");
