@@ -12,7 +12,8 @@ source("~/git/AnalysisTools/Metadata/OutputFileLibrary/OutputFileLibrary.r");
 options(useFancyQuotes=F);
 
 params=c(
-	"summary_file_targets", "t", 1, "character",
+	"summary_file_pattern", "p", 2, "character",
+	"summary_file_list_fn", "f", 2, "character",
 	"output_fn_root", "o", 2, "character"
 );
 
@@ -24,7 +25,9 @@ ALPHA=.05;
 
 usage = paste(
 	"\nUsage:\n", script_name, "\n",
-	"	-t <summary file table targets for taxa/function>\n",
+	"	Summary File List:\n",
+	"	[-p <Specify a pattern, e.g. \"GO.cellular_component/*names.summary_table.tsv\">]\n",
+	"	[-f <Specify a list, e.g. summary_tables.lst>\n",
 	"	-o <output filename root>\n",
 	"\n",
 	"This script will:\n",
@@ -33,18 +36,28 @@ usage = paste(
 	"\n", sep="");
 
 if(
-	!length(opt$summary_file_targets) ||
 	!length(opt$output_fn_root)
 ){
 	cat(usage);
 	q(status=-1);
 }
 
-SummaryFileTargets=opt$summary_file_targets;
 OutputRoot=opt$output_fn_root;
 
+STFilePattern="";
+STFileList="";
+
+if(length(opt$summary_file_pattern)){
+	STFilePattern=opt$summary_file_pattern;
+}
+
+if(length(opt$summary_file_list)){
+	STFileList=opt$summary_file_list;
+}
+
 cat("\n");
-cat("Summary File Targets: ", SummaryFileTargets, "\n", sep="");
+cat("Specified Summary File Pattern: ", STFilePattern, "\n");
+cat("Specified Summary File List: ", STFileList, "\n");
 cat("Output File: ", OutputRoot, "\n", sep="");
 cat("\n");
 
@@ -150,14 +163,14 @@ topN=function(norm_mat, max){
 	remaining_values=c();
 	if(any(remaining_ix)){
 		remaining_found=1;	
-		remaining_values=sorted_norm_mat[,remaining_ix];
-		sorted_norm_mat=sorted_norm_mat[,!remaining_ix];
+		remaining_values=sorted_norm_mat[,remaining_ix, drop=F];
+		sorted_norm_mat=sorted_norm_mat[,!remaining_ix, drop=F];
 	}
 	
 	# Extract top
 	num_col=ncol(sorted_norm_mat);
 	max=min(max, num_col);
-	out_mat=sorted_norm_mat[,1:max];
+	out_mat=sorted_norm_mat[,1:max, drop=F];
 
 	rare_exists=(max<num_col);
 	if(rare_exists){
@@ -449,16 +462,27 @@ export_joined_tables=function(fn, lograt_lst){
 
 pdf(paste(OutputRoot, ".lr_trans.pdf", sep=""), height=11, width=8.5);
 
-target_dir=dirname(SummaryFileTargets);
-file_pat=basename(SummaryFileTargets);
+st_files=c();
+if(STFilePattern!=""){
+	target_dir=dirname(STFilePattern);
+	file_pat=basename(STFilePattern);
 
-cat("Target Dir: ", target_dir, "\n");
-cat("File Pattern: ", file_pat, "\n");
+	cat("Target Dir: ", target_dir, "\n");
+	cat("File Pattern: ", file_pat, "\n");
 
-st_files=list.files(path=target_dir, pattern=file_pat, full.names=T)
+	st_files=list.files(path=target_dir, pattern=file_pat, full.names=T)
+}
+
+if(STFileList!=""){
+	st_files=scan(STFileList, what=character());
+}
 
 cat("Files Found:\n");
 print(st_files);
+
+if(length(st_files)==0){
+	cat("Error or Warning: No files found.\n");
+}
 
 targ_st_ids=find_minimal_unique_name(st_files);
 
