@@ -234,7 +234,13 @@ set_zeros_catdev=function(norm_mat, dev_sep=7){
 
 	log_sd=apply(norm_mat, 2, function(x){
 			nz_ix=(x!=0)
-			sd(log(x[nz_ix]));
+			nz_val=x[nz_ix];
+			if(length(nz_val)<2){
+				stdev=0;
+			}else{
+				stdev=sd(log(nz_val));
+			}
+			return(stdev);
 		});
 
 	mean_log_sd=mean(log_sd, na.rm=T);
@@ -278,7 +284,7 @@ lograt_trans=function(norm_mat){
 		cat("Performing ALR with Remaining...\n");
 
 		# Split remaining from field
-		norm_wo_rem=norm_mat[,!remaining_ix];
+		norm_wo_rem=norm_mat[,!remaining_ix,drop=F];
 		remainder=norm_mat[,remaining_ix];
 
 		# Calc alr
@@ -420,7 +426,13 @@ export_joined_tables=function(fn, lograt_lst){
 		shared=intersect(sample_ids, cur_samp_ids)
 		if(length(shared)!=num_samples){
 			cat("Error:  Inconsistent Sample IDs.\n");
-			print(group_names[i])
+			cat("Group ID: ", group_names[i], "\n");
+			
+			if(length(sample_ids)>length(cur_samp_ids)){
+				print(setdiff(sample_ids, cur_samp_ids));
+			}else{
+				print(setdiff(cur_samp_ids, sample_ids));
+			}
 			quit(status=-1);
 		}else{
 			category_ids=c(category_ids, colnames(cur_tab));
@@ -456,6 +468,11 @@ export_joined_tables=function(fn, lograt_lst){
 	write.table(out_matrix, file=fn, quote=F, sep="\t", row.names=F, col.names=T);
 
 	cat("------------------------------------------------------------\n");
+}
+
+generate_correlation_matrix=function(mat, name){
+	cormat=cor(mat);
+	paint_matrix(cormat, name, plot_min=-1, plot_max=1, deci_pts=2, show_leading_zero=F);
 }
 
 ##############################################################################
@@ -496,12 +513,15 @@ lograt_list=list();
 filenames_list=as.list(st_files)
 names(filenames_list)=targ_st_ids;
 
+num_targets=length(targ_st_ids);
+index=1;
+
 for(targ_ix in targ_st_ids){
 	
 	cat("-----------------------------------------------------------------\n");
-	cat("Working on: ", targ_ix, "\n");
+	cat("Working on: ", targ_ix, " ", index, "/", num_targets, "\n");
 	
-	plot_title_page(targ_ix);
+	plot_title_page(paste(index, "/", num_targets, sep=""), gsub("\\.", "\n", targ_ix));
 
 	counts_list[[targ_ix]]=load_summary_file(filenames_list[[targ_ix]]);
 	norm_list[[targ_ix]]=normalize(counts_list[[targ_ix]]);
@@ -511,8 +531,11 @@ for(targ_ix in targ_st_ids){
 
 	#generate_overlayed_distributions(topN_list[[targ_ix]]);	
 	generate_histograms(zsub_list[[targ_ix]], lograt_list[[targ_ix]]);
+
+	generate_correlation_matrix(lograt_list[[targ_ix]], targ_ix);
 	
 	cat("-----------------------------------------------------------------\n");
+	index=index+1;
 	
 }
 
