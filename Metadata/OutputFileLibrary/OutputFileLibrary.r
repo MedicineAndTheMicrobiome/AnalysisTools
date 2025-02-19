@@ -57,10 +57,11 @@ plot_title_page=function(title, subtitle=""){
 
 
 paint_matrix=function(mat, title="", subtitle="", plot_min=NA, plot_max=NA, log_col=F, high_is_hot=T, deci_pts=4, 
-	label_zeros=T, counts=F, value.cex=2, 
+	label_zeros=T, counts=F, value.cex=2,
 	plot_col_dendr=F,
 	plot_row_dendr=F,
-	suppress_grid_lines=F
+	suppress_grid_lines=F,
+	show_leading_zero=T
 ){
 
         num_row=nrow(mat);
@@ -246,7 +247,17 @@ paint_matrix=function(mat, title="", subtitle="", plot_min=NA, plot_max=NA, log_
                                 if(counts){
                                         text_lab=sprintf("%i", mat[y,x]);
                                 }else{
-                                        text_lab=sprintf(paste("%0.", deci_pts, "f", sep=""), mat[y,x]);
+					text_lab=sprintf(paste("%0.", deci_pts, "f", sep=""), mat[y,x]);
+
+					if(show_leading_zero){
+						if(!is.na(mat[y,x]) && mat[y,x]>-1 && mat[y,x]<1){
+							if(mat[y,x]>0){
+								text_lab=gsub("^0\\.", ".", text_lab);
+							}else{
+								text_lab=gsub("^-0\\.", "-.", text_lab);
+							}
+						}
+					}
                                 }
                                 text(x-.5, y-.5, text_lab, srt=atan(num_col/num_row)/pi*180, 
 					cex=value.cex, font=2);
