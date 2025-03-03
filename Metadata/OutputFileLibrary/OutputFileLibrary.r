@@ -249,7 +249,7 @@ paint_matrix=function(mat, title="", subtitle="", plot_min=NA, plot_max=NA, log_
                                 }else{
 					text_lab=sprintf(paste("%0.", deci_pts, "f", sep=""), mat[y,x]);
 
-					if(show_leading_zero){
+					if(!show_leading_zero){
 						if(!is.na(mat[y,x]) && mat[y,x]>-1 && mat[y,x]<1){
 							if(mat[y,x]>0){
 								text_lab=gsub("^0\\.", ".", text_lab);
