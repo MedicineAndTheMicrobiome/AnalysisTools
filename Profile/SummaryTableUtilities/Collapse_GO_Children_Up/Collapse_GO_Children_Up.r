@@ -605,6 +605,10 @@ export_sumtabs_exc_tpn=function(tpn_rt_lst, cnt_mat_list, smpdpt, tpn_thres, out
 	append_remaining=function(inmat, depth){
 		sums=apply(inmat, 1, sum);
 		Remaining=depth-sums;
+
+		rounding_errors_ix=(Remaining<0);
+		Remaining[rounding_errors_ix]=0;
+
 		if(any(Remaining!=0)){
 			outmat=cbind(inmat,Remaining);
 		}else{
