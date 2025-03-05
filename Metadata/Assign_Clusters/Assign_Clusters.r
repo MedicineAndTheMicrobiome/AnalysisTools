@@ -8,6 +8,7 @@ library('getopt');
 options(useFancyQuotes=F);
 options(digits=5)
 
+MAX_NON_OUTLIERS=50;
 PSEUDO_F_BOOTSTRAPS=80;
 PSEUDO_F_SUBSAMP=200;
 DEFAULT_CLUS_PREFIX="K";
@@ -16,6 +17,7 @@ params=c(
 	"factors", "f", 1, "character",
 	"targets", "t", 2, "character",
 	"outputroot", "o", 1, "character",
+	"max_nonoutliers", "T", 2, "numeric",
 	"maxcluster", "m", 2, "numeric",
 	"subsample", "s", 2, "numeric",
 	"pseudof_bs", "B", 2, "numeric",
@@ -31,6 +33,7 @@ usage = paste(
 	"	-f <factors/metadata file name>\n",
 	"	-t <target file name, for variables to compute clusters on>\n",
 	"	-o <output filename root>\n",
+	"	[-T <Max number of top non-outliers to include, default=", MAX_NON_OUTLIERS, ">]\n",
 	"	[-m <maximum number of clusters, default=max(log2(sample_size), sample_size/40)>]\n",
 	"	[-s <subsample for testing, default=all samples>]\n",
 	"\n",
@@ -60,6 +63,11 @@ if(
 FactorsFname=opt$factors;
 TargetsFname=opt$targets;
 OutputFnameRoot=opt$outputroot;
+
+MaxNonOutliers=MAX_NON_OUTLIERS;
+if(length(opt$max_nonoutliers)){
+	MaxNonOutliers=opt$max_nonoutliers;
+}
 
 MaxClusters=-1;
 if(length(opt$maxcluster)){
@@ -553,6 +561,12 @@ if(UseAntiOutlierWeighting){
 	anti_outlier_weights=anti_outlier_weights[weight_order];
 	standardized_targets=standardized_targets[,weight_order];
 	targeted_factors=targeted_factors[,weight_order];
+
+	# Keep top variables
+	if(length(weight_order)>MaxNonOutliers){
+		targeted_factors=targeted_factors[,1:MaxNonOutliers];
+	}
+
 
 	plot_text(c(
 		"Anti-outlier Weights (ordered):",
