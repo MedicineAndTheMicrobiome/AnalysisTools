@@ -557,7 +557,7 @@ if(UseAntiOutlierWeighting){
 	print(anti_outlier_weights);
 
 	# Reorder variables by their weights
-	weight_order=order(anti_outlier_weights);
+	weight_order=order(anti_outlier_weights, decreasing=T);
 	anti_outlier_weights=anti_outlier_weights[weight_order];
 	standardized_targets=standardized_targets[,weight_order];
 	targeted_factors=targeted_factors[,weight_order];
@@ -565,7 +565,10 @@ if(UseAntiOutlierWeighting){
 	# Keep top variables
 	if(length(weight_order)>MaxNonOutliers){
 		targeted_factors=targeted_factors[,1:MaxNonOutliers];
+	}else{
+		MaxNonOutliers=length(weight_order);
 	}
+	targeted_factors=targeted_factors[,MaxNonOutliers:1];
 
 
 	plot_text(c(
@@ -577,7 +580,11 @@ if(UseAntiOutlierWeighting){
 	decreasing_aow=sort(anti_outlier_weights, decreasing=T);
 	par(mar=c(10,4,4,1));
 	barplot(decreasing_aow, xlab="", ylab="Weighting", las=2,
-		main="Anti-Outlier Weighting");
+		main="All Anti-Outlier Weighting");
+
+	par(mar=c(10,4,4,1));
+	barplot(decreasing_aow[1:MaxNonOutliers], xlab="", ylab="Weighting", las=2,
+		main=paste("Top ", MaxNonOutliers, " Anti-Outlier Weighting", sep=""));
 
 
 }
