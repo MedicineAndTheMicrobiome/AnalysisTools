@@ -7,7 +7,8 @@ library('getopt');
 library(plotrix);
 
 options(useFancyQuotes=F);
-options(digits=5)
+options(digits=5);
+options(width=120);
 
 params=c(
 	"factors", "f", 1, "character",
@@ -125,6 +126,20 @@ plot_text=function(strings, max_lines=75){
 }
 
 ##############################################################################
+
+approx_entropy=function(values, brks=20){
+	h=hist(values, breaks=brks, plot=F);
+	num_vals=length(values);
+	props=h$counts/num_vals;
+	nz_ix=(props!=0);
+	props=props[nz_ix];
+
+	num_cat=length(props);
+	entropy=-sum(props*log(props));
+	return(entropy);
+}
+
+##############################################################################
 # Main Program Starts Here!
 ##############################################################################
 
@@ -182,6 +197,12 @@ par(mfrow=c(3, 2));
 bottom_pad=6
 par(mar=c(bottom_pad,5,3,1));
 
+desc_stats=c("N", "NumNAs", "Mean", "Stdev", "Min", "Max", "NumCat", "PropDomCat", "ApprEntropy");
+num_desc_stats=length(desc_stats);
+summary_matrix=matrix(NA, nrow=num_factors, ncol=num_desc_stats);
+rownames(summary_matrix)=factor_names;
+colnames(summary_matrix)=desc_stats;
+
 for(i in 1:num_factors){
 	cur_factor=factors[,i];
 	categories=unique(unique(cur_factor));
@@ -208,12 +229,19 @@ for(i in 1:num_factors){
 	cur_factor=cur_factor[nonna_ix];
 	n=length(cur_factor);
 
+	matrix_row=rep(NA, num_desc_stats);
+	names(matrix_row)=desc_stats;
+	matrix_row["N"]=n;
+	matrix_row["NumNAs"]=numNAs;
+	matrix_row["ApprEntropy"]=approx_entropy(cur_factor);
+
 	if(n==0){
 		plot(0,0, type="n", xlab="", ylab="", xaxt="n", yaxt="n", main=factor_names[i]);
 		text(0,0, "No samples with non-NA values.");
 		plot_text(c(
 			"All data for variable is NA."
 		));
+
 
 	}else if(isFactor){
 		t=table(cur_factor);
@@ -253,8 +281,9 @@ for(i in 1:num_factors){
 			"",
 			table_summary
 		));
-
-
+		
+		matrix_row["NumCat"]=num_uniq_cat;
+		matrix_row["PropDomCat"]=max(counts["Proportions"]);
 
 	}else{
 
@@ -281,9 +310,43 @@ for(i in 1:num_factors){
 			paste("max = ", max, sep="")
 			));
 
+		matrix_row["Mean"]=mean;
+		matrix_row["Stdev"]=stdev;
+		matrix_row["Min"]=min;
+		matrix_row["Max"]=max;
 		
 	}
+
+	summary_matrix[factor_names[i],]=matrix_row;
 }
+
+###############################################################################
+# Reorder by entropy
+
+dec_entrop_ord=order(summary_matrix[,"ApprEntropy"], decreasing=T);
+summary_matrix=summary_matrix[dec_entrop_ord,,drop=F];
+print(summary_matrix);
+
+###############################################################################
+# Write summary to PDF
+
+#par(mfrow=c(1,1));
+#par(mar=rep(.25,4));
+#plot_text(capture.output(print(summary_matrix, quote=F)), max_lines=500);
+
+###############################################################################
+# Write summary to text file
+
+varn=rownames(summary_matrix);
+coln=colnames(summary_matrix);
+outmat=cbind(varn, summary_matrix);
+colnames(outmat)=c("Variable", coln);
+
+write.table(
+	outmat,
+	paste(OutputFnameRoot, ".tsv", sep=""),
+	quote=F, sep="\t", 
+	row.names=F, col.names=T);
 
 ##############################################################################
 
