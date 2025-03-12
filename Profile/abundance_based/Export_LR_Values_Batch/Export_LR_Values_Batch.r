@@ -14,7 +14,7 @@ options(useFancyQuotes=F);
 params=c(
 	"summary_file_pattern", "p", 2, "character",
 	"summary_file_list_fn", "f", 2, "character",
-	"output_fn_root", "o", 2, "character"
+	"output_directory", "d", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -28,7 +28,7 @@ usage = paste(
 	"	Summary File List:\n",
 	"	[-p <Specify a pattern, e.g. \"GO.cellular_component/*names.summary_table.tsv\">]\n",
 	"	[-f <Specify a list, e.g. summary_tables.lst>\n",
-	"	-o <output filename root>\n",
+	"	-d <output directory>\n",
 	"\n",
 	"This script will:\n",
 	"   1.) read in a set/list of summary tables.\n",
@@ -36,13 +36,13 @@ usage = paste(
 	"\n", sep="");
 
 if(
-	!length(opt$output_fn_root)
+	!length(opt$output_directory)
 ){
 	cat(usage);
 	q(status=-1);
 }
 
-OutputRoot=opt$output_fn_root;
+OutputDir=opt$output_directory;
 
 STFilePattern="";
 STFileList="";
@@ -58,8 +58,13 @@ if(length(opt$summary_file_list)){
 cat("\n");
 cat("Specified Summary File Pattern: ", STFilePattern, "\n");
 cat("Specified Summary File List: ", STFileList, "\n");
-cat("Output File: ", OutputRoot, "\n", sep="");
+cat("Output Dir: ", OutputDir, "\n", sep="");
 cat("\n");
+
+if(!dir.exists(OutputDir)){
+	cat("Making: ", OutputDir, "\n");
+	dir.create(OutputDir);
+}
 
 ##############################################################################
 
@@ -233,8 +238,9 @@ set_zeros_catdev=function(norm_mat, dev_sep=7){
 	num_col=ncol(norm_mat);
 
 	log_sd=apply(norm_mat, 2, function(x){
-			nz_ix=(x!=0)
+			nz_ix=(x>0)
 			nz_val=x[nz_ix];
+
 			if(length(nz_val)<2){
 				stdev=0;
 			}else{
@@ -404,7 +410,7 @@ export_groups=function(fn, lograt_lst){
 
 }
 
-export_joined_tables=function(fn, lograt_lst){
+export_joined_tables=function(dir, lograt_lst){
 	# Generates full matrix output file by sample_id
 	
 	num_groups=length(lograt_lst);
@@ -414,70 +420,35 @@ export_joined_tables=function(fn, lograt_lst){
 	cat("Exporting Tables [", num_groups, "]:\n");
 	print(group_names);
 	
-	# Make sure all tables have the same sample IDs
-	sample_ids=rownames(lograt_lst[[1]]);
-	category_ids=c();
-	num_samples=length(sample_ids);
-	for(i in 1:num_groups){
-
-		cur_tab=lograt_lst[[i]];
-
-		cur_samp_ids=rownames(cur_tab);
-		shared=intersect(sample_ids, cur_samp_ids)
-		if(length(shared)!=num_samples){
-			cat("Error:  Inconsistent Sample IDs.\n");
-			cat("Group ID: ", group_names[i], "\n");
-			
-			if(length(sample_ids)>length(cur_samp_ids)){
-				print(setdiff(sample_ids, cur_samp_ids));
-			}else{
-				print(setdiff(cur_samp_ids, sample_ids));
-			}
-			quit(status=-1);
-		}else{
-			category_ids=c(category_ids, colnames(cur_tab));
-		}
-	}
-
-	num_categories=length(category_ids);
-
-	cat("Combined Out Table Dimenension:\n");	
-	cat("Rows: ", num_samples, "\n");
-	cat("Cols: ", num_categories, "\n");
-
-	out_matrix=matrix(NA, nrow=num_samples, ncol=num_categories);
-	rownames(out_matrix)=sample_ids;
-	colnames(out_matrix)=category_ids;
-
 	# Populate
 	for(i in 1:num_groups){
-		cat("Accumulating Table: ", group_names[i], "\n");
+		cat("Working on: ", group_names[i], "\n");
 		cur_tab=lograt_lst[[i]];
 		cnames=colnames(cur_tab);
 		cat("Columns:\n");
 		print(cnames);
-		out_matrix[sample_ids, cnames]=cur_tab[sample_ids, cnames];
 		cat("\n");
+
+		sample_ids=rownames(cur_tab);
+		out_matrix=cbind(sample_ids, cur_tab);
+		colnames(out_matrix)=c("SampleID", colnames(cur_tab));
+
+		# Write table to file
+		fname=paste(dir, "/", group_names[i], ".lr.tsv", sep="");
+		write.table(out_matrix, file=fname, quote=F, sep="\t", row.names=F, col.names=T);
 	}
-
-	# Move sample ID to first column
-	out_matrix=cbind(sample_ids, out_matrix);
-	colnames(out_matrix)=c("SampleID", category_ids);
-
-	# Write table to file
-	write.table(out_matrix, file=fn, quote=F, sep="\t", row.names=F, col.names=T);
 
 	cat("------------------------------------------------------------\n");
 }
 
 generate_correlation_matrix=function(mat, name){
 	cormat=cor(mat);
-	paint_matrix(cormat, name, plot_min=-1, plot_max=1, deci_pts=2, show_leading_zero=F);
+	paint_matrix(cormat, name, plot_min=-1, plot_max=1, deci_pts=1, show_leading_zero=F);
 }
 
 ##############################################################################
 
-pdf(paste(OutputRoot, ".lr_trans.pdf", sep=""), height=11, width=8.5);
+pdf(paste(OutputDir, "/summary.lr_trans.pdf", sep=""), height=11, width=8.5);
 
 st_files=c();
 if(STFilePattern!=""){
@@ -524,6 +495,7 @@ for(targ_ix in targ_st_ids){
 	plot_title_page(paste(index, "/", num_targets, sep=""), gsub("\\.", "\n", targ_ix));
 
 	counts_list[[targ_ix]]=load_summary_file(filenames_list[[targ_ix]]);
+	
 	norm_list[[targ_ix]]=normalize(counts_list[[targ_ix]]);
 	topN_list[[targ_ix]]=topN(norm_list[[targ_ix]], max=25);
 	zsub_list[[targ_ix]]=set_zeros_catdev(topN_list[[targ_ix]]);
@@ -537,18 +509,10 @@ for(targ_ix in targ_st_ids){
 	cat("-----------------------------------------------------------------\n");
 	index=index+1;
 	
+
 }
 
-# Append group and member names to make them unique
-lograt_list=make_fields_unique(lograt_list);
-
-# Export Groups
-outgrp_fn=paste(OutputRoot, ".tr_trans.map", sep="");
-export_groups(outgrp_fn, lograt_list);
-
-# Export Combined LR 
-outgrp_fn=paste(OutputRoot, ".tr_trans.tsv", sep="");
-export_joined_tables(outgrp_fn, lograt_list);
+export_joined_tables(OutputDir, lograt_list);
 
 ##############################################################################
 
