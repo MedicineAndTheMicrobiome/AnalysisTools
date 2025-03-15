@@ -164,6 +164,15 @@ for(cutoff in minimums_arr){
 	excl_ids=samp_ids[!keep_idx];
 	excl_cts=totals[!keep_idx];
 
+	# Remove columns that are now all zero
+	category_counts=apply(outmat, 2, sum);
+	non_zero_categories=(category_counts>0);
+	num_all_zeros_cats=sum(!non_zero_categories);
+	if(num_all_zeros_cats){
+		cat("All zero categories detected:  ", num_all_zeros_cats, " removed.\n", sep="");
+		outmat=outmat[,non_zero_categories,drop=F];
+	}
+
 	zpad=paste("%0", floor(log10(max_cutoff))+1, "g", sep="");
 	sumtab_name=paste(OutputFileRoot, ".min_", sprintf(zpad, cutoff), ".summary_table.tsv", sep=""); 
 	write_summary_table(sumtab_name, outmat);
