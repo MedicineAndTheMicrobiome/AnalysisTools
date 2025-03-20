@@ -1201,6 +1201,99 @@ plot_results=function(resp_rec){
 
 plot_results(responses_results);
 
+#------------------------------------------------------------------------------
+
+par(mfrow=c(1,1));
+par(mar=c(1,1,1,1));
+
+plot_title_page("Model Improvement through Group Inclusion Measured by Num Factor Levels", c(
+	"The following matrix:",
+	"    Rows: Group Variable Names:",
+	"    Cols: Response Variable Names",
+	"",
+	"Each cell represents the number of models where including the",
+	"Group's variables, improved the model for the factor level:",
+	"",
+	"    AIC(Group Variable + Covariates) < AIC(Covariates)",
+	"           (and the difference is greater than 2)",
+	"",
+	"For example if a response variable has 6 levels (e.g. K6), and 5 of the levels",
+	"have models with an improved AIC when a group's variables is included",
+	"then 5 will be recorded in the cell.",
+	"",
+	"A response level is considered improved if the 'Group w/ Covariates' model",
+	"is better than the 'Covariates-only' model"
+));
+
+summarize_groups_by_response=function(resp_res, aic_diff_cutoff=2){
+
+	# Generate a num_groups by num_responses matrix
+	# For each group, count up the the number of factor levels that have improved.
+
+	response_names=names(resp_res);
+	print(response_names);
+
+	impr_mat_as_list=list();
+
+	for(resp_ix in response_names){
+		cat("Extracting: ", resp_ix, "\n");
+		covariates_res=resp_res[[resp_ix]][["covariates"]];
+		target_covar_res=resp_res[[resp_ix]][["target_covar"]];
+
+		covariates_only_aic=covariates_res$aic;
+		cat("Covariates Only\n");	
+		print(covariates_only_aic);
+
+		target_names=names(target_covar_res);
+
+		impr_list_by_resp=list();
+		for(targ_ix in target_names){
+			cat("Target Group: ", targ_ix, "\n");
+			target_covar_aic=target_covar_res[[targ_ix]][["aic"]];
+			cat("Target w/ Covariates:\n");
+			print(target_covar_aic);
+
+			signf_impr=((covariates_only_aic-target_covar_aic)>aic_diff_cutoff);
+			num_sigimp=sum(signf_impr);
+			impr_list_by_resp[[targ_ix]]=num_sigimp;
+		}
+
+		impr_mat_as_list[[resp_ix]]=impr_list_by_resp;
+	}
+
+	print(impr_mat_as_list);
+
+	grp_names=names(impr_mat_as_list[[1]]);
+	rsp_names=names(impr_mat_as_list);
+
+	num_rsp=length(rsp_names);
+	num_grps=length(grp_names);
+
+	grp_rsp_matrix=matrix(0, nrow=num_grps, ncol=num_rsp);
+	colnames(grp_rsp_matrix)=rsp_names;
+	rownames(grp_rsp_matrix)=grp_names;
+
+	for(g_ix in grp_names){
+		for(r_ix in rsp_names){
+			grp_rsp_matrix[g_ix, r_ix]=impr_mat_as_list[[r_ix]][[g_ix]];
+		}
+	}
+	print(grp_rsp_matrix);
+	return(grp_rsp_matrix);
+
+}
+
+summary_matrix=summarize_groups_by_response(responses_results);
+
+par(mfrow=c(1,1));
+par(mar=c(1,1,1,1));
+paint_matrix(summary_matrix, title="Num Factor Levels with Model Improvement when Group Incl", 
+		deci_pts=0, label_zeros=F, value.cex=1);
+
+out_sum_mat=cbind(rownames(summary_matrix), summary_matrix);
+colnames(out_sum_mat)=c("Group", colnames(summary_matrix));
+outfn=paste(OutputRoot, ".multn_resp.grp_sum.tsv", sep="");
+write.table(out_sum_mat, outfn, quote=F, sep="\t", row.names=F, col.names=T);
 
 ###############################################################################
 
