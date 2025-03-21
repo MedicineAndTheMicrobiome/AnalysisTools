@@ -1285,13 +1285,16 @@ summarize_groups_by_response=function(resp_res, aic_diff_cutoff=2){
 
 summary_matrix=summarize_groups_by_response(responses_results);
 
+response_means=apply(summary_matrix, 1, mean);
+response_sd=apply(summary_matrix, 1, sd);
+
 par(mfrow=c(1,1));
 par(mar=c(1,1,1,1));
 paint_matrix(summary_matrix, title="Num Factor Levels with Model Improvement when Group Incl", 
 		deci_pts=0, label_zeros=F, value.cex=1);
 
-out_sum_mat=cbind(rownames(summary_matrix), summary_matrix);
-colnames(out_sum_mat)=c("Group", colnames(summary_matrix));
+out_sum_mat=cbind(rownames(summary_matrix), summary_matrix, response_means, response_sd);
+colnames(out_sum_mat)=c("Group", colnames(summary_matrix), "Mean", "Stdev");
 outfn=paste(OutputRoot, ".multn_resp.grp_sum.tsv", sep="");
 write.table(out_sum_mat, outfn, quote=F, sep="\t", row.names=F, col.names=T);
 
