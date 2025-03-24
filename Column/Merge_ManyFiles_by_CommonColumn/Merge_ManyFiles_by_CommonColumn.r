@@ -147,6 +147,11 @@ colnames(combined_columns_matrix)=all_column_names;
 
 ##############################################################################
 
+# Combine files into matrix and build precursor for a grouping file 
+group_fn=paste(gsub(".tsv$", "", OutputFName), ".file_src.tsv", sep="");
+
+grp_fh=file(group_fn, "w");
+
 for(i in 1:num_target_files){
 
 	cat("Working on: ", i, "\n");
@@ -156,9 +161,14 @@ for(i in 1:num_target_files){
 	for(cn in cur_colnames){
 		combined_columns_matrix[cur_ids, cn] =
 			loaded_factors[[i]][cur_ids, cn];
+
+		# Write column names and their source file to file
+		cat(file=grp_fh, paste(cn,target_list[i],sep="\t"), "\n", sep="");
 	}
 
 }
+
+close(grp_fh);
 
 cat("\n");
 
