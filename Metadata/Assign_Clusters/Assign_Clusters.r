@@ -8,7 +8,6 @@ library('getopt');
 options(useFancyQuotes=F);
 options(digits=5)
 
-MAX_NON_OUTLIERS=50;
 PSEUDO_F_BOOTSTRAPS=80;
 PSEUDO_F_SUBSAMP=200;
 DEFAULT_CLUS_PREFIX="K";
@@ -18,6 +17,7 @@ params=c(
 	"targets", "t", 2, "character",
 	"outputroot", "o", 1, "character",
 	"max_nonoutliers", "T", 2, "numeric",
+	"group_fn", "g", 2, "character",
 	"maxcluster", "m", 2, "numeric",
 	"subsample", "s", 2, "numeric",
 	"pseudof_bs", "B", 2, "numeric",
@@ -33,7 +33,14 @@ usage = paste(
 	"	-f <factors/metadata file name>\n",
 	"	-t <target file name, for variables to compute clusters on>\n",
 	"	-o <output filename root>\n",
-	"	[-T <Max number of top non-outliers to include, default=", MAX_NON_OUTLIERS, ">]\n",
+	"\n",
+	"	Anti-outlier options:\n",
+	"	[-T <Max number of top non-outliers to include, no default but 50 is reasonable>]\n",
+	"\n",
+	"	Group-weighted options:\n",
+	"	[-g <group file>]\n",
+	"\n",
+	"	General Clustering options:\n",
 	"	[-m <maximum number of clusters, default=max(log2(sample_size), sample_size/40)>]\n",
 	"	[-s <subsample for testing, default=all samples>]\n",
 	"\n",
@@ -64,7 +71,7 @@ FactorsFname=opt$factors;
 TargetsFname=opt$targets;
 OutputFnameRoot=opt$outputroot;
 
-MaxNonOutliers=MAX_NON_OUTLIERS;
+MaxNonOutliers=Inf;
 if(length(opt$max_nonoutliers)){
 	MaxNonOutliers=opt$max_nonoutliers;
 }
@@ -94,6 +101,19 @@ if(length(opt$out_clus_prefix)){
 	OutputClusterPrefix=opt$out_clus_prefix;
 }
 
+GroupingFilename="";
+if(length(opt$group_fn)){
+	GroupingFilename=opt$group_fn;
+}
+
+
+UseGroupedVariablesWeighting=T;
+UseAntiOutlierWeighting=T;
+#if(GroupingFilename!=""){
+#	UseGroupedVariablesWeighting=T;
+#}else if(MaxNonOutliers!=-1){
+#	UseAntiOutlierWeighting=T;
+#}
 
 param_text=capture.output({
 	cat("\n");
@@ -106,11 +126,46 @@ param_text=capture.output({
 	cat("Pseudo F Bootstraps: ", PseudoFBS, "  Subsamples:", PseudoFN, "\n");
 	cat("\n");
 	cat("Output Cluster Prefix: ", OutputClusterPrefix, "\n");
+	cat("\n");
+	cat("Groupings File Name: ", GroupingFilename, "\n");
 });
 print(param_text, quote=F);
 cat("\n\n");
 
 ###############################################################################
+
+abbrev_fun=function(orig_name){
+
+	pref_abbr=list(
+		activity="act",
+		assimilation="assim",
+		catabolic="catab",
+		dependent="dep",
+		electron="elctrn",
+		hydrogen="H",
+		metabolic="metab",
+		phosphate="PO4",
+		process="proc",
+		protein="prot",
+		potassium="K",
+		reduction="reductn",
+		sodium="Na",
+		substituted="subst",
+		sulfate="SO4",
+		transmembrane="trnsmbn",
+		transporter="trnsptr",
+		zinc="Zn"
+	);
+
+	words=strsplit(orig_name, "_")[[1]];
+	for(i in 1:length(words)){
+		abb=pref_abbr[[words[i]]];
+		if(!is.null(abb)){
+			words[i]=abb;
+		}
+	}
+	return(paste(words, collapse="_"));
+}
 
 load_factors=function(fname){
 	factors=as.data.frame(read.delim(fname,  header=TRUE, row.names=1, check.names=FALSE, sep="\t"));
@@ -505,33 +560,11 @@ for(tar_ix in 1:num_targets){
 
 #standardized_targets=standardized_targets[sample(200),];
 
-calc_antioutlier_weight=function(std_val_mat){
-	num_var=ncol(std_val_mat);
-	num_sbj=nrow(std_val_mat);
-	var_names=colnames(std_val_mat);
+distance_weighting=NULL
 
-	weights=numeric(num_var);
-	names(weights)=var_names;
-
-	means=apply(std_val_mat, 2, mean);
-
-	for(i in 1:num_var){
-		prop_gt_mean=sum(std_val_mat[,i] > means[i])/num_sbj;
-		spread=abs(1-2*prop_gt_mean);
-		weight=1-spread;
-		if(is.na(weight)){
-			weight=0;
-		}
-		cat(var_names[i], " Prop: ", prop_gt_mean, " Spread: ", spread, " Weight: ", weight, "\n", sep="");
-		weights[i]=weight;
-	}
-	weights=weights/(sum(weights));
-
-	return(weights);
-}
-
-UseAntiOutlierWeighting=T;
 if(UseAntiOutlierWeighting){
+
+	cat("Calculating Anti-Outlier Weightings...\n");
 
 	plot_title_page("Anti-Outlier Weighting", c(
 		"Anti-outlier weighting calculates a weighting for each variable so that",
@@ -552,9 +585,36 @@ if(UseAntiOutlierWeighting){
 		"much less weight to those that are closer to 99%/1% distributed."
 		));
 
-	cat("Calculating anti-outlier weights...\n");
+	calc_antioutlier_weight=function(std_val_mat){
+		num_var=ncol(std_val_mat);
+		num_sbj=nrow(std_val_mat);
+		var_names=colnames(std_val_mat);
+
+		weights=numeric(num_var);
+		names(weights)=var_names;
+
+		means=apply(std_val_mat, 2, mean);
+
+		cat("Num Variables for anti-outlier weight calculations: ", num_var, "\n");
+		for(i in 1:num_var){
+			prop_gt_mean=sum(std_val_mat[,i] > means[i])/num_sbj;
+			spread=abs(1-2*prop_gt_mean);
+			weight=1-spread;
+			if(is.na(weight)){
+				weight=0;
+			}
+			cat("[", i, "]: ", var_names[i], " Prop: ", prop_gt_mean, " Spread: ", spread, 
+				" Weight: ", weight, "\n", sep="");
+			weights[i]=weight;
+		}
+		weights=weights/(sum(weights));
+
+		return(weights);
+	}
+
 	anti_outlier_weights=calc_antioutlier_weight(standardized_targets);
 	print(anti_outlier_weights);
+		cat("Using specified weightings.\n");
 
 	# Reorder variables by their weights
 	weight_order=order(anti_outlier_weights, decreasing=T);
@@ -563,10 +623,12 @@ if(UseAntiOutlierWeighting){
 	targeted_factors=targeted_factors[,weight_order];
 
 	# Keep top variables
-	if(length(weight_order)>MaxNonOutliers){
+	num_input_var=length(weight_order);
+	cat("Keeping: ", MaxNonOutliers, " of ", num_input_var, "\n");
+	if(num_input_var>MaxNonOutliers){
 		targeted_factors=targeted_factors[,1:MaxNonOutliers];
 	}else{
-		MaxNonOutliers=length(weight_order);
+		MaxNonOutliers=num_input_var;
 	}
 	targeted_factors=targeted_factors[,MaxNonOutliers:1];
 
@@ -578,28 +640,130 @@ if(UseAntiOutlierWeighting){
 	));
 
 	decreasing_aow=sort(anti_outlier_weights, decreasing=T);
-	par(mar=c(10,4,4,1));
+	par(mar=c(25,4,4,1));
 	barplot(decreasing_aow, xlab="", ylab="Weighting", las=2,
 		main="All Anti-Outlier Weighting");
 
-	par(mar=c(10,4,4,1));
+	par(mar=c(25,4,4,1));
 	barplot(decreasing_aow[1:MaxNonOutliers], xlab="", ylab="Weighting", las=2,
 		main=paste("Top ", MaxNonOutliers, " Anti-Outlier Weighting", sep=""));
 
+}
 
+cat("Anti-Outlier Weights:\n");
+print(anti_outlier_weights);
+cat("\n");
+
+
+if(UseGroupedVariablesWeighting){
+
+	cat("Calculting Group-based Weightings...\n");
+
+	plot_title_page("Group-based Weighting", c(
+		"Group-based weighting will calculate a weighting for each variable\n",
+		"based on the the group of the variable.\n",
+		"\n",
+		"Overall, each group will be equally weighted, and each variable\n",
+		"with a group will be equally weighted.\n",
+		"\n",
+		"Example:\n",
+		"  Let's say you have 3 groups: A, B, and C.\n",
+		"    Group A has variables:  r, s, t\n",
+		"    Group B has variables:  u, v\n",
+		"    Group C has variables:  x\n",
+		"\n",
+		"  The weights for A, B and C would be .333 each, so\n",
+		"  the weights for the underlying varables would be:\n",
+		"	r: 0.111, s: 0.111, t: 0.111\n",
+		"	u: 0.167, v: 0.167\n",
+		"	x: 0.333\n"
+		));
+
+	load_group_map=function(fname){
+		# Returns a list keyed by group name
+		# Each list element is a list of variables
+
+		indat=read.table(fname, quote="", sep="\t", stringsAsFactors=F, comment.char="#");
+		# 1st Column: Variable
+		# 2nd Column: Group
+
+		groups=unique(indat[,2]);
+		cat("Groups found:\n");
+		print(groups);
+		cat("\n");
+
+		num_groups=length(groups);
+		cat("Num Groups: ", num_groups, "\n", sep="");
+		grp_map=list();
+
+		for(grp in groups){
+			grp_var_ix=(indat[,2]==grp);
+			grp_map[[grp]]=indat[grp_var_ix,1];
+		}
+
+		return(grp_map);
+	}
+
+	calc_weights_by_grouping=function(std_val_mat, grp_map){
+
+		num_var=ncol(std_val_mat);
+		num_sbj=nrow(std_val_mat);
+		var_names=colnames(std_val_mat);
+
+		weights=numeric(num_var);
+		names(weights)=var_names;
+
+		num_groups=length(grp_map);
+		grp_names=names(grp_map);
+		cat("Num Groups: ", num_groups, "\n");
+		group_weight=1/num_groups;
+		cat("Group Weighting: ", group_weight, "\n");
+
+		for(gix in grp_names){
+			cat("Looking at Group: ", gix, "\n");
+			grp_var_names=grp_map[[gix]];
+			num_members=length(grp_var_names);
+			cat("  Num Var: ", num_members, "\n");
+			print(grp_var_names);
+			var_weight=group_weight/num_members;
+			cat("  Weighting: ", var_weight, "\n");
+			weights[grp_var_names]=var_weight;
+		}
+
+		return(weights);
+	}
+
+	grouping_map=load_group_map(GroupingFilename);
+	cat("Loaded Groupings: \n");
+	print(grouping_map);
+
+	cat("Calculating group weights...\n");
+	group_weights=calc_weights_by_grouping(standardized_targets, grouping_map);
+
+	par(mar=c(25,4,4,1));
+	barplot(group_weights, xlab="", ylab="Weighting", las=2,
+		main=paste("Group Weights", sep=""));
+
+	print(group_weights);
 }
 
 
 weighted_dist=function(variables, weight=numeric()){
 	num_sbj=nrow(variables);
 	num_var=ncol(variables);
+	sbj_names=rownames(variables);
+	var_names=colnames(variables);
 
 	dist_mat=matrix(NA, ncol=num_sbj, nrow=num_sbj);
-	colnames(dist_mat)=rownames(variables);
-	rownames(dist_mat)=rownames(variables);
+	colnames(dist_mat)=sbj_names;
+	rownames(dist_mat)=sbj_names;
 
 	if(length(weight)==0){
+		cat("No weights specified, assuming equal-weighting.\n");
 		weight=rep(1, num_var);
+	}else{
+		cat("Using specified weightings.\n");
+		weight=weight[var_names];
 	}
 
 	for(i in 1:num_sbj){
@@ -615,11 +779,46 @@ weighted_dist=function(variables, weight=numeric()){
 
 }
 
+###############################################################################
+# Combine weights
+
+plot_title_page("Combined Weighting", c(
+		"Anti-outlier and Group weights are combined",
+		"by multipling each of their assigned weightings",
+		"together.  The resultant weights are then",
+		"renormalized (to sum to 1) and reordered."
+	));
+
+cat("Anti-Outlier Weights:\n");
+print(anti_outlier_weights);
+
+cat("Group Weights:\n");
+print(group_weights);
+
+kept_var=names(anti_outlier_weights);
+combined_weights=anti_outlier_weights[kept_var]*group_weights[kept_var];
+sum_weights=sum(combined_weights);
+combined_weights=combined_weights/sum_weights;
+
+par(mar=c(25,4,4,1));
+barplot(combined_weights, xlab="", ylab="Weighting", las=2,
+	main=paste("Selected and Combined Weighting UnSorted", sep=""));
+
+cat("Sum of Anti-Outlier Weights: ", sum(anti_outlier_weights), "\n");
+cat("Sum of Group Weights: ", sum(group_weights), "\n");
+cat("Sum of Used Weights: ", sum_weights, "\n");
+
+sorted_combined_weight_ix=order(combined_weights, decreasing=T);
+combined_weights=combined_weights[sorted_combined_weight_ix];
+targeted_factors=targeted_factors[,sorted_combined_weight_ix,drop=F];
+
+par(mar=c(25,4,4,1));
+barplot(combined_weights, xlab="", ylab="Weighting", las=2,
+	main=paste("Selected and Combined Weighting Sorted", sep=""));
 
 #distance_mat=weighted_dist(standardized_targets);
 cat("Calculating intersubject distances...\n");
-#print(standardized_targets);
-distance_mat=weighted_dist(standardized_targets, anti_outlier_weights);
+distance_mat=weighted_dist(standardized_targets, combined_weights);
 
 ###############################################################################
 
@@ -851,7 +1050,7 @@ find_cluster_features=function(num_clusters, clst_map, factors_mat, pvalcutoff=0
 
 }
 
-plot_variables_heatmap_avgs=function(factors, grp_split_loc, cl_feat_rec, num_colors=64){
+plot_variables_heatmap_avgs=function(factors, grp_split_loc, cl_feat_rec, num_colors=64, abbrev_fun=NULL){
 
 	num_variables=ncol(factors);
 	num_subjects=nrow(factors);
@@ -878,10 +1077,18 @@ plot_variables_heatmap_avgs=function(factors, grp_split_loc, cl_feat_rec, num_co
 
 	cl_loc=c(0, grp_split_loc, num_subjects);
 
+
+
+
 	for(var_ix in 1:num_variables){
 
 		cur_varname=variable_names[var_ix];
-		mtext(cur_varname, at=var_ix-.5, side=4, las=2, line=-2, adj=0);
+		if(!is.null(abbrev_fun)){
+			disp_name=abbrev_fun(cur_varname);
+		}else{
+			disp_name=cur_varname;
+		}
+		mtext(disp_name, at=var_ix-.5, side=4, las=2, line=-2, adj=0);
 
 		for(cl_ix in 1:num_clusters){
 
