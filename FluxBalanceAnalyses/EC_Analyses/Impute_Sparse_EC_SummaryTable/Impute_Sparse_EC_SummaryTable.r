@@ -19,13 +19,17 @@ script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
 usage = paste(
 	"\nUsage:\n", script_name, "\n",
 	"	-i <input summary_table.tsv file>\n",
-	"	-o <output normalized file, imputed>\n",
+	"	-o <output filename root>\n",
 	"	-n <num processors, default=1>\n",
 	"\n",
 	"This script will read in the summary table and then\n",
 	"for each of the categories impute abundances for the\n",
 	"values that had zero counts.\n",
 	"\n",
+	"The output willl be:\n",
+	"	<output filename root>.imputed.summary_table.tsv\n",
+	"	<output filename root>.unimputed.normalized.summary_table.tsv\n",
+	"	<output filename root>.imputation.plots.pdf\n",
 	"\n", sep="");
 
 if(
