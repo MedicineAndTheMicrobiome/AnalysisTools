@@ -16,12 +16,18 @@ usage = paste (
 	"\nUsage:\n\n", script_name,
 	"\n",
 	"	-i <input summary_table.tsv file name>\n",
-	"	-o <output file name root>\n",
+	"	-o <output file name summary table>\n",
 	"\n",	
 	"This script will read in the summary table and then for each\n",
 	"of the categories that are a list of ID's separated by a semi-colon ';'\n",
 	"split the counts into new categories.  When all the categories have\n",
 	"beeen split, redundant categories are then collapsed into single\n",
+	"\n",
+	"Note: The output will be a summary table, thus:\n",
+	"\n",
+	"		 -o output.summary_table.tsv\n",
+	"\n",
+	"	will generate a file by the same name.\n",
 	"\n",
 	"\n");
 
@@ -46,7 +52,8 @@ cat("\n");
 load_summary_table=function(summary_table_fn){
         # Load data
         cat("Loading Matrix (", summary_table_fn, ") ...\n", sep="");
-        inmat=as.matrix(read.table(summary_table_fn, sep="\t", header=TRUE, check.names=FALSE, row.names=1, quote=""))
+        inmat=as.matrix(read.table(summary_table_fn, sep="\t", header=TRUE, 
+		check.names=FALSE, row.names=1, quote=""))
 
         #cat("\nOriginal Matrix:\n")
         #print(inmat);
