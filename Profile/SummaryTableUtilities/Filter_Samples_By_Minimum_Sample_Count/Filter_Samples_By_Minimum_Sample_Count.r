@@ -20,7 +20,7 @@ usage = paste (
 	"\n",
 	"	-i <input summary table.xls>\n",
 	"	-c <cutoff>\n",
-	"	[-o <output summary table file name>\n",
+	"	[-o <output root file name>\n",
 	"	[-p (generate plot)]\n",
 	"\n",	
 	"This script will read in the summary table, and recompute the total for each sample,\n",
@@ -28,6 +28,11 @@ usage = paste (
 	"\n",
 	"The the cutoffs may be a single value or a comma separated list of values, such as:\n",
 	"	-c 750,1000,2000,3000\n",
+	"\n",
+	"	The output will be:\n",
+	"		<OutputRoot>.min_<NNNN>.summary_table.tsv",
+	"		<OutputRoot>.lt_<NNNN>.exclusion.tsv",
+	"		<OutputRoot>.minFilt.hist.pdf",
 	"\n",
 	"\n");
 
@@ -93,6 +98,9 @@ cat("Num Categories: ", num_categories, "\n");
 totals=apply(counts_mat, 1, sum);
 max_tot=max(totals);
 increments=min(diff(minimums_arr));
+if(increments==Inf){
+	increments=max_tot/25;
+}
 
 cat("Maximum Totals: ", max_tot, "\n", sep="");
 cat("Increments: ", increments, "\n", sep="");
@@ -101,13 +109,14 @@ cat("Increments: ", increments, "\n", sep="");
 if(GeneratePlot){
 	pdf(OutputPDFFileName, height=8.5, width=11);
 
-	bins=seq(0, max_tot+increments, increments);
+	bins=seq(0, max_tot+increments, length.out=25);
 	hist(totals, xlab="Sample Totals", main="Sample Total Distribution (Frequencies)", breaks=bins);
 	abline(v=minimums_arr, col="blue");
 
-	bins=sort(unique(c(0, minimums_arr, max_tot)));
-	hist(totals, xlab="Sample Totals", main="Sample Total Distribution (Unequal Bin Sizes)", breaks=bins);
-	abline(v=minimums_arr, col="blue");
+	bins=seq(0, log10(max_tot+increments), length.out=25);
+	hist(log10(totals+1), xlab="Log10(Sample Totals)", main="Sample Log(Total Distribution) (Frequencies)", breaks=bins);
+	abline(v=log10(minimums_arr), col="blue");
+
 }
 
 
