@@ -1231,12 +1231,14 @@ summarize_groups_by_response=function(resp_res, aic_diff_cutoff=2){
 	# For each group, count up the the number of factor levels that have improved.
 
 	response_names=names(resp_res);
+	cat("Response Names:\n");
 	print(response_names);
 
 	impr_mat_as_list=list();
+	min_aic_mat_as_list=list();
 
 	for(resp_ix in response_names){
-		cat("Extracting: ", resp_ix, "\n");
+		cat("\n\nExtracting: ", resp_ix, "\n");
 		covariates_res=resp_res[[resp_ix]][["covariates"]];
 		target_covar_res=resp_res[[resp_ix]][["target_covar"]];
 
@@ -1247,21 +1249,35 @@ summarize_groups_by_response=function(resp_res, aic_diff_cutoff=2){
 		target_names=names(target_covar_res);
 
 		impr_list_by_resp=list();
+		min_aic_list_by_resp=list();
+
 		for(targ_ix in target_names){
 			cat("Target Group: ", targ_ix, "\n");
 			target_covar_aic=target_covar_res[[targ_ix]][["aic"]];
 			cat("Target w/ Covariates:\n");
 			print(target_covar_aic);
+			min_targ_wcov_aic=min(target_covar_aic);
+			cat("Best (Min) AIC for combined (Targ + Cov): ", min_targ_wcov_aic, "\n");
 
 			signf_impr=((covariates_only_aic-target_covar_aic)>aic_diff_cutoff);
 			num_sigimp=sum(signf_impr);
 			impr_list_by_resp[[targ_ix]]=num_sigimp;
+			min_aic_list_by_resp[[targ_ix]]=min_targ_wcov_aic;
 		}
 
 		impr_mat_as_list[[resp_ix]]=impr_list_by_resp;
+		min_aic_mat_as_list[[resp_ix]]=min_aic_list_by_resp;
 	}
 
-	print(impr_mat_as_list);
+	#----------------------------------------------------------------------
+
+	#cat("Improvment Matrix:\n");
+	#print(impr_mat_as_list);
+
+	#cat("Min AIC Matrix:\n");
+	#print(min_aic_mat_as_list);
+
+	#----------------------------------------------------------------------
 
 	grp_names=names(impr_mat_as_list[[1]]);
 	rsp_names=names(impr_mat_as_list);
@@ -1273,29 +1289,60 @@ summarize_groups_by_response=function(resp_res, aic_diff_cutoff=2){
 	colnames(grp_rsp_matrix)=rsp_names;
 	rownames(grp_rsp_matrix)=grp_names;
 
+	aic_grp_rsp_matrix=matrix(0, nrow=num_grps, ncol=num_rsp);
+	colnames(aic_grp_rsp_matrix)=rsp_names;
+	rownames(aic_grp_rsp_matrix)=grp_names;
+
 	for(g_ix in grp_names){
 		for(r_ix in rsp_names){
 			grp_rsp_matrix[g_ix, r_ix]=impr_mat_as_list[[r_ix]][[g_ix]];
+			aic_grp_rsp_matrix[g_ix, r_ix]=round(min_aic_mat_as_list[[r_ix]][[g_ix]], 1);
 		}
 	}
-	print(grp_rsp_matrix);
-	return(grp_rsp_matrix);
+
+	results=list();
+	results[["num_cat_imprv"]]=grp_rsp_matrix;
+	results[["min_aic"]]=aic_grp_rsp_matrix;
+
+	return(results);
 
 }
 
-summary_matrix=summarize_groups_by_response(responses_results);
+summary_matrix_list=summarize_groups_by_response(responses_results);
 
-response_means=apply(summary_matrix, 1, mean);
-response_sd=apply(summary_matrix, 1, sd);
+#------------------------------------------------------------------------------
+# Report number of categories with improved AIC for each cut
+
+num_cat_imprv_matrix=summary_matrix_list[["num_cat_imprv"]];
+
+response_means=apply(num_cat_imprv_matrix, 1, mean);
+response_sd=apply(num_cat_imprv_matrix, 1, sd);
 
 par(mfrow=c(1,1));
 par(mar=c(1,1,1,1));
-paint_matrix(summary_matrix, title="Num Factor Levels with Model Improvement when Group Incl", 
+paint_matrix(num_cat_imprv_matrix, title="Num Factor Levels with Model Improvement when Group Incl", 
 		deci_pts=0, label_zeros=F, value.cex=1);
 
-out_sum_mat=cbind(rownames(summary_matrix), summary_matrix, response_means, response_sd);
-colnames(out_sum_mat)=c("Group", colnames(summary_matrix), "Mean", "Stdev");
+out_sum_mat=cbind(rownames(num_cat_imprv_matrix), num_cat_imprv_matrix, response_means, response_sd);
+colnames(out_sum_mat)=c("Group", colnames(num_cat_imprv_matrix), "Mean", "Stdev");
 outfn=paste(OutputRoot, ".multn_resp.grp_sum.tsv", sep="");
+write.table(out_sum_mat, outfn, quote=F, sep="\t", row.names=F, col.names=T);
+
+#------------------------------------------------------------------------------
+# Report Min AIC for each cut
+
+min_aic_matrix=summary_matrix_list[["min_aic"]];
+
+response_min=apply(min_aic_matrix, 1, min);
+
+par(mfrow=c(1,1));
+par(mar=c(1,1,1,1));
+paint_matrix(min_aic_matrix, title="Best (lowest) AIC when Group Incl", 
+		deci_pts=0, label_zeros=F, value.cex=1);
+
+out_sum_mat=cbind(rownames(min_aic_matrix), min_aic_matrix, response_min);
+colnames(out_sum_mat)=c("Group", colnames(min_aic_matrix), "Best");
+outfn=paste(OutputRoot, ".multn_resp.min_aic.tsv", sep="");
 write.table(out_sum_mat, outfn, quote=F, sep="\t", row.names=F, col.names=T);
 
 ###############################################################################
