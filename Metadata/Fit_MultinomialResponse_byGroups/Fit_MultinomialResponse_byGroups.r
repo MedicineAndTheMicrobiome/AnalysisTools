@@ -1235,7 +1235,7 @@ summarize_groups_by_response=function(resp_res, aic_diff_cutoff=2){
 	print(response_names);
 
 	impr_mat_as_list=list();
-	min_aic_mat_as_list=list();
+	max_aic_impr_mat_as_list=list();
 
 	for(resp_ix in response_names){
 		cat("\n\nExtracting: ", resp_ix, "\n");
@@ -1249,24 +1249,23 @@ summarize_groups_by_response=function(resp_res, aic_diff_cutoff=2){
 		target_names=names(target_covar_res);
 
 		impr_list_by_resp=list();
-		min_aic_list_by_resp=list();
+		max_aic_impr_list_by_resp=list();
 
 		for(targ_ix in target_names){
 			cat("Target Group: ", targ_ix, "\n");
 			target_covar_aic=target_covar_res[[targ_ix]][["aic"]];
 			cat("Target w/ Covariates:\n");
 			print(target_covar_aic);
-			min_targ_wcov_aic=min(target_covar_aic);
-			cat("Best (Min) AIC for combined (Targ + Cov): ", min_targ_wcov_aic, "\n");
 
-			signf_impr=((covariates_only_aic-target_covar_aic)>aic_diff_cutoff);
+			aic_improvement=covariates_only_aic-target_covar_aic;
+			signf_impr=(aic_improvement>aic_diff_cutoff);
 			num_sigimp=sum(signf_impr);
 			impr_list_by_resp[[targ_ix]]=num_sigimp;
-			min_aic_list_by_resp[[targ_ix]]=min_targ_wcov_aic;
+			max_aic_impr_list_by_resp[[targ_ix]]=max(aic_improvement);
 		}
 
 		impr_mat_as_list[[resp_ix]]=impr_list_by_resp;
-		min_aic_mat_as_list[[resp_ix]]=min_aic_list_by_resp;
+		max_aic_impr_mat_as_list[[resp_ix]]=max_aic_impr_list_by_resp;
 	}
 
 	#----------------------------------------------------------------------
@@ -1289,20 +1288,20 @@ summarize_groups_by_response=function(resp_res, aic_diff_cutoff=2){
 	colnames(grp_rsp_matrix)=rsp_names;
 	rownames(grp_rsp_matrix)=grp_names;
 
-	aic_grp_rsp_matrix=matrix(0, nrow=num_grps, ncol=num_rsp);
-	colnames(aic_grp_rsp_matrix)=rsp_names;
-	rownames(aic_grp_rsp_matrix)=grp_names;
+	max_aic_imp_grp_rsp_matrix=matrix(0, nrow=num_grps, ncol=num_rsp);
+	colnames(max_aic_imp_grp_rsp_matrix)=rsp_names;
+	rownames(max_aic_imp_grp_rsp_matrix)=grp_names;
 
 	for(g_ix in grp_names){
 		for(r_ix in rsp_names){
 			grp_rsp_matrix[g_ix, r_ix]=impr_mat_as_list[[r_ix]][[g_ix]];
-			aic_grp_rsp_matrix[g_ix, r_ix]=round(min_aic_mat_as_list[[r_ix]][[g_ix]], 1);
+			max_aic_imp_grp_rsp_matrix[g_ix, r_ix]=round(max_aic_impr_mat_as_list[[r_ix]][[g_ix]], 1);
 		}
 	}
 
 	results=list();
 	results[["num_cat_imprv"]]=grp_rsp_matrix;
-	results[["min_aic"]]=aic_grp_rsp_matrix;
+	results[["max_aic_imprv"]]=max_aic_imp_grp_rsp_matrix;
 
 	return(results);
 
@@ -1331,18 +1330,18 @@ write.table(out_sum_mat, outfn, quote=F, sep="\t", row.names=F, col.names=T);
 #------------------------------------------------------------------------------
 # Report Min AIC for each cut
 
-min_aic_matrix=summary_matrix_list[["min_aic"]];
+max_aic_matrix=summary_matrix_list[["max_aic_imprv"]];
 
-response_min=apply(min_aic_matrix, 1, min);
+response_max=apply(max_aic_matrix, 1, max);
 
 par(mfrow=c(1,1));
 par(mar=c(1,1,1,1));
-paint_matrix(min_aic_matrix, title="Best (lowest) AIC when Group Incl", 
+paint_matrix(max_aic_matrix, title="Most Improved AIC when Group Incl", 
 		deci_pts=0, label_zeros=F, value.cex=1);
 
-out_sum_mat=cbind(rownames(min_aic_matrix), min_aic_matrix, response_min);
-colnames(out_sum_mat)=c("Group", colnames(min_aic_matrix), "Best");
-outfn=paste(OutputRoot, ".multn_resp.min_aic.tsv", sep="");
+out_sum_mat=cbind(rownames(max_aic_matrix), max_aic_matrix, response_max);
+colnames(out_sum_mat)=c("Group", colnames(max_aic_matrix), "Best");
+outfn=paste(OutputRoot, ".multn_resp.max_aic_impr.tsv", sep="");
 write.table(out_sum_mat, outfn, quote=F, sep="\t", row.names=F, col.names=T);
 
 ###############################################################################
