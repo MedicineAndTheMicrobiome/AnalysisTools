@@ -602,11 +602,11 @@ export_sumtabs_exc_tpn=function(tpn_rt_lst, cnt_mat_list, smpdpt, tpn_thres, out
 		return(inmat);
 	}
 
-	append_remaining=function(inmat, depth){
+	append_remaining=function(inmat, depth, rnd_err_thres=1e-5){
 		sums=apply(inmat, 1, sum);
 		Remaining=depth-sums;
 
-		rounding_errors_ix=(Remaining<0);
+		rounding_errors_ix=(Remaining<rnd_err_thres);
 		Remaining[rounding_errors_ix]=0;
 
 		if(any(Remaining!=0)){
