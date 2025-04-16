@@ -1620,7 +1620,7 @@ plot_model_attribution_barplot=function(r2mat){
 
 	#print(r2mat);
 	mcf_r2s=c("Reduced McFadden", "Diff McFadden");
-	mcfad_mat=t(r2mat[,mcf_r2s]);
+	mcfad_mat=t(r2mat[,mcf_r2s,drop=F]);
 	#print(mcfad_mat);
 	unexplained=apply(mcfad_mat, 2, function(x){ 1-sum(x)});
 	barplot_mat=rbind(mcfad_mat, unexplained);
