@@ -394,8 +394,11 @@ out_stats[1,]=c(
 	signif(selected_non_rem_prop/original_mean_non_remaining_prop,5)
 	);
 
+out_mat=cbind(rownames(out_stats), out_stats);
+colnames(out_mat)=c("InputFile", colnames(out_stats));
+
 outfn=paste(OutputRoot, ".top_pc_prox.select_stats.tsv", sep="");
-write.table(out_stats, outfn, sep="\t", quote=F);
+write.table(out_mat, outfn, sep="\t", row.names=F, quote=F);
 
 
 ###############################################################################
