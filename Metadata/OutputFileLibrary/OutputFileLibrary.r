@@ -681,3 +681,99 @@ plot_comparisons_with_theoretical_alr=function(cnt_mat, alr_mat){
 
         par(orig.par);
 }
+
+
+###############################################################################
+
+plot_rank_abundance=function(abundances, num_disp_max=50, category_colors=NULL, 
+	ymax=NULL, title="Rank Abundance", subtitle="", exclude_Remaining=F){
+
+        # This draws a single Rank Abundance Plot
+	# The names on the abundances is how the category colors should be indexed
+
+	# Abundance is a matrix, make it a named vector
+        abund_dim=dim(abundances);
+	if(!is.null(abund_dim)){
+		if(abund_dim[1]==1 && abund_dim[2]>1){
+			cat("Taking row as vector.\n");
+			abundances=abundances[1,];
+		}else if(abund_dim[2]==1 && abund_dim[1]>1){
+			cat("Taking column as vector.\n");
+			abundances=abundances[,1];
+		}
+	}
+
+	# Remove "Remaining", if requested
+	remaining_removed=F;
+	if(exclude_Remaining){
+		cat_names=names(abundances);
+		rem_ix=("Remaining"==cat_names);
+		if(any(rem_ix)){
+			cat_names=setdiff(cat_names, "Remaining");
+			abundances=abundances[cat_names];
+			remaining_removed=T;
+		}
+	}
+
+        # Sort abundances in decreasing order
+        sort_ix=order(abundances, decreasing=T);
+
+        # Grab abundances/names of top categories
+        num_top_categories=min(num_disp_max, length(abundances));
+        top=abundances[sort_ix[1:num_top_categories]];
+        cat_names=names(top);
+	if(is.null(cat_names)){
+		cat_names=sprintf("cat_%02i",1:num_top_categories);
+	}
+
+        # Remove labels if abundance is 0
+        cat_names[top==0]="";
+
+        # Grab colors by names in top
+	if(!is.null(category_colors)){
+		if(length(category_colors)==1){
+			reordered_colors=rep(category_colors, num_top_categories);
+		}else{
+			reordered_colors=category_colors[cat_names];
+		}
+	}else{
+		reordered_colors=rep("white", num_top_categories);	
+	}
+
+	# If Remaining not removed, color it
+	rem_ix=(cat_names=="Remaining");
+	if(any(rem_ix)){
+		reordered_colors[rem_ix]="grey";
+	}
+
+        # Calc percent represented
+        prop_draw=sum(top);
+        rep_title=paste("Percentage Represented: ",
+                        round(prop_draw*100.0, 2),
+                        "%");
+
+	# If ymax not defined, maximize it based on data 
+	if(is.null(ymax)){
+		ymax=max(top);
+	}
+
+	# Generate plot and plot labels
+        mids=barplot(top, col=reordered_colors, names.arg="", ylim=c(0, ymax*1.05));
+        title(main=title, font.main=2, cex.main=1.75, line=-1);
+        title(main=subtitle, font.main=3, cex.main=1, line=-2)
+        title(main=rep_title, font.main=1, cex.main=1.1, line=-3)
+	if(remaining_removed){
+		title(main="(\"Remaining\" Category Found and Removed)", 
+			font.main=2, col.main="red", cex.main=.95, line=-4);
+	}
+
+        # Compute and label categories beneath barplot
+        bar_width=mids[2]-mids[1];
+        plot_range=par()$usr;
+        plot_height=plot_range[4];
+        label_size=min(c(1,.7*bar_width/par()$cxy[1]));
+        text(mids-par()$cxy[1]/2, rep(-par()$cxy[2]/2, num_top_categories), cat_names, 
+		srt=-45, xpd=T, pos=4, cex=label_size);
+
+}
+
