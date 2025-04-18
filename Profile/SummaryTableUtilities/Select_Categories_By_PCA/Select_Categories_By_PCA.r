@@ -198,6 +198,10 @@ ratio_tab_rank_scaled=scale(ratio_tab_as_rank, center=T, scale=T);
 scores=(ratio_tab_rank_scaled %*% eigen_rec$vectors);
 
 print(scores);
+if(ncol(scores)==1){
+	scores=cbind(scores,0);
+}
+
 par(mar=c(5,5,7,1));
 plot(scores[,1], scores[,2], 
 	xlab=paste("PC01:", round(pca_propvar[1]*100, 2), "%"),
@@ -315,7 +319,7 @@ cat("Mean Selected Non-Remaining Abundance: ", selected_non_rem_prop, "\n");
 cat("  Excluded: ", excluded_prop, "\n");
 
 
-pc_table_formatted=apply(pc_table[1:num_pc_at_cutoff,], 1:2, function(x){sprintf("%7.5f", x)});
+pc_table_formatted=apply(pc_table[1:num_pc_at_cutoff,,drop=F], 1:2, function(x){sprintf("%7.5f", x)});
 plot_text(c(
 	"Selected Proxies for each PC",
 	"",
