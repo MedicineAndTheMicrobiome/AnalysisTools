@@ -769,7 +769,7 @@ if(doPaired){
 	overlapping_ids=intersect(ids_array, summary_table_sample_ids);
 
 	contam_mat=normalized_mat[overlapping_ids,, drop=F];
-	avg_cont_dist=apply(normalized_mat, 2, mean);
+	avg_cont_dist=apply(contam_mat, 2, mean);
 
 	experm_samples=setdiff(summary_table_sample_ids, ids_array);
 	contam_samples=overlapping_ids;
