@@ -92,6 +92,7 @@ plot_text(c(
 
 orig_counts=load_summary_file(InputSummaryTable);
 sample_depths=apply(orig_counts, 1, sum);
+log_sample_depths=log10(sample_depths);
 
 cat("Normalizing...\n");
 normalized=normalize(orig_counts);
@@ -112,9 +113,23 @@ reference_names=reference_info[,"ReferenceName"];
 reference_copycnts=reference_info[,"CopyCount"];
 names(reference_copycnts)=reference_names;
 
+reference_log10minabund=reference_info[,"MinLog10Abund"];
+names(reference_log10minabund)=reference_names;
+
+
+combined_ref_copycount=sum(reference_info[,"CopyCount"]);
+combined_min_log10abund=log10(sum(10^reference_log10minabund));
+
+cat("Combined Ref CopyCount: ", combined_ref_copycount, "\n");
+cat("Combined Min Log10(Abund): ", combined_min_log10abund, "\n");
+
 plot_text(c(
 	paste("Reference File Name: ", ReferenceFilename, sep=""),
-	capture.output(print(reference_info, quote=F))
+	capture.output(print(reference_info, quote=F)),
+	"",
+	"",
+	paste("Combined Copy Count: ", combined_ref_copycount, sep=""),
+	paste("Combined Min Log10(Abund): ", combined_min_log10abund, sep="")
 	));
 
 ###############################################################################
@@ -128,7 +143,6 @@ norm_wo_spikeins=normalized[,categories_wo_spikeins,drop=F];
 ###############################################################################
 
 num_references=nrow(reference_info);
-par(mfrow=c(3,2));
 
 nz_ix=(normalized!=0);
 min_nz=min(normalized[nz_ix]);
@@ -136,62 +150,119 @@ log10_min_nz=log10(min_nz);
 cat("Min Nonzero Abundance: ", min_nz, "\n");
 cat("Log10(Min Nonzero): ", log10_min_nz, "\n");
 
+#------------------------------------------------------------------------------
+
 par(mar=c(5,5,5,1));
+par(oma=c(0,0,2,0));
 
-ref_ix=1;
-for(ref in reference_names){
+ref_itn=1;
+for(cur_ref_nm in c(reference_names, "_combined_")){
+	
+	par(mfrow=c(2,2));
+	cat("--------------------------------------------------\n");
+	cat("Working on: ", cur_ref_nm, "\n", sep="");
+	cat("Looking for reference [", ref_itn, "] ...\n");
 
-	cat("Working on: ", ref, "\n", sep="");
-	cat("Looking for reference [", ref_ix, "] ...\n");
+	if(cur_ref_nm!="_combined_"){
+		# Look for and confirm individual references could be found
+		reference_col_ix=(categories==cur_ref_nm);
 
-	reference_ix=(categories==ref);
+		ref_index=NULL;
+		if(!any(reference_col_ix)){
+			cat("Error: Could not find reference category.\n");
+			quit(status=-1);
+		}else{
+			ref_index=which(reference_col_ix);
+			cat("Found.\n");
+		}
 
-	ref_index=NULL;
-	if(!any(reference_ix)){
-		cat("Error: Could not find reference category.\n");
-		quit(status=-1);
+		cur_ref_list=cur_ref_nm;	
+		copy_num=reference_copycnts[cur_ref_nm];
+		min_l10_minabd=reference_log10minabund[cur_ref_nm];
 	}else{
-		ref_index=which(reference_ix);
-		cat("Found.\n");
+		# Combined reference
+		cur_ref_list=reference_names;
+		copy_num=combined_ref_copycount;
+		min_l10_minabd=combined_min_log10abund;
 	}
 
-	reference_abund=normalized[,ref,drop=F];
-	mean_refer_abund=mean(reference_abund);
+	reference_abund=normalized[,cur_ref_list,drop=F];
+	#print(reference_abund);
 
-	cat("Reference Abundances:\n");
-	print(reference_abund);
-	cat("\n");
-	hist(reference_abund, main=ref, breaks=seq(0,1, length.out=20), xlab="Abundance");
-	hist(log10(reference_abund+min_nz), main=ref, 
-		breaks=seq(log10_min_nz, 0, length.out=20), xlab="log10(Abundance)");
+	coll_ref_abd=apply(reference_abund, 1, sum);
+	l10_coll_ref_abd=log10(coll_ref_abd+min_nz);
+	l10_cn=log10(copy_num);
 
-	cat("Mean Reference Abundance:\n");
-	print(mean_refer_abund);
-	cat("\n");
+	# Generate histograms of reference abundances
+	hist(coll_ref_abd, breaks=seq(0,1, length.out=20), xlab="Ref Abundance",
+		main="Distr. of Reference Abundance");
+	title(main=sprintf("--- Specified Min Abund: %5.3f", 10^min_l10_minabd), 
+		col.main="red", line=.5, cex.main=.85);
+	abline(v=10^min_l10_minabd, col="red", lty="dashed");
 
-	cat("Spike-in Copy Count: ", reference_copycnts[ref], "\n");
-	reference_counts=reference_abund*reference_copycnts[ref];
-	cat("Reference Counts:\n");
-	print(reference_counts);
-	cat("\n");
+	# Generate histograms of log10(reference abundances)
+	hist(log10(coll_ref_abd+min_nz), main="Distr of Log10(Reference Abundance)", 
+		breaks=seq(log10_min_nz, 0, length.out=20), xlab="log10(Ref Abundance)");
+	title(main=sprintf("--- Specified Min Log10(Abund): %5.3f", min_l10_minabd), 
+		col.main="red", line=.5, cex.main=.85);
+	abline(v=min_l10_minabd, col="red", lty="dashed");
 
-	#abs_counts=(normalized/as.vector(reference_abund))*SpikeinCount;
-	#print(abs_counts[,ReferenceCategory,drop=F]);
+	# Calculate absolute counts
+	abs_wo_refer=round(copy_num*norm_wo_spikeins/as.vector(coll_ref_abd),2);
+	samp_copy_counts=apply(abs_wo_refer, 1, sum);
+	log10_samp_copy_counts=log10(samp_copy_counts+1);
+	max_l10cc=max(log10_samp_copy_counts);
 
-	abs_wo_refer=reference_copycnts[ref]*norm_wo_spikeins/as.vector(reference_abund);
-	#print(abs_wo_refer);
+	# Plot sample depths vs. proportion of reference
+	plot(log_sample_depths, l10_coll_ref_abd,
+		xlab="Log10(Sample Depths)", ylab="Log10(Ref Abundance)",
+		main="Ref Abundance vs. Sample Depth"
+		);
+	abline(h=seq(0,-10,-1), col="black", lty="dotted");
+	abline(h=min_l10_minabd, col="red", lty="dashed");
+	correl=cor(log_sample_depths, l10_coll_ref_abd, use="na.or.complete");
+	cat("Depth vs Ref Abun Cor: ", correl, "\n");
+	title(main=sprintf("Correlation: %5.3f", correl), line=1.25, cex.main=.85);
+	title(main=sprintf("--- Specified Min Log10(Abund): %5.3f", min_l10_minabd), 
+		col.main="red", line=.5, cex.main=.85);
 
+	mtext(cur_ref_nm, side=3, line=0, outer=T);
+
+
+	# Plot sample depths vs. predicted copy counts
+	plot(log_sample_depths, log10_samp_copy_counts,
+		xlab="Log10(Sample Depths)", ylab="Log10(Abs Sample Copy Counts)",
+		ylim=c(range(c(log10_samp_copy_counts, l10_cn), na.rm=T)),
+		main="Sample Copy Counts vs. Sample Depth"
+		);
+	abline(h=log10(copy_num), col="blue", lty="dashed");
+	correl=cor(log_sample_depths, log10_samp_copy_counts, use="na.or.complete");
+	cat("Depth vs. Sample Copy Counts: ", correl, "\n");
+	title(main=sprintf("Correlation: %5.3f", correl), line=1.25, cex.main=.85);
+	title(main=sprintf("--- Reference Log10(Copy Number): %5.3f", log10(copy_num)), 
+		col.main="blue", line=.5, cex.main=.85);
+
+	#plot_area=par()$usr;
+	#legend(plot_area[1], plot_area[4], bty="n",
+	#	legend="Ref Copy Num", col="blue", lty="dashed");
+
+	# Plot histogram of Estimated Copy Counts
+	hist(log10_samp_copy_counts, main="Distr. of Est. Copy Counts",
+		xlab="Log10(Copies)");
+	
 	# Write reference-specific summary table 
-	out_sumtab_fn=paste(OutputRoot, ".", ref_ix, ".summary_table.tsv", sep="");
+	out_sumtab_fn=paste(OutputRoot, ".", ref_itn, ".summary_table.tsv", sep="");
 	write_summary_file(abs_wo_refer, out_sumtab_fn);
 
-	ref_ix=ref_ix+1;
+	ref_itn=ref_itn+1;
 }
 
-###############################################################################
+##############################################################################
+
+
+##############################################################################
 
 cat("Generate spaghetti plots...\n");
-
 
 num_samples=nrow(normalized);
 
@@ -229,6 +300,7 @@ for(i in 1:num_samples){
 
 ###############################################################################
 
+cat("Calculate Correlations among references...\n");
 spearmans_cor=cor(normalized[, reference_names]);
 
 par(mar=c(7,3,5,7));
