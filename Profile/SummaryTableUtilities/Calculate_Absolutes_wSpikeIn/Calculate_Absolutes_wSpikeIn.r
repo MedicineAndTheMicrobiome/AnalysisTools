@@ -155,6 +155,8 @@ cat("Log10(Min Nonzero): ", log10_min_nz, "\n");
 par(mar=c(5,5,5,1));
 par(oma=c(0,0,2,0));
 
+sample_info_list=list();
+
 ref_itn=1;
 for(cur_ref_nm in c(reference_names, "_combined_")){
 	
@@ -178,12 +180,12 @@ for(cur_ref_nm in c(reference_names, "_combined_")){
 
 		cur_ref_list=cur_ref_nm;	
 		copy_num=reference_copycnts[cur_ref_nm];
-		min_l10_minabd=reference_log10minabund[cur_ref_nm];
+		l10_minabd=reference_log10minabund[cur_ref_nm];
 	}else{
 		# Combined reference
 		cur_ref_list=reference_names;
 		copy_num=combined_ref_copycount;
-		min_l10_minabd=combined_min_log10abund;
+		l10_minabd=combined_min_log10abund;
 	}
 
 	reference_abund=normalized[,cur_ref_list,drop=F];
@@ -193,37 +195,40 @@ for(cur_ref_nm in c(reference_names, "_combined_")){
 	l10_coll_ref_abd=log10(coll_ref_abd+min_nz);
 	l10_cn=log10(copy_num);
 
+	min_ref_abd=10^l10_minabd;
+	ref_abv_cutoff_ix=(coll_ref_abd >= min_ref_abd);
+
 	# Generate histograms of reference abundances
 	hist(coll_ref_abd, breaks=seq(0,1, length.out=20), xlab="Ref Abundance",
 		main="Distr. of Reference Abundance");
-	title(main=sprintf("--- Specified Min Abund: %5.3f", 10^min_l10_minabd), 
+	title(main=sprintf("--- Specified Min Abund: %5.3f", min_ref_abd), 
 		col.main="red", line=.5, cex.main=.85);
-	abline(v=10^min_l10_minabd, col="red", lty="dashed");
+	abline(v=10^l10_minabd, col="red", lty="dashed");
 
 	# Generate histograms of log10(reference abundances)
 	hist(log10(coll_ref_abd+min_nz), main="Distr of Log10(Reference Abundance)", 
 		breaks=seq(log10_min_nz, 0, length.out=20), xlab="log10(Ref Abundance)");
-	title(main=sprintf("--- Specified Min Log10(Abund): %5.3f", min_l10_minabd), 
+	title(main=sprintf("--- Specified Min Log10(Abund): %5.3f", l10_minabd), 
 		col.main="red", line=.5, cex.main=.85);
-	abline(v=min_l10_minabd, col="red", lty="dashed");
+	abline(v=l10_minabd, col="red", lty="dashed");
 
 	# Calculate absolute counts
 	abs_wo_refer=round(copy_num*norm_wo_spikeins/as.vector(coll_ref_abd),2);
 	samp_copy_counts=apply(abs_wo_refer, 1, sum);
 	log10_samp_copy_counts=log10(samp_copy_counts+1);
 	max_l10cc=max(log10_samp_copy_counts);
-
+	
 	# Plot sample depths vs. proportion of reference
 	plot(log_sample_depths, l10_coll_ref_abd,
 		xlab="Log10(Sample Depths)", ylab="Log10(Ref Abundance)",
 		main="Ref Abundance vs. Sample Depth"
 		);
 	abline(h=seq(0,-10,-1), col="black", lty="dotted");
-	abline(h=min_l10_minabd, col="red", lty="dashed");
+	abline(h=l10_minabd, col="red", lty="dashed");
 	correl=cor(log_sample_depths, l10_coll_ref_abd, use="na.or.complete");
 	cat("Depth vs Ref Abun Cor: ", correl, "\n");
 	title(main=sprintf("Correlation: %5.3f", correl), line=1.25, cex.main=.85);
-	title(main=sprintf("--- Specified Min Log10(Abund): %5.3f", min_l10_minabd), 
+	title(main=sprintf("--- Specified Min Log10(Abund): %5.3f", l10_minabd), 
 		col.main="red", line=.5, cex.main=.85);
 
 	mtext(cur_ref_nm, side=3, line=0, outer=T);
@@ -247,18 +252,51 @@ for(cur_ref_nm in c(reference_names, "_combined_")){
 	#	legend="Ref Copy Num", col="blue", lty="dashed");
 
 	# Plot histogram of Estimated Copy Counts
-	hist(log10_samp_copy_counts, main="Distr. of Est. Copy Counts",
+	comb_hist=hist(log10_samp_copy_counts, main="Distr. of All Estimated Sample Copy Counts",
+		xlab="Log10(Copies)", breaks=20);
+
+	comb_plot_lim=par()$usr;
+	comb_xlim=comb_plot_lim[c(1,2)];
+	comb_ylim=comb_plot_lim[c(3,4)];
+	comb_breaks=comb_hist$breaks;
+
+	hist(log10_samp_copy_counts[ref_abv_cutoff_ix], 
+		main="", col="blue",
+		xlim=comb_xlim, ylim=comb_ylim, breaks=comb_breaks,
 		xlab="Log10(Copies)");
+	title(main="Distr. of 'Reliable' Est. Sample Copy Counts", line=1.5);
+	title(main="(ref abd >= cutoff)", line=.75, cex.main=.85)
+	
+
+	hist(log10_samp_copy_counts[!ref_abv_cutoff_ix], 
+		main="", col="red",
+		xlim=comb_xlim, ylim=comb_ylim, breaks=comb_breaks,
+		xlab="Log10(Copies)");
+	title(main="Distr. of 'Dubious' Est. Sample Copy Counts", line=1.5);
+	title(main="(ref abd < cutoff)", line=.75, cex.main=.85)
 	
 	# Write reference-specific summary table 
 	out_sumtab_fn=paste(OutputRoot, ".", ref_itn, ".summary_table.tsv", sep="");
 	write_summary_file(abs_wo_refer, out_sumtab_fn);
+
+	sample_info_list[[cur_ref_nm]]=list();
+	sample_info_list[[cur_ref_nm]][["TotalCopyCounts"]]=samp_copy_counts;
+	sample_info_list[[cur_ref_nm]][["RefAbdAboveCutoff"]]=ref_abv_cutoff_ix;
 
 	ref_itn=ref_itn+1;
 }
 
 ##############################################################################
 
+output_sample_copy_count_summary=function(samp_info_rec, outfn){
+
+	for(ref_nm in names(sample_info_list)){
+		#print(sample_info_list);
+		cur_info=sample_info_list[[ref_nm]];
+		print(cbind(cur_info[["TotalCopyCounts"]], cur_info[["RefAbdAboveCutoff"]]));
+	}
+
+}
 
 ##############################################################################
 
@@ -338,8 +376,6 @@ for(i in 1:num_samples){
 }
 
 ###############################################################################
-
-
 
 ###############################################################################
 
