@@ -280,23 +280,60 @@ for(cur_ref_nm in c(reference_names, "_combined_")){
 	write_summary_file(abs_wo_refer, out_sumtab_fn);
 
 	sample_info_list[[cur_ref_nm]]=list();
+	sample_info_list[[cur_ref_nm]][["RefAbnd"]]=coll_ref_abd;
 	sample_info_list[[cur_ref_nm]][["TotalCopyCounts"]]=samp_copy_counts;
 	sample_info_list[[cur_ref_nm]][["RefAbdAboveCutoff"]]=ref_abv_cutoff_ix;
 
 	ref_itn=ref_itn+1;
 }
 
+cat("--------------------------------------------------\n");
+
 ##############################################################################
 
-output_sample_copy_count_summary=function(samp_info_rec, outfn){
+output_sample_copy_count_summary=function(samp_info_rec, outfn, smp_dep){
 
-	for(ref_nm in names(sample_info_list)){
-		#print(sample_info_list);
-		cur_info=sample_info_list[[ref_nm]];
-		print(cbind(cur_info[["TotalCopyCounts"]], cur_info[["RefAbdAboveCutoff"]]));
+	cat("Writing: ", outfn, "\n");
+
+	header=c("SampleID", "SampleDepth");
+	out_mat=cbind(names(smp_dep), smp_dep);
+	rownames(out_mat)=names(smp_dep);
+
+	# Keep track of the reference name, above the ref specific stats
+	superheader=c("", "");
+
+	for(ref_nm in names(samp_info_rec)){
+
+		cur_info=samp_info_rec[[ref_nm]];
+
+		refmat=cbind(
+			"",
+			cur_info[["RefAbnd"]],
+			cur_info[["TotalCopyCounts"]], 
+			cur_info[["RefAbdAboveCutoff"]]
+			);
+
+		out_mat=cbind(out_mat, refmat);
+
+		header=c(header, "", "Ref_Abund", "EstTotCpCnt", "AbvRefCutoff");
+
+		superheader=c(superheader, "", ref_nm, "", "");
 	}
 
+	
+	colnames(out_mat)=header;
+
+	# Write Reference Name SuperHeader
+	fh=file(outfn, "w");
+	cat(file=fh, paste(superheader, collapse="\t"), "\n", sep="");
+	close(fh);
+
+	# Write stats
+	write.table(out_mat, outfn, append=T, quote=F, sep="\t", row.names=F, col.names=T);
 }
+
+output_summary_fn=paste(OutputRoot, ".copy_count_stats.tsv", sep="");
+output_sample_copy_count_summary(sample_info_list, output_summary_fn, sample_depths);
 
 ##############################################################################
 
