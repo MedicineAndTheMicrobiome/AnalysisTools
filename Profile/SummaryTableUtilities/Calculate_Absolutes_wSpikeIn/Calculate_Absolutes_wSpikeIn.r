@@ -302,6 +302,7 @@ output_sample_copy_count_summary=function(samp_info_rec, outfn, smp_dep){
 	# Keep track of the reference name, above the ref specific stats
 	superheader=c("", "");
 
+	ix=1;
 	for(ref_nm in names(samp_info_rec)){
 
 		cur_info=samp_info_rec[[ref_nm]];
@@ -317,7 +318,10 @@ output_sample_copy_count_summary=function(samp_info_rec, outfn, smp_dep){
 
 		header=c(header, "", "Ref_Abund", "EstTotCpCnt", "AbvRefCutoff");
 
-		superheader=c(superheader, "", ref_nm, "", "");
+		index_str=sprintf("[%i] ", ix);
+		superheader=c(superheader, index_str, ref_nm, "", "");
+
+		ix=ix+1;
 	}
 
 	
@@ -334,6 +338,100 @@ output_sample_copy_count_summary=function(samp_info_rec, outfn, smp_dep){
 
 output_summary_fn=paste(OutputRoot, ".copy_count_stats.tsv", sep="");
 output_sample_copy_count_summary(sample_info_list, output_summary_fn, sample_depths);
+
+##############################################################################
+
+# Generate estimated total plots across samples
+
+generate_sample_prof_line_plot=function(samp_info_rec){
+
+	num_rec=length(samp_info_rec);
+
+	sample_ids=names(samp_info_rec[["_combined_"]][["TotalCopyCounts"]]);
+	num_samples=length(sample_ids);
+	num_references=num_rec-1;
+	ref_names=setdiff(names(samp_info_rec), "_combined_");
+
+	# sort sample ids by combined
+	combined_cc=samp_info_rec[["_combined_"]][["TotalCopyCounts"]];
+	sorted_combined_samp_ids=names(combined_cc[order(combined_cc, decreasing=T)]);
+	combined_abvchar=samp_info_rec[["_combined_"]][["RefAbdAboveCutoff"]];
+	combined_abv_char=rep(1, num_samples);
+	combined_abv_char[!combined_abvchar]=4;
+	
+	# Find ranges of copy counts across datasets
+	max_est=0;
+	for(ref_nm in names(samp_info_rec)){
+		max_est=max(max_est, samp_info_rec[[ref_nm]][["TotalCopyCounts"]], na.rm=T);
+	}
+	log10_max_est=log10(max_est);
+
+	cat("Max copy count estimated: ", max_est, "\n");
+
+	par(mfrow=c(2,1));
+	par(mar=c(5, 6, 3, 1));
+	ref_col=rainbow(num_references, start=0, end=4/6);
+	palette(ref_col);
+
+	#------------------------------------------------------------------------
+	# Plot counts
+	plot(0, type="n", ylim=c(0, max_est*1.1), xlim=c(0,num_samples+1), las=2,
+		xlab="Sample", ylab="Estimated Sample Copy Count", 
+		main="Variability in Estimated Copy Counts");
+
+	ref_ix=1;	
+	for(ref_nm in ref_names){
+
+		tcc=samp_info_rec[[ref_nm]][["TotalCopyCounts"]];
+		rabvc=samp_info_rec[[ref_nm]][["RefAbdAboveCutoff"]];
+
+		sorted_tcc=tcc[sorted_combined_samp_ids];
+		sorted_rabvc=rabvc[sorted_combined_samp_ids];
+		abv_char=rep(1, num_samples);
+		abv_char[!sorted_rabvc]=4;
+
+		points(1:num_samples, sorted_tcc, col=ref_ix, pch=abv_char, cex=.5);
+		ref_ix=ref_ix+1;
+	}
+
+	points(1:num_samples, combined_cc[sorted_combined_samp_ids], col="black", 
+		pch=combined_abv_char, cex=.75);
+
+	legend(num_samples/8, max_est,
+		legend=c(ref_names, "COMBINED","", 
+			"  > Min Ref Abnd (reliable)", "  < Min Ref Abnd (dubious)"), 
+		fill=c(ref_col, "black", NA, NA, NA),
+		border=rep(F, 5),
+		pch=c(NA, NA, NA, NA, NA, 1, 4), 
+		cex=.66);
+
+	#------------------------------------------------------------------------
+	# Plot log counts
+	plot(0, type="n", ylim=c(0, log10_max_est*1.1), xlim=c(0,num_samples+1), las=2,
+		xlab="Sample", ylab="Estimated Log10(Sample Copy Count)", 
+		main="Variability in Log10(Estimated Copy Counts)");
+
+	ref_ix=1;	
+	for(ref_nm in ref_names){
+
+		tcc=samp_info_rec[[ref_nm]][["TotalCopyCounts"]];
+		rabvc=samp_info_rec[[ref_nm]][["RefAbdAboveCutoff"]];
+
+		sorted_tcc=tcc[sorted_combined_samp_ids];
+		sorted_rabvc=rabvc[sorted_combined_samp_ids];
+		abv_char=rep(1, num_samples);
+		abv_char[!sorted_rabvc]=4;
+
+		points(1:num_samples, log10(sorted_tcc+1), col=ref_ix, pch=abv_char, cex=.5);
+		ref_ix=ref_ix+1;
+	}
+	points(1:num_samples, log10(combined_cc[sorted_combined_samp_ids]+1), col="black",
+		pch=combined_abv_char, cex=.75);
+	
+}
+
+generate_sample_prof_line_plot(sample_info_list);
+quit();
 
 ##############################################################################
 
