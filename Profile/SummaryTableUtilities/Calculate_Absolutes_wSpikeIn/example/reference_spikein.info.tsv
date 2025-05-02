@@ -1,4 +1,4 @@
 ReferenceName	CopyCount	MinLog10Abund
-Bacteria;Deinococcota;Deinococci;Deinococcales;Trueperaceae;Truepera	2e5	-1.5
-Bacteria;Bacteroidota;Bacteroidia;Flavobacteriales;Flavobacteriaceae;Imtechella	3e4	-1.75
-Bacteria;Bacillota;Bacilli;Bacillales;Bacillaceae;Bacillaceae_uncl	7e3	-3
+Bacteria;Deinococcota;Deinococci;Deinococcales;Trueperaceae;Truepera	2e5	-1.0
+Bacteria;Bacteroidota;Bacteroidia;Flavobacteriales;Flavobacteriaceae;Imtechella	3e4	-1.25
+Bacteria;Bacillota;Bacilli;Bacillales;Bacillaceae;Bacillaceae_uncl	7e3	-2.75
