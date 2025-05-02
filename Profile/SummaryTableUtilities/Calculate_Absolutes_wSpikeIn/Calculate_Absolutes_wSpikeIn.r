@@ -116,7 +116,6 @@ names(reference_copycnts)=reference_names;
 reference_log10minabund=reference_info[,"MinLog10Abund"];
 names(reference_log10minabund)=reference_names;
 
-
 combined_ref_copycount=sum(reference_info[,"CopyCount"]);
 combined_min_log10abund=log10(sum(10^reference_log10minabund));
 
@@ -198,6 +197,7 @@ for(cur_ref_nm in c(reference_names, "_combined_")){
 	min_ref_abd=10^l10_minabd;
 	ref_abv_cutoff_ix=(coll_ref_abd >= min_ref_abd);
 
+	#----------------------------------------------------------------------
 	# Generate histograms of reference abundances
 	hist(coll_ref_abd, breaks=seq(0,1, length.out=20), xlab="Ref Abundance",
 		main="Distr. of Reference Abundance");
@@ -212,17 +212,23 @@ for(cur_ref_nm in c(reference_names, "_combined_")){
 		col.main="red", line=.5, cex.main=.85);
 	abline(v=l10_minabd, col="red", lty="dashed");
 
+	#----------------------------------------------------------------------
 	# Calculate absolute counts
 	abs_wo_refer=round(copy_num*norm_wo_spikeins/as.vector(coll_ref_abd),2);
 	samp_copy_counts=apply(abs_wo_refer, 1, sum);
 	log10_samp_copy_counts=log10(samp_copy_counts+1);
 	max_l10cc=max(log10_samp_copy_counts);
 	
+	#----------------------------------------------------------------------
 	# Plot sample depths vs. proportion of reference
 	plot(log_sample_depths, l10_coll_ref_abd,
 		xlab="Log10(Sample Depths)", ylab="Log10(Ref Abundance)",
 		main="Ref Abundance vs. Sample Depth"
 		);
+	text(par()$usr[1], l10_minabd+par()$cxy[2]/2, adj=c(0,.4),
+		"  Reliably Assayed Ref", col="blue", font=4, cex=.7);
+	text(par()$usr[1], l10_minabd-par()$cxy[2]/2, adj=c(0,.4),
+		"  Dubiously Assayed Ref", col="red", font=4, cex=.7);
 	abline(h=seq(0,-10,-1), col="black", lty="dotted");
 	abline(h=l10_minabd, col="red", lty="dashed");
 	correl=cor(log_sample_depths, l10_coll_ref_abd, use="na.or.complete");
@@ -231,15 +237,19 @@ for(cur_ref_nm in c(reference_names, "_combined_")){
 	title(main=sprintf("--- Specified Min Log10(Abund): %5.3f", l10_minabd), 
 		col.main="red", line=.5, cex.main=.85);
 
-	mtext(cur_ref_nm, side=3, line=0, outer=T);
-
-
 	# Plot sample depths vs. predicted copy counts
+	min_log_smp_dep=min(log_sample_depths);
 	plot(log_sample_depths, log10_samp_copy_counts,
 		xlab="Log10(Sample Depths)", ylab="Log10(Abs Sample Copy Counts)",
 		ylim=c(range(c(log10_samp_copy_counts, l10_cn), na.rm=T)),
-		main="Sample Copy Counts vs. Sample Depth"
+		main="Estimated Sample Copy Counts vs. Sample Depth"
 		);
+	
+	text(par()$usr[1]+par()$cxy[1], log10(copy_num)+par()$cxy[2]*.5, "Samp CC > Ref CC ", 
+		col="red", adj=c(0,.4), font=4, cex=.8);
+	text(par()$usr[1]+par()$cxy[1], log10(copy_num)-par()$cxy[2]*.5, "Samp CC < Ref CC", 
+		col="green", adj=c(0,.4), font=4, cex=.8);
+
 	abline(h=log10(copy_num), col="blue", lty="dashed");
 	correl=cor(log_sample_depths, log10_samp_copy_counts, use="na.or.complete");
 	cat("Depth vs. Sample Copy Counts: ", correl, "\n");
@@ -247,10 +257,10 @@ for(cur_ref_nm in c(reference_names, "_combined_")){
 	title(main=sprintf("--- Reference Log10(Copy Number): %5.3f", log10(copy_num)), 
 		col.main="blue", line=.5, cex.main=.85);
 
-	#plot_area=par()$usr;
-	#legend(plot_area[1], plot_area[4], bty="n",
-	#	legend="Ref Copy Num", col="blue", lty="dashed");
+	# Label reference in outer margin
+	mtext(cur_ref_nm, side=3, line=0, outer=T);
 
+	#----------------------------------------------------------------------
 	# Plot histogram of Estimated Copy Counts
 	comb_hist=hist(log10_samp_copy_counts, main="Distr. of All Estimated Sample Copy Counts",
 		xlab="Log10(Copies)", breaks=20);
@@ -274,11 +284,16 @@ for(cur_ref_nm in c(reference_names, "_combined_")){
 		xlab="Log10(Copies)");
 	title(main="Distr. of 'Dubious' Est. Sample Copy Counts", line=1.5);
 	title(main="(ref abd < cutoff)", line=.75, cex.main=.85)
+
+	# Label reference in outer margin
+	mtext(cur_ref_nm, side=3, line=0, outer=T);
 	
+	#----------------------------------------------------------------------
 	# Write reference-specific summary table 
 	out_sumtab_fn=paste(OutputRoot, ".", ref_itn, ".summary_table.tsv", sep="");
 	write_summary_file(abs_wo_refer, out_sumtab_fn);
 
+	# Accumulate stats for downstream across references analyses 
 	sample_info_list[[cur_ref_nm]]=list();
 	sample_info_list[[cur_ref_nm]][["RefAbnd"]]=coll_ref_abd;
 	sample_info_list[[cur_ref_nm]][["TotalCopyCounts"]]=samp_copy_counts;
@@ -427,6 +442,9 @@ generate_sample_prof_line_plot=function(samp_info_rec){
 	}
 	points(1:num_samples, log10(combined_cc[sorted_combined_samp_ids]+1), col="black",
 		pch=combined_abv_char, cex=.75);
+
+	text(num_samples/4, 0, "<-- Samples with more CC", col="red", font=4, cex=1);
+	text(num_samples*3/4, 0, "Samples with less CC -->", col="blue", font=4, cex=1);
 	
 }
 
