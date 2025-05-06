@@ -1336,7 +1336,9 @@ response_max=apply(max_aic_matrix, 1, max);
 
 par(mfrow=c(1,1));
 par(mar=c(1,1,1,1));
-paint_matrix(max_aic_matrix, title="Most Improved AIC when Group Incl", 
+paint_matrix(max_aic_matrix, 
+		title="Most Improved AIC when Group Incl", 
+		subtitle="(Large Number, Greater Model Improvement)",
 		deci_pts=0, label_zeros=F, value.cex=1);
 
 out_sum_mat=cbind(rownames(max_aic_matrix), max_aic_matrix, response_max);
