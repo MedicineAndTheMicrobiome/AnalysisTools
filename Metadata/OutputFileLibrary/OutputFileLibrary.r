@@ -56,7 +56,8 @@ plot_title_page=function(title, subtitle=""){
 }
 
 
-paint_matrix=function(mat, title="", subtitle="", plot_min=NA, plot_max=NA, log_col=F, high_is_hot=T, deci_pts=4, 
+paint_matrix=function(mat, title="", subtitle="", plot_min=NA, plot_max=NA, log_col=F, 
+	high_is_hot=T, deci_pts=4, 
 	label_zeros=T, counts=F, value.cex=2,
 	plot_col_dendr=F,
 	plot_row_dendr=F,
@@ -198,11 +199,26 @@ paint_matrix=function(mat, title="", subtitle="", plot_min=NA, plot_max=NA, log_
 		row_dendr=get_dendrogram(mat, type="row");
 		mat=mat[row_dendr[["names"]],,drop=F];
 	}else{
+		
+		cat("Adjusting Layout:\n");
+		cat("  In Heatmap Height: ", heatmap_height, "\n");
+		cat("  In Heatmap Width:  ", heatmap_width, "\n");
 
 		hw_ratio=heatmap_height/heatmap_width;
 
-		smaller_height=50;
-		smaller_width=floor(smaller_height/hw_ratio);
+		if(hw_ratio>1){
+			# Height is greater than width
+			smaller_height=100;
+			smaller_width=floor(smaller_height/hw_ratio);
+		}else{
+			# Width is greater than height
+			smaller_width=100;
+			smaller_height=floor(smaller_width*hw_ratio);	
+		}
+
+		cat("  Layout Heatmap Height: ", smaller_height, "\n");
+		cat("  Layout Heatmap Width:  ", smaller_width, "\n");
+
 		layoutmat=matrix(
 			rep(1, smaller_height*smaller_width), 
 			byrow=T, ncol=smaller_width);
