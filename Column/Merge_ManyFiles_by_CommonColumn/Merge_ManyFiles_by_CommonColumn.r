@@ -85,7 +85,7 @@ write_factors=function(fname, table, merge_colname){
 num_target_files=length(target_list);
 
 cat("Files to Merge: \n");
-names(target_list)=LETTERS[1:length(target_list)];
+names(target_list)=1:length(target_list);
 print(target_list);
 
 loaded_factors=list();
@@ -118,7 +118,7 @@ for(i in 1:num_target_files){
 
 cat("\n\n");
 all_ids=sort(unique(all_ids));
-cat("All IDs Found:\n");
+cat("Union of all IDs found:\n");
 print(all_ids);
 num_ids=length(all_ids);
 
@@ -127,17 +127,55 @@ cat("Number of Columns across all files (excluding the merge column name/key):",
 
 cat("\n");
 uniq_col=unique(all_column_names);
+dup_list=list();
 dup_columns=F;
+
 if(length(uniq_col)!=length(all_column_names)){
+	dup_columns=T;
 	cat("*************************************************************************\n");
 	cat("WARNING:  Duplicate column names found across files:\n");
 	cn_tab=table(all_column_names);
 	dups_ix=which(cn_tab>1);
-	print(cn_tab[dups_ix]);
+	dups_info=cn_tab[dups_ix]
+	print(dups_info);
 	cat("*************************************************************************\n");
 	cat("\n");
-	dup_columns=T;
+
+	cat("Appending extension to duplicated column names.\n");
+	dup_names=names(dups_info);
+	num_dup_names=length(dup_names);
+	dup_list=setNames(as.list(rep(1, num_dup_names)), names(dups_info));
+
+	all_column_names=c();
+	cat("Adjusting column names.\n");
+	for(i in 1:num_target_files){
+		cur_cnames=colnames(loaded_factors[[i]]);	
+		for(nix in 1:length(cur_cnames)){
+			cur_name=cur_cnames[nix];
+			dup_ix=dup_list[[cur_name]];
+
+			# If it's duplicated, append an index to it
+			if(!is.null(dup_ix)){
+				orig_name=cur_name;
+				cur_name=paste(cur_name, "_", dup_ix, sep="");
+				dup_list[[orig_name]]=dup_list[[orig_name]]+1;
+
+				cat("In file: ", target_list[i], ":\n");
+				cat("   ", orig_name, " -> ", cur_name, "\n", sep="");
+			}
+			cur_cnames[nix]=cur_name;
+		}
+
+		# Update the original loaded columns
+		colnames(loaded_factors[[i]])=cur_cnames;
+		loaded_columns[[i]]=cur_cnames;
+		all_column_names=c(all_column_names, cur_cnames);
+	}
+	cat("complete.\n\n");
 }
+
+#cat("Duplicate List:\n");
+#print(dup_list);
 
 ##############################################################################
 
@@ -184,7 +222,7 @@ cat("\n");
 if(dup_columns){
 	cat("**************************************************************************\n");
 	cat("WARNING!!!\n");
-	cat("Duplicate Columns Found!\n");
+	cat("Duplicate Columns Found and Adjusted!\n");
 	cat("**************************************************************************\n");
 }
 
