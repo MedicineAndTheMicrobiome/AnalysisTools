@@ -3,13 +3,16 @@
 ###############################################################################
 
 library('getopt');
+source("~/git/AnalysisTools/Metadata/OutputFileLibrary/OutputFileLibrary.r");
+
 options(useFancyQuotes=F);
 options(width=120);
 
 params=c(
 	"input_list_file", "l", 2, "character",
 	"merge_col_name", "c", 2, "character",
-	"output", "o", 1, "character"
+	"output", "o", 1, "character",
+	"group_name_modifier", "g", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -20,6 +23,7 @@ usage = paste(
 	"	-l <input, text file with list of target files>\n",
 	"	-c <column name to merge by, e.g. sample_id or subject_id>\n",
 	"	-o <output tab_separated column data file>\n",
+	"	[-g \"group file name modifiers\"]\n",
 	"\n",
 	"This script will read in each of the input files specified\n",
 	"in the list, and join them all together based on the specified\n",
@@ -29,12 +33,16 @@ usage = paste(
 	"a primary key, i.e. if there are duplicates.\n",
 	"If you want to merge two files, where the column does not contain\n",
 	"unique values, then use the merge by map code.\n",
+	"\n",
+	"The -g option lets you clean up the output group names:\n",
+	"\n",
+	modify_filenames(NULL, NULL, usage=T),
 	"\n");
 
 if(
 	!length(opt$input_list_file) ||
 	!length(opt$merge_col_name) ||
-	!length(opt$output)
+	!length(opt$output) 
 ){
 	cat(usage);
 	q(status=-1);
@@ -43,6 +51,22 @@ if(
 InputFNameList=opt$input_list_file;
 MergeColName=opt$merge_col_name;
 OutputFName=opt$output;
+
+GroupNameModifier="";
+if(length(opt$group_name_modifier)){
+	GroupNameModifier=opt$group_name_modifier;
+}
+
+##############################################################################
+
+cat("\n");
+cat("Input File Name List: ", InputFNameList, "\n");
+cat("Merge Column Name: ", MergeColName, "\n");
+cat("Output File Name: ", OutputFName, "\n");
+cat("Group Name Modifier: ", GroupNameModifier, "\n");
+cat("\n");
+
+##############################################################################
 
 target_list=read.table(InputFNameList, as.is=T, sep="\n", header=F, check.names=F,
 			comment.char="#", quote="")[,1];
@@ -79,6 +103,7 @@ write_factors=function(fname, table, merge_colname){
 	write.table(table, fname, quote=F, row.names=F, sep="\t");
 
 }
+
 
 ##############################################################################
 
@@ -211,6 +236,34 @@ close(grp_fh);
 cat("\n");
 
 #print(combined_columns_matrix);
+
+##############################################################################
+
+# Combine files into matrix and build precursor for a grouping file 
+group_fn=paste(gsub(".tsv$", "", OutputFName), ".grp.tsv", sep="");
+
+grp_fh=file(group_fn, "w");
+
+for(i in 1:num_target_files){
+
+	cat("Working on: ", i, "\n");
+	cur_ids=rownames(loaded_factors[[i]]);
+	cur_colnames=loaded_columns[[i]];
+
+	for(cn in cur_colnames){
+		combined_columns_matrix[cur_ids, cn] =
+			loaded_factors[[i]][cur_ids, cn];
+
+		# Write column names and their source file to file
+		cleaned=modify_filenames(target_list[i], GroupNameModifier);
+		cat(file=grp_fh, paste(cn,cleaned,sep="\t"), "\n", sep="");
+	}
+
+}
+
+close(grp_fh);
+
+cat("\n");
 
 ##############################################################################
 
