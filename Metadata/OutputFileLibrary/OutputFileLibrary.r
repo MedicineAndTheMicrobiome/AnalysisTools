@@ -793,3 +793,46 @@ plot_rank_abundance=function(abundances, num_disp_max=50, category_colors=NULL,
 
 }
 
+###############################################################################
+
+modify_filenames=function(infn, modlist, usage=F){
+# This function implements an abridged version of the C-shell file name modifier.
+# To include the usage information in the usage of a script using it, make the usage=T.
+# Otherwise example call:  modify_filenames("dir1/dir2/filename.ext1.ext2", ":t:r:r");
+
+        if(usage==T){
+
+                usage_str=c(
+                        "   Only the following C-shell filename modifiers are implemented:\n",
+                        "     If dir1/dir2/file.ext1.ext2 is the specified file name then:\n",
+                        "       :t      tail    file.ext1.ext2\n",
+                        "       :r      root    dir1/dir2/file.ext1\n",
+                        "\n",
+                        "     To get 'file', you would specify :t:r:r\n"
+                );
+
+                return(paste(usage_str, collapse="", sep=""));
+
+        }else{
+                mod_arr=strsplit(modlist, ":")[[1]];
+                mod_arr=mod_arr[mod_arr!=""];
+                num_mods=length(mod_arr);
+
+                for(i in 1:num_mods){
+
+                        if(mod_arr[i]=="r"){
+                                toks=head(strsplit(infn, "\\.")[[1]], -1);
+                                infn=paste(toks, collapse=".");
+                        }else if(mod_arr[i]=="t"){
+                                toks=tail(strsplit(infn, "\\/")[[1]], 1);
+                                infn=toks;
+                        }else{
+                                cat("Unsupported modifier: ", mod_arr[i], "\n");
+                                quit(status=-1);
+                        }
+
+                }
+                return(infn);
+        }
+}
+
