@@ -814,6 +814,11 @@ modify_filenames=function(infn, modlist, usage=F){
                 return(paste(usage_str, collapse="", sep=""));
 
         }else{
+
+		if(is.null(modlist) || modlist=="" || modlist=="NA"){
+			return(infn);
+		}
+
                 mod_arr=strsplit(modlist, ":")[[1]];
                 mod_arr=mod_arr[mod_arr!=""];
                 num_mods=length(mod_arr);
