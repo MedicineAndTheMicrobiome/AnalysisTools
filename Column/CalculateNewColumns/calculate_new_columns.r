@@ -243,6 +243,31 @@ usage = paste(
 	"		males than females, then the follow command: sex=make_dummies(gender), will produce\n",
 	"		the new variable sex.ismale.\n",
 	"\n",
+	"	multi_col_regr(xargs, yargs, verbose=F)\n",
+	"		This function will calculate the intercept, slope, and R^2 across\n",
+	"		the specified columns.  This will allow the slope to be compiled\n",
+	"		across the subjects if multiple columns represent multiple time points.\n",
+	"		The y values should be specified completely per sample/subject, but\n",
+	"		the x values may be simplified if they are constant.\n",
+	"		Multiple values (columns) will be returned when called.\n",
+	"\n",
+	"		For example:\n",
+	"			pain=multi_col_regr(\n",
+	"				xargs=list(0, 6, 9),\n",
+	"				yargs=list(pain_baseline, pain_6m, pain_9m))\n",
+	"\n",
+	"			or\n",
+	"\n",
+	"			pain=multi_col_regr(\n",
+	"				xargs=list(0, v2_days, v3_days, 90),\n",
+	"				yargs=list(pain_v1, pain_v2, pain_v3, pain_v4))\n",
+	"\n",
+	"		When the function succeeds, the following columns will be added\n",
+	"		based on the LHS variable name as the prefix.\n",
+	"				pain.intercept\n",
+	"				pain.slope\n",
+	"				pain.r2\n",
+	"\n",
 	"For debugging you can also do:\n",
 	"	print <variable name>\n",
 	"	quit\n",
@@ -264,11 +289,9 @@ cat("Output Filename: ", OutputFName, "\n");
 ##############################################################################
 
 load_factors=function(fname){
-	factors=data.frame(read.delim(fname,  header=TRUE, check.names=FALSE, 
+	factors=(read.delim(fname,  header=TRUE, check.names=FALSE, 
 		row.names=NULL,
 		as.is=T, comment.char="", quote="", sep="\t"));
-
-	#print(factors);
 
 	dimen=dim(factors);
 	cat("Rows Loaded: ", dimen[1], "\n");
@@ -643,6 +666,117 @@ set_LOQ=function(x, detection_limit_value, method){
 	}
 	return(x);
 
+}
+
+#------------------------------------------------------------------------------
+
+multi_col_regr=function(xargs, yargs, verbose=F){
+	# outvar=multi_col_regr(xargs=list(0,6,10), yargs=list(var1, var2, var3));
+	# Will add the variables:
+	#	outvar.intercept
+	#	outvar.slope
+	#	outvar.r2
+
+	if(verbose){
+		xnames=substitute(xargs);
+		ynames=substitute(yargs);
+		cat("X 'names' passed in:\n");
+		print(xnames);
+		cat("Y 'names' passed in:\n");
+		print(ynames);
+		cat("\n");
+	}
+
+	xarg_len=length(xargs);
+	yarg_len=length(yargs);
+
+	num_samples=length(yargs[[1]]);
+
+	if(xarg_len!=yarg_len){
+		cat("Error: Length of x and y values are not matching.\n");
+		cat("Num x arguments: ", xarg_len, "\n");
+		cat("Num y arguments: ", yarg_len, "\n");
+		quit(status=-1);
+	}
+	num_timepts=xarg_len;
+
+	if(verbose){
+		cat("x values:\n");
+		print(xargs);
+		cat("y values:\n");
+		print(yargs);
+	}
+
+	# Build matrix out of y values arguments
+	y_mat=matrix(0, nrow=num_samples, ncol=num_timepts);
+	for(tpix in 1:num_timepts){
+		y_mat[,tpix]=yargs[[tpix]];
+	}
+
+	# Build matrix out of x values, pad/repeat if only single value specified.
+	x_mat=matrix(0, nrow=num_samples, ncol=num_timepts);
+	for(tpix in 1:num_timepts){
+		x=xargs[[tpix]];
+		x_len=length(x);
+		if(x_len==1){
+			cat("Length of x[", tpix, 
+				"] = 1, assuming same value (", x, ") for all samples.\n", sep="");
+		}else if(x_len!=num_samples){
+			cat("Error: Length of x[", tpix, 
+				"] doesn't match number of samples exactly.\n", sep="");
+			quit(status=-1);
+		}
+		x_mat[,tpix]=xargs[[tpix]];
+	}
+
+	# Initialize output matrix
+	mat_hdr=c("intercept", "slope", "r2");
+	header_len=length(mat_hdr);
+	intc_slp_mat=matrix(0, nrow=num_samples, ncol=header_len);
+	colnames(intc_slp_mat)=mat_hdr;
+
+	# Run regresion through all samples
+	for(smp_ix in 1:num_samples){
+
+		t=x_mat[smp_ix,];
+		y=y_mat[smp_ix,];
+
+		# Remove NAs
+		t_nonas=!is.na(t);
+		y_nonas=!is.na(y);
+		comb_nonas=t_nonas & y_nonas;
+		num_nonas=sum(comb_nonas);
+
+		if(num_nonas<=1){
+			# If not enough time points, return NAs
+			intc_slp_mat[smp_ix,]=rep(NA, header_len);
+		}else{
+			t=t[comb_nonas];
+			y=y[comb_nonas];
+
+			fit=lm(y~t);		# Need coefficients
+			sumfit=summary(fit);	# Need the R^2
+
+			if(verbose){
+				cat("Sample Index: ", smp_ix, "\n");
+				cat("t:\n");
+				print(t);
+				cat("y:\n");
+				print(y);
+				cat("ln fit:\n");
+				print(fit);
+				cat("---------------------------------------------\n");
+			}
+
+			intc_slp_mat[smp_ix,]=c(
+				fit$coefficients["(Intercept)"],
+				fit$coefficients["t"],
+				sumfit$r.squared
+				);
+		}
+	}
+
+	return(intc_slp_mat);
 }
 
 ##############################################################################
