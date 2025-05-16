@@ -3,11 +3,13 @@
 ###############################################################################
 
 library('getopt');
+source("~/git/AnalysisTools/Metadata/InputFileLibrary/InputFileLibrary.r");
 
 params=c(
         "input", "i", 1, "character",
         "output", "o", 1, "character",
-	"num_iterations", "n", 2, "numeric"
+	"num_iterations", "n", 2, "numeric",
+	"required_variables", "r", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -20,6 +22,7 @@ usage = paste(
         "       -i <factor file>\n",
         "       -o <output factor filename root>\n",
 	"	[-n <number of iterations, default=", NUM_ITERATIONS, ">\n",
+	"	[-r <required variables list>\n",
         "\n",
 	"This script will read in a factor file, and then\n",
 	"remove samples or factors to maximize the number of\n",
@@ -39,14 +42,21 @@ if(length(opt$num_iterations)){
 	NumIterations=opt$num_iterations;	
 }
 
+RequiredVariablesFilename="";
+if(length(opt$required_variables)){
+	RequiredVariablesFilename=opt$required_variables;	
+}
+
 cat("Input Filename: ", InputFname, "\n");
 cat("Output Filename: ", OutputFname, "\n");
 cat("Num Iterations: ", NumIterations, "\n");
+cat("Required Variables Filename: ", RequiredVariablesFilename, "\n");
 
 ###############################################################################
 
 load_factor_file=function(fn){
-        inmat=read.delim(fn, sep="\t", header=TRUE, row.names=1, check.names=F, comment.char="", quote="");
+        inmat=read.delim(fn, sep="\t", header=TRUE, row.names=1, check.names=F, 
+		comment.char="", quote="");
 
         # Changes spaces to underscore
         var_names=colnames(inmat);
@@ -62,12 +72,22 @@ load_factor_file=function(fn){
 
 factors=load_factor_file(InputFname);
 
+required_arr=NULL;
+if(RequiredVariablesFilename!=""){
+	required_arr=load_list(RequiredVariablesFilename);
+}
+
 if(any(is.na(factors))){
         cat("NAs's found in factors...\n");
 
         script_path=paste(head(strsplit(script_name, "/")[[1]], -1), collapse="/");
         source(paste(script_path, "/../../Metadata/RemoveNAs/Remove_NAs.r", sep=""));
-        factors=remove_sample_or_factors_wNA_parallel(factors, num_trials=NumIterations, num_cores=64, outfile=OutputFname);
+        factors=remove_sample_or_factors_wNA_parallel(
+		factors, 
+		required_variables=required_arr,
+		num_trials=NumIterations, 
+		num_cores=64, 
+		outfile=OutputFname);
 
 }else{
 	cat("No NA's found in factors.  Exiting with no new output.\n");
