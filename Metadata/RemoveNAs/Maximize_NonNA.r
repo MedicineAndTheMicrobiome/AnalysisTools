@@ -18,7 +18,7 @@ NUM_ITERATIONS=50000;
 usage = paste(
         "\nUsage:\n", script_name, "\n",
         "       -i <factor file>\n",
-        "       -o <output factor file>\n",
+        "       -o <output factor filename root>\n",
 	"	[-n <number of iterations, default=", NUM_ITERATIONS, ">\n",
         "\n",
 	"This script will read in a factor file, and then\n",
