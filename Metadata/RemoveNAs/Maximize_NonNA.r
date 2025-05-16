@@ -67,12 +67,8 @@ if(any(is.na(factors))){
 
         script_path=paste(head(strsplit(script_name, "/")[[1]], -1), collapse="/");
         source(paste(script_path, "/../../Metadata/RemoveNAs/Remove_NAs.r", sep=""));
-        factors=remove_sample_or_factors_wNA_parallel(factors, NumIterations, num_cores=64);
+        factors=remove_sample_or_factors_wNA_parallel(factors, num_trials=NumIterations, num_cores=64, outfile=OutputFname);
 
-	write.table(
-        	factors, OutputFname, quote=F, sep="\t", row.names=T, col.names=NA);
-
-	
 }else{
 	cat("No NA's found in factors.  Exiting with no new output.\n");
 }
