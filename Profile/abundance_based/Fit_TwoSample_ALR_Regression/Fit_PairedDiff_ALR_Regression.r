@@ -909,12 +909,22 @@ plot_ab_comparisons=function(a, b, aname, bname, pval, title){
 		cex=1, cex.axis=1.5, cex.lab=1.5, las=1, type="p", 
 		pch=20, col="red");
 
+	arr_width=strwidth(".", units="user")*.15;
+
 	# Draw line from orig pos to adjusted text
 	for(i in 1:length(a)){
 		points(
+			c(a[i], adj_lab_pos[["x"]][i]+arr_width),
+			c(b[i], adj_lab_pos[["y"]][i]),
+			type="l", col="grey25");
+		points(
+			c(a[i], adj_lab_pos[["x"]][i]-arr_width),
+			c(b[i], adj_lab_pos[["y"]][i]),
+			type="l", col="grey25");
+		points(
 			c(a[i], adj_lab_pos[["x"]][i]),
 			c(b[i], adj_lab_pos[["y"]][i]),
-			type="l", col="dark grey");
+			type="l", col="pink4", lwd=.8);
 	}
 
 	# Draw adjusted text
