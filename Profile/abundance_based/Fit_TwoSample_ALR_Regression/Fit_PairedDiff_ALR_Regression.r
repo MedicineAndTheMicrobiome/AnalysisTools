@@ -697,6 +697,140 @@ model_pval_mat             =matrix(NA, nrow=num_used_alr_cat, ncol=1,
 
 ###############################################################################
 
+shorten_paired_names=function(namea, nameb){
+
+	all_names=c(namea, nameb);
+	cat("Original:\n");
+	print(all_names);
+	name_len=nchar(all_names);
+	shortest_name_len=min(name_len);
+
+	# Trim Shared Beginning
+	for(i in 1:shortest_name_len){
+		prefix=substr(all_names, 1, i);
+		if(length(unique(prefix))>1){
+			break;	
+		}
+	}
+	
+	all_names=substr(all_names, i, name_len);
+	cat("Front Trimmed:\n");
+	print(all_names);
+
+	# Trim Shared Ending
+	name_len=nchar(all_names);
+	shortest_name_len=min(name_len);
+	for(i in 1:shortest_name_len){
+		postfix=substr(all_names, name_len-i+1, name_len);
+		if(length(unique(postfix))>1){
+			break;	
+		}
+	}
+
+	all_names=substr(all_names, 1, name_len-i+1);
+	cat("End Trimmed:\n");
+	print(all_names);
+
+	res=list();
+	res[["a"]]=all_names[1:length(namea)];
+	res[["b"]]=all_names[(length(namea)+1):length(all_names)];
+	return(res);
+}
+
+
+adjust_label_pos=function(x, y){
+	
+	gp=par();
+
+	xlimits=gp[["usr"]][c(1,2)];
+	ylimits=gp[["usr"]][c(3,4)];
+
+	text_h=strheight("X", units="user");
+	text_w=strwidth("XXX", units="user");
+
+	num_samp=length(x);
+
+	cat("Min Y Spacing: ", text_h, "\n");
+
+	#----------------------------------------------------------------------
+
+	y_orig_names=rownames(y);
+	y=y[order(y),];
+
+	mid=round(num_samp/2);
+
+	y[1:mid]=y[1:mid]-text_h;
+	y[(mid+1):num_samp]=y[(mid+1):num_samp]+text_h;
+	
+	max_iterations=num_samp^2;
+
+	for(it in 1:max_iterations){
+
+		adj=F;
+		# Adjust down
+		for(i in 1:(num_samp-1)){
+			if((y[i+1]-y[i]) < text_h){
+				y[i]=y[i]-(text_h/2);
+				#cat("adj down\n");
+
+				# If getting pushed off bottom of plot, come back a little
+				if(y[i]<ylimits[1]){
+					y[i]=y[i]+(text_h/4);
+					cat("pushed off bottom\n");
+				}
+				adj=T;
+			}
+		}
+
+		# Adjust up
+		for(i in 1:(num_samp-1)){
+			if((y[i+1]-y[i]) < text_h){
+				y[i+1]=y[i+1]+(text_h/2);
+				#cat("adj up\n");
+				
+				# If getting pushed off top of plot, come back a little
+				if(y[i+1]>ylimits[2]){
+					y[i+1]=y[i+1]-(text_h/4);
+					cat("pushed off top\n");
+				}
+				adj=T;
+			}
+		}
+		
+		if(adj==F){
+			cat("Label adjustments converged.\n");
+			break;
+		}
+
+	}
+	if(it==max_iterations){
+		cat("Label adjustments not converged yet.\n");
+	}else{
+		cat("Num Iterations taken: ", it, "\n");
+	}
+
+	y=y[y_orig_names];
+
+	#----------------------------------------------------------------------
+
+	x_orig_names=rownames(x);
+	x=x[order(x),];
+	
+	for(i in 1:num_samp){
+		x[i]=x[i]+(i-num_samp/2)/(num_samp/2)*text_w;
+	}
+
+	x=x[x_orig_names];
+
+	#----------------------------------------------------------------------
+
+	res=list();
+	res[["x"]]=x;
+	res[["y"]]=y;
+	return(res);
+
+}
+
 plot_ab_comparisons=function(a, b, aname, bname, pval, title){
 # Plot histogram of differences and paired samples
 	layout_mat=matrix(c(
@@ -727,7 +861,8 @@ plot_ab_comparisons=function(a, b, aname, bname, pval, title){
 	magn=max(abs(alr_dif));
 	diff_plot_range=c(-magn*1.2, magn*1.2);
 	print(diff_plot_range);
-	hist(alr_dif, xlim=diff_plot_range, yaxt="n", xaxt="n", main="", xlab="", ylab="", las=1, breaks=30);
+	hist(alr_dif, xlim=diff_plot_range, yaxt="n", xaxt="n", main="", 
+		xlab="", ylab="", las=1, breaks=30);
 
 	yaxis_info=par()$yaxp;
 	y_ats=as.integer(seq(yaxis_info[1], yaxis_info[2], 
@@ -746,12 +881,49 @@ plot_ab_comparisons=function(a, b, aname, bname, pval, title){
 
 	abline(v=0, col="blue", lty=2, lwd=2);
 
+	#----------------------------------------------------------------------
 	# Plot scatter
 	plot(a,b, xlim=ranges, ylim=ranges, xlab=aname, ylab=bname, 
+		col="red",
 		cex=1.2, cex.axis=1.5, cex.lab=1.5, las=1);
 	abline(a=0, b=1, col="blue", lty=2);
-
 	mtext(title, side=3, line=0, outer=T, font=2, cex=2);
+
+	
+	#----------------------------------------------------------------------
+	# Plot scatter with labels
+	par(mfrow=c(1,1));
+	short_names=shorten_paired_names(rownames(a), rownames(b));
+
+	expand_range=function(r, prop){
+		span=(r[2]-r[1])
+		pad=span*prop;
+		return(c(r[1]-pad, r[2]+pad));
+	}
+
+	adj_lab_pos=adjust_label_pos(a,b);
+	
+	exp_rng=expand_range(ranges, .15);
+	plot(a,b, xlim=exp_rng, ylim=exp_rng, 
+		xlab=aname, ylab=bname, 
+		cex=1, cex.axis=1.5, cex.lab=1.5, las=1, type="p", 
+		pch=20, col="red");
+
+	# Draw line from orig pos to adjusted text
+	for(i in 1:length(a)){
+		points(
+			c(a[i], adj_lab_pos[["x"]][i]),
+			c(b[i], adj_lab_pos[["y"]][i]),
+			type="l", col="dark grey");
+	}
+
+	# Draw adjusted text
+	text(adj_lab_pos[["x"]],adj_lab_pos[["y"]], short_names[["a"]]);
+	#text(a,b, short_names[["b"]]);
+
+	abline(a=0, b=1, col="blue", lty=2);
+	mtext(title, side=3, line=0, outer=T, font=2, cex=2);
+
 }
 
 ###############################################################################
