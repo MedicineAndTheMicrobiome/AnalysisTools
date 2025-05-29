@@ -175,6 +175,12 @@ log10_min_nz=log10(min_nz);
 cat("Min Nonzero Abundance: ", min_nz, "\n");
 cat("Log10(Min Nonzero): ", log10_min_nz, "\n");
 
+
+mode_of_continuous_distribution=function(x){
+	x=x[is.finite(x)];
+	d=density(x);
+	return(d$x[which.max(d$y)]);
+}
 #------------------------------------------------------------------------------
 
 par(mar=c(5,5,5,1));
@@ -232,8 +238,9 @@ for(cur_ref_nm in c(reference_names, "_combined_")){
 	abline(v=10^l10_minabd, col="red", lty="dashed");
 
 	# Generate histograms of log10(reference abundances)
+	max_log10=max(c(log10(coll_ref_abd+min_nz),0));
 	hist(log10(coll_ref_abd+min_nz), main="Distr of Log10(Reference Abundance)", 
-		breaks=seq(log10_min_nz, 0, length.out=20), xlab="log10(Ref Abundance)");
+		breaks=seq(log10_min_nz, max_log10, length.out=20), xlab="log10(Ref Abundance)");
 	title(main=sprintf("--- Specified Min Log10(Abund): %5.3f", l10_minabd), 
 		col.main="red", line=.5, cex.main=.85);
 	abline(v=l10_minabd, col="red", lty="dashed");
@@ -288,28 +295,76 @@ for(cur_ref_nm in c(reference_names, "_combined_")){
 
 	#----------------------------------------------------------------------
 	# Plot histogram of Estimated Copy Counts
-	comb_hist=hist(log10_samp_copy_counts, main="Distr. of All Estimated Sample Copy Counts",
-		xlab="Log10(Copies)", breaks=20);
 
-	comb_plot_lim=par()$usr;
-	comb_xlim=comb_plot_lim[c(1,2)];
-	comb_ylim=comb_plot_lim[c(3,4)];
+
+	plot_hist_and_annot=function(data, title, subtitle, barcol, hxlim, hylim, hbreaks, ref_cn){
+		median=median(data, na.rm=T);
+		mode=mode_of_continuous_distribution(data);
+
+		widen=function(span, prop=1){
+			width=span[2]-span[1];
+			margin=width*prop/2;
+			return(c(span[1]-margin, span[2]+margin));	
+		}
+
+		hist(data,
+			main="", col=barcol,
+			xlim=widen(hxlim, 1.1), ylim=hylim*1.1, breaks=hbreaks,
+			xlab="Log10(Copies)");
+		title(main=title, line=3, cex.main=1.5, font.main=2);
+		title(main=subtitle, line=1.7, cex.main=1);
+		title(main=paste("--- Ref Log10(Copy Number)") , line=.7, cex.main=.85);
+
+		abline(v=median, col="orange", lwd=3);
+		abline(v=mode, col="green");
+		points(c(ref_cn, ref_cn), hylim, col="black", lty="dashed", type="l");
+
+		if(median>mode){
+			med_pos=4;
+			mod_pos=2;
+		}else{
+			med_pos=2;
+			mod_pos=4;
+		}		
+
+		h=strheight("M");
+		text(mode, hylim[2]+h, 
+			font=2,
+			col="darkgreen",
+			paste("[Mode]\n", 
+				format(round(10^mode,0), big.mark=","), sep=""), pos=mod_pos);
+		text(median, hylim[2]+h, 
+			font=2,
+			col="darkorange",
+			paste("[Median]\n", 
+				format(round(10^median,0), big.mark=","), sep=""), pos=med_pos);
+
+	}
+
+	# Compute combined ranges
+	comb_hist=hist(log10_samp_copy_counts, plot=F, breaks=20);
+	comb_xlim=range(comb_hist$breaks);
+	comb_ylim=c(0, max(comb_hist$counts));
 	comb_breaks=comb_hist$breaks;
 
-	hist(log10_samp_copy_counts[ref_abv_cutoff_ix], 
-		main="", col="blue",
-		xlim=comb_xlim, ylim=comb_ylim, breaks=comb_breaks,
-		xlab="Log10(Copies)");
-	title(main="Distr. of 'Reliable' Est. Sample Copy Counts", line=1.5);
-	title(main="(ref abd >= cutoff)", line=.75, cex.main=.85)
-	
+	l10cn=log10(copy_num);
 
-	hist(log10_samp_copy_counts[!ref_abv_cutoff_ix], 
-		main="", col="red",
-		xlim=comb_xlim, ylim=comb_ylim, breaks=comb_breaks,
-		xlab="Log10(Copies)");
-	title(main="Distr. of 'Dubious' Est. Sample Copy Counts", line=1.5);
-	title(main="(ref abd < cutoff)", line=.75, cex.main=.85)
+	plot_hist_and_annot(log10_samp_copy_counts, 
+		"All Estim. Sample Copy Counts",
+		"(All)", 
+		"purple",
+		comb_xlim, comb_ylim, comb_breaks, l10cn);
+	plot_hist_and_annot(log10_samp_copy_counts[ref_abv_cutoff_ix], 
+		"'Reliable' Est. Sample Copy Counts",
+		"(ref abd >= cutoff)",
+		"blue",
+		comb_xlim, comb_ylim, comb_breaks, l10cn);
+	plot_hist_and_annot(log10_samp_copy_counts[!ref_abv_cutoff_ix],
+		"'Dubious' Est. Sample Copy Counts",
+		"(ref abd < cutoff)",
+		"red",
+		comb_xlim, comb_ylim, comb_breaks, l10cn);
+
 
 	# Label reference in outer margin
 	mtext(cur_ref_nm, side=3, line=0, outer=T);
