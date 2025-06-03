@@ -10,7 +10,8 @@ source("~/git/AnalysisTools/Metadata/OutputFileLibrary/OutputFileLibrary.r");
 params=c(
 	"summary_table", "s", 1, "character",
 	"reference_si_fn", "r", 1, "character",
-	"output_root", "o", 1, "character"
+	"output_root", "o", 1, "character",
+	"proport_fn", "p", 2, "character"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -23,6 +24,7 @@ usage = paste (
 	"	-s <input summary_table.tsv>\n",
 	"	-r <reference spike-in table filename>\n",
 	"	-o <output file root>\n",
+	"	[-p <proportions tsv filename>]\n",
 	"\n",
 	"Example Format of Reference Spike In File:\n",
 	"\n",
@@ -95,10 +97,16 @@ InputSummaryTable=opt$summary_table;
 ReferenceFilename=opt$reference_si_fn;
 OutputRoot=opt$output_root;
 
+ProportionsFile=NULL;
+if(length(opt$proport_fn)){
+	ProportionsFile=opt$proport_fn;
+}
+
 cat("\n");
 cat("Input Summary Table: ", InputSummaryTable, "\n");
 cat("Reference Category: ", ReferenceFilename, "\n");
 cat("Output Root: ", OutputRoot, "\n");
+cat("Proportions File: ", ProportionsFile, "\n");
 cat("\n");
 
 pdf(paste(OutputRoot, ".abs_spikein.pdf", sep=""), height=8.5, width=11);
@@ -110,7 +118,8 @@ plot_text(c(
 	"",
 	paste("Input Summary Table: ", InputSummaryTable),
 	paste("Reference Category: ", ReferenceFilename),
-	paste("Output Root: ", OutputRoot)
+	paste("Output Root: ", OutputRoot),
+	paste("Proportions File: ", ProportionsFile)
 	));
 
 ###############################################################################
@@ -659,6 +668,101 @@ if(generate_spaghetti_plots){
 }
 
 ###############################################################################
+
+if(!is.null(ProportionsFile)){
+
+	cat("---------------------------------------------------------------------------\n");
+	cat("Generating adjust copy counts with specified proportions file.\n");
+
+	# Load the proportions file
+	prop_tab=read.table(ProportionsFile, header=T, row.names=1, sep="\t");
+	prop_arr=prop_tab[,1];
+	names(prop_arr)=rownames(prop_tab);
+	prop_samp_ids=rownames(prop_tab);
+	num_prop_samp_ids=length(prop_samp_ids);
+
+	cat("Num Samples with Proportion Information: ", num_prop_samp_ids, "\n");
+
+
+	output_prop_adj_copy_counts=function(samp_info_rec, outfn, smp_dep, props){
+
+		cat("Writing: ", outfn, "\n");
+
+		# Copy props into array, and make placeholder for missing props info.
+		smp_dep_ids=names(smp_dep);
+		num_smp_dep_ids=length(smp_dep_ids);
+		prop_to_keep_arr=rep(0, num_smp_dep_ids);
+		names(prop_to_keep_arr)=smp_dep_ids;
+
+		props_ids=names(props);
+		shared_props_ids=intersect(smp_dep_ids, props_ids);
+		prop_to_keep_arr[shared_props_ids]=props[shared_props_ids];
+
+		header=c("SampleID", "SampleDepth", "PropToKeep");
+		out_mat=cbind(smp_dep_ids, smp_dep, sprintf("%5.4f",prop_to_keep_arr));
+		rownames(out_mat)=smp_dep_ids;
+		colnames(out_mat)=header;
+		print(out_mat);
+
+		# Keep track of the reference name, above the ref specific stats
+		superheader=c("", "", "", "");
+
+		ix=1;
+		for(ref_nm in names(samp_info_rec)){
+
+			cur_info=samp_info_rec[[ref_nm]];
+			cc_samp_ids=names(cur_info[["TotalCopyCounts"]]);
+
+			shared_samp_ids=intersect(props_ids, cc_samp_ids);
+
+			prop_adj_cc=rep(NA, length(cc_samp_ids));
+			names(prop_adj_cc)=cc_samp_ids;
+			prop_adj_cc[shared_samp_ids]=
+				cur_info[["TotalCopyCounts"]][shared_samp_ids]*
+				props[shared_samp_ids];
+			
+			refmat=cbind(
+				"",
+				sprintf("%6.4f", cur_info[["RefAbnd"]]),
+				sprintf("%4.0f", cur_info[["TotalCopyCounts"]]), 
+				cur_info[["RefAbdAboveCutoff"]],
+				sprintf("%4.0f",prop_adj_cc)
+				);
+
+			out_mat=cbind(out_mat, refmat);
+
+			header=c(header, "", "Ref_Abund", "EstTotCpCnt", "AbvRefCutoff", "PropAdj");
+
+			index_str=sprintf("[%i] ", ix);
+			superheader=c(superheader, index_str, ref_nm, "", "", "");
+
+			ix=ix+1;
+		}
+
+		
+		colnames(out_mat)=header;
+
+		# Write Reference Name SuperHeader
+		fh=file(outfn, "w");
+		cat(file=fh, paste(superheader, collapse="\t"), "\n", sep="");
+		close(fh);
+
+		# Write stats
+		write.table(out_mat, outfn, append=T, quote=F, sep="\t", row.names=F, col.names=T);
+	}
+
+	scc_prpadj_fname=paste(OutputRoot, ".sample_copy_counts.prop_adj.tsv", sep="");
+	output_prop_adj_copy_counts(sample_info_list, scc_prpadj_fname, sample_depths, prop_arr);
+
+	cat("---------------------------------------------------------------------------\n");
+
+}else{
+	cat("-----------------------------------------------------\n");
+	cat("Proportions File not specified.\n");
+	cat("No problem, if that was on purpose.\n");
+	cat("-----------------------------------------------------\n");
+}
+	
 
 ###############################################################################
 
