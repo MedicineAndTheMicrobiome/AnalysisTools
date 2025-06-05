@@ -14,6 +14,7 @@ params=c(
 	"output_file", "o", 2, "character",
 	"diversity_type", "d", 2, "character",
 	"shorten_category_names", "s", 2, "character",
+	"l10minnorm", "L", 0, "logical",
 	"num_rows", "r", 2, "numeric",
 	"num_cols", "c", 2, "numeric",
 	"crossing_string", "x", 2, "character",
@@ -38,6 +39,8 @@ usage = paste(
 	"	[-d <diversity, default=", DEF_DIVERSITY, ".]\n",
 	"	[-s <shorten category names, with separator in double quotes (default=\"\")>]\n",
 	"	[-l <label abundances greater than specified threshold, default=1.0, recommended 0.01]\n",
+	"\n",
+	"	[-L (Generate the Log10 Min Normalization Plots, instead of relative abundance)]\n",
 	"\n",
 	"	[-r <number of rows per page, default=", NUM_ROWS, "\n",
 	"	[-c <number of rows per page, default=", NUM_COLS, "\n",
@@ -110,6 +113,11 @@ if(ShortenCategoryNames==TRUE){
         quit(status=-1);
 }
 
+Do_Log10MinNorm=F;
+if(length(opt$l10minnorm)){
+	Do_Log10MinNorm=T;
+}
+
 NumTopCategories=TOP_CATEGORIES;
 if(length(opt$top_categories)){
 	NumTopCategories=opt$top_categories;
@@ -149,7 +157,13 @@ if(length(opt$tag_name)){
 ###############################################################################
 
 OutputFileRoot=paste(OutputFileRoot, ".", substr(DiversityType, 1, 4), ".t", NumTopCategories,  sep="");
-OutputPDF = paste(OutputFileRoot, ".rnk_abnd.pdf", sep="");
+
+if(Do_Log10MinNorm){
+	OutputPDF = paste(OutputFileRoot, ".rnk_l10mn.pdf", sep="");
+}else{
+	OutputPDF = paste(OutputFileRoot, ".rnk_abnd.pdf", sep="");
+}
+
 cat("Output PDF file name: ", OutputPDF, "\n", sep="");
 
 page_width=(2+(1+NumTopCategories/5)*NumCols);
@@ -244,7 +258,9 @@ tail_statistic=function(x){
 
 ###############################################################################
 
-plot_ra=function(abundances, num_top_categories=10, category_colors, ymax, title, subtitle){
+plot_ra=function(abundances, num_top_categories=10, category_colors, ymax, 
+	title, subtitle, log10minnorm=F){
+
 	# This draws a single Rank Abundance Plot
 
 	if(!is.null(dim(abundances))){
@@ -271,7 +287,43 @@ plot_ra=function(abundances, num_top_categories=10, category_colors, ymax, title
 			round(prop_draw*100.0, 2),
 			"%");
 
-	mids=barplot(top, col=reordered_colors, names.arg="", ylim=c(0, ymax*1.05));
+	if(log10minnorm){
+		
+		# Make space for labelling y-axis and annotations of top category
+		par_orig=par();
+		mar_orig=par_orig$mar;
+		extra_mar=mar_orig;
+		extra_mar[2]=extra_mar[2]+1; # Left
+		par(mar=extra_mar);
+
+		# Identify min nozero, then normalize
+		nztop=top[top>0];
+		minnorm=floor(log10(min(nztop)));
+		top_minnorm=nztop/(10^minnorm);
+
+		# Extend ylim
+		yl=c(0, log10(top_minnorm[1])*1.1);
+
+		# Generate barplot
+		mids=barplot(log10(top_minnorm), col=reordered_colors, names.arg="", ylim=yl);
+		title(ylab="Log10[Abnd/Min(Abnd)]", line=2);
+		charheight=strheight("X");
+		
+		# Label the abundance of most abundant category for reference
+		num_nz=length(nztop);
+		for(i in 1:num_nz){
+			if(top[i]>=0.001){
+				text(mids[i], log10(top_minnorm[i])-.5*charheight, 
+					sprintf("%4.3f", top[i]), pos=3, cex=.6);
+			}
+		}
+	
+		# Reset margines
+		par(mar=mar_orig);	
+	}else{
+		mids=barplot(top, col=reordered_colors, names.arg="", ylim=c(0, ymax*1.05));
+	}
+
 	title(main=title, font.main=2, cex.main=1.75, line=-1);
 	title(main=rep_title, font.main=1, cex.main=1.1, line=-2)
 	title(main=subtitle, font.main=3, cex.main=1, line=-3)
@@ -281,7 +333,8 @@ plot_ra=function(abundances, num_top_categories=10, category_colors, ymax, title
         plot_range=par()$usr;
         plot_height=plot_range[4];
         label_size=min(c(1,.7*bar_width/par()$cxy[1]));
-        text(mids-par()$cxy[1]/2, rep(-par()$cxy[2]/2, num_top_categories), cat_names, srt=-45, xpd=T, pos=4, cex=label_size);
+        text(mids-par()$cxy[1]/2, rep(-par()$cxy[2]/2, num_top_categories), cat_names, 
+		srt=-45, xpd=T, pos=4, cex=label_size);
 
 
 
@@ -324,7 +377,8 @@ get_unique_top_categories=function(abd_mat, num_top){
 
 plot_rank_abundance_matrix=function(abd_mat, title="", plot_cols=3, plot_rows=4, 
 	num_top_categories=10,
-	samp_size=c(), divname="diversity", median_diversity=c(), mean_diversity=c()
+	samp_size=c(), divname="diversity", median_diversity=c(), mean_diversity=c(),
+	l10minnorm=F
 	){
 	# This function will plot a sample x abundance (summary table)
 	# There will be one plot for row (sample) in the matrix
@@ -353,11 +407,12 @@ plot_rank_abundance_matrix=function(abd_mat, title="", plot_cols=3, plot_rows=4,
 	orig.par=par(no.readonly=T);
 	par(mfrow=c(plot_rows, plot_cols));
 	par(oma=c(.5,.5,3.5,.5));
-	par(mar=c(10,2,2,5));
+	par(mar=c(20,2,2,5));
 	par(lwd=.25);
 
 	plot_ra(abd_avg, num_uniq_top_cat, colors_map, ymax=max_abd,
-		title="Average/Reference", subtitle=paste(num_samples, " Groups", sep=""));
+		title="Average/Reference", subtitle=paste(num_samples, " Groups", sep=""),
+		log10minnorm=l10minnorm);
 	mtext(text=title, side=3, outer=T, cex=2, font=2, line=.5);
 
 	i=1;
@@ -390,7 +445,7 @@ plot_rank_abundance_matrix=function(abd_mat, title="", plot_cols=3, plot_rows=4,
 		}
 
 		plot_ra(abundances, num_top_categories, colors_map, ymax=max_abd, 
-			title=sample, subtitle=samp_size_subtitle);
+			title=sample, subtitle=samp_size_subtitle, log10minnorm=l10minnorm);
 
 		# Label page when it's the first plot
 		if(i%%(plot_rows*plot_cols)==0){
@@ -486,6 +541,8 @@ plot_text(c(
 	paste("Output File Root: ", OutputFileRoot),
 	"",
 	paste("Diversity Index:", DiversityType),
+	"",
+	paste("Do Log10MinNorm Plots:", Do_Log10MinNorm),
 	"",
 	"Summary Table:",
 	paste("      Num Samples:", nrow(orig_counts_mat)),
@@ -615,7 +672,6 @@ samp_ids=rownames(normalized_mat);
 avg_norm_mat[1,]=apply(normalized_mat, 2, mean);
 num_samples=nrow(normalized_mat);
 
-
 plot_rank_abundance_matrix(
 	abd_mat=avg_norm_mat,
 	title="Mean abundances across all samples",
@@ -625,9 +681,9 @@ plot_rank_abundance_matrix(
 	median_diversity=median(diversity_arr[samp_ids]),
 	mean_diversity=mean(diversity_arr[samp_ids]),
 	plot_rows=1,
-	plot_cols=1
+	plot_cols=1,
+	l10minnorm=Do_Log10MinNorm
 );
-
 
 #------------------------------------------------------------------------------
 
@@ -701,7 +757,8 @@ for(i in 1:ncol(grp_mat)){
 		median_diversity=diversity_median, 
 		mean_diversity=diversity_mean,
 		plot_rows=NumRows,
-		plot_cols=NumCols
+		plot_cols=NumCols,
+		l10minnorm=Do_Log10MinNorm
 	);
 
 
