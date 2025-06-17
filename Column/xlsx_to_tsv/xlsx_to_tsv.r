@@ -4,7 +4,7 @@
 
 library(getopt);
 
-options(java.parameters="- Xmx1024m");
+options(java.parameters="-Xmx1024m");
 
 library(xlsx); # Depends on: install.packages('xlsx')
 
