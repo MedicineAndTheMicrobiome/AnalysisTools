@@ -255,6 +255,10 @@ paint_matrix=function(mat, title="", subtitle="", plot_min=NA, plot_max=NA, log_
                 plot_max=log10(plot_max+.0125);
         }
 
+	if(value.cex==-1){
+		value.cex=min(1, .95/strheight("X"));
+	}
+
         for(x in 1:num_col){
                 for(y in 1:num_row){
 
@@ -418,7 +422,8 @@ signf_char=function(val){
 
 ###############################################################################
 
-mask_matrix=function(val_mat, mask_mat, mask_thres, mask_val){
+mask_matrix=function(val_mat, mask_mat, mask_thres=1, mask_val=0){
+	# If the mask_mat is greater than the mask_thres, then replace it with mask_val
         masked_matrix=val_mat;
         masked_matrix[mask_mat>mask_thres]=mask_val;
         return(masked_matrix);
