@@ -846,3 +846,73 @@ modify_filenames=function(infn, modlist, usage=F){
         }
 }
 
+###############################################################################
+
+adjust_positions=function(orig_pos, min_spacing, max_pos=Inf, min_pos=-Inf, max_tries=10000, verbose=F){
+# This function will adjust the values in the orig_pos so that the spacing between values is
+# greater than min_spacing
+
+	num_pos=length(orig_pos);
+	names(orig_pos)=1:num_pos;
+
+	if(verbose){
+		cat("Requested Min Spacing: ", min_spacing, "\n");
+		cat("Limits: min=", min_pos, ", max=", max_pos, "\n");
+		cat("Original:\n");
+		print(orig_pos);
+		cat("\n");
+	}
+	
+	order_ix=order(orig_pos);
+	sorted_pos=orig_pos[order_ix];
+
+	if(verbose){
+		cat("Sorted:\n");
+		print(sorted_pos);
+		cat("\n");
+	}
+	
+	for(tries in 1:max_tries){
+
+		adjmade=F;
+
+		for(ix in 1:(num_pos-1)){
+			if((sorted_pos[ix+1]-sorted_pos[ix])<min_spacing){
+
+				sorted_pos[ix]=sorted_pos[ix]-min_spacing/4;
+				if(sorted_pos[ix]<min_pos){
+					sorted_pos[ix]=min_pos;
+				}
+
+				sorted_pos[ix+1]=sorted_pos[ix+1]+min_spacing/4;
+				if(sorted_pos[ix+1]>max_pos){
+					sorted_pos[ix+1]=max_pos;
+				}
+
+				adjmade=T;
+			}
+		}
+
+		if(adjmade==F){
+			if(verbose){
+				cat("Adjustment Trials Made: ", tries, "\n");
+			}
+			break;
+		}
+	}
+
+	unsort_ix=order(names(sorted_pos));
+	unsorted=sorted_pos[unsort_ix];
+	
+	if(verbose){
+		cat("Adjusted Sorted:\n");
+		print(sorted_pos);
+		cat("\n");
+		cat("Adjusted Unsorted:\n");
+		print(unsorted);
+		cat("\n");
+	}
+	return(unsorted);
+	
+
+}
