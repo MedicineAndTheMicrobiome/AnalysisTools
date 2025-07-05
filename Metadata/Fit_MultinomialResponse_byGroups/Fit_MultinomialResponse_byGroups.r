@@ -3,6 +3,9 @@
 ###############################################################################
 
 library(MASS);
+library(glmnet);
+#library(logistf);
+library(hdi);
 library('getopt');
 
 source("~/git/AnalysisTools/Metadata/OutputFileLibrary/OutputFileLibrary.r");
@@ -283,8 +286,11 @@ covariates_formula_string=paste(covariates_arr, collapse=" + ");
 
 test_group_strings_list=character(num_test_groups);
 names(test_group_strings_list)=test_group_names;
+
+all_test_variables=c();
 for(tg in test_group_names){
 	test_group_strings_list[tg]=paste(test_group_map[[tg]], collapse=" + ");
+	all_test_variables=c(all_test_variables, test_group_map[[tg]]);
 }
 
 cat("--------------------------------------------------------------------------\n");
@@ -425,6 +431,102 @@ plot_title_page("Model Fitness Evaluations", c(
 
 ###############################################################################
 
+generate_lasso_on_full=T;
+
+all_predictors=c(covariates_arr, all_test_variables);
+
+if(generate_lasso_on_full){
+	# Precompute the Z
+	cat("Precomputing Z Matrix (Nodewise Lasso Matrix)...\n");
+	lpr_init_res=lasso.proj(
+		y=rnorm(nrow(factors_used)),
+		x=factors_used[,all_predictors],
+		verbose=T,
+		return.Z=T);
+	precomputedZ=lpr_init_res$Z;
+	cat("Done.\n");
+}
+
+lasso_fit=function(resp_val, pred_mat, cov_names, test_var, precZ){
+
+	all_preds_arr=c(cov_names, test_var);
+	num_preds=length(all_preds_arr);
+	pred_data=as.matrix(pred_mat[,all_preds_arr]);
+
+	# Set ups required variables
+	#pen_fac=rep(1, num_preds);
+	#names(pen_fac)=all_preds_arr;
+	#pen_fac[cov_names]=0;
+
+
+	#if(0){
+	#	cv_fit=cv.glmnet(
+	#		y=responses, 
+	#		x=pred_data,
+	#		penalty.factor=pen_fac,
+	#		family="binomial", 
+	#		alpha=1);
+
+	#	best_lambda=cv_fit$lambda.min;
+	#	coefs_of_bestlambda=coef(cv_fit, s="lambda.min");
+	#	out_coef=as.matrix(coefs_of_bestlambda);
+	#}
+
+	#cat("Running LASSO Project (De-sparsified LASSO)...\n");
+
+	lpr=lasso.proj(
+		y=responses, x=pred_data,
+		family="binomial",
+		standardize=T,
+		verbose=T,
+		Z=precZ
+		);
+
+	# betahat is the scaled/sparse estimate (Variable selected)
+	# bhat is the de-sparsified estimate (de-biased)
+	
+	coef=lpr$bhat; # De-sparsified estimate
+	pval=lpr$pval;
+
+
+	# Un-standardize the coefficients
+	mu=colMeans(pred_data);
+	sds=apply(pred_data, 2, sd);
+	bhat_orig=coef/sds;
+	p_bar=mean(responses);
+
+	# Calculate the intercept
+	intercept=log(p_bar/(1-p_bar))-sum(coef*mu/sds);
+	#cat("Intercept: ", intercept, "\n");
+
+	# Compute the predicted log-odds, so we get the pred prob
+	eta=intercept + pred_data %*% bhat_orig;
+	predicted=1/(1+exp(-eta));
+
+	# Compute log likelihood
+	loglik=sum(responses*log(predicted)+(1-responses)*log(1-predicted));
+	num_param=ncol(pred_data)+1;
+	pseudo_aic= -2*loglik + 2*num_param;
+
+	# Generate diagnostic plots
+	print(cbind(predicted, responses));
+	plot(responses, predicted, main="Predicted vs. Response",
+		xlab="Obs. Resp.", ylab="Pred. Resp");
+	title(main=paste("LogLik=", round(loglik,4)), line=0, cex.main=0.5);
+	title(main=paste("Pseudo AIC=", round(pseudo_aic,4)), line=1, cex.main=0.5);
+	abline(lm(predicted~responses), lty="dashed", col="blue");
+
+
+	results=list();
+	results[["coef"]]=bhat_orig;
+	results[["pval"]]=pval;
+	results[["aic"]]=pseudo_aic;
+	
+	return(results);
+}
+
+###############################################################################
+
 accumulate_sumfit_to_matrix=function(sumfit, mat, cname){
 
 	coef_tab=sumfit[["coefficients"]]	
@@ -437,10 +539,25 @@ accumulate_sumfit_to_matrix=function(sumfit, mat, cname){
 	return(mat);
 }
 
-responses_results=list();
+accumulate_lassofit_to_matrix=function(lassofit, mat, cname){
+
+	coef_tab=lassofit[["coef"]];
+	varnames=setdiff(names(coef_tab), "(Intercept)"); 
+	
+	mat[["coef"]][varnames, cname]=lassofit[["coef"]][varnames];
+	mat[["pval"]][varnames, cname]=lassofit[["pval"]][varnames];
+	mat[["aic"]][cname]=lassofit[["aic"]];
+
+	return(mat);
+}
+
+#------------------------------------------------------------------------------
+
+model_fit_results=list();
 
 for(resp_ix in responses_arr){
 
+	cat("----------------------------------------------------------------------\n");
 	cat("Working on Multinomial Response: ", resp_ix, "\n");
 
 	resp_categories_values=as.character(factors_loaded[,resp_ix]);
@@ -464,53 +581,88 @@ for(resp_ix in responses_arr){
 	empty_pval_coef[["aic"]]=empty_arr;;
 	
 
-	responses_results[[resp_ix]]=list();
+	model_fit_results[[resp_ix]]=list();
 
-	responses_results[[resp_ix]][["full"]]=empty_pval_coef;
-	responses_results[[resp_ix]][["covariates"]]=empty_pval_coef;
-	responses_results[[resp_ix]][["target_reduced"]]=list()
-	responses_results[[resp_ix]][["target_covar"]]=list();
+	model_fit_results[[resp_ix]][["full_glm"]]=empty_pval_coef;
+	model_fit_results[[resp_ix]][["covariates"]]=empty_pval_coef;
+	model_fit_results[[resp_ix]][["target_reduced"]]=list()
+	model_fit_results[[resp_ix]][["target_covar"]]=list();
+	model_fit_results[[resp_ix]][["full_lasso"]]=empty_pval_coef;
+
 
 	for(tg in test_group_names){
 		if(num_test_groups>2){
-			responses_results[[resp_ix]][["target_reduced"]][[tg]]=empty_pval_coef;
+			model_fit_results[[resp_ix]][["target_reduced"]][[tg]]=empty_pval_coef;
 		}
-		responses_results[[resp_ix]][["target_covar"]][[tg]]=empty_pval_coef;
+		model_fit_results[[resp_ix]][["target_covar"]][[tg]]=empty_pval_coef;
 	}
 
-	#print(responses_results);
+	#print(model_fit_results);
 
-	for(category_ix in resp_categories){
+	#for(category_ix in rev(resp_categories)){
+	accum_lasso_pval=matrix(NA, nrow=length(all_predictors), ncol=num_resp_categories);
+	rownames(accum_lasso_pval)=all_predictors;
+	colnames(accum_lasso_pval)=resp_categories;
 
-		cat("Fitting Model: ", category_ix, " vs. Other.\n");
+	accum_lasso_coef=matrix(NA, nrow=length(all_predictors), ncol=num_resp_categories);
+	rownames(accum_lasso_coef)=all_predictors;
+	colnames(accum_lasso_coef)=resp_categories;
+
+	for(category_ix in (resp_categories)){
+
+		cat("\nFitting Model: ", category_ix, " vs. Other.\n");
 		cur_responses=factors_used[,resp_ix];
 		responses=(category_ix==cur_responses);
 
 		tmp_factors=cbind(responses, factors_used);
 
 		# Test Full (All Targets + Covariates)
-		cat("\tFitting Full Model...\n");
+		cat("\tFitting GLM Full Model...\n");
 		full_formula=as.formula(paste("responses ~ ", full_model));
 		full_fit=glm(full_formula, data=as.data.frame(tmp_factors), family="binomial");
 		full_sum_fit=summary(full_fit);
 		#print(full_sum_fit);
 
-		responses_results[[resp_ix]][["full"]]=
+		model_fit_results[[resp_ix]][["full_glm"]]=
 			accumulate_sumfit_to_matrix(full_sum_fit, 
-				responses_results[[resp_ix]][["full"]], category_ix);
+				model_fit_results[[resp_ix]][["full_glm"]], category_ix);
 
 
 		# Test Covariates only
-		cat("\tFitting Covariates-only Model...\n");
+		cat("\tFitting GLM Covariates-only Model...\n");
 		cov_formula=as.formula(paste("responses ~ ", covariates_model));
 		cov_fit=glm(cov_formula, data=as.data.frame(tmp_factors), family="binomial");
 		cov_sum_fit=summary(cov_fit);
 		#print(cov_sum_fit);
 
-		responses_results[[resp_ix]][["covariates"]]=
+		model_fit_results[[resp_ix]][["covariates"]]=
 			accumulate_sumfit_to_matrix(cov_sum_fit, 
-				responses_results[[resp_ix]][["covariates"]], category_ix);
-	
+				model_fit_results[[resp_ix]][["covariates"]], category_ix);
+
+
+		#--------------------------------------------------------------
+
+		if(generate_lasso_on_full){
+			cat("\tRunning Full Lasso on: ",  category_ix, "  /  ", 
+				resp_ix, "\n", sep="");
+
+			lasso_res=lasso_fit(
+				resp_val=responses, 
+				pred_mat=factors_used,
+				cov_names=covariates_arr,
+				test_var=all_test_variables,
+				precZ=precomputedZ
+				);
+
+			model_fit_results[[resp_ix]][["full_lasso"]]=
+				accumulate_lassofit_to_matrix(lasso_res, 
+					model_fit_results[[resp_ix]][["full_lasso"]], 
+					category_ix);
+
+		}
+
+		#--------------------------------------------------------------
+
 		for(tg in test_group_names){
 	
 			cat("\tFitting Targeted Models (", tg, "):\n");
@@ -519,14 +671,17 @@ for(resp_ix in responses_arr){
 
 				# Test Targeted Reduced (All Targets except Target, + Covariates)
 				cat("\t\tFitting Targeted Reduced Model...\n");
-				tar_red_formula=as.formula(paste("responses ~ ", targeted_reduced_model_list[tg]));
-				tar_red_fit=glm(tar_red_formula, data=as.data.frame(tmp_factors), family="binomial");
+				tar_red_formula=as.formula(paste("responses ~ ", 
+					targeted_reduced_model_list[tg]));
+				tar_red_fit=glm(tar_red_formula, 
+					data=as.data.frame(tmp_factors), family="binomial");
 				tar_red_sum_fit=summary(tar_red_fit);
 				#print(tar_red_sum_fit);
 
-				responses_results[[resp_ix]][["target_reduced"]][[tg]]=
+				model_fit_results[[resp_ix]][["target_reduced"]][[tg]]=
 					accumulate_sumfit_to_matrix(tar_red_sum_fit, 
-						responses_results[[resp_ix]][["target_reduced"]][[tg]], category_ix);
+						model_fit_results[[resp_ix]][["target_reduced"]][[tg]], 
+						category_ix);
 			}
 
 
@@ -537,9 +692,9 @@ for(resp_ix in responses_arr){
 			tar_sum_fit=summary(tar_fit);
 			#print(tar_sum_fit);
 
-			responses_results[[resp_ix]][["target_covar"]][[tg]]=
+			model_fit_results[[resp_ix]][["target_covar"]][[tg]]=
 				accumulate_sumfit_to_matrix(tar_sum_fit, 
-					responses_results[[resp_ix]][["target_covar"]][[tg]], category_ix);
+					model_fit_results[[resp_ix]][["target_covar"]][[tg]], category_ix);
 
 
 		}
@@ -549,12 +704,6 @@ for(resp_ix in responses_arr){
 }
 
 ###############################################################################
-
-mask_by_cutoff=function(coef_mat, pval_mat, pval_cutoff=1, mask_val=0){
-        masked_mat=coef_mat;
-        masked_mat[pval_mat>pval_cutoff]=mask_val;
-	return(masked_mat);
-}
 
 plot_signif_summary=function(coef_mat, pval_mat){
 
@@ -590,7 +739,8 @@ get_aic=function(fit_results){
 	
 	# Pull AIC values from results
 	model_aics=list();
-	model_aics[["full"]]=fit_results[["full"]]$aic;
+	model_aics[["full_lasso"]]=fit_results[["full_lasso"]]$aic;
+	model_aics[["full_glm"]]=fit_results[["full_glm"]]$aic;
 	model_aics[["covar_only"]]=fit_results[["covariates"]]$aic;
 
 	tr_names=names(fit_results[["target_reduced"]]);
@@ -612,7 +762,7 @@ get_aic=function(fit_results){
 		results=rbind(results, model_aics[[m]]);
 	}
 	rownames(results)=mnames;
-	colnames(results)=names(model_aics[["full"]]);
+	colnames(results)=names(model_aics[["full_glm"]]);
 
 	return(results);
 
@@ -783,7 +933,9 @@ plot_top_aics=function(aic_matrix, aic_thres=2, title=""){
 		aic_matrix[,i]=val;
 	}
 
-	aic_range=range(as.numeric(aic_matrix), na.rm=T);
+	aic_values=as.numeric(aic_matrix);
+	aic_values=aic_values[is.finite(aic_values)];
+	aic_range=range(aic_values);
 	min_aic=aic_range[1];
 	max_aic=aic_range[2];
 	cat("Input Range: ", aic_range, "\n");
@@ -1124,10 +1276,114 @@ plot_contributors=function(pval_mat, pval_cutoff, covariates, group_map, resp_na
 
 #------------------------------------------------------------------------------
 
-plot_results=function(resp_rec){
+
+compress_matrix=function(m){
+	# If rows are 0, remove them.
+	nz=apply(m, 1, function(x){any(x!=0);});
+	cmpd=m[nz,,drop=F];
+	return(cmpd);
+}
+
+compare_coefficients_plot=function(coef_glm, pval_glm, coef_lasso, pval_lasso, 
+	max_coef=1e10, pval_cutoff=0.05, topn=10){
+
+	sl=function(x){
+		# Signed Log transform
+		return(sign(x)*log10(abs(x)+1));
+	}
+
+	# Serialize matrices into vectors
+	glm_coef_vec=as.vector(coef_glm);
+	glm_pval_vec=as.vector(pval_glm);
+	lasso_coef_vec=as.vector(coef_lasso);
+	lasso_pval_vec=as.vector(pval_lasso);
+	pred_names=rep(rownames(coef_glm), ncol(coef_glm));
 	
+	#combined_mat=cbind(glm_coef_vec, glm_pval_vec, lasso_coef_vec, lasso_pval_vec);
+	#colnames(combined_mat)=c("GLM_coef", "GLM_pval", "LASSO_coef", "LASSO_pval");
+	
+	# Identify coefficients that have exploded
+	not_too_big=(abs(glm_coef_vec)<max_coef) & (abs(lasso_coef_vec)<max_coef) &
+			!is.na(glm_coef_vec) & !is.na(lasso_coef_vec);
+
+	# Remove coef that have exploded
+	glm_coef_vec=glm_coef_vec[not_too_big];
+	lasso_coef_vec=lasso_coef_vec[not_too_big];
+	glm_pval_vec=glm_pval_vec[not_too_big];
+	lasso_pval_vec=lasso_pval_vec[not_too_big];
+	pred_names=pred_names[not_too_big];
+
+	# Calculate bounds on remaining
+	bounds=range(c(glm_coef_vec, lasso_coef_vec), na.rm=T);
+	lb=bounds[1];
+	ub=bounds[2];
+
+	# Fit lm for plot
+	lmfit=lm(lasso_coef_vec~glm_coef_vec);
+
+
+	# Generate Plot
+	par(mar=c(5,5,5,1));
+	plot(0, type="n", xlab="", ylab="",
+		xlim=sl(c(lb,ub)), ylim=sl(c(lb, ub)));
+
+	title(main="LASSO vs. GLM Coefficients", col.main="black", cex.main=2, font.main=2);
+	title(main="sign(x)*log10(abs(x)+1)", col.main="black", cex.main=1, font.main=2, line=0.5);
+	title(xlab="GLM", col.lab="blue", cex.lab=2, font.lab=2);
+	title(ylab="LASSO", col.lab="red", cex.lab=2, font.lab=2);
+
+	abline(lmfit, col="blue", lty="dashed", lwd=2);
+	abline(a=0, b=1, col="grey", lwd=3);
+
+	num_pts=sum(not_too_big);
+
+	glm_sgn=glm_pval_vec<pval_cutoff;
+	lasso_sgn=lasso_pval_vec<pval_cutoff;
+	no_sgn=!(glm_sgn | lasso_sgn)
+
+	sl_glm_coef_vec=sl(glm_coef_vec);
+	sl_lasso_coef_vec=sl(lasso_coef_vec);
+
+	points(sl_glm_coef_vec[no_sgn], sl_lasso_coef_vec[no_sgn],
+		pch=1, col="black");
+
+	points(sl_glm_coef_vec[glm_sgn], sl_lasso_coef_vec[glm_sgn],
+		pch=0, col="blue", cex=2);
+
+	points(sl_glm_coef_vec[lasso_sgn], sl_lasso_coef_vec[lasso_sgn],
+		pch=5, col="red", cex=2);
+
+
+	#----------------------------------------------------------------------
+	# Label top 10
+	topn=min(topn,num_pts);
+	topn_ix=unique(order(glm_pval_vec)[1:topn], order(lasso_pval_vec)[1:topn]);
+	
+	adj_pos=adjust_positions(
+		sl_lasso_coef_vec[topn_ix],
+		strheight("X")*1.1,
+		verbose=T
+		);
+
+	connect_orig_to_adj_wline(
+		orig_x=sl_glm_coef_vec[topn_ix], orig_y=adj_pos,
+		adj_x=sl_glm_coef_vec[topn_ix], adj_y=sl_lasso_coef_vec[topn_ix],
+		lwd=1, col="grey25"
+		);
+	
+	text(sl_glm_coef_vec[topn_ix], adj_pos,
+		pos=4,
+		pred_names[topn_ix]);
+
+	#----------------------------------------------------------------------
+
+}
+
+
+plot_results=function(fit_recs){
+
 	cat("Plotting Results:\n");
-	resp_var_names=names(resp_rec);
+	resp_var_names=names(fit_recs);
 	num_responses=length(resp_var_names);
 
 	cat("Number of Response Variables:", num_responses, "\n");
@@ -1143,26 +1399,93 @@ plot_results=function(resp_rec){
 		cat("Working on Response Variable: ", resp_var_ix, "\n");
 		plot_page_separator(resp_var_ix);
 
-		resp_var_res=resp_rec[[resp_var_ix]];
+		resp_var_res=fit_recs[[resp_var_ix]];
 		models=names(resp_var_res);
-		#print(models);
 
-		#print(resp_var_res[["full"]]);
-		full_coef_mat=resp_var_res[["full"]][["coef"]];
-		full_pval_mat=resp_var_res[["full"]][["pval"]];
+		#----------------------------------------------------------------------------
+		# LASSO
+		cat("Generate Lasso Plots...\n");
+		lasso_coef=resp_var_res[["full_lasso"]][["coef"]];
+		lasso_pval=resp_var_res[["full_lasso"]][["pval"]];
 
-		resp_guide_lines=calc_guide_lines(ncol(full_coef_mat), min_cuts=5, max_cuts=10);
-		pred_guide_lines=calc_guide_lines(nrow(full_coef_mat), min_cuts=5, max_cuts=10);
+		coef_max_mag=max(abs(lasso_coef));
 
-		masked_coef=mask_by_cutoff(full_coef_mat, full_pval_mat, pval_cutoff=1);
+		paint_matrix(lasso_pval,
+			title=paste(resp_var_ix, ": Full Lasso P-values", sep=""),
+			subtitle="De-sparsified",
+			high_is_hot=F, value.cex=-1,
+			plot_min=0, plot_max=1);
+		paint_matrix(lasso_coef, 
+			title=paste(resp_var_ix, ": Full Lasso Coefficients (All Assoc)", sep=""),
+			subtitle="De-sparsified", value.cex=-1,
+			plot_min=-coef_max_mag, plot_max=coef_max_mag);
+
+		lasso_coef_10=mask_matrix(lasso_coef, lasso_pval, 0.10, 0);
+		lasso_coef_05=mask_matrix(lasso_coef, lasso_pval, 0.05, 0);
+
+		paint_matrix(lasso_coef_10, 
+			title=paste(resp_var_ix, ": Full Lasso Coef (p<0.10)", sep=""), 
+			subtitle="De-sparsified", value.cex=-1,
+			plot_min=-coef_max_mag, plot_max=coef_max_mag, label_zeros=F);
+		paint_matrix(compress_matrix(lasso_coef_10), 
+			title=paste(resp_var_ix, ": Full Lasso Coef (p<0.10) [Compressed]", sep=""), 
+			subtitle="De-sparsified", value.cex=-1,
+			plot_min=-coef_max_mag, plot_max=coef_max_mag, label_zeros=F);
+
+		paint_matrix(lasso_coef_05, 
+			title=paste(resp_var_ix, ": Full Lasso Coef (p<0.05)", sep=""), 
+			subtitle="De-sparsified", value.cex=-1,
+			plot_min=-coef_max_mag, plot_max=coef_max_mag, label_zeros=F);
+		paint_matrix(compress_matrix(lasso_coef_05), 
+			title=paste(resp_var_ix, ": Full Lasso Coef (p<0.05) [Compressed]", sep=""), 
+			subtitle="De-sparsified", value.cex=-1,
+			plot_min=-coef_max_mag, plot_max=coef_max_mag, label_zeros=F);
+
+		#----------------------------------------------------------------------------
+		# GLM
+		cat("Generate GLM Plots...\n");
+		full_coef_mat=resp_var_res[["full_glm"]][["coef"]];
+		full_pval_mat=resp_var_res[["full_glm"]][["pval"]];
+
+		paint_matrix(full_pval_mat,
+			title=paste(resp_var_ix, ": Full GLM P-values", sep=""),
+			high_is_hot=F, value.cex=-1,
+			plot_min=0, plot_max=1);
+
+		coef_max_mag=max(abs(full_coef_mat));
+
+		masked_coef=mask_matrix(full_coef_mat, full_pval_mat, mask_thres=1);
 		paint_matrix(masked_coef, 
-			title=paste(resp_var_ix, ":  Full Model, All Assoc", sep=""), 
-			deci_pts=2, label_zeros=F, value.cex=1);
+			title=paste(resp_var_ix, ":  Full GLM Model Coef (All Assoc)", sep=""), 
+			plot_min=-coef_max_mag, plot_max=coef_max_mag,
+			label_zeros=F, value.cex=-1);
 
-		masked_coef=mask_by_cutoff(full_coef_mat, full_pval_mat, pval_cutoff=.1);
-		paint_matrix(masked_coef, 
-			title=paste(resp_var_ix, ":  Full Model, Signf Assoc (p-val<0.1)", sep=""), 
-			deci_pts=2, label_zeros=F, value.cex=1);
+		masked_coef_10=mask_matrix(full_coef_mat, full_pval_mat, mask_thres=.1);
+		masked_coef_05=mask_matrix(full_coef_mat, full_pval_mat, mask_thres=.05);
+
+		paint_matrix(masked_coef_10, 
+			title=paste(resp_var_ix, ":  Full GLM Coef (p<0.10)", sep=""), 
+			plot_min=-coef_max_mag, plot_max=coef_max_mag,
+			label_zeros=F, value.cex=-1);
+		paint_matrix(compress_matrix(masked_coef_10), 
+			title=paste(resp_var_ix, ":  Full GLM Coef (p<0.10) [Compressed]", sep=""), 
+			plot_min=-coef_max_mag, plot_max=coef_max_mag,
+			label_zeros=F, value.cex=-1);
+
+		paint_matrix(masked_coef_05, 
+			title=paste(resp_var_ix, ":  Full GLM Coef (p<0.05)", sep=""), 
+			plot_min=-coef_max_mag, plot_max=coef_max_mag,
+			label_zeros=F, value.cex=-1);
+		paint_matrix(compress_matrix(masked_coef_05), 
+			title=paste(resp_var_ix, ":  Full GLM Coef (p<0.05) [Compressed]", sep=""), 
+			plot_min=-coef_max_mag, plot_max=coef_max_mag,
+			label_zeros=F, value.cex=-1);
+
+		#----------------------------------------------------------------------------
+
+		compare_coefficients_plot(full_coef_mat, full_pval_mat, lasso_coef, lasso_pval);
+	
+		#----------------------------------------------------------------------------
 
 		list_signf_pred_by_category(full_coef_mat, full_pval_mat, pval_cutoff=.1, 
 			oma_tag=resp_var_ix);
@@ -1173,6 +1496,7 @@ plot_results=function(resp_rec){
 			test_group_map, resp_var_ix);
 	
 		aic_values=get_aic(resp_var_res);	
+		print(aic_values);
 
 		par(mfrow=c(1,1));		
 
@@ -1199,7 +1523,7 @@ plot_results=function(resp_rec){
 
 #------------------------------------------------------------------------------
 
-plot_results(responses_results);
+plot_results(model_fit_results);
 
 #------------------------------------------------------------------------------
 
@@ -1295,7 +1619,8 @@ summarize_groups_by_response=function(resp_res, aic_diff_cutoff=2){
 	for(g_ix in grp_names){
 		for(r_ix in rsp_names){
 			grp_rsp_matrix[g_ix, r_ix]=impr_mat_as_list[[r_ix]][[g_ix]];
-			max_aic_imp_grp_rsp_matrix[g_ix, r_ix]=round(max_aic_impr_mat_as_list[[r_ix]][[g_ix]], 1);
+			max_aic_imp_grp_rsp_matrix[g_ix, r_ix]=
+				round(max_aic_impr_mat_as_list[[r_ix]][[g_ix]], 1);
 		}
 	}
 
@@ -1307,7 +1632,7 @@ summarize_groups_by_response=function(resp_res, aic_diff_cutoff=2){
 
 }
 
-summary_matrix_list=summarize_groups_by_response(responses_results);
+summary_matrix_list=summarize_groups_by_response(model_fit_results);
 
 #------------------------------------------------------------------------------
 # Report number of categories with improved AIC for each cut
