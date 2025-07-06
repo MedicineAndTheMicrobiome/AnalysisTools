@@ -3,32 +3,78 @@ source("~/git/AnalysisTools/Metadata/InputFileLibrary/InputFileLibrary.r");
 
 ##############################################################################
 
-plot_text=function(strings, echo=F){
-	par(family="Courier");
-	par(oma=rep(1,4));
-	par(mar=rep(0,4));
+plot_text=function(strings, max_lines_pp=NULL, oma_tag=NULL, echo=F){
 
-	num_lines=length(strings);
-	
-	top=max(as.integer(num_lines), 52);
+        orig.par=par(no.readonly=T);
 
-	plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
-		xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
-		);
+        par(mfrow=c(1,1));
+        par(mar=rep(0, 4));
+        par(family="Courier");
 
-	text_size=max(.01, min(.8, .8 - .003*(num_lines-52)));
-	#print(text_size);
+        # Allocate space for putting tag on the bottom outer margin
+        if(is.null(oma_tag)){
+                par(oma=rep(.5,4));
+        }else{
+                par(oma=c(1, .5, .5, .5));
+        }
 
-	for(i in 1:num_lines){
-		#cat(strings[i], "\n", sep="");
-		strings[i]=gsub("\t", "", strings[i]);
-		text(0, top-i, strings[i], pos=4, cex=text_size); 
+	# Estimate the size of the output space
+        paper_dim=par("pin");
+        cat("Estimated Paper Dim: x= ", paper_dim[1], "in, y= ", paper_dim[2], "in\n", sep="");
 
-		if(echo){
-			cat(strings[i],"\n");
-		}
-	}
+        def_lines_per_page=ceiling(paper_dim[2]*6);
+        if(is.null(max_lines_pp)){
+                #default
+                lines_per_page=def_lines_per_page;
+                text_size=1;
+                cat("  12 Pt Lines per page: ", lines_per_page, "\n", sep="");
+        }else{
+                lines_per_page=ceiling(max_lines_pp);
+                text_size=def_lines_per_page/lines_per_page;
+                text_size=max(0.01, text_size);
+                text_size=min(1, text_size);
+                cat("  User-defined Lines per page: ", lines_per_page, "\n", sep="");
+        }
+        cat("  cex: ", text_size, "\n");
+
+        num_lines=length(strings);
+        cat("Num Lines to Plot: ", num_lines, "\n");
+
+        num_pages=max(1, ceiling(num_lines/lines_per_page));
+        cat("Num Pages: ", num_pages, " for ", num_lines, " lines.\n");
+
+        lines_pp=min(num_lines, lines_per_page);
+        for(p in 1:num_pages){
+
+                plot(0,0, xlim=c(0,1), ylim=c(0,lines_per_page),
+                        type="n",  xaxt="n", yaxt="n",
+                        xlab="", ylab="", bty="n"
+                        );
+
+                if(!is.null(oma_tag)){
+                        mtext(paste("[", oma_tag, "]", sep=""), side=1, col="grey25");
+                }
+
+                start=(p-1)*lines_pp+1;
+                end=start+lines_pp-1;
+                end=min(end, num_lines);
+                line=1;
+                for(i in start:end){
+                        strings[i]=gsub("\t", "", strings[i]);
+                        text(0, lines_per_page-line, strings[i], pos=4, cex=text_size);
+                        line=line+1;
+
+                        if(echo){
+                                cat(strings[i],"\n");
+                        }
+
+                }
+
+        }
+
+        par(orig.par);
 }
+
 
 plot_title_page=function(title, subtitle=""){
 
@@ -112,8 +158,8 @@ paint_matrix=function(mat, title="", subtitle="", plot_min=NA, plot_max=NA, log_
         cat("Plot min/max: ", plot_min, "/", plot_max, "\n");
 
 	# Get Label lengths
-	row_max_nchar=max(nchar(row_names));
-	col_max_nchar=max(nchar(col_names));
+	row_max_nchar=max(nchar(row_names), 1, na.rm=T);
+	col_max_nchar=max(nchar(col_names), 1, na.rm=T);
 	cat("Max Row Names Length: ", row_max_nchar, "\n");
 	cat("Max Col Names Length: ", col_max_nchar, "\n");
 
@@ -901,7 +947,7 @@ adjust_positions=function(orig_pos, min_spacing, max_pos=Inf, min_pos=-Inf, max_
 		}
 	}
 
-	unsort_ix=order(names(sorted_pos));
+	unsort_ix=order(as.numeric(names(sorted_pos)));
 	unsorted=sorted_pos[unsort_ix];
 	
 	if(verbose){
@@ -914,5 +960,14 @@ adjust_positions=function(orig_pos, min_spacing, max_pos=Inf, min_pos=-Inf, max_
 	}
 	return(unsorted);
 	
+
+}
+
+connect_orig_to_adj_wline=function(orig_x, orig_y, adj_x, adj_y, lwd=1, col="grey25", lty="solid"){
+
+	for(i in 1:length(orig_x)){
+		points(c(orig_x[i], adj_x[i]), c(orig_y[i], adj_y[i]), lwd=lwd, col=col, lty=lty,
+			type="l");
+	}
 
 }
