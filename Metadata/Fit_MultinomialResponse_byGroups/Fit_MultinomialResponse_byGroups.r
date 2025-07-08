@@ -116,58 +116,6 @@ load_list=function(filename){
 	return(val);
 }
 
-plot_text=function(strings, max_lines_pp=Inf, oma_tag=""){
-
-        orig.par=par(no.readonly=T);
-
-        par(mfrow=c(1,1));
-        par(family="Courier");
-
-	if(oma_tag==""){
-		par(oma=rep(.5,4));
-	}else{
-		par(oma=c(1, .5, .5, .5));
-	}
-
-        par(mar=rep(0,4));
-
-        num_lines=length(strings);
-        num_pages=max(1, ceiling(num_lines/max_lines_pp));
-
-        cat("Num Pages for ", num_lines, " lines: ", num_pages, "\n", sep="");
-
-        lines_pp=min(num_lines, max_lines_pp);
-        for(p in 1:num_pages){
-
-                top=max(as.integer(lines_pp), 52);
-	
-                plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
-                        xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
-                        );
-
-		if(oma_tag!=""){
-			mtext(paste("[", oma_tag, "]", sep=""), side=1, col="grey25");
-		}
-
-                text_size=max(.01, min(.7, .7 - .003*(lines_pp-52)));
-                #print(text_size);
-
-                start=(p-1)*lines_pp+1;
-                end=start+lines_pp-1;
-                end=min(end, num_lines);
-                line=1;
-                for(i in start:end){
-                        #cat(strings[i], "\n", sep="");
-                        strings[i]=gsub("\t", "", strings[i]);
-                        text(0, top-line, strings[i], pos=4, cex=text_size);
-                        line=line+1;
-                }
-
-        }
-
-        par(orig.par);
-}
-
 plot_title_page=function(title, subtitle=""){
 
         orig.par=par(no.readonly=T);
@@ -250,7 +198,7 @@ responses_arr=load_list(ResponsesFile);
 covariates_arr=load_list(CovariatesFile);
 
 
-pdf(paste(OutputRoot, ".multn_resp.pdf", sep=""), height=11, width=12);
+pdf(paste(OutputRoot, ".multn_resp.pdf", sep=""), height=11, width=14);
 
 plot_text(params);
 
@@ -505,17 +453,19 @@ lasso_fit=function(resp_val, pred_mat, cov_names, test_var, precZ){
 
 	# Compute log likelihood
 	loglik=sum(responses*log(predicted)+(1-responses)*log(1-predicted));
+	#if(is.nan(loglik)){
+	#	plot_text(capture.output(print(cbind(loglik, predicted, eta))));
+	#}
 	num_param=ncol(pred_data)+1;
 	pseudo_aic= -2*loglik + 2*num_param;
 
 	# Generate diagnostic plots
-	print(cbind(predicted, responses));
-	plot(responses, predicted, main="Predicted vs. Response",
-		xlab="Obs. Resp.", ylab="Pred. Resp");
-	title(main=paste("LogLik=", round(loglik,4)), line=0, cex.main=0.5);
-	title(main=paste("Pseudo AIC=", round(pseudo_aic,4)), line=1, cex.main=0.5);
-	abline(lm(predicted~responses), lty="dashed", col="blue");
-
+	#print(cbind(predicted, responses));
+	#plot(responses, predicted, main="Predicted vs. Response",
+	#	xlab="Obs. Resp.", ylab="Pred. Resp");
+	#title(main=paste("LogLik=", round(loglik,4)), line=0, cex.main=0.5);
+	#title(main=paste("Pseudo AIC=", round(pseudo_aic,4)), line=1, cex.main=0.5);
+	#abline(lm(predicted~responses), lty="dashed", col="blue");
 
 	results=list();
 	results[["coef"]]=bhat_orig;
@@ -775,7 +725,11 @@ adj_spacing=function(aicm){
 	ch=param$cxy[2];	
 	min_pos=param$usr[3]+.5*ch;
 	max_pos=param$usr[4]-.5*ch;
+
 	num_labels=nrow(aicm)*ncol(aicm);
+
+	# Set all non numerics to highest AIC
+	max_aic=max(aicm, na.rm=T);
 
 	aic_arr=as.numeric(aicm);
 	names(aic_arr)=1:num_labels;
@@ -853,6 +807,10 @@ plot_top_aics_table=function(aic_matrix, aic_thres=2, title=""){
 	model_names=rownames(aic_matrix);
 	category_names=colnames(aic_matrix);
 
+	# Remove non-finite AIC values
+	aic_matrix=apply(aic_matrix, 1:2, function(x){
+		ifelse(is.finite(x), x, NA);});
+
 	# Remove models not within aic_thres of top
 	min_aics=apply(aic_matrix, 2, min);
 	for(i in 1:num_col){
@@ -925,6 +883,10 @@ plot_top_aics=function(aic_matrix, aic_thres=2, title=""){
 	model_names=rownames(aic_matrix);
 	category_names=colnames(aic_matrix);
 
+	# Remove non-finite AIC values
+	aic_matrix=apply(aic_matrix, 1:2, function(x){
+		ifelse(is.finite(x), x, NA);});
+
 	# Remove models not within aic_thres of top
 	min_aics=apply(aic_matrix, 2, min);
 	for(i in 1:num_col){
@@ -979,7 +941,7 @@ plot_top_aics=function(aic_matrix, aic_thres=2, title=""){
 
 #------------------------------------------------------------------------------
 
-list_signf_pred_by_category=function(coef_mat, pval_mat, pval_cutoff=.1, oma_tag=""){
+list_signf_pred_by_category=function(coef_mat, pval_mat, pval_cutoff=.1, oma_tag="", title=""){
 
 	category_names=colnames(coef_mat);
 	num_categories=ncol(coef_mat);
@@ -1054,7 +1016,7 @@ list_signf_pred_by_category=function(coef_mat, pval_mat, pval_cutoff=.1, oma_tag
 
 	#print(out_text);
 	plot_text(c(
-		paste("Number of Categories: ", num_categories),
+		paste(title, ": Number of Categories: ", num_categories),
 		"",
 		out_text,
 		"----------------------------------------------End----------------------------------------------"
@@ -1064,7 +1026,7 @@ list_signf_pred_by_category=function(coef_mat, pval_mat, pval_cutoff=.1, oma_tag
 
 }
 
-list_signf_category_by_pred=function(coef_mat, pval_mat, pval_cutoff=.1, oma_tag=""){
+list_signf_category_by_pred=function(coef_mat, pval_mat, pval_cutoff=.1, oma_tag="", title=""){
 
 	category_names=colnames(coef_mat);
 	num_categories=ncol(coef_mat);
@@ -1144,7 +1106,7 @@ list_signf_category_by_pred=function(coef_mat, pval_mat, pval_cutoff=.1, oma_tag
 
 	#print(out_text);
 	plot_text(c(
-		paste("Number of Predictors: ", num_predictors),
+		paste(title, ": Number of Predictors: ", num_predictors),
 		"",
 		out_text,
 		"----------------------------------------------End----------------------------------------------"
@@ -1487,12 +1449,21 @@ plot_results=function(fit_recs){
 	
 		#----------------------------------------------------------------------------
 
-		list_signf_pred_by_category(full_coef_mat, full_pval_mat, pval_cutoff=.1, 
-			oma_tag=resp_var_ix);
-		list_signf_category_by_pred(full_coef_mat, full_pval_mat, pval_cutoff=.1, 
-			oma_tag=resp_var_ix);
+		# GLM
+		#list_signf_pred_by_category(full_coef_mat, full_pval_mat, pval_cutoff=.1, 
+		#	oma_tag=resp_var_ix, title="GLM");
+		#list_signf_category_by_pred(full_coef_mat, full_pval_mat, pval_cutoff=.1, 
+		#	oma_tag=resp_var_ix, title="GLM");
+		#plot_contributors(full_pval_mat, pval_cutoff=.1, covariates_arr, 
+		#	test_group_map, resp_var_ix);
 
-		plot_contributors(full_pval_mat, pval_cutoff=.1, covariates_arr, 
+		# LASSO	
+		list_signf_pred_by_category(lasso_coef, lasso_pval, pval_cutoff=.1, 
+			oma_tag=resp_var_ix, title="LASSO");
+		list_signf_category_by_pred(lasso_coef, lasso_pval, pval_cutoff=.1, 
+			oma_tag=resp_var_ix, title="LASSO");
+
+		plot_contributors(lasso_pval, pval_cutoff=.1, covariates_arr, 
 			test_group_map, resp_var_ix);
 	
 		aic_values=get_aic(resp_var_res);	
@@ -1509,7 +1480,7 @@ plot_results=function(fit_recs){
 			"  each other.)", 
 			"",
 			capture.output(print(aic_values))
-		), oma_tag=resp_var_ix);
+		), max_lines_pp=52, oma_tag=resp_var_ix);
 
 		plot_top_aics(aic_values, Inf, 
 			paste(resp_var_ix, ": Relative AIC, All Models", sep=""));
