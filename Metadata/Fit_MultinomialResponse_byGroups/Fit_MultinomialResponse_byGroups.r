@@ -15,9 +15,10 @@ options(useFancyQuotes=F);
 params=c(
 	"factor_fn", "f", 1, "character",
 	"responses_fn", "r", 1, "character",
-	"covariates_fn", "c" , 2, "character",
-	"test_groups_fn", "t", 2, "character",
-	"outputroot", "o", 1, "character"
+	"covariates_fn", "c" , 1, "character",
+	"test_groups_fn", "t", 1, "character",
+	"outputroot", "o", 1, "character",
+	"skip_full_less_target", "R", 2, "logical"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -31,6 +32,7 @@ usage = paste(
 	"	-c <Covariates List>\n",
 	"	-t <Test Predictor Groups Map>\n",
 	"	-o <Output Filename Root>\n",
+	"	[-R (Skip full-target (Targeted Reduced) model)\n", 
 	"\n",
 	"This script will fit the following multinomial logistic regression model:\n",
 	"\n",
@@ -53,6 +55,10 @@ usage = paste(
 	"\n",
 	"This script was designed to be run on the results of a clustering algorithm, where each\n",
 	"   cut is a separate multinomial response.\n",
+	"\n",
+	"If you specify the -R option, then the Full-Reduced Models will not be estimated.\n",
+	"  For the cases where the full GLM generates runaway coefficients, the AIC\n",
+	"  for these models are probably not helpful anyway.\n",
 	"\n", sep="");
 
 if(!(length(opt$factor_fn) && 
@@ -71,13 +77,19 @@ CovariatesFile=opt$covariates_fn;
 TestGroupsFile=opt$test_groups_fn;
 OutputRoot=opt$outputroot;
 
+SkipFullLessTarget=F;
+if(length(opt$skip_full_less_target)){
+	SkipFullLessTarget=T;
+}
+
 params=capture.output({
 cat("\n");
-cat("    Factors File: ", FactorsFile, "\n", sep="");
-cat(" Responses File : ", ResponsesFile, "\n", sep="");
-cat(" Covariates File: ", CovariatesFile, "\n", sep="");
-cat("Test Groups File: ", TestGroupsFile, "\n", sep="");
-cat("     Output Root: ", OutputRoot, "\n", sep="");
+cat("         Factors File: ", FactorsFile, "\n", sep="");
+cat("      Responses File : ", ResponsesFile, "\n", sep="");
+cat("      Covariates File: ", CovariatesFile, "\n", sep="");
+cat("     Test Groups File: ", TestGroupsFile, "\n", sep="");
+cat("          Output Root: ", OutputRoot, "\n", sep="");
+cat("Skip Full Less Target: ", SkipFullLessTarget, "\n", sep="");
 cat("\n");
 });
 
@@ -198,7 +210,7 @@ responses_arr=load_list(ResponsesFile);
 covariates_arr=load_list(CovariatesFile);
 
 
-pdf(paste(OutputRoot, ".multn_resp.pdf", sep=""), height=11, width=14);
+pdf(paste(OutputRoot, ".multn_resp.pdf", sep=""), height=11, width=16);
 
 plot_text(params);
 
@@ -541,7 +553,7 @@ for(resp_ix in responses_arr){
 
 
 	for(tg in test_group_names){
-		if(num_test_groups>2){
+		if(num_test_groups>2 && !SkipFullLessTarget){
 			model_fit_results[[resp_ix]][["target_reduced"]][[tg]]=empty_pval_coef;
 		}
 		model_fit_results[[resp_ix]][["target_covar"]][[tg]]=empty_pval_coef;
@@ -617,7 +629,7 @@ for(resp_ix in responses_arr){
 	
 			cat("\tFitting Targeted Models (", tg, "):\n");
 
-			if(num_test_groups>2){
+			if(num_test_groups>2 && !SkipFullLessTarget){
 
 				# Test Targeted Reduced (All Targets except Target, + Covariates)
 				cat("\t\tFitting Targeted Reduced Model...\n");
