@@ -24,7 +24,7 @@ usage = paste(
 	"	-t <taxa column name: eg., Species, Genus, ...>\n",
 	"	-A <annotation file>\n",
 	"	-a <GO ID column name: eg., GOProcIDs, GOFuncIDs, GOCompIDs>\n",
-	"	-M <Mapping File: .groupings.map\n",
+	"	-M <Mapping File: .groupings.map>\n",
 	"	-o <Output Filename Root>\n",
 	"\n",
 	"This script will join the taxa and annotation file together and.\n",
@@ -60,12 +60,15 @@ AnnotationColumnName=opt$annot_cn;
 GOGrpMapFileName=opt$go_grp_map_fn;
 OutputFileNameRoot=opt$output;
 
-cat("Taxa File Name: ", TaxaFileName, "\n");
-cat("Taxa Column Name: ", TaxaColumnName, "\n");
-cat("Annotation File Name: ", AnnotationFileName, "\n");
-cat("Annotation Column Name: ", AnnotationColumnName, "\n");
-cat("GO Group Map File Name: ", GOGrpMapFileName, "\n");
-cat("Output File Name Root: ", OutputFileNameRoot, "\n");
+cat("\n");
+cat("Parameters:\n");
+cat("  Taxa File Name: ", TaxaFileName, "\n");
+cat("  Taxa Column Name: ", TaxaColumnName, "\n");
+cat("  Annotation File Name: ", AnnotationFileName, "\n");
+cat("  Annotation Column Name: ", AnnotationColumnName, "\n");
+cat("  GO Group Map File Name: ", GOGrpMapFileName, "\n");
+cat("  Output File Name Root: ", OutputFileNameRoot, "\n");
+cat("\n");
 
 ##############################################################################
 
@@ -74,13 +77,16 @@ load_taxa_file=function(fn, target_level){
 # read ID.
 
 	cat("Reading: ", fn, "\n");
-	cat("Targetting : ", target_level, "\n");
+	cat("Targeting : ", target_level, "\n");
 
 	data=read.delim(fn, comment.char="", header=T);
 
 	read_id=data[,1];
 	targeted=data[,target_level, drop=F];
 	rownames(targeted)=read_id;
+	
+	cat("Num Reads with Taxa: ", nrow(targeted), "\n");
+	cat("\n");
 	return(targeted);
 }
 
@@ -90,13 +96,16 @@ load_annotation_file=function(fn, annot){
 # Returns a matrix with 1 column (the targeted annotation column) and a row for each
 # read ID.
 	cat("Reading: ", fn, "\n");
-	cat("Targetting : ", annot, "\n");
+	cat("Targeting : ", annot, "\n");
 
 	data=read.delim(fn, comment.char="", header=T);
 
 	read_id=data[,1];
 	targeted=data[,annot, drop=F];
 	rownames(targeted)=read_id;
+
+	cat("Num Reads with Annotation: ", nrow(targeted), "\n");
+	cat("\n");
 	return(targeted);
 }
 
@@ -116,6 +125,10 @@ load_gogrpmap_file=function(fn){
 	child_entries=data[member_ids==group_ids,,drop=F];
 	child_defin=setNames(child_entries[,"Description"], child_entries[,"Member"]);
 
+	cat("Num Lookup Records: ", length(lookup), "\n");
+	cat("Num Immediate Children: ", nrow(child_entries), "\n");
+	cat("\n");
+
 	grp_info=list();
 	grp_info[["lookup"]]=lookup;	# Map from all descendents to child
 	grp_info[["definitions"]]=child_defin;	# Map from child ID to description
@@ -125,35 +138,44 @@ load_gogrpmap_file=function(fn){
 ##############################################################################
 
 remap_annotation_map=function(annot_map, go_map){
-# This function will take the annotation tuples, then find the immediate 
-# children. If there are multiple annotation IDs, and only some of them
-# map were targeted, then the non-targeted will be set to NA.
+# This function will take the annotation map, then find the immediate 
+# children. If there are multiple semi-colon (;) separated annotation IDs, 
+# and only some of them were targeted in the go_map, then the non-targeted will 
+# be set to NA.
+#
+# The annot_map has only 1 column, the GO IDs.  The rownames of the map
+# are the read IDs.
 
 	num_annotated=nrow(annot_map);
-	cat("Num Annotated: ", num_annotated, "\n");
+	cat("Num Annotated Reads to filter: ", num_annotated, "\n");
 
 	read_ids=rownames(annot_map);
 	annot_ids=annot_map[,1];
-	keep_arr=numeric(num_annotated);
 	annot_list=list();
 
 	#print(read_ids);
 	#print(annot_ids);
 	#print(go_map);
 
+	# Split all the annotation ID lists all at once
+	cat("Pre-splitting semi-colon (;) separated annotation lists...\n");
 	split_list=strsplit(annot_ids, ";");
 	#print(split_list);
 
 	# Remap IDs to immediate children
+	cat("Mapping annotation IDs to Targeted Immediate Children...\n");
 	for(i in 1:num_annotated){
 		annot_ids=split_list[[i]];
 		num_ids=length(annot_ids);
+		
+		# Map the annotation ID to the "immediate children"
 		recat=go_map$lookup[annot_ids];
 		annot_list[[i]]=recat;
 	}
 	names(annot_list)=read_ids;
 
-	# Remove reads that don't hit any of the targeted annotation IDs
+	# Remove reads/records that don't hit any of the targeted annotation IDs
+	cat("Filtering out reads with no hits to Targeted Immediate Children...\n");
 	for(read_id in read_ids){
 		rec=annot_list[[read_id]];
 		if(length(rec)==0 || all(is.na(rec))){
@@ -161,6 +183,7 @@ remap_annotation_map=function(annot_map, go_map){
 		}
 	}
 
+	# Return only reads with at least 1 targeted annotation ID.
 	return(annot_list);
 
 }
@@ -168,7 +191,12 @@ remap_annotation_map=function(annot_map, go_map){
 ##############################################################################
 
 weighted_tuple_to_2D_matrix=function(wgt_tup_mat){
+# This function takes a list of (Taxonomy, Function, weight) and 
+# generates a 2D matrix by summing up the weights.  A single
+# read could have multiple function IDs (entries in the list), so a weighting 
+# is used to avoid overweighting a read's contribution.
 
+	# Figure out number of row and columns we need to allocate
 	unique_taxa=sort(unique(wgt_tup_mat[,"Taxonomy"]));
 	unique_annt=sort(unique(wgt_tup_mat[,"Function"]));
 
@@ -178,12 +206,13 @@ weighted_tuple_to_2D_matrix=function(wgt_tup_mat){
 	cat("Num Unique Taxa: ", num_unique_taxa, "\n");
 	cat("Num Unique Annot: ", num_unique_annt, "\n");
 
+	# Allocate 2D matrix
 	acc_mat=matrix(0, ncol=num_unique_annt, nrow=num_unique_taxa);
 	colnames(acc_mat)=unique_annt;
 	rownames(acc_mat)=unique_taxa;
 
+	# Go through each entry and stick it into the matrix
 	num_tuples=nrow(wgt_tup_mat);
-
 	for(entry_ix in 1:num_tuples){
 		tax=wgt_tup_mat[entry_ix,"Taxonomy"];
 		ant=wgt_tup_mat[entry_ix,"Function"];
@@ -192,14 +221,17 @@ weighted_tuple_to_2D_matrix=function(wgt_tup_mat){
 		acc_mat[tax, ant] = acc_mat[tax, ant] + as.numeric(wgt);
 	}
 
+	# Compute the marginal sums
 	row_margin=apply(acc_mat, 1, sum);
 	col_margin=apply(acc_mat, 2, sum);
 
+	# Reorder by decreasing abundance/count
 	row_decr_order=order(row_margin, decreasing=T);
 	col_decr_order=order(col_margin, decreasing=T);
 
 	acc_mat=acc_mat[row_decr_order, col_decr_order, drop=F];
 
+	# Return sorted matrix
 	return(acc_mat);
 
 }
@@ -211,35 +243,41 @@ normalize_whole_matrix=function(mat){
 
 ##############################################################################
 
-if(1){
-	taxa_read_map=load_taxa_file(fn=TaxaFileName, target_level=TaxaColumnName);
-	#print(taxa_read_map);
+taxa_read_map=load_taxa_file(fn=TaxaFileName, target_level=TaxaColumnName);
+#print(taxa_read_map);
 
-	annotation_map=load_annotation_file(fn=AnnotationFileName, annot=AnnotationColumnName);
-	#print(annotation_map);
+annotation_map=load_annotation_file(fn=AnnotationFileName, annot=AnnotationColumnName);
+#print(annotation_map);
 
-	gogrp_map=load_gogrpmap_file(GOGrpMapFileName);
-	#print(gogrp_map);
-	cat("Targeted Children:\n");
-	child_def=gogrp_map[["definitions"]];
-}
+gogrp_map=load_gogrpmap_file(GOGrpMapFileName);
+#print(gogrp_map);
 
-# 1.) Go through annotation file
-# 2.) Find GO IDs that are in GO Grp Map, if found record ReadID in table (read_id, GO, Taxa)
-# 3.) Export as Matrix, export as table
+#------------------------------------------------------------------------------
 
+cat("Targeted Children:\n");
+child_def=gogrp_map[["definitions"]];
+print(child_def);
+cat("\n");
 
+#------------------------------------------------------------------------------
+
+# Filter annotation by targeted annotation
+cat("Filtering reads by specified Group Map...\n");
 remapped_map=remap_annotation_map(annotation_map, gogrp_map);
 annotated_read_ids=names(remapped_map);
 num_remapped=length(annotated_read_ids);
 #print(remapped_map);
 #print(annotated_read_ids);
-cat("Num Relevant Read IDs: ", num_remapped, "\n");
+cat("\n");
+cat("Num Distinct Reads that are Targeted: ", num_remapped, "\n");
 
+# Subseting taxa based on reads with targeted annotation
+cat("Subsetting taxa annotation, based on reads with targeted annotation...\n");
 taxa_wannot=taxa_read_map[annotated_read_ids,];
 names(taxa_wannot)=annotated_read_ids;
 
-
+# Join taxa with annotation
+cat("Joining taxa with function by read ID...\n");
 tuples=list();
 idx=1;
 for(read_id in annotated_read_ids){
@@ -257,8 +295,7 @@ for(read_id in annotated_read_ids){
 		idx=idx+1;
 	}
 }
-
-cat("List Length: ", idx-1, "\n");
+cat("Tuples List Length: ", idx-1, "\n");
 
 # Convert tuples to matrix
 read_to_annot_taxa_matrix=do.call(rbind, tuples);
@@ -267,31 +304,37 @@ colnames(read_to_annot_taxa_matrix)=c("ReadID", "Taxonomy", "Weight", "Function"
 
 # Sum up all the annotations that were targeted and weighted, into a 2D matrix
 # with rows (taxa) x columns (function).
+cat("Converting Tuples to 2D Matrix...\n");
 two_d_mat=weighted_tuple_to_2D_matrix(read_to_annot_taxa_matrix);
 #print(two_d_mat);
 
 # Normalize the counts, so they all sum up to one.  Presumably and single
 # input file is a single sample's compositional counts.
+cat("Normalizing 2D Matrix...\n");
 two_d_mat_norm=normalize_whole_matrix(two_d_mat);
 #print(two_d_mat_norm);
+cat("\n");
 
 ##############################################################################
 # Export various formats after joining the taxa with function
 
 # Tuples Matrix
 tuplesfn=paste(OutputFileNameRoot, ".tuples.tsv", sep="");
+cat("Writing Tuples File: ", tuplesfn, "\n", sep="");
 write.table(read_to_annot_taxa_matrix, file=tuplesfn, quote=F, sep="\t", row.names=F, col.names=T);
 
 # Output Counts
 countsmatfn=paste(OutputFileNameRoot, ".cnt_mat.tsv", sep="");
 outmat=cbind(rownames(two_d_mat), round(two_d_mat,3));
 colnames(outmat)=c("Taxonomy", colnames(two_d_mat));
+cat("Writing Counts Matrix: ", countsmatfn, "\n", sep="");
 write.table(outmat, file=countsmatfn, quote=F, sep="\t", row.names=F, col.names=T);
 
 # Output Normalized
 normmatfn=paste(OutputFileNameRoot, ".nrm_mat.tsv", sep="");
 outmat=cbind(rownames(two_d_mat_norm), round(two_d_mat_norm,8));
 colnames(outmat)=c("Taxonomy", colnames(two_d_mat_norm));
+cat("Writing Normalized Matrix: ", normmatfn, "\n", sep="");
 write.table(outmat, file=normmatfn, quote=F, sep="\t", row.names=F, col.names=T);
 
 # Output Normalized w clean Descriptions and taxa names
@@ -301,8 +344,8 @@ clean_taxa_name=make.names(gsub("[\\(\\)]","", rownames(two_d_mat_norm)));
 normmatfn=paste(OutputFileNameRoot, ".nrm_mat.cln_desc.tsv", sep="");
 outmat=cbind(clean_taxa_name, round(two_d_mat_norm,8));
 colnames(outmat)=c("Taxonomy", clean_func_name);
+cat("Writing Normalized Matrix with Clean Names: ", normmatfn, "\n", sep="");
 write.table(outmat, file=normmatfn, quote=F, sep="\t", row.names=F, col.names=T);
-
 
 ##############################################################################
 
