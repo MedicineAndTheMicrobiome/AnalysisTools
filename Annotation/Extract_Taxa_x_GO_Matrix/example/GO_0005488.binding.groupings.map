@@ -1,0 +1,2961 @@
+GroupID	Member	Description
+GO:0005488	GO:0005488	binding
+GO:0003682	GO:0003682	chromatin binding
+GO:0003682	GO:0031490	chromatin DNA binding
+GO:0003682	GO:0031491	nucleosome binding
+GO:0003682	GO:1990188	euchromatin binding
+GO:0003682	GO:1990841	promoter-specific chromatin binding
+GO:0003682	GO:0031492	nucleosomal DNA binding
+GO:0003682	GO:0043035	chromatin insulator sequence binding
+GO:0003682	GO:0140587	chromatin loop anchoring activity
+GO:0003682	GO:0140585	promoter-enhancer loop anchoring activity
+GO:0003682	GO:0140586	promoter-terminator loop anchoring activity
+GO:0003682	GO:0031492	nucleosomal DNA binding
+GO:0003682	GO:0097030	CENP-A containing nucleosome binding
+GO:0003823	GO:0003823	antigen binding
+GO:0003823	GO:0030882	lipid antigen binding
+GO:0003823	GO:0042605	peptide antigen binding
+GO:0003823	GO:1990405	protein antigen binding
+GO:0003823	GO:0030883	endogenous lipid antigen binding
+GO:0003823	GO:0030884	exogenous lipid antigen binding
+GO:0005515	GO:0005515	protein binding
+GO:0005515	GO:0000149	SNARE binding
+GO:0005515	GO:0001098	basal transcription machinery binding
+GO:0005515	GO:0001846	opsonin binding
+GO:0005515	GO:0001848	complement binding
+GO:0005515	GO:0001918	farnesylated protein binding
+GO:0005515	GO:0001965	G-protein alpha-subunit binding
+GO:0005515	GO:0001968	fibronectin binding
+GO:0005515	GO:0002039	p53 binding
+GO:0005515	GO:0002046	opsin binding
+GO:0005515	GO:0002162	dystroglycan binding
+GO:0005515	GO:0005102	signaling receptor binding
+GO:0005515	GO:0005516	calmodulin binding
+GO:0005515	GO:0005521	lamin binding
+GO:0005515	GO:0005522	profilin binding
+GO:0005515	GO:0008013	beta-catenin binding
+GO:0005515	GO:0008092	cytoskeletal protein binding
+GO:0005515	GO:0008134	transcription factor binding
+GO:0005515	GO:0008267	poly-glutamine tract binding
+GO:0005515	GO:0010313	phytochrome binding
+GO:0005515	GO:0017147	Wnt-protein binding
+GO:0005515	GO:0019838	growth factor binding
+GO:0005515	GO:0019899	enzyme binding
+GO:0005515	GO:0019904	protein domain specific binding
+GO:0005515	GO:0019955	cytokine binding
+GO:0005515	GO:0030276	clathrin binding
+GO:0005515	GO:0030332	cyclin binding
+GO:0005515	GO:0030492	hemoglobin binding
+GO:0005515	GO:0030742	GTP-dependent protein binding
+GO:0005515	GO:0030881	beta-2-microglobulin binding
+GO:0005515	GO:0030984	kininogen binding
+GO:0005515	GO:0031072	heat shock protein binding
+GO:0005515	GO:0031249	denatured protein binding
+GO:0005515	GO:0031369	translation initiation factor binding
+GO:0005515	GO:0031423	hexon binding
+GO:0005515	GO:0031681	G-protein beta-subunit binding
+GO:0005515	GO:0031682	G-protein gamma-subunit binding
+GO:0005515	GO:0031720	haptoglobin binding
+GO:0005515	GO:0032182	ubiquitin-like protein binding
+GO:0005515	GO:0032767	copper-dependent protein binding
+GO:0005515	GO:0032794	GTPase activating protein binding
+GO:0005515	GO:0034185	apolipoprotein binding
+GO:0005515	GO:0034189	very-low-density lipoprotein particle binding
+GO:0005515	GO:0034711	inhibin binding
+GO:0005515	GO:0038100	nodal binding
+GO:0005515	GO:0039706	co-receptor binding
+GO:0005515	GO:0042393	histone binding
+GO:0005515	GO:0042802	identical protein binding
+GO:0005515	GO:0042988	X11-like protein binding
+GO:0005515	GO:0043008	ATP-dependent protein binding
+GO:0005515	GO:0043221	SMC family protein binding
+GO:0005515	GO:0043236	laminin binding
+GO:0005515	GO:0043394	proteoglycan binding
+GO:0005515	GO:0043532	angiostatin binding
+GO:0005515	GO:0043548	phosphatidylinositol 3-kinase binding
+GO:0005515	GO:0043559	insulin binding
+GO:0005515	GO:0043560	insulin receptor substrate binding
+GO:0005515	GO:0044325	transmembrane transporter binding
+GO:0005515	GO:0044548	S100 protein binding
+GO:0005515	GO:0044730	bone sialoprotein binding
+GO:0005515	GO:0045152	antisigma factor binding
+GO:0005515	GO:0045294	alpha-catenin binding
+GO:0005515	GO:0045295	gamma-catenin binding
+GO:0005515	GO:0045503	dynein light chain binding
+GO:0005515	GO:0045504	dynein heavy chain binding
+GO:0005515	GO:0045505	dynein intermediate chain binding
+GO:0005515	GO:0045569	TRAIL binding
+GO:0005515	GO:0046332	SMAD binding
+GO:0005515	GO:0046790	virion binding
+GO:0005515	GO:0046977	TAP binding
+GO:0005515	GO:0046980	tapasin binding
+GO:0005515	GO:0046983	protein dimerization activity
+GO:0005515	GO:0048306	calcium-dependent protein binding
+GO:0005515	GO:0050839	cell adhesion molecule binding
+GO:0005515	GO:0051018	protein kinase A binding
+GO:0005515	GO:0051021	GDP-dissociation inhibitor binding
+GO:0005515	GO:0051082	unfolded protein binding
+GO:0005515	GO:0051087	protein-folding chaperone binding
+GO:0005515	GO:0051219	phosphoprotein binding
+GO:0005515	GO:0051787	misfolded protein binding
+GO:0005515	GO:0051959	dynein light intermediate chain binding
+GO:0005515	GO:0055100	adiponectin binding
+GO:0005515	GO:0061675	RBL family protein binding
+GO:0005515	GO:0061676	importin-alpha family protein binding
+GO:0005515	GO:0061770	translation elongation factor binding
+GO:0005515	GO:0070064	proline-rich region binding
+GO:0005515	GO:0070097	delta-catenin binding
+GO:0005515	GO:0070678	preprotein binding
+GO:0005515	GO:0070866	sterol-dependent protein binding
+GO:0005515	GO:0071253	connexin binding
+GO:0005515	GO:0071889	14-3-3 protein binding
+GO:0005515	GO:0089710	endocytic targeting sequence binding
+GO:0005515	GO:0089719	RHG protein domain binding
+GO:0005515	GO:0097108	hedgehog family protein binding
+GO:0005515	GO:0097110	scaffold protein binding
+GO:0005515	GO:0097371	MDM2/MDM4 family protein binding
+GO:0005515	GO:0097602	cullin family protein binding
+GO:0005515	GO:0097655	serpin family protein binding
+GO:0005515	GO:0097678	SOCS family protein binding
+GO:0005515	GO:0098769	TIMP family protein binding
+GO:0005515	GO:0098770	FBXO family protein binding
+GO:0005515	GO:0106151	CNBH domain intrinsic ligand binding
+GO:0005515	GO:0140030	modification-dependent protein binding
+GO:0005515	GO:0140081	glycosylated region protein binding
+GO:0005515	GO:0140272	exogenous protein binding
+GO:0005515	GO:0140355	cargo receptor ligand activity
+GO:0005515	GO:1990405	protein antigen binding
+GO:0005515	GO:1990430	extracellular matrix protein binding
+GO:0005515	GO:1990763	arrestin family protein binding
+GO:0005515	GO:1990935	splicing factor binding
+GO:0005515	GO:0019905	syntaxin binding
+GO:0005515	GO:0017075	syntaxin-1 binding
+GO:0005515	GO:0030348	syntaxin-3 binding
+GO:0005515	GO:0001099	basal RNA polymerase II transcription machinery binding
+GO:0005515	GO:0001108	bacterial-type RNA polymerase holo enzyme binding
+GO:0005515	GO:0000993	RNA polymerase II complex binding
+GO:0005515	GO:0001091	RNA polymerase II general transcription initiation factor binding
+GO:0005515	GO:0001139	RNA polymerase II complex recruiting activity
+GO:0005515	GO:0099122	RNA polymerase II C-terminal domain binding
+GO:0005515	GO:1990269	RNA polymerase II C-terminal domain phosphoserine binding
+GO:0005515	GO:0001092	TFIIA-class transcription factor complex binding
+GO:0005515	GO:0001093	TFIIB-class transcription factor binding
+GO:0005515	GO:0001094	TFIID-class transcription factor complex binding
+GO:0005515	GO:0001095	TFIIE-class transcription factor complex binding
+GO:0005515	GO:0001096	TFIIF-class transcription factor complex binding
+GO:0005515	GO:0001097	TFIIH-class transcription factor complex binding
+GO:0005515	GO:0001849	complement component C1q complex binding
+GO:0005515	GO:0001851	complement component C3b binding
+GO:0005515	GO:0001852	complement component iC3b binding
+GO:0005515	GO:0001855	complement component C4b binding
+GO:0005515	GO:0001862	collectin binding
+GO:0005515	GO:0001864	pentraxin binding
+GO:0005515	GO:0001849	complement component C1q complex binding
+GO:0005515	GO:0001850	complement component C3a binding
+GO:0005515	GO:0001851	complement component C3b binding
+GO:0005515	GO:0001852	complement component iC3b binding
+GO:0005515	GO:0001853	complement component C3dg binding
+GO:0005515	GO:0001854	complement component C3d binding
+GO:0005515	GO:0001855	complement component C4b binding
+GO:0005515	GO:0001856	complement component C5a binding
+GO:0005515	GO:0001664	G protein-coupled receptor binding
+GO:0005515	GO:0005112	Notch binding
+GO:0005515	GO:0005113	patched binding
+GO:0005515	GO:0005115	receptor tyrosine kinase-like orphan receptor binding
+GO:0005515	GO:0005117	wishful thinking binding
+GO:0005515	GO:0005118	sevenless binding
+GO:0005515	GO:0005121	Toll binding
+GO:0005515	GO:0005122	torso binding
+GO:0005515	GO:0005124	scavenger receptor binding
+GO:0005515	GO:0005126	cytokine receptor binding
+GO:0005515	GO:0005158	insulin receptor binding
+GO:0005515	GO:0005159	insulin-like growth factor receptor binding
+GO:0005515	GO:0005176	ErbB-2 class receptor binding
+GO:0005515	GO:0005178	integrin binding
+GO:0005515	GO:0017098	sulfonylurea receptor binding
+GO:0005515	GO:0017162	aryl hydrocarbon receptor binding
+GO:0005515	GO:0030156	benzodiazepine receptor binding
+GO:0005515	GO:0030215	semaphorin receptor binding
+GO:0005515	GO:0030370	intercellular adhesion molecule-3 receptor binding
+GO:0005515	GO:0030971	receptor tyrosine kinase binding
+GO:0005515	GO:0030987	high molecular weight kininogen receptor binding
+GO:0005515	GO:0033130	acetylcholine receptor binding
+GO:0005515	GO:0033612	receptor serine/threonine kinase binding
+GO:0005515	GO:0034190	apolipoprotein receptor binding
+GO:0005515	GO:0034987	immunoglobulin receptor binding
+GO:0005515	GO:0035254	glutamate receptor binding
+GO:0005515	GO:0035325	Toll-like receptor binding
+GO:0005515	GO:0038191	neuropilin binding
+GO:0005515	GO:0039552	RIG-I binding
+GO:0005515	GO:0039556	MDA-5 binding
+GO:0005515	GO:0042043	neurexin family protein binding
+GO:0005515	GO:0042287	MHC protein binding
+GO:0005515	GO:0042608	T cell receptor binding
+GO:0005515	GO:0042609	CD4 receptor binding
+GO:0005515	GO:0042610	CD8 receptor binding
+GO:0005515	GO:0042614	CD70 receptor binding
+GO:0005515	GO:0042615	CD154 receptor binding
+GO:0005515	GO:0042975	peroxisome proliferator activated receptor binding
+GO:0005515	GO:0043125	ErbB-3 class receptor binding
+GO:0005515	GO:0046703	natural killer cell lectin-like receptor binding
+GO:0005515	GO:0046875	ephrin receptor binding
+GO:0005515	GO:0048018	receptor ligand activity
+GO:0005515	GO:0048019	receptor antagonist activity
+GO:0005515	GO:0048495	Roundabout binding
+GO:0005515	GO:0050786	RAGE receptor binding
+GO:0005515	GO:0050811	GABA receptor binding
+GO:0005515	GO:0051427	hormone receptor binding
+GO:0005515	GO:0070325	lipoprotein particle receptor binding
+GO:0005515	GO:0070851	growth factor receptor binding
+GO:0005515	GO:0090722	receptor-receptor interaction
+GO:0005515	GO:0097109	neuroligin family protein binding
+GO:0005515	GO:1990459	transferrin receptor binding
+GO:0005515	GO:1990460	leptin receptor binding
+GO:0005515	GO:1990631	ErbB-4 class receptor binding
+GO:0005515	GO:1990890	netrin receptor binding
+GO:0005515	GO:0005109	frizzled binding
+GO:0005515	GO:0005119	smoothened binding
+GO:0005515	GO:0031531	thyrotropin-releasing hormone receptor binding
+GO:0005515	GO:0031628	opioid receptor binding
+GO:0005515	GO:0031685	adenosine receptor binding
+GO:0005515	GO:0031690	adrenergic receptor binding
+GO:0005515	GO:0031700	adrenomedullin receptor binding
+GO:0005515	GO:0031701	angiotensin receptor binding
+GO:0005515	GO:0031711	bradykinin receptor binding
+GO:0005515	GO:0031714	C5a anaphylatoxin chemotactic receptor binding
+GO:0005515	GO:0031716	calcitonin receptor binding
+GO:0005515	GO:0031717	cannabinoid receptor binding
+GO:0005515	GO:0031745	cysteinyl leukotriene receptor binding
+GO:0005515	GO:0031753	endothelial differentiation G protein-coupled receptor binding
+GO:0005515	GO:0031761	fMet-Leu-Phe receptor binding
+GO:0005515	GO:0031762	follicle-stimulating hormone receptor binding
+GO:0005515	GO:0031767	gastric inhibitory polypeptide receptor binding
+GO:0005515	GO:0031768	ghrelin receptor binding
+GO:0005515	GO:0031769	glucagon receptor binding
+GO:0005515	GO:0031774	leukotriene receptor binding
+GO:0005515	GO:0031775	lutropin-choriogonadotropic hormone receptor binding
+GO:0005515	GO:0031784	melatonin receptor binding
+GO:0005515	GO:0031788	motilin receptor binding
+GO:0005515	GO:0031789	G protein-coupled acetylcholine receptor binding
+GO:0005515	GO:0031795	G protein-coupled GABA receptor binding
+GO:0005515	GO:0031806	G protein-coupled histamine receptor binding
+GO:0005515	GO:0031811	G protein-coupled nucleotide receptor binding
+GO:0005515	GO:0031821	G protein-coupled serotonin receptor binding
+GO:0005515	GO:0031849	olfactory receptor binding
+GO:0005515	GO:0031855	oxytocin receptor binding
+GO:0005515	GO:0031856	parathyroid hormone receptor binding
+GO:0005515	GO:0031859	platelet activating factor receptor binding
+GO:0005515	GO:0031862	prostanoid receptor binding
+GO:0005515	GO:0031871	proteinase activated receptor binding
+GO:0005515	GO:0031876	secretin receptor binding
+GO:0005515	GO:0031883	taste receptor binding
+GO:0005515	GO:0031889	urotensin receptor binding
+GO:0005515	GO:0031893	vasopressin receptor binding
+GO:0005515	GO:0035256	G protein-coupled glutamate receptor binding
+GO:0005515	GO:0042379	chemokine receptor binding
+GO:0005515	GO:0050780	dopamine receptor binding
+GO:0005515	GO:0061761	alpha-latrotoxin receptor binding
+GO:0005515	GO:0071855	neuropeptide receptor binding
+GO:0005515	GO:0031850	delta-type opioid receptor binding
+GO:0005515	GO:0031851	kappa-type opioid receptor binding
+GO:0005515	GO:0031852	mu-type opioid receptor binding
+GO:0005515	GO:0031853	nociceptin receptor binding
+GO:0005515	GO:0031686	A1 adenosine receptor binding
+GO:0005515	GO:0031687	A2A adenosine receptor binding
+GO:0005515	GO:0031688	A2B adenosine receptor binding
+GO:0005515	GO:0031689	A3 adenosine receptor binding
+GO:0005515	GO:0031691	alpha-1A adrenergic receptor binding
+GO:0005515	GO:0031692	alpha-1B adrenergic receptor binding
+GO:0005515	GO:0031693	alpha-1D adrenergic receptor binding
+GO:0005515	GO:0031694	alpha-2A adrenergic receptor binding
+GO:0005515	GO:0031695	alpha-2B adrenergic receptor binding
+GO:0005515	GO:0031696	alpha-2C adrenergic receptor binding
+GO:0005515	GO:0031697	beta-1 adrenergic receptor binding
+GO:0005515	GO:0031698	beta-2 adrenergic receptor binding
+GO:0005515	GO:0031699	beta-3 adrenergic receptor binding
+GO:0005515	GO:0031702	type 1 angiotensin receptor binding
+GO:0005515	GO:0031703	type 2 angiotensin receptor binding
+GO:0005515	GO:0031712	B1 bradykinin receptor binding
+GO:0005515	GO:0031713	B2 bradykinin receptor binding
+GO:0005515	GO:0031715	C5L2 anaphylatoxin chemotactic receptor binding
+GO:0005515	GO:0031718	type 1 cannabinoid receptor binding
+GO:0005515	GO:0031719	type 2 cannabinoid receptor binding
+GO:0005515	GO:0031746	type 1 cysteinyl leukotriene receptor binding
+GO:0005515	GO:0031747	type 2 cysteinyl leukotriene receptor binding
+GO:0005515	GO:0031754	Edg-1 sphingosine 1-phosphate receptor binding
+GO:0005515	GO:0031755	Edg-2 lysophosphatidic acid receptor binding
+GO:0005515	GO:0031756	Edg-3 sphingosine 1-phosphate receptor binding
+GO:0005515	GO:0031757	Edg-4 lysophosphatidic acid receptor binding
+GO:0005515	GO:0031758	Edg-5 sphingosine 1-phosphate receptor binding
+GO:0005515	GO:0031759	Edg-6 sphingosine 1-phosphate receptor binding
+GO:0005515	GO:0031760	Edg-7 lysophosphatidic acid receptor binding
+GO:0005515	GO:0031785	type 1A melatonin receptor binding
+GO:0005515	GO:0031786	type 1B melatonin receptor binding
+GO:0005515	GO:0031787	H9 melatonin receptor binding
+GO:0005515	GO:0031796	type 1 metabotropic GABA receptor binding
+GO:0005515	GO:0031797	type 2 metabotropic GABA receptor binding
+GO:0005515	GO:0031807	H1 histamine receptor binding
+GO:0005515	GO:0031808	H2 histamine receptor binding
+GO:0005515	GO:0031809	H3 histamine receptor binding
+GO:0005515	GO:0031810	H4 histamine receptor binding
+GO:0005515	GO:0031812	P2Y1 nucleotide receptor binding
+GO:0005515	GO:0031813	P2Y2 nucleotide receptor binding
+GO:0005515	GO:0031814	P2Y4 nucleotide receptor binding
+GO:0005515	GO:0031815	P2Y5 nucleotide receptor binding
+GO:0005515	GO:0031816	P2Y6 nucleotide receptor binding
+GO:0005515	GO:0031817	P2Y8 nucleotide receptor binding
+GO:0005515	GO:0031818	P2Y9 nucleotide receptor binding
+GO:0005515	GO:0031819	P2Y10 nucleotide receptor binding
+GO:0005515	GO:0031820	P2Y11 nucleotide receptor binding
+GO:0005515	GO:0031822	type 1B serotonin receptor binding
+GO:0005515	GO:0031823	type 1D serotonin receptor binding
+GO:0005515	GO:0031824	type 1E serotonin receptor binding
+GO:0005515	GO:0031825	type 1F serotonin receptor binding
+GO:0005515	GO:0031826	type 2A serotonin receptor binding
+GO:0005515	GO:0031827	type 2B serotonin receptor binding
+GO:0005515	GO:0031828	type 2C serotonin receptor binding
+GO:0005515	GO:0031829	type 4 serotonin receptor binding
+GO:0005515	GO:0031830	type 5A serotonin receptor binding
+GO:0005515	GO:0031831	type 5B serotonin receptor binding
+GO:0005515	GO:0031832	type 6 serotonin receptor binding
+GO:0005515	GO:0031833	type 7 serotonin receptor binding
+GO:0005515	GO:0031857	type 1 parathyroid hormone receptor binding
+GO:0005515	GO:0031863	prostaglandin D2 receptor binding
+GO:0005515	GO:0031864	EP1 subtype prostaglandin E2 receptor binding
+GO:0005515	GO:0031865	EP2 subtype prostaglandin E2 receptor binding
+GO:0005515	GO:0031866	EP3 subtype prostaglandin E2 receptor binding
+GO:0005515	GO:0031867	EP4 subtype prostaglandin E2 receptor binding
+GO:0005515	GO:0031868	prostaglandin F2-alpha receptor binding
+GO:0005515	GO:0031869	prostacyclin receptor binding
+GO:0005515	GO:0031870	thromboxane A2 receptor binding
+GO:0005515	GO:0031872	type 1 proteinase activated receptor binding
+GO:0005515	GO:0031873	type 2 proteinase activated receptor binding
+GO:0005515	GO:0031874	type 3 proteinase activated receptor binding
+GO:0005515	GO:0031875	type 4 proteinase activated receptor binding
+GO:0005515	GO:0031884	type 1 member 1 taste receptor binding
+GO:0005515	GO:0031885	type 1 member 2 taste receptor binding
+GO:0005515	GO:0031886	type 1 member 3 taste receptor binding
+GO:0005515	GO:0031894	V1A vasopressin receptor binding
+GO:0005515	GO:0031895	V1B vasopressin receptor binding
+GO:0005515	GO:0031896	V2 vasopressin receptor binding
+GO:0005515	GO:0031798	type 1 metabotropic glutamate receptor binding
+GO:0005515	GO:0031799	type 2 metabotropic glutamate receptor binding
+GO:0005515	GO:0031800	type 3 metabotropic glutamate receptor binding
+GO:0005515	GO:0031801	type 4 metabotropic glutamate receptor binding
+GO:0005515	GO:0031802	type 5 metabotropic glutamate receptor binding
+GO:0005515	GO:0031803	type 6 metabotropic glutamate receptor binding
+GO:0005515	GO:0031804	type 7 metabotropic glutamate receptor binding
+GO:0005515	GO:0031805	type 8 metabotropic glutamate receptor binding
+GO:0005515	GO:0008009	chemokine activity
+GO:0005515	GO:0031737	CX3C chemokine receptor binding
+GO:0005515	GO:0031738	XCR1 chemokine receptor binding
+GO:0005515	GO:0045236	CXCR chemokine receptor binding
+GO:0005515	GO:0048020	CCR chemokine receptor binding
+GO:0005515	GO:0005153	interleukin-8 receptor binding
+GO:0005515	GO:0031723	CXCR4 chemokine receptor binding
+GO:0005515	GO:0031724	CXCR5 chemokine receptor binding
+GO:0005515	GO:0031725	CXCR6 chemokine receptor binding
+GO:0005515	GO:0048248	CXCR3 chemokine receptor binding
+GO:0005515	GO:0045237	CXCR1 chemokine receptor binding
+GO:0005515	GO:0045238	CXCR2 chemokine receptor binding
+GO:0005515	GO:0031726	CCR1 chemokine receptor binding
+GO:0005515	GO:0031727	CCR2 chemokine receptor binding
+GO:0005515	GO:0031728	CCR3 chemokine receptor binding
+GO:0005515	GO:0031729	CCR4 chemokine receptor binding
+GO:0005515	GO:0031730	CCR5 chemokine receptor binding
+GO:0005515	GO:0031731	CCR6 chemokine receptor binding
+GO:0005515	GO:0031732	CCR7 chemokine receptor binding
+GO:0005515	GO:0031733	CCR8 chemokine receptor binding
+GO:0005515	GO:0031734	CCR9 chemokine receptor binding
+GO:0005515	GO:0031735	CCR10 chemokine receptor binding
+GO:0005515	GO:0031736	CCR11 chemokine receptor binding
+GO:0005515	GO:0031748	D1 dopamine receptor binding
+GO:0005515	GO:0031749	D2 dopamine receptor binding
+GO:0005515	GO:0031750	D3 dopamine receptor binding
+GO:0005515	GO:0031751	D4 dopamine receptor binding
+GO:0005515	GO:0031752	D5 dopamine receptor binding
+GO:0005515	GO:0031704	apelin receptor binding
+GO:0005515	GO:0031705	bombesin receptor binding
+GO:0005515	GO:0031739	cholecystokinin receptor binding
+GO:0005515	GO:0031763	galanin receptor binding
+GO:0005515	GO:0031770	growth hormone-releasing hormone receptor binding
+GO:0005515	GO:0031773	kisspeptin receptor binding
+GO:0005515	GO:0031776	melanin-concentrating hormone receptor binding
+GO:0005515	GO:0031779	melanocortin receptor binding
+GO:0005515	GO:0031834	neurokinin receptor binding
+GO:0005515	GO:0031841	neuropeptide Y receptor binding
+GO:0005515	GO:0031846	neurotensin receptor binding
+GO:0005515	GO:0031854	orexigenic neuropeptide QRFP receptor binding
+GO:0005515	GO:0031858	pituitary adenylate cyclase-activating polypeptide receptor binding
+GO:0005515	GO:0031861	prolactin-releasing peptide receptor binding
+GO:0005515	GO:0031877	somatostatin receptor binding
+GO:0005515	GO:0031890	vasoactive intestinal polypeptide receptor binding
+GO:0005515	GO:0042324	orexin receptor binding
+GO:0005515	GO:0042922	neuromedin U receptor binding
+GO:0005515	GO:0051429	corticotropin-releasing hormone receptor binding
+GO:0005515	GO:0071857	beta-endorphin receptor binding
+GO:0005515	GO:0071858	corazonin receptor binding
+GO:0005515	GO:0071859	neuropeptide F receptor binding
+GO:0005515	GO:0071860	proctolin receptor binding
+GO:0005515	GO:0071861	tachykinin receptor binding
+GO:0005515	GO:0031706	subtype 3 bombesin receptor binding
+GO:0005515	GO:0031707	endothelin A receptor binding
+GO:0005515	GO:0031708	endothelin B receptor binding
+GO:0005515	GO:0031709	gastrin-releasing peptide receptor binding
+GO:0005515	GO:0031710	neuromedin B receptor binding
+GO:0005515	GO:0031740	type A cholecystokinin receptor binding
+GO:0005515	GO:0031741	type B gastrin/cholecystokinin receptor binding
+GO:0005515	GO:0031764	type 1 galanin receptor binding
+GO:0005515	GO:0031765	type 2 galanin receptor binding
+GO:0005515	GO:0031766	type 3 galanin receptor binding
+GO:0005515	GO:0031777	type 1 melanin-concentrating hormone receptor binding
+GO:0005515	GO:0031778	type 2 melanin-concentrating hormone receptor binding
+GO:0005515	GO:0031780	corticotropin hormone receptor binding
+GO:0005515	GO:0031781	type 3 melanocortin receptor binding
+GO:0005515	GO:0031782	type 4 melanocortin receptor binding
+GO:0005515	GO:0031783	type 5 melanocortin receptor binding
+GO:0005515	GO:0070996	type 1 melanocortin receptor binding
+GO:0005515	GO:0031835	substance P receptor binding
+GO:0005515	GO:0031836	neuromedin K receptor binding
+GO:0005515	GO:0031837	substance K receptor binding
+GO:0005515	GO:0031842	type 1 neuropeptide Y receptor binding
+GO:0005515	GO:0031843	type 2 neuropeptide Y receptor binding
+GO:0005515	GO:0031844	type 4 neuropeptide Y receptor binding
+GO:0005515	GO:0031845	type 5 neuropeptide Y receptor binding
+GO:0005515	GO:0031847	type 1 neurotensin receptor binding
+GO:0005515	GO:0031878	type 1 somatostatin receptor binding
+GO:0005515	GO:0031879	type 2 somatostatin receptor binding
+GO:0005515	GO:0031880	type 3 somatostatin receptor binding
+GO:0005515	GO:0031881	type 4 somatostatin receptor binding
+GO:0005515	GO:0031882	type 5 somatostatin receptor binding
+GO:0005515	GO:0031891	type 1 vasoactive intestinal polypeptide receptor binding
+GO:0005515	GO:0031892	type 2 vasoactive intestinal polypeptide receptor binding
+GO:0005515	GO:0031771	type 1 orexin receptor binding
+GO:0005515	GO:0031772	type 2 orexin receptor binding
+GO:0005515	GO:0031839	type 1 neuromedin U receptor binding
+GO:0005515	GO:0031840	type 2 neuromedin U receptor binding
+GO:0005515	GO:0051430	corticotropin-releasing hormone receptor 1 binding
+GO:0005515	GO:0051431	corticotropin-releasing hormone receptor 2 binding
+GO:0005515	GO:0001531	interleukin-21 receptor binding
+GO:0005515	GO:0002112	interleukin-33 receptor binding
+GO:0005515	GO:0005127	ciliary neurotrophic factor receptor binding
+GO:0005515	GO:0005128	erythropoietin receptor binding
+GO:0005515	GO:0005129	granulocyte macrophage colony-stimulating factor receptor binding
+GO:0005515	GO:0005130	granulocyte colony-stimulating factor receptor binding
+GO:0005515	GO:0005131	growth hormone receptor binding
+GO:0005515	GO:0005132	type I interferon receptor binding
+GO:0005515	GO:0005133	type II interferon receptor binding
+GO:0005515	GO:0005134	interleukin-2 receptor binding
+GO:0005515	GO:0005135	interleukin-3 receptor binding
+GO:0005515	GO:0005136	interleukin-4 receptor binding
+GO:0005515	GO:0005137	interleukin-5 receptor binding
+GO:0005515	GO:0005138	interleukin-6 receptor binding
+GO:0005515	GO:0005139	interleukin-7 receptor binding
+GO:0005515	GO:0005140	interleukin-9 receptor binding
+GO:0005515	GO:0005141	interleukin-10 receptor binding
+GO:0005515	GO:0005142	interleukin-11 receptor binding
+GO:0005515	GO:0005143	interleukin-12 receptor binding
+GO:0005515	GO:0005144	interleukin-13 receptor binding
+GO:0005515	GO:0005146	leukemia inhibitory factor receptor binding
+GO:0005515	GO:0005147	oncostatin-M receptor binding
+GO:0005515	GO:0005148	prolactin receptor binding
+GO:0005515	GO:0005149	interleukin-1 receptor binding
+GO:0005515	GO:0005152	interleukin-1 receptor antagonist activity
+GO:0005515	GO:0005157	macrophage colony-stimulating factor receptor binding
+GO:0005515	GO:0005160	transforming growth factor beta receptor binding
+GO:0005515	GO:0005165	neurotrophin receptor binding
+GO:0005515	GO:0005172	vascular endothelial growth factor receptor binding
+GO:0005515	GO:0005173	stem cell factor receptor binding
+GO:0005515	GO:0016170	interleukin-15 receptor binding
+GO:0005515	GO:0030367	interleukin-17 receptor binding
+GO:0005515	GO:0030380	interleukin-17E receptor binding
+GO:0005515	GO:0032003	interleukin-28 receptor binding
+GO:0005515	GO:0032813	tumor necrosis factor receptor superfamily binding
+GO:0005515	GO:0042379	chemokine receptor binding
+GO:0005515	GO:0045514	interleukin-16 receptor binding
+GO:0005515	GO:0045515	interleukin-18 receptor binding
+GO:0005515	GO:0045516	interleukin-19 receptor binding
+GO:0005515	GO:0045517	interleukin-20 receptor binding
+GO:0005515	GO:0045518	interleukin-22 receptor binding
+GO:0005515	GO:0045519	interleukin-23 receptor binding
+GO:0005515	GO:0045520	interleukin-24 receptor binding
+GO:0005515	GO:0045521	interleukin-25 receptor binding
+GO:0005515	GO:0045522	interleukin-26 receptor binding
+GO:0005515	GO:0045523	interleukin-27 receptor binding
+GO:0005515	GO:0070748	interleukin-35 receptor binding
+GO:0005515	GO:0005150	interleukin-1, type I receptor binding
+GO:0005515	GO:0005151	interleukin-1, type II receptor binding
+GO:0005515	GO:0045352	interleukin-1 type I receptor antagonist activity
+GO:0005515	GO:0045353	interleukin-1 type II receptor antagonist activity
+GO:0005515	GO:0005114	type II transforming growth factor beta receptor binding
+GO:0005515	GO:0034713	type I transforming growth factor beta receptor binding
+GO:0005515	GO:0034714	type III transforming growth factor beta receptor binding
+GO:0005515	GO:0005163	nerve growth factor receptor binding
+GO:0005515	GO:0005166	neurotrophin p75 receptor binding
+GO:0005515	GO:0005167	neurotrophin TRK receptor binding
+GO:0005515	GO:0031546	brain-derived neurotrophic factor receptor binding
+GO:0005515	GO:0005168	neurotrophin TRKA receptor binding
+GO:0005515	GO:0005169	neurotrophin TRKB receptor binding
+GO:0005515	GO:0005170	neurotrophin TRKC receptor binding
+GO:0005515	GO:0043183	vascular endothelial growth factor receptor 1 binding
+GO:0005515	GO:0043184	vascular endothelial growth factor receptor 2 binding
+GO:0005515	GO:0043185	vascular endothelial growth factor receptor 3 binding
+GO:0005515	GO:0005123	death receptor binding
+GO:0005515	GO:0005164	tumor necrosis factor receptor binding
+GO:0005515	GO:0005174	CD40 receptor binding
+GO:0005515	GO:0005175	CD27 receptor binding
+GO:0005515	GO:0005163	nerve growth factor receptor binding
+GO:0005515	GO:0008009	chemokine activity
+GO:0005515	GO:0031737	CX3C chemokine receptor binding
+GO:0005515	GO:0031738	XCR1 chemokine receptor binding
+GO:0005515	GO:0045236	CXCR chemokine receptor binding
+GO:0005515	GO:0048020	CCR chemokine receptor binding
+GO:0005515	GO:0005153	interleukin-8 receptor binding
+GO:0005515	GO:0031723	CXCR4 chemokine receptor binding
+GO:0005515	GO:0031724	CXCR5 chemokine receptor binding
+GO:0005515	GO:0031725	CXCR6 chemokine receptor binding
+GO:0005515	GO:0048248	CXCR3 chemokine receptor binding
+GO:0005515	GO:0045237	CXCR1 chemokine receptor binding
+GO:0005515	GO:0045238	CXCR2 chemokine receptor binding
+GO:0005515	GO:0031726	CCR1 chemokine receptor binding
+GO:0005515	GO:0031727	CCR2 chemokine receptor binding
+GO:0005515	GO:0031728	CCR3 chemokine receptor binding
+GO:0005515	GO:0031729	CCR4 chemokine receptor binding
+GO:0005515	GO:0031730	CCR5 chemokine receptor binding
+GO:0005515	GO:0031731	CCR6 chemokine receptor binding
+GO:0005515	GO:0031732	CCR7 chemokine receptor binding
+GO:0005515	GO:0031733	CCR8 chemokine receptor binding
+GO:0005515	GO:0031734	CCR9 chemokine receptor binding
+GO:0005515	GO:0031735	CCR10 chemokine receptor binding
+GO:0005515	GO:0031736	CCR11 chemokine receptor binding
+GO:0005515	GO:0098640	integrin binding involved in cell-matrix adhesion
+GO:0005515	GO:0005068	transmembrane receptor protein tyrosine kinase adaptor activity
+GO:0005515	GO:0070696	transmembrane receptor protein serine/threonine kinase binding
+GO:0005515	GO:0070697	activin receptor binding
+GO:0005515	GO:0070700	BMP receptor binding
+GO:0005515	GO:0070698	type I activin receptor binding
+GO:0005515	GO:0070699	type II activin receptor binding
+GO:0005515	GO:0034191	apolipoprotein A-I receptor binding
+GO:0005515	GO:0034988	Fc-gamma receptor I complex binding
+GO:0005515	GO:0035255	ionotropic glutamate receptor binding
+GO:0005515	GO:0035256	G protein-coupled glutamate receptor binding
+GO:0005515	GO:0031798	type 1 metabotropic glutamate receptor binding
+GO:0005515	GO:0031799	type 2 metabotropic glutamate receptor binding
+GO:0005515	GO:0031800	type 3 metabotropic glutamate receptor binding
+GO:0005515	GO:0031801	type 4 metabotropic glutamate receptor binding
+GO:0005515	GO:0031802	type 5 metabotropic glutamate receptor binding
+GO:0005515	GO:0031803	type 6 metabotropic glutamate receptor binding
+GO:0005515	GO:0031804	type 7 metabotropic glutamate receptor binding
+GO:0005515	GO:0031805	type 8 metabotropic glutamate receptor binding
+GO:0005515	GO:0035662	Toll-like receptor 4 binding
+GO:0005515	GO:0035663	Toll-like receptor 2 binding
+GO:0005515	GO:0023029	MHC class Ib protein binding
+GO:0005515	GO:0042288	MHC class I protein binding
+GO:0005515	GO:0042289	MHC class II protein binding
+GO:0005515	GO:0023030	MHC class Ib protein binding, via antigen binding groove
+GO:0005515	GO:0023031	MHC class Ib protein binding, via lateral surface
+GO:0005515	GO:0023027	MHC class I protein binding, via antigen binding groove
+GO:0005515	GO:0023028	MHC class I protein binding, via lateral surface
+GO:0005515	GO:0042657	MHC class II protein binding, via lateral surface
+GO:0005515	GO:0042658	MHC class II protein binding, via antigen binding groove
+GO:0005515	GO:0001515	opioid peptide activity
+GO:0005515	GO:0005125	cytokine activity
+GO:0005515	GO:0005179	hormone activity
+GO:0005515	GO:0005186	pheromone activity
+GO:0005515	GO:0008083	growth factor activity
+GO:0005515	GO:0016015	morphogen activity
+GO:0005515	GO:0038177	death receptor agonist activity
+GO:0005515	GO:0042056	chemoattractant activity
+GO:0005515	GO:0045499	chemorepellent activity
+GO:0005515	GO:0140295	pathogen-derived receptor ligand activity
+GO:0005515	GO:0160041	neuropeptide activity
+GO:0005515	GO:0008009	chemokine activity
+GO:0005515	GO:0005183	gonadotropin hormone-releasing hormone activity
+GO:0005515	GO:0005184	neuropeptide hormone activity
+GO:0005515	GO:0008437	thyrotropin-releasing hormone activity
+GO:0005515	GO:0008613	diuretic hormone activity
+GO:0005515	GO:0016084	myostimulatory hormone activity
+GO:0005515	GO:0016085	myoinhibitory hormone activity
+GO:0005515	GO:0016521	pituitary adenylate cyclase activating polypeptide activity
+GO:0005515	GO:0016608	growth hormone-releasing hormone activity
+GO:0005515	GO:0016913	follicle-stimulating hormone activity
+GO:0005515	GO:0017044	melanocyte-stimulating hormone activity
+GO:0005515	GO:0017045	corticotropin-releasing hormone activity
+GO:0005515	GO:0030354	melanin-concentrating hormone activity
+GO:0005515	GO:0046659	digestive hormone activity
+GO:0005515	GO:0070186	growth hormone activity
+GO:0005515	GO:0005185	neurohypophyseal hormone activity
+GO:0005515	GO:0008031	eclosion hormone activity
+GO:0005515	GO:0008255	ecdysis-triggering hormone activity
+GO:0005515	GO:0016087	ecdysiostatic hormone activity
+GO:0005515	GO:0018445	prothoracicotrophic hormone activity
+GO:0005515	GO:0000772	mating pheromone activity
+GO:0005515	GO:0030413	competence pheromone activity
+GO:0005515	GO:1902379	chemoattractant activity involved in axon guidance
+GO:0005515	GO:0005184	neuropeptide hormone activity
+GO:0005515	GO:0005185	neurohypophyseal hormone activity
+GO:0005515	GO:0008031	eclosion hormone activity
+GO:0005515	GO:0008255	ecdysis-triggering hormone activity
+GO:0005515	GO:0016087	ecdysiostatic hormone activity
+GO:0005515	GO:0018445	prothoracicotrophic hormone activity
+GO:0005515	GO:0005152	interleukin-1 receptor antagonist activity
+GO:0005515	GO:0030353	fibroblast growth factor receptor antagonist activity
+GO:0005515	GO:0038102	activin receptor antagonist activity
+GO:0005515	GO:0046817	chemokine receptor antagonist activity
+GO:0005515	GO:0045352	interleukin-1 type I receptor antagonist activity
+GO:0005515	GO:0045353	interleukin-1 type II receptor antagonist activity
+GO:0005515	GO:0031795	G protein-coupled GABA receptor binding
+GO:0005515	GO:0031796	type 1 metabotropic GABA receptor binding
+GO:0005515	GO:0031797	type 2 metabotropic GABA receptor binding
+GO:0005515	GO:0005131	growth hormone receptor binding
+GO:0005515	GO:0051428	peptide hormone receptor binding
+GO:0005515	GO:0031530	gonadotropin-releasing hormone receptor binding
+GO:0005515	GO:0031531	thyrotropin-releasing hormone receptor binding
+GO:0005515	GO:0051429	corticotropin-releasing hormone receptor binding
+GO:0005515	GO:0097005	adipokinetic hormone receptor binding
+GO:0005515	GO:0051430	corticotropin-releasing hormone receptor 1 binding
+GO:0005515	GO:0051431	corticotropin-releasing hormone receptor 2 binding
+GO:0005515	GO:0050750	low-density lipoprotein particle receptor binding
+GO:0005515	GO:0070326	very-low-density lipoprotein particle receptor binding
+GO:0005515	GO:0070653	high-density lipoprotein particle receptor binding
+GO:0005515	GO:0005104	fibroblast growth factor receptor binding
+GO:0005515	GO:0005129	granulocyte macrophage colony-stimulating factor receptor binding
+GO:0005515	GO:0005130	granulocyte colony-stimulating factor receptor binding
+GO:0005515	GO:0005134	interleukin-2 receptor binding
+GO:0005515	GO:0005135	interleukin-3 receptor binding
+GO:0005515	GO:0005136	interleukin-4 receptor binding
+GO:0005515	GO:0005137	interleukin-5 receptor binding
+GO:0005515	GO:0005138	interleukin-6 receptor binding
+GO:0005515	GO:0005139	interleukin-7 receptor binding
+GO:0005515	GO:0005140	interleukin-9 receptor binding
+GO:0005515	GO:0005141	interleukin-10 receptor binding
+GO:0005515	GO:0005142	interleukin-11 receptor binding
+GO:0005515	GO:0005143	interleukin-12 receptor binding
+GO:0005515	GO:0005149	interleukin-1 receptor binding
+GO:0005515	GO:0005154	epidermal growth factor receptor binding
+GO:0005515	GO:0005161	platelet-derived growth factor receptor binding
+GO:0005515	GO:0005171	hepatocyte growth factor receptor binding
+GO:0005515	GO:0005172	vascular endothelial growth factor receptor binding
+GO:0005515	GO:0008084	imaginal disc growth factor receptor binding
+GO:0005515	GO:0030116	glial cell-derived neurotrophic factor receptor binding
+GO:0005515	GO:0030372	high molecular weight B cell growth factor receptor binding
+GO:0005515	GO:0005105	type 1 fibroblast growth factor receptor binding
+GO:0005515	GO:0005111	type 2 fibroblast growth factor receptor binding
+GO:0005515	GO:0030353	fibroblast growth factor receptor antagonist activity
+GO:0005515	GO:0005150	interleukin-1, type I receptor binding
+GO:0005515	GO:0005151	interleukin-1, type II receptor binding
+GO:0005515	GO:0043183	vascular endothelial growth factor receptor 1 binding
+GO:0005515	GO:0043184	vascular endothelial growth factor receptor 2 binding
+GO:0005515	GO:0043185	vascular endothelial growth factor receptor 3 binding
+GO:0005515	GO:0003779	actin binding
+GO:0005515	GO:0005519	cytoskeletal regulatory protein binding
+GO:0005515	GO:0005523	tropomyosin binding
+GO:0005515	GO:0015631	tubulin binding
+GO:0005515	GO:0017022	myosin binding
+GO:0005515	GO:0017166	vinculin binding
+GO:0005515	GO:0019894	kinesin binding
+GO:0005515	GO:0030172	troponin C binding
+GO:0005515	GO:0030506	ankyrin binding
+GO:0005515	GO:0030507	spectrin binding
+GO:0005515	GO:0031005	filamin binding
+GO:0005515	GO:0031013	troponin I binding
+GO:0005515	GO:0031014	troponin T binding
+GO:0005515	GO:0031432	titin binding
+GO:0005515	GO:0031433	telethonin binding
+GO:0005515	GO:0034452	dynactin binding
+GO:0005515	GO:0042805	actinin binding
+GO:0005515	GO:0048156	tau protein binding
+GO:0005515	GO:0051373	FATZ binding
+GO:0005515	GO:1990147	talin binding
+GO:0005515	GO:0003785	actin monomer binding
+GO:0005515	GO:0051015	actin filament binding
+GO:0005515	GO:0003786	actin lateral binding
+GO:0005515	GO:0008017	microtubule binding
+GO:0005515	GO:0043014	alpha-tubulin binding
+GO:0005515	GO:0043015	gamma-tubulin binding
+GO:0005515	GO:0048487	beta-tubulin binding
+GO:0005515	GO:0051010	microtubule plus-end binding
+GO:0005515	GO:0051011	microtubule minus-end binding
+GO:0005515	GO:0099609	microtubule lateral binding
+GO:0005515	GO:0017024	myosin I binding
+GO:0005515	GO:0031473	myosin III binding
+GO:0005515	GO:0031489	myosin V binding
+GO:0005515	GO:0032027	myosin light chain binding
+GO:0005515	GO:0032036	myosin heavy chain binding
+GO:0005515	GO:0045159	myosin II binding
+GO:0005515	GO:0070853	myosin VI binding
+GO:0005515	GO:0032030	myosin I light chain binding
+GO:0005515	GO:0032037	myosin I heavy chain binding
+GO:0005515	GO:0032031	myosin I head/neck binding
+GO:0005515	GO:0032032	myosin I tail binding
+GO:0005515	GO:0032030	myosin I light chain binding
+GO:0005515	GO:0032033	myosin II light chain binding
+GO:0005515	GO:0070856	myosin VI light chain binding
+GO:0005515	GO:0032028	myosin head/neck binding
+GO:0005515	GO:0032029	myosin tail binding
+GO:0005515	GO:0032037	myosin I heavy chain binding
+GO:0005515	GO:0032038	myosin II heavy chain binding
+GO:0005515	GO:0070854	myosin VI heavy chain binding
+GO:0005515	GO:0032031	myosin I head/neck binding
+GO:0005515	GO:0032034	myosin II head/neck binding
+GO:0005515	GO:0070855	myosin VI head/neck binding
+GO:0005515	GO:0032032	myosin I tail binding
+GO:0005515	GO:0032035	myosin II tail binding
+GO:0005515	GO:0080115	myosin XI tail binding
+GO:0005515	GO:0032031	myosin I head/neck binding
+GO:0005515	GO:0032032	myosin I tail binding
+GO:0005515	GO:0032034	myosin II head/neck binding
+GO:0005515	GO:0032035	myosin II tail binding
+GO:0005515	GO:0070855	myosin VI head/neck binding
+GO:0005515	GO:0032033	myosin II light chain binding
+GO:0005515	GO:0032038	myosin II heavy chain binding
+GO:0005515	GO:0032034	myosin II head/neck binding
+GO:0005515	GO:0032035	myosin II tail binding
+GO:0005515	GO:0070854	myosin VI heavy chain binding
+GO:0005515	GO:0070856	myosin VI light chain binding
+GO:0005515	GO:0070855	myosin VI head/neck binding
+GO:0005515	GO:0051393	alpha-actinin binding
+GO:0005515	GO:0051371	muscle alpha-actinin binding
+GO:0005515	GO:0001221	transcription coregulator binding
+GO:0005515	GO:0140296	general transcription initiation factor binding
+GO:0005515	GO:0140297	DNA-binding transcription factor binding
+GO:0005515	GO:0001222	transcription corepressor binding
+GO:0005515	GO:0001223	transcription coactivator binding
+GO:0005515	GO:0001025	RNA polymerase III general transcription initiation factor binding
+GO:0005515	GO:0001091	RNA polymerase II general transcription initiation factor binding
+GO:0005515	GO:0001179	RNA polymerase I general transcription initiation factor binding
+GO:0005515	GO:0017025	TBP-class protein binding
+GO:0005515	GO:0001154	TFIIIB-class transcription factor complex binding
+GO:0005515	GO:0001155	TFIIIA-class transcription factor binding
+GO:0005515	GO:0001156	TFIIIC-class transcription factor complex binding
+GO:0005515	GO:0001092	TFIIA-class transcription factor complex binding
+GO:0005515	GO:0001093	TFIIB-class transcription factor binding
+GO:0005515	GO:0001094	TFIID-class transcription factor complex binding
+GO:0005515	GO:0001095	TFIIE-class transcription factor complex binding
+GO:0005515	GO:0001096	TFIIF-class transcription factor complex binding
+GO:0005515	GO:0001097	TFIIH-class transcription factor complex binding
+GO:0005515	GO:0008140	cAMP response element binding protein binding
+GO:0005515	GO:0043425	bHLH transcription factor binding
+GO:0005515	GO:0061629	RNA polymerase II-specific DNA-binding transcription factor binding
+GO:0005515	GO:0043426	MRF binding
+GO:0005515	GO:0016922	nuclear receptor binding
+GO:0005515	GO:0017162	aryl hydrocarbon receptor binding
+GO:0005515	GO:0030957	Tat protein binding
+GO:0005515	GO:0051059	NF-kappaB binding
+GO:0005515	GO:0051525	NFAT protein binding
+GO:0005515	GO:0097677	STAT family protein binding
+GO:0005515	GO:0030331	nuclear estrogen receptor binding
+GO:0005515	GO:0031962	nuclear mineralocorticoid receptor binding
+GO:0005515	GO:0033142	nuclear progesterone receptor binding
+GO:0005515	GO:0035259	nuclear glucocorticoid receptor binding
+GO:0005515	GO:0042809	nuclear vitamin D receptor binding
+GO:0005515	GO:0042974	nuclear retinoic acid receptor binding
+GO:0005515	GO:0046966	nuclear thyroid hormone receptor binding
+GO:0005515	GO:0050681	nuclear androgen receptor binding
+GO:0005515	GO:0031961	nuclear cortisol receptor binding
+GO:0005515	GO:0046965	nuclear retinoid X receptor binding
+GO:0005515	GO:0005520	insulin-like growth factor binding
+GO:0005515	GO:0017134	fibroblast growth factor binding
+GO:0005515	GO:0019966	interleukin-1 binding
+GO:0005515	GO:0019969	interleukin-10 binding
+GO:0005515	GO:0019970	interleukin-11 binding
+GO:0005515	GO:0019976	interleukin-2 binding
+GO:0005515	GO:0019978	interleukin-3 binding
+GO:0005515	GO:0019979	interleukin-4 binding
+GO:0005515	GO:0019980	interleukin-5 binding
+GO:0005515	GO:0019981	interleukin-6 binding
+GO:0005515	GO:0019982	interleukin-7 binding
+GO:0005515	GO:0019983	interleukin-9 binding
+GO:0005515	GO:0036458	hepatocyte growth factor binding
+GO:0005515	GO:0038085	vascular endothelial growth factor binding
+GO:0005515	GO:0038132	neuregulin binding
+GO:0005515	GO:0043121	neurotrophin binding
+GO:0005515	GO:0048407	platelet-derived growth factor binding
+GO:0005515	GO:0048408	epidermal growth factor binding
+GO:0005515	GO:0050431	transforming growth factor beta binding
+GO:0005515	GO:0031994	insulin-like growth factor I binding
+GO:0005515	GO:0031995	insulin-like growth factor II binding
+GO:0005515	GO:0005152	interleukin-1 receptor antagonist activity
+GO:0005515	GO:0045352	interleukin-1 type I receptor antagonist activity
+GO:0005515	GO:0045353	interleukin-1 type II receptor antagonist activity
+GO:0005515	GO:0048403	brain-derived neurotrophic factor binding
+GO:0005515	GO:0048406	nerve growth factor binding
+GO:0005515	GO:0002020	protease binding
+GO:0005515	GO:0008179	adenylate cyclase binding
+GO:0005515	GO:0010180	thioglucosidase binding
+GO:0005515	GO:0017151	DEAD/H-box RNA helicase binding
+GO:0005515	GO:0019900	kinase binding
+GO:0005515	GO:0019902	phosphatase binding
+GO:0005515	GO:0031996	thioesterase binding
+GO:0005515	GO:0032145	succinate-semialdehyde dehydrogenase binding
+GO:0005515	GO:0032190	acrosin binding
+GO:0005515	GO:0035035	histone acetyltransferase binding
+GO:0005515	GO:0035226	glutamate-cysteine ligase catalytic subunit binding
+GO:0005515	GO:0035375	zymogen binding
+GO:0005515	GO:0035473	lipase binding
+GO:0005515	GO:0042826	histone deacetylase binding
+GO:0005515	GO:0043274	phospholipase binding
+GO:0005515	GO:0044388	small protein activating enzyme binding
+GO:0005515	GO:0044389	ubiquitin-like protein ligase binding
+GO:0005515	GO:0044390	ubiquitin-like protein conjugating enzyme binding
+GO:0005515	GO:0044547	DNA topoisomerase binding
+GO:0005515	GO:0044549	GTP cyclohydrolase binding
+GO:0005515	GO:0050998	nitric-oxide synthase binding
+GO:0005515	GO:0051020	GTPase binding
+GO:0005515	GO:0051117	ATPase binding
+GO:0005515	GO:0070063	RNA polymerase binding
+GO:0005515	GO:0070182	DNA polymerase binding
+GO:0005515	GO:0098650	peptidyl-proline 4-dioxygenase binding
+GO:0005515	GO:1990226	histone methyltransferase binding
+GO:0005515	GO:1990827	deaminase binding
+GO:0005515	GO:0089720	caspase binding
+GO:0005515	GO:1990381	ubiquitin-specific protease binding
+GO:0005515	GO:0019901	protein kinase binding
+GO:0005515	GO:0036313	phosphatidylinositol 3-kinase catalytic subunit binding
+GO:0005515	GO:0005080	protein kinase C binding
+GO:0005515	GO:0008432	JUN kinase binding
+GO:0005515	GO:0031434	mitogen-activated protein kinase kinase binding
+GO:0005515	GO:0031435	mitogen-activated protein kinase kinase kinase binding
+GO:0005515	GO:0033161	mitogen-activated protein kinase kinase kinase kinase binding
+GO:0005515	GO:0034236	protein kinase A catalytic subunit binding
+GO:0005515	GO:0043422	protein kinase B binding
+GO:0005515	GO:0043423	3-phosphoinositide-dependent protein kinase binding
+GO:0005515	GO:0043424	protein histidine kinase binding
+GO:0005515	GO:0051019	mitogen-activated protein kinase binding
+GO:0005515	GO:0120283	protein serine/threonine kinase binding
+GO:0005515	GO:1990782	protein tyrosine kinase binding
+GO:0005515	GO:0048273	mitogen-activated protein kinase p38 binding
+GO:0005515	GO:0030971	receptor tyrosine kinase binding
+GO:0005515	GO:0005068	transmembrane receptor protein tyrosine kinase adaptor activity
+GO:0005515	GO:0019903	protein phosphatase binding
+GO:0005515	GO:0008157	protein phosphatase 1 binding
+GO:0005515	GO:0030346	protein phosphatase 2B binding
+GO:0005515	GO:0051721	protein phosphatase 2A binding
+GO:0005515	GO:1990634	protein phosphatase 5 binding
+GO:0005515	GO:0033134	ubiquitin activating enzyme binding
+GO:0005515	GO:0031625	ubiquitin protein ligase binding
+GO:0005515	GO:0031624	ubiquitin conjugating enzyme binding
+GO:0005515	GO:0031267	small GTPase binding
+GO:0005515	GO:0001050	single-subunit type RNA polymerase binding
+GO:0005515	GO:0043175	RNA polymerase core enzyme binding
+GO:0005515	GO:0001001	mitochondrial single-subunit type RNA polymerase binding
+GO:0005515	GO:0001051	plastid single-subunit type RNA polymerase binding
+GO:0005515	GO:0000993	RNA polymerase II complex binding
+GO:0005515	GO:0000994	RNA polymerase III core binding
+GO:0005515	GO:0001000	bacterial-type RNA polymerase core enzyme binding
+GO:0005515	GO:0001042	RNA polymerase I core binding
+GO:0005515	GO:0001048	RNA polymerase IV core binding
+GO:0005515	GO:0001049	RNA polymerase V core binding
+GO:0005515	GO:0001139	RNA polymerase II complex recruiting activity
+GO:0005515	GO:0099122	RNA polymerase II C-terminal domain binding
+GO:0005515	GO:1990269	RNA polymerase II C-terminal domain phosphoserine binding
+GO:0005515	GO:0001052	plastid PEP RNA polymerase core enzyme binding
+GO:0005515	GO:0017058	FH1 domain binding
+GO:0005515	GO:0017124	SH3 domain binding
+GO:0005515	GO:0030165	PDZ domain binding
+GO:0005515	GO:0030274	LIM domain binding
+GO:0005515	GO:0030275	LRR domain binding
+GO:0005515	GO:0030911	TPR domain binding
+GO:0005515	GO:0031208	POZ domain binding
+GO:0005515	GO:0032089	NACHT domain binding
+GO:0005515	GO:0032090	Pyrin domain binding
+GO:0005515	GO:0032093	SAM domain binding
+GO:0005515	GO:0032399	HECT domain binding
+GO:0005515	GO:0032427	GBD domain binding
+GO:0005515	GO:0033149	FFAT motif binding
+GO:0005515	GO:0035500	MH2 domain binding
+GO:0005515	GO:0035501	MH1 domain binding
+GO:0005515	GO:0035851	Krueppel-associated box domain binding
+GO:0005515	GO:0035877	death effector domain binding
+GO:0005515	GO:0036004	GAF domain binding
+GO:0005515	GO:0036143	kringle domain binding
+GO:0005515	GO:0042169	SH2 domain binding
+GO:0005515	GO:0042731	PH domain binding
+GO:0005515	GO:0043398	HLH domain binding
+GO:0005515	GO:0044197	Rel homology domain binding
+GO:0005515	GO:0044198	zf-TRAF domain binding
+GO:0005515	GO:0050682	AF-2 domain binding
+GO:0005515	GO:0050683	AF-1 domain binding
+GO:0005515	GO:0050692	DNA binding domain binding
+GO:0005515	GO:0050693	LBD domain binding
+GO:0005515	GO:0050699	WW domain binding
+GO:0005515	GO:0050700	CARD domain binding
+GO:0005515	GO:0050733	RS domain binding
+GO:0005515	GO:0051400	BH domain binding
+GO:0005515	GO:0051401	CH domain binding
+GO:0005515	GO:0051425	PTB domain binding
+GO:0005515	GO:0055131	C3HC4-type RING finger domain binding
+GO:0005515	GO:0061788	EGF repeat binding
+GO:0005515	GO:0070016	armadillo repeat domain binding
+GO:0005515	GO:0070080	titin Z domain binding
+GO:0005515	GO:0070087	chromo shadow domain binding
+GO:0005515	GO:0070513	death domain binding
+GO:0005515	GO:0070742	C2H2 zinc finger domain binding
+GO:0005515	GO:0070974	POU domain binding
+GO:0005515	GO:0070975	FHA domain binding
+GO:0005515	GO:0070976	TIR domain binding
+GO:0005515	GO:0070984	SET domain binding
+GO:0005515	GO:0071532	ankyrin repeat binding
+GO:0005515	GO:0071535	RING-like zinc finger domain binding
+GO:0005515	GO:0071551	RIP homotypic interaction motif binding
+GO:0005515	GO:0071794	CAP-Gly domain binding
+GO:0005515	GO:0071837	HMG box domain binding
+GO:0005515	GO:0071906	CRD domain binding
+GO:0005515	GO:0071987	WD40-repeat domain binding
+GO:0005515	GO:0090488	polo box domain specific binding
+GO:0005515	GO:0090541	MIT domain binding
+GO:0005515	GO:0090542	ELYC domain binding
+GO:0005515	GO:0090736	MATH domain binding
+GO:0005515	GO:0097016	L27 domain binding
+GO:0005515	GO:0097161	DH domain binding
+GO:0005515	GO:0097162	MADS box domain binding
+GO:0005515	GO:0097718	disordered domain specific binding
+GO:0005515	GO:0097726	LEM domain binding
+GO:0005515	GO:0098750	FYXD domain binding
+GO:0005515	GO:0101016	FMN-binding domain binding
+GO:0005515	GO:0110036	C2 domain binding
+GO:0005515	GO:1990175	EH domain binding
+GO:0005515	GO:1990308	type-I dockerin domain binding
+GO:0005515	GO:1990309	type-II dockerin domain binding
+GO:0005515	GO:1990310	type-III dockerin domain binding
+GO:0005515	GO:1990311	type-I cohesin domain binding
+GO:0005515	GO:1990312	type-II cohesin domain binding
+GO:0005515	GO:1990313	type-III cohesin domain binding
+GO:0005515	GO:1990444	F-box domain binding
+GO:0005515	GO:1990525	BIR domain binding
+GO:0005515	GO:1990808	F-bar domain binding
+GO:0005515	GO:0043522	leucine zipper domain binding
+GO:0005515	GO:0051432	BH1 domain binding
+GO:0005515	GO:0051433	BH2 domain binding
+GO:0005515	GO:0051434	BH3 domain binding
+GO:0005515	GO:0051435	BH4 domain binding
+GO:0005515	GO:0051434	BH3 domain binding
+GO:0005515	GO:0002113	interleukin-33 binding
+GO:0005515	GO:0019956	chemokine binding
+GO:0005515	GO:0019961	interferon binding
+GO:0005515	GO:0019966	interleukin-1 binding
+GO:0005515	GO:0019969	interleukin-10 binding
+GO:0005515	GO:0019970	interleukin-11 binding
+GO:0005515	GO:0019972	interleukin-12 binding
+GO:0005515	GO:0019973	interleukin-13 binding
+GO:0005515	GO:0019975	interleukin-17 binding
+GO:0005515	GO:0019976	interleukin-2 binding
+GO:0005515	GO:0019977	interleukin-21 binding
+GO:0005515	GO:0019978	interleukin-3 binding
+GO:0005515	GO:0019979	interleukin-4 binding
+GO:0005515	GO:0019980	interleukin-5 binding
+GO:0005515	GO:0019981	interleukin-6 binding
+GO:0005515	GO:0019982	interleukin-7 binding
+GO:0005515	GO:0019983	interleukin-9 binding
+GO:0005515	GO:0035718	macrophage migration inhibitory factor binding
+GO:0005515	GO:0036122	BMP binding
+GO:0005515	GO:0042007	interleukin-18 binding
+GO:0005515	GO:0042009	interleukin-15 binding
+GO:0005515	GO:0042011	interleukin-16 binding
+GO:0005515	GO:0042013	interleukin-19 binding
+GO:0005515	GO:0042015	interleukin-20 binding
+GO:0005515	GO:0042017	interleukin-22 binding
+GO:0005515	GO:0042019	interleukin-23 binding
+GO:0005515	GO:0042021	granulocyte macrophage colony-stimulating factor complex binding
+GO:0005515	GO:0043120	tumor necrosis factor binding
+GO:0005515	GO:0045510	interleukin-24 binding
+GO:0005515	GO:0045512	interleukin-26 binding
+GO:0005515	GO:0050431	transforming growth factor beta binding
+GO:0005515	GO:0051916	granulocyte colony-stimulating factor binding
+GO:0005515	GO:0070119	ciliary neurotrophic factor binding
+GO:0005515	GO:0070379	high mobility group box 1 binding
+GO:0005515	GO:0070746	interleukin-35 binding
+GO:0005515	GO:0019957	C-C chemokine binding
+GO:0005515	GO:0019958	C-X-C chemokine binding
+GO:0005515	GO:0019960	C-X3-C chemokine binding
+GO:0005515	GO:0035715	chemokine (C-C motif) ligand 2 binding
+GO:0005515	GO:0035716	chemokine (C-C motif) ligand 12 binding
+GO:0005515	GO:0035717	chemokine (C-C motif) ligand 7 binding
+GO:0005515	GO:0035757	chemokine (C-C motif) ligand 19 binding
+GO:0005515	GO:0035758	chemokine (C-C motif) ligand 21 binding
+GO:0005515	GO:0071791	chemokine (C-C motif) ligand 5 binding
+GO:0005515	GO:0019959	interleukin-8 binding
+GO:0005515	GO:0019962	type I interferon binding
+GO:0005515	GO:0019964	type II interferon binding
+GO:0005515	GO:0034347	type III interferon binding
+GO:0005515	GO:0005152	interleukin-1 receptor antagonist activity
+GO:0005515	GO:0045352	interleukin-1 type I receptor antagonist activity
+GO:0005515	GO:0045353	interleukin-1 type II receptor antagonist activity
+GO:0005515	GO:0042163	interleukin-12 beta subunit binding
+GO:0005515	GO:0042164	interleukin-12 alpha subunit binding
+GO:0005515	GO:0045511	interleukin-25 binding
+GO:0005515	GO:0045513	interleukin-27 binding
+GO:0005515	GO:0038057	TNFSF11 binding
+GO:0005515	GO:0032050	clathrin heavy chain binding
+GO:0005515	GO:0032051	clathrin light chain binding
+GO:0005515	GO:0031721	hemoglobin alpha binding
+GO:0005515	GO:0031722	hemoglobin beta binding
+GO:0005515	GO:0030985	high molecular weight kininogen binding
+GO:0005515	GO:0030986	low molecular weight kininogen binding
+GO:0005515	GO:0030544	Hsp70 protein binding
+GO:0005515	GO:0051008	Hsp27 protein binding
+GO:0005515	GO:0051879	Hsp90 protein binding
+GO:0005515	GO:0008190	eukaryotic initiation factor 4E binding
+GO:0005515	GO:0031370	eukaryotic initiation factor 4G binding
+GO:0005515	GO:0071074	eukaryotic initiation factor eIF2 binding
+GO:0005515	GO:0032183	SUMO binding
+GO:0005515	GO:0043130	ubiquitin binding
+GO:0005515	GO:0032184	SUMO polymer binding
+GO:0005515	GO:1990450	linear polyubiquitin binding
+GO:0005515	GO:0034186	apolipoprotein A-I binding
+GO:0005515	GO:0035064	methylated histone binding
+GO:0005515	GO:0070577	lysine-acetylated histone binding
+GO:0005515	GO:0106153	phosphorylated histone binding
+GO:0005515	GO:0061628	H3K27me3 modified histone binding
+GO:0005515	GO:0062072	H3K9me3 modified histone binding
+GO:0005515	GO:1990889	H4K20me3 modified histone binding
+GO:0005515	GO:0042803	protein homodimerization activity
+GO:0005515	GO:0043237	laminin-1 binding
+GO:0005515	GO:0098638	laminin binding involved in cell-matrix adhesion
+GO:0005515	GO:0035373	chondroitin sulfate proteoglycan binding
+GO:0005515	GO:0043395	heparan sulfate proteoglycan binding
+GO:0005515	GO:0045545	syndecan binding
+GO:0005515	GO:0036312	phosphatidylinositol 3-kinase regulatory subunit binding
+GO:0005515	GO:0036313	phosphatidylinositol 3-kinase catalytic subunit binding
+GO:0005515	GO:0070410	co-SMAD binding
+GO:0005515	GO:0070411	I-SMAD binding
+GO:0005515	GO:0070412	R-SMAD binding
+GO:0005515	GO:0046978	TAP1 binding
+GO:0005515	GO:0046979	TAP2 binding
+GO:0005515	GO:0042803	protein homodimerization activity
+GO:0005515	GO:0046982	protein heterodimerization activity
+GO:0005515	GO:0120152	calcium-dependent outer dynein arm binding
+GO:0005515	GO:0005178	integrin binding
+GO:0005515	GO:0045296	cadherin binding
+GO:0005515	GO:0098631	cell adhesion mediator activity
+GO:0005515	GO:0098640	integrin binding involved in cell-matrix adhesion
+GO:0005515	GO:0098641	cadherin binding involved in cell-cell adhesion
+GO:0005515	GO:0004895	cell adhesion receptor activity
+GO:0005515	GO:0005055	laminin receptor activity
+GO:0005515	GO:0098632	cell-cell adhesion mediator activity
+GO:0005515	GO:0098634	cell-matrix adhesion mediator activity
+GO:0005515	GO:0086080	protein binding involved in heterotypic cell-cell adhesion
+GO:0005515	GO:0098641	cadherin binding involved in cell-cell adhesion
+GO:0005515	GO:0086081	cell adhesive protein binding involved in atrial cardiac muscle cell-AV node cell communication
+GO:0005515	GO:0086082	cell adhesive protein binding involved in AV node cell-bundle of His cell communication
+GO:0005515	GO:0086083	cell adhesive protein binding involved in bundle of His cell-Purkinje myocyte communication
+GO:0005515	GO:0086084	cell adhesive protein binding involved in Purkinje myocyte-ventricular cardiac muscle cell communication
+GO:0005515	GO:0086085	cell adhesive protein binding involved in SA cardiac muscle cell-atrial cardiac muscle cell communication
+GO:0005515	GO:0098638	laminin binding involved in cell-matrix adhesion
+GO:0005515	GO:0098639	collagen binding involved in cell-matrix adhesion
+GO:0005515	GO:0098640	integrin binding involved in cell-matrix adhesion
+GO:0005515	GO:0034236	protein kinase A catalytic subunit binding
+GO:0005515	GO:0034237	protein kinase A regulatory subunit binding
+GO:0005515	GO:0051022	Rho GDP-dissociation inhibitor binding
+GO:0005515	GO:0030544	Hsp70 protein binding
+GO:0005515	GO:0045309	protein phosphorylated amino acid binding
+GO:0005515	GO:0001784	phosphotyrosine residue binding
+GO:0005515	GO:0050815	phosphoserine residue binding
+GO:0005515	GO:0050816	phosphothreonine residue binding
+GO:0005515	GO:1990269	RNA polymerase II C-terminal domain phosphoserine binding
+GO:0005515	GO:0031593	polyubiquitin modification-dependent protein binding
+GO:0005515	GO:0140031	phosphorylation-dependent protein binding
+GO:0005515	GO:0140032	glycosylation-dependent protein binding
+GO:0005515	GO:0140033	acetylation-dependent protein binding
+GO:0005515	GO:0140034	methylation-dependent protein binding
+GO:0005515	GO:0140035	ubiquitin-like protein reader activity
+GO:0005515	GO:0160002	ADP-D-ribose modification-dependent protein binding
+GO:0005515	GO:0036435	K48-linked polyubiquitin modification-dependent protein binding
+GO:0005515	GO:0070530	K63-linked polyubiquitin modification-dependent protein binding
+GO:0005515	GO:0071795	K11-linked polyubiquitin modification-dependent protein binding
+GO:0005515	GO:0071796	K6-linked polyubiquitin modification-dependent protein binding
+GO:0005515	GO:0106153	phosphorylated histone binding
+GO:0005515	GO:0070577	lysine-acetylated histone binding
+GO:0005515	GO:0035064	methylated histone binding
+GO:0005515	GO:0061628	H3K27me3 modified histone binding
+GO:0005515	GO:0062072	H3K9me3 modified histone binding
+GO:0005515	GO:1990889	H4K20me3 modified histone binding
+GO:0005515	GO:0140036	ubiquitin-modified protein reader activity
+GO:0005515	GO:0140037	SUMO-modified protein reader activity
+GO:0005515	GO:0141185	UFM1-modified protein reader activity
+GO:0005515	GO:0061649	ubiquitin-modified histone reader activity
+GO:0005515	GO:0160003	mono-ADP-D-ribose modification-dependent protein binding
+GO:0005515	GO:0160004	poly-ADP-D-ribose modification-dependent protein binding
+GO:0005515	GO:0001618	virus receptor activity
+GO:0005515	GO:0120274	virus coreceptor activity
+GO:0005549	GO:0005549	odorant binding
+GO:0005549	GO:0005550	pheromone binding
+GO:0008289	GO:0008289	lipid binding
+GO:0008289	GO:0001530	lipopolysaccharide binding
+GO:0008289	GO:0005496	steroid binding
+GO:0008289	GO:0005504	fatty acid binding
+GO:0008289	GO:0005543	phospholipid binding
+GO:0008289	GO:0017129	triglyceride binding
+GO:0008289	GO:0019840	isoprenoid binding
+GO:0008289	GO:0019992	diacylglycerol binding
+GO:0008289	GO:0030882	lipid antigen binding
+GO:0008289	GO:0046625	sphingolipid binding
+GO:0008289	GO:0051861	glycolipid binding
+GO:0008289	GO:0071723	lipopeptide binding
+GO:0008289	GO:1901567	fatty acid derivative binding
+GO:0008289	GO:0005499	vitamin D binding
+GO:0008289	GO:0032934	sterol binding
+GO:0008289	GO:0090411	brassinosteroid binding
+GO:0008289	GO:1902121	lithocholic acid binding
+GO:0008289	GO:1902122	chenodeoxycholic acid binding
+GO:0008289	GO:1903877	21-deoxycortisol binding
+GO:0008289	GO:1903879	11beta-hydroxyprogesterone binding
+GO:0008289	GO:1903880	17alpha-hydroxyprogesterone binding
+GO:0008289	GO:1903924	estradiol binding
+GO:0008289	GO:1990239	steroid hormone binding
+GO:0008289	GO:1902271	D3 vitamins binding
+GO:0008289	GO:1902098	calcitriol binding
+GO:0008289	GO:1902118	calcidiol binding
+GO:0008289	GO:0008142	oxysterol binding
+GO:0008289	GO:0015485	cholesterol binding
+GO:0008289	GO:0035100	ecdysone binding
+GO:0008289	GO:1902051	(25S)-Delta(4)-dafachronate binding
+GO:0008289	GO:1902052	(25S)-Delta(7)-dafachronate binding
+GO:0008289	GO:1903794	cortisol binding
+GO:0008289	GO:1903875	corticosterone binding
+GO:0008289	GO:1903876	11-deoxycortisol binding
+GO:0008289	GO:1903878	11-deoxycorticosterone binding
+GO:0008289	GO:0031405	lipoic acid binding
+GO:0008289	GO:0036041	long-chain fatty acid binding
+GO:0008289	GO:1901707	leptomycin B binding
+GO:0008289	GO:1904767	octanoic acid binding
+GO:0008289	GO:0050543	icosatetraenoic acid binding
+GO:0008289	GO:0050646	5-oxo-6E,8Z,11Z,14Z-icosatetraenoic acid binding
+GO:0008289	GO:0050647	5-hydroxy-6E,8Z,11Z,14Z-icosatetraenoic acid binding
+GO:0008289	GO:0050648	5(S)-hydroxyperoxy-6E,8Z,11Z,14Z-icosatetraenoic acid binding
+GO:0008289	GO:0070538	oleic acid binding
+GO:0008289	GO:0070539	linoleic acid binding
+GO:0008289	GO:0070540	stearic acid binding
+GO:0008289	GO:1904769	isopentadecanoic acid binding
+GO:0008289	GO:0050544	arachidonate binding
+GO:0008289	GO:0001786	phosphatidylserine binding
+GO:0008289	GO:0005544	calcium-dependent phospholipid binding
+GO:0008289	GO:0008429	phosphatidylethanolamine binding
+GO:0008289	GO:0031210	phosphatidylcholine binding
+GO:0008289	GO:0035091	phosphatidylinositol binding
+GO:0008289	GO:0035727	lysophosphatidic acid binding
+GO:0008289	GO:0070300	phosphatidic acid binding
+GO:0008289	GO:1901611	phosphatidylglycerol binding
+GO:0008289	GO:1902387	ceramide 1-phosphate binding
+GO:0008289	GO:0005545	1-phosphatidylinositol binding
+GO:0008289	GO:0034235	GPI anchor binding
+GO:0008289	GO:1901981	phosphatidylinositol phosphate binding
+GO:0008289	GO:0001876	lipoarabinomannan binding
+GO:0008289	GO:0005547	phosphatidylinositol-3,4,5-trisphosphate binding
+GO:0008289	GO:0010314	phosphatidylinositol-5-phosphate binding
+GO:0008289	GO:0032266	phosphatidylinositol-3-phosphate binding
+GO:0008289	GO:0070273	phosphatidylinositol-4-phosphate binding
+GO:0008289	GO:1902936	phosphatidylinositol bisphosphate binding
+GO:0008289	GO:0005546	phosphatidylinositol-4,5-bisphosphate binding
+GO:0008289	GO:0080025	phosphatidylinositol-3,5-bisphosphate binding
+GO:0008289	GO:1901612	cardiolipin binding
+GO:0008289	GO:0005500	juvenile hormone binding
+GO:0008289	GO:0005501	retinoid binding
+GO:0008289	GO:0010331	gibberellin binding
+GO:0008289	GO:0010427	abscisic acid binding
+GO:0008289	GO:0051738	xanthophyll binding
+GO:0008289	GO:0001972	retinoic acid binding
+GO:0008289	GO:0016918	retinal binding
+GO:0008289	GO:0019841	retinol binding
+GO:0008289	GO:0046876	3,4-didehydroretinal binding
+GO:0008289	GO:0005502	11-cis retinal binding
+GO:0008289	GO:0005503	all-trans retinal binding
+GO:0008289	GO:1904768	all-trans-retinol binding
+GO:0008289	GO:0030883	endogenous lipid antigen binding
+GO:0008289	GO:0030884	exogenous lipid antigen binding
+GO:0008289	GO:0043208	glycosphingolipid binding
+GO:0008289	GO:0097001	ceramide binding
+GO:0008289	GO:0035594	ganglioside binding
+GO:0008289	GO:1905573	ganglioside GM1 binding
+GO:0008289	GO:1905574	ganglioside GM2 binding
+GO:0008289	GO:1905575	ganglioside GM3 binding
+GO:0008289	GO:1905576	ganglioside GT1b binding
+GO:0008289	GO:1905577	ganglioside GP1c binding
+GO:0008289	GO:0035594	ganglioside binding
+GO:0008289	GO:1902387	ceramide 1-phosphate binding
+GO:0008289	GO:1905573	ganglioside GM1 binding
+GO:0008289	GO:1905574	ganglioside GM2 binding
+GO:0008289	GO:1905575	ganglioside GM3 binding
+GO:0008289	GO:1905576	ganglioside GT1b binding
+GO:0008289	GO:1905577	ganglioside GP1c binding
+GO:0008289	GO:0034235	GPI anchor binding
+GO:0008289	GO:0043208	glycosphingolipid binding
+GO:0008289	GO:0120146	sulfatide binding
+GO:0008289	GO:0001876	lipoarabinomannan binding
+GO:0008289	GO:0035594	ganglioside binding
+GO:0008289	GO:1905573	ganglioside GM1 binding
+GO:0008289	GO:1905574	ganglioside GM2 binding
+GO:0008289	GO:1905575	ganglioside GM3 binding
+GO:0008289	GO:1905576	ganglioside GT1b binding
+GO:0008289	GO:1905577	ganglioside GP1c binding
+GO:0008289	GO:0042497	triacyl lipopeptide binding
+GO:0008289	GO:0042498	diacyl lipopeptide binding
+GO:0008289	GO:0000062	fatty-acyl-CoA binding
+GO:0008289	GO:0050647	5-hydroxy-6E,8Z,11Z,14Z-icosatetraenoic acid binding
+GO:0008289	GO:0050648	5(S)-hydroxyperoxy-6E,8Z,11Z,14Z-icosatetraenoic acid binding
+GO:0008289	GO:1904593	prostaglandin binding
+GO:0008289	GO:0036042	long-chain fatty acyl-CoA binding
+GO:0015643	GO:0015643	toxic substance binding
+GO:0016597	GO:0016597	amino acid binding
+GO:0016597	GO:0016594	glycine binding
+GO:0016597	GO:0016595	glutamate binding
+GO:0016597	GO:0034618	arginine binding
+GO:0016597	GO:0036127	3-sulfino-L-alanine binding
+GO:0016597	GO:0070335	aspartate binding
+GO:0016597	GO:0070728	L-leucine binding
+GO:0016597	GO:0070905	serine binding
+GO:0016597	GO:0072544	L-DOPA binding
+GO:0016597	GO:0072545	L-tyrosine binding
+GO:0016597	GO:0120284	tryptophan binding
+GO:0016597	GO:1901973	proline binding
+GO:0016597	GO:1902485	L-cysteine binding
+GO:0019215	GO:0019215	intermediate filament binding
+GO:0019215	GO:1990254	keratin filament binding
+GO:0030246	GO:0030246	carbohydrate binding
+GO:0030246	GO:0030247	polysaccharide binding
+GO:0030246	GO:0048029	monosaccharide binding
+GO:0030246	GO:0070492	oligosaccharide binding
+GO:0030246	GO:0120153	calcium-dependent carbohydrate binding
+GO:0030246	GO:0001872	(1->3)-beta-D-glucan binding
+GO:0030246	GO:0010297	heteropolysaccharide binding
+GO:0030246	GO:0030248	cellulose binding
+GO:0030246	GO:0044584	cellodextrin binding
+GO:0030246	GO:0048028	galacturonan binding
+GO:0030246	GO:2001062	xylan binding
+GO:0030246	GO:2001065	mannan binding
+GO:0030246	GO:2001067	pullulan binding
+GO:0030246	GO:2001069	glycogen binding
+GO:0030246	GO:2001070	starch binding
+GO:0030246	GO:2001073	cyclodextrin binding
+GO:0030246	GO:2001077	(1->3),(1->4)-beta-glucan binding
+GO:0030246	GO:2001078	(1->6)-beta-D-glucan binding
+GO:0030246	GO:2001081	(1->4)-beta-D-galactan binding
+GO:0030246	GO:2001082	inulin binding
+GO:0030246	GO:2001083	alpha-D-glucan binding
+GO:0030246	GO:2001085	arabinogalactan binding
+GO:0030246	GO:2001063	glucomannan binding
+GO:0030246	GO:2001072	galactomannan binding
+GO:0030246	GO:0044589	pectin binding
+GO:0030246	GO:2001068	arabinoxylan binding
+GO:0030246	GO:0005534	galactose binding
+GO:0030246	GO:0005536	D-glucose binding
+GO:0030246	GO:0005537	D-mannose binding
+GO:0030246	GO:0031418	L-ascorbic acid binding
+GO:0030246	GO:0033222	xylose binding
+GO:0030246	GO:0033296	rhamnose binding
+GO:0030246	GO:0042806	fucose binding
+GO:0030246	GO:0070061	fructose binding
+GO:0030246	GO:2001084	L-arabinofuranose binding
+GO:0030246	GO:0044584	cellodextrin binding
+GO:0030246	GO:0044586	cellotetraose binding
+GO:0030246	GO:0044587	cellopentaose binding
+GO:0030246	GO:0044588	laminaribiose binding
+GO:0030246	GO:0048030	disaccharide binding
+GO:0030246	GO:0048031	trisaccharide binding
+GO:0030246	GO:2001064	cellooligosaccharide binding
+GO:0030246	GO:2001071	maltoheptaose binding
+GO:0030246	GO:2001073	cyclodextrin binding
+GO:0030246	GO:0030395	lactose binding
+GO:0030246	GO:0044585	cellobiose binding
+GO:0030246	GO:1901982	maltose binding
+GO:0030246	GO:1903777	melibiose binding
+GO:0030246	GO:0044583	cellotriose binding
+GO:0031409	GO:0031409	pigment binding
+GO:0031409	GO:0051738	xanthophyll binding
+GO:0033218	GO:0033218	amide binding
+GO:0033218	GO:0001540	amyloid-beta binding
+GO:0033218	GO:0005528	FK506 binding
+GO:0033218	GO:0005542	folic acid binding
+GO:0033218	GO:0008658	penicillin binding
+GO:0033218	GO:0009374	biotin binding
+GO:0033218	GO:0010013	N-1-naphthylphthalamic acid binding
+GO:0033218	GO:0016018	cyclosporin A binding
+GO:0033218	GO:0017046	peptide hormone binding
+GO:0033218	GO:0031177	phosphopantetheine binding
+GO:0033218	GO:0031626	beta-endorphin binding
+GO:0033218	GO:0032500	muramyl dipeptide binding
+GO:0033218	GO:0033219	urea binding
+GO:0033218	GO:0043544	lipoamide binding
+GO:0033218	GO:0043924	suramin binding
+GO:0033218	GO:0051870	methotrexate binding
+GO:0033218	GO:0071723	lipopeptide binding
+GO:0033218	GO:0097001	ceramide binding
+GO:0033218	GO:0120225	coenzyme A binding
+GO:0033218	GO:0120227	acyl-CoA binding
+GO:0033218	GO:1900750	oligopeptide binding
+GO:0033218	GO:1901602	dethiobiotin binding
+GO:0033218	GO:1904408	melatonin binding
+GO:0033218	GO:0043559	insulin binding
+GO:0033218	GO:0051424	corticotropin-releasing hormone binding
+GO:0033218	GO:0051448	gonadotropin-releasing hormone binding
+GO:0033218	GO:0051449	thyrotropin-releasing hormone binding
+GO:0033218	GO:0097004	adipokinetic hormone binding
+GO:0033218	GO:0097644	calcitonin family binding
+GO:0033218	GO:0120022	glucagon family peptide binding
+GO:0033218	GO:0120023	somatostatin binding
+GO:0033218	GO:0032841	calcitonin binding
+GO:0033218	GO:0097645	amylin binding
+GO:0033218	GO:1990407	calcitonin gene-related peptide binding
+GO:0033218	GO:1990409	adrenomedullin binding
+GO:0033218	GO:0042497	triacyl lipopeptide binding
+GO:0033218	GO:0042498	diacyl lipopeptide binding
+GO:0033218	GO:0035594	ganglioside binding
+GO:0033218	GO:1902387	ceramide 1-phosphate binding
+GO:0033218	GO:1905573	ganglioside GM1 binding
+GO:0033218	GO:1905574	ganglioside GM2 binding
+GO:0033218	GO:1905575	ganglioside GM3 binding
+GO:0033218	GO:1905576	ganglioside GT1b binding
+GO:0033218	GO:1905577	ganglioside GP1c binding
+GO:0033218	GO:0000062	fatty-acyl-CoA binding
+GO:0033218	GO:0120226	succinyl-CoA binding
+GO:0033218	GO:1905502	acetyl-CoA binding
+GO:0033218	GO:0036042	long-chain fatty acyl-CoA binding
+GO:0033218	GO:0043295	glutathione binding
+GO:0033218	GO:1904492	Ac-Asp-Glu binding
+GO:0036094	GO:0036094	small molecule binding
+GO:0036094	GO:0000035	acyl binding
+GO:0036094	GO:0008430	selenium binding
+GO:0036094	GO:0019825	oxygen binding
+GO:0036094	GO:0019842	vitamin binding
+GO:0036094	GO:0033219	urea binding
+GO:0036094	GO:0033226	2-aminoethylphosphonate binding
+GO:0036094	GO:0043167	ion binding
+GO:0036094	GO:0043177	organic acid binding
+GO:0036094	GO:0043178	alcohol binding
+GO:0036094	GO:0043287	poly(3-hydroxyalkanoate) binding
+GO:0036094	GO:0046848	hydroxyapatite binding
+GO:0036094	GO:0048029	monosaccharide binding
+GO:0036094	GO:0048038	quinone binding
+GO:0036094	GO:0050825	ice binding
+GO:0036094	GO:0050997	quaternary ammonium group binding
+GO:0036094	GO:0051540	metal cluster binding
+GO:0036094	GO:0070025	carbon monoxide binding
+GO:0036094	GO:0070026	nitric oxide binding
+GO:0036094	GO:0072328	alkene binding
+GO:0036094	GO:1901363	heterocyclic compound binding
+GO:0036094	GO:1902670	carbon dioxide binding
+GO:0036094	GO:1904493	tetrahydrofolyl-poly(glutamate) polymer binding
+GO:0036094	GO:0005499	vitamin D binding
+GO:0036094	GO:0005542	folic acid binding
+GO:0036094	GO:0008431	vitamin E binding
+GO:0036094	GO:0009374	biotin binding
+GO:0036094	GO:0016918	retinal binding
+GO:0036094	GO:0019841	retinol binding
+GO:0036094	GO:0030975	thiamine binding
+GO:0036094	GO:0030976	thiamine pyrophosphate binding
+GO:0036094	GO:0031177	phosphopantetheine binding
+GO:0036094	GO:0031418	L-ascorbic acid binding
+GO:0036094	GO:0031419	cobalamin binding
+GO:0036094	GO:0070279	vitamin B6 binding
+GO:0036094	GO:1902271	D3 vitamins binding
+GO:0036094	GO:1902098	calcitriol binding
+GO:0036094	GO:1902118	calcidiol binding
+GO:0036094	GO:0005502	11-cis retinal binding
+GO:0036094	GO:0005503	all-trans retinal binding
+GO:0036094	GO:1904768	all-trans-retinol binding
+GO:0036094	GO:0030170	pyridoxal phosphate binding
+GO:0036094	GO:0070280	pyridoxal binding
+GO:0036094	GO:0070281	pyridoxamine binding
+GO:0036094	GO:0070282	pyridoxine binding
+GO:0036094	GO:0043168	anion binding
+GO:0036094	GO:0043169	cation binding
+GO:0036094	GO:0000822	inositol hexakisphosphate binding
+GO:0036094	GO:0002134	UTP binding
+GO:0036094	GO:0002135	CTP binding
+GO:0036094	GO:0005546	phosphatidylinositol-4,5-bisphosphate binding
+GO:0036094	GO:0005547	phosphatidylinositol-3,4,5-trisphosphate binding
+GO:0036094	GO:0010181	FMN binding
+GO:0036094	GO:0016208	AMP binding
+GO:0036094	GO:0019002	GMP binding
+GO:0036094	GO:0019003	GDP binding
+GO:0036094	GO:0030170	pyridoxal phosphate binding
+GO:0036094	GO:0030552	cAMP binding
+GO:0036094	GO:0030553	cGMP binding
+GO:0036094	GO:0030973	molybdate ion binding
+GO:0036094	GO:0030976	thiamine pyrophosphate binding
+GO:0036094	GO:0031404	chloride ion binding
+GO:0036094	GO:0031406	carboxylic acid binding
+GO:0036094	GO:0032562	dAMP binding
+GO:0036094	GO:0032563	dADP binding
+GO:0036094	GO:0032564	dATP binding
+GO:0036094	GO:0032565	dGMP binding
+GO:0036094	GO:0032566	dGDP binding
+GO:0036094	GO:0032567	dGTP binding
+GO:0036094	GO:0035276	ethanol binding
+GO:0036094	GO:0035438	cyclic-di-GMP binding
+GO:0036094	GO:0035639	purine ribonucleoside triphosphate binding
+GO:0036094	GO:0035727	lysophosphatidic acid binding
+GO:0036094	GO:0035730	S-nitrosoglutathione binding
+GO:0036094	GO:0036173	thiosulfate binding
+GO:0036094	GO:0042301	phosphate ion binding
+GO:0036094	GO:0043199	sulfate binding
+GO:0036094	GO:0043210	alkanesulfonate binding
+GO:0036094	GO:0043295	glutathione binding
+GO:0036094	GO:0043325	phosphatidylinositol-3,4-bisphosphate binding
+GO:0036094	GO:0043531	ADP binding
+GO:0036094	GO:0043533	inositol 1,3,4,5 tetrakisphosphate binding
+GO:0036094	GO:0043924	suramin binding
+GO:0036094	GO:0046714	borate binding
+GO:0036094	GO:0050656	3'-phosphoadenosine 5'-phosphosulfate binding
+GO:0036094	GO:0050660	flavin adenine dinucleotide binding
+GO:0036094	GO:0061507	2',3'-cyclic GMP-AMP binding
+GO:0036094	GO:0070095	fructose-6-phosphate binding
+GO:0036094	GO:0070300	phosphatidic acid binding
+GO:0036094	GO:0070401	NADP+ binding
+GO:0036094	GO:0070402	NADPH binding
+GO:0036094	GO:0070403	NAD+ binding
+GO:0036094	GO:0070404	NADH binding
+GO:0036094	GO:0070679	inositol 1,4,5 trisphosphate binding
+GO:0036094	GO:0071890	bicarbonate binding
+GO:0036094	GO:0072570	ADP-D-ribose binding
+GO:0036094	GO:0080025	phosphatidylinositol-3,5-bisphosphate binding
+GO:0036094	GO:0097216	guanosine tetraphosphate binding
+GO:0036094	GO:0097244	flavonol binding
+GO:0036094	GO:0120225	coenzyme A binding
+GO:0036094	GO:0120227	acyl-CoA binding
+GO:0036094	GO:0120233	prenyl-FMNH2 binding
+GO:0036094	GO:0140703	3',3'-cyclic GMP-AMP binding
+GO:0036094	GO:0140704	3',2'-cyclic GMP-AMP binding
+GO:0036094	GO:1901359	tungstate binding
+GO:0036094	GO:1901531	hypochlorite binding
+GO:0036094	GO:1901611	phosphatidylglycerol binding
+GO:0036094	GO:1902248	5-O-phosphono-alpha-D-ribofuranosyl diphosphate binding
+GO:0036094	GO:1902249	IMP binding
+GO:0036094	GO:1902387	ceramide 1-phosphate binding
+GO:0036094	GO:1902444	riboflavin binding
+GO:0036094	GO:1902516	sn-glycerol 3-phosphate binding
+GO:0036094	GO:1903981	enterobactin binding
+GO:0036094	GO:1904492	Ac-Asp-Glu binding
+GO:0036094	GO:2001227	quercitrin binding
+GO:0036094	GO:0005542	folic acid binding
+GO:0036094	GO:0010331	gibberellin binding
+GO:0036094	GO:0016594	glycine binding
+GO:0036094	GO:0016595	glutamate binding
+GO:0036094	GO:0031418	L-ascorbic acid binding
+GO:0036094	GO:0033293	monocarboxylic acid binding
+GO:0036094	GO:0033691	sialic acid binding
+GO:0036094	GO:0034618	arginine binding
+GO:0036094	GO:0035273	phthalate binding
+GO:0036094	GO:0035923	flurbiprofen binding
+GO:0036094	GO:0036127	3-sulfino-L-alanine binding
+GO:0036094	GO:0046904	calcium oxalate binding
+GO:0036094	GO:0050542	icosanoid binding
+GO:0036094	GO:0051870	methotrexate binding
+GO:0036094	GO:0051871	dihydrofolic acid binding
+GO:0036094	GO:0070335	aspartate binding
+GO:0036094	GO:0070406	glutamine binding
+GO:0036094	GO:0070728	L-leucine binding
+GO:0036094	GO:0070905	serine binding
+GO:0036094	GO:0070967	coenzyme F420 binding
+GO:0036094	GO:0070968	pyrroloquinoline quinone binding
+GO:0036094	GO:0072544	L-DOPA binding
+GO:0036094	GO:0072545	L-tyrosine binding
+GO:0036094	GO:0120284	tryptophan binding
+GO:0036094	GO:1901973	proline binding
+GO:0036094	GO:1902051	(25S)-Delta(4)-dafachronate binding
+GO:0036094	GO:1902052	(25S)-Delta(7)-dafachronate binding
+GO:0036094	GO:1902485	L-cysteine binding
+GO:0036094	GO:1904399	heparan sulfate binding
+GO:0036094	GO:1905573	ganglioside GM1 binding
+GO:0036094	GO:1905574	ganglioside GM2 binding
+GO:0036094	GO:1905576	ganglioside GT1b binding
+GO:0036094	GO:1905577	ganglioside GP1c binding
+GO:0036094	GO:0001972	retinoic acid binding
+GO:0036094	GO:0005504	fatty acid binding
+GO:0036094	GO:0008658	penicillin binding
+GO:0036094	GO:0009374	biotin binding
+GO:0036094	GO:0010013	N-1-naphthylphthalamic acid binding
+GO:0036094	GO:0010427	abscisic acid binding
+GO:0036094	GO:0032052	bile acid binding
+GO:0036094	GO:0032500	muramyl dipeptide binding
+GO:0036094	GO:0033294	ectoine binding
+GO:0036094	GO:0033295	hydroxyectoine binding
+GO:0036094	GO:0048032	galacturonate binding
+GO:0036094	GO:1901149	salicylic acid binding
+GO:0036094	GO:1901602	dethiobiotin binding
+GO:0036094	GO:1905575	ganglioside GM3 binding
+GO:0036094	GO:0031405	lipoic acid binding
+GO:0036094	GO:0036041	long-chain fatty acid binding
+GO:0036094	GO:1901707	leptomycin B binding
+GO:0036094	GO:1904767	octanoic acid binding
+GO:0036094	GO:0050543	icosatetraenoic acid binding
+GO:0036094	GO:0050646	5-oxo-6E,8Z,11Z,14Z-icosatetraenoic acid binding
+GO:0036094	GO:0050647	5-hydroxy-6E,8Z,11Z,14Z-icosatetraenoic acid binding
+GO:0036094	GO:0050648	5(S)-hydroxyperoxy-6E,8Z,11Z,14Z-icosatetraenoic acid binding
+GO:0036094	GO:0070538	oleic acid binding
+GO:0036094	GO:0070539	linoleic acid binding
+GO:0036094	GO:0070540	stearic acid binding
+GO:0036094	GO:1904769	isopentadecanoic acid binding
+GO:0036094	GO:0050544	arachidonate binding
+GO:0036094	GO:1902121	lithocholic acid binding
+GO:0036094	GO:1902122	chenodeoxycholic acid binding
+GO:0036094	GO:0050544	arachidonate binding
+GO:0036094	GO:0050646	5-oxo-6E,8Z,11Z,14Z-icosatetraenoic acid binding
+GO:0036094	GO:0050647	5-hydroxy-6E,8Z,11Z,14Z-icosatetraenoic acid binding
+GO:0036094	GO:0050648	5(S)-hydroxyperoxy-6E,8Z,11Z,14Z-icosatetraenoic acid binding
+GO:0036094	GO:0005524	ATP binding
+GO:0036094	GO:0005525	GTP binding
+GO:0036094	GO:1901640	XTP binding
+GO:0036094	GO:1901641	ITP binding
+GO:0036094	GO:0030977	taurine binding
+GO:0036094	GO:0071949	FAD binding
+GO:0036094	GO:0071950	FADH2 binding
+GO:0036094	GO:0072571	mono-ADP-D-ribose binding
+GO:0036094	GO:0000062	fatty-acyl-CoA binding
+GO:0036094	GO:0120226	succinyl-CoA binding
+GO:0036094	GO:1905502	acetyl-CoA binding
+GO:0036094	GO:0036042	long-chain fatty acyl-CoA binding
+GO:0036094	GO:1901612	cardiolipin binding
+GO:0036094	GO:0016208	AMP binding
+GO:0036094	GO:0016594	glycine binding
+GO:0036094	GO:0019809	spermidine binding
+GO:0036094	GO:0019810	putrescine binding
+GO:0036094	GO:0019811	cocaine binding
+GO:0036094	GO:0030975	thiamine binding
+GO:0036094	GO:0030976	thiamine pyrophosphate binding
+GO:0036094	GO:0031210	phosphatidylcholine binding
+GO:0036094	GO:0033265	choline binding
+GO:0036094	GO:0034618	arginine binding
+GO:0036094	GO:0035240	dopamine binding
+GO:0036094	GO:0042166	acetylcholine binding
+GO:0036094	GO:0046872	metal ion binding
+GO:0036094	GO:0051378	serotonin binding
+GO:0036094	GO:0051379	epinephrine binding
+GO:0036094	GO:0051380	norepinephrine binding
+GO:0036094	GO:0051381	histamine binding
+GO:0036094	GO:0070280	pyridoxal binding
+GO:0036094	GO:0070281	pyridoxamine binding
+GO:0036094	GO:0070405	ammonium ion binding
+GO:0036094	GO:0070728	L-leucine binding
+GO:0036094	GO:0070905	serine binding
+GO:0036094	GO:0072545	L-tyrosine binding
+GO:0036094	GO:0120284	tryptophan binding
+GO:0036094	GO:1901691	proton binding
+GO:0036094	GO:1902485	L-cysteine binding
+GO:0036094	GO:1904047	S-adenosyl-L-methionine binding
+GO:0036094	GO:2001080	chitosan binding
+GO:0036094	GO:0000287	magnesium ion binding
+GO:0036094	GO:0005509	calcium ion binding
+GO:0036094	GO:0031420	alkali metal ion binding
+GO:0036094	GO:0032791	lead ion binding
+GO:0036094	GO:0046911	metal chelating activity
+GO:0036094	GO:0046914	transition metal ion binding
+GO:0036094	GO:0099510	calcium ion binding involved in regulation of cytosolic calcium ion concentration
+GO:0036094	GO:0099534	calcium ion binding involved in regulation of presynaptic cytosolic calcium ion concentration
+GO:0036094	GO:0099567	calcium ion binding involved in regulation of postsynaptic cytosolic calcium ion concentration
+GO:0036094	GO:0030955	potassium ion binding
+GO:0036094	GO:0031402	sodium ion binding
+GO:0036094	GO:0031403	lithium ion binding
+GO:0036094	GO:0005506	iron ion binding
+GO:0036094	GO:0005507	copper ion binding
+GO:0036094	GO:0008270	zinc ion binding
+GO:0036094	GO:0016151	nickel cation binding
+GO:0036094	GO:0030145	manganese ion binding
+GO:0036094	GO:0030151	molybdenum ion binding
+GO:0036094	GO:0045340	mercury ion binding
+GO:0036094	GO:0046870	cadmium ion binding
+GO:0036094	GO:0050897	cobalt ion binding
+GO:0036094	GO:0051212	vanadium ion binding
+GO:0036094	GO:0008198	ferrous iron binding
+GO:0036094	GO:0008199	ferric iron binding
+GO:0036094	GO:1903135	cupric ion binding
+GO:0036094	GO:1903136	cuprous ion binding
+GO:0036094	GO:0031406	carboxylic acid binding
+GO:0036094	GO:0043210	alkanesulfonate binding
+GO:0036094	GO:0043924	suramin binding
+GO:0036094	GO:0005542	folic acid binding
+GO:0036094	GO:0010331	gibberellin binding
+GO:0036094	GO:0016594	glycine binding
+GO:0036094	GO:0016595	glutamate binding
+GO:0036094	GO:0031418	L-ascorbic acid binding
+GO:0036094	GO:0033293	monocarboxylic acid binding
+GO:0036094	GO:0033691	sialic acid binding
+GO:0036094	GO:0034618	arginine binding
+GO:0036094	GO:0035273	phthalate binding
+GO:0036094	GO:0035923	flurbiprofen binding
+GO:0036094	GO:0036127	3-sulfino-L-alanine binding
+GO:0036094	GO:0046904	calcium oxalate binding
+GO:0036094	GO:0050542	icosanoid binding
+GO:0036094	GO:0051870	methotrexate binding
+GO:0036094	GO:0051871	dihydrofolic acid binding
+GO:0036094	GO:0070335	aspartate binding
+GO:0036094	GO:0070406	glutamine binding
+GO:0036094	GO:0070728	L-leucine binding
+GO:0036094	GO:0070905	serine binding
+GO:0036094	GO:0070967	coenzyme F420 binding
+GO:0036094	GO:0070968	pyrroloquinoline quinone binding
+GO:0036094	GO:0072544	L-DOPA binding
+GO:0036094	GO:0072545	L-tyrosine binding
+GO:0036094	GO:0120284	tryptophan binding
+GO:0036094	GO:1901973	proline binding
+GO:0036094	GO:1902051	(25S)-Delta(4)-dafachronate binding
+GO:0036094	GO:1902052	(25S)-Delta(7)-dafachronate binding
+GO:0036094	GO:1902485	L-cysteine binding
+GO:0036094	GO:1904399	heparan sulfate binding
+GO:0036094	GO:1905573	ganglioside GM1 binding
+GO:0036094	GO:1905574	ganglioside GM2 binding
+GO:0036094	GO:1905576	ganglioside GT1b binding
+GO:0036094	GO:1905577	ganglioside GP1c binding
+GO:0036094	GO:0001972	retinoic acid binding
+GO:0036094	GO:0005504	fatty acid binding
+GO:0036094	GO:0008658	penicillin binding
+GO:0036094	GO:0009374	biotin binding
+GO:0036094	GO:0010013	N-1-naphthylphthalamic acid binding
+GO:0036094	GO:0010427	abscisic acid binding
+GO:0036094	GO:0032052	bile acid binding
+GO:0036094	GO:0032500	muramyl dipeptide binding
+GO:0036094	GO:0033294	ectoine binding
+GO:0036094	GO:0033295	hydroxyectoine binding
+GO:0036094	GO:0048032	galacturonate binding
+GO:0036094	GO:1901149	salicylic acid binding
+GO:0036094	GO:1901602	dethiobiotin binding
+GO:0036094	GO:1905575	ganglioside GM3 binding
+GO:0036094	GO:0031405	lipoic acid binding
+GO:0036094	GO:0036041	long-chain fatty acid binding
+GO:0036094	GO:1901707	leptomycin B binding
+GO:0036094	GO:1904767	octanoic acid binding
+GO:0036094	GO:0050543	icosatetraenoic acid binding
+GO:0036094	GO:0050646	5-oxo-6E,8Z,11Z,14Z-icosatetraenoic acid binding
+GO:0036094	GO:0050647	5-hydroxy-6E,8Z,11Z,14Z-icosatetraenoic acid binding
+GO:0036094	GO:0050648	5(S)-hydroxyperoxy-6E,8Z,11Z,14Z-icosatetraenoic acid binding
+GO:0036094	GO:0070538	oleic acid binding
+GO:0036094	GO:0070539	linoleic acid binding
+GO:0036094	GO:0070540	stearic acid binding
+GO:0036094	GO:1904769	isopentadecanoic acid binding
+GO:0036094	GO:0050544	arachidonate binding
+GO:0036094	GO:1902121	lithocholic acid binding
+GO:0036094	GO:1902122	chenodeoxycholic acid binding
+GO:0036094	GO:0050544	arachidonate binding
+GO:0036094	GO:0050646	5-oxo-6E,8Z,11Z,14Z-icosatetraenoic acid binding
+GO:0036094	GO:0050647	5-hydroxy-6E,8Z,11Z,14Z-icosatetraenoic acid binding
+GO:0036094	GO:0050648	5(S)-hydroxyperoxy-6E,8Z,11Z,14Z-icosatetraenoic acid binding
+GO:0036094	GO:0030977	taurine binding
+GO:0036094	GO:0000822	inositol hexakisphosphate binding
+GO:0036094	GO:0010427	abscisic acid binding
+GO:0036094	GO:0015485	cholesterol binding
+GO:0036094	GO:0019841	retinol binding
+GO:0036094	GO:0030975	thiamine binding
+GO:0036094	GO:0033295	hydroxyectoine binding
+GO:0036094	GO:0035100	ecdysone binding
+GO:0036094	GO:0035276	ethanol binding
+GO:0036094	GO:0043533	inositol 1,3,4,5 tetrakisphosphate binding
+GO:0036094	GO:0070679	inositol 1,4,5 trisphosphate binding
+GO:0036094	GO:1903794	cortisol binding
+GO:0036094	GO:1903875	corticosterone binding
+GO:0036094	GO:1903876	11-deoxycortisol binding
+GO:0036094	GO:1903877	21-deoxycortisol binding
+GO:0036094	GO:1903878	11-deoxycorticosterone binding
+GO:0036094	GO:1903880	17alpha-hydroxyprogesterone binding
+GO:0036094	GO:1904768	all-trans-retinol binding
+GO:0036094	GO:0005534	galactose binding
+GO:0036094	GO:0005536	D-glucose binding
+GO:0036094	GO:0005537	D-mannose binding
+GO:0036094	GO:0031418	L-ascorbic acid binding
+GO:0036094	GO:0033222	xylose binding
+GO:0036094	GO:0033296	rhamnose binding
+GO:0036094	GO:0042806	fucose binding
+GO:0036094	GO:0070061	fructose binding
+GO:0036094	GO:2001084	L-arabinofuranose binding
+GO:0036094	GO:0048039	ubiquinone binding
+GO:0036094	GO:1900995	ubiquinone-6 binding
+GO:0036094	GO:0030976	thiamine pyrophosphate binding
+GO:0036094	GO:0031210	phosphatidylcholine binding
+GO:0036094	GO:0033295	hydroxyectoine binding
+GO:0036094	GO:0035731	dinitrosyl-iron complex binding
+GO:0036094	GO:0051536	iron-sulfur cluster binding
+GO:0036094	GO:0044590	iron-sulfur-molybdenum cofactor binding
+GO:0036094	GO:0051537	2 iron, 2 sulfur cluster binding
+GO:0036094	GO:0051538	3 iron, 4 sulfur cluster binding
+GO:0036094	GO:0051539	4 iron, 4 sulfur cluster binding
+GO:0036094	GO:1990655	4 iron, 3 sulfur cluster binding
+GO:0036094	GO:0051740	ethylene binding
+GO:0036094	GO:0000166	nucleotide binding
+GO:0036094	GO:0001882	nucleoside binding
+GO:0036094	GO:0002054	nucleobase binding
+GO:0036094	GO:0005542	folic acid binding
+GO:0036094	GO:0008431	vitamin E binding
+GO:0036094	GO:0008658	penicillin binding
+GO:0036094	GO:0009374	biotin binding
+GO:0036094	GO:0019811	cocaine binding
+GO:0036094	GO:0030975	thiamine binding
+GO:0036094	GO:0030976	thiamine pyrophosphate binding
+GO:0036094	GO:0031405	lipoic acid binding
+GO:0036094	GO:0031418	L-ascorbic acid binding
+GO:0036094	GO:0031419	cobalamin binding
+GO:0036094	GO:0033294	ectoine binding
+GO:0036094	GO:0033295	hydroxyectoine binding
+GO:0036094	GO:0035639	purine ribonucleoside triphosphate binding
+GO:0036094	GO:0051378	serotonin binding
+GO:0036094	GO:0051381	histamine binding
+GO:0036094	GO:0051870	methotrexate binding
+GO:0036094	GO:0051871	dihydrofolic acid binding
+GO:0036094	GO:0070279	vitamin B6 binding
+GO:0036094	GO:0070967	coenzyme F420 binding
+GO:0036094	GO:0070968	pyrroloquinoline quinone binding
+GO:0036094	GO:0072570	ADP-D-ribose binding
+GO:0036094	GO:0097245	flavanol binding
+GO:0036094	GO:0120225	coenzyme A binding
+GO:0036094	GO:0120227	acyl-CoA binding
+GO:0036094	GO:0120284	tryptophan binding
+GO:0036094	GO:1901602	dethiobiotin binding
+GO:0036094	GO:1901707	leptomycin B binding
+GO:0036094	GO:1901973	proline binding
+GO:0036094	GO:1902444	riboflavin binding
+GO:0036094	GO:1903981	enterobactin binding
+GO:0036094	GO:0008327	methyl-CpG binding
+GO:0036094	GO:0010428	methyl-CpNpG binding
+GO:0036094	GO:0010429	methyl-CpNpN binding
+GO:0036094	GO:0017076	purine nucleotide binding
+GO:0036094	GO:0019103	pyrimidine nucleotide binding
+GO:0036094	GO:0030551	cyclic nucleotide binding
+GO:0036094	GO:0032552	deoxyribonucleotide binding
+GO:0036094	GO:0032553	ribonucleotide binding
+GO:0036094	GO:0050660	flavin adenine dinucleotide binding
+GO:0036094	GO:0019001	guanyl nucleotide binding
+GO:0036094	GO:0030554	adenyl nucleotide binding
+GO:0036094	GO:0032554	purine deoxyribonucleotide binding
+GO:0036094	GO:0032555	purine ribonucleotide binding
+GO:0036094	GO:0032560	guanyl deoxyribonucleotide binding
+GO:0036094	GO:0032561	guanyl ribonucleotide binding
+GO:0036094	GO:0032565	dGMP binding
+GO:0036094	GO:0032566	dGDP binding
+GO:0036094	GO:0032567	dGTP binding
+GO:0036094	GO:0005525	GTP binding
+GO:0036094	GO:0019002	GMP binding
+GO:0036094	GO:0019003	GDP binding
+GO:0036094	GO:0030553	cGMP binding
+GO:0036094	GO:0035438	cyclic-di-GMP binding
+GO:0036094	GO:0061507	2',3'-cyclic GMP-AMP binding
+GO:0036094	GO:0097216	guanosine tetraphosphate binding
+GO:0036094	GO:0140703	3',3'-cyclic GMP-AMP binding
+GO:0036094	GO:0032558	adenyl deoxyribonucleotide binding
+GO:0036094	GO:0032559	adenyl ribonucleotide binding
+GO:0036094	GO:0050661	NADP binding
+GO:0036094	GO:0051287	NAD binding
+GO:0036094	GO:0032562	dAMP binding
+GO:0036094	GO:0032563	dADP binding
+GO:0036094	GO:0032564	dATP binding
+GO:0036094	GO:0005524	ATP binding
+GO:0036094	GO:0016208	AMP binding
+GO:0036094	GO:0030552	cAMP binding
+GO:0036094	GO:0043531	ADP binding
+GO:0036094	GO:0050656	3'-phosphoadenosine 5'-phosphosulfate binding
+GO:0036094	GO:0061507	2',3'-cyclic GMP-AMP binding
+GO:0036094	GO:0140703	3',3'-cyclic GMP-AMP binding
+GO:0036094	GO:0180001	cyclic-di-AMP binding
+GO:0036094	GO:0070401	NADP+ binding
+GO:0036094	GO:0070402	NADPH binding
+GO:0036094	GO:0070403	NAD+ binding
+GO:0036094	GO:0070404	NADH binding
+GO:0036094	GO:0032558	adenyl deoxyribonucleotide binding
+GO:0036094	GO:0032560	guanyl deoxyribonucleotide binding
+GO:0036094	GO:0032562	dAMP binding
+GO:0036094	GO:0032563	dADP binding
+GO:0036094	GO:0032564	dATP binding
+GO:0036094	GO:0032565	dGMP binding
+GO:0036094	GO:0032566	dGDP binding
+GO:0036094	GO:0032567	dGTP binding
+GO:0036094	GO:0032559	adenyl ribonucleotide binding
+GO:0036094	GO:0032561	guanyl ribonucleotide binding
+GO:0036094	GO:1901640	XTP binding
+GO:0036094	GO:1901641	ITP binding
+GO:0036094	GO:1902249	IMP binding
+GO:0036094	GO:0005524	ATP binding
+GO:0036094	GO:0016208	AMP binding
+GO:0036094	GO:0030552	cAMP binding
+GO:0036094	GO:0043531	ADP binding
+GO:0036094	GO:0050656	3'-phosphoadenosine 5'-phosphosulfate binding
+GO:0036094	GO:0061507	2',3'-cyclic GMP-AMP binding
+GO:0036094	GO:0140703	3',3'-cyclic GMP-AMP binding
+GO:0036094	GO:0180001	cyclic-di-AMP binding
+GO:0036094	GO:0005525	GTP binding
+GO:0036094	GO:0019002	GMP binding
+GO:0036094	GO:0019003	GDP binding
+GO:0036094	GO:0030553	cGMP binding
+GO:0036094	GO:0035438	cyclic-di-GMP binding
+GO:0036094	GO:0061507	2',3'-cyclic GMP-AMP binding
+GO:0036094	GO:0097216	guanosine tetraphosphate binding
+GO:0036094	GO:0140703	3',3'-cyclic GMP-AMP binding
+GO:0036094	GO:0032556	pyrimidine deoxyribonucleotide binding
+GO:0036094	GO:0032557	pyrimidine ribonucleotide binding
+GO:0036094	GO:0002134	UTP binding
+GO:0036094	GO:0002135	CTP binding
+GO:0036094	GO:0030552	cAMP binding
+GO:0036094	GO:0030553	cGMP binding
+GO:0036094	GO:0035438	cyclic-di-GMP binding
+GO:0036094	GO:0140702	cyclic GMP-AMP binding
+GO:0036094	GO:0180001	cyclic-di-AMP binding
+GO:0036094	GO:0061507	2',3'-cyclic GMP-AMP binding
+GO:0036094	GO:0140703	3',3'-cyclic GMP-AMP binding
+GO:0036094	GO:0032554	purine deoxyribonucleotide binding
+GO:0036094	GO:0032556	pyrimidine deoxyribonucleotide binding
+GO:0036094	GO:0032558	adenyl deoxyribonucleotide binding
+GO:0036094	GO:0032560	guanyl deoxyribonucleotide binding
+GO:0036094	GO:0032562	dAMP binding
+GO:0036094	GO:0032563	dADP binding
+GO:0036094	GO:0032564	dATP binding
+GO:0036094	GO:0032565	dGMP binding
+GO:0036094	GO:0032566	dGDP binding
+GO:0036094	GO:0032567	dGTP binding
+GO:0036094	GO:0010181	FMN binding
+GO:0036094	GO:0032555	purine ribonucleotide binding
+GO:0036094	GO:0032557	pyrimidine ribonucleotide binding
+GO:0036094	GO:0120233	prenyl-FMNH2 binding
+GO:0036094	GO:0032559	adenyl ribonucleotide binding
+GO:0036094	GO:0032561	guanyl ribonucleotide binding
+GO:0036094	GO:1901640	XTP binding
+GO:0036094	GO:1901641	ITP binding
+GO:0036094	GO:1902249	IMP binding
+GO:0036094	GO:0005524	ATP binding
+GO:0036094	GO:0016208	AMP binding
+GO:0036094	GO:0030552	cAMP binding
+GO:0036094	GO:0043531	ADP binding
+GO:0036094	GO:0050656	3'-phosphoadenosine 5'-phosphosulfate binding
+GO:0036094	GO:0061507	2',3'-cyclic GMP-AMP binding
+GO:0036094	GO:0140703	3',3'-cyclic GMP-AMP binding
+GO:0036094	GO:0180001	cyclic-di-AMP binding
+GO:0036094	GO:0005525	GTP binding
+GO:0036094	GO:0019002	GMP binding
+GO:0036094	GO:0019003	GDP binding
+GO:0036094	GO:0030553	cGMP binding
+GO:0036094	GO:0035438	cyclic-di-GMP binding
+GO:0036094	GO:0061507	2',3'-cyclic GMP-AMP binding
+GO:0036094	GO:0097216	guanosine tetraphosphate binding
+GO:0036094	GO:0140703	3',3'-cyclic GMP-AMP binding
+GO:0036094	GO:0002134	UTP binding
+GO:0036094	GO:0002135	CTP binding
+GO:0036094	GO:0071949	FAD binding
+GO:0036094	GO:0071950	FADH2 binding
+GO:0036094	GO:0001883	purine nucleoside binding
+GO:0036094	GO:0001884	pyrimidine nucleoside binding
+GO:0036094	GO:0032546	deoxyribonucleoside binding
+GO:0036094	GO:0032549	ribonucleoside binding
+GO:0036094	GO:0032547	purine deoxyribonucleoside binding
+GO:0036094	GO:0032550	purine ribonucleoside binding
+GO:0036094	GO:1905108	guanosine binding
+GO:0036094	GO:0032548	pyrimidine deoxyribonucleoside binding
+GO:0036094	GO:0032551	pyrimidine ribonucleoside binding
+GO:0036094	GO:0032547	purine deoxyribonucleoside binding
+GO:0036094	GO:0032548	pyrimidine deoxyribonucleoside binding
+GO:0036094	GO:0032550	purine ribonucleoside binding
+GO:0036094	GO:0032551	pyrimidine ribonucleoside binding
+GO:0036094	GO:1905108	guanosine binding
+GO:0036094	GO:0002060	purine nucleobase binding
+GO:0036094	GO:0002061	pyrimidine nucleobase binding
+GO:0036094	GO:0002055	adenine binding
+GO:0036094	GO:0002057	guanine binding
+GO:0036094	GO:0160050	xanthine binding
+GO:0036094	GO:0002056	cytosine binding
+GO:0036094	GO:0002058	uracil binding
+GO:0036094	GO:0002059	thymine binding
+GO:0036094	GO:0005524	ATP binding
+GO:0036094	GO:0005525	GTP binding
+GO:0036094	GO:1901640	XTP binding
+GO:0036094	GO:1901641	ITP binding
+GO:0036094	GO:0030170	pyridoxal phosphate binding
+GO:0036094	GO:0070280	pyridoxal binding
+GO:0036094	GO:0070281	pyridoxamine binding
+GO:0036094	GO:0070282	pyridoxine binding
+GO:0036094	GO:0072571	mono-ADP-D-ribose binding
+GO:0036094	GO:0097246	catechin binding
+GO:0036094	GO:0000062	fatty-acyl-CoA binding
+GO:0036094	GO:0120226	succinyl-CoA binding
+GO:0036094	GO:1905502	acetyl-CoA binding
+GO:0036094	GO:0036042	long-chain fatty acyl-CoA binding
+GO:0042277	GO:0042277	peptide binding
+GO:0042277	GO:0001540	amyloid-beta binding
+GO:0042277	GO:0005048	signal sequence binding
+GO:0042277	GO:0042605	peptide antigen binding
+GO:0042277	GO:0042923	neuropeptide binding
+GO:0042277	GO:0000268	peroxisome targeting sequence binding
+GO:0042277	GO:0008139	nuclear localization sequence binding
+GO:0042277	GO:0010209	vacuolar sorting signal binding
+GO:0042277	GO:0030941	chloroplast targeting sequence binding
+GO:0042277	GO:0030942	endoplasmic reticulum signal peptide binding
+GO:0042277	GO:0030943	mitochondrion targeting sequence binding
+GO:0042277	GO:0046923	ER retention sequence binding
+GO:0042277	GO:1990473	ciliary targeting signal binding
+GO:0042277	GO:0005052	peroxisome matrix targeting signal-1 binding
+GO:0042277	GO:0005053	peroxisome matrix targeting signal-2 binding
+GO:0042277	GO:0033328	peroxisome membrane targeting sequence binding
+GO:0042277	GO:0036105	peroxisome membrane class-1 targeting sequence binding
+GO:0042277	GO:0036106	peroxisome membrane class-2 targeting sequence binding
+GO:0042277	GO:0009940	amino-terminal vacuolar sorting propeptide binding
+GO:0042277	GO:0005046	KDEL sequence binding
+GO:0042277	GO:0030944	DDEL sequence binding
+GO:0042277	GO:0045015	HDEL sequence binding
+GO:0042277	GO:0042924	neuromedin U binding
+GO:0042562	GO:0042562	hormone binding
+GO:0042562	GO:0005497	androgen binding
+GO:0042562	GO:0005500	juvenile hormone binding
+GO:0042562	GO:0010011	auxin binding
+GO:0042562	GO:0010331	gibberellin binding
+GO:0042562	GO:0010427	abscisic acid binding
+GO:0042562	GO:0017046	peptide hormone binding
+GO:0042562	GO:0035100	ecdysone binding
+GO:0042562	GO:0038106	choriogonadotropin hormone binding
+GO:0042562	GO:0044373	cytokinin binding
+GO:0042562	GO:0048408	epidermal growth factor binding
+GO:0042562	GO:0051379	epinephrine binding
+GO:0042562	GO:0055100	adiponectin binding
+GO:0042562	GO:0070324	thyroid hormone binding
+GO:0042562	GO:0099130	estrogen binding
+GO:0042562	GO:1990239	steroid hormone binding
+GO:0042562	GO:0043559	insulin binding
+GO:0042562	GO:0051424	corticotropin-releasing hormone binding
+GO:0042562	GO:0051448	gonadotropin-releasing hormone binding
+GO:0042562	GO:0051449	thyrotropin-releasing hormone binding
+GO:0042562	GO:0097004	adipokinetic hormone binding
+GO:0042562	GO:0097644	calcitonin family binding
+GO:0042562	GO:0120022	glucagon family peptide binding
+GO:0042562	GO:0120023	somatostatin binding
+GO:0042562	GO:0032841	calcitonin binding
+GO:0042562	GO:0097645	amylin binding
+GO:0042562	GO:1990407	calcitonin gene-related peptide binding
+GO:0042562	GO:1990409	adrenomedullin binding
+GO:0042562	GO:1902051	(25S)-Delta(4)-dafachronate binding
+GO:0042562	GO:1902052	(25S)-Delta(7)-dafachronate binding
+GO:0042562	GO:1903794	cortisol binding
+GO:0042562	GO:1903875	corticosterone binding
+GO:0042562	GO:1903876	11-deoxycortisol binding
+GO:0042562	GO:1903878	11-deoxycorticosterone binding
+GO:0043176	GO:0043176	amine binding
+GO:0043176	GO:0008145	phenylalkylamine binding
+GO:0043176	GO:0019808	polyamine binding
+GO:0043176	GO:0051378	serotonin binding
+GO:0043176	GO:0071886	1-(4-iodo-2,5-dimethoxyphenyl)propan-2-amine binding
+GO:0043176	GO:0019809	spermidine binding
+GO:0043176	GO:0019810	putrescine binding
+GO:0043515	GO:0043515	kinetochore binding
+GO:0044877	GO:0044877	protein-containing complex binding
+GO:0044877	GO:0001092	TFIIA-class transcription factor complex binding
+GO:0044877	GO:0001094	TFIID-class transcription factor complex binding
+GO:0044877	GO:0001095	TFIIE-class transcription factor complex binding
+GO:0044877	GO:0001096	TFIIF-class transcription factor complex binding
+GO:0044877	GO:0001097	TFIIH-class transcription factor complex binding
+GO:0044877	GO:0001849	complement component C1q complex binding
+GO:0044877	GO:0005132	type I interferon receptor binding
+GO:0044877	GO:0005178	integrin binding
+GO:0044877	GO:0005518	collagen binding
+GO:0044877	GO:0010997	anaphase-promoting complex binding
+GO:0044877	GO:0019865	immunoglobulin binding
+GO:0044877	GO:0023023	MHC protein complex binding
+GO:0044877	GO:0030507	spectrin binding
+GO:0044877	GO:0031491	nucleosome binding
+GO:0044877	GO:0031683	G-protein beta/gamma-subunit complex binding
+GO:0044877	GO:0032404	mismatch repair complex binding
+GO:0044877	GO:0032795	heterotrimeric G-protein binding
+GO:0044877	GO:0034710	inhibin complex binding
+GO:0044877	GO:0034988	Fc-gamma receptor I complex binding
+GO:0044877	GO:0035612	AP-2 adaptor complex binding
+GO:0044877	GO:0035650	AP-1 adaptor complex binding
+GO:0044877	GO:0035651	AP-3 adaptor complex binding
+GO:0044877	GO:0036033	mediator complex binding
+GO:0044877	GO:0036461	BLOC-2 complex binding
+GO:0044877	GO:0042608	T cell receptor binding
+GO:0044877	GO:0043021	ribonucleoprotein complex binding
+GO:0044877	GO:0048185	activin binding
+GO:0044877	GO:0051015	actin filament binding
+GO:0044877	GO:0062058	transcription factor TFIIH holo complex binding
+GO:0044877	GO:0062059	FACT complex binding
+GO:0044877	GO:0062060	NuA4 histone acetyltransferase complex binding
+GO:0044877	GO:0062061	TAP complex binding
+GO:0044877	GO:0062062	oligosaccharyltransferase complex binding
+GO:0044877	GO:0062063	BBSome binding
+GO:0044877	GO:0062066	PSII associated light-harvesting complex II binding
+GO:0044877	GO:0062067	chloroplast photosystem I binding
+GO:0044877	GO:0062068	chloroplast photosystem II binding
+GO:0044877	GO:0062069	GARP complex binding
+GO:0044877	GO:0062070	SAGA complex binding
+GO:0044877	GO:0062078	TSC1-TSC2 complex binding
+GO:0044877	GO:0070051	fibrinogen binding
+GO:0044877	GO:0070628	proteasome binding
+GO:0044877	GO:0070840	dynein complex binding
+GO:0044877	GO:0071814	protein-lipid complex binding
+GO:0044877	GO:0071933	Arp2/3 complex binding
+GO:0044877	GO:0106080	GATOR1 complex binding
+GO:0044877	GO:0106137	IkappaB kinase complex binding
+GO:0044877	GO:0106138	Sec61 translocon complex binding
+GO:0044877	GO:0106140	P-TEFb complex binding
+GO:0044877	GO:0120160	intraciliary transport particle A binding
+GO:0044877	GO:0120170	intraciliary transport particle B binding
+GO:0044877	GO:0120325	NuRD complex binding
+GO:0044877	GO:0140164	Golgi transport complex binding
+GO:0044877	GO:0140259	PRC1 complex binding
+GO:0044877	GO:0140260	mitochondrial proton-transporting ATP synthase complex binding
+GO:0044877	GO:0140262	mRNA cap binding complex binding
+GO:0044877	GO:0140496	gamma-tubulin complex binding
+GO:0044877	GO:1904288	BAT3 complex binding
+GO:0044877	GO:1904713	beta-catenin destruction complex binding
+GO:0044877	GO:1904841	TORC2 complex binding
+GO:0044877	GO:1904854	proteasome core complex binding
+GO:0044877	GO:1904855	proteasome regulatory particle binding
+GO:0044877	GO:1904931	MCM complex binding
+GO:0044877	GO:1905334	Swi5-Sfr1 complex binding
+GO:0044877	GO:1905394	retromer complex binding
+GO:0044877	GO:1905761	SCF ubiquitin ligase complex binding
+GO:0044877	GO:1905762	CCR4-NOT complex binding
+GO:0044877	GO:1905763	MTREC complex binding
+GO:0044877	GO:1990448	exon-exon junction complex binding
+GO:0044877	GO:1990593	nascent polypeptide-associated complex binding
+GO:0044877	GO:0098640	integrin binding involved in cell-matrix adhesion
+GO:0044877	GO:0070052	collagen V binding
+GO:0044877	GO:0098639	collagen binding involved in cell-matrix adhesion
+GO:0044877	GO:0001790	polymeric immunoglobulin binding
+GO:0044877	GO:0001791	IgM binding
+GO:0044877	GO:0019862	IgA binding
+GO:0044877	GO:0019863	IgE binding
+GO:0044877	GO:0019864	IgG binding
+GO:0044877	GO:0043472	IgD binding
+GO:0044877	GO:0023024	MHC class I protein complex binding
+GO:0044877	GO:0023025	MHC class Ib protein complex binding
+GO:0044877	GO:0023026	MHC class II protein complex binding
+GO:0044877	GO:0031492	nucleosomal DNA binding
+GO:0044877	GO:0097030	CENP-A containing nucleosome binding
+GO:0044877	GO:0032405	MutLalpha complex binding
+GO:0044877	GO:0032406	MutLbeta complex binding
+GO:0044877	GO:0032407	MutSalpha complex binding
+GO:0044877	GO:0032408	MutSbeta complex binding
+GO:0044877	GO:0005047	signal recognition particle binding
+GO:0044877	GO:0030519	snoRNP binding
+GO:0044877	GO:0043022	ribosome binding
+GO:0044877	GO:0070990	snRNP binding
+GO:0044877	GO:1905172	RISC complex binding
+GO:0044877	GO:1990275	preribosome binding
+GO:0044877	GO:0062064	box C/D methylation guide snoRNP complex binding
+GO:0044877	GO:0062065	box H/ACA snoRNP complex binding
+GO:0044877	GO:0043023	ribosomal large subunit binding
+GO:0044877	GO:0043024	ribosomal small subunit binding
+GO:0044877	GO:0097177	mitochondrial ribosome binding
+GO:0044877	GO:0140978	mitochondrial large ribosomal subunit binding
+GO:0044877	GO:0140978	mitochondrial large ribosomal subunit binding
+GO:0044877	GO:1990446	U1 snRNP binding
+GO:0044877	GO:1990447	U2 snRNP binding
+GO:0044877	GO:0003786	actin lateral binding
+GO:0044877	GO:0071813	lipoprotein particle binding
+GO:0044877	GO:0008035	high-density lipoprotein particle binding
+GO:0044877	GO:0030169	low-density lipoprotein particle binding
+GO:0044877	GO:0034189	very-low-density lipoprotein particle binding
+GO:0044877	GO:0035478	chylomicron binding
+GO:0044877	GO:0071815	intermediate-density lipoprotein particle binding
+GO:0046812	GO:0046812	host cell surface binding
+GO:0046812	GO:0046789	host cell surface receptor binding
+GO:0050840	GO:0050840	extracellular matrix binding
+GO:0050840	GO:0043236	laminin binding
+GO:0050840	GO:0044730	bone sialoprotein binding
+GO:0050840	GO:0046810	host cell extracellular matrix binding
+GO:0050840	GO:0050436	microfibril binding
+GO:0050840	GO:0098633	collagen fibril binding
+GO:0050840	GO:0043237	laminin-1 binding
+GO:0050840	GO:0098638	laminin binding involved in cell-matrix adhesion
+GO:0051192	GO:0051192	prosthetic group binding
+GO:0051192	GO:0044620	ACP phosphopantetheine attachment site binding
+GO:0051192	GO:0000036	acyl carrier activity
+GO:0072341	GO:0072341	modified amino acid binding
+GO:0072341	GO:0001786	phosphatidylserine binding
+GO:0072341	GO:0005542	folic acid binding
+GO:0072341	GO:0031177	phosphopantetheine binding
+GO:0072341	GO:0036127	3-sulfino-L-alanine binding
+GO:0072341	GO:0043295	glutathione binding
+GO:0072341	GO:0051871	dihydrofolic acid binding
+GO:0072341	GO:0072544	L-DOPA binding
+GO:0097159	GO:0097159	organic cyclic compound binding
+GO:0097159	GO:0001882	nucleoside binding
+GO:0097159	GO:0002054	nucleobase binding
+GO:0097159	GO:0003676	nucleic acid binding
+GO:0097159	GO:0005496	steroid binding
+GO:0097159	GO:0005527	macrolide binding
+GO:0097159	GO:0005542	folic acid binding
+GO:0097159	GO:0008431	vitamin E binding
+GO:0097159	GO:0008658	penicillin binding
+GO:0097159	GO:0009374	biotin binding
+GO:0097159	GO:0010013	N-1-naphthylphthalamic acid binding
+GO:0097159	GO:0016596	thienylcyclohexylpiperidine binding
+GO:0097159	GO:0019811	cocaine binding
+GO:0097159	GO:0030975	thiamine binding
+GO:0097159	GO:0030976	thiamine pyrophosphate binding
+GO:0097159	GO:0031405	lipoic acid binding
+GO:0097159	GO:0031418	L-ascorbic acid binding
+GO:0097159	GO:0033294	ectoine binding
+GO:0097159	GO:0033295	hydroxyectoine binding
+GO:0097159	GO:0034617	tetrahydrobiopterin binding
+GO:0097159	GO:0035273	phthalate binding
+GO:0097159	GO:0035274	diphenyl phthalate binding
+GO:0097159	GO:0035275	dibutyl phthalate binding
+GO:0097159	GO:0035923	flurbiprofen binding
+GO:0097159	GO:0043544	lipoamide binding
+GO:0097159	GO:0043546	molybdopterin cofactor binding
+GO:0097159	GO:0043924	suramin binding
+GO:0097159	GO:0046906	tetrapyrrole binding
+GO:0097159	GO:0050809	diazepam binding
+GO:0097159	GO:0051378	serotonin binding
+GO:0097159	GO:0051381	histamine binding
+GO:0097159	GO:0051870	methotrexate binding
+GO:0097159	GO:0051871	dihydrofolic acid binding
+GO:0097159	GO:0070279	vitamin B6 binding
+GO:0097159	GO:0070967	coenzyme F420 binding
+GO:0097159	GO:0070968	pyrroloquinoline quinone binding
+GO:0097159	GO:0071886	1-(4-iodo-2,5-dimethoxyphenyl)propan-2-amine binding
+GO:0097159	GO:0072544	L-DOPA binding
+GO:0097159	GO:0072545	L-tyrosine binding
+GO:0097159	GO:0097160	polychlorinated biphenyl binding
+GO:0097159	GO:0097245	flavanol binding
+GO:0097159	GO:0097247	epigallocatechin 3-gallate binding
+GO:0097159	GO:0120284	tryptophan binding
+GO:0097159	GO:1901149	salicylic acid binding
+GO:0097159	GO:1901265	nucleoside phosphate binding
+GO:0097159	GO:1901338	catecholamine binding
+GO:0097159	GO:1901602	dethiobiotin binding
+GO:0097159	GO:1901707	leptomycin B binding
+GO:0097159	GO:1901973	proline binding
+GO:0097159	GO:1902314	hydroquinone binding
+GO:0097159	GO:1902444	riboflavin binding
+GO:0097159	GO:1904408	melatonin binding
+GO:0097159	GO:1905594	resveratrol binding
+GO:0097159	GO:2001147	camalexin binding
+GO:0097159	GO:0001883	purine nucleoside binding
+GO:0097159	GO:0001884	pyrimidine nucleoside binding
+GO:0097159	GO:0032546	deoxyribonucleoside binding
+GO:0097159	GO:0032549	ribonucleoside binding
+GO:0097159	GO:0032547	purine deoxyribonucleoside binding
+GO:0097159	GO:0032550	purine ribonucleoside binding
+GO:0097159	GO:1905108	guanosine binding
+GO:0097159	GO:0032548	pyrimidine deoxyribonucleoside binding
+GO:0097159	GO:0032551	pyrimidine ribonucleoside binding
+GO:0097159	GO:0032547	purine deoxyribonucleoside binding
+GO:0097159	GO:0032548	pyrimidine deoxyribonucleoside binding
+GO:0097159	GO:0032550	purine ribonucleoside binding
+GO:0097159	GO:0032551	pyrimidine ribonucleoside binding
+GO:0097159	GO:1905108	guanosine binding
+GO:0097159	GO:0002060	purine nucleobase binding
+GO:0097159	GO:0002061	pyrimidine nucleobase binding
+GO:0097159	GO:0002055	adenine binding
+GO:0097159	GO:0002057	guanine binding
+GO:0097159	GO:0160050	xanthine binding
+GO:0097159	GO:0002056	cytosine binding
+GO:0097159	GO:0002058	uracil binding
+GO:0097159	GO:0002059	thymine binding
+GO:0097159	GO:0001067	transcription regulatory region nucleic acid binding
+GO:0097159	GO:0003677	DNA binding
+GO:0097159	GO:0003723	RNA binding
+GO:0097159	GO:0071667	DNA/RNA hybrid binding
+GO:0097159	GO:0090079	translation regulator activity, nucleic acid binding
+GO:0097159	GO:0140666	annealing activity
+GO:0097159	GO:0000976	transcription cis-regulatory region binding
+GO:0097159	GO:0001069	regulatory region RNA binding
+GO:0097159	GO:0000977	RNA polymerase II transcription regulatory region sequence-specific DNA binding
+GO:0097159	GO:0000987	cis-regulatory region sequence-specific DNA binding
+GO:0097159	GO:0001016	RNA polymerase III transcription regulatory region sequence-specific DNA binding
+GO:0097159	GO:0001018	mitochondrial promoter sequence-specific DNA binding
+GO:0097159	GO:0001019	plastid promoter transcription regulatory region sequence-specific DNA binding
+GO:0097159	GO:0001046	core promoter sequence-specific DNA binding
+GO:0097159	GO:0001147	transcription termination site sequence-specific DNA binding
+GO:0097159	GO:0001161	intronic transcription regulatory region sequence-specific DNA binding
+GO:0097159	GO:0001163	RNA polymerase I transcription regulatory region sequence-specific DNA binding
+GO:0097159	GO:0032422	purine-rich negative regulatory element binding
+GO:0097159	GO:0000978	RNA polymerase II cis-regulatory region sequence-specific DNA binding
+GO:0097159	GO:0000979	RNA polymerase II core promoter sequence-specific DNA binding
+GO:0097159	GO:0001162	RNA polymerase II intronic transcription regulatory region sequence-specific DNA binding
+GO:0097159	GO:0010736	serum response element binding
+GO:0097159	GO:0032810	sterol response element binding
+GO:0097159	GO:0034056	estrogen response element binding
+GO:0097159	GO:0035497	cAMP response element binding
+GO:0097159	GO:0035538	carbohydrate response element binding
+GO:0097159	GO:0044323	retinoic acid-responsive element binding
+GO:0097159	GO:0044377	RNA polymerase II cis-regulatory region sequence-specific DNA binding, bending
+GO:0097159	GO:0070594	juvenile hormone response element binding
+GO:0097159	GO:0070644	vitamin D response element binding
+GO:0097159	GO:0070888	E-box binding
+GO:0097159	GO:0071820	N-box binding
+GO:0097159	GO:0140728	GC-box binding
+GO:0097159	GO:0000978	RNA polymerase II cis-regulatory region sequence-specific DNA binding
+GO:0097159	GO:0000992	RNA polymerase III cis-regulatory region sequence-specific DNA binding
+GO:0097159	GO:0010736	serum response element binding
+GO:0097159	GO:0032810	sterol response element binding
+GO:0097159	GO:0034056	estrogen response element binding
+GO:0097159	GO:0035497	cAMP response element binding
+GO:0097159	GO:0035538	carbohydrate response element binding
+GO:0097159	GO:0044323	retinoic acid-responsive element binding
+GO:0097159	GO:0044377	RNA polymerase II cis-regulatory region sequence-specific DNA binding, bending
+GO:0097159	GO:0070594	juvenile hormone response element binding
+GO:0097159	GO:0070644	vitamin D response element binding
+GO:0097159	GO:0070888	E-box binding
+GO:0097159	GO:0071820	N-box binding
+GO:0097159	GO:0140728	GC-box binding
+GO:0097159	GO:0001002	RNA polymerase III type 1 promoter sequence-specific DNA binding
+GO:0097159	GO:0001003	RNA polymerase III type 2 promoter sequence-specific DNA binding
+GO:0097159	GO:0001006	RNA polymerase III type 3 promoter sequence-specific DNA binding
+GO:0097159	GO:0001039	RNA polymerase III hybrid type promoter sequence-specific DNA binding
+GO:0097159	GO:0000992	RNA polymerase III cis-regulatory region sequence-specific DNA binding
+GO:0097159	GO:0001002	RNA polymerase III type 1 promoter sequence-specific DNA binding
+GO:0097159	GO:0001003	RNA polymerase III type 2 promoter sequence-specific DNA binding
+GO:0097159	GO:0001006	RNA polymerase III type 3 promoter sequence-specific DNA binding
+GO:0097159	GO:0001039	RNA polymerase III hybrid type promoter sequence-specific DNA binding
+GO:0097159	GO:0000979	RNA polymerase II core promoter sequence-specific DNA binding
+GO:0097159	GO:0001164	RNA polymerase I core promoter sequence-specific DNA binding
+GO:0097159	GO:0001162	RNA polymerase II intronic transcription regulatory region sequence-specific DNA binding
+GO:0097159	GO:0001164	RNA polymerase I core promoter sequence-specific DNA binding
+GO:0097159	GO:0001165	RNA polymerase I cis-regulatory region sequence-specific DNA binding
+GO:0097159	GO:0001068	transcription regulatory region RNA binding
+GO:0097159	GO:0000217	DNA secondary structure binding
+GO:0097159	GO:0000497	DNA template activity
+GO:0097159	GO:0003681	bent DNA binding
+GO:0097159	GO:0003684	damaged DNA binding
+GO:0097159	GO:0003690	double-stranded DNA binding
+GO:0097159	GO:0003697	single-stranded DNA binding
+GO:0097159	GO:0008301	DNA binding, bending
+GO:0097159	GO:0010844	recombination hotspot binding
+GO:0097159	GO:0031490	chromatin DNA binding
+GO:0097159	GO:0043565	sequence-specific DNA binding
+GO:0097159	GO:0045027	DNA end binding
+GO:0097159	GO:0045142	triplex DNA binding
+GO:0097159	GO:0051880	G-quadruplex DNA binding
+GO:0097159	GO:0070336	flap-structured DNA binding
+GO:0097159	GO:0099077	histone-dependent DNA binding
+GO:0097159	GO:0000400	four-way junction DNA binding
+GO:0097159	GO:0000403	Y-form DNA binding
+GO:0097159	GO:0000404	heteroduplex DNA loop binding
+GO:0097159	GO:0000405	bubble DNA binding
+GO:0097159	GO:0000406	double-strand/single-strand DNA junction binding
+GO:0097159	GO:0003680	minor groove of adenine-thymine-rich DNA binding
+GO:0097159	GO:0032448	DNA hairpin binding
+GO:0097159	GO:0062037	D-loop DNA binding
+GO:0097159	GO:0000401	open form four-way junction DNA binding
+GO:0097159	GO:0000402	crossed form four-way junction DNA binding
+GO:0097159	GO:0090655	double-stranded/single-stranded junction telomeric DNA binding
+GO:0097159	GO:0061821	telomeric D-loop binding
+GO:0097159	GO:0000332	template for synthesis of G-rich strand of telomere DNA activity
+GO:0097159	GO:0032131	alkylated DNA binding
+GO:0097159	GO:0032356	oxidized DNA binding
+GO:0097159	GO:0140431	DNA-(abasic site) binding
+GO:0097159	GO:1990165	single-strand break-containing DNA binding
+GO:0097159	GO:0032132	O6-alkylguanine-DNA binding
+GO:0097159	GO:0032357	oxidized purine DNA binding
+GO:0097159	GO:0032358	oxidized pyrimidine DNA binding
+GO:0097159	GO:1905773	8-hydroxy-2'-deoxyguanosine DNA binding
+GO:0097159	GO:0003691	double-stranded telomeric DNA binding
+GO:0097159	GO:0003692	left-handed Z-DNA binding
+GO:0097159	GO:0010385	double-stranded methylated DNA binding
+GO:0097159	GO:0030983	mismatched DNA binding
+GO:0097159	GO:0044729	hemi-methylated DNA-binding
+GO:0097159	GO:0061776	topological DNA co-entrapment activity
+GO:0097159	GO:0097100	supercoiled DNA binding
+GO:0097159	GO:0106260	DNA-DNA tethering activity
+GO:0097159	GO:1990837	sequence-specific double-stranded DNA binding
+GO:0097159	GO:0032135	DNA insertion or deletion binding
+GO:0097159	GO:0032136	adenine/cytosine mispair binding
+GO:0097159	GO:0032137	guanine/thymine mispair binding
+GO:0097159	GO:0035484	adenine/adenine mispair binding
+GO:0097159	GO:0035485	adenine/guanine mispair binding
+GO:0097159	GO:0035486	cytosine/cytosine mispair binding
+GO:0097159	GO:0035487	thymine/thymine mispair binding
+GO:0097159	GO:0035488	cytosine/thymine mispair binding
+GO:0097159	GO:0035489	guanine/guanine mispair binding
+GO:0097159	GO:0000404	heteroduplex DNA loop binding
+GO:0097159	GO:0032138	single base insertion or deletion binding
+GO:0097159	GO:0032139	dinucleotide insertion or deletion binding
+GO:0097159	GO:0032140	single adenine insertion binding
+GO:0097159	GO:0032141	single cytosine insertion binding
+GO:0097159	GO:0032142	single guanine insertion binding
+GO:0097159	GO:0032143	single thymine insertion binding
+GO:0097159	GO:0032181	dinucleotide repeat insertion binding
+GO:0097159	GO:0140587	chromatin loop anchoring activity
+GO:0097159	GO:0140585	promoter-enhancer loop anchoring activity
+GO:0097159	GO:0140586	promoter-terminator loop anchoring activity
+GO:0097159	GO:0000182	rDNA binding
+GO:0097159	GO:0000976	transcription cis-regulatory region binding
+GO:0097159	GO:0003688	DNA replication origin binding
+GO:0097159	GO:0003693	P-element binding
+GO:0097159	GO:0003696	satellite DNA binding
+GO:0097159	GO:0019237	centromeric DNA binding
+GO:0097159	GO:0031634	replication fork barrier binding
+GO:0097159	GO:0044374	sequence-specific DNA binding, bending
+GO:0097159	GO:0071443	tDNA binding
+GO:0097159	GO:0141180	dsDNA-RNA triple helix-forming chromatin adaptor activity
+GO:0097159	GO:1990470	piRNA cluster binding
+GO:0097159	GO:0043110	rDNA spacer replication fork barrier binding
+GO:0097159	GO:0080084	5S rDNA binding
+GO:0097159	GO:0110035	rDNA spacer replication fork barrier binding, bending
+GO:0097159	GO:0001002	RNA polymerase III type 1 promoter sequence-specific DNA binding
+GO:0097159	GO:0000977	RNA polymerase II transcription regulatory region sequence-specific DNA binding
+GO:0097159	GO:0000987	cis-regulatory region sequence-specific DNA binding
+GO:0097159	GO:0001016	RNA polymerase III transcription regulatory region sequence-specific DNA binding
+GO:0097159	GO:0001018	mitochondrial promoter sequence-specific DNA binding
+GO:0097159	GO:0001019	plastid promoter transcription regulatory region sequence-specific DNA binding
+GO:0097159	GO:0001046	core promoter sequence-specific DNA binding
+GO:0097159	GO:0001147	transcription termination site sequence-specific DNA binding
+GO:0097159	GO:0001161	intronic transcription regulatory region sequence-specific DNA binding
+GO:0097159	GO:0001163	RNA polymerase I transcription regulatory region sequence-specific DNA binding
+GO:0097159	GO:0032422	purine-rich negative regulatory element binding
+GO:0097159	GO:0000978	RNA polymerase II cis-regulatory region sequence-specific DNA binding
+GO:0097159	GO:0000979	RNA polymerase II core promoter sequence-specific DNA binding
+GO:0097159	GO:0001162	RNA polymerase II intronic transcription regulatory region sequence-specific DNA binding
+GO:0097159	GO:0010736	serum response element binding
+GO:0097159	GO:0032810	sterol response element binding
+GO:0097159	GO:0034056	estrogen response element binding
+GO:0097159	GO:0035497	cAMP response element binding
+GO:0097159	GO:0035538	carbohydrate response element binding
+GO:0097159	GO:0044323	retinoic acid-responsive element binding
+GO:0097159	GO:0044377	RNA polymerase II cis-regulatory region sequence-specific DNA binding, bending
+GO:0097159	GO:0070594	juvenile hormone response element binding
+GO:0097159	GO:0070644	vitamin D response element binding
+GO:0097159	GO:0070888	E-box binding
+GO:0097159	GO:0071820	N-box binding
+GO:0097159	GO:0140728	GC-box binding
+GO:0097159	GO:0000978	RNA polymerase II cis-regulatory region sequence-specific DNA binding
+GO:0097159	GO:0000992	RNA polymerase III cis-regulatory region sequence-specific DNA binding
+GO:0097159	GO:0010736	serum response element binding
+GO:0097159	GO:0032810	sterol response element binding
+GO:0097159	GO:0034056	estrogen response element binding
+GO:0097159	GO:0035497	cAMP response element binding
+GO:0097159	GO:0035538	carbohydrate response element binding
+GO:0097159	GO:0044323	retinoic acid-responsive element binding
+GO:0097159	GO:0044377	RNA polymerase II cis-regulatory region sequence-specific DNA binding, bending
+GO:0097159	GO:0070594	juvenile hormone response element binding
+GO:0097159	GO:0070644	vitamin D response element binding
+GO:0097159	GO:0070888	E-box binding
+GO:0097159	GO:0071820	N-box binding
+GO:0097159	GO:0140728	GC-box binding
+GO:0097159	GO:0001002	RNA polymerase III type 1 promoter sequence-specific DNA binding
+GO:0097159	GO:0001003	RNA polymerase III type 2 promoter sequence-specific DNA binding
+GO:0097159	GO:0001006	RNA polymerase III type 3 promoter sequence-specific DNA binding
+GO:0097159	GO:0001039	RNA polymerase III hybrid type promoter sequence-specific DNA binding
+GO:0097159	GO:0000992	RNA polymerase III cis-regulatory region sequence-specific DNA binding
+GO:0097159	GO:0001002	RNA polymerase III type 1 promoter sequence-specific DNA binding
+GO:0097159	GO:0001003	RNA polymerase III type 2 promoter sequence-specific DNA binding
+GO:0097159	GO:0001006	RNA polymerase III type 3 promoter sequence-specific DNA binding
+GO:0097159	GO:0001039	RNA polymerase III hybrid type promoter sequence-specific DNA binding
+GO:0097159	GO:0000979	RNA polymerase II core promoter sequence-specific DNA binding
+GO:0097159	GO:0001164	RNA polymerase I core promoter sequence-specific DNA binding
+GO:0097159	GO:0001162	RNA polymerase II intronic transcription regulatory region sequence-specific DNA binding
+GO:0097159	GO:0001164	RNA polymerase I core promoter sequence-specific DNA binding
+GO:0097159	GO:0001165	RNA polymerase I cis-regulatory region sequence-specific DNA binding
+GO:0097159	GO:0035939	microsatellite binding
+GO:0097159	GO:0043110	rDNA spacer replication fork barrier binding
+GO:0097159	GO:1990943	mating type region replication fork barrier binding
+GO:0097159	GO:0110035	rDNA spacer replication fork barrier binding, bending
+GO:0097159	GO:0044377	RNA polymerase II cis-regulatory region sequence-specific DNA binding, bending
+GO:0097159	GO:0110035	rDNA spacer replication fork barrier binding, bending
+GO:0097159	GO:1990471	piRNA uni-strand cluster binding
+GO:0097159	GO:1990472	piRNA dual-strand cluster binding
+GO:0097159	GO:0098847	sequence-specific single stranded DNA binding
+GO:0097159	GO:1990814	DNA/DNA annealing activity
+GO:0097159	GO:1990829	C-rich single-stranded DNA binding
+GO:0097159	GO:1990955	G-rich single-stranded DNA binding
+GO:0097159	GO:0043047	single-stranded telomeric DNA binding
+GO:0097159	GO:0061730	C-rich strand telomeric DNA binding
+GO:0097159	GO:0098505	G-rich strand telomeric DNA binding
+GO:0097159	GO:0036310	ATP-dependent DNA/DNA annealing activity
+GO:0097159	GO:0044374	sequence-specific DNA binding, bending
+GO:0097159	GO:0044378	non-sequence-specific DNA binding, bending
+GO:0097159	GO:0044377	RNA polymerase II cis-regulatory region sequence-specific DNA binding, bending
+GO:0097159	GO:0110035	rDNA spacer replication fork barrier binding, bending
+GO:0097159	GO:0031492	nucleosomal DNA binding
+GO:0097159	GO:0043035	chromatin insulator sequence binding
+GO:0097159	GO:0140587	chromatin loop anchoring activity
+GO:0097159	GO:0140585	promoter-enhancer loop anchoring activity
+GO:0097159	GO:0140586	promoter-terminator loop anchoring activity
+GO:0097159	GO:0008327	methyl-CpG binding
+GO:0097159	GO:0042162	telomeric DNA binding
+GO:0097159	GO:0045322	unmethylated CpG binding
+GO:0097159	GO:0098847	sequence-specific single stranded DNA binding
+GO:0097159	GO:0141094	DNA loop anchor binding
+GO:0097159	GO:1990837	sequence-specific double-stranded DNA binding
+GO:0097159	GO:0003691	double-stranded telomeric DNA binding
+GO:0097159	GO:0043047	single-stranded telomeric DNA binding
+GO:0097159	GO:0061849	telomeric G-quadruplex DNA binding
+GO:0097159	GO:0090655	double-stranded/single-stranded junction telomeric DNA binding
+GO:0097159	GO:0061730	C-rich strand telomeric DNA binding
+GO:0097159	GO:0098505	G-rich strand telomeric DNA binding
+GO:0097159	GO:0043047	single-stranded telomeric DNA binding
+GO:0097159	GO:0061730	C-rich strand telomeric DNA binding
+GO:0097159	GO:0098505	G-rich strand telomeric DNA binding
+GO:0097159	GO:0000182	rDNA binding
+GO:0097159	GO:0000976	transcription cis-regulatory region binding
+GO:0097159	GO:0003688	DNA replication origin binding
+GO:0097159	GO:0003693	P-element binding
+GO:0097159	GO:0003696	satellite DNA binding
+GO:0097159	GO:0019237	centromeric DNA binding
+GO:0097159	GO:0031634	replication fork barrier binding
+GO:0097159	GO:0044374	sequence-specific DNA binding, bending
+GO:0097159	GO:0071443	tDNA binding
+GO:0097159	GO:0141180	dsDNA-RNA triple helix-forming chromatin adaptor activity
+GO:0097159	GO:1990470	piRNA cluster binding
+GO:0097159	GO:0043110	rDNA spacer replication fork barrier binding
+GO:0097159	GO:0080084	5S rDNA binding
+GO:0097159	GO:0110035	rDNA spacer replication fork barrier binding, bending
+GO:0097159	GO:0001002	RNA polymerase III type 1 promoter sequence-specific DNA binding
+GO:0097159	GO:0000977	RNA polymerase II transcription regulatory region sequence-specific DNA binding
+GO:0097159	GO:0000987	cis-regulatory region sequence-specific DNA binding
+GO:0097159	GO:0001016	RNA polymerase III transcription regulatory region sequence-specific DNA binding
+GO:0097159	GO:0001018	mitochondrial promoter sequence-specific DNA binding
+GO:0097159	GO:0001019	plastid promoter transcription regulatory region sequence-specific DNA binding
+GO:0097159	GO:0001046	core promoter sequence-specific DNA binding
+GO:0097159	GO:0001147	transcription termination site sequence-specific DNA binding
+GO:0097159	GO:0001161	intronic transcription regulatory region sequence-specific DNA binding
+GO:0097159	GO:0001163	RNA polymerase I transcription regulatory region sequence-specific DNA binding
+GO:0097159	GO:0032422	purine-rich negative regulatory element binding
+GO:0097159	GO:0000978	RNA polymerase II cis-regulatory region sequence-specific DNA binding
+GO:0097159	GO:0000979	RNA polymerase II core promoter sequence-specific DNA binding
+GO:0097159	GO:0001162	RNA polymerase II intronic transcription regulatory region sequence-specific DNA binding
+GO:0097159	GO:0010736	serum response element binding
+GO:0097159	GO:0032810	sterol response element binding
+GO:0097159	GO:0034056	estrogen response element binding
+GO:0097159	GO:0035497	cAMP response element binding
+GO:0097159	GO:0035538	carbohydrate response element binding
+GO:0097159	GO:0044323	retinoic acid-responsive element binding
+GO:0097159	GO:0044377	RNA polymerase II cis-regulatory region sequence-specific DNA binding, bending
+GO:0097159	GO:0070594	juvenile hormone response element binding
+GO:0097159	GO:0070644	vitamin D response element binding
+GO:0097159	GO:0070888	E-box binding
+GO:0097159	GO:0071820	N-box binding
+GO:0097159	GO:0140728	GC-box binding
+GO:0097159	GO:0000978	RNA polymerase II cis-regulatory region sequence-specific DNA binding
+GO:0097159	GO:0000992	RNA polymerase III cis-regulatory region sequence-specific DNA binding
+GO:0097159	GO:0010736	serum response element binding
+GO:0097159	GO:0032810	sterol response element binding
+GO:0097159	GO:0034056	estrogen response element binding
+GO:0097159	GO:0035497	cAMP response element binding
+GO:0097159	GO:0035538	carbohydrate response element binding
+GO:0097159	GO:0044323	retinoic acid-responsive element binding
+GO:0097159	GO:0044377	RNA polymerase II cis-regulatory region sequence-specific DNA binding, bending
+GO:0097159	GO:0070594	juvenile hormone response element binding
+GO:0097159	GO:0070644	vitamin D response element binding
+GO:0097159	GO:0070888	E-box binding
+GO:0097159	GO:0071820	N-box binding
+GO:0097159	GO:0140728	GC-box binding
+GO:0097159	GO:0001002	RNA polymerase III type 1 promoter sequence-specific DNA binding
+GO:0097159	GO:0001003	RNA polymerase III type 2 promoter sequence-specific DNA binding
+GO:0097159	GO:0001006	RNA polymerase III type 3 promoter sequence-specific DNA binding
+GO:0097159	GO:0001039	RNA polymerase III hybrid type promoter sequence-specific DNA binding
+GO:0097159	GO:0000992	RNA polymerase III cis-regulatory region sequence-specific DNA binding
+GO:0097159	GO:0001002	RNA polymerase III type 1 promoter sequence-specific DNA binding
+GO:0097159	GO:0001003	RNA polymerase III type 2 promoter sequence-specific DNA binding
+GO:0097159	GO:0001006	RNA polymerase III type 3 promoter sequence-specific DNA binding
+GO:0097159	GO:0001039	RNA polymerase III hybrid type promoter sequence-specific DNA binding
+GO:0097159	GO:0000979	RNA polymerase II core promoter sequence-specific DNA binding
+GO:0097159	GO:0001164	RNA polymerase I core promoter sequence-specific DNA binding
+GO:0097159	GO:0001162	RNA polymerase II intronic transcription regulatory region sequence-specific DNA binding
+GO:0097159	GO:0001164	RNA polymerase I core promoter sequence-specific DNA binding
+GO:0097159	GO:0001165	RNA polymerase I cis-regulatory region sequence-specific DNA binding
+GO:0097159	GO:0035939	microsatellite binding
+GO:0097159	GO:0043110	rDNA spacer replication fork barrier binding
+GO:0097159	GO:1990943	mating type region replication fork barrier binding
+GO:0097159	GO:0110035	rDNA spacer replication fork barrier binding, bending
+GO:0097159	GO:0044377	RNA polymerase II cis-regulatory region sequence-specific DNA binding, bending
+GO:0097159	GO:0110035	rDNA spacer replication fork barrier binding, bending
+GO:0097159	GO:1990471	piRNA uni-strand cluster binding
+GO:0097159	GO:1990472	piRNA dual-strand cluster binding
+GO:0097159	GO:0061849	telomeric G-quadruplex DNA binding
+GO:0097159	GO:0070337	3'-flap-structured DNA binding
+GO:0097159	GO:0070338	5'-flap-structured DNA binding
+GO:0097159	GO:0000049	tRNA binding
+GO:0097159	GO:0000339	RNA cap binding
+GO:0097159	GO:0001069	regulatory region RNA binding
+GO:0097159	GO:0002151	G-quadruplex RNA binding
+GO:0097159	GO:0003725	double-stranded RNA binding
+GO:0097159	GO:0003727	single-stranded RNA binding
+GO:0097159	GO:0003729	mRNA binding
+GO:0097159	GO:0008312	7S RNA binding
+GO:0097159	GO:0017069	snRNA binding
+GO:0097159	GO:0019843	rRNA binding
+GO:0097159	GO:0030515	snoRNA binding
+GO:0097159	GO:0030555	RNA modification guide activity
+GO:0097159	GO:0033204	ribonuclease P RNA binding
+GO:0097159	GO:0034336	misfolded RNA binding
+GO:0097159	GO:0034583	21U-RNA binding
+GO:0097159	GO:0035613	RNA stem-loop binding
+GO:0097159	GO:0036002	pre-mRNA binding
+GO:0097159	GO:0042835	BRE binding
+GO:0097159	GO:0061752	telomeric repeat-containing RNA binding
+GO:0097159	GO:0061980	regulatory RNA binding
+GO:0097159	GO:0062104	pumilio-response element binding
+GO:0097159	GO:0070034	telomerase RNA binding
+GO:0097159	GO:0070878	primary miRNA binding
+GO:0097159	GO:0070883	pre-miRNA binding
+GO:0097159	GO:0071208	histone pre-mRNA DCP binding
+GO:0097159	GO:0106222	lncRNA binding
+GO:0097159	GO:1904678	alpha-aminoacyl-tRNA binding
+GO:0097159	GO:1990605	GU repeat RNA binding
+GO:0097159	GO:0030557	tRNA modification guide activity
+GO:0097159	GO:1990856	methionyl-initiator methionine tRNA binding
+GO:0097159	GO:0030560	tRNA pseudouridylation guide activity
+GO:0097159	GO:0030564	tRNA 2'-O-ribose methylation guide activity
+GO:0097159	GO:0000340	RNA 7-methylguanosine cap binding
+GO:0097159	GO:0000341	RNA trimethylguanosine cap binding
+GO:0097159	GO:0000342	RNA cap 4 binding
+GO:0097159	GO:0098808	mRNA cap binding
+GO:0097159	GO:0001068	transcription regulatory region RNA binding
+GO:0097159	GO:0034057	RNA strand-exchange activity
+GO:0097159	GO:0098851	double-stranded miRNA binding
+GO:0097159	GO:0002153	steroid receptor RNA activator RNA binding
+GO:0097159	GO:0008187	poly-pyrimidine tract binding
+GO:0097159	GO:0033592	RNA strand annealing activity
+GO:0097159	GO:0034057	RNA strand-exchange activity
+GO:0097159	GO:0070717	poly-purine tract binding
+GO:0097159	GO:0008266	poly(U) RNA binding
+GO:0097159	GO:0017130	poly(C) RNA binding
+GO:0097159	GO:0017131	uridine-rich cytoplasmic polyadenylylation element binding
+GO:0097159	GO:0008143	poly(A) binding
+GO:0097159	GO:0034046	poly(G) binding
+GO:0097159	GO:0003730	mRNA 3'-UTR binding
+GO:0097159	GO:0030350	iron-responsive element binding
+GO:0097159	GO:0030533	triplet codon-amino acid adaptor activity
+GO:0097159	GO:0035368	selenocysteine insertion sequence binding
+GO:0097159	GO:0048027	mRNA 5'-UTR binding
+GO:0097159	GO:0098808	mRNA cap binding
+GO:0097159	GO:1903231	mRNA base-pairing translational repressor activity
+GO:0097159	GO:1990715	mRNA CDS binding
+GO:0097159	GO:1990825	sequence-specific mRNA binding
+GO:0097159	GO:0035925	mRNA 3'-UTR AU-rich region binding
+GO:0097159	GO:0033401	UUU codon-amino acid adaptor activity
+GO:0097159	GO:0033402	UUC codon-amino acid adaptor activity
+GO:0097159	GO:0033403	UUA codon-amino acid adaptor activity
+GO:0097159	GO:0033404	UUG codon-amino acid adaptor activity
+GO:0097159	GO:0033405	UCU codon-amino acid adaptor activity
+GO:0097159	GO:0033406	UCC codon-amino acid adaptor activity
+GO:0097159	GO:0033407	UCA codon-amino acid adaptor activity
+GO:0097159	GO:0033408	UCG codon-amino acid adaptor activity
+GO:0097159	GO:0033409	UAU codon-amino acid adaptor activity
+GO:0097159	GO:0033410	UAC codon-amino acid adaptor activity
+GO:0097159	GO:0033411	UAA codon-amino acid adaptor activity
+GO:0097159	GO:0033412	UAG codon-amino acid adaptor activity
+GO:0097159	GO:0033413	UGU codon-amino acid adaptor activity
+GO:0097159	GO:0033414	UGC codon-amino acid adaptor activity
+GO:0097159	GO:0033415	UGA codon-amino acid adaptor activity
+GO:0097159	GO:0033416	UGG codon-amino acid adaptor activity
+GO:0097159	GO:0033417	CUU codon-amino acid adaptor activity
+GO:0097159	GO:0033418	CUC codon-amino acid adaptor activity
+GO:0097159	GO:0033419	CUA codon-amino acid adaptor activity
+GO:0097159	GO:0033420	CUG codon-amino acid adaptor activity
+GO:0097159	GO:0033421	CCU codon-amino acid adaptor activity
+GO:0097159	GO:0033422	CCC codon-amino acid adaptor activity
+GO:0097159	GO:0033423	CCA codon-amino acid adaptor activity
+GO:0097159	GO:0033424	CCG codon-amino acid adaptor activity
+GO:0097159	GO:0033425	CAU codon-amino acid adaptor activity
+GO:0097159	GO:0033426	CAC codon-amino acid adaptor activity
+GO:0097159	GO:0033427	CAA codon-amino acid adaptor activity
+GO:0097159	GO:0033428	CAG codon-amino acid adaptor activity
+GO:0097159	GO:0033429	CGU codon-amino acid adaptor activity
+GO:0097159	GO:0033430	CGC codon-amino acid adaptor activity
+GO:0097159	GO:0033431	CGA codon-amino acid adaptor activity
+GO:0097159	GO:0033432	CGG codon-amino acid adaptor activity
+GO:0097159	GO:0033433	AUU codon-amino acid adaptor activity
+GO:0097159	GO:0033434	AUC codon-amino acid adaptor activity
+GO:0097159	GO:0033435	AUA codon-amino acid adaptor activity
+GO:0097159	GO:0033436	AUG codon-amino acid adaptor activity
+GO:0097159	GO:0033437	ACU codon-amino acid adaptor activity
+GO:0097159	GO:0033438	ACC codon-amino acid adaptor activity
+GO:0097159	GO:0033439	ACA codon-amino acid adaptor activity
+GO:0097159	GO:0033440	ACG codon-amino acid adaptor activity
+GO:0097159	GO:0033441	AAU codon-amino acid adaptor activity
+GO:0097159	GO:0033442	AAC codon-amino acid adaptor activity
+GO:0097159	GO:0033443	AAA codon-amino acid adaptor activity
+GO:0097159	GO:0033444	AAG codon-amino acid adaptor activity
+GO:0097159	GO:0033445	AGU codon-amino acid adaptor activity
+GO:0097159	GO:0033446	AGC codon-amino acid adaptor activity
+GO:0097159	GO:0033447	AGA codon-amino acid adaptor activity
+GO:0097159	GO:0033448	AGG codon-amino acid adaptor activity
+GO:0097159	GO:0033449	GUU codon-amino acid adaptor activity
+GO:0097159	GO:0033450	GUC codon-amino acid adaptor activity
+GO:0097159	GO:0033451	GUA codon-amino acid adaptor activity
+GO:0097159	GO:0033452	GUG codon-amino acid adaptor activity
+GO:0097159	GO:0033453	GCU codon-amino acid adaptor activity
+GO:0097159	GO:0033454	GCC codon-amino acid adaptor activity
+GO:0097159	GO:0033455	GCA codon-amino acid adaptor activity
+GO:0097159	GO:0033456	GCG codon-amino acid adaptor activity
+GO:0097159	GO:0033457	GAU codon-amino acid adaptor activity
+GO:0097159	GO:0033458	GAC codon-amino acid adaptor activity
+GO:0097159	GO:0033459	GAA codon-amino acid adaptor activity
+GO:0097159	GO:0033460	GAG codon-amino acid adaptor activity
+GO:0097159	GO:0033461	GGU codon-amino acid adaptor activity
+GO:0097159	GO:0033462	GGC codon-amino acid adaptor activity
+GO:0097159	GO:0033463	GGA codon-amino acid adaptor activity
+GO:0097159	GO:0033464	GGG codon-amino acid adaptor activity
+GO:0097159	GO:0017070	U6 snRNA binding
+GO:0097159	GO:0030566	snRNA modification guide activity
+GO:0097159	GO:0030619	U1 snRNA binding
+GO:0097159	GO:0030620	U2 snRNA binding
+GO:0097159	GO:0030621	U4 snRNA binding
+GO:0097159	GO:0030622	U4atac snRNA binding
+GO:0097159	GO:0030623	U5 snRNA binding
+GO:0097159	GO:0030624	U6atac snRNA binding
+GO:0097159	GO:0030625	U11 snRNA binding
+GO:0097159	GO:0030626	U12 snRNA binding
+GO:0097159	GO:0035614	snRNA stem-loop binding
+GO:0097159	GO:0071209	U7 snRNA binding
+GO:0097159	GO:0097322	7SK snRNA binding
+GO:0097159	GO:0030629	U6 snRNA 3'-end binding
+GO:0097159	GO:0030563	snRNA 2'-O-ribose methylation guide activity
+GO:0097159	GO:0030565	snRNA pseudouridylation guide activity
+GO:0097159	GO:0008097	5S rRNA binding
+GO:0097159	GO:0030556	rRNA modification guide activity
+GO:0097159	GO:0042134	rRNA primary transcript binding
+GO:0097159	GO:0070180	large ribosomal subunit rRNA binding
+GO:0097159	GO:0070181	small ribosomal subunit rRNA binding
+GO:0097159	GO:1990932	5.8S rRNA binding
+GO:0097159	GO:0008098	5S rRNA primary transcript binding
+GO:0097159	GO:0030559	rRNA pseudouridylation guide activity
+GO:0097159	GO:0030562	rRNA 2'-O-ribose methylation guide activity
+GO:0097159	GO:1990400	mitochondrial ribosomal large subunit rRNA binding
+GO:0097159	GO:0034511	U3 snoRNA binding
+GO:0097159	GO:0034512	box C/D sno(s)RNA binding
+GO:0097159	GO:0034513	box H/ACA snoRNA binding
+GO:0097159	GO:0030556	rRNA modification guide activity
+GO:0097159	GO:0030557	tRNA modification guide activity
+GO:0097159	GO:0030558	RNA pseudouridylation guide activity
+GO:0097159	GO:0030561	RNA 2'-O-ribose methylation guide activity
+GO:0097159	GO:0030566	snRNA modification guide activity
+GO:0097159	GO:0030559	rRNA pseudouridylation guide activity
+GO:0097159	GO:0030562	rRNA 2'-O-ribose methylation guide activity
+GO:0097159	GO:0030560	tRNA pseudouridylation guide activity
+GO:0097159	GO:0030564	tRNA 2'-O-ribose methylation guide activity
+GO:0097159	GO:0030559	rRNA pseudouridylation guide activity
+GO:0097159	GO:0030560	tRNA pseudouridylation guide activity
+GO:0097159	GO:0030565	snRNA pseudouridylation guide activity
+GO:0097159	GO:0030562	rRNA 2'-O-ribose methylation guide activity
+GO:0097159	GO:0030563	snRNA 2'-O-ribose methylation guide activity
+GO:0097159	GO:0030564	tRNA 2'-O-ribose methylation guide activity
+GO:0097159	GO:0030563	snRNA 2'-O-ribose methylation guide activity
+GO:0097159	GO:0030565	snRNA pseudouridylation guide activity
+GO:0097159	GO:0035614	snRNA stem-loop binding
+GO:0097159	GO:0030627	pre-mRNA 5'-splice site binding
+GO:0097159	GO:0030628	pre-mRNA 3'-splice site binding
+GO:0097159	GO:0045131	pre-mRNA branch point binding
+GO:0097159	GO:0071207	histone pre-mRNA stem-loop binding
+GO:0097159	GO:0097157	pre-mRNA intronic binding
+GO:0097159	GO:0097158	pre-mRNA intronic pyrimidine-rich binding
+GO:0097159	GO:0034584	piRNA binding
+GO:0097159	GO:0035197	siRNA binding
+GO:0097159	GO:0035198	miRNA binding
+GO:0097159	GO:0140869	miRNA inhibitor activity via base-pairing
+GO:0097159	GO:1990970	trans-activation response element binding
+GO:0097159	GO:0097098	DNA/RNA hybrid annealing activity
+GO:0097159	GO:0000900	mRNA regulatory element binding translation repressor activity
+GO:0097159	GO:0008135	translation factor activity, RNA binding
+GO:0097159	GO:0008494	translation activator activity
+GO:0097159	GO:0003743	translation initiation factor activity
+GO:0097159	GO:0003746	translation elongation factor activity
+GO:0097159	GO:0008079	translation termination factor activity
+GO:0097159	GO:0003747	translation release factor activity
+GO:0097159	GO:0016149	translation release factor activity, codon specific
+GO:0097159	GO:0016150	translation release factor activity, codon nonspecific
+GO:0097159	GO:0033592	RNA strand annealing activity
+GO:0097159	GO:0097098	DNA/RNA hybrid annealing activity
+GO:0097159	GO:1990814	DNA/DNA annealing activity
+GO:0097159	GO:0036310	ATP-dependent DNA/DNA annealing activity
+GO:0097159	GO:0005499	vitamin D binding
+GO:0097159	GO:0032934	sterol binding
+GO:0097159	GO:0090411	brassinosteroid binding
+GO:0097159	GO:1902121	lithocholic acid binding
+GO:0097159	GO:1902122	chenodeoxycholic acid binding
+GO:0097159	GO:1903877	21-deoxycortisol binding
+GO:0097159	GO:1903879	11beta-hydroxyprogesterone binding
+GO:0097159	GO:1903880	17alpha-hydroxyprogesterone binding
+GO:0097159	GO:1903924	estradiol binding
+GO:0097159	GO:1990239	steroid hormone binding
+GO:0097159	GO:1902271	D3 vitamins binding
+GO:0097159	GO:1902098	calcitriol binding
+GO:0097159	GO:1902118	calcidiol binding
+GO:0097159	GO:0008142	oxysterol binding
+GO:0097159	GO:0015485	cholesterol binding
+GO:0097159	GO:0035100	ecdysone binding
+GO:0097159	GO:1902051	(25S)-Delta(4)-dafachronate binding
+GO:0097159	GO:1902052	(25S)-Delta(7)-dafachronate binding
+GO:0097159	GO:1903794	cortisol binding
+GO:0097159	GO:1903875	corticosterone binding
+GO:0097159	GO:1903876	11-deoxycortisol binding
+GO:0097159	GO:1903878	11-deoxycorticosterone binding
+GO:0097159	GO:0005528	FK506 binding
+GO:0097159	GO:1903981	enterobactin binding
+GO:0097159	GO:0071576	tetrahydrodictyopterin binding
+GO:0097159	GO:0016168	chlorophyll binding
+GO:0097159	GO:0020037	heme binding
+GO:0097159	GO:0031419	cobalamin binding
+GO:0097159	GO:0042314	bacteriochlorophyll binding
+GO:0097159	GO:0016169	bacteriochlorophyll c binding
+GO:0097159	GO:0030170	pyridoxal phosphate binding
+GO:0097159	GO:0070280	pyridoxal binding
+GO:0097159	GO:0070281	pyridoxamine binding
+GO:0097159	GO:0070282	pyridoxine binding
+GO:0097159	GO:0097246	catechin binding
+GO:0097159	GO:0000166	nucleotide binding
+GO:0097159	GO:0035639	purine ribonucleoside triphosphate binding
+GO:0097159	GO:0072570	ADP-D-ribose binding
+GO:0097159	GO:0120225	coenzyme A binding
+GO:0097159	GO:0120227	acyl-CoA binding
+GO:0097159	GO:0008327	methyl-CpG binding
+GO:0097159	GO:0010428	methyl-CpNpG binding
+GO:0097159	GO:0010429	methyl-CpNpN binding
+GO:0097159	GO:0017076	purine nucleotide binding
+GO:0097159	GO:0019103	pyrimidine nucleotide binding
+GO:0097159	GO:0030551	cyclic nucleotide binding
+GO:0097159	GO:0032552	deoxyribonucleotide binding
+GO:0097159	GO:0032553	ribonucleotide binding
+GO:0097159	GO:0050660	flavin adenine dinucleotide binding
+GO:0097159	GO:0019001	guanyl nucleotide binding
+GO:0097159	GO:0030554	adenyl nucleotide binding
+GO:0097159	GO:0032554	purine deoxyribonucleotide binding
+GO:0097159	GO:0032555	purine ribonucleotide binding
+GO:0097159	GO:0032560	guanyl deoxyribonucleotide binding
+GO:0097159	GO:0032561	guanyl ribonucleotide binding
+GO:0097159	GO:0032565	dGMP binding
+GO:0097159	GO:0032566	dGDP binding
+GO:0097159	GO:0032567	dGTP binding
+GO:0097159	GO:0005525	GTP binding
+GO:0097159	GO:0019002	GMP binding
+GO:0097159	GO:0019003	GDP binding
+GO:0097159	GO:0030553	cGMP binding
+GO:0097159	GO:0035438	cyclic-di-GMP binding
+GO:0097159	GO:0061507	2',3'-cyclic GMP-AMP binding
+GO:0097159	GO:0097216	guanosine tetraphosphate binding
+GO:0097159	GO:0140703	3',3'-cyclic GMP-AMP binding
+GO:0097159	GO:0032558	adenyl deoxyribonucleotide binding
+GO:0097159	GO:0032559	adenyl ribonucleotide binding
+GO:0097159	GO:0050661	NADP binding
+GO:0097159	GO:0051287	NAD binding
+GO:0097159	GO:0032562	dAMP binding
+GO:0097159	GO:0032563	dADP binding
+GO:0097159	GO:0032564	dATP binding
+GO:0097159	GO:0005524	ATP binding
+GO:0097159	GO:0016208	AMP binding
+GO:0097159	GO:0030552	cAMP binding
+GO:0097159	GO:0043531	ADP binding
+GO:0097159	GO:0050656	3'-phosphoadenosine 5'-phosphosulfate binding
+GO:0097159	GO:0061507	2',3'-cyclic GMP-AMP binding
+GO:0097159	GO:0140703	3',3'-cyclic GMP-AMP binding
+GO:0097159	GO:0180001	cyclic-di-AMP binding
+GO:0097159	GO:0070401	NADP+ binding
+GO:0097159	GO:0070402	NADPH binding
+GO:0097159	GO:0070403	NAD+ binding
+GO:0097159	GO:0070404	NADH binding
+GO:0097159	GO:0032558	adenyl deoxyribonucleotide binding
+GO:0097159	GO:0032560	guanyl deoxyribonucleotide binding
+GO:0097159	GO:0032562	dAMP binding
+GO:0097159	GO:0032563	dADP binding
+GO:0097159	GO:0032564	dATP binding
+GO:0097159	GO:0032565	dGMP binding
+GO:0097159	GO:0032566	dGDP binding
+GO:0097159	GO:0032567	dGTP binding
+GO:0097159	GO:0032559	adenyl ribonucleotide binding
+GO:0097159	GO:0032561	guanyl ribonucleotide binding
+GO:0097159	GO:1901640	XTP binding
+GO:0097159	GO:1901641	ITP binding
+GO:0097159	GO:1902249	IMP binding
+GO:0097159	GO:0005524	ATP binding
+GO:0097159	GO:0016208	AMP binding
+GO:0097159	GO:0030552	cAMP binding
+GO:0097159	GO:0043531	ADP binding
+GO:0097159	GO:0050656	3'-phosphoadenosine 5'-phosphosulfate binding
+GO:0097159	GO:0061507	2',3'-cyclic GMP-AMP binding
+GO:0097159	GO:0140703	3',3'-cyclic GMP-AMP binding
+GO:0097159	GO:0180001	cyclic-di-AMP binding
+GO:0097159	GO:0005525	GTP binding
+GO:0097159	GO:0019002	GMP binding
+GO:0097159	GO:0019003	GDP binding
+GO:0097159	GO:0030553	cGMP binding
+GO:0097159	GO:0035438	cyclic-di-GMP binding
+GO:0097159	GO:0061507	2',3'-cyclic GMP-AMP binding
+GO:0097159	GO:0097216	guanosine tetraphosphate binding
+GO:0097159	GO:0140703	3',3'-cyclic GMP-AMP binding
+GO:0097159	GO:0032556	pyrimidine deoxyribonucleotide binding
+GO:0097159	GO:0032557	pyrimidine ribonucleotide binding
+GO:0097159	GO:0002134	UTP binding
+GO:0097159	GO:0002135	CTP binding
+GO:0097159	GO:0030552	cAMP binding
+GO:0097159	GO:0030553	cGMP binding
+GO:0097159	GO:0035438	cyclic-di-GMP binding
+GO:0097159	GO:0140702	cyclic GMP-AMP binding
+GO:0097159	GO:0180001	cyclic-di-AMP binding
+GO:0097159	GO:0061507	2',3'-cyclic GMP-AMP binding
+GO:0097159	GO:0140703	3',3'-cyclic GMP-AMP binding
+GO:0097159	GO:0032554	purine deoxyribonucleotide binding
+GO:0097159	GO:0032556	pyrimidine deoxyribonucleotide binding
+GO:0097159	GO:0032558	adenyl deoxyribonucleotide binding
+GO:0097159	GO:0032560	guanyl deoxyribonucleotide binding
+GO:0097159	GO:0032562	dAMP binding
+GO:0097159	GO:0032563	dADP binding
+GO:0097159	GO:0032564	dATP binding
+GO:0097159	GO:0032565	dGMP binding
+GO:0097159	GO:0032566	dGDP binding
+GO:0097159	GO:0032567	dGTP binding
+GO:0097159	GO:0010181	FMN binding
+GO:0097159	GO:0032555	purine ribonucleotide binding
+GO:0097159	GO:0032557	pyrimidine ribonucleotide binding
+GO:0097159	GO:0120233	prenyl-FMNH2 binding
+GO:0097159	GO:0032559	adenyl ribonucleotide binding
+GO:0097159	GO:0032561	guanyl ribonucleotide binding
+GO:0097159	GO:1901640	XTP binding
+GO:0097159	GO:1901641	ITP binding
+GO:0097159	GO:1902249	IMP binding
+GO:0097159	GO:0005524	ATP binding
+GO:0097159	GO:0016208	AMP binding
+GO:0097159	GO:0030552	cAMP binding
+GO:0097159	GO:0043531	ADP binding
+GO:0097159	GO:0050656	3'-phosphoadenosine 5'-phosphosulfate binding
+GO:0097159	GO:0061507	2',3'-cyclic GMP-AMP binding
+GO:0097159	GO:0140703	3',3'-cyclic GMP-AMP binding
+GO:0097159	GO:0180001	cyclic-di-AMP binding
+GO:0097159	GO:0005525	GTP binding
+GO:0097159	GO:0019002	GMP binding
+GO:0097159	GO:0019003	GDP binding
+GO:0097159	GO:0030553	cGMP binding
+GO:0097159	GO:0035438	cyclic-di-GMP binding
+GO:0097159	GO:0061507	2',3'-cyclic GMP-AMP binding
+GO:0097159	GO:0097216	guanosine tetraphosphate binding
+GO:0097159	GO:0140703	3',3'-cyclic GMP-AMP binding
+GO:0097159	GO:0002134	UTP binding
+GO:0097159	GO:0002135	CTP binding
+GO:0097159	GO:0071949	FAD binding
+GO:0097159	GO:0071950	FADH2 binding
+GO:0097159	GO:0005524	ATP binding
+GO:0097159	GO:0005525	GTP binding
+GO:0097159	GO:1901640	XTP binding
+GO:0097159	GO:1901641	ITP binding
+GO:0097159	GO:0072571	mono-ADP-D-ribose binding
+GO:0097159	GO:0000062	fatty-acyl-CoA binding
+GO:0097159	GO:0120226	succinyl-CoA binding
+GO:0097159	GO:1905502	acetyl-CoA binding
+GO:0097159	GO:0036042	long-chain fatty acyl-CoA binding
+GO:0097159	GO:0035240	dopamine binding
+GO:0097159	GO:0051379	epinephrine binding
+GO:0097159	GO:0051380	norepinephrine binding
+GO:0097243	GO:0097243	flavonoid binding
+GO:0097243	GO:0097244	flavonol binding
+GO:0097243	GO:0097245	flavanol binding
+GO:0097243	GO:0097247	epigallocatechin 3-gallate binding
+GO:0097243	GO:2001227	quercitrin binding
+GO:0097243	GO:0097246	catechin binding
+GO:0097367	GO:0097367	carbohydrate derivative binding
+GO:0097367	GO:0001530	lipopolysaccharide binding
+GO:0097367	GO:0001882	nucleoside binding
+GO:0097367	GO:0005539	glycosaminoglycan binding
+GO:0097367	GO:0008061	chitin binding
+GO:0097367	GO:0016936	galactoside binding
+GO:0097367	GO:0032500	muramyl dipeptide binding
+GO:0097367	GO:0032552	deoxyribonucleotide binding
+GO:0097367	GO:0032553	ribonucleotide binding
+GO:0097367	GO:0033691	sialic acid binding
+GO:0097367	GO:0035727	lysophosphatidic acid binding
+GO:0097367	GO:0043394	proteoglycan binding
+GO:0097367	GO:0046871	N-acetylgalactosamine binding
+GO:0097367	GO:0051861	glycolipid binding
+GO:0097367	GO:0070095	fructose-6-phosphate binding
+GO:0097367	GO:0070891	lipoteichoic acid binding
+GO:0097367	GO:0070967	coenzyme F420 binding
+GO:0097367	GO:0072570	ADP-D-ribose binding
+GO:0097367	GO:0072572	poly-ADP-D-ribose binding
+GO:0097367	GO:0140081	glycosylated region protein binding
+GO:0097367	GO:1902248	5-O-phosphono-alpha-D-ribofuranosyl diphosphate binding
+GO:0097367	GO:1902516	sn-glycerol 3-phosphate binding
+GO:0097367	GO:1904067	ascr#2 binding
+GO:0097367	GO:1904599	advanced glycation end-product binding
+GO:0097367	GO:1990458	lipooligosaccharide binding
+GO:0097367	GO:2001066	amylopectin binding
+GO:0097367	GO:2001079	beta-D-Gal-(1->4)-beta-D-GlcNAc-(1->3)-beta-D-Gal-(1->4)-D-Glc binding
+GO:0097367	GO:2001080	chitosan binding
+GO:0097367	GO:2001227	quercitrin binding
+GO:0097367	GO:0001883	purine nucleoside binding
+GO:0097367	GO:0001884	pyrimidine nucleoside binding
+GO:0097367	GO:0032546	deoxyribonucleoside binding
+GO:0097367	GO:0032549	ribonucleoside binding
+GO:0097367	GO:0032547	purine deoxyribonucleoside binding
+GO:0097367	GO:0032550	purine ribonucleoside binding
+GO:0097367	GO:1905108	guanosine binding
+GO:0097367	GO:0032548	pyrimidine deoxyribonucleoside binding
+GO:0097367	GO:0032551	pyrimidine ribonucleoside binding
+GO:0097367	GO:0032547	purine deoxyribonucleoside binding
+GO:0097367	GO:0032548	pyrimidine deoxyribonucleoside binding
+GO:0097367	GO:0032550	purine ribonucleoside binding
+GO:0097367	GO:0032551	pyrimidine ribonucleoside binding
+GO:0097367	GO:1905108	guanosine binding
+GO:0097367	GO:0005540	hyaluronic acid binding
+GO:0097367	GO:0008201	heparin binding
+GO:0097367	GO:0035373	chondroitin sulfate proteoglycan binding
+GO:0097367	GO:0035374	chondroitin sulfate binding
+GO:0097367	GO:0042834	peptidoglycan binding
+GO:0097367	GO:1904399	heparan sulfate binding
+GO:0097367	GO:0032554	purine deoxyribonucleotide binding
+GO:0097367	GO:0032556	pyrimidine deoxyribonucleotide binding
+GO:0097367	GO:0032558	adenyl deoxyribonucleotide binding
+GO:0097367	GO:0032560	guanyl deoxyribonucleotide binding
+GO:0097367	GO:0032562	dAMP binding
+GO:0097367	GO:0032563	dADP binding
+GO:0097367	GO:0032564	dATP binding
+GO:0097367	GO:0032565	dGMP binding
+GO:0097367	GO:0032566	dGDP binding
+GO:0097367	GO:0032567	dGTP binding
+GO:0097367	GO:0010181	FMN binding
+GO:0097367	GO:0032555	purine ribonucleotide binding
+GO:0097367	GO:0032557	pyrimidine ribonucleotide binding
+GO:0097367	GO:0120233	prenyl-FMNH2 binding
+GO:0097367	GO:0032559	adenyl ribonucleotide binding
+GO:0097367	GO:0032561	guanyl ribonucleotide binding
+GO:0097367	GO:1901640	XTP binding
+GO:0097367	GO:1901641	ITP binding
+GO:0097367	GO:1902249	IMP binding
+GO:0097367	GO:0005524	ATP binding
+GO:0097367	GO:0016208	AMP binding
+GO:0097367	GO:0030552	cAMP binding
+GO:0097367	GO:0043531	ADP binding
+GO:0097367	GO:0050656	3'-phosphoadenosine 5'-phosphosulfate binding
+GO:0097367	GO:0061507	2',3'-cyclic GMP-AMP binding
+GO:0097367	GO:0140703	3',3'-cyclic GMP-AMP binding
+GO:0097367	GO:0180001	cyclic-di-AMP binding
+GO:0097367	GO:0005525	GTP binding
+GO:0097367	GO:0019002	GMP binding
+GO:0097367	GO:0019003	GDP binding
+GO:0097367	GO:0030553	cGMP binding
+GO:0097367	GO:0035438	cyclic-di-GMP binding
+GO:0097367	GO:0061507	2',3'-cyclic GMP-AMP binding
+GO:0097367	GO:0097216	guanosine tetraphosphate binding
+GO:0097367	GO:0140703	3',3'-cyclic GMP-AMP binding
+GO:0097367	GO:0002134	UTP binding
+GO:0097367	GO:0002135	CTP binding
+GO:0097367	GO:0035373	chondroitin sulfate proteoglycan binding
+GO:0097367	GO:0043395	heparan sulfate proteoglycan binding
+GO:0097367	GO:0045545	syndecan binding
+GO:0097367	GO:0034235	GPI anchor binding
+GO:0097367	GO:0043208	glycosphingolipid binding
+GO:0097367	GO:0120146	sulfatide binding
+GO:0097367	GO:0001876	lipoarabinomannan binding
+GO:0097367	GO:0035594	ganglioside binding
+GO:0097367	GO:1905573	ganglioside GM1 binding
+GO:0097367	GO:1905574	ganglioside GM2 binding
+GO:0097367	GO:1905575	ganglioside GM3 binding
+GO:0097367	GO:1905576	ganglioside GT1b binding
+GO:0097367	GO:1905577	ganglioside GP1c binding
+GO:0097367	GO:0072571	mono-ADP-D-ribose binding
+GO:1901681	GO:1901681	sulfur compound binding
+GO:1901681	GO:0008201	heparin binding
+GO:1901681	GO:0008658	penicillin binding
+GO:1901681	GO:0009374	biotin binding
+GO:1901681	GO:0016596	thienylcyclohexylpiperidine binding
+GO:1901681	GO:0030975	thiamine binding
+GO:1901681	GO:0030976	thiamine pyrophosphate binding
+GO:1901681	GO:0031405	lipoic acid binding
+GO:1901681	GO:0035373	chondroitin sulfate proteoglycan binding
+GO:1901681	GO:0035374	chondroitin sulfate binding
+GO:1901681	GO:0035730	S-nitrosoglutathione binding
+GO:1901681	GO:0036127	3-sulfino-L-alanine binding
+GO:1901681	GO:0036173	thiosulfate binding
+GO:1901681	GO:0043199	sulfate binding
+GO:1901681	GO:0043210	alkanesulfonate binding
+GO:1901681	GO:0043295	glutathione binding
+GO:1901681	GO:0043395	heparan sulfate proteoglycan binding
+GO:1901681	GO:0043544	lipoamide binding
+GO:1901681	GO:0043924	suramin binding
+GO:1901681	GO:0050656	3'-phosphoadenosine 5'-phosphosulfate binding
+GO:1901681	GO:0120225	coenzyme A binding
+GO:1901681	GO:0120227	acyl-CoA binding
+GO:1901681	GO:1902485	L-cysteine binding
+GO:1901681	GO:1904047	S-adenosyl-L-methionine binding
+GO:1901681	GO:1904399	heparan sulfate binding
+GO:1901681	GO:2001147	camalexin binding
+GO:1901681	GO:0030977	taurine binding
+GO:1901681	GO:0000062	fatty-acyl-CoA binding
+GO:1901681	GO:0120226	succinyl-CoA binding
+GO:1901681	GO:1905502	acetyl-CoA binding
+GO:1901681	GO:0036042	long-chain fatty acyl-CoA binding
+GO:1904483	GO:1904483	synthetic cannabinoid binding
+GO:1990300	GO:1990300	cellulosome binding
