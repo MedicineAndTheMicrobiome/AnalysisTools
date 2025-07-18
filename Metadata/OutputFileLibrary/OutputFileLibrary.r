@@ -104,7 +104,7 @@ plot_title_page=function(title, subtitle=""){
 
 paint_matrix=function(mat, title="", subtitle="", plot_min=NA, plot_max=NA, log_col=F, 
 	high_is_hot=T, deci_pts=4, 
-	label_zeros=T, counts=F, value.cex=2,
+	label_zeros=T, counts=F, value.cex=-1,
 	plot_col_dendr=F,
 	plot_row_dendr=F,
 	suppress_grid_lines=F,
@@ -287,8 +287,10 @@ paint_matrix=function(mat, title="", subtitle="", plot_min=NA, plot_max=NA, log_
 	mtext(title, side=3, line=1, outer=T, cex=1.5, font=2);
 	mtext(subtitle, side=3, line=-.5, outer=T, cex=.8, font=3);
 
-	axis_row_cex=min(1, 80/num_row);
-	axis_col_cex=min(1, 80/num_col);
+	axis_row_cex=min(1, .70/strheight("X"));
+	axis_col_cex=min(1, .70/strwidth("X"));
+	cat("Axis cex Columns: ", axis_col_cex, "\n");
+	cat("Axis cex Rows: ", axis_row_cex, "\n");
 
         # x-axis
         axis(side=1, at=seq(.5, num_col-.5, 1), labels=colnames(mat), las=2, 
