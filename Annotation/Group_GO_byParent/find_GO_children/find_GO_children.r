@@ -20,7 +20,7 @@ usage = paste(
 	"\nUsage:\n", script_name, "\n",
 	"	-i <input OBO Table/Mapping .tsv file>\n",
 	"	-p <input target parent GO IDs filename>\n",
-	"	-o <output directory>\n",
+	"	-d <output directory>\n",
 	"\n",
 	"This script will:\n",
 	"  1.) Read in the parent GO IDs from the target parent file.\n",
@@ -105,7 +105,14 @@ lookup_name=function(id, id_name_map){
 	num_ids=length(id);
 	out_arr=character(num_ids);
 	for(i in 1:num_ids){
-		out_arr[i]=id_name_map[[id[i]]];
+		idname=id_name_map[[id[i]]];
+		if(is.null(idname)){
+			cat("Error: Could not find name of: ", id[i], "\n");
+			cat("  It's possible specified ID is more recent than used OBO Mapping.\n");
+			out_arr[i]="No Description / Undocumented";
+		}else{
+			out_arr[i]=idname;
+		}
 	}
 	return(out_arr);
 }
@@ -290,10 +297,10 @@ for(pidx in target_parent_ids){
 
 	cat("-------------------------------------------------------------\n");
 
+	cat("Targeted Parent ID: ", pidx, ":\n", sep="");
 	parent_id_name=lookup_name(pidx, id_to_name_map);
 	cat("\n");
-	cat("Name of Parent ID: ", pidx, ":\n", sep="");
-	cat("\t\"", parent_id_name, "\"\n", sep="");
+	cat("Parent ID Name: ", parent_id_name, "\"\n", sep="");
 	cat("\n");
 
 	# Lookup immediate children
