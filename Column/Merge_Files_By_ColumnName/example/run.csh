@@ -4,6 +4,6 @@
 ../Merge_Files_By_ColumnName.pl \
 	-i main.tsv \
 	-k MedbioID \
-	-I aux.tsv \
+	-I auxil.tsv \
 	-K medbio_id \
 	-o combined.tsv
