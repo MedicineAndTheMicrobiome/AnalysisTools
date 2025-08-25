@@ -226,7 +226,7 @@ usage = paste(
 	"		into a boolean, do this:\n",
 	"			bool_x=ifelse(standardize(x)>0, 1, 0);\n",
 	"\n",
-	"	 hinged(x, knot, type)\n",
+	"	 hinge(x, knot, type)\n",
 	"		This function is used to apply a hinge function for MARS-like splines.\n",
 	"		The knot is the point where the inflection begins.\n",
 	"		The two types of hinges are: 'low_flat_call' and 'high_flat_put'\n",
@@ -1287,7 +1287,9 @@ for(cmd in commands){
 		# Add variable to factors
 		#cmd=gsub("\\s+", "", cmd);
 		lhs=strsplit(cmd, "=")[[1]][1];
+		lhs=trimws(lhs);
 		cat("LHS: ", lhs, "\n");
+
 		results=eval(parse(text=cmd), envir=factors);
 		print(results);
 
