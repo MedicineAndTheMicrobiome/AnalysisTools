@@ -1223,9 +1223,11 @@ write_file_report=function(report_list){
 
 		text_size=max(.01, min(.8, .8 - .003*(num_lines-52)));
 
-		for(i in 1:num_lines){
-			strings[i]=gsub("\t", "", strings[i]);
-			text(0, top-i-1, strings[i], pos=4, cex=text_size);
+		if(num_lines>0){
+			for(i in 1:num_lines){
+				strings[i]=gsub("\t", "", strings[i]);
+				text(0, top-i-1, strings[i], pos=4, cex=text_size);
+			}
 		}
 
 	}
