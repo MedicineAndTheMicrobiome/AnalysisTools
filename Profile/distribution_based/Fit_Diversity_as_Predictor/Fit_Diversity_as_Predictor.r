@@ -1186,9 +1186,8 @@ plot_coef_pval_heatmaps=function(cfpv_mat, divn){
 plot_model_fitness_heatmaps=function(mod_stats, divn){
 
 	aic_mat=mod_stats[["aic"]];
-	r2_mat=mod_stats[["r2"]][,c("McF Reduced","McF Full")];
+	r2_mat=mod_stats[["r2"]][,c("McF Reduced","McF Full"),drop=F];
 	anova_mat=mod_stats[["anova"]];
-
 	
 	par.orig=par(no.readonly=T);
 	par(oma=c(1,0,0,0));
@@ -1206,6 +1205,7 @@ plot_model_fitness_heatmaps=function(mod_stats, divn){
 
 	# R2
 	orig_cnames=colnames(r2_mat);
+
 	r2_mat=cbind(r2_mat, r2_mat[,"McF Full"]-r2_mat[,"McF Reduced"]);
 	colnames(r2_mat)=c(orig_cnames, "\"Difference\"");
 	sort_best_full_ix=order(r2_mat[, "\"Difference\""], decreasing=T);
@@ -1658,7 +1658,7 @@ write_coef_pval_matrices(t(div_coef_pval_list[["coef"]]), t(div_coef_pval_list[[
 
 #------------------------------------------------------------------------------
 
-write_alr_as_pred_summary=function(fn, div_cfpv_lst){
+write_div_as_pred_summary=function(fn, div_cfpv_lst){
 
 	fmt_cf=function(x){
 		fmt=sapply(x, function(x){sprintf("%7.4f", x)});
@@ -1678,41 +1678,48 @@ write_alr_as_pred_summary=function(fn, div_cfpv_lst){
 	# Just write out shannon and tail
 	cat("Writing summary to: ", fn, "\n");
 
+	cn=c("Coefficients", "P-values");
+
 	coef_mat=div_cfpv_lst[["coef"]];
 	pval_mat=div_cfpv_lst[["pval"]];
 
-	shan_tab=cbind(coef_mat[,"Shannon"], pval_mat[,"Shannon"]);
-	tail_tab=cbind(coef_mat[,"Tail"], pval_mat[,"Tail"]);
+	shan_tab=cbind(coef_mat[,"Shannon",drop=F], pval_mat[,"Shannon",drop=F]);
+	colnames(shan_tab)=cn;
+	tail_tab=cbind(coef_mat[,"Tail",drop=F], pval_mat[,"Tail",drop=F]);
+	colnames(tail_tab)=cn;
+
+	resp_names=rownames(coef_mat);
+	rownames(shan_tab)=resp_names;
+	rownames(tail_tab)=resp_names;
 
 	# Order by decreasing significance
 	shan_ord_ix=order(shan_tab[,2]);
 	tail_ord_ix=order(tail_tab[,2]);
-
 	shan_tab=shan_tab[shan_ord_ix,,drop=F];
 	tail_tab=tail_tab[tail_ord_ix,,drop=F];
 
 	# Format the numbers
-	shan_txt_tab=cbind(fmt_cf(shan_tab[,1]), fmt_pv(shan_tab[,2]));
-	tail_txt_tab=cbind(fmt_cf(tail_tab[,1]), fmt_pv(tail_tab[,2]));
+	shan_txt_tab=cbind(fmt_cf(shan_tab[,1,drop=F]), fmt_pv(shan_tab[,2,drop=F]));
+	tail_txt_tab=cbind(fmt_cf(tail_tab[,1,drop=F]), fmt_pv(tail_tab[,2,drop=F]));
 
-	shan_txt_tab=cbind(rownames(shan_txt_tab), shan_txt_tab);
-	tail_txt_tab=cbind(rownames(tail_txt_tab), tail_txt_tab);
+	shan_txt_tab=cbind(rownames(shan_tab), shan_txt_tab);
+	tail_txt_tab=cbind(rownames(tail_tab), tail_txt_tab);
 
-	cn=c("Coefficients", "P-values");
-
+	comb=matrix("", ncol=3, nrow=0);
 	comb=rbind(
+		comb,
 		c("Shannon", cn),
 		shan_txt_tab, 
-		c("","",""), 
+		c("","", ""), 
 		c("Tail", cn),
 		tail_txt_tab);
 
-	#print(comb);
+	print(comb);
 
 	write.table(comb, fn, sep="\t", quote=F, col.names=F, row.names=F);
 }
 
-write_alr_as_pred_summary(paste(OutputRoot, ".alr_as_pred.summary.tsv", sep=""), div_coef_pval_list);
+write_div_as_pred_summary(paste(OutputRoot, ".div_as_pred.summary.tsv", sep=""), div_coef_pval_list);
 
 ###############################################################################
 
