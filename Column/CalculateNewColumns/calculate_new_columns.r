@@ -55,6 +55,14 @@ usage = paste(
 	"		Similarly, you use this function to remove rows with NAs in the\n",
 	"		specified variable, without having to create a new variable with is.na()\n",
 	"\n",
+	"Prepend a string (like a group name) to the variables:\n",
+	"	prepend_names <prefix> <start> <end>\n",
+	"		For example:\n",
+	"		  prepend_names large. 3 10\n",
+	"		will apply large. to the variables from position 3 to 10.\n",
+	"		if the end is not a integer, then the prefix will be applied\n",
+	"		until the last variable.\n",
+	"\n",
 	"A column can be moved to the first column position perhaps making it a\n",
 	"primary key or sample id for the matrix with the \"make_key\" command.\n",
 	"\n",
@@ -1264,6 +1272,24 @@ for(cmd in commands){
 		keep=as.logical(as.numeric(params[5]));
 
 		factors=batch_apply(factors, listfn, funct, new_ext, keep);		
+
+	}else if(length(grep("^prepend_names ", cmd))==1){
+		# example: prepend_names <prefix> <start> <end>
+
+		params=strsplit(cmd, "\\s+")[[1]];
+		prefix=params[2]
+		start_pos=as.numeric(params[3]);
+		end_pos=as.numeric(params[4]);
+		if(is.na(end_pos)){
+			end_pos=ncol(factors);
+		}
+	
+		cat("Prepending Names with: '", prefix, "' from columns: ", 
+			start_pos, " to ", end_pos, "\n", sep="");
+
+		cnames=colnames(factors);
+		cnames[start_pos:end_pos]=paste(prefix, cnames[start_pos:end_pos], sep="");
+		colnames(factors)=cnames;
 
 	}else if(length(grep("^make_key ", cmd))==1){
 		# move column to first position
