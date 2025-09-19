@@ -6,6 +6,8 @@ library(MASS);
 library('getopt');
 
 options(useFancyQuotes=F);
+options(warn=1);
+
 
 params=c(
 	"summary_file", "s", 1, "character",
@@ -158,7 +160,7 @@ pure_cum_sum=cumsum(pure_mean_abund);
 sorted_taxa_names=colnames(pure_normalized);
 
 cat("Top 10 categories:\n");
-print(pure_mean_abund[1:10]);
+print(pure_mean_abund[num_categories:(num_categories-10)]);
 
 ##############################################################################
 
@@ -177,9 +179,9 @@ plot_text(c(
 # Sampling Depth Histograms
 
 par(mfrow=c(2,1));
-hist(pure_totals, main="Sample Depths", 
+hist(pure_totals, main="Per Sample Sequencing Depths", 
 	xlab="Read Counts", ylab="Frequency of Samples", breaks=100);
-hist(log10(pure_totals), main="Sample Depths (Log Scale)", 
+hist(log10(pure_totals), main="Per Sample Sequencing Depths (using Log Scale)", 
 	xlab="Log10(Read Counts)", ylab="Frequency of Samples", breaks=100);
 
 ##############################################################################
@@ -201,6 +203,7 @@ for(i in 1:num_samp_prop_landmarks){
 
 cat("Number of Categories to achieve landmark:\n");
 print(samp_prop_landmark_category_counts);
+cat("Out of: ", num_categories, "\n\n");
 
 ##############################################################################
 # Plot cumulative abundances and proportion of samples with nonzero counts as abundance increases
@@ -212,6 +215,13 @@ plot(1:num_categories, pure_cum_sum, main="Cumulative Abundance",
 	ylab="Proportion of Total Abundance",
 	cex=.5
 	);
+title(main="For Denominator:",
+	line=-1);
+title(main=paste("Proportion (1 - Targeted Proportion): ", samp_prop_landmarks[num_samp_prop_landmarks]),
+	line=-2);
+title(main=paste("Num Categories Needed: ", samp_prop_landmark_category_counts[num_samp_prop_landmarks]),
+	line=-3);
+
 abline(h=samp_prop_landmarks, col=landmark_colors, lty="dashed", lwd=landmark_widths);
 abline(v=samp_prop_landmark_category_counts, col=landmark_colors, lty="dotted", lwd=landmark_widths);
 
@@ -223,6 +233,8 @@ plot(1:num_categories, prop_zeros, main="Proportion of Samples with Non-zero Cat
 	xlab="Category Identifier (Increasing Abundance)", ylab="Proportion of Samples",
 	cex=.5
 	);
+title(main="i.e., Will all the targeted categories be non-zero?",
+	line=.5, cex.main=.8, font.main=3);
 abline(h=samp_prop_landmarks, col=landmark_colors, lty="dashed", lwd=landmark_widths);
 abline(v=samp_prop_landmark_category_counts, col=landmark_colors, lty="dotted", lwd=landmark_widths);
 
@@ -237,7 +249,10 @@ calc_resample_prob=function(norm, samp_tot){
 	colnames(prob_nonzero_mat)=colnames(norm);
 	rownames(prob_nonzero_mat)=rownames(norm);
 
-	print(samp_tot)
+	cat("\nSample Sequencing Depths:\n");
+	samp_tot=round(samp_tot,0);
+	print(samp_tot);
+
 	for(i in 1:num_samples){
 		for(j in 1:num_categories){
 			prob_nonzero_mat[i,j]=1-pbinom(0, samp_tot[i], norm[i,j]);
@@ -249,6 +264,7 @@ calc_resample_prob=function(norm, samp_tot){
 
 #..............................................................................
 
+cat("Calculting probability of non-zero if resampled...\n");
 p_nz_mat=calc_resample_prob(pure_normalized, pure_totals);
 
 nonz_resamp=apply(p_nz_mat, 2, function(x){sum(x>.95)});
@@ -269,7 +285,7 @@ par(mfrow=c(1,1));
 par(mar=c(4,4,4,1));
 
 plot(0, type="n", xlim=c(0,1), ylim=c(0,1),
-	main="Proportion of Samples Remaining Non-zero if Resampled",
+	main="Proportion of Samples Remaining Non-zero if Resampled (Predicted)",
 	xlab="Observed Proportion NonZero", ylab="Predicted Proportion NonZero (95% of time, if resampled)");
 abline(a=0,b=1, col="blue");
 points(prop_zeros, prop_nonz_resamp, cex=.5);
@@ -278,54 +294,58 @@ points(prop_zeros, prop_nonz_resamp, cex=.5);
 # Mean Abundance vs. Prop Non zero
 
 plot(log10(pure_mean_abund), prop_zeros, 
-	main="Observed Proportion of Samples Non-Zero vs. Mean Abundance (Log Scale)",
-	xlab="Log10(Mean Abundance)", ylab="Proportion of Samples NonZero",
+	main="Observed Proportion of Samples Non-Zero (Obs) vs. Mean Abundance (Log Scale)",
+	xlab="Log10(Mean Abundance)", ylab="Proportion of Samples NonZero (Obs)",
 	cex=.5
 	);
 
 ##############################################################################
-# Accumulation of denomator plots
+# Accumulation of denominator plots
 
 cumul_denominator=numeric(num_samples);
 mean_denom=numeric(num_categories);
 sd_denom=numeric(num_categories);
-cov_denom=numeric(num_categories);
+sd_logratio=numeric(num_categories);
 
 for(cat_ix in 1:num_categories){
 	cumul_denominator=cumul_denominator+pure_normalized[,cat_ix];
+	cumul_numerator=1-cumul_denominator;
+	
 	mean_denom[cat_ix]=mean(cumul_denominator);
 	sd_denom[cat_ix]=sd(cumul_denominator);
-	cov_denom[cat_ix]=sd_denom[cat_ix]/mean_denom[cat_ix];
+	sd_logratio[cat_ix]=sd(log(cumul_numerator/cumul_denominator));
 }
 
 par(mfrow=c(4,1));
 par(oma=c(3,0,3,1));
 
 # Accumulation means
-plot(1:num_categories, mean_denom, ylab="Mean", xlab="", main="Mean");
+plot(1:num_categories, mean_denom, 
+	ylab="Mean (Cumulative)", xlab="", main="Accumulated Mean of Denominator");
 abline(h=samp_prop_landmarks, col=landmark_colors, lty="dashed", lwd=landmark_widths);
 abline(v=samp_prop_landmark_category_counts, col=landmark_colors, lty="dotted", lwd=landmark_widths);
 
 # Accumulation Std Dev.
-plot(1:num_categories, sd_denom, ylab="St. Dev.", xlab="", main="Standard Deviation");
+plot(1:num_categories, sd_denom, 
+	ylab="St. Dev. (Cumulative)", xlab="", main="Accumulated Standard Deviation of Denominator");
 abline(v=samp_prop_landmark_category_counts, col=landmark_colors, lty="dotted", lwd=landmark_widths);
 
-# Accumulation of coeff of variance
-plot(1:num_categories, cov_denom, ylab="StDev/Mean", xlab="", 
-	main="Coefficient of Variance (lower is better)");
-abline(v=samp_prop_landmark_category_counts, col=landmark_colors, lty="dotted", lwd=landmark_widths);
+# Accumulation Std Dev.
+min_sd_lr=min(sd_logratio, na.rm=T);
+cat("Min SD of LR: ", min_sd_lr, "\n");
+min_sd_lr_ix=which(sd_logratio==min_sd_lr);
 
-mtext("Accumulation of 'Denominator' (Increasing Abundance)\n", 
-	side=3, line=-1, outer=T, font=2, cex=1.3);
-mtext("Number of Categories Included", 
-	side=1, line=1, outer=T, cex=1);
-
-# Non-cumulative Mean abundances
-plot(1:num_categories, log10(pure_mean_abund),
-	main="Mean Abundances (Not Cumulative)",
-	xlab="Category Identifer (Increasing Abundance)",
-	ylab="Log10(Abundance)", cex=.5);
+plot(1:num_categories, sd_logratio, 
+	ylab="St. Dev. (Cumulative LR)", xlab="", main="Accumulated Standard Deviation of Log Ratio");
 abline(v=samp_prop_landmark_category_counts, col=landmark_colors, lty="dotted", lwd=landmark_widths);
+abline(v=min_sd_lr_ix, lty="dashed", col="purple")
+axis(side=3, at=min_sd_lr_ix, labels="Min SD", tick=T, col="purple");
+
+plot(1:num_categories, log(sd_logratio), 
+	ylab="Log St. Dev. (Cumulative LR)", xlab="", main="Accumulated Standard Deviation of Log Ratio");
+abline(v=samp_prop_landmark_category_counts, col=landmark_colors, lty="dotted", lwd=landmark_widths);
+abline(v=min_sd_lr_ix, lty="dashed", col="purple")
+axis(side=3, at=min_sd_lr_ix, labels="Min SD", tick=T, col="purple");
 
 ##############################################################################
 # Calculate ALR 
