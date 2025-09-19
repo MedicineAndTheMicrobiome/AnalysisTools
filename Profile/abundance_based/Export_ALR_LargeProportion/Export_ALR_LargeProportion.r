@@ -88,30 +88,9 @@ normalize=function(counts){
 	return(normalized);
 }
 
-additive_log_rato=function(ordered_matrix){
-# Assumes last column will be the denominator
-
-	num_cat=ncol(ordered_matrix);
-	num_samp=nrow(ordered_matrix);
-
-	denominator=ordered_matrix[,num_cat];
-	alr_mat=matrix(0, nrow=num_samp, ncol=(num_cat-1));
-
-	for(i in 1:num_samp){
-		alr_mat[i,]=log(ordered_matrix[i,1:(num_cat-1)]/denominator[i]);
-	}
-
-	rownames(alr_mat)=rownames(ordered_matrix)
-	colnames(alr_mat)=head(colnames(ordered_matrix), num_cat-1);
-
-	alr_struct=list();
-	alr_struct[["transformed"]]=alr_mat;
-	alr_struct[["denominator"]]=denominator;
-
-	return(alr_struct);
-}
-
 plot_text=function(strings){
+
+	orig.par=par(no.readonly=T);
 	par(family="Courier");
 	par(oma=rep(.1,4));
 	par(mar=rep(0,4));
@@ -134,6 +113,8 @@ plot_text=function(strings){
 	}
 
 	cat(strings, sep="\n");
+
+	par(orig.par);
 }
 
 ##############################################################################
@@ -179,25 +160,29 @@ sorted_taxa_names=colnames(pure_normalized);
 cat("Top 10 categories:\n");
 print(pure_mean_abund[1:10]);
 
-#------------------------------------------------------------------------------
-
-count=counts[,ix];
-logready_counts=counts+.5;
-logready_normalized=normalize(logready_counts);
-
 ##############################################################################
 
 pdf_fname=paste(OutputRoot, ".alr_summary.pdf", sep="");
 pdf(pdf_fname, height=11, width=9.5);
 
+par(mfrow=c(1,1));
+plot_text(c(
+	paste("Summary File: ", SummaryFile, "\n", sep=""),
+	paste("Output File: ", OutputRoot, "\n", sep=""),
+	paste("Extraction Proportion: ", ExtractProp, "\n", sep="")
+));
+
+##############################################################################
 #------------------------------------------------------------------------------
-# Histograms
+# Sampling Depth Histograms
 
 par(mfrow=c(2,1));
-hist(pure_totals, main="Sample Depths", xlab="Read Counts", breaks=100);
-hist(log10(pure_totals), main="Sample Depths (Log Scale)", xlab="Log10(Read Counts)", breaks=100);
+hist(pure_totals, main="Sample Depths", 
+	xlab="Read Counts", ylab="Frequency of Samples", breaks=100);
+hist(log10(pure_totals), main="Sample Depths (Log Scale)", 
+	xlab="Log10(Read Counts)", ylab="Frequency of Samples", breaks=100);
 
-#------------------------------------------------------------------------------
+##############################################################################
 # Compute categories counts necessary to achieve landmarks
 
 samp_prop_landmarks=c(.05, .1, .15, .2, .5, 1-ExtractProp);
@@ -210,7 +195,6 @@ landmark_widths[num_samp_prop_landmarks]=2;
 landmark_colors=rep("blue", num_samp_prop_landmarks);
 landmark_colors[num_samp_prop_landmarks]="red";
 
-#cum_sum_abund_incr=cumsum(rev(pure_mean_abund));
 for(i in 1:num_samp_prop_landmarks){
 	samp_prop_landmark_category_counts[i]=sum(pure_cum_sum < samp_prop_landmarks[i]);
 }
@@ -218,7 +202,8 @@ for(i in 1:num_samp_prop_landmarks){
 cat("Number of Categories to achieve landmark:\n");
 print(samp_prop_landmark_category_counts);
 
-#------------------------------------------------------------------------------
+##############################################################################
+# Plot cumulative abundances and proportion of samples with nonzero counts as abundance increases
 
 par(mfrow=c(3,1));
 
@@ -277,8 +262,8 @@ plot(1:num_categories, prop_nonz_resamp, ylim=c(0,1),
 abline(h=samp_prop_landmarks, col=landmark_colors, lty="dashed", lwd=landmark_widths);
 abline(v=samp_prop_landmark_category_counts, col=landmark_colors, lty="dotted", lwd=landmark_widths);
 
-#------------------------------------------------------------------------------
-
+##############################################################################
+# Non-zero resampling vs. observed
 
 par(mfrow=c(1,1));
 par(mar=c(4,4,4,1));
@@ -289,6 +274,8 @@ plot(0, type="n", xlim=c(0,1), ylim=c(0,1),
 abline(a=0,b=1, col="blue");
 points(prop_zeros, prop_nonz_resamp, cex=.5);
 
+##############################################################################
+# Mean Abundance vs. Prop Non zero
 
 plot(log10(pure_mean_abund), prop_zeros, 
 	main="Observed Proportion of Samples Non-Zero vs. Mean Abundance (Log Scale)",
@@ -297,6 +284,7 @@ plot(log10(pure_mean_abund), prop_zeros,
 	);
 
 ##############################################################################
+# Accumulation of denomator plots
 
 cumul_denominator=numeric(num_samples);
 mean_denom=numeric(num_categories);
@@ -310,18 +298,21 @@ for(cat_ix in 1:num_categories){
 	cov_denom[cat_ix]=sd_denom[cat_ix]/mean_denom[cat_ix];
 }
 
-par(mfrow=c(3,1));
+par(mfrow=c(4,1));
 par(oma=c(3,0,3,1));
 
+# Accumulation means
 plot(1:num_categories, mean_denom, ylab="Mean", xlab="", main="Mean");
 abline(h=samp_prop_landmarks, col=landmark_colors, lty="dashed", lwd=landmark_widths);
 abline(v=samp_prop_landmark_category_counts, col=landmark_colors, lty="dotted", lwd=landmark_widths);
 
+# Accumulation Std Dev.
 plot(1:num_categories, sd_denom, ylab="St. Dev.", xlab="", main="Standard Deviation");
 abline(v=samp_prop_landmark_category_counts, col=landmark_colors, lty="dotted", lwd=landmark_widths);
 
+# Accumulation of coeff of variance
 plot(1:num_categories, cov_denom, ylab="StDev/Mean", xlab="", 
-	main="Coefficient of Variance");
+	main="Coefficient of Variance (lower is better)");
 abline(v=samp_prop_landmark_category_counts, col=landmark_colors, lty="dotted", lwd=landmark_widths);
 
 mtext("Accumulation of 'Denominator' (Increasing Abundance)\n", 
@@ -329,10 +320,7 @@ mtext("Accumulation of 'Denominator' (Increasing Abundance)\n",
 mtext("Number of Categories Included", 
 	side=1, line=1, outer=T, cex=1);
 
-##############################################################################
-
-par(mfrow=c(3,1));
-
+# Non-cumulative Mean abundances
 plot(1:num_categories, log10(pure_mean_abund),
 	main="Mean Abundances (Not Cumulative)",
 	xlab="Category Identifer (Increasing Abundance)",
@@ -340,8 +328,8 @@ plot(1:num_categories, log10(pure_mean_abund),
 abline(v=samp_prop_landmark_category_counts, col=landmark_colors, lty="dotted", lwd=landmark_widths);
 
 ##############################################################################
-
-cat("\n");
+# Calculate ALR 
+par(mfrow=c(2,1));
 
 denom_ix=pure_cum_sum<=(1-ExtractProp);
 denominator_mat=pure_normalized[,denom_ix];
@@ -353,8 +341,9 @@ num_vars_for_alr=sum(!denom_ix);
 summed_denom=apply(denominator_mat, 1, sum);
 acquired_denom_prop=mean(summed_denom);
 
+# 
 hist(summed_denom, breaks=100, main="Acquired Denominators (Normalized)",
-	xlab="Denominators", ylab="Frequency"
+	xlab="Denominators", ylab="Frequency of Samples"
 );
 
 
@@ -371,8 +360,8 @@ denominators_counts_mat=pure_counts[,denom_ix];
 numerators_counts_mat=pure_counts[,!denom_ix];
 summed_denom_counts=apply(denominators_counts_mat, 1, sum);
 
-hist(log10(summed_denom_counts+.05), breaks=100, main="Acquired Denominators (Counts)",
-	xlab="Log10(Denominators+.05)", ylab="Frequency"
+hist(log10(summed_denom_counts+.5), breaks=100, main="Acquired Denominators (Counts)",
+	xlab="Log10(Denominators+.5)", ylab="Frequency of Samples"
 );
 
 for(i in 1:num_samples){
@@ -386,24 +375,52 @@ for(i in 1:num_samples){
 
 hist(log10(samples_with_zeros), breaks=100, 
 	main="Distribution of Zero-Abundances Categories (Numerators) Before ALR Transformation",
-	xlab="Log10(Number of Zero Count Categories)",
-	ylab="Frequency"
+	xlab="Log10(Number of Zero Count Categories in each Sample)",
+	ylab="Frequency of Samples"
 );
 
 ##############################################################################
 # Plot some histograms for the top categories
 
+var_names=colnames(alr_matrix);
 par(mfrow=c(3,3));
 
-var_names=colnames(alr_matrix);
-for(i in 1:(9*10)){
-	mean_alr=mean(alr_matrix[,i]);
-	hist(alr_matrix[,i], breaks=25, 
-		main=paste(i, ".) ", var_names[i], sep=""),
-		xlab="ALR", ylab="Frequency"
+plot_histogram=function(ix, values, vname, col){
+
+	mean_alr=mean(values);
+	sd_alr=sd(values);
+	hist(values, breaks=25, 
+		main=paste(ix, ".) ", vname, sep=""),
+		xlab="ALR", ylab="Frequency",
+		col=col
 	);
-	mtext(paste("Mean: ", round(mean_alr, 8), sep=""), cex=.7, side=3);
+	mtext(paste(
+		"Mean: ", round(mean_alr, 4), "\n",
+		"St Dev: ", round(sd_alr, 4), "\n",
+		"Coef Var: ", round(sd_alr/mean_alr, 4), 
+		sep=""), cex=.75, line=-2, side=3);
+
+};
+
+# Show top and bottom 18 alr histograms
+num_alr_val=ncol(alr_matrix);
+
+par(mfrow=c(3,3));
+ 
+# Bottom
+for(i in 1:(9*2)){
+	val=alr_matrix[,i];
+	names=var_names[i];
+	plot_histogram(i, val, names, col="skyblue");
 }
+
+# Top
+for(i in num_alr_val-(1:(9*2))){
+	val=alr_matrix[,i];
+	names=var_names[i];
+	plot_histogram(i, val, names, col="pink");
+}
+
 
 ##############################################################################
 par(mfrow=c(1,1));
@@ -420,13 +437,15 @@ plot_text(c(
 ));
 
 ##############################################################################
+##############################################################################
+
 # Write ALR to tsv file 
-tsv_fname=paste(OutputRoot, ".top", num_top_categories, ".tsv", sep="");
+tsv_fname=paste(OutputRoot, ".tsv", sep="");
 cat("Writing TSV of ALR values to file: ", tsv_fname, "\n", sep="");
 fh=file(tsv_fname, "w");
 cat(file=fh, "SampleID");
 close(fh);
-write.table(alr_categories_val, file=tsv_fname, quote=F, sep="\t", row.names=T, col.names=NA, append=T);
+write.table(alr_matrix, file=tsv_fname, quote=F, sep="\t", row.names=T, col.names=NA, append=T);
 
 ##############################################################################
 
