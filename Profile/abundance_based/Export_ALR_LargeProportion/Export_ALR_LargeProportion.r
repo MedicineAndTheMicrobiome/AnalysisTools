@@ -348,7 +348,8 @@ abline(v=min_sd_lr_ix, lty="dashed", col="purple")
 axis(side=3, at=min_sd_lr_ix, labels="Min SD", tick=T, col="purple");
 
 ##############################################################################
-# Calculate ALR 
+# Analyze denominators
+
 par(mfrow=c(2,1));
 
 denom_ix=pure_cum_sum<=(1-ExtractProp);
@@ -361,29 +362,33 @@ num_vars_for_alr=sum(!denom_ix);
 summed_denom=apply(denominator_mat, 1, sum);
 acquired_denom_prop=mean(summed_denom);
 
-# 
-hist(summed_denom, breaks=100, main="Acquired Denominators (Normalized)",
+# Show distribution of denominator proportions
+hist(summed_denom, breaks=100, 
+	main="Acquired Denominators (Normalized): Proportion of Abundance in ALR Denominator",
 	xlab="Denominators", ylab="Frequency of Samples"
 );
 
+title(main=paste("1 - ExtractProp: ", 1-ExtractProp), line=0);
 
-# Calculate the ALR
-# Add .5 to the counts of the numerator and denominator
+
+# Show distribution of reads underlying denonimators
+denominators_counts_mat=pure_counts[,denom_ix];
+numerators_counts_mat=pure_counts[,!denom_ix];
+summed_denom_counts=apply(denominators_counts_mat, 1, sum);
+
+hist(log10(summed_denom_counts+.5), breaks=100, 
+	main="Acquired Denominators (Counts): Num Reads Underlying ALR Denominator",
+	xlab="Log10(Denominators+.5)", ylab="Frequency of Samples"
+);
+
+##############################################################################
+# Calculate ALR
 
 alr_matrix=matrix(NA, nrow=num_samples, ncol=num_vars_for_alr);
 rownames(alr_matrix)=rownames(numerators_mat);
 colnames(alr_matrix)=colnames(numerators_mat);
 
 samples_with_zeros=numeric(num_samples);
-
-denominators_counts_mat=pure_counts[,denom_ix];
-numerators_counts_mat=pure_counts[,!denom_ix];
-summed_denom_counts=apply(denominators_counts_mat, 1, sum);
-
-hist(log10(summed_denom_counts+.5), breaks=100, main="Acquired Denominators (Counts)",
-	xlab="Log10(Denominators+.5)", ylab="Frequency of Samples"
-);
-
 for(i in 1:num_samples){
 	samp_counts=numerators_counts_mat[i,];
 	samples_with_zeros[i]=sum(samp_counts==0);
@@ -392,12 +397,6 @@ for(i in 1:num_samples){
 	logratio=log(numerator_plus/denom_plus);
 	alr_matrix[i,]=logratio;
 }
-
-hist(log10(samples_with_zeros), breaks=100, 
-	main="Distribution of Zero-Abundances Categories (Numerators) Before ALR Transformation",
-	xlab="Log10(Number of Zero Count Categories in each Sample)",
-	ylab="Frequency of Samples"
-);
 
 ##############################################################################
 # Plot some histograms for the top categories
