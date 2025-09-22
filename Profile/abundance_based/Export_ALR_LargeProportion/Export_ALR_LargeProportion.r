@@ -44,7 +44,7 @@ if(!length(opt$output_file_root)){
 	OutputRoot=opt$output_file_root;
 }
 
-if(!length(opt$denom_prop)){
+if(!length(opt$prop_extr)){
 	ExtractProp=DEF_EXTRACT_PROP;
 }else{
 	ExtractProp=opt$prop_extr;
@@ -331,9 +331,16 @@ plot(1:num_categories, sd_denom,
 abline(v=samp_prop_landmark_category_counts, col=landmark_colors, lty="dotted", lwd=landmark_widths);
 
 # Accumulation Std Dev.
+cat("---------------------------------------------------\n");
 min_sd_lr=min(sd_logratio, na.rm=T);
 cat("Min SD of LR: ", min_sd_lr, "\n");
 min_sd_lr_ix=which(sd_logratio==min_sd_lr);
+cat("Index of Min SD: ", min_sd_lr_ix, "\n");
+min_denom_abund=mean_denom[min_sd_lr_ix];
+cat("Abundance of Denom of Min SD: ", min_denom_abund, "\n");
+cat("---------------------------------------------------\n");
+
+
 
 plot(1:num_categories, sd_logratio, 
 	ylab="St. Dev. (Cumulative LR)", xlab="", main="Accumulated Standard Deviation of Log Ratio");
@@ -445,14 +452,39 @@ for(i in num_alr_val-(1:(9*2))){
 par(mfrow=c(1,1));
 
 plot_text(c(
-	"Extraction Information:",
-	paste("Target Proportion: ", ExtractProp, sep=""), 
-	paste("Denominator Proportion: ", 1-ExtractProp, sep=""),
-	paste("Acquired Denominator Proportion: ", acquired_denom_prop, sep=""),
+	"Extraction Information:\n",
+	paste("Number of Variables Loaded: ", num_categories, "\n"),
 	"",
-	paste("Number of Variables in Denominator: ", num_var_in_denom, sep=""),
-	paste("Number of Variables available for ALR: ", num_vars_for_alr, sep=""),	
-	""
+	"-------------------------------------------------------------------\n",
+	"",
+	"User Requested Parameters:\n",
+	"Targeted Proportions:\n",
+	sprintf("  Numerator: %7.5f\n", ExtractProp), 
+	sprintf("  Denominator: %7.5f\n", 1-ExtractProp),
+	"Acquired Proportions:\n",
+	sprintf("  Numerator: %7.5f\n", 1-acquired_denom_prop),
+	sprintf("  Denominator: %7.5f\n", acquired_denom_prop),
+	"",
+	"Acquired Variable Counts:\n",
+	sprintf("  Num Numerators (ALR): %i\n", num_vars_for_alr),	
+	sprintf("  Num Denominator: %i\n", num_var_in_denom),
+	"",
+	"",
+	"-------------------------------------------------------------------\n",
+	"",
+	"Computationally Suggested Parameters (Variance Minimized):\n",
+	sprintf("Min SD of LR: %7.5f\n", min_sd_lr),
+	sprintf("Index of Min SD: %i\n", min_sd_lr_ix),
+	"",
+	"Suggested Proportions:\n",
+	sprintf("  Numerator: %7.4f\n", 1-min_denom_abund),
+	sprintf("  Denominator: %7.4f\n", min_denom_abund),
+	"",
+	"Variable Counts:\n",
+	sprintf("  Num Numerators (ALR): %i\n", num_categories-min_sd_lr_ix),
+	sprintf("  Num Denominator: %i\n", min_sd_lr_ix),
+	"",
+	"-------------------------------------------------------------------\n"
 ));
 
 ##############################################################################
