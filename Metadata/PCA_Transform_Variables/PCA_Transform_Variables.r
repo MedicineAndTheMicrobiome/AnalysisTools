@@ -21,7 +21,8 @@ params=c(
 	"export_orig", "O", 2, "logical",
 	"export_curated", "C", 2, "logical",
 	"export_imputed", "I", 2, "logical",
-	"export_PC", "P", 2, "logical"
+	"export_PC", "P", 2, "logical",
+	"skip_heatmaps", "H", 2, "logical"
 );
 
 NORM_PVAL_CUTOFF=.2;
@@ -46,6 +47,7 @@ usage = paste(
 	"	[-p <targeted predictor variable list, default is all variables>]\n",
 	"	[-s <subsample from predictors, default=use all samples>]\n",
 	"	[-r <targeted response variable to plot against]\n",
+	"	[-H (Skip Plotting Heatmaps)\n",
 	"\n",
 	"	[-t (do not transform/autocurate predictors, default: transform if necessary)\n",
 	"	[-c PC Coverage, default=", PCA_COVERAGE, "\n",
@@ -82,6 +84,7 @@ PCIndivCoverage=PCA_INDIV_COVERAGE;
 PCVariableCorrelationCutoff=PCA_VAR_CORREL_CUTOFF;
 DonnotTransform=F;
 SubsampleTargets=-1;
+PlotCorrHeatmaps=T;
 
 ExportOrig=F;
 ExportCurated=F;
@@ -132,6 +135,10 @@ if(length(opt$export_PC)){
 	ExportPC=T;
 }
 
+if(length(opt$skip_heatmaps)){
+	PlotCorrHeatmaps=F;
+}
+
 
 param_text=capture.output({
 	cat("\n");
@@ -146,6 +153,7 @@ param_text=capture.output({
 	cat("Donnot Transform Variables: ", DonnotTransform, "\n");
 	cat("Export original variables: ", ExportOrig, "\n");
 	cat("\n");
+	cat("Plot Correlation Heatmaps: ", PlotCorrHeatmaps, "\n");
 });
 
 print(param_text, quote=F);
@@ -903,36 +911,46 @@ plot(dend, main="Ward's Minimum Variance: dist(1-abs(cor))");
 
 ##############################################################################
 
-plot_title_page("Correlation Heatmaps", c(
-	"The following heatmaps illustrate the correlation between variables at various",
-	"cutoffs of statistical significance (both unadjusted and adjusted for multiple testing).",
-	"",
-	"Red is more positively correlated, Blue is more negatively correlated."
-));
+if(PlotCorrHeatmaps){
+	plot_title_page("Correlation Heatmaps", c(
+		"The following heatmaps illustrate the correlation between variables at various",
+		"cutoffs of statistical significance (both unadjusted and adjusted for multiple testing).",
+		"",
+		"Red is more positively correlated, Blue is more negatively correlated."
+	));
 
-print(correl$val);
-paint_matrix(correl$val, deci_pts=2, title="All Correlations");
+	print(correl$val);
+	paint_matrix(correl$val, deci_pts=2, title="All Correlations");
 
-signf_10=mask_matrix(correl$val, correl$pval, 0.1, mask_val=0);
-paint_matrix(signf_10, deci_pts=2, label_zeros=F, title="Correlations (p-val<0.10)");
+	signf_10=mask_matrix(correl$val, correl$pval, 0.1, mask_val=0);
+	paint_matrix(signf_10, deci_pts=2, label_zeros=F, title="Correlations (p-val<0.10)");
 
-signf_05=mask_matrix(correl$val, correl$pval, 0.05, mask_val=0);
-paint_matrix(signf_05, deci_pts=2, label_zeros=F, title="Correlations (p-val<0.05)");
+	signf_05=mask_matrix(correl$val, correl$pval, 0.05, mask_val=0);
+	paint_matrix(signf_05, deci_pts=2, label_zeros=F, title="Correlations (p-val<0.05)");
 
-signf_01=mask_matrix(correl$val, correl$pval, 0.01, mask_val=0);
-paint_matrix(signf_01, deci_pts=2, label_zeros=F, title="Correlations (p-val<0.01)");
+	signf_01=mask_matrix(correl$val, correl$pval, 0.01, mask_val=0);
+	paint_matrix(signf_01, deci_pts=2, label_zeros=F, title="Correlations (p-val<0.01)");
 
-num_comparisons=nrow(correl$val)*(nrow(correl$val)-1)/2;
-cat("Num comparisons to correct for: ", num_comparisons, "\n");
+	num_comparisons=nrow(correl$val)*(nrow(correl$val)-1)/2;
+	cat("Num comparisons to correct for: ", num_comparisons, "\n");
 
-signf_05_bonf=mask_matrix(correl$val, correl$pval, 0.05/num_comparisons, mask_val=0);
-paint_matrix(signf_05_bonf, deci_pts=2, label_zeros=F, title="Correlations (Bonferroni Corrected: p-val<0.05)");
+	signf_05_bonf=mask_matrix(correl$val, correl$pval, 0.05/num_comparisons, mask_val=0);
+	paint_matrix(signf_05_bonf, deci_pts=2, label_zeros=F, 
+		title="Correlations (Bonferroni Corrected: p-val<0.05)");
 
-signf_01_bonf=mask_matrix(correl$val, correl$pval, 0.01/num_comparisons, mask_val=0);
-paint_matrix(signf_01_bonf, deci_pts=2, label_zeros=F, title="Correlations (Bonferroni Corrected: p-val<0.01)");
+	signf_01_bonf=mask_matrix(correl$val, correl$pval, 0.01/num_comparisons, mask_val=0);
+	paint_matrix(signf_01_bonf, deci_pts=2, label_zeros=F, 
+		title="Correlations (Bonferroni Corrected: p-val<0.01)");
 
-signf_001_bonf=mask_matrix(correl$val, correl$pval, 0.001/num_comparisons, mask_val=0);
-paint_matrix(signf_001_bonf, deci_pts=2, label_zeros=F, title="Correlations (Bonferroni Corrected: p-val<0.001)");
+	signf_001_bonf=mask_matrix(correl$val, correl$pval, 0.001/num_comparisons, mask_val=0);
+	paint_matrix(signf_001_bonf, deci_pts=2, label_zeros=F, 
+		title="Correlations (Bonferroni Corrected: p-val<0.001)");
+}else{
+	plot_title_page("Correlation Heatmaps", c(
+		"User Requested to Skip Correlation Heatmaps"
+	));
+
+}
 
 ##############################################################################
 
