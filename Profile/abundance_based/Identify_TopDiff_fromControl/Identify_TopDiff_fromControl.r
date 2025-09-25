@@ -233,8 +233,15 @@ for(var_ix in rownames(ordered_diff_tab)){
 
 par(mfrow=c(1,1));
 par(mar=c(5,5,5,5));
-plot(diff_tab[,"DiffMedian"], -log10(diff_tab[,"WilcoxPval"]),
-	xlab="ALR Difference From Reference (Exp-Ref)", ylab="Wilcoxon -log10(P-value)",
+val=diff_tab[,"DiffMedian"];
+differ=sign(val)*log(1+abs(val));
+#differ=val;
+max_abs_diff=max(abs(differ));
+
+plot(differ, -log10(diff_tab[,"WilcoxPval"]),
+	xlab="Symmetrized Log Tranformed: ALR Difference From Reference (Exp-Ref)", 
+	ylab="Wilcoxon -log10(P-value)",
+	xlim=c(-max_abs_diff, max_abs_diff),
 	main="Volcano Plot: Difference vs Significance");
 abline(v=0, lwd=1.5, col="black", lty="dashed");
 sig_levels=c(0.05,0.1,0.01,0.001);
