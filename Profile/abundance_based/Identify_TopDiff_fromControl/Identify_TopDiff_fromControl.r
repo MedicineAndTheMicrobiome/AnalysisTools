@@ -272,7 +272,7 @@ for(signf in c("signf_0.100", "signf_0.050", "signf_0.010", "signf_0.001")){
 	colnames(out_tab)=c(id_type, chosen_var);
 	write.table(
 		out_tab, 
-		paste(OutputFilenameRoot, ".", signf, ".tsv", sep=""),
+		paste(OutputFilenameRoot, ".top_diff.", signf, ".tsv", sep=""),
 		row.names=F,
 		sep="\t", quote=F
 		);
