@@ -1494,10 +1494,12 @@ if(ExportPC){
 
 ##############################################################################
 
+id_type=strsplit(readLines(FactorsFname,n=1), "\t")[[1]][1];
+
 cat("Outputing New Factor File Values:\n");
 fname=paste(OutputFnameRoot, ".pca.tsv", sep="");
 fh=file(fname, "w");
-cat(file=fh, "SampleID");
+cat(file=fh, id_type);
 close(fh);
 write.table(out_factors, file=fname, col.names=NA, append=T, quote=F, sep="\t");
 
@@ -1514,7 +1516,7 @@ for(criteria in c("by_correl", "by_indiv", "by_cumul")){
 
 	fname=paste(OutputFnameRoot, ".selected_transf_var.", ext_list[[criteria]], ".tsv", sep="");
 	fh=file(fname, "w");
-	cat(file=fh, "SampleID");
+	cat(file=fh, id_type);
 	close(fh);
 	write.table(sel_mat, file=fname, col.names=NA, append=T, quote=F, sep="\t");	
 }
