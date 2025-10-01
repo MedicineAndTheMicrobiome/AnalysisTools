@@ -2948,6 +2948,118 @@ marginal_stacked_barplots_byGroup=function(t2m, m2m, m2r, grp_colors, cutoff){
 
 ##############################################################################
 
+
+plot_trtcov_heatmap=function(tab, title, subitle){
+
+	num_pred=nrow(tab);
+	num_resp=ncol(tab);
+
+	tab=tab[num_pred:1,,drop=F];
+
+	resp_name=colnames(tab);
+	pred_name=rownames(tab);
+
+
+	par(mar=c(10, 10, 2, .5));
+	plot(NA, type="n", xlim=c(0,num_resp), ylim=c(0, num_pred),
+		main="", xlab="", ylab="", xaxt="n", yaxt="n"
+		);
+	title(main=title, cex.main=1, line=1);
+	title(main=subitle, cex.main=.7, font.main=3, line=.25);
+
+	# Left/Pred
+	axis(side=2, at=(1:num_pred)-.5, labels=pred_name, las=2);
+
+	# Bottom/Resp
+	axis(side=1, at=(1:num_resp)-.5, labels=resp_name, las=2);
+
+	num_colors=20;
+	color_arr=(rainbow(num_colors, start=0, end=1/3));
+
+	remap=function(in_val, in_range, out_range){
+		in_prop=(in_val-in_range[1])/(in_range[2]-in_range[1])
+		out_val=in_prop*(out_range[2]-out_range[1])+out_range[1];
+		return(out_val);
+	}
+
+	mag=max(abs(range(tab)));
+	val_range=c(-mag, mag);
+	
+	num_row=num_pred;
+	num_col=num_resp;
+	deci_pts=3;
+
+	for(x in 1:num_resp){
+		for(y in 1:num_pred){
+
+			col_val=tab[y,x];
+			col_ix=round(remap(col_val, val_range, c(1,num_colors)));
+
+			rect(x-1, y-1, (x-1)+1, (y-1)+1, border=NA, col=color_arr[col_ix]);
+
+			if(tab[y,x]!=0){
+				text_lab=sprintf(paste("%0.", deci_pts, "f", sep=""), col_val);
+				text(x-.5, y-.5, text_lab, srt=atan(num_col/num_row)/pi*180, 
+					cex=1, font=2);
+			}
+		}
+	}
+
+}
+
+generate_trtcov_heatmap=function(links, cutoff){
+	
+	cat("Plotting a heatmap of the Treatments and Covariates:\n");
+
+	covtrt_mat_entries_ix=(links[,"model_type"]=="Cov_to_Msd");
+	if(sum(covtrt_mat_entries_ix)==0){
+		cat("No significant treatment/covariate associations.\n");
+		return;
+	}
+
+	cov_to_msd_tab=links[covtrt_mat_entries_ix,,drop=F];
+
+	model_names=unique(cov_to_msd_tab[,"model_name"]);
+	for(model in model_names){
+
+		cat("Extracting: ", model, "\n");	
+
+		# Extract Group/Model
+		model_spec_tab=cov_to_msd_tab[cov_to_msd_tab[,"model_name"]==model,];
+		num_assoc=nrow(model_spec_tab);
+		print(model_spec_tab);
+
+		uniq_preds=unique(model_spec_tab[,"predictor"]);
+		uniq_resps=unique(model_spec_tab[,"response"]);
+
+		num_resp=length(uniq_resps);
+		num_pred=length(uniq_preds);
+		
+		# Create 2D matrix to store 
+		coef_mat=matrix(0, ncol=num_resp, nrow=num_pred);
+		colnames(coef_mat)=uniq_resps;
+		rownames(coef_mat)=uniq_preds;
+
+		for(row_ix in 1:num_assoc){
+			pred_ix=model_spec_tab[row_ix,"predictor"];
+			resp_ix=model_spec_tab[row_ix,"response"];
+			coef_mat[pred_ix, resp_ix]=model_spec_tab[row_ix,"coef"];
+		}
+
+		# Plot Heatmap
+		plot_trtcov_heatmap(coef_mat,
+			paste("Treatment/Covariate Coefficients: ", model, sep=""),
+			paste("P-value Cutoff: ", cutoff)
+			);
+
+	}
+
+	#quit();
+
+}
+
+##############################################################################
+
 plot_tmr_matrices=function(lnk_rec, var_rec, grp_colors, cutoff){
 
 	# Split records into trtcov-msd, msd-msd, and msd-resp matrices
@@ -3302,6 +3414,10 @@ for(cutoffs in names(denorm_results)){
 		capture.output(print(no_trtcov_unidir_links, quotes=""))
 	), max_lines_pp=70);
 		
+	# 
+
+	# Generate a heatmap only of the treatments and covariates coefficients
+	generate_trtcov_heatmap(links=unidir_links, cutoff=cutoffs);
 
 	# Generate Heatmaps & Stacked Barplots
 	link_rec=extract_matrices_from_links(no_trtcov_unidir_links);
