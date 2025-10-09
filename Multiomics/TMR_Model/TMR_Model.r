@@ -5,6 +5,7 @@
 library(MASS);
 library('getopt');
 library(vegan);
+library(xlsx);
 
 options(useFancyQuotes=F);
 options(digits=5);
@@ -1741,6 +1742,68 @@ remove_covariate_links_from_msd_pred=function(links_rec, covariates){
 	return(covar_removed);
 }
 
+#------------------------------------------------------------------------------
+
+export_regression_tables_into_xls=function(fname_root, mod_res){
+
+	cat("Exporting Regression Tables into XLS workbooks...\n");
+
+	mod_type=names(mod_res);
+	cat("Workbook Names (model types):\n");
+	print(mod_type);
+
+
+	for(mt in mod_type){
+
+		cat("Exporting: ", mt, "\n");
+
+		# Create "xls file", i.e., the workbook
+		workbook_obj=createWorkbook();
+
+		models=names(mod_res[[mt]]);
+		cat("Models Found:\n");
+		print(models);
+
+		for(mod in models){
+		
+			# Create sheet and add it to workbook
+			sheet_obj=createSheet(workbook_obj, sheetName=mod);
+
+			extab=mod_res[[mt]][[mod]][["coef"]];
+			num_cols=ncol(extab);
+			num_rows=nrow(extab);
+			rown=rownames(extab);
+			coln=colnames(extab);
+
+			out_matrix=matrix("", nrow=(num_rows*2)+5, ncol=num_cols+1);
+
+			out_matrix[1,1]="Coefficients:";
+			out_matrix[(1:num_rows)+2,1]=rown;
+			out_matrix[num_rows+4,1]="P-Values:";
+			out_matrix[num_rows+5+(1:num_rows),1]=rown;
+
+			# Label response variables
+			out_matrix[2, 1+(1:num_cols)]=coln;
+			out_matrix[5+num_rows, 1+(1:num_cols)]=coln;
+
+			out_matrix[2+(1:num_rows),1+(1:num_cols)]=
+				mod_res[[mt]][[mod]][["coef"]];
+
+			out_matrix[5+num_rows+(1:num_rows),1+(1:num_cols)]=
+				mod_res[[mt]][[mod]][["pval"]];
+
+			addDataFrame(out_matrix, sheet_obj, row.names=F, col.names=F);
+		}
+	
+		# Write workbook to file xls
+		outfn=paste(fname_root, ".", mt, ".xlsx", sep="");
+		cat("Writing File: ", outfn, "\n");
+		saveWorkbook(workbook_obj, outfn);
+
+	}
+
+}
+
 ##############################################################################
 
 #print(model_results);
@@ -1751,6 +1814,8 @@ unidir_results=list();
 numerical_cutoffs=sort(c(1.0000, 0.1000, 0.050, 0.010, 0.005, 0.001, 0.0005, 0.0001), decreasing=T);
 string_cutoffs=sprintf("%3.4f", numerical_cutoffs); 
 num_cutoffs=length(numerical_cutoffs);
+
+export_regression_tables_into_xls(OutputFnameRoot, model_results)
 
 for(i in 1:num_cutoffs){
 
