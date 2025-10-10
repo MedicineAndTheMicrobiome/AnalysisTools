@@ -286,7 +286,7 @@ sub run_abundance_based{
 		-t $offsets_colname \
 		-i $subjectid_colname \
 		-o $output_dir/abundance/$model_name \
-		$add_alr $add_reflev $add_groups $add_target_var_file $add_tagname
+		$add_alr $add_groups $add_target_var_file $add_tagname
 	";
 	run_command("Longitudinal ALR", "longit_alr", $cmd, 
 		"$output_dir/abundance");
