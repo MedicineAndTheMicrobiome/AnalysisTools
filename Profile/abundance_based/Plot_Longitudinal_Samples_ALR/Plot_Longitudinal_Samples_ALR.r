@@ -17,6 +17,7 @@ params=c(
 	"num_top_pred", "v", 2, "numeric",
 	"contains_remaining", "R", 2, "logical",
 	"shorten_category_names", "x", 2, "character",
+	"additional_categories", "a", 2, "character",
 
 	"factor_file", "f", 1, "character",
 	"offset_col", "t", 1, "character",
@@ -24,7 +25,7 @@ params=c(
 
 	"output_root", "o", 1, "character",
 
-	"alpha", "a", 2, "numeric",
+	"alpha_cutoff", "c", 2, "numeric",
 
 	"model_file", "m", 2, "character",
 	"group_col", "g", 2, "character",
@@ -48,6 +49,7 @@ usage = paste(
 	"\n",
 	"	[-v <number of top predictor (as ALR) categories to include, default=", NUM_TOP_PRED_CAT, ">]\n",
 	"	[-R (pay attention to 'remaining' category)]\n",
+	"	[-a <list of additional categories (from summary table) to include (filename)>]\n",
 	"	[-x <shorten category names, with separator in double quotes (default=\"\")>]\n",
 	"\n",
 	"	-f <factor file name>\n",
@@ -56,7 +58,7 @@ usage = paste(
 
 	"	-o <output root>\n",
 	"\n",
-	"	[-a <p-value cutoff for non parametric longitudinal statistics, default=", ALPHA, ">]\n",
+	"	[-c <p-value cutoff for non parametric longitudinal statistics, default=", ALPHA, ">]\n",
 	"\n",
 	"	[-m <model variable list>]\n",
 	"	[-g <group/cohort variable column name>]\n",
@@ -97,6 +99,7 @@ ResetOffsets=T;
 BeginOffset=-Inf;
 EndOffset=Inf;
 GroupCol="";
+AdditionalCatFile="";
 
 if(length(opt$num_top_pred)){
 	NumALRPredictors=opt$num_top_pred;
@@ -110,8 +113,8 @@ if(length(opt$shorten_category_names)){
 	ShortenCategoryNames=opt$shorten_category_names;
 }
 
-if(length(opt$alpha)){
-	Alpha=opt$alpha;
+if(length(opt$alpha_cutoff)){
+	Alpha=opt$alpha_cutoff;
 }
 
 if(length(opt$model_file)){
@@ -132,6 +135,12 @@ if(length(opt$end_offset)){
 
 if(length(opt$group_col)){
 	GroupCol=opt$group_col;
+}
+
+if(length(opt$additional_categories)){
+        AdditionalCatFile=opt$additional_categories;
+}else{
+        AdditionalCatFile="";
 }
 
 if(length(opt$tag_name)){
@@ -164,6 +173,7 @@ input_param=capture.output({
 	cat("  Num Top ALR Predictors: ", NumALRPredictors, "\n", sep="");
 	cat("  Contains 'Remaining': ", UseRemaining, "\n", sep="");
 	cat("  Shorten Categories: ", ShortenCategoryNames, "\n", sep="");
+	cat("  Additional File: ", AdditionalCatFile, "\n", sep="");
 	cat("\n");
 	cat("Factor File: ", FactorFile, "\n", sep="");
 	cat("  Subject ID Column Name: ", SubjectIDCol, "\n", sep="");
@@ -239,35 +249,65 @@ load_list=function(filename){
 	return(val);
 }
 
-extract_top_categories=function(ordered_normalized, top){
+extract_top_categories=function(ordered_normalized, top, additional_cat=c()){
 
-	num_samples=nrow(ordered_normalized);
-	num_categories=ncol(ordered_normalized);
+        num_samples=nrow(ordered_normalized);
+        num_categories=ncol(ordered_normalized);
 
-	cat("Samples: ", num_samples, "\n");
-	cat("Categories: ", num_categories, "\n");
-	
-	num_saved=min(c(num_categories, top+1));
+        cat("Samples: ", num_samples, "\n");
+        cat("Categories: ", num_categories, "\n");
 
-	cat("Top Requested to Extract: ", top, "\n");
-	cat("Columns to Extract: ", num_saved, "\n");
+        num_top_to_extract=min(num_categories-1, top);
 
-	top_cat=matrix(0, nrow=num_samples, ncol=num_saved);
-	top=num_saved-1;
+        cat("Top Requested to Extract: ", top, "\n");
+        cat("Columns to Extract: ", num_top_to_extract, "\n");
 
-	# Extract top categories requested
-	top_cat[,1:top]=ordered_normalized[,1:top];
+        # Extract top categories requested
+        if(top>0){
+                top_cat=ordered_normalized[,1:num_top_to_extract, drop=F];
+        }else{
+                top_cat=ordered_normalized[,NULL, drop=F];
+        }
 
-	# Included remaineder as sum of remaining categories
-	top_cat[,(top+1)]=apply(
-		ordered_normalized[,(top+1):num_categories, drop=F],
-		1, sum);
+        if(length(additional_cat)){
+                cat("Additional Categories to Include:\n");
+                print(additional_cat);
+        }else{
+                cat("No Additional Categories to Extract.\n");
+        }
 
-	rownames(top_cat)=rownames(ordered_normalized);
-	colnames(top_cat)=c(colnames(ordered_normalized)[1:top], "Remaining");
+        # Extract additional categories
+        # :: Make sure we can find the categories
+        available_cat=colnames(ordered_normalized);
 
-	return(top_cat);
-			
+        missing_cat=setdiff(additional_cat, available_cat);
+        if(length(missing_cat)){
+                cat("Error: Could not find categories: \n");
+                print(missing_cat);
+
+                quit(status=-1);
+        }
+
+        # :: Remove categories we have already extracted in the top N
+        already_extracted_cat=colnames(top_cat);
+        extra_cat=setdiff(additional_cat, already_extracted_cat);
+
+        num_extra_to_extract=length(extra_cat);
+        cat("Num Extra Categories to Extract: ", num_extra_to_extract, "\n");
+
+        # Allocate/Prepare output matrix
+        num_out_mat_cols=num_top_to_extract+num_extra_to_extract+1;
+        out_mat=matrix(0, nrow=num_samples, ncol=num_out_mat_cols);
+        rownames(out_mat)=rownames(ordered_normalized);
+        colnames(out_mat)=c(already_extracted_cat, extra_cat, "Remaining");
+
+        # Copy over top and additional categories, and compute remainding
+        all_cat_names=c(already_extracted_cat, extra_cat);
+        out_mat[,all_cat_names]=ordered_normalized[,all_cat_names, drop=F];
+        out_mat[,"Remaining"]=apply(out_mat, 1, function(x){1-sum(x)});
+
+        return(out_mat);
+
 }
 
 additive_log_rato=function(ordered_matrix){
@@ -583,7 +623,13 @@ pdf(paste(OutputRoot, ".alr_ts.pdf", sep=""), height=14, width=8.5);
 cat("\n");
 cat("Extracting Top categories: ", NumALRPredictors, " from amongst ", ncol(normalized), "\n", sep="");
 
-cat_abundances=extract_top_categories(normalized, NumALRPredictors);
+if(AdditionalCatFile!=""){
+        additional_categories=load_list(AdditionalCatFile);
+}else{
+        additional_categories=c();
+}
+
+cat_abundances=extract_top_categories(normalized, NumALRPredictors, additional_cat=additional_categories);
 resp_alr_struct=additive_log_rato(cat_abundances);
 alr_categories_val=resp_alr_struct$transformed;
 alr_cat_names=colnames(alr_categories_val);
