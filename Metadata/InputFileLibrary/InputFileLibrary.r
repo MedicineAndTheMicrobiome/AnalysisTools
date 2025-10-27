@@ -895,10 +895,19 @@ load_and_reconcile_files=function(
 	message("Loading Factors File: ", factors[["fn"]], "\n", sep="");
 	report_list[["Factor File"]]=capture.output({
 
-		factors_mat=load_factors_file(
-			fname=factors[["fn"]],
-			relevel_fn=factors[["ref_relvl_fn"]]
-			);
+			factors_mat=load_factors_file(
+				fname=factors[["fn"]],
+				relevel_fn=factors[["ref_relvl_fn"]],
+				prim_key_cname=factors[["smp_cname"]]
+				);
+			
+			# If the sample ID was not specified, it is assumed
+			#  that the first column will be used as they sample_id/primary key
+			if(!specified(factors[["smp_cname"]])){
+				presumed_sample_id=colnames(factors_mat)[1];
+				factors[["smp_cname"]]=presumed_sample_id;
+				rownames(factors_mat)=factors_mat[,presumed_sample_id];
+			}
 
 		cat("Factor Table Dimensions: ", dim(factors_mat), "\n");
 		message("   Factor Table Dimensions: ", dim(factors_mat));
