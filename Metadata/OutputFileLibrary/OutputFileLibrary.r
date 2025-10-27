@@ -848,6 +848,18 @@ plot_rank_abundance=function(abundances, num_disp_max=50, category_colors=NULL,
 
 ###############################################################################
 
+desaturate=function(col, factor = 0.5) {
+# Takes the specified color, and makes it more grey, to
+# help declutter or de-emphasize objects colored by it.
+        rgbmat=col2rgb(col);
+        hsvmat=rgb2hsv(rgbmat, maxColorValue=255)
+        hsvmat["s",]=hsvmat["s",] * factor
+        rgb=hsv(hsvmat["h",1], s=hsvmat["s",1], v=hsvmat["v",1]);
+        return(rgb)
+}
+
+###############################################################################
+
 modify_filenames=function(infn, modlist, usage=F){
 # This function implements an abridged version of the C-shell file name modifier.
 # To include the usage information in the usage of a script using it, make the usage=T.
