@@ -145,6 +145,15 @@ usage = paste(
 	"	     max_long_weekend_smokes=function.list(max, list(saturday, sunday, monday)); \n",
 	"\n",
 	"\n",
+	"	normalize_across_choices(list(x, y, ...))\n",
+	"		This function will normalize the row across the variable names so they add\n",
+	"		up to 1.0, basically converting the values across x, y, ... into a probability\n",
+	"		density function.\n",
+	"		For example, if a sample has multiple choices where x=1, y=0, and z=1,\n",
+	"		then normalizing across the choices will generate: x=0.5, y=0, and z=0.5.\n", 
+	"		If all values are 0, then all values still be zero (no divide by zero errors)\n",
+	"\n",
+	"\n",
 	"	mask(x, bool_arr, mask_value): This will return the values in x masked with the values\n",
 	"		in the mask_value.  The rows in bool_arr will be used as the mask condition.\n",
 	"		This is useful for conditionally replacing specific values with a new value.\n",
@@ -450,6 +459,28 @@ function.list=function(fun, arglist, na.rm=T){
 	m=matrix(unlist(arglist), byrow=F, ncol=length(arglist));
 	out=apply(m, 1, function(x){fun(x, na.rm=na.rm)});	
 	return(out);
+}
+
+normalize_across_choices=function(arglist){
+
+	# Get variable names passed in
+	args=substitute(arglist);
+	arg_str=as.character(args);
+	varnames=arg_str[2:length(arg_str)];
+
+	cat("Variable Names:\n");
+	print(varnames);
+
+	# Build matrix
+	m=matrix(unlist(arglist), byrow=F, ncol=length(arglist));
+	colnames(m)=varnames;
+
+	# Normalize
+	sums=apply(m, 1, sum);
+	norm=(m/sums);
+	norm[is.nan(norm)]=0;
+
+	return(norm);
 }
 
 offsets_by_group=function(abs, ref, grp){
