@@ -1639,17 +1639,17 @@ plot_div_summary_list(div_coef_pval_list);
 # Required for predictor/response downstream analysis
 
 write_coef_pval_matrices=function(coef_mat, pval_mat, pred_names, out_rootfn){
-	# Format: Factors as columns, alr (predictor) as rows
+	# Format: Factors as columns, div (predictor) as rows
 
 	cat("Writing coef and pvals matrices to: ", out_rootfn, " (root).\n", sep="");
 
 	coef_mat=coef_mat[pred_names,,drop=F];
 	pval_mat=pval_mat[pred_names,,drop=F];
 
-	write.table(coef_mat, file=paste(out_rootfn, ".alr_as_pred.coefs.tsv", sep=""), 
+	write.table(coef_mat, file=paste(out_rootfn, ".div_as_pred.coefs.tsv", sep=""), 
 		sep="\t", quote=F, col.names=NA, row.names=T);
 
-	write.table(pval_mat, file=paste(out_rootfn, ".alr_as_pred.pvals.tsv", sep=""), 
+	write.table(pval_mat, file=paste(out_rootfn, ".div_as_pred.pvals.tsv", sep=""), 
 		sep="\t", quote=F, col.names=NA, row.names=T);
 }
 
