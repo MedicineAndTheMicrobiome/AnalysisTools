@@ -126,8 +126,14 @@ pdf(paste(OutputFileRoot, ".pdf", sep=""), height=11, width=8.5);
 
 par(mfrow=c(4,3));
 category_names=colnames(mat_order_nonas);
+range=range(mat_order_nonas);
+hist_bins=seq(range[1], range[2], length.out=20);
 for(i in 1:num_categories){
-	hist(mat_order_nonas[,i], main=paste(i, ": ", category_names[i], sep=""), xlab=VALNAME);
+	hist(mat_order_nonas[,i], 
+		main=paste(i, ": ", category_names[i], sep=""), 
+		xlab=VALNAME,
+		breaks=hist_bins
+		);
 }
 
 ###############################################################################
