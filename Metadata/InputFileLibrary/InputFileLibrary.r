@@ -903,17 +903,26 @@ load_and_reconcile_files=function(
 			
 			# If the sample ID was not specified, it is assumed
 			#  that the first column will be used as they sample_id/primary key
+			# If the sample ID was specified, put it back into 
+			#  factor mat, so it's not just a rowname.
 			if(!specified(factors[["smp_cname"]])){
+				message("Sample ID not specified, presuming 1st col is sample id.");
 				presumed_sample_id=colnames(factors_mat)[1];
 				factors[["smp_cname"]]=presumed_sample_id;
 				rownames(factors_mat)=factors_mat[,presumed_sample_id];
+				message("Presumed Sample ID: ", presumed_sample_id, "\n");
+			}else{
+				message(paste("Factor File Sample ID Col Name: ", factors[["smp_cname"]], sep=""));
+				# Add Sample ID back into factors file
+				cnames=c(colnames(factors_mat), factors[["smp_cname"]]);
+				factors_mat=cbind(factors_mat, rownames(factors_mat));
+				colnames(factors_mat)=cnames;
 			}
 
 		cat("Factor Table Dimensions: ", dim(factors_mat), "\n");
 		message("   Factor Table Dimensions: ", dim(factors_mat));
 
 	});
-
 
 	message("Loading Mappings: ", pairs[["fn"]], " (pairs) and ", 
 		sbj_to_smp[["fn"]], " (sbj_to_smp)\n", sep="");
@@ -996,7 +1005,6 @@ load_and_reconcile_files=function(
 				message("Missing variables from Factors:");
 				print_se(missing);
 			}
-
 			factors_subset_mat=
 				factors_mat[, subset_col_arr, drop=F];
 
